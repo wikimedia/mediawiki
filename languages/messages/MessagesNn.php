@@ -7,7 +7,6 @@
  * @author Eirik
  * @author Jon Harald Søby
  * @author Jorunn
- * @author Siebrand
  * @author M.M.S.
  * @author Ranveig
  * @author לערי ריינהארט
@@ -15,11 +14,9 @@
  * @author H92
  * @author Dittaeva
  * @author Boivie
- * @author SPQRobin
  * @author Olve Utne
  * @author Guttorm Flatabø
  * @author Shauni
- * @author Max sonnelid
  */
 
 /**
@@ -301,8 +298,6 @@ $messages = array(
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldri',
 'underline-default' => 'Nettlesarstandard',
-
-'skinpreview' => '(førehandsvis)',
 
 # Dates
 'sunday'        => 'søndag',
@@ -1021,6 +1016,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'qbsettings-floatingright' => 'Flytande høgre',
 'changepassword'           => 'Skift passord',
 'skin'                     => 'Drakt',
+'skin-preview'             => 'førehandsvis',
 'math'                     => 'Matematiske formlar',
 'dateformat'               => 'Datoformat',
 'datedefault'              => 'Standard',

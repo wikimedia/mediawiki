@@ -7,9 +7,6 @@
  * @author Atabek
  * @author AlefZet
  * @author Jiemurat
- * @author Siebrand
- * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $fallback = 'kk-latn';
@@ -131,8 +128,6 @@ $messages = array(
 'underline-always'  => "Ha'r dayım",
 'underline-never'   => 'Hesh qashan',
 'underline-default' => "Brawzerdin' sazlawları boyınsha",
-
-'skinpreview' => '(Korip al)',
 
 # Dates
 'sunday'        => 'Ekshenbi',
@@ -732,6 +727,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'qbsettings-floatingright' => "On'da jıljıwshı",
 'changepassword'           => "Paroldi o'zgertiw",
 'skin'                     => "Sırtqı ko'rinis",
+'skin-preview'             => 'Korip al',
 'math'                     => 'Formulalar',
 'dateformat'               => "Sa'ne formatı",
 'datedefault'              => 'Hesh sazlawlarsız',

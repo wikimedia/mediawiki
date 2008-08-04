@@ -11,6 +11,13 @@
 
 $messages = array(
 # Dates
+'sun'           => 'Dzo',
+'mon'           => 'Dzo',
+'tue'           => 'Brã',
+'wed'           => 'Kuɖ',
+'thu'           => 'Yaw',
+'fri'           => 'Fiɖ',
+'sat'           => 'Mem',
 'january'       => 'Dzove',
 'february'      => 'Dzodze',
 'march'         => 'Tedoxe',

@@ -5,9 +5,7 @@
  * @file
  *
  * @author 555
- * @author Siebrand
  * @author Lijealso
- * @author SPQRobin
  * @author לערי ריינהארט
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
@@ -193,8 +191,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Padrão do navegador',
-
-'skinpreview' => '(Pré-visualizar)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -963,6 +959,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'qbsettings-floatingright' => 'Flutuando à direita',
 'changepassword'           => 'Alterar senha',
 'skin'                     => 'Tema',
+'skin-preview'             => 'Pré-visualizar',
 'math'                     => 'Matemática',
 'dateformat'               => 'Formato da data',
 'datedefault'              => 'Sem preferência',

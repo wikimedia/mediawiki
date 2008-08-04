@@ -38,8 +38,6 @@ $messages = array(
 'underline-never'   => '从来弗',
 'underline-default' => '浏览器默认',
 
-'skinpreview' => '(预览)',
-
 # Dates
 'sunday'        => '星期天',
 'monday'        => '星期一',
@@ -369,6 +367,7 @@ $messages = array(
 'qbsettings-none'       => '呒',
 'changepassword'        => '改密码',
 'skin'                  => '皮肤',
+'skin-preview'          => '预览',
 'math'                  => '数学公式',
 'datedefault'           => '呒拨偏好',
 'datetime'              => '日脚搭仔辰光',

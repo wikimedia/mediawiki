@@ -6,7 +6,6 @@
  *
  * @author McDutchie
  * @author Malafaya
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -83,8 +82,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunquam',
 'underline-default' => 'Secundo le configuration del navigator',
-
-'skinpreview' => '(Previsualisation)',
 
 # Dates
 'sunday'        => 'dominica',
@@ -347,7 +344,7 @@ Le administrator responsabile dava iste explication: $1',
 Causas normal de iste problema es: tu ha consultate un \'\'diff\'\' obsolete, o tu sequeva un ligamine de historia verso un pagina que ha essite delite.
 
 Si isto non es le caso, es possibile que tu ha trovate un error in le software.
-Per favor reporta isto a un administrator, faciente nota del adresse URL.',
+Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente nota del adresse URL.',
 'missingarticle-rev'   => '(numero del revision: $1)',
 'missingarticle-diff'  => '(Diff: $1, $2)',
 'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
@@ -403,11 +400,11 @@ Le ration date es ''$2''.",
 'logouttitle'                => 'Session claudite',
 'logouttext'                 => '<strong>Tu ha claudite tu session.</strong>
 
-Tu pote continuar a usar {{SITENAME}} anonymemente, o initiar un nove session como le mesme o como un altere usator.
+Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:Userlogin|initiar un nove session]] como le mesme o como un altere usator.
 Nota que alcun paginas pote continuar a monstrar se como si le session esserea ancora active. Pro remediar isto, tu pote vacuar le cache de tu navigator.',
 'welcomecreation'            => '== Benvenite, $1! ==
 Tu conto ha essite create.
-Non oblida personalisar tu preferentias in {{SITENAME}}.',
+Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].',
 'loginpagetitle'             => 'Aperir session',
 'yourname'                   => 'Nomine de usator:',
 'yourpassword'               => 'Contrasigno:',
@@ -418,7 +415,7 @@ Non oblida personalisar tu preferentias in {{SITENAME}}.',
 'loginproblem'               => '<b>Un problema occureva con tu session.</b><br />Per favor reprova!',
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
-'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
+'loginprompt'                => 'Tu debe haber activate le cookies pro poter [[Special:Userlogin|identificar te a {{SITENAME}}]].',
 'userlogin'                  => 'Aperir session / crear conto',
 'logout'                     => 'Clauder session',
 'userlogout'                 => 'Clauder session',
@@ -588,7 +585,7 @@ Per favor include iste ID in omne correspondentia.',
 'blockednoreason'                  => 'nulle ration date',
 'blockedoriginalsource'            => "Le codice-fonte de '''$1''' se monstra infra:",
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
-'whitelistedittitle'               => 'Identification requirite pro modificar',
+'whitelistedittitle'               => '[[Special:Userlogin|Identification requirite]] pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
 'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
@@ -605,9 +602,9 @@ Viste que il non ha alcun section $1, il non ha alcun location pro publicar tu m
 'newarticletext'                   => "Tu ha sequite un ligamine verso un pagina que non existe ancora.
 Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [[{{MediaWiki:Helppage}}|pagina de adjuta]] pro plus informationes).
 Si tu ha arrivate hic per error, clicca le button '''Retornar''' de tu navigator.",
-'anontalkpagetext'                 => "---- ''Isto es le pagina de discussion pro un usator anonyme qui non ha ancora create un conto o qui non lo usa. Consequentemente nos debe usar le adresse IP numeric pro identificar le/la.
+'anontalkpagetext'                 => "---- ''Isto es le pagina de discussion pro un usator anonyme qui non ha ancora create un conto, o qui non lo usa. Consequentemente nos debe usar le adresse IP numeric pro identificar le/la.
 Un tal adresse IP pote esser usate in commun per varie personas.
-Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:Userlogin|crea un conto o aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
+Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:Userlogin/signup|crea un conto]] o [[Special:Userlogin|aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
 'noarticletext'                    => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
@@ -623,12 +620,14 @@ le modificationes non ha ancora essite publicate!</strong>',
 'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
 'session_fail_preview'             => '<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.
-Per favor reprova. Si illo ancora non va, prova clauder e reaperir tu session.</strong>',
+Per favor reprova.
+Si illo ancora non va, prova [[Special:Userlogout|clauder tu session]] e aperir un nove session.</strong>',
 'session_fail_preview_html'        => "<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
 
 ''Viste que HTML crude es active in {{SITENAME}}, le previsualisation es celate como precaution contra attaccos via JavaScript.''
 
-<strong>Si isto es un tentativa de modification legitime, per favor reprova lo. Si illo ancora non va, prova clauder e reaperir tu session.</strong>",
+<strong>Si isto es un tentativa de modification legitime, per favor reprova lo.
+Si illo ancora non va, prova [[Special:Userlogout|clauder tu session]] e aperir un nove session.</strong>",
 'token_suffix_mismatch'            => "<strong>Tu modification ha essite refusate proque tu cliente corrumpeva le characteres de punctuation in le indicio de modification.
 Iste refusa es pro evitar le corruption del texto del pagina.
 Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a base de web.</strong>",
@@ -704,7 +703,7 @@ Iste parametros ha essite omittite.',
 'undo-success' => 'Le modification es reversibile. Per favor controla le comparation infra pro verificar que tu vole facer isto, e alora immagazina le modificationes infra pro completar le reversion del modification.',
 'undo-failure' => 'Le modification non poteva esser revertite a causa de conflicto con modificationes intermedie.',
 'undo-norev'   => 'Impossibile reverter le modification proque illo non existe o esseva delite.',
-'undo-summary' => 'Reverte le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])',
+'undo-summary' => 'Reverte le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non pote crear conto',
@@ -839,8 +838,9 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 
 # Search results
 'searchresults'             => 'Resultatos del recerca',
+'searchresults-title'       => 'Resultatos del recerca de $1',
 'searchresulttext'          => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Tu cercava "[[:$1]]"',
+'searchsubtitle'            => 'Tu cercava \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tote le paginas que comencia con "$1"]] | [[Special:Whatlinkshere/$1|tote le paginas con ligamines a "$1"]])',
 'searchsubtitleinvalid'     => 'Tu cercava "$1"',
 'noexactmatch'              => "'''Non existe un pagina con le titulo \"\$1\".'''
 Tu pote [[:\$1|crear iste pagina]].",
@@ -896,6 +896,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'qbsettings-floatingright' => 'Flottante a derecta',
 'changepassword'           => 'Cambiar contrasigno',
 'skin'                     => 'Stilo',
+'skin-preview'             => 'Previsualisation',
 'math'                     => 'Mathematica',
 'dateformat'               => 'Formato de datas',
 'datedefault'              => 'Nulle preferentia',
@@ -1099,16 +1100,17 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] se revela in litter
 'uploadtext'                  => "Tu pote cargar files con le formulario infra.
 Pro vider o cercar imagines cargate previemente, visita le [[Special:Imagelist|lista de imagines cargate]]. In ultra, le cargas e deletiones es registrate in le [[Special:Log/upload|registro de cargas]].
 
-Pro includer un file in un articulo, usa un ligamine in le forma
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|texto alternative]]</nowiki>''', o
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' pro facer un ligamine directe al file.",
+Pro includer un file in un articulo, usa un ligamine in un del sequente formas:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|texto alternative]]</nowiki></tt>''' pro usar un rendition a largor de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro facer un ligamine directe al file sin monstrar le file",
 'upload-permitted'            => 'Typos de file permittite: $1.',
 'upload-preferred'            => 'Typos de file preferite: $1.',
 'upload-prohibited'           => 'Typos de file prohibite: $1.',
 'uploadlog'                   => 'registro de cargas',
 'uploadlogpage'               => 'Registro de cargas',
-'uploadlogpagetext'           => 'Infra es un lista del plus recente cargas de files.',
+'uploadlogpagetext'           => 'Infra es un lista del plus recente cargas de files.
+Vide le [[Special:NewImages|galleria de nove files]] pro un presentation plus visual.',
 'filename'                    => 'Nomine del file',
 'filedesc'                    => 'Summario',
 'fileuploadsummary'           => 'Summario:',
@@ -1194,11 +1196,11 @@ PICT # misc.
 'upload-proto-error-text' => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
 'upload-file-error'       => 'Error interne',
 'upload-file-error-text'  => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
-Per favor contacta un administrator de systemas.',
+Per favor contacta un [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error'       => 'Error de cargamento non cognoscite',
 'upload-misc-error-text'  => 'Un error non cognoscite occurreva durante le cargamento.
 Per favor verifica que le adresse URL sia valide e accessible, e reprova.
-Si le problema persiste, contacta un administrator de systemas.',
+Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
@@ -1466,13 +1468,17 @@ Es possibile que illo contine un o plus characteres que non pote esser usate in 
 'listusers-noresult' => 'Nulle usator trovate.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Derectos del gruppos de usatores',
-'listgrouprights-summary'  => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
-Informationes additional super derectos individual se trova a [[{{MediaWiki:Listgrouprights-helppage}}]].',
-'listgrouprights-group'    => 'Gruppo',
-'listgrouprights-rights'   => 'Derectos',
-'listgrouprights-helppage' => 'Help:Derectos de gruppos',
-'listgrouprights-members'  => '(lista de membros)',
+'listgrouprights'                 => 'Derectos del gruppos de usatores',
+'listgrouprights-summary'         => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
+Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]] super derectos individual.',
+'listgrouprights-group'           => 'Gruppo',
+'listgrouprights-rights'          => 'Derectos',
+'listgrouprights-helppage'        => 'Help:Derectos de gruppos',
+'listgrouprights-members'         => '(lista de membros)',
+'listgrouprights-addgroup'        => 'Pote adder gruppos: $1',
+'listgrouprights-removegroup'     => 'Pote remover gruppos: $1',
+'listgrouprights-addgroup-all'    => 'Pote adder tote le gruppos',
+'listgrouprights-removegroup-all' => 'Pote eliminar tote le gruppos',
 
 # E-mail user
 'mailnologin'     => 'Necun adresse de invio',
@@ -1622,10 +1628,10 @@ procede con caution.',
 'rollbacklink'                => 'reverter',
 'rollbackfailed'              => 'Reversion fallite',
 'cantrollback'                => 'Impossibile reverter le modification; le ultime contributor es le sol autor de iste pagina.',
-'alreadyrolled'               => 'Non pote reverter le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|Talk]]);
+'alreadyrolled'               => 'Non pote reverter le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 un altere persona ha ja modificate o revertite le pagina.
 
-Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|Talk]]).',
+Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'Le commento del modification esseva: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Reverteva modificationes per $1;
@@ -1897,19 +1903,18 @@ Pro blocar o disblocar le base de datos, le servitor web debe poter scriber a is
 # Move page
 'move-page'               => 'Renominar $1',
 'move-page-legend'        => 'Renominar pagina',
-'movepagetext'            => "Per medio del formulario infra tu pote renominar un pagina, e transferer tote su historia al nove nomine.
-Le titulo anterior devenira un pagina de redirection al nove titulo.
-Le ligamines al pagina anterior non essera modificate;
-assecura te de reparar omne redirectiones duple o defecte.
-Tu es responsabile pro assecurar que le ligamines continua a punctar a ubi illos deberea.
+'movepagetext'            => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
+Le titulo anterior devenira un pagina de redirection verso le nove titulo.
+Tu pote actualisar automaticamente le redirectiones que puncta verso le titulo original.
+Si tu opta contra facer lo, assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|defecte]].
+Tu es responsabile pro assecurar que le ligamines continua a punctar verso ubi illos deberea.
 
-Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nove titulo, salvo si illo es vacue o un redirection e non ha un historia de modificationes passate. Isto significa que tu
-pote renominar un pagina a su titulo original si tu lo ha renominate per error, e que tu non pote superscriber un pagina existente.
+Nota que le pagina '''non''' essera renominate si existe ja un pagina sub le nove titulo, salvo si illo es vacue o un redirection e non ha un historia de modificationes passate.
+Isto significa que tu pote renominar un pagina a su titulo original si tu lo ha renominate per error, e que tu non pote superscriber un pagina existente.
 
 '''ATTENTION!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
-per favor assecura te que tu comprende le consequentias de isto
-ante que tu procede.",
+per favor assecura te que tu comprende le consequentias de isto ante que tu procede.",
 'movepagetalktext'        => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
 *Un pagina de discussion non vacue ja existe sub le nove nomine, o
 *Tu dismarca le quadrato infra.
@@ -2002,7 +2007,8 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'import-interwiki-history'   => 'Copiar tote le versiones del historia de iste pagina',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
-'importtext'                 => 'Per favor exporta le file del wiki de origine con le function Special:Export, immagazina lo in tu disco e carga lo hic.',
+'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
+Immagazina lo in tu disco e carga lo hic.',
 'importstart'                => 'In processo de importar paginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|revisiones}}',
 'importnopages'              => 'Nulle paginas a importar.',
@@ -2167,9 +2173,10 @@ Le causa es probabilemente un ligamine a un sito externe.',
 'markedaspatrollederror-noautopatrol' => 'Tu non es permittite a marcar tu proprie modificationes como patruliate.',
 
 # Patrol log
-'patrol-log-page' => 'Registro de patrulia',
-'patrol-log-line' => 'marcava $1 de $2 como patruliate $3',
-'patrol-log-auto' => '(automaticamente)',
+'patrol-log-page'   => 'Registro de patrulia',
+'patrol-log-header' => 'Isto es un registro de revisiones patruliate.',
+'patrol-log-line'   => 'marcava $1 de $2 como patruliate $3',
+'patrol-log-auto'   => '(automaticamente)',
 
 # Image deletion
 'deletedrevision'                 => 'Deleva le ancian revision $1',

@@ -6,15 +6,12 @@
  *
  * @author Garas
  * @author Hugo.arg
- * @author Siebrand
  * @author Matasg
  * @author Pdxx
  * @author Siggis
  * @author Vpovilaitis
  * @author לערי ריינהארט
  * @author Tomasdd
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -114,8 +111,6 @@ $messages = array(
 'underline-always'  => 'Visada',
 'underline-never'   => 'Niekada',
 'underline-default' => 'Pagal naršyklės nustatymus',
-
-'skinpreview' => '(Peržiūra)',
 
 # Dates
 'sunday'        => 'sekmadienis',
@@ -893,6 +888,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'qbsettings-floatingright' => 'Plaukiojantis dešinėje',
 'changepassword'           => 'Pakeisti slaptažodį',
 'skin'                     => 'Išvaizda',
+'skin-preview'             => 'Peržiūra',
 'math'                     => 'Matematika',
 'dateformat'               => 'Datos formatas',
 'datedefault'              => 'Jokio pasirinkimo',

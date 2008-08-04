@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+
  */
 
 $datePreferences = array(
@@ -53,8 +54,6 @@ $messages = array(
 'underline-always'  => 'Tiāⁿ-tio̍h',
 'underline-never'   => 'Tiāⁿ-tio̍h mài',
 'underline-default' => 'Tòe liû-lám-khì ê default',
-
-'skinpreview' => '(Chhì khoàⁿ)',
 
 # Dates
 'sunday'        => 'Lé-pài',
@@ -385,6 +384,7 @@ $messages = array(
 'qbsettings'            => 'Quickbar ê siat-tēng',
 'changepassword'        => 'Oāⁿ bi̍t-bé',
 'skin'                  => 'Phôe',
+'skin-preview'          => 'Chhì khoàⁿ',
 'math'                  => 'Sò·-ha̍k ê rendering',
 'dateformat'            => 'Ji̍t-kî keh-sek',
 'datedefault'           => 'Chhìn-chhái',

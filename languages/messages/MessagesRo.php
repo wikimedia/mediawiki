@@ -10,9 +10,6 @@
  * @author SCriBu
  * @author Firilacroco
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $skinNames = array(
@@ -138,8 +135,6 @@ pe titlul secţiunii (JavaScript)',
 'underline-always'  => 'Întotdeauna',
 'underline-never'   => 'Niciodată',
 'underline-default' => 'Standardul browser-ului',
-
-'skinpreview' => '(Previzualizare)',
 
 # Dates
 'sunday'        => 'duminică',
@@ -814,6 +809,7 @@ Alţi administratori de pe acest wiki vor putea accesa conţinutul ascuns şi î
 'qbsettings-floatingright' => 'Plutire la dreapta',
 'changepassword'           => 'Schimbă parola',
 'skin'                     => 'Aspect',
+'skin-preview'             => 'Previzualizare',
 'math'                     => 'Aspect formule',
 'dateformat'               => 'Formatul datelor',
 'datedefault'              => 'Nici o preferinţă',

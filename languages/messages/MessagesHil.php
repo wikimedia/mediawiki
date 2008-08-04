@@ -6,7 +6,6 @@
  *
  * @author Jose77
  * @author Kguirnela
- * @author Siebrand
  */
 
 $messages = array(
@@ -15,8 +14,6 @@ $messages = array(
 'tog-highlightbroken'  => 'Dagwayi ang utod nga tabid <a href="" class="new">nga nagaka anggid sini </a> (alternatibo: anggid sini<a href="" class="internal">?</a>).',
 'tog-justify'          => 'Tadlongon ang mga parapo',
 'tog-rememberpassword' => 'Dumdumon ang akon pagsulod sa sini nga kompyuter',
-
-'skinpreview' => '(Ipakita subong)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -179,6 +176,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Preferences page
 'mypreferences'     => 'Akon pagpalabi',
 'prefsnologin'      => 'Wala naka-sulod',
+'skin-preview'      => 'Ipakita subong',
 'prefs-rc'          => 'Mga Bag-o nga Inislan',
 'searchresultshead' => 'Pangita-a',
 

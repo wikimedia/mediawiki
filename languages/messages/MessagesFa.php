@@ -5,12 +5,10 @@
  * @file
  *
  * @author Roozbeh Pournader <roozbeh at gmail.com>
- * @author G - ג
  * @author Huji <huji.huji at gmail.com>
  * @author Gangleri
  * @author Mardetanha
  * @author לערי ריינהארט
- * @author Siebrand
  */
 
 $skinNames = array(
@@ -317,8 +315,6 @@ $messages = array(
 'underline-always'  => 'همیشه',
 'underline-never'   => 'هرگز',
 'underline-default' => 'پیش‌فرض مرورگر',
-
-'skinpreview' => '(پیش‌نمایش)',
 
 # Dates
 'sunday'        => 'یک‌شنبه',
@@ -1102,6 +1098,7 @@ $3
 'qbsettings-floatingright' => 'شناور راست',
 'changepassword'           => 'تغییر گذرواژه',
 'skin'                     => 'پوسته',
+'skin-preview'             => 'پیش‌نمایش',
 'math'                     => 'نمایش ریاضیات',
 'dateformat'               => 'قالب تاریخ',
 'datedefault'              => 'بدون ترجیح',

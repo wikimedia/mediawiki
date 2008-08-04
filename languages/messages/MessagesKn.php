@@ -7,12 +7,9 @@
  * @author Shushruth
  * @author Mana
  * @author לערי ריינהארט
- * @author Siebrand
  * @author HPN
- * @author Jon Harald Søby
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
  * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -93,8 +90,6 @@ $messages = array(
 'underline-always'  => 'ಯಾವಾಗಲೂ',
 'underline-never'   => 'ಎಂದಿಗೂ ಇಲ್ಲ',
 'underline-default' => 'ಬ್ರೌಸರ್‍ನ ಯಥಾಸ್ಥಿತಿ',
-
-'skinpreview' => '(ಮುನ್ನೋಟ)',
 
 # Dates
 'sunday'        => 'ಭಾನುವಾರ',
@@ -787,6 +782,7 @@ $2',
 'qbsettings-floatingright' => 'ಬಲಕ್ಕೆ ತೇಲುತ್ತಿದೆ',
 'changepassword'           => 'ಪ್ರವೇಶ ಪದ ಬದಲಾಯಿಸಿ',
 'skin'                     => 'ಚರ್ಮ',
+'skin-preview'             => 'ಮುನ್ನೋಟ',
 'math'                     => 'ಗಣಿತ',
 'dateformat'               => 'ದಿನಾಂಕದ ಫಾರ್ಮ್ಯಾಟ್',
 'datedefault'              => 'ಯಾವುದೇ ಪ್ರಾಶಸ್ತ್ಯ ಇಲ್ಲ',

@@ -5,9 +5,6 @@
  * @file
  *
  * @author ZeneizeForesto
- * @author Siebrand
- * @author SPQRobin
- * @author Jon Harald Søby
  * @author Malafaya
  * @author Dario vet
  * @author Dedee
@@ -30,8 +27,6 @@ $messages = array(
 
 'underline-always' => 'Sempre',
 'underline-never'  => 'Mâi',
-
-'skinpreview' => '(Anteprimma)',
 
 # Dates
 'sunday'        => 'Domenega',
@@ -454,6 +449,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'preferences'       => 'Preferençe',
 'mypreferences'     => 'Mæ preferense',
 'changepassword'    => 'Cangiâ a pòula segretta',
+'skin-preview'      => 'Anteprimma',
 'dateformat'        => 'Formato da a data',
 'datetime'          => 'Data e oùa',
 'saveprefs'         => 'Sarva',

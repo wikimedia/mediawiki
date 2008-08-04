@@ -5,10 +5,7 @@
  * @file
  *
  * @author Warszk
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -77,8 +74,6 @@ $messages = array(
 'underline-always'  => 'Wiedno',
 'underline-never'   => 'Nigdë',
 'underline-default' => 'Domëslny przezérnik',
-
-'skinpreview' => '(Pòdzérk)',
 
 # Dates
 'sunday'        => 'niedzéla',
@@ -376,6 +371,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:Userlog
 'qbsettings'            => 'Sztrépk chùtczégò przistãpù',
 'changepassword'        => 'Zmiana parolë',
 'skin'                  => 'Wëzdrzatk',
+'skin-preview'          => 'Pòdzérk',
 'math'                  => 'Matematika',
 'dateformat'            => 'Fòrmat datumù',
 'datedefault'           => 'Felëje preferencëji',

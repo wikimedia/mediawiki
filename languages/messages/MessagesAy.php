@@ -5,7 +5,6 @@
  * @file
  *
  * @author Kanon6917
- * @author Siebrand
  */
 
 $fallback = 'es';

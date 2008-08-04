@@ -6,12 +6,9 @@
  *
  * @author Alison
  * @author Moilleadóir
- * @author SPQRobin
  * @author Spacebirdy
  * @author Kwekubo
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -138,8 +135,6 @@ $messages = array(
 'underline-always'  => 'Déan i gcónaí é',
 'underline-never'   => 'Ná déan é riamh',
 'underline-default' => 'Réamhshocrú an bhrabhsálaí',
-
-'skinpreview' => '(Réamhamharc)',
 
 # Dates
 'sunday'        => 'an Domhnach',
@@ -710,6 +705,7 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'qbsettings-floatingright' => 'Ag faoileáil ar dheis',
 'changepassword'           => "Athraigh d'fhocal faire",
 'skin'                     => 'Craiceann',
+'skin-preview'             => 'Réamhamharc',
 'math'                     => 'Ag aistriú na matamaitice',
 'dateformat'               => 'Formáid dáta',
 'datedefault'              => 'Is cuma liom',

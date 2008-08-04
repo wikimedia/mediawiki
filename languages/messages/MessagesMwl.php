@@ -5,7 +5,6 @@
  * @file
  *
  * @author MCruz
- * @author Siebrand
  * @author Malafaya
  */
 

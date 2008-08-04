@@ -6,7 +6,6 @@
  *
  * @author Maartenvdbent
  * @author Pyt
- * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -78,8 +77,6 @@ $messages = array(
 'underline-always'  => 'Altied',
 'underline-never'   => 'sieläärge nit',
 'underline-default' => 'honget ou fon Browser-Ienstaalenge',
-
-'skinpreview' => '(Foarschau)',
 
 # Dates
 'sunday'        => 'Sundai',
@@ -822,6 +819,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'qbsettings-floatingright' => 'Gjuchts, swieuwjend',
 'changepassword'           => 'Paaswoud annerje',
 'skin'                     => 'Skin',
+'skin-preview'             => 'Foarschau',
 'math'                     => 'TeX',
 'dateformat'               => 'Doatumsformoat',
 'datedefault'              => 'Neen Preferenz',

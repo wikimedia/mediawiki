@@ -9,7 +9,6 @@
  * @author Herr Kriss
  * @author Pimke
  * @author Ozi64
- * @author Jon Harald Søby
  * @author Leinad
  * @author Danny B.
  */
@@ -61,8 +60,6 @@ $messages = array(
 'underline-always'  => 'Zawdy',
 'underline-never'   => 'Ńigdy',
 'underline-default' => 'Wedle štalowańo přeglůndarki',
-
-'skinpreview' => '(podglůnd)',
 
 # Dates
 'sunday'        => 'Ńedźela',
@@ -799,6 +796,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'qbsettings-floatingright' => 'Unošůncy śe, s prawyj',
 'changepassword'           => 'Zmjana hasua',
 'skin'                     => 'Skůrka',
+'skin-preview'             => 'podglůnd',
 'math'                     => 'Wzory',
 'dateformat'               => 'Format daty',
 'datedefault'              => 'Důmyślny',

@@ -6,12 +6,9 @@
  *
  * @author Kandar
  * @author Irwangatot
- * @author Siebrand
  * @author Mssetiadi
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Meursault2004
- * @author SPQRobin
  */
 
 $fallback = 'id';
@@ -83,8 +80,6 @@ $messages = array(
 'underline-always'  => 'Salawasna',
 'underline-never'   => 'Ulah',
 'underline-default' => 'Luyu jeung buhunna panyungsi',
-
-'skinpreview' => '(Pramidang)',
 
 # Dates
 'sunday'        => 'Minggu',
@@ -805,6 +800,7 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'qbsettings-floatingright' => 'Ngambang ka katuhu',
 'changepassword'           => 'Robah sandi',
 'skin'                     => 'Kulit',
+'skin-preview'             => 'Pramidang',
 'math'                     => 'Maté',
 'dateformat'               => 'Format titimangsa',
 'datedefault'              => 'Tanpa préferénsi',

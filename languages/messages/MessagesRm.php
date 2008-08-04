@@ -6,8 +6,6 @@
  *
  * @author לערי ריינהארט
  * @author Gion-andri
- * @author SPQRobin
- * @author Siebrand
  */
 
 $messages = array(
@@ -24,8 +22,6 @@ $messages = array(
 'underline-always'  => 'adina suttastritgar',
 'underline-never'   => 'mai suttastritgar',
 'underline-default' => 'surprender standard dal browser',
-
-'skinpreview' => '(Prevista)',
 
 # Dates
 'sunday'        => 'Dumengia',
@@ -318,6 +314,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'prefsnologintext'      => 'Vus stuais esser [[Special:Userlogin|annunziads]] per midar vossas preferenzas.',
 'prefsreset'            => 'Preferenzas da standard ein vegnì reconstruidas.',
 'changepassword'        => 'Midar pled-clav',
+'skin-preview'          => 'Prevista',
 'dateformat'            => 'format da las datas',
 'datedefault'           => 'Nagina preferenza',
 'datetime'              => 'Data e temp',

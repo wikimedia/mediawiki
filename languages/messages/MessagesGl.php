@@ -9,7 +9,6 @@
  * @author Prevert
  * @author Xosé
  * @author Lameiro
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -80,8 +79,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Opción do propio navegador',
-
-'skinpreview' => '(Probar)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -863,6 +860,7 @@ Se quere, pode [[:\$1|creala]].",
 'qbsettings-floatingright' => 'Flotante á dereita',
 'changepassword'           => 'Cambiar o contrasinal',
 'skin'                     => 'Aparencia',
+'skin-preview'             => 'Probar',
 'math'                     => 'Fórmulas matemáticas',
 'dateformat'               => 'Formato da data',
 'datedefault'              => 'Ningunha preferencia',

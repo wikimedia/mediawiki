@@ -5,11 +5,7 @@
  * @file
  *
  * @author Ibou
- * @author Siebrand
  * @author SF-Language
- * @author SPQRobin
- * @author Jon Harald Søby
- * @author M.M.S.
  */
 
 $fallback = 'fr';
@@ -59,8 +55,6 @@ $messages = array(
 'underline-always'  => 'Saa su ne',
 'underline-never'   => 'Mukku',
 'underline-default' => 'Aju ci joowukaay bi',
-
-'skinpreview' => '(Wonendil)',
 
 # Dates
 'sunday'        => 'dibéer',
@@ -714,6 +708,7 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'qbsettings-floatingright' => 'Ci ndayjoor',
 'changepassword'           => 'Coppiteg baatujàll bi',
 'skin'                     => 'Melokaan',
+'skin-preview'             => '(Wonendil)',
 'math'                     => 'Xayma',
 'dateformat'               => 'Dayoob taariix bi',
 'datedefault'              => 'Benn tànneef',

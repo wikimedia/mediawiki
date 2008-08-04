@@ -6,7 +6,6 @@
  *
  * @author MF-Warburg
  * @author לערי ריינהארט
- * @author Siebrand
  * @author Glacious
  */
 

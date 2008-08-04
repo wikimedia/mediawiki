@@ -5,9 +5,6 @@
  * @file
  *
  * @author Aursani
- * @author SPQRobin
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $rtl = true;
@@ -29,8 +26,6 @@ $messages = array(
 
 'underline-always' => 'هميشه',
 'underline-never'  => 'ڪڏهن به نه',
-
-'skinpreview' => '(پيش نگاهه)',
 
 # Dates
 'sunday'        => 'آچر',
@@ -388,6 +383,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'preferences'    => 'ترجيحات',
 'mypreferences'  => 'منهنجون ترجيحات',
 'changepassword' => 'ڳجھو لفظ تبديل ڪريو',
+'skin-preview'   => 'پيش نگاهه',
 'datedefault'    => 'بلا ترجيحا',
 'datetime'       => 'تاريخ ۽ وقت',
 'retypenew'      => 'نئون ڳجھو لفظ ٻيهر ٽائيپ ڪندا:',

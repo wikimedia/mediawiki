@@ -8,9 +8,6 @@
  * @author Melos
  * @author Sarvaturi
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
- * @author Niklas Laxström
  */
 
 $fallback = 'it';
@@ -169,8 +166,6 @@ $messages = array(
 'underline-always'  => 'sempri',
 'underline-never'   => 'mai',
 'underline-default' => 'manteni li mpustazzioni dû browser',
-
-'skinpreview' => '(Antiprima)',
 
 # Dates
 'sunday'        => 'Duminicadìa',
@@ -862,6 +857,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'qbsettings-floatingright' => 'Fluttuanti a manu dritta',
 'changepassword'           => 'Cancia la password',
 'skin'                     => 'Aspettu',
+'skin-preview'             => 'Antiprima',
 'math'                     => 'Fòrmuli',
 'dateformat'               => 'Furmatu dâ data',
 'datedefault'              => 'Nudda prifirenza',

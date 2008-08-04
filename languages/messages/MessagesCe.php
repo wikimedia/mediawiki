@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author Girdi
  * @author Mega programmer
  * @author Chechenka

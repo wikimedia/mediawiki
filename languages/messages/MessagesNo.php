@@ -17,7 +17,6 @@
  * @author Boivie
  * @author Samuelsen
  * @author Teak
- * @author Max sonnelid
  * @author Kph-no
  */
 
@@ -209,8 +208,6 @@ $messages = array(
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldri',
 'underline-default' => 'Bruk nettleserstandard',
-
-'skinpreview' => '(forhåndsvisning)',
 
 # Dates
 'sunday'        => 'søndag',
@@ -791,6 +788,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'page_first'          => 'første',
 'page_last'           => 'siste',
 'histlegend'          => "Forklaring: (nå) = forskjell fra nåværende versjon, (forrige) = forskjell fra forrige versjon, '''m''' = mindre endring.",
+'history-search'      => 'Søk i historikken',
 'deletedrev'          => '[slettet]',
 'histfirst'           => 'Første',
 'histlast'            => 'Siste',
@@ -947,6 +945,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'qbsettings-floatingright' => 'Flytende til høyre',
 'changepassword'           => 'Endre passord',
 'skin'                     => 'Utseende',
+'skin-preview'             => 'forhåndsvisning',
 'math'                     => 'Matteformler',
 'dateformat'               => 'Datoformat',
 'datedefault'              => 'Ingen foretrukket',
@@ -1060,7 +1059,7 @@ se math/README for oppsett.',
 'right-autoconfirmed'        => 'Redigere halvlåste sider',
 'right-bot'                  => 'Bli behandlet som en automatisk prosess',
 'right-nominornewtalk'       => 'Får ikke «Du har nye meldinger»-beskjeden ved mindre endringer på diskusjonsside',
-'right-apihighlimits'        => 'Bruke API med høyere grenser (trege spørringer: 500&nbsp;resultater; raske spørringer: 5000&nbsp;resultater)',
+'right-apihighlimits'        => 'Bruke API med høyere grenser',
 'right-writeapi'             => 'Redigere via API',
 'right-delete'               => 'Slette sider',
 'right-bigdelete'            => 'Slette sider med stor historikk',
@@ -1867,7 +1866,8 @@ Bekreft at du har til hensikt å gjøre dette.',
 'move-page-legend'        => 'Flytt side',
 'movepagetext'            => "Når du bruker skjemaet under, vil du få omdøpt en side og flyttet hele historikken til det nye navnet.
 Den gamle tittelen blir en omdirigeringsside til den nye tittelen.
-Lenker til den gamle tittelen blir ikke endret; sjekk at flyttingen ikke skaper noen [[Special:Doubleredirects|doble]] eller [[Special:Brokenredirects|ødelagte omdirigeringer]].
+Du kan oppdatere omdirigeringer som peker til den originale tittelen automatisk.
+Om du velger å ikke gjøre det, sjekk at flyttingen ikke skaper noen [[Special:Doubleredirects|doble]] eller [[Special:Brokenredirects|ødelagte omdirigeringer]].
 Du er ansvarlig for at lenker fortsetter å peke til de sidene de er ment å peke til.
 
 Legg merke til at siden '''ikke''' kan flyttes hvis det allerede finnes en side med den nye tittelen, med mindre den siden er tom eller er en omdirigering uten noen historikk.

@@ -4,9 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Eruedin
- * @author Siebrand
  */
 
 $fallback = 'fr';

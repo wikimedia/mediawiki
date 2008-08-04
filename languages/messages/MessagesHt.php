@@ -6,7 +6,6 @@
  *
  * @author Masterches
  * @author Jvm
- * @author Siebrand
  */
 
 $fallback = 'fr';
@@ -79,8 +78,6 @@ $messages = array(
 'underline-always'  => 'Toujou',
 'underline-never'   => 'Jamè',
 'underline-default' => 'Brozè defo',
-
-'skinpreview' => '(Voye kout zye)',
 
 # Dates
 'sunday'        => 'dimanch',
@@ -694,6 +691,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 # Preferences page
 'preferences'   => 'Preferans yo',
 'mypreferences' => 'Preferans yo',
+'skin-preview'  => 'Voye kout zye',
 'retypenew'     => 'Konfime nouvo mopas an :',
 
 'grouppage-sysop' => '{{ns:project}}:Administratè',

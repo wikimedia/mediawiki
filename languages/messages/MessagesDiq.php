@@ -6,8 +6,6 @@
  *
  * @author Mirzali
  * @author Belekvor
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(
@@ -56,8 +54,6 @@ href="" class="internal"}?{/a}) bımocne.',
 'underline-always'  => 'tım',
 'underline-never'   => 'qet',
 'underline-default' => 'Qerar browseri (cıgeyraoği) dest dero',
-
-'skinpreview' => '(Verqayt)',
 
 # Dates
 'sunday'        => 'Bazar',
@@ -317,6 +313,7 @@ It must have at least $1 characters and be different from your username.',
 # Preferences page
 'mypreferences'   => 'tercihê mı',
 'qbsettings-none' => 'çino',
+'skin-preview'    => 'Verqayt',
 'prefs-personal'  => 'Pela karberi',
 'prefs-rc'        => 'Vurnayışê peyêni',
 'prefs-watchlist' => 'Lista seyr-kerdışi',

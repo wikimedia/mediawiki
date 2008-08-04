@@ -5,10 +5,8 @@
  * @file
  *
  * @author Blake
- * @author Niklas Laxström
  * @author Teak
  * @author Node ue
- * @author Siebrand
  */
 
 $messages = array(

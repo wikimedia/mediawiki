@@ -6,7 +6,6 @@
  *
  * @author HalanTul
  * @author Bert Jickty
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -55,8 +54,6 @@ $messages = array(
 'underline-always'  => 'Куруук',
 'underline-never'   => 'Хаһан да',
 'underline-default' => 'Браузер настройкатынан',
-
-'skinpreview' => '(Хайдах буолара)',
 
 # Dates
 'sunday'        => 'Өрөбүл',
@@ -315,6 +312,8 @@ MySQL маннык сыыһаны төнүннэрдэ "$3: $4"',
 
 Атын биричиинэ дии саныыр буоллаххына бырагыраамма сыыһата буолуон сөп.
 Оччоҕо [[Special:ListUsers/sysop|администраатарга]] биллэрэриҥ буоллар (URLын умнаайаҕын).',
+'missingarticle-rev'   => '(#-с торум: $1)',
+'missingarticle-diff'  => '(Уратыта: $1, $2)',
 'readonly_lag'         => 'Билии олоҕун хос сиэрбэрдэрэ сүрүн сиэрбэри кытта мэнэйдэһэр кэмнэригэр билии олоҕо хатанна',
 'internalerror'        => 'Ис алҕас (внутренняя ошибка)',
 'internalerror_info'   => 'Ис алҕас: $1',
@@ -723,6 +722,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'revdelete-restricted'        => 'хааччахтааһын администраатардарга сыһыаннаах',
 'revdelete-unrestricted'      => 'хааччахтааһын админстраатардартан уһулунна',
 'revdelete-hid'               => 'кистэммит $1',
+'revdelete-unhid'             => 'аһыллыбыт $1',
+'revdelete-log-message'       => '$2 аналлаах $1 {{PLURAL:$2|торум|торумнар}}',
+'logdelete-log-message'       => '$2 аналлаах (сыһыаннаах) $1 {{PLURAL:$2|түбэлтэ|түбэлтэлэр}}',
 
 # Suppression log
 'suppressionlog'     => 'Кистээһин сурунаала',
@@ -780,7 +782,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'nextn'                     => 'аныгыскы $1',
 'viewprevnext'              => 'Көр ($1) ($2) ($3).',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 тыл|$2 тыл}})',
+'search-result-score'       => 'Релевантноһа: $1%',
 'search-redirect'           => '(утаарыы $1)',
+'search-section'            => '($1 сиэксийэ)',
 'search-suggest'            => 'Баҕар маннык диэри гыммытыҥ буолуо: $1',
 'search-interwiki-caption'  => 'Уруулуу бырайыактар',
 'search-interwiki-default'  => '$1 түмүгэ:',
@@ -793,6 +797,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'searchall'                 => 'бары',
 'showingresults'            => 'Манна {{PLURAL:$1|түмүк|түмүктэр}} {{PLURAL:$1|көрдөрүлүннэ|көрдөрүлүннүлэр}} <strong>$1</strong> , мантан саҕалаан №&nbsp;<strong>$2</strong>.',
 'showingresultsnum'         => 'Манна {{PLURAL:$3|түмүк|түмүктэр}} {{PLURAL:$3|көрдөрөлүннэ|көрдөрүлүннүлэр}} <strong>$3</strong>, мантан саҕалаан №&nbsp;<strong>$2</strong>.',
+'showingresultstotal'       => "Аллара {{PLURAL:$3|'''$3''' '''$1''' түмүк|'''$3''' '''$1 - $2''' түмүк}} көрдөрүлүннэ",
 'nonefound'                 => "'''Болҕой:''' Анаан эппэтэххэ көрдөөһүн аат сорох далларыгар эрэ көрдүүр. Бу сыһыарыыны ''all:'' тутуннаххына аат туох баар далларыгар барытыгар (холобур, кыттаачылар ырыытыыларыгар, халыыптарга иҥин) көрдүөҕэ.",
 'powersearch'               => 'Бу бөлөхтөргө көрдөө',
 'powersearch-legend'        => 'Дириҥэтэн көрдөөһүн',
@@ -817,6 +822,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'qbsettings-floatingright' => 'Уҥа өттө устаҥныыр',
 'changepassword'           => 'Киирии тылы уларытарга',
 'skin'                     => 'Тас көстүү',
+'skin-preview'             => 'Хайдах буолара',
 'math'                     => 'Фуормулалар',
 'dateformat'               => 'Дьыл-хонук формаата',
 'datedefault'              => 'Көннөрү көстүүтэ',
@@ -925,11 +931,19 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'right-reupload-own'     => 'Билэлэри суруттарбыт киһи бэйэтэ иккистээн суруттарыыта',
 'right-reupload-shared'  => 'Уопсай ыскылаат билэлэрин локальнай ыскылаат билэлэринэн уларытыы',
 'right-upload_by_url'    => 'URL аадырыстан билэлэри киллэрии',
+'right-purge'            => 'Кээһи бигэргэтэр сирэйэ суох ыраастааһын',
+'right-autoconfirmed'    => 'Аҥардара (сорҕото) көмүскэммит сирэйдэри уларытыы',
+'right-bot'              => 'аптамаат быһыытынан ааҕыллар',
+'right-nominornewtalk'   => 'Ырытыы сирэйдэригэр кыра көннөрүүлэр суох буоллахтарына саҥа этии эрэсиимэ холбонор',
+'right-apihighlimits'    => 'API-запростарга үрдүк лимиити туттуу',
+'right-writeapi'         => 'API-ны туттуу',
 'right-delete'           => 'Сирэйдэри сотуу',
 'right-bigdelete'        => 'Уһун историялаах сирэйдэри сотуу',
 'right-deleterevision'   => 'Сирэй сорох торумнарын сотуу уонна хат киллэрии',
+'right-deletedhistory'   => 'Сотуллубут тиэкиһи көрөөһүнэ суох сотуу историятын көрүү',
 'right-browsearchive'    => 'Сотуллубут сирэйдэри көрдөөһүн',
 'right-undelete'         => 'Сотуллубут сирэйи хат киллэрии',
+'right-suppressrevision' => 'Администраатардартан кистэммит сирэйдэри көрүү уонна урукку барылларыгар төннөрүү',
 'right-suppressionlog'   => 'Атын дьон сурунаалларын көрүү',
 'right-block'            => 'Атын кыттааччылар уларыталларын бобуу',
 'right-blockemail'       => 'Эл. суругу ыытары бобуу',
@@ -937,9 +951,13 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'right-ipblock-exempt'   => 'IP хааччахтааһынын, аптамаатынан уонна диапазоннары хааччахтааһыны тумнуу',
 'right-proxyunbannable'  => 'Прокси аптааматынан хааччахтааһынын тумнуу',
 'right-protect'          => 'Сирэйдэр көмүскэллэрин таһымын уонна көмүскэммит сирэйдэри уларытыы',
+'right-editprotected'    => 'Көмүскэллээх сирэйдэри уларытыыы (каскаднай көмүскэллэрэ суох буоллаҕына)',
 'right-editinterface'    => 'Кыттааччы интерфейсын уларытыы',
 'right-rollback'         => 'Кыттааччы оҥорбут көннөрүүлэрин талыллыбыт биир сирэйгэ суох гыныы',
 'right-import'           => 'Атын биикиттэн сирэйдэри киллэрии',
+'right-patrolmarks'      => 'Кэнники уларытыыларга бэрэбиэркэлэммиттэрин туһунан бэлиэлэри көрүү',
+'right-unwatchedpages'   => 'Кэтэммэт сирэйдэр тиһиктэрин көрүү',
+'right-mergehistory'     => 'Сирэйдэр историяларын холбооһун',
 'right-userrights'       => 'Кытааччылар бырааптарын барытын уларытыы',
 
 # User rights log
@@ -1368,6 +1386,7 @@ PICT # misc.
 'unwatch'              => 'Кэтээмэ',
 'unwatchthispage'      => 'Кэтиири тохтот',
 'notanarticle'         => 'Бу ыстатыйа буолбатах',
+'notvisiblerev'        => 'Торум сотуллубут',
 'watchnochange'        => 'Кэтиир сирэйдэргиттэн этиллибит кэмҥэ биир да уларыйбатах.',
 'watchlist-details'    => '$1 сирэй, ырытыы сирэйдэрин аахпатахха.',
 'wlheader-enotif'      => '* эл. почтанан биллэрии холбоммут.',
@@ -1439,6 +1458,7 @@ $NEWPAGE
 'deletedtext'                 => '«<nowiki>$1</nowiki>» сотуллубут.
 Бүтэһик сотуулар испииһэктэрин манна: $2 көр.',
 'deletedarticle'              => '"[[$1]]" сотуллубут',
+'suppressedarticle'           => '"[[$1]]" кистээбит',
 'dellogpage'                  => 'Сотуу испииһэгэ',
 'dellogpagetext'              => 'Манна кэнники сотуулар испииһэктэрэ көстөр.',
 'deletionlog'                 => 'сотуу испииһэгэ',
@@ -1505,6 +1525,7 @@ $NEWPAGE
 'restriction-edit'   => 'Уларытыы',
 'restriction-move'   => 'Аатын уларытыы',
 'restriction-create' => 'Ай',
+'restriction-upload' => 'Киллэрии',
 
 # Restriction levels
 'restriction-level-sysop'         => 'Кытаанах көмүскэл (харысхал)',

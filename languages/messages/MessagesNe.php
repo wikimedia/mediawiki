@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author ne.wikipedia.org sysops
  */
 
@@ -23,8 +21,6 @@ $digitTransformTable = array(
 );
 
 $messages = array(
-'skinpreview' => '(पूर्वालोकन)',
-
 # Dates
 'sunday'        => 'आईतबार',
 'monday'        => 'सोमबार',
@@ -261,6 +257,7 @@ $messages = array(
 'mypreferences'         => 'मेरा अभिरुचिहरू',
 'prefsnologin'          => 'प्रवेश (लग ईन) नगरिएको',
 'changepassword'        => 'पासवर्ड परिवर्तन गर्नुहोस्',
+'skin-preview'          => 'पूर्वालोकन',
 'math'                  => 'गणित',
 'datetime'              => 'मिति र समय',
 'math_unknown_error'    => 'अज्ञात समस्या',

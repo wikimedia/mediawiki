@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author לערי ריינהארט
  */
 
@@ -40,8 +39,6 @@ $messages = array(
 
 'underline-always' => 'Həmişə',
 'underline-never'  => 'Həç zaman',
-
-'skinpreview' => '(Sınaq göstərişi)',
 
 # Dates
 'sunday'    => 'Bazar',
@@ -279,6 +276,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # Preferences page
 'preferences'        => 'Nizamlamalar',
 'changepassword'     => 'Parol dəyiş',
+'skin-preview'       => 'Sınaq göstərişi',
 'math'               => 'Riyaziyyat',
 'dateformat'         => 'Tarix formatı',
 'datedefault'        => 'Tərcih yox',

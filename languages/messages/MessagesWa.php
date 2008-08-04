@@ -5,9 +5,7 @@
  * @file
  *
  * @author Srtxg
- * @author Siebrand
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -112,8 +110,6 @@ $messages = array(
 'underline-always'  => 'Tofer',
 'underline-never'   => 'Måy',
 'underline-default' => 'Valixhance do betchteu',
-
-'skinpreview' => '(vey divant)',
 
 # Dates
 'sunday'        => 'dimegne',
@@ -640,6 +636,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'qbsettings-floatingright' => 'Flotante a droete',
 'changepassword'           => "Candjî l' sicret",
 'skin'                     => 'Pea',
+'skin-preview'             => 'vey divant',
 'math'                     => 'Formules matematikes',
 'dateformat'               => 'Cogne del date',
 'datedefault'              => 'Nole preferince',

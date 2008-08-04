@@ -5,7 +5,6 @@
  * @file
  *
  * @author Juanpabl
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Willtron
  */
@@ -158,8 +157,6 @@ $messages = array(
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
 'underline-default' => "Confegurazión por defeuto d'o nabegador",
-
-'skinpreview' => '(Fer una prebatina)',
 
 # Dates
 'sunday'        => 'domingo',
@@ -906,6 +903,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'qbsettings-floatingright' => 'Flotant á la dreita',
 'changepassword'           => 'Cambiar a palabra de paso',
 'skin'                     => 'Aparenzia',
+'skin-preview'             => 'Fer una prebatina',
 'math'                     => 'Esprisions matematicas',
 'dateformat'               => 'Formato de calendata',
 'datedefault'              => 'Sin de preferenzias',

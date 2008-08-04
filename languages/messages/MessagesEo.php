@@ -9,7 +9,6 @@
  * @author Tlustulimu
  * @author Michawiki
  * @author Amikeco
- * @author Jon Harald Søby
  * @author Malafaya
  * @author ArnoLagrange
  */
@@ -123,8 +122,6 @@ $messages = array(
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
 'underline-default' => 'Defaŭlte laŭ foliumilo',
-
-'skinpreview' => '(Antaŭrigardo)',
 
 # Dates
 'sunday'        => 'dimanĉo',
@@ -619,7 +616,10 @@ Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn dema
 'accmailtext'                      => "La pasvorto por '$1' estis sendita al  $2.",
 'newarticle'                       => '(Nova)',
 'newarticletext'                   => 'Vi sekvis ligilon al paĝo jam ne ekzistanta. Se vi volas krei ĝin, ektajpu sube (vidu la [[{{MediaWiki:Helppage}}|helpopaĝo]] por klarigoj.) Se vi malintence alvenis ĉi tien, simple alklaku la retrobutonon de via retumilo.',
-'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. Ni tial devas uzi la cifran IP-adreso por identigi lin. la sama IP-adreso povas estis samtempte uzata de pluraj uzantoj. Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton aŭ ensaluti]].''",
+'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. 
+Ni tial devas uzi la cifran IP-adreso por identigi lin. 
+La sama IP-adreso povas estis samtempte uzata de pluraj uzantoj.
+Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton]] aŭ [[Special:Userlogin|ensaluti]] por eviti estontan konfuzon kun alia anonimaj uzantoj.''",
 'noarticletext'                    => 'La paĝo nune estas malplena. Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon].',
 'userpage-userdoesnotexist'        => 'Uzanto-konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti cxi tiu pagxo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
@@ -734,6 +734,7 @@ Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'page_first'          => 'unua',
 'page_last'           => 'lasta',
 'histlegend'          => 'Klarigo: (nuna) = vidu malsamojn kompare kun la nuna versio, (antaŭa) = malsamojn kompare kun la antaŭa versio, <strong>E</strong> = malgranda redakteto',
+'history-search'      => 'Serĉi en historio',
 'deletedrev'          => '[forigita]',
 'histfirst'           => 'plej frua',
 'histlast'            => 'plej lasta',
@@ -900,6 +901,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'qbsettings-floatingright' => 'Ŝvebas dekstre',
 'changepassword'           => 'Ŝanĝu pasvorton',
 'skin'                     => 'Aspekto',
+'skin-preview'             => 'Antaŭrigardo',
 'math'                     => 'Matematikaĵoj',
 'dateformat'               => 'Datformato',
 'datedefault'              => 'Nenia prefero',
@@ -1014,7 +1016,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-autoconfirmed'        => 'Redakti duone protektitajn paĝojn',
 'right-bot'                  => 'Traktiĝi kiel aŭtomata procezo',
 'right-nominornewtalk'       => 'Ne kaŭzi etajn redaktojn en diskuto-paĝoj sproni la inviton por novaj mesaĝoj',
-'right-apihighlimits'        => 'Utiligu pli altajn limojn por API informmendoj (Malrapidaj mendoj: 500 rezultoj; Rapidaj mendoj: 5000 rezultoj)',
+'right-apihighlimits'        => 'Utiligu pli altajn limojn por API informmendoj',
 'right-writeapi'             => 'Uzi la API por modifi la vikion',
 'right-delete'               => 'Forigi paĝojn',
 'right-bigdelete'            => 'Forigi paĝojn kun grandaj historioj',
@@ -1105,9 +1107,9 @@ Okulumi aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo
 
 Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>''' aŭ
-* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|teksto por retumiloj negrafikaj]]</nowiki>''' aŭ
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero.",
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>''' por uzi la plena versio de la dosiero
+* '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|200px|thumb|left|alternativa teksto]]</nowiki>''' por uzi 200-rastrumera versio en kesto al la maldekstro (\"left\") kun \"alternativa teksto\" kiel la priskribo.
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero ne montranta ĝin.",
 'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'upload-prohibited'           => 'Malpermesitaj dosiero-tipoj: $1.',

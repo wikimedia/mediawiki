@@ -6,8 +6,6 @@
  *
  * @author Saluyot
  * @author לערי ריינהארט
- * @author SPQRobin
- * @author Siebrand
  */
 
 $messages = array(
@@ -55,8 +53,6 @@ $messages = array(
 'underline-always'  => 'Kanayon',
 'underline-never'   => 'Saan',
 'underline-default' => 'Kasisigud ti browser',
-
-'skinpreview' => '(I-preview)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -686,6 +682,7 @@ Mabalinmo a [[:\$1|partuaten daytoy a panid]].",
 'qbsettings-floatingright' => 'Floating right',
 'changepassword'           => 'Baliwan ti password',
 'skin'                     => 'Kudil',
+'skin-preview'             => 'I-preview',
 'math'                     => 'Math',
 'dateformat'               => 'Format ti petsa',
 'datedefault'              => 'Awanan preferencia',

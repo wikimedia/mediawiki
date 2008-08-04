@@ -7,7 +7,6 @@
  * @author Sky Harbor
  * @author לערי ריינהארט
  * @author Felipe Aira
- * @author Siebrand
  */
 
 $messages = array(
@@ -53,8 +52,6 @@ $messages = array(
 'underline-always'  => 'Palagi',
 'underline-never'   => 'Hindi magpakailanman',
 'underline-default' => 'Tinakda ng pambasa-basa',
-
-'skinpreview' => '(Pribyu)',
 
 # Dates
 'sunday'        => 'Linggo',
@@ -379,6 +376,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 # Preferences page
 'preferences'   => 'Mga kagustuhan',
 'mypreferences' => 'Aking mga kagustuhan',
+'skin-preview'  => 'Pribyu',
 
 # Recent changes
 'recentchanges'     => 'Mga huling binago',

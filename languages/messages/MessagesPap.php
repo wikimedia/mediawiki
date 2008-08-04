@@ -5,8 +5,6 @@
  * @file
  *
  * @author לערי ריינהארט
- * @author SPQRobin
- * @author Siebrand
  * @author Kamizu
  */
 

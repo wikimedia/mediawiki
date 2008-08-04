@@ -46,8 +46,6 @@ $messages = array(
 
 'underline-always' => 'အမြဲ',
 
-'skinpreview' => '(နမူနာ)',
-
 # Dates
 'sunday'        => 'တ​နင်္ဂ​နွေ​',
 'monday'        => 'တ​နင်္လာ​',
@@ -204,6 +202,7 @@ $messages = array(
 'mypreferences'     => 'ကျွန်​တော့​ရွေး​ချယ်​စ​ရာ​များ​',
 'prefsnologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
 'changepassword'    => 'ဝှက်​စ​ကား​လုံးကိုပြောင်းပါ',
+'skin-preview'      => 'နမူနာ',
 'math'              => 'သင်္ချာ',
 'datetime'          => 'နေ့စွဲနှင့် အချိန်',
 'oldpassword'       => 'ဝှက်​စ​ကား​လုံးအဟောင်း:',

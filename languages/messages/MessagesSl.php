@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author XJamRastafire
  * @author romanm
  */
@@ -97,8 +96,6 @@ $messages = array(
 'underline-always'  => 'Vedno',
 'underline-never'   => 'Nikoli',
 'underline-default' => 'Privzeto (brskalnik)',
-
-'skinpreview' => '(Predogled)',
 
 # Dates
 'sunday'        => 'nedelja',
@@ -597,6 +594,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'qbsettings-floatingright' => 'Desno leteče',
 'changepassword'           => 'Zamenjava gesla',
 'skin'                     => 'Koža',
+'skin-preview'             => 'Predogled',
 'math'                     => 'Prikaz matematičnega besedila',
 'dateformat'               => 'Zapis datuma',
 'datedefault'              => 'Kakor koli',

@@ -5,9 +5,7 @@
  * @file
  *
  * @author Natsubee
- * @author Siebrand
  * @author Paa.kwesi
- * @author SPQRobin
  */
 
 $messages = array(

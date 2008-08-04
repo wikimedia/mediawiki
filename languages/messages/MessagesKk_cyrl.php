@@ -434,8 +434,6 @@ $messages = array(
 'underline-never'   => 'Ешқашан',
 'underline-default' => 'Шолғыш бойынша',
 
-'skinpreview' => '(Қарап шығу)',
-
 # Dates
 'sunday'        => 'Жексенбі',
 'monday'        => 'Дүйсенбі',
@@ -1231,6 +1229,7 @@ $3 келтірілген себебі: ''$2''",
 'qbsettings-floatingright' => 'Оңға қалқыған',
 'changepassword'           => 'Құпия сөзді өзгерту',
 'skin'                     => 'Мәнерлер',
+'skin-preview'             => 'Қарап шығу',
 'math'                     => 'Өрнектер',
 'dateformat'               => 'Күн-ай пішімі',
 'datedefault'              => 'Еш қалаусыз',

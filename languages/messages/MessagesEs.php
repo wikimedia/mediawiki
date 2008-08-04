@@ -22,7 +22,6 @@
  * @author Jatrobat
  * @author Ascánder
  * @author Bengoa
- * @author Jon Harald Søby
  * @author Dvortygirl
  * @author Orgullomoore
  * @author Toniher
@@ -116,8 +115,6 @@ $messages = array(
 'underline-always'  => 'Siempre',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Valor por defecto del navegador',
-
-'skinpreview' => '(Ver cómo queda)',
 
 # Dates
 'sunday'        => 'domingo',
@@ -860,6 +857,7 @@ que contengan todos los términos de búsqueda aparecerán en el resultado).',
 'qbsettings-floatingright' => 'Flotante a la derecha',
 'changepassword'           => 'Cambiar la contraseña',
 'skin'                     => 'Apariencia',
+'skin-preview'             => 'Ver cómo queda',
 'math'                     => 'Fórmulas',
 'dateformat'               => 'Formato de fecha',
 'datedefault'              => 'Sin preferencia',

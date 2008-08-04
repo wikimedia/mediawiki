@@ -9,7 +9,6 @@
  * @author Red Baron
  * @author Kale
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Јованвб
  */
 
@@ -258,8 +257,6 @@ $messages = array(
 'underline-always'  => 'Увек',
 'underline-never'   => 'Никад',
 'underline-default' => 'По подешавањима браузера',
-
-'skinpreview' => '(Преглед)',
 
 # Dates
 'sunday'        => 'недеља',
@@ -1020,6 +1017,7 @@ ID ваше блокаде је $5. Молимо вас наведите ова�
 'qbsettings-floatingright' => 'Плутајућа десно',
 'changepassword'           => 'Промени лозинку',
 'skin'                     => 'Кожа',
+'skin-preview'             => 'Преглед',
 'math'                     => 'Математике',
 'dateformat'               => 'Формат датума',
 'datedefault'              => 'Није битно',

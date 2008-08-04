@@ -16,7 +16,6 @@
  * @author Steinninn
  * @author Skalman
  * @author Habjchen
- * @author Max sonnelid
  * @author Grillo
  * @author Micke
  * @author S.Örvarr.S
@@ -309,8 +308,6 @@ $messages = array(
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldrig',
 'underline-default' => 'Webbläsarens standardinställning',
-
-'skinpreview' => '(Förhandsvisning)',
 
 # Dates
 'sunday'        => 'söndag',
@@ -633,7 +630,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'loginproblem'               => '<b>Det uppstod problem vid inloggningen.</b><br />Pröva igen!',
 'login'                      => 'Logga in',
 'nav-login-createaccount'    => 'Logga in/skapa konto',
-'loginprompt'                => 'Du måste tillåta cookies för att [[Special:Userlogin|logga in på {{SITENAME}}]].',
+'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',
 'userlogin'                  => 'Logga in / skapa konto',
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
@@ -785,7 +782,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'blockednoreason'                  => 'ingen motivering angavs',
 'blockedoriginalsource'            => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'                => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
-'whitelistedittitle'               => 'Du måste [[Special:Userlogin|logga in]] för att redigera',
+'whitelistedittitle'               => 'Du måste logga in för att redigera',
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
 'confirmedittitle'                 => 'E-postbekräftelse krävs för redigering',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
@@ -918,6 +915,7 @@ Anledningen till blockeringen var "$2".',
 'page_last'           => 'sista',
 'histlegend'          => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
+'history-search'      => 'Sök i historiken',
 'deletedrev'          => '[raderad]',
 'histfirst'           => 'Första',
 'histlast'            => 'Senaste',
@@ -1079,6 +1077,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'qbsettings-floatingright' => 'Flytande höger',
 'changepassword'           => 'Byt lösenord',
 'skin'                     => 'Utseende',
+'skin-preview'             => 'Förhandsvisning',
 'math'                     => 'Matematik',
 'dateformat'               => 'Datumformat',
 'datedefault'              => 'Ovidkommande',
@@ -1191,7 +1190,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'right-autoconfirmed'        => 'Redigera halvlåsta sidor',
 'right-bot'                  => 'Bli behandlad som en automatisk process',
 'right-nominornewtalk'       => 'Får inte meddelanden om nya ändringar på diskussionssidan vid mindre ändringar.',
-'right-apihighlimits'        => 'Använda högre gränser i API-frågor (Långsamma frågor: 500 resultat; Snabba frågor: 5000 resultat)',
+'right-apihighlimits'        => 'Använda högre gränser i API-frågor',
 'right-writeapi'             => 'Redigera via API:t',
 'right-delete'               => 'Radera sidor',
 'right-bigdelete'            => 'Radera sidor med stor historik',
@@ -2009,8 +2008,8 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'move-page-legend'        => 'Flytta sida',
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
 Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln.
-Länkar till den gamla sidtiteln kommer inte att ändras;
-kontrollera därför om du skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
+Du kan välja att automatiskt uppdatera omdirigeringar som leder till den gamla titeln.
+Om du väljer att inte göra det, kontrollera därför om du skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
 Du bör också se till att länkar fortsätter att peka dit de ska.
 
 Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigering till den gamla titeln och saknar annan versionshistorik.

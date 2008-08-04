@@ -5,10 +5,8 @@
  * @file
  *
  * @author 80686
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Spacebirdy
- * @author Jon Harald Søby
  */
 
 $fallback = 'de';
@@ -59,8 +57,6 @@ $messages = array(
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
 'underline-default' => 'Browser-Vorystellig',
-
-'skinpreview' => '(Vorschou)',
 
 # Dates
 'sunday'    => 'Sundi',
@@ -429,6 +425,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'prefsnologintext'   => 'Du muesch [[Special:Userlogin|aagmäldet]] sy, für Benutzerystellige chönne z ändere',
 'prefsreset'         => 'Du hesch itz wider Standardystellige',
 'changepassword'     => 'Passwort ändere',
+'skin-preview'       => 'Vorschou',
 'datedefault'        => 'kei Aagab',
 'datetime'           => 'Datum un Zit',
 'prefs-personal'     => 'Benutzerdate',

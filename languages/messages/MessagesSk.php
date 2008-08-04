@@ -5,7 +5,6 @@
  * @file
  *
  * @author Helix84
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Michawiki
  * @author Sp5uhe
@@ -195,8 +194,6 @@ $messages = array(
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
 'underline-default' => 'Štandardné nastavenie prehliadača',
-
-'skinpreview' => '(Náhľad)',
 
 # Dates
 'sunday'        => 'nedeľa',
@@ -982,6 +979,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'qbsettings-floatingright' => 'Plávajúce vpravo',
 'changepassword'           => 'Zmeniť heslo',
 'skin'                     => 'Vzhľad',
+'skin-preview'             => 'Náhľad',
 'math'                     => 'Vykreslenie matematiky',
 'dateformat'               => 'Formát dátumu',
 'datedefault'              => 'štandardný',

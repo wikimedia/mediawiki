@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author G - ג
- * @author SPQRobin
  */
 
 $fallback = 'de';

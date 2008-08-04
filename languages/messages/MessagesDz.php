@@ -6,8 +6,6 @@
  *
  * @author Tenzin
  * @author CFynn
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 

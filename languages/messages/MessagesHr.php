@@ -13,7 +13,6 @@
  * @author Treecko
  * @author לערי ריינהארט
  * @author Suradnik13
- * @author Jon Harald Søby
  * @author Demicx
  */
 
@@ -109,8 +108,6 @@ $messages = array(
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
 'underline-default' => 'Prema postavkama preglednika',
-
-'skinpreview' => '(Pregled)',
 
 # Dates
 'sunday'        => 'nedjelja',
@@ -869,6 +866,7 @@ za podešavanje suradničkih postavki.',
 'qbsettings-floatingright' => 'Desno leteće',
 'changepassword'           => 'Promjena lozinke',
 'skin'                     => 'Izgled',
+'skin-preview'             => 'Pregled',
 'math'                     => 'Prikaz matematičkih formula',
 'dateformat'               => 'Format datuma',
 'datedefault'              => 'Nemoj postaviti',

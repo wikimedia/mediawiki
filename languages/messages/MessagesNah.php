@@ -1,5 +1,5 @@
 <?php
-/** Nahuatl (Nahuatl)
+/** Nahuatl (Nāhuatl)
  *
  * @ingroup Language
  * @file
@@ -73,8 +73,6 @@ $messages = array(
 'underline-always' => 'Mochipa',
 'underline-never'  => 'Aīcmah',
 
-'skinpreview' => '(Xiquitta quemeh yez)',
-
 # Dates
 'sunday'        => 'Tōnatiuhtōnal',
 'monday'        => 'Mētztlitōnal',
@@ -133,8 +131,8 @@ $messages = array(
 'subcategories'                  => 'Neneuhcāyōtzintli',
 'category-media-header'          => 'Media "$1" neneuhcāyōc',
 'category-empty'                 => "''Cah ahtlein inīn neneuhcāyōc.''",
-'hidden-categories'              => '{{PLURAL:$1|Motlātiani neneuhcāyōtl|Motlātiani neneuhcāyōtl}}',
-'hidden-category-category'       => 'Motlātiani neneuhcāyōtl', # Name of the category where hidden categories will be listed
+'hidden-categories'              => 'Neneuhcāyōtl {{PLURAL:$1|ōmotlāti|ōmotlātih}}',
+'hidden-category-category'       => 'Neneuhcāyōtl ōmotlāti', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn neneuhcāyōtzintli|inīn $1 neneuhcāyōtzintli}}, īhuīcpa $2.}}',
 'category-subcat-count-limited'  => 'Inīn {{PLURAL:$1|neneuhcāyōtzintli cah|$1 neneuhcāyōtzintli cateh}} inīn neneuhcāyōc.',
 'category-article-count'         => '{{PLURAL:$2|Inīn neneuhcāyōtl zan quipiya|Inīn neneuhcāyōtl quimpiya {{PLURAL:$1|inīn zāzanilli|inīn $1 zāzanilli}}, īhuīcpa $2.}}',
@@ -464,6 +462,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'prefs-edits'           => 'Tlapatlaliztli tlapōhualli:',
 'prefsnologin'          => 'Ahmo ōtimocalac',
 'qbsettings-none'       => 'Ahtlein',
+'skin-preview'          => 'Xiquitta quemeh yez',
 'math'                  => 'Tlapōhualmatiliztli',
 'dateformat'            => 'Cāuhtiliztli iuhcāyōtl',
 'datetime'              => 'Cāuhtiliztli īhuān cāhuitl',
@@ -561,12 +560,14 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'reupload'               => 'Tiquiquetzāz occeppa',
 'uploadnologin'          => 'Ahmo ōtimocalac',
 'uploaderror'            => 'Tlaquetzaliztli ahcuallōtl',
+'uploadlog'              => 'tlaquetzaliztli tlahcuilōlloh',
 'uploadlogpage'          => 'Tlaquetzaliztli tlahcuilōlloh',
 'filename'               => 'Tlahcuilōlli ītōcā',
 'filedesc'               => 'Tlahcuilōltōn',
 'fileuploadsummary'      => 'Tlahcuilōltōn:',
 'filestatus'             => 'Copyright:',
 'filesource'             => 'Īhuīcpa:',
+'uploadedfiles'          => 'Tlahcuilōlli ōmoquetz',
 'minlength1'             => 'Tlahcuilōltōcāitl quihuīlquilia huehca ōmpa cē tlahtōl.',
 'badfilename'            => 'Īxiptli ītōcā ōmopatlac īhuīc "$1".',
 'filetype-unwanted-type' => "'''\".\$1\"''' ahmo moēlēhuia quemeh tlahcuilōlli iuhcāyōtl.
@@ -575,6 +576,8 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'successfulupload'       => 'Cualli quetzaliztli',
 'savefile'               => 'Quipiyāz tlahcuilōlli',
 'uploadedimage'          => 'ōmoquetz "[[$1]]"',
+'overwroteimage'         => 'ōmoquetz yancuīc "[[$1]]" iuhcāyōtl',
+'uploaddisabled'         => 'Ahmo mohuelīti tlahcuilōlquetzā',
 'sourcefilename'         => 'Tōcāhuīcpa:',
 'destfilename'           => 'Tōcāhuīc:',
 'watchthisupload'        => 'Tictlachiyāz inīn zāzanilli',
@@ -587,12 +590,15 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'imagelist_user' => 'Tlatequitiltilīlli',
 
 # Image description page
+'filehist'                       => 'Tlahcuilōlli tlahcuilōlloh',
 'filehist-deleteall'             => 'tiquimpolōz mochīntīn',
 'filehist-deleteone'             => 'ticpolōz',
 'filehist-revert'                => 'tlacuepāz',
 'filehist-current'               => 'āxcān',
 'filehist-user'                  => 'Tlatequitiltilīlli',
 'imagelinks'                     => 'Īxiphuīc tzonhuiliztli',
+'linkstoimage'                   => 'Inīn {{PLURAL:$1|zāzanilli tzonhuilia|$1 zāzaniltin tzonhuiliah}} inīn tlahcuilōlhuīc:',
+'nolinkstoimage'                 => 'Ahmo cateh zāzaniltin tlein tzonhuiliah inīn tlahcuilōlhuīc.',
 'sharedupload'                   => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa',
 'shareduploadduplicate-linktext' => 'occē tlahcuilōlli',
 'shareduploadconflict-linktext'  => 'occē tlahcuilōlli',
@@ -614,15 +620,30 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 
 # MIME search
 'mimesearch' => 'MIME tlatēmoliztli',
+'mimetype'   => 'MIME iuhcāyōtl:',
+'download'   => 'tictemōz',
+
+# Unwatched pages
+'unwatchedpages' => 'Zāzaniltin ahmo mochiya',
+
+# List redirects
+'listredirects' => 'Tlacuepaliztli',
 
 # Unused templates
-'unusedtemplates' => 'Nemachiyōtīlli ahmotequitiltiah',
+'unusedtemplates'    => 'Nemachiyōtīlli ahmotequitiltiah',
+'unusedtemplateswlh' => 'occequīntīn tzonhuiliztli',
 
 # Random page
-'randompage' => 'Zāzozāzanilli',
+'randompage'         => 'Zāzozāzanilli',
+'randompage-nopages' => 'Ahmo cateh zāzaniltin īpan inīn tōcātzin.',
+
+# Random redirect
+'randomredirect' => 'Zāzotlacuepaliztli',
 
 # Statistics
 'statistics'    => 'Tlapōhualiztli',
+'sitestats'     => '{{SITENAME}} ītlapōhualiz',
+'userstats'     => 'Tlatequitiltilīlli ītlapōhualiz',
 'sitestatstext' => "{{PLURAL:$1|Cah '''1''' zāzanilli|Cateh '''$1''' zāzaniltin}} nicān.
 Inīn quimpiya tēixnāmiquiliztli zāzanilli, {{SITENAME}} ītechcopa zāzanilli, machiyōtōn, tlacuepaliztli auh occequīntīn hueliz ahmo cualli.
 Ahtle, in {{PLURAL:$2|cah '''1''' cualli zāzanilli|cateh '''$2''' cualli zāzaniltin}}.
@@ -647,6 +668,8 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|neneuhcāyōtl|neneuhcāyōtl}}',
 'nlinks'                  => '$1 {{PLURAL:$1|tzonhuiliztli|tzonhuiliztli}}',
+'nmembers'                => '$1 {{PLURAL:$1|tlahcuilōlli|tlahcuilōlli}}',
+'nrevisions'              => '$1 {{PLURAL:$1|tlapiyaliztli|tlapiyaliztli}}',
 'uncategorizedpages'      => 'Zāzaniltin ahmoneneuhcāyōtiah',
 'uncategorizedcategories' => 'Neneuhcāyōtl ahmoneneuhcāyōtiah',
 'uncategorizedimages'     => 'Īxiptli ahmoneneuhcāyōtiah',
@@ -655,7 +678,15 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'unusedimages'            => 'Īxiptli ahmotequitiltiah',
 'wantedcategories'        => 'Neneuhcāyōtl moēlēhuiah',
 'wantedpages'             => 'Zāzaniltin moēlēhuiah',
+'mostlinked'              => 'Tlahcuilōlli achi motzonhuilia',
+'mostlinkedcategories'    => 'Neneuhcāyōtl achi motzonhuilia',
+'mostlinkedtemplates'     => 'Nemachiyōtīlli achi motzonhuilia',
 'longpages'               => 'Huēiyac zāzaniltin',
+'protectedpages'          => 'Zāzaniltin ōmoquīxti',
+'protectedpages-indef'    => 'Zan ahcāhuitl tlaquīxtiliztli',
+'protectedpagestext'      => 'Inīn zāzaniltin ōmoquīxtih, auh ahmo mohuelītih mozacah nozo mopatlah',
+'protectedtitles'         => 'Tōcāitl ōmoquīxtih',
+'protectedtitlestext'     => 'Inīn tōcāitl ōmoquīxtih, auh ahmo mohuelītih mochīhuah',
 'newpages'                => 'Yancuīc zāzaniltin',
 'newpages-username'       => 'Tlatequitiltilīltōcāitl:',
 'ancientpages'            => 'Huēhuehzāzanilli',
@@ -669,6 +700,8 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'specialloguserlabel'  => 'Tlatequitiltilīlli:',
 'speciallogtitlelabel' => 'Tōcāitl:',
 'log'                  => 'Tlahcuilōlloh',
+'all-logs-page'        => 'Mochīntīn tlahcuilōlloh',
+'log-search-legend'    => 'Tiquintēmōz tlahcuilōlloh',
 'log-search-submit'    => 'Yāuh',
 
 # Special:Allpages
@@ -684,21 +717,25 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'allpagessubmit'    => 'Tiquittāz',
 
 # Special:Categories
-'categories'         => 'Neneuhcāyōtl',
-'categoriespagetext' => 'Inīn neneuhcāyōtl īpan inīn huiqui cateh.',
-'categoriesfrom'     => 'Xiquittaz neneuhcāyōtl mopēhuah īca:',
+'categories'                    => 'Neneuhcāyōtl',
+'categoriespagetext'            => 'Inīn neneuhcāyōtl īpan inīn huiqui cateh.',
+'categoriesfrom'                => 'Xiquittaz neneuhcāyōtl mopēhuah īca:',
+'special-categories-sort-count' => 'tlapōhualcopa',
+'special-categories-sort-abc'   => 'tlahtōlcopa',
 
 # Special:Listusers
 'listusers-submit' => 'Tiquittāz',
 
 # Special:Listgrouprights
-'listgrouprights-group' => 'Olōlli',
+'listgrouprights-group'  => 'Olōlli',
+'listgrouprights-rights' => 'Huelītiliztli',
 
 # E-mail user
-'emailuser'    => 'Tique-mailīz inīn tlatequitiltilīlli',
-'emailfrom'    => 'Īhuīcpa',
-'emailto'      => 'Īhuīc',
-'emailmessage' => 'Tlahcuilōltzintli',
+'emailuser'       => 'Tique-mailīz inīn tlatequitiltilīlli',
+'defemailsubject' => '{{SITENAME}} e-mail',
+'emailfrom'       => 'Īhuīcpa',
+'emailto'         => 'Īhuīc',
+'emailmessage'    => 'Tlahcuilōltzintli',
 
 # Watchlist
 'watchlist'            => 'Notlachiyaliz',
@@ -713,8 +750,10 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'watchlist-hide-own'   => 'Tiquintlātīz notlahcuilōl',
 'watchlist-hide-minor' => 'Tiquintlātīz tlapatlalitzintli',
 
-'changed' => 'ōmotlacuep',
-'created' => 'ōmochīuh',
+'enotif_newpagetext'           => 'Inīn cah yancuīc zāzanilli.',
+'enotif_impersonal_salutation' => 'tlatequitiltilīlli īpan {{SITENAME}}',
+'changed'                      => 'ōmotlacuep',
+'created'                      => 'ōmochīuh',
 
 # Delete/protect/revert
 'deletepage'             => 'Ticpolōz inīn zāzanilli',
@@ -734,7 +773,12 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'rollback_short'         => 'Tlacuepāz',
 'rollbacklink'           => 'tlacuepāz',
 'rollback-success'       => 'Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.',
+'protectedarticle'       => 'ōmoquīxti "[[$1]]"',
+'unprotectedarticle'     => 'ōahmoquīxti "[[$1]]"',
+'protectexpiry'          => 'Tlamiliztli:',
+'protect_expiry_invalid' => 'Ahcualli tlamiliztli cāhuitl.',
 'protect-default'        => '(ic default)',
+'protect-expiring'       => 'motlamīz $1 (UTC)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Ticpatlāz',
@@ -807,6 +851,7 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'blocklink'          => 'tiquitzacuilīz',
 'unblocklink'        => 'ahtiquitzacuilīz',
 'contribslink'       => 'tlapatlaliztli',
+'blockme'            => 'Timitzcuilīz',
 'proxyblocksuccess'  => 'Ōmochīuh.',
 
 # Move page

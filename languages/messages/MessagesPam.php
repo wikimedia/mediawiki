@@ -6,7 +6,6 @@
  *
  * @author Katimawan2005
  * @author Val2397
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -55,8 +54,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'underline-always'  => 'Pane',
 'underline-never'   => 'emaliari agiang misan',
 'underline-default' => 'Browser default',
-
-'skinpreview' => '(I-preview)',
 
 # Dates
 'sunday'        => 'Dominggu',
@@ -824,6 +821,7 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'qbsettings-floatingright' => 'Kikimut ya ing wanan',
 'changepassword'           => 'Alilan ya ing password',
 'skin'                     => 'Balat',
+'skin-preview'             => 'I-preview',
 'dateformat'               => 'Ayus ning petsa',
 'datedefault'              => 'Alang mepili',
 'datetime'                 => 'Petsa ampong oras',

@@ -11,7 +11,6 @@
  * @author Dundak
  * @author Murjarik
  * @author Tlustulimu
- * @author Jon Harald Søby
  * @author Dunak
  * @author Tlustulimu Nepl1
  */
@@ -187,8 +186,6 @@ $messages = array(
 'underline-always'  => 'pśecej',
 'underline-never'   => 'žednje',
 'underline-default' => 'pó standarźe browsera',
-
-'skinpreview' => '(Pśeglěd)',
 
 # Dates
 'sunday'        => 'Njeźela',
@@ -934,6 +931,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'qbsettings-floatingright' => 'napšawo se znosujuce',
 'changepassword'           => 'Šćitne gronidło změniś',
 'skin'                     => 'Šat',
+'skin-preview'             => 'Pśeglěd',
 'math'                     => 'Math',
 'dateformat'               => 'Format datuma',
 'datedefault'              => 'Standard',

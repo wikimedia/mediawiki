@@ -5,8 +5,6 @@
  * @file
  *
  * @author OchAyeTheNoo
- * @author SPQRobin
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Ushanka
  * @author Malafaya
@@ -58,8 +56,6 @@ $messages = array(
 'underline-always'  => 'Aye',
 'underline-never'   => 'Niver',
 'underline-default' => 'Brouser defaut',
-
-'skinpreview' => '(First Leuk)',
 
 # Dates
 'sunday'        => 'Sunday',
@@ -667,6 +663,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'prefsnologintext'   => 'Ye maun be [[Special:Userlogin|loggit in]] tae set uiser preferences.',
 'prefsreset'         => 'Preferences haes been reset frae storage.',
 'changepassword'     => 'Chynge password',
+'skin-preview'       => 'First Leuk',
 'math'               => 'Renderin math',
 'datedefault'        => 'Nae preference',
 'datetime'           => 'Date an time',

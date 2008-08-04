@@ -5,10 +5,7 @@
  * @file
  *
  * @author Agurzil
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Agzennay
- * @author SPQRobin
  * @author Teak
  */
 
@@ -83,8 +80,6 @@ $messages = array(
 'underline-always'  => 'Daymen',
 'underline-never'   => 'Abaden',
 'underline-default' => 'Browser/Explorateur ameslugen',
-
-'skinpreview' => '(Pre-timeẓriwt)',
 
 # Dates
 'sunday'        => 'Lḥedd',
@@ -671,6 +666,7 @@ i yesɛan akk awalen i banen-d).",
 'qbsettings-floatingright' => 'Tufeg ayeffus',
 'changepassword'           => 'Beddel awal n tbaḍnit',
 'skin'                     => 'Aglim',
+'skin-preview'             => 'Pre-timeẓriwt',
 'math'                     => 'Tusnakt',
 'dateformat'               => 'talɣa n uzemz',
 'datedefault'              => 'Ur sɛiɣ ara asemyifi',

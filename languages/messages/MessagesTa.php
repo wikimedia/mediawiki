@@ -6,9 +6,7 @@
  *
  * @author Trengarasu
  * @author Mayooranathan
- * @author Siebrand
  * @author Sundar
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  */
 
@@ -91,8 +89,6 @@ $messages = array(
 'underline-always'  => 'எப்பொழுதும்',
 'underline-never'   => 'எப்போதுமில்லை',
 'underline-default' => 'உலாவி இயல்பிருப்பு',
-
-'skinpreview' => '(முன்தோற்றம்)',
 
 # Dates
 'sunday'        => 'ஞாயிறு',
@@ -815,6 +811,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'qbsettings-floatingright' => 'மிதப்பு வலது',
 'changepassword'           => 'கடவுச்சொல்லை மாற்று',
 'skin'                     => 'தோல்',
+'skin-preview'             => 'முன்தோற்றம்',
 'math'                     => 'கணிதம்',
 'dateformat'               => 'நாள் வடிவம்',
 'datedefault'              => 'விருப்பத்தேர்வுகள் இல்லை',

@@ -6,9 +6,6 @@
  *
  * @author Chinneeb
  * @author לערי ריינהארט
- * @author Siebrand
- * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
@@ -58,8 +55,6 @@ $messages = array(
 'underline-always'  => 'Байнга',
 'underline-never'   => 'Хэзээ ч үгүй',
 'underline-default' => 'Броузерын тохиргоотой адил',
-
-'skinpreview' => '(Урьдчилж харах)',
 
 # Dates
 'sunday'        => 'Ням',
@@ -822,6 +817,7 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 'qbsettings-floatingright' => 'Баруун талд хөвсөн',
 'changepassword'           => 'Нууц үгээ өөрчлөх',
 'skin'                     => 'Арьс',
+'skin-preview'             => 'Урьдчилж харах',
 'math'                     => 'Томъёонууд',
 'dateformat'               => 'Огнооний хэлбэр',
 'datedefault'              => 'Анхны байдал',

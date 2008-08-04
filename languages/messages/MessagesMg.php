@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author Alno
  * @author לערי ריינהארט
  */
@@ -45,8 +43,6 @@ $messages = array(
 'underline-always'  => 'Foana foana',
 'underline-never'   => 'Tsy tsipihina mihitsy',
 'underline-default' => "Izay itiavan'ny navigateur azy",
-
-'skinpreview' => '(Tsipalotra)',
 
 # Dates
 'sunday'    => 'Alahady',
@@ -455,6 +451,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'prefsnologintext'      => '[[Special:Userlogin|Midira]] aloha izay vao manova ny mombamomba anao.',
 'changepassword'        => 'Hanova tenimiafina',
 'skin'                  => 'Endrika',
+'skin-preview'          => 'Tsipalotra',
 'dateformat'            => 'endriky ny daty',
 'datetime'              => 'Daty sy ora',
 'math_failure'          => 'Tsy nety ny fanodinana ny raikipohy',

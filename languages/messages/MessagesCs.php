@@ -10,7 +10,6 @@
  * @author Matěj Grabovský
  * @author לערי ריינהארט
  * @author Reaperman
- * @author Jon Harald Søby
  * @author Helix84
  * @author Martin Kozák
  * @author Michawiki
@@ -360,8 +359,6 @@ $messages = array(
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
 'underline-default' => 'Podle prohlížeče',
-
-'skinpreview' => '(Náhled)',
 
 # Dates
 'sunday'        => 'neděle',
@@ -1125,6 +1122,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'qbsettings-floatingright' => 'Plovoucí vpravo',
 'changepassword'           => 'Změna hesla',
 'skin'                     => 'Vzhled',
+'skin-preview'             => 'Náhled',
 'math'                     => 'Matematika',
 'dateformat'               => 'Formát data',
 'datedefault'              => 'Implicitní',

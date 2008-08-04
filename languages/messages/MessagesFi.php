@@ -9,10 +9,9 @@
  * @author Cimon Avaro
  * @author Agony
  * @author Jack Phoenix
+ * @author Jaakonam
  * @author M.M.S.
  * @author Str4nd
- * @author Jon Harald Søby
- * @author Jaakonam
  * @author לערי ריינהארט
  */
 
@@ -228,8 +227,6 @@ $messages = array(
 'underline-always'  => 'Aina',
 'underline-never'   => 'Ei koskaan',
 'underline-default' => 'Selaimen oletustapa',
-
-'skinpreview' => '(esikatselu…)',
 
 # Dates
 'sunday'        => 'sunnuntai',
@@ -795,6 +792,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'page_first'          => 'ensimmäinen sivu',
 'page_last'           => 'viimeinen sivu',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
+'history-search'      => 'Etsi sivuhistoriasta',
 'deletedrev'          => '[poistettu]',
 'histfirst'           => 'Ensimmäiset',
 'histlast'            => 'Viimeisimmät',
@@ -951,6 +949,7 @@ $1 | $2',
 'qbsettings-floatingright' => 'Pysyen oikealla',
 'changepassword'           => 'Salasanan vaihto',
 'skin'                     => 'Ulkonäkö',
+'skin-preview'             => 'esikatselu',
 'math'                     => 'Matematiikka',
 'dateformat'               => 'Päiväyksen muoto',
 'datedefault'              => 'Ei valintaa',

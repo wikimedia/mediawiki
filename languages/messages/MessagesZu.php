@@ -5,7 +5,6 @@
  * @file
  *
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $messages = array(

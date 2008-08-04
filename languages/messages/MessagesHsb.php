@@ -8,7 +8,6 @@
  * @author Michawiki
  * @author Tlustulimu
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author M.M.S.
  */
 
@@ -154,8 +153,6 @@ $messages = array(
 'underline-always'  => 'přeco',
 'underline-never'   => 'ženje',
 'underline-default' => 'po standardźe wobhladowaka',
-
-'skinpreview' => '(Přehlad)',
 
 # Dates
 'sunday'        => 'Njedźela',
@@ -904,6 +901,7 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'qbsettings-floatingright' => 'Wisa naprawo',
 'changepassword'           => 'Hesło změnić',
 'skin'                     => 'Šat',
+'skin-preview'             => 'Přehlad',
 'dateformat'               => 'Format datuma',
 'datedefault'              => 'Žane nastajenje',
 'datetime'                 => 'Datum a čas',

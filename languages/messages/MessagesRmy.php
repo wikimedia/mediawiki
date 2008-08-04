@@ -6,9 +6,6 @@
  *
  * @author לערי ריינהארט
  * @author Desiphral
- * @author Siebrand
- * @author Jon Harald Søby
- * @author Niklas Laxström
  */
 
 $fallback = 'ro';

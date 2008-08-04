@@ -6,9 +6,6 @@
  *
  * @author Skuolfi
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Teak
  */
 
@@ -50,8 +47,6 @@ $messages = array(
 
 'underline-always' => 'Álo',
 'underline-never'  => 'Ii goassige',
-
-'skinpreview' => '(ovdalgihtii geahččan...)',
 
 # Dates
 'sunday'        => 'sotnabeaivi',
@@ -507,6 +502,7 @@ $1 | $2',
 'qbsettings-floatingright' => 'Biso olgesbealde',
 'changepassword'           => 'Suollemassáni molson',
 'skin'                     => 'Olggosoaidnu',
+'skin-preview'             => 'ovdalgihtii geahččan',
 'math'                     => 'Matematihkká',
 'dateformat'               => 'Beaivemeari hápmi',
 'datedefault'              => 'Eai válljemat',

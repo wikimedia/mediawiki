@@ -7,7 +7,6 @@
  * @author CdaMVvWgS
  * @author Belgian man
  * @author Node ue
- * @author SPQRobin
  */
 
 

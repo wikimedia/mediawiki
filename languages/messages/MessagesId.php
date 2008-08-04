@@ -6,8 +6,8 @@
  *
  * @author Rex
  * @author Borgx
- * @author Meursault2004
  * @author Irwangatot
+ * @author Meursault2004
  * @author לערי ריינהארט
  * @author IvanLanin
  */
@@ -324,8 +324,6 @@ $messages = array(
 'underline-always'  => 'Selalu',
 'underline-never'   => 'Tidak',
 'underline-default' => 'Sesuai konfigurasi penjelajah web',
-
-'skinpreview' => '(Pratayang)',
 
 # Dates
 'sunday'        => 'Minggu',
@@ -894,6 +892,7 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 'page_first'          => 'pertama',
 'page_last'           => 'terakhir',
 'histlegend'          => "Pilih dua tombol radio lalu tekan tombol ''bandingkan'' untuk membandingkan versi. Klik suatu tanggal untuk melihat versi halaman pada tanggal tersebut.<br />(skr) = perbedaan dengan versi sekarang, (akhir) = perbedaan dengan versi sebelumnya, '''k''' = suntingan kecil, '''b''' = suntingan bot, → = suntingan bagian, ← = ringkasan otomatis",
+'history-search'      => 'Mencari di versi terdahulu',
 'deletedrev'          => '[dihapus]',
 'histfirst'           => 'Terlama',
 'histlast'            => 'Terbaru',
@@ -993,6 +992,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 
 # Search results
 'searchresults'             => 'Hasil pencarian',
+'searchresults-title'       => 'Hasil pencarian untuk $1',
 'searchresulttext'          => 'Untuk informasi lebih lanjut tentang pencarian di {{SITENAME}}, lihat [[{{MediaWiki:Helppage}}|halaman bantuan]].',
 'searchsubtitle'            => "Anda mencari '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Anda mencari '''$1'''",
@@ -1047,6 +1047,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'qbsettings-floatingright' => 'Mengambang sebelah kanan',
 'changepassword'           => 'Ganti kata sandi',
 'skin'                     => 'Kulit',
+'skin-preview'             => 'Pratayang',
 'math'                     => 'Matematika',
 'dateformat'               => 'Format tanggal',
 'datedefault'              => 'Tak ada preferensi',
@@ -1567,12 +1568,16 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Hak-hak grup pengguna',
-'listgrouprights-summary'  => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
-'listgrouprights-group'    => 'Kelompok',
-'listgrouprights-rights'   => 'Hak',
-'listgrouprights-helppage' => 'Help:Hak kelompok',
-'listgrouprights-members'  => '(daftar anggota)',
+'listgrouprights'                 => 'Hak-hak grup pengguna',
+'listgrouprights-summary'         => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
+'listgrouprights-group'           => 'Kelompok',
+'listgrouprights-rights'          => 'Hak',
+'listgrouprights-helppage'        => 'Help:Hak kelompok',
+'listgrouprights-members'         => '(daftar anggota)',
+'listgrouprights-addgroup'        => 'Dapat menambahkan kelompok: $1',
+'listgrouprights-removegroup'     => 'Dapat menghapus kelompok: $1',
+'listgrouprights-addgroup-all'    => 'Dapat menambahkan semua kelompok',
+'listgrouprights-removegroup-all' => 'Dapat mencabut semua kelompok',
 
 # E-mail user
 'mailnologin'     => 'Tidak ada alamat surat-e',

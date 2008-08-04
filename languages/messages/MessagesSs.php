@@ -6,7 +6,6 @@
  *
  * @author MF-Warburg
  * @author Jatrobat
- * @author Siebrand
  */
 
 $messages = array(

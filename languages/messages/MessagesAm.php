@@ -6,9 +6,7 @@
  *
  * @author Codex Sinaiticus
  * @author Teferra
- * @author Jon Harald Søby
  * @author Elfalem
- * @author M.M.S.
  */
 
 $namespaceNames = array(
@@ -75,8 +73,6 @@ $messages = array(
 'underline-always'  => 'ሁሌም ይህን',
 'underline-never'   => 'ሁሌም አይሁን',
 'underline-default' => 'የቃኝ ቀዳሚ ባህሪዎች',
-
-'skinpreview' => '(ቅድመ-ዕይታ)',
 
 # Dates
 'sunday'        => 'እሑድ',
@@ -174,7 +170,7 @@ $messages = array(
 'errorpagetitle'    => 'ስህተት',
 'returnto'          => '(ወደ $1 ለመመለስ)',
 'tagline'           => 'ከ{{SITENAME}}',
-'help'              => 'መመሪያ',
+'help'              => 'እርዳታ ገጽ',
 'search'            => 'ፈልግ',
 'searchbutton'      => 'ፈልግ',
 'go'                => 'ሂድ',
@@ -291,7 +287,7 @@ $messages = array(
 'nstab-project'   => 'የፕሮጀክት ገጽ',
 'nstab-image'     => 'ፋይል',
 'nstab-mediawiki' => 'መልዕክት',
-'nstab-template'  => 'ሰም',
+'nstab-template'  => 'መልጠፊያ',
 'nstab-help'      => 'የመመሪያ ገጽ',
 'nstab-category'  => 'ምድብ',
 
@@ -698,6 +694,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'qbsettings-floatingright' => 'በቀኝ ተንሳፋፊ',
 'changepassword'           => 'መግቢያ ቃልዎን ለመቀየር',
 'skin'                     => 'የድህረ-ገጽ መልክ',
+'skin-preview'             => 'ቅድመ-ዕይታ',
 'math'                     => 'የሂሳብ መልክ',
 'dateformat'               => 'ያውሮፓ አቆጣጠር ዘመን ሥርዓት',
 'datedefault'              => 'ግድ የለኝም',
@@ -831,7 +828,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload-preferred'            => 'የተመረጡት የፋይል አይነቶች፦  $1።',
 'upload-prohibited'           => 'ያልተፈቀዱት የፋይል አይነቶች፦ $1።',
 'uploadlog'                   => 'የፋይሎች መዝገብ',
-'uploadlogpage'               => 'የፋይሎች መዝገብ (filelog)',
+'uploadlogpage'               => 'የፋይሎች መዝገብ',
 'uploadlogpagetext'           => 'ይህ መዝገብ በቅርቡ የተላኩት ፋይሎች ሁሉ ያሳያል።',
 'filename'                    => 'የፋይል ስም',
 'filedesc'                    => 'ማጠቃለያ',
@@ -1212,7 +1209,7 @@ $NEWPAGE
 
 (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
 'deletedarticle'              => '«[[$1]]» አጠፋ',
-'dellogpage'                  => 'የማጥፋት መዝገብ (del log)',
+'dellogpage'                  => 'የማጥፋት መዝገብ',
 'dellogpagetext'              => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
 'deletionlog'                 => 'የማጥፋት መዝገብ',
 'reverted'                    => 'ወደ ቀድመኛ ዕትም ገለበጠው።',
@@ -1235,7 +1232,7 @@ $NEWPAGE
 'editcomment'                 => 'ማጠቃለያው፦ «<i>$1</i>» ነበረ።', # only shown if there is an edit comment
 'revertpage'                  => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
-'protectlogpage'              => 'የማቆለፍ መዝገብ (prot. log)',
+'protectlogpage'              => 'የማቆለፍ መዝገብ',
 'protectlogtext'              => 'ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:Protectedpages|የቆለፉትን ገጾች]] ደግሞ ያዩ።',
 'protectedarticle'            => 'ገጹን «[[$1]]» ቆለፈው።',
 'modifiedarticleprotection'   => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
@@ -1400,7 +1397,7 @@ $1',
 'blocklink'                   => 'ማገጃ',
 'unblocklink'                 => 'ማገጃ ለማንሣት',
 'contribslink'                => 'አስተዋጽኦች',
-'blocklogpage'                => 'የማገጃ መዝገብ (blocklog)',
+'blocklogpage'                => 'የማገጃ መዝገብ',
 'blocklogentry'               => 'እስከ $2 ድረስ [[$1]] አገዳ $3',
 'blocklogtext'                => 'ይህ መዝገብ ተጠቃሚዎች መቸም ሲታገዱ ወይም ማገጃ ሲነሣ የሚዘረዝር ነው። ለአሁኑ የታገዱት ሰዎች [[Special:Ipblocklist|በአሁኑ ማገጃዎች ዝርዝር]] ይታያሉ።',
 'unblocklogentry'             => 'የ$1 ማገጃ አነሣ',
@@ -1455,6 +1452,7 @@ $1',
 'move-watch'              => 'ይህ ገጽ በተከታተሉት ገጾች ይጨመር',
 'movepagebtn'             => 'ገጹ ይዛወር',
 'pagemovedsub'            => 'መዛወሩ ተከናወነ',
+'movepage-moved'          => "<big>'''«$1» ወደ «$2» ተዛውሯል'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'በዚያ አርዕሥት ሌላ ገጽ አሁን አለ። አለበለዚያ የመረጡት ስም ልክ አይደለም - ሌላ አርእስት ይምረጡ።',
 'cantmove-titleprotected' => 'አዲሱ አርዕስት ከመፈጠር ስለተጠበቀ፣ ገጽ ወደዚያው ሥፍራ ለማዛወር አይችሉም።',
 'talkexists'              => "'''ገጹ ወደ አዲሱ አርዕስት ተዛወረ፤ እንጂ በአዲሱ አርዕስት የቆየ ውይይት ገጽ አስቀድሞ ስለ ኖረ የዚህ ውይይት ገጽ ሊዛወር አልተቻለም። እባክዎ፣ በእጅ ያጋጥሙአቸው።'''",
@@ -1462,7 +1460,7 @@ $1',
 'movetalk'                => 'ከተቻለ፣ ከነውይይቱ ገጽ ጋራ ይዛወር',
 '1movedto2'               => '«$1» ወደ «[[$2]]» አዛወረ',
 '1movedto2_redir'         => '«$1» ወደ «[[$2]]» አዛወረ -- በመምሪያ መንገድ ፈንታ',
-'movelogpage'             => 'የማዛወር መዝገብ (movelog)',
+'movelogpage'             => 'የማዛወር መዝገብ',
 'movelogpagetext'         => 'ይህ መዝገብ ገጽ ሲዛወር ይመዝገባል። <ይመለስ> ቢጫኑ ኖሮ መዛወሩን ይገለብጣል!',
 'movereason'              => 'ምክንያት',
 'revertmove'              => 'ይመለስ',

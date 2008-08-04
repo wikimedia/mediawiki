@@ -5,7 +5,6 @@
  * @file
  *
  * @author M.M.S.
- * @author Siebrand
  */
 
 $messages = array(
@@ -15,8 +14,6 @@ $messages = array(
 
 'underline-always' => 'Iktesth',
 'underline-never'  => 'Aaltere',
-
-'skinpreview' => '(Åvte-vuesiehtidh)',
 
 # Dates
 'sunday'        => 'Aejlege',
@@ -345,6 +342,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'preferences'        => 'Sïjsestäälningeh',
 'mypreferences'      => 'Mov sïjsesäälningeh',
 'changepassword'     => 'Värrhtoedimmie loevesbaakoe',
+'skin-preview'       => 'Åvte-vuesiehtidh',
 'math_unknown_error' => 'ammes båajhtede',
 'saveprefs'          => 'Spååredh',
 'oldpassword'        => 'Båeries loevesbaakoe:',

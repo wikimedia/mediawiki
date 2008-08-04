@@ -7,8 +7,6 @@
  * @author SabineCretella
  * @author Cryptex
  * @author E. abu Filumena
- * @author SPQRobin
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Carmine Colacino
  */

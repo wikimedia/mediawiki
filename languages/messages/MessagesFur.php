@@ -5,9 +5,7 @@
  * @file
  *
  * @author Klenje
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -155,8 +153,6 @@ $messages = array(
 'underline-always'  => 'Simpri',
 'underline-never'   => 'Mai',
 'underline-default' => 'Predeterminât dal sgarfadôr',
-
-'skinpreview' => '(Anteprime)',
 
 # Dates
 'sunday'        => 'Domenie',
@@ -599,6 +595,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'qbsettings-floatingleft' => 'Flutuant a çampe',
 'changepassword'          => 'Gambie peraule clâf',
 'skin'                    => 'Mascare',
+'skin-preview'            => 'Anteprime',
 'math'                    => 'Matematiche',
 'dateformat'              => 'Formât de date',
 'datedefault'             => 'Nissune preference',

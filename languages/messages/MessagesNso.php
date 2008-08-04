@@ -5,8 +5,6 @@
  * @file
  *
  * @author Mohau
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -42,8 +40,6 @@ $messages = array(
 'tog-ccmeonemails'            => 'Nromele kopi ya melaetša yeo ke romelago bašumiši ba bangwe',
 
 'underline-always' => 'Kamehla',
-
-'skinpreview' => '(Ponopele)',
 
 # Dates
 'sunday'        => 'Sontaga',
@@ -485,6 +481,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'prefs-edits'        => 'Palo ya diphetogo:',
 'prefsnologin'       => 'Ga wa tsena',
 'changepassword'     => 'Fetola ditlhaka-tša-siphiri',
+'skin-preview'       => 'Ponopele',
 'datetime'           => 'Tšatšikgwedi le nako',
 'math_unknown_error' => 'Phošo ya gose tsebege',
 'math_syntax_error'  => 'phošo ya popafoko',

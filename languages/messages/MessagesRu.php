@@ -9,14 +9,13 @@
  * @author Ahonc
  * @author Illusion
  * @author VasilievVV
- * @author Putnik
  * @author Kalan
+ * @author Putnik
  * @author EugeneZelenko
  * @author Innv
  * @author Flrn
- * @author HalanTul
  * @author AlexSm
- * @author Jon Harald Søby
+ * @author HalanTul
  * @author MaxSem
  * @author Kaganer
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
@@ -281,8 +280,6 @@ $messages = array(
 'underline-always'  => 'Всегда',
 'underline-never'   => 'Никогда',
 'underline-default' => 'Использовать настройки браузера',
-
-'skinpreview' => '(Предпросмотр)',
 
 # Dates
 'sunday'        => 'воскресенье',
@@ -888,6 +885,7 @@ $3 указал следующую причину: ''$2''",
 'page_first'          => 'первая',
 'page_last'           => 'последняя',
 'histlegend'          => "Пояснения: (текущ.) — отличие от текущей версии; (пред.) — отличие от предшествующей версии; '''м''' — малозначимое изменение",
+'history-search'      => 'Показать историю',
 'deletedrev'          => '[удалена]',
 'histfirst'           => 'старейшие',
 'histlast'            => 'недавние',
@@ -996,6 +994,7 @@ $3 указал следующую причину: ''$2''",
 
 # Search results
 'searchresults'             => 'Результаты поиска',
+'searchresults-title'       => 'Результаты поиска для $1',
 'searchresulttext'          => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
 'searchsubtitle'            => 'По запросу «[[:$1]]»',
 'searchsubtitleinvalid'     => 'По запросу «$1»',
@@ -1050,6 +1049,7 @@ $3 указал следующую причину: ''$2''",
 'qbsettings-floatingright' => 'Плавающая справа',
 'changepassword'           => 'Сменить пароль',
 'skin'                     => 'Оформление',
+'skin-preview'             => 'Предпросмотр',
 'math'                     => 'Отображение формул',
 'dateformat'               => 'Формат даты',
 'datedefault'              => 'По умолчанию',
@@ -2087,7 +2087,7 @@ IP-адреса.',
 'import-interwiki-history'   => 'Копировать всю историю изменений этой страницы',
 'import-interwiki-submit'    => 'Импортировать',
 'import-interwiki-namespace' => 'Помещать страницы в пространство имён:',
-'importtext'                 => 'Пожалуйста, экспортируйте страницу из исходной вики, используя инструмент Special:Export, сохраните файл на диск, а затем загрузите его сюда.',
+'importtext'                 => 'Пожалуйста, экспортируйте страницу из исходной вики, используя [[Special:Export|соответствующий инструмент]]. Сохраните файл на диск, а затем загрузите его сюда.',
 'importstart'                => 'Импортирование страниц…',
 'import-revision-count'      => '$1 {{PLURAL:$1|версия|версии|версий}}',
 'importnopages'              => 'Нет страниц для импортирования.',
@@ -2250,9 +2250,10 @@ The wiki server can't provide data in a format your client can read.",
 'markedaspatrollederror-noautopatrol' => 'Вам не разрешено отмечать собственные правки как проверенные.',
 
 # Patrol log
-'patrol-log-page' => 'Журнал патрулирования',
-'patrol-log-line' => 'проверена $1 из $2 $3',
-'patrol-log-auto' => '(автоматически)',
+'patrol-log-page'   => 'Журнал патрулирования',
+'patrol-log-header' => 'Это журнал патрулированных версий.',
+'patrol-log-line'   => 'проверена $1 из $2 $3',
+'patrol-log-auto'   => '(автоматически)',
 
 # Image deletion
 'deletedrevision'                 => 'Удалена старая версия $1',

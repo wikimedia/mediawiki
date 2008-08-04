@@ -5,7 +5,6 @@
  * @file
  *
  * @author Raymond
- * @author Siebrand
  * @author Pill
  * @author Leithian
  * @author Jimmy Collins <jimmy.collins@web.de>
@@ -236,7 +235,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die Seite „[[$1]]“
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).',
 'userrights-no-interwiki'     => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
-'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[{{#special:Userlogin}}|anmelden]], um Benutzerrechte zu ändern.',
+'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:Userlogin|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'       => 'Sie besitzen nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
 'userrights-changeable-col'   => 'Gruppenzugehörigkeit, die Sie ändern dürfen',
 'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die Sie nicht ändern dürfen',
@@ -319,7 +318,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 'notargettext'     => 'Sie haben nicht angegeben, auf welche Seite diese Funktion angewendet werden soll.',
 
 # E-mail user
-'mailnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]] und eine [[Special:Confirmemail|bestätigte]] E-Mail-Adresse haben, um anderen Benutzern E-Mails schicken zu können.',
+'mailnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer Ihnen antworten kann.',
 'emailccsubject'  => 'Kopie Ihrer Nachricht an $1: $2',
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
@@ -401,7 +400,11 @@ Bitte geben Sie den Grund für die Sperre an.',
 'lockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte geben Sie die Datenbank [[Special:Unlockdb|wieder frei]], sobald die Wartung abgeschlossen ist.',
 
 # Move page
-'movepagetext'         => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen). Der alte Titel wird zum neuen weiterleiten. Links auf den alten Titel werden nicht geändert; prüfen Sie auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
+'movepagetext'         => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen).
+Der alte Titel wird zum neuen weiterleiten.
+Sie können Weiterleitungen, die auf den Originaltitel verlinken, automatisch korrigieren lassen.
+Falls Sie dies nicht tun, prüfen Sie auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
+Sie sind dafür verantwortlich, dass Links weiterhin auf das korrekte Ziel zeigen.
 
 Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben Namen gibt, sofern diese nicht leer oder eine Weiterleitung ohne Versionsgeschichte ist. Dies bedeutet, dass Sie die Seite zurück verschieben können, wenn Sie einen Fehler gemacht haben. Sie können hingegen keine Seite überschreiben.
 

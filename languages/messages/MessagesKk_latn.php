@@ -4,9 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
  * @author Atabek
- * @author Jon Harald Søby
  * @author GaiJin
  * @author AlefZet
  */
@@ -439,8 +437,6 @@ $messages = array(
 'underline-always'  => 'Ärqaşan',
 'underline-never'   => 'Eşqaşan',
 'underline-default' => 'Şolğış boýınşa',
-
-'skinpreview' => '(Qarap şığw)',
 
 # Dates
 'sunday'        => 'Jeksenbi',
@@ -1237,6 +1233,7 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'qbsettings-floatingright' => 'Oñğa qalqığan',
 'changepassword'           => 'Qupïya sözdi özgertw',
 'skin'                     => 'Mänerler',
+'skin-preview'             => 'Qarap şığw',
 'math'                     => 'Örnekter',
 'dateformat'               => 'Kün-aý pişimi',
 'datedefault'              => 'Eş qalawsız',

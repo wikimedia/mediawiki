@@ -5,7 +5,6 @@
  * @file
  *
  * @author Kurniasan
- * @author SPQRobin
  */
 
 $fallback = "id";

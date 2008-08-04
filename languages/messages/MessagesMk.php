@@ -7,10 +7,8 @@
  * @author FlavrSavr
  * @author Misos
  * @author INkubusse
- * @author Siebrand
  * @author Glupav
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  */
 
 $skinNames = array(
@@ -128,8 +126,6 @@ $messages = array(
 'underline-always'  => 'Секогаш',
 'underline-never'   => 'Никогаш',
 'underline-default' => 'Според прилагодувањата на прелистувачот',
-
-'skinpreview' => '(Прегледај)',
 
 # Dates
 'sunday'        => 'недела',
@@ -780,6 +776,7 @@ ID-то на вашето блокирање е $5.
 'qbsettings-floatingright' => 'Пловечки десно',
 'changepassword'           => 'Промени лозинка',
 'skin'                     => 'Маска',
+'skin-preview'             => 'Прегледај',
 'math'                     => 'Математички операции',
 'dateformat'               => 'Приказ на време',
 'datedefault'              => 'Небитно',

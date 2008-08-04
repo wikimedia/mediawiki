@@ -9,7 +9,6 @@
  * @author Lijealso
  * @author לערי ריינהארט
  * @author MCruz
- * @author Jon Harald Søby
  * @author Rei-artur
  * @author Waldir
  * @author Villate
@@ -200,8 +199,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
 'underline-default' => 'Padrão do navegador',
-
-'skinpreview' => '(Pré-visualizar)',
 
 # Dates
 'sunday'        => 'Domingo',
@@ -976,6 +973,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'qbsettings-floatingright' => 'Flutuando à direita',
 'changepassword'           => 'Alterar palavra-chave',
 'skin'                     => 'Tema',
+'skin-preview'             => 'Pré-visualizar',
 'math'                     => 'Matemática',
 'dateformat'               => 'Formato da data',
 'datedefault'              => 'Sem preferência',

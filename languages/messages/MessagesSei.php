@@ -6,9 +6,6 @@
  *
  * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  * @author Teak
  */
 
@@ -57,8 +54,6 @@ $messages = array(
 'underline-always'  => 'Jömdexepe',
 'underline-never'   => 'Diixepe',
 'underline-default' => 'AutoBrowser',
-
-'skinpreview' => '(Cuáxiit)',
 
 # Dates
 'sunday'        => 'Dajmino',
@@ -638,6 +633,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'qbsettings-none'       => 'Nepartám',
 'changepassword'        => "Reset'quimx canj",
 'skin'                  => 'Zuláugaum',
+'skin-preview'          => 'Cuáxiit',
 'math'                  => 'HTML-cuat',
 'dateformat'            => 'Formatumde datum',
 'datedefault'           => 'Diiquáatlaac',

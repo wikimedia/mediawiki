@@ -13,17 +13,17 @@
  * @author Felis
  * @author לערי ריינהארט
  * @author Broc
- * @author .anaconda
  * @author Ramac
- * @author S.Örvarr.S
+ * @author .anaconda
  * @author Xpensive
+ * @author S.Örvarr.S
  * @author Nick1915
- * @author Pietrodn
  * @author Tonyfroio
- * @author SabineCretella
+ * @author Pietrodn
  * @author Martorell
- * @author Cryptex
+ * @author SabineCretella
  * @author Candalua
+ * @author Cryptex
  */
 
 $namespaceNames = array(
@@ -182,8 +182,6 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Mai',
 'underline-default' => 'Mantieni le impostazioni del browser',
-
-'skinpreview' => '(anteprima)',
 
 # Dates
 'sunday'        => 'domenica',
@@ -782,6 +780,7 @@ Verificare la URL usata per accedere a questa pagina.',
 'histlegend'          => "Confronto tra versioni: selezionare le caselle corrispondenti alle versioni desiderate e premere Invio o il pulsante in basso.
 
 Legenda: (corr) = differenze con la versione corrente, (prec) = differenze con la versione precedente, '''m''' = modifica minore",
+'history-search'      => 'Ricerca nella cronologia',
 'deletedrev'          => '[cancellata]',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
@@ -940,6 +939,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'qbsettings-floatingright' => 'Fluttuante a destra',
 'changepassword'           => 'Cambia password',
 'skin'                     => 'Aspetto grafico (skin)',
+'skin-preview'             => 'anteprima',
 'math'                     => 'Formule matematiche',
 'dateformat'               => 'Formato della data',
 'datedefault'              => 'Nessuna preferenza',
@@ -1052,7 +1052,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'right-autoconfirmed'        => 'Modifica le pagine semiprotette',
 'right-bot'                  => 'Da trattare come processo automatico',
 'right-nominornewtalk'       => "Fa sì che le modifiche minori alle pagine di discussione non facciano comparire l'avviso di nuovo messaggio",
-'right-apihighlimits'        => 'Usa limiti più alti per le interrogazioni API (Query lente: 500 risultati; Query veloci: 5000 risultati)',
+'right-apihighlimits'        => 'Usa limiti più alti per le interrogazioni API',
 'right-writeapi'             => "Usa l'API per modificare il wiki",
 'right-delete'               => 'Cancella pagine',
 'right-bigdelete'            => 'Cancella pagine con cronologie lunghe',
@@ -1339,13 +1339,13 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'sitestats'              => 'Statistiche relative a {{SITENAME}}',
 'userstats'              => 'Statistiche relative agli utenti',
 'sitestatstext'          => "Il database contiene complessivamente '''\$1''' {{PLURAL:\$1|pagina|pagine}}.
-Questa cifra comprende anche le pagine di discussione, quelle di servizio di {{SITENAME}}, le voci più esigue (\"stub\"), i redirect e altre pagine che probabilmente non vanno considerate tra i contenuti del sito. Escludendo le pagine sopra descritte, ve ne sono '''\$2''' di contenuti veri e propri.
+Questa cifra comprende anche le pagine di discussione, quelle di servizio di {{SITENAME}}, le voci più esigue (\"stub\"), i redirect e altre pagine che probabilmente non vanno considerate tra i contenuti del sito. Escludendo le pagine sopra descritte, ve ne {{PLURAL:\$2|è '''1'''|sono '''\$2'''}} di contenuti veri e propri.
 
 {{PLURAL:\$8|È stato inoltre caricato|Sono stati inoltre caricati}} '''\$8''' file.
 
 Dall'installazione del sito sino a questo momento {{PLURAL:\$3|è stata visitata '''1''' pagina|sono state visitate '''\$3''' pagine}} ed {{PLURAL:\$4|eseguita '''1''' modifica|eseguite '''\$4''' modifiche}}, pari a una media di '''\$5''' modifiche per pagina e '''\$6''' richieste di lettura per ciascuna modifica.
 
-La coda dei processi da eseguire in background contiene {{PLURAL:\$7|'''1''' elemento|'''\$7''' elementi}}.",
+La [http://www.mediawiki.org/wiki/Manual:Job_queue coda dei processi] da eseguire in background contiene {{PLURAL:\$7|'''1''' elemento|'''\$7''' elementi}}.",
 'userstatstext'          => "In questo momento {{PLURAL:$1|è registrato '''1''' utente|sono registrati '''$1''' utenti}}. Il gruppo $5 è composto da '''$2''' {{PLURAL:$2|utente|utenti}}, pari al '''$4%''' dei registrati.",
 'statistics-mostpopular' => 'Pagine più visitate',
 
@@ -1808,7 +1808,7 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'fino al $1',
 'anononlyblock'                   => 'solo anonimi',
-'noautoblockblock'                => 'senza blocco automatico',
+'noautoblockblock'                => 'blocco automatico disabilitato',
 'createaccountblock'              => 'creazione account bloccata',
 'emailblock'                      => 'e-mail bloccate',
 'ipblocklist-empty'               => "L'elenco dei blocchi è vuoto.",
@@ -1862,11 +1862,11 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 # Move page
 'move-page'               => 'Spostamento di $1',
 'move-page-legend'        => 'Spostamento di pagina',
-'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. I collegamenti esistenti non saranno aggiornati; verificare che lo spostamento non abbia creato doppi redirect o redirect errati. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
+'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntanoal titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
 Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
 
-<b>ATTENZIONE:</b>
+'''ATTENZIONE:'''
 Un cambiamento così drastico può creare contrattempi e problemi, soprattutto per le pagine più visitate. Accertarsi di aver valutato le conseguenze dello spostamento prima di procedere.",
 'movepagetalktext'        => "La corrispondente pagina di discussione, se esiste, sarà spostata automaticamente insieme alla pagina principale, '''tranne che nei seguenti casi''':
 * lo spostamento della pagina è tra namespace diversi;
@@ -1896,7 +1896,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 '1movedto2_redir'         => 'ha spostato [[$1]] a [[$2]] tramite redirect',
 'movelogpage'             => 'Spostamenti',
 'movelogpagetext'         => 'Di seguito sono elencate le pagine spostate di recente.',
-'movereason'              => 'Motivo',
+'movereason'              => 'Motivo:',
 'revertmove'              => 'ripristina',
 'delete_and_move'         => 'Cancella e sposta',
 'delete_and_move_text'    => '==Cancellazione richiesta==

@@ -5,7 +5,6 @@
  * @file
  *
  * @author Zanatos
- * @author Siebrand
  */
 
 $fallback = 'ar';

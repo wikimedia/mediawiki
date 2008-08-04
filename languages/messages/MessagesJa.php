@@ -12,9 +12,8 @@
  * @author Emk
  * @author Mzm5zbC3
  * @author Iwai.masaharu
- * @author Jon Harald Søby
- * @author לערי ריינהארט
  * @author Aotake
+ * @author לערי ריינהארט
  * @author Kkkdc
  * @author Hatukanezumi
  */
@@ -105,8 +104,6 @@ $messages = array(
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
 'underline-default' => 'WWWブラウザ既定',
-
-'skinpreview' => '（プレビュー）',
 
 # Dates
 'sunday'        => '日曜日',
@@ -586,7 +583,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'newarticle'                       => '（新規）',
 'newarticletext'                   => 'ページを新規に作成するには新しい内容を書き込んでください。',
 'anontalkpagetext'                 => "----
-''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。{{SITENAME}}では匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしも、あなたが匿名利用者で無関係なコメントがここに寄せられる場合は、[[Special:Userlogin|アカウントを作成するかログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。",
+''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:Userlogin/signup|アカウントを作成する]]か[[Special:Userlogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
 'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
@@ -608,7 +605,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 ''{{SITENAME}}ではHTMLタグの使用に制限を設けておらず、JavaScript でのアタックを予防するためにプレビューを隠しています。''
 
-<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度ログアウトして、もう一度ログインしてみてください。</strong>",
+<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度[[Special:Userlogout|ログアウト]]して、もう一度ログインしてみてください。</strong>",
 'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
@@ -823,6 +820,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'qbsettings-floatingright' => 'ウィンドウの右上に固定',
 'changepassword'           => 'パスワード変更',
 'skin'                     => '外装',
+'skin-preview'             => '（プレビュー）',
 'math'                     => '数式',
 'dateformat'               => '日付の書式',
 'datedefault'              => '選択なし',
@@ -986,10 +984,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploaderror'                 => 'アップロード エラー',
 'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルは[[Special:Imagelist|{{int:imagelist}}]]で閲覧したり探したりできます。アップロードや削除は[[Special:Log/upload|アップロードログ]]に記録されます。
 
-以下の書式で、ページ上にファイル内容を表示（上2例）、またはファイルへ直接リンク（下1例）できます。
-* '''<nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.png|代替テキスト]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki>'''",
+以下の書式のリンクを使ってページにファイルを含めることができます。
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.png|200px|thumb|left|代替テキスト]]</nowiki></tt>''' とすると左寄せの枠内に200px幅に縮小した画像を説明文（代替テキスト）を添えて表示します
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>''' とするとファイルを表示せずに直接ファイルへリンクします",
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
 'upload-prohibited'           => '禁止されているファイル形式： $1',
@@ -1672,13 +1670,13 @@ $NEWPAGE
 # Move page
 'move-page'               => '$1 の移動',
 'move-page-legend'        => 'ページの移動',
-'movepagetext'            => "下のフォームを利用すると、ページ名を変更し、その履歴も変更先へ移動することができます。
+'movepagetext'            => "下のフォームを利用すると、ページ名が変更され、その履歴も変更先へ移動します。
 古いページは変更先へのリダイレクトページとなります。
-ページの中身と変更前のページに張られたリンクは変わりません。
-ですから、二重になったり壊れてしまったリダイレクトをチェックする必要があります。
+変更前のページへのリダイレクトは自動的に修正することができます。
+自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。リンクを正しく維持するのはあなたの責任です。
 
 移動先がすでに存在する場合には、履歴が移動元ページへのリダイレクトただ一つである場合を除いて移動できません。
-つまり、間違えてページ名を変更した場合には元に戻せます。
+つまり、間違えてページ名を変更した場合には元に戻せます。また移動によって既存のページを上書きしてしまうことはありません。
 
 '''注意！'''
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。

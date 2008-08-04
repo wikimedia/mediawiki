@@ -6,7 +6,6 @@
  *
  * @author Mahitgar
  * @author Kaustubh
- * @author Jon Harald Søby
  * @author प्रणव कुलकर्णी
  * @author Angela
  * @author Hemanshu
@@ -198,8 +197,6 @@ $messages = array(
 'underline-always'  => 'नेहमी',
 'underline-never'   => 'कधीच नाही',
 'underline-default' => 'न्याहाळक अविचल (browser default)',
-
-'skinpreview' => '(झलक)',
 
 # Dates
 'sunday'        => 'रविवार',
@@ -953,6 +950,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'qbsettings-floatingright' => 'तरंगते ऊजवे',
 'changepassword'           => 'परवलीचा शब्द बदला',
 'skin'                     => 'त्वचा',
+'skin-preview'             => 'झलक',
 'math'                     => 'गणित',
 'dateformat'               => 'दिनांक लेखनशैली',
 'datedefault'              => 'प्राथमिकता नाही',

@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  */
 
 $fallback = "es";

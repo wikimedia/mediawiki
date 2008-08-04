@@ -7,7 +7,6 @@
  * @author Candalua
  * @author Nick1915
  * @author BrokenArrow
- * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Omnipaedista
  */
@@ -80,8 +79,6 @@ $messages = array(
 'underline-always'  => 'Senpre',
 'underline-never'   => 'Mai',
 'underline-default' => 'Mantien le inpostazion del browser',
-
-'skinpreview' => '(Anteprima)',
 
 # Dates
 'sunday'        => 'Domenega',
@@ -516,7 +513,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'subject'                          => 'Argomento (intestazion)',
 'minoredit'                        => "Sta quà l'è na modifica minore",
 'watchthis'                        => "Tegni d'ocio sta voçe",
-'savearticle'                      => 'Salva la pagina',
+'savearticle'                      => 'Salva la pàxena',
 'preview'                          => 'Anteprima',
 'showpreview'                      => 'Mostra anteprima',
 'showlivepreview'                  => "Funzion ''Live preview''",
@@ -845,6 +842,7 @@ par poder personalixare le to preferense.',
 'qbsettings-floatingright' => 'Fluttuante a destra',
 'changepassword'           => 'Cambia ła password',
 'skin'                     => 'Aspeto grafico',
+'skin-preview'             => 'Anteprima',
 'math'                     => 'Formułe matematiche',
 'dateformat'               => 'Formato de la data',
 'datedefault'              => 'Nissuna preferensa',
@@ -957,7 +955,7 @@ par poder personalixare le to preferense.',
 'right-autoconfirmed'        => 'Modifica pagine semi-protete',
 'right-bot'                  => 'Da tratar come fusse un processo automatico',
 'right-nominornewtalk'       => "Fà in maniera che le modifiche picenine a le pagine de discussion no le faga scatar l'avviso de messaggio novo",
-'right-apihighlimits'        => 'Dòpara i limiti superiori ne le query API (Query lente: 500 risultati; query veloci: 5000 risultati)',
+'right-apihighlimits'        => 'Dòpara i limiti superiori ne le query API',
 'right-writeapi'             => "Doparar l'API par la modifica de la wiki",
 'right-delete'               => 'Scancela pagine',
 'right-bigdelete'            => 'Scancela pagine con cronologie longhe',
@@ -999,7 +997,7 @@ par poder personalixare le to preferense.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
-'recentchanges'                     => 'Ultime modifeghe',
+'recentchanges'                     => 'Ùltimi canbiamenti',
 'recentchangestext'                 => 'Sta pàxena la presenta łe ultime modifeghe aportàe ai contenuti de el sito.',
 'recentchanges-feed-description'    => 'Sto feed qua el riporta le modifiche piassè recenti ai contenuti del sito.',
 'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo cambiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
@@ -1025,7 +1023,7 @@ par poder personalixare le to preferense.',
 'newsectionsummary'                 => '/* $1 */ sezion nova',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Modifeghe ligà a sta pagina',
+'recentchangeslinked'          => 'Modifeghe ligà a sta pàxena',
 'recentchangeslinked-title'    => 'Modifiche ligà a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pagina speciale la fa védar le modifiche piassè recenti a le pagine ligà a quela specificà (o a le pagine contegnù ne la categoria specificà).
@@ -1514,7 +1512,7 @@ Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, con
 'rollbacklink'                => 'tira indrìo',
 'rollbackfailed'              => 'Ripristino mìa riussìo',
 'cantrollback'                => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
-'alreadyrolled'               => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]])); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
+'alreadyrolled'               => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
 
 L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'                 => 'El comento a la modifica el xera: "<i>$1</i>".', # only shown if there is an edit comment
@@ -2419,7 +2417,7 @@ $1',
 'autosumm-blank'   => 'Pagina svodà conpletamente',
 'autosumm-replace' => "Pagina sostituìa con '$1'",
 'autoredircomment' => 'Rimando a ła pàxena [[$1]]',
-'autosumm-new'     => 'Nova pagina: $1',
+'autosumm-new'     => 'Pàxena nova: $1',
 
 # Live preview
 'livepreview-loading' => 'Caricamento in corso…',
@@ -2511,8 +2509,8 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-media'       => 'Resoconti e caricamenti dei file multimediài',
 'specialpages-group-users'       => 'Utenti e diriti',
 'specialpages-group-highuse'     => 'Pagine doparà assè',
-'specialpages-group-pages'       => 'Liste de pagine',
-'specialpages-group-pagetools'   => 'Strumenti de pagina',
+'specialpages-group-pages'       => 'Liste de pàxene',
+'specialpages-group-pagetools'   => 'Strumenti de pàxena',
 'specialpages-group-wiki'        => 'Dati e strumenti wiki',
 'specialpages-group-redirects'   => 'Reindirizamenti',
 'specialpages-group-spam'        => 'Strumenti anti spam',

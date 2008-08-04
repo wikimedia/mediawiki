@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
- * @author Jon Harald Søby
  * @author GaiJin
  * @author AlefZet
  */
@@ -458,8 +456,6 @@ $messages = array(
 'underline-always'  => 'ارقاشان',
 'underline-never'   => 'ەشقاشان',
 'underline-default' => 'شولعىش بويىنشا',
-
-'skinpreview' => '(قاراپ شىعۋ)',
 
 # Dates
 'sunday'        => 'جەكسەنبى',
@@ -1256,6 +1252,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'qbsettings-floatingright' => 'وڭعا قالقىعان',
 'changepassword'           => 'قۇپىييا ٴسوزدى وزگەرتۋ',
 'skin'                     => 'مانەرلەر',
+'skin-preview'             => 'قاراپ شىعۋ',
 'math'                     => 'ورنەكتەر',
 'dateformat'               => 'كۇن-اي ٴپىشىمى',
 'datedefault'              => 'ەش قالاۋسىز',

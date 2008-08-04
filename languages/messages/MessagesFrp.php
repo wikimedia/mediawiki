@@ -5,10 +5,7 @@
  * @file
  *
  * @author ChrisPtDe
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $fallback = 'fr';
@@ -113,8 +110,6 @@ $messages = array(
 'underline-always'  => 'tojorn',
 'underline-never'   => 'jamés',
 'underline-default' => 'd’aprés lo navigator',
-
-'skinpreview' => '(Prèvisualisar)',
 
 # Dates
 'sunday'        => 'demenge',
@@ -813,6 +808,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'qbsettings-floatingright' => 'Fllotenta a drêta',
 'changepassword'           => 'Modificacion du mot de pâssa',
 'skin'                     => 'Entèrface',
+'skin-preview'             => 'Prèvisualisar',
 'math'                     => 'Rendu de les formules matèmatiques',
 'dateformat'               => 'Format de dâta',
 'datedefault'              => 'Niona prèference',

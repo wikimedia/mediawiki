@@ -7,7 +7,6 @@
  * @author Timichal
  * @author Ottaviano II
  * @author Tèstaquêdra
- * @author SPQRobin
  */
 
 $fallback = 'it';

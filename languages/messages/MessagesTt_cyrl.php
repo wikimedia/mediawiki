@@ -6,8 +6,6 @@
  *
  * @author Ерней
  * @author Himiq Dzyu
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $fallback = 'ru';
@@ -58,8 +56,6 @@ $messages = array(
 'underline-always'  => 'Һәрвакыт',
 'underline-never'   => 'Һичкайчан',
 'underline-default' => 'Күзәтүче көйләнмәләрне кулланырга',
-
-'skinpreview' => '(Алдан карау)',
 
 # Dates
 'sunday'        => 'якшәмбе',
@@ -588,6 +584,7 @@ $2',
 'qbsettings-none'       => 'Күрсәтмәскә',
 'changepassword'        => 'Серсүзне алыштырырга',
 'skin'                  => 'Күренеш',
+'skin-preview'          => 'Алдан карау',
 'math'                  => 'Формулалар',
 'dateformat'            => 'Датаның форматы',
 'datetime'              => 'Дата һәм вакыт',

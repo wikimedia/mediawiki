@@ -6,9 +6,6 @@
  *
  * @author Fulup
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $namespaceNames = array(
@@ -106,8 +103,6 @@ $messages = array(
 'underline-always'  => 'Atav',
 'underline-never'   => 'Morse',
 'underline-default' => 'Diouzh ar merdeer',
-
-'skinpreview' => '(Rakwelet)',
 
 # Dates
 'sunday'        => 'Sul',
@@ -852,6 +847,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'qbsettings-floatingright' => 'War-neuñv a-zehou',
 'changepassword'           => 'Kemmañ ar ger-tremen',
 'skin'                     => 'Gwiskadur',
+'skin-preview'             => 'Rakwelet',
 'math'                     => 'Tres jedoniel',
 'dateformat'               => 'Stumm an deiziad',
 'datedefault'              => 'Dre ziouer',
