@@ -788,6 +788,7 @@ ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.',
 'page_last'           => 'Enden',
 'histlegend'          => 'Forklaring: (nuværende) = forskel til den nuværende
 version, (forrige) = forskel til den forrige version, M = mindre ændring',
+'history-search'      => 'Find dato',
 'deletedrev'          => '[slettet]',
 'histfirst'           => 'Ældste',
 'histlast'            => 'Nyeste',
