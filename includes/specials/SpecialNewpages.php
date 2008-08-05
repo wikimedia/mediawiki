@@ -83,7 +83,7 @@ class SpecialNewpages extends SpecialPage {
 	 * @return string
 	 */
 	public function execute( $par ) {
-		global $wgLang, $wgGroupPermissions, $wgUser, $wgOut;
+		global $wgLang, $wgUser, $wgOut;
 
 		$this->setHeaders();
 		$this->outputHeader();
