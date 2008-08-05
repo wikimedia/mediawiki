@@ -2026,8 +2026,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-helppage'        => 'Help:Group rights',
 'listgrouprights-members'         => '(list of members)',
 'listgrouprights-right-display'   => '$1 ($2)', # only translate this message to other languages if you have to change it
-'listgrouprights-addgroup'        => 'Can add groups: $1',
-'listgrouprights-removegroup'     => 'Can remove groups: $1',
+'listgrouprights-addgroup'        => 'Can add {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-removegroup'     => 'Can remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'    => 'Can add all groups',
 'listgrouprights-removegroup-all' => 'Can remove all groups',
 
