@@ -1308,28 +1308,22 @@ class Title {
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array();
-			global $wgGroupPermissions;
-			foreach( $wgGroupPermissions as $key => $value ) {
-				if( isset( $value[$action] ) && $value[$action] == true ) {
-					$groupName = User::getGroupName( $key );
-					$groupPage = User::getGroupPage( $key );
-					if( $groupPage ) {
-						$groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
-					} else {
-						$groups[] = $groupName;
-					}
+			foreach( User::getGroupsWithPermission( $action ) as $key ) {
+				$groupName = User::getGroupName( $key );
+				$groupPage = User::getGroupPage( $key );
+				if( $groupPage ) {
+					$groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
+				} else {
+					$groups[] = $groupName;
 				}
 			}
 			$n = count( $groups );
-			$groups = implode( ', ', $groups );
-			switch( $n ) {
-				case 0:
-				case 1:
-				case 2:
-					$return = array( "badaccess-group$n", $groups );
-					break;
-				default:
-					$return = array( 'badaccess-groups', $groups );
+			if ( $n > 0 ) {
+				$groups = implode( ', ', $groups );
+				$return = array( 'badaccess-groups', array( $groups, $n ) );
+			}
+			else {
+				$return = array( "badaccess-group0", $groups );
 			}
 			$errors[] = $return;
 		}
