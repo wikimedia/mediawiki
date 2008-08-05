@@ -1095,7 +1095,6 @@ $wgMessageStructure = array(
 		'filedelete-success-old',
 		'filedelete-nofile',
 		'filedelete-nofile-old',
-		'filedelete-iscurrent',
 		'filedelete-otherreason',
 		'filedelete-reason-otherlist',
 		'filedelete-reason-dropdown',
