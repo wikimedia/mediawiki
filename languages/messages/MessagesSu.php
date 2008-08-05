@@ -255,8 +255,6 @@ $messages = array(
 
 'badaccess'        => 'Kasalahan widi',
 'badaccess-group0' => 'Anjeun teu wenang ngalaksanakeun peta nu dipundut.',
-
-
 'badaccess-groups' => 'Peta nu dipundut ngan bisa laksana pikeun pamaké ti salah sahiji gorombolan $1.',
 
 'versionrequired'     => 'Butuh MediaWiki vérsi $1',
@@ -1103,7 +1101,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'filedelete-success-old'      => '<span class="plainlinks">Vérsi \'\'\'[[Media:$1|$1]]\'\'\' $3, $2 geus dihapus.</span>',
 'filedelete-nofile'           => "Teu aya '''$1''' di {{SITENAME}}.",
 'filedelete-nofile-old'       => "Euweuh arsip vérsi '''$1''' nu tetenggerna kawas kitu.",
-'filedelete-iscurrent'        => 'Anjeun rék ngahapus vérsi paling anyar ieu koropak. Balikkeun ka vérsi nu leuwih heubeul heula atuh.',
 'filedelete-otherreason'      => 'Alesan séjén/panambah:',
 'filedelete-reason-otherlist' => 'Alesan séjén',
 'filedelete-reason-dropdown'  => '*Alesan nu ilahar

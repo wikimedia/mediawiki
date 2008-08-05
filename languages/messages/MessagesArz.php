@@ -486,8 +486,6 @@ $messages = array(
 
 'badaccess'        => 'غلطه فى السماح',
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
-
-
 'badaccess-groups' => 'الفعل الذي طلبته مسموح بيه بس لليوزرز  اللي في واحدة من المجموعات دي  $1.',
 
 'versionrequired'     => 'لازم نسخة $1 من ميدياويكي',
@@ -1454,8 +1452,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' اللي بتاريخ $3، $2 اتمسحت.</span>',
 'filedelete-nofile'           => "'''$1''' مش موجود في {{SITENAME}}.",
 'filedelete-nofile-old'       => "مافيش نسخة في الارشيف من '''$1''' بالعناصر المتحددة.",
-'filedelete-iscurrent'        => 'أنت بتحاول تمسح أجدد نسخة من الملف دا.
-لو سمحت ترجع النسخة القديمة الاول.',
 'filedelete-otherreason'      => 'سبب زيادة/تاني:',
 'filedelete-reason-otherlist' => 'سبب تانى',
 'filedelete-reason-dropdown'  => '*أسباب المسح الشايعة

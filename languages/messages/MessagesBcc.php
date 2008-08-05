@@ -332,8 +332,6 @@ $messages = array(
 
 'badaccess'        => 'حطا اجازت',
 'badaccess-group0' => 'شما مجاز نهیت عملی که درخواست کت اجرا کنیت',
-
-
 'badaccess-groups' => 'کاری که شما درخواست کت محدود په کابران ته یکی چه گروهان $1.',
 
 'versionrequired'     => 'نسخه $1. مدیا وی کی نیازنت',
@@ -1339,8 +1337,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">نسخه چه \'\'\'[[Media:$1|$1]]\'\'\'  په داب چه $3, $2 حذف بوتت.</span>',
 'filedelete-nofile'           => "'''$1'' ته  {{SITENAME}} موجود نهنت.",
 'filedelete-nofile-old'       => "هچ نسخه آرشیوی چه'''$1'''  گون مشخصین نشان نیست.",
-'filedelete-iscurrent'        => 'شما لوٹیت نوکترین نسخه ای فایلء حذف کنیت.
-لطفا اول په یک پیشرتین نسخه بدل کنیت.',
 'filedelete-otherreason'      => 'دگر/گیشترین دلیل:',
 'filedelete-reason-otherlist' => 'دگ دلیل',
 'filedelete-reason-dropdown'  => '*متداول این دلایل حذف

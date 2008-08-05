@@ -324,8 +324,6 @@ $messages = array(
 
 'badaccess'        => 'Dälapöl',
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',
-
-
 'badaccess-groups' => 'Utos, kelosi vilol dunön, padälon te gebanes dutöl lü bal grupas: $1.',
 
 'versionrequired'     => 'Fomam: $1 ela MediaWiki paflagon',
@@ -1181,7 +1179,6 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'filedelete-success-old'      => '<span class="plainlinks">Fomam ela \'\'\'[[Media:$1|$1]]\'\'\' timü $3, $2 pemoükon.</span>',
 'filedelete-nofile'           => "'''$1''' no dabinon in {{SITENAME}}.",
 'filedelete-nofile-old'       => "No dabinon fomam peregistaröl pada: '''$1''' labü pats pevipöl.",
-'filedelete-iscurrent'        => 'Steifülol ad moükön fomami nulikün ragiva at. Mutol büo geikön ad fomam büik.',
 'filedelete-otherreason'      => 'Kod votik/zuik:',
 'filedelete-reason-otherlist' => 'Kod votik',
 'filedelete-reason-dropdown'  => '*Kods kösömik moükama

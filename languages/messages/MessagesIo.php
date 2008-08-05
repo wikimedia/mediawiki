@@ -203,8 +203,6 @@ $messages = array(
 
 'badaccess'        => 'Eroro permisal',
 'badaccess-group0' => 'Vu ne permisesas agar quale vu demandas.',
-
-
 'badaccess-groups' => "L' ago quan vu demandabas es limitizita al uzeri en un ek la grupi $1.",
 
 'retrievedfrom'           => 'Obtenita de "$1"',

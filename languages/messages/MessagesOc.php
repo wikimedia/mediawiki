@@ -445,8 +445,6 @@ $messages = array(
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Avètz pas los dreches sufisents per realizar l’accion que demandatz.',
-
-
 'badaccess-groups' => "L’accion qu'ensajatz de realizar es pas accessibla qu’als utilizaires dels gropes $1.",
 
 'versionrequired'     => 'Version $1 de MediaWiki necessària',
@@ -1389,7 +1387,6 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' del $2 a $3 es estada suprimida.</span>',
 'filedelete-nofile'           => "'''$1''' existís pas sus {{SITENAME}}.",
 'filedelete-nofile-old'       => "Existís pas cap de version archivada de '''$1''' amb los atributs indicats.",
-'filedelete-iscurrent'        => "Sètz a ensajar de suprimir la version mai recenta d'aqueste fichièr. Vos cal, deperabans, restablir una version anciana d'aqueste.",
 'filedelete-otherreason'      => 'Rason diferenta/suplementària :',
 'filedelete-reason-otherlist' => 'Autra rason',
 'filedelete-reason-dropdown'  => '*Motius de supression costumièrs

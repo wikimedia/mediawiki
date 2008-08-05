@@ -231,8 +231,6 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 
 'badaccess'        => 'Kapintulutan kamalian',
 'badaccess-group0' => 'Ala kang paintulut para daptan mu ing pamipamuk a inyawad mu.',
-
-
 'badaccess-groups' => 'Ing pamipamuk a inyawad mu kareng yang talagamit karing metung a lupun $1.',
 
 'versionrequired'     => 'Ing bersion $1 ning MediaWiki ing kailangan',
@@ -1177,8 +1175,6 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'filedelete-success-old'      => '<span class="plainlinks">Ing bersion ning \'\'\'[[Media:$1|$1]]\'\'\' aniang $3, $2 mebura ne.</span>',
 'filedelete-nofile'           => "Ing '''$1''' ala yu king {{SITENAME}}.",
 'filedelete-nofile-old'       => "Alang bersion a makasimpan (archived version) ning '''$1''' a magdala kareng metunggeng kaurian (specified attributes).",
-'filedelete-iscurrent'        => 'Susubukan meng buran ing pekabayung bersion ning simpan (file) a ini.
-Isubli me pamu king metung a minunang/mas matuang bersion.',
 'filedelete-otherreason'      => 'Aliwang/karagdagang sangkan:',
 'filedelete-reason-otherlist' => 'Aliwang sangkan',
 'filedelete-reason-dropdown'  => '*Keraklan a sangkan king pamamura

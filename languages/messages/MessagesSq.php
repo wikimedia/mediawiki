@@ -282,8 +282,6 @@ $messages = array(
 
 'badaccess'        => 'Gabim leje',
 'badaccess-group0' => 'Nuk ju lejohet veprimi i kërkuar',
-
-
 'badaccess-groups' => 'Veprimi që kërkuat lejohet vetëm nga përdorues të grupeve $1.',
 
 'versionrequired'     => 'Nevojitet versioni $1 i MediaWiki-it',
@@ -1158,7 +1156,6 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'filedelete-success-old'      => '<span class="plainlinks">Versioni i \'\'\'[[Media:$1|$1]]\'\'\' së $3, $2 është grisur.</span>',
 'filedelete-nofile'           => "'''$1''' nuk ekziston tek {{SITENAME}}.",
 'filedelete-nofile-old'       => "Nuk ka version të arkivuar të '''$1''' me të dhënat e kërkuara.",
-'filedelete-iscurrent'        => 'Jeni duke grisur versionin e tanishëm të kësaj skede. Ju lutem më parë rikthejeni tek një version më të vjetër.',
 'filedelete-otherreason'      => 'Arsye tjetër / shtesë:',
 'filedelete-reason-otherlist' => 'Arsye tjetër',
 'filedelete-reason-dropdown'  => '*Arsye të shpeshpërdorura për grisje:

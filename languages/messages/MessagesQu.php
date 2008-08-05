@@ -258,8 +258,6 @@ $messages = array(
 
 'badaccess'        => 'Saqillay pantasqa',
 'badaccess-group0' => 'Manam saqillasunkichu munasqayta rurayta.',
-
-
 'badaccess-groups' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
 
 'versionrequired'     => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",
@@ -1177,7 +1175,6 @@ Tunup umanpi ñit'ispaqa allichaytam hukchanki.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">\$3, \$2 pachamanta '''[[Media:\$1|\$1]]''' llamk'apusqaqa qullusqañam.</span>",
 'filedelete-nofile'           => "{{SITENAME}}piqa '''$1''' manam kanchu.",
 'filedelete-nofile-old'       => "Qusqa kachkaykunayuq '''$1'''-manta waqaychasqa llamk'apusqaqa manam kanchu.",
-'filedelete-iscurrent'        => "Kay willañiqimanta lliwmanta aswan ñaqha llamk'apusqatam qulluykachachkanki. Ama hina kaspa, ñawpaqta mawk'a llamk'apusqaman kutichiy.",
 'filedelete-otherreason'      => 'Hukrayku:',
 'filedelete-reason-otherlist' => 'Hukrayku',
 'filedelete-reason-dropdown'  => "*Sapsirayku qullusqa

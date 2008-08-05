@@ -210,8 +210,6 @@ $messages = array(
 
 'badaccess'        => 'Lachi gi petmisu',
 'badaccess-group0' => "Ti siña un cho'gue i aksion ni finaisen-mu.",
-
-
 'badaccess-groups' => "Solamente masedi i muna'sesetbi ni grupun $1 chumo'gue i aksion ni finaisen-mu.",
 
 'versionrequired'     => 'Manesita i rebision $1 MediaWiki',

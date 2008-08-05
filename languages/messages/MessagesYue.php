@@ -363,8 +363,6 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '你係唔准執行你要求嘅動作。',
-
-
 'badaccess-groups' => '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
 
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',
@@ -942,12 +940,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'qbsettings-floatingright' => '右邊浮動',
 'changepassword'           => '改密碼',
 'skin'                     => '畫面',
-'skin-header'              => '可以用嘅畫面。',
-'skin-header-css'          => '* 跟對應嘅樣式表 (CSS) 版你可以自定每一個畫面。',
-'skin-header-js'           => '* 跟對應嘅 JavaScript (JS) 版你可以加入自己嘅 scripts 到每一個玾面。',
 'skin-preview'             => '預覽',
-'skin-link-to-css'         => '對應嘅 CSS',
-'skin-link-to-js'          => '對應嘅 JS',
 'math'                     => '數',
 'dateformat'               => '日期格式',
 'datedefault'              => '冇喜好',
@@ -1303,7 +1296,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''響 $2 $3 嘅版本已經刪除咗。",
 'filedelete-nofile'           => "'''$1'''響{{SITENAME}}度唔存在。",
 'filedelete-nofile-old'       => "用指定嘅屬性，呢度係無'''$1'''響 $2 $3 嘅歸檔版本。",
-'filedelete-iscurrent'        => '你而家嘗試刪除呢個檔案嘅最近版本。請先將個檔打回頭做舊啲嘅版本先。',
 'filedelete-otherreason'      => '其它／附加嘅原因:',
 'filedelete-reason-otherlist' => '其它原因',
 'filedelete-reason-dropdown'  => '

@@ -373,8 +373,6 @@ $messages = array(
 
 'badaccess'        => 'Tidak dibenarkan',
 'badaccess-group0' => 'Anda tidak dibenarkan melaksanakan tindakan ini.',
-
-
 'badaccess-groups' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
 
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',
@@ -1318,7 +1316,6 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'filedelete-success-old'      => '<span class="plainlinks">Versi \'\'\'[[Media:$1|$1]]\'\'\' pada $3, $2 telah dihapuskan.</span>',
 'filedelete-nofile'           => "'''$1''' tidak wujud di {{SITENAME}}.",
 'filedelete-nofile-old'       => "Tiada versi arkib bagi '''$1''' dengan sifat-sifat yang dinyatakan.",
-'filedelete-iscurrent'        => 'Anda telah mencuba untuk menghapuskan versi terkini bagi fail ini. Sila balikkannya kepada versi yang lama terlebih dahulu.',
 'filedelete-otherreason'      => 'Sebab lain/tambahan:',
 'filedelete-reason-otherlist' => 'Sebab lain',
 'filedelete-reason-dropdown'  => '

@@ -501,8 +501,6 @@ $messages = array(
 
 'badaccess'        => 'Engedélyezési hiba',
 'badaccess-group0' => 'Ezt a tevékenységet nem végezheted el.',
-
-
 'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 csoportok valamelyikébe tartozó szerkesztő végezheti el.',
 
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',
@@ -1470,8 +1468,6 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'filedelete-success-old'      => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: $3, $2 törlése sikerült.</span>',
 'filedelete-nofile'           => "'''$1''' nevű fájl nem létezik ezen a wikin.",
 'filedelete-nofile-old'       => "A(z) '''$1''' fájlnak nincs a megadott tulajdonságokkal rendelkező archivált változata.",
-'filedelete-iscurrent'        => 'A fájl aktuális változatát próbáltad meg törölni.
-Először állítsd vissza az egyik régebbi változatot.',
 'filedelete-otherreason'      => 'Más/további ok:',
 'filedelete-reason-otherlist' => 'Más ok',
 'filedelete-reason-dropdown'  => '*Általános törlési okok

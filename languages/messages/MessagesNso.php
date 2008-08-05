@@ -192,8 +192,6 @@ $messages = array(
 
 'badaccess'        => 'Thušo ya tumello',
 'badaccess-group0' => 'Ga wa dumelwa go dira seo o lekago go se dira.',
-
-
 'badaccess-groups' => 'Seo o lekago go se dra se dumelwetše go bašomiši bao balego  sehlopheng se tee sa  $1.',
 
 'versionrequired'     => 'Version $1 ya MediaWiki ea hlokega',

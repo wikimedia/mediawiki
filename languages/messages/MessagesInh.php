@@ -205,8 +205,6 @@ $messages = array(
 
 'badaccess'        => 'Чу валар гIалата',
 'badaccess-group0' => 'Хьо де воалара хьюна де пурам дац',
-
-
 'badaccess-groups' => 'Хьо де воалара $1 группаш юкъе бол чар ма де йиша яц',
 
 'versionrequired'     => '$1 MediaWiki верси йиза',

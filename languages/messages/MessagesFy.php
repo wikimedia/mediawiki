@@ -291,8 +291,6 @@ $messages = array(
 
 'badaccess'        => 'Gjin tastimming',
 'badaccess-group0' => 'Jo hawwe gjin rjochten om de frege hanneling út te fieren.',
-
-
 'badaccess-groups' => "De frege hanneling is foarbehâlden oan brûkers yn ien fan 'e groepen $1.",
 
 'versionrequired'     => 'Ferzje $1 fan MediaWiki is eask',

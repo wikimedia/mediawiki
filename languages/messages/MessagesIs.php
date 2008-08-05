@@ -449,8 +449,6 @@ $messages = array(
 
 'badaccess'        => 'Aðgangsvilla',
 'badaccess-group0' => 'Þú hefur ekki leyfi til að framkvæma þá aðgerð sem þú baðst um.',
-
-
 'badaccess-groups' => 'Aðgerðin sem þú reyndir að framkvæma er takmörkuð einum af hópunum $1.',
 
 'versionrequired'     => 'Þarfnast úgáfu $1 af MediaWiki',

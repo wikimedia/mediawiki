@@ -265,8 +265,6 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '您剛才的請求不允許執行。',
-
-
 'badaccess-groups' => '您剛才的請求只有$1使用者組的使用者才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',
@@ -1000,7 +998,6 @@ $2',
 'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
 'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
 'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
-'filedelete-iscurrent'   => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
 
 # MIME search
 'mimesearch'         => 'MIME 搜尋',

@@ -271,8 +271,6 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "Nun tienes permisu pa executar l'aición solicitada.",
-
-
 'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
 
 'versionrequired'     => 'Necesítase la versión $1 de MediaWiki',
@@ -1222,7 +1220,6 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'filedelete-success-old'      => '<span class="plainlinks">La versión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a les $2 foi borrada.</span>',
 'filedelete-nofile'           => "'''$1''' nun esiste en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
-'filedelete-iscurrent'        => "Tas tentando de borrar la versión más reciente d'esti archivu. Por favor revierti primero a una versión más antigua.",
 'filedelete-otherreason'      => 'Otru motivu/motivu adicional:',
 'filedelete-reason-otherlist' => 'Otru motivu',
 'filedelete-reason-dropdown'  => '*Motivos comunes de borráu

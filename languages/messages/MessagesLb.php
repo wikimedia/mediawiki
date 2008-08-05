@@ -354,8 +354,6 @@ $messages = array(
 
 'badaccess'        => 'Net genuch Rechter',
 'badaccess-group0' => 'Dir hutt net déi néideg Rechter fir dës Aktioun duerchzeféieren.',
-
-
 'badaccess-groups' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus de Gruppen $1 duerchgefouert ginn.",
 
 'versionrequired'     => 'Versioun $1 vu MediaWiki gëtt gebraucht',
@@ -1269,8 +1267,6 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filedelete-success-old'      => "<span class=\"plainlinks\">D'Versioun vum Fichier '''[[Media:\$1|\$1]]''' vum \$2, \$3 Auer gouf geläscht.</span>",
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng archivéiert Versioun mat den Attributer déi dir uginn hutt.",
-'filedelete-iscurrent'        => "Dir versicht déi aktuell Versioun vun dësem Fichier ze läschen.
-Setzt dëse w.e.g. vir d'éischt op méi eng al Versioun zréck.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
 'filedelete-reason-otherlist' => 'Anere Grond',
 'filedelete-reason-dropdown'  => "* Allgemeng Läschgrënn

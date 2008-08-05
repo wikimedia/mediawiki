@@ -450,8 +450,6 @@ $messages = array(
 
 'badaccess'        => 'Erreur de permission',
 'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action que vous demandez.',
-
-
 'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs des groupes $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
@@ -1007,12 +1005,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'qbsettings-floatingright' => 'Flottante à droite',
 'changepassword'           => 'Modification du mot de passe',
 'skin'                     => 'Habillage',
-'skin-header'              => 'Habillages disponibles. Vous pouvez personnaliser chaque habillage avec les pages de feuilles de styles en cascade (CSS) et JavaScript associées.',
-'skin-header-css'          => '* Avec la feuille de style en cascade (CSS) associée, vous pouvez personnaliser chaque habillage.',
-'skin-header-js'           => '* Avec la page JavaScript (JS) associée, vous pouvez ajouter vos propres scripts dans chaque habillage.',
 'skin-preview'             => 'Prévisualiser',
-'skin-link-to-css'         => 'CSS associé',
-'skin-link-to-js'          => 'JavaScript associé',
 'math'                     => 'Rendu des maths',
 'dateformat'               => 'Format de date',
 'datedefault'              => 'Aucune préférence',
@@ -1380,7 +1373,6 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' du $2 à $3 a été supprimée.</span>',
 'filedelete-nofile'           => "'''$1''' n’existe pas sur {{SITENAME}}.",
 'filedelete-nofile-old'       => "Il n’existe aucune version archivée de '''$1''' avec les attributs indiqués.",
-'filedelete-iscurrent'        => 'Vous êtes en train d’essayer de supprimer la version la plus récente de ce fichier. Vous devez, au préalable, rétablir une ancienne version de celui-ci.',
 'filedelete-otherreason'      => 'Raison différente/supplémentaire :',
 'filedelete-reason-otherlist' => 'Raison différente',
 'filedelete-reason-dropdown'  => '*Motifs de suppression habituels

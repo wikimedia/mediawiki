@@ -370,8 +370,6 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 
 'badaccess'        => 'Pogreška u ovlaštenjima',
 'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
-
-
 'badaccess-groups' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
 
 'versionrequired'     => 'Potrebna inačica $1 MediaWikija',
@@ -1303,7 +1301,6 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'filedelete-success-old'      => '<span class="plainlinks">Inačica datoteke \'\'\'[[Media:$1|$1]]\'\'\' od $3, $2 je obrisana.</span>',
 'filedelete-nofile'           => "'''$1''' ne postoji na {{SITENAME}}.",
 'filedelete-nofile-old'       => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
-'filedelete-iscurrent'        => 'Pokušavate obrisati najnoviju inačicu ove datoteke. Molimo vas da prije toga vratite na stariju inačicu.',
 'filedelete-otherreason'      => 'Drugi/dodatni razlog:',
 'filedelete-reason-otherlist' => 'Drugi razlog',
 'filedelete-reason-dropdown'  => '*Česti razlozi brisanja

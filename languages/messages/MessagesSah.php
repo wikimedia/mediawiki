@@ -234,8 +234,6 @@ $messages = array(
 
 'badaccess'        => 'Сатаан киирбэтэ',
 'badaccess-group0' => 'Эн бу дьайыыны оҥорор кыаҕыҥ суох.',
-
-
 'badaccess-groups' => '$1 бөлөхтөртөн биирдэстэрин кыттааччыларыгар бу дьайыы хааччахтаах',
 
 'versionrequired'     => 'MediaWiki $1 -с биэрсийэтэ наада',
@@ -1173,7 +1171,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">$3-ҕа баар \'\'\'[[Media:$1|$1]]\'\'\' торуму (версияны)  $2 соппут.</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} саайтыгар суох.",
 'filedelete-nofile-old'       => "Этиллибит параметрдаах '''$1''' архыыптаммыт торума суох.",
-'filedelete-iscurrent'        => 'Эн билэ саҥа торумун сото сатыыгын. Бастаан эргэ торумун көр.',
 'filedelete-otherreason'      => 'Атын/эбии төрүөт:',
 'filedelete-reason-otherlist' => 'Атын төрүөт',
 'filedelete-reason-dropdown'  => '*Common сотор төрүөттэрэ

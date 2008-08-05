@@ -122,7 +122,6 @@ $messages = array(
 'badaccess'        => 'आज्ञा त्रुटी',
 'badaccess-group0' => 'तपाईले अनुरोध गर्नुभएको कार्य गर्न तपाईलाई अनुमति दिइएको छैन।',
 
-
 'ok'                      => 'हुन्छ',
 'youhavenewmessages'      => 'तपाइको लागि ($2) मा  $1 छ ।',
 'newmessageslink'         => 'नयाँ सन्देशहरू',

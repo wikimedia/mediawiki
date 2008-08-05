@@ -388,8 +388,6 @@ $messages = array(
 
 'badaccess'        => 'Rettighetsfeil',
 'badaccess-group0' => 'Du har ikke tilgang til å utføre handlingen du prøvde på.',
-
-
 'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av $1.',
 
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
@@ -1312,7 +1310,6 @@ Om problemet fortsetter, kontakt en [[Special:Listusers/sysop|administrator]].',
 'filedelete-success-old'      => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' à $3, $2 ble slettet.</span>',
 'filedelete-nofile'           => "'''$1''' finnes ikke på {{SITENAME}}.",
 'filedelete-nofile-old'       => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
-'filedelete-iscurrent'        => 'Du forsøker å slette den nyeste versjonen av denne filen. Vennligst tilbakestill til en eldre versjon først.',
 'filedelete-otherreason'      => 'Annen/utdypende grunn:',
 'filedelete-reason-otherlist' => 'Annen grunn',
 'filedelete-reason-dropdown'  => '*Vanlige slettingsgrunner

@@ -267,8 +267,6 @@ $messages = array(
 
 'badaccess'        => 'İzin hatası',
 'badaccess-group0' => 'Bu işlemi yapma yetkiniz yok.',
-
-
 'badaccess-groups' => 'Yapmak istediğiniz işlem, sadece $1 grubundaki kullanıcılardan biri tarafından yapılabilir.',
 
 'versionrequired'     => "MediaWiki'nin $1 sürümü gerekiyor",

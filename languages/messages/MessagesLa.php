@@ -353,8 +353,6 @@ $messages = array(
 
 'badaccess'        => 'Permissus erratum',
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
-
-
 'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
 
 'ok'                      => 'Age',
@@ -959,7 +957,6 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'filedelete-submit'           => 'Delere',
 'filedelete-success'          => "'''$1''' deletum est.",
 'filedelete-success-old'      => '<span class="plainlinks">Emendatio fasciculi \'\'\'[[Media:$1|$1]]\'\'\' ex $3, $2 deletum est.</span>',
-'filedelete-iscurrent'        => 'Emendationem recentissimam huius fasciculi delere conaris. Necesse est antea ad aliam emendationem reverti.',
 'filedelete-otherreason'      => 'Causa alia vel explicatio:',
 'filedelete-reason-otherlist' => 'Causa alia',
 'filedelete-edit-reasonlist'  => 'Causas deletionum fasciculorum recensere',

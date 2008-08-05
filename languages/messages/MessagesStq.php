@@ -252,8 +252,6 @@ $messages = array(
 
 'badaccess'        => 'Neen uträkkende Gjuchte',
 'badaccess-group0' => 'Du hääst nit ju ärfoarderelke Begjuchtigenge foar disse Aktion.',
-
-
 'badaccess-groups' => 'Disse Aktion is bloot muugelk foar Benutsere, do der een fon do Gruppen „$1“ anheere.',
 
 'versionrequired'     => 'Version $1 fon MediaWiki is nöödich',
@@ -1172,7 +1170,6 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'filedelete-success-old'      => '<span class="plainlinks">Fon ju Doatäi \'\'\'„[[Media:$1|$1]]“\'\'\' wuud ju Version $2, $3 Uure läsked.</span>',
 'filedelete-nofile'           => "'''„$1“''' is ap {{SITENAME}} nit deer.",
 'filedelete-nofile-old'       => "Et rakt neen archivierde Version fon '''$1''' mäd do spezifizierde Määrkmoale.",
-'filedelete-iscurrent'        => 'Du fersäkst, ju aktuelle Version fon disse Doatäi tou läskjen. Sät foartied ap ne allere Version tourääch.',
 'filedelete-otherreason'      => 'Uur/touföigeden Gruund:',
 'filedelete-reason-otherlist' => 'Uur Gruund',
 'filedelete-reason-dropdown'  => '* Algemeene Läskgruunde

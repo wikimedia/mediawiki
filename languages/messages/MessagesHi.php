@@ -270,8 +270,6 @@ $messages = array(
 
 'badaccess'        => 'अनुमति त्रुटि',
 'badaccess-group0' => 'जिस क्रिया का अनुरोध आपने किया है उसे संचालित करने की अनुमति आपको नही है।',
-
-
 'badaccess-groups' => '$1 ग्रुपोंमेंसे एक ग्रुपमें शामिल सदस्य ही इस प्रकार की क्रियाएं कर सकतें हैं ।',
 
 'versionrequired'     => 'मीडीयाविकिका $1 अवतरण ज़रूरी हैं ।',
@@ -1254,8 +1252,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' के [$3, $2 के अवतरण] हटा दिये गयें हैं।</span>',
 'filedelete-nofile'           => "'''$1''' {{SITENAME}} पर अस्तित्वमें नहीं हैं।",
 'filedelete-nofile-old'       => "दिये हुए विशेशता से मेल खाने वालें '''$1''' के अवतरण नहीं हैं।",
-'filedelete-iscurrent'        => 'आप इस फ़ाईलका सबसे नया अवतरण हटा रहें हैं।
-कृपया इसके पहले इसके पुराने अवतरणको पुनर्स्थापित करें।',
 'filedelete-otherreason'      => 'अन्य/दूसरा कारण:',
 'filedelete-reason-otherlist' => 'अन्य कारण',
 'filedelete-reason-dropdown'  => '*हटाने के साधारण कारण

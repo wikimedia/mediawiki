@@ -282,8 +282,6 @@ $messages = array(
 
 'badaccess'        => '권한 오류',
 'badaccess-group0' => '요청한 동작을 실행할 권한이 없습니다.',
-
-
 'badaccess-groups' => '요청한 동작은 $1 중 하나의 권한을 가진 사용자에게만 가능합니다.',
 
 'versionrequired'     => '미디어위키 $1 버전 필요',
@@ -1004,7 +1002,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일의 $2 $3 버전을 삭제했습니다.</span>',
 'filedelete-nofile'           => "{{SITENAME}}에 '''$1''' 파일이 존재하지 않습니다.",
 'filedelete-nofile-old'       => "해당 조건에 맞는 과거 '''$1''' 파일이 존재하지 않습니다.",
-'filedelete-iscurrent'        => '가장 최신 버전의 파일을 삭제하려고 하고 있습니다. 먼저 이전 버전으로 되돌린 다음에 삭제해주세요.',
 'filedelete-otherreason'      => '다른 이유/추가적인 이유:',
 'filedelete-reason-otherlist' => '다른 이유',
 'filedelete-reason-dropdown'  => '*일반적인 삭제 이유

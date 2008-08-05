@@ -375,8 +375,6 @@ $messages = array(
 
 'badaccess'        => 'Chyba povolenia',
 'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovanej činnosti.',
-
-
 'badaccess-groups' => 'Činnosť, ktorú požadujete môže vykonať iba člen jednej zo skupín $1.',
 
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',
@@ -1345,7 +1343,6 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'filedelete-success-old'      => '<span class="plainlinks">Verzia súboru \'\'\'[[Media:$1|$1]]\'\'\' z $3, $2 bola zmazaná.</span>',
 'filedelete-nofile'           => "'''$1''' neexistuje na {{GRAMMAR:lokál|{{SITENAME}}}}.",
 'filedelete-nofile-old'       => "Neexistuje archivovaná verzia '''$1''' s uvedenými atribútmi.",
-'filedelete-iscurrent'        => 'Pokúšate sa zmazať poslednú verziu tohto súboru. Prosím, najskôr vráťte staršiu verziu.',
 'filedelete-otherreason'      => 'Iný/ďalší dôvod:',
 'filedelete-reason-otherlist' => 'Iný dôvod',
 'filedelete-reason-dropdown'  => '* Bežné dôvody mazania

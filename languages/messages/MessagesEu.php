@@ -266,8 +266,6 @@ $messages = array(
 
 'badaccess'        => 'Baimen errorea',
 'badaccess-group0' => 'Ez daukazu ekintza hori burutzeko baimenik.',
-
-
 'badaccess-groups' => 'Ekintza hori $1 taldeetako batetako erabiltzaileei mugatuta dago.',
 
 'versionrequired'     => 'MediaWikiren $1 bertsioa beharrezkoa da',

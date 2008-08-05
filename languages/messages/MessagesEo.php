@@ -303,8 +303,6 @@ $messages = array(
 
 'badaccess'        => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
 'badaccess-group0' => 'Vi ne rajtas plenumi la agon, kiun vi petis.',
-
-
 'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en unu el la grupoj $1.',
 
 'versionrequired'     => 'Versio $1 de MediaWiki nepras',
@@ -1256,7 +1254,6 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'filedelete-success-old'      => '<span class="plainlinks">La versio de \'\'\'[[Media:$1|$1]]\'\'\' ekde $3, $2 estas forigita.</span>',
 'filedelete-nofile'           => "'''$1''' ne ekzistas en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Estas neniuarkivita versio de '''$1''' kun la specifigitaj atribuoj.",
-'filedelete-iscurrent'        => 'Vi provas forigi la plej lastan version de la dosiero. Bonvolu restarigi pli malnovan version antaŭe.',
 'filedelete-otherreason'      => 'Alia/plua kialo:',
 'filedelete-reason-otherlist' => 'Alia kialo',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo

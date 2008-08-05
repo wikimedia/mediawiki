@@ -449,8 +449,6 @@ $messages = array(
 
 'badaccess'        => 'Грешка при достъп',
 'badaccess-group0' => 'Нямате права да извършите исканото действие',
-
-
 'badaccess-groups' => 'Исканото действие могат да изпълнят само потребители от групите $1.',
 
 'versionrequired'     => 'Изисква се версия $1 на МедияУики',
@@ -1375,7 +1373,6 @@ $2',
 'filedelete-success-old'      => '<span class="plainlinks">Версията на \'\'\'[[Media:$1|$1]]\'\'\' към $3, $2 е била изтрита.</span>',
 'filedelete-nofile'           => "Файлът '''$1''' не съществува в {{SITENAME}}.",
 'filedelete-nofile-old'       => "Не съществува архивна версия на '''$1''' с указаните параметри.",
-'filedelete-iscurrent'        => 'Опитвате се да изтриете последната версия на този файл. Първо направете възвръщане към по-стара версия.',
 'filedelete-otherreason'      => 'Друга/допълнителна причина:',
 'filedelete-reason-otherlist' => 'Друга причина',
 'filedelete-reason-dropdown'  => '*Общи причини за изтриване

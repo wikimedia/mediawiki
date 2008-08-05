@@ -271,8 +271,6 @@ $messages = array(
 
 'badaccess'        => 'Toestemmingsfout',
 'badaccess-group0' => 'U is nie toegelaat om die aksie uit te voer wat U aangevra het nie.',
-
-
 'badaccess-groups' => 'Die aksie wat U aangevra het is beperk tot gebruikers in een van die groepe $1.',
 
 'versionrequired'     => 'Weergawe $1 van MediaWiki benodig',

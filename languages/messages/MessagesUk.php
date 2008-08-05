@@ -445,8 +445,6 @@ $messages = array(
 
 'badaccess'        => 'Помилка доступу',
 'badaccess-group0' => 'Вам не дозволено виконувати цю дію.',
-
-
 'badaccess-groups' => 'Дія, яку ви хотіли зробити, дозволена лише користувачам із груп $1.',
 
 'versionrequired'     => 'Потрібна MediaWiki версії $1',
@@ -1414,7 +1412,6 @@ $3 зазначив наступну причину: ''$2''",
 'filedelete-success-old'      => '<span class="plainlinks">Версія \'\'\'[[Media:$1|$1]]\'\'\' від $3, $2 була вилучена.</span>',
 'filedelete-nofile'           => "Файл '''$1''' не існує у {{GRAMMAR:genitive|{{SITENAME}}}}.",
 'filedelete-nofile-old'       => "Не існує архівної версії '''$1''' із зазначеними атрибутами.",
-'filedelete-iscurrent'        => 'Ви намагаєтесь вилучити останню версію цього файлу. Будь ласка, поверніть спочатку файл до однієї зі старих версій.',
 'filedelete-otherreason'      => 'Інша/додаткова причина:',
 'filedelete-reason-otherlist' => 'Інша причина',
 'filedelete-reason-dropdown'  => '* Поширені причини вилучення

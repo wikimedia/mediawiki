@@ -289,8 +289,6 @@ $messages = array(
 
 'badaccess'        => 'Памылка ў дазволах',
 'badaccess-group0' => 'Вам не дазволена выконваць аперацыю, па якую вы звярталіся.',
-
-
 'badaccess-groups' => 'Аперацыя, па якую вы звярталіся, дазволена толькі ўдзельнікам з адной з груп $1.',
 
 'versionrequired'     => 'Патрабуецца MediaWiki версіі $1',
@@ -1215,7 +1213,6 @@ $2',
 'filedelete-success-old'      => '<span class="plainlinks">Версія \'\'\'[[Media:$1|$1]]\'\'\' з $3, $2 была сцёрта.</span>',
 'filedelete-nofile'           => "'''$1''' няма на пляцоўцы {{SITENAME}}.",
 'filedelete-nofile-old'       => "Не існуе архіўнай (старэйшай) версіі '''$1''' з такімі атрыбутамі.",
-'filedelete-iscurrent'        => 'Вы спрабуеце сцерці актуальную версію гэтага файла. Спачатку трэба адкаціць яго да адной са старэйшых версій.',
 'filedelete-otherreason'      => 'Іншая/дадатковая прычына:',
 'filedelete-reason-otherlist' => 'Іншая прычына',
 'filedelete-reason-dropdown'  => '*Звычайныя прычыны сцірання

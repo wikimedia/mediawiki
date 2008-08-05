@@ -294,7 +294,6 @@ $messages = array(
 'badaccess'        => '子未逮',
 'badaccess-group0' => '子未逮，歉限之。',
 
-
 'versionrequired'     => '惠置$1媒維基',
 'versionrequiredtext' => '惠置$1媒維基，見[[Special:Version|版]]。',
 
@@ -773,12 +772,7 @@ $2',
 'prefsreset'            => '簿註歸白',
 'changepassword'        => '易符節',
 'skin'                  => '面版',
-'skin-header'           => '可用之面版。',
-'skin-header-css'       => '* 用應之樣式表（CSS）頁爾可自定每一面版。',
-'skin-header-js'        => '* 用應之 JavaScript（JS）頁爾可增自之 scripts 至每一面版。',
 'skin-preview'          => '草覽',
-'skin-link-to-css'      => '應之 CSS',
-'skin-link-to-js'       => '應之 JS',
 'math'                  => '數學',
 'dateformat'            => '日期格式',
 'datedefault'           => '原註',
@@ -1077,7 +1071,6 @@ $2',
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''$2$3之版刪矣。",
 'filedelete-nofile'           => "{{SITENAME}}無'''$1'''也。",
 'filedelete-nofile-old'       => "無合'''$1'''藏也。",
-'filedelete-iscurrent'        => '刪版乃新，先還舊焉。',
 'filedelete-otherreason'      => '另／附之因：',
 'filedelete-reason-otherlist' => '另因',
 'filedelete-reason-dropdown'  => '

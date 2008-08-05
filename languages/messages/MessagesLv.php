@@ -868,8 +868,6 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filedelete-success-old'      => '<span class="plainlinks">Faila \'\'\'[[Media:$1|$1]]\'\'\' versija $3, $2 tika izdzēsta.</span>',
 'filedelete-nofile'           => "'''$1''' {{grammar:lokatīvs|{{SITENAME}}}} nav atrodams.",
 'filedelete-nofile-old'       => "Failam '''$1''' nav vecas versijas ar norādītajiem parametriem.",
-'filedelete-iscurrent'        => 'Tu mēģini izdzēst šī faila vissvaigāko versiju.
-Lūdzu, vispirms atjauno vecāku versiju.',
 'filedelete-otherreason'      => 'Cits/papildu iemesls:',
 'filedelete-reason-otherlist' => 'Cits iemesls',
 'filedelete-reason-dropdown'  => '*Izplatīti dzēšanas iemesli

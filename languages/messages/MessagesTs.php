@@ -88,8 +88,6 @@ $messages = array(
 
 'badaccess'        => 'Xihoxo hita mpfumelelo',
 'badaccess-group0' => 'U hava mpumelelo wo endla xikombelo lexi.',
-
-
 'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
 
 'versionrequired'     => 'Version $1 of MediaWiki required',

@@ -367,8 +367,6 @@ $messages = array(
 
 'badaccess'        => 'Njamaš trěbnu dowólnosć.',
 'badaccess-group0' => 'Njamaš trěbnu dowólnosć za toś tu akciju.',
-
-
 'badaccess-groups' => 'Jano wužywarje kupkow(u) $1 maju pšawo toś tu akciju wuwjasć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',
@@ -1295,7 +1293,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">Wersija $2, $3 góź. dataje \'\'\'„[[Media:$1|$1]]“\'\'\' jo se wulašowała.</span>',
 'filedelete-nofile'           => "Na {{GRAMMAR:lokatiw|{{SITENAME}}}} '''$1''' njeekistěrujo.",
 'filedelete-nofile-old'       => "Njejo archiwowana wersija '''$1''' z pódanymi atributami.",
-'filedelete-iscurrent'        => 'Wopytajoš aktualnu wersiju toś teje dataje wulašowaś. Pšosym aktiwěruj pśed tym staršu wersiju.',
 'filedelete-otherreason'      => 'Druga/pśidatna pśicyna:',
 'filedelete-reason-otherlist' => 'Druga pśicyna',
 'filedelete-reason-dropdown'  => '*Powšykne pśicyny za lašowanja

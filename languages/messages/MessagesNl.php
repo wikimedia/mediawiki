@@ -503,8 +503,6 @@ $messages = array(
 
 'badaccess'        => 'Geen toestemming',
 'badaccess-group0' => 'U hebt geen rechten om de gevraagde handeling uit te voeren.',
-
-
 'badaccess-groups' => 'De gevraagde handeling is voorbehouden aan gebruikers in een van de groepen $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',
@@ -1113,12 +1111,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'qbsettings-floatingright' => 'Rechts zwevend',
 'changepassword'           => 'Wachtwoord wijzigen',
 'skin'                     => 'Vormgeving',
-'skin-header'              => 'Dit zijn de beschikbare vormgevingen.',
-'skin-header-css'          => '* Met de bijhorende CSS-pagina (Cascading Style Sheets) kunt u elke vormgeving aanpassen.',
-'skin-header-js'           => '* Met de bijhorende JS-pagina (JavaScript) kunt u eigen scripts toevoegen aan elke vormgeving.',
 'skin-preview'             => 'Voorvertoning',
-'skin-link-to-css'         => 'bijhorende CSS',
-'skin-link-to-js'          => 'bijhorende JS',
 'math'                     => 'Formules',
 'dateformat'               => 'Datumopmaak',
 'datedefault'              => 'Geen voorkeur',
@@ -1498,7 +1491,6 @@ U kunt het $1.',
 'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is verwijderd.</span>',
 'filedelete-nofile'           => "'''$1''' bestaat niet in {{SITENAME}}.",
 'filedelete-nofile-old'       => "Er is geen versie van '''$1''' in het archief met de aangegeven eigenschappen.",
-'filedelete-iscurrent'        => 'U probeert de nieuwste versie van dit bestand te verwijderen. Plaats alstublieft een oudere versie terug.',
 'filedelete-otherreason'      => 'Andere reden:',
 'filedelete-reason-otherlist' => 'Andere reden',
 'filedelete-reason-dropdown'  => '*Veelvoorkomende redenen voor verwijdering

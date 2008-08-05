@@ -216,8 +216,6 @@ $messages = array(
 'privacypage'          => 'Project:Polítika privasidade nian',
 
 'badaccess-group0' => "Ó la bele halo ne'e.",
-
-
 'badaccess-groups' => "Ba halo ne'e tenke iha lubu ida husi $1.",
 
 'versionrequired'     => 'Presiza MediaWiki versaun $1',

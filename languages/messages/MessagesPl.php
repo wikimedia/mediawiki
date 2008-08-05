@@ -437,8 +437,6 @@ $messages = array(
 
 'badaccess'        => 'Niewłaściwe uprawnienia',
 'badaccess-group0' => 'Nie masz uprawnień wymaganych do wykonania tej operacji.',
-
-
 'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
 
 'versionrequired'     => 'Wymagane MediaWiki w wersji $1',
@@ -1446,8 +1444,6 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filedelete-success-old'      => '<span class="plainlinks">Usunięto plik \'\'\'[[Media:$1|$1]]\'\'\' w wersji z $3, $2.</span>',
 'filedelete-nofile'           => "Plik '''$1''' nie istnieje w {{GRAMMAR:MS.lp|{{SITENAME}}}}.",
 'filedelete-nofile-old'       => "Brak zarchiwizowanej wersji '''$1''' o podanych atrybutach.",
-'filedelete-iscurrent'        => 'Próbujesz usunąć najnowszą wersję tego pliku.
-Musisz najpierw przywrócić starszą wersję.',
 'filedelete-otherreason'      => 'Inny (dodatkowy) powód:',
 'filedelete-reason-otherlist' => 'Inny powód',
 'filedelete-reason-dropdown'  => '* Najczęstsze przyczyny usunięcia
