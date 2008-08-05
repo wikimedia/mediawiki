@@ -497,7 +497,7 @@ $messages = array(
 
 'badaccess'        => 'خطای دسترسی',
 'badaccess-group0' => 'شما اجازهٔ اجرای عمل درخواسته را ندارید.',
-'badaccess-groups' => 'عملی که درخواسته‌اید منحصر به کاربران یکی از گروههای $1 است.',
+'badaccess-groups' => 'عملی که درخواست کرده‌اید منحصر به کاربران {{PLURAL:$2|این گروه|این گروه‌ها}} است: $1.',
 
 'versionrequired'     => 'نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است',
 'versionrequiredtext' => 'برای دیدن این صفحه به نسخهٔ $1 از نرم‌افزار مدیاویکی نیاز دارید. برای اطلاع از نسخهٔ نرم‌افزار نصب شده در این ویکی به [[Special:Version|این صفحه]] مراجعه کنید.',
@@ -941,6 +941,7 @@ $3
 'page_last'           => 'واپسین',
 'histlegend'          => 'شرح: (فعلی) = تفاوت با نسخهٔ فعلی،
 (قبلی) = تفاوت با نسخهٔ قبلی، جز = ویرایش جزئی',
+'history-search'      => 'جستجو در تاریخچه',
 'deletedrev'          => '[حذف‌شده]',
 'histfirst'           => 'قدیمی‌ترین',
 'histlast'            => 'جدیدترین',
@@ -1041,6 +1042,7 @@ $3
 
 # Search results
 'searchresults'             => 'نتایج جستجو',
+'searchresults-title'       => 'نتایج جستجو برای $1',
 'searchresulttext'          => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.',
 'searchsubtitle'            => '«[[:$1]]» را جُستید',
 'searchsubtitleinvalid'     => 'برای پرس‌وجوی «$1»',
@@ -1627,13 +1629,17 @@ $3
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'اختیارات گروه‌های کاربری',
-'listgrouprights-summary'  => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
+'listgrouprights'                 => 'اختیارات گروه‌های کاربری',
+'listgrouprights-summary'         => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
 اطلاعات بیشتر در مورد هر یک از اختیارات را در [[{{MediaWiki:Listgrouprights-helppage}}]] بیابید.',
-'listgrouprights-group'    => 'گروه',
-'listgrouprights-rights'   => 'دسترسی‌ها',
-'listgrouprights-helppage' => 'Help:دسترسی‌های گروهی',
-'listgrouprights-members'  => '(فهرست اعضا)',
+'listgrouprights-group'           => 'گروه',
+'listgrouprights-rights'          => 'دسترسی‌ها',
+'listgrouprights-helppage'        => 'Help:دسترسی‌های گروهی',
+'listgrouprights-members'         => '(فهرست اعضا)',
+'listgrouprights-addgroup'        => 'می‌تواند این {{PLURAL:$2|گروه|گروه‌ها}} را اضافه کند: $1',
+'listgrouprights-removegroup'     => 'می‌تواند این {{PLURAL:$2|گروه|گروه‌ها}} را حذف کند: $1',
+'listgrouprights-addgroup-all'    => 'می‌تواند تمام گروه‌ها را اضافه کند',
+'listgrouprights-removegroup-all' => 'می‌تواند تمام گروه‌ها را حذف کند',
 
 # E-mail user
 'mailnologin'     => 'نشانی‌ای از فرستنده وجود ندارد.',
