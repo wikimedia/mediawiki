@@ -1,4 +1,4 @@
-# Doxyfile 1.5.1
+# Doxyfile 1.5.5
 
 #
 # Some placeholders have been added for MediaWiki usage:
@@ -7,6 +7,8 @@
 # {{STRIP_FROM_PATH}}
 # {{SVNSTAT}}
 # {{INPUT}}
+#
+# A number of MediaWiki-specific aliases are near the end of this file.
 
 #---------------------------------------------------------------------------
 # Project related configuration options
@@ -16,7 +18,6 @@ PROJECT_NUMBER         = {{CURRENT_VERSION}}
 OUTPUT_DIRECTORY       = {{OUTPUT_DIRECTORY}}
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
-USE_WINDOWS_ENCODING   = NO
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
 ABBREVIATE_BRIEF       = "The $name class" \
@@ -42,11 +43,11 @@ DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
 TAB_SIZE               = 4
-ALIASES                = 
+#ALIASES               =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 BUILTIN_STL_SUPPORT    = NO
-DISTRIBUTE_GROUP_DOC   = NO
+DISTRIBUTE_GROUP_DOC   = YES
 SUBGROUPING            = YES
 #---------------------------------------------------------------------------
 # Build related configuration options
@@ -268,8 +269,6 @@ DIRECTORY_GRAPH        = YES
 DOT_IMAGE_FORMAT       = png
 DOT_PATH               = 
 DOTFILE_DIRS           = 
-MAX_DOT_GRAPH_WIDTH    = 1024
-MAX_DOT_GRAPH_HEIGHT   = 1024
 MAX_DOT_GRAPH_DEPTH    = 1000
 DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
@@ -279,3 +278,16 @@ DOT_CLEANUP            = YES
 # Configuration::additions related to the search engine   
 #---------------------------------------------------------------------------
 SEARCHENGINE           = NO
+
+ALIASES =	"type{1}=<b> \1 </b>:" \
+		"2types{2}=<b> \1 </b> or <b> \2 </b>:" \
+		"3types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
+		"arrayof{2}=<b> Array </b> of \2" \
+		"null=\type{Null}" \
+		"boolean=\type{Boolean}" \
+		"bool=\boolean" \
+		"integer=\type{Integer}" \
+		"int=\integer" \
+		"string=\type{String}" \
+		"str=\string" \
+		"mixed=\type{Mixed}"
