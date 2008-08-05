@@ -44,7 +44,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ables into into the output of Skin::makeVariablesScript
 * Added $wgAddGroups and $wgRemoveGroups display on Special:ListGroupRights
 * (bug 14377) Add a date selector to history pages
-* (bug 2314) Add links to users custom CSS and JS into Special:Preferences
 
 === Bug fixes in 1.14 ===
 
