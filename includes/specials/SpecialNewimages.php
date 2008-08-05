@@ -24,10 +24,8 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		    set.
 		*/
 		$botconds=array();
-		foreach ($wgGroupPermissions as $groupname=>$perms) {
-			if(array_key_exists('bot',$perms) && $perms['bot']) {
-				$botconds[]="ug_group='$groupname'";
-			}
+		foreach ( User::getGroupsWithPermission('bot') as $groupname ) {
+			$botconds[]="ug_group='$groupname'";
 		}
 
 		/* If not bot groups, do not set $hidebotsql */
