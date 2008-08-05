@@ -6,7 +6,7 @@
  */
 
 function wfSpecialNewimages( $par, $specialPage ) {
-	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgGroupPermissions, $wgMiserMode;
+	global $wgUser, $wgOut, $wgLang, $wgRequest, $wgMiserMode;
 
 	$wpIlMatch = $wgRequest->getText( 'wpIlMatch' );
 	$dbr = wfGetDB( DB_SLAVE );

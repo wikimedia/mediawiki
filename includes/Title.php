@@ -1348,7 +1348,7 @@ class Title {
 	}
 
 	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
-		global $wgGroupPermissions,$wgUser,$wgContLang;
+		global $wgUser,$wgContLang;
 
 		if ($create_perm == implode(',',$this->getRestrictions('create'))
 			&& $expiry == $this->mRestrictionsExpiry) {
