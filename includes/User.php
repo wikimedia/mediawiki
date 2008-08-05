@@ -2778,7 +2778,7 @@ class User {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
 		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( $rights[$role] === true ) {
+			if ( isset( $rights[$role] ) && $rights[$role] ) {
 				$allowedGroups[] = $group;
 			}
 		}
