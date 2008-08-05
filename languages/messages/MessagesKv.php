@@ -49,6 +49,7 @@ $messages = array(
 'search'        => 'Корсьысьöм',
 'searchbutton'  => 'Аддзыны',
 'searcharticle' => 'Вуджны',
+'history_short' => 'Важвылöм',
 'edit'          => 'Веськöдны',
 'newpage'       => 'Выль лист бок',
 'talk'          => 'Сёрнитöм',
@@ -70,6 +71,7 @@ $messages = array(
 'userlogin'               => 'Висьтасьны али гижсьыны',
 
 # Upload
-'upload' => 'Файл сöвтны',
+'upload'    => 'Файл сöвтны',
+'uploadbtn' => 'Файл сöвтны',
 
 );

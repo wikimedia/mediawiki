@@ -332,7 +332,7 @@ $messages = array(
 
 'badaccess'        => 'حطا اجازت',
 'badaccess-group0' => 'شما مجاز نهیت عملی که درخواست کت اجرا کنیت',
-'badaccess-groups' => 'کاری که شما درخواست کت محدود په کابران ته یکی چه گروهان $1.',
+'badaccess-groups' => 'کاری که شما درخواست کت محدود په کابران ته یکی چه گروهان {{PLURAL:$2|گروه|یکی چه گروهان}}: $1.',
 
 'versionrequired'     => 'نسخه $1. مدیا وی کی نیازنت',
 'versionrequiredtext' => 'نسخه $1 چه مدیا وی کی نیازنت په استفاده ای صفحه. بچار [[Special:Version|version page]].',
@@ -483,7 +483,7 @@ $2',
 'loginproblem'               => '<b>یک مشکلی گون شمی ورود هستت.</b><br /> دگه جهد کن!',
 'login'                      => 'ورود',
 'nav-login-createaccount'    => 'ورود/شرکتن حساب',
-'loginprompt'                => 'شما بایدن په وارد بیگ ته [[Special:Userlogin|وارد بیت ته {{SITENAME}}]] کوکی فعال کنیت',
+'loginprompt'                => 'شما بایدن په وارد بیگ ته {{SITENAME}} کوکی فعال کنیت',
 'userlogin'                  => 'ورود/شرکتن حساب',
 'logout'                     => 'در بیگ',
 'userlogout'                 => 'در بیگ',
@@ -648,7 +648,7 @@ $2',
 'blockednoreason'                  => 'هچ دلیلی دهگ نه بیته',
 'blockedoriginalsource'            => "منبع '''$1''' جهلآ پیش دراگ بیت:",
 'blockededitsource'                => "متن '''your edits'' به '''$1''' جهلآ پیش دارگ بیت:",
-'whitelistedittitle'               => 'په اصلاح کتن [[Special:Userlogin|بایدن وارد سیستم بیت]]',
+'whitelistedittitle'               => 'په اصلاح کتن بایدن وارد سیستم بیت',
 'whitelistedittext'                => 'شما باید $1به اصلاح کتن صفحات.',
 'confirmedittitle'                 => 'به اصلاح کتن تایید ایمیل نیازنت',
 'confirmedittext'                  => 'شما بایدن وتی آدرس ایمیل آ پیش چه اصلاح کتن صفحات تایید کنیت.
@@ -1157,9 +1157,9 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 په دیستن یا گشتن پیشگین آپلودی فایلان برو  [[Special:Imagelist|لیست فایلان آپلودی]], آپلودان و حذفیات هنچو هستن ته [[Special:Log/upload|آمار آپلود]].
 
 په وارد کتن فایل ته یک صفحه ای، چه لینک ته فرم استفاده کن
-''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' or
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' په مسیری لینک دهگ په فایل.",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه نسخه کامل فایل
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه ۲۰۰ پیکسل پهنات ته یک جعبه ته چپ
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''  په مسیری لینک دهگ په فایل بی پیش دارگ فایل",
 'upload-permitted'            => 'مجازین نوع فایل:  $1.',
 'upload-preferred'            => 'ترجیحی نوع فایل:  $1.',
 'upload-prohibited'           => 'غیرمجازین نوع فایل:  $1.',
@@ -1520,8 +1520,8 @@ PICT # misc.
 'listgrouprights-rights'          => 'حقوق',
 'listgrouprights-helppage'        => 'Help: حقوق گروه',
 'listgrouprights-members'         => '(لیست اعضا)',
-'listgrouprights-addgroup'        => 'تونیت گروهان اضافه کنت: $1',
-'listgrouprights-removegroup'     => 'تونیت گروهانء بزوریت: $1',
+'listgrouprights-addgroup'        => 'تونیت اضافه کنت {{PLURAL:$2|گروه|گروهان}}: $1',
+'listgrouprights-removegroup'     => 'تونیت بزوریت {{PLURAL:$2|گروهء|گروهانء}}: $1',
 'listgrouprights-addgroup-all'    => 'تونیت کل گروهان اضافه کنت',
 'listgrouprights-removegroup-all' => 'تونیت کل گروهانء بزوریت',
 

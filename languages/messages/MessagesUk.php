@@ -7,8 +7,8 @@
  * @author Ahonc
  * @author AS
  * @author Innv
- * @author Dubyk
  * @author EugeneZelenko
+ * @author Dubyk
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -445,7 +445,7 @@ $messages = array(
 
 'badaccess'        => 'Помилка доступу',
 'badaccess-group0' => 'Вам не дозволено виконувати цю дію.',
-'badaccess-groups' => 'Дія, яку ви хотіли зробити, дозволена лише користувачам із груп $1.',
+'badaccess-groups' => 'Дія, яку ви хотіли зробити, дозволена лише користувачам із {{PLURAL:$2|групи|груп}}: $1.',
 
 'versionrequired'     => 'Потрібна MediaWiki версії $1',
 'versionrequiredtext' => 'Для роботи з цією сторінкою потрібна MediaWiki версії $1. Див. [[Special:Version|інформацію про версії програмного забезпечення, яке використовується]].',
@@ -886,6 +886,7 @@ $3 зазначив наступну причину: ''$2''",
 'page_last'           => 'остання',
 'histlegend'          => "Пояснення: (поточн.) = відмінності від поточної версії,
 (ост.) = відмінності від попередньої версії, '''м''' = незначне редагування",
+'history-search'      => 'Шукати в історії',
 'deletedrev'          => '[вилучена]',
 'histfirst'           => 'найстаріші',
 'histlast'            => 'останні',
@@ -994,6 +995,7 @@ $3 зазначив наступну причину: ''$2''",
 
 # Search results
 'searchresults'             => 'Результати пошуку',
+'searchresults-title'       => 'Результати пошуку для $1',
 'searchresulttext'          => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{ns:project}}:Пошук]].',
 'searchsubtitle'            => 'На запит «[[:$1]]»',
 'searchsubtitleinvalid'     => 'На запит «$1»',

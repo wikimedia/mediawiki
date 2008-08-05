@@ -6,8 +6,8 @@
  *
  * @author Red Baron
  * @author Purodha
- * @author Omnipaedista
  * @author Spacebirdy
+ * @author Omnipaedista
  * @author לערי ריינהארט
  * @author Revolus
  * @author Pill
@@ -1200,7 +1200,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'uploaderror'                 => 'Fehler beim Hochladen',
 'uploadtext'                  => "Benutze dieses Formular, um neue Dateien hochzuladen. 
 
-Gehe zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]]- und [[Special:Log/upload|Lösch-Logbuch]].
+Gehe zu der [[Special:Imagelist|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]] und [[Special:Log/upload|Lösch-Logbuch]].
 
 Klicke auf '''„Durchsuchen …“''', um einen Dateiauswahl-Dialog zu öffnen.
 Nach der Auswahl einer Datei wird der Dateiname im Textfeld '''„Quelldatei“''' angezeigt.
