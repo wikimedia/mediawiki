@@ -839,7 +839,7 @@ class Sanitizer {
 	 * @param string
 	 * @return array
 	 */
-	static function decodeTagAttributes( $text ) {
+	public static function decodeTagAttributes( $text ) {
 		$attribs = array();
 
 		if( trim( $text ) == '' ) {

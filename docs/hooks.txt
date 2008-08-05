@@ -479,18 +479,6 @@ $user: the user who did the block (not the one being blocked)
 $isbn: ISBN to show information for
 $output: OutputPage object in use
 
-'BrokenLink': Before the HTML is created for a broken (i.e. red) link
-&$linker: Linker instance
-$nt: the page title
-$query: the URL query string passed in
-&$u: the URL of this link
-&$style: the inline CSS style
-&$prefix: a prefix prepended to the linked text
-&$text: the text placed by the user in the wiki-link
-&$inside: any additional alphanumeric characters placed after the wiki-link,
-that are made part of the link text
-&$trail: text placed immediately after the HTML link
-
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
@@ -753,6 +741,35 @@ $lang: laguage code (string)
 'LanguageGetSpecialPageAliases': Use to define aliases of special pages names depending of the language
 $specialPageAliases: associative array of magic words synonyms
 $lang: laguage code (string)
+
+'LinkBegin': Used when generating internal and interwiki links in
+Linker::link(), before processing starts.  Return false to skip default proces-
+sing and return $ret.  See documentation for Linker::link() for details on the
+expected meanings of parameters.
+$skin: the Skin object
+$target: the Title that the link is pointing to
+&$text: the contents that the <a> tag should have (raw HTML); null means "de-
+	fault"
+&$customAttribs: the HTML attributes that the <a> tag should have, in associa-
+	tive array form, with keys and values unescaped.  Should be merged with de-
+	fault values, with a value of false meaning to suppress the attribute.
+&$query: the query string to add to the generated URL (the bit after the "?"),
+	in associative array form, with keys and values unescaped.
+&$options: the options.  Can include 'known', 'broken', 'noclasses'.
+&$ret: the value to return if your hook returns false.
+
+'LinkEnd': Used when generating internal and interwiki links in Linker::link(),
+just before the function returns a value.  If you return true, an <a> element
+with HTML attributes $attribs and contents $text will be returned.  If you re-
+turn false, $ret will be returned.
+$skin: the Skin object
+$target: the Title object that the link is pointing to
+$options: the options.  Will always include either 'known' or 'broken', and may
+	include 'noclasses'.
+&$text: the final (raw HTML) contents of the <a> tag, after processing.
+&$attribs: the final HTML attributes of the <a> tag, after processing, in asso-
+	ciative array form.
+&$ret: the value to return if your hook returns false.
 
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just before the return
 &$url: the image url

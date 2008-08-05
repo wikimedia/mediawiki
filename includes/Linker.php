@@ -168,6 +168,13 @@ class Linker {
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
 		wfProfileIn( __METHOD__ );
+		$ret = null;
+		if( !wfRunHooks( 'LinkBegin', array( $this, $target, &$text,
+		&$customAttribs, &$query, &$options, &$ret ) ) ) {
+			wfProfileOut( __METHOD__ );
+			return $ret;
+		}
+
 		if( !$target instanceof Title ) {
 			throw new MWException( 'Linker::link passed invalid target' );
 		}
@@ -205,9 +212,13 @@ class Linker {
 			$text = $this->linkText( $target );
 		}
 
-		$ret = Xml::openElement( 'a', $attribs )
-			. $text
-			. Xml::closeElement( 'a' );
+		$ret = null;
+		if( wfRunHooks( 'LinkEnd', array( $this, $target, $options, &$text,
+		&$attribs, &$ret ) ) ) {
+			$ret = Xml::openElement( 'a', $attribs )
+				. $text
+				. Xml::closeElement( 'a' );
+		}
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
@@ -215,6 +226,13 @@ class Linker {
 
 	private function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
+		# We don't want to include fragments for broken links, because they
+		# generally make no sense.
+		if( in_array( 'broken', $options ) and $target->mFragment !== '' ) {
+			$target = clone $target;
+			$target->mFragment = '';
+		}
+
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified, or unless 'edit' makes no sense
 		# (i.e., for a nonexistent special page).
@@ -235,7 +253,7 @@ class Linker {
 
 		if( !in_array( 'noclasses', $options ) ) {
 			wfProfileIn( __METHOD__ . '-getClasses' );
-			# Build the classes.
+			# Now build the classes.
 			$classes = array();
 
 			if( in_array( 'broken', $options ) ) {
@@ -294,6 +312,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeLinkObj for further documentation.
 	 *
@@ -305,6 +325,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 	 	$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
@@ -319,6 +340,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
 	 *
@@ -330,6 +353,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
+		wfDeprecated( __METHOD__ );
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
@@ -340,6 +364,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
 	 *
@@ -351,6 +377,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfDeprecated( __METHOD__ );
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
@@ -361,7 +388,7 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated use makeColouredLinkObj
+	 * @deprecated Use link()
 	 *
 	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
 	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
@@ -374,6 +401,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfDeprecated( __METHOD__ );
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeStubLinkObj( $nt, $text, $query, $trail );
@@ -384,6 +412,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * Make a link for a title which may or may not be in the database. If you need to
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
@@ -398,64 +428,26 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	function makeLinkObj( Title $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__ );
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
-		if ( $nt->isExternal() ) {
-			$u = $nt->getFullURL();
-			$link = $nt->getPrefixedURL();
-			if ( '' == $text ) { $text = $nt->getPrefixedText(); }
-			$style = $this->getInterwikiLinkAttributes( $link, $text, 'extiw' );
-
-			$inside = '';
-			if ( '' != $trail ) {
-				$m = array();
-				if ( preg_match( '/^([a-z]+)(.*)$$/sD', $trail, $m ) ) {
-					$inside = $m[1];
-					$trail = $m[2];
-				}
-			}
-			$t = "<a href=\"{$u}\"{$style}>{$text}{$inside}</a>";
-
-			wfProfileOut( __METHOD__ );
-			return $t;
-		} elseif ( $nt->isAlwaysKnown() ) {
-			# Image links, special page links and self-links with fragments are always known.
-			$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-		} else {
-			wfProfileIn( __METHOD__.'-immediate' );
-
-			# Handles links to special pages which do not exist in the database:
-			if( $nt->getNamespace() == NS_SPECIAL ) {
-				if( SpecialPage::exists( $nt->getDBkey() ) ) {
-					$retVal = $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix );
-				} else {
-					$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
-				}
-				wfProfileOut( __METHOD__.'-immediate' );
-				wfProfileOut( __METHOD__ );
-				return $retVal;
-			}
-
-			# Work out link colour immediately
-			$aid = $nt->getArticleID() ;
-			if ( 0 == $aid ) {
-				$retVal = $this->makeBrokenLinkObj( $nt, $text, $query, $trail, $prefix );
-			} else {
-				$colour = '';
-				if ( $nt->isContentPage() ) {
-					$threshold = $wgUser->getOption('stubthreshold');
-					$colour = $this->getLinkColour( $nt, $threshold );
-				}
-				$retVal = $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
-			}
-			wfProfileOut( __METHOD__.'-immediate' );
+		$query = wfCgiToArray( $query );
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		if( $text === '' ) {
+			$text = $this->linkText( $nt );
 		}
+
+		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query,
+			'noclasses' ) . $trail;
+
 		wfProfileOut( __METHOD__ );
-		return $retVal;
+		return $ret;
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
 	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
 	 * pages.
@@ -470,36 +462,29 @@ class Linker {
 	 * @return the a-element
 	 */
 	function makeKnownLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 
-		$nt = $this->normaliseSpecialPage( $title );
-
-		$u = $nt->escapeLocalURL( $query );
-		if ( $nt->getFragment() != '' ) {
-			if( $nt->getPrefixedDbkey() == '' ) {
-				$u = '';
-				if ( '' == $text ) {
-					$text = htmlspecialchars( $nt->getFragment() );
-				}
-			}
-			$u .= $nt->getFragmentForURL();
-		}
 		if ( $text == '' ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
+			$text = $this->linkText( $title );
 		}
-		if ( $style == '' ) {
-			$style = $this->getInternalLinkAttributesObj( $nt, $text );
-		}
-
-		if ( $aprops !== '' ) $aprops = " $aprops";
-
+		$attribs = Sanitizer::mergeAttributes(
+			Sanitizer::decodeTagAttributes( $aprops ),
+			Sanitizer::decodeTagAttributes( $style )
+		);
+		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		$r = "<a href=\"{$u}\"{$style}{$aprops}>{$prefix}{$text}{$inside}</a>{$trail}";
+
+		$ret = $this->link( $title, "$prefix$text$inside", $attribs, $query,
+			array( 'known', 'noclasses' ) ) . $trail;
+
 		wfProfileOut( __METHOD__ );
-		return $r;
+		return $ret;
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * Make a red link to the edit page of a given title.
 	 *
 	 * @param $nt Title object of the target page
@@ -510,36 +495,24 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeBrokenLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		if( $text === '' ) {
+			$text = $this->linkText( $title );
+		}
 		$nt = $this->normaliseSpecialPage( $title );
 
-		if( $nt->getNamespace() == NS_SPECIAL ) {
-			$q = $query;
-		} else if ( '' == $query ) {
-			$q = 'action=edit&redlink=1';
-		} else {
-			$q = 'action=edit&redlink=1&'.$query;
-		}
-		$u = $nt->escapeLocalURL( $q );
-
-		$titleText = $nt->getPrefixedText();
-		if ( '' == $text ) {
-			$text = htmlspecialchars( $titleText );
-		}
-		$titleAttr = wfMsg( 'red-link-title', $titleText );
-		$style = $this->getInternalLinkAttributesObj( $nt, $text, 'new', $titleAttr );
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-		wfRunHooks( 'BrokenLink', array( &$this, $nt, $query, &$u, &$style, &$prefix, &$text, &$inside, &$trail ) );
-		$s = "<a href=\"{$u}\"{$style}>{$prefix}{$text}{$inside}</a>{$trail}";
+		$ret = $this->link( $title, "$prefix$text$inside", array(),
+			wfCgiToArray( $query ), 'broken' ) . $trail;
 
 		wfProfileOut( __METHOD__ );
-		return $s;
+		return $ret;
 	}
 
 	/**
-	 * @deprecated use makeColouredLinkObj
+	 * @deprecated Use link()
 	 *
 	 * Make a brown link to a short article.
 	 *
@@ -556,6 +529,8 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated Use link()
+	 *
 	 * Make a coloured link.
 	 *
 	 * @param $nt Title object of the target page
@@ -567,6 +542,7 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__ );
 		if($colour != ''){
 			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
 		} else $style = '';
