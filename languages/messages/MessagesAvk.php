@@ -228,8 +228,8 @@ $messages = array(
 
 'badaccess'        => 'Noverarokla',
 'badaccess-group0' => 'Ta kucilana skura me zo rictal.',
-'badaccess-group1' => 'Kucilana skura gan favesik ke $1 lospa anton zo rictar.',
-'badaccess-group2' => 'Kucilana skura gan favesik ke tana $1 lospa anton zo rictar.',
+
+
 'badaccess-groups' => 'Kucilana skura gan favesik ke tana $1 lospa anton zo rictar.',
 
 'versionrequired'     => '$1 adraf siatos ke MediaWiki',

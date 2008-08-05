@@ -262,8 +262,8 @@ $messages = array(
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Tu non ha le permission de executar le action que tu ha requestate.',
-'badaccess-group1' => 'Le action que tu ha requestate es limitate al usatores in le gruppo $1.',
-'badaccess-group2' => 'Le action que tu ha requestate es limitate al usatores in un del gruppos $1.',
+
+
 'badaccess-groups' => 'Le action que tu ha requestate es limitate al usatores in un del gruppos $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki requirite',

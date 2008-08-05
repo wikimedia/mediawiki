@@ -367,8 +367,8 @@ $messages = array(
 
 'badaccess'        => 'Njamaš trěbnu dowólnosć.',
 'badaccess-group0' => 'Njamaš trěbnu dowólnosć za toś tu akciju.',
-'badaccess-group1' => 'Jano wužywarje kupki $1 maju pšawo toś tu akciju wuwjasć.',
-'badaccess-group2' => 'Jano wužywarje kupkow(u) $1 maju pšawo toś tu akciju wuwjasć.',
+
+
 'badaccess-groups' => 'Jano wužywarje kupkow(u) $1 maju pšawo toś tu akciju wuwjasć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',

@@ -225,8 +225,8 @@ $messages = array(
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du harst ekke de nødvendege rettegheder til denne håndlenge.',
-'badaccess-group1' => "Denne håndlenge ken kun udføres åf brugere, søm tilhører'n gruppe „$1“.",
-'badaccess-group2' => 'Denne håndlenge ken kun udføres åf brugere, søm tilhører en åf grupperne „$1“.',
+
+
 'badaccess-groups' => 'Denne håndlenge ken kun udføres åf brugere, søm tilhører en åf grupperne „$1“.',
 
 'versionrequired'     => 'Kræver versje $1 åf MediaWiki',

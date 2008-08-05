@@ -309,8 +309,8 @@ pe titlul secţiunii (JavaScript)',
 
 'badaccess'        => 'Eroare permisiune',
 'badaccess-group0' => 'Execuţia acţiunii cerute nu este permisă.',
-'badaccess-group1' => 'Acţiunea cerută este rezervată utilizatorilor din grupul $1.',
-'badaccess-group2' => 'Acţiunea cerută este rezervată utilizatorilor din unul din grupurile $1.',
+
+
 'badaccess-groups' => 'Acţiunea cerută este rezervată utilizatorilor din unul din grupurile $1.',
 
 'versionrequired'     => 'Este necesară versiunea $1 MediaWiki',

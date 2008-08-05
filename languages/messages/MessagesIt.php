@@ -364,8 +364,8 @@ I seguenti collegamenti sono in lingua inglese:
 
 'badaccess'        => 'Permessi non sufficienti',
 'badaccess-group0' => "Non si dispone dei permessi necessari per eseguire l'azione richiesta.",
-'badaccess-group1' => 'La funzione richiesta è riservata agli utenti che appartengono al gruppo $1.',
-'badaccess-group2' => 'La funzione richiesta è riservata agli utenti che appartengono ai gruppi $1.',
+
+
 'badaccess-groups' => 'La funzione richiesta è riservata agli utenti che appartengono a uno dei seguenti gruppi: $1.',
 
 'versionrequired'     => 'Versione $1 di MediaWiki richiesta',

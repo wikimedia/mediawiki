@@ -240,8 +240,8 @@ $messages = array(
 
 'badaccess'        => 'Felerne uprawńyńo',
 'badaccess-group0' => 'Ńy moš uprawńyń coby wykůnać ta uoperacyjo.',
-'badaccess-group1' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy z grupy $1',
-'badaccess-group2' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
+
+
 'badaccess-groups' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
 
 'versionrequired'     => 'Wymagano MediaWiki we wersyji $1',

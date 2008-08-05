@@ -282,8 +282,8 @@ $messages = array(
 
 'badaccess'        => '권한 오류',
 'badaccess-group0' => '요청한 동작을 실행할 권한이 없습니다.',
-'badaccess-group1' => '요청한 동작에는 $1 권한이 필요합니다.',
-'badaccess-group2' => '요청한 동작은 $1 중 하나의 권한을 가진 사용자에게만 가능합니다.',
+
+
 'badaccess-groups' => '요청한 동작은 $1 중 하나의 권한을 가진 사용자에게만 가능합니다.',
 
 'versionrequired'     => '미디어위키 $1 버전 필요',

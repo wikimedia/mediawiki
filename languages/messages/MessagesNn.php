@@ -478,8 +478,8 @@ $messages = array(
 
 'badaccess'        => 'Tilgangsfeil',
 'badaccess-group0' => 'Du har ikkje lov til å utføre handlinga du ba om.',
-'badaccess-group1' => 'Handlinga du ba om kan berre utførast av brukarar i gruppa $1.',
-'badaccess-group2' => 'Handlinga du ba om kan berre utførast av brukarar i gruppene $1.',
+
+
 'badaccess-groups' => 'Handlinga du ba om kan berre utførast av brukarar i gruppene $1.',
 
 'versionrequired'     => 'MediaWiki versjon $1 trengst',

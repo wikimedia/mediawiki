@@ -167,8 +167,8 @@ $messages = array(
 
 'badaccess'        => 'Halaʻi fakangofua',
 'badaccess-group0' => 'ʻOku ʻikai ngofua kia te koe ʻo fai ʻa e ngāue naʻa ke eke ki ai.',
-'badaccess-group1' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he kulupu $1 pē.',
-'badaccess-group2' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he taha ʻo e ngaahi kulupu $1 pē.',
+
+
 'badaccess-groups' => 'Ko e ngāue naʻa ke eke ki ai, ʻoku fakangatangata ki he kau ʻetita ʻi he taha ʻo e ngaahi kulupu $1 pē.',
 
 'versionrequired'     => "ʻOku pau ko e paaki $1 ʻo e ''Mediawiki''",

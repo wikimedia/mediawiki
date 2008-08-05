@@ -285,8 +285,8 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
-'badaccess-group1' => 'この処理は $1 の権限を持った利用者のみが実行できます。',
-'badaccess-group2' => 'この処理は $1 のうちどちらかの権限を持った利用者のみが実行できます。',
+
+
 'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',

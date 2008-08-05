@@ -227,8 +227,8 @@ $messages = array(
 
 'badaccess'        => 'Biddut iti pammalubos',
 'badaccess-group0' => 'Saanka a mapalubosan a mangpataray iti aksion a kiniddawmo.',
-'badaccess-group1' => 'Ti kiniddawmo nga aramiden ket limitado laeng kadagiti agar-aramat iti bunggoy a $1.',
-'badaccess-group2' => 'Ti kiniddawmo nga aramiden ket limitado laeng kadagiti agar-aramat iti maysa kadagiti bunggoy $1.',
+
+
 'badaccess-groups' => 'Ti kiniddawmo nga aramiden ket limitado laeng kadagiti agar-aramat iti maysa kadagiti bunggoy $1.',
 
 'versionrequired'     => 'Masapul ti version $1 ti MediaWiki',

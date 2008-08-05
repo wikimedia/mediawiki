@@ -414,8 +414,8 @@ $messages = array(
 
 'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
-'badaccess-group1' => 'Diese Aktion ist beschränkt auf Benutzer, die der Gruppe „$1“ angehören.',
-'badaccess-group2' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
+
+
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',

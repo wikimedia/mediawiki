@@ -292,8 +292,8 @@ $messages = array(
 
 'badaccess'        => 'Teisių klaida',
 'badaccess-group0' => 'Jums neleidžiama įvykdyti veiksmo, kurio prašėte.',
-'badaccess-group1' => 'Veiksmas, kurio prašėte, galimas tik $1 grupės naudotojams.',
-'badaccess-group2' => 'Veiksmas, kurio prašėte, galimas tik naudotojams, esantiems vienoje iš šių grupių $1.',
+
+
 'badaccess-groups' => 'Veiksmas, kurio prašėte, galimas tik naudotojams, esantiems vienoje iš šių grupių $1.',
 
 'versionrequired'     => 'Reikalinga $1 MediaWiki versija',

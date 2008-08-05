@@ -224,8 +224,8 @@ $messages = array(
 
 'badaccess'        => 'İzin kusurluu',
 'badaccess-group0' => 'Bu işlemi yapmaa kuvediniz yok.',
-'badaccess-group1' => 'O işlem ani yapmaa neetlendiniz sadä var nicä yapılsın $1 gruppasındaki kullanıcılar tarafınnan.',
-'badaccess-group2' => 'O işlem ani yapmaa neetlendiniz, var nicä yapılsın sadä $1 gruppasındaki kullanıcılardan biri tarafınnan.',
+
+
 'badaccess-groups' => 'O işlem ani yapmaa neetlendiniz var nicä yapılsın sadä $1 gruppalarınnan birinin kullanıcıları tarafınnan.',
 
 'versionrequired'     => 'MediaWiki-nin $1 versiyası läazım',

@@ -373,8 +373,8 @@ $messages = array(
 
 'badaccess'        => 'Tidak dibenarkan',
 'badaccess-group0' => 'Anda tidak dibenarkan melaksanakan tindakan ini.',
-'badaccess-group1' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
-'badaccess-group2' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
+
+
 'badaccess-groups' => 'Tindakan ini hanya boleh dilakukan oleh pengguna dalam kumpulan $1.',
 
 'versionrequired'     => 'MediaWiki versi $1 diperlukan',

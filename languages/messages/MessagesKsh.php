@@ -337,8 +337,8 @@ Dat es och all op Änglesch:
 
 'badaccess'        => 'Nit jenoch Räächde',
 'badaccess-group0' => 'Do häs nit jenoch Räächde.',
-'badaccess-group1' => 'Wat Do wells, dat dürfe nor Metmaacher, die $1 sin.',
-'badaccess-group2' => 'Wat Do wells, dat dürfe nor de Metmaacher us dä Jruppe: $1.',
+
+
 'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us eine vun dä Jruppe: $1.',
 
 'versionrequired'     => 'De Version $1 vun MediaWiki Soffwär es nüdich',

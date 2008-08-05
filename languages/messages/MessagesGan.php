@@ -229,8 +229,8 @@ $messages = array(
 
 'badaccess'        => '許可權錯誤',
 'badaccess-group0' => '倷嗰要求冇拕批准。',
-'badaccess-group1' => '倷嗰要求單$1嗰用戶才扤得正。',
-'badaccess-group2' => '倷嗰要求單$1嗰用戶才扤得正。',
+
+
 'badaccess-groups' => '倷嗰要求單$1嗰用戶才扤得正。',
 
 'versionrequired'     => '需要$1版嗰mediawiki',

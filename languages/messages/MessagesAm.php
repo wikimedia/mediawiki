@@ -248,8 +248,8 @@ $messages = array(
 
 'badaccess'        => 'ያልተፈቀደ - አይቻልም',
 'badaccess-group0' => 'የጠየቁት አድራጎት እንዲፈጸም ፈቃድ የለዎም።',
-'badaccess-group1' => 'የጠየቁት አድራጎት ለ$1 ማዕረግ ላላቸው አባላት ብቻ ይፈቀዳል።',
-'badaccess-group2' => 'የጠየቁት አድራጎት ለ$1 ማዕረጎች ላሏቸው አባላት ብቻ ይፈቀዳል።',
+
+
 'badaccess-groups' => 'የጠየቁት አድራጎት ለ$1 ማዕረጎች ላሏቸው አባላት ብቻ ይፈቀዳል።',
 
 'versionrequired'     => 'የMediaWiki ዝርያ $1 ያስፈልጋል።',

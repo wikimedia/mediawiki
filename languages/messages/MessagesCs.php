@@ -540,8 +540,8 @@ $messages = array(
 
 'badaccess'        => 'Nedostatečná oprávnění',
 'badaccess-group0' => 'Nemáte oprávnění k provedení požadované činnosti.',
-'badaccess-group1' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupině $1.',
-'badaccess-group2' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
+
+
 'badaccess-groups' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
 
 'versionrequired'     => 'Vyžadováno MediaWiki verze $1',

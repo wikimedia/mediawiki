@@ -262,8 +262,8 @@ dj'artìcol ancó pa scrit",
 
 'badaccess'        => 'Përmess nen giust',
 'badaccess-group0' => "A l'ha pa ij përmess dont a fa dë manca për fé st'operassion-sì.",
-'badaccess-group1' => "Costa funsion-sì a l'é riservà a j'utent dla partìa $1.",
-'badaccess-group2' => "Costa funsion-sì a l'é riservà a j'utent dle partìe $1.",
+
+
 'badaccess-groups' => "Costa funsion-sì a l'é riservà a j'utent che a sio almanch ant un-a dle partìe: $1.",
 
 'versionrequired'     => 'A-i va për fòrsa la version $1 ëd MediaWiki',

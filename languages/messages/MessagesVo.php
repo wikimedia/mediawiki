@@ -324,8 +324,8 @@ $messages = array(
 
 'badaccess'        => 'Dälapöl',
 'badaccess-group0' => 'No pedälol ad ledunön atosi, kelosi ebegol.',
-'badaccess-group1' => 'Dun, keli eflagol, padälon te gebanes grupa: $1.',
-'badaccess-group2' => 'Dun fa ol pebegöl pemiedükon ad gebans grupas $1.',
+
+
 'badaccess-groups' => 'Utos, kelosi vilol dunön, padälon te gebanes dutöl lü bal grupas: $1.',
 
 'versionrequired'     => 'Fomam: $1 ela MediaWiki paflagon',

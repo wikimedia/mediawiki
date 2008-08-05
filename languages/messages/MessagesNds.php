@@ -394,8 +394,8 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 
 'badaccess'        => 'Fehler bi de Rechten',
 'badaccess-group0' => 'Du hest keen Verlööf för disse Akschoon.',
-'badaccess-group1' => 'Disse Akschoon is blots för Brukers ut de Brukergrupp $1.',
-'badaccess-group2' => 'Disse Akschoon is blots för Brukers ut een vun de Brukergruppen $1.',
+
+
 'badaccess-groups' => 'Disse Akschoon is blots för Brukers ut een vun de Brukergruppen $1.',
 
 'versionrequired'     => 'Version $1 vun MediaWiki nödig',

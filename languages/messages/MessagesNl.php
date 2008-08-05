@@ -503,8 +503,8 @@ $messages = array(
 
 'badaccess'        => 'Geen toestemming',
 'badaccess-group0' => 'U hebt geen rechten om de gevraagde handeling uit te voeren.',
-'badaccess-group1' => 'De gevraagde handeling is voorbehouden aan gebruikers in de groep $1.',
-'badaccess-group2' => 'De gevraagde handeling is voorbehouden aan gebruikers in een van de groepen $1.',
+
+
 'badaccess-groups' => 'De gevraagde handeling is voorbehouden aan gebruikers in een van de groepen $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',

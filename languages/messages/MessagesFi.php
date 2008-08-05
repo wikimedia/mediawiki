@@ -418,8 +418,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 
 'badaccess'        => 'Lupa evätty',
 'badaccess-group0' => 'Sinulla ei ole lupaa suorittaa pyydettyä toimintoa.',
-'badaccess-group1' => 'Pyytämäsi toiminto on rajoitettu henkilöille ryhmässä $1.',
-'badaccess-group2' => 'Pyytämäsi toiminto on rajoitettu henkilöille ryhmissä $1.',
+
+
 'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu ryhmien $1 henkilöille.',
 
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',

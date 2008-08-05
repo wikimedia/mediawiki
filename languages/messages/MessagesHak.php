@@ -222,8 +222,8 @@ $messages = array(
 
 'badaccess'        => 'Khièn-han chho-ngu',
 'badaccess-group0' => 'Ngì kông-chhòi ke chhiáng-khiù mò yún-chún chṳp-hàng.',
-'badaccess-group1' => 'Ngì kông-chhòi ke chhiáng-khiù chṳ́-yû $1 yung-fu-chû ke yung-fu chhòi-nèn sṳ́-yung.',
-'badaccess-group2' => 'Ngì kông-chhòi ke chhiáng-khiù chṳ́-yû $1 yung-fu-chû ke yung-fu chhòi-nèn sṳ́-yung.',
+
+
 'badaccess-groups' => 'Ngì kông-chhòi ke chhiáng-khiù chṳ́-yû $1 yung-fu-chû ke yung-fu chhòi-nèn sṳ́-yung.',
 
 'versionrequired'     => 'Sî-yeu MediaWiki $1-pán',

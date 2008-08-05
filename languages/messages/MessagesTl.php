@@ -219,8 +219,8 @@ $messages = array(
 
 'badaccess'        => 'Kamalian sa pahintulot',
 'badaccess-group0' => 'Hindi ka pinahintulutang isagawa hiniling mo.',
-'badaccess-group1' => 'Nakatakda lamang sa mga manggagamit sa pangkat $1 hinihiling mo.',
-'badaccess-group2' => 'Nakatakda lamang sa mga manggagamit sa isa sa mga pangkat $1 hinihiling mo.',
+
+
 'badaccess-groups' => 'Nakatakda lamang sa mga manggamit ng isa sa mga pangkat $1 hinihiling mo.',
 
 'versionrequired'     => 'Kinakailangan ang bersyong $1 ng MediaWiki',

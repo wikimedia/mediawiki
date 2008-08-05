@@ -231,8 +231,8 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 
 'badaccess'        => 'Kapintulutan kamalian',
 'badaccess-group0' => 'Ala kang paintulut para daptan mu ing pamipamuk a inyawad mu.',
-'badaccess-group1' => 'Ing pamipamuc a inyawad mu kareng yang talagamit ning lupun $1.',
-'badaccess-group2' => 'Ing pamipamuk a inyawad mu kareng yang talagamit karing metung a lupun $1.',
+
+
 'badaccess-groups' => 'Ing pamipamuk a inyawad mu kareng yang talagamit karing metung a lupun $1.',
 
 'versionrequired'     => 'Ing bersion $1 ning MediaWiki ing kailangan',

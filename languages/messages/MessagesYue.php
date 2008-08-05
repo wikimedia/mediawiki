@@ -363,8 +363,8 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '你係唔准執行你要求嘅動作。',
-'badaccess-group1' => '你所要求嘅動作只係限制畀$1組嘅用戶。',
-'badaccess-group2' => '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
+
+
 'badaccess-groups' => '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
 
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',

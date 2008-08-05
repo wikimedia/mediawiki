@@ -229,8 +229,8 @@ $messages = array(
 'privacy'              => 'Tlahcuilōlli piyaliznahuatīlli',
 
 'badaccess-group0' => 'Tehhuātl ahmo tiquichīhua inōn tiquiēlēhuia.',
-'badaccess-group1' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli oncān: $1.',
-'badaccess-group2' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli oncān: $1.',
+
+
 'badaccess-groups' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli oncān: $1.',
 
 'ok'                      => 'Cualli',

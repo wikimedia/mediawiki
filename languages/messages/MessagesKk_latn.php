@@ -617,8 +617,8 @@ $messages = array(
 
 'badaccess'        => 'Ruqsat qatesi',
 'badaccess-group0' => 'Suratılğan äreketiñizdi jegwiñizge ruqsat etilmeýdi.',
-'badaccess-group1' => 'Suratılğan äreketiñiz $1 tobınıñ qatıswşılarına şekteledi.',
-'badaccess-group2' => 'Suratılğan äreketiñiz $1 toptarı biriniñ qatwsışılarına şekteledi.',
+
+
 'badaccess-groups' => 'Suratılğan äreketiñiz $1 toptarı biriniñ qatwsışılarına şekteledi.',
 
 'versionrequired'     => 'MediaWiki $1 nusqası kerek',

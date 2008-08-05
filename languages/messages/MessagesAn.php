@@ -338,8 +338,8 @@ $messages = array(
 
 'badaccess'        => 'Error de premisos',
 'badaccess-group0' => "No tiene premisos ta fer l'aizión que ha demandato.",
-'badaccess-group1' => "Ista aizión que ha demandato nomás ye premitita ta os usuarios d'a colla $1.",
-'badaccess-group2' => "Ista aizión nomás ye premitita ta usuarios de beluna d'istas collas: $1.",
+
+
 'badaccess-groups' => "L'aizión que ha demandato nomás ye premitita ta os usuarios de beluna d'as collas: $1.",
 
 'versionrequired'     => 'Cal a bersión $1 de MediaWiki',

@@ -288,8 +288,8 @@ $messages = array(
 
 'badaccess'        => 'Toeganksfout',
 'badaccess-group0' => 'Doe höbs gén rechte om de gevräögde hanjeling oet te veure.',
-'badaccess-group1' => 'De gevräögde hanjeling is veurbehaoje aan gebroekers in de groep $1.',
-'badaccess-group2' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
+
+
 'badaccess-groups' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereis',

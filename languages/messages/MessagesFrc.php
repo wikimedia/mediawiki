@@ -218,8 +218,8 @@ $messages = array(
 
 'badaccess'        => 'Erreur de permission',
 'badaccess-group0' => 'Vous avez pas assez de permission de faire ça que vous demandez.',
-'badaccess-group1' => "L'action que vous avez demandé est juste pour les useurs dans groupe $1.",
-'badaccess-group2' => "L'action que vous avez demandé est juste pour les useurs dans une des groupes $1.",
+
+
 'badaccess-groups' => "L'action que vous avez demandé est juste pour les useurs dans une des groupes $1.",
 
 'versionrequired'     => 'Vous avez besoin de la version $1 de MédiaWiki.',

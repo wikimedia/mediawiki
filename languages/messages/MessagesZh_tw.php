@@ -265,8 +265,8 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '您剛才的請求不允許執行。',
-'badaccess-group1' => '您剛才的請求只有$1使用者組的使用者才能使用。',
-'badaccess-group2' => '您剛才的請求只有$1使用者組的使用者才能使用。',
+
+
 'badaccess-groups' => '您剛才的請求只有$1使用者組的使用者才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',
