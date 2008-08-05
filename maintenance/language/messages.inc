@@ -58,9 +58,6 @@ $wgMessageStructure = array(
 		'underline-never',
 		'underline-default',
 	),
-	'skinpreview' => array(
-		'skinpreview',
-	),
 	'dates' => array(
 		'sunday',
 		'monday',
@@ -752,6 +749,7 @@ $wgMessageStructure = array(
 		'qbsettings-floatingright',
 		'changepassword',
 		'skin',
+		'skinpreview',
 		'math',
 		'dateformat',
 		'datedefault',
@@ -2624,7 +2622,6 @@ XHTML id it should only appear once and include characters that are legal
 XHTML id names.",
 	'toggles'             => 'User preference toggles',
 	'underline'           => '',
-	'skinpreview'         => '',
 	'dates'               => 'Dates',
 	'categorypages'       => 'Categories related messages',
 	'mainpage'            => '',

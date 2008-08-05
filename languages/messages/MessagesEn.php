@@ -537,8 +537,6 @@ XHTML id names.
 'underline-never'   => 'Never',
 'underline-default' => 'Browser default',
 
-'skinpreview' => '(Preview)',
-
 # Dates
 'sunday'        => 'Sunday',
 'monday'        => 'Monday',
@@ -1403,6 +1401,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'qbsettings-floatingright' => 'Floating right',
 'changepassword'           => 'Change password',
 'skin'                     => 'Skin',
+'skin-preview'             => 'Preview',
 'math'                     => 'Math',
 'dateformat'               => 'Date format',
 'datedefault'              => 'No preference',
