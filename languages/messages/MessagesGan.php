@@ -229,8 +229,6 @@ $messages = array(
 
 'badaccess'        => '許可權錯誤',
 'badaccess-group0' => '倷嗰要求冇拕批准。',
-
-
 'badaccess-groups' => '倷嗰要求單$1嗰用戶才扤得正。',
 
 'versionrequired'     => '需要$1版嗰mediawiki',
@@ -949,7 +947,6 @@ $2',
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 嗰版本刪吥嘞。</span>',
 'filedelete-nofile'           => "{{SITENAME}}箇隻網站伓存在'''$1'''。",
 'filedelete-nofile-old'       => "按到指定屬性嗰情況，箇首冇'''$1'''到$2 $3嗰版本。",
-'filedelete-iscurrent'        => '眼下倷正試得刪掉箇隻檔案嗰最近版本。請拿箇隻檔案退到稍舊嗰版本再著。',
 'filedelete-otherreason'      => '別嗰/附加緣故:',
 'filedelete-reason-otherlist' => '別嗰緣故',
 'filedelete-reason-dropdown'  => '*常用刪除理由

@@ -259,8 +259,6 @@ $messages = array(
 
 'badaccess'        => 'Erro de permisos',
 'badaccess-group0' => 'Non ten autorización para executar a acción que solicitou.',
-
-
 'badaccess-groups' => 'A acción solicitada está limitada aos usuarios nalgún dos grupos $1.',
 
 'versionrequired'     => 'Necesítase a versión $1 de MediaWiki',
@@ -1228,7 +1226,6 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'filedelete-success-old'      => '<span class="plainlinks">Eliminouse a versión de \'\'\'[[Media:$1|$1]]\'\'\' de $3, $2 .</span>',
 'filedelete-nofile'           => "'''$1''' non existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
-'filedelete-iscurrent'        => 'Tentou eliminar a versión máis recente deste ficheiro. Volva antes a unha versión máis antiga.',
 'filedelete-otherreason'      => 'Outra/razón adicional:',
 'filedelete-reason-otherlist' => 'Outra razón',
 'filedelete-reason-dropdown'  => '

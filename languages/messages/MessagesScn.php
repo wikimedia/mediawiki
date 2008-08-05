@@ -346,8 +346,6 @@ $messages = array(
 
 'badaccess'        => 'Pirmessi nun sufficienti',
 'badaccess-group0' => "Nun hai li pirmessi nicissari p'esèquiri l'azzioni addumannata.",
-
-
 'badaccess-groups' => "La funzioni addumannata è risirvata a l'utenti ca appartèninu a unu dî siquenti gruppi: $1.",
 
 'versionrequired'     => 'È nicissaria la virsioni $1 dû software MediaWiki',
@@ -1167,7 +1165,6 @@ PICT # arcuni
 'filedelete-success-old'      => '<span class="plainlinks">La virsioni dô $3, $2 dô file \'\'\'[[Media:$1|$1]]\'\'\' hà stata cancillata.</span>',
 'filedelete-nofile'           => "Nta {{SITENAME}} nun c'è nuddu file $1",
 'filedelete-nofile-old'       => "'N archiviu nun ci sugnu virsioni di '''$1''' cu li carattiristichi nnicati.",
-'filedelete-iscurrent'        => 'Sta pruvannu a cancillari la virsioni cchiù ricenti di chistu file. Pi favuri, prima riturnàrilu a na virsioni pricidenti.',
 'filedelete-otherreason'      => 'Autra mutivazioni o mutivazioni n più:',
 'filedelete-reason-otherlist' => 'Autra mutivazioni',
 'filedelete-reason-dropdown'  => '*Mutivazzioni cchiù cumuni

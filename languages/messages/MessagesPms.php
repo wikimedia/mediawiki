@@ -262,8 +262,6 @@ dj'artìcol ancó pa scrit",
 
 'badaccess'        => 'Përmess nen giust',
 'badaccess-group0' => "A l'ha pa ij përmess dont a fa dë manca për fé st'operassion-sì.",
-
-
 'badaccess-groups' => "Costa funsion-sì a l'é riservà a j'utent che a sio almanch ant un-a dle partìe: $1.",
 
 'versionrequired'     => 'A-i va për fòrsa la version $1 ëd MediaWiki',
@@ -1095,7 +1093,6 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'filedelete-success-old'      => "<span class=\"plainlinks\">A l'é dëscancelasse la version dël \$3, \$2 ëd l'archivi '''[[Media:\$1|\$1]]'''.</span>",
 'filedelete-nofile'           => "An {{SITENAME}} a-i é pa gnun archivi ch'as ciama: $1",
 'filedelete-nofile-old'       => "A-i é pa gnun-a version parej ëd l'archivi '''$1'''",
-'filedelete-iscurrent'        => "A l'é antramentr ch'as preuva a scancelé la version pì giovna dl'archivi. Për piasì, anans dë fé sòn, ch'a arpija andaré na version pì veja, an manera che costa-sì a la resta pì nen corenta.",
 'filedelete-otherreason'      => 'Rason àutra/adissional:',
 'filedelete-reason-otherlist' => 'Àutra rason',
 'filedelete-reason-dropdown'  => "*Për sòlit la ròba ës ëscancela për

@@ -228,8 +228,6 @@ $messages = array(
 
 'badaccess'        => 'Noverarokla',
 'badaccess-group0' => 'Ta kucilana skura me zo rictal.',
-
-
 'badaccess-groups' => 'Kucilana skura gan favesik ke tana $1 lospa anton zo rictar.',
 
 'versionrequired'     => '$1 adraf siatos ke MediaWiki',
@@ -1049,7 +1047,6 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'filedelete-success'          => "'''$1''' al zo sular.",
 'filedelete-success-old'      => '<span class="plainlinks">Siatos ke \'\'\'[[Media:$1|$1]]\'\'\' wetce $3, $2 tir sulayan.</span>',
 'filedelete-nofile'           => "'''$1''' me krulder koe {{SITENAME}}.",
-'filedelete-iscurrent'        => 'Rin yawal da va tel lonoeltaf siatos ke bat iyeltak sulal. Kal losavsaf siatos taneon vay dimplekul.',
 'filedelete-otherreason'      => 'Ara ik loplekufa lazava :',
 'filedelete-reason-otherlist' => 'Ara lazava',
 'filedelete-reason-dropdown'  => '*Giltafa sularalazava

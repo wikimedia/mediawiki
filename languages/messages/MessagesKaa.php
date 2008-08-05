@@ -309,8 +309,6 @@ $messages = array(
 
 'badaccess'        => 'Ruxsatnama qateligi',
 'badaccess-group0' => "Soralıp atırg'an ha'reketin'izdi bejeriwge ruqsatın'ız joq.",
-
-
 'badaccess-groups' => "Soralıp atırg'an ha'reketin'iz $1 toparlarının' birinin' paydalanıwshılarına sheklengen.",
 
 'versionrequired'     => "MediaWikidin' $1 nusqası kerek",

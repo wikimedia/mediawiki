@@ -308,8 +308,6 @@ $messages = array(
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '您刚才的请求不允许执行。',
-
-
 'badaccess-groups' => '您刚才的请求只有$1用户组的用户才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',
@@ -881,12 +879,7 @@ $2',
 'qbsettings-floatingright' => '右侧漂移',
 'changepassword'           => '更改密码',
 'skin'                     => '皮肤',
-'skin-header'              => '可供使用的皮肤。',
-'skin-header-css'          => '* 利用相对的样式表 (CSS) 页面您可以自定每一块皮肤。',
-'skin-header-js'           => '* 利用相对的 JavaScript (JS) 页面您可以加入自己的 scripts 到每一块皮肤。',
 'skin-preview'             => '预览',
-'skin-link-to-css'         => '相对的 CSS',
-'skin-link-to-js'          => '相对的 JS',
 'math'                     => '数学公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '默认值',
@@ -1240,7 +1233,6 @@ $2',
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
 'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''于 $2 $3 的版本。",
-'filedelete-iscurrent'        => '您现正尝试删除这个文件的最近版本。请先将个该文件回退成较旧的版本。',
 'filedelete-otherreason'      => '其它／附加的理由:',
 'filedelete-reason-otherlist' => '其它理由',
 'filedelete-reason-dropdown'  => '

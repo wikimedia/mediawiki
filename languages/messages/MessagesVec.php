@@ -261,8 +261,6 @@ I seguenti colegamenti i xe in lengua inglese:
 
 'badaccess'        => 'Eròr ne i permessi',
 'badaccess-group0' => "No te ghè i permessi necessari par eseguir l'azion richiesta.",
-
-
 'badaccess-groups' => 'La funzion richiesta la xe riservà ai utenti che fa parte de uno dei seguenti grupi: $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki richiesta',
@@ -1196,7 +1194,6 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'filedelete-success-old'      => '<span class="plainlinks">La version del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' la xe stà scancelà.</span>',
 'filedelete-nofile'           => 'Su {{SITENAME}} no esiste un file $1',
 'filedelete-nofile-old'       => "In archivio no ghe xe version de '''$1''' con le carateristiche indicà",
-'filedelete-iscurrent'        => 'Te stè proando a scancelar la version piassè recente de sto file. Par piaser, prima ripòrtelo a na version precedente.',
 'filedelete-otherreason'      => 'Altra motivazion o motivazion agiuntiva:',
 'filedelete-reason-otherlist' => 'Altra motivazion',
 'filedelete-reason-dropdown'  => '*Motivazion piassè comuni par la scancelazion

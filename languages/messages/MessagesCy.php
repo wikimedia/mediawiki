@@ -341,8 +341,6 @@ $messages = array(
 
 'badaccess'        => 'Gwall caniatâd',
 'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
-
-
 'badaccess-groups' => "Dim ond defnyddwyr o blith y grwpiau $1 sy'n cael gwneud y weithred y ceisiasoch amdani.",
 
 'versionrequired'     => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',
@@ -1193,7 +1191,6 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'filedelete-success'          => "Mae '''$1''' wedi cael ei dileu.",
 'filedelete-nofile'           => "Nid oes '''$1''' ar y wefan {{SITENAME}}.",
 'filedelete-nofile-old'       => "Nid oes fersiwn o '''$1''' gyda'r priodoleddau a enwir yn yr archif.",
-'filedelete-iscurrent'        => "Rydych yn ceisio dileu'r fersiwn diweddaraf o'r ffeil hwn. Rhaid gwrthdroi i fersiwn gynt yn gyntaf.",
 'filedelete-otherreason'      => 'Rheswm arall/ychwanegol:',
 'filedelete-reason-otherlist' => 'Rheswm arall',
 'filedelete-reason-dropdown'  => '*Rhesymau cyffredin dros ddileu

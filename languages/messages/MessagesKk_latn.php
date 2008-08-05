@@ -617,8 +617,6 @@ $messages = array(
 
 'badaccess'        => 'Ruqsat qatesi',
 'badaccess-group0' => 'Suratılğan äreketiñizdi jegwiñizge ruqsat etilmeýdi.',
-
-
 'badaccess-groups' => 'Suratılğan äreketiñiz $1 toptarı biriniñ qatwsışılarına şekteledi.',
 
 'versionrequired'     => 'MediaWiki $1 nusqası kerek',
@@ -1602,8 +1600,6 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[{{ns:media}}:$1|$1]]\'\'\' — $3, $2 kezindegi nusqası joýıldı.</span>',
 'filedelete-nofile'           => "'''$1''' degen {{SITENAME}} jobasında joq.",
 'filedelete-nofile-old'       => "Keltirilgen anıqtawıştarımen '''$1''' degenniñ murağattalğan nusqası mında joq.",
-'filedelete-iscurrent'        => 'Bul faýldıñ eñ soñğı nusqasın joyw talap etkensiz.
-Eñ aldınan eskilew nusqasına qaýtarıñız.',
 'filedelete-otherreason'      => 'Basqa/qosımşa sebep:',
 'filedelete-reason-otherlist' => 'Basqa sebep',
 'filedelete-reason-dropdown'  => '* Joywdıñ jalpı sebepteri

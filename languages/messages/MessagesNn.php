@@ -478,8 +478,6 @@ $messages = array(
 
 'badaccess'        => 'Tilgangsfeil',
 'badaccess-group0' => 'Du har ikkje lov til å utføre handlinga du ba om.',
-
-
 'badaccess-groups' => 'Handlinga du ba om kan berre utførast av brukarar i gruppene $1.',
 
 'versionrequired'     => 'MediaWiki versjon $1 trengst',
@@ -1332,7 +1330,6 @@ Sletteloggen for fila finn du her:",
 'filedelete-success-old'      => '<span class="plainlinks">Versjonen av \'\'\'[[Media:$1|$1]]\'\'\' frå $3, $2 er sletta.</span>',
 'filedelete-nofile'           => "'''$1''' finst ikkje på {{SITENAME}}.",
 'filedelete-nofile-old'       => "Det finst ingen arkivert versjon av '''$1''' med dei oppgjevne attributta.",
-'filedelete-iscurrent'        => 'Du prøver å slette den nyaste versjonen av denne fila. Ver venleg og rull attende til ein eldre versjon fyrst.',
 'filedelete-otherreason'      => 'Annan grunn/tilleggsgrunn:',
 'filedelete-reason-otherlist' => 'Annan grunn',
 'filedelete-reason-dropdown'  => '*Vanlege grunnar for sletting

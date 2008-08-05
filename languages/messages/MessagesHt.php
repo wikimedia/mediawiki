@@ -259,8 +259,6 @@ $messages = array(
 
 'badaccess'        => 'Pèmisyon erè',
 'badaccess-group0' => 'Ou pa genyen pèmisyon pou ou ekzekite demand sa.',
-
-
 'badaccess-groups' => 'Aksion ke w vle reyalize a limite sèlman pou itilizatè ki nan group sa yo $1.',
 
 'versionrequired'     => 'Vèzion $1 de MediaWiki nesesè',

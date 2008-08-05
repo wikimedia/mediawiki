@@ -265,8 +265,6 @@ $messages = array(
 
 'badaccess'        => 'Aksès ora olèh',
 'badaccess-group0' => 'Panjenengan ora pareng nglakokaké tindhakan sing panjenengan gayuh.',
-
-
 'badaccess-groups' => 'Pratingkah panjenengan diwatesi tumrap panganggo ing klompoké $1.',
 
 'versionrequired'     => 'Dibutuhaké MediaWiki vèrsi $1',
@@ -1130,8 +1128,6 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'filedelete-success-old'      => '<span class="plainlinks">Vèrsi \'\'\'[[Media:$1|$1]]\'\'\' ing $3, $2 wis dibusak.</span>',
 'filedelete-nofile'           => "'''$1''' ora ana ing {{SITENAME}}.",
 'filedelete-nofile-old'       => "Ora ditemokaké arsip vèrsi saka '''$1''' mawa atribut sing diwènèhaké.",
-'filedelete-iscurrent'        => 'Panjenengan nyoba mbusak vèrsi pungkasan berkas iki.
-Mangga bali ing vèrsi sing luwih lawas dhisik.',
 'filedelete-otherreason'      => 'Alesan tambahan/liya:',
 'filedelete-reason-otherlist' => 'Alesan liya',
 'filedelete-reason-dropdown'  => '*Alesan pambusakan

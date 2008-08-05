@@ -218,8 +218,6 @@ $messages = array(
 
 'badaccess'        => 'Römjde permicion',
 'badaccess-group0' => 'Menepermicion executan accion z hecocmíiit.',
-
-
 'badaccess-groups' => "Accion hecocmíiit coccebj diilimáat czo'd $1.",
 
 'versionrequired'     => 'Vercion $1 MediaWiki pal',

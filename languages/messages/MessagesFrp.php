@@ -291,8 +291,6 @@ $messages = array(
 
 'badaccess'        => 'Èrror de pèrmission',
 'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion que vos demandâd.',
-
-
 'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de les tropes $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',
@@ -1087,7 +1085,6 @@ PICT # de totes sôrtes
 'filedelete-success-old'      => '<span class="plainlinks">La vèrsion de \'\'\'[[Media:$1|$1]]\'\'\' du $2 a $3 at étâ suprimâ.</span>',
 'filedelete-nofile'           => "'''$1''' ègziste pas dessus {{SITENAME}}.",
 'filedelete-nofile-old'       => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs endicâs.",
-'filedelete-iscurrent'        => 'Vos éte aprés tâchiér de suprimar la vèrsion la ples novèla de ceti fichiér. Vos dête, prècèdament, rètablir una vielye vèrsion de ceti.',
 'filedelete-otherreason'      => 'Rêson difèrenta ou suplèmentèra :',
 'filedelete-reason-otherlist' => 'Rêson difèrenta',
 'filedelete-reason-dropdown'  => '*Rêsons de suprèssion les ples corentes

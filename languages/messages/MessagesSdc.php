@@ -231,8 +231,6 @@ Li sighenti cullegamenti so in linga ingrese:
 
 'badaccess'        => 'Primmissi no suffizenti',
 'badaccess-group0' => "Nò si diponi di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
-
-
 'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a unu di li sighenti gruppi: $1.',
 
 'versionrequired'     => 'Versioni $1 di MediaWiki dumandadda',
@@ -1013,7 +1011,6 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'filedelete-success-old' => '<span class="plainlinks">La versioni di lu $3, $2 di lu file \'\'\'[[Media:$1|$1]]\'\'\' è isthadda canzilladda.</span>',
 'filedelete-nofile'      => "I' {{SITENAME}} nò esisthi un file $1.",
 'filedelete-nofile-old'  => "In archìbiu nò vi so versioni di '''$1''' cu' li caratterìsthighi indicaddi.",
-'filedelete-iscurrent'   => 'Sei prubendi a canzillà la versioni più rizzenti di chisthu file. Pa piazeri, primma fallu turrà a una versioni prizzidenti.',
 
 # MIME search
 'mimesearch'         => 'Zercha sigundu a lu tipu MIME',

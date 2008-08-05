@@ -233,8 +233,6 @@ $messages = array(
 
 'badaccess'        => 'Anumati nai hai',
 'badaccess-group0' => 'Aap jon chij kare mangta uske ijajat aap ke nai hai.',
-
-
 'badaccess-groups' => 'Aap jon chij kare mangtaa hai uske khali ii group $1 ke ek sadasya kare sake hai.',
 
 'versionrequired'     => 'MediaWiki ke $1 version ke jaruri hai',

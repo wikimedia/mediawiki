@@ -414,8 +414,6 @@ $messages = array(
 
 'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
-
-
 'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die einer der Gruppen „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
@@ -1003,10 +1001,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'qbsettings-floatingright' => 'Rechts, schwebend',
 'changepassword'           => 'Passwort ändern',
 'skin'                     => 'Skin',
-'skin-header'              => 'Verfügbare Skins.',
 'skin-preview'             => 'Vorschau',
-'skin-link-to-css'         => 'zugehöriges CSS',
-'skin-link-to-js'          => 'zugehöriges JS',
 'math'                     => 'TeX',
 'dateformat'               => 'Datumsformat',
 'datedefault'              => 'Standard',
@@ -1381,7 +1376,6 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filedelete-success-old'      => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
 'filedelete-nofile'           => "'''„$1“''' ist auf {{SITENAME}} nicht vorhanden.",
 'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine archivierte Version mit den angegebenen Attributen.",
-'filedelete-iscurrent'        => 'Du versuchst die aktuelle Version dieser Datei zu löschen. Bitte setze diese vorher auf eine ältere Version zurück.',
 'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
 'filedelete-reason-otherlist' => 'Anderer Grund',
 'filedelete-reason-dropdown'  => '

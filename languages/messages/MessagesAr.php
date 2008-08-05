@@ -601,8 +601,6 @@ $messages = array(
 
 'badaccess'        => 'خطأ في السماح',
 'badaccess-group0' => 'ليس من المسموح لك تنفيذ الفعل الذي طلبته.',
-
-
 'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعات $1.',
 
 'versionrequired'     => 'تلزم نسخة $1 من ميدياويكي',
@@ -1620,8 +1618,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ $3، $2 تم حذفها.</span>',
 'filedelete-nofile'           => "'''$1''' غير موجود في {{SITENAME}}.",
 'filedelete-nofile-old'       => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
-'filedelete-iscurrent'        => 'أنت تحاول حذف أحدث نسخة من هذا الملف.
-من فضلك استرجع لنسخة أقدم أولا.',
 'filedelete-otherreason'      => 'سبب إضافي/آخر:',
 'filedelete-reason-otherlist' => 'سبب آخر',
 'filedelete-reason-dropdown'  => '*أسباب الحذف الشائعة

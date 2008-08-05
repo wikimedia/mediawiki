@@ -264,8 +264,6 @@ $messages = array(
 
 'badaccess'        => 'Salang permiso',
 'badaccess-group0' => 'Dai ka tinotogotan na gibohon an aksyon na saimong hinahagad.',
-
-
 'badaccess-groups' => 'An aksyon na saimong hinahagad limitado sa mga parágamit sa sarô sa mga grupong $1.',
 
 'versionrequired'     => 'Kaipuhan an bersyon $1 kan MediaWiki',
@@ -998,7 +996,6 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'filedelete-success-old' => '<span class="plainlinks">An bersyón kan \'\'\'[[Media:$1|$1]]\'\'\' na ngonyan na $3, pigparâ na an $2.</span>',
 'filedelete-nofile'      => "Mayo man an '''$1''' sa ining sitio.",
 'filedelete-nofile-old'  => "Mayong bersyón na nakaarchibo kan '''$1''' na igwang kan mga piniling ''character''.",
-'filedelete-iscurrent'   => "Pigpoprobaran mong parâon an pinahuring bersyón kaining ''file''. Ibalik tabî muna sa bersyón na mas lumâ.",
 
 # MIME search
 'mimesearch'         => 'Paghanap kan MIME',

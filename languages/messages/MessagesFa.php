@@ -497,8 +497,6 @@ $messages = array(
 
 'badaccess'        => 'خطای دسترسی',
 'badaccess-group0' => 'شما اجازهٔ اجرای عمل درخواسته را ندارید.',
-
-
 'badaccess-groups' => 'عملی که درخواسته‌اید منحصر به کاربران یکی از گروههای $1 است.',
 
 'versionrequired'     => 'نسخهٔ $1 از نرم‌افزار مدیاویکی لازم است',
@@ -1454,7 +1452,6 @@ $3
 'filedelete-success-old'      => '<span class="plainlinks">نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ $3، $2 حذف شد.</span>',
 'filedelete-nofile'           => "'''$1''' در این وبگاه وجود ندارد.",
 'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
-'filedelete-iscurrent'        => 'شما می‌خواهید که آخرین نسخه از این پرونده را حذف کنید. لطفاً ابتدا پرونده را به یک نسخه قدیمی‌تر واگردانی کنید.',
 'filedelete-otherreason'      => 'دلایل دیگر/اضافی:',
 'filedelete-reason-otherlist' => 'دیگر',
 'filedelete-reason-dropdown'  => '

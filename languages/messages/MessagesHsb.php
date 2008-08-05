@@ -334,8 +334,6 @@ $messages = array(
 
 'badaccess'        => 'Nimaš wotpowědne dowolnosće',
 'badaccess-group0' => 'Nimaš wotpowědne dowolnosće za tutu akciju.',
-
-
 'badaccess-groups' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',
@@ -1266,7 +1264,6 @@ PICT # misc.
 'filedelete-success-old'      => '<span class="plainlinks">Wersija \'\'\'[[Media:$1|$1]]\'\'\' wot $2, $3 hodź. bu zničena.</span>',
 'filedelete-nofile'           => "'''„$1“''' njeeksistuje na tutym webowym sydle.",
 'filedelete-nofile-old'       => "Njeje žana archiwowana wersija '''$1''' z podatymi atributami.",
-'filedelete-iscurrent'        => 'Spytaš najnowšu wersiju dataje wušmórnyć. Prošu cofń do toho na staršu wersiju.',
 'filedelete-otherreason'      => 'Druha/přidatna přičina:',
 'filedelete-reason-otherlist' => 'Druha přičina',
 'filedelete-reason-dropdown'  => '*Powšitkowne přičina za wušmórnjenja

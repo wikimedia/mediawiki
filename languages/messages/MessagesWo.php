@@ -234,8 +234,6 @@ $messages = array(
 
 'badaccess'        => 'Njuumte ci ndigël gi',
 'badaccess-group0' => 'Amoo ay sañ-sañ yu doy ngir man a def li nga bëgg a def.',
-
-
 'badaccess-groups' => 'Jëf ji ngay jéem a def, jëfandikukatu mbooloo yii $1 rek ñoo ko man.',
 
 'versionrequired'     => 'Laaj na $1 sumbum MediaWiki',

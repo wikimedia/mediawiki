@@ -364,8 +364,6 @@ I seguenti collegamenti sono in lingua inglese:
 
 'badaccess'        => 'Permessi non sufficienti',
 'badaccess-group0' => "Non si dispone dei permessi necessari per eseguire l'azione richiesta.",
-
-
 'badaccess-groups' => 'La funzione richiesta è riservata agli utenti che appartengono a uno dei seguenti gruppi: $1.',
 
 'versionrequired'     => 'Versione $1 di MediaWiki richiesta',
@@ -1301,7 +1299,6 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filedelete-success-old'      => '<span class="plainlinks">La versione del $3, $2 del file \'\'\'[[Media:$1|$1]]\'\'\' è stata cancellata.</span>',
 'filedelete-nofile'           => 'Su {{SITENAME}} non esiste un file $1',
 'filedelete-nofile-old'       => "In archivio non ci sono versioni di '''$1''' con le caratteristiche indicate",
-'filedelete-iscurrent'        => 'Stai provando a cancellare la versione più recente di questo file. Per cortesia, prima riportalo ad una versione precedente.',
 'filedelete-otherreason'      => 'Altra motivazione o motivazione aggiuntiva:',
 'filedelete-reason-otherlist' => 'Altra motivazione',
 'filedelete-reason-dropdown'  => '*Motivazioni più comuni per la cancellazione

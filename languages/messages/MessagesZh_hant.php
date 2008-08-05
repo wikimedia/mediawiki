@@ -290,8 +290,6 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '您剛才的請求不允許執行。',
-
-
 'badaccess-groups' => '您剛才的請求只有$1用戶組的用戶才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',
@@ -857,12 +855,7 @@ $2',
 'qbsettings-floatingright' => '右側漂移',
 'changepassword'           => '更改密碼',
 'skin'                     => '面板',
-'skin-header'              => '可供使用的面板。',
-'skin-header-css'          => '* 利用相對的樣式表 (CSS) 頁面您可以自定每一個面板。',
-'skin-header-js'           => '* 利用相對的 JavaScript (JS) 頁面您可以加入自己的 scripts 到每一個面板。',
 'skin-preview'             => '預覽',
-'skin-link-to-css'         => '相對的 CSS',
-'skin-link-to-js'          => '相對的 JS',
 'math'                     => '數學公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '預設值',
@@ -1217,7 +1210,6 @@ $2',
 'filedelete-success-old'      => "'''[[Media:$1|$1]]'''於 $2 $3 的版本已經刪除。",
 'filedelete-nofile'           => "'''$1'''在{{SITENAME}}中不存在。",
 'filedelete-nofile-old'       => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
-'filedelete-iscurrent'        => '您現正嘗試刪除這個檔案的最近版本。請先將個該檔案回退成較舊的版本。',
 'filedelete-otherreason'      => '其它／附加的理由:',
 'filedelete-reason-otherlist' => '其它理由',
 'filedelete-reason-dropdown'  => '

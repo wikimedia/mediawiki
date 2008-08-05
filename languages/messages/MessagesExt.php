@@ -234,8 +234,6 @@ $messages = array(
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',
-
-
 'badaccess-groups' => 'Solu los usuárius los grupus $1 puein hazel esa ación.',
 
 'versionrequired'     => 'Es mestel tenel la velsión $1 de MeyaGüiqui',
@@ -1079,7 +1077,6 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'filedelete-success-old'      => '<span class="plainlinks">Á siu esborrá la velsión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a las $2.</span>',
 'filedelete-nofile'           => "Nu desisti '''$1''' nesti lugal.",
 'filedelete-nofile-old'       => "Nu desisti una velsión archivá e '''$1''' con esas caraterísticas.",
-'filedelete-iscurrent'        => "Vas a esborral la úrtima velsión d'esti archivu. Pol favol enantis revierti a una velsión anteriol.",
 'filedelete-otherreason'      => 'Razón adicional:',
 'filedelete-reason-otherlist' => 'Otra razón',
 'filedelete-reason-dropdown'  => "*Razonis frecuentis d'esborrau

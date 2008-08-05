@@ -418,8 +418,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 
 'badaccess'        => 'Lupa evätty',
 'badaccess-group0' => 'Sinulla ei ole lupaa suorittaa pyydettyä toimintoa.',
-
-
 'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu ryhmien $1 henkilöille.',
 
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
@@ -1293,7 +1291,6 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'filedelete-success-old'      => '<span class="plainlinks">Tiedoston \'\'\'[[Media:$1|$1]]\'\'\' $3 kello $2 luotu versio on poistettu.</span>',
 'filedelete-nofile'           => "Tiedostoa '''$1''' ei ole.",
 'filedelete-nofile-old'       => "Tiedostosta '''$1''' ei ole olemassa pyydettyä versiota.",
-'filedelete-iscurrent'        => 'Et voi poistaa tiedoston uusinta versiota. Palauta jokin muu version uusimmaksi.',
 'filedelete-otherreason'      => 'Muu syy tai tarkennus',
 'filedelete-reason-otherlist' => 'Muu syy',
 'filedelete-reason-dropdown'  => '*Yleiset poistosyyt

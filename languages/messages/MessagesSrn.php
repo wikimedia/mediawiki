@@ -237,8 +237,6 @@ $messages = array(
 
 'badaccess'        => 'Primisi fowtu',
 'badaccess-group0' => 'Yu no abi primisi fu du a sani san yu wani',
-
-
 'badaccess-groups' => 'Soso kebroikiman fu wan fu den grupu $1 kan du a sani disi.',
 
 'versionrequired'     => 'Versie $1 fu MediaWiki de fanowdu',

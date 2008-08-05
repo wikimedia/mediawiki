@@ -479,8 +479,6 @@ $messages = array(
 
 'badaccess'        => 'Gien toestemming',
 'badaccess-group0' => 'Je hemmen gien toestemming um disse actie uut te voeren.',
-
-
 'badaccess-groups' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van de groepen $1 beheuren.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is neudig',
@@ -1386,7 +1384,6 @@ Klikken op een kelomkop veraandert de sortering.',
 'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is vort-edaon.</span>',
 'filedelete-nofile'           => "'''$1''' besteet neet op disse webstee.",
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
-'filedelete-iscurrent'        => 'Je preberen de niejste versie van dit bestand vort te doon. Zet eers een ouwere versie weerumme.',
 'filedelete-otherreason'      => 'Aandere rejen:',
 'filedelete-reason-otherlist' => 'Aandere rejen',
 'filedelete-reason-dropdown'  => '*Veulveurkoemende rejens

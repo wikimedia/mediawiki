@@ -236,8 +236,6 @@ $messages = array(
 
 'badaccess'        => 'Problema dwar permess',
 'badaccess-group0' => "M'għandhekx id-dritt li tagħmel din l-azzjoni.",
-
-
 'badaccess-groups' => "L-Azzjoni li għamilt rikjesta għal hija restretta għal utenti minn wieħed mill-gruppijiet ta' $1.",
 
 'versionrequired'     => "Hemm bżonn verżjoni $1 ta' MedjaWiki",
@@ -1221,7 +1219,6 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'filedelete-success-old'      => '<span class="plainlinks">Il-verżjoni $3, $2 tal-fajl \'\'\'[[Media:$1|$1]]\'\'\' ġiet mħassra.</span>',
 'filedelete-nofile'           => "Fuq {{SITENAME}} il-fajl '''$1''' ma jeżistiex.",
 'filedelete-nofile-old'       => "Fl-Arkivju m'hemmx verżjoni ta' '''$1''' bil-karrateristiċi indikati.",
-'filedelete-iscurrent'        => 'Qiegħed tipprova tħassar verżjoni aktar riċenti minn dan il-fajl. Jekk jogħġbok, l-ewwel mur lura għal verżjoni aktar antika.',
 'filedelete-otherreason'      => 'Oħrajn/aktar raġunijiet:',
 'filedelete-reason-otherlist' => 'Raġuni oħra',
 'filedelete-reason-dropdown'  => "*Raġunijiet aktar komuni dwar tħassir

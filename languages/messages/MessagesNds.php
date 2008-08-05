@@ -394,8 +394,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 
 'badaccess'        => 'Fehler bi de Rechten',
 'badaccess-group0' => 'Du hest keen Verlööf för disse Akschoon.',
-
-
 'badaccess-groups' => 'Disse Akschoon is blots för Brukers ut een vun de Brukergruppen $1.',
 
 'versionrequired'     => 'Version $1 vun MediaWiki nödig',
@@ -1328,7 +1326,6 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filedelete-success-old'      => '<span class="plainlinks">De Version vun de Datei \'\'\'„[[Media:$1|$1]]“\'\'\' vun $2, $3 is wegsmeten worrn.</span>',
 'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Gifft keen Version vun '''„$1“''' in’t Archiv mit disse Egenschoppen.",
-'filedelete-iscurrent'        => 'Du versöchst de aktuelle Version vun disse Datei wegtosmieten. Sett de Datei vörher eerst op en öllere Version trüch.',
 'filedelete-otherreason'      => 'Annern/tosätzlichen Grund:',
 'filedelete-reason-otherlist' => 'Annern Grund',
 'filedelete-reason-dropdown'  => '* Faken bruukte Grünn

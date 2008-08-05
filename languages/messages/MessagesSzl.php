@@ -240,8 +240,6 @@ $messages = array(
 
 'badaccess'        => 'Felerne uprawńyńo',
 'badaccess-group0' => 'Ńy moš uprawńyń coby wykůnać ta uoperacyjo.',
-
-
 'badaccess-groups' => 'Ta uoperacyjo mogům wykůnać ino užytkownicy s keryjś z grup $1.',
 
 'versionrequired'     => 'Wymagano MediaWiki we wersyji $1',
@@ -1142,7 +1140,6 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'filedelete-success-old'      => '<span class="plainlinks">Wyćepano plik \'\'\'[[Media:$1|$1]]\'\'\' we wersyje ze $3, $2.</span>',
 'filedelete-nofile'           => "Plika '''$1''' ńy ma we {{GRAMMAR:MS.pl|{{SITENAME}}}}.",
 'filedelete-nofile-old'       => "Ńy ma sam zarchiwizowanyj wersje '''$1''' o atrybutach jake žeś podou.",
-'filedelete-iscurrent'        => 'Průbuješ wyćepać nojnowšo wersyjo tygo plika. Muśyš wpjyrw přiwrůćić staršo wersyjo.',
 'filedelete-otherreason'      => 'Inkšy powůd:',
 'filedelete-reason-otherlist' => 'Inkszy powůd',
 'filedelete-reason-dropdown'  => '* Nojčynstše powody wyćepańa

@@ -236,8 +236,6 @@ $messages = array(
 
 'badaccess'        => 'Рөхсәт хатасы',
 'badaccess-group0' => 'Сез сораган гамәлне башкара алмыйсыз.',
-
-
 'badaccess-groups' => 'Соралган гамәл $1 төркемләренең кулланучылары гына өчен.',
 
 'versionrequired'     => 'MediaWiki версия $1 кирәк',

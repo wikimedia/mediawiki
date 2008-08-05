@@ -180,8 +180,6 @@ $messages = array(
 'privacypage'          => 'Project:Palisiya sa pribasidad',
 
 'badaccess-group0' => 'Wala ikaw tugoti sa pagpadayon sa aksyon nga imong gipangayo.',
-
-
 'badaccess-groups' => 'Ang aksyon nga imong gipangayo mahimo lamang ihatag sa mga miyembro sa mga grupong $1.',
 
 'versionrequired'     => 'Gikinahanglan ang Bersyong $1 sa MediaWiki',

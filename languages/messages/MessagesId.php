@@ -505,8 +505,6 @@ $messages = array(
 
 'badaccess'        => 'Kesalahan hak akses',
 'badaccess-group0' => 'Anda tidak diizinkan untuk melakukan tindakan yang Anda minta.',
-
-
 'badaccess-groups' => 'Tindakan yang Anda minta dibatasi untuk pengguna dalam kelompok $1.',
 
 'versionrequired'     => 'Dibutuhkan MediaWiki versi $1',
@@ -1400,7 +1398,6 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'filedelete-success-old'      => '<span class="plainlinks">Versi \'\'\'[[Media:$1|$1]]\'\'\' pada $3, $2 telah dihapus.</span>',
 'filedelete-nofile'           => "'''$1''' tak ditemukan pada situs ini.",
 'filedelete-nofile-old'       => "Tak ditemukan arsip versi dari '''$1''' dengan atribut yang diberikan.",
-'filedelete-iscurrent'        => 'Anda mencoba menghapus versi terakhir berkas ini. Harap kembalikan dulu ke versi lama.',
 'filedelete-otherreason'      => 'Alasan lain:',
 'filedelete-reason-otherlist' => 'Alasan lain',
 'filedelete-reason-dropdown'  => '*Alasan penghapusan

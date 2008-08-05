@@ -489,8 +489,6 @@ $messages = array(
 
 'badaccess'        => 'Behörighetsfel',
 'badaccess-group0' => 'Du har inte behörighet att utföra den handling du begärt.',
-
-
 'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
 
 'versionrequired'     => 'Version $1 av MediaWiki krävs',
@@ -1447,7 +1445,6 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filedelete-success-old'      => 'Versionen av [[Media:$1|$1]] från $2 kl. $3 har raderats.',
 'filedelete-nofile'           => "Filen '''$1''' finns inte på den här webplatsen.",
 'filedelete-nofile-old'       => "Den versionen av '''$1''' kan inte raderas eftersom den inte finns.",
-'filedelete-iscurrent'        => 'Du försöker radera den senaste versionen av en fil. För att göra det måste du först återställa till en äldre version av filen.',
 'filedelete-otherreason'      => 'Annan/ytterligare anledning:',
 'filedelete-reason-otherlist' => 'Annan anledning',
 'filedelete-reason-dropdown'  => '*Vanliga anledningar till radering

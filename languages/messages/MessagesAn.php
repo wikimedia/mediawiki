@@ -338,8 +338,6 @@ $messages = array(
 
 'badaccess'        => 'Error de premisos',
 'badaccess-group0' => "No tiene premisos ta fer l'aizión que ha demandato.",
-
-
 'badaccess-groups' => "L'aizión que ha demandato nomás ye premitita ta os usuarios de beluna d'as collas: $1.",
 
 'versionrequired'     => 'Cal a bersión $1 de MediaWiki',
@@ -1265,7 +1263,6 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
 'filedelete-nofile'           => "'''$1''' no esiste en {{SITENAME}}.",
 'filedelete-nofile-old'       => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
-'filedelete-iscurrent'        => "Ye prebando de borrar a bersión más rezient d'iste archibo. Por fabor, torne en primeras ta una bersión anterior.",
 'filedelete-otherreason'      => 'Atras razons:',
 'filedelete-reason-otherlist' => 'Atra razón',
 'filedelete-reason-dropdown'  => "*Razons comuns ta borrar archibos

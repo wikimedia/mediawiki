@@ -288,8 +288,6 @@ $messages = array(
 
 'badaccess'        => 'Toeganksfout',
 'badaccess-group0' => 'Doe höbs gén rechte om de gevräögde hanjeling oet te veure.',
-
-
 'badaccess-groups' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereis',
@@ -1198,7 +1196,6 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is gewis.</span>',
 'filedelete-nofile'           => "'''$1''' bestuit neet op {{SITENAME}}.",
 'filedelete-nofile-old'       => "d'r is geine versie van '''$1''' in 't archief met de aangegaeve eigensjappe.",
-'filedelete-iscurrent'        => "Doe probeers de nuujste versie van dit bestand te wisse. Plaats aub 'n aajere versie truuk.",
 'filedelete-otherreason'      => 'Angere/additionele ree:',
 'filedelete-reason-otherlist' => 'Angere ree',
 'filedelete-reason-dropdown'  => '*Väölveurkómmende ree veur wisse

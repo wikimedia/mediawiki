@@ -292,8 +292,6 @@ $messages = array(
 
 'badaccess'        => 'Teisių klaida',
 'badaccess-group0' => 'Jums neleidžiama įvykdyti veiksmo, kurio prašėte.',
-
-
 'badaccess-groups' => 'Veiksmas, kurio prašėte, galimas tik naudotojams, esantiems vienoje iš šių grupių $1.',
 
 'versionrequired'     => 'Reikalinga $1 MediaWiki versija',
@@ -1223,7 +1221,6 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' $3, $2 versija buvo ištrinta.</span>',
 'filedelete-nofile'           => "Šioje svetainėje '''$1''' neegzistuoja.",
 'filedelete-nofile-old'       => "Nėra jokios '''$1''' suarchyvuotos versijos su nurodytais atributais.",
-'filedelete-iscurrent'        => 'Jūs bandote ištrinti pačią naujiausią šio failo versiją. Pirmiausia prašome grąžinti į senesnę versiją.',
 'filedelete-otherreason'      => 'Kita/papildoma priežastis:',
 'filedelete-reason-otherlist' => 'Kita priežastis',
 'filedelete-reason-dropdown'  => '*Dažnos trynimo priežastys

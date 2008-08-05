@@ -380,8 +380,6 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "No teniu permisos per a executar l'acció que heu sol·licitat.",
-
-
 'badaccess-groups' => "L'acció que heu sol·licitat es limita als usuaris d'un dels grups $1.",
 
 'versionrequired'     => 'Cal la versió $1 del MediaWiki',
@@ -1313,7 +1311,6 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'filedelete-success-old'      => "<span class=\"plainlinks\">La versió de '''[[Media:\$1|\$1]]''' com de \$3, \$2 s'ha eliminat.</span>",
 'filedelete-nofile'           => "'''$1''' no existeix dins el projecte {{SITENAME}}.",
 'filedelete-nofile-old'       => "No hi ha cap versió arxivada de '''$1''' amb els atributs especificats.",
-'filedelete-iscurrent'        => "Esteu provant de suprimir la versió més recent d'aquest fitxer. Revertiu a una versió més antiga abans.",
 'filedelete-otherreason'      => 'Motius alternatius/addicionals:',
 'filedelete-reason-otherlist' => 'Altres motius',
 'filedelete-reason-dropdown'  => "*Motius d'eliminació comuns

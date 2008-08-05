@@ -308,7 +308,6 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 # File deletion
 'filedelete-intro'     => "Sie löschen die Datei '''„[[Media:$1|$1]]“'''.",
 'filedelete-intro-old' => "Sie löschen von der Datei '''„[[Media:$1|$1]]“''' die [$4 Version vom $2, $3 Uhr].",
-'filedelete-iscurrent' => 'Sie versuchen die aktuelle Version dieser Datei zu löschen. Bitte setzen Sie diese vorher auf eine ältere Version zurück.',
 
 # Unused templates
 'unusedtemplatestext' => 'Diese Seite listet alle Vorlagen auf, die nicht in anderen Seiten eingebunden sind. Überprüfen Sie andere Links zu den Vorlagen, bevor Sie diese löschen.',

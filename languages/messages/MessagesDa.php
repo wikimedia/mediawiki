@@ -377,8 +377,6 @@ $messages = array(
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du har ikke de nødvendige rettigheder til denne handling.',
-
-
 'badaccess-groups' => 'Denne handling kan kun udføres af brugere, som tilhører en af grupperne „$1“.',
 
 'versionrequired'     => 'Kræver version $1 af MediaWiki',
@@ -945,7 +943,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'qbsettings-floatingright' => 'Flydende højre',
 'changepassword'           => 'Skift adgangskode',
 'skin'                     => 'Udseende',
-'skin-header'              => 'Tilgængelige udseender. Du kan tilpasse det enkelte udseende med Cascading Style Sheet (CSS), samt JavaScript.',
 'skin-preview'             => 'Forhåndsvisning',
 'math'                     => 'Matematiske formler',
 'dateformat'               => 'Datoformat',
@@ -1302,7 +1299,6 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'filedelete-success-old'      => '<span class="plainlinks">En gamllem version af \'\'\'[[Media:$1|$1]]\'\'\' fra $2, $3 er blevet slettet.</span>',
 'filedelete-nofile'           => "'''$1''' findes ikke på dette websted.",
 'filedelete-nofile-old'       => "Der findes ikke en version af '''$1''' fra $2, $3.",
-'filedelete-iscurrent'        => 'Du har forsøgt at slette den nyeste version. Gendan en tidligere udgave først.',
 'filedelete-otherreason'      => 'Anden/uddybende begrundelse:',
 'filedelete-reason-otherlist' => 'Anden begrundelse',
 'filedelete-reason-dropdown'  => '*Hyppige sletningsbegrundelser

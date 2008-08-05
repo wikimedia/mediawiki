@@ -460,8 +460,6 @@ $messages = array(
 
 'badaccess'        => 'Ошибка доступа',
 'badaccess-group0' => 'Вы не можете выполнять запрошенное действие.',
-
-
 'badaccess-groups' => 'Запрошенное действие могут выполнять только участники из групп $1.',
 
 'versionrequired'     => 'Требуется MediaWiki версии $1',
@@ -1416,7 +1414,6 @@ PICT # различные
 'filedelete-success-old'      => '<span class="plainlinks">Версия \'\'\'[[Media:$1|$1]]\'\'\' от $3, $2 была удалена.</span>',
 'filedelete-nofile'           => "'''$1''' не существует на этом сайте.",
 'filedelete-nofile-old'       => "Не существует архивной версии '''$1''' с указанными атрибутами.",
-'filedelete-iscurrent'        => 'Вы пытаетесь удалить последнюю версию этого файла. Пожалуйста, верните сначала файл к одной из старых версий.',
 'filedelete-otherreason'      => 'Другая причина:',
 'filedelete-reason-otherlist' => 'Другая причина',
 'filedelete-reason-dropdown'  => '* Распространенные причины удаления

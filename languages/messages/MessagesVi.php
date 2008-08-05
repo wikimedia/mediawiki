@@ -353,8 +353,6 @@ $messages = array(
 
 'badaccess'        => 'Lỗi về quyền truy cập',
 'badaccess-group0' => 'Bạn không được phép thực hiện thao tác này.',
-
-
 'badaccess-groups' => 'Chỉ những thành viên trong các nhóm $1 mới được làm thao tác này.',
 
 'versionrequired'     => 'Cần phiên bản $1 của MediaWiki',
@@ -1285,7 +1283,6 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filedelete-success-old'      => '<span class="plainlinks">Phiên bản của \'\'\'[[Media:$1|$1]]\'\'\' vào lúc $3, $2 đã bị xóa.</span>',
 'filedelete-nofile'           => "'''$1''' không tồn tại trên {{SITENAME}}.",
 'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
-'filedelete-iscurrent'        => 'Bạn đang cố xóa phiên bản mới nhất của tập tin này. Xin hãy lui tập tin về một phiên bản cũ hơn đã.',
 'filedelete-otherreason'      => 'Lý do bổ sung:',
 'filedelete-reason-otherlist' => 'Lý do khác',
 'filedelete-reason-dropdown'  => '*Những lý do xóa thường gặp

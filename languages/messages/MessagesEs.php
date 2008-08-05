@@ -296,8 +296,6 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-
-
 'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',

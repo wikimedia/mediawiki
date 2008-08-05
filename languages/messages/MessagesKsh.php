@@ -337,8 +337,6 @@ Dat es och all op Änglesch:
 
 'badaccess'        => 'Nit jenoch Räächde',
 'badaccess-group0' => 'Do häs nit jenoch Räächde.',
-
-
 'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us eine vun dä Jruppe: $1.',
 
 'versionrequired'     => 'De Version $1 vun MediaWiki Soffwär es nüdich',
@@ -1385,7 +1383,6 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'filedelete-intro-old'        => 'Do schmiiß de Version $4 fum $2 öm $3 Uhr fun dä Datei „[[Media:$1|$1]]“ fott.',
 'filedelete-comment'          => 'Der Jrund för et Fottschmieße:',
 'filedelete-submit'           => 'Fottschmieße',
-'filedelete-iscurrent'        => 'Ih dat De de neuste Version fun dä Datei fottschmieße kanns, wat jrad versoht häs, do mos De ehts ens op en älldere Version zeröck jonn, di aanjezeish wäde soll, söns weet dat nix!',
 'filedelete-otherreason'      => 'Ander Jrund oder Zosätzlich:',
 'filedelete-reason-otherlist' => 'Ne andere Jrund',
 'filedelete-reason-dropdown'  => '* Alljemein Jrönd

@@ -285,8 +285,6 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
-
-
 'badaccess-groups' => 'この処理は $1 のうちいずれかの権限を持った利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
@@ -1127,7 +1125,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' の $2 $3 の版は削除されています。</span>',
 'filedelete-nofile'           => "'''$1''' は{{SITENAME}}上に存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
-'filedelete-iscurrent'        => 'このファイルの最新版を削除しようとしています。直前の版に差し戻してください。',
 'filedelete-otherreason'      => 'その他/理由の付記:',
 'filedelete-reason-otherlist' => 'その他の理由',
 'filedelete-reason-dropdown'  => '*よくある削除理由

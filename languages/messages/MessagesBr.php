@@ -284,8 +284,6 @@ $messages = array(
 
 'badaccess'        => 'Fazi aotre',
 'badaccess-group0' => "N'oc'h ket aotreet da seveniñ ar pezh hoc'h eus goulennet.",
-
-
 'badaccess-groups' => 'Miret eo an ober-mañ evit an dud en unan eus ar strolladoù $1 hepken.',
 
 'versionrequired'     => 'Rekis eo Stumm $1 MediaWiki',
@@ -1172,7 +1170,6 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'filedelete-success-old'      => '<span class="plainlinks">Diverket eo bet stumm \'\'\'[[Media:$1|$1]]\'\'\' eus $3, $2.</span>',
 'filedelete-nofile'           => "N'eus ket eus '''$1''' war {{SITENAME}}.",
 'filedelete-nofile-old'       => "N'eus stumm diellaouet ebet eus '''$1''' gant an dezverkoù lakaet.",
-'filedelete-iscurrent'        => "Emaoc'h o klask diverkañ doare diwezhañ ar restr-mañ. Distroit d'ur stumm koshoc'h da gentañ.",
 'filedelete-otherreason'      => 'Abeg all/ouzhpenn :',
 'filedelete-reason-otherlist' => 'Abeg all',
 'filedelete-reason-dropdown'  => "*Abegoù diverkañ boas

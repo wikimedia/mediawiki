@@ -255,8 +255,6 @@ $messages = array(
 
 'badaccess'        => 'Eror li bi dest Hînan',
 'badaccess-group0' => 'Tu nikanî vê tiştî bikê.',
-
-
 'badaccess-groups' => 'Ev tişta yê tu dixazê bikê bes ji bikarhênerên ra ye, yê bi kêmani di grupê $1 da ne.',
 
 'versionrequired'     => 'Verzîyonê $1 ji MediaWiki pêwîste',
