@@ -2,10 +2,6 @@
 /**
  * @defgroup DifferenceEngine DifferenceEngine
  */
-global $wgExternalDiffEngine;
-if($wgExternalDiffEngine == 'wikidiff3'){
-	require_once( 'Diff.php' );
-}
 
 /**
  * Constant to indicate diff cache compatibility.
@@ -934,6 +930,8 @@ class _DiffEngine {
 
 		if($wgExternalDiffEngine == 'wikidiff3'){
 			// wikidiff3
+			global $IP;
+			require_once( "$IP/includes/Diff.php" );
 			list($this->xchanged, $this->ychanged) = wikidiff3_diff($from_lines, $to_lines, TRUE, 100000);
 		}else{
 			// old diff
