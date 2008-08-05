@@ -6,6 +6,7 @@
  *
  * @author Lin linao
  * @author Poquil
+ * @author Clerc
  */
 
 $fallback = 'es';
@@ -89,6 +90,7 @@ $messages = array(
 'delete'           => 'Ñamümün',
 'protect'          => 'Elulan ñi wiriael',
 'unprotect'        => 'Elun ñi wiriael',
+'talkpage'         => 'Nütramkawe Tüfachi página',
 'talkpagelinktext' => 'Nütramkawe',
 'articlepage'      => 'adkintun artículo',
 'talk'             => 'Nütramkawe',
@@ -130,6 +132,7 @@ $messages = array(
 'badtitle'        => 'Nornongey ta üy',
 
 # Login and logout pages
+'loginpagetitle'     => 'Konün',
 'yourname'           => 'Tami lludüchi üy',
 'yourpassword'       => 'Tami kondungu',
 'login'              => 'Konün',
@@ -146,6 +149,8 @@ $messages = array(
 # Edit pages
 'subject'    => 'Dungu/üy',
 'newarticle' => '(We)',
+'editing'    => 'Wirin $1',
+'yourtext'   => 'Ñi Wiri',
 
 # History pages
 'page_first'   => 'wünen',

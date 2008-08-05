@@ -387,7 +387,7 @@ $messages = array(
 
 'badaccess'        => 'Rettighetsfeil',
 'badaccess-group0' => 'Du har ikke tilgang til å utføre handlingen du prøvde på.',
-'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av $1.',
+'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av brukere i {{PLURAL:$2|gruppa|gruppene}} $1.',
 
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
 'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version|versjonsiden]]',
@@ -1143,14 +1143,13 @@ Sider som også er på din [[Special:Watchlist|overvåkningsliste]] vises i '''f
 'upload_directory_missing'    => 'Oppplastingsmappen ($1) mangler og kunne ikke opprettes av tjeneren.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er ikke skrivbar for tjeneren.',
 'uploaderror'                 => 'Feil under opplasting av fil',
-'uploadtext'                  => "Bruk skjemaet under for å laste opp filer.
+'uploadtext'                  => "Bruk skjemaet nedenfor for å laste opp filer.
 For å se eller søke i eksisterende filer, gå til [[Special:Imagelist|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.jpg<nowiki>]]</nowiki></tt>'''
-*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.png|Alternativ tekst<nowiki>]]</nowiki></tt>'''
-For å lenke direkte til filen, skriv:
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>'''",
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke bildet i opprinnelig form
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenke direkte til filen uten å vise den",
 'upload-permitted'            => 'Tillatte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1',
 'upload-prohibited'           => 'Forbudte filtyper: $1.',
@@ -1485,8 +1484,8 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'listgrouprights-rights'          => 'Rettigheter',
 'listgrouprights-helppage'        => 'Help:Grupperettigheter',
 'listgrouprights-members'         => '(liste over medlemmer)',
-'listgrouprights-addgroup'        => 'Kan legge til gruppene: $1',
-'listgrouprights-removegroup'     => 'Kan fjerne gruppene: $1',
+'listgrouprights-addgroup'        => 'Kan legge til {{PLURAL:$1|gruppa|gruppene}}: $1',
+'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$1|gruppa|gruppene}}: $1',
 'listgrouprights-addgroup-all'    => 'Kan legge til alle grupper',
 'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
 

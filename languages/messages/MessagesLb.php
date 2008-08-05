@@ -354,7 +354,7 @@ $messages = array(
 
 'badaccess'        => 'Net genuch Rechter',
 'badaccess-group0' => 'Dir hutt net déi néideg Rechter fir dës Aktioun duerchzeféieren.',
-'badaccess-groups' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus de Gruppen $1 duerchgefouert ginn.",
+'badaccess-groups' => "D'Aktioun déi dir gewielt hutt, kann nëmme vu Benotzer aus {{PLURAL:$2|der Grupp|enger vun de Gruppen}} $1 duerchgefouert ginn.",
 
 'versionrequired'     => 'Versioun $1 vu MediaWiki gëtt gebraucht',
 'versionrequiredtext' => "D'Versioun $1 vu MediaWiki ass néideg, fir dës Säit ze notzen. Kuckt d'[[Special:Version|Versiounssäit]]",
@@ -1115,7 +1115,7 @@ Säite vun [[Special:Watchlist|ärer Iwwerwaachungslëscht]] si '''fett''' gesch
 'upload_directory_read_only'  => 'De Webserver kann net an den Upload-Repertoire ($1) schreiwen.',
 'uploaderror'                 => 'Feeler bäim Eroplueden',
 'uploadtext'                  => "Benotzt dëse Formulair, fir nei Fichieren eropzelueden.
-Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropgeluedungen a Läschunge fannt dir och an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]].
+Gitt op d'[[Special:Imagelist|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropgeluedungen fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläschte Fichieren am [[Special:Log/delete|Läschlog]].
 
 Fir e '''Bild''' op enger Säit zu benotzen, schreiwt aplaz vum Bild eng vun dëse Formelen:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichier.jpg]]</nowiki></tt>''' fir déi ganz Versioun vum Fichier ze benotzen
