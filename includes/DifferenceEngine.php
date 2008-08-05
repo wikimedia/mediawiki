@@ -2,8 +2,10 @@
 /**
  * @defgroup DifferenceEngine DifferenceEngine
  */
-
-require_once( 'Diff.php' );
+global $wgExternalDiffEngine;
+if($wgExternalDiffEngine == 'wikidiff3'){
+	require_once( 'Diff.php' );
+}
 
 /**
  * Constant to indicate diff cache compatibility.
