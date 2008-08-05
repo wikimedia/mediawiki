@@ -325,7 +325,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 	 	$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
@@ -353,7 +352,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
-		wfDeprecated( __METHOD__ );
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
@@ -377,7 +375,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfDeprecated( __METHOD__ );
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
@@ -428,7 +425,6 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	function makeLinkObj( Title $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
@@ -462,7 +458,6 @@ class Linker {
 	 * @return the a-element
 	 */
 	function makeKnownLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
-		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
@@ -495,7 +490,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeBrokenLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
 		wfProfileIn( __METHOD__ );
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
@@ -542,7 +536,6 @@ class Linker {
 	 *                      the end of the link.
 	 */
 	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
 		if($colour != ''){
 			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
 		} else $style = '';
