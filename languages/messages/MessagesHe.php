@@ -529,9 +529,7 @@ $messages = array(
 
 'badaccess'        => 'שגיאה בהרשאות',
 'badaccess-group0' => 'אינכם מורשים לבצע את הפעולה שביקשתם.',
-'badaccess-group1' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים בקבוצה $1.',
-'badaccess-group2' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים באחת הקבוצות $1.',
-'badaccess-groups' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים באחת הקבוצות $1.',
+'badaccess-groups' => 'הפעולה שביקשתם לבצע מוגבלת למשתמשים ב{{PLURAL:$2|קבוצה|אחת הקבוצות}} $1.',
 
 'versionrequired'     => 'נדרשת גרסה $1 של מדיה־ויקי',
 'versionrequiredtext' => 'גרסה $1 של מדיה־ויקי נדרשת לשימוש בדף זה. למידע נוסף, ראו את [[Special:Version|דף הגרסה]].',
@@ -2635,7 +2633,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ערכו קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => 'ראו את [http://meta.wikimedia.org/wiki/Help:External_editors הוראות ההתקנה] למידע נוסף.',
+'edit-externally-help' => 'ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'הכול',
