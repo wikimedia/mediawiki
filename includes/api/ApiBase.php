@@ -515,10 +515,12 @@ abstract class ApiBase {
 	protected function parseMultiValue($valueName, $value, $allowMultiple, $allowedValues) {
 		if( trim($value) === "" )
 			return array();
-		$sizeLimit = $this->mMainModule->canApiHighLimits() ? 501 : 51;
-		$valuesList = explode('|', $value,$sizeLimit);
-		if( count($valuesList) == $sizeLimit ) {
+		$sizeLimit = $this->mMainModule->canApiHighLimits() ? self::LIMIT_SML2 : self::LIMIT_SML1;
+		$valuesList = explode('|', $value, $sizeLimit + 1);
+		if( count($valuesList) == $sizeLimit + 1 ) {
 			$junk = array_pop($valuesList); // kill last jumbled param
+			// Set a warning too
+			$this->setWarning("Too many values supplied for parameter '$valueName': the limit is $sizeLimit");
 		}
 		if (!$allowMultiple && count($valuesList) != 1) {
 			$possibleValues = is_array($allowedValues) ? "of '" . implode("', '", $allowedValues) . "'" : '';
