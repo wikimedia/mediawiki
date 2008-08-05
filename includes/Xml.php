@@ -41,7 +41,7 @@ class Xml {
 	 * Return null if no attributes given.
 	 * @param $attribs Array of attributes for an XML element
 	 */
-	public static function expandAttributes( $attribs ) {
+	private static function expandAttributes( $attribs ) {
 		$out = '';
 		if( is_null( $attribs ) ) {
 			return null;

@@ -205,24 +205,8 @@ class Linker {
 			$text = $this->linkText( $target );
 		}
 
-		# Compat cruft :(
-		if( in_array( 'broken', $options ) ) {
-			$hookQuery = wfArrayToCGI( $query );
-			$hookUrl = $attribs['href'];
-			$hookAttribs = $attribs;
-			unset( $hookAttribs['href'] );
-			$hookAttribs = Xml::expandAttributes( $hookAttribs );
-			$hookPrefix = $hookInside = $hookTrail = '';
-			wfRunHooks( 'BrokenLink', array( $this, $target, $hookQuery,
-				&$hookUrl, &$hookAttribs, &$hookPrefix, &$text, &$hookInside,
-				&$hookTrail ) );
-			$attribs = Sanitizer::decodeTagAttributes( $hookAttribs );
-			$attribs['href'] = $hookUrl;
-			$text = "$hookPrefix$text$hookInside";
-		}
-
 		$ret = Xml::openElement( 'a', $attribs )
-			. $text . ( isset( $hookTrail ) ? $hookTrail : '' )
+			. $text
 			. Xml::closeElement( 'a' );
 
 		wfProfileOut( __METHOD__ );
