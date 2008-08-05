@@ -1800,8 +1800,6 @@ A click on a column header changes the sorting.',
 'filedelete-success-old'      => '<span class="plainlinks">The version of \'\'\'[[Media:$1|$1]]\'\'\' as of $3, $2 has been deleted.</span>',
 'filedelete-nofile'           => "'''$1''' does not exist on {{SITENAME}}.",
 'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
-'filedelete-iscurrent'        => 'You are attempting to delete the most recent version of this file.
-Please revert to an older version first.',
 'filedelete-otherreason'      => 'Other/additional reason:',
 'filedelete-reason-otherlist' => 'Other reason',
 'filedelete-reason-dropdown'  => '*Common delete reasons
