@@ -334,8 +334,8 @@ $messages = array(
 
 'badaccess'        => 'Nimaš wotpowědne dowolnosće',
 'badaccess-group0' => 'Nimaš wotpowědne dowolnosće za tutu akciju.',
-'badaccess-group1' => 'Tuta akcija da so jenož wot wužiwarjow skupiny $1 wuwjesć.',
-'badaccess-group2' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
+
+
 'badaccess-groups' => 'Tuta akcija da so jenož wot wužiwarjow skupin $1 wuwjesć.',
 
 'versionrequired'     => 'Wersija $1 softwary MediaWiki trěbna',

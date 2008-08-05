@@ -227,8 +227,8 @@ $messages = array(
 
 'badaccess'        => 'Permeission mishanter',
 'badaccess-group0' => 'WARNIN: Ye arnae alloued tae dae whit you hae requestit!',
-'badaccess-group1' => "The action ye hae requestit is limitit tae uisers in the group: ''$1''.",
-'badaccess-group2' => "The action ye hae requestit can limitit tae uisers in ane o the groups: ''$1''.",
+
+
 'badaccess-groups' => "The action ye hae requestit is limitit tae uisers in ane o the groups:  ''$1''.",
 
 'versionrequired'     => 'Version $1 of MediaWiki requirit',

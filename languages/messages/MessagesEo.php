@@ -303,8 +303,8 @@ $messages = array(
 
 'badaccess'        => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
 'badaccess-group0' => 'Vi ne rajtas plenumi la agon, kiun vi petis.',
-'badaccess-group1' => 'La ago, kiun vi petis, estas limigita al uzuloj en la grupo $1.',
-'badaccess-group2' => 'La ago, kiun vi petis, estas limigita al uzuloj en unu el la grupoj $1.',
+
+
 'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en unu el la grupoj $1.',
 
 'versionrequired'     => 'Versio $1 de MediaWiki nepras',

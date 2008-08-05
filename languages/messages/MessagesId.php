@@ -505,8 +505,8 @@ $messages = array(
 
 'badaccess'        => 'Kesalahan hak akses',
 'badaccess-group0' => 'Anda tidak diizinkan untuk melakukan tindakan yang Anda minta.',
-'badaccess-group1' => 'Tindakan yang Anda minta dibatasi untuk pengguna kelompok $1.',
-'badaccess-group2' => 'Tindakan yang Anda minta dibatasi untuk pengguna dalam kelompok $1.',
+
+
 'badaccess-groups' => 'Tindakan yang Anda minta dibatasi untuk pengguna dalam kelompok $1.',
 
 'versionrequired'     => 'Dibutuhkan MediaWiki versi $1',

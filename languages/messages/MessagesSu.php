@@ -255,8 +255,8 @@ $messages = array(
 
 'badaccess'        => 'Kasalahan widi',
 'badaccess-group0' => 'Anjeun teu wenang ngalaksanakeun peta nu dipundut.',
-'badaccess-group1' => 'Peta nu dipundut ngan bisa laksana pikeun pamaké ti gorombolan $1.',
-'badaccess-group2' => 'Peta nu dipundut ngan bisa laksana pikeun pamaké ti salah sahiji gorombolan $1.',
+
+
 'badaccess-groups' => 'Peta nu dipundut ngan bisa laksana pikeun pamaké ti salah sahiji gorombolan $1.',
 
 'versionrequired'     => 'Butuh MediaWiki vérsi $1',

@@ -293,7 +293,7 @@ $messages = array(
 
 'badaccess'        => '子未逮',
 'badaccess-group0' => '子未逮，歉限之。',
-'badaccess-group1' => '子非$1，歉限之',
+
 
 'versionrequired'     => '惠置$1媒維基',
 'versionrequiredtext' => '惠置$1媒維基，見[[Special:Version|版]]。',

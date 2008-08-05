@@ -236,8 +236,8 @@ $messages = array(
 
 'badaccess'        => 'Problema dwar permess',
 'badaccess-group0' => "M'għandhekx id-dritt li tagħmel din l-azzjoni.",
-'badaccess-group1' => "L-Azzjoni li għamilt rikjesta għal hija restretta għal utenti f'grupp $1.",
-'badaccess-group2' => "L-Azzjoni li għamilt rikjesta għal hija restretta għal utenti minn wieħed mill-gruppijiet ta' $1.",
+
+
 'badaccess-groups' => "L-Azzjoni li għamilt rikjesta għal hija restretta għal utenti minn wieħed mill-gruppijiet ta' $1.",
 
 'versionrequired'     => "Hemm bżonn verżjoni $1 ta' MedjaWiki",

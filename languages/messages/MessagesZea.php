@@ -265,8 +265,8 @@ $messages = array(
 
 'badaccess'        => 'Fout in toegangsrechten',
 'badaccess-group0' => 'Jie mag de opgevraegde actie nie zelf uutvoere.',
-'badaccess-group1' => 'De actie die-a je opgevrogen ei is gerizzerveerd vo gebrukers uut de groep van $1.',
-'badaccess-group2' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
+
+
 'badaccess-groups' => 'De actie die-a je opgevroge ei is gerizzerveerd vò gebrukers uut de groepen $1.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',

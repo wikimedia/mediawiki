@@ -252,8 +252,8 @@ $messages = array(
 
 'badaccess'        => 'Neen uträkkende Gjuchte',
 'badaccess-group0' => 'Du hääst nit ju ärfoarderelke Begjuchtigenge foar disse Aktion.',
-'badaccess-group1' => 'Disse Aktion ist bloot muugelk foar Benutsere, do der ju Gruppe „$1“ anheere.',
-'badaccess-group2' => 'Disse Aktion is bloot muugelk foar Benutsere, do der een fon do Gruppen „$1“ anheere.',
+
+
 'badaccess-groups' => 'Disse Aktion is bloot muugelk foar Benutsere, do der een fon do Gruppen „$1“ anheere.',
 
 'versionrequired'     => 'Version $1 fon MediaWiki is nöödich',

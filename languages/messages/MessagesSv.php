@@ -489,8 +489,8 @@ $messages = array(
 
 'badaccess'        => 'Behörighetsfel',
 'badaccess-group0' => 'Du har inte behörighet att utföra den handling du begärt.',
-'badaccess-group1' => 'Den handling du har begärt kan enbart utföras av användare i gruppen $1.',
-'badaccess-group2' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
+
+
 'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
 
 'versionrequired'     => 'Version $1 av MediaWiki krävs',

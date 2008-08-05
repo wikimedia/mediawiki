@@ -265,8 +265,8 @@ $messages = array(
 
 'badaccess'        => 'Aksès ora olèh',
 'badaccess-group0' => 'Panjenengan ora pareng nglakokaké tindhakan sing panjenengan gayuh.',
-'badaccess-group1' => 'Pratingkah sing panjenengan suwun namung bisa kanggo panganggo klompok $1.',
-'badaccess-group2' => 'Pratingkah sing panjenengan suwun diwatesi kanggo panganggo ing klompok $1.',
+
+
 'badaccess-groups' => 'Pratingkah panjenengan diwatesi tumrap panganggo ing klompoké $1.',
 
 'versionrequired'     => 'Dibutuhaké MediaWiki vèrsi $1',

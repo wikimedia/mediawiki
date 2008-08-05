@@ -501,8 +501,8 @@ $messages = array(
 
 'badaccess'        => 'Engedélyezési hiba',
 'badaccess-group0' => 'Ezt a tevékenységet nem végezheted el.',
-'badaccess-group1' => 'Ezt a tevékenységet csak a(z) $1 csoportjába tartozó szerkesztő végezheti el.',
-'badaccess-group2' => 'Ezt a tevékenységet csak a(z) $1 csoportok valamelyikébe tartozó szerkesztő végezheti el.',
+
+
 'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 csoportok valamelyikébe tartozó szerkesztő végezheti el.',
 
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',

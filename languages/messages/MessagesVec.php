@@ -261,8 +261,8 @@ I seguenti colegamenti i xe in lengua inglese:
 
 'badaccess'        => 'Eròr ne i permessi',
 'badaccess-group0' => "No te ghè i permessi necessari par eseguir l'azion richiesta.",
-'badaccess-group1' => 'La funzion richiesta la xe riservà ai utenti che fa parte del grupo $1.',
-'badaccess-group2' => 'La funzion richiesta la xe riservà ai utenti che fa parte dei gruppi $1.',
+
+
 'badaccess-groups' => 'La funzion richiesta la xe riservà ai utenti che fa parte de uno dei seguenti grupi: $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki richiesta',

@@ -479,8 +479,8 @@ $messages = array(
 
 'badaccess'        => 'Gien toestemming',
 'badaccess-group0' => 'Je hemmen gien toestemming um disse actie uut te voeren.',
-'badaccess-group1' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot de groep $1 beheuren.',
-'badaccess-group2' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van groepen $1 beheuren.',
+
+
 'badaccess-groups' => 'Disse actie kan allinnig uut-evoerd wonnen deur gebrukers dee tot een van de groepen $1 beheuren.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is neudig',

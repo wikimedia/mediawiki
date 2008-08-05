@@ -282,8 +282,8 @@ $messages = array(
 
 'badaccess'        => 'Gabim leje',
 'badaccess-group0' => 'Nuk ju lejohet veprimi i kërkuar',
-'badaccess-group1' => 'Ky veprim është i limituar për përdoruesit e grupit $1',
-'badaccess-group2' => 'Veprimi i kërkuar është i limituar për përdoruesit e grupit $1.',
+
+
 'badaccess-groups' => 'Veprimi që kërkuat lejohet vetëm nga përdorues të grupeve $1.',
 
 'versionrequired'     => 'Nevojitet versioni $1 i MediaWiki-it',

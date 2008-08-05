@@ -231,8 +231,8 @@ Li sighenti cullegamenti so in linga ingrese:
 
 'badaccess'        => 'Primmissi no suffizenti',
 'badaccess-group0' => "Nò si diponi di li primmissi nezzessàri pa eseguì l'azioni dumandadda.",
-'badaccess-group1' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a lu gruppu $1.',
-'badaccess-group2' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a li gruppi $1.',
+
+
 'badaccess-groups' => 'La funzioni dumandadda è riseivvadda a li utenti chi apparthènini a unu di li sighenti gruppi: $1.',
 
 'versionrequired'     => 'Versioni $1 di MediaWiki dumandadda',

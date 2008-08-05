@@ -308,8 +308,8 @@ $messages = array(
 
 'badaccess'        => '权限错误',
 'badaccess-group0' => '您刚才的请求不允许执行。',
-'badaccess-group1' => '您刚才的请求只有$1用户组的用户才能使用。',
-'badaccess-group2' => '您刚才的请求只有$1用户组的用户才能使用。',
+
+
 'badaccess-groups' => '您刚才的请求只有$1用户组的用户才能使用。',
 
 'versionrequired'     => '需要MediaWiki $1 版',

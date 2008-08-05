@@ -178,8 +178,8 @@ $messages = array(
 
 'badaccess'        => "No ti g'hæ o permisso",
 'badaccess-group0' => "No ti g'hæ o permisso pe fâ quest'assion.",
-'badaccess-group1' => "L'assion che ti vêu fâ a l'è permissa solo a i ûtenti de ûn di grûppi $1.",
-'badaccess-group2' => "L'assion che ti vêu fâ a l'è permissa solo a i ûtenti de ûn di grûppi $1.",
+
+
 'badaccess-groups' => "L'assion che ti vêu fâ a l'è permissa solo a i ûtenti de ûn di grûppi $1.",
 
 'ok'                      => "D'accòrdio",

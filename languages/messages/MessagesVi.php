@@ -353,8 +353,8 @@ $messages = array(
 
 'badaccess'        => 'Lỗi về quyền truy cập',
 'badaccess-group0' => 'Bạn không được phép thực hiện thao tác này.',
-'badaccess-group1' => 'Chỉ những thành viên trong nhóm $1 mới được làm thao tác này.',
-'badaccess-group2' => 'Chỉ những thành viên trong các nhóm $1 mới được làm thao tác này.',
+
+
 'badaccess-groups' => 'Chỉ những thành viên trong các nhóm $1 mới được làm thao tác này.',
 
 'versionrequired'     => 'Cần phiên bản $1 của MediaWiki',

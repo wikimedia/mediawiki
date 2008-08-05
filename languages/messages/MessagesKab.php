@@ -236,8 +236,8 @@ $messages = array(
 
 'badaccess'        => 'Agul n turagt',
 'badaccess-group0' => 'Ur tettalaseḍ ara ad texedmeḍ tigawt i tseqsiḍ.',
-'badaccess-group1' => 'Tigawt i steqsiḍ, llan ala imseqdacen n adrum n $1 i zemren a t-xedmen.',
-'badaccess-group2' => 'Tigawt i steqsiḍ, llan ala imseqdacen seg yiwen n yiderman n $1 i zemren a t-xedmen.',
+
+
 'badaccess-groups' => 'Tigawt i steqsiḍ, llan ala imseqdacen seg yiwen n yiderman n $1 i zemren a t-xedmen.',
 
 'versionrequired'     => 'Yessefk ad tesɛiḍ tasiwelt $1 n MediaWiki',

@@ -341,8 +341,8 @@ $messages = array(
 
 'badaccess'        => 'Gwall caniatâd',
 'badaccess-group0' => 'Ni chaniateir i chi wneud y weithred y ceisiasoch amdani.',
-'badaccess-group1' => "Dim ond defnyddwyr yng ngrŵp $1 sy'n cael gwneud y weithred y ceisiasoch amdani.",
-'badaccess-group2' => "Dim ond defnyddwyr o blith y grwpiau $1 sy'n cael gwneud y weithred y ceisiasoch amdani.",
+
+
 'badaccess-groups' => "Dim ond defnyddwyr o blith y grwpiau $1 sy'n cael gwneud y weithred y ceisiasoch amdani.",
 
 'versionrequired'     => 'Mae angen fersiwn $1 y meddalwedd MediaWiki',

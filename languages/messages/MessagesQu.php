@@ -258,8 +258,8 @@ $messages = array(
 
 'badaccess'        => 'Saqillay pantasqa',
 'badaccess-group0' => 'Manam saqillasunkichu munasqayta rurayta.',
-'badaccess-group1' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
-'badaccess-group2' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
+
+
 'badaccess-groups' => 'Munasqay ruranaqa kay huñupi kachkaq ruraqkunallatam rurayta saqillan: $1.',
 
 'versionrequired'     => "$1 nisqa MediaWiki llamk'apusqatam muchunki kay p'anqata llamk'achinaykipaq",

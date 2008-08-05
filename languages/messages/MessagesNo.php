@@ -388,8 +388,8 @@ $messages = array(
 
 'badaccess'        => 'Rettighetsfeil',
 'badaccess-group0' => 'Du har ikke tilgang til å utføre handlingen du prøvde på.',
-'badaccess-group1' => 'Handlingen du prøvde å utføre er begrenset til $1.',
-'badaccess-group2' => 'Handlingen du prøvde å utføre kan kun utføres av $1.',
+
+
 'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av $1.',
 
 'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',

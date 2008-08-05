@@ -332,8 +332,8 @@ $messages = array(
 
 'badaccess'        => 'İzin hatası',
 'badaccess-group0' => 'Yapacaq olğan areketiñizni yapmağa aqqıñız yoq.',
-'badaccess-group1' => 'Yapacaq olğan areketiñizni tek $1 gruppasınıñ qullanıcıları yapıp olаlar.',
-'badaccess-group2' => 'Yapacaq olğan areketiñizni tek $1 gruppalarınıñ qullanıcıları yapıp olalar.',
+
+
 'badaccess-groups' => 'Yapacaq olğan areketiñizni tek $1 gruppalarınıñ qullanıcıları yapıp olalar.',
 
 'versionrequired'     => 'MediaWikiniñ $1 versiyası kerek',

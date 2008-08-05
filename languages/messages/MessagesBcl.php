@@ -264,8 +264,8 @@ $messages = array(
 
 'badaccess'        => 'Salang permiso',
 'badaccess-group0' => 'Dai ka tinotogotan na gibohon an aksyon na saimong hinahagad.',
-'badaccess-group1' => 'An aksyon na saimong hinahagad limitado sa mga parágamit sa grupong $1.',
-'badaccess-group2' => 'An aksyon na saimong hinahagad limitado sa mga parágamit sa sarô sa mga grupong $1.',
+
+
 'badaccess-groups' => 'An aksyon na saimong hinahagad limitado sa mga parágamit sa sarô sa mga grupong $1.',
 
 'versionrequired'     => 'Kaipuhan an bersyon $1 kan MediaWiki',

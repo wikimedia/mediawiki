@@ -375,8 +375,8 @@ $messages = array(
 
 'badaccess'        => 'Chyba povolenia',
 'badaccess-group0' => 'Nemáte povolenie na vykonanie požadovanej činnosti.',
-'badaccess-group1' => 'Činnosť, ktorú požadujete môže vykonať iba člen skupiny $1.',
-'badaccess-group2' => 'Činnosť, ktorú požadujete môže vykonať iba člen jednej zo skupín $1.',
+
+
 'badaccess-groups' => 'Činnosť, ktorú požadujete môže vykonať iba člen jednej zo skupín $1.',
 
 'versionrequired'     => 'Požadovaná verzia MediaWiki $1',

@@ -410,8 +410,8 @@ $messages = array(
 
 'badaccess'        => 'Greška u dozvolama',
 'badaccess-group0' => 'Nije vam dozvoljeno da izvršite akciju koju ste pokrenuli.',
-'badaccess-group1' => 'Akcija koju ste pokrenuli je rezerevisana za korisnike u grupi $1.',
-'badaccess-group2' => 'Akcija koju ste pokrenuli je rezervisana za korisnike iz jedne od grupa $1.',
+
+
 'badaccess-groups' => 'Akcija koju ste pokrenuli je rezervisana za korisnike iz jedne od grupa $1.',
 
 'versionrequired'     => 'Verzija $1 MedijaVikija je potrebna',

@@ -271,8 +271,8 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "Nun tienes permisu pa executar l'aición solicitada.",
-'badaccess-group1' => "L'aición solicitada ta llimitada a usuarios del grupu $1.",
-'badaccess-group2' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
+
+
 'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
 
 'versionrequired'     => 'Necesítase la versión $1 de MediaWiki',

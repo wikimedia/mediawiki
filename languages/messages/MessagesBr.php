@@ -284,8 +284,8 @@ $messages = array(
 
 'badaccess'        => 'Fazi aotre',
 'badaccess-group0' => "N'oc'h ket aotreet da seveniñ ar pezh hoc'h eus goulennet.",
-'badaccess-group1' => 'Miret eo an ober-mañ evit an dud er strollad $1 hepken.',
-'badaccess-group2' => 'Miret eo an ober-mañ evit an dud en unan eus ar strolladoù $1 hepken.',
+
+
 'badaccess-groups' => 'Miret eo an ober-mañ evit an dud en unan eus ar strolladoù $1 hepken.',
 
 'versionrequired'     => 'Rekis eo Stumm $1 MediaWiki',

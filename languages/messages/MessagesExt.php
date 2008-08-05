@@ -234,8 +234,8 @@ $messages = array(
 
 'badaccess'        => 'Marru colos tus premisus',
 'badaccess-group0' => 'Nu se te premiti hazel esa ación.',
-'badaccess-group1' => 'Solu los usuárius del grupu $1 puein hazel esa ación.',
-'badaccess-group2' => 'Solu los usuárius los grupus $1 puein hazel esa ación.',
+
+
 'badaccess-groups' => 'Solu los usuárius los grupus $1 puein hazel esa ación.',
 
 'versionrequired'     => 'Es mestel tenel la velsión $1 de MeyaGüiqui',

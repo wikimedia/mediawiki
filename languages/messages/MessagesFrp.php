@@ -291,8 +291,8 @@ $messages = array(
 
 'badaccess'        => 'Èrror de pèrmission',
 'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion que vos demandâd.',
-'badaccess-group1' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de la tropa $1.',
-'badaccess-group2' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de les tropes $1.',
+
+
 'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators de les tropes $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',

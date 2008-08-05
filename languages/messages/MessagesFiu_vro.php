@@ -256,8 +256,8 @@ $messages = array(
 
 'badaccess'        => 'Lubamalda tallitus',
 'badaccess-group0' => 'Sul olõ-i õigust seod tallitust tetäq.',
-'badaccess-group1' => 'Seod tallitust võivaq tetäq õnnõ rühmä $1 pruukjaq.',
-'badaccess-group2' => 'Seod tallitust saavaq tetäq õnnõ rühmi $1 liikmõq.',
+
+
 'badaccess-groups' => 'Seod tallitust saavaq tetäq õnnõ rühmä $1 liikmõq.',
 
 'versionrequired'     => 'Om vaia MediaWiki kujjo $1',

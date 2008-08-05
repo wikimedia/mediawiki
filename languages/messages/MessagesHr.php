@@ -370,8 +370,8 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 
 'badaccess'        => 'Pogreška u ovlaštenjima',
 'badaccess-group0' => 'Nije vam dopušteno izvršiti ovaj zahvat.',
-'badaccess-group1' => 'Ovaj zahvat mogu izvršiti samo suradnici iz grupe $1.',
-'badaccess-group2' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
+
+
 'badaccess-groups' => 'Ovaj zahvat mogu izvršiti samo suradnici iz jedne od grupa $1.',
 
 'versionrequired'     => 'Potrebna inačica $1 MediaWikija',

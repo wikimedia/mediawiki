@@ -346,8 +346,8 @@ $messages = array(
 
 'badaccess'        => 'Pirmessi nun sufficienti',
 'badaccess-group0' => "Nun hai li pirmessi nicissari p'esèquiri l'azzioni addumannata.",
-'badaccess-group1' => "La funzioni addumannata è risirvata a l'utenti ca appartèninu a lu gruppu $1.",
-'badaccess-group2' => "La funzioni addumannata è risirvata a l'utenti di unu dî gruppi $1.",
+
+
 'badaccess-groups' => "La funzioni addumannata è risirvata a l'utenti ca appartèninu a unu dî siquenti gruppi: $1.",
 
 'versionrequired'     => 'È nicissaria la virsioni $1 dû software MediaWiki',

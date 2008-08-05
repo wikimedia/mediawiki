@@ -377,8 +377,8 @@ $messages = array(
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du har ikke de nødvendige rettigheder til denne handling.',
-'badaccess-group1' => 'Denne handling kan kun udføres af brugere, som tilhører gruppen „$1“.',
-'badaccess-group2' => 'Denne handling kan kun udføres af brugere, som tilhører en af grupperne „$1“.',
+
+
 'badaccess-groups' => 'Denne handling kan kun udføres af brugere, som tilhører en af grupperne „$1“.',
 
 'versionrequired'     => 'Kræver version $1 af MediaWiki',

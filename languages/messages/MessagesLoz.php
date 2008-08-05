@@ -208,8 +208,8 @@ $messages = array(
 
 'badaccess'        => 'Bufosi pemiko',
 'badaccess-group0' => 'Zwa eksyon ni sa di sebelu kwa zwa kattegorina. Kyon ni sa vanu.',
-'badaccess-group1' => 'Zwa eksyon sa di sebelu kwa kattegori $1.',
-'badaccess-group2' => 'Zwa eksyon sa di sebelu kwa 1 di kattegorina $1.',
+
+
 'badaccess-groups' => 'Zwa eksyon sa di sebelu kwa 1 di kattegorina $1.',
 
 'versionrequired'     => 'Pane $1 di MediaWiki sa nidyisize',

@@ -353,8 +353,8 @@ $messages = array(
 
 'badaccess'        => 'Permissus erratum',
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
-'badaccess-group1' => 'Actum quod petivisti solum potest agi ab usoribus ex grege $1.',
-'badaccess-group2' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
+
+
 'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
 
 'ok'                      => 'Age',
