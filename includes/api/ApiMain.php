@@ -106,11 +106,15 @@ class ApiMain extends ApiBase {
 	 *                           'params' => array ( $someVarToSubst ) ),
 	 *                          );
 	 */
-	private static $mRights = array( 'writeapi'		=> array(	'msg' => 'Use of the write API' , 
-																'params' => array() ),
-									'apihighlimits'	=> array(	'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). These limits also apply to multivalue parameters.',
-																'params' => array ( ApiMain :: LIMIT_SML2, ApiMain :: LIMIT_BIG2 ) ),
-									);
+	private static $mRights = array('writeapi' => array(
+						'msg' => 'Use of the write API',
+						'params' => array()
+					),
+					'apihighlimits'	=> array(
+						'msg' => 'Use higher limits in API queries (Slow queries: $1 results; Fast queries: $2 results). These limits also apply to multivalue parameters.',
+						'params' => array (ApiMain::LIMIT_SML2, ApiMain::LIMIT_BIG2)
+					)
+	);
 
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
@@ -273,12 +277,11 @@ class ApiMain extends ApiBase {
 			$this->printResult(true);
 		}
 
-		global $wgRequest;
 		if($this->mSquidMaxage == -1)
 		{
 			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
-			$smaxage = $wgRequest->getVal('smaxage', 0);
-			$maxage = $wgRequest->getVal('maxage', 0);
+			$smaxage = $this->mRequest->getVal('smaxage', 0);
+			$maxage = $this->mRequest->getVal('maxage', 0);
 		}
 		else
 			$smaxage = $maxage = $this->mSquidMaxage;
@@ -345,6 +348,9 @@ class ApiMain extends ApiBase {
 			}
 
 			$this->getResult()->reset();
+			// Re-add the id
+			if($this->mRequest->getCheck('requestid'))
+				$this->getResult()->addValue(null, 'requestid', $this->mRequest->getVal('requestid'));
 			$this->getResult()->addValue(null, 'error', $errMessage);
 
 		return $errMessage['code'];
@@ -354,6 +360,9 @@ class ApiMain extends ApiBase {
 	 * Execute the actual module, without any error handling
 	 */
 	protected function executeAction() {
+		// First add the id to the top element
+		if($this->mRequest->getCheck('requestid'))
+			$this->getResult()->addValue(null, 'requestid', $this->mRequest->getVal('requestid'));
 
 		$params = $this->extractRequestParams();
 
@@ -454,6 +463,7 @@ class ApiMain extends ApiBase {
 				ApiBase :: PARAM_TYPE => 'integer',
 				ApiBase :: PARAM_DFLT => 0
 			),
+			'requestid' => null,
 		);
 	}
 
@@ -468,6 +478,7 @@ class ApiMain extends ApiBase {
 			'maxlag' => 'Maximum lag',
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
+			'requestid' => 'Request ID to distinguish requests. This will just be output back to you',
 		);
 	}
 
