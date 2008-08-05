@@ -8,22 +8,16 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('arxiv','http://www.arxiv.org/abs/$1',0),
 ('c2find','http://c2.com/cgi/wiki?FindPage&value=$1',0),
 ('cache','http://www.google.com/search?q=cache:$1',0),
-('codersbase','http://www.codersbase.com/index.php/$1',0), # 2008-02-27: Fatal error
 ('commons','http://commons.wikimedia.org/wiki/$1',0),
 ('corpknowpedia','http://corpknowpedia.org/wiki/index.php/$1',0),
 ('dictionary','http://www.dict.org/bin/Dict?Database=*&Form=Dict1&Strategy=*&Query=$1',0),
 ('disinfopedia','http://www.disinfopedia.org/wiki.phtml?title=$1',0),
 ('docbook','http://wiki.docbook.org/topic/$1',0),
+('doi','http://dx.doi.org/$1',0),
 ('drumcorpswiki','http://www.drumcorpswiki.com/index.php/$1',0),
 ('dwjwiki','http://www.suberic.net/cgi-bin/dwj/wiki.cgi?$1',0),
-('efnetceewiki','http://purl.net/wiki/c/$1',0), # 2008-02-27: does not appear to be working
-('efnetcppwiki','http://purl.net/wiki/cpp/$1',0), # 2008-02-27: does not appear to be working
-('efnetpythonwiki','http://purl.net/wiki/python/$1',0), # 2008-02-27: does not appear to be working
-('efnetxmlwiki','http://purl.net/wiki/xml/$1',0), # 2008-02-27: does not appear to be working
-('eljwiki','http://elj.sourceforge.net/phpwiki/index.php/$1',0), # 2008-02-27: Fatal PhpWiki Error
 ('emacswiki','http://www.emacswiki.org/cgi-bin/wiki.pl?$1',0),
 ('elibre','http://enciclopedia.us.es/index.php/$1',0),
-('eokulturcentro','http://esperanto.toulouse.free.fr/wakka.php?wiki=$1',0), # 2007-02-27: no access to database
 ('foldoc','http://foldoc.org/?$1',0),
 ('foxwiki','http://fox.wikis.com/wc.dll?Wiki~$1',0),
 ('freebsdman','http://www.FreeBSD.org/cgi/man.cgi?apropos=1&query=$1',0),
@@ -31,12 +25,10 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('gentoo-wiki','http://gentoo-wiki.com/$1',0),
 ('google','http://www.google.com/search?q=$1',0),
 ('googlegroups','http://groups.google.com/groups?q=$1',0),
-('gotamac','http://www.got-a-mac.org/$1',0), # 2008-02-27: appears ill maintained; loads of spambots
 ('hammondwiki','http://www.dairiki.org/HammondWiki/$1',0),
 ('hewikisource','http://he.wikisource.org/wiki/$1',1),
 ('hrwiki','http://www.hrwiki.org/index.php/$1',0),
 ('imdb','http://us.imdb.com/Title?$1',0),
-('infosecpedia','http://www.infosecpedia.org/pedia/index.php/$1',0), # 2008-02-27: lot of spambot activity
 ('jargonfile','http://sunir.org/apps/meta.pl?wiki=JargonFile&redirect=$1',0),
 ('jspwiki','http://www.jspwiki.org/wiki/$1',0),
 ('keiki','http://kei.ki/en/$1',0),
@@ -57,7 +49,6 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('oeis','http://www.research.att.com/cgi-bin/access.cgi/as/njas/sequences/eisA.cgi?Anum=$1',0),
 ('openfacts','http://openfacts.berlios.de/index.phtml?title=$1',0),
 ('openwiki','http://openwiki.com/?$1',0),
-('orgpatterns','http://www.bell-labs.com/cgi-user/OrgPatterns/OrgPatterns?$1',0), # 2008-02-27: may not be working. Please double check
 ('patwiki','http://gauss.ffii.org/$1',0), # 2008-02-27: lots of spambots
 ('pmeg','http://www.bertilow.com/pmeg/$1.php',0),
 ('ppr','http://c2.com/cgi/wiki?$1',0),
