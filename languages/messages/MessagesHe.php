@@ -1661,8 +1661,8 @@ PICT # שונות
 'listgrouprights-rights'          => 'הרשאות',
 'listgrouprights-helppage'        => 'Help:הרשאות',
 'listgrouprights-members'         => '(רשימת חברים)',
-'listgrouprights-addgroup'        => 'הרשאה להוספת הקבוצות: $1',
-'listgrouprights-removegroup'     => 'הרשאה להסרת הקבוצות: $1',
+'listgrouprights-addgroup'        => 'הרשאה להוספת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
+'listgrouprights-removegroup'     => 'הרשאה להסרת {{PLURAL:$2|הקבוצה|הקבוצות}}: $1',
 'listgrouprights-addgroup-all'    => 'הרשאה להוספת כל הקבוצות',
 'listgrouprights-removegroup-all' => 'הרשאה להסרת כל הקבוצות',
 
