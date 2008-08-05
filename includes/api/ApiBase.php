@@ -594,8 +594,6 @@ abstract class ApiBase {
 		'protectedpagetext' => array('code' => 'protectedpage', 'info' => "The ``\$1'' right is required to edit this page"),
 		'protect-cantedit' => array('code' => 'cantedit', 'info' => "You can't protect this page because you can't edit it"),
 		'badaccess-group0' => array('code' => 'permissiondenied', 'info' => "Permission denied"), // Generic permission denied message
-		'badaccess-group1' => array('code' => 'permissiondenied', 'info' => "Permission denied"), // Can't use the parameter 'cause it's wikilinked
-		'badaccess-group2' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
 		'badaccess-groups' => array('code' => 'permissiondenied', 'info' => "Permission denied"),
 		'titleprotected' => array('code' => 'protectedtitle', 'info' => "This title has been protected from creation"),
 		'nocreate-loggedin' => array('code' => 'cantcreate', 'info' => "You don't have permission to create new pages"),
