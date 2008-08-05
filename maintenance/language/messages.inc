@@ -240,8 +240,6 @@ $wgMessageStructure = array(
 	'badaccess' => array(
 		'badaccess',
 		'badaccess-group0',
-		'badaccess-group1',
-		'badaccess-group2',
 		'badaccess-groups',
 	),
 	'versionrequired' => array(
