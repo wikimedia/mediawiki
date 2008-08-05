@@ -1137,7 +1137,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'Edit this file uisin an external application',
-'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for mair guidance.',
+'edit-externally-help' => 'See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for mair guidance.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'aa',

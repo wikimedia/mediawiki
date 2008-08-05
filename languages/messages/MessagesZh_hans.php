@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -181,12 +181,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => '$1个分类',
+'pagecategories'                 => '个分类',
 'category_header'                => '"$1"分类中的页面',
 'subcategories'                  => '亚类',
 'category-media-header'          => '"$1"分类中的媒体',
 'category-empty'                 => "''这个分类中尚未包含任何页面或媒体。''",
-'hidden-categories'              => '$1个隐藏分类',
+'hidden-categories'              => '个隐藏分类',
 'hidden-category-category'       => '隐藏分类', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|这个分类中只有以下的亚类。|这个分类中有以下的$1个亚类，共有$2个附分类。}}',
 'category-subcat-count-limited'  => '这个分类中有$1个亚类。',
@@ -1083,10 +1083,10 @@ $2',
 可以进入[[Special:Imagelist|文件上传列表]]，
 上传和删除将在[[Special:Log/upload|上传日志]]中记录。
 
-要在页面中加入文件，使用以下其中一种形式的连接:
-* '''<tt><nowiki>[[{{ns:image}}:file.jpg]]</nowiki></tt>'''去用文件的完整版本
-* '''<tt><nowiki>[[{{ns:image}}:file.png|200px|thumb|left|替换文字]]</nowiki></tt>'''去用一个200像素宽，左面盒上有'替换文字'的描述
-* '''<tt><nowiki>[[{{ns:media}}:file.ogg]]</nowiki></tt>'''去直接连接到文件而不显示文件",
+要在页面中加入文件，使用以下形式的连接:
+'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.jpg]]</nowiki>'''，
+'''<nowiki>[[</nowiki>{{ns:image}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
+'''<nowiki>[[</nowiki>{{ns:media}}</nowiki>:file.ogg]]</nowiki>'''。",
 'upload-permitted'            => '准许的文件类型: $1。',
 'upload-preferred'            => '建议的文件类型: $1。',
 'upload-prohibited'           => '禁止的文件类型: $1。',

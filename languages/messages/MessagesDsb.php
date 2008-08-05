@@ -2408,7 +2408,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 # External editor support
 'edit-externally'      => 'Dataje z eksternym programom wobźěłaś',
-'edit-externally-help' => 'Za dalšne informacije glědaj [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
+'edit-externally-help' => 'Za dalšne informacije glědaj [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšykne',

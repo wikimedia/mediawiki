@@ -683,7 +683,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'ཕྱིའི་གློག་རིམ་ལག་ལེན་འཐབ་ཐོག་ལས་ ཡིག་སྣོད་འདི་ཞུན་དག་འབད།',
-'edit-externally-help' => 'བརྡ་དོན་ཁ་གསལ་གྱི་དོན་ལུ་ [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] ལུ་ལྟ།',
+'edit-externally-help' => 'བརྡ་དོན་ཁ་གསལ་གྱི་དོན་ལུ་ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ལུ་ལྟ།',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ཆ་མཉམ།',

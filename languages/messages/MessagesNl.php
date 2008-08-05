@@ -282,7 +282,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Verwijzingen naar lege pagina’s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen uitvullen',
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
-'tog-extendwatchlist'         => 'Uitgebreide volglijst',
+'tog-extendwatchlist'         => 'Uitgebreide volglijst gebruiken om alle toepasselijke wijzigingen te bekijken',
 'tog-usenewrc'                => 'Uitgebreide Recente Wijzigingen-pagina gebruiken (vereist JavaScript)',
 'tog-numberheadings'          => 'Koppen automatisch nummeren',
 'tog-showtoolbar'             => 'Bewerkingswerkbalk weergeven (vereist JavaScript)',
@@ -503,7 +503,7 @@ $messages = array(
 
 'badaccess'        => 'Geen toestemming',
 'badaccess-group0' => 'U hebt geen rechten om de gevraagde handeling uit te voeren.',
-'badaccess-groups' => 'De gevraagde handeling is voorbehouden aan gebruikers in een van de groepen $1.',
+'badaccess-groups' => 'De gevraagde handeling is voorbehouden aan gebruikers in {{PLURAL:$2|de groep $1|een van de volgende groepen: $1}}.',
 
 'versionrequired'     => 'Versie $1 van MediaWiki is vereist',
 'versionrequiredtext' => 'Versie $1 van MediaWiki is vereist om deze pagina te gebruiken. Meer info is beschikbaar op de pagina [[Special:Version|softwareversie]].',
@@ -1111,7 +1111,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'qbsettings-floatingright' => 'Rechts zwevend',
 'changepassword'           => 'Wachtwoord wijzigen',
 'skin'                     => 'Vormgeving',
-'skin-preview'             => 'Voorvertoning',
+'skin-preview'             => 'Voorbeeld',
 'math'                     => 'Formules',
 'dateformat'               => 'Datumopmaak',
 'datedefault'              => 'Geen voorkeur',
@@ -1313,9 +1313,10 @@ om bestanden te uploaden.',
 'uploaderror'                 => 'Uploadfout',
 'uploadtext'                  => "Gebruik het onderstaande formulier om bestanden te uploaden.
 Om eerder toegevoegde bestanden te bekijken of te zoeken kunt u naar de [[Special:Imagelist|bestandslijst]] gaan.
-Uploads en verwijderingen worden bijgehouden in het [[Special:Log/upload|uploadlogboek]].
+Uploads en bestanden die na verwijdering opnieuw worden toegevoegd zijn na te zien in het [[Special:Log/upload|uploadlogboek]].
+Verwijderde bestanden worden bijgehouden in het [[Special:Log/delete|verwijderingslogboek]].
 
-Om het bestand in te voegen in een pagina kunt u een van de volgende codes gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
+Om het bestand in te voegen in een pagina kunt u een van de volgende vormen gebruiken, al naar gelang het bestandsformaat dat van toepassing is:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>''' om de volledige versie van het bestand te gebruiken
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.png|200px|thumb|left|alternatieve tekst]]</nowiki>''' om een 200-pixel brede afbeelding links weer te geven met een rand en met \"alternatieve tekst\" als beschrijving
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestand.ogg]]</nowiki>''' om gewoon naar het bestand te verwijzen zonder het weer te geven
@@ -1675,8 +1676,8 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'listgrouprights-rights'          => 'Rechten',
 'listgrouprights-helppage'        => 'Help:Gebruikersrechten',
 'listgrouprights-members'         => '(ledenlijst)',
-'listgrouprights-addgroup'        => 'Kan deze groepen toevoegen aan gebruikers: $1',
-'listgrouprights-removegroup'     => 'Kan gebruikers uit deze groepen verwijderen: $1',
+'listgrouprights-addgroup'        => 'Kan deze {{PLURAL:$2|groep|groepen}} toevoegen aan gebruikers: $1',
+'listgrouprights-removegroup'     => 'Kan gebruikers uit deze {{PLURAL:$2|groep|groepen}} verwijderen: $1',
 'listgrouprights-addgroup-all'    => 'Kan alle groepen toevoegen aan gebruikers',
 'listgrouprights-removegroup-all' => 'Kan gebruikers uit alle groepen verwijderen',
 
@@ -1915,7 +1916,7 @@ $1',
 'blanknamespace' => '(Hoofdnaamruimte)',
 
 # Contributions
-'contributions' => 'Bijdragen gebruiker',
+'contributions' => 'Gebruikersbijdragen',
 'mycontris'     => 'Mijn bijdragen',
 'contribsub2'   => 'Voor $1 ($2)',
 'nocontribs'    => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',

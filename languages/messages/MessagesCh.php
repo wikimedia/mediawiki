@@ -1114,7 +1114,7 @@ Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påh
 
 # External editor support
 'edit-externally'      => 'Tulaika i atkibu yan un aplikasion sanhiyong',
-'edit-externally-help' => 'Hånao para [http://meta.wikimedia.org/wiki/Help:External_editors i plantan chinachalani] para mas infotmasion.',
+'edit-externally-help' => 'Hånao para [http://www.mediawiki.org/wiki/Manual:External_editors i plantan chinachalani] para mas infotmasion.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todu',

@@ -1931,7 +1931,7 @@ $NEWPAGE
 
 # External editor support
 'edit-externally'      => 'Уредете ја оваа датотека со надворешна апликација',
-'edit-externally-help' => 'Видете [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] за повеќе информации.',
+'edit-externally-help' => 'Видете [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] за повеќе информации.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'сите',

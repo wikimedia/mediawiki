@@ -1981,7 +1981,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式來編輯箇隻檔案',
-'edit-externally-help' => '請參看[http://meta.wikimedia.org/wiki/Help:External_editors 設置步驟]瞭解別嗰內容。',
+'edit-externally-help' => '請參看[http://www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',

@@ -10,9 +10,9 @@
  * @author OsamaK
  * @author Gharbeia
  * @author Khaledhosny
- * @author Agurzil
- * @author Mimouni
  * @author ترجمان05
+ * @author Mimouni
+ * @author Agurzil
  * @author Tarawneh
  * @author Chaos
  * @author לערי ריינהארט
@@ -2837,7 +2837,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => 'انظر [http://meta.wikimedia.org/wiki/Help:External_editors تعليمات الإعداد] لمزيد من المعلومات.',
+'edit-externally-help' => 'انظر [http://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',

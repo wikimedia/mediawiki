@@ -1432,7 +1432,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Beddel afaylu-yagi s usnas aberrani.',
-'edit-externally-help' => 'Ẓer [http://meta.wikimedia.org/wiki/Help:External_editors taknut] iwakken ad tessneḍ kter.',
+'edit-externally-help' => 'Ẓer [http://www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'akk',

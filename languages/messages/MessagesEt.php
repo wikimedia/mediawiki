@@ -5,7 +5,6 @@
  * @file
  *
  * @author WikedKentaur
- * @author M.M.S.
  * @author לערי ריינהארט
  * @author Võrok
  */
@@ -1294,7 +1293,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 
 # External editor support
 'edit-externally'      => 'Töötle faili välise programmiga',
-'edit-externally-help' => 'Lisainfot loe leheküljelt [http://meta.wikimedia.org/wiki/Help:External_editors meta:väliste redaktorite kasutamine]',
+'edit-externally-help' => 'Lisainfot loe leheküljelt [http://www.mediawiki.org/wiki/Manual:External_editors meta:väliste redaktorite kasutamine]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',

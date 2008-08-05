@@ -2058,7 +2058,7 @@ Të tjerat do të fshihen.
 
 # External editor support
 'edit-externally'      => 'Ndryshoni këtë skedë me një mjet të jashtëm',
-'edit-externally-help' => 'Shikoni [http://meta.wikimedia.org/wiki/Help:External_editors udhëzimet e instalimit] për më shumë informacion.',
+'edit-externally-help' => 'Shikoni [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për më shumë informacion.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'të gjitha',

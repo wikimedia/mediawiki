@@ -393,6 +393,7 @@ Xiquimpiya motlahtōl.',
 'last'                => 'xōcoyōc',
 'page_first'          => 'achto',
 'page_last'           => 'xōcoyōc',
+'history-search'      => 'Tlatēmōz īpan tlahcuilōlloh',
 'deletedrev'          => '[ōmopolo]',
 'histfirst'           => 'Achto',
 'histlast'            => 'Yancuīc',
@@ -400,9 +401,10 @@ Xiquimpiya motlahtōl.',
 'historyempty'        => '(iztāc)',
 
 # Revision feed
-'history-feed-title'       => 'Tlachiyaliztli tlahcuilōlloh',
-'history-feed-description' => 'Tlachiyaliztli tlahcuilōlloh inīn zāzaniltechcopa huiquipan',
-'history-feed-empty'       => 'In zāzanilli tiquiēlēhuia ahmo ia.
+'history-feed-title'          => 'Tlachiyaliztli tlahcuilōlloh',
+'history-feed-description'    => 'Tlachiyaliztli tlahcuilōlloh inīn zāzaniltechcopa huiquipan',
+'history-feed-item-nocomment' => '$1 īpan $2', # user at time
+'history-feed-empty'          => 'In zāzanilli tiquiēlēhuia ahmo ia.
 Hueliz ōmopolo huiqui nozo ōmozacac.
 [[Special:Search|Xitēmoa huiquipan]] yancuīc huēyi zāzaniltin.',
 
@@ -524,6 +526,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'right-userrights-interwiki' => 'Tiquimpatlāz tlatequitiltilīlli huelītiliztli occequīntīn huiquipan',
 
 # User rights log
+'rightslog'  => 'Tlatequitiltilīlli huelītiliztli tlahcuilōlloh',
 'rightsnone' => 'ahtlein',
 
 # Recent changes
@@ -546,6 +549,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'newpageletter'     => 'Y',
 'boteditletter'     => 'T',
 'rc_categories_any' => 'Zāzo',
+'newsectionsummary' => 'Yancuīc tlahtōltzintli: /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Tlapatlaliztli tzonhuilizpan',
@@ -583,9 +587,10 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'upload_source_file' => ' (cē tlahcuilōlli mochīuhpōhualhuazco)',
 
 # Special:Imagelist
-'imgfile'        => 'īxiptli',
-'imagelist_name' => 'Tōcāitl',
-'imagelist_user' => 'Tlatequitiltilīlli',
+'imagelist_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
+'imgfile'              => 'īxiptli',
+'imagelist_name'       => 'Tōcāitl',
+'imagelist_user'       => 'Tlatequitiltilīlli',
 
 # Image description page
 'filehist'                       => 'Tlahcuilōlli tlahcuilōlloh',
@@ -801,15 +806,17 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 # Contributions
 'contributions' => 'Ītlahcuilōl',
 'mycontris'     => 'Notlahcuilōl',
+'contribsub2'   => '$1 ($2)',
 'uctop'         => ' (ahco)',
 'month'         => 'Īhuīcpa mētztli (auh achtopa):',
 'year'          => 'Xiuhhuīcpa (auh achtopa):',
 
-'sp-contributions-newbies'  => 'Tiquinttāz zan yancuīc tlatequitiltilīlli īntlapatlaliz',
-'sp-contributions-blocklog' => 'Tlatzacuiliztli tlahcuilōlloh',
-'sp-contributions-search'   => 'Tiquintlatēmōz tlapatlaliztli',
-'sp-contributions-username' => 'IP nozo tlatequitiltilīlli ītōcā:',
-'sp-contributions-submit'   => 'Tlatēmōz',
+'sp-contributions-newbies'     => 'Tiquinttāz zan yancuīc tlatequitiltilīlli īntlapatlaliz',
+'sp-contributions-newbies-sub' => 'Ic yancuīc',
+'sp-contributions-blocklog'    => 'Tlatzacuiliztli tlahcuilōlloh',
+'sp-contributions-search'      => 'Tiquintlatēmōz tlapatlaliztli',
+'sp-contributions-username'    => 'IP nozo tlatequitiltilīlli ītōcā:',
+'sp-contributions-submit'      => 'Tlatēmōz',
 
 # What links here
 'whatlinkshere'            => 'In tlein quitzonhuilia nicān',

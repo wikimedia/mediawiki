@@ -616,7 +616,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # External editor support
 'edit-externally'      => 'Bu faylni tashqi dasturiy ilovalar yordamida tahrirla',
-'edit-externally-help' => "Batafsil ma'lumotlar uchun [http://meta.wikimedia.org/wiki/Help:External_editors bu yerga] qarang.",
+'edit-externally-help' => "Batafsil ma'lumotlar uchun [http://www.mediawiki.org/wiki/Manual:External_editors bu yerga] qarang.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Barchasi',

@@ -1505,7 +1505,7 @@ est raptiti. Les ôtes seront catchîs.
 
 # External editor support
 'edit-externally'      => "Candjî ç' fitchî ci avou on dfoûtrin programe",
-'edit-externally-help' => "Loukîz les [http://meta.wikimedia.org/wiki/Help:External_editors instruccions d' apontiaedje] po pus di racsegnes.",
+'edit-externally-help' => "Loukîz les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions d' apontiaedje] po pus di racsegnes.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totafwait',

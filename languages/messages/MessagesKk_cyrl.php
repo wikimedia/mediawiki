@@ -2766,7 +2766,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бұл файлды шеттік қондырма арқылы өңдеу',
-'edit-externally-help' => 'Көбірек ақпарат үшін [http://meta.wikimedia.org/wiki/Help:External_editors орнату нұсқамаларын] қараңыз.',
+'edit-externally-help' => 'Көбірек ақпарат үшін [http://www.mediawiki.org/wiki/Manual:External_editors орнату нұсқамаларын] қараңыз.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'барлығын',

@@ -2503,7 +2503,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Измените овај фајл користећи спољашњу апликацију',
-'edit-externally-help' => 'Погледајте [http://meta.wikimedia.org/wiki/Help:External_editors упутство за подешавање] за више информација.',
+'edit-externally-help' => 'Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'све',

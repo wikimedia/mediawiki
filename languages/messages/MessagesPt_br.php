@@ -2440,7 +2440,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 
 # External editor support
 'edit-externally'      => 'Editar este arquivo utilizando uma aplicação externa',
-'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'todas',

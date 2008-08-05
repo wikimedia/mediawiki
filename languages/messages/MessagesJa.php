@@ -683,6 +683,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'page_first'          => '先頭',
 'page_last'           => '末尾',
 'histlegend'          => '凡例:（最新版）= 最新版との比較、（前の版）= 直前の版との比較、<strong>{{int:minoreditletter}}</strong> = 細部の編集',
+'history-search'      => '履歴の検索',
 'deletedrev'          => '[削除済み]',
 'histfirst'           => '最古',
 'histlast'            => '最新',
@@ -2242,7 +2243,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '外部アプリケーションを使ってこのファイルを編集する',
-'edit-externally-help' => '詳しい情報は[http://meta.wikimedia.org/wiki/Help:External_editors 外部エディタに関する説明（英語）]をご覧ください。',
+'edit-externally-help' => '詳しい情報は[http://www.mediawiki.org/wiki/Manual:External_editors 外部エディタに関する説明（英語）]をご覧ください。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'すべて',

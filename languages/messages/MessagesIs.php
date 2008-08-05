@@ -12,7 +12,6 @@
  * @author Friðrik Bragi Dýrfjörð
  * @author Krun
  * @author Cessator
- * @author M.M.S.
  */
 
 $skinNames = array(
@@ -1942,7 +1941,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 
 # External editor support
 'edit-externally'      => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
-'edit-externally-help' => 'Sjá [http://meta.wikimedia.org/wiki/Help:External_editors leiðbeiningar] fyrir meiri upplýsingar.',
+'edit-externally-help' => 'Sjá [http://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'allt',
@@ -2111,5 +2110,8 @@ $1',
 'specialpages-group-media'       => 'Miðilsskrár og innhleðslur',
 'specialpages-group-users'       => 'Notendur og réttindi',
 'specialpages-group-highuse'     => 'Mest notaðar síður',
+
+# Special:Blankpage
+'blankpage' => 'Tóm síða',
 
 );

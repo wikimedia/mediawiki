@@ -1973,7 +1973,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Toimõndaq taad teedüstüt välidse programmiga',
-'edit-externally-help' => 'Lisateedüst: [http://meta.wikimedia.org/wiki/Help:External_editors kaeq siist].',
+'edit-externally-help' => 'Lisateedüst: [http://www.mediawiki.org/wiki/Manual:External_editors kaeq siist].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',

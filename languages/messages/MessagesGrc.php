@@ -1269,7 +1269,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Μεταγράφειν ταῦτο τὸ ἀρχεῖον χρωμένοι μίαν ἐξώτερην ἐφαρμογήν.',
-'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [http://meta.wikimedia.org/wiki/Help:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] λέξε.',
+'edit-externally-help' => 'Εἰ πλείοντα βούλει μαθεῖν, [http://www.mediawiki.org/wiki/Manual:External_editors τὰς περὶ τοῦ σχῆματος διδασκαλίας] λέξε.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Πᾶσαι',

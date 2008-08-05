@@ -505,7 +505,7 @@ $messages = array(
 
 'badaccess'        => 'Kesalahan hak akses',
 'badaccess-group0' => 'Anda tidak diizinkan untuk melakukan tindakan yang Anda minta.',
-'badaccess-groups' => 'Tindakan yang Anda minta dibatasi untuk pengguna dalam kelompok $1.',
+'badaccess-groups' => 'Tindakan yang Anda minta dibatasi untuk pengguna dalam {{PLURAL:$2|kelompok|salah satu dari kelompok}}: $1.',
 
 'versionrequired'     => 'Dibutuhkan MediaWiki versi $1',
 'versionrequiredtext' => 'MediaWiki versi $1 dibutuhkan untuk menggunakan halaman ini. Lihat [[Special:Version|halaman versi]]',
@@ -2503,7 +2503,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 # External editor support
 'edit-externally'      => 'Sunting berkas ini dengan aplikasi luar',
-'edit-externally-help' => 'Lihat [http://meta.wikimedia.org/wiki/Help:External_editors instruksi pengaturan] untuk informasi lebih lanjut.',
+'edit-externally-help' => 'Lihat [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuk informasi lebih lanjut.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'semua',

@@ -1767,7 +1767,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 
 # External editor support
 'edit-externally'      => 'Editen daytoy a file babaen ti akinruar nga aplikasion',
-'edit-externally-help' => 'Kitaen ti [http://meta.wikimedia.org/wiki/Help:External_editors instruksion iti panangikabil] para iti ad-adu pay nga informasion.',
+'edit-externally-help' => 'Kitaen ti [http://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay nga informasion.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'amin',

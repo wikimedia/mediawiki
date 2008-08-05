@@ -1938,7 +1938,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 
 # External editor support
 'edit-externally'      => 'Dosya üzerinde bilgisayarınızda bulunan uygulamalar ile değişiklikler yapın',
-'edit-externally-help' => 'Daha fazla bilgi için metadaki [http://meta.wikimedia.org/wiki/Help:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz.',
+'edit-externally-help' => 'Daha fazla bilgi için metadaki [http://www.mediawiki.org/wiki/Manual:External_editors dış uygulama ayarları] (İngilizce) sayfasına bakabilirsiniz.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'hepsi',

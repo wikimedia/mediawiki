@@ -2269,7 +2269,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 
 # External editor support
 'edit-externally'      => 'Kemmañ ar restr-mañ dre un arload diavaez',
-'edit-externally-help' => "Gwelet skoazell an [http://meta.wikimedia.org/wiki/Help:External_editors arloadoù diavaez] a-benn gouzout hiroc'h.",
+'edit-externally-help' => "Gwelet skoazell an [http://www.mediawiki.org/wiki/Manual:External_editors arloadoù diavaez] a-benn gouzout hiroc'h.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'an holl',

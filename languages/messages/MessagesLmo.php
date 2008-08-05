@@ -510,7 +510,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 
 # External editor support
 'edit-externally'      => 'Redatá chest archivi cunt un prugramari da fö',
-'edit-externally-help' => 'Vidé i [http://meta.wikimedia.org/wiki/Help:External_editors istrüzziún] pər vech püssè infurmazziún (in Inglees).',
+'edit-externally-help' => 'Vidé i [http://www.mediawiki.org/wiki/Manual:External_editors istrüzziún] pər vech püssè infurmazziún (in Inglees).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tücc',

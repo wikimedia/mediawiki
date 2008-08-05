@@ -262,7 +262,7 @@ $messages = array(
 
 'badaccess'        => 'Error de permission',
 'badaccess-group0' => 'Tu non ha le permission de executar le action que tu ha requestate.',
-'badaccess-groups' => 'Le action que tu ha requestate es limitate al usatores in un del gruppos $1.',
+'badaccess-groups' => 'Le action que tu ha requestate es limitate al usatores in {{PLURAL:$2|le gruppo|un del gruppos}}: $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki requirite',
 'versionrequiredtext' => 'Le version $1 de MediaWiki es requirite pro usar iste pagina. Vide [[Special:Version|le pagina de version]].',
@@ -413,7 +413,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'loginproblem'               => '<b>Un problema occureva con tu session.</b><br />Per favor reprova!',
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
-'loginprompt'                => 'Tu debe haber activate le cookies pro poter [[Special:Userlogin|identificar te a {{SITENAME}}]].',
+'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',
 'userlogin'                  => 'Aperir session / crear conto',
 'logout'                     => 'Clauder session',
 'userlogout'                 => 'Clauder session',
@@ -583,7 +583,7 @@ Per favor include iste ID in omne correspondentia.',
 'blockednoreason'                  => 'nulle ration date',
 'blockedoriginalsource'            => "Le codice-fonte de '''$1''' se monstra infra:",
 'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
-'whitelistedittitle'               => '[[Special:Userlogin|Identification requirite]] pro modificar',
+'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
 'confirmedittitle'                 => 'Confirmation del adresse de e-mail es requirite pro poter modificar',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
@@ -701,7 +701,7 @@ Iste parametros ha essite omittite.',
 'undo-success' => 'Le modification es reversibile. Per favor controla le comparation infra pro verificar que tu vole facer isto, e alora immagazina le modificationes infra pro completar le reversion del modification.',
 'undo-failure' => 'Le modification non poteva esser revertite a causa de conflicto con modificationes intermedie.',
 'undo-norev'   => 'Impossibile reverter le modification proque illo non existe o esseva delite.',
-'undo-summary' => 'Reverte le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary' => 'Reverte le revision $1 per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non pote crear conto',
@@ -729,6 +729,7 @@ Verifica le adresse URL que tu ha usate pro acceder a iste pagina.',
 'histlegend'          => 'Pro detaliar le differentias inter duo versiones: marca lor circulos correspondente, e preme <code>Enter</code> o clicca le button in basso.<br />
 Legenda: (actu) = comparar con le version actual,
 (prec) = comparar con le version precedente, M = modification minor.',
+'history-search'      => 'Cercar in historia',
 'deletedrev'          => '[delite]',
 'histfirst'           => 'Prime',
 'histlast'            => 'Ultime',
@@ -1592,10 +1593,8 @@ Reactiones e ulterior assistentia:
 'delete-confirm'              => 'Deler "$1"',
 'delete-legend'               => 'Deler',
 'historywarning'              => 'Attention: Le pagina que tu va deler ha un historia:',
-'confirmdeletetext'           => 'Tu es a puncto de eliminar permanentemente un pagina
-o imagine del base de datos, conjunctemente con tote su chronologia de versiones.
-Per favor, confirma que, si tu intende facer lo, tu comprende le consequentias,
-e tu lo face de accordo con [[{{MediaWiki:Policy-url}}]].',
+'confirmdeletetext'           => 'Tu va deler un pagina con tote su historia.
+Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'              => 'Action complite',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
@@ -1693,10 +1692,10 @@ pote esser restaurate. Le archivo pote esser evacuate periodicamente.',
 'undeleteextrahelp'            => "Pro restaurar le pagina integre, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
 Pro executar un restauration selective, marca le quadratos correspondente al revisiones pro restaurar, e clicca '''''Restaurar'''''. Con le button '''''Reinitiar''''' tu pote rader le campo de commento e tote le quadratos.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
-'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al chronologia.
-Si un nove pagina con le mesme nomine ha essite create post le elimination, le revisiones
-restaurate apparera in le chronologia anterior, e le revision currente del pagina in vigor
-non essera automaticamente substituite.',
+'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al historia.
+Si un nove pagina con le mesme nomine ha essite create post le deletion, le revisiones
+restaurate apparera in le historia anterior.
+Nota etiam que le restrictiones super revisiones de files es perdite al tempore de restauration.',
 'undeleterevdel'               => 'Le restauration non essera executate si illo resultara in le deletion partial del revision le plus recente del pagina o del file.
 In tal casos, tu debe dismarcar o revelar le revision delite le plus recente.',
 'undeletehistorynoadmin'       => 'Iste pagina ha essite delite.
@@ -2486,7 +2485,7 @@ Le alteres essera initialmente celate.
 
 # External editor support
 'edit-externally'      => 'Modificar iste file con un programma externe',
-'edit-externally-help' => 'Vide le [http://meta.wikimedia.org/wiki/Help:External_editors instructiones de configuration] pro ulterior informationes.',
+'edit-externally-help' => 'Vide le [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de configuration] pro ulterior informationes.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',

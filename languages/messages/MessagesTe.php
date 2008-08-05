@@ -2321,7 +2321,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
-'edit-externally-help' => 'మరింత సమాచారం కొరకు [http://meta.wikimedia.org/wiki/Help:External_editors సెటప్‌ సూచనలు] చూడండి.',
+'edit-externally-help' => 'మరింత సమాచారం కొరకు [http://www.mediawiki.org/wiki/Manual:External_editors సెటప్‌ సూచనలు] చూడండి.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'అన్నీ',

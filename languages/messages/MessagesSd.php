@@ -813,7 +813,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # External editor support
 'edit-externally'      => 'هيءُ فائيل ڪنهن خارجي منتقڪريءَ سان سنواريو',
-'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://meta.wikimedia.org/wiki/Help:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
+'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://www.mediawiki.org/wiki/Manual:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'سڀ',

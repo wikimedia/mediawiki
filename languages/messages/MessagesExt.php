@@ -5,7 +5,6 @@
  * @file
  *
  * @author Better
- * @author M.M.S.
  */
 
 $messages = array(
@@ -2102,7 +2101,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 # External editor support
 'edit-externally'      => 'Eital esti archivu gastandu una apricación esterna',
-'edit-externally-help' => 'Pa mas enhormación, lei las [http://meta.wikimedia.org/wiki/Help:External_editors istrucionis de configuración] (en ingrés).',
+'edit-externally-help' => 'Pa mas enhormación, lei las [http://www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tó',

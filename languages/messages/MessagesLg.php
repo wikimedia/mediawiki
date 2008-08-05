@@ -541,7 +541,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 # External editor support
 'edit-externally'      => 'Fayiro eno gikolereko mu pulogulamu endala',
-'edit-externally-help' => '[http://meta.wikimedia.org/wiki/Help:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
+'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'Gonna',

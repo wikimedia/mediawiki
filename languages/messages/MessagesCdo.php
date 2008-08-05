@@ -831,7 +831,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 
 # External editor support
 'edit-externally'      => 'Sāi nguôi-buô tiàng-sê̤ṳ piĕng-cék ciā ùng-giông',
-'edit-externally-help' => 'Chăng-kō̤ [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] liēu-gāi gáing sâ̤ séng-sék.',
+'edit-externally-help' => 'Chăng-kō̤ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] liēu-gāi gáing sâ̤ séng-sék.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sū-iū',

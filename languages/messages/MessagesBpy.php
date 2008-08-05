@@ -884,7 +884,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
-'edit-externally-help' => 'আরাকউ হারপানির কা [http://meta.wikimedia.org/wiki/Help:External_editors সেটাপর বারে পৌ] হানি চা।',
+'edit-externally-help' => 'আরাকউ হারপানির কা [http://www.mediawiki.org/wiki/Manual:External_editors সেটাপর বারে পৌ] হানি চা।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'হাব্বি',

@@ -2373,7 +2373,7 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 
 # External editor support
 'edit-externally'      => 'Atverti išoriniame redaktoriuje',
-'edit-externally-help' => 'Norėdami gauti daugiau informacijos, žiūrėkite [http://meta.wikimedia.org/wiki/Help:External_editors diegimo instrukcijas].',
+'edit-externally-help' => 'Norėdami gauti daugiau informacijos, žiūrėkite [http://www.mediawiki.org/wiki/Manual:External_editors diegimo instrukcijas].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'visos',

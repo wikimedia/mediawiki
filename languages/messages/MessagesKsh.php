@@ -337,7 +337,7 @@ Dat es och all op Änglesch:
 
 'badaccess'        => 'Nit jenoch Räächde',
 'badaccess-group0' => 'Do häs nit jenoch Räächde.',
-'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us eine vun dä Jruppe: $1.',
+'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us {{PLURAL:$2|dä Jupp „$1“.|eine vun dä Jruppe: $1.|jaa keine Jrupp.}}',
 
 'versionrequired'     => 'De Version $1 vun MediaWiki Soffwär es nüdich',
 'versionrequiredtext' => 'De Version $1 vun MediaWiki Soffwär es nüdich, öm die Sigg hee bruche ze künne. Süch op [[Special:Version|de Versionssigg]], wat mer hee för ene Soffwärstand han.',
@@ -931,7 +931,19 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'suppressionlogtext' => 'Hee noh kütt et Logboch fum Versteiche, woh Versione fun Sigge, Zosammefassunge, Quelle, Metmaachername un Metmaacher-Sperre ze fenge sin, di fun de Oure vun de Öffentleschkeit, un och fun de Wiki-Köbesse verstoche woodte, udder widder zeröck op nommaal jebraat woodte.',
 
 # History merging
-'mergehistory' => 'Versione fun Sigge zosamme schmiiße',
+'mergehistory'         => 'Versione fun Sigge zosamme schmiiße',
+'mergehistory-header'  => 'Met hee dä Sündersigge kanns Du de Versione fun en Urshprongssigg met de Versione fun en neuer Zielsigg zosamme läje. Donn drop aade, dat der Zosammehang fun dä Versione am Engk reschtesch es.',
+'mergehistory-box'     => 'Versione fun zwei Sigge zosamme läje',
+'mergehistory-from'    => 'Ursprongssigg:',
+'mergehistory-into'    => 'Zielsigg:',
+'mergehistory-list'    => 'Versione, di zosamme jelaat wäde künne',
+'mergehistory-merge'   => 'De Versione onge künne fun „[[:$1]]“ noh „[[:$2]]“ övverdraare wäde.
+Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn drop aachjevve, dat de Ußwahl fott es, wann De op eine fun dä Links klicks.',
+'mergehistory-go'      => 'Don Versione zeije, di mer zosamme läje künne',
+'mergehistory-submit'  => 'Versione zosamme läje',
+'mergehistory-empty'   => 'Mer han kei Versione för zesammezeläje',
+'mergehistory-success' => '{{PLURAL:$3|Ein Version es|$3 Versione sen|Kei Version wood}} fun „[[:$1]]“ noh „[[:$2]]“ övverdraare un domet zosamme jelaat.',
+'mergehistory-fail'    => 'Dat Versione zesamme läje is nit müjjelisch. Don ens di Sigge un de Zigge pröfe!',
 
 # Merge log
 'mergelog'    => 'Logboch fum Sigge zesamme Läje',
@@ -2076,6 +2088,8 @@ Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe
 'thumbnail-more'           => 'Jrößer aanzeije',
 'filemissing'              => 'Datei es nit do',
 'thumbnail_error'          => 'Ene Fähler es opjetauch beim Maache vun enem Breefmarke/Thumbnail-Beldche: „$1“',
+'djvu_page_error'          => 'De DjVu-Sgg es ußerhallef',
+'djvu_no_xml'              => 'De XML-Date för di DjVu-Datei kunnte mer nit afrofe',
 'thumbnail_invalid_params' => 'Ene Parameter för et Breefmarke-Belldsche (<i lang="en">thumbnail</i>) Maache wohr nit en Odenung',
 'thumbnail_dest_directory' => 'Dat Verzeichnis för dat erin ze donn kunte mer nit aanlääje.',
 
@@ -2337,6 +2351,8 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'exif-photometricinterpretation'   => 'Zosammesetzung fun Pixelle',
 'exif-orientation'                 => 'Ußrechtung fun de Kammera',
 'exif-samplesperpixel'             => 'Aanzahl Färvaandeile',
+'exif-ycbcrsubsampling'            => 'Ongerafftastongsroht fun Y bes C',
+'exif-ycbcrpositioning'            => 'Y un C Posizjioneerung',
 'exif-xresolution'                 => 'Oplösung fun Lenks noh Räähß',
 'exif-yresolution'                 => 'Oplösung fun Bovve noh Onge',
 'exif-jpeginterchangeformat'       => 'Bytes Affshtand zom JPEG SOI',
@@ -2373,6 +2389,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'exif-exposureprogram'             => 'Beleeshtungsprojramm',
 'exif-spectralsensitivity'         => 'Emfendleschkeit för et Färvespäktrom',
 'exif-isospeedratings'             => 'Dem Fillem odder Sensor sing Emfindlischkeit (als ISO Wäät)',
+'exif-shutterspeedvalue'           => 'Jeschwendieschkeit fum Verschoß bem Beleeschte',
 'exif-aperturevalue'               => 'De Blend iere Wäät',
 'exif-brightnessvalue'             => 'De Hellishkeit',
 'exif-subjectdistance'             => 'Affshtand nohm Motif',
@@ -2519,7 +2536,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 
 # External editor support
 'edit-externally'      => 'Dun de Datei met enem externe Projramm bei Dr om Rechner bearbeide',
-'edit-externally-help' => 'Luur en de [http://meta.wikimedia.org/wiki/Help:External_editors Installationsaanweisunge] noh Hinwies, wie mer esu en extern Projramm ennrechte un installeere deit.',
+'edit-externally-help' => 'Luur en de [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaanweisunge] noh Hinwies, wie mer esu en extern Projramm ennrechte un installeere deit.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
@@ -2657,7 +2674,7 @@ $1',
 'livepreview-ready'   => 'Fädesch jelaade.',
 'livepreview-failed'  => 'De lebendije Vör-Ansich klapp jrad nit.
 Don de nomaale Vör-Ansich nemme.',
-'livepreview-error'   => 'Kein Verbendung möschlesch: $1 „$2“.
+'livepreview-error'   => 'Kein Verbendung müjjelisch: $1 „$2“.
 Don de nomaale Vör-Ansich nemme.',
 
 # Friendlier slave lag warnings

@@ -10,7 +10,6 @@
  * @author MF-Warburg
  * @author Tupikovs
  * @author Sura
- * @author M.M.S.
  * @author Spacebirdy
  */
 
@@ -1403,7 +1402,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 # External editor support
 'edit-externally'      => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
-'edit-externally-help' => 'Вант [http://meta.wikimedia.org/wiki/Help:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
+'edit-externally-help' => 'Вант [http://www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'весе',

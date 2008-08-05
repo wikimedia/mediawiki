@@ -2208,7 +2208,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 
 # External editor support
 'edit-externally'      => 'Cancia stu file usannu un prugramma sternu',
-'edit-externally-help' => "Pi maiuri nfurmazzioni cunzurtari li [http://meta.wikimedia.org/wiki/Help:External_editors istruzzioni] ('n ngrisi)",
+'edit-externally-help' => "Pi maiuri nfurmazzioni cunzurtari li [http://www.mediawiki.org/wiki/Manual:External_editors istruzzioni] ('n ngrisi)",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',

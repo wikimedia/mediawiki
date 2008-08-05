@@ -2220,7 +2220,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 # External editor support
 'edit-externally'      => 'Sunting berkas iki mawa aplikasi jaba',
-'edit-externally-help' => 'Deleng [http://meta.wikimedia.org/wiki/Help:External_editors instruksi pangaturan] kanggo informasi sabanjuré.',
+'edit-externally-help' => 'Deleng [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kabèh',

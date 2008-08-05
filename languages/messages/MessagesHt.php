@@ -1058,7 +1058,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 
 # External editor support
 'edit-externally'      => 'Modifye fichye sa a epi yon aplikasyon pa ou (ki pa nan sistèm an, sou machin ou pa egzanp).',
-'edit-externally-help' => 'Wè [http://meta.wikimedia.org/wiki/Help:External_editors komannd ak enstriksyon yo] pou plis enfòmasyon oubyen pou konnen plis.',
+'edit-externally-help' => 'Wè [http://www.mediawiki.org/wiki/Manual:External_editors komannd ak enstriksyon yo] pou plis enfòmasyon oubyen pou konnen plis.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tout',

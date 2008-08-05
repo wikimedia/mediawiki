@@ -2631,7 +2631,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'استعمل تطبيق من بره علشان تعدل الملف دا',
-'edit-externally-help' => 'بص على [http://meta.wikimedia.org/wiki/Help:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
+'edit-externally-help' => 'بص على [http://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',

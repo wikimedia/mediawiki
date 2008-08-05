@@ -613,7 +613,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'Ẓreg afaylu a s usnas zi baṛṛa',
-'edit-externally-help' => 'Xemm [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] i bezzaf n inemiɣsen.',
+'edit-externally-help' => 'Xemm [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] i bezzaf n inemiɣsen.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'maṛṛa',

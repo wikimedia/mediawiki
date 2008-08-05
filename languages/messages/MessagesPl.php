@@ -12,11 +12,11 @@
  * @author Leinad
  * @author Beau
  * @author Stv
- * @author Masti
  * @author Maikking
- * @author Ymar
- * @author Matma Rex
+ * @author Masti
  * @author Equadus
+ * @author Matma Rex
+ * @author Ymar
  * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
@@ -1266,8 +1266,8 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:Imagelist|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże pliku w pełnej postaci
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></tt>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną na lewym marginesie i otoczoną ramką, z podpisem „podpis grafiki”
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></tt>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></tt>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
 'upload-permitted'            => 'Dopuszczalne formaty plików: $1.',
 'upload-preferred'            => 'Zalecane formaty plików: $1.',
@@ -1275,7 +1275,7 @@ Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następują
 'uploadlog'                   => 'rejestr przesyłania plików',
 'uploadlogpage'               => 'Przesłane',
 'uploadlogpagetext'           => 'Lista ostatnio przesłanych plików.
-Przejdź na stronę [[Special:NewImages|Nowe pliki]], by zobaczyć pliki jako miniaturki.',
+Przejdź na stronę [[Special:NewImages|galerii nowych plików]], by zobaczyć pliki jako miniaturki.',
 'filename'                    => 'Nazwa pliku',
 'filedesc'                    => 'Opis',
 'fileuploadsummary'           => 'Opis',
@@ -1621,16 +1621,16 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 
 # Special:Listgrouprights
 'listgrouprights'                 => 'Uprawnienia grup użytkowników',
-'listgrouprights-summary'         => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im praw dostępu.
-Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informacjami]] o prawach dostępu.',
+'listgrouprights-summary'         => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.
+Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informacjami]] o uprawnieniach.',
 'listgrouprights-group'           => 'Grupa',
 'listgrouprights-rights'          => 'Uprawnienia',
 'listgrouprights-helppage'        => 'Help:Uprawnienia grup użytkowników',
 'listgrouprights-members'         => '(lista członków grupy)',
-'listgrouprights-addgroup'        => 'Może dodawać grupy: $1',
-'listgrouprights-removegroup'     => 'Może usuwać grupy: $1',
-'listgrouprights-addgroup-all'    => 'Może dodawać wszystkie grupy',
-'listgrouprights-removegroup-all' => 'Może usuwać wszystkie grupy',
+'listgrouprights-addgroup'        => 'Można dodać do grup: $1',
+'listgrouprights-removegroup'     => 'Można usunąć z grup: $1',
+'listgrouprights-addgroup-all'    => 'Można dodać do każdej grupy',
+'listgrouprights-removegroup-all' => 'Można usunąć ze wszystkich grup',
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
@@ -2034,9 +2034,10 @@ Blokowanie i odblokowywanie bazy danych, wymaga by plik mógł być zapisywany p
 Pod starym tytułem zostanie umieszczona strona przekierowująca.
 Możesz automatycznie zaktualizować przekierowania wskazujące na tytuł przed zmianą.
 Jeśli nie wybierzesz tej opcji, upewnij się po przeniesieniu strony, czy nie powstały [[Special:DoubleRedirects|podwójne]] lub [[Special:BrokenRedirects|zerwane przekierowania]].
-Pamiętaj, że to ty odpowiadasz za to, by linki w dalszym ciągu pokazywały tam, gdzie powinny.
+Jesteś odpowiedzialny za to, by linki w dalszym ciągu pokazywały tam, gdzie powinny.
 
-Strona '''nie''' zostanie przeniesiona, jeśli strona o nowej nazwie już istnieje, chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji. To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, zmieniając nową nazwę strony na poprzednią, i że nie można nadpisać istniejącej strony.
+Strona '''nie''' zostanie przeniesiona, jeśli strona o nowej nazwie już istnieje, chyba że jest pusta lub jest przekierowaniem i ma pustą historię edycji.
+To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, zmieniając nową nazwę strony na poprzednią, i że nie można nadpisać istniejącej strony.
 
 '''UWAGA!'''
 Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych stron.
@@ -2603,7 +2604,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 
 # External editor support
 'edit-externally'      => 'Edytuj plik, używając zewnętrznej aplikacji',
-'edit-externally-help' => "Więcej informacji o używaniu [http://meta.wikimedia.org/wiki/Help:External_editors zewnętrznych edytorów] (''ang.'').",
+'edit-externally-help' => "Więcej informacji o używaniu [http://www.mediawiki.org/wiki/Manual:External_editors zewnętrznych edytorów] (''ang.'').",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wszystkie',

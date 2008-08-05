@@ -1135,7 +1135,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'upload_directory_missing'    => 'La directory di upload ($1) non esiste e non può essere creata dal webserver.',
 'upload_directory_read_only'  => 'Il server web non è in grado di scrivere nella directory di upload ($1).',
 'uploaderror'                 => 'Errore nel caricamento',
-'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti e cancellazioni di file sono registrati nel [[Special:Log/upload|log degli upload]].
+'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione intera del file
@@ -1476,8 +1476,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-rights'          => 'Diritti',
 'listgrouprights-helppage'        => 'Help:Diritti del gruppo',
 'listgrouprights-members'         => '(Elenco dei membri)',
-'listgrouprights-addgroup'        => 'Può aggiungere gruppi: $1',
-'listgrouprights-removegroup'     => 'Può rimuovere gruppi: $1',
+'listgrouprights-addgroup'        => 'Può aggiungere {{PLURAL:$2|un gruppo|gruppi}}: $1',
+'listgrouprights-removegroup'     => 'Può rimuovere {{PLURAL:$2|un gruppo|gruppi}}: $1',
 'listgrouprights-addgroup-all'    => 'Può aggiungere tutti i gruppi',
 'listgrouprights-removegroup-all' => 'Può rimuovere tutti i gruppi',
 
@@ -1859,7 +1859,7 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 # Move page
 'move-page'               => 'Spostamento di $1',
 'move-page-legend'        => 'Spostamento di pagina',
-'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntanoal titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
+'movepagetext'            => "Questo modulo consente di rinominare una pagina, spostando tutta la sua cronologia al nuovo nome. La pagina attuale diverrà automaticamente un redirect al nuovo titolo. Puoi aggiornare automaticamente i redirect che puntano al titolo originale. Puoi decidere di non farlo, ma ricordati di verificare che lo spostamento non abbia creato [[Special:DoubleRedirects|doppi redirect]] o [[Special:BrokenRedirects|redirect errati]]. L'onere di garantire che i collegamenti alla pagina restino corretti spetta a chi la sposta.
 
 Si noti che la pagina '''non''' sarà spostata se ne esiste già una con il nuovo nome, a meno che non sia vuota o costituita solo da un redirect alla vecchia e sia priva di versioni precedenti. In caso di spostamento errato si può quindi tornare subito al vecchio titolo, e non è possibile sovrascrivere per errore una pagina già esistente.
 
@@ -2440,7 +2440,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 # External editor support
 'edit-externally'      => 'Modifica questo file usando un programma esterno',
-'edit-externally-help' => 'Per maggiori informazioni consultare le [http://meta.wikimedia.org/wiki/Help:External_editors istruzioni] (in inglese)',
+'edit-externally-help' => 'Per maggiori informazioni consultare le [http://www.mediawiki.org/wiki/Manual:External_editors istruzioni] (in inglese)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutte',

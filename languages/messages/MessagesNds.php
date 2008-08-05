@@ -2440,7 +2440,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 
 # External editor support
 'edit-externally'      => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '<span class="plainlinks">Lees de [http://meta.wikimedia.org/wiki/Help:External_editors Installatschoonshelp] wenn du dor mehr to weten wist.</span>',
+'edit-externally-help' => '<span class="plainlinks">Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wist.</span>',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',

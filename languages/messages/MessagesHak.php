@@ -1497,7 +1497,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Yung ngoi-phu chhàng-sṳt phiên-siá chhṳ́ tóng-on',
-'edit-externally-help' => 'Chhiáng chhâm-siòng [http://meta.wikimedia.org/wiki/Help:External_editors sat-thin phu] liáu-kié siòng-se sin-sit.',
+'edit-externally-help' => 'Chhiáng chhâm-siòng [http://www.mediawiki.org/wiki/Manual:External_editors sat-thin phu] liáu-kié siòng-se sin-sit.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Chhiòn-phu',

@@ -2013,7 +2013,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 
 # External editor support
 'edit-externally'      => 'Betara va bat iyeltak faveson va divef talpey',
-'edit-externally-help' => 'Ta lo giva va [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] disukel !',
+'edit-externally-help' => 'Ta lo giva va [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] disukel !',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kot',

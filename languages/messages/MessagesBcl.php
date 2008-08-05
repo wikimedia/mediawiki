@@ -1830,7 +1830,7 @@ Ano man na takod sa parehong linyang ini pigkokonsiderar na eksepsyon, i.e. mga 
 
 # External editor support
 'edit-externally'      => 'Hirahón an file gamit an panluwas na aplikasyon',
-'edit-externally-help' => 'Hilingón an  [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] para sa iba pang mga impormasyon.',
+'edit-externally-help' => 'Hilingón an  [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para sa iba pang mga impormasyon.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'gabos',

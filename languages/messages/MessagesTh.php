@@ -2270,7 +2270,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'แก้ไขไฟล์นี้โดยใช้ซอฟต์แวร์ตัวอื่น',
-'edit-externally-help' => 'ดูเพิ่มที่ [http://meta.wikimedia.org/wiki/Help:External_editors วิธีการตั้งค่า]',
+'edit-externally-help' => 'ดูเพิ่มที่ [http://www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ทั้งหมด',

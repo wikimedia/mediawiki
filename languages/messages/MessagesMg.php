@@ -1004,7 +1004,7 @@ Amporisihina ho an'ny navigateur moderna",
 
 # External editor support
 'edit-externally'      => "Ovao amin'ny alalan'ny fampiasana fitaovana ivelan'ity Wiki ity io rakitra io",
-'edit-externally-help' => 'Fanazavana fanampiny, jereo [http://meta.wikimedia.org/wiki/Help:External_editors ny torolalana].',
+'edit-externally-help' => 'Fanazavana fanampiny, jereo [http://www.mediawiki.org/wiki/Manual:External_editors ny torolalana].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'rehetra',

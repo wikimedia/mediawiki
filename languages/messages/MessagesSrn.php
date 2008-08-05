@@ -1108,7 +1108,7 @@ Trawan o kibri.
 
 # External editor support
 'edit-externally'      => 'Kenki a file disi ini wan dorosey wrokosani.',
-'edit-externally-help' => 'Luku ini a [http://meta.wikimedia.org/wiki/Help:External_editors skorobuku fu den seti] gi moro yepi.',
+'edit-externally-help' => 'Luku ini a [http://www.mediawiki.org/wiki/Manual:External_editors skorobuku fu den seti] gi moro yepi.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ala',

@@ -1747,7 +1747,7 @@ cúlra i bhfócas)',
 'edit-externally'      => 'Athraigh an comhad seo le feidhmchlár seachtrach',
 'edit-externally-help' => 'Féach ar na
 
-[http://meta.wikimedia.org/wiki/Help:External_editors treoracha cumraíochta] (as Béarla)
+[http://www.mediawiki.org/wiki/Manual:External_editors treoracha cumraíochta] (as Béarla)
 
 le tuilleadh eolais.',
 

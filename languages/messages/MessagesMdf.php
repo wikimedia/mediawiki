@@ -2276,7 +2276,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Петнемс тя файлть ушеширень програмонь вельде',
-'edit-externally-help' => 'Ванк [http://meta.wikimedia.org/wiki/Help:External_editors арафнемань вятемовал] сяда лама содаманкса.',
+'edit-externally-help' => 'Ванк [http://www.mediawiki.org/wiki/Manual:External_editors арафнемань вятемовал] сяда лама содаманкса.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'сембе',

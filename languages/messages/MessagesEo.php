@@ -303,7 +303,7 @@ $messages = array(
 
 'badaccess'        => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
 'badaccess-group0' => 'Vi ne rajtas plenumi la agon, kiun vi petis.',
-'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en unu el la grupoj $1.',
+'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en {{PLURAL:$2|la grupo|unu el la grupoj}}: $1.',
 
 'versionrequired'     => 'Versio $1 de MediaWiki nepras',
 'versionrequiredtext' => 'La versio $1 de MediaWiki estas necesa por uzi ĉi tiun paĝon. Vidu [[Special:Version|paĝon pri versio]].',
@@ -453,7 +453,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'loginproblem'               => '<b>Okazis problemo dum via ensalutado.</b><br />Bonvolu reprovi!',
 'login'                      => 'Ensaluti',
 'nav-login-createaccount'    => 'Ensalutu / Kreu novan konton',
-'loginprompt'                => 'Via foliumilo nepre permesu kuketojn por [[Special:Userlogin|ensaluti en la {{SITENAME}}]].',
+'loginprompt'                => 'Via foliumilo nepre permesu kuketojn por ensaluti en la {{SITENAME}}.',
 'userlogin'                  => 'Ensaluti / Krei novan konton',
 'logout'                     => 'Elsaluti',
 'userlogout'                 => 'Elsaluti',
@@ -1574,7 +1574,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollbackfailed'              => 'Restarigo malsukcesis',
 'cantrollback'                => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
 'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) | [[Special:Contributions/$2|{{int:contribslink}}]]);
-pro tio, ke oni intertempe redaktis la paĝon. 
+pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
 'revertpage'                  => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -2387,7 +2387,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # External editor support
 'edit-externally'      => 'Ŝanĝu ĉi dosieron per ekstera softvaro',
-'edit-externally-help' => "Vidu la [http://meta.wikimedia.org/wiki/Help:External_editors instalinstrukciojn] por pliaj informoj ''(angle)''.",
+'edit-externally-help' => "Vidu la [http://www.mediawiki.org/wiki/Manual:External_editors instalinstrukciojn] por pliaj informoj ''(angle)''.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ĉiuj',

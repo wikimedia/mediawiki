@@ -2239,7 +2239,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 
 # External editor support
 'edit-externally'      => 'I-edit me ing simpan a ini kapamilatan ning aplikasiun o program a ibat king kilual.',
-'edit-externally-help' => 'Lon me ing [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] para king karagdagang impormasiun.',
+'edit-externally-help' => 'Lon me ing [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] para king karagdagang impormasiun.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'eganagana',

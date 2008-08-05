@@ -2075,7 +2075,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程式編輯此檔案',
-'edit-externally-help' => '請參見[http://meta.wikimedia.org/wiki/Help:External_editors 設定步驟]了解詳細資訊。',
+'edit-externally-help' => '請參見[http://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',

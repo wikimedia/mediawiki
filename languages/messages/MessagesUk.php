@@ -7,8 +7,8 @@
  * @author Ahonc
  * @author AS
  * @author Innv
- * @author EugeneZelenko
  * @author Dubyk
+ * @author EugeneZelenko
  * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
  */
@@ -2556,7 +2556,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редагувати цей файл, використовуючи зовнішню програму',
-'edit-externally-help' => 'Подробиці див. на сторінці [http://meta.wikimedia.org/wiki/Help:External_editors Meta:Help:External_editors].',
+'edit-externally-help' => 'Подробиці див. на сторінці [http://www.mediawiki.org/wiki/Manual:External_editors Meta:Help:External_editors].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'всі',

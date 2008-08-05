@@ -1673,7 +1673,7 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 
 # External editor support
 'edit-externally'      => 'Файл узеринде компьютеринъизде булунгъан программалар иле денъишикликлер япынъыз',
-'edit-externally-help' => 'Даа фазла малюмат ичюн [http://meta.wikimedia.org/wiki/Help:External_editors бу саифеге] (Инглиздже) бакъып оласынъыз.',
+'edit-externally-help' => 'Даа фазла малюмат ичюн [http://www.mediawiki.org/wiki/Manual:External_editors бу саифеге] (Инглиздже) бакъып оласынъыз.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'эписини',

@@ -2372,7 +2372,7 @@ Se consideran nomás os elementos d'una lista (linias que escomienzan por *). O 
 
 # External editor support
 'edit-externally'      => 'Editar iste archibo fendo serbir una aplicazión esterna',
-'edit-externally-help' => 'Leiga as [http://meta.wikimedia.org/wiki/Help:External_editors instruzions de confegurazión] (en anglés) ta más informazión.',
+'edit-externally-help' => 'Leiga as [http://www.mediawiki.org/wiki/Manual:External_editors instruzions de confegurazión] (en anglés) ta más informazión.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toz',

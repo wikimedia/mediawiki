@@ -7,11 +7,10 @@
  * @author Nike
  * @author Crt
  * @author Cimon Avaro
- * @author Agony
  * @author Jack Phoenix
- * @author Jaakonam
- * @author M.M.S.
  * @author Str4nd
+ * @author Jaakonam
+ * @author Agony
  * @author לערי ריינהארט
  */
 
@@ -790,7 +789,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'page_first'          => 'ensimmäinen sivu',
 'page_last'           => 'viimeinen sivu',
 'histlegend'          => 'Merkinnät: (nyk.) = eroavaisuudet nykyiseen versioon, (edell.) = eroavaisuudet edelliseen versioon, <span class="minor">p</span> = pieni muutos',
-'history-search'      => 'Etsi sivuhistoriasta',
+'history-search'      => 'Etsi sivun historiasta',
 'deletedrev'          => '[poistettu]',
 'histfirst'           => 'Ensimmäiset',
 'histlast'            => 'Viimeisimmät',
@@ -1465,10 +1464,10 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista on [[{{MediaWiki:Listgrouprig
 'listgrouprights-rights'          => 'Oikeudet',
 'listgrouprights-helppage'        => 'Help:Käyttöoikeudet',
 'listgrouprights-members'         => '(jäsenlista)',
-'listgrouprights-addgroup'        => 'Voi lisätä ryhmät: $1',
-'listgrouprights-removegroup'     => 'Voi poistaa ryhmistä: $1',
-'listgrouprights-addgroup-all'    => 'Voi lisätä kaikkiin ryhmiin',
-'listgrouprights-removegroup-all' => 'Voi poistaa kaikista ryhmistä',
+'listgrouprights-addgroup'        => 'Voi lisätä jäseniä ryhmiin $1',
+'listgrouprights-removegroup'     => 'Voi poistaa jäseniä ryhmistä $1',
+'listgrouprights-addgroup-all'    => 'Voi lisätä jäseniä kaikkiin ryhmiin',
+'listgrouprights-removegroup-all' => 'Voi poistaa jäseniä kaikista ryhmistä',
 
 # E-mail user
 'mailnologin'     => 'Lähettäjän osoite puuttuu',
@@ -2390,7 +2389,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 
 # External editor support
 'edit-externally'      => 'Muokkaa tätä tiedostoa ulkoisessa sovelluksessa',
-'edit-externally-help' => 'Katso [http://meta.wikimedia.org/wiki/Help:External_editors ohjeet], jos haluat lisätietoja.',
+'edit-externally-help' => 'Katso [http://www.mediawiki.org/wiki/Manual:External_editors ohjeet], jos haluat lisätietoja.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kaikki',

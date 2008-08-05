@@ -10,8 +10,8 @@
  * @author Roberta F.
  * @author Dnik
  * @author Luka Krstulovic
- * @author Treecko
  * @author לערי ריינהארט
+ * @author Treecko
  * @author Suradnik13
  * @author Demicx
  */
@@ -462,7 +462,7 @@ Administrator koji je izvršio zaključavanje naveo je ovaj razlog: $1',
 'cannotdelete'         => 'Ne mogu obrisati navedenu stranicu ili sliku. (Moguće da je već obrisana.)',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Navedeni naslov stranice nepravilan ili loše formirana interwiki poveznica.',
-'perfdisabled'         => 'Privremeno onemogućeno. Koristite kopiju snimljenu $1:',
+'perfdisabled'         => 'Ova mogućnost je privremeno isključena jer usporava bazu podataka do mjere koja svima onemogućava korištenje wikija.',
 'perfcached'           => 'Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji:',
 'perfcachedts'         => 'Sljedeći podaci su iz međuspremnika i zadnji puta su ažurirani u $1.',
 'querypage-no-updates' => 'Osvježavanje ove stranice je trenutačno onemogućeno. Nove promjene neće biti vidljive.',
@@ -497,8 +497,9 @@ Možete nastaviti s korištenjem projekta {{SITENAME}} anonimno,
 ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mogu
 prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.',
 'welcomecreation'            => '== Dobrodošli, $1! ==
+Vaš je suradnički račun otvoren. 
 
-Vaš je suradnički račun otvoren. Ne zaboravite podesiti suradničke postavke.',
+Ne zaboravite prilagoditi [[Special:Preferences|{{SITENAME}} postavke]].',
 'loginpagetitle'             => 'Prijava suradnika',
 'yourname'                   => 'Suradničko ime',
 'yourpassword'               => 'Upišite lozinku',
@@ -548,7 +549,7 @@ Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privrem
 'nouserspecified'            => 'Molimo navedite suradničko ime.',
 'wrongpassword'              => 'Lozinka koju ste unijeli nije ispravna. Pokušajte ponovno.',
 'wrongpasswordempty'         => 'Niste unijeli lozinku. Pokušajte ponovno.',
-'passwordtooshort'           => 'Vaša je lozinka prekratka. Lozinke moraju sadržavati najmanje $1 znakova.',
+'passwordtooshort'           => 'Vaša je lozinka nevaljana ili prekratka. Lozinka mora sadržavati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora biti različita od imena.',
 'mailmypassword'             => 'Pošalji mi novu lozinku',
 'passwordremindertitle'      => '{{SITENAME}}: nova lozinka.',
 'passwordremindertext'       => 'Netko je (vjerojatno vi, s IP adrese $1)
@@ -698,7 +699,7 @@ Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i 
 
 ''Budući da je na ovom wikiju ({{SITENAME}}) omogućen unos HTML oznaka (tagova), pretpregled je skriven kao mjera predstrožnosti protiv napada pomoću JavaScripta.''
 
-<strong>Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, odjavite se i prijavite se ponovo.</strong>",
+<strong>Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:Userlogout|odjavite se]] i prijavite se ponovo.</strong>",
 'token_suffix_mismatch'            => '<strong>Vaše uređivanje je odbačeno jer je vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.
 Stoga je uređivanje odbačeno da se spriječi uništavanje stranice.
 To se događa ponekad kad rabite neispravan web-baziran anonimni proxy.</strong>',
@@ -784,6 +785,7 @@ Molimo provjerite URL koji vas je doveo ovamo.',
 'page_last'           => 'zadnja',
 'histlegend'          => 'Uputa: (sad) = razlika od trenutačne inačice,
 (pret) = razlika od prethodne inačice, m = manja promjena',
+'history-search'      => 'Traži u povijesti',
 'deletedrev'          => '[izbrisano]',
 'histfirst'           => 'Najstarije',
 'histlast'            => 'Najnovije',
@@ -895,8 +897,9 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 
 # Search results
 'searchresults'             => 'Rezultati pretrage',
+'searchresults-title'       => 'Rezultati traženja za $1',
 'searchresulttext'          => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Za upit '''[[:$1]]'''",
+'searchsubtitle'            => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]] | [[Special:Whatlinkshere/$1|sve stranice koje povezuju na "$1"]])',
 'searchsubtitleinvalid'     => 'Za upit "$1"',
 'noexactmatch'              => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
 'noexactmatch-nocreate'     => "'''Nema stranice s imenom: \"\$1\".'''",
@@ -1360,10 +1363,11 @@ Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje
 Umjesto toga bi trebale povezivati na prikladnu temu.<br />
 Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dvostruka preusmjeravanja',
-'doubleredirectstext' => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
+'doubleredirects'            => 'Dvostruka preusmjeravanja',
+'doubleredirectstext'        => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
 Svaki redak sadrži poveznice na prvo i drugo preusmjeravanje, te na prvi redak teksta drugog preusmjeravanja
 koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
+'double-redirect-fixed-move' => '[[$1]] je premješten, sada je preusmjeravanje na [[$2]]',
 
 'brokenredirects'        => 'Kriva preusmjeravanja',
 'brokenredirectstext'    => 'Sljedeća preusmjeravanja pokazuju na nepostojeće članke.',
@@ -1479,13 +1483,17 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'listusers-noresult' => 'Nema takvih suradnika.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Prava suradničkih skupina',
-'listgrouprights-summary'  => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.
+'listgrouprights'                 => 'Prava suradničkih skupina',
+'listgrouprights-summary'         => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.
 Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgrouprights-helppage}}|ovdje]].',
-'listgrouprights-group'    => 'Skupina',
-'listgrouprights-rights'   => 'Prava',
-'listgrouprights-helppage' => 'Help:Suradničke skupine',
-'listgrouprights-members'  => '(popis članova)',
+'listgrouprights-group'           => 'Skupina',
+'listgrouprights-rights'          => 'Prava',
+'listgrouprights-helppage'        => 'Help:Suradničke skupine',
+'listgrouprights-members'         => '(popis članova)',
+'listgrouprights-addgroup'        => 'Moguće dodati skupine: $1',
+'listgrouprights-removegroup'     => 'Moguće ukloniti skupine: $1',
+'listgrouprights-addgroup-all'    => 'Moguće dodati sve skupine',
+'listgrouprights-removegroup-all' => 'Moguće ukloniti sve skupine',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese pošiljaoca',
@@ -1932,6 +1940,7 @@ Odredišni članak "[[$1]]" već postoji. Želite li ga obrisati da biste naprav
 'imagenocrossnamespace'   => 'Datoteka ne može biti premještena u imenski prostor koji nije za datoteke',
 'imagetypemismatch'       => 'Ekstenzija nove datoteke se ne poklapa sa svojim tipom.',
 'imageinvalidfilename'    => 'Ciljano ime datoteke je nevaljano',
+'fix-double-redirects'    => 'Ažuriraj sva preusmjeravanja koja vode na originalni naslov',
 
 # Export
 'export'            => 'Izvezi stranice',
@@ -2127,9 +2136,10 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'markedaspatrollederror-noautopatrol' => 'Ne možete vlastite promjene označiti patroliranima.',
 
 # Patrol log
-'patrol-log-page' => 'Evidencija pregledavanja promjena',
-'patrol-log-line' => 'promjena broj $1 stranice $2 pregledana $3',
-'patrol-log-auto' => '(automatski pregledano)',
+'patrol-log-page'   => 'Evidencija pregledavanja promjena',
+'patrol-log-header' => 'Ovo su evidencije patroliranih izmjena.',
+'patrol-log-line'   => 'promjena broj $1 stranice $2 pregledana $3',
+'patrol-log-auto'   => '(automatski pregledano)',
 
 # Image deletion
 'deletedrevision'                 => 'Izbrisana stara inačica $1',
@@ -2447,7 +2457,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 
 # External editor support
 'edit-externally'      => 'Uredi koristeći se vanjskom aplikacijom',
-'edit-externally-help' => 'Vidi [http://meta.wikimedia.org/wiki/Help:External_editors setup upute] za više informacija.',
+'edit-externally-help' => 'Vidi [http://www.mediawiki.org/wiki/Manual:External_editors setup upute] za više informacija.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',

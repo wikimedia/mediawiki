@@ -2061,7 +2061,7 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 
 # External editor support
 'edit-externally'      => 'Édit koropak ieu migunakeun aplikasi éksternal',
-'edit-externally-help' => 'Tempo [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] pikeun émbaran leuwih jéntré.',
+'edit-externally-help' => 'Tempo [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sadaya',

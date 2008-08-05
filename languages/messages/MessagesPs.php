@@ -1245,7 +1245,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمادول',
-'edit-externally-help' => 'د نورو مالوماتو لپاره د [http://meta.wikimedia.org/wiki/Help:External_editors امستنو لارښوونې] وګورۍ.',
+'edit-externally-help' => 'د نورو مالوماتو لپاره د [http://www.mediawiki.org/wiki/Manual:External_editors امستنو لارښوونې] وګورۍ.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ټول',

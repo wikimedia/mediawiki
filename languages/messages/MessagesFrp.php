@@ -2184,7 +2184,7 @@ serat rèduita. Los ôtros champs seront cachiês per dèfôt.
 
 # External editor support
 'edit-externally'      => 'Modifiar ceti fichiér en utilisent una aplicacion de defôr',
-'edit-externally-help' => 'Vêde les [http://meta.wikimedia.org/wiki/Help:External_editors enstruccions] por més d’enformacions.',
+'edit-externally-help' => 'Vêde les [http://www.mediawiki.org/wiki/Manual:External_editors enstruccions] por més d’enformacions.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',
