@@ -1068,25 +1068,15 @@ class OutputPage {
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
 
-		$groups = array();
-		foreach( User::getGroupsWithPermission( $permission ) as $key ) {
-			$groupName = User::getGroupName( $key );
-			$groupPage = User::getGroupPage( $key );
-			if( $groupPage ) {
-				$skin = $wgUser->getSkin();
-				$groups[] = $skin->makeLinkObj( $groupPage, $groupName );
-			} else {
-				$groups[] = $groupName;
-			}
+		$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
+			User::getGroupsWithPermission( $permission ) );
+		if( $groups ) {
+			$this->addWikiMsg( 'badaccess-groups',
+				implode( ', ', $groups ),
+				count( $groups) );
+		} else {
+			$this->addWikiMsg( 'badaccess-group0' );
 		}
-		$n = count( $groups );
-		if ( $count > 0 ) {
-			$message = wfMsgHtml( 'badaccess-groups', array( $groups, $n ) );
-		}
-		else {
-			$message = wfMsgHtml( "badaccess-group0", $groups );
-		}
-		$this->addHtml( $message );
 		$this->returnToMain();
 	}
 

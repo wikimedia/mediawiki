@@ -1307,23 +1307,16 @@ class Title {
 			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$return = null;
-			$groups = array();
-			foreach( User::getGroupsWithPermission( $action ) as $key ) {
-				$groupName = User::getGroupName( $key );
-				$groupPage = User::getGroupPage( $key );
-				if( $groupPage ) {
-					$groups[] = '[['.$groupPage->getPrefixedText().'|'.$groupName.']]';
-				} else {
-					$groups[] = $groupName;
-				}
-			}
-			$n = count( $groups );
-			if ( $n > 0 ) {
-				$groups = implode( ', ', $groups );
-				$return = array( 'badaccess-groups', array( $groups, $n ) );
+			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
+				User::getGroupsWithPermission( $action ) );
+			if ( $groups ) {
+				$return = array( 'badaccess-groups',
+					array(
+						implode( ', ', $groups ),
+						count( $groups ) ) );
 			}
 			else {
-				$return = array( "badaccess-group0", $groups );
+				$return = array( "badaccess-group0" );
 			}
 			$errors[] = $return;
 		}
