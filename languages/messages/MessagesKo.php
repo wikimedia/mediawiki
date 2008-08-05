@@ -7,11 +7,11 @@
  * @author Klutzy
  * @author ToePeu
  * @author PuzzletChung
- * @author ITurtle
  * @author Albamhandae
- * @author TheAlpha for knowledge
+ * @author ITurtle
  * @author Kwj2772
  * @author Ficell
+ * @author TheAlpha for knowledge
  * @author לערי ריינהארט
  * @author Pi.C.Noizecehx
  */
@@ -458,7 +458,7 @@ $messages = array(
 'accountcreated'             => '계정 만들어짐',
 'accountcreatedtext'         => '‘$1’ 사용자 계정이 만들어졌습니다.',
 'createaccount-title'        => '{{SITENAME}} 계정 만들기',
-'createaccount-text'         => '{{SITENAME}}($4)에서 사용자 이름 ‘$2’, 암호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
+'createaccount-text'         => '{{SITENAME}}($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
 
 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
 'loginlanguagelabel'         => '언어: $1',
@@ -550,7 +550,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'anontalkpagetext'                 => '----
 여기는 계정에 로그인하지 않은 익명 사용자를 위한 토론 문서입니다. 익명 사용자의 사용자 이름은 IP 주소로 나오기 때문에, 한 IP 주소를 여러 명이 같이 쓰거나 유동 IP를 사용하는 경우 엉뚱한 사람에게 의견이 전달될 수 있습니다. 이러한 문제를 피하려면 [[Special:Userlogin|계정을 만들거나 로그인해 주시기 바랍니다]].',
 'noarticletext'                    => '현재 문서는 비어 있습니다. 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]할 수 있습니다.',
-'userpage-userdoesnotexist'        => '‘$1’ 사용자 이름은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정을 확인해주세요.',
+'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정의 존재 여부를 확인해주세요.',
 'clearyourcache'                   => "'''참고''': 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다. '''모질라 / 파이어폭스 / 사파리''': ‘시프트’ 키를 누르면서 ‘새로 고침’을 클릭하거나, ''Ctrl-F5''를 입력; '''컨커러''': 단순히 '새로고침'을 클릭하거나 ''F5''를 입력; '''오페라''' 사용자는 ‘도구→설정’에서 캐시를 완전히 비워야 합니다.",
 'usercssjsyoucanpreview'           => "'''안내''': CSS/JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 CSS 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
@@ -763,7 +763,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # User rights
 'userrights'                  => '사용자 권한 관리', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => '사용자 권한 관리',
-'userrights-user-editname'    => '사용자 이름:',
+'userrights-user-editname'    => '계정 이름:',
 'editusergroup'               => '사용자 그룹 편집',
 'editinguser'                 => "'''[[User:$1|$1]]'''([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) 사용자의 권한 변경",
 'userrights-editusergroup'    => '사용자 그룹 편집',
@@ -1130,7 +1130,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'all-logs-page'        => '모든 기록',
 'log-search-legend'    => '로그 검색',
 'log-search-submit'    => '찾기',
-'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 사용자 이름, 문서 이름을 선택해서 볼 수 있습니다.',
+'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다.',
 'logempty'             => '일치하는 항목이 없습니다.',
 
 # Special:Allpages
@@ -1379,7 +1379,7 @@ $1',
 'sp-contributions-newbies-sub' => '새 사용자들의 기여',
 'sp-contributions-blocklog'    => '차단 기록',
 'sp-contributions-search'      => '기여 검색',
-'sp-contributions-username'    => 'IP 주소 혹은 사용자 이름:',
+'sp-contributions-username'    => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-submit'      => '찾기',
 
 # What links here
@@ -1402,7 +1402,7 @@ $1',
 차단은 문서 훼손을 막기 위해, [[{{MediaWiki:Policy-url}}|정책]]에 의해서만 이루어져야 합니다.
 차단 이유를 같이 적어주세요(예: 특정 문서 훼손).',
 'ipaddress'                   => 'IP 주소:',
-'ipadressorusername'          => 'IP 주소 또는 사용자 이름',
+'ipadressorusername'          => 'IP 주소 또는 계정 이름:',
 'ipbexpiry'                   => '기간:',
 'ipbreason'                   => '이유:',
 'ipbreasonotherlist'          => '다른 이유',
@@ -1413,7 +1413,7 @@ $1',
 ** 장난 편집
 ** 협박성 행동
 ** 다중 계정 악용
-** 잘못된 사용자 이름',
+** 잘못된 계정 이름',
 'ipbanononly'                 => '익명 사용자만 차단하기',
 'ipbcreateaccount'            => '계정 생성을 막기',
 'ipbemailban'                 => '이메일을 보내지 못하도록 막기',
@@ -1436,7 +1436,7 @@ $1',
 'ipusubmit'                   => '차단 해제',
 'unblocked'                   => '[[User:$1|$1]] 사용자 차단 해제됨',
 'unblocked-id'                => '차단 $1 해제됨',
-'ipblocklist'                 => '현재 차단 중인 IP 주소와 사용자 이름 목록',
+'ipblocklist'                 => '현재 차단 중인 IP 주소와 계정 이름 목록',
 'ipblocklist-submit'          => '찾기',
 'blocklistline'               => '$1, $2 사용자는 $3을 차단함 ($4)',
 'infiniteblock'               => '무기한',
@@ -1754,7 +1754,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',
-'edit-externally-help' => '[http://meta.wikimedia.org/wiki/Help:External_editors 여기]에서 외부 편집기에 대한 정보를 얻을 수 있습니다.',
+'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors 여기]에서 외부 편집기에 대한 정보를 얻을 수 있습니다.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '모두',

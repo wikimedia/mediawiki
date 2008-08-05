@@ -597,7 +597,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 
 # External editor support
 'edit-externally'      => 'Ndryshoni kët figurë/skedë me një mjet të jashtëm',
-'edit-externally-help' => 'Shikoni [http://meta.wikimedia.org/wiki/Help:External_editors udhëzimet e instalimit] për ma shumë informacion.',
+'edit-externally-help' => 'Shikoni [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për ma shumë informacion.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'krejt',

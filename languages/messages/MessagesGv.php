@@ -996,7 +996,7 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 
 # External editor support
 'edit-externally'      => 'Reaghey yn coadan shoh lesh sheeyntagh mooie',
-'edit-externally-help' => 'Jeeagh er [http://meta.wikimedia.org/wiki/Help:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
+'edit-externally-help' => 'Jeeagh er [http://www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'yn clane',

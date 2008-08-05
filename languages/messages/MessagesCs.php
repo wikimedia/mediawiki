@@ -960,6 +960,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'page_first'          => 'první',
 'page_last'           => 'poslední',
 'histlegend'          => '(teď) = rozdíly oproti nynější verzi, (předchozí) = rozdíly oproti předchozí verzi, <b>m</b> = malá editace',
+'history-search'      => 'Hledání v historii',
 'deletedrev'          => '[smazáno]',
 'histfirst'           => 'Nejstarší',
 'histlast'            => 'Nejnovější',
@@ -1066,6 +1067,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 
 # Search results
 'searchresults'             => 'Výsledky hledání',
+'searchresults-title'       => 'Výsledky hledání $1',
 'searchresulttext'          => 'Pro více informací o tom, jak hledat na {{grammar:6sg|{{SITENAME}}}}, se podívejte do [[{{MediaWiki:Helppage}}|nápovědy]].',
 'searchsubtitle'            => 'Hledáno „[[:$1]]“',
 'searchsubtitleinvalid'     => 'Hledáno „$1“',
@@ -2573,7 +2575,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 
 # External editor support
 'edit-externally'      => 'Editovat tento soubor v externím programu',
-'edit-externally-help' => 'Více informací najdete v [http://meta.wikimedia.org/wiki/Help:External_editors nápovědě pro nastavení].',
+'edit-externally-help' => 'Více informací najdete v [http://www.mediawiki.org/wiki/Manual:External_editors nápovědě pro nastavení].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'všechny',

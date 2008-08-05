@@ -1555,7 +1555,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Uredite datoteko z uporabo zunanjega orodja',
-'edit-externally-help' => 'Za več informacij glej [http://meta.wikimedia.org/wiki/Help:External_editors navodila za namestitev].',
+'edit-externally-help' => 'Za več informacij glej [http://www.mediawiki.org/wiki/Manual:External_editors navodila za namestitev].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'vse',

@@ -2049,7 +2049,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Гадны программыг ашиглан энэ файлыг засварлах',
-'edit-externally-help' => '[http://meta.wikimedia.org/wiki/Help:External_editors Тохируулгын заавраас] дэлгэрэнгүй мэдээллийг авна уу.',
+'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors Тохируулгын заавраас] дэлгэрэнгүй мэдээллийг авна уу.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'Бүгд',

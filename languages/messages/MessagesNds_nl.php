@@ -2296,7 +2296,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 
 # External editor support
 'edit-externally'      => 'Wiezig dit bestand mit een extern pregramma',
-'edit-externally-help' => 'Zie de [http://meta.wikimedia.org/wiki/Help:External_editors installasie-instructies] veur meer infermasie.',
+'edit-externally-help' => 'Zie de [http://www.mediawiki.org/wiki/Manual:External_editors installasie-instructies] veur meer infermasie.',
 
 # 'all' in various places, this might be different for inflected languages
 'imagelistall'  => 'alles',

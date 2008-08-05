@@ -2057,7 +2057,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ফাইলটি অন্য কোন সফটওয়্যার দিয়ে সম্পাদনা করুন',
-'edit-externally-help' => 'আরও তথ্যের জন্য [http://meta.wikimedia.org/wiki/Help:External_editors সেটআপ নির্দেশমালা] দেখুন।',
+'edit-externally-help' => 'আরও তথ্যের জন্য [http://www.mediawiki.org/wiki/Manual:External_editors সেটআপ নির্দেশমালা] দেখুন।',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'সমস্ত',

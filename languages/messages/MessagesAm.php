@@ -597,6 +597,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'page_first'          => 'ፊተኞች',
 'page_last'           => 'ኋለኞች',
 'histlegend'          => "ከ2 እትሞች መካከል ልዩነቶቹን ለመናበብ፦ በ2 ክብ ነገሮች ውስጥ ምልክት አድርገው «የተመረጡትን እትሞች ለማነፃፀር» የሚለውን ተጭነው የዛኔ በቀጥታ ይሄዳሉ።<br /> መግለጫ፦ (ከአሁን) - ከአሁኑ እትም ያለው ልዩነት፤ (ካለፈው) - ቀጥሎ ከቀደመው እትም ያለው ልዩነት፤<br /> «'''ጥ'''» ማለት ጥቃቅን ለውጥ ነው።",
+'history-search'      => 'የቀደሙት ዕትሞች ፍለጋ',
 'deletedrev'          => '[የተደለዘ]',
 'histfirst'           => 'ቀድመኞች',
 'histlast'            => 'ኋለኞች',
@@ -1876,7 +1877,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ይህንን ፋይል በአፍአዊ ሶፍትዌር ለማዘጋጀት',
-'edit-externally-help' => 'ስለ አፍአዊ የስዕል ማዘጋጀት ሶፍትዌር በተጨማሪ ለመረዳት [http://meta.wikimedia.org/wiki/Help:External_editors የመመስረት ትዕዛዝ] ያንብቡ።',
+'edit-externally-help' => 'ስለ አፍአዊ የስዕል ማዘጋጀት ሶፍትዌር በተጨማሪ ለመረዳት [http://www.mediawiki.org/wiki/Manual:External_editors የመመስረት ትዕዛዝ] ያንብቡ።',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ሁሉ',

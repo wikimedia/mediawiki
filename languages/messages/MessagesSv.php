@@ -489,7 +489,7 @@ $messages = array(
 
 'badaccess'        => 'Behörighetsfel',
 'badaccess-group0' => 'Du har inte behörighet att utföra den handling du begärt.',
-'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i grupperna $1.',
+'badaccess-groups' => 'Den handling du har begärt kan enbart utföras av användare i {{PLURAL:$2|gruppen|en av grupperna}}: $1.',
 
 'versionrequired'     => 'Version $1 av MediaWiki krävs',
 'versionrequiredtext' => 'Version $1 av MediaWiki är nödvändig för att använda denna sida. Se [[Special:Version|versionssidan]].',
@@ -887,7 +887,7 @@ Dessa parametrar har uteslutits.',
 'undo-success' => 'Sidan kan återställas till tidigare version. Var god och kontrollera jämförelsen nedan för att bekräfta att detta är vad du avser att göra och slutför återställningen genom att spara.',
 'undo-failure' => 'Ändringen kunde inte avlägsnas på grund av motstridande ändringar som gjorts sedan dess.',
 'undo-norev'   => 'Ändringen kan inte avlägsnas eftersom den inte finns eller har raderats.',
-'undo-summary' => 'Ta bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary' => 'Tar bort version $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan inte skapa konto',
@@ -1075,7 +1075,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'qbsettings-floatingright' => 'Flytande höger',
 'changepassword'           => 'Byt lösenord',
 'skin'                     => 'Utseende',
-'skin-preview'             => 'Förhandsvisning',
+'skin-preview'             => 'förhandsvisning',
 'math'                     => 'Matematik',
 'dateformat'               => 'Datumformat',
 'datedefault'              => 'Ovidkommande',
@@ -1276,7 +1276,7 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
 'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
-För att titta på eller leta efter filer som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar och borttagningar loggförs också i [[Special:Log/upload|uppladdningsloggen]].
+För att titta på eller leta efter filer som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 
 Använd en länk på något av följande format för att infoga en bild på en sida:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
@@ -1621,8 +1621,8 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'listgrouprights-rights'          => 'Behörigheter',
 'listgrouprights-helppage'        => 'Help:Gruppbehörigheter',
 'listgrouprights-members'         => '(lista över medlemmar)',
-'listgrouprights-addgroup'        => 'Kan lägga till grupperna: $1',
-'listgrouprights-removegroup'     => 'Kan ta bort grupperna: $1',
+'listgrouprights-addgroup'        => 'Kan lägga till {{PLURAL:$2|gruppen|grupperna}}: $1',
+'listgrouprights-removegroup'     => 'Kan ta bort {{PLURAL:$2|gruppen|grupperna}}: $1',
 'listgrouprights-addgroup-all'    => 'Kan lägga till alla användargrupper',
 'listgrouprights-removegroup-all' => 'Kan ta bort alla användargrupper',
 
@@ -2572,7 +2572,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 
 # External editor support
 'edit-externally'      => 'Redigera denna fil med hjälp av extern programvara',
-'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors instruktioner] för mer information.',
+'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors instruktioner] för mer information.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alla',

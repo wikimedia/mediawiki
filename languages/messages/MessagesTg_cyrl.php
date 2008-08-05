@@ -2200,7 +2200,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Ин файлро бо барномаи беруна таҳрир кунед',
-'edit-externally-help' => 'Барои иттилооти бештар [http://meta.wikimedia.org/wiki/Help:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред.',
+'edit-externally-help' => 'Барои иттилооти бештар [http://www.mediawiki.org/wiki/Manual:External_editors роҳнамои танзимотро оиди вироишгарони беруна] нигаред.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ҳама',

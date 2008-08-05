@@ -2120,7 +2120,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'இக்கோப்பை வெளி மென்பொருள் கொண்டு தொகுக்க',
-'edit-externally-help' => 'மேலதிக தகவல்களுக்கு [http://meta.wikimedia.org/wiki/Help:External_editors அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
+'edit-externally-help' => 'மேலதிக தகவல்களுக்கு [http://www.mediawiki.org/wiki/Manual:External_editors அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'அனைத்து',

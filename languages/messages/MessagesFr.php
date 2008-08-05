@@ -18,12 +18,12 @@
  * @author Korg
  * @author Cedric31
  * @author Dereckson
- * @author JeanVoisin
  * @author Omnipaedista
+ * @author JeanVoisin
  * @author McDutchie
- * @author Горан Анђелковић
  * @author ChrisPtDe
  * @author Esbardu
+ * @author Горан Анђелковић
  */
 
 $skinNames = array(

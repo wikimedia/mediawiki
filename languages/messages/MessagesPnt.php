@@ -186,6 +186,7 @@ $messages = array(
 'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
 'bugreports'           => 'Αναφοράντας λαθίων',
+'bugreportspage'       => 'Project:Γραφέστεν',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα Πνευματή',
 'currentevents'        => 'Ατωριζνά γεγονότα',
 'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',
@@ -293,6 +294,8 @@ $messages = array(
 'noemail'                 => '\'Κ εδώθεν e-mail address τη χρήστε "$1".',
 'passwordsent'            => 'Έναν καινούρεον σημάδιν επήγεν σο e-mail τη "$1".
 Άμον ντο παίρετ\' ατό, εμπάτε ξαν.',
+'eauthentsent'            => "Έναν μένεμαν confirmation e-mail επήγεν σην διεύθυνσην ντ' εδώκατε.
+Πριχού να πηγαίνει άλλον μένεμαν σ' αβούτεν τη λογαρίαν, θα φτάτεν ατά ντο γραφ' σο μένεμαν απές. Αέτς πα θα δεκνίζετε το e-mail ατό εν το τεσέτερον.",
 'accountcreated'          => 'Έντον η λογαρίαν',
 'createaccount-title'     => 'Δημιουργίαν λογαρίας για {{SITENAME}}',
 'loginlanguagelabel'      => 'Γλώσσαν: $1',
@@ -409,6 +412,7 @@ $messages = array(
 'lineno'                  => 'Γραμμή $1:',
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
+'diff-multi'              => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
 
 # Search results
 'noexactmatch'          => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
@@ -610,6 +614,8 @@ $messages = array(
 'protect_expiry_old'          => 'Ο χρόνος τελεματί πέρνιξον.',
 'protect-unchain'             => 'Άνοιξον τα δικαιώματα ετεροχλάεματι',
 'protect-text'                => "Αδά επορείτε να τερείτε και ν' αλλάζετε τ' επίπεδον τη προστασίας για τη σελίδαν <strong><nowiki>$1</nowiki></strong>.",
+'protect-locked-access'       => "Η λογαρίανεσουν 'κ έχ' το δικαίωμαν να αλλάζ' τ' ασπάλιγμαν τη σελίδας.
+Αδά έχ' τ' ατωριζνά τα νομς για τη σελίδαν <strong>$1</strong>:",
 'protect-default'             => '(προεπιλεγμένον)',
 'protect-fallback'            => 'Ψαλαφίον δικαιωματίων "$1"',
 'protect-level-autoconfirmed' => 'Ασπάλιγμαν χρηστίων θίχως λογαρίαν',
@@ -773,8 +779,9 @@ $messages = array(
 'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
 # Special:Newimages
-'ilsubmit' => 'Αράεμαν',
-'bydate'   => 'ημερομηνίας',
+'newimages' => 'Τερέστεν τα καινούρεα φωτογραφίας',
+'ilsubmit'  => 'Αράεμαν',
+'bydate'    => 'ημερομηνίας',
 
 # Bad image list
 'bad_image_list' => "Η σύνταξην εν αέτς:
@@ -821,7 +828,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => "Αλλαγήν τ' αρχείου με προγράμματα ασα εξ μερέα",
-'edit-externally-help' => 'Τερέστεν τα [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
+'edit-externally-help' => 'Τερέστεν τα [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] και θα ευρίετε κι άλλα γνώσιας.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ούλαι',

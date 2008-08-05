@@ -50,10 +50,12 @@ $messages = array(
 'searchbutton'  => 'Аддзыны',
 'searcharticle' => 'Вуджны',
 'edit'          => 'Веськöдны',
+'newpage'       => 'Выль лист бок',
 'talk'          => 'Сёрнитöм',
 'jumptosearch'  => 'корсьысьöм',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents'        => 'Быд лунся лоöмтор',
 'mainpage'             => 'Медшöр лист бок',
 'mainpage-description' => 'Медшöр лист бок',
 

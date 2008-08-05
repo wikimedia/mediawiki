@@ -1065,7 +1065,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'upload_directory_read_only'  => "El servidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
 'uploaderror'                 => 'Error de xubida',
 'uploadtext'                  => "Usa'l formulariu d'abaxo pa xubir archivos.
-Pa ver o buscar archivos xubíos previamente, vete a la [[Special:Imagelist|llista d'archivos xubíos]]. Les xubíes y los borraos tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]].
+Pa ver o buscar archivos xubíos previamente, vete a la [[Special:Imagelist|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los borraos nel [[Special:Log/delete|rexistru de borraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
 *'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
@@ -1398,8 +1398,8 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 'listgrouprights-rights'          => 'Drechos',
 'listgrouprights-helppage'        => 'Help:Drechos de grupu',
 'listgrouprights-members'         => '(llista de miembros)',
-'listgrouprights-addgroup'        => 'Pue añader grupos: $1',
-'listgrouprights-removegroup'     => 'Pue quitar grupos: $1',
+'listgrouprights-addgroup'        => 'Pue añader {{PLURAL:$2|grupu|grupos}}: $1',
+'listgrouprights-removegroup'     => 'Pue quitar {{PLURAL:$2|grupu|grupos}}: $1',
 'listgrouprights-addgroup-all'    => 'Pue añader tolos grupos',
 'listgrouprights-removegroup-all' => 'Pue quitar tolos grupos',
 
@@ -2364,7 +2364,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación externa',
-'edit-externally-help' => 'Pa más información echa un güeyu a les [http://meta.wikimedia.org/wiki/Help:External_editors instrucciones de configuración].',
+'edit-externally-help' => 'Pa más información echa un güeyu a les [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'toos',

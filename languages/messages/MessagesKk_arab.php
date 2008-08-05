@@ -2789,7 +2789,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'بۇل فايلدى شەتتىك قوندىرما ارقىلى وڭدەۋ',
-'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [http://meta.wikimedia.org/wiki/Help:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
+'edit-externally-help' => 'كوبىرەك اقپارات ٴۇشىن [http://www.mediawiki.org/wiki/Manual:External_editors ورناتۋ نۇسقامالارىن] قاراڭىز.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'بارلىعىن',

@@ -420,12 +420,12 @@ $1',
 'readonlytext'         => 'Cơ sở dữ liệu hiện đã bị khóa không nhận trang mới và các điều chỉnh khác, có lẽ để bảo trì cơ sở dữ liệu định kỳ, một thời gian ngắn nữa nó sẽ trở lại bình thường.
 
 Người quản lý khóa nó đã đưa ra lời giải thích sau: $1',
-'missing-article'      => 'Cơ sở dữ liệu không tìm thấy văn bản của một trang mà lẽ ra phải thấy, trang "$1" $2.
+'missing-article'      => 'Cơ sở dữ liệu không tìm thấy văn bản của trang lẽ ra phải có, trang      Normal   0               false   false   false      EN-US   X-NONE   X-NONE                                                     MicrosoftInternetExplorer4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     “$1” $2.
 
-Điều này thường xảy ra do liên kết khác biệt phiên bản hoặc lịch sử có liên kết đến một trang đã bị xóa.
+Điều này thường xảy ra do nhấn vào liên kết khác biệt phiên bản đã quá lâu hoặc liên kết lịch sử của một trang đã bị xóa.
 
-Nếu trường hợp này không phải như vậy, có thể bạn đã gặp phải một lỗi trong phần mềm.
-Xin hãy báo nó cho một bảo quản viên, trong đó ghi lại địa chỉ URL.',
+Nếu không phải lý do trên, có thể bạn đã gặp phải một lỗi của phần mềm.
+Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], trong đó ghi lại địa chỉ URL.',
 'missingarticle-rev'   => '(số phiên bản: $1)',
 'missingarticle-diff'  => '(Khác: $1, $2)',
 'readonly_lag'         => 'Cơ sở dữ liệu bị khóa tự động trong khi các máy chủ cập nhật thông tin của nhau.',
@@ -474,11 +474,12 @@ Lý do được cung cấp là ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Đăng xuất',
-'logouttext'                 => "<strong>Bạn đã đăng xuất.</strong><br />
-Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể đăng nhập lại dưới tên người dùng này hoặc tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như bạn còn đăng nhập cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
-'welcomecreation'            => '== Chào mừng, $1! ==
+'logouttext'                 => "<strong>Bạn đã đăng xuất.</strong>
 
-Tài khoản của bạn đã mở. Đừng quên thay đổi tùy chọn cá nhân của bạn tại {{SITENAME}}.',
+Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:Userlogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
+'welcomecreation'            => '== Chào mừng, $1! ==
+Tài khoản của bạn đã mở.
+Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
 'loginpagetitle'             => 'Đăng nhập',
 'yourname'                   => 'Tên người dùng:',
 'yourpassword'               => 'Mật khẩu',
@@ -647,7 +648,10 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'accmailtext'                      => 'Mật khẩu của “$1” đã được gửi đến $2.',
 'newarticle'                       => '(Mới)',
 'newarticletext'                   => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
-'anontalkpagetext'                 => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có nhưng không đăng nhập. Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta. Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung. Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin|tạo tài khoản hoặc đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
+'anontalkpagetext'                 => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
+Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
+Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
+Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin/signup|tạo tài khoản]] hoặc [[Special:Userlogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
 'noarticletext'                    => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'clearyourcache'                   => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
@@ -665,7 +669,8 @@ Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đ
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được giấu đi để đề phòng bị tấn công bằng JavaScript.''
 
-<strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>",
+<strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. 
+Nếu vẫn không thành công, bạn hãy thử [[Special:Userlogout|đăng xuất]] rồi đăng nhập lại.</strong>",
 'token_suffix_mismatch'            => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
@@ -731,7 +736,7 @@ Những giá trị này sẽ bị bỏ đi.',
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
 'undo-failure' => 'Sửa đổi không thể phục hồi vì đã có những sửa đổi mới ở sau.',
 'undo-norev'   => 'Sửa đổi không thể hồi phục vì nó không tồn tại hoặc đã bị xóa.',
-'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|thảo luận]])',
+'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Không có thể mở tài khoản',
@@ -758,6 +763,7 @@ Lý do được $3 đưa ra là ''$2''",
 'histlegend'          => 'Chọn so sánh: đánh dấu để chọn các phiên bản để so sánh rồi nhấn enter hoặc nút ở dưới.<br />
 Chú giải: (hiện) = khác với phiên bản hiện hành,
 (trước) = khác với phiên bản trước, n = sửa đổi nhỏ.',
+'history-search'      => 'Tìm trong lịch sử',
 'deletedrev'          => '[đã xóa]',
 'histfirst'           => 'Cũ nhất',
 'histlast'            => 'Mới nhất',
@@ -864,8 +870,9 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 
 # Search results
 'searchresults'             => 'Kết quả tìm kiếm',
+'searchresults-title'       => 'Kết quả tìm kiếm $1',
 'searchresulttext'          => 'Để biết thêm chi tiết về tìm kiếm tại {{SITENAME}}, xem [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Tìm '''[[:$1]]'''",
+'searchsubtitle'            => "Bạn đã tìm '''[[:$1]]''' ([[Special:Prefixindex/$1|tất cả các trang bắt đầu bằng “$1”]] | [[Special:Whatlinkshere/$1|tất cả các trang liên kết đến “$1”]])",
 'searchsubtitleinvalid'     => "Tìm '''$1'''",
 'noexactmatch'              => "'''Trang “$1” không tồn tại.''' Bạn có thể [[:$1|tạo trang này]].",
 'noexactmatch-nocreate'     => "'''Không có trang nào có tên “$1”.'''",
@@ -1117,19 +1124,21 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'upload_directory_missing'    => 'Thư mục tải lên ($1) không có hoặc máy chủ web không thể tạo được.',
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
-'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin.
+'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
 Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:Imagelist|danh sách các tập tin đã tải lên]];
 việc tải lên và xóa đi cũng được ghi lại trong [[Special:Log/upload|nhật trình tải lên]].
 
-Để đưa hình vào trang, hãy dùng một liên kết theo dạng '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|văn bản thay thế]]</nowiki>''' hoặc
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki>''' để trực tiếp liên kết đến tập tin.",
+Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</tt></nowiki>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó.",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
 'upload-prohibited'           => 'Các định dạng tập tin bị cấm: $1.',
 'uploadlog'                   => 'nhật trình tải lên',
 'uploadlogpage'               => 'Nhật trình tải lên',
-'uploadlogpagetext'           => 'Danh sách các tập tin đã tải lên, theo  giờ máy chủ (UTC).',
+'uploadlogpagetext'           => 'Dưới đây là danh sách các tập tin đã tải lên gần nhất.
+Xem [[Special:NewImages|trang trưng bày các tập tin mới]] để xem trực quan hơn.',
 'filename'                    => 'Tên tập tin:',
 'filedesc'                    => 'Miêu tả:',
 'fileuploadsummary'           => 'Tóm lược:',
@@ -1202,9 +1211,12 @@ PICT # khác
 'upload-proto-error'      => 'Giao thức sai',
 'upload-proto-error-text' => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
 'upload-file-error'       => 'Lỗi nội bộ',
-'upload-file-error-text'  => 'Có lỗi nội bộ khi tạo ra tập tin tạm trên máy chủ. Xin hãy liên lạc với người quản lý hệ thống.',
+'upload-file-error-text'  => 'Có lỗi nội bộ khi tạo tập tin tạm trên máy chủ.
+Xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
 'upload-misc-error'       => 'Có lỗi lạ khi tải lên',
-'upload-misc-error-text'  => 'Có lỗi lạ khi tải lên.  Xin hãy xác nhận lại địa chỉ URL có đúng và có thể truy cập được không rồi thử lại lần nữa.  Nếu vẫn còn bị lỗi, xin hãy liên lạc với người quản lý hệ thống.',
+'upload-misc-error-text'  => 'Có lỗi lạ khi tải lên.
+Xin hãy xác nhận lại địa chỉ URL là hợp lệ và có thể truy cập được không rồi thử lại lần nữa.
+Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Không thể truy cập URL',
@@ -1453,20 +1465,25 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'listusers-noresult' => 'Không thấy thành viên.',
 
 # Special:Listgrouprights
-'listgrouprights'          => 'Nhóm thành viên',
-'listgrouprights-summary'  => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.
-Thông tin thêm về từng nhóm có thể xem tại [[{{MediaWiki:Listgrouprights-helppage}}|đây]].',
-'listgrouprights-group'    => 'Nhóm',
-'listgrouprights-rights'   => 'Khả năng',
-'listgrouprights-helppage' => 'Help:Khả năng của nhóm thành viên',
-'listgrouprights-members'  => '(danh sách thành viên)',
+'listgrouprights'                 => 'Nhóm thành viên',
+'listgrouprights-summary'         => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.
+Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhóm riêng biệt.',
+'listgrouprights-group'           => 'Nhóm',
+'listgrouprights-rights'          => 'Khả năng',
+'listgrouprights-helppage'        => 'Help:Khả năng của nhóm thành viên',
+'listgrouprights-members'         => '(danh sách thành viên)',
+'listgrouprights-addgroup'        => 'Có thể thêm nhóm: $1',
+'listgrouprights-removegroup'     => 'Có thể bỏ nhóm: $1',
+'listgrouprights-addgroup-all'    => 'Có thể thêm tất cả các nhóm',
+'listgrouprights-removegroup-all' => 'Có thể bỏ tất cả các nhóm',
 
 # E-mail user
 'mailnologin'     => 'Không có địa chỉ gửi thư',
 'mailnologintext' => 'Bạn phải [[Special:Userlogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser'       => 'Gửi thư cho người này',
 'emailpage'       => 'Gửi thư',
-'emailpagetext'   => 'Nếu người này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, biểu mẫu dưới đây sẽ cho bạn gửi thư. Địa chỉ thư điện tử của bạn sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời lại bạn.',
+'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ cho bạn gửi thư.
+Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời lại bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'thư gửi từ {{SITENAME}}',
 'noemailtitle'    => 'Không có địa chỉ nhận thư',
@@ -1597,9 +1614,9 @@ hãy cẩn trọng khi thực hiện.',
 'rollbacklink'                => 'phục hồi',
 'rollbackfailed'              => 'Không phục hồi được',
 'cantrollback'                => 'Không lùi sửa đổi được; người viết trang cuối cùng là tác giả duy nhất của trang này.',
-'alreadyrolled'               => 'Không thể phục hồi phiên bản của [[User:$2|$2]] ([[User talk:$2|Thảo luận]]) tại [[:$1]]; ai đó đã sửa đổi hoặc phục hồi rồi.
+'alreadyrolled'               => 'Không thể phục hồi các sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|Thảo luận]] | [[Special:Contributions/$2|{{int:contribslink}}]]); ai đó đã thực hiện sửa đổi hoặc phục hồi rồi.
 
-Sửa đổi lần cuối bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]]).',
+Sửa đổi cuối cùng tại trang được thực hiện bởi [[User:$3|$3]] ([[User talk:$3|Thảo luận]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
 'revertpage'                  => 'Đã lùi sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) đến phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
@@ -1854,15 +1871,15 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'move-page-legend'        => 'Di chuyển trang',
 'movepagetext'            => "Dùng mẫu dưới đây để đổi tên một trang, di chuyển tất cả lịch sử của nó sang tên mới.
 Tên cũ sẽ trở thành trang đổi hướng sang tên mới.
-Các liên kết đến trang cũ sẽ không thay đổi;
-hãy nhớ kiểm tra các đổi hướng kép hoặc đổi hướng sai.
+Bạn có thể cập nhật tự động các trang đổi hướng đến tên cũ.
+Nếu bạn chọn không cập nhật, hãy nhớ kiểm tra [[Special:DoubleRedirects|đổi hướng kép]] hoặc [[Special:BrokenRedirects|đổi hướng đến trang không tồn tại]].
 Bạn phải chịu trách nhiệm đảm bảo các liên kết đó tiếp tục trỏ đến nơi chúng cần đến.
 
-Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi.
+Chú ý rằng trang sẽ '''không''' bị di chuyển nếu đã có một trang tại tên mới, trừ khi nó rỗng hoặc là trang đổi hướng và không có lịch sử sửa đổi trước đây.
 Điều này có nghĩa là bạn có thể đổi tên trang lại như cũ nếu bạn có nhầm lẫn, và bạn không thể ghi đè lên một trang đã có sẵn.
 
 '''CẢNH BÁO!'''
-Việc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang phổ biến;
+Việc làm này có thể dẫn đến sự thay đổi mạnh mẽ và không lường trước đối với các trang dễ nhìn thấy;
 xin hãy chắc chắn rằng bạn đã nhận thức được những hệ lụy của nó trước khi thực hiện.",
 'movepagetalktext'        => "Trang thảo luận đi kèm sẽ được tự động di chuyển theo '''trừ khi''':
 *Đã tồn tại một trang thảo luận không trống tại tên mới, hoặc
@@ -1875,7 +1892,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'move-watch'              => 'Theo dõi trang này',
 'movepagebtn'             => 'Di chuyển trang',
 'pagemovedsub'            => 'Di chuyển thành công',
-'movepage-moved'          => "<big>'''“.$1” đã được di chuyển đến “.$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'          => "<big>'''“$1” đã được di chuyển đến “$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Đã có một trang với tên đó, hoặc tên bạn chọn không hợp lệ.
 Xin hãy chọn tên khác.',
 'cantmove-titleprotected' => 'Bạn không thể đổi tên trang, vì tên trang mới đã bị khóa không cho tạo mới',
@@ -1953,7 +1970,8 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-submit'    => 'Nhập trang',
 'import-interwiki-namespace' => 'Chuyển các trang vào không gian tên:',
-'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng tính năng Special:Export, lưu nó vào máy của bạn rồi tải nó lên đây.',
+'importtext'                 => 'Xin hãy xuất tập tin từ wiki nguồn sử dụng [[Special:Export|tính năng xuất]].
+Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'importstart'                => 'Đang nhập các trang…',
 'import-revision-count'      => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'importnopages'              => 'Không có trang để nhập vào.',
@@ -2103,10 +2121,11 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'markedaspatrollederror-noautopatrol' => 'Bạn không được đánh dấu tuần tra vào sửa đổi của bạn.',
 
 # Patrol log
-'patrol-log-page' => 'Nhật ký tuần tra',
-'patrol-log-line' => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
-'patrol-log-auto' => '(tự động)',
-'patrol-log-diff' => 'bản $1',
+'patrol-log-page'   => 'Nhật ký tuần tra',
+'patrol-log-header' => 'Đây là nhật trình tuần tra phiên bản.',
+'patrol-log-line'   => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
+'patrol-log-auto'   => '(tự động)',
+'patrol-log-diff'   => 'bản $1',
 
 # Image deletion
 'deletedrevision'                 => 'Đã xóa phiên bản cũ $1',
@@ -2418,7 +2437,7 @@ Những thông tin khác mặc định sẽ bị giấu.
 
 # External editor support
 'edit-externally'      => 'Sửa bằng phần mềm bên ngoài',
-'edit-externally-help' => '* Xem thêm [http://meta.wikimedia.org/wiki/Help:External_editors hướng dẫn bằng tiếng Anh]',
+'edit-externally-help' => '* Xem thêm [http://www.mediawiki.org/wiki/Manual:External_editors hướng dẫn bằng tiếng Anh]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tất cả',

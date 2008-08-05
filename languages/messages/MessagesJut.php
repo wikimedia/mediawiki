@@ -6,7 +6,6 @@
  *
  * @author Ælsån
  * @author Huslåke
- * @author M.M.S.
  */
 
 $fallback = 'da';
@@ -828,7 +827,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # External editor support
 'edit-externally'      => "Redigær denne gøret ve'n utsende redigærstøme",
-'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors setup hjælpje] før mære informasje.',
+'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors setup hjælpje] før mære informasje.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'åle',

@@ -9,7 +9,6 @@
  * @author Stigmj
  * @author לערי ריינהארט
  * @author H92
- * @author M.M.S.
  * @author Eirik
  * @author Jóna Þórunn
  * @author EivindJ
@@ -290,7 +289,7 @@ $messages = array(
 'newwindow'      => '(åpner i nytt vindu)',
 'cancel'         => 'Avbryt',
 'qbfind'         => 'Finn',
-'qbbrowse'       => 'Søk',
+'qbbrowse'       => 'Bla gjennom',
 'qbedit'         => 'Rediger',
 'qbpageoptions'  => 'Sideinnstillinger',
 'qbpageinfo'     => 'Sideinformasjon',
@@ -2423,7 +2422,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # External editor support
 'edit-externally'      => 'Rediger denne fila med et eksternt program',
-'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors oppsettsinstruksjonene] for mer informasjon.',
+'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

@@ -14,8 +14,8 @@
  * @author Assassingr
  * @author MF-Warburg
  * @author Geraki
- * @author לערי ריינהארט
  * @author Sinopeus
+ * @author לערי ריינהארט
  * @author Flyax
  * @author Demmy
  */
@@ -1005,7 +1005,7 @@ $1 ώρες.',
 'prefs-watchlist-days'     => 'Ημέρες προς εμφάνιση στη λίστα παρακολούθησης:',
 'prefs-watchlist-edits'    => 'Αριθμός επεξεργασιών προς εμφάνιση στην εκτεταμένη λίστα παρακολούθησης:',
 'prefs-misc'               => 'Διάφορες ρυθμίσεις',
-'saveprefs'                => 'Αποθήκευση προτιμήσεων',
+'saveprefs'                => 'Σώστε',
 'resetprefs'               => 'Επαναφορά προτιμήσεων',
 'oldpassword'              => 'Παλιός κωδικός',
 'newpassword'              => 'Νέος κωδικός πρόσβασης',
@@ -1626,7 +1626,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'protect-locked-dblock'       => 'Τα επίπεδα προστασίας δεν μπορούν να αλλαχθούν λόγω ενός ενεργού κλεδώματος της βάσης δεδομένων.
 Εδώ είναι οι τρέχουσες ρυθμίσεις για τη σελίδα <strong>$1</strong>:',
 'protect-locked-access'       => 'Ο λογαριασμός σας δεν έχει δικαίωμα να αλλάξει τα επίπεδα προστασίας σελίδας.
-Εδώ είναι οι τρέχουσες ρυθμίσεις γαι τη σελίδα <strong>$1</strong>:',
+Εδώ είναι οι τρέχουσες ρυθμίσεις για τη σελίδα <strong>$1</strong>:',
 'protect-cascadeon'           => 'Αυτή η σελίδα είναι προς το παρόν προστατευμένη επειδή περιλαμβάνεται {{PLURAL:$1|στην ακόλουθη σελίδα, η οποία έχει|στις ακόλουθες σελίδες, οι οποίες έχουν}} τη διαδοχική προστασία ενεργοποιημένη. Μπορείτε να αλλάξετε το επίπεδο προστασίας αυτής της σελίδας, αλλά δεν θα επηρεάσει τη διαδοχική προστασία.',
 'protect-default'             => '(προεπιλεγμένο)',
 'protect-fallback'            => 'Αίτηση δικαιωμάτων "$1"',
@@ -2403,7 +2403,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Επεξεργαστείτε το συγκεκριμένο αρχείο χρησιμοποιώντας μια από τις εξωτερικές εφαρμογές.',
-'edit-externally-help' => 'Για περισσότερες πληροφορίες ακολουθήστε το σύνδεσμο: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
+'edit-externally-help' => 'Για περισσότερες πληροφορίες ακολουθήστε το σύνδεσμο: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'όλες',

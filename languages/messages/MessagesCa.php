@@ -2474,7 +2474,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 # External editor support
 'edit-externally'      => 'Edita aquest fitxer fent servir una aplicació externa',
-'edit-externally-help' => 'Vegeu les [http://meta.wikimedia.org/wiki/Help:External_editors instruccions de configuració] per a més informació.',
+'edit-externally-help' => 'Vegeu les [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuració] per a més informació.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tots',

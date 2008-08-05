@@ -856,7 +856,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
-'edit-externally-help' => 'Vide la [http://meta.wikimedia.org/wiki/Help:External_editors instruis per comensa] per plu instruis.',
+'edit-externally-help' => 'Vide la [http://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tota',

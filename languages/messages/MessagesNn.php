@@ -7,12 +7,11 @@
  * @author Eirik
  * @author Jon Harald Søby
  * @author Jorunn
- * @author M.M.S.
  * @author Ranveig
  * @author לערי ריינהארט
  * @author Finnrind
- * @author H92
  * @author Dittaeva
+ * @author H92
  * @author Boivie
  * @author Olve Utne
  * @author Guttorm Flatabø
@@ -2383,7 +2382,7 @@ Dei andre felta er gøymde som standard.
 
 # External editor support
 'edit-externally'      => 'Endre denne fila med eit eksternt program',
-'edit-externally-help' => 'Sjå [http://meta.wikimedia.org/wiki/Help:External_editors eksterne program instruksjonane] for meir informasjon.',
+'edit-externally-help' => 'Sjå [http://www.mediawiki.org/wiki/Manual:External_editors eksterne program instruksjonane] for meir informasjon.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

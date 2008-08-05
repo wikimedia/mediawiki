@@ -2202,7 +2202,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 
 # External editor support
 'edit-externally'      => "Modifiché st'archivi con un programa estern",
-'edit-externally-help' => "Che a varda [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] për avej pì d'anformassion.",
+'edit-externally-help' => "Che a varda [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] për avej pì d'anformassion.",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',

@@ -2257,7 +2257,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 
 # External editor support
 'edit-externally'      => 'Edytuj tyn plik bez zewnyntřno aplikacyjo',
-'edit-externally-help' => 'Zoboč wjyncyj informacyji uo užywańu [http://meta.wikimedia.org/wiki/Help:External_editors zewnyntřnych edytorůw].',
+'edit-externally-help' => 'Zoboč wjyncyj informacyji uo užywańu [http://www.mediawiki.org/wiki/Manual:External_editors zewnyntřnych edytorůw].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšyjstke',

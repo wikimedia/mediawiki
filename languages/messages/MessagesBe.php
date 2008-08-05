@@ -2313,7 +2313,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Правіць файл у вонкавай праграме',
-'edit-externally-help' => 'Глядзіце [http://meta.wikimedia.org/wiki/Help:External_editors інструкцыі па настаўлянню (англ.)] па больш падрабязнасцяў.',
+'edit-externally-help' => 'Глядзіце [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па настаўлянню (англ.)] па больш падрабязнасцяў.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'усе',

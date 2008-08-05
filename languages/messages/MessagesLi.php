@@ -2285,7 +2285,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 
 # External editor support
 'edit-externally'      => "Bewirk dit bestand mit 'n extern toepassing",
-'edit-externally-help' => 'Zuug de [http://meta.wikimedia.org/wiki/Help:External_editors setupinsjtructies] veur mier informatie.',
+'edit-externally-help' => 'Zuug de [http://www.mediawiki.org/wiki/Manual:External_editors setupinsjtructies] veur mier informatie.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'al',

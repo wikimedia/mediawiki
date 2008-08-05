@@ -2003,7 +2003,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Խմբագրել այս ֆայլը արտաքին խմբագրիչով',
-'edit-externally-help' => 'Մանրամասնությունների համար տես [http://meta.wikimedia.org/wiki/Help:External_editors Meta:Help:External_editors]։',
+'edit-externally-help' => 'Մանրամասնությունների համար տես [http://www.mediawiki.org/wiki/Manual:External_editors Meta:Help:External_editors]։',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'բոլոր',

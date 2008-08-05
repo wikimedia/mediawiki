@@ -2564,7 +2564,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'ای صفحه یا اصلاح کن گون یک درآین برنامه ای',
-'edit-externally-help' => 'په گیشترین اطلاعات بچار[http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
+'edit-externally-help' => 'په گیشترین اطلاعات بچار[http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'کل',

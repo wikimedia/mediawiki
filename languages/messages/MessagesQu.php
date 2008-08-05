@@ -2281,7 +2281,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 
 # External editor support
 'edit-externally'      => "Kay willañiqita hawa rurana wakichiwan llamk'apuy",
-'edit-externally-help' => 'Astawan willasunaykipaqqa [http://meta.wikimedia.org/wiki/Help:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
+'edit-externally-help' => 'Astawan willasunaykipaqqa [http://www.mediawiki.org/wiki/Manual:External_editors tiyachina yanapata] (inlish simipi) ñawiriy.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tukuy',

@@ -1670,7 +1670,7 @@ $NEWPAGE
 
 # External editor support
 'edit-externally'      => 'עדיט די פייל דורך א דערויסענדיגער אפליקאציע',
-'edit-externally-help' => 'זעהט די [http://meta.wikimedia.org/wiki/Help:External_editors סעטאפ אנווייזונגען] פאר מער אינפארמאציע.',
+'edit-externally-help' => 'זעהט די [http://www.mediawiki.org/wiki/Manual:External_editors סעטאפ אנווייזונגען] פאר מער אינפארמאציע.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'אַלע',

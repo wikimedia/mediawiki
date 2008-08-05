@@ -5,7 +5,6 @@
  * @file
  *
  * @author Girmitya
- * @author M.M.S.
  */
 
 $messages = array(
@@ -995,7 +994,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => 'Aur jaankari khatir [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] ke dekho.',
+'edit-externally-help' => 'Aur jaankari khatir [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ke dekho.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sab',

@@ -2131,7 +2131,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally'      => 'Editează acest fişier folosind o aplicaţie externă.',
-'edit-externally-help' => 'Vedeţi [http://meta.wikimedia.org/wiki/Help:External_editors instrucţiuni de instalare] pentru mai multe informaţii.',
+'edit-externally-help' => 'Vedeţi [http://www.mediawiki.org/wiki/Manual:External_editors instrucţiuni de instalare] pentru mai multe informaţii.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tot',

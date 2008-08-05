@@ -1747,7 +1747,7 @@ $NEWPAGE
 
 # External editor support
 'edit-externally'      => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
-'edit-externally-help' => 'დაწვრილებითი ინფორმაციისთვის იხილეთ [http://meta.wikimedia.org/wiki/Help:External_editors ჩადგმის ინსტრუქციები].',
+'edit-externally-help' => 'დაწვრილებითი ინფორმაციისთვის იხილეთ [http://www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ყველა',

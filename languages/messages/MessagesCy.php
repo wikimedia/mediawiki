@@ -2139,7 +2139,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 
 # External editor support
 'edit-externally'      => 'Golygwch y ffeil gyda rhaglen allanol',
-'edit-externally-help' => 'Gwelwch y [http://meta.wikimedia.org/wiki/Help:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth.',
+'edit-externally-help' => 'Gwelwch y [http://www.mediawiki.org/wiki/Manual:External_editors cyfarwyddiadau gosod] am fwy o wybodaeth.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'holl',

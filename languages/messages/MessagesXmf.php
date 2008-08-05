@@ -605,7 +605,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'თე ფაილიშ რედაქტირაფა ბორჯის გიმირინეთ გალენ პროგრამა.',
-'edit-externally-help' => 'რსულ ინფორმაციაშენ ქოძირეთ [http://meta.wikimedia.org/wiki/Help:External_editors ჩადგმიშ ინსტრუქციეფ].',
+'edit-externally-help' => 'რსულ ინფორმაციაშენ ქოძირეთ [http://www.mediawiki.org/wiki/Manual:External_editors ჩადგმიშ ინსტრუქციეფ].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'არძა',

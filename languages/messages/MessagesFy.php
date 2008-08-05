@@ -1613,7 +1613,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 
 # External editor support
 'edit-externally'      => 'Dizze triem bewurkje mei in ekstern programma',
-'edit-externally-help' => 'Sjoch de [http://meta.wikimedia.org/wiki/Help:External_editors ynstel-hantlieding] foar mear ynformaasje.',
+'edit-externally-help' => 'Sjoch de [http://www.mediawiki.org/wiki/Manual:External_editors ynstel-hantlieding] foar mear ynformaasje.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'alle',

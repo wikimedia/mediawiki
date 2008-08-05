@@ -2290,7 +2290,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
-'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions].',
+'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'бары',

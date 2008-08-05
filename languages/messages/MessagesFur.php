@@ -1232,7 +1232,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # External editor support
 'edit-externally'      => 'Modifiche chest file cuntune aplicazion esterne',
-'edit-externally-help' => 'Cjale [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] par altris informazions.',
+'edit-externally-help' => 'Cjale [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] par altris informazions.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ducj',

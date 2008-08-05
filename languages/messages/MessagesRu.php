@@ -2575,7 +2575,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактировать этот файл, используя внешнюю программу',
-'edit-externally-help' => 'Подробности см. на странице [http://meta.wikimedia.org/wiki/Help:External_editors Meta:Help:External_editors].',
+'edit-externally-help' => 'Подробности см. на странице [http://www.mediawiki.org/wiki/Manual:External_editors Meta:Help:External_editors].',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'все',

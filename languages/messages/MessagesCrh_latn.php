@@ -1673,7 +1673,7 @@ Er satır * simvolınen başlamalı. Satırnıñ birinci bağlantısı eklemege 
 
 # External editor support
 'edit-externally'      => 'Fayl üzerinde kompyuteriñizde bulunğan programmalar ile deñişiklikler yapıñız',
-'edit-externally-help' => 'Daa fazla malümat içün [http://meta.wikimedia.org/wiki/Help:External_editors bu saifege] (İnglizce)  baqıp olasıñız.',
+'edit-externally-help' => 'Daa fazla malümat içün [http://www.mediawiki.org/wiki/Manual:External_editors bu saifege] (İnglizce)  baqıp olasıñız.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'episini',

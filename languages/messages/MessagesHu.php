@@ -5,9 +5,9 @@
  * @file
  *
  * @author Dani
+ * @author Samat
  * @author Tgr
  * @author Bdamokos
- * @author Samat
  * @author Cerasus
  * @author Dorgan
  * @author Balasyum
@@ -1171,7 +1171,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 
 # Groups
 'group'               => 'Csoport:',
-'group-user'          => 'szerkesztők',
+'group-user'          => 'új szerkesztők',
 'group-autoconfirmed' => 'automatikusan megerősített felhasználók',
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',
@@ -2619,7 +2619,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => 'Lásd a [http://meta.wikimedia.org/wiki/Help:External_editors „setup instructions”] leírást (angolul) ennek használatához.',
+'edit-externally-help' => 'Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors „setup instructions”] leírást (angolul) ennek használatához.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'összes',

@@ -5,7 +5,6 @@
  * @file
  *
  * @author NJ
- * @author SPQRobin
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart

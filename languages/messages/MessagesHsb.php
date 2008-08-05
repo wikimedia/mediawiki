@@ -8,7 +8,6 @@
  * @author Michawiki
  * @author Tlustulimu
  * @author לערי ריינהארט
- * @author M.M.S.
  */
 
 $fallback = 'de';
@@ -2362,7 +2361,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 # External editor support
 'edit-externally'      => 'Dataju z eksternym programom wobdźěłać',
-'edit-externally-help' => 'Hlej [http://meta.wikimedia.org/wiki/Help:External_editors pokiwy za instalaciju] za dalše informacije.',
+'edit-externally-help' => 'Hlej [http://www.mediawiki.org/wiki/Manual:External_editors pokiwy za instalaciju] za dalše informacije.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'wšě',

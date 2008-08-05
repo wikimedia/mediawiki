@@ -2396,7 +2396,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहरी प्रणालीका इस्तेमाल करते हुए इस फ़ाईल को संपादित करें ।',
-'edit-externally-help' => 'अधिक जानकारीके लिये [http://meta.wikimedia.org/wiki/Help:External_editors सेट‍अप जानकारीयाँ] देखें ।',
+'edit-externally-help' => 'अधिक जानकारीके लिये [http://www.mediawiki.org/wiki/Manual:External_editors सेट‍अप जानकारीयाँ] देखें ।',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'सभी',

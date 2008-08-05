@@ -639,7 +639,7 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 
 # External editor support
 'edit-externally'      => 'Editar yeste ficheiro outelizando ua aplicaçon externa',
-'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

@@ -2307,7 +2307,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 
 # External editor support
 'edit-externally'      => 'Modifica sto file doparando un programa esterno',
-'edit-externally-help' => 'Par magiori informazion varda le [http://meta.wikimedia.org/wiki/Help:External_editors istruzion] (in inglese)',
+'edit-externally-help' => 'Par magiori informazion varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion] (in inglese)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',
