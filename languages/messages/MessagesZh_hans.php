@@ -695,7 +695,7 @@ $2',
 'undo-success' => '此编辑可以被撤销。请检查以下对比以核实这正是您想做的，然后保存以下更改以完成撤销编辑。',
 'undo-failure' => '由于中途不一致的编辑，此编辑不能撤销。',
 'undo-norev'   => '由于其修订版本不存在或已删除，此编辑不能撤销。',
-'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])所作出的修订 $1',
+'undo-summary' => '取消由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])所作出的修订 $1',
 
 # Account creation failure
 'cantcreateaccounttitle' => '无法创建账户',
@@ -881,7 +881,12 @@ $2',
 'qbsettings-floatingright' => '右侧漂移',
 'changepassword'           => '更改密码',
 'skin'                     => '皮肤',
+'skin-header'              => '可供使用的皮肤。',
+'skin-header-css'          => '* 利用相对的样式表 (CSS) 页面您可以自定每一块皮肤。',
+'skin-header-js'           => '* 利用相对的 JavaScript (JS) 页面您可以加入自己的 scripts 到每一块皮肤。',
 'skin-preview'             => '预览',
+'skin-link-to-css'         => '相对的 CSS',
+'skin-link-to-js'          => '相对的 JS',
 'math'                     => '数学公式',
 'dateformat'               => '日期格式',
 'datedefault'              => '默认值',
@@ -2411,7 +2416,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程序编辑此文件',
-'edit-externally-help' => '请参见[http://meta.wikimedia.org/wiki/Help:External_editors 设置步骤]了解详细信息。',
+'edit-externally-help' => '请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
