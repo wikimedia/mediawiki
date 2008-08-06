@@ -434,8 +434,7 @@ class Linker {
 			$text = $this->linkText( $nt );
 		}
 
-		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query,
-			'noclasses' ) . $trail;
+		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
