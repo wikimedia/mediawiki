@@ -363,7 +363,7 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '你係唔准執行你要求嘅動作。',
-'badaccess-groups' => '你所要求嘅動作只係限制畀$1組嘅其中一位用戶。',
+'badaccess-groups' => '你所要求嘅動作只係限制畀{{PLURAL:$2|呢個|呢啲}}組嘅其中一位用戶: $1',
 
 'versionrequired'     => '係需要用 $1 版嘅 MediaWiki',
 'versionrequiredtext' => '要用呢一頁，要用MediaWiki版本 $1 。睇睇[[Special:Version|版本頁]]。',
@@ -1140,7 +1140,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload_directory_read_only'  => '嗰個上載嘅目錄 ($1) 而家唔能夠被網頁伺服器寫入。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "用下面嘅表格嚟上載檔案。
-要睇或者搵嘢之前上載嘅圖像請去[[Special:Imagelist|已上載檔案一覽]]，上載同刪除嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟。
+要睇或者搵嘢之前上載嘅圖像請去[[Special:Imagelist|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
 
 如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
@@ -1474,8 +1474,8 @@ Template:搞清楚',
 'listgrouprights-rights'          => '權',
 'listgrouprights-helppage'        => 'Help:組權限',
 'listgrouprights-members'         => '(成員名單)',
-'listgrouprights-addgroup'        => '可以加入嘅組: $1',
-'listgrouprights-removegroup'     => '可以拎走嘅組: $1',
+'listgrouprights-addgroup'        => '可以加入嘅{{PLURAL:$2|一|多}}組: $1',
+'listgrouprights-removegroup'     => '可以拎走嘅{{PLURAL:$2|一|多}}組: $1',
 'listgrouprights-addgroup-all'    => '可以加入全部組',
 'listgrouprights-removegroup-all' => '可以拎走全部組',
 
