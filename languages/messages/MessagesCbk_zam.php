@@ -1,5 +1,5 @@
 <?php
-/** Zamboangueño (Zamboangueño)
+/** Chavacano de Zamboanga (Chavacano de Zamboanga)
  *
  * @ingroup Language
  * @file

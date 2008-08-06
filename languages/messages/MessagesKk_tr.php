@@ -1,9 +1,9 @@
 <?php
-/**
- * Kazakh (Turkey) (Qazaqşa (Türkïya))
+/** Kazakh (Turkey) (‪Qazaqşa (Türkïya)‬)
  *
  * @ingroup Language
  * @file
+ *
  */
 
 # Inherit everything for now

@@ -1,9 +1,9 @@
 <?php
-/**
- * Chinese (中文)
+/** Chinese (中文)
  *
  * @ingroup Language
  * @file
+ *
  */
 
 # Stub message file for converter code "zh"

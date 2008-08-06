@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author M.M.S.
  * @author לערי ריינהארט
  */
 

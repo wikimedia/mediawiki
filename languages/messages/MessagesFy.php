@@ -1327,7 +1327,7 @@ troch de lêste ferzje út dy weromsette skiednis ferfangen.',
 
 # What links here
 'whatlinkshere'       => 'Wat is hjirmei keppele',
-'whatlinkshere-title' => "Siden dy't ferwize nei $1",
+'whatlinkshere-title' => 'Siden dy\'t ferwize nei "$1"',
 'whatlinkshere-page'  => 'Side:',
 'linkshere'           => "Dizze siden binne keppele oan '''[[:$1]]''':",
 'nolinkshere'         => "Der binne gjin siden oan '''[[:$1]]''' keppele.",

@@ -9,8 +9,6 @@
  * @author Node ue
  */
 
-
-
 $messages = array(
 # Dates
 'sunday'    => 'Tondak',

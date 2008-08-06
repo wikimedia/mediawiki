@@ -33,6 +33,7 @@ $messages = array(
 'tog-watchlisthideown'        => '勒拉监控列表里向囥脱我个编辑',
 'tog-watchlisthidebots'       => '勒拉监控列表里向囥脱机器人个编辑',
 'tog-watchlisthideminor'      => '在监控列表中隐藏微小更改',
+'tog-showhiddencats'          => '显示囥脱分类',
 
 'underline-always'  => '总归',
 'underline-never'   => '从来弗',
@@ -204,7 +205,7 @@ $messages = array(
 'editsectionhint'         => '编辑段落: $1',
 'toc'                     => '目录',
 'showtoc'                 => '显示',
-'hidetoc'                 => '隐藏',
+'hidetoc'                 => '囥脱',
 'thisisdeleted'           => '查看或者恢复$1？',
 'viewdeleted'             => '望望$1看？',
 'restorelink'             => '个被删除个版本',
