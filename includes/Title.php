@@ -296,10 +296,12 @@ class Title {
 	 */
 	public static function newFromRedirect( $text ) {
 		$redir = MagicWord::get( 'redirect' );
-		if( $redir->matchStart( trim($text) ) ) {
+		$text = trim($text);
+		if( $redir->matchStartAndRemove( $text ) ) {
 			// Extract the first link and see if it's usable
+			// Ensure that it really does come directly after #REDIRECT
 			$m = array();
-			if( preg_match( '!\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
+			if( preg_match( '!^\s*\[{2}(.*?)(?:\|.*?)?\]{2}!', $text, $m ) ) {
 				// Strip preceding colon used to "escape" categories, etc.
 				// and URL-decode links
 				if( strpos( $m[1], '%' ) !== false ) {
