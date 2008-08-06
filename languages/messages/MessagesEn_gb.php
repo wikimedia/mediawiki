@@ -7,6 +7,13 @@
  * @author Jon Harald Søby
  */
 
+$specialPageAliases = array(
+	'Uncategorizedpages'        => array( 'UncategorisedPages' ),
+	'Uncategorizedcategories'   => array( 'UncategorisedCategories' ),
+	'Uncategorizedimages'       => array( 'UncategorisedImages' ),
+	'Uncategorizedtemplates'    => array( 'UncategorisedTemplates' ),
+);
+
 $messages = array(
 # Main script and global functions
 'nosuchactiontext' => 'The action specified by the URL is not recognised by the wiki',
