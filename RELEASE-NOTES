@@ -42,7 +42,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   sidebar and add custom portlets to it
 * Added 'MakeGlobalVariablesScript' hook for extensions to be able to add vari-
   ables into into the output of Skin::makeVariablesScript
-* Added $wgAddGroups and $wgRemoveGroups display on Special:ListGroupRights
+* (bug 13846) Added $wgAddGroups and $wgRemoveGroups display on
+  Special:ListGroupRights
 * (bug 14377) Add a date selector to history pages
 * (bug 15007) New 'pagetitle-view-mainpage' message allows the HTML <title> of
   the main page to be customized
