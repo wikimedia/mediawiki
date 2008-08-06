@@ -877,7 +877,7 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'movereason'              => 'Īxtlamatiliztli:',
 'revertmove'              => 'tlacuepāz',
 'delete_and_move'         => 'Ticpolōz auh ticzacāz',
-'delete_and_move_confirm' => 'Quēmah, nicpolōz in zāzanilli',
+'delete_and_move_confirm' => 'Quēmah, ticpolōz in zāzanilli',
 
 # Export
 'export'          => 'Tiquinnamacāz zāzaniltin',

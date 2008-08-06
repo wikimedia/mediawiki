@@ -13,22 +13,22 @@
  * @author Lin linao
  * @author Platonides
  * @author Dmcdevit
- * @author Spacebirdy
  * @author לערי ריינהארט
  * @author Jurock
+ * @author Spacebirdy
  * @author Baiji
  * @author Cvmontuy
  * @author Alhen
  * @author Jatrobat
  * @author Ascánder
+ * @author Fluence
  * @author Bengoa
  * @author Dvortygirl
  * @author Orgullomoore
  * @author Toniher
  * @author Omnipaedista
- * @author Alpertron
- * @author Fluence
  * @author McDutchie
+ * @author Alpertron
  * @author Mahadeva
  * @author Better
  * @author Technorum
@@ -1201,7 +1201,7 @@ archivo a esa fecha.',
 'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Borrar',
-'filedelete-success'          => "'''$1''' ha sido borrado.",
+'filedelete-success'          => "'''$1''' ōmopolo.",
 'filedelete-nofile'           => "El archivo '''$1''' no existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "No existe una versión guardada de '''$1''' con los atributos especificados.",
 'filedelete-otherreason'      => 'Otra razón:',
@@ -1489,8 +1489,8 @@ así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'              => 'Acción completa',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha sido borrado.
-Véase $2 para un registro de los borrados recientes.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ōmopolo.
+Xiquitta $2 ic yancuīc tlapololiztli.',
 'deletedarticle'              => 'borró "$1"',
 'dellogpage'                  => 'Registro de borrados',
 'dellogpagetext'              => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor (UTC).',

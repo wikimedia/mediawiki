@@ -90,7 +90,7 @@ $messages = array(
 'delete'           => 'Ñamümün',
 'protect'          => 'Elulan ñi wiriael',
 'unprotect'        => 'Elun ñi wiriael',
-'talkpage'         => 'Nütramkawe Tüfachi página',
+'talkpage'         => 'Nütramkafinge tüfachi pakina',
 'talkpagelinktext' => 'Nütramkawe',
 'articlepage'      => 'adkintun artículo',
 'talk'             => 'Nütramkawe',
@@ -132,29 +132,31 @@ $messages = array(
 'badtitle'        => 'Nornongey ta üy',
 
 # Login and logout pages
-'loginpagetitle'     => 'Konün',
-'yourname'           => 'Tami lludüchi üy',
-'yourpassword'       => 'Tami kondungu',
-'login'              => 'Konün',
-'logout'             => 'Tripan',
-'userlogout'         => 'Tripan',
-'notloggedin'        => 'Petu konlaymi.',
-'nologin'            => 'Nielaymi kiñe lludüwe? $1.',
-'nologinlink'        => 'Dewmafinge',
-'gotaccountlink'     => 'Konün',
-'yourrealname'       => 'Tami mupiñ üy *',
-'yourlanguage'       => 'Dungun:',
-'loginlanguagelabel' => 'Dungun: $1',
+'loginpagetitle'          => 'Konün',
+'yourname'                => 'Tami lludüchi üy',
+'yourpassword'            => 'Tami kondungu',
+'login'                   => 'Konün',
+'nav-login-createaccount' => 'Registrarse/Konün',
+'logout'                  => 'Tripan',
+'userlogout'              => 'Tripan',
+'notloggedin'             => 'Petu konlaymi.',
+'nologin'                 => 'Nielaymi kiñe lludüwe? $1.',
+'nologinlink'             => 'Dewmafinge',
+'gotaccountlink'          => 'Konün',
+'yourrealname'            => 'Tami mupiñ üy *',
+'yourlanguage'            => 'Dungun:',
+'loginlanguagelabel'      => 'Dungun: $1',
 
 # Edit pages
 'subject'    => 'Dungu/üy',
 'newarticle' => '(We)',
-'editing'    => 'Wirin $1',
-'yourtext'   => 'Ñi Wiri',
+'editing'    => 'Wirimekey $1',
+'yourtext'   => 'Tami wirin',
 
 # History pages
-'page_first'   => 'wünen',
-'historyempty' => '(welli)',
+'page_first'     => 'wünen',
+'history-search' => 'Kintun pünon',
+'historyempty'   => '(welli)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 $2 mew', # user at time

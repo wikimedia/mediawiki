@@ -601,7 +601,7 @@ $messages = array(
 
 'badaccess'        => 'خطأ في السماح',
 'badaccess-group0' => 'ليس من المسموح لك تنفيذ الفعل الذي طلبته.',
-'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في إحدى المجموعات $1.',
+'badaccess-groups' => 'الفعل الذي طلبته مقصور على المستخدمين في {{PLURAL:$2|المجموعة|إحدى المجموعات}}: $1.',
 
 'versionrequired'     => 'تلزم نسخة $1 من ميدياويكي',
 'versionrequiredtext' => 'تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]',
@@ -1434,7 +1434,7 @@ $2',
 'upload_directory_read_only'  => 'مجلد الرفع ($1) لا يمكن الكتابة عليه بواسطة خادم الويب.',
 'uploaderror'                 => 'خطأ في الرفع',
 'uploadtext'                  => "استخدم الاستمارة بالأسفل لرفع الملفات.
-لعرض أو البحث في الملفات المرفوعة سابقا، راجع [[Special:Imagelist|قائمة الملفات المرفوعة]]، عمليات الرفع والحذف موجودة في [[Special:Log/upload|سجل الرفع]].
+لرؤية أو البحث في الملفات المرفوعة سابقا، راجع [[Special:Imagelist|قائمة الملفات المرفوعة]]، عمليات الرفع (وإعادة الرفع) مسجلة في [[Special:Log/upload|سجل الرفع]] وعمليات الحذف في [[Special:Log/delete|سجل الحذف]].
 
 لإدراج صورة في صفحة، استخدم الوصلات في الصيغ التالية:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
@@ -1807,8 +1807,8 @@ PICT # misc.
 'listgrouprights-rights'          => 'الصلاحيات',
 'listgrouprights-helppage'        => 'Help:صلاحيات المجموعات',
 'listgrouprights-members'         => '(قائمة الأعضاء)',
-'listgrouprights-addgroup'        => 'يمكنه إضافة المجموعات: $1',
-'listgrouprights-removegroup'     => 'يمكنه إزالة المجموعات: $1',
+'listgrouprights-addgroup'        => 'يمكنه إضافة {{PLURAL:$2|المجموعة|المجموعات}}: $1',
+'listgrouprights-removegroup'     => 'يمكنه إزالة {{PLURAL:$2|المجموعة|المجموعات}}: $1',
 'listgrouprights-addgroup-all'    => 'يمكنه إضافة كل المجموعات',
 'listgrouprights-removegroup-all' => 'يمكنه إزالة كل المجموعات',
 
