@@ -912,8 +912,8 @@ class Language {
 	 * to translate the relevant functions into PHP and release them under
 	 * GNU GPL.
 	 *
-	 * The months are counted from Nissan = 1.  In a leap year, Adar I is 13
-	 * and Adar II is 14.  In a non-leap year, Adar is 6.
+	 * The months are counted from Tishrei = 1. In a leap year, Adar I is 13
+	 * and Adar II is 14. In a non-leap year, Adar is 6.
 	 */
 	private static function tsToHebrew( $ts ) {
 		# Parse date
