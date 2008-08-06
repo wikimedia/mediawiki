@@ -100,8 +100,8 @@ class SpecialListGroupRights extends SpecialPage {
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			if ( $granted ) {
-				$description = wfMsgHTML( 'listgrouprights-right-display',
-					User::getRightDescription($permission),
+				$description = wfMsgExt( 'listgrouprights-right-display', array( 'parse' ),
+					User::getRightDescription( $permission ),
 					$permission
 				);
 				$r[] = $description;
@@ -111,12 +111,12 @@ class SpecialListGroupRights extends SpecialPage {
 		if( $add === true ){
 			$r[] = wfMsgExt( 'listgrouprights-addgroup-all', array( 'escape' ) );
 		} else if( is_array( $add ) && count( $add ) ) {
-			$r[] = wfMsgExt( 'listgrouprights-addgroup', array( 'parsemag', 'escape' ), $wgLang->listToText( $add ), count( $add ) );
+			$r[] = wfMsgExt( 'listgrouprights-addgroup', array( 'parse' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $add ) ), count( $add ) );
 		}
 		if( $remove === true ){
 			$r[] = wfMsgExt( 'listgrouprights-removegroup-all', array( 'escape' ) );
 		} else if( is_array( $remove ) && count( $remove ) ) {
-			$r[] = wfMsgExt( 'listgrouprights-removegroup', array( 'parsemag', 'escape' ), $wgLang->listToText( $remove ), count( $remove ) );
+			$r[] = wfMsgExt( 'listgrouprights-removegroup', array( 'parse' ), $wgLang->listToText( array_map( array( 'User', 'makeGroupLinkWiki' ), $remove ) ), count( $remove ) );
 		}
 		if( empty( $r ) ) {
 			return '';
