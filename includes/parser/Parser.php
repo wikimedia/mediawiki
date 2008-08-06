@@ -1745,7 +1745,7 @@ class Parser
 			}
 
 			# Self-link checking
-			if( $nt->getFragment() === '' ) {
+			if( $nt->getFragment() === '' && $nt->getNamespace() != NS_SPECIAL ) {
 				if( in_array( $nt->getPrefixedText(), $selflink, true ) ) {
 					$s .= $prefix . $sk->makeSelfLinkObj( $nt, $text, '', $trail );
 					continue;
