@@ -250,6 +250,7 @@ $wgMessageStructure = array(
 		'ok',
 		'sitetitle',
 		'pagetitle',
+		'pagetitle-view-mainpage',
 		'sitesubtitle',
 		'retrievedfrom',
 		'youhavenewmessages',

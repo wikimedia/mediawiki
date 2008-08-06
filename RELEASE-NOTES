@@ -44,6 +44,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ables into into the output of Skin::makeVariablesScript
 * Added $wgAddGroups and $wgRemoveGroups display on Special:ListGroupRights
 * (bug 14377) Add a date selector to history pages
+* (bug 15007) New 'pagetitle-view-mainpage' message allows the HTML <title> of
+  the main page to be customized
 
 === Bug fixes in 1.14 ===
 

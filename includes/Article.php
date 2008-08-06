@@ -892,6 +892,14 @@ class Article {
 		$t = $wgOut->getPageTitle();
 		if( empty( $t ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
+
+			# For the main page, overwrite the <title> element with the con-
+			# tents of 'pagetitle-view-mainpage' instead of the default (if
+			# that's not empty).
+			if( $this->mTitle->equals( Title::newMainPage() ) &&
+			wfMsgForContent( 'pagetitle-view-mainpage' ) !== '' ) {
+				$wgOut->setHTMLTitle( wfMsgForContent( 'pagetitle-view-mainpage' ) );
+			}
 		}
 
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
