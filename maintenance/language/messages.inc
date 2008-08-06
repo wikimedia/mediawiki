@@ -937,6 +937,7 @@ $wgMessageStructure = array(
 	'recentchangeslinked' => array(
 		'recentchangeslinked',
 		'recentchangeslinked-title',
+		'recentchangeslinked-backlink',
 		'recentchangeslinked-noresult',
 		'recentchangeslinked-summary',
 		'recentchangeslinked-page',
@@ -1534,8 +1535,7 @@ $wgMessageStructure = array(
 		'whatlinkshere-title',
 		'whatlinkshere-summary',
 		'whatlinkshere-page',
-		'whatlinkshere-barrow',
-		'linklistsub',
+		'whatlinkshere-backlink',
 		'linkshere',
 		'nolinkshere',
 		'nolinkshere-ns',

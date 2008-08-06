@@ -74,9 +74,7 @@ class WhatLinksHerePage {
 		$this->selfTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->target->getPrefixedDBkey() );
 
 		$wgOut->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
-		$wgOut->setSubtitle( wfMsgHtml( 'linklistsub' ) );
-
-		$wgOut->addHTML( wfMsgExt( 'whatlinkshere-barrow', array( 'escapenoentities') ) . ' '  .$this->skin->makeLinkObj($this->target, '', 'redirect=no' )."<br />\n");
+		$wgOut->setSubtitle( wfMsg( 'whatlinkshere-backlink', $this->skin->link( $this->target, $this->target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
 
 		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
 			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );

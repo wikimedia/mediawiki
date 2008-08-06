@@ -310,7 +310,8 @@ $wgOptionalMessages = array(
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'timezone-utc',
-	'whatlinkshere-barrow',
+	'whatlinkshere-backlink',
+	'recentchangeslinked-backlink',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
