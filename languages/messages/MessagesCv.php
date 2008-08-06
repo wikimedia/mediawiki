@@ -480,7 +480,7 @@ $1 администратор ĕçлеме чарнă. Сăлтавĕ çакă: 
 
 $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|администраторсем]] патне эсир çыру ярса меншĕн ĕçлеме чарнине сӳтсе явма пултаратăр.
 
-Асăрхар: [[{{ns:special}}:Preferences|хăвăрăн ĕнерлевсенче]] эл. почта адресне çирĕплетмен пулсан, е сайта кĕмен пулсан — администратор патне çыру яраймастăр. Администратор сире çыру яма чарнă пулсан — ку хутĕнче те çыру яраймăр.
+Асăрхар: [[Special:Preferences|хăвăрăн ĕнерлевсенче]] эл. почта адресне çирĕплетмен пулсан, е сайта кĕмен пулсан — администратор патне çыру яраймастăр. Администратор сире çыру яма чарнă пулсан — ку хутĕнче те çыру яраймăр.
 
 Сирĕн IP-адрес — $3, чару идентификаторĕ — #$5. Çырусенче, тархасшăн, вĕсене пĕлтерĕр.",
 'blockednoreason'        => 'сăлтавне пĕлтермен',
@@ -779,12 +779,10 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'statistics-mostpopular' => 'Чи нумай пăхакан страницăсем',
 
 'disambiguations'      => 'Нумай пĕлтерĕшлĕ статьясене кăтартакан страницăсем',
-'disambiguationspage'  => "Admins, please maintain this page by including links to all disambiguation templates and any redirects to them.
-The list is used by [[Special:Disambiguations]] to show any pages linking to disambiguation articles. The list will also be used by various bots.
-
-<small>Note: This page may be translated and reformatted. Any links to '''<nowiki>[[template:...]]</nowiki>''' will be treated as links to disambiguation templates.</small>
-* [[Шаблон:Disambig]]",
-'disambiguations-text' => "Çак статьясем '''нумай пĕлтерĕшле страницăсем''' çине куçараççĕ. Унта куçарас вырăнне вĕсем кирлĕ страницăсем çине куçармалла пулĕ.<br />Енчен те страница çинче [[MediaWiki:disambiguationspage]] страницăра кăтартнă шаблон ятне вырнаçтарнă пулсан вăл нумай пĕлтерĕшлĕ страница шутланать.",
+'disambiguationspage'  => 'Template:Disambig',
+'disambiguations-text' => "Çак статьясем '''нумай пĕлтерĕшле страницăсем'''çине куçараççĕ.
+Унта куçарас вырăнне вĕсем кирлĕ страницăсем çине куçармалла пулĕ.<br />
+Енчен те страница çинче [[MediaWiki:Disambiguationspage]] страницăра кăтартнă шаблон ятне вырнаçтарнă пулсан вăл нумай пĕлтерĕшлĕ страница шутланать.",
 
 'doubleredirects' => 'Икĕ хут куçаракансем',
 
