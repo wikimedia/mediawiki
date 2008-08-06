@@ -3271,7 +3271,7 @@ $1',
 'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
-'autocomment-prefix'  => '- ', # only translate this message to other languages if you have to change it
+'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
 'imgmultipageprev' => '← previous page',
