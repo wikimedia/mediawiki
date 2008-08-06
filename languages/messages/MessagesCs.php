@@ -11,8 +11,8 @@
  * @author לערי ריינהארט
  * @author Reaperman
  * @author Helix84
- * @author Martin Kozák
  * @author Michawiki
+ * @author Martin Kozák
  */
 
 $fallback8bitEncoding = 'cp1250';
@@ -1904,7 +1904,6 @@ $1',
 'whatlinkshere'            => 'Odkazuje sem',
 'whatlinkshere-title'      => 'Stránky odkazující na $1',
 'whatlinkshere-page'       => 'Strana:',
-'linklistsub'              => '(Seznam odkazů)',
 'linkshere'                => "Na '''[[:$1]]''' odkazují tyto stránky:",
 'nolinkshere'              => "Žádná stránka na '''[[:$1]]''' neodkazuje.",
 'nolinkshere-ns'           => "Ve zvoleném jmenném prostoru na '''[[:$1]]''' neodkazuje žádná stránka.",

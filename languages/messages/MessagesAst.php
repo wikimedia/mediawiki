@@ -271,7 +271,7 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => "Nun tienes permisu pa executar l'aición solicitada.",
-'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios d'ún de los grupos $1.",
+'badaccess-groups' => "L'aición solicitada ta llimitada a usuarios {{PLURAL:$2|del grupu|d'ún de los grupos}}: $1.",
 
 'versionrequired'     => 'Necesítase la versión $1 de MediaWiki',
 'versionrequiredtext' => 'Necesítase la versión $1 de MediaWiki pa usar esta páxina. Ver la [[Special:Version|páxina de versión]].',
@@ -662,7 +662,7 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Avisu: Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
 
-Habría tener menos de $2, y agora tien $1.",
+Habría tener menos de $2 {{PLURAL:$2|llamada|llamaes}}, y agora tien $1 {{PLURAL:$1|llamada|llamaes}}.",
 'expensive-parserfunction-category'       => "Páxines con demasiaes llamaes costoses a funciones d'análisis sintáuticu",
 'post-expand-template-inclusion-warning'  => 'Avisu: Esta páxina tien demasiaes inclusiones de plantíes.
 Dalgunes plantíes nun van ser incluyíes.',
@@ -1673,7 +1673,6 @@ $1",
 'whatlinkshere'            => "Lo qu'enllaza equí",
 'whatlinkshere-title'      => "Páxines qu'enllacien a $1",
 'whatlinkshere-page'       => 'Páxina:',
-'linklistsub'              => "(Llista d'enllaces)",
 'linkshere'                => "Les páxines siguientes enllacien a '''[[:$1]]''':",
 'nolinkshere'              => "Nenguna páxina enllaza a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Nenguna páxina enllaza a '''[[:$1]]''' nel espaciu de nome conseñáu.",
@@ -2085,6 +2084,8 @@ $1",
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
 'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',
+'newimages-legend'      => "Nome d'archivu",
+'newimages-label'       => "Nome d'archivu (o una parte d'él):",
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nun hai nada que ver.',
 'ilsubmit'              => 'Buscar',

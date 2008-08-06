@@ -724,7 +724,6 @@ $messages = array(
 # What links here
 'whatlinkshere'       => 'যে পাতাহানিত্ত এহানাত মিলাপ আসে',
 'whatlinkshere-title' => 'পাতাহানি $1 -ত মিলাপ আসে',
-'linklistsub'         => '(মিলাপর লাতংগ)',
 'linkshere'           => "থাঙনার পাতাহানি '''[[:$1]]'''র লগে মিলাপ আসে:",
 'nolinkshere'         => "পাতা '''[[:$1]]'''হানাত কোন মিলাপ নেই।",
 'isredirect'          => 'বুলনদের পাতা',

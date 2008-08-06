@@ -747,7 +747,7 @@ Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
 
-Det burde være mindre enn $2, men er nå $1.',
+Det burde være mindre enn {{PLURAL:$2|$2|$2}}, men er nå {{PLURAL:$1|$1|$1}}..',
 'expensive-parserfunction-category'       => 'Sider med for mange prosesskrevende parserfunksjoner',
 'post-expand-template-inclusion-warning'  => 'Advarsel: Størrelsen på inkluderte maler er for stor.
 Noen maler vil ikke bli inkludert.',
@@ -993,25 +993,26 @@ se math/README for oppsett.',
 'files'                    => 'Filer',
 
 # User rights
-'userrights'                  => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'Ordne brukergrupper',
-'userrights-user-editname'    => 'Skriv inn et brukernavn:',
-'editusergroup'               => 'Endre brukergrupper',
-'editinguser'                 => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Rediger brukergrupper',
-'saveusergroups'              => 'Lagre brukergrupper',
-'userrights-groupsmember'     => 'Medlem av:',
-'userrights-groups-help'      => 'Du kan endre hvilke grupper denne brukeren er medlem av.
+'userrights'                     => 'Brukerrettighetskontroll', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'         => 'Ordne brukergrupper',
+'userrights-user-editname'       => 'Skriv inn et brukernavn:',
+'editusergroup'                  => 'Endre brukergrupper',
+'editinguser'                    => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => 'Rediger brukergrupper',
+'saveusergroups'                 => 'Lagre brukergrupper',
+'userrights-groupsmember'        => 'Medlem av:',
+'userrights-groups-help'         => 'Du kan endre hvilke grupper denne brukeren er medlem av.
 * En avkrysset boks betyr at brukeren er medlem av gruppen.
 * En uavkrysset boks betyr at brukeren ikke er medlem av gruppen.
 * En * betyr at du ikke kan fjerne gruppemedlemskapet når du har lagt det til, eller vice versa.',
-'userrights-reason'           => 'Endringsgrunn:',
-'userrights-no-interwiki'     => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
-'userrights-nodatabase'       => 'Databasen $1 finnes ikke, eller er ikke lokal.',
-'userrights-nologin'          => 'Du må [[Special:Userlogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
-'userrights-notallowed'       => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
-'userrights-changeable-col'   => 'Grupper du kan endre',
-'userrights-unchangeable-col' => 'Grupper du ikke kan endre',
+'userrights-reason'              => 'Endringsgrunn:',
+'userrights-no-interwiki'        => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
+'userrights-nodatabase'          => 'Databasen $1 finnes ikke, eller er ikke lokal.',
+'userrights-nologin'             => 'Du må [[Special:Userlogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
+'userrights-notallowed'          => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
+'userrights-changeable-col'      => 'Grupper du kan endre',
+'userrights-unchangeable-col'    => 'Grupper du ikke kan endre',
+'userrights-irreversible-marker' => '$1 *',
 
 # Groups
 'group'               => 'Gruppe:',
@@ -1734,7 +1735,6 @@ $1',
 'whatlinkshere'            => 'Lenker hit',
 'whatlinkshere-title'      => 'Sider som lenker til $1',
 'whatlinkshere-page'       => 'Side:',
-'linklistsub'              => '(Liste over lenker)',
 'linkshere'                => "Følgende sider lenker til '''[[:$1]]''':",
 'nolinkshere'              => "Ingen sider lenker til '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Ingen sider lenker til '''[[:$1]]''' i valgte navnerom.",
@@ -2048,12 +2048,26 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'tooltip-upload'                  => 'Start opplasting',
 
 # Stylesheets
-'common.css'   => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
-'monobook.css' => '/* rediger denne filen for å tilpasse Monobook-skinnet for hele siden */',
+'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
+'standard.css'    => '/* CSS i denne fila vil gjelde alle som bruker drakta Standard */',
+'nostalgia.css'   => '/* CSS i denne fila vil gjelde alle som bruker drakta Nostalgia */',
+'cologneblue.css' => '/* CSS i denne fila vil gjelde alle som bruker drakta Kølnerblå */',
+'monobook.css'    => '/* CSS i denne fila vil gjelde alle som bruker drakta Monobook */',
+'myskin.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Myskin */',
+'chick.css'       => '/* CSS i denne fila vil gjelde alle som bruker drakta Chick */',
+'simple.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Simple */',
+'modern.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
 
 # Scripts
-'common.js'   => '/* All JavaScript i denne fila vil bli lastet for alle brukere på hver side. */',
-'monobook.js' => '/* Javascript herfra lastes for brukere som bruker utseendet Monobook */',
+'common.js'      => '(* Javascript i denne fila vil gjelde for alle drakter. */',
+'standard.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
+'nostalgia.js'   => '(* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
+'cologneblue.js' => '(* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
+'monobook.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
+'myskin.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
+'chick.js'       => '(* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
+'simple.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
+'modern.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',
@@ -2142,11 +2156,16 @@ $1',
 'newimages'             => 'Galleri over nye filer',
 'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
 'newimages-summary'     => 'Denne spesialsiden viser de sist opplastede filene.',
+'newimages-legend'      => 'Filnavn',
+'newimages-label'       => 'Filnavn (helt eller delvis):',
 'showhidebots'          => '($1 roboter)',
 'noimages'              => 'Ingenting å se.',
 'ilsubmit'              => 'Søk',
 'bydate'                => 'etter dato',
 'sp-newimages-showfrom' => 'Vis nye filer fra og med $2 $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 't',
 
 # Bad image list
 'bad_image_list' => 'Formatet er slik:

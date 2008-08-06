@@ -532,7 +532,6 @@ $messages = array(
 'whatlinkshere'           => "Artigu sira ne'ebé bá iha ne'e",
 'whatlinkshere-title'     => "Pájina sira ne'ebé bá $1",
 'whatlinkshere-page'      => 'Pájina:',
-'linklistsub'             => '(Lista ligasaun nian)',
 'linkshere'               => "Pájina sira ne'e link ba '''[[:$1]]''':",
 'whatlinkshere-prev'      => '{{PLURAL:$1|oinmai|oinmai $1}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|molok|molok $1}}',

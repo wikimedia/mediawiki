@@ -9,9 +9,9 @@
  * @author PuzzletChung
  * @author Albamhandae
  * @author ITurtle
+ * @author TheAlpha for knowledge
  * @author Kwj2772
  * @author Ficell
- * @author TheAlpha for knowledge
  * @author לערי ריינהארט
  * @author Pi.C.Noizecehx
  */
@@ -1386,7 +1386,6 @@ $1',
 'whatlinkshere'       => '여기를 가리키는 글',
 'whatlinkshere-title' => '$1 문서를 가리키는 문서 목록',
 'whatlinkshere-page'  => '문서:',
-'linklistsub'         => '(링크 목록)',
 'linkshere'           => "다음의 문서들이 '''[[:$1]]''' 문서를 가리키고 있습니다:",
 'nolinkshere'         => "'''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'nolinkshere-ns'      => "해당 네임스페이스에서 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",

@@ -791,7 +791,6 @@ to upload files.',
 'sp-contributions-submit'      => 'ਖੋਜ',
 
 # What links here
-'linklistsub'         => '(ਲਿੰਕਾਂ ਦੀ ਲਿਸਟ)',
 'whatlinkshere-links' => '← ਲਿੰਕ',
 
 # Block/unblock

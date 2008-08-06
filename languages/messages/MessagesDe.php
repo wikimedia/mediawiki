@@ -413,7 +413,7 @@ $messages = array(
 
 'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
-'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die {{PLURAL:$2:der Gruppe|einer der Gruppen}} „$1“ angehören.',
+'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die {{PLURAL:$2|der Gruppe|einer der Gruppen}} „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich',
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen. Siehe die [[Special:Version|Versionsseite]]',
@@ -801,9 +801,9 @@ Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspr
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
+'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
  
-Es dürfen nicht mehr als $2 Aufrufe sein, aktuell sind es $1 Aufrufe.',
+Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} sein.',
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
@@ -1819,7 +1819,6 @@ $1',
 'whatlinkshere'            => 'Links auf diese Seite',
 'whatlinkshere-title'      => 'Seiten, die auf „$1“ verlinken',
 'whatlinkshere-page'       => 'Seite:',
-'linklistsub'              => '(Linkliste)',
 'linkshere'                => "Die folgenden Seiten verlinken auf '''„[[:$1]]“''':",
 'nolinkshere'              => "Keine Seite verlinkt auf '''„[[:$1]]“'''.",
 'nolinkshere-ns'           => "Keine Seite verlinkt auf '''„[[:$1]]“''' im gewählten Namensraum.",
@@ -2254,6 +2253,8 @@ $1',
 'newimages'             => 'Neue Dateien',
 'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
+'newimages-legend'      => 'Filter',
+'newimages-label'       => 'Dateiname (oder ein Teil davon):',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Keine Dateien gefunden.',
 'ilsubmit'              => 'Suchen',

@@ -855,7 +855,6 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 # What links here
 'whatlinkshere'       => 'Hian konchi link hoe',
 'whatlinkshere-title' => '$1 se jurra panna',
-'linklistsub'         => '(Links ke list)',
 'linkshere'           => "Niche waala panna '''[[:$1]]''' se jorre hai:",
 'nolinkshere'         => "Koi panna '''[[:$1]]''' ke nai jorre hai.",
 'isredirect'          => 'panna ke redirect karo',

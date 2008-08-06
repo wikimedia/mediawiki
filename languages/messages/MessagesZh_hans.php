@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -1683,7 +1683,6 @@ $1',
 'whatlinkshere'            => '链入页面',
 'whatlinkshere-title'      => '链接到$1的页面',
 'whatlinkshere-page'       => '页面:',
-'linklistsub'              => '(链接列表)',
 'linkshere'                => '以下页面链接到[[:$1]]：',
 'nolinkshere'              => '没有页面链接到[[:$1]]。',
 'nolinkshere-ns'           => '在所选的名字空间内没有页面链接到[[:$1]]。',

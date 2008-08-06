@@ -1236,7 +1236,6 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 'whatlinkshere'            => 'Dagiti nakasilpo ditoy',
 'whatlinkshere-title'      => 'Dagiti panid a nakasilpo iti $1',
 'whatlinkshere-page'       => 'Panid:',
-'linklistsub'              => '(Listaan dagiti panilpo)',
 'linkshere'                => "Nakasilpo ti sumaganad a pampanid iti '''[[:$1]]''':",
 'nolinkshere'              => "Awan pampanid a nakasilpo iti '''[[:$1]]'''.",
 'isredirect'               => 'ibaw-ing ti panid',

@@ -686,7 +686,6 @@ Template:Khu-pia̍t-ia̍h',
 
 # What links here
 'whatlinkshere'       => 'Tó-ūi liân kàu chia',
-'linklistsub'         => '(Liân-kiat lia̍t-toaⁿ)',
 'linkshere'           => "Í-hā '''[[:$1]]''' liân kàu chia:",
 'nolinkshere'         => "Bô poàⁿ ia̍h liân kàu '''[[:$1]]'''.",
 'isredirect'          => 'choán-ia̍h',

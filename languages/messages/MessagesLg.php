@@ -431,7 +431,6 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 # What links here
 'whatlinkshere'       => 'Empapula ezikuggusa ku luno',
 'whatlinkshere-title' => 'Empapula eziriko enyunzi ezigguka ku $1',
-'linklistsub'         => "(Olukalala olw'empapula eziriko enyunzi ezigguka wano)",
 'linkshere'           => "Zino z'empapula eziriko enyunzi ezigguka ku '''[[:$1]]''':",
 'nolinkshere'         => "Tewali mpapula eziriko enyunzi ezigguka ku '''[[:$1]]'''.",
 'whatlinkshere-prev'  => '{{PLURAL:$1|olukulembera|$1 ezikulembera}}',

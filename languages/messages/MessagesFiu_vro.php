@@ -1335,7 +1335,6 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'whatlinkshere'       => 'Siiäq näütäjäq lingiq',
 'whatlinkshere-title' => 'Leheq, miä näütäseq lehe $1 pääle',
 'whatlinkshere-page'  => 'Leht:',
-'linklistsub'         => '(Linke nimekiri)',
 'linkshere'           => 'Lehe <b>[[:$1]]</b> pääle näütäseq lingiq lehti päält:',
 'nolinkshere'         => 'Lehe <b>[[:$1]]</b> pääle näütä-i linke ütegi lehe päält.',
 'nolinkshere-ns'      => "Valitun nimeruumin näütä-i ütegi lehe päält linke lehe '''[[:$1]]''' pääle.",

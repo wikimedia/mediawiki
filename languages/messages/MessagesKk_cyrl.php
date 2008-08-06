@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Cyrillic) (Қазақша (Кирил))
+/** Kazakh (Cyrillic) (Қазақша (Cyrillic))
  *
  * @ingroup Language
  * @file
@@ -2047,7 +2047,6 @@ $1',
 'whatlinkshere'            => 'Сілтелген беттер',
 'whatlinkshere-title'      => '$1 дегенге сілтелген беттер',
 'whatlinkshere-page'       => 'Бет:',
-'linklistsub'              => '(Сілтемелер тізімі)',
 'linkshere'                => "'''[[:$1]]''' дегенге мына беттер сілтейді:",
 'nolinkshere'              => "'''[[:$1]]''' дегенге еш бет сілтемейді.",
 'nolinkshere-ns'           => "Таңдалған есім аясында '''[[:$1]]''' дегенге ешқандай бет сілтемейді.",
@@ -2855,11 +2854,6 @@ $1',
 'articletitles'    => "''$1'' деп басталған беттерді",
 'hideresults'      => 'Нәтижелерді жасыр',
 'useajaxsearch'    => 'AJAX қолданып іздеу',
-
-# Separators for various lists, etc.
-'semicolon-separator' => ';',
-'comma-separator'     => ',&#32;',
-'colon-separator'     => ':&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← алдыңғы бетке',

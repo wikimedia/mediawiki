@@ -947,7 +947,6 @@ Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
 # What links here
 'whatlinkshere'       => 'San e miti kon dyaso',
 'whatlinkshere-title' => 'Papira di e sori go na $1',
-'linklistsub'         => '(Réy fu miti)',
 'linkshere'           => "Den papira disi e miti go na '''[[:$1]]''':",
 'nolinkshere'         => "No wan papira e miti kon na '''[[:$1]]'''.",
 'isredirect'          => 'papira fu drai go',

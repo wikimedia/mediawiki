@@ -851,9 +851,9 @@ Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Peringatan: halaman ini mengandung terlalu banyak panggilan fungsi parser.
+'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
 
-Saat ini terdapat $1, seharusnya kurang dari $2.',
+Saat ini terdapat {{PLURAL:$1|$1 panggilan|$1 panggilan}}, seharusnya kurang dari $2 {{PLURAL:$2|panggilan|panggilan}}.',
 'expensive-parserfunction-category'       => 'Halaman dengan terlalu banyak panggilan fungsi parser',
 'post-expand-template-inclusion-warning'  => 'Peringatan: Ukuran templat yang digunakan terlalu besar.
 Beberapa templat akan diabaikan.',
@@ -1245,7 +1245,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'upload_directory_read_only'  => 'Direktori pemuatan ($1) tidak dapat ditulis oleh server web.',
 'uploaderror'                 => 'Kesalahan pemuatan',
 'uploadtext'                  => "Gunakan formulir di bawah untuk memuat berkas.
-Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:Imagelist|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
+Untuk menampilkan atau mencari berkas-berkas yang sebelumnya dimuatkan, gunakan [[Special:Imagelist|daftar pemuatan berkas]]. Pemuatan dan pemuatan kembali juga dicatat dalam [[Special:Log/upload|log pemuatan]]. Penghapusan berkas dicatat dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
@@ -1822,7 +1822,6 @@ $1',
 'whatlinkshere'            => 'Pranala balik',
 'whatlinkshere-title'      => 'Halaman yang memiliki pranala ke $1',
 'whatlinkshere-page'       => 'Halaman:',
-'linklistsub'              => '(Daftar pranala)',
 'linkshere'                => "Halaman-halaman berikut ini berpaut ke '''[[:$1]]''':",
 'nolinkshere'              => "Tidak ada halaman yang berpaut ke '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Tidak ada halaman yang berpaut ke '''[[:$1]]''' pada ruang nama yang dipilih.",

@@ -907,7 +907,7 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak sta
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
 
-Nu zijn het er $1, terwijl het er minder dan $2 moeten zijn.',
+Nu zijn het er $1, terwijl het er minder dan $2 {{PLURAL:$2|moet|moeten}} zijn.',
 'expensive-parserfunction-category'       => "Pagina's die te veel kostbare parserfuncties gebruiken",
 'post-expand-template-inclusion-warning'  => 'Waarschuwing: de maximale transclusiegrootte voor sjablonen is overschreden.
 Sommige sjablonen worden niet getranscludeerd.',
@@ -920,7 +920,7 @@ Deze parameters zijn weggelaten.',
 'undo-success' => 'Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt. Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
 'undo-norev'   => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]] | [[Special:Contributions/$2|bijdragen]]) ongedaan gemaakt.',
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Registreren is mislukt.',
@@ -1933,9 +1933,8 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
-'whatlinkshere-title'      => "Pagina's die verwijzen naar $1",
+'whatlinkshere-title'      => 'Pagina\'s die verwijzen naar "$1"',
 'whatlinkshere-page'       => 'Pagina:',
-'linklistsub'              => '(Lijst van verwijzingen)',
 'linkshere'                => "De volgende pagina's verwijzen naar '''[[:$1]]''':",
 'nolinkshere'              => "Geen enkele pagina verwijst naar '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Geen enkele pagina in de gekozen naamruimte verwijst naar '''[[:$1]]'''.",
@@ -2365,6 +2364,8 @@ $1',
 'newimages'             => 'Nieuwe bestanden',
 'imagelisttext'         => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
 'newimages-summary'     => 'Op deze speciale pagina worden de meest recent toegevoegde bestanden weergegeven.',
+'newimages-legend'      => 'Bestandsnaam',
+'newimages-label'       => 'Bestandsnaam (of deel daarvan):',
 'showhidebots'          => '(Bots $1)',
 'noimages'              => 'Niets te zien.',
 'ilsubmit'              => 'Zoeken',

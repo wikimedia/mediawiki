@@ -965,7 +965,6 @@ neće biti automatski zamijenjena.',
 # What links here
 'whatlinkshere'       => 'Šta je povezano ovdje',
 'whatlinkshere-title' => 'Stranice koje vode na $1',
-'linklistsub'         => '(Spisak veza)',
 'linkshere'           => "Sljedeći članci vode na '''[[:$1]]''':",
 'nolinkshere'         => 'Ništa nije povezano ovdje.',
 'isredirect'          => 'preusmjerivač',

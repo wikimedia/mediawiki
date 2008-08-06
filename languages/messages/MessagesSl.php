@@ -358,7 +358,7 @@ Ustvarili ste račun.
 'yourrealname'               => 'Vaše pravo ime*',
 'yourlanguage'               => 'Jezik vmesnika:',
 'yourvariant'                => 'Jezikovna različica',
-'yournick'                   => 'Podpis (uporabite ~~~~):',
+'yournick'                   => 'Podpis',
 'badsig'                     => 'Neveljaven surovi podpis; preverite oznake HTML.',
 'email'                      => 'E-pošta',
 'prefs-help-realname'        => '<!-- ¹ Pravo ime (neobvezno): če se odločite, da ga boste navedli, bo uporabljeno za priznavanje vašega dela. -->',
@@ -1033,7 +1033,6 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 
 # What links here
 'whatlinkshere' => 'Kaj se povezuje sem',
-'linklistsub'   => '(Seznam povezav)',
 'linkshere'     => 'Sem kažejo naslednje strani:',
 'nolinkshere'   => 'Sem ne kaže nobena stran.',
 'isredirect'    => 'preusmeritvena stran',

@@ -824,9 +824,9 @@ Domet De Bescheid weiß, hee dä Endraach em Logboch vum Sigge-Fottschmieße mem
 woröm di Sigg dohmohls fottjeschmesse woode es:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigge hee määt zovill Opwand met Paaser-Funkßjohne.
+'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg hee määt zovill Opwand met Paaser-Funkßjohne.
 
-{{PLURAL:$2|Eine Oproof|Beß $2 Oproofe|Keine Oproof}} es älaup, {{PLURAL:$1|un eine Oproof|ävver $1 Oproofe|un keine Oproof}} määt di Sigg.",
+{{PLURAL:$2|Eine Oproof|Beß $2 Oproofe|Keine Oproof}} es älaup, {{PLURAL:$1|un eine Oproof|ävver $1 Oproofe|un keine Oproof}} määt di Sigg em Momang.",
 'expensive-parserfunction-category'       => 'Sigge met zovill Opwand en Paaser-Funkßjohne',
 'post-expand-template-inclusion-warning'  => 'Warnung: Hee in di Sigg wääde zo fill Bytes övver Schablone erin jebraat. Nit all di Schablone künne enjbonge wäde.',
 'post-expand-template-inclusion-category' => 'Sigge met zoh jruuße Schablone enjebonge',
@@ -1395,15 +1395,21 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'imagepage-searchdupe'           => 'Sök noh dubelte Dateie',
 
 # File reversion
+'filerevert'         => '„$1“ zerök holle',
 'filerevert-comment' => 'Jrond:',
 'filerevert-submit'  => 'Zeröcknemme',
 
 # File deletion
 'filedelete'                  => 'Schmieß „$1“ fott',
 'filedelete-legend'           => 'Schmieß de Datei fott',
+'filedelete-intro'            => "Do beß di Datei '''„[[:Media:$1|$1]]“''' am Fottschmieße.",
 'filedelete-intro-old'        => 'Do schmiiß de Version $4 fum $2 öm $3 Uhr fun dä Datei „[[Media:$1|$1]]“ fott.',
 'filedelete-comment'          => 'Der Jrund för et Fottschmieße:',
 'filedelete-submit'           => 'Fottschmieße',
+'filedelete-success'          => "'''„$1“''' es fottjeschmeße.",
+'filedelete-success-old'      => "Fun dä Datei '''„[[:Media:$1|$1]]“''' es jäz di Version fum $2 öm $3 Uhr fottjeschmeße woode.",
+'filedelete-nofile'           => "'''„$1“''' jidd_et nit en de {{SITENAME}}.",
+'filedelete-nofile-old'       => "Fun '''„$1“''' ham_mer kein arschiveete Version met dä Eijeschaffte.",
 'filedelete-otherreason'      => 'Ander Jrund oder Zosätzlich:',
 'filedelete-reason-otherlist' => 'Ne andere Jrund',
 'filedelete-reason-dropdown'  => '* Alljemein Jrönd
@@ -1878,7 +1884,6 @@ $1',
 'whatlinkshere'            => 'Wat noh hee link',
 'whatlinkshere-title'      => 'Sigge, woh Links op „$1“ dren sen',
 'whatlinkshere-page'       => 'Sigg:',
-'linklistsub'              => '(Liss met de Links)',
 'linkshere'                => 'Dat sin de Sigge, die op <strong>„[[:$1]]“</strong> linke dun:',
 'nolinkshere'              => 'Kein Sigg link noh <strong>„[[:$1]]“</strong>.',
 'nolinkshere-ns'           => 'Nix link op <strong>„[[:$1]]“</strong> en dämm Appachtemang.',

@@ -1171,7 +1171,6 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 
 # What links here
 'whatlinkshere'       => 'Ayen i d-yettawi ɣer da',
-'linklistsub'         => '(Umuɣ n yizdayen)',
 'linkshere'           => "Isebtar-agi sɛan azday ɣer '''[[:$1]]''':",
 'nolinkshere'         => "Ulac asebter i yesɛan azday ɣer '''[[:$1]]'''.",
 'nolinkshere-ns'      => "Ulac asebter i yesɛan azday ɣer '''[[:$1]]''' deg yisem n taɣult i textareḍ.",

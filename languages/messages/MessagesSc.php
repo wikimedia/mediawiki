@@ -474,7 +474,6 @@ Se una nuova pagina è stata creata con questo stesso nome dopo la cancellazione
 
 # What links here
 'whatlinkshere' => 'Pagine che linkano questa',
-'linklistsub'   => '(Lista di links)',
 'linkshere'     => 'Le seguenti pagine contengono link che puntano qui:',
 'nolinkshere'   => 'Nessuna pagina contiene links che puntano a questa.',
 'isredirect'    => 'redirect',

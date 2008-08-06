@@ -556,7 +556,7 @@ $1',
 Dit kan koemen deurda-j een ouwe verwiezing naor \'t verschil tussen twee versies van een pagina volgen of een versie opvragen dee vort-edaon is.
 
 As dat neet zo is, dan he-j meschien een fout in de pregremmetuur evunnen.
-Meld \'t dan effen bie een systeembeheerder van {{SITENAME}} en vermeld derbie de internetverwiezing van disse pagina.',
+Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SITENAME}} en vermeld derbie de internetverwiezing van disse pagina.',
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wieziging: $1, $2)',
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
@@ -600,7 +600,10 @@ De op-egeven rejen is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Ofmelden gebruker',
-'logouttext'                 => 'Je bin noen of-emeld. Je kunnen {{SITENAME}} noen anneniem gebruken of onder een aandere gebrukersnaam weer anmelden.',
+'logouttext'                 => "<strong>Je bin noen of-emeld.</strong>
+
+Je kunnen {{SITENAME}} noen anneniem gebruken of onder disse of een aandere gebrukersnaam je eigen weer anmelden.
+'t Kan ween dat der een antal pagina's weer-egeven wonnen asof je an-emeld bin totda-j de kas van joew webblaojeraar leegmaken.",
 'welcomecreation'            => '<h2>Welkom, $1!</h2><p>Joew gebrukersprefiel is an-emaak. Je kunnen noen joew persoonlijke veurkeuren instellen.</p>',
 'loginpagetitle'             => 'Gebrukersnaam',
 'yourname'                   => 'Gebrukersnaam',
@@ -612,7 +615,7 @@ De op-egeven rejen is ''$2''.",
 'loginproblem'               => "<b>Der was een prebleem mit 't anmelden.</b><br />Prebleem 't opniej!",
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden',
-'loginprompt'                => 'Je mutten [[cookie]]s an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
+'loginprompt'                => 'Je mutten cookies an hemmen staon um an te kunnen melden bie {{SITENAME}}.',
 'userlogin'                  => 'Anmelden',
 'logout'                     => 'Ofmelden',
 'userlogout'                 => 'Ofmelden',
@@ -757,7 +760,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'blockednoreason'                  => 'gien rejen op-egeven',
 'blockedoriginalsource'            => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
 'blockededitsource'                => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
-'whitelistedittitle'               => 'Anmelden is verplich',
+'whitelistedittitle'               => 'Um disse pagina te bewarken, mu-j je anmelden',
 'whitelistedittext'                => "Um pagina's te kunnen wiezigen, mu-j $1 ween",
 'confirmedittitle'                 => 'Berichbevestiging is neudig um te bewarken.',
 'confirmedittext'                  => "Je mutten je e-mailadres bevestigen veurda-j bewarken kunnen. Vul je adres in en bevestig 't via [[Special:Preferences|mien veurkeuren]].",
@@ -770,8 +773,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'accmailtext'                      => "Wachwoord veur '$1' is verzunnen naor $2.",
 'newarticle'                       => '(Niej)',
 'newarticletext'                   => "Disse pagina besteet nog neet. Hieronder ku-j wat schrieven en naokieken of opslaon. A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
-'anontalkpagetext'                 => "<hr style=\"margin-top:2em;\">
-<em>Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].</em>",
+'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].''",
 'noarticletext'                    => 'Disse pagina besteet nog neet.
 Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
@@ -837,7 +839,7 @@ Bedenk eers of 't neudig is um disse pagina veerder te bewarken.
 't Logboek mit de rejen(s) waorumme as disse pagina vort-edaon is, wonnen veur de dudelijkheid eteund:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "Waorschuwing: disse pagina gebruuk te veule kosbaore parserfuncties.
+'expensive-parserfunction-warning'        => "Waorschuwing: disse pagina gebruuk te veul kosbaore parserfuncties.
 
 Noen bin 't der $1, terwiel 't der minder as $2 mutten ween.",
 'expensive-parserfunction-category'       => "Pagina's dee te veule kosbaore parserfuncties gebruken",
@@ -1231,7 +1233,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'uploaderror'                 => "Fout bie 't toevoegen van 't bestand",
 'uploadtext'                  => "Gebruuk 't onderstaonde formelier um bestanden toe te voegen.
 Um eerder toe-evoegen bestanden te bekieken of te zeuken ku-j naor de [[Special:Imagelist|bestanslieste]] gaon.
-Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]].
+Toe-evoegen bestanden en media dee vort-edaon bin wonnen bie-ehuilen in 't [[Special:Log/upload|logboek mit toe-evoegen bestanden]] en 't [[Special:Log/delete|logboek mit vort-edaon bestanden]].
 
 Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bestand.jpg]]</nowiki>'''
@@ -1242,7 +1244,8 @@ Um 't bestand in te voegen in een pagina ku-j een van de volgende codes gebruken
 'upload-prohibited'           => 'Verbeujen bestanstypes: $1.',
 'uploadlog'                   => 'Toe-evoegen bestanden',
 'uploadlogpage'               => 'Toe-evoegen bestanden',
-'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanden dee net niej bin.',
+'uploadlogpagetext'           => 'Hieronder steet een lieste mit bestanden dee net niej bin.
+Zie de [[Special:NewImages|gallerieje mit media]] veur een overzichte.',
 'filename'                    => 'Bestansnaam',
 'filedesc'                    => 'Beschrieving',
 'fileuploadsummary'           => 'Beschrieving:',
@@ -1303,7 +1306,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
 'upload-proto-error'      => 'Verkeerde protocol',
 'upload-proto-error-text' => 'Um op disse meniere bestanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
 'upload-file-error'       => 'Interne fout',
-'upload-file-error-text'  => 'Een interne fout vun plaose to een tiejelijk bestand op de server an-emaak wönnen. Neem kontak op mit een systeembeheerder.',
+'upload-file-error-text'  => 'Bie ons gung der effen wat fout to een tiejelijk bestand op de server an-emaak wönnen. Neem kontak op mit een [[Special:ListUsers/sysop|systeembeheerder]].',
 'upload-misc-error'       => "Onbekende fout bie 't toevoegen van joew bestand",
 'upload-misc-error-text'  => "Der is bie toevoegen van 't bestand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
 
@@ -1445,7 +1448,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'brokenredirects-delete' => '(vortdoon)',
 
 'withoutinterwiki'         => "Pagina's zonder verwiezingen naor aandere talen",
-'withoutinterwiki-summary' => "De volgende pagina's verwiezen neet naor versies in een aandere taal:",
+'withoutinterwiki-summary' => "De volgende pagina's verwiezen neet naor versies in een aandere taal.",
 'withoutinterwiki-legend'  => 'Veurvoegsel',
 'withoutinterwiki-submit'  => 'Bekieken',
 
@@ -1756,7 +1759,6 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'whatlinkshere'            => 'Verwiezingen naor disse pagina',
 'whatlinkshere-title'      => "Pagina's dee verwiezen naor $1",
 'whatlinkshere-page'       => 'Pagina:',
-'linklistsub'              => '(lieste van verwiezingen)',
 'linkshere'                => "Disse pagina's verwiezen naor '''[[:$1]]''':",
 'nolinkshere'              => "Gien enkele pagina verwies naor '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Gien enkele pagina verwiest naor '''[[:$1]]''' in de ekeuzen naamruumte.",

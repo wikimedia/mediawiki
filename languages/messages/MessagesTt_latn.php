@@ -584,7 +584,6 @@ Soñğı beterülär $2 bitendä terkälenä.',
 
 # What links here
 'whatlinkshere' => 'Kem bäyle moña',
-'linklistsub'   => '(Läñker tezmäse)',
 'isredirect'    => 'küçerelü bite',
 
 # Block/unblock

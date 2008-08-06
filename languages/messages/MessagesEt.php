@@ -1071,7 +1071,6 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 
 # What links here
 'whatlinkshere'       => 'Lingid siia',
-'linklistsub'         => '(Linkide loend)',
 'linkshere'           => "Lehele '''[[:$1]]''' viitavad järgmised leheküljed:",
 'nolinkshere'         => "Lehele '''[[:$1]]''' ei viita ükski lehekülg.",
 'isredirect'          => 'ümbersuunamislehekülg',

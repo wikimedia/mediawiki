@@ -1467,7 +1467,6 @@ $NEWPAGE
 'whatlinkshere'            => '取佐',
 'whatlinkshere-title'      => '$1取佐',
 'whatlinkshere-page'       => '題',
-'linklistsub'              => '（列取佐）',
 'linkshere'                => "取佐'''[[:$1]]'''如下：",
 'nolinkshere'              => "無頁取佐'''[[:$1]]'''。",
 'nolinkshere-ns'           => "名冊內無頁取佐'''[[:$1]]'''。",

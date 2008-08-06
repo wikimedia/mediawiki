@@ -730,7 +730,7 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
  
-Et däerfen net méi wéi $2 ufroe sinn, aktuell sinn et $1 Ufroen.',
+Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|ass et $1 Ufro|sinn et $1 Ufroe}}.',
 'expensive-parserfunction-category'       => 'Säiten, déi komplex Parserfunktiounen ze dacks opruffen',
 'post-expand-template-inclusion-warning'  => "Opgepasst: D'Gréisst vun den agebonnene Schablounen ass ze grouss, e puer Schabloune kënnen net agebonne ginn.",
 'post-expand-template-inclusion-category' => "Säiten, op denen d'maximal Gréist vun agebonnene Schablounen iwwerschratt ass",
@@ -1700,7 +1700,6 @@ $1',
 'whatlinkshere'            => 'Linken op dës Säit',
 'whatlinkshere-title'      => 'Säiten, déi mat „$1“ verlinkt sinn',
 'whatlinkshere-page'       => 'Säit:',
-'linklistsub'              => '(Lëscht vun de Linken)',
 'linkshere'                => "Déi folgend Säite linken op '''[[:$1]]''':",
 'nolinkshere'              => "Keng Säit ass mat '''[[:$1]]''' verlinkt.",
 'nolinkshere-ns'           => "Keng Säite linken op '''[[:$1]]''' am gewielten Nummraum.",

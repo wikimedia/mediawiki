@@ -773,7 +773,7 @@ Dat du bescheed weetst, worüm de Siet vörher wegsmeten worrn is, hier nu de Ut
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Wohrschau: Disse Sied bruukt to veel opwännige Parserfunkschonen.
 
-Nu sünd dor $1, wesen dröfft dat blot $2.',
+Nu {{PLURAL:$1|is dor een|sünd dor $1}}, wesen {{PLURAL:$2|dröff dat blot een|dröfft dat blot $2}}.',
 'expensive-parserfunction-category'       => 'Sieden, de toveel opwännige Parserfunkschonen bruukt',
 'post-expand-template-inclusion-warning'  => 'Wohrschau: De Grött vun inföögte Vörlagen is to groot, welk Vörlagen köönt nich inföögt warrn.',
 'post-expand-template-inclusion-category' => 'Sieden, de över de Maximumgrött för inbunnene Sieden rövergaht',
@@ -1760,7 +1760,6 @@ $1',
 'whatlinkshere'            => 'Wat wiest na disse Siet hen',
 'whatlinkshere-title'      => 'Sieden, de na „$1“ wiest',
 'whatlinkshere-page'       => 'Siet:',
-'linklistsub'              => '(List vun de Verwiesen)',
 'linkshere'                => "Disse Sieden wiest na '''„[[:$1]]“''':",
 'nolinkshere'              => "Kene Siet wiest na '''„[[:$1]]“'''.",
 'nolinkshere-ns'           => "Kene Sieden wiest na '''[[:$1]]''' in’n utwählten Naamruum.",

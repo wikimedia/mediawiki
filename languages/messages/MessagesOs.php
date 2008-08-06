@@ -452,7 +452,6 @@ $3',
 # What links here
 'whatlinkshere'           => 'Цавæр æрвитæнтæ цæуынц ардæм',
 'whatlinkshere-page'      => 'Фарс:',
-'linklistsub'             => '(Æрвитæнты номхыгъд)',
 'whatlinkshere-links'     => '← æрвитæнтæ',
 'whatlinkshere-hidelinks' => '$1 æрвитæнтæ',
 

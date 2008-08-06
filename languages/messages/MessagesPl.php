@@ -12,11 +12,11 @@
  * @author Leinad
  * @author Beau
  * @author Stv
- * @author Maikking
  * @author Masti
- * @author Equadus
- * @author Matma Rex
+ * @author Maikking
  * @author Ymar
+ * @author Matma Rex
+ * @author Equadus
  * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss
@@ -854,7 +854,7 @@ Poniżej znajduje się rejestr usunięć tej strony:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
-Powinno ich być mniej niż $2, a jest obecnie $1.',
+Powinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.',
 'expensive-parserfunction-category'       => 'Strony ze zbyt dużą liczbą wywołań trudnych funkcji parsera',
 'post-expand-template-inclusion-warning'  => 'Uwaga: Zbyt duża wielkość wykorzystanych szablonów.
 Niektóre szablony nie zostaną użyte.',
@@ -1263,7 +1263,7 @@ Strony z [[Special:Watchlist|listy obserwowanych]] są '''wytłuszczone'''.",
 'upload_directory_read_only'  => 'Serwer nie może zapisywać do katalogu ($1) przeznaczonego na przesyłane pliki.',
 'uploaderror'                 => 'Błąd wysyłania',
 'uploadtext'                  => "Użyj poniższego formularza do przesłania plików.
-Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:Imagelist|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]].
+Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:Imagelist|listy plików]]. Każde przesłanie jest odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
@@ -1627,8 +1627,8 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'listgrouprights-rights'          => 'Uprawnienia',
 'listgrouprights-helppage'        => 'Help:Uprawnienia grup użytkowników',
 'listgrouprights-members'         => '(lista członków grupy)',
-'listgrouprights-addgroup'        => 'Można dodać do grup: $1',
-'listgrouprights-removegroup'     => 'Można usunąć z grup: $1',
+'listgrouprights-addgroup'        => 'Można dodać do {{PLURAL:$2|grupy|grup}}: $1',
+'listgrouprights-removegroup'     => 'Można usunąć z {{PLURAL:$2|grupy|grup}}: $1',
 'listgrouprights-addgroup-all'    => 'Można dodać do każdej grupy',
 'listgrouprights-removegroup-all' => 'Można usunąć ze wszystkich grup',
 
@@ -1898,7 +1898,6 @@ $1',
 'whatlinkshere'            => 'Linkujące',
 'whatlinkshere-title'      => 'Strony linkujące do $1',
 'whatlinkshere-page'       => 'Strona',
-'linklistsub'              => '(Lista linków)',
 'linkshere'                => "Następujące strony odwołują się do '''[[:$1]]''':",
 'nolinkshere'              => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Żadna strona nie odwołuje się do '''[[:$1]]''' w wybranej przestrzeni nazw.",

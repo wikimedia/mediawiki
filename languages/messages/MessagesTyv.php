@@ -587,7 +587,6 @@ $1',
 
 # What links here
 'whatlinkshere'       => 'Pages that link here',
-'linklistsub'         => '(Холбаалар даңзызы)',
 'whatlinkshere-links' => '← холбаалар',
 
 # Block/unblock

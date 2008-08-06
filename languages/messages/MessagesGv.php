@@ -774,7 +774,6 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'whatlinkshere'            => 'Cre ta kianglt lesh shoh',
 'whatlinkshere-title'      => 'Duillagyn ta kianglt lesh $1',
 'whatlinkshere-page'       => 'Duillag:',
-'linklistsub'              => '(Rolley kianglaghyn)',
 'linkshere'                => "Ta ny kied duillagyn elley kianglt lesh '''[[:$1]]''':",
 'nolinkshere'              => "Cha nel duillag erbee kianglt lesh '''[[:$1]]'''.",
 'isredirect'               => 'duillag aa-enmyssit',

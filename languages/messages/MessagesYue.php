@@ -1,9 +1,10 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
  *
+
  */
 
 $skinNames = array(
@@ -1728,7 +1729,6 @@ $1',
 'whatlinkshere'            => '有乜嘢連結來呢度',
 'whatlinkshere-title'      => '連到$1嘅頁',
 'whatlinkshere-page'       => '頁:',
-'linklistsub'              => '（連結一覽）',
 'linkshere'                => "呢啲頁連結到'''[[:$1]]'''：",
 'nolinkshere'              => "無一頁連結到'''[[:$1]]'''。",
 'nolinkshere-ns'           => "響已經揀咗嘅空間名無嘢連結到'''[[:$1]]'''。",

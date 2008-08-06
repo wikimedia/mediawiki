@@ -1131,7 +1131,6 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 
 # What links here
 'whatlinkshere'      => 'Lièn-ngi̍p to liá-chham',
-'linklistsub'        => '(lièn-kiet lie̍t-péu)',
 'linkshere'          => 'Yî-ha vùn-chông lièn-kiet to [[:$1]]：',
 'nolinkshere'        => 'Mò-yû vùn-chông lièn-kiet to [[:$1]].',
 'nolinkshere-ns'     => 'Chhai só-sién ke miàng-sṳ khûng-kiên nui  mò-yû vùn-chông lièn-kiet to[[:$1]].',

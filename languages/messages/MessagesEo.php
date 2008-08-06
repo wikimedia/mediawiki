@@ -693,7 +693,7 @@ Jen la protokolo de forigoj por via oportuno:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
 
-Ĝi havu malpli ol $2, sed nun estas $1.',
+Ĝi havu malpli ol $2 {{PLURAL:$2|vokon|vokojn}}, sed nun estas $1 {{PLURAL:$1|voko|vokoj}}.',
 'expensive-parserfunction-category'       => 'Paĝoj kun tro da multekostaj sintaksaj funkcio-vokoj',
 'post-expand-template-inclusion-warning'  => 'Averto: Inkluziva pezo de ŝablonoj estas tro granda.
 Iuj ŝablonoj ne estos inkluzivitaj.',
@@ -1438,8 +1438,8 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'listgrouprights-rights'          => 'Rajtoj',
 'listgrouprights-helppage'        => 'Help:Grupaj rajtoj',
 'listgrouprights-members'         => '(listo de anoj)',
-'listgrouprights-addgroup'        => 'Povi aldoni grupojn: $1',
-'listgrouprights-removegroup'     => 'Povi forigi grupojn: $1',
+'listgrouprights-addgroup'        => 'Povi aldoni {{PLURAL:$2|grupon|grupojn}}: $1',
+'listgrouprights-removegroup'     => 'Povi forigi {{PLURAL:$2|grupon|grupojn}}: $1',
 'listgrouprights-addgroup-all'    => 'Povi aldoni ĉiujn grupojn',
 'listgrouprights-removegroup-all' => 'Povi forigi ĉiujn grupojn',
 
@@ -1695,9 +1695,8 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Ligiloj ĉi tien',
-'whatlinkshere-title'      => 'Paĝoj ligantaj al $1',
+'whatlinkshere-title'      => 'Paĝoj ligantaj al "$1"',
 'whatlinkshere-page'       => 'Paĝo:',
-'linklistsub'              => '(Listo de ligiloj)',
 'linkshere'                => "La jenaj paĝoj ligas al '''[[:$1]]''':",
 'nolinkshere'              => "Neniu paĝo ligas al '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
@@ -2107,6 +2106,8 @@ $1',
 'newimages'             => 'Aro da novaj bildoj',
 'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
 'newimages-summary'     => 'Ĉi tiu speciala paĝo montras la lastajn alŝutitajn dosierojn.',
+'newimages-legend'      => 'Dosiernomo',
+'newimages-label'       => 'Dosiernomo (aŭ parto de ĝi):',
 'showhidebots'          => '($1 robotojn)',
 'noimages'              => 'Nenio videbla.',
 'ilsubmit'              => 'Serĉi',

@@ -409,7 +409,6 @@ $messages = array(
 # What links here
 'whatlinkshere'       => '𐍈𐌰𐍂𐌾𐌹𐍃 𐍃𐌴𐌹𐌳𐍉𐌽𐌰 𐌷𐌻𐌰𐌲𐌺𐌾𐌰𐌽𐌳 𐌷𐌹𐌳𐍂𐌴',
 'whatlinkshere-title' => 'Seidos hwarjis du $1 táiknjan',
-'linklistsub'         => '(Tala af táikjanbanjam)',
 'isredirect'          => 'táikjaseido',
 'istemplate'          => 'ináukan',
 'whatlinkshere-prev'  => '{{PLURAL:$1|aftuma|aftumans $1}}',

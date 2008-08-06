@@ -398,7 +398,6 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'whatlinkshere'       => "Oñembojoajukuaáva ko'ápe",
 'whatlinkshere-title' => 'Kuatiarogue ojoajúva "$1" rehe',
 'whatlinkshere-page'  => 'Kuatiarogue:',
-'linklistsub'         => '(Joajukuéra rysýi)',
 'linkshere'           => "Ko'ã kuatiarogue ojoaju '''[[:$1]]''' rehe:",
 'whatlinkshere-prev'  => 'mboyvegua $1',
 'whatlinkshere-next'  => 'upeigua $1',

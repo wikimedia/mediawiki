@@ -738,7 +738,7 @@ L'elenco delle relative cancellazioni viene riportato di seguito per comodità:"
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
 
-Dovrebbe averne meno di $2, al momento ce ne sono $1.',
+Dovrebbe averne meno di $2, al momento ce {{PLURAL:$1|ne è $1|ne sono $1}}.',
 'expensive-parserfunction-category'       => 'Pagine con troppe chiamate alle parser functions',
 'post-expand-template-inclusion-warning'  => 'Attenzione: la dimensione dei template inclusi è troppo grande.
 Alcuni template non verranno inclusi.',
@@ -1729,9 +1729,8 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Puntano qui',
-'whatlinkshere-title'      => 'Pagine che puntano a $1',
+'whatlinkshere-title'      => 'Pagine che puntano a "$1"',
 'whatlinkshere-page'       => 'Pagina:',
-'linklistsub'              => '(Lista dei collegamenti)',
 'linkshere'                => "Le seguenti pagine contengono dei collegamenti a '''[[:$1]]''':",
 'nolinkshere'              => "Nessuna pagina contiene collegamenti che puntano a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Non vi sono pagine che puntano a '''[[:$1]]''' nel namespace selezionato.",
@@ -2153,6 +2152,8 @@ $1',
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
 'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente.',
+'newimages-legend'      => 'Nome file',
+'newimages-label'       => 'Nome file (o una parte di esso):',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => "Non c'è nulla da vedere.",
 'ilsubmit'              => 'Ricerca',

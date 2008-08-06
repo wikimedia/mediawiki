@@ -1527,7 +1527,6 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'whatlinkshere'            => 'Hvað tengist hingað',
 'whatlinkshere-title'      => 'Síður sem tengjast $1',
 'whatlinkshere-page'       => 'Síða:',
-'linklistsub'              => '(Listi yfir tengla)',
 'linkshere'                => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
 'nolinkshere'              => "Engar síður tengjast á '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",

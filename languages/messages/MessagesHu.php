@@ -896,9 +896,9 @@ Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellen
 hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok értelmes sablon-hívás található.
+'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforásigényes értelmes sablon-hívás található.
 
-Kevesebb, mint $2 kellene, jelenleg $1 van.',
+Kevesebb, mint {{PLURAL:$2|egy|$2}} kellene, jelenleg {{PLURAL:$1|egy|$1}} van.',
 'expensive-parserfunction-category'       => 'Túl sok bonyolult értelmes sablon-hívással rendelkező lapok',
 'post-expand-template-inclusion-warning'  => 'Figyelem: a beillesztett sablonok mérete túl nagy.
 Néhány sablon nem fog megjelenni.',
@@ -1920,9 +1920,8 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',
-'whatlinkshere-title'      => 'A(z) $1 lapra hivatkozó lapok',
+'whatlinkshere-title'      => 'A(z) „$1” lapra hivatkozó lapok',
 'whatlinkshere-page'       => 'Oldal:',
-'linklistsub'              => '(Hivatkozások )',
 'linkshere'                => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
 'nolinkshere'              => '[[:$1]]: erre a lapra semmi nem hivatkozik.',
 'nolinkshere-ns'           => "A kiválasztott nvtartományban egy lap sem hivatkozik a(z) '''[[:$1]]''' szócikkre.",
@@ -2339,6 +2338,8 @@ $1',
 'newimages'             => 'Új képek galériája',
 'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
 'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.',
+'newimages-legend'      => 'Fájlnév',
+'newimages-label'       => 'Fájlnév (vagy annak részlete):',
 'showhidebots'          => '(botok szerkesztéseinek $1)',
 'noimages'              => 'Nem tekinthető meg semmi.',
 'ilsubmit'              => 'Keresés',
