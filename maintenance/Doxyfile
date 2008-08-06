@@ -279,15 +279,15 @@ DOT_CLEANUP            = YES
 #---------------------------------------------------------------------------
 SEARCHENGINE           = NO
 
-ALIASES =	"type{1}=<b> \1 </b>:" \
-		"2types{2}=<b> \1 </b> or <b> \2 </b>:" \
-		"3types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
-		"arrayof{2}=<b> Array </b> of \2" \
-		"null=\type{Null}" \
-		"boolean=\type{Boolean}" \
+ALIASES =	"type{1}=<b>\1</b>:" \
+		"twotypes{2}=<b>\1</b> or <b>\2</b>:" \
+		"threetypes{3}=<b>\1</b>, <b>\2</b>, or <b>\3</b>:" \
+		"arrayof{1}=<b>Array</b> of <b>\1</b>:" \
+		"null=Null" \
+		"boolean=Boolean" \
 		"bool=\boolean" \
-		"integer=\type{Integer}" \
+		"integer=Integer" \
 		"int=\integer" \
-		"string=\type{String}" \
+		"string=String" \
 		"str=\string" \
-		"mixed=\type{Mixed}"
+		"mixed=Mixed"
