@@ -60,6 +60,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14972) Use localized alias of Special:Search on all search forms
 * (bug 11035) Special:Search should have descriptive <title>
 * Special pages are now not subject to special handling for "self-links"
+* (bug 15053) Syntactically incorrect redirects with another link in them
+  no longer redirect to the second link 
 
 === API changes in 1.14 ===
 
