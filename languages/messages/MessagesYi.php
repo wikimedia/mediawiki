@@ -793,7 +793,7 @@ $2',
 'suppressionlog' => 'באהאלטונגען לאג',
 
 # Diffs
-'history-title'           => 'רעוויזיע היסטאריע פֿון$1',
+'history-title'           => 'רעוויזיע היסטאריע פֿון $1',
 'difference'              => '(אונטערשייד צווישן ווערסיעס)',
 'lineno'                  => 'שורה $1:',
 'compareselectedversions' => 'פארגלייך סעלעקטירטע ווערסיעס',

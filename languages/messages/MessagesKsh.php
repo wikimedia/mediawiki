@@ -337,7 +337,7 @@ Dat es och all op Änglesch:
 
 'badaccess'        => 'Nit jenoch Räächde',
 'badaccess-group0' => 'Do häs nit jenoch Räächde.',
-'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us {{PLURAL:$2|dä Jupp „$1“.|eine vun dä Jruppe: $1.|jaa keine Jrupp.}}',
+'badaccess-groups' => 'Wat Do wells, dat dürfe nor de Metmaacher us {{PLURAL:$2|dä Jrupp „$1“.|eine vun dä Jruppe: $1.|jaa keine Jrupp.}}',
 
 'versionrequired'     => 'De Version $1 vun MediaWiki Soffwär es nüdich',
 'versionrequiredtext' => 'De Version $1 vun MediaWiki Soffwär es nüdich, öm die Sigg hee bruche ze künne. Süch op [[Special:Version|de Versionssigg]], wat mer hee för ene Soffwärstand han.',
@@ -811,7 +811,7 @@ Dun se bei Dir om Rechner fasshalde un versök et späder noch ens.',
 'template-semiprotected'           => '(halfjeschöz - tabu för neu Metmaacher un ohne Enlogge)',
 'hiddencategories'                 => 'Die Sigg hee is en {{PLURAL:$1|de verstoche Saachjrupp: |$1 verstoche Saachjruppe: |keij verstoche Saachjruppe dren.}}',
 'edittools'                        => '<!-- Dä Tex hee zeich et Wiki unger däm Texfeld zom „Ändere/Bearbeide“ un beim Texfeld vum „Huhlade“. -->',
-'nocreatetitle'                    => 'Neu Sigge Aanläje eß nit einfach esu mööschlesch.',
+'nocreatetitle'                    => 'Neu Sigge Aanläje eß nit einfach esu müjjelesch.',
 'nocreatetext'                     => 'Sigge neu aanläje es nor möchlich, wann de [[Special:Userlogin|enjelogg]] bes. Der ohne kanns De ävver Sigge ändere, die ald do sin.',
 'nocreate-loggedin'                => 'Do häs nit dat Rääch, neu Sigge hee en däm Wiki aanzelääje.',
 'permissionserrors'                => 'Dat jeit nit, dat darfs de nit.',
@@ -837,7 +837,7 @@ woröm di Sigg dohmohls fottjeschmesse woode es:",
 'undo-success' => 'De Änderung könnte mer zeröck nämme. Beloor Der de Ungerscheed un dann donn di Sigg avspeichere, wann De dengks, et es en Oodenung esu.',
 'undo-failure' => '<span class="error">Dat kunnt mer nit zeröck nämme, dä Afschnedd wood enzwesche ald widder beärbeidt.</span>',
 'undo-norev'   => '<span class="error">Do ka\'mer nix zeröck nämme. Di Version jidd_et nit, odder se es verstoche odder fottjeschmesse woode.</span>',
-'undo-summary' => 'De Änderung $1 fum [[Special:Contributions/$2|$2]] ([[User talk:$2|Klaaf]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) zeröck jenomme.',
+'undo-summary' => 'De Änderung $1 fum [[Special:Contributions/$2|$2]] ([[User talk:$2|Klaaf]]) zeröck jenomme.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kann keine Zojang enrichte',
@@ -931,23 +931,31 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'suppressionlogtext' => 'Hee noh kütt et Logboch fum Versteiche, woh Versione fun Sigge, Zosammefassunge, Quelle, Metmaachername un Metmaacher-Sperre ze fenge sin, di fun de Oure vun de Öffentleschkeit, un och fun de Wiki-Köbesse verstoche woodte, udder widder zeröck op nommaal jebraat woodte.',
 
 # History merging
-'mergehistory'         => 'Versione fun Sigge zosamme schmiiße',
-'mergehistory-header'  => 'Met hee dä Sündersigge kanns Du de Versione fun en Urshprongssigg met de Versione fun en neuer Zielsigg zosamme läje. Donn drop aade, dat der Zosammehang fun dä Versione am Engk reschtesch es.',
-'mergehistory-box'     => 'Versione fun zwei Sigge zosamme läje',
-'mergehistory-from'    => 'Ursprongssigg:',
-'mergehistory-into'    => 'Zielsigg:',
-'mergehistory-list'    => 'Versione, di zosamme jelaat wäde künne',
-'mergehistory-merge'   => 'De Versione onge künne fun „[[:$1]]“ noh „[[:$2]]“ övverdraare wäde.
+'mergehistory'                     => 'Versione fun Sigge zosamme schmiiße',
+'mergehistory-header'              => 'Met hee dä Sündersigge kanns Du de Versione fun en Urshprongssigg met de Versione fun en neuer Zielsigg zosamme läje. Donn drop aade, dat der Zosammehang fun dä Versione am Engk reschtesch es.',
+'mergehistory-box'                 => 'Versione fun zwei Sigge zosamme läje',
+'mergehistory-from'                => 'Ursprongssigg:',
+'mergehistory-into'                => 'Zielsigg:',
+'mergehistory-list'                => 'Versione, di zosamme jelaat wäde künne',
+'mergehistory-merge'               => 'De Versione onge künne fun „[[:$1]]“ noh „[[:$2]]“ övverdraare wäde.
 Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn drop aachjevve, dat de Ußwahl fott es, wann De op eine fun dä Links klicks.',
-'mergehistory-go'      => 'Don Versione zeije, di mer zosamme läje künne',
-'mergehistory-submit'  => 'Versione zosamme läje',
-'mergehistory-empty'   => 'Mer han kei Versione för zesammezeläje',
-'mergehistory-success' => '{{PLURAL:$3|Ein Version es|$3 Versione sen|Kei Version wood}} fun „[[:$1]]“ noh „[[:$2]]“ övverdraare un domet zosamme jelaat.',
-'mergehistory-fail'    => 'Dat Versione zesamme läje is nit müjjelisch. Don ens di Sigge un de Zigge pröfe!',
+'mergehistory-go'                  => 'Don Versione zeije, di mer zosamme läje künne',
+'mergehistory-submit'              => 'Versione zosamme läje',
+'mergehistory-empty'               => 'Mer han kei Versione för zesammezeläje',
+'mergehistory-success'             => '{{PLURAL:$3|Ein Version es|$3 Versione sen|Kei Version wood}} fun „[[:$1]]“ noh „[[:$2]]“ övverdraare un domet zosamme jelaat.',
+'mergehistory-fail'                => 'Dat Versione zesamme läje is nit müjjelisch. Don ens di Sigge un de Zigge pröfe!',
+'mergehistory-no-source'           => 'En Ursprungssigg „$1“ jidd_et nit.',
+'mergehistory-no-destination'      => 'En Zielsigg „$1“ jidd_et nit.',
+'mergehistory-invalid-source'      => 'De Ursprungssigg ier Name moß och ene reschtijje Siggetittel sin.',
+'mergehistory-invalid-destination' => 'De Zielsigg ier Name moß och ene reschtijje Siggetittel sin.',
+'mergehistory-autocomment'         => '„[[:$1]]“ es jetz zosamme jelaat met „[[:$2]]“',
+'mergehistory-comment'             => '„[[:$1]]“ zosamme jelaat met „[[:$2]]“ — $3',
 
 # Merge log
-'mergelog'    => 'Logboch fum Sigge zesamme Läje',
-'revertmerge' => 'Dat Zosammelääje widder retuur maache',
+'mergelog'           => 'Logboch fum Sigge zesamme Läje',
+'pagemerge-logentry' => 'Versione beß $3 fun „[[:$1]]“ zosamme jelaat met „[[:$2]]“',
+'revertmerge'        => 'Dat Zosammelääje widder retuur maache',
+'mergelogpagetext'   => 'Dat hee is dat Logbooch fun de zesammejelaate Versione fun Sigge',
 
 # Diffs
 'history-title'           => 'Liss met Versione vun „$1“',
@@ -1242,6 +1250,7 @@ Usführlich met alle Möchlichkeite fings de dat bei de Hölp.
 Wann De jetz entschlosse bes, dat De et hee huhlade wells:
 * Aanluure, wat mer hee en de {{SITENAME}} ald han, kanns De en uns [[Special:Imagelist|Liss med huhjelade Dateie]].
 * Wenn De jet söke wells, eets ens nohluure wells, wat ald huhjelade, oder villeich widder fottjeschmesse wood, dat steiht em [[Special:Log/upload|Logboch vum Huhlade]].
+* Nohluure, wat fottjeschmesse wood, kanns De em [[Special:Log/delete|Logboch vum Sigge Fottschmie0e]].
 Esu, un jetz loss jonn:</div>
 == <span dir=\"ltr\">Daate en de {{SITENAME}} lade</span> ==",
 'upload-permitted'            => 'Nor de Dateitüpe <code>$1</code> sin zojelohße.',
@@ -1280,7 +1289,7 @@ un dann muss de dat Dinge noch ens huhlade.',
 'fileexists-extension'        => '<table cellspacing="0" cellpadding="0" border="0"><tr><td colspan="2">Mer han ald en Dattei, di bahl jenou esu heijß:</td></tr><tr><td>Huh am laade sim_mer:&nbsp;</td><td><strong><tt>$1</tt></strong></td></tr><tr><td>Ald om ßörve eß:</td><td><strong><tt>$2</tt></strong></td></tr><tr><td colspan="2">Bes esu joot un söök Der ene ander Name fö di Datei us.</td></tr></table>',
 'fileexists-thumb'            => "<center>'''Datei'''</center>",
 'fileexists-thumbnail-yes'    => 'Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe. Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.',
-'file-thumbnail-no'           => 'Dä Name fö di Datei fängk met <strong><tt>$1</tt></strong> aan. Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe, of de nit e besser opjelööß Beld dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann mööschlesch.',
+'file-thumbnail-no'           => 'Dä Name fö di Datei fängk met <strong><tt>$1</tt></strong> aan. Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat (<i><span lang="en">thumbnail</span></i>) wöhr. Don ens di Dattei <strong><tt>$1</tt></strong> prööfe, of de nit e besser opjelööß Beld dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann müjjelesch.',
 'fileexists-forbidden'        => 'Et jitt ald en Datei met däm Name.
 Jangk zeröck un lad se unger enem andere Name huh. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Et jitt ald en Datei met däm Name em jemeinsame Speicher.
@@ -1307,7 +1316,7 @@ En dä Datei stich e Kompjutervirus!
 De Einzelheite: $1',
 'sourcefilename'              => 'Datei zem huhlade:',
 'destfilename'                => 'Unger däm Dateiname avspeichere:',
-'upload-maxfilesize'          => 'Der jrüütßte mööschlesche Ömfang för en Datei es $1.',
+'upload-maxfilesize'          => 'Der jrüütßte müjjelesche Ömfang för en Datei es $1.',
 'watchthisupload'             => 'Op die Datei hee oppasse',
 'filewasdeleted'              => 'Unger däm Name wood ald ens en Datei huhjelade. Die es enzwesche ävver widder fottjeschmesse woode. Luur leever eets ens en et $1 ih dat De se dann avspeichere deis.',
 'upload-wasdeleted'           => "'''Opjepaß:''' Do bes en Datei huh am lade, di ald doför doh wohr un fottjeschmesse wohdt.
@@ -1601,8 +1610,8 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 'listgrouprights-rights'          => 'Räächte',
 'listgrouprights-helppage'        => 'Help:Jrupperäächte',
 'listgrouprights-members'         => '(Metjlederliss)',
-'listgrouprights-addgroup'        => 'Kann Metmaacher en di Metmaacher-Jruppe hee erin dunn: $1',
-'listgrouprights-removegroup'     => 'Kann Metmaacher us dä Metmaacher-Jruppe hee eruß nämme: $1',
+'listgrouprights-addgroup'        => 'Kann Metmaacher en {{PLURAL:$2|di Metmaacher-Jrupp|di Metmaacher-Jruppe hee|kein Metmaacher-Jrupp}} erin dunn: $1',
+'listgrouprights-removegroup'     => 'Kann Metmaacher us {{PLURAL:$2|dä Metmaacher-Jrupp|de Metmaacher-Jruppe hee|jaa kei Metmaacher-Jrupp}} eruß nämme: $1',
 'listgrouprights-addgroup-all'    => 'Kann Metmaacher en alle Metmaacher-Jruppe erin donn',
 'listgrouprights-removegroup-all' => 'Kann Metmaacher us alle Metmaacher-Jruppe eruß nämme',
 
@@ -2000,7 +2009,7 @@ Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service P
 Domet kritt die Sigg ene neue Name, un all vörherije Versione vun dä Sigg och.
 Unger däm ahle Name weed automatisch en Ömleitung op dä neue Name enjedrage.
 
-Do kannß dat Höksche setze domet Ömleidonge automattesch aanjepaß wääde, di op dä ahle Name zeije — dat weet ävver nur allählesch hengerher jemaat.
+Do kannß dat Höksche setze domet Ömleidonge automattesch aanjepaß wääde, di op dä ahle Name zeije — dat weet ävver nur allmählesch pö a pö hengerher jemaat.
 Links op dä ahle Name blieve ävver wie se wore, wann De dat Höksche nit setz.
 Dat heiß, Do muss selver nohluure, ov do jetz [[Special:DoubleRedirects|dubbelde Ömleidunge]] <!-- udder [[Special:BrokenRedirects|kapodde Ömleidunge]] --> bei eruskumme.
 Wann De en Sigg ömnenne deis, häs Do och doför ze sorje, dat de betroffene Links do henjonn, wo se hen jonn solle. 
@@ -2025,7 +2034,7 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'pagemovedsub'            => 'Dat Ömnenne hät jeflupp',
 'movepage-moved'          => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
-'cantmove-titleprotected' => 'Die Sigg ömzenänne es esu nit mööschlesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
+'cantmove-titleprotected' => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
 'talkexists'              => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
 'movedto'                 => 'ömjenannt en',
 'movetalk'                => 'dä ehr Klaafsigg met ömnenne, wat et jeiht',

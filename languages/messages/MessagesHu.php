@@ -501,7 +501,7 @@ $messages = array(
 
 'badaccess'        => 'Engedélyezési hiba',
 'badaccess-group0' => 'Ezt a tevékenységet nem végezheted el.',
-'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 csoportok valamelyikébe tartozó szerkesztő végezheti el.',
+'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 {{PLURAL:$2|csoportba|csoportok valamelyikébe}} tartozó szerkesztő végezheti el.',
 
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',
 'versionrequiredtext' => 'A lap használatához a MediaWiki $1-s verziójára van szükség. Lásd a [[Special:Version|verzió]] lapot.',
@@ -1299,7 +1299,7 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'upload_directory_read_only'  => 'A feltöltési könyvtár ($1) nem írható a szerver által.',
 'uploaderror'                 => 'Feltöltési hiba',
 'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
-A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:Imagelist|feltöltött fájlok listájához]], a feltöltések és a törlések a [[Special:Log/upload|feltöltési naplóban]] is le vannak jegyezve.
+A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:Imagelist|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
 
 Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
@@ -1651,8 +1651,8 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-rights'          => 'Jogok',
 'listgrouprights-helppage'        => 'Help:Csoportok jogai',
 'listgrouprights-members'         => '(tagok listája)',
-'listgrouprights-addgroup'        => 'ezekhez a csoportokhoz adhat szerkesztőket: $1',
-'listgrouprights-removegroup'     => 'ezekből a csoportokból távolíthat el szerkesztőket: $1',
+'listgrouprights-addgroup'        => '{{PLURAL:$2|ehhez a csoporthoz|ezekhez a csoportokhoz}} adhat szerkesztőket: $1',
+'listgrouprights-removegroup'     => '{{PLURAL:$2|ebből a csoportból|ezekből a csoportokból}} távolíthat el szerkesztőket: $1',
 'listgrouprights-addgroup-all'    => 'bármelyik csoporthoz adhat szerkesztőket',
 'listgrouprights-removegroup-all' => 'bármelyik csoportból távolíthat el szerkesztőket',
 
