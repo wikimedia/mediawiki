@@ -464,7 +464,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @param $out OutputPage
 	 * @param $opts FormOptions
 	 */
-	function setTopText( &$out, $opts ){
+	function setTopText( OutputPage $out, FormOptions $opts ){
 		$out->addWikiText( wfMsgForContentNoTrans( 'recentchangestext' ) );
 	}
 
@@ -475,7 +475,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @param $out OutputPage
 	 * @param $opts FormOptions
 	 */
-	function setBottomText( &$out, $opts ){}
+	function setBottomText( OutputPage $out, FormOptions $opts ){}
 
 	/**
 	 * Creates the choose namespace selection
