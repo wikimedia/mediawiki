@@ -812,6 +812,9 @@ class Services_JSON
     }
 }
 
+
+// Hide the PEAR_Error variant from Doxygen
+/// @cond
 if (class_exists('PEAR_Error')) {
 
     /**
@@ -827,6 +830,7 @@ if (class_exists('PEAR_Error')) {
     }
 
 } else {
+/// @endcond
 
     /**
      * @todo Ultimately, this class shall be descended from PEAR_Error

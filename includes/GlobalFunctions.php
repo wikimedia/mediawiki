@@ -12,6 +12,9 @@ require_once dirname(__FILE__) . '/LogPage.php';
 require_once dirname(__FILE__) . '/normal/UtfNormalUtil.php';
 require_once dirname(__FILE__) . '/XmlFunctions.php';
 
+// Hide compatibility functions from Doxygen
+/// @cond
+
 /**
  * Compatibility functions
  *
@@ -86,6 +89,9 @@ if ( !function_exists( 'array_diff_key' ) ) {
 		return $result;
 	}
 }
+
+/// @endcond
+
 
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
