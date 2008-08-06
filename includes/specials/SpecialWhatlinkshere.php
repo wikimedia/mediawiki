@@ -167,11 +167,13 @@ class WhatLinksHerePage {
 		if( ( !$fetchlinks || !$dbr->numRows($plRes) ) && ( $hidetrans || !$dbr->numRows($tlRes) ) && ( $hideimages || !$dbr->numRows($ilRes) ) ) {
 			if ( 0 == $level ) {
 				$wgOut->addHTML( $this->whatlinkshereForm() );
-				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
-				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
+
 				// Show filters only if there are links
 				if( $hidelinks || $hidetrans || $hideredirs || $hideimages )
 					$wgOut->addHTML( $this->getFilterPanel() );
+
+				$errMsg = is_int($namespace) ? 'nolinkshere-ns' : 'nolinkshere';
+				$wgOut->addWikiMsg( $errMsg, $this->target->getPrefixedText() );
 			}
 			return;
 		}
