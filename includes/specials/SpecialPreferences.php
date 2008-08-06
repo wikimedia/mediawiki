@@ -517,7 +517,7 @@ class PreferencesForm {
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
-		global $wgContLanguageCode, $wgDefaultSkin, $wgSkipSkins, $wgAuth;
+		global $wgContLanguageCode, $wgDefaultSkin, $wgAuth;
 		global $wgEmailConfirmToEdit, $wgAjaxSearch, $wgEnableMWSuggest;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
@@ -819,7 +819,7 @@ class PreferencesForm {
 		$previewtext = wfMsg('skin-preview');
 		# Only show members of Skin::getSkinNames() rather than
 		# $skinNames (skins is all skin names from Language.php)
-		$validSkinNames = Skin::getSkinNames();
+		$validSkinNames = Skin::getUsableSkins();
 		# Sort by UI skin name. First though need to update validSkinNames as sometimes
 		# the skinkey & UI skinname differ (e.g. "standard" skinkey is "Classic" in the UI).
 		foreach ($validSkinNames as $skinkey => & $skinname ) {
@@ -829,9 +829,6 @@ class PreferencesForm {
 		}
 		asort($validSkinNames);
 		foreach ($validSkinNames as $skinkey => $sn ) {
-			if ( in_array( $skinkey, $wgSkipSkins ) ) {
-				continue;
-			}
 			$checked = $skinkey == $this->mSkin ? ' checked="checked"' : '';
 
 			$mplink = htmlspecialchars($mptitle->getLocalURL("useskin=$skinkey"));
