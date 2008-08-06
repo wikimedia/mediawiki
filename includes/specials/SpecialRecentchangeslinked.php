@@ -163,13 +163,15 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		return $extraOpts;
 	}
 
-	function setTopText( &$out, $opts ) {
-		global $wgOut, $wgUser;
+	function setTopText( OutputPage $out, FormOptions $opts ) {
+		global $wgUser;
 		$skin = $wgUser->getSkin();
-		$wgOut->setSubtitle( wfMsg( 'recentchangeslinked-backlink', $skin->link( $this->mTargetTitle, $this->mTargetTitle->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
+		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) )
+			$out->setSubtitle( wfMsg( 'recentchangeslinked-backlink', $skin->link( $this->mTargetTitle,
+				$this->mTargetTitle->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
 	}
 
-	function setBottomText( &$out, $opts ){
+	function setBottomText( OutputPage $out, FormOptions $opts ){
 		if( isset( $this->mTargetTitle ) && is_object( $this->mTargetTitle ) ){
 			global $wgUser;
 			$out->setFeedAppendQuery( "target=" . urlencode( $this->mTargetTitle->getPrefixedDBkey() ) );
