@@ -63,6 +63,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Special pages are now not subject to special handling for "self-links"
 * (bug 15053) Syntactically incorrect redirects with another link in them
   no longer redirect to the second link 
+* (bug 15049) Fix for CheckUser extension's log search: usernames containing
+  a "-" were incorrectly turned into bogus IP range searches.
+  Patch by Max Semenik.
+
 
 === API changes in 1.14 ===
 

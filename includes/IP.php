@@ -426,12 +426,16 @@ class IP {
 		} elseif ( strpos( $range, '-' ) !== false ) {
 			# Explicit range
 			list( $start, $end ) = array_map( 'trim', explode( '-', $range, 2 ) );
-			$start = self::toUnsigned( $start ); $end = self::toUnsigned( $end );
-			if ( $start > $end ) {
-				$start = $end = false;
+			if( self::isIPAddress( $start ) && self::isIPAddress( $end ) ) {
+				$start = self::toUnsigned( $start ); $end = self::toUnsigned( $end );
+				if ( $start > $end ) {
+					$start = $end = false;
+				} else {
+					$start = sprintf( '%08X', $start );
+					$end = sprintf( '%08X', $end );
+				}
 			} else {
-				$start = sprintf( '%08X', $start );
-				$end = sprintf( '%08X', $end );
+				$start = $end = false;
 			}
 		} else {
 			# Single IP
