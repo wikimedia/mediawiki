@@ -290,7 +290,7 @@ $messages = array(
 
 'badaccess'        => '權限錯誤',
 'badaccess-group0' => '您剛才的請求不允許執行。',
-'badaccess-groups' => '您剛才的請求只有$1用戶組的用戶才能使用。',
+'badaccess-groups' => '您剛才的請求只有{{PLURAL:$2|這個|這些}}用戶組的用戶才能使用: $1',
 
 'versionrequired'     => '需要MediaWiki $1 版',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
@@ -1058,7 +1058,8 @@ $2',
 'uploadtext'                  => "使用下面的表單來上傳檔案。
 要檢視或搜索以前上傳的檔案
 可以進入[[Special:Imagelist|檔案上傳清單]]，
-上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
+（重新）上傳將在[[Special:Log/upload|上傳日誌]]中記錄，
+而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
 要在頁面中加入檔案，使用以下其中一種形式的連接:
 * '''<tt><nowiki>[[{{ns:image}}:file.jpg]]</nowiki></tt>'''去用檔案的完整版本
@@ -1395,8 +1396,8 @@ Template:消除歧義',
 'listgrouprights-rights'          => '權限',
 'listgrouprights-helppage'        => 'Help:群組權限',
 'listgrouprights-members'         => '(成員清單)',
-'listgrouprights-addgroup'        => '可以加入的群組: $1',
-'listgrouprights-removegroup'     => '可以移除的群組: $1',
+'listgrouprights-addgroup'        => '可以加入的{{PLURAL:$2|一個|多個}}群組: $1',
+'listgrouprights-removegroup'     => '可以移除的{{PLURAL:$2|一個|多個}}群組: $1',
 'listgrouprights-addgroup-all'    => '可以加入所有群組',
 'listgrouprights-removegroup-all' => '可以移除所有群組',
 

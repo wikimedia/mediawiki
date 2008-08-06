@@ -293,6 +293,7 @@ $messages = array(
 
 'badaccess'        => '子未逮',
 'badaccess-group0' => '子未逮，歉限之。',
+'badaccess-groups' => '子未逮，歉限之有{{PLURAL:$2|一|多}}：$1',
 
 'versionrequired'     => '惠置$1媒維基',
 'versionrequiredtext' => '惠置$1媒維基，見[[Special:Version|版]]。',
@@ -961,7 +962,7 @@ $2',
 'upload_directory_missing'   => '目錄$1已失，無建之。',
 'upload_directory_read_only' => '目錄$1禁入，無可獻。',
 'uploaderror'                => '進獻有變',
-'uploadtext'                 => "下表以獻，[[Special:Imagelist|載獻]]覽之。或見[[Special:Log/upload|誌獻]]。
+'uploadtext'                 => "下表以獻，[[Special:Imagelist|載獻]]覽之。或見[[Special:Log/upload|誌獻]]與[[Special:Log/delete|誌刪]]。
 欲嵌頁中，是格鏈之其一：
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:File.jpg]]</tt>'''用此整獻
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:File.png||200px|thumb|left|名]]</tt>'''以二百像素置左框置『名』
@@ -1231,8 +1232,8 @@ $2',
 'listgrouprights-rights'          => '權',
 'listgrouprights-helppage'        => 'Help:組權',
 'listgrouprights-members'         => '（社員表）',
-'listgrouprights-addgroup'        => '加組：$1',
-'listgrouprights-removegroup'     => '除組：$1',
+'listgrouprights-addgroup'        => '加{{PLURAL:$2|一|多}}組：$1',
+'listgrouprights-removegroup'     => '除{{PLURAL:$2|一|多}}組：$1',
 'listgrouprights-addgroup-all'    => '加全組',
 'listgrouprights-removegroup-all' => '除全組',
 
