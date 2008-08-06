@@ -551,7 +551,7 @@ END;
 		$a['class'] =
 			'mediawiki ns-'.$wgTitle->getNamespace().
 			' '.($wgContLang->isRTL() ? "rtl" : "ltr").
-			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() );
+			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ) .' '. get_class( $this );
 		return $a;
 	}
 
