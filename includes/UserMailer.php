@@ -347,9 +347,13 @@ class EmailNotification {
 				} elseif ( $targetUser->getId() == $editor->getId() ) {
 					wfDebug( __METHOD__.": user edited their own talk page, no notification sent\n" );
 				} elseif( $targetUser->getOption( 'enotifusertalkpages' ) ) {
-					wfDebug( __METHOD__.": sending talk page update notification\n" );
-					$this->compose( $targetUser );
-					$userTalkId = $targetUser->getId();
+					if( $targetUser->isEmailConfirmed() ) {
+						wfDebug( __METHOD__.": sending talk page update notification\n" );
+						$this->compose( $targetUser );
+						$userTalkId = $targetUser->getId();
+					} else {
+						wfDebug( __METHOD__.": talk page owner doesn't have validated email\n" );
+					}
 				} else {
 					wfDebug( __METHOD__.": talk page owner doesn't want notifications\n" );
 				}
