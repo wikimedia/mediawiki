@@ -13,14 +13,14 @@
  * @author Seb35
  * @author לערי ריינהארט
  * @author Sherbrooke
- * @author Hégésippe Cormier
  * @author Louperivois
- * @author Korg
- * @author Cedric31
+ * @author Hégésippe Cormier
  * @author Dereckson
+ * @author Cedric31
+ * @author Korg
+ * @author McDutchie
  * @author Omnipaedista
  * @author JeanVoisin
- * @author McDutchie
  * @author ChrisPtDe
  * @author Esbardu
  * @author Горан Анђелковић
@@ -813,9 +813,9 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Attention : Cette page contient trop d’appels dispendieux de fonctions parseurs.
+'expensive-parserfunction-warning'        => 'Attention : Cette page contient trop d’appels dispendieux de fonctions du parseur.
 
-Il devrait en avoir moins de $2 sur le nombre actuel $1.',
+Il devrait y en avoir moins de $2 sur le nombre actuel $1.',
 'expensive-parserfunction-category'       => 'Pages avec trop d’appels dispendieux de fonctions parseurs',
 'post-expand-template-inclusion-warning'  => "Attention : Cette page contient trop d'inclusions de modèles. Certaines inclusions ne seront pas effectuées.",
 'post-expand-template-inclusion-category' => "Pages contenant trop d'inclusions de modèles",
@@ -1205,11 +1205,11 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'upload_directory_read_only'  => 'Le serveur Web ne peut écrire dans le dossier cible ($1).',
 'uploaderror'                 => 'Erreur',
 'uploadtext'                  => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
-Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:Imagelist|liste de images]]. Les copies et suppressions sont aussi enregistrées dans l’[[Special:Log/upload|historique des imports]].
+Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:Imagelist|liste de images]]. Les imports sont aussi enregistrés dans l’[[Special:Log/upload|historique des imports]], les suppressions dans l’[[Special:Log/delete|historique des suppressions]].
 
 Pour inclure une image dans une page, utilisez un lien de la forme :
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></tt>''',
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></tt>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec 'texte descriptif' comme description
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.jpg]]</nowiki></tt>''' pour afficher le fichier en pleine résolution ;
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></tt>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec 'texte descriptif' comme description ;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></tt>''' pour lier directement vers le fichier sans l'afficher.",
 'upload-permitted'            => 'Formats de fichiers autorisés : $1.',
 'upload-preferred'            => 'Formats de fichiers préférés : $1.',
@@ -1553,8 +1553,8 @@ Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additi
 'listgrouprights-rights'          => 'Droits associés',
 'listgrouprights-helppage'        => 'Help:Droits des groupes',
 'listgrouprights-members'         => '(liste des membres)',
-'listgrouprights-addgroup'        => 'Peut ajouter les groupes : $1',
-'listgrouprights-removegroup'     => 'Peut retirer les groupes : $1',
+'listgrouprights-addgroup'        => 'Peut ajouter $2 {{PLURAL:$2|groupe|groupes}} : $1',
+'listgrouprights-removegroup'     => 'Peut retirer $2 {{PLURAL:$2|groupe|groupes}} : $1',
 'listgrouprights-addgroup-all'    => 'Peut ajouter tous les groupes',
 'listgrouprights-removegroup-all' => 'Peut retirer tous les groupes',
 
@@ -1812,7 +1812,6 @@ $1',
 'whatlinkshere'            => 'Pages liées',
 'whatlinkshere-title'      => 'Pages ayant un lien vers $1',
 'whatlinkshere-page'       => 'Page :',
-'linklistsub'              => '(Liste de liens)',
 'linkshere'                => 'Les pages ci-dessous contiennent un lien vers <b>[[:$1]]</b> :',
 'nolinkshere'              => 'Aucune page ne contient de lien vers <b>[[:$1]]</b>.',
 'nolinkshere-ns'           => "Aucune page ne contient de lien vers '''[[:$1]]''' dans l’espace de nom choisi.",
@@ -2229,6 +2228,8 @@ $1',
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
 'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
+'newimages-legend'      => 'Nom du fichier',
+'newimages-label'       => 'Nom du fichier (ou une partie de celui-ci) :',
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Aucune image à afficher.',
 'ilsubmit'              => 'Chercher',

@@ -777,7 +777,6 @@ $1',
 # What links here
 'whatlinkshere'       => 'Cose appunta chì',
 'whatlinkshere-title' => "Paggine c'appuntan a $1",
-'linklistsub'         => "(Lista de l'ingançi)",
 'linkshere'           => "E paggine seguenti appontan a '''[[:$1]]''':",
 'nolinkshere'         => "Nisciûnn-a paggina a se collega con '''[[:$1]]'''.",
 'isredirect'          => 'Rindirissâ',

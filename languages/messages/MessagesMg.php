@@ -803,7 +803,6 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 
 # What links here
 'whatlinkshere' => 'Iza avy no mirohy eto',
-'linklistsub'   => '(Lisitry ny rohy)',
 'linkshere'     => 'Ireto avy no pejy mirohy eto:',
 'nolinkshere'   => 'Tsy misy pejy mirohy eto.',
 

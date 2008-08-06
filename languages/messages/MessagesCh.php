@@ -977,7 +977,6 @@ Estague taiguini i nibet i påhina <strong>$1</strong>:',
 # What links here
 'whatlinkshere'       => "Håfa ha na'chetton guini",
 'whatlinkshere-title' => "I påhina siha ni mana'chetton yan $1",
-'linklistsub'         => '(Listan inachetton siha)',
 'linkshere'           => "Umachetton i sigienten påhina siha yan '''[[:$1]]''':",
 'nolinkshere'         => "Taya' umachetton yan '''[[:$1]]'''.",
 'isredirect'          => 'dirihi i påhina',

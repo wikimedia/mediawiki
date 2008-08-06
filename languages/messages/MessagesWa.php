@@ -1125,7 +1125,6 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 
 # What links here
 'whatlinkshere' => 'Pådjes ki loynut chal',
-'linklistsub'   => '(Djivêye des loyéns)',
 'linkshere'     => 'Les pådjes ki shuvèt ont des loyéns viè cisse ci:',
 'nolinkshere'   => 'Nole pådje avou des loyéns viè cisse ci.',
 'isredirect'    => 'pådje di redjiblaedje',

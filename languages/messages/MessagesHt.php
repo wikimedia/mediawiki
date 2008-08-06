@@ -916,7 +916,6 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 # What links here
 'whatlinkshere'       => 'Paj ki lye nan paj sa a',
 'whatlinkshere-title' => 'Paj ki genyen lyen ki ap mennen nan $1',
-'linklistsub'         => '(Lis lyen yo)',
 'linkshere'           => 'Paj yo ki anba ap mene nan <b>[[:$1]]</b> :',
 'nolinkshere'         => 'Pyès paj genyen lyen pou paj sa a <b>[[:$1]]</b>.',
 'isredirect'          => 'Paj redireksyon',

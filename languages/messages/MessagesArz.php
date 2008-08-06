@@ -6,8 +6,8 @@
  *
  * @author Ramsis II
  * @author Ghaly
- * @author Alnokta
  * @author Meno25
+ * @author Alnokta
  */
 
 $fallback = 'ar';
@@ -1909,7 +1909,6 @@ $1',
 'whatlinkshere'            => 'ايه بيوصل هنا',
 'whatlinkshere-title'      => 'الصفحات اللي بتودي ل $1',
 'whatlinkshere-page'       => 'الصفحة:',
-'linklistsub'              => '(لسته بالوصلات)',
 'linkshere'                => "الصفحات دى فيها وصله ل '''[[:$1]]''':",
 'nolinkshere'              => "مافيش صفحات بتوصل ل '''[[:$1]]'''.",
 'nolinkshere-ns'           => "مافيش صفحات بتوصل لـ '''[[:$1]]''' في النطاق اللي انت اختارته.",
@@ -2334,6 +2333,8 @@ $1',
 'newimages'             => 'جاليرى الصور الجديده',
 'imagelisttext'         => 'دي لستة بـ$1 {{PLURAL:$1|ملف|ملفات}} مترتبة $2.',
 'newimages-summary'     => 'الصفحةالمخصوصة دي بتعرض آخر الملفات المتحملة',
+'newimages-legend'      => 'اسم الملف',
+'newimages-label'       => 'اسم الملف (او حتة منه):',
 'showhidebots'          => '($1 بوتات)',
 'noimages'              => 'مافيش حاجة للعرض.',
 'ilsubmit'              => 'تدوير',

@@ -10,9 +10,9 @@
  * @author Broad-Sky
  * @author Kahusi
  * @author Emk
+ * @author Aotake
  * @author Mzm5zbC3
  * @author Iwai.masaharu
- * @author Aotake
  * @author לערי ריינהארט
  * @author Kkkdc
  * @author Hatukanezumi
@@ -981,9 +981,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadnologintext'           => 'ファイルをアップロードするには[[Special:Userlogin|ログイン]]する必要があります。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルは[[Special:Imagelist|{{int:imagelist}}]]で閲覧したり探したりできます。アップロードや削除は[[Special:Log/upload|アップロードログ]]に記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:Imagelist|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
 
-以下の書式のリンクを使ってページにファイルを含めることができます。
+ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.png|200px|thumb|left|代替テキスト]]</nowiki></tt>''' とすると左寄せの枠内に200px幅に縮小した画像を説明文（代替テキスト）を添えて表示します
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>''' とするとファイルを表示せずに直接ファイルへリンクします",
@@ -1299,7 +1299,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
-あなたが登録したご自分のメールアドレスはFrom:の欄に自動的に組み込まれ、受け取った相手が返事を出せるようになっています。',
+あなたが [[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスは送るメールのFrom:の欄に自動的に組み込まれ、受け取った相手が返事を出せるようになっています。',
 'usermailererror' => 'メール送信時に以下のエラーが発生しました:',
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
@@ -1431,10 +1431,9 @@ $NEWPAGE
 'rollbacklink'                => '差し戻し',
 'rollbackfailed'              => '差し戻しに失敗しました',
 'cantrollback'                => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]])
-による編集の差し戻しに失敗しました。誰か他の利用者が編集を行ったか差し戻しされたのかもしれません。
+'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
-このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]]) によるものです。',
+このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]] | [[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
 'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
 'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
@@ -1549,7 +1548,6 @@ $NEWPAGE
 'whatlinkshere'            => 'リンク元',
 'whatlinkshere-title'      => '$1 へリンクしているページ',
 'whatlinkshere-page'       => 'ページ:',
-'linklistsub'              => 'リンクの一覧',
 'linkshere'                => '[[:$1]] は以下のページからリンクされています',
 'nolinkshere'              => '[[:$1]] にリンクしているページはありません。',
 'nolinkshere-ns'           => "指定された名前空間中で、'''[[:$1]]''' にリンクしているページはありません。",
@@ -1722,11 +1720,11 @@ $NEWPAGE
 
 # Export
 'export'            => 'ページデータの書き出し',
-'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他のMediaWikiで動いているウィキに取り込んだり、変換したり、個人的な楽しみに使ったりできます。
+'exporttext'        => 'ここでは単独のまたは複数のページのテキストと編集履歴をXMLの形で書き出すことができます。書き出されたXML文書は他のMediaWikiで動いているウィキに[[Special:Import|インポートページ]]を使って取り込めます。
 
 ページデータを書き出すには下のテキストボックスに書き出したいページのタイトルを一行に一ページずつ記入してください。また編集履歴とともに全ての古い版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
 
-後者のケースではリンクの形で使うこともできます。例: [[メインページ]]の最新版を取得するには[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]を使用します"[[{{MediaWiki:Mainpage}}]]"。',
+後者のケースではリンクの形で使うこともできます。例: "[[{{MediaWiki:Mainpage}}]]"の最新版を取得するには[[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]]を使用します。',
 'exportcuronly'     => 'すべての履歴を含ませずに、最新版のみを書き出す',
 'exportnohistory'   => "'''お知らせ:''' パフォーマンス上の理由により、このフォームによるページの完全な履歴の書き出しは行えません。",
 'export-submit'     => '書き出し',
@@ -1762,7 +1760,7 @@ $NEWPAGE
 'import-interwiki-history'   => 'このページの全ての版を複製する',
 'import-interwiki-submit'    => '取り込み',
 'import-interwiki-namespace' => '次の名前空間に取り込む:',
-'importtext'                 => '元となるウィキから {{ns:special}}:Export を使ってXMLファイルを書き出し、ここでアップロードしてください。',
+'importtext'                 => '書き出し元となるウィキから [[Special:Export|書き出し用ユーティリティ]]を使ってXMLファイルを書き出してください。あなたのコンピューターに保存した後、ここにアップロードしてください。',
 'importstart'                => 'ページを取り込んでいます...',
 'import-revision-count'      => '$1 版',
 'importnopages'              => 'インポートするページがありません',

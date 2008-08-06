@@ -1,13 +1,13 @@
 <?php
-/** Tajik (Cyrillic) (Тоҷикӣ/tojikī (Cyrillic))
+/** Tajik (Cyrillic) (Тоҷикӣ (Cyrillic))
  *
  * @ingroup Language
  * @file
  *
  * @author Ibrahim
  * @author FrancisTyers
- * @author לערי ריינהארט
  * @author Farrukh
+ * @author לערי ריינהארט
  * @author Soroush
  * @author Cbrown1023
  */
@@ -1535,7 +1535,6 @@ $1',
 'whatlinkshere'           => 'Пайвандҳои дар ин сахифа',
 'whatlinkshere-title'     => 'Саҳифаҳое ки ба $1 пайванд доранд',
 'whatlinkshere-page'      => 'Саҳифа:',
-'linklistsub'             => '(Феҳристи пайвандҳо)',
 'linkshere'               => "Саҳифаҳои зерин ба '''[[:$1]]''' пайванданд:",
 'nolinkshere'             => "Ягон саҳифа ба '''[[:$1]]''' пайванд нест.",
 'nolinkshere-ns'          => "Ҳеҷ саҳифа аз фазоиноми интихобшуда ба '''[[:$1]]''' пайванд надорад.",

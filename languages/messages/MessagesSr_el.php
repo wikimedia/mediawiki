@@ -1295,7 +1295,6 @@ Pogledajte [[{{ns:special}}:Log/delete|istoriju brisanja]] za spisak skorašnjih
 
 # What links here
 'whatlinkshere' => 'Šta je povezano ovde',
-'linklistsub'   => '(spisak veza)',
 'linkshere'     => 'Sledeće stranice su povezane ovde:',
 'nolinkshere'   => 'Ni jedna stranica nije povezana ovde.',
 'isredirect'    => 'preusmerivač',

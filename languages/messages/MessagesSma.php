@@ -640,7 +640,6 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong>
 'whatlinkshere'       => 'Bilieh goh lïenghkeh diekie',
 'whatlinkshere-title' => 'Bielieh goh lïenghke gåajkoe $1',
 'whatlinkshere-page'  => 'Bielie:',
-'linklistsub'         => '(Lästoe bijjelen lïenghke)',
 'linkshere'           => "Tjuovvovasj bielie lïenghke gåajkoe '''[[:$1]]''':",
 'nolinkshere'         => "Ijje bielieh lïenghke gåajkoe '''[[:$1]]'''.",
 'isredirect'          => 'bïjre-dirisjovne bielie',

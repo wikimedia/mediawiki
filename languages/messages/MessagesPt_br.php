@@ -5,8 +5,8 @@
  * @file
  *
  * @author 555
- * @author Lijealso
  * @author לערי ריינהארט
+ * @author Lijealso
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author LeonardoG
@@ -1758,7 +1758,6 @@ $1',
 'whatlinkshere'            => 'Páginas afluentes',
 'whatlinkshere-title'      => 'Páginas que apontam para $1',
 'whatlinkshere-page'       => 'Página:',
-'linklistsub'              => '(Lista de ligações)',
 'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem ligações para '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Não há links para '''[[:$1]]''' no espaço nominal selecionado.",

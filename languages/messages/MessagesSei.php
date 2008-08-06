@@ -964,7 +964,6 @@ iitom e-iitomde diijömde caitóm.',
 'sp-contributions-submit'   => 'Yahöx',
 
 # What links here
-'linklistsub'         => '(Listade linkám)',
 'istemplate'          => 'incluciónaj',
 'whatlinkshere-links' => '← linkám',
 

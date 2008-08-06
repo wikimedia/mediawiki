@@ -276,7 +276,6 @@ $3',
 # What links here
 'whatlinkshere'       => 'Легајтул а це пажу',
 'whatlinkshere-title' => 'Пажус легајтулент а $1',
-'linklistsub'         => '(Листа де легајтул)',
 'nolinkshere'         => "Пажи не легајтент а '''[[:$1]]'''.",
 'istemplate'          => 'викулабе',
 'whatlinkshere-links' => '← легајтулс',

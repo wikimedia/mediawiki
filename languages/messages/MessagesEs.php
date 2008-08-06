@@ -21,13 +21,13 @@
  * @author Alhen
  * @author Jatrobat
  * @author Ascánder
- * @author Fluence
  * @author Bengoa
  * @author Dvortygirl
  * @author Orgullomoore
  * @author Toniher
  * @author Omnipaedista
  * @author McDutchie
+ * @author Fluence
  * @author Alpertron
  * @author Mahadeva
  * @author Better
@@ -668,9 +668,9 @@ Debería considerar si es apropiado continuar editando esta página.
 Consulte a continuación el registro de borrados:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Aviso: Esta página contiene demasiadas llamadas a funciones de preproceso costosas
+'expensive-parserfunction-warning'        => 'Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)
 
-Debería tener menos de $2, por ahora tiene $1.',
+Tiene {{PLURAL:$1|una llamada|$1 llamadas}}, pero debería tener menos de $2.',
 'expensive-parserfunction-category'       => 'Páginas con llamadas a funciones sintácticas demasiado costosas',
 'post-expand-template-inclusion-warning'  => 'Aviso: El tamaño de las plantillas incluidas es muy grande.
 Algunas plantillas no serán incluidas',
@@ -842,7 +842,10 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => '$1 resultados:',
 'search-interwiki-more'    => '(más)',
+'search-mwsuggest-enabled' => 'con sugerencias',
+'search-relatedarticle'    => 'Relacionado',
 'mwsuggest-disable'        => 'No usar AJAX al realizar búsquedas',
+'searchrelated'            => 'relacionado',
 'searchall'                => 'todos',
 'showingresults'           => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'        => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
@@ -1201,17 +1204,22 @@ archivo a esa fecha.',
 'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Borrar',
-'filedelete-success'          => "'''$1''' ōmopolo.",
+'filedelete-success'          => "'''$1''' ha sido borrado.",
 'filedelete-nofile'           => "El archivo '''$1''' no existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "No existe una versión guardada de '''$1''' con los atributos especificados.",
 'filedelete-otherreason'      => 'Otra razón:',
 'filedelete-reason-otherlist' => 'Otra razón',
+'filedelete-reason-dropdown'  => '*Razones de borrado habituales
+** Violación de copyright
+** Fichero duplicado',
 'filedelete-edit-reasonlist'  => 'Editar razones de borrado',
 
 # MIME search
-'mimesearch' => 'Búsqueda MIME',
-'mimetype'   => 'Tipo MIME:',
-'download'   => 'descargar',
+'mimesearch'         => 'Búsqueda MIME',
+'mimesearch-summary' => 'Esta página permite el filtrado de ficheros por su tipo MIME.
+Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
+'mimetype'           => 'Tipo MIME:',
+'download'           => 'descargar',
 
 # Unwatched pages
 'unwatchedpages' => 'Páginas no vigiladas',
@@ -1256,9 +1264,11 @@ de los cuales '''$2''' (el '''$4%''') tienen privilegios de $5.",
 En lugar de ello deberían enlazar con  el tema apropiado.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Redirecciones dobles',
-'doubleredirectstext' => '<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />
+'doubleredirects'            => 'Redirecciones dobles',
+'doubleredirectstext'        => '<b>Atención:</b> Esta lista puede contener falsos positivos. Eso significa usualmente que hay texto adicional con enlaces bajo el primer #REDIRECT.<br />
 Cada fila contiene enlaces al segundo y tercer redirect, así como la primera línea del segundo redirect, en la que usualmente se encontrará el artículo "real" al que el primer redirect debería apuntar.',
+'double-redirect-fixed-move' => '[[$1]] ha sido trasladado, ahora es una redirección a [[$2]]',
+'double-redirect-fixer'      => 'Corrector de redirecciones',
 
 'brokenredirects'        => 'Redirecciones incorrectas',
 'brokenredirectstext'    => 'Las redirecciones siguientes enlazan a un artículo que no existe.',
@@ -1489,8 +1499,8 @@ así como todo su historial, de la base de datos.
 Por favor, confirma que realmente quieres hacer eso, que entiendes las
 consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'              => 'Acción completa',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ōmopolo.
-Xiquitta $2 ic yancuīc tlapololiztli.',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha sido borrado.
+Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'              => 'borró "$1"',
 'dellogpage'                  => 'Registro de borrados',
 'dellogpagetext'              => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor (UTC).',
@@ -1504,8 +1514,8 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 ** Violación de copyright
 ** Vandalismo',
 'delete-edit-reasonlist'      => 'Editar razones de borrado',
-'delete-toobig'               => 'Esta página tiene un historial muy grande, de unas $1 revisiones. Borrar este tipo de páginas ha sido restringido para prevenir accidentes en {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta página tiene un historial de más de $1 revisiones. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
+'delete-toobig'               => 'Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.',
+'delete-warning-toobig'       => 'Esta página tiene un historial de más de {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
 'rollback'                    => 'Revertir ediciones',
 'rollback_short'              => 'Revertir',
 'rollbacklink'                => 'Revertir',
@@ -1567,6 +1577,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'undeletepagetitle'        => "'''Las siguientes son las revisiones borradas de [[:$1|$1]]'''.",
 'viewdeletedpage'          => 'Ver páginas borradas',
 'undeletepagetext'         => 'Las siguientes páginas han sido borradas pero aún están en el archivo y pueden ser restauradas. El archivo se puede limpiar periódicamente.',
+'undelete-fieldset-title'  => 'Restaurar revisiones',
 'undeleteextrahelp'        => "Para restaurar todas las revisiones, deja todas las casillas sin seleccionar y pulsa '''¡Restaurar!'''. Para restaurar sólo algunas revisiones, marca las revisiones que quieres restaurar y pulsa '''¡Restaurar!'''. Haciendo clic en al botón '''Nada''', se deseleccionarán todas las casillas y eliminará el comentario actual.",
 'undeleterevisions'        => '$1 {{PLURAL:$1|revisión|revisiones}} archivadas',
 'undeletehistory'          => 'Si restaura una página, todas sus revisiones serán restauradas al historial. Si una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.',
@@ -1624,7 +1635,6 @@ $1',
 'whatlinkshere'            => 'Lo que enlaza aquí',
 'whatlinkshere-title'      => 'Páginas que enlazan a $1',
 'whatlinkshere-page'       => 'Página:',
-'linklistsub'              => '(Lista de enlaces)',
 'linkshere'                => "Las siguientes páginas enlazan a '''[[:$1]]''':",
 'nolinkshere'              => "Ninguna página enlaza con '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Ninguna página enlaza con '''[[:$1]]''' en el espacio de nombres elegido.",
@@ -1795,6 +1805,7 @@ La página de destino ("[[$1]]") ya existe. ¿Quiere borrarla para permitir al t
 'delete_and_move_reason'  => 'Borrada para permitir el traslado',
 'selfmove'                => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
 'immobile_namespace'      => 'El título de destino es de un tipo especial. No se pueden trasladar páginas a ese espacio de nombres.',
+'fix-double-redirects'    => 'Actualizar las redirecciones que apuntan al título original',
 
 # Export
 'export'            => 'Exportar páginas',
@@ -1985,9 +1996,10 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'patrol-log-auto' => '(automático)',
 
 # Image deletion
-'deletedrevision'       => 'Borrada revisión antigua $1',
-'filedeleteerror-short' => 'Se produjo un error al borrar el archivo: $1',
-'filedelete-missing'    => 'No se pudo borrar el archivo "$1" porque no existe.',
+'deletedrevision'                 => 'Borrada revisión antigua $1',
+'filedeleteerror-short'           => 'Se produjo un error al borrar el archivo: $1',
+'filedelete-missing'              => 'No se pudo borrar el archivo "$1" porque no existe.',
+'filedelete-current-unregistered' => 'El archivo «$1» no existe en la base de datos.',
 
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',
@@ -2397,8 +2409,8 @@ Prueba la previsualización normal.',
 Intenta la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios realizados en los últimos $1 segundos pueden no ser mostrados en esta lista.',
-'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en los últimos $1 segundos pueden no ser mostrados en esta lista.',
+'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
+'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
@@ -2432,8 +2444,12 @@ También puedes utilizar el [[Special:Watchlist/edit|editor estándar]].',
 'version-extensions'       => 'Extensiones instaladas',
 'version-specialpages'     => 'Páginas especiales',
 'version-parserhooks'      => "Lligams de l'analitzador",
+'version-variables'        => 'Variables',
+'version-other'            => 'Otro',
 'version-version'          => 'Versión',
 'version-license'          => 'Licencia',
+'version-software'         => 'Software instalado',
+'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
 
 # Special:Filepath
@@ -2453,11 +2469,13 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 'fileduplicatesearch-legend'   => 'Busca duplicados',
 'fileduplicatesearch-filename' => 'Nombre del fichero:',
 'fileduplicatesearch-submit'   => 'Buscar',
+'fileduplicatesearch-info'     => '$1 × $2 píxeles<br />Tamaño: $3<br />Tipo MIME: $4',
 'fileduplicatesearch-result-1' => 'El archivo "$1" no tiene duplicados idénticos.',
 'fileduplicatesearch-result-n' => 'El archivo "$1" tiene {{PLURAL:$2|1 duplicado idéntico|$2 duplicados idénticos}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
+'specialpages-note'              => '<p>&nbsp;</p><p style="margin-left:1cm; font-size:110%; padding:1px; text-align:center; border:1px solid blue;">Las páginas <span class="mw-specialpagerestricted">destacadas</span> son páginas especiales restringidas.</p>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Registrarse / entrar',
@@ -2472,6 +2490,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 'specialpages-group-spam'        => 'Herramientas anti-SPAM',
 
 # Special:Blankpage
-'blankpage' => 'Página vacía',
+'blankpage'              => 'Página vacía',
+'intentionallyblankpage' => 'Esta pagina está en blanco intencionadamente',
 
 );

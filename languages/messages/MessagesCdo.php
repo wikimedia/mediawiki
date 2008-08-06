@@ -687,7 +687,6 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 # What links here
 'whatlinkshere'       => 'Diē-nē̤ lièng gáu cē̤-nē̤',
 'whatlinkshere-title' => 'Lièng gáu $1 gì hiĕk-miêng',
-'linklistsub'         => '(Lièng-giék dăng-dăng)',
 'linkshere'           => "Â-dā̤ gì hiĕk-miêng lièng gáu '''[[:$1]]''':",
 'nolinkshere'         => "Mò̤ hiĕk-miêng lièng gáu '''[[:$1]]'''.",
 'isredirect'          => 'dṳ̀ng-sĭng dêng-hióng hiĕk',

@@ -989,7 +989,6 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
 # What links here
 'whatlinkshere'       => 'Xët yi mu lëkkalool',
-'linklistsub'         => '(Limuy lëkkalekaay)',
 'linkshere'           => 'Xët yii ci suuf am nañ ab lëkkalekaay buy jëm <b>[[:$1]]</b> :',
 'whatlinkshere-prev'  => '{{PLURAL:$1|wi jiitu|$1 yi jiitu}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|wi tegu|$1 yi tegu}}',

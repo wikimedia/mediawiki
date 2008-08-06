@@ -1550,7 +1550,6 @@ Shikoni [[Special:Log/delete|regjistrin e grisjeve]] për grisjet dhe restaurime
 'whatlinkshere'            => 'Lidhjet këtu',
 'whatlinkshere-title'      => 'Faqe që lidhin me $1',
 'whatlinkshere-page'       => 'Faqja:',
-'linklistsub'              => '(Listë lidhjesh)',
 'linkshere'                => "Faqet e mëposhtme lidhen këtu '''[[:$1]]''':",
 'nolinkshere'              => "Asnjë faqe nuk lidhet tek '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Nuk ka faqe në hapësirën e zgjedhur që lidhen tek '''[[:$1]]'''.",

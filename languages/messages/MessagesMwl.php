@@ -506,7 +506,6 @@ Consulte $2 para um registo de eliminações recentes.',
 # What links here
 'whatlinkshere'       => 'Páginas afluentes',
 'whatlinkshere-title' => 'Páginas que apontam para $1',
-'linklistsub'         => '(Lista de ligações)',
 'linkshere'           => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'nolinkshere'         => "Num eisistem ligaçons para '''[[:$1]]'''.",
 'isredirect'          => 'página de redireccionamento',

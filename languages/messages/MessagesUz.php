@@ -511,7 +511,6 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # What links here
 'whatlinkshere'       => "Bu sahifaga bog'langan sahifalar",
 'whatlinkshere-title' => '$1ga bogʻlangan sahifalar',
-'linklistsub'         => "(Bog'lanishlar ro'yxati)",
 'linkshere'           => "Quyidagi sahifalar '''[[:$1]]''' sahifasiga bog'langan:",
 'nolinkshere'         => "'''[[:$1]]''' sahifasiga hech qaysi sahifa bog'lanmagan.",
 'isredirect'          => 'yoʻnaltiruvchi sahifa',

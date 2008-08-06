@@ -514,7 +514,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # What links here
 'whatlinkshere'       => 'Hwæt bindaþ hider',
 'whatlinkshere-page'  => 'Tramet:',
-'linklistsub'         => '(Getalu benda)',
 'linkshere'           => 'Þā folgendan trametas bindaþ hider:',
 'nolinkshere'         => 'Nāne trametas bindaþ hider.',
 'isredirect'          => 'edlǣdungtramet',

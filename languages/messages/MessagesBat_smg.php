@@ -1116,7 +1116,6 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'whatlinkshere'       => 'Sosėjėn straipsnē',
 'whatlinkshere-title' => 'Poslapē, katrie ruod i $1',
 'whatlinkshere-page'  => 'Poslapis:',
-'linklistsub'         => '(Nūruodu sārašos)',
 'linkshere'           => "Šėtė poslapē ruod i '''[[:$1]]''':",
 'nolinkshere'         => "I '''[[:$1]]''' nūruodu nier.",
 'nolinkshere-ns'      => "Nurodītuo vardū srėtī anė vėins poslapis neruod i '''[[:$1]]'''.",

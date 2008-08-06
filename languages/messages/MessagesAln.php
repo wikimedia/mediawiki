@@ -530,7 +530,6 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 # What links here
 'whatlinkshere'       => "Lidhjet k'tu",
 'whatlinkshere-title' => 'Faqe qi lidhen me $1',
-'linklistsub'         => '(Listë e lidhjeve)',
 'linkshere'           => "Faqet e mëposhtme lidhen k'tu '''[[:$1]]''':",
 'isredirect'          => 'faqe përcjellëse',
 'istemplate'          => 'përfshirë',

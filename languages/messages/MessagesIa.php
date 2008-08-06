@@ -688,7 +688,7 @@ Le registro de deletiones pro iste pagina se trova infra pro major commoditate:"
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
 
-Illo debe haber minus de $2, sed al momento ha $1.',
+Illo debe haber minus de $2 {{PLURAL:$2|appello|appellos}}, sed al momento ha $1 {{PLURAL:$1|appello|appellos}}.',
 'expensive-parserfunction-category'       => 'Paginas con troppo de appellos costose al functiones del analysator syntactic',
 'post-expand-template-inclusion-warning'  => 'Attention: Le grandor del patronos includite ha excedite le maximo.
 Alcun patronos non essera includite.',
@@ -1097,11 +1097,11 @@ Le paginas presente in [[Special:Watchlist|tu observatorio]] se revela in litter
 'upload_directory_read_only'  => 'Le servitor de web non ha le permission de scriber in le directorio de cargamento ($1).',
 'uploaderror'                 => 'Error de carga',
 'uploadtext'                  => "Tu pote cargar files con le formulario infra.
-Pro vider o cercar imagines cargate previemente, visita le [[Special:Imagelist|lista de imagines cargate]]. In ultra, le cargas e deletiones es registrate in le [[Special:Log/upload|registro de cargas]].
+Pro vider o cercar imagines cargate anteriormente, visita le [[Special:Imagelist|lista de imagines cargate]]. In ultra, le (re)cargas es registrate in le [[Special:Log/upload|registro de cargas]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 
 Pro includer un file in un articulo, usa un ligamine in un del sequente formas:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|texto alternative]]</nowiki></tt>''' pro usar un rendition a largor de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></tt>''' pro usar un rendition a largor de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro facer un ligamine directe al file sin monstrar le file",
 'upload-permitted'            => 'Typos de file permittite: $1.',
 'upload-preferred'            => 'Typos de file preferite: $1.',
@@ -1472,8 +1472,8 @@ Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]
 'listgrouprights-rights'          => 'Derectos',
 'listgrouprights-helppage'        => 'Help:Derectos de gruppos',
 'listgrouprights-members'         => '(lista de membros)',
-'listgrouprights-addgroup'        => 'Pote adder gruppos: $1',
-'listgrouprights-removegroup'     => 'Pote remover gruppos: $1',
+'listgrouprights-addgroup'        => 'Pote adder {{PLURAL:$2|gruppo|gruppos}}: $1',
+'listgrouprights-removegroup'     => 'Pote remover {{PLURAL:$2|gruppo|gruppos}}: $1',
 'listgrouprights-addgroup-all'    => 'Pote adder tote le gruppos',
 'listgrouprights-removegroup-all' => 'Pote eliminar tote le gruppos',
 
@@ -1584,7 +1584,7 @@ Reactiones e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
-'deletepage'                  => 'Eliminar pagina',
+'deletepage'                  => 'Deler pagina',
 'confirm'                     => 'Confirmar',
 'excontent'                   => "contento esseva: '$1'",
 'excontentauthor'             => "contento esseva: '$1' (e le sol contributor esseva '[[Special:Contributions/$2|$2]]')",
@@ -1758,7 +1758,6 @@ $1',
 'whatlinkshere'            => 'Referentias a iste pagina',
 'whatlinkshere-title'      => 'Paginas con ligamines a $1',
 'whatlinkshere-page'       => 'Pagina:',
-'linklistsub'              => '(Lista de ligamines)',
 'linkshere'                => "Le paginas sequente se liga a '''[[:$1]]''':",
 'nolinkshere'              => "Necun pagina se liga a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Nulle pagina liga a '''[[:$1]]''' in le spatio de nomines seligite.",
@@ -2468,7 +2467,7 @@ Le alteres essera initialmente celate.
 'exif-gpslongitude-e' => 'Longitude est',
 'exif-gpslongitude-w' => 'Longitude west',
 
-'exif-gpsstatus-a' => 'Mesura in progresso',
+'exif-gpsstatus-a' => 'Mesura in curso',
 'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
 
 'exif-gpsmeasuremode-2' => 'Mesura bidimensional',
@@ -2557,7 +2556,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'recreate'            => 'Recrear',
 
 # HTML dump
-'redirectingto' => 'Redirection verso [[$1]] in progresso...',
+'redirectingto' => 'Redirection verso [[$1]] in curso…',
 
 # action=purge
 'confirm_purge'        => 'Rader le cache de iste pagina?
@@ -2596,8 +2595,8 @@ $1',
 'autosumm-new'     => 'Nove pagina: $1',
 
 # Live preview
-'livepreview-loading' => 'Cargamento in progresso…',
-'livepreview-ready'   => 'Cargamento in progresso… Preste!',
+'livepreview-loading' => 'Cargamento in curso…',
+'livepreview-ready'   => 'Cargamento in curso… Preste!',
 'livepreview-failed'  => 'Le previsualisation directe ha fallite! Prova le previsualisation normal.',
 'livepreview-error'   => 'Impossibile connecter: $1 "$2". Prova le previsualisation normal.',
 

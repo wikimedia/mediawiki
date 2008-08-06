@@ -936,7 +936,6 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 
 # What links here
 'whatlinkshere' => 'Whit airts tae here',
-'linklistsub'   => '(Leet o airtins)',
 'linkshere'     => "The follaein pages airts tae '''[[:$1]]''':",
 'nolinkshere'   => "Nae pages airt tae '''[[:$1]]'''.",
 'isredirect'    => 'reguidal page',

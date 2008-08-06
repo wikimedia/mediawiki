@@ -338,7 +338,7 @@ $messages = array(
 
 'badaccess'        => 'Error de premisos',
 'badaccess-group0' => "No tiene premisos ta fer l'aizión que ha demandato.",
-'badaccess-groups' => "L'aizión que ha demandato nomás ye premitita ta os usuarios de beluna d'as collas: $1.",
+'badaccess-groups' => "L'aizión que ha demandato no ye premitita que ta os usuarios {{PLURAL:$2|d'a colla|d'as collas}}: $1.",
 
 'versionrequired'     => 'Cal a bersión $1 de MediaWiki',
 'versionrequiredtext' => 'Cal a bersión $1 de MediaWiki ta fer serbir ista pachina. Ta más informazión, consulte [[Special:Version]]',
@@ -408,11 +408,11 @@ $1",
 'readonlytext'         => "A base de datos de {{SITENAME}} ye bloqueyata temporalment, probablement por mantenimiento rutinario, dimpués d'ixo tornará á la normalidat.
 L'almenistrador que la bloqueyó dió ista esplicazión:
 <p>$1",
-'missing-article'      => "No s'ha trobato en a base de datos o testo d'una pachina que abría d'estar-ie: \$1\" \$2.
+'missing-article'      => "No s'ha trobato en a base de datos o testo d'una pachina que abría d'estar-ie: \"\$1\" \$2.
 
-A razón d'isto puede estar que un diff no autualizato u un binclo ta l'istorial d'una pachina que ya s'ha borrato.
+Cal que a razón d'isto siga que s'ha seguito un diff masiau antigo u un binclo ta l'istorial d'una pachina que ya s'ha borrato.
 
-No no ye iste o caso, puede que aiga trobato un error en o software. Por fabor, informe d'ello á un almenistrador, endicando-le a URL.",
+Si no ye iste o caso, puede que aiga trobato un error en o software. Por fabor, informe d'isto á un [[Special:ListUsers/sysop|almenistrador]], endicando-le a URL.",
 'missingarticle-rev'   => '(bersión#: $1)',
 'missingarticle-diff'  => '(Esf: $1, $2)',
 'readonly_lag'         => 'A base de datos ye bloqueyata temporalment entre que os serbidors se sincronizan.',
@@ -460,11 +460,12 @@ A razón data ye ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => "Fin d'a sesión",
-'logouttext'                 => "Ha rematato a sesión.
-Puede continar nabegando por {{SITENAME}} anonimament, u puede enzetar una nueba sesión con o mesmo u atro nombre d'usuario. Pare cuenta que, entre que se limpia a caché d'o nabegador, bellas pachinas encara se pueden amostrar como si continase en a sesión anterior.",
+'logouttext'                 => "<strong>Ha rematato a sesión.</strong>
+
+Puede continar nabegando por {{SITENAME}} anonimament, u puede [[Special:Userlogin|enzetar]] una nueba sesión con o mesmo nombre d'usuario u unatro diferent. Pare cuenta que, entre que se limpia a caché d'o nabegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
 'welcomecreation'            => "== ¡Bienbeniu(da), $1! ==
 S'ha creyato a suya cuenta.
-No xublide presonalizar as preferenzias.",
+No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAME}]].",
 'loginpagetitle'             => 'Enzetar a sesión',
 'yourname'                   => "Nombre d'usuario:",
 'yourpassword'               => 'Palabra de paso:',
@@ -475,7 +476,7 @@ No xublide presonalizar as preferenzias.",
 'loginproblem'               => '<b>Escaizió un problema con a suya autenticazión.</b><br />¡Prebe unatra begada!',
 'login'                      => 'Enzetar sesión',
 'nav-login-createaccount'    => 'Enzetar una sesión / creyar cuenta',
-'loginprompt'                => 'Ha de autibar as <i>cookies</i> en o nabegador ta rechistrar-se en {{SITENAME}}.',
+'loginprompt'                => "Ta rechistrar-se en {{SITENAME}} ha d'autibar as cookies en o nabegador.",
 'userlogin'                  => 'Enzetar una sesión / creyar cuenta',
 'logout'                     => "Salir d'a sesión",
 'userlogout'                 => 'Salir',
@@ -623,7 +624,7 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 'blockednoreason'                  => "No s'ha dato garra causa",
 'blockedoriginalsource'            => "Contino s'amuestra o codigo fuent de  '''$1''':",
 'blockededitsource'                => "Contino s'amuestra o testo d'as suyas '''edizions''' á '''$1''':",
-'whitelistedittitle'               => 'Cal enzetar una sesión ta ta fer edizions.',
+'whitelistedittitle'               => 'Cal enzetar una sesión ta poder editar.',
 'whitelistedittext'                => 'Ha de $1 ta poder editar pachinas.',
 'confirmedittitle'                 => 'Cal que confirme a suya adreza de correu-e ta poder editar',
 'confirmedittext'                  => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por fabor, establa y confirme una adreza de correu-e a trabiés d'as suyas [[Special:Preferences|preferenzias d'usuario]].",
@@ -639,7 +640,9 @@ O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos dato
 Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo
 (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más informazión).
 Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga.",
-'anontalkpagetext'                 => "---- ''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, hemos d'emplegar a suya adreza IP ta identificar-lo/a. Una adreza IP puede estar compartita entre diferens usuarios. Si busté ye un usuario anonimo y creye que s'han endrezato á busté con comentarios no relebants, [[Special:Userlogin|creye una cuenta u identifique-se]] ta pribar esdebenideras confusions con atros usuarios anonimos.''",
+'anontalkpagetext'                 => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, emos d'emplegar a suya adreza IP ta identificar-lo/a. 
+Barios usuarios pueden compartir una mesma adreza IP. 
+Si busté ye un usuario anonimo y creye que l'han escrito comentarios no relebants, [[Special:Userlogin/signup|creye una cuenta]] u [[Special:Userlogin/signup|identifique-se]] ta pribar confusions futuras con atros usuarios anonimos.''",
 'noarticletext'                    => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
 'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
 'clearyourcache'                   => "'''Pare cuenta: Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos.''' '''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-Fr''' u '''Ctrl-R''' (''Command-R'' en un Macintosh); '''Konqueror: ''' punche ''Reload'' u prete ''F5;'' '''Opera:''' limpiar a caché en ''Tools → Preferences;'' '''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
@@ -651,12 +654,12 @@ Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",
 'previewconflict'                  => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
-'session_fail_preview'             => "<strong>Ya lo sentimos, pero no podiemos alzar a suya edizión por una perda d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, salga d'a sesión y torne á identificar-se.</strong>",
-'session_fail_preview_html'        => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han acazegatos.</strong>
+'session_fail_preview'             => "<strong>Ya lo sentimos, pero no emos puesto alzar a suya edizión por una perduga d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, [[Special:Userlogout|salga d'a sesión]] y torne á identificar-se.</strong>",
+'session_fail_preview_html'        => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han trafegatos.</strong>
 
-''Como  {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
+''Como {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
 
-<strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de zarrar a sesión y i dentre identificando-se de nuebas.</strong>",
+<strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de [[Special:Userlogout|zarrar a sesión]] y dentrar-ie identificando-se de nuebas.</strong>",
 'token_suffix_mismatch'            => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sezión)',
@@ -703,9 +706,9 @@ Abría de considerar si ye reyalment nezesario continar editando ista pachina.
 Puede consultar o rechistro de borraus que s'amuestra a continuazión:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Pare cuenta: Ista pachina tiene masiadas cridas á funzions de preprozeso (parser functions) costosas.
+'expensive-parserfunction-warning'        => 'Pare cuenta: Ista pachina tiene masiadas cridas ta funzions de preprozeso (parser functions) costosas.
 
-Abría de tener-ne menos de $2, por agora en tiene $1.',
+Abría de tener-ne menos de {{PLURAL:$2|$2|$2}}, y por agora en tiene {{PLURAL:$1|$1|$1}}.',
 'expensive-parserfunction-category'       => 'Pachinas con masiadas cridas á funzions de preprozeso (parser functions) costosas',
 'post-expand-template-inclusion-warning'  => "Pare cuenta: A mida d'enclusión d'a plantilla ye masiau gran.
 Bellas plantillas no se bi encluyen.",
@@ -717,7 +720,7 @@ Bellas plantillas no se bi encluyen.",
 'undo-success' => "A edizión puede esfer-se. Antis d'esfer a edizión, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer reyalment. Alabez, puede alzar os cambeos ta esfer a edizión.",
 'undo-failure' => 'No se puede esfer a edizión pues un atro usuario ha feito una edizión intermeya.',
 'undo-norev'   => "No s'ha puesto esfer a edizión porque no esistiba u ya s'eba borrato.",
-'undo-summary' => 'Esfeita la edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
+'undo-summary' => 'Esfeita a edizión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|desc.]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'No se puede creyar a cuenta',
@@ -744,6 +747,7 @@ Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
 'page_last'           => 'zagueras',
 'histlegend'          => 'Leyenda: (aut) = esferenzias con a bersión autual,
 (ant) = diferenzias con a bersión anterior, m = edizión menor',
+'history-search'      => 'Mirar en o istorial',
 'deletedrev'          => '[borrato]',
 'histfirst'           => 'Primeras contrebuzions',
 'histlast'            => 'Zagueras',
@@ -847,8 +851,9 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 
 # Search results
 'searchresults'             => 'Resultau de mirar',
+'searchresults-title'       => 'Resultaus de mirar $1',
 'searchresulttext'          => "Ta más informazión sobre cómo mirar pachinas en {{SITENAME}}, consulte l'[[{{MediaWiki:Helppage}}|{{int:help}}]].",
-'searchsubtitle'            => "Ha mirato '''[[:$1]]'''",
+'searchsubtitle'            => 'Ha mirato \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|todas as pachinas que prenzipian con "$1"]] | [[Special:Whatlinkshere/$1|todas as pachinas con binclos enta "$1"]])',
 'searchsubtitleinvalid'     => 'Ha mirato "$1"',
 'noexactmatch'              => "'''No esiste garra pachina tetulata \"\$1\".''' Puede aduyar [[:\$1|creyando-la]].",
 'noexactmatch-nocreate'     => "'''No bi ha garra pachina tetulata \"\$1\".'''",
@@ -1100,18 +1105,18 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'upload_directory_read_only'  => "O serbidor web no puede escribir en o direutorio de carga d'archibos ($1).",
 'uploaderror'                 => "S'ha produzito una error en cargar l'archibo",
 'uploadtext'                  => "Faiga serbir o formulario d'o cobaxo ta cargar archibos.
-Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y borraus d'archibos tamién son rechistratos en o [[Special:Log/upload|rechistro de cargas]].
+Ta beyer u mirar imáchens cargatas denantes baiga t'a [[Special:Imagelist|lista d'archibos cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
 
 Ta encluyir un archibo u imachen en una pachina, emplegue un binclo d'una d'istas trazas 
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki>''', 
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|testo alternatibo]]</nowiki>''' u
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki>''' ta fer o binclo dreitament ta l'archibo.",
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.jpg]]</nowiki></tt>''' ta usar a bersion completa de l'archibo, 
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archibo.png|200px|thumb|left|testo alternatibo]]</nowiki></tt>''' ta usar una bersión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'testo alternatibo' como descripzión
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archibo.ogg]]</nowiki></tt>''' ta fer un binclo dreitament ta l'archibo sin amostrar-lo.",
 'upload-permitted'            => "Tipos d'archibo premititos: $1.",
 'upload-preferred'            => "Tipos d'archibo preferitos: $1.",
 'upload-prohibited'           => "Tipos d'archibo biedatos: $1.",
 'uploadlog'                   => 'rechistro de cargas',
 'uploadlogpage'               => "Rechistro de cargas d'archibos",
-'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos.",
+'uploadlogpagetext'           => "Contino ye una lista d'os zaguers archibos cargatos. Mire-se a [[Special:NewImages|galería d'archibos nuebos]] ta tener una ambiesta más bisual.",
 'filename'                    => "Nombre de l'archibo",
 'filedesc'                    => 'Resumen',
 'fileuploadsummary'           => 'Resumen:',
@@ -1182,9 +1187,9 @@ PICT # misz.
 'upload-proto-error'      => 'Protocolo incorreuto',
 'upload-proto-error-text' => 'Si quiere cargar archibos dende atra pachina, a URL ha de prenzipiar por <code>http://</code> u <code>ftp://</code>.',
 'upload-file-error'       => 'Error interna',
-'upload-file-error-text'  => "Ha escaizito una error interna entre que se prebaba de creyar un archibo temporal en o serbidor. Por fabor, contaute con un almenistrador d'o sistema.",
+'upload-file-error-text'  => "Ha escaizito una error interna entre que se prebaba de creyar un archibo temporal en o serbidor. Por fabor, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
 'upload-misc-error'       => 'Error esconoixita en a carga',
-'upload-misc-error-text'  => "Ha escaizito una error mientres a carga de l'archibo. Por fabor, comprebe que a URL ye conforme y aczesible y dimpués prebe de fer-lo una atra begada. Si o problema contina, contaute con un almenistrador d'o sistema.",
+'upload-misc-error-text'  => "Ha escaizito una error entre que se cargaba l'archibo. Por fabor, comprebe que a URL ye conforme y aczesible y dimpués prebe de fer-lo una atra begada. Si o problema contina, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se podió aczeder dica la URL',
@@ -1437,20 +1442,24 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 
 # Special:Listgrouprights
-'listgrouprights'          => "Dreitos d'a colla d'usuarios",
-'listgrouprights-summary'  => "Contino bi ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos. [[{{MediaWiki:Listgrouprights-helppage}}|Aquí]] puede trobar informazión adizional sobre os dreitos indibiduals.",
-'listgrouprights-group'    => 'Colla',
-'listgrouprights-rights'   => 'Dreitos',
-'listgrouprights-helppage' => "Help:Dreitos d'a colla",
-'listgrouprights-members'  => '(listau de miembros)',
+'listgrouprights'                 => "Dreitos d'a colla d'usuarios",
+'listgrouprights-summary'         => "Contino bi ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|informazión adizional]] sobre os dreitos indibiduals.",
+'listgrouprights-group'           => 'Colla',
+'listgrouprights-rights'          => 'Dreitos',
+'listgrouprights-helppage'        => "Help:Dreitos d'a colla",
+'listgrouprights-members'         => '(listau de miembros)',
+'listgrouprights-addgroup'        => 'Puede adibir {{PLURAL:$2|colla|collas}}: $1',
+'listgrouprights-removegroup'     => 'Puede borrar {{PLURAL:$2|colla|collas}}: $1',
+'listgrouprights-addgroup-all'    => 'Puede adibir todas as collas',
+'listgrouprights-removegroup-all' => 'Puede borrar todas as collas',
 
 # E-mail user
 'mailnologin'     => "No nimbiar l'adreza",
 'mailnologintext' => "Ha d'aber [[Special:Userlogin|enzetato una sesión]] y tener una adreza de correu-e conforme en as suyas [[Special:Preferences|preferenzias]] ta nimbiar un correu eletronico ta atros usuarios.",
 'emailuser'       => 'Nimbiar un correu electronico ta iste usuario',
 'emailpage'       => "Nimbiar correu ta l'usuario",
-'emailpagetext'   => "Si iste usuario ese rechistrato una adreza de correu-e conforme en as suyas preferenzias d'usuario, iste formulario sirbe ta nimbiar-le un mensache.
-L'adreza de correu-e que endicó en as suyas preferenzias d'usuario amanixerá en o campo 'remitent' ta que o destinatario pueda responder-le.",
+'emailpagetext'   => "Si iste usuario ese rechistrato una adreza de correu-e conforme en as suyas preferenzias d'usuario, puede nimbiar-le un mensache con iste formulario.
+L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias d'usuario]] amaneixerá en o campo 'remitent' ta que o destinatario pueda responder-le.",
 'usermailererror' => "L'ocheto de correu retornó una error:",
 'defemailsubject' => 'Correu de {{SITENAME}}',
 'noemailtitle'    => 'No bi ha garra adreza de correu eletronico',
@@ -1578,7 +1587,9 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'rollbacklink'                => 'Esfer',
 'rollbackfailed'              => "No s'ha puesto esfer",
 'cantrollback'                => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
-'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. A zaguer edizión estió feita por [[User:$3|$3]] ([[User talk:$3|descusión]]).',
+'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]])|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
+
+A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]).',
 'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "S'han esfeitas as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
@@ -1694,7 +1705,6 @@ $1',
 'whatlinkshere'            => 'Pachinas que enlazan con ista',
 'whatlinkshere-title'      => 'Pachinas que tienen binclos ta $1',
 'whatlinkshere-page'       => 'Pachina:',
-'linklistsub'              => '(Lista de binclos)',
 'linkshere'                => "As siguients pachinas tienen binclos enta '''[[:$1]]''':",
 'nolinkshere'              => "Denguna pachina tiene binclos ta '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Denguna pachina d'o espazio de nombres trigato tiene binclos ta '''[[:$1]]'''.",
@@ -1818,10 +1828,10 @@ Alcuerde-se-ne d'[[Special:Unlockdb|estrancar a base de datos]] dimpués de rema
 # Move page
 'move-page'               => 'Tresladar $1',
 'move-page-legend'        => 'Tresladar pachina',
-'movepagetext'            => "Si fa serbir o formulario siguient se cambiará o nombre á la pachina, tresladando tot o suyo istorial t'o nuebo nombre.
+'movepagetext'            => "Fendo serbir o formulario siguient se cambiará o nombre d'a pachina, tresladando tot o suyo istorial t'o nuebo nombre.
 O títol anterior se tornará en una reendrezera ta o nuebo títol.
-Os binclos ta o títol antigo d'a pachina no se cambiarán.
-Asegure-se de no deixar reendrezeras dobles u crebatas.
+Puede esbiellar automaticament as reendrezeras que plegan ta o títol orichina.
+Si s'estima más de no fer-lo, asegure-se de no deixar [[Special:DoubleRedirects|reendrezeras dobles]] u [[Special:BrokenRedirects|crebatas]].
 Ye a suya responsabilidat d'asegurar-se que os binclos continan endrezando t'an que abrían de fer-lo.
 
 Remere que a pachina '''no''' se renombrará si ya esiste una pachina con o nuebo títol, si no ye que estase una pachina bueda u una ''reendrezera'' sin istorial.
@@ -1918,7 +1928,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'import-interwiki-history'   => "Copiar todas as bersions de l'istorial d'ista pachina",
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => "Transferir pachinas t'o espazio de nombres:",
-'importtext'                 => "Por fabor, esporte l'archibo dende o wiki d'orichen fendo serbir a ferramienta Special:Export, alze-lo en o suyo ordenador y cargue-lo aquí.",
+'importtext'                 => "Por fabor, esporte l'archibo dende o wiki d'orichen fendo serbir a [[Special:Export|ferramienta d'esportazión]]. Alze-lo en o suyo ordenador y cargue-lo aquí.",
 'importstart'                => 'Importando pachinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|bersión|bersions}}',
 'importnopages'              => 'No bi ha garra pachina ta importar.',
@@ -2060,9 +2070,10 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'markedaspatrollederror-noautopatrol' => 'No tiene premisos ta siñalar os suyos propios cambios como controlatos.',
 
 # Patrol log
-'patrol-log-page' => 'Rechistro de control de bersions',
-'patrol-log-line' => "s'ha siñalato a bersión $1 de $2 como controlata $3",
-'patrol-log-auto' => '(automatico)',
+'patrol-log-page'   => 'Rechistro de control de bersions',
+'patrol-log-header' => 'Iste ye un rechistro de rebisions patrullatas.',
+'patrol-log-line'   => "s'ha siñalato a bersión $1 de $2 como controlata $3",
+'patrol-log-auto'   => '(automatico)',
 
 # Image deletion
 'deletedrevision'                 => "S'ha borrato a bersión antiga $1",

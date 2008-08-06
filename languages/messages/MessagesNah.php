@@ -31,12 +31,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Neneuhcāyōtl tēixnāmiquiliztli',
 );
 
-/**
- * Array of namespace aliases, mapping from name to NS_xxx index
- * The entire Spanish name space names are listed here, because the
- * Spanish name spaces have been used via fallback in the past,
- * and may be present in various pages at the moment.
- */
 $namespaceAliases = array(
 	'Media'		=> NS_MEDIA,
 	'Especial'	=> NS_SPECIAL,
@@ -848,7 +842,6 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'whatlinkshere'            => 'In tlein quitzonhuilia nicān',
 'whatlinkshere-title'      => 'Zāzanilli quitzonhuilia $1',
 'whatlinkshere-page'       => 'Zāzanilli:',
-'linklistsub'              => '(Tzonhuiliztli)',
 'linkshere'                => "Inīn zāzaniltin quitzonhuiliah '''[[:$1]]''' īhuīc:",
 'nolinkshere'              => "Ahtle quitzonhuilia '''[[:$1]]''' īhuīc.",
 'isredirect'               => 'ōmotlacuep zāzanilli',

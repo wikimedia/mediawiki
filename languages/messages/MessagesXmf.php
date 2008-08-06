@@ -486,7 +486,6 @@ $messages = array(
 'whatlinkshere'       => 'სო რე თენა ხასილა წურაფილ',
 'whatlinkshere-title' => 'ხასილეფ, სოდეთ რენა რსხილეფ $1-ს',
 'whatlinkshere-page'  => 'გვერდ:',
-'linklistsub'         => '(რსხილეფ)',
 'linkshere'           => "გეჸვენჯ ხასილეფს ოხოლუ რსხილეფ '''[[:$1]]'''-შენ",
 'nolinkshere'         => "'''[[:$1]]''', თე ხასილას ვარე რსხილ.",
 'isredirect'          => 'გინოწურაფაშ ხასილა',

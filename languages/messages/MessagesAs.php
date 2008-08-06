@@ -871,7 +871,6 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 # What links here
 'whatlinkshere'       => 'এই পৃষ্ঠা ব্যৱ্হাৰ কৰিছে...',
 'whatlinkshere-title' => '$1 লৈ সংযোগ কৰা পৃষ্ঠাসমুহ',
-'linklistsub'         => 'সংযোগসুচী',
 'linkshere'           => "এই পৃষ্ঠাটো '''[[:$1]]''' ৰ লগত সংযোজিত:",
 'nolinkshere'         => "'''[[:$1]]''' ৰ লগত কোনো পৃষ্ঠা সংযোজিত নহয়।",
 'isredirect'          => 'পূণঃনির্দেশন পৃষ্ঠা',

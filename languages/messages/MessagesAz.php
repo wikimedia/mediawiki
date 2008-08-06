@@ -471,7 +471,6 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 
 # What links here
 'whatlinkshere' => 'Bu səhifəyə bağlantılar',
-'linklistsub'   => '(Bağlantılar siyahı)',
 
 # Block/unblock
 'blockip'            => 'İstifadəçiyi blokla',

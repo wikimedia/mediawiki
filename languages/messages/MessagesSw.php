@@ -568,7 +568,6 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 # What links here
 'whatlinkshere'       => 'Viungo viungacho ukurasa huu',
 'whatlinkshere-title' => 'Kurasa zilizounganishwa na $1',
-'linklistsub'         => '(Orodha ya viungo)',
 'linkshere'           => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
 'nolinkshere'         => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
 'isredirect'          => 'elekeza ukurasa',

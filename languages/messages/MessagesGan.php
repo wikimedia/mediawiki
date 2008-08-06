@@ -1330,7 +1330,6 @@ $NEWPAGE
 'whatlinkshere'       => '有什哩連到箇首',
 'whatlinkshere-title' => '連到 $1 嗰頁面',
 'whatlinkshere-page'  => '頁面:',
-'linklistsub'         => '(連結列表)',
 'linkshere'           => '下底嗰頁面連結到[[:$1]]：',
 'nolinkshere'         => '冇頁面連結到[[:$1]]。',
 'nolinkshere-ns'      => '選正嗰空間名內冇頁面連結到[[:$1]]。',

@@ -986,7 +986,6 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'whatlinkshere'           => 'Leams a cheste vôs',
 'whatlinkshere-title'     => 'Pagjinis che a son leadis a $1',
 'whatlinkshere-page'      => 'Pagjine:',
-'linklistsub'             => '(Liste di leams)',
 'linkshere'               => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
 'nolinkshere'             => "Nissune pagjine e à leams a '''[[:$1]]'''.",
 'nolinkshere-ns'          => "No son pagjine leadis a '''[[:$1]]''' intal spazi dai nons sielt.",

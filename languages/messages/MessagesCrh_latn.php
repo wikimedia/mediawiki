@@ -1337,7 +1337,6 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'whatlinkshere'       => 'Saifege bağlantılar',
 'whatlinkshere-title' => '$1 saifesine bağlantı olğan saifeler',
 'whatlinkshere-page'  => 'Saife:',
-'linklistsub'         => '(Bağlantı cedveli)',
 'linkshere'           => "Bu saifeler '''[[:$1]]''' saifesine bağlantısı olğan:",
 'nolinkshere'         => "'''[[:$1]]''' saifesine bağlanğan saife yoq.",
 'nolinkshere-ns'      => "Saylanğan isim fezasında '''[[:$1]]''' saifesine bağlanğan saife yoqtır.",

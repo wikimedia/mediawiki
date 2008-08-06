@@ -597,7 +597,6 @@ $messages = array(
 # What links here
 'whatlinkshere'       => 'અહિયાં શું જોડાય છે',
 'whatlinkshere-title' => 'પાનાંઓ કે જે $1 સાથે જોડાય છે',
-'linklistsub'         => '(કડીઓની સૂચી)',
 'linkshere'           => "નીચેના પાનાઓ '''[[:$1]]''' સાથે જોડાય છે:",
 'nolinkshere'         => "'''[[:$1]]'''ની સાથે કોઇ પાના જોડાતા નથી.",
 'isredirect'          => 'પાનું અહીં વાળો',

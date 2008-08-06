@@ -490,7 +490,6 @@ Aqa (settings) n tsebtert <strong>$1</strong>:',
 # What links here
 'whatlinkshere'       => 'Mayn id-izdin (iqnen) da',
 'whatlinkshere-title' => 'Tisebtar id-izdin(iqnen) ɣar $1',
-'linklistsub'         => '(Tabdart n tizdayin)',
 'linkshere'           => "Tasebtert a tzedi(teqqen) ɣa '''[[:$1]]''':",
 'nolinkshere'         => "war tlli ca n tsebtert tqqen-d da '''[[:$1]]'''.",
 'isredirect'          => 'Tasebtert n (redirect)',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1658,7 +1658,6 @@ $1',
 'whatlinkshere'            => '鏈入頁面',
 'whatlinkshere-title'      => '鏈接到$1的頁面',
 'whatlinkshere-page'       => '頁面:',
-'linklistsub'              => '(連結列表)',
 'linkshere'                => '以下頁面連結到[[:$1]]：',
 'nolinkshere'              => '沒有頁面連結到[[:$1]]。',
 'nolinkshere-ns'           => '在所選的名字空間內沒有頁面鏈接到[[:$1]]。',

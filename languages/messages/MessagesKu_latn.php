@@ -1207,7 +1207,6 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'whatlinkshere'            => 'Lînk yê tên ser vê rûpelê',
 'whatlinkshere-title'      => 'Rûpelan, yê berve $1 tên',
 'whatlinkshere-page'       => 'Rûpel:',
-'linklistsub'              => '(Listeya lînkan)',
 'linkshere'                => "Ev rûpel tên ser vê rûpelê '''„[[:$1]]“''':",
 'nolinkshere'              => "Ne ji rûpelekê lînk tên ser '''„[[:$1]]“'''.",
 'nolinkshere-ns'           => "Ne lînkek berve '''[[:$1]]''' di vê namespace'a da tê.",

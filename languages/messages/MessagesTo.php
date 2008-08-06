@@ -821,7 +821,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 
 # What links here
 'whatlinkshere'       => 'Ngaahi fehokotaki ki heni',
-'linklistsub'         => '(Hokohoko ʻo e ngaahi fehokotaki)',
 'linkshere'           => 'ʻOku fehokotaki ki heni ʻa e ngaahi peesi:',
 'nolinkshere'         => 'ʻOku ʻikai ha ngaahi kupu fehokotaki ki heni.',
 'isredirect'          => 'Peesi leʻei',

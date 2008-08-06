@@ -1273,7 +1273,6 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'whatlinkshere'            => 'Nexus ad paginam',
 'whatlinkshere-title'      => 'Paginae quae ad $1 nectunt',
 'whatlinkshere-page'       => 'Pagina:',
-'linklistsub'              => '(Index nexuum)',
 'linkshere'                => "Hae paginae ad '''[[:$1]]''' nectunt:",
 'nolinkshere'              => "Nullae paginae ad '''[[:$1]]''' nectunt.",
 'isredirect'               => 'pagina redirectionis',

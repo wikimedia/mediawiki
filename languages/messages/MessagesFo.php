@@ -908,7 +908,6 @@ Sí $2 fyri fulla skráseting av strikingum.',
 
 # What links here
 'whatlinkshere'       => 'Hvat slóðar higar',
-'linklistsub'         => '(Listi av slóðum)',
 'linkshere'           => "Hesar síður slóða til '''[[:$1]]''':",
 'nolinkshere'         => "Ongar síður slóða til '''[[:$1]]'''.",
 'isredirect'          => 'ávísingarsíða',

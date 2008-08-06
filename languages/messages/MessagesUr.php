@@ -574,7 +574,6 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'ادھر کس کا جوڑ ہے',
-'linklistsub'   => '(فہرست روابط)',
 'linkshere'     => 'یہاں درج ذیل صفحات رابطہ رکھتے ہیں:',
 'nolinkshere'   => 'یہاں کسی صفحہ کا ربط نہیں۔',
 
