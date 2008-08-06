@@ -9,8 +9,6 @@
  * @author Wytukaze
  */
 
-
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Putim lain ananit long ol link:',

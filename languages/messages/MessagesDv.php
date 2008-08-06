@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author MF-Warburg
- * @author לערי ריינהארט
  * @author Glacious
+ * @author לערי ריינהארט
+ * @author MF-Warburg
  */
 
 $rtl = true;

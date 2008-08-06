@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Malafaya
- * @author OldakQuill
  * @author OldakQuill
  * @author Malafaya
  */

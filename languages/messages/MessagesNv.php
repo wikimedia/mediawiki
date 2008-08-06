@@ -3,6 +3,7 @@
  *
  * @ingroup Language
  * @file
+ *
  */
 
 $skinNames = array(
@@ -65,5 +66,7 @@ $messages = array(
 'oct'       => 'Ghąj',
 'nov'       => 'Ntss',
 'dec'       => 'Ntsx',
+
+'edit' => 'Łahgo áshłééh',
 
 );

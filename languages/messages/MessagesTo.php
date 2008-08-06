@@ -5,8 +5,8 @@
  * @file
  *
  * @author Tauʻolunga
- * @author Cbrown1023
  * @author לערי ריינהארט
+ * @author Cbrown1023
  */
 
 $messages = array(

@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Albert Fazlî
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(

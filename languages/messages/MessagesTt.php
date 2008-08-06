@@ -1,5 +1,5 @@
 <?php
-/** Tatar (Tatarça)
+/** Tatar (Tatarça/Татарча)
  *
  * @ingroup Language
  * @file

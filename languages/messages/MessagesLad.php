@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Runningfridgesrule
+ * @author לערי ריינהארט
  * @author ILVI
  * @author Taichi
- * @author לערי ריינהארט
- * @author Runningfridgesrule
  */
 
 $fallback = 'es';

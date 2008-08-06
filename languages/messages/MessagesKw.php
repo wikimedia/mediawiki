@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author MF-Warburg
  * @author Malafaya
  * @author MF-Warburg
  */

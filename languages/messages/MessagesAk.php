@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Natsubee
  * @author Paa.kwesi
+ * @author Natsubee
  */
 
 $messages = array(

@@ -1,5 +1,5 @@
 <?php
-/** Tajik (Тоҷикӣ/tojikī)
+/** Tajik (Тоҷикӣ)
  *
  * @ingroup Language
  * @file

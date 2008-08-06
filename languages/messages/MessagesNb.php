@@ -1,5 +1,5 @@
 <?php
-/** Norwegian (‪Norsk (bokmål)‬)
+/** Norwegian Bokmål (‪Norsk (bokmål)‬)
  *
  * @ingroup Language
  * @file

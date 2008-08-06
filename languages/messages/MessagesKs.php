@@ -1,8 +1,9 @@
 <?php
-/** Kashmiri language file ( कश्मीरी - (ﻚﺸﻤﻳﺮﻳ) )
+/** Kashmiri (कश्मीरी - (كشميري))
  *
  * @ingroup Language
  * @file
+ *
  */
 
 #FIXME: inherit almost everything for now

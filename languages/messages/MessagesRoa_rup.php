@@ -4,7 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Hakka (with the help of a native speaker Dumitrachi T. Fundu)
+ * @author Dumitrachi T. Fundu
+ * @author Hakka
  */
 
 $messages = array(

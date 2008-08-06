@@ -6,7 +6,6 @@
  *
  * @author Spacebirdy
  * @author לערי ריינהארט
- * @author M.M.S.
  * @author Krun
  * @author S.Örvarr.S
  * @author Quackor
