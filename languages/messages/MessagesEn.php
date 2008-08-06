@@ -728,6 +728,7 @@ See [[Special:Version|version page]].',
 'ok'                           => 'OK',
 'sitetitle'                    => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
+'pagetitle-view-mainpage'      => '', # do not translate or duplicate this message to other languages
 'sitesubtitle'                 => '', # do not translate or duplicate this message to other languages
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $1 ($2).',
