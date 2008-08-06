@@ -1592,6 +1592,7 @@ please see math/README to configure.',
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
 'recentchangeslinked-title'    => 'Changes related to "$1"',
+'recentchangeslinked-backlink' => '← $1', # only translate this message to other languages if you have to change it
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
@@ -2306,11 +2307,10 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'What links here',
-'whatlinkshere-title'      => 'Pages that link to $1',
+'whatlinkshere-title'      => 'Pages that link to "$1"',
 'whatlinkshere-summary'    => '', # do not translate or duplicate this message to other languages
 'whatlinkshere-page'       => 'Page:',
-'whatlinkshere-barrow'     => '>', # only translate this message to other languages if you have to change it
-'linklistsub'              => '(List of links)',
+'whatlinkshere-backlink'   => '← $1', # only translate this message to other languages if you have to change it
 'linkshere'                => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'              => "No pages link to '''[[:$1]]'''.",
 'nolinkshere-ns'           => "No pages link to '''[[:$1]]''' in the chosen namespace.",
