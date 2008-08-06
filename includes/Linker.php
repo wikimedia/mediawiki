@@ -149,14 +149,14 @@ class Linker {
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
 	 *   fragment, the contents of the fragment.
-	 * @param $query         array  The query string to append to the URL
-	 *   you're linking to, in key => value array form.  Query keys and values
-	 *   will be URL-encoded.
 	 * @param $customAttribs array  A key => value array of extra HTML attri-
 	 *   butes, such as title and class.  (href is ignored.)  Classes will be
 	 *   merged with the default classes, while other attributes will replace
 	 *   default attributes.  All passed attribute values will be HTML-escaped.
 	 *   A false attribute value means to suppress that attribute.
+	 * @param $query         array  The query string to append to the URL
+	 *   you're linking to, in key => value array form.  Query keys and values
+	 *   will be URL-encoded.
 	 * @param $options       mixed  String or array of strings:
 	 *     'known': Page is known to exist, so don't check if it does.
 	 *     'broken': Page is known not to exist, so don't check if it does.
