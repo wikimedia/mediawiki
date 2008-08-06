@@ -30,7 +30,7 @@
  *
  * @author Guy Van den Broeck
  */
-function wikidiff3_diff(array $from, array $to, $boundRunningTime=FALSE, $max_NP_before_bound = 800000){
+function wikidiff3_diff( /*array*/ $from, /*array*/ $to, $boundRunningTime=FALSE, $max_NP_before_bound = 800000){
 	wfProfileIn( __METHOD__ );
 
 	$m = sizeof($from);
@@ -101,7 +101,7 @@ function wikidiff3_diff(array $from, array $to, $boundRunningTime=FALSE, $max_NP
 	return array($result_from, $result_to);
 }
 
-function wikidiff3_diffPart(array $a, array $b, InLcs $a_inLcs, InLcs $b_inLcs, $m, $n, $offsetx, $offsety, $bestKnownLcs, $boundRunningTime=FALSE, $max_NP_before_bound = 800000){
+function wikidiff3_diffPart( /*array*/ $a, /*array*/ $b, InLcs $a_inLcs, InLcs $b_inLcs, $m, $n, $offsetx, $offsety, $bestKnownLcs, $boundRunningTime=FALSE, $max_NP_before_bound = 800000){
 	if($bestKnownLcs==0 || $m==0 || $n==0){
 		return;
 	}
