@@ -1170,7 +1170,7 @@ The deletion log for this page is provided here for convenience:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
 
-It should have less than $2, there are now $1.',
+It should have less than $2 {{PLURAL:$2|call|calls}}, there {{PLURAL:$1|is now $1 call|are now $1 calls}}.',
 'expensive-parserfunction-category'       => 'Pages with too many expensive parser function calls',
 'post-expand-template-inclusion-warning'  => 'Warning: Template include size is too large.
 Some templates will not be included.',
@@ -1515,7 +1515,7 @@ please see math/README to configure.',
 'right-reupload-shared'      => 'Override files on the shared media repository locally',
 'right-upload_by_url'        => 'Upload a file from a URL address',
 'right-purge'                => 'Purge the site cache for a page without confirmation',
-'right-autoconfirmed'        => 'Edit semi-protected pages',
+'right-autoconfirmed'        => 'Edit [[semi]]-protected pages',
 'right-bot'                  => 'Be treated as an automated process',
 'right-nominornewtalk'       => 'Not have minor edits to discussion pages trigger the new messages prompt',
 'right-apihighlimits'        => 'Use higher limits in API queries',
@@ -2026,7 +2026,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-helppage'        => 'Help:Group rights',
 'listgrouprights-members'         => '(list of members)',
 'listgrouprights-right-display'   => '$1 ($2)', # only translate this message to other languages if you have to change it
-'listgrouprights-addgroup'        => 'Can add {{PLURAL:$2|group|groups}}: $1',
+'listgrouprights-addgroup'        => 'Can [[add]] {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-removegroup'     => 'Can remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'    => 'Can add all groups',
 'listgrouprights-removegroup-all' => 'Can remove all groups',

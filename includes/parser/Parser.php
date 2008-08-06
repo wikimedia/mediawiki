@@ -2714,7 +2714,7 @@ class Parser
 	function limitationWarn( $limitationType, $current=null, $max=null) {
 		$msgName = $limitationType . '-warning';
 		//does no harm if $current and $max are present but are unnecessary for the message
-		$warning = wfMsg( $msgName, $current, $max); 
+		$warning = wfMsgExt( $msgName, array( 'parsemag', 'escape' ), $current, $max ); 
 		$this->mOutput->addWarning( $warning );
 		$cat = Title::makeTitleSafe( NS_CATEGORY, wfMsgForContent( $limitationType . '-category' ) );
 		if ( $cat ) {
