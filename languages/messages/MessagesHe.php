@@ -18,8 +18,8 @@ $linkTrail = '/^([a-zא-ת]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1255';
 
 $skinNames = array(
-	'standard'    => 'רגיל',
-	'nostalgia'   => 'נוסטלגי',
+	'standard'    => 'קלאסי',
+	'nostalgia'   => 'נוסטלגיה',
 	'cologneblue' => 'מים כחולים',
 	'monobook'    => 'מונובוק',
 	'myskin'      => 'הרקע שלי',
