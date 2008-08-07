@@ -1057,6 +1057,7 @@ $wgMessageStructure = array(
 		'filehist-comment',
 		'imagelinks',
 		'linkstoimage',
+		'linkstoimage-more',
 		'nolinkstoimage',
 		'morelinkstoimage',
 		'redirectstofile',
