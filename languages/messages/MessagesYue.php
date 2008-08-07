@@ -740,7 +740,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 呢一版有太多耗費嘅語法功能呼叫。
 
-佢應該少過$2，但而家係$1。',
+佢應該少過$2次呼叫，佢而家係$1次呼叫。',
 'expensive-parserfunction-category'       => '響版度有太多嘅耗費嘅語法功能呼叫',
 'post-expand-template-inclusion-warning'  => '警告: 包含模大細太大。
 有啲模將唔會包含。',
@@ -1727,7 +1727,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => '有乜嘢連結來呢度',
-'whatlinkshere-title'      => '連到$1嘅頁',
+'whatlinkshere-title'      => '連到「$1」嘅頁',
 'whatlinkshere-page'       => '頁:',
 'linkshere'                => "呢啲頁連結到'''[[:$1]]'''：",
 'nolinkshere'              => "無一頁連結到'''[[:$1]]'''。",
@@ -2151,6 +2151,8 @@ $1',
 'newimages'             => '新檔案畫廊',
 'imagelisttext'         => "以下係'''$1'''個檔案$2排序嘅清單。",
 'newimages-summary'     => '呢個特別頁顯示最後上載咗嘅檔案。',
+'newimages-legend'      => '過濾',
+'newimages-label'       => '檔名（或佢嘅一部份）:',
 'showhidebots'          => '($1 機械人)',
 'noimages'              => '冇嘢去睇。',
 'ilsubmit'              => '搵嘢',

@@ -1,5 +1,5 @@
 <?php
-/** Hong Kong Chinese (‪中文(香港)‬)
+/** Chinese (Hong Kong) (‪中文 (香港)‬)
  *
  * @ingroup Language
  * @file

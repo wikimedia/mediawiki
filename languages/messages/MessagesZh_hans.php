@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -680,7 +680,7 @@ $2',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 这个页面有太多耗费的语法功能呼叫。
 
-它应该少过$2，现在有$1。',
+它应该少过$2次呼叫，现在有$1次呼叫。',
 'expensive-parserfunction-category'       => '页面中有太多耗费的语法功能呼叫',
 'post-expand-template-inclusion-warning'  => '警告: 包含模板大小过大。
 一些模板将不会包含。',
@@ -1681,7 +1681,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => '链入页面',
-'whatlinkshere-title'      => '链接到$1的页面',
+'whatlinkshere-title'      => '链接到“$1”的页面',
 'whatlinkshere-page'       => '页面:',
 'linkshere'                => '以下页面链接到[[:$1]]：',
 'nolinkshere'              => '没有页面链接到[[:$1]]。',
@@ -2113,6 +2113,8 @@ $1',
 'newimages'             => '新建图像画廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''个文件列表。",
 'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',
+'newimages-legend'      => '过滤',
+'newimages-label'       => '文件名称（或它的一部份）:',
 'showhidebots'          => '($1机器人)',
 'noimages'              => '无可查看图像。',
 'ilsubmit'              => '搜索',
