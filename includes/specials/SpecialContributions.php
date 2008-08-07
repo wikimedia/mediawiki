@@ -235,7 +235,7 @@ function wfSpecialContributions( $par = null ) {
 	
 	// Allows reverts to have the bot flag in recent changes. It is just here to
 	// be passed in the form at the top of the page 
-	if ( $wgUser->isAllowed( 'markbotedit' ) && $wgRequest->getBool( 'bot' ) ) {
+	if ( $wgUser->isAllowed( 'markbotedits' ) && $wgRequest->getBool( 'bot' ) ) {
 		$options['bot'] = '1';
 	}
 
