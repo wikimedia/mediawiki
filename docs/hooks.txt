@@ -1297,6 +1297,9 @@ $user: User object
 'UserGetImplicitGroups': Called in User::getImplicitGroups()
 &$groups: List of implicit (automatically-assigned) groups
 
+'UserGetReservedNames': allows to modify $wgReservedUsernames at run time
+*&$reservedUsernames: $wgReservedUsernames
+
 'UserGetRights': Called in User::getRights()
 $user: User to get rights for
 &$rights: Current rights
