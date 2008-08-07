@@ -201,7 +201,7 @@ class ChangesList {
 	protected function insertTimestamp(&$s, $rc) {
 		global $wgLang;
 		# Timestamp
-		$s .= $this->message['semicolon-separator'] . ' ' . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+		$s .= $this->message['semicolon-separator'] . $wgLang->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
@@ -592,7 +592,7 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $users, $text );
 		}
 
-		$users = ' <span class="changedby">[' . implode( $this->message['semicolon-separator'] . ' ', $users ) . ']</span>';
+		$users = ' <span class="changedby">[' . implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
 		# Arrow
 		$rci = 'RCI'.$this->rcCacheIndex;
@@ -712,7 +712,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$rc_type == RC_LOG || $rc_type == RC_NEW ) {
 				$r .= ' (';
 				$r .= $rcObj->curlink;
-				$r .= $this->message['semicolon-separator'] . ' ';
+				$r .= $this->message['semicolon-separator'];
 				$r .= $rcObj->lastlink;
 				$r .= ')';
 			}
@@ -837,7 +837,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Diff and hist links
 		if ( $rc_type != RC_LOG ) {
-		   $r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'] . ' ';
+		   $r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
 		   $r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' ) . ')';
 		}
 		$r .= ' . . ';

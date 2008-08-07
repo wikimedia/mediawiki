@@ -2694,7 +2694,7 @@ $1',
 'useajaxsearch'    => 'از جستجوی مبتنی بر AJAX استفاده کن',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '؛',
+'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
 
 # Multipage image navigation
