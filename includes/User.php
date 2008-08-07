@@ -540,8 +540,14 @@ class User {
 			return false;
 		}
 
+		static $reservedUsernames = false;
+		if ( !$reservedUsernames ) {
+			$reservedUsernames = $wgReservedUsernames;
+			wfRunHooks( 'UserGetReservedNames', array( &$reservedUsernames ) );
+		}
+
 		// Certain names may be reserved for batch processes.
-		foreach ( $wgReservedUsernames as $reserved ) {
+		foreach ( $reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
 				$reserved = wfMsgForContent( substr( $reserved, 4 ) );
 			}
