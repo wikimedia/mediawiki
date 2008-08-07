@@ -2718,9 +2718,9 @@ $1',
 'useajaxsearch'    => 'دور بـ أجاكس',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '؛',
-'comma-separator'     => '،',
-'autocomment-prefix'  => '-',
+'semicolon-separator' => '؛&#32;',
+'comma-separator'     => '،&#32;',
+'autocomment-prefix'  => '-&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← الصفحة اللي فاتت',

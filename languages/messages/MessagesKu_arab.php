@@ -340,8 +340,8 @@ $messages = array(
 'tooltip-pt-userpage' => 'په‌ڕه‌ی تایبه‌تی خۆم',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '؛',
-'comma-separator'     => '،',
+'semicolon-separator' => '؛&#32;',
+'comma-separator'     => '،&#32;',
 
 # Live preview
 'livepreview-loading' => 'له‌باركردنایه‌ ...',

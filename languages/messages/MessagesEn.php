@@ -3271,7 +3271,7 @@ $1',
 
 # Separators for various lists, etc.
 'catseparator'        => '|', # only translate this message to other languages if you have to change it
-'semicolon-separator' => ';', # only translate this message to other languages if you have to change it
+'semicolon-separator' => ';&#32;', # only translate this message to other languages if you have to change it
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
 'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
