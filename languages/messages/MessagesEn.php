@@ -780,7 +780,7 @@ See [[Special:Version|version page]].',
 'nosuchspecialpage' => 'No such special page',
 'nospecialpagetext' => "<big>'''You have requested an invalid special page.'''</big>
 
-A list of valid special pages can be found at [[Special:Specialpages|{{int:specialpages}}]].",
+A list of valid special pages can be found at [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
@@ -868,7 +868,7 @@ The reason given is ''$2''.",
 'logouttitle'                => 'User logout',
 'logouttext'                 => '<strong>You are now logged out.</strong>
 
-You can continue to use {{SITENAME}} anonymously, or you can [[Special:Userlogin|log in again]] as the same or as a different user.
+You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.',
 'welcomecreation'            => '== Welcome, $1! ==
 Your account has been created.
@@ -1087,7 +1087,7 @@ If you are here by mistake, click your browser's '''back''' button.",
 'anontalkpagetext'                 => "----''This is the discussion page for an anonymous user who has not created an account yet, or who does not use it.
 We therefore have to use the numerical IP address to identify him/her.
 Such an IP address can be shared by several users.
-If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:Userlogin/signup|create an account]] or [[Special:Userlogin|log in]] to avoid future confusion with other anonymous users.''",
+If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext'                    => 'There is currently no text in this page, you can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
@@ -1105,13 +1105,13 @@ changes have not yet been saved!</strong>',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again.
-If it still does not work, try [[Special:Userlogout|logging out]] and logging back in.</strong>',
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>',
 'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
 <strong>If this is a legitimate edit attempt, please try again.
-If it still does not work, try [[Special:Userlogout|logging out]] and logging back in.</strong>",
+If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>",
 'token_suffix_mismatch'            => '<strong>Your edit has been rejected because your client mangled the punctuation characters in the edit token.
 The edit has been rejected to prevent corruption of the page text.
 This sometimes happens when you are using a buggy web-based anonymous proxy service.</strong>',
@@ -1159,7 +1159,7 @@ You may wish to cut-n-paste the text into a text file and save it for later.</st
 'edittools'                        => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'nocreatetitle'                    => 'Page creation limited',
 'nocreatetext'                     => '{{SITENAME}} has restricted the ability to create new pages.
-You can go back and edit an existing page, or [[Special:Userlogin|log in or create an account]].',
+You can go back and edit an existing page, or [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin'                => 'You do not have permission to create new pages on {{SITENAME}}.',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:',
@@ -1285,7 +1285,7 @@ Other admins on {{SITENAME}} will still be able to access the hidden content and
 # Suppression log
 'suppressionlog'     => 'Suppression log',
 'suppressionlogtext' => 'Below is a list of deletions and blocks involving content hidden from sysops.
-See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 
 # History merging
 'mergehistory'                     => 'Merge page histories',
@@ -1328,7 +1328,7 @@ Note that using the navigation links will reset this column.',
 'searchresults'             => 'Search results',
 'searchresults-title'       => 'Search results for $1',
 'searchresulttext'          => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:Whatlinkshere/$1|all pages that link to "$1"]])',
+'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'     => "You searched for '''$1'''",
 'noexactmatch'              => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
@@ -1393,7 +1393,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'mypreferences'            => 'My preferences',
 'prefs-edits'              => 'Number of edits:',
 'prefsnologin'             => 'Not logged in',
-'prefsnologintext'         => 'You must be [[Special:Userlogin|logged in]] to set user preferences.',
+'prefsnologintext'         => 'You must be [[Special:UserLogin|logged in]] to set user preferences.',
 'prefsreset'               => 'Preferences have been reset from storage.',
 'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'None',
@@ -1471,7 +1471,7 @@ please see math/README to configure.',
 'userrights-reason'              => 'Reason for change:',
 'userrights-no-interwiki'        => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'          => 'Database $1 does not exist or is not local.',
-'userrights-nologin'             => 'You must [[Special:Userlogin|log in]] with an administrator account to assign user rights.',
+'userrights-nologin'             => 'You must [[Special:UserLogin|log in]] with an administrator account to assign user rights.',
 'userrights-notallowed'          => 'Your account does not have permission to assign user rights.',
 'userrights-changeable-col'      => 'Groups you can change',
 'userrights-unchangeable-col'    => 'Groups you cannot change',
@@ -1607,13 +1607,13 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'reupload'                    => 'Re-upload',
 'reuploaddesc'                => 'Cancel upload and return to the upload form',
 'uploadnologin'               => 'Not logged in',
-'uploadnologintext'           => 'You must be [[Special:Userlogin|logged in]] to upload files.',
+'uploadnologintext'           => 'You must be [[Special:UserLogin|logged in]] to upload files.',
 'upload_directory_missing'    => 'The upload directory ($1) is missing and could not be created by the webserver.',
 'upload_directory_read_only'  => 'The upload directory ($1) is not writable by the webserver.',
 'uploaderror'                 => 'Upload error',
 'upload-summary'              => '', # do not translate or duplicate this message to other languages
 'uploadtext'                  => "Use the form below to upload files.
-To view or search previously uploaded files go to the [[Special:Imagelist|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
+To view or search previously uploaded files go to the [[Special:ImageList|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
@@ -1764,9 +1764,9 @@ A click on a column header changes the sorting.',
 'linkstoimage'                   => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
 'linkstoimage-more'              => 'More than $1 {{PLURAL:$2|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
-For a full list follow [[Special:Whatlinkshere/$2|this link]].',
+For a full list follow [[Special:WhatLinksHere/$2|this link]].',
 'nolinkstoimage'                 => 'There are no pages that link to this file.',
-'morelinkstoimage'               => 'View [[Special:Whatlinkshere/$1|more links]] to this file.',
+'morelinkstoimage'               => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
 'redirectstofile'                => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
 'duplicatesoffile'               => 'The following {{PLURAL:$1|file is a duplicate|$1 files are duplicates}} of this file:',
 'sharedupload'                   => 'This file is a shared upload and may be used by other projects.',
@@ -1858,7 +1858,7 @@ There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and ''
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
+'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer'      => '', # do not translate or duplicate this message to other languages
 
@@ -2018,7 +2018,7 @@ It may contain one or more characters which cannot be used in titles.',
 'special-categories-sort-count' => 'sort by count',
 'special-categories-sort-abc'   => 'sort alphabetically',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
@@ -2039,7 +2039,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 
 # E-mail user
 'mailnologin'     => 'No send address',
-'mailnologintext' => 'You must be [[Special:Userlogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
+'mailnologintext' => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'       => 'E-mail this user',
 'emailpage'       => 'E-mail user',
 'emailpagetext'   => 'If this user has entered a valid e-mail address in his or her user preferences, the form below will send a single message.
@@ -2066,10 +2066,10 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'nowatchlist'          => 'You have no items on your watchlist.',
 'watchlistanontext'    => 'Please $1 to view or edit items on your watchlist.',
 'watchnologin'         => 'Not logged in',
-'watchnologintext'     => 'You must be [[Special:Userlogin|logged in]] to modify your watchlist.',
+'watchnologintext'     => 'You must be [[Special:UserLogin|logged in]] to modify your watchlist.',
 'addedwatch'           => 'Added to watchlist',
 'addedwatchtext'       => "The page \"[[:\$1]]\" has been added to your [[Special:Watchlist|watchlist]].
-Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to make it easier to pick out.",
+Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
 'removedwatch'         => 'Removed from watchlist',
 'removedwatchtext'     => 'The page "[[:$1]]" has been removed from [[Special:Watchlist|your watchlist]].',
 'watch'                => 'Watch',
@@ -2188,7 +2188,7 @@ this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks.
-See the [[Special:Protectedpages|protected pages list]] for the list of currently operational page protections.',
+See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'            => 'protected "[[$1]]"',
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
@@ -2366,7 +2366,7 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'badipaddress'                    => 'Invalid IP address',
 'blockipsuccesssub'               => 'Block succeeded',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] has been blocked.<br />
-See [[Special:Ipblocklist|IP block list]] to review blocks.',
+See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipb-edit-dropdown'               => 'Edit block reasons',
 'ipb-unblock-addr'                => 'Unblock $1',
 'ipb-unblock'                     => 'Unblock a username or IP address',
@@ -2400,7 +2400,7 @@ The reason given for $1\'s block is: "$2"',
 'blocklogentry'                   => 'blocked [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
-See the [[Special:Ipblocklist|IP block list]] for the list of currently operational bans and blocks.',
+See the [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
 'unblocklogentry'                 => 'unblocked $1',
 'block-log-flags-anononly'        => 'anonymous users only',
 'block-log-flags-nocreate'        => 'account creation disabled',
@@ -2442,7 +2442,7 @@ Please confirm that this is what you intend to do.',
 'lockdbsuccesssub'    => 'Database lock succeeded',
 'unlockdbsuccesssub'  => 'Database lock removed',
 'lockdbsuccesstext'   => 'The database has been locked.<br />
-Remember to [[Special:Unlockdb|remove the lock]] after your maintenance is complete.',
+Remember to [[Special:UnlockDB|remove the lock]] after your maintenance is complete.',
 'unlockdbsuccesstext' => 'The database has been unlocked.',
 'lockfilenotwritable' => 'The database lock file is not writable.
 To lock or unlock the database, this needs to be writable by the web server.',
@@ -2822,7 +2822,7 @@ $1',
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Gallery of new files',
 'imagelisttext'         => "Below is a list of '''$1''' {{PLURAL:$1|file|files}} sorted $2.",
 'newimages-summary'     => 'This special page shows the last uploaded files.',
@@ -3214,7 +3214,7 @@ Mailer returned: $1',
 The code may have expired.',
 'confirmemail_needlogin'   => 'You need to $1 to confirm your e-mail address.',
 'confirmemail_success'     => 'Your e-mail address has been confirmed.
-You may now [[Special:Userlogin|log in]] and enjoy the wiki.',
+You may now [[Special:UserLogin|log in]] and enjoy the wiki.',
 'confirmemail_loggedin'    => 'Your e-mail address has now been confirmed.',
 'confirmemail_error'       => 'Something went wrong saving your confirmation.',
 'confirmemail_subject'     => '{{SITENAME}} e-mail address confirmation',
@@ -3460,7 +3460,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-software-product'         => 'Product',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Path',
@@ -3500,7 +3500,7 @@ Enter the filename without the "{{ns:image}}:" prefix.',
 'specialpages-group-redirects'   => 'Redirecting special pages',
 'specialpages-group-spam'        => 'Spam tools',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Blank page',
 'intentionallyblankpage' => 'This page is intentionally left blank',
 
