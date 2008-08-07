@@ -52,6 +52,7 @@ $wgMessageStructure = array(
 		'tog-ccmeonemails',
 		'tog-diffonly',
 		'tog-showhiddencats',
+		'tog-noconvertlink',
 	),
 	'underline' => array(
 		'underline-always',

@@ -109,6 +109,7 @@ $messages = array(
 'tog-watchlisthideown'        => '不哨己文',
 'tog-watchlisthidebots'       => '不哨僕文',
 'tog-showhiddencats'          => '示隱類',
+'tog-noconvertlink'           => '非轉鍵題',
 
 'underline-always'  => '恆',
 'underline-never'   => '絕',

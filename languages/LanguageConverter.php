@@ -374,8 +374,10 @@ class LanguageConverter {
 	 * @private
 	 */
 	function convertTitle($text){
-		// check for __NOTC__ tag
-		if( !$this->mDoTitleConvert ) {
+		global $wgDisableTitleConversion, $wgUser;
+
+		// check for global param and __NOTC__ tag
+		if( $wgDisableTitleConversion || !$this->mDoTitleConvert || $wgUser->getOption('noconvertlink') == 1 ) {
 			$this->mTitleDisplay = $text;
 			return $text;
 		}
@@ -389,7 +391,8 @@ class LanguageConverter {
 		global $wgRequest;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
-		if ( $isredir == 'no' || $action == 'edit' ) {
+		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
+		if ( $isredir == 'no' || $action == 'edit' || $linkconvert == 'no' ) {
 			return $text;
 		} else {
 			$this->mTitleDisplay = $this->convert($text);
@@ -467,10 +470,19 @@ class LanguageConverter {
 	 * @public
 	 */
 	function findVariantLink( &$link, &$nt ) {
-		global $wgDisableLangConversion;
+		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
+		$isredir = $wgRequest->getText( 'redirect', 'yes' );
+		$action = $wgRequest->getText( 'action' );
+		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
+		$disableLinkConversion = $wgDisableLangConversion || $wgDisableTitleConversion;
 		$linkBatch = new LinkBatch();
 
 		$ns=NS_MAIN;
+
+		if ( $disableLinkConversion || $isredir == 'no' || $action == 'edit'
+			|| $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) {
+			return;
+		}
 
 		if(is_object($nt))
 			$ns = $nt->getNamespace();
@@ -497,8 +509,7 @@ class LanguageConverter {
 		foreach( $titles as $varnt ) {
 			if( $varnt->getArticleID() > 0 ) {
 				$nt = $varnt;
-				if( !$wgDisableLangConversion )
-					$link = $v;
+				$link = $v;
 				break;
 			}
 		}

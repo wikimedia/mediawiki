@@ -532,6 +532,7 @@ XHTML id names.
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
+'tog-noconvertlink'           => 'Disable titles conversion', # only translate this message to other languages if you have to change it
 
 'underline-always'  => 'Always',
 'underline-never'   => 'Never',

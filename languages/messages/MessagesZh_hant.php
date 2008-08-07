@@ -105,6 +105,7 @@ $messages = array(
 'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
 'tog-showhiddencats'          => '顯示隱藏分類',
+'tog-noconvertlink'           => '不轉換連結標題',
 
 'underline-always'  => '總是使用',
 'underline-never'   => '從不使用',
