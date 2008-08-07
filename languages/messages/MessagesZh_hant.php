@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -656,7 +656,7 @@ $2',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 這個頁面有太多耗費的語法功能呼叫。
 
-它應該少過$2，現在有$1。',
+它應該少過$2次呼叫，現在有$1次呼叫。',
 'expensive-parserfunction-category'       => '頁面中有太多耗費的語法功能呼叫',
 'post-expand-template-inclusion-warning'  => '警告: 包含模板大小過大。
 一些模板將不會包含。',
@@ -1656,7 +1656,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => '鏈入頁面',
-'whatlinkshere-title'      => '鏈接到$1的頁面',
+'whatlinkshere-title'      => '鏈接到「$1」的頁面',
 'whatlinkshere-page'       => '頁面:',
 'linkshere'                => '以下頁面連結到[[:$1]]：',
 'nolinkshere'              => '沒有頁面連結到[[:$1]]。',
@@ -2088,6 +2088,8 @@ $1',
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''個檔案列表。",
 'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案。',
+'newimages-legend'      => '過濾',
+'newimages-label'       => '檔案名稱（或它的一部份）:',
 'showhidebots'          => '($1機器人)',
 'noimages'              => '無可檢視圖像。',
 'ilsubmit'              => '搜尋',

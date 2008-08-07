@@ -588,7 +588,7 @@ $2',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警：頁有多貴功呼。
 
-其須少$2，現有$1。',
+其須少$2呼，現有$1呼。',
 'expensive-parserfunction-category'       => '頁有多貴功呼',
 'post-expand-template-inclusion-warning'  => '警：含模過大也。
 一些模板將不會包含。',
@@ -1465,7 +1465,7 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'            => '取佐',
-'whatlinkshere-title'      => '$1取佐',
+'whatlinkshere-title'      => '「$1」取佐',
 'whatlinkshere-page'       => '題',
 'linkshere'                => "取佐'''[[:$1]]'''如下：",
 'nolinkshere'              => "無頁取佐'''[[:$1]]'''。",
@@ -1853,6 +1853,8 @@ $NEWPAGE
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
 'newimages-summary'     => '此奇頁示最後呈上之檔也。',
+'newimages-legend'      => '濾',
+'newimages-label'       => '名（或其部）：',
 'showhidebots'          => '（$1僕）',
 'noimages'              => '無可見。',
 'ilsubmit'              => '尋檔',
@@ -1951,8 +1953,9 @@ $1',
 'useajaxsearch'    => '用AJAX尋之',
 
 # Separators for various lists, etc.
-'comma-separator' => '、',
-'colon-separator' => '：',
+'semicolon-separator' => '；',
+'comma-separator'     => '、',
+'colon-separator'     => '：',
 
 # Multipage image navigation
 'imgmultipageprev' => '←前頁',
