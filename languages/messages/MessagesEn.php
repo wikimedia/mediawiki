@@ -1764,7 +1764,7 @@ A click on a column header changes the sorting.',
 'linkstoimage'                   => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
 'linkstoimage-more'              => 'More than $1 {{PLURAL:$2|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
-For a full list follow [[Special:WhatLinksHere/$2|this link]].',
+A [[Special:WhatLinksHere/$2|full list]] is available.',
 'nolinkstoimage'                 => 'There are no pages that link to this file.',
 'morelinkstoimage'               => 'View [[Special:WhatLinksHere/$1|more links]] to this file.',
 'redirectstofile'                => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:',
