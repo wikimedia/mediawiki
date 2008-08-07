@@ -47,6 +47,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14377) Add a date selector to history pages
 * (bug 15007) New 'pagetitle-view-mainpage' message allows the HTML <title> of
   the main page to be customized
+* Added $wgDisableTitleConversion to disabling the conversion for all pages on 
+  the wiki
+* Added 'noconvertlink' toogle that can be set per user preferences, also 
+  added 'convertlink=no|yes' on GET requests whether have the link titles 
+  being converted or not
 
 === Bug fixes in 1.14 ===
 

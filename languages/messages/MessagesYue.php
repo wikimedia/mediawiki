@@ -180,6 +180,7 @@ $messages = array(
 'tog-ccmeonemails'            => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly'                => '響差異下面唔顯示頁面內容',
 'tog-showhiddencats'          => '顯示隱藏類',
+'tog-noconvertlink'           => '唔轉連結標題',
 
 'underline-always'  => '全部',
 'underline-never'   => '永不',

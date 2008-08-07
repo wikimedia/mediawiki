@@ -861,6 +861,9 @@ $wgCheckSerialized = true;
 /** Whether to enable language variant conversion. */
 $wgDisableLangConversion = false;
 
+/** Whether to enable language variant conversion for links. */
+$wgDisableTitleConversion = false;
+
 /** Default variant code, if false, the default will be the language code */
 $wgDefaultLanguageVariant = false;
 
@@ -2226,6 +2229,7 @@ $wgDefaultUserOptions = array(
 	'watchdefault'            => 0,
 	'watchmoves'              => 0,
 	'watchdeletion'           => 0,
+	'convertlink'             => 0,
 );
 
 /** Whether or not to allow and use real name fields. Defaults to true. */

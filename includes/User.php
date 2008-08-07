@@ -88,6 +88,7 @@ class User {
 		'ccmeonemails',
 		'diffonly',
 		'showhiddencats',
+		'noconvertlink',
 	);
 
 	/**

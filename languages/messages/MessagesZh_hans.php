@@ -123,6 +123,7 @@ $messages = array(
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',
+'tog-noconvertlink'           => '不转换链接标题',
 
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',

@@ -513,7 +513,7 @@ class PreferencesForm {
 	function mainPrefsForm( $status , $message = '' ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang;
 		global $wgAllowRealName, $wgImageLimits, $wgThumbLimits;
-		global $wgDisableLangConversion;
+		global $wgDisableLangConversion, $wgDisableTitleConversion;
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
@@ -730,6 +730,16 @@ class PreferencesForm {
 						Xml::tags( 'select',
 							array( 'name' => 'wpUserVariant', 'id' => 'wpUserVariant' ),
 							$options
+						)
+					)
+				);
+			}
+			
+			if(count($variantArray) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion) {
+				$wgOut->addHtml(
+					Xml::tags( 'tr', null,
+						Xml::tags( 'td', array( 'colspan' => '2' ),
+							$this->getToggle( "noconvertlink" )
 						)
 					)
 				);
