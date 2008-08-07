@@ -1762,7 +1762,7 @@ A click on a column header changes the sorting.',
 'filehist-comment'               => 'Comment',
 'imagelinks'                     => 'Links',
 'linkstoimage'                   => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
-'linkstoimage-more'              => 'More than $1 {{PLURAL:$2|page links|pages link}} to this file.
+'linkstoimage-more'              => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
 A [[Special:WhatLinksHere/$2|full list]] is available.',
 'nolinkstoimage'                 => 'There are no pages that link to this file.',
