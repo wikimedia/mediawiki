@@ -223,8 +223,10 @@ function wfSpecialContributions( $par = null ) {
 	if ( $target != 'newbies' ) {
 		$target = $nt->getText();
 		$wgOut->setSubtitle( contributionsSub( $nt, $id ) );
+		$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'contributions-title', $target ) ) );
 	} else {
 		$wgOut->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
+		$wgOut->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
 	}
 
 	if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {

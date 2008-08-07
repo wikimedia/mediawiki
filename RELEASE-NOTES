@@ -52,6 +52,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added 'noconvertlink' toogle that can be set per user preferences, also 
   added 'convertlink=no|yes' on GET requests whether have the link titles 
   being converted or not
+* (bug 14921) Special:Contributions/: add user name to <title>
+  Patch by Emufarmers
 
 === Bug fixes in 1.14 ===
 

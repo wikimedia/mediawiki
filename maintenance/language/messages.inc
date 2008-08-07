@@ -1514,6 +1514,7 @@ $wgMessageStructure = array(
 	),
 	'contributions' => array(
 		'contributions',
+		'contributions-title',
 		'mycontris',
 		'contribsub2',
 		'nocontribs',
@@ -1524,6 +1525,7 @@ $wgMessageStructure = array(
 	'sp-contributions' => array(
 		'sp-contributions-newbies',
 		'sp-contributions-newbies-sub',
+		'sp-contributions-newbies-title',
 		'sp-contributions-blocklog',
 		'sp-contributions-search',
 		'sp-contributions-username',
