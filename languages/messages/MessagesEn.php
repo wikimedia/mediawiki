@@ -443,7 +443,7 @@ $specialPageAliases = array(
  * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
  * the first group, and the remainder of the string as the second group.
  */
-$linkTrail = '/^(\p{L&}+)(.*)$/usD';
+$linkTrail = '/^([a-z]+)(.*)$/sD';
 
 /**
  * List of filenames for some ui images that can be overridden per language
