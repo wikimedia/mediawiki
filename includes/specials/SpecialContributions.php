@@ -232,6 +232,12 @@ function wfSpecialContributions( $par = null ) {
 	} else {
 		$options['namespace'] = '';
 	}
+	
+	// Allows reverts to have the bot flag in recent changes. It is just here to
+	// be passed in the form at the top of the page 
+	if ( $wgUser->isAllowed( 'markbotedit' ) && $wgRequest->getBool( 'bot' ) ) {
+		$options['bot'] = '1';
+	}
 
 	$skip = $wgRequest->getText( 'offset' ) || $wgRequest->getText( 'dir' ) == 'prev';
 	# Offset overrides year/month selection
