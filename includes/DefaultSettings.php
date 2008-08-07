@@ -2229,7 +2229,7 @@ $wgDefaultUserOptions = array(
 	'watchdefault'            => 0,
 	'watchmoves'              => 0,
 	'watchdeletion'           => 0,
-	'convertlink'             => 0,
+	'noconvertlink'           => 0,
 );
 
 /** Whether or not to allow and use real name fields. Defaults to true. */
