@@ -16,7 +16,7 @@
 PROJECT_NAME           = MediaWiki
 PROJECT_NUMBER         = {{CURRENT_VERSION}}
 OUTPUT_DIRECTORY       = {{OUTPUT_DIRECTORY}}
-CREATE_SUBDIRS         = YES
+CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 BRIEF_MEMBER_DESC      = YES
 REPEAT_BRIEF           = YES
@@ -175,7 +175,7 @@ CHM_FILE               =
 HHC_LOCATION           = 
 GENERATE_CHI           = NO
 BINARY_TOC             = NO
-TOC_EXPAND             = YES
+TOC_EXPAND             = NO
 DISABLE_INDEX          = NO
 ENUM_VALUES_PER_LINE   = 4
 GENERATE_TREEVIEW      = YES
@@ -191,8 +191,8 @@ COMPACT_LATEX          = NO
 PAPER_TYPE             = a4wide
 EXTRA_PACKAGES         = 
 LATEX_HEADER           = 
-PDF_HYPERLINKS         = YES
-USE_PDFLATEX           = YES
+PDF_HYPERLINKS         = NO
+USE_PDFLATEX           = NO
 LATEX_BATCHMODE        = NO
 LATEX_HIDE_INDICES     = NO
 #---------------------------------------------------------------------------
@@ -207,7 +207,7 @@ RTF_EXTENSIONS_FILE    =
 #---------------------------------------------------------------------------
 # configuration options related to the man page output
 #---------------------------------------------------------------------------
-GENERATE_MAN           = NO
+GENERATE_MAN           = YES
 MAN_OUTPUT             = man
 MAN_EXTENSION          = .3
 MAN_LINKS              = NO
