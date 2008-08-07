@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * PrefixSearch - Handles searching prefixes of titles and finding any page
+ * names that match. Used largely by the OpenSearch implementation.
+ * 
+ * @ingroup Search
+ */
+
 class PrefixSearch {
 	/**
 	 * Do a prefix search of titles and return a list of matching page names.
