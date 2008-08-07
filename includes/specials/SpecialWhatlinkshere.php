@@ -267,7 +267,7 @@ class WhatLinksHerePage {
 				'whatlinkshere-links', 'isimage' );
 			$msgcache = array();
 			foreach ( $msgs as $msg ) {
-				$msgcache[$msg] = wfMsgHtml( $msg );
+				$msgcache[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
 		}
 
