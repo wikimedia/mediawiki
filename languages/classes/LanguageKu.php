@@ -244,24 +244,4 @@ class LanguageKu extends LanguageKu_ku {
 		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
 		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
 	}
-
-/*   From Kazakh interface, not needed for the moment
-
-	function convertGrammar( $word, $case ) {
-		$fname="LanguageKu::convertGrammar";
-		wfProfileIn( $fname );
-
-		//always convert to ku-latn before convertGrammar
-		$w1 = $word;
-		$word = $this->mConverter->autoConvert( $word, 'ku-latn' );
-		$w2 = $word;
-		$word = parent::convertGrammar( $word, $case );
-		//restore encoding
-		if( $w1 != $w2 ) {
-			$word = $this->mConverter->translate( $word, 'ku-latn' );
-		}
-		wfProfileOut( $fname );
-		return $word;
-	}
-*/
 }
