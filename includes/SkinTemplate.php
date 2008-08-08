@@ -455,6 +455,10 @@ class SkinTemplate extends Skin {
 			wfDebug( __METHOD__ . ': Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!' );
 		}
 
+		// allow extensions adding stuff after the page content.
+		// See Skin::afterContentHook() for further documentation.
+		$tpl->set ('dataAfterContent', $this->afterContentHook());
+
 		// execute template
 		wfProfileIn( __METHOD__."-execute" );
 		$res = $tpl->execute();
