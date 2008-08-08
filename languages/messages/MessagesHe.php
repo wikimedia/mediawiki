@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  */
