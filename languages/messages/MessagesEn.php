@@ -971,7 +971,7 @@ Please enter a well-formatted address or empty that field.',
 You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
-'login-throttled'	     => "You have made too many recent attempts on this account's password. Please wait before trying again.",
+'login-throttled'            => "You have made too many recent attempts on this account's password. Please wait before trying again.",
 'loginlanguagelabel'         => 'Language: $1',
 'loginlanguagelinks'         => '* Deutsch|de
 * English|en
@@ -1150,7 +1150,8 @@ It cannot be saved.</strong>',
 You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
 'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it.</strong>',
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
-'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:\n$2",
+'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:
+$2",
 'titleprotectedwarning'            => '<strong>WARNING:  This page has been locked so that only some users can create it.</strong>',
 'templatesused'                    => 'Templates used on this page:',
 'templatesusedpreview'             => 'Templates used in this preview:',
