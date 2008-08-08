@@ -307,7 +307,7 @@ $messages = array(
 'nosuchspecialpage' => 'Non existe esa páxina especial',
 'nospecialpagetext' => "<big>'''Pediu unha páxina especial que non está recoñecida polo wiki.'''</big>
 
-Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:Specialpages]].",
+Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:SpecialPages]].",
 
 # General errors
 'error'                => 'Erro',
@@ -630,7 +630,8 @@ polo tanto, non se pode gardar.</strong>',
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.</strong>',
 'protectedpagewarning'             => '<strong>ATENCIÓN: esta páxina foi fechada de xeito que só os usuarios con privilexios de administrador do sistema poden editala.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi bloqueada e só os usuarios rexistrados poden editala.",
-'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina|nas seguintes páxinas}} protexidas coa opción \"protección en serie\" activada:",
+'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina|nas seguintes páxinas}} protexidas coa opción \"protección en serie\" activada:
+\$2",
 'titleprotectedwarning'            => '<strong>AVISO: bloqueouse esta páxina para que só algúns usuarios a poidan crear.</strong>',
 'templatesused'                    => 'Modelos usados nesta páxina:',
 'templatesusedpreview'             => 'Modelos usados nesta vista previa:',
@@ -641,7 +642,7 @@ Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despo
 'edittools'                        => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'                    => 'Limitada a creación de páxinas',
 'nocreatetext'                     => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
-Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:Userlogin|rexistrarse ou crear unha conta de acceso]].',
+Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta de acceso]].',
 'nocreate-loggedin'                => 'Non dispón de permiso para crear páxinas novas en {{SITENAME}}.',
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
@@ -763,7 +764,7 @@ Outros administradores de {{SITENAME}} poderán acceder aínda ao contido oculto
 # Suppression log
 'suppressionlog'     => 'Rexistro de supresión',
 'suppressionlogtext' => 'Embaixo amósase unha listaxe coas eliminacións e cos bloqueos recentes, que inclúen contido oculto dos administradores.
-Vexa a [[Special:Ipblocklist|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
+Vexa a [[Special:IPBlockList|listaxe de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiais das páxinas',
@@ -848,7 +849,7 @@ Se quere, pode [[:\$1|creala]].",
 'mypreferences'            => 'As miñas preferencias',
 'prefs-edits'              => 'Número de edicións:',
 'prefsnologin'             => 'Non está dentro do sistema',
-'prefsnologintext'         => 'Debe estar [[Special:Userlogin|dentro do sistema]] para modificar as preferencias de usuario.',
+'prefsnologintext'         => 'Debe estar [[Special:UserLogin|dentro do sistema]] para modificar as preferencias de usuario.',
 'prefsreset'               => 'As preferencias foron postas cos valores orixinais.',
 'qbsettings'               => 'Opcións da barra rápida',
 'qbsettings-none'          => 'Ningunha',
@@ -923,7 +924,7 @@ Se quere, pode [[:\$1|creala]].",
 'userrights-reason'           => 'Razón para a modificación:',
 'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
-'userrights-nologin'          => 'Ten que [[Special:Userlogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
+'userrights-nologin'          => 'Ten que [[Special:UserLogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
 'userrights-notallowed'       => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
 'userrights-changeable-col'   => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
@@ -1053,12 +1054,12 @@ As páxinas da súa [[Special:Watchlist|listaxe de vixilancia]] aparecen en '''n
 'reupload'                    => 'Volver cargar',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
 'uploadnologin'               => 'Non está dentro do sistema',
-'uploadnologintext'           => 'Ha de [[Special:Userlogin|entrar no sistema]] para poder subir ficheiros.',
+'uploadnologintext'           => 'Ha de [[Special:UserLogin|entrar no sistema]] para poder subir ficheiros.',
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
 'uploadtext'                  => "Use o formulario de embaixo para enviar ficheiros.
-Para ver ou procurar imaxes enviadas con anterioridade vaia á [[Special:Imagelist|listaxe de ficheiros enviados]]; os envíos e as eliminacións tamén se rexistran no [[Special:Log/upload|rexistro de carga]].
+Para ver ou procurar imaxes enviadas con anterioridade vaia á [[Special:ImageList|listaxe de ficheiros enviados]]; os envíos e as eliminacións tamén se rexistran no [[Special:Log/upload|rexistro de carga]].
 
 Para incluír un ficheiro na páxina, use unha ligazón do seguinte xeito:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Ficheiro.jpg]]</nowiki>''',
@@ -1189,7 +1190,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'imagelinks'                     => 'Ligazóns da imaxe',
 'linkstoimage'                   => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
 'nolinkstoimage'                 => 'Ningunha páxina liga con este ficheiro.',
-'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|máis ligazóns]] cara a este ficheiro.',
+'morelinkstoimage'               => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
 'redirectstofile'                => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
 'duplicatesoffile'               => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro:',
 'sharedupload'                   => 'Este ficheiro é un envío compartido e pode ser usado por outros proxectos.',
@@ -1274,7 +1275,7 @@ Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$
 Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
 
 A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos] é de '''\$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuario]] rexistrado|'''$1''' [[Special:Listusers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
+'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rexistrado|'''$1''' [[Special:ListUsers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
 'statistics-mostpopular' => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',
@@ -1411,7 +1412,7 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 
 # E-mail user
 'mailnologin'     => 'Non existe enderezo para o envío',
-'mailnologintext' => 'Debe estar [[Special:Userlogin|dentro do sistema]] e ter un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
+'mailnologintext' => 'Debe estar [[Special:UserLogin|dentro do sistema]] e ter un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
 'emailuser'       => 'Enviar un correo electrónico a este usuario',
 'emailpage'       => 'Enviar un correo electrónico a un usuario',
 'emailpagetext'   => 'Este formulario serve para enviar unha única mensaxe de correo no caso de que este usuario teña configurado un enderezo electrónico válido nas súas preferencias de usuario. Para que o receptor da mensaxe poida responder no campo "De" visualízase o enderezo que vostede incluíu nas súas propias preferencias.',
@@ -1437,7 +1438,7 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'nowatchlist'          => 'Non ten ítems na súa listaxe de vixilancia.',
 'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os ítems da súa listaxe de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
-'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:Userlogin|rexistrado]].',
+'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:UserLogin|rexistrado]].',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
@@ -1552,7 +1553,7 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|disc.]]).',
 volveuse á última edición, feita por $2.',
 'sessionfailure'              => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
 'protectlogpage'              => 'Rexistro de protección',
-'protectlogtext'              => 'Abaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas. Vexa a [[Special:Protectedpages|listaxe de páxinas protexidas]] para unha listaxe coas proteccións de páxinas establecidas neste momento.',
+'protectlogtext'              => 'Abaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas. Vexa a [[Special:ProtectedPages|listaxe de páxinas protexidas]] para unha listaxe coas proteccións de páxinas establecidas neste momento.',
 'protectedarticle'            => 'protexeu "[[$1]]"',
 'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
@@ -1782,7 +1783,7 @@ Por favor confirme que isto é o que quere facer.',
 'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
 'lockdbsuccesstext'   => 'A base de datos foi bloqueada.
-<br />Lembre [[Special:Unlockdb|eliminar o bloqueo]] unha vez completado o seu mantemento.',
+<br />Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',

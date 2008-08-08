@@ -394,7 +394,7 @@ $messages = array(
 'nosuchspecialpage' => 'Sta pàggina spiciali nun è dispunìbbili',
 'nospecialpagetext' => "<big>'''Hai cercatu na pàggina spiciali nun vàlida.'''</big>
 
-L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:Specialpages|Alencu dî pàggini spiciali]].",
+L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alencu dî pàggini spiciali]].",
 
 # General errors
 'error'                => 'Erruri',
@@ -653,7 +653,8 @@ Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàst
 'readonlywarning'                  => "<strong>ACCURA: lu database è fermu pi manutinzioni, pirciò nun poi sarvari li tò canciamenti nta stu mumentu. La cosa megghia è fari un copia e ncolla dû testu nta n'àutru prugramma e sarvàrilu pi quannu lu database è accissìbbili.</strong>",
 'protectedpagewarning'             => "<strong>ACCURA: Sta pàggina havi na prutizzioni spiciali e sulu l'utenti chi hannu lu status di amministraturi ponnu canciàrila.</strong>",
 'semiprotectedpagewarning'         => "'''ACCURA:''' Sta pàggina hà statu bluccata n modu ca sulu li utenti riggistrati ponnu canciàrila.",
-'cascadeprotectedwarning'          => "'''Accura:''' Sta pàggina havi stata bluccata n modu ca sulu li utenti cu privileggi di amministraturi ponnu mudificàrila, pirchì veni nclusa {{PLURAL:\$1|nta siquente pàggina ca hà stata prutiggiuta|ntê siquenti pàggini ca hannu stati prutiggiuti}} silizziunannu la prutizzioni \"ricursiva\":",
+'cascadeprotectedwarning'          => "'''Accura:''' Sta pàggina havi stata bluccata n modu ca sulu li utenti cu privileggi di amministraturi ponnu mudificàrila, pirchì veni nclusa {{PLURAL:\$1|nta siquente pàggina ca hà stata prutiggiuta|ntê siquenti pàggini ca hannu stati prutiggiuti}} silizziunannu la prutizzioni \"ricursiva\":
+\$2",
 'titleprotectedwarning'            => '<strong>ATTENZIONI:  Sta pàggina fu bluccata n modu tali ca sulu alcuni catigurìi di utenti la ponu criari.</strong>',
 'templatesused'                    => "Template utilizzati 'n sta pàggina:",
 'templatesusedpreview'             => "Template utilizzati 'n st'antiprima:",
@@ -663,7 +664,7 @@ Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàst
 'hiddencategories'                 => 'Sta pàggina apparteni a {{PLURAL:$1|na catigurìa ammuciata|$1 catigurìi ammuciati}}:',
 'edittools'                        => '<!-- Chistu testu cumpari sutta li moduli di canciu e carricamentu. -->',
 'nocreatetitle'                    => 'Criazzioni dî pàggini limitata',
-'nocreatetext'                     => "La pussibbilitati di criari pàggini novi nta {{SITENAME}} è limitata a l'utenti riggistrati. Poi turnari 'n arreri e canciari na pàggina esistenti, oppuru [[Special:Userlogin|tràsiri o criari nu cuntu novu]].",
+'nocreatetext'                     => "La pussibbilitati di criari pàggini novi nta {{SITENAME}} è limitata a l'utenti riggistrati. Poi turnari 'n arreri e canciari na pàggina esistenti, oppuru [[Special:UserLogin|tràsiri o criari nu cuntu novu]].",
 'nocreate-loggedin'                => 'Nun hai lu pirmissu pi criari pàggini novi nta {{SITENAME}}.',
 'permissionserrors'                => 'Erruri di pirmissu',
 'permissionserrorstext'            => 'Nun hai lu pirmissu pi fari chistu, pi {{PLURAL:$1|chistu motivu|sti mutivi}}:',
@@ -765,7 +766,7 @@ Lu mutivu è ''$2''",
 
 # Suppression log
 'suppressionlog'     => 'Log dê supprissioni',
-'suppressionlogtext' => "Ccà veni prisintatu n'elencu dê cancillazioni e dê blocchi cchiù ricenti supra cuntinuti ammucciati d'amministraturi. Vidi l'[[Special:Ipblocklist|elenco d'IP bloccati]] pi l'elencu dî ban e dî blocchi attivi.",
+'suppressionlogtext' => "Ccà veni prisintatu n'elencu dê cancillazioni e dê blocchi cchiù ricenti supra cuntinuti ammucciati d'amministraturi. Vidi l'[[Special:IPBlockList|elenco d'IP bloccati]] pi l'elencu dî ban e dî blocchi attivi.",
 
 # History merging
 'mergehistory'                     => 'Unioni storie',
@@ -845,7 +846,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'mypreferences'            => 'Li mè prifirenzi',
 'prefs-edits'              => 'Nùmmuru di canciamenti:',
 'prefsnologin'             => 'Accessu nun effittuatu',
-'prefsnologintext'         => "Pi putiri pirsunalizzari li prifirenzi è nicissariu effittuari l'[[Special:Userlogin|accessu]].",
+'prefsnologintext'         => "Pi putiri pirsunalizzari li prifirenzi è nicissariu effittuari l'[[Special:UserLogin|accessu]].",
 'prefsreset'               => 'Li prifirenzi hannu statu ripristinati a li valura pridifiniti.',
 'qbsettings'               => 'Pusizzioni QuickBar',
 'qbsettings-none'          => 'Nuddu',
@@ -918,7 +919,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'userrights-reason'           => 'Mutivu dû canciu:',
 'userrights-no-interwiki'     => "Nun si disponi di li pirmessi nicissari pi canciari li diritti di l'utenti ni autri siti.",
 'userrights-nodatabase'       => 'Lu database $1 nu esisti o nun è lu database locali.',
-'userrights-nologin'          => "Pi assignari li diritti di l'utenti è nicissariu [[Special:Userlogin|trasiri]] comu amministraturi.",
+'userrights-nologin'          => "Pi assignari li diritti di l'utenti è nicissariu [[Special:UserLogin|trasiri]] comu amministraturi.",
 'userrights-notallowed'       => "L'utenti nun disponi dê pirmessi nicissari pi assignari diritti all'utenti.",
 'userrights-changeable-col'   => 'Gruppi canciabili',
 'userrights-unchangeable-col' => 'Gruppi nun canciabili',
@@ -1014,10 +1015,10 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'reupload'                    => 'Càrrica di novu',
 'reuploaddesc'                => 'Torna a lu mòdulu pi lu carricamentu.',
 'uploadnologin'               => 'Accessu nun effittuatu',
-'uploadnologintext'           => 'Hai a esèquiri [[Special:Userlogin|lu login]] pi carricari mmàggini o àutri files multimidiali.',
+'uploadnologintext'           => 'Hai a esèquiri [[Special:UserLogin|lu login]] pi carricari mmàggini o àutri files multimidiali.',
 'upload_directory_read_only'  => 'Lu server web nun è n gradu di scrìviri ntâ directory di upload ($1).',
 'uploaderror'                 => 'Erruri ntô carricamentu',
-'uploadtext'                  => "Usa lu mòdulu ccà sutta pi carricari file novi. Pi vìdiri o circari li file già carricati, talìa lu [[Special:Imagelist|log dî file carricati]]. Carricamenti e cancillazzioni di file sunnu 
+'uploadtext'                  => "Usa lu mòdulu ccà sutta pi carricari file novi. Pi vìdiri o circari li file già carricati, talìa lu [[Special:ImageList|log dî file carricati]]. Carricamenti e cancillazzioni di file sunnu 
 riggistrati ntô [[Special:Log/upload|log di li upload]].
 
 Pi nziriri nu file nta na pagina, fai nu lijami accussì:
@@ -1209,7 +1210,7 @@ Chisti nclùdunu li pàggini di discussioni, li pàggini supra {{SITENAME}}, li 
 Dâ nstallazzioni dô situ nzinu a stu mumentu {{PLURAL:\$3|hà stata visitata '''1''' pàggina|hannu statu visitati '''\$3''' pàggini}} e {{PLURAL:\$4|fattu '''1''' canciamentu|fatti '''\$4''' canciamenti}}, pari a na media di '''\$5''' canciamenti pi pàggina e '''\$6''' richiesti di littura p'ogni canciamentu.
 
 La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elementu|'''\$7''' elementi}}.",
-'userstatstext'          => "C{{PLURAL:$1|'è '''1''' [[Special:Listusers|utilizzaturi]] riggistratu|i sunnu '''$1''' [[Special:Listusers|utilizzatura]] riggistrati}}; di chisti '''$2''' (o lu '''$4%''') {{PLURAL:$2|havi|hannu}} li diritti di lu gruppu $5.",
+'userstatstext'          => "C{{PLURAL:$1|'è '''1''' [[Special:ListUsers|utilizzaturi]] riggistratu|i sunnu '''$1''' [[Special:ListUsers|utilizzatura]] riggistrati}}; di chisti '''$2''' (o lu '''$4%''') {{PLURAL:$2|havi|hannu}} li diritti di lu gruppu $5.",
 'statistics-mostpopular' => 'Pàggini cchiù visitati',
 
 'disambiguations'      => 'Pàggini cu liami ambìgui',
@@ -1330,7 +1331,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 
 # E-mail user
 'mailnologin'     => 'Nuddu ndirizzu cui mannari lu missaggiu',
-'mailnologintext' => 'Hai a fari lu [[Special:Userlogin|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Preferences|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
+'mailnologintext' => 'Hai a fari lu [[Special:UserLogin|login]] e aver riggistratu na casella e-mail vàlida ntê tò [[Special:Preferences|prifirenzi]] pi mannari posta alittrònica a àutri Utenti.',
 'emailuser'       => "Manna n'imail a stu utenti",
 'emailpage'       => "Manna un missaggiu e-mail a l'utenti",
 'emailpagetext'   => "Si st'utenti lassau nu nnirizzu email vàlidu ntê sò prifirenzi, ci putiti mannari nu missaggiu. Lu nnirizzu email chi lassasti ntê tò prifirenzi và a cumpàriri comu mittenti di lu email, di manera chi lu distinatariu ti pò arrispùnniri.",
@@ -1355,7 +1356,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'nowatchlist'          => "Nun hai innicatu pàggini a tèniri d'occhiu.",
 'watchlistanontext'    => "Pi visualizzari e canciari l'alencu di l'ossirvati spiciali è nicissariu $1.",
 'watchnologin'         => 'Nun hai effittuatu lu login',
-'watchnologintext'     => 'Hai a fari prima lu [[Special:Userlogin|login]] pi canciari la tò lista di ossirvati spiciali.',
+'watchnologintext'     => 'Hai a fari prima lu [[Special:UserLogin|login]] pi canciari la tò lista di ossirvati spiciali.',
 'addedwatch'           => "Pàggina agghiunciuta â lista di l'ossirvati spiciali",
 'addedwatchtext'       => "La pàggina \"[[:\$1]]\" è stata agghiunciuta â propia [[Special:Watchlist|lista di l'ossirvati spiciali]]. D'ora n poi, li mudìfichi appurtati â pàggina e â sò discussioni vèninu alincati n chidda sedi; lu tìtulu dâ pàggina appari n '''grassettu''' ntâ pàggina di l' [[Special:RecentChanges|ùrtimi canciamenti]] pi rinnìrilu cchiù visìbbili. Siddu n un secunnu tempu s'addisìa eliminari la pàggina dâ lista di l'ossirvati spiciali, fari clic supra \"nun sèquiri\" ntâ barra n àutu.",
 'removedwatch'         => 'Livata dâ lista dî pàggini di cuntrullari',
@@ -1464,7 +1465,7 @@ Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.
 Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina e riprova di novu.',
 'protectlogpage'              => 'Pàggini prutetti',
-'protectlogtext'              => 'Lista di prutezzioni/sprutezzioni dî pàggini. Vidi macari la [[Special:Protectedpages|lista dî pàggini prutetti]].',
+'protectlogtext'              => 'Lista di prutezzioni/sprutezzioni dî pàggini. Vidi macari la [[Special:ProtectedPages|lista dî pàggini prutetti]].',
 'protectedarticle'            => 'hà prutettu [[$1]]',
 'modifiedarticleprotection'   => 'canciàu lu liveddu di prutizzioni di "[[$1]]"',
 'unprotectedarticle'          => 'hà sprutettu [[$1]]',
@@ -1670,7 +1671,7 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati
 'lockdbsuccesssub'    => 'Bloccu dû database esiquitu',
 'unlockdbsuccesssub'  => 'Sbloccu dû database esiquitu',
 'lockdbsuccesstext'   => "Lu database hà statu bluccatu. 
-<br />Arricorda di [[Special:Unlockdb|rimòviri lu bloccu]] doppu aviri accabbatu l'upirazzioni di manutinzioni.",
+<br />Arricorda di [[Special:UnlockDB|rimòviri lu bloccu]] doppu aviri accabbatu l'upirazzioni di manutinzioni.",
 'unlockdbsuccesstext' => 'Lu database hà statu sbluccatu.',
 'lockfilenotwritable' => "Mpussìbbili scrìviri supra lu file di ''lock'' dû database. L'accessu n scrittura a tali file di parti dû server web è nicissariu pi bluccari e sbluccari lu database.",
 'databasenotlocked'   => 'Lu database nun è bluccatu.',

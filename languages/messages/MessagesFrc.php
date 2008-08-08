@@ -254,7 +254,7 @@ $messages = array(
 'nosuchaction'      => 'Action inconnue',
 'nosuchactiontext'  => "L'action demandée dans l'adresse URL est pas reconnue par le wiki.",
 'nosuchspecialpage' => 'Page espéciale inconnue',
-'nospecialpagetext' => 'La page que vous avez demandée est pas une bonne page espéciale.  Vous pouvez trouver une liste des bonnes pages espéciales dans la [[Special:Specialpages|liste des pages espéciales]].',
+'nospecialpagetext' => 'La page que vous avez demandée est pas une bonne page espéciale.  Vous pouvez trouver une liste des bonnes pages espéciales dans la [[Special:SpecialPages|liste des pages espéciales]].',
 
 # General errors
 'error'                => 'Erreur',
@@ -517,7 +517,8 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'readonlywarning'           => "<strong>ATTENTION: La base d'information a été barrée, ça fait, vous serez pas capable de sauver votres changements asteur.  Vous ferait mieux de copier et coller le texte dans un dossier texte et le sauver pour plus tard.</strong>",
 'protectedpagewarning'      => '<strong>ATTENTION: Cette page a été barrée pour que ça peuve être changée juste par les administrateurs.</strong>',
 'semiprotectedpagewarning'  => "'''Notez:'''  Cette page a été barrée pour que ça peuve être changé juste par les useurs connectés.",
-'cascadeprotectedwarning'   => "'''Attention:'''  Cette page est barrée pour que ça peuve être changé juste par les administrateurs parce que cette page est comprise dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la protection en cascade.",
+'cascadeprotectedwarning'   => "'''Attention:'''  Cette page est barrée pour que ça peuve être changé juste par les administrateurs parce que cette page est comprise dans {{PLURAL:$1|une page protégée|des pages protégées}} avec la protection en cascade.
+$2",
 'templatesused'             => 'Patrons usés sus cette page:',
 'templatesusedpreview'      => "Patrons usés dans cette vue d'avance:",
 'templatesusedsection'      => 'Patrons usés dans cette section:',
@@ -525,7 +526,7 @@ Il foudra que vous mettez vos changements dans le texte qu'est là asteur.
 'template-semiprotected'    => '(demi-protégé)',
 'edittools'                 => "<!-- Le texte que vous mettez ici va être montré sous les boëttes de changements ou d'import de dossier. -->",
 'nocreatetitle'             => 'Création de page limitée',
-'nocreatetext'              => "La création des pages est limitée.  Vous pouvez changer une page qu'a été déjà créée ou [[Special:Userlogin|connecter ou créer un compte]].",
+'nocreatetext'              => "La création des pages est limitée.  Vous pouvez changer une page qu'a été déjà créée ou [[Special:UserLogin|connecter ou créer un compte]].",
 'nocreate-loggedin'         => 'Vous avez pas la permission de créer des nouvelles pages sus ce wiki.',
 'permissionserrors'         => 'Erreur de permissions',
 'permissionserrorstext'     => 'Vous avez pas la permission de faire ça pour {{PLURAL:$1|cette raison|ces raisons}}:',

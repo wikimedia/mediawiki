@@ -218,7 +218,7 @@ $messages = array(
 'nosuchspecialpage' => 'Walay maong espesyal nga panid',
 'nospecialpagetext' => "<big>'''Mihangyo ikaw sa inbalidong espesyal nga panid.'''</big>
 
-Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:Specialpages|{{int:specialpages}}]].",
+Ang lista sa mga balidong espesyal nga mga panid makita sa [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'               => 'Sayop',

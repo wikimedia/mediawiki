@@ -391,7 +391,7 @@ $messages = array(
 'nosuchspecialpage' => 'Pagina specialis non est',
 'nospecialpagetext' => "<big>'''Paginam specialem invalidam petivisti.'''</big>
 
-Pro indice paginarum specialum validarum, vide [[Special:Specialpages|{{int:specialpages}}]].",
+Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erratum',
@@ -715,7 +715,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'mypreferences'            => 'Praeferentiae meae',
 'prefs-edits'              => 'Numerus recensionum:',
 'prefsnologin'             => 'Conventum non apertum',
-'prefsnologintext'         => '[[Special:Userlogin|Conventum aperire]] debes ut praeferentiae tuae perscribere.',
+'prefsnologintext'         => '[[Special:UserLogin|Conventum aperire]] debes ut praeferentiae tuae perscribere.',
 'prefsreset'               => 'Praeferentiae tuae reperscriptae sunt.',
 'qbsettings'               => 'Figuratio claustri celeris',
 'qbsettings-none'          => 'Nullus',
@@ -866,10 +866,10 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'reupload'           => 'Iterum imponere',
 'reuploaddesc'       => 'Siste imponere et ad imponendi formam redi',
 'uploadnologin'      => 'Conventum non apertum est',
-'uploadnologintext'  => 'Oportet [[Special:Userlogin|aperire conventum]] ut fasciculos imponas.',
+'uploadnologintext'  => 'Oportet [[Special:UserLogin|aperire conventum]] ut fasciculos imponas.',
 'uploaderror'        => 'Imponendi erratum',
 'uploadtext'         => "Utere formam subter ad fasciculos imponendos.
-Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:Imagelist|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
+Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:ImageList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
 
 Ad fasciculum in pagina includendum, utere nexu
 '''<nowiki>[[</nowiki>{{ns:image}}:Fasciculus.jpg]]''' aut
@@ -934,7 +934,7 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'imagelinks'                => 'Nexus',
 'linkstoimage'              => '{{PLURAL:$1|Haec pagina ad hunc fasciculum nectit:|Hae $1 paginae ad hunc fasciculum nectunt:}}',
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
-'morelinkstoimage'          => 'Videre [[Special:Whatlinkshere/$1|plures nexus]] ad hunc fasciculum.',
+'morelinkstoimage'          => 'Videre [[Special:WhatLinksHere/$1|plures nexus]] ad hunc fasciculum.',
 'redirectstofile'           => '{{PLURAL:$1|Fasciculus sequens ad hunc fasciculum redirigit:|Hae $1 fasciculi sequentes ad hunc fasciculum redirigunt:}}',
 'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
 'noimage-linktext'          => 'Fasciculum huius nominis imponere',
@@ -996,7 +996,7 @@ ab initio {{grammar:genitive|{{SITENAME}}}}.
 Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutationem.
 
 '''$7''' [http://www.mediawiki.org/wiki/Manual:Job_queue operationes etiam exspectant perfacier].",
-'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:Listusers|usor]] relatus est|[[Special:Listusers|usores]] relati sunt}}, quorum '''$2''' (vel '''$4%''') {{PLURAL:$2|est|sunt}} $5.",
+'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:ListUsers|usor]] relatus est|[[Special:ListUsers|usores]] relati sunt}}, quorum '''$2''' (vel '''$4%''') {{PLURAL:$2|est|sunt}} $5.",
 
 'disambiguations'      => 'Paginae disambiguationis',
 'disambiguationspage'  => 'Template:Discretiva',
@@ -1128,7 +1128,7 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 'nowatchlist'          => 'Nullas paginas custodis.',
 'watchlistanontext'    => 'Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.',
 'watchnologin'         => 'Conventum non est apertum',
-'watchnologintext'     => '[[Special:Userlogin|Conventum aperire]] debes ut indicem paginarum custoditarum mutes.',
+'watchnologintext'     => '[[Special:UserLogin|Conventum aperire]] debes ut indicem paginarum custoditarum mutes.',
 'addedwatch'           => 'Pagina custodita',
 'addedwatchtext'       => "Pagina \"[[:\$1]]\" in [[Special:Watchlist|paginas tuas custoditas]] addita est. Mutationes posthac huic paginae et paginae disputationis ibi notabuntur, et pagina '''litteris pinguibus''' apparebit in [[Special:RecentChanges|nuper mutatorum]] indice, ut sit facilius electu.
 
@@ -1200,7 +1200,7 @@ Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special
 'editcomment'               => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad mutationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'            => 'Index protectionum',
-'protectlogtext'            => 'Subter est index protectionum et deprotectionum paginarum. Vide [[Special:Protectedpages|indicem paginarum nunc protectarum]].',
+'protectlogtext'            => 'Subter est index protectionum et deprotectionum paginarum. Vide [[Special:ProtectedPages|indicem paginarum nunc protectarum]].',
 'protectedarticle'          => 'protegit "[[$1]]"',
 'modifiedarticleprotection' => 'mutavit protectionem paginae "[[$1]]"',
 'unprotectedarticle'        => 'deprotegit "[[$1]]"',
@@ -1349,7 +1349,7 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 'lockdbsuccesssub'    => 'Basis datorum prospere obstructa est',
 'unlockdbsuccesssub'  => 'Basis datorum prospere deobstructa est',
 'lockdbsuccesstext'   => 'Basis datorum obstructa est.
-<br />Memento eam dein [[Special:Unlockdb|deobstruere]].',
+<br />Memento eam dein [[Special:UnlockDB|deobstruere]].',
 'unlockdbsuccesstext' => 'Basis datorum deobstructa est.',
 'databasenotlocked'   => 'Basis datorum non obstructa est.',
 

@@ -303,7 +303,7 @@ $messages = array(
 'nosuchspecialpage' => 'Rûpeleke taybet bi vê rengê tune',
 'nospecialpagetext' => "<big>'''Rûpelê taybetî yê te xwastîyê tune ye.'''</big>
 
-Hemû rûpelên taybetî di [[Special:Specialpages|lîsteya rûpelên taybetî]] da werin dîtin.",
+Hemû rûpelên taybetî di [[Special:SpecialPages|lîsteya rûpelên taybetî]] da werin dîtin.",
 
 # General errors
 'error'                => 'Çewtî (Error)',
@@ -672,7 +672,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'mypreferences'      => 'Tercihên min',
 'prefs-edits'        => 'Hejmarê guherandinan:',
 'prefsnologin'       => 'Xwe qeyd nekir',
-'prefsnologintext'   => 'Tu gireke xwe [[Special:Userlogin|qeydbikê]] ji bo guherandina tercihên bikarhêneran.',
+'prefsnologintext'   => 'Tu gireke xwe [[Special:UserLogin|qeydbikê]] ji bo guherandina tercihên bikarhêneran.',
 'prefsreset'         => 'Tercih hatin şondakirin.',
 'qbsettings-none'    => 'Tune',
 'changepassword'     => 'Şîfre biguherîne',
@@ -720,7 +720,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'userrights-reason'        => 'Sedemê guherandinê:',
 'userrights-no-interwiki'  => 'Mafên te ji bo guherandina mafên bikarhêneran di Wîkîyên din da tune ne.',
 'userrights-nodatabase'    => "Database'a $1 tune ye ya ne yê vir e.",
-'userrights-nologin'       => "Ji bo guherandina mafên bikarhêneran, tu gereke xwe bi account'eka koordînatorekî [[Special:Userlogin|qeydbikê]].",
+'userrights-nologin'       => "Ji bo guherandina mafên bikarhêneran, tu gereke xwe bi account'eka koordînatorekî [[Special:UserLogin|qeydbikê]].",
 'userrights-notallowed'    => "Account'a te mafê xwe tune ye ji bo guherandina mafên bikarhêneran.",
 
 # Groups
@@ -772,9 +772,9 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'reupload'               => 'Dîsa barbike',
 'reuploaddesc'           => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
 'uploadnologin'          => 'Xwe qeyd nekir',
-'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:Userlogin|têkevî]].',
+'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',
 'uploaderror'            => 'Şaşbûn bo barkirinê',
-'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:Imagelist|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
+'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:ImageList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
 '''<nowiki>[[</nowiki>{{ns:image}}:File.jpg<nowiki>]]</nowiki>''',
@@ -912,7 +912,7 @@ Ji afirandina Wîkiyê heta roja îro '''$3''' {{PLURAL:$3|cara rûpelek hate|ca
 Ji ber wê di nîvî de her rûpel '''$5''' carî hatiye guherandin, û nîspeta dîtun û guherandinan '''$6''' e.
 
 Dirêjahîya [http://www.mediawiki.org/wiki/Manual:Job_queue ''job queue''] '''$7''' e.",
-'userstatstext' => "Li vir {{PLURAL:$1|[[Special:Listusers|bikarhênerekî]]|'''$1''' [[Special:Listusers|bikarhênerên]]}} qeydkirî {{PLURAL:$1|heye|hene}}, ji wan '''$2''' (an '''$4%''') qebûlkirinên $5 {{PLURAL:$2|birîye|birine}}.",
+'userstatstext' => "Li vir {{PLURAL:$1|[[Special:ListUsers|bikarhênerekî]]|'''$1''' [[Special:ListUsers|bikarhênerên]]}} qeydkirî {{PLURAL:$1|heye|hene}}, ji wan '''$2''' (an '''$4%''') qebûlkirinên $5 {{PLURAL:$2|birîye|birine}}.",
 
 'disambiguations'     => 'Rûpelên cudakirinê',
 'disambiguationspage' => 'Template:disambig',
@@ -1006,7 +1006,7 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 
 # E-mail user
 'mailnologin'     => 'Navnîşan neşîne',
-'mailnologintext' => 'Te gireke xwe [[Special:Userlogin|qeydbikê]] û adrêsa e-nameyan di [[Special:Preferences|tercihên xwe]] da nivîsandibe ji bo şandina e-nameyan ji bikarhênerên din ra.',
+'mailnologintext' => 'Te gireke xwe [[Special:UserLogin|qeydbikê]] û adrêsa e-nameyan di [[Special:Preferences|tercihên xwe]] da nivîsandibe ji bo şandina e-nameyan ji bikarhênerên din ra.',
 'emailuser'       => 'Ji vê/î bikarhênerê/î re e-name bişîne',
 'emailpage'       => 'E-name bikarhêner',
 'defemailsubject' => '{{SITENAME}} e-name',
@@ -1027,7 +1027,7 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'nowatchlist'          => 'Tiştek di lîsteya te ya şopandinê da tune ye.',
 'watchlistanontext'    => 'Ji bo sekirinê ya xeyrandinê lîsteya te ya şopandinê tu gireke xwe $1.',
 'watchnologin'         => 'Te xwe qeyd nekirîye.',
-'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[Special:Userlogin|qedy kiribe]].',
+'watchnologintext'     => 'Ji bo xeyrandinê lîsteya te ya şopandinê tu gireke xwe [[Special:UserLogin|qedy kiribe]].',
 'addedwatch'           => 'Hat îlawekirinî listeya şopandinê',
 'addedwatchtext'       => "Rûpela \"<nowiki>\$1</nowiki>\" çû ser [[Special:Watchlist|lîsteya te ya şopandinê]].
 Li dahatû de her guhartoyek li wê rûpelê û rûpela guftûgo ya wê were kirin li vir dêt nîşan dan,

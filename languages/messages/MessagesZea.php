@@ -312,7 +312,7 @@ $messages = array(
 'nosuchspecialpage' => 'Deêze speciaole pagina besti nie',
 'nospecialpagetext' => "<big>'''Je ei een onbestaende speciaole pagina opevrogen.'''</big>
 
-Een lieste mie speciaole pagina’s sti op [[Special:Specialpages|speciaole pagina’s]].",
+Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
 
 # General errors
 'error'                => 'Fout',
@@ -626,7 +626,8 @@ Opslaene is nie meuhlijk.</strong>",
 't Is misschien verstandig om je tekst tiedelijk in een tekstbestand op te slaene om dit te bewaeren                    ve wunnir a de blokkerieng van de database opeheven is.</strong>",
 'protectedpagewarning'      => '<strong>WAERSCHUWIENG! Deêze beveiligde pagina kan allin deur gebrukers mie beheêrdersrechten bewerkt        worn.</strong>',
 'semiprotectedpagewarning'  => "'''Let op:''' deêze pagina is beveiligd en kan allaen deur herehistreerde gebrukers bewerkt worn.",
-'cascadeprotectedwarning'   => "'''Waerschuwieng:''' Deêze pagina is beveiligd en kan allin deur beheêrders bewerkt worn, omda dezen              is openomen in de volhende {{PLURAL:$1|pagina|pagina's}} die a beveiligd {{PLURAL:$1|is|zien}} mie de cascade-optie:",
+'cascadeprotectedwarning'   => "'''Waerschuwieng:''' Deêze pagina is beveiligd en kan allin deur beheêrders bewerkt worn, omda dezen is openomen in de volhende {{PLURAL:$1|pagina|pagina's}} die a beveiligd {{PLURAL:$1|is|zien}} mie de cascade-optie:
+$2",
 'titleprotectedwarning'     => "<strong>WAERSCHUWIENG: Deêze pagina is beveiligd zodan allaen ienkele gebrukers 't kunn'n anmaeken.</strong>",
 'templatesused'             => "Op deêze pagina gebruukte sjabloon'n:",
 'templatesusedpreview'      => "Sjabloon'n gebruukt in deêze voevertoônieng:",
@@ -636,7 +637,7 @@ Opslaene is nie meuhlijk.</strong>",
 'hiddencategories'          => 'Deêze pagina val in de volhende verborhen {{PLURAL:$1|categorie|categorieën}}:',
 'nocreatetitle'             => "'t Anmaeken van pagina's is beperkt",
 'nocreatetext'              => "{{SITENAME}} ei de meuhlijkeid om nieuwe pagina's an te maeken beperkt.
-Je kan a bestaende pagina's wiezigen, of je kan [[Special:Userlogin|jen eihen anmelden of een gebruker  anmaeken]].",
+Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen anmelden of een gebruker  anmaeken]].",
 'nocreate-loggedin'         => "Je kan hin nieuwe pagina's anmaeken op {{SITENAME}}.",
 'permissionserrors'         => "Fout'n in rechen",
 'permissionserrorstext'     => "Je ei hin rechen om dit te doene wehens de volhende {{PLURAL:$1|reeën|reden'n}}:",
@@ -744,7 +745,7 @@ Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwie
 
 # Suppression log
 'suppressionlog'     => 'Verberhiengslogboek',
-'suppressionlogtext' => 'De onderstaende lieste bevat de miste recente verwiederiengen en blokkaodes die an voe opzichters verborhen zien. In de [[Special:Ipblocklist|IP-blokkeerlieste]] zien de udihe blokkaodes te bekieken.',
+'suppressionlogtext' => 'De onderstaende lieste bevat de miste recente verwiederiengen en blokkaodes die an voe opzichters verborhen zien. In de [[Special:IPBlockList|IP-blokkeerlieste]] zien de udihe blokkaodes te bekieken.',
 
 # History merging
 'mergehistory'                     => "Heschiedenisse van pagina's saemenvoehen",
@@ -818,7 +819,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'mypreferences'            => 'Mien vòkeuren',
 'prefs-edits'              => 'Antal bewerkiengen:',
 'prefsnologin'             => 'Nie anemeld',
-'prefsnologintext'         => "Je mò [[Special:Userlogin|anemeld]] zien om je vòkeuren te kunn'n instell'n.",
+'prefsnologintext'         => "Je mò [[Special:UserLogin|anemeld]] zien om je vòkeuren te kunn'n instell'n.",
 'prefsreset'               => 'Standardvòkeuren zien hersteld.',
 'qbsettings'               => 'Menubalke',
 'qbsettings-none'          => 'Uuteschaokeld',
@@ -890,7 +891,7 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'userrights-reason'           => "Reeën voe 't verandern:",
 'userrights-no-interwiki'     => "Je ei hin rechen om gebrukersrechen op aore wiki's te wiezigen.",
 'userrights-nodatabase'       => 'Database $1 besti nie of is hin plaetselijke database.',
-'userrights-nologin'          => 'Je mò jen eihen[[Special:Userlogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
+'userrights-nologin'          => 'Je mò jen eihen[[Special:UserLogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
 'userrights-notallowed'       => 'Je ei hin rechen om gebrukersrechen toe te wiezen.',
 'userrights-changeable-col'   => "Hroep'n die a je kan beheern",
 'userrights-unchangeable-col' => "Hroep'n die a je nie kan beheern",
@@ -962,12 +963,12 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'reupload'                   => "Opnieuw upload'n",
 'reuploaddesc'               => "Upload annuleern en teruggaene ni 't uploadformelier",
 'uploadnologin'              => 'Nie anemeld',
-'uploadnologintext'          => "Je mò [[Special:Userlogin|anemeld]] zien
+'uploadnologintext'          => "Je mò [[Special:UserLogin|anemeld]] zien
 om bestan'n te upload'n.",
 'upload_directory_read_only' => 'De webserver kan nie schrieven in de uploadmap ($1).',
 'uploaderror'                => 'Uploadfout',
 'uploadtext'                 => "Gebruuk 't onderstaende formelier om bestan'n te uploaden.
-Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:Imagelist|bestandslieste]] haen.
+Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:ImageList|bestandslieste]] haen.
 Uploads en verwiederiengen worn bie'ehouwen in 't [[Special:Log/upload|uploadlogboek]].
 
 Om 't bestand in te voehen in een pagina kan je eên van de volhende codes gebruken, a ni helang 't bestandsformaot dat van toepassieng is:
@@ -1043,7 +1044,7 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'mywatchlist'          => 'Mien volglieste',
 'watchlistfor'         => "(vò '''$1''')",
 'watchnologin'         => 'Je bin nie angemolde.',
-'watchnologintext'     => 'Je moe [[Special:Userlogin|angemolde]] weze om je volglieste an te passen.',
+'watchnologintext'     => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
 'addedwatch'           => 'An de volglieste toegevoegd',
 'addedwatchtext'       => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore

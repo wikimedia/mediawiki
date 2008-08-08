@@ -382,7 +382,7 @@ $messages = array(
 'nosuchspecialpage' => 'نی چشین حاصین صفحه',
 'nospecialpagetext' => "<big>'''شما یک نامعتبرین صفحه حاصین درخواست کت.'''</big>
 
-یک لیستی چه معتبرین صفحات حاص در کپیت ته [[Special:Specialpages|{{int:specialpages}}]].",
+یک لیستی چه معتبرین صفحات حاص در کپیت ته [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'حطا',
@@ -682,12 +682,12 @@ $2',
 تغییرات هنگت ذخیره نهنت. </strong>',
 'previewconflict'                  => 'ای بازبین متنء پیش داریت ته منطفه بالدی اصلاحی هنچوش که پیش دارگ بیت اگه شما انتخاب کنیت ذخیره',
 'session_fail_preview'             => '<strong>شرمنده! ما نه تونست شمی اصلاحء په خاطر گار کتن دیتا دیوان پردازش کنین.
-طلف دگه سعی کنیت. اگر هنگت کار نکنت یک بری [[Special:Userlogout|دربیت]] و پیدا وارد بیت.</strong>',
+طلف دگه سعی کنیت. اگر هنگت کار نکنت یک بری [[Special:UserLogout|دربیت]] و پیدا وارد بیت.</strong>',
 'session_fail_preview_html'        => "<strong>شرمنده! ما نه تونست شمی اصلاحء په خاطر گار کتن دیتا دیوان پردازش کنین.</strong>
 
 ''په چی که {{SITENAME}} HTML هام فعالنت، بازبین په خاطر حملات JavaScript پناهنت.''
 
-<strong> اگر شی یک قانونی تلاش اصلاحنت، دگه کوشش کنیت. اگر هنگت کار نکنت یک بری [[Special:Userlogout|دربیت]] و دگه وارد بیت.</strong>",
+<strong> اگر شی یک قانونی تلاش اصلاحنت، دگه کوشش کنیت. اگر هنگت کار نکنت یک بری [[Special:UserLogout|دربیت]] و دگه وارد بیت.</strong>",
 'token_suffix_mismatch'            => '<strong> شمی اصلاح رد بوت په چی که شمی کلاینت نویسگ کاراکترانی په هم جتت.
 اصلاح رد بوت داں چه هراب بیگ متن صفحه جلوگیری بیت.
 شی لهتی وهد پیش کت که شما چه یک هرابین سرویس پروکسی وبی استفاده کنیت.</strong>',
@@ -723,7 +723,8 @@ $2',
 شما شاید بلوٹیت متنء تع یم فایل متنی کپی و پیست کنیت و آیء ذخیره کنیت.</strong>',
 'protectedpagewarning'             => '<strong>هوژاری: ای صفحه په کبلنت چی که فقط کابران گون اجازت مدیر سیستم توننت آیء اصلاح کننت.</strong>',
 'semiprotectedpagewarning'         => "''''توجه:'''' ای صفحه کبلنت چوش که فقط ثبت نامی کابران توننت آیء اصلاح کننت.",
-'cascadeprotectedwarning'          => "''هوژاری''ای صفحه کبلنت چوش که فقط کابران گون دسترسی مدیر سیستم توننت آییء اصلاح کننت،په چی که آیی ته چهلین حمایت آبشاری {{PLURAL:$1|صفحات|صفحه}}:",
+'cascadeprotectedwarning'          => "''هوژاری''ای صفحه کبلنت چوش که فقط کابران گون دسترسی مدیر سیستم توننت آییء اصلاح کننت،په چی که آیی ته چهلین حمایت آبشاری {{PLURAL:$1|صفحات|صفحه}}:
+$2",
 'titleprotectedwarning'            => '<strong>هوژاری: ای صفحه کبلنت چوش که فقز لهتی کاربر تواننت آیء شر کننت.</strong>',
 'templatesused'                    => 'تمپلتانی که ته ای صفحه استفاده بیت:',
 'templatesusedpreview'             => 'تلمپلت آنی که ته ای بازبینی استفاده بیت',
@@ -734,7 +735,7 @@ $2',
 'edittools'                        => '<strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong>',
 'nocreatetitle'                    => 'شرکتن صفحه محدودنت',
 'nocreatetext'                     => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
-شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:Userlogin|وارد بیت یان یک حسابی شرکنیت]].',
+شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:UserLogin|وارد بیت یان یک حسابی شرکنیت]].',
 'nocreate-loggedin'                => 'شما را اجازت په شرکتن نوکین صفحات ته {{SITENAME}} نیست.',
 'permissionserrors'                => 'حطای اجازت',
 'permissionserrorstext'            => 'شما را اجازت په انجام آی نیست، په جهلیگین دلیل {{PLURAL:$1|دلیل|دلایل}}:',
@@ -853,7 +854,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 # Suppression log
 'suppressionlog'     => 'آمار توقیف',
 'suppressionlogtext' => 'جهلء یک لیست چه حذفیات و محدودیات من جمله پناهین محتوا چه مدیران سیستم هست.
-به چار [[Special:Ipblocklist|IP block list]] په لیست هنوکین عملی محدویت آن',
+به چار [[Special:IPBlockList|IP block list]] په لیست هنوکین عملی محدویت آن',
 
 # History merging
 'mergehistory'                     => 'چن و بند کن تاریح آن صفحهء',
@@ -896,7 +897,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'searchresults'             => 'نتایج گردگ',
 'searchresults-title'       => 'نتایج گردگ په $1',
 'searchresulttext'          => 'په گیشترین اطلاعات گردگ باره {{SITENAME}}، بچار [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'شما گردگیت په \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|کل صفحات شروع بنت گون "$1"]] | [[Special:Whatlinkshere/$1|کل صفحات که لینک انت په "$1"]])',
+'searchsubtitle'            => 'شما گردگیت په \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|کل صفحات شروع بنت گون "$1"]] | [[Special:WhatLinksHere/$1|کل صفحات که لینک انت په "$1"]])',
 'searchsubtitleinvalid'     => "شما گردگیت په '''$1'''",
 'noexactmatch'              => "'''صفحه ی گون عنوان نیست\"\$1\".'''
 شما تونیت [[:\$1|ای صفحه ی شرکنیت]].",
@@ -942,7 +943,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'mypreferences'            => 'منی ترجیحات',
 'prefs-edits'              => 'تعداد اصلاحات:',
 'prefsnologin'             => 'وارد نهیت',
-'prefsnologintext'         => 'شما بایدن  [[Special:Userlogin|وارد بیت]]  په تنظیم کتن وتی ترجیحات',
+'prefsnologintext'         => 'شما بایدن  [[Special:UserLogin|وارد بیت]]  په تنظیم کتن وتی ترجیحات',
 'prefsreset'               => 'ترجیحات چه ذخیره ترینگ بوتنت.',
 'qbsettings'               => 'میله سریع',
 'qbsettings-none'          => 'هچ یک',
@@ -1019,7 +1020,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'userrights-reason'           => 'دلیل په عوض کتن:',
 'userrights-no-interwiki'     => 'شما را اجازت نیست دان حقوق کاربر ته دگ ویکی آن اصلاح کنیت.',
 'userrights-nodatabase'       => 'دیتابیس $1  موجود نهنت یا محلی نهنت.',
-'userrights-nologin'          => 'شما باید [[Special:Userlogin|وارد بیت]]  گون حساب مدیریتی په مشخص کتن حقوق کاربر.',
+'userrights-nologin'          => 'شما باید [[Special:UserLogin|وارد بیت]]  گون حساب مدیریتی په مشخص کتن حقوق کاربر.',
 'userrights-notallowed'       => 'شمی حساب اجازت په مشخص کتن حقوق کاربر نیست.',
 'userrights-changeable-col'   => 'گروهانی که شما تونیت عوض کنیت',
 'userrights-unchangeable-col' => 'گروهانی که شما نه نونیت عوض کنیت',
@@ -1149,12 +1150,12 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'reupload'                    => 'دگه آپلود',
 'reuploaddesc'                => 'کنسل آپلودء و ترر په فرم آپلود',
 'uploadnologin'               => 'وارد نهیت',
-'uploadnologintext'           => 'شما بایدن [[Special:Userlogin|واردبیت]] په آپلود کتن فایل.',
+'uploadnologintext'           => 'شما بایدن [[Special:UserLogin|واردبیت]] په آپلود کتن فایل.',
 'upload_directory_missing'    => 'مسیر آپلود ($1)  گارنت و گون وب سرور شر گنگ نه بیت.',
 'upload_directory_read_only'  => 'مسیر آپلود ($1)  قابل نوشتن گون وب سرور نهنت.',
 'uploaderror'                 => 'حطا آپلود',
 'uploadtext'                  => "چه جهلگین فرم په آپلود فایلان استفاده کنت.
-په دیستن یا گشتن پیشگین آپلودی فایلان برو  [[Special:Imagelist|لیست فایلان آپلودی]], آپلودان و حذفیات هنچو هستن ته [[Special:Log/upload|آمار آپلود]].
+په دیستن یا گشتن پیشگین آپلودی فایلان برو  [[Special:ImageList|لیست فایلان آپلودی]], آپلودان و حذفیات هنچو هستن ته [[Special:Log/upload|آمار آپلود]].
 
 په وارد کتن فایل ته یک صفحه ای، چه لینک ته فرم استفاده کن
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' په استفاده چه نسخه کامل فایل
@@ -1303,7 +1304,7 @@ PICT # misc.
 جهلگین لیست {{PLURAL:$1|اولین لینک صفحه|اولین $1 لینکان صفحه ی}} پی ای فایل فقط پیش داریت.
 یک [[Special:WhatLinksHere/$2|لیست کامل]] موجودنت.',
 'nolinkstoimage'                 => 'هچ صفحه ای نیست که به ای فایل لینک بوت.',
-'morelinkstoimage'               => 'View [[Special:Whatlinkshere/$1|گیشتر لینکان]]به ای فایل',
+'morelinkstoimage'               => 'View [[Special:WhatLinksHere/$1|گیشتر لینکان]]به ای فایل',
 'redirectstofile'                => 'جهلیگین {{PLURAL:$1|فایل غیر مستقیم بنت|$1 فایلان غیر مستقیم بنت.}} به ای فایل',
 'duplicatesoffile'               => 'جهلیگین {{PLURAL:$1|فایل یک کپی انت|$1 فایلان کپی انت}} چه هی فایل:',
 'sharedupload'                   => 'ای فایل یک مشترکین آپلودی فایلیت و شاید گون دگه پروژه یان استفاده بیت.',
@@ -1387,7 +1388,7 @@ PICT # misc.
 شامل '''\$5''' اصلاح میانگین ته هر صفحه و  '''\$6''' دیستن ته هر اصلاح بیت.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] طولی انت '''\$7'''.",
-'userstatstext'          => "ادان {{PLURAL:$1هست '''1''' ثبت بوتگین[[Special:Listusers|کاربر]]|هستن '''$1''' ثبت نامی [[Special:Listusers|کابران]]}}, که چه آیء '''$2''' (یا'''$4%''') {{PLURAL:$2|داریت|دارنت}} $5 حقوقی.",
+'userstatstext'          => "ادان {{PLURAL:$1هست '''1''' ثبت بوتگین[[Special:ListUsers|کاربر]]|هستن '''$1''' ثبت نامی [[Special:ListUsers|کابران]]}}, که چه آیء '''$2''' (یا'''$4%''') {{PLURAL:$2|داریت|دارنت}} $5 حقوقی.",
 'statistics-mostpopular' => 'باز چار تگین صفحات',
 
 'disambiguations'      => 'صفحات رفع ابهام',
@@ -1530,7 +1531,7 @@ PICT # misc.
 
 # E-mail user
 'mailnologin'     => 'هچ آدرس دیم دهگ',
-'mailnologintext' => 'شما بایدن [[Special:Userlogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
+'mailnologintext' => 'شما بایدن [[Special:UserLogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
 'emailuser'       => 'په ای کابر ایمیل دیم دی',
 'emailpage'       => 'ایمیل کاربر',
 'emailpagetext'   => 'اگر ای کاربر یک معتبرین آدرس ایمیلی ته وتی ترجیحات کاربری وارد کتت،جهلگین فرم په آیء یک کوله ای دیم دنت.
@@ -1557,7 +1558,7 @@ PICT # misc.
 'nowatchlist'          => 'شما را هچ چیزی ته وتی لیست چارگ نیست.',
 'watchlistanontext'    => 'لطفا  $1 په دیستن یا اصلاح ایتیمان ته وتی لیست چارگء',
 'watchnologin'         => 'وارد نه بی تگیت',
-'watchnologintext'     => 'شما بایدن  [[Special:Userlogin|وارد بیت]] په تغییر داتن وتی لیست چارگء',
+'watchnologintext'     => 'شما بایدن  [[Special:UserLogin|وارد بیت]] په تغییر داتن وتی لیست چارگء',
 'addedwatch'           => 'په لیست چارگ هور بوت',
 'addedwatchtext'       => 'صفحه  "[[:$1]]"  په شمی [[Special:Watchlist|watchlist]] هور بیت.
 دیمگی تغییرات په ای صفحه و آیاء صفحه گپ ادان لیست بنت، و صفحه پررنگ جاه کیت ته [[Special:RecentChanges|لیست نوکیت تغییرات]] په راحتر کتن شی که آی زورگ بیت.',
@@ -1677,7 +1678,7 @@ $NEWPAGE
 لطفا بجنیت "back" و صفحه ای که چه آیء اتکگیت دگه بار کنیت او راندء دگه تلاش کنیت.',
 'protectlogpage'              => 'ورودان حفاظت',
 'protectlogtext'              => 'جهلء یک لیستی چه هست چه صفحه پچ و بند کبلان.
-بچار [[Special:Protectedpages|لیست صفحات محافظتی]]  په لیستی محافظتات اجرای هنوکین صفحه',
+بچار [[Special:ProtectedPages|لیست صفحات محافظتی]]  په لیستی محافظتات اجرای هنوکین صفحه',
 'protectedarticle'            => 'محافظتی "[[$1]]"',
 'modifiedarticleprotection'   => 'عوض بوت سطح حفاظت په "[[$1]]"',
 'unprotectedarticle'          => 'بی حمایت  "[[$1]]"',
@@ -1922,7 +1923,7 @@ $1',
 'lockdbsuccesssub'    => 'دیتابیس کبل موفق بوت',
 'unlockdbsuccesssub'  => 'کبل دیتابیس زورگ بیت',
 'lockdbsuccesstext'   => 'دیتابیس کبلنت.<br />
-بزان که  [[Special:Unlockdb|کبل بزور]] بعد چه شی که شمی تعمیر کامل بوت.',
+بزان که  [[Special:UnlockDB|کبل بزور]] بعد چه شی که شمی تعمیر کامل بوت.',
 'unlockdbsuccesstext' => 'دیتابیس پچ بوتت/',
 'lockfilenotwritable' => 'فایل کبل دیتابیس نویسگی نهنت.
 په کبل و پچ کتن دیتابیس، ای قایل لازمت گون وب سرور نوشتن بیت.',

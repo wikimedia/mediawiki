@@ -307,7 +307,7 @@ $messages = array(
 'nosuchaction'      => 'Ку ĕçе тăваймастпăр',
 'nosuchactiontext'  => 'URLта çырнă хушăва вики скрипчĕ ăнланмасть',
 'nosuchspecialpage' => 'Вăл ятлă ятарлă страница çук',
-'nospecialpagetext' => 'Эсир ыйтакан ятарлă страница çук. [[Special:Specialpages|Ятарлă страницăсен списокне]] пăхăр.',
+'nospecialpagetext' => 'Эсир ыйтакан ятарлă страница çук. [[Special:SpecialPages|Ятарлă страницăсен списокне]] пăхăр.',
 
 # General errors
 'error'                => 'Йăнăш',
@@ -680,7 +680,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'upload'             => 'Файла кĕртесси',
 'uploadbtn'          => 'Файла кĕрт',
 'uploadnologin'      => 'Эсир сайта кĕмен.',
-'uploadnologintext'  => 'Файла кĕртес умĕн сирĕн малтан [[Special:Userlogin|сайта кĕмелле]].',
+'uploadnologintext'  => 'Файла кĕртес умĕн сирĕн малтан [[Special:UserLogin|сайта кĕмелле]].',
 'uploaderror'        => 'Файла кĕртне чухне йăнăш пулчĕ',
 'uploadlog'          => 'Файлсене кĕртнин логĕ',
 'uploadlogpage'      => 'Файлсене кĕртнине кăтартакан журнал',
@@ -882,7 +882,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'mywatchlist'          => 'Ман сăнав списокĕ',
 'nowatchlist'          => 'Эсир пăхса тăракан страницăсен списокĕ пушă.',
 'watchnologin'         => 'Системăна хăвăр ята каламалла',
-'watchnologintext'     => 'Сăнав списокне улăштармашкăн сирĕн системăна [[Special:Userlogin|хăвăр ята каламалла]].',
+'watchnologintext'     => 'Сăнав списокне улăштармашкăн сирĕн системăна [[Special:UserLogin|хăвăр ята каламалла]].',
 'addedwatch'           => 'Сăнамалли шутне кĕртрĕмĕр',
 'addedwatchtext'       => '«[[:$1]]» страницăна сирĕн [[Special:Watchlist|сăнав списока]] хушрăмăр. Малашне [[Special:RecentChanges|юлашки улшăнусене кăтартакан страницăра]] унпа çыхăннă улшăнусене хылăм шрифтпа курăнĕç.
 Енчен те сирĕн ку страницăна сăнас кăмăл пĕтсен, «ан сăна» пускăч çине пусăр.',

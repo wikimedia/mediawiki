@@ -361,7 +361,7 @@ Per favore, considera parti la paje en pesos plu poca.</strong>',
 'template-protected'     => '(protejeda)',
 'template-semiprotected' => '(proteje en parte)',
 'nocreatetext'           => '{{SITENAME}} ave un restringe a la capas per crea pajes nova.
-Tu pote vade a retro e edita un paje esistente, o  [[Special:Userlogin|sinia per entra o crea un conta]].',
+Tu pote vade a retro e edita un paje esistente, o  [[Special:UserLogin|sinia per entra o crea un conta]].',
 'recreate-deleted-warn'  => "'''Avisa: Tu es recrea un paje ce ia es sutraed en la pasada.'''
 Tu debe pensa ce es bon continua edita esta paje.
 La arcivo de sutraes per esta paje es asi per conveni:",

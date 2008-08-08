@@ -621,7 +621,8 @@ n'oc'h ket evit enrollañ ho kemmoù diouzhtu eta. Gallout a rit eilañ an deste
 'protectedpagewarning'             => "<strong>KEMENN DIWALL: Stanket eo bet ar bajenn-mañ.
 N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</strong>",
 'semiprotectedpagewarning'         => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni.",
-'cascadeprotectedwarning'          => "'''Diwallit :''' Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar {{PLURAL:\$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :",
+'cascadeprotectedwarning'          => "'''Diwallit :''' Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar {{PLURAL:\$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :
+\$2",
 'titleprotectedwarning'            => "<strong>WARNING:  Gwarezet eo bet ar bajenn-mañ e doare ma n'hallo bezañ krouet nemet gant implijerien zo.</strong>",
 'templatesused'                    => 'Patromoù implijet war ar bajenn-mañ :',
 'templatesusedpreview'             => 'Patromoù implijet er rakweladenn-mañ :',
@@ -632,7 +633,7 @@ N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</
 'edittools'                        => '<!-- Diskouezet e vo an destenn kinniget amañ dindan ar sternioù kemmañ ha kargañ. -->',
 'nocreatetitle'                    => "Strishaet eo bet ar c'hrouiñ pajennoù",
 'nocreatetext'                     => 'Strishaet eo bet an tu da grouiñ pajennoù nevez war {{SITENAME}}.
-Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Special:Userlogin|en em enrollañ ha krouiñ ur gont]].',
+Gallout a rit mont war-gil ha degas kemmoù en ur bajenn zo anezhi dija, pe [[Special:UserLogin|en em enrollañ ha krouiñ ur gont]].',
 'nocreate-loggedin'                => "N'oc'h ket aotreet da grouiñ pajennoù nevez war {{SITENAME}}.",
 'permissionserrors'                => 'Fazioù Aotre',
 'permissionserrorstext'            => "N'oc'h ket aotreet d'ober kement-mañ evit {{PLURAL:$1|an abeg-mañ|an abegoù-mañ}} :",
@@ -752,7 +753,7 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
-'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:Ipblocklist|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
+'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
@@ -835,7 +836,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'mypreferences'            => 'penndibaboù',
 'prefs-edits'              => 'Niver a gemmoù :',
 'prefsnologin'             => 'Diluget',
-'prefsnologintext'         => "ret eo deoc'h bezañ [[Special:Userlogin|luget]] evit kemm ho tibaboù implijer.",
+'prefsnologintext'         => "ret eo deoc'h bezañ [[Special:UserLogin|luget]] evit kemm ho tibaboù implijer.",
 'prefsreset'               => 'Adlakaet eo bet ar penndibaboù diouzh ar stumm bet enrollet.',
 'qbsettings'               => 'Personelaat ar varrenn ostilhoù',
 'qbsettings-none'          => 'Hini ebet',
@@ -910,7 +911,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'userrights-reason'           => 'Abeg kemmañ :',
 'userrights-no-interwiki'     => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
 'userrights-nodatabase'       => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
-'userrights-nologin'          => "Ret eo deoc'h [[Special:Userlogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
+'userrights-nologin'          => "Ret eo deoc'h [[Special:UserLogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
 'userrights-notallowed'       => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
 'userrights-changeable-col'   => "Ar strolladoù a c'hallit cheñch",
 'userrights-unchangeable-col' => "Ar strolladoù n'hallit ket cheñch",
@@ -1006,12 +1007,12 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'reupload'                    => 'Eilañ adarre',
 'reuploaddesc'                => "Distreiñ d'ar furmskrid.",
 'uploadnologin'               => 'diluget',
-'uploadnologintext'           => "ret eo deoc'h bezañ [[Special:Userlogin|luget]]
+'uploadnologintext'           => "ret eo deoc'h bezañ [[Special:UserLogin|luget]]
 evit eilañ restroù war ar servijer.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
 'uploaderror'                 => 'Fazi',
 'uploadtext'                  => "Grit gant ar furmskrid a-is evit enporzhiañ skeudennoù.
-Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:Imagelist|roll ar skeudennoù eilet war ar servijer]]. Kavet e vo ar skeudennoù enporzhiet pe diverket war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] ivez.
+Evit sellet pe klask skeudennoù bet enporzhiet a-raok sellit ouzh [[Special:ImageList|roll ar skeudennoù eilet war ar servijer]]. Kavet e vo ar skeudennoù enporzhiet pe diverket war [[Special:Log/upload|marilh ar pajennoù enporzhiet]] ivez.
 
 Evit enklozañ ar skeudenn en ur pennad, lakait er pennad-se ul liamm skrivet evel-henn :
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:anv_ar_restr.jpg]]</nowiki>''' pe
@@ -1217,7 +1218,7 @@ Abaoe m'eo bet savet {{SITENAME}} ez eus bet sellet ouzh '''\$3''' {{PLURAL:\$3|
 Sed a ra e-tro '''\$5''' kemm dre bajenn ha '''\$6''' selladenn evit pep kemm.
 
 Hirder al [http://www.mediawiki.org/wiki/Manual:Job_queue lostennad labour] zo par da '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|'''1''' [[Special:Listusers|implijer]] enrollet|'''$1''' [[Special:Listusers|implijer]] enrollet}} zo; en o zouez ez eus '''$2''' (pe '''$4%''') {{PLURAL:$2|gant|gant}} gwirioù $5.",
+'userstatstext'          => "{{PLURAL:$1|'''1''' [[Special:ListUsers|implijer]] enrollet|'''$1''' [[Special:ListUsers|implijer]] enrollet}} zo; en o zouez ez eus '''$2''' (pe '''$4%''') {{PLURAL:$2|gant|gant}} gwirioù $5.",
 'statistics-mostpopular' => 'Pajennoù muiañ sellet',
 
 'disambiguations'      => 'Pajennoù digejañ',
@@ -1347,7 +1348,7 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 
 # E-mail user
 'mailnologin'     => "Chomlec'h ebet",
-'mailnologintext' => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]
+'mailnologintext' => "Ret eo deoc'h bezañ [[Special:UserLogin|luget]]
 ha bezañ merket ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù]]
 evit gallout kas ur postel d'un implijer all.",
 'emailuser'       => "Kas ur postel d'an implijer-mañ",
@@ -1375,7 +1376,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 'nowatchlist'          => "N'eus pennad ebet en ho rollad evezhiañ.",
 'watchlistanontext'    => "Ret eo deoc'h $1 evit gwelet pe kemmañ an elfennoù zo en ho rollad evezhiañ.",
 'watchnologin'         => 'Diluget',
-'watchnologintext'     => "Ret eo deoc'h bezañ [[Special:Userlogin|luget]]
+'watchnologintext'     => "Ret eo deoc'h bezañ [[Special:UserLogin|luget]]
 evit kemmañ ho roll.",
 'addedwatch'           => "Ouzhpennet d'ar roll",
 'addedwatchtext'       => 'Ouzh ho [[Special:Watchlist|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "[[:$1]]".
@@ -1492,7 +1493,7 @@ Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).",
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
 'protectlogpage'              => 'Log_gwareziñ',
-'protectlogtext'              => 'Kavit a-is ur roll pajennoù gwarezet ha diwarezet. Sellet ouzh ar [[Special:Protectedpages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.',
+'protectlogtext'              => 'Kavit a-is ur roll pajennoù gwarezet ha diwarezet. Sellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.',
 'protectedarticle'            => 'en/he deus gwarezet [[$1]]',
 'modifiedarticleprotection'   => 'Kemmañ live gwareziñ "[[$1]]"',
 'unprotectedarticle'          => 'en/he deus diwarezet [[$1]]',

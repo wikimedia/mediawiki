@@ -137,7 +137,7 @@ See [[Special:Version|version page]].',
 'nosuchspecialpage' => 'Ku hava Tluka rero rohlawuleka',
 'nospecialpagetext' => "<big>'''U kombele tluka ro hlawuleka ro ka ri nga ri kona.'''</big>
 
-Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:Specialpages|{{int:specialpages}}]].",
+Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Xihoxo',

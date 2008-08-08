@@ -266,7 +266,7 @@ $messages = array(
 'nosuchaction'      => 'Bölä bir işlem yok',
 'nosuchactiontext'  => 'URL tarafınnan tanınan işlem Viki tarafınnan kabledilmedi.',
 'nosuchspecialpage' => 'Bu adda bir maasus sayfa yok',
-'nospecialpagetext' => 'Bir maasus sayfaya girdiniz angısı bulunmêêr. Var olan hepsi maasus sayfaları yakışêr sizä görmää [[Special:Specialpages|{{int:specialpages}}]] sayfasında.',
+'nospecialpagetext' => 'Bir maasus sayfaya girdiniz angısı bulunmêêr. Var olan hepsi maasus sayfaları yakışêr sizä görmää [[Special:SpecialPages|{{int:specialpages}}]] sayfasında.',
 
 # General errors
 'error'              => 'Kusurluk',
@@ -438,7 +438,7 @@ Hem siz garantiyada bulunêrsiniz ani eklemäklerin avtorusunuz, yaki onnarı ko
 'template-protected'     => '(korumaa)',
 'template-semiprotected' => '(yarı-korunmaa)',
 'nocreatetext'           => '{{SITENAME}} eni yazılar yaratmaa yasaklandı.
-Sizä yakışêr geeri dönmää hem düzmää var olan yapraa, yaki [[Special:Userlogin|sessiya açmaa yaki esap yaratmaa]].',
+Sizä yakışêr geeri dönmää hem düzmää var olan yapraa, yaki [[Special:UserLogin|sessiya açmaa yaki esap yaratmaa]].',
 'permissionserrors'      => 'İzin yannışları',
 'recreate-deleted-warn'  => "'''Bak: Siz yarattınız o sayfayı angısı ilerdän silindi.'''
 

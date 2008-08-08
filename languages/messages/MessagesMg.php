@@ -185,7 +185,7 @@ Mitaky version $1-n'i MediaWiki",
 'nosuchactiontext'  => "
 Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
 'nosuchspecialpage' => 'Tsy misy io pejy manokana io',
-'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:Specialpages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
+'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:SpecialPages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
 
 # General errors
 'error'           => 'Tsy mety',
@@ -399,7 +399,7 @@ koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony han
 ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.</strong>',
 'protectedpagewarning'   => '<strong>FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.</strong>',
 'nocreatetitle'          => 'Voafetra ny famoronana pejy',
-'nocreatetext'           => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:Userlogin|midira na mamoròna kaonty]].",
+'nocreatetext'           => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
 
 # History pages
 'nohistory'        => 'Tsy manana tantaram-panovana io pejy io.',
@@ -448,7 +448,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 # Preferences page
 'preferences'           => 'Ny momba anao',
 'prefsnologin'          => 'Tsy tafiditra',
-'prefsnologintext'      => '[[Special:Userlogin|Midira]] aloha izay vao manova ny mombamomba anao.',
+'prefsnologintext'      => '[[Special:UserLogin|Midira]] aloha izay vao manova ny mombamomba anao.',
 'changepassword'        => 'Hanova tenimiafina',
 'skin'                  => 'Endrika',
 'skin-preview'          => 'Tsipalotra',
@@ -518,10 +518,10 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'reupload'                    => 'Alefaso indray',
 'reuploaddesc'                => "Miverena any amin'ny fisy fandefasan-drakitra.",
 'uploadnologin'               => 'Tsy niditra',
-'uploadnologintext'           => 'Mila [[Special:Userlogin|misoratra anarana]] aloha vao afaka mandefa rakitra.',
+'uploadnologintext'           => 'Mila [[Special:UserLogin|misoratra anarana]] aloha vao afaka mandefa rakitra.',
 'upload_directory_read_only'  => "Ny répertoire ($1) handraisana ny rakitra alefan'ny mpikambana dia tsy afaka anoratana.",
 'uploaderror'                 => 'Nisy tsy fetezana ny fandefasana rakitra',
-'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:Imagelist|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/upload|tantaran'asan'ny fandefasana sy famonoana rakitra]].
+'uploadtext'                  => "Ampiasao ity fisy ity handefasana rakitra. Jereo eto ny [[Special:ImageList|lisitry ny rakitra]] nalefan'ny mpikambana, na koa azonao ampiasaina ny [[Special:Log/upload|tantaran'asan'ny fandefasana sy famonoana rakitra]].
 
 Raha hanisy sary ao anaty pejy, dia mampiasà rohy toy ny iray amin'ireto
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>''', na
@@ -657,7 +657,7 @@ mampihena ny tantaran'asa miseho eto.",
 
 # E-mail user
 'mailnologin'     => 'Tsy misy adiresy handefasana ny tenimiafina',
-'mailnologintext' => "Mila [[Special:Userlogin|miditra]] ianao sady manana imailaka mandeha sy voamarina ao amin'ny [[Special:Preferences|mombamomba anao]] vao afaka mandefa imailaka amin'ny mpikambana hafa.",
+'mailnologintext' => "Mila [[Special:UserLogin|miditra]] ianao sady manana imailaka mandeha sy voamarina ao amin'ny [[Special:Preferences|mombamomba anao]] vao afaka mandefa imailaka amin'ny mpikambana hafa.",
 'emailuser'       => 'Andefaso imailaka io mpikambana io',
 'emailpage'       => 'Andefaso imailaka io mpikambana io',
 'emailpagetext'   => "
@@ -681,7 +681,7 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'watchlist'            => 'Narahiko maso',
 'nowatchlist'          => "Tsy misy n'inon'inona ao amin'ny lisitry ny pejy arahinao maso.",
 'watchnologin'         => 'Tsy tafiditra',
-'watchnologintext'     => 'Mila [[Special:Userlogin|miditra/misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
+'watchnologintext'     => 'Mila [[Special:UserLogin|miditra/misoratra anarana]] aloha ianao vao afaka manova ny lisitry ny pejy arahinao maso.',
 'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
 'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"<nowiki>\$1</nowiki>\".
 Ny fanovana hisy amin'io pejy io sy ny pejin-dresaka miaraka aminy dia hiseho ao,
@@ -764,7 +764,7 @@ nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]); satria efa nisy nanova ny pej
 Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'editcomment'                 => 'Toy izao no fanamarihana momba io fanovana io: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:Protectedpages]].',
+'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:ProtectedPages]].',
 'protectedarticle'            => 'voaaro ny pejy "[[$1]]"',
 'unprotectedarticle'          => 'voaala ny fiarovana an\'i "[[$1]]"',
 'protect-title'               => 'Fiarovana an\'i "$1"',

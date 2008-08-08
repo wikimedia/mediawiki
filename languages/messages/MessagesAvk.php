@@ -529,7 +529,8 @@ Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyaf
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.'''",
 'protectedpagewarning'      => "'''WALZERA : batu bu zo nendar. Antaf ristus favesik vaon robetar.'''",
 'semiprotectedpagewarning'  => "'''Straga :''' Batu bu tir ixatcayanu nume antaf vertokayan favesik robetar.",
-'cascadeprotectedwarning'   => "'''Obral !''' Batu bu tir elekayanu enide anton ristus favesik robetar, kire in stoyakoron rupter. {{PLURAL:$1|stoyafu bu|stoyafu bu se}}",
+'cascadeprotectedwarning'   => "'''Obral !''' Batu bu tir elekayanu enide anton ristus favesik robetar, kire in stoyakoron rupter. {{PLURAL:$1|stoyafu bu|stoyafu bu se}}
+$2",
 'titleprotectedwarning'     => '<strong>WALZERA : Batu bu zo ixatcar nume anton abic favesik vaon roredud.</strong>',
 'templatesused'             => 'Teza yo favena koe batu bu',
 'templatesusedpreview'      => 'Faven tezeem koe bata abdinedira :',
@@ -539,7 +540,7 @@ vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez c
 'hiddencategories'          => 'Batu bu tir bewafu gu {{PLURAL:$1|1 palsena loma|$1 palsena loma}}:',
 'nocreatetitle'             => 'Irutana buredura',
 'nocreatetext'              => '{{SITENAME}} va roredura va warzafu bu irutar.
-Rodimal aze va tisu bu robetal oke [[Special:Userlogin|va int rodogluyal oke ropataredul]].',
+Rodimal aze va tisu bu robetal oke [[Special:UserLogin|va int rodogluyal oke ropataredul]].',
 'nocreate-loggedin'         => 'Ko {{SITENAME}} ta redura va warzafu bu rin me zo rictal.',
 'permissionserrors'         => 'Rictajaks',
 'permissionserrorstext'     => 'Ta mana askira me zo rictal, golde {{PLURAL:$1|lazava|lazava se}}:',
@@ -717,7 +718,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'mypreferences'            => 'Jinaf lodamaceem',
 'prefs-edits'              => 'Ota va betaks :',
 'prefsnologin'             => 'Dogluyariskaf',
-'prefsnologintext'         => 'Ta da va favesiklodamaceem robetal gotil [[Special:Userlogin|dogluyarakiraf]].',
+'prefsnologintext'         => 'Ta da va favesiklodamaceem robetal gotil [[Special:UserLogin|dogluyarakiraf]].',
 'prefsreset'               => 'Les préférences ont été rétablies à partir de la version enregistrée.',
 'qbsettings'               => 'Tuweltara va xekobla',
 'qbsettings-none'          => 'Mek',
@@ -786,7 +787,7 @@ contenant tous les termes apparaissent dans les résultats).",
 'userrights-reason'           => 'Betaralazava :',
 'userrights-no-interwiki'     => 'Va favesikroka koe ari wiki me robetal.',
 'userrights-nodatabase'       => '$1 origak me krulder oke me tir lizukaf.',
-'userrights-nologin'          => 'Ta tentura va favesikroka gotil [[Special:Userlogin|dogluyan]] kan ristusikpata.',
+'userrights-nologin'          => 'Ta tentura va favesikroka gotil [[Special:UserLogin|dogluyan]] kan ristusikpata.',
 'userrights-notallowed'       => 'Rinafa pata va tentura va favesikroka me rictar.',
 'userrights-changeable-col'   => 'Yona rinon robetana lospa',
 'userrights-unchangeable-col' => 'Yona rinon merobetana lospa',
@@ -907,11 +908,11 @@ Bu koe [[Special:Watchlist|rinafi suzdasiki]] tid '''vastaakorafu'''.",
 'reupload'                    => 'Tolon kalvajá',
 'reuploaddesc'                => 'Empara va kalvajara nume dimpira',
 'uploadnologin'               => 'Dogluyariskaf',
-'uploadnologintext'           => 'Gotil [[Special:Userlogin|dogluyarakiraf]] ta kalvajara va iyeltak mo zanisiko.',
+'uploadnologintext'           => 'Gotil [[Special:UserLogin|dogluyarakiraf]] ta kalvajara va iyeltak mo zanisiko.',
 'upload_directory_read_only'  => 'Sutera ko kalvajarabonja ($1) gan web zanisiko zo pour.',
 'uploaderror'                 => 'Rokla',
 'uploadtext'                  => "Ta iyeltakkalvajara, va vlevefi tazukasiki favel.
-Ta wira va kalvajayan iyeltak oku aneyara, ko [[Special:Imagelist|vexala dem kalvajayan iyeltak]] grablel, kalvajaks is sulaks \"log\" tid koe [[Special:Log/upload|kalvajara \"log\"]].
+Ta wira va kalvajayan iyeltak oku aneyara, ko [[Special:ImageList|vexala dem kalvajayan iyeltak]] grablel, kalvajaks is sulaks \"log\" tid koe [[Special:Log/upload|kalvajara \"log\"]].
 
 Ta kobura va iyeltak, koe tazukasiki va gluyasiki favel
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1014,7 +1015,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'imagelinks'                     => 'Gluyasiki se',
 'linkstoimage'                   => 'Vlevefi {{PLURAL:$1|bugluyasiki|$1 bugluyasiki}} va bat iyeltak :',
 'nolinkstoimage'                 => 'Meku bu va bata ewava ruldar.',
-'morelinkstoimage'               => 'Rupera va [[Special:Whatlinkshere/$1|lofi skedasiki]] va bat iyeltak.',
+'morelinkstoimage'               => 'Rupera va [[Special:WhatLinksHere/$1|lofi skedasiki]] va bat iyeltak.',
 'redirectstofile'                => 'Vlevef {{PLURAL:$1|graskan iyeltak|$1 graskan iyeltak}} va bat iyeltak :',
 'duplicatesoffile'               => 'Bat {{PLURAL:$1|iyeltak tir|$1 iyeltak tid}} jontolaca ke bat iyeltak:',
 'sharedupload'                   => 'Bat iyeltak tir dof nume gan ar abdumimaks zo rofaver.',
@@ -1091,7 +1092,7 @@ Bata ota va se \"prilarabu\" is bu icde {{SITENAME}} is yupbu is graskarabu is a
 '''\$3''' bu zo rupeyed ise '''\$4''' zo betayad. Va mialuk va '''\$5''' betara fuxe bu is '''\$6''' rupera fuxe betara batcoba tadler.
 
 Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:Listusers|favesik]]|Tid '''$1''' vertokayan [[Special:Listusers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
+'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:ListUsers|favesik]]|Tid '''$1''' vertokayan [[Special:ListUsers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
 'statistics-mostpopular' => 'Tel lorupen bueem',
 
 'disambiguations'     => 'Bu dem milyoltaca yo',
@@ -1217,7 +1218,7 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir 
 
 # E-mail user
 'mailnologin'     => 'Meke mane',
-'mailnologintext' => 'Rin gotil [[Special:Userlogin|dogluyarakiraf]]
+'mailnologintext' => 'Rin gotil [[Special:UserLogin|dogluyarakiraf]]
 is bazeyes va wadafe internetmane ko rinaf [[Special:Preferences|lodamaceem]]
 ta da pu ar favesik rostaksal.',
 'emailuser'       => 'Staksara va bat favesik',
@@ -1245,7 +1246,7 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 'nowatchlist'          => 'Rinafi suzdasiki va nedoy teliz ruldar.',
 'watchlistanontext'    => 'Ta wira ik betara va ra ke rinafi suzdasiki vay $1.',
 'watchnologin'         => 'Dogluyariskaf',
-'watchnologintext'     => 'Ta betara va suzdasiki gotil [[Special:Userlogin|dogluyarakiraf]].',
+'watchnologintext'     => 'Ta betara va suzdasiki gotil [[Special:UserLogin|dogluyarakiraf]].',
 'addedwatch'           => 'Loplekuyun ko suzdasiki',
 'addedwatchtext'       => "« $1 » bu ko rinafi [[Special:Watchlist|Suzdasiki]] fu zo loplekur.
 Va moniyaf betareem va batu bu is dofu prilarabu batlize zo bonjatad, ise ta lokaliafa tcalutera telu '''ton bold''' koe bu dem [[Special:RecentChanges|noeltaf betakseem]] turowinaweter.
@@ -1359,7 +1360,7 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
 'protectlogpage'              => 'Izvot va nendareem',
-'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:Protectedpages|nendan bueem]] wil.',
+'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:ProtectedPages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',
 'modifiedarticleprotection'   => 'betayana nendareka va "[[$1]]"',
 'unprotectedarticle'          => 'va « $1 » al dimnendar',

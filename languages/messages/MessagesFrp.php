@@ -339,7 +339,7 @@ $messages = array(
 'nosuchspecialpage' => 'Pâge spèciâla pas ègzistenta',
 'nospecialpagetext' => "<big>'''Vos éd demandâ una pâge spèciâla qu’est pas recognua per lo vouiqui.'''</big>
 
-Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:Specialpages]].",
+Una lista de les pâges spèciâles pôt étre trovâ dessus [[Special:SpecialPages]].",
 
 # General errors
 'error'                => 'Èrror',
@@ -628,7 +628,8 @@ vos porréd vêr pas sôvar voutres modificacions d’abôrd. Vos pouede copiyé
 'protectedpagewarning'      => '<strong>ATENCION : ceta pâge est protègiê.
 Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.</strong>',
 'semiprotectedpagewarning'  => "'''Nota :''' ceta pâge at étâ protègiê de façon que solèts los contributors enregistrâs pouessont la modifiar.",
-'cascadeprotectedwarning'   => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solèts los administrators pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.",
+'cascadeprotectedwarning'   => "'''ATENCION :''' ceta pâge at étâ protègiê por cen que solèts los administrators pouessont l’èditar. Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|una pâge protègiê|des pâges protègiês}} avouéc la « protèccion en cascâda » activâ.
+$2",
 'titleprotectedwarning'     => '<strong>ATENCION : ceta pâge at étâ protègiê de façon que solèts cèrtins utilisators pouessont la crèar.</strong>',
 'templatesused'             => 'Modèlos utilisâs sur ceta pâge :',
 'templatesusedpreview'      => 'Modèlos utilisâs dens ceta prèvisualisacion :',
@@ -639,7 +640,7 @@ Solèts los utilisators èyent lo statut d’administrator pôvont la modifiar.<
 'edittools'                 => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
 'nocreatetitle'             => 'Crèacion de pâge limitâ',
 'nocreatetext'              => '{{SITENAME}} at rètrent la possibilitât de crèar de novèles pâges.
-Vos pouede tornar arriér et pués modifiar una pâge ègzistenta, ou ben vos [[Special:Userlogin|conèctar ou crèar un compto]].',
+Vos pouede tornar arriér et pués modifiar una pâge ègzistenta, ou ben vos [[Special:UserLogin|conèctar ou crèar un compto]].',
 'nocreate-loggedin'         => 'Vos avéd pas la pèrmission de crèar de novèles pâges dessus {{SITENAME}}.',
 'permissionserrors'         => 'Èrror de pèrmissions',
 'permissionserrorstext'     => 'Vos avéd pas la pèrmission de fâre l’opèracion demandâ por {{PLURAL:$1|la rêson siuventa|les rêsons siuventes}} :',
@@ -796,7 +797,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'mypreferences'            => 'Prèferences',
 'prefs-edits'              => 'Nombro d’èdicions :',
 'prefsnologin'             => 'Pas conèctâ',
-'prefsnologintext'         => 'Vos dête étre [[Special:Userlogin|conèctâ]] por modifiar voutres prèferences d’utilisator.',
+'prefsnologintext'         => 'Vos dête étre [[Special:UserLogin|conèctâ]] por modifiar voutres prèferences d’utilisator.',
 'prefsreset'               => 'Les prèferences ont étâ rètablies dês la vèrsion enregistrâ.',
 'qbsettings'               => 'Bârra d’outils',
 'qbsettings-none'          => 'Niona',
@@ -865,7 +866,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'userrights-reason'        => 'Rêson du changement :',
 'userrights-no-interwiki'  => 'Vos avéd pas la pèrmission de modifiar los drêts des utilisators dessus d’ôtros vouiquis.',
 'userrights-nodatabase'    => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas una bâsa de balyês locala.',
-'userrights-nologin'       => 'Vos dête vos [[Special:Userlogin|conèctar]] avouéc un compto administrator por balyér los drêts d’utilisator.',
+'userrights-nologin'       => 'Vos dête vos [[Special:UserLogin|conèctar]] avouéc un compto administrator por balyér los drêts d’utilisator.',
 'userrights-notallowed'    => 'Voutron compto at pas la pèrmission de balyér des drêts d’utilisator.',
 
 # Groups
@@ -931,10 +932,10 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'reupload'                    => 'Relevar',
 'reuploaddesc'                => 'Retôrn u formulèro.',
 'uploadnologin'               => 'Pas conèctâ',
-'uploadnologintext'           => 'Vos dête étre [[Special:Userlogin|conèctâ]] por copiyér des fichiérs sur lo sèrvior.',
+'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|conèctâ]] por copiyér des fichiérs sur lo sèrvior.',
 'upload_directory_read_only'  => 'Lo sèrvior Vouèbe pôt pas ècrire dens lo dossiér ciba ($1).',
 'uploaderror'                 => 'Èrror',
-'uploadtext'                  => "Utilisâd ceti formulèro por copiyér des fichiérs, por vêre ou rechèrchiér des émâges prècèdament copiyês consultâd la [[Special:Imagelist|lista de fichiérs copiyês]], les copies et suprèssions sont asse-ben enregistrâs dens lo [[Special:Log/upload|jornal de les copies]].
+'uploadtext'                  => "Utilisâd ceti formulèro por copiyér des fichiérs, por vêre ou rechèrchiér des émâges prècèdament copiyês consultâd la [[Special:ImageList|lista de fichiérs copiyês]], les copies et suprèssions sont asse-ben enregistrâs dens lo [[Special:Log/upload|jornal de les copies]].
 
 Por encllure una émâge dens una pâge, utilisâd un lim de la fôrma :
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fichiér.jpg]]</nowiki>'''
@@ -1133,7 +1134,7 @@ S’on èxcllut celes pâges, réste {{PLURAL:$2|'''1''' pâge qu’est probâbl
 Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modificacions}} per pâge et de {{PLURAL:$6|'''1''' consulta|'''$6''' consultes}} por una modificacion.</p>
 
 <p>Y at ora {{PLURAL:$7|'''1''' ovrâjo|'''$7''' ovrâjos}} dens la [http://www.mediawiki.org/wiki/Manual:Job_queue fela d’atenta des travâlys].</p>",
-'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:Listusers|utilisator enregistrâ]]|'''$1''' [[Special:Listusers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5.",
+'userstatstext'          => "Y at {{PLURAL:$1|'''1''' [[Special:ListUsers|utilisator enregistrâ]]|'''$1''' [[Special:ListUsers|utilisators enregistrâs]]}}. Permié cetos, '''$2''' (ou ben '''$4%''') {{PLURAL:$2|est|sont}} $5.",
 'statistics-mostpopular' => 'Pâges les ples consultâs',
 
 'disambiguations'      => 'Pâges d’homonimia',
@@ -1250,7 +1251,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 
 # E-mail user
 'mailnologin'     => 'Pas d’adrèce',
-'mailnologintext' => 'Vos dête étre [[Special:Userlogin|conèctâ]]
+'mailnologintext' => 'Vos dête étre [[Special:UserLogin|conèctâ]]
 et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]]
 por avêr la pèrmission d’emmandar un mèssâjo a un ôtro utilisator.',
 'emailuser'       => 'Emmandar un mèssâjo a ceti utilisator',
@@ -1280,7 +1281,7 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres prèferences aparètr
 'nowatchlist'          => 'Voutra lista de siuvu contint gins d’articllo.',
 'watchlistanontext'    => 'Por povêr afichiér ou èditar los èlèments de voutra lista de siuvu, vos dête vos $1.',
 'watchnologin'         => 'Pas conèctâ',
-'watchnologintext'     => 'Vos dête étre [[Special:Userlogin|conèctâ]] por modifiar voutra lista de siuvu.',
+'watchnologintext'     => 'Vos dête étre [[Special:UserLogin|conèctâ]] por modifiar voutra lista de siuvu.',
 'addedwatch'           => 'Apondua a la lista de siuvu',
 'addedwatchtext'       => "La pâge « [[:$1]] » at étâ apondua a voutra [[Special:Watchlist|lista de siuvu]].
 
@@ -1394,7 +1395,7 @@ La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Dis
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.
 Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd, et pués tornâd èprovar.',
 'protectlogpage'              => 'Historico de les protèccions',
-'protectlogtext'              => 'Vêde les [[Special:Protectedpages|dirèctives]] por més d’enformacion.',
+'protectlogtext'              => 'Vêde les [[Special:ProtectedPages|dirèctives]] por més d’enformacion.',
 'protectedarticle'            => 'at protègiê « [[$1]] »',
 'modifiedarticleprotection'   => 'at modifiâ lo nivô de protèccion de « [[$1]] »',
 'unprotectedarticle'          => 'at dèprotègiê « [[$1]] »',
@@ -1617,7 +1618,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 'lockdbsuccesssub'    => 'Vèrrolyâjo de la bâsa reussi.',
 'unlockdbsuccesssub'  => 'Bâsa dèvèrrolyê.',
 'lockdbsuccesstext'   => 'La bâsa de balyês de {{SITENAME}} est vèrrolyê.
-<br />Oubliâd pas de [[Special:Unlockdb|la dèvèrrolyér]] quand vos aréd chavonâ voutra opèracion de mantegnence.',
+<br />Oubliâd pas de [[Special:UnlockDB|la dèvèrrolyér]] quand vos aréd chavonâ voutra opèracion de mantegnence.',
 'unlockdbsuccesstext' => 'La bâsa de balyês de {{SITENAME}} est dèvèrrolyê.',
 'lockfilenotwritable' => 'Lo fichiér de blocâjo de la bâsa de balyês est pas enscriptiblo. Por blocar ou dèblocar la bâsa de balyês, vos dête povêr ècrire sur lo sèrvior Vouèbe.',
 'databasenotlocked'   => 'La bâsa de balyês est pas vèrrolyê.',

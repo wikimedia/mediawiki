@@ -9,9 +9,9 @@
  * @author PuzzletChung
  * @author Albamhandae
  * @author ITurtle
- * @author TheAlpha for knowledge
  * @author Ficell
  * @author Kwj2772
+ * @author TheAlpha for knowledge
  * @author לערי ריינהארט
  * @author Pi.C.Noizecehx
  */
@@ -329,7 +329,7 @@ $messages = array(
 'nosuchspecialpage' => '해당하는 특수기능이 없습니다.',
 'nospecialpagetext' => "<big>'''요청한 특수 문서가 존재하지 않습니다.'''</big>
 
-특수 문서의 목록은 [[Special:Specialpages|여기]]에서 볼 수 있습니다.",
+특수 문서의 목록은 [[Special:SpecialPages|여기]]에서 볼 수 있습니다.",
 
 # General errors
 'error'                => '오류',
@@ -592,7 +592,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'readonlywarning'                  => "'''주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다. 편집 내용을 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''",
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
-'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
+'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:
+$2",
 'titleprotectedwarning'            => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'                    => '이 문서에서 사용한 틀:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 틀:',
@@ -602,7 +603,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'hiddencategories'                 => '이 문서는 아래의 $1개의 숨겨진 분류에 속해 있습니다.',
 'edittools'                        => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'                    => '문서 생성 제한',
-'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:Userlogin|로그인하거나 계정을 만들 수 있습니다]].',
+'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
 'nocreate-loggedin'                => '{{SITENAME}}에서 새 문서를 만들 권한이 없습니다.',
 'permissionserrors'                => '권한 오류',
 'permissionserrorstext'            => '{{PLURAL:$1|}}해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
@@ -703,7 +704,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'mypreferences'            => '사용자 환경 설정',
 'prefs-edits'              => '편집 횟수:',
 'prefsnologin'             => '로그인하지 않음',
-'prefsnologintext'         => '사용자 환경 설정을 바꾸려면 먼저 [[Special:Userlogin|로그인]]해야 합니다.',
+'prefsnologintext'         => '사용자 환경 설정을 바꾸려면 먼저 [[Special:UserLogin|로그인]]해야 합니다.',
 'prefsreset'               => '사용자 환경 설정을 기본값으로 되돌렸습니다.',
 'qbsettings'               => '빨리가기 맞춤',
 'qbsettings-none'          => '없음',
@@ -775,7 +776,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 * <nowiki>*</nowiki>표시는 권한을 주거나 거두는 것 중 하나만 할 수 있다는 뜻입니다.',
 'userrights-reason'           => '바꾸는 이유:',
 'userrights-no-interwiki'     => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
-'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:Userlogin|로그인]]해야 합니다.',
+'userrights-nologin'          => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
 'userrights-notallowed'       => '다른 사용자의 권한을 조정할 권한이 없습니다.',
 'userrights-changeable-col'   => '바꿀 수 있는 권한',
 'userrights-unchangeable-col' => '바꿀 수 없는 권한',
@@ -862,11 +863,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'reupload'                    => '다시 올리기',
 'reuploaddesc'                => '올리기를 취소하고 올리기 양식으로 돌아가기',
 'uploadnologin'               => '로그인하지 않음',
-'uploadnologintext'           => '파일을 올리려면 [[Special:Userlogin|로그인]]해야 합니다.',
+'uploadnologintext'           => '파일을 올리려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'upload_directory_read_only'  => '파일 저장 디렉토리($1)에 쓰기 권한이 없습니다.',
 'uploaderror'                 => '올리기 오류',
 'uploadtext'                  => "파일을 올리기 위해서는 아래의 양식을 채워주세요.
-[[Special:Imagelist|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다.
+[[Special:ImageList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다.
 [[Special:Log/upload|올리기 기록]]에도 파일이 올라오거나 지워진 기록이 남습니다.
 
 문서에 그림을 넣으려면
@@ -1044,7 +1045,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 위키가 설치된 후 문서는 전체 '''\$3'''번 읽혔고, '''\$4'''번 편집되었습니다. 문서당 평균 편집 횟수는 '''\$5'''번이고, 한번 편집할 때마다 평균 '''\$6'''번 문서를 보았습니다.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]의 길이는 '''\$7'''입니다.",
-'userstatstext'          => "'''$1'''명의 [[Special:Listusers|사용자]]가 등록되어 있고, 이 중 $5 권한을 가진 사용자 수는 '''$2'''명('''$4%''')입니다.",
+'userstatstext'          => "'''$1'''명의 [[Special:ListUsers|사용자]]가 등록되어 있고, 이 중 $5 권한을 가진 사용자 수는 '''$2'''명('''$4%''')입니다.",
 'statistics-mostpopular' => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
@@ -1164,7 +1165,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # E-mail user
 'mailnologin'     => '보낼 이메일 주소가 없음',
-'mailnologintext' => '다른 사용자에게 이메일을 보내려면, [[Special:Userlogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
+'mailnologintext' => '다른 사용자에게 이메일을 보내려면, [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
 'emailuser'       => '이메일 보내기',
 'emailpage'       => '사용자에게 이메일 보내기',
 'emailpagetext'   => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다. 이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해, 당신의 이메일 주소가 ‘발신자’ 정보에 들어갑니다.',
@@ -1189,7 +1190,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nowatchlist'          => '주시하는 문서가 아직 없습니다.',
 'watchlistanontext'    => '주시문서 목록의 항목들을 보거나 편집하려면 $1을(를) 보세요.',
 'watchnologin'         => '로그인하지 않음',
-'watchnologintext'     => '[[Special:Userlogin|로그인]]을 해야만 주시문서 목록을 볼 수 있습니다.',
+'watchnologintext'     => '[[Special:UserLogin|로그인]]을 해야만 주시문서 목록을 볼 수 있습니다.',
 'addedwatch'           => '주시문서 목록에 추가',
 'addedwatchtext'       => "‘[[:$1]]’ 문서가 주시문서 목록에 추가되었습니다. 앞으로 이 문서나 토론 문서가 변경되면 [[Special:RecentChanges|최근 바뀜]]에서 변경점들이 '''굵은 글씨'''로 나타날 것입니다. 더 이상 주시하지 않으려면 ‘주시 해제’를 누르면 됩니다.",
 'removedwatch'         => '주시문서 목록에서 제거',
@@ -1482,7 +1483,7 @@ $1',
 'lockdbsuccesssub'    => '데이터베이스 잠김',
 'unlockdbsuccesssub'  => '데이터베이스 잠금 해제됨',
 'lockdbsuccesstext'   => '데이터베이스가 잠겼습니다.<br />
-관리가 끝나면 잊지 말고 [[Special:Unlockdb|잠금을 풀어]] 주세요.',
+관리가 끝나면 잊지 말고 [[Special:UnlockDB|잠금을 풀어]] 주세요.',
 'unlockdbsuccesstext' => '데이터베이스 잠금 상태가 해제되었습니다.',
 'lockfilenotwritable' => '데이터베이스 잠금 파일에 쓰기 권한이 없습니다. 데이터베이스를 잠그거나 잠금 해제하려면, 웹 서버에서 이 파일의 쓰기 권한을 설정해야 합니다.',
 'databasenotlocked'   => '데이터베이스가 잠겨 있지 않습니다.',

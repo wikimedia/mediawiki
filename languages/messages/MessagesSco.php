@@ -273,7 +273,7 @@ $messages = array(
 'nosuchspecialpage' => 'Nae sic byordinar page',
 'nospecialpagetext' => "<big>'''Ye hae requestit an invalid byordinar page.'''</big>
 
-A leet o valid byordinar pages can be funnd at [[Special:Specialpages|{{int:specialpages}}]].",
+A leet o valid byordinar pages can be funnd at [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
@@ -557,7 +557,8 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'readonlywarning'           => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
 'protectedpagewarning'      => '<strong>WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.</strong>',
 'semiprotectedpagewarning'  => "'''Warnin:''' This page haes been lockit sae that only registerit uisers can edit it.",
-'cascadeprotectedwarning'   => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:",
+'cascadeprotectedwarning'   => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:
+$2",
 'templatesused'             => 'Templates uised on this page:',
 'templatesusedpreview'      => 'Templates uised in this scance ower:',
 'templatesusedsection'      => 'Templates uised in this section:',
@@ -565,7 +566,7 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'template-semiprotected'    => '(semi-protectit)',
 'nocreatetitle'             => 'Page makkin limitit',
 'nocreatetext'              => 'This site haes restrictit the ability to mak new pages.
-Ye can go back an eik tae an existing page, or [[Special:Userlogin|log in or mak an accoont]].',
+Ye can go back an eik tae an existing page, or [[Special:UserLogin|log in or mak an accoont]].',
 'nocreate-loggedin'         => 'Ye dinnae hae the richts tae mak new pages on this wiki.',
 'permissionserrors'         => 'Richts Errors',
 'permissionserrorstext'     => 'Ye dinnae hae the richts tae dae that, acause o the followin {{PLURAL:$1|grund|grunds}}:',
@@ -658,7 +659,7 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 # Preferences page
 'mypreferences'      => 'Ma preferences',
 'prefsnologin'       => 'No loggit in',
-'prefsnologintext'   => 'Ye maun be [[Special:Userlogin|loggit in]] tae set uiser preferences.',
+'prefsnologintext'   => 'Ye maun be [[Special:UserLogin|loggit in]] tae set uiser preferences.',
 'prefsreset'         => 'Preferences haes been reset frae storage.',
 'changepassword'     => 'Chynge password',
 'skin-preview'       => 'First Leuk',
@@ -714,10 +715,10 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'reupload'                    => 'Re-uplaid',
 'reuploaddesc'                => 'Gang back tae the uplaid form.',
 'uploadnologin'               => 'Nae loggit in',
-'uploadnologintext'           => 'Ye maun be [[Special:Userlogin|loggit in]] til uplaid files.',
+'uploadnologintext'           => 'Ye maun be [[Special:UserLogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
 'uploadtext'                  => "Uise the form ablo tae uplaid new files;
-tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:Imagelist|leet o uplaidit files]];
+tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:ImageList|leet o uplaidit files]];
 uplaids an deletions is recordit in the [[Special:Log|project log]].
 
 Tae pit the eimage intae a page, uise an airtin i the form
@@ -784,7 +785,7 @@ syne {{SITENAME}} wis set up.
 That comes tae '''\$5''' average edits per page, and '''\$6''' views per edit.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:Listusers|uiser]]|The'r '''$1''' registert [[Special:Listusers|uisers]]}}.
+'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:ListUsers|uiser]]|The'r '''$1''' registert [[Special:ListUsers|uisers]]}}.
 '''$2''' (or '''$4%''') o thaim {{PLURAL:$2|has|have}} $5 rights.",
 
 'doubleredirects'     => 'Dooble reguidals',
@@ -852,7 +853,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 
 # E-mail user
 'mailnologin'     => 'Nae send address',
-'mailnologintext' => 'Ye maun be [[Special:Userlogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
+'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
 'noemailtitle'    => 'Nae e-mail address',
 'noemailtext'     => "This uiser haesna specifee'd a valid e-mail address, or haes chuisen no tae receive e-mail frae ither uisers.",
 
@@ -861,7 +862,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'mywatchlist'          => 'Ma watchleet',
 'nowatchlist'          => 'Ye hivna onie eitems on yer watchleet.',
 'watchnologin'         => 'Nae loggit in',
-'watchnologintext'     => 'Ye maun be [[Special:Userlogin|loggit in]] tae modify yer watchleet.',
+'watchnologintext'     => 'Ye maun be [[Special:UserLogin|loggit in]] tae modify yer watchleet.',
 'addedwatch'           => 'Eikit ti watchleet',
 'addedwatchtext'       => "The page \"<nowiki>\$1</nowiki>\" haes been eikit ti yer [[Special:Watchlist|watchleet]]. Futur chynges ti this page an its associate Collogue page will be leetit thare, an the page will kythe '''bauldit''' in the [[Special:RecentChanges|leet o recent chynges]] ti mak it mair eith tae pick oot. <p>Gin ye want ti remuve the page frae yer watchleet later, dab \"Stop watching\" in the sidebar.",
 'removedwatch'         => 'Remuved frae watchleet',
@@ -903,7 +904,7 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'alreadyrolled'       => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'         => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'          => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:Protectedpages|protected pages list]] for the list of currently operational page protections.',
+'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'    => 'protectit "[[$1]]"',
 'unprotectedarticle'  => 'unprotectit "[[$1]]"',
 'protect-title'       => 'Protectin "$1"',

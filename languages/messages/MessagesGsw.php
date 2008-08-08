@@ -422,7 +422,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 # Preferences page
 'preferences'        => 'Iistellige',
 'prefsnologin'       => 'Nid aagmäldet',
-'prefsnologintext'   => 'Du muesch [[Special:Userlogin|aagmäldet]] sy, für Benutzerystellige chönne z ändere',
+'prefsnologintext'   => 'Du muesch [[Special:UserLogin|aagmäldet]] sy, für Benutzerystellige chönne z ändere',
 'prefsreset'         => 'Du hesch itz wider Standardystellige',
 'changepassword'     => 'Passwort ändere',
 'skin-preview'       => 'Vorschou',
@@ -490,8 +490,8 @@ Erklärig: (aktuell) = Underschid zu jetz,
 # Upload
 'upload'            => 'Datei uffelade',
 'uploadbtn'         => 'Bild lokal ufelade',
-'uploadnologintext' => 'Sie müssen [[Special:Userlogin|angemeldet sein]], um Dateien hochladen zu können.',
-'uploadtext'        => "Bruuche Si sell Formular unte go Dateie uffelade. Zuem aaluege odr fruener uffegladeni Bilder go sueche lueg uff de [[Special:Imagelist|Lischte vo uffegladene Dateie]], Uffeladige un Löschige sin au protokolliert uff [[Special:Log/upload|Uffeladige Protokoll]].
+'uploadnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
+'uploadtext'        => "Bruuche Si sell Formular unte go Dateie uffelade. Zuem aaluege odr fruener uffegladeni Bilder go sueche lueg uff de [[Special:ImageList|Lischte vo uffegladene Dateie]], Uffeladige un Löschige sin au protokolliert uff [[Special:Log/upload|Uffeladige Protokoll]].
 
 Go e Datei odr en Bild innere Syte iizbaue schriibe Si eifach ane:
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>'''
@@ -593,7 +593,7 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 
 # E-mail user
 'mailnologin'     => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',
-'mailnologintext' => 'Du muesch [[Special:Userlogin|aagmäldet sy]] und e bestätigeti e-Mail-Adrässen i dynen [[Special:Preferences|Ystelligen]] aaggä ha, für das du öpper anderem es e-Mail chasch schicke.',
+'mailnologintext' => 'Du muesch [[Special:UserLogin|aagmäldet sy]] und e bestätigeti e-Mail-Adrässen i dynen [[Special:Preferences|Ystelligen]] aaggä ha, für das du öpper anderem es e-Mail chasch schicke.',
 'emailuser'       => 'Es Mail schrybe',
 'emailpage'       => 'e-Mail ane BenutzerIn',
 'emailpagetext'   => 'Öpperem, wo sälber e bestätigeti e-Mail-Adrässe het aaggä, chasch du mit däm Formular es Mail schicke. Im Absänder steit dyni eigeti e-Mail-Adrässe, so das me dir cha antworte.',
@@ -612,7 +612,7 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'watchlist'         => 'Beobachtigslischte',
 'mywatchlist'       => 'Beobachtigslischte',
 'nowatchlist'       => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
-'watchnologintext'  => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
+'watchnologintext'  => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
 'addedwatch'        => 'zue de Beobachtigslischte drzue do',
 'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
@@ -663,7 +663,7 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:Protectedpages|Geschützte Seiten]] für mehr Informationen.',
+'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
 'protectcomment'    => 'Grund der Sperrung',
 
 # Undelete

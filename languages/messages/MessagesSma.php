@@ -294,7 +294,7 @@ Joekedidh värrhtoedimmie sïjse unnebe sektiovneh.</strong>',
 'template-protected'     => '(vaarjeleme)',
 'template-semiprotected' => '(lehkie-vaarjelidh)',
 'nocreatetext'           => '{{SITENAME}} åtna gaertjiedidh nuepieh ahte skaepede orre bielieh.
-Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge sïjse jallh skaepede nuhtjien]].',
+Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge sïjse jallh skaepede nuhtjien]].',
 
 # History pages
 'viewpagelogs'        => 'Vuesehte loggeh ihke dïhte bielie',
@@ -458,7 +458,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'statistics'    => 'Statistiike',
 'sitestats'     => '{{SITENAME}} statistiike',
 'userstats'     => 'Nuhtjien statistiike',
-'userstatstext' => "Dïhte {{PLURAL:$1|lea '''1''' registreered [[Special:Listusers|nuhtjien]]|lea '''$1''' registreered [[Special:Listusers|nuhtjienh]]}},  jih
+'userstatstext' => "Dïhte {{PLURAL:$1|lea '''1''' registreered [[Special:ListUsers|nuhtjien]]|lea '''$1''' registreered [[Special:ListUsers|nuhtjienh]]}},  jih
 '''$2''' (jallh '''$4%''') {{PLURAL:$2|åtna|åtnah}} $5 reahkta.",
 
 'disambiguations' => 'Disambirgusjovne bielieh',

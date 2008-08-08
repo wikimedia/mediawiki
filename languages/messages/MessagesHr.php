@@ -419,7 +419,7 @@ nepostojeću naredbu',
 'nosuchspecialpage' => 'Posebna stranica ne postoji',
 'nospecialpagetext' => "<big>'''Takva posebna stranica ne postoji.'''</big>
 
-Za popis svih posebnih stranica posjetite [[Special:Specialpages|ovdje]].",
+Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].",
 
 # General errors
 'error'                => 'Pogreška',
@@ -699,7 +699,7 @@ Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se odjaviti i 
 
 ''Budući da je na ovom wikiju ({{SITENAME}}) omogućen unos HTML oznaka (tagova), pretpregled je skriven kao mjera predstrožnosti protiv napada pomoću JavaScripta.''
 
-<strong>Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:Userlogout|odjavite se]] i prijavite se ponovo.</strong>",
+<strong>Ukoliko ste pokušali vidjeti kako stranica izgleda, molimo probajte opet. Ako ne uspije, [[Special:UserLogout|odjavite se]] i prijavite se ponovo.</strong>",
 'token_suffix_mismatch'            => '<strong>Vaše uređivanje je odbačeno jer je vaš web preglednik ubacio znak/znakove interpunkcije u token uređivanja.
 Stoga je uređivanje odbačeno da se spriječi uništavanje stranice.
 To se događa ponekad kad rabite neispravan web-baziran anonimni proxy.</strong>',
@@ -727,7 +727,8 @@ Molimo razmislite o rastavljanju stranice na manje odjeljke.',
 promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.</strong>',
 'protectedpagewarning'             => '<strong>UPOZORENJE: ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima.</strong>',
 'semiprotectedpagewarning'         => "'''Napomena:''' Ovu stranicu mogu uređivati samo prijavljeni suradnici.",
-'cascadeprotectedwarning'          => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:",
+'cascadeprotectedwarning'          => "'''UPOZORENJE:''' Ova stranica je zaključana i mogu je uređivati samo suradnici s administratorskim pravima, jer je uključena u {{PLURAL:\$1|slijedeću stranicu|slijedeće stranice}} koje su zaštićene \"prenosivom\" zaštitom:
+\$2",
 'titleprotectedwarning'            => '<strong>UPOZORENJE:  Ova stranica je zaključana i samo je neki suradnici mogu stvoriti.</strong>',
 'templatesused'                    => 'Predlošci korišteni na ovoj stranici:',
 'templatesusedpreview'             => 'Predlošci koji se koriste u ovom predpregledu:',
@@ -737,7 +738,7 @@ promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je 
 'hiddencategories'                 => 'Ova stranica je član {{PLURAL:$1|1 skrivene kategorija|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
 'nocreatetitle'                    => 'Otvaranje novih stranica ograničeno',
 'nocreatetext'                     => 'Na ovom je projektu ograničeno otvaranje novih stranica.
-Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlogin|prijaviti ili otvoriti suradnički račun]].',
+Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti suradnički račun]].',
 'nocreate-loggedin'                => 'Nemate ovlasti za stvaranje novih stranica na {{SITENAME}}.',
 'permissionserrors'                => 'Pogreška u pravima',
 'permissionserrorstext'            => 'Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:',
@@ -856,7 +857,7 @@ postavili dodatna ograničenja.',
 # Suppression log
 'suppressionlog'     => 'Evidencije sakrivanja',
 'suppressionlogtext' => 'Slijedi popis brisanja i blokiranja koji uključuje sadržaj skriven za administratore.<br />
-Vidi [[Special:Ipblocklist|Popis blokiranih IP adresa]] za popis trenutačno aktivnih blokiranih adresa.',
+Vidi [[Special:IPBlockList|Popis blokiranih IP adresa]] za popis trenutačno aktivnih blokiranih adresa.',
 
 # History merging
 'mergehistory'                     => 'Spoji povijesti starih izmjena stranice',
@@ -899,7 +900,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'searchresults'             => 'Rezultati pretrage',
 'searchresults-title'       => 'Rezultati traženja za $1',
 'searchresulttext'          => 'Za više obavijesti o pretraživanju projekta {{SITENAME}} vidi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]] | [[Special:Whatlinkshere/$1|sve stranice koje povezuju na "$1"]])',
+'searchsubtitle'            => 'Tražili ste \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|sve stranice koje počinju sa "$1"]] | [[Special:WhatLinksHere/$1|sve stranice koje povezuju na "$1"]])',
 'searchsubtitleinvalid'     => 'Za upit "$1"',
 'noexactmatch'              => "'''Ne postoji stranica naziva \"\$1\".''' Možete [[:\$1|kreirati tu stranicu]].",
 'noexactmatch-nocreate'     => "'''Nema stranice s imenom: \"\$1\".'''",
@@ -942,7 +943,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'mypreferences'            => 'Moje postavke',
 'prefs-edits'              => 'Broj vaših uređivanja:',
 'prefsnologin'             => 'Niste prijavljeni',
-'prefsnologintext'         => 'Morate biti [[Special:Userlogin|prijavljeni]]
+'prefsnologintext'         => 'Morate biti [[Special:UserLogin|prijavljeni]]
 za podešavanje suradničkih postavki.',
 'prefsreset'               => 'Postavke su vraćene na prvotne vrijednosti.',
 'qbsettings'               => 'Traka',
@@ -1018,7 +1019,7 @@ za podešavanje suradničkih postavki.',
 'userrights-reason'           => 'Razlog za promjenu:',
 'userrights-no-interwiki'     => 'Nemate prava da uređujete prava suradnika na drugim wikijima.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
-'userrights-nologin'          => 'Trebate se [[Special:Userlogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
+'userrights-nologin'          => 'Trebate se [[Special:UserLogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
 'userrights-notallowed'       => 'Vaš trenutačni suradnički račun nema ovlasti mijenjanja suradničkih prava.',
 'userrights-changeable-col'   => 'Grupe koje možete promjeniti',
 'userrights-unchangeable-col' => 'Grupe koje nemožete promjeniti',
@@ -1146,12 +1147,12 @@ za podešavanje suradničkih postavki.',
 'reupload'                    => 'Ponovno postavi',
 'reuploaddesc'                => 'Vratite se u obrazac za postavljanje.',
 'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:Userlogin|prijavljeni]].',
+'uploadnologintext'           => 'Za postavljanje datoteka morate biti  [[Special:UserLogin|prijavljeni]].',
 'upload_directory_missing'    => 'Mapa za datoteke ($1) nedostaje i webserver ju ne može napraviti.',
 'upload_directory_read_only'  => 'Server ne može pisati u direktorij za postavljanje ($1).',
 'uploaderror'                 => 'Pogreška kod postavljanja',
 'uploadtext'                  => "Ovaj obrazac služi za postavljanje slika. Za pregledavanje i pretraživanje već postavljenih slika
-vidi [[Special:Imagelist|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
+vidi [[Special:ImageList|popis postavljenih datoteka]]. Postavljanja i brisanja bilježe se i u [[Special:Log|evidenciji]].
 
 Stavljanjem oznake u odgovarajući kvadratić morate potvrditi da postavljanjem slike ne kršite ničija autorska prava.
 Na kraju pritisnite dugme \"Postavi datoteku\".
@@ -1267,7 +1268,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'imagelinks'                     => 'Poveznice slike',
 'linkstoimage'                   => '{{PLURAL:$1|Sljedeća stranica povezuje|$1 Sljedeće stranice povezuju}} na ovu datoteku:',
 'nolinkstoimage'                 => 'Nijedna stranica ne povezuje na ovu sliku.',
-'morelinkstoimage'               => 'Pogledaj [[Special:Whatlinkshere/$1|više poveznica]] za ovu datoteku.',
+'morelinkstoimage'               => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'                => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
 'duplicatesoffile'               => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 Sljedeće datoteke su kopije}} ove datoteke:',
 'sharedupload'                   => 'Ova je datoteka postavljena na zajedničkom poslužitelju i mogu je koristiti ostali wikiji',
@@ -1354,7 +1355,7 @@ Ukupno je '''$3''' pregleda stranica, i '''$4''' uređivanja članaka od pokreta
 U prosjeku to iznosi '''$5''' uređivanja po stranici, i '''$6''' pregleda po uređivanju.
 
 Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje] je '''$7'''.",
-'userstatstext'          => "Broj prijavljenih [[Special:Listusers|suradnika]] je '''$1'''. Od toga {{PLURAL:$2|je '''$2''' (ili '''$4%''') administrator|su '''$2''' (ili '''$4%''') administratora|su '''$2''' (ili '''$4%''') administratori}}, tj. imaju $5 prava.",
+'userstatstext'          => "Broj prijavljenih [[Special:ListUsers|suradnika]] je '''$1'''. Od toga {{PLURAL:$2|je '''$2''' (ili '''$4%''') administrator|su '''$2''' (ili '''$4%''') administratora|su '''$2''' (ili '''$4%''') administratori}}, tj. imaju $5 prava.",
 'statistics-mostpopular' => 'Najposjećenije stranice',
 
 'disambiguations'      => 'Razdvojbene stranice',
@@ -1497,7 +1498,7 @@ Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgroupr
 
 # E-mail user
 'mailnologin'     => 'Nema adrese pošiljaoca',
-'mailnologintext' => 'Morate biti [[Special:Userlogin|prijavljeni]]
+'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
 'emailuser'       => 'Pošalji e-poštu ovom suradniku',
@@ -1527,7 +1528,7 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'nowatchlist'          => 'Na vašem popisu praćenja nema nijednog članka.',
 'watchlistanontext'    => 'Molimo Vas $1 kako bi mogli vidjeti ili uređivati vaš popis praćenih stranica.',
 'watchnologin'         => 'Niste prijavljeni',
-'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]]
+'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]]
 za promjene u popisu praćenja.',
 'addedwatch'           => 'Dodano u popis praćenja',
 'addedwatchtext'       => 'Stranica "<nowiki>$1</nowiki>" je dodana na vaš [[Special:Watchlist|popis praćenja]].
@@ -1647,7 +1648,7 @@ kako bi izbjegla zloupotreba. Molimo vas da u pregledniku pritisnete "Natrag" (B
 s koje ste stigli.',
 'protectlogpage'              => 'Evidencija zaštićivanja',
 'protectlogtext'              => 'Ispod je evidencija zaštićivanja i uklanjanja zaštite pojedinih stranica.
-Pogledajte [[Special:Protectedpages|zaštićene stranice]] za popis trenutačno zaštićenih stranica.',
+Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno zaštićenih stranica.',
 'protectedarticle'            => 'članak "[[$1]]" je zaštićen',
 'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[$1]]"',
 'unprotectedarticle'          => 'uklonjena zaštita članka "[[$1]]"',

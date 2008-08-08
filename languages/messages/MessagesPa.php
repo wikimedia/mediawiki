@@ -268,7 +268,7 @@ $messages = array(
 'nosuchspecialpage' => 'ਕੋਈ ਇੰਝ ਦਾ ਖਾਸ ਪੇਜ ਨਹੀਂ',
 'nospecialpagetext' => "<big>'''ਤੁਸੀਂ ਇੱਕ ਅਵੈਧ ਖਾਸ ਪੇਜ ਦੀ ਮੰਗ ਕੀਤੀ ਹੈ।'''</big>
 
-A list of valid special pages can be found at [[Special:Specialpages]].",
+A list of valid special pages can be found at [[Special:SpecialPages]].",
 
 # General errors
 'error'              => 'ਗਲਤੀ',
@@ -495,7 +495,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'mypreferences'         => 'ਮੇਰੀ ਪਸੰਦ',
 'prefs-edits'           => 'ਸੋਧਾਂ ਦੀ ਗਿਣਤੀ:',
 'prefsnologin'          => 'ਲਾਗਇਨ ਨਹੀਂ',
-'prefsnologintext'      => 'ਯੂਜ਼ਰ ਪਸੰਦ ਸੈੱਟ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ [[Special:Userlogin|logged in]] ਕਰਨਾ ਪਵੇਗਾ।',
+'prefsnologintext'      => 'ਯੂਜ਼ਰ ਪਸੰਦ ਸੈੱਟ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ [[Special:UserLogin|logged in]] ਕਰਨਾ ਪਵੇਗਾ।',
 'prefsreset'            => 'ਪਸੰਦੀ ਸਟੋਰੇਜ਼ ਤੋਂ ਮੁੜ-ਸੈੱਟ ਕੀਤੀ ਗਈ ਹੈ।',
 'qbsettings'            => 'ਤੁਰੰਤ ਬਾਰ',
 'qbsettings-none'       => 'ਕੋਈ ਨਹੀਂ',
@@ -573,7 +573,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'reupload'             => 'ਰੀ-ਅੱਪਲੋਡ',
 'reuploaddesc'         => 'ਅੱਪਲੋਡ ਫਾਰਮ ਉੱਤੇ ਜਾਓ।',
 'uploadnologin'        => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
-'uploadnologintext'    => 'ਤੁਹਾਨੂੰ[[Special:Userlogin|logged in] ਕਰਨਾ ਪਵੇਗਾ]
+'uploadnologintext'    => 'ਤੁਹਾਨੂੰ[[Special:UserLogin|logged in] ਕਰਨਾ ਪਵੇਗਾ]
 to upload files.',
 'uploaderror'          => 'ਅੱਪਲੋਡ ਗਲਤੀ',
 'uploadlog'            => 'ਅੱਪਲੋਡ ਲਾਗ',

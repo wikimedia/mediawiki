@@ -263,7 +263,7 @@ $messages = array(
 'nosuchspecialpage' => "Ne'dáár páhina extrava",
 'nospecialpagetext' => "<big>'''Meccan páhina extrava invalida.'''</big>
 
-Meccan páhina extrava valide pac [[Special:Specialpages]] iti.",
+Meccan páhina extrava valide pac [[Special:SpecialPages]] iti.",
 
 # General errors
 'error'                => 'Römj',
@@ -531,7 +531,8 @@ Cahöx ticpatlöx jan páhina minöx seccion iti.</strong>',
 'readonlywarning'           => "<strong>ATTENCION: Database zo coccebj lockomde kyépöx, zo necoccebj posde xuniim meticpatlöx cmaa. Me coccebj considerom ''cut-n-paste'' textua zo ciúchande textua iti ö xuniimde diijömdexepe.</strong>",
 'protectedpagewarning'      => '<strong>ATTENCION: Jan páhina coccebj lockomde sysopám coccebj ticpatlöx zo permiccional.</strong>',
 'semiprotectedpagewarning'  => "'''Notificacion:''' Jan páhina coccebj lockom caitom registrar coccebj ticpatlöx zo.",
-'cascadeprotectedwarning'   => "'''Attencion:''' Jan páhina coccebj lockom jan coccebj ticpatlöxde caitom sysopán permiccion mii, zo coccebj includöx jan {{PLURAL:$1|cascade-páhina|cascade-páhinám}} hun:",
+'cascadeprotectedwarning'   => "'''Attencion:''' Jan páhina coccebj lockom jan coccebj ticpatlöxde caitom sysopán permiccion mii, zo coccebj includöx jan {{PLURAL:$1|cascade-páhina|cascade-páhinám}} hun:
+$2",
 'templatesused'             => 'Automií usadad jan páhina iti:',
 'templatesusedpreview'      => 'Automií usadad jan cuáxiit iti:',
 'templatesusedsection'      => 'Automií usadad jan seccion iti:',
@@ -539,7 +540,7 @@ Cahöx ticpatlöx jan páhina minöx seccion iti.</strong>',
 'template-semiprotected'    => '(semi-protectöx)',
 'nocreatetitle'             => 'Limiitde creacionde páhinám',
 'nocreatetext'              => 'Jan site coccebj avlutuatl altede creatöx hun páhinám.
-Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:Userlogin|caápo]].',
+Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:UserLogin|caápo]].',
 'nocreate-loggedin'         => 'Me necoccebj permiccionde creatöx hunpáhinám jan wiki iti.',
 'permissionserrors'         => 'Römjde permicción',
 'permissionserrorstext'     => "Me necoccebj permiccionde zo, pre'zo {{PLURAL:$1|rae|rae'}}:",
@@ -626,7 +627,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'mypreferences'         => 'Hequáatlaác',
 'prefs-edits'           => 'Ticpatlöx jöxualtec ID-cort:',
 'prefsnologin'          => 'Necaápo',
-'prefsnologintext'      => 'Zo coccebj Neces [[Special:Userlogin|caápo]] quiixom hequáatlaác.',
+'prefsnologintext'      => 'Zo coccebj Neces [[Special:UserLogin|caápo]] quiixom hequáatlaác.',
 'qbsettings'            => 'Zuónaát',
 'qbsettings-none'       => 'Nepartám',
 'changepassword'        => "Reset'quimx canj",
@@ -732,7 +733,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'uploadbtn'         => 'Ciúchan uploadan',
 'reupload'          => 'Re-uploadan',
 'uploadnologin'     => 'Necaápo',
-'uploadnologintext' => 'Zo coccebj Neces [[Special:Userlogin|caápo]] (re-)uploadande ciúchán.',
+'uploadnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]] (re-)uploadande ciúchán.',
 'uploaderror'       => 'Römjde uploadan',
 'uploadlog'         => 'logde uploadan',
 'uploadlogpage'     => 'Logde uploadan',
@@ -890,7 +891,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 
 # E-mail user
 'mailnologin'     => 'Nenadressade iitom',
-'mailnologintext' => 'Zo coccebj Neces [[Special:Userlogin|caápo]]
+'mailnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]]
 ö coccebjöx adressade e-iitom validom [[Special:Preferences|mequáatlaác]]
 iitom e-iitomde diijömde caitóm.',
 'emailuser'       => 'E-iitom  jan caitom',
@@ -911,7 +912,7 @@ iitom e-iitomde diijömde caitóm.',
 'watchlistfor'         => "('''$1''' mii)",
 'nowatchlist'          => 'Hecoccebj 0 itémii helistade cáminot iti.',
 'watchnologin'         => 'Necaápo',
-'watchnologintext'     => 'Zo coccebj Neces [[Special:Userlogin|caápo]] ticpatlöx helistade cáminot.',
+'watchnologintext'     => 'Zo coccebj Neces [[Special:UserLogin|caápo]] ticpatlöx helistade cáminot.',
 'addedwatch'           => 'Plusöxaj listade cáminot',
 'removedwatch'         => 'Delatajde he listade cáminot',
 'removedwatchtext'     => 'Páhina zo "[[:$1]]" coccebj delataj me listade cáminot.',

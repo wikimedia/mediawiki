@@ -632,7 +632,8 @@ Die bladsy kan nie gestoor word nie.</strong>',
 'readonlywarning'                  => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
 'protectedpagewarning'             => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
 'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
-'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
+'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:
+$2",
 'titleprotectedwarning'            => '<strong>WAARSKUWING:  Die bladsy is gesluit sodat net sekere gebruikers dit kan skep.</strong>',
 'templatesused'                    => 'Sjablone in gebruik op hierdie blad:',
 'templatesusedpreview'             => 'Sjablone in hierdie voorskou gebruik:',
@@ -642,7 +643,7 @@ Die bladsy kan nie gestoor word nie.</strong>',
 'hiddencategories'                 => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
 'nocreatetitle'                    => 'Bladsy skepping beperk',
 'nocreatetext'                     => '{{SITENAME}} het die skep van nuwe bladsye beperk.
-U kan slegs bestaande bladsye wysig, of u kan [[Special:Userlogin|aanteken of registreer]].',
+U kan slegs bestaande bladsye wysig, of u kan [[Special:UserLogin|aanteken of registreer]].',
 'nocreate-loggedin'                => 'U het nie regte om nuwe blaaie op {{SITENAME}} te skep nie.',
 'permissionserrors'                => 'Toestemmings Foute',
 'permissionserrorstext'            => 'U het nie toestemming om hierdie te doen nie, om die volgende {{PLURAL:$1|rede|redes}}:',
@@ -811,7 +812,7 @@ bevat, word gewys).",
 'mypreferences'            => 'My voorkeure',
 'prefs-edits'              => 'Aantal wysigings:',
 'prefsnologin'             => 'Nie ingeteken nie',
-'prefsnologintext'         => 'Jy moet [[Special:Userlogin|ingeteken wees]]
+'prefsnologintext'         => 'Jy moet [[Special:UserLogin|ingeteken wees]]
 om voorkeure te spesifiseer.',
 'prefsreset'               => 'Voorkeure is herstel.',
 'qbsettings'               => 'Snelbalkvoorkeure',
@@ -982,7 +983,7 @@ Bladsye op [[Special:Watchlist|jou dophoulys]] word in '''vetdruk''' uitgewys.",
 'reupload'                   => 'Herlaai',
 'reuploaddesc'               => 'Keer terug na die laaivorm.',
 'uploadnologin'              => 'Nie ingeteken nie',
-'uploadnologintext'          => 'Teken eers in [[Special:Userlogin|logged in]]
+'uploadnologintext'          => 'Teken eers in [[Special:UserLogin|logged in]]
 om lêers te laai.',
 'upload_directory_missing'   => 'Die oplaaigids ($1) bestaan nie en kon nie deur die webbediener geskep word nie.',
 'upload_directory_read_only' => 'Die webbediener kan nie na die oplaai gids ($1) skryf nie.',
@@ -991,7 +992,7 @@ om lêers te laai.',
 [[{{MediaWiki:Copyrightpage}}|beleid oor prentgebruik]].
 
 Om prente wat voorheen gelaai is te sien of te soek, gaan na die
-[[Special:Imagelist|lys van gelaaide prente]].
+[[Special:ImageList|lys van gelaaide prente]].
 Laai van lêers en skrappings word aangeteken in die
 [[Special:Log/upload|laailog]].
 
@@ -1095,7 +1096,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'imagelinks'                     => 'Prentskakels',
 'linkstoimage'                   => 'Die volgende {{PLURAL:$1|bladsy|$1 bladsye}} gebruik hierdie prent:',
 'nolinkstoimage'                 => 'Daar is geen bladsye wat hierdie prent gebruik nie.',
-'morelinkstoimage'               => 'Wys [[Special:Whatlinkshere/$1|meer skakels]] na die lêer.',
+'morelinkstoimage'               => 'Wys [[Special:WhatLinksHere/$1|meer skakels]] na die lêer.',
 'redirectstofile'                => "Die volgende {{PLURAL:$1|lêer is 'n aanstuur|$1 lêers is aansture}} na die lêer:",
 'duplicatesoffile'               => "Die volgende {{PLURAL:$1|lêer is 'n duplikaat|$1 lêers is duplikate}} van die lêer:",
 'sharedupload'                   => 'Die lêer word gedeel en mag moontlik op ander projekte gebruik word.',
@@ -1172,7 +1173,7 @@ Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} 
 Dit werk uit op gemiddeld '''\$5''' veranderings per bladsy, en bladsye word '''\$6''' keer per verandering aangevra.
 
 Die ''[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]''-lengte is '''\$7'''.",
-'userstatstext'          => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:Listusers|gebruiker]]|'''$1''' geregistreerde [[Special:Listusers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
+'userstatstext'          => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:ListUsers|gebruiker]]|'''$1''' geregistreerde [[Special:ListUsers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
 'statistics-mostpopular' => 'Mees bekykte bladsye',
 
 'disambiguations'      => 'Bladsye wat onduidelikhede opklaar',
@@ -1303,7 +1304,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 
 # E-mail user
 'mailnologin'     => 'Geen versendadres beskikbaar',
-'mailnologintext' => "U moet [[Special:Userlogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
+'mailnologintext' => "U moet [[Special:UserLogin|ingeteken]] wees en 'n geldige e-posadres in die [[Special:Preferences|voorkeure]] hê om e-pos aan ander gebruikers te stuur.",
 'emailuser'       => 'Stuur e-pos na hierdie gebruiker',
 'emailpage'       => 'Stuur e-pos na gebruiker',
 'emailpagetext'   => 'As dié gerbuiker \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in jou gebruikersvoorkeure sal verkyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
@@ -1327,7 +1328,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'watchlistfor'         => "(vir '''$1''')",
 'nowatchlist'          => 'Jy het geen items in jou dophoulys nie.',
 'watchnologin'         => 'Nie ingeteken nie',
-'watchnologintext'     => 'Jy moet [[Special:Userlogin|ingeteken]]
+'watchnologintext'     => 'Jy moet [[Special:UserLogin|ingeteken]]
 wees om jou dophoulys te verander.',
 'addedwatch'           => 'Bygevoeg tot dophoulys',
 'addedwatchtext'       => 'Die bladsy "$1" is by u [[Special:Watchlist|dophoulys]] gevoeg.

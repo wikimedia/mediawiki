@@ -252,7 +252,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
 'nocreatetext'           => '{{SITENAME}} tem restringida la possibilidade de criar nuobas páginas.
-Pode boltar atrás i editar unha página yá eisistente, o [[Special:Userlogin|autenticar-se o criar unha cuonta]].',
+Pode boltar atrás i editar unha página yá eisistente, o [[Special:UserLogin|autenticar-se o criar unha cuonta]].',
 'recreate-deleted-warn'  => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
 
 Certifique-se de que é adequado prosseguir a edição de esta página.

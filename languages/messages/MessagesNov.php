@@ -211,7 +211,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'preferences'       => 'Preferos',
 'mypreferences'     => 'Men preferos',
 'prefsnologin'      => 'Non ensignatat',
-'prefsnologintext'  => 'Vu mus es [[Special:Userlogin|ensignatat]] por determina useren preferos.',
+'prefsnologintext'  => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
 'prefs-rc'          => 'Resenti chanjos',
 'searchresultshead' => 'Sercha',
 

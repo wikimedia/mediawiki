@@ -156,7 +156,7 @@ $messages = array(
 'nstab-category'  => 'Shopni',
 
 # Main script and global functions
-'nospecialpagetext' => 'Manglyas ekh [[Special:Specialpages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
+'nospecialpagetext' => 'Manglyas ekh [[Special:SpecialPages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
 
 # General errors
 'wrong_wfQuery_params' => 'Doshalo gin le parametrengo ko wfQuery()<br />I function: $1<br />Query: $2',

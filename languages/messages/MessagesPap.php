@@ -120,7 +120,7 @@ $messages = array(
 'nosuchspecialpage' => 'E página spesial no ta eksistí',
 'nospecialpagetext' => "<big>'''Bo a pidi un página spesial inválido.'''</big>
 
-Bo por haña un lista di tur [[Special:Specialpages|{{int:specialpages}}]].",
+Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'         => 'Eror',
@@ -260,7 +260,7 @@ Bo e-mail adrès (manera ta pará den bo preferensianan) lo aparesé den e e-mai
 # Watchlist
 'watchlist'         => 'Mi lista di observashon',
 'nowatchlist'       => 'Bo lista di observashon ta bashí.',
-'watchnologintext'  => 'Bo mester [[Special:Userlogin|outentiká bo mes]] pa modifiká bo lista di observashon.',
+'watchnologintext'  => 'Bo mester [[Special:UserLogin|outentiká bo mes]] pa modifiká bo lista di observashon.',
 'addedwatch'        => 'Añadí na lista di observashon',
 'addedwatchtext'    => "E página \"[[:\$1]]\" tabata añadí na bo [[Special:Watchlist|lista di observashon]].
 Lo lista kambionan hasí na e página aki i su página di diskushon einan,

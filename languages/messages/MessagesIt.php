@@ -11,8 +11,8 @@
  * @author Melos
  * @author Gianfranco
  * @author Felis
- * @author לערי ריינהארט
  * @author Broc
+ * @author לערי ריינהארט
  * @author Ramac
  * @author .anaconda
  * @author S.Örvarr.S
@@ -410,7 +410,7 @@ I seguenti collegamenti sono in lingua inglese:
 'nosuchaction'      => 'Operazione non riconosciuta',
 'nosuchactiontext'  => 'La URL immessa non corrisponde a un comando riconosciuto dal software MediaWiki',
 'nosuchspecialpage' => 'Pagina speciale non disponibile',
-'nospecialpagetext' => "La pagina speciale richiesta non è stata riconosciuta dal software MediaWiki; l'elenco delle pagine speciali valide si trova in [[Special:Specialpages|Elenco delle pagine speciali]].",
+'nospecialpagetext' => "La pagina speciale richiesta non è stata riconosciuta dal software MediaWiki; l'elenco delle pagine speciali valide si trova in [[Special:SpecialPages|Elenco delle pagine speciali]].",
 
 # General errors
 'error'                => 'Errore',
@@ -637,9 +637,10 @@ Il blocco è stato imposto da $1. La motivazione del blocco è la seguente: ''$2
 
 Se lo si desidera, è possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e se si è stato bloccati dal suo utilizzo.
 
-Si prega di specificare l'indirizzo IP attuale ($3) o il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
+L'indirizzo IP attuale è $3, il numero ID del blocco è #$5.
+Si prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
 'autoblockedtext'                  => "Questo indirizzo IP è stato bloccato automaticamente perché condiviso con un altro utente, a sua volta bloccato da $1.
 La motivazione del blocco è la seguente:
 
@@ -647,12 +648,14 @@ La motivazione del blocco è la seguente:
 
 * Inizio del blocco: $8
 * Scadenza del blocco: $6
+* Intervallo di blocco: $7
 
 È possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]].
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e se si è stato bloccati dal suo utilizzo.
 
-Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di chiarimenti.",
+L'indirizzo IP attuale è $3, il numero ID del blocco è #$5
+Si prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
 'blockednoreason'                  => 'nessuna motivazione indicata',
 'blockedoriginalsource'            => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 'blockededitsource'                => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
@@ -715,7 +718,8 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'readonlywarning'                  => '<strong>ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.</strong>',
 'protectedpagewarning'             => '<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
-'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
+'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":
+\$2",
 'titleprotectedwarning'            => '<strong>ATTENZIONE:  Questa pagina è stata bloccata in modo che solo alcune categorie di utenti possano crearla.</strong>',
 'templatesused'                    => 'Template utilizzati in questa pagina:',
 'templatesusedpreview'             => 'Template utilizzati in questa anteprima:',
@@ -725,7 +729,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'hiddencategories'                 => 'Questa pagina appartiene a {{PLURAL:$1|una categoria nascosta|$1 categorie nascoste}}:',
 'edittools'                        => '<!-- Testo che appare al di sotto del modulo di modifica e di upload. -->',
 'nocreatetitle'                    => 'Creazione delle pagine limitata',
-'nocreatetext'                     => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:Userlogin|entrare o registrarsi]].',
+'nocreatetext'                     => 'La possibilità di creare nuove pagine su {{SITENAME}} è stata limitata ai soli utenti registrati. È possibile tornare indietro e modificare una pagina esistente, oppure [[Special:UserLogin|entrare o registrarsi]].',
 'nocreate-loggedin'                => 'Non si dispone dei permessi necessari a creare nuove pagine su {{SITENAME}}.',
 'permissionserrors'                => 'Errore nei permessi',
 'permissionserrorstext'            => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
@@ -843,7 +847,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
-'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:Ipblocklist|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
+'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:IPBlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -927,7 +931,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mypreferences'            => 'preferenze',
 'prefs-edits'              => 'Modifiche effettuate:',
 'prefsnologin'             => 'Accesso non effettuato',
-'prefsnologintext'         => "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:Userlogin|accesso]].",
+'prefsnologintext'         => "Per poter personalizzare le preferenze è necessario effettuare l'[[Special:UserLogin|accesso]].",
 'prefsreset'               => 'Le preferenze sono state ripristinate ai valori predefiniti.',
 'qbsettings'               => 'Quickbar',
 'qbsettings-none'          => 'Nessuno',
@@ -1002,7 +1006,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'userrights-reason'           => 'Motivo della modifica:',
 'userrights-no-interwiki'     => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'       => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-nologin'          => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
 'userrights-notallowed'       => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 'userrights-changeable-col'   => 'Gruppi modificabili',
 'userrights-unchangeable-col' => 'Gruppi non modificabili',
@@ -1131,11 +1135,11 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'reupload'                    => 'Carica di nuovo',
 'reuploaddesc'                => 'Torna al modulo per il caricamento.',
 'uploadnologin'               => 'Accesso non effettuato',
-'uploadnologintext'           => "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:Userlogin|l'accesso]] al sito.",
+'uploadnologintext'           => "Il caricamento dei file è consentito solo agli utenti registrati che hanno eseguito [[Special:UserLogin|l'accesso]] al sito.",
 'upload_directory_missing'    => 'La directory di upload ($1) non esiste e non può essere creata dal webserver.',
 'upload_directory_read_only'  => 'Il server web non è in grado di scrivere nella directory di upload ($1).',
 'uploaderror'                 => 'Errore nel caricamento',
-'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:Imagelist|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
+'uploadtext'                  => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:ImageList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione intera del file
@@ -1261,8 +1265,11 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filehist-comment'               => 'Oggetto',
 'imagelinks'                     => "Collegamenti all'immagine",
 'linkstoimage'                   => "{{PLURAL:$1|La seguente pagina contiene|Le seguenti $1 pagine contengono}} collegamenti all'immagine:",
+'linkstoimage-more'              => 'Più di $1 {{PLURAL:$1|pagina punta|pagine puntano}} a questo file.
+Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 pagine che puntano}} a questo file.
+È disponibile un [[Special:WhatLinksHere/$2|elenco completo]].',
 'nolinkstoimage'                 => "Nessuna pagina contiene collegamenti all'immagine.",
-'morelinkstoimage'               => 'Visualizza [[Special:Whatlinkshere/$1|altri link]] a questo file.',
+'morelinkstoimage'               => 'Visualizza [[Special:WhatLinksHere/$1|altri link]] a questo file.',
 'redirectstofile'                => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è|sono}} un redirect a questo file:',
 'duplicatesoffile'               => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è un duplicato|sono duplicati}} di questo file:',
 'sharedupload'                   => 'Questo file è un upload condiviso; può essere quindi utilizzato da più progetti wiki.',
@@ -1476,14 +1483,14 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-rights'          => 'Diritti',
 'listgrouprights-helppage'        => 'Help:Diritti del gruppo',
 'listgrouprights-members'         => '(Elenco dei membri)',
-'listgrouprights-addgroup'        => 'Può aggiungere {{PLURAL:$2|un gruppo|gruppi}}: $1',
-'listgrouprights-removegroup'     => 'Può rimuovere {{PLURAL:$2|un gruppo|gruppi}}: $1',
-'listgrouprights-addgroup-all'    => 'Può aggiungere tutti i gruppi',
+'listgrouprights-addgroup'        => 'Può aggiungere {{PLURAL:$2|al gruppo|ai gruppi}}: $1',
+'listgrouprights-removegroup'     => 'Può rimuovere {{PLURAL:$2|dal gruppo|dai gruppi}}: $1',
+'listgrouprights-addgroup-all'    => 'Può aggiungere a tutti i gruppi',
 'listgrouprights-removegroup-all' => 'Può rimuovere tutti i gruppi',
 
 # E-mail user
 'mailnologin'     => 'Nessun indirizzo cui inviare il messaggio',
-'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:Userlogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
+'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
 'emailuser'       => "Scrivi all'utente",
 'emailpage'       => "Invia un messaggio e-mail all'utente",
 'emailpagetext'   => "Se l'utente ha registrato un indirizzo e-mail valido nelle proprie preferenze, il modulo qui sotto consente di scrivere allo stesso un solo messaggio. L'indirizzo indicato nelle preferenze del mittente apparirà nel campo \"Da:\" del messaggio per consentire al destinatario l'eventuale risposta.",
@@ -1509,7 +1516,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'nowatchlist'          => 'La lista degli osservati speciali è vuota.',
 'watchlistanontext'    => "Per visualizzare e modificare l'elenco degli osservati speciali è necessario $1.",
 'watchnologin'         => 'Accesso non effettuato',
-'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:Userlogin|accesso al sito]].",
+'watchnologintext'     => "Per modificare la lista degli osservati speciali è necessario prima eseguire l'[[Special:UserLogin|accesso al sito]].",
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
 'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;

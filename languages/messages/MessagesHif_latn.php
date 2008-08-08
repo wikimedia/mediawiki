@@ -280,7 +280,7 @@ $messages = array(
 'nosuchspecialpage' => 'Aisan koi khaas panna nai hai',
 'nospecialpagetext' => "<big>'''Aap ek galat ghaas panna ke maanga hai.'''</big>
 
-Sahi khaas panna ke suchi [[Special:Specialpages|{{int:specialpages}}]]pe mili.",
+Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.",
 
 # General errors
 'error'                => 'Galti',
@@ -366,7 +366,7 @@ Iske kaaran hai ''$2''.",
 'logouttitle'                => 'Sadasya logout',
 'logouttext'                 => '<strong>Aap abhi logged out hai.</strong>
 
-Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:Userlogin|log in kare sakta hai]].
+Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:UserLogin|log in kare sakta hai]].
 
 Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.',
 'welcomecreation'            => '== Swagat, $1! ==
@@ -581,7 +581,7 @@ Meherbani kar ke ii page ke chotachota tukrra me kar do.</strong>',
 'template-protected'        => '(surakchhit)',
 'template-semiprotected'    => '(aadha-surakchhit)',
 'nocreatetext'              => '{{SITENAME}} me nawaa panna banae ke rukawat hai.
-Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to  [[Special:Userlogin|log in or create an account]].',
+Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to  [[Special:UserLogin|log in or create an account]].',
 'recreate-deleted-warn'     => "'''Chetawani: Jon panna ke pahile hatae dewa gae rahaa ke aap fir se banata hai.'''
 
 Aap soco ki ii pann ake sampadan aap ke karte rahe ke chaahi ki nai.

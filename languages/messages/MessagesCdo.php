@@ -442,7 +442,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'reupload'          => 'Dṳ̀ng-sĭng siông-diòng',
 'reuploaddesc'      => 'Duōng kó̤ siông-duòng dăng-dăng.',
 'uploadnologin'     => 'Mò̤ láuk-diē',
-'uploadnologintext' => 'Sĕng [[Special:Userlogin|láuk-diē]] ciáh â̤-sāi siông-duòng ùng-giông.',
+'uploadnologintext' => 'Sĕng [[Special:UserLogin|láuk-diē]] ciáh â̤-sāi siông-duòng ùng-giông.',
 'uploaderror'       => 'Siông-duòng ô dâng',
 'uploadlog'         => 'siông-duòng nĭk-cé',
 'uploadlogpage'     => 'Siông-duòng nĭk-cé',
