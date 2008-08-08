@@ -376,7 +376,7 @@ class LoginForm {
 		
 		global $wgPasswordAttemptThrottle;
 		if ( is_array($wgPasswordAttemptThrottle) ) {
-			$key = wfMemcKey( 'password-throttle', wfGetIP(), $this->mName );
+			$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 			
