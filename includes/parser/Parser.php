@@ -4517,7 +4517,7 @@ class Parser
 		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );
 
 		# Process the input parameters
-		$caption = false;
+		$caption = '';
 		$params = array( 'frame' => array(), 'handler' => array(),
 			'horizAlign' => array(), 'vertAlign' => array() );
 		foreach( $parts as $part ) {
@@ -4584,15 +4584,9 @@ class Parser
 		if ( $params['vertAlign'] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
-		
-		// Process alt text
-		if ($caption === false) {
-			// Put the image name in.
-			$alt = $title->getPrefixedText();
-		} else {
-			# Strip bad stuff out of the alt text
-			$alt = $this->replaceLinkHoldersText( $caption );
-		}
+
+		# Strip bad stuff out of the alt text
+		$alt = $this->replaceLinkHoldersText( $caption );
 
 		# make sure there are no placeholders in thumbnail attributes
 		# that are later expanded to html- so expand them now and
