@@ -121,6 +121,7 @@ class MonoBookTemplate extends QuickTemplate {
 			<?php $this->html('bodytext') ?>
 			<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
 			<!-- end content -->
+			<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
 			<div class="visualClear"></div>
 		</div>
 	</div>

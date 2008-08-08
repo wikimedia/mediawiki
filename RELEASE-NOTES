@@ -58,6 +58,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14921) Special:Contributions/: add user name to <title>
   Patch by Emufarmers
 * Unescape more "safe" characters when producing URLs, for added prettiness
+* Introduced a new hook 'SkinAfterContent' that allows extensions to add text
+  after the page content and article metadata. Updated all skins and skin
+  templates to work with that hook.
 
 === Bug fixes in 1.14 ===
 
