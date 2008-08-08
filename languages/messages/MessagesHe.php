@@ -191,6 +191,7 @@ $magicWords = array(
 	'hiddencat'             => array( 1,    '__קטגוריה_מוסתרת__',                  '__HIDDENCAT__'          ),
 	'pagesincategory'       => array( 1,    'דפים בקטגוריה',                       'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( 1,    'גודל דף',                            'PAGESIZE'               ),
+	'staticredirect'        => array( 1,    '__הפניה_קבועה__',                     '__STATICREDIRECT__'     ),
 );
 
 $specialPageAliases = array(
