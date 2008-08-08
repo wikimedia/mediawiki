@@ -123,7 +123,7 @@ class FileStore {
 		} else {
 			if( !file_exists( dirname( $destPath ) ) ) {
 				wfSuppressWarnings();
-				$ok = mkdir( dirname( $destPath ), 0777, true );
+				$ok = wfMkdirParents( dirname( $destPath ) );
 				wfRestoreWarnings();
 
 				if( !$ok ) {
