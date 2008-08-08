@@ -163,6 +163,7 @@ $magicWords = array(
 	'hiddencat'           => array( '1', '__تصنيف_مخفي__', '__HIDDENCAT__' ),
 	'pagesincategory'     => array( '1', 'صفحات_في_التصنيف', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'            => array( '1', 'حجم_الصفحة', 'حجم_صفحة', 'PAGESIZE' ),
+	'staticredirect'      => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 );
 
 $skinNames = array(
