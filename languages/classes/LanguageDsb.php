@@ -11,8 +11,8 @@ class LanguageDsb extends Language {
 
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['hsb'][$case][$word] ) ) {
-			return $wgGrammarForms['hsb'][$case][$word];
+		if ( isset( $wgGrammarForms['dsb'][$case][$word] ) ) {
+			return $wgGrammarForms['dsb'][$case][$word];
 		}
 
 		switch ( $case ) {
