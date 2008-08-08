@@ -75,17 +75,20 @@ class FeedUtils {
 			if( $oldid ) {
 				wfProfileIn( __FUNCTION__."-dodiff" );
 
-				$de = new DifferenceEngine( $title, $oldid, $newid );
 				#$diffText = $de->getDiff( wfMsg( 'revisionasof',
 				#	$wgContLang->timeanddate( $timestamp ) ),
 				#	wfMsg( 'currentrev' ) );
-				$diffText = $de->getDiff(
-					wfMsg( 'previousrevision' ), // hack
-					wfMsg( 'revisionasof',
-						$wgContLang->timeanddate( $timestamp ) ) );
+				
+				// Don't bother generating the diff if we won't be able to show it
+				if ( $wgFeedDiffCutoff > 0 ) {
+					$de = new DifferenceEngine( $title, $oldid, $newid );
+					$diffText = $de->getDiff(
+						wfMsg( 'previousrevision' ), // hack
+						wfMsg( 'revisionasof',
+							$wgContLang->timeanddate( $timestamp ) ) );
+				}
 
-
-				if ( strlen( $diffText ) > $wgFeedDiffCutoff ) {
+				if ( ( strlen( $diffText ) > $wgFeedDiffCutoff ) || ( $wgFeedDiffCutoff <= 0 ) ) {
 					// Omit large diffs
 					$diffLink = $title->escapeFullUrl(
 						'diff=' . $newid .
