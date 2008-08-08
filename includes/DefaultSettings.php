@@ -2389,6 +2389,13 @@ $wgFeedCacheTimeout = 60;
  * pages larger than this size. */
 $wgFeedDiffCutoff = 32768;
 
+/** Override the site's default RSS/ATOM feed for recentchanges that appears on
+ * every page. Some sites might have a different feed they'd like to promote 
+ * instead of the RC feed (maybe like a "Recent New Articles" or "Breaking news" one).
+ * Ex: $wgSiteFeed['format'] = "http://example.com/somefeed.xml"; Format can be one
+ * of either 'rss' or 'atom'.
+ */
+$wgOverrideSiteFeed = array();
 
 /**
  * Additional namespaces. If the namespaces defined in Language.php and
