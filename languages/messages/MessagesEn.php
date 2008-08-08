@@ -2192,9 +2192,9 @@ Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks.
 See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'            => 'protected "[[$1]]"',
-'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
-'unprotectedarticle'          => 'unprotected "[[$1]]"',
+'protectedarticle'            => 'protected "[[:$1]]"',
+'modifiedarticleprotection'   => 'changed protection level for "[[:$1]]"',
+'unprotectedarticle'          => 'unprotected "[[:$1]]"',
 'protect-title'               => 'Change protection level for "$1"',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
@@ -2492,15 +2492,15 @@ Please merge them manually.'''",
 'movepage-page-moved'     => 'The page $1 has been moved to $2.',
 'movepage-page-unmoved'   => 'The page $1 could not be moved to $2.',
 'movepage-max-pages'      => 'The maximum of $1 {{PLURAL:$1|page|pages}} has been moved and no more will be moved automatically.',
-'1movedto2'               => '[[$1]] moved to [[$2]]',
-'1movedto2_redir'         => '[[$1]] moved to [[$2]] over redirect',
+'1movedto2'               => '[[:$1]] moved to [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] moved to [[:$2]] over redirect',
 'movelogpage'             => 'Move log',
 'movelogpagetext'         => 'Below is a list of pages moved.',
 'movereason'              => 'Reason:',
 'revertmove'              => 'revert',
 'delete_and_move'         => 'Delete and move',
 'delete_and_move_text'    => '==Deletion required==
-The destination page "[[$1]]" already exists.
+The destination page "[[:$1]]" already exists.
 Do you want to delete it to make way for the move?',
 'delete_and_move_confirm' => 'Yes, delete the page',
 'delete_and_move_reason'  => 'Deleted to make way for move',
@@ -2588,7 +2588,7 @@ A temporary folder is missing.',
 # Import log
 'importlogpage'                    => 'Import log',
 'importlogpagetext'                => 'Administrative imports of pages with edit history from other wikis.',
-'import-logentry-upload'           => 'imported [[$1]] by file upload',
+'import-logentry-upload'           => 'imported [[:$1]] by file upload',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisions}}',
 'import-logentry-interwiki'        => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
@@ -3263,7 +3263,7 @@ Please confirm that you really want to recreate this page.",
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
 
 # HTML dump
-'redirectingto' => 'Redirecting to [[$1]]...',
+'redirectingto' => 'Redirecting to [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Clear the cache of this page?
@@ -3305,7 +3305,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Removing all content from page',
 'autosumm-replace' => "Replacing page with '$1'",
-'autoredircomment' => 'Redirecting to [[$1]]',
+'autoredircomment' => 'Redirecting to [[:$1]]',
 'autosumm-new'     => 'New page: $1',
 
 # Autoblock whitelist
