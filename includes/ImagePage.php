@@ -655,7 +655,7 @@ EOT
 			$wgOut->addWikiMsg( 'linkstoimage-more', $limit, $this->mTitle->getPrefixedDBkey() );
 		}
 
-		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
+		$wgOut->addHTML( "<ul class='mw-imagepage-linkstoimage'>\n" );
 		$sk = $wgUser->getSkin();
 		$count = 0;
 		while ( $s = $res->fetchObject() ) {
