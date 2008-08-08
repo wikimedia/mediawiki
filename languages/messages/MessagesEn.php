@@ -1047,7 +1047,7 @@ The reason given is ''$2''.
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5.
-Please include either or both of these in any queries.",
+Please include all above details in any queries you make.",
 'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
 
@@ -1055,13 +1055,14 @@ The reason given is this:
 
 * Start of block: $8
 * Expiry of block: $6
+* Intended blockee: $7
 
 You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
-Your block ID is $5.
-Please include this ID in any queries you make.',
+Your current IP address is $3, and the block ID is #$5.
+Please include all above details in any queries you make.',
 'blockednoreason'                  => 'no reason given',
 'blockedoriginalsource'            => "The source of '''$1''' is shown below:",
 'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
