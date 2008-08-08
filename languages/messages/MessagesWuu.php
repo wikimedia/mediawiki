@@ -689,8 +689,8 @@ $messages = array(
 'articleexists'           => '叫该个名字个页面已经勒浪哉，要么倷拣个名字是无效个。请重新拣个名字。',
 'movedto'                 => '捅到',
 'movetalk'                => '捅搭界个讲张页面',
-'1movedto2'               => '[[$1]]捅到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通过重定向捅到[[$2]]',
+'1movedto2'               => '[[:$1]]捅到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]通过重定向捅到[[:$2]]',
 'movelogpage'             => '捅荡记录',
 'movelogpagetext'         => '下底是拨拉捅荡个页面列表。',
 'movereason'              => '理由:',
@@ -836,7 +836,7 @@ Variants for Chinese language
 'table_pager_limit' => '显示 $1 条每页',
 
 # Auto-summaries
-'autoredircomment' => '重定向到 [[$1]]',
+'autoredircomment' => '重定向到 [[:$1]]',
 'autosumm-new'     => '新页面：$1',
 
 # Watchlist editor

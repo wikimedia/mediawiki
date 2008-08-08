@@ -343,7 +343,7 @@ $messages = array(
 'watchlistall2' => 'nyɔ́nsɔ',
 
 # HTML dump
-'redirectingto' => 'Eyendísí na [[$1]]...',
+'redirectingto' => 'Eyendísí na [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'Nandimi',

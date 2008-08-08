@@ -765,8 +765,8 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'editcomment'                 => 'Toy izao no fanamarihana momba io fanovana io: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:ProtectedPages]].',
-'protectedarticle'            => 'voaaro ny pejy "[[$1]]"',
-'unprotectedarticle'          => 'voaala ny fiarovana an\'i "[[$1]]"',
+'protectedarticle'            => 'voaaro ny pejy "[[:$1]]"',
+'unprotectedarticle'          => 'voaala ny fiarovana an\'i "[[:$1]]"',
 'protect-title'               => 'Fiarovana an\'i "$1"',
 'protect-legend'              => 'Fanekena ny fiarovana pejy',
 'protectcomment'              => "Anton'ny fiarovana ny pejy",
@@ -892,8 +892,8 @@ miaraka aminy no tsy afaka nakisaka satria efa misy pejin-dresaka
 mifanaraka amin'ilay anarana vaovao. Azafady mba atambaro izay pejin-dresaka izay.'''",
 'movedto'                 => "voafindra any amin'ny",
 'movetalk'                => 'Afindrao any koa ny "pejin-dresaka", raha mety.',
-'1movedto2'               => 'Novana ho [[$2]] ilay takelaka [[$1]]',
-'1movedto2_redir'         => 'Redirection: Novaina ho [[$2]] i [[$1]]',
+'1movedto2'               => 'Novana ho [[:$2]] ilay takelaka [[:$1]]',
+'1movedto2_redir'         => 'Redirection: Novaina ho [[:$2]] i [[:$1]]',
 'movelogpage'             => "Tantaran'asan'ny famindran-toerana",
 'movelogpagetext'         => 'Lisitry ny pejy nafindra toerana.',
 'movereason'              => 'Antony',
@@ -901,7 +901,7 @@ mifanaraka amin'ilay anarana vaovao. Azafady mba atambaro izay pejin-dresaka iza
 'delete_and_move'         => 'Ovay toerana dia fafao',
 'delete_and_move_text'    => '==Mila fafàna==
 
-Efa misy ny lahatsoratra hoe "[[$1]]". Irinao ve ny hamafana azy mba hahafahana mamindra toerana ity lahatsoratra ity?',
+Efa misy ny lahatsoratra hoe "[[:$1]]". Irinao ve ny hamafana azy mba hahafahana mamindra toerana ity lahatsoratra ity?',
 'delete_and_move_confirm' => 'Eny, fafao io pejy io',
 'delete_and_move_reason'  => 'Fafao mba hamindrana toerana ny anankiray',
 'selfmove'                => 'Mitovy ny anarana taloha sy anarana vaovao; tsy afaka afindra ny pejy.',

@@ -1502,9 +1502,9 @@ Pakitimid me ing "mibalik" ("back") at luban meng pasibayu ing bulung a penibata
 'protectlogpage'              => 'Tala da reng babanten',
 'protectlogtext'              => 'Maki tala da reng pamaniara ampong pamamusning bulung (page locks and unlocks) king lalam.
 Lon me ing [[Special:ProtectedPages|tala ring bulung a protektadu/makakambil]] para king tala ring proteksiung bulung a gagana king salukuyan.',
-'protectedarticle'            => 'protektadu/makakambil "[[$1]]"',
-'modifiedarticleprotection'   => 'miyalilan ing sikan ning proteksiun/pamangambil para king "[[$1]]"',
-'unprotectedarticle'          => 'e protektadu "[[$1]]"',
+'protectedarticle'            => 'protektadu/makakambil "[[:$1]]"',
+'modifiedarticleprotection'   => 'miyalilan ing sikan ning proteksiun/pamangambil para king "[[:$1]]"',
+'unprotectedarticle'          => 'e protektadu "[[:$1]]"',
 'protect-title'               => 'Alilan ing sikan ning proteksiun pamangambil para "$1"',
 'protect-legend'              => 'Kumpirman ing pamangambil/proteksiun',
 'protectcomment'              => 'Komentu/puna:',
@@ -1775,15 +1775,15 @@ Gumamit na kang aliwang lagyu.',
 Nung malyari, tunggal-tunggal mu lang piyabe/piyanib.'''",
 'movedto'                 => 'miyalis ya king',
 'movetalk'                => 'Iyalis me ing kayabe nang bulung-pisasabian (talk page)',
-'1movedto2'               => 'Ing [[$1]] miyalis ya king [[$2]]',
-'1movedto2_redir'         => 'Ing [[$1]] milipat ya king [[$2]] menaliwa dalan',
+'1movedto2'               => 'Ing [[:$1]] miyalis ya king [[:$2]]',
+'1movedto2_redir'         => 'Ing [[:$1]] milipat ya king [[:$2]] menaliwa dalan',
 'movelogpage'             => 'Iyalis ya ing tala/log',
 'movelogpagetext'         => 'Makabili ya king lalam ing tala (list) da reng bulung a miyalis.',
 'movereason'              => 'Sangkan:',
 'revertmove'              => 'isubli',
 'delete_and_move'         => 'Buran at ialis',
 'delete_and_move_text'    => '==Kailangan ing pamamura==
-Atiu ne ing "[[$1]]" a bulung a puntalan.
+Atiu ne ing "[[:$1]]" a bulung a puntalan.
 Buri meng buran bang malaus ing pamanales?',
 'delete_and_move_confirm' => 'Wa, buran ya ing bulung',
 'delete_and_move_reason'  => 'Mebura ya bang malaus ing pamanalis',
@@ -1862,7 +1862,7 @@ Maka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) k
 # Import log
 'importlogpage'                    => 'Tala da reng mipalub (import log)',
 'importlogpagetext'                => 'Pamaniubuk ding talapanibalang maglub bulung a maki amlat ding mibayu ibat kareng aliwang wiki.',
-'import-logentry-upload'           => "milub ya ing [[$1]] kapamilata'ning pamaglulan simpan (file upload)",
+'import-logentry-upload'           => "milub ya ing [[:$1]] kapamilata'ning pamaglulan simpan (file upload)",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}}',
 'import-logentry-interwiki'        => 'me-transwiking $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|pamagbayu|pamagbayu}} ibat $2',
@@ -2301,7 +2301,7 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 'recreate'            => 'Lalangan yang pasibayu',
 
 # HTML dump
-'redirectingto' => 'Iyalis ya direksion king [[$1]]...',
+'redirectingto' => 'Iyalis ya direksion king [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Ilako ya king simpanan (cache) ing bulung a ine?
@@ -2333,7 +2333,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Lalako la ngan deng laman ning bulung',
 'autosumm-replace' => "Ing '$1' alilan ne ing bulung",
-'autoredircomment' => 'Lilipat ya king [[$1]]',
+'autoredircomment' => 'Lilipat ya king [[:$1]]',
 'autosumm-new'     => 'Bayung bulung: $1',
 
 # Live preview

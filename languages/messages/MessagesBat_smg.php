@@ -1020,9 +1020,9 @@ Galėnis keitėms dėrbts nauduotuojė [[User:$3|$3]] ([[User talk:$3|Aptarėms]
 Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė pamieginkėt vielē.',
 'protectlogpage'              => 'Rakinėmu istuorėjė',
 'protectlogtext'              => 'Žemiau īr poslapė ožrakinėmu teipuogi atrakinėmu istuorėjė. Daba veikiantiu poslapiu apsaugū sōraša sorasit [[Special:ProtectedPages|apsauguotu poslapiu sōrašuo]].',
-'protectedarticle'            => 'ožrakina „[[$1]]“',
-'modifiedarticleprotection'   => 'pakeists „[[$1]]“ apsauguos līgis',
-'unprotectedarticle'          => 'atrakėna „[[$1]]“',
+'protectedarticle'            => 'ožrakina „[[:$1]]“',
+'modifiedarticleprotection'   => 'pakeists „[[:$1]]“ apsauguos līgis',
+'unprotectedarticle'          => 'atrakėna „[[:$1]]“',
 'protectcomment'              => 'Kuomentars:',
 'protectexpiry'               => 'Beng galiuotė:',
 'protect_expiry_invalid'      => 'Galiuojėma čiesos īr nateisėngs.',
@@ -1223,7 +1223,7 @@ pavadėnėma straipsnis jau tor aptarėmu poslapi.
 Prašuom sojongtė šėtuos poslapios.'''",
 'movedto'                 => 'parvadints i',
 'movetalk'                => 'Parkeltė sosėta aptarėma poslapi.',
-'1movedto2'               => 'Straipsnis [[$1]] parvadints i [[$2]]',
+'1movedto2'               => 'Straipsnis [[:$1]] parvadints i [[:$2]]',
 '1movedto2_redir'         => "'$1' parvadints i '$2' (onkstiau bova nukrēpamāsis)",
 'movelogpage'             => 'Parvardinėmu istuorėjė',
 'movelogpagetext'         => 'Sārašos parvadintu poslapiu.',
@@ -1231,7 +1231,7 @@ Prašuom sojongtė šėtuos poslapios.'''",
 'revertmove'              => 'atmestė',
 'delete_and_move'         => 'Ėštrintė ė parkeltė',
 'delete_and_move_text'    => '==Rēkalings ėštrīnims==
-Paskėrties straipsnis „[[$1]]“ jau īr. A nuorėt ana ėštrintė, kū galietomiet parvadintė?',
+Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū galietomiet parvadintė?',
 'delete_and_move_confirm' => 'Tēp, trintė poslapi',
 'delete_and_move_reason'  => 'Ėštrinta diel parkielima',
 
@@ -1445,7 +1445,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'recreate'            => 'Atkortė',
 
 # HTML dump
-'redirectingto' => 'Paradresounama i [[$1]]...',
+'redirectingto' => 'Paradresounama i [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'Tink',
@@ -1474,7 +1474,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 # Auto-summaries
 'autosumm-blank'   => 'Šalėnams ciels straipsnė torėnīs',
 'autosumm-replace' => "Poslapis keitams so '$1'",
-'autoredircomment' => 'Nukreipama i [[$1]]',
+'autoredircomment' => 'Nukreipama i [[:$1]]',
 'autosumm-new'     => 'Naus poslapis: $1',
 
 # Live preview

@@ -1494,9 +1494,9 @@ kay rurayqa t'ipisqam karqan millay runap llullaspa yaykunanta hark'anapaq.
 Ama hina kaspa, llika wamp'unaykipi \"Ñawpaqman\" (\"Back\") ñit'ispa ñawpaq p'anqata musuqmanta chaqnamuspa huk kutita yaykuykachay.",
 'protectlogpage'              => "P'anqa amachasqakuna",
 'protectlogtext'              => "Kay qatiqpiqa p'anqata amachasqakunatam paskasqakunatapas rikunki. [[Special:ProtectedPages|Amachasqa p'anqakunata]] qhaway astawan willasunaykipaq.",
-'protectedarticle'            => 'amachan [[$1]]-ta',
-'modifiedarticleprotection'   => 'hukchan kay p\'anqap amachasqa kachkayninta: "[[$1]]"',
-'unprotectedarticle'          => 'paskan amachasqa [[$1]]-ta',
+'protectedarticle'            => 'amachan [[:$1]]-ta',
+'modifiedarticleprotection'   => 'hukchan kay p\'anqap amachasqa kachkayninta: "[[:$1]]"',
+'unprotectedarticle'          => 'paskan amachasqa [[:$1]]-ta',
 'protect-title'               => '"$1"-ta amachaspa',
 'protect-legend'              => 'Amachayta takyachiy',
 'protectcomment'              => 'Imarayku amachasqa',
@@ -1756,8 +1756,8 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'movepage-page-moved'     => "$1 sutiyuq p'anqaqa $2 sutiman astasqañam.",
 'movepage-page-unmoved'   => "Manam atinichu $1 sutiyuq p'anqata $2 sutiman astayta.",
 'movepage-max-pages'      => "$1 {{PLURAL:$1|p'anqa|p'anqakuna}} astasqañam, kikinmanta manam aswan astasqa kanqachu.",
-'1movedto2'               => '«[[$1]]» «[[$2]]»-man astasqa',
-'1movedto2_redir'         => '[[$1]] [[$2]]-man astasqa pusana qillqata huknachaspa',
+'1movedto2'               => '«[[:$1]]» «[[:$2]]»-man astasqa',
+'1movedto2_redir'         => '[[:$1]] [[:$2]]-man astasqa pusana qillqata huknachaspa',
 'movelogpage'             => "Astay hallch'asqa",
 'movelogpagetext'         => "Kay qatiqpiqa astasqa p'anqakunam.",
 'movereason'              => 'Imarayku astasqa',
@@ -1765,7 +1765,7 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'delete_and_move'         => 'Qulluspa astay',
 'delete_and_move_text'    => '==Qullunam tiyan==
 
-Tukuna p\'anqaqa ("[[$1]]") kachkañam. Astanapaq qulluyta munankichu?',
+Tukuna p\'anqaqa ("[[:$1]]") kachkañam. Astanapaq qulluyta munankichu?',
 'delete_and_move_confirm' => "Arí, kay p'anqata qulluy",
 'delete_and_move_reason'  => 'Astanapaq qullusqa',
 'selfmove'                => "Qallarinawan taripana sutikunaqa kaqllam kachkan. Manam atinchu p'anqata kikinman astay.",
@@ -1843,7 +1843,7 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 # Import log
 'importlogpage'                    => "Hawamanta chaskiy hallch'a",
 'importlogpagetext'                => "Huk wikikunamanta wiñay kawsayniyuq p'anqakunata kamachina chaskiykuna.",
-'import-logentry-upload'           => 'hawamanta chaskisqa [[$1]] willañiqita churkuspa',
+'import-logentry-upload'           => 'hawamanta chaskisqa [[:$1]] willañiqita churkuspa',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}',
 'import-logentry-interwiki'        => 'huk wikimanta chaskisqa $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}} $2-manta',
@@ -2346,7 +2346,7 @@ Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy
 'recreate'            => 'Musuqta paqarichiy',
 
 # HTML dump
-'redirectingto' => '[[$1]]-man pusapuspa...',
+'redirectingto' => '[[:$1]]-man pusapuspa...',
 
 # action=purge
 'confirm_purge'        => "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?
@@ -2381,7 +2381,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => "P'anqata tukuy samiqninmanta ch'usaqchasqa",
 'autosumm-replace' => "P'anqap tukuy samiqnin '$1'-wan huknachasqa",
-'autoredircomment' => '[[$1]]-man pusapusqa',
+'autoredircomment' => '[[:$1]]-man pusapusqa',
 'autosumm-new'     => "Musuq p'anqa: $1",
 
 # Live preview

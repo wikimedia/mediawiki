@@ -905,8 +905,8 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'editcomment'         => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'          => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'    => 'protectit "[[$1]]"',
-'unprotectedarticle'  => 'unprotectit "[[$1]]"',
+'protectedarticle'    => 'protectit "[[:$1]]"',
+'unprotectedarticle'  => 'unprotectit "[[:$1]]"',
 'protect-title'       => 'Protectin "$1"',
 'protectcomment'      => 'Raeson for protectin',
 'protect-text'        => 'Ye can see an chynge the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
@@ -1009,15 +1009,15 @@ please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'talkexists'              => 'The page itsel wis flittit fine, but the collogue page cuidna be flittit sith ane aareadies exists at the new teitle. Please merge thaim manually.',
 'movedto'                 => 'flittit ti',
 'movetalk'                => 'Flit "collogue" page an aa, gin it\'s applicable.',
-'1movedto2'               => '[[$1]] flittit til [[$2]]',
-'1movedto2_redir'         => '[[$1]] flittit til [[$2]] ower reguidal',
+'1movedto2'               => '[[:$1]] flittit til [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] flittit til [[:$2]] ower reguidal',
 'movelogpage'             => 'Flit log',
 'movelogpagetext'         => "A leet o pages that's flitted is ablo.",
 'movereason'              => 'Raeson',
 'delete_and_move'         => 'Delete an flit',
 'delete_and_move_text'    => '==Deletion caad for==
 
-The destination airticle "[[$1]]" aareadies exists. Div ye want tae delete it for tae mak wey for the flittin?',
+The destination airticle "[[:$1]]" aareadies exists. Div ye want tae delete it for tae mak wey for the flittin?',
 'delete_and_move_confirm' => 'Aye, delete the page',
 'delete_and_move_reason'  => 'Delete for tae mak wey for flittin',
 'selfmove'                => 'Ootgaun an incomin teitles is the same; canna flit a page ower itsel.',
@@ -1181,7 +1181,7 @@ This confirmation code will end at $4.',
 Please confirm that ye really want tae recreate this airticle.",
 
 # HTML dump
-'redirectingto' => 'Reguidin tae [[$1]]...',
+'redirectingto' => 'Reguidin tae [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Clair the cache o this page?
@@ -1206,7 +1206,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Dichtin aa content frae page',
 'autosumm-replace' => "Replacin page wi '$1'",
-'autoredircomment' => 'Reguidin tae [[$1]]',
+'autoredircomment' => 'Reguidin tae [[:$1]]',
 
 # Special:SpecialPages
 'specialpages' => 'Byordinar pages',

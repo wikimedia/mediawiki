@@ -308,7 +308,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'movepagebtn'             => 'Iyales so bolong',
 'pagemovedsub'            => 'Asumpal lan inyales',
 'articleexists'           => 'Wala lay bolong to may ngaran ya atan, odino aga valid so pinilim ya ngaran. Pili ka pa na arom ya ngaran.',
-'1movedto2'               => 'say [[$1]] enyales paula ed [[$2]]',
+'1movedto2'               => 'say [[:$1]] enyales paula ed [[:$2]]',
 'movereason'              => 'Katonongan',
 'delete_and_move'         => 'Buralen san iyales',
 'delete_and_move_confirm' => 'On, buralen yan page',
@@ -388,7 +388,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ekalen so amin ya laman na bolong',
 'autosumm-replace' => "Salatan yan bolong na '$1'",
-'autoredircomment' => 'Ituturo paulad [[$1]]',
+'autoredircomment' => 'Ituturo paulad [[:$1]]',
 'autosumm-new'     => 'Balon bolong: $1',
 
 # Live preview

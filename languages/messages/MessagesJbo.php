@@ -161,7 +161,7 @@ $messages = array(
 
 # Move page
 'movedto'   => 'te muvdu',
-'1movedto2' => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
+'1movedto2' => "le pu se cmene lu [[:$1]] li'u cu ca se cmene lu [[:$2]] li'u",
 
 # Tooltip help for the actions
 'tooltip-pt-logout' => "co'u se jaspu",

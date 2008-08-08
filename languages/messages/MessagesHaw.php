@@ -551,7 +551,7 @@ hō‘ike ‘ia i lalo:",
 
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",
-'autoredircomment' => 'Ke alaka‘i nei hou i [[$1]]',
+'autoredircomment' => 'Ke alaka‘i nei hou i [[:$1]]',
 'autosumm-new'     => 'Ka ‘ao‘ao hou: $1',
 
 # Live preview

@@ -1393,9 +1393,9 @@ Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţi
 'sessionfailure'              => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
 'protectlogpage'              => 'Jurnal protecţii',
 'protectlogtext'              => 'Mai jos se află lista de blocări/deblocări a paginilor. Vezi [[Special:ProtectedPages]] pentru mai multe informaţii.',
-'protectedarticle'            => 'a protejat "[[$1]]"',
-'modifiedarticleprotection'   => 'schimbat nivelul de protecţie pentru "[[$1]]"',
-'unprotectedarticle'          => 'a deprotejat "[[$1]]"',
+'protectedarticle'            => 'a protejat "[[:$1]]"',
+'modifiedarticleprotection'   => 'schimbat nivelul de protecţie pentru "[[:$1]]"',
+'unprotectedarticle'          => 'a deprotejat "[[:$1]]"',
 'protect-title'               => 'Protejare "$1"',
 'protect-legend'              => 'Confirmă protejare',
 'protectcomment'              => 'Comentariu:',
@@ -1640,8 +1640,8 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'move-subpages'           => 'Mută toate subpaginile, dacă este nevoie',
 'movepage-page-moved'     => 'Pagina $1 a fost mutată la $2.',
 'movepage-page-unmoved'   => 'Pagina $1 nu a putut fi mutată la $2.',
-'1movedto2'               => 'a mutat [[$1]] la [[$2]]',
-'1movedto2_redir'         => 'a mutat [[$1]] la [[$2]] prin redirect',
+'1movedto2'               => 'a mutat [[:$1]] la [[:$2]]',
+'1movedto2_redir'         => 'a mutat [[:$1]] la [[:$2]] prin redirect',
 'movelogpage'             => 'Jurnal mutări',
 'movelogpagetext'         => 'Mai jos se află o listă cu paginile mutate.',
 'movereason'              => 'Motiv:',
@@ -1649,7 +1649,7 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'delete_and_move'         => 'Şterge şi mută',
 'delete_and_move_text'    => '==Ştergere necesară==
 
-Articolul de destinaţie "[[$1]]" există deja. Doriţi să îl ştergeţi pentru a face loc mutării?',
+Articolul de destinaţie "[[:$1]]" există deja. Doriţi să îl ştergeţi pentru a face loc mutării?',
 'delete_and_move_confirm' => 'Da, şterge pagina.',
 'delete_and_move_reason'  => 'Şters pentru a face loc mutării',
 'selfmove'                => 'Titlurile sursei şi ale destinaţiei sunt aceleaşi; nu puteţi muta o pagină peste ea însăşi.',
@@ -2191,7 +2191,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'recreate'            => 'Recreează',
 
 # HTML dump
-'redirectingto' => 'Redirecţionând la [[$1]]...',
+'redirectingto' => 'Redirecţionând la [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Doriţi să reîncărcaţi pagina? $1',
@@ -2219,7 +2219,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 # Auto-summaries
 'autosumm-blank'   => 'Şters conţinutul paginii',
 'autosumm-replace' => "Înlocuit pagina cu '$1'",
-'autoredircomment' => 'Redirecţionat înspre [[$1]]',
+'autoredircomment' => 'Redirecţionat înspre [[:$1]]',
 'autosumm-new'     => 'Pagină nouă: $1',
 
 # Live preview

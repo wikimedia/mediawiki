@@ -1350,9 +1350,9 @@ $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
 'protectlogpage'              => 'Koruma kayıtları',
 'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
 Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',
-'protectedarticle'            => '"[[$1]]" koruma altında alındı',
-'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
-'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',
+'protectedarticle'            => '"[[:$1]]" koruma altında alındı',
+'modifiedarticleprotection'   => '"[[:$1]]" için koruma düzeyi değiştirildi',
+'unprotectedarticle'          => 'koruma kaldırıldı: "[[:$1]]"',
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'protect-legend'              => 'Korumayı onayla',
 'protectcomment'              => 'Koruma altına alma nedeni',
@@ -1561,8 +1561,8 @@ Lütfen başka bir isim deneyiniz.',
 'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
 'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
 'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
-'1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
-'1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
+'1movedto2'               => '[[:$1]] sayfasının yeni adı: [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] başlığı [[:$2]] sayfasına yönlendirildi',
 'movelogpage'             => 'İsim değişikliği kayıtları',
 'movelogpagetext'         => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
 'movereason'              => 'Neden:',
@@ -1570,7 +1570,7 @@ Lütfen başka bir isim deneyiniz.',
 'delete_and_move'         => 'Sil ve taşı',
 'delete_and_move_text'    => '==Silinmesi gerekiyor==
 
-"[[$1]]" isimli bir sayfa zaten mevcut. O sayfayı silerek, isim değişikliğini gerçekleştirmeye devam etmek istiyor musunuz?',
+"[[:$1]]" isimli bir sayfa zaten mevcut. O sayfayı silerek, isim değişikliğini gerçekleştirmeye devam etmek istiyor musunuz?',
 'delete_and_move_confirm' => 'Evet, sayfayı sil',
 'delete_and_move_reason'  => 'İsim değişikliğinin gerçekleşmesi için silindi.',
 'selfmove'                => 'Olmasını istediğiniz isim ile mevcut isim aynı. Değişiklik mümkün değil.',
@@ -1994,7 +1994,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'recreate'            => 'Canlandır',
 
 # HTML dump
-'redirectingto' => 'Yönlendirme [[$1]]...',
+'redirectingto' => 'Yönlendirme [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Sayfa önbelleği temizlensin mi? $1',
@@ -2026,7 +2026,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 # Auto-summaries
 'autosumm-blank'   => 'Sayfa boşaltıldı',
 'autosumm-replace' => "Sayfa içeriği '$1' ile değiştiriliyor",
-'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
+'autoredircomment' => '[[:$1]] sayfasına yönlendirildi',
 'autosumm-new'     => 'Yeni sayfa: $1',
 
 # Live preview

@@ -134,7 +134,7 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 # Move page
 'articleexists' => 'Halamang béla ida pile ni ujuk, a dek essa.
 Silakan pile aseng laing.',
-'1movedto2'     => '[[$1]] ésuk ri [[$2]]',
+'1movedto2'     => '[[:$1]] ésuk ri [[:$2]]',
 
 # Namespace 8 related
 'allmessages'        => 'Maneng pappaseng',

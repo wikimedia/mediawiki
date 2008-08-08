@@ -1519,9 +1519,9 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] 
 'sessionfailure'              => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 'protectlogpage'              => 'Registro de protezión',
 'protectlogtext'              => 'De seguito xe elencàe le azion de protezion e sbloco de le pagine.',
-'protectedarticle'            => 'gà proteto "[[$1]]"',
-'modifiedarticleprotection'   => 'gà modificà el livel de protezion de "[[$1]]"',
-'unprotectedarticle'          => 'gà sblocà "[[$1]]"',
+'protectedarticle'            => 'gà proteto "[[:$1]]"',
+'modifiedarticleprotection'   => 'gà modificà el livel de protezion de "[[:$1]]"',
+'unprotectedarticle'          => 'gà sblocà "[[:$1]]"',
 'protect-title'               => 'Canbia el livèl de protezion par "$1"',
 'protect-legend'              => 'Conferma la protezion',
 'protectcomment'              => 'Motivo de ła protezion',
@@ -1782,7 +1782,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.',
 'movepage-page-unmoved'   => "No s'à mìa podesto spostar $1 a $2.",
 'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de $1 {{PLURAL:$1|pagina|pagine}} spostà e nissun'altra la vegnarà spostà in automatico.",
-'1movedto2'               => '[[$1]] spostà a [[$2]]',
+'1movedto2'               => '[[:$1]] spostà a [[:$2]]',
 '1movedto2_redir'         => "$1 spostà a $2 co'n redirect",
 'movelogpage'             => 'Registro dei spostamenti',
 'movelogpagetext'         => 'Lista de pàxene spostàe.',
@@ -1791,7 +1791,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'delete_and_move'         => 'Scanceła e sposta',
 'delete_and_move_text'    => '==Scancełassion richiesta==
 
-La voçe specificà come destinassion "[[$1]]" l\'esiste xà. Vóto scancełarla par proseguir con ło spostamento?',
+La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarla par proseguir con ło spostamento?',
 'delete_and_move_confirm' => 'Si! Scancèła ła pàxena',
 'delete_and_move_reason'  => 'Scancełà par rendere possibile lo spostamento',
 'selfmove'                => 'El novo titoło el xè conpagno del vecio; no se pol spostar ła pàxena su de ela.',
@@ -2378,7 +2378,7 @@ Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 'recreate'            => 'Ricrea',
 
 # HTML dump
-'redirectingto' => 'Reindirizzamento a [[$1]]...',
+'redirectingto' => 'Reindirizzamento a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Vóto scancełar ła cache in sta pàxena?
@@ -2413,7 +2413,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pagina svodà conpletamente',
 'autosumm-replace' => "Pagina sostituìa con '$1'",
-'autoredircomment' => 'Rimando a ła pàxena [[$1]]',
+'autoredircomment' => 'Rimando a ła pàxena [[:$1]]',
 'autosumm-new'     => 'Pàxena nova: $1',
 
 # Live preview

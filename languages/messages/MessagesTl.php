@@ -537,8 +537,8 @@ Pumili muli ng ibang pangalan.',
 'cantmove-titleprotected' => 'Hindi mo malilipatan ang isang pahina sa lokasyong ito, dahil nakasanggalang sa paglikha ang baong pamagat',
 'movedto'                 => 'inilipat sa',
 'movetalk'                => 'Ilipat ang kaugnay na pahinang usapan',
-'1movedto2'               => 'Ang [[$1]] ay inilipat sa [[$2]]',
-'1movedto2_redir'         => 'Ang [[$1]] ay inilipat sa [[$2]] sa ibabaw ng pangkarga',
+'1movedto2'               => 'Ang [[:$1]] ay inilipat sa [[:$2]]',
+'1movedto2_redir'         => 'Ang [[:$1]] ay inilipat sa [[:$2]] sa ibabaw ng pangkarga',
 'movereason'              => 'Dahilan:',
 'delete_and_move'         => 'Burahin at ilipat',
 'delete_and_move_confirm' => 'Oo, burahin ang pahina',
@@ -605,7 +605,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'recreate'            => 'Likhain muli',
 
 # HTML dump
-'redirectingto' => 'Nagkakarga sa [[$1]]...',
+'redirectingto' => 'Nagkakarga sa [[:$1]]...',
 
 # action=purge
 'confirm_purge' => 'Linisin ang baunan ng pahinang ito?
@@ -620,7 +620,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Itinatanggal ang lahat ng nilalaman mula sa pahina',
 'autosumm-replace' => "Ipinapalit ang pahina ng may nilalamang '$1'",
-'autoredircomment' => 'Ikinakarga sa [[$1]]',
+'autoredircomment' => 'Ikinakarga sa [[:$1]]',
 'autosumm-new'     => 'Bagong pahina: $1',
 
 # Live preview

@@ -1435,8 +1435,8 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 'protectlogpage'              => 'Beskermlogboek',
-'protectedarticle'            => 'het [[$1]] beskerm',
-'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
+'protectedarticle'            => 'het [[:$1]] beskerm',
+'unprotectedarticle'          => 'het beskerming van [[:$1]] verwyder',
 'protect-title'               => 'Beskerm "$1"',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede vir beskerming:',
@@ -1669,8 +1669,8 @@ Kies asseblief 'n ander naam.",
 'movepage-page-exists'    => 'Die bladsy $1 bestaan reeds en kan nie outomaties oorskryf word nie.',
 'movepage-page-moved'     => 'Die bladsy $1 was na $2 geskuif.',
 'movepage-page-unmoved'   => 'Die bladsy $1 kon nie na $2 geskuif word nie.',
-'1movedto2'               => '[[$1]] geskuif na [[$2]]',
-'1movedto2_redir'         => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
+'1movedto2'               => '[[:$1]] geskuif na [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] geskuif na [[:$2]] oor bestaande aanstuur',
 'movelogpage'             => 'Skuiflogboek',
 'movelogpagetext'         => "Hieronder is 'n lys van geskuifde bladsye.",
 'movereason'              => 'Rede:',
@@ -1678,7 +1678,7 @@ Kies asseblief 'n ander naam.",
 'delete_and_move'         => 'Skrap en skuif',
 'delete_and_move_text'    => '==Skrapping benodig==
 
-Die teikenartikel "[[$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir die skuif?',
+Die teikenartikel "[[:$1]]" bestaan reeds. Wil u dit skrap om plek te maak vir die skuif?',
 'delete_and_move_confirm' => 'Ja, skrap die bladsy',
 'delete_and_move_reason'  => 'Geskrap om plek te maak vir skuif',
 'selfmove'                => 'Bron- en teikentitels is dieselfde; kan nie bladsy oor homself skuif nie.',
@@ -2102,7 +2102,7 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'recreate'            => 'Herskep',
 
 # HTML dump
-'redirectingto' => 'Stuur aan na [[$1]]...',
+'redirectingto' => 'Stuur aan na [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Verwyder die kas van hierdie blad?
@@ -2135,7 +2135,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Alle inhoud uit bladsy verwyder',
 'autosumm-replace' => "Vervang bladsyinhoud met '$1'",
-'autoredircomment' => 'Stuur aan na [[$1]]',
+'autoredircomment' => 'Stuur aan na [[:$1]]',
 'autosumm-new'     => 'Nuwe blad: $1',
 
 # Size units

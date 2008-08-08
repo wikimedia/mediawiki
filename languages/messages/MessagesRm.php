@@ -545,12 +545,12 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 # Move page
 'pagemovedsub'            => 'Spustà cun success',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
-'1movedto2'               => 'Spustà [[$1]] tar [[$2]]',
-'1movedto2_redir'         => 'Spustà [[$1]] tar [[$2]] cun in redirect',
+'1movedto2'               => 'Spustà [[:$1]] tar [[:$2]]',
+'1movedto2_redir'         => 'Spustà [[:$1]] tar [[:$2]] cun in redirect',
 'delete_and_move'         => 'Stidar e spustar',
 'delete_and_move_text'    => '==Stidar necessari==
 
-L\'artitgel da destinaziun "[[$1]]" exista gia. Vul ti stidar el per far plaz per spustar?',
+L\'artitgel da destinaziun "[[:$1]]" exista gia. Vul ti stidar el per far plaz per spustar?',
 'delete_and_move_confirm' => 'Gea, stidar il artitgel da destinaziun per spustar',
 'delete_and_move_reason'  => 'Stidà per far plaz per spustar',
 

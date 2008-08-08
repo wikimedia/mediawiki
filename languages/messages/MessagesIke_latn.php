@@ -301,8 +301,8 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'move-page-legend' => 'uajuq mappitaq',
 'movearticle'      => 'uajuq mappitaq',
 'movedto'          => 'uajuq',
-'1movedto2'        => '[[$1]] surramajuq [[$2]]',
-'1movedto2_redir'  => '[[$1]] surramajuq [[$2]] misippaa qaningani kamagijaq aasit nakit',
+'1movedto2'        => '[[:$1]] surramajuq [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] surramajuq [[:$2]] misippaa qaningani kamagijaq aasit nakit',
 'movelogpage'      => 'uajuq nipi',
 'delete_and_move'  => 'nipaqtipaa amma uajuq',
 
@@ -348,7 +348,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'monthsall' => 'sunamittuq',
 
 # HTML dump
-'redirectingto' => 'qaningani kamagijaq aasit nakit [[$1]]...',
+'redirectingto' => 'qaningani kamagijaq aasit nakit [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'akaujuq',
@@ -362,7 +362,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'table_pager_limit_submit' => 'aivuk',
 
 # Auto-summaries
-'autoredircomment' => 'qaningani kamagijaq aasit nakit [[$1]]',
+'autoredircomment' => 'qaningani kamagijaq aasit nakit [[:$1]]',
 'autosumm-new'     => 'pigivuq mappitaq: $1',
 
 # Special:SpecialPages

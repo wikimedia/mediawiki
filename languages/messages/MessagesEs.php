@@ -1552,9 +1552,9 @@ esta acción ha sido cancelada como medida de precaución contra secuestros de s
 Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de nuevo.',
 'protectlogpage'              => 'Protecciones de páginas',
 'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
-'protectedarticle'            => 'protegió [[$1]]',
-'modifiedarticleprotection'   => 'Cambiado el nivel de protección de "[[$1]]"',
-'unprotectedarticle'          => 'desprotegió [[$1]]',
+'protectedarticle'            => 'protegió [[:$1]]',
+'modifiedarticleprotection'   => 'Cambiado el nivel de protección de "[[:$1]]"',
+'unprotectedarticle'          => 'desprotegió [[:$1]]',
 'protect-title'               => 'Protegiendo "$1"',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo de la protección',
@@ -1820,8 +1820,8 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepage-page-moved'     => 'La página $1 ha sido trasladado a $2.',
 'movepage-page-unmoved'   => 'La página $1 no se ha podido trasladar a $2.',
 'movepage-max-pages'      => 'Se {{PLURAL:$1|ha trasladado un máximo de una página|han trasladado un máximo de $1 páginas}}, y no se van a mover más automáticamente.',
-'1movedto2'               => '[[$1]] trasladada a [[$2]]',
-'1movedto2_redir'         => '[[$1]] trasladada a [[$2]] sobre una redirección',
+'1movedto2'               => '[[:$1]] trasladada a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] trasladada a [[:$2]] sobre una redirección',
 'movelogpage'             => 'Registro de traslados',
 'movelogpagetext'         => 'Abajo se encuentra una lista de páginas trasladadas.',
 'movereason'              => 'Motivo',
@@ -1829,7 +1829,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'delete_and_move'         => 'Borrar y trasladar',
 'delete_and_move_text'    => '==Se necesita borrado==
 
-La página de destino ("[[$1]]") ya existe. ¿Quiere borrarla para permitir al traslado?',
+La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al traslado?',
 'delete_and_move_confirm' => 'Sí, borrar la página',
 'delete_and_move_reason'  => 'Borrada para permitir el traslado',
 'selfmove'                => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
@@ -1899,7 +1899,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 # Import log
 'importlogpage'                    => 'Registro de importaciones',
 'importlogpagetext'                => 'Importaciones administrativas de páginas con historial desde otros wikis.',
-'import-logentry-upload'           => 'importada [[$1]] por subida de archivo',
+'import-logentry-upload'           => 'importada [[:$1]] por subida de archivo',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'import-logentry-interwiki'        => 'transwikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
@@ -2400,7 +2400,7 @@ $1
 'recreate'            => 'Crear de nuevo',
 
 # HTML dump
-'redirectingto' => 'Redirigiendo a [[$1]]...',
+'redirectingto' => 'Redirigiendo a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '¿Limpiar la caché de esta página?
@@ -2435,7 +2435,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Página blanqueada',
 'autosumm-replace' => 'Página reemplazada por "$1"',
-'autoredircomment' => 'Redireccionado a [[$1]]',
+'autoredircomment' => 'Redireccionado a [[:$1]]',
 'autosumm-new'     => 'Página nueva: $1',
 
 # Live preview

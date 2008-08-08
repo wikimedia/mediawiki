@@ -1117,9 +1117,9 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'rollbackfailed'              => "Biykar etiw sa'tsiz tamamlandı",
 'editcomment'                 => 'O\'zgertiwdin\' bolg\'an kommentariyi: "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => "Qorg'aw jurnalı",
-'protectedarticle'            => '"[[$1]]" qorg\'alg\'an',
-'modifiedarticleprotection'   => '"[[$1]]" betinin\' qorg\'aw da\'rejesi ozgertildi',
-'unprotectedarticle'          => '"[[$1]]" qorg\'almag\'an',
+'protectedarticle'            => '"[[:$1]]" qorg\'alg\'an',
+'modifiedarticleprotection'   => '"[[:$1]]" betinin\' qorg\'aw da\'rejesi ozgertildi',
+'unprotectedarticle'          => '"[[:$1]]" qorg\'almag\'an',
 'protect-legend'              => "Qorg'awdı tastıyıqlaw",
 'protectcomment'              => 'Kommentariy:',
 'protectexpiry'               => "Ku'shin joytıw waqtı:",
@@ -1294,8 +1294,8 @@ Basqa atama saylan'",
 'talkexists'              => "'''Bettin' o'zi a'wmetli ko'shirildi, biraq sa'wbet beti ko'shirilmedi sebebi jan'a atamanın' sa'wbet beti bar eken. Olardı o'zin'iz qoldan qosın'.'''",
 'movedto'                 => "betke ko'shirildi",
 'movetalk'                => "Baylanıslı sa'wbet betin ko'shiriw",
-'1movedto2'               => "[[$1]] beti [[$2]] degenge ko'shirildi",
-'1movedto2_redir'         => "[[$1]] beti [[$2]] degen burıwshıg'a ko'shirildi",
+'1movedto2'               => "[[:$1]] beti [[:$2]] degenge ko'shirildi",
+'1movedto2_redir'         => "[[:$1]] beti [[:$2]] degen burıwshıg'a ko'shirildi",
 'movelogpage'             => "Ko'shiriw jurnalı",
 'movelogpagetext'         => "To'mende ko'shirilgen betlerdin' dizimi keltirilgen.",
 'movereason'              => 'Sebep:',
@@ -1526,7 +1526,7 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 'unit-pixel' => ' px',
 
 # HTML dump
-'redirectingto' => '[[$1]] degenge burılmaqta...',
+'redirectingto' => '[[:$1]] degenge burılmaqta...',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -1555,7 +1555,7 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 # Auto-summaries
 'autosumm-blank'   => "Bettin' barlıq mag'lıwmatın o'shırıw",
 'autosumm-replace' => "Betti '$1' penen almastırıw",
-'autoredircomment' => '[[$1]] degenge burıw',
+'autoredircomment' => '[[:$1]] degenge burıw',
 'autosumm-new'     => 'Taza bet: $1',
 
 # Friendlier slave lag warnings

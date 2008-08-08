@@ -1578,9 +1578,9 @@ $NEWPAGE
 'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
-'protectedarticle'            => '已保护"[[$1]]"',
-'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
-'unprotectedarticle'          => '已取消保护"[[$1]]"',
+'protectedarticle'            => '已保护"[[:$1]]"',
+'modifiedarticleprotection'   => '已经更改 "[[:$1]]" 的保护等级',
+'unprotectedarticle'          => '已取消保护"[[:$1]]"',
 'protect-title'               => '正在更改"$1"的保护等级',
 'protect-legend'              => '确认保护',
 'protectcomment'              => '注解:',
@@ -1854,8 +1854,8 @@ $1',
 'movepage-page-moved'     => '页面$1已经移动到$2。',
 'movepage-page-unmoved'   => '页面$1不可以移动到$2。',
 'movepage-max-pages'      => '最多有$1个页面已经移动同时不可以自动地再移动更多。',
-'1movedto2'               => '[[$1]]移动到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通过重定向移动到[[$2]]',
+'1movedto2'               => '[[:$1]]移动到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]通过重定向移动到[[:$2]]',
 'movelogpage'             => '移动日志',
 'movelogpagetext'         => '以下是已经移动的页面列表:',
 'movereason'              => '原因',
@@ -1863,7 +1863,7 @@ $1',
 'delete_and_move'         => '删除并移动',
 'delete_and_move_text'    => '==需要删除==
 
-目标页面"[[$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
+目标页面"[[:$1]]"已经存在。你确认需要删除原页面并以进行移动吗？',
 'delete_and_move_confirm' => '是的，删除此页面',
 'delete_and_move_reason'  => '删除以便移动',
 'selfmove'                => '原始标题和目标标题相同，不能移动一个页面到它自身。',
@@ -2485,7 +2485,7 @@ $1
 'recreate'            => '重建',
 
 # HTML dump
-'redirectingto' => '重定向到[[$1]]...',
+'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '要清除此页面的缓存吗?\\n\\n$1',
@@ -2518,7 +2518,7 @@ $1
 # Auto-summaries
 'autosumm-blank'   => '移除所有页面内容',
 'autosumm-replace' => "正在将页面替换为 '$1'",
-'autoredircomment' => '正在重定向到 [[$1]]',
+'autoredircomment' => '正在重定向到 [[:$1]]',
 'autosumm-new'     => '新页面: $1',
 
 # Size units

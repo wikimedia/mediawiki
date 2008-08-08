@@ -1777,8 +1777,8 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Specia
 'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
 'protectlogpage'              => 'Skrivskyddslogg',
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
-'protectedarticle'            => 'skyddade [[$1]]',
-'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
+'protectedarticle'            => 'skyddade [[:$1]]',
+'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[:$1]]"',
 'unprotectedarticle'          => 'tog bort skydd av $1',
 'protect-title'               => 'Skyddsinställningar för "$1"',
 'protect-legend'              => 'Bekräfta skrivskydd av sida',
@@ -2053,15 +2053,15 @@ Försök att sammanfoga dem manuellt.'''",
 'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.',
 'movepage-page-unmoved'   => 'Sidan $1 kunde inte flyttas till $2.',
 'movepage-max-pages'      => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
-'1movedto2'               => 'flyttade [[$1]] till [[$2]]',
-'1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
+'1movedto2'               => 'flyttade [[:$1]] till [[:$2]]',
+'1movedto2_redir'         => 'flyttade [[:$1]] till [[:$2]], som var en omdirigeringssida',
 'movelogpage'             => 'Sidflyttslogg',
 'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
 'movereason'              => 'Anledning:',
 'revertmove'              => 'flytta tillbaka',
 'delete_and_move'         => 'Radera och flytta',
 'delete_and_move_text'    => '==Radering krävs==
-Den titel du vill flytta sidan till, "[[$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
+Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
 'delete_and_move_confirm' => 'Ja, radera sidan',
 'delete_and_move_reason'  => 'Raderad för att flytta hit en annan sida.',
 'selfmove'                => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
@@ -2143,7 +2143,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 # Import log
 'importlogpage'                    => 'Importlogg',
 'importlogpagetext'                => 'Administrativa sidimporter med versionshistorik från andra wikier.',
-'import-logentry-upload'           => 'importerade [[$1]] genom filuppladdning',
+'import-logentry-upload'           => 'importerade [[:$1]] genom filuppladdning',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versioner}}',
 'import-logentry-interwiki'        => 'överförde $1 mellan wikier',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versioner}} från $2',
@@ -2648,7 +2648,7 @@ Bekräfta att du verkligen vill återskapa sidan.",
 'recreate'            => 'Återskapa',
 
 # HTML dump
-'redirectingto' => 'Omdirigerar till [[$1]]...',
+'redirectingto' => 'Omdirigerar till [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Rensa denna sidas cache?
@@ -2683,7 +2683,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Tar bort sidans innehåll',
 'autosumm-replace' => "Ersätter sidans innehåll med '$1'",
-'autoredircomment' => 'Omdirigerar till [[$1]]',
+'autoredircomment' => 'Omdirigerar till [[:$1]]',
 'autosumm-new'     => 'Ny sida: $1',
 
 # Size units

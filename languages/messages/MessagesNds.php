@@ -1651,7 +1651,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protectlogpage'              => 'Sietenschuul-Logbook',
 'protectlogtext'              => 'Dit is en List vun de blockten Sieten. Kiek [[Special:ProtectedPages|Schulte Sieten]] för mehr Informatschonen.',
 'protectedarticle'            => 'Siet $1 schuult',
-'modifiedarticleprotection'   => 'Schuul op „[[$1]]“ sett',
+'modifiedarticleprotection'   => 'Schuul op „[[:$1]]“ sett',
 'unprotectedarticle'          => 'Siet $1 freegeven',
 'protect-title'               => 'Sparren vun „$1“',
 'protect-legend'              => 'Sparr bestätigen',
@@ -1923,8 +1923,8 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
 'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
 'movepage-max-pages'      => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
-'1movedto2'               => '[[$1]] is nu na [[$2]] verschaven.',
-'1movedto2_redir'         => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
+'1movedto2'               => '[[:$1]] is nu na [[:$2]] verschaven.',
+'1movedto2_redir'         => '[[:$1]] is nu na [[:$2]] verschaven un hett den olen Redirect överschreven.',
 'movelogpage'             => 'Schuuv-Logbook',
 'movelogpagetext'         => 'Dit is ene List vun all schavene Sieden.',
 'movereason'              => 'Grund',
@@ -1932,7 +1932,7 @@ Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft.
 'delete_and_move'         => 'Wegsmieten un Schuven',
 'delete_and_move_text'    => '== Siet gifft dat al, wegsmieten? ==
 
-De Siet „[[$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schaven warrn kann?',
+De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schaven warrn kann?',
 'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
 'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
 'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
@@ -2007,7 +2007,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 # Import log
 'importlogpage'                    => 'Import-Logbook',
 'importlogpagetext'                => 'Administrativen Import vun Sieden mit Versionsgeschicht vun annere Wikis.',
-'import-logentry-upload'           => 'hett „[[$1]]“ ut Datei importeert',
+'import-logentry-upload'           => 'hett „[[:$1]]“ ut Datei importeert',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|ene Version|$1 Versionen}}',
 'import-logentry-interwiki'        => 'hett „[[$1]]“ importeert (Transwiki)',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ene Version|$1 Versionen}} vun $2',
@@ -2503,7 +2503,7 @@ Wist du de Siet würklich nee anleggen?",
 'recreate'            => 'wedder nee anleggen',
 
 # HTML dump
-'redirectingto' => 'Redirect sett na [[$1]]...',
+'redirectingto' => 'Redirect sett na [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Den Cache vun disse Siet leddig maken?
@@ -2538,7 +2538,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Siet leddig maakt',
 'autosumm-replace' => 'Siet leddig maakt un ‚$1‘ rinschreven',
-'autoredircomment' => 'Redirect sett na [[$1]]',
+'autoredircomment' => 'Redirect sett na [[:$1]]',
 'autosumm-new'     => 'Ne’e Siet: ‚$1‘',
 
 # Live preview

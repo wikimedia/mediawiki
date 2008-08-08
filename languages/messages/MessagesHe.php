@@ -1818,9 +1818,9 @@ $NEWPAGE
 'sessionfailure'              => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
 'protectlogpage'              => 'יומן הגנות',
 'protectlogtext'              => 'להלן רשימה של הגנות וביטולי הגנות על דפים. ראו גם את [[Special:ProtectedPages|רשימת הדפים המוגנים]] הנוכחית.',
-'protectedarticle'            => 'הגן על [[$1]]',
-'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[$1]]',
-'unprotectedarticle'          => 'ביטל את ההגנה על [[$1]]',
+'protectedarticle'            => 'הגן על [[:$1]]',
+'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[:$1]]',
+'unprotectedarticle'          => 'ביטל את ההגנה על [[:$1]]',
 'protect-title'               => 'שינוי רמת ההגנה של "$1"',
 'protect-backlink'            => '→ $1',
 'protect-legend'              => 'אישור הפעלת ההגנה',
@@ -2099,15 +2099,15 @@ $1',
 'movepage-page-moved'     => 'הדף $1 הועבר לשם $2.',
 'movepage-page-unmoved'   => 'לא ניתן להעביר את הדף $1 לשם $2.',
 'movepage-max-pages'      => 'המספר המקסימלי של {{PLURAL:$1|דף אחד|$1 דפים}} כבר הועבר ולא ניתן להעביר דפים נוספים אוטומטית.',
-'1movedto2'               => '[[$1]] הועבר ל[[$2]]',
-'1movedto2_redir'         => '[[$1]] הועבר ל[[$2]] במקום הפניה',
+'1movedto2'               => '[[:$1]] הועבר ל[[:$2]]',
+'1movedto2_redir'         => '[[:$1]] הועבר ל[[:$2]] במקום הפניה',
 'movelogpage'             => 'יומן העברות',
 'movelogpagetext'         => 'להלן רשימה של העברות דפים.',
 'movereason'              => 'סיבה:',
 'revertmove'              => 'החזרה',
 'delete_and_move'         => 'מחיקה והעברה',
 'delete_and_move_text'    => '== בקשת מחיקה ==
-דף היעד, [[$1]], כבר קיים. האם ברצונכם למחוק אותו כדי לאפשר את ההעברה?',
+דף היעד, [[:$1]], כבר קיים. האם ברצונכם למחוק אותו כדי לאפשר את ההעברה?',
 'delete_and_move_confirm' => 'אישור מחיקת הדף',
 'delete_and_move_reason'  => 'מחיקה על מנת לאפשר העברה',
 'selfmove'                => 'כותרות המקור והיעד זהות; לא ניתן להעביר דף לעצמו.',
@@ -2189,7 +2189,7 @@ $1',
 # Import log
 'importlogpage'                    => 'יומן ייבוא',
 'importlogpagetext'                => 'ייבוא מנהלי של דפים (כולל היסטוריית העריכות שלהם) מאתרי ויקי אחרים.',
-'import-logentry-upload'           => 'ייבא את [[$1]] על ידי העלאת קובץ',
+'import-logentry-upload'           => 'ייבא את [[:$1]] על ידי העלאת קובץ',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}}',
 'import-logentry-interwiki'        => 'ייבא את $1 בייבוא בין־אתרי',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}} של הדף $2',
@@ -2709,7 +2709,7 @@ $1
 'recreate'            => 'יצירה מחדש',
 
 # HTML dump
-'redirectingto' => 'מפנה ל־[[$1]]…',
+'redirectingto' => 'מפנה ל־[[:$1]]…',
 
 # action=purge
 'confirm_purge'        => 'לנקות את המטמון של דף זה?
@@ -2744,7 +2744,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'הסרת כל התוכן מדף זה',
 'autosumm-replace' => "החלפת הדף עם '$1'",
-'autoredircomment' => 'הפניה לדף [[$1]]',
+'autoredircomment' => 'הפניה לדף [[:$1]]',
 'autosumm-new'     => 'דף חדש: $1',
 
 # Size units

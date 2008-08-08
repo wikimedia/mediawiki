@@ -422,7 +422,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'talkexists'           => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
 'delete_and_move_text' => '==Zielseite vorhanden, löschen?==
 
-Die Seite „[[$1]]“ existiert bereits. Möchten Sie diese löschen, um die Seite verschieben zu können?',
+Die Seite „[[:$1]]“ existiert bereits. Möchten Sie diese löschen, um die Seite verschieben zu können?',
 
 # Export
 'exporttext' => 'Mit dieser Spezialseite können Sie den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten in eine XML-Datei exportieren.

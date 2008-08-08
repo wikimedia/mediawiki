@@ -542,7 +542,7 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'movepage-moved'   => '<big>\'\'\'"$1" foi mobido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'movido para',
 'movetalk'         => 'Mober tambien la página de çcusson associada.',
-'1movedto2'        => '[[$1]] foi movido para [[$2]]',
+'1movedto2'        => '[[:$1]] foi movido para [[:$2]]',
 'movelogpage'      => 'Registo de movimentos',
 'movereason'       => 'Motivo:',
 'revertmove'       => 'reverter',

@@ -330,8 +330,8 @@ $messages = array(
 'move-page-legend' => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
 'movearticle'      => 'ᐅᐊᔪᖅ ᒪᑉᐱᑕᖅ',
 'movedto'          => 'ᐅᐊᔪᖅ',
-'1movedto2'        => '[[$1]] ᓱᕐᕋᒪᔪᖅ [[$2]]',
-'1movedto2_redir'  => '[[$1]] ᓱᕐᕋᒪᔪᖅ [[$2]] ᒥᓯᑉᐹ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
+'1movedto2'        => '[[:$1]] ᓱᕐᕋᒪᔪᖅ [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] ᓱᕐᕋᒪᔪᖅ [[:$2]] ᒥᓯᑉᐹ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
 'movelogpage'      => 'ᐅᐊᔪᖅ ᓂᐱ',
 'movereason'       => 'ᐃᓱᒪᒃᓴᖅᓯᐅᕈᓐᓇᑦᑎᐊᕐᓂᖅ:',
 'delete_and_move'  => 'ᓂᐸᖅᑎᐹ  ᐊᒻᒪ ᐅᐊᔪᖅ',
@@ -381,7 +381,7 @@ $messages = array(
 'monthsall' => 'ᓱᓇᒥᑦᑐᖅ',
 
 # HTML dump
-'redirectingto' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[$1]]...',
+'redirectingto' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'ᐊᑲᐅᔪᖅ',
@@ -395,7 +395,7 @@ $messages = array(
 'table_pager_limit_submit' => 'ᐊᐃᕗᖅ',
 
 # Auto-summaries
-'autoredircomment' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[$1]]',
+'autoredircomment' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[:$1]]',
 'autosumm-new'     => 'ᐱᒋᕗᖅ ᒪᑉᐱᑕᖅ: $1',
 
 # Special:SpecialPages

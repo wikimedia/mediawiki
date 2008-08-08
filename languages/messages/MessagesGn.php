@@ -414,7 +414,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'movearticle'     => 'Guerova kuatiarogue',
 'move-watch'      => 'Toñeñangareko ko tembiapóre',
 'movepagebtn'     => 'Guerova kuatiarogue',
-'1movedto2'       => '[[$1]] oñembohasa [[$2]]-pe',
+'1movedto2'       => '[[:$1]] oñembohasa [[:$2]]-pe',
 'revertmove'      => 'embojevy',
 'delete_and_move' => "Mboje'o ha guerova",
 

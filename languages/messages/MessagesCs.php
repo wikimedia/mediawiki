@@ -1792,9 +1792,9 @@ vámi požadovaná činnost byla stornována jako prevence před neoprávněným
 Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a zkuste činnost znovu.',
 'protectlogpage'              => 'Kniha zamčení',
 'protectlogtext'              => 'Níže je uveden seznam všech zamčení a odemčení stránek.',
-'protectedarticle'            => 'zamyká „[[$1]]“',
-'modifiedarticleprotection'   => 'mění zámek stránky "[[$1]]"',
-'unprotectedarticle'          => 'odemyká „[[$1]]“',
+'protectedarticle'            => 'zamyká „[[:$1]]“',
+'modifiedarticleprotection'   => 'mění zámek stránky "[[:$1]]"',
+'unprotectedarticle'          => 'odemyká „[[:$1]]“',
 'protect-title'               => 'Zamyká se „$1“',
 'protect-legend'              => 'Potvrdit zamčení',
 'protectcomment'              => 'Důvod zamčení',
@@ -2047,8 +2047,8 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'movepage-page-moved'     => 'Stránka $1 byla přesunuta na $2.',
 'movepage-page-unmoved'   => 'Stránka $1 nemůže být přesunuta na $2.',
 'movepage-max-pages'      => '{{PLURAL:$1|Byla přesunuta maximálně povolená jedna stránka|Byly přesunuty maximálně povolené $1 stránky|Bylo přesunuto maximálně povolených $1 stránek}}, více jich už automaticky přesunuto nebude.',
-'1movedto2'               => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
-'1movedto2_redir'         => 'Stránka [[$1]] přemístěna na stránku [[$2]] s výměnou přesměrování',
+'1movedto2'               => 'Stránka [[:$1]] přemístěna na stránku [[:$2]]',
+'1movedto2_redir'         => 'Stránka [[:$1]] přemístěna na stránku [[:$2]] s výměnou přesměrování',
 'movelogpage'             => 'Kniha přesunů',
 'movelogpagetext'         => 'Toto je záznam všech přesunů stránek.',
 'movereason'              => 'Důvod:',
@@ -2056,7 +2056,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'delete_and_move'         => 'Smazat a přesunout',
 'delete_and_move_text'    => '==Je potřeba smazání==
 
-Cílová stránka „[[$1]]“ již existuje. Přejete si ji smazat pro uvolnění místa pro přesun?',
+Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolnění místa pro přesun?',
 'delete_and_move_confirm' => 'Ano, smazat cílovou stránku',
 'delete_and_move_reason'  => 'Smazáno pro umožnění přesunu',
 'selfmove'                => 'Původní a nový název jsou stejné; nelze stránku přesunout na sebe samu.',
@@ -2133,7 +2133,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 # Import log
 'importlogpage'                    => 'Kniha importů',
 'importlogpagetext'                => 'Na této stránce se zobrazují správcovské importy stránek včetně historie editací z jiných wiki.',
-'import-logentry-upload'           => 'naimportoval [[$1]] načtením souboru',
+'import-logentry-upload'           => 'naimportoval [[:$1]] načtením souboru',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizi|revize|revizí}}',
 'import-logentry-interwiki'        => 'přenesl $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}} z $2',
@@ -2644,7 +2644,7 @@ Opravdu si přejete znovu tuto stránku založit?',
 'recreate'            => 'Znovu založit',
 
 # HTML dump
-'redirectingto' => 'Přesměrovává se na [[$1]]…',
+'redirectingto' => 'Přesměrovává se na [[:$1]]…',
 
 # action=purge
 'confirm_purge'        => 'Aktualizovat cachovanou verzi této stránky?
@@ -2679,7 +2679,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Vyprázdnění stránky',
 'autosumm-replace' => 'Obsah stránky nahrazen textem „$1“',
-'autoredircomment' => 'Přesměrování na [[$1]]',
+'autoredircomment' => 'Přesměrování na [[:$1]]',
 'autosumm-new'     => 'Nová stránka: $1',
 
 # Size units

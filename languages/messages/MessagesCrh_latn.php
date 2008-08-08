@@ -1269,8 +1269,8 @@ yaqın zamanda yoq etilgenlerni körmek içün: $2.',
 'protectlogpage'              => 'Qorçalav jurnalı',
 'protectlogtext'              => 'Qorçalavğa aluv/çıqaruv ile bağlı deñişiklikler jurnalını körmektesiñiz.
 Qorçalav altına alınğan saifeler tam cedveli [[Special:ProtectedPages|bu saifede]] körip olasıñız.',
-'protectedarticle'            => '"[[$1]]" qorçalav altına alındı',
-'unprotectedarticle'          => 'qorçalav çıqarlıdı: "[[$1]]"',
+'protectedarticle'            => '"[[:$1]]" qorçalav altına alındı',
+'unprotectedarticle'          => 'qorçalav çıqarlıdı: "[[:$1]]"',
 'protect-legend'              => 'Qorçalavnı tasdıqla',
 'protectcomment'              => 'Qorçalav altına aluv sebebi',
 'protectexpiry'               => 'Bitiş tarihı:',
@@ -1418,8 +1418,8 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'talkexists'              => "'''Saifeniñ adı deñiştirildi, amma muzakere saifesiniñ adını deñiştirmege mümkünlik yoqtır, çünki aynı bu adda bir saife endi mevcüttir. Lütfen, bularnı qolnen birleştiriñiz.'''",
 'movedto'                 => 'adı deñiştirildi:',
 'movetalk'                => 'Muzakere saifesiniñ adını deñiştir.',
-'1movedto2'               => '"[[$1]]" saifesiniñ adı "[[$2]]" olaraq deñiştirildi',
-'1movedto2_redir'         => '[[$1]] serlevası [[$2]] saifesine yollandı',
+'1movedto2'               => '"[[:$1]]" saifesiniñ adı "[[:$2]]" olaraq deñiştirildi',
+'1movedto2_redir'         => '[[:$1]] serlevası [[:$2]] saifesine yollandı',
 'movelogpage'             => 'Ad deñişikligi jurnalı',
 'movelogpagetext'         => 'Aşağıda bulunğan cedvel adı deñiştirilgen saifelerni köstere',
 'movereason'              => 'Sebep',
@@ -1427,7 +1427,7 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'delete_and_move'         => 'Yoq et ve adını deñiştir',
 'delete_and_move_text'    => '==Yoq etmek lâzimdir==
 
-"[[$1]]" saifesi endi mevcüt. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
+"[[:$1]]" saifesi endi mevcüt. Adını deñiştirip olmaq içün onı yoq etmege isteysiñizmi?',
 'delete_and_move_confirm' => 'Ebet, bu saifeni yoq et',
 'delete_and_move_reason'  => 'İsim deñiştirip olmaq içün yoq etildi',
 'selfmove'                => 'Bu saifeniñ adını deñiştirmege imkân yoqtır, çünki asıl ile yañı adları bir kele.',
@@ -1741,7 +1741,7 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'recreate'            => 'Saifeni yañıdan yarat',
 
 # HTML dump
-'redirectingto' => 'Yollama [[$1]]...',
+'redirectingto' => 'Yollama [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Saife keşini temizlesinmi?
@@ -1775,7 +1775,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Saife boşatıldı',
 'autosumm-replace' => "Saifedeki malümat '$1' ile deñiştirildi",
-'autoredircomment' => '[[$1]] saifesine yollandı',
+'autoredircomment' => '[[:$1]] saifesine yollandı',
 'autosumm-new'     => 'Yañı saife: $1',
 
 # Live preview

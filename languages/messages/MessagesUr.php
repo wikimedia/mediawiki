@@ -545,8 +545,8 @@ $messages = array(
 'rollbackfailed'      => 'سابقہ حالت پر واپسی ناکام',
 'cantrollback'        => 'تدوین ثانی کا اعادہ نہیں کیا جاسکتا؛ کیونکہ اس میں آخری بار حصہ لینے والا ہی اس صفحہ کا واحد کاتب ہے۔',
 'protectlogpage'      => 'نوشتۂ محفوظ شدگی',
-'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
-'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
+'protectedarticle'    => '"[[:$1]]" کومحفوظ کردیا',
+'unprotectedarticle'  => '"[[:$1]]" کوغیر محفوظ کیا',
 'protectcomment'      => 'محفوظ کرنے کی وجہ',
 'protect-default'     => '(طے شدہ)',
 'protect-level-sysop' => 'صرف منتظمین',
@@ -601,13 +601,13 @@ $messages = array(
 'move-watch'              => 'صفحہ زیر نظر',
 'movepagebtn'             => 'مـنـتـقـل',
 'articleexists'           => 'اس عنوان سے کوئی صفحہ پہلے ہی موجود ہے، یا آپکا منتخب کردہ نام مستعمل نہیں۔ براۓ مہربانی دوسرا نام منتخب کیجیۓ۔',
-'1movedto2'               => '[[$1]] بجانب [[$2]] منتقل',
+'1movedto2'               => '[[:$1]] بجانب [[:$2]] منتقل',
 'movelogpage'             => 'نوشتۂ منتقلی',
 'movereason'              => 'وجہ',
 'delete_and_move'         => 'حذف اور منتقل',
 'delete_and_move_text'    => '==حذف شدگی لازم==
 
-منتقلی کے سلسلے میں انتخاب کردہ مضمون "[[$1]]" پہلے ہی موجود ہے۔ کیا آپ اسے حذف کرکے منتقلی کیلیۓ راستہ بنانا چاہتے ہیں؟',
+منتقلی کے سلسلے میں انتخاب کردہ مضمون "[[:$1]]" پہلے ہی موجود ہے۔ کیا آپ اسے حذف کرکے منتقلی کیلیۓ راستہ بنانا چاہتے ہیں؟',
 'delete_and_move_confirm' => 'ہاں، صفحہ حذف کر دیا جائے',
 'delete_and_move_reason'  => 'منتقلی کے سلسلے میں حذف',
 
@@ -657,7 +657,7 @@ $messages = array(
 'deletedwhileediting' => 'انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!',
 
 # HTML dump
-'redirectingto' => 'کی جانب پلٹایا گیا [[$1]]...',
+'redirectingto' => 'کی جانب پلٹایا گیا [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'جی!',
@@ -669,7 +669,7 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-blank'   => 'تمام مندرجات حذف',
-'autoredircomment' => '[[$1]] سے رجوع مکرر',
+'autoredircomment' => '[[:$1]] سے رجوع مکرر',
 'autosumm-new'     => 'نیا صفحہ: $1',
 
 # Special:Version

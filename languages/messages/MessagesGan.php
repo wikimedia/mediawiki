@@ -1228,9 +1228,9 @@ $NEWPAGE
 請按吖“後退”再試過囉！',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:ProtectedPages|保護頁面列表]]來監察目前嗰頁面保護情況。',
-'protectedarticle'            => '保護正嘞“[[$1]] ”',
-'modifiedarticleprotection'   => '改變嘞“[[$1]] ” 嗰保護等級',
-'unprotectedarticle'          => '撤銷保護“[[$1]] ”',
+'protectedarticle'            => '保護正嘞“[[:$1]] ”',
+'modifiedarticleprotection'   => '改變嘞“[[:$1]] ” 嗰保護等級',
+'unprotectedarticle'          => '撤銷保護“[[:$1]] ”',
 'protect-title'               => '保護“$1”中',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '注解:',
@@ -1463,8 +1463,8 @@ $NEWPAGE
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
 'movedto'                 => '移到',
 'movetalk'                => '移動相關嗰討論頁',
-'1movedto2'               => '[[$1]]移到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通過重定向移到[[$2]]',
+'1movedto2'               => '[[:$1]]移到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]通過重定向移到[[:$2]]',
 'movelogpage'             => '移動日誌',
 'movelogpagetext'         => '下底係移動嘞嗰頁面列表:',
 'movereason'              => '原因',
@@ -1472,7 +1472,7 @@ $NEWPAGE
 'delete_and_move'         => '刪除跟到移動',
 'delete_and_move_text'    => '==需要刪除==
 
-目標文章"[[$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
+目標文章"[[:$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
 'delete_and_move_confirm' => '係嗰，刪卟箇頁',
 'delete_and_move_reason'  => '為到移動刪卟佢',
 'selfmove'                => '原始標題同目標標題一樣，一隻頁面移伓正到佢自家。',
@@ -1543,7 +1543,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => '導入日誌',
 'importlogpagetext'                => '管理員由別嗰 wiki 導入頁面同到佢俚嗰編輯歷史記錄。',
-'import-logentry-upload'           => '通過檔案上傳導入嗰[[$1]]',
+'import-logentry-upload'           => '通過檔案上傳導入嗰[[:$1]]',
 'import-logentry-upload-detail'    => '$1隻修改',
 'import-logentry-interwiki'        => '跨wiki $1',
 'import-logentry-interwiki-detail' => '$2嗰$1隻修改',
@@ -2036,7 +2036,7 @@ $3
 'recreate'            => '重建',
 
 # HTML dump
-'redirectingto' => '重定向到[[$1]]...',
+'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '想清卟箇頁嗰緩存?
@@ -2070,7 +2070,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '移卟頁面嗰全部內容',
 'autosumm-replace' => "正拿頁面換成 '$1'",
-'autoredircomment' => '正重定向到[[$1]]',
+'autoredircomment' => '正重定向到[[:$1]]',
 'autosumm-new'     => '新頁: $1',
 
 # Live preview

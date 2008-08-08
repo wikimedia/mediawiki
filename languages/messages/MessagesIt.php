@@ -1629,9 +1629,9 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 'sessionfailure'              => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
 'protectlogpage'              => 'Protezioni',
 'protectlogtext'              => 'Di seguito sono elencate le azioni di protezione e sblocco delle pagine.',
-'protectedarticle'            => 'ha protetto "[[$1]]"',
-'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[$1]]"',
-'unprotectedarticle'          => 'ha sprotetto [[$1]]',
+'protectedarticle'            => 'ha protetto "[[:$1]]"',
+'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[:$1]]"',
+'unprotectedarticle'          => 'ha sprotetto [[:$1]]',
 'protect-title'               => 'Protezione di "$1"',
 'protect-legend'              => 'Conferma la protezione',
 'protectcomment'              => 'Motivo della protezione:',
@@ -1898,8 +1898,8 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepage-page-moved'     => 'La pagina $1 è stata spostata a $2.',
 'movepage-page-unmoved'   => 'La pagina $1 non può essere spostata a $2.',
 'movepage-max-pages'      => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
-'1movedto2'               => 'ha spostato [[$1]] a [[$2]]',
-'1movedto2_redir'         => 'ha spostato [[$1]] a [[$2]] tramite redirect',
+'1movedto2'               => 'ha spostato [[:$1]] a [[:$2]]',
+'1movedto2_redir'         => 'ha spostato [[:$1]] a [[:$2]] tramite redirect',
 'movelogpage'             => 'Spostamenti',
 'movelogpagetext'         => 'Di seguito sono elencate le pagine spostate di recente.',
 'movereason'              => 'Motivo:',
@@ -1907,7 +1907,7 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'delete_and_move'         => 'Cancella e sposta',
 'delete_and_move_text'    => '==Cancellazione richiesta==
 
-La pagina specificata come destinazione "[[$1]]" esiste già. Vuoi cancellarla per proseguire con lo spostamento?',
+La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla per proseguire con lo spostamento?',
 'delete_and_move_confirm' => 'Sì, sovrascrivi la pagina esistente',
 'delete_and_move_reason'  => 'Cancellata per rendere possibile lo spostamento',
 'selfmove'                => "Il titolo di destinazione inserito è uguale a quello di provenienza: '''attenzione''', leggi i titoli dei campi prima di confermare un comando! Il secondo campo contiene un commento che è necessario per giustificare lo spostamento della pagine e viene memorizzato nel log.",
@@ -1986,7 +1986,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # Import log
 'importlogpage'                    => 'Importazioni',
 'importlogpagetext'                => 'Di seguito sono elencate le importazioni di pagine provenienti da altre wiki, complete di cronologia.',
-'import-logentry-upload'           => 'ha importato [[$1]] tramite upload',
+'import-logentry-upload'           => 'ha importato [[:$1]] tramite upload',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
 'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina [[$1]]',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}} da $2',
@@ -2519,7 +2519,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'recreate'            => 'Ricrea',
 
 # HTML dump
-'redirectingto' => 'Reindirizzamento a [[$1]]...',
+'redirectingto' => 'Reindirizzamento a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Vuoi pulire la cache di questa pagina?  $1
@@ -2563,7 +2563,7 @@ Pertanto, pulire (o aggiornare) la ''cache'' di una pagina, significa assicurars
 # Auto-summaries
 'autosumm-blank'   => 'Pagina svuotata completamente',
 'autosumm-replace' => "Pagina sostituita con '$1'",
-'autoredircomment' => 'Redirect alla pagina [[$1]]',
+'autoredircomment' => 'Redirect alla pagina [[:$1]]',
 'autosumm-new'     => 'Nuova pagina: $1',
 
 # Size units

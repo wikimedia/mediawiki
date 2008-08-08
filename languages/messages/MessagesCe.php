@@ -265,7 +265,7 @@ $messages = array(
 
 # Move page
 'movearticle'             => 'цIe хийца таптар',
-'1movedto2'               => '«[[$1]]» хийцина - «[[$2]]»',
+'1movedto2'               => '«[[:$1]]» хийцина - «[[:$2]]»',
 'delete_and_move'         => 'ДІадайа тІаккха цIe хийца',
 'delete_and_move_confirm' => 'ХIаъ, дIадайъа таптар',
 

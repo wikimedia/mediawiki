@@ -1390,9 +1390,9 @@ s'á cancelau l'ación solicitá. Pursa nel botón \"Atrás\" del
 tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
 'protectlogpage'              => 'Rustrihu e proteción',
 'protectlogtext'              => 'Embahu se muestra una lista cola proteción i desproteción la páhina. Pa mas enhormación, lei "[[Special:ProtectedPages|Esta páhina está protehia]]".',
-'protectedarticle'            => '"[[$1]]" protehiu',
-'modifiedarticleprotection'   => 'chambau el nivel de proteción a "[[$1]]"',
-'unprotectedarticle'          => '"[[$1]]" esprotehiu',
+'protectedarticle'            => '"[[:$1]]" protehiu',
+'modifiedarticleprotection'   => 'chambau el nivel de proteción a "[[:$1]]"',
+'unprotectedarticle'          => '"[[:$1]]" esprotehiu',
 'protect-title'               => 'Estableciendu nivel de proteción pa "$1"',
 'protect-legend'              => 'Confirmal proteción',
 'protectcomment'              => 'Comentáriu:',
@@ -1645,8 +1645,8 @@ Pol favol, escrebi otru entítulu.',
 'talkexists'              => "'''S'á moviu la páhina, peru la su caraba nu puei sel movia polque ya desisti otra caraba con el nuevu entítulu. Pol favol, mesturalas manualmenti.'''",
 'movedto'                 => 's´á moviu a',
 'movetalk'                => 'Tamién movel la su caraba',
-'1movedto2'               => '[[$1]] s´á moviu a [[$2]]',
-'1movedto2_redir'         => "S'á moviu [[$1]] a [[$2]] criandu una redireción",
+'1movedto2'               => '[[:$1]] s´á moviu a [[:$2]]',
+'1movedto2_redir'         => "S'á moviu [[:$1]] a [[:$2]] criandu una redireción",
 'movelogpage'             => 'Rustrihu e movimientus',
 'movelogpagetext'         => 'Embahu ai una lista colas páhinas movias.',
 'movereason'              => 'Razón:',
@@ -1654,7 +1654,7 @@ Pol favol, escrebi otru entítulu.',
 'delete_and_move'         => 'Esborral i movel',
 'delete_and_move_text'    => '==Es mestel esborral==
 
-Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
+Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
 'delete_and_move_reason'  => 'Esborrá pa premitil el treslau',
 'selfmove'                => "Los entítulus d'orihin i destinu son los mesmus. Nu es posibri movel una páhina sobri sí mesma..",
@@ -1717,7 +1717,7 @@ Tolas acionis d'emporteau transwiki se rustrin nel [[Special:Log/import|rustrihu
 # Import log
 'importlogpage'                    => 'Emporteal rustrihu',
 'importlogpagetext'                => "Emporteacionis alministrativas de páhinas con estorial d'edicionis d'otras güiquis.",
-'import-logentry-upload'           => "á emporteau [[$1]] pol empuntu d'archivu",
+'import-logentry-upload'           => "á emporteau [[:$1]] pol empuntu d'archivu",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisionis}}',
 'import-logentry-interwiki'        => 'trasgüiquipeau $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisionis}} dendi $2',
@@ -2172,7 +2172,7 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'recreate'            => 'Gorvel a crial',
 
 # HTML dump
-'redirectingto' => 'Rederihiendu a [[$1]]...',
+'redirectingto' => 'Rederihiendu a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Esborral el caché desta páhina?
@@ -2204,7 +2204,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Esborral el continiu la páhina',
 'autosumm-replace' => "Páhina escambiá pol '$1'",
-'autoredircomment' => 'Rederihiendu a [[$1]]',
+'autoredircomment' => 'Rederihiendu a [[:$1]]',
 'autosumm-new'     => 'Páhina nueva: $1',
 
 # Live preview

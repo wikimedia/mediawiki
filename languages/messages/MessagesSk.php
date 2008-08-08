@@ -783,7 +783,7 @@ Odkaz na záznam zmazaní:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
 
-Obsahuje $1 {{PLURAL:$1|volanie|volania|volaní}}. Mala by obshovať menej ako $2 {{PLURAL:$1|volanie|volania|volaní}}.',
+Obsahuje $1 {{PLURAL:$1|volanie|volania|volaní}}. Mala by obsahovať menej ako $2 {{PLURAL:$1|volanie|volania|volaní}}.',
 'expensive-parserfunction-category'       => 'Stránky s príliš veľkým počtom volaní funkcií syntaktického analyzátora',
 'post-expand-template-inclusion-warning'  => 'Upozornenie: Vkladaná šablóna je príliš veľká.
 Niektoré zo šablón nebudú vložené.',
@@ -1690,9 +1690,9 @@ Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a s
 'protectlogpage'              => 'Záznam zamknutí',
 'protectlogtext'              => 'Nižšie je zoznam zamknutí/odomknutí stránok.
 Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných zamknutí]].',
-'protectedarticle'            => 'zamyká „[[$1]]“',
-'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[$1]]“',
-'unprotectedarticle'          => 'odomyká „[[$1]]“',
+'protectedarticle'            => 'zamyká „[[:$1]]“',
+'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[:$1]]“',
+'unprotectedarticle'          => 'odomyká „[[:$1]]“',
 'protect-title'               => 'Zamykám „$1“',
 'protect-legend'              => 'Potvrďte zamknutie',
 'protectcomment'              => 'Komentár:',
@@ -1982,8 +1982,8 @@ Prosím, zlúčte ich ručne.'''",
 'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.',
 'movepage-page-unmoved'   => 'Stránku $1 nebolo možné presunúť na $2.',
 'movepage-max-pages'      => 'Maximum $1 {{PLURAL:$1|stránka bola presunutá|stránok bolo presunutých}} a viac nebude presunutých automaticky.',
-'1movedto2'               => '[[$1]] premiestnená na [[$2]]',
-'1movedto2_redir'         => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
+'1movedto2'               => '[[:$1]] premiestnená na [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] premiestnená na [[:$2]] výmenou presmerovania',
 'movelogpage'             => 'Záznam presunov',
 'movelogpagetext'         => 'Tu je zoznam posledných presunutí.',
 'movereason'              => 'Dôvod:',
@@ -1991,7 +1991,7 @@ Prosím, zlúčte ich ručne.'''",
 'delete_and_move'         => 'Vymazať a presunúť',
 'delete_and_move_text'    => '==Je potrebné zmazať stránku==
 
-Cieľová stránka „[[$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak priestor pre presun?',
+Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak priestor pre presun?',
 'delete_and_move_confirm' => 'Áno, zmaž stránku',
 'delete_and_move_reason'  => 'Vymazať, aby sa umožnil presun',
 'selfmove'                => 'Zdrojový a cieľový názov sú rovnaké; nemožno presunúť stránku na seba samú.',
@@ -2588,7 +2588,7 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'recreate'            => 'Znova vytvoriť',
 
 # HTML dump
-'redirectingto' => 'Presmerovanie na [[$1]]...',
+'redirectingto' => 'Presmerovanie na [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Vyčistiť vyrovnávaciu pamäť (cache) tejto stránky?
@@ -2623,7 +2623,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Odstraňujem obsah stránky',
 'autosumm-replace' => 'Nahrádzam stránku textom „$1“',
-'autoredircomment' => 'Presmerovanie na [[$1]]',
+'autoredircomment' => 'Presmerovanie na [[:$1]]',
 'autosumm-new'     => 'Nová stránka: $1',
 
 # Live preview

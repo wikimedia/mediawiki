@@ -1595,9 +1595,9 @@ Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj pro
 'protectlogpage'              => 'Protokolo de protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',
-'protectedarticle'            => 'protektita [[$1]]',
-'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
-'unprotectedarticle'          => 'malprotektita [[$1]]',
+'protectedarticle'            => 'protektita [[:$1]]',
+'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[:$1]]"',
+'unprotectedarticle'          => 'malprotektita [[:$1]]',
 'protect-title'               => 'Protektante "$1"',
 'protect-legend'              => 'Konfirmu protektadon',
 'protectcomment'              => 'Kialo por protekti:',
@@ -1880,8 +1880,8 @@ Bonvolu permane kunigi ilin.',
 'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.',
 'movepage-page-unmoved'   => 'La paĝo $1 ne povas esti alinomigita al $2.',
 'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
-'1movedto2'               => '[[$1]] movita al [[$2]]',
-'1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
+'1movedto2'               => '[[:$1]] movita al [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] movita al [[:$2]], redirekto lasita',
 'movelogpage'             => 'Protokolo de paĝmovoj',
 'movelogpagetext'         => 'Jen listo de movitaj paĝoj',
 'movereason'              => 'Kialo:',
@@ -1889,7 +1889,7 @@ Bonvolu permane kunigi ilin.',
 'delete_and_move'         => 'Forigi kaj alinomigi',
 'delete_and_move_text'    => '==Forigo nepras==
 
-La celartikolo "[[$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon por la movo?',
+La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon por la movo?',
 'delete_and_move_confirm' => 'Jes, forigu la paĝon',
 'delete_and_move_reason'  => 'Forigita por ebligi movon',
 'selfmove'                => 'Font- kaj cel-titoloj samas; ne eblas movi paĝon sur ĝin mem.',
@@ -1964,7 +1964,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 # Import log
 'importlogpage'                    => 'Protokolo de importoj',
 'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
-'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
+'import-logentry-upload'           => 'importita [[:$1]] de dosiera alŝuto',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizio|revizioj}}',
 'import-logentry-interwiki'        => 'transvikiigita $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizio|revizioj}} de $2',
@@ -2467,7 +2467,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'recreate'            => 'Rekrei',
 
 # HTML dump
-'redirectingto' => 'Redirektante al [[$1]]...',
+'redirectingto' => 'Redirektante al [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?
@@ -2502,7 +2502,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Forviŝantaj ĉion el paĝo',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
-'autoredircomment' => 'Redirektante al [[$1]]',
+'autoredircomment' => 'Redirektante al [[:$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
 
 # Live preview

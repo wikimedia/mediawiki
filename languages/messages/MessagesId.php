@@ -1730,9 +1730,9 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Sp
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Berikut adalah log perlindungan halaman dan pembatalannya.
 Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar terkini.',
-'protectedarticle'            => 'melindungi "[[$1]]"',
-'modifiedarticleprotection'   => 'mengubah tingkat perlindungan "[[$1]]"',
-'unprotectedarticle'          => 'menghilangkan perlindungan "[[$1]]"',
+'protectedarticle'            => 'melindungi "[[:$1]]"',
+'modifiedarticleprotection'   => 'mengubah tingkat perlindungan "[[:$1]]"',
+'unprotectedarticle'          => 'menghilangkan perlindungan "[[:$1]]"',
 'protect-title'               => 'Melindungi "$1"',
 'protect-legend'              => 'Konfirmasi perlindungan',
 'protectcomment'              => 'Komentar:',
@@ -1991,8 +1991,8 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepage-page-moved'     => 'Halaman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Halaman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'      => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
-'1movedto2'               => 'memindahkan [[$1]] ke [[$2]]',
-'1movedto2_redir'         => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
+'1movedto2'               => 'memindahkan [[:$1]] ke [[:$2]]',
+'1movedto2_redir'         => 'memindahkan [[:$1]] ke [[:$2]] melalui peralihan',
 'movelogpage'             => 'Log pemindahan',
 'movelogpagetext'         => 'Di bawah ini adalah log pemindahan halaman.',
 'movereason'              => 'Alasan:',
@@ -2000,7 +2000,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'delete_and_move'         => 'Hapus dan pindahkan',
 'delete_and_move_text'    => '==Penghapusan diperlukan==
 
-Artikel yang dituju, "[[$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
+Artikel yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
 'delete_and_move_confirm' => 'Ya, hapus halaman tersebut',
 'delete_and_move_reason'  => 'Dihapus untuk mengantisipasikan pemindahan halaman',
 'selfmove'                => 'Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.',
@@ -2081,7 +2081,7 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 # Import log
 'importlogpage'                    => 'Log impor',
 'importlogpagetext'                => 'Di bawah ini adalah log impor administratif dari halaman-halaman, berikut riwayat suntingannya dari wiki lain.',
-'import-logentry-upload'           => 'mengimpor [[$1]] melalui pemuatan berkas',
+'import-logentry-upload'           => 'mengimpor [[:$1]] melalui pemuatan berkas',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisi|revisi}}',
 'import-logentry-interwiki'        => 'men-transwiki $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisi}} dari $2',
@@ -2581,7 +2581,7 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',
 
 # HTML dump
-'redirectingto' => 'Sedang dialihkan ke [[$1]]...',
+'redirectingto' => 'Sedang dialihkan ke [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Hapus ''cache'' halaman ini?
@@ -2616,7 +2616,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => '←Mengosongkan halaman',
 'autosumm-replace' => "←Mengganti halaman dengan '$1'",
-'autoredircomment' => '←Mengalihkan ke [[$1]]',
+'autoredircomment' => '←Mengalihkan ke [[:$1]]',
 'autosumm-new'     => "←Membuat halaman berisi '$1'",
 
 # Live preview

@@ -771,8 +771,8 @@ da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pa
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'editcomment'           => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'            => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectedarticle'      => 'protektita "[[$1]]"',
-'unprotectedarticle'    => 'desprotektita [[$1]]',
+'protectedarticle'      => 'protektita "[[:$1]]"',
+'unprotectedarticle'    => 'desprotektita [[:$1]]',
 'protect-title'         => 'Protektante "$1"',
 'protect-legend'        => 'Konfirmar protekto',
 'protectcomment'        => 'Motivo por la protekto',
@@ -887,7 +887,7 @@ qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',
 'movedto'                 => 'rinomizita ad',
 'movetalk'                => 'Rinomizar la debato-pagino se to esas aplikebla.',
-'1movedto2'               => '[[$1]] movita a [[$2]]',
+'1movedto2'               => '[[:$1]] movita a [[:$2]]',
 'movereason'              => 'Motivo:',
 'revertmove'              => 'rekuperar',
 'delete_and_move_confirm' => 'Yes, efacez la pagino',
@@ -1033,7 +1033,7 @@ Voluntez selektar altra nomo.',
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
 
 # HTML dump
-'redirectingto' => 'Ridirektante ad [[$1]]...',
+'redirectingto' => 'Ridirektante ad [[:$1]]...',
 
 # AJAX search
 'articletitles' => "Pagini komencanta per ''$1''",

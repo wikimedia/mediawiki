@@ -585,6 +585,8 @@ Don jlisch enlogge un donn et ändere.
 
 Wann Dat all böömesch Dörver för Desch sin, da fojeß hee di
 e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
+'login-throttled'            => 'Do häs zo öff un zo vill en de letzde Zick aan dämm Passwoot eröm probeet.
+Waat e Wielsche, ih dat De et widder versöhks.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
 # Password reset dialog
@@ -637,25 +639,25 @@ e-mail eijfach. Wann De en däm Wikki nit metmaache wells, och.',
 'summary-preview'                  => 'Vör-Aansich vun „Koot Zosammejefass, Quell“',
 'subject-preview'                  => 'Vör-Aansich vun de Üvverschreff',
 'blockedtitle'                     => 'Dä Metmaacher es jesperrt',
-'blockedtext'                      => "<big>'''Dinge Metmaacher-Name oder IP Adress es vun „\$1“ jesperrt woode.'''</big>
+'blockedtext'                      => '<big>\'\'\'Dinge Metmaacher-Name oder IP Adress es vun „$1“ jesperrt woode.\'\'\'</big>
 
-Als Jrund es enjedrage: „''\$2''“
+Als Jrund es enjedrage: „\'\'$2\'\'“
 
 Do kanns hee em Wiki immer noch lesse. Do sühß ävver di Sigg hee, wann De op rude Links klicks, neu Sigge aanlääje, odder Sigge ändere wells, denn doför bes De jetz jesperrt.
 
-Do kanns met \$1 oder enem andere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] üvver dat Sperre schwaade, wann De wells.
-Do kanns ävver nor dann „''E-Mail aan dä Metmaacher''“ aanwende, wann De ald en E-Mail Adress en Dinge [[Special:Preferences|Enstellunge]] enjedrage un freijejovve häs un wann et E-mail schecke nit metjesperrt es.
+Do kanns met $1 oder enem andere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] üvver dat Sperre schwaade, wann De wells.
+Do kanns ävver nor dann „\'\'E-Mail aan dä Metmaacher\'\'“ aanwende, wann De ald en E-Mail Adress en Dinge [[Special:Preferences|Enstellunge]] enjedrage un freijejovve häs un wann et E-mail schecke nit metjesperrt es.
 
 Dun en Ding Aanfroge nenne:
-* Dä Wiki-Köbeß, dä jesperrt hät: \$1
-* Der Jrond för et Sperre: \$2
-* Da wood jesperrt: \$8
-* De Sperr soll loufe bes: \$6
-* De Nommer vun dä Sperr: #\$5
-* Ding IP-Adress is jetz: \$3
-* Di Sperr es wäje odde jäje: \$7
+* Dä Wiki-Köbeß, dä jesperrt hät: $1
+* Der Jrond för et Sperre: $2
+* Da wood jesperrt: $8
+* De Sperr soll loufe bes: $6
+* De Nommer vun dä Sperr: #$5
+* Ding IP-Adress is jetz: $3
+* Di Sperr es wäje odde jäje: $7
 
-Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre ]</span> loore.",
+Do kanns och noch en et <span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=$3}}$5 Logboch met de Sperre ]</span> loore.',
 'autoblockedtext'                  => "<big>'''Ding IP Adress es automattesch jesperrt woode.'''</big>
 <br />
 '''Se wor vun enem Metmaacher jebruch woode, dä vun „\$1“ jesperrt woode es.'''

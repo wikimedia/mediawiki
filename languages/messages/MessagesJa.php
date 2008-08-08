@@ -1441,9 +1441,9 @@ $NEWPAGE
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
 'protectlogtext'              => '以下はページの保護・保護解除の一覧です。',
-'protectedarticle'            => '"[[$1]]" を保護しました。',
-'modifiedarticleprotection'   => '"[[$1]]" の保護レベルを変更しました。',
-'unprotectedarticle'          => '"[[$1]]" の保護を解除しました。',
+'protectedarticle'            => '"[[:$1]]" を保護しました。',
+'modifiedarticleprotection'   => '"[[:$1]]" の保護レベルを変更しました。',
+'unprotectedarticle'          => '"[[:$1]]" の保護を解除しました。',
 'protect-title'               => '"$1" の保護',
 'protect-legend'              => '保護の確認',
 'protectcomment'              => '保護・保護解除の理由',
@@ -1704,15 +1704,15 @@ $NEWPAGE
 'movepage-page-moved'     => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
 'movepage-max-pages'      => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
-'1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',
-'1movedto2_redir'         => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
+'1movedto2'               => 'ページ [[:$1]] を [[:$2]] へ移動',
+'1movedto2_redir'         => 'ページ [[:$1]] をこのページあてのリダイレクト [[:$2]] へ移動',
 'movelogpage'             => '移動記録',
 'movelogpagetext'         => '以下はページ移動の記録です。',
 'movereason'              => '理由',
 'revertmove'              => '差し戻し',
 'delete_and_move'         => '削除して移動する',
 'delete_and_move_text'    => '== 削除が必要です ==
-移動先 "[[$1]]" は既に存在しています。このページを移動のために削除しますか?',
+移動先 "[[:$1]]" は既に存在しています。このページを移動のために削除しますか?',
 'delete_and_move_confirm' => 'ページ削除の確認',
 'delete_and_move_reason'  => '移動のための削除',
 'selfmove'                => '移動元と移動先のページ名が同じです。自分自身へは移動できません。',
@@ -1785,7 +1785,7 @@ $NEWPAGE
 # Import log
 'importlogpage'                    => 'インポート記録',
 'importlogpagetext'                => '以下は管理者による他ウィキからのページデータの取り込み記録です。',
-'import-logentry-upload'           => 'ファイルのアップロードにより [[$1]] をインポートしました',
+'import-logentry-upload'           => 'ファイルのアップロードにより [[:$1]] をインポートしました',
 'import-logentry-upload-detail'    => '$1 版',
 'import-logentry-interwiki'        => '$1 をtranswikiしました',
 'import-logentry-interwiki-detail' => '$2 の $1 版',
@@ -2311,7 +2311,7 @@ $1
 'recreate'            => '新規作成する',
 
 # HTML dump
-'redirectingto' => '[[$1]]へ転送しています...',
+'redirectingto' => '[[:$1]]へ転送しています...',
 
 # action=purge
 'confirm_purge'        => 'ページのキャッシュを破棄します。よろしいですか?
@@ -2345,7 +2345,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'ページの白紙化',
 'autosumm-replace' => "ページの置換: '$1'",
-'autoredircomment' => '[[$1]]へのリダイレクト',
+'autoredircomment' => '[[:$1]]へのリダイレクト',
 'autosumm-new'     => "新しいページ: '$1'",
 
 # Size units

@@ -200,7 +200,7 @@ $messages = array(
 'movearticle'      => 'Ɖɔli eƒe nɔƒe:',
 'move-watch'       => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn'      => 'Ɖɔli eƒe nɔƒe',
-'1movedto2'        => '[[$1]] wohee yi [[$2]]',
+'1movedto2'        => '[[:$1]] wohee yi [[:$2]]',
 
 # Namespace 8 related
 'allmessages' => 'Nuŋɔŋlɔwo',

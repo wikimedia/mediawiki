@@ -1582,9 +1582,9 @@ Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]).
 'protectlogpage'              => 'Protokol škita',
 'protectlogtext'              => 'To je protokol škitanych stronow a zběhnjenja škita.
 Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych stron.',
-'protectedarticle'            => 'je stronu [[$1]] škitał',
-'modifiedarticleprotection'   => 'je škit strony [[$1]] změnił',
-'unprotectedarticle'          => 'je škit strony [[$1]] zběhnył',
+'protectedarticle'            => 'je stronu [[:$1]] škitał',
+'modifiedarticleprotection'   => 'je škit strony [[:$1]] změnił',
+'unprotectedarticle'          => 'je škit strony [[:$1]] zběhnył',
 'protect-title'               => 'Stronu „$1” škitać',
 'protect-legend'              => 'Škit wobkrućić',
 'protectcomment'              => 'Přičina za škitanje:',
@@ -1838,8 +1838,8 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'movepage-page-moved'     => 'Strona $1 bu do $2 přesunjena.',
 'movepage-page-unmoved'   => 'Strona $1 njeda so do $2 přesunyć.',
 'movepage-max-pages'      => 'Maksimalna ličba $1 {{PLURAL:$1|strony|stronow|stronow|stronow}} bu přesunjena, dalše strony so awtomatisce njepřesunu.',
-'1movedto2'               => 'je [[$1]] pod hesło [[$2]] přesunył',
-'1movedto2_redir'         => 'je [[$1]] pod hesło [[$2]] přesunył a při tym daleposrědkowanje přepisał.',
+'1movedto2'               => 'je [[:$1]] pod hesło [[:$2]] přesunył',
+'1movedto2_redir'         => 'je [[:$1]] pod hesło [[:$2]] přesunył a při tym daleposrědkowanje přepisał.',
 'movelogpage'             => 'Protokol přesunjenjow',
 'movelogpagetext'         => 'Deleka je lisćina wšěch přesunjenych stronow.',
 'movereason'              => 'Přičina',
@@ -1847,7 +1847,7 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'delete_and_move'         => 'wušmórnyć a přesunyć',
 'delete_and_move_text'    => '== Wušmórnjenje trěbne ==
 
-Cilowa strona „[[$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so přesunjenje zmóžniło?',
+Cilowa strona „[[:$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so přesunjenje zmóžniło?',
 'delete_and_move_confirm' => 'Haj, stronu wušmórnyć.',
 'delete_and_move_reason'  => 'Strona bu wušmórnjena, zo by so přesunjenje zmóžniło.',
 'selfmove'                => 'Žórłowy a cilowy titl stej samsnej; strona njehodźi so na sebje samu přesunyć.',
@@ -1923,7 +1923,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 # Import log
 'importlogpage'                    => 'Protokol importow',
 'importlogpagetext'                => 'To je lisćina importowanych stronow ze stawiznami z druhich wikijow.',
-'import-logentry-upload'           => 'strona [[$1]] bu přez nahraće importowana',
+'import-logentry-upload'           => 'strona [[:$1]] bu přez nahraće importowana',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
 'import-logentry-interwiki'        => 'je stronu [[$1]] z druheho wikija přenjesł',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} z $2 {{PLURAL:$1|importowana|importowanej|importowane|importowane}}',
@@ -2418,7 +2418,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'recreate'            => 'Znowa wutworić',
 
 # HTML dump
-'redirectingto' => 'Posrědkuju k stronje [[$1]]',
+'redirectingto' => 'Posrědkuju k stronje [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Pufrowak strony wuprózdnić? $1',
@@ -2451,7 +2451,7 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 # Auto-summaries
 'autosumm-blank'   => 'Strona bu wuprózdnjena',
 'autosumm-replace' => "Strona bu z hinašim tekstom přepisana: '$1'",
-'autoredircomment' => 'posrědkuju k stronje „[[$1]]”',
+'autoredircomment' => 'posrědkuju k stronje „[[:$1]]”',
 'autosumm-new'     => 'nowa strona: $1',
 
 # Size units

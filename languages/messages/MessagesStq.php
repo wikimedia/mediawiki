@@ -1498,9 +1498,9 @@ Ju lääste Annerenge stamt fon [[User:$3|$3]] ([[User talk:$3|Diskussion]]).',
 'protectlogpage'              => 'Siedenschuts-Logbouk',
 'protectlogtext'              => 'Dit is ne Lieste fon do blokkierde Sieden.
 Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
-'protectedarticle'            => 'schutsede „[[$1]]“',
-'modifiedarticleprotection'   => 'annerde dän Schuts fon „[[$1]]“',
-'unprotectedarticle'          => 'hieuwede dän Schuts fon "[[$1]]" ap',
+'protectedarticle'            => 'schutsede „[[:$1]]“',
+'modifiedarticleprotection'   => 'annerde dän Schuts fon „[[:$1]]“',
+'unprotectedarticle'          => 'hieuwede dän Schuts fon "[[:$1]]" ap',
 'protect-title'               => 'Schuts annerje fon „$1“',
 'protect-legend'              => 'Siedenschutsstoatus annerje',
 'protectcomment'              => 'Gruund:',
@@ -1767,15 +1767,15 @@ Fersäik jädden n uur Noome.',
 'movepage-page-moved'     => 'Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.',
 'movepage-page-unmoved'   => 'Ju Siede „$1“ kuude nit ätter „$2“ ferschäuwen wäide.',
 'movepage-max-pages'      => 'Ju Maximoalantaal fon $1 {{PLURAL:$1|Siede|Sieden}} wuude ferschäuwen. Aal wiedere Sieden konnen nit automatisk ferschäuwen wäide.',
-'1movedto2'               => 'häd "[[$1]]" ätter "[[$2]]" ferschäuwen',
-'1movedto2_redir'         => 'häd „[[$1]]“ ätter „[[$2]]“ ferschäuwen un deerbie ne Fääreleedenge uurschrieuwen',
+'1movedto2'               => 'häd "[[:$1]]" ätter "[[:$2]]" ferschäuwen',
+'1movedto2_redir'         => 'häd „[[:$1]]“ ätter „[[:$2]]“ ferschäuwen un deerbie ne Fääreleedenge uurschrieuwen',
 'movelogpage'             => 'Ferschuuwengs-Logbouk',
 'movelogpagetext'         => 'Dit is ne Lieste fon aal ferschäuwene Sieden.',
 'movereason'              => 'Kuute Begründenge:',
 'revertmove'              => 'tourääch ferschuuwe',
 'delete_and_move'         => 'Läskje un ferschuuwe',
 'delete_and_move_text'    => '==Sielartikkel is al deer, läskje?==
-Die Artikkel "[[$1]]" existiert al.
+Die Artikkel "[[:$1]]" existiert al.
 Moatest du him foar ju Ferschuuwenge läskje?',
 'delete_and_move_confirm' => 'Jee, Sielartikkel foar ju Ferschuuwenge läskje',
 'delete_and_move_reason'  => 'Läsked uum Plats tou moakjen foar Ferschuuwenge',
@@ -1851,7 +1851,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 # Import log
 'importlogpage'                    => 'Import-Logbouk',
 'importlogpagetext'                => 'Administrativen Import fon Sieden mäd Versionsgeschichte fon uur Wikis.',
-'import-logentry-upload'           => 'häd „[[$1]]“ fon ne Doatäi importierd',
+'import-logentry-upload'           => 'häd „[[:$1]]“ fon ne Doatäi importierd',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versione}}',
 'import-logentry-interwiki'        => 'häd „[[$1]]“ importierd (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} fon $2',
@@ -2364,7 +2364,7 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'recreate'            => 'Wierhäärstaale',
 
 # HTML dump
-'redirectingto' => 'Fäärelaited ätter [[$1]]',
+'redirectingto' => 'Fäärelaited ätter [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Dän Cache fon disse Siede loosmoakje?
@@ -2399,7 +2399,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Disse Siede wuude loosmoaked.',
 'autosumm-replace' => "Die Siedeninhoold wuude truch n uur Text ärsät: '$1'",
-'autoredircomment' => 'Fäärelaited ätter [[$1]]',
+'autoredircomment' => 'Fäärelaited ätter [[:$1]]',
 'autosumm-new'     => 'Ju Siede wuude näi anlaid: $1',
 
 # Live preview

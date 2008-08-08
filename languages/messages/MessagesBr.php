@@ -1494,9 +1494,9 @@ Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
 'protectlogpage'              => 'Log_gwareziñ',
 'protectlogtext'              => 'Kavit a-is ur roll pajennoù gwarezet ha diwarezet. Sellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.',
-'protectedarticle'            => 'en/he deus gwarezet [[$1]]',
-'modifiedarticleprotection'   => 'Kemmañ live gwareziñ "[[$1]]"',
-'unprotectedarticle'          => 'en/he deus diwarezet [[$1]]',
+'protectedarticle'            => 'en/he deus gwarezet [[:$1]]',
+'modifiedarticleprotection'   => 'Kemmañ live gwareziñ "[[:$1]]"',
+'unprotectedarticle'          => 'en/he deus diwarezet [[:$1]]',
 'protect-title'               => 'Stankañ "$1"',
 'protect-legend'              => 'Kadarnaat ar stankañ',
 'protectcomment'              => 'Abeg ar stankañ',
@@ -1749,8 +1749,8 @@ Dibabit unan all mar plij.",
 'talkexists'              => "Dilec'hiet mat eo bet ar bajenn hec'h-unan met chomet eo ar bajenn gaozeal rak unan all a oa dija gant an anv nevez-se. Kendeuzit anezho c'hwi hoc'h-unan mar plij.",
 'movedto'                 => 'adanvet e',
 'movetalk'                => 'Adenvel ivez ar bajenn "gaozeal", mar bez ret.',
-'1movedto2'               => '[[$1]] adkaset war-du [[$2]]',
-'1movedto2_redir'         => '[[$1]] adkaset war-du [[$2]] (adkas)',
+'1movedto2'               => '[[:$1]] adkaset war-du [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] adkaset war-du [[:$2]] (adkas)',
 'movelogpage'             => 'Roll an adkasoù',
 'movelogpagetext'         => 'Setu roll ar pajennoù bet savet un adkas evito.',
 'movereason'              => 'Abeg an adkas',
@@ -1758,7 +1758,7 @@ Dibabit unan all mar plij.",
 'delete_and_move'         => 'Diverkañ ha sevel adkas',
 'delete_and_move_text'    => "==Ezhomm diverkañ==
 
-Savet eo ar pennad tal \"[[\$1]]\" c'hoazh.
+Savet eo ar pennad tal \"[[:\$1]]\" c'hoazh.
 Diverkañ anezhañ a fell deoc'h ober evit reiñ lec'h d'an adkas ?",
 'delete_and_move_confirm' => 'Ya, diverkañ ar bajenn',
 'delete_and_move_reason'  => "Diverket evit ober lec'h d'an adkas",
@@ -1830,7 +1830,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 # Import log
 'importlogpage'                    => 'Log an enporzhiadennoù',
 'importlogpagetext'                => "Enporzhiadennoù melestradurel eus pajennoù adal wikioù all gant istor ar c'hemmadennoù degaset enno.",
-'import-logentry-upload'           => 'en/he deus enporzhiet (pellgarget) [[$1]]',
+'import-logentry-upload'           => 'en/he deus enporzhiet (pellgarget) [[:$1]]',
 'import-logentry-upload-detail'    => '$1 stumm',
 'import-logentry-interwiki'        => 'treuzwikiet $1',
 'import-logentry-interwiki-detail' => '$1 kemm adal $2',
@@ -2337,7 +2337,7 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'recreate'            => 'Adkrouiñ',
 
 # HTML dump
-'redirectingto' => "Oc'h adkas da [[$1]]...",
+'redirectingto' => "Oc'h adkas da [[:$1]]...",
 
 # action=purge
 'confirm_purge'        => 'Spurjañ krubuilh ar bajenn-mañ?
@@ -2372,7 +2372,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'O tiverkañ kement danvez zo war ar bajenn',
 'autosumm-replace' => "Oc'h erlec'hiañ ar bajenn gant '$1'",
-'autoredircomment' => 'Adkas war-du [[$1]]',
+'autoredircomment' => 'Adkas war-du [[:$1]]',
 'autosumm-new'     => 'Pajenn nevez: $1',
 
 # Live preview
