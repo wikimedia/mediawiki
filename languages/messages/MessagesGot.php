@@ -284,7 +284,7 @@ $messages = array(
 'uploadedimage'   => 'ushlaþiþ "[[$1]]"',
 'watchthisupload' => 'Witan so seido',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'   => 'Feilans',
 'imagelist' => 'Feilans tala',
 
@@ -337,7 +337,7 @@ $messages = array(
 'all-logs-page'        => 'Alla logos',
 'log-search-submit'    => 'Afgaggan',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Allis seidos',
 'alphaindexline' => '$1 du $2',
 'nextpage'       => 'Iftuma seido ($1)',
@@ -465,7 +465,7 @@ $messages = array(
 # Media information
 'show-big-image' => 'Fullis wahstus',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Sokeiþ',
 
 # Metadata
@@ -487,7 +487,7 @@ $messages = array(
 # Special:Version
 'version-other' => 'Anþar',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Feilans:',
 
 # Special:SpecialPages

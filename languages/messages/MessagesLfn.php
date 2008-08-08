@@ -482,7 +482,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 'upload-file-error' => 'Era interna',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'fix',
 'imagelist'      => 'Lista de imajes',
 'imagelist_name' => 'Nom',
@@ -576,7 +576,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'all-logs-page'        => 'Tota catalogos',
 'log-search-submit'    => 'Vade',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Tota pajes',
 'alphaindexline' => '$1 a $2',
 'nextpage'       => 'Paje seguente ($1)',
@@ -592,7 +592,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'categories'         => 'Categorias',
 'categoriespagetext' => 'Es la categorias seguente en la vici.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
 
 # E-mail user
@@ -607,7 +607,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'nowatchlist'          => 'Tu ave no cosas en tu lista oservada',
 'addedwatch'           => 'Juntada a la lista de pajes oservada',
 'addedwatchtext'       => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
-Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:Recentchanges|lista de cambias resente]] per es plu fasil oservada.
+Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.
 
 Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"no oserva\" en la bara a la lado.",
 'removedwatch'         => 'Sutraeda de la lista de pajes oservada',
@@ -825,7 +825,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'show-big-image'       => 'Densia masima',
 'show-big-image-thumb' => '<small>Grandia de eesta previde: $1 × $2 pixeles</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Imajes nova',
 'ilsubmit'  => 'Xerca',
 

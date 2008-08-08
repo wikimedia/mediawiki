@@ -213,7 +213,7 @@ $messages = array(
 
 'upload-file-error' => 'Sayup internal',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile' => 'inayap',
 
 # File deletion
@@ -233,7 +233,7 @@ $messages = array(
 # Special:Categories
 'categories' => 'Manga Kategorya',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Ipakita',
 
 # E-mail user
@@ -262,7 +262,7 @@ $messages = array(
 'tooltip-ca-delete'  => 'Paraun ang dya nga Pahina',
 'tooltip-p-logo'     => 'Pono nga Pahina',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Sagap',
 
 # action=purge
@@ -277,7 +277,7 @@ $messages = array(
 # Special:Version
 'version-specialpages' => 'Manga espesyal nga pahina',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Inayap:',
 
 # Special:FileDuplicateSearch

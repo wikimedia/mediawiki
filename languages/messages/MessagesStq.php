@@ -554,7 +554,7 @@ Reek ju jädden in älke Anfroage oun.',
 'anontalkpagetext'                 => "----''Dit is ju Diskussionssiede fon n uunbekoanden Benutser, die sik nit anmälded häd.
 Wail naan Noome deer is, wäd ju nuumeriske IP-Adrässe tou Identifizierenge ferwoand.
 Man oafte wäd sunne Adrässe fon moorere Benutsere ferwoand.
-Wan du n uunbekoanden Benutser bääst un du toankst dät du Kommentare krichst do nit foar die meend sunt, dan koast du ap bääste dien [[Special:Userlogin|anmäldje]], uum sukke Fertuusengen tou fermieden.''",
+Wan du n uunbekoanden Benutser bääst un du toankst dät du Kommentare krichst do nit foar die meend sunt, dan koast du ap bääste dien [[Special:UserLogin|anmäldje]], uum sukke Fertuusengen tou fermieden.''",
 'noarticletext'                    => 'Deer is apstuuns naan Text ap disse Siede. Du koast [[Special:Search/{{PAGENAME}}|disse Siedenoome säike]] in uur Sieden of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Siede beoarbaidje].',
 'userpage-userdoesnotexist'        => 'Dät Benutserkonto „$1“ is nit deer. Pröif, of du disse Siede wuddelk moakje/beoarbaidje wolt.',
 'clearyourcache'                   => "'''Bemäärkenge: Ätter dät Fäästlääsen kon dät nöödich weese, dän Browser-Cache loostoumoakjen, uum do Annerengen sjo tou konnen.'''
@@ -1107,7 +1107,7 @@ Reek ju Doatäi n Noome, die dän Inhoold beeter beschrift.',
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',
 'upload_source_file' => ' (ne Doatäi ap Jou Computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Disse Spezialsiede liestet aal hoochleedene Doatäie ap. Standoardmäitich wäide do toulääst hoochleedene Doatäie toueerst anwiesd. Truch n Klik ap do Spaltenuurschrifte kon ju Sortierenge uumetroald wäide of der kon ätter ne uur Spalte sortierd wäide.',
 'imagelist_search_for'  => 'Säik ätter Doatäi:',
 'imgfile'               => 'Doatäi',
@@ -1317,7 +1317,7 @@ Deeruum kon ju hier noch aptäld weese, wan ju uk aktiv benutsed wäd.',
 'logempty'             => 'Neen paasende Iendraage.',
 'log-title-wildcard'   => 'Tittel fangt oun mäd …',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Aal Artikkele',
 'alphaindexline'    => '$1 bit $2',
 'nextpage'          => 'Naiste Siede ($1)',
@@ -1340,12 +1340,12 @@ Deeruum kon ju hier noch aptäld weese, wan ju uk aktiv benutsed wäd.',
 'special-categories-sort-count' => 'Sortierenge ätter Antaal',
 'special-categories-sort-abc'   => 'Sortierenge ätter Alphabet',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Wies Benutsere fon:',
 'listusers-submit'   => 'Wies',
 'listusers-noresult' => 'Naan Benutser fuunen.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Benutsergruppen-Gjuchte',
 'listgrouprights-summary'  => 'Dit is ne Lieste fon do in dissen Wiki definierde Benutsergruppen un do deermäd ferbuundene Gjuchte.
 Informatione uurhäär uur eenpelde Gjuchte konnen [[{{MediaWiki:Listgrouprights-helppage}}|hier]] fuunen wäide.',
@@ -1386,7 +1386,7 @@ Informatione uurhäär uur eenpelde Gjuchte konnen [[{{MediaWiki:Listgrouprights
 'addedwatch'           => 'An Foulgelieste touföiged.',
 'addedwatchtext'       => "Die Artikkel \"[[:\$1]]\" wuude an dien [[Special:Watchlist|Foulgelieste]] touföiged.
 Leetere Annerengen an dissen Artikkel un ju touheerende Diskussionssiede wäide deer liested
-un die Artikkel wäd in ju [[Special:Recentchanges|fon do lääste Annerengen]] in '''Fatschrift''' anroat.
+un die Artikkel wäd in ju [[Special:RecentChanges|fon do lääste Annerengen]] in '''Fatschrift''' anroat.
 
 Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede ap \"Ferjeet disse Siede\".",
 'removedwatch'         => 'Fon ju Beooboachtengsslieste ou hoald',
@@ -1658,7 +1658,7 @@ Reek dän Gruund foar ju Speere oun.',
 'badipaddress'                    => 'Dissen Benutser bestoant nit, d.h. die Noome is falsk',
 'blockipsuccesssub'               => 'Blokkoade geloangen',
 'blockipsuccesstext'              => 'Ju IP-Adrässe [[Special:Contributions/$1|$1]] wuude blokkierd.
-<br />[[Special:Ipblocklist|Lieste fon Blokkoaden]].',
+<br />[[Special:IPBlockList|Lieste fon Blokkoaden]].',
 'ipb-edit-dropdown'               => 'Speergruunde beoarbaidje',
 'ipb-unblock-addr'                => '"$1" fräireeke',
 'ipb-unblock'                     => 'IP-Adrässe/Benutser fräireeke',
@@ -2007,7 +2007,7 @@ $1',
 'show-big-image'       => 'Bielde in hooge Aplöösenge',
 'show-big-image-thumb' => '<small>Grööte fon disse Foarschau: $1 × $2 Pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Näie Bielden',
 'imagelisttext'         => "Hier is ne Lieste fon '''$1''' {{PLURAL:$1|Doatäi|Doatäie}}, sortierd $2.",
 'newimages-summary'     => 'Disse Spezioalsiede wiest do toulääst hoochleedene Doatäie an.',
@@ -2459,7 +2459,7 @@ $1',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Doatäipaad',
 'filepath-page'    => 'Doatäi:',
 'filepath-submit'  => 'Paad säike',
@@ -2495,7 +2495,7 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:image}}:“ geböäre.',
 'specialpages-group-redirects'   => 'Fäärelaitjende Spezioalsieden',
 'specialpages-group-spam'        => 'Spam-Reewen',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Loose Siede',
 'intentionallyblankpage' => 'Disse Siede is apsichtelk sunner Inhoold. Ju wäd foar Benchmarks ferwoand.',
 

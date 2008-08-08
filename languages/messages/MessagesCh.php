@@ -457,7 +457,7 @@ Para un fa'tinas i påhina, fångge' gi sanpapa' na kahon (bisita i [[{{MediaW
 Anggen lachi finatto-mu mågi, yemme' i batunes '''back''' ni iyo-mu browser.",
 'anontalkpagetext'                 => "----''Este na påhinan kombetsasion muna'sesetbi taina'an ni ti ha fa'tinas kuenta-ña pat ti ha u'usa i kuenta. Entonses na in i'isa i numiron IP para in aidentifika gue'.
 Buente ha' na guåha unos kuantos na muna'sesetbi ni ma u'usa i enao na IP.
-An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:Userlogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
+An un muna'sesetbi taina'an hao ya manñiente hao na guåha na kommentu ti prisisu ni manadirihiyi hao, pot fabot [[Special:UserLogin|fa'tinas kuenta-mu pat log in]] para mansuhayi yinaoyao yan i otru na muna'sesetbi siha.''",
 'noarticletext'                    => "Tåya' tinige'-ña i påhina este, siña un [[Special:Search/{{PAGENAME}}|aligao i titulon påhina]] gi halom otru na påhina siha pat [{{fullurl:{{FULLPAGENAME}}|action=edit}} tulaika i påhina].",
 'userpage-userdoesnotexist'        => 'Ti marehistra i kuenata muna\'sesetbi "$1". Pot fabot chek kao malago\' hao un fa\'tinas/tulaika este na påhina.',
 'usercsspreview'                   => "'''Hasso fan na un ripapasa iyo-mu CSS muna'sesetbi, trabiha ti masåtba ha'!'''",
@@ -779,7 +779,7 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'uploadlogpage' => "Na'kåtga i log",
 'uploadedimage' => 'mana\'kåtga hulu\' "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Listan atkibu',
 
 # Image description page
@@ -879,7 +879,7 @@ Masumma '''\$5''' na medianun tinilaika kada påhina, yan '''\$6''' na inatan ka
 'all-logs-page'        => 'Todu i logs siha',
 'log-search-submit'    => 'Hånao',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Todu i påhina siha',
 'alphaindexline' => '$1 para $2',
 'nextpage'       => "Mamaila' na påhina ($1)",
@@ -904,7 +904,7 @@ Masumma '''\$5''' na medianun tinilaika kada påhina, yan '''\$6''' na inatan ka
 'watchlistfor'         => "(para '''$1''')",
 'addedwatch'           => "Mapo'lo gi listan pinilan",
 'addedwatchtext'       => "Mana'suha i påhina \"[[:\$1]]\" para iyo-mu [[Special:Watchlist|Listan pinilan]].
-I tinilaika siha mo'na gi tiempo kontodu i påhinan kombetsasion siha para u fana'lista guihi, yan para u '''na'potpot''' i påhina gi halom [[Special:Recentchanges|i listan tinilaika gi halacha]] para un ayek ha' mas libianu.",
+I tinilaika siha mo'na gi tiempo kontodu i påhinan kombetsasion siha para u fana'lista guihi, yan para u '''na'potpot''' i påhina gi halom [[Special:RecentChanges|i listan tinilaika gi halacha]] para un ayek ha' mas libianu.",
 'removedwatch'         => "Mana'suha gi listan pinilan",
 'removedwatchtext'     => 'Mana\'suha i påhina "[[:$1]]" gi listan pinilan-mu.',
 'watch'                => 'Pulan',
@@ -1095,7 +1095,7 @@ Ayek fan otru nå'an-ña.",
 'show-big-image'       => 'Magåhet mineddong-ña',
 'show-big-image-thumb' => '<small>Mineddong i ripasu: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Galarian atkibu mannuebu siha',
 'ilsubmit'  => 'Aligao',
 

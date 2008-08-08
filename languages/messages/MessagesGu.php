@@ -420,7 +420,7 @@ $messages = array(
 'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filesource'    => 'સ્ત્રોત:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ફાઇલોની યાદી',
 
 # Image description page
@@ -496,7 +496,7 @@ $messages = array(
 'all-logs-page'        => 'બધાં માહિતિ પત્રકો',
 'log-search-submit'    => 'શોધો',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'બધા પાના',
 'alphaindexline' => '$1 થી $2',
 'nextpage'       => 'આગળનું પાનું ($1)',
@@ -510,7 +510,7 @@ $messages = array(
 'categories'         => 'શ્રેણીઓ',
 'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'બતાવો',
 
 # E-mail user
@@ -714,7 +714,7 @@ $messages = array(
 'show-big-image'       => 'મહત્તમ આવર્તન',
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'નવી ફાઇલોની ઝાંખી',
 'noimages'  => 'જોવા માટે કશું નથી.',
 'ilsubmit'  => 'શોધો',

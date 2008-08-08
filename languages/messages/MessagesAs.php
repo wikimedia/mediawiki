@@ -713,7 +713,7 @@ $1',
 'uploadlogpage' => 'আপলোড সুচী',
 'uploadedimage' => '"[[$1]]" আপলোড কৰা হ’ল',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ফাইলৰ তালিকা',
 
 # Image description page
@@ -778,7 +778,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'log'                  => 'আলেখ',
 'all-logs-page'        => 'সকলো সুচী',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'সকলোবোৰ পৃষ্ঠা',
 'alphaindexline' => '$1 -ৰ পৰা $2 -লৈ',
 'nextpage'       => 'পৰৱর্তী পৃষ্ঠা ($1)',
@@ -801,7 +801,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'watchlistfor'         => "('''$1''' ৰ কাৰনে)",
 'addedwatch'           => 'লক্ষ্য তালিকাত অন্তর্ভুক্তি কৰা হল',
 'addedwatchtext'       => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]]  "<nowiki>$1</nowiki>" অন্তর্ভুক্তি কৰা হল ।
-ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:Recentchanges|সম্প্রতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
+ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সম্প্রতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
 'removedwatch'         => 'লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হল',
 'removedwatchtext'     => '"[[:$1]]" পৃষ্ঠাটো আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হৈছে ।',
 'watch'                => 'অনুসৰণাৰ্থে',
@@ -979,7 +979,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'show-big-image'       => 'সম্পূর্ণ দৃশ্য',
 'show-big-image-thumb' => '<small>এই খচৰাৰ আকাৰ: $1 × $2 পিক্সেল </small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'নতুন ফাইলৰ বিথীকা',
 
 # Metadata

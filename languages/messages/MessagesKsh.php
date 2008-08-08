@@ -655,7 +655,7 @@ Dun en Ding Aanfroge nenne:
 * Ding IP-Adress is jetz: \$3
 * Di Sperr es wäje odde jäje: \$7
 
-Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre ]</span> loore.",
+Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre ]</span> loore.",
 'autoblockedtext'                  => "<big>'''Ding IP Adress es automattesch jesperrt woode.'''</big>
 <br />
 '''Se wor vun enem Metmaacher jebruch woode, dä vun „\$1“ jesperrt woode es.'''
@@ -676,7 +676,7 @@ Dun en Ding Aanfroge nenne:
 * Ding IP-Adress is jetz: \$3
 * Di Sperr es wäje odde jäje: \$7
 
-Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre ]</span> loore.",
+Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}\$5 Logboch met de Sperre ]</span> loore.",
 'blockednoreason'                  => 'Keine Aanlass aanjejovve',
 'blockedoriginalsource'            => 'Dä orjenal Wiki Tex vun dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'blockededitsource'                => 'Dä Wiki Tex vun <strong>Dinge Änderunge</strong> aan dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
@@ -705,8 +705,8 @@ enjerich, ov deit keine bruche. Dröm bruche mer sing IP Adress öm It oder In e
 Su en IP Adress kann vun janz vill Metmaacher jebruch wääde, un eine Metmaacher kann janz flöck 
 zwesche de ungerscheedlichste IP Adresse wähßele, womöchlich ohne dat hä et merk. Wann Do jetz ene namenlose 
 Metmaacher bes, un fings, dat hee Saache an Dich jeschrevve wääde, wo Do jar nix met am Hot häs, dann bes Do 
-wahrscheinlich och nit jemeint. Denk villeich ens drüvver noh, datte Dich [[Special:Userlogin/signup|anmelde]] deis, 
-domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere namenlose Metmaacher hee. Wann de aanjemelldt bes un deis [[Special:Userlogin|enlogge]], dann kam_mer Desch och dun alle andere Metmaacher ongerschejde.</i>',
+wahrscheinlich och nit jemeint. Denk villeich ens drüvver noh, datte Dich [[Special:UserLogin/signup|anmelde]] deis, 
+domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere namenlose Metmaacher hee. Wann de aanjemelldt bes un deis [[Special:UserLogin|enlogge]], dann kam_mer Desch och dun alle andere Metmaacher ongerschejde.</i>',
 'noarticletext'                    => '<span class="plainlinks">Em Momang es keine Tex op dä Sigg. Jangk en de Texte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], oder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan] ze schrieve, oder jangk zeröck wo de her koms. Dinge Brauser hät ene Knopp doför.</span>',
 'userpage-userdoesnotexist'        => 'Enne Metmaacher „$1“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
 'clearyourcache'                   => "<br clear=\"all\" style=\"clear:both\">
@@ -1352,7 +1352,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'upload_source_url'  => ' (richtije öffentlije URL)',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
 'imagelist_search_for'  => 'Sök noh däm Name vun däm Beld:',
 'imgfile'               => 'Datei',
@@ -1579,7 +1579,7 @@ aanluure.",
 'logempty'             => '<i>Mer han kein zopass Endräch en däm Logboch.</i>',
 'log-title-wildcard'   => 'Sök noh Titelle, di aanfange met …',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'All Sigge',
 'alphaindexline'    => '$1 … $2',
 'nextpage'          => 'De nächste Sigg: „$1“',
@@ -1603,12 +1603,12 @@ eins vun all däm op eimol.',
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Zeich de Metmaacher vun:',
 'listusers-submit'   => 'Zeije',
 'listusers-noresult' => 'Keine Metmaacher jefonge.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Metmaacher-Jruppe-Rääschte',
 'listgrouprights-summary'         => 'Hee kütt de Liss met dä Medmaacher-Jruppe, di dat Wiki hee kennt, un denne ier Rääschte.
 Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-helppage}}|Hölp-Sigg övver de Medmaacher ier Rääschte]].',
@@ -1658,11 +1658,11 @@ Alles klor?',
 'watchnologin'         => 'Nit enjelogg',
 'watchnologintext'     => 'Öm Ding Oppassliss ze ändere, mööts de ald [[Special:Userlogin|enjelogg]] sin.',
 'addedwatch'           => 'En de Oppassliss jedon',
-'addedwatchtext'       => 'Die Sigg „[[$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]]. Av jetz, wann die Sigg 
+'addedwatchtext'       => "Die Sigg „[[:$1]]“ es jetz en Ding [[Special:Watchlist|Oppassliss]]. Av jetz, wann die Sigg 
 verändert weed, oder ehr Klaafsigg, dann weed dat en de Oppassliss jezeich. Dä Endrach för die Sigg kütt en 
-Fettschreff en de „[[Special:Recentchanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
+'''Fettschreff''' en de „[[Special:RecentChanges|Neuste Änderunge]]“, domet De dä do och flöck fings.
 Wann de dä widder loss wääde wells us Dinger Oppassliss, dann klick op „Nimieh drop oppasse“ wann De die Sigg om 
-Schirm häs.',
+Schirm häs.",
 'removedwatch'         => 'Us de Oppassliss jenomme',
 'removedwatchtext'     => 'Die Sigg „[[:$1]]“ es jetz us de [[Special:Watchlist|Oppassliss]] erusjenomme.',
 'watch'                => 'Drop Oppasse',
@@ -1935,7 +1935,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'badipaddress'                    => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
 'blockipsuccesssub'               => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
-Luur op [[Special:Ipblocklist|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells, 
+Luur op [[Special:IPBlockList|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells, 
 un och wann De se ändere wells.',
 'ipb-edit-dropdown'               => 'De Jründ för et Sperre beärrbejde',
 'ipb-unblock-addr'                => '„$1“ widder zohlohße',
@@ -1967,7 +1967,7 @@ un och wann De se ändere wells.',
 'blocklogpage'                    => 'Logboch met Metmaacher-Sperre',
 'blocklogentry'                   => 'hät „[[$1]]“ fö de Zick vun $2 un $3 jesperrt.',
 'blocklogtext'                    => 'Hee es dat Logboch för et Metmaacher Sperre un Freijevve.
-Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:Ipblocklist|{{int:ipblocklist}}]] ze finge.',
+Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|{{int:ipblocklist}}]] ze finge.',
 'unblocklogentry'                 => 'Metmaacher „$1“ freijejovve',
 'block-log-flags-anononly'        => 'nor de namelose Metmaacher sperre',
 'block-log-flags-nocreate'        => 'neu Metmaacher aanlääje es verbeede',
@@ -2323,7 +2323,7 @@ $1',
 'show-big-image'       => 'Jröößer Oplöösung',
 'show-big-image-thumb' => '<small>Di Vör-Aansich es $1 × $2 Pixelle jroß</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Belder, Tön, uew. als Jalerie',
 'imagelisttext'         => 'Hee küt en Liss vun <strong>$1</strong> Datei{{PLURAL:$1||e}}, zoteet $2.',
 'newimages-summary'     => 'Hee die Sigg zeig die zoletz huhjeladene Belder un Dateie aan.',
@@ -2655,7 +2655,8 @@ $1',
 'useajaxsearch'    => 'AJAX-Hölp beim Sööke bruche',
 
 # Separators for various lists, etc.
-'autocomment-prefix' => '-',
+'semicolon-separator' => ';',
+'autocomment-prefix'  => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '← de Sigg dovör',
@@ -2749,7 +2750,7 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Bellder, Tööhn, uew. zëije, med ier URL',
 'filepath-page'    => 'Dattëij_Name:',
 'filepath-submit'  => 'Zëĳsh dä Pahdt',
@@ -2787,7 +2788,7 @@ Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 'specialpages-group-redirects'   => 'Sondersigge, die ömleite, söke, un finge',
 'specialpages-group-spam'        => 'Werrekzeuch jäje SPÄM',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Vakat-Sigg',
 'intentionallyblankpage' => 'Op dä Sigg es med Afseesh nix drop.',
 

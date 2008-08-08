@@ -139,7 +139,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Atyňy özgert',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Git',
 
 # Namespace form on various pages

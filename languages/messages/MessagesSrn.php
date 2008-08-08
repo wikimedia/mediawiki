@@ -678,7 +678,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 
 'license-nopreview' => '(No fusi)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Suku na gefre:',
 'imgfile'               => 'gefre',
 'imagelist'             => 'Réy fu file',
@@ -833,7 +833,7 @@ A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7
 'log-search-submit'    => 'Go',
 'log-title-wildcard'   => 'Peprewoysi suku dy nanga disi nen bigin',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Ala papira',
 'alphaindexline'    => '$1 te go miti $2',
 'nextpage'          => "A papira d'e kon ($1)",
@@ -849,7 +849,7 @@ A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7
 # Special:Categories
 'categories' => 'Den grupu',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Masyin libi si fu:',
 'listusers-submit'   => 'Libi si',
 'listusers-noresult' => 'No masyin dyaso.',
@@ -871,7 +871,7 @@ A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7
 'mywatchlist'          => 'Mi Tan luku réy',
 'watchlistfor'         => "(fu '''$1''')",
 'addedwatch'           => 'Presi a yu sirey',
-'addedwatchtext'       => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:Recentchanges|rey fu bakseywan kenki]].
+'addedwatchtext'       => "A papira \"[[:\$1]]\" ben presi a yu [[Special:Watchlist|sirey]]. Folo kenki fu disi papira nanga a taki sey opo [[Special:Watchlist|yu sirey]] nanga sey '''deku''' ini a [[Special:RecentChanges|rey fu bakseywan kenki]].
 
 Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini a menu.",
 'removedwatch'         => 'Trowe fu yu sirey',
@@ -1077,7 +1077,7 @@ Yu ka luku a source.',
 'show-big-image'       => 'Moro srapu',
 'show-big-image-thumb' => '<small>Bigi fu a luku-na-fesi disi: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Nyun file',
 'showhidebots' => '(Bot $1)',
 'noimages'     => 'Noti a si.',

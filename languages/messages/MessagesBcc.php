@@ -667,7 +667,7 @@ $2',
 اگر شما اشتباهی ادانیت ته وتی بروزر دکمه ''Back'' بجن.",
 'anontalkpagetext'                 => "----'' ای صفحه بحث انت په یک ناشناس کاربری که هنگت یک حسابی شر نه کتت یا آی ا ستفاده نه کتت. اچه ما بایدن آدرس آی پی عددی په پچاه آرگ آیی استفاده کنین.
 چوشن آدرس آی پی گون چندین کاربر استفاده بیت.
-اگه شما یک کاربر ناشناس ایت وی حس کنیت بی ربطین نظر مربوط شمی هست، لطفا [[Special:Userlogin|وارد بیت ]] یا [[Special:Userlogin/signup|حسابی شرکن]] دان چه هور بییگ گون ناسناسین کاربران پرهیز بیت.''",
+اگه شما یک کاربر ناشناس ایت وی حس کنیت بی ربطین نظر مربوط شمی هست، لطفا [[Special:UserLogin|وارد بیت ]] یا [[Special:UserLogin/signup|حسابی شرکن]] دان چه هور بییگ گون ناسناسین کاربران پرهیز بیت.''",
 'noarticletext'                    => 'هنو هچ متنی ته ای صفحه نیست، شما تونیت  [[Special:Search/{{PAGENAME}}|گردگ په عنوان صفحه]]  ته دگه صفحات یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} ای صفحه اصلاح کن].',
 'userpage-userdoesnotexist'        => 'حساب کاربر "$1" ثبت نهنت. لطفا کنترل کنیت اگه شما لوٹیت ای صفحه یا شر/اصلاح کنیت.',
 'clearyourcache'                   => "'''توجه:''' بعد چه ذخیره کتن، شما شاید مجبور بیت چه وتی ذخیره ی بروزر رد بیت تا تغییرات بگندیت. '''Mozilla / Firefox / Safari:'' ''Shift'' جهل داریت همی وهدی که کلیک کنیت ''Reload'' یا بداریت ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac);'''IE:''' ''Ctrl''  بداری وهدی که کلیک ''Refresh' یا 'Ctrl-F5''; '''Konqueror:''':  راحت کلیک کن دکمه ''Reload'' یا بدار ''F5''; '''Opera''' کاربر بایدن ته ''Tools→Preferences'' ذخیره پاک کنت.",
@@ -1272,7 +1272,7 @@ PICT # misc.
 'upload_source_url'  => '(یک متعبرین، عمومی دسترسی انت URL)',
 'upload_source_file' => '(یک فایل ته شمی کامپیوتر)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'ای حاصین صفحه کل آپلودی فایلانء پیش داریت.
 به طور پیش فرض اهری فایل آپلودی ته بالاد لیست پیش دارگ بیت.
 یک کلیکی بالاد ستون ترتیب عوض کنت.',
@@ -1299,6 +1299,9 @@ PICT # misc.
 'filehist-comment'               => 'نظر',
 'imagelinks'                     => 'لینکان',
 'linkstoimage'                   => 'جهلیگین {{PLURAL:$1|صفحه |$1 صفحات لینک}} پی ای فایل',
+'linkstoimage-more'              => 'گیشتر چه  $1 {{PLURAL:$1|صفحه لینکان|صفحات لینک}} پی ای فایل.
+جهلگین لیست {{PLURAL:$1|اولین لینک صفحه|اولین $1 لینکان صفحه ی}} پی ای فایل فقط پیش داریت.
+یک [[Special:WhatLinksHere/$2|لیست کامل]] موجودنت.',
 'nolinkstoimage'                 => 'هچ صفحه ای نیست که به ای فایل لینک بوت.',
 'morelinkstoimage'               => 'View [[Special:Whatlinkshere/$1|گیشتر لینکان]]به ای فایل',
 'redirectstofile'                => 'جهلیگین {{PLURAL:$1|فایل غیر مستقیم بنت|$1 فایلان غیر مستقیم بنت.}} به ای فایل',
@@ -1483,7 +1486,7 @@ PICT # misc.
 'logempty'             => 'هچ آیتم هم دپ ته آمار',
 'log-title-wildcard'   => 'بگرد عناوین که گون ای متن شروع بنت',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'کل صفحات',
 'alphaindexline'    => '$1 په $2',
 'nextpage'          => 'صفحه ی بعدی ($1)',
@@ -1507,12 +1510,12 @@ PICT # misc.
 'special-categories-sort-count' => 'ترتیب په اساس شمار',
 'special-categories-sort-abc'   => 'ترتیب الفبی',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'پیشدار کابرانی که شروع بنت گون:',
 'listusers-submit'   => 'پیش دار',
 'listusers-noresult' => 'هچ کابری در گیزگ نه بوت.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'حقوق گروه کاربر',
 'listgrouprights-summary'         => 'جهلیگین یک لیستی چه گروهان کاربری تعریف بوتگین ته ای ویکی انت گون آیانی حق دسترسی آن همراهنت.
  درباره هر حقی ته صفحه [[{{MediaWiki:Listgrouprights-helppage}}|گیشترین اطلاعات]] هستن.',
@@ -1557,7 +1560,7 @@ PICT # misc.
 'watchnologintext'     => 'شما بایدن  [[Special:Userlogin|وارد بیت]] په تغییر داتن وتی لیست چارگء',
 'addedwatch'           => 'په لیست چارگ هور بوت',
 'addedwatchtext'       => 'صفحه  "[[:$1]]"  په شمی [[Special:Watchlist|watchlist]] هور بیت.
-دیمگی تغییرات په ای صفحه و آیاء صفحه گپ ادان لیست بنت، و صفحه پررنگ جاه کیت ته [[Special:Recentchanges|لیست نوکیت تغییرات]] په راحتر کتن شی که آی زورگ بیت.',
+دیمگی تغییرات په ای صفحه و آیاء صفحه گپ ادان لیست بنت، و صفحه پررنگ جاه کیت ته [[Special:RecentChanges|لیست نوکیت تغییرات]] په راحتر کتن شی که آی زورگ بیت.',
 'removedwatch'         => 'چه لیست چارگ زورگ بیت',
 'removedwatchtext'     => 'صفحه"[[:$1]]"  چه [[Special:Watchlist|شمی لیست چارگ]]. دربیت.',
 'watch'                => 'به چار',
@@ -1776,24 +1779,26 @@ $1',
 'blanknamespace' => '(اصلی)',
 
 # Contributions
-'contributions' => 'مشارکتان کاربر',
-'mycontris'     => 'می مشارکتان',
-'contribsub2'   => 'په $1 ($2)',
-'nocontribs'    => 'هچ تغییر هم دپ گون ای معیار در نه بوت.',
-'uctop'         => '(بالا)',
-'month'         => 'چه ماه(و پیش تر):',
-'year'          => 'چه سال(و پیشتر)',
+'contributions'       => 'مشارکتان کاربر',
+'contributions-title' => 'مشارکتان کاربر په $1',
+'mycontris'           => 'می مشارکتان',
+'contribsub2'         => 'په $1 ($2)',
+'nocontribs'          => 'هچ تغییر هم دپ گون ای معیار در نه بوت.',
+'uctop'               => '(بالا)',
+'month'               => 'چه ماه(و پیش تر):',
+'year'                => 'چه سال(و پیشتر)',
 
-'sp-contributions-newbies'     => 'پیش دار فقط مشارکتان نوکین حسایانء',
-'sp-contributions-newbies-sub' => 'په نوکین حسابان',
-'sp-contributions-blocklog'    => 'محدود کتن ورود',
-'sp-contributions-search'      => 'گردگ په مشارکتان',
-'sp-contributions-username'    => 'آدرس آی پی یا نام کاربری',
-'sp-contributions-submit'      => 'گردگ',
+'sp-contributions-newbies'       => 'پیش دار فقط مشارکتان نوکین حسایانء',
+'sp-contributions-newbies-sub'   => 'په نوکین حسابان',
+'sp-contributions-newbies-title' => 'مشارکتان کاربر په نوکین حسابان',
+'sp-contributions-blocklog'      => 'محدود کتن ورود',
+'sp-contributions-search'        => 'گردگ په مشارکتان',
+'sp-contributions-username'      => 'آدرس آی پی یا نام کاربری',
+'sp-contributions-submit'        => 'گردگ',
 
 # What links here
 'whatlinkshere'            => 'ای لینکی که ادا هست',
-'whatlinkshere-title'      => 'صفحاتی که لینگ بوتگنت په $1',
+'whatlinkshere-title'      => 'صفحاتی که لینگ بوتگنت په "$1"',
 'whatlinkshere-page'       => 'صفحه:',
 'linkshere'                => "جهلیگی صفحات لینک بوت '''[[:$1]]''':",
 'nolinkshere'              => "هچ لینک صفحه ای په '''[[:$1]]'''.",
@@ -1843,7 +1848,7 @@ $1',
 'badipaddress'                    => 'نامعتبر آدرس آی پی',
 'blockipsuccesssub'               => 'محدودیت موفق بوت',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] محدود بوتت..<br />
-بچار [[Special:Ipblocklist|لیست آی پی محدود]] په بازبینی محدودیتان.',
+بچار [[Special:IPBlockList|لیست آی پی محدود]] په بازبینی محدودیتان.',
 'ipb-edit-dropdown'               => 'اصلاح کن دلایل محدودیت',
 'ipb-unblock-addr'                => 'رفع محدودیت  $1',
 'ipb-unblock'                     => 'نام کاربری یا آدرس آی پی رفع محدودیت کن',
@@ -1876,7 +1881,7 @@ $1',
 'blocklogentry'                   => 'محدود بوته [[$1]] گون یک زمان انقاضای $2 $3',
 'blocklogtext'                    => 'شی یک آماری چه کاران محدود و رفع محدودیت چه ای کاربر انت.
 اتوماتیکی محدود بوتگین آدرس آی پی ادان لیست نهنت.
-بچار [[Special:Ipblocklist|لیست محدودیت آی پی]] په لیست هنوکین عملی محدودیتان و بند کتان.',
+بچار [[Special:IPBlockList|لیست محدودیت آی پی]] په لیست هنوکین عملی محدودیتان و بند کتان.',
 'unblocklogentry'                 => 'محدود نه کتن $1',
 'block-log-flags-anononly'        => 'ناشناس کابران فقط',
 'block-log-flags-nocreate'        => 'شرکتن حساب غیر فعال',
@@ -2212,10 +2217,12 @@ $1',
 'show-big-image'       => 'کل صفحه',
 'show-big-image-thumb' => '<small>اندازه ای بازبین:$1× $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'گالری نوکین فایلان',
 'imagelisttext'         => "جهل یک لیستی چه  '''$1''' {{PLURAL:$1|فایل|فایلان}} هست که ترتیبنت $2.",
 'newimages-summary'     => 'ای حاصین صفحه اهرین آپلود بوتگین فایلان پیشداریت',
+'newimages-legend'      => 'فیلتر',
+'newimages-label'       => 'نام فایل ( یا چنڈی چه آيی):',
 'showhidebots'          => '(روباتان $1 )',
 'noimages'              => 'هیچی په دیستن',
 'ilsubmit'              => 'گردگ',
@@ -2653,7 +2660,8 @@ $1',
 'useajaxsearch'    => 'چه گردگ آژاکسی استفاده کن',
 
 # Separators for various lists, etc.
-'autocomment-prefix' => '-',
+'semicolon-separator' => ';',
+'autocomment-prefix'  => '-',
 
 # Multipage image navigation
 'imgmultipageprev' => '← پیشگین صفحه',
@@ -2789,7 +2797,7 @@ $1',
 'version-software-product'         => 'محصول',
 'version-software-version'         => 'نسخه',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'مسیر فایل',
 'filepath-page'    => 'فایل:',
 'filepath-submit'  => 'مسیر',
@@ -2828,7 +2836,7 @@ $1',
 'specialpages-group-redirects'   => 'غیر مستقیم بیگنت صفحات حاصین',
 'specialpages-group-spam'        => 'وسایل اسپم',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'هالیکین صفحه',
 'intentionallyblankpage' => 'ای صفحه عمدا هالیک هلگ بوتت و په محک زتن ویا دگه چیز.',
 

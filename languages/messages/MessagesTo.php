@@ -346,7 +346,7 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'accmailtext'             => 'ʻOsi ʻave ʻa e leatapu maʻa "$1" ki he $2.',
 'newarticle'              => '(Foʻou)',
 'newarticletext'          => "Naʻa ke muimui ha fehokotaki ki he peesi ʻoku teʻeki fakatupu. Kapau te ke fiefakatupi he pēsí ni, kamata hoʻo tohi ʻi he puha ʻi lalo. (Vakai ki he [[{{MediaWiki:Helppage}}|tokoni]] mo hano ongoongo lahi ange.) Kapau ʻoku hala pē heni, lomiʻi pē he meʻa-lolomi 'ki mui' ʻo ho palausa.",
-'anontalkpagetext'        => "----''Ko e peesi ʻeni ko e peesi alea ia maʻa e ʻetita taʻehingoa teʻeki ʻene fakatupu ʻo e tohi kau-ki-ai pe ʻoku ʻikai ngāueʻaki mo ia. Ko ia ai ʻoku fakapapauʻi ia ʻe he tuʻasila IP fakafika pē. Ka ʻe lava ʻoku vahevahe ʻa e tuʻasila IP pehē ʻe he kau ʻetita tokolahi. Kapau ko koe ko e ʻetita taʻehingoa, ʻoku ke tui ko e ngaahi fakamatala ʻi heni ʻoku ʻikai maʻau, mahalo pē ʻoku sai ange ke ke [[Special:Userlogin|fai ha tohi kau-ki-ai, pe kau-ki-ai]] he taimí ni pea fakaʻehiʻehi ha ngaahi meʻafihi ē ʻi he kahaʻu.''",
+'anontalkpagetext'        => "----''Ko e peesi ʻeni ko e peesi alea ia maʻa e ʻetita taʻehingoa teʻeki ʻene fakatupu ʻo e tohi kau-ki-ai pe ʻoku ʻikai ngāueʻaki mo ia. Ko ia ai ʻoku fakapapauʻi ia ʻe he tuʻasila IP fakafika pē. Ka ʻe lava ʻoku vahevahe ʻa e tuʻasila IP pehē ʻe he kau ʻetita tokolahi. Kapau ko koe ko e ʻetita taʻehingoa, ʻoku ke tui ko e ngaahi fakamatala ʻi heni ʻoku ʻikai maʻau, mahalo pē ʻoku sai ange ke ke [[Special:UserLogin|fai ha tohi kau-ki-ai, pe kau-ki-ai]] he taimí ni pea fakaʻehiʻehi ha ngaahi meʻafihi ē ʻi he kahaʻu.''",
 'noarticletext'           => 'Ko e pēsi ni, ʻoku ʻikai haʻane tohi ʻi ai he taimi ni. ʻE lava koe ʻo [[Special:Search/{{PAGENAME}}|kumi ki heʻene hingoa]] ʻi ha ngaahi peesi ʻe taha, pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} ʻetita ʻi ai.]',
 'clearyourcache'          => "'''Tokanga''', ʻosi he haofaki e peesi, mahalo pē ʻoku pau te ke fakaʻatā ʻa e fafaʻo ʻo ho palausa, naʻa ʻikai te ke sio ʻa e paaki foʻou.",
 'updated'                 => '(Fakafoʻou)',
@@ -547,7 +547,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'license'   => 'Laiseni:',
 'nolicense' => 'ʻIkai fili ha taha',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',
 'imgfile'               => 'faile',
 'imagelist'             => 'Hokohoko faitā',
@@ -671,7 +671,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'alllogstext'          => 'Fakaʻaliʻali fakakātoa ʻo e ngaahi tohinoa hiki hake, mo tāmateʻi, mo maluʻi, mo taʻofi, mo fakapule. ʻOku lava ke ke sivi ʻa e fakaʻaliʻalí ni ʻi he fili ʻo e falenga tohinoa pe hingoa ʻo e ʻetita pe peesi hūkitonu.',
 'logempty'             => 'ʻOku maha ʻa e tohinoa.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Peesi kotoa',
 'alphaindexline'    => '$1 ki he $2',
 'nextpage'          => 'Peesi hoko ($1)',
@@ -690,7 +690,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'categories'         => 'Faʻahinga',
 'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'    => 'ʻAsi mai kau ʻetita mei he:',
 'listusers-submit' => 'ʻAsi mai',
 
@@ -719,7 +719,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'watchnologin'         => 'Teʻeki kau ki ai',
 'watchnologintext'     => 'ʻOku pau te ke [[Special:Userlogin|kau-ki-ai]] kapau te ke fieliliu hoʻo hokohoko leʻo.',
 'addedwatch'           => 'Kuo tānaki ki hoʻo hokohoko leʻo',
-'addedwatchtext'       => 'Ko e peesi "[[:$1]]" naʻe tānaki ia ki hoʻo [[Special:Watchlist|hokohoko leʻo]]. Ko e ngaahi liliu ʻo e kahaʻu ʻi he pēsí ni mo hono peesi aleá, ʻe ʻoatu ʻi heni mo ʻasi mai  ʻi he hokohoko ʻo e [[Special:Recentchanges|ngaahi toki liliu]], ʻoku sinolahi ke fanāfotu.
+'addedwatchtext'       => 'Ko e peesi "[[:$1]]" naʻe tānaki ia ki hoʻo [[Special:Watchlist|hokohoko leʻo]]. Ko e ngaahi liliu ʻo e kahaʻu ʻi he pēsí ni mo hono peesi aleá, ʻe ʻoatu ʻi heni mo ʻasi mai  ʻi he hokohoko ʻo e [[Special:RecentChanges|ngaahi toki liliu]], ʻoku sinolahi ke fanāfotu.
 
 Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomiʻi "taʻeleʻo" ʻi he pā tafaʻaki.',
 'removedwatch'         => 'Kuo toʻo mei he hokohoko leʻo',
@@ -842,7 +842,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'badipaddress'         => 'Tuʻasila IP taʻeʻaongaʻi',
 'blockipsuccesssub'    => 'Ola ʻo e taʻofi',
 'blockipsuccesstext'   => 'Kuo taʻofia ʻa [[Special:Contributions/$1|$1]]
-<br />Vakai ki he [[Special:Ipblocklist|hokohoko ʻo e taʻofi]] ʻo toe fakakaukau ʻi ai.',
+<br />Vakai ki he [[Special:IPBlockList|hokohoko ʻo e taʻofi]] ʻo toe fakakaukau ʻi ai.',
 'unblockip'            => 'Taʻetaʻofia ʻetita',
 'unblockiptext'        => 'Ngāueʻaki ʻa e foomu ʻi lalo ke fakafoki e ngofua tohi maʻa e tuʻasila IP pe hingoa ʻo e kau-ki-ai ʻosi taʻofi.',
 'ipusubmit'            => 'Taʻetaʻofia ʻa e ʻetitá ni',
@@ -859,7 +859,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'autoblocker'          => 'ʻOku taʻofi ʻiate ia pe, koeʻuhi ko hoʻo tuaʻasila IP naʻe ngāueʻaki ia ʻe he ʻetita "[[User:$1|$1]]". Ko e ʻuhinga maʻa e taʻofi ʻo $1 ko "\'\'\'$2\'\'\'" ia.',
 'blocklogpage'         => 'Tohinoa ʻo e taʻofi',
 'blocklogentry'        => 'taʻofia [[$1]] mo ha fuoloa $2 $3',
-'blocklogtext'         => 'Ko e tohinoa ʻeni ʻo e ngāue ʻo e ngaahi taʻofi mo e taʻetaʻofi ʻo e kau ʻetita. ʻOku ʻikai ʻasi ha ngaahi tuʻasila IP ʻoku taʻofi ngaue ʻia te ia pē. Vakai ki he [[Special:Ipblocklist|hokohoko taʻofi IP]] kapau te ke fiemaʻu ʻa e hokohoko ʻo e ngaahi taʻofi taka kotoa.',
+'blocklogtext'         => 'Ko e tohinoa ʻeni ʻo e ngāue ʻo e ngaahi taʻofi mo e taʻetaʻofi ʻo e kau ʻetita. ʻOku ʻikai ʻasi ha ngaahi tuʻasila IP ʻoku taʻofi ngaue ʻia te ia pē. Vakai ki he [[Special:IPBlockList|hokohoko taʻofi IP]] kapau te ke fiemaʻu ʻa e hokohoko ʻo e ngaahi taʻofi taka kotoa.',
 'unblocklogentry'      => 'taʻetaʻofia $1',
 'range_block_disabled' => 'ʻOku fakataʻeʻaongaʻi ʻa e fakatupu fakapule-fakafounga ʻo ngaahi taʻofi fakavā.',
 'ipb_expiry_invalid'   => 'ʻOku taʻeʻaongaʻi ʻa e taimi ki he mate.',
@@ -1001,7 +1001,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'show-big-image'       => 'ʻAsi ʻa e faitā auiiki',
 'show-big-image-thumb' => '<small>Vakai pē ʻi hono lahi: $1 x $2 tefitoʻifaitā</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Fakaʻaliʻali ʻo e ngaahi faitā foʻou',
 'imagelisttext'         => "ʻOku ʻasi ʻi lalo ha hokohoko ʻo e '''$1''' vahevahe he $2.",
 'showhidebots'          => '($1 fatu fakamīsini)',
@@ -1207,7 +1207,7 @@ $1',
 # Special:Version
 'version' => 'Paaki', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Hala ki he faile',
 'filepath-page'   => 'Faile:',
 'filepath-submit' => 'Ko e hala',

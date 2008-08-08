@@ -299,7 +299,7 @@ hō‘ike ‘ia i lalo:",
 'loginreqlink'           => 'E komo',
 'accmailtitle'           => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'             => '(Hou)',
-'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:UserLogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 'previewnote'            => '<strong>‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!</strong>',
 'editing'                => 'Ke ho‘ololi nei iā $1',
@@ -381,7 +381,7 @@ hō‘ike ‘ia i lalo:",
 'filedesc'          => "Hō'ulu'ulu mana'o",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Inoa',
 
 # Image description page
@@ -414,7 +414,7 @@ hō‘ike ‘ia i lalo:",
 # Special:Log
 'log' => 'Nā mo‘olelo',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Nā ‘ao‘ao loa apau',
 'alphaindexline' => '$1 i $2',
 'allarticles'    => 'Nā mo‘olelo apau loa',
@@ -425,7 +425,7 @@ hō‘ike ‘ia i lalo:",
 # Special:Categories
 'categories' => 'Nā mahele',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 
 # E-mail user
@@ -536,7 +536,7 @@ hō‘ike ‘ia i lalo:",
 # Media information
 'show-big-image' => 'Miomio piha',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Huli',
 
 # 'all' in various places, this might be different for inflected languages

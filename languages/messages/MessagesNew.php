@@ -180,7 +180,7 @@ $messages = array(
 # Miscellaneous special pages
 'newpages-username' => 'छ्येलेमि नां:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'    => 'सकल पौत',
 'nextpage'    => 'मेगु पौ ($1)',
 'allarticles' => 'सकल च्वसुत',

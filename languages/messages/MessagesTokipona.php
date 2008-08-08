@@ -135,7 +135,7 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 'move'         => 'o tawa',
 'movethispage' => 'o pana e nimi sin',
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'lipu ale',
 
 # Special:Categories

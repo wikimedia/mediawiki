@@ -466,7 +466,7 @@ $messages = array(
 'destfilename'      => '目标文件名:',
 'watchthisupload'   => '监控该只页面',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => '寻图片名字:',
 'imgfile'               => '源文件',
 'imagelist'             => '文件列表',
@@ -547,7 +547,7 @@ $messages = array(
 'speciallogtitlelabel' => '标题:',
 'log'                  => '记录',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '全部页面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下页 ($1)',
@@ -564,7 +564,7 @@ $messages = array(
 # Special:Categories
 'categories' => '页面分类',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => '显示',
 
 # E-mail user
@@ -585,7 +585,7 @@ $messages = array(
 'watchnologin'         => '朆登录',
 'addedwatch'           => '加到监控列表哉',
 'addedwatchtext'       => "该个页面 \"[[:\$1]]\" 已经加到侬个[[Special:Watchlist|监控列表]]哉。
-将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:Recentchanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
+将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:RecentChanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
 'removedwatch'         => '登监控列表里向拿脱哉',
 'removedwatchtext'     => '"[[:$1]]"已经从侬个监控列表移除。',
 'watch'                => '监控',
@@ -667,7 +667,7 @@ $messages = array(
 'blocklink'          => '封禁',
 'contribslink'       => '贡献',
 'blocklogpage'       => '封禁日志',
-'blocklogtext'       => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:Ipblocklist|IP 封禁列表]]去看当前生效个封禁列表。',
+'blocklogtext'       => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:IPBlockList|IP 封禁列表]]去看当前生效个封禁列表。',
 'proxyblocksuccess'  => '好哉。',
 
 # Move page
@@ -763,7 +763,7 @@ $messages = array(
 # Image deletion
 'deletedrevision' => '拨删脱个旧修订 $1',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => '新文件陈列室',
 'showhidebots' => '（$1机器人）',
 'ilsubmit'     => '搜寻',
@@ -845,7 +845,7 @@ Variants for Chinese language
 # Special:Version
 'version' => '版本', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => '文件路径',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路径',

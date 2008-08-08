@@ -294,7 +294,7 @@ Wax e-boosto ah oo ku saabsan arrimaha soo socdo looma soo diridoono.',
 'loginreqpagetext'          => 'Waa in aad $1 si aad u fiirisid boggaga kale.',
 'accmailtitle'              => "Ereysirka waa la'diray.",
 'accmailtext'               => 'Ereysirka "$1" waxaa loo diray $2.',
-'anontalkpagetext'          => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha aanan la aqoonsanin oo aanan weli sameysanin akoon ama aanan weli isticmaali. Si loo kala sooco isticmaalayaasha, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan ka sameyso akoon meeshaan  [[Special:Userlogin|sameyso akoon ama gudaha gal]] si aad uga dhowrsatid in laguugu qaldo isticmaalayaasha kale oo aann la'aqoonsanin.''",
+'anontalkpagetext'          => "----''Meeshaan waa bogga wadahadalka isticmaalayaasha aanan la aqoonsanin oo aanan weli sameysanin akoon ama aanan weli isticmaali. Si loo kala sooco isticmaalayaasha, waa in aan isticmaalnaa lambar cinwaaneedka IP:ga. Cinwaanka IP:ga waxaa suurto gal ah in ay wada isticmaalaan dad badan. Hadii aad tahay isticmaale aanan la'aqoonsanin oo aad dareemaysid in laguu gafay, fadlan ka sameyso akoon meeshaan  [[Special:UserLogin|sameyso akoon ama gudaha gal]] si aad uga dhowrsatid in laguugu qaldo isticmaalayaasha kale oo aann la'aqoonsanin.''",
 'previewnote'               => '<strong>Waxa aad aragtid waa horfiirin; wixii aad bedeshay lama keydinin!</strong>',
 'session_fail_preview'      => "<strong>Waan ka xunahay! Wixii aad bedeshay ma'suurto galin in la'keydiyo cilad dhacday awgeed.
 Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudagal.</strong>",
@@ -427,7 +427,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 # Special:Log
 'log-search-submit' => 'Soco',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Dhamaan boggaga',
 'alphaindexline'    => '$1 ilaa $2',
 'nextpage'          => 'Bogga ku xiga ($1)',
@@ -445,7 +445,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 # Special:Categories
 'categories' => 'Qeybaha',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "I'tus isticmaalayaasha laga bilaabo:",
 'listusers-submit'   => "I'tus",
 'listusers-noresult' => 'Lama helin isticmaale.',
@@ -477,7 +477,7 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'addedwatch'        => 'Kudar liiska-waardiyaha',
 'addedwatchtext'    => "Bogga \"[[:\$1]]\" waxaa lagudaray [[Special:Watchlist|liiska-waardiyahaaga]].
 Isbedelka mustaqbalka ku dhaca boggan iyo bogga wadahadalka la'xiriira waxaa lagu soo qoridoonaa inta,
-boggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:Recentchanges|Liiska isbedelada show]] si
+boggana wuxuu noqonaayaa mid la' '''nuuriyey''' dhinaca [[Special:RecentChanges|Liiska isbedelada show]] si
 ay u fududdayso sidii loo dalbanlahaa.
 
 Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeynin\" oo ku yaala dhinaca.",
@@ -588,7 +588,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Info page
 'numwatchers' => 'Tirada waardiyeyaasha: $1',
 
-# Special:Newimages
+# Special:NewImages
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",
 'bydate'        => 'hab taariikheed',
 

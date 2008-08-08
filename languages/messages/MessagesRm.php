@@ -379,7 +379,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'sourcefilename'    => 'file sin tes computer:',
 'destfilename'      => 'num dal file sin il server:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Glista dals maletgs',
 
 # MIME search
@@ -440,7 +440,7 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'logs / cudesch da navigaziun',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'tut ils *** artitgels',
 'alphaindexline'    => '$1 enfin $2',
 'nextpage'          => 'proxima pagina ($1)',
@@ -477,7 +477,7 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'watchnologintext'     => "Ti stos [[Special:Userlogin|t'annunziar]] per midar tia glista d'observaziun.",
 'addedwatch'           => 'Agiuntà a la glista dad observaziun',
 'addedwatchtext'       => "L'artitgel \"[[:\$1]]\" è vegnì agiuntà a vossa [[Special:Watchlist|glista dad observaziun]]. 
-Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Special:Recentchanges|glista da las ultimas midadas]].",
+Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Special:RecentChanges|glista da las ultimas midadas]].",
 'watch'                => 'observar',
 'watchthispage'        => 'Guarda questa pagina!',
 'unwatch'              => 'betg pli observar',
@@ -607,7 +607,7 @@ Fai ina visita sin [http://www.mediawiki.org/wiki/Localisation MediaWiki Localis
 'imagemaxsize' => 'Grondezza maximala per maletgs sin paginas da descripziun',
 'thumbsize'    => 'grondezza dals maletgs da prevista (thumbnails):',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Novs maletgs',
 'ilsubmit'  => 'Tschertgar',
 'bydate'    => 'tenor data',

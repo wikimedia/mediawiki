@@ -479,7 +479,7 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'nmembers' => '$1 anëtarë',
 'move'     => 'Zhvendose',
 
-# Special:Allpages
+# Special:AllPages
 'alphaindexline' => '$1 deri në $2',
 'allpagessubmit' => 'Shko',
 

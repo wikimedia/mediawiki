@@ -8,10 +8,10 @@
  * @author Purodha
  * @author Spacebirdy
  * @author Omnipaedista
- * @author לערי ריינהארט
- * @author Revolus
- * @author Pill
  * @author MichaelFrey
+ * @author Pill
+ * @author Revolus
+ * @author לערי ריינהארט
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -228,6 +228,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
 'tog-showhiddencats'          => 'Zeige versteckte Kategorien',
+'tog-noconvertlink'           => 'Konvertierung des Titels deaktivieren',
 
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
@@ -673,7 +674,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'blockedtitle'                     => 'Benutzer ist gesperrt',
 'blockedtext'                      => 'Dein Benutzername oder deine IP-Adresse wurde von $1 gesperrt. Als Grund wurde angegeben:
 
-:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b>
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
@@ -694,7 +695,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'autoblockedtext'                  => 'Deine IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der durch $1 gesperrt wurde.
 Als Grund wurde angegeben:
 
-:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
+:\'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logbucheintrag]</span>)
 
 <p style="border-style: solid; border-color: red; border-width: 1px; padding:5px;"><b>Ein Lesezugriff ist weiterhin möglich,</b>
 nur die Bearbeitung und Erstellung von Seiten in {{SITENAME}} wurde gesperrt.
@@ -709,6 +710,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 *Beginn der Sperre: $8
 *Sperr-Ende: $6
 *IP-Adresse: $3
+*Sperre betrifft: $7
 *Sperr-ID: #$5
 </div>',
 'blockednoreason'                  => 'keine Begründung angegeben',
@@ -727,7 +729,7 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'accmailtext'                      => 'Das Passwort für „$1“ wurde an $2 geschickt.',
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => 'Hier den Text der neuen Seite eintragen. Bitte nur in ganzen Sätzen schreiben und keine urheberrechtsgeschützten Texte anderer kopieren.',
-'anontalkpagetext'                 => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzerm gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:Userlogin/signup|Benutzerkonto erstellen]] oder dich  [[Special:Userlogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzer zu vermeiden.''",
+'anontalkpagetext'                 => "---- ''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzerm gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich  [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzer zu vermeiden.''",
 'noarticletext'                    => '(Diese Seite enthält momentan noch keinen Text)',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
@@ -1312,7 +1314,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload_source_url'  => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
 'imagelist_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
@@ -1337,6 +1339,9 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Verwendung',
 'linkstoimage'                   => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
+'linkstoimage-more'              => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
+Die folgende Liste zeigt nur den {{PLURAL:$1|ersten Link|die ersten $1 Links}} auf diese Datei.
+Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'nolinkstoimage'                 => 'Keine Seite benutzt diese Datei.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Weitere Links]] für diese Datei.',
 'redirectstofile'                => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
@@ -1521,7 +1526,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'logempty'             => 'Keine passenden Einträge.',
 'log-title-wildcard'   => 'Titel beginnt mit …',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alle Seiten',
 'alphaindexline'    => '$1 bis $2',
 'nextpage'          => 'Nächste Seite ($1)',
@@ -1544,12 +1549,12 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Zeige Benutzer ab:',
 'listusers-submit'   => 'Zeige',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Benutzergruppen-Rechte',
 'listgrouprights-summary'         => 'Dies ist eine Liste der in diesem Wiki definierten Benutzergruppen und der damit verbundenen Rechte.
 Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgrouprights-helppage}}|hier]] gefunden werden.',
@@ -1595,7 +1600,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'addedwatchtext'       => 'Die Seite „<nowiki>$1</nowiki>“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
 
 Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[Special:Recentchanges|letzten Änderungen]] in Fettschrift dargestellt.
+in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.
 
 Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klicke auf der jeweiligen Seite auf „nicht mehr beobachten“.',
 'removedwatch'         => 'Von der Beobachtungsliste entfernt',
@@ -1800,20 +1805,22 @@ $1',
 'blanknamespace' => '(Seiten)',
 
 # Contributions
-'contributions' => 'Benutzerbeiträge',
-'mycontris'     => 'Eigene Beiträge',
-'contribsub2'   => 'Für $1 ($2)',
-'nocontribs'    => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
-'uctop'         => '(aktuell)',
-'month'         => 'und Monat:',
-'year'          => 'bis Jahr:',
+'contributions'       => 'Benutzerbeiträge',
+'contributions-title' => 'Benutzerbeiträge von „$1“',
+'mycontris'           => 'Eigene Beiträge',
+'contribsub2'         => 'Für $1 ($2)',
+'nocontribs'          => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
+'uctop'               => '(aktuell)',
+'month'               => 'und Monat:',
+'year'                => 'bis Jahr:',
 
-'sp-contributions-newbies'     => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub' => 'Für Neulinge',
-'sp-contributions-blocklog'    => 'Sperrlogbuch',
-'sp-contributions-search'      => 'Suche nach Benutzerbeiträgen',
-'sp-contributions-username'    => 'IP-Adresse oder Benutzername:',
-'sp-contributions-submit'      => 'Suchen',
+'sp-contributions-newbies'       => 'Zeige nur Beiträge neuer Benutzer',
+'sp-contributions-newbies-sub'   => 'Für Neulinge',
+'sp-contributions-newbies-title' => 'Benutzerbeiträge von neuen Benutzern',
+'sp-contributions-blocklog'      => 'Sperrlogbuch',
+'sp-contributions-search'        => 'Suche nach Benutzerbeiträgen',
+'sp-contributions-username'      => 'IP-Adresse oder Benutzername:',
+'sp-contributions-submit'        => 'Suchen',
 
 # What links here
 'whatlinkshere'            => 'Links auf diese Seite',
@@ -1871,7 +1878,7 @@ Bitte gib den Grund für die Sperre an.',
 'blockipsuccesssub'               => 'Sperre erfolgreich',
 'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[Special:Log/block|Benutzersperr-Logbuch]] protokolliert.
 
-Zur Aufhebung der Sperre siehe die [[Special:Ipblocklist|Liste aller aktiven Sperren]].',
+Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Sperren]].',
 'ipb-edit-dropdown'               => 'Sperrgründe bearbeiten',
 'ipb-unblock-addr'                => '„$1“ freigeben',
 'ipb-unblock'                     => 'IP-Adresse/Benutzer freigeben',
@@ -1903,7 +1910,7 @@ Zur Aufhebung der Sperre siehe die [[Special:Ipblocklist|Liste aller aktiven Spe
 'blocklogentry'                   => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'blocklogtext'                    => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen.
 Automatisch gesperrte IP-Adressen werden nicht erfasst.
-Siehe die [[Special:Ipblocklist|{{int:ipblocklist}}]] für alle aktiven Sperren.',
+Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.',
 'unblocklogentry'                 => 'hat die Sperre von „[[$1]]“ aufgehoben',
 'block-log-flags-anononly'        => 'nur Anonyme',
 'block-log-flags-nocreate'        => 'Erstellung von Benutzerkonten gesperrt',
@@ -2249,7 +2256,7 @@ $1',
 'show-big-image'       => 'Version in höherer Auflösung',
 'show-big-image-thumb' => '<small>Größe der Voransicht: $1 × $2 Pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Neue Dateien',
 'imagelisttext'         => "Hier ist eine Liste von '''$1''' {{PLURAL:$1|Datei|Dateien}}, sortiert $2.",
 'newimages-summary'     => 'Diese Spezialseite zeigt die zuletzt hochgeladenen Dateien an.',
@@ -2696,7 +2703,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
 'filepath-submit'  => 'Pfad suchen',
@@ -2734,7 +2741,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'specialpages-group-redirects'   => 'Weiterleitende Spezialseiten',
 'specialpages-group-spam'        => 'Spam-Werkzeuge',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Leere Seite',
 'intentionallyblankpage' => 'Diese Seite ist absichtlich ohne Inhalt. Sie wird für Benchmarks verwendet.',
 

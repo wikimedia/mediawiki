@@ -540,7 +540,7 @@ $messages = array(
 
 'badaccess'        => 'Nedostatečná oprávnění',
 'badaccess-group0' => 'Nemáte oprávnění k provedení požadované činnosti.',
-'badaccess-groups' => 'Požadovanou činnost smějí provádět jen uživatelé ve skupinách $1.',
+'badaccess-groups' => 'Požadovanou činnost smějí provádět jen uživatelé ve {{PLURAL:$2|skupině|skupinách}} $1.',
 
 'versionrequired'     => 'Vyžadováno MediaWiki verze $1',
 'versionrequiredtext' => 'Pro použití této stránky je vyžadováno MediaWiki verze $1. Vizte [[Special:Version|stránku verze]].',
@@ -615,12 +615,11 @@ $1',
 'readonlytext'         => 'Databáze je nyní uzamčena, takže nelze ukládat nové doplňky a změny. Důvodem je pravděpodobně pravidelná údržba, po které se vše vrátí do normálního stavu.
 
 Správce, který databázi zamkl, zanechal následující zprávu: $1',
-'missing-article'      => 'V databázi nebyl nalezen text stránky „$1“ $2.
+'missing-article'      => 'V databázi nebyl nalezen požadovaný text stránky „$1“ $2.
 
-Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozdíl verzí nebo historii stránky, jež byla smazána.
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozdíl verzí nebo historickou verzi stránky, jež byla smazána.
 
-Pokud toto není váš případ, možná jste nalezli chybu v software.
-Prosíme, ohlaste to správcům spolu s URL této stránky.',
+Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme, ohlaste to [[Special:Listusers/sysop|správcům]] spolu s URL této stránky.',
 'missingarticle-rev'   => '(číslo revize: $1)',
 'missingarticle-diff'  => '(Rozdíl: $1, $2)',
 'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových servery proti hlavnímu',
@@ -672,7 +671,7 @@ $2',
 Tento počítač může být používán k prohlížení a editaci {{grammar:2sg|{{SITENAME}}}} bez uživatelského jména, nebo pro přihlášení jiného uživatele. Upozorňujeme, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni. Tento jev potrvá do smazání cache vašeho prohlížeče.',
 'welcomecreation'            => '== Vítejte, $1! ==
 Váš účet byl vytvořen.
-Nezapomeňte si upravit své nastavení!',
+Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAME}}}}]].',
 'loginpagetitle'             => 'Přihlaste se',
 'yourname'                   => 'Uživatelské jméno:',
 'yourpassword'               => 'Vaše heslo',
@@ -854,7 +853,7 @@ Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete 
 'newarticletext'                   => "Následovali jste odkaz na stránku, která dosud neexistuje.
 Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlačítko ''Uložit změny''. Další rady najdete v [[{{MediaWiki:Helppage}}|nápovědě]].
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
-'anontalkpagetext'                 => "---- ''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. Musíme proto použít číselnou IP adresu k&nbsp;jeho identifikaci. Taková IP adresa může být sdílena několika uživateli. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:Userlogin|vytvořte si účet nebo se přihlaste]], abyste se tím vyhnul(a) budoucí záměně s&nbsp;jinými anonymními uživateli.''",
+'anontalkpagetext'                 => "----''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. K&nbsp;jeho identifikaci proto musíme používat číselnou IP adresu. Takovou IP adresu může sdílet několik uživatelů. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:UserLogin/signup|vytvořte si účet]] nebo [[Special:UserLogin|se přihlaste]], vyhnete se tím budoucí záměně s&nbsp;jinými anonymními uživateli.''",
 'noarticletext'                    => 'Tato stránka zatím neobsahuje žádný text, můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit].',
 'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
@@ -869,9 +868,9 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'session_fail_preview'             => '<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat. Zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>',
 'session_fail_preview_html'        => "<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat.</strong>
 
-''Jelikož {{SITENAME}} má povoleno libovolné HTML, není zobrazen náhled jako prevence proti útokům JavaScriptem.''
+''Jelikož má {{SITENAME}} zapnuto používání neomezeného HTML, náhled se kvůli prevenci proti útokům JavaScriptem nezobrazuje.''
 
-<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>",
+<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se [[Special:Userlogout|odhlásit]] a znovu přihlásit.</strong>",
 'token_suffix_mismatch'            => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu.
 Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
@@ -922,7 +921,7 @@ Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
 
-Je jich $1. Mělo by jich být méně než $2.',
+Povolený limit je $2, v současné chvíli však {{PLURAL:$1|zde jedno volání je|zde jsou $2 volání|zde je $2 volání}}.',
 'expensive-parserfunction-category'       => 'Stránky s příliš vysokým počtem volání funkcí parseru.',
 'post-expand-template-inclusion-warning'  => 'Varování: Objem vkládaných šablon je příliš velký.
 Některé šablony nebudou vloženy.',
@@ -1321,23 +1320,12 @@ $3',
 'upload_directory_missing'    => 'Adresář pro nahrávání souborů ($1) chybí a webový server ho nedokáže vytvořit.',
 'upload_directory_read_only'  => 'Do adresáře pro načítané soubory ($1) nemá webserver právo zápisu.',
 'uploaderror'                 => 'Při načítání došlo k chybě',
-'uploadtext'                  => 'Pro prohlížení a hledání již dříve nahraných souborů se podívejte na [[Special:Imagelist|seznam načtených souborů]].
-Všechna načtení a smazání jsou zaznamenány v [[Special:Log|protokolovacích záznamech]].
+'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:Imagelist|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
 
-Pomocí níže uvedeného formuláře můžete na wiki nahrát obrázky a jiné soubory, které poté budete moci použít v článcích.
-Ve většině prohlížečů je zobrazeno tlačítko „Procházet…“, pomocí kterého budete moci vybrat soubor k načtení, jehož jméno se poté objeví v políčku vedle tlačítka.
-Poté stiskněte tlačítko „Načíst soubor“ k dokončení načtení. Buďte trpěliví, nahrávání může chvíli trvat.
-
-Preferované formáty jsou JPEG pro fotografie, PNG pro schémata a OGG pro zvuky. Používejte laskavě smysluplná jména souborů, soubor po načtení nelze přejmenovat.
-
-Pro vložení obrázku do stránky použijte syntaxi
-<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.jpg]]</nowiki></code> nebo
-<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:soubor.png|popisek]]</nowiki></code>, popř.
-<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:soubor.ogg]]</nowiki></code> pro zvuky.
-
-Uvědomte si laskavě, že stejně jako u ostatních wikistránek mohou ostatní uživatelé vámi nahraný soubor smazat či upravit, pokud to
-uznají za vhodné;
-pokud budete tuto funkci zneužívat, může být váš uživatelský účet zablokován.',
+Pro vložení obrázku do stránky použijte jeden z následujících způsobů zápisu:
+* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Soubor.jpg]]</nowiki></code>''' do stránky vloží celý obrázek,
+* '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Soubor.png|thumb|left|Popisek]]</nowiki></code>''' vloží náhled v rámečku zarovnaném na levý okraj, s popiskem „Popisek“,
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Soubor.ogg]]</nowiki></code>''' vloží přímý odkaz na soubor, aniž by se zobrazoval ve stránce.",
 'upload-permitted'            => 'Povolené formáty souborů: $1.',
 'upload-preferred'            => 'Upřednostňované formáty souborů: $1.',
 'upload-prohibited'           => 'Zakázané formáty souborů: $1.',
@@ -1417,7 +1405,7 @@ Zde je příslušný výpis z knihy smazaných stránek:",
 'upload_source_url'  => ' (platné, veřejně přístupné URL)',
 'upload_source_file' => ' (soubor na vašem počítači)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
 Ve výchozím stavu je poslední načtený soubor nahoře.
 Kliknutím na hlavičku sloupce můžete změnit řazení.',
@@ -1622,7 +1610,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',
 'log-title-wildcard'   => 'Hledat názvy začínající na tento text',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Všechny stránky',
 'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Další stránka ($1)',
@@ -1645,20 +1633,24 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Zobrazit uživatele počínaje od:',
 'listusers-submit'   => 'Ukázat',
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
 
-# Special:Listgrouprights
-'listgrouprights'          => 'Práva skupin uživatelů',
-'listgrouprights-summary'  => 'Toto je seznam skupin uživatelů definovaných na této wiki a&nbsp;jejich přístupových práv.
+# Special:ListGroupRights
+'listgrouprights'                 => 'Práva skupin uživatelů',
+'listgrouprights-summary'         => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.
 
 [[{{MediaWiki:Listgrouprights-helppage}}|Podrobné informace o&nbsp;jednotlivých právech]]',
-'listgrouprights-group'    => 'Skupina',
-'listgrouprights-rights'   => 'Práva',
-'listgrouprights-helppage' => 'Help:Práva skupiny',
-'listgrouprights-members'  => '(seznam členů)',
+'listgrouprights-group'           => 'Skupina',
+'listgrouprights-rights'          => 'Práva',
+'listgrouprights-helppage'        => 'Help:Práva skupiny',
+'listgrouprights-members'         => '(seznam členů)',
+'listgrouprights-addgroup'        => 'Přidávání uživatelů do {{PLURAL:$2|skupiny|skupin}} $1',
+'listgrouprights-removegroup'     => 'Vyřazování uživatelů ze {{PLURAL:$2|skupiny|skupin}}: $1',
+'listgrouprights-addgroup-all'    => 'Přidávání uživatelů do libovolné skupiny',
+'listgrouprights-removegroup-all' => 'Vyřazování uživatelů z libovolné skupiny',
 
 # E-mail user
 'mailnologin'     => 'Bez odesílací adresy',
@@ -1690,7 +1682,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'watchnologin'         => 'Nejste přihlášen(a)',
 'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:Userlogin|přihlásit]].',
 'addedwatch'           => 'Přidáno k sledovaným',
-'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:Recentchanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
+'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
 'removedwatch'         => 'Vyřazeno ze seznamu sledovaných stránek',
 'removedwatchtext'     => 'Stránka „<nowiki>$1</nowiki>“ byla vyřazena z vašeho seznamu sledovaných stránek.',
 'watch'                => 'Sledovat',
@@ -1787,7 +1779,9 @@ Rady a kontakt:
 'rollbacklink'                => 'vrácení zpět',
 'rollbackfailed'              => 'Nešlo vrátit zpět',
 'cantrollback'                => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
-'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskuse]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět. Poslední editace byla od [[User:$3|$3]] ([[User talk:$3|Diskuse]]).',
+'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]] | [[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
+
+Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'Shrnutí editace bylo: <i>„$1“</i>.', # only shown if there is an edit comment
 'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
@@ -1902,7 +1896,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',
-'whatlinkshere-title'      => 'Stránky odkazující na $1',
+'whatlinkshere-title'      => 'Stránky odkazující na „$1“',
 'whatlinkshere-page'       => 'Strana:',
 'linkshere'                => "Na '''[[:$1]]''' odkazují tyto stránky:",
 'nolinkshere'              => "Žádná stránka na '''[[:$1]]''' neodkazuje.",
@@ -1952,7 +1946,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
-Můžete si prohlédnout [[Special:Ipblocklist|seznam zablokovaných uživatelů]].',
+Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů]].',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
 'ipb-unblock-addr'                => 'Odblokovat uživatele nebo IP $1',
 'ipb-unblock'                     => 'Odblokovat uživatele nebo IP adresu',
@@ -1982,7 +1976,7 @@ Můžete si prohlédnout [[Special:Ipblocklist|seznam zablokovaných uživatelů
 'autoblocker'                     => 'Automaticky zablokováno, protože sdílíte IP adresu s „$1“. Důvod zablokování tohoto uživatele: „$2“.',
 'blocklogpage'                    => 'Kniha zablokování',
 'blocklogentry'                   => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
-'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:Ipblocklist|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
+'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:IPBlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
 'unblocklogentry'                 => 'odblokovává „$1“',
 'block-log-flags-anononly'        => 'jen nepřihl.',
 'block-log-flags-nocreate'        => 'vytváření účtů zablokováno',
@@ -2291,10 +2285,12 @@ $1',
 'show-big-image'       => 'Obrázek ve vyšším rozlišení',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerie nových obrázků',
 'imagelisttext'         => "Níže je {{PLURAL:$1|jeden obrázek|seznam '''$1'''&nbsp;obrázků seřazených $2|seznam '''$1'''&nbsp;obrázků seřazených $2}}.",
 'newimages-summary'     => 'Na této speciální stránce se zobrazují poslední načtené soubory.',
+'newimages-legend'      => 'Filtr',
+'newimages-label'       => 'Název souboru (nebo jeho část):',
 'showhidebots'          => '($1 roboty)',
 'noimages'              => 'Není co zobrazit.',
 'ilsubmit'              => 'Hledat',
@@ -2782,7 +2778,7 @@ $1',
 'version-software-product'         => 'Název',
 'version-software-version'         => 'Verze',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Cesta k souboru',
 'filepath-page'    => 'Soubor:',
 'filepath-submit'  => 'Cesta',
@@ -2820,7 +2816,7 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Přesměrovávací speciální stránky',
 'specialpages-group-spam'        => 'Protispamové nástroje',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Prázdná stránka',
 'intentionallyblankpage' => 'Tato stránka je úmyslně prázdná. Používá se na měření výkonnosti atd.',
 

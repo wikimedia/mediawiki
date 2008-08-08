@@ -58,7 +58,9 @@ $messages = array(
 'go'               => 'Ó yá',
 'searcharticle'    => 'Ó yá',
 'edit'             => 'Àtúnṣe',
+'create'           => "Ṣè'dá",
 'editthispage'     => "S'àtúnṣe ojúewé yi",
+'create-this-page' => "Ṣè'dá ojúewé yìí",
 'delete'           => 'Paarẹ́',
 'deletethispage'   => 'Pa ojúewé yi rẹ́',
 'protect'          => 'Dábòbò',
@@ -73,6 +75,7 @@ $messages = array(
 'jumptonavigation' => 'atọ́ka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'currentevents'        => 'Ìròhìn nísinsìnyí',
 'edithelp'             => "Ìrànlọ́wọ́ láti s'àtúnṣe",
 'edithelppage'         => 'Help:Àtúnṣe',
 'mainpage'             => 'Ojúewé Àkọ́kọ́',
@@ -95,6 +98,7 @@ $messages = array(
 'nstab-media'     => 'Ojúewé amóhùnmáwòrán',
 'nstab-special'   => 'Pàtàkì',
 'nstab-mediawiki' => 'Ìfọ̀rọ̀ránsẹ',
+'nstab-category'  => 'Ẹ̀yà',
 
 # General errors
 'viewsource'        => 'Àfihàn ọ̀rọ̀àmì',
@@ -120,6 +124,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'nologinlink'        => 'Ẹ fi orúkọ sílẹ̀',
 'createaccount'      => 'Ẹ fi orúkọ sílẹ̀',
 'gotaccountlink'     => "Ẹ w'ọlé",
+'createaccountmail'  => 'pẹ̀lú e-mail',
 'uid'                => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
 'yourlanguage'       => 'Èdè:',
 'accountcreated'     => 'Ẹ ti fi orúkọ sílẹ̀',
@@ -143,7 +148,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 # Recent changes
 'recentchanges' => 'Àwọn àtúnṣe tuntun',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Ẹnitínṣe',
 
@@ -159,7 +164,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'specialloguserlabel'  => 'Ẹnitínṣe:',
 'speciallogtitlelabel' => 'Àkọlé:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Gbogbo ojúewé',
 'allarticles'       => 'Gbogbo ojúewé',
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',

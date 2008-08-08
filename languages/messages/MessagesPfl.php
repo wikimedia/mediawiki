@@ -112,7 +112,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Verschiewe',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Zeiche',
 
 # E-mail user
@@ -165,7 +165,7 @@ $messages = array(
 # Special:Import
 'import-interwiki-submit' => 'Impordiere',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Such',
 
 # 'all' in various places, this might be different for inflected languages

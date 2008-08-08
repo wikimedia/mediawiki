@@ -581,7 +581,7 @@ Veur dien e-mailadres in en bevestig 'm bie [[Special:Preferences|dien veurkäö
 'newarticletext'                   => "De höbs 'ne link gevolg nao 'n pazjena die nog neet besjteit.
 Type in de box hiejónger óm de pazjena te beginne (zuug de [[{{MediaWiki:Helppage}}|helppazjena]] veur mier informatie).
 Es te hie per óngelök terech bis gekómme, klik dan op de '''trök'''-knóp van diene browser.",
-'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek. Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere. Dat adres kan waere gedeild doer mierdere gebroekers. Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:Userlogin|'n account crëere of inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
+'anontalkpagetext'                 => "----''Dit is de euverlèkpazjena veur 'ne anonieme gebroeker dae nog gein account haet aangemaak of dae 't neet gebroek. Daoveur gebroeke v'r 't IP-adres óm de gebroeker te identificere. Dat adres kan waere gedeild doer mierdere gebroekers. Es te 'ne anonieme gebroeker bis en de höbs 't geveul dat 'r ónrelevante commentare aan dich gerich zeen, kèns te 't bèste [[Special:UserLogin|'n account crëere of inlogge]] óm toekomstige verwarring mit anger anoniem gebroekers te veurkomme.''",
 'noarticletext'                    => 'Dees pazjena bevat gein teks.
 De kèns [[Special:Search/{{PAGENAME}}|nao deze term zeuke]] in anger pazjena\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} dees pazjena bewirke]</span>.',
 'userpage-userdoesnotexist'        => 'Doe bewerks \'n gebroekerspagina van \'ne gebroeker dae neet besteit (gebroeker "$1"). Lèvver te controlere ofse deze pagina waal wils aanmake/bewerke.',
@@ -1131,7 +1131,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",
 'upload_source_file' => " ('n bestand op diene computer)",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Op dees speciaal pazjena zeen alle toegevoogde bestenj te bekieke.
 Standerd waere de lets toegevoogde bestenj baovenaan de lies weergegaeve.
 Klikke op 'ne kolomkop verangert de sortering.",
@@ -1338,7 +1338,7 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'logempty'             => "d'r Zeen gein regels in 't logbook die voldaon aan deze criteria.",
 'log-title-wildcard'   => "Zeuk pagina's die met deze naam beginne",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => "Alle pazjena's",
 'alphaindexline'    => '$1 nao $2',
 'nextpage'          => 'Volgende pazjena ($1)',
@@ -1361,12 +1361,12 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'special-categories-sort-count' => 'op aantal sortere',
 'special-categories-sort-abc'   => 'alfabetisch sortere',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Tuun gebroekers vanaaf:',
 'listusers-submit'   => 'Tuun',
 'listusers-noresult' => 'Gein(e) gebroeker(s) gevonje.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Rechte van gebroekersgróppe',
 'listgrouprights-summary'  => 'Op dees pazjena sjtaon de gebroekersgróppe in deze wiki besjreve, mit zien biebehurende rechte.
 Infermasie daoreuver vunds te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
@@ -1407,7 +1407,7 @@ Infermasie daoreuver vunds te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
 'addedwatch'           => 'Aan volglies toegeveug',
 'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
 Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld.
-Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:Recentchanges|liest van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
+Ouch versjiene gevolgde pazjena\'s in \'t <b>vet</b> in de [[Special:RecentChanges|liest van recènte verangeringe]]. <!-- zodat u ze eenvoudiger kan opmerken.-->
 
 <!-- huh? Wen se ein pazjena van dien volgliest wils haole mos e op "sjtop volge"  -- pagina wenst te verwijderen van uw volgliest klik dan op "Van volgliest verwijderen" in de menubalk. -->',
 'removedwatch'         => 'Van volglies aafhoale',
@@ -1672,7 +1672,7 @@ $1",
 'badipaddress'                    => "'t IP-adres haet 'n ongeldige opmaak.",
 'blockipsuccesssub'               => 'Blokkaad gelök',
 'blockipsuccesstext'              => '\'t IP-adres "$1" is geblokkeerd.<br />
-Zuug de [[Special:Ipblocklist|lies van geblokkeerde IP-adresse]].',
+Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
 'ipb-edit-dropdown'               => 'Bewerk lies van rejer',
 'ipb-unblock-addr'                => 'Ónblokkeer $1',
 'ipb-unblock'                     => "Ónblokkeer 'ne gebroeker of IP-adres",
@@ -1702,7 +1702,7 @@ Zuug de [[Special:Ipblocklist|lies van geblokkeerde IP-adresse]].',
 'autoblocker'                     => 'Ómdets te \'n IP-adres deils mit "$1" (geblokkeerd mit raeje "$2") bis te automatisch geblokkeerd.',
 'blocklogpage'                    => 'Blokkeerlogbook',
 'blocklogentry'                   => '"[[$1]]" is geblokkeerd veur d\'n tied van $2 $3',
-'blocklogtext'                    => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:Ipblocklist|Lies van geblokkeerde IP-adresse]] veur de lies van op dit mement wèrkende blokkades.",
+'blocklogtext'                    => "Dit is 'n log van blokkades van gebroekers. Automatisch geblokkeerde IP-adresse sjtoon hie neet bie. Zuug de [[Special:IPBlockList|Lies van geblokkeerde IP-adresse]] veur de lies van op dit mement wèrkende blokkades.",
 'unblocklogentry'                 => 'blokkade van $1 opgeheve',
 'block-log-flags-anononly'        => 'allein anoniem',
 'block-log-flags-nocreate'        => 'aanmake gebroekers geblokkeerd',
@@ -2002,7 +2002,7 @@ $1",
 'show-big-image'       => 'Hogere rezolusie',
 'show-big-image-thumb' => '<small>Gruutde van deze afbeilding: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Nuuj plaetjes',
 'imagelisttext'         => "Hie volg 'n lies mit $1 {{PLURAL:$1|aafbeilding|aafbeildinge}} geordend $2.",
 'newimages-summary'     => 'Op dees speciaal pazjena waere de meis recènt toegevoogde bestenj weergegaeve.',
@@ -2451,7 +2451,7 @@ De kèns ouch [[Special:Watchlist/edit|'t sjtanderd bewirkingssjirm gebroeke]]."
 'version-software-product'         => 'Perduk',
 'version-software-version'         => 'Versie',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Bestandjspaad',
 'filepath-page'    => 'Bestandj:',
 'filepath-submit'  => 'Zeuk',
@@ -2489,7 +2489,7 @@ Gaef de bestandjsnaam zónger \'t "{{ns:image}}:" veurvoogsel.',
 'specialpages-group-redirects'   => "Doorverwiezende speciaal pazjena's",
 'specialpages-group-spam'        => 'Spamhölpmiddele',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Laeg pazjena',
 'intentionallyblankpage' => 'Deze pagina is bewus laeg gelaote en wurt gebroek veur benchmarks, enzovoort.',
 

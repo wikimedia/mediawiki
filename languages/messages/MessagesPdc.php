@@ -94,7 +94,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-p-logo' => 'Haaptblatt',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Guuck uff',
 
 );

@@ -544,7 +544,7 @@ $2',
 'newarticle'                       => '撰',
 'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{ns:help}}:Contents|助]]。
 誤入者，返前即可。',
-'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:Userlogin/signup|增]][[Special:Userlogin|登簿]]遠之。",
+'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext'                    => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
 'userpage-userdoesnotexist'        => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
@@ -1024,7 +1024,7 @@ $2',
 
 'license-nopreview' => '（謝草覽）',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => '此奇頁示檔之全呈也。
 設最後之檔呈示於表頂。
 點題改其列之。',
@@ -1212,7 +1212,7 @@ $2',
 'logempty'             => '無合誌也。',
 'log-title-wildcard'   => '題以此始者，取之',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '全典',
 'alphaindexline'    => '自$1至$2',
 'nextpage'          => '次頁（$1）',
@@ -1235,12 +1235,12 @@ $2',
 'special-categories-sort-count' => '排數',
 'special-categories-sort-abc'   => '排字',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '始簿：',
 'listusers-submit'   => '見',
 'listusers-noresult' => '尋無簿。',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => '簿組權',
 'listgrouprights-summary'         => '下乃wiki之簿權表及存取之權也。
 欲知權節，可望[[{{MediaWiki:Listgrouprights-helppage}}|此]]矣。',
@@ -1283,7 +1283,7 @@ $2',
 'watchnologin'         => '未登簿',
 'watchnologintext'     => '[[Special:Userlogin|登簿]]以治哨。',
 'addedwatch'           => '派哨',
-'addedwatchtext'       => "\"[[:\$1]]\"哨派矣。後有易、議者可見於[[Special:Watchlist|哨站]]，且'''粗體'''列於[[Special:Recentchanges|近易]]。",
+'addedwatchtext'       => "\"[[:\$1]]\"哨派矣。後有易、議者可見於[[Special:Watchlist|哨站]]，且'''粗體'''列於[[Special:RecentChanges|近易]]。",
 'removedwatch'         => '撤哨',
 'removedwatchtext'     => '"[[:$1]]"[[Special:Watchlist|哨]]撤矣。',
 'watch'                => '派哨',
@@ -1531,7 +1531,7 @@ $NEWPAGE
 'ipbwatchuser'                    => '哨該簿之齋與議',
 'badipaddress'                    => 'IP不格',
 'blockipsuccesssub'               => '禁焉',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:Ipblocklist|此]]。',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:IPBlockList|此]]。',
 'ipb-edit-dropdown'               => '改證',
 'ipb-unblock-addr'                => '赦$1',
 'ipb-unblock'                     => '赦簿、址',
@@ -1561,7 +1561,7 @@ $NEWPAGE
 'autoblocker'                     => '近日$1"$2"；同子IP址，故禁焉。',
 'blocklogpage'                    => '誌禁',
 'blocklogentry'                   => '禁[[$1]]屆$2$3',
-'blocklogtext'                    => '此誌禁赦；自禁不示。見[[Special:Ipblocklist|此]]列今禁者。',
+'blocklogtext'                    => '此誌禁赦；自禁不示。見[[Special:IPBlockList|此]]列今禁者。',
 'unblocklogentry'                 => '$1赦焉',
 'block-log-flags-anononly'        => '惟禁匿',
 'block-log-flags-nocreate'        => '禁增簿',
@@ -1867,7 +1867,7 @@ $NEWPAGE
 'show-big-image'       => '全幅',
 'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新圖之廊',
 'imagelisttext'         => "下表乃按$2排之的'''$1'''檔。",
 'newimages-summary'     => '此奇頁示最後呈上之檔也。',
@@ -2057,7 +2057,7 @@ $1',
 'version-software-product'         => '品',
 'version-software-version'         => '版',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => '檔路',
 'filepath-page'    => '檔名：',
 'filepath-submit'  => '尋路',
@@ -2095,7 +2095,7 @@ $1',
 'specialpages-group-redirects'   => '轉之特查',
 'specialpages-group-spam'        => '反垃圾之器',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => '白頁',
 'intentionallyblankpage' => '此頁為白也，試速之用',
 

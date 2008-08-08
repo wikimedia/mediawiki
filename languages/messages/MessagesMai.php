@@ -216,7 +216,7 @@ $messages = array(
 # Special:Log
 'all-logs-page' => 'सभटा लॉग',
 
-# Special:Allpages
+# Special:AllPages
 'alphaindexline' => '$1 to $2',
 
 # Watchlist

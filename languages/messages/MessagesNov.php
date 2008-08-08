@@ -236,7 +236,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'fileuploadsummary' => 'Resume:',
 'watchthisupload'   => 'Observa disi pagine',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Sercha imaje nome:',
 'imagelist_name'        => 'Nome',
 'imagelist_user'        => 'Usere',
@@ -282,7 +282,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Special:Log
 'specialloguserlabel' => 'Usere:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Omni pagines',
 'alphaindexline'    => '$1 a $2',
 'allarticles'       => 'Omni artikles',
@@ -303,7 +303,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'watchnologin'    => 'Non ensignatat',
 'addedwatch'      => 'Adit a observa-liste',
 'addedwatchtext'  => "Li pagine \"[[:\$1]]\" ha bli adi a vun [[Special:Watchlist|observa-liste]].
-Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:Recentchanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
+Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:RecentChanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
 
 Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserva\" in li lateral kolumne.",
 'watch'           => 'Observa',
@@ -375,7 +375,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 # Info page
 'infosubtitle' => 'Informatione pri pagine',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Sercha',
 'bydate'   => 'segun date',
 

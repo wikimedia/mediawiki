@@ -513,7 +513,7 @@ Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'accmailtext'               => "The Password for '$1' haes been sent tae $2.",
 'newarticle'                => '(New)',
 'newarticletext'            => "Ye'v follaed an airtin til a page that disna exist yet. Tae create the page, stert typin in the box ablo (see the [[{{MediaWiki:Helppage}}|help page]] for mair info). Gin ye'r here by mistak, juist dab yer brouser's '''back''' button.",
-'anontalkpagetext'          => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:Userlogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
+'anontalkpagetext'          => "----''This is the collogue page for a nameless uiser that haesna made an accoont yet or that disna uise it. We syne hiv tae uise the numerical IP address tae identifee thaim. Sic an IP address can be shared bi a wheen o uisers. Gin you ar a nameless uiser an feel that irrelevant comments haes been directit at ye, please [[Special:UserLogin|mak an accoont or log in]] tae evyte futur confusion wi ither nameless uisers.''",
 'noarticletext'             => "The'r nae text on this page the nou. Ye can [[Special:Search/{{PAGENAME}}|rake for this page teitle]] in ither pages or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page].",
 'userpage-userdoesnotexist' => 'Uiser accoont "$1" hasnae been registerit. Please check gin ye wint tae mak or edit this page.',
 'clearyourcache'            => "'''Tak tent:''' Efter hainin, ye micht hae tae bypass yer brouser's cache for tae see the chynges. '''Mozilla / Firefox / Safari:''' haud doun ''Shift'' while dabbin on ''Reload'', or press ''Ctrl-Shift-R'' (''Cmd-Shift-R'' on Apple Mac); '''IE:''' haud doun ''Ctrl'' while dabbin on ''Refresh'', or press ''Ctrl-F5''; '''Konqueror:''' juist dab on the ''Reload'' button, or press ''F5''; '''Opera''' users micht hae tae haillie dicht thair cache in ''Tools&rarr;Preferences''.",
@@ -749,7 +749,7 @@ Tae pit the eimage intae a page, uise an airtin i the form
 
 'nolicense' => 'Nane selected',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Eimage leet',
 
 # Image description page
@@ -829,7 +829,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'alllogstext'          => 'Combined display o uplaid, deletion, protection, blockin, an administrator logs. Ye can narra doon the view bi walin a log type, the uiser name, or the affectit page.',
 'logempty'             => 'Nae matchin items in log.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Aa pages',
 'alphaindexline'    => '$1 tae $2',
 'nextpage'          => 'Neist page ($1)',
@@ -863,7 +863,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'watchnologin'         => 'Nae loggit in',
 'watchnologintext'     => 'Ye maun be [[Special:Userlogin|loggit in]] tae modify yer watchleet.',
 'addedwatch'           => 'Eikit ti watchleet',
-'addedwatchtext'       => "The page \"<nowiki>\$1</nowiki>\" haes been eikit ti yer [[Special:Watchlist|watchleet]]. Futur chynges ti this page an its associate Collogue page will be leetit thare, an the page will kythe '''bauldit''' in the [[Special:Recentchanges|leet o recent chynges]] ti mak it mair eith tae pick oot. <p>Gin ye want ti remuve the page frae yer watchleet later, dab \"Stop watching\" in the sidebar.",
+'addedwatchtext'       => "The page \"<nowiki>\$1</nowiki>\" haes been eikit ti yer [[Special:Watchlist|watchleet]]. Futur chynges ti this page an its associate Collogue page will be leetit thare, an the page will kythe '''bauldit''' in the [[Special:RecentChanges|leet o recent chynges]] ti mak it mair eith tae pick oot. <p>Gin ye want ti remuve the page frae yer watchleet later, dab \"Stop watching\" in the sidebar.",
 'removedwatch'         => 'Remuved frae watchleet',
 'removedwatchtext'     => 'The page "[[:$1]]" haes been remuved frae yer watchleet.',
 'notanarticle'         => 'No a content page',
@@ -953,7 +953,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'badipaddress'                => 'That IP address is nae guid',
 'blockipsuccesssub'           => 'Block succeedit',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] haes been blockit.
-<br />See [[Special:Ipblocklist|IP block leet]] tae review blocks.',
+<br />See [[Special:IPBlockList|IP block leet]] tae review blocks.',
 'unblockip'                   => 'Unblock uiser',
 'unblockiptext'               => 'Uise the form ablo tae restore screivin richts
 tae an afore-blockit IP address or uisername.',
@@ -964,7 +964,7 @@ tae an afore-blockit IP address or uisername.',
 'contribslink'                => 'contreibs',
 'autoblocker'                 => 'Autaematically blockit syne yer IP address haes been uised recently bi "[[User:$1|$1]]". The raeson gien for $1\'s block is "\'\'$2\'\'"',
 'blocklogentry'               => 'blockit [[$1]] wi an expiry time o $2 $3',
-'blocklogtext'                => 'This is a log o uiser blockin an unblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:Ipblocklist|IP block leet]] for the leet o bans and blocks on the gae the nou.',
+'blocklogtext'                => 'This is a log o uiser blockin an unblockin actions. Autaematically blockit IP addresses isna leetit. See the [[Special:IPBlockList|IP block leet]] for the leet o bans and blocks on the gae the nou.',
 'unblocklogentry'             => 'unblockit $1',
 'range_block_disabled'        => 'The administrator abeility tae mak range blocks is disabled.',
 'proxyblockreason'            => 'Yer IP address haes been blockit sith it is an open proxy. Please contact yer Internet service provider or tech support an inform them o this serious security problem.',
@@ -1110,7 +1110,7 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{ns:special}}:
 'mediawarning' => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.<hr />",
 'imagemaxsize' => 'Limit eimages on eimage description pages tae:',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Gallery o new files',
 'imagelisttext' => 'Ablo is a leet o $1 {{PLURAL:$1|eimage|eimages}} sortit $2.',
 'noimages'      => 'Naething tae see.',

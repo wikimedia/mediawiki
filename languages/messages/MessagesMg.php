@@ -354,7 +354,7 @@ Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'newarticletext'         => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
 
 Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miverena etsy amin'ny fandraisana.",
-'anontalkpagetext'       => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:Userlogin|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
+'anontalkpagetext'       => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:UserLogin|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
 'noarticletext'          => "'''Tsy mbola nisy namorona io lahatsoratra io... azonao atao ny mamorona azy.'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.
 * [[{{ns:special}}:Search/{{PAGENAME}}|Tadiavo ny momba ny {{PAGENAME}}]] ato.",
@@ -562,7 +562,7 @@ Hamarino tsara aloha dia avereno alefa indray.',
 
 'nolicense' => 'Tsy misy safidy',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lisitry ny rakitra',
 
 # Image description page
@@ -638,7 +638,7 @@ Mifidiana karazana tantaran'asa (log type), Solonanarana mpikambana, na ny pejy 
 mampihena ny tantaran'asa miseho eto.",
 'logempty'             => 'Tsy nahitana.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Pejy rehetra',
 'alphaindexline'    => "$1 hatramin'ny $2",
 'nextpage'          => 'Pejy manaraka ($1)',
@@ -685,7 +685,7 @@ na tsy maniry handray imailaka avy amin'ny mpikambana hafa izy.",
 'addedwatch'           => "Tafiditra amin'ny lisitry ny pejy arahi-maso akaiky",
 'addedwatchtext'       => "Tafiditra anatin'ny lisitry ny [[Special:Watchlist|PejyArahiMaso]]-nao ny pejy \"<nowiki>\$1</nowiki>\".
 Ny fanovana hisy amin'io pejy io sy ny pejin-dresaka miaraka aminy dia hiseho ao,
-ary rehefa miseho ao amin'ny [[Special:Recentchanges|lisitry ny takelaka vao niova]] io pejy io dia hatao ''matavy'' mba
+ary rehefa miseho ao amin'ny [[Special:RecentChanges|lisitry ny takelaka vao niova]] io pejy io dia hatao ''matavy'' mba
 hahamora ny fahitana azy.
 
 Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindrio ilay hoe \"Unwatch\" etsy amin'ny sisiny esty.",
@@ -824,7 +824,7 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'badipaddress'                => 'Tsy mety ny adiresy IP (invalid)',
 'blockipsuccesssub'           => 'Vita soa aman-tsara ny sakana',
 'blockipsuccesstext'          => 'Voasakana i [[Special:Contributions/$1|$1]].
-<br />Jereo ny [[Special:Ipblocklist|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
+<br />Jereo ny [[Special:IPBlockList|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
 'unblockip'                   => "Esory ny sakana amin'io mpikambana io",
 'unblockiptext'               => "
 Ampiasao ity fisy eto ambany ity hanalana ny sakana 
@@ -841,7 +841,7 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'blocklogentry'               => 'voasakana i "[[$1]]" mandritra ny $2',
 'blocklogtext'                => "
 Eto no ahitana ny tantaran'ny hetsika momba ny fisakanana sy ny fanafoanana fisakanana mpandray anjara. 
-Ireo adiresy IP voasakana ho azy dia tsy miseho eto. Jereo ao amin'ny [[Special:Ipblocklist|lisitry ny IP voasakana]]
+Ireo adiresy IP voasakana ho azy dia tsy miseho eto. Jereo ao amin'ny [[Special:IPBlockList|lisitry ny IP voasakana]]
 ny lisitry ny fisakanana sy fandrar� na tanteraka misy ankehitriny.",
 'unblocklogentry'             => "voaaisotra ny sakana an'i $1",
 'ipb_expiry_invalid'          => "Tsy mety ilay fotoana hahataperan'ny sakana.",
@@ -988,7 +988,7 @@ Amporisihina ho an'ny navigateur moderna",
 'imagemaxsize' => "Ferana ny haben'ny sary ao amin'ny pejy famaritana ho:",
 'thumbsize'    => "Haben'ny thumbnail",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Tahala misy ny rakitra vaovao',
 'imagelisttext' => 'Eto ambany ny lisitry ny rakitra $1 milahatra araka ny $2.',
 'showhidebots'  => '(rôbô $1)',

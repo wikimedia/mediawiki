@@ -89,7 +89,7 @@ $messages = array(
 # Preferences page
 'servertime' => 'Taem blong server',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Nem',
 
 # Miscellaneous special pages
@@ -97,7 +97,7 @@ $messages = array(
 'longpages'  => 'Ol big pej',
 'newpages'   => 'Ol niu pej',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'Olgeta atikel',
 
 # E-mail user
@@ -123,7 +123,7 @@ $messages = array(
 'tooltip-n-mainpage' => 'Go long Nambawan Pej',
 'tooltip-minoredit'  => 'Em i stap wan smol jenis',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 bot)',
 
 # EXIF tags

@@ -496,7 +496,7 @@ Me IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
 Huants createnom jan páhina, startom type mii box !-cmaa iti
 ([[{{MediaWiki:Helppage}}|páhinade helpom]] zo viside plus informacion).
 Me coccebj römjasi poop, clickom meback-buttonde browser coccebj perfectua.',
-'anontalkpagetext'          => "----''Jan coccebj czaxö zode caitomde IDde adressade IP. Isój necoccebj caápo. Jan coccebj rae'de usadadde adressade IP numerical identificacion 'prenisój. Plusöxde caitom pos-coccebj jan adressade IP. Me pos-coccebj anonimo ö commentua irrevelantua coccebj directomde me poop, [[Special:Userlogin|caápo-jande]] exitom confucion diijömde IP-caitóm mii.''",
+'anontalkpagetext'          => "----''Jan coccebj czaxö zode caitomde IDde adressade IP. Isój necoccebj caápo. Jan coccebj rae'de usadadde adressade IP numerical identificacion 'prenisój. Plusöxde caitom pos-coccebj jan adressade IP. Me pos-coccebj anonimo ö commentua irrevelantua coccebj directomde me poop, [[Special:UserLogin|caápo-jande]] exitom confucion diijömde IP-caitóm mii.''",
 'noarticletext'             => 'Jan páhina necoccebj textua zo, me pos-coccebj [[Special:Search/{{PAGENAME}}|yahöx jan páhina]] diijömde páhinám iti jöx [{{fullurl:{{FULLPAGENAME}}|action=edit}} ticpatlöx jan páhina].',
 'clearyourcache'            => "'''Notificacion:''' Xuniim 'depre, me pos-coccebj bypassöx mecachede browser caitomi quiíx. '''Mozilla / Firefox / Safari:''' quan ti caitomde ''Shift'' zoxepe clickom ''Reload'', jöx cuápook zo ti ''Ctrl-Shift-R'' (''Cmd-Shift-R'' Apple Mac iti); '''IE:''' quan ti ''Ctrl'' zoxepe clickom ''Refresh'', jöx cuápook zo ti ''Ctrl-F5''; '''Konqueror:''': clickom buttonde ''Reload'' zo, jöx cuápook zo iti ''F5''; '''Opera''' caitóm pos-coccebj clairomde cache completementua ''Tools→Preferences'' iti.",
 'usercssjsyoucanpreview'    => "<strong>Tip:</strong> Usadad 'Cohuatlöx cuáxiit' testom me hun CSS/JS xuniim 'depre.",
@@ -762,7 +762,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Yahöxde IDde ciúchan:',
 'imgfile'               => 'ciúchan',
 'imagelist'             => 'Listade ciúchán',
@@ -866,7 +866,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'log-search-legend'    => 'Yahöxde logám',
 'log-search-submit'    => 'Caátemöx',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Jöxde páhinám',
 'nextpage'          => 'Hunpáhina ($1)',
 'prevpage'          => 'Janpáhina ($1)',
@@ -883,7 +883,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 # Special:Categories
 'categories' => 'Cayliibám',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Xuniim caitóm startomde:',
 'listusers-submit'   => 'Cohuatlöx',
 'listusers-noresult' => 'Necoccebj caitóm.',
@@ -1068,7 +1068,7 @@ iitom e-iitomde diijömde caitóm.',
 # Media information
 'widthheightpage' => '$1×$2, $3 páhinám',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 botám)',
 'ilsubmit'     => 'Yahöx',
 'bydate'       => 'de datum',

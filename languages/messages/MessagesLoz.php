@@ -578,7 +578,7 @@ di uplodezi media.',
 
 'license-nopreview' => '(PendiBe di nupdeti)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'imegi',
 'imagelist'      => 'Mukoloko di imegina',
 'imagelist_user' => 'Sebelu',
@@ -693,7 +693,7 @@ di uplodezi media.',
 'all-logs-page'        => 'Xete desu',
 'log-search-submit'    => 'Afi',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Mukoloko di petulo',
 'alphaindexline' => '$1 di $2',
 'nextpage'       => 'Lila petulo ($1)',
@@ -708,7 +708,7 @@ di uplodezi media.',
 # Special:Categories
 'categories' => 'Kattegori',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Kamukile sebelu di:',
 'listusers-submit'   => 'Kamukile',
 'listusers-noresult' => 'Ni-di sebelu.',
@@ -736,7 +736,7 @@ dicon sa sosize ni sa meli di kupo sebelu.',
 'watchnologintext'     => "A sa [[Special:Userlogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
 'addedwatch'           => 'Tumbelize a mukoloko di kentezi',
 'addedwatchtext'       => "Petulo \"[[:\$1]]\" sa vugisize di zwa [[Special:Watchlist|mukoloko di kentezi]].
-Petuhoni di bye petulo e sa bulelezi sa mukolokosize ta, e '''ombelu''' kwa [[Special:Recentchanges|petuho nca]] di kwazidisize akusize.
+Petuhoni di bye petulo e sa bulelezi sa mukolokosize ta, e '''ombelu''' kwa [[Special:RecentChanges|petuho nca]] di kwazidisize akusize.
 
 A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'removedwatch'         => 'Sa afi kulobala di zwa mukoloko di kentezi',
@@ -1013,7 +1013,7 @@ $1',
 'show-big-image'       => 'Risolusi bakisize',
 'show-big-image-thumb' => '<small>PendiBe: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Imegina nca',
 'ilsubmit'              => 'Fatukile',
 'sp-newimages-showfrom' => 'Kamukile nca imegi di $1',

@@ -356,7 +356,7 @@ $3',
 'savefile'      => 'Бавæр æй',
 'uploadvirus'   => 'Файлы разынд вирус! Кæс $1',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Нывты номхыгъд',
 
 # Image description page
@@ -394,7 +394,7 @@ $3',
 'ancientpages'      => 'Зæронддæр фæрстæ',
 'move'              => 'Ном баив',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Æппæт фæрстæ',
 'alphaindexline' => '$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2',
 'allarticles'    => 'Æппæт статьятæ',
@@ -407,7 +407,7 @@ $3',
 'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Равдис',
 
 # E-mail user
@@ -482,7 +482,7 @@ $3',
 # Media information
 'widthheightpage' => '$1 × $2, $3 фарсы',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Ног нывты галерей',
 'ilsubmit'  => 'Агур',
 'bydate'    => 'рæстæгмæ гæсгæ',

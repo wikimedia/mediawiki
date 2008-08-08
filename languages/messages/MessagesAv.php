@@ -93,7 +93,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'ГIахьалчи:',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'Киналго макъалаби',
 
 # Watchlist

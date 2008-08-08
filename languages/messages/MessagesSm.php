@@ -161,7 +161,7 @@ $messages = array(
 # Book sources
 'booksources-go' => 'Alu',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Alu',
 
 # E-mail user
@@ -202,7 +202,7 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'Igoa',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => "Su'e",
 
 # 'all' in various places, this might be different for inflected languages

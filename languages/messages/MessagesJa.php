@@ -581,7 +581,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'newarticle'                       => '（新規）',
 'newarticletext'                   => 'ページを新規に作成するには新しい内容を書き込んでください。',
 'anontalkpagetext'                 => "----
-''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:Userlogin/signup|アカウントを作成する]]か[[Special:Userlogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
+''これはアカウントをまだ作成していないか、あるいは使っていない匿名利用者のための会話ページです。匿名利用者の識別は利用者名のかわりにIPアドレスを用います。IPアドレスは何人かで共有されることがあります。もしあなたが匿名利用者で無関係なコメントが寄せられているとお考えの場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてくださるようお願いします。''",
 'noarticletext'                    => '現在このページには内容がありません。他のページから[[Special:Search/{{PAGENAME}}|このページタイトルを検索する]]か、[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]できます。',
 'userpage-userdoesnotexist'        => '"$1" という名前のアカウントは登録されていません。このページを編集することが適切かどうか確認してください。',
 'clearyourcache'                   => "'''お知らせ:''' 保存した後、ブラウザのキャッシュをクリアする必要があります。
@@ -1065,7 +1065,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_source_url'  => '（インターネット上のURL）',
 'upload_source_file' => '（あなたのコンピューター上のファイル）',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'この特別ページではすべてのアップロードされたファイルの一覧を表示します。
 
 ソートのデフォルトでは新しい順です。ヘッダのクリックでソート順と種類を変更できます。',
@@ -1258,7 +1258,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'logempty'             => '条件にマッチする記録はありません。',
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '全ページ',
 'alphaindexline'    => '$1―$2',
 'nextpage'          => '次のページ（$1）',
@@ -1279,12 +1279,12 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'categoriespagetext'            => '{{SITENAME}}には以下のカテゴリが存在します。',
 'special-categories-sort-count' => '項目数順',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'この文字から表示:',
 'listusers-submit'   => '表示',
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'ユーザのグループと権限',
 'listgrouprights-summary'  => '以下はこのウィキに登録されているユーザのグループと権限の一覧です。
 個々の権限に関する更なる情報は[[{{MediaWiki:Listgrouprights-helppage}}]]を見てください。',
@@ -1325,7 +1325,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'addedwatch'           => 'ウォッチリストに追加しました',
 'addedwatchtext'       => "ページ \"\$1\" をあなたの[[Special:Watchlist|ウォッチリスト]]に追加しました。
 
-このページと、付属のノートのページに変更があった際にはそれをウォッチリストで知ることができます。また、[[Special:Recentchanges|最近更新したページ]]ではウォッチリストに含まれているページは'''ボールド体'''で表示され、見つけやすくなります。
+このページと、付属のノートのページに変更があった際にはそれをウォッチリストで知ることができます。また、[[Special:RecentChanges|最近更新したページ]]ではウォッチリストに含まれているページは'''ボールド体'''で表示され、見つけやすくなります。
 
 ウォッチリストから特定のページを削除したい場合には、サイドバーかタブにある \"{{int:unwatch}}\" のリンクをクリックしてください。",
 'removedwatch'         => 'ウォッチリストから削除しました',
@@ -1593,7 +1593,7 @@ $NEWPAGE
 'badipaddress'                => 'IPアドレスが異常です。',
 'blockipsuccesssub'           => 'ブロックに成功しました。',
 'blockipsuccesstext'          => '利用者またはIPアドレス [[Special:Contributions/$1|$1]] の投稿をブロックしました。<br />
-[[Special:Ipblocklist|投稿ブロック中の利用者やIPアドレス]]で確認できます。',
+[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]で確認できます。',
 'ipb-edit-dropdown'           => 'ブロック理由を編集する',
 'ipb-unblock-addr'            => '$1 のブロックを解除',
 'ipb-unblock'                 => '利用者またはIPアドレスのブロックを解除する',
@@ -1623,7 +1623,7 @@ $NEWPAGE
 'autoblocker'                 => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                => '投稿ブロック記録',
 'blocklogentry'               => '"$1" を $2 ブロックしました $3',
-'blocklogtext'                => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:Ipblocklist|{{int:ipblocklist}}]]をご覧ください。',
+'blocklogtext'                => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|{{int:ipblocklist}}]]をご覧ください。',
 'unblocklogentry'             => '"$1" をブロック解除しました',
 'block-log-flags-anononly'    => '匿名のみ',
 'block-log-flags-nocreate'    => 'アカウント作成のブロック',
@@ -1940,7 +1940,7 @@ $NEWPAGE
 'show-big-image'       => '高解像度での画像',
 'show-big-image-thumb' => '<small>このプレビューのサイズ: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新規画像展示室',
 'imagelisttext'         => "'''$1''' 個のファイルを $2 に表示しています",
 'newimages-summary'     => 'この特別ページでは最近、アップロードされたファイルを表示します。',
@@ -2425,7 +2425,7 @@ $1',
 'version-software-product'         => 'ソフトウェア名',
 'version-software-version'         => 'バージョン',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'パスの取得',
 'filepath-page'    => 'ファイル名:',
 'filepath-submit'  => 'パスを取得',

@@ -576,7 +576,7 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'newarticletext'                   => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
-'anontalkpagetext'                 => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:Userlogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
+'anontalkpagetext'                 => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:UserLogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                    => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror: '''faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
@@ -1161,7 +1161,7 @@ PICT # varias
 'upload_source_url'  => ' (un URL válido, accesíbel publicamente)',
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
 Por omisión, os ficheiros enviados máis recentemente aparecen no alto da listaxe.
 Premendo nunha cabeceira da columna cambia a ordenación.',
@@ -1372,7 +1372,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'logempty'             => 'Non se atopou ningún ítem relacionado no rexistro.',
 'log-title-wildcard'   => 'Procurar os títulos que comecen con este texto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Todas as páxinas',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Páxina seguinte ($1)',
@@ -1395,12 +1395,12 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
 'listusers-submit'   => 'Amosar',
 'listusers-noresult' => 'Non se atopou ningún usuario. Comprobe tamén as variantes con maiúsculas e minúsculas.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Dereitos dun usuario segundo o seu grupo',
 'listgrouprights-summary'  => 'A seguinte listaxe mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.
 Se quere máis información acerca dos dereitos individuais pode atopala [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].',
@@ -1440,7 +1440,7 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:Userlogin|rexistrado]].',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
-Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:Recentchanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
+Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
 'removedwatch'         => 'Quitado da listaxe de vixilancia',
 'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada da súa listaxe de vixilancia.',
 'watch'                => 'Vixiar',
@@ -1715,7 +1715,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo con éxito',
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:Ipblocklist|listaxe de IP bloqueados]] para revisalo.',
+Olle a [[Special:IPBlockList|listaxe de IP bloqueados]] para revisalo.',
 'ipb-edit-dropdown'               => 'Editar as razóns do bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear usuario ou enderezo IP',
@@ -1745,7 +1745,7 @@ Olle a [[Special:Ipblocklist|listaxe de IP bloqueados]] para revisalo.',
 'autoblocker'                     => 'Autobloqueado porque "[[User:$1|$1]]" usou recentemente este enderezo IP. O motivo do bloqueo de $1 é: "$2".',
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
-'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios. Non se listan os enderezos IP bloqueados automaticamente. Para ver a listaxe de bloqueos vixentes revise esta [[Special:Ipblocklist|listaxe]].',
+'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios. Non se listan os enderezos IP bloqueados automaticamente. Para ver a listaxe de bloqueos vixentes revise esta [[Special:IPBlockList|listaxe]].',
 'unblocklogentry'                 => 'desbloqueou a "$1"',
 'block-log-flags-anononly'        => 'só usuarios anónimos',
 'block-log-flags-nocreate'        => 'desactivada a creación de contas de usuario',
@@ -2070,7 +2070,7 @@ $1',
 'show-big-image'       => 'Imaxe na máxima resolución',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
@@ -2522,7 +2522,7 @@ Tamén pode [[Special:Watchlist/edit|empregar o editor normal]].',
 'version-software-product'         => 'Produto',
 'version-software-version'         => 'Versión',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Ruta do ficheiro',
 'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Ruta',
@@ -2561,7 +2561,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
 'specialpages-group-spam'        => "Ferramentas contra o ''spam''",
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Baleirar a páxina',
 'intentionallyblankpage' => 'Esta páxina foi baleirada intencionadamente',
 

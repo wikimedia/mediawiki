@@ -81,7 +81,7 @@ $messages = array(
 
 'license' => 'Iyawsawi:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_date'        => 'Uru jakhu',
 'imagelist_user'        => 'Apnaqiri',
 'imagelist_description' => 'Uñt’ayawi',
@@ -97,7 +97,7 @@ $messages = array(
 'speciallogtitlelabel' => 'Titulu:',
 'log-search-submit'    => 'Saraña',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Uñachayaña',
 
 # Watchlist

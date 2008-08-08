@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author לערי ריינהארט
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  */
@@ -851,7 +852,7 @@ $2',
 
 אם הגעתם לכאן בטעות, לחצו על מקש ה־'''Back''' בדפדפן שלכם.",
 'anontalkpagetext'                 => "----
-'''זהו דף שיחה של משתמש אנונימי שעדיין לא יצר חשבון במערכת, או שהוא לא משתמש בו. כיוון שכך, אנו צריכים להשתמש בכתובת ה־IP כדי לזהותו. ייתכן שכתובת IP זו תייצג מספר משתמשים. אם אתם משתמשים אנונימיים ומרגישים שקיבלתם הודעות בלתי רלוונטיות, אנא [[Special:Userlogin|היכנסו לחשבון]] או [[Special:Userlogin/signup|הירשמו לאתר]] כדי להימנע מבלבול עתידי עם משתמשים אנונימיים נוספים.'''
+'''זהו דף שיחה של משתמש אנונימי שעדיין לא יצר חשבון במערכת, או שהוא לא משתמש בו. כיוון שכך, אנו צריכים להשתמש בכתובת ה־IP כדי לזהותו. ייתכן שכתובת IP זו תייצג מספר משתמשים. אם אתם משתמשים אנונימיים ומרגישים שקיבלתם הודעות בלתי רלוונטיות, אנא [[Special:UserLogin|היכנסו לחשבון]] או [[Special:UserLogin/signup|הירשמו לאתר]] כדי להימנע מבלבול עתידי עם משתמשים אנונימיים נוספים.'''
 ----",
 'noarticletext'                    => 'אין עדיין טקסט בדף זה. באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את {{PAGENAME}} באתר]], או [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור דף זה].',
 'userpage-userdoesnotexist'        => 'חשבון המשתמש "$1" אינו רשום. אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
@@ -1417,7 +1418,7 @@ PICT # שונות
 'upload_source_url'  => ' (כתובת URL תקפה ונגישה)',
 'upload_source_file' => ' (קובץ במחשב שלך)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'דף זה מציג את כל הקבצים שהועלו. כברירת מחדל מוצגים הקבצים האחרונים שהועלו בראש הרשימה. לחיצה על כותרת של עמודה משנה את המיון.',
 'imagelist_search_for'  => 'חיפוש תמונה בשם:',
 'imgfile'               => 'קובץ',
@@ -1626,7 +1627,7 @@ PICT # שונות
 'logempty'             => 'אין פריטים תואמים ביומן.',
 'log-title-wildcard'   => 'חיפוש כותרות המתחילות באותיות אלה',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'כל הדפים',
 'alphaindexline'    => '$1 עד $2',
 'nextpage'          => 'הדף הבא ($1)',
@@ -1649,12 +1650,12 @@ PICT # שונות
 'special-categories-sort-count' => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'הצגת משתמשים החל מ:',
 'listusers-submit'   => 'הצגה',
 'listusers-noresult' => 'לא נמצאו משתמשים.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'רשימת הרשאות לקבוצה',
 'listgrouprights-summary'         => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.
 מידע נוסף על ההרשאות ניתן למצוא [[{{MediaWiki:Listgrouprights-helppage}}|כאן]].',
@@ -1699,7 +1700,7 @@ PICT # שונות
 'addedwatch'           => 'הדף נוסף לרשימת המעקב',
 'addedwatchtext'       => 'הדף [[:$1]] נוסף ל[[Special:Watchlist|רשימת המעקב]]. שינויים שייערכו בעתיד, בדף זה ובדף השיחה שלו, יוצגו ברשימת המעקב.
 
-בנוסף, הדף יופיע בכתב מודגש ב[[Special:Recentchanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
+בנוסף, הדף יופיע בכתב מודגש ב[[Special:RecentChanges|רשימת השינויים האחרונים]], כדי להקל עליכם את המעקב אחריו.',
 'removedwatch'         => 'הדף הוסר מרשימת המעקב',
 'removedwatchtext'     => 'הדף [[:$1]] הוסר מ[[Special:Watchlist|רשימת המעקב]].',
 'watch'                => 'מעקב',
@@ -1972,7 +1973,7 @@ $1',
 'blockipsuccesssub'               => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext'              => 'המשתמש [[Special:Contributions/$1|$1]] נחסם.
 
-ראו את [[Special:Ipblocklist|רשימת המשתמשים החסומים]] כדי לצפות בחסימות.',
+ראו את [[Special:IPBlockList|רשימת המשתמשים החסומים]] כדי לצפות בחסימות.',
 'ipb-edit-dropdown'               => 'עריכת סיבות החסימה',
 'ipb-unblock-addr'                => 'הסרת חסימה של $1',
 'ipb-unblock'                     => 'הסרת חסימה של שם משתמש או כתובת IP',
@@ -2004,7 +2005,7 @@ $1',
 'blocklogentry'                   => 'חסם את [[$1]] למשך $2 $3',
 'blocklogtext'                    => 'זהו יומן פעולות החסימה והשחרור של משתמשים. כתובות IP הנחסמות באופן אוטומטי אינן מופיעות.
 
-ראו גם את [[Special:Ipblocklist|רשימת המשתמשים החסומים]] הנוכחית.',
+ראו גם את [[Special:IPBlockList|רשימת המשתמשים החסומים]] הנוכחית.',
 'unblocklogentry'                 => 'שחרר את [[$1]]',
 'block-log-flags-anononly'        => 'משתמשים אנונימיים בלבד',
 'block-log-flags-nocreate'        => 'יצירת חשבונות נחסמה',
@@ -2350,7 +2351,7 @@ $1',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'גלריית תמונות חדשות',
 'imagelisttext'         => 'להלן רשימה של {{PLURAL:$1|תמונה אחת|$1 תמונות}}, ממוינות $2:',
 'newimages-summary'     => 'דף זה מציג את הקבצים האחרונים שהועלו',
@@ -2658,7 +2659,7 @@ $1',
 'confirmemail_invalid'     => 'קוד האישור שגוי. ייתכן שפג תוקפו.',
 'confirmemail_needlogin'   => 'עליכם לבצע $1 כדי לאמת את כתובת הדוא"ל שלכם.',
 'confirmemail_success'     => 'כתובת הדוא"ל שלכם אושרה.
-כעת באפשרותכם [[Special:Userlogin|להיכנס לחשבון שלכם]] וליהנות מהאתר.',
+כעת באפשרותכם [[Special:UserLogin|להיכנס לחשבון שלכם]] וליהנות מהאתר.',
 'confirmemail_loggedin'    => 'כתובת הדוא"ל שלכם אושרה כעת.',
 'confirmemail_error'       => 'שגיאה בשמירת קוד האישור.',
 'confirmemail_subject'     => 'קוד אישור דוא"ל מ{{grammar:תחילית|{{SITENAME}}}}',
@@ -2856,7 +2857,7 @@ $1',
 'version-software-product'         => 'תוכנה',
 'version-software-version'         => 'גרסה',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'נתיב לקובץ',
 'filepath-page'    => 'הקובץ:',
 'filepath-submit'  => 'מציאת הנתיב',
@@ -2894,7 +2895,7 @@ $1',
 'specialpages-group-redirects'   => 'הפניות מדפים מיוחדים',
 'specialpages-group-spam'        => 'כלי ספאם',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'דף ריק',
 'intentionallyblankpage' => 'דף זה נשאר ריק במכוון',
 

@@ -533,7 +533,7 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 'newarticletext'                   => 'Ńy ma sam ješče artikla uo tym tytule. W polu ńižyj možeš naškryflać jygo pjyršy fragmynt. Kej chćoužeś zrobić co inkše, naćiś ino knefel "Nazod".',
 'anontalkpagetext'                 => "---- ''To jest zajta godki lo užytkowńikůw anůnimowych - takich, keři ńy majům ješče swojigo kůnta abo ńy chcům go terozki užywać.
 By ich identyfikować, užywomy numerůw IP.
-Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam kůmyntoře ńy sům skjyrowane do Ćebje, [[Special:Userlogin|utwůř proša kůnto abo zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
+Jeli ježeś anůnimowym užytkowńikym a wydowo Ći śe, aže zamjyščůne sam kůmyntoře ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůř proša kůnto abo zalůguj śe]] - bez tůž uńikńeš potym podobnych ńyporozumjyń.''",
 'noarticletext'                    => 'Ńy mo ješče zajty uo tym titelu. Možeš [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|šnupać za {{PAGENAME}} w inkšych artiklach]].',
 'userpage-userdoesnotexist'        => 'Užytkowńik "$1" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
 'clearyourcache'                   => "'''Dej pozůr:''' Coby uobejřeć pomjyńańo pů naškryflańu nowych štalowań poleć přeglůndorce wyčyśćić zawartość pamjyńći podrynčnyj (cache). '''Mozilla / Firefox / Safari:''' přitřimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macintoshu), '''IE :''' přitřimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; užytkowńicy '''Opery''' mogům być zmušeńi coby coukym wyčyśćić jejich pamjyńć podrynčno we menu ''Werkcojgi→Preferencyje''.",
@@ -1077,7 +1077,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'upload_source_url'  => ' (poprowny, publičńy dostympny URL)',
 'upload_source_file' => ' (plik na twojym komputře)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'To je ekstra zajta na kery sům pokazywane wšyske pliki wćepane na serwer. Důmyślńy na wiyrchu listy wyśwjetlajům śe pliki wćepane na uostatku. Coby půmjyńić sposůb sortowańo, klikńij na naguůwek kolůmny.',
 'imagelist_search_for'  => 'Šnupej za grafikům uo mjańe:',
 'imgfile'               => 'plik',
@@ -1279,7 +1279,7 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'logempty'             => 'Ńy ma wpisůw we rejeře',
 'log-title-wildcard'   => 'Šnupej za titlami kere začynojům śe uod tygo tekstu',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Wšyskie zajty',
 'alphaindexline'    => 'úod $1 do $2',
 'nextpage'          => 'Nostympno zajta ($1)',
@@ -1302,12 +1302,12 @@ Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńik
 'special-categories-sort-count' => 'sortowanie wedle ličby',
 'special-categories-sort-abc'   => 'sortowanie wedle alfabyta',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Pokaž užytkowńikůw začynojůnc uod:',
 'listusers-submit'   => 'Pokož',
 'listusers-noresult' => 'Ńy znejdźůno žodnygo užytkowńika.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Uprawńyńo grup užytkowńikůw',
 'listgrouprights-summary'  => 'Půńižy znojdowo śe spis grup užytkowńikůw zdefińowanych na tej wiki, s wyščygůlńyńym přidźelůnych im praw dostympu.
 Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{MediaWiki:Listgrouprights-helppage}}|sam tukej]].',
@@ -1346,7 +1346,7 @@ Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{MediaWiki:Listg
 'watchnologintext'     => 'Muśyš śe [[Special:Userlogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
 'addedwatch'           => 'Dodane do pozorlisty',
 'addedwatchtext'       => "Zajta \"[[:\$1]]\" zostoua dodano do Twojyj [[Special:Watchlist|listy artikli, na kere dowoš pozůr]].
-Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydźeš mjou škryflane '''tustym''' na [[Special:Recentchanges|liśće pomjyńanych na ůostatku]], cobyś mjou wygoda w jei pomjyńańa filować.",
+Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydźeš mjou škryflane '''tustym''' na [[Special:RecentChanges|liśće pomjyńanych na ůostatku]], cobyś mjou wygoda w jei pomjyńańa filować.",
 'removedwatch'         => 'Wyćepńjynte s pozorlisty',
 'removedwatchtext'     => 'Artikel "[[:$1]]" zostou wyćepńjynty s pozorlisty.',
 'watch'                => 'Dej pozor',
@@ -1628,7 +1628,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'badipaddress'                => 'Felerny adres IP',
 'blockipsuccesssub'           => 'Zawarće uod sprowjyń udane',
 'blockipsuccesstext'          => 'Užytkowńik [[Special:Contributions/$1|$1]] zostou zawarty uod sprowjyń.<br />
-Přyńdź do [[Special:Ipblocklist|listy zawartych adresůw IP]] coby přejřeć zawarća.',
+Přyńdź do [[Special:IPBlockList|listy zawartych adresůw IP]] coby přejřeć zawarća.',
 'ipb-edit-dropdown'           => 'Sprowjej powody zawjyrańo uod sprowjyń',
 'ipb-unblock-addr'            => 'Uodymknij $1',
 'ipb-unblock'                 => 'Uodymknij užytkowńika abo adres IP',
@@ -1661,7 +1661,7 @@ Powůd zawarća $1 to: „$2”',
 'blocklogentry'               => 'zawarto [[$1]], bydźe uodymkńynty: $2 $3',
 'blocklogtext'                => "Půńižej znojdowo śe lista zawarć zouožůnych i zdjyntych s poščygůlnych adresůw IP.
 Na li'śće ńy mo adresůw IP, kere zawarto w sposůb autůmatyčny.
-Coby přejřeć lista uobecńy aktywnych zawarć, přyńdź na zajta [[Special:Ipblocklist|zawartych adresůw i užytkowńikůw]].",
+Coby přejřeć lista uobecńy aktywnych zawarć, přyńdź na zajta [[Special:IPBlockList|zawartych adresůw i užytkowńikůw]].",
 'unblocklogentry'             => 'uodymknyu $1',
 'block-log-flags-anononly'    => 'ino anůnimowi',
 'block-log-flags-nocreate'    => 'twořyńe kůnta je zawarte',
@@ -1973,7 +1973,7 @@ $1',
 'show-big-image'       => 'Oryginalno rozdźelčość',
 'show-big-image-thumb' => '<small>Rozmiar podglůndu: $1 × $2 pikseli</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerjo nowych uobrozkůw',
 'imagelisttext'         => "Půnižyj na {{PLURAL:$1||posortowanyj $2}} liśće {{PLURAL:$1|znojdowo|znojdujům|znojdowo}} śe '''$1''' {{PLURAL:$1|plik|pliki|plikůw}}.",
 'newimages-summary'     => 'Na tyi ekstra zajće prezyntowane sům uostatńo wćepńynte pliki.',
@@ -2422,7 +2422,7 @@ Možeš tyž [[Special:Watchlist/edit|užyć standardowygo edytora]].',
 'version-software-product'         => 'Mjano',
 'version-software-version'         => 'Wersjo',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Śćežka do plika',
 'filepath-page'    => 'Plik:',
 'filepath-submit'  => 'Śćežka',

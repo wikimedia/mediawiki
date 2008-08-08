@@ -234,7 +234,7 @@ $messages = array(
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
 'watchthisupload'   => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'ဖိုင်',
 'imagelist'      => 'ဖိုင်စာရင်း',
 'imagelist_date' => 'နေ့စွဲ',
@@ -281,12 +281,12 @@ $messages = array(
 # Special:Log
 'log-search-submit' => 'သွား​ပါ​',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'စာမျက်နှာအားလုံး',
 'allarticles'    => 'စာမျက်နှာအားလုံး',
 'allpagessubmit' => 'သွား​ပါ​',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'ပြ',
 
 # E-mail user
@@ -360,7 +360,7 @@ $messages = array(
 'tooltip-t-upload'       => 'ဖိုင်တင်ပါ',
 'tooltip-save'           => 'ပြင်ဆင်ရန်သိမ်းပါ',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ရှာ​ဖွေ​ရန်​',
 
 # EXIF tags
@@ -397,7 +397,7 @@ $messages = array(
 # Special:Version
 'version-other' => 'အခြား',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'ဖိုင်:',
 
 # Special:SpecialPages

@@ -356,7 +356,7 @@ $messages = array(
 'uploadlogpage' => 'ལོག་སྐྱེལ་བཙུགས་འབད།',
 'uploadedimage' => '"[[$1]]" སྐྱེལ་བཙུགས་འབད་ཡོདཔ།',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ཡིག་སྣོད་ཐོ་ཡིག།',
 
 # Image description page
@@ -443,7 +443,7 @@ $messages = array(
 'log'                  => 'ལོགསི།',
 'all-logs-page'        => 'ལོག་སི་ཆ་མཉམ།',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ཤོག་ལེབ་ག་ར།',
 'alphaindexline' => '$1 ལས་ $2',
 'nextpage'       => 'ཤུལ་མའི་ཤོག་ལེབ་ ($1)',
@@ -465,7 +465,7 @@ $messages = array(
 'watchlistfor'         => "('''$1''' གི་དོན་ལུ་)",
 'addedwatch'           => 'བལྟ་ཞིབ་ཐོ་ཡིག་ལུ་ཁ་སྐོང་རྐྱབ་ཅི།',
 'addedwatchtext'       => "ཤོག་ལེབ་  \"[[:\$1]]\" འདི་ ཁྱོད་རའི་ [[Special:Watchlist|watchlist]] ལུ་ ཁ་སྐོང་བརྐྱབས་ནུག།\\n
-ཤོག་ལེབ་དེ་ལུ་མ་འོངས་བསྒྱུར་བཅོས་དང་ དེ་གི་འབྲེལ་ཡོད་བློ་ཤོག་འདི་ དེ་ཁར་ཐོ་བཀོད་འབད་ནི་དང་ འཇམ་ཏོང་ཏོ་སྦེ་གདམ་ཁ་བརྐྱབ་ཚུགས་ནི་གི་དོན་ལུ་  ཤོག་ལེབ་འདི་ [[Special:Recentchanges|list of recent changes]] ནང་ལུ་ '''མངོན་གསལ་''' སྦེ་འབྱུང་འོང་།",
+ཤོག་ལེབ་དེ་ལུ་མ་འོངས་བསྒྱུར་བཅོས་དང་ དེ་གི་འབྲེལ་ཡོད་བློ་ཤོག་འདི་ དེ་ཁར་ཐོ་བཀོད་འབད་ནི་དང་ འཇམ་ཏོང་ཏོ་སྦེ་གདམ་ཁ་བརྐྱབ་ཚུགས་ནི་གི་དོན་ལུ་  ཤོག་ལེབ་འདི་ [[Special:RecentChanges|list of recent changes]] ནང་ལུ་ '''མངོན་གསལ་''' སྦེ་འབྱུང་འོང་།",
 'removedwatch'         => 'བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་བཏོན་བཀོག་ཡོདཔ།',
 'removedwatchtext'     => 'ཤོག་ལེབ་  "[[:$1]]" འདི་ ཁྱོད་རའི་བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་ བཏོན་བཀོག་ནུག།',
 'watch'                => 'བལྟ་ཞིབ་འབད།',
@@ -655,7 +655,7 @@ $messages = array(
 'show-big-image'       => 'ཧུམ་ཆ་གང་།',
 'show-big-image-thumb' => '<small>སྔོན་ལྟའི་ཚད་: $1 × $2 པིག་སེལསི་</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'ཡིག་སྣོད་གསར་པའི་སྟོན་ཁང་།',
 
 # Bad image list

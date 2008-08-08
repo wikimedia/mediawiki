@@ -95,7 +95,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Nekehia',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Ngā whārangi katoa',
 'allpagessubmit' => 'Haere',
 

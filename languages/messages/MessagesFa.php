@@ -1386,7 +1386,7 @@ $3
 'upload_source_url'  => '(یک نشانی اینترنتی معتبر و قابل دسترسی برای عموم)',
 'upload_source_file' => '(پرونده‌ای در رایانهٔ شما)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'این صفحهٔ ویژه تمام پرونده‌های بارگذاری شده را نشان می‌دهد.
 به طور پیش‌فرض آخرین پرونده‌های بازگذاری شده بالاتر نمایش داده می‌شوند.
 کلیک کردن روی عنوان ستون‌ها باعث تغییر ترتیب نمایش پرونده‌ها می‌شود.',
@@ -1599,7 +1599,7 @@ $3
 'logempty'             => 'مورد منطبق با منظور شما در سیاهه یافت نشد.',
 'log-title-wildcard'   => 'صفحه‌هایی را جستجو کن که عنوانشان با این عبارت آغاز می‌شود',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'همهٔ صفحه‌ها',
 'alphaindexline'    => '$1 تا $2',
 'nextpage'          => 'صفحهٔ بعد ($1)',
@@ -1622,12 +1622,12 @@ $3
 'special-categories-sort-count' => 'مرتب کردن بر اساس تعداد',
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'نمایش کاربران با شروع از:',
 'listusers-submit'   => 'نمایش',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'اختیارات گروه‌های کاربری',
 'listgrouprights-summary'         => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
 اطلاعات بیشتر در مورد هر یک از اختیارات را در [[{{MediaWiki:Listgrouprights-helppage}}]] بیابید.',
@@ -2307,7 +2307,7 @@ $1',
 'show-big-image'       => 'تصویر با تفکیک‌پذیری بالاتر',
 'show-big-image-thumb' => '<small>اندازهٔ این پیش‌نمایش: &#8206;$1 × $2 پیکسل</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'گالری پرونده‌های جدید',
 'imagelisttext'         => 'در زیر فهرست $1 {{PLURAL:$1|تصویری|تصویری}} که $2 مرتب شده است آمده است.',
 'newimages-summary'     => 'این صفحهٔ ویژه آخرین پرونده‌های بارگذاری شده را نمایش می‌دهد',
@@ -2832,7 +2832,7 @@ $1',
 'version-software-product'         => 'محصول',
 'version-software-version'         => 'نسخه',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'مسیر پرونده',
 'filepath-page'    => 'پرونده:',
 'filepath-submit'  => 'مسیر',
@@ -2869,7 +2869,7 @@ $1',
 'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییر مسیر دهنده',
 'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنگاری',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'صفحهٔ خالی',
 'intentionallyblankpage' => 'این صفحه به طور عمدی خالی گذاشته شده و برای محک زدن سیستم و غیره به کار می‌رود.',
 

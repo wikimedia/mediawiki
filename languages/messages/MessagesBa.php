@@ -225,7 +225,7 @@ $messages = array(
 # Recent changes linked
 'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_user' => 'Ҡатнашыусы',
 
 # MIME search
@@ -249,7 +249,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'Ҡатнашыусы:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Бөтә биттәр',
 'alphaindexline'    => '$1 алып $2 тиклем',
 'allpagesfrom'      => 'Ошондай хәрефтәрҙән башланған биттәрҙе күрһәтергә:',

@@ -751,7 +751,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'nolicense'          => 'Лицензия арась',
 'upload_source_file' => ' (арси машинасот файла)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'файл',
 'imagelist'      => 'Файлат-мезть',
 'imagelist_date' => 'Чи',
@@ -899,7 +899,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
 'log-search-submit'    => 'Адя',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Весе лопат',
 'alphaindexline' => '$1-сто  $2-нтень',
 'nextpage'       => 'Сы лопа ($1)',
@@ -918,11 +918,11 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'special-categories-sort-count' => 'аравтомс цётонь коряс',
 'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Невтемс',
 'listusers-noresult' => 'Совицязо а муеви',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'   => 'Куро',
 'listgrouprights-rights'  => 'Видечытне',
 'listgrouprights-members' => '(куронь ломаньть)',
@@ -947,7 +947,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'watchnologin'         => 'Апак сова',
 'addedwatch'           => 'Топавтозь ванома потмоксоньте',
 'addedwatchtext'       => 'Лопась «[[:$1]]» совавтозь [[Special:Watchlist|ванома потмозот]].
-Седе тов те лопасонть ды мартонзо сюлмавозь кортнема лопасонть теезь витьнематне тешкставтовить те потмонтень, истяжо кармить кикстазь те лопасонть[[Special:Recentchanges|потмо од витнематне]], истя седе шождасто сынь неявить.',
+Седе тов те лопасонть ды мартонзо сюлмавозь кортнема лопасонть теезь витьнематне тешкставтовить те потмонтень, истяжо кармить кикстазь те лопасонть[[Special:RecentChanges|потмо од витнематне]], истя седе шождасто сынь неявить.',
 'removedwatch'         => 'Нардазь ванома потмокстонть',
 'removedwatchtext'     => 'Лопась «[[:$1]]» ульнесь нардазь тынк ванома потмокстонть.',
 'watch'                => 'Ванстнемс',
@@ -1285,7 +1285,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'show-big-image'       => 'Пешксе теевксесь',
 'show-big-image-thumb' => '<small>Покшолма икелев ваноманть: $1 × $2 пиксэлт</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Од файлатьнень галлереясь',
 'showhidebots' => '($1 ботт)',
 'noimages'     => 'Арась мезе ваномс.',
@@ -1460,7 +1460,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'version-license'          => 'Лицензия',
 'version-software-version' => 'Верзия',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Файлас яннэ',
 'filepath-page'   => 'Файл:',
 'filepath-submit' => 'Яннэ',

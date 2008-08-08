@@ -88,7 +88,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Memori',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'nuwa ko',
 
 # E-mail user
@@ -108,7 +108,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Mana engame totow inne',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Anani ko',
 
 );

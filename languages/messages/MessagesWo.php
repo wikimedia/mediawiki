@@ -509,7 +509,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'accmailtext'               => 'Baatujàll bu « $1 » yónne nañ ko ci bii màkkaan $2.',
 'newarticle'                => '(Bees)',
 'newarticletext'            => "Da ngaa topp ab lëkkalekaay buy jëme ci aw xët wu amagul. ngir sos xët wi léegi, duggalal sa mbind ci boyot bii ci suuf (man ngaa yër [[{{MediaWiki:Helppage}}|xëtu ndimbal wi]] ngir yeneeni xamle). Su fekkee njuumtee la fi indi cuqal ci '''dellu''' bu sa joowukaay.",
-'anontalkpagetext'          => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañ laa féetale ay sànni-kaddu yoo moomul, man ngaa [[Special:Userlogin|bindu walla duggu]] ngi benn jaxase bañatee am ëllëg .''",
+'anontalkpagetext'          => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañ laa féetale ay sànni-kaddu yoo moomul, man ngaa [[Special:UserLogin|bindu walla duggu]] ngi benn jaxase bañatee am ëllëg .''",
 'noarticletext'             => 'Fi mu ne ni amul benn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|tambli ab seet ci koju xët wii]] walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 'userpage-userdoesnotexist' => 'Bii sàqum jëfandikukat « $1 » du bu ku bindu. Seetal bu baax ndax da ngaa namma sos walla soppi wii xët.',
 'clearyourcache'            => "'''Karmat :''' Soo dence xët wi ba noppi, faaw nga bës ci si sa arafukaay yii di toftal, te nga bàyyi xel ci joowukaay bi ngay jëfandikoo : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
@@ -838,7 +838,7 @@ Ngir-yàlla tànnal beneen tur.',
 
 Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => 'Limu nataal yi',
 'imagelist_user' => 'Jëfëndikookat',
 
@@ -907,7 +907,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'log-search-submit'    => 'waaw',
 'logempty'             => 'Dara nekkul ci jaar-jaaru xët mii.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'         => 'Xët yëpp',
 'alphaindexline'   => '$1 ba $2',
 'nextpage'         => 'Xët wi tegu ($1)',
@@ -926,7 +926,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'special-categories-sort-count' => 'nose sàq',
 'special-categories-sort-abc'   => 'nose abajada',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Wone',
 
 # E-mail user
@@ -1001,7 +1001,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'autoblocker'                 => 'Dañ la téye ndax sa màkkanu IP « $1 » moo ko mujje jëfandikoo. Li waral téyeg $1 mooy ne : « $2 ».',
 'blocklogpage'                => 'Jaar-jaaru téye yi',
 'blocklogentry'               => 'moo téye « [[$1]] » - ci diirub : $2 $3',
-'blocklogtext'                => 'Lii ab lim la ci téye ak téyedi yu jëfandikukat yi. Màkkaani IP yi ñu téye cig boppal limu ñu leen fi. yëral [[Special:Ipblocklist|limu jëfandikukat yiñ téye]] ngi gis ñi ñu téye nii-nii.',
+'blocklogtext'                => 'Lii ab lim la ci téye ak téyedi yu jëfandikukat yi. Màkkaani IP yi ñu téye cig boppal limu ñu leen fi. yëral [[Special:IPBlockList|limu jëfandikukat yiñ téye]] ngi gis ñi ñu téye nii-nii.',
 'unblocklogentry'             => 'moo téyedi « $1 »',
 'block-log-flags-anononly'    => 'jëfandikukat yi binduwul rek',
 'block-log-flags-nocreate'    => 'Tere nañ sa sosum sàq',
@@ -1173,7 +1173,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'file-info-size' => '($1 × $2 pixels, réyaayu file bi : $3, type MIME : $4)',
 'show-big-image' => 'Ngandalal nataal gii',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Seet',
 'bydate'   => 'ci diir',
 

@@ -543,7 +543,7 @@ Sò nùmer ëd blòch a l'é \$5. Për piasì, ës nùmer-sì ch'a lo buta sempe
 'accmailtext'               => 'La paròla ciav për "$1" a l\'é staita mandà a $2.',
 'newarticle'                => '(Neuv)',
 'newarticletext'            => 'Che a scriva sò test ambelessì.',
-'anontalkpagetext'          => "----''Costa a l'é la pàgina ëd ciaciarade che a s-ciàira n'utent anònim che a l'é ancó pa dorbusse un cont, ò pura che a lo dòvra nen. Nen savend chi che a sia chiel (chila) i l'oma da dovré ël nùmer IP address për deje n'identificassion. Belavans, ës nùmer-sì a peul esse dovrà da vàire Utent. J'Utent anònim che a l'han l'impression d'arsèive dij coment sensa sust a dovrìo [[Special:Userlogin|creésse sò cont ò pura rintré ant ël sistema]] për evité dë fé confusion con dj'àutri Utent che a peulo avej l'istess nùmer IP.''",
+'anontalkpagetext'          => "----''Costa a l'é la pàgina ëd ciaciarade che a s-ciàira n'utent anònim che a l'é ancó pa dorbusse un cont, ò pura che a lo dòvra nen. Nen savend chi che a sia chiel (chila) i l'oma da dovré ël nùmer IP address për deje n'identificassion. Belavans, ës nùmer-sì a peul esse dovrà da vàire Utent. J'Utent anònim che a l'han l'impression d'arsèive dij coment sensa sust a dovrìo [[Special:UserLogin|creésse sò cont ò pura rintré ant ël sistema]] për evité dë fé confusion con dj'àutri Utent che a peulo avej l'istess nùmer IP.''",
 'noarticletext'             => "(St'artìcol-sì a l'é veujd, a podrìa për gentilëssa anandielo chiel, ò pura ciamé la scancelassion dë sta pàgina)",
 'userpage-userdoesnotexist' => 'Lë stranòm "$1" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
 'clearyourcache'            => "'''Nòta:''' na vira che i l'ha salvà, a peul esse che a-j fasa da manca da passé via la memorisassion (cache) dël sò programa ëd navigassion (browser) për podej ës-ciairé le modìfiche.
@@ -1035,7 +1035,7 @@ PICT # vàire marche diferente
 'upload_source_url'  => "  (n'anliura bon-a e che as peula dovresse)",
 'upload_source_file' => " (n'archivi da sò calcolator)",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a ëstàit carià.
 Për sòlit j'ùltim carià a resto an sima.
 Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órdin.",
@@ -1230,7 +1230,7 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'logempty'             => 'Pa gnun element parej che a sia trovasse ant ij registr.',
 'log-title-wildcard'   => "Sërca ant ij tìtoj ch'as anandio për",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tute le pàgine',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pàgina che a-i ven ($1)',
@@ -1252,7 +1252,7 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'special-categories-sort-count' => 'ordiné për nùmer',
 'special-categories-sort-abc'   => 'òrdiné për alfabétich',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "Smon-me j'utent a parte da:",
 'listusers-submit'   => 'Smon',
 'listusers-noresult' => 'Pa gnun utent parej.',
@@ -1290,7 +1290,7 @@ L'adrëssa eletrònica che a l'ha specificà ant ij sò \"gust\" a sarà butà c
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
 'addedwatch'           => "Sòn a l'é stait giontà a le pàgine che it ten-e sot euj",
 'addedwatchtext'       => " La pàgina  \"<nowiki>\$1</nowiki>\" a l'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
-Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j'[[Special:Recentchanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d'euj.
+Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairerà ën <b>grassèt</b> ant la pàgina ëd j'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d'euj.
 
 Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a sgnaca \" Chita da tnì sot euj \" ant sla bara dij menù.",
 'removedwatch'         => "Gavà via da 'nt la lista dla ròba da tnì sot euj",
@@ -1557,7 +1557,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'badipaddress'                => "L'adrëssa IP che a l'ha dane a l'é nen giusta.",
 'blockipsuccesssub'           => 'Blocagi fait',
 'blockipsuccesstext'          => ' L\'adrëssa IP "$1" a l\'é staita blocà.<br />
-Che a varda la [[Special:Ipblocklist|lista dj\'IP blocà]].',
+Che a varda la [[Special:IPBlockList|lista dj\'IP blocà]].',
 'ipb-edit-dropdown'           => 'Motiv dël blòch',
 'ipb-unblock-addr'            => 'Dësbloché $1',
 'ipb-unblock'                 => "Dësbloché n'utent ò n'adrëssa IP",
@@ -1589,7 +1589,7 @@ Che a varda la [[Special:Ipblocklist|lista dj\'IP blocà]].',
 'blocklogentry'               => '"[[$1]]" a l\'é stait blocà për $2 $3',
 'blocklogtext'                => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
 a son staite blocà n'automàtich ambelessì a së s-ciàiro nen.
-Che a varda la [[Special:Ipblocklist|lista dj'adrësse IP blocà]] për vëdde
+Che a varda la [[Special:IPBlockList|lista dj'adrësse IP blocà]] për vëdde
 coj che sio ij blocagi ativ al dì d'ancheuj.",
 'unblocklogentry'             => "a l'ha dësblocà $1",
 'block-log-flags-anononly'    => 'mach utent anònim',
@@ -1910,7 +1910,7 @@ $1",
 'show-big-image'       => 'Version a amzura pijn-a',
 'show-big-image-thumb' => '<small>Amzure dë sta figurin-a: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerìa ëd figure e son neuv',
 'imagelisttext'         => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
 'newimages-summary'     => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
@@ -2392,7 +2392,7 @@ a podrìo ëdcò nen ess-ie ant sta lista -sì.",
 'version-software-product'         => 'Prodot',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => "Përcors d'archivi",
 'filepath-page'    => 'Archivi:',
 'filepath-submit'  => 'Përcors',

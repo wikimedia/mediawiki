@@ -239,6 +239,7 @@ $messages = array(
 'currentevents-url'    => 'Project:Aktualitātes',
 'disclaimers'          => 'Saistību atrunas',
 'edithelp'             => 'Palīdzība izmaiņām',
+'edithelppage'         => 'Palīdzība:Rediģēšana',
 'helppage'             => 'Palīdzība:Saturs',
 'mainpage'             => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
@@ -269,12 +270,15 @@ $messages = array(
 'viewdeleted'         => 'Skatīt $1?',
 'restorelink'         => '$1 {{PLURAL:$1|dzēsto versiju|dzēstās versijas}}',
 'feedlinks'           => 'Barotne:',
+'page-rss-feed'       => '"$1" RSS barotne',
+'page-atom-feed'      => '"$1" Atom barotne',
 'red-link-title'      => '$1 (vēl nav uzrakstīts)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Raksts',
 'nstab-user'      => 'Lietotāja lapa',
 'nstab-media'     => 'Multivides lapa',
+'nstab-special'   => 'Īpašā lapa',
 'nstab-project'   => 'Projekta lapa',
 'nstab-image'     => 'Attēls',
 'nstab-mediawiki' => 'paziņojums',
@@ -299,6 +303,7 @@ $1',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
 <p>$1',
 'internalerror'        => 'Iekšēja kļūda',
+'internalerror_info'   => 'Iekšējā kļūda: $1',
 'filecopyerror'        => 'Nav iespējams nokopēt failu "$1" uz "$2"',
 'filerenameerror'      => 'Neizdevās pārdēvēt failu "$1" par "$2".',
 'filedeleteerror'      => 'Nevar izdzēst failu "$1".',
@@ -482,7 +487,7 @@ Lai izveidotu lapu, sāc rakstīt teksta logā apakšā (par teksta formatēšan
 Ja tu šeit nonāci kļūdas pēc, vienkārši uzspied '''back''' pogu pārlūkprogrammā.",
 'anontalkpagetext'          => "----''Šī ir diskusiju lapa anonīmam lietotājam, kurš vēl nav kļuvis par reģistrētu lietotāju vai arī neizmanto savu lietotājvārdu. Tādēļ mums ir jāizmanto skaitliskā IP adrese, lai viņu identificētu.
 Šāda IP adrese var būt vairākiem lietotājiem.
-Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:Userlogin/signup|kļūsti par lietotāju]] vai arī [[Special:Userlogin|izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
+Ja tu esi anonīms lietotājs un uzskati, ka tev ir adresēti neatbilstoši komentāri, lūdzu, [[Special:UserLogin/signup|kļūsti par lietotāju]] vai arī [[Special:UserLogin|izmanto jau izveidotu lietotājvārdu]], lai izvairītos no turpmākām neskaidrībām un tu netiktu sajaukts ar citiem anonīmiem lietotājiem.''",
 'noarticletext'             => 'Šajā lapā šobrīd nav nekāda teksta, tu vari [[Special:Search/{{PAGENAME}}|meklēt citās lapās pēc šīs lapas nosaukuma]], vai arī [{{fullurl:{{FULLPAGENAME}}|action=edit}} sākt rediģēt šo lapu].',
 'userpage-userdoesnotexist' => 'Lietotājs "$1" nav reģistrēts.
 Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
@@ -850,7 +855,7 @@ Lūdzu izvēlies aprakstošāku vārdu šim failam.',
 
 'license' => 'Licence:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Šajā lapā ir redzami visi augšuplādētie faili.
 Pēc noklusējuma, pēdējie ielādētie faili atrodas saraksta augšā.
 Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita parametra.',
@@ -1009,7 +1014,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu.',
 'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Visas lapas',
 'alphaindexline' => 'no $1 līdz $2',
 'nextpage'       => 'Nākamā lapa ($1)',
@@ -1024,10 +1029,10 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'categoriespagetext' => 'Wiki ir atrodamas šādas kategorijas.',
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'         => 'Lietotāju grupu tiesības',
 'listgrouprights-summary' => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.
 Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējams, var atrast [[{{MediaWiki:Listgrouprights-helppage}}]].',
@@ -1059,7 +1064,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:Userlogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
 'addedwatch'           => 'Pievienots uzraugāmo sarakstam.',
-'addedwatchtext'       => "Lapa \"<nowiki>\$1</nowiki>\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:Recentchanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
+'addedwatchtext'       => "Lapa \"<nowiki>\$1</nowiki>\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
 
 Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",
 'removedwatch'         => 'Lapa vairs netiek uzraudzīta',
@@ -1253,7 +1258,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'badipaddress'         => 'Nederīga IP adrese',
 'blockipsuccesssub'    => 'Nobloķēts veiksmīgi',
 'blockipsuccesstext'   => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
-Visus blokus var apskatīties [[Special:Ipblocklist|IP bloku sarakstā]].',
+Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'ipb-edit-dropdown'    => 'Izmainīt bloķēšanas iemeslus',
 'ipb-unblock-addr'     => 'Atbloķēt $1',
 'ipb-unblock'          => 'Atbloķēt lietotāju vai IP adresi',
@@ -1275,7 +1280,7 @@ Viņa bloķēšanas iemesls bija: "$2"',
 'blocklogpage'         => 'Bloķēšanas reģistrs',
 'blocklogentry'        => 'nobloķēja [[$1]] uz $2 $3',
 'blocklogtext'         => 'Šajā lapā ir pēdējo nobloķēto un atbloķēto lietotāju un IP adrešu saraksts. Te neparādās automātiski nobloķētās IP adreses.
-Šobrīd aktīvos blokus var apskatīties [[Special:Ipblocklist|bloķēto lietotāju un IP adrešu sarakstā]].',
+Šobrīd aktīvos blokus var apskatīties [[Special:IPBlockList|bloķēto lietotāju un IP adrešu sarakstā]].',
 'ipb_expiry_invalid'   => 'Nederīgs beigu termiņš',
 'ip_range_invalid'     => 'Nederīgs IP diapazons',
 'proxyblocker'         => 'Starpniekservera bloķētājs',
@@ -1474,7 +1479,7 @@ To visticamāk izraisīja ārēja saite.',
 'show-big-image'       => 'Pilnā izmērā',
 'show-big-image-thumb' => '<small>Šī priekšskata izmērs: $1 × $2 pikseļi</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Jauno attēlu galerija',
 'imagelisttext'         => 'Šobrīd redzams $1 {{PLURAL:$1|attēla|attēlu}} uzskaitījums, kas sakārtots $2.',
 'newimages-summary'     => 'Šeit var apskatīties pēdējos šeit augšuplādētos failus.',
@@ -1672,7 +1677,7 @@ Var arī lietot [[Special:Watchlist/edit|standarta izmainīšanas lapu]].',
 'version-extensions'   => 'Ieinstalētie paplašinājumi',
 'version-specialpages' => 'Īpašās lapas',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Failu adreses',
 'filepath-page'   => 'Fails:',
 'filepath-submit' => 'Atrast adresi',

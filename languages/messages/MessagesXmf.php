@@ -353,7 +353,7 @@ $messages = array(
 'uploadlogpage' => 'გიმოხარგუაშ რეგისტრაცია',
 'uploadedimage' => 'გეთებაა "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => 'სურათეფიშ ერკებულ',
 'imagelist_name' => 'სახელ',
 
@@ -410,7 +410,7 @@ $messages = array(
 'log'                  => 'ჟურნალეფ',
 'all-logs-page'        => 'ირ ჟურნალ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ირ ხასილა',
 'alphaindexline' => '$1-იშე $2-შა',
 'nextpage'       => 'უკულ ხასილა ($1)',
@@ -586,7 +586,7 @@ $messages = array(
 'show-big-image'       => 'რსული გარჩევადობა',
 'show-big-image-thumb' => '<small>ზომა ოწმახ ძირაშ დროს: $1 × $2 პიქსელ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'ახალ სურათეფ',
 
 # Bad image list

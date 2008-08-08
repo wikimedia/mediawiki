@@ -241,7 +241,7 @@ $3',
 # Book sources
 'booksources' => 'Surse de cărţi',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Toats paži',
 'alphaindexline' => '$1 vo $2',
 'allarticles'    => 'Toats paži',

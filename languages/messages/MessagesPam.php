@@ -545,7 +545,7 @@ Uling alang seksiyon a $1, alang lugal a pirinan ketang kekang in-edit.',
 'newarticletext'            => "Dela na ka ning suglung king bulung a e pa melalang.
 Ba meng lalangan ing bulung a iti, sumulat ka king kahun king lalam (lon me ing  [[{{MediaWiki:Helppage}}|help page]] para king karagdagang impormasiun).
 Nung migkamali kang minta keni, i-click me mu ing '''back''' (mibalik) button ning kekang browser.",
-'anontalkpagetext'          => "----''Ini ing bulung ning pamitalamitam (discussion page) para kareng gagamit a e pepakilala, e pa miglalang account, o e gagamit kaniti. Uli na nita, kaylangan ming gumamit IP address a nomiru ba yang makilala. Mapalyaring e ya mu metung ing gagamit kaniti. Nung metung kang gagamit a e pepakilala at king palage mu, mituran ka o meyatu king e dapat, pakisabi ming [[Special:Userlogin|maglalang kang account o mag-log in]] ba ra kang e pagkamalyan kareng aliwang gagamit.''",
+'anontalkpagetext'          => "----''Ini ing bulung ning pamitalamitam (discussion page) para kareng gagamit a e pepakilala, e pa miglalang account, o e gagamit kaniti. Uli na nita, kaylangan ming gumamit IP address a nomiru ba yang makilala. Mapalyaring e ya mu metung ing gagamit kaniti. Nung metung kang gagamit a e pepakilala at king palage mu, mituran ka o meyatu king e dapat, pakisabi ming [[Special:UserLogin|maglalang kang account o mag-log in]] ba ra kang e pagkamalyan kareng aliwang gagamit.''",
 'noarticletext'             => 'King salukuyan, alang sulat king bulung a ini; malyari meng [[Special:Search/{{PAGENAME}}|paintunan ing pamagat ning bulung a ini]] kareng aliwang bulung o [{{fullurl:{{FULLPAGENAME}}|action=edit}} i-edit ining bulung].',
 'userpage-userdoesnotexist' => 'E makarehistru ing account ning talagamit (user account) a "$1". Pakilawe mu nung buri meng lalangan o i-edit ing bulung a ini.',
 'clearyourcache'            => "'''Kapabaluan:''' Kaibat mung mig-save, maliari meng lakton ing simpan (cache) ning kekang browser ba mong akit deng miyalilan. '''Mozilla / Firefox / Safari:''' timid me ing ''Shift'' kabang ki-click me ing ''Reload'', o timid me ing ''Ctrl-Shift-R'' (''Cmd-Shift-R'' king Apple Mac); '''IE:''' timid me ing ''Ctrl'' kabang ki-click me ing ''Refresh'', o timid me ing ''Ctrl-F5''; '''Konqueror:''': i-click me mu ing ''Reload'' button, o timid me ing ''F5''; deng talagamit ning '''Opera''', mapaliaring kailangan deng laganas a linisan (i-clear) ing karelang simpan (cache) king ''Tools→Preferences''.",
@@ -1113,7 +1113,7 @@ Mapaliaring mas masanting yang subukan nung mas ditak la reng gagamit.',
 'upload_source_url'  => ' (metung a URL a matatanggap at aluban ding malda)',
 'upload_source_file' => ' (metung a simpan king kekang computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Papakit no ngan niting bulung a makabukud/espesial deng simpan a milulan (uploaded files).
 Karaniwan, keta lang babo ning tala deng simpan a tauling milulan.
 Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).',
@@ -1314,7 +1314,7 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 'logempty'             => 'Ala yang kapareu (matching items) king tala (log).',
 'log-title-wildcard'   => 'Maintun bansag (title) magumpisa king sulat a ini',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Deng eganaganang bulung',
 'alphaindexline'    => '$1 papuntang $2',
 'nextpage'          => 'Tutuking bulung ($1)',
@@ -1336,12 +1336,12 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 'special-categories-sort-count' => 'surian tukituki agpang keng bilang',
 'special-categories-sort-abc'   => 'surian lang tukituki agpang keng kulitan',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Ipakit la reng talagamit magumpisa king:',
 'listusers-submit'   => 'Pakit',
 'listusers-noresult' => 'Alang meyakit a talagamit.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Katuliran da reng grupung talagamit (user group rights)',
 'listgrouprights-summary'  => 'Ing makatuki tala (list) de reng grupung talagamit a mituldu kening wiki, ampo reng karelang katuliran king pamaglub (access rights). Ating karagdagang impormasiun tungkul king katuliran ning balang metung [[{{MediaWiki:Listgrouprights-helppage}}|keni]].',
 'listgrouprights-group'    => 'Grupu',
@@ -1380,7 +1380,7 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 'addedwatch'           => 'Midagdag king babanten a tala.',
 'addedwatchtext'       => "Miragdag ya ing bulung a \"[[:\$1]]\" king kekang [[Special:Watchlist|watchlist]].
 Mitala la karin deng miyalilan king bulung a iti ampo ing kayang Talk page. Lunto ya
-muring '''pepakapal''' ing bulung ketang [[Special:Recentchanges|tala da reng bayung miyalilan]] ba kang e magkasakit maintun kaniti.
+muring '''pepakapal''' ing bulung ketang [[Special:RecentChanges|tala da reng bayung miyalilan]] ba kang e magkasakit maintun kaniti.
 
 Nung buri meng idayu potang kayi itang bulung ketang tala da reng babanten mu, paki
 click me ing \"Tuknangan ing pamagbante\" (Unwatch) king gilid na ning bulung.",
@@ -1664,7 +1664,7 @@ mu nung sanu retang bulung a sinira da).',
 'badipaddress'                => 'E matatanggap ing IP address',
 'blockipsuccesssub'           => 'Ing sabat migtagumpe ya',
 'blockipsuccesstext'          => 'Mesabat ya ing [[Special:Contributions/$1|$1]]
-<br />Lon me ing [[Special:Ipblocklist|IP block list]] ba mong akit detang mesabat.',
+<br />Lon me ing [[Special:IPBlockList|IP block list]] ba mong akit detang mesabat.',
 'ipb-edit-dropdown'           => 'Sangkan ning pamaniabat king pamag-edit',
 'ipb-unblock-addr'            => 'Ilako ya pangasabat ing $1',
 'ipb-unblock'                 => 'Ilako ya pangasabat ing lagyungtalagamit (username) o IP address',
@@ -1696,7 +1696,7 @@ mu nung sanu retang bulung a sinira da).',
 'blocklogentry'               => 'Mesabat ya ing "[[$1]]" a mapupus kilub ning $2 $3',
 'blocklogtext'                => 'Ini tala (log) de reng pamaniabat ampong pamaglako pangasabat kareng talagamit.
 E la makabili deng IP address a tambing nang makasabat.
-Lon me ing [[Special:Ipblocklist|IP block list]] para king tala da reng kasalungsungan a makabawal o makasabat.',
+Lon me ing [[Special:IPBlockList|IP block list]] para king tala da reng kasalungsungan a makabawal o makasabat.',
 'unblocklogentry'             => 'milako pangasabat $1',
 'block-log-flags-anononly'    => 'den mung gagamit a e pepakilala',
 'block-log-flags-nocreate'    => 'pamilalang account e malyari',
@@ -2017,7 +2017,7 @@ $1',
 'show-big-image'       => 'Pekamalino',
 'show-big-image-thumb' => '<small>Dagul na niting preview: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Pirinan kareng bayung simpan (new files)',
 'imagelisttext'         => "Ing makatuki tala yang '''$1''' {{PLURAL:$1|simpan|simpan}} a misamasan $2.",
 'newimages-summary'     => 'Ining bulung a makabukud papakit no reng simpan (file) a tauling milulan.',
@@ -2366,7 +2366,7 @@ $1',
 'version-software-product' => 'Produktu',
 'version-software-version' => 'Bersion',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Dalan ning simpan (file path)',
 'filepath-page'   => 'Simpan (file):',
 'filepath-submit' => 'Dalan',

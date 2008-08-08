@@ -487,7 +487,7 @@ Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog 
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
 *Ako vam treba pomoć, idite na [[{{MediaWiki:Helppage}}|stranicu za pomoć]].
 *Ako ste ovamo dospjeli slučajno, kliknite dugme \"Nazad\" (''Back'') u svom internet pregledaču.",
-'anontalkpagetext'         => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu IP adresu kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:Userlogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
+'anontalkpagetext'         => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.  Zbog toga moramo da koristimo brojčanu IP adresu kako bismo odentifikovali njega ili nju.  Takvu adresu može dijeliti više korisnika.  Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:UserLogin|napravite nalog ili se prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} još nema ovaj članak.'''
 * Da započnete članak, kliknite '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]'''.
 * [[Special:Search/{{PAGENAME}}|Pretraži {{PAGENAME}}]] u ostalim člancima
@@ -702,7 +702,7 @@ da bi ste slali fajlove.',
 'uploaddisabled'              => 'Slanje fajlova je isključeno',
 'uploadvirus'                 => 'Fajl sadrži virus!  Detalji:  $1',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Spisak slika',
 
 # Image description page
@@ -792,7 +792,7 @@ na kome bi se izvela ova funkcija.',
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Protokoli',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Sve stranice',
 'alphaindexline' => '$1 do $2',
 'prevpage'       => 'Prethodna stranica ($1)',
@@ -836,7 +836,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
 'addedwatch'           => 'Dodato u spisak praćenih članaka',
-'addedwatchtext'       => 'Stranica "[[:$1]]" je dodata vašem [[Special:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[Special:Recentchanges|spisku]] nedavnih izmjena da bi se lakše uočila.
+'addedwatchtext'       => 'Stranica "[[:$1]]" je dodata vašem [[Special:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[Special:RecentChanges|spisku]] nedavnih izmjena da bi se lakše uočila.
 
 Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kliknite na "prekini praćenje" na paleti.',
 'removedwatch'         => 'Uklonjeno iz spiska praćenih članaka',
@@ -984,7 +984,7 @@ neće biti automatski zamijenjena.',
 'badipaddress'         => 'Pogrešna IP adresa',
 'blockipsuccesssub'    => 'Blokiranje je uspjelo',
 'blockipsuccesstext'   => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:Ipblocklist|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+<br />Pogledajte [[Special:IPBlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
 'unblockip'            => 'Odblokiraj korisnika',
 'unblockiptext'        => 'Upotrebite donji upitnik da bi ste vratili
 pravo pisanja ranije blokiranoj IP adresi
@@ -998,7 +998,7 @@ ili korisničkom imenu.',
 'autoblocker'          => 'Automatski ste blokirani jer dijelite IP adresu sa "$1".  Razlog za blokiranje je: "\'\'\'$2\'\'\'"',
 'blocklogpage'         => 'Evidencija blokiranja',
 'blocklogentry'        => 'je blokirao "$1" sa vremenom isticanja blokade od $2',
-'blocklogtext'         => 'Ovo je istorija blokiranja i deblokiranja korisnika.  Automatsko blokirane IP adrese nisu uspisane ovde.  Pogledajte [[Special:Ipblocklist|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+'blocklogtext'         => 'Ovo je istorija blokiranja i deblokiranja korisnika.  Automatsko blokirane IP adrese nisu uspisane ovde.  Pogledajte [[Special:IPBlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
 'unblocklogentry'      => 'deblokiran $1',
 'range_block_disabled' => 'Administratorska mogućnost da blokira grupe je isključena.',
 'ipb_expiry_invalid'   => 'Pogrešno vrijeme trajanja.',
@@ -1190,7 +1190,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina ovoga prikaza: $1 × $2 piksela</small>',
 
-# Special:Newimages
+# Special:NewImages
 'imagelisttext' => 'Ispod je spisak $1 slika poređanih $2.',
 'showhidebots'  => '($1 botove)',
 'ilsubmit'      => 'Traži',

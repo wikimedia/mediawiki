@@ -302,7 +302,7 @@ $messages = array(
 
 'nolicense' => 'केहिपनि छानिएन',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_date'        => 'मिति',
 'imagelist_name'        => 'नाम',
 'imagelist_user'        => 'प्रयोगकर्ता',
@@ -354,7 +354,7 @@ $messages = array(
 'specialloguserlabel'  => 'प्रयोगकर्ता:',
 'speciallogtitlelabel' => 'शिर्षक:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'सबै पृष्ठहरु',
 'alphaindexline' => '$1 लाई $2 मा',
 'nextpage'       => 'अर्को पृष्ठ ($1)',
@@ -367,7 +367,7 @@ $messages = array(
 # Special:Categories
 'categories' => 'श्रेणीहरू',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'देखाउनुहोस्',
 
 # E-mail user
@@ -514,7 +514,7 @@ $messages = array(
 'previousdiff' => '← अधिल्लो भिन्नता',
 'nextdiff'     => 'पछिल्लो भिन्नता →',
 
-# Special:Newimages
+# Special:NewImages
 'noimages' => 'हेर्नको लागि केही छैन.',
 'ilsubmit' => 'खोज्नुहोस्',
 'bydate'   => 'मिति अनुसार',
@@ -611,7 +611,7 @@ $messages = array(
 # Live preview
 'livepreview-loading' => 'लोड गरिंदै छ…',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'फाइल',
 
 # Special:SpecialPages

@@ -517,7 +517,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'license-nopreview'  => '(Cha nel roie-haishbynys ry-gheddyn)',
 'upload_source_file' => ' (coadan er dty cho-earrooder)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'coadan',
 'imagelist'             => 'Rolley coadanyn',
 'imagelist_date'        => 'Date',
@@ -635,7 +635,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'speciallogtitlelabel' => 'Ennym:',
 'log-search-submit'    => 'Gow',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Dagh ooilley ghuillag',
 'alphaindexline' => '$1 gys $2',
 'nextpage'       => 'Yn chied duillag elley ($1)',
@@ -649,10 +649,10 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'special-categories-sort-count' => 'sorçhaghey rere coontey',
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Taishbyney',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'    => 'Possan',
 'listgrouprights-rights'   => 'Kiartyn',
 'listgrouprights-helppage' => 'Help:Kiartyn y phossan',
@@ -675,7 +675,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'watchnologin'         => 'Cha nel oo loggit stiagh',
 'addedwatch'           => 'Currit rish y rolley arrey',
 'addedwatchtext'       => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
-Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:Recentchanges|caghlaaghyn s'noa]].",
+Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:RecentChanges|caghlaaghyn s'noa]].",
 'removedwatch'         => 'Gowit ass y rolley arrey',
 'removedwatchtext'     => 'Ta\'n duillag "[[:$1]]" gowit ass dty rolley arrey.',
 'watch'                => 'Freill arrey',
@@ -928,7 +928,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'show-big-image'       => 'Jeeskeaylley ymlane',
 'show-big-image-thumb' => '<small>Mooadys y roie-haishbynys shoh: $1 × $2 pixelyn</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Laaragh coadanyn noa',
 'showhidebots' => '($1 botyn)',
 'ilsubmit'     => 'Ronsaghey',
@@ -1043,7 +1043,7 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 'version-license'          => 'Kiedoonys',
 'version-software-version' => 'Lhieggan',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Coadan:',
 
 # Special:FileDuplicateSearch

@@ -11,9 +11,9 @@
  * @author H92
  * @author Eirik
  * @author Jóna Þórunn
- * @author EivindJ
  * @author Finnrind
  * @author Boivie
+ * @author EivindJ
  * @author Samuelsen
  * @author Teak
  * @author Kph-no
@@ -679,7 +679,7 @@ Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
 ''Dette er en diskusjonsside for en uregistrert bruker som ikke har opprettet konto eller ikke er logget inn.
 Vi er derfor nødt til å bruke den numeriske IP-adressen til å identifisere ham eller henne.
 En IP-adresse kan være delt mellom flere brukere.
-Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:Userlogin/signup|opprett en konto]] eller [[Special:Userlogin|logg inn]] så vi unngår framtidige forvekslinger med andre uregistrerte brukere.''",
+Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentarer på en slik side, [[Special:UserLogin/signup|opprett en konto]] eller [[Special:UserLogin|logg inn]] så vi unngår framtidige forvekslinger med andre uregistrerte brukere.''",
 'noarticletext'                    => 'Det er ikke noe tekst på denne siden. Du kan [[Special:Search/{{PAGENAME}}|søke etter siden]] i andre sider, eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigere siden].',
 'userpage-userdoesnotexist'        => 'Brukerkontoen «$1» er ikke registrert. Sjekk om du ønsker å opprette/redigere denne siden.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter mellomlageret sitt for at endringene skal tre i kraft. '''Mozilla og Firefox:''' trykk ''Ctrl-Shift-R'', '''Internet Explorer:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'' i engelskspråklig versjon, ''Cmd-Alt-E'' i norskspråklig versjon, '''Konqueror og Opera:''' ''F5''.",
@@ -1246,7 +1246,7 @@ Om problemet fortsetter, kontakt en [[Special:Listusers/sysop|administrator]].',
 'upload_source_url'  => ' (en gyldig, offentlig tilgjengelig adresse)',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnavn:',
 'imgfile'               => 'fil',
@@ -1271,6 +1271,9 @@ Om problemet fortsetter, kontakt en [[Special:Listusers/sysop|administrator]].',
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Lenker',
 'linkstoimage'                   => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne fila:',
+'linkstoimage-more'              => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.
+Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
+En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'nolinkstoimage'                 => 'Det er ingen sider som bruker denne fila.',
 'morelinkstoimage'               => 'Vis [[Special:Whatlinkshere/$1|flere lenker]] til denne filen.',
 'redirectstofile'                => 'Følgende {{PLURAL:$1|fil er en omdirigering|filer er omdirigeringer}} til denne filen:',
@@ -1449,7 +1452,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alle sider',
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Neste side ($1)',
@@ -1472,12 +1475,12 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'special-categories-sort-count' => 'soter etter antall',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Vis brukere fra og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen bruker funnet.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Rettigheter for brukergrupper',
 'listgrouprights-summary'         => 'Følgende er en liste over brukergrupper som er definert på denne wikien, og hvilke rettigheter de har.
 Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
@@ -1521,7 +1524,7 @@ Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil
 'watchnologin'         => 'Ikke logget inn',
 'watchnologintext'     => 'Du må være [[Special:Userlogin|logget inn]] for å kunne endre overvåkningslisten.',
 'addedwatch'           => 'Lagt til overvåkningslisten.',
-'addedwatchtext'       => "Siden «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvåkningslisten]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir listet opp her, og siden vil fremstå '''uthevet''' i [[Special:Recentchanges|listen over de siste endringene]] for å gjøre det lettere å finne den.
+'addedwatchtext'       => "Siden «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvåkningslisten]]. Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir listet opp her, og siden vil fremstå '''uthevet''' i [[Special:RecentChanges|listen over de siste endringene]] for å gjøre det lettere å finne den.
 
 Hvis du senere vil fjerne siden fra overvåkningslisten, klikk «Avslutt overvåkning» på den aktuelle siden.",
 'removedwatch'         => 'Fjernet fra overvåkningslisten',
@@ -1716,24 +1719,26 @@ $1',
 'blanknamespace' => '(Hoved)',
 
 # Contributions
-'contributions' => 'Bidrag',
-'mycontris'     => 'Egne bidrag',
-'contribsub2'   => 'For $1 ($2)',
-'nocontribs'    => 'Ingen endringer er funnet som passer disse kriteriene.',
-'uctop'         => '(siste)',
-'month'         => 'Måned:',
-'year'          => 'År:',
+'contributions'       => 'Bidrag',
+'contributions-title' => 'Bidrag av $1',
+'mycontris'           => 'Egne bidrag',
+'contribsub2'         => 'For $1 ($2)',
+'nocontribs'          => 'Ingen endringer er funnet som passer disse kriteriene.',
+'uctop'               => '(siste)',
+'month'               => 'Måned:',
+'year'                => 'År:',
 
-'sp-contributions-newbies'     => 'Vis kun bidrag fra nye kontoer',
-'sp-contributions-newbies-sub' => 'For nybegynnere',
-'sp-contributions-blocklog'    => 'Blokkeringslogg',
-'sp-contributions-search'      => 'Søk etter bidrag',
-'sp-contributions-username'    => 'IP-adresse eller brukernavn:',
-'sp-contributions-submit'      => 'Søk',
+'sp-contributions-newbies'       => 'Vis kun bidrag fra nye kontoer',
+'sp-contributions-newbies-sub'   => 'For nybegynnere',
+'sp-contributions-newbies-title' => 'Bidrag av nye kontoer',
+'sp-contributions-blocklog'      => 'Blokkeringslogg',
+'sp-contributions-search'        => 'Søk etter bidrag',
+'sp-contributions-username'      => 'IP-adresse eller brukernavn:',
+'sp-contributions-submit'        => 'Søk',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',
-'whatlinkshere-title'      => 'Sider som lenker til $1',
+'whatlinkshere-title'      => 'Sider som lenker til «$1»',
 'whatlinkshere-page'       => 'Side:',
 'linkshere'                => "Følgende sider lenker til '''[[:$1]]''':",
 'nolinkshere'              => "Ingen sider lenker til '''[[:$1]]'''.",
@@ -1780,7 +1785,7 @@ $1',
 'ipbwatchuser'                    => 'Overvåk brukerens brukerside og diskusjonsside',
 'badipaddress'                    => 'Ugyldig IP-adresse.',
 'blockipsuccesssub'               => 'Blokkering utført',
-'blockipsuccesstext'              => 'IP-adressen «$1» er blokkert. Se [[Special:Ipblocklist|blokkeringslisten]] for alle blokkeringer.',
+'blockipsuccesstext'              => 'IP-adressen «$1» er blokkert. Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
 'ipb-edit-dropdown'               => 'Rediger blokkeringsgrunner',
 'ipb-unblock-addr'                => 'Avblokker $1',
 'ipb-unblock'                     => 'Avblokker et brukernavn eller en IP-adresse',
@@ -1810,7 +1815,7 @@ $1',
 'autoblocker'                     => 'Du ble automatisk blokkert fordi du deler IP-adresse med «[[User:$1|$1]]». Grunnen som ble gitt til at «$1» ble blokkert var: «$2».',
 'blocklogpage'                    => 'Blokkeringslogg',
 'blocklogentry'                   => 'blokkerte «[[$1]]» med en varighet på $2 $3',
-'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:Ipblocklist|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
+'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:IPBlockList|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
 'unblocklogentry'                 => 'opphevet blokkeringen av $1',
 'block-log-flags-anononly'        => 'kun uregistrerte brukere',
 'block-log-flags-nocreate'        => 'kontooppretting slått av',
@@ -2152,7 +2157,7 @@ $1',
 'show-big-image'       => 'Full oppløsning',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galleri over nye filer',
 'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
 'newimages-summary'     => 'Denne spesialsiden viser de sist opplastede filene.',
@@ -2625,7 +2630,7 @@ Prøv vanlig forhåndsvisning.',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Versjon',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sti',
@@ -2662,7 +2667,7 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 'specialpages-group-redirects'   => 'Omdirigerende spesialsider',
 'specialpages-group-spam'        => 'Spamverktøy',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Tom side',
 'intentionallyblankpage' => 'Denne siden er tom med vilje',
 

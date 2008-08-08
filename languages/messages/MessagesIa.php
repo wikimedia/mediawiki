@@ -602,7 +602,7 @@ Pro crear iste pagina, comencia a scriber in le quadro infra (consulta le [[{{Me
 Si tu ha arrivate hic per error, clicca le button '''Retornar''' de tu navigator.",
 'anontalkpagetext'                 => "---- ''Isto es le pagina de discussion pro un usator anonyme qui non ha ancora create un conto, o qui non lo usa. Consequentemente nos debe usar le adresse IP numeric pro identificar le/la.
 Un tal adresse IP pote esser usate in commun per varie personas.
-Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:Userlogin/signup|crea un conto]] o [[Special:Userlogin|aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
+Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite a te, per favor [[Special:UserLogin/signup|crea un conto]] o [[Special:UserLogin|aperi un session]] pro evitar futur confusiones con altere usatores anonyme.''",
 'noarticletext'                    => 'Actualmente il non ha texto in iste pagina. Tu pote [[Special:Search/{{PAGENAME}}|cercar iste titulo]] in le texto de altere paginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
@@ -1216,7 +1216,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',
 'upload_source_file' => ' (un file in tu computator)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Iste pagina special monstra tote le files cargate.
 Per predefinition le ultime files cargate se monstra al initio del lista.
 Tu pote reordinar le lista con un clic super le titulo de un columna.',
@@ -1435,7 +1435,7 @@ Restringe le presentation seligente un typo de registro, nomine de usator, o pag
 'logempty'             => 'Le registro contine nihil pro iste pagina.',
 'log-title-wildcard'   => 'Cercar titulos que comencia con iste texto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tote le paginas',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Sequente pagina ($1)',
@@ -1459,12 +1459,12 @@ Es possibile que illo contine un o plus characteres que non pote esser usate in 
 'special-categories-sort-count' => 'ordinar per numero',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Monstrar usatores a partir de:',
 'listusers-submit'   => 'Revelar',
 'listusers-noresult' => 'Nulle usator trovate.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Derectos del gruppos de usatores',
 'listgrouprights-summary'         => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
 Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]] super derectos individual.',
@@ -1517,7 +1517,7 @@ pro modificar tu lista de paginas sub observation.',
 'addedwatch'           => 'Addite al observatorio',
 'addedwatchtext'       => "Le pagina \"<nowiki>\$1</nowiki>\" es ora in tu [[Special:Watchlist|observatorio]].
 Omne modificationes futur a iste pagina e su pagina de discussion associate essera listate ibi,
-e le pagina apparera '''in litteras grasse''' in le [[Special:Recentchanges|lista de modificationes recente]] pro
+e le pagina apparera '''in litteras grasse''' in le [[Special:RecentChanges|lista de modificationes recente]] pro
 facilitar su identification.",
 'removedwatch'         => 'Eliminate del observatorio',
 'removedwatchtext'     => 'Le pagina "<nowiki>$1</nowiki>" non es plus sub observation.',
@@ -1809,7 +1809,7 @@ specific que ha essite vandalisate).',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => 'Le adresse IP "$1" ha essite blocate.
-<br />Vide [[Special:Ipblocklist|Lista de IPs blocate]] pro revider le blocadas.',
+<br />Vide [[Special:IPBlockList|Lista de IPs blocate]] pro revider le blocadas.',
 'ipb-edit-dropdown'               => 'Modificar motivos del blocada',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
@@ -1843,7 +1843,7 @@ Le ration date pro le blocada de $1 es: "$2"',
 'blocklogentry'                   => 'blocava [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext'                    => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.
-Vide le [[Special:Ipblocklist|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
 'unblocklogentry'                 => 'disblocava $1',
 'block-log-flags-anononly'        => 'usatores anonyme solmente',
 'block-log-flags-nocreate'        => 'creation de contos disactivate',
@@ -2199,7 +2199,7 @@ $1',
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galleria de nove files',
 'imagelisttext'         => "Infra es un lista de '''$1''' {{PLURAL:$1|imagine|imagines}} ordinate $2.",
 'newimages-summary'     => 'Iste pagina special detalia le recente files cargate.',
@@ -2655,7 +2655,7 @@ Tu pote etiam [[Special:Watchlist/edit|usar le editor standard]].',
 'version-software-product'         => 'Producto',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Cammino del file',
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Cammino',
@@ -2694,7 +2694,7 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 'specialpages-group-redirects'   => 'Redirection de paginas special',
 'specialpages-group-spam'        => 'Instrumentos antispam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pagina vacue',
 'intentionallyblankpage' => 'Iste pagina es intentionalmente vacue',
 

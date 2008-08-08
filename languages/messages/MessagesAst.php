@@ -320,7 +320,7 @@ reconocida pola wiki",
 'nosuchspecialpage' => 'Nun esiste esa páxina especial',
 'nospecialpagetext' => "<big>'''Pidisti una páxina especial non válida.'''</big>
 
-Pues consultar la llista de les páxines especiales válides en [[Special:Specialpages|{{int:specialpages}}]].",
+Pues consultar la llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
@@ -401,7 +401,7 @@ $2',
 'logouttitle'                => 'Desconexón',
 'logouttext'                 => "<strong>Yá tas desconectáu.</strong><br />
 
-Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:Userlogin|volver a entrar]] como'l mesmu o como otru usuariu.
+Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver a entrar]] como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines van continuar saliendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del navegador.",
 'welcomecreation'            => "== Bienveníu, $1! ==
 La to cuenta ta creada.
@@ -416,7 +416,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'loginproblem'               => '<b>Hebo un problema cola to identificación.</b><br />¡Inténtalo otra vuelta!',
 'login'                      => 'Entrar',
 'nav-login-createaccount'    => 'Entrar / Crear cuenta',
-'loginprompt'                => "Has tener les ''cookies'' activaes pa [[Special:Userlogin|entrar en {{SITENAME}}]].",
+'loginprompt'                => "Has tener les ''cookies'' activaes pa entrar en {{SITENAME}}.",
 'userlogin'                  => 'Entrar / Crear cuenta',
 'logout'                     => 'Salir',
 'userlogout'                 => 'Salir',
@@ -571,7 +571,7 @@ El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códi
 'blockednoreason'                  => 'nun se dio nengún motivu',
 'blockedoriginalsource'            => "El códigu fonte de '''$1''' amuésase equí:",
 'blockededitsource'                => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
-'whitelistedittitle'               => 'Ye necesario [[Special:Userlogin|tar identificáu]] pa poder editar',
+'whitelistedittitle'               => 'Ye necesario tar identificáu pa poder editar',
 'whitelistedittext'                => 'Tienes que $1 pa editar páxines.',
 'confirmedittitle'                 => 'Requerida la confirmación de corréu electrónicu pa editar',
 'confirmedittext'                  => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
@@ -584,7 +584,7 @@ El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códi
 'accmailtext'                      => 'La clave de "$1" foi unviada a $2.',
 'newarticle'                       => '(Nuevu)',
 'newarticletext'                   => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa d\'equí embaxo. Si llegasti equí por enquivocu, namás tienes que calcar nel botón "atrás" del to navegador.',
-'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:Userlogin/signup|crea una cuenta]] o [[Special:Userlogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
+'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
 'noarticletext'                    => "Nestos momentos nun hai testu nesta páxina. Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu]] n'otres páxines, o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar ésta equí].",
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuariu "$1" nun ta rexistrada. Por favor asegúrate de que quies crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
@@ -606,7 +606,7 @@ Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate
 
 ''Como {{SITENAME}} tien activáu'l HTML puru, la previsualización nun s'amosará como precaución escontra ataques en JavaScript.''
 
-<strong>Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta [[Special:Userlogout|desconeutate]] y volver a identificate.</strong>",
+<strong>Si esti ye un intentu llexítimu d'edición, por favor inténtalo otra vuelta. Si tovía asina nun furrula, intenta [[Special:UserLogout|desconeutate]] y volver a identificate.</strong>",
 'token_suffix_mismatch'            => "<strong>La to edición nun foi aceutada porque'l to navegador mutiló los carauteres de puntuación
 nel editor. La edición nun foi aceutada pa prevenir corrupciones na páxina de testu. Esto hai vegaes
 que pasa cuando tas usando un proxy anónimu basáu en web que seya problemáticu.</strong>",
@@ -649,7 +649,7 @@ el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'hiddencategories'                 => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
 'nocreatetitle'                    => 'Creación de páxines limitada',
 'nocreatetext'                     => '{{SITENAME}} tien restrinxida la capacidá de crear páxines nueves.
-Pues volver atrás y editar una páxina esistente, o bien [[Special:Userlogin|identificate o crear una cuenta]].',
+Pues volver atrás y editar una páxina esistente, o bien [[Special:UserLogin|identificate o crear una cuenta]].',
 'nocreate-loggedin'                => 'Nun tienes permisu pa crear páxines nueves en {{SITENAME}}.',
 'permissionserrors'                => 'Errores de Permisos',
 'permissionserrorstext'            => 'Nun tienes permisu pa facer eso {{PLURAL:$1|pol siguiente motivu|polos siguientes motivos}}:',
@@ -772,7 +772,7 @@ restricciones adicionales.",
 # Suppression log
 'suppressionlog'     => 'Rexistru de supresiones',
 'suppressionlogtext' => "Embaxo amuésase una llista de los borraos y bloqueos rellacionaos con conteníu ocultu a los alministradores.
-Mira'l [[Special:Ipblocklist|rexistru de bloqueos d'IP]] pa ver una llista de los bloqueos activos anguaño.",
+Mira'l [[Special:IPBlockList|rexistru de bloqueos d'IP]] pa ver una llista de los bloqueos activos anguaño.",
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
@@ -856,7 +856,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mypreferences'            => 'Les mios preferencies',
 'prefs-edits'              => "Númberu d'ediciones:",
 'prefsnologin'             => 'Non identificáu',
-'prefsnologintext'         => 'Necesites tar [[Special:Userlogin|identificáu]] pa poder camudar les preferencies.',
+'prefsnologintext'         => 'Necesites tar [[Special:UserLogin|identificáu]] pa poder camudar les preferencies.',
 'prefsreset'               => 'Les preferencies fueron restablecíes a los valores por defeutu.',
 'qbsettings'               => 'Barra rápida',
 'qbsettings-none'          => 'Nenguna',
@@ -931,7 +931,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'userrights-reason'           => 'Motivu del cambéu:',
 'userrights-no-interwiki'     => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase'       => 'La base de datos $1 nun esiste o nun ye llocal.',
-'userrights-nologin'          => "Has tar [[Special:Userlogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
+'userrights-nologin'          => "Has tar [[Special:UserLogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
 'userrights-notallowed'       => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
 'userrights-changeable-col'   => 'Grupos que pues camudar',
 'userrights-unchangeable-col' => 'Grupos que nun pues camudar',
@@ -1060,12 +1060,12 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'reupload'                    => 'Volver a xubir',
 'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'uploadnologin'               => 'Nun tas identificáu',
-'uploadnologintext'           => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder xubir archivos.',
+'uploadnologintext'           => 'Tienes que tar [[Special:UserLogin|identificáu]] pa poder xubir archivos.',
 'upload_directory_missing'    => 'El direutoriu de xubida ($1) nun esiste y nun pudo ser creáu pol servidor de web.',
 'upload_directory_read_only'  => "El servidor nun pue modificar el direutoriu de xubida d'archivos ($1).",
 'uploaderror'                 => 'Error de xubida',
 'uploadtext'                  => "Usa'l formulariu d'abaxo pa xubir archivos.
-Pa ver o buscar archivos xubíos previamente, vete a la [[Special:Imagelist|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los borraos nel [[Special:Log/delete|rexistru de borraos]].
+Pa ver o buscar archivos xubíos previamente, vete a la [[Special:ImageList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los borraos nel [[Special:Log/delete|rexistru de borraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
 *'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
@@ -1155,7 +1155,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',
 'upload_source_file' => ' (un archivu del to ordenador)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
 Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
 Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
@@ -1182,8 +1182,11 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'filehist-comment'               => 'Comentariu',
 'imagelinks'                     => 'Enllaces a esta imaxe',
 'linkstoimage'                   => '{{PLURAL:$1|La páxina siguiente enllacia|Les páxines siguientes enllacien}} a esti archivu:',
+'linkstoimage-more'              => "Más de $1 {{PLURAL:$1|páxina enllacia|páxines enllacien}} a esti archivu.
+La llista siguiente amuesa{{PLURAL:$1|'l primer enllaz de páxina| los primeros $1 enllaces de páxina}} a esti archivu namái.
+Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'nolinkstoimage'                 => "Nun hai páxines qu'enllacien a esti archivu.",
-'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|más enllaces]] a esti archivu.',
+'morelinkstoimage'               => 'Ver [[Special:WhatLinksHere/$1|más enllaces]] a esti archivu.',
 'redirectstofile'                => '{{PLURAL:$1|El siguiente archivu redirixe|Los siguientes $1 archivos redirixen}} a esti archivu:',
 'duplicatesoffile'               => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu:",
 'sharedupload'                   => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.",
@@ -1266,7 +1269,7 @@ Hebo un total {{PLURAL:\$3|d''''una''' páxina visitada|de '''\$3''' páxines vi
 Esto fai una media de '''\$5''' ediciones per páxina, y '''\$6''' visites per edición.
 
 La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:Listusers|usuariu]] rexistráu, del|'''$1''' [[Special:Listusers|usuarios]] rexistraos, de los}} que
+'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuariu]] rexistráu, del|'''$1''' [[Special:ListUsers|usuarios]] rexistraos, de los}} que
 '''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.",
 'statistics-mostpopular' => 'Páxines más vistes',
 
@@ -1362,7 +1365,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'logempty'             => 'Nun hai coincidencies nel rexistru.',
 'log-title-wildcard'   => "Buscar títulos qu'emprimen con esti testu",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Toles páxines',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Páxina siguiente ($1)',
@@ -1385,12 +1388,12 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Amosar usuarios emprimando dende:',
 'listusers-submit'   => 'Amosar',
 'listusers-noresult' => "Nun s'atoparon usuarios.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => "Drechos de los grupos d'usuariu",
 'listgrouprights-summary'         => "La siguiente ye una llista de grupos d'usuariu definíos nesta wiki, colos sos drechos d'accesu asociaos.
 Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] tocante a drechos individuales.",
@@ -1405,7 +1408,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 
 # E-mail user
 'mailnologin'     => "Ensin direición d'unviu",
-'mailnologintext' => 'Has tar [[Special:Userlogin|identificáu]]
+'mailnologintext' => 'Has tar [[Special:UserLogin|identificáu]]
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
 pa poder unviar correos a otros usuarios.',
 'emailuser'       => 'Manda-y un email a esti usuariu',
@@ -1434,9 +1437,9 @@ o nun quier recibir correos d'otros usuarios.",
 'nowatchlist'          => 'La to llista de vixilancia ta vacia.',
 'watchlistanontext'    => 'Por favor $1 pa ver o editar entraes na to llista de vixilancia.',
 'watchnologin'         => 'Non identificáu',
-'watchnologintext'     => 'Tienes que tar [[Special:Userlogin|identificáu]] pa poder camudar la to llista de vixilancia.',
+'watchnologintext'     => 'Tienes que tar [[Special:UserLogin|identificáu]] pa poder camudar la to llista de vixilancia.',
 'addedwatch'           => 'Añadida a la llista de vixilancia',
-'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina d\'alderique asociada van salite en negrina na llista de [[Special:Recentchanges|cambeos recientes]] pa que seya más fácil de vela.
+'addedwatchtext'       => 'Añadióse la páxina "[[:$1]]" a la to [[Special:Watchlist|llista de vixilancia]]. Los cambeos nesta páxina y la so páxina d\'alderique asociada van salite en negrina na llista de [[Special:RecentChanges|cambeos recientes]] pa que seya más fácil de vela.
 
 Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixilar" nel menú llateral.',
 'removedwatch'         => 'Eliminada de la llista de vixilancia',
@@ -1552,7 +1555,7 @@ La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]] | [
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
 navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
 'protectlogpage'              => 'Rexistru de proteiciones',
-'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:Protectedpages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
+'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',
 'modifiedarticleprotection'   => 'camudó\'l nivel de proteición de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexó "[[$1]]"',
@@ -1654,24 +1657,26 @@ $1",
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuciones del usuariu',
-'mycontris'     => 'Les mios contribuciones',
-'contribsub2'   => 'De $1 ($2)',
-'nocontribs'    => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
-'uctop'         => '(últimu cambéu)',
-'month'         => "Dende'l mes (y anteriores):",
-'year'          => "Dende l'añu (y anteriores):",
+'contributions'       => 'Contribuciones del usuariu',
+'contributions-title' => "Contribuciones d'usuariu pa $1",
+'mycontris'           => 'Les mios contribuciones',
+'contribsub2'         => 'De $1 ($2)',
+'nocontribs'          => "Nun s'atoparon cambeos que coincidan con esi criteriu.",
+'uctop'               => '(últimu cambéu)',
+'month'               => "Dende'l mes (y anteriores):",
+'year'                => "Dende l'añu (y anteriores):",
 
-'sp-contributions-newbies'     => 'Amosar namái les contribuciones de cuentes nueves',
-'sp-contributions-newbies-sub' => 'Namái les cuentes nueves',
-'sp-contributions-blocklog'    => 'Rexistru de bloqueos',
-'sp-contributions-search'      => 'Buscar contribuciones',
-'sp-contributions-username'    => "Direición IP o nome d'usuariu:",
-'sp-contributions-submit'      => 'Buscar',
+'sp-contributions-newbies'       => 'Amosar namái les contribuciones de cuentes nueves',
+'sp-contributions-newbies-sub'   => 'Namái les cuentes nueves',
+'sp-contributions-newbies-title' => "Contribuciones d'usuariu pa cuentes nueves",
+'sp-contributions-blocklog'      => 'Rexistru de bloqueos',
+'sp-contributions-search'        => 'Buscar contribuciones',
+'sp-contributions-username'      => "Direición IP o nome d'usuariu:",
+'sp-contributions-submit'        => 'Buscar',
 
 # What links here
 'whatlinkshere'            => "Lo qu'enllaza equí",
-'whatlinkshere-title'      => "Páxines qu'enllacien a $1",
+'whatlinkshere-title'      => 'Páxines qu\'enllacien a "$1"',
 'whatlinkshere-page'       => 'Páxina:',
 'linkshere'                => "Les páxines siguientes enllacien a '''[[:$1]]''':",
 'nolinkshere'              => "Nenguna páxina enllaza a '''[[:$1]]'''.",
@@ -1720,7 +1725,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'badipaddress'                    => 'IP non válida',
 'blockipsuccesssub'               => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'              => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
-<br />Mira na [[Special:Ipblocklist|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
+<br />Mira na [[Special:IPBlockList|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
 'ipb-edit-dropdown'               => 'Editar motivos de bloquéu',
 'ipb-unblock-addr'                => 'Desbloquiar $1',
 'ipb-unblock'                     => "Desbloquiar un nome d'usuariu o direición IP",
@@ -1752,7 +1757,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blocklogentry'                   => 'bloquió [[$1]] con una caducidá de $2 $3',
 'blocklogtext'                    => "Esti ye un rexistru de los bloqueos y desbloqueos d'usuarios.
 Les direcciones IP bloquiaes automáticamente nun salen equí.
-Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:Ipblocklist|llista d'IP bloquiaes]].",
+Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:IPBlockList|llista d'IP bloquiaes]].",
 'unblocklogentry'                 => 'desbloquió $1',
 'block-log-flags-anononly'        => 'namái usuarios anónimos',
 'block-log-flags-nocreate'        => 'creación de cuentes deshabilitada',
@@ -1793,8 +1798,8 @@ na base de datos. Por favor confirma que ye lo quies facer.',
 'locknoconfirm'       => 'Nun activasti la caxa de confirmación.',
 'lockdbsuccesssub'    => 'Proteición de la base de datos efeutuáu correutamente',
 'unlockdbsuccesssub'  => 'Eliminada la proteición de la base de datos',
-'lockdbsuccesstext'   => "Protexóse la base de datos.
-<br />Alcuérdate de [[Special:Unlockdb|desprotexela]] depués d'acabar el so mantenimientu.",
+'lockdbsuccesstext'   => "Candóse la base de datos.
+<br />Alcuérdate de [[Special:UnlockDB|descandala]] depués d'acabar el so mantenimientu.",
 'unlockdbsuccesstext' => 'La base de datos foi desprotexida.',
 'lockfilenotwritable' => "L'archivu de proteición de la base de datos nun ye escribible. Pa protexer o desprotexer la base de datos ésti tien que poder ser modificáu pol servidor.",
 'databasenotlocked'   => 'La base de datos nun ta protexida.',
@@ -2080,7 +2085,7 @@ $1",
 'show-big-image'       => 'Resolución completa',
 'show-big-image-thumb' => "<small>Tamañu d'esta previsualización: $1 × $2 píxeles</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
 'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',
@@ -2534,7 +2539,7 @@ Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'version-software-product'         => 'Productu',
 'version-software-version'         => 'Versión',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => "Ruta d'archivu",
 'filepath-page'    => 'Archivu:',
 'filepath-submit'  => 'Ruta',
@@ -2572,7 +2577,7 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Páxines especiales de redireición',
 'specialpages-group-spam'        => 'Ferramientes pa spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Páxina en blanco',
 'intentionallyblankpage' => 'Esta páxina ta en blanco arrémente',
 

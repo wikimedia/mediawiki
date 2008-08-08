@@ -430,7 +430,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'uploaddisabled'    => 'Ğafu it, yökläw sünderelgän kileş tora.',
 'uploadcorrupt'     => 'Bu birem yä üze watıq, yä quşımtası yaraqsız. Birem tikşerüdän soñ qabat yöklä zínhar.',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'   => 'fayl',
 'imagelist' => 'Räsem tezmäse',
 
@@ -497,7 +497,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'log'           => 'Köndelikler',
 'all-logs-page' => 'Barlıq köndelik',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'     => 'Bar bitlär',
 'nextpage'     => 'Kiläse bit ($1)',
 'prevpage'     => 'Ötken bet ($1)',
@@ -507,7 +507,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'categories'         => 'Cíıntıqlar',
 'categoriespagetext' => "Bu wiki'dä kiläse cíıntıqlar bar.",
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Körset',
 
 # E-mail user
@@ -695,7 +695,7 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 # Media information
 'show-big-image' => 'Towlı ölçemi',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Ezläw',
 'bydate'   => 'waqıt buyınça',
 

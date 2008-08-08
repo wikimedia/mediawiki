@@ -211,7 +211,7 @@ $messages = array(
 'ancientpages' => 'Artikolos mas viejos',
 'move'         => 'Trasladar',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Todas las pajinas',
 'alphaindexline' => '$1 a $2',
 'allarticles'    => 'Todos los artikolos',

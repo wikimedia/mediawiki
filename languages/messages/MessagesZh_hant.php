@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -586,7 +586,7 @@ $2',
 'newarticletext'                   => '您進入了一個尚未創建的頁面。
 要創建該頁面，請在下面的編輯框中輸入內容(詳情參見[[Help:幫助|幫助]])。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
-'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:Userlogin/signup|創建新帳號]]或[[Special:Userlogin|登入]]以避免在未來於其他匿名用戶混淆。''",
+'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:UserLogin/signup|創建新帳號]]或[[Special:UserLogin|登入]]以避免在未來於其他匿名用戶混淆。''",
 'noarticletext'                    => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist'        => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
@@ -1148,7 +1148,7 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
 預設中最後上傳的檔案會顯示在這個列表中的最頂處。
 點擊一欄的標題去改變這個排列。',
@@ -1365,7 +1365,7 @@ Template:消除歧義',
 'logempty'             => '在日誌中不存在匹配項。',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有頁面',
 'alphaindexline'    => '$1 到 $2',
 'nextpage'          => '下一頁($1)',
@@ -1388,12 +1388,12 @@ Template:消除歧義',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '給定顯示用戶條件:',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '找不到用戶。',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => '用戶群組權限',
 'listgrouprights-summary'         => '以下面是一個在這個wiki中定義出來的用戶權限清單，以及它們的存取權。
 更多有關個別權限的細節可以在[[{{MediaWiki:Listgrouprights-helppage}}|這裏]]找到。',
@@ -1442,7 +1442,7 @@ Template:消除歧義',
 'addedwatch'           => '加入到監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
-而且還會在[[Special:Recentchanges|最近更改]]中
+而且還會在[[Special:RecentChanges|最近更改]]中
 以'''粗體'''形式列出以使起更容易識別。",
 'removedwatch'         => '已停止監視',
 'removedwatchtext'     => '頁面「<nowiki>$1</nowiki>」已經從[[Special:Watchlist|您的監視頁面]]中移除。',
@@ -1714,7 +1714,7 @@ $1',
 'badipaddress'                    => 'IP地址不正確。',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:Ipblocklist|被封IP地址列表]]以覆審查封。',
+<br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審查封。',
 'ipb-edit-dropdown'               => '編輯查封原因',
 'ipb-unblock-addr'                => '解除封禁$1',
 'ipb-unblock'                     => '解除禁封用戶名或IP地址',
@@ -1744,7 +1744,7 @@ $1',
 'autoblocker'                     => '你的IP和被封了的 "$1" 是一樣的。封鎖原因： "$2".',
 'blocklogpage'                    => '封鎖記錄',
 'blocklogentry'                   => '[[$1]]已被查封 $3 ，終止時間為$2',
-'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:Ipblocklist|被查封的IP地址和用戶列表]]。',
+'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry'                 => '[[$1]]已被解封',
 'block-log-flags-anononly'        => '僅限匿名用戶',
 'block-log-flags-nocreate'        => '禁止此IP/用戶建立新帳戶',
@@ -2091,7 +2091,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''個檔案列表。",
 'newimages-summary'     => '這個特殊頁面中顯示最後已上傳的檔案。',
@@ -2419,7 +2419,7 @@ Variants for Chinese language
 郵件傳送員回應: $1',
 'confirmemail_invalid'     => '無效的確認碼，該代碼可能已經過期。',
 'confirmemail_needlogin'   => '您需要$1以確認您的郵箱位址。',
-'confirmemail_success'     => '您的郵箱已經被確認。您現在可以[[Special:Userlogin|登錄]]並使用此網站了。',
+'confirmemail_success'     => '您的郵箱已經被確認。您現在可以[[Special:UserLogin|登錄]]並使用此網站了。',
 'confirmemail_loggedin'    => '您的郵箱位址現下已被確認。',
 'confirmemail_error'       => '你的確認過程發生錯誤。',
 'confirmemail_subject'     => '{{SITENAME}}郵箱位址確認',
@@ -2554,7 +2554,7 @@ $1
 'version-software-product'         => '產品',
 'version-software-version'         => '版本',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔案名:',
 'filepath-submit'  => '搜尋路徑',
@@ -2592,7 +2592,7 @@ $1
 'specialpages-group-redirects'   => '重新定向特殊頁面',
 'specialpages-group-spam'        => '反垃圾工具',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => '空白頁面',
 'intentionallyblankpage' => '這個頁面是為空白，以用來作測試速度等用途',
 

@@ -936,7 +936,7 @@ $2',
 'anontalkpagetext'                 => "----''هذه صفحة نقاش لمستخدم مجهول لم يقم بإنشاء حساب بعد أو لا يستعمل ذلك الحساب.
 لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها.
 مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين.
-لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:Userlogin/signup|أنشئ حسابا]] أو [[Special:Userlogin|سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
+لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:UserLogin/signup|أنشئ حسابا]] أو [[Special:UserLogin|سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
 'noarticletext'                    => 'لا يوجد حاليا أي نص في هذه الصفحة، يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة].',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "$1" غير مسجل.
 من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
@@ -1553,7 +1553,7 @@ PICT # misc.
 'upload_source_url'  => '  (مسار صحيح، يمكن الوصول إليه)',
 'upload_source_file' => ' (ملف على حاسوبك)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
 افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
 الضغط على رأس العامود يغير الترتيب.',
@@ -1580,6 +1580,9 @@ PICT # misc.
 'filehist-comment'               => 'تعليق',
 'imagelinks'                     => 'وصلات',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} التالية تصل إلى هذا الملف:',
+'linkstoimage-more'              => 'أكثر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} إلى هذا الملف.
+القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} إلى هذا الملف فقط.
+[[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
 'nolinkstoimage'                 => 'لا توجد صفحات تصل لهذا الملف.',
 'morelinkstoimage'               => 'عرض [[Special:Whatlinkshere/$1|المزيد من الوصلات]] إلى هذا الملف.',
 'redirectstofile'                => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
@@ -1770,7 +1773,7 @@ PICT # misc.
 'logempty'             => 'لا توجد مدخلات مطابقة في السجل.',
 'log-title-wildcard'   => 'البحث عن عناوين تبدأ بهذا النص',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'كل الصفحات',
 'alphaindexline'    => '$1 إلى $2',
 'nextpage'          => 'الصفحة التالية ($1)',
@@ -1794,12 +1797,12 @@ PICT # misc.
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'عرض المستخدمين بدءا من:',
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary'         => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
 ربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.',
@@ -1844,7 +1847,7 @@ PICT # misc.
 'watchnologintext'     => 'يجب أن تكون [[Special:Userlogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
 'addedwatch'           => 'تمت الإضافة لقائمة المراقبة',
 'addedwatchtext'       => "تمت إضافة الصفحة  \"\$1\" إلى [[Special:Watchlist|قائمة المراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:Recentchanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
 'removedwatch'         => 'تمت الإزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'مراقبة',
@@ -2063,24 +2066,26 @@ $1',
 'blanknamespace' => '(رئيسي)',
 
 # Contributions
-'contributions' => 'مساهمات المستخدم',
-'mycontris'     => 'مساهماتي',
-'contribsub2'   => 'ل$1 ($2)',
-'nocontribs'    => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
-'uctop'         => '(أعلى)',
-'month'         => 'من شهر (وأقدم):',
-'year'          => 'من سنة (وأقدم):',
+'contributions'       => 'مساهمات المستخدم',
+'contributions-title' => 'مساهمات المستخدم ل$1',
+'mycontris'           => 'مساهماتي',
+'contribsub2'         => 'ل$1 ($2)',
+'nocontribs'          => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',
+'uctop'               => '(أعلى)',
+'month'               => 'من شهر (وأقدم):',
+'year'                => 'من سنة (وأقدم):',
 
-'sp-contributions-newbies'     => 'عرض مساهمات الحسابات الجديدة فقط',
-'sp-contributions-newbies-sub' => 'للحسابات الجديدة',
-'sp-contributions-blocklog'    => 'سجل المنع',
-'sp-contributions-search'      => 'بحث عن مساهمات',
-'sp-contributions-username'    => 'عنوان أيبي أو اسم مستخدم:',
-'sp-contributions-submit'      => 'بحث',
+'sp-contributions-newbies'       => 'عرض مساهمات الحسابات الجديدة فقط',
+'sp-contributions-newbies-sub'   => 'للحسابات الجديدة',
+'sp-contributions-newbies-title' => 'مساهمات المستخدم للحسابات الجديدة',
+'sp-contributions-blocklog'      => 'سجل المنع',
+'sp-contributions-search'        => 'بحث عن مساهمات',
+'sp-contributions-username'      => 'عنوان أيبي أو اسم مستخدم:',
+'sp-contributions-submit'        => 'بحث',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
-'whatlinkshere-title'      => 'الصفحات التي تصل إلى $1',
+'whatlinkshere-title'      => 'الصفحات التي تصل إلى "$1"',
 'whatlinkshere-page'       => 'الصفحة:',
 'linkshere'                => "الصفحات التالية تصل إلى '''[[:$1]]''':",
 'nolinkshere'              => "لا توجد صفحات تصل إلى '''[[:$1]]'''.",
@@ -2131,7 +2136,7 @@ $1',
 'badipaddress'                    => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub'               => 'تم المنع بنجاح',
 'blockipsuccesstext'              => 'تم منع [[Special:Contributions/$1|$1]].<br />
-انظر [[Special:Ipblocklist|قائمة منع الأيبي]] لمراجعة حالات المنع.',
+انظر [[Special:IPBlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.',
 'ipb-edit-dropdown'               => 'عدل أسباب المنع',
 'ipb-unblock-addr'                => 'رفع منع $1',
 'ipb-unblock'                     => 'رفع المنع عن مستخدم أو عنوان أيبي',
@@ -2164,7 +2169,7 @@ $1',
 'blocklogentry'                   => 'منع "[[$1]]" لفترة زمنية مدتها $2 $3',
 'blocklogtext'                    => 'هذا سجل بعمليات المنع ورفع المنع.
 عناوين الأيبي الممنوعة تلقائيا ليست معروضة.
-انظر [[Special:Ipblocklist|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
+انظر [[Special:IPBlockList|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
 'unblocklogentry'                 => 'رفع منع $1',
 'block-log-flags-anononly'        => 'المستخدمون المجهولون فقط',
 'block-log-flags-nocreate'        => 'إنشاء الحسابات ممنوع',
@@ -2521,7 +2526,7 @@ $1',
 'show-big-image'       => 'دقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
 'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة.',
@@ -3082,7 +3087,7 @@ $1',
 'version-software-product'         => 'المنتج',
 'version-software-version'         => 'النسخة',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'مسار ملف',
 'filepath-page'    => 'الملف:',
 'filepath-submit'  => 'المسار',
@@ -3121,7 +3126,7 @@ $1',
 'specialpages-group-redirects'   => 'صفحات خاصة تحول',
 'specialpages-group-spam'        => 'أدوات السبام',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'صفحة فارغة',
 'intentionallyblankpage' => 'هذه الصفحة تركت فارغة عن قصد',
 

@@ -372,7 +372,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'uploadlogpage' => 'Yuklash qaydlari',
 'uploadedimage' => '"[[$1]]" yuklandi',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Fayllar roʻyxati',
 
 # Image description page
@@ -436,7 +436,7 @@ Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
 'all-logs-page'     => 'Barcha qaydlar',
 'log-search-submit' => "O'tish",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Barcha sahifalar',
 'alphaindexline' => '$1 dan $2 ga',
 'nextpage'       => 'Keyingi sahifa ($1)',
@@ -460,7 +460,7 @@ Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
 'watchlistfor'         => "('''$1''' uchun)",
 'nowatchlist'          => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
 'addedwatch'           => "Kuzatuv ro'yxatiga qo'shildi",
-'addedwatchtext'       => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:Recentchanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
+'addedwatchtext'       => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:RecentChanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
 
 Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmaslik\" yozuvini bosing.",
 'removedwatch'         => "Kuzatuv ro'yxatidan o'chirildi",
@@ -606,7 +606,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'show-big-image'       => 'Asl hajmdagi tasvir',
 'show-big-image-thumb' => '<small>Ushbu koʻrinish oʻlchamlari: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Qidirish',
 
 # Metadata

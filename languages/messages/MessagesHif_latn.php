@@ -563,7 +563,7 @@ Ii kaaran se ham log ke IP address kaam me lae ke ii sadasya ke jaana jae hai.
 
 Ii rakam ke IP address ke dher sadasya kaam me lae sake hai.
 Agar aap ek anonymous user hai aur ii sochta hai ki bekar baat aap ke baare me karaa gais hai, tab
-[[Special:Userlogin/signup|create an account]] or [[Special:Userlogin|log in]] aage ke garrbarri roke khatir aur duusra anonymous users se mistake nai kare ke khatir .''",
+[[Special:UserLogin/signup|create an account]] or [[Special:UserLogin|log in]] aage ke garrbarri roke khatir aur duusra anonymous users se mistake nai kare ke khatir .''",
 'noarticletext'             => 'Ii time pe ii panna me kuch likhaa nai hai, aap saktaa hai [[Special:Search/{{PAGENAME}}|ii panna ke title khoje]] duusra panna me nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo].',
 'userpage-userdoesnotexist' => 'User account "$1" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
@@ -670,7 +670,7 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'uploadlogpage' => 'Suchi ke upload karo',
 'uploadedimage' => '"[[$1]]" ke upload kar dewa gae',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Chapa ke suchi',
 
 # Image description page
@@ -757,7 +757,7 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'log'                  => 'Suchi',
 'all-logs-page'        => 'Sab suchi',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Sab panna',
 'alphaindexline' => '$1 se $2',
 'nextpage'       => 'Aglaa panna ($1)',
@@ -780,7 +780,7 @@ Panna jon [[Special:Watchlist|aap ke dhyan suchi]] me hai '''bold''' karal hai."
 'addedwatch'           => 'Dhyan suchi me jorro',
 'addedwatchtext'       => "Panna \"[[:\$1]]\" ke aap ke [[Special:Watchlist|watchlist]] me jorr dewa gais hai.
 Ii panna ke aage ke badlao
-Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:Recentchanges|list of recent changes]] to make it easier to pick out.",
+Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
 'removedwatch'         => 'Dhyan suchi me se hatao',
 'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke dhyan suchi se hatae dewa gae hai.',
 'watch'                => 'Dekho',
@@ -969,7 +969,7 @@ Meharbani kar ke duusra naam choose karo.',
 'show-big-image'       => 'Puura resolution',
 'show-big-image-thumb' => '<small>Ii preview ke size: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Nawaa files ke gallery',
 
 # Bad image list

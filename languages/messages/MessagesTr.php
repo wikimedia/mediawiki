@@ -577,7 +577,7 @@ Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'newarticle'                       => '(Yeni)',
 'newarticletext'                   => "Henüz varolmayan bir sayfaya konulmuş bir bağlantıya tıkladınız. Bu sayfayı yaratmak için aşağıdaki metin kutusunu kullanınız. Bilgi için [[{{MediaWiki:Helppage}}|yardım sayfasına]] bakınız. Buraya yanlışlıkla geldiyseniz, programınızın '''Geri''' tuşuna tıklayınız.",
 'anontalkpagetext'                 => "----
-''Bu kayıtlı olmayan ya da kayıtlı adıyla sisteme giriş yapmamış bir kullanıcının mesaj sayfasıdır. Bu sebeple kimliği IP adresi ile gösterilmektedir. Bu tür IP adresleri diğer kişiler tarafından payşılabilir. Eğer siz de bir anonim kullanıcı iseniz ve yöneltilen yorumlar sizle ilgili değilse, [[Special:Userlogin|kayıt olun ya da sisteme girin ki]] ileride başka yanlış anlaşılma olmasın.''",
+''Bu kayıtlı olmayan ya da kayıtlı adıyla sisteme giriş yapmamış bir kullanıcının mesaj sayfasıdır. Bu sebeple kimliği IP adresi ile gösterilmektedir. Bu tür IP adresleri diğer kişiler tarafından payşılabilir. Eğer siz de bir anonim kullanıcı iseniz ve yöneltilen yorumlar sizle ilgili değilse, [[Special:UserLogin|kayıt olun ya da sisteme girin ki]] ileride başka yanlış anlaşılma olmasın.''",
 'noarticletext'                    => 'Bu sayfa boştur. Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]] veya bu sayfayı siz  [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazabilirsiniz].',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
@@ -1010,7 +1010,7 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
 'imagelist'             => 'Resim listesi',
@@ -1180,7 +1180,7 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'logempty'             => 'Kayıtlarda eşleşen bilgi yok.',
 'log-title-wildcard'   => 'Bu metinle başlayan başlıklar ara',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tüm sayfalar',
 'alphaindexline'    => '$1 sayfası ile $2 sayfası arasındaki sayfaların listesi',
 'nextpage'          => 'Sonraki sayfa ($1)',
@@ -1201,11 +1201,11 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'special-categories-sort-count' => 'sayılarına göre sırala',
 'special-categories-sort-abc'   => 'alfabetik olarak sırala',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Göster',
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'   => 'grup',
 'listgrouprights-rights'  => 'Haklar',
 'listgrouprights-members' => '(üyelerin listesi)',
@@ -1244,7 +1244,7 @@ Yanıt alabilmeniz için "From" (Kimden) kısmına tercih formunda belirttiğini
 
 Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
 
-Kolayca seçilebilmeleri için de [[Special:Recentchanges|son değişiklikler listesi]] başlığı altında koyu harflerle listeleneceklerdir.
+Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler listesi]] başlığı altında koyu harflerle listeleneceklerdir.
 
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
@@ -1472,7 +1472,7 @@ $1',
 'badipaddress'                => 'Geçersiz IP adresi',
 'blockipsuccesssub'           => 'IP adresi engelleme işlemi başarılı oldu',
 'blockipsuccesstext'          => '"$1" engellendi.
-<br />[[Special:Ipblocklist|IP adresi engellenenler]] listesine bakınız.',
+<br />[[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
 'ipb-edit-dropdown'           => 'Engelleme nedenleri düzenle',
 'ipb-unblock-addr'            => '$1 için engellemeyi kaldır',
 'ipb-unblock'                 => 'Engellemeyi kaldır',
@@ -1499,7 +1499,7 @@ $1',
 'autoblocker'                 => 'Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz "[[User:$1|$1]]" kullanıcısı tarafından  kullanılmıştır. $1 isimli kullanıcının engellenmesi için verilen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'                => 'Erişim engelleme kayıtları',
 'blocklogentry'               => '[[$1]], $2 $3 tarihleri arası süresince engellendi',
-'blocklogtext'                => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:Ipblocklist|IP engelleme listesi]] sayfasından görebilirsiniz.',
+'blocklogtext'                => 'Burada kullanıcı erişimine yönelik engelleme ya da engelleme kaldırma kayıtları listelenmektedir. Otomatik  IP adresi engellemeleri listeye dahil değildir. Şu anda erişimi durdurulmuş kullanıcıları [[Special:IPBlockList|IP engelleme listesi]] sayfasından görebilirsiniz.',
 'unblocklogentry'             => '$1 kullanıcının engellemesi kaldırıldı',
 'block-log-flags-anononly'    => 'sadece anonim kullanıcılar',
 'block-log-flags-nocreate'    => 'hesap yaratımı engellendi',
@@ -1738,7 +1738,7 @@ Lütfen başka bir isim deneyiniz.',
 'show-big-image'       => 'Tam çözünürlük',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Yeni resimler',
 'imagelisttext'         => "Aşağıdaki liste '''$2''' göre dizilmiş '''$1''' adet dosyayı göstermektedir.",
 'newimages-summary'     => 'Bu özel sayfa, en son yüklenen dosyaları göstermektedir.',
@@ -2069,7 +2069,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'version-software-product'         => 'Ürün',
 'version-software-version'         => 'Versiyon',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Dosyanın konumu',
 'filepath-page'   => 'Dosya adı:',
 'filepath-submit' => 'Konum',

@@ -822,7 +822,7 @@ Ha tévedésből jöttél ide, csak nyomd meg a böngésző '''Vissza/Back''' go
 'anontalkpagetext'                 => "----''Ez egy olyan anonim szerkesztő vitalapja, aki még nem regisztrált, vagy csak nem jelentkezett be.
 Ezért az IP-címét használjuk az azonosítására.
 Ugyanazon az IP-címen egy sor szerkesztő osztozhat az idők folyamán.
-Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Special:Userlogin/signup|regisztrálj]] vagy ha már regisztráltál, [[Special:Userlogin|jelentkezz be]], hogy ne keverjenek össze másokkal.''",
+Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Special:UserLogin/signup|regisztrálj]] vagy ha már regisztráltál, [[Special:UserLogin|jelentkezz be]], hogy ne keverjenek össze másokkal.''",
 'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget. [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]], vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztő. Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
@@ -1403,7 +1403,7 @@ PICT # ált.
 'upload_source_url'  => ' (egy érvényes, nyilvánosan elérhető URL)',
 'upload_source_file' => ' (egy fájl a számítógépeden)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
 A legutóbb feltöltött fájlok vannak a lista elején.
 Az oszlopok címeire kattintva változtathatod meg a rendezést.',
@@ -1430,6 +1430,9 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'filehist-comment'               => 'Megjegyzés',
 'imagelinks'                     => 'Képhivatkozások',
 'linkstoimage'                   => 'Az alábbi {{PLURAL:$1|lap hivatkozik|lapok hivatkoznak}} erre a fájlra:',
+'linkstoimage-more'              => 'Több, mint {{PLURAL:$1|egy|$1}} oldal hivatkozik erre a fájlra.
+A következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmazza.
+A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'nolinkstoimage'                 => 'Erre a képre nem hivatkozik lap.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|További hivatkozások]] megtekintése',
 'redirectstofile'                => 'A következő {{PLURAL:$1|fájl|$1 fájl}} van átirányítva erre a névre:',
@@ -1615,7 +1618,7 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 'logempty'             => 'Nincs illeszkedő naplóbejegyzés.',
 'log-title-wildcard'   => 'Így kezdődő címek keresése',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Az összes lap listája',
 'alphaindexline'    => '$1 – $2',
 'nextpage'          => 'Következő lap ($1)',
@@ -1638,12 +1641,12 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 'special-categories-sort-count' => 'rendezés elemszám szerint',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Szerkesztők listázása a következő névtől kezdve:',
 'listusers-submit'   => 'Megjelenítés',
 'listusers-noresult' => 'Nem található szerkesztő.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Szerkesztői csoportok jogai',
 'listgrouprights-summary'         => 'Lenn láthatóak a wikiben létező szerkesztői csoportok, valamint az azokhoz tartozó jogok.
 Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhatsz.',
@@ -1688,7 +1691,7 @@ nem kíván másoktól leveleket kapni.',
 'watchnologintext'     => 'Ahhoz, hogy figyelőlistád lehessen, [[Special:Userlogin|be kell lépned]].',
 'addedwatch'           => 'Figyelőlistához hozzáfűzve',
 'addedwatchtext'       => "A(z) „[[:$1]]” lapot hozzáadtam a [[Special:Watchlist|figyelőlistádhoz]].
-Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:Recentchanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
+Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz látni, és a lap '''vastagon''' fog szerepelni a [[Special:RecentChanges|friss változtatások]] lapon, hogy könnyen észrevehető legyen.",
 'removedwatch'         => 'Figyelőlistáról eltávolítva',
 'removedwatchtext'     => 'A „<nowiki>$1</nowiki>” lapot eltávolítottam a figyelőlistáról.',
 'watch'                => 'Lap figyelése',
@@ -1903,20 +1906,22 @@ $1',
 'blanknamespace' => '(Fő)',
 
 # Contributions
-'contributions' => 'Szerkesztő közreműködései',
-'mycontris'     => 'Közreműködéseim',
-'contribsub2'   => '$1 ($2)',
-'nocontribs'    => 'Nem található a feltételeknek megfelelő változtatás.',
-'uctop'         => ' (utolsó)',
-'month'         => 'E hónap végéig:',
-'year'          => 'Eddig az évig:',
+'contributions'       => 'Szerkesztő közreműködései',
+'contributions-title' => '$1 közreműködései',
+'mycontris'           => 'Közreműködéseim',
+'contribsub2'         => '$1 ($2)',
+'nocontribs'          => 'Nem található a feltételeknek megfelelő változtatás.',
+'uctop'               => ' (utolsó)',
+'month'               => 'E hónap végéig:',
+'year'                => 'Eddig az évig:',
 
-'sp-contributions-newbies'     => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
-'sp-contributions-newbies-sub' => 'Új szerkesztők lapjai',
-'sp-contributions-blocklog'    => 'Blokkolási napló',
-'sp-contributions-search'      => 'Közreműködések szűrése',
-'sp-contributions-username'    => 'IP-cím vagy felhasználónév:',
-'sp-contributions-submit'      => 'Keresés',
+'sp-contributions-newbies'       => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
+'sp-contributions-newbies-sub'   => 'Új szerkesztők lapjai',
+'sp-contributions-newbies-title' => 'Új szerkesztők közreműködései',
+'sp-contributions-blocklog'      => 'Blokkolási napló',
+'sp-contributions-search'        => 'Közreműködések szűrése',
+'sp-contributions-username'      => 'IP-cím vagy felhasználónév:',
+'sp-contributions-submit'        => 'Keresés',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',
@@ -1968,7 +1973,7 @@ $1',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
-<br />Lásd a [[Special:Ipblocklist|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+<br />Lásd a [[Special:IPBlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
 'ipb-edit-dropdown'               => 'Blokkolási okok szerkesztése',
 'ipb-unblock-addr'                => '$1 blokkjának feloldása',
 'ipb-unblock'                     => 'Felhasználónév vagy IP-cím blokkolásának feloldása',
@@ -1998,7 +2003,7 @@ $1',
 'autoblocker'                     => "Az általad használt IP-cím autoblokkolva van, mivel korábban a kitiltott „[[User:$1|$1]]” használta. ($1 blokkolásának indoklása: „'''$2'''”) Ha nem te vagy $1, lépj kapcsolatba valamelyik adminisztrátorral, és kérd az autoblokk feloldását. Ne felejtsd el megírni neki, hogy kinek szóló blokkba ütköztél bele!",
 'blocklogpage'                    => 'Blokkolási_napló',
 'blocklogentry'                   => '„$1” blokkolva $2 $3 időtartamra',
-'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:Ipblocklist|a jelenleg életben lévő blokkok listáját]].',
+'blocklogtext'                    => 'Ez a felhasználókra helyezett blokkoknak és azok feloldásának listája. Az IP-autoblokkok nem szerepelnek a listában. Lásd még [[Special:IPBlockList|a jelenleg életben lévő blokkok listáját]].',
 'unblocklogentry'                 => '„$1” blokkolása feloldva',
 'block-log-flags-anononly'        => 'csak névtelen felhasználók',
 'block-log-flags-nocreate'        => 'a fióklétrehozás letiltott',
@@ -2334,7 +2339,7 @@ $1',
 'show-big-image'       => 'A kép nagyfelbontású változata',
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Új képek galériája',
 'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
 'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.',
@@ -2783,7 +2788,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-software-product'         => 'Termék',
 'version-software-version'         => 'Verzió',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Fájlelérés',
 'filepath-page'    => 'Fájl:',
 'filepath-submit'  => 'Elérés',
@@ -2821,7 +2826,7 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'specialpages-group-redirects'   => 'Átirányító speciális lapok',
 'specialpages-group-spam'        => 'Spam eszközök',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Üres lap',
 'intentionallyblankpage' => 'Ez a lap szándékosan maradt üresen',
 

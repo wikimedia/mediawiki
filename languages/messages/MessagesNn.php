@@ -752,7 +752,7 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 * Om du er ny her er det tilrådd å sjå på [[{{MediaWiki:Helppage}}|hjelpesida]] først.
 * Om du lagrar ei testside, vil du ikkje kunne slette henne sjølv.
 * Dersom du ikkje ønskjer å endre sida, kan du utan risiko klikke på '''attende'''-knappen i nettlesaren din.",
-'anontalkpagetext'                 => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:Userlogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
+'anontalkpagetext'                 => "---- ''Dette er ei diskusjonsside for ein anonym brukar som ikkje har logga inn på eigen brukarkonto. Vi er difor nøydde til å bruke den numeriske IP-adressa knytt til internettoppkoplinga åt brukaren. Same IP-adressa kan vera knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext'                    => "Det er ikkje noko tekst på denne sida. Du kan [[Special:Search/{{PAGENAME}}|søke etter henne]] i andre sider, eller klikke på '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} endre]''' for å opprette sida.",
 'userpage-userdoesnotexist'        => 'Brukarkontoen «$1» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'clearyourcache'                   => "'''Merk: Etter lagring vil det kanskje vera naudsynt at nettlesaren slettar mellomlageret sitt for at endringane skal tre i kraft.''' '''Firefox og Safari:''' Hald ''Shift'' nede medan du trykkjer anten ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac). '''Konqueror:''' Trykk ''Oppdater'' eller på ''F5''. '''Opera:''' Tøm mellomlageret i ''Verktøy → Innstillingar''. '''Internet Explorer:''' Hald nede ''Ctrl'' medan du trykkjer ''Oppdater'', eler trykk ''Ctrl-F5.''",
@@ -1269,7 +1269,7 @@ Sletteloggen for fila finn du her:",
 'upload_source_url'  => ' (ei gyldig, offentleg tilgjengeleg nettadresse)',
 'upload_source_file' => ' (ei fil på datamaskina di)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Denne spesialsida viser alle opplasta filer. Dei sist opplasta filene vert viste på toppen som standard. Klikk på ei kolonneoverskrift for å byte sorteringsmetode.',
 'imagelist_search_for'  => 'Søk etter filnamn:',
 'imgfile'               => 'fil',
@@ -1463,7 +1463,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'logempty'             => 'Ingen treff i loggane.',
 'log-title-wildcard'   => 'Søk i titlar som byrjar med denne teksten',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alle sider',
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Neste side ($1)',
@@ -1486,12 +1486,12 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'special-categories-sort-count' => 'sorter etter storleik',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Vis brukarnamna frå og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Tilgangar for brukargrupper',
 'listgrouprights-summary'  => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane. Meir informasjon om dei ulike typane tilgang kan ein finne [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
 'listgrouprights-group'    => 'Gruppe',
@@ -1528,7 +1528,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'watchnologin'         => 'Ikkje innlogga',
 'watchnologintext'     => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',
-'addedwatchtext'       => "Sida «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:Recentchanges|siste endringar]]» for å gjera deg merksam på henne.
+'addedwatchtext'       => "Sida «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
@@ -1786,7 +1786,7 @@ $1',
 'badipaddress'                => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'           => 'Blokkering utført',
 'blockipsuccesstext'          => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
-Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
+Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringar.',
 'ipb-edit-dropdown'           => 'Endre grunnane for blokkering',
 'ipb-unblock-addr'            => 'Opphev blokkeringa av $1',
 'ipb-unblock'                 => 'Opphev blokkeringa av eit brukarnamn eller ei IP-adresse',
@@ -1817,7 +1817,7 @@ Sjå [[Special:Ipblocklist|blokkeringslista]] for alle blokkeringar.',
 'blocklogpage'                => 'Blokkeringslogg',
 'blocklogentry'               => 'Blokkerte «[[$1]]» med opphøyrstid $2 $3',
 'blocklogtext'                => 'Dette er ein logg over blokkeringar og oppheving av blokkeringar gjorde.
-IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Ipblocklist|blokkeringslista]] for alle aktive blokkeringar.',
+IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPBlockList|blokkeringslista]] for alle aktive blokkeringar.',
 'unblocklogentry'             => 'oppheva blokkering av «$1»',
 'block-log-flags-anononly'    => 'berre anonyme brukarar',
 'block-log-flags-nocreate'    => 'kontooppretting slått av',
@@ -2096,7 +2096,7 @@ $1',
 'show-big-image'       => 'Full oppløysing',
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Filgalleri',
 'imagelisttext'         => 'Her er ei liste med {{PLURAL:$1|éi fil sortert|$1 filer sorterte}} $2.',
 'newimages-summary'     => 'Denne spesialsida syner dei sist opplasta filene.',
@@ -2544,7 +2544,7 @@ Du kan òg [[Special:Watchlist/raw|endre overvakingslista i råformat]].',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Versjon',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Filsti',
 'filepath-page'   => 'Fil:',
 'filepath-submit' => 'Sti',

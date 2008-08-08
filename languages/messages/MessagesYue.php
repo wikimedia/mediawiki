@@ -669,7 +669,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'newarticletext'                   => "你連連過嚟嘅頁面重未存在。
 要起版新嘅，請你喺下面嗰格度輸入。(睇睇[[{{MediaWiki:Helppage}}|自助版]]拎多啲資料。)
 如果你係唔覺意嚟到呢度，撳一次你個瀏覽器'''返轉頭'''個掣。",
-'anontalkpagetext'                 => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:Userlogin/signup|開一個新戶口]]或[[Special:Userlogin|登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
+'anontalkpagetext'                 => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:UserLogin/signup|開一個新戶口]]或[[Special:UserLogin|登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext'                    => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。''' '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取； '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
@@ -1234,7 +1234,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'upload_source_url'  => ' （啱嘅，公開嘅網址）',
 'upload_source_file' => ' （你部電腦裏面嘅一個檔案）',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => '呢個特別版顯示全部上載過嘅檔案。
 響預設最後上載嘅檔案會顯示響呢個表嘅最頂。
 撳一欄嘅標題去改個排列。',
@@ -1444,7 +1444,7 @@ Template:搞清楚',
 'logempty'             => '日誌中冇符合嘅項目。',
 'log-title-wildcard'   => '搵以呢個文字開始嘅標題',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有頁面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下一頁 ($1)',
@@ -1467,12 +1467,12 @@ Template:搞清楚',
 'special-categories-sort-count' => '跟數量排',
 'special-categories-sort-abc'   => '跟字母排',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '顯示由呢個字開始嘅用戶：',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '搵唔到用戶。',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => '用戶組權限',
 'listgrouprights-summary'         => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
 更多有關個別權限嘅[[{{MediaWiki:Listgrouprights-helppage}}|更多細節]]可以響嗰度搵到。',
@@ -1516,7 +1516,7 @@ Template:搞清楚',
 'watchnologintext'     => '你必須先[[Special:Userlogin|登入]]至可以更改你嘅監視清單。',
 'addedwatch'           => '加到監視清單度',
 'addedwatchtext'       => "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
-呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:Recentchanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。",
+呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:RecentChanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。",
 'removedwatch'         => '已經由監視清單中刪除',
 'removedwatchtext'     => '頁面「[[:$1]]」已經喺[[Special:Watchlist|你嘅監視清單]]度刪除。',
 'watch'                => '監視',
@@ -1785,7 +1785,7 @@ $1',
 'badipaddress'                    => '無效嘅IP地址',
 'blockipsuccesssub'               => '封鎖成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經封鎖。<br />
-去[[Special:Ipblocklist|IP封鎖清單]]睇返封鎖名單。',
+去[[Special:IPBlockList|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'               => '改封鎖原因',
 'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解封一個用戶名或IP地址',
@@ -1815,7 +1815,7 @@ $1',
 'autoblocker'                     => '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\\嘅封鎖原因係: 「$2」',
 'blocklogpage'                    => '封鎖日誌',
 'blocklogentry'                   => '已封鎖[[$1]]，到期時間為$2 $3',
-'blocklogtext'                    => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:Ipblocklist|IP封鎖名單]]睇現時生效嘅封鎖名單',
+'blocklogtext'                    => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:IPBlockList|IP封鎖名單]]睇現時生效嘅封鎖名單',
 'unblocklogentry'                 => '已經解封$1',
 'block-log-flags-anononly'        => '只限匿名用戶',
 'block-log-flags-nocreate'        => '停用開新戶口',
@@ -2154,7 +2154,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>呢個預覽嘅大細： $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新檔案畫廊',
 'imagelisttext'         => "以下係'''$1'''個檔案$2排序嘅清單。",
 'newimages-summary'     => '呢個特別頁顯示最後上載咗嘅檔案。',
@@ -2491,7 +2491,7 @@ Variants for Chinese language
 郵件遞送員回應咗：$1',
 'confirmemail_invalid'     => '無效嘅確認碼。個代碼可能已經過咗期。',
 'confirmemail_needlogin'   => '你需要先$1去確認你嘅電郵地址。',
-'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以[[Special:Userlogin|登入]]同盡情享受wiki啦。',
+'confirmemail_success'     => '你嘅電郵地址已經得到確認。你而家可以[[Special:UserLogin|登入]]同盡情享受wiki啦。',
 'confirmemail_loggedin'    => '你嘅電郵地址現已得到確認。',
 'confirmemail_error'       => '儲存你嘅確認資料嘅時候有小小嘢發生咗意外。',
 'confirmemail_subject'     => '{{SITENAME}}電郵地址確認',
@@ -2625,7 +2625,7 @@ $1',
 'version-software-product'         => '產品',
 'version-software-version'         => '版本',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔名:',
 'filepath-submit'  => '搵路徑',
@@ -2663,7 +2663,7 @@ $1',
 'specialpages-group-redirects'   => '跳轉特別頁',
 'specialpages-group-spam'        => '反垃圾工具',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => '空白頁',
 'intentionallyblankpage' => '呢一版係留空咗嘅，用來作測速等用嘅',
 

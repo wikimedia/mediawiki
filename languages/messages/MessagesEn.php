@@ -1736,7 +1736,7 @@ You may want to try at a less busy time.',
 'upload_source_url'  => ' (a valid, publicly accessible URL)',
 'upload_source_file' => ' (a file on your computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'This special page shows all uploaded files.
 By default the last uploaded files are shown at top of the list.
 A click on a column header changes the sorting.',
@@ -1993,7 +1993,7 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'All pages',
 'allpages-summary'  => '', # do not translate or duplicate this message to other languages
 'alphaindexline'    => '$1 to $2',
@@ -2024,7 +2024,7 @@ It may contain one or more characters which cannot be used in titles.',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'User group rights',
 'listgrouprights-summary'         => 'The following is a list of user groups defined on this wiki, with their associated access rights.
 There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',

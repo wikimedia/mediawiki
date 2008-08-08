@@ -15,8 +15,8 @@
  * @author Broc
  * @author Ramac
  * @author .anaconda
- * @author Xpensive
  * @author S.Örvarr.S
+ * @author Xpensive
  * @author Nick1915
  * @author Tonyfroio
  * @author Pietrodn
@@ -399,7 +399,7 @@ I seguenti collegamenti sono in lingua inglese:
 'nstab-user'      => 'Utente',
 'nstab-media'     => 'File multimediale',
 'nstab-special'   => 'Speciale',
-'nstab-project'   => 'Pagina di servizio',
+'nstab-project'   => 'pagina di servizio',
 'nstab-image'     => 'Immagine',
 'nstab-mediawiki' => 'Messaggio',
 'nstab-template'  => 'Template',
@@ -431,7 +431,7 @@ MySQL ha restituito il seguente errore "$3: $4".',
 'cachederror'          => "Quella presentata di seguito è una copia ''cache'' della pagina richiesta; potrebbe quindi non essere aggiornata.",
 'laggedslavemode'      => 'Attenzione: la pagina potrebbe non contenere gli ultimi aggiornamenti.',
 'readonly'             => 'Database bloccato',
-'enterlockreason'      => 'Indica il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso.',
+'enterlockreason'      => 'Indica il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso',
 'readonlytext'         => "In questo momento il database è bloccato e non sono possibili aggiunte o modifiche alle pagine. Il blocco è di solito legato a operazioni di manutenzione ordinaria, al termine delle quali il database è di nuovo accessibile.
 
 L'amministratore di sistema che ha imposto il blocco ha fornito questa spiegazione: $1",
@@ -562,7 +562,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'throttled-mailpassword'     => 'Una nuova password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror'                  => "Errore nell'invio del messaggio: $1",
-'acct_creation_throttle_hit' => 'Siamo spiacenti, ma hai già creato $1 account. Non puoi crearne altri.',
+'acct_creation_throttle_hit' => 'Spiacente, hai già creato $1 account. Non puoi crearne altri.',
 'emailauthenticated'         => "L'indirizzo e-mail è stato confermato il $1.",
 'emailnotauthenticated'      => "L'indirizzo e-mail non è stato ancora confermato. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
 'noemailprefs'               => 'Indicare un indirizzo e-mail per attivare queste funzioni.',
@@ -672,7 +672,7 @@ Si prega di specificare il numero del blocco (ID #$5) in qualsiasi richiesta di 
 Se si desidera creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto
 (fare riferimento alle [[{{MediaWiki:Helppage}}|pagine di aiuto]] per maggiori informazioni).
 Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
-'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:Userlogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
+'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin|crea un nuovo accesso o entra]] con quello che già hai per evitare di essere confuso con altri utenti anonimi in futuro''",
 'noarticletext'                    => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora].',
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
@@ -1009,13 +1009,13 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 
 # Groups
 'group'               => 'Gruppo:',
-'group-user'          => 'Utenti',
+'group-user'          => 'Utenti registrati',
 'group-autoconfirmed' => 'Utenti autoconvalidati',
 'group-bot'           => 'Bot',
 'group-sysop'         => 'Amministratori',
 'group-bureaucrat'    => 'Burocrati',
 'group-suppress'      => 'Oversight',
-'group-all'           => '(utenti)',
+'group-all'           => 'Utenti',
 
 'group-user-member'          => 'Utente',
 'group-autoconfirmed-member' => 'Utente autoconvalidato',
@@ -1194,7 +1194,7 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'destfilename'                => 'Nome del file di destinazione:',
 'upload-maxfilesize'          => 'Dimensione massima del file: $1',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
-'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare $1 prima di caricarlo di nuovo.',
+'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare il log delle $1 prima di caricarlo di nuovo.',
 'upload-wasdeleted'           => "'''Attenzione: stai caricando un file che in precedenza è stato cancellato.'''
 
 Verifica per favore l'opportunità di continuare con il caricamento di questo file.
@@ -1234,7 +1234,7 @@ PICT # misc.
 'upload_source_url'  => ' (una URL corretta e accessibile)',
 'upload_source_file' => ' (un file sul proprio computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Questa pagina speciale mostra tutti i file caricati.
 I file caricati più di recente vengono mostrati all'inizio della lista.
 Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
@@ -1440,7 +1440,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'logempty'             => 'Il log non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tutte le pagine',
 'alphaindexline'    => 'da $1 a $2',
 'nextpage'          => 'Pagina successiva ($1)',
@@ -1463,12 +1463,12 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'special-categories-sort-count' => 'ordina per numero',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mostra gli utenti a partire da:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Diritti del gruppo utente',
 'listgrouprights-summary'         => "Di seguito sono elencati i gruppi utente definiti per questo wiki, con i diritti d'accesso loro associati.
 Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
@@ -1513,7 +1513,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'addedwatch'           => 'Pagina aggiunta alla lista degli osservati speciali',
 'addedwatchtext'       => "La pagina \"[[:\$1]]\" è stata aggiunta alla propria [[Special:Watchlist|lista degli osservati speciali]]. 
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
-il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:Recentchanges|ultime modifiche]] per renderlo più visibile. 
+il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile. 
 
 Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osservati speciali, fare clic su \"non seguire\" nella barra in alto.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
@@ -1590,12 +1590,13 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 'historywarning'              => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
 'confirmdeletetext'           => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'              => 'Azione completata',
-'deletedtext'                 => "La pagina \"'''{{FULLPAGENAME}}'''\" è stata cancellata ([[Special:Undelete/{{FULLPAGENAME}}|ripristina]]). Consultare il log delle \$2 per l'elenco delle pagine cancellate di recente.",
+'deletedtext'                 => 'La pagina "$1" è stata cancellata. 
+Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'              => 'ha cancellato "[[$1]]"',
 'suppressedarticle'           => 'soppresso "[[$1]]"',
 'dellogpage'                  => 'Cancellazioni',
 'dellogpagetext'              => 'Di seguito sono elencate le pagine cancellate di recente.',
-'deletionlog'                 => 'Log delle cancellazioni',
+'deletionlog'                 => 'cancellazioni',
 'reverted'                    => 'Ripristinata la versione precedente',
 'deletecomment'               => 'Motivo della cancellazione:',
 'deleteotherreason'           => 'Altra motivazione o motivazione aggiuntiva:',
@@ -1604,7 +1605,7 @@ Per dare il tuo feedback e ricevere ulteriore assistenza:
 ** Richiesta dell'autore
 ** Violazione di copyright
 ** Vandalismo",
-'delete-edit-reasonlist'      => 'Modifica le motivazioni per la cancellazione',
+'delete-edit-reasonlist'      => 'Modifica i motivi di cancellazione',
 'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
 'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
 'rollback'                    => 'Annulla le modifiche',
@@ -1712,20 +1713,22 @@ $1',
 'blanknamespace' => '(Principale)',
 
 # Contributions
-'contributions' => 'Contributi utente',
-'mycontris'     => 'Miei contributi',
-'contribsub2'   => 'Per $1 ($2)',
-'nocontribs'    => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
-'uctop'         => ' (ultima per la pagina)',
-'month'         => 'Dal mese (e precedenti):',
-'year'          => "Dall'anno (e precedenti):",
+'contributions'       => 'Contributi utente',
+'contributions-title' => 'Contributi per $1',
+'mycontris'           => 'Miei contributi',
+'contribsub2'         => 'Per $1 ($2)',
+'nocontribs'          => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
+'uctop'               => ' (ultima per la pagina)',
+'month'               => 'Dal mese (e precedenti):',
+'year'                => "Dall'anno (e precedenti):",
 
-'sp-contributions-newbies'     => 'Mostra solo i contributi dei nuovi utenti',
-'sp-contributions-newbies-sub' => 'Per i nuovi utenti',
-'sp-contributions-blocklog'    => 'Blocchi',
-'sp-contributions-search'      => 'Ricerca contributi',
-'sp-contributions-username'    => 'Indirizzo IP o nome utente:',
-'sp-contributions-submit'      => 'Ricerca',
+'sp-contributions-newbies'       => 'Mostra solo i contributi dei nuovi utenti',
+'sp-contributions-newbies-sub'   => 'Per i nuovi utenti',
+'sp-contributions-newbies-title' => 'Contributi dei nuovi utenti',
+'sp-contributions-blocklog'      => 'blocchi',
+'sp-contributions-search'        => 'Ricerca contributi',
+'sp-contributions-username'      => 'Indirizzo IP o nome utente:',
+'sp-contributions-submit'        => 'Ricerca',
 
 # What links here
 'whatlinkshere'            => 'Puntano qui',
@@ -1785,7 +1788,7 @@ Per sbloccare qualcuno utilizza la [[{{ns:Special}}:Ipblocklist|lista degli IP e
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
-Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocchi attivi.',
+Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
 'ipb-edit-dropdown'               => 'Modifica i motivi per il blocco',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => 'Sblocca un utente o un indirizzo IP',
@@ -1800,9 +1803,9 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'ipblocklist-username'            => 'Nome utente o indirizzo IP:',
 'ipblocklist-submit'              => 'Ricerca',
-'blocklistline'                   => '$1, $2 ha bloccato $3 fino a $4',
+'blocklistline'                   => '$1, $2 ha bloccato $3 ($4)',
 'infiniteblock'                   => 'infinito',
-'expiringblock'                   => 'fino al $1',
+'expiringblock'                   => 'scadenza: $1',
 'anononlyblock'                   => 'solo anonimi',
 'noautoblockblock'                => 'blocco automatico disabilitato',
 'createaccountblock'              => 'creazione account bloccata',
@@ -1815,7 +1818,7 @@ Consultare la [[Special:Ipblocklist|lista degli IP bloccati]] per vedere i blocc
 'autoblocker'                     => "Bloccato automaticamente perché l'indirizzo IP è condiviso con l'utente \"[[User:\$1|\$1]]\". Il blocco dell'utente \$1 è stato imposto per il seguente motivo: \"'''\$2'''\".",
 'blocklogpage'                    => 'Blocchi',
 'blocklogentry'                   => 'ha bloccato [[$1]] per un periodo di $2 $3',
-'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:Ipblocklist|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
+'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:IPBlockList|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
 'unblocklogentry'                 => 'ha sbloccato $1',
 'block-log-flags-anononly'        => 'solo utenti anonimi',
 'block-log-flags-nocreate'        => 'creazione account bloccata',
@@ -2148,7 +2151,7 @@ $1',
 'show-big-image'       => 'Versione ad alta risoluzione',
 'show-big-image-thumb' => '<small>Dimensioni di questa anteprima: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galleria dei nuovi file',
 'imagelisttext'         => "La lista presentata di seguito, costituita da {{PLURAL:$1|un file|'''$1''' file}}, è ordinata per $2.",
 'newimages-summary'     => 'Questa pagina speciale mostra i file caricati più di recente.',
@@ -2512,9 +2515,18 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'redirectingto' => 'Reindirizzamento a [[$1]]...',
 
 # action=purge
-'confirm_purge'        => 'Si desidera pulire la cache di questa pagina?
+'confirm_purge'        => "Vuoi pulire la cache di questa pagina?  $1
 
-$1',
+La ''cache'' è un archivio che contiene una copia provvisoria delle pagine web.
+
+Ogni volta che apri una pagina, il software si connette al database e crea al momento la pagina che viene inviata al tuo ''browser'' e visualizzata sul tuo computer. Questo processo impiega tempo e risorse. 
+
+Per le pagine più frequentemente richieste, questo processo risulterebbe troppo oneroso e perciò ingestibile. Per ovviare al problema il software crea automaticamente una copia della pagina che viene conservata per un certo tempo in una ''cache'', una memoria transitoria appositamente dedicata. In questo modo non è necessario effettuare ogni volta il processo di creazione, poichè la pagina è già pronta.
+
+* vantaggi: minor carico di lavoro per il sistema e maggiore velocità
+* svantaggi: è possibile che la pagina caricata non sia la versione più recente; la pagina potrebbe essere stata modificata dopo essere stata copiata nella ''cache''
+
+Pertanto, pulire (o aggiornare) la ''cache'' di una pagina, significa assicurarsi di visualizzare la versione più recente.",
 'confirm_purge_button' => 'Conferma',
 
 # AJAX search
@@ -2608,7 +2620,7 @@ Usare l\'anteprima standard.',
 'version-software-product'         => 'Prodotto',
 'version-software-version'         => 'Versione',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Percorso di un file',
 'filepath-page'    => 'Nome del file:',
 'filepath-submit'  => 'Percorso',
@@ -2646,7 +2658,7 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'specialpages-group-redirects'   => 'Pagine speciali di redirect',
 'specialpages-group-spam'        => 'Strumenti contro lo spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pagina vuota',
 'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota ed è usata per benchmark, ecc.',
 

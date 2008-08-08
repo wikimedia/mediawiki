@@ -69,7 +69,7 @@ $messages = array(
 # Special:Log
 'all-logs-page' => 'Alle Logbiacha',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alle Seitn',
 'allarticles'       => 'Alle Seitn',
 'allinnamespace'    => 'Alle Seitn (Namensraum: $1)',
@@ -105,7 +105,7 @@ $messages = array(
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net Betawiki] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesmodified' => 'Nur geänderte zoagn',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Neie Dateien',
 
 );

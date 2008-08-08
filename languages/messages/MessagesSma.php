@@ -412,7 +412,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 
 'license' => 'Liseense',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for' => 'Ohtsedh ihke guvvie nomme:',
 'imgfile'              => 'guvvie',
 'imagelist'            => 'Guvvie lästoe',
@@ -518,7 +518,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 'all-logs-page'        => 'Gaajhke loggeh',
 'log-search-submit'    => 'Vaadtsa',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Gaajhke bielieh',
 'alphaindexline' => '$1 ... $2',
 'nextpage'       => 'Minngebe bielie ($1)',
@@ -533,7 +533,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:Userlogin|logge s�
 # Special:Categories
 'categories' => 'Karegorijeh',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Vuesehte',
 
 # E-mail user
@@ -782,7 +782,7 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'show-big-image'       => 'Dïeves stoerre',
 'show-big-image-thumb' => '<small>Stoerre ihke dïhte vuesiehtidh: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Gallerije dejstie orre baalkah',
 'ilsubmit'  => 'Ohtsedh',
 
