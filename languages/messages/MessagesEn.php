@@ -883,7 +883,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'loginproblem'               => '<b>There has been a problem with your login.</b><br />Try again!',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
-'loginprompt'                => 'You must have cookies enabled to [[Special:UserLogin|log in to {{SITENAME}}]].',
+'loginprompt'                => 'You must have cookies enabled to log in to {{SITENAME}}.',
 'userlogin'                  => 'Log in / create account',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
@@ -1047,7 +1047,7 @@ The reason given is ''$2''.
 You can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.
 You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Your current IP address is $3, and the block ID is #$5.
-Please include either or both of these in any queries.",
+Please include all above details in any queries you make.",
 'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
 The reason given is this:
 
@@ -1055,17 +1055,18 @@ The reason given is this:
 
 * Start of block: $8
 * Expiry of block: $6
+* Intended blockee: $7
 
 You may contact $1 or one of the other [[{{MediaWiki:Grouppage-sysop}}|administrators]] to discuss the block.
 
 Note that you may not use the "e-mail this user" feature unless you have a valid e-mail address registered in your [[Special:Preferences|user preferences]] and you have not been blocked from using it.
 
-Your block ID is $5.
-Please include this ID in any queries you make.',
+Your current IP address is $3, and the block ID is #$5.
+Please include all above details in any queries you make.',
 'blockednoreason'                  => 'no reason given',
 'blockedoriginalsource'            => "The source of '''$1''' is shown below:",
 'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
-'whitelistedittitle'               => '[[Special:UserLogin|Login required]] to edit',
+'whitelistedittitle'               => 'Login required to edit',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
 'confirmedittitle'                 => 'E-mail confirmation required to edit',
 'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.
@@ -1326,7 +1327,7 @@ Note that using the navigation links will reset this column.',
 # Search results
 'searchresults'             => 'Search results',
 'searchresulttext'          => 'For more information about searching {{SITENAME}}, see [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:PrefixIndex/$1|all pages starting with "$1"]] | [[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
+'searchsubtitle'            => 'You searched for \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
 'searchsubtitleinvalid'     => "You searched for '''$1'''",
 'noexactmatch'              => "'''There is no page titled \"\$1\".'''
 You can [[:\$1|create this page]].",
@@ -1560,7 +1561,7 @@ please see math/README to configure.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
 'recentchanges'                     => 'Recent changes',
-'recentchanges-url'                 => 'Special:RecentChanges', # do not translate or duplicate this message to other languages
+'recentchanges-url'                 => 'Special:Recentchanges', # do not translate or duplicate this message to other languages
 'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
 'rcnote'                            => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $5, $4.",
@@ -1609,7 +1610,7 @@ Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
 'uploaderror'                 => 'Upload error',
 'upload-summary'              => '', # do not translate or duplicate this message to other languages
 'uploadtext'                  => "Use the form below to upload files.
-To view or search previously uploaded files go to the [[Special:ImageList|list of uploaded files]], uploads and deletions are also logged in the [[Special:Log/upload|upload log]].
+To view or search previously uploaded files go to the [[Special:ImageList|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
@@ -2180,9 +2181,9 @@ Please hit "back" and reload the page you came from, then try again.',
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks.
 See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'            => 'protected "[[$1]]"',
-'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
-'unprotectedarticle'          => 'unprotected "[[$1]]"',
+'protectedarticle'            => 'protected "[[:$1]]"',
+'modifiedarticleprotection'   => 'changed protection level for "[[:$1]]"',
+'unprotectedarticle'          => 'unprotected "[[:$1]]"',
 'protect-title'               => 'Change protection level for "$1"',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
@@ -2303,7 +2304,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'What links here',
-'whatlinkshere-title'      => 'Pages that link to $1',
+'whatlinkshere-title'      => 'Pages that link to "$1"',
 'whatlinkshere-summary'    => '', # do not translate or duplicate this message to other languages
 'whatlinkshere-page'       => 'Page:',
 'whatlinkshere-barrow'     => '>', # only translate this message to other languages if you have to change it
@@ -2367,7 +2368,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipusubmit'                       => 'Unblock this address',
 'unblocked'                       => '[[User:$1|$1]] has been unblocked',
 'unblocked-id'                    => 'Block $1 has been removed',
-'ipblocklist'                     => 'List of blocked IP addresses and usernames',
+'ipblocklist'                     => 'Blocked IP addresses and usernames',
 'ipblocklist-legend'              => 'Find a blocked user',
 'ipblocklist-username'            => 'Username or IP address:',
 'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
@@ -2444,8 +2445,8 @@ To lock or unlock the database, this needs to be writable by the web server.',
 'move-page-legend'        => 'Move page',
 'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
-Links to the old page title will not be changed;
-be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
+You can update redirects that point to the original title automatically.
+If you choose not to, be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
 You are responsible for making sure that links continue to point where they are supposed to go.
 
 Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history.
@@ -2479,15 +2480,15 @@ Please merge them manually.'''",
 'movepage-page-moved'     => 'The page $1 has been moved to $2.',
 'movepage-page-unmoved'   => 'The page $1 could not be moved to $2.',
 'movepage-max-pages'      => 'The maximum of $1 {{PLURAL:$1|page|pages}} has been moved and no more will be moved automatically.',
-'1movedto2'               => '[[$1]] moved to [[$2]]',
-'1movedto2_redir'         => '[[$1]] moved to [[$2]] over redirect',
+'1movedto2'               => '[[:$1]] moved to [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] moved to [[:$2]] over redirect',
 'movelogpage'             => 'Move log',
 'movelogpagetext'         => 'Below is a list of pages moved.',
 'movereason'              => 'Reason:',
 'revertmove'              => 'revert',
 'delete_and_move'         => 'Delete and move',
 'delete_and_move_text'    => '==Deletion required==
-The destination page "[[$1]]" already exists.
+The destination page "[[:$1]]" already exists.
 Do you want to delete it to make way for the move?',
 'delete_and_move_confirm' => 'Yes, delete the page',
 'delete_and_move_reason'  => 'Deleted to make way for move',
@@ -2575,7 +2576,7 @@ A temporary folder is missing.',
 # Import log
 'importlogpage'                    => 'Import log',
 'importlogpagetext'                => 'Administrative imports of pages with edit history from other wikis.',
-'import-logentry-upload'           => 'imported [[$1]] by file upload',
+'import-logentry-upload'           => 'imported [[:$1]] by file upload',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisions}}',
 'import-logentry-interwiki'        => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
@@ -3172,7 +3173,7 @@ Others will be hidden by default.
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => 'See the [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] for more information.',
+'edit-externally-help' => 'See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'all',
@@ -3248,7 +3249,7 @@ Please confirm that you really want to recreate this page.",
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
 
 # HTML dump
-'redirectingto' => 'Redirecting to [[$1]]...',
+'redirectingto' => 'Redirecting to [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Clear the cache of this page?
@@ -3290,7 +3291,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Removing all content from page',
 'autosumm-replace' => "Replacing page with '$1'",
-'autoredircomment' => 'Redirecting to [[$1]]',
+'autoredircomment' => 'Redirecting to [[:$1]]',
 'autosumm-new'     => 'New page: $1',
 
 # Autoblock whitelist
