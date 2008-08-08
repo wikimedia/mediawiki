@@ -1225,7 +1225,10 @@ class OutputPage {
 			// Show templates used by this article
 			$skin = $wgUser->getSkin();
 			$article = new Article( $wgTitle );
-			$this->addHTML( $skin->formatTemplates( $article->getUsedTemplates() ) );
+			$this->addHTML( "<div class='templatesUsed'>
+{$skin->formatTemplates( $article->getUsedTemplates() )}
+</div>
+" );
 		}
 
 		# If the title doesn't exist, it's fairly pointless to print a return

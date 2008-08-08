@@ -80,6 +80,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   user's e-mail address is invalid or unconfirmed
 * (bug 2443) Add image name as alt-text when no caption is provided.
 * (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5 minutes.
+* (bug 15016) 'Templates used on this page' list in view source should be wrapped 
+  in a div with class "templatesUsed"
 
 === API changes in 1.14 ===
 
