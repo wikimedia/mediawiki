@@ -458,24 +458,14 @@ class Block
 			}
 		}
 	}
-
+	
 	/**
-	* Autoblocks the given IP, referring to this Block.
-	* @param string $autoblockip The IP to autoblock.
-	* @param bool $justInserted The main block was just inserted
-	* @return bool Whether or not an autoblock was inserted.
-	*/
-	function doAutoblock( $autoblockip, $justInserted = false ) {
-		# If autoblocks are disabled, go away.
-		if ( !$this->mEnableAutoblock ) {
-			return;
-		}
-
-		# Check for presence on the autoblock whitelist
+	 * Checks whether a given IP is on the autoblock whitelist.
+	 * @param string $autoblockip The IP to check
+	 */
+	function isWhitelistedFromAutoblocks( $ip ) {
 		# TODO cache this?
 		$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
-
-		$ip = $autoblockip;
 
 		wfDebug("Checking the autoblock whitelist..\n");
 
@@ -493,12 +483,30 @@ class Block
 			# Is the IP in this range?
 			if (IP::isInRange( $ip, $wlEntry )) {
 				wfDebug(" IP $ip matches $wlEntry, not autoblocking\n");
-				#$autoblockip = null; # Don't autoblock a whitelisted IP.
-				return; #This /SHOULD/ introduce a dummy block - but
-					# I don't know a safe way to do so. -werdna
+				return true;
 			} else {
 				wfDebug( " No match\n" );
 			}
+		}
+		
+		return false;
+	}
+
+	/**
+	* Autoblocks the given IP, referring to this Block.
+	* @param string $autoblockip The IP to autoblock.
+	* @param bool $justInserted The main block was just inserted
+	* @return bool Whether or not an autoblock was inserted.
+	*/
+	function doAutoblock( $autoblockip, $justInserted = false ) {
+		# If autoblocks are disabled, go away.
+		if ( !$this->mEnableAutoblock ) {
+			return;
+		}
+
+		# Check for presence on the autoblock whitelist
+		if (Block::isWhitelistedFromAutoblocks($autoblockip)) {
+			return;
 		}
 		
 		## Allow hooks to cancel the autoblock.
