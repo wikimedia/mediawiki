@@ -1151,11 +1151,14 @@ class EditPage {
 		if ( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
 			list($cascadeSources, /* $restrictions */) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "";
-			foreach( $cascadeSources as $page ) {
-				$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+			$notice = "$1\n";
+			if ( count($cascadeSources) > 0 ) {
+				# Explain, and list the titles responsible
+				foreach( $cascadeSources as $page ) {
+					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+				}
 			}
-			$wgOut->addWikiMsg( 'cascadeprotectedwarning', count($cascadeSources), $notice );
+			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', count($cascadeSources) ) );
 		}
 		if( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) != array() ){
 			$wgOut->addWikiMsg( 'titleprotectedwarning' );
