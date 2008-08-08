@@ -1482,12 +1482,23 @@ class OutputPage {
 			# Recent changes feed should appear on every page (except recentchanges, 
 			# that would be redundant). Put it after the per-page feed to avoid 
 			# changing existing behavior. It's still available, probably via a 
-			# menu in your browser.
-
+			# menu in your browser. Some sites might have a different feed they'd
+			# like to promote instead of the RC feed (maybe like a "Recent New Articles"
+			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
+			# If so, use it instead.
+			
+			global $wgOverrideSiteFeed, $wgSitename;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-			if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
-				global $wgSitename;
-				
+			
+			if ( isset( $wgOverrideSiteFeed['rss'] ) || isset( $wgOverrideSiteFeed['atom'] ) ) {
+				foreach ( $wgOverrideSiteFeed as $type => $feedUrl ) { 
+					$tags[] = $this->feedLink (
+						$type,
+						htmlspecialchars( $feedUrl ),
+						wfMsg( "site-{$type}-feed", $wgSitename ) );
+				}
+			}
+			else if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
 				$tags[] = $this->feedLink(
 					'rss',
 					$rctitle->getFullURL( 'feed=rss' ),
