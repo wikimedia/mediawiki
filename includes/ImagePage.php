@@ -645,17 +645,17 @@ EOT
 			$wgOut->addWikiMsg( 'nolinkstoimage' );
 			$wgOut->addHTML( "</div>\n" );
 			return;
-		} elseif ( $count <= $limit - 1 ) {
-			$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
+		}
+		
+		$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
+		if ( $count <= $limit - 1 ) {
 			$wgOut->addWikiMsg( 'linkstoimage', $count );
-			$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 		} else {
 			// More links than the limit. Add a link to [[Special:Whatlinkshere]]
-			$wgOut->addHTML( "<div id='mw-imagepage-section-linkstoimage'>\n" );
 			$wgOut->addWikiMsg( 'linkstoimage-more', $limit, $this->mTitle->getPrefixedDBkey() );
-			$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 		}
 
+		$wgOut->addHTML( "<ul class='mw-imagepage-linktoimage'>\n" );
 		$sk = $wgUser->getSkin();
 		$count = 0;
 		while ( $s = $res->fetchObject() ) {
