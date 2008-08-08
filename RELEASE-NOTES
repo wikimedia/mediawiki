@@ -79,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15055) Talk page notifications no longer attempt to send mail when
   user's e-mail address is invalid or unconfirmed
 * (bug 2443) Add image name as alt-text when no caption is provided.
+* (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5 minutes.
 
 === API changes in 1.14 ===
 

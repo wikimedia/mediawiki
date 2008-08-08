@@ -3357,3 +3357,9 @@ $wgSitemapNamespaces = false;
  * ting this variable false.
  */
 $wgUseAutomaticEditSummaries = true;
+
+/**
+ * Limit password attempts to X attempts per Y seconds per IP per account.
+ * Requires memcached.
+ */
+$wgPasswordAttemptThrottle = array( 5, 300 );
