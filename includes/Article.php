@@ -2767,10 +2767,12 @@ class Article {
 			&& !($minoredit && $wgUser->isAllowed('nominornewtalk') ) ) {
 			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
 				$other = User::newFromName( $shortTitle );
-				if( User::isIP( $shortTitle ) ) {
+				if ( !$other ) {
+					wfDebug( __METHOD__.": invalid username\n" );
+				} elseif( User::isIP( $shortTitle ) ) {
 					// An anonymous user
 					$other->setNewtalk( true );
-				} elseif( $other instanceof User && $other->isLoggedIn() ) {
+				} elseif( $other->isLoggedIn() ) {
 					$other->setNewtalk( true );
 				} else {
 					wfDebug( __METHOD__. ": don't need to notify a nonexistent user\n" );
