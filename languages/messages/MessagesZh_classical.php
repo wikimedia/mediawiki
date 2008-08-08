@@ -516,8 +516,20 @@ $2',
 'missingsummary'                   => "''''醒示：'''子未概之，復存則文倍焉。",
 'missingcommenttext'               => '請贊之',
 'blockedtitle'                     => '子見禁',
-'blockedtext'                      => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。* 始之時為：$8* 終之時為：$6* 見禁之人：$7存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。",
-'autoblockedtext'                  => "爾之IP或簿自禁，因簿先用，禁者$1也。因故：:\\'\\'$2\\'\\'* 始之時為：$8* 終之時為：$6存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子禁號為#$5。詢時切附之。",
+'blockedtext'                      => "<big>'''子名、IP見禁。'''</big>禁者$1也，因''$2''故。
+
+* 始之時為：$8
+* 終之時為：$6
+* 見禁之人：$7
+
+存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。",
+'autoblockedtext'                  => "爾之IP或簿自禁，因簿先用，禁者$1也。因故：:\\'\\'$2\\'\\'
+
+* 始之時為：$8
+* 終之時為：$6
+* 見禁之人：$7
+
+存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子用IP $3，禁號為#$5。詢時切附之。",
 'blockedoriginalsource'            => "'''$1'''本源如下：",
 'blockededitsource'                => "子'''$1纂文'''如下：",
 'whitelistedittitle'               => '登簿以纂',
