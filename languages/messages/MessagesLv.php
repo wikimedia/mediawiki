@@ -331,7 +331,7 @@ Norādītais iemesls bija ''$2''.",
 'logouttitle'                => 'Lietotāja iziešana',
 'logouttext'                 => "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''
 
-Vari turpināt to izmantot anonīmi, vari [[Special:Userlogin|atgriezties]] kā cits lietotājs vai varbūt tas pats.
+Vari turpināt to izmantot anonīmi, vari [[Special:UserLogin|atgriezties]] kā cits lietotājs vai varbūt tas pats.
 Ņem vērā, ka arī pēc iziešanas, dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
 'welcomecreation'            => '== Laipni lūdzam, $1! ==
 
@@ -500,13 +500,13 @@ Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'previewnote'               => '<strong>Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!</strong>',
 'session_fail_preview'      => '<strong>Atvainojiet, neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
-Ja tas joprojām nedarbojas, mēģini [[Special:Userlogout|izlogoties ārā]] un ielogoties no jauna.</strong>',
+Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.</strong>',
 'session_fail_preview_html' => "<strong>Atvainojiet, neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.</strong>
 
 ''Tā, kā {{grammar:ģenitīvs|{{SITENAME}}}} darbojas neapstrādāts HTML, pirmskats ir paslēpts, lai aizsargātos no JavaScripta  uzbrukumiem.''
 
 <strong>Ja šis bija parasts rediģēšanas mēģinājums, mēģini vēlreiz.
-Ja tas joprojām nedarbojas, mēģini [[Special:Userlogout|izlogoties ārā]] un ielogoties no jauna.</strong>",
+Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.</strong>",
 'editing'                   => 'Izmainīt $1',
 'editingsection'            => 'Izmainīt $1 (sadaļa)',
 'editingcomment'            => 'Izmainīt $1 (komentārs)',
@@ -547,7 +547,7 @@ Tu varētu nokopēt tekstu un saglabāt kā teksta failu vēlākam laikam.</stro
 'template-semiprotected'    => '(daļēji aizsargāta)',
 'hiddencategories'          => 'Šī lapa ietilpst {{PLURAL:$1|1 slēptajā kategorijā|$1 slēptajās kategorijās}}:',
 'nocreatetext'              => '{{grammar:lokatīvs|{{SITENAME}}}} ir atslēgta iespēja izveidot jauinas lapas.
-Tu vari atgriezties atpakaļ un izmainīt esošu lapu, vai arī [[Special:Userlogin|ielogoties, vai izveidot kontu]].',
+Tu vari atgriezties atpakaļ un izmainīt esošu lapu, vai arī [[Special:UserLogin|ielogoties, vai izveidot kontu]].',
 'recreate-deleted-warn'     => "'''Brīdinājums: Tu atjauno lapu, kas ir tikusi izdzēsta'''
 
 Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu.
@@ -613,7 +613,7 @@ m = maznozīmīgs labojums.',
 # Search results
 'searchresults'         => 'Meklēšanas rezultāti',
 'searchresulttext'      => 'Lai iegūtu vairāk informācijas par meklēšanu {{grammar:akuzatīvs|{{SITENAME}}}}, skat. [[{{MediaWiki:Helppage}}|{{grammar:ģenitīvs|{{SITENAME}}}} meklēšana]].',
-'searchsubtitle'        => 'Pieprasījums: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|visas lapas, kas sākas ar "$1"]] | [[Special:Whatlinkshere/$1|visas lapas, kurās ir saite uz "$1"]])',
+'searchsubtitle'        => 'Pieprasījums: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|visas lapas, kas sākas ar "$1"]] | [[Special:WhatLinksHere/$1|visas lapas, kurās ir saite uz "$1"]])',
 'searchsubtitleinvalid' => 'Pieprasījums: $1',
 'noexactmatch'          => "'''Lapas ar nosaukumu \"\$1\" šeit nav.''' Tu vari to [[:\$1|izveidot]].",
 'noexactmatch-nocreate' => "'''Šeit nav lapas ar nosaukumu \"\$1\".'''",
@@ -639,7 +639,7 @@ m = maznozīmīgs labojums.',
 'mypreferences'         => 'manas izvēles',
 'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
-'prefsnologintext'      => 'Tev jābūt [[Special:Userlogin|iegājušam]], lai mainītu lietotāja izvēles.',
+'prefsnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai mainītu lietotāja izvēles.',
 'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
 'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
@@ -773,12 +773,12 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 'reupload'               => 'Vēlreiz augšuplādēt',
 'reuploaddesc'           => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
 'uploadnologin'          => 'Neesi iegājis',
-'uploadnologintext'      => 'Tev jābūt [[Special:Userlogin|iegājušam]], lai augšuplādētu failus.',
+'uploadnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai augšuplādētu failus.',
 'uploaderror'            => 'Augšupielādes kļūda',
 'uploadtext'             => "'''STOP!''' Pirms tu kaut ko augšupielādē, noteikti izlasi un ievēro [[Project:Attēlu izmantošanas noteikumi|attēlu izmantošanas noteikumus]].
 
 Lai aplūkotu vai meklētu agrāk augšuplādētus attēlus,
-dodies uz [[Special:Imagelist|augšupielādēto attēlu sarakstu]].
+dodies uz [[Special:ImageList|augšupielādēto attēlu sarakstu]].
 Augšupielādes un dzēšanas tiek reģistrētas [[Special:Log/upload|augšupielādes reģistrā]].
 
 Izmanto šo veidni, lai augšupielādētu jaunus attēlu failus, ar kuriem ilustrēt tevis izmainītās lapas.
@@ -946,7 +946,7 @@ Kopš {{grammar:ģenitīvs|{{SITENAME}}}} izveidošanas lapas ir tikušas apskat
 Vidēji tas ir '''\$5''' labojumi uz lapu un apskatīšanas/labojumu attiecība ir '''\$6'''.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext' => "Reģistrēto [[Special:Listusers|lietotāju]] skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir {{PLURAL:$2|administrators|administratori}} (skat. $5).",
+'userstatstext' => "Reģistrēto [[Special:ListUsers|lietotāju]] skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir {{PLURAL:$2|administrators|administratori}} (skat. $5).",
 
 'disambiguations'     => 'Nozīmju atdalīšanas lapas',
 'disambiguationspage' => 'Template:Disambig',
@@ -1041,7 +1041,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 
 # E-mail user
 'mailnologin'     => 'Nav adreses, uz kuru sūtīt',
-'mailnologintext' => 'Tev jābūt [[Special:Userlogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
+'mailnologintext' => 'Tev jābūt [[Special:UserLogin|iegājušam]], kā arī tev jābūt [[Special:Preferences|norādītai]] derīgai e-pasta adresei, lai sūtītu e-pastu citiem lietotājiem.',
 'emailuser'       => 'Sūtīt e-pastu šim lietotājam',
 'emailpage'       => 'Sūtīt e-pastu lietotājam',
 'emailpagetext'   => 'Ja šis lietotājs ir norādījis reālu e-pasta adresi savu izvēļu lapā, tad ar šo veidni ir iespējams viņam nosūtīt e-pastu. Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta "From" lauciņā, tādejādi saņēmējs varēs tev atbildēt.',
@@ -1062,7 +1062,7 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'watchlistfor'         => "(priekš '''$1''')",
 'nowatchlist'          => 'Tavā uzraugāmo rakstu sarakstā nav neviena raksta.',
 'watchnologin'         => 'Neesi iegājis',
-'watchnologintext'     => 'Tev ir [[Special:Userlogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
+'watchnologintext'     => 'Tev ir [[Special:UserLogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
 'addedwatch'           => 'Pievienots uzraugāmo sarakstam.',
 'addedwatchtext'       => "Lapa \"<nowiki>\$1</nowiki>\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
 

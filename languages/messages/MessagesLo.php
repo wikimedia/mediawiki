@@ -363,7 +363,7 @@ $messages = array(
 'template-protected'       => '(ປົກປ້ອງ)',
 'template-semiprotected'   => '(ເຄິ່ງປົກປ້ອງ)',
 'nocreatetext'             => '{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.
-ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:Userlogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
+ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ບໍ່ສາມາດສ້າງ ບັນຊີ ໄດ້',

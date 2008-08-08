@@ -452,7 +452,7 @@ nije prepoznao.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
 'nospecialpagetext' => "<big>'''Tražili ste nepostojeću posebnu stranicu.'''</big>
 
-Spisak svih posebnih stranica se može naći na [[Special:Specialpages|{{int:specialpages}}]].",
+Spisak svih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Greška',
@@ -698,7 +698,7 @@ da pratite [[{{ns:project}}:Pravila o zaštiti stranica|pravila o zaštiti stran
 'edittools'                 => '<!-- Tekst odavde će biti pokazan ispod formulara za uređivanje i slanje slika. -->',
 'nocreatetitle'             => 'Pravljenje stranice ograničeno',
 'nocreatetext'              => 'Na ovom sajtu je ograničeno pravljenje novih stranica.
-Možete se vratiti i urediti već postojeću stranu ili [[Special:Userlogin|se prijaviti ili napraviti nalog]].',
+Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se prijaviti ili napraviti nalog]].',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ne može da se napravi nalog',
@@ -794,7 +794,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'preferences'              => 'Podešavanja',
 'mypreferences'            => 'Moja podešavanja',
 'prefsnologin'             => 'Niste prijavljeni',
-'prefsnologintext'         => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
+'prefsnologintext'         => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
 'prefsreset'               => 'Vraćena su uskladištena podešavanja.',
 'qbsettings'               => 'Brza paleta',
 'qbsettings-none'          => 'Nikakva',
@@ -910,11 +910,11 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatu).",
 'reupload'                    => 'Ponovo pošalji',
 'reuploaddesc'                => 'Vrati se na upitnik za slanje.',
 'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste slali fajlove.',
+'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste slali fajlove.',
 'upload_directory_read_only'  => 'Na direktorijum za slanje ($1) server ne može da piše.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite donji obrazac da pošaljete fajlove.
-Za gledanje ili pretraživanje već poslatih slika, idite na [[Special:Imagelist|spisak poslatih fajlova]].
+Za gledanje ili pretraživanje već poslatih slika, idite na [[Special:ImageList|spisak poslatih fajlova]].
 Slanja i brisanja se beleže u [[Special:Log/upload|istoriji slanja]]
 
 Da biste ubacili sliku na stranu, koristite vezu u obliku
@@ -1114,7 +1114,7 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 
 # E-mail user
 'mailnologin'     => 'Nema adrese za slanje',
-'mailnologintext' => 'Morate biti [[Special:Userlogin|prijavljeni]] i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
+'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]] i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
 'emailuser'       => 'Pošalji e-poštu ovom korisniku',
 'emailpage'       => 'Pošalji e-pismo korisniku',
@@ -1144,7 +1144,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'nowatchlist'          => 'Nemate ništa na svom spisku nadgledanja.',
 'watchlistanontext'    => 'Molimo $1 da biste gledali ili menjali stavke na vašem spisku nadgledanja.',
 'watchnologin'         => 'Niste prijavljeni',
-'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste menjali spisak nadgledanja.',
+'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste menjali spisak nadgledanja.',
 'addedwatch'           => 'Dodato spisku nadgledanja',
 'addedwatchtext'       => "Stranica \"[[:\$1]]\" je dodata vašem [[{{ns:special}}:Watchlist|spisku nadgledanja]] .
 Buduće promene na ovoj stranici i njoj pridruženoj stranici za razgovor biće navedene ovde, i stranica će biti '''podebljana''' u [[{{ns:special}}:Recentchanges|spisku skorašnjih izmena]] da bi se lakše uočila.

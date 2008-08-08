@@ -10,8 +10,8 @@
  * @author Broad-Sky
  * @author Kahusi
  * @author Emk
- * @author Aotake
  * @author Mzm5zbC3
+ * @author Aotake
  * @author Iwai.masaharu
  * @author לערי ריינהארט
  * @author Kkkdc
@@ -331,7 +331,7 @@ $messages = array(
 'nosuchaction'      => 'そのような動作はありません',
 'nosuchactiontext'  => 'このURIで指定された動作は{{SITENAME}}で認識できません。',
 'nosuchspecialpage' => 'そのような特別ページはありません',
-'nospecialpagetext' => '要求された特別ページは存在しません。有効な特別ページの一覧は[[Special:Specialpages]]にあります。',
+'nospecialpagetext' => '要求された特別ページは存在しません。有効な特別ページの一覧は[[Special:SpecialPages]]にあります。',
 
 # General errors
 'error'                => 'エラー',
@@ -603,7 +603,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 ''{{SITENAME}}ではHTMLタグの使用に制限を設けておらず、JavaScript でのアタックを予防するためにプレビューを隠しています。''
 
-<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度[[Special:Userlogout|ログアウト]]して、もう一度ログインしてみてください。</strong>",
+<strong>この編集が問題ないものであるならば再度保存してください。それでもうまくいかない際には一度[[Special:UserLogout|ログアウト]]して、もう一度ログインしてみてください。</strong>",
 'token_suffix_mismatch'            => '<strong>あなたの使用しているクライアントが、エディット・トークン内の句読点を正しく処理していないことを確認しました。
 このページの文章が破損するのを防ぐため、あなたの編集は反映されません。
 問題のある匿名プロキシサービスを利用していると、この問題が起こることがあります。</strong>',
@@ -629,7 +629,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'readonlywarning'                  => '<strong>警告: データベースがメンテナンスのためにロックされています。現在は編集結果を保存できません。文章をカットアンドペーストしてローカルファイルとして保存し、後ほど保存をやり直してください。</strong>',
 'protectedpagewarning'             => "'''警告:''' このページは保護されています。{{int:group-sysop}}しか編集できません。",
 'semiprotectedpagewarning'         => "'''お知らせ:''' このページは登録利用者のみが編集できるよう保護されています。",
-'cascadeprotectedwarning'          => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。",
+'cascadeprotectedwarning'          => "'''警告:''' このページはカスケード保護されている以下のページから呼び出されているため、{{int:group-sysop}}しか編集できません。
+$2",
 'titleprotectedwarning'            => '<strong>警告:  このページはロックされているため、特定の利用者以外は作成することができません。</strong>',
 'templatesused'                    => 'このページで使われているテンプレート:',
 'templatesusedpreview'             => 'このプレビューで使われているテンプレート:',
@@ -639,7 +640,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'hiddencategories'                 => 'このページは1個の非公開カテゴリに属しています:',
 'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'                    => 'ページを作成できません',
-'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:Userlogin|ログインまたはアカウントを作成]]してください。',
+'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントを作成]]してください。',
 'nocreate-loggedin'                => '{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
@@ -772,7 +773,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # Search results
 'searchresults'            => '検索結果',
 'searchresulttext'         => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
-'searchsubtitle'           => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:Whatlinkshere/$1|"$1" のリンク元]])',
+'searchsubtitle'           => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:WhatLinksHere/$1|"$1" のリンク元]])',
 'searchsubtitleinvalid'    => "検索語: '''$1'''",
 'noexactmatch'             => '"$1" というタイトルのページは存在しませんでした。[[:$1|新規作成する]]。',
 'noexactmatch-nocreate'    => "''\"\$1\"'' というタイトルのページは存在しませんでした。",
@@ -809,7 +810,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mypreferences'            => 'オプション',
 'prefs-edits'              => '編集回数:',
 'prefsnologin'             => 'ログインしていません',
-'prefsnologintext'         => 'オプションを変更するためには、[[Special:Userlogin|ログイン]]する必要があります。',
+'prefsnologintext'         => 'オプションを変更するためには、[[Special:UserLogin|ログイン]]する必要があります。',
 'prefsreset'               => 'オプションは初期化されました。',
 'qbsettings'               => 'クイックバー設定',
 'qbsettings-none'          => 'なし',
@@ -880,7 +881,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'userrights-reason'           => '変更理由:',
 'userrights-no-interwiki'     => '他ウィキ上における利用者情報の編集権限はありません。',
 'userrights-nodatabase'       => 'データベース $1は存在しないか、ローカル上にありません。',
-'userrights-nologin'          => '利用者情報を変更するには[[Special:Userlogin|ログイン]]する必要があります。',
+'userrights-nologin'          => '利用者情報を変更するには[[Special:UserLogin|ログイン]]する必要があります。',
 'userrights-notallowed'       => '利用者情報を変更する権限がありません。',
 'userrights-changeable-col'   => '変更可能なグループ',
 'userrights-unchangeable-col' => '変更できないグループ',
@@ -978,10 +979,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'reupload'                    => '再アップロード',
 'reuploaddesc'                => 'アップロードのフォームへ戻る',
 'uploadnologin'               => 'ログインしていません',
-'uploadnologintext'           => 'ファイルをアップロードするには[[Special:Userlogin|ログイン]]する必要があります。',
+'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:Imagelist|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -1093,7 +1094,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'imagelinks'                => 'リンク',
 'linkstoimage'              => 'このファイルを使用している{{PLURAL:$1|ページ|&nbsp;$1 ページ}}の一覧:',
 'nolinkstoimage'            => 'このファイルを使用しているページはありません。',
-'morelinkstoimage'          => 'このファイルの[[Special:Whatlinkshere/$1|リンク元]]を見る。',
+'morelinkstoimage'          => 'このファイルの[[Special:WhatLinksHere/$1|リンク元]]を見る。',
 'redirectstofile'           => 'このファイルへ{{PLURAL:$1|リダイレクトされているファイル|リダイレクトされている $1 ファイル}}の一覧:',
 'duplicatesoffile'          => '以下にこのファイルと同一のファイル $1 件を表示しています:',
 'sharedupload'              => 'このファイルは共有されており、他のプロジェクトで使用されている可能性があります。',
@@ -1295,7 +1296,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # E-mail user
 'mailnologin'     => 'メールアドレスの記載がありません。',
-'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:Userlogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
+'mailnologintext' => '他の利用者宛てにメールを送信するためには、[[Special:UserLogin|ログイン]]し、あなたのメールアドレスを[[Special:Preferences|オプション]]に設定する必要があります。',
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
@@ -1321,7 +1322,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nowatchlist'          => 'あなたのウォッチリストは空です。',
 'watchlistanontext'    => 'ウォッチリストを確認あるいは編集するには $1 してください。',
 'watchnologin'         => 'ログインしていません',
-'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:Userlogin|ログイン]]している必要があります。',
+'watchnologintext'     => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
 'addedwatch'           => 'ウォッチリストに追加しました',
 'addedwatchtext'       => "ページ \"\$1\" をあなたの[[Special:Watchlist|ウォッチリスト]]に追加しました。
 
@@ -1658,7 +1659,7 @@ $NEWPAGE
 'lockdbsuccesssub'    => 'データベースはロックされました。',
 'unlockdbsuccesssub'  => 'データベースのロックは解除されました',
 'lockdbsuccesstext'   => 'データベースをロックしました。<br />
-メンテナンスが終了したら忘れずに[[Special:Unlockdb|ロックを解除]]してください。',
+メンテナンスが終了したら忘れずに[[Special:UnlockDB|ロックを解除]]してください。',
 'unlockdbsuccesstext' => 'データベースのロックは解除されました。',
 'lockfilenotwritable' => 'データベースのロックファイルに書き込めません。データベースのロック・解除をするには、サーバー上のロックファイルに書き込める必要があります。',
 'databasenotlocked'   => 'データベースはロックされていません。',

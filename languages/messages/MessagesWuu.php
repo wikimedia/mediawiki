@@ -440,9 +440,9 @@ $messages = array(
 'uploadbtn'         => '上载文件',
 'reupload'          => '重新上载',
 'uploadnologin'     => '朆登录',
-'uploadnologintext' => '倷板定要[[Special:Userlogin|登录]]仔再好上载文件。',
+'uploadnologintext' => '倷板定要[[Special:UserLogin|登录]]仔再好上载文件。',
 'uploaderror'       => '上载出错',
-'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:Imagelist|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
+'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:ImageList|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
 
 要勒拉页面里向摆进图片个说法，用下头该种形式个链接
 '''<nowiki>[[{{ns:image}}:文件.jpg]]</nowiki>'''，

@@ -536,7 +536,7 @@ i nalijepite tekst u tekst editor i sačuvate ga za kasnije.</strong>',
 'template-protected'       => '(zaštićeno)',
 'template-semiprotected'   => '(polu-zaštićeno)',
 'nocreatetext'             => 'Na {{SITENAME}} je zabranjeno postavljanje novih stranica. 
-Možete se vratiti i uređivati već postojeće stranice ili se [[Special:Userlogin|prijaviti ili otvoriti korisnički račun]].',
+Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti korisnički račun]].',
 'recreate-deleted-warn'    => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
 
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
@@ -595,7 +595,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'preferences'             => 'Podešavanja',
 'mypreferences'           => 'Moje postavke',
 'prefsnologin'            => 'Niste prijavljeni',
-'prefsnologintext'        => 'Morate biti [[Special:Userlogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
+'prefsnologintext'        => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste podešavali korisnička podešavanja.',
 'prefsreset'              => 'Podešavanja su vraćena na prvotne vrijednosti.',
 'qbsettings'              => 'Podešavanja brze palete',
 'qbsettings-none'         => 'Nikakva',
@@ -679,7 +679,7 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'reupload'                    => 'Ponovo pošaljite',
 'reuploaddesc'                => 'Vratite se na upitnik za slanje.',
 'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Morate biti [[Special:Userlogin|prijavljeni]]
+'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]]
 da bi ste slali fajlove.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadlog'                   => 'log slanja',
@@ -807,7 +807,7 @@ na kome bi se izvela ova funkcija.',
 
 # E-mail user
 'mailnologin'     => 'Nema adrese za slanje',
-'mailnologintext' => 'Morate biti [[Special:Userlogin|prijavljeni]]
+'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]]
 i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
 'emailuser'       => 'Pošalji e-poštu ovom korisniku',
@@ -834,7 +834,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'mywatchlist'          => 'Praćeni članci',
 'nowatchlist'          => 'Nemate ništa na svom spisku praćenih članaka.',
 'watchnologin'         => 'Niste prijavljeni',
-'watchnologintext'     => 'Morate biti [[Special:Userlogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
+'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
 'addedwatch'           => 'Dodato u spisak praćenih članaka',
 'addedwatchtext'       => 'Stranica "[[:$1]]" je dodata vašem [[Special:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[Special:RecentChanges|spisku]] nedavnih izmjena da bi se lakše uočila.
 

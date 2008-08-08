@@ -625,7 +625,8 @@ Konsideroni ta ndani faqen në disa seksione më të vogla.',
 kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopjoni dhe ruani tekstin në një skedë për më vonë.',
 'protectedpagewarning'             => '<strong>KUJDES: Kjo faqe është bllokuar kështu që vetëm përdorues me titullin administrator mund ta redaktojnë. Ju lutem ndiqni rregullat e dhëna tek [[{{SITENAME}}:Faqe e mbrojtur|faqet e mbrojtura]].</strong>',
 'semiprotectedpagewarning'         => "'''Shënim:''' Redaktimi i kësaj faqeje mund të bëhet vetëm nga përdorues të regjistruar.",
-'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
+'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:
+\$2",
 'titleprotectedwarning'            => '<strong>VINI RE:  Kjo faqe është e mbrojtur dhe vetëm disa përdorues mund ta krijojnë.</strong>',
 'templatesused'                    => 'Stampa të përdorura në këtë faqe:',
 'templatesusedpreview'             => 'Stampa të përdorur në ketë parapamje:',
@@ -635,7 +636,7 @@ kështuqë nuk do keni mundësi të ruani redaktimet e tuaja tani. Mund të kopj
 'hiddencategories'                 => 'Kjo faqe është nën {{PLURAL:$1|një kategori të fshehur|$1 kategori të fshehura}}:',
 'edittools'                        => '<!-- Teksti këtu do të tregohet poshtë kutive të redaktimit dhe ngarkimit të skedave. -->',
 'nocreatetitle'                    => 'Krijimi i faqeve të reja është i kufizuar.',
-'nocreatetext'                     => 'Mundësia për të krijuar faqe të reja është kufizuar. Duhet të [[Special:Userlogin|hyni ose të hapni një llogari]] për të krijuar faqe të reja, ose mund të ktheheni mbrapsh dhe të redaktoni një faqe ekzistuese.',
+'nocreatetext'                     => 'Mundësia për të krijuar faqe të reja është kufizuar. Duhet të [[Special:UserLogin|hyni ose të hapni një llogari]] për të krijuar faqe të reja, ose mund të ktheheni mbrapsh dhe të redaktoni një faqe ekzistuese.',
 'nocreate-loggedin'                => 'Nuk ju lejohet të krijoni faqe të reja tek {{SITENAME}}.',
 'permissionserrors'                => 'Gabime privilegjesh',
 'permissionserrorstext'            => 'Nuk keni leje për të bërë këtë veprim për {{PLURAL:$1|këtë arsye|këto arsye}}:',
@@ -748,7 +749,7 @@ Shiko tek [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} regjistri i gri
 
 # Suppression log
 'suppressionlog'     => 'Regjistri i ndalimeve',
-'suppressionlogtext' => 'Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:Ipblocklist|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.',
+'suppressionlogtext' => 'Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:IPBlockList|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.',
 
 # History merging
 'mergehistory'                     => 'Bashko historikët e faqeve',
@@ -839,7 +840,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'mypreferences'            => 'Parapëlqimet',
 'prefs-edits'              => 'Numri i redaktimeve:',
 'prefsnologin'             => 'Nuk keni hyrë brenda',
-'prefsnologintext'         => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të ndryshuar parapëlqimet e përdoruesit.',
+'prefsnologintext'         => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] për të ndryshuar parapëlqimet e përdoruesit.',
 'prefsreset'               => 'Parapëlqimet janë rikthyer siç ishin.',
 'qbsettings'               => 'Vendime të shpejta',
 'qbsettings-none'          => 'Asnjë',
@@ -914,7 +915,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'userrights-reason'           => 'Arsyeja për ndryshimin:',
 'userrights-no-interwiki'     => 'Nuk keni leje për të ndryshuar privilegjet e përdoruesve në wiki të tjera.',
 'userrights-nodatabase'       => 'Regjistri $1 nuk ekziston ose nuk është vendor.',
-'userrights-nologin'          => 'Duhet të [[Special:Userlogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
+'userrights-nologin'          => 'Duhet të [[Special:UserLogin|hyni brenda]] me një llogari administrative për të ndryshuar privilegjet e përdoruesve.',
 'userrights-notallowed'       => 'Llogaria juaj nuk ju lejon të ndryshoni privilegjet e përdoruesve.',
 'userrights-changeable-col'   => 'Grupe që mund të ndryshoni',
 'userrights-unchangeable-col' => "Grupe që s'mund të ndryshoni",
@@ -991,11 +992,11 @@ Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",
 'reupload'                    => 'Ngarkojeni përsëri',
 'reuploaddesc'                => 'Kthehu tek formulari i dhënies.',
 'uploadnologin'               => 'Nuk keni hyrë brënda',
-'uploadnologintext'           => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të dhënë skeda.',
+'uploadnologintext'           => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] për të dhënë skeda.',
 'upload_directory_read_only'  => 'Skedari i ngarkimit ($1) nuk mund të shkruhet nga shërbyesi.',
 'uploaderror'                 => 'Gabim dhënie',
 'uploadtext'                  => "Përdorni formularin e mëposhtëm për të ngarkuar skeda.
-Për të parë ose për të kërkuar skedat e ngarkuara më parë shikoni [[Special:Imagelist|listën e skedave të ngarkuara]]. Ngarkime dhe grisje shënohen edhe tek [[Special:Log/upload|regjistri i ngarkimeve]].
+Për të parë ose për të kërkuar skedat e ngarkuara më parë shikoni [[Special:ImageList|listën e skedave të ngarkuara]]. Ngarkime dhe grisje shënohen edhe tek [[Special:Log/upload|regjistri i ngarkimeve]].
 
 Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Skedë.jpg]]</nowiki>''',
@@ -1119,7 +1120,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'imagelinks'                     => 'Lidhje skedash',
 'linkstoimage'                   => 'Këto faqe lidhen tek kjo skedë:',
 'nolinkstoimage'                 => 'Asnjë faqe nuk lidhet tek kjo skedë.',
-'morelinkstoimage'               => 'Shikoni [[Special:Whatlinkshere/$1|më shumë lidhje]] tek kjo skedë.',
+'morelinkstoimage'               => 'Shikoni [[Special:WhatLinksHere/$1|më shumë lidhje]] tek kjo skedë.',
 'redirectstofile'                => 'Skedat e mëposhtme përcillen tek kjo skedë:',
 'duplicatesoffile'               => 'Skedat e më poshtme janë kopje të kësaj skede:',
 'sharedupload'                   => 'Kjo skedë është një ngarkim i përbashkët dhe mund të përdoret nga projekte të tjera.',
@@ -1199,7 +1200,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 '''\$3''' {{PLURAL:\$3|Është bërë '''\$3''' shikim faqeje|Janë bërë '''\$3''' shikime faqesh}} dhe '''\$4''' {{PLURAL:\$4|redaktim faqeje|redaktime faqesh}} që nga dita kur {{SITENAME}} u hap. Kjo do të thotë se janë bërë afërsisht '''\$5''' redaktime për faqe, dhe '''\$6''' shikime për çdo redaktim.
 
 Gjatësia e [http://www.mediawiki.org/wiki/Manual:Job_queue radhës së punëve] është '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:Listusers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
+'userstatstext'          => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:ListUsers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
 'statistics-mostpopular' => 'Faqet më të shikuara',
 
 'disambiguations'      => 'Faqe kthjelluese',
@@ -1325,7 +1326,7 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 
 # E-mail user
 'mailnologin'     => "S'ka adresë dërgimi",
-'mailnologintext' => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] dhe të keni një adresë të saktë në [[Special:Preferences|parapëlqimet]] tuaja për tu dërguar email përdoruesve të tjerë.',
+'mailnologintext' => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] dhe të keni një adresë të saktë në [[Special:Preferences|parapëlqimet]] tuaja për tu dërguar email përdoruesve të tjerë.',
 'emailuser'       => 'Email përdoruesit',
 'emailpage'       => 'Dërgo email përdoruesve',
 'emailpagetext'   => 'Në qoftë se ky përdorues ka dhënë një adresë të saktë në parapëlqimet, formulari më poshtë do t\'i dërgojë një mesazh. 
@@ -1352,7 +1353,7 @@ ose ka vendosur të mos pranojë mesazhe email-i nga përdorues të tjerë.",
 'watchlistfor'         => "(për '''$1''')",
 'nowatchlist'          => 'Nuk keni asnjë faqe në listën mbikqyrëse.',
 'watchnologin'         => 'Nuk keni hyrë brënda',
-'watchnologintext'     => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të ndryshuar listën mbikqyrëse.',
+'watchnologintext'     => 'Duhet të keni [[Special:UserLogin|hyrë brenda]] për të ndryshuar listën mbikqyrëse.',
 'addedwatch'           => 'U shtua tek lista mbikqyrëse',
 'addedwatchtext'       => "Faqja \"<nowiki>\$1</nowiki>\" është shtuar [[Special:Watchlist|listës mbikqyrëse]] tuaj. Ndryshimet e ardhshme të kësaj faqeje dhe faqes së diskutimit të saj do të jepen më poshtë, dhe emri i faqes do të duket i '''trashë''' në [[Special:RecentChanges|listën e ndryshimeve së fundmi]] për t'i dalluar më kollaj.
 
@@ -1652,7 +1653,7 @@ kur të mbaroni së kryeri mirëmbajtjen.',
 'lockdbsuccesssub'    => 'Regjistri u bllokua me sukses',
 'unlockdbsuccesssub'  => 'Regjistri u çbllokua me sukses',
 'lockdbsuccesstext'   => 'Regjistri është bllokuar.<br />
-Kujtohuni ta [[Special:Unlockdb|çbllokoni]] pasi të keni mbaruar mirëmbajtjen.',
+Kujtohuni ta [[Special:UnlockDB|çbllokoni]] pasi të keni mbaruar mirëmbajtjen.',
 'unlockdbsuccesstext' => 'Regjistri i {{SITENAME}} është çbllokuar.',
 'lockfilenotwritable' => "Skeda për bllokimin e regjistrit s'mund të shkruhet.
 Shërbyesi i rrjetit duhet të jetë në gjendje të shkruaj këtë skedë për të bllokuar ose çbllokuar regjistrin.",

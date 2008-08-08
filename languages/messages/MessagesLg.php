@@ -268,7 +268,7 @@ Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye b
 'templatesused'          => 'Olupapula luno entiba ze lukozesa ze:',
 'template-protected'     => '(luno lusibidwa)',
 'template-semiprotected' => '(ebimu ku lupapula luno bisibidwa)',
-'nocreatetext'           => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:Userlogin|okufuna obuyinza obw'obwamemba]].",
+'nocreatetext'           => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:UserLogin|okufuna obuyinza obw'obwamemba]].",
 'recreate-deleted-warn'  => "'''Kulabula: Ogenda okuzzaawo olupapuka olwagyibwawo.'''
 
 Okakasa nti kisaanira okuluzzaawo?

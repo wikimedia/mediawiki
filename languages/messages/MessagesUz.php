@@ -285,7 +285,7 @@ Agar sizda shunday muammolar yuzaga kelsa, iltimos, sahifani butunlay emas, qism
 'template-protected'     => '(himoyalangan)',
 'template-semiprotected' => '(yarim-himoyalangan)',
 'nocreatetext'           => 'Ushbu sayt yangi sahifa yaratishni taqiqlagan.
-Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:Userlogin|tizimga kirishingiz]] mumkin.',
+Ortga qaytib, mavjud sahifani tahrirlashingiz yoki [[Special:UserLogin|tizimga kirishingiz]] mumkin.',
 'recreate-deleted-warn'  => "'''Diqqat: Siz avval yoʻqotilgan sahifani yana yaratmoqchisiz.'''
 
 Bu sahifani yaratishda davom etishdan avval uning nega avval yoʻqotilgani bilan qiziqib koʻring.
@@ -410,7 +410,7 @@ Bularga maqola boʻlmagan \"munozara\" sahifalari, {{SITENAME}} haqidagi, ishora
 Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Navbatdagi vazifalar] soni - '''\$7'''.",
-'userstatstext' => "Hozirda {{PLURAL:$1|'''1''' [[Special:Listusers|foydalanuvchi]]|'''$1''' [[Special:Listusers|foydalanuvchi]]}} roʻyxatdan oʻtgan, ulardan '''$2''' nafari (yoki '''$4%''') $5 huquqlariga egadir.",
+'userstatstext' => "Hozirda {{PLURAL:$1|'''1''' [[Special:ListUsers|foydalanuvchi]]|'''$1''' [[Special:ListUsers|foydalanuvchi]]}} roʻyxatdan oʻtgan, ulardan '''$2''' nafari (yoki '''$4%''') $5 huquqlariga egadir.",
 
 'disambiguationspage' => '{{ns:template}}:Disambig',
 

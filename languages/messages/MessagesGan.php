@@ -277,7 +277,7 @@ $messages = array(
 'nosuchspecialpage' => '冇有箇隻特殊頁',
 'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big>
 
-[[Special:Specialpages]]上尋得到用得上嗰特殊頁。",
+[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
 
 # General errors
 'error'                => '錯誤',
@@ -543,7 +543,8 @@ $2',
 'readonlywarning'           => '<strong>警告: 資料庫鎖到嘞進行定期修護，眼下倷存伓正倷嗰改動。倷可以拿佢存到文檔再著。</strong>',
 'protectedpagewarning'      => '<strong>警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正。</strong>',
 'semiprotectedpagewarning'  => "'''注意：'''箇頁拕鎖到嘞，單只註冊用戶編得正。",
-'cascadeprotectedwarning'   => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:',
+'cascadeprotectedwarning'   => '警告: 箇頁已經受保護，單只管理員許可權嗰用戶才改得正，因為箇頁同底下嗰連鎖保護嗰{{PLURAL:$1|一隻|多隻}}頁面包到嘞:
+$2',
 'titleprotectedwarning'     => '<strong>警告：箇隻頁鎖到嘍，只有一滴子人才建得正。</strong>',
 'templatesused'             => '箇隻頁面使用嗰模板有:',
 'templatesusedpreview'      => '箇隻預覽使用嗰模板有:',
@@ -552,7 +553,7 @@ $2',
 'template-semiprotected'    => '(半保護)',
 'edittools'                 => '<!--箇首嗰文本會到下底嗰編輯同上傳列表裡坨顯示。 -->',
 'nocreatetitle'             => '新建頁面拕限制',
-'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:Userlogin|登入或新開帳戶]]。',
+'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:UserLogin|登入或新開帳戶]]。',
 'nocreate-loggedin'         => '倷到 {{SITENAME}} 冇權新開頁面。',
 'permissionserrors'         => '許可權錯誤',
 'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
@@ -683,7 +684,7 @@ $2',
 'mypreferences'            => '偶嗰參數設置',
 'prefs-edits'              => '編輯數:',
 'prefsnologin'             => '哈冇登入',
-'prefsnologintext'         => '倷要[[Special:Userlogin|登入]]後才設得正個人參數。',
+'prefsnologintext'         => '倷要[[Special:UserLogin|登入]]後才設得正個人參數。',
 'prefsreset'               => '參數已經拕重新設過。',
 'qbsettings'               => '快捷導航條',
 'qbsettings-none'          => '冇',
@@ -816,11 +817,11 @@ $2',
 'reupload'                    => '上傳過',
 'reuploaddesc'                => '返回上傳列表。',
 'uploadnologin'               => '冇登入',
-'uploadnologintext'           => '倷要[[Special:Userlogin|登入]]再上傳得正檔案。',
+'uploadnologintext'           => '倷要[[Special:UserLogin|登入]]再上傳得正檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)伓存在或冇寫入許可權。',
 'uploaderror'                 => '上傳出錯',
 'uploadtext'                  => "用下底嗰表格上傳檔案。
-要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
+要眵或要尋先前上傳嗰圖像請去[[Special:ImageList|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
 
 要係想扻文件到頁面，用得正下底嗰方式連結:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -992,7 +993,7 @@ $2',
 平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] 嗰長度係'''$7'''。",
-'userstatstext'          => "網站有'''$1'''隻註冊[[Special:Listusers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
+'userstatstext'          => "網站有'''$1'''隻註冊[[Special:ListUsers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '眵嗰人最多嗰頁面',
 
 'disambiguations'      => '扤清楚頁',
@@ -1104,7 +1105,7 @@ $2',
 
 # E-mail user
 'mailnologin'     => '冇email地址',
-'mailnologintext' => '倷要[[Special:Userlogin|登入]] 起同到倷嗰[[Special:Preferences|參數設置]] 有隻有效嗰email才發得正email到別嗰用戶。',
+'mailnologintext' => '倷要[[Special:UserLogin|登入]] 起同到倷嗰[[Special:Preferences|參數設置]] 有隻有效嗰email才發得正email到別嗰用戶。',
 'emailuser'       => '發email到箇隻用戶',
 'emailpage'       => '發email到用戶',
 'emailpagetext'   => '要係箇隻用戶到佢嗰參數設置頁填哩有效嗰email位置，下底嗰表格會寄隻信息到箇隻用戶。
@@ -1130,7 +1131,7 @@ $2',
 'nowatchlist'          => '倷嗰監視列表什哩都冇有。',
 'watchlistanontext'    => '請$1眵吖或改吖倷嗰監視列表。',
 'watchnologin'         => '冇登入',
-'watchnologintext'     => '倷要[[Special:Userlogin|登入]]起才改得正倷嗰監視列表。',
+'watchnologintext'     => '倷要[[Special:UserLogin|登入]]起才改得正倷嗰監視列表。',
 'addedwatch'           => '加到嘞監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:RecentChanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
 'removedwatch'         => '莫眏到',
@@ -1226,7 +1227,7 @@ $NEWPAGE
 
 請按吖“後退”再試過囉！',
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:Protectedpages|保護頁面列表]]來監察目前嗰頁面保護情況。',
+'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:ProtectedPages|保護頁面列表]]來監察目前嗰頁面保護情況。',
 'protectedarticle'            => '保護正嘞“[[$1]] ”',
 'modifiedarticleprotection'   => '改變嘞“[[$1]] ” 嗰保護等級',
 'unprotectedarticle'          => '撤銷保護“[[$1]] ”',

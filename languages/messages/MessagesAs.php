@@ -276,7 +276,7 @@ $messages = array(
 'nosuchspecialpage' => 'এনেকুৱা কোনো বিশেষ পৃষ্ঠা নাই',
 'nospecialpagetext' => "<big>'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</big>
 
-   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:Specialpages|{{int:specialpages}}]].",
+   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'ভুল',
@@ -540,7 +540,7 @@ $1',
 'template-protected'     => '(সুৰক্ষিত)',
 'template-semiprotected' => '(অর্ধ-সুৰক্ষিত)',
 'nocreatetext'           => '{{SITENAME}} ত নতুন লিখনী লিখা ৰদ কৰা হৈছে।
-আপুনি ঘুৰি গৈ অস্তিত্বত থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:Userlogin| নতুন সদস্যভর্তি হওক/ প্রবেশ কৰক]] ।',
+আপুনি ঘুৰি গৈ অস্তিত্বত থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin| নতুন সদস্যভর্তি হওক/ প্রবেশ কৰক]] ।',
 'recreate-deleted-warn'  => "'''সাৱধান: আপুনি আগতে বিলোপিত কৰা পৃষ্ঠা এটা পূণঃনির্মান কৰি আছে। '''
 
 এই পৄষ্ঠাটো সম্পাদনা কৰা উচিত হব নে নাই আপুনি বিবেচনা কৰি চাওক।
@@ -612,7 +612,7 @@ $1',
 'mypreferences'            => 'মোৰ পচন্দ',
 'prefs-edits'              => 'সম্পাদনা সমুহৰ সংখ্যা:',
 'prefsnologin'             => 'প্রৱেশ কৰা নাই',
-'prefsnologintext'         => 'আপোনাৰ পচন্দ সলনী কৰিবলৈ হলে [[Special:Userlogin|প্রৱেশ]] কৰাতো আৱশ্যক।',
+'prefsnologintext'         => 'আপোনাৰ পচন্দ সলনী কৰিবলৈ হলে [[Special:UserLogin|প্রৱেশ]] কৰাতো আৱশ্যক।',
 'prefsreset'               => 'পচন্দ সমুহ পুর্ববত কৰা হৈছে।',
 'qbsettings'               => 'শীঘ্রদণ্ডিকা',
 'qbsettings-none'          => 'একেবাৰে নহয়',

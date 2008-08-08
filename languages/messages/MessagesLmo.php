@@ -274,7 +274,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'userrights-reason'        => 'Motivo della modifica:',
 'userrights-no-interwiki'  => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'    => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
 'userrights-notallowed'    => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 
 # Recent changes

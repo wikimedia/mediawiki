@@ -300,7 +300,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Nier tuokė veiksma',
 'nosuchspecialpage' => 'Nier tuokė specēlėjė poslapė',
-'nospecialpagetext' => 'Tamsta prašiet nelaistėna specēlė̅jė poslapė, laistėnū specēliūju poslapiu sōraša rasėt [[Special:Specialpages|specēliūju poslapiu sārošė]].',
+'nospecialpagetext' => 'Tamsta prašiet nelaistėna specēlė̅jė poslapė, laistėnū specēliūju poslapiu sōraša rasėt [[Special:SpecialPages|specēliūju poslapiu sārošė]].',
 
 # General errors
 'error'                => 'Klaida',
@@ -514,7 +514,7 @@ tudie negaliesėt ėšsauguotė sava pakeitėmu daba. Tamsta galėt nosėkopėjo
 'template-semiprotected'    => '(posiau apsauguots)',
 'nocreatetitle'             => 'Poslapiu kūrims aprėbuots',
 'nocreatetext'              => '{{SITENAME}} aprėbuojė galėmībe kortė naujus poslapius.
-Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:Userlogin|prėsėjongtė a sokortė paskīra]].',
+Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:UserLogin|prėsėjongtė a sokortė paskīra]].',
 'recreate-deleted-warn'     => "<font color =darkred>'''Diemesė: Tomsta atkoriat poslapi, katros onkstiau bova ėštrints.'''</font>
 Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 Šėta poslapė šalėnėmu istuorėjė īr pateikta patuogoma vardan:",
@@ -590,7 +590,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'preferences'           => 'Nustatīmā',
 'mypreferences'         => 'Mona nustatīmā',
 'prefsnologin'          => 'Naprisėjongis',
-'prefsnologintext'      => 'Tomstā reik būtė [[Special:Userlogin|prisėjongosiam]], kū galietomiet keistė sava nustatīmus.',
+'prefsnologintext'      => 'Tomstā reik būtė [[Special:UserLogin|prisėjongosiam]], kū galietomiet keistė sava nustatīmus.',
 'qbsettings-none'       => 'Neruodītė',
 'changepassword'        => 'Pakeistė slaptažuodė',
 'skin'                  => 'Ėšruoda',
@@ -703,7 +703,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'reupload'                   => 'Pakartuotė ikielima',
 'reuploaddesc'               => 'Sogrīžtė i ikielima fuorma.',
 'uploadnologin'              => 'Naprėsėjongis',
-'uploadnologintext'          => 'Nuoriedamė ikeltė faila, torėt būt [[Special:Userlogin|prėsėjongis]].',
+'uploadnologintext'          => 'Nuoriedamė ikeltė faila, torėt būt [[Special:UserLogin|prėsėjongis]].',
 'upload_directory_read_only' => 'Tėnklapė serveris nagal rašītė i ikielima papke ($1).',
 'uploaderror'                => 'Ikielima soklīdims',
 'upload-permitted'           => 'Laistėnė failu tėpā: $1.',
@@ -920,7 +920,7 @@ katram ivīkdītė šėta funkcėjė.',
 
 # E-mail user
 'mailnologin'     => 'Nier adresa',
-'mailnologintext' => 'Tamstā reik būtė [[Special:Userlogin|prisėjongosiam]]
+'mailnologintext' => 'Tamstā reik būtė [[Special:UserLogin|prisėjongosiam]]
 ė tor būtė ivests teisings el. pašta adresos Tamstas [[Special:Preferences|nustatīmuos]],
 kū siōstomiet el. gruomatas kėtėm nauduotuojam.',
 'emailuser'       => 'Rašītė gruomata šėtam nauduotuojō',
@@ -943,7 +943,7 @@ kū siōstomiet el. gruomatas kėtėm nauduotuojam.',
 'nowatchlist'          => 'Netorėt anėvėina keravuojama poslapė.',
 'watchlistanontext'    => 'Prašuom $1, ka parveizietomėt a pakeistomiet elementus sava keravuojamu sārašė.',
 'watchnologin'         => 'Neprisėjongės',
-'watchnologintext'     => 'Tamstā rēk būtė [[Special:Userlogin|prisėjongosiam]], ka pakeistomiet sava keravuojamu sāraša.',
+'watchnologintext'     => 'Tamstā rēk būtė [[Special:UserLogin|prisėjongosiam]], ka pakeistomiet sava keravuojamu sāraša.',
 'addedwatch'           => 'Pridieta pri keravuojamu',
 'addedwatchtext'       => "Poslapis \"[[\$1]]\" idiets i [[Special:Watchlist|stebėmū sāraša]].
 Būsėmė poslapė ėr atėtinkama aptarėma poslapė pakeitėmā būs paruoduomė stebėmū poslapiu sārašė,
@@ -1019,7 +1019,7 @@ Galėnis keitėms dėrbts nauduotuojė [[User:$3|$3]] ([[User talk:$3|Aptarėms]
 'sessionfailure'              => 'Atruod kū īr biedū so Tamstas prėsėjongėma sesėjė; šėts veiksmos bova atšaukts kāp atsargoma prėimonė priš sesėjės vuogėma.
 Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė pamieginkėt vielē.',
 'protectlogpage'              => 'Rakinėmu istuorėjė',
-'protectlogtext'              => 'Žemiau īr poslapė ožrakinėmu teipuogi atrakinėmu istuorėjė. Daba veikiantiu poslapiu apsaugū sōraša sorasit [[Special:Protectedpages|apsauguotu poslapiu sōrašuo]].',
+'protectlogtext'              => 'Žemiau īr poslapė ožrakinėmu teipuogi atrakinėmu istuorėjė. Daba veikiantiu poslapiu apsaugū sōraša sorasit [[Special:ProtectedPages|apsauguotu poslapiu sōrašuo]].',
 'protectedarticle'            => 'ožrakina „[[$1]]“',
 'modifiedarticleprotection'   => 'pakeists „[[$1]]“ apsauguos līgis',
 'unprotectedarticle'          => 'atrakėna „[[$1]]“',

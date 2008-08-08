@@ -15,8 +15,8 @@
  * @author Dmcdevit
  * @author Jurock
  * @author Spacebirdy
- * @author לערי ריינהארט
  * @author Baiji
+ * @author לערי ריינהארט
  * @author Alhen
  * @author Cvmontuy
  * @author Jatrobat
@@ -296,7 +296,7 @@ $messages = array(
 
 'badaccess'        => 'Error de permisos',
 'badaccess-group0' => 'No está autorizado a ejecutar la acción que ha solicitado.',
-'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios de uno de estos grupos: $1.',
+'badaccess-groups' => 'La acción que ha solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos:}} $1.',
 
 'versionrequired'     => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
 'versionrequiredtext' => 'Se necesita la versión $1 de MediaWiki para utilizar esta página. Para más información, consulte [[Special:Version|la página de versión]]',
@@ -558,9 +558,9 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'summary-preview'                  => 'Previsualización del resumen',
 'subject-preview'                  => 'Previsualización del tema/título',
 'blockedtitle'                     => 'El usuario está bloqueado',
-'blockedtext'                      => '<big>\'\'\'Tu nombre de usuario o dirección IP ha sido bloqueada.\'\'\'</big>
+'blockedtext'                      => "<big>'''Tu nombre de usuario o dirección IP ha sido bloqueada.'''</big>
 
-El bloqueo fue hecho por $1. La razón dada es \'\'$2\'\'.
+El bloqueo fue hecho por $1. La razón dada es ''$2''.
 
 * Inicio del bloqueo: $8
 * Caducidad del bloqueo: $6
@@ -568,22 +568,24 @@ El bloqueo fue hecho por $1. La razón dada es \'\'$2\'\'.
 
 Puedes contactar con $1 o con otro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir el bloqueo.
 
-No puedes usar el enlace "enviar correo electrónico a este usuario" si no has registrado una dirección válida de correo electrónico en tus [[Special:Preferences|preferencias]]. Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor incluye uno o ambos datos en cualquier consulta que hagas.',
-'autoblockedtext'                  => 'Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario que fue bloqueado por $1.
+No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
+
+Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
+'autoblockedtext'                  => "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario que fue bloqueado por $1.
 
 La razón dada es esta:
 
-:\'\'$2\'\'
+:''$2''
 
 * Inicio del bloqueo: $8
 * Caducidad del bloqueo: $6
+* Bloqueo destinado a: $7 
 
 Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
 
-Nota que no puedes utilizar la función "Enviar correo electrónico a este usuario" a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]].
+No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
 
-Tu identificador de bloqueo es $5.
-Por favor, incluye este identificador en cualquier petición que hagas.',
+Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
 'blockednoreason'                  => 'No se da ninguna razón',
 'blockedoriginalsource'            => "El código fuente de '''$1''' se muestra a continuación:",
 'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
@@ -600,7 +602,7 @@ Por favor, incluye este identificador en cualquier petición que hagas.',
 'accmailtext'                      => "La contraseña para '$1' se ha enviado a $2.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
-'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[[[Special:UserLogin/log in|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
+'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin/log in|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'                    => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
@@ -649,7 +651,8 @@ Por favor considere la posibilidad de dividir esta página en secciones más peq
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
 'protectedpagewarning'             => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
-'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
+'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:
+$2",
 'titleprotectedwarning'            => '<strong>ATENCIÓN:  Esta página está protegida de modo que sólo algunos usuarios pueden crearla.</strong>',
 'templatesused'                    => 'Plantillas usadas en esta página:',
 'templatesusedpreview'             => 'Plantillas usadas en esta previsualización:',
@@ -659,7 +662,7 @@ Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más 
 'hiddencategories'                 => 'Esta página es un miembro de {{PLURAL:$1|1 categoría oculta|$1 categorías ocultas}}:',
 'edittools'                        => '<!-- Este texto aparecerá bajo los formularios de edición y subida. -->',
 'nocreatetitle'                    => 'Creación de páginas limitada',
-'nocreatetext'                     => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:Userlogin|identificarse o crear una cuenta]].',
+'nocreatetext'                     => 'Este wiki ha restringido la posibilidad de crear nuevas páginas. Puede volver atrás y editar una página existente, [[Special:UserLogin|identificarse o crear una cuenta]].',
 'nocreate-loggedin'                => 'No tienes permiso para crear páginas nuevas en {{SITENAME}}.',
 'permissionserrors'                => 'Errores de permisos',
 'permissionserrorstext'            => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
@@ -781,7 +784,7 @@ Otros administradores de este wiki aún podrán acceder al contenido oculto y po
 # Suppression log
 'suppressionlog'     => 'Log de supresiones',
 'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los sysops.
-Mira [[Special:Ipblocklist|el registro de bloqueos]] para una lista de bloqueos activos.',
+Mira [[Special:IPBlockList|el registro de bloqueos]] para una lista de bloqueos activos.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -824,7 +827,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchresults'             => 'Resultados de la búsqueda',
 'searchresults-title'       => 'Resultados de la búsqueda de $1',
 'searchresulttext'          => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Has consultado por '''[[:$1]]''' ([[Special:Prefixindex/$1|todas las páginas que empiezan por «$1»]] | [[Special:Whatlinkshere/$1|todas la páginas que enlazan con «$1»]])",
+'searchsubtitle'            => "Has consultado por '''[[:$1]]''' ([[Special:Prefixindex/$1|todas las páginas que empiezan por «$1»]] | [[Special:WhatLinksHere/$1|todas la páginas que enlazan con «$1»]])",
 'searchsubtitleinvalid'     => 'Para consulta "$1"',
 'noexactmatch'              => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
 'noexactmatch-nocreate'     => "'''No existe la página \"\$1\".'''",
@@ -870,7 +873,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'mypreferences'            => 'Mis preferencias',
 'prefs-edits'              => 'Cantidad de ediciones:',
 'prefsnologin'             => 'No está identificado',
-'prefsnologintext'         => 'Debes [[Special:Userlogin|entrar]] para cambiar las preferencias de usuario.',
+'prefsnologintext'         => 'Debes [[Special:UserLogin|entrar]] para cambiar las preferencias de usuario.',
 'prefsreset'               => 'Las preferencias han sido restauradas a los valores por defecto.',
 'qbsettings'               => 'Preferencias de "Quickbar"',
 'qbsettings-none'          => 'Ninguna',
@@ -945,7 +948,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'userrights-reason'           => 'Motivo para el cambio:',
 'userrights-no-interwiki'     => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'       => 'La base de datos $1 no existe o no es local.',
-'userrights-nologin'          => 'Debes [[Special:Userlogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
+'userrights-nologin'          => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
 'userrights-notallowed'       => 'No tienes permiso para realizar cambios de grupos a usuarios.',
 'userrights-changeable-col'   => 'Grupos que puede cambiar',
 'userrights-unchangeable-col' => 'Grupos que no puede cambiar',
@@ -1011,6 +1014,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-import'           => 'Importar páginas desde otras wikis',
 'right-autopatrol'       => 'Marcar como patrulladas sus ediciones automáticamente',
 'right-unwatchedpages'   => 'Ver una lista de páginas no vigiladas',
+'right-mergehistory'     => 'Fusionar historiales',
 'right-siteadmin'        => 'Bloquear y desbloquear la base de datos',
 
 # User rights log
@@ -1060,12 +1064,12 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'reupload'                    => 'Subir otra vez',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
 'uploadnologin'               => 'No ha iniciado sesión',
-'uploadnologintext'           => 'Tienes que [[Special:Userlogin|iniciar sesión]] para poder subir archivos.',
+'uploadnologintext'           => 'Tienes que [[Special:UserLogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
 'uploadtext'                  => "Utilize el siguiente formulario para subir archivos.
-Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:Imagelist|lista de archivos subidos]].
+Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:ImageList|lista de archivos subidos]].
 Los archivos subidos quedarán registrado además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
 
 Para incluir un archivo en una página, use un enlace como los que siguen
@@ -1186,7 +1190,7 @@ archivo a esa fecha.',
 'imagelinks'                     => 'Enlaces a la imagen',
 'linkstoimage'                   => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
 'nolinkstoimage'                 => 'No hay páginas que enlacen a esta imagen.',
-'morelinkstoimage'               => 'Vea [[Special:Whatlinkshere/$1|más enlaces]] a este archivo.',
+'morelinkstoimage'               => 'Vea [[Special:WhatLinksHere/$1|más enlaces]] a este archivo.',
 'redirectstofile'                => '{{PLURAL:$1|El siguiente fichero redirige|Los siguientes $1 ficheros redirigen}} a este:',
 'duplicatesoffile'               => '{{PLURAL:$1|El siguiente archivo es un duplicado|Los siguientes $1 archivos son duplicados}} de este:',
 'sharedupload'                   => 'Este archivo está compartido y puede usarse desde otros proyectos.',
@@ -1313,6 +1317,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'popularpages'            => 'Páginas populares',
 'wantedcategories'        => 'Categorías requeridas',
 'wantedpages'             => 'Páginas requeridas',
+'missingfiles'            => 'Ficheros que faltan',
 'mostlinked'              => 'Artículos más enlazados',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más enlazadas',
@@ -1404,7 +1409,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 
 # E-mail user
 'mailnologin'     => 'No enviar dirección',
-'mailnologintext' => 'Debes [[Special:Userlogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
+'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
 'emailuser'       => 'Enviar correo electrónico a este usuario',
 'emailpage'       => 'Correo electrónico a usuario',
 'emailpagetext'   => 'Si este usuario ha registrado una dirección electrónica válida en sus preferencias de usuario, el siguiente formulario sirve para enviarle un mensaje.
@@ -1431,7 +1436,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'nowatchlist'          => 'No tiene ninguna página en su lista de seguimiento.',
 'watchlistanontext'    => 'Para ver o editar las entradas de tu lista de seguimiento es necesario $1.',
 'watchnologin'         => 'No ha iniciado sesión',
-'watchnologintext'     => 'Debes [[Special:Userlogin|iniciar sesión]] para modificar tu lista de seguimiento.',
+'watchnologintext'     => 'Debes [[Special:UserLogin|iniciar sesión]] para modificar tu lista de seguimiento.',
 'addedwatch'           => 'Añadido a la lista de seguimiento',
 'addedwatchtext'       => "La página «[[:\$1]]» ha sido añadida a tu [[Special:Watchlist|lista se seguimiento]]. Cambios futuros en esta página y su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar. <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona \"Dejar de vigilar\" en el menú.",
 'removedwatch'         => 'Eliminada de la lista de seguimiento',
@@ -1546,7 +1551,7 @@ La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] | 
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
 Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de nuevo.',
 'protectlogpage'              => 'Protecciones de páginas',
-'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:Protectedpages|Esta página está protegida]] para más información.',
+'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
 'protectedarticle'            => 'protegió [[$1]]',
 'modifiedarticleprotection'   => 'Cambiado el nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
@@ -1582,6 +1587,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'restriction-edit'   => 'Pueden editar',
 'restriction-move'   => 'Pueden trasladar',
 'restriction-create' => 'Crear',
+'restriction-upload' => 'Subir',
 
 # Restriction levels
 'restriction-level-sysop'         => 'completamente protegida',
@@ -1633,20 +1639,22 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribuciones del usuario',
-'mycontris'     => 'Mis contribuciones',
-'contribsub2'   => '$1 ($2)',
-'nocontribs'    => 'No se encontraron cambios que cumplieran estos criterios.',
-'uctop'         => ' (última modificación)',
-'month'         => 'Desde el mes (y anterior):',
-'year'          => 'Desde el año (y anterior):',
+'contributions'       => 'Contribuciones del usuario',
+'contributions-title' => 'Contribuciones del usuario $1',
+'mycontris'           => 'Mis contribuciones',
+'contribsub2'         => '$1 ($2)',
+'nocontribs'          => 'No se encontraron cambios que cumplieran estos criterios.',
+'uctop'               => ' (última modificación)',
+'month'               => 'Desde el mes (y anterior):',
+'year'                => 'Desde el año (y anterior):',
 
-'sp-contributions-newbies'     => 'Mostrar solo las contribuciones de usuarios nuevos',
-'sp-contributions-newbies-sub' => 'Para nuevos',
-'sp-contributions-blocklog'    => 'Registro de bloqueos',
-'sp-contributions-search'      => 'Buscar contribuciones',
-'sp-contributions-username'    => 'Dirección IP o nombre de usuario:',
-'sp-contributions-submit'      => 'Buscar',
+'sp-contributions-newbies'       => 'Mostrar solo las contribuciones de usuarios nuevos',
+'sp-contributions-newbies-sub'   => 'Para cuentas nuevas',
+'sp-contributions-newbies-title' => 'Contribuciones de usuarios nuevos',
+'sp-contributions-blocklog'      => 'Registro de bloqueos',
+'sp-contributions-search'        => 'Buscar contribuciones',
+'sp-contributions-username'      => 'Dirección IP o nombre de usuario:',
+'sp-contributions-submit'        => 'Buscar',
 
 # What links here
 'whatlinkshere'            => 'Lo que enlaza aquí',
@@ -1665,6 +1673,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 inclusiones',
 'whatlinkshere-hidelinks'  => '$1 enlaces',
 'whatlinkshere-hideimages' => '$1 enlaces a imágenes',
+'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
 'blockip'                         => 'Bloquear usuario',
@@ -2414,6 +2423,7 @@ $1',
 
 # Table pager
 'ascending_abbrev'         => 'asc',
+'descending_abbrev'        => 'desc',
 'table_pager_next'         => 'Página siguiente',
 'table_pager_prev'         => 'Página anterior',
 'table_pager_first'        => 'Primera página',

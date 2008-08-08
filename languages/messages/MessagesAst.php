@@ -491,6 +491,7 @@ non válidu. Por favor escribi una direición con formatu afayadizu o dexa vaciu
 'createaccount-text'         => 'Daquién creó una cuenta pa la to direición de corréu electrónicu en {{SITENAME}} ($4) nomada "$2", asociada a la clave "$3". Habríes identificate y camudar la to clave agora.
 
 Pues inorar esti mensaxe si la cuenta foi creada por error.',
+'login-throttled'            => "Ficisti demasiaos intentos recientes cola clave d'esta cuenta. Por favor espera enantes d'intentalo otra vuelta.",
 'loginlanguagelabel'         => 'Llingua: $1',
 
 # Password reset dialog
@@ -544,7 +545,8 @@ Pues inorar esti mensaxe si la cuenta foi creada por error.',
 'blockedtitle'                     => "L'usuariu ta bloquiáu",
 'blockedtext'                      => "<big>'''El to nome d'usuariu o la to direición IP foi bloquiáu.'''</big>
 
-El bloquéu féxolu $1. El motivu conseñáu ye ''$2''.
+El bloquéu féxolu $1.
+El motivu conseñáu ye ''$2''.
 
 * Entamu del bloquéu: $8
 * Caducidá del bloquéu: $6
@@ -553,21 +555,23 @@ El bloquéu féxolu $1. El motivu conseñáu ye ''$2''.
 Pues ponete en contautu con $1 o con cualesquier otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] pa discutir el bloquéu.
 Nun pues usar la funcionalidá 'manda-y un email a esti usuariu' a nun ser que tea especificada una direición de corréu válida
 na to [[Special:Preferences|páxina de preferencies]] y que nun te tengan bloquiao el so usu.
-La to direición IP actual ye $3, y el númberu d'identificación del bloquéu ye $5. Por favor, amiesta dalgún o dambos d'estos datos nes tos consultes.",
-'autoblockedtext'                  => "La to direición IP foi bloquiada automáticamente porque foi usada por otru usuariu que foi bloquiáu por \$1.
+La to direición IP actual ye $3, y el númberu d'identificación del bloquéu ye $5.
+Por favor, amiesta dalgún o dambos d'estos datos nes tos consultes.",
+'autoblockedtext'                  => 'La to direición IP foi bloquiada automáticamente porque foi usada por otru usuariu que foi bloquiáu por $1.
 El motivu conseñáu foi esti:
 
-:''\$2''
+:\'\'$2\'\'
 
-* Entamu del bloquéu: \$8
-* Caducidá del bloquéu: \$6
+* Entamu del bloquéu: $8
+* Caducidá del bloquéu: $6
+* Usuariu que se quier bloquiar: $7
 
-Pues contautar con \$1 o con otru
-[[{{MediaWiki:Grouppage-sysop}}|alministrador]] p'aldericar sobre'l bloquéu.
+Pues ponete en contautu con $1 o con cualesquier otru [[{{MediaWiki:Grouppage-sysop}}|alministrador]] p\'aldericar sobre\'l bloquéu.
 
-Fíxate en que nun pues usar la funcionalidá d'\"unvia-y un corréu a esti usuariu\" a nun se que tengas una direición de corréu válida rexistrada na to [[Special:Preferences|páxina de preferencies]] y que nun teas bloquiáu pa usala.
+Fíxate en que nun pues usar la funcionalidá d\'"unvia-y un corréu a esti usuariu" a nun se que tengas una direición de corréu válida rexistrada na to [[Special:Preferences|páxina de preferencies]] y que nun teas bloquiáu pa usala.
 
-El códigu d'identificación del bloquéu ye'l \$5. Por favor amiesta esti códigu nes consultes que faigas.",
+La to direición IP actual ye $3, y el númberu d\'identificación del bloquéu ye $5.
+Por favor, amiesta toos estos detalles nes consultes que faigas.',
 'blockednoreason'                  => 'nun se dio nengún motivu',
 'blockedoriginalsource'            => "El códigu fonte de '''$1''' amuésase equí:",
 'blockededitsource'                => "El testu de '''les tos ediciones''' en '''$1''' amuésase equí:",
@@ -639,7 +643,8 @@ polo que nun vas poder grabar les tos ediciones nestos momentos. Seique habríes
 el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
 'protectedpagewarning'             => '<strong>AVISU: Esta páxina ta protexida pa que sólo los alministradores puean editala.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida pa que nun puean editala namái que los usuarios rexistraos.",
-'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
+'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:
+$2",
 'titleprotectedwarning'            => '<strong>AVISU: Esta páxina foi bloquiada pa que namái dalgunos usuarios puean creala.</strong>',
 'templatesused'                    => 'Plantíes usaes nesta páxina:',
 'templatesusedpreview'             => 'Plantíes usaes nesta previsualización:',
@@ -1736,7 +1741,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipusubmit'                       => 'Desbloquiar esta direición',
 'unblocked'                       => '[[User:$1|$1]] foi desbloquiáu',
 'unblocked-id'                    => 'El bloquéu $1 foi elimináu',
-'ipblocklist'                     => "Llista de direiciones IP y nomes d'usuarios bloquiaos",
+'ipblocklist'                     => "Direiciones IP y nomes d'usuarios bloquiaos",
 'ipblocklist-legend'              => 'Atopar un usuariu bloquiáu',
 'ipblocklist-username'            => "Nome d'usuariu o direición IP:",
 'ipblocklist-submit'              => 'Buscar',

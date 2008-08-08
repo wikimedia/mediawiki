@@ -602,7 +602,8 @@ e donca a peudrà pa salvesse soe modìfiche tut sùbit. A peul esse che
 a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.</strong>",
 'protectedpagewarning'      => "<strong>AVIS: costa pàgina-sì a l'é staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.</strong>",
 'semiprotectedpagewarning'  => "'''Nòta:'''costa pàgina-sì a l'é staita protegiùa an manera che mach j'utent registrà a peulo modifichela.",
-'cascadeprotectedwarning'   => "'''Tension:''' sta pàgina-sì a l'è staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che {{PLURAL:\$1|a l'é proteta|a-i intra ant le pàgine protete}} col sistema \"a cascada\":",
+'cascadeprotectedwarning'   => "'''Tension:''' sta pàgina-sì a l'è staita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che {{PLURAL:\$1|a l'é proteta|a-i intra ant le pàgine protete}} col sistema \"a cascada\":
+\$2",
 'titleprotectedwarning'     => "<strong>DOSMAN: sta pàgina-sì a l'é protegiùa an manera che mach chèich utent a peul creéla.</strong>",
 'templatesused'             => 'Stamp dovrà dzora a sta pàgina-sì:',
 'templatesusedpreview'      => 'Stamp dovrà ant sta preuva-sì:',
@@ -613,7 +614,7 @@ a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.<
 'edittools'                 => "<!-- Test ch'a së s-ciàira sot a ij mòduj ëd mòdifica e 'd càrich d'archivi. -->",
 'nocreatetitle'             => 'Creassion ëd pàgine limità',
 'nocreatetext'              => "Cost sit-sì a l'ha limità la possibilità ëd creé dle pàgine neuve.
-A peul torné andaré e modifiché na pàgine che a-i é già, ò pura [[Special:Userlogin|rintré ant ël sistema ò deurb-se un cont]].",
+A peul torné andaré e modifiché na pàgine che a-i é già, ò pura [[Special:UserLogin|rintré ant ël sistema ò deurb-se un cont]].",
 'nocreate-loggedin'         => "A l'ha pa ij përmess dont a fa da manca për podej creé dle pàgine neuve an {{SITENAME}}.",
 'permissionserrors'         => 'Eror ant ij përmess',
 'permissionserrorstext'     => "A l'ha pa ij përmess dont a fa da manca për {{PLURAL:$1|via che|via che}}:",
@@ -777,7 +778,7 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'mypreferences'            => 'mè gust',
 'prefs-edits'              => 'Modìfiche faite:',
 'prefsnologin'             => "A l'é ancó pa rintrà ant ël sistema",
-'prefsnologintext'         => 'A dev [[Special:Userlogin|rintré ant ël sistema]]
+'prefsnologintext'         => 'A dev [[Special:UserLogin|rintré ant ël sistema]]
 për podej specifiché ij sò gust.',
 'prefsreset'               => 'Ij "sò gust" a son stait pijait andré da \'nt la memòria dël server ëd {{SITENAME}}.',
 'qbsettings'               => 'Regolassion dla bara dij menù',
@@ -847,7 +848,7 @@ për podej specifiché ij sò gust.',
 'userrights-reason'        => 'Rason dla modìfica:',
 'userrights-no-interwiki'  => "A l'ha pa ij përmess dont a fa da manca për podej cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
 'userrights-nodatabase'    => "La base dat $1 a-i é pa, ò pura a l'é nen local.",
-'userrights-nologin'       => "A l'ha da [[Special:Userlogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
+'userrights-nologin'       => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
 'userrights-notallowed'    => "A l'ha pa ij përmess dont a fa da manca për podej-je dé dij drit a j'utent.",
 
 # Groups
@@ -913,14 +914,14 @@ për podej specifiché ij sò gust.',
 'reupload'                    => 'Caria torna',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
 'uploadnologin'               => "A dev rintré ant ël sistema për podej fé st'operassion-sì",
-'uploadnologintext'           => "A dev [[Special:Userlogin|rintré ant ël sistema]]
+'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 për podej carié dj'archivi.",
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
 'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì
 [[{{MediaWiki:Policy-url}}|ël regolament ëd {{SITENAME}} ansima al dovré dle figure]].
 
-Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:Imagelist|lista dle figure]].
+Për vardé ò pura sërché figure già carià ant sla {{SITENAME}}, che a vada ant sla [[Special:ImageList|lista dle figure]].
 Lòn che as caria e së scancela a resta marcà ant ël [[Special:Log/upload|registr dij càrich]].
 
 Che a dòvra ël mòdulo ambelessì sota për carié neuv archivi con figure da dovré për fé pì bej e bin spiegà ij sò artìcoj.
@@ -1259,7 +1260,7 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 
 # E-mail user
 'mailnologin'     => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
-'mailnologintext' => "A dev [[Special:Userlogin|rintré ant ël sistema]]
+'mailnologintext' => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 e avej registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podej mandé dij messagi ëd pòsta eletrònica a j'àutri Utent.",
 'emailuser'       => "Mand-je un messagi eletrònich a st'Utent-sì",
 'emailpage'       => "Mand-je un messagi ëd pòsta eletrònica a st'utent-sì",
@@ -1286,7 +1287,7 @@ L'adrëssa eletrònica che a l'ha specificà ant ij sò \"gust\" a sarà butà c
 'nowatchlist'          => 'A l\'ha ancó pa marcà dj\'artìcoj coma "ròba da tnì sot euj".',
 'watchlistanontext'    => "Për piasì, $1 për ës-ciairé ò pura modifiché j'element ëd soa lista dla ròba che as ten sot euj.",
 'watchnologin'         => "A l'é ancó nen rintrà ant ël sistema",
-'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:Userlogin|rintré ant ël sistema]]
+'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:UserLogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
 'addedwatch'           => "Sòn a l'é stait giontà a le pàgine che it ten-e sot euj",
 'addedwatchtext'       => " La pàgina  \"<nowiki>\$1</nowiki>\" a l'é staita giontà a tua [[Special:Watchlist|lista dla ròba da tnì sot euj]].
@@ -1402,7 +1403,7 @@ L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]
 'sessionfailure'              => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
 'protectlogpage'              => 'Registr dle protession',
 'protectlogtext'              => "Ambelessì sota a-i é na lista d'event ëd protession e dësprotession ëd pàgine.
-Ch'a varda la [[Special:Protectedpages|Lista dle pàgine protegiùe]] për ës-ciairé le protession corente.",
+Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-ciairé le protession corente.",
 'protectedarticle'            => '"[[$1]]" a l\'é protet',
 'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[$1]]"',
 'unprotectedarticle'          => 'Dësprotegiù "[[$1]]"',

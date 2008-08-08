@@ -420,7 +420,7 @@ $messages = array(
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => "<big>'''Você requisitou uma página especial inválida.'''</big>
 
-Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Specialpages|{{int:specialpages}}]].",
+Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',
@@ -733,7 +733,8 @@ Por gentileza, considere quebrar a página em sessões menores.</strong>',
 No momento não é possível salvar suas edições. Você pode copiar e colar o texto em um arquivo de texto e salvá-lo em seu computador para adicioná-lo ao wiki mais tarde.</strong>',
 'protectedpagewarning'      => '<strong>CUIDADO: Apenas os usuários com privilégios de sysop (Administradores) podem editar esta página pois ela foi bloqueada.</strong>',
 'semiprotectedpagewarning'  => "'''Nota:''' Esta página foi protegida, sendo que apenas usuários registrados poderão editá-la.",
-'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
+'cascadeprotectedwarning'   => "'''Atenção:''' Esta página se encontra protegida; apenas {{int:group-sysop}} podem editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":
+\$2",
 'titleprotectedwarning'     => '<strong>ATENÇÃO: Esta página foi protegida, apenas alguns usuários poderão criá-la.</strong>',
 'templatesused'             => 'Predefinições utilizadas nesta página:',
 'templatesusedpreview'      => 'Predefinições utilizadas nesta previsão:',
@@ -744,7 +745,7 @@ No momento não é possível salvar suas edições. Você pode copiar e colar o 
 'edittools'                 => '<!-- O texto aqui disponibilizado será exibido abaixo dos formulários de edição e de envio de arquivos. -->',
 'nocreatetitle'             => 'A criação de páginas se encontra limitada',
 'nocreatetext'              => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
-Volte à tela anterior e edite uma página já existente, ou [[Special:Userlogin|autentique-se ou crie uma conta]].',
+Volte à tela anterior e edite uma página já existente, ou [[Special:UserLogin|autentique-se ou crie uma conta]].',
 'nocreate-loggedin'         => 'Você não possui permissões de criar novas páginas neste wiki.',
 'permissionserrors'         => 'Erros de permissões',
 'permissionserrorstext'     => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
@@ -863,7 +864,7 @@ Outros administradores nesta wiki continuarão podendo acessar ao conteúdo esco
 # Suppression log
 'suppressionlog'     => 'Registro de supressões',
 'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
-Veja a [[Special:Ipblocklist|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -947,7 +948,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'mypreferences'            => 'Minhas preferências',
 'prefs-edits'              => 'Número de edições:',
 'prefsnologin'             => 'Não autenticado',
-'prefsnologintext'         => 'Precisa estar [[Special:Userlogin|autenticado]] para definir suas preferências.',
+'prefsnologintext'         => 'Precisa estar [[Special:UserLogin|autenticado]] para definir suas preferências.',
 'prefsreset'               => 'As preferências foram restauradas tal como se encontravam no banco de dados.',
 'qbsettings'               => 'Configurações da Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',
@@ -1022,7 +1023,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'userrights-reason'           => 'Motivo de alterações:',
 'userrights-no-interwiki'     => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
 'userrights-nodatabase'       => 'O banco de dados $1 não existe ou não é um banco de dados local.',
-'userrights-nologin'          => 'Você precisa [[Special:Userlogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
+'userrights-nologin'          => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
 'userrights-notallowed'       => 'Sua conta não possui permissão para conceder privilégios a usuários.',
 'userrights-changeable-col'   => 'Grupos que pode alterar',
 'userrights-unchangeable-col' => 'Grupos que não pode alterar',
@@ -1152,12 +1153,12 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 'reupload'                    => 'Re-enviar',
 'reuploaddesc'                => 'Cancelar o envio e retornar ao formulário de upload',
 'uploadnologin'               => 'Não autenticado',
-'uploadnologintext'           => 'Você necessita estar [[Special:Userlogin|autenticado]] para enviar arquivos.',
+'uploadnologintext'           => 'Você necessita estar [[Special:UserLogin|autenticado]] para enviar arquivos.',
 'upload_directory_missing'    => 'O diretório de upload ($1) está em falta e não pôde ser criada pelo webserver.',
 'upload_directory_read_only'  => 'O diretório de download de arquivos ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos arquivos.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:Imagelist|lista de arquivos carregados]].
+Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:ImageList|lista de arquivos carregados]].
 Uploads e eliminações são também registadros no [[Special:Log|registro do projeto]].
 
 Para incluír a imagem em uma página, utilize o link na forma de
@@ -1286,7 +1287,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'imagelinks'                     => 'Ligações',
 'linkstoimage'                   => '{{PLURAL:$1|A seguinte página aponta|As seguintes $1 páginas apontam}} para este arquivo:',
 'nolinkstoimage'                 => 'Nenhuma página aponta para este arquivo.',
-'morelinkstoimage'               => 'Ver [[Special:Whatlinkshere/$1|mais ligações]] para este arquivo.',
+'morelinkstoimage'               => 'Ver [[Special:WhatLinksHere/$1|mais ligações]] para este arquivo.',
 'redirectstofile'                => '{{PLURAL:$1|O seguinte arquivo redireciona|Os seguintes arquivos redirecionam}} para este arquivo:',
 'duplicatesoffile'               => '{{PLURAL:$1|O seguinte arquivo é duplicado|Os seguintes arquivos são duplicados}} deste arquivo:',
 'sharedupload'                   => 'Este arquivo encontra-se partilhado e pode ser utilizado por outros projetos.',
@@ -1500,7 +1501,7 @@ Informação adicional sobre direitos individuais pode ser encontrada [[{{MediaW
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',
-'mailnologintext' => 'Necessita de estar [[Special:Userlogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
+'mailnologintext' => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
 'emailuser'       => 'Contactar este usuário',
 'emailpage'       => 'Contactar usuário',
 'emailpagetext'   => 'Se este usuário disponibilizou um endereço válido de e-mail em suas preferências, o formulário a seguir enviará uma mensagem única.
@@ -1527,7 +1528,7 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
 'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiados.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[Special:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
+'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de vigiados]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
@@ -1645,7 +1646,7 @@ Esta ação foi cancelada como medida de proteção contra a intercepção de se
 Experimente usar o botão "Voltar" e atualizar a página de onde veio e tente novamente.',
 'protectlogpage'              => 'Registro de proteção',
 'protectlogtext'              => 'Abaixo encontra-se o registro de proteção e desproteção de páginas.
-Veja a [[Special:Protectedpages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
+Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
 'modifiedarticleprotection'   => 'foi alterado o nível de proteção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',

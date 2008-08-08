@@ -339,7 +339,7 @@ $messages = array(
 'nosuchspecialpage' => '此特殊頁面不存在',
 'nospecialpagetext' => "<big>'''您請求的特殊頁面無效。'''</big>
 
-[[Special:Specialpages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。",
+[[Special:SpecialPages|{{int:specialpages}}]]中載有所有有效特殊頁面的列表。",
 
 # General errors
 'error'                => '錯誤',
@@ -417,7 +417,7 @@ $2',
 # Login and logout pages
 'logouttitle'                => '用戶退出',
 'logouttext'                 => '您現在已經退出。
-您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份[[Special:Userlogin|登入]]。',
+您可以繼續以匿名方式使用{{SITENAME}}，或再次以相同或不同用戶身份[[Special:UserLogin|登入]]。',
 'welcomecreation'            => '<h2>歡迎，$1!</h2><p>您的帳號已經建立，不要忘記設置[[Special:Preferences|{{SITENAME}}個人參數]]。</p>',
 'loginpagetitle'             => '用戶登入',
 'yourname'                   => '您的用戶名:',
@@ -598,12 +598,12 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>請記住這只是預覽，內容還未保存！</strong>',
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:Userlogout|登出]]後重新登入。</strong>',
+'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。</strong>',
 'session_fail_preview_html'        => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
-<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:Userlogout|登出]]後再重新登入一次。</strong>",
+<strong>如果這個編輯過程沒有問題，請再試一次。如果仍然有問題，請[[Special:UserLogout|登出]]後再重新登入一次。</strong>",
 'token_suffix_mismatch'            => '<strong>由於您用戶端中的編輯信符毀損了一些標點符號字元，為防止編輯的文字損壞，您的編輯已經被拒絕。
 這種情況通常出現於使用含有很多臭蟲、以網絡為主的匿名代理服務的時候。</strong>',
 'editing'                          => '正在編輯$1',
@@ -635,7 +635,8 @@ $2',
 'readonlywarning'                  => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
 'protectedpagewarning'             => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的用戶才可修改。</strong>',
 'semiprotectedpagewarning'         => "'''注意:''' 本頁面被鎖定，僅限註冊用戶編輯。",
-'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
+'cascadeprotectedwarning'          => '警告: 本頁已經被保護，只有擁有管理員權限的用戶才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:
+$2',
 'titleprotectedwarning'            => '<strong>警告: 本頁面已被鎖上，只有一些用戶方可創建。</strong>',
 'templatesused'                    => '在這個頁面上使用的模板有:',
 'templatesusedpreview'             => '此次預覽中使用的模板有:',
@@ -645,7 +646,7 @@ $2',
 'hiddencategories'                 => '這個頁面是屬於$1個隱藏分類的成員:',
 'edittools'                        => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'                    => '創建頁面受限',
-'nocreatetext'                     => '{{SITENAME}}限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或創建新賬戶]]。',
+'nocreatetext'                     => '{{SITENAME}}限制了創建新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或創建新賬戶]]。',
 'nocreate-loggedin'                => '您在{{SITENAME}}中並無許可權去創建新頁面。',
 'permissionserrors'                => '權限錯誤',
 'permissionserrorstext'            => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
@@ -763,7 +764,7 @@ $2',
 # Suppression log
 'suppressionlog'     => '廢止日誌',
 'suppressionlogtext' => '以下是刪除以及由操作員牽涉到內容封鎖的清單。
-參看[[Special:Ipblocklist|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
+參看[[Special:IPBlockList|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
@@ -804,7 +805,7 @@ $2',
 'searchresults'             => '搜索結果',
 'searchresults-title'       => '對$1的搜索結果',
 'searchresulttext'          => '有關搜索{{SITENAME}}的更多詳情,參見[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => '查詢\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 開頭的頁面]] | [[Special:Whatlinkshere/$1|所有鏈接到 "$1" 的頁面]])',
+'searchsubtitle'            => '查詢\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 開頭的頁面]] | [[Special:WhatLinksHere/$1|所有鏈接到 "$1" 的頁面]])',
 'searchsubtitleinvalid'     => '查詢"$1"',
 'noexactmatch'              => "'''沒找到標題為\"\$1\"的頁面。''' 您可以[[:\$1|創建此頁面]]。",
 'noexactmatch-nocreate'     => "'''沒找到標題為\"\$1\"的頁面。'''",
@@ -847,7 +848,7 @@ $2',
 'mypreferences'            => '我的參數設置',
 'prefs-edits'              => '編輯數量:',
 'prefsnologin'             => '還未登入',
-'prefsnologintext'         => '您必須先[[Special:Userlogin|登入]]才能設置個人參數。',
+'prefsnologintext'         => '您必須先[[Special:UserLogin|登入]]才能設置個人參數。',
 'prefsreset'               => '參數已重新設置。',
 'qbsettings'               => '快速導航條',
 'qbsettings-none'          => '無',
@@ -922,7 +923,7 @@ $2',
 'userrights-reason'           => '更改原因:',
 'userrights-no-interwiki'     => '您並沒有權限去編輯在其它wiki上的用戶權限。',
 'userrights-nodatabase'       => '資料庫$1不存在或並非為本地的。',
-'userrights-nologin'          => '您必須要以操作員帳戶[[Special:Userlogin|登入]]之後才可以指定用戶權限。',
+'userrights-nologin'          => '您必須要以操作員帳戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
 'userrights-notallowed'       => '您的帳戶無權限去指定用戶權限。',
 'userrights-changeable-col'   => '您可以更改的群組',
 'userrights-unchangeable-col' => '您不可以更改的群組',
@@ -1052,14 +1053,14 @@ $2',
 'reupload'                    => '重新上載',
 'reuploaddesc'                => '取消上載並返回上載表單',
 'uploadnologin'               => '未登入',
-'uploadnologintext'           => '您必須先[[Special:Userlogin|登入]]
+'uploadnologintext'           => '您必須先[[Special:UserLogin|登入]]
 才能上載檔案。',
 'upload_directory_missing'    => '上傳目錄($1)遺失，不能由網頁伺服器建立。',
 'upload_directory_read_only'  => '上傳目錄($1)不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳檔案。
 要檢視或搜索以前上傳的檔案
-可以進入[[Special:Imagelist|檔案上傳清單]]，
+可以進入[[Special:ImageList|檔案上傳清單]]，
 （重新）上傳將在[[Special:Log/upload|上傳日誌]]中記錄，
 而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
@@ -1179,7 +1180,7 @@ $2',
 下面的清單只列示了連去這個檔案的最首$1個頁面。
 一個[[Special:WhatLinksHere/$2|完整的清單]]可以提供。',
 'nolinkstoimage'                 => '沒有頁面連接到本檔案。',
-'morelinkstoimage'               => '查看連接到這個檔案的[[Special:Whatlinkshere/$1|更多連結]]。',
+'morelinkstoimage'               => '查看連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'                => '以下的$1個檔案重新定向到這個檔案:',
 'duplicatesoffile'               => '以下的$1個檔案是跟這個檔案重覆:',
 'sharedupload'                   => '該檔案是一個共享上傳，它可能在其它項目中被應用。',
@@ -1263,7 +1264,7 @@ $2',
 即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
-'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|用戶]]，其中
+'userstatstext'          => "網站有'''$1'''位註冊[[Special:ListUsers|用戶]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
 
@@ -1408,7 +1409,7 @@ Template:消除歧義',
 
 # E-mail user
 'mailnologin'     => '無電郵地址',
-'mailnologintext' => '您必須先[[Special:Userlogin|登入]]
+'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|參數設置]]
 中有一個有效的e-mail地址才可以電郵其他用戶。',
 'emailuser'       => 'E-mail該用戶',
@@ -1437,7 +1438,7 @@ Template:消除歧義',
 'nowatchlist'          => '您的監視列表為空。',
 'watchlistanontext'    => '請$1以檢視或編輯您的監視列表。',
 'watchnologin'         => '未登入',
-'watchnologintext'     => '您必須先[[Special:Userlogin|登入]]
+'watchnologintext'     => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
 'addedwatch'           => '加入到監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
@@ -1553,7 +1554,7 @@ $NEWPAGE
 'rollback-success'            => '恢復由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:Protectedpages|保護頁面清單]]以檢視當前進行的頁面保護。',
+'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視當前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',

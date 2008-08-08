@@ -225,7 +225,7 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'template-protected'     => '(twaḥḍa)',
 'template-semiprotected' => '(semi-protected)',
 'nocreatetext'           => '{{SITENAME}} war iqqim ca itejja iwdan ad ggen tisebtar timaynutin.
-tzemred addewred ɣar deffar, niɣ [[Special:Userlogin|Adeff niɣ egg amiḍan]].',
+tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]].',
 
 # History pages
 'viewpagelogs'        => 'Ẓar aɣmis n tsebtert a',

@@ -304,6 +304,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
+'tog-noconvertlink'           => 'Stäng av konvertering av sidtitlar',
 
 'underline-always'  => 'Alltid',
 'underline-never'   => 'Aldrig',
@@ -538,7 +539,7 @@ hittas av programvaran',
 'nosuchspecialpage' => 'Någon sådan specialsida finns inte',
 'nospecialpagetext' => "<big>'''Du har begärt en specialsida som inte finns.'''</big>
 
-I [[Special:Specialpages|listan över specialsidor]] kan du se vilka specialsidor som finns.",
+I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsidor som finns.",
 
 # General errors
 'error'                => 'Fel',
@@ -613,7 +614,7 @@ $2',
 'logouttitle'                => 'Användarutloggning',
 'logouttext'                 => '<strong>Du är nu utloggad.</strong>
 
-Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:Userlogin|logga in igen]] som samma eller som en annan användare.
+Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:UserLogin|logga in igen]] som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.',
 'welcomecreation'            => '== Välkommen, $1! ==
 Ditt konto har skapats.
@@ -699,6 +700,7 @@ Skriv in en adress med korrekt format, eller töm fältet.',
 'createaccount-text'         => 'Någon har skapat ett konto åt din e-postadress på {{SITENAME}} ($4) med namnet "$2" och lösenordet "$3". Du bör nu logga in och ändra ditt lösenord.
 
 Du kan ignorera detta meddelande om kontot skapats av misstag.',
+'login-throttled'            => 'Du har gjort för många försök nyligen på det här kontots lösenord. Var god vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -761,9 +763,11 @@ Blockeringen utfördes av $1 med motiveringen: ''$2''.
 * Blockeringen gäller till $6.
 * Blockeringen var avsedd för $7.
 
-Du kan kontakta $1 eller någon annan av [[{{MediaWiki:Grouppage-sysop}}|administratörerna]] för att diskutera blockeringen. Om du är inloggad och har uppgivit en e-postadress i dina inställningar så kan du använda funktionen 'skicka e-post till den här användaren', såvida du inte blivit blockerad från funktionen.
+Du kan kontakta $1 eller någon annan av [[{{MediaWiki:Grouppage-sysop}}|administratörerna]] för att diskutera blockeringen.
+Om du är inloggad och har uppgivit en e-postadress i dina [[Special:Preferences|inställningar]] så kan du använda funktionen 'skicka e-post till den här användaren', såvida du inte blivit blockerad från funktionen.
 
-Din IP-adress är $3 och blockerings-ID är #$5. Vänligen ange IP-adress eller blockerings-ID i alla förfrågningar som du gör i ärendet.",
+Din IP-adress är $3 och blockerings-ID är #$5.
+Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.",
 'autoblockedtext'                  => 'Din IP-adress har blockerats automatiskt eftersom den har använts av en annan användare som blockerats av $1.
 Motiveringen av blockeringen var:
 
@@ -771,12 +775,14 @@ Motiveringen av blockeringen var:
 
 * Blockeringen startade $8
 * Blockeringen gäller till $6
+* Blockeringen är avsedd för $7
 
 Du kan kontakta $1 eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administratör]] för att diskutera blockeringen.
 
 Observera att du inte kan använda dig av funktionen "skicka e-post till användare" om du inte har registrerat en giltig e-postadress i [[Special:Preferences|dina inställningar]] eller om du har blivit blockerad från att skicka e-post.
 
-Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar som du gör i ärendet.',
+Din nuvarande IP-adress är $3, och blockerings-ID är #$5.
+Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.',
 'blockednoreason'                  => 'ingen motivering angavs',
 'blockedoriginalsource'            => "Källkoden för '''$1''' visas nedan:",
 'blockededitsource'                => "Texten för '''dina ändringar''' av '''$1''' visas nedanför:",
@@ -812,13 +818,13 @@ Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna 
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
 'session_fail_preview'             => '<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.
-Försök igen; om det fortfarande inte fungerar, pröva att [[Special:Userlogout|logga ut]] och logga in igen.</strong>',
+Försök igen; om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>',
 'session_fail_preview_html'        => "<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.</strong>
 
 ''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''
 
 <strong>Om det är ett försök att göra en rättmätig redigering, så försök igen.
-Om det fortfarande inte fungerar, pröva att [[Special:Userlogout|logga ut]] och logga in igen.</strong>",
+Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>",
 'token_suffix_mismatch'            => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.</strong>',
@@ -850,7 +856,8 @@ dina ändringar just nu. Det kan vara klokt att kopiera över texten till din eg
 'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
 'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
-'cascadeprotectedwarning'          => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":',
+'cascadeprotectedwarning'          => '<strong>VARNING:</strong> Den här sidan är låst så att bara administratörer kan redigera den. Det beror på att sidan inkluderas på följande {{PLURAL:$1|sida|sidor}} som skyddats med "kaskaderande skrivskydd":
+$2',
 'titleprotectedwarning'            => '<strong>VARNING: Den här sidan har skyddats så att endast vissa användare kan skapa den.</strong>',
 'templatesused'                    => 'Mallar som används på den här sidan:',
 'templatesusedpreview'             => 'Mallar som används i förhandsgranskningen:',
@@ -861,7 +868,7 @@ Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.
 'edittools'                        => '<!-- Denna text kommer att visas nedanför redigeringsrutor och uppladdningsformulär. -->',
 'nocreatetitle'                    => 'Skapande av sidor begränsat',
 'nocreatetext'                     => '{{SITENAME}} har begränsat möjligheterna att skapa nya sidor.
-Du kan redigera existerande sidor, eller [[Special:Userlogin|logga in eller skapa ett användarkonto]].',
+Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skapa ett användarkonto]].',
 'nocreate-loggedin'                => 'Du har inte behörighet att skapa nya sidor på {{SITENAME}}.',
 'permissionserrors'                => 'Behörighetsfel',
 'permissionserrorstext'            => 'Du har inte behörighet att göra det du försöker göra, av följande {{PLURAL:$1|anledning|anledningar}}:',
@@ -979,7 +986,7 @@ Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det d
 # Suppression log
 'suppressionlog'     => 'Versionsraderingslogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
-Se [[Special:Ipblocklist|blockeringslistan]] för listan över gällande blockeringar.',
+Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blockeringar.',
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
@@ -1020,7 +1027,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'searchresults'             => 'Sökresultat',
 'searchresults-title'       => 'Sökresultat för $1',
 'searchresulttext'          => 'Se [[{{MediaWiki:Helppage}}|hjälpsidan]] för mer information om sökning på {{SITENAME}}.',
-'searchsubtitle'            => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]] | [[Special:Whatlinkshere/$1|alla sidor som länkar till "$1"]])',
+'searchsubtitle'            => 'Du sökte efter \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|alla sidor som startar med "$1"]] | [[Special:WhatLinksHere/$1|alla sidor som länkar till "$1"]])',
 'searchsubtitleinvalid'     => 'För sökbegreppet $1',
 'noexactmatch'              => "'''Det finns ingen sida med titeln \"\$1\".''' Du kan  [[:\$1|skapa denna sida]].",
 'noexactmatch-nocreate'     => "'''Det finns ingen sida med titeln \"\$1\".'''",
@@ -1065,7 +1072,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'mypreferences'            => 'Mina inställningar',
 'prefs-edits'              => 'Antal redigeringar:',
 'prefsnologin'             => 'Inte inloggad',
-'prefsnologintext'         => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ändra i inställningar.',
+'prefsnologintext'         => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra i inställningar.',
 'prefsreset'               => 'Inställningarna har återställts till ursprungsvärdena.',
 'qbsettings'               => 'Inställningar för snabbmeny',
 'qbsettings-none'          => 'Ingen',
@@ -1140,7 +1147,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'userrights-reason'           => 'Anledning till ändringen:',
 'userrights-no-interwiki'     => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'       => 'Databasen $1 finns inte eller så är den inte lokal.',
-'userrights-nologin'          => 'Du måste [[Special:Userlogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
+'userrights-nologin'          => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
 'userrights-notallowed'       => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
 'userrights-changeable-col'   => 'Grupper du kan ändra',
 'userrights-unchangeable-col' => 'Grupper du inte kan ändra',
@@ -1271,12 +1278,12 @@ Sidor på [[Special:Watchlist|din bevakningslista]] är markerade med '''fetstil
 'reupload'                    => 'Ladda upp på nytt',
 'reuploaddesc'                => 'Avbryt uppladdningen och gå tillbaka till uppladdningsformuläret.',
 'uploadnologin'               => 'Inte inloggad',
-'uploadnologintext'           => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ladda upp filer.',
+'uploadnologintext'           => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ladda upp filer.',
 'upload_directory_missing'    => 'Uppladdningskatalogen ($1) saknas och kunde inte skapas av webbservern.',
 'upload_directory_read_only'  => 'Webbservern kan inte skriva till uppladdningskatalogen ($1).',
 'uploaderror'                 => 'Fel vid uppladdningen',
 'uploadtext'                  => "Använd formuläret nedan för att ladda upp filer.
-För att titta på eller leta efter filer som redan har laddats upp, se [[Special:Imagelist|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
+För att titta på eller leta efter filer som redan har laddats upp, se [[Special:ImageList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 
 Använd en länk på något av följande format för att infoga en bild på en sida:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa bilden i dess hela storlek
@@ -1411,7 +1418,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.
 Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'nolinkstoimage'                 => 'Inga sidor länkar till den här filen.',
-'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
+'morelinkstoimage'               => 'Visa [[Special:WhatLinksHere/$1|fler länkar]] till den här filen.',
 'redirectstofile'                => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
 'duplicatesoffile'               => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen:',
 'sharedupload'                   => 'Denna fil är uppladdad som delad, och kan användas av andra projekt.',
@@ -1491,7 +1498,7 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|gånger}}, och <b>$4</b> {{PLURAL:$4|sida|sidor}} har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkön]s längd är för tillfället '''$7'''.",
-'userstatstext'          => "Det finns '''$1''' {{PLURAL:$1|registrerad|registrerade}} [[Special:Listusers|användare]]. Av dem är '''$2''' (eller '''$4%''') $5.",
+'userstatstext'          => "Det finns '''$1''' {{PLURAL:$1|registrerad|registrerade}} [[Special:ListUsers|användare]]. Av dem är '''$2''' (eller '''$4%''') $5.",
 'statistics-mostpopular' => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
@@ -1631,7 +1638,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 
 # E-mail user
 'mailnologin'     => 'Ingen adress att skicka till',
-'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:Userlogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
+'mailnologintext' => 'För att kunna skicka e-post till andra användare, måste du vara [[Special:UserLogin|inloggad]] och ha angivit en korrekt e-postadress i dina [[Special:Preferences|användarinställningar]].',
 'emailuser'       => 'Skicka e-post till den här användaren',
 'emailpage'       => 'Skicka e-post till annan användare',
 'emailpagetext'   => 'Om den här användaren har skrivit in en giltig e-postadress i sina användarinställningar, kommer formuläret nedan att skicka ett meddelande.
@@ -1658,7 +1665,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'nowatchlist'          => 'Du har inga sidor i din bevakningslista.',
 'watchlistanontext'    => 'Du måste $1 för att se eller redigera din bevakningslista.',
 'watchnologin'         => 'Inte inloggad',
-'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ändra din bevakningslista.',
+'watchnologintext'     => 'Du måste vara [[Special:UserLogin|inloggad]] för att kunna ändra din bevakningslista.',
 'addedwatch'           => 'Tillagd på bevakningslistan',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
 Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
@@ -1944,7 +1951,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipusubmit'                       => 'Ta bort blockeringen',
 'unblocked'                       => 'Blockeringen av [[User:$1|$1]] har hävts',
 'unblocked-id'                    => 'Blockeringen $1 har hävts',
-'ipblocklist'                     => 'Lista över blockerade IP-adresser och användarnamn',
+'ipblocklist'                     => 'Blockerade IP-adresser och användarnamn',
 'ipblocklist-legend'              => 'Sök efter en blockerad användare',
 'ipblocklist-username'            => 'Användarnamn eller IP-adress',
 'ipblocklist-submit'              => 'Sök',
@@ -1963,7 +1970,9 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'autoblocker'                     => 'Automatisk blockering eftersom du har samma IP-adress som "$1". Motivering till blockeringen: "$2".',
 'blocklogpage'                    => 'Blockeringslogg',
 'blocklogentry'                   => 'blockerade [[$1]] med blockeringstid på $2 $3',
-'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar. Automatiskt blockerade IP-adresser listas ej. En lista över IP-adresser och användare som för närvarande är blockerade finns på [[Special:IPBlockList|IP-blocklistan]].',
+'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar.
+Automatiskt blockerade IP-adresser listas ej.
+I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och användare som är blockerade för närvarande.',
 'unblocklogentry'                 => 'tog bort blockering av "$1"',
 'block-log-flags-anononly'        => 'bara oinloggade',
 'block-log-flags-nocreate'        => 'hindrar kontoregistrering',
@@ -1999,7 +2008,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'lockdbsuccesssub'    => 'Databasen har låsts',
 'unlockdbsuccesssub'  => 'Databasen har låsts upp',
 'lockdbsuccesstext'   => 'Databasen är nu låst.
-<br />Kom ihåg att [[Special:Unlockdb|ta bort låsningen]] när du är färdig med ditt underhåll.',
+<br />Kom ihåg att [[Special:UnlockDB|ta bort låsningen]] när du är färdig med ditt underhåll.',
 'unlockdbsuccesstext' => 'Databasen är upplåst.',
 'lockfilenotwritable' => 'Det går inte att skriva till databasens låsfil. För att låsa eller låsa upp databasen, så måste webbservern kunna skriva till den filen.',
 'databasenotlocked'   => 'Databasen är inte låst.',

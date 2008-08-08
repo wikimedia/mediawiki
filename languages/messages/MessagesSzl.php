@@ -288,7 +288,7 @@ $messages = array(
 'nosuchspecialpage' => 'Ńy mo takij špecyjalnyj zajty',
 'nospecialpagetext' => "<big>'''Uoprogramowańy ńy rozpoznowo takij špecyjalnyj zajty.'''</big>
 
-Lista špecyjalnych zajtůw znejdźeš na [[Special:Specialpages|{{int:specialpages}}]].",
+Lista špecyjalnych zajtůw znejdźeš na [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Feler',
@@ -576,7 +576,8 @@ By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
 'readonlywarning'                  => '<strong>Dej pozůr: Baza danych zostoua filowo zawarto skuli potřeb admińistracyjnych. Bestůž ńy do śe terozki naškryflać Twojich pomjyńań. Radzymy přećepać nowy tekst kajś do plika tekstowego (wytnij/wklej) a wćepać sam zaś po uodymkńyńću bazy.</strong>',
 'protectedpagewarning'             => '<strong>Dej pozůr: Sprowjańe tyj zajty zostouo zawarte. Mogům jům sprowjać ino užytkowńicy s uprawńyńami admińistratora.</strong>',
 'semiprotectedpagewarning'         => "'''Pozůr:''' Ta zajta zostoua zawarto a ino zaregišterowani užytkownicy mogům jům sprowjać.",
-'cascadeprotectedwarning'          => "'''Dej pozůr:''' Ta zajta zostoua zawarto a ino užytkowńicy s uprawńyńami admińistratora mogům jům sprowjać. Zajta ta je podpjynto pod {{PLURAL:$1|nastympujůnco zajta, kero zostoua zawarto|nastympujůncych zajtach, kere zostouy zawarte}} ze zauůnčonům opcjům dźedźičyńo:",
+'cascadeprotectedwarning'          => "'''Dej pozůr:''' Ta zajta zostoua zawarto a ino užytkowńicy s uprawńyńami admińistratora mogům jům sprowjać. Zajta ta je podpjynto pod {{PLURAL:$1|nastympujůnco zajta, kero zostoua zawarto|nastympujůncych zajtach, kere zostouy zawarte}} ze zauůnčonům opcjům dźedźičyńo:
+$2",
 'titleprotectedwarning'            => '<strong>DEJ POZŮR: Zajta uo tym titlu zostoua zawarto a ino ńykeři užytkowńicy mogům jům wćepać.</strong>',
 'templatesused'                    => 'Šablůny užyte na tyj zajće:',
 'templatesusedpreview'             => 'Šablůny užyte we tym podglůńdźe:',
@@ -586,7 +587,7 @@ By wćepać swoje pomjyńańo muśiš pomjyńać tekst w polu na wjyrchu.
 'hiddencategories'                 => 'Ta zajta je {{PLURAL:$1|w jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
 'nocreatetitle'                    => 'Uograńičůno wćepywańy zajtůw',
 'nocreatetext'                     => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno.
-Možeš sprowjać te co juž sům, abo [[Special:Userlogin|zalogować śe, abo zauožyć konto]].',
+Možeš sprowjać te co juž sům, abo [[Special:UserLogin|zalogować śe, abo zauožyć konto]].',
 'nocreate-loggedin'                => 'Ńy moš uprowńyń do škryflańo zajtůw na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
 'permissionserrors'                => 'Felerne uprowńyńa',
 'permissionserrorstext'            => 'Ńy moš uprowńyń do takij akcyje {{PLURAL:$1|skuli tego, co:|bestůž, co:}}',
@@ -701,7 +702,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 
 # Suppression log
 'suppressionlog'     => 'Log schrůńyńć',
-'suppressionlogtext' => 'Půńižyj je lista nojnowšych wyćepań i zawarć s uwzglyndńyńym treśći schrůńůnej do admińistratorůw. Coby přejřeć lista aktualnych banůw i zawarć, uobezdřij [[Special:Ipblocklist|IP block list]].',
+'suppressionlogtext' => 'Půńižyj je lista nojnowšych wyćepań i zawarć s uwzglyndńyńym treśći schrůńůnej do admińistratorůw. Coby přejřeć lista aktualnych banůw i zawarć, uobezdřij [[Special:IPBlockList|IP block list]].',
 
 # History merging
 'mergehistory'                     => 'Pouůnč historyjo půmjyńań zajtůw',
@@ -784,7 +785,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'mypreferences'            => 'Moje preferyncyje',
 'prefs-edits'              => 'Ličba sprowjyń:',
 'prefsnologin'             => 'Ńy ježeś zalůgowany',
-'prefsnologintext'         => 'Muśiš śe [[Special:Userlogin|zalůgować]] coby štalować swoje preferyncyje.',
+'prefsnologintext'         => 'Muśiš śe [[Special:UserLogin|zalůgować]] coby štalować swoje preferyncyje.',
 'prefsreset'               => 'Preferyncyje důmyślne zostouy uodtwořůne.',
 'qbsettings'               => 'Gurt šybkigo dostympu',
 'qbsettings-none'          => 'Brak',
@@ -859,7 +860,7 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'userrights-reason'           => 'Skuli čego je půmjeńeńy:',
 'userrights-no-interwiki'     => 'Ńy moš dostympu do sprowjańo uprawńyń.',
 'userrights-nodatabase'       => 'Baza danych $1 ńy istńije abo ńy je lokalno.',
-'userrights-nologin'          => 'Muśiš [[Special:Userlogin|zalůgować śe]] na kůnto admińistratora, coby nadować uprawńyńo užytkowńikům.',
+'userrights-nologin'          => 'Muśiš [[Special:UserLogin|zalůgować śe]] na kůnto admińistratora, coby nadować uprawńyńo užytkowńikům.',
 'userrights-notallowed'       => 'Ńy moš dostympu do nadawańo uprawńyń užytkowńikům.',
 'userrights-changeable-col'   => 'Grupy, kere možeš wybrać',
 'userrights-unchangeable-col' => 'Grupy, kerych ńy možeš wybrać',
@@ -990,11 +991,11 @@ Artikle na [[Special:Watchlist|pozorliśće]] sům '''rube'''.",
 'reupload'                    => 'Wćepnij zaś',
 'reuploaddesc'                => 'Nazod do formulařa uod wćepywańo.',
 'uploadnologin'               => 'Ńy jest žeś zalogůwany',
-'uploadnologintext'           => 'Muśyš śe [[Special:Userlogin|zalůgować]] ńim wćepńeš pliki.',
+'uploadnologintext'           => 'Muśyš śe [[Special:UserLogin|zalůgować]] ńim wćepńeš pliki.',
 'upload_directory_read_only'  => 'Serwer ńy može škryflać do katalůgu ($1) kery je přeznačůny na wćepywane pliki.',
 'uploaderror'                 => 'Feler při wćepywańu',
 'uploadtext'                  => "Ůžyj formulařa půńižej do wćepywańo plikůw.
-Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:Imagelist|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]].
+Jak chceš přejřeć dotychčas wćepane pliki, abo w ńich šnupać, přeńdź do [[Special:ImageList|listy douůnčůnych plikůw]]. Wšyjstke wćepańo uodnotowane sům we [[Special:Log/upload|rejeře přesůuanych plikůw]].
 
 Plik pojawi śe na zajće, jak užyješ linka wedle jydnygo s nastympujůncych wzorůw:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Plik.jpg]]</nowiki>''',
@@ -1103,7 +1104,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'imagelinks'                     => 'Co sam linkuje',
 'linkstoimage'                   => 'Nastympujůnce zajty sům adrésowane do tygo plika:',
 'nolinkstoimage'                 => 'Žodno zajta ńy je adrésowano do tygo plika.',
-'morelinkstoimage'               => 'Pokož [[Special:Whatlinkshere/$1|wjyncy uodnośnikůw]] do tygo plika.',
+'morelinkstoimage'               => 'Pokož [[Special:WhatLinksHere/$1|wjyncy uodnośnikůw]] do tygo plika.',
 'redirectstofile'                => 'Nastympujůnce pliki překerowujům do tygo plika:',
 'duplicatesoffile'               => 'Nastympujůnce pliki sům kopjami tygo plika:',
 'sharedupload'                   => 'Tyn plik je wćepńjynty na wspůlny serwer i inkše projekty tyž můgům go užywać.',
@@ -1318,7 +1319,7 @@ Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{MediaWiki:Listg
 
 # E-mail user
 'mailnologin'     => 'Brak adresu',
-'mailnologintext' => 'Muśyš śe [[Special:Userlogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
+'mailnologintext' => 'Muśyš śe [[Special:UserLogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
 'emailuser'       => 'Wyślij e-brif do tygo užytkowńika',
 'emailpage'       => 'Wyślij e-brif do užytkowńika',
 'emailpagetext'   => 'Půńižšy formulař pozwala na wysuańy jydnej wjadůmośći do užytkowńika pod warůnkym, aže wpisou uůn poprawny adres e-brif w swojich preferyncyjoch. Adres e-brif, kery zostou bez Ćebje wprowadzůny w Twoich preferyncyjoch ukaže śe w polu „Uod”, bez tůž uodbjorca bydźe můg Ci uodpowjydźeć.',
@@ -1343,7 +1344,7 @@ Wjyncyj informacyji uo indywidualnych prawach idźe znejść [[{{MediaWiki:Listg
 'nowatchlist'          => 'Ńy ma žodnych pozycyji na liśće zajtůw, na kere dowoš pozůr.',
 'watchlistanontext'    => '$1 coby uobejřeć abo sprowjać elymynty listy zajtůw, na kere dowoš pozůr',
 'watchnologin'         => 'Ńy jest žeś zalůgowany',
-'watchnologintext'     => 'Muśyš śe [[Special:Userlogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
+'watchnologintext'     => 'Muśyš śe [[Special:UserLogin|zalůgować]] coby modyfikować lista zajtůw, na kere dowoš pozůr.',
 'addedwatch'           => 'Dodane do pozorlisty',
 'addedwatchtext'       => "Zajta \"[[:\$1]]\" zostoua dodano do Twojyj [[Special:Watchlist|listy artikli, na kere dowoš pozůr]].
 Na tyi liśće bydzieš miou rejer přišuych sprawjyń tyi zajty i jei zajty godki, a mjano zajty bydźeš mjou škryflane '''tustym''' na [[Special:RecentChanges|liśće pomjyńanych na ůostatku]], cobyś mjou wygoda w jei pomjyńańa filować.",
@@ -1461,7 +1462,7 @@ Polecyńy zostouo anulowane, aby ůńiknůńć přechwycyńo sesyji.
 Naćiś „cofej”, přeuaduj zajta, a potym zaś wydej polecyńy',
 'protectlogpage'              => 'Zawarte',
 'protectlogtext'              => 'Půńižej znojdowo śe lista zawarć i uodymkńjyńć pojydynčych zajtůw.
-Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Special:Protectedpages|zawartych zajtůw]].',
+Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Special:ProtectedPages|zawartych zajtůw]].',
 'protectedarticle'            => 'zawar [[$1]]',
 'modifiedarticleprotection'   => 'pomjyńiu poziům zawarćo [[$1]]',
 'unprotectedarticle'          => 'uodymknyu [[$1]]',
@@ -1698,7 +1699,7 @@ Potwjerdź, proša, aže to je zgodne s Twoimi zamjarůma, i aže uodymkńyš ba
 'lockdbsuccesssub'    => 'Baza danych zostoua půmyślńy zawarto',
 'unlockdbsuccesssub'  => 'Baza danych zostoua půmyślńy uodymkńynto',
 'lockdbsuccesstext'   => 'Baza danych zostoua zawarto.<br />
-Pamjyntej coby [[Special:Unlockdb|jům uodymknůńć]] po zakůńčyńu dźouań admińistracyjnych.',
+Pamjyntej coby [[Special:UnlockDB|jům uodymknůńć]] po zakůńčyńu dźouań admińistracyjnych.',
 'unlockdbsuccesstext' => 'Baza danych zostoua uodymkńynto.',
 'lockfilenotwritable' => 'Ńy idźe naškreflać plika zawarća bazy danych.
 Zawjerańy i uodmykańy bazy danych wymogo coby plik můgu być naškreflany bez web serwer.',

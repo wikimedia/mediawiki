@@ -283,7 +283,7 @@ $messages = array(
 'nosuchspecialpage' => 'Андый махсус бит юк',
 'nospecialpagetext' => "<big>'''Сез сорый торган махсус бит юк.'''</big>
 
-[[Special:Specialpages|Махсус битләр исемлеге]] кара.",
+[[Special:SpecialPages|Махсус битләр исемлеге]] кара.",
 
 # General errors
 'error'                => 'Хата',
@@ -577,7 +577,7 @@ $2',
 'mypreferences'         => 'Көйләнмәләрем',
 'prefs-edits'           => 'Үзгәртүләр исәбе:',
 'prefsnologin'          => 'Кермәгәнсез',
-'prefsnologintext'      => 'Кулланучы көйләнмәләрене үзгәртү өчен, сез [[Special:Userlogin|керергә]] тиешсез.',
+'prefsnologintext'      => 'Кулланучы көйләнмәләрене үзгәртү өчен, сез [[Special:UserLogin|керергә]] тиешсез.',
 'qbsettings'            => 'Күчешләр аслыгы',
 'qbsettings-none'       => 'Күрсәтмәскә',
 'changepassword'        => 'Серсүзне алыштырырга',

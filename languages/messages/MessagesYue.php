@@ -413,7 +413,7 @@ $messages = array(
 'nosuchspecialpage' => '冇呢頁特別頁',
 'nospecialpagetext' => "<big>'''無你所要求嘅特別頁。'''</big>
 
-喺[[Special:Specialpages|{{int:specialpages}}]]有全部用得嘅特別頁。",
+喺[[Special:SpecialPages|{{int:specialpages}}]]有全部用得嘅特別頁。",
 
 # General errors
 'error'                => '錯誤',
@@ -492,7 +492,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'logouttitle'                => '用戶登出',
 'logouttext'                 => "'''你而家已經登出咗。'''
 
-你仍然可以用匿名身份用{{SITENAME}}，又或者[[Special:Userlogin|重新登入]]。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",
+你仍然可以用匿名身份用{{SITENAME}}，又或者[[Special:UserLogin|重新登入]]。但係留意某啲頁面可能會繼續話你登入咗，除非等你清除瀏覽器嘅快取儲存。",
 'welcomecreation'            => '== 歡迎， $1！ ==
 
 你個戶口已經起好。唔好唔記得去改改你嘅[[Special:Preferences|{{SITENAME}}喜好設定]]喎。',
@@ -682,12 +682,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'previewnote'                      => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'                  => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
 'session_fail_preview'             => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
-請再試過喇。如果仍然唔得嘅話，試下[[Special:Userlogout|登出]]，然後重新登入。'''",
+請再試過喇。如果仍然唔得嘅話，試下[[Special:UserLogout|登出]]，然後重新登入。'''",
 'session_fail_preview_html'        => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
-'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先[[Special:Userlogout|登出]]然後再登入。'''",
+'''如果呢個係正當嘅編輯嘗試，請再試過。如果重係唔得嘅話，請先[[Special:UserLogout|登出]]然後再登入。'''",
 'token_suffix_mismatch'            => "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。個編輯已經拒絕，以防止嗰版嘅文字損毀。
 當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。'''",
 'editing'                          => '而家喺度編輯$1',
@@ -718,7 +718,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'readonlywarning'                  => "'''錯誤：料庫已經鎖住咗，以便定期保養。而家你唔可以儲起你嘅編輯。你可以儲啲文字落一份文字檔先。'''",
 'protectedpagewarning'             => "'''警告：呢版已經受到保護，只有管理員權限嘅用戶先至可以改。'''",
 'semiprotectedpagewarning'         => "'''注意：'''呢一頁已經鎖咗，只有已經註冊嘅用戶先至可以改。",
-'cascadeprotectedwarning'          => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：",
+'cascadeprotectedwarning'          => "'''警告：'''呢一頁已經鎖咗，只有管理員權限嘅用戶先至可以改，因為佢係響以下連串保護嘅{{PLURAL:$1|一|幾}}頁度包含咗：
+$2",
 'titleprotectedwarning'            => '<strong>警告：呢一版已經鎖咗，只有一啲用戶先至可以開到。</strong>',
 'templatesused'                    => '喺呢一頁所用嘅模：',
 'templatesusedpreview'             => '喺呢一次預覽所用嘅模：',
@@ -729,7 +730,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'edittools'                        => '<!-- 喺呢度嘅文字會喺編輯框下面同埋上載表格中顯示。 -->',
 'nocreatetitle'                    => '頁面建立被限制',
 'nocreatetext'                     => '{{SITENAME}}已經限制咗起新版嘅能力。
-你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:Userlogin|登入或開個新戶口]]。',
+你可以番轉頭去編輯一啲已經存在嘅頁面，或者[[Special:UserLogin|登入或開個新戶口]]。',
 'nocreate-loggedin'                => '你響{{SITENAME}}度並無許可權去開新版。',
 'permissionserrors'                => '權限錯誤',
 'permissionserrorstext'            => '根據下面嘅{{PLURAL:$1|原因|原因}}，你並無權限去做呢樣嘢:',
@@ -849,7 +850,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 # Suppression log
 'suppressionlog'     => '廢止日誌',
 'suppressionlogtext' => '下面係刪除同埋由操作員牽涉到內容封鎖嘅一覽。
-睇吓[[Special:Ipblocklist|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
+睇吓[[Special:IPBlockList|IP封鎖一覽]]去睇現時進行緊嘅禁止同埋封鎖表。',
 
 # History merging
 'mergehistory'                     => '合併頁歷史',
@@ -890,7 +891,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'searchresults'             => '搵嘢結果',
 'searchresults-title'       => '對$1嘅搵嘢結果',
 'searchresulttext'          => '有關搵{{SITENAME}}嘅更多資料請參考[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => '你利用\'\'\'[[:$1]]\'\'\'搵  ([[Special:Prefixindex/$1|全部由 "$1" 開始嘅頁]] | [[Special:Whatlinkshere/$1|全部連去 "$1" 嘅頁]])',
+'searchsubtitle'            => '你利用\'\'\'[[:$1]]\'\'\'搵  ([[Special:Prefixindex/$1|全部由 "$1" 開始嘅頁]] | [[Special:WhatLinksHere/$1|全部連去 "$1" 嘅頁]])',
 'searchsubtitleinvalid'     => "你利用'''$1'''搵",
 'noexactmatch'              => "'''搵唔到到標題為\"\$1\"嘅頁面。''' 你可以而家[[:\$1|開呢個新頁]]。",
 'noexactmatch-nocreate'     => "'''搵唔到到標題為\"\$1\"嘅頁面。'''",
@@ -933,7 +934,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'mypreferences'            => '我嘅喜好設定',
 'prefs-edits'              => '編輯數:',
 'prefsnologin'             => '重未登入',
-'prefsnologintext'         => '你一定要去[[Special:Userlogin|登入]]設定好用戶喜好值先。',
+'prefsnologintext'         => '你一定要去[[Special:UserLogin|登入]]設定好用戶喜好值先。',
 'prefsreset'               => '喜好設定已經從儲存空間中重設。',
 'qbsettings'               => '快捷列',
 'qbsettings-none'          => '無',
@@ -1008,7 +1009,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'userrights-reason'           => '更改嘅原因:',
 'userrights-no-interwiki'     => '你並無權限去編輯響其它wiki嘅用戶權限。',
 'userrights-nodatabase'       => '資料庫$1唔存在或者唔係本地嘅。',
-'userrights-nologin'          => '你一定要以操作員戶口[[Special:Userlogin|登入]]咗之後先可以指定用戶權限。',
+'userrights-nologin'          => '你一定要以操作員戶口[[Special:UserLogin|登入]]咗之後先可以指定用戶權限。',
 'userrights-notallowed'       => '你嘅戶口無權限去指定用戶權限。',
 'userrights-changeable-col'   => '你可以改嘅組',
 'userrights-unchangeable-col' => '你唔可以改嘅組',
@@ -1138,12 +1139,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'reupload'                    => '再上載',
 'reuploaddesc'                => '取消上載再返到去上載表格',
 'uploadnologin'               => '重未登入',
-'uploadnologintext'           => '你必須先[[Special:Userlogin|登入]]去上載檔案。',
+'uploadnologintext'           => '你必須先[[Special:UserLogin|登入]]去上載檔案。',
 'upload_directory_missing'    => '嗰個上載嘅目錄 ($1) 唔見咗，唔可以由網頁伺服器建立。',
 'upload_directory_read_only'  => '嗰個上載嘅目錄 ($1) 而家唔能夠被網頁伺服器寫入。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "用下面嘅表格嚟上載檔案。
-要睇或者搵嘢之前上載嘅圖像請去[[Special:Imagelist|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
+要睇或者搵嘢之前上載嘅圖像請去[[Special:ImageList|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
 
 如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
@@ -1265,7 +1266,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 下面嘅表只係列示咗連去呢個檔案嘅最頭$1版。
 一個[[Special:WhatLinksHere/$2|完整嘅表]]可以提供。',
 'nolinkstoimage'                 => '冇個頁面連結到呢個檔案。',
-'morelinkstoimage'               => '去睇連到呢個檔案嘅[[Special:Whatlinkshere/$1|更多連結]]。',
+'morelinkstoimage'               => '去睇連到呢個檔案嘅[[Special:WhatLinksHere/$1|更多連結]]。',
 'redirectstofile'                => '下面嘅$1個檔案跳轉到呢個檔案:',
 'duplicatesoffile'               => '下面嘅$1個檔案係同呢個檔案重覆:',
 'sharedupload'                   => '呢個檔案係共用嘅上載，可以喺其他計劃中使用。“',
@@ -1348,7 +1349,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 平均每個頁面有'''$5'''次瀏覽，同埋'''$6'''次編輯。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]嘅長度係'''$7'''。",
-'userstatstext'          => "目前有'''$1'''個註冊[[Special:Listusers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。",
+'userstatstext'          => "目前有'''$1'''個註冊[[Special:ListUsers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 
 'disambiguations'      => '搞清楚頁',
@@ -1487,7 +1488,7 @@ Template:搞清楚',
 
 # E-mail user
 'mailnologin'     => '冇傳送地址',
-'mailnologintext' => '你一定要[[Special:Userlogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
+'mailnologintext' => '你一定要[[Special:UserLogin|登入咗]]同埋喺你嘅[[Special:Preferences|喜好設定]]度有個有效嘅電郵地址先可以傳送電郵畀其他用戶。',
 'emailuser'       => '發電郵畀呢位用戶',
 'emailpage'       => '發電郵畀用戶',
 'emailpagetext'   => '如果呢位用戶已經喺佢嘅用戶使用偏好入邊填咗個有效嘅電郵地址，以下表格會發送單單一條信息。你喺[[Special:Preferences|你嘅用戶喜好設定]]入面填寫嘅電郵地址會出現喺呢封電郵「由」嘅地址度，以便收件人可以回覆到。',
@@ -1513,7 +1514,7 @@ Template:搞清楚',
 'nowatchlist'          => '你嘅監視清單度並冇任何項目。',
 'watchlistanontext'    => '請先$1去睇或者改響你監視清單度嘅項目。',
 'watchnologin'         => '未登入',
-'watchnologintext'     => '你必須先[[Special:Userlogin|登入]]至可以更改你嘅監視清單。',
+'watchnologintext'     => '你必須先[[Special:UserLogin|登入]]至可以更改你嘅監視清單。',
 'addedwatch'           => '加到監視清單度',
 'addedwatchtext'       => "頁面「[[:$1]]」已加入到你嘅[[Special:Watchlist|監視清單]]度。
 呢個頁面以及佢個討論頁以後嘅修改都會列喺嗰度，佢喺[[Special:RecentChanges|最近更改清單]]度會以'''粗體'''顯示，等你可以容易啲睇到佢。",
@@ -1624,7 +1625,7 @@ wiki: $PAGEEDITOR_WIKI
 'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下面係一個保護同埋解除保護頁面嘅一覽表。睇吓[[Special:Protectedpages|保護頁面一覽]]去拎現時進行緊嘅頁面保護一覽。',
+'protectlogtext'              => '下面係一個保護同埋解除保護頁面嘅一覽表。睇吓[[Special:ProtectedPages|保護頁面一覽]]去拎現時進行緊嘅頁面保護一覽。',
 'protectedarticle'            => '已經保護 "[[$1]]"',
 'modifiedarticleprotection'   => '已經改咗 "[[$1]]" 嘅保護等級',
 'unprotectedarticle'          => '已經唔再保護 "[[$1]]"',
@@ -1852,7 +1853,7 @@ $1',
 'lockdbsuccesssub'    => '資料庫鎖定已經成功',
 'unlockdbsuccesssub'  => '資料庫鎖定已成功移除',
 'lockdbsuccesstext'   => '資料庫現已鎖定。<br />
-請一定要記得喺完成系統維護工作之後[[Special:Unlockdb|解除資料庫嘅鎖定]]。',
+請一定要記得喺完成系統維護工作之後[[Special:UnlockDB|解除資料庫嘅鎖定]]。',
 'unlockdbsuccesstext' => '資料庫鎖定現已解除。',
 'lockfilenotwritable' => '資料庫封鎖檔案係唔可以寫入嘅。要鎖定或解鎖資料庫，係需要由網頁伺服器中寫入。',
 'databasenotlocked'   => '資料庫而家冇鎖到。',

@@ -589,7 +589,7 @@ $messages = array(
 'nosuchspecialpage' => 'Neexistující speciální stránka',
 'nospecialpagetext' => "<big>'''Zadali jste neplatnou speciální stránku.'''</big>
 
-Zkuste se podívat na [[Special:Specialpages|seznam všech existujících speciálních stránek]].",
+Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speciálních stránek]].",
 
 # General errors
 'error'                => 'Chyba',
@@ -806,35 +806,33 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'summary-preview'                  => 'Náhled shrnutí',
 'subject-preview'                  => 'Náhled předmětu/nadpisu',
 'blockedtitle'                     => 'Uživatel zablokován',
-'blockedtext'                      => "<big> Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.</big>
+'blockedtext'                      => "<big>'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''</big>
 
-Vaše uživatelské jméno nebo IP adresa byly zablokovány správcem s&nbsp;uživatelským jménem „$1“. Jako důvod blokování bylo uvedeno:
+Zablokování provedl $1.
+Udaným důvodem bylo „$2“.
 
-'''$2'''
-
-----
-
-* Začátek zablokování: $8
+* Začátek blokování: $8
 * Zablokování vyprší: $6
-* Určeno k blokování: $7
+* Blokovaný uživatel: $7
 
 Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
-Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu a&nbsp;pokud Vám byla tato možnost zakázána.
-Vaše IP adresa je '''$3''' a&nbsp;identifikační číslo bloku je '''$5'''; tyto údaje budete muset uvést ve všech žádostech o&nbsp;odblokování.",
+Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte na {{grammar:6sg|{{SITENAME}}}} účet a&nbsp;ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud Vám byla tato možnost zakázána.
+Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext'                  => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
-
 Udaný důvod blokování:
 
 :''$2''
 
 * Začátek blokování: $8
 * Konec blokování: $6
+* Původně blokovaný uživatel: $7
 
 Zablokování můžete prodiskutovat se správcem $1 nebo některým z dalších [[{{MediaWiki:Grouppage-sysop}}|správců]].
 
 Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete použít, pokud nemáte ve svém [[Special:Preferences|nastavení]] zadaný platný e-mail a nebylo vám zablokováno jeho užívání.
 
-Číslo vašeho zablokování je $5. Prosíme, uveďte ho při komunikaci se správci.",
+Vaše současná IP adresa je $3, číslo vašeho zablokování je #$5.
+Prosíme, uveďte tyto údaje při komunikaci se správci.",
 'blockednoreason'                  => 'důvod nebyl zadán',
 'blockedoriginalsource'            => "Zdrojový text stránky '''$1''' následuje:",
 'blockededitsource'                => "Text '''vašich editací''' stránky '''$1''' následuje:",
@@ -870,7 +868,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 
 ''Jelikož má {{SITENAME}} zapnuto používání neomezeného HTML, náhled se kvůli prevenci proti útokům JavaScriptem nezobrazuje.''
 
-<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se [[Special:Userlogout|odhlásit]] a znovu přihlásit.</strong>",
+<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]] a znovu přihlásit.</strong>",
 'token_suffix_mismatch'            => '<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu.
 Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.</strong>',
@@ -897,7 +895,8 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'readonlywarning'                  => 'VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.',
 'protectedpagewarning'             => '<strong>Varování:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze správci.',
 'semiprotectedpagewarning'         => '<strong>Poznámka:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze registrovaní uživatelé.',
-'cascadeprotectedwarning'          => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci. Je vložena na následující, kaskádním zámkem  {{PLURAL:$1|zamčenou, stránku|zamčené, stránky|zamčené, stránky}}:",
+'cascadeprotectedwarning'          => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci. Je vložena na následující, kaskádním zámkem  {{PLURAL:$1|zamčenou, stránku|zamčené, stránky|zamčené, stránky}}:
+$2",
 'titleprotectedwarning'            => '<strong>POZOR:  Tento název byl uzamčen, pouze někteří uživatelé zde mohou založit stránku.</strong>',
 'templatesused'                    => 'Šablony používané na této stránce:',
 'templatesusedpreview'             => 'Šablony používané v tomto náhledu:',
@@ -908,7 +907,7 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 'edittools'                        => '<!-- Tento text bude zobrazen pod formuláři pro editaci stránek a načítání souborů. -->',
 'nocreatetitle'                    => 'Vytváření nových stránek je omezeno',
 'nocreatetext'                     => 'Na {{grammar:6sg|{{SITENAME}}}} je možnost vytváření nových stránek omezena.
-Můžete se vrátit a editovat již existující stránku, nebo [[Special:Userlogin|se přihlásit či se registrovat]].',
+Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLogin|se přihlásit či se registrovat]].',
 'nocreate-loggedin'                => 'Nemáte povoleno zakládat nové stránky na {{grammar:6sg|{{SITENAME}}}}.',
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
@@ -1027,7 +1026,7 @@ pokud to provozovatel serveru nezakázal.',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
-'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:Ipblocklist|seznam všech probíhajících bloků]].',
+'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
 
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
@@ -1111,7 +1110,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mypreferences'            => 'Nastavení',
 'prefs-edits'              => 'Počet editací:',
 'prefsnologin'             => 'Nejste přihlášen(a)!',
-'prefsnologintext'         => 'Pro nastavení se musíte [[Special:Userlogin|přihlásit]].',
+'prefsnologintext'         => 'Pro nastavení se musíte [[Special:UserLogin|přihlásit]].',
 'prefsreset'               => 'Nastavení vráceno.',
 'qbsettings'               => 'Nastavení lišty nástrojů',
 'qbsettings-none'          => 'Žádný',
@@ -1186,7 +1185,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'userrights-reason'           => 'Zdůvodnění:',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
-'userrights-nologin'          => 'Musíte se [[Special:Userlogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
+'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
 'userrights-notallowed'       => 'Tento účet nemá povoleno měnit uživatelská práva.',
 'userrights-changeable-col'   => 'Skupiny, které můžete měnit',
 'userrights-unchangeable-col' => 'Skupiny, které nemůžete měnit',
@@ -1316,11 +1315,11 @@ $3',
 'reupload'                    => 'Načíst znovu',
 'reuploaddesc'                => 'Vrátit se k načtení.',
 'uploadnologin'               => 'Nejste přihlášen(a)',
-'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:Userlogin|přihlásit]].',
+'uploadnologintext'           => 'Pro načtení souboru se musíte [[Special:UserLogin|přihlásit]].',
 'upload_directory_missing'    => 'Adresář pro nahrávání souborů ($1) chybí a webový server ho nedokáže vytvořit.',
 'upload_directory_read_only'  => 'Do adresáře pro načítané soubory ($1) nemá webserver právo zápisu.',
 'uploaderror'                 => 'Při načítání došlo k chybě',
-'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:Imagelist|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
+'uploadtext'                  => "Níže uvedený formulář slouží k načtení souborů. Již načtené soubory si můžete prohlížet a hledat pomocí [[Special:ImageList|seznamu načtených souborů]], každé načtení se také zaznamenává do [[Special:Log/upload|knihy načtení]], smazání jsou v [[Special:Log/delete|knize smazaných stránek]].
 
 Pro vložení obrázku do stránky použijte jeden z následujících způsobů zápisu:
 * '''<code><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Soubor.jpg]]</nowiki></code>''' do stránky vloží celý obrázek,
@@ -1432,8 +1431,11 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist-comment'               => 'Komentář',
 'imagelinks'                     => 'Odkazy k souboru',
 'linkstoimage'                   => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
+'linkstoimage-more'              => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.
+Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.
+Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 'nolinkstoimage'                 => 'Na tento soubor neodkazuje žádná stránka.',
-'morelinkstoimage'               => 'Zobrazit [[Special:Whatlinkshere/$1|další odkazy]] na tento soubor.',
+'morelinkstoimage'               => 'Zobrazit [[Special:WhatLinksHere/$1|další odkazy]] na tento soubor.',
 'redirectstofile'                => '{{plural:$1|Následující soubor přesměrovává|Následující $1 soubory přesměrovávají|Následujících $1 souborů přesměrovává}} na tento soubor:',
 'duplicatesoffile'               => '{{plural:$1|Následující soubor je duplikát|Následující $1 soubory jsou duplikáty|Následujících $1 souborů jsou duplikáty}} tohoto souboru:',
 'sharedupload'                   => 'Tento soubor je sdílený a může být používán ostatními projekty.',
@@ -1514,7 +1516,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 Od založení wiki bylo navštíveno celkem '''$3''' stránek a editováno '''$4'''krát. To činí v průměru '''$5''' editací na stránku a '''$6''' návštěv na editaci.
 
 Aktuální délka fronty údržby je '''$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Je|Jsou|Je}} zde '''$1''' {{PLURAL:$1|registrovaný [[Special:Listusers|uživatel]]|registrovaní [[Special:Listusers|uživatelé]]|registrovaných [[Special:Listusers|uživatelů]]}}, z&nbsp;toho '''$2''' (což je '''$4&nbsp;%''') {{PLURAL:$2|má|mají|má}} práva $5.",
+'userstatstext'          => "{{PLURAL:$1|Je|Jsou|Je}} zde '''$1''' {{PLURAL:$1|registrovaný [[Special:ListUsers|uživatel]]|registrovaní [[Special:ListUsers|uživatelé]]|registrovaných [[Special:ListUsers|uživatelů]]}}, z&nbsp;toho '''$2''' (což je '''$4&nbsp;%''') {{PLURAL:$2|má|mají|má}} práva $5.",
 'statistics-mostpopular' => 'Nejčtenější stránky',
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',
@@ -1654,7 +1656,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 
 # E-mail user
 'mailnologin'     => 'Bez odesílací adresy',
-'mailnologintext' => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:Userlogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
+'mailnologintext' => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser'       => 'Poslat e-mail',
 'emailpage'       => 'Poslat e-mail',
 'emailpagetext'   => 'Pokud tento uživatel uvedl platnou e-mailovou adresu ve svém nastavení, tímto formulářem mu lze poslat zprávu. E-mailová adresa, kterou máte uvedenu v nastavení, se objeví jako adresa odesílatele pošty, aby adresát mohl odpovědět.',
@@ -1680,7 +1682,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'nowatchlist'          => 'Na svém seznamu sledovaných stránek nemáte žádné položky.',
 'watchlistanontext'    => 'Pro prohlížení či úpravu seznamu sledovaných stránek se musíte $1.',
 'watchnologin'         => 'Nejste přihlášen(a)',
-'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:Userlogin|přihlásit]].',
+'watchnologintext'     => 'Pro sledování stránek se musíte [[Special:UserLogin|přihlásit]].',
 'addedwatch'           => 'Přidáno k sledovaným',
 'addedwatchtext'       => 'Stránka „[[:$1]]“ byla přidána mezi stránky, které [[Special:Watchlist|sledujete]]. Budoucí změny této stránky se objeví <b>tučně</b> v [[Special:RecentChanges|seznamu posledních změn]], aby bylo snadnější si jí povšimnout. Pokud budete později chtít stránku ze seznamu sledovaných smazat, klikněte na „Nesledovat tuto stránku“ v liště nástrojů.',
 'removedwatch'         => 'Vyřazeno ze seznamu sledovaných stránek',
@@ -1879,20 +1881,22 @@ $1',
 'blanknamespace' => '(Hlavní)',
 
 # Contributions
-'contributions' => 'Příspěvky uživatele',
-'mycontris'     => 'Mé příspěvky',
-'contribsub2'   => '$1 ($2)',
-'nocontribs'    => 'Nenalezeny žádné změny vyhovující kritériím.',
-'uctop'         => ' (aktuální)',
-'month'         => 'Do měsíce:',
-'year'          => 'Do roku:',
+'contributions'       => 'Příspěvky uživatele',
+'contributions-title' => 'Příspěvky uživatele $1',
+'mycontris'           => 'Mé příspěvky',
+'contribsub2'         => '$1 ($2)',
+'nocontribs'          => 'Nenalezeny žádné změny vyhovující kritériím.',
+'uctop'               => ' (aktuální)',
+'month'               => 'Do měsíce:',
+'year'                => 'Do roku:',
 
-'sp-contributions-newbies'     => 'Zobrazit příspěvky nově založených účtů',
-'sp-contributions-newbies-sub' => 'Noví uživatelé',
-'sp-contributions-blocklog'    => 'Kniha zablokování',
-'sp-contributions-search'      => 'Zobrazení příspěvků',
-'sp-contributions-username'    => 'IP adresa nebo uživatelské jméno:',
-'sp-contributions-submit'      => 'Zobrazit',
+'sp-contributions-newbies'       => 'Zobrazit příspěvky nově založených účtů',
+'sp-contributions-newbies-sub'   => 'Noví uživatelé',
+'sp-contributions-newbies-title' => 'Příspěvky nových uživatelů',
+'sp-contributions-blocklog'      => 'Kniha zablokování',
+'sp-contributions-search'        => 'Zobrazení příspěvků',
+'sp-contributions-username'      => 'IP adresa nebo uživatelské jméno:',
+'sp-contributions-submit'        => 'Zobrazit',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',
@@ -2011,7 +2015,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'lockdbsuccesssub'    => 'Databáze uzamčena',
 'unlockdbsuccesssub'  => 'Databáze odemčena',
 'lockdbsuccesstext'   => 'Databáze {{grammar:2sg|{{SITENAME}}}} byla úspěšně uzamčena.
-<br />Nezapomeňte ji po dokončení údržby [[Special:Unlockdb|odemknout]].',
+<br />Nezapomeňte ji po dokončení údržby [[Special:UnlockDB|odemknout]].',
 'unlockdbsuccesstext' => 'Databáze {{grammar:2sg|{{SITENAME}}}} je odemčena.',
 'lockfilenotwritable' => 'Do souboru zámku databáze nelze zapisovat. Pro zamčení či odemčení databáze musí mít webový server právo zápisu do tohoto souboru.',
 'databasenotlocked'   => 'Databáze není uzamčena.',

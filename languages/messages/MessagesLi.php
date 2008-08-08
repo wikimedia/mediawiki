@@ -5,8 +5,8 @@
  * @file
  *
  * @author Ooswesthoesbes
- * @author Tibor
  * @author Matthias
+ * @author Tibor
  * @author לערי ריינהארט
  * @author Cicero
  */
@@ -625,7 +625,8 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.</
 'readonlywarning'                  => "WAARSJUWING: De database is vasgezèt veur ongerhoud, dus op 't mement kins e dien verangeringe neet opsjlaon. De kins dien tèks 't biste opsjlaon in 'n tèksbesjtand om 't later hie nog es te prebere.",
 'protectedpagewarning'             => 'WAARSJUWING:  Dees pazjena is besjermd zoedat ze allein doer gebroekers mit administratorrechte kint weure verangerd.',
 'semiprotectedpagewarning'         => "'''Let op:''' Deze pagina is beveilig en kin allein door geregistreerde gebroekers bewerk waere.",
-'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:",
+'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveilig en kin allein door beheerders bewerk waere, omdat deze is opgenaome in de volgende {{PLURAL:$1|pagina|pagina's}} {{PLURAL:$1|dae|die}} beveilig {{PLURAL:$1|is|zeen}} met de cascade-optie:
+$2",
 'titleprotectedwarning'            => "<strong>WAORSJUWING: Deze pagina is beveilig zodet allein inkele gebroekers 'm kinne aanmake.</strong>",
 'templatesused'                    => 'Sjablone gebroek in dees pazjena:',
 'templatesusedpreview'             => 'Sjablone gebroek in deze veurvertuning:',
@@ -635,7 +636,7 @@ groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.</
 'hiddencategories'                 => 'Dees pazjena velt in de volgendje verbórge {{PLURAL:$1|categorie|categorië}}:',
 'nocreatetitle'                    => "'t Aanmake van pazjena's is beperk",
 'nocreatetext'                     => "{{SITENAME}} haet de mäögelikheid óm nuuj pazjena's te make bepèrk.
-De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:Userlogin|dich aanmelje of 'n gebroekersaccount aanmake]].",
+De kèns al besjtaonde pazjena's verangere, of de kèns [[Special:UserLogin|dich aanmelje of 'n gebroekersaccount aanmake]].",
 'nocreate-loggedin'                => "De kèns gein nuuj pazjena's make op {{SITENAME}}.",
 'permissionserrors'                => 'Foute inne rèchter',
 'permissionserrorstext'            => 'Doe höbs gein rèchter om det te daon om de volgende {{PLURAL:$1|reje|rejer}}:',
@@ -752,7 +753,7 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 # Suppression log
 'suppressionlog'     => 'Verbergingslogbook',
 'suppressionlogtext' => 'De ongerstaonde lies bevat de verwiederinge en blokkades die veur beheerders verborge zeen.
-In de [[Special:Ipblocklist|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
+In de [[Special:IPBlockList|IP-blokkeerlies]] zeen de hudige blokkades te bekieke.',
 
 # History merging
 'mergehistory'                     => "Gesjiedenis van pagina's samevoege",
@@ -836,7 +837,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'mypreferences'            => 'Mien veurkäöre',
 'prefs-edits'              => 'Aantal bewèrkinge:',
 'prefsnologin'             => 'Neet aangemèld',
-'prefsnologintext'         => 'De mós zeen [[Special:Userlogin|aangemeld]] óm dien veurkäöre te kónne insjtèlle.',
+'prefsnologintext'         => 'De mós zeen [[Special:UserLogin|aangemeld]] óm dien veurkäöre te kónne insjtèlle.',
 'prefsreset'               => 'Sjtandaardveurkäöre hersjtèld.',
 'qbsettings'               => 'Menubalkinsjtèllinge',
 'qbsettings-none'          => 'Oetgesjakeld',
@@ -911,7 +912,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'userrights-reason'           => "Reje veur 't verangere:",
 'userrights-no-interwiki'     => "Doe höbs gein rechte om gebroekersrechte op anger wiki's te wiezige.",
 'userrights-nodatabase'       => 'Database $1 besteit neet of is gein plaatselike database.',
-'userrights-nologin'          => "Doe mos dich [[Special:Userlogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
+'userrights-nologin'          => "Doe mos dich [[Special:UserLogin|aanmelle]] mit 'ne gebroeker mit de zjuuste rech om gebroekersrech toe te wieze.",
 'userrights-notallowed'       => 'Doe höbs gein rechte om gebroekersrechte toe te wieze.',
 'userrights-changeable-col'   => 'Gróppe dies te kèns behere',
 'userrights-unchangeable-col' => 'Gróppe dies te neet kèns behere',
@@ -1040,11 +1041,11 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'reupload'                    => 'Opnuui uploade',
 'reuploaddesc'                => "Truuk nao 't uploadformeleer.",
 'uploadnologin'               => 'Neet aangemèld',
-'uploadnologintext'           => 'De mos [[Special:Userlogin|zien aangemèld]] om besjtande te uploade.',
+'uploadnologintext'           => 'De mos [[Special:UserLogin|zien aangemèld]] om besjtande te uploade.',
 'upload_directory_read_only'  => 'De webserver kin neet sjrieve in de uploadmap ($1).',
 'uploaderror'                 => "fout in 't uploade",
 'uploadtext'                  => "Gebroek 't óngersjtaonde formuleer óm besjtande op te laje.
-Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:Imagelist|lies van opgelaje besjtande]].
+Óm ierder opgelaje besjtande te bekieke of te zeuke, gank nao de [[Special:ImageList|lies van opgelaje besjtande]].
 Uploads en verwiederinge waere ouch biegehauwte in 't [[Special:Log/upload|uploadlogbook]].
 
 Gebroek óm 'n plaetje of 'n besjtand in 'n pazjena op te numme 'ne link in de vörm:
@@ -1159,7 +1160,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'imagelinks'                     => 'Aafbeildingsverwiezinge',
 'linkstoimage'                   => "Dees aafbeilding weurt op de volgende {{PLURAL:$1|pazjena|pazjena's}} gebroek:",
 'nolinkstoimage'                 => 'Gein enkele pazjena gebroek dees aafbeilding.',
-'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
+'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Mier verwijzinge]] naor dit bestaand bekèèke.',
 'redirectstofile'                => 'De volgende bestaande verwèèze door naor dit bestaand:',
 'duplicatesoffile'               => 'De nègsvóggendje bestenj zeen identiek aan dit bestandj:',
 'sharedupload'                   => 'literal translation',
@@ -1377,7 +1378,7 @@ Infermasie daoreuver vunds te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
 
 # E-mail user
 'mailnologin'     => 'Gein e-mailadres bekènd veur deze gebroeker',
-'mailnologintext' => "De mos zien [[Special:Userlogin|aangemèld]] en 'n gèldig e-mailadres in bie dien [[Special:Preferences|veurkäöre]] höbbe ingevuld om mail nao anger gebroekers te sjture.",
+'mailnologintext' => "De mos zien [[Special:UserLogin|aangemèld]] en 'n gèldig e-mailadres in bie dien [[Special:Preferences|veurkäöre]] höbbe ingevuld om mail nao anger gebroekers te sjture.",
 'emailuser'       => "Sjik deze gebroeker 'nen e-mail",
 'emailpage'       => "Sjik gebroeker 'nen e-mail",
 'emailpagetext'   => "As deze gebroeker e geljig e-mailadres heet opgegaeve dan kant geer via dit formuleer e berich sjikke. 't E-mailadres wat geer heet opgegeve bie eur veurkäöre zal as versjikker aangegaeve waere.",
@@ -1403,7 +1404,7 @@ Infermasie daoreuver vunds te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
 'nowatchlist'          => "D'r sjtit niks op dien volglies.",
 'watchlistanontext'    => '$1 is verplich om dien volglies in te zeen of te wiezige.',
 'watchnologin'         => 'De bis neet aangemèld',
-'watchnologintext'     => "De mós [[Special:Userlogin|aangemèld]] zeen veur 't verangere van dien volglies.",
+'watchnologintext'     => "De mós [[Special:UserLogin|aangemèld]] zeen veur 't verangere van dien volglies.",
 'addedwatch'           => 'Aan volglies toegeveug',
 'addedwatchtext'       => 'De pazjena "<nowiki>$1</nowiki>" is aan dien [[Special:Watchlist|volglies]] toegeveug.
 Toekomstige verangeringe aan deze pazjena en de biebehurende euverlikpazjena weure hie vermèld.
@@ -1516,7 +1517,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'sessionfailure'              => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
 'protectlogpage'              => "Logbook besjermde pazjena's",
 'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve.
-Zuug de [[Special:Protectedpages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
+Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
 'protectedarticle'            => '$1 besjermd',
 'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[$1]]"',
 'unprotectedarticle'          => 'besjerming van $1 opgeheve',
@@ -1737,7 +1738,7 @@ Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
 'unlockdbsuccesssub'  => 'Blokkering van de database opgeheven',
 'lockdbsuccesstext'   => "De database is geblokkeerd.<br />
 
-Vergaet neet de database opnuuj te [[Special:Unlockdb|deblokkere]] wens te klaor bis mit 't óngerhaud.",
+Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor bis mit 't óngerhaud.",
 'unlockdbsuccesstext' => 'Blokkering van de database van {{SITENAME}} is opgeheven.',
 'lockfilenotwritable' => "Gein sjriefrechte op 't databaselockbestandj. Om de database te kinne blokkere of vrie te gaeve, dient de webserver sjriefrechte op dit bestandj te höbbe.",
 'databasenotlocked'   => 'De database is neet geblokkeerd.',

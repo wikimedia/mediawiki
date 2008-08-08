@@ -274,7 +274,7 @@ $messages = array(
 'nosuchaction'      => 'Tigawt ulac-itt',
 'nosuchactiontext'  => 'Wiki ur teɛqil ara tigawt-nni n URL',
 'nosuchspecialpage' => 'Asebter uslig am wagi ulac-it.',
-'nospecialpagetext' => 'Tseqsiḍ ɣef usebter uslig ulac-it, tzemreḍ ad tafeḍ isebtar usligen n ṣṣeḥ deg [[Special:Specialpages|wumuɣ n isebtar usligen]].',
+'nospecialpagetext' => 'Tseqsiḍ ɣef usebter uslig ulac-it, tzemreḍ ad tafeḍ isebtar usligen n ṣṣeḥ deg [[Special:SpecialPages|wumuɣ n isebtar usligen]].',
 
 # General errors
 'error'                => 'Agul',
@@ -529,7 +529,8 @@ ihi ur tezmireḍ ara ad tesmektiḍ ibeddlen inek tura. Smekti aḍris inek
 deg afaylu nniḍen akken tesseqdceḍ-it umbeɛd.</strong>',
 'protectedpagewarning'      => '<strong>AƔTAL:  Asebter-agi yettwaḥrez, ala inedbalen zemren a t-beddlen</strong>',
 'semiprotectedpagewarning'  => "'''Tamawt:''' Asebter-agi yettwaḥrez, ala imseqdacen i yesɛan isem n wemseqdac zemren a t-beddlen.",
-'cascadeprotectedwarning'   => "'''Aɣtal:''' Asebter-agi iɛekkel iwakken ad zemren ala inedbalen a t-beddlen, axaṭer yettwassekcem deg isebtar i yettwaḥerzen agi (acercur):",
+'cascadeprotectedwarning'   => "'''Aɣtal:''' Asebter-agi iɛekkel iwakken ad zemren ala inedbalen a t-beddlen, axaṭer yettwassekcem deg isebtar i yettwaḥerzen agi (acercur):
+$2",
 'templatesused'             => 'Talɣiwin ttuseqdacen deg usebter-agi:',
 'templatesusedpreview'      => 'Talɣiwin ttuseqdacen deg pre-timeẓriwt-agi:',
 'templatesusedsection'      => 'Talɣiwin ttuseqdacen deg amur-agi:',
@@ -538,7 +539,7 @@ deg afaylu nniḍen akken tesseqdceḍ-it umbeɛd.</strong>',
 'edittools'                 => '<!-- Aḍris yettbanen-d seddaw talɣa n ubeddil d uzen. -->',
 'nocreatetitle'             => 'Axleq n isebtar meḥdud',
 'nocreatetext'              => 'Adeg n internet agi iḥedded axleq n isebtar imaynuten.
-Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:Userlogin|tkecmeḍ neɣ ad txelqeḍ isem n wemseqdac]].',
+Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:UserLogin|tkecmeḍ neɣ ad txelqeḍ isem n wemseqdac]].',
 
 # "Undo" feature
 'undo-success' => 'Tzemreḍ ad tessefsuḍ abeddil. Ssenqed asidmer akken ad tessneḍ ayen tebɣiḍ ad txdmeḍ d ṣṣeḥ, umbeɛd smekti ibeddlen u tkemmleḍ ad tessefsuḍ abeddil.',
@@ -654,7 +655,7 @@ i yesɛan akk awalen i banen-d).",
 'preferences'              => 'Isemyifiyen',
 'mypreferences'            => 'Isemyifiyen inu',
 'prefsnologin'             => 'Ur tekcimeḍ ara',
-'prefsnologintext'         => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] iwakken textareḍ isemyifiyen inek.',
+'prefsnologintext'         => 'Yessefk ad [[Special:UserLogin|tkecmeḍ]] iwakken textareḍ isemyifiyen inek.',
 'prefsreset'               => 'Iɛawed ad yexdem isemyifiyen inek.',
 'qbsettings'               => 'Tanuga taǧiḥbuṭ',
 'qbsettings-none'          => 'Ulaḥedd',
@@ -767,11 +768,11 @@ i yesɛan akk awalen i banen-d).",
 'reupload'                    => 'Ɛiwed azen',
 'reuploaddesc'                => 'Uɣal-d ar talɣa n tuznin.',
 'uploadnologin'               => 'Ur tekcimeḍ ara',
-'uploadnologintext'           => 'Yessefk [[Special:Userlogin|ad tkecmeḍ]]
+'uploadnologintext'           => 'Yessefk [[Special:UserLogin|ad tkecmeḍ]]
 iwakken ad tazneḍ afaylu.',
 'upload_directory_read_only'  => 'Weserver/serveur Web ur yezmir ara ad yaru deg ($1).',
 'uploaderror'                 => 'Agul deg usekcam',
-'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:Imagelist|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
+'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:ImageList|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
 
 Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Afaylu.jpg]]</nowiki>''',
@@ -1007,7 +1008,7 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 
 # E-mail user
 'mailnologin'     => 'Ur yufi ḥedd (tansa)',
-'mailnologintext' => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] u tesɛiḍ tansa e-mail ṭaṣhiḥt deg [[Special:Preferences|isemyifiyen]] inek
+'mailnologintext' => 'Yessefk ad [[Special:UserLogin|tkecmeḍ]] u tesɛiḍ tansa e-mail ṭaṣhiḥt deg [[Special:Preferences|isemyifiyen]] inek
 iwakken ad tazneḍ email i imseqdacen wiyaḍ.',
 'emailuser'       => 'Azen e-mail i wemseqdac-agi',
 'emailpage'       => 'Azen e-mail i wemseqdac',
@@ -1036,7 +1037,7 @@ deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
 'nowatchlist'          => 'Umuɣ n uɛessi inek d ilem.',
 'watchlistanontext'    => 'G leɛnaya-k $1 iwakken ad twalaḍ neɣ tbeddleḍ iferdas deg wumuɣ n uɛessi inek.',
 'watchnologin'         => 'Ur tekcimeḍ ara',
-'watchnologintext'     => 'Yessefk ad [[Special:Userlogin|tkecmeḍ]] iwakken ad tbeddleḍ umuɣ n uɛessi inek.',
+'watchnologintext'     => 'Yessefk ad [[Special:UserLogin|tkecmeḍ]] iwakken ad tbeddleḍ umuɣ n uɛessi inek.',
 'addedwatch'           => 'Yerna ɣer wumuɣ n uɛessi',
 'addedwatchtext'       => "Asebter \"[[:\$1]]\" yettwarnu deg [[Special:Watchlist|wumuɣ n uɛessi]] inek.
 Ma llan ibeddlen deg usebter-nni neɣ deg usbtar umyennan ines, ad banen dagi,

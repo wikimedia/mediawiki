@@ -357,7 +357,7 @@ $messages = array(
 'nosuchspecialpage' => '此特殊页面不存在',
 'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
 
-[[Special:Specialpages|{{int:specialpages}}]]中载有所有有效特殊页面的列表。",
+[[Special:SpecialPages|{{int:specialpages}}]]中载有所有有效特殊页面的列表。",
 
 # General errors
 'error'                => '错误',
@@ -437,7 +437,7 @@ $2',
 # Login and logout pages
 'logouttitle'                => '退出',
 'logouttext'                 => '<strong>您现在已经退出。</strong><br />
-您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:Userlogin|登录]]。
+您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。
 请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。',
 'welcomecreation'            => '== 欢迎, $1! ==
 
@@ -621,12 +621,12 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:Userlogout|登出]]后重新登陆。</strong>',
+'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
 'session_fail_preview_html'        => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
-<strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:Userlogout|退出]]并重新登录。</strong>",
+<strong>如果这是一次合法的编辑，请重新进行尝试。如果还不行，请[[Special:UserLogout|退出]]并重新登录。</strong>",
 'token_suffix_mismatch'            => '<strong>由于您用户端中的编辑令牌毁损了一些标点符号字元，为防止编辑的文字损坏，您的编辑已经被拒绝。
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。</strong>',
 'editing'                          => '正在编辑$1',
@@ -659,7 +659,8 @@ $2',
 'readonlywarning'                  => '<strong>警告: 数据库被锁以进行维护，所以您目前将无法保存您的修改。您或许希望先将本段文字复制并保存到文本文件，然后等一会儿再修改。</strong>',
 'protectedpagewarning'             => '<strong>警告: 此页已经被保护，只有拥有管理员权限的用户才可修改。</strong>',
 'semiprotectedpagewarning'         => "'''注意：''' 本页面被锁定，仅限注册用户编辑。",
-'cascadeprotectedwarning'          => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:',
+'cascadeprotectedwarning'          => '警告: 本页已经被保护，只有拥有管理员权限的用户才可修改，因为本页已被以下连锁保护的{{PLURAL:$1|一个|多个}}页面所包含:
+$2',
 'titleprotectedwarning'            => '<strong>警告: 本页面已被锁上，只有一些用户方可创建。</strong>',
 'templatesused'                    => '在这个页面上使用的模板有:',
 'templatesusedpreview'             => '此次预览中使用的模板有:',
@@ -669,7 +670,7 @@ $2',
 'hiddencategories'                 => '这个页面是属于$1个隐藏分类的成员:',
 'edittools'                        => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'                    => '创建页面受限',
-'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:Userlogin|登录或创建新账户]]。',
+'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin'                => '您在{{SITENAME}}中并无权限去创建新页面。',
 'permissionserrors'                => '权限错误',
 'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作:',
@@ -787,7 +788,7 @@ $2',
 # Suppression log
 'suppressionlog'     => '废止日志',
 'suppressionlogtext' => '以下是删除以及由操作员牵涉到内容封锁的列表。
-参看[[Special:Ipblocklist|IP封锁名单]]去参看现时进行中的禁止以及封锁之名单。',
+参看[[Special:IPBlockList|IP封锁名单]]去参看现时进行中的禁止以及封锁之名单。',
 
 # History merging
 'mergehistory'                     => '合并页面历史',
@@ -828,7 +829,7 @@ $2',
 'searchresults'             => '搜索结果',
 'searchresults-title'       => '对$1的搜索结果',
 'searchresulttext'          => '有关搜索{{SITENAME}}的更多详情,参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
-'searchsubtitle'            => '搜索\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 开头的页面]] | [[Special:Whatlinkshere/$1|所有链接到 "$1" 的页面]])',
+'searchsubtitle'            => '搜索\'\'\'[[:$1]]\'\'\'([[Special:Prefixindex/$1|所有以 "$1" 开头的页面]] | [[Special:WhatLinksHere/$1|所有链接到 "$1" 的页面]])',
 'searchsubtitleinvalid'     => "搜索'''$1'''",
 'noexactmatch'              => "'''没找到标题为\"\$1\"的页面。''' 您可以[[:\$1|创建此页面]]。",
 'noexactmatch-nocreate'     => "'''没找到标题为\"\$1\"的页面。'''",
@@ -871,7 +872,7 @@ $2',
 'mypreferences'            => '我的参数设置',
 'prefs-edits'              => '编辑数量:',
 'prefsnologin'             => '尚未登录',
-'prefsnologintext'         => '您必须先[[Special:Userlogin|登录]]才能设置个人参数。',
+'prefsnologintext'         => '您必须先[[Special:UserLogin|登录]]才能设置个人参数。',
 'prefsreset'               => '参数已被重新设置。',
 'qbsettings'               => '快速导航条',
 'qbsettings-none'          => '无',
@@ -946,7 +947,7 @@ $2',
 'userrights-reason'           => '更改原因:',
 'userrights-no-interwiki'     => '您并没有权限去编辑在其它wiki上的用户权限。',
 'userrights-nodatabase'       => '数据库$1不存在或并非为本地的。',
-'userrights-nologin'          => '您必须要以操作员帐户[[Special:Userlogin|登入]]之后才可以指定用户权限。',
+'userrights-nologin'          => '您必须要以操作员帐户[[Special:UserLogin|登入]]之后才可以指定用户权限。',
 'userrights-notallowed'       => '您的帐户无权限去指定用户权限。',
 'userrights-changeable-col'   => '您可以更改的组群',
 'userrights-unchangeable-col' => '您不可以更改的组群',
@@ -1076,13 +1077,13 @@ $2',
 'reupload'                    => '重新上传',
 'reuploaddesc'                => '取消上传并返回上传表单',
 'uploadnologin'               => '未登录',
-'uploadnologintext'           => '您必须先[[Special:Userlogin|登录]]才能上传文件。',
+'uploadnologintext'           => '您必须先[[Special:UserLogin|登录]]才能上传文件。',
 'upload_directory_missing'    => '上传目录($1)遗失，不能由网页服务器建立。',
 'upload_directory_read_only'  => '上传目录($1)不存在或无写权限。',
 'uploaderror'                 => '上载错误',
 'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。
 要查看或搜索以前上传的文件
-可以进入[[Special:Imagelist|文件上传列表]]，
+可以进入[[Special:ImageList|文件上传列表]]，
 （重新）上传将在[[Special:Log/upload|上传日志]]中记录，
 而删除将在[[Special:Log/delete|删除日志]]中记录。
 
@@ -1202,7 +1203,7 @@ $2',
 下面的列表只列示了连去这个文件的最首$1个页面。
 一个[[Special:WhatLinksHere/$2|完整的列表]]可以提供。',
 'nolinkstoimage'                 => '没有页面链接到本文件。',
-'morelinkstoimage'               => '查看连接到这个文件的[[Special:Whatlinkshere/$1|更多连结]]。',
+'morelinkstoimage'               => '查看连接到这个文件的[[Special:WhatLinksHere/$1|更多连结]]。',
 'redirectstofile'                => '以下的$1个文件重新定向到这个文件:',
 'duplicatesoffile'               => '以下的$1个文件是跟这个文件重覆:',
 'sharedupload'                   => '该文件是一个共享上传，它可能在其它项目中被应用。',
@@ -1286,7 +1287,7 @@ $2',
 即每页平均编辑'''\$5'''次，各次编辑后页面的每个版本平均浏览'''\$6'''次。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue 工作排队]的长度是'''\$7'''。",
-'userstatstext'          => "网站有'''$1'''位注册[[Special:Listusers|用户]]，其中
+'userstatstext'          => "网站有'''$1'''位注册[[Special:ListUsers|用户]]，其中
 '''$2''' (或 '''$4%''') 有$5权限。",
 'statistics-mostpopular' => '浏览最多的页面',
 
@@ -1432,7 +1433,7 @@ Template:消除歧義',
 
 # E-mail user
 'mailnologin'     => '无电邮地址',
-'mailnologintext' => '您必须先[[Special:Userlogin|登录]]
+'mailnologintext' => '您必须先[[Special:UserLogin|登录]]
 并在[[Special:Preferences|参数设置]]
 中有一个有效的电子邮箱地址才可以向其他用户发邮件。',
 'emailuser'       => '向该用户发邮件',
@@ -1461,7 +1462,7 @@ Template:消除歧義',
 'nowatchlist'          => '您的监视列表为空。',
 'watchlistanontext'    => '请$1以查看或编辑您的监视列表。',
 'watchnologin'         => '未登录',
-'watchnologintext'     => '您必须先[[Special:Userlogin|登录]]才能更改您的监视列表。',
+'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addedwatch'           => '已添加至监视列表',
 'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
 将来有关此页面及其讨论页的任何修改将会在那里列出，
@@ -1576,7 +1577,7 @@ $NEWPAGE
 'rollback-success'            => '恢复由$1的编辑；更改回$2的最后一个版本。',
 'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 'protectlogpage'              => '保护日志',
-'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:Protectedpages|保护页面列表]]以查看当前进行的页面保护。',
+'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
 'protectedarticle'            => '已保护"[[$1]]"',
 'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
 'unprotectedarticle'          => '已取消保护"[[$1]]"',

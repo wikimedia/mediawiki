@@ -311,7 +311,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'preferences'           => 'Preferenzas',
 'mypreferences'         => 'Mias preferenzas',
 'prefsnologin'          => 'betg annunzià',
-'prefsnologintext'      => 'Vus stuais esser [[Special:Userlogin|annunziads]] per midar vossas preferenzas.',
+'prefsnologintext'      => 'Vus stuais esser [[Special:UserLogin|annunziads]] per midar vossas preferenzas.',
 'prefsreset'            => 'Preferenzas da standard ein vegnì reconstruidas.',
 'changepassword'        => 'Midar pled-clav',
 'skin-preview'          => 'Prevista',
@@ -364,8 +364,8 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'uploadbtn'         => 'Chargiar si il file',
 'reupload'          => 'chargiar si danovamain',
 'reuploaddesc'      => 'Anavos tar la pagina da chargiar si.',
-'uploadnologintext' => "Ti stos [[Special:Userlogin|t'annunziar]] per chargiar si files.",
-'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:Imagelist|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
+'uploadnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] per chargiar si files.",
+'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:ImageList|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
 
 Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals suandants cumonds: 
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.png]]</nowiki>'''
@@ -409,7 +409,7 @@ since {{SITENAME}} was setup.
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
 La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '''\$7'''.",
-'userstatstext' => "There {{PLURAL:$1|is '''1''' registered [[Special:Listusers|user]]|are '''$1''' registered [[Special:Listusers|users]]}}, of which
+'userstatstext' => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which
 '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
 
 'disambiguations' => 'pagina per la decleraziun da noziuns',
@@ -457,7 +457,7 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'categories' => 'Categorias',
 
 # E-mail user
-'mailnologintext' => "Ti stos [[Special:Userlogin|t'annunziar]] ed avair ina adressa d'email valaivla en tias [[Special:Preferences|preferenzas]] per trametter emails ad auters utilisaders.",
+'mailnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] ed avair ina adressa d'email valaivla en tias [[Special:Preferences|preferenzas]] per trametter emails ad auters utilisaders.",
 'emailuser'       => 'Trametter in email a quest utilisader',
 'emailpage'       => 'Utilisader dad email',
 'emailpagetext'   => "Sche quest utilisader ha inditgà ina adressa da mail valaivla, pudais vus al trametter cun il formular cheusut in email. Sco speditur (Absender) vegn menziunà l'adressa che vus avais inditga en vossas preferenzas, per che l'utilisader as po rispunder.",
@@ -474,7 +474,7 @@ La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '
 'watchlist'            => "mia glista d'observaziun",
 'watchlistfor'         => "(per '''$1''')",
 'watchnologin'         => "Ti n'es betg s'annunzià!",
-'watchnologintext'     => "Ti stos [[Special:Userlogin|t'annunziar]] per midar tia glista d'observaziun.",
+'watchnologintext'     => "Ti stos [[Special:UserLogin|t'annunziar]] per midar tia glista d'observaziun.",
 'addedwatch'           => 'Agiuntà a la glista dad observaziun',
 'addedwatchtext'       => "L'artitgel \"[[:\$1]]\" è vegnì agiuntà a vossa [[Special:Watchlist|glista dad observaziun]]. 
 Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan enumeradas là e l'artitgel vegn marcà '''grass''' en la [[Special:RecentChanges|glista da las ultimas midadas]].",

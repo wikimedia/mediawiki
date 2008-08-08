@@ -407,7 +407,7 @@ Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.</stron
 'template-protected'     => '(e lotilwe)',
 'template-semiprotected' => '(lota-ka-seripa)',
 'nocreatetext'           => '{{SITENAME}} e nale dithibelo tše itšego go tlholeng ga matlakala a maphsa.
-O ka boela morago wa felola matlakala a lego gona, goba o [[Special:Userlogin|tsene]].',
+O ka boela morago wa felola matlakala a lego gona, goba o [[Special:UserLogin|tsene]].',
 'nocreate-loggedin'      => 'Ga ona tumello ya go tlhola matlakala a mampsha go {{SITENAME}}.',
 'permissionserrors'      => 'Phošo ya ditumello',
 'permissionserrorstext'  => 'Gawa dumelwa go pheta seo,ka {{PLURAL:$1|lebaka|mabaka}} a latelago:',

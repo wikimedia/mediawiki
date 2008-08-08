@@ -7,8 +7,8 @@
  * @author Eirik
  * @author Jon Harald Søby
  * @author Jorunn
- * @author Ranveig
  * @author לערי ריינהארט
+ * @author Ranveig
  * @author Finnrind
  * @author Dittaeva
  * @author H92
@@ -523,7 +523,7 @@ $messages = array(
 'nosuchaction'      => 'Funksjonen finst ikkje',
 'nosuchactiontext'  => 'Wikiprogramvaren kjenner ikkje att funksjonen som er spesifisert i nettadressa',
 'nosuchspecialpage' => 'Ei slik spesialside finst ikkje',
-'nospecialpagetext' => 'Du har bede om ei spesialside som ikkje finst, liste over spesialsider er [[Special:Specialpages|her]].',
+'nospecialpagetext' => 'Du har bede om ei spesialside som ikkje finst, liste over spesialsider er [[Special:SpecialPages|her]].',
 
 # General errors
 'error'                => 'Feil',
@@ -796,7 +796,8 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'readonlywarning'                  => '<strong>ÅTVARING: Databasen er skriveverna på grunn av vedlikehald, difor kan du ikkje lagre endringane dine akkurat no. Det kan vera lurt å  kopiere teksten din åt ei tekstfil, så du kan lagre han her seinare.</strong><br />',
 'protectedpagewarning'             => '<strong>ÅTVARING: Denne sida er verna, slik at berre administratorar kan endre ho.</strong><br />',
 'semiprotectedpagewarning'         => "'''NB:''' Denne sida er verna slik at berre registrerte brukarar kan endre henne.",
-'cascadeprotectedwarning'          => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:",
+'cascadeprotectedwarning'          => "'''Åtvaring:''' Denne sida er verna så berre brukarar med administratortilgang kan endre henne. Dette er fordi ho er inkludert i {{PLURAL:$1|denne djupverna sida|desse djupverna sidene}}:
+$2",
 'titleprotectedwarning'            => '<strong>Åtvaring: Denne sida er verna, så berre nokre brukarar kan opprette henne.</strong>',
 'templatesused'                    => 'Malar som er brukte på denne sida:',
 'templatesusedpreview'             => 'Malar som er brukte i denne førehandsvisinga:',
@@ -807,7 +808,7 @@ lang, altså lenger enn $2 kilobyte som er maksimum. Han kan difor ikkje lagrast
 'edittools'                        => '<!-- Teksten her vert synt mellom tekstboksen og «Lagre»-knappen når ein endrar ei side. -->',
 'nocreatetitle'                    => 'Avgrensa sideoppretting',
 'nocreatetext'                     => '{{SITENAME}} har avgrensa tilgang til å opprette nye sider.
-Du kan gå attende og endre ei eksisterande side, [[Special:Userlogin|logge inn eller opprette ein brukarkonto]].',
+Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn eller opprette ein brukarkonto]].',
 'nocreate-loggedin'                => 'Du har ikkje tilgang til å opprette nye sider på {{SITENAME}}.',
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikkje tilgang til å gjere dette, {{PLURAL:$1|grunnen|grunnane}} til det finn du her:',
@@ -916,7 +917,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 # Suppression log
 'suppressionlog'     => 'Logg over historikkfjerningar',
 'suppressionlogtext' => 'Under er ei liste over slettingar og blokkeringar som er gøymde frå administratorane.
-Sjå [[Special:Ipblocklist|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
+Sjå [[Special:IPBlockList|blokkeringslista]] for oversikta over gjeldande blokkeringar.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikkar',
@@ -1003,7 +1004,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'mypreferences'            => 'Innstillingane mine',
 'prefs-edits'              => 'Tal på endringar:',
 'prefsnologin'             => 'Ikkje innlogga',
-'prefsnologintext'         => 'Du lyt vere [[Special:Userlogin|innlogga]] for å endre brukarinnstillingane dine.',
+'prefsnologintext'         => 'Du lyt vere [[Special:UserLogin|innlogga]] for å endre brukarinnstillingane dine.',
 'prefsreset'               => 'Innstillingane er tilbakestilte til siste lagra versjon.',
 'qbsettings'               => 'Snøggmeny',
 'qbsettings-none'          => 'Ingen',
@@ -1078,7 +1079,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'userrights-reason'           => 'Grunn til endring:',
 'userrights-no-interwiki'     => 'Du har ikkje tilgang til å endre brukartilgangar på andre wikiar.',
 'userrights-nodatabase'       => 'Databasen $1 finst ikkje eller er ikkje lokal.',
-'userrights-nologin'          => 'Du må [[Special:Userlogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
+'userrights-nologin'          => 'Du må [[Special:UserLogin|logge inn]] med ein administrator- og/eller byråkratkonto for å endre brukartilgangar.',
 'userrights-notallowed'       => 'Kontoen din har ikkje tilgang til å endre brukartilgangar.',
 'userrights-changeable-col'   => 'Grupper du kan endre',
 'userrights-unchangeable-col' => 'Grupper du ikkje kan endre',
@@ -1180,10 +1181,10 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'reupload'                    => 'Nytt forsøk',
 'reuploaddesc'                => 'Attende til opplastingsskjemaet.',
 'uploadnologin'               => 'Ikkje innlogga',
-'uploadnologintext'           => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna laste opp filer.',
+'uploadnologintext'           => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna laste opp filer.',
 'upload_directory_read_only'  => 'Opplastingsmappa ($1) er skriveverna.',
 'uploaderror'                 => 'Feil under opplasting av fil',
-'uploadtext'                  => "Bruk skjemaet under for å laste opp filer. For å sjå eller søke i tidlegare opplasta filer, gå til [[Special:Imagelist|fillista]]. Opplastingane vert også lagra i [[Special:Log/upload|opplastingsloggen]].
+'uploadtext'                  => "Bruk skjemaet under for å laste opp filer. For å sjå eller søke i tidlegare opplasta filer, gå til [[Special:ImageList|fillista]]. Opplastingane vert også lagra i [[Special:Log/upload|opplastingsloggen]].
 
 For å bruke ei fil på ei side, bruk ei slik lenkje:
 *'''<nowiki>[[</nowiki>{{ns:image}}:Filnamn.jpg<nowiki>]]</nowiki>'''
@@ -1295,7 +1296,7 @@ Sletteloggen for fila finn du her:",
 'imagelinks'                     => 'Fillenkjer',
 'linkstoimage'                   => '{{PLURAL:$1|Den følgjande sida|Dei følgjande $1 sidene}} har lenkjer til denne fila:',
 'nolinkstoimage'                 => 'Det finst ikkje noka side med lenkje til denne fila.',
-'morelinkstoimage'               => 'Vis [[Special:Whatlinkshere/$1|fleire lenkjer]] til denne fila.',
+'morelinkstoimage'               => 'Vis [[Special:WhatLinksHere/$1|fleire lenkjer]] til denne fila.',
 'sharedupload'                   => 'Denne fila er ei delt opplasting og kan brukast av andre prosjekt.',
 'shareduploadwiki'               => 'Sjå $1 for meir informasjon.',
 'shareduploadwiki-desc'          => 'Skildringa til $1 i det delte lageret er vist nedanfor.',
@@ -1501,7 +1502,7 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 
 # E-mail user
 'mailnologin'     => 'Inga avsendaradresse',
-'mailnologintext' => 'Du lyt vera [[Special:Userlogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
+'mailnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser'       => 'Send e-post åt denne brukaren',
 'emailpage'       => 'Send e-post åt brukar',
 'emailpagetext'   => 'Om denne brukaren har gjeve ei gyldig e-postadresse i brukarinnstillingane sine, vil dette skjemaet sende ei enkel melding. E-postadressa di frå brukarinnstillingane dine vil vera synleg i «Frå»-feltet i denne e-posten, slik at mottakaren kan svara deg.',
@@ -1526,9 +1527,9 @@ Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og end
 'nowatchlist'          => 'Du har ikkje noko i overvakingslista di.',
 'watchlistanontext'    => 'Ver venleg og $1 for å vise eller endre sider på overvakingslista di.',
 'watchnologin'         => 'Ikkje innlogga',
-'watchnologintext'     => 'Du lyt vera [[Special:Userlogin|innlogga]] for å kunna endre overvakingslista.',
+'watchnologintext'     => 'Du lyt vera [[Special:UserLogin|innlogga]] for å kunna endre overvakingslista.',
 'addedwatch'           => 'Lagt til overvakingslista',
-'addedwatchtext'       => "Sida «<nowiki>$1</nowiki>» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
+'addedwatchtext'       => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinere vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
 'removedwatch'         => 'Fjerna frå overvakingslista',
@@ -1635,7 +1636,7 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'rollback-success'            => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
-'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:Protectedpages|Verna side]] for meir info.',
+'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:ProtectedPages|Verna side]] for meir info.',
 'protectedarticle'            => 'verna «[[$1]]»',
 'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
 'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
@@ -1848,7 +1849,7 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:IPB
 'locknoconfirm'       => 'Du har ikkje stadfest handlinga.',
 'lockdbsuccesssub'    => 'Databasen er no skriveverna',
 'unlockdbsuccesssub'  => 'Skrivevernet på databasen er no oppheva',
-'lockdbsuccesstext'   => 'Databasen er no skriveverna. <br />Hugs å [[Special:Unlockdb|oppheve skrivevernet]] når du er ferdig med vedlikehaldet.',
+'lockdbsuccesstext'   => 'Databasen er no skriveverna. <br />Hugs å [[Special:UnlockDB|oppheve skrivevernet]] når du er ferdig med vedlikehaldet.',
 'unlockdbsuccesstext' => 'Skrivevernet er oppheva.',
 'databasenotlocked'   => 'Databasen er ikkje låst.',
 

@@ -275,7 +275,7 @@ $messages = array(
 'nosuchspecialpage' => 'Awan ti kasta a naiduma a panid',
 'nospecialpagetext' => "<big>'''Saan a mabalin ti kiniddawmo a naiduma a panid.'''</big>
 
-Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:Specialpages|{{int:specialpages}}]].",
+Masarakan ti listaan dagiti mabalin a a naiduma a pampanid iti [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Biddut',
@@ -520,7 +520,7 @@ Isut' gapuna a saan a maidulin.</strong>",
 'hiddencategories'                 => 'Daytoy a panid ket kameng ti {{PLURAL:$1|1 a nakalemmeng a categoria|$1 a nakalemmeng a catcategoria}}:',
 'nocreatetitle'                    => 'Limitado ti panagaramid iti panid',
 'nocreatetext'                     => 'Pinaritan ti {{SITENAME}} ti kabalinan a makapartuat iti kabarbaro a pampanid.
-Mabalinmo ti agsubli ken agedit iti adda a panid, wenno [[Special:Userlogin|sumrek wenno mangaramid iti account]].',
+Mabalinmo ti agsubli ken agedit iti adda a panid, wenno [[Special:UserLogin|sumrek wenno mangaramid iti account]].',
 'nocreate-loggedin'                => 'Awananka iti pammalubos a mangaramid iti kabarbaro a pampanid iti {{SITENAME}}.',
 'permissionserrors'                => 'Bidbiddut iti Pammalubos',
 'permissionserrorstext'            => 'Awananka iti pammalubos a mangaramid iti dayta, gapu iti sumaganad a {{PLURAL:$1|rason|rasrason}}:',
@@ -811,7 +811,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'uploadbtn'              => 'Ipan ti file',
 'reupload'               => 'I-upload manen',
 'uploadnologin'          => 'Saan a nakastrek',
-'uploadnologintext'      => 'Nasken a [[Special:Userlogin|nakaserrekka]] tapno makaipanka iti files.',
+'uploadnologintext'      => 'Nasken a [[Special:UserLogin|nakaserrekka]] tapno makaipanka iti files.',
 'uploaderror'            => 'Kammali iti panangipan',
 'upload-permitted'       => 'Dagiti mapalubosan a tipo ti file: $1.',
 'upload-preferred'       => 'Dagiti mabalbalin a file types: $1.',
@@ -886,7 +886,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'imagelinks'                     => 'Dagiti kasilpo',
 'linkstoimage'                   => 'Dagiti sumaganad a panid ket nakasilpo itoy a file:',
 'nolinkstoimage'                 => 'Awan ti pampanid a nakasilpo iti daytoy a file.',
-'morelinkstoimage'               => 'Kitaen ti [[Special:Whatlinkshere/$1|ad-adu pay a panilpo]] kadaytoy a file.',
+'morelinkstoimage'               => 'Kitaen ti [[Special:WhatLinksHere/$1|ad-adu pay a panilpo]] kadaytoy a file.',
 'redirectstofile'                => 'Dagiti sumaganad a files ket ag-redirect iti daytoy a file:',
 'duplicatesoffile'               => 'Dagiti sumaganad a files ket duplikado daytoy a file:',
 'sharedupload'                   => 'Daytoy a file ket pagraranudan nga upload ket mabalin nga aramaten ti sabsabali pay a projectos.',
@@ -1074,7 +1074,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'watchlistfor'         => "(para ken ni '''$1''')",
 'nowatchlist'          => 'Awan ti pampanid iti listaan dagiti bambantayam.',
 'watchnologin'         => 'Saan a nakastrek',
-'watchnologintext'     => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
+'watchnologintext'     => 'Nasken a [[Special:UserLogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
 'addedwatch'           => 'Nainayon kadagiti bambantayan',
 'addedwatchtext'       => "Nainayonen ti panid a \"[[:\$1]]\" iti [[Special:Watchlist|listaan ti bambantayam]].
 Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti kanaigna a panid-tungtongan, ket agparang ti panid a kas '''napuskol''' iti [[Special:RecentChanges|listaan ti naudi a balbaliw]] tapno nalaklaka a malasin.",
@@ -1313,7 +1313,7 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 'lockdbsuccesssub'    => 'Balligi ti pannakabalunet ti database',
 'unlockdbsuccesssub'  => 'Naikkaten ti balunet ti database',
 'lockdbsuccesstext'   => 'Nabalunetan ti database.<br />
-Laglagipem nga [[Special:Unlockdb|ikkaten ti balunetna]] kalpasan a makompletom ti maintenance.',
+Laglagipem nga [[Special:UnlockDB|ikkaten ti balunetna]] kalpasan a makompletom ti maintenance.',
 'unlockdbsuccesstext' => 'Naluktanen ti database.',
 'databasenotlocked'   => 'Saan a nabalunetan ti database.',
 

@@ -282,7 +282,7 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'nosuchaction'      => 'Tako dejanje ne obstaja',
 'nosuchactiontext'  => 'Dejanja, ki ga je označil spletni naslov, wiki ne prepozna.',
 'nosuchspecialpage' => 'Posebna stran, ki ste jo zahtevali, ne obstaja',
-'nospecialpagetext' => 'Posebne strani, ki ste jo zahtevali, programje {{GRAMMAR:rodilnik|{{SITENAME}}}} ne prepozna ali pa nimate dostopa do nje. Seznam vseh prepoznanih posebnih strani je na razpolago na strani [[Special:Specialpages]].',
+'nospecialpagetext' => 'Posebne strani, ki ste jo zahtevali, programje {{GRAMMAR:rodilnik|{{SITENAME}}}} ne prepozna ali pa nimate dostopa do nje. Seznam vseh prepoznanih posebnih strani je na razpolago na strani [[Special:SpecialPages]].',
 
 # General errors
 'error'                => 'Napaka',
@@ -505,7 +505,7 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 'templatesused'             => 'Na strani uporabljene predloge:',
 'edittools'                 => '<!-- To besedilo bo prikazano pod urejevalnim poljem in poljem za nalaganje. -->',
 'nocreatetitle'             => 'Članka nisem našel',
-'nocreatetext'              => "Članka s tem naslovom - '''{{PAGENAME}}''' - še nimamo, lahko pa ga [[Special:Search/{{PAGENAME}}|poskusite poiskati]] ali pa se [[Special:Userlogin|prijavite]] in ga ustvarite.",
+'nocreatetext'              => "Članka s tem naslovom - '''{{PAGENAME}}''' - še nimamo, lahko pa ga [[Special:Search/{{PAGENAME}}|poskusite poiskati]] ali pa se [[Special:UserLogin|prijavite]] in ga ustvarite.",
 
 # History pages
 'nohistory'           => 'Stran nima zgodovine urejanja.',
@@ -584,7 +584,7 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 # Preferences page
 'preferences'              => 'Nastavitve',
 'prefsnologin'             => 'Niste prijavljeni',
-'prefsnologintext'         => 'Za spreminjanje uporabniških nastavitev se [[Special:Userlogin|prijavite]].',
+'prefsnologintext'         => 'Za spreminjanje uporabniških nastavitev se [[Special:UserLogin|prijavite]].',
 'prefsreset'               => 'Nastavitve so ponastavljene.',
 'qbsettings'               => 'Nastavitve hitre vrstice',
 'qbsettings-none'          => 'Brez',
@@ -699,11 +699,11 @@ Do skrite vsebine bodo še vedno lahko dostopali drugi administratorji in jo z u
 'reupload'                    => 'Naloži drugo',
 'reuploaddesc'                => 'Vrnitev na obrazec za nalaganje.',
 'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Za nalaganje datotek se [[Special:Userlogin|prijavite]].',
+'uploadnologintext'           => 'Za nalaganje datotek se [[Special:UserLogin|prijavite]].',
 'upload_directory_read_only'  => 'V mapo za nalaganje datotek ($1) spletni strežnik ne more pisati.',
 'uploaderror'                 => 'Napaka',
 'uploadtext'                  => "Spodnji obrazec lahko uporabite za nalaganje datotek;
-za ogled ali iskanje že naloženih pojdite na [[Special:Imagelist|seznam naloženih datotek]].
+za ogled ali iskanje že naloženih pojdite na [[Special:ImageList|seznam naloženih datotek]].
 Naložitve in izbrisi so zapisani tudi v [[Special:Log/upload|dnevniku nalaganja]].
 
 Datoteko lahko na želeno stran vključite z naslednjo skladnjo
@@ -871,7 +871,7 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 
 # E-mail user
 'mailnologin'     => 'Manjka naslov pošiljatelja',
-'mailnologintext' => "Za pošiljanje pošte se [[Special:Userlogin|prijavite]] in v [[Special:Preferences|nastavitvah]] vpišite veljaven '''overjen''' e-poštni naslov.",
+'mailnologintext' => "Za pošiljanje pošte se [[Special:UserLogin|prijavite]] in v [[Special:Preferences|nastavitvah]] vpišite veljaven '''overjen''' e-poštni naslov.",
 'emailuser'       => 'Pošlji uporabniku e-pismo',
 'emailpage'       => 'Pošlji uporabniku e-pismo',
 'emailpagetext'   => "S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
@@ -893,7 +893,7 @@ Da bo prejemnik lahko odgovoril neposredno vam, bo v glavi sporočila zapisan ''
 'mywatchlist'          => 'Spisek nadzorov',
 'nowatchlist'          => 'Vaš spisek nadzorov je prazen.',
 'watchnologin'         => 'Niste prijavljeni',
-'watchnologintext'     => 'Za urejanje spiska nadzorov se [[Special:Userlogin|prijavite]].',
+'watchnologintext'     => 'Za urejanje spiska nadzorov se [[Special:UserLogin|prijavite]].',
 'addedwatch'           => 'Dodano na spisek nadzorov',
 'addedwatchtext'       => "Stran »'''<nowiki>$1</nowiki>'''« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]], kjer bodo odslej navedene njene morebitne spremembe in spremembe pripadajoče pogovorne strani. Za lažjo izbiro bodo tudi v [[Special:RecentChanges|seznamu zadnjih sprememb]] prikazane <b>krepko</b>. Če jo želite odstraniti s spiska, kliknite zavihek »Prenehaj opazovati«.",
 'removedwatch'         => 'Odstranjena s spiska nadzorov',

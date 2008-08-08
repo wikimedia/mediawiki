@@ -726,7 +726,8 @@ Overvej om siden kan opdeles i mindre dele.</strong>',
 så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.</strong>',
 'protectedpagewarning'             => '<strong>ADVARSEL: Denne side er skrivebeskyttet, så kun administratorer kan redigere den.</strong>',
 'semiprotectedpagewarning'         => "'''Halv spærring:''' Siden er spærret, så kun registrerede brugere kan ændre den.",
-'cascadeprotectedwarning'          => "'''BEMÆRK: Denne side er skrivebeskyttet, så den kun kan ændres af brugere med Administratorrettigheder. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af nedarvende sidebeskyttelse:'''",
+'cascadeprotectedwarning'          => "'''BEMÆRK: Denne side er skrivebeskyttet, så den kun kan ændres af brugere med Administratorrettigheder. Den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af nedarvende sidebeskyttelse:'''
+$2",
 'titleprotectedwarning'            => '<strong>ADVARSEL:  Den side er låst så kun nogle brugere kan oprette den.</strong>',
 'templatesused'                    => 'Skabeloner der er brugt på denne side:',
 'templatesusedpreview'             => 'Følgende skabeloner bruges af denne artikelforhåndsvisning:',
@@ -736,7 +737,7 @@ så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at 
 'hiddencategories'                 => 'Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:',
 'edittools'                        => '<!-- Denne tekst vises under formularen „Ændre“ samt "Upload". -->',
 'nocreatetitle'                    => 'Oprettelse af nye sider er begrænset.',
-'nocreatetext'                     => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:Userlogin|logge på]].',
+'nocreatetext'                     => 'Serveren har begrænset oprettelse af nye sider. Bestående sider kan ændres eller [[Special:UserLogin|logge på]].',
 'nocreate-loggedin'                => 'Du har ikke rettigheder til at oprette nye sider.',
 'permissionserrors'                => 'Rettighedskonflikt',
 'permissionserrorstext'            => 'Du har ikke rettigheder til at gennemføre denne handling, {{PLURAL:$1|årsagen|årsagerne}} er:',
@@ -847,7 +848,7 @@ Administratorer kan dog fortsat se og gendanne det fjernede indhold, medmindre d
 # Suppression log
 'suppressionlog'     => 'Skjulningslog',
 'suppressionlogtext' => 'Nedenfor listes de sletninger og blokeringer der er skjult for almindelige systemadministratorer.Below is a list of deletions and blocks involving content hidden from sysops.
-Se [[Special:Ipblocklist|IP blokeringslisten]] for alle blokeringer.',
+Se [[Special:IPBlockList|IP blokeringslisten]] for alle blokeringer.',
 
 # History merging
 'mergehistory'                     => 'Sammenflet sidehistorikker',
@@ -933,7 +934,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'mypreferences'            => 'Indstillinger',
 'prefs-edits'              => 'Antal redigeringer:',
 'prefsnologin'             => 'Ikke logget på',
-'prefsnologintext'         => 'Du skal være [[Special:Userlogin|logget på]] for at ændre brugerindstillinger.',
+'prefsnologintext'         => 'Du skal være [[Special:UserLogin|logget på]] for at ændre brugerindstillinger.',
 'prefsreset'               => 'Indstillingerne er blevet gendannet fra lageret.',
 'qbsettings'               => 'Hurtigmenu',
 'qbsettings-none'          => 'Ingen',
@@ -1008,7 +1009,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'userrights-reason'           => 'Årsag:',
 'userrights-no-interwiki'     => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
 'userrights-nodatabase'       => 'Databasen $1 eksisterer ikke lokalt.',
-'userrights-nologin'          => 'Du skal [[Special:Userlogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
+'userrights-nologin'          => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
 'userrights-notallowed'       => 'Din konto har ikke andgang til at ændre brugerrettigheder.',
 'userrights-changeable-col'   => 'Redigerbare grupper',
 'userrights-unchangeable-col' => 'Uredigerbare grupper',
@@ -1138,11 +1139,11 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'reupload'                    => 'Læg en fil op igen',
 'reuploaddesc'                => 'Tilbage til formularen til at lægge filer op.',
 'uploadnologin'               => 'Ikke logget på',
-'uploadnologintext'           => 'Du skal være [[Special:Userlogin|logget på]] for at kunne lægge filer op.',
+'uploadnologintext'           => 'Du skal være [[Special:UserLogin|logget på]] for at kunne lægge filer op.',
 'upload_directory_missing'    => 'upload-kataloget ($1) findes ikke. Webserveren har ikke mulighed for at oprette kataloget.',
 'upload_directory_read_only'  => 'Webserveren har ingen skriverettigheder for upload-kataloget ($1).',
 'uploaderror'                 => 'Fejl under oplægning af fil',
-'uploadtext'                  => "<strong>STOP!</strong> Før du lægger filer op her, så vær sikker på du har læst og følger {{SITENAME}}s [[{{MediaWiki:Policy-url}}|politik om brug af billeder]]. Følg venligst disse retningslinjer: * Angiv tydeligt hvor filen stammer fra * Brug et beskrivende filnavn, så det er til at se hvad filen indeholder * Tjek i [[Special:Imagelist|listen over filer]] om filen allerede er lagt op
+'uploadtext'                  => "<strong>STOP!</strong> Før du lægger filer op her, så vær sikker på du har læst og følger {{SITENAME}}s [[{{MediaWiki:Policy-url}}|politik om brug af billeder]]. Følg venligst disse retningslinjer: * Angiv tydeligt hvor filen stammer fra * Brug et beskrivende filnavn, så det er til at se hvad filen indeholder * Tjek i [[Special:ImageList|listen over filer]] om filen allerede er lagt op
 
 Brug formularen herunder til at lægge nye filer op, som kan bruges i dine artikler.
 På de fleste browsere vil du se en \"Browse...\" knap eller en \"Gennemse...\" knap, som vil bringe dig til dit styresystems standard-dialog til åbning af filer.
@@ -1262,7 +1263,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'imagelinks'                     => 'Billedehenvisninger',
 'linkstoimage'                   => '{{Plural:$1|Den følgende side|De følgende $1 sider}} henviser til dette billede:',
 'nolinkstoimage'                 => 'Der er ingen sider der henviser til dette billede.',
-'morelinkstoimage'               => 'Se [[Special:Whatlinkshere/$1|flere henvisninger]] til denne fil.',
+'morelinkstoimage'               => 'Se [[Special:WhatLinksHere/$1|flere henvisninger]] til denne fil.',
 'redirectstofile'                => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er en omdirigering til denne fil:',
 'duplicatesoffile'               => '{{PLURAL:$1|Nedenstående fil|De nedenstående $1 filer}} er dubletter af denne fil:',
 'sharedupload'                   => 'Denne fil er en fælles upload og kan bruges af andre projekter.',
@@ -1349,7 +1350,7 @@ siden {{SITENAME}} blev oprettet.
 Det bliver til '''\$5''' gennemsnitlige ændringer pr. side, og '''\$6''' visninger pr. ændring.
 
 [http://meta.wikimedia.org/wiki/Help:Job_queue job queue] længden er '''\$7'''.",
-'userstatstext'          => "Der findes '''$1''' {{PLURAL:$1|registreret|registrerede}} [[Special:Listusers|brugere]].
+'userstatstext'          => "Der findes '''$1''' {{PLURAL:$1|registreret|registrerede}} [[Special:ListUsers|brugere]].
 deraf har '''$2''' (=$4%) $5-rettigheder.",
 'statistics-mostpopular' => 'Mest besøgte sider',
 
@@ -1489,7 +1490,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 
 # E-mail user
 'mailnologin'     => 'Du er ikke logget på',
-'mailnologintext' => 'Du skal være [[Special:Userlogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Special:Preferences|indstillinger]] for at sende e-mail til andre brugere.',
+'mailnologintext' => 'Du skal være [[Special:UserLogin|logget på]] og have en gyldig e-mailadresse sat i dine [[Special:Preferences|indstillinger]] for at sende e-mail til andre brugere.',
 'emailuser'       => 'E-mail til denne bruger',
 'emailpage'       => 'E-mail bruger',
 'emailpagetext'   => 'Hvis denne bruger har sat en gyldig e-mail-adresse i sine brugerindstillinger, så vil formularen herunder sende en enkelt besked. Den e-mailadresse, du har sat i dine brugerindstillinger, vil dukke op i "Fra" feltet på denne mail, så modtageren er i stand til at svare.',
@@ -1515,9 +1516,9 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
 'watchnologin'         => 'Ikke logget på',
-'watchnologintext'     => 'Du skal være [[Special:Userlogin|logget på]] for at kunne ændre din overvågningsliste.',
+'watchnologintext'     => 'Du skal være [[Special:UserLogin|logget på]] for at kunne ændre din overvågningsliste.',
 'addedwatch'           => 'Tilføjet til din overvågningsliste',
-'addedwatchtext'       => "Siden \"\$1\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:RecentChanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
+'addedwatchtext'       => "Siden \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|overvågningsliste]]. Fremtidige ændringer til denne side og den tilhørende diskussionsside vil blive listet der, og siden vil fremstå '''fremhævet''' i [[Special:RecentChanges|listen med de seneste ændringer]] for at gøre det lettere at finde den. Hvis du senere vil fjerne siden fra din overvågningsliste, så klik \"Fjern overvågning\".",
 'removedwatch'         => 'Fjernet fra overvågningsliste',
 'removedwatchtext'     => 'Siden "$1" er blevet fjernet fra din overvågningsliste.',
 'watch'                => 'Overvåg',

@@ -476,7 +476,7 @@ Lý do được cung cấp là ''$2''.",
 'logouttitle'                => 'Đăng xuất',
 'logouttext'                 => "<strong>Bạn đã đăng xuất.</strong>
 
-Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:Userlogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
+Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:UserLogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
 'welcomecreation'            => '== Chào mừng, $1! ==
 Tài khoản của bạn đã mở.
 Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
@@ -670,7 +670,7 @@ Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đ
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được giấu đi để đề phòng bị tấn công bằng JavaScript.''
 
 <strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa. 
-Nếu vẫn không thành công, bạn hãy thử [[Special:Userlogout|đăng xuất]] rồi đăng nhập lại.</strong>",
+Nếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.</strong>",
 'token_suffix_mismatch'            => '<strong>Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự dấu trong số hiệu
 sửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.
 Điều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.</strong>',
@@ -699,7 +699,8 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'readonlywarning'                  => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>',
 'protectedpagewarning'             => '<strong>CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.</strong>',
 'semiprotectedpagewarning'         => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
-'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
+'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:
+$2",
 'titleprotectedwarning'            => '<strong>CẢNH BÁO:  Trang này đã bị khóa, chỉ có một số thành viên mới có thể tạo ra.</strong>',
 'templatesused'                    => 'Các tiêu bản dùng trong trang này',
 'templatesusedpreview'             => 'Các tiêu bản sẽ được dùng trong trang này:',
@@ -710,7 +711,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'edittools'                        => '<!-- Văn bản dưới đây sẽ xuất hiện phía dưới mẫu sửa đổi và tải lên. -->',
 'nocreatetitle'                    => 'Khả năng tạo trang bị hạn chế',
 'nocreatetext'                     => '{{SITENAME}} đã hạn chế khả năng tạo trang mới.
-Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:Userlogin|đăng nhập hoặc tạo tài khoản]].',
+Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[Special:UserLogin|đăng nhập hoặc tạo tài khoản]].',
 'nocreate-loggedin'                => 'Bạn không có quyền tạo trang mới trên {{SITENAME}}.',
 'permissionserrors'                => 'Không có quyền thực hiện',
 'permissionserrorstext'            => 'Bạn không có quyền thực hiện thao tác đó, vì {{PLURAL:$1|lý do|lý do}}:',
@@ -831,7 +832,7 @@ Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội du
 # Suppression log
 'suppressionlog'     => 'Nhật trình giấu',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy. 
-Xem [[Special:Ipblocklist|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
+Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -872,7 +873,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchresults'             => 'Kết quả tìm kiếm',
 'searchresults-title'       => 'Kết quả tìm kiếm $1',
 'searchresulttext'          => 'Để biết thêm chi tiết về tìm kiếm tại {{SITENAME}}, xem [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "Bạn đã tìm '''[[:$1]]''' ([[Special:Prefixindex/$1|tất cả các trang bắt đầu bằng “$1”]] | [[Special:Whatlinkshere/$1|tất cả các trang liên kết đến “$1”]])",
+'searchsubtitle'            => "Bạn đã tìm '''[[:$1]]''' ([[Special:Prefixindex/$1|tất cả các trang bắt đầu bằng “$1”]] | [[Special:WhatLinksHere/$1|tất cả các trang liên kết đến “$1”]])",
 'searchsubtitleinvalid'     => "Tìm '''$1'''",
 'noexactmatch'              => "'''Trang “$1” không tồn tại.''' Bạn có thể [[:$1|tạo trang này]].",
 'noexactmatch-nocreate'     => "'''Không có trang nào có tên “$1”.'''",
@@ -915,7 +916,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mypreferences'            => 'Tùy chọn',
 'prefs-edits'              => 'Số lần sửa đổi:',
 'prefsnologin'             => 'Chưa đăng nhập',
-'prefsnologintext'         => 'Bạn phải [[Special:Userlogin|đăng nhập]] để thiết lập tùy chọn cá nhân.',
+'prefsnologintext'         => 'Bạn phải [[Special:UserLogin|đăng nhập]] để thiết lập tùy chọn cá nhân.',
 'prefsreset'               => 'Các tùy chọn cá nhân đã được mặc định lại.',
 'qbsettings'               => 'Thanh công cụ',
 'qbsettings-none'          => 'Không có',
@@ -990,7 +991,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'userrights-reason'           => 'Lý do thay đổi:',
 'userrights-no-interwiki'     => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
 'userrights-nodatabase'       => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
-'userrights-nologin'          => 'Bạn phải [[Special:Userlogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
+'userrights-nologin'          => 'Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
 'userrights-notallowed'       => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
 'userrights-changeable-col'   => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col' => 'Những nhóm bạn không thể thay đổi',
@@ -1120,12 +1121,12 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'reupload'                    => 'Tải lại',
 'reuploaddesc'                => 'Hủy tác vụ tải và quay lại mẫu tải tập tin lên',
 'uploadnologin'               => 'Chưa đăng nhập',
-'uploadnologintext'           => 'Bạn phải [[Special:Userlogin|đăng nhập]] để tải tập tin lên.',
+'uploadnologintext'           => 'Bạn phải [[Special:UserLogin|đăng nhập]] để tải tập tin lên.',
 'upload_directory_missing'    => 'Thư mục tải lên ($1) không có hoặc máy chủ web không thể tạo được.',
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
-Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:Imagelist|danh sách các tập tin đã tải lên]];
+Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:ImageList|danh sách các tập tin đã tải lên]];
 việc tải lên và xóa đi cũng được ghi lại trong [[Special:Log/upload|nhật trình tải lên]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
@@ -1258,7 +1259,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'imagelinks'                     => 'Liên kết',
 'linkstoimage'                   => '{{PLURAL:$1|Trang|$1 trang}} sau có liên kết đến tập tin này:',
 'nolinkstoimage'                 => 'Không có trang nào chứa liên kết đến hình.',
-'morelinkstoimage'               => 'Xem [[Special:Whatlinkshere/$1|thêm liên kết]] đến tập tin này.',
+'morelinkstoimage'               => 'Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.',
 'redirectstofile'                => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau chuyển hướng đến tập tin này:',
 'duplicatesoffile'               => '{{PLURAL:$1|Tập tin sau|$1 tập tin sau}} là bản sao của tập tin này:',
 'sharedupload'                   => 'Tập tin này được tải lên để dùng chung và có thể dùng ở các dự án khác.',
@@ -1340,7 +1341,7 @@ Có '''$8''' tập tin đã được tải lên.
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
 Độ dài của [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc] là '''$7'''.",
-'userstatstext'          => "Có '''$1''' [[Special:Listusers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
+'userstatstext'          => "Có '''$1''' [[Special:ListUsers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',
@@ -1479,7 +1480,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 
 # E-mail user
 'mailnologin'     => 'Không có địa chỉ gửi thư',
-'mailnologintext' => 'Bạn phải [[Special:Userlogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
+'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser'       => 'Gửi thư cho người này',
 'emailpage'       => 'Gửi thư',
 'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ cho bạn gửi thư.
@@ -1506,7 +1507,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'nowatchlist'          => 'Danh sách theo dõi của bạn không có gì.',
 'watchlistanontext'    => 'Xin hãy $1 để xem hay sửa đổi các trang được theo dõi.',
 'watchnologin'         => 'Chưa đăng nhập',
-'watchnologintext'     => 'Bạn phải [[Special:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
+'watchnologintext'     => 'Bạn phải [[Special:UserLogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
 'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:RecentChanges|danh sách các thay đổi mới]].
 
@@ -1622,7 +1623,7 @@ Sửa đổi cuối cùng tại trang được thực hiện bởi [[User:$3|$3]
 'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
 'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
-'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:Protectedpages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
+'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:ProtectedPages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
 'protectedarticle'            => 'đã khóa “[[$1]]”',
 'modifiedarticleprotection'   => 'đã đổi mức khóa cho “[[$1]]”',
 'unprotectedarticle'          => 'đã mở khóa cho “[[$1]]”',
@@ -1860,7 +1861,7 @@ Xin hãy xác nhận đây là điều bạn định làm.',
 'lockdbsuccesssub'    => 'Đã khóa cơ sở dữ liệu thành công.',
 'unlockdbsuccesssub'  => 'Đã mở khóa cơ sở dữ liệu thành công',
 'lockdbsuccesstext'   => 'Cơ sở dữ liệu đã bị khóa.
-<br />Nhớ [[Special:Unlockdb|mở khóa]] sau khi bảo trì xong.',
+<br />Nhớ [[Special:UnlockDB|mở khóa]] sau khi bảo trì xong.',
 'unlockdbsuccesstext' => 'Cơ sở dữ liệu đã được mở khóa.',
 'lockfilenotwritable' => 'Tập tin khóa của cơ sở dữ liệu không cho phép ghi. Để khóa hay mở khóa cơ sở dữ liệu, máy chủ web phải có khả năng ghi tập tin.',
 'databasenotlocked'   => 'Cơ sở dữ liệu không bị khóa.',

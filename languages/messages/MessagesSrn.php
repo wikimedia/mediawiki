@@ -285,7 +285,7 @@ $messages = array(
 'nosuchspecialpage' => 'A spesrutu papira disi no de',
 'nospecialpagetext' => "<big>'''Yu aksi fu si wan spesrutu papira san no de.'''</big>
 
-Wan réy fu spesrutu papira de fu feni na [[Special:Specialpages|{{int:specialpages}}]].",
+Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Fowtu',
@@ -479,7 +479,7 @@ Kande yu kan prati a papira disi ini moro pikin pisi.</strong>',
 'template-protected'     => '(a sroto)',
 'template-semiprotected' => '(sroto wan pisi)',
 'nocreatetext'           => '{{SITENAME}} puru den primisi fu meki nyun papira.
-Yu kan go baka fu kenki papira di de kba, noso yu kan [[Special:Userlogin|psa kon noso meki wan account]].',
+Yu kan go baka fu kenki papira di de kba, noso yu kan [[Special:UserLogin|psa kon noso meki wan account]].',
 'recreate-deleted-warn'  => "'''Warskow: yu e meki wan papira, di ben puru fu dyaso kaba, baka.'''
 
 Denki fosi efu na wan bun sani fu meki a papira disi baka. A log buku fu puru sori dyaso gi yepi:",

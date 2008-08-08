@@ -267,7 +267,7 @@ Controlla per favore la URL che hai usato per accedere a questa pagina.',
 # Preferences page
 'preferences'              => 'Preferenze',
 'prefsnologin'             => 'Non hai eseguito il login',
-'prefsnologintext'         => 'Devi avere eseguito il [[Special:Userlogin|login]]
+'prefsnologintext'         => 'Devi avere eseguito il [[Special:UserLogin|login]]
 per poter personalizzare le tue preferenze.',
 'prefsreset'               => 'Le tue Preferenze sono state ripescate dalla memoria di sistema del potente server di {{SITENAME}}.',
 'qbsettings'               => 'Settaggio della barra menu',
@@ -317,13 +317,13 @@ per poter personalizzare le tue preferenze.',
 'reupload'          => 'Ri-upload',
 'reuploaddesc'      => 'Torna al modulo per lo upload.',
 'uploadnologin'     => 'Devi fare il login per eseguire questa operazione.',
-'uploadnologintext' => 'Devi eseguire [[Special:Userlogin|il login]]
+'uploadnologintext' => 'Devi eseguire [[Special:UserLogin|il login]]
 per fare lo upload di files.',
 'uploaderror'       => 'Errore di Upload',
 'uploadtext'        => "'''FERMA!''' Prima di effettuare un upload su {{SITENAME}}, accertati di avere ben letto e soprattutto compreso
 le regole di {{SITENAME}} sull'uso delle immagini.
 
-Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:Imagelist|lista delle immagini già caricate]].
+Per visualizzare o cercare immagini precedentemente caricate su {{SITENAME}}, vai alla [[Special:ImageList|lista delle immagini già caricate]].
 Uploads e cancellazioni delle immagini sono registrati nello
 upload log.
 
@@ -408,7 +408,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'allpages' => 'Tutte le pagine',
 
 # E-mail user
-'mailnologintext' => 'Devi fare il [[Special:Userlogin|login]]
+'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.',
 'emailuser'       => 'Manda una E-mail a questo Utente',
 'emailpagetext'   => 'Se questo Utente ha registrato una valida casella e-mail, il modulo qui sotto ti consentirà di scrivergli un solo messaggio.
@@ -424,7 +424,7 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 'mywatchlist'      => 'Osservati Speciali',
 'nowatchlist'      => "Non hai indicato articoli da tenere d'occhio.",
 'watchnologin'     => 'Manca il login',
-'watchnologintext' => 'Devi prima fare il [[Special:Userlogin|login]]
+'watchnologintext' => 'Devi prima fare il [[Special:UserLogin|login]]
 per modificare la tua lista di osservati speciali.',
 'addedwatch'       => 'Aggiunto agli Osservati Speciali',
 'addedwatchtext'   => ' La pagina  "<nowiki>$1</nowiki>" è stata aggiunta alla tua [[Special:Watchlist|lista di osservati speciali]].

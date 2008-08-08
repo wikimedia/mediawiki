@@ -389,7 +389,7 @@ Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû p
 'template-protected'     => '(protezûo)',
 'template-semiprotected' => '(semiprotezûo)',
 'nocreatetext'           => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâ solo a-i ûtenti registræ.
-O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:Userlogin|intrâ ò creâ 'n accesso nêuvo]].",
+O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:UserLogin|intrâ ò creâ 'n accesso nêuvo]].",
 'recreate-deleted-warn'  => "'''Attension: o se sta pe ricreâ 'na paggina zà scassâa into passòu.'''
 
 O se deive consciderâ se o l'è davvei corretto continuâ avanti a modificâ 'sta paggina.
@@ -670,7 +670,7 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'mywatchlist'          => 'Lista in osservaçion',
 'watchlistfor'         => "(pe '''$1''')",
 'watchnologin'         => "Non ti t'æ entroö",
-'watchnologintext'     => 'Devvi [[Special:Userlogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
+'watchnologintext'     => 'Devvi [[Special:UserLogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
 'addedwatch'           => 'Azzonto a a lista in osservaçion',
 'addedwatchtext'       => "A paggina \"[[:\$1]]\" a l'è stæta azzonta a-a pròpia [[Special:Watchlist|lista in osservaçion]]. De chì in avanti, i cangiamenti fæti a-a paggina e a-a sêu discûxon sajàn missi in lista lì; o tittolo da paggina o sajà scrîo in '''grascietto''' inta paggina di [[Special:RecentChanges|ûrtimi cangiamenti]] coscì ti o veddi megio. Se ti vêu eliminâla da-a lista in osservaçion ciû târdi, sciacca \"no seguî\" inscia barra de d'âto.",
 'removedwatch'         => 'Scassæ da a lista in osservaçion',

@@ -602,7 +602,7 @@ mitme otsingusõna kasutamine (tulemusena ilmuvad ainult leheküljed, mis sisald
 'preferences'             => 'Eelistused',
 'mypreferences'           => 'eelistused',
 'prefsnologin'            => 'Te ei ole sisse loginud',
-'prefsnologintext'        => 'Et oma eelistusi seada, [[Special:Userlogin|tuleb Teil]]
+'prefsnologintext'        => 'Et oma eelistusi seada, [[Special:UserLogin|tuleb Teil]]
 sisse logida.',
 'prefsreset'              => 'Teie eelistused on arvutimälu järgi taastatud.',
 'qbsettings'              => 'Kiirriba sätted',
@@ -709,13 +709,13 @@ sisse logida.',
 'reupload'             => 'Uuesti üleslaadimine',
 'reuploaddesc'         => 'Tagasi üleslaadimise vormi juurde.',
 'uploadnologin'        => 'sisse logimata',
-'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:Userlogin|sisse logima]].',
+'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
 'uploaderror'          => 'Faili laadimine ebaõnnestus',
 'uploadtext'           => '<strong>STOPP!</strong> Enne kui sooritad üleslaadimise,
 peaksid tagama, et see järgib siinset [[{{MediaWiki:Policy-url}}|piltide kasutamise korda]].
 
 Et näha või leida eelnevalt üleslaetud pilte,
-mine vaata [[Special:Imagelist|piltide nimekirja]].
+mine vaata [[Special:ImageList|piltide nimekirja]].
 Üleslaadimised ning kustutamised logitakse [[Special:Log/upload|üleslaadimise logis]].
 
 Järgneva vormi abil saad laadida üles uusi pilte
@@ -839,7 +839,7 @@ Alates {{SITENAME}} töösse seadmisest on lehekülgede vaatamisi kokku '''$3'''
 Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje vaatamist ühe redigeerimise kohta.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Töö järjekorra] pikkus on '''$7'''.",
-'userstatstext' => "Registreeritud [[Special:Listusers|kasutajate]] arv: '''$1''', kelledest '''$2''' (ehk '''$4%''') on $5 õigused.",
+'userstatstext' => "Registreeritud [[Special:ListUsers|kasutajate]] arv: '''$1''', kelledest '''$2''' (ehk '''$4%''') on $5 õigused.",
 
 'disambiguations' => 'Täpsustusleheküljed',
 
@@ -920,7 +920,7 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'categoriespagetext' => 'Vikis on järgmised kategooriad.',
 
 # E-mail user
-'mailnologintext' => 'Te peate olema [[Special:Userlogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
+'mailnologintext' => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser'       => 'Saada sellele kasutajale e-kiri',
 'emailpage'       => 'Saada kasutajale e-kiri',
 'emailpagetext'   => 'Kui see kasutaja on oma eelistuste lehel sisestanud e-posti aadressi, siis saate alloleva vormi kaudu talle kirja saata. Et kasutaja saaks vastata, täidetakse kirja saatja väli "kellelt" e-posti aadressiga, mille olete sisestanud oma eelistuste lehel.',
@@ -939,7 +939,7 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'nowatchlist'          => 'Teie jälgimisloend on tühi.',
 'watchlistanontext'    => 'Et näha ja muuta oma jälgimisloendit, peate $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
-'watchnologintext'     => 'Jälgimisloendi muutmiseks peate [[Special:Userlogin|sisse logima]].',
+'watchnologintext'     => 'Jälgimisloendi muutmiseks peate [[Special:UserLogin|sisse logima]].',
 'addedwatch'           => 'Lisatud jälgimisloendile',
 'addedwatchtext'       => 'Lehekülg "<nowiki>$1</nowiki>" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
 
@@ -1006,7 +1006,7 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'editcomment'                 => 'Artikli sisu oli: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Kaitsmise logi',
-'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:Protectedpages|kaitstud lehtede loetelust]].',
+'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:ProtectedPages|kaitstud lehtede loetelust]].',
 'protectedarticle'            => 'kaitses lehekülje "[[$1]]"',
 'unprotectedarticle'          => 'eemaldas lehekülje "[[$1]]" kaitse',
 'protect-title'               => '"$1" kaitsmine',

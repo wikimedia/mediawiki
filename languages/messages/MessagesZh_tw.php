@@ -309,7 +309,7 @@ $messages = array(
 'nosuchspecialpage' => '此特殊頁面不存在',
 'nospecialpagetext' => "<big>'''您請求的特殊頁面無效。'''</big>
 
-[[Special:Specialpages]]載有所有有效特殊頁面的列表。",
+[[Special:SpecialPages]]載有所有有效特殊頁面的列表。",
 
 # General errors
 'error'                => '錯誤',
@@ -559,7 +559,8 @@ $2',
 'readonlywarning'           => '<strong>警告: 資料庫被鎖以進行維護，所以您目前將無法保存您的修改。您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。</strong>',
 'protectedpagewarning'      => '<strong>警告: 本頁已經被保護，只有擁有管理員許可權的使用者才可修改。</strong>',
 'semiprotectedpagewarning'  => "'''注意:''' 本頁面被鎖定，僅限註冊使用者編輯。",
-'cascadeprotectedwarning'   => '警告: 本頁已經被保護，只有擁有管理員權限的使用者才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:',
+'cascadeprotectedwarning'   => '警告: 本頁已經被保護，只有擁有管理員權限的使用者才可修改，因為本頁已被以下連鎖保護的{{PLURAL:$1|一個|多個}}頁面所包含:
+$2',
 'templatesused'             => '在這個頁面上使用的模板有:',
 'templatesusedpreview'      => '此次預覽中使用的模板有:',
 'templatesusedsection'      => '在這個段落上使用的模板有:',
@@ -567,7 +568,7 @@ $2',
 'template-semiprotected'    => '(半保護)',
 'edittools'                 => '<!-- 此處的文字將被顯示在以下編輯和上傳表單中。 -->',
 'nocreatetitle'             => '建立頁面受限',
-'nocreatetext'              => '此網站限制了建立新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:Userlogin|登錄或建立新賬戶]]。',
+'nocreatetext'              => '此網站限制了建立新頁面的功能。你可以返回並編輯已有的頁面，或者[[Special:UserLogin|登錄或建立新賬戶]]。',
 'nocreate-loggedin'         => '您在這個wiki中並無許可權去建立新頁面。',
 'permissionserrors'         => '權限錯誤',
 'permissionserrorstext'     => '根據以下的{{PLURAL:$1|原因|原因}}，您並無權限去做以下的動作:',
@@ -709,7 +710,7 @@ $2',
 'mypreferences'            => '我的偏好設定',
 'prefs-edits'              => '編輯數量:',
 'prefsnologin'             => '還未登入',
-'prefsnologintext'         => '您必須先[[Special:Userlogin|登入]]才能設置個人參數。',
+'prefsnologintext'         => '您必須先[[Special:UserLogin|登入]]才能設置個人參數。',
 'prefsreset'               => '參數已重新設置。',
 'qbsettings'               => '快速導航條',
 'qbsettings-none'          => '無',
@@ -839,13 +840,13 @@ $2',
 'reupload'                    => '重新上載',
 'reuploaddesc'                => '返回上載表單。',
 'uploadnologin'               => '未登入',
-'uploadnologintext'           => '您必須先[[Special:Userlogin|登入]]
+'uploadnologintext'           => '您必須先[[Special:UserLogin|登入]]
 才能上載檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
 'uploadtext'                  => "使用下面的表單來上傳用在頁面內新的圖片檔案。
 要檢視或搜尋以前上傳的圖片
-可以進入[[Special:Imagelist|圖片清單]]，
+可以進入[[Special:ImageList|圖片清單]]，
 上傳和刪除將在[[Special:Log/upload|上傳日誌]]中記錄。
 
 要在頁面中加入圖片，使用以下形式的連接:
@@ -1014,7 +1015,7 @@ $2',
 即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
-'userstatstext'          => "網站有'''$1'''位註冊[[Special:Listusers|使用者]]，其中
+'userstatstext'          => "網站有'''$1'''位註冊[[Special:ListUsers|使用者]]，其中
 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
 
@@ -1133,7 +1134,7 @@ Template:消除歧義',
 
 # E-mail user
 'mailnologin'     => '無E-mail地址',
-'mailnologintext' => '您必須先[[Special:Userlogin|登入]]
+'mailnologintext' => '您必須先[[Special:UserLogin|登入]]
 並在[[Special:Preferences|偏好設定]]
 中有一個有效的e-mail地址才可以E-mail其他使用者。',
 'emailuser'       => 'E-mail該使用者',
@@ -1161,7 +1162,7 @@ Template:消除歧義',
 'nowatchlist'          => '您的監視列表為空。',
 'watchlistanontext'    => '請$1以檢視或編輯您的監視列表。',
 'watchnologin'         => '未登入',
-'watchnologintext'     => '您必須先[[Special:Userlogin|登入]]
+'watchnologintext'     => '您必須先[[Special:UserLogin|登入]]
 才能更改您的監視列表',
 'addedwatch'           => '加入到監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
@@ -1274,7 +1275,7 @@ $NEWPAGE
 'rollback-success'            => '復原由$1的編輯；更改回$2的最後一個版本。',
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:Protectedpages|保護頁面清單]]以檢視當前進行的頁面保護。',
+'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視當前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',

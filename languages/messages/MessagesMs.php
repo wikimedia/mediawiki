@@ -420,7 +420,7 @@ ini tidak dikenali oleh perisian wiki ini',
 'nosuchspecialpage' => 'Laman khas tidak wujud',
 'nospecialpagetext' => "<big>'''Anda telah meminta laman khas yang tidak sah.'''</big>
 
-Senarai laman khas yang sah boleh dilihat di [[Special:Specialpages]].",
+Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].",
 
 # General errors
 'error'                => 'Ralat',
@@ -496,7 +496,7 @@ Pertanyaan: $2',
 'logouttitle'                => 'Log keluar',
 'logouttext'                 => "<strong>Anda telah log keluar.</strong>
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:Userlogin|log masuk sekali lagi]] sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah tersebut dengan hanya mengosongkan data simpanan (''cache'') pelayar anda.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Sila ambil perhatian bahawa sesetengah laman mungkin dipaparkan seolah-olah anda masih log masuk. Anda boleh menyelesaikan masalah tersebut dengan hanya mengosongkan data simpanan (''cache'') pelayar anda.",
 'welcomecreation'            => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.',
@@ -638,12 +638,13 @@ Sekatan ini dilakukan oleh $1 dengan sebab \'\'$2\'\'.
 
 * Mula: $8
 * Tamat: $6
-* Pengguna yang disekat: $7
+* Pengguna sasaran: $7
 
-Sila hubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] yang lain untuk untuk berbincang
-mengenai sekatan ini. Anda tidak boleh menggunakan ciri "e-melkan pengguna ini" kecuali
-sekiranya anda telah menetapkan alamat e-mel yang sah dalam [[Special:Preferences|keutamaan]] anda dan anda tidak disekat daripada menggunakannya.
-Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan salah satu atau kedua-duanya sekali dalam pertanyaan nanti.',
+Sila hubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] yang lain untuk untuk berunding mengenai sekatan ini.
+
+Anda tidak boleh menggunakan ciri "e-melkan pengguna ini" kecuali sekiranya anda telah menetapkan alamat e-mel yang sah dalam [[Special:Preferences|keutamaan]] anda dan anda tidak disekat daripada menggunakannya.
+
+Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan maklumat-maklumat ini dalam pertanyaan nanti.',
 'autoblockedtext'                  => 'Alamat IP anda telah disekat secara automatik kerana ia digunakan oleh pengguna lain yang disekat oleh $1.
 Berikut ialah sebab yang dinyatakan:
 
@@ -651,14 +652,13 @@ Berikut ialah sebab yang dinyatakan:
 
 * Mula: $8
 * Tamat: $6
+* Pengguna sasaran: $7
 
-Anda boleh menghubungi $1 atau
-[[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membincangkan sekatan ini.
+Anda boleh menghubungi $1 atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk berunding mengenai sekatan ini.
 
-Sila ambil perhatian bahawa anda tidak boleh menggunakan ciri "e-melkan pengguna ini" melainkan anda mempunyai alamat e-mel yang sah
-dalam [[Special:Preferences|laman keutamaan]] dan anda tidak disekat daripada menggunakannya.
+Sila ambil perhatian bahawa anda tidak boleh menggunakan ciri "e-melkan pengguna ini" kecuali sekiranya anda telah menetapkan alamat e-mel yang sah dalam [[Special:Preferences|laman keutamaan]] anda dan anda tidak disekat daripada menggunakannya.
 
-ID sekatan anda ialah $5. Sila sertakan ID ini dalam pertanyaan anda.',
+Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan maklumat-maklumat ini dalam pertanyaan nanti.',
 'blockednoreason'                  => 'tiada sebab diberikan',
 'blockedoriginalsource'            => "Sumber bagi '''$1'''
 ditunjukkan di bawah:",
@@ -735,7 +735,8 @@ Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
 Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.</strong>',
 'protectedpagewarning'             => '<strong>AMARAN: Laman ini telah dikunci supaya hanya penyelia boleh menyuntingnya.</strong>',
 'semiprotectedpagewarning'         => "'''Catatan:''' Laman ini telah dikunci supaya hanya pengguna berdaftar sahaja yang boleh menyuntingnya.",
-'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:",
+'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:
+$2",
 'titleprotectedwarning'            => '<strong>AMARAN: Laman ini telah dikunci supaya sesetengah pengguna sahaja boleh menciptanya.</strong>',
 'templatesused'                    => 'Templat yang digunakan dalam laman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan dalam pratonton ini:',
@@ -745,7 +746,7 @@ Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan 
 'hiddencategories'                 => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
 'nocreatetitle'                    => 'Penciptaan laman dihadkan',
 'nocreatetext'                     => 'Penciptaan laman baru dihadkan pada {{SITENAME}}.
-Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:Userlogin|log masuk]].',
+Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogin|log masuk]].',
 'nocreate-loggedin'                => 'Anda tidak mempunyai keizinan untuk mencipta laman baru dalam {{SITENAME}}.',
 'permissionserrors'                => 'Tidak Dibenarkan',
 'permissionserrorstext'            => 'Anda tidak mempunyai keizinan untuk berbuat demikian atas {{PLURAL:$1|sebab|sebab-sebab}} berikut:',
@@ -868,7 +869,7 @@ semula melalui laman ini melainkan mempunyai batasan.',
 # Suppression log
 'suppressionlog'     => 'Log penahanan',
 'suppressionlogtext' => 'Berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
-Sila lihat [[Special:Ipblocklist|senarai sekatan IP]] untuk senarai sekatan yang sedang dijalankan.',
+Sila lihat [[Special:IPBlockList|senarai sekatan IP]] untuk senarai sekatan yang sedang dijalankan.',
 
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
@@ -957,7 +958,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'mypreferences'            => 'Keutamaan saya',
 'prefs-edits'              => 'Jumlah suntingan:',
 'prefsnologin'             => 'Belum log masuk',
-'prefsnologintext'         => 'Anda mesti [[Special:Userlogin|log masuk]] terlebih dahulu untuk menetapkan keutamaan.',
+'prefsnologintext'         => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk menetapkan keutamaan.',
 'prefsreset'               => 'Keutamaan anda telah diset semula dari storan.',
 'qbsettings'               => 'Bar pantas',
 'qbsettings-none'          => 'Tiada',
@@ -1032,7 +1033,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'userrights-reason'           => 'Sebab perubahan:',
 'userrights-no-interwiki'     => 'Anda tidak mempunyai keizinan untuk mengubah hak-hak pengguna di wiki lain.',
 'userrights-nodatabase'       => 'Pangkalan data $1 tiada atau bukan tempatan.',
-'userrights-nologin'          => 'Anda mesti [[Special:Userlogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
+'userrights-nologin'          => 'Anda mesti [[Special:UserLogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
 'userrights-notallowed'       => 'Anda tidak mempunyai keizinan untuk memperuntukkan hak-hak pengguna.',
 'userrights-changeable-col'   => 'Kumpulan yang anda boleh ubah',
 'userrights-unchangeable-col' => 'Kumpulan yang anda tak boleh ubah',
@@ -1161,12 +1162,12 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'reupload'                    => 'Muat naik sekali lagi',
 'reuploaddesc'                => 'Kembali ke borang muat naik',
 'uploadnologin'               => 'Belum log masuk',
-'uploadnologintext'           => 'Anda perlu [[Special:Userlogin|log masuk]]
+'uploadnologintext'           => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu untuk memuat naik fail.',
 'upload_directory_missing'    => 'Direktori muat naik ($1) hilang dan tidak dapat dicipta oleh pelayan web.',
 'upload_directory_read_only'  => 'Direktori muat naik ($1) tidak boleh ditulis oleh pelayan web.',
 'uploaderror'                 => 'Ralat muat naik',
-'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:Imagelist|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
+'uploadtext'                  => "Gunakan borang di bawah untuk memuat naik fail. Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:ImageList|senarai fail yang dimuat naik]]. Muat naik dan penghapusan akan direkodkan dalam [[Special:Log/upload|log muat naik]].
 
 Untuk menyertakan imej tersebut dalam sesebuah laman, sila masukkan teks
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Fail.jpg]]</nowiki>''' atau
@@ -1280,7 +1281,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 Berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
 Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'                 => 'Tiada laman yang mengandungi pautan ke fail ini.',
-'morelinkstoimage'               => 'Lihat [[Special:Whatlinkshere/$1|semua pautan]] ke fail ini.',
+'morelinkstoimage'               => 'Lihat [[Special:WhatLinksHere/$1|semua pautan]] ke fail ini.',
 'redirectstofile'                => '{{PLURAL:$1|Fail|$1 buah fail}} berikut melencong ke fail ini:',
 'duplicatesoffile'               => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini:',
 'sharedupload'                   => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
@@ -1504,7 +1505,7 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 
 # E-mail user
 'mailnologin'     => 'Tiada alamat e-mel',
-'mailnologintext' => 'Anda perlu [[Special:Userlogin|log masuk]]
+'mailnologintext' => 'Anda perlu [[Special:UserLogin|log masuk]]
 terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
 'emailuser'       => 'Kirim e-mel kepada pengguna ini',
@@ -1537,7 +1538,7 @@ atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
 'nowatchlist'          => 'Tiada item dalam senarai pantau anda.',
 'watchlistanontext'    => 'Sila $1 terlebih dahulu untuk melihat atau menyunting senarai pantau anda.',
 'watchnologin'         => 'Belum log masuk',
-'watchnologintext'     => 'Anda mesti [[Special:Userlogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
+'watchnologintext'     => 'Anda mesti [[Special:UserLogin|log masuk]] terlebih dahulu untuk mengubah senarai pantau.',
 'addedwatch'           => 'Senarai pantau dikemaskinikan',
 'addedwatchtext'       => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
 Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
@@ -1657,7 +1658,7 @@ Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
 Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebelum ini, kemudian cuba lagi.',
 'protectlogpage'              => 'Log perlindungan',
-'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:Protectedpages|senarai laman dilindungi]] untuk rujukan lanjut.',
+'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
 'protectedarticle'            => 'melindungi "[[$1]]"',
 'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[$1]]"',
 'unprotectedarticle'          => 'menyahlindung "[[$1]]"',
@@ -1907,7 +1908,7 @@ sahkan bahawa anda betul-betul mahu melakukan tindakan ini.',
 'lockdbsuccesssub'    => 'Pangkalan data dikunci.',
 'unlockdbsuccesssub'  => 'Kunci pangkalan data dibuka.',
 'lockdbsuccesstext'   => 'Pangkalan data telah dikunci.
-<br />Pastikan anda [[Special:Unlockdb|membukanya semula]] selepas penyelenggaraan selesai.',
+<br />Pastikan anda [[Special:UnlockDB|membukanya semula]] selepas penyelenggaraan selesai.',
 'unlockdbsuccesstext' => 'Kunci pangkalan data {{SITENAME}} telah dibuka.',
 'lockfilenotwritable' => 'Fail kunci pangkalan data tidak boleh ditulis. Untuk mengunci atau membuka kunci pangkalan data, fail ini perlu diubah suai supaya boleh ditulis oleh pelayan web ini.',
 'databasenotlocked'   => 'Pangkalan data tidak dikunci.',

@@ -210,7 +210,7 @@ $messages = array(
 # Main script and global functions
 'nosuchaction'      => 'Codsi aanan jirin',
 'nosuchspecialpage' => "Boggan khaaska ah ma'jiro",
-'nospecialpagetext' => 'Waxaad codsatay bogga khaas ah oo aanan jirin, liis boggaga khaaska ah ee jira waxaad laga helikartaa [[Special:Specialpages|liiska boggaga khaaska ah]].',
+'nospecialpagetext' => 'Waxaad codsatay bogga khaas ah oo aanan jirin, liis boggaga khaaska ah ee jira waxaad laga helikartaa [[Special:SpecialPages|liiska boggaga khaaska ah]].',
 
 # General errors
 'error'             => 'Qalad',
@@ -346,7 +346,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'preferences'          => 'Dooqyada',
 'mypreferences'        => 'Dooqyadeyda',
 'prefsnologin'         => 'Gudaha kuma jirtid',
-'prefsnologintext'     => 'Waa in aad [[Special:Userlogin|Gudaha ku jirtaa]] si aad dooqyadaada u dalbatid.',
+'prefsnologintext'     => 'Waa in aad [[Special:UserLogin|Gudaha ku jirtaa]] si aad dooqyadaada u dalbatid.',
 'prefsreset'           => 'Dooqyada waxaa laga keenay keydka.',
 'skin-preview'         => 'Horfiirin',
 'math'                 => 'Xisaab',
@@ -452,7 +452,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 
 # E-mail user
 'mailnologin'     => "Ma'jiro cinwaan wax lagu diro",
-'mailnologintext' => 'Waa in aad [[Special:Userlogin|gudaha ku jirtaa]]
+'mailnologintext' => 'Waa in aad [[Special:UserLogin|gudaha ku jirtaa]]
 kuna haysatid E-boosto sax ah [[Special:Preferences|dooqyadaada]],
 si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'emailuser'       => 'U dir E-boosto isticmaalahaan',
@@ -473,7 +473,7 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'nowatchlist'       => 'Waxba kuma jiraan liiskaaga waardiyeynta.',
 'watchlistanontext' => 'Fadlan $1 si aad u fiirisid ama wax uga bedeshid qoraalada ku jira liiska waardiyeyska.',
 'watchnologin'      => 'Gudaha kuma jirtid',
-'watchnologintext'  => 'Waa ina aad [[Special:Userlogin|gudaha ku jirtaa]] si aad wax uga bedeshid liiskaaga waardiyeynta.',
+'watchnologintext'  => 'Waa ina aad [[Special:UserLogin|gudaha ku jirtaa]] si aad wax uga bedeshid liiskaaga waardiyeynta.',
 'addedwatch'        => 'Kudar liiska-waardiyaha',
 'addedwatchtext'    => "Bogga \"[[:\$1]]\" waxaa lagudaray [[Special:Watchlist|liiska-waardiyahaaga]].
 Isbedelka mustaqbalka ku dhaca boggan iyo bogga wadahadalka la'xiriira waxaa lagu soo qoridoonaa inta,

@@ -421,7 +421,7 @@ Konsidisize takubikinalisize.</strong>",
 'template-protected'     => '(sa bukelezi)',
 'template-semiprotected' => '(bukelezi di pagafi)',
 'nocreatetext'           => '{{SITENAME}} sa simplekile petulo.
-A afi e kenki/[[Special:Userlogin|menuhile]].',
+A afi e kenki/[[Special:UserLogin|menuhile]].',
 'recreate-deleted-warn'  => "'''!: A sa hloli petulo dy sa afi kulobala.'''
 
 A sa luku a kenki dyangitubilinisize petulo.
@@ -559,7 +559,7 @@ Informasi: (bye) = petuho a nca selt,
 'uploadbtn'         => 'Imegi uplodezi',
 'reupload'          => 'Uplodezi nca',
 'uploadnologin'     => 'Ni menuhile',
-'uploadnologintext' => 'A sa [[Special:Userlogin|menuhile]]
+'uploadnologintext' => 'A sa [[Special:UserLogin|menuhile]]
 di uplodezi media.',
 'uploaderror'       => 'Bufosi duplodezi',
 'uploadlogpage'     => 'Desu di uplodezi',
@@ -733,7 +733,7 @@ dicon sa sosize ni sa meli di kupo sebelu.',
 'mywatchlist'          => 'Zwa mukoloko di kentezi',
 'watchlistfor'         => "(di '''$1''')",
 'watchnologin'         => 'A ni sa menuhile',
-'watchnologintext'     => "A sa [[Special:Userlogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
+'watchnologintext'     => "A sa [[Special:UserLogin|menuhile]] di hloli ye ng'i zwa mukoloko di kentezi.",
 'addedwatch'           => 'Tumbelize a mukoloko di kentezi',
 'addedwatchtext'       => "Petulo \"[[:\$1]]\" sa vugisize di zwa [[Special:Watchlist|mukoloko di kentezi]].
 Petuhoni di bye petulo e sa bulelezi sa mukolokosize ta, e '''ombelu''' kwa [[Special:RecentChanges|petuho nca]] di kwazidisize akusize.

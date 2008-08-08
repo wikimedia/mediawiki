@@ -307,7 +307,7 @@ $messages = array(
 'nosuchspecialpage' => 'Pa gen paj especial konsa',
 'nospecialpagetext' => "<big>'''Paj espesial ou demande-a envalid.'''</big>
 
-Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:Specialpages|{{int:specialpages}}]].",
+Ou ka jwenn yon lis paj espesial ki valid yo la [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erè',
@@ -599,7 +599,7 @@ Sèl itilizatè yo ki genyen estati administratè kapab modifye l.'''",
 'template-semiprotected'           => '(semi-pwoteje)',
 'hiddencategories'                 => 'Paj sa ap fè pati {{PLURAL:$1|Kategori kache|Kategori yo ki kache}} :',
 'nocreatetitle'                    => 'Kreyasyon paj yo limite',
-'nocreatetext'                     => 'Pajwèb sa a anpeche kreyasyon nouvo paj sou li. Ou mèt ritounen nan brozè ou epi modifye yon paj ki deja egziste oubyen  [[Special:Userlogin|konekte ou oubyen kreye yon kont]].',
+'nocreatetext'                     => 'Pajwèb sa a anpeche kreyasyon nouvo paj sou li. Ou mèt ritounen nan brozè ou epi modifye yon paj ki deja egziste oubyen  [[Special:UserLogin|konekte ou oubyen kreye yon kont]].',
 'nocreate-loggedin'                => 'Ou gen lè pa gen pèmisyon pou ou kapab kreye paj nan wiki sa.',
 'permissionserrors'                => 'Erè nan pèmisyon yo',
 'permissionserrorstext'            => 'Ou pa gen otorizasyon pou fè operasyon ke ou mande a pou {{PLURAL:$1|rezon sa|rezon sa yo}} :',

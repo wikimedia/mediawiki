@@ -370,12 +370,13 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 
 ʻOku foki te ke palōmesi naʻa ke tohi ia ʻe koe, pe hiki ia mei he tohi tauʻatāina, '''ʻOku ʻikai ʻaupito te ke ʻoatu ha tohi ʻoku foʻi mafai ke pulusi maʻa e tokotaha.'''",
 'readonlywarning'         => '<strong>TOKANGA. ʻOku lokaʻi ʻa e tānekingaʻilo maʻa e monomono, ko ia ai ʻe ikai te ke lava haʻofaki hoʻo fatu he taimí ni. Mahalo pē te ke fie haʻofaki, hiki pea piki, hoʻo fatu ʻi he faile, ki he kahaʻu.<strong>',
-'cascadeprotectedwarning' => "'''Tokanga:''' ʻOku lokaʻi ʻa e pēsí ni ki he fatu, (ʻoku lava pē ʻe he kau pule), koeʻuhi ʻoku kau ki he ngaahi peesi ʻasi ʻi lalo, ʻoku nau maluʻi mo e hohoko fakaivia.",
+'cascadeprotectedwarning' => "'''Tokanga:''' ʻOku lokaʻi ʻa e pēsí ni ki he fatu, (ʻoku lava pē ʻe he kau pule), koeʻuhi ʻoku kau ki he ngaahi peesi ʻasi ʻi lalo, ʻoku nau maluʻi mo e hohoko fakaivia.
+$2",
 'templatesused'           => 'Ngaahi sīpinga ʻoku ngāueʻaki he kupú ni:',
 'templatesusedpreview'    => 'Ngaahi sīpinga ʻoku ngāueʻaki he vakaí ni:',
 'templatesusedsection'    => 'Ngaahi sīpinga ʻoku ngāueʻaki he kongá ni:',
 'nocreatetitle'           => 'ʻOku fakangatangata ʻa e fakatupu ʻo e peesi.',
-'nocreatetext'            => 'Naʻe fakangatangata ʻe he tuʻuʻangá ni ʻa e lava ke fakatupu ha peesi foʻou. ʻOku ke lava ke foki pea fatu ha peesi tuʻu, pe [[Special:Userlogin|kau-ki-ai, pe fakatupu ha tohi-kau-ki-ai]].',
+'nocreatetext'            => 'Naʻe fakangatangata ʻe he tuʻuʻangá ni ʻa e lava ke fakatupu ha peesi foʻou. ʻOku ke lava ke foki pea fatu ha peesi tuʻu, pe [[Special:UserLogin|kau-ki-ai, pe fakatupu ha tohi-kau-ki-ai]].',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ʻOku ʻikai lava fakatupu e tohi kau-ki-ai',
@@ -512,7 +513,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'reupload'                    => 'Toe hiki hake',
 'reuploaddesc'                => 'Foki ki he foomu hiki',
 'uploadnologin'               => 'Teʻeki kau ki ai',
-'uploadnologintext'           => 'ʻOku pau ke [[Special:Userlogin|kau-ki-ai]] kapau te ke fiehiki hake ha faile.',
+'uploadnologintext'           => 'ʻOku pau ke [[Special:UserLogin|kau-ki-ai]] kapau te ke fiehiki hake ha faile.',
 'upload_directory_read_only'  => 'ʻOku ʻikai lava ʻo tohi ʻa e takafi ($1) ʻe he tauhia matamatakupenga.',
 'uploaderror'                 => 'Halaʻi hiki hake',
 'uploadlog'                   => 'tohinoa ʻo e ngaahi hiki hake',
@@ -717,7 +718,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'nowatchlist'          => 'ʻOku ʻikai ha meʻa ʻi hoʻo hokohoko leʻo.',
 'watchlistanontext'    => 'Kātaki, ʻe $1 kapau te ke fievakai pe fiefatu ha ngaahi meʻa ʻi hoʻo hokohoko leʻo.',
 'watchnologin'         => 'Teʻeki kau ki ai',
-'watchnologintext'     => 'ʻOku pau te ke [[Special:Userlogin|kau-ki-ai]] kapau te ke fieliliu hoʻo hokohoko leʻo.',
+'watchnologintext'     => 'ʻOku pau te ke [[Special:UserLogin|kau-ki-ai]] kapau te ke fieliliu hoʻo hokohoko leʻo.',
 'addedwatch'           => 'Kuo tānaki ki hoʻo hokohoko leʻo',
 'addedwatchtext'       => 'Ko e peesi "[[:$1]]" naʻe tānaki ia ki hoʻo [[Special:Watchlist|hokohoko leʻo]]. Ko e ngaahi liliu ʻo e kahaʻu ʻi he pēsí ni mo hono peesi aleá, ʻe ʻoatu ʻi heni mo ʻasi mai  ʻi he hokohoko ʻo e [[Special:RecentChanges|ngaahi toki liliu]], ʻoku sinolahi ke fanāfotu.
 
