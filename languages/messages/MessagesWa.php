@@ -481,7 +481,7 @@ Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dm
 'newarticletext'            => "Vos avoz clitchî so on loyén viè ene pådje ki n' egzistêye nén co.
 Mins '''vos''' l' poloz askepyî! Po çoula, vos n' avoz k' a cmincî a taper vosse tecse dins l' boesse di tecse chal pa dzo (alez vey li [[{{MediaWiki:Helppage}}|pådje d' aidance]] po pus d' infôrmåcion).
 Si vos n' voloz nén scrire cisse pådje chal, clitchîz simplumint sol boton '''En erî''' di vosse betchteu waibe po rivni al pådje di dvant.",
-'anontalkpagetext'          => "---- ''Çouchal, c' est li pådje di copene po èn uzeu anonime ki n' a nén (co) fwait on conte por lu s' elodjî, ou ki n' l' eploye nén. Ça fwait k' on doet eployî si adresse IP limerike po l' idintifyî. Come ene sifwaite adresse IP pout esse eployeye pa pus d' èn uzeu, i s' pout ki vos voeyoz chal des rmåkes et des messaedjes ki n' sont nén por vos. Loukîz s' i vs plait po [[Special:Userlogin|fé on novea conte ou s' elodjî]] po n' pus aveur d' ecramiaedje avou des ôtes uzeus anonimes.''",
+'anontalkpagetext'          => "---- ''Çouchal, c' est li pådje di copene po èn uzeu anonime ki n' a nén (co) fwait on conte por lu s' elodjî, ou ki n' l' eploye nén. Ça fwait k' on doet eployî si adresse IP limerike po l' idintifyî. Come ene sifwaite adresse IP pout esse eployeye pa pus d' èn uzeu, i s' pout ki vos voeyoz chal des rmåkes et des messaedjes ki n' sont nén por vos. Loukîz s' i vs plait po [[Special:UserLogin|fé on novea conte ou s' elodjî]] po n' pus aveur d' ecramiaedje avou des ôtes uzeus anonimes.''",
 'noarticletext'             => "I gn a pol moumint nou tecse e cisse pådje chal, vos ploz [[Special:Search/{{PAGENAME}}|cweri après l' tite di cisse pådje ci]] dins des ôtès pådjes, oudonbén [{{fullurl:{{FULLPAGENAME}}|action=edit}} ahiver l' pådje].",
 'clearyourcache'            => "'''Note:''' après aveur schapé l' pådje, vos l' divoz rafrister, po pleur vey les candjmints dins vosse betchteu waibe: '''Mozilla / Firefox / Safari:''' tchôkîz so ''Shift'' to clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-Shift-R'' (''Cmd-Shift-R'' so on Macintosh); '''IE:''' tchôkîz so ''Ctrl'' tot clitchant so ''Rafrister'', ou co fjhoz ''Ctrl-F5''; '''Konqueror:''' simplumint clitchîz so ''Rafrister'' ou l' tape ''F5''; les uzeus d' '''Opera''' dvront motoit netyî pår leu muchete, dins ''Usteyes→Preferinces''.",
 'usercssjsyoucanpreview'    => "<strong>Racsegne:</strong> eployîz l' boton «Vey divant» po sayî vosse novea CSS/JS divant del schaper.",
@@ -793,7 +793,7 @@ ou co po les sons
 'nolicense'          => 'Nole licince tchoezeye',
 'upload_source_file' => ' (on fitchî sol copiutrece da vosse)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => "Cweri l' no d' imådje:",
 'imgfile'               => 'fitchî',
 'imagelist'             => 'Djivêye des imådjes',
@@ -927,7 +927,7 @@ Li longueur del [http://www.mediawiki.org/wiki/Manual:Job_queue cawêye des bouy
 Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' uzeu, ou l' tite d' ene pådje.",
 'logempty'             => "Rén n' corespond dins l' djournå.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Totes les pådjes',
 'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Pådje shuvante ($1)',
@@ -981,7 +981,7 @@ Do côp, c' est nén possibe di lyi evoyî èn emile.",
 'addedwatchtext'       => "Li pådje «<nowiki>$1</nowiki>» a stî radjoutêye a vosse [[Special:Watchlist|djivêye des pådjes a shuve]].
 Tos les candjmints k' i gn årè di cisse pådje chal,
 eyet di si pådje di copene, seront håynés chal, eyet li pådje serè metowe e '''cråssès letes'''
-el [[Special:Recentchanges|djivêye des dierins candjmints]] po k' ça soeye pus åjhey por vos del rimårker.
+el [[Special:RecentChanges|djivêye des dierins candjmints]] po k' ça soeye pus åjhey por vos del rimårker.
 
 Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «Èn pus shuve li pådje» dins l' bår di menu sol costé.",
 'removedwatch'         => 'Bodjî foû des shuvous',
@@ -1148,7 +1148,7 @@ stî vandalijheyes).",
 'ipbotheroption'              => 'ôte',
 'badipaddress'                => "Nol uzeu avou ç' no la, ou adresse IP nén valide",
 'blockipsuccesssub'           => 'Li blocaedje a stî comifåt',
-'blockipsuccesstext'          => '«[[Special:Contributions/$1|$1]]» a stî bloké.<br />Loukîz li [[Special:Ipblocklist|djivêye des blocaedjes]] po candjî on blocaedje.',
+'blockipsuccesstext'          => '«[[Special:Contributions/$1|$1]]» a stî bloké.<br />Loukîz li [[Special:IPBlockList|djivêye des blocaedjes]] po candjî on blocaedje.',
 'unblockip'                   => 'Disbloker èn uzeu',
 'unblockiptext'               => "Rimplixhoz les tchamps chal pa dzo po ridner accès e scrijhaedje a èn uzeu ou adresse IP k' estént blokés.",
 'ipusubmit'                   => 'Disbloker ciste adresse ci',
@@ -1164,7 +1164,7 @@ stî vandalijheyes).",
 'autoblocker'                 => "Bloké otomaticmint paski vos eployîz li minme adresse IP ki «[[User:$1|$1]]». Råjhon do blocaedje «'''$2'''».",
 'blocklogpage'                => 'Djournå des blocaedjes',
 'blocklogentry'               => '«[[$1]]» a stî bloké po ene termene di $2',
-'blocklogtext'                => "Çouchal, c' est on djournå des blocaedjes eyet disblocaedjes d' uzeus. Les adresses IP blokêyes otomaticmint èn sont nén håynêyes. Loukîz li [[Special:Ipblocklist|djivêye des adresses IP blokêyes]] po vey les blocaedjes d' adresses IP do moumint.",
+'blocklogtext'                => "Çouchal, c' est on djournå des blocaedjes eyet disblocaedjes d' uzeus. Les adresses IP blokêyes otomaticmint èn sont nén håynêyes. Loukîz li [[Special:IPBlockList|djivêye des adresses IP blokêyes]] po vey les blocaedjes d' adresses IP do moumint.",
 'unblocklogentry'             => '«$1» a stî disbloké',
 'range_block_disabled'        => "Li possibilité po les manaedjeus di bloker des fortchetes d' adresses IP a stî dismetowe.",
 'ipb_expiry_invalid'          => 'Tins di blocaedje nén valide.',
@@ -1370,7 +1370,7 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'imagemaxsize' => "Limite pol håynaedje ezès pådjes d' imådje:",
 'thumbsize'    => 'Grandeu po les imådjetes (thumb):',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galreye des nouvès imådjes',
 'imagelisttext'         => "Chal pa dzo c' est ene djivêye di '''$1''' {{PLURAL:$1|imådje relîte|imådjes relîtes}} $2.",
 'showhidebots'          => '($1 robots)',

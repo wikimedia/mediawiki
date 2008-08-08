@@ -246,7 +246,7 @@ $messages = array(
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ފައިލުތަކުގެ ފިހުރިސްތު',
 
 # Image description page
@@ -275,7 +275,7 @@ $messages = array(
 # Book sources
 'booksources' => 'ފޮތްތަކުގެ މަސްދަރުތައް',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ހުރިހާ ޞަފްޙާތައް',
 'allarticles'    => 'ހުރިހާ މަޒުމޫނުތައް',
 'allinnamespace' => 'ހުރިހާ ޞަފްޙާތައް (ނުތުގު $1 ގައިވާ)',
@@ -364,7 +364,7 @@ $messages = array(
 'allmessagesdefault' => 'ކުރީގެ މަތަން',
 'allmessagescurrent' => 'މިހާރުގެ މަތަން',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 ސެއްޓި)',
 'ilsubmit'     => 'ހޯއްދަވާ',
 

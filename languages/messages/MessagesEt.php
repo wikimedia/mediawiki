@@ -493,7 +493,7 @@ Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage vähemalt üks nen
 Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti
 (lisainfo saamiseks vaadake [[{{MediaWiki:Helppage}}|juhendit]]).
 Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule või lingile ''tühista''.",
-'anontalkpagetext'         => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Special:Userlogin|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
+'anontalkpagetext'         => "---- ''See on arutelulehekülg anonüümse kasutaja kohta, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi. See IP-aadress võib olla mitmele kasutajale ühine. Kui olete anonüümne kasutaja ning leiate, et kommentaarid sellel leheküljel ei ole mõeldud Teile, siis palun [[Special:UserLogin|looge konto või logige sisse]], et edaspidi arusaamatusi vältida.''",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px; background-color: #fff; color: #000\">
 '''Sellise pealkirjaga lehekülge ei ole.'''
 * <span class=\"plainlinks\">'''[{{fullurl:{{FULLPAGENAME}}|action=edit}} Alusta seda lehekülge]''' või</span>
@@ -775,7 +775,7 @@ võidakse sinu ligipääs sulgeda.',
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Piltide loend',
 
 # Image description page
@@ -903,7 +903,7 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'alllogstext'          => 'See on kombineeritud vaade üleslaadimise, kustutamise, kaitsmise, blokeerimise ja administraatorilogist. Valiku kitsendamiseks vali soovitav logitüüp, sisesta kasutajanimi või huvi pakkuva lehekülge pealkiri.',
 'logempty'             => 'Logides vastavad kirjed puuduvad.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Kõik artiklid',
 'alphaindexline'    => '$1 kuni $2',
 'nextpage'          => 'Järgmine lehekülg ($1)',
@@ -943,7 +943,7 @@ Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje 
 'addedwatch'           => 'Lisatud jälgimisloendile',
 'addedwatchtext'       => 'Lehekülg "<nowiki>$1</nowiki>" on lisatud Teie [[Special:Watchlist|jälgimisloendile]].
 
-Edasised muudatused käesoleval lehel ja sellega seotud aruteluküljel reastatakse jälgimisloendis ning [[Special:Recentchanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile <b>rasvase</b> kirja abil.
+Edasised muudatused käesoleval lehel ja sellega seotud aruteluküljel reastatakse jälgimisloendis ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile <b>rasvase</b> kirja abil.
 
 Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "Lõpeta jälgimine".',
 'removedwatch'         => 'Jälgimisloendist kustutatud',
@@ -1097,7 +1097,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'badipaddress'       => 'The IP address is badly formed.',
 'blockipsuccesssub'  => 'Blokeerimine õnnestus',
 'blockipsuccesstext' => 'IP-aadress "$1" on blokeeritud.
-<br />Kehtivaid blokeeringuid vaata [[Special:Ipblocklist|blokeeringute nimekirjast]].',
+<br />Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute nimekirjast]].',
 'unblockip'          => 'Lõpeta IP aadressi blokeerimine',
 'unblockiptext'      => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
 'ipblocklist'        => 'Blokeeritud IP-aadresside loend',
@@ -1110,7 +1110,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'autoblocker'        => 'Autoblokeeritud kuna teie IP aadress on hiljut kasutatud "[[User:$1|$1]]" poolt. $1-le antud bloki põhjus on "\'\'\'$2\'\'\'"',
 'blocklogpage'       => 'Blokeerimise logi',
 'blocklogentry'      => 'blokeeris "[[$1]]". Blokeeringu aegumistähtaeg on $2 $3',
-'blocklogtext'       => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:Ipblocklist|IP blokeeringute nimekirja]] leheküljelt.',
+'blocklogtext'       => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:IPBlockList|IP blokeeringute nimekirja]] leheküljelt.',
 'unblocklogentry'    => '"$1" blokeerimine lõpetatud',
 'proxyblockreason'   => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
 'proxyblocksuccess'  => 'Tehtud.',
@@ -1272,7 +1272,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'show-big-image'       => 'Originaalsuurus',
 'show-big-image-thumb' => '<small>Selle eelvaate suurus on: $1 × $2 pikselit</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Uute meediafailide galerii',
 'imagelisttext'         => 'Failide arv järgnevas loendis: $1. Sorteeritud $2.',
 'showhidebots'          => '($1 bottide kaastööd)',

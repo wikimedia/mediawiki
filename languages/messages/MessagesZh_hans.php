@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -609,7 +609,7 @@ $2',
 'newarticletext'                   => '您进入了一个尚未创建的页面。
 要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
-'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:Userlogin/signup|创建新账户]]或[[Special:Userlogin|登录]]以避免在未来与其他匿名用户混淆。''",
+'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''刷新''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的緩存；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''刷新''，或按下 ''Ctrl-F5''。",
@@ -1171,7 +1171,7 @@ $2',
 'upload_source_url'  => ' (一个有效的，可公开访问的 URL)',
 'upload_source_file' => ' (在您计算机上的一个文件)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => '这个特殊页面显示所有上传过的文件。
 预设中最后上传的文件会显示在这个列表中的最顶处。
 点击一栏的标题去改变这个排列。',
@@ -1389,7 +1389,7 @@ Template:消除歧義',
 'logempty'             => '在日志中不存在匹配项。',
 'log-title-wildcard'   => '搜寻以这个文字开始的标题',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有页面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下一页($1)',
@@ -1412,12 +1412,12 @@ Template:消除歧義',
 'special-categories-sort-count' => '按数量排列',
 'special-categories-sort-abc'   => '按字母排列',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '给定显示用户条件:',
 'listusers-submit'   => '显示',
 'listusers-noresult' => '找不到用户。',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => '用户群组权限',
 'listgrouprights-summary'         => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。
 更多有关个别权限的细节可以在[[{{MediaWiki:Listgrouprights-helppage}}|这里]]找到。',
@@ -1465,7 +1465,7 @@ Template:消除歧義',
 'addedwatch'           => '已添加至监视列表',
 'addedwatchtext'       => "页面\"[[:\$1]]\"已经被加入到您的[[Special:Watchlist|监视列表]]中。
 将来有关此页面及其讨论页的任何修改将会在那里列出，
-而且还会在[[Special:Recentchanges|最近更改]]中
+而且还会在[[Special:RecentChanges|最近更改]]中
 以'''粗体'''形式列出以使起更容易识别。",
 'removedwatch'         => '已停止监视',
 'removedwatchtext'     => '页面"<nowiki>$1</nowiki>"已经从[[Special:Watchlist|您的监视页面]]中移除。',
@@ -1739,7 +1739,7 @@ $1',
 'badipaddress'                    => 'IP地址不正确。',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已经被查封。
-<br />参看[[Special:Ipblocklist|被封IP地址列表]]以复审查封。',
+<br />参看[[Special:IPBlockList|被封IP地址列表]]以复审查封。',
 'ipb-edit-dropdown'               => '编辑查封原因',
 'ipb-unblock-addr'                => '解除封禁$1',
 'ipb-unblock'                     => '解除禁封用户名或IP地址',
@@ -1770,7 +1770,7 @@ $1',
 'blocklogpage'                    => '查封日志',
 'blocklogentry'                   => '[[$1]]已被查封 $3 ，终止时间为$2',
 'blocklogtext'                    => '这是关于用户查封和解封操作的日志。
-被自动查封的IP地址没有被列出。请参看[[Special:Ipblocklist|被封IP地址列表]]。',
+被自动查封的IP地址没有被列出。请参看[[Special:IPBlockList|被封IP地址列表]]。',
 'unblocklogentry'                 => '[[$1]]已被解封',
 'block-log-flags-anononly'        => '仅限匿名用户',
 'block-log-flags-nocreate'        => '禁止此IP/用户建立新帐户',
@@ -2116,7 +2116,7 @@ $1',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>这幅略缩图的分辨率: $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新建图像画廊',
 'imagelisttext'         => "以下是按$2排列的'''$1'''个文件列表。",
 'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',
@@ -2444,7 +2444,7 @@ Variants for Chinese language
 邮件传送员回应: $1',
 'confirmemail_invalid'     => '无效的确认码，该代码可能已经过期。',
 'confirmemail_needlogin'   => '您需要$1以确认您的邮箱地址。',
-'confirmemail_success'     => '您的邮箱已经被确认。您现在可以[[Special:Userlogin|登录]]并使用此网站了。',
+'confirmemail_success'     => '您的邮箱已经被确认。您现在可以[[Special:UserLogin|登录]]并使用此网站了。',
 'confirmemail_loggedin'    => '您的邮箱地址现在已被确认。',
 'confirmemail_error'       => '你的确认过程发生错误。',
 'confirmemail_subject'     => '{{SITENAME}}邮箱地址确认',
@@ -2579,7 +2579,7 @@ $1
 'version-software-product'         => '产品',
 'version-software-version'         => '版本',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => '文件路径',
 'filepath-page'    => '文件名:',
 'filepath-submit'  => '查找路径',
@@ -2617,7 +2617,7 @@ $1
 'specialpages-group-redirects'   => '重定向特殊页面',
 'specialpages-group-spam'        => '反垃圾工具',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => '空白页面',
 'intentionallyblankpage' => '这个页面是为空白，以用来作测试速度等用途',
 

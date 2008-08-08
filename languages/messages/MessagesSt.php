@@ -122,7 +122,7 @@ $messages = array(
 'longpages'      => 'Maqephe a matelele',
 'newpages'       => 'Maqephe a matjha',
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'Maqephe ohle',
 
 # Special:Categories

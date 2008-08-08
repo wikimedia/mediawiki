@@ -504,7 +504,7 @@ $2',
 Әгәр сез бу бит ялгышлык белән ачса идегез, гади браузерыгызның '''артка''' кнопкасына басыгыз.",
 'anontalkpagetext'       => "----''Бу хисапланмаган да хисапланган исем белән кергән кулланучы фикер алышу бите.
 Аны билгеләү өчен IP-адрес файдалый.
-Әгәр сез аноним кулланучы һәм сез, сезгә күндерелмәгән хәбәрләр алдыгыз, дип саныйсыз (бер IP-адрес күп кулланучы өчен була ала), зинһар, [[Special:Userlogin|системага керегез]], киләчәктә аңлашмау теләмәсәгез.''",
+Әгәр сез аноним кулланучы һәм сез, сезгә күндерелмәгән хәбәрләр алдыгыз, дип саныйсыз (бер IP-адрес күп кулланучы өчен була ала), зинһар, [[Special:UserLogin|системага керегез]], киләчәктә аңлашмау теләмәсәгез.''",
 'noarticletext'          => "Хәзер бу биттә текст юк. Сез [[Special:Search/{{PAGENAME}}|аның башы башка мәкаләләрдә таба]] яки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} андый баш белән бит ясый]''' аласыз.",
 'clearyourcache'         => "'''Искәрмә:''' Битне саклаудан соң төзәтмәләр күрү өчен күзәтүчегезнең кэшын буш итегез.
 '''Mozilla / Firefox''': ''Ctrl+Shift+R'', '''Safari''': ''Cmd+Shift+R'', '''IE:''' ''Ctrl+F5'', '''Konqueror''': ''F5'', '''Opera''': ''Tools→Preferences'' сайлагында.",
@@ -662,7 +662,7 @@ $2',
 'uploadlogpage' => 'Йөкләү журналы',
 'uploadedimage' => '«[[$1]]» йөкләнгән',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'             => 'Сүрәтләр исемлеге',
 'imagelist_date'        => 'Вакыт',
 'imagelist_name'        => 'Ат',
@@ -757,7 +757,7 @@ $2',
 'log-search-legend'    => 'Журналларны эзләү',
 'log-search-submit'    => 'Башкару',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Барлык битләр',
 'alphaindexline' => '$1 дан $2 гача',
 'nextpage'       => 'Чираттагы бит ($1)',
@@ -774,7 +774,7 @@ $2',
 'special-categories-sort-count' => 'исәп буенча тәртипләү',
 'special-categories-sort-abc'   => 'әлифба буенча тәртипләү',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Күрсәтергә',
 'listusers-noresult' => 'Кулланучыларны табылмады.',
 
@@ -989,7 +989,7 @@ $2',
 'show-big-image'       => 'Тулы ачыклык',
 'show-big-image-thumb' => '<small>Алдан карау зурлыгы: $1 × $2 нокта</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Яңа сүрәтләр җыелмасы',
 
 # Metadata

@@ -580,7 +580,7 @@ Volyéd los spècefiar dens tota requéta.",
 'accmailtext'               => 'Lo mot de pâssa de « $1 » at étâ emmandâ a l’adrèce $2.',
 'newarticle'                => '(Novél)',
 'newarticletext'            => "Vos éd siuvu un lim vers una pâge qu’ègziste p’oncor. Por crèar cela pâge, entrâd voutron tèxte dens la bouèta ce-desot (vos pouede consultar la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacion). Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''retôrn''' de voutron navigator.",
-'anontalkpagetext'          => "---- ''Vos éte sur la pâge de discussion d’un utilisator pas enregistrâ qu’at p’oncor crèâ un compto ou que l’utilise pas. Por cela rêson, nos devens utilisar son adrèce IP por l’identifiar. Una adrèce IP pôt étre partagiê per plusiors utilisators. Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede vos [[Special:Userlogin|conèctar ou crèar un compto]] por èvitar tota confusion futura avouéc d’ôtros contributors pas enregistrâs.''",
+'anontalkpagetext'          => "---- ''Vos éte sur la pâge de discussion d’un utilisator pas enregistrâ qu’at p’oncor crèâ un compto ou que l’utilise pas. Por cela rêson, nos devens utilisar son adrèce IP por l’identifiar. Una adrèce IP pôt étre partagiê per plusiors utilisators. Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede vos [[Special:UserLogin|conèctar ou crèar un compto]] por èvitar tota confusion futura avouéc d’ôtros contributors pas enregistrâs.''",
 'noarticletext'             => 'Y at por lo moment gins de tèxte sur ceta pâge ; vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de ceta pâge]] ou ben [{{fullurl:{{NAMESPACE}}:{{FULLPAGENAME}}|action=edit}} la modifiar].',
 'userpage-userdoesnotexist' => 'Lo compto utilisator « $1 » est pas enregistrâ. Endicâd se vos voléd crèar ou ben èditar cela pâge.',
 'clearyourcache'            => "'''Nota :''' aprés avêr sôvâ, vos dête forciér lo rechargement de la pâge por vêre los changements : '''Mozilla / Firefox :''' ''Shift-Ctrl-R'' (''Shift-Cmd-R'' en '''Apple Mac'''), '''IE :''' ''Ctrl-F5'', '''Opera :''' ''F5'', '''Safari :''' ''⌘-R'', '''Konqueror :''' ''Ctrl-R''.",
@@ -1031,7 +1031,7 @@ PICT # de totes sôrtes
 'upload_source_url'  => ' (una URL valida et accèssibla publicament)',
 'upload_source_file' => ' (un fichiér sur voutron ordenator)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Rechèrche por l’émâge apelâ :',
 'imgfile'               => 'fichiér',
 'imagelist'             => 'Lista de les émâges',
@@ -1221,7 +1221,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'logempty'             => 'Y at ren dens l’historico por ceta pâge.',
 'log-title-wildcard'   => 'Chèrchiér los titros comencient per lo tèxte siuvent',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Totes les pâges',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pâge siuventa ($1)',
@@ -1243,7 +1243,7 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'special-categories-sort-count' => 'tri per compto',
 'special-categories-sort-abc'   => 'tri alfabètico',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Afichiér los utilisators dês :',
 'listusers-submit'   => 'Montrar',
 'listusers-noresult' => 'Nion utilisator trovâ. Controlâd asse-ben les variantes en grantes lètres / petiôtes lètres.',
@@ -1284,7 +1284,7 @@ L’adrèce èlèctronica que vos éd endicâ dens voutres prèferences aparètr
 'addedwatch'           => 'Apondua a la lista de siuvu',
 'addedwatchtext'       => "La pâge « [[:$1]] » at étâ apondua a voutra [[Special:Watchlist|lista de siuvu]].
 
-Les modificacions que vegnont de cela pâge et de la pâge de discussion associyê y seront listâs, et la pâge aparètrat '''en grâs''' dens la [[Special:Recentchanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.
+Les modificacions que vegnont de cela pâge et de la pâge de discussion associyê y seront listâs, et la pâge aparètrat '''en grâs''' dens la [[Special:RecentChanges|lista des dèrriérs changements]] por étre repèrâ ples facilament.
 
 Por suprimar cela pâge de voutra lista de siuvu, clicâd dessus « pas més siuvre » dens lo câdro de navigacion.",
 'removedwatch'         => 'Enlevâ de la lista de siuvu',
@@ -1549,7 +1549,7 @@ Balyéd ce-desot una rêson cllâra (per ègzemplo en endiquent les pâges qu’
 'badipaddress'                => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'           => 'Blocâjo reussi',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] at étâ blocâ.
-<br />Vos pouede consultar la [[Special:Ipblocklist|lista des comptos et de les adrèces IP blocâs]].',
+<br />Vos pouede consultar la [[Special:IPBlockList|lista des comptos et de les adrèces IP blocâs]].',
 'ipb-edit-dropdown'           => 'Modifiâd les rêsons de blocâjo per dèfôt',
 'ipb-unblock-addr'            => 'Dèblocâd $1',
 'ipb-unblock'                 => 'Dèblocâd un compto utilisator ou una adrèce IP',
@@ -1580,7 +1580,7 @@ d’una adrèce IP prècèdament blocâ.',
 'autoblocker'                 => 'Vos avéd étâ blocâ ôtomaticament perce que voutra adrèce IP at étâ dèrriérement utilisâ per « [[User:$1|$1]] ». La rêson fornia por lo blocâjo de $1 est : « $2 ».',
 'blocklogpage'                => 'Historico des blocâjos',
 'blocklogentry'               => 'at blocâ « [[$1]] » - durâ : $2 $3',
-'blocklogtext'                => 'Cen est l’historico des blocâjos et dèblocâjos des utilisators. Les adrèces IP ôtomaticament blocâs sont pas listâs. Consultâd la [[Special:Ipblocklist|lista des utilisators blocâs]] por vêre qui est en èfèt blocâ houé.',
+'blocklogtext'                => 'Cen est l’historico des blocâjos et dèblocâjos des utilisators. Les adrèces IP ôtomaticament blocâs sont pas listâs. Consultâd la [[Special:IPBlockList|lista des utilisators blocâs]] por vêre qui est en èfèt blocâ houé.',
 'unblocklogentry'             => 'at dèblocâ « $1 »',
 'block-log-flags-anononly'    => 'utilisators pas enregistrâs solament',
 'block-log-flags-nocreate'    => 'crèacion de compto dèfendua',
@@ -1896,7 +1896,7 @@ Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Speci
 'show-big-image'       => 'Émâge en rèsolucion ples hôta',
 'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèles</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerie des novéls fichiérs',
 'imagelisttext'         => "Vê-que una lista de '''$1''' {{PLURAL:$1|fichiér cllassiê|fichiérs cllassiês}} $2.",
 'showhidebots'          => '($1 bots)',
@@ -2386,7 +2386,7 @@ $1',
 'version-software-product'         => 'Produit',
 'version-software-version'         => 'Vèrsion',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Chemin d’accès d’un fichiér',
 'filepath-page'    => 'Fichiér :',
 'filepath-submit'  => 'Chemin d’accès',

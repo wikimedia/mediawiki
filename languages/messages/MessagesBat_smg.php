@@ -750,7 +750,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'upload_source_url'  => ' (tėkrs, vėišā priėinams URL)',
 'upload_source_file' => ' (fails Tamstas kompioterī)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'fails',
 'imagelist'             => 'Failu sārašos',
 'imagelist_name'        => 'Pavadinėms',
@@ -894,7 +894,7 @@ katram ivīkdītė šėta funkcėjė.',
 'logempty'             => 'Istuorėjuo nier anėjuokiū atitinkontiu atsėtėkimu.',
 'log-title-wildcard'   => 'Ėiškuotė pavadinėmu, katrė prasėded šėtuo teksto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Vėsė straipsnē',
 'alphaindexline'    => 'Nu $1 lėg $2',
 'nextpage'          => 'Kėts poslapis ($1)',
@@ -913,7 +913,7 @@ katram ivīkdītė šėta funkcėjė.',
 'categories'         => 'Kateguorėjės',
 'categoriespagetext' => 'Pruojekte īr šėtuos kateguorėjės.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Ruodītė nauduotuojus pradedont nū:',
 'listusers-submit'   => 'Ruodītė',
 'listusers-noresult' => 'Nerast anėjuokiū nauduotuoju.',
@@ -947,7 +947,7 @@ kū siōstomiet el. gruomatas kėtėm nauduotuojam.',
 'addedwatch'           => 'Pridieta pri keravuojamu',
 'addedwatchtext'       => "Poslapis \"[[\$1]]\" idiets i [[Special:Watchlist|stebėmū sāraša]].
 Būsėmė poslapė ėr atėtinkama aptarėma poslapė pakeitėmā būs paruoduomė stebėmū poslapiu sārašė,
-tāp pat būs '''parīškintė''' [[Special:Recentchanges|vielībūju pakeitėmu sārašė]], ka ėšsėskėrtom ėš kėtū straipsniu.
+tāp pat būs '''parīškintė''' [[Special:RecentChanges|vielībūju pakeitėmu sārašė]], ka ėšsėskėrtom ėš kėtū straipsniu.
 Jė bikumet ožsėnuorietomiet liautėis stebietė straipsnė, spostelkat \"Nebstebietė\" vėršotėniam meniu.",
 'removedwatch'         => 'Pašalėntė ėš keravuojamu',
 'removedwatchtext'     => 'Poslapis „[[:$1]]“ pašalėnts ėš Tomstas stebėmūju sōraša.',
@@ -1151,7 +1151,7 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'ipbotherreason'              => 'Kėta/papėlduoma prižastis',
 'blockipsuccesssub'           => 'Ožblokavėms pavīka',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] bova ožblokouts.
-<br />Aplonkīkėt [[Special:Ipblocklist|IP blokavėmu istuorėjė]] noriedamė ana parveizėtė.',
+<br />Aplonkīkėt [[Special:IPBlockList|IP blokavėmu istuorėjė]] noriedamė ana parveizėtė.',
 'ipb-unblock-addr'            => 'Atblokoutė $1',
 'ipb-unblock'                 => 'Atblokoutė nauduotuojė varda a IP adresa',
 'ipb-blocklist-addr'          => 'Ruodītė esontius $1 bluokavėmus',
@@ -1176,7 +1176,7 @@ onkstiau ožbluokoutam IP adresō a nauduotuojō.',
 'autoblocker'                 => 'Autuomatėnis ožbluokavėms, nes dalėnaties IP adreso so nauduotuojo "$1". Prīžastės - "$2".',
 'blocklogpage'                => 'Ožblokavėmu istuorėjė',
 'blocklogentry'               => 'ožblokava „[[$1]]“, blokavėma čiesos - $2 $3',
-'blocklogtext'                => 'Čė īr nauduotuoju blokavėma ėr atblokavėma sārašos. Autuomatėškā blokoutė IP adresā nier ėšvardėntė. Jeigu nuorėt paveizėtė nūnā blokoujamus adresus, veizėkėt [[Special:Ipblocklist|IP ožbluokavėmu istuorėjė]].',
+'blocklogtext'                => 'Čė īr nauduotuoju blokavėma ėr atblokavėma sārašos. Autuomatėškā blokoutė IP adresā nier ėšvardėntė. Jeigu nuorėt paveizėtė nūnā blokoujamus adresus, veizėkėt [[Special:IPBlockList|IP ožbluokavėmu istuorėjė]].',
 'unblocklogentry'             => 'atbluokava $1',
 'block-log-flags-anononly'    => 'vėn anonėmėnē nauduotuojē',
 'block-log-flags-nocreate'    => 'privėlėju kūrėms ėšjungts',
@@ -1367,7 +1367,7 @@ Paskėrties straipsnis „[[$1]]“ jau īr. A nuorėt ana ėštrintė, kū gali
 'show-big-image'       => 'Pėlns ėšraiškėms',
 'show-big-image-thumb' => '<small>Šėtuos parvaizos dėdums: $1 × $2 puškiu</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Naujausiu abruozdieliu galerėjė',
 'imagelisttext'         => "Žemiau īr '''$1''' failu sārašos, sorūšiouts $2.",
 'showhidebots'          => '($1 robotos)',
@@ -1511,7 +1511,7 @@ Tamsta tēpuogi galėt [[Special:Watchlist/raw|redagoutė grīnaji keravuojamu s
 # Special:Version
 'version' => 'Versėjė', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath' => 'Faila maršrots',
 
 # Special:SpecialPages

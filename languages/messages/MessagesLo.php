@@ -490,7 +490,7 @@ $messages = array(
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ລາຍຊື່ໄຟລ໌',
 
 # Image description page
@@ -579,7 +579,7 @@ $messages = array(
 'log-search-submit' => 'ໄປ',
 'logempty'          => 'ຍັງບໍ່ພົບເນື້ອໃນບັນທຶກ.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ທຸກໆໜ້າ',
 'alphaindexline' => '$1 ຫາ $2',
 'nextpage'       => 'ໜ້າຕໍ່ໄປ ($1)',
@@ -595,7 +595,7 @@ $messages = array(
 'categories'         => 'ໝວດ',
 'categoriespagetext' => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 
 # E-mail user
@@ -814,7 +814,7 @@ $messages = array(
 'show-big-image'       => 'ເຕັມຂະໜາດ',
 'show-big-image-thumb' => '<small>ຂະໜາດລອງເບິ່ງ: $1 × $2 ປິກເຊລ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'         => 'ໄຟລ໌ຮູບໃໝ່',
 'newimages-summary' => 'ໜ້າພິເສດນີ້ສະແດງໄຟລ໌ທີ່ຖຶກອັປໂຫຼດຫຼ້າສຸດ',
 'noimages'          => 'ບໍ່ມີຫຍັງເບິ່ງ.',
@@ -897,7 +897,7 @@ $messages = array(
 # Special:Version
 'version' => 'ສະບັບ', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath' => 'ທາງໄປຫາໄຟລ໌',
 
 # Special:SpecialPages

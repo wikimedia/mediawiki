@@ -619,7 +619,7 @@ L'ID dû bloccu è $5. Pi favuri ncludilu nte tutti li dumanni.",
 'newarticletext'                   => "Sta pàggina ancora nun esisti. 
 Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [[{{MediaWiki:Helppage}}|pàggina d'aiutu]] pi aviri maiuri nfurmazzioni).
 Si agghicasti ccà pi sbagghiu, clicca lu buttuni ''''n arreri (back)''' dû tò browser.",
-'anontalkpagetext'                 => "----''Chista è la pàggina di discussioni di n’utenti anònimu, ca nun hà ancora criatu n’accessu o comu è gghiè nun l’usa. P’idintificàrilu è quinni nicissariu usari lu nùmmiru di lu sò nnirizzu IP. Li nnirizzi IP ponnu pirò èssiri cunnivisi di cchiù utenti. Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina nun si rifirìscinu a tia, [[Special:Userlogin|crea n’accessu novu o trasi]] cu chiddu ca già hai p’evitari d’èssiri cunfusu cu àutri utenti anònimi ‘n futuru''",
+'anontalkpagetext'                 => "----''Chista è la pàggina di discussioni di n’utenti anònimu, ca nun hà ancora criatu n’accessu o comu è gghiè nun l’usa. P’idintificàrilu è quinni nicissariu usari lu nùmmiru di lu sò nnirizzu IP. Li nnirizzi IP ponnu pirò èssiri cunnivisi di cchiù utenti. Siddu sî n’utenti anònimu e riteni ca li cummenti prisenti nta sta pàggina nun si rifirìscinu a tia, [[Special:UserLogin|crea n’accessu novu o trasi]] cu chiddu ca già hai p’evitari d’èssiri cunfusu cu àutri utenti anònimi ‘n futuru''",
 'noarticletext'                    => "Nta stu mumentu la pàggina richiesta è vacanti. È pussìbbili [[Special:Search/{{PAGENAME}}|circari stu tìtulu]] nta l'àutri pàggini dû situ oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} canciari la pàggina ora].",
 'userpage-userdoesnotexist'        => 'L\'account "$1" nun currispunni a n\'utenti riggistratu. Virificari si si voli criari o canciari sta pàggina.',
 'clearyourcache'                   => "'''Nota:''' doppu aviri sarvatu è nicissariu puliri la cache dû propiu browser pi vìdiri li canciamenti. Pi '''Mozilla / Firefox / Safari''': fari clic supra ''Ricarica'' tinnennu primutu lu tastu dî maiùsculi, oppuru prèmiri ''Ctrl-Maiusc-R'' (''Cmd-Maiusc-R'' supra Mac); pi '''Internet Explorer:''' mantèniri primutu lu tastu ''Ctrl'' mentri si premi lu pulsanti ''Aggiorna'' o prèmiri ''Ctrl-F5''; pi '''Konqueror''': prèmiri lu pulsanti ''Ricarica'' o lu tastu ''F5''; pi '''Opera''' pò èssiri nicissariu svacantari cumpletamenti la cache dû menu ''Strumenti → Preferenze''.",
@@ -1110,7 +1110,7 @@ PICT # arcuni
 'upload_source_url'  => '(na URL curretta e accissìbbili)',
 'upload_source_file' => '(un file supra lu propiu computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Ricerca dâ mmàggini di nomu:',
 'imgfile'               => 'file',
 'imagelist'             => 'Alencu dî file',
@@ -1294,7 +1294,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'logempty'             => 'Lu log nun cunteni elementi currispunnenti â ricerca.',
 'log-title-wildcard'   => 'Attrova tituli chi ncignanu cu',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tutti li paggini',
 'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Pàggina doppu ($1)',
@@ -1316,12 +1316,12 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'special-categories-sort-count' => 'ordina pi nùmmuru',
 'special-categories-sort-abc'   => 'ordina alfabbeticamenti',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "Ammustra l'utenti a pàrtiri di:",
 'listusers-submit'   => 'Ammustra',
 'listusers-noresult' => "Nuddu utenti attruvatu. Virificari l'usu di caràttiri maiùsculi/minùsculi.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Diritti dô gruppu utenti',
 'listgrouprights-summary'  => "Ccà sutta sunnu elincati li gruppi utenti difiniti pi sta wiki, cu li dritti d'accessu assuciati a iddi. Pi sapìrinni chiossai supra li dritti, lèggiti [[{{MediaWiki:Listgrouprights-helppage}}]].",
 'listgrouprights-group'    => 'Gruppu',
@@ -1357,7 +1357,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'watchnologin'         => 'Nun hai effittuatu lu login',
 'watchnologintext'     => 'Hai a fari prima lu [[Special:Userlogin|login]] pi canciari la tò lista di ossirvati spiciali.',
 'addedwatch'           => "Pàggina agghiunciuta â lista di l'ossirvati spiciali",
-'addedwatchtext'       => "La pàggina \"[[:\$1]]\" è stata agghiunciuta â propia [[Special:Watchlist|lista di l'ossirvati spiciali]]. D'ora n poi, li mudìfichi appurtati â pàggina e â sò discussioni vèninu alincati n chidda sedi; lu tìtulu dâ pàggina appari n '''grassettu''' ntâ pàggina di l' [[Special:Recentchanges|ùrtimi canciamenti]] pi rinnìrilu cchiù visìbbili. Siddu n un secunnu tempu s'addisìa eliminari la pàggina dâ lista di l'ossirvati spiciali, fari clic supra \"nun sèquiri\" ntâ barra n àutu.",
+'addedwatchtext'       => "La pàggina \"[[:\$1]]\" è stata agghiunciuta â propia [[Special:Watchlist|lista di l'ossirvati spiciali]]. D'ora n poi, li mudìfichi appurtati â pàggina e â sò discussioni vèninu alincati n chidda sedi; lu tìtulu dâ pàggina appari n '''grassettu''' ntâ pàggina di l' [[Special:RecentChanges|ùrtimi canciamenti]] pi rinnìrilu cchiù visìbbili. Siddu n un secunnu tempu s'addisìa eliminari la pàggina dâ lista di l'ossirvati spiciali, fari clic supra \"nun sèquiri\" ntâ barra n àutu.",
 'removedwatch'         => 'Livata dâ lista dî pàggini di cuntrullari',
 'removedwatchtext'     => 'La pàggina "[[:$1]]" hà statu eliminata dâ lista di l\'ossirvati spiciali.',
 'watch'                => 'talìa',
@@ -1612,7 +1612,7 @@ $1',
 'badipaddress'                => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'           => 'Bloccu esiquitu',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] fu bluccatu.<br />
-Pi maggiuri nfurmazzioni, talìa la [[Special:Ipblocklist|lista di l'IP bluccati]] .",
+Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati]] .",
 'ipb-edit-dropdown'           => 'Mutivi pô bloccu',
 'ipb-unblock'                 => "Sblocca n'utenti o nu ndirizzu IP",
 'ipb-blocklist-addr'          => 'Alenca li blocchi attivi pi $1',
@@ -1640,7 +1640,7 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:Ipblocklist|lista di l'IP bluccati
 'autoblocker'                 => 'Bluccatu automaticamenti pirchì lu ndirizzu IP è cundivisu cu l\'utenti "[[User:$1|$1]]". Lu bloccu di l\'utenti $1 fu mpostu pi lu siquenti mutivu: "\'\'\'$2\'\'\'".',
 'blocklogpage'                => 'Blocchi',
 'blocklogentry'               => 'hà bluccatu [[$1]]; scadenza $2 $3',
-'blocklogtext'                => "Chistu è l'alencu di l'azzioni di bloccu e sbloccu utenti. Li ndirizzi IP bluccati automaticamenti nun sunu alincati. Cunzurtari l'[[Special:Ipblocklist|alencu IP bluccati]] pi l'alencu dî ndirizzi e noma utenti lu cui bloccu è opirativu.",
+'blocklogtext'                => "Chistu è l'alencu di l'azzioni di bloccu e sbloccu utenti. Li ndirizzi IP bluccati automaticamenti nun sunu alincati. Cunzurtari l'[[Special:IPBlockList|alencu IP bluccati]] pi l'alencu dî ndirizzi e noma utenti lu cui bloccu è opirativu.",
 'unblocklogentry'             => 'hà sbluccatu "$1"',
 'block-log-flags-anononly'    => 'sulu utenti anònimi',
 'block-log-flags-nocreate'    => 'criazzioni account bluccata',
@@ -1931,7 +1931,7 @@ $1',
 'show-big-image'       => 'Virsioni a àuta risuluzzioni',
 'show-big-image-thumb' => "<small>Diminzioni di st'antiprima: $1 × $2 pixel</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Gallarìa dî file novi',
 'imagelisttext'         => "Di sèquitu veni prisintata na lista di '''$1''' file urdinat{{PLURAL:$1|u|i}} pi $2.",
 'showhidebots'          => '($1 li bot)',
@@ -2333,7 +2333,7 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'version-software-product' => 'Prodottu',
 'version-software-version' => 'Virsioni',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Pircorsu di nu file',
 'filepath-page'   => 'Nnomu dô file:',
 'filepath-submit' => 'Pircorsu',

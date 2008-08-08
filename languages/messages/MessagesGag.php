@@ -547,7 +547,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'uploadlogpage' => 'Fayl üklemäk jurnalları',
 'uploadedimage' => 'Üklenen: "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Pätret listası',
 
 # Image description page
@@ -634,7 +634,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'log'                  => 'Jurnallar',
 'all-logs-page'        => 'Hepsi jurnallar',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Hepsi sayfalar',
 'alphaindexline' => '$1den $2e',
 'nextpage'       => 'Geeriki sayfa ($1)',
@@ -659,7 +659,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 
 Gelecektä, bu sayfaya hem ilgili konuşmaa sayfasına yapılacêk diişmäkler burada yazılacêk.
 
-[[Special:Recentchanges|Bitki diişmäkler listası]] başlıı altında yazılacêk kalın bukvalarnan neçin ki kolayca seçilsin.
+[[Special:RecentChanges|Bitki diişmäkler listası]] başlıı altında yazılacêk kalın bukvalarnan neçin ki kolayca seçilsin.
 
 Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfaya bakmaa durgun" baalantısına.',
 'removedwatch'         => 'Bakmaa listanızdan silindi',
@@ -855,7 +855,7 @@ Yalvarêrêz başka bir ad seçmää.',
 'show-big-image'       => 'Taman aydınnık',
 'show-big-image-thumb' => '<small>Ön siir ölçüsü: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Eni pätretler',
 
 # Bad image list

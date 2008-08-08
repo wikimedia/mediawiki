@@ -696,7 +696,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'             => 'Liste des figuris',
 'imagelist_date'        => 'Date',
 'imagelist_name'        => 'Non',
@@ -823,7 +823,7 @@ La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e co
 Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la vôs che ti interesse.',
 'logempty'             => 'Nissun element corispondint tal regjistri.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Dutis lis pagjinis',
 'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Prossime pagjine ($1)',
@@ -842,11 +842,11 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
 'categoriesfrom'     => 'Mostre lis categoriis scomençant di:',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'    => 'Mostre i utents scomençant di:',
 'listusers-submit' => 'Mostre',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'  => 'Grup',
 'listgrouprights-rights' => 'Dirits',
 
@@ -872,7 +872,7 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'addedwatch'           => 'Zontât aes pagjinis tignudis di voli',
 'addedwatchtext'       => "La pagjine \"<nowiki>\$1</nowiki>\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].
 Tal futûr i cambiaments a cheste pagjine e ae pagjine di discussion relative a saran segnalâts ca,
-e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
+e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
 'removedwatch'         => 'Gjavade de liste',
@@ -1176,7 +1176,7 @@ Sielç par plasê un altri non.',
 'show-big-image'       => 'Version a risoluzion plene',
 'show-big-image-thumb' => '<small>Dimensions di cheste anteprime: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Galarie dai gnûfs files',
 'imagelisttext' => 'Ca sot e je une liste di $1 {{PLURAL:$1|file|files}} ordenâts $2.',
 'showhidebots'  => '($1 i bots)',
@@ -1311,7 +1311,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'version-version'          => 'Version',
 'version-software-version' => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Non dal file:',
 
 # Special:SpecialPages

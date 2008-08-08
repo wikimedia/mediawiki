@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Atabek
  * @author GaiJin
+ * @author Atabek
  * @author AlefZet
  */
 
@@ -529,7 +529,7 @@ $messages = array(
 'mypage'         => 'Jeke betim',
 'mytalk'         => 'Talqılawım',
 'anontalk'       => 'IP talqılawı',
-'navigation'     => 'Bağıttaw',
+'navigation'     => 'Şarlaw',
 'and'            => 'jäne',
 
 # Metadata in edit box
@@ -587,7 +587,7 @@ $messages = array(
 'viewcount'         => 'Bul bet $1 ret qatınalğan.',
 'protectedpage'     => 'Qorğalğan bet',
 'jumpto'            => 'Mında ötw:',
-'jumptonavigation'  => 'bağıttaw',
+'jumptonavigation'  => 'şarlaw',
 'jumptosearch'      => 'izdew',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -881,7 +881,7 @@ Mümkin qupïya söziñizdi aldaqaşan sätti özgertken bolarsız nemese jaña 
 'hr_tip'          => 'Dereleý sızıq (ünemdi qoldanıñız)',
 
 # Edit pages
-'summary'                          => 'Qısqaşa mazmundaması',
+'summary'                          => 'Tüýindemesi',
 'subject'                          => 'Taqırıbı/bas jolı',
 'minoredit'                        => 'Bul şağın öñdeme',
 'watchthis'                        => 'Betti baqılaw',
@@ -1416,11 +1416,11 @@ baptaw üşin math/README qujatın qarañız.',
 # Recent changes linked
 'recentchangeslinked'          => 'Qatıstı özgerister',
 'recentchangeslinked-title'    => '«$1» degenge qatıstı özgerister',
-'recentchangeslinked-noresult' => 'Siltelgen betterde keltirilgen merzimde eşqandaý özgeris bolmağan.',
-'recentchangeslinked-summary'  => "Bul tizimde özindik betten siltelgen betterdegi (ne özindik sanat müşelerindegi) istelgen jwıqtağı özgerister beriledi.
+'recentchangeslinked-noresult' => 'Siltegen betterde keltirilgen merzimde eşqandaý özgeris bolmağan.',
+'recentchangeslinked-summary'  => "Bul tizimde özindik betke siltegen betterdegi (ne özindik sanat müşelerindegi) istelgen jwıqtağı özgerister beriledi.
 [[{{#special:Watchlist}}|Baqılaw tizimiñizdegi]] better '''jwan''' bolıp belgilenedi.",
 'recentchangeslinked-page'     => 'Bet atawı:',
-'recentchangeslinked-to'       => 'Bunıñ ornına keltirilgen betke siltelgen betterdegi özgeristerdi körset',
+'recentchangeslinked-to'       => 'Kerisinşe, keltirilgen betke silteýtin betterdegi özgeristerdi körset',
 
 # Upload
 'upload'                      => 'Qotarıp berw',
@@ -1446,8 +1446,8 @@ Swretti betke kiristirwge, faýlğa twra siltew üşin mına pişindegi siltemen
 'uploadlogpage'               => 'Qotarıp berw jwrnalı',
 'uploadlogpagetext'           => 'Tömende eñ soñğı qotarıp berilgen faýl tizimi.',
 'filename'                    => 'Faýl atawı',
-'filedesc'                    => 'Qısqaşa mazmundaması',
-'fileuploadsummary'           => 'Qısqaşa mazmundaması:',
+'filedesc'                    => 'Tüýindemesi',
+'fileuploadsummary'           => 'Tüýindemesi:',
 'filestatus'                  => 'Awtorlıq quqıqtar küýi:',
 'filesource'                  => 'Qaýnar közi:',
 'uploadedfiles'               => 'Qotarıp berilgen faýldar',
@@ -1535,7 +1535,7 @@ Talabıñızdı qol tïgen kezinde qaýta baýqap körwiñiz mümkin.',
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL)',
 'upload_source_file' => ' (komp′ywteriñizdegi faýl)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Bul arnaýı bette barlıq qotarıp berilgen faýldar körsetiledi.
 Soñğı qotarıp berilgen faýldar tizimde joğarğı şetimen ädepkiden körsetiledi.
 Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
@@ -1692,7 +1692,7 @@ Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet
 'wantedcategories'        => 'Bastalmağan sanattar',
 'wantedpages'             => 'Bastalmağan better',
 'missingfiles'            => 'Joq faýldar',
-'mostlinked'              => 'Eñ köp siltelgen better',
+'mostlinked'              => 'Eñ köp siltengen better',
 'mostlinkedcategories'    => 'Eñ köp paýdalanılğan sanattar',
 'mostlinkedtemplates'     => 'Eñ köp paýdalanılğan ülgiler',
 'mostcategories'          => 'Eñ köp sanatı bar better',
@@ -1744,7 +1744,7 @@ Jwrnal türin, qatıswşı atın, ne tïisti betin bölektep, tarıltıp qaraý 
 'logempty'             => 'Jwrnalda säýkes danalar joq.',
 'log-title-wildcard'   => 'Mına mätinneñ bastalıtın taqırıp attarın izdew',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Barlıq better',
 'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'Kelesi betke ($1)',
@@ -1768,12 +1768,12 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 'special-categories-sort-count' => 'sanımen surıptaw',
 'special-categories-sort-abc'   => 'älipbïmen surıptaw',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mına qatıswşıdan bastap körsetw:',
 'listusers-submit'   => 'Körset',
 'listusers-noresult' => 'Qatıswşı tabılğan joq.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Qatıswşı tobı quqıqtarı',
 'listgrouprights-summary'  => 'Kelesi tizimde bul wïkïde tağaýındalğan qatıswşı quqıqtarı (baýlanıstı qatınaw quqıqtarımen birge) körsetiledi.
 Jeke quqıqtar twralı köbirek aqparattı [[{{MediaWiki:Listgrouprights-helppage}}|mında]] taba alasız.',
@@ -2048,8 +2048,8 @@ $1',
 'sp-contributions-submit'      => 'İzde',
 
 # What links here
-'whatlinkshere'            => 'Siltelgen better',
-'whatlinkshere-title'      => '$1 degenge siltelgen better',
+'whatlinkshere'            => 'Mında silteýtin better',
+'whatlinkshere-title'      => '$1 degenge silteýtin better',
 'whatlinkshere-page'       => 'Bet:',
 'linkshere'                => "'''[[:$1]]''' degenge mına better silteýdi:",
 'nolinkshere'              => "'''[[:$1]]''' degenge eş bet siltemeýdi.",
@@ -2202,6 +2202,7 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'move-watch'              => 'Bul betti baqılaw',
 'movepagebtn'             => 'Betti jıljıt',
 'pagemovedsub'            => 'Jıljıtw sätti ayaqtaldı',
+'movepage-moved'          => '<big>\'\'\'"$1" beti "$2" betine jıljıtıldı\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Osılaý atalğan bet aldaqaşan bar, ne tañdağan atawıñız jaramdı emes.
 Özge atawdı tañdañız',
 'cantmove-titleprotected' => 'Betti osı orınğa jıljıta almaýsız, sebebi jaña taqırıp atı bastawdan qorğalğan',
@@ -2478,7 +2479,7 @@ $1',
 'show-big-image'       => 'Joğarı ajıratılımdı',
 'show-big-image-thumb' => '<small>Qarap şığw mölşeri: $1 × $2 nükte</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Jaña faýldar körmesi',
 'imagelisttext'         => "Tömende $2 surıptalğan '''$1''' faýl tizimi.",
 'newimages-summary'     => 'Bul arnaýı betinde soñğı qotarıp berilgen faýldar körsetiledi',
@@ -2989,7 +2990,7 @@ Tağı da [[{{#special:Watchlist}}/edit|qalıpalğan öñdewişti paýdalana]] a
 'version-software-product'         => 'Önim',
 'version-software-version'         => 'Nusqası',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Faýl ornalaswı',
 'filepath-page'    => 'Faýl atı:',
 'filepath-submit'  => 'Ornalaswın tap',

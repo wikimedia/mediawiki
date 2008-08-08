@@ -505,7 +505,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'uploadlogpage' => 'Åplægnengslog',
 'uploadedimage' => 'Låĝde "[[$1]]" åp',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Billetliste',
 
 # Image description page
@@ -592,7 +592,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'log'                  => 'Loglister',
 'all-logs-page'        => 'Åle loglister',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Åle ertikler',
 'alphaindexline' => '$1 til $2',
 'nextpage'       => 'Næste side ($1)',
@@ -613,7 +613,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'mywatchlist'          => 'Åvervågnengsliste',
 'watchlistfor'         => "(før '''$1''')",
 'addedwatch'           => 'Tilføjet til din åvervågnengsliste',
-'addedwatchtext'       => "Æ side \"<nowiki>\$1</nowiki>\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:Recentchanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
+'addedwatchtext'       => "Æ side \"[[:$1]]" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:RecentChanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
 'removedwatch'         => 'Fjernet frå åvervågnengsliste',
 'removedwatchtext'     => 'Æ side "<nowiki>$1</nowiki>" er blevet fjernet frå din åvervågnengsliste.',
 'watch'                => 'Åvervåg',
@@ -803,7 +803,7 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'show-big-image'       => 'Hersenenge i større åpløsnenge',
 'show-big-image-thumb' => '<small>Størrelse åf førhåndsvesnenge: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Liste ve de nyeste billeter',
 
 # Bad image list

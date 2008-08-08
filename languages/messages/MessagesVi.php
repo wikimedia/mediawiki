@@ -651,7 +651,7 @@ Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những
 'anontalkpagetext'                 => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
-Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:Userlogin/signup|tạo tài khoản]] hoặc [[Special:Userlogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
+Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
 'noarticletext'                    => 'Trang này hiện chưa có gì, bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang]] tại các trang khác hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này].',
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'clearyourcache'                   => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
@@ -1230,7 +1230,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload_source_url'  => ' (địa chỉ URL đúng, có thể truy cập)',
 'upload_source_file' => ' (tập tin trên máy của bạn)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
 Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
 Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
@@ -1436,7 +1436,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'logempty'             => 'Không có mục nào khớp với từ khóa.',
 'log-title-wildcard'   => 'Tìm các tựa trang bắt đầu bằng các chữ này',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tất cả các trang',
 'alphaindexline'    => '$1 đến $2',
 'nextpage'          => 'Trang sau ($1)',
@@ -1459,12 +1459,12 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'special-categories-sort-count' => 'xếp theo số trang',
 'special-categories-sort-abc'   => 'xếp theo vần',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
 'listusers-submit'   => 'Liệt kê',
 'listusers-noresult' => 'Không thấy thành viên.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Nhóm thành viên',
 'listgrouprights-summary'         => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.
 Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhóm riêng biệt.',
@@ -1508,7 +1508,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:Userlogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:Recentchanges|danh sách các thay đổi mới]].
+'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:RecentChanges|danh sách các thay đổi mới]].
 
 Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
 'removedwatch'         => 'Đã ra khỏi danh sách theo dõi',
@@ -1792,7 +1792,7 @@ $1',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.
-<br />Xem lại những lần cấm tại [[Special:Ipblocklist|danh sách cấm]].',
+<br />Xem lại những lần cấm tại [[Special:IPBlockList|danh sách cấm]].',
 'ipb-edit-dropdown'               => 'Sửa đổi lý do cấm',
 'ipb-unblock-addr'                => 'Bỏ cấm $1',
 'ipb-unblock'                     => 'Bỏ cấm thành viên hay địa chỉ IP',
@@ -1822,7 +1822,7 @@ $1',
 'autoblocker'                     => 'Bạn bị tự động cấm vì địa chỉ IP của bạn vừa rồi đã được “$1” sử dụng. Lý do đưa ra cho việc cấm $1 là: ”$2”',
 'blocklogpage'                    => 'Nhật trình cấm',
 'blocklogentry'                   => 'đã cấm [[$1]] với thời hạn là $2 $3',
-'blocklogtext'                    => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:Ipblocklist|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
+'blocklogtext'                    => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:IPBlockList|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
 'unblocklogentry'                 => 'đã bỏ cấm “$1”',
 'block-log-flags-anononly'        => 'chỉ cấm thành viên vô danh',
 'block-log-flags-nocreate'        => 'cấm mở tài khoản',
@@ -2153,7 +2153,7 @@ $1',
 'show-big-image'       => 'Độ phân giải tối đa',
 'show-big-image-thumb' => '<small>Kích thước xem thử: $1 × $2 điểm ảnh</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Trang trưng bày hình ảnh mới',
 'imagelisttext'         => "Dưới đây là danh sách '''$1''' {{PLURAL:$1|tập tin|tập tin}} xếp theo $2.",
 'newimages-summary'     => 'Trang đặc biệt này hiển thị các tập tin được tải lên gần đây nhất.',
@@ -2607,7 +2607,7 @@ Bạn cũng có thể [[Special:Watchlist/edit|dùng trình soạn thảo chuẩ
 'version-software-product'         => 'Phần mềm',
 'version-software-version'         => 'Phiên bản',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Đường dẫn tập tin',
 'filepath-page'    => 'Tập tin:',
 'filepath-submit'  => 'Hiển thị tập tin',
@@ -2645,7 +2645,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'specialpages-group-redirects'   => 'Đang đổi hướng trang đặc biệt',
 'specialpages-group-spam'        => 'Công cụ chống spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Trang trắng',
 'intentionallyblankpage' => 'Trang này được chủ định để trắng',
 

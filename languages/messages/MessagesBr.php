@@ -577,7 +577,7 @@ Notennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" ne
 'accmailtext'                      => 'Kaset eo bet ger-tremen « $1 » da $2.',
 'newarticle'                       => '(Nevez)',
 'newarticletext'                   => 'Skrivit amañ testenn ho pennad.',
-'anontalkpagetext'                 => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar chomlec'h IP niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:Userlogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",
+'anontalkpagetext'                 => "---- ''Homañ eo ar bajenn gaozeal evit un implijer(ez) dianv n'eus ket c'hoazh krouet kont ebet pe na implij ket anezhi. Setu perak e rankomp ober gant ar chomlec'h IP niverel evit disklêriañ anezhañ/i. Gallout a ra ur chomlec'h a seurt-se bezañ rannet etre meur a implijer(ez). Ma'z oc'h un implijer(ez) dianv ha ma stadit ez eus bet kaset deoc'h kemennadennoù na sellont ket ouzhoc'h, gallout a rit [[Special:UserLogin|krouiñ ur gont pe en em lugañ]] kuit a vagañ muioc'h a gemmesk.",
 'noarticletext'                    => "N'eus evit poent tamm skrid ebet war ar bajenn-mañ, gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhañ]] war pajennoù all pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} kemmañ ar bajenn diouzhtu].",
 'userpage-userdoesnotexist'        => 'N\'eo ket enrollet ar gont "$1". Merkit ma fell deoc\'h krouiñ/kemmañ ar bajenn-mañ.',
 'clearyourcache'                   => "'''Notenn :''' Goude bezañ enrollet ho pajenn e rankot freskaat krubuilh ho merdeer a-bennn gwelet ar c'hemmoù : '''Mozilla / Firefox / Safari : ''' dalc'hit ''Pennlizherenn'' en ur glikañ war ''Adkargañ'', pe pouezañ war ''Ctrl-F5'' pe ''Ctrl-R'' (''Command-R'' war ur Macintosh); '''Konqueror: '''klikañ war ''Adkargañ'' pe pouezañ war ''F5;'' '''Opera:''' riñsañ ar grubuilh e ''Ostilhoù → Penndibaboù;'' '''Internet Explorer:''' derc'hel ''Ctrl'' en ur glikañ war ''Freskaat,'' pe pouezañ war ''Ctrl-F5.''",
@@ -1110,7 +1110,7 @@ PICT # misc.
 'upload_source_url'  => " (Un URL reizh a c'hall bezañ tizhet gant an holl)",
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Diskouez a ra ar bajenn zibar-mañ an holl restroù bet enporzhiet.
 Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
 Klikañ war penn ar bann a cheñch an urzh kinnig.',
@@ -1310,7 +1310,7 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'logempty'             => 'Goullo eo istor ar bajenn-mañ.',
 'log-title-wildcard'   => 'Klask an titloù a grog gant an destenn-mañ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'An holl bajennoù',
 'alphaindexline'    => '$1 da $2',
 'nextpage'          => "Pajenn war-lerc'h ($1)",
@@ -1332,12 +1332,12 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'special-categories-sort-count' => 'Urzhiañ dre gont',
 'special-categories-sort-abc'   => 'urzh al lizherenneg',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Diskouez anv an implijerien adal :',
 'listusers-submit'   => 'Diskouez',
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Gwirioù ar strolladoù implijer',
 'listgrouprights-summary'  => 'War ar bajenn-mañ ez eus ur roll eus ar strolladoù implijer termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.',
 'listgrouprights-group'    => 'Strollad',
@@ -1379,7 +1379,7 @@ E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h
 evit kemmañ ho roll.",
 'addedwatch'           => "Ouzhpennet d'ar roll",
 'addedwatchtext'       => 'Ouzh ho [[Special:Watchlist|rollad evezhiañ]] eo bet ouzhpennet ar bajenn "[[:$1]]".
-Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:Recentchanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
+Kemmoù da zont ar bajenn-mañ ha re ar bajenn gaozeal stag outi a vo rollet amañ hag e teuio ar bajenn <b>e tev</b> er [[Special:RecentChanges|roll kemmoù diwezhañ]] evit bezañ gwelet aesoc\'h ganeoc\'h.
 
 Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da evezhiañ" er framm merdeiñ.',
 'removedwatch'         => 'Lamet a-ziwar ar rollad evezhiañ',
@@ -1648,7 +1648,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'badipaddress'                => "Kamm eo ar chomlec'h IP.",
 'blockipsuccesssub'           => 'Stankadenn deuet da benn vat',
 'blockipsuccesstext'          => 'Stanket eo bet chomlec\'h IP "$1".
-<br />Gallout a rit sellet ouzh ar [[Special:Ipblocklist|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket.',
+<br />Gallout a rit sellet ouzh ar [[Special:IPBlockList|bajenn-mañ]] evit gwelet roll ar chomlec\'hioù IP stanket.',
 'ipb-edit-dropdown'           => 'Kemmañ an abegoù stankañ',
 'ipb-unblock-addr'            => 'Distankañ $1',
 'ipb-unblock'                 => "Distankañ un implijer pe ur chomlec'h IP",
@@ -1678,7 +1678,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'autoblocker'                 => 'Emstanket rak rannañ a rit ur chomlec\'h IP gant "$1". Abeg : "$2".',
 'blocklogpage'                => 'Log stankañ',
 'blocklogentry'               => 'stanket "[[$1]]" e-pad $2 $3',
-'blocklogtext'                => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:Ipblocklist|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
+'blocklogtext'                => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:IPBlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
 'unblocklogentry'             => 'distanket "$1"',
 'block-log-flags-anononly'    => 'implijerien dizanv hepken',
 'block-log-flags-nocreate'    => 'berzet eo krouiñ kontoù',
@@ -1986,7 +1986,7 @@ $1',
 'show-big-image'       => 'Pizhder leun',
 'show-big-image-thumb' => '<small>Ment ar rakweladenn-mañ : $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Roll ar skeudennoù nevez',
 'imagelisttext'         => 'Setu ur roll $1 skeudenn rummet $2.',
 'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
@@ -2448,7 +2448,7 @@ Klaskit rakwelet er mod boutin.',
 'version-software-product'         => 'Produ',
 'version-software-version'         => 'Stumm',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Hent moned ur restr',
 'filepath-page'    => 'Restr :',
 'filepath-submit'  => 'Hent moned',

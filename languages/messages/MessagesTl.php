@@ -436,7 +436,7 @@ upang makapagkarga ng talaksan.',
 'move'              => 'Ilipat',
 'movethispage'      => 'Ilipat itong pahina',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'        => 'Lahat ng pahina',
 'allpages-bad-ns' => 'Wala sa {{SITENAME}} ang ngalan-espasyong "$1".',
 
@@ -594,7 +594,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Buong resolusyon',
 'show-big-image-thumb' => '<small>Laki ng itong pribyu: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Galeriya ng mga bagong talaksan',
 
 # External editor support
@@ -638,7 +638,7 @@ $1',
 'version-software-product'  => 'Produkto',
 'version-software-version'  => 'Bersyon',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Talaksan:',
 
 # Special:SpecialPages

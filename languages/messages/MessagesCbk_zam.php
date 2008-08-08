@@ -41,7 +41,7 @@ $messages = array(
 # Random page
 'randompage' => 'Pagina Escujido Automatico',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'Todo maga articulo',
 
 # Watchlist

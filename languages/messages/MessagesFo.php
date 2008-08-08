@@ -464,7 +464,7 @@ Tín IP-adressa verður goymd í rættisøguni fyri hesa síðuna.",
 Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin á kagaranum.",
 'anontalkpagetext'         => "----''Hetta er ein kjaksíða hjá einum dulnevndum brúkara, sum ikki hevur stovnað eina kontu enn, ella ikki brúkar hana. Tí noyðast vit at brúka nummerisku IP-adressuna hjá honum ella henni.
 Ein slík IP-adressa kann verða brúkt av fleiri brúkarum.
-Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru vendar til tín, so vinarliga [[Special:Userlogin|stovna eina kontu]] fyri at sleppa undan samanblanding við aðrar dulnevndar brúkarar í framtíðini.''",
+Ert tú ein dulnevndur brúkari, og kennir, at óvikomandi viðmerkingar eru vendar til tín, so vinarliga [[Special:UserLogin|stovna eina kontu]] fyri at sleppa undan samanblanding við aðrar dulnevndar brúkarar í framtíðini.''",
 'clearyourcache'           => "'''Viðmerking:''' Eftir at hava goymt mást tú fara uttanum minnið á sneytara tínum fyri at síggja broytingarnar. '''Mozilla/Safari/Konqueror:''' halt knøttinum ''Shift'' niðri meðan tú trýstir á ''Reload'' (ella trýst ''Ctrl-Shift-R''), '''IE:''' trýst ''Ctrl-F5'', '''Opera:''' trýst F5.",
 'note'                     => '<strong>Viðmerking:</strong>',
 'previewnote'              => '<strong>Minst til at hetta bara er ein forskoðan, sum enn ikki er goymd!</strong>',
@@ -652,7 +652,7 @@ fyri at leggja fílur upp.',
 'license'   => 'Loyvi:',
 'nolicense' => 'Onki valt',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => 'Myndalisti',
 'imagelist_name' => 'Navn',
 'imagelist_user' => 'Brúkari',
@@ -767,7 +767,7 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'alllogstext'          => 'Samansett sýning av upplegging, striking, friðing, forðing og sysop-gerðabókum.
 Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella ávirkaðu síðuna.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Allar síður',
 'alphaindexline' => '$1 til $2',
 'nextpage'       => 'Næsta síða ($1)',
@@ -782,7 +782,7 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 'categories'         => 'Bólkar',
 'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Vís brúkarar ið byrja við:',
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Ongin brúkari var funnin.',
@@ -813,7 +813,7 @@ ella hevur hann valt ikki at taka ímóti t-posti frá øðrum brúkarum.',
 'addedwatch'           => 'Lagt undir eftirlit',
 'addedwatchtext'       => "Síðan \"<nowiki>\$1</nowiki>\" er løgd undir [[Special:Watchlist|eftirlit]] hjá tær.
 Framtíðar broytingar á hesi síðu og tilknýttu kjaksíðuni verða at síggja her.
-Tá sæst síðan sum '''feit skrift''' í [[Special:Recentchanges|broytingaryvirlitinum]] fyri at gera hana lættari at síggja.
+Tá sæst síðan sum '''feit skrift''' í [[Special:RecentChanges|broytingaryvirlitinum]] fyri at gera hana lættari at síggja.
 
 Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika eftirlit\" á síðuni.",
 'removedwatch'         => 'Strikað úr eftirliti',
@@ -1082,7 +1082,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'file-info-size' => '($1 × $2 pixel, stødd fílu: $3, MIME-slag: $4)',
 'svg-long-desc'  => '(SVG fíle, nominelt $1 × $2 pixel, fíle stødd: $3)',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Nýggjar myndir',
 'noimages'  => 'Einki at síggja.',
 'ilsubmit'  => 'Leita',
@@ -1157,7 +1157,7 @@ fer úr gildi tann $4.',
 'version-version'          => 'Útgáva',
 'version-software-version' => 'Útgáva',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Fíla:',
 
 # Special:SpecialPages

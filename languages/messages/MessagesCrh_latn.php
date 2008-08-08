@@ -618,7 +618,7 @@ Siziñ blok identifikatorıñız — #$5. Lütfen, administratorlarğa mektüple
 'accmailtext'               => '$1 içün parol mında yollandı: $2.',
 'newarticle'                => '(Yañı)',
 'newarticletext'            => "Siz bu bağlantınen şimdilik yoq olğan saifege avuştıñız. Yañı bir saife yaratmaq içün aşağıda bulunğan pencerege metin yazıñız (tafsilâtlı malümat almaq içün [[{{MediaWiki:Helppage}}|yardım saifesine]] baqıñız). Bu saifege tesadüfen avuşqan olsañız, brauzeriñizdeki '''keri''' dögmesine basıñız.",
-'anontalkpagetext'          => "----''Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını açmağan adsız (anonim) qullanıcığa mensüptir. İdentifikatsiya içün IP adres işletile. Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan kelgenini belleseñiz (bir IP adresinden bir qaç qullanıcı faydalanıp ola), lütfen, artıq bunıñ kibi qarışıqlıq olmasın dep [[Special:Userlogin|oturım açıñız]].''",
+'anontalkpagetext'          => "----''Bu muzakere saifesi şimdilik qayd olunmağan ya da oturımını açmağan adsız (anonim) qullanıcığa mensüptir. İdentifikatsiya içün IP adres işletile. Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan kelgenini belleseñiz (bir IP adresinden bir qaç qullanıcı faydalanıp ola), lütfen, artıq bunıñ kibi qarışıqlıq olmasın dep [[Special:UserLogin|oturım açıñız]].''",
 'noarticletext'             => 'Bu saife boştır. Bu serlevanı başqa saifelerde [[Special:Search/{{PAGENAME}}|qıdırıp olasıñız]] ya da bu saifeni özüñiz [{{fullurl:{{FULLPAGENAME}}|action=edit}} yazıp olasıñız].',
 'userpage-userdoesnotexist' => '"$1" adlı qullanıcı yoqtır. Tamam bu saifeni deñiştirmege istegeniñizni teşkeriñiz.',
 'clearyourcache'            => "'''İhtar:''' Ayarlarıñıznı saqlağandan soñ, brauzeriñizniñ keşini de temizlemek kereksiñiz: '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-Shift-R'' yapıp (Apple Mac içün ''Cmd-Shift-R'');, '''Internet Explorer:''' ''Ctrl-F5'', '''Konqueror:''' Tek saifeni yañıdan yükle dögmesine basıp.",
@@ -963,7 +963,7 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'upload_source_url'  => ' (doğru, püblik tarzda kirmege musaadeli internet adres)',
 'upload_source_file' => ' (kompyuteriñizdeki fayl)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Fayl adı qıdıruv:',
 'imgfile'               => 'fayl',
 'imagelist'             => 'Resim cedveli',
@@ -1118,7 +1118,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'logempty'             => 'Jurnalda bir kelgen malümat yoq.',
 'log-title-wildcard'   => 'Bu simvollardan başlanğan serlevalarnı qıdır',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Bütün saifeler',
 'alphaindexline'    => '$1-den $2-ge',
 'nextpage'          => 'Soñraki saife ($1)',
@@ -1140,7 +1140,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'special-categories-sort-count' => 'sayılarına köre sırala',
 'special-categories-sort-abc'   => 'elifbe sırasınen sırala',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Köster',
 'listusers-noresult' => 'İç bir qullanıcı tapılmadı.',
 
@@ -1174,7 +1174,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'watchnologin'         => 'Oturım açmaq kerek',
 'watchnologintext'     => 'Öz közetüv cedveliñizni deñiştirmek içün [[Special:Userlogin|oturım açıñız]]',
 'addedwatch'           => 'Közetüv cedveline kirsetmek',
-'addedwatchtext'       => '"[[:$1]]" saifesi [[Special:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[Special:Recentchanges|yañı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
+'addedwatchtext'       => '"[[:$1]]" saifesi [[Special:Watchlist|kozetüv cevdeliñizge]] kirsetildi. Bu saifedeki ve onıñnen bağlı saifelerdeki olacaq deñişiklikler bu cedvelde belgilenecek, em de olar közge çarpması içün [[Special:RecentChanges|yañı deñişiklik cedveli]] bulunğan saifede qalın olaraq kösterilir.
 Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz de, saifeniñ yuqarısındaki sol tarafta "közetme" dögmesine basıñız.',
 'removedwatch'         => 'Közetüv cedvelinden yoq et',
 'removedwatchtext'     => '"[[:$1]]" saifesi közetüv cedveliñizden yoq etildi.',
@@ -1246,7 +1246,7 @@ Yardım ve teklifler içün:
 'exblank'                     => 'saife metini boş',
 'historywarning'              => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
 'confirmdeletetext'           => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
-Lütfen, neticelerini añlağanıñıznı, [[Special:Whatlinkshere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
+Lütfen, neticelerini añlağanıñıznı, [[Special:WhatLinksHere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'              => 'İşlem tamamlandı.',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
@@ -1361,7 +1361,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'badipaddress'            => 'Keçersiz IP adresi',
 'blockipsuccesssub'       => 'IP adresni ban etüv işlevi muvafaqiyetli oldı',
 'blockipsuccesstext'      => '"$1" ban etildi.
-<br />[[Special:Ipblocklist|IP adresi ban etilgenler]] cedveline baqıñız .',
+<br />[[Special:IPBlockList|IP adresi ban etilgenler]] cedveline baqıñız .',
 'unblockip'               => 'Qullanıcınıñ ban etüvini çıqar',
 'ipusubmit'               => 'Bu adresniñ ban etüvini çıqar',
 'ipblocklist'             => 'Blok etilgen qullanıcılar ve IP adresleri cedveli',
@@ -1374,7 +1374,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'            => 'İrişim ban etüv jurnalı',
 'blocklogentry'           => '"[[$1]]" irişimi $2 $3 toqtatıldı. Sebep',
-'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ve ban çıqaruv jurnalı cedvellene. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:Ipblocklist|IP ban etüv cedveli]] saifesinden körip olasıñız.',
+'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ve ban çıqaruv jurnalı cedvellene. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:IPBlockList|IP ban etüv cedveli]] saifesinden körip olasıñız.',
 'unblocklogentry'         => '$1 qullanıcınıñ ban etüvi çıqarıldı',
 'block-log-flags-noemail' => 'e-mail blok etildi',
 'ipb_expiry_invalid'      => 'Keçersiz bitiş zamanı.',
@@ -1582,7 +1582,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'show-big-image'       => 'Tam çezinirlik',
 'show-big-image-thumb' => '<small>Ög baquvda resim büyükligi: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Yañı resimler',
 'imagelisttext'         => "Aşağıdaki cedvelde $2 köre tizilgen {{PLURAL:$1|'''1''' fayldır|'''$1''' fayldır}}.",
 'showhidebots'          => '(botlarnı $1)',

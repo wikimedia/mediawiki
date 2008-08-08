@@ -249,7 +249,7 @@ $messages = array(
 'privacy'              => 'Tlahcuilōlli piyaliznahuatīlli',
 
 'badaccess-group0' => 'Tehhuātl ahmo tiquichīhua inōn tiquiēlēhuia.',
-'badaccess-groups' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli oncān: $1.',
+'badaccess-groups' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli {{PLURAL:$2|oncān|oncān}}: $1.',
 
 'ok'                      => 'Cualli',
 'youhavenewmessages'      => 'Tiquimpiya $1 ($2).',
@@ -606,7 +606,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 
 'upload_source_file' => ' (cē tlahcuilōlli mochīuhpōhualhuazco)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
 'imgfile'              => 'īxiptli',
 'imagelist_name'       => 'Tōcāitl',
@@ -727,7 +727,7 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'log-search-legend'    => 'Tiquintēmōz tlahcuilōlloh',
 'log-search-submit'    => 'Yāuh',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Mochīntīn zāzanilli',
 'alphaindexline'    => '$1 oc $2',
 'nextpage'          => 'Niman zāzanilli ($1)',
@@ -746,10 +746,10 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'special-categories-sort-count' => 'tlapōhualcopa',
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Tiquittāz',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'  => 'Olōlli',
 'listgrouprights-rights' => 'Huelītiliztli',
 
@@ -786,6 +786,8 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'delete-confirm'         => 'Ticpolōz "$1"',
 'delete-legend'          => 'Ticpolōz',
 'actioncomplete'         => 'Cēntetl',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ōmopolo.
+Xiquitta $2 ic yancuīc tlapololiztli.',
 'deletedarticle'         => 'ōmopolo "$1"',
 'dellogpage'             => 'Tlapololiztli tlahcuilōlloh',
 'deletionlog'            => 'tlapololiztli tlahcuilōlloh',
@@ -978,7 +980,7 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
 'show-big-image'  => 'Mochi cuallōtl',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Yancuīc īxipcān',
 'showhidebots' => '($1 tepoztlācah)',
 'ilsubmit'     => 'Tlatēmōz',
@@ -1081,7 +1083,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'version-version'          => 'Machiyōtzin',
 'version-software-version' => 'Machiyōtzin',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Tlahcuilōlli:',
 
 # Special:FileDuplicateSearch
@@ -1095,7 +1097,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'specialpages-group-login' => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-pages' => 'Mochīntīn zāzaniltin',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage' => 'Iztāc zāzanilli',
 
 );

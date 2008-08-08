@@ -129,7 +129,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'stika lo cmene',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'ro notci',
 
 # Special:Categories
@@ -166,7 +166,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-logout' => "co'u se jaspu",
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'se datnyvei zoi',
 
 # Special:SpecialPages

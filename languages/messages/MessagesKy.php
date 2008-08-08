@@ -203,7 +203,7 @@ $messages = array(
 
 'license' => 'Лицензиялоо:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Файлдар тизмеси',
 
 # Image description page
@@ -233,7 +233,7 @@ $messages = array(
 'specialloguserlabel'  => 'Колдонуучу:',
 'speciallogtitlelabel' => 'Аталышы:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Бардык барактар',
 'nextpage'       => 'Кийинки барак ($1)',
 'allpagesfrom'   => '-дан башталган барактарды көрсөт:',
@@ -302,7 +302,7 @@ $messages = array(
 # Browsing diffs
 'nextdiff' => 'Кийинки айырма →',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Жаңы файлдардын галлереясы',
 'ilsubmit'  => 'Издөө',
 'bydate'    => 'Күнү боюнча',

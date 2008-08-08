@@ -380,7 +380,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'ignorewarning' => 'Hifadhi bila kujali maonyo yoyote.',
 'uploadedimage' => ' "[[$1]]" imepakiwa',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Orodha ya mafaili',
 
 # Image description page
@@ -469,7 +469,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'log'                  => 'Kumbukumbu',
 'all-logs-page'        => 'Kumbukumbu zote',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Kurasa zote',
 'alphaindexline' => '$1 hadi $2',
 'nextpage'       => 'Ukurasa ujao ($1)',
@@ -492,7 +492,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'addedwatch'           => 'Imeongezwa kwenye maangalizi yako',
 'addedwatchtext'       => "Ukurasa \"[[:\$1]]\" umewekwa kwenye [[Special:Watchlist|maangalizi]] yako.
 Mabadiliko katika ukurasa huo na ukurasa wake wa majadiliano utaonekana hapo,
-na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:Recentchanges|orodha ya mabadiliko ya karibuni]]
+na ukurasa utaonyeshwa wenye '''koze''' kwenye [[Special:RecentChanges|orodha ya mabadiliko ya karibuni]]
 ili kukusaidia kutambua.
 
 Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuatilia\" katika mwamba pembeni.",
@@ -695,7 +695,7 @@ Chagua jina lengine.',
 'show-big-image'       => 'Ukubwa wa awali',
 'show-big-image-thumb' => '<small>Ukubwa wa hakikisho hili: piseli $1 x $2</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Mkusanyiko wa faili jipya',
 
 # Bad image list

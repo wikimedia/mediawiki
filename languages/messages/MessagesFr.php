@@ -15,11 +15,11 @@
  * @author Sherbrooke
  * @author Louperivois
  * @author Hégésippe Cormier
+ * @author Korg
  * @author Dereckson
  * @author Cedric31
- * @author Korg
- * @author McDutchie
  * @author Omnipaedista
+ * @author McDutchie
  * @author JeanVoisin
  * @author ChrisPtDe
  * @author Esbardu
@@ -750,7 +750,7 @@ Puisqu’il n’y a pas de section $1, il n’y a pas d’endroit où publier vo
 'newarticletext'                   => "Vous avez suivi un lien vers une page qui n’existe pas encore ou qui a été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} effacée].
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
-'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:Userlogin/signup|créer un compte]] ou [[Special:Userlogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
+'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un utilisateur anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
 'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche sur ce titre de page]], vérifier qu’elle n’a pas été [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} supprimée] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page].',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer son rechargement complet en ignorant le contenu actuel du cache de votre explorateur pour voir les changements : '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant le bouton ''Actualiser'' (''Reload,'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ; '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
@@ -1308,7 +1308,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
 'upload_source_file' => ' (un fichier sur votre ordinateur)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Cette page spéciale montre tous les fichiers importés.
 Par défaut, les derniers fichiers importés sont affichés en haut de la liste.
 Un clic en tête de colonne change l’ordre d’affichage.',
@@ -1335,6 +1335,9 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filehist-comment'               => 'Commentaire',
 'imagelinks'                     => 'Pages contenant l’image',
 'linkstoimage'                   => '{{PLURAL:$1|La page ci-dessous contient|Les pages ci-dessous contiennent}} cette image :',
+'linkstoimage-more'              => 'Plus {{PLURAL:$1|d’un lien de page|de $1 liens de pages}} vers ce fichier.
+La liste suivante affiche {{PLURAL:$1|le premier lien de page|les $1 premiers liens de page}} uniquement vers ce fichier.
+Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'nolinkstoimage'                 => 'Aucune page ne contient cette image.',
 'morelinkstoimage'               => 'Voir [[Special:Whatlinkshere/$1|plus de liens]] vers cette image.',
 'redirectstofile'                => '{{PLURAL:$1|Le fichier suivant redirige|Les fichiers suivants redirigent}} vers celui-ci :',
@@ -1517,7 +1520,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'logempty'             => 'Il n’y a rien dans l’historique pour cette page.',
 'log-title-wildcard'   => 'Chercher les titres commençant par le texte suivant',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Toutes les pages',
 'alphaindexline'    => '$1 à $2',
 'nextpage'          => 'Page suivante ($1)',
@@ -1540,12 +1543,12 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Montrer',
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Droits des groupes utilisateur',
 'listgrouprights-summary'         => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés.
 Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] a propos des droits.",
@@ -1793,24 +1796,26 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contributions de l’utilisateur',
-'mycontris'     => 'Contributions',
-'contribsub2'   => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
-'nocontribs'    => 'Aucune modification correspondant à ces critères n’a été trouvée.',
-'uctop'         => '(dernière)',
-'month'         => 'À partir du mois (et précédents) :',
-'year'          => 'À partir de l’année (et précédentes) :',
+'contributions'       => 'Contributions de l’utilisateur',
+'contributions-title' => 'Les contributions de l’utilsateur pour $1',
+'mycontris'           => 'Contributions',
+'contribsub2'         => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
+'nocontribs'          => 'Aucune modification correspondant à ces critères n’a été trouvée.',
+'uctop'               => '(dernière)',
+'month'               => 'À partir du mois (et précédents) :',
+'year'                => 'À partir de l’année (et précédentes) :',
 
-'sp-contributions-newbies'     => 'Ne montrer que les contributions des nouveaux utilisateurs',
-'sp-contributions-newbies-sub' => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
-'sp-contributions-blocklog'    => 'Historique des blocages',
-'sp-contributions-search'      => 'Chercher les contributions',
-'sp-contributions-username'    => 'Adresse IP ou nom d’utilisateur:',
-'sp-contributions-submit'      => 'Chercher',
+'sp-contributions-newbies'       => 'Ne montrer que les contributions des nouveaux utilisateurs',
+'sp-contributions-newbies-sub'   => 'Liste des contributions des nouveaux utilisateurs. Les pages qui ont été supprimées ne sont pas affichées.',
+'sp-contributions-newbies-title' => 'Les contributions de l’utilisateur pour les comptes nouveaux',
+'sp-contributions-blocklog'      => 'Historique des blocages',
+'sp-contributions-search'        => 'Chercher les contributions',
+'sp-contributions-username'      => 'Adresse IP ou nom d’utilisateur:',
+'sp-contributions-submit'        => 'Chercher',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',
-'whatlinkshere-title'      => 'Pages ayant un lien vers $1',
+'whatlinkshere-title'      => 'Pages qui pointent vers « $1 »',
 'whatlinkshere-page'       => 'Page :',
 'linkshere'                => 'Les pages ci-dessous contiennent un lien vers <b>[[:$1]]</b> :',
 'nolinkshere'              => 'Aucune page ne contient de lien vers <b>[[:$1]]</b>.',
@@ -1863,7 +1868,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'badipaddress'                    => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'               => 'Blocage réussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a été bloqué.<br />
-Vous pouvez consulter la [[Special:Ipblocklist|liste des comptes et des adresses IP bloqués]].',
+Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses IP bloqués]].',
 'ipb-edit-dropdown'               => 'Modifier les motifs de blocage par défaut',
 'ipb-unblock-addr'                => 'Débloquer $1',
 'ipb-unblock'                     => 'Débloquer un compte utilisateur ou une adresse IP',
@@ -1893,7 +1898,7 @@ Vous pouvez consulter la [[Special:Ipblocklist|liste des comptes et des adresses
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
 'blocklogentry'                   => 'a bloqué « [[$1]] » - durée : $2 $3',
-'blocklogtext'                    => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:Ipblocklist|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
+'blocklogtext'                    => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:IPBlockList|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'                 => 'a débloqué « $1 »',
 'block-log-flags-anononly'        => 'utilisateurs anonymes seulement',
 'block-log-flags-nocreate'        => 'création de compte interdite',
@@ -2224,7 +2229,7 @@ $1',
 'show-big-image'       => 'Image en plus haute résolution',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerie des nouveaux fichiers',
 'imagelisttext'         => "Voici une liste de '''$1''' {{PLURAL:$1|fichier|fichiers}} classée $2.",
 'newimages-summary'     => 'Cette page spéciale affiche les derniers fichiers importés.',
@@ -2679,7 +2684,7 @@ Vous pouvez aussi [[Special:Watchlist/raw|la modifier en mode brut]].',
 'version-software-product'         => 'Produit',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Chemin d’accès d’un fichier',
 'filepath-page'    => 'Fichier :',
 'filepath-submit'  => 'Chemin d’accès',
@@ -2717,7 +2722,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'specialpages-group-redirects'   => 'Redirection de pages spéciales',
 'specialpages-group-spam'        => 'Outils anti-pourriel',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Page vide',
 'intentionallyblankpage' => 'Cette page est intentionellement vide et elle est usée comme un test de performance, etc.',
 

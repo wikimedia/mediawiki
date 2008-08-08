@@ -860,7 +860,7 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'nolicense'          => "Hesh na'rse saylanbag'an",
 'upload_source_file' => " (sizin' kompyuterin'izdegi fayl)",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Media atamasın izlew:',
 'imgfile'               => 'fayl',
 'imagelist'             => 'Fayllar dizimi',
@@ -1010,7 +1010,7 @@ Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı
 'log-search-submit'    => "O'tin'",
 'log-title-wildcard'   => "Usı tekstten baslang'an atamalardı izlew",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => "Ha'mme betler",
 'alphaindexline'    => '$1 — $2',
 'nextpage'          => 'Keyingi bet ($1)',
@@ -1029,7 +1029,7 @@ Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı
 'categories'         => 'Kategoriyalar',
 'categoriespagetext' => 'Kelesi kategoriyalar ishinde betler yamasa media bar.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "Mına paydalanıwshıdan baslap ko'rsetiw:",
 'listusers-submit'   => "Ko'rset",
 'listusers-noresult' => 'Paydalanıwshı tabılmadı.',
@@ -1058,7 +1058,7 @@ Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı
 'watchnologintext'     => "Baqlaw dizimin'izdi o'zgertiw ushın [[Special:Userlogin|kiriwin'iz]] kerek.",
 'addedwatch'           => 'Baqlaw dizimine qosıldı',
 'addedwatchtext'       => "\"[[:\$1]]\" beti [[Special:Watchlist|baqlaw dizimin'izge]] qosıldı.
-Usı ha'm og'an baylanıslı bolg'an sa'wbet betlerinde bolatug'ın keleshektegi o'zgerisler usı dizimde ko'rsetiledi ha'mde betti tabıwdı an'satlastırıw ushın [[Special:Recentchanges|taza o'zgerisler diziminde]] '''juwan ha'ripte''' ko'rsetiledi.
+Usı ha'm og'an baylanıslı bolg'an sa'wbet betlerinde bolatug'ın keleshektegi o'zgerisler usı dizimde ko'rsetiledi ha'mde betti tabıwdı an'satlastırıw ushın [[Special:RecentChanges|taza o'zgerisler diziminde]] '''juwan ha'ripte''' ko'rsetiledi.
 Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'ı on' jag'ındag'ı \"Baqlamaw\" jazıwın basın'.",
 'removedwatch'         => "Baqlaw diziminen o'shirildi",
 'removedwatchtext'     => '"[[:$1]]" beti baqlaw dizimin\'izden o\'shirildi.',
@@ -1220,7 +1220,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'badipaddress'                => 'Jaramsız IP adres',
 'blockipsuccesssub'           => 'Tabıslı qulplaw',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] bloklang'an.<br />
-Basqa bloklawlar ushın [[Special:Ipblocklist|IP bloklaw dizimin]] ko'rip shıg'ın'iz.",
+Basqa bloklawlar ushın [[Special:IPBlockList|IP bloklaw dizimin]] ko'rip shıg'ın'iz.",
 'ipb-edit-dropdown'           => "Bloklaw sebeplerin o'zgertiw",
 'ipb-unblock-addr'            => '$1 degennin qulpın sheshiw',
 'ipb-unblock'                 => "Paydalanıwshının' yamasa IP adrestin' qulpın shesh",
@@ -1435,7 +1435,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Joqarı imkaniyatlı',
 'show-big-image-thumb' => "<small>Bul aldinnan ko'riwdin' ha'jmi: $1 × $2 piksel</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Taza fayllar galereyasi',
 'showhidebots'          => '(botlardı $1)',
 'noimages'              => "Ko'riwge su'wret joq.",
@@ -1584,7 +1584,7 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 # Special:Version
 'version' => "MediaWikidin' nusqası", # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath' => 'Fayl jolı',
 
 # Special:SpecialPages

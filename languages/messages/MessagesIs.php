@@ -744,7 +744,7 @@ Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum."
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
 (meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
 Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í vafranum þínum.",
-'anontalkpagetext'                 => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:Userlogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
+'anontalkpagetext'                 => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:UserLogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
 'noarticletext'                    => 'Það er enginn texti á þessari síðu en sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
 'clearyourcache'                   => "'''Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá flýtiminni vafrans þíns til að sjá breytingarnar.''' '''Mozilla / Firefox / Safari:''' haltu niðri ''Shift'' og smelltu á ''Reload,'' eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''Command-R'' á Macintosh); '''Konqueror: '''smelltu á ''Reload'' eða ýttu á ''F5;'' '''Opera:''' hreinsaðu flýtiminnið í ''Tools → Prefernces;'' '''Internet Explorer:''' haltu niðri ''Ctrl'' og smelltu á ''Refresh,'' eða ýttu á ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript-kóða áður en hann er vistaður.',
@@ -895,6 +895,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'search-mwsuggest-enabled'  => 'með uppástungum',
 'search-mwsuggest-disabled' => 'engar uppástungur',
 'search-relatedarticle'     => 'Tengt',
+'mwsuggest-disable'         => 'Gera AJAX-uppástungur óvirkar',
 'searchrelated'             => 'tengt',
 'searchall'                 => 'öllum',
 'showingresults'            => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
@@ -1116,7 +1117,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'nolicense'          => 'Ekkert valið',
 'upload_source_file' => '(skrá á tölvunni þinni)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'skrá',
 'imagelist'             => 'Skráalisti',
 'imagelist_date'        => 'Dagsetning',
@@ -1292,7 +1293,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'logempty'             => 'Engin slík aðgerð fannst.',
 'log-title-wildcard'   => 'Leita að titlum sem byrja á þessum texta',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Allar síður',
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Næsta síða ($1)',
@@ -1315,12 +1316,12 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'special-categories-sort-count' => 'raða eftir fjölda',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Sýna notendur sem byrja á:',
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Enginn notandi fannst.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Notandahópréttindi',
 'listgrouprights-group'    => 'Hópur',
 'listgrouprights-rights'   => 'Réttindi',
@@ -1355,7 +1356,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'watchnologintext'     => 'Þú verður að vera [[Special:Userlogin|innskáð(ur)]] til að geta breytt vaktlistanum.',
 'addedwatch'           => 'Bætt á vaktlistann',
 'addedwatchtext'       => "Síðunni „[[:$1]]“ hefur verið bætt á [[Special:Watchlist|Vaktlistann]] þinn.
-Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og síðan mun vera '''feitletruð''' í [[Special:Recentchanges|Nýlegum breytingum]] svo auðveldara sé að finna hana.",
+Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og síðan mun vera '''feitletruð''' í [[Special:RecentChanges|Nýlegum breytingum]] svo auðveldara sé að finna hana.",
 'removedwatch'         => 'Fjarlægt af vaktlistanum',
 'removedwatchtext'     => 'Síðan „[[:$1]]“ hefur verið fjarlægð af [[Special:Watchlist|vaktlistanum þínum]].',
 'watch'                => 'Vakta',
@@ -1540,6 +1541,7 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'whatlinkshere-hidetrans'  => '$1 ítengingar',
 'whatlinkshere-hidelinks'  => '$1 tenglar',
 'whatlinkshere-hideimages' => '$1 myndatenglar',
+'whatlinkshere-filters'    => 'Síur',
 
 # Block/unblock
 'blockip'                     => 'Banna notanda',
@@ -1574,7 +1576,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'badipaddress'                => 'Ógilt vistfang',
 'blockipsuccesssub'           => 'Bann tókst',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br />
-Sjá [[Special:Ipblocklist|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
+Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
 'ipb-edit-dropdown'           => 'Breyta ástæðu fyrir banni',
 'ipb-unblock-addr'            => 'Afbanna $1',
 'ipb-unblock'                 => 'Afbanna notanda eða vistfang',
@@ -1607,7 +1609,7 @@ Sjá [[Special:Ipblocklist|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'blocklogentry'               => 'bannaði „[[$1]]“; rennur út eftir: $2 $3',
 'blocklogtext'                => 'Þetta er skrá yfir bönn sem lögð hafa verið á notendur eða bönn sem hafa verið numin úr gildi.
 Vistföng sem sett hafa verið í bann sjálfvirkt birtast ekki hér.
-Sjá [[Special:Ipblocklist|ítarlegri lista]] fyrir öll núgildandi bönn.',
+Sjá [[Special:IPBlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 'unblocklogentry'             => 'afbannaði $1',
 'block-log-flags-anononly'    => 'bara ónefndir notendur',
 'block-log-flags-nocreate'    => 'gerð aðganga bönnuð',
@@ -1687,6 +1689,7 @@ Síðan „[[$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fy
 'delete_and_move_confirm' => 'Já, eyða síðunni',
 'delete_and_move_reason'  => 'Eytt til að rýma til fyrir flutning',
 'selfmove'                => 'Nýja nafnið er það sama og gamla, þú verður að velja annað nafn.',
+'fix-double-redirects'    => 'Uppfæra tilvísanir sem vísa á upphaflegan titil',
 
 # Export
 'export'            => 'Flytja út síður',
@@ -1867,7 +1870,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'show-big-image'       => 'Mesta upplausn',
 'show-big-image-thumb' => '<small>Myndin er í upplausninni $1 × $2 </small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Myndasafn nýlegra skráa',
 'imagelisttext'         => 'Hér fyrir neðan er {{PLURAL:$1|einni skrá|$1 skrám}} raðað $2.',
 'newimages-summary'     => 'Þessi kerfissíða sýnir nýlega innhlaðnar skrár.',
@@ -2087,7 +2090,7 @@ $1',
 'version-software-product' => 'Vara',
 'version-software-version' => 'Útgáfa',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Slóð skráar',
 'filepath-page'   => 'Skrá:',
 'filepath-submit' => 'Slóð',
@@ -2110,7 +2113,7 @@ $1',
 'specialpages-group-users'       => 'Notendur og réttindi',
 'specialpages-group-highuse'     => 'Mest notaðar síður',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage' => 'Tóm síða',
 
 );

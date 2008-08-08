@@ -471,7 +471,7 @@ $2",
 'showpreview'               => 'ቅድመ እይታ',
 'showlivepreview'           => 'የቀጥታ ቅድመ-ዕይታ',
 'showdiff'                  => 'ማነጻጸሪያ',
-'anoneditwarning'           => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:Userlogin|መግባት]] ይችላሉ።",
+'anoneditwarning'           => "'''ማስታወቂያ:''' እርስዎ አሁን በአባል ስምዎ ያልገቡ ነዎት። ማዘጋጀት ይቻሎታል፤ ነገር ግን ለውጦችዎ በአባል ስም ሳይሆን በቁጥር አድራሻዎ ይመዘገባሉ። ከፈለጉ፥ በአባልነት [[Special:UserLogin|መግባት]] ይችላሉ።",
 'missingsummary'            => "'''ማስታወሻ፦''' ማጠቃለያ ገና አላቀረቡም። እንደገና «ገጹን ለማቅረብ» ቢጫኑ፣ ያለ ማጠቃለያ ይላካል።",
 'missingcommenttext'        => 'እባክዎ አስተያየት ከዚህ በታች ያስግቡ።',
 'missingcommentheader'      => "'''ማስታወሻ፦''' ለዚሁ አስተያየት ምንም አርእስት አላቀረቡም። 'ለማቅረብ' እንደገና ቢጫኑ ለውጥዎ ያለ አርዕስት ይሆናል።",
@@ -517,7 +517,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'newarticletext'            => 'እርስዎ የተከተሉት መያያዣ እስካሁን ወደማይኖር ገጽ የሚወስድ ነው። ገጹን አሁን ለመፍጠር፣ ከታች በሚገኘው ሳጥን ውስጥ መተየብ ይጀምሩ። ለተጨማሪ መረጃ፣ [[{{MediaWiki:Helppage}}|የእርዳታ ገጽን]] ይመልከቱ።
 
 ወደዚህ በስሕተት ከሆነ የመጡት፣ የቃኝውን «Back» ቁልፍ ይጫኑ።',
-'anontalkpagetext'          => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:Userlogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
+'anontalkpagetext'          => "----''ይኸው ገጽ ገና ያልገባ ወይም ብዕር ስም የሌለው ተጠቃሚ ውይይት ገጽ ነው። መታወቂያው በ[[ቁጥር አድራሻ]] እንዲሆን ያስፈልጋል። አንዳንዴ ግን አንድ የቁጥር አድራሻ በሁለት ወይም በብዙ ተጠቃሚዎች የጋራ ሊሆን ይችላል። ስለዚህ ለርስዎ የማይገባ ውይይት እንዳይደርስልዎ፣ [[Special:UserLogin|«መግቢያ»]] በመጫን የብዕር ስም ለማውጣት ይችላሉ።''",
 'noarticletext'             => 'በአሁኑ ወቅት በዚህ ገጽ ላይ ምንም ጽሑፍ የለም፤ በሌላ ገጾች [[Special:Search/{{PAGENAME}}|የዚህን ገጽ አርዕስት መፈለግ]] ወይም [{{fullurl:{{FULLPAGENAME}}|action=edit}} አዲስ ገፅ ማዘጋጀት ይችላሉ].',
 'userpage-userdoesnotexist' => 'የብዕር ስም «$1» አልተመዘገበም። እባክዎ ይህን ገጽ ለመፍጠር/ ለማስተካከል የፈለጉ እንደ ሆነ ያረጋግጡ።',
 'usercssjsyoucanpreview'    => "<strong>ምክር፦</strong> ሳይቆጠብ አዲስ CSS/JSዎን ለመሞከር 'ቅድመ እይታ' የሚለውን ይጫኑ።",
@@ -892,7 +892,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'upload_source_url'  => ' (ትክክለኛ፣ በግልጽ የሚገኝ URL)',
 'upload_source_file' => ' (በኮምፒውተርዎ ላይ ያለበት ፋይል)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'ለMedia ፋይል ስም ፍለጋ፦',
 'imgfile'               => 'ፋይሉ',
 'imagelist'             => 'የፋይል / ሥዕሎች ዝርዝር',
@@ -1074,7 +1074,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'logempty'             => '(በመዝገቡ ምንም የለም...)',
 'log-title-wildcard'   => 'ከዚህ ፊደል ጀምሮ አርዕስቶችን ለመፈልግ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'ገጾች ሁሉ በሙሉ',
 'alphaindexline'    => '$1 እስከ $2 ድረስ',
 'nextpage'          => 'የሚቀጥለው ገጽ (ከ$1 ጀምሮ)',
@@ -1093,7 +1093,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'categories'         => 'ምድቦች',
 'categoriespagetext' => 'በዚሁ ሥራ ዕቅድ ውስጥ የሚከተሉ መደቦች ይኖራሉ።',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'ከዚሁ ፊደል ጀምሮ፦',
 'listusers-submit'   => 'ይታይ',
 'listusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
@@ -1128,7 +1128,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'watchnologin'         => 'ገና አልገቡም',
 'watchnologintext'     => 'የሚከታተሏቸውን ገጾች ዝርዝር ለመቀየር [[Special:Userlogin|መግባት]] ይኖርብዎታል።',
 'addedwatch'           => 'ወደሚከታተሉት ገጾች ተጨመረ',
-'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:Recentchanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጨለማ ጽህፈት''' ተጽፎ ይገኛል።
+'addedwatchtext'       => "ገጹ «$1» [[Special:Watchlist|ለሚከታተሉት ገጾች]] ተጨምሯል። ወደፊት ይህ ገጽ ወይም የውይይቱ ገጽ ሲቀየር፣ በዚያ ዝርዝር ላይ ይታያል። በተጨማሪም [[Special:RecentChanges|«በቅርብ ጊዜ በተለወጡ» ገጾች]] ዝርዝር፣ በቀላሉ እንዲታይ በ'''ጨለማ ጽህፈት''' ተጽፎ ይገኛል።
 
 በኋላ ጊዜ ገጹን ከሚከታተሉት ገጾች ለማስወግድ የፈለጉ እንደሆነ፣ በጫፉ ዳርቻ «አለመከታተል» የሚለውን ይጫኑ።",
 'removedwatch'         => 'ከሚከታተሉት ገጾች ተወገደ',
@@ -1368,7 +1368,7 @@ $1',
 'badipaddress'                => 'የማይሆን የቁ. አድራሻ',
 'blockipsuccesssub'           => 'ማገጃ ተከናወነ',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] ታግዷል።<br />
-ማገጃዎች ለማመልከት [[Special:Ipblocklist|የማገጃ ዝርዝሩን]] ይዩ።',
+ማገጃዎች ለማመልከት [[Special:IPBlockList|የማገጃ ዝርዝሩን]] ይዩ።',
 'ipb-edit-dropdown'           => "'ተራ የማገጃ ምክንያቶች' ለማስተካከል",
 'ipb-unblock-addr'            => 'ከ$1 መገጃ ለማንሣት',
 'ipb-unblock'                 => 'ከብዕር ስም ወይም ከቁ. አድራሻ ማገጃ ለማንሣት',
@@ -1397,7 +1397,7 @@ $1',
 'contribslink'                => 'አስተዋጽኦች',
 'blocklogpage'                => 'የማገጃ መዝገብ',
 'blocklogentry'               => 'እስከ $2 ድረስ [[$1]] አገዳ $3',
-'blocklogtext'                => 'ይህ መዝገብ ተጠቃሚዎች መቸም ሲታገዱ ወይም ማገጃ ሲነሣ የሚዘረዝር ነው። ለአሁኑ የታገዱት ሰዎች [[Special:Ipblocklist|በአሁኑ ማገጃዎች ዝርዝር]] ይታያሉ።',
+'blocklogtext'                => 'ይህ መዝገብ ተጠቃሚዎች መቸም ሲታገዱ ወይም ማገጃ ሲነሣ የሚዘረዝር ነው። ለአሁኑ የታገዱት ሰዎች [[Special:IPBlockList|በአሁኑ ማገጃዎች ዝርዝር]] ይታያሉ።',
 'unblocklogentry'             => 'የ$1 ማገጃ አነሣ',
 'block-log-flags-anononly'    => 'ያልገቡት የቁ. አድራሻዎች ብቻ',
 'block-log-flags-nocreate'    => 'አዲስ ብዕር ስም ከማውጣት ተከለከለ',
@@ -1650,7 +1650,7 @@ $1',
 'show-big-image'       => 'በሙሉ ጒልህነት ለመመልከት',
 'show-big-image-thumb' => '<small>የዚህ ናሙና ቅጂ ክልል፦ $1 × $2 ፒክሰል</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'የአዳዲስ ሥዕሎች ማሳያ አዳራሽ',
 'imagelisttext'         => '$1 የተጨመሩ ሥእሎች ወይም ፋይሎች ከታች ይዘረዝራሉ ($2)።',
 'showhidebots'          => '(«bots» $1)',
@@ -2020,7 +2020,7 @@ $1',
 'version-software-product'         => 'ሶፍትዌር',
 'version-software-version'         => 'ዝርያ',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'የፋይል መንገድ',
 'filepath-page'    => 'ፋይሉ፦',
 'filepath-submit'  => 'መንገድ',

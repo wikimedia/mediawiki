@@ -689,7 +689,7 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 Per a crear-la, comenceu a escriure en l'espai de sota
 (vegeu l'[[{{MediaWiki:Helppage}}|ajuda]] per a més informació).
 Si sou ací per error, simplement cliqueu al botó «Enrere» del vostre navegador.",
-'anontalkpagetext'                 => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:Userlogin|creeu-vos un compte]] per a evitar futures confusions amb altres usuaris anònims.''",
+'anontalkpagetext'                 => "----''Aquesta és la pàgina de discussió d'un usuari anònim que encara no ha creat un compte o que no fa servir el seu nom registrat. Per tant, hem de fer servir la seua adreça IP numèrica per a identificar-lo. Una adreça IP pot ser compartida per molts usuaris. Si sou un usuari anònim, i trobeu que us han adreçat comentaris inoportuns, si us plau, [[Special:UserLogin|creeu-vos un compte]] per a evitar futures confusions amb altres usuaris anònims.''",
 'noarticletext'                    => 'En aquest moment no hi ha text en aquesta pàgina. Podeu [[Special:Search/{{PAGENAME}}|cercar-ne el títol]] en altres pàgines o [{{fullurl:{{FULLPAGENAME}}|action=edit}} començar a escriure-hi].',
 'userpage-userdoesnotexist'        => "Atenció: El compte d'usuari «$1» no està registrat. En principi no hauríeu de crear ni editar aquesta pàgina.",
 'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
@@ -1246,7 +1246,7 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload_source_url'  => ' (un URL vàlid i accessible públicament)',
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
 Per defecte, els darrers en ser carregats apareixen al principi de la llista.
 Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
@@ -1459,7 +1459,7 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'logempty'             => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard'   => 'Cerca els títols que comencin amb aquest text',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Totes les pàgines',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Pàgina següent ($1)',
@@ -1482,12 +1482,12 @@ Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usu
 'special-categories-sort-count' => 'ordena per recompte',
 'special-categories-sort-abc'   => 'ordena alfabèticament',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mostra usuaris començant per:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => "Drets dels grups d'usuaris",
 'listgrouprights-summary'  => "A continuació hi ha una llista dels grups d'usuaris definits al wiki, així com dels seus drets d'accés associats.
 Trobareu més informació d'aquest drets individuals [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].",
@@ -1538,7 +1538,7 @@ per modificar el vostre llistat de seguiment.",
 'addedwatch'           => "S'ha afegit la pàgina a la llista de seguiment",
 'addedwatchtext'       => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
 
-Els canvis futurs que tinguin lloc en aquesta pàgina i la seua corresponent discussió sortiran en la vostra [[Special:Watchlist|llista de seguiment]]. A més la pàgina estarà ressaltada '''en negreta''' dins la [[Special:Recentchanges|llista de canvis recents]] perquè pugueu adonar-vos-en amb més facilitat dels canvis que tingui.
+Els canvis futurs que tinguin lloc en aquesta pàgina i la seua corresponent discussió sortiran en la vostra [[Special:Watchlist|llista de seguiment]]. A més la pàgina estarà ressaltada '''en negreta''' dins la [[Special:RecentChanges|llista de canvis recents]] perquè pugueu adonar-vos-en amb més facilitat dels canvis que tingui.
 
 Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» de la barra lateral.",
 'removedwatch'         => "S'ha tret de la llista de seguiment",
@@ -1822,7 +1822,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'badipaddress'                    => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub'               => "S'ha blocat amb èxit",
 'blockipsuccesstext'              => 'L\'usuari "[[Special:Contributions/$1|$1]]" ha estat blocat.
-<br />Vegeu la [[Special:Ipblocklist|llista d\'IP blocades]] per revisar els bloquejos.',
+<br />Vegeu la [[Special:IPBlockList|llista d\'IP blocades]] per revisar els bloquejos.',
 'ipb-edit-dropdown'               => 'Edita les raons per a blocar',
 'ipb-unblock-addr'                => 'Desbloca $1',
 'ipb-unblock'                     => 'Desbloca un usuari o una adreça IP',
@@ -1853,7 +1853,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'autoblocker'                     => 'Heu estat blocat perquè compartiu adreça IP amb «$1». Motiu: «$2»',
 'blocklogpage'                    => 'Registre de bloquejos',
 'blocklogentry'                   => "s'ha blocat «[[$1]]» per a un període de $2 $3",
-'blocklogtext'                    => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:Ipblocklist|llista d'usuaris actualment bloquejats]].",
+'blocklogtext'                    => "Això és una relació de accions de bloqueig i desbloqueig. Les adreces IP bloquejades automàticament no apareixen. Vegeu la [[Special:IPBlockList|llista d'usuaris actualment bloquejats]].",
 'unblocklogentry'                 => 'desbloquejat $1',
 'block-log-flags-anononly'        => 'només els usuaris anònims',
 'block-log-flags-nocreate'        => "s'ha desactivat la creació de comptes",
@@ -2185,7 +2185,7 @@ $1",
 'show-big-image'       => 'Imatge en màxima resolució',
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeria de nous fitxers',
 'imagelisttext'         => "Llista {{PLURAL:$1|d'un sol fitxer|de '''$1''' fitxers ordenats $2}}.",
 'newimages-summary'     => 'Aquesta pàgina especial mostra els darrers fitxers carregats.',
@@ -2647,7 +2647,7 @@ També podeu [[Special:Watchlist/edit|utilitzar l'editor estàndard]].",
 'version-software-product'         => 'Producte',
 'version-software-version'         => 'Versió',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Camí del fitxer',
 'filepath-page'    => 'Fitxer:',
 'filepath-submit'  => 'Camí',
@@ -2686,7 +2686,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 'specialpages-group-redirects'   => 'Pàgines especials de redirecció',
 'specialpages-group-spam'        => 'Eines de spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pàgina en blanc',
 'intentionallyblankpage' => 'Pàgina intencionadament en blanc',
 

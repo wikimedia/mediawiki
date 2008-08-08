@@ -327,12 +327,12 @@ $messages = array(
 'log'               => 'ලඝු',
 'log-search-submit' => 'යන්න',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'සියලු පිටු',
 'alphaindexline' => '$1 සි‍ට $2',
 'allpagessubmit' => 'යන්න',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'පෙන්වන්න',
 
 # Watchlist
@@ -368,7 +368,7 @@ $messages = array(
 'tooltip-t-specialpages' => 'සියලු විශේෂ පිටු ලැයිස්තුව',
 'tooltip-save'           => 'ඔබගේ වෙනස් කිරීම් සුරකින්න',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'සොයන්න',
 
 # Metadata

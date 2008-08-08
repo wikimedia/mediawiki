@@ -241,7 +241,7 @@ $3',
 # Book sources
 'booksources' => 'Сурсе де цајрћи',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Тоатс пажи',
 'alphaindexline' => '$1 во $2',
 'allarticles'    => 'Тоат пажи',

@@ -334,7 +334,7 @@ dlô wicy wëdowiédzë).
 Jeżlë jes të tuwò bez zmiłkã, le klëkni w swòjim przezérnikù knąpã '''nazôd'''.",
 'anontalkpagetext'      => "----''To je starna dyskùsëji anonimòwiégò brëkòwnika, chtëren nie zrobił jesz kònta dlô se, abò gò nie brëkùje.
 Takô adresa IP, mòże bëc brëkòwónô òb wiele lëdzy.
-Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:Userlogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
+Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLogin|zrobi sobie nowé kònto]] abò zalogùje sã, bë niechac zmiłczi z jinëma anonimòwima brëkòwnikama.''",
 'clearyourcache'        => "'''Bôczë:''' Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë. '''Mozilla / Firefox / Safari:''' przëtrzëmôj ''Shift'' òbczas klëkaniô na ''Reload'', abò wcësni ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na kòmpùtrach Mac); '''IE:''' przëtrzëmôj ''Ctrl'' òbczas klëkaniô na ''Refresh'', abò wcësni ''Ctrl-F5''; '''Konqueror''': prosto klëkni na knąpã ''Reload'', abò wcësni ''F5''; brëkòwnicë '''Operë''' bãdą mést mùszële wëczëszczëc pamiãc w ''Tools→Preferences''.",
 'previewnote'           => '<strong>To je blós pòdzérk - artikel jesz nie je zapisóny!</strong>',
 'editing'               => 'Edicëjô $1',
@@ -454,7 +454,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:Userlog
 'uploadedimage'     => 'wladënk: "$1"',
 'uploaddisabled'    => 'Przeprôszómë! Mòżlëwòta wladënkù lopków na nen serwer òsta wëłączonô.',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => 'Lësta òbrôzków',
 'imagelist_user' => 'Brëkòwnik',
 
@@ -510,7 +510,7 @@ Długòta [http://www.mediawiki.org/wiki/Manual:Job_queue rédżi robòtë] je '
 'log'                 => 'Lodżi',
 'alllogstext'         => 'Sparłãczone registrë wësłónëch lopków, rëmónëch starn, zazychrowaniô, blokòwaniô ë nadôwaniô ùdowierzeniów. Mòżesz zawãżëc wëszłosc òb wëbranié ôrtu registru, miona brëkòwnika abò miona zajimnej dlô ce starnë.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Wszëtczé starnë',
 'alphaindexline'    => '$1 --> $2',
 'allpagesfrom'      => 'Starnë naczënające sã na:',
@@ -543,7 +543,7 @@ Długòta [http://www.mediawiki.org/wiki/Manual:Job_queue rédżi robòtë] je '
 'watchnologin'         => 'Felënk logòwóniô',
 'addedwatch'           => 'Dodónô do lëstë ùzérónëch',
 'addedwatchtext'       => "Starna \"[[:\$1]]\" òsta dodónô do twòji [[Special:Watchlist|lëstë ùzérónëch artiklów]].
-Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:Recentchanges|lësce slédnich edicëji]], bë të mògł to òbaczëc. 
+Na ti lësce są registre przińdnëch zjinak ti starne ë na ji starnie dyskùsëji, a samò miono starnë mdze '''wëtłëszczone''' na [[Special:RecentChanges|lësce slédnich edicëji]], bë të mògł to òbaczëc. 
 
 Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj ùzérac''.",
 'removedwatch'         => 'Rëmóné z lëstë ùzérónëch',
@@ -622,7 +622,7 @@ Chtos jiny ju editowôł starnã abò copnął zmianë.
 'badipaddress'       => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'  => 'Zascëgónié dało sã',
 'blockipsuccesstext' => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
-Biéj do [[Special:Ipblocklist|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
+Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
 'blocklistline'      => '$1, $2 zascëgôł $3 ($4)',
 'blocklink'          => 'zascëgôj',
 'contribslink'       => 'wkłôd',
@@ -697,7 +697,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'imagemaxsize' => 'Limitëjë òbrôzczi na starnie òpisënkù òbrôzków do:',
 'thumbsize'    => 'Miara miniaturków:',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Szëkôj',
 'bydate'   => 'wedle datumù',
 

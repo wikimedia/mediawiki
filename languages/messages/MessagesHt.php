@@ -561,7 +561,7 @@ Paske sistèm an pa gen seksyon $1 sa, nou pa twouve pyès lòt kote pou pibliye
 Pou ou kapab kreye paj sa a, komanse ap ekri nan bwat sa a ki anba (gade [[{{MediaWiki:Helppage}}|paj èd an]] pou konnen plis, pou plis enfòmasyon).
 
 Si se paske ou komèt yon erè ke ou ap twouve ou nan paj sa a, klike anlè bouton '''ritounen''' nan bwozè ou a.",
-'anontalkpagetext'                 => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwèt itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa te pou ou, ou mèt [[Special:Userlogin|kreye yon kont oubyen konekte w]] pou ou kapab anpeche difikilte sa yo, move bagay sa yo ant lòt itilizatè yo, kontribitè anonim yo.''",
+'anontalkpagetext'                 => "---- ''Ou nan paj diskisyon yon itilizatè anonim, ki pa gen non, ki poko kreye yon kont oubyen ki pa itilize pyès kont nan sistèm sa. Pou rezon sa, nou dwèt itilize adrès IP l pou nou kapab lokalize l, sitye l, montre kote l rete, idantifye l. Yon adrès IP kapab pataje ant plizyè moun, plizyè itilizatè. Si ou se yon itilizatè anonim e si ou wè ke ou resevwa komantè ki pa te pou ou, ou mèt [[Special:UserLogin|kreye yon kont oubyen konekte w]] pou ou kapab anpeche difikilte sa yo, move bagay sa yo ant lòt itilizatè yo, kontribitè anonim yo.''",
 'noarticletext'                    => 'Poko genyen tèks nan paj sa a, ou mèt [[Special:Search/{{PAGENAME}}|fè yon rechèch, fouye ak non paj sa a]] oubyen [{{fullurl:{{FULLPAGENAME}}|action=edit}} modifye li].',
 'userpage-userdoesnotexist'        => 'Kont itilizatè « $1 » sa pa anrejistre. Verifye toutbon ke ou vle kreye paj sa.',
 'clearyourcache'                   => "'''Note bagay sa:''' depi ou pibliye paj sa, ou dwèt fòse chajman, rafrechi paj an; ou mèt bliye kontni kach sistèm bwozè (navigatè entènèt ou an) kounye a pou ou kapab wè chanjman yo : '''Mozilla / Firefox / Konqueror / Safari :''' mentni touch ''lèt kapital'' ak klike sou bouton ''Rafrechi/Aktyalize'' oubyen peze ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sou sistèm Apple Mac) ; '''Internet Explorer / Opera :''' mentni touch ''Ctrl'' pandan ou ap prese bouton ''Rafrechi/Aktyalize'' oubyen peze ''Ctrl-F5''.",
@@ -731,7 +731,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'uploadlogpage' => 'Istorik chajman pou fichye miltimedya',
 'uploadedimage' => 'chaje « [[$1]] »',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lis fichye yo',
 
 # Image description page
@@ -818,7 +818,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'log'                  => 'Jounal yo',
 'all-logs-page'        => 'Tout jounal yo (istorik yo)',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Tout paj yo',
 'alphaindexline' => '$1 jiska $2',
 'nextpage'       => 'Paj swivan ($1)',
@@ -843,7 +843,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'watchlistfor'         => "(pou itilizatè '''$1''')",
 'addedwatch'           => 'Ajoute nan lis swivi',
 'addedwatchtext'       => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
-Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:Recentchanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
+Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:RecentChanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
 'removedwatch'         => 'Retire nan lis swivi',
 'removedwatchtext'     => 'Paj « [[:$1]] » byen retire nan lis swivi ou an.',
 'watch'                => 'Swiv',
@@ -1033,7 +1033,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'show-big-image'       => 'Imaj pli gwo, pli fin',
 'show-big-image-thumb' => '<small>Lajè kout zye sa a : $1 × $2 piksèl</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Galri pou nouvo fichye yo',
 
 # Bad image list

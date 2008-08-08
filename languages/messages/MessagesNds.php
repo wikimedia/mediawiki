@@ -654,7 +654,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'subject-preview'                  => "Vörschau vun de Reeg ''Tosamenfaten''",
 'blockedtitle'                     => 'Bruker is blockt',
 'blockedtext'                      => 'Dien Brukernaam oder diene IP-Adress is vun $1 blockt worrn.
-As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:Ipblocklist|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
+As Grund is angeven: \'\'$2\'\' (<span class="plainlinks">[{{fullurl:Special:IPBlockList|&action=search&limit=&ip=%23}}$5 Logbookindrag]</span>, de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich. Wenn du gor nix schrieven wullst, denn hest du villicht op en roden Lenk klickt, to en Artikel den dat noch nich gifft. blot blaue Lenken gaht na vörhannene Artikels.
 
@@ -696,7 +696,7 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 'anontalkpagetext'                 => "---- ''Dit is de Diskuschoonssiet vun en nich anmellt Bruker.
 Wi mööt hier de numerische IP-Adress verwennen, üm den Bruker to identifizeern.
 So en Adress kann vun verscheden Brukern bruukt warrn.
-Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di richt sünd, denn [[Special:Userlogin|mell di doch an]], dormit dat Problem nich mehr besteiht.''",
+Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di richt sünd, denn [[Special:UserLogin|mell di doch an]], dormit dat Problem nich mehr besteiht.''",
 'noarticletext'                    => 'Dor is opstunns keen Text op disse Siet. Du kannst [[Special:Search/{{PAGENAME}}|na dissen Utdruck in annere Sieden söken]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse Siet ännern].',
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -1263,7 +1263,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'upload_source_url'  => ' (gellen, apen togängliche URL)',
 'upload_source_file' => ' (en Datei op dien Reekner)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Disse Spezialsied wiest all Datein. As Standard warrt de ne’esten Datein toeerst wiest. Wenn du op de enkelten Överschriften klickst, kannst du de Sortreeg ümdreihn oder na en anner Kriterium sorteren.',
 'imagelist_search_for'  => 'Söök na Datei:',
 'imgfile'               => 'Datei',
@@ -1473,7 +1473,7 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'logempty'             => 'In’e Logböker nix funnen, wat passt.',
 'log-title-wildcard'   => 'Titel fangt an mit …',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alle Sieden',
 'alphaindexline'    => '$1 bet $2',
 'nextpage'          => 'tokamen Siet ($1)',
@@ -1496,12 +1496,12 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 'special-categories-sort-count' => 'na Tall sorteren',
 'special-categories-sort-abc'   => 'alphabeetsch sorteren',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Wies de Brukers, de anfangt mit:',
 'listusers-submit'   => 'Wiesen',
 'listusers-noresult' => 'Keen Bruker funnen.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Brukergruppen-Rechten',
 'listgrouprights-summary'  => 'Dit is en List vun de Brukergruppen, de in dit Wiki defineert sünd, un de Rechten, de dor mit verbunnen sünd.
 Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgrouprights-helppage}}]].',
@@ -1541,7 +1541,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'watchnologintext'     => 'Du must [[Special:Userlogin|anmellt]] wesen, wenn du dien Oppasslist ännern willst.',
 'addedwatch'           => 'To de Oppasslist toföögt',
 'addedwatchtext'       => 'De Siet „<nowiki>$1</nowiki>“ is to diene [[Special:Watchlist|Oppasslist]] toföögt worrn.
-Ännern, de in Tokumst an disse Siet un an de tohörige Diskuschoonssiet maakt warrt, sünd dor op oplist un de Siet is op de [[Special:Recentchanges|List vun de letzten Ännern]] fett markt. Wenn du de Siet nich mehr op diene Oppasslist hebben willst, klick op „Nich mehr oppassen“.',
+Ännern, de in Tokumst an disse Siet un an de tohörige Diskuschoonssiet maakt warrt, sünd dor op oplist un de Siet is op de [[Special:RecentChanges|List vun de letzten Ännern]] fett markt. Wenn du de Siet nich mehr op diene Oppasslist hebben willst, klick op „Nich mehr oppassen“.',
 'removedwatch'         => 'De Siet is nich mehr op de Oppasslist',
 'removedwatchtext'     => 'De Siet „<nowiki>$1</nowiki>“ is nich mehr op de Oppasslist.',
 'watch'                => 'Oppassen',
@@ -1807,7 +1807,7 @@ Ok den Grund för dat Blocken indregen.',
 'blockipsuccesssub'               => 'Blocken hett Spood',
 'blockipsuccesstext'              => 'De IP-Adress „$1“ is nu blockt.
 
-<br />Op de [[Special:Ipblocklist|IP-Blocklist]] is en List vun alle Blocks to finnen.',
+<br />Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
 'ipb-edit-dropdown'               => 'Blockgrünn bearbeiden',
 'ipb-unblock-addr'                => '„$1“ freegeven',
 'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',
@@ -1838,7 +1838,7 @@ Ok den Grund för dat Blocken indregen.',
 'blocklogpage'                    => 'Brukerblock-Logbook',
 'blocklogentry'                   => 'block [[$1]] för en Tiedruum vun: $2 $3',
 'blocklogtext'                    => 'Dit is en Logbook över Blocks un Freegaven vun Brukern. Automatisch blockte IP-Adressen sünd nich opföhrt.
-Kiek [[Special:Ipblocklist|IP-Blocklist]] för en List vun den blockten Brukern.',
+Kiek [[Special:IPBlockList|IP-Blocklist]] för en List vun den blockten Brukern.',
 'unblocklogentry'                 => 'Block vun [[$1]] ophoven',
 'block-log-flags-anononly'        => 'blots anonyme Brukers',
 'block-log-flags-nocreate'        => 'Brukerkonten opstellen sperrt',
@@ -2157,7 +2157,7 @@ $1',
 'show-big-image'       => 'Dat Bild wat grötter',
 'show-big-image-thumb' => '<small>Grött vun disse Vörschau: $1 × $2 Pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Ne’e Biller',
 'imagelisttext'         => 'Hier is en List vun {{PLURAL:$1|een Bild|$1 Biller}}, sorteert $2.',
 'newimages-summary'     => 'Disse Spezialsiet wiest de Datein, de toletzt hoochladen worrn sünd.',
@@ -2599,7 +2599,7 @@ Du kannst ok de [[Special:Watchlist/edit|normale Sied to’n Ännern]] bruken.',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Dateipadd',
 'filepath-page'    => 'Datei:',
 'filepath-submit'  => 'Padd',
@@ -2637,7 +2637,7 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'specialpages-group-redirects'   => 'Redirect-Spezialsieden',
 'specialpages-group-spam'        => 'Spam-Warktüüch',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Leddige Sied',
 'intentionallyblankpage' => 'Disse Sied is mit Afsicht leddig.',
 

@@ -339,7 +339,7 @@ oba ku gano agali ku lupapula luno.<br />
 'upload'        => 'Teekayo fayiro',
 'uploadlogpage' => 'Likooda eya fayiro eziteekedwa ku wiki',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_user' => 'Memba',
 
 # Image description page
@@ -371,7 +371,7 @@ oba ku gano agali ku lupapula luno.<br />
 'specialloguserlabel' => 'Memba:',
 'log'                 => "Empapula ez'ebyafaayo eby'emirimu egitaligimu",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Empapula zonna',
 'alphaindexline'    => 'okuva ku $1 kutuuka ku $2',
 'allpagesfrom'      => 'Laga empapula okuva ku:',
@@ -392,7 +392,7 @@ oba ku gano agali ku lupapula luno.<br />
 'addedwatch'     => "Kigattiddwa ku by'ogoberera",
 'addedwatchtext' => 'Olupapula "[[:$1]]" kati luli mu [[Special:Watchlist|by\'ogoberera]].
 Buli olupapula olwo oba olw\'emboozi lwalwo lwe binaakyuusibwamu, enkyuukakyuka ezo
-zijjakulabika wano. Era erinnya lyalwo mu [[Special:Recentchanges|lukalala olw\'ebyakakyuuisbwa]]
+zijjakulabika wano. Era erinnya lyalwo mu [[Special:RecentChanges|lukalala olw\'ebyakakyuuisbwa]]
 lijja okuba mu nukuta enziggumivu oyanguyirwe okuliraba.
 
 Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali.',

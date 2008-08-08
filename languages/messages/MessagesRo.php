@@ -594,7 +594,7 @@ Identificatorul dumneavoastră de blocare este $5. Vă rugăm să îl includeţi
 'accmailtext'               => "Parola pentru '$1' a fost trimisă la $2.",
 'newarticle'                => '(Nou)',
 'newarticletext'            => 'Ai ajuns la o pagină care nu există. Pentru a o crea, începe să scrii în caseta de mai jos (vezi [[{{MediaWiki:Helppage}}|pagina de ajutor]] pentru mai multe informaţii). Dacă ai ajuns aici din greşeală, întoarce-te folosind controalele browser-ului tău',
-'anontalkpagetext'          => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim adresă IP pentru a identifica această persoană. O adresă IP poate fi folosită în comun de mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:Userlogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
+'anontalkpagetext'          => "---- ''Aceasta este pagina de discuţii pentru un utilizator care nu şi-a creat un cont încă, sau care nu s-a autentificat. De aceea trebuie să folosim adresă IP pentru a identifica această persoană. O adresă IP poate fi folosită în comun de mai mulţi utilizatori. Dacă sunteţi un astfel de utilizator şi credeţi că vă sunt adresate mesaje irelevante, vă rugăm să [[Special:UserLogin|vă creaţi un cont sau să vă autentificaţi]] pentru a evita confuzii cu alţi utilizatori anonimi în viitor.''",
 'noarticletext'             => '{{SITENAME}} nu are încă un articol referitor la această pagină. Puteţi [[Special:Search/{{PAGENAME}}|căuta titlul paginii cu acest nume]] în alte pagini sau [{{fullurl:{{FULLPAGENAME}}|action=edit}} edita această pagină].',
 'userpage-userdoesnotexist' => 'Contul de utilizator "$1" nu este înregistrat. Verificaţi dacă doriţi să creaţi/modificaţi această pagină.',
 'clearyourcache'            => "'''Notă:''' După salvare, trebuie să treceţi peste cache-ul browser-ului pentru a vedea modificările. '''Mozilla/Safari/Konqueror:''' ţineţi apăsat ''Shift'' în timp ce apăsaţi ''Reload'' (sau apăsaţi ''Ctrl-Shift-R''), '''IE:''' apăsaţi ''Ctrl-F5'', '''Opera:''' apăsaţi ''F5''.",
@@ -1048,7 +1048,7 @@ Vă rugăm, verificaţi că adresa URL este corectă şi că situl este funcţio
 'upload_source_url'  => ' (un URL valid, accesibil public)',
 'upload_source_file' => ' (un fişier de pe computerul tău)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Caută imagine după nume:',
 'imgfile'               => 'fişier',
 'imagelist'             => 'Lista imaginilor',
@@ -1227,7 +1227,7 @@ Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>\$7<
 'logempty'             => 'Nici o înregistrare în raport.',
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Toate paginile',
 'alphaindexline'    => '$1 către $2',
 'nextpage'          => 'Pagina următoare ($1)',
@@ -1249,12 +1249,12 @@ Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>\$7<
 'special-categories-sort-count' => 'ordonează după număr',
 'special-categories-sort-abc'   => 'sortează alfabetic',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Afişează utilizatori începând cu:',
 'listusers-submit'   => 'Arată',
 'listusers-noresult' => 'Nici un utilizator găsit.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'   => 'Grup',
 'listgrouprights-rights'  => 'Drepturi',
 'listgrouprights-members' => '(listă de membri)',
@@ -1288,7 +1288,7 @@ Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>\$7<
 'watchnologin'         => 'Nu sunteţi autentificat',
 'watchnologintext'     => 'Trebuie să fiţi [[Special:Userlogin|autentificat]] pentru a vă modifica lista de pagini urmărite.',
 'addedwatch'           => 'Adăugată la lista de pagini urmărite',
-'addedwatchtext'       => 'Pagina "[[:$1]]" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]]. Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:Recentchanges|modificări recente]] pentru evidenţiere.
+'addedwatchtext'       => 'Pagina "[[:$1]]" a fost adăugată la lista ta de [[Special:Watchlist|articole urmărite]]. Modificările viitoare ale acestei pagini şi a paginii asociate de discuţii vor fi listate aici, şi în plus ele vor apărea cu <b>caractere îngroşate</b> în pagina de [[Special:RecentChanges|modificări recente]] pentru evidenţiere.
 
 Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în viitor, apasă pe "Nu mai urmări" în bara de comenzi în timp ce această pagină este vizibilă.',
 'removedwatch'         => 'Ştearsă din lista de pagini urmărite',
@@ -1531,7 +1531,7 @@ Precizaţi motivul blocării; de exemplu indicaţi paginile vandalizate de acest
 'badipaddress'                => 'Adresa IP este invalidă.',
 'blockipsuccesssub'           => 'Utilizatorul a fost blocat',
 'blockipsuccesstext'          => 'Adresa IP "$1" a fost blocată.
-<br />Vezi [[Special:Ipblocklist|lista de adrese IP şi conturi blocate]] pentru a revizui adresele blocate.',
+<br />Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a revizui adresele blocate.',
 'ipb-edit-dropdown'           => 'Modifică motivele blocării',
 'ipb-unblock-addr'            => 'Deblochează $1',
 'ipb-unblock'                 => 'Deblochează un cont de utilizator sau o adresă IP',
@@ -1560,7 +1560,7 @@ drepturile de scriere pentru o adresă IP blocată anterior..',
 'autoblocker'                 => 'Autoblocat fiindcă foloseşti aceeaşi adresă IP ca şi "$1". Motivul este "$2".',
 'blocklogpage'                => 'Jurnal blocări',
 'blocklogentry'               => 'a blocat "[[$1]]" pe o perioadă de $2 $3',
-'blocklogtext'                => 'Acesta este un raport al acţiunilor de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:Ipblocklist|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
+'blocklogtext'                => 'Acesta este un raport al acţiunilor de blocare şi deblocare. Adresele IP blocate automat nu sunt afişate. Vizitaţi [[Special:IPBlockList|lista de adrese blocate]] pentru o listă explicită a adreselor blocate în acest moment.',
 'unblocklogentry'             => 'a deblocat $1',
 'block-log-flags-anononly'    => 'doar utilizatorii anonimi',
 'block-log-flags-nocreate'    => 'creare de conturi dezactivată',
@@ -1850,7 +1850,7 @@ Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki L
 'show-big-image'       => 'Măreşte rezoluţia imaginii',
 'show-big-image-thumb' => '<small>Mărimea acestei previzualizări: $1 × $2 pixeli</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeria de imagini noi',
 'imagelisttext'         => "Mai jos se află lista a '''$1''' {{PLURAL:$1|fişier ordonat|fişiere ordonate}} $2.",
 'showhidebots'          => '($1 roboţi)',
@@ -2250,7 +2250,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'version-software-product' => 'Produs',
 'version-software-version' => 'Versiune',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Cale fişier',
 'filepath-page'   => 'Fişier:',
 'filepath-submit' => 'Cale',
@@ -2276,7 +2276,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'specialpages-group-wiki'        => 'Date şi unelte wiki',
 'specialpages-group-redirects'   => 'Pagini speciale de redirecţionare',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pagină goală',
 'intentionallyblankpage' => 'Această pagină este goală în mod intenţionat',
 

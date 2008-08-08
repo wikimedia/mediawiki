@@ -679,7 +679,7 @@ Vaš broj pod kojim se vodi vaša blokirana IP adresa je $5. Molimo navedite ova
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
 *Ako vam treba pomoć, idite na [[{{MediaWiki:Helppage}}|stranicu za pomoć]].
 *Ako ste ovamo dospjeli slučajno, kliknite "Natrag" (Back) u svom programu.',
-'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s anonimnim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste anonimni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:Userlogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim anonimnim suradnicima.''",
+'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s anonimnim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste anonimni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim anonimnim suradnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutačno nema sadržaja, možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] u drugim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
@@ -1239,7 +1239,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'upload_source_url'  => ' (valjani, javno dostupni URL)',
 'upload_source_file' => ' (datoteka na vašem računalu)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
 Na vrhu popisa se nalaze najnovije postavljene datoteke.
 Poredak datoteka mijenja se pritiskom na naslov stupca.',
@@ -1454,7 +1454,7 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'logempty'             => 'Nema pronađenih stavki.',
 'log-title-wildcard'   => 'Traži stranice koje počinju s navedenim izrazom',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Sve stranice',
 'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Sljedeća stranica ($1)',
@@ -1477,12 +1477,12 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'special-categories-sort-count' => 'razvrstavanje po broju',
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Prikaži suradnike počevši od:',
 'listusers-submit'   => 'Prikaži',
 'listusers-noresult' => 'Nema takvih suradnika.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Prava suradničkih skupina',
 'listgrouprights-summary'         => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.
 Dodatne informacije o pojedinim pravim se mogu pronaći [[{{MediaWiki:Listgrouprights-helppage}}|ovdje]].',
@@ -1532,7 +1532,7 @@ za promjene u popisu praćenja.',
 'addedwatch'           => 'Dodano u popis praćenja',
 'addedwatchtext'       => 'Stranica "<nowiki>$1</nowiki>" je dodana na vaš [[Special:Watchlist|popis praćenja]].
 Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, a stranica će biti ispisana
-<b>podebljano</b> u [[Special:Recentchanges|popisu nedavnih promjena]], da biste je lakše primijetili.
+<b>podebljano</b> u [[Special:RecentChanges|popisu nedavnih promjena]], da biste je lakše primijetili.
 <p>Ako poželite ukloniti stranicu s popisa praćenja, pritisnite "Prekini praćenje" u traci s naredbama.</p>',
 'removedwatch'         => 'Odstranjena s popisa praćenja',
 'removedwatchtext'     => 'Stranica "<nowiki>$1</nowiki>" je odstranjena s vašeg popisa praćenja.',
@@ -1811,7 +1811,7 @@ vandalizirane).',
 'badipaddress'                    => 'Nevaljana IP adresa.',
 'blockipsuccesssub'               => 'Uspješno blokirano',
 'blockipsuccesstext'              => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
-Pogledaj [[Special:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
+Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
 'ipb-unblock-addr'                => 'Odblokiraj $1',
 'ipb-unblock'                     => 'Odblokiraj suradničko ime ili IP adresu',
@@ -1841,7 +1841,7 @@ Pogledaj [[Special:Ipblocklist|popis blokiranih IP adresa]] za pregled.',
 'autoblocker'                     => 'Automatski ste blokirani jer je vašu IP adresu nedavno koristio "[[User:$1|$1]]" koji je blokiran zbog: "$2".',
 'blocklogpage'                    => 'Evidencija blokiranja',
 'blocklogentry'                   => 'Blokiran je "[[$1]]" na rok $2 $3',
-'blocklogtext'                    => 'Ovo je evidencija blokiranja i deblokiranja. Na popisu nema automatski blokiranih IP adresa. Za popis trenutačnih zabrana i blokiranja vidi [[Special:Ipblocklist|popis IP blokiranja]].',
+'blocklogtext'                    => 'Ovo je evidencija blokiranja i deblokiranja. Na popisu nema automatski blokiranih IP adresa. Za popis trenutačnih zabrana i blokiranja vidi [[Special:IPBlockList|popis IP blokiranja]].',
 'unblocklogentry'                 => 'Deblokiran "$1"',
 'block-log-flags-anononly'        => 'samo za neprijavljene (anonimne) suradnike',
 'block-log-flags-nocreate'        => 'otvaranje novih suradničkih imena nije moguće',
@@ -2168,7 +2168,7 @@ $1',
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina pretpregleda: $1 × $2 piksela</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerija novih datoteka',
 'imagelisttext'         => 'Ispod je popis {{PLURAL:$1|$1 slike|$1 slike|$1 slika}} složen $2.',
 'newimages-summary'     => 'Ova posebna stranica pokazuje zadnje nedavno postavljene datoteke.',
@@ -2624,7 +2624,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'version-software-product'         => 'Proizvod',
 'version-software-version'         => 'Verzija',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Putanja datoteke',
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Putanja',
@@ -2662,7 +2662,7 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'specialpages-group-redirects'   => 'Preusmjeravajuće posebne stranice',
 'specialpages-group-spam'        => 'Spam alati',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Prazna stranica',
 'intentionallyblankpage' => 'Ova stranica je namjerno ostavljena praznom',
 

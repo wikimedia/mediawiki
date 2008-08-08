@@ -265,7 +265,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 'upload-file-error' => 'Errore internu',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'schedariu',
 'imagelist_date' => 'Data',
 'imagelist_name' => 'Nome',
@@ -302,7 +302,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'speciallogtitlelabel' => 'Titulu:',
 'all-logs-page'        => "Tutte l'azzioni",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tutte e pagine',
 'alphaindexline'    => 'da $1 à $2',
 'allpagesfrom'      => 'Mustrà e pagine à parte da:',
@@ -318,7 +318,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:Categories
 'categories' => 'Categurie',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Mustrà',
 
 # E-mail user
@@ -442,7 +442,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 boti)',
 'noimages'     => 'Nulla da vede.',
 'ilsubmit'     => 'Ricerca',
@@ -493,7 +493,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:Version
 'version' => 'Versione', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Schedariu:',
 
 # Special:SpecialPages

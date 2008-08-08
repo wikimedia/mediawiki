@@ -142,7 +142,7 @@ $messages = array(
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
 'tooltip-p-logo'         => 'Mae meh',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Cwmh',
 
 # Multipage image navigation

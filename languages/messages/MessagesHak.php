@@ -442,7 +442,7 @@ Liá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he '
 'newarticletext'            => 'Ngì hien-chhai chin-ngi̍p yit-ke hàn-mò chhóng-kien ke vùn-chông.
 Yeu kien-chho ke vùn-chông, chhiáng chhai ha-mien ke phiên-cho-khiông chûng sû-ngi̍p nui-yùng (Chhâm-siòng [[{{MediaWiki:Helppage}}|Pông-chhu]]).
 Kó-yèn ngì-he put-séu-sîm to chhṳ́ hong-mien, chhṳ̍t-chiap tiám-kit ngì hi-khí chûng ke "fì-chón" on-néu fán-fì.',
-'anontalkpagetext'          => "---- ''Liá-he yit-ke hàn-mò kien-li̍p chong-ho ke ngia̍k-miàng yung-fu ke tui-fa-hong. Só-yî chṳ́-nèn yung IP thi-tiám lòi lâu kí lièn-lo̍k. Ke-IP thi-tiám khó-nèn yù-chhai kí-miàng yung-fu khiung-hióng. Kó-yèn ngì-he yit-miàng ngia̍k-miàng yung-fu ngin-vì pún-hong song ke phìn-lî kiên ngì mò-kôan, chhiáng [[Special:Userlogin|Chhóng-kien sîn chong-ho fe̍t-chá Tên-ngi̍p]] khó-yî phit-miên lòi-yì khì-thâ ngia̍k-miàng yung-fu ke fun-lon.''",
+'anontalkpagetext'          => "---- ''Liá-he yit-ke hàn-mò kien-li̍p chong-ho ke ngia̍k-miàng yung-fu ke tui-fa-hong. Só-yî chṳ́-nèn yung IP thi-tiám lòi lâu kí lièn-lo̍k. Ke-IP thi-tiám khó-nèn yù-chhai kí-miàng yung-fu khiung-hióng. Kó-yèn ngì-he yit-miàng ngia̍k-miàng yung-fu ngin-vì pún-hong song ke phìn-lî kiên ngì mò-kôan, chhiáng [[Special:UserLogin|Chhóng-kien sîn chong-ho fe̍t-chá Tên-ngi̍p]] khó-yî phit-miên lòi-yì khì-thâ ngia̍k-miàng yung-fu ke fun-lon.''",
 'noarticletext'             => 'Chhṳ́-chông muk-chhièn hàn-mò nui-yùng, ngì khó-yî chhai khì-thâ hong [[Special:Search/{{PAGENAME}}|sêu-chhà chhṳ́-chông phêu-thì]] fe̍t-chá [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} phiên-chho chhṳ́-chông].',
 'clearyourcache'            => "'''Chu-yi:''' Chhai tú-chhùn yî-heu, ngì pit-sî khoai chhái-chhí chhîn-chhù hi-khí chhòi-nèn khon-tó chok-chhut ke kói-pien. '''Mozilla / Firefox / Safari:''' on-tén ''Shift'' chai tiám-kit '' Chhùng-sîn chṳ́n-lî ''(fe̍t-chá on-hâ ''Ctrl-Shift-R'', chhai Phìn-kó Mac song on-hâ ''Cmd-Shift-R''); '''IE:''' on-tén ''Ctrl'' chai tiám-kit ''Chhùng-sîn chṳ́n-lî'', fe̍t-he on-hâ ''Ctrl-F5''；'''Konqueror:''' chak  sî-yeu tiám-kit ''Chhùng-sîn chṳ́n-lî''; '''Opera:''' yung-fu sî-yeu chhai ''kûng-khí-sat-thin'' chûng vàn-cháng-thi chhîn-chhù ke khoai-chhí.",
 'usercssjsyoucanpreview'    => "<strong>Thì-sṳ:</strong> Chhai pó-chhùn chhièn chhiáng yung 'hién-sṳ yi-ko' on-néu lòi chhet-chhṳ ngì sîn-ke CSS/JS.",
@@ -780,7 +780,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'upload_source_url'  => '(Yit-ke yû-háu ke, hí-khó kûng-khôi fóng-mun ke URL)',
 'upload_source_file' => '(ngì thien-nó chûng ke tóng-on)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'On-cheu thù-chhiong miàng-chhṳ̂n sêu-chhà:',
 'imgfile'               => 'tóng-on',
 'imagelist'             => 'Tóng-on lie̍t-péu',
@@ -921,7 +921,7 @@ Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá 
 'logempty'             => 'Mò-yû siông-thùng ki-liu̍k.',
 'log-title-wildcard'   => 'Chhà-chhìm liá-ke vùn-sṳ khôi-sṳ́ ke phêu-thì',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Só-yû ke hong-mian',
 'alphaindexline'    => '$1 to $2',
 'nextpage'          => 'Hâ yit-chông ($1)',
@@ -940,7 +940,7 @@ Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá 
 'categories'         => 'Hong-mien fûn-lui',
 'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Hién-sṳ yung-fu lie̍t-péu chhiùng:',
 'listusers-submit'   => 'Hién-sṳ',
 'listusers-noresult' => 'Cháu put-to yung-fu.',
@@ -974,7 +974,7 @@ Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá 
 'watchnologin'         => 'Hàn-mò tên-ngi̍p',
 'watchnologintext'     => 'Ngì pit-sî siên [[Special:Userlogin|tên-ngi̍p]] chhòi-nèn kiên-kói ngì-ke kam-sṳ lie̍t-péu.',
 'addedwatch'           => 'Kâ-ngi̍p to kam-sṳ lie̍t-péu',
-'addedwatchtext'       => "Hong-mien \"[[:\$1]]\" yí-kîn pûn kâ-ngi̍p to ngì-ke [[Special:Watchlist|Kam-sṳ chhîn-tân]] chûng. Chiông-lòi yû-kôan chhṳ́ hong-mien khi̍p khì-thâ thó-lun-hong ke ngim-hò siû-cháng chiông-voi chhai hong-mien lie̍t-chhut, song-chhiá hàn-voi chhai [[Special:Recentchanges|Chui-khiûn ke kiên-kói]] chûng ke '''chhû-thí''' hìn-sṳt lie̍t-chhut. Kó-yèn  ngì heu-lòi sióng chhiùng hong-mien kam-sṳ chhîn-tân chûng chhîn-chhù, hí-khó tiám-kit thô-hòng thiàu-chûng \"thìn-chṳ́ kam-sṳ\" ke lièn-kiet。",
+'addedwatchtext'       => "Hong-mien \"[[:\$1]]\" yí-kîn pûn kâ-ngi̍p to ngì-ke [[Special:Watchlist|Kam-sṳ chhîn-tân]] chûng. Chiông-lòi yû-kôan chhṳ́ hong-mien khi̍p khì-thâ thó-lun-hong ke ngim-hò siû-cháng chiông-voi chhai hong-mien lie̍t-chhut, song-chhiá hàn-voi chhai [[Special:RecentChanges|Chui-khiûn ke kiên-kói]] chûng ke '''chhû-thí''' hìn-sṳt lie̍t-chhut. Kó-yèn  ngì heu-lòi sióng chhiùng hong-mien kam-sṳ chhîn-tân chûng chhîn-chhù, hí-khó tiám-kit thô-hòng thiàu-chûng \"thìn-chṳ́ kam-sṳ\" ke lièn-kiet。",
 'removedwatch'         => 'Yí-kîn thìn-chṳ́ kam-sṳ',
 'removedwatchtext'     => 'Vùn-chông "[[:$1]]" yí-kîn chhiùng Ngì kekam-sṳ lie̍t-péu mien-chûng yì-chhù.',
 'watch'                => 'Kam-sṳ',
@@ -1166,7 +1166,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng.',
 'badipaddress'                => 'IP-ke thi-tiám mò chṳn-khok.',
 'blockipsuccesssub'           => 'chhà-fûng sṳ̀n-kûng',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] yí-kîn pûn chhà-fûng. <br />Chhâm-siòng [[Special:Ipblocklist|pûn-fûng IP thi-tiám lie̍t-péu]] yî fu̍k-sṳ́m chhà-fûng.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] yí-kîn pûn chhà-fûng. <br />Chhâm-siòng [[Special:IPBlockList|pûn-fûng IP thi-tiám lie̍t-péu]] yî fu̍k-sṳ́m chhà-fûng.',
 'ipb-edit-dropdown'           => 'Phiên-siá chhà-fûng ngièn-yîn',
 'ipb-unblock-addr'            => 'Kié-chhù fûng-kim $1',
 'ipb-unblock'                 => 'Kié-chhù kim-fûng yung-fu miàng fe̍t-chá IP thi-tiám',
@@ -1193,7 +1193,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'autoblocker'                 => 'Ngì-ke IP lâu pûn fûng-liáu ke "$1" he yit-yong ke. Fûng-só ngièn-yîn: "$2".',
 'blocklogpage'                => 'Fûng-só ki-liu̍k',
 'blocklogentry'               => '"[[$1]]" yí-kîn pûn chhà-fûng $3, chûng-chṳ́ sṳ̀-kiên he $2',
-'blocklogtext'                => 'Liá-he kôan-yî yung-fu fûng-kim lâu kié-chhù fûng-kim chhâu-chok ke ki-liu̍k. Pûn chhṳ-thung fûng-kim ke IP thi-tiám mò-yû lie̍t-chhut. Chhiáng chhâm-kháu [[Special:Ipblocklist|Pûn chhà-fûng ke IP thi-tiám lâu yung-fu lie̍t-péu]].',
+'blocklogtext'                => 'Liá-he kôan-yî yung-fu fûng-kim lâu kié-chhù fûng-kim chhâu-chok ke ki-liu̍k. Pûn chhṳ-thung fûng-kim ke IP thi-tiám mò-yû lie̍t-chhut. Chhiáng chhâm-kháu [[Special:IPBlockList|Pûn chhà-fûng ke IP thi-tiám lâu yung-fu lie̍t-péu]].',
 'unblocklogentry'             => '"[[$1]]" yí-kîn pûn kié-fûng',
 'block-log-flags-anononly'    => 'Han-chṳ ngia̍k-miàng ke yung-fu',
 'block-log-flags-nocreate'    => 'Kim-chṳ́ chhṳ́ IP/Yung-fu kien-li̍p sîn chong-fu',
@@ -1472,7 +1472,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'show-big-image'       => 'Vàn-cháng ke kié-chhiong-thu',
 'show-big-image-thumb' => '<small>Liá-ke puk-suk-thù ke kié-chhiong-thu he: $1 × $2 chhiong-su</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Sîn-kien thù-chhiong ke va̍k-lòng',
 'imagelisttext'         => 'Yî-ha he on $2 phài-lie̍t ke $1-ke tóng-on lie̍t-péu.',
 'showhidebots'          => '($1 kî-hi-ngìn)',

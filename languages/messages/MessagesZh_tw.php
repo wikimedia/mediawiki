@@ -1,5 +1,5 @@
 <?php
-/** Chinese (Taiwan) (‪中文(台灣)‬)
+/** Taiwan Chinese (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
@@ -514,7 +514,7 @@ $2',
 'newarticletext'            => '您進入了一個尚未建立的頁面。
 要建立該頁面，請在下面的編輯框中輸入內容(詳情參見[[Help:說明|說明]])。
 如果您是不小心來到此頁面，直接點擊您瀏覽器中的"返回"按鈕返回。',
-'anontalkpagetext'          => "---- ''這是一個還未建立帳號的匿名使用者的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名使用者共享。如果您是一名匿名使用者並認為本頁上的評語與您無關，請[[Special:Userlogin|建立新帳號或登入]]以避免在未來於其他匿名使用者混淆。''",
+'anontalkpagetext'          => "---- ''這是一個還未建立帳號的匿名使用者的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名使用者共享。如果您是一名匿名使用者並認為本頁上的評語與您無關，請[[Special:UserLogin|建立新帳號或登入]]以避免在未來於其他匿名使用者混淆。''",
 'noarticletext'             => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist' => '使用者帳號「$1」未曾建立。請在建立／編輯這個頁面前先檢查一下。',
 'clearyourcache'            => "'''注意:''' 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。 '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''(或按下''Ctrl-Shift-R''，在蘋果Mac上按下''Cmd-Shift-R'')；'''IE:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''；'''Konqueror:''' 只需點擊 ''重新整理''；'''Opera:''' 使用者需要在 ''工具-設定'' 中完整地清除它們的快取。",
@@ -922,7 +922,7 @@ $2',
 'upload_source_url'  => ' (一個有效的，可公開訪問的 URL)',
 'upload_source_file' => ' (在您電腦上的一個檔案)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => '按圖片名稱搜尋:',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案列表',
@@ -1104,7 +1104,7 @@ Template:消除歧義',
 'logempty'             => '在日誌中不存在匹配項。',
 'log-title-wildcard'   => '搜尋以這個文字開始的標題',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有頁面',
 'alphaindexline'    => '$1 到 $2',
 'nextpage'          => '下一頁($1)',
@@ -1126,7 +1126,7 @@ Template:消除歧義',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '給定顯示使用者條件:',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '找不到使用者。',
@@ -1166,7 +1166,7 @@ Template:消除歧義',
 'addedwatch'           => '加入到監視列表',
 'addedwatchtext'       => "頁面\"[[:\$1]]\"已經被加入到您的[[Special:Watchlist|監視清單]]中。
 將來有關此頁面及其討論頁的任何修改將會在那裡列出，
-而且還會在[[Special:Recentchanges|近期變動]]中
+而且還會在[[Special:RecentChanges|近期變動]]中
 以'''粗體'''形式列出以使起更容易識別。
 
 如果您之後想將該頁面從監視清單中刪除，可點擊導航條中的\"停止監視\"連結。",
@@ -1418,7 +1418,7 @@ $1',
 'badipaddress'                => 'IP地址不正確。',
 'blockipsuccesssub'           => '封鎖成功',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已經被封鎖。
-<br />參看[[Special:Ipblocklist|被封IP地址列表]]以覆審封鎖。',
+<br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審封鎖。',
 'ipb-edit-dropdown'           => '編輯封鎖原因',
 'ipb-unblock-addr'            => '解除封鎖$1',
 'ipb-unblock'                 => '解除禁封使用者名或IP地址',
@@ -1448,7 +1448,7 @@ $1',
 'autoblocker'                 => '你的IP和被封了的 "$1" 是一樣的。封鎖原因： "$2".',
 'blocklogpage'                => '封鎖記錄',
 'blocklogentry'               => '[[$1]]已被封鎖 $3 ，終止時間為$2',
-'blocklogtext'                => '這是關於使用者封鎖和解除封鎖操作的記錄。被自動封鎖的IP地址沒有被列出。請參閱[[Special:Ipblocklist|被封鎖的IP地址和使用者列表]]。',
+'blocklogtext'                => '這是關於使用者封鎖和解除封鎖操作的記錄。被自動封鎖的IP地址沒有被列出。請參閱[[Special:IPBlockList|被封鎖的IP地址和使用者列表]]。',
 'unblocklogentry'             => '[[$1]]已被解封',
 'block-log-flags-anononly'    => '僅限匿名使用者',
 'block-log-flags-nocreate'    => '禁止此IP/使用者建立新帳號',
@@ -1755,7 +1755,7 @@ $1',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => '新建圖片畫廊',
 'imagelisttext' => '以下是按$2排列的$1個檔案列表。',
 'showhidebots'  => '($1機器人)',

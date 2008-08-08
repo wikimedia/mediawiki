@@ -471,7 +471,7 @@ $messages = array(
 'uploadlogpage' => 'Αρχείον ανεβασματίων',
 'uploadedimage' => 'Εγέντον το φόρτωμαν τη "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Λίσταν εικονίων',
 
 # Image description page
@@ -560,7 +560,7 @@ $messages = array(
 'log'                  => 'Αρχεία',
 'all-logs-page'        => "Όλεα τ' αρχεία",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Όλεα τα σελίδας',
 'alphaindexline' => '$1 ους $2',
 'nextpage'       => 'Επόμενον σελίδα ($1)',
@@ -583,7 +583,7 @@ $messages = array(
 'watchlistfor'         => "(για '''$1''')",
 'addedwatch'           => 'Εθέκεν σην λίσταν ωριαγματί',
 'addedwatchtext'       => "Η σελίδαν \"[[:\$1]]\" επήγεν σον [[Special:Watchlist|κατάλογον οριαγματί]] εσούν.
-Μελλούμενα αλλαγάς τ' ατεινές τη σελίδας θα γράφκουνταικεκά, και η σελίδαν θ' ευρίεται με γράμματα '''χοντρά''' σ' [[Special:Recentchanges|υστερνά τ' αλλαγάς]] για να τερείτετα καλίον.",
+Μελλούμενα αλλαγάς τ' ατεινές τη σελίδας θα γράφκουνταικεκά, και η σελίδαν θ' ευρίεται με γράμματα '''χοντρά''' σ' [[Special:RecentChanges|υστερνά τ' αλλαγάς]] για να τερείτετα καλίον.",
 'removedwatch'         => 'Αση λίσταν επάρθεν',
 'removedwatchtext'     => 'Η σελίδαν "[[:$1]]" νεβζινέθεν ασ\' [[Special:Watchlist|τ\'εσόν τον κατάλογον]].',
 'watch'                => 'Ωρίαγμαν',
@@ -786,7 +786,7 @@ $messages = array(
 'show-big-image'       => 'Τζιπ τρανόν ανάλυση',
 'show-big-image-thumb' => "<small>Μέγεθος τη πρώτ' τερεματί: $1 × $2 εικονοστοιχεία</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Τερέστεν τα καινούρεα φωτογραφίας',
 'ilsubmit'  => 'Αράεμαν',
 'bydate'    => 'ημερομηνίας',

@@ -647,7 +647,7 @@ $1 | $2',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',
 'upload_source_file' => ' (fiila dihtoris)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Nammaohcan',
 'imgfile'               => 'fiila',
 'imagelist'             => 'Fiilalogahallan',
@@ -802,7 +802,7 @@ $1 | $2',
 'logempty'             => 'Eai dáhpáhusat loggas.',
 'log-title-wildcard'   => 'Mearri álgá mearkkaiguin',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Buot siiddut',
 'alphaindexline'    => '$1…$2',
 'nextpage'          => 'Čuovvovaš siidu ($1)',
@@ -820,7 +820,7 @@ $1 | $2',
 'categories'         => 'Luohkát',
 'categoriespagetext' => '{{GRAMMAR:inessive|{{SITENAME}}}} lea čuovvovaš luohkát:',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Oza',
 'listusers-noresult' => 'Geavaheaddjit eai dihtton. Dárkis maid sierra bustávasturrodagat.',
 
@@ -853,7 +853,7 @@ $1 | $2',
 'watchnologin'         => 'It leat čálligoahtán sisa',
 'watchnologintext'     => 'Don fertet [[Special:Userlogin|čálligoahtit sisa]], jus hálidat geavahit du čuovvunlisttu.',
 'addedwatch'           => 'Lasihuvvon čuovvunlistui',
-'addedwatchtext'       => "Siidu '''<nowiki>$1</nowiki>''' lea lasihuvvon [[Special:Watchlist|čuovvunlisttui]]. Boahtevuođas siiddu ja siiddu ságastallansiiddu rievdadusat almmuhuvvo dáppe. Siidu lea '''buidon''' [[Special:Recentchanges|varas rievdadusat -listtus]], vai fuomašat dan álkit. Jus hálidat heaiti čuovvumis dan siiddu, deaddil liŋkka ''heaite čuovvumis'' siiddu ravddas.",
+'addedwatchtext'       => "Siidu '''<nowiki>$1</nowiki>''' lea lasihuvvon [[Special:Watchlist|čuovvunlisttui]]. Boahtevuođas siiddu ja siiddu ságastallansiiddu rievdadusat almmuhuvvo dáppe. Siidu lea '''buidon''' [[Special:RecentChanges|varas rievdadusat -listtus]], vai fuomašat dan álkit. Jus hálidat heaiti čuovvumis dan siiddu, deaddil liŋkka ''heaite čuovvumis'' siiddu ravddas.",
 'removedwatch'         => 'Sihkojuvvon čuovvunlisttus',
 'removedwatchtext'     => "Siidu '''<nowiki>$1</nowiki>''' lea sihkojuvvon du čuovvunlisttus.",
 'watch'                => 'Čuovo',
@@ -1023,7 +1023,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'ipbotherreason'       => 'Eará sivva',
 'badipaddress'         => 'IP-čujuhus lea boastut.',
 'blockipsuccesssub'    => 'Easttan lihkosmuvai',
-'blockipsuccesstext'   => "Geavaheaddji dahje IP-čujuhus '''$1''' lea eston.<br />Dálá easttut gávdnot [[Special:Ipblocklist|easttolisttus]].",
+'blockipsuccesstext'   => "Geavaheaddji dahje IP-čujuhus '''$1''' lea eston.<br />Dálá easttut gávdnot [[Special:IPBlockList|easttolisttus]].",
 'ipb-edit-dropdown'    => 'Rievdat siivaid',
 'ipb-unblock-addr'     => 'Sihko geavaheaddji $1 estema',
 'ipb-unblock'          => 'Sihko geavaheaddji dahje IP-čujuhusa rievdadaneasttu',
@@ -1166,7 +1166,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # Media information
 'widthheightpage' => '$1×$2, $3 siiddut',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Ođđa govat',
 'imagelisttext'         => "Vuolábealde lea '''$1''' fiilla ordnejuvvon $2.",
 'ilsubmit'              => 'Oza',

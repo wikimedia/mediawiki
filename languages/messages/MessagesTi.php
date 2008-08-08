@@ -115,7 +115,7 @@ $messages = array(
 # Upload
 'savefile' => 'ምስሊ ኣቐምጥ',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'ምስሊ',
 'imagelist'      => 'ምስልታት',
 'imagelist_name' => 'ሽም',
@@ -135,7 +135,7 @@ $messages = array(
 'specialloguserlabel' => 'ኣባል:',
 'log-search-submit'   => 'ኪድ',
 
-# Special:Allpages
+# Special:AllPages
 'alphaindexline' => '$1 ናብ $2',
 'nextpage'       => 'ዝቕጽል ፅሑፍ ($1)',
 'prevpage'       => 'ናይ ቀደም ፅሑፍ ($1)',
@@ -167,7 +167,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'ናተይ ኣማረጽቲ',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ድሉይ',
 
 # Metadata

@@ -642,7 +642,7 @@ Ta creyar a pachina, prenzipie á escribir en a caxa d'abaxo
 Si bi ha plegau por error, punche o botón d'o suyo nabegador ta tornar entazaga.",
 'anontalkpagetext'                 => "----''Ista ye a pachina de descusión d'un usuario anonimo que encara no ha creyato una cuenta, u no l'ha feito serbir. Por ixo, emos d'emplegar a suya adreza IP ta identificar-lo/a. 
 Barios usuarios pueden compartir una mesma adreza IP. 
-Si busté ye un usuario anonimo y creye que l'han escrito comentarios no relebants, [[Special:Userlogin/signup|creye una cuenta]] u [[Special:Userlogin/signup|identifique-se]] ta pribar confusions futuras con atros usuarios anonimos.''",
+Si busté ye un usuario anonimo y creye que l'han escrito comentarios no relebants, [[Special:UserLogin/signup|creye una cuenta]] u [[Special:UserLogin/signup|identifique-se]] ta pribar confusions futuras con atros usuarios anonimos.''",
 'noarticletext'                    => 'Por agora no bi ha testo en ista pachina. Puede [[Special:Search/{{PAGENAME}}|mirar o títol]] en atras pachinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} prenzipiar á escribir en ista pachina].',
 'userpage-userdoesnotexist'        => 'A cuenta d\'usuario "$1" no ye rechistrada. Piense si quiere creyar u editar ista pachina.',
 'clearyourcache'                   => "'''Pare cuenta: Si quiere beyer os cambeos dimpués d'alzar l'archibo, puede estar que tienga que refrescar a caché d'o suyo nabegador ta beyer os cambeos.''' '''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-Fr''' u '''Ctrl-R''' (''Command-R'' en un Macintosh); '''Konqueror: ''' punche ''Reload'' u prete ''F5;'' '''Opera:''' limpiar a caché en ''Tools → Preferences;'' '''Internet Explorer:''' prete ''Ctrl'' mientres puncha ''Refresh,'' u prete ''Ctrl-F5.''",
@@ -1203,7 +1203,7 @@ PICT # misz.
 'upload_source_url'  => ' (una URL conforme y publicament aczesible)',
 'upload_source_file' => ' (un archibo en o suyo ordenador)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Ista pachina espezial amuestra toz os archibos cargatos.
 Por defeuto os zaguers archibos cargatos s'amuestran en o cobalto d'a lista.
 Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
@@ -1413,7 +1413,7 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'logempty'             => 'No bi ha garra elemento en o rechistro con ixas carauteristicas.',
 'log-title-wildcard'   => 'Mirar títols que prenzipien con iste testo',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Todas as pachinas',
 'alphaindexline'    => '$1 á $2',
 'nextpage'          => 'Siguient pachina ($1)',
@@ -1436,12 +1436,12 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 'special-categories-sort-count' => 'ordenar por recuento',
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Amostrar usuarios que o nombre suyo prenzipie por:',
 'listusers-submit'   => 'Amostrar',
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => "Dreitos d'a colla d'usuarios",
 'listgrouprights-summary'         => "Contino bi ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|informazión adizional]] sobre os dreitos indibiduals.",
 'listgrouprights-group'           => 'Colla',
@@ -1484,7 +1484,7 @@ L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias 
 'watchnologin'         => 'No ha enzetato a sesión',
 'watchnologintext'     => "Ha d'estar [[Special:Userlogin|identificato]] ta poder cambiar a suya lista de seguimiento.",
 'addedwatch'           => 'Adibiu á la suya lista de seguimiento',
-'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:Recentchanges|lista de cambeos rezients]] ta que se beiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
+'addedwatchtext'       => "A pachina «[[:\$1]]» s'ha adibito t'a suya [[Special:Watchlist|lista de seguimiento]]. Os cambios esdebenideros en ista pachina y en a suya pachina de descusión asoziata s'endicarán astí, y a pachina amanixerá '''en negreta''' en a [[Special:RecentChanges|lista de cambeos rezients]] ta que se beiga millor. <p>Si nunca quiere borrar a pachina d'a suya lista de seguimiento, punche \"Deixar de cosirar\" en o menú.",
 'removedwatch'         => "Borrata d'a lista de seguimiento",
 'removedwatchtext'     => 'A pachina "[[:$1]]" ha estato borrata d\'a suya lista de seguimiento.',
 'watch'                => 'Cosirar',
@@ -1755,7 +1755,7 @@ as pachinas que s'han bandalizatas).",
 'ipbwatchuser'                    => "Cosirar as pachinas d'usuario y de descusión d'iste usuario",
 'badipaddress'                    => "L'adreza IP no ye conforme.",
 'blockipsuccesssub'               => "O bloqueyo s'ha feito correutament",
-'blockipsuccesstext'              => "L'adreza IP [[Special:Contributions/$1|$1]] ye bloqueyata. <br />Ir t'a [[Special:Ipblocklist|lista d'adrezas IP bloqueyatas]] ta beyer os bloqueyos.",
+'blockipsuccesstext'              => "L'adreza IP [[Special:Contributions/$1|$1]] ye bloqueyata. <br />Ir t'a [[Special:IPBlockList|lista d'adrezas IP bloqueyatas]] ta beyer os bloqueyos.",
 'ipb-edit-dropdown'               => "Editar as razons d'o bloqueyo",
 'ipb-unblock-addr'                => 'Esbloqueyar $1',
 'ipb-unblock'                     => 'Esbloqueyar un usuario u una IP',
@@ -1785,7 +1785,7 @@ as pachinas que s'han bandalizatas).",
 'autoblocker'                     => 'Ye bloqueyato automaticament porque a suya adreza IP l\'ha feito serbir rezientement "[[User:$1|$1]]". A razón data ta bloqueyar á "[[User:$1|$1]]" estió "$2".',
 'blocklogpage'                    => 'Rechistro de bloqueyos',
 'blocklogentry'                   => "S'ha bloqueyato á [[$1]] con una durada de $2 $3",
-'blocklogtext'                    => "Isto ye un rechistro de bloqueyos y esbloqueyos d'usuarios. As adrezas bloqueyatas automaticament no amaneixen aquí. Mire-se a [[Special:Ipblocklist|lista d'adrezas IP bloqueyatas]] ta beyer a lista autual de biedas y bloqueyos.",
+'blocklogtext'                    => "Isto ye un rechistro de bloqueyos y esbloqueyos d'usuarios. As adrezas bloqueyatas automaticament no amaneixen aquí. Mire-se a [[Special:IPBlockList|lista d'adrezas IP bloqueyatas]] ta beyer a lista autual de biedas y bloqueyos.",
 'unblocklogentry'                 => 'ha esbloqueyato á "$1"',
 'block-log-flags-anononly'        => 'nomás os usuarios anonimos',
 'block-log-flags-nocreate'        => "s'ha desautibato a creyazión de cuentas",
@@ -2102,7 +2102,7 @@ $1",
 'show-big-image'       => 'Imachen en a maisima resoluzión',
 'show-big-image-thumb' => "<small>Grandaria d'ista ambiesta prebia: $1 × $2 píxels</small>",
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galería de nuebas imachens',
 'imagelisttext'         => "Contino bi ha una lista de '''$1''' {{PLURAL:$1|imachen ordenata|imachens ordenatas}} $2.",
 'newimages-summary'     => 'Ista pachina espezial amuestra os zaguers archibos cargatos.',
@@ -2546,7 +2546,7 @@ Tamién puede fer serbir o [[Special:Watchlist/edit|editor estándar]].",
 'version-software-product'         => 'Produto',
 'version-software-version'         => 'Bersión',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => "Camín de l'archibo",
 'filepath-page'    => 'Archibo:',
 'filepath-submit'  => 'Camín',
@@ -2585,7 +2585,7 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Reendrezando as pachinas espezials',
 'specialpages-group-spam'        => 'Ainas de spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pachina en blanco',
 'intentionallyblankpage' => "Esta pachina s'ha deixato en blanco aldredes y se fa serbir ta fer prebatinas, ezt.",
 

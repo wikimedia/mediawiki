@@ -646,7 +646,7 @@ Ako ste došli ovde greškom, samo kliknite dugme '''back''' dugme vašeg brauze
 'anontalkpagetext'          => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio nalog ili ga ne koristi.
 Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju.
 Takvu adresu može deliti više korisnika.
-Ako ste anonimni korisnik i mislite da su vam upućene nebitne primedbe, molimo vas da [[Special:Userlogin|napravite nalog ili se prijavite]] da biste izbegli buduću zabunu sa ostalim anonimnim korisnicima.''",
+Ako ste anonimni korisnik i mislite da su vam upućene nebitne primedbe, molimo vas da [[Special:UserLogin|napravite nalog ili se prijavite]] da biste izbegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'             => 'Trenutno nema teksta na ovoj stranici. Možete [[Special:Search/{{PAGENAME}}|pretražiti ovaj naziv]] u ostalim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
 'clearyourcache'            => "'''Zapamtite:''' Nakon snimanja, možda morate očistiti keš vašeg brauzera da biste videli promene. '''Mozilla / Firefox / Safari:''' držite ''Shift'' dok klikćete ''Reload'' ili pritisnite  ''Shift+Ctrl+R'' (''Cmd-Shift-R'' na ''Apple Mac'' mašini); '''IE:''' držite ''Ctrl'' dok klikćete ''Refresh'' ili pritisnite ''Ctrl-F5''; '''Konqueror:''': samo kliknite ''Reload'' dugme ili pritisnite ''F5''; korisnici '''Opera''' brauzera možda moraju da u potpunosti očiste svoj keš preko ''Tools→Preferences''.",
 'usercssjsyoucanpreview'    => "<strong>Savet:</strong> Korisitite 'Prikaži pretpregled' dugme da testirate svoj novi CSS/JS pre snimanja.",
@@ -973,7 +973,7 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[Image:$1|thumb|cent
 'upload_source_url'  => ' (validan, javno dostupan URL)',
 'upload_source_file' => ' (fajl na vašem računaru)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'fajl',
 'imagelist'             => 'Spisak slika',
@@ -1091,7 +1091,7 @@ na kome bi se izvela ova funkcija.',
 Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene stranice.',
 'logempty'             => 'Protokol je prazan.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Sve stranice',
 'alphaindexline'    => '$1 u $2',
 'nextpage'          => 'Sledeća stranica ($1)',
@@ -1109,7 +1109,7 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 'categories'         => 'Kategorije stranica',
 'categoriespagetext' => 'Sledeće kategorije već postoje na vikiju',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom' => 'Prikaži korisnike počevši od:',
 
 # E-mail user
@@ -1610,7 +1610,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 'imagemaxsize' => 'Ograniči slike na stranama za razgovor o slikama na:',
 'thumbsize'    => 'Veličina umanjenog prikaza :',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerija novih slika',
 'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|fajla|fajla|fajlova}} poređanih $2.",
 'showhidebots'          => '($1 botove)',
@@ -1977,7 +1977,7 @@ $1',
 # Special:Version
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Putanja fajla',
 'filepath-page'   => 'Fajl:',
 'filepath-submit' => 'Putanja',

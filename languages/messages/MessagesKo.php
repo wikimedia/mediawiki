@@ -10,8 +10,8 @@
  * @author Albamhandae
  * @author ITurtle
  * @author TheAlpha for knowledge
- * @author Kwj2772
  * @author Ficell
+ * @author Kwj2772
  * @author לערי ריינהארט
  * @author Pi.C.Noizecehx
  */
@@ -548,9 +548,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'newarticletext'                   => "이 문서는 아직 만들어지지 않았습니다. 새 문서를 만들려면 아래의 상자에 문서 내용을 입력하면 됩니다(자세한 내용은 [[{{MediaWiki:Helppage}}|도움말]]을 읽어 주세요).
 만약 잘못 찾아온 문서라면, 웹 브라우저의 '''뒤로''' 버튼을 눌러 주세요.",
 'anontalkpagetext'                 => '----
-여기는 계정에 로그인하지 않은 익명 사용자를 위한 토론 문서입니다. 익명 사용자의 사용자 이름은 IP 주소로 나오기 때문에, 한 IP 주소를 여러 명이 같이 쓰거나 유동 IP를 사용하는 경우 엉뚱한 사람에게 의견이 전달될 수 있습니다. 이러한 문제를 피하려면 [[Special:Userlogin|계정을 만들거나 로그인해 주시기 바랍니다]].',
+여기는 계정에 로그인하지 않은 익명 사용자를 위한 토론 문서입니다. 익명 사용자의 사용자 이름은 IP 주소로 나오기 때문에, 한 IP 주소를 여러 명이 같이 쓰거나 유동 IP를 사용하는 경우 엉뚱한 사람에게 의견이 전달될 수 있습니다. 이러한 문제를 피하려면 [[Special:UserLogin|계정을 만들거나 로그인해 주시기 바랍니다]].',
 'noarticletext'                    => '현재 문서는 비어 있습니다. 이 제목으로 [[Special:Search/{{PAGENAME}}|검색]]하거나 문서를 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]할 수 있습니다.',
-'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정의 존재 여부를 확인해주세요.',
+'userpage-userdoesnotexist'        => '‘$1’ 계정은 등록되어 있지 않습니다. 이 문서를 만들거나 편집하려면 계정이 존재 하는지 확인해주세요.',
 'clearyourcache'                   => "'''참고''': 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다. '''모질라 / 파이어폭스 / 사파리''': ‘시프트’ 키를 누르면서 ‘새로 고침’을 클릭하거나, ''Ctrl-F5''를 입력; '''컨커러''': 단순히 '새로고침'을 클릭하거나 ''F5''를 입력; '''오페라''' 사용자는 ‘도구→설정’에서 캐시를 완전히 비워야 합니다.",
 'usercssjsyoucanpreview'           => "'''안내''': CSS/JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
 'usercsspreview'                   => "'''이것은 CSS 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
@@ -664,7 +664,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-content' => '내용',
 
 # Diffs
-'history-title'           => '‘$1’의 문서 역사',
+'history-title'           => '"$1" 문서의 변경 내력',
 'difference'              => '(버전 사이의 차이)',
 'lineno'                  => '$1번째 줄:',
 'compareselectedversions' => '선택된 버전들을 비교하기',
@@ -673,7 +673,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 # Search results
 'searchresults'            => '검색 결과',
-'searchresults-title'      => '$1에 대한 검색 결과',
+'searchresults-title'      => '"$1"에 대한 검색 결과',
 'searchresulttext'         => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
 'searchsubtitle'           => "검색 단어 '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
@@ -946,7 +946,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nolicense'         => '선택하지 않음',
 'license-nopreview' => '(미리보기 불가능)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => '이 특수문서는 올라온 모든 파일의 목록입니다.
 기본적으로 마지막으로 올라온 파일이 맨 위에 보입니다.
 다르게 정렬하려면 원하는 기준 열의 첫 칸을 누르세요.',
@@ -1053,8 +1053,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
-'doubleredirects'     => '이중 넘겨주기 목록',
-'doubleredirectstext' => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
+'doubleredirects'            => '이중 넘겨주기 목록',
+'doubleredirectstext'        => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
+'double-redirect-fixed-move' => '넘겨주기 수정: [[$1]] 문서가 [[$2]]로 이동되었습니다.',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
 'brokenredirectstext'    => '존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:',
@@ -1133,7 +1134,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다.',
 'logempty'             => '일치하는 항목이 없습니다.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '모든 문서 목록',
 'alphaindexline'    => '$1에서 $2까지',
 'nextpage'          => '다음 문서 ($1)',
@@ -1153,12 +1154,12 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'categories'         => '분류',
 'categoriespagetext' => '문서나 자료를 담고 있는 분류 목록입니다.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
 'listusers-submit'   => '보이기',
 'listusers-noresult' => '해당 사용자가 없습니다.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights' => '사용자 권한 목록',
 
 # E-mail user
@@ -1190,7 +1191,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchnologin'         => '로그인하지 않음',
 'watchnologintext'     => '[[Special:Userlogin|로그인]]을 해야만 주시문서 목록을 볼 수 있습니다.',
 'addedwatch'           => '주시문서 목록에 추가',
-'addedwatchtext'       => "‘[[:$1]]’ 문서가 주시문서 목록에 추가되었습니다. 앞으로 이 문서나 토론 문서가 변경되면 [[Special:Recentchanges|최근 바뀜]]에서 변경점들이 '''굵은 글씨'''로 나타날 것입니다. 더 이상 주시하지 않으려면 ‘주시 해제’를 누르면 됩니다.",
+'addedwatchtext'       => "‘[[:$1]]’ 문서가 주시문서 목록에 추가되었습니다. 앞으로 이 문서나 토론 문서가 변경되면 [[Special:RecentChanges|최근 바뀜]]에서 변경점들이 '''굵은 글씨'''로 나타날 것입니다. 더 이상 주시하지 않으려면 ‘주시 해제’를 누르면 됩니다.",
 'removedwatch'         => '주시문서 목록에서 제거',
 'removedwatchtext'     => '‘[[:$1]]’ 문서를 주시문서 목록에서 제거했습니다.',
 'watch'                => '주시',
@@ -1424,7 +1425,7 @@ $1',
 'ipbotherreason'              => '다른 이유/추가적인 이유:',
 'badipaddress'                => '잘못된 IP 주소',
 'blockipsuccesssub'           => '차단 완료',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:Ipblocklist|여기]]에서 볼 수 있습니다.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] 사용자가 차단되었습니다. 차단된 사용자 목록은 [[Special:IPBlockList|여기]]에서 볼 수 있습니다.',
 'ipb-edit-dropdown'           => '차단 사유 고치기',
 'ipb-unblock-addr'            => '$1 차단 해제하기',
 'ipb-unblock'                 => '사용자/IP 주소 차단 해제하기',
@@ -1450,7 +1451,7 @@ $1',
 'autoblocker'                 => "당신의 IP 주소는 최근 ‘[[User:$1|$1]]’이(가) 사용하였기 때문에 자동으로 차단되었습니다. $1의 차단 이유는 다음과 같습니다: '''$2'''",
 'blocklogpage'                => '차단 기록',
 'blocklogentry'               => '[[$1]] 사용자를 $2 $3 차단함',
-'blocklogtext'                => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[Special:Ipblocklist|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
+'blocklogtext'                => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[Special:IPBlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
 'unblocklogentry'             => '$1을 차단 해제했습니다.',
 'block-log-flags-anononly'    => 'IP만 막음',
 'block-log-flags-nocreate'    => '계정 생성 막음',
@@ -1518,6 +1519,7 @@ $1',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
+'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
 'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
 '1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
 '1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
@@ -1533,6 +1535,7 @@ $1',
 'delete_and_move_reason'  => '문서를 이동하기 위해 삭제함',
 'selfmove'                => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
 'immobile_namespace'      => '특수한 네임스페이스로는 이동할 수 없습니다.',
+'fix-double-redirects'    => '기존 이름을 가리키는 넘겨주기를 갱신',
 
 # Export
 'export'          => '문서 내보내기',
@@ -1714,7 +1717,7 @@ $1',
 'show-big-image'       => '최대 해상도',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '새 그림 파일 목록',
 'imagelisttext'         => '$1개의 파일이 $2 순으로 정렬되어 있습니다.',
 'showhidebots'          => '(봇을 $1)',
@@ -1886,7 +1889,7 @@ $1',
 'version-software-product'     => '제품',
 'version-software-version'     => '버전',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => '파일 주소',
 'filepath-page'    => '파일:',
 'filepath-submit'  => '주소',

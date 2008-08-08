@@ -529,7 +529,7 @@ La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 Si quieis crial esti artículu, escribi nel cuairu d'embahu
 (si t'es mestel, mira la [[{{MediaWiki:Helppage}}|páhina d'ayua]]).
 Si nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás'''\" del tu escrucaol.",
-'anontalkpagetext'                 => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:Userlogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
+'anontalkpagetext'                 => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:UserLogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext'                    => 'Entovia nu ai dengún testu escrebiu nesta páhina, pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu el artículu]] n´otras páhinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta].',
 'userpage-userdoesnotexist'        => 'La cuenta d\'usuáriu "$1" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
 'clearyourcache'                   => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la páhina pa vel los chambus. *'''Mozilla:''' Pursa ''ctrl-shift-r'' *'''Internet Explorer:''' Pursa ''ctrl-f5'' *'''Safari:''' Pursa ''cmd-shift-r'' *'''Konqueror:''' Pursa ''f5'' *'''Opera:''' Los usuárius d'Opera nesezitarás esborral totalmenti el caché en ''Herramientas→Preferéncias''.",
@@ -1019,7 +1019,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload_source_url'  => ' (una URL vália i acesibri)',
 'upload_source_file' => ' (un archivu nel tu ordinaol)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Esta páhina especial muestra tolos archivus empuntaus.
 Pol defetu los úrtimus archivus empuntaus se muestran ena parti arta la lista.
 Pursa nel entítulu la coluna pa chambal el ordin.',
@@ -1210,7 +1210,7 @@ El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] e
 'logempty'             => 'Nu desistin elementus con esas condicionis nel rustrihu.',
 'log-title-wildcard'   => 'Landeal entítulus qu´esmiencin con esti testu',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tolas páhinas',
 'alphaindexline'    => '$1 a $2',
 'nextpage'          => 'Siguienti páhina ($1)',
@@ -1231,12 +1231,12 @@ El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] e
 'special-categories-sort-count' => 'ordenal pol cuenta',
 'special-categories-sort-abc'   => 'ordenal alfabeticamenti',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "Muestral usuárius qu'esmiencin pol:",
 'listusers-submit'   => 'Muestral',
 'listusers-noresult' => 'Nu s´alcuentró dengún usuáriu.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => "Derechus del grupu d'usuárius",
 'listgrouprights-group'    => 'Grupu',
 'listgrouprights-rights'   => 'Derechus',
@@ -1277,7 +1277,7 @@ La direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remit
 'addedwatch'           => 'Añiiu a la lista e seguimientu',
 'addedwatchtext'       => "S´á añiiu la páhina \"[[:\$1]]\" a la tu [[Special:Watchlist|lista e seguimientu]].
 Los huturus chambus de la páhina i ena su caraba se muestrarán aquí,
-i el su entítulu apaicirá en '''negrina''' ena [[Special:Recentchanges|lista d´úrtimus chambus]].
+i el su entítulu apaicirá en '''negrina''' ena [[Special:RecentChanges|lista d´úrtimus chambus]].
 
 Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'removedwatch'         => 'Esborrau e la lista e seguimientu',
@@ -1541,7 +1541,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'badipaddress'                => 'Direción IP nu premitia',
 'blockipsuccesssub'           => 'Usuáriu atarugau!',
 'blockipsuccesstext'          => "La direción IP [[Special:Contributions/$1|$1]] á siu atarugá.
-<br />Consurta la [[Special:Ipblocklist|lista d'IP atarugás]] pa visoreal los tarugus.",
+<br />Consurta la [[Special:IPBlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
 'ipb-edit-dropdown'           => 'Eital las razonis el tarugu',
 'ipb-unblock-addr'            => 'Desatarugal $1',
 'ipb-unblock'                 => 'Desatarugal un nombri d´usuáriu u direción IP',
@@ -1865,7 +1865,7 @@ $1',
 'show-big-image'       => 'Resolución máisima',
 'show-big-image-thumb' => '<small>Grandol al previsoreal: $1 × $2 pixelis</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Correol d´archivus nuevus',
 'imagelisttext'         => "Embahu ai una lista con '''$1''' {{PLURAL:$1|archivu|archivus}} ordenaus $2.",
 'noimages'              => 'Nu ai ná pa vel.',
@@ -2272,7 +2272,7 @@ $1',
 'version-software-product'    => 'Proutu',
 'version-software-version'    => 'Velsión',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => "Ruta d'archivu",
 'filepath-page'    => 'Archivu:',
 'filepath-submit'  => 'Ruta',

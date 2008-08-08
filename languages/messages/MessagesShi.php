@@ -178,7 +178,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 # Upload
 'upload' => 'sΥlid afaylu',
 
-# Special:Allpages
+# Special:AllPages
 'alphaindexline' => '$1 ar $2',
 
 # Special:Categories

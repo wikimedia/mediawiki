@@ -540,7 +540,7 @@ Bandalismoa saihesteko pasahitz eskaera bat baino ezin da egin $1 orduz behin.',
 'accmailtext'                      => '"$1"(r)en pasahitza $2(e)ra bidali da.',
 'newarticle'                       => '(Berria)',
 'newarticletext'                   => "Orrialde hau ez da existitzen oraindik. Orrialde sortu nahi baduzu, beheko koadroan idazten hasi zaitezke (ikus [[{{MediaWiki:Helppage}}|laguntza orrialdea]] informazio gehiagorako). Hona nahi gabe etorri bazara, nabigatzaileko '''atzera''' botoian klik egin.",
-'anontalkpagetext'                 => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere IP helbidea erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:Userlogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
+'anontalkpagetext'                 => "----''Honako hau konturik sortu ez edo erabiltzen ez duen erabiltzaile anonimo baten eztabaida orria da. Bere IP helbidea erabili beharko da beraz identifikatzeko. Erabiltzaile batek baino gehiagok IP bera erabil dezakete ordea. Erabiltzaile anonimoa bazara eta zurekin zerikusirik ez duten mezuak jasotzen badituzu, mesedez [[Special:UserLogin|Izena eman edo saioa hasi]] etorkizunean horrelakoak gerta ez daitezen.''",
 'noarticletext'                    => 'Oraindik ez dago testurik orrialde honetan; beste orrialde batzuetan [[Special:Search/{{PAGENAME}}|bilatu dezakezu izenburu hau]] edo [{{fullurl:{{FULLPAGENAME}}|action=edit}} berau aldatu ere egin dezakezu].',
 'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
@@ -1031,7 +1031,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'upload_source_url'  => ' (baliozko URL publikoa)',
 'upload_source_file' => ' (zure ordenagailuko fitxategi bat)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Irudiaren izenagatik bilatu:',
 'imgfile'               => 'fitxategia',
 'imagelist'             => 'Fitxategien zerrenda',
@@ -1225,7 +1225,7 @@ Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.
 'logempty'             => 'Ez dago emaitzarik erregistroan.',
 'log-title-wildcard'   => 'Testu honekin hasten diren izenburuak bilatu',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Orrialde guztiak',
 'alphaindexline'    => '$1(e)tik $2(e)raino',
 'nextpage'          => 'Hurrengo orrialdea ($1)',
@@ -1248,12 +1248,12 @@ Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.
 'special-categories-sort-count' => 'kontatetzearen arabera ordenatu',
 'special-categories-sort-abc'   => 'alfabetikoki aldatu',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Hemendik aurrerako erabiltzaileak bistaratu:',
 'listusers-submit'   => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Erabiltzaile talde eskumenak',
 'listgrouprights-group'    => 'Taldea',
 'listgrouprights-rights'   => 'Eskumenak',
@@ -1289,7 +1289,7 @@ Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.
 'watchnologin'         => 'Saioa hasi gabe',
 'watchnologintext'     => '[[Special:Userlogin|Saioa hasi]] behar duzu zure jarraipen zerrenda aldatzeko.',
 'addedwatch'           => 'Jarraipen zerrendan gehitu da',
-'addedwatchtext'       => "\"<nowiki>\$1</nowiki>\" orrialdea zure [[Special:Watchlist|jarraipen edo zelatatuen zerrendara]] erantsi da. Orrialde honen hurrengo aldaketak zerrenda horretan ageriko dira aurrerantzean, eta gainera [[Special:Recentchanges|aldaketa berrien zerrendan]] beltzez ageriko da, erraztasunez antzeman ahal izateko.
+'addedwatchtext'       => "\"<nowiki>\$1</nowiki>\" orrialdea zure [[Special:Watchlist|jarraipen edo zelatatuen zerrendara]] erantsi da. Orrialde honen hurrengo aldaketak zerrenda horretan ageriko dira aurrerantzean, eta gainera [[Special:RecentChanges|aldaketa berrien zerrendan]] beltzez ageriko da, erraztasunez antzeman ahal izateko.
 
 Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'removedwatch'         => 'Jarraipen zerrendatik ezabatuta',
@@ -1536,7 +1536,7 @@ $1',
 'badipaddress'                => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'           => 'Blokeoa burutu da',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
-Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
+Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipb-edit-dropdown'           => 'Lankide bat blokeatzeko arrazoiak',
 'ipb-unblock-addr'            => '$1 lankide edo IP helbideari blokeoa baliogabetu',
 'ipb-unblock'                 => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
@@ -1566,7 +1566,7 @@ Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'autoblocker'                 => '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
 'blocklogpage'                => 'Blokeo erregistroa',
 'blocklogentry'               => '"[[$1]]" $2(e)ko iraungipenarekin blokeatu da. $3',
-'blocklogtext'                => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:Ipblocklist|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
+'blocklogtext'                => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
 'unblocklogentry'             => '$1 desblokeatu da',
 'block-log-flags-anononly'    => 'erabiltzaile anonimoak bakarrik',
 'block-log-flags-nocreate'    => 'kontuak sortzea ezgaituta',
@@ -1869,7 +1869,7 @@ $1',
 'show-big-image'       => 'Bereizmen handikoa',
 'show-big-image-thumb' => '<small>Aurreikuspen honen neurria: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Fitxategi berrien galeria',
 'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{PLURAL:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
 'showhidebots'          => '($1 bot-ak)',
@@ -2176,7 +2176,7 @@ $1',
 'version-software-product' => 'Produktua',
 'version-software-version' => 'Bertsioa',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Fitxategi bidea',
 'filepath-page'   => 'Fitxategia:',
 'filepath-submit' => 'Ibilbidea',
@@ -2196,7 +2196,7 @@ $1',
 'specialpages-group-wiki'      => 'Wiki datuak eta tresnak',
 'specialpages-group-spam'      => 'Spam tresnak',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage' => 'Orrialde txuria',
 
 );

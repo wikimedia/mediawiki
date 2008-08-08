@@ -260,7 +260,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 '''<nowiki>[[</nowiki>Media<nowiki>:Archivo.ogg]]</nowiki>''' ojoaju hag̃ua hekopete pe jehai'atýre.",
 'filename'   => "Téra jehai'aty",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => "Ta'ãnga rysýi",
 'imagelist_user' => 'Puruhára',
 
@@ -346,7 +346,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Special:Log
 'log' => 'Ñemboguapypyre',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Opaite kuatiarogue',
 'allnotinnamespace' => 'Opaite kuatiarogue (fuera del espacio $1)',
 'allpagesnext'      => 'Upeigua',
@@ -355,7 +355,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Special:Categories
 'categories' => 'Ñemohendakuéra',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Hechauka',
 
 # E-mail user
@@ -408,7 +408,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'ipblocklist-submit' => 'Heka',
 'blocklink'          => 'ejoko',
 'contribslink'       => "mba'emoĩmbyre",
-'blocklogtext'       => 'Esto es un registro de bloqueos y desbloqueos de usuarios. Las direcciones bloqueadas automáticamente no aparecen aquí. Consulte la [[Special:Ipblocklist|IP mbohape rysýi imbotypyréva]] para ver la lista de prohibiciones y bloqueos actualmente vigente.',
+'blocklogtext'       => 'Esto es un registro de bloqueos y desbloqueos de usuarios. Las direcciones bloqueadas automáticamente no aparecen aquí. Consulte la [[Special:IPBlockList|IP mbohape rysýi imbotypyréva]] para ver la lista de prohibiciones y bloqueos actualmente vigente.',
 
 # Move page
 'movearticle'     => 'Guerova kuatiarogue',
@@ -448,7 +448,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Media information
 'file-info' => "(tamaño de jehai'aty: $1; tipo MIME: $2)",
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => "Ta'ãnga pyahu renda",
 'ilsubmit'  => 'Jeheka',
 
@@ -470,7 +470,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 # Special:Version
 'version' => "Mba'ereko", # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Ruta de archivo',
 'filepath-page'   => 'Archivo:',
 'filepath-submit' => 'Ruta',

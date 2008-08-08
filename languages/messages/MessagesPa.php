@@ -614,7 +614,7 @@ to upload files.',
 'license-nopreview'  => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'ਫਾਇਲ',
 'imagelist'             => 'ਫਾਇਲ ਲਿਸਟ',
 'imagelist_date'        => 'ਮਿਤੀ',
@@ -689,7 +689,7 @@ to upload files.',
 'all-logs-page'        => 'ਸਭ ਲਾਗ',
 'log-search-submit'    => 'ਜਾਓ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'ਸਭ ਪੇਜ',
 'alphaindexline'    => '$1 ਤੋਂ $2',
 'nextpage'          => 'ਅੱਗੇ ਪੇਜ ($1)',
@@ -704,7 +704,7 @@ to upload files.',
 # Special:Categories
 'categories' => 'ਕੈਟਾਗਰੀਆਂ',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'ਵੇਖੋ',
 'listusers-noresult' => 'ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ।',
 
@@ -918,7 +918,7 @@ to upload files.',
 'show-big-image'       => 'ਪੂਰਾ ਰੈਜ਼ੋਲੇਸ਼ਨ',
 'show-big-image-thumb' => '<small>ਇਹ ਝਲਕ ਦਾ ਆਕਾਰ: $1 × $2 ਪਿਕਸਲ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'ਨਵੀਆਂ ਫਾਇਲਾਂ ਦੀ ਗੈਲਰੀ',
 'noimages'  => 'ਵੇਖਣ ਲਈ ਕੁਝ ਨਹੀਂ',
 'ilsubmit'  => 'ਖੋਜ',

@@ -355,7 +355,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'newarticletext'           => '<div id="newarticletext">
 {{MediaWiki:Newarticletext/{{NAMESPACE}}}}
 </div>',
-'anontalkpagetext'         => "----''Sell isch e Diskussionssyte vome anonyme Benutzer wo chei Zuegang aaglegt het odr wo ihn nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche um ihn odr si z'identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un 's Gfuehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, denn [[Special:Userlogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] go in Zuekunft Verwirrige mit andere anonyme Benutzer z'vermeide.''",
+'anontalkpagetext'         => "----''Sell isch e Diskussionssyte vome anonyme Benutzer wo chei Zuegang aaglegt het odr wo ihn nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche um ihn odr si z'identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un 's Gfuehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, denn [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] go in Zuekunft Verwirrige mit andere anonyme Benutzer z'vermeide.''",
 'noarticletext'            => '<div id="noarticletext">
 {{MediaWiki:Noarticletext/{{NAMESPACE}}}}
 </div>',
@@ -500,7 +500,7 @@ or
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''
 go direkt e Gleich uff d Datei z'mache.",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lischte vo Bilder',
 
 # Image description page
@@ -574,7 +574,7 @@ Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
 Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Sytename iigän.',
 'logempty'    => 'Kei passendi Yträg gfunde.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'alli Sytene',
 'alphaindexline'    => 'vo $1 bis $2',
 'nextpage'          => 'Nächscht Syte ($1)',
@@ -615,7 +615,7 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'watchnologintext'  => 'Du musst [[Special:Userlogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
 'addedwatch'        => 'zue de Beobachtigslischte drzue do',
 'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
-Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:Recentchanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
+Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
 'watch'             => 'beobachte',
@@ -698,7 +698,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'contribslink'    => 'Byträg',
 'blocklogpage'    => 'Sperrigs-Protokoll',
 'blocklogentry'   => 'sperrt [[$1]] für d Ziit vo: $2 $3',
-'blocklogtext'    => 'Des ischs Logbuech yber Sperrunge un Entsperrunge vun Bnutzer. Automatisch blockti IP-Adresse werre nit erfasst. Lueg au [[Special:Ipblocklist|IP-Block Lischt]] fyr ä Lischt vun gsperrti Bnutzer.',
+'blocklogtext'    => 'Des ischs Logbuech yber Sperrunge un Entsperrunge vun Bnutzer. Automatisch blockti IP-Adresse werre nit erfasst. Lueg au [[Special:IPBlockList|IP-Block Lischt]] fyr ä Lischt vun gsperrti Bnutzer.',
 'unblocklogentry' => 'Blockade von $1 aufgehoben',
 
 # Move page
@@ -822,7 +822,7 @@ sollte umgehend ein Administrator informiert werden!',
 'imagemaxsize' => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
 'thumbsize'    => 'Bildvorschou-Gröössi:',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Gallery vo noie Bilder',
 'imagelisttext' => 'Hier ist eine Liste von $1 Bildern, sortiert $2.',
 'ilsubmit'      => 'Suech',

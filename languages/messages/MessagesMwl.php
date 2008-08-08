@@ -337,7 +337,7 @@ Legenda: (actu) = diferenças da versão actual,
 'uploadlogpage' => 'Registo de carregamento',
 'uploadedimage' => 'carregou "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lista de ficheiros',
 
 # Image description page
@@ -422,7 +422,7 @@ Legenda: (actu) = diferenças da versão actual,
 'log'                  => 'Registos',
 'all-logs-page'        => 'Todos os registos',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Todas las páginas',
 'alphaindexline' => '$1 a $2',
 'nextpage'       => 'Próxima página ($1)',
@@ -613,7 +613,7 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'show-big-image'       => 'Resoluçon completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Galeria de nuobos ficheiros',
 
 # Bad image list

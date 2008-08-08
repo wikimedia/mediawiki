@@ -85,7 +85,7 @@ $messages = array(
 # Preferences page
 'searchresultshead' => 'Kucálata',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_date' => 'Lusuku',
 'imagelist_name' => 'Ligama',
 'imagelist_user' => 'Umuntfu',
@@ -108,10 +108,10 @@ $messages = array(
 'specialloguserlabel' => 'Umuntfu:',
 'log-search-submit'   => 'Kúhámba',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Kúhámba',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Kúfúna',
 
 # Watchlist
@@ -142,7 +142,7 @@ $messages = array(
 'tooltip-search' => 'Kucálata {{SITENAME}}',
 'tooltip-p-logo' => 'Likhasi Lelikhulu',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Kucálata',
 
 # Multipage image navigation

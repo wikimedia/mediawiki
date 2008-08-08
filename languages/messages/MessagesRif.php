@@ -312,7 +312,7 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 'uploadedimage'     => 'itwazdem-d "[[$1]]"',
 'watchthisupload'   => 'Xm tasbtirt a',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Tabdart n ifayluten',
 
 # Image description page
@@ -394,7 +394,7 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 'all-logs-page'        => 'Maṛṛa iɣmisen',
 'log-search-submit'    => 'Raḥ ɣa',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Maṛṛa Tisebtar',
 'alphaindexline' => '$1 ɣa $2',
 'nextpage'       => 'Tasebtert ẓẓat ($1)',
@@ -406,7 +406,7 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 # Special:Categories
 'categories' => 'Taggayin',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Smmrad',
 
 # E-mail user
@@ -594,7 +594,7 @@ snaqlitent s ufus.'''",
 'show-big-image'       => 'Resolution ameqran',
 'show-big-image-thumb' => '<small>Tiddi n uzar-ascan: $1 × $2 pixel </small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Amewlaf n ifayluten imaynuten',
 'ilsubmit'  => 'Tarzzut',
 

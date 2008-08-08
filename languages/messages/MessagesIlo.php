@@ -861,7 +861,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'upload_source_url'  => ' (maysa a valido, ken maakses ti publico nga URL)',
 'upload_source_file' => ' (file iti kompiutermo)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Agsapul iti nagan ti media:',
 'imgfile'               => 'file',
 'imagelist'             => 'Listaan ti file',
@@ -1021,7 +1021,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'log-search-submit'    => 'Inkan',
 'log-title-wildcard'   => 'Agsapul iti titulos nga agrugi iti daytoy a texto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Amin a panid',
 'alphaindexline'    => '$1 iti $2',
 'nextpage'          => 'sumaruno a panid ($1)',
@@ -1042,12 +1042,12 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'special-categories-sort-count' => 'urnosen babaen ti bilang',
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Iparang dagiti agar-aramat mangrugi iti:',
 'listusers-submit'   => 'Ipakita',
 'listusers-noresult' => 'Awan nasarakan nga agar-aramat.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'   => 'Grupo',
 'listgrouprights-rights'  => 'Dagiti Karbengan',
 'listgrouprights-members' => '(listaan dagiti kameng)',
@@ -1077,7 +1077,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'watchnologintext'     => 'Nasken a [[Special:Userlogin|naka-loginka]] tapno mabaliwam dagiti bambantayam a panid.',
 'addedwatch'           => 'Nainayon kadagiti bambantayan',
 'addedwatchtext'       => "Nainayonen ti panid a \"[[:\$1]]\" iti [[Special:Watchlist|listaan ti bambantayam]].
-Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti kanaigna a panid-tungtongan, ket agparang ti panid a kas '''napuskol''' iti [[Special:Recentchanges|listaan ti naudi a balbaliw]] tapno nalaklaka a malasin.",
+Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti kanaigna a panid-tungtongan, ket agparang ti panid a kas '''napuskol''' iti [[Special:RecentChanges|listaan ti naudi a balbaliw]] tapno nalaklaka a malasin.",
 'removedwatch'         => 'Naikkaten kadagiti bambantayan',
 'removedwatchtext'     => 'Naikkaten ti panid a "[[:$1]]" iti listaan ti bambantayam.',
 'watch'                => 'bantayan',
@@ -1500,7 +1500,7 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 'show-big-image'       => 'Sibubukel a resolusion',
 'show-big-image-thumb' => '<small>Rukod daytoy a preview: $1 × $2 a pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeria dagiti kabarbaro a files',
 'imagelisttext'         => "Adda iti baba ti listaan ti '''$1''' {{PLURAL:$1|a file|a files}} a naurnos kas $2.",
 'showhidebots'          => '($1 bots)',
@@ -1897,7 +1897,7 @@ $1',
 'version-software-product'         => 'Produkto',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Dalanan ti file',
 'filepath-page'   => 'File:',
 'filepath-submit' => 'Dalan ti file',

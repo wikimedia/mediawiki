@@ -679,7 +679,7 @@ ditunjukkan di bawah:",
 Untuk mencipta laman ini, sila taip dalam kotak di bawah
 (lihat [[{{MediaWiki:Helppage}}|laman bantuan]] untuk maklumat lanjut).
 Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pelayar anda.",
-'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:Userlogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
+'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:UserLogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'clearyourcache'                   => "'''Nota:''' Selepas menyimpan, anda mungkin perlu mengosongkan fail simpanan (''cache'') pelayar anda terlebih dahulu untuk melihat perubahan. '''Mozilla /Firefox/Safari:''' tahan kekunci ''Shift'' ketika mengklik ''Reload'', atau tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tahan kekunci ''Ctrl'' ketika mengklik ''Refresh'', atau tekan ''Ctrl-F5''; '''Konqueror:''' klik butang ''Reload'', atau tekan ''F5''; pengguna '''Opera''' perlu mengosongkan fail simpanan melalui ''Tools→Preferences''.",
@@ -1250,7 +1250,7 @@ Untuk rujukan, berikut ialah log penghapusan bagi fail ini:",
 'upload_source_url'  => ' (URL yang boleh diakses oleh orang awam)',
 'upload_source_file' => ' (fail dalam komputer anda)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Laman khas ini memaparkan senarai fail yang telah dimuat naik.
 Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'imagelist_search_for'  => 'Cari nama imej:',
@@ -1276,14 +1276,17 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'filehist-comment'               => 'Komen',
 'imagelinks'                     => 'Pautan',
 'linkstoimage'                   => '{{PLURAL:$1|Laman|$1 buah laman}} berikut mengandungi pautan ke fail ini:',
+'linkstoimage-more'              => 'Lebih daripada $1 laman mengandungi pautan ke fail ini.
+Berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
+Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'nolinkstoimage'                 => 'Tiada laman yang mengandungi pautan ke fail ini.',
 'morelinkstoimage'               => 'Lihat [[Special:Whatlinkshere/$1|semua pautan]] ke fail ini.',
 'redirectstofile'                => '{{PLURAL:$1|Fail|$1 buah fail}} berikut melencong ke fail ini:',
 'duplicatesoffile'               => '{{PLURAL:$1|Fail|$1 buah fail}} berikut adalah salinan bagi fail ini:',
 'sharedupload'                   => 'Fail ini adalah fail muat naik kongsi dan boleh digunakan oleh projek lain.',
 'shareduploadwiki'               => 'Sila lihat $1 untuk maklumat lanjut.',
-'shareduploadwiki-desc'          => 'Berikut ialah keterangan bagi $1nya di gedung kongsi.',
-'shareduploadwiki-linktext'      => 'laman huraian fail',
+'shareduploadwiki-desc'          => 'Berikut ialah keterangan yang diambil daripada $1nya di gedung kongsi.',
+'shareduploadwiki-linktext'      => 'laman keterangan fail',
 'shareduploadduplicate'          => 'Fail ini adalah salinan bagi $1 di gedung kongsi.',
 'shareduploadduplicate-linktext' => 'fail lain',
 'shareduploadconflict'           => 'Fail ini mempunyai nama yang sama dengan $1 di gedung kongsi.',
@@ -1458,7 +1461,7 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'logempty'             => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard'   => 'Cari semua tajuk yang bermula dengan teks ini',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Semua laman',
 'alphaindexline'    => '$1 hingga $2',
 'nextpage'          => 'Halaman berikutnya ($1)',
@@ -1481,12 +1484,12 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Tunjukkan pengguna bermula pada:',
 'listusers-submit'   => 'Tunjuk',
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Hak kumpulan pengguna',
 'listgrouprights-summary'         => 'Berikut ialah senarai kumpulan pengguna yang ditubuhkan di wiki ini dengan hak-hak masing-masing.
 Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan]] mengenai setiap hak.',
@@ -1538,7 +1541,7 @@ atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
 'addedwatch'           => 'Senarai pantau dikemaskinikan',
 'addedwatchtext'       => "Laman \"[[:\$1]]\" telah ditambahkan ke dalam [[Special:Watchlist|senarai pantau]] anda.
 Semua perubahan bagi laman tersebut dan laman perbincangannya akan disenaraikan di sana,
-dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:Recentchanges|senarai perubahan terkini]]
+dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Special:RecentChanges|senarai perubahan terkini]]
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
@@ -1757,24 +1760,26 @@ $1',
 'blanknamespace' => '(Utama)',
 
 # Contributions
-'contributions' => 'Sumbangan pengguna',
-'mycontris'     => 'Sumbangan saya',
-'contribsub2'   => 'Bagi $1 ($2)',
-'nocontribs'    => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
-'uctop'         => ' (puncak)',
-'month'         => 'Sebelum bulan:',
-'year'          => 'Sebelum tahun:',
+'contributions'       => 'Sumbangan',
+'contributions-title' => 'Sumbangan oleh $1',
+'mycontris'           => 'Sumbangan saya',
+'contribsub2'         => 'Oleh $1 ($2)',
+'nocontribs'          => 'Tiada sebarang perubahan yang sepadan dengan kriteria-kriteria ini.',
+'uctop'               => ' (puncak)',
+'month'               => 'Sebelum bulan:',
+'year'                => 'Sebelum tahun:',
 
-'sp-contributions-newbies'     => 'Tunjuk sumbangan daripada akaun baru sahaja',
-'sp-contributions-newbies-sub' => 'Bagi akaun-akaun baru',
-'sp-contributions-blocklog'    => 'Log sekatan',
-'sp-contributions-search'      => 'Cari sumbangan',
-'sp-contributions-username'    => 'Alamat IP atau nama pengguna:',
-'sp-contributions-submit'      => 'Cari',
+'sp-contributions-newbies'       => 'Tunjuk sumbangan daripada akaun baru sahaja',
+'sp-contributions-newbies-sub'   => 'Bagi akaun-akaun baru',
+'sp-contributions-newbies-title' => 'Sumbangan oleh pengguna baru',
+'sp-contributions-blocklog'      => 'Log sekatan',
+'sp-contributions-search'        => 'Cari sumbangan',
+'sp-contributions-username'      => 'Alamat IP atau nama pengguna:',
+'sp-contributions-submit'        => 'Cari',
 
 # What links here
 'whatlinkshere'            => 'Pautan ke laman ini',
-'whatlinkshere-title'      => 'Laman yang mengandungi pautan ke $1',
+'whatlinkshere-title'      => 'Laman yang mengandungi pautan ke "$1"',
 'whatlinkshere-page'       => 'Laman:',
 'linkshere'                => "Laman-laman berikut mengandungi pautan ke '''[[:$1]]''':",
 'nolinkshere'              => "Tiada laman yang mengandungi pautan ke '''[[:$1]]'''.",
@@ -1815,8 +1820,8 @@ dirosakkan).',
 ** Menyalahgunakan berbilang akaun
 ** Nama pengguna yang tidak sesuai',
 'ipbanononly'                     => 'Sekat pengguna tanpa nama sahaja',
-'ipbcreateaccount'                => 'Halang pembukaan akaun baru',
-'ipbemailban'                     => 'Menghalang pengguna daripada mengirim e-mel',
+'ipbcreateaccount'                => 'Halang pengguna tersebut daripada membuka akaun baru',
+'ipbemailban'                     => 'Halang pengguna tersebut daripada mengirim e-mel',
 'ipbenableautoblock'              => 'Sekat alamat IP terakhir dan mana-mana alamat berikutnya yang digunakan oleh pengguna ini secara automatik',
 'ipbsubmit'                       => 'Sekat pengguna ini',
 'ipbother'                        => 'Waktu lain:',
@@ -1828,7 +1833,7 @@ dirosakkan).',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah disekat.
-<br />Sila lihat [[Special:Ipblocklist|senarai sekatan IP]] untuk maklumat lanjut.',
+<br />Sila lihat [[Special:IPBlockList|senarai sekatan IP]] untuk maklumat lanjut.',
 'ipb-edit-dropdown'               => 'Sunting sebab sekatan',
 'ipb-unblock-addr'                => 'Nyahsekat $1',
 'ipb-unblock'                     => 'Nyahsekat nama pengguna atau alamat IP',
@@ -1860,7 +1865,7 @@ dirosakkan).',
 'blocklogentry'                   => 'menyekat [[$1]] sehingga $2 $3',
 'blocklogtext'                    => 'Ini adalah log bagi sekatan dan penyahsekatan.
 Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
-[[Special:Ipblocklist|senarai sekatan IP]] untuk mengetahui sekatan-sekatan yang sedang dijalankan.',
+[[Special:IPBlockList|senarai sekatan IP]] untuk mengetahui sekatan-sekatan yang sedang dijalankan.',
 'unblocklogentry'                 => 'menyahsekat $1',
 'block-log-flags-anononly'        => 'pengguna tanpa nama sahaja',
 'block-log-flags-nocreate'        => 'pembukaan akaun dimatikan',
@@ -2172,7 +2177,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",
-'imagemaxsize'         => 'Hadkan saiz imej pada laman huraian imej kepada:',
+'imagemaxsize'         => 'Had saiz imej di laman keterangannya:',
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',
 'file-info'            => '(saiz file: $1, jenis MIME: $2)',
@@ -2182,7 +2187,7 @@ $1',
 'show-big-image'       => 'Leraian penuh',
 'show-big-image-thumb' => '<small>Saiz pratonton ini: $1 × $2 piksel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeri fail baru',
 'imagelisttext'         => "Berikut ialah senarai bagi '''$1''' fail yang disusun secara $2.",
 'newimages-summary'     => 'Laman khas ini memaparkan senarai fail muat naik terakhir.',
@@ -2640,7 +2645,7 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'version-software-product'         => 'Produk',
 'version-software-version'         => 'Versi',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Laluan fail',
 'filepath-page'    => 'Fail:',
 'filepath-submit'  => 'Laluan',
@@ -2679,7 +2684,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Laman khas yang melencong',
 'specialpages-group-spam'        => 'Alatan spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Laman kosong',
 'intentionallyblankpage' => 'Laman ini sengaja dibiarkan kosong dan digunakan untuk kerja-kerja ujian dan sebagainya.',
 

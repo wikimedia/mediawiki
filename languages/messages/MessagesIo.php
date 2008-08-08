@@ -576,7 +576,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'uploadedimage'     => 'adkargita "[[$1]]"',
 'uploaddisabled'    => 'Pardonez, la adkargo esas desaktiva.',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'arkivo',
 'imagelist'      => 'Listo di imaji',
 'imagelist_date' => 'Dato',
@@ -676,7 +676,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'speciallogtitlelabel' => 'Titulo:',
 'log-search-submit'    => 'Irar',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Omna pagini',
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Sequanta pagino ($1)',
@@ -693,7 +693,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 # Special:Categories
 'categories' => 'Kategorii',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
 
 # E-mail user
@@ -719,7 +719,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'watchnologin'         => 'Vu ne startis sesiono',
 'watchnologintext'     => 'Vu mustas [[Special:Userlogin|enirir]] por modifikar vua surveyaji.',
 'addedwatch'           => 'Adjuntita a la listo de surveyaji',
-'addedwatchtext'       => "La pagino \"<nowiki>\$1</nowiki>\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatata debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:Recentchanges|listo de recenta chanji]] por faciligar sua trovebleso.
+'addedwatchtext'       => "La pagino \"<nowiki>\$1</nowiki>\" atachesis a vua [[Special:Watchlist|listo de surveyaji]]. Futura chanji di ica pagino ed olua relatata debato-pagini montresos ibe, ed la pagino aparos per '''dika literi''' en la [[Special:RecentChanges|listo de recenta chanji]] por faciligar sua trovebleso.
 
 <p> Se vu volas efacar la pagino de vua listo de surveyaji pose, presez \"Ne plus surveyar\" en la selektaro.",
 'removedwatch'         => 'Efacita de surveyo-listo',
@@ -832,7 +832,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'badipaddress'       => 'IP-adreso ne esas valida',
 'blockipsuccesssub'  => 'Blokusado sucesis',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] blokusesis.<br />
-Videz [[Special:Ipblocklist|IP-blokuslisto]] por revizor blokusadi.',
+Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
 'unblockip'          => 'Desblokusar uzanto',
 'unblockiptext'      => 'Uzez la sequanta formularo por restaurar la skribo-aceso ad IP-adreso qua blokusesis antee.',
 'ipusubmit'          => 'Desblokusar ica IP-adreso',
@@ -980,7 +980,7 @@ Voluntez selektar altra nomo.',
 # Media information
 'widthheightpage' => '$1×$2, $3 pagini',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Galerio di nova arkivi',
 'imagelisttext' => "Infre esas listo di '''$1''' {{PLURAL:$1|arkivo|arkivi}} rangizita $2.",
 'showhidebots'  => '($1 bot-i)',
@@ -1074,7 +1074,7 @@ Voluntez selektar altra nomo.',
 'version-license'          => 'Licenco',
 'version-software-version' => 'Versiono',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Arkivo:',
 
 # Special:FileDuplicateSearch

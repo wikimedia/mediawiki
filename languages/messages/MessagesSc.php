@@ -355,7 +355,7 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'savefile'          => 'Salva file',
 'uploadedimage'     => 'caricato "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lista delle immagini',
 
 # Image description page
@@ -404,7 +404,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'notargettitle'    => 'Dati mancanti',
 'notargettext'     => "Non hai specificato una pagina o un Utente in relazione al quale eseguire l'operazione richiesta.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'Tutte le pagine',
 
 # E-mail user
@@ -428,7 +428,7 @@ oppure ha scelto di non ricevere  posta elettronica dagli altri Utenti.',
 per modificare la tua lista di osservati speciali.',
 'addedwatch'       => 'Aggiunto agli Osservati Speciali',
 'addedwatchtext'   => ' La pagina  "<nowiki>$1</nowiki>" è stata aggiunta alla tua [[Special:Watchlist|lista di osservati speciali]].
-Le future modifiche a questa pagina ed alla relativa pagina di discussione saranno elencate qui, e la pagina apparirà in <b>grassetto</b> nella pagina delle [[Special:Recentchanges|modifiche recenti]] per essere più facile da tener d\'occhio.
+Le future modifiche a questa pagina ed alla relativa pagina di discussione saranno elencate qui, e la pagina apparirà in <b>grassetto</b> nella pagina delle [[Special:RecentChanges|modifiche recenti]] per essere più facile da tener d\'occhio.
 
 Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speciali, clicca " Smetti di seguire " nella barra dei menu.',
 'removedwatch'     => 'Rimosso dalla lista degli Osservati Speciali',
@@ -488,7 +488,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'badipaddress'       => "L'indirizzo IP indicato non è corretto.",
 'blockipsuccesssub'  => 'Blocco eseguito',
 'blockipsuccesstext' => ' L\'indirizzo IP "$1" è stato bloccato.
-<br />Vedi [[Special:Ipblocklist|lista IP bloccati]].',
+<br />Vedi [[Special:IPBlockList|lista IP bloccati]].',
 'unblockip'          => ' Sblocca indirizzo IP',
 'unblockiptext'      => 'Usa il modulo sottostante per restituire il diritto di scrittura ad un indirizzo IP precedentemente bloccato.',
 'ipusubmit'          => 'Sblocca questo indirizzo IP',
@@ -545,7 +545,7 @@ Scegli, per cortesia, un titolo diverso per l'articolo.",
 'movedto'          => 'spostata a',
 'movetalk'         => 'Sposta anche la corrispondente pagina "discussione", se possibile.',
 
-# Special:Newimages
+# Special:NewImages
 'imagelisttext' => 'Qui di seguito una lista di $1 immagini, ordinate per $2.',
 'ilsubmit'      => 'Cerca',
 'bydate'        => 'data',

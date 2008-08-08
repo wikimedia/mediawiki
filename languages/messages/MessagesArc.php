@@ -158,7 +158,7 @@ $messages = array(
 'upload'   => 'ܛܥܢܐ ܦ̮ܥܝܠ',
 'filename' => 'ܫܡܐ ܕܫܘܦܝܢܐ',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'ܫܡܐ',
 
 # Random page
@@ -171,7 +171,7 @@ $messages = array(
 'booksources'    => 'ܙܠ',
 'booksources-go' => 'ܙܠ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ܟܠ ܦܐܬܐ',
 'allarticles'    => 'ܟܠ ܡ̈ܓܠܐ',
 'allpagessubmit' => 'ܙܠ',
@@ -202,7 +202,7 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'ܫܡܐ',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ܛܥܘܝܐ',
 
 # 'all' in various places, this might be different for inflected languages
@@ -218,7 +218,7 @@ $messages = array(
 # Table pager
 'table_pager_limit_submit' => 'ܙܠ',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'ܫܒܝܠܐ ܕܫܘܦܝܢܐ',
 'filepath-submit' => 'ܫܒܝܠܐ',
 

@@ -384,7 +384,7 @@ $messages = array(
 'uploadbtn'       => 'Tau iha arkivu laran',
 'watchthisupload' => "Hateke pájina ne'e",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Naran',
 'imagelist_user' => "Uza-na'in",
 
@@ -436,7 +436,7 @@ $messages = array(
 'specialloguserlabel' => "Uza-na'in:",
 'log-search-submit'   => 'Bá',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Pájina hotu',
 'alphaindexline' => "$1 to'o $2",
 'nextpage'       => 'Pájina oinmai ($1)',
@@ -447,10 +447,10 @@ $messages = array(
 # Special:Categories
 'categories' => 'Kategoría',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Hatudu',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'  => 'Lubu',
 'listgrouprights-rights' => 'Priviléjiu',
 
@@ -606,7 +606,7 @@ $messages = array(
 'previousdiff' => '←Diferensa molok',
 'nextdiff'     => 'Diferensa oinmai→',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 bot sira)',
 'ilsubmit'     => 'Buka',
 

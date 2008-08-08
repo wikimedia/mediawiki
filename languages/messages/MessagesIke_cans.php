@@ -263,7 +263,7 @@ $messages = array(
 # Special:Log
 'log-search-submit' => 'ᐊᐃᕗᖅ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ᓱᓇᒥᑦᑐᖅ ᒪᑉᐱᑕᖅ',
 'nextpage'       => 'ᑕᒡᒐ ᒪᑉᐱᑕᖅ ($1)',
 'allpagesprev'   => 'ᑐᓄᓪᓕᐹᖅ',
@@ -364,7 +364,7 @@ $messages = array(
 'previousdiff' => '← ᑐᓄᓪᓕᐹᖅ ᐊᓯᐊᙳᑐᖅ',
 'nextdiff'     => 'ᑕᒡᒐ ᐊᓯᐊᙳᑐᖅ ᒪᑉᐱᑕᖅ →',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ᐃᕚᖅᐳᖅ',
 'bydate'   => 'ᐱᑖᕈᑦᑐᖅ ᐃᓅᓕᕐᕕᒃ',
 

@@ -497,7 +497,7 @@ $2',
 'accmailtext'               => "'$1'嗰密碼發到$2嘞。",
 'newarticle'                => '(新)',
 'newarticletext'            => '倷連到嗰頁面伓存在。要新開箇隻頁面，倷能到下底嗰方框編寫內容（細節請望[[Help:説明|説明]]）。要係倷伓係特試來到箇首，按吖瀏覽器嗰“返回”即可。',
-'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:Userlogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
+'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext'             => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
 'clearyourcache'            => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''(或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R'')；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
 'usercssjsyoucanpreview'    => "<strong>提示:</strong> 存到前請用'望吖起'來測吖倷嗰新CSS/JS 。",
@@ -894,7 +894,7 @@ $2',
 'upload_source_url'  => '(一隻有效嗰，公開嗰 URL)',
 'upload_source_file' => '(倷電腦嗰一隻檔案)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => '按媒體名字尋:',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案列表',
@@ -1077,7 +1077,7 @@ $2',
 'logempty'             => '日誌中冇符合嗰項目。',
 'log-title-wildcard'   => '尋吖箇隻字開頭嗰標題',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有嗰頁面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下頁($1)',
@@ -1097,7 +1097,7 @@ $2',
 'categories'         => '頁面分類',
 'categoriespagetext' => '下底嗰分類包到頁面或係媒體文件。',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '顯示噉樣用戶條件:',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '尋伓到用戶。',
@@ -1132,7 +1132,7 @@ $2',
 'watchnologin'         => '冇登入',
 'watchnologintext'     => '倷要[[Special:Userlogin|登入]]起才改得正倷嗰監視列表。',
 'addedwatch'           => '加到嘞監視列表',
-'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:Recentchanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
+'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:RecentChanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
 'removedwatch'         => '莫眏到',
 'removedwatchtext'     => '頁面"<nowiki>$1</nowiki>"到倷嗰監視列表刪卟嘞。',
 'watch'                => '眏到',
@@ -1367,7 +1367,7 @@ $NEWPAGE
 'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名',
 'badipaddress'                => 'IP位置伓對。',
 'blockipsuccesssub'           => '封鎖正嘞',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:Ipblocklist|拕封IP列表]]來審過封鎖。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:IPBlockList|拕封IP列表]]來審過封鎖。',
 'ipb-edit-dropdown'           => '編寫封鎖原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封用戶名或IP地址',
@@ -1397,7 +1397,7 @@ $NEWPAGE
 'autoblocker'                 => '倷同"[[$1]]"共用一隻IP，故係倷也拕自動鎖到嘞。$1封鎖嗰緣故係"$2"。',
 'blocklogpage'                => '封鎖日誌',
 'blocklogentry'               => '[[$1]]拕封到$3 ，結束時間到$2',
-'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:Ipblocklist|拕封IP地址列表]]。',
+'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:IPBlockList|拕封IP地址列表]]。',
 'unblocklogentry'             => '[[$1]] 拕解封嘞',
 'block-log-flags-anononly'    => '單限制匿名用戶',
 'block-log-flags-nocreate'    => '禁止箇隻IP/用戶新開帳戶',
@@ -1698,7 +1698,7 @@ $1',
 'show-big-image'       => '完整解析度',
 'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => '底下係按$2排列嗰$1隻檔案列表。',
 'showhidebots'          => '($1機器人)',
@@ -2125,7 +2125,7 @@ $1',
 'version-software'                 => '裝正嗰軟件',
 'version-software-version'         => '版本',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => '文件路徑',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路徑',

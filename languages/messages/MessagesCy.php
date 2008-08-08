@@ -636,7 +636,7 @@ Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyd
 'newarticletext'                   => "Rydych chi wedi dilyn cysylltiad i dudalen sydd heb gael ei chreu eto.
 I greu'r dudalen, dechreuwch deipio yn y blwch isod (gweler y [[{{MediaWiki:Helppage}}|dudalen gymorth]] am fwy o wybodaeth).
 Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
-'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:Userlogin/signup|crëwch gyfrif]] neu [[Special:Userlogin|mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys o hyn ymlaen.''",
+'anontalkpagetext'                 => "---- ''Dyma dudalen sgwrs defnyddiwr sydd heb greu cyfrif, neu nad yw'n defnyddio'i gyfrif. Mae'n rhaid i ni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae'n bosib fod sawl defnyddiwr yn rhannu'r un cyfeiriad IP. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi dryswch gyda defnyddwyr anhysbys o hyn ymlaen.''",
 'noarticletext'                    => "Mae'r dudalen hon yn wag. Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen].",
 'userpage-userdoesnotexist'        => 'Nid oes defnyddiwr a\'r enw "$1" yn bod. Gwnewch yn siwr eich bod am greu/golygu\'r dudalen hon.',
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.''' 
@@ -1136,7 +1136,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'upload_source_url'  => " (URL dilys, ar gael i'r cyhoedd)",
 'upload_source_file' => ' (ffeil ar eich cyfrifiadur)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => "Chwilio am enw'r ddelwedd:",
 'imgfile'               => 'ffeil',
 'imagelist'             => "Rhestr o'r holl ffeiliau",
@@ -1326,7 +1326,7 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'logempty'             => 'Does dim eitemau yn cyfateb yn y lòg.',
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Pob tudalen',
 'alphaindexline'    => '$1 i $2',
 'nextpage'          => 'Y bloc nesaf gan ddechrau gyda ($1)',
@@ -1349,12 +1349,12 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'special-categories-sort-count' => 'trefnu yn ôl nifer',
 'special-categories-sort-abc'   => 'trefnu yn ôl yr wyddor',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Dangos y defnyddwyr gan ddechrau â:',
 'listusers-submit'   => 'Dangos',
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'         => 'Galluoedd grwpiau defnyddwyr',
 'listgrouprights-summary' => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
 'listgrouprights-group'   => 'Grŵp',
@@ -1393,7 +1393,7 @@ er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'watchnologintext'     => "Mae'n rhaid i chi [[Special:Userlogin|fewngofnodi]] er mwyn newid eich rhestr gwylio.",
 'addedwatch'           => 'Rhoddwyd ar eich rhestr gwylio',
 'addedwatchtext'       => "Mae'r dudalen \"[[:\$1|\$1]]\" wedi cael ei hychwanegu at eich [[Special:Watchlist|rhestr gwylio]].
-Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr gwylio ac hefyd '''yn gryf''' ar restr y [[Special:Recentchanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
+Pan fydd y dudalen hon, neu ei thudalen sgwrs, yn newid, fe fyddant yn ymddangos ar eich rhestr gwylio ac hefyd '''yn gryf''' ar restr y [[Special:RecentChanges|newidiadau diweddar]], fel ei bod yn haws eu gweld.
 
 Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" yn y bar ar frig y dudalen.",
 'removedwatch'         => 'Tynnwyd oddi ar eich rhestr gwylio',
@@ -1660,7 +1660,7 @@ $1',
 'badipaddress'                => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'           => 'Y blocio wedi llwyddo',
 'blockipsuccesstext'          => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.
-<br />Gwelwch [[Special:Ipblocklist|restr y blociau IP]] er mwyn arolygu blociau.',
+<br />Gwelwch [[Special:IPBlockList|restr y blociau IP]] er mwyn arolygu blociau.',
 'ipb-edit-dropdown'           => "Golygu'r rhesymau dros flocio",
 'ipb-unblock-addr'            => 'Datflocio $1',
 'ipb-unblock'                 => 'Datflocio enw defnyddiwr neu cyfeiriad IP',
@@ -1689,7 +1689,7 @@ $1',
 'autoblocker'                 => 'Rydych chi wedi cael eich blocio yn awtomatig gan eich bod chi\'n rhannu cyfeiriad IP gyda "[[User:$1|$1]]". Dyma\'r rheswm a roddwyd dros flocio $1: "$2".',
 'blocklogpage'                => 'Lòg blociau',
 'blocklogentry'               => 'wedi blocio "[[$1]]" am gyfnod o $2 $3',
-'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:Ipblocklist|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
+'blocklogtext'                => "Dyma lòg o'r holl weithredoedd blocio a datflocio. Nid yw'r cyfeiriadau IP sydd wedi cael eu blocio'n awtomatig ar y rhestr. Gweler [[Special:IPBlockList|rhestr y blociau IP]] am restr y blociau a'r gwaharddiadau sydd yn weithredol ar hyn o bryd.",
 'unblocklogentry'             => 'wedi dadflocio $1',
 'block-log-flags-anononly'    => 'defnyddwyr anhysbys yn unig',
 'block-log-flags-nocreate'    => 'analluogwyd creu cyfrif',
@@ -1967,7 +1967,7 @@ $1",
 'show-big-image'       => 'Maint llawn',
 'show-big-image-thumb' => '<small>Maint y rhagolwg: $1 × $2 picsel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Oriel y ffeiliau newydd',
 'imagelisttext'         => "Isod mae rhestr {{PLURAL:$1|gwag o ffeiliau|o '''$1''' ffeil|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' ffeil wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|o '''$1''' o ffeiliau wedi'u trefnu $2|}}.",
 'showhidebots'          => '($1 botiau)',
@@ -2294,7 +2294,7 @@ Gallwch hefyd [[Special:Watchlist/edit|ddefnyddio'r rhestr arferol]].",
 'version-software-product'      => 'Cynnyrch',
 'version-software-version'      => 'Fersiwn',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Llwybr y ffeil',
 'filepath-page'    => 'Ffeil:',
 'filepath-submit'  => 'Llwybr',
@@ -2333,7 +2333,7 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Tudalennau arbennig ailgyfeirio',
 'specialpages-group-spam'        => 'Offer sbam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Tudalen wag',
 'intentionallyblankpage' => 'Gadawyd y dudalen hon yn wag o fwriad',
 

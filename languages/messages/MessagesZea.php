@@ -559,7 +559,7 @@ Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].
 Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin ekomm'n.",
 'anontalkpagetext'          => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt.
 Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore.
-A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:UserLogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
 'noarticletext'             => 'Deêze pagina bevat hin tekst.
 Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.',
 'userpage-userdoesnotexist' => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "$1"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
@@ -1016,7 +1016,7 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'alllogstext'         => "Saemengesteld overzicht van de wis-, bescherm-, blokkeer- en gebrukerslechtenlogboeken.
 Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bladzie uut te kiezen.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Aolle bladzies',
 'alphaindexline'    => '$1 toet $2',
 'nextpage'          => 'Volgende bladzie ($1)',
@@ -1047,7 +1047,7 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'addedwatch'           => 'An de volglieste toegevoegd',
 'addedwatchtext'       => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore
-en de bladzie komt '''vet''' te staen in de [[Special:Recentchanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.
+en de bladzie komt '''vet''' te staen in de [[Special:RecentChanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.
 A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie meêr volge\" bovenan de bladzie.",
 'watch'                => 'Volg',
 'watchthispage'        => 'Bekiek deêze bladzie',
@@ -1086,7 +1086,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'badipaddress'                => 'Ongeldig IP-adres',
 'blockipsuccesssub'           => 'Blokkaode is gelukt.',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Ziet de [[Special:Ipblocklist|IP-blokliest]] vo 'n overzicht van blokkaodes.",
+Ziet de [[Special:IPBlockList|IP-blokliest]] vo 'n overzicht van blokkaodes.",
 'anononlyblock'               => 'alleêne anon.',
 'blocklink'                   => 'blokkeer',
 'contribslink'                => 'biedraegen',
@@ -1095,7 +1095,7 @@ De reje daevò was: "$2"',
 'blocklogentry'               => 'ei "[[$1]]" geblokkeerd mee \'n afloôptied van $2 $3',
 'blocklogtext'                => "Dit is 'n logboek van gebrukersblokkaodes en -deblokkeriengen.
 Automaotisch geblokte ip-adressen stae d'r nie bie.
-Ziet de [[Special:Ipblocklist|Lieste van ip-blokkeriengen]] vò blokkaodes die op dit moment in werkienge bin.",
+Ziet de [[Special:IPBlockList|Lieste van ip-blokkeriengen]] vò blokkaodes die op dit moment in werkienge bin.",
 'block-log-flags-anononly'    => 'allene anonieme gebrukers',
 'block-log-flags-nocreate'    => 'uutgeslote van anmaeken gebrukersnaemen',
 'block-log-flags-noautoblock' => 'gin autoblokkaode',

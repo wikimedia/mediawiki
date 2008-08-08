@@ -12,8 +12,8 @@
  * @author Jon Harald Søby
  * @author לערי ריינהארט
  * @author Lokal Profil
- * @author Leo Johannes
  * @author Steinninn
+ * @author Leo Johannes
  * @author Skalman
  * @author Habjchen
  * @author Grillo
@@ -796,7 +796,7 @@ Blockeringens ID är $5. Vänligen ange blockerings-ID i alla förfrågningar so
 'anontalkpagetext'                 => "---- ''Detta är en diskussionssida för en användare som inte har loggat in.
 Därför måste personens numeriska IP-adress användas för att identifiera honom eller henne.
 En sådan IP-adress kan ibland användas av flera olika personer.
-Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:Userlogin/signup|skapa ett konto]] eller [[Special:Userlogin|logga in]]. Då undviker du framtida förväxlingar.''",
+Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna [[Special:UserLogin/signup|skapa ett konto]] eller [[Special:UserLogin|logga in]]. Då undviker du framtida förväxlingar.''",
 'noarticletext'                    => 'Det finns just nu ingen text på denna sida. Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] i andra sidor eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida].',
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
@@ -1380,7 +1380,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload_source_url'  => ' (en giltig URL som är allmänt åtkomlig)',
 'upload_source_file' => ' (en fil på din dator)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
 Som standard visas de senast upladdade filerna högst upp i listan.
 Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
@@ -1407,6 +1407,9 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filehist-comment'               => 'Kommentar',
 'imagelinks'                     => 'Bildlänkar',
 'linkstoimage'                   => 'Följande {{PLURAL:$1|sida|sidor}} länkar till den här filen:',
+'linkstoimage-more'              => 'Mer är {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
+Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.
+Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'nolinkstoimage'                 => 'Inga sidor länkar till den här filen.',
 'morelinkstoimage'               => 'Visa [[Special:Whatlinkshere/$1|fler länkar]] till den här filen.',
 'redirectstofile'                => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
@@ -1585,7 +1588,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'logempty'             => 'Inga matchande träffar i loggen.',
 'log-title-wildcard'   => 'Sök efter sidtitlar som börjar med texten',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Alla sidor',
 'alphaindexline'    => '$1 till $2',
 'nextpage'          => 'Nästa sida ($1)',
@@ -1608,12 +1611,12 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Visa användare från och med:',
 'listusers-submit'   => 'Visa',
 'listusers-noresult' => 'Ingen användare hittades.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Behörigheter för användargrupper',
 'listgrouprights-summary'         => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
 Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]] om de olika behörigheterna.',
@@ -1658,7 +1661,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'watchnologintext'     => 'Du måste vara [[Special:Userlogin|inloggad]] för att kunna ändra din bevakningslista.',
 'addedwatch'           => 'Tillagd på bevakningslistan',
 'addedwatchtext'       => "Sidan \"[[:\$1]]\" har lagts till på din [[Special:Watchlist|bevakningslista]].
-Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:Recentchanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
+Framtida ändringar av den här sidan och dess diskussionssida kommer att listas där, och sidan kommer att markeras med '''fetstil''' i [[Special:RecentChanges|listan över de senaste ändringarna]] för att lättare kunna hittas.",
 'removedwatch'         => 'Borttagen från bevakningslista',
 'removedwatchtext'     => 'Sidan "[[:$1]]" har tagits bort från [[Special:Watchlist|din bevakningslista]].',
 'watch'                => 'bevaka',
@@ -1861,24 +1864,26 @@ $1',
 'blanknamespace' => '(Huvudnamnrymden)',
 
 # Contributions
-'contributions' => 'Användarbidrag',
-'mycontris'     => 'Mina bidrag',
-'contribsub2'   => 'För $1 ($2)',
-'nocontribs'    => 'Inga ändringar hittades, som motsvarar dessa kriterier',
-'uctop'         => '(senaste)',
-'month'         => 'Från månad (och tidigare):',
-'year'          => 'Från år (och tidigare):',
+'contributions'       => 'Användarbidrag',
+'contributions-title' => 'Bidrag av $1',
+'mycontris'           => 'Mina bidrag',
+'contribsub2'         => 'För $1 ($2)',
+'nocontribs'          => 'Inga ändringar hittades, som motsvarar dessa kriterier',
+'uctop'               => '(senaste)',
+'month'               => 'Från månad (och tidigare):',
+'year'                => 'Från år (och tidigare):',
 
-'sp-contributions-newbies'     => 'Visa endast bidrag från nya konton',
-'sp-contributions-newbies-sub' => 'Från nya konton',
-'sp-contributions-blocklog'    => 'Blockeringslogg',
-'sp-contributions-search'      => 'Sök efter användarbidrag',
-'sp-contributions-username'    => 'IP-adress eller användarnamn:',
-'sp-contributions-submit'      => 'Sök',
+'sp-contributions-newbies'       => 'Visa endast bidrag från nya konton',
+'sp-contributions-newbies-sub'   => 'Från nya konton',
+'sp-contributions-newbies-title' => 'Bidrag från nya konton',
+'sp-contributions-blocklog'      => 'Blockeringslogg',
+'sp-contributions-search'        => 'Sök efter användarbidrag',
+'sp-contributions-username'      => 'IP-adress eller användarnamn:',
+'sp-contributions-submit'        => 'Sök',
 
 # What links here
 'whatlinkshere'            => 'Sidor som länkar hit',
-'whatlinkshere-title'      => 'Sidor som länkar till $1',
+'whatlinkshere-title'      => 'Sidor som länkar till "$1"',
 'whatlinkshere-page'       => 'Sida:',
 'linkshere'                => "Följande sidor länkar till '''[[:$1]]''':",
 'nolinkshere'              => "Inga sidor länkar till '''[[:$1]]'''.",
@@ -1928,7 +1933,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
-<br />För att se alla aktuella blockeringar, gå till [[Special:Ipblocklist|listan över blockeringar]].',
+<br />För att se alla aktuella blockeringar, gå till [[Special:IPBlockList|listan över blockeringar]].',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',
 'ipb-unblock-addr'                => 'Ta bort blockering av $1',
 'ipb-unblock'                     => 'Ta bort blockering av en användare eller IP-adress',
@@ -1958,7 +1963,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'autoblocker'                     => 'Automatisk blockering eftersom du har samma IP-adress som "$1". Motivering till blockeringen: "$2".',
 'blocklogpage'                    => 'Blockeringslogg',
 'blocklogentry'                   => 'blockerade [[$1]] med blockeringstid på $2 $3',
-'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar. Automatiskt blockerade IP-adresser listas ej. En lista över IP-adresser och användare som för närvarande är blockerade finns på [[Special:Ipblocklist|IP-blocklistan]].',
+'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar. Automatiskt blockerade IP-adresser listas ej. En lista över IP-adresser och användare som för närvarande är blockerade finns på [[Special:IPBlockList|IP-blocklistan]].',
 'unblocklogentry'                 => 'tog bort blockering av "$1"',
 'block-log-flags-anononly'        => 'bara oinloggade',
 'block-log-flags-nocreate'        => 'hindrar kontoregistrering',
@@ -2005,7 +2010,7 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
 Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln.
 Du kan välja att automatiskt uppdatera omdirigeringar som leder till den gamla titeln.
-Om du väljer att inte göra det, kontrollera därför om du skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
+Om du väljer att inte göra det, kontrollera då att du inte skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
 Du bör också se till att länkar fortsätter att peka dit de ska.
 
 Notera att sidan '''inte''' kan flyttas om det redan finns en sida under den nya sidtiteln, såvida inte den sidan är tom eller en omdirigering till den gamla titeln och saknar annan versionshistorik.
@@ -2287,11 +2292,11 @@ $1',
 'show-big-image'       => 'Högupplöst version',
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galleri över nya filer',
 'imagelisttext'         => 'Nedan finns en lista med <strong>$1</strong> {{PLURAL:$1|bild|bilder}} sorterad <strong>$2</strong>.',
 'newimages-summary'     => 'Den här specialsidan visar de senast uppladdade filerna.',
-'newimages-legend'      => 'Filnamn',
+'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Filnamn (eller en del av det):',
 'showhidebots'          => '($1 robotar)',
 'noimages'              => 'Ingenting att se.',
@@ -2597,7 +2602,7 @@ Mailservern meddelade: $1',
 'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
 'confirmemail_success'     => 'Din e-postadress har bekräftats. 
-Du kan nu [[Special:Userlogin|logga in]] och använda wikin.',
+Du kan nu [[Special:UserLogin|logga in]] och använda wikin.',
 'confirmemail_loggedin'    => 'Din e-postadress är nu bekräftad.',
 'confirmemail_error'       => 'Någonting gick fel när din bekräftelse skulle sparas.',
 'confirmemail_subject'     => 'Bekräftelse av e-postadress på {{SITENAME}}',
@@ -2741,7 +2746,7 @@ Du kan också [[Special:Watchlist/edit|använda standardeditorn]].',
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Sökväg till fil',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sökväg',
@@ -2779,7 +2784,7 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 'specialpages-group-redirects'   => 'Omdirigerande specialsidor',
 'specialpages-group-spam'        => 'Spamverktyg',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Tom sida',
 'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
 

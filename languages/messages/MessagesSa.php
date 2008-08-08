@@ -98,7 +98,7 @@ $messages = array(
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'सर्व लेखा',
 
 # E-mail user

@@ -719,7 +719,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'upload_source_url'  => ' (тĕрĕс, пурте курма пултаракан интертетел адресĕ)',
 'upload_source_file' => ' (сирĕн компьютер çинчи файл)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Ку ятарлă страницăра эсир пур кĕртнĕ файлсене куратăр.
 Нумай пулмасть кĕртнисем çулте вырнаçнă.
 Юпа тăррине пуссан йĕркелӳ майĕ улшăнĕ.',
@@ -836,7 +836,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'all-logs-page'       => 'Журналсем',
 'log-search-submit'   => 'Туп',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'         => 'Пěтěм страницăсем',
 'alphaindexline'   => '$1-$2',
 'nextpage'         => 'Тепěр страницă ($1)',
@@ -856,11 +856,11 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'special-categories-sort-count' => 'шучĕ тăрăх йĕркеле',
 'special-categories-sort-abc'   => 'алфавит тăрăх йĕркеле',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Кăтарт',
 'listusers-noresult' => 'Хутшăнакансем тупăнмарĕç.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'    => 'Ушкăн',
 'listgrouprights-helppage' => 'Help:Ушкăн прависем',
 
@@ -884,7 +884,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'watchnologin'         => 'Системăна хăвăр ята каламалла',
 'watchnologintext'     => 'Сăнав списокне улăштармашкăн сирĕн системăна [[Special:Userlogin|хăвăр ята каламалла]].',
 'addedwatch'           => 'Сăнамалли шутне кĕртрĕмĕр',
-'addedwatchtext'       => '«[[:$1]]» страницăна сирĕн [[Special:Watchlist|сăнав списока]] хушрăмăр. Малашне [[Special:Recentchanges|юлашки улшăнусене кăтартакан страницăра]] унпа çыхăннă улшăнусене хылăм шрифтпа курăнĕç.
+'addedwatchtext'       => '«[[:$1]]» страницăна сирĕн [[Special:Watchlist|сăнав списока]] хушрăмăр. Малашне [[Special:RecentChanges|юлашки улшăнусене кăтартакан страницăра]] унпа çыхăннă улшăнусене хылăм шрифтпа курăнĕç.
 Енчен те сирĕн ку страницăна сăнас кăмăл пĕтсен, «ан сăна» пускăч çине пусăр.',
 'removedwatch'         => 'Сăнамалли списокран кăларса пăрахнă',
 'removedwatchtext'     => '«[[:$1]]» страницăна сирĕн сăнамалли списокран кăларса пăрахнă.',
@@ -976,7 +976,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'badipaddress'             => 'IP-адрес формачĕ тĕрĕс мар, е ку ятлă хутшăнакан кунта çук.',
 'blockipsuccesssub'        => 'Ĕçлеме чартăмăр',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|«$1»]] ĕçлеме чарнă.
-<br />[[Special:Ipblocklist|ĕçлеме чарнă IP-адрессен списокне]] пăх.',
+<br />[[Special:IPBlockList|ĕçлеме чарнă IP-адрессен списокне]] пăх.',
 'unblockip'                => 'IP-адреса блокировкăран калар',
 'unblocked-id'             => '$1 чарса лартнине ирĕке кăларнă',
 'ipblocklist'              => 'Чарнă IP-адрессемпе хутшăнакансен списокĕ',
@@ -1104,7 +1104,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'file-info-size' => '($1 × $2 пиксел, файл пысăкăше: $3, MIME-тĕсĕ: $4)',
 'file-nohires'   => '<small>Пысăкрах калăпăшли çук.</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'         => 'Çĕнĕ файлсен галерейи',
 'newimages-summary' => 'Ку ятарлă страницăра эсир нумай пулмасть кĕртнĕ файлсене куратăр',
 'noimages'          => 'Ӳкерчĕксем çук.',
@@ -1189,7 +1189,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Special:Version
 'version' => 'MediaWiki версийĕ', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Файл çулĕ',
 'filepath-submit' => 'Çул',
 

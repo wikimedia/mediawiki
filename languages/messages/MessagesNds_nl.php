@@ -773,7 +773,7 @@ Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de 
 'accmailtext'                      => "Wachwoord veur '$1' is verzunnen naor $2.",
 'newarticle'                       => '(Niej)',
 'newarticletext'                   => "Disse pagina besteet nog neet. Hieronder ku-j wat schrieven en naokieken of opslaon. A-j hier per ongelok terechtekeumen bin gebruuk dan de knoppe ''veurige'' um weerumme te gaon.",
-'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:Userlogin|een gebrukersnaam anmaken of anmelden]].''",
+'anontalkpagetext'                 => "---- ''Disse overlegpagina heurt bie een annenieme gebruker dee: óf gien gebrukersnaam hef, óf 't neet gebruuk. We gebruken daorumme 't IP-adres ter herkenning, mar 't kan oek ween dat meerdere personen 'tzelfde IP-adres gebruken, en da-j hiermee berichen ontvangen dee neet veur joe bedoeld bin. A-j dit veurkoemen willen, dan ku-j 't bes [[Special:UserLogin|een gebrukersnaam anmaken of anmelden]].''",
 'noarticletext'                    => 'Disse pagina besteet nog neet.
 Je kunnen \'t woord [[Special:Search/{{PAGENAME}}|opzeuken]] in aandere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} disse pagina bewarken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewarken een gebrukerspagina van een gebruker dee neet besteet (gebruker "$1"). Kiek effen nao o-j disse pagina wel anmaken/bewarken willen.',
@@ -1322,7 +1322,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestand toe-evoeg wonnen.
 'upload_source_url'  => ' (een geldig, pebliek toegankelijk webadres)',
 'upload_source_file' => ' (een bestand op joew computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Op disse speciale pagina ku-j alle toe-evoegen bestanden bekieken.
 Standard wonnen de les toe-evoegen bestanden bovenan de lieste ezet.
 Klikken op een kelomkop veraandert de sortering.',
@@ -1525,7 +1525,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'logempty'             => "Der steet gien infermasie in 't logboek dee voldut an disse criteria.",
 'log-title-wildcard'   => 'Zeuk naor titels dee beginnen mit disse tekse:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => "Alle pagina's",
 'alphaindexline'    => '$1 tot $2',
 'nextpage'          => 'Volgende pagina ($1)',
@@ -1548,12 +1548,12 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'special-categories-sort-count' => 'op antal sorteren',
 'special-categories-sort-abc'   => 'alfebetisch sorteren',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Teun vanof:',
 'listusers-submit'   => 'Teun',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor varianten mit kleine letters of heufletters.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Rechen van gebrukersgroepen',
 'listgrouprights-group'    => 'Groep',
 'listgrouprights-rights'   => 'Rechen',
@@ -1589,7 +1589,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 'watchnologintext'     => 'Um je volglieste an te passen mu-j eers [[Special:Userlogin|an-emeld]] ween.',
 'addedwatch'           => 'Disse pagina steet noen op joew volglieste',
 'addedwatchtext'       => "De pagina \"[[:\$1]]\" steet noen op joew [[Special:Watchlist|volglieste]].
-Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:Recentchanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
+Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld wonnen, oek zullen disse pagina's '''vet-edrok''' ween in de lieste mit de [[Special:RecentChanges|leste wiezigingen]] zoda-j 't makkelijker zien kunnen.",
 'removedwatch'         => 'Van volglieste ofhaolen',
 'removedwatchtext'     => 'De pagina "$1" is van joew volglieste op-ehaold.',
 'watch'                => 'Volg',
@@ -1803,7 +1803,7 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 'blockipsuccesssub'           => 'Succesvol eblokkeerd',
 'blockipsuccesstext'          => 'IP-adres "$1" is noen eblokkeerd.
 
-Op de [[Special:Ipblocklist|IP-blokkeerlieste]] steet een lieste mit alle blokkeringen.',
+Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokkeringen.',
 'ipb-edit-dropdown'           => 'Blokkeerrejens bewarken',
 'ipb-unblock-addr'            => 'Deblokkeer $1',
 'ipb-unblock'                 => 'Deblokkeer een gebruker of IP-adres',
@@ -1833,7 +1833,7 @@ Op de [[Special:Ipblocklist|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'autoblocker'                 => 'Vanzelf eblokkeerd umdat \'t IP-adres overenekump mit \'t IP-adres van [[User:$1|$1]], dee eblokkeerd is mit as rejen: "$2"',
 'blocklogpage'                => 'Blokkeerlogboek',
 'blocklogentry'               => 'blokkeren "[[$1]]" veur $2 $3',
-'blocklogtext'                => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:Ipblocklist|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",
+'blocklogtext'                => "Hier zie-j een lieste van de leste blokkeringen en deblokkeringen. Autematische blokkeringen en deblokkeringen koemen neet in 't logboek te staon. Zie de [[Special:IPBlockList|IP-blokkeerlieste]] veur de lieste van adressen dee noen eblokkeerd bin.",
 'unblocklogentry'             => 'Blokkering van [[$1]] op-eheven',
 'block-log-flags-anononly'    => 'allinnig anneniemen',
 'block-log-flags-nocreate'    => 'anmaken van gebrukersprefielen uut-eschakeld',
@@ -2085,7 +2085,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'show-big-image'       => 'Ofbeelding in hogere resolusie',
 'show-big-image-thumb' => '<small>Grootte van disse weergave: $1 × $2 beeldpunten</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Nieje ofbeeldingen',
 'noimages'              => 'Niks te zien.',
 'ilsubmit'              => 'Zeuk',
@@ -2423,7 +2423,7 @@ Je kunnen oek [[Special:Watchlist/edit|'t standard bewarkingsscharm gebruken]]."
 'version-software'                 => 'Eïnstalleren pregrammetuur',
 'version-software-product'         => 'Preduk',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Bestanslokasie',
 'filepath-submit'  => 'Zeuken',
 'filepath-summary' => "Disse speciale pagina geef 't hele pad veur een bestand. Ofbeeldingen wonnen in resolusie helemaole weer-egeven. Aandere bestanstypen wonnen gelieke in 't mit 't MIME-type verbunnen pregramma los edaon.

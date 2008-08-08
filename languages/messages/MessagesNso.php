@@ -556,7 +556,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'license-nopreview'  => '(Ponopele ga e gona)',
 'upload_source_file' => '(faele go khomphuthara ya gago)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'faele',
 'imagelist'      => 'Lenano la difaele',
 'imagelist_date' => 'Letšatšikgwedi',
@@ -675,7 +675,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'all-logs-page'        => "Di-''log'' kamoka",
 'log-search-submit'    => 'Sepela',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Matlakala ka moka',
 'alphaindexline' => '$1 goya go $2',
 'nextpage'       => 'Letlakala lago latela ($1)',
@@ -688,7 +688,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 # Special:Categories
 'categories' => 'Dihlopha',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Botšha',
 
 # E-mail user
@@ -710,7 +710,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'watchlistfor'         => "(ya '''$1''')",
 'addedwatch'           => 'Loketšwe go lenano la ditlhapetšo',
 'addedwatchtext'       => "Letlakala \"[[:\$1]]\" le tsene go [[Special:Watchlist|watchlist]] ya gago.
-Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:Recentchanges|list of recent changes]] gore go be bonolo gore oa bone.
+Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:RecentChanges|list of recent changes]] gore go be bonolo gore oa bone.
 
 Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiša \"Tloša tlhapetšo\" go sidebar.",
 'removedwatch'         => 'Tlošitšwe go lenano la ditlhapetšo',
@@ -970,7 +970,7 @@ $1',
 'show-big-image'       => "''resolution'' ya gofella",
 'show-big-image-thumb' => '<small>Bogolo ba pono: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => "''Gallery'' ya difaele tše mpsha",
 'ilsubmit'  => 'Fetleka',
 'bydate'    => 'ka letšatšikgwedi',

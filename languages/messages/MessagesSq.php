@@ -578,7 +578,7 @@ Përderisa nuk ka seksion $1 nuk ka vend për të ruajtur ndryshimet tuaja.",
 'newarticletext'                   => "{{SITENAME}} nuk ka akoma një ''{{NAMESPACE}} faqe'' të quajtur '''{{PAGENAME}}'''. Shtypni '''redaktoni''' më sipër ose [[Special:Search/{{PAGENAME}}|bëni një kërkim për {{PAGENAME}}]]",
 'anontalkpagetext'                 => "---- ''Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka hapur akoma një llogari ose nuk e përdor atë.
 Prandaj, më duhet të përdor numrin e adresës IP për ta identifikuar.
-Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:Userlogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.''",
+Kjo adresë mund të përdoret nga disa njerëz. Në qoftë se jeni një përdorues anonim dhe mendoni se komente kot janë drejtuar ndaj jush, ju lutem [[Special:UserLogin|krijoni një llogari ose hyni brënda]] për të mos u ngatarruar me përdorues të tjerë anonim.''",
 'noarticletext'                    => 'Tani për tani nuk ka tekst në këtë faqe, mund ta [[Special:Search/{{PAGENAME}}|kërkoni]] këtë titull në faqe të tjera ose mund ta [{{fullurl:{{FULLPAGENAME}}|action=edit}} filloni] atë.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "$1" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'clearyourcache'                   => "'''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
@@ -1091,7 +1091,7 @@ Këshillohet që ta provoni kur të jetë më pak e zënë.',
 'upload_source_url'  => ' (URL e vlefshme, publikisht e përdorshme)',
 'upload_source_file' => ' (skeda në kompjuterin tuaj)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Kjo faqe speciale tregon tërë skedat e ngarkuara.
 Fillimisht skedat e ngarkuara së fundmi jepen më sipër.
 Shtypni kolonat e tjera për të ndryshuar radhitjen.',
@@ -1292,7 +1292,7 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'alllogstext'          => 'Kjo faqe tregon një pamje të përmbledhur të regjistrave të ngarkimeve, grisjeve, mbrojtjeve, bllokimeve, dhe të veprimeve administrative. Mundeni të kufizoni informactionin sipas tipit të regjistrit, emrit të përdoruesit, si dhe faqes në çështje.',
 'logempty'             => 'Nuk ka asnjë përputhje në regjistër.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Të gjitha faqet',
 'alphaindexline'    => '$1 deri në $2',
 'nextpage'          => 'Faqja më pas ($1)',
@@ -1310,12 +1310,12 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'categories'         => 'Kategori',
 'categoriespagetext' => 'Ndodhen këto kategori:',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Trego përdoruesit duke filluar prej te:',
 'listusers-submit'   => 'Trego',
 'listusers-noresult' => "Asnjë përdorues s'u gjet.",
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Grupime përdoruesish me privilegje',
 'listgrouprights-summary'  => 'Më poshtë jepet grupimi i përdoruesve sipas privilegjeve që ju janë dhënë në këtë wiki. Më shumë informacion rreth privilegjeve në veçanti mund të gjendet tek [[{{MediaWiki:Listgrouprights-helppage}}]].',
 'listgrouprights-group'    => 'Grupi',
@@ -1354,7 +1354,7 @@ ose ka vendosur të mos pranojë mesazhe email-i nga përdorues të tjerë.",
 'watchnologin'         => 'Nuk keni hyrë brënda',
 'watchnologintext'     => 'Duhet të keni [[Special:Userlogin|hyrë brenda]] për të ndryshuar listën mbikqyrëse.',
 'addedwatch'           => 'U shtua tek lista mbikqyrëse',
-'addedwatchtext'       => "Faqja \"<nowiki>\$1</nowiki>\" është shtuar [[Special:Watchlist|listës mbikqyrëse]] tuaj. Ndryshimet e ardhshme të kësaj faqeje dhe faqes së diskutimit të saj do të jepen më poshtë, dhe emri i faqes do të duket i '''trashë''' në [[Special:Recentchanges|listën e ndryshimeve së fundmi]] për t'i dalluar më kollaj.
+'addedwatchtext'       => "Faqja \"<nowiki>\$1</nowiki>\" është shtuar [[Special:Watchlist|listës mbikqyrëse]] tuaj. Ndryshimet e ardhshme të kësaj faqeje dhe faqes së diskutimit të saj do të jepen më poshtë, dhe emri i faqes do të duket i '''trashë''' në [[Special:RecentChanges|listën e ndryshimeve së fundmi]] për t'i dalluar më kollaj.
 
 Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, shtypni \"çmbikqyre\" në tabelën e sipërme.",
 'removedwatch'         => 'U hoq nga lista mibkqyrëse',
@@ -1595,7 +1595,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'badipaddress'                => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'           => 'Bllokimi u bë me sukses',
 'blockipsuccesstext'          => 'Përdoruesi/IP-Adresa [[Special:Contributions/$1|$1]] u bllokua.<br />
-Shiko te [[Special:Ipblocklist|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
+Shiko te [[Special:IPBlockList|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
 'ipb-edit-dropdown'           => 'Redakto arsyet e bllokimit',
 'ipb-unblock-addr'            => 'Çblloko $1',
 'ipb-unblock'                 => 'Çblloko përdorues dhe IP të bllokuara',
@@ -1625,7 +1625,7 @@ një përdoruesi ose IP adreseje të bllokuar.",
 'autoblocker'                 => 'I bllokuar automatikisht sepse përdor të njëjtën IP adresë si "$1". Arsye "$2".',
 'blocklogpage'                => 'Regjistri i bllokimeve',
 'blocklogentry'               => 'bllokoi [[$1]] për një kohë prej: $2 $3',
-'blocklogtext'                => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:Ipblocklist|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
+'blocklogtext'                => 'Ky është një regjistër bllokimesh dhe çbllokimesh të përdoruesve. IP-të e bllokuara automatikisht nuk janë të dhëna. Shikoni dhe [[Special:IPBlockList|listën e IP-ve të bllokuara]] për një listë të bllokimeve të tanishme.',
 'unblocklogentry'             => 'çbllokoi "$1"',
 'range_block_disabled'        => 'Mundësia e administruesve për të bllokuar me shtrirje është çaktivizuar.',
 'ipb_expiry_invalid'          => 'Afati i kohës është gabim.',
@@ -1889,7 +1889,7 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'show-big-image'       => 'Rezolucion i plotë',
 'show-big-image-thumb' => '<small>Madhësia e këtij shikimi: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeria e figurave të reja',
 'imagelisttext'         => 'Më poshtë është një listë e $1 {{PLURAL:$1|skedës të renditur|skedave të renditura}} sipas $2.',
 'newimages-summary'     => 'Kjo faqe speciale tregon skedat e ngarkuara së fundmi.',
@@ -2204,7 +2204,7 @@ Ju gjithashtu mundeni ta redaktoni listën mbikëqyrëse [[Special:Watchlist/edi
 'version-software-product' => 'Produkti',
 'version-software-version' => 'Versioni',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Vendndodhja e skedave',
 'filepath-page'    => 'Skeda:',
 'filepath-submit'  => 'Shko',

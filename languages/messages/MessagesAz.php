@@ -336,7 +336,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'uploadwarning'     => 'Yükləyiş xəbərdarlıqı',
 'savefile'          => 'Faylı qeyd et',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Fayl siyahısı',
 
 # Image description page
@@ -397,7 +397,7 @@ Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '
 'log'         => 'Loglar',
 'alllogstext' => "Qarşıya yükləmə, silmə, qoruma, bloklama ve sistem operatoru loqlarının birləşdirilmiş göstərməsi. Log növü, istifadəçi adı veya tə'sir edilən səhifəni seçib görüntünü kiçildə bilərsiniz.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Bütün səhifələr',
 'nextpage'       => 'Sonrakı səhifə ($1)',
 'allpagesfrom'   => 'Bu mövqedən başlayan səhifeleri göstər:',
@@ -427,7 +427,7 @@ Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '
 'mywatchlist'          => 'İzlədiyim səhifələr',
 'watchnologin'         => 'Daxil olmamısınız',
 'addedwatch'           => 'İzləmə siyahısına əlavə edildi.',
-'addedwatchtext'       => '"$1" səhifəsi [[Special:Watchlist|izlədiyiniz səhifələrə]] əlavə edildi. Bu səhifədə və əlaqəli müzakirə səhifəsində olacaq dəyişikliklər orada göstəriləcək və səhifə asanlıqla seçiləbilmək üçün [[Special:Recentchanges|son dəyişikliklər]]-də qalın şriftlərlə görsənəcəkdir.
+'addedwatchtext'       => '"$1" səhifəsi [[Special:Watchlist|izlədiyiniz səhifələrə]] əlavə edildi. Bu səhifədə və əlaqəli müzakirə səhifəsində olacaq dəyişikliklər orada göstəriləcək və səhifə asanlıqla seçiləbilmək üçün [[Special:RecentChanges|son dəyişikliklər]]-də qalın şriftlərlə görsənəcəkdir.
 
 Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə" düyməsinə vurun.',
 'removedwatch'         => 'İzləmə siyahısından çıxardılıb',
@@ -478,7 +478,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'ipbsubmit'          => 'Bu istifadəçiyi əngəllə',
 'badipaddress'       => 'Yanlış IP',
 'blockipsuccesssub'  => 'bloklandi',
-'blockipsuccesstext' => '[[Special:Contributions/$1| $1]]bloklanıb. <br />See[[Special:Ipblocklist|IP blok siyahisi]] bloklanmış IP lər.',
+'blockipsuccesstext' => '[[Special:Contributions/$1| $1]]bloklanıb. <br />See[[Special:IPBlockList|IP blok siyahisi]] bloklanmış IP lər.',
 'ipblocklist'        => 'Əngəllənmiş istifadəçilər siyahı',
 'blocklink'          => 'blokla',
 'contribslink'       => 'Köməklər',
@@ -552,7 +552,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'imagemaxsize' => 'Limit images on image description pages to:',
 'thumbsize'    => 'Kiçik ölçü:',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Yeni faylların siyahısı',
 'bydate'    => 'tarixe görə',
 

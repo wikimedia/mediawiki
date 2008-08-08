@@ -63,7 +63,7 @@ $messages = array(
 # Block/unblock
 'proxyblocksuccess' => 'ᎠᏍᏆᏛᎯ.',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ᎠᏯᏍᏗ',
 
 # Special:SpecialPages

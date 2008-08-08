@@ -318,6 +318,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly'                => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats'          => 'Verborgen categorieën weergeven',
+'tog-noconvertlink'           => 'Paginanaamconversie uitschakelen',
 
 'underline-always'  => 'Altijd',
 'underline-never'   => 'Nooit',
@@ -777,32 +778,34 @@ Uw IP-adres wordt opgeslagen als u wijzigingen op deze pagina maakt.",
 'summary-preview'                  => 'Samenvatting nakijken',
 'subject-preview'                  => 'Nakijken onderwerp/kop',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
-'blockedtext'                      => "<big>'''Uw gebruiker of IP-adres is geblokkeerd.'''</big>
+'blockedtext'                      => '<big>\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'</big>
 
 De blokkade is uitgevoerd door $1.
-De opgegeven reden is ''$2''.
+De opgegeven reden is \'\'$2\'\'.
 
 * Aanvang blokkade: $8
 * Einde blokkade: $6
 * Bedoeld te blokkeren: $7
 
 U kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.
-U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.
-Uw huidige IP-adres is $3 en het blokkadenummer is #$5. Vermeld beide gegevens als u ergens op deze blokkade reageert.",
-'autoblockedtext'                  => "Uw IP-adres is automatisch geblokkeerd, omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
+U kunt geen gebruik maken van de functie "Deze gebruiker e-mailen", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet geblokkeerd is.
+Uw huidige IP-adres is $3 en het blokkadenummer is #$5.
+Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
+'autoblockedtext'                  => 'Uw IP-adres is automatisch geblokkeerd, omdat het is gebruikt door een andere gebruiker, die is geblokkeerd door $1.
 De opgegeven reden is:
 
-:''$2''
+:\'\'$2\'\'
 
 * Aanvang blokkade: $8
 * Einde blokkade: $6
+* Bedoeld te blokkeren: $7
 
 U kunt deze blokkade bespreken met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].
 
-U kunt geen gebruik maken van de functie 'e-mail deze gebruiker', tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
+U kunt geen gebruik maken van de functie "Deze gebruiker e-mailen", tenzij u een geldig e-mailadres hebt opgegeven in uw [[Special:Preferences|voorkeuren]] en het gebruik van deze functie niet is geblokkeerd.
 
-Uw blokkadenummer is $5.
-Vermeld beide gegevens als u ergens over deze blokkade reageert.",
+Uw huidige IP-adres is $3 en het blokkadenummer is #$5.
+Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 'blockednoreason'                  => 'geen reden opgegeven',
 'blockedoriginalsource'            => "Hieronder staat de brontekst van '''$1''':",
 'blockededitsource'                => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
@@ -825,7 +828,7 @@ Gebruik de knop '''vorige''' in uw browser als u hier per ongeluk terecht bent g
 Daarom wordt het IP-adres ter identificatie gebruikt.
 Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken.
 Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn.
-Als u dat wilt voorkomen, [[Special:Userlogin/signup|registreer u]] of [[Special:Userlogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
+Als u dat wilt voorkomen, [[Special:UserLogin/signup|registreer u]] of [[Special:UserLogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
 'noarticletext'                    => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1"). Controleer of u deze pagina wel wilt aanmaken/bewerken.',
@@ -907,7 +910,7 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina. Voor uw gemak sta
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
 
-Nu zijn het er $1, terwijl het er minder dan $2 {{PLURAL:$2|moet|moeten}} zijn.',
+Nu {{PLURAL:$1|is|zijn}} het er $1, terwijl het er minder dan $2 {{PLURAL:$2|moet|moeten}} zijn.',
 'expensive-parserfunction-category'       => "Pagina's die te veel kostbare parserfuncties gebruiken",
 'post-expand-template-inclusion-warning'  => 'Waarschuwing: de maximale transclusiegrootte voor sjablonen is overschreden.
 Sommige sjablonen worden niet getranscludeerd.',
@@ -1426,7 +1429,7 @@ U kunt het misschien proberen als het minder druk is.',
 'upload_source_url'  => ' (een geldige, publiek toegankelijke URL)',
 'upload_source_file' => ' (een bestand op uw computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
 Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
 Klikken op een kolomkop verandert de sortering.',
@@ -1453,6 +1456,9 @@ Klikken op een kolomkop verandert de sortering.',
 'filehist-comment'               => 'Opmerking',
 'imagelinks'                     => 'Bestandsverwijzingen',
 'linkstoimage'                   => "Dit bestand wordt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruikt:",
+'linkstoimage-more'              => 'Er {{PLURAL:$2|is|zijn}} meer dan $1 {{PLURAL:$1|verwijzing|verwijzingen}} naar dit bestand.
+De volgende lijst geeft alleen de eerste {{PLURAL:$1|verwijzing|$1 verwijzingen}} naar dit bestand weer.
+Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'nolinkstoimage'                 => 'Geen enkele pagina gebruikt dit bestand.',
 'morelinkstoimage'               => '[[Special:Whatlinkshere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
 'redirectstofile'                => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
@@ -1641,7 +1647,7 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'logempty'             => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',
 'log-title-wildcard'   => "Pagina's zoeken die met deze naam beginnen",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => "Alle pagina's",
 'alphaindexline'    => '$1 tot $2',
 'nextpage'          => 'Volgende pagina ($1)',
@@ -1664,12 +1670,12 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'special-categories-sort-count' => 'op aantal sorteren',
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Gebruikers bekijken vanaf:',
 'listusers-submit'   => 'Weergeven',
 'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Rechten van gebruikersgroepen',
 'listgrouprights-summary'         => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten. Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
 'listgrouprights-group'           => 'Groep',
@@ -1712,7 +1718,7 @@ Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] w
 'watchnologin'         => 'U bent niet aangemeld',
 'watchnologintext'     => 'U dient [[Special:Userlogin|aangemeld]] te zijn om uw volglijst te bewerken.',
 'addedwatch'           => 'Toegevoegd aan volglijst',
-'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan uw [[Special:Watchlist|volglijst]]. Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|uw volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:Recentchanges|lijst van recente wijzigingen]].
+'addedwatchtext'       => "De pagina \"[[:\$1]]\" is toegevoegd aan uw [[Special:Watchlist|volglijst]]. Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden op [[Special:Watchlist|uw volglijst]] vermeld en worden '''vet''' weergegeven in de [[Special:RecentChanges|lijst van recente wijzigingen]].
 
 Indien u een pagina niet langer wilt volgen, ga dan naar de pagina en klik op \"Niet volgen\" in het menu.",
 'removedwatch'         => 'Verwijderd van volglijst',
@@ -1916,20 +1922,22 @@ $1',
 'blanknamespace' => '(Hoofdnaamruimte)',
 
 # Contributions
-'contributions' => 'Gebruikersbijdragen',
-'mycontris'     => 'Mijn bijdragen',
-'contribsub2'   => 'Voor $1 ($2)',
-'nocontribs'    => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
-'uctop'         => '(laatste wijziging)',
-'month'         => 'Van maand (en eerder):',
-'year'          => 'Van jaar (en eerder):',
+'contributions'       => 'Gebruikersbijdragen',
+'contributions-title' => 'Bijdragen van $1',
+'mycontris'           => 'Mijn bijdragen',
+'contribsub2'         => 'Voor $1 ($2)',
+'nocontribs'          => 'Geen wijzigingen gevonden die aan de gestelde criteria voldoen.',
+'uctop'               => '(laatste wijziging)',
+'month'               => 'Van maand (en eerder):',
+'year'                => 'Van jaar (en eerder):',
 
-'sp-contributions-newbies'     => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
-'sp-contributions-newbies-sub' => 'Voor nieuwelingen',
-'sp-contributions-blocklog'    => 'Blokkeerlogboek',
-'sp-contributions-search'      => 'Zoeken naar bijdragen',
-'sp-contributions-username'    => 'IP-adres of gebruikersnaam:',
-'sp-contributions-submit'      => 'Bekijken',
+'sp-contributions-newbies'       => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
+'sp-contributions-newbies-sub'   => 'Voor nieuwelingen',
+'sp-contributions-newbies-title' => 'Bijdragen van nieuwe gebruikers',
+'sp-contributions-blocklog'      => 'Blokkeerlogboek',
+'sp-contributions-search'        => 'Zoeken naar bijdragen',
+'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
+'sp-contributions-submit'        => 'Bekijken',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -1982,7 +1990,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'badipaddress'                    => 'Geen geldig IP-adres',
 'blockipsuccesssub'               => 'Blokkering geslaagd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]] voor recente blokkades.',
+Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente blokkades.',
 'ipb-edit-dropdown'               => 'lijst van redenen bewerken',
 'ipb-unblock-addr'                => '$1 deblokkeren',
 'ipb-unblock'                     => 'een gebruiker of IP-adres deblokkeren',
@@ -2012,7 +2020,7 @@ Zie de [[Special:Ipblocklist|Lijst van geblokkeerde IP-adressen]] voor recente b
 'autoblocker'                     => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                    => 'Blokkeerlogboek',
 'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
-'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[Special:Ipblocklist|Ipblocklist]] voor geblokkeerde adressen.',
+'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen. Automatische blokkeringen en deblokkeringen komen niet in het logboek. Zie de [[Special:IPBlockList|Ipblocklist]] voor geblokkeerde adressen.',
 'unblocklogentry'                 => 'heeft de blokkade van $1 opgeheven',
 'block-log-flags-anononly'        => 'alleen anoniemen',
 'block-log-flags-nocreate'        => 'registreren gebruikers geblokkeerd',
@@ -2360,7 +2368,7 @@ $1',
 'show-big-image'       => 'Hogere resolutie',
 'show-big-image-thumb' => '<small>Grootte van deze afbeelding: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Nieuwe bestanden',
 'imagelisttext'         => "Hier volgt een lijst met '''$1''' {{PLURAL:$1|bestand|bestanden}} gesorteerd $2.",
 'newimages-summary'     => 'Op deze speciale pagina worden de meest recent toegevoegde bestanden weergegeven.',
@@ -2836,7 +2844,7 @@ U kunt ook [[Special:Watchlist/edit|het standaard bewerkingsscherm gebruiken]].'
 'version-software-product'         => 'Product',
 'version-software-version'         => 'Versie',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Bestandslocatie',
 'filepath-page'    => 'Bestand:',
 'filepath-submit'  => 'Zoeken',
@@ -2874,7 +2882,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:image}}:".',
 'specialpages-group-redirects'   => "Doorverwijzende speciale pagina's",
 'specialpages-group-spam'        => 'Spamhulpmiddelen',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Lege pagina',
 'intentionallyblankpage' => 'Deze pagina is bewust leeg gelaten en wordt gebruikt voor benchmarks, enzovoort.',
 

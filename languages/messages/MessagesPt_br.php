@@ -5,8 +5,8 @@
  * @file
  *
  * @author 555
- * @author לערי ריינהארט
  * @author Lijealso
+ * @author לערי ריינהארט
  * @author Yves Marques Junqueira
  * @author Rodrigo Calanca Nishino
  * @author LeonardoG
@@ -682,7 +682,7 @@ Por favor, introduza um e valide-o através das suas [[Special:Preferences|prefe
 Para criá-la, começe escrevendo na caixa abaixo
 (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu navegador.",
-'anontalkpagetext'          => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevantes os comentários direcionados a você, por gentileza, [[Special:Userlogin|crie uma conta ou autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
+'anontalkpagetext'          => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Um endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha irrelevantes os comentários direcionados a você, por gentileza, [[Special:UserLogin|crie uma conta ou autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
 'noarticletext'             => 'Não existe atualmente texto nesta página; você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página em outras páginas]] ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'userpage-userdoesnotexist' => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
 'clearyourcache'            => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
@@ -1258,7 +1258,7 @@ PICT # misc.
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
 'upload_source_file' => ' (um arquivo no seu computador)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Esta página especial mostra todos os arquivos carregados.
 Por padrão, os últimos arquivos carregados são mostrados no topo da lista.
 Um clique sobre um cabeçalho de coluna altera a ordenação.',
@@ -1461,7 +1461,7 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário,
 'logempty'             => 'Nenhum item idêntico no registro.',
 'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com o seguinte texto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Todas as páginas',
 'alphaindexline'    => '$1 até $2',
 'nextpage'          => 'Próxima página ($1)',
@@ -1484,12 +1484,12 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário,
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mostrar usuários começando em:',
 'listusers-submit'   => 'Exibir',
 'listusers-noresult' => 'Não foram encontrados usuários para a forma pesquisada.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Privilégios de grupo de usuários',
 'listgrouprights-summary'  => 'A seguinte lista contém os grupos de usuários definidos neste wiki, com os seus privilégios de acessos associados.
 Informação adicional sobre direitos individuais pode ser encontrada [[{{MediaWiki:Listgrouprights-helppage}}|aqui]].',
@@ -1530,7 +1530,7 @@ O endereço de e-mail que você disponibilizou em suas preferências aparecerá 
 'watchnologintext'     => 'Você precisa estar [[Special:Userlogin|autenticado]] para modificar a sua lista de artigos vigiados.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de vigiados]].
-Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:Recentchanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
+Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
 'removedwatch'         => 'Removida da lista de páginas vigiados',
 'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de páginas vigiadas.',
 'watch'                => 'Vigiar',
@@ -1805,7 +1805,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'badipaddress'                    => 'Endereço de IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloqueios.',
+Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloqueios.',
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear um usuário ou endereço de IP',
@@ -1837,7 +1837,7 @@ Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para rever os bloquei
 'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
 'blocklogtext'                    => 'Este é um registro de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
-Consulte a [[Special:Ipblocklist|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos atualmente válidos.',
+Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos atualmente válidos.',
 'unblocklogentry'                 => 'desbloqueou $1',
 'block-log-flags-anononly'        => 'apenas usuários anônimos',
 'block-log-flags-nocreate'        => 'criação de contas desabilitada',
@@ -2156,7 +2156,7 @@ $1',
 'show-big-image'       => 'Resolução completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galeria de novos arquivos',
 'imagelisttext'         => "É exibida a seguir uma listagem {{PLURAL:$1|de '''um''' arquivo organizado|de '''$1''' arquivos organizados}} por $2.",
 'newimages-summary'     => 'Esta página especial mostra os arquivos mais recentemente enviados',
@@ -2607,7 +2607,7 @@ Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional
 'version-software-product'         => 'Produto',
 'version-software-version'         => 'Versão',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Diretório do arquivo',
 'filepath-page'    => 'arquivo:',
 'filepath-submit'  => 'Diretório',
@@ -2645,7 +2645,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:image}}:".',
 'specialpages-group-redirects'   => 'Páginas especias redirecionadas',
 'specialpages-group-spam'        => 'Ferramentas anti-spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Página em branco',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
 

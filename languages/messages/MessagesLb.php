@@ -660,7 +660,7 @@ Gitt w.e.g. Eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benot
 'anontalkpagetext'                 => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt.
 Dowéinster musse mir d'IP Adress benotzen fir hien/hatt z'identifizéieren. 
 Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. 
-Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut,  [[Special:Userlogin|maacht w.e.g. e Kont op]] oder [[Special:Userlogin|loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
+Wann Dir en anonyme Benotzer sidd an dir irrelevant Kommentäre krut,  [[Special:UserLogin|maacht w.e.g. e Kont op]] oder [[Special:UserLogin|loggt Iech an]] fir weider Verwiesselungen mat anonyme Benotzer ze verhënneren.''",
 'noarticletext'                    => 'Dës Säit huet momentan nach keen Text, Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën].',
 'userpage-userdoesnotexist'        => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
 'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.''' '''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Macintosh);'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' '''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' '''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
@@ -1204,7 +1204,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_url'  => ' (gülteg, ëffentlech zougänglech URL)',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
 'imagelist_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
@@ -1408,12 +1408,12 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'all-logs-page'        => "All d'Logbicher",
 'log-search-legend'    => 'Logbicher duerchsichen',
 'log-search-submit'    => 'Sichen',
-'alllogstext'          => "Dëst ass eng kombinéiert Lëscht vu Logbicher vu(n) {{SITENAME}}.
+'alllogstext'          => "Dëst ass eng kombinéiert Lëscht vu Logbicher op {{SITENAME}}.
 Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm oder déi gefrote Säit agitt.",
 'logempty'             => 'Näischt fonnt.',
 'log-title-wildcard'   => 'Titel fänkt u matt …',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'All Säiten',
 'alphaindexline'    => '$1 bis $2',
 'nextpage'          => 'Nächst Säit ($1)',
@@ -1436,12 +1436,12 @@ Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm oder déi gefr
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Rechter vun de Benotzergruppen',
 'listgrouprights-summary'         => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.
 Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] iwwer individuell Benotzerrechter.',
@@ -1481,7 +1481,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'watchnologin'         => 'Net ageloggt',
 'watchnologintext'     => "Dir musst [[Special:Userlogin|ugemellt]] sinn, fir Är Iwwerwaachungslëscht z'änneren.",
 'addedwatch'           => "Op d'Iwwerwaachungslëscht gesat",
-'addedwatchtext'       => "D'Säit \"<nowiki>\$1</nowiki>\" gouf bei an är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:Recentchanges|rezenten Ännerungen]] aus fir, se méi séier erëmzefannen.
+'addedwatchtext'       => "D'Säit \"<nowiki>\$1</nowiki>\" gouf bei an är [[Special:Watchlist|Iwwerwaachtungslëscht]] gesat. All weider Ännerungen op dëser Säit an/oder der Diskussiounssäit ginn hei opgelëscht, an d'Säit gesäit '''fettgedréckt''' bei de [[Special:RecentChanges|rezenten Ännerungen]] aus fir, se méi séier erëmzefannen.
 
 Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" uewen op der Säit.",
 'removedwatch'         => 'Vun der Iwwerwaachungslëscht erofgeholl',
@@ -1698,7 +1698,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
-'whatlinkshere-title'      => 'Säiten, déi mat „$1“ verlinkt sinn',
+'whatlinkshere-title'      => 'Säiten, déi mat "$1" verlinkt sinn',
 'whatlinkshere-page'       => 'Säit:',
 'linkshere'                => "Déi folgend Säite linken op '''[[:$1]]''':",
 'nolinkshere'              => "Keng Säit ass mat '''[[:$1]]''' verlinkt.",
@@ -1747,7 +1747,7 @@ $1',
 'blockipsuccesssub'           => 'Gouf gespaart',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
-Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
+Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-edit-dropdown'           => 'Spärgrënn änneren',
 'ipb-unblock-addr'            => 'Spär vum $1 annuléieren',
 'ipb-unblock'                 => 'Spär vun enger IP-Adress oder engem Benotzer annuléieren',
@@ -1777,7 +1777,7 @@ Kuckt d'[[Special:Ipblocklist|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'autoblocker'                 => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 'blocklogpage'                => 'Spärlëscht',
 'blocklogentry'               => '"[[$1]]" gespaart, gülteg bis $2 $3',
-'blocklogtext'                => "Dëst ass eng Lëscht vu Spären an den Annulatioune vun de Spären. Automatesch gespaarten IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:Ipblocklist|IP Spärlëschtt]] fir déi aktuell Spären.",
+'blocklogtext'                => "Dëst ass eng Lëscht vu Spären an den Annulatioune vun de Spären. Automatesch gespaarten IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:IPBlockList|IP Spärlëschtt]] fir déi aktuell Spären.",
 'unblocklogentry'             => "huet d'Spär vum [[$1]] annulléiert",
 'block-log-flags-anononly'    => 'Nëmmen anonym Benotzer',
 'block-log-flags-nocreate'    => 'Schafe vu Benotzerkonte gespaart',
@@ -2082,10 +2082,11 @@ $1',
 'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
 'show-big-image-thumb' => '<small>Gréisst vun dem Thumbnail: $1 × $2 Pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Gallerie vun de neie Biller',
 'imagelisttext'         => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
 'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
+'newimages-legend'      => 'Filter',
 'showhidebots'          => '($1 Botten)',
 'noimages'              => 'Keng Biller fonnt.',
 'ilsubmit'              => 'Sichen',
@@ -2477,7 +2478,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 'version-software-product'         => 'Produkt',
 'version-software-version'         => 'Versioun',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Pad bäi de Fichier',
 'filepath-page'    => 'Fichier:',
 'filepath-submit'  => 'Pad',
@@ -2515,7 +2516,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'specialpages-group-redirects'   => 'Spezialsäiten déi viruleeden',
 'specialpages-group-spam'        => 'Handwierksgeschir géint de Spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Eidel Säit',
 'intentionallyblankpage' => 'Dës Säit ass absichtlech eidel. Si gëtt fir Benchmarking an Ähnleches benotzt.',
 

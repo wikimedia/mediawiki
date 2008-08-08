@@ -461,7 +461,7 @@ Vaš IP-naslov je $3. Prosimo, vključite ga v vse morebitne poizvedbe.",
 Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 (za več informacij glej [[{{MediaWiki:Helppage}}|pomoč]]).
 Če ste sem prišli po pomoti, v svojem brskalniku kliknite gumb ''Nazaj''.",
-'anontalkpagetext'          => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja. Zaradi tega moramo uporabiti števčen IP address za njegovo/njeno ugotavljanje istovetnosti. Takšen IP naslov si lahko deli več uporabnikov. Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:Userlogin|ustvarite račun ali pa se vpišite]], da preprečite naslednje zmede z drugimi nepodpisanimi uporabniki.''",
+'anontalkpagetext'          => "---- ''To je pogovorna stran za nepodpisanega uporabnika, ki še ni ustvaril računa ali, ki ga ne uporablja. Zaradi tega moramo uporabiti števčen IP address za njegovo/njeno ugotavljanje istovetnosti. Takšen IP naslov si lahko deli več uporabnikov. Če ste nepodpisan uporabnik in če menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun ali pa se vpišite]], da preprečite naslednje zmede z drugimi nepodpisanimi uporabniki.''",
 'noarticletext'             => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite].',
 'clearyourcache'            => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika: '''Mozilla/Safari:''' držite ''Shift'' in kliknite ''Reload'' (ali pritisnite ''Ctrl-Shift-R''), '''Internet Explorer:''' ''Ctrl-F5'', '''Opera/Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview'    => "<strong>Nasvet:</strong> Za preizkušanje svojega novega CSS/JS pred shranjevanjem uporabite gumb ''Prikaži predogled''.",
@@ -746,7 +746,7 @@ ali za neposredno povezavo z datoteko
 'license'   => 'Dovoljenje:',
 'nolicense' => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Seznam datotek',
 
 # Image description page
@@ -852,7 +852,7 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 'alllogstext'          => 'Združeno so prikazani dnevniki sprememb uporabniških pravic, preimenovanj uporabnikov, nalaganja predstavnostnih datotek, prestavljanja in zaščite strani, brisanja, registracij uporabnikov, sprememb položaja botov ter blokiranja in deblokiranja uporabnikov. Pogled lahko zožite z izbiro dnevnika, uporabniškega imena ali strani. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
 'logempty'             => 'O tej strani ni v dnevniku ničesar.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Vse strani',
 'alphaindexline'    => '$1 do $2',
 'nextpage'          => 'Naslednja stran ($1)',
@@ -895,7 +895,7 @@ Da bo prejemnik lahko odgovoril neposredno vam, bo v glavi sporočila zapisan ''
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Za urejanje spiska nadzorov se [[Special:Userlogin|prijavite]].',
 'addedwatch'           => 'Dodano na spisek nadzorov',
-'addedwatchtext'       => "Stran »'''<nowiki>$1</nowiki>'''« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]], kjer bodo odslej navedene njene morebitne spremembe in spremembe pripadajoče pogovorne strani. Za lažjo izbiro bodo tudi v [[Special:Recentchanges|seznamu zadnjih sprememb]] prikazane <b>krepko</b>. Če jo želite odstraniti s spiska, kliknite zavihek »Prenehaj opazovati«.",
+'addedwatchtext'       => "Stran »'''<nowiki>$1</nowiki>'''« je bila dodana na vaš [[Special:Watchlist|spisek nadzorov]], kjer bodo odslej navedene njene morebitne spremembe in spremembe pripadajoče pogovorne strani. Za lažjo izbiro bodo tudi v [[Special:RecentChanges|seznamu zadnjih sprememb]] prikazane <b>krepko</b>. Če jo želite odstraniti s spiska, kliknite zavihek »Prenehaj opazovati«.",
 'removedwatch'         => 'Odstranjena s spiska nadzorov',
 'removedwatchtext'     => 'Stran »<nowiki>$1</nowiki>« je odstranjena z vašega spiska nadzorov.',
 'watch'                => 'Opazuj',
@@ -1052,7 +1052,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'badipaddress'                => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub'           => 'Blokiranje je uspelo',
 'blockipsuccesstext'          => 'IP-naslov ali uporabniški račun »[[Special:Contributions/$1|$1]]« je blokiran.<br />
-Preglejte [[Special:Ipblocklist|seznam blokiranih IP-naslovov]].',
+Preglejte [[Special:IPBlockList|seznam blokiranih IP-naslovov]].',
 'unblockip'                   => 'Omogočite urejanje IP-naslovu',
 'unblockiptext'               => 'Z naslednjim obrazcem lahko obnovite možnost urejanja z blokiranega IP-naslova ali uporabniškega računa.',
 'ipusubmit'                   => 'Deblokiraj naslov',
@@ -1066,7 +1066,7 @@ Preglejte [[Special:Ipblocklist|seznam blokiranih IP-naslovov]].',
 'autoblocker'                 => 'Ker si delite IP-naslov z »$1«, vam je urejanje samodejno onemogočeno. Razlog: »$2«.',
 'blocklogpage'                => 'Dnevnik blokiranja',
 'blocklogentry'               => 'uporabnika »$1« sem blokiral(-a) za $2',
-'blocklogtext'                => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:Ipblocklist|seznamu blokiranih IP-naslovov]].',
+'blocklogtext'                => 'Prikazan je dnevnik blokiranja in deblokiranja uporabnikov. Samodejno blokirani IP-naslovi niso navedeni. Trenutno veljavna blokiranja so navedena na [[Special:IPBlockList|seznamu blokiranih IP-naslovov]].',
 'unblocklogentry'             => 'je deblokiral(-a) »$1«',
 'range_block_disabled'        => 'Možnost administratorjev za blokiranje urejanja IP-razponom je onemogočena.',
 'ipb_expiry_invalid'          => 'Neveljaven čas preteka',
@@ -1288,7 +1288,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'imagemaxsize' => 'Slike na opisnih straneh omeji na:',
 'thumbsize'    => 'Velikost sličice (thumbnail):',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Galerija novih datotek',
 'imagelisttext'         => 'Prikazujem $1 $2 {{PLURAL:$1|razvrščeno datoteko|razvrščeni datoteki|razvrščene datoteke|razvrščenih datotek|razvrščenih datotek}}.',
 'showhidebots'          => '($1 bote)',

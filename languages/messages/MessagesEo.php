@@ -92,32 +92,32 @@ $messages = array(
 'tog-showtoc'                 => 'Montri liston de enhavoj',
 'tog-rememberpassword'        => 'Rememori mian pasvorton',
 'tog-editwidth'               => 'Redaktilo estu plenlarĝa',
-'tog-watchcreations'          => 'Aldonu de mi kreitajn paĝojn al mia atentaro',
+'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
 'tog-watchdeletion'           => 'Aldoni paĝojn, kiujn mi forigas, al mia atentaro',
-'tog-minordefault'            => 'Marku ĉiujn redaktojn malgrandaj',
+'tog-minordefault'            => 'Marki defaŭlte ĉiujn redaktojn kiel etajn',
 'tog-previewontop'            => 'Montri antaŭrigardon antaŭ redaktilo',
-'tog-previewonfirst'          => 'Montru antaŭrigardon je unua redakto',
+'tog-previewonfirst'          => 'Montri antaŭrigardon je unua redakto',
 'tog-nocache'                 => 'Malaktivigu kaŝmemorigon de paĝoj',
 'tog-enotifwatchlistpages'    => 'Sendi al mi retmesaĝon kiam tiu paĝo estas ŝanĝita',
 'tog-enotifusertalkpages'     => 'Sendu al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
 'tog-enotifminoredits'        => 'Sendu al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
-'tog-enotifrevealaddr'        => 'Malkaŝu mian retpoŝtan adreson en informaj retpoŝtaĵoj',
-'tog-shownumberswatching'     => 'Montru la nombron da priatentaj uzantoj',
+'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
+'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
 'tog-fancysig'                => 'Simpla subskribo (sen aŭtomata ligo)',
-'tog-externaleditor'          => 'Uzu defaŭlte eksteran tekstprilaborilon',
-'tog-externaldiff'            => 'Uzu defaŭlte eksteran ŝanĝmontrilon',
+'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
+'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
 <!-- Bonvolu kontroli ĉu ĝustas la traduko de : Enable "jump to" accessibility links -->',
 'tog-uselivepreview'          => 'Uzu tujan antaŭrigardon (ĜavaSkripto) (Eksperimenta)',
-'tog-forceeditsummary'        => 'Informu min kiam aldonanta nulan redakto-resumon',
-'tog-watchlisthideown'        => 'Kaŝu miajn redaktojn de la atentaro',
+'tog-forceeditsummary'        => 'Averti min kiam mi konservas malplenan redaktoresumon',
+'tog-watchlisthideown'        => 'Kaŝi miajn redaktojn de la atentaro',
 'tog-watchlisthidebots'       => 'Kaŝu bot-redaktojn de la atentaro',
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
 'tog-ccmeonemails'            => 'Sendu al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
-'tog-diffonly'                => 'Ne montru paĝan enhavon sub la ŝanĝoj',
-'tog-showhiddencats'          => 'Montru kaŝitajn kategoriojn',
+'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
+'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
 
 'underline-always'  => 'Ĉiam',
 'underline-never'   => 'Neniam',
@@ -239,7 +239,7 @@ $messages = array(
 'edit'              => 'Redakti',
 'create'            => 'Krei',
 'editthispage'      => 'Redaktu la paĝon',
-'create-this-page'  => 'Kreu ĉi tiun paĝon',
+'create-this-page'  => 'Krei ĉi tiun paĝon',
 'delete'            => 'Forigi',
 'deletethispage'    => 'Forigi ĉi tiun paĝon',
 'undelete_short'    => 'Malforigi {{PLURAL:$1|redakton|$1 redaktojn}}',
@@ -247,7 +247,7 @@ $messages = array(
 'protect_change'    => 'ŝanĝi protekton',
 'protectthispage'   => 'Protekti la paĝon',
 'unprotect'         => 'Malprotekti',
-'unprotectthispage' => 'Malprotektu la paĝon',
+'unprotectthispage' => 'Malprotekti la paĝon',
 'newpage'           => 'Nova paĝo',
 'talkpage'          => 'Diskuti la paĝon',
 'talkpagelinktext'  => 'Diskuto',
@@ -263,8 +263,8 @@ $messages = array(
 'imagepage'         => 'Rigardi dosieropaĝon',
 'mediawikipage'     => 'Vidu mesaĝopaĝon',
 'templatepage'      => 'Vidu ŝablonopaĝon',
-'viewhelppage'      => 'Vidu helpopaĝon',
-'categorypage'      => 'Rigardi kategorian paĝon',
+'viewhelppage'      => 'Vidi helpopaĝon',
+'categorypage'      => 'Vidi kategorian paĝon',
 'viewtalkpage'      => 'Vidu diskutopaĝon',
 'otherlanguages'    => 'Aliaj lingvoj',
 'redirectedfrom'    => '(Alidirektita el $1)',
@@ -316,7 +316,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection'             => 'redakti',
 'editold'                 => 'redakti',
-'viewsourceold'           => 'rigardu fonttekston',
+'viewsourceold'           => 'vidi fonttekston',
 'editsectionhint'         => 'Redaktu sekcion: $1',
 'toc'                     => 'Enhavo',
 'showtoc'                 => 'montri',
@@ -617,7 +617,7 @@ Via forbaro-identigo estas $5.  Bonvolu inkluzivi tiun identigon en iuj ajn dema
 'anontalkpagetext'                 => "---- ''Jen diskutopaĝo por iu anonima kontribuanto kiu ne jam kreis konton aŭ ne uzas ĝin. 
 Ni tial devas uzi la cifran IP-adreso por identigi lin. 
 La sama IP-adreso povas estis samtempte uzata de pluraj uzantoj.
-Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:Userlogin|krei konton]] aŭ [[Special:Userlogin|ensaluti]] por eviti estontan konfuzon kun alia anonimaj uzantoj.''",
+Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuziĝon kun aliaj anonimuloj de via retejo, bonvolu [[Special:UserLogin|krei konton]] aŭ [[Special:UserLogin|ensaluti]] por eviti estontan konfuzon kun alia anonimaj uzantoj.''",
 'noarticletext'                    => 'La paĝo nune estas malplena. Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon].',
 'userpage-userdoesnotexist'        => 'Uzanto-konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti cxi tiu pagxo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
@@ -709,7 +709,7 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'undo-summary' => 'Nuligis revizion $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuto]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Ne povas krei konton',
+'cantcreateaccounttitle' => 'Ne eblas krei konton',
 'cantcreateaccount-text' => "Konto-kreado de cxi tiu IP-adreso ('''$1''') estis forbarita de [[User:$3|$3]].
 
 La kialo donata de $3 estas ''$2''.",
@@ -789,7 +789,7 @@ Aliaj administrantoj cxe {{SITENAME}} plu povos aliri la kasxitan entenon kaj re
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
 'revdelete-content'           => 'enhavo',
-'revdelete-summary'           => 'redaktu resumon',
+'revdelete-summary'           => 'redakti resumon',
 'revdelete-uname'             => 'salutnomo',
 'revdelete-restricted'        => 'aplikis limojn al administrantoj',
 'revdelete-unrestricted'      => 'forigis limojn por administrantoj',
@@ -898,7 +898,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'qbsettings-floatingleft'  => 'Ŝvebas maldekstre',
 'qbsettings-floatingright' => 'Ŝvebas dekstre',
 'changepassword'           => 'Ŝanĝu pasvorton',
-'skin'                     => 'Aspekto',
+'skin'                     => 'Etoso',
 'skin-preview'             => 'Antaŭrigardo',
 'math'                     => 'Matematikaĵoj',
 'dateformat'               => 'Datformato',
@@ -1023,7 +1023,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-browsearchive'        => 'Serĉi forigitajn paĝojn',
 'right-undelete'             => 'Restarigi paĝon',
 'right-suppressrevision'     => 'Kontroli kaj restarigi reviziojn kaŝitajn de administrantoj',
-'right-suppressionlog'       => 'Rigardu privatajn loglibrojn',
+'right-suppressionlog'       => 'Vidi privatajn protokolojn',
 'right-block'                => 'Forbaru aliajn uzantoj por redaktado',
 'right-blockemail'           => 'Forbaru uzanton de retpoŝta sendado',
 'right-hideuser'             => 'Forbaru salutnomon, kaŝante ĝin de la publiko',
@@ -1041,7 +1041,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-patrol'               => 'Marku redaktojn kiel patrolitajn',
 'right-autopatrol'           => 'Faru redaktojn aŭtomate markitajn kiel patrolitajn',
 'right-patrolmarks'          => 'Rigardi patrolmarkojn de lastaj ŝanĝoj',
-'right-unwatchedpages'       => 'Vidu la liston de nepriatentitaj paĝoj',
+'right-unwatchedpages'       => 'Vidi la liston de nepriatentitaj paĝoj',
 'right-trackback'            => 'Enigu retrovojon',
 'right-mergehistory'         => 'Kunfandigu la historiojn de paĝoj',
 'right-userrights'           => 'Redaktu ĉiujn uzanto-rajtojn',
@@ -1101,13 +1101,13 @@ Paĝoj en [[Special:Watchlist|via atentaro]] estas '''grasaj'''.",
 'upload_directory_read_only'  => 'La TTT-servilo ne povas alskribi la alŝuto-dosierujon ($1).',
 'uploaderror'                 => 'Eraro okazis dum alŝuto',
 'uploadtext'                  => "Uzu la jenan formon por alŝuti dosierojn.
-Okulumi aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo de alŝutitaj dosieroj]]. Alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Loglibro de alŝutoj]].
+Vidi aux serĉi antaŭe alŝutitajn bildojn, iru la [[Special:Imagelist|Listo de alŝutitaj dosieroj]]; (re)alŝutaĵoj ankaŭ estas registrita en la [[Special:Log/upload|Protokolo de alŝutoj]], forigoj en la [[Special:Log/delete|protokolo de forigoj]].
 
 Por inkluzivi la dosieron en pagxon, skribu ligilon laŭ la formoj
 
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.jpg]]</nowiki>''' por uzi la plena versio de la dosiero
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Bildo.png|200px|thumb|left|alternativa teksto]]</nowiki>''' por uzi 200-rastrumera versio en kesto al la maldekstro (\"left\") kun \"alternativa teksto\" kiel la priskribo.
-* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero ne montranta ĝin.",
+* '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosiero.ogg]]</nowiki>''' por ligi rekte al la dosiero ne montranta la dosieron.",
 'upload-permitted'            => 'Permesitaj dosiertipoj: $1.',
 'upload-preferred'            => 'Preferitaj dosiertipoj: $1.',
 'upload-prohibited'           => 'Malpermesitaj dosiero-tipoj: $1.',
@@ -1189,7 +1189,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
 'upload_source_file' => ' (dosiero en via komputilo)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
 Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
 Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
@@ -1275,7 +1275,8 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 
 # Unused templates
 'unusedtemplates'     => 'Neuzitaj ŝablonoj',
-'unusedtemplatestext' => 'Ĉi paĝo listigas ĉiujn paĝojn en la nomspaco "Ŝablono" kiuj ne estas enmetitaj en alia paĝo. Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
+'unusedtemplatestext' => 'Ĉi tiu paĝo listas ĉiujn paĝojn en la nomspaco "Ŝablono" kiuj ne estas enmetitaj en alia paĝo. 
+Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'unusedtemplateswlh'  => 'aliaj ligiloj',
 
 # Random page
@@ -1384,7 +1385,7 @@ Tio ne estus enkalkutita en la jena listo.',
 
 # Book sources
 'booksources'               => 'Libroservoj',
-'booksources-search-legend' => 'Serĉu pri librofontoj',
+'booksources-search-legend' => 'Serĉi librofontojn',
 'booksources-go'            => 'Ek',
 'booksources-text'          => 'Jen ligilaro al aliaj TTT-ejoj, kiuj vendas librojn,
 kaj/aŭ informumos pri la libro ligita.
@@ -1402,7 +1403,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'logempty'             => 'Neniaj artikoloj en la loglibro.',
 'log-title-wildcard'   => 'Serĉu titolojn komencantajn kun ĉi teksto',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Ĉiuj paĝoj',
 'alphaindexline'    => '$1 ĝis $2',
 'nextpage'          => 'Sekvanta paĝo ($1)',
@@ -1422,15 +1423,15 @@ komprenata kiel rekomendo aŭ reklamo.',
 'categories'                    => 'Kategorioj',
 'categoriespagetext'            => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
 'categoriesfrom'                => 'Montri kategoriojn komencante de:',
-'special-categories-sort-count' => 'oridigu laŭ nombrado',
-'special-categories-sort-abc'   => 'ordigu alfabete',
+'special-categories-sort-count' => 'oridigi laŭ nombrado',
+'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Montru uzantojn ekde:',
 'listusers-submit'   => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'                 => 'Gruprajtoj de uzantoj',
 'listgrouprights-summary'         => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.
 Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj rajtoj.',
@@ -1474,7 +1475,7 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'watchnologin'         => 'Ne ensalutinta',
 'watchnologintext'     => 'Nepras [[Special:Userlogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addedwatch'           => 'Aldonis al atentaro',
-'addedwatchtext'       => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:Recentchanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
+'addedwatchtext'       => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
 'removedwatch'         => 'Forigis el atentaro',
 'removedwatchtext'     => 'La paĝo "[[:$1]]" estas forigita el via atentaro.',
 'watch'                => 'Atenti',
@@ -1516,15 +1517,15 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'enotif_anon_editor'           => 'anonima uzanto $1',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
-la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu {{fullurl:$PAGETITLE RAWURL}} por la nuna versio.
+la paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu $PAGETITLE_URL por la nuna versio.
 
 $NEWPAGE
 
 Redakta resumo : $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktu la redaktinton:
-retpoŝto {{fullurl:Special:Emailuser/$PAGEEDITOR RAWURL}}
-vikio {{fullurl:User:$PAGEEDITOR RAWURL}}
+retpoŝto $PAGEEDITOR_EMAIL
+vikio $PAGEEDITOR_WIKI
 
 Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitas la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
@@ -1532,7 +1533,7 @@ Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitas la paĝon. Vi 
 
 --
 Por ŝanĝi la elektojn de via atentaro, bv viziti
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Reagoj kaj plia helpo :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1686,7 +1687,7 @@ $1',
 'month'         => 'Ekde monato (kaj pli frue):',
 'year'          => 'Ekde jaro (kaj pli frue):',
 
-'sp-contributions-newbies'     => 'Montru kontribuojn nur de novaj kontoj',
+'sp-contributions-newbies'     => 'Montri nur kontribuojn de novaj kontoj',
 'sp-contributions-newbies-sub' => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
 'sp-contributions-blocklog'    => 'Protokolo de forbaroj',
 'sp-contributions-search'      => 'Serĉado de kontribuoj',
@@ -1742,7 +1743,7 @@ $1',
 'ipbwatchuser'                    => 'Kontroli la paĝojn por uzanto kaj diskuto de ĉi tiu uzanto.',
 'badipaddress'                    => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'               => 'Oni sukcese forbaris la adreson/nomon.',
-'blockipsuccesstext'              => '"$1" estas forbarita. <br />Vidu la [[Special:Ipblocklist|liston de IP-forbaroj]].',
+'blockipsuccesstext'              => '"$1" estas forbarita. <br />Vidu la [[Special:IPBlockList|liston de IP-forbaroj]].',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',
 'ipb-unblock-addr'                => 'Restarigi $1',
 'ipb-unblock'                     => 'Malforbaru uzantnomon aŭ IP-adreson',
@@ -1773,7 +1774,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'autoblocker'                     => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
 'blocklogpage'                    => 'Protokolo de forbaroj',
 'blocklogentry'                   => 'forbaris [[$1]] por daŭro de $2 $3',
-'blocklogtext'                    => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:Ipblocklist|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
+'blocklogtext'                    => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:IPBlockList|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'                 => '$1 estis restarigita',
 'block-log-flags-anononly'        => 'nur anonimaj uzantoj',
 'block-log-flags-nocreate'        => 'kreado de kontoj malebligita',
@@ -1992,7 +1993,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-t-whatlinkshere'         => 'Listo de ĉiuj vikiaj paĝoj kij ligas ĉi tien',
 'tooltip-t-recentchangeslinked'   => 'Lastaj ŝanĝoj en paĝoj kiuj ligas al tiu ĉi paĝo',
 'tooltip-feed-rss'                => 'RSS-fonto por tiu ĉi paĝo',
-'tooltip-feed-atom'               => 'Atom-fonto por ĉi paĝo',
+'tooltip-feed-atom'               => 'Atom-fonto por ĉi tiu paĝo',
 'tooltip-t-contributions'         => 'Rigardi la liston de kontribuoj de tiu ĉi uzanto',
 'tooltip-t-emailuser'             => 'Sendi retmesaĝon al tiu ĉi uzanto',
 'tooltip-t-upload'                => 'Alŝuti bildojn aŭ dosierojn',
@@ -2012,10 +2013,10 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-minoredit'               => 'Marki tiun ŝanĝon kiel etan',
 'tooltip-save'                    => 'Konservi viajn ŝanĝojn',
 'tooltip-preview'                 => 'Antaŭrigardi viajn ŝanĝojn. Bonvolu uzi tion antaŭ ol konservi ilin!',
-'tooltip-diff'                    => 'Montru la ŝanĝojn kiujn vi faris de la teksto.',
+'tooltip-diff'                    => 'Montri la ŝanĝojn kiujn vi faris de la teksto.',
 'tooltip-compareselectedversions' => 'Rigardi la malsamojn inter ambaŭ selektitaj versioj de ĉi tiu paĝo.',
 'tooltip-watch'                   => 'Aldoni ĉi paĝon al via atentaro',
-'tooltip-recreate'                => 'Rekreu la paĝon malgraŭ ĝi estis forigita',
+'tooltip-recreate'                => 'Rekrei la paĝon malgraŭ ĝi estis forigita',
 'tooltip-upload'                  => 'Ekalŝuti',
 
 # Metadata
@@ -2102,7 +2103,7 @@ $1',
 'show-big-image'       => 'Plena distingivo',
 'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Aro da novaj bildoj',
 'imagelisttext'         => "Jen listo de '''$1''' {{PLURAL:$1|dosiero|dosieroj}}, ordigitaj laŭ $2.",
 'newimages-summary'     => 'Ĉi tiu speciala paĝo montras la lastajn alŝutitajn dosierojn.',
@@ -2398,7 +2399,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'monthsall'        => 'ĉiuj',
 
 # E-mail address confirmation
-'confirmemail'             => 'Konfirmu retpoŝtadreson',
+'confirmemail'             => 'Konfirmi retadreson',
 'confirmemail_noemail'     => 'Vi ne havas validan retpoŝtan adreson notitan en viaj [[Special:Preferences|Preferoj]].',
 'confirmemail_text'        => 'Ĉi tiu vikio postulas ke vi validigu vian retadreson antaŭ ol uzadi la retmesaĝpreferojn. Bonvolu alklaki la suban butonon por sendi konfirmesaĝon al via adreso. La mesaĝo entenos ligilon kun kodo; bonvolu alŝuti la ligilon en vian foliumilon por konfirmi ke via retadreso validas.',
 'confirmemail_pending'     => '<div class="error">Konfirma kodo estis jam repoŝtis al vi; se vi lastatempe kreis vian konton, vi eble volus atenti kelkajn minutojn por ĝi aliĝi antaŭ vi petus novan kodon.</div>',
@@ -2414,7 +2415,7 @@ Retpoŝta programo sciigis: $1',
 'confirmemail_success'     => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
 'confirmemail_loggedin'    => 'Via retadreso estas nun konfirmita.',
 'confirmemail_error'       => 'Io misokazis dum konservo de via konfirmo.',
-'confirmemail_subject'     => '{{SITENAME}} konfirmado de retadreso',
+'confirmemail_subject'     => 'Konfirmo de retadreso por {{SITENAME}}',
 'confirmemail_body'        => 'Iu, verŝajne vi, ĉe la IP-adreso $1, 
 enregistrigis konton "$2" ĉe {{SITENAME}} kun ĉi retadreso ĉe {{SITENAME}}.
 
@@ -2518,7 +2519,7 @@ Vi ankaŭ povas [[Special:Watchlist/raw|redakti la krudan liston]].',
 'watchlistedit-raw-explain'    => 'Titoloj en via atentaro estas montrata sube, kaj povas esti redaktita de aldono aŭ forigo de la listo: unu titolo por linio. Kiam finite, klaku Ĝisdatigu Atentaron.
 Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 'watchlistedit-raw-titles'     => 'Titoloj:',
-'watchlistedit-raw-submit'     => 'Ĝisdatigu atentaron',
+'watchlistedit-raw-submit'     => 'Ĝisdatigi atentaron',
 'watchlistedit-raw-done'       => 'Via atentaro estas ĝisdatigita.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 titolo estis aldonita|$1 titoloj estis aldonitaj}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titolo estis forigita|$1 titoloj estis forigitaj}}:',
@@ -2552,7 +2553,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 'version-software-product'         => 'Produkto',
 'version-software-version'         => 'Versio',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Vojo al dosiero',
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Pado',
@@ -2577,7 +2578,7 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 * <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
-'specialpages-group-login'       => 'Ensalutu / Kreu novan konton',
+'specialpages-group-login'       => 'Ensaluti / Krei novan konton',
 'specialpages-group-changes'     => 'Lastaj ŝanĝoj kaj loglibroj',
 'specialpages-group-media'       => 'Gazetaj raportoj kaj alŝutoj',
 'specialpages-group-users'       => 'Uzantoj kaj rajtoj',
@@ -2588,7 +2589,7 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 'specialpages-group-redirects'   => 'Alidirektantaj specialaj paĝoj',
 'specialpages-group-spam'        => 'Kontraŭspamiloj',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Malplena paĝo',
 'intentionallyblankpage' => 'Ĉi tiu paĝo intencie estas malplena kaj estas uzata por testado, ktp.',
 
