@@ -481,6 +481,7 @@ $2',
 'createaccount-text'         => '有人於{{SITENAME}}用爾之電郵增名為 "$2" 之簿 ($4)，符節為 "$3" 。汝應登，再改符節也。
 
 如簿誤增，爾可略之。',
+'login-throttled'            => '爾多試於此簿之符中。請候再試之。',
 'loginlanguagelabel'         => '語：$1',
 
 # Edit page toolbar
