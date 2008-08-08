@@ -25,9 +25,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   empt all content namespaces.)
 * $wgForwardSearchUrl has been removed entirely. Documented setting since 1.4
   has been $wgSearchForwardUrl.
-* (bug 15040) $wgOverrideSiteFeed has been added. Setting either $wgSiteFeed['rss'] 
-  or 'atom' to a URL will override the default Recent Changes feed that appears on 
-  all pages.
+* (bug 15080) $wgOverrideSiteFeed has been added. Setting either
+  $wgSiteFeed['rss'] or 'atom' to a URL will override the default Recent Changes
+  feed that appears on all pages.
 
 === New features in 1.14 ===
 
