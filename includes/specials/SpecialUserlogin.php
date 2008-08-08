@@ -375,19 +375,19 @@ class LoginForm {
 		}
 		
 		global $wgPasswordAttemptThrottle;
-		if (is_array($wgPasswordAttemptThrottle) && count($wgPasswordAttemptThrottle) >=2) {
-			list($count,$period) = $wgPasswordAttemptThrottle;
+		if ( is_array($wgPasswordAttemptThrottle) ) {
 			$key = wfMemcKey( 'password-throttle', wfGetIP(), $this->mName );
+			$count = $wgPasswordAttemptThrottle['count'];
+			$period = $wgPasswordAttemptThrottle['seconds'];
 			
 			global $wgMemc;
 			$cur = $wgMemc->get($key);
-			if ($cur>0 && $cur<$count) {
+			if ( !$cur ) {
+				$wgMemc->add( $key, 1, $period ); // start counter
+			} else if ( $cur < $count ) {
 				$wgMemc->incr($key);
-				// Okay
-			} elseif ($cur>0) {
+			} else if ( $cur >= $count ) {
 				return self::THROTTLED;
-			} elseif (!$cur) {
-				$wgMemc->add( $key, 1, $period );
 			}
 		}
 
