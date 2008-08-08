@@ -7,8 +7,6 @@
  * @author Dsvyas
  * @author לערי ריינהארט
  * @author Aksi great
- * @author Siebrand
- * @author SPQRobin
  */
 
 $digitTransformTable = array(
@@ -320,7 +318,7 @@ $messages = array(
 'template-protected'     => '(સુરક્ષિત)',
 'template-semiprotected' => '(અર્ધ સુરક્ષિત)',
 'nocreatetext'           => '{{SITENAME}}માં નવું પાનુ બનાવવા ઉપર નિયંત્રણ આવી ગયું છે.
-<br />આપ પાછા જઇને હયાત પાનામાં ફેરફાર કરી શકો છો, નહિતર [[Special:Userlogin|પ્રવેશ કરો કે નવું ખાતું ખોલો]].',
+<br />આપ પાછા જઇને હયાત પાનામાં ફેરફાર કરી શકો છો, નહિતર [[Special:UserLogin|પ્રવેશ કરો કે નવું ખાતું ખોલો]].',
 'recreate-deleted-warn'  => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
 આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
@@ -423,7 +421,7 @@ $messages = array(
 'uploadlogpage' => 'ચઢાવેલી ફાઇલોનું માહિતિ પત્રક',
 'filesource'    => 'સ્ત્રોત:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ફાઇલોની યાદી',
 
 # Image description page
@@ -499,7 +497,7 @@ $messages = array(
 'all-logs-page'        => 'બધાં માહિતિ પત્રકો',
 'log-search-submit'    => 'શોધો',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'બધા પાના',
 'alphaindexline' => '$1 થી $2',
 'nextpage'       => 'આગળનું પાનું ($1)',
@@ -513,7 +511,7 @@ $messages = array(
 'categories'         => 'શ્રેણીઓ',
 'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'બતાવો',
 
 # E-mail user
@@ -636,7 +634,7 @@ $messages = array(
 કૃપા કરી અન્ય નામ પસંદ કરો.',
 'movedto'                 => 'બદલ્યા પછીનું નામ',
 'movetalk'                => 'સંલગ્ન ચર્ચાનું પાનું પણ ખસેડો',
-'1movedto2'               => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
+'1movedto2'               => '[[:$1]] નું નામ બદલી ને [[:$2]] કરવામાં આવ્યું છે.',
 'movelogpage'             => 'નામ ફેર માહિતિ પત્રક',
 'movereason'              => 'કારણ',
 'revertmove'              => 'પૂર્વવત',
@@ -718,7 +716,7 @@ $messages = array(
 'show-big-image'       => 'મહત્તમ આવર્તન',
 'show-big-image-thumb' => '<small>આ પુર્વાવલોકનનું પરિમાણ: $1 × $2 પીક્સલ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'નવી ફાઇલોની ઝાંખી',
 'noimages'  => 'જોવા માટે કશું નથી.',
 'ilsubmit'  => 'શોધો',
@@ -765,7 +763,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'બાહ્ય સોફ્ટવેર વાપરીને આ ફાઇલમાં ફેરફાર કરો',
-'edit-externally-help' => 'વધુ માહિતિ માટે જુઓ: [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
+'edit-externally-help' => 'વધુ માહિતિ માટે જુઓ: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'બધા',

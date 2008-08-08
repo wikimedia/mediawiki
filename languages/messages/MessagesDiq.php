@@ -6,8 +6,6 @@
  *
  * @author Mirzali
  * @author Belekvor
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(
@@ -255,7 +253,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'nosuchspecialpage' => 'Pela xasa henêne/otir çina',
 'nospecialpagetext' => "<big>'''To yew pela xasa nêvêrdiye waşte.'''</big>
 
-Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:Specialpages|{{int:specialpages}}]].",
+Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'               => 'Ğelet',
@@ -347,7 +345,7 @@ It must have at least $1 characters and be different from your username.',
 'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'dosya',
 'imagelist'      => 'Lista Dosya',
 'imagelist_date' => 'Tarix',
@@ -391,13 +389,13 @@ It must have at least $1 characters and be different from your username.',
 'specialloguserlabel' => 'Karber:',
 'log-search-submit'   => 'Şo',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Şo',
 
 # Special:Categories
 'categories' => 'Kategoriy',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Bımocne',
 
 # Watchlist
@@ -425,7 +423,7 @@ It must have at least $1 characters and be different from your username.',
 # Attribution
 'lastmodifiedatby' => 'Ena pele tewr peyên roca $2, $1 by $3. de biya rocaniye', # $1 date, $2 time, $3 user
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Cıgeyre',
 
 'exif-gaincontrol-0' => 'çino',
@@ -433,7 +431,7 @@ It must have at least $1 characters and be different from your username.',
 # AJAX search
 'articletitles' => "Perri be ''$1'' dest cı kenê",
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Dosya:',
 
 # Special:SpecialPages

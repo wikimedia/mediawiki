@@ -141,7 +141,7 @@ See [[Special:Version|version page]].',
 'nosuchspecialpage' => 'Ku hava Tluka rero rohlawuleka',
 'nospecialpagetext' => "<big>'''U kombele tluka ro hlawuleka ro ka ri nga ri kona.'''</big>
 
-Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:Specialpages|{{int:specialpages}}]].",
+Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Xihoxo',
@@ -272,7 +272,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Upload
 'upload' => 'Khandziyisa fayili',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'fayili',
 'imagelist'      => 'Nxaxamelo wa tifayili',
 'imagelist_date' => 'Siku',
@@ -292,7 +292,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Special:Log
 'specialloguserlabel' => 'Mutirhisi:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'    => 'Matluka hinkwawo',
 'allarticles' => 'Matluka hinkwawo',
 

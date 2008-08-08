@@ -135,14 +135,14 @@ $messages = array(
 'move-watch'       => 'Demq mae-nej',
 'movepagebtn'      => 'Caen doengh mae',
 'movedto'          => 'Caen bei',
-'1movedto2'        => '[[$1]] caen bei [[$2]]',
+'1movedto2'        => '[[:$1]] caen bei [[:$2]]',
 'movereason'       => 'Haujgaemj',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
 'tooltip-p-logo'         => 'Mae meh',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Cwmh',
 
 # Multipage image navigation

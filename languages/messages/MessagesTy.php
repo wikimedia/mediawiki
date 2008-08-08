@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Sab
  */
 
@@ -124,7 +123,7 @@ $messages = array(
 # Recent changes
 'recentchanges' => 'Te mau fa’ahuru-’ē-ra’a ’āpī',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_user' => 'Ta’ata fa’a’ohipa',
 
 # Image description page
@@ -136,7 +135,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'Ta’ata fa’a’ohipa :',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Haere',
 
 # Special:Categories
@@ -153,12 +152,12 @@ $messages = array(
 'whatlinkshere' => 'Te mau ’api i tū’atihia mai',
 
 # Move page
-'1movedto2' => '’Ua tāhitihia te ’api [[$1]] e ana i te ’api ’āpī [[$2]]',
+'1movedto2' => '’Ua tāhitihia te ’api [[:$1]] e ana i te ’api ’āpī [[:$2]]',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Roromā’imi {{SITENAME}}',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Putu’ite:',
 
 # Special:SpecialPages

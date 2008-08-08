@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author לערי ריינהארט
  * @author Sionnach
  * @author Raymond
@@ -221,7 +219,7 @@ $1",
 'fileexists'    => 'Tha faidhle leis an ainm seo ann cheana; nach faigh sibh cinnt air <strong><tt>$1</tt></strong> gu bheil sibh ag iarraidh atharrachadh.',
 'savefile'      => 'Sàbhail faidhle',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Liosta nan ìomhaigh',
 
 # Random page
@@ -253,7 +251,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'move'                    => 'Gluais',
 'movethispage'            => 'Caraich an duilleag seo',
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'Duilleagan uile',
 'nextpage' => 'An ath dhuilleag ($1)',
 
@@ -272,7 +270,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'watchlist'          => 'Mo fhaire',
 'nowatchlist'        => 'Chan eil altan air ur faire.',
 'addedwatch'         => 'Cuirte ri coimheadlìosta',
-'addedwatchtext'     => "Tha an duilleag \"[[:\$1]]\" cuirte ri [[Special:Watchlist|ur faire]] agaibh.  Ri teachd, bith chuir an àireamh an-sin mùthadhan na duilleag sin agus a'dhuilleag \"Talk\", agus bith a'dhuilleag '''tromte''' anns an [[Special:Recentchanges|lìosta nan mùthadhan ùra]] a dh'fhurasdaich i a sheall.
+'addedwatchtext'     => "Tha an duilleag \"[[:\$1]]\" cuirte ri [[Special:Watchlist|ur faire]] agaibh.  Ri teachd, bith chuir an àireamh an-sin mùthadhan na duilleag sin agus a'dhuilleag \"Talk\", agus bith a'dhuilleag '''tromte''' anns an [[Special:RecentChanges|lìosta nan mùthadhan ùra]] a dh'fhurasdaich i a sheall.
 
 Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air \"Caisg a' coimhead\" air an taobh-colbh.",
 'watchthispage'      => 'Cùm sùil air an dhuilleag seo',
@@ -291,8 +289,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'reverted'           => 'Tillte ri lethbhreac as ùire',
 'editcomment'        => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'         => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectedarticle'   => 'dìonta "[[$1]]"',
-'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
+'protectedarticle'   => 'dìonta "[[:$1]]"',
+'unprotectedarticle' => '"[[:$1]]" neo-dhìonta',
 'protect-title'      => 'A\'dìonadh "$1"',
 'protect-legend'     => 'Daingnich dìonadh',
 'protectcomment'     => 'Aobhar airson dìonaidh',
@@ -319,7 +317,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'badipaddress'       => "Chan eil an seòladh IP aig a'cleachdair seo iomchaidh",
 'blockipsuccesssub'  => 'Shoirbhich bacadh',
 'blockipsuccesstext' => "Tha [[Special:Contributions/$1|$1]] air a bhacadh.
-<br />Faic [[Special:Ipblocklist|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
+<br />Faic [[Special:IPBlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
 'unblockip'          => 'Neo-bhac cleachdair',
 'ipusubmit'          => 'Neo-bhac an seòladh seo',
 'ipblocklist'        => 'Liosta seòlaidhean IP agus ainmean-cleachdair air am bacadh',
@@ -343,8 +341,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'movepagebtn'      => 'Gluais duilleag',
 'pagemovedsub'     => 'Gluasad soirbheachail',
 'movedto'          => 'air gluasad gu',
-'1movedto2'        => '[[$1]] gluaiste ri [[$2]]',
-'1movedto2_redir'  => '[[$1]] gluaiste ri [[$2]] thairis air ath-stiùireadh',
+'1movedto2'        => '[[:$1]] gluaiste ri [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] gluaiste ri [[:$2]] thairis air ath-stiùireadh',
 
 # Namespace 8 related
 'allmessages'     => 'Uile teachdaireachdan an t-siostam',
@@ -370,7 +368,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'infosubtitle' => 'Fiosrachadh air duilleig',
 'numwatchers'  => 'Aireamh luchd-faire: $1',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Rannsaich',
 'bydate'   => 'air ceann-latha',
 

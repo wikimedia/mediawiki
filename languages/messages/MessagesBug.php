@@ -5,7 +5,6 @@
  * @file
  *
  * @author Kurniasan
- * @author SPQRobin
  */
 
 $fallback = "id";
@@ -84,7 +83,7 @@ $messages = array(
 'preview'          => 'ᨄᨛᨑᨗᨅᨗᨐᨘ',
 'accmailtitle'     => 'Ada sandi ni riantarak.',
 'accmailtext'      => 'Ada sandi "$1" riantarak ri $2.',
-'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:Userlogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
+'anontalkpagetext' => "----''Ini adalah halaman diskusi untuk pengguna anonim yang belum membuat rekening atau tidak menggunakannya. Karena tidak membuat rekening, kami terpaksa memakai alamat IP untuk mengenalinya. Alamat IP seperti ini dapat dipakai oleh beberapa pengguna yang berbeda. Jika Anda adalah pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak berkaitan dengan anda, kami anjurkan untuk [[Special:UserLogin|membuat rekening atau masuk log]] untuk menghindari kerancuan dengan pengguna anonim lain.''",
 'editing'          => 'ᨙᨕᨉᨗᨈᨗ $1',
 
 # Recent changes
@@ -105,7 +104,7 @@ $messages = array(
 'move'         => 'ᨙᨕᨔᨘ',
 'movethispage' => 'ᨙᨕᨔᨘᨀᨗ ᨕᨗᨙᨐᨙᨉ ᨒᨛᨄ',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Maneng halamang',
 'alphaindexline' => '$1 ri $2',
 'allpagesfrom'   => 'Mappaitang halamang-halamang rimulai:',
@@ -119,7 +118,7 @@ $messages = array(
 'addedwatch'     => 'Tamba ri jagaan',
 'addedwatchtext' => "Halamang \"[[:\$1]]\" ni ritamba ri ida [[Special:Watchlist|watchlist]].
 Halamang bicara éréngé gabungan halamang bicara pada wettu depan didaftarkan koe,
-éréngé halamang akan wessi '''umpek''' ri [[Special:Recentchanges|daftar pinra tanappa]] barak lebih lemmak ita.
+éréngé halamang akan wessi '''umpek''' ri [[Special:RecentChanges|daftar pinra tanappa]] barak lebih lemmak ita.
 
 Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\" pada kolom ri sedde.",
 
@@ -135,7 +134,7 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 # Move page
 'articleexists' => 'Halamang béla ida pile ni ujuk, a dek essa.
 Silakan pile aseng laing.',
-'1movedto2'     => '[[$1]] ésuk ri [[$2]]',
+'1movedto2'     => '[[:$1]] ésuk ri [[:$2]]',
 
 # Namespace 8 related
 'allmessages'        => 'Maneng pappaseng',
@@ -149,7 +148,7 @@ Silakan pile aseng laing.',
 # Media information
 'imagemaxsize' => 'Gangkai rapang pada keterangan rapang ri halamang hingga:',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'ᨔᨄ',
 
 # 'all' in various places, this might be different for inflected languages

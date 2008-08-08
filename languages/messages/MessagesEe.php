@@ -4,13 +4,37 @@
  * @ingroup Language
  * @file
  *
- * @author M.M.S.
  * @author Natsubee
  * @author Cbrown1023
  */
 
 $messages = array(
+# User preference toggles
+'tog-hideminor'            => 'Ɣla tɔtrɔ suewo le tɔtrɔ yeyeawo me',
+'tog-watchcreations'       => 'Tsɔ axa siwo gɔme medze la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchdefault'         => 'Tsɔ axa siwo ŋu metrɔ asi le la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchmoves'           => 'Tsɔ axa siwo ƒe nɔƒe meɖɔli la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-watchdeletion'        => 'Tsɔ axa siwo metutu la kpe ɖe axa siwo ŋu nyeƒe ŋku le la ŋu',
+'tog-enotifwatchlistpages' => 'Ɖo du nam ne axa aɖe si ŋu nyeƒe ŋku le la trɔ',
+
+'underline-always' => 'Ɣesiaɣi',
+'underline-never'  => 'Gbeɖe',
+
 # Dates
+'sunday'        => 'Kɔsiɖagbe',
+'monday'        => 'Dzoɖagbe',
+'tuesday'       => 'Brãɖagbe',
+'wednesday'     => 'Kuɖagbe',
+'thursday'      => 'Yawoɖagbe',
+'friday'        => 'Fiɖagbe',
+'saturday'      => 'Memleɖagbe',
+'sun'           => 'Dzo',
+'mon'           => 'Dzo',
+'tue'           => 'Brã',
+'wed'           => 'Kuɖ',
+'thu'           => 'Yaw',
+'fri'           => 'Fiɖ',
+'sat'           => 'Mem',
 'january'       => 'Dzove',
 'february'      => 'Dzodze',
 'march'         => 'Tedoxe',
@@ -52,12 +76,15 @@ $messages = array(
 'newwindow'      => '(eʋua fesre yeye)',
 'cancel'         => 'Dzudzɔ etɔtrɔ',
 'qbedit'         => 'Trɔ asi le eŋu',
+'qbpageoptions'  => 'Axa sia',
 'qbmyoptions'    => 'Nyeƒe axawo',
 'qbspecialpages' => 'Axa tɔxewo',
+'mypage'         => 'Axa nye',
 'navigation'     => 'Mɔtabiala',
 'and'            => 'kpakple',
 
 'errorpagetitle'   => 'Vodada',
+'returnto'         => 'Gbugbɔ yi $1.',
 'help'             => 'Kpekpeɖeŋu',
 'search'           => 'Dii',
 'searchbutton'     => 'Dii',
@@ -66,7 +93,9 @@ $messages = array(
 'history_short'    => 'Xoxoawo',
 'edit'             => 'Trɔ asi le eŋu',
 'delete'           => 'Tutui',
+'newpage'          => 'Axa yeye',
 'talkpagelinktext' => 'Nyamedzroƒe',
+'specialpage'      => 'Axa Tɔxe',
 'talk'             => 'Nyamedzroƒe',
 'toolbox'          => 'Dɔwɔnuɖaka',
 'otherlanguages'   => 'Le gbe bubuwo me',
@@ -82,9 +111,10 @@ $messages = array(
 'portal'            => 'Takpekpewɔƒe',
 'portal-url'        => 'Project:Takpekpewɔƒe',
 
-'newmessageslink' => 'du yeyewo',
-'editsection'     => 'trɔ asi le eŋu',
-'editold'         => 'trɔ asi le eŋu',
+'newmessageslink'         => 'du yeyewo',
+'youhavenewmessagesmulti' => 'Du yeyewo le asiwo le $1',
+'editsection'             => 'trɔ asi le eŋu',
+'editold'                 => 'trɔ asi le eŋu',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Axa',
@@ -151,7 +181,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'Ezãla:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Axawo katã',
 'allpagessubmit' => 'Yi',
 
@@ -170,7 +200,7 @@ $messages = array(
 'movearticle'      => 'Ɖɔli eƒe nɔƒe:',
 'move-watch'       => 'Le ŋku ɖe axa sia ŋu',
 'movepagebtn'      => 'Ɖɔli eƒe nɔƒe',
-'1movedto2'        => '[[$1]] wohee yi [[$2]]',
+'1movedto2'        => '[[:$1]] wohee yi [[:$2]]',
 
 # Namespace 8 related
 'allmessages' => 'Nuŋɔŋlɔwo',
@@ -187,7 +217,7 @@ $messages = array(
 'tooltip-t-specialpages'  => 'Axa tɔxewo ƒe xexlẽme',
 'tooltip-minoredit'       => 'Esia nye tɔtrɔ sue aɖe ko',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Nutata yeyewo',
 
 # 'all' in various places, this might be different for inflected languages

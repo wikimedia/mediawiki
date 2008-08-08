@@ -6,7 +6,6 @@
  *
  * @author Amikeco
  * @author לערי ריינהארט
- * @author Siebrand
  */
 
 $fallback = 'ru';
@@ -229,7 +228,7 @@ $messages = array(
 'nosuchspecialpage' => 'Ахæм сæрмагонд фарс нæй',
 'nospecialpagetext' => "<big>'''Нæй ахæм сæрмагонд фарс.'''</big>
 
-Кæс [[Special:Specialpages|æппæт сæрмагонд фæрсты номхыгъд]].",
+Кæс [[Special:SpecialPages|æппæт сæрмагонд фæрсты номхыгъд]].",
 
 # General errors
 'error'                => 'Рæдыд',
@@ -357,7 +356,7 @@ $3',
 'savefile'      => 'Бавæр æй',
 'uploadvirus'   => 'Файлы разынд вирус! Кæс $1',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Нывты номхыгъд',
 
 # Image description page
@@ -374,7 +373,7 @@ $3',
 
 # Statistics
 'userstats'     => 'Архайджыты статистикæ',
-'userstatstext' => "Регистрацигонд {{PLURAL:$1|æрцыд '''иу архайæг'''|æрцыдысты $1 [[Special:Listusers|архайæджы]]}}, уыдонæй '''$2''' (ома сæ '''$4%''') {{PLURAL:$2|у|сты}} $5.",
+'userstatstext' => "Регистрацигонд {{PLURAL:$1|æрцыд '''иу архайæг'''|æрцыдысты $1 [[Special:ListUsers|архайæджы]]}}, уыдонæй '''$2''' (ома сæ '''$4%''') {{PLURAL:$2|у|сты}} $5.",
 
 'brokenredirects-edit'   => '(баив æй)',
 'brokenredirects-delete' => '(аппар)',
@@ -395,7 +394,7 @@ $3',
 'ancientpages'      => 'Зæронддæр фæрстæ',
 'move'              => 'Ном баив',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Æппæт фæрстæ',
 'alphaindexline' => '$1 (уыдоны ’хсæн цы статьятæ ис, фен) $2',
 'allarticles'    => 'Æппæт статьятæ',
@@ -408,11 +407,11 @@ $3',
 'special-categories-sort-count' => 'нымæцмæ гæсгæ равæр',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Равдис',
 
 # E-mail user
-'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:Userlogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
+'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',
 'emailpage'       => 'Электронон фыстæг йæм барвит',
 
 # Watchlist
@@ -420,7 +419,7 @@ $3',
 'mywatchlist'          => 'Дæ цæст кæмæ дарыс, уыцы фæрстæ',
 'nowatchlist'          => 'Иу статьямæ дæр дæ цæст нæ дарыс.',
 'watchnologin'         => 'Системæйæн дæхи нæ бацамыдтай',
-'watchnologintext'     => 'Ацы номхыгъд ивынмæ [[Special:Userlogin|хъуамæ дæхи бацамонай системæйæн]].',
+'watchnologintext'     => 'Ацы номхыгъд ивынмæ [[Special:UserLogin|хъуамæ дæхи бацамонай системæйæн]].',
 'addedwatch'           => 'Дæ цæст кæмæ дарыс, уыцы статьятæм бафтыд.',
 'watch'                => 'Дæ цæст æрдар',
 'watchthispage'        => 'Ацы фарсмæ дæ цæст æрдар',
@@ -484,7 +483,7 @@ $3',
 # Media information
 'widthheightpage' => '$1 × $2, $3 фарсы',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Ног нывты галерей',
 'ilsubmit'  => 'Агур',
 'bydate'    => 'рæстæгмæ гæсгæ',

@@ -7,9 +7,7 @@
  * @author Candalua
  * @author Nick1915
  * @author BrokenArrow
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Omnipaedista
  */
 
@@ -315,7 +313,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'nosuchspecialpage' => 'No xè disponibiłe nissuna pàxena speciałe co sto nome',
 'nospecialpagetext' => "<big>'''Te ghè richiesto na pagina speciale mìa esistente.'''</big>
 
-Te podi catar na lista de le pagine speciali esistenti in [[Special:Specialpages|{{int:specialpages}}]].",
+Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erór',
@@ -341,10 +339,10 @@ MySQL gà restituìo l\'eror "$3: $4".',
 L'aministrador de sistema che gà messo el bloco el gà lassà sta spiegassion: $1",
 'missing-article'      => 'El database no\'l gà mìa catà el testo de na pagina che la gavarìa dovùo èssarghe soto el nome de "$1" $2.
 
-De solito questo el se verifica quando vien riciamà, a partir da la cronologia o dal confronto tra revision, un colegamento a na pagina scancelà, a un confronto tra revision inesistenti o a un confronto tra revision ripulìe da la cronologia.
+De solito questo el se verifica quando vien riciamà un confronto tra revision vece de la pagina o un colegamento a na version vecia de na pagina che xe stà scancelà.
 
 In caso contrario, se gà probabilmente catà un eror del software MediaWiki.
-Se prega de segnalar l\'acaduto a un aministrador specificando la URL in question.',
+Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] specificando la URL in question.',
 'missingarticle-rev'   => '(revision n°: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
@@ -397,11 +395,10 @@ La motivazion la xe sta qua: ''$2''.",
 'logouttitle'                => 'Logout utente',
 'logouttext'                 => '<strong>Logout efetuà.</strong>
 
-Ora te podi continuar a doparar {{SITENAME}} come utente anonimo (ma el to indirizo IP el restarà riconossìbile), opure te podi far de novo el login col nome utente de prima, opure con uno difarente. Nota che çerte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.',
-'welcomecreation'            => "== Benvegnù, $1==
-El to account l'è stà creà con sucesso.<br />
-Grasie par aver scelto de far cresere {{SITENAME}} co'l to aiuto.<br />
-Par rendere {{SITENAME}} più tua, e par usarla più scorrevolmente, no sta desmentegarte de personalixare le to preferense.",
+Ora te podi continuar a doparar {{SITENAME}} come utente anonimo, opure te podi far [[Special:UserLogin|de novo el login]] col nome utente de prima, opure con uno difarente. Nota che çerte pagine le podarìa èssar visualizà come se te fussi ancora loggà, fin che no te neti la cache del to browser.',
+'welcomecreation'            => "== Benvegnù, $1! ==
+El to account l'è stà creà con sucesso.
+No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de {{SITENAME}}]].",
 'loginpagetitle'             => 'Login',
 'yourname'                   => 'Nome utente:',
 'yourpassword'               => 'Scegli na password',
@@ -412,7 +409,7 @@ Par rendere {{SITENAME}} più tua, e par usarla più scorrevolmente, no sta desm
 'loginproblem'               => '<b>Si gà verificà un erore durante el to tentativo de login.</b><br />Ripróa da novo!',
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra o crea un novo acesso',
-'loginprompt'                => 'Par acedere a {{SITENAME}} xè necessario abiłitare i cookie.',
+'loginprompt'                => 'Par [[Special:UserLogin|acédere a {{SITENAME}}]] ti gà da abiłitare i cookie.',
 'userlogin'                  => 'Entra o crea un novo acesso',
 'logout'                     => 'Và fora',
 'userlogout'                 => 'và fora',
@@ -518,7 +515,7 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'subject'                          => 'Argomento (intestazion)',
 'minoredit'                        => "Sta quà l'è na modifica minore",
 'watchthis'                        => "Tegni d'ocio sta voçe",
-'savearticle'                      => 'Salva la pagina',
+'savearticle'                      => 'Salva la pàxena',
 'preview'                          => 'Anteprima',
 'showpreview'                      => 'Mostra anteprima',
 'showlivepreview'                  => "Funzion ''Live preview''",
@@ -559,7 +556,7 @@ Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de c
 'blockednoreason'                  => 'nissuna motivazion indicà',
 'blockedoriginalsource'            => "El còdese sorgente de '''$1''' el vien mostrà de seguito:",
 'blockededitsource'                => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
-'whitelistedittitle'               => 'Bisogna èssar registrà par poder modificar la pàxena.',
+'whitelistedittitle'               => '[[Special:Userlogin|Bisogna èssar registrà]] par poder modificar le pàxene',
 'whitelistedittext'                => 'Par modificar łe pàxene ghe xè bisogno de $1.',
 'confirmedittitle'                 => 'Ghe vole ła conferma e-mail par scrivare',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
@@ -578,7 +575,7 @@ Se te si rivà qua par sbaglio, basta che te machi el boton '''Indrio''' sul to 
 'anontalkpagetext'                 => "----''Sta quà l'è la pàxena de discussion de un utente anonimo che no'l se gà gnancora registrà o che no l'efetua el login.
 De conseguenza xè necessario identificarlo tramite l'indirizo IP numerico.
 Sto indirizo el pode èssar condivixo da diversi utenti.
-Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te podi [[Special:Userlogin|registrarte o efetuar el login]] par evitar confuxion con altri utenti in futuro.''",
+Se te sì un utente anonimo e te ghè riçevù dei messagi che te secondo ti i xera direti a qualchedun altro, te podi [[Special:UserLogin/signup|registrarte]] o [[Special:UserLogin|efetuar el login]] par evitar confuxion con altri utenti anonimi in futuro.''",
 'noarticletext'                    => 'In sto momento ła pàxena richiesta la xè voda. Se pol [[Special:Search/{{PAGENAME}}|çercar sto titoło]] ne łe altre pàxene del sito opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
@@ -590,13 +587,14 @@ Se te sì un utente anonimo e te pensi che ghe sia stà comenti irilevanti, te p
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => "<strong>Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!</strong>",
 'previewconflict'                  => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
-'session_fail_preview'             => '<strong>Purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la sezion i xè andai persi. Par piaser, riproa da novo.<br />
-Se te rizevi sto messajo de erór pì olte, proa a scołegarte (struca su "và fora" in alto a destra) e a cołegarte novamente.</strong>',
-'session_fail_preview_html'        => "<strong>Semo spiacenti, ma no xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
+'session_fail_preview'             => '<strong>Ne dispiase, ma purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi. Par piaser, riproa da novo.
+Se no funsiona gnancora, proa a [[Special:UserLogout|scołegarte]] e a cołegarte de novo.</strong>',
+'session_fail_preview_html'        => "!<strong>Semo spiacenti, ma no xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
 
-''Dato che in sto sito xe abilità l'uso de HTML senza limitazion, l'anteprima no la vien visualizà; se tratta de na misura de sicureza contro i atachi JavaScript.''
+''Dato che su {{SITENAME}} xe abilità l'uso de HTML senza limitazion, l'anteprima no la vien visualizà; se tratta de na misura de sicureza contro i atachi JavaScript.''
 
-<strong>Se el problema el persiste, te pol proár a scolegarte e efetuar da novo l'acesso.</strong>",
+<strong>Se te stè fasendo na modifica legìtima, par piaser próa de novo.
+Se no funsiona gnancora, te pol proár a [[Special:UserLogout|scolegarte]] e efetuar da novo l'acesso.</strong>",
 'token_suffix_mismatch'            => "<strong>La modifica no la xe mìa stà salvà parché el client el gà mostrà de gestir in maniera sbaglià i caràteri de puntegiatura nel token associà a la stessa. Par evitar na possibile coruzion del testo de la pagina, xe stà rifiutà l'intera modifica. Sta situazion la pode verificarse, a olte, quando vien doparà çerti servizi de proxy anonimi via web che presenta dei bug.</strong>",
 'editing'                          => 'Modifica de $1',
 'editingsection'                   => 'Modifica $1 (sezion)',
@@ -634,7 +632,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'template-semiprotected'           => '(semiproteto)',
 'hiddencategories'                 => 'Sta pagina la fa parte de {{PLURAL:$1|una categoria sconta|$1 categorie sconte}}:',
 'nocreatetitle'                    => 'Creazion de le pagine limitada',
-'nocreatetext'                     => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:Userlogin|entrar o crear un nóvo acesso]].',
+'nocreatetext'                     => 'La possibilità de crear pagine nóve su {{SITENAME}} la xe stà limità ai soli utenti registrà. Se pol tornar indrìo e modificar na pagina esistente, opure [[Special:UserLogin|entrar o crear un nóvo acesso]].',
 'nocreate-loggedin'                => 'No te ghè i permessi necessari a crear nove pagine su {{SITENAME}}.',
 'permissionserrors'                => 'Eror nei permessi',
 'permissionserrorstext'            => "No te ghè i permessi necessari ad eseguir l'azion richiesta, par {{PLURAL:$1|el seguente motivo|i seguenti motivi}}:",
@@ -660,7 +658,7 @@ Sti argomenti i xe stà omessi.',
 'undo-success' => 'Sta modifica la pode èssar anulà. Verifica el confronto presentà de seguito par èssar sicuro che el contenuto el sia come te lo voli e quindi salva le modifiche par conpletar la procedura de anulamento.',
 'undo-failure' => 'No se pol mìa anular la modifica, par via de un conflito con modifiche intermedie.',
 'undo-norev'   => 'La modifica no la pode vegner anulà parché no la esiste o la xe stà scancelà.',
-'undo-summary' => 'Anulà la modifica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]])',
+'undo-summary' => 'Anulà la modifica $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Inpossibile registrar l'utente",
@@ -751,7 +749,7 @@ I altri aministradori del sito i podarà accédar istesso ai contenuti sconti e 
 
 # Suppression log
 'suppressionlog'     => 'Registro dei ocultamenti',
-'suppressionlogtext' => "Qua soto se cata na lista de le pi reçenti scancelazioni e blochi che riguarda contenuti sconti dai aministradori. Varda la [[Special:Ipblocklist|lista dei IP blocà]] par védar l'elenco dei blochi atualmente ativi.",
+'suppressionlogtext' => "Qua soto se cata na lista de le pi reçenti scancelazioni e blochi che riguarda contenuti sconti dai aministradori. Varda la [[Special:IPBlockList|lista dei IP blocà]] par védar l'elenco dei blochi atualmente ativi.",
 
 # History merging
 'mergehistory'                     => 'Union cronologie',
@@ -791,7 +789,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 # Search results
 'searchresults'             => 'Risultato de la riçerca',
 'searchresulttext'          => 'Par verghe piassè informassion su la riçerca interna de {{SITENAME}}, varda [[{{MediaWiki:Helppage}}|Riçerca in {{SITENAME}}]].',
-'searchsubtitle'            => "Te ghè çercà '''[[:$1]]'''",
+'searchsubtitle'            => 'Te ghè çercà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tute le pàxene che taca con "$1"]] | [[Special:WhatLinksHere/$1|tute le pàxene che punta a "$1"]])',
 'searchsubtitleinvalid'     => "Te ghè çercà '''$1'''",
 'noexactmatch'              => "'''La pàxena \"\$1\" no ła esiste.''' Te pol [[:\$1|crearla desso]].",
 'noexactmatch-nocreate'     => "'''No ghe xe nissuna pagina con titolo \"\$1\".'''",
@@ -834,7 +832,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'mypreferences'            => 'le me preferenze',
 'prefs-edits'              => 'Nùmaro de modifiche:',
 'prefsnologin'             => 'No te ghè eseguìo el login',
-'prefsnologintext'         => 'Te ghè da aver eseguìo el [[Special:Userlogin|login]]
+'prefsnologintext'         => 'Te ghè da aver eseguìo el [[Special:UserLogin|login]]
 par poder personalixare le to preferense.',
 'prefsreset'               => 'Le to Preferense le xè stà ripescae da la memoria de sistema del server de {{SITENAME}}.',
 'qbsettings'               => 'Settaggio barra menu',
@@ -909,7 +907,7 @@ par poder personalixare le to preferense.',
 'userrights-reason'           => 'Motivo de la modifica:',
 'userrights-no-interwiki'     => 'No te ghè i parmessi necessari par modificar i diriti dei utenti su altri siti.',
 'userrights-nodatabase'       => "El database $1 no l'esiste mìa o no l'è un database local.",
-'userrights-nologin'          => "Par assegnarghe diriti ai utenti te ghè da [[Special:Userlogin|efetuar l'acesso]] come aministrador.",
+'userrights-nologin'          => "Par assegnarghe diriti ai utenti te ghè da [[Special:UserLogin|efetuar l'acesso]] come aministrador.",
 'userrights-notallowed'       => 'No te ghè i parmessi necessari par assegnarghe diriti ai utenti.',
 'userrights-changeable-col'   => 'Grupi che te pol canbiar',
 'userrights-unchangeable-col' => 'Grupi che no te pol canbiar',
@@ -999,7 +997,7 @@ par poder personalixare le to preferense.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
-'recentchanges'                     => 'Ultime modifeghe',
+'recentchanges'                     => 'Ùltimi canbiamenti',
 'recentchangestext'                 => 'Sta pàxena la presenta łe ultime modifeghe aportàe ai contenuti de el sito.',
 'recentchanges-feed-description'    => 'Sto feed qua el riporta le modifiche piassè recenti ai contenuti del sito.',
 'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo cambiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
@@ -1025,7 +1023,7 @@ par poder personalixare le to preferense.',
 'newsectionsummary'                 => '/* $1 */ sezion nova',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Modifeghe ligà a sta pagina',
+'recentchangeslinked'          => 'Modifeghe ligà a sta pàxena',
 'recentchangeslinked-title'    => 'Modifiche ligà a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pagina speciale la fa védar le modifiche piassè recenti a le pagine ligà a quela specificà (o a le pagine contegnù ne la categoria specificà).
@@ -1039,24 +1037,25 @@ Le pagine che te stè tegnendo d'ocio sui [[Special:Watchlist|osservati speciali
 'reupload'                    => 'Carga da novo',
 'reuploaddesc'                => 'Lassa pèrdar el caricamento e torna al modulo de caricamento',
 'uploadnologin'               => 'Te devi far el login par exeguire sta operassion.',
-'uploadnologintext'           => 'Te ghè da far [[Special:Userlogin|el login]]
+'uploadnologintext'           => 'Te ghè da far [[Special:UserLogin|el login]]
 par poder cargar dei file.',
 'upload_directory_missing'    => 'La cartèla de caricamento ($1) no la esiste mìa e no la pode vegner creàda dal browser web.',
 'upload_directory_read_only'  => "El server web no l'è bon de scrìvar ne la directory de caricamento ($1).",
 'uploaderror'                 => 'Eror nel caricamento',
 'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto. 
-Par védar o çercar i file zà caricà, consulta la [[Special:Imagelist|lista dei file caricà]]. I caricamenti e le scancelazion de file te pol védarle nel [[Special:Log/upload|registro dei caricamenti]].
+Par védar o çercar i file zà caricà, consulta la [[Special:ImageList|lista dei file caricà]]. I caricamenti e le scancelazion de file te pol védarle nel [[Special:Log/upload|registro dei caricamenti]].
 
-Par métar na imagine drento na pagina, te ghè da far un colegamento de sto tipo:
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
-'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|testo alternativo]]</nowiki>''' opure
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' par crear un colegamento direto al file.",
+Par métar un file drento de na pagina, te ghè da inserir un colegamento fato come uno de sti qua:
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' par doparar la version conpleta de sto file
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>'''par inserir sto file co na larghessa de 200 pixel in te un riquadro a sinistra con 'testo alternativo' come descrission
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' par inserir diretamente un colegamento al file sensa che el se véda in te la pagina",
 'upload-permitted'            => 'Tipi de file consentìi: $1.',
 'upload-preferred'            => 'Tipi de file consiglià: $1.',
 'upload-prohibited'           => 'Tipi de file mìa consentìi: $1.',
 'uploadlog'                   => 'File caricai',
 'uploadlogpage'               => 'Registro dei file caricai',
-'uploadlogpagetext'           => 'Qua se cata la lista dei ultimi files caricà sul server de {{SITENAME}}.',
+'uploadlogpagetext'           => 'Qua se cata la lista dei ultimi files caricà.
+Varda la [[Special:NewImages|galerìa dei file nóvi]] par na vision de insieme.',
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Somario',
 'fileuploadsummary'           => 'Somario:',
@@ -1113,9 +1112,12 @@ Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'upload-proto-error'      => 'Protocòl mìa giusto',
 'upload-proto-error-text' => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
 'upload-file-error'       => 'Eror interno',
-'upload-file-error-text'  => 'Se gà verificà un eror interno durante la creazion de un file tenporaneo sul server. Contata un aministrador de sistema.',
+'upload-file-error-text'  => 'Se gà verificà un eror interno durante la creazion de un file tenporaneo sul server.
+Par piaser, contatar un [[Special:ListUsers/sysop|aministrador]].',
 'upload-misc-error'       => 'Eror non identificà par el caricamento',
-'upload-misc-error-text'  => 'Se gà verificà un eror mìa identificà durante el caricamento del file. Verifica che la URL la sia giusta e acessibile e próa da novo. Se el problema el persiste, contata un aministrador de sistema.',
+'upload-misc-error-text'  => '!Se gà verificà un eror mìa identificà durante el caricamento del file.
+Par piaser, verifica che la URL la sia giusta e acessibile e próa da novo.
+Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
@@ -1129,7 +1131,7 @@ Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'upload_source_url'  => ' (na URL coreta e acessibile)',
 'upload_source_file' => ' (un file sul to computer)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => "Sta pagina speciale la fa védar tuti i file caricài.
 I file caricài piessè de reçente i vien mostrà a l'inizio de la lista.
 Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
@@ -1157,7 +1159,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'imagelinks'                     => "Colegamenti a l'imagine",
 'linkstoimage'                   => '{{PLURAL:$1|La pagina seguente la|Le $1 pàxene seguenti le}} riciama sto file:',
 'nolinkstoimage'                 => 'Nissuna pàxena la punta a sta imagine.',
-'morelinkstoimage'               => 'Varda i [[Special:Whatlinkshere/$1|altri colegamenti]] verso sto file.',
+'morelinkstoimage'               => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'                => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
 'duplicatesoffile'               => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} xe dei dopioni de sto file:',
 'sharedupload'                   => 'Sto file qua el xe un caricamento condiviso; quindi el pol èssar doparà da più progeti wiki.',
@@ -1240,7 +1242,7 @@ Xe stà inoltre caricà '''\$8''' file.
 Da l'instalazion del sito fin a sto momento, xe stà visità '''\$3''' pagine ed eseguìe '''\$4''' modifeghe, pari a na media de '''\$5''' modifeghe par pàxena e '''\$6''' richieste de letura par ciascuna modifega.
 
 La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' proçessi.",
-'userstatstext'          => "Ghe xe {{PLURAL:$1|'''1''' [[Special:Listusers|utente]]|'''$1''' [[Special:Listusers|utenti]]}} registrà, de cui '''$2''' (pari al '''$4%''') {{PLURAL:$2|el|i}} gà i diriti de $5.",
+'userstatstext'          => "Ghe xe {{PLURAL:$1|'''1''' [[Special:ListUsers|utente]]|'''$1''' [[Special:ListUsers|utenti]]}} registrà, de cui '''$2''' (pari al '''$4%''') {{PLURAL:$2|el|i}} gà i diriti de $5.",
 'statistics-mostpopular' => 'Pagine piassè visità',
 
 'disambiguations'      => 'Pàxene de disanbiguazion',
@@ -1336,7 +1338,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard'   => 'Riçerca dei titoli che scuminsia con',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tute łe pàxene',
 'alphaindexline'    => 'da $1 a $2',
 'nextpage'          => 'Pàxena dopo ($1)',
@@ -1359,15 +1361,15 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'special-categories-sort-count' => 'ordina par nùmaro',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'Mostra i utenti tacando da:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'Diriti dei grupi utenti',
 'listgrouprights-summary'  => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.
-Altre informassion sui diriti individuali se pol catarle [[{{MediaWiki:Listgrouprights-helppage}}|qua]].',
+Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|informassion in pi]] sui diriti individuali.',
 'listgrouprights-group'    => 'Grupo',
 'listgrouprights-rights'   => 'Diriti',
 'listgrouprights-helppage' => 'Help:Diriti dei grupi',
@@ -1375,10 +1377,11 @@ Altre informassion sui diriti individuali se pol catarle [[{{MediaWiki:Listgroup
 
 # E-mail user
 'mailnologin'     => 'Nissun indirizo a cui mandarghe el messagio',
-'mailnologintext' => 'Par inviare messagi e-mail ad altri utenti xè neçessario [[Special:Userlogin|açedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
+'mailnologintext' => 'Par inviare messagi e-mail ad altri utenti xè neçessario [[Special:UserLogin|açedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
 'emailuser'       => "Scrivi a l'utente",
 'emailpage'       => "Scrivi na e-mail a l'utente",
-'emailpagetext'   => 'Se sto Utente el gà registrà na casela e-mail valida, el modulo qua soto el te consentirà de scriverghe un solo messagio. La e-mail che te ghè indicà ne le to preferense la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa, solo se el lo desidera però, rispóndarte.',
+'emailpagetext'   => 'Se sto Utente el gà registrà na casela e-mail valida, el modulo qua soto el te consentirà de scriverghe un singolo messagio.
+La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte.',
 'usermailererror' => "L'ogeto mail el gà restituìo l'eror:",
 'defemailsubject' => 'Messagio da {{SITENAME}}',
 'noemailtitle'    => 'Nissun indirisso e-mail',
@@ -1401,14 +1404,14 @@ Altre informassion sui diriti individuali se pol catarle [[{{MediaWiki:Listgroup
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",
 'watchlistanontext'    => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
 'watchnologin'         => 'Acesso non efetuà',
-'watchnologintext'     => 'Te ghè prima da far el [[Special:Userlogin|login]] par modificar la to lista de osservati speciali.',
+'watchnologintext'     => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
 'addedwatch'           => 'Xontà ai tòi Osservati Speciali',
 'addedwatchtext'       => "La pàxena  \"<nowiki>\$1</nowiki>\" l'è stà xontà a la to [[Special:Watchlist|lista de osservati speciali]].
-Le future modifiche a sta pagina e a la relativa pagina de discussion le sarà elencae qui, e la paxena la vegnarà fora in '''grasseto''' ne la pàxena de le [[Special:Recentchanges|ultime modifiche]] par èssar pì façile da tegner d'ocio.
+Le future modifiche a sta pagina e a la relativa pagina de discussion le sarà elencae qui, e la paxena la vegnarà fora in '''grasseto''' ne la pàxena de le [[Special:RecentChanges|ultime modifiche]] par èssar pì façile da tegner d'ocio.
 
 Se pì avanti te vorè cavar sta articolo da la to lista de Osservati Speciali, maca \"No sta tegner d'ocio\" ne la barra dei menu.",
 'removedwatch'         => 'Cavà da la lista dei Osservati Speciali',
-'removedwatchtext'     => 'La pàxena  "<nowiki>$1</nowiki>" la xè stà cavà da ła łista de i toi Osservati Speciałi.',
+'removedwatchtext'     => 'La pàxena "[[:$1]]" la xè stà cavà da ła to łista de le [[Special:Watchlist|pàxene tegnùe de ocio]].',
 'watch'                => "Tien d'ocio",
 'watchthispage'        => "Tien d'ocio sta voçe",
 'unwatch'              => "No sta tegner d'ocio",
@@ -1505,16 +1508,18 @@ Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, con
 'rollbacklink'                => 'tira indrìo',
 'rollbackfailed'              => 'Ripristino mìa riussìo',
 'cantrollback'                => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
-'alreadyrolled'               => "No xè mia possibile efetuar el ripristino de [[$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe. L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]).",
+'alreadyrolled'               => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
+
+L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'                 => 'El comento a la modifica el xera: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
 'sessionfailure'              => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 'protectlogpage'              => 'Registro de protezión',
 'protectlogtext'              => 'De seguito xe elencàe le azion de protezion e sbloco de le pagine.',
-'protectedarticle'            => 'gà proteto "[[$1]]"',
-'modifiedarticleprotection'   => 'gà modificà el livel de protezion de "[[$1]]"',
-'unprotectedarticle'          => 'gà sblocà "[[$1]]"',
+'protectedarticle'            => 'gà proteto "[[:$1]]"',
+'modifiedarticleprotection'   => 'gà modificà el livel de protezion de "[[:$1]]"',
+'unprotectedarticle'          => 'gà sblocà "[[:$1]]"',
 'protect-title'               => 'Canbia el livèl de protezion par "$1"',
 'protect-legend'              => 'Conferma la protezion',
 'protectcomment'              => 'Motivo de ła protezion',
@@ -1667,7 +1672,7 @@ $1',
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
 'blockipsuccesstext'              => 'L\'indirizzo IP "$1" l\'è sta bloccà.
-<br />Varda [[Special:Ipblocklist|lista IP bloccati]].',
+<br />Varda [[Special:IPBlockList|lista IP bloccati]].',
 'ipb-edit-dropdown'               => 'Motivi par el bloco',
 'ipb-unblock-addr'                => 'Sbloca $1',
 'ipb-unblock'                     => 'Sbloca un utente o un indirizo IP',
@@ -1697,7 +1702,7 @@ $1',
 'autoblocker'                     => 'Bloccà automaticamente parché el to indirisso IP el xè stà doparà de recente da "[[User:$1|$1]]". La motivassion del bloco de $1 la xe: "$2"',
 'blocklogpage'                    => 'Registro dei blochi',
 'blocklogentry'                   => 'gà blocà [[$1]] par un periodo de $2 $3',
-'blocklogtext'                    => "Sto qua xè un elenco de azioni de bloco e sbloco dei indirizi IP. I indirizi blocai in automatico no i xè mìa elencai. Varda l'[[Special:Ipblocklist|elenco dei IP blocà]] par la lista dei indirizi el cui bloco el xè operativo.",
+'blocklogtext'                    => "Sto qua xè un elenco de azioni de bloco e sbloco dei indirizi IP. I indirizi blocai in automatico no i xè mìa elencai. Varda l'[[Special:IPBlockList|elenco dei IP blocà]] par la lista dei indirizi el cui bloco el xè operativo.",
 'unblocklogentry'                 => 'gà sblocà $1',
 'block-log-flags-anononly'        => 'solo utenti anonimi',
 'block-log-flags-nocreate'        => 'creazion account blocà',
@@ -1734,7 +1739,7 @@ Per piaser, conferma che questo xe efettivamente quel che te vol far.',
 'lockdbsuccesssub'    => 'Blocco de el database eseguio',
 'unlockdbsuccesssub'  => 'Sbloco del database eseguìo',
 'lockdbsuccesstext'   => 'El database el xe stà blocà.<br />
-Tiente in mente de [[Special:Unlockdb|sblocarlo]] co te ghè finìo de far manutenzion.',
+Tiente in mente de [[Special:UnlockDB|sblocarlo]] co te ghè finìo de far manutenzion.',
 'unlockdbsuccesstext' => 'El database de {{SITENAME}} el xe stà sblocà.',
 'lockfilenotwritable' => "Inpossibile scrìvar sul file de ''lock'' del database. Ghe vole acesso in scritura a sto file da parte del server web, par blocar e sblocar el database.",
 'databasenotlocked'   => "El database no l'è mìa blocà.",
@@ -1742,10 +1747,10 @@ Tiente in mente de [[Special:Unlockdb|sblocarlo]] co te ghè finìo de far manut
 # Move page
 'move-page'               => 'Spostamento de $1',
 'move-page-legend'        => 'Spostamento de pàxena',
-'movepagetext'            => "Col modulo qua soto te podi rinominar na pàxena, spostando anca tuta la so cronołogia al novo nome.
+'movepagetext'            => "Col modulo qua soto te podi rinominar na pàxena, spostando anca tuta la so cronołogia al nome novo.
 El vecio titoło el deventarà automaticamente un rimando (redirect) che punta al novo titoło.
 I colegamenti a la vecia pàxena no i sarà mìa agiornài (e i puntarà quindi al rimando);
-tiente in mente de controłar con cura che no se crea dopi redirect o redirect interoti.
+tiente in mente de controłar con cura che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
 Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar verso dove i deve dirìgiarse.
 
 Nota ben: la pàxena '''no''' la sarà spostà se ghe fusse xà na voçe col nome novo, a meno che no la sia na pàxena voda o un rimando, e senpre che no la gabia cronologia.
@@ -1776,7 +1781,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'movepage-page-moved'     => 'La pagina $1 la xe stà spostà a $2.',
 'movepage-page-unmoved'   => "No s'à mìa podesto spostar $1 a $2.",
 'movepage-max-pages'      => "Xe stà ragiunto el nùmaro massimo consentìo de $1 {{PLURAL:$1|pagina|pagine}} spostà e nissun'altra la vegnarà spostà in automatico.",
-'1movedto2'               => '[[$1]] spostà a [[$2]]',
+'1movedto2'               => '[[:$1]] spostà a [[:$2]]',
 '1movedto2_redir'         => "$1 spostà a $2 co'n redirect",
 'movelogpage'             => 'Registro dei spostamenti',
 'movelogpagetext'         => 'Lista de pàxene spostàe.',
@@ -1785,7 +1790,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 'delete_and_move'         => 'Scanceła e sposta',
 'delete_and_move_text'    => '==Scancełassion richiesta==
 
-La voçe specificà come destinassion "[[$1]]" l\'esiste xà. Vóto scancełarla par proseguir con ło spostamento?',
+La voçe specificà come destinassion "[[:$1]]" l\'esiste xà. Vóto scancełarla par proseguir con ło spostamento?',
 'delete_and_move_confirm' => 'Si! Scancèła ła pàxena',
 'delete_and_move_reason'  => 'Scancełà par rendere possibile lo spostamento',
 'selfmove'                => 'El novo titoło el xè conpagno del vecio; no se pol spostar ła pàxena su de ela.',
@@ -1836,7 +1841,8 @@ Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/imp
 'import-interwiki-history'   => "Copia l'intiera cronołogia de sta pàxena",
 'import-interwiki-submit'    => 'Inporta',
 'import-interwiki-namespace' => 'Trasferissi le pagine nel namespace:',
-'importtext'                 => 'Par piaser, esporta el file da la wiki de origine doparando la funsion Special:Export, salvalo sul to disco e càrghelo qua.',
+'importtext'                 => 'Par piaser, esporta el file da la wiki de origine doparando la [[Special:Export|funsion de esportassion]].
+Salvalo sul to computer e càrghelo qua.',
 'importstart'                => 'Inportazion de łe pàxene in corso...',
 'import-revision-count'      => '{{PLURAL:$1|una revixion importà|$1 revixion importae}}',
 'importnopages'              => 'Nissuna pàxena da inportar.',
@@ -1978,9 +1984,10 @@ Tute łe operazion de inportazion trans-wiki łe xè notà nel [[Special:Log/imp
 'markedaspatrollederror-noautopatrol' => 'No te ghè i parmessi necessari par segnar le to stesse modifiche come verificàe.',
 
 # Patrol log
-'patrol-log-page' => 'Modifiche verificàe',
-'patrol-log-line' => 'gà segnà la $1 a la pagina $2 come verificà $3',
-'patrol-log-auto' => '(verifica automatica)',
+'patrol-log-page'   => 'Modifiche verificàe',
+'patrol-log-header' => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
+'patrol-log-line'   => 'gà segnà la $1 a la pagina $2 come verificà $3',
+'patrol-log-auto'   => '(verifica automatica)',
 
 # Image deletion
 'deletedrevision'                 => 'Vecia version scancełà $1',
@@ -2009,7 +2016,7 @@ $1',
 'show-big-image'       => 'Version ad alta risoluzion',
 'show-big-image-thumb' => '<small>Dimension de sta anteprima: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'Imagini nove',
 'imagelisttext'         => "Qua ghe xe na lista de '''$1''' {{PLURAL:$1|file|files}} ordinà par $2.",
 'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente.',
@@ -2299,7 +2306,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 
 # External editor support
 'edit-externally'      => 'Modifica sto file doparando un programa esterno',
-'edit-externally-help' => 'Par magiori informazion varda le [http://meta.wikimedia.org/wiki/Help:External_editors istruzion] (in inglese)',
+'edit-externally-help' => 'Par magiori informazion varda le [http://www.mediawiki.org/wiki/Manual:External_editors istruzion] (in inglese)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tute',
@@ -2370,7 +2377,7 @@ Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 'recreate'            => 'Ricrea',
 
 # HTML dump
-'redirectingto' => 'Reindirizzamento a [[$1]]...',
+'redirectingto' => 'Reindirizzamento a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Vóto scancełar ła cache in sta pàxena?
@@ -2405,8 +2412,8 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pagina svodà conpletamente',
 'autosumm-replace' => "Pagina sostituìa con '$1'",
-'autoredircomment' => 'Rimando a ła pàxena [[$1]]',
-'autosumm-new'     => 'Nova pagina: $1',
+'autoredircomment' => 'Rimando a ła pàxena [[:$1]]',
+'autosumm-new'     => 'Pàxena nova: $1',
 
 # Live preview
 'livepreview-loading' => 'Caricamento in corso…',
@@ -2417,8 +2424,8 @@ Doparar l'anteprima standard.",
 Doparar l\'anteprima standard.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Le modifiche fate nei ultimi $1 secondi no podarìa no èssarghe gnancora su sta lista.',
-'lag-warn-high'   => "Par via de un ecessivo ritardo ne l'agiornamento del server de database, le modifiche fate nei ultimi $1 secondi la podarìa no èssarghe mìa su sta lista.",
+'lag-warn-normal' => "Le modifiche fate {{PLURAL:$1|ne l'ultimo secondo|nei ultimi $1 secondi}} no podarìa no èssarghe gnancora su sta lista.",
+'lag-warn-high'   => "Par via de un ecessivo ritardo ne l'agiornamento del server de database, le modifiche fate {{PLURAL:$1|ne l'ultimo secondo|nei ultimi $1 secondi}} le podarìa no èssarghe mìa su sta lista.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'La lista dei osservati speciali la contien {{PLURAL:$1|una pagina (e la rispetiva pagina de discussion)|$1 pagine (e le rispetive pagine de discussion)}}.',
@@ -2466,7 +2473,7 @@ Doparar l\'anteprima standard.',
 'version-software-product'         => 'Prodoto',
 'version-software-version'         => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'Percorso de un file',
 'filepath-page'    => 'Nome del file:',
 'filepath-submit'  => 'Percorso',
@@ -2498,13 +2505,13 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 'specialpages-group-media'       => 'Resoconti e caricamenti dei file multimediài',
 'specialpages-group-users'       => 'Utenti e diriti',
 'specialpages-group-highuse'     => 'Pagine doparà assè',
-'specialpages-group-pages'       => 'Liste de pagine',
-'specialpages-group-pagetools'   => 'Strumenti de pagina',
+'specialpages-group-pages'       => 'Liste de pàxene',
+'specialpages-group-pagetools'   => 'Strumenti de pàxena',
 'specialpages-group-wiki'        => 'Dati e strumenti wiki',
 'specialpages-group-redirects'   => 'Reindirizamenti',
 'specialpages-group-spam'        => 'Strumenti anti spam',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'Pàxena voda',
 'intentionallyblankpage' => 'Sta pagina la xe stà lassà voda aposta',
 

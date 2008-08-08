@@ -6,9 +6,6 @@
  *
  * @author Symane
  * @author Vipuser
- * @author Siebrand
- * @author Jon Harald Søby
- * @author SPQRobin
  */
 
 $fallback = 'zh-hant';
@@ -284,7 +281,7 @@ $messages = array(
 'nosuchspecialpage' => '冇有箇隻特殊頁',
 'nospecialpagetext' => "<big>'''倷要求嗰特殊頁冇有用。'''</big>
 
-[[Special:Specialpages]]上尋得到用得上嗰特殊頁。",
+[[Special:SpecialPages]]上尋得到用得上嗰特殊頁。",
 
 # General errors
 'error'                => '錯誤',
@@ -504,7 +501,7 @@ $2',
 'accmailtext'               => "'$1'嗰密碼發到$2嘞。",
 'newarticle'                => '(新)',
 'newarticletext'            => '倷連到嗰頁面伓存在。要新開箇隻頁面，倷能到下底嗰方框編寫內容（細節請望[[Help:説明|説明]]）。要係倷伓係特試來到箇首，按吖瀏覽器嗰“返回”即可。',
-'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:Userlogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
+'anontalkpagetext'          => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext'             => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編寫箇頁]。',
 'clearyourcache'            => "'''注意:''' 保存之後, 倷要清吥瀏覽器嗰緩存才眵得正改嗰內容。 '''Mozilla / Firefox / Safari:''' 按到 ''Shift'' 接到按''刷新''(或按吖''Ctrl-Shift-R''，到蘋果Mac上按''Cmd-Shift-R'')；'''IE:''' 按到 ''Ctrl''接到按''刷新''，或按吖''Ctrl-F5''；'''Konqueror:''' 單只要按 ''刷新''；'''Opera:''' 用戶要到 ''工具-設置'' 完全嗰清除緩存。",
 'usercssjsyoucanpreview'    => "<strong>提示:</strong> 存到前請用'望吖起'來測吖倷嗰新CSS/JS 。",
@@ -559,7 +556,7 @@ $2',
 'template-semiprotected'    => '(半保護)',
 'edittools'                 => '<!--箇首嗰文本會到下底嗰編輯同上傳列表裡坨顯示。 -->',
 'nocreatetitle'             => '新建頁面拕限制',
-'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:Userlogin|登入或新開帳戶]]。',
+'nocreatetext'              => '箇隻網站限制新建頁面嗰功能。倷可以回頭去編輯有嘞嗰頁面，或者[[Special:UserLogin|登入或新開帳戶]]。',
 'nocreate-loggedin'         => '倷到 {{SITENAME}} 冇權新開頁面。',
 'permissionserrors'         => '許可權錯誤',
 'permissionserrorstext'     => '根據底下嗰{{PLURAL:$1|原因|原因}}，倷冇許可權去扤:',
@@ -690,7 +687,7 @@ $2',
 'mypreferences'            => '偶嗰參數設置',
 'prefs-edits'              => '編輯數:',
 'prefsnologin'             => '哈冇登入',
-'prefsnologintext'         => '倷要[[Special:Userlogin|登入]]後才設得正個人參數。',
+'prefsnologintext'         => '倷要[[Special:UserLogin|登入]]後才設得正個人參數。',
 'prefsreset'               => '參數已經拕重新設過。',
 'qbsettings'               => '快捷導航條',
 'qbsettings-none'          => '冇',
@@ -822,11 +819,11 @@ $2',
 'reupload'                    => '上傳過',
 'reuploaddesc'                => '返回上傳列表。',
 'uploadnologin'               => '冇登入',
-'uploadnologintext'           => '倷要[[Special:Userlogin|登入]]再上傳得正檔案。',
+'uploadnologintext'           => '倷要[[Special:UserLogin|登入]]再上傳得正檔案。',
 'upload_directory_read_only'  => '上傳目錄($1)伓存在或冇寫入許可權。',
 'uploaderror'                 => '上傳出錯',
 'uploadtext'                  => "用下底嗰表格上傳檔案。
-要眵或要尋先前上傳嗰圖像請去[[Special:Imagelist|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
+要眵或要尋先前上傳嗰圖像請去[[Special:ImageList|圖像列表]]，上傳同刪除會記到[[Special:Log/upload|上傳日誌]]裡度。
 
 要係想扻文件到頁面，用得正下底嗰方式連結:
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -900,7 +897,7 @@ $2',
 'upload_source_url'  => '(一隻有效嗰，公開嗰 URL)',
 'upload_source_file' => '(倷電腦嗰一隻檔案)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => '按媒體名字尋:',
 'imgfile'               => '檔案',
 'imagelist'             => '檔案列表',
@@ -999,7 +996,7 @@ $2',
 平均每頁有'''$5'''道瀏覽，同到'''$6'''回編輯。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] 嗰長度係'''$7'''。",
-'userstatstext'          => "網站有'''$1'''隻註冊[[Special:Listusers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
+'userstatstext'          => "網站有'''$1'''隻註冊[[Special:ListUsers|用戶]]，其中 '''$2''' (或 '''$4%''') 有$5許可權。",
 'statistics-mostpopular' => '眵嗰人最多嗰頁面',
 
 'disambiguations'      => '扤清楚頁',
@@ -1084,7 +1081,7 @@ $2',
 'logempty'             => '日誌中冇符合嗰項目。',
 'log-title-wildcard'   => '尋吖箇隻字開頭嗰標題',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '所有嗰頁面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下頁($1)',
@@ -1104,14 +1101,14 @@ $2',
 'categories'         => '頁面分類',
 'categoriespagetext' => '下底嗰分類包到頁面或係媒體文件。',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => '顯示噉樣用戶條件:',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '尋伓到用戶。',
 
 # E-mail user
 'mailnologin'     => '冇email地址',
-'mailnologintext' => '倷要[[Special:Userlogin|登入]] 起同到倷嗰[[Special:Preferences|參數設置]] 有隻有效嗰email才發得正email到別嗰用戶。',
+'mailnologintext' => '倷要[[Special:UserLogin|登入]] 起同到倷嗰[[Special:Preferences|參數設置]] 有隻有效嗰email才發得正email到別嗰用戶。',
 'emailuser'       => '發email到箇隻用戶',
 'emailpage'       => '發email到用戶',
 'emailpagetext'   => '要係箇隻用戶到佢嗰參數設置頁填哩有效嗰email位置，下底嗰表格會寄隻信息到箇隻用戶。
@@ -1137,9 +1134,9 @@ $2',
 'nowatchlist'          => '倷嗰監視列表什哩都冇有。',
 'watchlistanontext'    => '請$1眵吖或改吖倷嗰監視列表。',
 'watchnologin'         => '冇登入',
-'watchnologintext'     => '倷要[[Special:Userlogin|登入]]起才改得正倷嗰監視列表。',
+'watchnologintext'     => '倷要[[Special:UserLogin|登入]]起才改得正倷嗰監視列表。',
 'addedwatch'           => '加到嘞監視列表',
-'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:Recentchanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
+'addedwatchtext'       => "頁面\"[[:\$1]]\" 加到嘞倷嗰[[Special:Watchlist|監視列表]]。箇頁同佢嗰討論頁嗰全部改動以後都會列到許首，佢會用'''粗體''' 列到[[Special:RecentChanges|最近更改]]讓倷更加容易識別。 倷以後要係拿佢到監視列表刪卟佢嗰話，就到導航條點吖「莫眏到」。",
 'removedwatch'         => '莫眏到',
 'removedwatchtext'     => '頁面"<nowiki>$1</nowiki>"到倷嗰監視列表刪卟嘞。',
 'watch'                => '眏到',
@@ -1233,10 +1230,10 @@ $NEWPAGE
 
 請按吖“後退”再試過囉！',
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:Protectedpages|保護頁面列表]]來監察目前嗰頁面保護情況。',
-'protectedarticle'            => '保護正嘞“[[$1]] ”',
-'modifiedarticleprotection'   => '改變嘞“[[$1]] ” 嗰保護等級',
-'unprotectedarticle'          => '撤銷保護“[[$1]] ”',
+'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:ProtectedPages|保護頁面列表]]來監察目前嗰頁面保護情況。',
+'protectedarticle'            => '保護正嘞“[[:$1]] ”',
+'modifiedarticleprotection'   => '改變嘞“[[:$1]] ” 嗰保護等級',
+'unprotectedarticle'          => '撤銷保護“[[:$1]] ”',
 'protect-title'               => '保護“$1”中',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '注解:',
@@ -1375,7 +1372,7 @@ $NEWPAGE
 'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名',
 'badipaddress'                => 'IP位置伓對。',
 'blockipsuccesssub'           => '封鎖正嘞',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:Ipblocklist|拕封IP列表]]來審過封鎖。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:IPBlockList|拕封IP列表]]來審過封鎖。',
 'ipb-edit-dropdown'           => '編寫封鎖原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封用戶名或IP地址',
@@ -1405,7 +1402,7 @@ $NEWPAGE
 'autoblocker'                 => '倷同"[[$1]]"共用一隻IP，故係倷也拕自動鎖到嘞。$1封鎖嗰緣故係"$2"。',
 'blocklogpage'                => '封鎖日誌',
 'blocklogentry'               => '[[$1]]拕封到$3 ，結束時間到$2',
-'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:Ipblocklist|拕封IP地址列表]]。',
+'blocklogtext'                => '箇係用戶封鎖同解封操作嗰日誌。拕自動封鎖嗰IP冇列出。請參看[[Special:IPBlockList|拕封IP地址列表]]。',
 'unblocklogentry'             => '[[$1]] 拕解封嘞',
 'block-log-flags-anononly'    => '單限制匿名用戶',
 'block-log-flags-nocreate'    => '禁止箇隻IP/用戶新開帳戶',
@@ -1470,8 +1467,8 @@ $NEWPAGE
 'talkexists'              => '頁面本身移動正嘞，但係新標題下底有嘞對話頁，所以對話頁移伓正。請手工合併兩頁。',
 'movedto'                 => '移到',
 'movetalk'                => '移動相關嗰討論頁',
-'1movedto2'               => '[[$1]]移到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通過重定向移到[[$2]]',
+'1movedto2'               => '[[:$1]]移到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]通過重定向移到[[:$2]]',
 'movelogpage'             => '移動日誌',
 'movelogpagetext'         => '下底係移動嘞嗰頁面列表:',
 'movereason'              => '原因',
@@ -1479,7 +1476,7 @@ $NEWPAGE
 'delete_and_move'         => '刪除跟到移動',
 'delete_and_move_text'    => '==需要刪除==
 
-目標文章"[[$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
+目標文章"[[:$1]]"存在嘞。為到移動佢，倷要刪卟舊頁面？',
 'delete_and_move_confirm' => '係嗰，刪卟箇頁',
 'delete_and_move_reason'  => '為到移動刪卟佢',
 'selfmove'                => '原始標題同目標標題一樣，一隻頁面移伓正到佢自家。',
@@ -1550,7 +1547,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => '導入日誌',
 'importlogpagetext'                => '管理員由別嗰 wiki 導入頁面同到佢俚嗰編輯歷史記錄。',
-'import-logentry-upload'           => '通過檔案上傳導入嗰[[$1]]',
+'import-logentry-upload'           => '通過檔案上傳導入嗰[[:$1]]',
 'import-logentry-upload-detail'    => '$1隻修改',
 'import-logentry-interwiki'        => '跨wiki $1',
 'import-logentry-interwiki-detail' => '$2嗰$1隻修改',
@@ -1706,7 +1703,7 @@ $1',
 'show-big-image'       => '完整解析度',
 'show-big-image-thumb' => '<small>箇幅縮略圖嗰解析度: $1 × $2 像素</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => '新建圖像畫廊',
 'imagelisttext'         => '底下係按$2排列嗰$1隻檔案列表。',
 'showhidebots'          => '($1機器人)',
@@ -1988,7 +1985,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式來編輯箇隻檔案',
-'edit-externally-help' => '請參看[http://meta.wikimedia.org/wiki/Help:External_editors 設置步驟]瞭解別嗰內容。',
+'edit-externally-help' => '請參看[http://www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '全部',
@@ -2043,7 +2040,7 @@ $3
 'recreate'            => '重建',
 
 # HTML dump
-'redirectingto' => '重定向到[[$1]]...',
+'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '想清卟箇頁嗰緩存?
@@ -2077,7 +2074,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '移卟頁面嗰全部內容',
 'autosumm-replace' => "正拿頁面換成 '$1'",
-'autoredircomment' => '正重定向到[[$1]]',
+'autoredircomment' => '正重定向到[[:$1]]',
 'autosumm-new'     => '新頁: $1',
 
 # Live preview
@@ -2133,7 +2130,7 @@ $1',
 'version-software'                 => '裝正嗰軟件',
 'version-software-version'         => '版本',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => '文件路徑',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路徑',

@@ -5,10 +5,18 @@
  * @file
  *
  * @author Runningfridgesrule
+ * @author Flrn
  */
 
 $messages = array(
 # Dates
+'sunday'        => 'Ýekşenbe',
+'monday'        => 'Duşenbe',
+'tuesday'       => 'Sişenbe',
+'wednesday'     => 'Çarşenbe',
+'thursday'      => 'Penşenbe',
+'friday'        => 'Anna',
+'saturday'      => 'Şenbe',
 'sun'           => 'Dynç.',
 'mon'           => 'Baş.',
 'tue'           => 'Ýaş.',
@@ -16,35 +24,35 @@ $messages = array(
 'thu'           => 'Sogap.',
 'fri'           => 'Anna.',
 'sat'           => 'Ruh.',
-'january'       => 'Türkmenbaşy aý',
-'february'      => 'Baýdak aý',
-'march'         => 'Nowruz aý',
-'april'         => 'Gurbansoltan aý',
+'january'       => 'ýanwar',
+'february'      => 'fewral',
+'march'         => 'mart',
+'april'         => 'aprel',
 'may_long'      => 'Magtymguly aý',
-'june'          => 'Oguzhan aý',
-'july'          => 'Gorkut aý',
-'august'        => 'Alp Arslan aý',
-'september'     => 'Ruhnama aý',
-'october'       => 'Garaşsyzlyk aý',
-'november'      => 'Sanjar aý',
-'december'      => 'Bitaraplyk aý',
-'january-gen'   => 'Türkmenbaşy aý',
-'february-gen'  => 'Baýdak aý',
-'march-gen'     => 'Nowruz aý',
-'april-gen'     => 'Gurbansoltan aý',
-'may-gen'       => 'Magtymguly aý',
-'june-gen'      => 'Oguzhan aý',
-'july-gen'      => 'Gorkut aý',
-'august-gen'    => 'Alp Arslan aý',
-'september-gen' => 'Ruhnama aý',
-'october-gen'   => 'Garaşsyzlyk aý',
-'november-gen'  => 'Sanjar aý',
-'december-gen'  => 'Bitaraplyk aý',
+'june'          => 'iýun',
+'july'          => 'iýul',
+'august'        => 'awgust',
+'september'     => 'sentýabr',
+'october'       => 'oktýabr',
+'november'      => 'noýabr',
+'december'      => 'dekabr',
+'january-gen'   => 'ýanwar',
+'february-gen'  => 'fewral',
+'march-gen'     => 'mart',
+'april-gen'     => 'aprel',
+'may-gen'       => 'maý',
+'june-gen'      => 'iýun',
+'july-gen'      => 'iýul',
+'august-gen'    => 'awgust',
+'september-gen' => 'sentýabr',
+'october-gen'   => 'oktýabr',
+'november-gen'  => 'noýabr',
+'december-gen'  => 'dekabr',
 'jan'           => 'Türkmenbaşy aý',
 'feb'           => 'Baýdak aý',
 'mar'           => 'Nowruz aý',
 'apr'           => 'Gurbansoltan aý',
-'may'           => 'Magtymguly aý',
+'may'           => 'maý',
 'jun'           => 'Oguzhan aý',
 'jul'           => 'Gorkut aý',
 'aug'           => 'Alp Arslan aý',
@@ -131,7 +139,7 @@ $messages = array(
 # Miscellaneous special pages
 'move' => 'Atyňy özgert',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Git',
 
 # Namespace form on various pages
@@ -149,7 +157,7 @@ $messages = array(
 'blocklink' => 'bökdençle',
 
 # Move page
-'1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
+'1movedto2' => '[[:$1]] sahypasy [[:$2]] sahypasyna göçürildi',
 
 # Thumbnails
 'thumbnail-more' => 'Ulal',

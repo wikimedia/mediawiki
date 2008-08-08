@@ -97,7 +97,7 @@ $messages = array(
 'move'         => 'telun',
 'movethispage' => 'Nyɛ telun',
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'Nyɛw bɛɛ',
 
 # Special:Categories
@@ -121,7 +121,7 @@ $messages = array(
 # Attribution
 'others' => 'wɛrɛ',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Nyini',
 
 # Special:SpecialPages

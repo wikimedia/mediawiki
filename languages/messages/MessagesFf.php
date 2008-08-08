@@ -47,13 +47,13 @@ $messages = array(
 # Random page
 'randompage' => 'Ɗerewol kawral',
 
-# Special:Allpages
+# Special:AllPages
 'allarticles' => 'Winndannde hesere',
 
 # Watchlist
 'watch' => 'Rewindaande',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Yiilaade',
 
 );

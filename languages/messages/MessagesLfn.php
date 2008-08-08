@@ -6,8 +6,6 @@
  *
  * @author Cgboeree
  * @author Malafaya
- * @author Siebrand
- * @author SPQRobin
  */
 
 $messages = array(
@@ -365,7 +363,7 @@ Per favore, considera parti la paje en pesos plu poca.</strong>',
 'template-protected'     => '(protejeda)',
 'template-semiprotected' => '(proteje en parte)',
 'nocreatetext'           => '{{SITENAME}} ave un restringe a la capas per crea pajes nova.
-Tu pote vade a retro e edita un paje esistente, o  [[Special:Userlogin|sinia per entra o crea un conta]].',
+Tu pote vade a retro e edita un paje esistente, o  [[Special:UserLogin|sinia per entra o crea un conta]].',
 'recreate-deleted-warn'  => "'''Avisa: Tu es recrea un paje ce ia es sutraed en la pasada.'''
 Tu debe pensa ce es bon continua edita esta paje.
 La arcivo de sutraes per esta paje es asi per conveni:",
@@ -485,7 +483,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 
 'upload-file-error' => 'Era interna',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'fix',
 'imagelist'      => 'Lista de imajes',
 'imagelist_name' => 'Nom',
@@ -579,7 +577,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'all-logs-page'        => 'Tota catalogos',
 'log-search-submit'    => 'Vade',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Tota pajes',
 'alphaindexline' => '$1 a $2',
 'nextpage'       => 'Paje seguente ($1)',
@@ -595,7 +593,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'categories'         => 'Categorias',
 'categoriespagetext' => 'Es la categorias seguente en la vici.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
 
 # E-mail user
@@ -610,7 +608,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'nowatchlist'          => 'Tu ave no cosas en tu lista oservada',
 'addedwatch'           => 'Juntada a la lista de pajes oservada',
 'addedwatchtext'       => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
-Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:Recentchanges|lista de cambias resente]] per es plu fasil oservada.
+Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.
 
 Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"no oserva\" en la bara a la lado.",
 'removedwatch'         => 'Sutraeda de la lista de pajes oservada',
@@ -647,8 +645,8 @@ Vide $2 per un catalogo de sutraes resente.',
 'deletereasonotherlist'       => 'Otra razona',
 'rollbacklink'                => 'retro',
 'protectlogpage'              => 'Catalogo de protejes',
-'protectedarticle'            => '"[[$1]]" protejeda',
-'unprotectedarticle'          => "''[[$1]]'' desprotejeda",
+'protectedarticle'            => '"[[:$1]]" protejeda',
+'unprotectedarticle'          => "''[[:$1]]'' desprotejeda",
 'protect-title'               => 'Fisa nivel de proteje a "$1"',
 'protect-legend'              => 'Aproba la proteje',
 'protectcomment'              => 'Razona per proteje',
@@ -749,8 +747,8 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'talkexists'       => "'''La paje se mesma ia es moveda, ma la paje de discutes no pote es moveda, per ce un esiste ja a la titulo nova. Per favore, fusa los per mano'''",
 'movedto'          => 'moveda a',
 'movetalk'         => 'Move la paje de discutes ance',
-'1movedto2'        => '[[$1]] es moveda a [[$2]]',
-'1movedto2_redir'  => '[[$1]] es moveda a [[$2]] tra redirije',
+'1movedto2'        => '[[:$1]] es moveda a [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] es moveda a [[:$2]] tra redirije',
 'movelogpage'      => 'Move arcive',
 'movelogpagetext'  => 'A su es un lista de pajes moveda',
 'movereason'       => 'Razona',
@@ -829,7 +827,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'show-big-image'       => 'Densia masima',
 'show-big-image-thumb' => '<small>Grandia de eesta previde: $1 × $2 pixeles</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Imajes nova',
 'ilsubmit'  => 'Xerca',
 
@@ -859,7 +857,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
-'edit-externally-help' => 'Vide la [http://meta.wikimedia.org/wiki/Help:External_editors instruis per comensa] per plu instruis.',
+'edit-externally-help' => 'Vide la [http://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tota',

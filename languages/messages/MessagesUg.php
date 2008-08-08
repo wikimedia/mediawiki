@@ -72,7 +72,7 @@ $messages = array(
 # Special:Log
 'log-search-submit' => 'Kuchush',
 
-# Special:Allpages
+# Special:AllPages
 'allpagessubmit' => 'Kuchush',
 
 # Watchlist
@@ -103,7 +103,7 @@ $messages = array(
 'tooltip-search'  => 'Izdash {{SITENAME}}',
 'tooltip-p-logo'  => 'Bash Bet',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Izdash',
 
 # Trackbacks

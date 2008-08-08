@@ -7,13 +7,10 @@
  * @author Botuzhaleny-sodamo
  * @author Erzianj jurnalist
  * @author Amdf
- * @author Siebrand
  * @author MF-Warburg
  * @author Tupikovs
  * @author Sura
- * @author M.M.S.
  * @author Spacebirdy
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -470,7 +467,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'template-protected'               => '(ванстозь)',
 'template-semiprotected'           => '(пельс ванстозь)',
 'nocreatetitle'                    => 'Лопань теемась аволь певтеме',
-'nocreatetext'                     => 'Те {{SITENAME}} лопасонть пирязь од лопань теемась. Тонь ули мелеть велявтомс удалов ды  питнемензе-витнемензе улиця лопанть, али [[Special:Userlogin|совамс али теемс од совама]].',
+'nocreatetext'                     => 'Те {{SITENAME}} лопасонть пирязь од лопань теемась. Тонь ули мелеть велявтомс удалов ды  питнемензе-витнемензе улиця лопанть, али [[Special:UserLogin|совамс али теемс од совама]].',
 'nocreate-loggedin'                => 'Тонеть а мерить теемс-шкамс од лопат "{{SITENAME}}" сайтасонть.',
 'permissionserrorstext'            => 'Тонеть а мерить теемс тень, вана {{PLURAL:$1|тувталось|тувталтнэ}}:',
 'permissionserrorstext-withaction' => 'Тонеть а мерить теемс $2, {{PLURAL:$1|тувталось|тувталтнэ}} вана:',
@@ -757,7 +754,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'nolicense'          => 'Лицензия арась',
 'upload_source_file' => ' (арси машинасот файла)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'файл',
 'imagelist'      => 'Файлат-мезть',
 'imagelist_date' => 'Чи',
@@ -905,7 +902,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
 'log-search-submit'    => 'Адя',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Весе лопат',
 'alphaindexline' => '$1-сто  $2-нтень',
 'nextpage'       => 'Сы лопа ($1)',
@@ -924,11 +921,11 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'special-categories-sort-count' => 'аравтомс цётонь коряс',
 'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit'   => 'Невтемс',
 'listusers-noresult' => 'Совицязо а муеви',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'   => 'Куро',
 'listgrouprights-rights'  => 'Видечытне',
 'listgrouprights-members' => '(куронь ломаньть)',
@@ -953,7 +950,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'watchnologin'         => 'Апак сова',
 'addedwatch'           => 'Топавтозь ванома потмоксоньте',
 'addedwatchtext'       => 'Лопась «[[:$1]]» совавтозь [[Special:Watchlist|ванома потмозот]].
-Седе тов те лопасонть ды мартонзо сюлмавозь кортнема лопасонть теезь витьнематне тешкставтовить те потмонтень, истяжо кармить кикстазь те лопасонть[[Special:Recentchanges|потмо од витнематне]], истя седе шождасто сынь неявить.',
+Седе тов те лопасонть ды мартонзо сюлмавозь кортнема лопасонть теезь витьнематне тешкставтовить те потмонтень, истяжо кармить кикстазь те лопасонть[[Special:RecentChanges|потмо од витнематне]], истя седе шождасто сынь неявить.',
 'removedwatch'         => 'Нардазь ванома потмокстонть',
 'removedwatchtext'     => 'Лопась «[[:$1]]» ульнесь нардазь тынк ванома потмокстонть.',
 'watch'                => 'Ванстнемс',
@@ -1007,7 +1004,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'rollbacklink'                => 'кевердемс',
 'rollbackfailed'              => 'Мекев кевердемась эзь лисе',
 'protectlogpage'              => 'Ванстомань совама-кемекстома',
-'protectedarticle'            => 'ванстозь "[[$1]]"',
+'protectedarticle'            => 'ванстозь "[[:$1]]"',
 'protect-legend'              => 'Кемекстынк аравтоманть лопанть ванстоманзо',
 'protectcomment'              => 'Мельполадкс:',
 'protectexpiry'               => 'Прядови:',
@@ -1167,7 +1164,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'movedto'                 => 'печтевтезь',
 'movetalk'                => 'Печтевтемань кортамо лопа',
 'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.',
-'1movedto2'               => '[[$1]] печтевтезь тей [[$2]]',
+'1movedto2'               => '[[:$1]] печтевтезь тей [[:$2]]',
 'movelogpage'             => 'Печтевтемань журнал',
 'movereason'              => 'Тувтал:',
 'revertmove'              => 'велявтодо',
@@ -1292,7 +1289,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'show-big-image'       => 'Пешксе теевксесь',
 'show-big-image-thumb' => '<small>Покшолма икелев ваноманть: $1 × $2 пиксэлт</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Од файлатьнень галлереясь',
 'showhidebots' => '($1 ботт)',
 'noimages'     => 'Арась мезе ваномс.',
@@ -1408,7 +1405,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 
 # External editor support
 'edit-externally'      => 'Витнемс-петнемс те файланть, тевс нолдазь ушо ёнксонь программанть',
-'edit-externally-help' => 'Вант [http://meta.wikimedia.org/wiki/Help:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
+'edit-externally-help' => 'Вант [http://www.mediawiki.org/wiki/Manual:External_editors аравтома инструкциятнень ] седе ламо информациянть кис.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'весе',
@@ -1467,7 +1464,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'version-license'          => 'Лицензия',
 'version-software-version' => 'Верзия',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => 'Файлас яннэ',
 'filepath-page'   => 'Файл:',
 'filepath-submit' => 'Яннэ',

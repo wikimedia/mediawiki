@@ -5,7 +5,6 @@
  * @file
  *
  * @author Arikasikis
- * @author SPQRobin
  */
 
 $messages = array(
@@ -181,7 +180,7 @@ $messages = array(
 'sourcefilename'  => 'Filename na pinanlapuan:',
 'watchthisupload' => 'Bantayan yan bolong',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Ngaran',
 
 # Image description page
@@ -219,7 +218,7 @@ $messages = array(
 'all-logs-page'     => 'Amin ran log',
 'log-search-submit' => 'Ula',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Amin ya bolobolong',
 'alphaindexline'    => '$1 anggad $2',
 'nextpage'          => 'Ontombok ya page ($1)',
@@ -245,7 +244,7 @@ $messages = array(
 'mywatchlist'    => 'Listaan na babantayan ko',
 'watchnologin'   => 'Agka ni akaloob',
 'addedwatch'     => 'Enyarom ed listaan na bantayan',
-'addedwatchtext' => "Impila so bolong ya \"[[:\$1]]\" diad [[Special:Watchlist|listaan na babantayan]] mo. Isulat diman so saray ontombok ran idagdag o panagbalo ed sayan bolong san diad bolong na tongtongan. San akasulat ran '''mapatnag''' (bolded) ed [[Special:Recentchanges|listaan na saray sampot ran binalo]] umpian mas maganom ya nanengneng.
+'addedwatchtext' => "Impila so bolong ya \"[[:\$1]]\" diad [[Special:Watchlist|listaan na babantayan]] mo. Isulat diman so saray ontombok ran idagdag o panagbalo ed sayan bolong san diad bolong na tongtongan. San akasulat ran '''mapatnag''' (bolded) ed [[Special:RecentChanges|listaan na saray sampot ran binalo]] umpian mas maganom ya nanengneng.
 
 No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"ekalen ed babantayan\" (unwatch) diad gilig ya bar.",
 'watch'          => 'bantayan',
@@ -309,7 +308,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'movepagebtn'             => 'Iyales so bolong',
 'pagemovedsub'            => 'Asumpal lan inyales',
 'articleexists'           => 'Wala lay bolong to may ngaran ya atan, odino aga valid so pinilim ya ngaran. Pili ka pa na arom ya ngaran.',
-'1movedto2'               => 'say [[$1]] enyales paula ed [[$2]]',
+'1movedto2'               => 'say [[:$1]] enyales paula ed [[:$2]]',
 'movereason'              => 'Katonongan',
 'delete_and_move'         => 'Buralen san iyales',
 'delete_and_move_confirm' => 'On, buralen yan page',
@@ -344,7 +343,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 # Attribution
 'lastmodifiedatby' => 'Sampot ya binalo yan bolong nen agew ya $2, $1 nen $3.', # $1 date, $2 time, $3 user
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Anapen',
 
 # EXIF tags
@@ -389,7 +388,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ekalen so amin ya laman na bolong',
 'autosumm-replace' => "Salatan yan bolong na '$1'",
-'autoredircomment' => 'Ituturo paulad [[$1]]',
+'autoredircomment' => 'Ituturo paulad [[:$1]]',
 'autosumm-new'     => 'Balon bolong: $1',
 
 # Live preview

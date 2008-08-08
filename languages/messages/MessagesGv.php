@@ -5,7 +5,6 @@
  * @file
  *
  * @author MacTire02
- * @author Siebrand
  * @author Shimmin Beg
  * @author Alison
  */
@@ -519,7 +518,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'license-nopreview'  => '(Cha nel roie-haishbynys ry-gheddyn)',
 'upload_source_file' => ' (coadan er dty cho-earrooder)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'coadan',
 'imagelist'             => 'Rolley coadanyn',
 'imagelist_date'        => 'Date',
@@ -637,7 +636,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'speciallogtitlelabel' => 'Ennym:',
 'log-search-submit'    => 'Gow',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Dagh ooilley ghuillag',
 'alphaindexline' => '$1 gys $2',
 'nextpage'       => 'Yn chied duillag elley ($1)',
@@ -651,10 +650,10 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'special-categories-sort-count' => 'sorçhaghey rere coontey',
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Taishbyney',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'    => 'Possan',
 'listgrouprights-rights'   => 'Kiartyn',
 'listgrouprights-helppage' => 'Help:Kiartyn y phossan',
@@ -677,7 +676,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'watchnologin'         => 'Cha nel oo loggit stiagh',
 'addedwatch'           => 'Currit rish y rolley arrey',
 'addedwatchtext'       => "Va'n duillag \"[[:\$1]]\" currit lesh dty [[Special:Watchlist|rolley arrey]].<br />
-Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:Recentchanges|caghlaaghyn s'noa]].",
+Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y rolley shoh, as bee '''clou trome''' er ayns rolley ny [[Special:RecentChanges|caghlaaghyn s'noa]].",
 'removedwatch'         => 'Gowit ass y rolley arrey',
 'removedwatchtext'     => 'Ta\'n duillag "[[:$1]]" gowit ass dty rolley arrey.',
 'watch'                => 'Freill arrey',
@@ -722,7 +721,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'rollback_short'              => 'Aaymmyd',
 'rollbacklink'                => 'aaymmyd',
 'editcomment'                 => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
-'protectedarticle'            => '"[[$1]]" glast',
+'protectedarticle'            => '"[[:$1]]" glast',
 'protectcomment'              => 'Cohaggloo:',
 'protectexpiry'               => 'Jerrey:',
 'protect-text'                => 'Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag <strong><nowiki>$1</nowiki></strong>.',
@@ -833,7 +832,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'movepage-moved'          => '<big>Va \'\'\'"$1" aa-enmyssit myr "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'aa-enmyssit myr',
 'movetalk'                => 'Scughey yn duillag resoonaght ta cochianglt lesh',
-'1movedto2'               => '[[$1]] aa-enmyssit myr [[$2]]',
+'1movedto2'               => '[[:$1]] aa-enmyssit myr [[:$2]]',
 'movelogpage'             => 'Lioar chooishyn y scughey',
 'movereason'              => 'Fa',
 'revertmove'              => 'goll er ash',
@@ -931,7 +930,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'show-big-image'       => 'Jeeskeaylley ymlane',
 'show-big-image-thumb' => '<small>Mooadys y roie-haishbynys shoh: $1 × $2 pixelyn</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => 'Laaragh coadanyn noa',
 'showhidebots' => '($1 botyn)',
 'ilsubmit'     => 'Ronsaghey',
@@ -998,7 +997,7 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 
 # External editor support
 'edit-externally'      => 'Reaghey yn coadan shoh lesh sheeyntagh mooie',
-'edit-externally-help' => 'Jeeagh er [http://meta.wikimedia.org/wiki/Help:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
+'edit-externally-help' => 'Jeeagh er [http://www.mediawiki.org/wiki/Manual:External_editors saraghyn soiaghey seose] son tooilley oayllys.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'yn clane',
@@ -1046,7 +1045,7 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 'version-license'          => 'Kiedoonys',
 'version-software-version' => 'Lhieggan',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Coadan:',
 
 # Special:FileDuplicateSearch

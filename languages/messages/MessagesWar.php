@@ -201,7 +201,7 @@ $messages = array(
 'upload'    => 'Pagkarga hin file',
 'uploadbtn' => 'Igkarga an file',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_date' => 'Pitsa',
 'imagelist_name' => 'Ngaran',
 
@@ -233,7 +233,7 @@ $messages = array(
 # Special:Log
 'log-search-submit' => 'Kadto-a',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Ngatanan nga mga pakli',
 'allarticles'    => 'Ngatanan nga mga artikulo',
 'allpagesprev'   => 'Naha-una',
@@ -262,7 +262,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Block/unblock
 'ipblocklist-submit' => 'Bilnga',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Bilnga',
 
 # Multipage image navigation

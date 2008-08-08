@@ -33,6 +33,7 @@ $messages = array(
 'tog-watchlisthideown'        => '勒拉监控列表里向囥脱我个编辑',
 'tog-watchlisthidebots'       => '勒拉监控列表里向囥脱机器人个编辑',
 'tog-watchlisthideminor'      => '在监控列表中隐藏微小更改',
+'tog-showhiddencats'          => '显示囥脱分类',
 
 'underline-always'  => '总归',
 'underline-never'   => '从来弗',
@@ -206,7 +207,7 @@ $messages = array(
 'editsectionhint'         => '编辑段落: $1',
 'toc'                     => '目录',
 'showtoc'                 => '显示',
-'hidetoc'                 => '隐藏',
+'hidetoc'                 => '囥脱',
 'thisisdeleted'           => '查看或者恢复$1？',
 'viewdeleted'             => '望望$1看？',
 'restorelink'             => '个被删除个版本',
@@ -440,9 +441,9 @@ $messages = array(
 'uploadbtn'         => '上载文件',
 'reupload'          => '重新上载',
 'uploadnologin'     => '朆登录',
-'uploadnologintext' => '倷板定要[[Special:Userlogin|登录]]仔再好上载文件。',
+'uploadnologintext' => '倷板定要[[Special:UserLogin|登录]]仔再好上载文件。',
 'uploaderror'       => '上载出错',
-'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:Imagelist|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
+'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:ImageList|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
 
 要勒拉页面里向摆进图片个说法，用下头该种形式个链接
 '''<nowiki>[[{{ns:image}}:文件.jpg]]</nowiki>'''，
@@ -466,7 +467,7 @@ $messages = array(
 'destfilename'      => '目标文件名:',
 'watchthisupload'   => '监控该只页面',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => '寻图片名字:',
 'imgfile'               => '源文件',
 'imagelist'             => '文件列表',
@@ -547,7 +548,7 @@ $messages = array(
 'speciallogtitlelabel' => '标题:',
 'log'                  => '记录',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => '全部页面',
 'alphaindexline'    => '$1到$2',
 'nextpage'          => '下页 ($1)',
@@ -564,7 +565,7 @@ $messages = array(
 # Special:Categories
 'categories' => '页面分类',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => '显示',
 
 # E-mail user
@@ -585,7 +586,7 @@ $messages = array(
 'watchnologin'         => '朆登录',
 'addedwatch'           => '加到监控列表哉',
 'addedwatchtext'       => "该个页面 \"[[:\$1]]\" 已经加到侬个[[Special:Watchlist|监控列表]]哉。
-将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:Recentchanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
+将来对该页面个改动搭仔搭界个讲张页个改动会列表垃该面，并且页面会垃拉[[Special:RecentChanges|近段辰光个改变列表]]里向显示成功'''黑体'''，实梗好外加便当拿渠拣出来。假使侬歇仔两日又想拿箇个页面登侬个监控列表里向拿脱个说法，垃侧条里向点击“弗要监控。",
 'removedwatch'         => '登监控列表里向拿脱哉',
 'removedwatchtext'     => '"[[:$1]]"已经从侬个监控列表移除。',
 'watch'                => '监控',
@@ -667,7 +668,7 @@ $messages = array(
 'blocklink'          => '封禁',
 'contribslink'       => '贡献',
 'blocklogpage'       => '封禁日志',
-'blocklogtext'       => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:Ipblocklist|IP 封禁列表]]去看当前生效个封禁列表。',
+'blocklogtext'       => '该个是用户封禁搭仔解禁操作个记录。自动封禁个IP地址弗会列勒该答。到[[Special:IPBlockList|IP 封禁列表]]去看当前生效个封禁列表。',
 'proxyblocksuccess'  => '好哉。',
 
 # Move page
@@ -689,8 +690,8 @@ $messages = array(
 'articleexists'           => '叫该个名字个页面已经勒浪哉，要么倷拣个名字是无效个。请重新拣个名字。',
 'movedto'                 => '捅到',
 'movetalk'                => '捅搭界个讲张页面',
-'1movedto2'               => '[[$1]]捅到[[$2]]',
-'1movedto2_redir'         => '[[$1]]通过重定向捅到[[$2]]',
+'1movedto2'               => '[[:$1]]捅到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]通过重定向捅到[[:$2]]',
 'movelogpage'             => '捅荡记录',
 'movelogpagetext'         => '下底是拨拉捅荡个页面列表。',
 'movereason'              => '理由:',
@@ -763,7 +764,7 @@ $messages = array(
 # Image deletion
 'deletedrevision' => '拨删脱个旧修订 $1',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'    => '新文件陈列室',
 'showhidebots' => '（$1机器人）',
 'ilsubmit'     => '搜寻',
@@ -836,7 +837,7 @@ Variants for Chinese language
 'table_pager_limit' => '显示 $1 条每页',
 
 # Auto-summaries
-'autoredircomment' => '重定向到 [[$1]]',
+'autoredircomment' => '重定向到 [[:$1]]',
 'autosumm-new'     => '新页面：$1',
 
 # Watchlist editor
@@ -845,7 +846,7 @@ Variants for Chinese language
 # Special:Version
 'version' => '版本', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath'        => '文件路径',
 'filepath-page'   => '文件：',
 'filepath-submit' => '路径',

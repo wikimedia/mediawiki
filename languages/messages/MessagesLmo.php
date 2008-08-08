@@ -5,10 +5,8 @@
  * @file
  *
  * @author Dakrismeno
- * @author SPQRobin
  * @author Malafaya
  * @author SabineCretella
- * @author Siebrand
  * @author Kemmótar
  * @author Flavio05
  * @author Clamengh
@@ -200,7 +198,7 @@ Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz 
 'showdiff'             => 'Famm vedè i cambiament',
 'anoneditwarning'      => 'Tì te set minga entraa. In de la crunulugia de la pagina se vedarà el tò IP.',
 'accmailtext'          => 'La parola d\'urdin per "$1" l\'è stada mandada a $2.',
-'anontalkpagetext'     => "----''Questa chì l'è la pagina de discüssiun de un ütent che l'ha minga ammò registraa un cünt, upür che el vör minga duperàll; dunca, el pò vess identificaa dumà cunt el sò IP, ch'el pò vess spartii tra tanti ütent diferent. Se ti te set un ütent anonim e t'hee vist un quai messacc ch'el te par ch'el gh'entra nagott cun tì, pröva a [[Special:Userlogin|creà el tò cünt]] per fà pü casott.''",
+'anontalkpagetext'     => "----''Questa chì l'è la pagina de discüssiun de un ütent che l'ha minga ammò registraa un cünt, upür che el vör minga duperàll; dunca, el pò vess identificaa dumà cunt el sò IP, ch'el pò vess spartii tra tanti ütent diferent. Se ti te set un ütent anonim e t'hee vist un quai messacc ch'el te par ch'el gh'entra nagott cun tì, pröva a [[Special:UserLogin|creà el tò cünt]] per fà pü casott.''",
 'noarticletext'        => "Gh'è minga del test in quella pagina chì. Te pòdet [[Special:Search/{{PAGENAME}}|cercà in d'on'altra pagina]] oppur [{{fullurl:{{FULLPAGENAME}}|action=edit}} creàla tì].",
 'clearyourcache'       => "'''Nòta:''' dòpu che avii salvaa, pudaría véss neçessari de scancelá la memòria \"cache\" dal vòst prugráma də navigazziún in reet par vidé i mudifich faa. '''Mozilla / Firefox / Safari:''' tegní schiscjaa al butún ''Shift'' intaant che sə clica ''Reload'', upüür schiscjá ''Ctrl-Shift-R'' (''Cmd-Shift-R'' sül Apple Mac); '''IE:''' schiscjá ''Ctrl'' intaant che sə clica ''Refresh'', upüür schiscjá ''Ctrl-F5''; '''Konqueror:''': semplicemeent clicá al butún ''Reload'', upüür schiscjá ''F5''; '''Opera''' i üteent pudarían vech büsögn da scancelá cumpletameent la memòria \"cache\" in ''Tools&rarr;Preferences''.",
 'previewnote'          => "<strong>'''Atenziun'''! Questa pagina la serviss dumà de vardà. I cambiament hinn minga staa salvaa.</strong>",
@@ -276,7 +274,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'userrights-reason'        => 'Motivo della modifica:',
 'userrights-no-interwiki'  => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'    => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:Userlogin|effettuare l'accesso]] come amministratore.",
+'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
 'userrights-notallowed'    => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 
 # Recent changes
@@ -307,7 +305,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'sourcefilename'    => "Nomm da l'archivi surgeent:",
 'destfilename'      => "Nomm da l'archivi da destinazziun:",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Listá i imàgin',
 
 # Image description page
@@ -366,7 +364,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'speciallogtitlelabel' => 'Titul:',
 'logempty'             => "El log l'è vöj.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Tücc i pagin',
 'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
 'allarticles'    => 'Tütt i vus',
@@ -387,7 +385,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'addedwatchtext'   => "La pagina \"[[:\$1]]\" l'è staja gjüntava a la lista dii [[Special:Watchlist|paginn da tegn d'öcc]].
 I cambiameent che i vegnará fai a chesta pagina chi e a la sóa pagina dii cumünicazziún
 i vegnará segnalaa chichinscí e la pagina la sa vedará cun caráter '''spèss''' in la
-[[Special:Recentchanges|lista dii cambiameent reçeent]] gjüst par evidenziála.
+[[Special:RecentChanges|lista dii cambiameent reçeent]] gjüst par evidenziála.
 <p>Se ti vörat tirá via chesta pagina chi dala lista dai paginn da tegn d'öcc ti pòdat schiscjá
 al butún \"tegn piü d'öcc\".",
 'removedwatch'     => 'Scancelaa dala lista di usservazziún.',
@@ -422,7 +420,7 @@ al butún \"tegn piü d'öcc\".",
 'rollbackfailed'        => 'L è mia staa pussibil purtá indré',
 'alreadyrolled'         => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
 L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]]).",
-'unprotectedarticle'    => 'l\'ha sblucaa "[[$1]]"',
+'unprotectedarticle'    => 'l\'ha sblucaa "[[:$1]]"',
 'protect-title'         => 'Prutezziún da "$1"',
 'protect-legend'        => 'Cunferma de blocch',
 'protectcomment'        => 'Spiega parchè ti vörat blucá la pagina',
@@ -465,8 +463,8 @@ una pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia suras
 <b>ATENZIUN!</b>
 Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupülara: par piasée assürévas ch'a ii capii i cunsegueenz da cheest-chí prima da ná inaanz.",
 'movedto'         => 'spustaa vers:',
-'1movedto2'       => '[[$1]] spustaa in [[$2]]',
-'1movedto2_redir' => '[[$1]] spustaa in [[$2]] atravèerz re-indirizzameent',
+'1movedto2'       => '[[:$1]] spustaa in [[:$2]]',
+'1movedto2_redir' => '[[:$1]] spustaa in [[:$2]] atravèerz re-indirizzameent',
 'delete_and_move' => 'Scancelá e mööf',
 
 # Export
@@ -506,13 +504,13 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'imagemaxsize' => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
 'thumbsize'    => 'Dimensiún diapusitiif:',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Espusizziun di imàgin nööf',
 'ilsubmit'  => 'Truvá',
 
 # External editor support
 'edit-externally'      => 'Redatá chest archivi cunt un prugramari da fö',
-'edit-externally-help' => 'Vidé i [http://meta.wikimedia.org/wiki/Help:External_editors istrüzziún] pər vech püssè infurmazziún (in Inglees).',
+'edit-externally-help' => 'Vidé i [http://www.mediawiki.org/wiki/Manual:External_editors istrüzziún] pər vech püssè infurmazziún (in Inglees).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tücc',
@@ -536,7 +534,7 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 # Special:Version
 'version' => 'Versiun', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath' => 'Percuurz daj archivi',
 
 # Special:SpecialPages

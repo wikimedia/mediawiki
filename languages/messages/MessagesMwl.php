@@ -5,7 +5,6 @@
  * @file
  *
  * @author MCruz
- * @author Siebrand
  * @author Malafaya
  */
 
@@ -253,7 +252,7 @@ Por favor, considere seccionar a página em secções de menor dimensão.</stron
 'template-protected'     => '(protegida)',
 'template-semiprotected' => '(semi-protegida)',
 'nocreatetext'           => '{{SITENAME}} tem restringida la possibilidade de criar nuobas páginas.
-Pode boltar atrás i editar unha página yá eisistente, o [[Special:Userlogin|autenticar-se o criar unha cuonta]].',
+Pode boltar atrás i editar unha página yá eisistente, o [[Special:UserLogin|autenticar-se o criar unha cuonta]].',
 'recreate-deleted-warn'  => "'''Atenção: Você está a criar uma página já anteriormente eliminada.'''
 
 Certifique-se de que é adequado prosseguir a edição de esta página.
@@ -338,7 +337,7 @@ Legenda: (actu) = diferenças da versão actual,
 'uploadlogpage' => 'Registo de carregamento',
 'uploadedimage' => 'carregou "[[$1]]"',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Lista de ficheiros',
 
 # Image description page
@@ -423,7 +422,7 @@ Legenda: (actu) = diferenças da versão actual,
 'log'                  => 'Registos',
 'all-logs-page'        => 'Todos os registos',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Todas las páginas',
 'alphaindexline' => '$1 a $2',
 'nextpage'       => 'Próxima página ($1)',
@@ -544,7 +543,7 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'movepage-moved'   => '<big>\'\'\'"$1" foi mobido para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'movido para',
 'movetalk'         => 'Mober tambien la página de çcusson associada.',
-'1movedto2'        => '[[$1]] foi movido para [[$2]]',
+'1movedto2'        => '[[:$1]] foi movido para [[:$2]]',
 'movelogpage'      => 'Registo de movimentos',
 'movereason'       => 'Motivo:',
 'revertmove'       => 'reverter',
@@ -615,7 +614,7 @@ Isto puode ser unha mudança drástica i inesperada para unha página popular; p
 'show-big-image'       => 'Resoluçon completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Galeria de nuobos ficheiros',
 
 # Bad image list
@@ -640,7 +639,7 @@ Caso l ficheiro tenha sido modificado a partir de l sue stado original, alguns d
 
 # External editor support
 'edit-externally'      => 'Editar yeste ficheiro outelizando ua aplicaçon externa',
-'edit-externally-help' => 'Consulte as [http://meta.wikimedia.org/wiki/Help:External_editors instruções de instalação] para mais informação.',
+'edit-externally-help' => 'Consulte as [http://www.mediawiki.org/wiki/Manual:External_editors instruções de instalação] para mais informação.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

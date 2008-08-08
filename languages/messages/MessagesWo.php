@@ -5,11 +5,7 @@
  * @file
  *
  * @author Ibou
- * @author Siebrand
  * @author SF-Language
- * @author SPQRobin
- * @author Jon Harald Søby
- * @author M.M.S.
  */
 
 $fallback = 'fr';
@@ -77,42 +73,42 @@ $messages = array(
 'thu'           => 'alx',
 'fri'           => 'ajj',
 'sat'           => 'gaa',
-'january'       => 'Tamxarit',
-'february'      => 'Diggi-gamu',
-'march'         => 'Gamu',
-'april'         => 'Rakki-gamu',
-'may_long'      => 'Rakkaati-gamu',
-'june'          => 'Maami-koor',
-'july'          => 'Ndeyi-koor',
-'august'        => 'Baraxlu',
-'september'     => 'Koor',
-'october'       => 'Kori',
-'november'      => 'Diggi-tabaski',
-'december'      => 'Tabaski',
-'january-gen'   => 'Tamxarit',
-'february-gen'  => 'Diggi-gamu',
-'march-gen'     => 'Gamu',
-'april-gen'     => 'Rakki-gamu',
-'may-gen'       => 'Rakkaati-gamu',
-'june-gen'      => 'Maami-koor',
-'july-gen'      => 'Ndeyi-koor',
-'august-gen'    => 'Baraxlu',
-'september-gen' => 'Koor',
-'october-gen'   => 'Kori',
-'november-gen'  => 'Diggi-tabaski',
-'december-gen'  => 'Tabaski',
-'jan'           => 'Tam',
-'feb'           => 'Dig',
-'mar'           => 'Gam',
-'apr'           => 'Rak',
-'may'           => 'Rakkaati',
-'jun'           => 'Maa',
-'jul'           => 'Nde',
-'aug'           => 'Bar',
-'sep'           => 'Koo',
-'oct'           => 'Kor',
-'nov'           => 'Diggi-ta',
-'dec'           => 'Tab',
+'january'       => 'Samwiye',
+'february'      => 'Fewiriye',
+'march'         => 'Maars',
+'april'         => 'Awril',
+'may_long'      => 'Mee',
+'june'          => 'Suwe',
+'july'          => 'Sulet',
+'august'        => 'Ut',
+'september'     => 'Sattumbar',
+'october'       => 'Oktoobar',
+'november'      => 'Nowembar',
+'december'      => 'Disembar',
+'january-gen'   => 'Samwiriye',
+'february-gen'  => 'Fewiriye',
+'march-gen'     => 'Maars',
+'april-gen'     => 'Awril',
+'may-gen'       => 'Mee',
+'june-gen'      => 'Suwe',
+'july-gen'      => 'Sulet',
+'august-gen'    => 'Ut',
+'september-gen' => 'Sattumbar',
+'october-gen'   => 'Oktoobar',
+'november-gen'  => 'Nowembar',
+'december-gen'  => 'Disembar',
+'jan'           => 'Sam',
+'feb'           => 'Few',
+'mar'           => 'Maa',
+'apr'           => 'Awr',
+'may'           => 'Mee',
+'jun'           => 'Suw',
+'jul'           => 'Sul',
+'aug'           => 'Ut',
+'sep'           => 'Sat',
+'oct'           => 'Okt',
+'nov'           => 'Now',
+'dec'           => 'Dis',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Wàll |Wàll }}',
@@ -288,7 +284,7 @@ $messages = array(
 'nosuchspecialpage' => 'Xëtu jagleel wu amul',
 'nospecialpagetext' => "<big>'''Da nga laaj aw xëtu jagleel wu wiki bi xamul.'''</big>
 
-Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:Specialpages|{{int:specialpages}}]].",
+Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Njuumte',
@@ -310,9 +306,11 @@ Yorkat bi def caabi ji, joxe na yii lay :$1',
 
 Li koy waral yenn saa yi mooy da ngay jéma ubbi ab lëkkalekaay, jaare ko ci ab jaar-jaar walla méngaleeb ay sumb yu aw xët wu faru.
 
-Su dul loolu kon daa am ag njuumte ci tëriinu Mediawiki bi. Di la sakku nga yegge ko ab yorkat, jox ko URL bi.',
+Su dul loolu kon daa am ag njuumte ci tëriinu Mediawiki bi. 
+Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan bi.',
 'missingarticle-rev'   => '(Limu sumb mi# : $1)',
-'readonly_lag'         => 'Dattub njoxe bi daa caabiwu ngir may ñaareeli joxekat yi dap joxekat bu njëkk bi.',
+'missingarticle-diff'  => '(Wuute : $1, $2)',
+'readonly_lag'         => 'Dàttub njoxe bi daa caabi boppam ngir may ñaareelu joxekaay yi dap joxekaay bu njëkk bi.',
 'internalerror'        => 'Njuumte gu biir',
 'internalerror_info'   => 'Njuumte gu biir : $1',
 'filecopyerror'        => 'Duppig dencukaay bii di « $1 » jëm « $2 » antuwul.',
@@ -338,6 +336,7 @@ Laaj : $2',
 'actionthrottledtext'  => 'Ngir xeex spam yi, jëf ji nga namm a def dañ kaa digal ci yoon yoo ko man ci benn diir bu gatt. Te mel na ne romb nga boobu dig. Jéemaatal fii aki simili.',
 'protectedpagetext'    => 'Wii xêt dañ kaa aar ngir bañ ag coppiteem.',
 'viewsourcetext'       => 'Man ngaa xool te duppi li nekk ci bii jukki ngir man cee liggéey :',
+'protectedinterface'   => 'Xët wii dafa am ay mbind yu bokk ci jokkalekaayu tëriin wi, moo tax ñu caabi ko ngir bañ ku ci ëppal.',
 'sqlhidden'            => '(Laaju SQL nëbbu na)',
 'cascadeprotected'     => 'Xët wii dañ kaa aar ndaxte daa ëmbu ci {{PLURAL:$1|xët wi toftal|xët yi toftal}}, di yu ñu aar :
 $2',
@@ -514,7 +513,7 @@ Sa màkkaanu IP mooy $3 xammeekaayu téye gi mooy #$5. Di la sakku nga joxe leen
 'accmailtext'               => 'Baatujàll bu « $1 » yónne nañ ko ci bii màkkaan $2.',
 'newarticle'                => '(Bees)',
 'newarticletext'            => "Da ngaa topp ab lëkkalekaay buy jëme ci aw xët wu amagul. ngir sos xët wi léegi, duggalal sa mbind ci boyot bii ci suuf (man ngaa yër [[{{MediaWiki:Helppage}}|xëtu ndimbal wi]] ngir yeneeni xamle). Su fekkee njuumtee la fi indi cuqal ci '''dellu''' bu sa joowukaay.",
-'anontalkpagetext'          => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañ laa féetale ay sànni-kaddu yoo moomul, man ngaa [[Special:Userlogin|bindu walla duggu]] ngi benn jaxase bañatee am ëllëg .''",
+'anontalkpagetext'          => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañ laa féetale ay sànni-kaddu yoo moomul, man ngaa [[Special:UserLogin|bindu walla duggu]] ngi benn jaxase bañatee am ëllëg .''",
 'noarticletext'             => 'Fi mu ne ni amul benn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|tambli ab seet ci koju xët wii]] walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 'userpage-userdoesnotexist' => 'Bii sàqum jëfandikukat « $1 » du bu ku bindu. Seetal bu baax ndax da ngaa namma sos walla soppi wii xët.',
 'clearyourcache'            => "'''Karmat :''' Soo dence xët wi ba noppi, faaw nga bës ci si sa arafukaay yii di toftal, te nga bàyyi xel ci joowukaay bi ngay jëfandikoo : '''Mozilla / Konqueror / Firefox :''' ''Shift-Ctrl-R'', '''Internet Explorer / Opera :''' ''Ctrl-F5'', '''Safari :''' ''Cmd-R''.",
@@ -572,7 +571,7 @@ Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
 'template-semiprotected'    => '(aaru-diggu)',
 'hiddencategories'          => '{{PLURAL:$1|wàll bu nëbbu bu|wàll yu nëbbu yu }} xët wii bokk :',
 'nocreatetitle'             => 'Digalu sosteefu xët',
-'nocreatetext'              => 'Jëfandikukat yi bindu rekk a man a sosi xët ci {{SITENAME}}. Man nga dellu ginnaaw walla soppi aw xët wu am ba noppi, [[Special:Userlogin|duggu walla sos am sàq]].',
+'nocreatetext'              => 'Jëfandikukat yi bindu rekk a man a sosi xët ci {{SITENAME}}. Man nga dellu ginnaaw walla soppi aw xët wu am ba noppi, [[Special:UserLogin|duggu walla sos am sàq]].',
 'nocreate-loggedin'         => 'Amuloo sañ-sañ yu doy ngir man a sosi xët yu bees ci {{SITENAME}}.',
 'permissionserrors'         => 'Njuumte ci sañ-sañ yi',
 'permissionserrorstext'     => 'Amuloo sañ-sañu àggali jëf ji nga tambali, ngax {{PLURAL:$1|lii toftal|yii toftal}} :',
@@ -704,7 +703,7 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'mypreferences'            => 'Samay tànneef',
 'prefs-edits'              => 'Limu coppite yi:',
 'prefsnologin'             => 'Duggoo',
-'prefsnologintext'         => 'Laaj na nga [[Special:Userlogin|duggu]] ngir soppi say tànneef.',
+'prefsnologintext'         => 'Laaj na nga [[Special:UserLogin|duggu]] ngir soppi say tànneef.',
 'prefsreset'               => 'Tànneef yi loppanti nañ leen.',
 'qbsettings'               => 'Banqaasu jumtukaay',
 'qbsettings-none'          => 'Kenn',
@@ -784,7 +783,7 @@ wóorluwul ne coppite gi du yaq jaar-jaaru xët wi.',
 'uploadbtn'                   => 'Yeb dencukaay bi',
 'reupload'                    => 'Yebaat ko',
 'uploadnologin'               => 'Lonkuwoo',
-'uploadnologintext'           => 'Faaw nga [[Special:Userlogin|lonku]] ngir mana yebi dencukaay.',
+'uploadnologintext'           => 'Faaw nga [[Special:UserLogin|lonku]] ngir mana yebi dencukaay.',
 'upload_directory_missing'    => 'Wayndareb yeb bu ($1) nekku fi te joxekaayub web bi manu koo sos.',
 'upload_directory_read_only'  => 'Joxekaayub web bi manuta bind ci wayndareb yeb bu ($1).',
 'uploaderror'                 => 'Njuumte ci yeb gi',
@@ -842,7 +841,7 @@ Ngir-yàlla tànnal beneen tur.',
 
 Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'      => 'Limu nataal yi',
 'imagelist_user' => 'Jëfëndikookat',
 
@@ -911,7 +910,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'log-search-submit'    => 'waaw',
 'logempty'             => 'Dara nekkul ci jaar-jaaru xët mii.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'         => 'Xët yëpp',
 'alphaindexline'   => '$1 ba $2',
 'nextpage'         => 'Xët wi tegu ($1)',
@@ -930,7 +929,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'special-categories-sort-count' => 'nose sàq',
 'special-categories-sort-abc'   => 'nose abajada',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Wone',
 
 # E-mail user
@@ -948,7 +947,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'nowatchlist'          => 'Sa limu toppte amul benn jukki.',
 'watchlistanontext'    => 'Ngir mana gis walla soppi jëfkayu sa limu toppte, faw nga  $1.',
 'watchnologin'         => 'Duggoo de',
-'watchnologintext'     => 'Yaa wara nekk [[Special:Userlogin|duggal]] ngir soppi lim gi.',
+'watchnologintext'     => 'Yaa wara nekk [[Special:UserLogin|duggal]] ngir soppi lim gi.',
 'addedwatch'           => 'Yokk ci sa limu toppte',
 'removedwatch'         => 'Jëlee ci sa limu toppte',
 'watch'                => 'Topp',
@@ -1006,7 +1005,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'autoblocker'                 => 'Dañ la téye ndax sa màkkanu IP « $1 » moo ko mujje jëfandikoo. Li waral téyeg $1 mooy ne : « $2 ».',
 'blocklogpage'                => 'Jaar-jaaru téye yi',
 'blocklogentry'               => 'moo téye « [[$1]] » - ci diirub : $2 $3',
-'blocklogtext'                => 'Lii ab lim la ci téye ak téyedi yu jëfandikukat yi. Màkkaani IP yi ñu téye cig boppal limu ñu leen fi. yëral [[Special:Ipblocklist|limu jëfandikukat yiñ téye]] ngi gis ñi ñu téye nii-nii.',
+'blocklogtext'                => 'Lii ab lim la ci téye ak téyedi yu jëfandikukat yi. Màkkaani IP yi ñu téye cig boppal limu ñu leen fi. yëral [[Special:IPBlockList|limu jëfandikukat yiñ téye]] ngi gis ñi ñu téye nii-nii.',
 'unblocklogentry'             => 'moo téyedi « $1 »',
 'block-log-flags-anononly'    => 'jëfandikukat yi binduwul rek',
 'block-log-flags-nocreate'    => 'Tere nañ sa sosum sàq',
@@ -1047,8 +1046,8 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'articleexists'    => 'Am na ba noppi ab jukki gu am gii koj, walla koj gi nga tann baaxul. tannal bennen.',
 'movedto'          => 'Turam bu bees',
 'movetalk'         => 'Tuddewaat tamit xëtu waxtaanukaay wi mu andal',
-'1movedto2'        => 'tuddewaat ko [[$1]] en [[$2]]',
-'1movedto2_redir'  => 'yòonalaat ko [[$1]] mu jëm [[$2]]',
+'1movedto2'        => 'tuddewaat ko [[:$1]] en [[:$2]]',
+'1movedto2_redir'  => 'yòonalaat ko [[:$1]] mu jëm [[:$2]]',
 'movelogpage'      => 'Jaar-jaaru tuddewaat yi',
 'movelogpagetext'  => 'Lii mooy limu xët yi ñu mujje tuddewaat.',
 'movereason'       => 'Ngirtey tuddewaat bi',
@@ -1178,7 +1177,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'file-info-size' => '($1 × $2 pixels, réyaayu file bi : $3, type MIME : $4)',
 'show-big-image' => 'Ngandalal nataal gii',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Seet',
 'bydate'   => 'ci diir',
 
@@ -1205,7 +1204,7 @@ Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 'articletitles' => 'Jukki yu tambalee « $1 »',
 
 # Auto-summaries
-'autoredircomment' => 'Jubluwaat fii [[$1]]',
+'autoredircomment' => 'Jubluwaat fii [[:$1]]',
 'autosumm-new'     => 'Xët wu bees : $1',
 
 # Watchlist editor

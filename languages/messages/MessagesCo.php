@@ -4,8 +4,7 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
- * @author SPQRobin
+
  */
 
 $messages = array(
@@ -267,7 +266,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 'upload-file-error' => 'Errore internu',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'schedariu',
 'imagelist_date' => 'Data',
 'imagelist_name' => 'Nome',
@@ -304,7 +303,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'speciallogtitlelabel' => 'Titulu:',
 'all-logs-page'        => "Tutte l'azzioni",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Tutte e pagine',
 'alphaindexline'    => 'da $1 à $2',
 'allpagesfrom'      => 'Mustrà e pagine à parte da:',
@@ -320,7 +319,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:Categories
 'categories' => 'Categurie',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Mustrà',
 
 # E-mail user
@@ -352,7 +351,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'excontentauthor'             => "u cuntenutu era: '$1' (è u solu cuntributore era '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'a pagina era biota',
 'actioncomplete'              => 'Azzione compia',
-'protectedarticle'            => 'prutettu "[[$1]]"',
+'protectedarticle'            => 'prutettu "[[:$1]]"',
 'protect-legend'              => 'Cunfirmà a prutezzione',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',
 
@@ -393,8 +392,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'move-watch'              => 'Fighjulà issa pagina',
 'movepagebtn'             => 'Move a pagina',
 'movedto'                 => 'mossu à',
-'1movedto2'               => 'hà mossu [[$1]] à [[$2]]',
-'1movedto2_redir'         => 'hà reindirizzatu [[$1]] à [[$2]]',
+'1movedto2'               => 'hà mossu [[:$1]] à [[:$2]]',
+'1movedto2_redir'         => 'hà reindirizzatu [[:$1]] à [[:$2]]',
 'movereason'              => 'Mutivu',
 'delete_and_move_confirm' => 'Iè, supprimà issa pagina',
 
@@ -444,7 +443,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Media information
 'show-big-image' => 'Imagine in alta resoluzione',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 boti)',
 'noimages'     => 'Nulla da vede.',
 'ilsubmit'     => 'Ricerca',
@@ -486,7 +485,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'table_pager_empty' => 'Micca risultati',
 
 # Auto-summaries
-'autoredircomment' => 'Reindirizzamentu à [[$1]]',
+'autoredircomment' => 'Reindirizzamentu à [[:$1]]',
 'autosumm-new'     => 'Pagina nova: $1',
 
 # Watchlist editor
@@ -495,7 +494,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:Version
 'version' => 'Versione', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Schedariu:',
 
 # Special:SpecialPages

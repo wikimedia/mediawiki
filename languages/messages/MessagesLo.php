@@ -6,8 +6,6 @@
  *
  * @author Tuinui
  * @author Passawuth
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(
@@ -367,7 +365,7 @@ $messages = array(
 'template-protected'       => '(ປົກປ້ອງ)',
 'template-semiprotected'   => '(ເຄິ່ງປົກປ້ອງ)',
 'nocreatetext'             => '{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.
-ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:Userlogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
+ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ບໍ່ສາມາດສ້າງ ບັນຊີ ໄດ້',
@@ -493,7 +491,7 @@ $messages = array(
 'savefile'          => 'ບັນທຶກໄຟລ໌',
 'watchthisupload'   => 'ຕິດຕາມໜ້ານີ້',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ລາຍຊື່ໄຟລ໌',
 
 # Image description page
@@ -582,7 +580,7 @@ $messages = array(
 'log-search-submit' => 'ໄປ',
 'logempty'          => 'ຍັງບໍ່ພົບເນື້ອໃນບັນທຶກ.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'ທຸກໆໜ້າ',
 'alphaindexline' => '$1 ຫາ $2',
 'nextpage'       => 'ໜ້າຕໍ່ໄປ ($1)',
@@ -598,7 +596,7 @@ $messages = array(
 'categories'         => 'ໝວດ',
 'categoriespagetext' => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 
 # E-mail user
@@ -660,8 +658,8 @@ $messages = array(
 'rollbacklink'                => 'ກັບຄືນ',
 'cantrollback'                => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
 'protectlogpage'              => 'ບັນທຶກການປົກປ້ອງ',
-'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
-'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
+'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[:$1]]"',
+'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[:$1]]"',
 'protect-title'               => 'ກຳລັງປົກປ້ອງໜ້າ "$1"',
 'protect-legend'              => 'ຢືນຢັນ ການປົກປ້ອງ',
 'protectexpiry'               => 'ໝົດກຳນົດ:',
@@ -741,8 +739,8 @@ $messages = array(
 ກະລຸນາເລືອກຊື່ອື່ນ.',
 'movedto'                 => 'ໄດ້ຖືກຍ້າຍໄປ',
 'movetalk'                => 'ຍ້າຍທັງ ໜ້າສົນທະນາ ທີ່ ກ່ຽວພັນ.',
-'1movedto2'               => '[[$1]] ຍ້າຍໄປ [[$2]]',
-'1movedto2_redir'         => '[[$1]] ຍ້າຍໄປ [[$2]] ທັບ ການໂອນໜ້າ',
+'1movedto2'               => '[[:$1]] ຍ້າຍໄປ [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] ຍ້າຍໄປ [[:$2]] ທັບ ການໂອນໜ້າ',
 'movelogpage'             => 'ບັນທຶກການຍ້າຍ',
 'movereason'              => 'ເຫດຜົນ:',
 'delete_and_move'         => 'ລຶບ ແລະ ຍ້າຍ',
@@ -818,7 +816,7 @@ $messages = array(
 'show-big-image'       => 'ເຕັມຂະໜາດ',
 'show-big-image-thumb' => '<small>ຂະໜາດລອງເບິ່ງ: $1 × $2 ປິກເຊລ</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'         => 'ໄຟລ໌ຮູບໃໝ່',
 'newimages-summary' => 'ໜ້າພິເສດນີ້ສະແດງໄຟລ໌ທີ່ຖຶກອັປໂຫຼດຫຼ້າສຸດ',
 'noimages'          => 'ບໍ່ມີຫຍັງເບິ່ງ.',
@@ -837,7 +835,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'ດັດແກ້ໄຟລ໌ນີ້ໂດຍໂປແກຣມພາຍນອກ',
-'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
+'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ທັງໝົດ',
@@ -872,7 +870,7 @@ $messages = array(
 'recreate' => 'ສ້າງຄືນ',
 
 # HTML dump
-'redirectingto' => 'ພວມໂອນໄປ ຫາ [[$1]]...',
+'redirectingto' => 'ພວມໂອນໄປ ຫາ [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'ຕົກລົງ',
@@ -888,7 +886,7 @@ $messages = array(
 # Auto-summaries
 'autosumm-blank'   => 'ພວມລຶບ ທຸກໆເນື້ອໃນ ຈາກ ໜ້ານີ້',
 'autosumm-replace' => "ປ່ຽນ ໜ້ານີ້ ໂດຍ  '$1'",
-'autoredircomment' => 'ພວມໂອນໄປ ຫາ [[$1]]',
+'autoredircomment' => 'ພວມໂອນໄປ ຫາ [[:$1]]',
 'autosumm-new'     => 'ໜ້າໃໝ່: $1',
 
 # Watchlist editor
@@ -901,7 +899,7 @@ $messages = array(
 # Special:Version
 'version' => 'ສະບັບ', # Not used as normal message but as header for the special page itself
 
-# Special:Filepath
+# Special:FilePath
 'filepath' => 'ທາງໄປຫາໄຟລ໌',
 
 # Special:SpecialPages

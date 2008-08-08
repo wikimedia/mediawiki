@@ -5,9 +5,6 @@
  * @file
  *
  * @author NJ
- * @author SPQRobin
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart
@@ -319,7 +316,7 @@ $messages = array(
 'nosuchspecialpage' => 'Deêze speciaole pagina besti nie',
 'nospecialpagetext' => "<big>'''Je ei een onbestaende speciaole pagina opevrogen.'''</big>
 
-Een lieste mie speciaole pagina’s sti op [[Special:Specialpages|speciaole pagina’s]].",
+Een lieste mie speciaole pagina’s sti op [[Special:SpecialPages|speciaole pagina’s]].",
 
 # General errors
 'error'                => 'Fout',
@@ -566,7 +563,7 @@ Voer jen e-mailadres in en bevestig 't via [[Special:Preferences|je vòkeuren]].
 Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin ekomm'n.",
 'anontalkpagetext'          => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt.
 Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore.
-A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:Userlogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
+A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:UserLogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
 'noarticletext'             => 'Deêze pagina bevat hin tekst.
 Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.',
 'userpage-userdoesnotexist' => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "$1"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
@@ -643,7 +640,7 @@ Opslaene is nie meuhlijk.</strong>",
 'hiddencategories'          => 'Deêze pagina val in de volhende verborhen {{PLURAL:$1|categorie|categorieën}}:',
 'nocreatetitle'             => "'t Anmaeken van pagina's is beperkt",
 'nocreatetext'              => "{{SITENAME}} ei de meuhlijkeid om nieuwe pagina's an te maeken beperkt.
-Je kan a bestaende pagina's wiezigen, of je kan [[Special:Userlogin|jen eihen anmelden of een gebruker  anmaeken]].",
+Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen anmelden of een gebruker  anmaeken]].",
 'nocreate-loggedin'         => "Je kan hin nieuwe pagina's anmaeken op {{SITENAME}}.",
 'permissionserrors'         => "Fout'n in rechen",
 'permissionserrorstext'     => "Je ei hin rechen om dit te doene wehens de volhende {{PLURAL:$1|reeën|reden'n}}:",
@@ -751,7 +748,7 @@ Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwie
 
 # Suppression log
 'suppressionlog'     => 'Verberhiengslogboek',
-'suppressionlogtext' => 'De onderstaende lieste bevat de miste recente verwiederiengen en blokkaodes die an voe opzichters verborhen zien. In de [[Special:Ipblocklist|IP-blokkeerlieste]] zien de udihe blokkaodes te bekieken.',
+'suppressionlogtext' => 'De onderstaende lieste bevat de miste recente verwiederiengen en blokkaodes die an voe opzichters verborhen zien. In de [[Special:IPBlockList|IP-blokkeerlieste]] zien de udihe blokkaodes te bekieken.',
 
 # History merging
 'mergehistory'                     => "Heschiedenisse van pagina's saemenvoehen",
@@ -825,7 +822,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'mypreferences'            => 'Mien vòkeuren',
 'prefs-edits'              => 'Antal bewerkiengen:',
 'prefsnologin'             => 'Nie anemeld',
-'prefsnologintext'         => "Je mò [[Special:Userlogin|anemeld]] zien om je vòkeuren te kunn'n instell'n.",
+'prefsnologintext'         => "Je mò [[Special:UserLogin|anemeld]] zien om je vòkeuren te kunn'n instell'n.",
 'prefsreset'               => 'Standardvòkeuren zien hersteld.',
 'qbsettings'               => 'Menubalke',
 'qbsettings-none'          => 'Uuteschaokeld',
@@ -896,7 +893,7 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'userrights-reason'           => "Reeën voe 't verandern:",
 'userrights-no-interwiki'     => "Je ei hin rechen om gebrukersrechen op aore wiki's te wiezigen.",
 'userrights-nodatabase'       => 'Database $1 besti nie of is hin plaetselijke database.',
-'userrights-nologin'          => 'Je mò jen eihen[[Special:Userlogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
+'userrights-nologin'          => 'Je mò jen eihen[[Special:UserLogin|anmelden]] mie een gebruker mie de juuste rechen om gebrukersrechen toe te wiezen.',
 'userrights-notallowed'       => 'Je ei hin rechen om gebrukersrechen toe te wiezen.',
 'userrights-changeable-col'   => "Hroep'n die a je kan beheern",
 'userrights-unchangeable-col' => "Hroep'n die a je nie kan beheern",
@@ -968,12 +965,12 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'reupload'                   => "Opnieuw upload'n",
 'reuploaddesc'               => "Upload annuleern en teruggaene ni 't uploadformelier",
 'uploadnologin'              => 'Nie anemeld',
-'uploadnologintext'          => "Je mò [[Special:Userlogin|anemeld]] zien
+'uploadnologintext'          => "Je mò [[Special:UserLogin|anemeld]] zien
 om bestan'n te upload'n.",
 'upload_directory_read_only' => 'De webserver kan nie schrieven in de uploadmap ($1).',
 'uploaderror'                => 'Uploadfout',
 'uploadtext'                 => "Gebruuk 't onderstaende formelier om bestan'n te uploaden.
-Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:Imagelist|bestandslieste]] haen.
+Om eêder toehevoegde bestan'n te bekieken of te zoeken kan je ni de [[Special:ImageList|bestandslieste]] haen.
 Uploads en verwiederiengen worn bie'ehouwen in 't [[Special:Log/upload|uploadlogboek]].
 
 Om 't bestand in te voehen in een pagina kan je eên van de volhende codes gebruken, a ni helang 't bestandsformaot dat van toepassieng is:
@@ -1022,7 +1019,7 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'alllogstext'         => "Saemengesteld overzicht van de wis-, bescherm-, blokkeer- en gebrukerslechtenlogboeken.
 Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bladzie uut te kiezen.",
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Aolle bladzies',
 'alphaindexline'    => '$1 toet $2',
 'nextpage'          => 'Volgende bladzie ($1)',
@@ -1049,11 +1046,11 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'mywatchlist'          => 'Mien volglieste',
 'watchlistfor'         => "(vò '''$1''')",
 'watchnologin'         => 'Je bin nie angemolde.',
-'watchnologintext'     => 'Je moe [[Special:Userlogin|angemolde]] weze om je volglieste an te passen.',
+'watchnologintext'     => 'Je moe [[Special:UserLogin|angemolde]] weze om je volglieste an te passen.',
 'addedwatch'           => 'An de volglieste toegevoegd',
 'addedwatchtext'       => "De bladzie \"[[:\$1]]\" is an je [[Special:Watchlist|Volglieste]] toegevoegd.
 Veranderiengen an deêze bladzie en de overlegbladzie die-a d'rbie oort zulle ierop zichtbaer ore
-en de bladzie komt '''vet''' te staen in de [[Special:Recentchanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.
+en de bladzie komt '''vet''' te staen in de [[Special:RecentChanges|lieste van wat-a juust veranderd is]], daermee 't makkeliker te vinden is.
 A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie meêr volge\" bovenan de bladzie.",
 'watch'                => 'Volg',
 'watchthispage'        => 'Bekiek deêze bladzie',
@@ -1092,7 +1089,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'badipaddress'                => 'Ongeldig IP-adres',
 'blockipsuccesssub'           => 'Blokkaode is gelukt.',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Ziet de [[Special:Ipblocklist|IP-blokliest]] vo 'n overzicht van blokkaodes.",
+Ziet de [[Special:IPBlockList|IP-blokliest]] vo 'n overzicht van blokkaodes.",
 'anononlyblock'               => 'alleêne anon.',
 'blocklink'                   => 'blokkeer',
 'contribslink'                => 'biedraegen',
@@ -1101,7 +1098,7 @@ De reje daevò was: "$2"',
 'blocklogentry'               => 'ei "[[$1]]" geblokkeerd mee \'n afloôptied van $2 $3',
 'blocklogtext'                => "Dit is 'n logboek van gebrukersblokkaodes en -deblokkeriengen.
 Automaotisch geblokte ip-adressen stae d'r nie bie.
-Ziet de [[Special:Ipblocklist|Lieste van ip-blokkeriengen]] vò blokkaodes die op dit moment in werkienge bin.",
+Ziet de [[Special:IPBlockList|Lieste van ip-blokkeriengen]] vò blokkaodes die op dit moment in werkienge bin.",
 'block-log-flags-anononly'    => 'allene anonieme gebrukers',
 'block-log-flags-nocreate'    => 'uutgeslote van anmaeken gebrukersnaemen',
 'block-log-flags-noautoblock' => 'gin autoblokkaode',
@@ -1114,8 +1111,8 @@ Ziet de [[Special:Ipblocklist|Lieste van ip-blokkeriengen]] vò blokkaodes die o
 'articleexists'    => "D'r bestaet al 'n bladzie mee dieën naem, of de naem
 die-a je gekozen is is ongeldeg.
 Kiest 'n aore naem.",
-'1movedto2'        => '[[$1]] is verschove nae [[$2]]',
-'1movedto2_redir'  => '[[$1]] is verschove nae [[$2]] over de deurverwiezienge',
+'1movedto2'        => '[[:$1]] is verschove nae [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] is verschove nae [[:$2]] over de deurverwiezienge',
 
 # Namespace 8 related
 'allmessagesname'           => 'Naem',
@@ -1160,7 +1157,7 @@ Kiest 'n aore naem.",
 # Auto-summaries
 'autosumm-blank'   => 'Bladzie leeggemaekt',
 'autosumm-replace' => "Bladzie vervange mee '$1'",
-'autoredircomment' => 'Oor deugestierd nae [[$1]]',
+'autoredircomment' => 'Oor deugestierd nae [[:$1]]',
 'autosumm-new'     => 'Nieuwe bladzie mee as inoud: $1',
 
 # Special:SpecialPages

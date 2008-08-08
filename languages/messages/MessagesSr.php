@@ -1,9 +1,9 @@
 <?php
-/**
- * Serbian
+/** Serbian (Српски / Srpski)
  *
  * @ingroup Language
  * @file
+ *
  */
 
 $fallback = 'sr-ec';

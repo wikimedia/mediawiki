@@ -6,7 +6,6 @@
  *
  * @author Rajuonline
  * @author Psneog
- * @author Siebrand
  * @author Priyankoo
  */
 
@@ -281,7 +280,7 @@ $messages = array(
 'nosuchspecialpage' => 'এনেকুৱা কোনো বিশেষ পৃষ্ঠা নাই',
 'nospecialpagetext' => "<big>'''আপুনি অস্তিত্বত নথকা বিশেষ পৃষ্ঠা এটা বিচাৰিছে '''</big>
 
-   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:Specialpages|{{int:specialpages}}]].",
+   বিশেষ পৃষ্ঠাহমুহৰ তালিকা ইয়াত পাব [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'ভুল',
@@ -545,7 +544,7 @@ $1',
 'template-protected'     => '(সুৰক্ষিত)',
 'template-semiprotected' => '(অর্ধ-সুৰক্ষিত)',
 'nocreatetext'           => '{{SITENAME}} ত নতুন লিখনী লিখা ৰদ কৰা হৈছে।
-আপুনি ঘুৰি গৈ অস্তিত্বত থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:Userlogin| নতুন সদস্যভর্তি হওক/ প্রবেশ কৰক]] ।',
+আপুনি ঘুৰি গৈ অস্তিত্বত থকা পৃষ্ঠা এটা সম্পাদনা কৰিব পাৰে, বা [[Special:UserLogin| নতুন সদস্যভর্তি হওক/ প্রবেশ কৰক]] ।',
 'recreate-deleted-warn'  => "'''সাৱধান: আপুনি আগতে বিলোপিত কৰা পৃষ্ঠা এটা পূণঃনির্মান কৰি আছে। '''
 
 এই পৄষ্ঠাটো সম্পাদনা কৰা উচিত হব নে নাই আপুনি বিবেচনা কৰি চাওক।
@@ -559,7 +558,8 @@ $1',
 'nextrevision'        => 'সদ্যসংশোধিত',
 'currentrevisionlink' => 'শেহতীয়া ভাষ্য',
 'cur'                 => 'বর্তমান',
-'last'                => 'আগৰ',
+'next'                => 'পৰবর্তী',
+'last'                => 'পুর্ববর্তি',
 'page_first'          => 'প্রথম',
 'page_last'           => 'অন্তিম',
 'histlegend'          => 'পার্থক্য বাচনী: পার্থক্য চাবলৈ সংকলনবোৰৰ সম্মুখত থকা ৰেডিও বুটামবোৰ বাচনী কৰি এণ্টাৰ টিপক অথবা একেবাৰে তলত দিয়া বুটামতো ক্লীক কৰক <br />
@@ -571,7 +571,11 @@ $1',
 'historyempty'        => '(খালী)',
 
 # Revision feed
-'history-feed-title' => 'সংকলন ইতিসাহ',
+'history-feed-title'       => 'সংকলন ইতিহাস',
+'history-feed-description' => 'ৱিকিত উপলব্ধ এই পৃষ্ঠাৰ সংকলন ইতিহাস',
+'history-feed-empty'       => 'এই পৃষ্ঠা বা লিখনীটো নাই।
+হয়তো ইয়াক বিলোপিত কৰা হৈছে অথবা ইয়াৰ নাম সলনী কৰা হৈছে।
+[[Special:Search|সন্ধান]] ব্যৱহাৰ কৰি চাওক।',
 
 # Revision deletion
 'rev-delundel'   => 'দেখোৱা হওক / লুকুওৱা হওক',
@@ -597,11 +601,82 @@ $1',
 'viewprevnext'          => 'চাওক ($1) ($2) ($3)',
 'showingresults'        => "তলত #'''$2'''ৰ পৰা {{PLURAL:$1|'''1''' ফলাফল|'''$1''' ফলাফল}} দেখুওৱা হৈছে।",
 'powersearch'           => 'অতিসন্ধান',
+'powersearch-legend'    => 'শক্তিশালী সন্ধান',
+'powersearch-ns'        => 'নামস্থানবোৰত সন্ধান:',
+'powersearch-redir'     => 'পূণঃনির্দেশনা বোৰৰ তালিকা',
+'powersearch-field'     => 'ৰ কাৰণে সন্ধান কৰক',
+'search-external'       => 'বাহ্যিক সন্ধান',
+'searchdisabled'        => '{{SITENAME}} ত অনুসন্ধান কৰা সাময়িক ভাবে নিষ্ক্রিয় কৰা হৈছে।
+তেতিয়ালৈকে গুগলত অনুসন্ধান কৰক।
+মনত ৰাখিব যে তেঁওলোকৰ {{SITENAME}}ৰ ইণ্ডেক্স পুৰণি হব পাৰে।',
 
 # Preferences page
-'preferences'   => 'ৰুচি',
-'mypreferences' => 'মোৰ পচন্দ',
-'retypenew'     => 'নতুন গুপ্তশব্দ আকৌ টাইপ কৰক',
+'preferences'              => 'ৰুচি',
+'mypreferences'            => 'মোৰ পচন্দ',
+'prefs-edits'              => 'সম্পাদনা সমুহৰ সংখ্যা:',
+'prefsnologin'             => 'প্রৱেশ কৰা নাই',
+'prefsnologintext'         => 'আপোনাৰ পচন্দ সলনী কৰিবলৈ হলে [[Special:UserLogin|প্রৱেশ]] কৰাতো আৱশ্যক।',
+'prefsreset'               => 'পচন্দ সমুহ পুর্ববত কৰা হৈছে।',
+'qbsettings'               => 'শীঘ্রদণ্ডিকা',
+'qbsettings-none'          => 'একেবাৰে নহয়',
+'qbsettings-fixedleft'     => 'বাঁওফাল স্থিৰ',
+'qbsettings-fixedright'    => 'সোঁফাল স্থিৰ',
+'qbsettings-floatingleft'  => 'বাঁওফাল অস্থিৰ',
+'qbsettings-floatingright' => 'সোঁফাল অস্থিৰ',
+'changepassword'           => 'গুপ্তশব্দ সলনী কৰক',
+'skin'                     => 'আৱৰন',
+'math'                     => 'গণিত',
+'dateformat'               => 'তাৰিখৰ সজ্জা',
+'datedefault'              => 'বিশেষ পচন্দ নাই',
+'datetime'                 => 'তাৰিখ আৰু সময়',
+'math_failure'             => 'পার্চ কৰিব অসমর্থ',
+'math_unknown_error'       => 'অপৰিচিত সমস্যা',
+'math_unknown_function'    => 'অজ্ঞাত কার্য্য',
+'prefs-personal'           => 'সদস্যৰ বিৱৰণ',
+'prefs-rc'                 => 'শেহতীয়া সাল-সলনী',
+'prefs-watchlist'          => 'লক্ষ্য তালিকা',
+'prefs-watchlist-days'     => 'লক্ষ্য তালিকাত দেখুৱাব লগা দিন:',
+'prefs-watchlist-edits'    => 'বর্ধিত লক্ষ্যসুচীত দেখুৱাব লগা সর্বোচ্চ সাল-সলনী:',
+'prefs-misc'               => 'অন্যান্য',
+'saveprefs'                => 'সঞ্চিত কৰক',
+'resetprefs'               => 'অসঞ্চিত সাল-সলনী বাতিল কৰক',
+'oldpassword'              => 'পূৰণি গুপ্তশব্দ:',
+'newpassword'              => 'নতুন গুপ্তশব্দ:',
+'retypenew'                => 'নতুন গুপ্তশব্দ আকৌ টাইপ কৰক',
+'textboxsize'              => 'সম্পাদন',
+'rows'                     => 'পথালী শাৰী:',
+'columns'                  => 'ঠিয় শাৰী:',
+'searchresultshead'        => 'অনুসন্ধান',
+'resultsperpage'           => 'প্রতি পৃষ্ঠা দর্শন:',
+'contextlines'             => 'প্রতি শাৰী দর্শন:',
+'contextchars'             => 'প্রতি শাৰীত সন্দর্ভ:',
+'stub-threshold'           => '<a href="#" class="stub">আধাৰ সংযোগ</a> ৰ সর্বোচ্চ আকাৰ (বাইটত):',
+'recentchangesdays'        => 'শেহতীয়া সাল-সলনীত দেখুৱাব লগা দিন:',
+'recentchangescount'       => 'শেহতীয়া সাল-সলনী, ইতিহাস আৰু লগ পৃষ্ঠাত দেখুৱাব লগা সম্পাদনাৰ সংখ্যা:',
+'savedprefs'               => 'আপোনাৰ পচন্দসমুহ সংৰক্ষিত কৰা হল।',
+'timezonelegend'           => 'সময় স্থান',
+'timezonetext'             => '¹চার্ভাৰৰ সময় (UTC) আৰু আপোনাৰ সময়ৰ মাজত পার্থক্য (ঘণ্টাত)।',
+'localtime'                => 'স্থানীয় সময়',
+'timezoneoffset'           => 'পার্থক্য¹',
+'servertime'               => 'চার্ভাৰৰ সময়',
+'guesstimezone'            => 'ব্রাউজাৰৰ পৰা ভৰাওক',
+'allowemail'               => 'অন্য সদস্যৰ পৰা ই-মেইল সমর্থ কৰক',
+'prefs-searchoptions'      => 'সন্ধান বিকল্পসমুহ',
+'prefs-namespaces'         => 'নামস্থান',
+'defaultns'                => 'এই নামস্থান সমুহত সদায়ে অনুসন্ধান কৰিব:',
+'default'                  => 'অবিচল',
+'files'                    => 'ফাইলসমুহ',
+
+# User rights
+'userrights'               => 'সদস্যৰ অধিকাৰ ব্যৱস্থাপনা', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'   => 'সদস্য গোটবোৰ ব্যৱস্থাপনা কৰক',
+'userrights-user-editname' => 'সদস্যনাম দিয়ক:',
+'editusergroup'            => 'সদস্য গোটবোৰ সম্পাদনা কৰক',
+'editinguser'              => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) সদস্যজনৰ অধিকাৰ সলনী কৰি থকা হৈছে।",
+'userrights-editusergroup' => 'সদস্য গোট সম্পাদনা কৰক',
+'saveusergroups'           => 'সদস্য গোট সংৰক্ষিত কৰক',
+'userrights-groupsmember'  => 'এই গোটবোৰৰ সদস্য:',
+'userrights-reason'        => 'সালসলনীৰ কাৰণ:',
 
 'grouppage-sysop' => '{{ns:project}}:প্রবন্ধক',
 
@@ -640,7 +715,7 @@ $1',
 'uploadlogpage' => 'আপলোড সুচী',
 'uploadedimage' => '"[[$1]]" আপলোড কৰা হ’ল',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'ফাইলৰ তালিকা',
 
 # Image description page
@@ -705,7 +780,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'log'                  => 'আলেখ',
 'all-logs-page'        => 'সকলো সুচী',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'সকলোবোৰ পৃষ্ঠা',
 'alphaindexline' => '$1 -ৰ পৰা $2 -লৈ',
 'nextpage'       => 'পৰৱর্তী পৃষ্ঠা ($1)',
@@ -728,7 +803,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'watchlistfor'         => "('''$1''' ৰ কাৰনে)",
 'addedwatch'           => 'লক্ষ্য তালিকাত অন্তর্ভুক্তি কৰা হল',
 'addedwatchtext'       => 'আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]]  "<nowiki>$1</nowiki>" অন্তর্ভুক্তি কৰা হল ।
-ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:Recentchanges|সম্প্রতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
+ভৱিশ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সম্প্রতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো শকট আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।',
 'removedwatch'         => 'লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হল',
 'removedwatchtext'     => '"[[:$1]]" পৃষ্ঠাটো আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আতৰোৱা হৈছে ।',
 'watch'                => 'অনুসৰণাৰ্থে',
@@ -907,7 +982,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 'show-big-image'       => 'সম্পূর্ণ দৃশ্য',
 'show-big-image-thumb' => '<small>এই খচৰাৰ আকাৰ: $1 × $2 পিক্সেল </small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'নতুন ফাইলৰ বিথীকা',
 
 # Metadata
@@ -927,7 +1002,7 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'
 
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক|',
-'edit-externally-help' => 'অধিক জানিবলৈ [http://meta.wikimedia.org/wiki/Help:External_editors নির্দেশনা] চাঁওক ।',
+'edit-externally-help' => 'অধিক জানিবলৈ [http://www.mediawiki.org/wiki/Manual:External_editors নির্দেশনা] চাঁওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',

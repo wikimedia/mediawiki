@@ -5,8 +5,6 @@
  * @file
  *
  * @author Mohau
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -413,7 +411,7 @@ Ka kgopela akanya ka go roba letlakala le goba le dikgaoe tše nnyenyane.</stron
 'template-protected'     => '(e lotilwe)',
 'template-semiprotected' => '(lota-ka-seripa)',
 'nocreatetext'           => '{{SITENAME}} e nale dithibelo tše itšego go tlholeng ga matlakala a maphsa.
-O ka boela morago wa felola matlakala a lego gona, goba o [[Special:Userlogin|tsene]].',
+O ka boela morago wa felola matlakala a lego gona, goba o [[Special:UserLogin|tsene]].',
 'nocreate-loggedin'      => 'Ga ona tumello ya go tlhola matlakala a mampsha go {{SITENAME}}.',
 'permissionserrors'      => 'Phošo ya ditumello',
 'permissionserrorstext'  => 'Gawa dumelwa go pheta seo,ka {{PLURAL:$1|lebaka|mabaka}} a latelago:',
@@ -561,7 +559,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'license-nopreview'  => '(Ponopele ga e gona)',
 'upload_source_file' => '(faele go khomphuthara ya gago)',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'        => 'faele',
 'imagelist'      => 'Lenano la difaele',
 'imagelist_date' => 'Letšatšikgwedi',
@@ -680,7 +678,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'all-logs-page'        => "Di-''log'' kamoka",
 'log-search-submit'    => 'Sepela',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Matlakala ka moka',
 'alphaindexline' => '$1 goya go $2',
 'nextpage'       => 'Letlakala lago latela ($1)',
@@ -693,7 +691,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 # Special:Categories
 'categories' => 'Dihlopha',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Botšha',
 
 # E-mail user
@@ -715,7 +713,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'watchlistfor'         => "(ya '''$1''')",
 'addedwatch'           => 'Loketšwe go lenano la ditlhapetšo',
 'addedwatchtext'       => "Letlakala \"[[:\$1]]\" le tsene go [[Special:Watchlist|watchlist]] ya gago.
-Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:Recentchanges|list of recent changes]] gore go be bonolo gore oa bone.
+Go tloga bjale, diphetogo letlakaleng le, le letlakaleng la dipoledišano la gona, di tla bontšhwa ka mongalo wa '''bold''' gare ga [[Special:RecentChanges|list of recent changes]] gore go be bonolo gore oa bone.
 
 Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiša \"Tloša tlhapetšo\" go sidebar.",
 'removedwatch'         => 'Tlošitšwe go lenano la ditlhapetšo',
@@ -763,7 +761,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'rollbacklink'                => 'bošetša morago',
 'editcomment'                 => 'Ahlaahlo ya phetogo ke : "<i>$1</i>".', # only shown if there is an edit comment
 'protectlogpage'              => "''Log'' yago lota",
-'protectedarticle'            => 'lotilwe "[[$1]]"',
+'protectedarticle'            => 'lotilwe "[[:$1]]"',
 'protect-legend'              => 'Tiišetša go lota',
 'protectcomment'              => 'Ahlaahla:',
 'protectexpiry'               => 'Fetatšatši:',
@@ -880,7 +878,7 @@ Ka kgopelo, kgetha leina le lengwe.',
 'talkexists'              => "'''Letlakala le hudugile ka katlego, efele letlakala la dipolešano ga la huduga kage gobe go ina letlakala leineng le lemphsa. Ka kgopelo, a gahlanye ka bowena.'''",
 'movedto'                 => 'hudugetše go',
 'movetalk'                => 'Huduša letlakala la dipoledišano la go hlobana le letlakala le',
-'1movedto2'               => '[[$1]] e hudugile goya go [[$2]]',
+'1movedto2'               => '[[:$1]] e hudugile goya go [[:$2]]',
 'movelogpage'             => "''log'' yago huduša",
 'movereason'              => 'Lebaka:',
 'revertmove'              => 'bušetša',
@@ -976,7 +974,7 @@ $1',
 'show-big-image'       => "''resolution'' ya gofella",
 'show-big-image-thumb' => '<small>Bogolo ba pono: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => "''Gallery'' ya difaele tše mpsha",
 'ilsubmit'  => 'Fetleka',
 'bydate'    => 'ka letšatšikgwedi',
@@ -1014,7 +1012,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # External editor support
 'edit-externally'      => 'Fetola faele ye o šumiša thulusi ya ka ntle',
-'edit-externally-help' => 'Lebelela [http://meta.wikimedia.org/wiki/Help:External_editors Taelo ya go thoma] go humana sedi.',
+'edit-externally-help' => 'Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ka moka',

@@ -8,16 +8,13 @@
  * @author Mido
  * @author Alnokta
  * @author OsamaK
- * @author Siebrand
  * @author Gharbeia
- * @author Jon Harald Søby
  * @author Khaledhosny
  * @author Agurzil
  * @author Mimouni
  * @author ترجمان05
  * @author Tarawneh
  * @author Chaos
- * @author SPQRobin
  * @author לערי ריינהארט
  * @author Jak
  * @author عصام بايزيدي
@@ -656,7 +653,7 @@ $messages = array(
 'nosuchspecialpage' => 'لا توجد صفحة خاصة بهذا الاسم',
 'nospecialpagetext' => "<big>'''لقد طلبت صفحة خاصة غير صحيحة.'''</big>
 
-قائمة بالصفحات الخاصة الصحيحة يمكن إيجادها في [[Special:Specialpages|{{int:specialpages}}]].",
+قائمة بالصفحات الخاصة الصحيحة يمكن إيجادها في [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'خطأ',
@@ -754,7 +751,7 @@ $2',
 'loginproblem'               => '<b>حدثت مشكلة أثناء الدخول.</b><br />يرجى المحاولة مرى أخرى!',
 'login'                      => 'دخول',
 'nav-login-createaccount'    => 'دخول / إنشاء حساب',
-'loginprompt'                => 'يجب أن تكون الكوكيز لديك مفعلة [[Special:Userlogin|لتسجل الدخول إلى {{SITENAME}}]].',
+'loginprompt'                => 'يجب أن تكون الكوكيز لديك مفعلة لتسجل الدخول إلى {{SITENAME}}.',
 'userlogin'                  => 'سجل الدخول / أنشىء حساب',
 'logout'                     => 'خروج',
 'userlogout'                 => 'خروج',
@@ -900,28 +897,28 @@ $2',
 
 يمكنك الاتصال ب$1 أو مع أحد [[{{MediaWiki:Grouppage-sysop}}|الإداريين]] للنقاش حول المنع.
 
-لا يمكنك استعمال خاصية 'مراسلة هذا المستخدم' إلا إذا كنت قد وضعت عنوان بريدي صحيح في [[Special:Preferences|تفضيلات حسابك]] ولم يتم منعك من استخدامها.
+لا يمكنك استخدام خاصية 'مراسلة هذا المستخدم' إلا إذا كنت قد وضعت عنوان بريدي صحيح في [[Special:Preferences|تفضيلات حسابك]] ولم يتم منعك من استخدامها.
 عنوان الأيبي الخاص بك حاليا هو $3، ورقم المنع هو #$5.
-من فضلك أضف أيهما أو كلاهما في أية تساؤلات.",
-'autoblockedtext'                  => 'عنوان الأيبي الخاص بك تم منعه تلقائيا لأنه تم استخدامه بواسطة مستخدم آخر، و الذي تم منعه بواسطة $1.
+من فضلك اذكر كل التفاصيل بالأعلى في أي استعلامات تقوم بها.",
+'autoblockedtext'                  => 'عنوان الأيبي الخاص بك تم منعه تلقائيا لأنه تم استخدامه بواسطة مستخدم آخر، تم منعه بواسطة $1.
 السبب الممنوح هو التالي:
 
 :\'\'$2\'\'
 
 * بداية المنع: $8
 * انتهاء المنع: $6
+* الممنوع المقصود: $7
 
-يمكنك أن تتصل ب $1 أو أحد
-[[{{MediaWiki:Grouppage-sysop}}|الإداريين]] الآخرين لمناقشة المنع.
+يمكنك أن تتصل ب $1 أو أحد [[{{MediaWiki:Grouppage-sysop}}|الإداريين]] الآخرين لمناقشة المنع.
 
 لاحظ أنه لا يمكنك استخدام خاصية "إرسال رسالة لهذا المستخدم" إلا لو كان لديك عنوان بريد إلكتروني صحيح مسجل في [[Special:Preferences|تفضيلاتك]] ولم يتم منعك من استخدامه.
 
-رقم منعك هو $5.
-من فضلك اذكر هذا الرقم في أي استفسار.',
+عنوان الأيبي الحالي الخاص بك هو $3، ورقم المنع هو #$5.
+من فضلك اذكر كل التفاصيل بالأعلى في أي استعلامات تقوم بها.',
 'blockednoreason'                  => 'لا سبب معطى',
 'blockedoriginalsource'            => "مصدر '''$1''' معروض بالأسفل:",
 'blockededitsource'                => "نص '''تعديلاتك''' في '''$1''' معروض بالأسفل:",
-'whitelistedittitle'               => '[[Special:Userlogin|تسجيل الدخول]] مطلوب للتحرير',
+'whitelistedittitle'               => 'تسجيل الدخول مطلوب للتحرير',
 'whitelistedittext'                => 'يجب عليك $1 لتتمكن من تعديل الصفحات.',
 'confirmedittitle'                 => 'تأكيد البريد الإلكتروني مطلوب لبدء التعديل',
 'confirmedittext'                  => 'يجب عليك تأكيد بريدك الإلكتروني قبل التعديل. من فضلك اكتب وأكد بريدك الإلكتروني من خلال [[Special:Preferences|تفضيلاتك]]',
@@ -941,7 +938,7 @@ $2',
 'anontalkpagetext'                 => "----''هذه صفحة نقاش لمستخدم مجهول لم يقم بإنشاء حساب بعد أو لا يستعمل ذلك الحساب.
 لذا فيجب علينا استعمال رقم الأيبي للتعرف عليه/عليها.
 مثل هذا العنوان يمكن أن يشترك فيه عدة مستخدمين.
-لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:Userlogin/signup|أنشئ حسابا]] أو [[Special:Userlogin|سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
+لو كنت مستخدما مجهولا وتشعر بأن تعليقات لا تخصك تم توجيهها إليك، من فضلك [[Special:UserLogin/signup|أنشئ حسابا]] أو [[Special:UserLogin|سجل الدخول]] لتجنب الارتباك المستقبلي مع مستخدمين مجهولين آخرين.''",
 'noarticletext'                    => 'لا يوجد حاليا أي نص في هذه الصفحة، يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة].',
 'userpage-userdoesnotexist'        => 'حساب المستخدم "$1" غير مسجل.
 من فضلك تأكد أنك تريد إنشاء/تعديل هذه الصفحة.',
@@ -958,13 +955,13 @@ $2',
 'previewconflict'                  => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview'             => '<strong>عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
 من فضلك حاول مرة أخرى.
-في حال استمرار المشكلة حاول أن تقوم [[Special:Userlogout|بالخروج]] ومن ثم الدخول مرة أخرى.</strong>',
+في حال استمرار المشكلة حاول أن تقوم [[Special:UserLogout|بالخروج]] ومن ثم الدخول مرة أخرى.</strong>',
 'session_fail_preview_html'        => "<strong>عذرا! لم نستطع معالجة تعديلك بسبب فقدان بيانات الجلسة.</strong>
 
 ''لأن {{SITENAME}} بها HTML الخام مفعلة، العرض المسبق مخفي كاحتياط ضد هجمات الجافا سكريبت.''
 
 <strong>إذا كانت هذه محاولة تعديل صادقة، من فضلك حاول مرة أخرى.
-إذا كانت مازالت لا تعمل، حاول [[Special:Userlogout|تسجيل الخروج]] ثم تسجيل الدخول مجددا.</strong>",
+إذا كانت مازالت لا تعمل، حاول [[Special:UserLogout|تسجيل الخروج]] ثم تسجيل الدخول مجددا.</strong>",
 'token_suffix_mismatch'            => '<strong>تعديلك تم رفضه لأن عميلك أخطأ في علامات الترقيم 
 في نص التعديل. التعديل تم رفضه لمنع فساد نص المقالة.
 هذا يحدث أحيانا عندما تستخدم خدمة بروكسي مجهولة معيبة أساسها الويب.</strong>',
@@ -1012,7 +1009,7 @@ $2',
 'edittools'                        => '<!-- النص هنا سيظهر تحت صندوق التحرير واستمارة رفع الصور. -->',
 'nocreatetitle'                    => 'تم تحديد إنشاء الصفحات',
 'nocreatetext'                     => 'قام {{SITENAME}} بتحديد القدرة على إنشاء صفحات جديدة.
-يمكنك العودة وتحرير صفحة موجودة بالفعل، أو [[Special:Userlogin|الدخول أو تسجيل حساب]].',
+يمكنك العودة وتحرير صفحة موجودة بالفعل، أو [[Special:UserLogin|الدخول أو تسجيل حساب]].',
 'nocreate-loggedin'                => 'لا تمتلك الصلاحية لإنشاء صفحات جديدة في {{SITENAME}}.',
 'permissionserrors'                => 'أخطاء السماحات',
 'permissionserrorstext'            => 'لا تمتلك الصلاحية لفعل هذا، {{PLURAL:$1|للسبب التالي|للأسباب التالية}}:',
@@ -1135,7 +1132,7 @@ $2',
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
 'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفي من الإداريين.
-انظر [[Special:Ipblocklist|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
+انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -1177,7 +1174,7 @@ $2',
 # Search results
 'searchresults'             => 'نتائج البحث',
 'searchresulttext'          => 'للمزيد من المعلومات حول البحث في {{SITENAME}}، انظر [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'أنت بحثت عن \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|كل الصفحات التي تبدأ ب"$1"]] | [[Special:Whatlinkshere/$1|كل الصفحات التي تصل إلى "$1"]])',
+'searchsubtitle'            => 'أنت بحثت عن \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|كل الصفحات التي تبدأ ب"$1"]] | [[Special:WhatLinksHere/$1|كل الصفحات التي تصل إلى "$1"]])',
 'searchsubtitleinvalid'     => "أنت بحثت عن '''$1'''",
 'noexactmatch'              => "'''لا توجد صفحة بالاسم \"\$1\"'''.
 يمكنك [[:\$1|إنشاء هذه الصفحة]].",
@@ -1224,7 +1221,7 @@ $2',
 'mypreferences'            => 'تفضيلاتي',
 'prefs-edits'              => 'عدد التعديلات:',
 'prefsnologin'             => 'غير مسجل',
-'prefsnologintext'         => 'يجب أن تكون [[Special:Userlogin|مسجلا]] حتى تتمكن من تعديل تفضيلات المستخدم.',
+'prefsnologintext'         => 'يجب أن تكون [[Special:UserLogin|مسجلا]] حتى تتمكن من تعديل تفضيلات المستخدم.',
 'prefsreset'               => 'أعيدت التفضيلات إلى الإعداد الافتراضي المخزن.',
 'qbsettings'               => 'لوح سريع',
 'qbsettings-none'          => 'بلا تحديد',
@@ -1300,7 +1297,7 @@ $2',
 'userrights-reason'           => 'سبب التغيير:',
 'userrights-no-interwiki'     => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
 'userrights-nodatabase'       => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
-'userrights-nologin'          => 'يجب عليك [[Special:Userlogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
+'userrights-nologin'          => 'يجب عليك [[Special:UserLogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
 'userrights-notallowed'       => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
 'userrights-changeable-col'   => 'المجموعات التي يمكنك تغييرها',
 'userrights-unchangeable-col' => 'المجموعات التي لا يمكنك تغييرها',
@@ -1431,12 +1428,12 @@ $2',
 'reupload'                    => 'أعد الرفع',
 'reuploaddesc'                => 'إلغاء الرفع والرجوع إلى استمارة الرفع',
 'uploadnologin'               => 'لم تقم بتسجيل الدخول',
-'uploadnologintext'           => 'يجب أن تكون [[Special:Userlogin|مسجلا الدخول]] لتتمكن من رفع الملفات.',
+'uploadnologintext'           => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتتمكن من رفع الملفات.',
 'upload_directory_missing'    => 'مجلد الرفع ($1) مفقود ولم يمكن إنشاؤه بواسطة خادم الويب.',
 'upload_directory_read_only'  => 'مجلد الرفع ($1) لا يمكن الكتابة عليه بواسطة خادم الويب.',
 'uploaderror'                 => 'خطأ في الرفع',
 'uploadtext'                  => "استخدم الاستمارة بالأسفل لرفع الملفات.
-لعرض أو البحث في الملفات المرفوعة سابقا، راجع [[Special:Imagelist|قائمة الملفات المرفوعة]]، عمليات الرفع والحذف موجودة في [[Special:Log/upload|سجل الرفع]].
+لرؤية أو البحث في الملفات المرفوعة سابقا، راجع [[Special:ImageList|قائمة الملفات المرفوعة]]، عمليات الرفع (وإعادة الرفع) مسجلة في [[Special:Log/upload|سجل الرفع]] وعمليات الحذف في [[Special:Log/delete|سجل الحذف]].
 
 لإدراج صورة في صفحة، استخدم الوصلات في الصيغ التالية:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' لاستخدام النسخة الكاملة لملف
@@ -1555,7 +1552,7 @@ PICT # misc.
 'upload_source_url'  => '  (مسار صحيح، يمكن الوصول إليه)',
 'upload_source_file' => ' (ملف على حاسوبك)',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
 افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
 الضغط على رأس العامود يغير الترتيب.',
@@ -1583,7 +1580,7 @@ PICT # misc.
 'imagelinks'                     => 'وصلات',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} التالية تصل إلى هذا الملف:',
 'nolinkstoimage'                 => 'لا توجد صفحات تصل لهذا الملف.',
-'morelinkstoimage'               => 'عرض [[Special:Whatlinkshere/$1|المزيد من الوصلات]] إلى هذا الملف.',
+'morelinkstoimage'               => 'عرض [[Special:WhatLinksHere/$1|المزيد من الوصلات]] إلى هذا الملف.',
 'redirectstofile'                => '{{PLURAL:$1|الملف|ال$1 ملف}} التالي يحول إلى هذا الملف:',
 'duplicatesoffile'               => '{{PLURAL:$1|الملف|ال$1 ملف التالي}} مكررات لهذا الملف:',
 'sharedupload'                   => 'هذا الملف تم رفعه للتشارك بين المشاريع ويمكن استخدامه في المشاريع الأخرى.',
@@ -1674,7 +1671,7 @@ PICT # misc.
 هذا يعني '''\$5''' تعديل متوسط لكل صفحة، و '''\$6''' عرض لكل تعديل.
 
 طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل] هو '''\$7'''.",
-'userstatstext'          => "يوجد {{PLURAL:$1|[[Special:Listusers|مستخدم]] مسجل '''واحد'''|'''$1''' [[Special:Listusers|مستخدم]] مسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|لديه|لديهم}} صلاحيات $5.",
+'userstatstext'          => "يوجد {{PLURAL:$1|[[Special:ListUsers|مستخدم]] مسجل '''واحد'''|'''$1''' [[Special:ListUsers|مستخدم]] مسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|لديه|لديهم}} صلاحيات $5.",
 'statistics-mostpopular' => 'أكثر الصفحات مشاهدة',
 
 'disambiguations'      => 'صفحات التوضيح',
@@ -1690,12 +1687,12 @@ PICT # misc.
 'double-redirect-fixer'      => 'مصلح التحويل',
 
 'brokenredirects'        => 'تحويلات مكسورة',
-'brokenredirectstext'    => 'الوصلات التالية تشير لصفحات غير موجودة:',
+'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة.',
 'brokenredirects-edit'   => '(عدل)',
 'brokenredirects-delete' => '(حذف)',
 
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
-'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى:',
+'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى.',
 'withoutinterwiki-legend'  => 'بادئة',
 'withoutinterwiki-submit'  => 'عرض',
 
@@ -1774,7 +1771,7 @@ PICT # misc.
 'logempty'             => 'لا توجد مدخلات مطابقة في السجل.',
 'log-title-wildcard'   => 'البحث عن عناوين تبدأ بهذا النص',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'كل الصفحات',
 'alphaindexline'    => '$1 إلى $2',
 'nextpage'          => 'الصفحة التالية ($1)',
@@ -1798,12 +1795,12 @@ PICT # misc.
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'      => 'عرض المستخدمين بدءا من:',
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights'          => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary'  => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
 ربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.',
@@ -1814,7 +1811,7 @@ PICT # misc.
 
 # E-mail user
 'mailnologin'     => 'لا يوجد عنوان للإرسال',
-'mailnologintext' => 'يجب أن تقوم [[Special:Userlogin|بتسجيل الدخول]] وإدخال بريد إلكتروني صالح في صفحة [[Special:Preferences|التفضيلات]] لتتمكن من إرسال الرسائل لمستخدمين آخرين.',
+'mailnologintext' => 'يجب أن تقوم [[Special:UserLogin|بتسجيل الدخول]] وإدخال بريد إلكتروني صالح في صفحة [[Special:Preferences|التفضيلات]] لتتمكن من إرسال الرسائل لمستخدمين آخرين.',
 'emailuser'       => 'إرسال رسالة لهذا المستخدم',
 'emailpage'       => 'إرسال رسالة للمستخدم',
 'emailpagetext'   => 'لو أن هذا المستخدم قد قام بإدخال عنوان بريد إلكتروني صحيح في تفضيلاته، فسيتم إرسال رسالة واحدة له بالنموذج أدناه.
@@ -1841,10 +1838,10 @@ PICT # misc.
 'nowatchlist'          => 'لا توجد مدخلات في قائمة مراقبتك.',
 'watchlistanontext'    => 'الرجاء $1 لعرض أو تعديل الصفحات في قائمة مراقبتك.',
 'watchnologin'         => 'غير مسجل',
-'watchnologintext'     => 'يجب أن تكون [[Special:Userlogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
+'watchnologintext'     => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
 'addedwatch'           => 'تمت الإضافة لقائمة المراقبة',
 'addedwatchtext'       => "تمت إضافة الصفحة  \"\$1\" إلى [[Special:Watchlist|قائمة المراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:Recentchanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+التغييرات القادمة على هذه الصفحة وصفحة النقاش الخاصة بها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
 'removedwatch'         => 'تمت الإزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'مراقبة',
@@ -1960,10 +1957,10 @@ $NEWPAGE
 من فضلك اضغط على مفتاح "رجوع" لتحميل الصفحة التي جئت منها، ثم حاول مرة أخرى.',
 'protectlogpage'              => 'سجل الحماية',
 'protectlogtext'              => 'بالأسفل قائمة بالصفحات التي تمت حمايتها أو إزالة الحماية عنها.
-انظر [[Special:Protectedpages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
-'protectedarticle'            => 'حمى "[[$1]]"',
-'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
-'unprotectedarticle'          => 'أزال حماية [[$1]]',
+انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',
+'protectedarticle'            => 'حمى "[[:$1]]"',
+'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[:$1]]"',
+'unprotectedarticle'          => 'أزال حماية [[:$1]]',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
@@ -2080,7 +2077,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
-'whatlinkshere-title'      => 'الصفحات التي تصل إلى $1',
+'whatlinkshere-title'      => 'الصفحات التي تصل إلى "$1"',
 'whatlinkshere-page'       => 'الصفحة:',
 'linklistsub'              => '(قائمة الوصلات)',
 'linkshere'                => "الصفحات التالية تصل إلى '''[[:$1]]''':",
@@ -2132,7 +2129,7 @@ $1',
 'badipaddress'                    => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub'               => 'تم المنع بنجاح',
 'blockipsuccesstext'              => 'تم منع [[Special:Contributions/$1|$1]].<br />
-انظر [[Special:Ipblocklist|قائمة منع الأيبي]] لمراجعة حالات المنع.',
+انظر [[Special:IPBlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.',
 'ipb-edit-dropdown'               => 'عدل أسباب المنع',
 'ipb-unblock-addr'                => 'رفع منع $1',
 'ipb-unblock'                     => 'رفع المنع عن مستخدم أو عنوان أيبي',
@@ -2143,7 +2140,7 @@ $1',
 'ipusubmit'                       => 'رفع منع هذا العنوان',
 'unblocked'                       => 'تم  رفع منع [[User:$1|$1]]',
 'unblocked-id'                    => 'منع $1 تم رفعه',
-'ipblocklist'                     => 'قائمة عناوين الأيبي وأسماء المستخدمين الممنوعة',
+'ipblocklist'                     => 'عناوين الأيبي وأسماء المستخدمين الممنوعة',
 'ipblocklist-legend'              => 'إيجاد مستخدم ممنوع',
 'ipblocklist-username'            => 'اسم المستخدم أو عنوان الأيبي:',
 'ipblocklist-submit'              => 'بحث',
@@ -2165,7 +2162,7 @@ $1',
 'blocklogentry'                   => 'منع "[[$1]]" لفترة زمنية مدتها $2 $3',
 'blocklogtext'                    => 'هذا سجل بعمليات المنع ورفع المنع.
 عناوين الأيبي الممنوعة تلقائيا ليست معروضة.
-انظر [[Special:Ipblocklist|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
+انظر [[Special:IPBlockList|عناوين الأيبي الممنوعة]] لرؤية عمليات المنع المفعلة حاليا.',
 'unblocklogentry'                 => 'رفع منع $1',
 'block-log-flags-anononly'        => 'المستخدمون المجهولون فقط',
 'block-log-flags-nocreate'        => 'إنشاء الحسابات ممنوع',
@@ -2207,7 +2204,7 @@ $1',
 'lockdbsuccesssub'    => 'نجح إقفال قاعدة البيانات',
 'unlockdbsuccesssub'  => 'تم إزالة قفل قاعدة البيانات',
 'lockdbsuccesstext'   => 'لقد أغلقت قاعدة البيانات.<br />
-تذكر أن [[Special:Unlockdb|تزيل الغلق]] بعد اكتمال أعمال الصيانة.',
+تذكر أن [[Special:UnlockDB|تزيل الغلق]] بعد اكتمال أعمال الصيانة.',
 'unlockdbsuccesstext' => 'تم إعادة فتح قاعدة البيانات',
 'lockfilenotwritable' => 'ملف غلق قاعدة البيانات لا يمكن الكتابة عليه.
 لغلق قاعدة البيانات أو إزالة الغلق يجب أن يكون هذا الملف قابلا للكتابة من قبل خادم الويب.',
@@ -2216,10 +2213,10 @@ $1',
 # Move page
 'move-page'               => 'نقل $1',
 'move-page-legend'        => 'نقل صفحة',
-'movepagetext'            => "باستعمال النموذج أدناه بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها للاسم الجديد.
+'movepagetext'            => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها للاسم الجديد.
 العنوان القديم سيصبح تحويلة للعنوان الجديد.
-لن يتم تغيير الوصلات في الصفحات التي تتصل بهذه الصفحة؛
-تأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]].
+يمكنك تحديث التحويلات التي تشير إلى العنوان الأصلي تلقائيا.
+لو اخترت ألا تفعل، تأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]].
 أنت مسؤول عن التأكد من أن الوصلات تتصل مع بعضها بشكل مناسب.
 
 لاحظ أنه '''لن يتم''' نقل الصفحة إذا وجدت صفحة بالعنوان الجديد، إلا إذا كانت فارغة، أو تحويلة ولا تاريخ لها.
@@ -2253,15 +2250,15 @@ $1',
 'movepage-page-moved'     => 'تم نقل الصفحة $1 إلى $2.',
 'movepage-page-unmoved'   => 'لم يمكن نقل الصفحة $1 إلى $2.',
 'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} تم نقله ولن يتم نقل المزيد تلقائيا.',
-'1movedto2'               => '[[$1]] تم نقلها إلى [[$2]]',
-'1movedto2_redir'         => '[[$1]] تم نقلها إلى [[$2]] فوق التحويلة',
+'1movedto2'               => '[[:$1]] تم نقلها إلى [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] تم نقلها إلى [[:$2]] فوق التحويلة',
 'movelogpage'             => 'سجل النقل',
 'movelogpagetext'         => 'بالأسفل قائمة بالصفحات التي تم نقلها.',
 'movereason'              => 'السبب:',
 'revertmove'              => 'استرجاع',
 'delete_and_move'         => 'حذف ونقل',
 'delete_and_move_text'    => '==الحذف مطلوب==
-الصفحة الهدف "[[$1]]" موجودة بالفعل.
+الصفحة الهدف "[[:$1]]" موجودة بالفعل.
 هل تريد حذفها لإفساح المجال للنقل؟',
 'delete_and_move_confirm' => 'نعم، احذف الصفحة',
 'delete_and_move_reason'  => 'تم الحذف لإفساح مجال للنقل',
@@ -2347,7 +2344,7 @@ $1',
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
 'importlogpagetext'                => 'عمليات الاستيراد الإدارية للصفحات مع تاريخ التعديل من ويكيات أخرى.',
-'import-logentry-upload'           => 'استورد [[$1]] بواسطة رفع ملف',
+'import-logentry-upload'           => 'استورد [[:$1]] بواسطة رفع ملف',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|مراجعة واحدة|مراجعة}}',
 'import-logentry-interwiki'        => 'استورد عبر الويكي $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|مراجعة واحدة|مراجعة}} من $2',
@@ -2448,7 +2445,7 @@ $1',
 'lastmodifiedatby' => 'آخر تعديل لهذه الصفحة كان في $2، $1 بواسطة $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'بناء على العمل بواسطة $1.',
 'others'           => 'أخرى',
-'siteusers'        => '{{SITENAME}} مستخدم(و) $1',
+'siteusers'        => 'مستخدم(و) {{SITENAME}} $1',
 'creditspage'      => 'حقوق الصفحة',
 'nocredits'        => 'لا توجد معلومات حقوق متوفرة لهذه الصفحة.',
 
@@ -2522,7 +2519,7 @@ $1',
 'show-big-image'       => 'دقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'             => 'معرض الملفات الجديدة',
 'imagelisttext'         => 'فيما يلي قائمة تحوي $1 {{PLURAL:$1|ملف|ملفات}} مرتبة $2.',
 'newimages-summary'     => 'هذه الصفحة الخاصة تعرض آخر الملفات المرفوعة.',
@@ -2837,7 +2834,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'عدل هذا الملف باستخدام تطبيق خارجي',
-'edit-externally-help' => 'انظر [http://meta.wikimedia.org/wiki/Help:External_editors تعليمات الإعداد] لمزيد من المعلومات.',
+'edit-externally-help' => 'انظر [http://www.mediawiki.org/wiki/Manual:External_editors تعليمات الإعداد] لمزيد من المعلومات.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'الكل',
@@ -2910,7 +2907,7 @@ $1
 'unit-pixel' => 'بك',
 
 # HTML dump
-'redirectingto' => 'جاري التحويل إلى [[$1]]...',
+'redirectingto' => 'جاري التحويل إلى [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'امسح مختزن هذه الصفحة؟
@@ -2927,7 +2924,7 @@ $1',
 
 # Separators for various lists, etc.
 'semicolon-separator' => '؛',
-'comma-separator'     => '،',
+'comma-separator'     => '،&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← الصفحة السابقة',
@@ -2949,7 +2946,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'إزالة كل المحتوى من الصفحة',
 'autosumm-replace' => "استبدال الصفحة ب'$1'",
-'autoredircomment' => 'تحويل إلى [[$1]]',
+'autoredircomment' => 'تحويل إلى [[:$1]]',
 'autosumm-new'     => 'صفحة جديدة: $1',
 
 # Size units
@@ -3081,7 +3078,7 @@ $1',
 'version-software-product'         => 'المنتج',
 'version-software-version'         => 'النسخة',
 
-# Special:Filepath
+# Special:FilePath
 'filepath'         => 'مسار ملف',
 'filepath-page'    => 'الملف:',
 'filepath-submit'  => 'المسار',
@@ -3120,7 +3117,7 @@ $1',
 'specialpages-group-redirects'   => 'صفحات خاصة تحول',
 'specialpages-group-spam'        => 'أدوات السبام',
 
-# Special:Blankpage
+# Special:BlankPage
 'blankpage'              => 'صفحة فارغة',
 'intentionallyblankpage' => 'هذه الصفحة تركت فارغة عن قصد',
 

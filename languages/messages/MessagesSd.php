@@ -5,9 +5,6 @@
  * @file
  *
  * @author Aursani
- * @author SPQRobin
- * @author Siebrand
- * @author Jon Harald Søby
  */
 
 $rtl = true;
@@ -339,7 +336,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'template-protected'     => '(تحفظيل)',
 'template-semiprotected' => '(نيم تحفظيل)',
 'nocreatetext'           => '{{SITENAME}} نوان صفحا سرجڻ جي روڪَ ڪئي آهي.
-توهان اڳي ئي موجود صفحن کي سنواري سگھو ٿا، يا [[Special:Userlogin|لاگ اِن ٿي يا نئون کاتو کولي سگھو ٿا]].',
+توهان اڳي ئي موجود صفحن کي سنواري سگھو ٿا، يا [[Special:UserLogin|لاگ اِن ٿي يا نئون کاتو کولي سگھو ٿا]].',
 'recreate-deleted-warn'  => "'''خبردار: توهان اهڙو صفحو نئين سر سرجي رهيا آهيو جيڪو اڳي ڊاٺو ويو آهي.'''
 
 بهتر ٿيندو ته توهان سوچي وٺو ته ڇا ان صفحي کي سنوارڻ بهتر ٿيندو.
@@ -441,7 +438,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'uploadlogpage' => 'چاڙهه لاگ',
 'uploadedimage' => '"[[$1]]" چاڙهيو ويو',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'فائيل فهرست',
 
 # Image description page
@@ -531,7 +528,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'log'                  => 'لاگس',
 'all-logs-page'        => 'سڀئي لاگس',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'سڀ صفحا',
 'alphaindexline' => '$1 کان $2',
 'nextpage'       => 'اڳيون صفحو ($1)',
@@ -553,7 +550,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'mywatchlist'          => 'منهنجي ٽيٽ فهرست',
 'watchlistfor'         => "(براءِ '''$1''')",
 'addedwatch'           => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',
-'addedwatchtext'       => "صفحو بعنوان \"[[:\$1]]\" اوهان جي [[Special:Watchlist|ٽيٽ فهرست]] ۾ شامل ٿي ويو. استقبالي تبديليون هتي درج ٿينديون وينديون. اهو صفحو [[Special:Recentchanges|تازين تبديلين]] واري صفحي تي '''گهرن''' اکرن ۾ نمايان ڪري ڏيکاريو ويندو. جيڪڏهن اوهان اهو سڀ نه ٿا چاهيو ته '''اڻ ٽيٽيو''' تي ڪلڪ ڪريو.",
+'addedwatchtext'       => "صفحو بعنوان \"[[:\$1]]\" اوهان جي [[Special:Watchlist|ٽيٽ فهرست]] ۾ شامل ٿي ويو. استقبالي تبديليون هتي درج ٿينديون وينديون. اهو صفحو [[Special:RecentChanges|تازين تبديلين]] واري صفحي تي '''گهرن''' اکرن ۾ نمايان ڪري ڏيکاريو ويندو. جيڪڏهن اوهان اهو سڀ نه ٿا چاهيو ته '''اڻ ٽيٽيو''' تي ڪلڪ ڪريو.",
 'removedwatch'         => 'ٽيٽ فهرست مان هٽايو ويو',
 'removedwatchtext'     => 'صفحو بعنوان "[[:$1]]" توهان جي ٽيٽ فهرست مان هٽي چڪو آهي.',
 'watch'                => 'ٽيٽيو',
@@ -680,7 +677,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 '''موادي صفحو پاڻ ته ڪاميابيءَ سان چُري ويو، پر لاڳاپيل مباحثي صفحو چُري نه سگھيو ڇاڪاڻ ته نئين عنوان تي اڳي ئي هڪ مباحثي صفحو موجود آهي. براءِ مهرباني انهن ٻنهي هٿ سان ضمائيندا.",
 'movedto'                 => 'چوريو ويو برسر',
 'movetalk'                => 'لاڳاپيل مباحثي صفحو چوريو',
-'1movedto2'               => '[[$1]] کي چوري [[$2]] تي رکيو ويو',
+'1movedto2'               => '[[:$1]] کي چوري [[:$2]] تي رکيو ويو',
 'movelogpage'             => 'چورڻ لاگ',
 'movereason'              => 'سبب:',
 'revertmove'              => 'ورايو',
@@ -760,7 +757,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'show-big-image'       => 'سنهو ترين تحلل',
 'show-big-image-thumb' => '<small>هن پيش نگاهه جي ماپ: $1 × $2 عڪسلون</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'نون فائيلن جي گيلري',
 'noimages'  => 'ڏسڻ لاءِ ڪجھه ناهي.',
 'bydate'    => 'تاريخوار',
@@ -817,7 +814,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # External editor support
 'edit-externally'      => 'هيءُ فائيل ڪنهن خارجي منتقڪريءَ سان سنواريو',
-'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://meta.wikimedia.org/wiki/Help:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
+'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://www.mediawiki.org/wiki/Manual:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'سڀ',

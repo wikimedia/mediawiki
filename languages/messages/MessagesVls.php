@@ -4,8 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
- * @author Siebrand
  * @author Tbc
  * @author לערי ריינהארט
  */
@@ -97,7 +95,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-n-mainpage' => "Noar 't voorblad goane",
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Nieuwe ofbeeldiengn',
 
 );

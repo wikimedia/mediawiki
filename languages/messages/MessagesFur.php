@@ -5,9 +5,7 @@
  * @file
  *
  * @author Klenje
- * @author Siebrand
  * @author לערי ריינהארט
- * @author Jon Harald Søby
  * @author Helix84
  */
 
@@ -352,7 +350,7 @@ $messages = array(
 # Main script and global functions
 'nospecialpagetext' => "<big>'''Tu âs cirût une pagjine speciâl no valide.'''</big>
 
-Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:Specialpages|{{int:specialpages}}]].",
+Une liste des pagjinis speciâls validis a si pues cjatâ su [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'           => 'Erôr',
@@ -526,7 +524,7 @@ Cun di plui, inviant il test tu declaris che tu âs scrit tu chest o tu lu âs c
 'templatesusedsection'   => 'Modei doprâts in cheste sezion:',
 'template-protected'     => '(protezût)',
 'template-semiprotected' => '(semi-protezût)',
-'nocreatetext'           => '{{SITENAME}} al à limitât la pussibilitât di creâ gnovis pagjinis ai utents regjistrâts. Tu puedis tornâ indaûr e cambiâ une pagjine che e esist o se no [[Special:Userlogin|jentrâ o creâ une gnove identitât]].',
+'nocreatetext'           => '{{SITENAME}} al à limitât la pussibilitât di creâ gnovis pagjinis ai utents regjistrâts. Tu puedis tornâ indaûr e cambiâ une pagjine che e esist o se no [[Special:UserLogin|jentrâ o creâ une gnove identitât]].',
 'recreate-deleted-warn'  => "'''Atenzion: tu stâs par tornâ a creâ une pagjine che e je stade eliminade timp fa.'''
 
 Siguriti che sedi pardabon oportun lâ indevant cun la modifiche di cheste pagjine.
@@ -673,7 +671,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'reupload'           => 'Torne a cjamâ sù',
 'uploadnologin'      => 'No jentrât',
 'uploaderror'        => 'Erôr cjamant sù',
-'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:Imagelist|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
+'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:ImageList|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
 Par includi une figure intune pagjine, dopre un leam inte form
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:file.jpg]]</nowiki>''',
@@ -699,7 +697,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'sourcefilename'     => 'Non dal file origjinâl:',
 'destfilename'       => 'Non dal file di destinazion:',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist'             => 'Liste des figuris',
 'imagelist_date'        => 'Date',
 'imagelist_name'        => 'Non',
@@ -761,7 +759,7 @@ Gjavant chestis, o vin '''\$2''' {{PLURAL:\$2|pagjine che e je|pagjinis che a so
 O vin vût in dut '''\$3''' {{PLURAL:\$3|viodude|viodudis}} des pagjinis e '''\$4''' {{PLURAL:\$4|cambiament|cambiaments}} aes pagjinis di cuant che la wiki e je stade implantade. Chest al vûl dî une medie di '''\$5''' cambiaments par pagjine, e '''\$6''' viodudis par ogni cambiament.
 
 La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e conten {{PLURAL:\$7|'''1''' element|'''\$7''' elements}}.",
-'userstatstext'          => "{{PLURAL:$1|Al è '''1''' [[Special:Listusers|utent]] regjistrât|A son '''$1''' [[Special:Listusers|utents]] regjistrâts}}, di chescj  '''$2''' (o il '''$4%''') {{PLURAL:$2|al è|a son}} $5 .",
+'userstatstext'          => "{{PLURAL:$1|Al è '''1''' [[Special:ListUsers|utent]] regjistrât|A son '''$1''' [[Special:ListUsers|utents]] regjistrâts}}, di chescj  '''$2''' (o il '''$4%''') {{PLURAL:$2|al è|a son}} $5 .",
 'statistics-mostpopular' => 'Pagjinis plui visitadis',
 
 'disambiguations' => 'Pagjinis di disambiguazion',
@@ -826,7 +824,7 @@ La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e co
 Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la vôs che ti interesse.',
 'logempty'             => 'Nissun element corispondint tal regjistri.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Dutis lis pagjinis',
 'alphaindexline'    => 'di $1 a $2',
 'nextpage'          => 'Prossime pagjine ($1)',
@@ -845,11 +843,11 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
 'categoriesfrom'     => 'Mostre lis categoriis scomençant di:',
 
-# Special:Listusers
+# Special:ListUsers
 'listusersfrom'    => 'Mostre i utents scomençant di:',
 'listusers-submit' => 'Mostre',
 
-# Special:Listgrouprights
+# Special:ListGroupRights
 'listgrouprights-group'  => 'Grup',
 'listgrouprights-rights' => 'Dirits',
 
@@ -871,11 +869,11 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'watchlistfor'         => "(par '''$1''')",
 'nowatchlist'          => 'Nissun element al è tignût di voli.',
 'watchnologin'         => 'No tu sês jentrât',
-'watchnologintext'     => "Tu 'nd âs di [[Special:Userlogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
+'watchnologintext'     => "Tu 'nd âs di [[Special:UserLogin|jentrâ]] par modificâ la liste des pagjinis tignudis di voli.",
 'addedwatch'           => 'Zontât aes pagjinis tignudis di voli',
 'addedwatchtext'       => "La pagjine \"<nowiki>\$1</nowiki>\" e je stade zontade ae [[Special:Watchlist|liste di chês tignudis di voli]].
 Tal futûr i cambiaments a cheste pagjine e ae pagjine di discussion relative a saran segnalâts ca,
-e la pagjine e sarà '''gruessute''' te [[Special:Recentchanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
+e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins cambiaments]] cussì che tu puedis notâle daurman.
 
 <p>Se tu vuelis gjavâle de liste pi indevant, frache su \"No stâ tignî di voli\" te sbare in alt.",
 'removedwatch'         => 'Gjavade de liste',
@@ -1180,7 +1178,7 @@ Sielç par plasê un altri non.',
 'show-big-image'       => 'Version a risoluzion plene',
 'show-big-image-thumb' => '<small>Dimensions di cheste anteprime: $1 × $2 pixels</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages'     => 'Galarie dai gnûfs files',
 'imagelisttext' => 'Ca sot e je une liste di $1 {{PLURAL:$1|file|files}} ordenâts $2.',
 'showhidebots'  => '($1 i bots)',
@@ -1235,7 +1233,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # External editor support
 'edit-externally'      => 'Modifiche chest file cuntune aplicazion esterne',
-'edit-externally-help' => 'Cjale [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] par altris informazions.',
+'edit-externally-help' => 'Cjale [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] par altris informazions.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ducj',
@@ -1261,7 +1259,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'scarytranscludetoolong'  => '[URL masse lungje; o si scusin]',
 
 # HTML dump
-'redirectingto' => 'Daûr a tornâ a indreçâ a [[$1]]...',
+'redirectingto' => 'Daûr a tornâ a indreçâ a [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'Va indevant',
@@ -1315,7 +1313,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'version-version'          => 'Version',
 'version-software-version' => 'Version',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-page' => 'Non dal file:',
 
 # Special:SpecialPages

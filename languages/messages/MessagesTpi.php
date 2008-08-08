@@ -5,17 +5,9 @@
  * @file
  *
  * @author Wantok
- * @author Niklas Laxström
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Wytukaze
- * @author Wantok
- * @author לערי ריינהארט
- * @author Siebrand
  * @author Wytukaze
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -176,7 +168,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'movethispage'            => 'Surikim dispela pes',
 'unusedcategoriestext'    => 'Ol dispela grup istap yet, tasol i no gat wanpela pes o grup i stap insait long ol.',
 
-# Special:Allpages
+# Special:AllPages
 'allpages' => 'Olgeta pes',
 
 # Special:Categories
@@ -189,11 +181,11 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'watchlistfor'         => "(bilong '''$1''')",
 'nowatchlist'          => 'Nogat wanpela samting istap long lukautbuk bilong yu.',
 'watchlistanontext'    => 'Yu mas $1 long lukim o senisim ol samting long lukautbuk bilong yu.',
-'watchnologintext'     => 'Yu mas [[Special:Userlogin|login]] long senisim lukautbuk bilong yu.',
+'watchnologintext'     => 'Yu mas [[Special:UserLogin|login]] long senisim lukautbuk bilong yu.',
 'addedwatch'           => 'Igo insait long lukautbuk',
 'addedwatchtext'       => "Pes \"[[:\$1]]\" igo insait long [[Special:Watchlist|lukautbuk]] bilong yu nau.
 Bai yu lukim ol nupela senis long dispela pes, na pes toktok bilong en, long lukautbuk, 
-na dispela pes bai kamap '''strongpela''' long [[Special:Recentchanges|pes bilong ol nupela senis]]
+na dispela pes bai kamap '''strongpela''' long [[Special:RecentChanges|pes bilong ol nupela senis]]
 na olsem bai isi long lukim em.
 
 Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis long lukautim\" taim yu lukim pes.",
@@ -223,7 +215,7 @@ Yu mas painim narapela nem.',
 'talkexists'      => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
 'movedto'         => 'i surik i go long',
 'movetalk'        => 'Surikim pes bilong toktok wantaim',
-'1movedto2'       => '[[$1]] i surik i go long [[$2]] pinis',
+'1movedto2'       => '[[:$1]] i surik i go long [[:$2]] pinis',
 'movelogpage'     => 'Buk bilong ol surik',
 'movelogpagetext' => 'Hia yumi lukim ol pes i surik pinis.',
 

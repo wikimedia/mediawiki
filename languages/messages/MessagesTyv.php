@@ -418,7 +418,7 @@ $1',
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
 
-# Special:Imagelist
+# Special:ImageList
 'imgfile'               => 'файл',
 'imagelist'             => 'Файл даңзызы',
 'imagelist_name'        => 'Ат',
@@ -508,7 +508,7 @@ $1',
 'speciallogtitlelabel' => 'Ат:',
 'log-search-submit'    => 'Чоруур',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Шупту арыннар',
 'nextpage'       => 'Соонда арын ($1)',
 'prevpage'       => 'Бүрүнгү арын ($1)',
@@ -520,7 +520,7 @@ $1',
 # Special:Categories
 'categories' => 'Бөлүктер',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Көргүзер',
 
 # E-mail user
@@ -668,7 +668,7 @@ $1',
 'previousdiff' => '← Бүрүнгү ылгал',
 'nextdiff'     => 'Соонда ылгал →',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '(боцду $1)',
 'noimages'     => 'Чуруклар чок.',
 'ilsubmit'     => 'Дилээр',

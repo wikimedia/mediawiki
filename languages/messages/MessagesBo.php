@@ -184,7 +184,7 @@ $messages = array(
 # Book sources
 'booksources-go' => 'སོང་།',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'དྲ་ངོས་ཡོངས།',
 'allpagessubmit' => 'སོང་།',
 
@@ -230,7 +230,7 @@ $messages = array(
 'tooltip-ca-move'        => 'ཨཾོབེ༹་ ཐིས་ པགེ་',
 'tooltip-p-logo'         => 'གཙོ་ངོས།',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'འཚོལ།',
 
 # Multipage image navigation

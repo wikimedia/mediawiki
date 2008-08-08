@@ -6,8 +6,6 @@
  *
  * @author Ælsån
  * @author Huslåke
- * @author Siebrand
- * @author M.M.S.
  */
 
 $fallback = 'da';
@@ -424,7 +422,7 @@ Du lover os hermed, at du selv <strong>har skrevet skrevselenger</strong>, at sk
 'templatesusedpreview'   => 'Følgende skablåner bruges åf denne ertikelførhåndsvesnenge:',
 'template-protected'     => '(skrevebeskyttet)',
 'template-semiprotected' => '(skrevebeskyttet før ekke ånmeldte og nye brugere)',
-'nocreatetext'           => "Æ'n åpdiin har begrænset åprettelse åf nye sider. Bestående sider ken ændres æller [[Special:Userlogin|loĝge på]].",
+'nocreatetext'           => "Æ'n åpdiin har begrænset åprettelse åf nye sider. Bestående sider ken ændres æller [[Special:UserLogin|loĝge på]].",
 'recreate-deleted-warn'  => "'''Advarsel: Du er ve at genskabe en tidligere slettet side.'''
  
 Åvervej det'm er passende at genåprette'n side. De slettede hersenenger før 
@@ -510,7 +508,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'uploadlogpage' => 'Åplægnengslog',
 'uploadedimage' => 'Låĝde "[[$1]]" åp',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Billetliste',
 
 # Image description page
@@ -597,7 +595,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'log'                  => 'Loglister',
 'all-logs-page'        => 'Åle loglister',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Åle ertikler',
 'alphaindexline' => '$1 til $2',
 'nextpage'       => 'Næste side ($1)',
@@ -618,7 +616,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'mywatchlist'          => 'Åvervågnengsliste',
 'watchlistfor'         => "(før '''$1''')",
 'addedwatch'           => 'Tilføjet til din åvervågnengsliste',
-'addedwatchtext'       => "Æ side \"<nowiki>\$1</nowiki>\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:Recentchanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
+'addedwatchtext'       => "Æ side \"[[:\$1]]\" er blevet tilføjet til din [[Special:Watchlist|åvervågningsliste]]. Fremtidige ændrenger til denne side og den tilhørende diskusjeside hvil bleve listet der, og æ side hvil fremstå '''fremhævet''' i'n [[Special:RecentChanges|liste ve de seneste ændrenger]] før at gøre det lettere at finde den. Hves du senere hvilst fjerne'n side frå din åvervågningsliste, så klik \"Fjern åvervågnenge\".",
 'removedwatch'         => 'Fjernet frå åvervågnengsliste',
 'removedwatchtext'     => 'Æ side "<nowiki>$1</nowiki>" er blevet fjernet frå din åvervågnengsliste.',
 'watch'                => 'Åvervåg',
@@ -738,7 +736,7 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'talkexists'       => 'Æ side blev flyttet korrekt, men den tilhørende diskusjeside ken ekke flyttes, førdi der ålrede eksisterer en ve den nye titel. Du erst nødt til at flette dem sammen manuelt.',
 'movedto'          => 'flyttet til',
 'movetalk'         => 'Flyt også\'n "diskusjeside", hves den eksisterer.',
-'1movedto2'        => '[[$1]] flyttet til [[$2]]',
+'1movedto2'        => '[[:$1]] flyttet til [[:$2]]',
 'movelogpage'      => 'Flyttelog',
 'movereason'       => 'Begrundelse:',
 'revertmove'       => 'gendan',
@@ -809,7 +807,7 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 'show-big-image'       => 'Hersenenge i større åpløsnenge',
 'show-big-image-thumb' => '<small>Størrelse åf førhåndsvesnenge: $1 × $2 pixel</small>',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Liste ve de nyeste billeter',
 
 # Bad image list
@@ -832,7 +830,7 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # External editor support
 'edit-externally'      => "Redigær denne gøret ve'n utsende redigærstøme",
-'edit-externally-help' => 'Se [http://meta.wikimedia.org/wiki/Help:External_editors setup hjælpje] før mære informasje.',
+'edit-externally-help' => 'Se [http://www.mediawiki.org/wiki/Manual:External_editors setup hjælpje] før mære informasje.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'åle',

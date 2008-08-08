@@ -5,7 +5,6 @@
  * @file
  *
  * @author Malafaya
- * @author SPQRobin
  * @author nov.wikipedia.org sysops
  */
 
@@ -212,7 +211,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'preferences'       => 'Preferos',
 'mypreferences'     => 'Men preferos',
 'prefsnologin'      => 'Non ensignatat',
-'prefsnologintext'  => 'Vu mus es [[Special:Userlogin|ensignatat]] por determina useren preferos.',
+'prefsnologintext'  => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
 'prefs-rc'          => 'Resenti chanjos',
 'searchresultshead' => 'Sercha',
 
@@ -237,7 +236,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'fileuploadsummary' => 'Resume:',
 'watchthisupload'   => 'Observa disi pagine',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_search_for'  => 'Sercha imaje nome:',
 'imagelist_name'        => 'Nome',
 'imagelist_user'        => 'Usere',
@@ -283,7 +282,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Special:Log
 'specialloguserlabel' => 'Usere:',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'          => 'Omni pagines',
 'alphaindexline'    => '$1 a $2',
 'allarticles'       => 'Omni artikles',
@@ -304,7 +303,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'watchnologin'    => 'Non ensignatat',
 'addedwatch'      => 'Adit a observa-liste',
 'addedwatchtext'  => "Li pagine \"[[:\$1]]\" ha bli adi a vun [[Special:Watchlist|observa-liste]].
-Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:Recentchanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
+Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:RecentChanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
 
 Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserva\" in li lateral kolumne.",
 'watch'           => 'Observa',
@@ -353,8 +352,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'movearticle'             => 'Mova pagine',
 'move-watch'              => 'Observa disi pagine',
 'movedto'                 => 'movat a',
-'1movedto2'               => '[[$1]] movat a [[$2]]',
-'1movedto2_redir'         => '[[$1]] movat a [[$2]] via ri-adreso',
+'1movedto2'               => '[[:$1]] movat a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] movat a [[:$2]] via ri-adreso',
 'delete_and_move'         => 'Ekarta e mova',
 'delete_and_move_confirm' => 'Yes, ekarta li pagine',
 'delete_and_move_reason'  => 'Ekartat por fa spatie por movo',
@@ -376,7 +375,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 # Info page
 'infosubtitle' => 'Informatione pri pagine',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Sercha',
 'bydate'   => 'segun date',
 
@@ -396,7 +395,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Auto-summaries
 'autosumm-replace' => "Remplasant pagine kun '$1'",
-'autoredircomment' => 'Ri-adresant a [[$1]]',
+'autoredircomment' => 'Ri-adresant a [[:$1]]',
 'autosumm-new'     => 'Novi pagine: $1',
 
 # Special:Version

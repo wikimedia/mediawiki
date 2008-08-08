@@ -161,7 +161,7 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'move-page-legend' => 'Chichinura peji',
 'movepagebtn'      => 'Chichinura peji',
 'movedto'          => 'rachichinurwa ku',
-'1movedto2'        => '[[$1]] rachichinurwa ku [[$2]]',
+'1movedto2'        => '[[:$1]] rachichinurwa ku [[:$2]]',
 'movereason'       => 'Chikonzero',
 
 # Namespace 8 related

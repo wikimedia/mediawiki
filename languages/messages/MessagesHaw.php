@@ -6,9 +6,7 @@
  *
  * @author Singularity
  * @author Kalani
- * @author SPQRobin
  * @author Node ue
- * @author Siebrand
  */
 
 $messages = array(
@@ -303,7 +301,7 @@ hō‘ike ‘ia i lalo:",
 'loginreqlink'           => 'E komo',
 'accmailtitle'           => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'             => '(Hou)',
-'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:UserLogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 'previewnote'            => '<strong>‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!</strong>',
 'editing'                => 'Ke ho‘ololi nei iā $1',
@@ -384,7 +382,7 @@ hō‘ike ‘ia i lalo:",
 'filedesc'          => "Hō'ulu'ulu mana'o",
 'fileuploadsummary' => "Hō'ulu'ulu mana'o:",
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist_name' => 'Inoa',
 
 # Image description page
@@ -417,7 +415,7 @@ hō‘ike ‘ia i lalo:",
 # Special:Log
 'log' => 'Nā mo‘olelo',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Nā ‘ao‘ao loa apau',
 'alphaindexline' => '$1 i $2',
 'allarticles'    => 'Nā mo‘olelo apau loa',
@@ -428,7 +426,7 @@ hō‘ike ‘ia i lalo:",
 # Special:Categories
 'categories' => 'Nā mahele',
 
-# Special:Listusers
+# Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 
 # E-mail user
@@ -530,7 +528,7 @@ hō‘ike ‘ia i lalo:",
 'tooltip-n-recentchanges'  => 'Nā loli hou ma ka wiki.',
 'tooltip-n-randompage'     => 'Ho‘ouka i he akikala kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā‘oe.',
-'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai.',
+'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',
@@ -539,7 +537,7 @@ hō‘ike ‘ia i lalo:",
 # Media information
 'show-big-image' => 'Miomio piha',
 
-# Special:Newimages
+# Special:NewImages
 'ilsubmit' => 'Huli',
 
 # 'all' in various places, this might be different for inflected languages
@@ -554,7 +552,7 @@ hō‘ike ‘ia i lalo:",
 
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",
-'autoredircomment' => 'Ke alaka‘i nei hou i [[$1]]',
+'autoredircomment' => 'Ke alaka‘i nei hou i [[:$1]]',
 'autosumm-new'     => 'Ka ‘ao‘ao hou: $1',
 
 # Live preview

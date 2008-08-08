@@ -5,7 +5,6 @@
  * @file
  *
  * @author לערי ריינהארט
- * @author SPQRobin
  */
 
 $messages = array(
@@ -213,7 +212,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # Special:Log
 'specialloguserlabel' => 'Umsebenzisi:',
 
-# Special:Allpages
+# Special:AllPages
 'allinnamespace' => 'Onke amakhasi ($1 namespace)',
 'allpagessubmit' => 'Hamba',
 
@@ -295,7 +294,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'markaspatrolledtext' => 'Dweba ukuthi lelikhasi liyagadwa',
 'markedaspatrolled'   => 'Dweba ukuthi lelikhasi liyagadwa',
 
-# Special:Newimages
+# Special:NewImages
 'newimages' => 'Uhlelo lwamafayela amasha',
 'noimages'  => 'Awuboni lutho.',
 'ilsubmit'  => 'Sesha',
@@ -346,7 +345,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # action=purge
 'confirm_purge_button' => 'Kulungile',
 
-# Special:Filepath
+# Special:FilePath
 'filepath-submit' => 'Indlela',
 
 );

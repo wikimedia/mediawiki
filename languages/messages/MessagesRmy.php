@@ -6,8 +6,6 @@
  *
  * @author לערי ריינהארט
  * @author Desiphral
- * @author Siebrand
- * @author Jon Harald Søby
  * @author Niklas Laxström
  */
 
@@ -159,7 +157,7 @@ $messages = array(
 'nstab-category'  => 'Shopni',
 
 # Main script and global functions
-'nospecialpagetext' => 'Manglyas ekh [[Special:Specialpages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
+'nospecialpagetext' => 'Manglyas ekh [[Special:SpecialPages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.',
 
 # General errors
 'wrong_wfQuery_params' => 'Doshalo gin le parametrengo ko wfQuery()<br />I function: $1<br />Query: $2',
@@ -348,7 +346,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'badfilename' => 'O chitrosko anav sas paruvdo; o nevo anav si "$1".',
 'savefile'    => 'Uxtav file',
 
-# Special:Imagelist
+# Special:ImageList
 'imagelist' => 'Patrinipen le chitrengo',
 
 # Image description page
@@ -376,7 +374,7 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'ancientpages' => 'E puraneder lekha',
 'move'         => 'Ingerdipen',
 
-# Special:Allpages
+# Special:AllPages
 'allpages'       => 'Savore patrya',
 'nextpage'       => 'Anglutni patrin ($1)',
 'allarticles'    => 'Sa le artikolurya',
@@ -393,7 +391,7 @@ Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
 'mywatchlist'      => 'Dikhipnaske lekha',
 'addedwatch'       => 'Thovdi ando patrinipen le patrinyange so arakhav len',
 'addedwatchtext'   => 'I patrin "[[:$1]]" sas thovdi andi tiri lista [[Special:Watchlist|le artikolengi so dikhes len]].
-Le neve paruvimata andar kadale patrya thai andar lenge vakyarimatenge patrya thona kathe, vi dikhena pen le <b>thule semnurenca</b> andi patrin le [[Special:Recentchanges|neve paruvimatenge]].
+Le neve paruvimata andar kadale patrya thai andar lenge vakyarimatenge patrya thona kathe, vi dikhena pen le <b>thule semnurenca</b> andi patrin le [[Special:RecentChanges|neve paruvimatenge]].
 
 Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len ker click kai "Na mai arakh" (opre, kana i patrin dikhel pes).',
 'removedwatchtext' => 'I patrin "[[:$1]]" sas khosli katar o patrinipen le dikhipnaske lekhenca (artikolurya).',
@@ -454,7 +452,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'movepagebtn'     => 'Inger i patrin',
 'pagemovedsub'    => 'I patrin sas bićhaldi.',
 'movedto'         => 'ingerdi kai',
-'1movedto2'       => '[[$1]] bichhaldo kai [[$2]]',
+'1movedto2'       => '[[:$1]] bichhaldo kai [[:$2]]',
 'delete_and_move' => 'Khos thai inger',
 
 # Export
@@ -530,7 +528,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'previousdiff' => '← Purano ververipen',
 'nextdiff'     => 'Anglutno paruvipen →',
 
-# Special:Newimages
+# Special:NewImages
 'showhidebots' => '($1 boturya)',
 'ilsubmit'     => 'Rod',
 
