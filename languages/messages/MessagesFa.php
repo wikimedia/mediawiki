@@ -8,7 +8,6 @@
  * @author G - ג
  * @author Huji <huji.huji at gmail.com>
  * @author Gangleri
- * @author Huji
  * @author Mardetanha
  * @author לערי ריינהארט
  * @author Siebrand
