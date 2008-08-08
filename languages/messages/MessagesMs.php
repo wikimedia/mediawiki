@@ -581,6 +581,7 @@ alamat e-mel anda di {{SITENAME}} ($4) dengan nama "$2" dan kata laluan "$3".
 Anda boleh log masuk dan tukar kata laluan anda sekarang.
 
 Sila abaikan mesej ini jika anda tidak meminta untuk membuka akaun tersebut.',
+'login-throttled'            => 'Anda memasukkan kata laluan yang salah berulang kali. Sila tunggu sebentar dan cuba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 
 # Password reset dialog
@@ -1659,9 +1660,9 @@ Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
 Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebelum ini, kemudian cuba lagi.',
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
-'protectedarticle'            => 'melindungi "[[$1]]"',
-'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[$1]]"',
-'unprotectedarticle'          => 'menyahlindung "[[$1]]"',
+'protectedarticle'            => 'melindungi "[[:$1]]"',
+'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[:$1]]"',
+'unprotectedarticle'          => 'menyahlindung "[[:$1]]"',
 'protect-title'               => 'Menetapkan peringkat perlindungan bagi "$1"',
 'protect-legend'              => 'Sahkan perlindungan',
 'protectcomment'              => 'Komen:',
@@ -1845,7 +1846,7 @@ dirosakkan).',
 'ipusubmit'                       => 'Nyahsekat alamat ini.',
 'unblocked'                       => '[[User:$1|$1]] telah dinyahsekat',
 'unblocked-id'                    => 'Sekatan $1 telah dibuang',
-'ipblocklist'                     => 'Nama pengguna dan alamat IP yang disekat',
+'ipblocklist'                     => 'Alamat IP dan nama pengguna yang disekat',
 'ipblocklist-legend'              => 'Cari pengguna yang disekat',
 'ipblocklist-username'            => 'Nama pengguna atau alamat IP:',
 'ipblocklist-submit'              => 'Cari',
@@ -1948,8 +1949,8 @@ Sila pilih nama lain.',
 'movepage-page-moved'     => 'Laman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Laman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'      => 'Jumlah maksimum $1 laman telah dipindahkan secara automatik.',
-'1movedto2'               => '[[$1]] dipindahkan ke [[$2]]',
-'1movedto2_redir'         => '[[$1]] dipindahkan ke [[$2]] menerusi pelencongan',
+'1movedto2'               => '[[:$1]] dipindahkan ke [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] dipindahkan ke [[:$2]] menerusi pelencongan',
 'movelogpage'             => 'Log pemindahan',
 'movelogpagetext'         => 'Berikut ialah senarai pemindahan laman.',
 'movereason'              => 'Sebab:',
@@ -1957,7 +1958,7 @@ Sila pilih nama lain.',
 'delete_and_move'         => 'Hapus dan pindah',
 'delete_and_move_text'    => '==Penghapusan diperlukan==
 
-Laman destinasi "[[$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supaya laman ini dapat dipindahkan?',
+Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supaya laman ini dapat dipindahkan?',
 'delete_and_move_confirm' => 'Ya, hapuskan laman ini',
 'delete_and_move_reason'  => 'Dihapuskan supaya laman lain dapat dipindahkan',
 'selfmove'                => 'Tajuk sumber dan tajuk destinasi tidak boleh sama.',
@@ -2038,7 +2039,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 # Import log
 'importlogpage'                    => 'Log import',
 'importlogpagetext'                => 'Senarai tindakan import laman dengan keseluruhan sejarah suntingannya daripada wiki lain.',
-'import-logentry-upload'           => 'mengimport [[$1]] dengan memuat naik fail',
+'import-logentry-upload'           => 'mengimport [[:$1]] dengan memuat naik fail',
 'import-logentry-upload-detail'    => '$1 semakan',
 'import-logentry-interwiki'        => '$1 dipindahkan ke wiki lain',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
@@ -2549,7 +2550,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'recreate'            => 'Cipta semula',
 
 # HTML dump
-'redirectingto' => 'Melencong ke [[$1]]...',
+'redirectingto' => 'Melencong ke [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
@@ -2584,7 +2585,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Membuang semua kandungan daripada laman',
 'autosumm-replace' => "Menggantikan laman dengan '$1'",
-'autoredircomment' => 'Melencong ke [[$1]]',
+'autoredircomment' => 'Melencong ke [[:$1]]',
 'autosumm-new'     => 'Laman baru: $1',
 
 # Live preview

@@ -717,7 +717,7 @@ o l'à cangiâ ò o l'è zà tornòu inderê.
 L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
 'revertpage'                  => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Protessioîn',
-'protectedarticle'            => 'o s\'ha protezûo "[[$1]]"',
+'protectedarticle'            => 'o s\'ha protezûo "[[:$1]]"',
 'protect-legend'              => 'Confermâ protession',
 'protectcomment'              => 'Motivo da protession:',
 'protectexpiry'               => 'Scadensa:',
@@ -845,8 +845,8 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'talkexists'              => "'''A paggina a l'è stæta stramûâa correttamente, ma o no l'è stæto poscibbile stramûâ a paggina de discûxon perché ghe n'è zà 'n'âtra co-o nêuvo tittolo. O se deive inserî manualmente i contegnûi de tûtte e doe.'''",
 'movedto'                 => 'Stramûâa a',
 'movetalk'                => 'Stramûâ anche a paggina de discûxon',
-'1movedto2'               => '[[$1]] mesciòu a [[$2]]',
-'1movedto2_redir'         => '[[$1]] mescioö a [[$2]] redirect',
+'1movedto2'               => '[[:$1]] mesciòu a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] mescioö a [[:$2]] redirect',
 'movelogpage'             => 'Lista di remesci',
 'movereason'              => 'Raxon',
 'revertmove'              => 'Ristorâ',
@@ -998,7 +998,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 # Auto-summaries
 'autosumm-blank'   => 'Scassa tutti i contenùi da a pagina',
 'autosumm-replace' => "Sostituçion da pagina con '$1'",
-'autoredircomment' => 'Reindirissoö a [[$1]]',
+'autoredircomment' => 'Reindirissoö a [[:$1]]',
 'autosumm-new'     => 'Neuva pagina: $1',
 
 # Live preview

@@ -1519,7 +1519,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve.
 Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
 'protectedarticle'            => '$1 besjermd',
-'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[$1]]"',
+'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[:$1]]"',
 'unprotectedarticle'          => 'besjerming van $1 opgeheve',
 'protect-title'               => 'Besjerme van "$1"',
 'protect-legend'              => 'Bevèstig besjerme',
@@ -1767,8 +1767,8 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.',
 'movepage-page-unmoved'   => 'De pazjena $1 kós neet hernömp waere nao $2.',
 'movepage-max-pages'      => "'t Maximaal aantal automatisch te hernömme pazjena's is bereik ($1). De euverige pazjena's waere neet automatisch hernömp.",
-'1movedto2'               => '[[$1]] verplaats nao [[$2]]',
-'1movedto2_redir'         => '[[$1]] euver redirect verplaats nao [[$2]]',
+'1movedto2'               => '[[:$1]] verplaats nao [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] euver redirect verplaats nao [[:$2]]',
 'movelogpage'             => "Logbook verplaatsde pazjena's",
 'movelogpagetext'         => "Dit is de lies van verplaatsde pazjena's.",
 'movereason'              => 'Lèk oet woeróm',
@@ -1776,7 +1776,7 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'delete_and_move'         => 'Wis en verplaats',
 'delete_and_move_text'    => '==Wisse vereis==
 
-De doeltitel "[[$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make veur de verplaatsing?',
+De doeltitel "[[:$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make veur de verplaatsing?',
 'delete_and_move_confirm' => 'Jao, wis de pazjena',
 'delete_and_move_reason'  => 'Gewis óm artikel te kónne verplaatse',
 'selfmove'                => "De kèns 'n pazjena neet verplaatse nao dezelfde paginanaam.",
@@ -1855,7 +1855,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 # Import log
 'importlogpage'                    => 'Importlogbook',
 'importlogpagetext'                => "Administratieve import van pazjena's mit gesjiedenis van anger wiki's.",
-'import-logentry-upload'           => "[[$1]] geïmporteerd via 'ne bestandjsupload",
+'import-logentry-upload'           => "[[:$1]] geïmporteerd via 'ne bestandjsupload",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'transwiki veur $1 geslaag',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
@@ -2352,7 +2352,7 @@ Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
 'recreate'            => 'Pazjena obbenuujts make',
 
 # HTML dump
-'redirectingto' => "Aan 't doorverwieze nao [[$1]]...",
+'redirectingto' => "Aan 't doorverwieze nao [[:$1]]...",
 
 # action=purge
 'confirm_purge'        => 'Wils te de buffer vaan dees paas wisse?
@@ -2387,7 +2387,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pazjena laeggehaold',
 'autosumm-replace' => "Teks vervange mit '$1'",
-'autoredircomment' => 'Verwies door nao [[$1]]',
+'autoredircomment' => 'Verwies door nao [[:$1]]',
 'autosumm-new'     => 'Nuje pazjena: $1',
 
 # Live preview

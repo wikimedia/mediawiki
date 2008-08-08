@@ -5,8 +5,8 @@
  * @file
  *
  * @author Dakrismeno
- * @author SabineCretella
  * @author Malafaya
+ * @author SabineCretella
  * @author Kemmótar
  * @author Flavio05
  * @author Clamengh
@@ -420,7 +420,7 @@ al butún \"tegn piü d'öcc\".",
 'rollbackfailed'        => 'L è mia staa pussibil purtá indré',
 'alreadyrolled'         => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
 L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]]).",
-'unprotectedarticle'    => 'l\'ha sblucaa "[[$1]]"',
+'unprotectedarticle'    => 'l\'ha sblucaa "[[:$1]]"',
 'protect-title'         => 'Prutezziún da "$1"',
 'protect-legend'        => 'Cunferma de blocch',
 'protectcomment'        => 'Spiega parchè ti vörat blucá la pagina',
@@ -463,8 +463,8 @@ una pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia suras
 <b>ATENZIUN!</b>
 Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupülara: par piasée assürévas ch'a ii capii i cunsegueenz da cheest-chí prima da ná inaanz.",
 'movedto'         => 'spustaa vers:',
-'1movedto2'       => '[[$1]] spustaa in [[$2]]',
-'1movedto2_redir' => '[[$1]] spustaa in [[$2]] atravèerz re-indirizzameent',
+'1movedto2'       => '[[:$1]] spustaa in [[:$2]]',
+'1movedto2_redir' => '[[:$1]] spustaa in [[:$2]] atravèerz re-indirizzameent',
 'delete_and_move' => 'Scancelá e mööf',
 
 # Export

@@ -1551,9 +1551,9 @@ Modifikata lura għall-aħħar verżjoni ta' $2.",
 'protectlogpage'              => 'Protezzjoni',
 'protectlogtext'              => "Hawn taħt hawn lista ta' l-azzjonijiet tal-protezzjoni u żblokki tal-paġna.
 Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġni bħalissa protetti.",
-'protectedarticle'            => '"[[$1]]" huwa protett',
-'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[$1]]"',
-'unprotectedarticle'          => 'żblokkjajt "[[$1]]"',
+'protectedarticle'            => '"[[:$1]]" huwa protett',
+'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[:$1]]"',
+'unprotectedarticle'          => 'żblokkjajt "[[:$1]]"',
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
 'protect-legend'              => 'Ikkonferma l-protezzjoni',
 'protectcomment'              => 'Kumment:',
@@ -1822,15 +1822,15 @@ Jekk jogħġbok agħqqad manwalment.'''",
 'movepage-page-moved'     => 'Il-Paġna $1 ġiet imċaqilqa għal $2.',
 'movepage-page-unmoved'   => 'Il-Paġna $1 ma setgħatx tiġi mċaqilqa għal $2.',
 'movepage-max-pages'      => "Ġie mċaqlaq in-numru massimu ta' {{PLURAL:$1|paġna u ma jistax jiġi mċaqlaq aktar awtomatikament|$1 paġni u ma jistgħux jiġu mċaqilqa aktar awtomatikament.}}",
-'1movedto2'               => '[[$1]] imċaqlaq għal [[$2]]',
-'1movedto2_redir'         => '[[$1]] imċaqlaq għal [[$2]] fuq rindirizz',
+'1movedto2'               => '[[:$1]] imċaqlaq għal [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] imċaqlaq għal [[:$2]] fuq rindirizz',
 'movelogpage'             => 'Ċaqlieq',
 'movelogpagetext'         => "Hawn taħt jinsab lista ta' paġni mċaqilqa.",
 'movereason'              => 'Raġuni:',
 'revertmove'              => 'irkupra',
 'delete_and_move'         => 'Ħassar u ċaqlaq',
 'delete_and_move_text'    => '==Rikjesta ta\' tħassir==
-Il-Paġna tad-destinazzjoni "[[$1]]" ġa teżisti.
+Il-Paġna tad-destinazzjoni "[[:$1]]" ġa teżisti.
 Trid tħassara sabiex tkun tista\' tagħmel triq għal ċaqlieqa?',
 'delete_and_move_confirm' => 'Iva, ħassar il-paġna',
 'delete_and_move_reason'  => 'Imħassra sabiex tagħmel triq għal ċaqlieqa',
@@ -1914,7 +1914,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 # Import log
 'importlogpage'                    => 'Importazzjoni',
 'importlogpagetext'                => "Importi amministrativi ta' paġni b'kronoloġiji ta' modifiki minn wikis oħrajn.",
-'import-logentry-upload'           => "importajt [[$1]] bl-użu ta' upload.",
+'import-logentry-upload'           => "importajt [[:$1]] bl-użu ta' upload.",
 'import-logentry-upload-detail'    => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}',
 'import-logentry-interwiki'        => 'Trasferixxejt minn wiki ieħor il-paġna $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}} minn $2',
@@ -2447,7 +2447,7 @@ Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 'recreate'            => "Erġa' oħloq",
 
 # HTML dump
-'redirectingto' => 'Rindirizzat għal [[$1]]...',
+'redirectingto' => 'Rindirizzat għal [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Ħassar il-''cache'' ta' din il-paġna?
@@ -2486,7 +2486,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Neħħi kull kontenut mill-paġna',
 'autosumm-replace' => "Il-paġna qed tiġi mibdula ma' '$1'",
-'autoredircomment' => 'Rindirizzat għal [[$1]]',
+'autoredircomment' => 'Rindirizzat għal [[:$1]]',
 'autosumm-new'     => 'Paġna ġdida: $1',
 
 # Live preview
@@ -2579,7 +2579,7 @@ Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:image}}:\".",
 * <span class="mw-specialpagerestricted">Paġni speċjali limitati.</span>',
 'specialpages-group-maintenance' => 'Rapporti tal-manteniment',
 'specialpages-group-other'       => 'Paġni speċjali oħrajn',
-'specialpages-group-login'       => 'Idħol / reġistra',
+'specialpages-group-login'       => 'Idħol / irreġistra',
 'specialpages-group-changes'     => 'L-Aħħar modifiki u reġistri',
 'specialpages-group-media'       => 'Fajls multimedjali - rapporti u tellgħar',
 'specialpages-group-users'       => 'Utenti u drittijiet',

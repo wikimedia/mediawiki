@@ -1292,9 +1292,9 @@ kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''
 Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, dangan probarán giraray.",
 'protectlogpage'              => 'Usip nin proteksyon',
 'protectlogtext'              => 'May lista sa baba nin mga kandado asin panbawi kan kandado kan mga páhina. Hilingon an [[Special:ProtectedPages|lista kan mga pigproprotektarán na mga páhina]] para mahiling an lista kan mga proteksión nin mga páhina sa ngunyan na nakabuká.',
-'protectedarticle'            => 'protektado "[[$1]]"',
-'modifiedarticleprotection'   => 'binago an nibel nin proteksión para sa "[[$1]]"',
-'unprotectedarticle'          => 'Warang proteksión an "[[$1]]"',
+'protectedarticle'            => 'protektado "[[:$1]]"',
+'modifiedarticleprotection'   => 'binago an nibel nin proteksión para sa "[[:$1]]"',
+'unprotectedarticle'          => 'Warang proteksión an "[[:$1]]"',
 'protect-title'               => 'Pigpupuesta an nibel nin proteksión sa "$1"',
 'protect-legend'              => 'Kompermaron an proteksyon',
 'protectcomment'              => 'Komento:',
@@ -1533,8 +1533,8 @@ Magpilì tabì nin ibang pangaran.',
 'talkexists'              => "'''Ibinalyo na an mismong pahina, alagad dai naibalyo an pahina nin orolay ta igwa na kaini sa bàgong titulo. Pagsaroon tabì ining duwa nin mano-mano.'''",
 'movedto'                 => 'piglipat sa',
 'movetalk'                => 'Ibalyo an pahinang orolayan na nakaasociar',
-'1movedto2'               => '[[$1]] piglipat sa [[$2]]',
-'1movedto2_redir'         => '[[$1]] pigbalyó sa [[$2]] sa paagi kan pagredirekta',
+'1movedto2'               => '[[:$1]] piglipat sa [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] pigbalyó sa [[:$2]] sa paagi kan pagredirekta',
 'movelogpage'             => 'Ibalyó an usip',
 'movelogpagetext'         => 'Nasa ibaba an lista kan pahinang pigbalyó.',
 'movereason'              => 'Rason:',
@@ -1542,7 +1542,7 @@ Magpilì tabì nin ibang pangaran.',
 'delete_and_move'         => 'Parâon asin ibalyó',
 'delete_and_move_text'    => '==Kaipuhan na parâon==
 
-Igwa nang páhina na "[[$1]]". Gusto mong parâon ini tangarig maibalyó?',
+Igwa nang páhina na "[[:$1]]". Gusto mong parâon ini tangarig maibalyó?',
 'delete_and_move_confirm' => 'Iyo, parâon an pahina',
 'delete_and_move_reason'  => 'Pinarâ tangarig maibalyó',
 'selfmove'                => 'Pareho an páhinang ginikanan asin destinasyon; dai pwedeng ibalyó an sarong páhina sa sadiri.',
@@ -1603,7 +1603,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Import log
 'importlogpage'                    => 'Usip nin pagpalaog',
-'import-logentry-upload'           => "pigpadara an [[$1]] kan pagkarga nin ''file''",
+'import-logentry-upload'           => "pigpadara an [[:$1]] kan pagkarga nin ''file''",
 'import-logentry-upload-detail'    => '$1 mga pagpakarháy',
 'import-logentry-interwiki'        => 'na-transwiki an $1',
 'import-logentry-interwiki-detail' => '$1 mga pagpakarháy halì sa $2',
@@ -1891,7 +1891,7 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 'recreate'            => 'Gibohón giraray',
 
 # HTML dump
-'redirectingto' => 'Piglilikay sa [[$1]]...',
+'redirectingto' => 'Piglilikay sa [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Halîon an an aliho kaining páhina?
@@ -1924,7 +1924,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pighahalî an gabos na laog sa páhina',
 'autosumm-replace' => "Pigriribayan an páhina nin '$1'",
-'autoredircomment' => 'Piglilikay sa [[$1]]',
+'autoredircomment' => 'Piglilikay sa [[:$1]]',
 'autosumm-new'     => 'Bâgong páhina: $1',
 
 # Live preview

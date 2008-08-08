@@ -1395,9 +1395,9 @@ Laguntza:
 'sessionfailure'              => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
 'protectlogpage'              => 'Babes erregistroa',
 'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.',
-'protectedarticle'            => '"[[$1]]" babestu da"',
-'modifiedarticleprotection'   => '"[[$1]]"(r)en babes maila aldatu da',
-'unprotectedarticle'          => '"[[$1]]"(r)i babesa kendu zaio',
+'protectedarticle'            => '"[[:$1]]" babestu da"',
+'modifiedarticleprotection'   => '"[[:$1]]"(r)en babes maila aldatu da',
+'unprotectedarticle'          => '"[[:$1]]"(r)i babesa kendu zaio',
 'protect-title'               => '"$1" babesten',
 'protect-legend'              => 'Babesa baieztatu',
 'protectcomment'              => 'Babesteko arrazoia',
@@ -1641,7 +1641,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'delete_and_move'         => 'Ezabatu eta mugitu',
 'delete_and_move_text'    => '== Ezabatzeko beharra ==
 
-"[[$1]]" helburua existitzen da. Lekua egiteko ezabatu nahi al duzu?',
+"[[:$1]]" helburua existitzen da. Lekua egiteko ezabatu nahi al duzu?',
 'delete_and_move_confirm' => 'Bai, orrialdea ezabatu',
 'delete_and_move_reason'  => 'Lekua egiteko ezabatu da',
 'selfmove'                => 'Helburu izenburua berdina da; ezin da orrialde bat bere gainera mugitu.',
@@ -1714,7 +1714,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 # Import log
 'importlogpage'                    => 'Inportazio erregistroa',
 'importlogpagetext'                => 'Beste wiki batzutatik historial eta guzti egindako orrialdeen inportazio administratiboak.',
-'import-logentry-upload'           => '[[$1]] igoera bitartez inportatu da',
+'import-logentry-upload'           => '[[:$1]] igoera bitartez inportatu da',
 'import-logentry-upload-detail'    => '$1 berrikuspen',
 'import-logentry-interwiki'        => '$1 wiki artean mugitu da',
 'import-logentry-interwiki-detail' => '$1 berrikuspen $2(e)tik',
@@ -2105,7 +2105,7 @@ Egiaztapen kode hau $4 iraungiko da.',
 'recreate'            => 'Birsortu',
 
 # HTML dump
-'redirectingto' => '[[$1]] orrialdera berbideratzen...',
+'redirectingto' => '[[:$1]] orrialdera berbideratzen...',
 
 # action=purge
 'confirm_purge'        => 'Orrialde honen katxea ezabatu?
@@ -2140,7 +2140,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Orrialdetik eduki guztia ezabatzen',
 'autosumm-replace' => "Orrialdea '$1'(r)engatik ordezten",
-'autoredircomment' => '[[$1]] orrialdera birzuzentzentzen',
+'autoredircomment' => '[[:$1]] orrialdera birzuzentzentzen',
 'autosumm-new'     => 'Orrialde berria: $1',
 
 # Live preview

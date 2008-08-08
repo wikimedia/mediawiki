@@ -1611,9 +1611,9 @@ $NEWPAGE
 'editcomment'                 => 'វិចារក្នុងការកែប្រែ៖ "<i>$1</i>"។', # only shown if there is an edit comment
 'revertpage'                  => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'កំនត់ហេតុនៃការការពារ',
-'protectedarticle'            => 'បានការពារ"[[$1]]"',
-'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកំរិតការពារនៃ"[[$1]]"',
-'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[$1]]"',
+'protectedarticle'            => 'បានការពារ"[[:$1]]"',
+'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកំរិតការពារនៃ"[[:$1]]"',
+'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[:$1]]"',
 'protect-title'               => 'ការពារ "$1"',
 'protect-legend'              => 'បញ្ជាក់ទទួលស្គាល់ការការពារ',
 'protectcomment'              => 'យោបល់៖',
@@ -1839,15 +1839,15 @@ $1',
 'move-talk-subpages'      => 'ប្តូរទីតាំងគ្រប់ទំព័ររងនៃទំព័រពិភាក្សាប្រសិនបើអាច',
 'movepage-page-moved'     => 'ទំព័រ$1ត្រូវបានប្តូរទីតាំងទៅកាន់$2ហើយ។',
 'movepage-page-unmoved'   => 'ទំព័រ$1មិនអាចប្តូរទីតាំងទៅ$2បានទេ។',
-'1movedto2'               => 'បានប្តូរទីតាំង [[$1]] ទៅ [[$2]]',
-'1movedto2_redir'         => 'ទំព័រ [[$1]] ត្រូវបានប្តូរទីតាំងទៅ [[$2]] តាមរយៈការបញ្ជូនបន្ត។',
+'1movedto2'               => 'បានប្តូរទីតាំង [[:$1]] ទៅ [[:$2]]',
+'1movedto2_redir'         => 'ទំព័រ [[:$1]] ត្រូវបានប្តូរទីតាំងទៅ [[:$2]] តាមរយៈការបញ្ជូនបន្ត។',
 'movelogpage'             => 'កំនត់ហេតុនៃការប្តូរទីតាំង',
 'movelogpagetext'         => 'ខាងក្រោមនេះជាបញ្ជីនៃទំព័រដែលត្រូវបានប្តូរទីតាំង។',
 'movereason'              => 'មូលហេតុ៖',
 'revertmove'              => 'ត្រឡប់',
 'delete_and_move'         => 'លុបនិងប្តូរទីតាំង',
 'delete_and_move_text'    => '==ការលុបជាចាំបាច់==
-"[[$1]]"ដែលជាទីតាំងទំព័រត្រូវបញ្ជូនទៅ មានរួចជាស្រេចហើយ។
+"[[:$1]]"ដែលជាទីតាំងទំព័រត្រូវបញ្ជូនទៅ មានរួចជាស្រេចហើយ។
 តើអ្នកចង់លុបវាដើម្បីជាវិធីសំរាប់ប្តូរទីតាំងទេ?',
 'delete_and_move_confirm' => 'បាទ/ចាស, លុបចេញទំព័រ',
 'delete_and_move_reason'  => 'បានលុបដើម្បីផ្លាស់ប្តូរទីតាំង',
@@ -1905,7 +1905,7 @@ $1',
 
 # Import log
 'importlogpage'                    => 'កំនត់ហេតុនៃការនាំចូល',
-'import-logentry-upload'           => 'បាននាំចូល [[$1]] ដោយការផ្ទុកឡើង ឯកសារ',
+'import-logentry-upload'           => 'បាននាំចូល [[:$1]] ដោយការផ្ទុកឡើង ឯកសារ',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|កំណែ}}',
 'import-logentry-interwiki'        => 'បាននាំចូល$1ពីវិគីផ្សេងទៀត',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|កំណែ}} ពី $2',
@@ -2218,7 +2218,7 @@ $5
 'recreate'            => 'បង្កើតឡើងវិញ',
 
 # HTML dump
-'redirectingto' => 'កំពុងប្តូរទិស ទៅ [[$1]]...',
+'redirectingto' => 'កំពុងប្តូរទិស ទៅ [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'សំអាតឃ្លាំងសំងាត់(cache)នៃទំព័រនេះ?
@@ -2253,7 +2253,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'ដកចេញខ្លឹមសារទាំងអស់ពីទំព័រ',
 'autosumm-replace' => "ជំនួសខ្លឹមសារនៃទំព័រដោយ '$1'",
-'autoredircomment' => 'បញ្ជូនបន្តទៅ [[$1]]',
+'autoredircomment' => 'បញ្ជូនបន្តទៅ [[:$1]]',
 'autosumm-new'     => 'ទំព័រថ្មី៖ $1',
 
 # Size units

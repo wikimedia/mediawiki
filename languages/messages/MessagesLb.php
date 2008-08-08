@@ -1597,9 +1597,9 @@ KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versi
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
 Kuckt d'[[Special:ProtectedPages|Lëscht vun de protegéierte Säite]] fir eng L!escht vun den aktuelle Säite-Protectiounen.",
-'protectedarticle'            => 'huet [[$1]] protegéiert',
-'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
-'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
+'protectedarticle'            => 'huet [[:$1]] protegéiert',
+'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[:$1]]" geännert',
+'unprotectedarticle'          => "huet d'Spär vu(n) [[:$1]] opgehuewen",
 'protect-title'               => 'Ännerung vun der Protectioun vu(n) „$1“',
 'protect-legend'              => "Konfirméiert d'Protectioun",
 'protectcomment'              => 'Grond:',
@@ -1859,14 +1859,14 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movepage-page-moved'     => "D'Säit $1 gouf schonn op $2 geréckelt.",
 'movepage-page-unmoved'   => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
 'movepage-max-pages'      => 'Déi Maximalzuel vun $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
-'1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
-'1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
+'1movedto2'               => '[[:$1]] gouf op [[:$2]] geréckelt',
+'1movedto2_redir'         => '[[:$1]] gouf op [[:$2]] geréckelt, dobäi gouf eng Weiderleedung iwwerschriwwen.',
 'movelogpage'             => 'Réckellëscht',
 'movelogpagetext'         => 'Dëst ass eng Lëscht vun alle geréckelte Säiten.',
 'movereason'              => 'Grond:',
 'revertmove'              => 'zréck réckelen',
 'delete_and_move'         => 'Läschen a réckelen',
-'delete_and_move_text'    => '== Läsche vun der Destinatiounssäit néideg == D\'Säit "[[$1]]" existéiert schonn. Wëll der se läsche fir d\'Réckelen ze erméiglechen?',
+'delete_and_move_text'    => '== Läsche vun der Destinatiounssäit néideg == D\'Säit "[[:$1]]" existéiert schonn. Wëll der se läsche fir d\'Réckelen ze erméiglechen?',
 'delete_and_move_confirm' => "Jo, läsch d'Destinatiounssäit",
 'delete_and_move_reason'  => 'Geläscht fir Plaz ze maache fir eng Säit heihin ze réckelen',
 'selfmove'                => 'Source- an Destinatiounsnumm sinn dselwecht; eng Säit kann net op sech selwer geréckelt ginn.',
@@ -1942,7 +1942,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 # Import log
 'importlogpage'                    => 'Lëscht vun den Säitenimporten',
 'importlogpagetext'                => 'Administrativen Import vu Säite matt dem Historique vun de Ännerungen aus anere Wikien.',
-'import-logentry-upload'           => 'huet [[$1]] vun engem Fichier duerch eroplueden importéiert',
+'import-logentry-upload'           => 'huet [[:$1]] vun engem Fichier duerch eroplueden importéiert',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'import-logentry-interwiki'        => 'huet $1 importéiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Versioun|Versioune}} vum $2',
@@ -2382,7 +2382,7 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 'recreate'            => 'Erëm uleeën',
 
 # HTML dump
-'redirectingto' => 'Virugeleed op [[$1]]',
+'redirectingto' => 'Virugeleed op [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen?
@@ -2417,7 +2417,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'All Inhalt vun der Säit gëtt geläscht',
 'autosumm-replace' => "Säit gëtt ersat duerch '$1'",
-'autoredircomment' => 'Virugeleet op [[$1]]',
+'autoredircomment' => 'Virugeleet op [[:$1]]',
 'autosumm-new'     => 'Nei Säit: $1',
 
 # Live preview

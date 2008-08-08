@@ -1638,9 +1638,9 @@ Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.
 'protectlogpage'              => 'Registro de protectiones',
 'protectlogtext'              => 'Infra es un lista de protection e disprotection de paginas.
 Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de protectiones de paginas actualmente in operation.',
-'protectedarticle'            => 'protegeva "[[$1]]"',
-'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
-'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
+'protectedarticle'            => 'protegeva "[[:$1]]"',
+'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[:$1]]"',
+'unprotectedarticle'          => 'disprotegeva "[[:$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
 'protect-legend'              => 'Confirmar protection',
 'protectcomment'              => 'Commento:',
@@ -1935,15 +1935,15 @@ Per favor fusiona los manualmente.'''",
 'movepage-page-moved'     => 'Le pagina $1 ha essite renominate a $2.',
 'movepage-page-unmoved'   => 'Le pagina $1 non poteva esser renominate a $2.',
 'movepage-max-pages'      => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
-'1movedto2'               => '[[$1]] renominate a [[$2]]',
-'1movedto2_redir'         => '[[$1]] movite a [[$2]] trans redirection',
+'1movedto2'               => '[[:$1]] renominate a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] movite a [[:$2]] trans redirection',
 'movelogpage'             => 'Registro de renominationes',
 'movelogpagetext'         => 'Infra es un lista de paginas renominate.',
 'movereason'              => 'Motivo:',
 'revertmove'              => 'reverter',
 'delete_and_move'         => 'Deler e renominar',
 'delete_and_move_text'    => '==Deletion requirite==
-Le pagina de destination "[[$1]]" existe ja.
+Le pagina de destination "[[:$1]]" existe ja.
 Esque tu vole deler lo pro permitter le renomination?',
 'delete_and_move_confirm' => 'Si, deler le pagina',
 'delete_and_move_reason'  => 'Delite pro permitter renomination',
@@ -2028,7 +2028,7 @@ Immagazina lo in tu disco e carga lo hic.',
 # Import log
 'importlogpage'                    => 'Registro de importationes',
 'importlogpagetext'                => 'Importationes administrative de paginas con historia de modificationes desde altere wikis.',
-'import-logentry-upload'           => 'importava [[$1]] per medio de carga de file',
+'import-logentry-upload'           => 'importava [[:$1]] per medio de carga de file',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisiones}}',
 'import-logentry-interwiki'        => 'importava $1 transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisiones}} desde $2',
@@ -2557,7 +2557,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'recreate'            => 'Recrear',
 
 # HTML dump
-'redirectingto' => 'Redirection verso [[$1]] in curso…',
+'redirectingto' => 'Redirection verso [[:$1]] in curso…',
 
 # action=purge
 'confirm_purge'        => 'Rader le cache de iste pagina?
@@ -2592,7 +2592,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Se elimina tote le contento del pagina',
 'autosumm-replace' => "Reimplacia contento del pagina con '$1'",
-'autoredircomment' => 'Redirection verso [[$1]]',
+'autoredircomment' => 'Redirection verso [[:$1]]',
 'autosumm-new'     => 'Nove pagina: $1',
 
 # Live preview

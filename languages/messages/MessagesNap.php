@@ -347,8 +347,8 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'movepagebtn'             => "Spusta 'a paggena",
 'articleexists'           => "Na paggena cu chisto nomme asiste già, o pure 'o nomme scegliuto nun è buono.  Scegliere n'ato titulo.",
 'movedto'                 => 'spustata a',
-'1movedto2'               => 'ha spustato [[$1]] a [[$2]]',
-'1movedto2_redir'         => '[[$1]] spustata a [[$2]] trammeto redirect',
+'1movedto2'               => 'ha spustato [[:$1]] a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] spustata a [[:$2]] trammeto redirect',
 'movereason'              => 'Raggióne',
 'delete_and_move'         => 'Scancèlla e spusta',
 'delete_and_move_confirm' => "Sì, suprascrivi 'a paggena asistente",
@@ -368,7 +368,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'import-interwiki-submit' => 'Mpurta',
 
 # Import log
-'import-logentry-upload' => 'ha mpurtato [[$1]] trammeto upload',
+'import-logentry-upload' => 'ha mpurtato [[:$1]] trammeto upload',
 
 # Tooltip help for the actions
 'tooltip-pt-logout' => 'Jésce (logout)',
@@ -420,7 +420,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'hideresults' => "Annasconne 'e risultate",
 
 # Auto-summaries
-'autoredircomment' => 'Redirect â paggena [[$1]]',
+'autoredircomment' => 'Redirect â paggena [[:$1]]',
 'autosumm-new'     => 'Paggena nuova: $1',
 
 # Special:SpecialPages

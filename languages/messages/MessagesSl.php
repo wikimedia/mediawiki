@@ -978,7 +978,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'sessionfailure'              => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
 'protectlogpage'              => 'Dnevnik zaščit strani',
 'protectlogtext'              => 'Prikazan je seznam zaščit in odstranitev zaščit strani. Za več podatkov glejte [[Project:Zaščitena stran]] in [[Project:Pravila zaščite]]. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
-'protectedarticle'            => 'Zaščita strani "[[$1]]"',
+'protectedarticle'            => 'Zaščita strani "[[:$1]]"',
 'unprotectedarticle'          => 'Zaščita strani $1 je odstranjena.',
 'protect-title'               => 'Zaščita strani »$1«',
 'protect-legend'              => 'Potrdite zaščito',
@@ -1117,8 +1117,8 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed administratorjev, nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
 'movedto'                 => 'prestavljeno na',
 'movetalk'                => 'Če je mogoče, prestavi tudi pogovorno stran.',
-'1movedto2'               => '- prestavitev [[$1]] na [[$2]]',
-'1movedto2_redir'         => '- prestavitev [[$1]] na [[$2]] čez preusmeritev',
+'1movedto2'               => '- prestavitev [[:$1]] na [[:$2]]',
+'1movedto2_redir'         => '- prestavitev [[:$1]] na [[:$2]] čez preusmeritev',
 'movelogpage'             => 'Dnevnik prestavljanja strani',
 'movelogpagetext'         => 'Prikazujem seznam prestavljenih strani. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
 'movereason'              => 'Razlog',
@@ -1126,7 +1126,7 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'delete_and_move'         => 'Briši in prestavi',
 'delete_and_move_text'    => '==Treba bi bilo brisati==
 
-Ciljna stran »[[$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za prestavitev, izbrisati?',
+Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za prestavitev, izbrisati?',
 'delete_and_move_confirm' => 'Da, izbriši stran',
 'delete_and_move_reason'  => 'Izbrisano z namenom pripraviti prostor za prestavitev.',
 'selfmove'                => "'''Naslova vira in cilja sta enaka; stran ni mogoče prestaviti samo vase.''' Prosimo, preverite, ali niste naslova cilja namesto v polje »Na naslov« vpisali v polje »Razlog«.",
@@ -1606,7 +1606,7 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 'unit-pixel' => ' točk',
 
 # HTML dump
-'redirectingto' => 'Preusmerjam na »[[$1]]« ...',
+'redirectingto' => 'Preusmerjam na »[[:$1]]« ...',
 
 # action=purge
 'confirm_purge'        => 'Osvežim predpomnjenje strani? 
@@ -1621,7 +1621,7 @@ $1',
 'hideresults'      => 'Skrij zadetke',
 
 # Auto-summaries
-'autoredircomment' => 'preusmeritev na [[$1]]',
+'autoredircomment' => 'preusmeritev na [[:$1]]',
 
 # Special:Version
 'version' => 'Različica', # Not used as normal message but as header for the special page itself

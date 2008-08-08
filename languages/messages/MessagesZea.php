@@ -1109,8 +1109,8 @@ Ziet de [[Special:IPBlockList|Lieste van ip-blokkeriengen]] vò blokkaodes die o
 'articleexists'    => "D'r bestaet al 'n bladzie mee dieën naem, of de naem
 die-a je gekozen is is ongeldeg.
 Kiest 'n aore naem.",
-'1movedto2'        => '[[$1]] is verschove nae [[$2]]',
-'1movedto2_redir'  => '[[$1]] is verschove nae [[$2]] over de deurverwiezienge',
+'1movedto2'        => '[[:$1]] is verschove nae [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] is verschove nae [[:$2]] over de deurverwiezienge',
 
 # Namespace 8 related
 'allmessagesname'           => 'Naem',
@@ -1155,7 +1155,7 @@ Kiest 'n aore naem.",
 # Auto-summaries
 'autosumm-blank'   => 'Bladzie leeggemaekt',
 'autosumm-replace' => "Bladzie vervange mee '$1'",
-'autoredircomment' => 'Oor deugestierd nae [[$1]]',
+'autoredircomment' => 'Oor deugestierd nae [[:$1]]',
 'autosumm-new'     => 'Nieuwe bladzie mee as inoud: $1',
 
 # Special:SpecialPages

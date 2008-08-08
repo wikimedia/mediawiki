@@ -264,7 +264,7 @@ $messages = array(
 
 # Move page
 'newtitle'  => 'We üy püle',
-'1movedto2' => '[[$1]] wiñamngey [[$2]] püle',
+'1movedto2' => '[[:$1]] wiñamngey [[:$2]] püle',
 
 # Namespace 8 related
 'allmessagesname' => 'Üy',

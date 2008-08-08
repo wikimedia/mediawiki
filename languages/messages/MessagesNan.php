@@ -651,7 +651,7 @@ Template:Khu-pia̍t-ia̍h',
 'cantrollback'      => 'Bô-hoat-tō· kā siu-kái ká-tńg--khì; téng ūi kòng-hiàn-chiá sī chit ia̍h î-it ê chok-chiá.',
 'alreadyrolled'     => 'Bô-hoat-tō· kā [[User:$2|$2]] ([[User talk:$2|Thó-lūn]]) tùi [[:$1]] ê siu-kái ká-tńg-khì; í-keng ū lâng siu-kái a̍h-sī ká-tńg chit ia̍h. Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|Thó-lūn]]).',
 'editcomment'       => 'Siu-kái phêng-lūn sī: "<i>$1</i>".', # only shown if there is an edit comment
-'protectedarticle'  => 'pó-hō͘ "[[$1]]"',
+'protectedarticle'  => 'pó-hō͘ "[[:$1]]"',
 'protect-title'     => 'Pó-hō· "$1"',
 'protect-legend'    => 'Khak-tēng beh pó-hō·',
 'protectcomment'    => 'Pó-hō· ê lí-iû:',
@@ -734,8 +734,8 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'talkexists'       => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
 'movedto'          => 'sóa khì tī',
 'movetalk'         => 'Sūn-sòa sóa thó-lūn-ia̍h',
-'1movedto2'        => '[[$1]] sóa khì tī [[$2]]',
-'1movedto2_redir'  => '[[$1]] sóa khì [[$2]] (choán-ia̍h thiàu kòe)',
+'1movedto2'        => '[[:$1]] sóa khì tī [[:$2]]',
+'1movedto2_redir'  => '[[:$1]] sóa khì [[:$2]] (choán-ia̍h thiàu kòe)',
 'movelogpagetext'  => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
 'movereason'       => 'Lí-iû:',
 'selfmove'         => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
@@ -842,7 +842,7 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 
 # Auto-summaries
 'autosumm-blank'   => 'Kā ia̍h ê loē-iông the̍h tiāu',
-'autoredircomment' => 'Choán khì [[$1]]',
+'autoredircomment' => 'Choán khì [[:$1]]',
 'autosumm-new'     => 'Sin ia̍h: $1',
 
 # Watchlist editor

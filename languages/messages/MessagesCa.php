@@ -1654,9 +1654,9 @@ La darrera edició s'ha fet per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussi
 'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
 'protectlogpage'              => 'Registre de protecció',
 'protectlogtext'              => 'Aquest és el registre de proteccions i desproteccions. Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
-'protectedarticle'            => 'protegit «[[$1]]»',
-'modifiedarticleprotection'   => "s'ha canviat el nivell de protecció «[[$1]]»",
-'unprotectedarticle'          => '«[[$1]]» desprotegida',
+'protectedarticle'            => 'protegit «[[:$1]]»',
+'modifiedarticleprotection'   => "s'ha canviat el nivell de protecció «[[:$1]]»",
+'unprotectedarticle'          => '«[[:$1]]» desprotegida',
 'protect-title'               => 'Canviant la protecció de «$1»',
 'protect-legend'              => 'Confirmeu la protecció',
 'protectcomment'              => 'Motiu de la protecció',
@@ -1942,8 +1942,8 @@ Incorporeu-les manualment, si us plau.",
 'movepage-page-moved'     => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'   => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'      => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
-'1movedto2'               => "[[$1]] s'ha reanomenat com [[$2]]",
-'1movedto2_redir'         => "[[$1]] s'ha reanomenat com [[$2]] amb una redirecció",
+'1movedto2'               => "[[:$1]] s'ha reanomenat com [[:$2]]",
+'1movedto2_redir'         => "[[:$1]] s'ha reanomenat com [[:$2]] amb una redirecció",
 'movelogpage'             => 'Registre de reanomenaments',
 'movelogpagetext'         => 'Vegeu la llista de les darreres pàgines reanomenades.',
 'movereason'              => 'Motiu',
@@ -1951,7 +1951,7 @@ Incorporeu-les manualment, si us plau.",
 'delete_and_move'         => 'Elimina i trasllada',
 'delete_and_move_text'    => "==Cal l'eliminació==
 
-La pàgina de destinació, «[[$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
+La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
 'delete_and_move_confirm' => 'Sí, esborra la pàgina',
 'delete_and_move_reason'  => "S'ha eliminat per a permetre el reanomenament",
 'selfmove'                => "Els títols d'origen i de destinació coincideixen: no és possible de reanomenar una pàgina a si mateixa.",
@@ -2030,7 +2030,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 # Import log
 'importlogpage'                    => "Registre d'importació",
 'importlogpagetext'                => "Importacions administratives de pàgines amb l'historial des d'altres wikis.",
-'import-logentry-upload'           => "s'ha importat [[$1]] per càrrega de fitxers",
+'import-logentry-upload'           => "s'ha importat [[:$1]] per càrrega de fitxers",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisió|revisions}}',
 'import-logentry-interwiki'        => "s'ha importat $1 via interwiki",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisió|revisions}} de $2',
@@ -2550,7 +2550,7 @@ Confirmeu que realment voleu tornar-la a crear.",
 'recreate'            => 'Torna a crear',
 
 # HTML dump
-'redirectingto' => "S'està redirigint a [[$1]]...",
+'redirectingto' => "S'està redirigint a [[:$1]]...",
 
 # action=purge
 'confirm_purge'        => "Voleu buidar la memòria cau d'aquesta pàgina?
@@ -2585,7 +2585,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => "S'ha suprimit tot el contingut de la pàgina",
 'autosumm-replace' => 'Contingut canviat per «$1».',
-'autoredircomment' => 'Redirecció a [[$1]]',
+'autoredircomment' => 'Redirecció a [[:$1]]',
 'autosumm-new'     => 'Pàgina nova, amb el contingut: «$1».',
 
 # Live preview

@@ -1781,9 +1781,9 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage'              => 'Zabezpieczone',
 'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
 Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle'            => 'zabezpieczył [[$1]]',
-'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
-'unprotectedarticle'          => 'odbezpieczył [[$1]]',
+'protectedarticle'            => 'zabezpieczył [[:$1]]',
+'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[:$1]]',
+'unprotectedarticle'          => 'odbezpieczył [[:$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'powód zabezpieczenia',
@@ -2066,15 +2066,15 @@ Wybierz inną nazwę.',
 'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
 'movepage-max-pages'      => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
-'1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',
-'1movedto2_redir'         => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
+'1movedto2'               => 'stronę [[:$1]] przeniósł do [[:$2]]',
+'1movedto2_redir'         => 'stronę [[:$1]] przeniósł do [[:$2]] nad przekierowaniem',
 'movelogpage'             => 'Przeniesione',
 'movelogpagetext'         => 'Lista stron, które ostatnio zostały przeniesione.',
 'movereason'              => 'Powód',
 'revertmove'              => 'cofnij',
 'delete_and_move'         => 'Usuń i przenieś',
 'delete_and_move_text'    => '== Przeniesienie wymaga usunięcia innej strony ==
-Strona docelowa „[[$1]]” istnieje.
+Strona docelowa „[[:$1]]” istnieje.
 Czy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?',
 'delete_and_move_confirm' => 'Tak, usuń stronę',
 'delete_and_move_reason'  => 'Usunięto, by zrobić miejsce dla przenoszonej strony',
@@ -2158,7 +2158,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 # Import log
 'importlogpage'                    => 'Rejestr importu',
 'importlogpagetext'                => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload'           => 'zaimportował [[$1]] przez przesłanie pliku',
+'import-logentry-upload'           => 'zaimportował [[:$1]] przez przesłanie pliku',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'import-logentry-interwiki'        => 'zaimportował $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
@@ -2674,7 +2674,7 @@ Czy na pewno chcesz go ponownie utworzyć?",
 'recreate'            => 'Utwórz ponownie',
 
 # HTML dump
-'redirectingto' => 'Przekierowanie do [[$1]]...',
+'redirectingto' => 'Przekierowanie do [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Wyczyścić pamięć podręczną dla tej strony?
@@ -2709,7 +2709,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
 'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
-'autoredircomment' => 'Przekierowanie do [[$1]]',
+'autoredircomment' => 'Przekierowanie do [[:$1]]',
 'autosumm-new'     => 'Nowa strona: $1',
 
 # Size units

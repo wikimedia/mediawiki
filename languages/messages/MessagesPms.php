@@ -1404,9 +1404,9 @@ L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]
 'protectlogpage'              => 'Registr dle protession',
 'protectlogtext'              => "Ambelessì sota a-i é na lista d'event ëd protession e dësprotession ëd pàgine.
 Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-ciairé le protession corente.",
-'protectedarticle'            => '"[[$1]]" a l\'é protet',
-'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[$1]]"',
-'unprotectedarticle'          => 'Dësprotegiù "[[$1]]"',
+'protectedarticle'            => '"[[:$1]]" a l\'é protet',
+'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[:$1]]"',
+'unprotectedarticle'          => 'Dësprotegiù "[[:$1]]"',
 'protect-title'               => 'I soma antramentr che i protegioma "$1"',
 'protect-legend'              => 'Che an conferma la protession',
 'protectcomment'              => 'Motiv dla protession',
@@ -1666,8 +1666,8 @@ Che as sërna, për piasì, un nòm diferent për st'articol.",
 'talkexists'              => "La pàgina a l'é staita bin tramudà, ma a l'é pa podusse tramudé soa pàgina ëd discussion, përchè a-i në j'é già n'àutra ant la pàgina con ël tìtol neuv. Për piasì, che a modìfica a man ij contnù dle doe pàgine ëd discussion, an manera che as perdo nen dij pensé anteressant.",
 'movedto'                 => 'tramudà a',
 'movetalk'                => "Podend, tramuda ëdcò la pàgina ëd discussion che a l'ha tacà.",
-'1movedto2'               => '[[$1]] Tramudà a [[$2]]',
-'1movedto2_redir'         => '[[$1]] tramudà a [[$2]] ën passand për na ridiression',
+'1movedto2'               => '[[:$1]] Tramudà a [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] tramudà a [[:$2]] ën passand për na ridiression',
 'movelogpage'             => 'Registr dij San Martin',
 'movelogpagetext'         => 'Ambelessì sota a-i é na lista ëd pàgine che a son staite tramudà.',
 'movereason'              => 'Motiv',
@@ -1675,7 +1675,7 @@ Che as sërna, për piasì, un nòm diferent për st'articol.",
 'delete_and_move'         => 'Scancela e tramuda',
 'delete_and_move_text'    => '==A fa da manca dë scancelé==
 
-L\'artìcol ëd destinassion "[[$1]]" a-i é già. Veul-lo scancelelo për avej ëd pòst për tramudé l\'àutr?',
+L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej ëd pòst për tramudé l\'àutr?',
 'delete_and_move_confirm' => 'É, scancela la pàgina',
 'delete_and_move_reason'  => "Scancelà për liberé ël pòst për tramudene n'àutra",
 'selfmove'                => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
@@ -2275,7 +2275,7 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'recreate'            => "Créa n'àutra vira",
 
 # HTML dump
-'redirectingto' => 'I soma antramentr che i foma na ridiression a [[$1]]...',
+'redirectingto' => 'I soma antramentr che i foma na ridiression a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Veujdé la memorisassion dë sta pàgina-sì?
@@ -2309,7 +2309,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => "Pàgina dësveujdà d'autut",
 'autosumm-replace' => "Pàgina cambià con '$1'",
-'autoredircomment' => 'Ridiression anvers a [[$1]]',
+'autoredircomment' => 'Ridiression anvers a [[:$1]]',
 'autosumm-new'     => 'Pàgina neuva: $1',
 
 # Size units

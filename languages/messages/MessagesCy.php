@@ -1504,9 +1504,9 @@ wedi gwrthdroi i'r golygiad olaf gan $2.",
 'sessionfailure'              => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
 'protectlogpage'              => 'Lòg diogelu',
 'protectlogtext'              => 'Isod mae rhestr o bob gweithred diogelu (a dad-ddiogelu) tudalen.',
-'protectedarticle'            => "wedi diogelu '[[$1]]'",
-'modifiedarticleprotection'   => 'newidiwyd y lefel diogelu ar gyfer "[[$1]]"',
-'unprotectedarticle'          => 'wedi dad-ddiogelu "[[$1]]"',
+'protectedarticle'            => "wedi diogelu '[[:$1]]'",
+'modifiedarticleprotection'   => 'newidiwyd y lefel diogelu ar gyfer "[[:$1]]"',
+'unprotectedarticle'          => 'wedi dad-ddiogelu "[[:$1]]"',
 'protect-title'               => "Newid y lefel diogelu ar gyfer '$1'",
 'protect-legend'              => "Cadarnháu'r diogelu",
 'protectcomment'              => 'Sylw:',
@@ -1760,8 +1760,8 @@ Dewiswch enw arall os gwelwch yn dda.",
 'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.',
 'movepage-page-unmoved'   => 'Ni ellid symud y dudalen $1 i $2.',
 'movepage-max-pages'      => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
-'1movedto2'               => 'Wedi symud [[$1]] i [[$2]]',
-'1movedto2_redir'         => 'Wedi symud [[$1]] i [[$2]] trwy ailgyfeiriad.',
+'1movedto2'               => 'Wedi symud [[:$1]] i [[:$2]]',
+'1movedto2_redir'         => 'Wedi symud [[:$1]] i [[:$2]] trwy ailgyfeiriad.',
 'movelogpage'             => 'Lòg symud tudalennau',
 'movelogpagetext'         => "Isod mae rhestr y tudalennau sydd wedi'u symud",
 'movereason'              => 'Rheswm:',
@@ -1769,7 +1769,7 @@ Dewiswch enw arall os gwelwch yn dda.",
 'delete_and_move'         => 'Dileu a symud',
 'delete_and_move_text'    => "==Angen dileu==
 
-Mae'r erthygl \"[[\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mwyn cwblhau'r symudiad?",
+Mae'r erthygl \"[[:\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mwyn cwblhau'r symudiad?",
 'delete_and_move_confirm' => "Ie, dileu'r dudalen",
 'delete_and_move_reason'  => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
 'selfmove'                => "Mae'r teitlau hen a newydd yn union yr un peth;
@@ -2202,7 +2202,7 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'recreate'            => 'Ail-greu',
 
 # HTML dump
-'redirectingto' => "Wrthi'n ailgyfeirio i [[$1]]...",
+'redirectingto' => "Wrthi'n ailgyfeirio i [[:$1]]...",
 
 # action=purge
 'confirm_purge'        => "Clirio'r dudalen o'r storfa?
@@ -2236,7 +2236,7 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => "Yn gwacau'r dudalen yn llwyr",
-'autoredircomment' => 'Yn ailgyfeirio at [[$1]]',
+'autoredircomment' => 'Yn ailgyfeirio at [[:$1]]',
 'autosumm-new'     => 'Tudalen newydd: $1',
 
 # Live preview

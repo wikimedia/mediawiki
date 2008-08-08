@@ -1243,8 +1243,8 @@ Kelläaoq ummaq serveriao perrä (UTC).',
 'sessionfailure'              => 'Paistus ollõv määnegi hädä su toimõndamiskõrraga, tuuperäst om viimäne muutminõ egäs johtumisõs jätet tegemäldä. Vaodaq võrgokaeja "tagasi"-nuppi, laadiq üle lehekülg, kost sa tullit ja prooviq vahtsõst.',
 'protectlogpage'              => 'Lehti kaitsmiisi nimekiri',
 'protectlogtext'              => 'Tan om nimekiri lehti kaitsmiisist ja kaitsmisõ maahavõtmiisist. Parhilla kaitsõ all olõvidõ lehti nimekirä lövvät [[Special:ProtectedPages|tast]].',
-'protectedarticle'            => 'pand\' lehe "[[$1]]" kaitsõ ala',
-'unprotectedarticle'          => 'võtt\' lehe "[[$1]]" kaitsõ alt maaha',
+'protectedarticle'            => 'pand\' lehe "[[:$1]]" kaitsõ ala',
+'unprotectedarticle'          => 'võtt\' lehe "[[:$1]]" kaitsõ alt maaha',
 'protect-title'               => 'Lehe "$1" kaitsminõ',
 'protect-legend'              => 'Kinnüdäq kaitsõ ala pandmist',
 'protectcomment'              => 'Kaitsõ ala pandmisõ põhjus',
@@ -1470,14 +1470,14 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'talkexists'              => 'Artikli om tõistõ paika pant, a arotuslehekülge saa-s pandaq, selle et vahtsõ nime all om jo arotuskülg. Panõq arotusküleq esiq kokko.',
 'movedto'                 => 'Pant päälkirä ala:',
 'movetalk'                => 'Panõq ka "arotus", ku saa.',
-'1movedto2'               => "pand' lehe [[$1]] vahtsõ nime [[$2]] ala",
-'1movedto2_redir'         => "pand' lehe [[$1]] ümbresaatmislehe [[$2]] pääle",
+'1movedto2'               => "pand' lehe [[:$1]] vahtsõ nime [[:$2]] ala",
+'1movedto2_redir'         => "pand' lehe [[:$1]] ümbresaatmislehe [[:$2]] pääle",
 'movelogpage'             => 'Tõistõ paika pandmiisi nimekiri',
 'movelogpagetext'         => 'Taa om lehti tõistõ paika pandmiisi nimekiri.',
 'movereason'              => 'Põhjus',
 'revertmove'              => 'võtaq tagasi',
 'delete_and_move'         => 'Kistudaq tsihtlehekülg ärq ja panõq timä asõmalõ taa leht',
-'delete_and_move_text'    => 'Tsihtlehekülg  "[[$1]]" om jo olõman, kas tahat tuu ärq kistutaq, et taa leht timä asõmalõ pandaq?',
+'delete_and_move_text'    => 'Tsihtlehekülg  "[[:$1]]" om jo olõman, kas tahat tuu ärq kistutaq, et taa leht timä asõmalõ pandaq?',
 'delete_and_move_confirm' => 'Jah, kistudaq tuu leht ärq',
 'delete_and_move_reason'  => 'Ärq kistutõt, et tõõnõ timä asõmalõ pandaq',
 'selfmove'                => 'Lätte- ja tsihtnimi ommaq samaq; saa-i lehte timä hindä pääle pandaq.',
@@ -1546,7 +1546,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => 'Tuumiisi nimekiri',
 'importlogpagetext'                => 'Tõisist vikidest tuuduisi lehti nimekiri.',
-'import-logentry-upload'           => 'tõi lehe [[$1]] saatõn teedüstü',
+'import-logentry-upload'           => 'tõi lehe [[:$1]] saatõn teedüstü',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|kujo|kujjo}}',
 'import-logentry-interwiki'        => 'tõi tõõsõst vikist lehe ”$1”',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|kujo|kujjo}} lehest $2',
@@ -2018,7 +2018,7 @@ Olõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",
 'recreate'            => 'Luuq vahtsõst',
 
 # HTML dump
-'redirectingto' => 'Saadõtas ümbre lehe pääle [[$1]]...',
+'redirectingto' => 'Saadõtas ümbre lehe pääle [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Kas taa lehe vaihõmälokujoq tulõvaq ärq kistutaq?
@@ -2051,7 +2051,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Leht tetti tühäs',
 'autosumm-replace' => "Asõmalõ panti '$1'",
-'autoredircomment' => 'Ümbresaatminõ lehele [[$1]]',
+'autoredircomment' => 'Ümbresaatminõ lehele [[:$1]]',
 'autosumm-new'     => 'Vahtsõnõ leht: $1',
 
 # Live preview

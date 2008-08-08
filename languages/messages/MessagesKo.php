@@ -1292,9 +1292,9 @@ $NEWPAGE
 'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 'protectlogpage'              => '문서 보호 기록',
 'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.',
-'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
-'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
-'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
+'protectedarticle'            => '‘[[:$1]]’ 문서를 보호함',
+'modifiedarticleprotection'   => '‘[[:$1]]’ 문서의 보호 설정을 변경함',
+'unprotectedarticle'          => '‘[[:$1]]’ 문서를 보호 해제함',
 'protect-title'               => '"$1" 보호하기',
 'protect-legend'              => '보호 확인',
 'protectcomment'              => '보호 이유',
@@ -1522,8 +1522,8 @@ $1',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
 'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
 'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
-'1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
+'1movedto2'               => '[[:$1]]을(를) [[:$2]](으)로 옮김',
+'1movedto2_redir'         => '[[:$1]]을(를) [[:$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'movelogpage'             => '이동 기록',
 'movelogpagetext'         => '아래는 옮겨진 문서의 목록입니다.',
 'movereason'              => '이유',
@@ -1531,7 +1531,7 @@ $1',
 'delete_and_move'         => '삭제하고 이동',
 'delete_and_move_text'    => '== 삭제 필요 ==
 
-이동하려는 제목으로 된 문서 [[$1]]이(가) 이미 존재합니다. 삭제하고 이동할까요?',
+이동하려는 제목으로 된 문서 [[:$1]]이(가) 이미 존재합니다. 삭제하고 이동할까요?',
 'delete_and_move_confirm' => '네. 문서를 삭제합니다',
 'delete_and_move_reason'  => '문서를 이동하기 위해 삭제함',
 'selfmove'                => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
@@ -1815,7 +1815,7 @@ $5
 'recreate'            => '새로 만들기',
 
 # HTML dump
-'redirectingto' => '[[$1]]로 넘어가는 중...',
+'redirectingto' => '[[:$1]]로 넘어가는 중...',
 
 # action=purge
 'confirm_purge'        => '문서의 캐시를 지울까요?
@@ -1846,7 +1846,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '문서의 모든 내용을 삭제',
 'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
-'autoredircomment' => '[[$1]](으)로 넘겨주기',
+'autoredircomment' => '[[:$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
 
 # Live preview

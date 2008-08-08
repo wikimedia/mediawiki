@@ -10,8 +10,8 @@
  * @author לערי ריינהארט
  * @author Ranveig
  * @author Finnrind
- * @author Dittaeva
  * @author H92
+ * @author Dittaeva
  * @author Boivie
  * @author Olve Utne
  * @author Guttorm Flatabø
@@ -1637,9 +1637,9 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:ProtectedPages|Verna side]] for meir info.',
-'protectedarticle'            => 'verna «[[$1]]»',
-'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
-'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
+'protectedarticle'            => 'verna «[[:$1]]»',
+'modifiedarticleprotection'   => 'endra nivået på vernet av «[[:$1]]»',
+'unprotectedarticle'          => 'fjerna vern av «[[:$1]]»',
 'protect-title'               => 'Vernar «$1»',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunn til verning',
@@ -1877,8 +1877,8 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein <a href=\"{{localurl:Project:Administratorar}}\">administrator</a> &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.'''",
 'movedto'                 => 'er flytt til',
 'movetalk'                => 'Flytt diskusjonssida òg om ho finst.',
-'1movedto2'               => '«[[$1]]» flytt til «[[$2]]»',
-'1movedto2_redir'         => '«[[$1]]» flytt over omdirigering til «[[$2]]»',
+'1movedto2'               => '«[[:$1]]» flytt til «[[:$2]]»',
+'1movedto2_redir'         => '«[[:$1]]» flytt over omdirigering til «[[:$2]]»',
 'movelogpage'             => 'Flyttelogg',
 'movelogpagetext'         => 'Under er ei liste over sider som er flytte.',
 'movereason'              => 'Årsak:',
@@ -1886,7 +1886,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'delete_and_move'         => 'Slett og flytt',
 'delete_and_move_text'    => '== Sletting påkrevd ==
 
-Målsida «[[$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
+Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
 'delete_and_move_reason'  => 'Sletta for å gje rom for flytting',
 'selfmove'                => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',
@@ -1948,7 +1948,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 
 # Import log
 'importlogpage'                    => 'Importeringslogg',
-'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
+'import-logentry-upload'           => 'importerte [[:$1]] frå opplasta fil',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2',
 
@@ -2449,7 +2449,7 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
 # HTML dump
-'redirectingto' => 'Omdirigerer til [[$1]]...',
+'redirectingto' => 'Omdirigerer til [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?
@@ -2484,7 +2484,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Fjernar alt innhald på sida',
 'autosumm-replace' => 'Erstattar innhaldet på sida med «$1»',
-'autoredircomment' => 'Omdirigerer til [[$1]]',
+'autoredircomment' => 'Omdirigerer til [[:$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview

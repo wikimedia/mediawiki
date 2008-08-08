@@ -953,7 +953,7 @@ $messages = array(
 'rollback_short'              => 'په شابېول',
 'rollbacklink'                => 'په شابېول',
 'protectlogpage'              => 'د ژغورنې يادښت',
-'protectedarticle'            => '"[[$1]]" وژغورلی شو',
+'protectedarticle'            => '"[[:$1]]" وژغورلی شو',
 'protect-legend'              => 'د ژغورلو پخلی کول',
 'protectcomment'              => 'تبصره:',
 'protectexpiry'               => 'د پای نېټه:',
@@ -1085,7 +1085,7 @@ $messages = array(
 مهرباني وکړۍ د خبرواترو دا دواړه مخونه په لاسي توګه سره يو ځای کړی.'''",
 'movedto'                 => 'ته ولېږدول شو',
 'movetalk'                => 'د خبرو اترو اړونده مخ ورسره لېږدول',
-'1movedto2'               => '[[$1]]، [[$2]] ته ولېږدېده',
+'1movedto2'               => '[[:$1]]، [[:$2]] ته ولېږدېده',
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
 'movereason'              => 'سبب',
@@ -1308,7 +1308,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'د مخ ټوله مېنځپانګه ليرې کول',
 'autosumm-replace' => "دا مخ د '$1' پرځای راوستل",
-'autoredircomment' => '[[$1]] ته وګرځولی شو',
+'autoredircomment' => '[[:$1]] ته وګرځولی شو',
 'autosumm-new'     => 'نوی مخ: $1',
 
 # Live preview

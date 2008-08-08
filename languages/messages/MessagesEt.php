@@ -1007,8 +1007,8 @@ Kõik toodud kellaajad järgivad serveriaega (UTC).',
 'revertpage'                  => 'Tühistati [[Eri:Contributions/$2|$2]] ([[Kasutaja arutelu:$2|arutelu]]) muudatus ning pöörduti tagasi viimasele muudatusele, mille tegi [[Kasutaja:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Kaitsmise logi',
 'protectlogtext'              => 'Allpool on loetletud lehekülgede kaitsmised ja kaitsete eemaldamised. Praegu kaitstud lehekülgi vaata [[Special:ProtectedPages|kaitstud lehtede loetelust]].',
-'protectedarticle'            => 'kaitses lehekülje "[[$1]]"',
-'unprotectedarticle'          => 'eemaldas lehekülje "[[$1]]" kaitse',
+'protectedarticle'            => 'kaitses lehekülje "[[:$1]]"',
+'unprotectedarticle'          => 'eemaldas lehekülje "[[:$1]]" kaitse',
 'protect-title'               => '"$1" kaitsmine',
 'protect-legend'              => 'Kinnita kaitsmine',
 'protectcomment'              => 'Põhjus',
@@ -1156,8 +1156,8 @@ Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta 
 'talkexists'              => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
 'movedto'                 => 'Teisaldatud pealkirja alla:',
 'movetalk'                => 'Teisalda ka "arutelu", kui saab.',
-'1movedto2'               => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
-'1movedto2_redir'         => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla ümbersuunamisega',
+'1movedto2'               => 'Lehekülg "[[:$1]]" teisaldatud pealkirja "[[:$2]]" alla',
+'1movedto2_redir'         => 'Lehekülg "[[:$1]]" teisaldatud pealkirja "[[:$2]]" alla ümbersuunamisega',
 'movelogpage'             => 'Teisaldamise logi',
 'movelogpagetext'         => 'See logi sisaldab infot lehekülgede teisaldamistest.',
 'movereason'              => 'Põhjus',
@@ -1329,12 +1329,12 @@ Kinnituskood aegub $4.',
 'deletedwhileediting' => 'Hoiatus: Sel ajal, kui Te artiklit redigeerisite, on keegi selle kustutanud!',
 
 # HTML dump
-'redirectingto' => 'Ümbersuunamine lehele [[$1]]...',
+'redirectingto' => 'Ümbersuunamine lehele [[:$1]]...',
 
 # Auto-summaries
 'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',
 'autosumm-replace' => "Lehekülg asendatud tekstiga '$1'",
-'autoredircomment' => 'Ümbersuunamine lehele [[$1]]',
+'autoredircomment' => 'Ümbersuunamine lehele [[:$1]]',
 'autosumm-new'     => 'Uus lehekülg: $1',
 
 # Watchlist editor

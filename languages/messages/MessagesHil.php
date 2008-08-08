@@ -256,7 +256,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'move-watch'       => 'Bantayan ining panid',
 'movepagebtn'      => 'Saylohon ining panid',
 'movedto'          => 'gin saylo sa',
-'1movedto2'        => '[[$1]] gin saylo na sa [[$2]]',
+'1movedto2'        => '[[:$1]] gin saylo na sa [[:$2]]',
 'movereason'       => 'Rason:',
 
 # Namespace 8 related

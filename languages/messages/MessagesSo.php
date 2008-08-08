@@ -496,7 +496,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'exblank'                => 'Bogga waxba kuma jirin',
 'historywarning'         => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
 'actioncomplete'         => "Amarka waa la'dhamaystiray",
-'protectedarticle'       => 'la\'difaacay "[[$1]]"',
+'protectedarticle'       => 'la\'difaacay "[[:$1]]"',
 'protect-title'          => 'la\'difaacaa "$1"',
 'protect-legend'         => 'Xaqiiji difaacida',
 'protectcomment'         => 'Sababta loo difaacaayo',
@@ -541,8 +541,8 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Move page
 'movedto'         => 'loo wareejiyey',
 'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
-'1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',
-'1movedto2_redir' => '[[$1]] waxaa loo wareejiyey [[$2]] si loo sii toosiyo',
+'1movedto2'       => '[[:$1]] waxaa loo wareejiyey [[:$2]]',
+'1movedto2_redir' => '[[:$1]] waxaa loo wareejiyey [[:$2]] si loo sii toosiyo',
 
 # Namespace 8 related
 'allmessages'               => 'Fariimaha sistamka',

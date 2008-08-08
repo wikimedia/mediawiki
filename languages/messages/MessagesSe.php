@@ -921,7 +921,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'rollback-success'            => 'Rievdadusat, maid geavaheaddji ”$1” lei dahkan, sihkojuvvui ja artihkal máhcaduvvui veršuvdnii, man geavaheaddji $2 lei dahkan.',
 'protectlogpage'              => 'Suodjálanlogga',
 'protectedarticle'            => 'suodjálii siiddu $1',
-'modifiedarticleprotection'   => 'rievddai siiddu [[$1]] suodjálandási',
+'modifiedarticleprotection'   => 'rievddai siiddu [[:$1]] suodjálandási',
 'unprotectedarticle'          => 'heittii siiddu $1 suodjaleami',
 'protect-title'               => 'Siiddu $1 suodjáleapmi',
 'protect-legend'              => 'Nanne suodjáleami',
@@ -1252,7 +1252,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'recreate' => 'Álggat ođđasit',
 
 # HTML dump
-'redirectingto' => 'Ođđasitstivrejuvvo siidui [[$1]]...',
+'redirectingto' => 'Ođđasitstivrejuvvo siidui [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'Sihko',
@@ -1279,7 +1279,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'table_pager_empty'        => 'Eai bohtosat',
 
 # Auto-summaries
-'autoredircomment' => 'Ođđasitstivrejuvvo siidui [[$1]]',
+'autoredircomment' => 'Ođđasitstivrejuvvo siidui [[:$1]]',
 'autosumm-new'     => 'Ođđa siidu: $1',
 
 # Size units

@@ -1555,9 +1555,9 @@ $NEWPAGE
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視當前進行的頁面保護。',
-'protectedarticle'            => '已保護"[[$1]]"',
-'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
-'unprotectedarticle'          => '已解除保護"[[$1]]"',
+'protectedarticle'            => '已保護"[[:$1]]"',
+'modifiedarticleprotection'   => '已經更改 "[[:$1]]" 的保護等級',
+'unprotectedarticle'          => '已解除保護"[[:$1]]"',
 'protect-title'               => '正在更改"$1"的保護等級',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
@@ -1829,8 +1829,8 @@ $1',
 'movepage-page-moved'     => '頁面$1已經移動到$2。',
 'movepage-page-unmoved'   => '頁面$1不可以移動到$2。',
 'movepage-max-pages'      => '最多有$1個頁面已經移動同時不可以自動地再移動更多。',
-'1movedto2'               => '[[$1]]移動到[[$2]]',
-'1movedto2_redir'         => '[[$1]]透過重定向移動到[[$2]]',
+'1movedto2'               => '[[:$1]]移動到[[:$2]]',
+'1movedto2_redir'         => '[[:$1]]透過重定向移動到[[:$2]]',
 'movelogpage'             => '移動日誌',
 'movelogpagetext'         => '以下是已經移動的頁面清單:',
 'movereason'              => '原因',
@@ -1838,7 +1838,7 @@ $1',
 'delete_and_move'         => '刪除並移動',
 'delete_and_move_text'    => '==需要刪除==
 
-目標頁面"[[$1]]"已經存在。你確認需要刪除原頁面並以進行移動嗎？',
+目標頁面"[[:$1]]"已經存在。你確認需要刪除原頁面並以進行移動嗎？',
 'delete_and_move_confirm' => '是的，刪除此頁面',
 'delete_and_move_reason'  => '刪除以便移動',
 'selfmove'                => '原始標題與目標標題相同，您不能移動一頁覆蓋本身。',
@@ -2460,7 +2460,7 @@ $1
 'recreate'            => '重建',
 
 # HTML dump
-'redirectingto' => '重定向到[[$1]]...',
+'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',
@@ -2493,7 +2493,7 @@ $1
 # Auto-summaries
 'autosumm-blank'   => '移除所有頁面內容',
 'autosumm-replace' => "正在將頁面替換為 '$1'",
-'autoredircomment' => '正在重定向到 [[$1]]',
+'autoredircomment' => '正在重定向到 [[:$1]]',
 'autosumm-new'     => '新頁面: $1',
 
 # Size units

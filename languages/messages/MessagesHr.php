@@ -1649,9 +1649,9 @@ s koje ste stigli.',
 'protectlogpage'              => 'Evidencija zaštićivanja',
 'protectlogtext'              => 'Ispod je evidencija zaštićivanja i uklanjanja zaštite pojedinih stranica.
 Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno zaštićenih stranica.',
-'protectedarticle'            => 'članak "[[$1]]" je zaštićen',
-'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[$1]]"',
-'unprotectedarticle'          => 'uklonjena zaštita članka "[[$1]]"',
+'protectedarticle'            => 'članak "[[:$1]]" je zaštićen',
+'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[:$1]]"',
+'unprotectedarticle'          => 'uklonjena zaštita članka "[[:$1]]"',
 'protect-title'               => 'Zaštićujem "$1"',
 'protect-legend'              => 'Potvrda zaštite',
 'protectcomment'              => 'Razlog za zaštitu',
@@ -1932,7 +1932,7 @@ Molimo odaberite drugo ime.',
 'delete_and_move'         => 'Izbriši i premjesti',
 'delete_and_move_text'    => '==Nužno brisanje==
 
-Odredišni članak "[[$1]]" već postoji. Želite li ga obrisati da biste napravili mjesto za premještaj?',
+Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napravili mjesto za premještaj?',
 'delete_and_move_confirm' => 'Da, izbriši stranicu',
 'delete_and_move_reason'  => 'Obrisano kako bi se napravilo mjesta za premještaj.',
 'selfmove'                => 'Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.',
@@ -2011,7 +2011,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',
 'importlogpagetext'                => 'Administrativni uvoz stranica s poviješću uređivanja s drugih wikija.',
-'import-logentry-upload'           => 'uvezeno [[$1]] uvozom datoteke',
+'import-logentry-upload'           => 'uvezeno [[:$1]] uvozom datoteke',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'import-logentry-interwiki'        => 'transwiki uvezeno $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|promjena|promjene|promjena}} od $2',
@@ -2527,7 +2527,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 'recreate'            => 'Vrati',
 
 # HTML dump
-'redirectingto' => 'Preusmjeravam na [[$1]]...',
+'redirectingto' => 'Preusmjeravam na [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Isprazniti međuspremnik stranice?
@@ -2562,7 +2562,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Uklonjen cjelokupni sadržaj stranice',
 'autosumm-replace' => "Tekst stranice se zamjenjuje s '$1'",
-'autoredircomment' => 'Preusmjeravanje na [[$1]]',
+'autoredircomment' => 'Preusmjeravanje na [[:$1]]',
 'autosumm-new'     => 'Nova stranica: $1',
 
 # Live preview

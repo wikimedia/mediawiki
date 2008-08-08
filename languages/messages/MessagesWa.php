@@ -1064,8 +1064,8 @@ Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
 'revertpage'                  => 'Disfwait li candjmint da [[Special:Contributions/$2|$2]] ([[User talk:$2|copene]]); li dierin candjmint est asteure da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Djournå des protedjaedjes',
 'protectlogtext'              => "Chal pa dzo c' est ene djivêye des protedjaedjes et disprotedjaedjes des pådjes.",
-'protectedarticle'            => '«[[$1]]» protedjî',
-'unprotectedarticle'          => '«[[$1]]» disprotedjî',
+'protectedarticle'            => '«[[:$1]]» protedjî',
+'unprotectedarticle'          => '«[[:$1]]» disprotedjî',
 'protect-title'               => 'Protedjant «$1»',
 'protect-legend'              => "Acertinez l' protedjaedje",
 'protectcomment'              => 'Råjhon po protedjî',
@@ -1207,8 +1207,8 @@ Tchoezixhoz è èn ôte s' i vs plait.",
 'talkexists'              => "'''Li pådje leye minme a stî displaeceye comifåt, mins nén li pådje di copene, ca i gn aveut ddja ene pådje di copene k' egzistéve al novele plaece. I vs fårè copyî l' tecse del pådje di copene al mwin.'''",
 'movedto'                 => 'displaecî viè',
 'movetalk'                => 'Displaecî li pådje di copene avou, si ça astchait.',
-'1movedto2'               => '[[$1]] displaecî viè [[$2]]',
-'1movedto2_redir'         => '[[$1]] displaecî viè [[$2]] pa dsu on redjiblaedje',
+'1movedto2'               => '[[:$1]] displaecî viè [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] displaecî viè [[:$2]] pa dsu on redjiblaedje',
 'movelogpage'             => 'Djournå des displaçaedjes',
 'movelogpagetext'         => "Chal pa dzo c' est ene djivêye des pådjes k' on stî displaceyes.",
 'movereason'              => 'Råjhon',
@@ -1216,7 +1216,7 @@ Tchoezixhoz è èn ôte s' i vs plait.",
 'delete_and_move'         => 'Disfacer et displaecî',
 'delete_and_move_text'    => "==I gn a mezåjhe di disfacer==
 
-L' årtike såme «[[$1]]» egzistêye dedja. El voloz vs disfacer po vs permete di displaecî l' ôte?",
+L' årtike såme «[[:$1]]» egzistêye dedja. El voloz vs disfacer po vs permete di displaecî l' ôte?",
 'delete_and_move_confirm' => "Oyi, disfacer l' pådje",
 'delete_and_move_reason'  => 'Disfacé po permete on displaeçaedje',
 'selfmove'                => 'Les tites sourdant et såme sont les minmes; ene pådje ni pout nén esse displaeceye so leye minme.',
@@ -1554,7 +1554,7 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'recreate'            => 'Rifé',
 
 # HTML dump
-'redirectingto' => 'Redjiblant viè [[$1]]...',
+'redirectingto' => 'Redjiblant viè [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Netyî l' muchete di cisse pådje ci?
@@ -1579,7 +1579,7 @@ $1",
 'table_pager_last'  => 'Dierinne pådje',
 
 # Auto-summaries
-'autoredircomment' => 'Redjiblaedje viè [[$1]]',
+'autoredircomment' => 'Redjiblaedje viè [[:$1]]',
 'autosumm-new'     => 'Novele pådje: $1',
 
 # Size units

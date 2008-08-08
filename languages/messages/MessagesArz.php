@@ -1793,9 +1793,9 @@ $NEWPAGE
 'protectlogpage'              => 'سجل الحمايه',
 'protectlogtext'              => 'تحت في لستة بالصفحات اللي اعملها حماية او اتشالت منها الحماية.
 شوف [[Special:ProtectedPages|لستة الصفحات المحمية]] لستة بعمليات حماية الصفحات الشغالة دلوقتي.',
-'protectedarticle'            => 'حمى "[[$1]]"',
-'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
-'unprotectedarticle'          => 'شال حماية [[$1]]',
+'protectedarticle'            => 'حمى "[[:$1]]"',
+'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[:$1]]"',
+'unprotectedarticle'          => 'شال حماية [[:$1]]',
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
@@ -2078,15 +2078,15 @@ $1',
 'movepage-page-moved'     => 'الصفحة $1 اتنقلت لـ $2.',
 'movepage-page-unmoved'   => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
 'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تاني ح تتنقل اوتوماتيكي.',
-'1movedto2'               => '[[$1]] اتنقلت ل [[$2]]',
-'1movedto2_redir'         => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
+'1movedto2'               => '[[:$1]] اتنقلت ل [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] انقلت لـ[[:$2]] فوق التحويلة',
 'movelogpage'             => 'سجل النقل',
 'movelogpagetext'         => 'تحت في لستة الصفحات اللي اتنقلت.',
 'movereason'              => 'السبب:',
 'revertmove'              => 'استعاده',
 'delete_and_move'         => 'مسح ونقل',
 'delete_and_move_text'    => '==المسح مطلوب==
-الصفحة الهدف "[[$1]]" موجودة فعلا.
+الصفحة الهدف "[[:$1]]" موجودة فعلا.
 انت عايز تمسحها علشان تقدر تنقلها؟',
 'delete_and_move_confirm' => 'ايوة، امسح الصفحة',
 'delete_and_move_reason'  => 'اتمسحت علشان تسمح للنقل',
@@ -2169,7 +2169,7 @@ $1',
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
 'importlogpagetext'                => 'استيرادات إدارية لصفحات ليها تاريخ تعديل من مواقع ويكي تانية.',
-'import-logentry-upload'           => 'استورد [[$1]] بواسطة تحميل ملف',
+'import-logentry-upload'           => 'استورد [[:$1]] بواسطة تحميل ملف',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
 'import-logentry-interwiki'        => 'استيراد ويكى $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
@@ -2703,7 +2703,7 @@ $1
 'unit-pixel' => 'بيكس',
 
 # HTML dump
-'redirectingto' => 'بتتحول لـ [[$1]]...',
+'redirectingto' => 'بتتحول لـ [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'امسح الكاش بتاع الصفحة دي؟
@@ -2742,7 +2742,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'مسح كل اللي في الصفحة',
 'autosumm-replace' => "تبديل الصفحة ب'$1'",
-'autoredircomment' => 'تحويل لـ [[$1]]',
+'autoredircomment' => 'تحويل لـ [[:$1]]',
 'autosumm-new'     => 'صفحه جديده: $1',
 
 # Size units

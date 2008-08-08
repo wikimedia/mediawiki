@@ -1711,9 +1711,9 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protectlogpage'              => 'Seitenschutz-Logbuch',
 'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch.
 Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',
-'protectedarticle'            => 'schützte „[[$1]]“',
-'modifiedarticleprotection'   => 'änderte den Schutz von „[[$1]]“',
-'unprotectedarticle'          => 'hob den Schutz von „[[$1]]“ auf',
+'protectedarticle'            => 'schützte „[[:$1]]“',
+'modifiedarticleprotection'   => 'änderte den Schutz von „[[:$1]]“',
+'unprotectedarticle'          => 'hob den Schutz von „[[:$1]]“ auf',
 'protect-title'               => 'Schutz ändern von „$1“',
 'protect-legend'              => 'Seitenschutzstatus ändern',
 'protectcomment'              => 'Grund:',
@@ -1989,8 +1989,8 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
 'movepage-page-unmoved'   => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
 'movepage-max-pages'      => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
-'1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
-'1movedto2_redir'         => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
+'1movedto2'               => 'hat „[[:$1]]“ nach „[[:$2]]“ verschoben',
+'1movedto2_redir'         => 'hat „[[:$1]]“ nach „[[:$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
 'movelogpage'             => 'Verschiebungs-Logbuch',
 'movelogpagetext'         => 'Dies ist eine Liste aller verschobenen Seiten.',
 'movereason'              => 'Begründung:',
@@ -1998,7 +1998,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'delete_and_move'         => 'Löschen und Verschieben',
 'delete_and_move_text'    => '==Zielseite vorhanden, löschen?==
 
-Die Seite „[[$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?',
+Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?',
 'delete_and_move_confirm' => 'Zielseite für die Verschiebung löschen',
 'delete_and_move_reason'  => 'gelöscht, um Platz für Verschiebung zu machen',
 'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
@@ -2078,7 +2078,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
 'importlogpagetext'                => 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
-'import-logentry-upload'           => 'hat „[[$1]]“ von einer Datei importiert',
+'import-logentry-upload'           => 'hat „[[:$1]]“ von einer Datei importiert',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versionen}}',
 'import-logentry-interwiki'        => 'hat „[[$1]]“ importiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versionen}} von $2',
@@ -2606,7 +2606,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Erneut anlegen',
 
 # HTML dump
-'redirectingto' => 'Weitergeleitet nach [[$1]]',
+'redirectingto' => 'Weitergeleitet nach [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
@@ -2639,7 +2639,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Auto-summaries
 'autosumm-blank'   => 'Die Seite wurde geleert.',
 'autosumm-replace' => "Der Seiteninhalt wurde durch einen anderen Text ersetzt: '$1'",
-'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
+'autoredircomment' => 'Weiterleitung nach [[:$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
 
 # Size units

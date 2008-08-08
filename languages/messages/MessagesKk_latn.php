@@ -1933,9 +1933,9 @@ sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
 'protectlogpage'              => 'Qorğaw jwrnalı',
 'protectlogtext'              => 'Tömende betterdiñ qorğaw/qorğamaw tizimi berilgen.
 Ağımdağı qorğaw ärektter bar better üşin [[{{#special:Protectedpages}}|qorğalğan bet tizimin]] qarañız.',
-'protectedarticle'            => '«[[$1]]» qorğaldı',
-'modifiedarticleprotection'   => '«[[$1]]» qorğalw deñgeýi özgerdi',
-'unprotectedarticle'          => '«[[$1]]» qorğalwı öşirildi',
+'protectedarticle'            => '«[[:$1]]» qorğaldı',
+'modifiedarticleprotection'   => '«[[:$1]]» qorğalw deñgeýi özgerdi',
+'unprotectedarticle'          => '«[[:$1]]» qorğalwı öşirildi',
 'protect-title'               => '«$1» qorğaw deñgeýin özgertw',
 'protect-legend'              => 'Qorğawdı quptaw',
 'protectcomment'              => 'Mändemesi:',
@@ -2217,15 +2217,15 @@ Bunı qolmen qosıñız.'''",
 'movepage-page-moved'     => '$1 degen bet $2 degenge jıljıtıldı.',
 'movepage-page-unmoved'   => '$1 degen bet $2 degenge jıljıtılmaýdı.',
 'movepage-max-pages'      => 'Barınşa $1 bet jıljıtıldı da mınnan köbi özdiktik jıljıltılmaýdı.',
-'1movedto2'               => '[[$1]] degendi [[$2]] degenge jıljıttı',
-'1movedto2_redir'         => '[[$1]] degendi [[$2]] degen aýdağış üstine jıljıttı',
+'1movedto2'               => '[[:$1]] degendi [[:$2]] degenge jıljıttı',
+'1movedto2_redir'         => '[[:$1]] degendi [[:$2]] degen aýdağış üstine jıljıttı',
 'movelogpage'             => 'Jıljıtw jwrnalı',
 'movelogpagetext'         => 'Tömende jıljıtılğan betterdiñ tizimi berilip tur.',
 'movereason'              => 'Sebebi:',
 'revertmove'              => 'qaýtarw',
 'delete_and_move'         => 'Joyw jäne jıljıtw',
 'delete_and_move_text'    => '==Joyw kerek==
-«[[$1]]» degen nısana bet aldaqaşan bar.
+«[[:$1]]» degen nısana bet aldaqaşan bar.
 Jıljıtwğa jol berw üşin bunı joyasız ba?',
 'delete_and_move_confirm' => 'Ïä, bul betti joý',
 'delete_and_move_reason'  => 'Jıljıtwğa jol berw üşin joýılğan',
@@ -2307,7 +2307,7 @@ Wïkï-aparw üşin sırttan alw barlıq äreketter [[{{#special:Log}}/import|s�
 # Import log
 'importlogpage'                    => 'Sırttan alw jwrnalı',
 'importlogpagetext'                => 'Betterdi tüzetw tarïxımen birge sırtqı wïkïlerden äkimşi retinde alw.',
-'import-logentry-upload'           => '«[[$1]]» degendi faýl qotarıp berw arqılı sırttan aldı',
+'import-logentry-upload'           => '«[[:$1]]» degendi faýl qotarıp berw arqılı sırttan aldı',
 'import-logentry-upload-detail'    => '$1 tüzetw',
 'import-logentry-interwiki'        => 'wïkï-aparılğan $1',
 'import-logentry-interwiki-detail' => '$2 degennen $1 tüzetw',
@@ -2845,7 +2845,7 @@ Osı betti qaýta bastawın naqtı tilegeniñizdi quptañız.",
 'unit-pixel' => ' nükte',
 
 # HTML dump
-'redirectingto' => '[[$1]] betine aýdatwda…',
+'redirectingto' => '[[:$1]] betine aýdatwda…',
 
 # action=purge
 'confirm_purge'        => 'Bul bettin bürkemesin tazartasız ba?
@@ -2880,7 +2880,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Bettiñ barlıq mağlumatın alastadı',
 'autosumm-replace' => "Betti '$1' degenmen almastırdı",
-'autoredircomment' => '[[$1]] degenge aýdadı',
+'autoredircomment' => '[[:$1]] degenge aýdadı',
 'autosumm-new'     => 'Jaña bette: $1',
 
 # Size units

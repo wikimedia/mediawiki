@@ -1415,8 +1415,8 @@ Molimo izaberite drugo ime.',
 stranica za razgovor nije mogla biti premeštena jer takva već postoji na novom naslovu. Molimo vas da ih spojite ručno.'''",
 'movedto'                 => 'premeštena na',
 'movetalk'                => 'Premesti "stranicu za razgovor" takođe, ako je moguće.',
-'1movedto2'               => 'je promenio ime članku [[$1]] u [[$2]]',
-'1movedto2_redir'         => 'je promenio ime članku [[$1]] u [[$2]] putem preusmerenja',
+'1movedto2'               => 'je promenio ime članku [[:$1]] u [[:$2]]',
+'1movedto2_redir'         => 'je promenio ime članku [[:$1]] u [[:$2]] putem preusmerenja',
 'movelogpage'             => 'istorija premeštanja',
 'movelogpagetext'         => 'Ispod je spisak premeštanja članaka.',
 'movereason'              => 'Razlog',
@@ -1424,7 +1424,7 @@ stranica za razgovor nije mogla biti premeštena jer takva već postoji na novom
 'delete_and_move'         => 'Obriši i premesti',
 'delete_and_move_text'    => '==Potrebno brisanje==
 
-Ciljani članak "[[$1]]" već postoji. Da li želite da ga obrišete da biste napravili mesto za premeštanje?',
+Ciljani članak "[[:$1]]" već postoji. Da li želite da ga obrišete da biste napravili mesto za premeštanje?',
 'delete_and_move_confirm' => 'Da, obriši stranicu',
 'delete_and_move_reason'  => 'Obrisano kako bi se napravilo mesto za premeštanje',
 'selfmove'                => 'Izvorni i ciljani naziv su isti; strana ne može da se premesti preko same sebe.',
@@ -1485,7 +1485,7 @@ Svi transviki uvozi su zabeleženi u [[Posebno:Log/import|istoriji uvoza]].',
 # Import log
 'importlogpage'                    => 'istorija uvoza',
 'importlogpagetext'                => 'Administrativni uvozi stranica sa istorijama izmena sa drugih vikija.',
-'import-logentry-upload'           => 'uvezao [[$1]] putem slanja fajla',
+'import-logentry-upload'           => 'uvezao [[:$1]] putem slanja fajla',
 'import-logentry-upload-detail'    => '$1 revizija/e',
 'import-logentry-interwiki'        => 'premestio sa drugog vikija: $1',
 'import-logentry-interwiki-detail' => '$1 revizija/e od $2',
@@ -1941,7 +1941,7 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovo napravi',
 
 # HTML dump
-'redirectingto' => 'Preusmeravam na [[$1]]...',
+'redirectingto' => 'Preusmeravam na [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Da li želite očistiti keš ove stranice?
@@ -1972,7 +1972,7 @@ $1',
 'table_pager_empty'        => 'Bez rezultata',
 
 # Auto-summaries
-'autoredircomment' => 'Preusmerenje na [[$1]]',
+'autoredircomment' => 'Preusmerenje na [[:$1]]',
 
 # Special:Version
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself

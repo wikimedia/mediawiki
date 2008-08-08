@@ -15,11 +15,11 @@
  * @author Sherbrooke
  * @author Louperivois
  * @author Hégésippe Cormier
+ * @author Dereckson
  * @author Korg
  * @author Cedric31
- * @author Dereckson
- * @author McDutchie
  * @author Omnipaedista
+ * @author McDutchie
  * @author JeanVoisin
  * @author ChrisPtDe
  * @author Горан Анђелковић
@@ -1702,9 +1702,9 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectlogpage'              => 'Historique des protections',
 'protectlogtext'              => 'Voici une liste des protections et des déprotections.
 Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la liste des protections actuelles.',
-'protectedarticle'            => 'a protégé « [[$1]] »',
-'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
-'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
+'protectedarticle'            => 'a protégé « [[:$1]] »',
+'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[:$1]] »',
+'unprotectedarticle'          => 'a déprotégé « [[:$1]] »',
 'protect-title'               => 'Protéger « $1 »',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
@@ -1982,8 +1982,8 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
 'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
-'1movedto2'               => 'a renommé [[$1]] en [[$2]]',
-'1movedto2_redir'         => 'a redirigé [[$1]] vers [[$2]]',
+'1movedto2'               => 'a renommé [[:$1]] en [[:$2]]',
+'1movedto2_redir'         => 'a redirigé [[:$1]] vers [[:$2]]',
 'movelogpage'             => 'Historique des renommages',
 'movelogpagetext'         => 'Voici la liste des dernières pages renommées.',
 'movereason'              => 'Raison du renommage',
@@ -1991,7 +1991,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'delete_and_move'         => 'Supprimer et renommer',
 'delete_and_move_text'    => '==Suppression requise==
 
-L’article de destination « [[$1]] » existe déjà. Voulez-vous le supprimer pour permettre le renommage ?',
+L’article de destination « [[:$1]] » existe déjà. Voulez-vous le supprimer pour permettre le renommage ?',
 'delete_and_move_confirm' => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
 'delete_and_move_reason'  => 'Page supprimée automatiquement pour permettre un renommage',
 'selfmove'                => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
@@ -2071,7 +2071,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
-'import-logentry-upload'           => 'a importé [[$1]]',
+'import-logentry-upload'           => 'a importé [[:$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importé (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
@@ -2578,7 +2578,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'recreate'            => 'Recréer',
 
 # HTML dump
-'redirectingto' => 'Redirection vers [[$1]]',
+'redirectingto' => 'Redirection vers [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Voulez-vous rafraîchir cette page (purger le cache) ? $1',
@@ -2616,7 +2616,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 # Auto-summaries
 'autosumm-blank'   => 'Résumé automatique : blanchiment',
 'autosumm-replace' => 'Résumé automatique : contenu remplacé par « $1 ».',
-'autoredircomment' => 'Redirection vers [[$1]]',
+'autoredircomment' => 'Redirection vers [[:$1]]',
 'autosumm-new'     => 'Nouvelle page : $1',
 
 # Size units

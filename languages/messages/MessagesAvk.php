@@ -1362,7 +1362,7 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:ProtectedPages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',
-'modifiedarticleprotection'   => 'betayana nendareka va "[[$1]]"',
+'modifiedarticleprotection'   => 'betayana nendareka va "[[:$1]]"',
 'unprotectedarticle'          => 'va « $1 » al dimnendar',
 'protect-title'               => 'Nendara va « $1 »',
 'protect-legend'              => 'Va nendara gruyel',
@@ -1599,7 +1599,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'revertmove'              => 'dimplekura',
 'delete_and_move'         => 'Sulara is arplekura',
 'delete_and_move_text'    => '==Sulara eruna==
-"[[$1]]" kalefu bu ixam krulder.
+"[[:$1]]" kalefu bu ixam krulder.
 Kas ta askira va darka ta arrundara va in djusulal ?',
 'delete_and_move_confirm' => 'En, va bu sulal !',
 'delete_and_move_reason'  => 'Sulayan ta dark ta arrundara',
@@ -1661,7 +1661,7 @@ bu ika int me zo rotarrundar.',
 
 # Import log
 'importlogpage'                    => 'Koburera va "log" bu',
-'import-logentry-upload'           => 'kobureyen [[$1]] kan iyeltakkalvajara',
+'import-logentry-upload'           => 'kobureyen [[:$1]] kan iyeltakkalvajara',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|betaks|betaks}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|betaks|betaks}} male $2',
 
@@ -2069,7 +2069,7 @@ This confirmation code will expire at $4.',
 'recreate'            => 'Tolredura',
 
 # HTML dump
-'redirectingto' => 'Graskas kal [[$1]]...',
+'redirectingto' => 'Graskas kal [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Palsexo ke batu bu zo gokarler ?
@@ -2104,7 +2104,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Sulas va varaf bucek',
 'autosumm-replace' => "Ikaplekura va bu kan '$1'",
-'autoredircomment' => 'Graskara va [[$1]]',
+'autoredircomment' => 'Graskara va [[:$1]]',
 'autosumm-new'     => 'Warzafu bu : $1',
 
 # Live preview

@@ -1679,9 +1679,9 @@ $NEWPAGE
 'protectlogpage'              => 'ورودان حفاظت',
 'protectlogtext'              => 'جهلء یک لیستی چه هست چه صفحه پچ و بند کبلان.
 بچار [[Special:ProtectedPages|لیست صفحات محافظتی]]  په لیستی محافظتات اجرای هنوکین صفحه',
-'protectedarticle'            => 'محافظتی "[[$1]]"',
-'modifiedarticleprotection'   => 'عوض بوت سطح حفاظت په "[[$1]]"',
-'unprotectedarticle'          => 'بی حمایت  "[[$1]]"',
+'protectedarticle'            => 'محافظتی "[[:$1]]"',
+'modifiedarticleprotection'   => 'عوض بوت سطح حفاظت په "[[:$1]]"',
+'unprotectedarticle'          => 'بی حمایت  "[[:$1]]"',
 'protect-title'               => 'عوض کن سطح حفاظت په  "$1"',
 'protect-legend'              => 'حفاظت تایید کن',
 'protectcomment'              => 'نظر:',
@@ -1967,15 +1967,15 @@ $1',
 'movepage-page-moved'     => 'صفحه  $1 جاه په جاه بیت په  $2',
 'movepage-page-unmoved'   => 'صفحه $1نه تونیت جاه په جاه بیت په $2',
 'movepage-max-pages'      => 'گیشترین $1 {{PLURAL:$1|صفحه|صفحات}}جاه په جاه بوتگن  ودگه هچی اتوماتیکی جاه په جاه نه بیت.',
-'1movedto2'               => '[[$1]] چاه په چاه بوت په [[$2]]',
-'1movedto2_redir'         => '[[$1]] جاه په جاه بوت په [[$2]] غیر مستقیم',
+'1movedto2'               => '[[:$1]] چاه په چاه بوت په [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] جاه په جاه بوت په [[:$2]] غیر مستقیم',
 'movelogpage'             => 'جاه په جاهی ورود',
 'movelogpagetext'         => 'جهلء یک لیستی چه صفحات جاه په جاه بوتگین هست',
 'movereason'              => 'دلیل:',
 'revertmove'              => 'برگردینگ',
 'delete_and_move'         => 'حذف وجاه په جاه کن',
 'delete_and_move_text'    => '== حذف نیاز داریت په ==
-صفحه مبدا "[[$1]]"  که هنگت هستن.
+صفحه مبدا "[[:$1]]"  که هنگت هستن.
 آیا شما لوٹیت آیء حذف کنیت دان په حذف‌ آیء راهی شر بیت؟',
 'delete_and_move_confirm' => 'بله، صفحه حذف کن',
 'delete_and_move_reason'  => 'حذف بوت په شرکتن راه په جاه په جاه کتن',
@@ -2059,7 +2059,7 @@ $1',
 # Import log
 'importlogpage'                    => 'ورودان وارد کن',
 'importlogpagetext'                => 'ورود مدیریتی صفحات گون تاریح صلاح چه دگه ویکی آن.',
-'import-logentry-upload'           => 'وارد بوت [[$1]]  گون فایل آپلود بوتگین',
+'import-logentry-upload'           => 'وارد بوت [[:$1]]  گون فایل آپلود بوتگین',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}}',
 'import-logentry-interwiki'        => 'بین ویکی بوت $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}} چه $2',
@@ -2645,7 +2645,7 @@ $1
 'unit-pixel' => 'پیکس',
 
 # HTML dump
-'redirectingto' => 'دگه شرگنگنت په [[$1]]...',
+'redirectingto' => 'دگه شرگنگنت په [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'ذخیره ای صفحه پهک کنت؟
@@ -2684,7 +2684,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'محتوا چه کل صفحه دور کنگنت',
 'autosumm-replace' => "جاه په جاه کتن صفحه گون '$1'",
-'autoredircomment' => 'غیر مستقیم روگنت په [[$1]]',
+'autoredircomment' => 'غیر مستقیم روگنت په [[:$1]]',
 'autosumm-new'     => 'نوکین صفحه: $1',
 
 # Size units

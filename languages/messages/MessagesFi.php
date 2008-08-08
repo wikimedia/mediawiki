@@ -1608,7 +1608,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protectlogpage'              => 'Suojausloki',
 'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattuen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun $1',
-'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
+'modifiedarticleprotection'   => 'muutti sivun [[:$1]] suojaustasoa',
 'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
 'protect-title'               => 'Sivun $1 suojaus',
 'protect-legend'              => 'Suojaukset',
@@ -1872,7 +1872,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirettiin.',
 'movereason'              => 'Syy',
 'revertmove'              => 'kumoa',
 'delete_and_move'         => 'Poista kohdesivu ja siirrä',
-'delete_and_move_text'    => 'Kohdesivu [[$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
+'delete_and_move_text'    => 'Kohdesivu [[:$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
 'delete_and_move_confirm' => 'Poista sivu',
 'delete_and_move_reason'  => 'Sivu on siirron tiellä.',
 'selfmove'                => 'Lähde- ja kohdenimi ovat samat.',
@@ -1951,7 +1951,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 # Import log
 'importlogpage'                    => 'Tuontiloki',
 'importlogpagetext'                => 'Loki toisista wikeistä tuoduista sivuista.',
-'import-logentry-upload'           => 'toi sivun ”[[$1]]” lähettämällä tiedoston',
+'import-logentry-upload'           => 'toi sivun ”[[:$1]]” lähettämällä tiedoston',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|yksi versio|$1 versiota}}',
 'import-logentry-interwiki'        => 'toi toisesta wikistä sivun ”$1”',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}} wikistä $2',
@@ -2450,7 +2450,7 @@ Varmista, että haluat luoda sivun uudelleen.",
 'unit-pixel' => ' px',
 
 # HTML dump
-'redirectingto' => 'Ohjataan sivulle [[$1]]...',
+'redirectingto' => 'Ohjataan sivulle [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Poistetaanko tämän sivun välimuistikopiot?
@@ -2485,7 +2485,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ak: Sivu tyhjennettiin',
 'autosumm-replace' => 'Ak: Sivun sisältö korvattiin sisällöllä ”$1”',
-'autoredircomment' => 'Ak: Ohjaus sivulle [[$1]]',
+'autoredircomment' => 'Ak: Ohjaus sivulle [[:$1]]',
 'autosumm-new'     => 'Ak: Uusi sivu: $1',
 
 # Size units

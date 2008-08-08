@@ -1436,9 +1436,9 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
 Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
-'protectedarticle'            => 'verndaði „[[$1]]“',
-'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
-'unprotectedarticle'          => 'afverndaði „[[$1]]“',
+'protectedarticle'            => 'verndaði „[[:$1]]“',
+'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[:$1]]"',
+'unprotectedarticle'          => 'afverndaði „[[:$1]]“',
 'protect-title'               => 'Vernda „$1“',
 'protect-legend'              => 'Verndunarstaðfesting',
 'protectcomment'              => 'Ástæða',
@@ -1676,8 +1676,8 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
 'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
 'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
-'1movedto2'               => '[[$1]] færð á [[$2]]',
-'1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
+'1movedto2'               => '[[:$1]] færð á [[:$2]]',
+'1movedto2_redir'         => '[[:$1]] færð á [[:$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',
 'movelogpagetext'         => 'Þetta er listi yfir síður sem nýlega hafa verið færðar.',
 'movereason'              => 'Ástæða:',
@@ -1685,7 +1685,7 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'delete_and_move'         => 'Eyða og flytja',
 'delete_and_move_text'    => '==Beiðni um eyðingu==
 
-Síðan „[[$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?',
+Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?',
 'delete_and_move_confirm' => 'Já, eyða síðunni',
 'delete_and_move_reason'  => 'Eytt til að rýma til fyrir flutning',
 'selfmove'                => 'Nýja nafnið er það sama og gamla, þú verður að velja annað nafn.',
@@ -1735,7 +1735,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
-'import-logentry-upload'           => 'flutti inn [[$1]] með innflutningi',
+'import-logentry-upload'           => 'flutti inn [[:$1]] með innflutningi',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'import-logentry-interwiki'        => 'flutti inn $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|breyting|breytingar}} frá $2',
@@ -2010,7 +2010,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'recreate'            => 'Endurvekja',
 
 # HTML dump
-'redirectingto' => 'Tilvísun á [[$1]]...',
+'redirectingto' => 'Tilvísun á [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Hreinsa skyndiminni þessarar síðu?
@@ -2045,7 +2045,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Tæmdi síðuna',
 'autosumm-replace' => 'Skipti út innihaldi með „$1“',
-'autoredircomment' => 'Tilvísun á [[$1]]',
+'autoredircomment' => 'Tilvísun á [[:$1]]',
 'autosumm-new'     => 'Ný síða: $1',
 
 # Live preview

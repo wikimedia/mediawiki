@@ -326,7 +326,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'movearticle' => 'Moer págine:',
 'movepagebtn' => 'Moer págine',
 'movedto'     => 'moet a',
-'1movedto2'   => '[[$1]] moet a [[$2]]',
+'1movedto2'   => '[[:$1]] moet a [[:$2]]',
 'movereason'  => 'Motive:',
 
 # Export
