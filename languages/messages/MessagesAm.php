@@ -550,8 +550,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 :(The database has been temporarily locked for maintenance, so you cannot save your edits at this time. You may wish to cut-&-paste the text into another file, and try again in a moment or two.)',
 'protectedpagewarning'      => '<strong>ማስጠንቀቂያ፦ ይህ ገጽ ከመጋቢ በስተቀር በማንም እንዳይለወጥ ተቆልፏል።</strong>',
 'semiprotectedpagewarning'  => "'''ማስታወቂያ፦''' ይኸው ገጽ ከቋሚ አዛጋጆች በተቀር በማንም እንዳይለወጥ ተቆልፏል።",
-'cascadeprotectedwarning'   => "'''ማስጠንቀቂያ፦''' ይህ ገጽ በመጋቢ ብቻ እንዲታረም ተቆልፏል። ምክንያቱም {{PLURAL:$1|በሚከተለው በውስጡ የሚያቆልፍ ገጽ|በሚከተሉ በውስጡ ይሚያቆልፉ ገጾች}} ውስጥ ይገኛል።
-$2",
+'cascadeprotectedwarning'   => "'''ማስጠንቀቂያ፦''' ይህ ገጽ በመጋቢ ብቻ እንዲታረም ተቆልፏል። ምክንያቱም {{PLURAL:$1|በሚከተለው በውስጡ የሚያቆልፍ ገጽ|በሚከተሉ በውስጡ ይሚያቆልፉ ገጾች}} ውስጥ ይገኛል።",
 'titleprotectedwarning'     => '<strong>ማስጠንቀቂያ፦ ይህ ገጽ አንዳንድ ተጠቃሚ ብቻ ሊፈጠር እንዲችል ተቆልፏል።</strong>',
 'templatesused'             => 'በዚሁ ገጽ ላይ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
 'templatesusedpreview'      => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',

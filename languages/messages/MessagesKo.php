@@ -592,8 +592,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'readonlywarning'                  => "'''주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다. 편집 내용을 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''",
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
-'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:
-$2",
+'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
 'titleprotectedwarning'            => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'                    => '이 문서에서 사용한 틀:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 틀:',

@@ -653,8 +653,7 @@ Vuatri prumittiti puru chi lu scrivìstivu chî vostri palori, o chi lu cupiàst
 'readonlywarning'                  => "<strong>ACCURA: lu database è fermu pi manutinzioni, pirciò nun poi sarvari li tò canciamenti nta stu mumentu. La cosa megghia è fari un copia e ncolla dû testu nta n'àutru prugramma e sarvàrilu pi quannu lu database è accissìbbili.</strong>",
 'protectedpagewarning'             => "<strong>ACCURA: Sta pàggina havi na prutizzioni spiciali e sulu l'utenti chi hannu lu status di amministraturi ponnu canciàrila.</strong>",
 'semiprotectedpagewarning'         => "'''ACCURA:''' Sta pàggina hà statu bluccata n modu ca sulu li utenti riggistrati ponnu canciàrila.",
-'cascadeprotectedwarning'          => "'''Accura:''' Sta pàggina havi stata bluccata n modu ca sulu li utenti cu privileggi di amministraturi ponnu mudificàrila, pirchì veni nclusa {{PLURAL:\$1|nta siquente pàggina ca hà stata prutiggiuta|ntê siquenti pàggini ca hannu stati prutiggiuti}} silizziunannu la prutizzioni \"ricursiva\":
-\$2",
+'cascadeprotectedwarning'          => "'''Accura:''' Sta pàggina havi stata bluccata n modu ca sulu li utenti cu privileggi di amministraturi ponnu mudificàrila, pirchì veni nclusa {{PLURAL:\$1|nta siquente pàggina ca hà stata prutiggiuta|ntê siquenti pàggini ca hannu stati prutiggiuti}} silizziunannu la prutizzioni \"ricursiva\":",
 'titleprotectedwarning'            => '<strong>ATTENZIONI:  Sta pàggina fu bluccata n modu tali ca sulu alcuni catigurìi di utenti la ponu criari.</strong>',
 'templatesused'                    => "Template utilizzati 'n sta pàggina:",
 'templatesusedpreview'             => "Template utilizzati 'n st'antiprima:",

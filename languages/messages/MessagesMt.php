@@ -623,8 +623,7 @@ Jekk jogħġbok konsidra taqsam din il-paġna f'sezzjonijiet iż-żgħar.</stron
 'readonlywarning'                  => "<strong>TWISSIJA: Id-''Database'' huwa magħluq bħalissa għal manteniment, għalhekk int mhux se tkun tista' tagħmel modifiki bħalissa. Jekk jogħġbok salva x-xogħol tiegħek ġo fajl għalissa sakemm id-''database'' jerġa jinfetaħ. Grazzi</strong>",
 'protectedpagewarning'             => "<strong>TWISSIJA:  Din il-paġna ġiet magħluqa sabiex utenti bi privileġi ta' amministratur biss ikunu jistgħu jagħmel modifiki.</strong>",
 'semiprotectedpagewarning'         => "'''Nota:''' Din il-paġna ġiet magħluqa sabiex utenti reġistrati biss ikunu jistgħu jagħmlu modifiki.",
-'cascadeprotectedwarning'          => "'''Twissija:''' Din il-paġna ġiet magħluqa biex utenti bi privileġi ta' amministratur biss ikunu jistgħu jagħmlu modifiki, minħabba li hija inkluża fil-{{PLURAL:$1|paġna|paġni}} li huma protetti-kaskata:
-$2",
+'cascadeprotectedwarning'          => "'''Twissija:''' Din il-paġna ġiet magħluqa biex utenti bi privileġi ta' amministratur biss ikunu jistgħu jagħmlu modifiki, minħabba li hija inkluża fil-{{PLURAL:$1|paġna|paġni}} li huma protetti-kaskata:",
 'titleprotectedwarning'            => '<strong>TWISSIJA:  Din il-paġna ġiet magħluqa sabiex ftit utenti jkunu jistgħu jagħmlu modifiki.</strong>',
 'templatesused'                    => 'Templates użati fuq din il-paġna:',
 'templatesusedpreview'             => 'Templates użati fil-previżjoni:',

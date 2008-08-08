@@ -578,8 +578,7 @@ Panjenengan uga janji menawa apa-apa sing katulis ing kéné, iku karyané panje
 'readonlywarning'           => '<strong>PÈNGET: Basis data lagi dikunci amerga ana pangopènan, dadi saiki panjenengan ora bisa nyimpen kasil panyuntingan panjenengan. Panjenengan mbokmenawa prelu mindhahaké kasil panyuntingan panjenengan iki menyang panggonan liya kanggo disimpen bésuk.</strong>',
 'protectedpagewarning'      => '<strong>PÈNGET:  Kaca iki wis dikunci dadi namung panganggo sing nduwé hak aksès pangurus baé sing bisa nyunting.</strong>',
 'semiprotectedpagewarning'  => "'''Cathetan:''' Kaca iki lagi direksa, dadi namung panganggo kadaftar sing bisa nyunting.",
-'cascadeprotectedwarning'   => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:
-$2",
+'cascadeprotectedwarning'   => "'''PÈNGET:''' Kaca iki wis dikunci dadi namung panganggo mawa hak aksès pangurus waé sing bisa nyunting, amerga kalebu {{PLURAL:$1|kaca|kaca-kaca}} ing ngisor iki sing wis direksa mawa opsi 'pangreksan runtun' diaktifaké:",
 'titleprotectedwarning'     => '<strong>PÈNGET: Kaca iki wis dikunci dadi namung sawetara panganggo waé sing bisa nggawé.</strong>',
 'templatesused'             => 'Cithakan kang digunakaké ing kaca iki:',
 'templatesusedpreview'      => 'Cithakan kang digunakaké ing pratilik iki:',

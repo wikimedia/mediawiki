@@ -878,8 +878,7 @@ ezért sajnos nem tudod majd elmenteni a szerkesztéseidet. A lap szöveget kim�
 egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
 'protectedpagewarning'             => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált szerkesztők nem módosíthatják.",
-'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:
-$2",
+'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'            => '<strong>FIGYELEM:  Ez a lap úgy van levédve, hogy csak néhány felhasználó hozhatja létre.</strong>',
 'templatesused'                    => 'A lapon használt sablonok:',
 'templatesusedpreview'             => 'Az előnézet megjelenítésekor használt sablonok:',

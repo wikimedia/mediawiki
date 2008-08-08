@@ -619,8 +619,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'readonlywarning'                  => '<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento. Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.</strong>',
 'protectedpagewarning'             => '<strong>OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
-'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":
-\$2",
+'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
 'titleprotectedwarning'            => '<strong>OCIO:  Sta pagina la xe stà blocà in modo che solo çerte categorie de utenti le possa crearla.</strong>',
 'templatesused'                    => 'Template doparà in sta pagina:',
 'templatesusedpreview'             => 'Template doparà in sta anteprima:',

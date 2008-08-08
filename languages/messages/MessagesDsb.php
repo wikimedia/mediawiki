@@ -713,8 +713,7 @@ Pšosym pśemysli, lic njamóžo se bok na mjeńše wótrězki rozdźěliś.</st
 'readonlywarning'                  => '<strong>WARNOWANJE: Datowa banka jo se za wótwardowanje zacyniła. Togodla njebuźo tebje tuchylu móžno, twóje wobźěłanja składowaś. Jolic až coš, ga móžoš tekst kopěrowaś a w tekstowej dataji składowaś, aby jen pózdźej how wózjawił.</strong>',
 'protectedpagewarning'             => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano sysopowe wužywarje mógu jen wobźěłaś.'''",
 'semiprotectedpagewarning'         => "'''Markuj:''' Toś ten bok jo se zakazał, tak až jano registrěrowane wužywarje mógu jen wobźěłaś.",
-'cascadeprotectedwarning'          => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano wužywarje ze sysopowymi priwiliegijami mógu jen wobźěłaś, dokulaž jo zawězana do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo šćitany|kótarejž stej šćitanej|kótarež su šćitane}} z pomocu kaskadoweje zakazanskeje opcije.'''
-$2",
+'cascadeprotectedwarning'          => "'''Glědaj: Toś ten bok jo se zakazał, tak až jano wužywarje ze sysopowymi priwiliegijami mógu jen wobźěłaś, dokulaž jo zawězana do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo šćitany|kótarejž stej šćitanej|kótarež su šćitane}} z pomocu kaskadoweje zakazanskeje opcije.'''",
 'titleprotectedwarning'            => '<strong>WARNOWANJE: Toś ten bok bu zakazany, tak až jano wěste wužywarje mógu jen napóraś.</strong>',
 'templatesused'                    => 'Za toś ten bok su se slědujuce pśedłogi wužywali:',
 'templatesusedpreview'             => 'Za toś ten pśeglěd su slědujuce pśedłogi se wužywali:',

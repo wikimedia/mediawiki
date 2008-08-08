@@ -730,8 +730,7 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'readonlywarning'                  => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
 'protectedpagewarning'             => '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'semiprotectedpagewarning'         => 'Vain rekisteröityneet käyttäjät voivat muokata tätä sivua.',
-'cascadeprotectedwarning'          => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:
-$2',
+'cascadeprotectedwarning'          => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:',
 'titleprotectedwarning'            => '<strong>Tämä sivun luominen on rajoitettu vain osalle käyttäjistä.</strong>',
 'templatesused'                    => 'Tällä sivulla käytetyt mallineet:',
 'templatesusedpreview'             => 'Esikatselussa mukana olevat mallineet:',

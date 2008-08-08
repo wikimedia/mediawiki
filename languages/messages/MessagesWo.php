@@ -558,8 +558,7 @@ kon doo man a denc say coppite fi mu nekk nii. Man ngaa duppi mbind mi taf ko ci
 'protectedpagewarning'      => "'''Moytul : wii xët dañ kaa aar.
 Jëfandikukat yi nekk yorkat rekk a ko man a soppi.'''",
 'semiprotectedpagewarning'  => "'''Karmat :''' wii xët dañ kaa aar ba nga xam ne ñi bindu rekk a ko man a soppi.",
-'cascadeprotectedwarning'   => "'''MOYTUL :''' Xët wii dañ kaa aar ba nga xam ne yorkat yi rek ñoo koy man a soppi. Kaaraange googu dañ kaa def ndaxte xët wii dañ kaa dugal ci biir {{PLURAL:$1|aw xët wu ñu aar|ay xët yu ñu aar}}.
-$2",
+'cascadeprotectedwarning'   => "'''MOYTUL :''' Xët wii dañ kaa aar ba nga xam ne yorkat yi rek ñoo koy man a soppi. Kaaraange googu dañ kaa def ndaxte xët wii dañ kaa dugal ci biir {{PLURAL:$1|aw xët wu ñu aar|ay xët yu ñu aar}}.",
 'titleprotectedwarning'     => '<strong>MOYTUL: wii xët dañ kaa aar ci anam boo xam ne yenn jëfandikukat yi rekk a ko man a sos.</strong>',
 'templatesused'             => 'Royuwaay yi nekk ci wii xët :',
 'templatesusedpreview'      => 'Royuwaay yi nekk ci gii wonendi :',

@@ -736,8 +736,7 @@ Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
 Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.</strong>',
 'protectedpagewarning'             => '<strong>AMARAN: Laman ini telah dikunci supaya hanya penyelia boleh menyuntingnya.</strong>',
 'semiprotectedpagewarning'         => "'''Catatan:''' Laman ini telah dikunci supaya hanya pengguna berdaftar sahaja yang boleh menyuntingnya.",
-'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:
-$2",
+'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:",
 'titleprotectedwarning'            => '<strong>AMARAN: Laman ini telah dikunci supaya sesetengah pengguna sahaja boleh menciptanya.</strong>',
 'templatesused'                    => 'Templat yang digunakan dalam laman ini:',
 'templatesusedpreview'             => 'Templat yang digunakan dalam pratonton ini:',

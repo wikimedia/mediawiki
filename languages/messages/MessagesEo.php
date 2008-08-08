@@ -675,8 +675,7 @@ pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
 la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
 'protectedpagewarning'             => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
 'semiprotectedpagewarning'         => "'''Notu:''' Ĉi paĝo estas protektita tiel ke nur ensalutintaj uzantoj povas redakti ĝin.",
-'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:
-$2",
+'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
 'titleprotectedwarning'            => '<strong>AVERTO: Ĉi paĝo estis ŝlosita tial nur iuj uzantoj povas krei ĝin.</strong>',
 'templatesused'                    => 'Ŝablonoj uzitaj sur ĉi paĝo:',
 'templatesusedpreview'             => 'Ŝablonoj uzataj dum ĉi tiu antaŭrigardo:',

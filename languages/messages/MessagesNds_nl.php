@@ -819,8 +819,7 @@ De tekse mut auteursrechvrie ween (zie $1 veur details).
 'readonlywarning'                  => "<strong>Waorschuwing! De databanke is op dit mement in onderhoud; 't is daorumme neet meugelijk um pagina's te wiezigen. Je kunnen de tekse 't beste op de computer opslaon en laoter opniej preberen de pagina te bewarken.</strong>",
 'protectedpagewarning'             => "<strong>Waorschuwing! Disse pagina is beveilig zodat allinnig beheerders 't kunnen wiezigen.</strong>",
 'semiprotectedpagewarning'         => "'''Let op:''' disse pagina is allinnig te bewarken deur gebrukers dee tenminsen 4 dagen in-eschreven bin.",
-'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveilige pagina|cascade-beveiligen pagina's}}:
-$2",
+'cascadeprotectedwarning'          => "'''Waorschuwing:''' disse pagina is beveilig zodat allinnig beheerders disse pagina kunnen bewarken, dit wonnen edaon umdat disse pagina veurkump in de volgende {{PLURAL:$1|cascade-beveilige pagina|cascade-beveiligen pagina's}}:",
 'titleprotectedwarning'            => "<strong>Waorschuwing: disse pagina is beveilig zodat allinnig bepaolde gebrukers 't an kunnen maken.</strong>",
 'templatesused'                    => 'Gebruken sjablonen op disse pagina:',
 'templatesusedpreview'             => 'Gebruken sjablonen in disse sectie:',

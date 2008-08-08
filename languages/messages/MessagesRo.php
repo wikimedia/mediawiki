@@ -638,8 +638,7 @@ ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este pos
 'readonlywarning'           => '<strong>ATENŢIE! Baza de date a fost blocată pentru întreţinere, deci nu vei putea să salvezi editările în acest moment. Poţi copia textul într-un fişier text local pentru a modifica conţinutul în {{SITENAME}} când va fi posibil.</strong>',
 'protectedpagewarning'      => '<strong>ATENŢIE! Această pagină a fost protejată la scriere şi numai utilizatorii cu privilegii de administrator o pot modifica.</strong>',
 'semiprotectedpagewarning'  => "'''Atenţie:''' Această pagină poate fi modificată numai de utilizatorii înregistraţi.",
-'cascadeprotectedwarning'   => "'''Atenţie:''' Această pagină a fost blocată astfel încât numai administratorii o pot modifica, deoarece este inclusă în {{PLURAL:$1|următoarea pagină protejată|următoarele pagini protejate}} în cascadă:
-$2",
+'cascadeprotectedwarning'   => "'''Atenţie:''' Această pagină a fost blocată astfel încât numai administratorii o pot modifica, deoarece este inclusă în {{PLURAL:$1|următoarea pagină protejată|următoarele pagini protejate}} în cascadă:",
 'templatesused'             => 'Formate folosite în această pagină:',
 'templatesusedpreview'      => 'Formate utilizate în această previzualizare:',
 'templatesusedsection'      => 'Formate utilizate în această secţiune:',

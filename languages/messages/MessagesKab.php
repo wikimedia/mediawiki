@@ -529,8 +529,7 @@ ihi ur tezmireḍ ara ad tesmektiḍ ibeddlen inek tura. Smekti aḍris inek
 deg afaylu nniḍen akken tesseqdceḍ-it umbeɛd.</strong>',
 'protectedpagewarning'      => '<strong>AƔTAL:  Asebter-agi yettwaḥrez, ala inedbalen zemren a t-beddlen</strong>',
 'semiprotectedpagewarning'  => "'''Tamawt:''' Asebter-agi yettwaḥrez, ala imseqdacen i yesɛan isem n wemseqdac zemren a t-beddlen.",
-'cascadeprotectedwarning'   => "'''Aɣtal:''' Asebter-agi iɛekkel iwakken ad zemren ala inedbalen a t-beddlen, axaṭer yettwassekcem deg isebtar i yettwaḥerzen agi (acercur):
-$2",
+'cascadeprotectedwarning'   => "'''Aɣtal:''' Asebter-agi iɛekkel iwakken ad zemren ala inedbalen a t-beddlen, axaṭer yettwassekcem deg isebtar i yettwaḥerzen agi (acercur):",
 'templatesused'             => 'Talɣiwin ttuseqdacen deg usebter-agi:',
 'templatesusedpreview'      => 'Talɣiwin ttuseqdacen deg pre-timeẓriwt-agi:',
 'templatesusedsection'      => 'Talɣiwin ttuseqdacen deg amur-agi:',

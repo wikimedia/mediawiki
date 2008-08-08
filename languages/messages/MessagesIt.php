@@ -718,8 +718,7 @@ Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il tes
 'readonlywarning'                  => '<strong>ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.</strong>',
 'protectedpagewarning'             => '<strong>ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.",
-'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":
-\$2",
+'cascadeprotectedwarning'          => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
 'titleprotectedwarning'            => '<strong>ATTENZIONE:  Questa pagina è stata bloccata in modo che solo alcune categorie di utenti possano crearla.</strong>',
 'templatesused'                    => 'Template utilizzati in questa pagina:',
 'templatesusedpreview'             => 'Template utilizzati in questa anteprima:',

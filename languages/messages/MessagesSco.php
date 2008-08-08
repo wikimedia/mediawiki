@@ -557,8 +557,7 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.</st
 'readonlywarning'           => "WARNIN: The database haes been lockit for maintenance, sae ye'll no can hain yer edits richt nou. Ye micht wish tae cut-n-paste the text intil a text file an hain it for later.",
 'protectedpagewarning'      => '<strong>WARNIN: This page haes been lockit sae that juist uisers wi administrator privileges can edit it.</strong>',
 'semiprotectedpagewarning'  => "'''Warnin:''' This page haes been lockit sae that only registerit uisers can edit it.",
-'cascadeprotectedwarning'   => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:
-$2",
+'cascadeprotectedwarning'   => "'''Warnin:''' This page haes been lockit sae that only uisers wi sysop richts can edit it, acause it is includit in the followin cascade-protectit {{PLURAL:$1|page|pages}}:",
 'templatesused'             => 'Templates uised on this page:',
 'templatesusedpreview'      => 'Templates uised in this scance ower:',
 'templatesusedsection'      => 'Templates uised in this section:',

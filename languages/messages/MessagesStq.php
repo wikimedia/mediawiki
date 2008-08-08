@@ -601,8 +601,7 @@ Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe b
 'readonlywarning'                  => '<strong>WOARSCHAUENGE: Ju Doatenboank wuude foar Wartengsoarbaiden speerd, so dät dien Annerengen apstuuns nit spiekerd wäide konnen. Sicherje dän Text jädden lokoal ap dien Computer un fersäik tou n leeteren Tiedpunkt, do Annerengen in ju Wikipedia tou uurdreegen.</strong>',
 'protectedpagewarning'             => '<strong>WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administrationsgjuchte beoarbeded wäide kon.</strong>',
 'semiprotectedpagewarning'         => "'''Oachtenge:''' Disse Siede is ousleeten un kon bloot fon anmäldede Besäikere beoarbaided wäide.",
-'cascadeprotectedwarning'          => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administratorgjuchte beoarbaided wäide kon. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption schutsed {{PLURAL:$1|is|sunt}}:'''
-$2",
+'cascadeprotectedwarning'          => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administratorgjuchte beoarbaided wäide kon. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption schutsed {{PLURAL:$1|is|sunt}}:'''",
 'titleprotectedwarning'            => '<strong>OACHTENGE: Dät Moakjen fon Sieden wuude speerd. Bloot bestimde Benutsergruppen konnen ju Siede moakje.</strong>',
 'templatesused'                    => 'Foulgjende Foarloagen wäide fon disse Artikkele ferwoand:',
 'templatesusedpreview'             => 'Foulgjende Foarloagen wäide fon disse Siedefoarschau ferwoand:',

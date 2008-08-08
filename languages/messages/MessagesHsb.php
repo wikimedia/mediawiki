@@ -686,8 +686,7 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 'readonlywarning'                  => '<strong>KEDŹBU: Datowa banka bu wothladanja dla zawrjena, tohodla njemóžeš swoje wobdźěłowanja nětko składować. Móžeš tekst do tekstoweje dataje přesunyć a jón za pozdźišo składować.</strong>',
 'protectedpagewarning'             => '<strong>KEDŹBU: Strona bu škitana, tak zo jenož wužiwarjo z prawami administratora móža ju wobdźěłać.</strong>',
 'semiprotectedpagewarning'         => '<b>Kedźbu:</b> Strona bu škitana, tak zo jenož přizjewjeni wužiwarjo móža ju wobdźěłać.',
-'cascadeprotectedwarning'          => "'''KEDŹBU:''' Tuta strona je škitana, tak zo móža ju jenož wužiwarjo z prawami administratora wobdźělać, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}:
-$2",
+'cascadeprotectedwarning'          => "'''KEDŹBU:''' Tuta strona je škitana, tak zo móža ju jenož wužiwarjo z prawami administratora wobdźělać, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}:",
 'titleprotectedwarning'            => '<strong>WARNOWANJE: Tuta strona bu zawrjena, jenož wěsći wužiwarjo móža ju wutworić.</strong>',
 'templatesused'                    => 'Na tutej stronje wužiwane předłohi:',
 'templatesusedpreview'             => 'W tutym přehledźe wužiwane předłohi:',

@@ -621,8 +621,7 @@ n'oc'h ket evit enrollañ ho kemmoù diouzhtu eta. Gallout a rit eilañ an deste
 'protectedpagewarning'             => "<strong>KEMENN DIWALL: Stanket eo bet ar bajenn-mañ.
 N'eus nemet an implijerien ganto ar statud merour a c'hall degas kemmoù enni.</strong>",
 'semiprotectedpagewarning'         => "''Notenn :''' Gwarezet eo ar bajenn-mañ; n'eus nemet an implijerien bet krouet ur gont ganto a c'hall degas kemmoù enni.",
-'cascadeprotectedwarning'          => "'''Diwallit :''' Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar {{PLURAL:\$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :
-\$2",
+'cascadeprotectedwarning'          => "'''Diwallit :''' Prennet eo ar bajenn-mañ. N'eus nemet ar verourien a c'hall degas kemmoù enni peogwir he c'haver e-touez ar {{PLURAL:\$1|bajenn|pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh \"skalierad\" :",
 'titleprotectedwarning'            => "<strong>WARNING:  Gwarezet eo bet ar bajenn-mañ e doare ma n'hallo bezañ krouet nemet gant implijerien zo.</strong>",
 'templatesused'                    => 'Patromoù implijet war ar bajenn-mañ :',
 'templatesusedpreview'             => 'Patromoù implijet er rakweladenn-mañ :',

@@ -581,8 +581,7 @@ Anjeun ogé mastikeun yén ieu téh pituin tulisan anjeun, atawa salinan ti doma
 'readonlywarning'                  => "PERHATOSAN: pangkalan data dikonci pikeun diropéa, anjeun moal bisa nyimpen éditan anjeun ayeuna. Cobi ''cut-n-paste'' téksna ka na koropak téks sarta simpen dina waktu séjén.",
 'protectedpagewarning'             => '<strong>PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén.</strong>',
 'semiprotectedpagewarning'         => "'''Perhatoskeun''': ieu kaca dikonci sahingga ukur bisa dirobah ku pamaké nu geus asup log.",
-'cascadeprotectedwarning'          => "'''Awas''': ieu kaca dikonci sahingga ukur bisa dirobah ku kuncén, sabab kaasup {{PLURAL:$1|kaca|kaca}} dina panyalindungan-ngaruntuy di handap ieu:
-$2",
+'cascadeprotectedwarning'          => "'''Awas''': ieu kaca dikonci sahingga ukur bisa dirobah ku kuncén, sabab kaasup {{PLURAL:$1|kaca|kaca}} dina panyalindungan-ngaruntuy di handap ieu:",
 'titleprotectedwarning'            => '<strong>AWAS: Ieu kaca dikonci sahingga ukur bisa dijieun ku sababaraha pamaké anu diwenangkeun.</strong>',
 'templatesused'                    => 'Citakan nu dipaké na kaca ieu:',
 'templatesusedpreview'             => 'Citakan nu dipaké dina ieu pramidang:',

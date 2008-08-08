@@ -668,8 +668,7 @@ taigi negalėsite išsaugoti savo pakeitimų dabar. Jūs gali nusikopijuoti teks
 ir vėliau įkelti jį čia.</strong>',
 'protectedpagewarning'             => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
 'semiprotectedpagewarning'         => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
-'cascadeprotectedwarning'          => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:
-$2",
+'cascadeprotectedwarning'          => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
 'titleprotectedwarning'            => '<strong>ĮSPĖJIMAS: Šis puslapis buvo užrakintas taip, kad tik kai kurie naudotojai galėtų jį sukurti.</strong>',
 'templatesused'                    => 'Puslapyje naudojami šablonai:',
 'templatesusedpreview'             => 'Šablonai, naudoti šioje peržiūroje:',
