@@ -2379,7 +2379,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipusubmit'                       => 'Unblock this address',
 'unblocked'                       => '[[User:$1|$1]] has been unblocked',
 'unblocked-id'                    => 'Block $1 has been removed',
-'ipblocklist'                     => 'List of blocked IP addresses and usernames',
+'ipblocklist'                     => 'Blocked IP addresses and usernames',
 'ipblocklist-legend'              => 'Find a blocked user',
 'ipblocklist-username'            => 'Username or IP address:',
 'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
