@@ -370,8 +370,7 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 
 ʻOku foki te ke palōmesi naʻa ke tohi ia ʻe koe, pe hiki ia mei he tohi tauʻatāina, '''ʻOku ʻikai ʻaupito te ke ʻoatu ha tohi ʻoku foʻi mafai ke pulusi maʻa e tokotaha.'''",
 'readonlywarning'         => '<strong>TOKANGA. ʻOku lokaʻi ʻa e tānekingaʻilo maʻa e monomono, ko ia ai ʻe ikai te ke lava haʻofaki hoʻo fatu he taimí ni. Mahalo pē te ke fie haʻofaki, hiki pea piki, hoʻo fatu ʻi he faile, ki he kahaʻu.<strong>',
-'cascadeprotectedwarning' => "'''Tokanga:''' ʻOku lokaʻi ʻa e pēsí ni ki he fatu, (ʻoku lava pē ʻe he kau pule), koeʻuhi ʻoku kau ki he ngaahi peesi ʻasi ʻi lalo, ʻoku nau maluʻi mo e hohoko fakaivia.
-$2",
+'cascadeprotectedwarning' => "'''Tokanga:''' ʻOku lokaʻi ʻa e pēsí ni ki he fatu, (ʻoku lava pē ʻe he kau pule), koeʻuhi ʻoku kau ki he ngaahi peesi ʻasi ʻi lalo, ʻoku nau maluʻi mo e hohoko fakaivia.",
 'templatesused'           => 'Ngaahi sīpinga ʻoku ngāueʻaki he kupú ni:',
 'templatesusedpreview'    => 'Ngaahi sīpinga ʻoku ngāueʻaki he vakaí ni:',
 'templatesusedsection'    => 'Ngaahi sīpinga ʻoku ngāueʻaki he kongá ni:',

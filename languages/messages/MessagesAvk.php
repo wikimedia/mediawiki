@@ -529,8 +529,7 @@ Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyaf
 vous ne pourrez donc pas sauvegarder vos modifications maintenant. Vous pouvez copier le texte dans un fichier et le sauver pour plus tard.'''",
 'protectedpagewarning'      => "'''WALZERA : batu bu zo nendar. Antaf ristus favesik vaon robetar.'''",
 'semiprotectedpagewarning'  => "'''Straga :''' Batu bu tir ixatcayanu nume antaf vertokayan favesik robetar.",
-'cascadeprotectedwarning'   => "'''Obral !''' Batu bu tir elekayanu enide anton ristus favesik robetar, kire in stoyakoron rupter. {{PLURAL:$1|stoyafu bu|stoyafu bu se}}
-$2",
+'cascadeprotectedwarning'   => "'''Obral !''' Batu bu tir elekayanu enide anton ristus favesik robetar, kire in stoyakoron rupter. {{PLURAL:$1|stoyafu bu|stoyafu bu se}}",
 'titleprotectedwarning'     => '<strong>WALZERA : Batu bu zo ixatcar nume anton abic favesik vaon roredud.</strong>',
 'templatesused'             => 'Teza yo favena koe batu bu',
 'templatesusedpreview'      => 'Faven tezeem koe bata abdinedira :',

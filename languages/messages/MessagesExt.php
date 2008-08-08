@@ -578,8 +578,7 @@ Pol otra parti, al pursal el botón "emburacal" mos estás asigurandu que lo esc
 razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chambus, pueis copialus i pegalus nel tu ordinaol, i endrentu un ratu, emburacalus ena güiqui.</strong>',
 'protectedpagewarning'             => "<strong>Avisu: Esta páhina s'alcuentra atarugá, asínque sólu los çahorilis puein eitala.</strong>",
 'semiprotectedpagewarning'         => "'''Nota:''' S'á atarugau esta páhina, asínque solu los usuárius rustrius puein eitala.",
-'cascadeprotectedwarning'          => "'''Avisu:''' Esta páhina está protehia, asínque solu los çahorilis puein eitala. La razón de qu'esté protehia es que s'alcuentra encluia {{PLURAL:$1|ena siguienti páhina|enas siguientis páhinas}} cola oción ''cascá'' ativá:
-$2",
+'cascadeprotectedwarning'          => "'''Avisu:''' Esta páhina está protehia, asínque solu los çahorilis puein eitala. La razón de qu'esté protehia es que s'alcuentra encluia {{PLURAL:$1|ena siguienti páhina|enas siguientis páhinas}} cola oción ''cascá'' ativá:",
 'titleprotectedwarning'            => '<strong>Avisu: Esta páhina á siu atarugá, polo que solu angunus usuárius puein criala.</strong>',
 'templatesused'                    => 'Prantillas gastás nesta páhina:',
 'templatesusedpreview'             => 'Prantillas gastás al previsoreal:',
