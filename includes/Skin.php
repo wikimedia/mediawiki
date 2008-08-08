@@ -789,7 +789,7 @@ END;
 			wfDebug ('Hook SkinAfterContent changed output processing.');
 		}
 
-    return $data;
+		return $data;
 	}
 
 	/**
