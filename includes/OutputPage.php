@@ -1493,7 +1493,7 @@ class OutputPage {
 			global $wgOverrideSiteFeed, $wgSitename;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 			
-			if ( isset( $wgOverrideSiteFeed['rss'] ) || isset( $wgOverrideSiteFeed['atom'] ) ) {
+			if ( $wgOverrideSiteFeed ) {
 				foreach ( $wgOverrideSiteFeed as $type => $feedUrl ) { 
 					$tags[] = $this->feedLink (
 						$type,
