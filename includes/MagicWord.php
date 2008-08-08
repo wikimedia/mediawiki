@@ -153,6 +153,7 @@ class MagicWord {
 		'noeditsection',
 		'newsectionlink',
 		'hiddencat',
+		'staticredirect',
 	);
 
 

@@ -250,12 +250,13 @@ class Title {
 	 *
 	 * @param int $ns the namespace of the article
 	 * @param string $title the unprefixed database key form
+	 * @param string $fragment The link fragment (after the "#")
 	 * @return Title the new object
 	 */
-	public static function &makeTitle( $ns, $title ) {
+	public static function &makeTitle( $ns, $title, $fragment = '' ) {
 		$t = new Title();
 		$t->mInterwiki = '';
-		$t->mFragment = '';
+		$t->mFragment = $fragment;
 		$t->mNamespace = $ns = intval( $ns );
 		$t->mDbkeyform = str_replace( ' ', '_', $title );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
@@ -271,11 +272,12 @@ class Title {
 	 *
 	 * @param int $ns the namespace of the article
 	 * @param string $title the database key form
+	 * @param string $fragment The link fragment (after the "#")
 	 * @return Title the new object, or NULL on an error
 	 */
-	public static function makeTitleSafe( $ns, $title ) {
+	public static function makeTitleSafe( $ns, $title, $fragment = '' ) {
 		$t = new Title();
-		$t->mDbkeyform = Title::makeName( $ns, $title );
+		$t->mDbkeyform = Title::makeName( $ns, $title, $fragment );
 		if( $t->secureAndSplit() ) {
 			return $t;
 		} else {
@@ -391,13 +393,18 @@ class Title {
 	 * Make a prefixed DB key from a DB key and a namespace index
 	 * @param int $ns numerical representation of the namespace
 	 * @param string $title the DB key form the title
+	 * @param string $fragment The link fragment (after the "#")
 	 * @return string the prefixed form of the title
 	 */
-	public static function makeName( $ns, $title ) {
+	public static function makeName( $ns, $title, $fragment = '' ) {
 		global $wgContLang;
 
-		$n = $wgContLang->getNsText( $ns );
-		return $n == '' ? $title : "$n:$title";
+		$namespace = $wgContLang->getNsText( $ns );
+		$name = $namespace == '' ? $title : "$namespace:$title";
+		if ( strval( $fragment ) != '' ) {
+			$name .= '#' . $fragment;
+		}
+		return $name;
 	}
 
 	/**

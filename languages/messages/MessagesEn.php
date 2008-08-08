@@ -340,6 +340,7 @@ $magicWords = array(
 	'hiddencat'              => array( 1,    '__HIDDENCAT__'          ),
 	'pagesincategory'        => array( 1,    'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'               => array( 1,    'PAGESIZE'               ),
+	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
 );
 
 /**
@@ -440,7 +441,7 @@ $specialPageAliases = array(
  * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
  * the first group, and the remainder of the string as the second group.
  */
-$linkTrail = '/^(\p{L&}+)(.*)$/usD';
+$linkTrail = '/^([a-z]+)(.*)$/sD';
 
 /**
  * List of filenames for some ui images that can be overridden per language
