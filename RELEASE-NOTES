@@ -78,6 +78,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Patch by Max Semenik.
 * (bug 15055) Talk page notifications no longer attempt to send mail when
   user's e-mail address is invalid or unconfirmed
+* (bug 2443) Add image name as alt-text when no caption is provided.
 
 === API changes in 1.14 ===
 
