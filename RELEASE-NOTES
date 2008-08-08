@@ -57,6 +57,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   being converted or not
 * (bug 14921) Special:Contributions/: add user name to <title>
   Patch by Emufarmers
+* Unescape more "safe" characters when producing URLs, for added prettiness
 
 === Bug fixes in 1.14 ===
 
