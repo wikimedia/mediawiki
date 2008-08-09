@@ -279,15 +279,15 @@ class Parser
 	 * Convert wikitext to HTML
 	 * Do not call this function recursively.
 	 *
-	 * @param string $text Text we want to parse
-	 * @param Title &$title A title object
-	 * @param array $options
-	 * @param boolean $linestart
-	 * @param boolean $clearState
-	 * @param int $revid number to pass in {{REVISIONID}}
+	 * @param $text String: text we want to parse
+	 * @param $title A title object
+	 * @param $options ParserOptions
+	 * @param $linestart boolean
+	 * @param $clearState boolean
+	 * @param $revid Int: number to pass in {{REVISIONID}}
 	 * @return ParserOutput a ParserOutput
 	 */
-	public function parse( $text, &$title, $options, $linestart = true, $clearState = true, $revid = null ) {
+	public function parse( $text, Title $title, ParserOptions $options, $linestart = true, $clearState = true, $revid = null ) {
 		/**
 		 * First pass--just handle <nowiki> sections, pass the rest off
 		 * to internalParse() which does all the real work.
