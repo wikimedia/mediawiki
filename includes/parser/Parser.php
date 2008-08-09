@@ -4831,12 +4831,14 @@ class Parser
 	 * @return string
 	 */
 	public function getDefaultSort() {
+		global $wgCategoryPrefixedDefaultSortkey;
 		if( $this->mDefaultSort !== false ) {
 			return $this->mDefaultSort;
+		} elseif ($this->mTitle->getNamespace() == NS_CATEGORY ||
+			!$wgCategoryPrefixedDefaultSortkey) {
+			return $this->mTitle->getText();
 		} else {
-			return $this->mTitle->getNamespace() == NS_CATEGORY
-					? $this->mTitle->getText()
-					: $this->mTitle->getPrefixedText();
+			return $this->mTitle->getPrefixedText();
 		}
 	}
 
