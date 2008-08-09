@@ -698,6 +698,7 @@ $2',
 'createaccount-text'         => 'في واحد فتح حساب باسم الايمل بتاعك على {{SITENAME}} ($4) بالاسم "$2"، وبباسورد "$3". لازم تسجل دخولك دلوقتي و تغير الباسورد بتاعتك.
 
 لو سمحت تتجاهل الرسالة دي اذا الحساب دا اتفتحلك بالغلط.',
+'login-throttled'            => 'انت عملت  محاولات كتيره حديثة على كلمة سر الحساب ده . من فضلك استنى قبل المحاولة مرة تانيه.',
 'loginlanguagelabel'         => 'اللغة: $1',
 
 # Password reset dialog
@@ -747,9 +748,7 @@ $2',
 'summary-preview'                  => 'بروفه للملخص',
 'subject-preview'                  => 'بروفة للعنوان\\الموضوع',
 'blockedtitle'                     => 'اليوزر ممنوع',
-'blockedtext'                      => "
-
-<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
+'blockedtext'                      => "<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
 
 سبب المنع هو: ''$2''. وقام بالمنع $1.
 
@@ -1414,6 +1413,9 @@ PICT # misc.
 'filehist-comment'               => 'تعليق',
 'imagelinks'                     => 'وصلات',
 'linkstoimage'                   => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} دى فيها وصله للفايل ده:',
+'linkstoimage-more'              => 'أكتر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} للملف ده .
+القائمة التالية تعرض {{PLURAL:$1|أول وصلة صفحة|أول $1 وصلة صفحة}} للملف ده بس.
+[[Special:WhatLinksHere/$2|قائمة كاملة]] متوفرة.',
 'nolinkstoimage'                 => 'مافيش صفحات بتوصل للفايل ده.',
 'morelinkstoimage'               => 'عرض [[Special:WhatLinksHere/$1|لينكات اكتر]] للملف دا.',
 'redirectstofile'                => '{{PLURAL:$1| الملف|ال$1 ملف}} اللي جاي  بيحول للملف دا:',
@@ -1890,20 +1892,22 @@ $1',
 'blanknamespace' => '(رئيسى)',
 
 # Contributions
-'contributions' => 'مساهمات اليوزر',
-'mycontris'     => 'تعديلاتى',
-'contribsub2'   => 'لليوزر $1 ($2)',
-'nocontribs'    => 'مالقيناش   تغييرات تطابق المحددات دي.',
-'uctop'         => '(فوق)',
-'month'         => 'من شهر (واللى قبل كده):',
-'year'          => 'من سنة (واللى قبل كده):',
+'contributions'       => 'مساهمات اليوزر',
+'contributions-title' => 'مساهمات اليوزر ل$1',
+'mycontris'           => 'تعديلاتى',
+'contribsub2'         => 'لليوزر $1 ($2)',
+'nocontribs'          => 'مالقيناش   تغييرات تطابق المحددات دي.',
+'uctop'               => '(فوق)',
+'month'               => 'من شهر (واللى قبل كده):',
+'year'                => 'من سنة (واللى قبل كده):',
 
-'sp-contributions-newbies'     => 'عرض مساهمات الحسابات الجديدة بس',
-'sp-contributions-newbies-sub' => 'للحسابات الجديده',
-'sp-contributions-blocklog'    => 'سجل المنع',
-'sp-contributions-search'      => 'دور على مساهمات',
-'sp-contributions-username'    => 'عنوان أيبي أو اسم يوزر:',
-'sp-contributions-submit'      => 'تدوير',
+'sp-contributions-newbies'       => 'عرض مساهمات الحسابات الجديدة بس',
+'sp-contributions-newbies-sub'   => 'للحسابات الجديده',
+'sp-contributions-newbies-title' => 'مساهمات  اليوزر للحسابات الجديدة',
+'sp-contributions-blocklog'      => 'سجل المنع',
+'sp-contributions-search'        => 'دور على مساهمات',
+'sp-contributions-username'      => 'عنوان أيبي أو اسم يوزر:',
+'sp-contributions-submit'        => 'تدوير',
 
 # What links here
 'whatlinkshere'            => 'ايه بيوصل هنا',

@@ -805,7 +805,7 @@ Kérjük, hogy érdeklődés esetén mindkettőt add meg.",
 'blockednoreason'                  => 'nem lett ok megadva',
 'blockedoriginalsource'            => "'''$1''' forrása alább látható:",
 'blockededitsource'                => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
-'whitelistedittitle'               => 'A szerkesztéshez [[Special:Userlogin|be kell jelentkezned]]',
+'whitelistedittitle'               => 'A szerkesztéshez [[Special:UserLogin|be kell jelentkezned]]',
 'whitelistedittext'                => 'A szócikkek szerkesztéséhez $1.',
 'confirmedittitle'                 => 'Szerkesztéshez az e-mail cím megerősítése szükséges',
 'confirmedittext'                  => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|szerkesztői beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
@@ -1175,7 +1175,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 
 # Groups
 'group'               => 'Csoport:',
-'group-user'          => 'új szerkesztők',
+'group-user'          => 'szerkesztők',
 'group-autoconfirmed' => 'automatikusan megerősített felhasználók',
 'group-bot'           => 'botok',
 'group-sysop'         => 'adminisztrátorok',

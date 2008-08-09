@@ -559,7 +559,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'rcshowhidemine'    => '$1 ਮੇਰਾ ਐਡਿਟ',
 'hide'              => 'ਓਹਲੇ',
 'show'              => 'ਵੇਖਾਓ',
-'minoreditletter'   => 'ਮ',
+'minoreditletter'   => 'ਛ',
 'newpageletter'     => 'ਨ',
 'boteditletter'     => 'ਬ',
 'rc_categories_any' => 'ਕੋਈ ਵੀ',

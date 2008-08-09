@@ -474,7 +474,7 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'loginproblem'               => '<b>Ni lwyddodd y mewngofnodi.</b><br />Ceisiwch eto!',
 'login'                      => 'Mewngofnodi',
 'nav-login-createaccount'    => 'Mewngofnodi',
-'loginprompt'                => "Mae'n rhaid galluogi cwcis er mwyn [[Special:Userlogin|mewngofnodi i {{SITENAME}}]].",
+'loginprompt'                => "Mae'n rhaid galluogi cwcis er mwyn [[Special:UserLogin|mewngofnodi i {{SITENAME}}]].",
 'userlogin'                  => 'Mewngofnodi',
 'logout'                     => 'Allgofnodi',
 'userlogout'                 => 'Allgofnodi',

@@ -353,7 +353,7 @@ $messages = array(
 
 'badaccess'        => 'Lỗi về quyền truy cập',
 'badaccess-group0' => 'Bạn không được phép thực hiện thao tác này.',
-'badaccess-groups' => 'Chỉ những thành viên trong các nhóm $1 mới được làm thao tác này.',
+'badaccess-groups' => 'Chỉ những thành viên trong {{PLURAL:$2|nhóm|các nhóm}} $1 mới được thực hiện thao tác này.',
 
 'versionrequired'     => 'Cần phiên bản $1 của MediaWiki',
 'versionrequiredtext' => 'Cần phiên bản $1 của MediaWiki để sử dụng trang này. Xem [[Special:Version|trang phiên bản]].',
@@ -554,6 +554,7 @@ Nếu một người nào khác yêu cầu điều này hoặc nếu bạn đã 
 'createaccount-text'         => 'Ai đó đã tạo một tài khoản với tên $2 tại {{SITENAME}} ($4). Mật khẩu của "$2" là "$3". Bạn nên đăng nhập và đổi mật khẩu ngay bây giờ.
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
+'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này. Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 
 # Password reset dialog
@@ -608,30 +609,33 @@ Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạ
 'blockedtitle'                     => 'Thành viên bị cấm',
 'blockedtext'                      => "<big>'''Tên người dùng hoặc địa chỉ IP của bạn đã bị cấm.'''</big>
 
-Người thực hiện cấm là $1. Lý do được cung cấp là ''$2''.
+Người thực hiện cấm là $1.
+Lý do được cung cấp là ''$2''.
 
 * Bắt đầu cấm: $8
 * Kết thúc cấm: $6
-* Người bị cấm: $7
+* Mục tiêu cấm: $7
 
-Bạn có thể liên lạc với $1 hoặc một [[{{MediaWiki:Grouppage-sysop}}|người quản lý]] khác để thảo luận về việc cấm.
-Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lý trong [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó.
+Bạn có thể liên hệ với $1 hoặc một [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.
+Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó.
 Địa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5.
-Xin hãy ghi kèm theo một trong hai hoặc cả hai vào các yêu cầu của bạn.",
-'autoblockedtext'                  => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, và người đó đã bị $1 cấm.
+Xin hãy ghi kèm tất cả các thông tin trên vào thư yêu cầu của bạn.",
+'autoblockedtext'                  => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, $1 là thành viên đã thực hiện cấm.
 Lý do được cung cấp là:
 
 :''$2''
 
-* Thời điểm bắt đầu cấm: $8
-* Thời điểm kết thúc cấm: $6
+* Bắt đầu cấm: $8
+* Kết thúc cấm: $6
+* Mục tiêu cấm: $7
 
-Bạn có thể liên lạc với $1 hoặc một trong số các
-[[{{MediaWiki:Grouppage-sysop}}|quản lý]] khác để thảo luận về việc cấm.
+Bạn có thể liên hệ với $1 hoặc một trong số các
+[[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.
 
-Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử đúng trong [[Special:Preferences|tùy chọn]] và chức năng đó không bị cấm.
+Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.
 
-Mã số cấm của bạn là $5. Xin hãy ghi kèm mã số này trong những yêu cầu của bạn.",
+Địa chỉ IP hiện tại của bạn là $3, mã số cấm là $5.
+Xin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của bạn.",
 'blockednoreason'                  => 'không đưa ra lý do',
 'blockedoriginalsource'            => "Mã nguồn của '''$1''':",
 'blockededitsource'                => "Các '''sửa đổi của bạn''' ở '''$1''':",
@@ -723,7 +727,7 @@ Nhật trình xóa của trang được đưa ra dưới đây để tiện theo
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
 
-Nó nên ít hơn $2, hiện giờ đang là $1.',
+Nó nên ít hơn $2 {{PLURAL:$2|lần gọi|lần gọi}}, hiện giờ đang là {{PLURAL:$1|$1 lần gọi|$1 lần gọi}}.',
 'expensive-parserfunction-category'       => 'Trang có quá nhiều lời gọi hàm cú pháp cần mức độ xử lý cao',
 'post-expand-template-inclusion-warning'  => 'Cảnh báo: Kích thước tiêu bản nhúng vào quá lớn.
 Một số tiêu bản sẽ không được đưa vào.',
@@ -1125,13 +1129,13 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 'upload_directory_read_only'  => 'Máy chủ không thể sửa đổi thư mục tải lên ($1) được.',
 'uploaderror'                 => 'Lỗi khi tải lên',
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
-Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:ImageList|danh sách các tập tin đã tải lên]];
-việc tải lên và xóa đi cũng được ghi lại trong [[Special:Log/upload|nhật trình tải lên]].
+Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:ImageList|danh sách các tập tin đã tải lên]]. 
+việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</tt></nowiki>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó.",
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
 'upload-prohibited'           => 'Các định dạng tập tin bị cấm: $1.',
@@ -1257,6 +1261,9 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filehist-comment'               => 'Miêu tả',
 'imagelinks'                     => 'Liên kết',
 'linkstoimage'                   => '{{PLURAL:$1|Trang|$1 trang}} sau có liên kết đến tập tin này:',
+'linkstoimage-more'              => 'Có hơn $1 {{PLURAL:$1|trang|trang}} liên kết đến tập tin này.
+Danh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết đầu tiên|$1 liên kết đầu tiên}} đến tập tin này.
+Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'nolinkstoimage'                 => 'Không có trang nào chứa liên kết đến hình.',
 'morelinkstoimage'               => 'Xem [[Special:WhatLinksHere/$1|thêm liên kết]] đến tập tin này.',
 'redirectstofile'                => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau chuyển hướng đến tập tin này:',
@@ -1472,8 +1479,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'listgrouprights-rights'          => 'Khả năng',
 'listgrouprights-helppage'        => 'Help:Khả năng của nhóm thành viên',
 'listgrouprights-members'         => '(danh sách thành viên)',
-'listgrouprights-addgroup'        => 'Có thể thêm nhóm: $1',
-'listgrouprights-removegroup'     => 'Có thể bỏ nhóm: $1',
+'listgrouprights-addgroup'        => 'Có thể thêm {{PLURAL:$2|nhóm|các nhóm}}: $1',
+'listgrouprights-removegroup'     => 'Có thể bỏ {{PLURAL:$2|nhóm|các nhóm}}: $1',
 'listgrouprights-addgroup-all'    => 'Có thể thêm tất cả các nhóm',
 'listgrouprights-removegroup-all' => 'Có thể bỏ tất cả các nhóm',
 
@@ -1721,24 +1728,26 @@ $1',
 'blanknamespace' => '(Chính)',
 
 # Contributions
-'contributions' => 'Đóng góp',
-'mycontris'     => 'Đóng góp của tôi',
-'contribsub2'   => 'Của $1 ($2)',
-'nocontribs'    => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
-'uctop'         => '(mới nhất)',
-'month'         => 'Từ tháng (trở về trước):',
-'year'          => 'Từ năm (trở về trước):',
+'contributions'       => 'Đóng góp của thành viên',
+'contributions-title' => 'Đóng góp của thành viên $1',
+'mycontris'           => 'Đóng góp của tôi',
+'contribsub2'         => 'Của $1 ($2)',
+'nocontribs'          => 'Không tìm thấy thay đổi nào khớp với yêu cầu.',
+'uctop'               => '(mới nhất)',
+'month'               => 'Từ tháng (trở về trước):',
+'year'                => 'Từ năm (trở về trước):',
 
-'sp-contributions-newbies'     => 'Chỉ hiển thị đóng góp của tài khoản mới',
-'sp-contributions-newbies-sub' => 'Các thành viên mới',
-'sp-contributions-blocklog'    => 'Nhật trình cấm',
-'sp-contributions-search'      => 'Tìm kiếm đóng góp',
-'sp-contributions-username'    => 'Địa chỉ IP hay tên thành viên:',
-'sp-contributions-submit'      => 'Tìm kiếm',
+'sp-contributions-newbies'       => 'Chỉ hiển thị đóng góp của tài khoản mới',
+'sp-contributions-newbies-sub'   => 'Các thành viên mới',
+'sp-contributions-newbies-title' => 'Đóng góp của các thành viên mới',
+'sp-contributions-blocklog'      => 'Nhật trình cấm',
+'sp-contributions-search'        => 'Tìm kiếm đóng góp',
+'sp-contributions-username'      => 'Địa chỉ IP hay tên thành viên:',
+'sp-contributions-submit'        => 'Tìm kiếm',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',
-'whatlinkshere-title'      => 'Các trang liên kết đến $1',
+'whatlinkshere-title'      => 'Các trang liên kết đến “$1”',
 'whatlinkshere-page'       => 'Trang:',
 'linkshere'                => "Các trang sau liên kết đến '''[[:$1]]''':",
 'nolinkshere'              => "Không có trang nào liên kết đến '''[[:$1]]'''.",
@@ -1803,7 +1812,7 @@ $1',
 'ipusubmit'                       => 'Bỏ cấm',
 'unblocked'                       => '[[User:$1|$1]] đã hết bị cấm',
 'unblocked-id'                    => '$1 đã hết bị cấm',
-'ipblocklist'                     => 'Danh sách cấm',
+'ipblocklist'                     => 'Địa chỉ IP và tên người dùng bị cấm',
 'ipblocklist-legend'              => 'Tìm một thành viên bị cấm',
 'ipblocklist-username'            => 'Tên thành viên hoặc địa chỉ IP:',
 'ipblocklist-submit'              => 'Tìm kiếm',
@@ -2157,6 +2166,8 @@ $1',
 'newimages'             => 'Trang trưng bày hình ảnh mới',
 'imagelisttext'         => "Dưới đây là danh sách '''$1''' {{PLURAL:$1|tập tin|tập tin}} xếp theo $2.",
 'newimages-summary'     => 'Trang đặc biệt này hiển thị các tập tin được tải lên gần đây nhất.',
+'newimages-legend'      => 'Bộ lọc',
+'newimages-label'       => 'Tên tập tin (hoặc một phần tên):',
 'showhidebots'          => '($1 robot)',
 'noimages'              => 'Chưa có hình.',
 'ilsubmit'              => 'Tìm kiếm',

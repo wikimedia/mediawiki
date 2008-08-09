@@ -261,7 +261,7 @@ I seguenti colegamenti i xe in lengua inglese:
 
 'badaccess'        => 'Eròr ne i permessi',
 'badaccess-group0' => "No te ghè i permessi necessari par eseguir l'azion richiesta.",
-'badaccess-groups' => 'La funzion richiesta la xe riservà ai utenti che fa parte de uno dei seguenti grupi: $1.',
+'badaccess-groups' => 'La funzion richiesta la xe riservà ai utenti che fa parte {{PLURAL:$2|del grupo|de uno dei seguenti grupi}}: $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki richiesta',
 'versionrequiredtext' => 'Par doparar sta pagina a ghe vole la version $1 del software MediaWiki. Varda la [[Special:Version|pagina de la version]].',
@@ -405,7 +405,7 @@ No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de 
 'loginproblem'               => '<b>Si gà verificà un erore durante el to tentativo de login.</b><br />Ripróa da novo!',
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra o crea un novo acesso',
-'loginprompt'                => 'Par [[Special:Userlogin|acédere a {{SITENAME}}]] ti gà da abiłitare i cookie.',
+'loginprompt'                => 'Par acédere a {{SITENAME}} ti gà da abiłitare i cookie.',
 'userlogin'                  => 'Entra o crea un novo acesso',
 'logout'                     => 'Và fora',
 'userlogout'                 => 'và fora',
@@ -474,6 +474,7 @@ Par piaser, fà subito un login \'pena che la te riva.',
 La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
+'login-throttled'            => 'Te ghè fato massa tentativi su la password de sto account. Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 
 # Password reset dialog
@@ -523,17 +524,18 @@ Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
 'summary-preview'                  => 'Anteprima ogeto',
 'subject-preview'                  => 'Anteprima ogeto/intestazion',
 'blockedtitle'                     => 'Utente blocà',
-'blockedtext'                      => "<big>'''Sto nome utente o indirizo IP i xe stà blocà.'''</big>
+'blockedtext'                      => "<big>'''Sto nome utente o indirizo IP el xe stà blocà.'''</big>
 
-El bloco el xe stà messo da $1. La motivazion del bloco la xe sta qua: ''$2''
+El bloco el xe stà messo da $1.
+La motivazion del bloco la xe sta qua: ''$2''.
 
 * Inizio del bloco: $8
-* Scadenza del bloco: $6
-* Intervalo di bloco: $7
+* Scadensa del bloco: $6
+* Intervalo del bloco: $7
 
 Se te vol, te pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par discùtar del bloco.
 
-Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[Special:Preferences|preferenze]].
+Nota che la funzion 'Scrivi a l'utente' no la xe mìa ativa se no te ghè registrà un indirizo e-mail valido ne le to [[Special:Preferences|preferenze]] e se sto indirizo no'l xe stà blocà.
 
 Se prega de specificare l'indirizo IP atuale ($3) o el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
 'autoblockedtext'                  => "Sto indirizo IP el xe stà blocà automaticamente parché condiviso con n'altro utente, a so volta blocà da $1.
@@ -543,16 +545,17 @@ La motivazion del blocco la xe sta qua:
 
 * Inizio del bloco: $8
 * Scadenza del bloco: $6
+* Intervalo del bloco: $7
 
 Se pol contatar $1 o n'altro [[{{MediaWiki:Grouppage-sysop}}|aministrador]] par discùtar del bloco.
 
-Nota che la funzion 'Scrivi a l'utente' no la xe ativa se no xe stà registrà un indirizo e-mail valido ne le proprie [[Special:Preferences|preferenze]].
+Nota che la funzion 'Scrivi a l'utente' no la xe ativa a meno che no te gavi registrà un indirizo e-mail valido ne le to [[Special:Preferences|preferenze]] e che l'indirizo no'l sia stà blocà.
 
-Se prega de specificar el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
+Se prega de specificar el to indirizo IP atuale ($3) e el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
 'blockednoreason'                  => 'nissuna motivazion indicà',
 'blockedoriginalsource'            => "El còdese sorgente de '''$1''' el vien mostrà de seguito:",
 'blockededitsource'                => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
-'whitelistedittitle'               => '[[Special:Userlogin|Bisogna èssar registrà]] par poder modificar le pàxene',
+'whitelistedittitle'               => 'Bisogna èssar registrà par poder modificar le pàxene',
 'whitelistedittext'                => 'Par modificar łe pàxene ghe xè bisogno de $1.',
 'confirmedittitle'                 => 'Ghe vole ła conferma e-mail par scrivare',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
@@ -641,7 +644,7 @@ L'elenco de le relative scancelazion el vien riportà qua de seguito par comodit
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
 
-Dovarìa èssarghene manco de $2, ghe ne xe $1.',
+Dovarìa èssarghe manco de $2 {{PLURAL:$2|chiamata|chiamate}}, {{PLURAL:$1|ghe ne xe|ghe ne xe}} $1.',
 'expensive-parserfunction-category'       => 'Pagina con chiamate de funzion al parser massa onerose',
 'post-expand-template-inclusion-warning'  => 'Ocio: la dimension de inclusion dei template la xe massa granda.
 Alcuni template no i sarà mia inclusi.',
@@ -681,6 +684,7 @@ Verifica l'URL che te doparà par açedere a sta pàxena.",
 'page_last'           => 'ultima',
 'histlegend'          => 'Legenda: (cor) = difarense con la versión corente,
 (prec) = difarense con la versión precedente, m = modifica minore',
+'history-search'      => 'Serca in te la cronologia',
 'deletedrev'          => '[scancełà]',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ultima',
@@ -1041,7 +1045,7 @@ par poder cargar dei file.',
 'upload_directory_read_only'  => "El server web no l'è bon de scrìvar ne la directory de caricamento ($1).",
 'uploaderror'                 => 'Eror nel caricamento',
 'uploadtext'                  => "Par cargar novi file, dopara el modulo qua soto. 
-Par védar o çercar i file zà caricà, consulta la [[Special:ImageList|lista dei file caricà]]. I caricamenti e le scancelazion de file te pol védarle nel [[Special:Log/upload|registro dei caricamenti]].
+Par védar o çercar i file zà caricà, consulta la [[Special:ImageList|lista dei file caricà]]. I caricamenti de file te pol védarli nel [[Special:Log/upload|registro dei caricamenti]], le scancelasion nel [[Special:Log/delete|registro de le scancelasion]].
 
 Par métar un file drento de na pagina, te ghè da inserir un colegamento fato come uno de sti qua:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' par doparar la version conpleta de sto file
@@ -1156,6 +1160,9 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'filehist-comment'               => 'Ogeto',
 'imagelinks'                     => "Colegamenti a l'imagine",
 'linkstoimage'                   => '{{PLURAL:$1|La pagina seguente la|Le $1 pàxene seguenti le}} riciama sto file:',
+'linkstoimage-more'              => 'Piassè de $1 {{PLURAL:$1|pagina la ponta|pagine le ponta}} a sto file.
+De seguito xe elencà solo {{PLURAL:$1|la prima pagina che ponta|le prime $1 pagine che ponta}} a sto file.
+Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'nolinkstoimage'                 => 'Nissuna pàxena la punta a sta imagine.',
 'morelinkstoimage'               => 'Varda i [[Special:WhatLinksHere/$1|altri colegamenti]] verso sto file.',
 'redirectstofile'                => '{{PLURAL:$1|El file seguente el|I $1 file seguenti i}} redirige verso sto file:',
@@ -1371,8 +1378,8 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'listgrouprights-rights'          => 'Diriti',
 'listgrouprights-helppage'        => 'Help:Diriti dei grupi',
 'listgrouprights-members'         => '(lista dei menbri)',
-'listgrouprights-addgroup'        => 'Pode zontar grupi: $1',
-'listgrouprights-removegroup'     => 'Pode cavar grupi: $1',
+'listgrouprights-addgroup'        => 'Pode zontar {{PLURAL:$2|al grupo|ai grupi}}: $1',
+'listgrouprights-removegroup'     => 'Pode cavar {{PLURAL:$2|dal grupo|dai grupi}}: $1',
 'listgrouprights-addgroup-all'    => 'Pode zontar tuti i grupi',
 'listgrouprights-removegroup-all' => 'Pode cavar tuti i grupi',
 
@@ -1607,24 +1614,26 @@ $1',
 'blanknamespace' => '(Prinçipałe)',
 
 # Contributions
-'contributions' => 'Contributi utente',
-'mycontris'     => 'i me contributi',
-'contribsub2'   => 'Par $1 ($2)',
-'nocontribs'    => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.',
-'uctop'         => '(ultima par ła pàxena)',
-'month'         => 'A partir dal mese (e precedenti):',
-'year'          => "A partir da l'ano (e precedenti):",
+'contributions'       => 'Contributi utente',
+'contributions-title' => 'Contributi de $1',
+'mycontris'           => 'i me contributi',
+'contribsub2'         => 'Par $1 ($2)',
+'nocontribs'          => 'No xe stà catà nissuna modifica che vaga ben par sti critèri.',
+'uctop'               => '(ultima par ła pàxena)',
+'month'               => 'A partir dal mese (e precedenti):',
+'year'                => "A partir da l'ano (e precedenti):",
 
-'sp-contributions-newbies'     => 'Mostra solo i contributi dei utenti novi',
-'sp-contributions-newbies-sub' => 'Par i novi utenti',
-'sp-contributions-blocklog'    => 'Registro dei blochi',
-'sp-contributions-search'      => 'Riçerca contributi',
-'sp-contributions-username'    => 'Indirizo IP o nome utente:',
-'sp-contributions-submit'      => 'Riçerca',
+'sp-contributions-newbies'       => 'Mostra solo i contributi dei utenti novi',
+'sp-contributions-newbies-sub'   => 'Par i novi utenti',
+'sp-contributions-newbies-title' => 'Contributi dei utenti novi',
+'sp-contributions-blocklog'      => 'Registro dei blochi',
+'sp-contributions-search'        => 'Riçerca contributi',
+'sp-contributions-username'      => 'Indirizo IP o nome utente:',
+'sp-contributions-submit'        => 'Riçerca',
 
 # What links here
 'whatlinkshere'            => 'Pàxene che le punta qua',
-'whatlinkshere-title'      => 'Pagine che punta a $1',
+'whatlinkshere-title'      => 'Pagine che punta a "$1"',
 'whatlinkshere-page'       => 'Pagina:',
 'linkshere'                => "Ste pagine qua le contien dei colegamenti a '''[[:$1]]''':",
 'nolinkshere'              => "Nissuna pagina la contien colegamenti che punta a '''[[:$1]]'''.",
@@ -1683,7 +1692,7 @@ $1',
 'ipusubmit'                       => 'Sbloca sto indirisso IP',
 'unblocked'                       => "L'utente [[User:$1|$1]] el xe stà sblocà",
 'unblocked-id'                    => 'El bloco $1 el xe stà cavà',
-'ipblocklist'                     => 'Indirizi IP bloccai',
+'ipblocklist'                     => 'Nomi utenti e indirizi IP blocài',
 'ipblocklist-legend'              => 'Cata fora un utente blocà',
 'ipblocklist-username'            => 'Nome utente o indirizo IP:',
 'ipblocklist-submit'              => 'Çerca',
@@ -1749,8 +1758,8 @@ Tiente in mente de [[Special:UnlockDB|sblocarlo]] co te ghè finìo de far manut
 'move-page-legend'        => 'Spostamento de pàxena',
 'movepagetext'            => "Col modulo qua soto te podi rinominar na pàxena, spostando anca tuta la so cronołogia al nome novo.
 El vecio titoło el deventarà automaticamente un rimando (redirect) che punta al novo titoło.
-I colegamenti a la vecia pàxena no i sarà mìa agiornài (e i puntarà quindi al rimando);
-tiente in mente de controłar con cura che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
+Te podi agiornar automaticamente i rimandi che punta al vecio titolo.
+Se te siegli de no farlo, tiente in mente de controłar con cura che no se crea [[Special:DoubleRedirects|dopi redirect]] o [[Special:BrokenRedirects|redirect interoti]].
 Resta ne la to responsabilità de controlar che i colegamenti i continua a puntar verso dove i deve dirìgiarse.
 
 Nota ben: la pàxena '''no''' la sarà spostà se ghe fusse xà na voçe col nome novo, a meno che no la sia na pàxena voda o un rimando, e senpre che no la gabia cronologia.
@@ -2020,6 +2029,8 @@ $1',
 'newimages'             => 'Imagini nove',
 'imagelisttext'         => "Qua ghe xe na lista de '''$1''' {{PLURAL:$1|file|files}} ordinà par $2.",
 'newimages-summary'     => 'Sta pagina speciale la mostra i file cargà piassè reçentemente.',
+'newimages-legend'      => 'Filtro',
+'newimages-label'       => 'Nome del file (o na parte de élo):',
 'showhidebots'          => '($1 i bot)',
 'noimages'              => 'No ghè gnente da vardare.',
 'ilsubmit'              => 'Serca',

@@ -299,7 +299,7 @@ Yberprüf d Schribwis, odr meld dich als neijer Benutzer ô.',
 
 S automatisch generiert Passwort fier de Benutzer $2 lutet jetzert: $3
 
-Du sottsch dich jetzt onmelde un s Passwort ändere: {{fullurl:Special:Userlogin}}
+Du sottsch dich jetzt onmelde un s Passwort ändere: {{fullurl:Special:UserLogin}}
 
 Bitte ignorier diä E-Mail, wenn du s nit selber ongfordert hesch. S alt Passwort blibt witerhin gültig.',
 'noemail'                    => 'Dr Benutzer "$1" het kei E-Mail-Adress ongebe.',

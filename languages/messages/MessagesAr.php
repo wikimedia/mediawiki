@@ -416,6 +416,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'أرسل لي نسخا من رسائل البريد الإلكتروني التي أرسلها للمستخدمين الآخرين',
 'tog-diffonly'                => 'لا تعرض محتوى الصفحة أسفل الفروقات',
 'tog-showhiddencats'          => 'أظهر التصنيفات المخفية',
+'tog-noconvertlink'           => 'عطل تحويل عناوين الوصلات',
 
 'underline-always'  => 'دائما',
 'underline-never'   => 'أبدا',

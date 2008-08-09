@@ -9,8 +9,8 @@
  * @author Απεργός
  * @author Consta
  * @author Lou
- * @author ZaDiak
  * @author Omnipaedista
+ * @author ZaDiak
  * @author Assassingr
  * @author MF-Warburg
  * @author Geraki
@@ -880,10 +880,10 @@ $1 ώρες.',
 'revdelete-hide-comment'      => 'Κρύψε σχόλιο επεξεργασίας',
 'revdelete-hide-user'         => 'Κρύψε όνομα χρήστη/IP συντάκτη',
 'revdelete-hide-restricted'   => 'Εφαρμογή αυτών των περιορισμών σε Διαχειριστές και κλείδωμα αυτής της διεπαφής',
-'revdelete-suppress'          => 'Απέκρυψε δεδομένα από διαχειριστές όπως και από άλλους',
+'revdelete-suppress'          => 'Απόκρυψε δεδομένα από διαχειριστές όπως και από άλλους',
 'revdelete-hide-image'        => 'Κρύψε περιεχόμενο αρχείου',
 'revdelete-unsuppress'        => 'Αφαίρεσε περιορισμούς στις αποκατεστημένες αναθεωρήσεις',
-'revdelete-log'               => 'Κατέγραψε σχόλιο:',
+'revdelete-log'               => 'Κατάγραψε σχόλιο:',
 'revdelete-submit'            => 'Εφάρμοσε στην επιλεγμένη αναθεώρηση',
 'revdelete-logentry'          => 'η ορατότητα της αναθεώρησης του [[$1]] αλλάχθηκε',
 'logdelete-logentry'          => 'η ορατότητα γεγονότος του [[$1]] αλλάχθηκε',

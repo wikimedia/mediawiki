@@ -128,9 +128,9 @@ $messages = array(
 'dec'           => 'Δεκ',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Γένος|Γένη}}',
+'pagecategories'           => '{{PLURAL:$1|Κατηγορία|Κατηγορίαι}}',
 'category_header'          => 'Χρήματα ἐν γένει "$1"',
-'subcategories'            => 'Ὑπογένη',
+'subcategories'            => 'Ὑποκατηγορίαι',
 'category-media-header'    => 'Μέσα ἐν κατηγορίᾳ "$1"',
 'category-empty'           => "''Ταύτη ἡ κατηγορία οὐ περιλαμβάνει δέλτους τῷ παρόντι.''",
 'hidden-categories'        => '{{PLURAL:$1|Κεκρυμμένη Κατηγορία|Κεκρυμμέναι Κατηγορίαι}}',
@@ -146,7 +146,7 @@ $messages = array(
 * [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Περὶ',
-'article'        => 'τὸ χρῆμα',
+'article'        => 'Ἡ ἐγγραφή',
 'newwindow'      => '(ἀνοίξεται ἐν νέᾳ θυρίδι)',
 'cancel'         => 'Ἀκυροῦν',
 'qbfind'         => 'Εὑρίσκειν',
@@ -158,7 +158,7 @@ $messages = array(
 'qbspecialpages' => 'Εἰδικαὶ δέλτοι',
 'moredotdotdot'  => 'πλέον...',
 'mypage'         => 'Δέλτος μου',
-'mytalk'         => 'Διάλεκτός μου',
+'mytalk'         => 'Ἡ διάλεξίς μου',
 'anontalk'       => 'Διάλεκτος πρὸ τοῦδε τοῦ IP',
 'navigation'     => 'Πλοήγησις',
 'and'            => 'καί',
@@ -174,10 +174,10 @@ $messages = array(
 'searchbutton'      => 'Ζητεῖν',
 'go'                => 'Ἰέναι',
 'searcharticle'     => 'Ἰέναι',
-'history'           => 'Τὰ τῆς δέλτου πρότερα',
-'history_short'     => 'Τὰ πρότερα',
+'history'           => 'Αἱ τῆς δέλτου προτέραι',
+'history_short'     => 'Αἱ προτέραι',
 'info_short'        => 'Μάθησις',
-'printableversion'  => 'Ἐκτυπωτέα μορφὴ',
+'printableversion'  => 'Ἐκτυπωτέα μορφή',
 'permalink'         => 'Σύνδεσμος βέβαιος',
 'print'             => 'Τυποῦν',
 'edit'              => 'Μεταγράφειν',
@@ -201,7 +201,7 @@ $messages = array(
 'articlepage'       => 'Χρήματος δέλτον ὁρᾶν',
 'talk'              => 'Διάλεξις',
 'views'             => 'Ποσάκις ἔσκεπται',
-'toolbox'           => 'Σιδηριοκάδος',
+'toolbox'           => 'Ἐργαλειοκάδος',
 'userpage'          => 'Ὁρᾶν δέλτον χρωμένου',
 'projectpage'       => 'Ἰδὲ δέλτον σχεδίου',
 'imagepage'         => 'Ὁρᾶν μέσων δέλτον',
@@ -210,7 +210,7 @@ $messages = array(
 'viewhelppage'      => 'Ὁρᾶν βοηθείας δέλτον',
 'categorypage'      => 'Ὁρᾶν γένους δέλτον',
 'viewtalkpage'      => 'Ὁρᾶν διάλεκτον',
-'otherlanguages'    => 'Βαρβαριστὶ',
+'otherlanguages'    => 'Ἀλλογλωσσιστί',
 'redirectedfrom'    => '(Ἀποστελτὸν παρὰ $1)',
 'redirectpagesub'   => 'Ἐπανάγειν δέλτον',
 'lastmodifiedat'    => 'Ἥδε ἡ δέλτος ὕστατον μετεβλήθη $2, $1.', # $1 date, $2 time
@@ -240,7 +240,7 @@ $messages = array(
 'mainpage-description' => 'Κυρία Δέλτος',
 'policy-url'           => 'Project:Πολιτική',
 'portal'               => 'Πύλη πολιτείας',
-'portal-url'           => 'Project:Πύλη Κοινότητος',
+'portal-url'           => 'Project:Πύλη Πολιτείας',
 'privacy'              => 'Ἡ περὶ τῶν ἰδίων προαίρεσις',
 'privacypage'          => 'Project:Περὶ τῶν ἰδιωτικῶν',
 
@@ -265,7 +265,9 @@ $messages = array(
 'thisisdeleted'           => 'Ὁρᾶν ἢ ἀποκαθίστασθαι $1;',
 'viewdeleted'             => 'Ὁρᾶν $1;',
 'feedlinks'               => 'Βοτήρ:',
-'site-rss-feed'           => 'Ἡ τοῦ $1 Ρ.Σ.Σ.-παρασκευή',
+'feed-invalid'            => 'Ἄκυρος τύπος συνδρομῆς εἰς ῥοὴν δεδομένων.',
+'feed-unavailable'        => 'Αἱ ῥοαὶ οὔκ εἰσι διαθέσιμοι ἐν τῷ {{SITENAME}}',
+'site-rss-feed'           => 'Ἡ τοῦ $1 RSS-παρασκευή',
 'site-atom-feed'          => 'Ἡ τοῦ $1 Ἀτομο-παρασκευή',
 'page-rss-feed'           => 'Βοτὴρ RSS "$1"',
 'page-atom-feed'          => '"$1" Atom Ῥοή',
@@ -353,7 +355,7 @@ $1',
 'gotaccount'                 => 'Ἆρα λογισμὸν ἤδη τινὰ ἔχεις; $1.',
 'gotaccountlink'             => 'Συνδεῖσθαι',
 'createaccountmail'          => 'ἠλεκτρονικῇ ἐπιστολῇ',
-'youremail'                  => 'Ἠλεκτρονικαὶ ἐπιστολαὶ:',
+'youremail'                  => 'Ἠλεκτρονικαὶ ἐπιστολαί:',
 'username'                   => 'Ὄνομα χρωμένου:',
 'uid'                        => 'Ταυτότης χρήστου:',
 'prefs-memberingroups'       => 'Μέλος {{PLURAL:$1|ομάδoς|ομάδων}}:',
@@ -394,9 +396,10 @@ $1',
 'loginlanguagelabel'         => 'Γλῶττα: $1',
 
 # Password reset dialog
-'resetpass'        => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
-'resetpass_header' => 'Ἀναδιορισμὸς συνθήματος',
-'resetpass_submit' => 'Ἀναδιορισμὸς συνθήματος καὶ σύνδεσις',
+'resetpass'         => 'Ἀναδιορισμὸς συνθήματος λογισμοῦ',
+'resetpass_header'  => 'Ἀναδιορισμὸς συνθήματος',
+'resetpass_submit'  => 'Ἀναδιορισμὸς συνθήματος καὶ σύνδεσις',
+'resetpass_missing' => 'Οὐδὲν δεδομένον τύπου.',
 
 # Edit page toolbar
 'bold_sample'     => 'Γράμματα παχέα',
@@ -426,37 +429,44 @@ $1',
 'savearticle'            => 'Γράφειν τὴν δέλτον',
 'preview'                => 'Τὸ προεπισκοπεῖν',
 'showpreview'            => 'Προεπισκοπεῖν',
+'showlivepreview'        => 'Ἄμεσος προθεώρησις',
 'showdiff'               => 'Δεικνύναι τὰς μεταβολάς',
 'anoneditwarning'        => "'''Προσοχή:''' Οὐ συνδεδεμένος εἶ.
 Ἡ IP-διεύθυνσίς σου καταγεγραμμένη ἔσται ἐν τῇδε δέλτου ἱστορίᾳ.",
 'summary-preview'        => 'Πρόβλεψις περιλήψεως',
+'subject-preview'        => 'Ἀντικειμένου/ἐπικεφαλίδος προθεώρησις',
 'blockedtitle'           => 'Ἀποκεκλεισμένος ὁ χρώμενος',
 'blockedtext'            => "<big>'''Τὸ ὄνομα χρήστου σου ἢ ἡ IP-διεύθυνσις σου πεφραγμένα ἐστίν.'''</big>
 
-Ἡ φραγὴ γέγονε ὑπὸ τὸν/τὴν $1. Ἡ δεδομένη αἰτιολογία ἐστίν: ''$2''.
+Ἡ φραγὴ γέγονε ὑπὸ τὸν/τὴν $1.
+Ἡ δεδομένη αἰτιολογία ἐστίν: ''$2''.
 
 * Ἔναρξις φραγῆς: $8
 * Λῆξις φραγῆς: $6
 * Ἡ φραγὴ προορίζεται διὰ τὸν χρήστην: $7
 
-Ἀποτάθητι εἰς τὸν/τὴν $1 ἢ ὅντινα ἕτερον [[{{MediaWiki:Grouppage-sysop}}|γέροντα]] διὰ τὸ διαλέγεσθαι περὶ τῆς φραγῆς.
-Οὐ δύνασαι χρῆσθαι τὴν δυνατότηταν «αποστολῆς ἠλεκτρονικῆς ἐπιστολῆς τῷδε χρήστη» εἰ οὐ ὁρίσεις μίαν ἔγκυρον ἠλεκτρονικὴν διεύθυνσιν ἐν ταῖς [[Special:Preferences|προκρίσεσί]] σου.
-Ἡ τρέχουσα IP-διεύθυνσις σου $3 ἐστίν, καὶ ἡ ἀναγνώρισις τῆς φραγῆς #$5 ἐστίν. Παρακαλοῦμεν σε περιλαμβάνειν οἱανδήποτε ἐξ αὐτῶν ἢ καὶ ἀμφοτέρας ἐν ταῖς ἐρωτήσεσί σου.",
-'autoblockedtext'        => "Ἡ IP-διεύθυνσις σου ἐφράγη αυτομάτως ἐπεὶ κεχρωμένη ἦν ὑπὸ ἑτέρου τινὸς χρήστου, ὅπερ ἀποκεκλεισμένος ἐστὶν ἐκ τοῦ/τῆς $1.
+Ἀποτάθητι εἰς τὸν/τὴν $1 ἢ ὅντινα ἕτερον [[{{MediaWiki:Grouppage-sysop}}|γέροντα]] διὰ τὸ διαλέγεσθαι περὶ τῆς φραγῆς. 
+Οὐ δύνασαι χρῆσθαι τὴν δυνατότηταν «αποστολῆς ἠλεκτρονικῆς ἐπιστολῆς τῷδε χρήστη» εἰ οὐ ὁρίσεις μίαν ἔγκυρον ἠλεκτρονικὴν διεύθυνσιν ἐν ταῖς [[Special:Preferences|προκρίσεσί]] σου. 
+Ἡ τρέχουσα IP-διεύθυνσις σου $3 ἐστίν, καὶ ἡ ἀναγνώρισις τῆς φραγῆς #$5 ἐστίν. 
+Παρακαλοῦμεν σε περιλαμβάνειν οἱανδήποτε ἐξ αὐτῶν ἢ καὶ ἀμφοτέρας ἐν ταῖς ἐρωτήσεσί σου.",
+'autoblockedtext'        => "Ἡ IP-διεύθυνσις σου ἐφράγη αυτομάτως ἐπεὶ κεχρησμένη ἦν ὑπὸ ἑτέρου τινὸς χρήστου, ὅπερ ἀποκεκλεισμένος ἐστὶν ἐκ τοῦ/τῆς $1.
 Ἡ δεδομένη αἰτία ἐστὶν ὡς ἑξῆς:
 
 :''$2''
 
 *Ἔναρξις φραγῆς: $8
 *Λῆξις φραγῆς: $6
+*Προκαθωρισμένος πεφραχθείς: $7
 
 Ἀποτάθητι εἰς τὸν/τὴν $1 ἢ εἰς ἑτέρους τινὲς 
-[[{{MediaWiki:Grouppage-sysop}}|γέροντες]] διὰ τὸ διαλέγεσθαι περὶ τῆς φραγῆς.
+[[{{MediaWiki:Grouppage-sysop}}|γέροντας]] διὰ τὸ διαλέγεσθαι περὶ τῆς φραγῆς.
 
 Σημείωσον: οὐ δύνασαι χρῆσθαι τὸ γνώρισμα «αποστολῆς ἠλεκτρονικῆς ἐπιστολῆς τῷδε χρήστη» εἰ μὴ ἔχης ἔγκυρον τινὰ διεύθυνσιν ἠλεκτρονικοῦ ταχυδρομείου κατακεχωρημένην ἐν ταῖς [[Special:Preferences|προτιμήσεσι χρήστου]] σου.
 
-Ὁ ἀριθμὸς ἀναγνωρίσεως τῆς φραγῆς σου $5 ἐστίν. Παρακαλοῦμεν σε περιλαμβάνειν οἱανδήποτε ἐξ αὐτῶν ἢ καὶ ἀμφοτέρας ἐν ταῖς ἐρωτήσεσί σου.",
+Ἡ τρέχουσα IP-διεύθυνσις σου $3 ἐστίν, καὶ ἡ ἀναγνώρισις τῆς φραγῆς #$5 ἐστίν. 
+Παρακαλοῦμεν σε περιλαμβάνειν οἱανδήποτε ἐξ αὐτῶν ἢ καὶ ἀμφοτέρας ἐν ταῖς ἐρωτήσεσί σου.",
 'blockednoreason'        => 'οὐδεμία αἰτία ἐδόθη',
+'nosuchsectiontitle'     => 'Οὐδὲν τοιοῦτον τμῆμα',
 'loginreqtitle'          => 'Δεῖ συνδεῖσθαι',
 'loginreqlink'           => 'συνδεῖσθαι',
 'accmailtitle'           => 'Σύνθημα ἀπεστάλη.',
@@ -466,6 +476,7 @@ $1',
 Εἰ ὧδε εἶ κατὰ λάθος, πίεσον τὸ κομβίον τοῦ πλοηγοῦ σου ὀνόματι '''ὀπίσω (back)'''.",
 'noarticletext'          => 'Οὐδὲν ἐν τῇδε τῇ δέλτῳ γεγραμμένον, ἔξεστι σοὶ [[Special:Search/{{PAGENAME}}|δέλτον τινὰ ὧδε ὀνομαστὶ ζῆτειν]] ἢ [{{fullurl:{{FULLPAGENAME}}|action=edit}} τήνδε τὴν δέλτον μεταγράφειν].',
 'userinvalidcssjstitle'  => "'''Προσοχή:''' Οὐκ ὑφίσταται ''skin'' \"\$1\". Μέμνησο: αἱ προσηρμοσμέναι δέλτοι .css καὶ .js χρῶνται ἐπώνυμον τι ἔχον πεζὰ γράμματα, π.χ. {{ns:user}}:Foo/monobook.css ἐν ἀντίθεσει πρὸς τὸν {{ns:user}}:Foo/Monobook.css.",
+'updated'                => '(Ἐνημερωθέν)',
 'note'                   => '<strong>Ἐπισήμανσις:</strong>',
 'previewnote'            => '<strong>Ἥδε ἐστὶ προσκόπησις, οὐχὶ γράφειν τὰς μεταβολάς!</strong>',
 'editing'                => 'Μεταγράφων $1',
@@ -473,6 +484,7 @@ $1',
 'editingcomment'         => 'Μεταγράφειν $1 (σχόλιον)',
 'editconflict'           => 'Ἀντιμαχία μεταγραφῶν: $1',
 'yourtext'               => 'Τὰ ὑπό σου γραφόμενα',
+'storedversion'          => 'Ταμιευμένη ἔκδοσις',
 'yourdiff'               => 'Τὰ διαφέροντα',
 'copyrightwarning'       => 'Ὅλαι αἱ συμβολαὶ εἰς τὸ {{SITENAME}} θεωροῦνται ὡς σύμφωναι πρὸς τὴν $2 (βλ. $1 διὰ τὰς ἀκριβεῖας).
 Εἰ οὐκ ἐπιθυμεῖτε τὰ ὑμέτερα κείμενα μεταγράψιμα καὶ διαδόσιμα εἰσὶν ὑπὸ ἄλλων χρωμένων, κατὰ τὴν βούλησίν των, παρακαλοῦμεν ὑμᾶς ἵνα μὴ αὐτὰ ἀναρτῆτε ἐν τούτῳ χώρῳ. Ὅ,τι συνεισφέρετε ἐνθάδε (κείμενα, διαγράμματα, στοιχεῖα ἢ εἰκόνας) δεῖ εἶναι ὑμέτερον ἔργον, ἢ ἀνῆκον τῷ δημοσίῳ τομεῖ, ἢ προερχόμενον ἐξ ἐλευθέρων ἢ ανοικτῶν πηγῶν μετὰ ῥητῆς ἀδείας ἀναδημοσιεύσεως. <br />
@@ -496,8 +508,12 @@ $1',
 Δεῖ θεωρήσειν εἰ ἁρμοστόν ἐστι τὸ συνεχίζειν μεταγράφειν τήνδε δέλτον.
 Ὁ κατάλογος διαγραφῆς τῆσδε δέλτου διατίθεται ἐνθάδε πρὸς ἐπικουρίαν σου:",
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Μὴ δυνατὴ ἡ ποίησις λογισμοῦ',
+
 # History pages
 'viewpagelogs'        => 'Ὁρᾶν καταλόγους διὰ ταύτην τὴν δέλτον',
+'revnotfound'         => 'Ἀναθεώρησις μὴ εὑρεθεῖσα',
 'currentrev'          => 'Τὸ νῦν',
 'revisionasof'        => 'Τὰ ἐπὶ $1',
 'revision-info'       => 'Τὸ ἐπὶ $1 ὑπὸ $2',
@@ -512,6 +528,7 @@ $1',
 'histlegend'          => 'Σύγκρισις διαφορῶν: Ἐπιλέξατε τὰς συγκριτέας ἐκδοχὰς καὶ πατήσατε enter ἢ τὸ κομβίον  "Σύγκρισις...". <br />
 Ὑπόμνημα: (τρέχον) = διαφοραὶ ὡς πρὸς τὴν τρέχουσαν ἐκδοχήν,
 (ὕστατον) = διαφοραὶ ὡς πρὸς τὴν προηγουμένη ἐκδοχήν, μ = ἀλλαγαὶ μικρῆς κλίμακος.',
+'history-search'      => 'Ζήτησις ἐν ταῖς προτέραις',
 'deletedrev'          => '[διεγράφη]',
 'histfirst'           => 'πρώτη',
 'histlast'            => 'ἐσχάτη',
@@ -530,6 +547,10 @@ $1',
 'revisiondelete'          => 'Διαγράφειν/ἐκδιαγράφειν ἀναθεωρήσεις',
 'revdelete-nooldid-title' => 'Ἄκυρος ἀναθεώρησις-στόχος',
 'revdelete-legend'        => 'Θέτειν περιορισμοῦς ὀρατότητος',
+'revdelete-hide-text'     => 'Κρύπτειν κείμενον ἀναθεωρήσεως',
+'revdelete-hide-name'     => 'Κρύπτειν δρᾶσιν τε καὶ στόχον',
+'revdelete-hide-comment'  => 'Κρύπτειν σχόλιον μεταγραφῆς',
+'revdelete-hide-user'     => 'Κρύπτειν μεταγραφέως ὄνομα/IP-διεύθυνσιν',
 'revdelete-hide-image'    => 'Κρύπτειν περιεχόμενον ἀρχείου',
 'revdelete-log'           => 'Σχόλιον καταλόγου:',
 'revdel-restore'          => 'Ἀλλάττειν ὀρατότητα',
@@ -541,11 +562,16 @@ $1',
 'revdelete-hid'           => 'κρύπ $1',
 'revdelete-unhid'         => 'oὐ κρύπ $1',
 
+# Suppression log
+'suppressionlog' => 'Κατάλογος διαγραφῶν',
+
 # History merging
 'mergehistory'        => 'Συγχωνεύειν ἱστορίας δέλτων',
+'mergehistory-box'    => 'Συγχωνεύειν τὰς ἀναθεωρήσεις τῶν δύο δέλτων:',
 'mergehistory-from'   => 'Δέλτος πηγῶν:',
 'mergehistory-into'   => 'Δέλτος προορισμοῦ:',
 'mergehistory-list'   => 'Συγχωνεύσιμος ἱστορία μεταγραφῶν',
+'mergehistory-go'     => 'Δεικνύειν συγχωνεύσιμας μεταγραφάς',
 'mergehistory-submit' => 'Συγχωνεύειν ἀναθεωρήσεις',
 
 # Merge log
@@ -553,7 +579,7 @@ $1',
 'revertmerge' => 'Ἀποσυγχωνεύειν',
 
 # Diffs
-'history-title'           => 'Τὰ πρότερα περὶ "$1" κατὰ τὸ μεταγράφειν',
+'history-title'           => 'Αἱ προτέραι ἐκδόσεις τῆς δέλτου "$1"',
 'difference'              => '(Τὰ μεταβεβλημένα)',
 'lineno'                  => 'Γραμμή $1·',
 'compareselectedversions' => 'Συγκρίνειν τὰς ἐπιλεγμένας δέλτους',
@@ -585,13 +611,14 @@ $1',
 Πείρασον τὸ προθεματίζειν τὴν πεῦσιν σου μετὰ τοῦ ''ὅλα:'' διὰ τὸ ἀναζητεῖν εἰς παντὶ περιεχομένῳ (δέλτων διαλόγου, προτύπων, κ.λ., περιλαμβανομένων), ἢ χρῆσον τὸν ἐπιθυμητὸν ὀνοματικὸν χώρον ὡς πρόθεμα.",
 'powersearch'               => 'Ζητεῖν ἀναλυτικῶς',
 'powersearch-legend'        => 'Ἀνωτέρα ἀναζήτησις',
+'powersearch-ns'            => 'Ζήτησις ἐν τοῖς ὀνοματεἰοις:',
 'powersearch-redir'         => 'Ἀναδιευθύνειν καταλόγου',
 'powersearch-field'         => 'Ἀναζήτησις διά',
 'search-external'           => 'Ἐξωτέρα ἀναζήτησις',
 
 # Preferences page
 'preferences'              => 'Αἱρέσεις',
-'mypreferences'            => 'Αἱρέσεις μου',
+'mypreferences'            => 'Αἱ αἱρέσεις μου',
 'prefs-edits'              => 'Τοσοῦται αἱ μεταβολαί:',
 'prefsnologin'             => 'Οὐ συνδεδεμένος',
 'qbsettings'               => 'Ταχεῖα πρόσβασις',
@@ -636,7 +663,11 @@ $1',
 'files'                    => 'Ἀρχεῖα',
 
 # User rights
+'userrights-lookup-user'   => 'Χειρίζεσθαι ὁμάδας χρωμένου',
 'userrights-user-editname' => 'Εἰσάγειν ἓν ὄνομα χρήστου:',
+'editusergroup'            => 'Μεταγράφειν ὁμάδας χρωμένου',
+'userrights-editusergroup' => 'Μεταγράφειν ὁμάδας χρωμένου',
+'saveusergroups'           => 'Σῴζειν ὁμάδας χρωμένου',
 'userrights-groupsmember'  => 'Μέλος τοῦ:',
 
 # Groups
@@ -703,7 +734,7 @@ $1',
 'recentchangeslinked-page'     => 'Ὄνομα δέλτου:',
 
 # Upload
-'upload'             => 'Ἀνάγειν γραφήν',
+'upload'             => 'Ἐπιφορτίζειν ἀρχεῖον',
 'uploadbtn'          => 'Φορτίον ἐντιθέναι',
 'reupload'           => 'Ἀναεπιφορτίζειν',
 'uploadnologin'      => 'Οὐ συνδεδεμένος',
@@ -825,7 +856,7 @@ $1',
 'nviews'                  => '$1 {{PLURAL:$1|βλέψις|βλέψεις}}',
 'lonelypages'             => 'Δέλτοι ὀρφαναί',
 'uncategorizedpages'      => 'Αἱ δέλτοι αἱ οὐκ ἐνοῦσαι γένεσι',
-'uncategorizedcategories' => 'Τὰ γένη τὰ οὐκ ἐνοῦντα γένεσι',
+'uncategorizedcategories' => 'Αἱ κατηγορίαι αἱ μὴ προσήκουσαι κατηγορέσι',
 'uncategorizedimages'     => 'Ἀκατηγοριοποίητα ἀρχεῖα',
 'uncategorizedtemplates'  => 'Ἀκατηγοριοποίητα πρότυπα',
 'unusedcategories'        => 'Ἄχρησται κατηγορίαι',
@@ -879,12 +910,13 @@ $1',
 'allpagesprefix' => 'Ἐπιδεικνύειν δέλτους ἔχουσας πρόθεμα:',
 
 # Special:Categories
-'categories' => 'Γένη',
+'categories' => 'Κατηγορίαι',
 
 # Special:ListUsers
 'listusers-submit' => 'Ἐμφανίζειν',
 
 # Special:ListGroupRights
+'listgrouprights'        => 'Δικαιώματα ὁμάδος χρωμένου',
 'listgrouprights-group'  => 'Ὁμάς',
 'listgrouprights-rights' => 'Δικαιώματα',
 
@@ -926,12 +958,16 @@ $1',
 'watching'   => 'Ἐφορῶν...',
 'unwatching' => 'Ἀνεφορῶν...',
 
-'changed' => 'ἀλλαχθέν',
-'created' => 'δημιουργηθέν',
+'enotif_impersonal_salutation' => 'Χρώμενος τοῦ {{SITENAME}}',
+'changed'                      => 'ἀλλαχθέν',
+'created'                      => 'δημιουργηθέν',
+'enotif_anon_editor'           => 'ἀνώνυμος χρώμενος $1',
 
 # Delete/protect/revert
 'deletepage'                  => 'Διαγράφειν τὴν δέλτον',
 'confirm'                     => 'Κυροῦν',
+'excontent'                   => "ἡ ὕλη ἦτο: '$1'",
+'excontentauthor'             => "ἡ ὕλη ἦτο: '$1' (καὶ ὁ μόνος ἐρανίζων ἦτο ὁ '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'δέλτος κενὴ ἦν',
 'delete-confirm'              => 'Διαγράφειν "$1"',
 'delete-legend'               => 'Διαγράφειν',
@@ -995,17 +1031,18 @@ $1',
 'undelete-search-submit' => 'Ζητεῖν',
 
 # Namespace form on various pages
-'namespace'      => 'Ὀνομεῖον:',
+'namespace'      => 'Ὀνοματεῖον:',
 'invert'         => 'Ἀντιστρέφειν ἐπιλογήν',
 'blanknamespace' => '(Κυρία γραφή)',
 
 # Contributions
-'contributions' => 'Ἔρανοι χρωμένου',
-'mycontris'     => 'Ἔρανοί μου',
-'contribsub2'   => 'Πρὸς $1 ($2)',
-'uctop'         => '(ἄκρον)',
-'month'         => 'Μήν:',
-'year'          => 'Ἔτος:',
+'contributions'       => 'Ἔρανοι χρωμένου',
+'contributions-title' => 'Ἔρανοι χρωμένου διὰ τὸ $1',
+'mycontris'           => 'Οἱ ἔρανοί μου',
+'contribsub2'         => 'Πρὸς $1 ($2)',
+'uctop'               => '(ἄκρον)',
+'month'               => 'Μήν:',
+'year'                => 'Ἔτος:',
 
 'sp-contributions-newbies-sub' => 'Ἔρανοι νέων χρωμένων',
 'sp-contributions-blocklog'    => 'Τὰ ἀποκλῄειν',
@@ -1021,12 +1058,12 @@ $1',
 'isredirect'               => 'ἀναδιευθύνειν δέλτον',
 'istemplate'               => 'περίκλεισις',
 'isimage'                  => 'σύνδεσμος εἰκόνος',
-'whatlinkshere-prev'       => '{{PLURAL:$1|πρότερον|Τὰ $1 πρότερα}}',
+'whatlinkshere-prev'       => '{{PLURAL:$1|προτἐρα|Αἱ $1 προτέραι}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ἑξῆς|οἱ $1 ἑξῆς}}',
 'whatlinkshere-links'      => '← σύνδεσμοι',
 'whatlinkshere-hideredirs' => '$1 ἀναδιευθύνσεις',
-'whatlinkshere-hidelinks'  => '$1 σύνδεσμοι',
-'whatlinkshere-hideimages' => '$1 σύνδεσμοι εἰκόνων',
+'whatlinkshere-hidelinks'  => '$1 συνδέσμους',
+'whatlinkshere-hideimages' => '$1 συνδέσμους εἰκόνων',
 'whatlinkshere-filters'    => 'Ἠθητήρια',
 
 # Block/unblock
@@ -1039,7 +1076,7 @@ $1',
 'ipboptions'         => 'βʹ ὥραι:2 hours,αʹ ἡμέρα day:1 day,γʹ ἡμέραι:3 days,ζʹ ἡμέραι:1 week,ιδʹ ἡμέραι:2 weeks,αʹ μήν:1 month,γʹ μήνες:3 months,ϝʹ μήνες:6 months,αʹ ἔτος:1 year,ἄπειρον:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'ἄλλη',
 'ipbotherreason'     => 'Πρόσθετος/ἄλλη αἰτία:',
-'ipblocklist'        => 'Κατάλογος τῶν φραγμένων IP-διευθύνσεων καὶ ὀνομάτων τῶν χρωμένων',
+'ipblocklist'        => 'Πεφραγμέναι IP-διευθύνσεις καὶ ὀνόματα τῶν χρωμένων',
 'ipblocklist-submit' => 'Ζητεῖν',
 'infiniteblock'      => 'ἄπειρον',
 'anononlyblock'      => 'ἀνωνύμους μόνον',
@@ -1091,6 +1128,7 @@ $1',
 'export-submit'     => 'Ἐξάγειν',
 'export-addcattext' => 'Προστιθέναι δέλτους ἐκ τῆς κατηγορίας:',
 'export-addcat'     => 'Προστιθέναι',
+'export-download'   => 'Σῴζειν ὡς ἀρχεῖον',
 
 # Namespace 8 related
 'allmessages'        => 'Μυνήματα συστήματος',
@@ -1100,6 +1138,7 @@ $1',
 
 # Thumbnails
 'thumbnail-more'  => 'Αὐξάνειν',
+'filemissing'     => 'Ἀρχεῖον ἐκλιπόν',
 'thumbnail_error' => 'Σφάλμα τοῦ δημιουργεῖν σύνοψιν: $1',
 
 # Special:Import
@@ -1112,8 +1151,8 @@ $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Τὴν δέλτον χρωμένου ἐμήν',
-'tooltip-pt-mytalk'               => 'Διάλεκτός μου',
-'tooltip-pt-preferences'          => 'Αἱρέσεις μου',
+'tooltip-pt-mytalk'               => 'Ἡ διάλεξίς μου',
+'tooltip-pt-preferences'          => 'Αἱ αἱρέσεις μου',
 'tooltip-pt-watchlist'            => 'Κατάλογος τῶν ἐφορωμένων μου',
 'tooltip-pt-mycontris'            => 'Κατάλογος τῶν ἐράνων μου',
 'tooltip-pt-login'                => 'Ἐνθαρρυντέον τὸ συνδεῖσθαι, οὐκ υποχρεωτικόν.',
@@ -1188,10 +1227,11 @@ $1',
 'show-big-image-thumb' => '<small>Τοῦδε προεπισκοπεῖν μέγεθος: $1 × $2 εἰκονοστοιχεία</small>',
 
 # Special:NewImages
-'newimages'    => 'Τὰ νέα φορτία δεῦρο ἀθροίζειν',
-'showhidebots' => '($1 αὐτόματα)',
-'ilsubmit'     => 'Ζητεῖν',
-'bydate'       => 'κατὰ χρονολογίαν',
+'newimages'        => 'Τὰ νέα φορτία δεῦρο ἀθροίζειν',
+'newimages-legend' => 'Διηθητήριον',
+'showhidebots'     => '($1 αὐτόματα)',
+'ilsubmit'         => 'Ζητεῖν',
+'bydate'           => 'κατὰ χρονολογίαν',
 
 # Bad image list
 'bad_image_list' => 'Ἡ μορφοποιία ὡς ἑξῆς ἐστίν:
@@ -1221,6 +1261,10 @@ $1',
 'exif-xresolution'         => 'Ὁριζόντιος ἀνάλυσις',
 'exif-yresolution'         => 'Κάθετος ἀνάλυσις',
 'exif-imagedescription'    => 'Ἐπιγραφὴ εἰκόνος',
+'exif-make'                => 'Ἐξεργαστὴς τῆς εἰκονοληπτικῆς μηχανῆς',
+'exif-model'               => 'Πρότυπον τῆς εἰκονοληπτικῆς μηχανῆς',
+'exif-artist'              => 'Πρωτουργός',
+'exif-colorspace'          => 'Χρωματικὸς χῶρος',
 'exif-exposuretime'        => 'Χρόνος ἐκθέσεως',
 'exif-exposuretime-format' => '$1 δευτ. ($2)',
 'exif-fnumber'             => 'F Ἀριθμός',
@@ -1228,6 +1272,7 @@ $1',
 'exif-aperturevalue'       => 'Ἄνοιξις διαφράγματος',
 'exif-brightnessvalue'     => 'Φωτεινότης',
 'exif-lightsource'         => 'Πηγὴ φωτός',
+'exif-flash'               => 'Ἀστραποβόλον',
 'exif-subjectarea'         => 'Θεματικὸν πεδίον',
 'exif-filesource'          => 'Πηγὴ ἀρχείου',
 'exif-contrast'            => 'Ἀντίθεσις',
@@ -1250,6 +1295,7 @@ $1',
 'exif-componentsconfiguration-0' => 'Οὐκ ἔστι',
 
 'exif-exposureprogram-1' => 'Χειροκίνητον',
+'exif-exposureprogram-3' => 'Προτεραιότης ἀνοἰξεως διαφράγματος',
 
 'exif-subjectdistance-value' => '$1 μέτρα',
 
@@ -1259,20 +1305,36 @@ $1',
 'exif-meteringmode-6'   => 'Μερικόν',
 'exif-meteringmode-255' => 'Ἄλλη',
 
-'exif-lightsource-0'  => 'Ἄγνωτη',
-'exif-lightsource-2'  => 'Φθορίζον',
-'exif-lightsource-4'  => 'Ἀστραποβόλος συσκευή',
-'exif-lightsource-11' => 'Σκίασις',
+'exif-lightsource-0'   => 'Ἄγνωτη',
+'exif-lightsource-2'   => 'Φθορίζον',
+'exif-lightsource-3'   => 'Βαρυλίθιον (πυρακτωσικὸν φῶς)',
+'exif-lightsource-4'   => 'Ἀστραποβόλος συσκευή',
+'exif-lightsource-11'  => 'Σκίασις',
+'exif-lightsource-12'  => 'Ἡμερινοφωτικὴ φθοριοφάνεια (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Ἡμερινὴ λευκὴ φθοριοφάνεια (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Ψυχρὴ λευκὴ φθοριοφάνεια (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Λευκὴ φθοριοφάνεια (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Τυπικὸν φῶς A',
+'exif-lightsource-18'  => 'Τυπικὸν φῶς B',
+'exif-lightsource-19'  => 'Τυπικὸν φῶς C',
+'exif-lightsource-24'  => 'Βαρυλίθιον τοῦ ἐργαστηρίου ISO',
+'exif-lightsource-255' => 'Ἑτέραι φωτοπηγαί',
+
+'exif-focalplaneresolutionunit-2' => 'οὐγκιαί',
 
 'exif-sensingmethod-1' => 'Ἀόριστος',
+'exif-sensingmethod-7' => 'Τριγραμμικὸν αἰσθητήριον',
 
 'exif-customrendered-0' => 'Κανονικὴ διαδικασία',
 'exif-customrendered-1' => 'Συνήθης διαδικασία',
 
 'exif-exposuremode-0' => 'Αὐτοέκθεσις',
+'exif-exposuremode-1' => 'Χειροκίνητος ἔκθεσις',
 
 'exif-scenecapturetype-0' => 'Συνήθης',
 'exif-scenecapturetype-1' => 'Τοπίον',
+'exif-scenecapturetype-2' => 'Παράστασις',
+'exif-scenecapturetype-3' => 'Νυκτερινὴ σκηνή',
 
 'exif-gaincontrol-0' => 'Οὐδεμία',
 'exif-gaincontrol-1' => 'Χθαμηλὸν κέρδος ἄνω',
@@ -1306,7 +1368,12 @@ $1',
 'exif-gpslongitude-w' => 'Δυτικὸν γεωγραφικὸν μῆκος',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Χιλιόμετρα ἀνὰ ὥρα',
+'exif-gpsspeed-m' => 'Μίλια ἀνὰ ὥρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Ἀληθὴς κατεύθυνσις',
 
 # External editor support
 'edit-externally'      => 'Μεταγράφειν ταῦτο τὸ ἀρχεῖον χρωμένοι μίαν ἐξώτερην ἐφαρμογήν.',
@@ -1373,7 +1440,8 @@ $1',
 'size-gigabytes' => '$1 ΓΔ',
 
 # Live preview
-'livepreview-loading' => 'Φορτεῖν…',
+'livepreview-loading' => 'Φορτίζειν…',
+'livepreview-ready'   => 'Φορτίζειν… Ἕτοιμον!',
 
 # Watchlist editor
 'watchlistedit-normal-title'  => 'Μεταγράφειν κατάλογον ἐφορωμένων',
@@ -1385,24 +1453,25 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ὁρᾶν τὰς πρὸς ταῦτα μεταβολὰς',
-'watchlisttools-edit' => 'Ὁρᾶν τε μεταγράφειν τὰ ἐφορωμένα',
+'watchlisttools-edit' => 'Ὁρᾶν τε καὶ μεταγράφειν τὰ ἐφορωμένα',
 'watchlisttools-raw'  => 'Μεταγράφειν τὸν πρωτογενῆ κατάλογον ἐφορωμένων',
 
 # Special:Version
-'version'                  => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
-'version-extensions'       => 'Ἐγκατεστημέναι ἐπεκτάσεις',
-'version-specialpages'     => 'Εἰδικαὶ δέλτοι',
-'version-parserhooks'      => 'Ἐπεκτάσεις λεξιαναλυτικοῦ προγράμματος',
-'version-variables'        => 'Μεταβληταί',
-'version-other'            => 'Ἄλλα',
-'version-mediahandlers'    => 'Χειρισταὶ μέσων',
-'version-hooks'            => 'Ἀγγύλαι',
-'version-hook-name'        => 'Ὄνομα ἀγκύλης',
-'version-version'          => 'Ἐκδοχή',
-'version-license'          => 'Ἄδεια',
-'version-software'         => 'Ἐγκατεστημένον λογισμικόν',
-'version-software-product' => 'Προϊόν',
-'version-software-version' => 'Ἐκδοχή',
+'version'                   => 'Ἐπανόρθωμα', # Not used as normal message but as header for the special page itself
+'version-extensions'        => 'Ἐγκατεστημέναι ἐπεκτάσεις',
+'version-specialpages'      => 'Εἰδικαὶ δέλτοι',
+'version-parserhooks'       => 'Ἐπεκτάσεις λεξιαναλυτικοῦ προγράμματος',
+'version-variables'         => 'Μεταβληταί',
+'version-other'             => 'Ἄλλα',
+'version-mediahandlers'     => 'Χειρισταὶ μέσων',
+'version-hooks'             => 'Ἀγγύλαι',
+'version-hook-name'         => 'Ὄνομα ἀγκύλης',
+'version-hook-subscribedby' => 'Προγεγραφὼς ἀπὸ',
+'version-version'           => 'Ἐκδοχή',
+'version-license'           => 'Ἄδεια',
+'version-software'          => 'Ἐγκατεστημένον λογισμικόν',
+'version-software-product'  => 'Προϊόν',
+'version-software-version'  => 'Ἐκδοχή',
 
 # Special:FilePath
 'filepath'        => 'Διαδρομὴ ἀρχείου',

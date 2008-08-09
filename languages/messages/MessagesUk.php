@@ -590,7 +590,7 @@ $1",
 'loginproblem'               => '<b>Проблема при вході до системи.</b><br />Спробуйте ще раз!',
 'login'                      => 'Вхід до системи',
 'nav-login-createaccount'    => 'Вхід / реєстрація',
-'loginprompt'                => 'Ви повинні активувати куки (cookies) для [[Special:Userlogin|входу до системи]] {{grammar:accusative|{{SITENAME}}}}.',
+'loginprompt'                => 'Ви повинні активувати куки (cookies) для [[Special:UserLogin|входу до системи]] {{grammar:accusative|{{SITENAME}}}}.',
 'userlogin'                  => 'Вхід / реєстрація',
 'logout'                     => 'Вихід із системи',
 'userlogout'                 => 'Вихід із системи',
@@ -846,7 +846,7 @@ $1",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Увага: Ця сторінка містить дуже багато викликів ресурсомістких функцій.
 
-Кількість викликів не повинна перевищувати $2, а зараз їх $1.',
+Кількість викликів не повинна перевищувати $2, зараз потрібно зробити $1 {{PLURAL:$1|виклик|виклики|викликів}}.',
 'expensive-parserfunction-category'       => 'Сторінки з дуже великою кількістю викликів ресурсомістких функцій',
 'post-expand-template-inclusion-warning'  => 'Увага: розмір шаблонів для включення занадто великий.
 Деякі шаблони не будуть включені.',

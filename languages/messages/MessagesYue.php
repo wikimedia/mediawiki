@@ -443,7 +443,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 通常係因為修訂歷史頁上面，由過時嘅連結去到刪除咗嘅版所引起嘅。
 
 如果唔係，你可能係搵到軟件裏面嘅臭蟲。
-請記低 URL 地址，向[[Special:Listusers/sysop|管理員]]報告。',
+請記低 URL 地址，向[[Special:ListUsers/sysop|管理員]]報告。',
 'missingarticle-rev'   => '(修訂#: $1)',
 'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',

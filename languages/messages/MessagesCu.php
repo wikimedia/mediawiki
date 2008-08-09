@@ -238,6 +238,7 @@ $messages = array(
 'clearyourcache' => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
 'note'           => '<strong>НАРОЧИ́ТО:</strong>',
 'editing'        => 'исправлѥ́ниѥ: $1',
+'templatesused'  => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
 
 # History pages
 'cur'          => 'нꙑ҃н',
@@ -353,6 +354,7 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => 'по́льꙃєватєл҄ь:',
+'log'                 => 'їсторі́ѩ',
 'log-search-submit'   => 'прѣиди́',
 
 # Special:AllPages
@@ -371,6 +373,7 @@ $messages = array(
 # Watchlist
 'watchlist'     => 'моꙗ́ блюдє́ниꙗ',
 'mywatchlist'   => 'Моꙗ́ блюдє́ниꙗ',
+'watchlistfor'  => "(по́льꙃєватєлꙗ и́мѧ '''$1''' ѥ́стъ)",
 'watch'         => 'блюдє́ниѥ',
 'watchthispage' => 'си страни́цѧ блюдє́ниѥ',
 'unwatch'       => 'оста́ви блюдє́ниѥ',
@@ -401,7 +404,8 @@ $messages = array(
 'mycontris'     => 'моꙗ́ добродѣꙗ́ниꙗ',
 'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
 
-'sp-contributions-submit' => 'ищи́',
+'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
+'sp-contributions-submit'   => 'ищи́',
 
 # What links here
 'whatlinkshere'           => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
@@ -415,6 +419,7 @@ $messages = array(
 'ipblocklist-submit' => 'иска́ниѥ',
 'blocklink'          => 'ꙁагради́',
 'contribslink'       => 'добродѣꙗ́ниꙗ',
+'blocklogpage'       => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
 
 # Move page
 'move-page'        => 'прѣимєнова́ниѥ ⁖ $1 ⁖',

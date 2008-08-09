@@ -14,9 +14,9 @@
  * @author Stv
  * @author Masti
  * @author Maikking
- * @author Equadus
- * @author Matma Rex
  * @author Ymar
+ * @author Matma Rex
+ * @author Equadus
  * @author Lajsikonik
  * @author Szczepan1990
  * @author Herr Kriss

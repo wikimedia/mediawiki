@@ -747,6 +747,7 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 'histlegend'          => 'Diff wubrać: Wubjer opciske pola za přirunanje a tłóč na enter abo tłóčku deleka.
 
 Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadnej wersiji, S = snadna změna.',
+'history-search'      => 'Pytanje w stawiznach',
 'deletedrev'          => '[wušmórnjena]',
 'histfirst'           => 'tuchwilnu',
 'histlast'            => 'najstaršu',
@@ -843,6 +844,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 
 # Search results
 'searchresults'             => 'Pytanske wuslědki',
+'searchresults-title'       => 'Pytanske wuslědki za $1',
 'searchresulttext'          => 'Za dalše informacije wo pytanju {{GRAMMAR:genitiw|{{SITENAME}}}}, hlej [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Sy naprašowanje za „[[:$1|$1]]“ stajił.',
 'searchsubtitleinvalid'     => 'Sy naprašowanje za „$1“ stajił.',
@@ -1430,12 +1432,16 @@ Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''
 'listusers-noresult' => 'Njemóžno wužiwarjow namakać. Prošu wobkedźbuj, zo so mało- abo wulkopisanje na wotprašowanje wuskutkuje.',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'Prawa wužiwarskeje skupiny',
-'listgrouprights-summary'  => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiji z jich wotpowědnymi přistupnymi prawami. Přidatne informacije wo jednotliwych prawach móžeš [[{{MediaWiki:Listgrouprights-helppage}}|tu namakać]].',
-'listgrouprights-group'    => 'Skupina',
-'listgrouprights-rights'   => 'Prawa',
-'listgrouprights-helppage' => 'Help:Skupinske prawa',
-'listgrouprights-members'  => '(lisćina čłonow)',
+'listgrouprights'                 => 'Prawa wužiwarskeje skupiny',
+'listgrouprights-summary'         => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiji z jich wotpowědnymi přistupnymi prawami. Přidatne informacije wo jednotliwych prawach móžeš [[{{MediaWiki:Listgrouprights-helppage}}|tu namakać]].',
+'listgrouprights-group'           => 'Skupina',
+'listgrouprights-rights'          => 'Prawa',
+'listgrouprights-helppage'        => 'Help:Skupinske prawa',
+'listgrouprights-members'         => '(lisćina čłonow)',
+'listgrouprights-addgroup'        => 'Wužiwar hodźi so {{PLURAL:$2|tutej skupinje|tutymaj skupinomaj|tutym skupinam|tutym skupinam}} přidać: $1',
+'listgrouprights-removegroup'     => 'Wužiwar hodźi so z {{PLURAL:$2|tuteje skupiny|tuteju skupinow|tutych skupinow|tutych skupinow}} wotstronić: $1',
+'listgrouprights-addgroup-all'    => 'Hodźa so wšě skupiny přidać',
+'listgrouprights-removegroup-all' => 'Hodźa so wše skupiny wotstronić',
 
 # E-mail user
 'mailnologin'     => 'Njejsy přizjewjeny.',
@@ -1669,20 +1675,22 @@ $1',
 'blanknamespace' => '(Nastawki)',
 
 # Contributions
-'contributions' => 'Přinoški wužiwarja',
-'mycontris'     => 'Moje přinoški',
-'contribsub2'   => 'za wužiwarja $1 ($2)',
-'nocontribs'    => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
-'uctop'         => '(aktualnje)',
-'month'         => 'wot měsaca (a do toho):',
-'year'          => 'wot lěta (a do toho):',
+'contributions'       => 'Přinoški wužiwarja',
+'contributions-title' => 'Wužiwarske přinoški wot „$1“',
+'mycontris'           => 'Moje přinoški',
+'contribsub2'         => 'za wužiwarja $1 ($2)',
+'nocontribs'          => 'Žane změny, kotrež podatym kriterijam wotpowěduja.',
+'uctop'               => '(aktualnje)',
+'month'               => 'wot měsaca (a do toho):',
+'year'                => 'wot lěta (a do toho):',
 
-'sp-contributions-newbies'     => 'jenož přinoški nowačkow pokazać',
-'sp-contributions-newbies-sub' => 'Za nowačkow',
-'sp-contributions-blocklog'    => 'protokol zablokowanjow',
-'sp-contributions-search'      => 'Přinoški pytać',
-'sp-contributions-username'    => 'IP-adresa abo wužiwarske mjeno:',
-'sp-contributions-submit'      => 'OK',
+'sp-contributions-newbies'       => 'jenož přinoški nowačkow pokazać',
+'sp-contributions-newbies-sub'   => 'Za nowačkow',
+'sp-contributions-newbies-title' => 'Wužiwarske přinoški za nowe konta',
+'sp-contributions-blocklog'      => 'protokol zablokowanjow',
+'sp-contributions-search'        => 'Přinoški pytać',
+'sp-contributions-username'      => 'IP-adresa abo wužiwarske mjeno:',
+'sp-contributions-submit'        => 'OK',
 
 # What links here
 'whatlinkshere'            => 'Što wotkazuje sem',
@@ -2047,10 +2055,11 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{ns:special}}:E
 'markedaspatrollederror-noautopatrol' => 'Njesměš swoje změny jako přepruwowane woznamjenjeć.',
 
 # Patrol log
-'patrol-log-page' => 'Protokol přepruwowanjow',
-'patrol-log-line' => 'je $1 strony $2 jako přepruwowanu markěrował $3.',
-'patrol-log-auto' => '(awtomatisce)',
-'patrol-log-diff' => 'wersiju $1',
+'patrol-log-page'   => 'Protokol přepruwowanjow',
+'patrol-log-header' => 'To je protokol dohladowanych wersijow.',
+'patrol-log-line'   => 'je $1 strony $2 jako přepruwowanu markěrował $3.',
+'patrol-log-auto'   => '(awtomatisce)',
+'patrol-log-diff'   => 'wersiju $1',
 
 # Image deletion
 'deletedrevision'                 => 'Stara wersija $1 wušmórnjena',
@@ -2084,6 +2093,7 @@ $1',
 'newimages'             => 'Nowe dataje',
 'imagelisttext'         => "Deleka je lisćina '''$1''' {{PLURAL:$1|dataje|datajow|datajow|datajow}}, kotraž je po $2 sortěrowana.",
 'newimages-summary'     => 'Tuta specialna strona naliči aktualnje nahrate wobrazy a druhe dataje.',
+'newimages-label'       => 'Datajowe mjeno (abo dźěl z njeho):',
 'showhidebots'          => '(bots $1)',
 'noimages'              => 'Žane dataje.',
 'ilsubmit'              => 'Pytać',

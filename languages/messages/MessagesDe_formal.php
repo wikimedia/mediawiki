@@ -88,6 +88,7 @@ Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort 
 'createaccount-text'         => 'Es wurde für Sie ein Benutzerkonto "$2" auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für "$2" ist "$3". Sie sollten sich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, können Sie diese Nachricht ignorieren.',
+'login-throttled'            => 'Sie haben mehrmals ein falsches Passwort eingegeben. Bitte warten Sie, bevor Sie es erneut versuchen.',
 
 # Password reset dialog
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, müssen Sie jetzt ein neues Passwort wählen.',
