@@ -1173,6 +1173,32 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		return !count( $this->numberedArgs ) && !count( $this->namedArgs );
 	}
 
+	function getArguments() {
+		$arguments = array();
+		foreach ( array_merge(
+				array_keys($this->numberedArgs),
+				array_keys($this->namedArgs)) as $key ) {
+			$arguments[$key] = $this->getArgument($key);
+		}
+		return $arguments;
+	}
+	
+	function getNumberedArguments() {
+		$arguments = array();
+		foreach ( array_keys($this->numberedArgs) as $key ) {
+			$arguments[$key] = $this->getArgument($key);
+		}
+		return $arguments;
+	}
+	
+	function getNamedArguments() {
+		$arguments = array();
+		foreach ( array_keys($this->namedArgs) as $key ) {
+			$arguments[$key] = $this->getArgument($key);
+		}
+		return $arguments;
+	}
+
 	function getNumberedArgument( $index ) {
 		if ( !isset( $this->numberedArgs[$index] ) ) {
 			return false;
