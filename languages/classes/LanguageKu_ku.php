@@ -6,17 +6,6 @@
  */
 class LanguageKu_ku extends Language {
 
-/**  	# Convert from the nominative form of a noun to some other case
-	# Invoked with {{GRAMMAR:case|word}}
-	/**
-	 * Cases:
-	 *
-	 * From Kazakh interface, not needed at the moment, maybe later
-	 */
-	function convertGrammar( $word, $case ) {
-		return $word;
-	}
-
 	/**
 	 * Avoid grouping whole numbers between 0 to 9999
 	 */
