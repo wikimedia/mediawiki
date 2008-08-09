@@ -228,7 +228,7 @@ Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-g�
 'userlogin'                  => 'Láuk-diē / kŭi dióng-hô̤',
 'logout'                     => 'Láuk-chók',
 'userlogout'                 => 'Láuk-chók',
-'notloggedin'                => 'Mò̤ [[Special:Userlogin|láuk-diē]]',
+'notloggedin'                => 'Mò̤ [[Special:UserLogin|láuk-diē]]',
 'nologin'                    => 'Gó muôi kŭi dióng-hô̤? $1.',
 'nologinlink'                => 'Kŭi 1 ciáh sĭng dióng-hô̤',
 'createaccount'              => 'Kŭi dióng-hô̤',

@@ -455,7 +455,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 
 # Search results
 'searchresults'            => 'Tlatēmoliztli',
-'searchsubtitle'           => "Ōtictēmōz '''[[:$1]]'''",
+'searchsubtitle'           => 'Ōtictēmōz \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|mochīntīn zāzaniltin mopēhua īca "$1"]] | [[Special:WhatLinksHere/$1|mochīntīn zāzaniltin tzonhuilia "$1" īhuīc]])',
 'searchsubtitleinvalid'    => "Ōtictēmōz '''$1'''",
 'noexactmatch'             => "'''Ahmo ia zāzanilli ītōcā \"\$1\".''' Tihuelīti [[:\$1|ticchīhua]].",
 'noexactmatch-nocreate'    => "'''Ahmo ia \"\$1\" zāzanilli.'''",
@@ -609,6 +609,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 # Special:ImageList
 'imagelist_search_for' => 'Tlatēmōz mēdiatl tōcācopa:',
 'imgfile'              => 'īxiptli',
+'imagelist'            => 'Mochīntīn īxiptli',
 'imagelist_name'       => 'Tōcāitl',
 'imagelist_user'       => 'Tlatequitiltilīlli',
 
@@ -647,7 +648,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'download'   => 'tictemōz',
 
 # Unwatched pages
-'unwatchedpages' => 'Zāzaniltin ahmo mochiya',
+'unwatchedpages' => 'Zāzaniltin ahmo motlachiya',
 
 # List redirects
 'listredirects' => 'Tlacuepaliztli',
@@ -682,9 +683,11 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 
+'brokenredirects'        => 'Tzomoc tlacuepaliztli',
 'brokenredirects-edit'   => '(ticpatlāz)',
 'brokenredirects-delete' => '(ticpolōz)',
 
+'withoutinterwiki'        => 'Zāzaniltin ahtle tzonhuiliztli',
 'withoutinterwiki-submit' => 'Tiquittāz',
 
 # Miscellaneous special pages
@@ -704,7 +707,9 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'mostlinked'              => 'Tlahcuilōlli achi motzonhuilia',
 'mostlinkedcategories'    => 'Neneuhcāyōtl achi motzonhuilia',
 'mostlinkedtemplates'     => 'Nemachiyōtīlli achi motzonhuilia',
+'shortpages'              => 'Ahhuēiyac zāzaniltin',
 'longpages'               => 'Huēiyac zāzaniltin',
+'deadendpages'            => 'Ahtlaquīzaliztli zāzaniltin',
 'protectedpages'          => 'Zāzaniltin ōmoquīxti',
 'protectedpages-indef'    => 'Zan ahcāhuitl tlaquīxtiliztli',
 'protectedpagestext'      => 'Inīn zāzaniltin ōmoquīxtih, auh ahmo mohuelītih mozacah nozo mopatlah',
@@ -981,10 +986,11 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'show-big-image'  => 'Mochi cuallōtl',
 
 # Special:NewImages
-'newimages'    => 'Yancuīc īxipcān',
-'showhidebots' => '($1 tepoztlācah)',
-'ilsubmit'     => 'Tlatēmōz',
-'bydate'       => 'tōnalcopa',
+'newimages'     => 'Yancuīc īxipcān',
+'imagelisttext' => "Nicān {{PLURAL:$1|mopiya|mopiyah}} '''$1''' īxiptli $2 iuhcopa.",
+'showhidebots'  => '($1 tepoztlācah)',
+'ilsubmit'      => 'Tlatēmōz',
+'bydate'        => 'tōnalcopa',
 
 # EXIF tags
 'exif-photometricinterpretation' => 'Pixelli chīhualiztli',
@@ -1092,10 +1098,17 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'fileduplicatesearch-info'     => '$1 × $2 pixelli<br />Tlahcuilōlli īxquichiliz: $3<br />MIME iuhcāyōtl: $4',
 
 # Special:SpecialPages
-'specialpages'             => 'Nōncuahquīzqui āmatl',
-'specialpages-group-other' => 'Occequīntīn nōncuahquīzqui zāzaniltin',
-'specialpages-group-login' => 'Ximocalaqui / ximomachiyōmaca',
-'specialpages-group-pages' => 'Mochīntīn zāzaniltin',
+'specialpages'                 => 'Nōncuahquīzqui āmatl',
+'specialpages-note'            => '----
+* Nōncuahquīzqui.
+* <span class="mw-specialpagerestricted">Tzacuilic.</span>',
+'specialpages-group-other'     => 'Occequīntīn nōncuahquīzqui zāzaniltin',
+'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
+'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',
+'specialpages-group-users'     => 'Tlatequitiltilīlli īhuān huelītiliztli',
+'specialpages-group-highuse'   => 'Zāzaniltin tlatequitiliztechcopa',
+'specialpages-group-pages'     => 'Mochīntīn zāzaniltin',
+'specialpages-group-redirects' => 'Tlatēmoliztli īhuān  tlacuepaliztli',
 
 # Special:BlankPage
 'blankpage' => 'Iztāc zāzanilli',

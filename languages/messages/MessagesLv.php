@@ -346,7 +346,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'loginproblem'               => '<b>Radās problēma ar ieiešanu.</b><br />Mēģini vēlreiz!',
 'login'                      => 'Ieiet',
 'nav-login-createaccount'    => 'Izveidot jaunu lietotāju vai doties iekšā',
-'loginprompt'                => 'Lai [[Special:Userlogin|ieietu {{grammar:lokatīvs|{{SITENAME}}}}]], tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
+'loginprompt'                => 'Lai [[Special:UserLogin|ieietu {{grammar:lokatīvs|{{SITENAME}}}}]], tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'                  => 'Izveidot jaunu lietotāju vai doties iekšā',
 'logout'                     => 'Iziet',
 'userlogout'                 => 'Iziet',
@@ -450,7 +450,8 @@ Ja tu vēlreiz uzspiedīsi uz Saglabāt, tavas izmaiņas tiks saglabātas bez t�
 'blockedtitle'              => 'Lietotājs ir bloķēts.',
 'blockedtext'               => "<big>'''Tavs lietotāja vārds vai IP adrese ir nobloķēta.'''</big>
 
-\$1 ir nobloķējis tavu lietotāja vārdu vai IP adresi. Iemesls tam ir:<br />''\$2''<br />.
+\$1 nobloķēja tavu lietotāja vārdu vai IP adresi.
+Bloķējot norādītais iemesls bija: ''\$2''.
 
 *Bloka sākums: \$8
 *Bloka beigas: \$6
@@ -460,7 +461,7 @@ Tu vari sazināties ar \$1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|admini
 
 Pievērs uzmanību, tam, ka ja tu neesi norādījis derīgu e-pasta adresi ''[[Special:Preferences|manās izvēlēs]]'', tev nedarbosies \"sūtīt e-pastu\" iespēja.
 
-Tava IP adrese ir \$3 un bloka identifikators ir \$5. Lūdzu iekļauj vienu no tiem, vai abus, visos turpmākajos pieprasījumos.",
+Tava IP adrese ir \$3 un bloka identifikators ir #\$5. Lūdzu iekļauj vienu no tiem, vai abus, visos turpmākajos pieprasījumos.",
 'autoblockedtext'           => 'Tava IP adrese ir tikusi automātiski nobloķēta, tāpēc, ka to (nupat kā) ir lietojis cits lietotājs, kuru nobloķēja $1.
 Norādītais bloķēšanas iemesls bija:
 
@@ -468,14 +469,15 @@ Norādītais bloķēšanas iemesls bija:
 
 * Bloka sākums: $8
 * Bloka beigas: $6
+* Bija domāts nobloķēt: $7
 
 Tu vari sazināties ar $1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|adminu]] lai apspriestu šo bloku.
 
 Atceries, ka tu nevari lietot "sūtīt e-pastu šim lietotājam" iespēju, ja tu neesi norādījis derīgu e-pasta adresi savās [[Special:Preferences|lietotāja izvelēs]] un bloķējot tev nav aizbloķēta iespēja sūtīt e-pastu.
 
-Tava bloka ID ir $5.
-Lūdzu iekļauj šo ID visos ziņojumos, kurus sūti adminiem, apspriežot šo bloku.',
-'whitelistedittitle'        => 'Lai varētu rediģēt, šeit [[Special:Userlogin|jāielogojas]].',
+Tava pašreizējā IP adrese ir $3 un  bloka ID ir $5.
+Lūdzu iekļauj šos visos ziņojumos, kurus sūti adminiem, apspriežot šo bloku.',
+'whitelistedittitle'        => 'Lai varētu rediģēt, šeit jāielogojas.',
 'whitelistedittext'         => 'Tev $1 lai varētu rediģēt lapas.',
 'loginreqtitle'             => 'Nepieciešama ieiešana',
 'loginreqlink'              => 'login',
@@ -1217,7 +1219,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 
 # What links here
 'whatlinkshere'            => 'Norādes uz šo rakstu',
-'whatlinkshere-title'      => 'Lapas, kurās ir saites uz lapu $1',
+'whatlinkshere-title'      => 'Lapas, kurās ir saites uz lapu "$1"',
 'whatlinkshere-page'       => 'Lapa:',
 'linkshere'                => "Šajās lapās ir norādes uz lapu '''[[:$1]]''':",
 'nolinkshere'              => "Nevienā lapā nav norāžu uz lapu '''[[:$1]]'''.",
@@ -1268,7 +1270,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'ipusubmit'            => 'Atbloķēt šo adresi',
 'unblocked'            => '[[Lietotājs:$1|$1]] tika atbloķēts',
 'unblocked-id'         => 'Bloks $1 tika noņemts',
-'ipblocklist'          => 'Bloķēto IP adrešu un lietotājvārdu uzskaitījums',
+'ipblocklist'          => 'Bloķētās IP adreses un lietotājvārdi',
 'ipblocklist-username' => 'Lietotāja vārds vai IP adrese:',
 'blocklistline'        => '$1 $2 bloķēja $3 (termiņš $4)',
 'expiringblock'        => 'beidzas $1',

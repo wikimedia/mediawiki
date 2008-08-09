@@ -619,7 +619,7 @@ Správce, který databázi zamkl, zanechal následující zprávu: $1',
 
 Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozdíl verzí nebo historickou verzi stránky, jež byla smazána.
 
-Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme, ohlaste to [[Special:Listusers/sysop|správcům]] spolu s URL této stránky.',
+Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme, ohlaste to [[Special:ListUsers/sysop|správcům]] spolu s URL této stránky.',
 'missingarticle-rev'   => '(číslo revize: $1)',
 'missingarticle-diff'  => '(Rozdíl: $1, $2)',
 'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových servery proti hlavnímu',

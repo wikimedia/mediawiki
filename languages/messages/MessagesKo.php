@@ -6,8 +6,8 @@
  *
  * @author Klutzy
  * @author ToePeu
- * @author PuzzletChung
  * @author Albamhandae
+ * @author PuzzletChung
  * @author ITurtle
  * @author Ficell
  * @author Kwj2772
@@ -678,6 +678,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchsubtitle'           => "검색 단어 '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
 'noexactmatch'             => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
+'noexactmatch-nocreate'    => "'''\"\$1\" 문서가 존재하지 않습니다.'''",
 'titlematches'             => '문서 제목 일치',
 'notitlematches'           => '해당하는 제목 없음',
 'textmatches'              => '문서 내용 일치',
@@ -1368,13 +1369,14 @@ $1',
 'blanknamespace' => '(일반)',
 
 # Contributions
-'contributions' => '사용자 기여',
-'mycontris'     => '내 기여 목록',
-'contribsub2'   => '$1($2)의 기여',
-'nocontribs'    => '이 사용자는 어디에도 기여하지 않았습니다.',
-'uctop'         => '(최신)',
-'month'         => '월:',
-'year'          => '연도:',
+'contributions'       => '사용자 기여',
+'contributions-title' => '사용자 "$1"의 기여 목록',
+'mycontris'           => '내 기여 목록',
+'contribsub2'         => '$1($2)의 기여',
+'nocontribs'          => '이 사용자는 어디에도 기여하지 않았습니다.',
+'uctop'               => '(최신)',
+'month'               => '월:',
+'year'                => '연도:',
 
 'sp-contributions-newbies'     => '새 사용자의 기여만 보기',
 'sp-contributions-newbies-sub' => '새 사용자들의 기여',
@@ -1519,6 +1521,7 @@ $1',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
+'move-subpages'           => '하위 문서도 함께 이동합니다.',
 'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
 'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
 '1movedto2'               => '[[:$1]]을(를) [[:$2]](으)로 옮김',

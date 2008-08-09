@@ -454,7 +454,7 @@ Administratoren som låste databasen ga forklaringen: $1',
 De vanligste grunnene til denne feilen er en lenke til en diff mellom forskjellige versjoner eller lenker til en gammel versjon av en side som har blitt slettet.
 
 Om det ikke er tilfellet kan du ha funnet en feil i programvaren.
-Rapporter gjerne problemet til en [[Special:Listusers/sysop|administrator]], angi da adressen til siden.',
+Rapporter gjerne problemet til en [[Special:ListUsers/sysop|administrator]], angi da adressen til siden.',
 'missingarticle-rev'   => '(versjon $1)',
 'missingarticle-diff'  => '(diff: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk skrivebeskyttet så slavetjenerne kan ta igjen mestertjeneren',
@@ -520,7 +520,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'loginproblem'               => '<strong>Du ble ikke logget inn.</strong><br />Prøv igjen!',
 'login'                      => 'Logg inn',
 'nav-login-createaccount'    => 'Logg inn eller registrer deg',
-'loginprompt'                => 'Du må ha slått på informasjonskapsler for å [[Special:Userlogin|logge in på {{SITENAME}}]].',
+'loginprompt'                => 'Du må ha slått på informasjonskapsler for å [[Special:UserLogin|logge in på {{SITENAME}}]].',
 'userlogin'                  => 'Logg inn eller registrer deg',
 'logout'                     => 'Logg ut',
 'userlogout'                 => 'Logg ut',
@@ -584,6 +584,7 @@ For å forhindre misbruk kan kun én passordpåminnelse sendes per {{PLURAL:$1|t
 'createaccount-text'         => 'Noen opprettet en konto for din e-postadresse på {{SITENAME}} ($4) med navnet «$2», med «$3» som passord. Du burde logge inn og endre passordet nå.
 
 Du kan ignorere denne beskjeden dersom kontoen ble opprettet ved en feil.',
+'login-throttled'            => 'Du har prøvd å logge inn med denne kontoen for mange ganger. Vent før du prøver igjen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -645,7 +646,10 @@ Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 * Blokkeringen utgår: $6
 * Blokkering ment på: $7
 
-Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst ta med begge disse ved henvendelser.",
+Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.
+Du kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post.
+Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5.
+Vennligst ta all denne informasjonen ved henvendelser.",
 'autoblockedtext'                  => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
 Den oppgitte grunnen var:
 
@@ -653,16 +657,18 @@ Den oppgitte grunnen var:
 
 * Blokkeringen begynte: $8
 * Blokkeringen utgår: $6
+* Blokkeringen er ment for: $7
 
 Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.
 
 Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].
 
-Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
+Din IP-adresse er $3, og blokkerings-ID-en er #$5.
+Vennligst ta med all denne informasjonen ved henvendelser.",
 'blockednoreason'                  => 'ingen grunn gitt',
 'blockedoriginalsource'            => "Kildekoden til '''$1''' vises nedenfor:",
 'blockededitsource'                => "Kildekoden '''dine endringer''' på '''$1''' vises nedenfor:",
-'whitelistedittitle'               => 'Du må [[Special:Userlogin|logge inn]] for å redigere',
+'whitelistedittitle'               => 'Du må [[Special:UserLogin|logge inn]] for å redigere',
 'whitelistedittext'                => 'Du må $1 for å redigere artikler.',
 'confirmedittitle'                 => 'E-postbekreftelse nødvendig før du kan redigere',
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
@@ -1157,7 +1163,7 @@ For å inkludere en fil på en side, bruk en slik lenke:
 'uploadlog'                   => 'opplastingslogg',
 'uploadlogpage'               => 'Opplastingslogg',
 'uploadlogpagetext'           => 'Her er en liste over de siste opplastede filene.
-Se [[Special:Newimages|galleriet over nye filer]] for en mer visuell visning',
+Se [[Special:NewImages|galleriet over nye filer]] for en mer visuell visning',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse:',
@@ -1228,11 +1234,11 @@ PICT # div.
 'upload-proto-error'      => 'Gal protokoll',
 'upload-proto-error-text' => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error'       => 'Intern feil',
-'upload-file-error-text'  => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:Listusers/sysop|administrator]].',
+'upload-file-error-text'  => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error'       => 'Ukjent opplastingsfeil',
 'upload-misc-error-text'  => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
-Om problemet fortsetter, kontakt en [[Special:Listusers/sysop|administrator]].',
+Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',
@@ -1796,7 +1802,7 @@ $1',
 'ipusubmit'                       => 'Opphev blokkeringen av denne adressen',
 'unblocked'                       => '[[User:$1|$1]] ble avblokkert',
 'unblocked-id'                    => 'Blokkering $1 ble fjernet',
-'ipblocklist'                     => 'Liste over blokkerte IP-adresser og brukere',
+'ipblocklist'                     => 'Blokkerte IP-adresser og brukere',
 'ipblocklist-legend'              => 'Finn en blokkert bruker',
 'ipblocklist-username'            => 'Brukernavn eller IP-adresse:',
 'ipblocklist-submit'              => 'Søk',
@@ -2064,15 +2070,15 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'modern.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
 
 # Scripts
-'common.js'      => '(* Javascript i denne fila vil gjelde for alle drakter. */',
-'standard.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
-'nostalgia.js'   => '(* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
-'cologneblue.js' => '(* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
-'monobook.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
-'myskin.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
-'chick.js'       => '(* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
-'simple.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
-'modern.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
+'common.js'      => '/* Javascript i denne fila vil gjelde for alle drakter. */',
+'standard.js'    => '/* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
+'nostalgia.js'   => '/* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
+'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
+'monobook.js'    => '/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
+'myskin.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
+'chick.js'       => '/* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
+'simple.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
+'modern.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',

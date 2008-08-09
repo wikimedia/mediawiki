@@ -1312,7 +1312,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'unblockip'                => 'Deobstruere locum IP',
 'unblockiptext'            => 'Formam inferam usere ut locum IP deobstruere.',
 'ipusubmit'                => 'Deobstruere hanc locum',
-'ipblocklist'              => 'Usores obstructi',
+'ipblocklist'              => 'Usores locique IP obstructi',
 'ipblocklist-legend'       => 'Usorem obstructum quaerere',
 'ipblocklist-username'     => 'Nomen usoris vel locus IP:',
 'ipblocklist-submit'       => 'Quaerere',

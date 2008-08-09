@@ -1795,7 +1795,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 kemasukan',
 'whatlinkshere-hidelinks'  => '$1 pautan',
 'whatlinkshere-hideimages' => '$1 pautan imej',
-'whatlinkshere-filters'    => 'Penapis',
+'whatlinkshere-filters'    => 'Tapis',
 
 # Block/unblock
 'blockip'                         => 'Sekat pengguna',

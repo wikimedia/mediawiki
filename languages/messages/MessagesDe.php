@@ -6,9 +6,9 @@
  *
  * @author Red Baron
  * @author Purodha
+ * @author MichaelFrey
  * @author Omnipaedista
  * @author Spacebirdy
- * @author MichaelFrey
  * @author Revolus
  * @author לערי ריינהארט
  * @author Pill
@@ -621,6 +621,7 @@ Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werd
 'createaccount-text'         => 'Es wurde für dich ein Benutzerkonto "$2" auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für "$2" ist "$3". Du solltest dich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
+'login-throttled'            => 'Du hast mehrmals ein falsches Passwort eingegeben. Bitte warte, bevor du es erneut versuchst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 
 # Password reset dialog
@@ -1889,7 +1890,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipusubmit'                       => 'Freigeben',
 'unblocked'                       => '[[User:$1|$1]] wurde freigegeben',
 'unblocked-id'                    => 'Sperr-ID $1 wurde freigegeben',
-'ipblocklist'                     => 'Liste gesperrter Benutzer/IP-Adressen',
+'ipblocklist'                     => 'Gesperrte IP-Adressen und Benutzernamen',
 'ipblocklist-legend'              => 'Suche nach einem gesperrten Benutzer',
 'ipblocklist-username'            => 'Benutzername oder IP-Adresse:',
 'ipblocklist-submit'              => 'Suchen',

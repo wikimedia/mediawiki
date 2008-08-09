@@ -149,7 +149,6 @@ $messages = array(
 'remembermypassword'      => 'ejj (login) inu deg uselkim a',
 'login'                   => 'Adeff',
 'nav-login-createaccount' => 'Adeff / egg amiḍan',
-'loginprompt'             => 'You must have cookies enabled to [[Special:Userlogin|log in to {{SITENAME}}]].',
 'userlogin'               => 'Adeff / egg amiḍan',
 'logout'                  => 'Ffeɣ',
 'userlogout'              => 'Ffeɣ',
@@ -489,7 +488,7 @@ Aqa (settings) n tsebtert <strong>$1</strong>:',
 
 # What links here
 'whatlinkshere'       => 'Mayn id-izdin (iqnen) da',
-'whatlinkshere-title' => 'Tisebtar id-izdin(iqnen) ɣar $1',
+'whatlinkshere-title' => 'Tisebtar id-izdin(iqnen) ɣar "$1"',
 'linkshere'           => "Tasebtert a tzedi(teqqen) ɣa '''[[:$1]]''':",
 'nolinkshere'         => "war tlli ca n tsebtert tqqen-d da '''[[:$1]]'''.",
 'isredirect'          => 'Tasebtert n (redirect)',

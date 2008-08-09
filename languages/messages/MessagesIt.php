@@ -12,8 +12,8 @@
  * @author Gianfranco
  * @author Felis
  * @author Broc
- * @author לערי ריינהארט
  * @author Ramac
+ * @author לערי ריינהארט
  * @author .anaconda
  * @author S.Örvarr.S
  * @author Xpensive
@@ -472,7 +472,8 @@ Query: $2',
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
-'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.",
+'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.
+Per le traduzioni, considera la possibilità di usare [http://translatewiki.net/wiki/Main_Page?setlang=it Betawiki], il progetto MediaWiki per la localizzazione.",
 'sqlhidden'            => '(la query SQL è stata nascosta)',
 'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
 $2',
@@ -575,6 +576,7 @@ Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo u
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se l\'accesso è stato creato per errore, si può ignorare questo messaggio.',
+'login-throttled'            => 'Hai effettuato troppi tentativi sulla password di questo account. Attendi prima di provare nuovamente.',
 'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
@@ -1482,8 +1484,8 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-rights'          => 'Diritti',
 'listgrouprights-helppage'        => 'Help:Diritti del gruppo',
 'listgrouprights-members'         => '(Elenco dei membri)',
-'listgrouprights-addgroup'        => 'Può aggiungere {{PLURAL:$2|al gruppo|ai gruppi}}: $1',
-'listgrouprights-removegroup'     => 'Può rimuovere {{PLURAL:$2|dal gruppo|dai gruppi}}: $1',
+'listgrouprights-addgroup'        => 'Può aggiungere {{PLURAL:$2|il gruppo|i gruppi}}: $1',
+'listgrouprights-removegroup'     => 'Può rimuovere {{PLURAL:$2|il gruppo|i gruppi}}: $1',
 'listgrouprights-addgroup-all'    => 'Può aggiungere a tutti i gruppi',
 'listgrouprights-removegroup-all' => 'Può rimuovere tutti i gruppi',
 
@@ -1805,7 +1807,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipusubmit'                       => "Sblocca l'utente",
 'unblocked'                       => "L'utente [[User:$1|$1]] è stato sbloccato",
 'unblocked-id'                    => 'Il blocco $1 è stato rimosso',
-'ipblocklist'                     => 'Lista degli utenti e indirizzi IP bloccati',
+'ipblocklist'                     => 'Utenti e indirizzi IP bloccati',
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'ipblocklist-username'            => 'Nome utente o indirizzo IP:',
 'ipblocklist-submit'              => 'Ricerca',
@@ -1821,7 +1823,8 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'blocklink'                       => 'blocca',
 'unblocklink'                     => 'sblocca',
 'contribslink'                    => 'contributi',
-'autoblocker'                     => "Bloccato automaticamente perché l'indirizzo IP è condiviso con l'utente \"[[User:\$1|\$1]]\". Il blocco dell'utente \$1 è stato imposto per il seguente motivo: \"'''\$2'''\".",
+'autoblocker'                     => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
+Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklogpage'                    => 'Blocchi',
 'blocklogentry'                   => 'ha bloccato [[$1]] per un periodo di $2 $3',
 'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:IPBlockList|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
