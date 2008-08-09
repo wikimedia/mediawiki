@@ -779,11 +779,9 @@ END;
 				// Doing this here instead of in the skins to
 				// ensure that the div has the same ID in all
 				// skins
-				$data = "<!-- begin SkinAfterContent hook -->\n" .
-					"<div id='mw-data-after-content'>\n" .
+				$data = "<div id='mw-data-after-content'>\n" .
 					"\t$data\n" .
-					"</div>\n" .
-					"<!-- end SkinAfterContent hook -->\n";
+					"</div>\n";
 			}
 		} else {
 			wfDebug ('Hook SkinAfterContent changed output processing.');
