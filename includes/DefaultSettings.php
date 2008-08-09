@@ -2481,6 +2481,12 @@ $wgCategoryMagicGallery = true;
 $wgCategoryPagingLimit = 200;
 
 /**
+ * Should the default category sortkey be the prefixed title?
+ * Run maintenance/refreshLinks.php after changing this.
+ */
+$wgCategoryPrefixedDefaultSortkey = true;
+
+/**
  * Browser Blacklist for unicode non compliant browsers
  * Contains a list of regexps : "/regexp/"  matching problematic browsers
  */

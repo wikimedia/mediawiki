@@ -87,6 +87,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   in a div with class "templatesUsed"
 * (bug 14868) Setting $wgFeedDiffCutoff to 0 now disables generation of the diff
   entirely, not just the display of it.
+* (bug 6387) Introduced new setting $wgCategoryPrefixedDefaultSortkey which
+  allows having the unprefixed page title as the default category sortkey
 
 === API changes in 1.14 ===
 
