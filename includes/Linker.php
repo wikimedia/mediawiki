@@ -124,7 +124,9 @@ class Linker {
 		if ( $t->isRedirect() ) {
 			# Page is a redirect
 			$colour = 'mw-redirect';
-		} elseif ( $threshold > 0 && $t->getLength() < $threshold && MWNamespace::isContent( $t->getNamespace() ) ) {
+		} elseif ( $threshold > 0 && 
+			   $t->exists() && $t->getLength() < $threshold &&
+			   MWNamespace::isContent( $t->getNamespace() ) ) {
 			# Page is a stub
 			$colour = 'stub';
 		}
@@ -270,7 +272,7 @@ class Linker {
 			} elseif( $target->isContentPage() ) {
 				# Check for stub.
 				$threshold = $wgUser->getOption( 'stubthreshold' );
-				if( $threshold > 0 and $target->getLength() < $threshold ) {
+				if( $threshold > 0 and $target->exists() and $target->getLength() < $threshold ) {
 					$classes[] = 'stub';
 				}
 			}
