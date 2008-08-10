@@ -2932,6 +2932,7 @@ class Article {
 		$redirect  = $wgRequest->getVal( 'redirect'  );
 		$printable = $wgRequest->getVal( 'printable' );
 		$page      = $wgRequest->getVal( 'page' );
+		$useskin   = $wgRequest->getVal( 'useskin' );
 
 		//check for non-standard user language; this covers uselang,
 		//and extensions for auto-detecting user language.
@@ -2944,6 +2945,7 @@ class Article {
 			&& ($wgUser->isAnon())
 			&& (!$wgUser->getNewtalk())
 			&& ($this->mTitle->getNamespace() != NS_SPECIAL )
+			&& (!isset($useskin))
 			&& (empty( $action ) || $action == 'view')
 			&& (!isset($oldid))
 			&& (!isset($diff))
