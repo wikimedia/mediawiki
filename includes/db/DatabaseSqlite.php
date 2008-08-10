@@ -20,9 +20,9 @@ class DatabaseSqlite extends Database {
 	 * Constructor
 	 */
 	function __construct($server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0) {
-		global $wgOut,$wgSQLiteDataDir;
+		global $wgOut,$wgSQLiteDataDir, $wgSQLiteDataDirMode;
 		if ("$wgSQLiteDataDir" == '') $wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
-		if (!is_dir($wgSQLiteDataDir)) mkdir($wgSQLiteDataDir,0700);
+		if (!is_dir($wgSQLiteDataDir)) wfMkdirParents( $wgSQLiteDataDir, $wgSQLiteDataDirMode );
 		if (!isset($wgOut)) $wgOut = NULL; # Can't get a reference if it hasn't been set yet
 		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;

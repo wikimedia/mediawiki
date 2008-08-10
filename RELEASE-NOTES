@@ -28,6 +28,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15080) $wgOverrideSiteFeed has been added. Setting either
   $wgSiteFeed['rss'] or 'atom' to a URL will override the default Recent Changes
   feed that appears on all pages.
+* $wgSQLiteDataDirMode has been introduced as the default directory mode for
+  SQLite data directories on creation. Note this setting is separate from
+  $wgDirectoryMode, which applies to all normal directories created by MediaWiki.
 
 === New features in 1.14 ===
 
