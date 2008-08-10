@@ -192,7 +192,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
 		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$this->mTitle->getPrefixedText() ) );
-		$tpl->set( 'talkclass', ( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) ) );
 		$tpl->set( 'skinnameclass', ( "skin-" . Sanitizer::escapeClass( $this->getSkinName ( ) ) ) );
 
 		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ?
@@ -255,7 +254,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'handheld', $wgRequest->getBool( 'handheld' ) );
 		$tpl->set( 'csslinks', $this->buildCssLinks() );
 		$tpl->setRef( 'loggedin', $this->loggedin );
-		$tpl->set('nsclass', 'ns-'.$this->mTitle->getNamespace());
+		$tpl->set( 'nsclass', $this->getNamespaceClasses( $this->mTitle ) );
 		$tpl->set('notspecialpage', $this->mTitle->getNamespace() != NS_SPECIAL);
 		/* XXX currently unused, might get useful later
 		$tpl->set( "editable", ($this->mTitle->getNamespace() != NS_SPECIAL ) );
