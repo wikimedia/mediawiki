@@ -182,7 +182,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$this->usercss =  $this->userjs = $this->userjsprev = false;
-		$this->setupUserCss();
+		$this->setupUserCss( $out->getExtStyle() );
 		$this->setupUserJs( $out->isUserJsAllowed() );
 		$this->titletxt = $this->mTitle->getPrefixedText();
 		wfProfileOut( __METHOD__."-stuff" );
@@ -966,7 +966,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * @private
 	 */
-	function setupUserCss() {
+	function setupUserCss( $extCSS = array() ) {
 		global $wgRequest, $wgAllowUserCss, $wgUseSiteCss, $wgContLang, $wgSquidMaxage, $wgStylePath, $wgUser;
 
 		wfProfileIn( __METHOD__ );
@@ -980,6 +980,11 @@ class SkinTemplate extends Skin {
 			// by anons' publicly cacheable generated CSS.
 			$siteargs['smaxage'] = '0';
 			$siteargs['ts'] = $wgUser->mTouched;
+		}
+		
+		// Add any extension CSS
+		foreach( $extCSS as $tag ) {
+			$this->addStyle( $tag['href'] );
 		}
 
 		// If we use the site's dynamic CSS, throw that in, too
