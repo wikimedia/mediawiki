@@ -589,14 +589,13 @@ END;
 		$a['onload'] = $wgOut->getOnloadHandler();
 		$a['class'] =
 			'mediawiki' .
-			' '.$this->getNamespaceClasses( $wgTitle ) .
 			' '.( $wgContLang->isRTL() ? "rtl" : "ltr" ).
-			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ).
+			' '.$this->getPageClasses( $wgTitle ) .
 			' skin-'. Sanitizer::escapeClass( $this->getSkinName( ) );
 		return $a;
 	}
 	
-	function getNamespaceClasses( $title ) {
+	function getPageClasses( $title ) {
 		$numeric = 'ns-'.$title->getNamespace();
 		if( $title->getNamespace() == NS_SPECIAL ) {
 			$type = "ns-special";
@@ -605,7 +604,8 @@ END;
 		} else {
 			$type = "ns-subject";
 		}
-		return "$numeric $type";
+		$name = Sanitizer::escapeClass( 'page-'.$title->getPrefixedText() );
+		return "$numeric $type $name";
 	}
 
 	/**
