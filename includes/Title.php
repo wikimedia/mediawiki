@@ -1340,8 +1340,6 @@ class Title {
 			return false;
 		}
 
-		wfDebug( wfBacktrace() );
-
 		// Cache to avoid multiple database queries for the same title
 		if ( isset($this->mProtections) ) {
 			return $this->mProtections;
