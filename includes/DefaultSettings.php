@@ -572,6 +572,12 @@ $wgDBts2schema      = 'public';
 /** To override default SQLite data directory ($docroot/../data) */
 $wgSQLiteDataDir    = '';
 
+/** Default directory mode for SQLite data directory on creation.
+ *  Note that this is different from the default directory mode used
+ *  elsewhere.
+ */
+$wgSQLiteDataDirMode = 0700;
+
 /**
  * Make all database connections secretly go to localhost. Fool the load balancer
  * thinking there is an arbitrarily large cluster of servers to connect to.
