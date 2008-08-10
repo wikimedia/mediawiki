@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author Amikeco
+ * @author ArnoLagrange
+ * @author Malafaya
+ * @author Michawiki
+ * @author Tlustulimu
  * @author Yekrats
  * @author לערי ריינהארט
- * @author Tlustulimu
- * @author Michawiki
- * @author Amikeco
- * @author Malafaya
- * @author ArnoLagrange
  */
 
 $namespaceNames = array(
@@ -87,7 +87,7 @@ $messages = array(
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
-'tog-editsection'             => 'Montri [redaktu]-ligiloj por sekcioj',
+'tog-editsection'             => 'Montri [redakti]-ligilojn por sekcioj',
 'tog-editsectiononrightclick' => 'Redaktu sekciojn per dekstra musklako',
 'tog-showtoc'                 => 'Montri liston de enhavoj',
 'tog-rememberpassword'        => 'Rememori mian pasvorton',
@@ -101,8 +101,8 @@ $messages = array(
 'tog-previewonfirst'          => 'Montri antaŭrigardon je unua redakto',
 'tog-nocache'                 => 'Malaktivigu kaŝmemorigon de paĝoj',
 'tog-enotifwatchlistpages'    => 'Sendi al mi retmesaĝon kiam tiu paĝo estas ŝanĝita',
-'tog-enotifusertalkpages'     => 'Sendu al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
-'tog-enotifminoredits'        => 'Sendu al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
+'tog-enotifusertalkpages'     => 'Sendi al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
+'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
 'tog-fancysig'                => 'Simpla subskribo (sen aŭtomata ligo)',
@@ -263,11 +263,11 @@ $messages = array(
 'userpage'          => 'Rigardi personan paĝon',
 'projectpage'       => 'Rigardi projektopaĝon',
 'imagepage'         => 'Rigardi dosieropaĝon',
-'mediawikipage'     => 'Vidu mesaĝopaĝon',
-'templatepage'      => 'Vidu ŝablonopaĝon',
+'mediawikipage'     => 'Vidi mesaĝopaĝon',
+'templatepage'      => 'Vidi ŝablonopaĝon',
 'viewhelppage'      => 'Vidi helpopaĝon',
 'categorypage'      => 'Vidi kategorian paĝon',
-'viewtalkpage'      => 'Vidu diskutopaĝon',
+'viewtalkpage'      => 'Vidi diskuton',
 'otherlanguages'    => 'Aliaj lingvoj',
 'redirectedfrom'    => '(Alidirektita el $1)',
 'redirectpagesub'   => 'Alidirektilo',
@@ -321,11 +321,11 @@ $messages = array(
 'editsection'             => 'redakti',
 'editold'                 => 'redakti',
 'viewsourceold'           => 'vidi fonttekston',
-'editsectionhint'         => 'Redaktu sekcion: $1',
+'editsectionhint'         => 'Redakti sekcion: $1',
 'toc'                     => 'Enhavo',
 'showtoc'                 => 'montri',
 'hidetoc'                 => 'kaŝi',
-'thisisdeleted'           => 'Vidu aŭ restarigu $1?',
+'thisisdeleted'           => 'Vidi aŭ restarigi $1?',
 'viewdeleted'             => 'Ĉu rigardi $1?',
 'restorelink'             => '{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}',
 'feedlinks'               => 'RSS-fonto:',
@@ -819,7 +819,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'mergehistory-into'                => 'Celpaĝo:',
 'mergehistory-list'                => 'Kunigebla redakthistorio',
 'mergehistory-merge'               => 'La jenaj revizioj de [[:$1]] povas esti kunigitaj en [[:$2]]. Uzu la radio-butonan kolumnon por enkunigi nur la reviziojn kreitajn cxe kaj antaux la specifigita tempo. Notu ke uzado de navigado-ligiloj restarigos ĉi kolumnon.',
-'mergehistory-go'                  => 'Montru kunigeblajn redaktojn',
+'mergehistory-go'                  => 'Montri kunigeblajn redaktojn',
 'mergehistory-submit'              => 'Kunigu reviziojn',
 'mergehistory-empty'               => 'Neniuj reviziojn eblas kunigi.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|revizio|revizioj}} de [[:$1]] sukcese kunigita en [[:$2]].',
@@ -834,7 +834,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 # Merge log
 'mergelog'           => 'Protokolo de kunigoj',
 'pagemerge-logentry' => 'kunigis [[$1]] en [[$2]] (revizioj gxis $3)',
-'revertmerge'        => 'Malkunigu',
+'revertmerge'        => 'Malkunigi',
 'mergelogpagetext'   => 'Jen listo de la plej lastatempaj kunigoj de unu paĝhistorio en alian.',
 
 # Diffs
@@ -1034,9 +1034,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'right-hideuser'             => 'Forbaru salutnomon, kaŝante ĝin de la publiko',
 'right-ipblock-exempt'       => 'Preterpasu IP-forbarojn, aŭtomatajn forbarojn, kaj ĝeneralajn forbarojn',
 'right-proxyunbannable'      => 'Preterpasu aŭtomatajn forbarojn de prokuriloj',
-'right-protect'              => 'Ŝanĝu protektniveloj kaj redaktu protektitajn paĝojn',
-'right-editprotected'        => 'Redaktu protektitajn paĝojn (sen kaskada protestado)',
-'right-editinterface'        => 'Redaktu la uzanto-interfacon',
+'right-protect'              => 'Ŝanĝi protektniveloj kaj redakti protektitajn paĝojn',
+'right-editprotected'        => 'Redakti protektitajn paĝojn (sen kaskada protektado)',
+'right-editinterface'        => 'Redakti la uzulan interfacon',
 'right-editusercssjs'        => 'Redaktu CSS- kaj JS-dosierojn de aliaj uzantoj',
 'right-rollback'             => 'Tuj restarigu la lastan uzanton kiu redaktis specifan paĝon',
 'right-markbotedits'         => 'Marku restarigitajn redaktojn kiel robotajn redaktojn',
@@ -1265,7 +1265,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'filedelete-reason-dropdown'  => '* Oftaj kialoj de forigo
 ** Malobservo de kopirajto
 ** Duplikata dosiero',
-'filedelete-edit-reasonlist'  => 'Redaktu kialojn de forigo',
+'filedelete-edit-reasonlist'  => 'Redakti kialojn por forigo',
 
 # MIME search
 'mimesearch'         => 'MIME-serĉilo',
@@ -1588,9 +1588,9 @@ Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj pro
 'protectlogpage'              => 'Protokolo de protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',
-'protectedarticle'            => 'protektita [[:$1]]',
-'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[:$1]]"',
-'unprotectedarticle'          => 'malprotektita [[:$1]]',
+'protectedarticle'            => 'protektita [[$1]]',
+'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
+'unprotectedarticle'          => 'malprotektita [[$1]]',
 'protect-title'               => 'Protektante "$1"',
 'protect-legend'              => 'Konfirmu protektadon',
 'protectcomment'              => 'Kialo por protekti:',
@@ -1872,8 +1872,8 @@ Bonvolu permane kunigi ilin.',
 'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.',
 'movepage-page-unmoved'   => 'La paĝo $1 ne povas esti alinomigita al $2.',
 'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
-'1movedto2'               => '[[:$1]] movita al [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] movita al [[:$2]], redirekto lasita',
+'1movedto2'               => '[[$1]] movita al [[$2]]',
+'1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
 'movelogpage'             => 'Protokolo de paĝmovoj',
 'movelogpagetext'         => 'Jen listo de movitaj paĝoj',
 'movereason'              => 'Kialo:',
@@ -1956,7 +1956,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 # Import log
 'importlogpage'                    => 'Protokolo de importoj',
 'importlogpagetext'                => 'Administrantecaj importoj de paĝoj kun redakto-historio de aliaj vikioj.',
-'import-logentry-upload'           => 'importita [[:$1]] de dosiera alŝuto',
+'import-logentry-upload'           => 'importita [[$1]] de dosiera alŝuto',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizio|revizioj}}',
 'import-logentry-interwiki'        => 'transvikiigita $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizio|revizioj}} de $2',
@@ -2492,7 +2492,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Forviŝantaj ĉion el paĝo',
 'autosumm-replace' => "Anstataŭigante paĝojn kun '$1'",
-'autoredircomment' => 'Redirektante al [[:$1]]',
+'autoredircomment' => 'Redirektante al [[$1]]',
 'autosumm-new'     => 'Nova paĝo: $1',
 
 # Live preview

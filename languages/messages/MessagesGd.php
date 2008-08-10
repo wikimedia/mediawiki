@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
- * @author Sionnach
  * @author Raymond
+ * @author Sionnach
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -289,8 +289,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'reverted'           => 'Tillte ri lethbhreac as ùire',
 'editcomment'        => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'         => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectedarticle'   => 'dìonta "[[:$1]]"',
-'unprotectedarticle' => '"[[:$1]]" neo-dhìonta',
+'protectedarticle'   => 'dìonta "[[$1]]"',
+'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
 'protect-title'      => 'A\'dìonadh "$1"',
 'protect-legend'     => 'Daingnich dìonadh',
 'protectcomment'     => 'Aobhar airson dìonaidh',
@@ -341,8 +341,8 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'movepagebtn'      => 'Gluais duilleag',
 'pagemovedsub'     => 'Gluasad soirbheachail',
 'movedto'          => 'air gluasad gu',
-'1movedto2'        => '[[:$1]] gluaiste ri [[:$2]]',
-'1movedto2_redir'  => '[[:$1]] gluaiste ri [[:$2]] thairis air ath-stiùireadh',
+'1movedto2'        => '[[$1]] gluaiste ri [[$2]]',
+'1movedto2_redir'  => '[[$1]] gluaiste ri [[$2]] thairis air ath-stiùireadh',
 
 # Namespace 8 related
 'allmessages'     => 'Uile teachdaireachdan an t-siostam',

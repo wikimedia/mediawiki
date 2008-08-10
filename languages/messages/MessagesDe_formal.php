@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Pill
- * @author Leithian
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Leithian
+ * @author Pill
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
  */

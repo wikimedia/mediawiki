@@ -4,11 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Sborsody
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Krice from Tyvanet.com
+ * @author Sborsody
  * @author friends at tyvawiki.org
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(

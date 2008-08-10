@@ -4,16 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author Klutzy
- * @author ToePeu
- * @author PuzzletChung
  * @author Albamhandae
- * @author ITurtle
  * @author Ficell
+ * @author ITurtle
+ * @author Klutzy
  * @author Kwj2772
- * @author TheAlpha for knowledge
- * @author לערי ריינהארט
  * @author Pi.C.Noizecehx
+ * @author PuzzletChung
+ * @author TheAlpha for knowledge
+ * @author ToePeu
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -388,10 +388,13 @@ $messages = array(
 
 # Login and logout pages
 'logouttitle'                => '로그아웃',
-'logouttext'                 => "'''{{SITENAME}}에서 로그아웃했습니다.''' 이대로 이름없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 로그인해서 이용할 수 있습니다. 웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.",
+'logouttext'                 => '<strong>{{SITENAME}}에서 로그아웃했습니다.</strong>
+
+이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 [[Special:UserLogin|로그인]]해서 이용할 수 있습니다.
+웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.',
 'welcomecreation'            => '== $1 님, 환영합니다! ==
 계정이 만들어졌습니다.
-사용자 환경 설정에서 당신의 {{SITENAME}} 사용자 환경 설정을 바꿀 수 있습니다.',
+[[Special:Preferences|당신의 {{SITENAME}} 사용자 환경 설정]]을 바꿀 수 있습니다.',
 'loginpagetitle'             => '로그인',
 'yourname'                   => '계정 이름:',
 'yourpassword'               => '비밀번호:',
@@ -680,6 +683,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchsubtitle'           => "검색 단어 '''[[:$1]]'''",
 'searchsubtitleinvalid'    => "검색 단어 '''$1'''",
 'noexactmatch'             => "'''$1 문서가 없습니다.''' 문서를 [[:$1|만들 수]] 있습니다.",
+'noexactmatch-nocreate'    => "'''\"\$1\" 문서가 존재하지 않습니다.'''",
 'titlematches'             => '문서 제목 일치',
 'notitlematches'           => '해당하는 제목 없음',
 'textmatches'              => '문서 내용 일치',
@@ -1293,9 +1297,9 @@ $NEWPAGE
 'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 'protectlogpage'              => '문서 보호 기록',
 'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.',
-'protectedarticle'            => '‘[[:$1]]’ 문서를 보호함',
-'modifiedarticleprotection'   => '‘[[:$1]]’ 문서의 보호 설정을 변경함',
-'unprotectedarticle'          => '‘[[:$1]]’ 문서를 보호 해제함',
+'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',
+'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
+'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
 'protect-title'               => '"$1" 보호하기',
 'protect-legend'              => '보호 확인',
 'protectcomment'              => '보호 이유',
@@ -1522,10 +1526,11 @@ $1',
 'talkexists'              => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                 => '새 이름',
 'movetalk'                => '딸린 토론도 함께 이동합니다.',
+'move-subpages'           => '하위 문서도 함께 이동합니다.',
 'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
 'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'1movedto2'               => '[[:$1]]을(를) [[:$2]](으)로 옮김',
-'1movedto2_redir'         => '[[:$1]]을(를) [[:$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
+'1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
+'1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'movelogpage'             => '이동 기록',
 'movelogpagetext'         => '아래는 옮겨진 문서의 목록입니다.',
 'movereason'              => '이유',
@@ -1848,7 +1853,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '문서의 모든 내용을 삭제',
 'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
-'autoredircomment' => '[[:$1]](으)로 넘겨주기',
+'autoredircomment' => '[[$1]](으)로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
 
 # Live preview

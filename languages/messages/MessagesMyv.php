@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
+ * @author Amdf
  * @author Botuzhaleny-sodamo
  * @author Erzianj jurnalist
- * @author Amdf
  * @author MF-Warburg
- * @author Tupikovs
- * @author Sura
  * @author Spacebirdy
+ * @author Sura
+ * @author Tupikovs
  */
 
 $messages = array(
@@ -1004,7 +1004,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'rollbacklink'                => 'кевердемс',
 'rollbackfailed'              => 'Мекев кевердемась эзь лисе',
 'protectlogpage'              => 'Ванстомань совама-кемекстома',
-'protectedarticle'            => 'ванстозь "[[:$1]]"',
+'protectedarticle'            => 'ванстозь "[[$1]]"',
 'protect-legend'              => 'Кемекстынк аравтоманть лопанть ванстоманзо',
 'protectcomment'              => 'Мельполадкс:',
 'protectexpiry'               => 'Прядови:',
@@ -1164,7 +1164,7 @@ IP-тешкстэть — $3, сёлгоманть ID-сь — #$5. Инеске
 'movedto'                 => 'печтевтезь',
 'movetalk'                => 'Печтевтемань кортамо лопа',
 'movepage-page-moved'     => '"$1" лопась печтевтезь "$2"-с.',
-'1movedto2'               => '[[:$1]] печтевтезь тей [[:$2]]',
+'1movedto2'               => '[[$1]] печтевтезь тей [[$2]]',
 'movelogpage'             => 'Печтевтемань журнал',
 'movereason'              => 'Тувтал:',
 'revertmove'              => 'велявтодо',

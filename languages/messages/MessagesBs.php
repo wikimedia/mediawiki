@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
+ * @author CERminator
  * @author Demicx
  * @author Kal-El
  * @author לערי ריינהארט
- * @author CERminator
  */
 
 $namespaceNames = array(
@@ -480,7 +480,7 @@ Molimo Vas da se prijavite pošto je primite.',
 'blockedtext'              => "Vaše korisničko ime ili IP adresa je blokirana od strane $1.
 Dati razlog je sledeći:<br />''$2''<p>Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] da biste razgovarili o blokadi.",
 'whitelistedittitle'       => 'Obavezno je prijavljivanje za uređivanje',
-'whitelistedittext'        => 'Morate da se [[Special:Userlogin|prijavite]] da bi ste uređivali stranice.',
+'whitelistedittext'        => 'Morate da se [[Special:UserLogin|prijavite]] da bi ste uređivali stranice.',
 'loginreqtitle'            => 'Potrebno je prijavljivanje',
 'accmailtitle'             => 'Lozinka poslata.',
 'accmailtext'              => "Lozinka za nalog '$1' je poslata na adresu $2.",
@@ -920,7 +920,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'revertpage'                  => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'              => 'Protokol zaključavanja',
 'protectlogtext'              => 'Ispod je spisak zaštićenja stranice.',
-'protectedarticle'            => 'stranica "[[:$1]]" je zaštićena',
+'protectedarticle'            => 'stranica "[[$1]]" je zaštićena',
 'unprotectedarticle'          => 'odštićena "$1"',
 'protect-title'               => 'Zaštićuje se "$1"',
 'protect-legend'              => 'Potvrdite zaštitu',
@@ -1066,8 +1066,8 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 stranica za razgovor nije mogla biti premještena jer takva već postoji na novom naslovu.  Molimo Vas da ih spojite ručno.',
 'movedto'          => 'premještena na',
 'movetalk'         => 'Premjestite "stranicu za razgovor" takođe, ako je moguće.',
-'1movedto2'        => 'članak [[:$1]] premješten na [[:$2]]',
-'1movedto2_redir'  => 'stranica [[:$1]] premještena u stranicu [[:$2]] putem preusmjerenja',
+'1movedto2'        => 'članak [[$1]] premješten na [[$2]]',
+'1movedto2_redir'  => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
 'movelogpage'      => 'Protokol premještanja',
 'revertmove'       => 'vrati',
 'selfmove'         => 'Izvorni i ciljani naziv su isti; strana ne može da se premjesti preko same sebe.',

@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Hakka
  * @author Cbrown1023
+ * @author Hakka
  */
 
 $messages = array(
@@ -155,7 +155,7 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'movearticle'      => 'Sutisa tsebe:',
 'movepagebtn'      => 'Sutisa tsebe',
 'movedto'          => 'sutela kwa',
-'1movedto2'        => '[[:$1]] o sutisediwa kwa go [[:$2]]',
+'1movedto2'        => '[[$1]] o sutisediwa kwa go [[$2]]',
 'movereason'       => 'Lebaka:',
 
 # Namespace 8 related

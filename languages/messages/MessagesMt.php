@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Chrisportelli
  * @author Giangian15
  * @author Roderick Mallia
- * @author Chrisportelli
  */
 
 $messages = array(
@@ -1554,9 +1554,9 @@ Modifikata lura għall-aħħar verżjoni ta' $2.",
 'protectlogpage'              => 'Protezzjoni',
 'protectlogtext'              => "Hawn taħt hawn lista ta' l-azzjonijiet tal-protezzjoni u żblokki tal-paġna.
 Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġni bħalissa protetti.",
-'protectedarticle'            => '"[[:$1]]" huwa protett',
-'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[:$1]]"',
-'unprotectedarticle'          => 'żblokkjajt "[[:$1]]"',
+'protectedarticle'            => '"[[$1]]" huwa protett',
+'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[$1]]"',
+'unprotectedarticle'          => 'żblokkjajt "[[$1]]"',
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
 'protect-legend'              => 'Ikkonferma l-protezzjoni',
 'protectcomment'              => 'Kumment:',
@@ -1667,6 +1667,7 @@ $1',
 'whatlinkshere'            => "Li jwasslu 'l hawn",
 'whatlinkshere-title'      => 'Paġni li jippuntaw lejn $1',
 'whatlinkshere-page'       => 'Paġna:',
+'whatlinkshere-barrow'     => '>',
 'linklistsub'              => "(Lista ta' links)",
 'linkshere'                => "Il-Paġni segwenti għandhom links għal '''[[:$1]]''':",
 'nolinkshere'              => "L-Ebda paġna għanda link għal '''[[:$1]]'''.",
@@ -1826,8 +1827,8 @@ Jekk jogħġbok agħqqad manwalment.'''",
 'movepage-page-moved'     => 'Il-Paġna $1 ġiet imċaqilqa għal $2.',
 'movepage-page-unmoved'   => 'Il-Paġna $1 ma setgħatx tiġi mċaqilqa għal $2.',
 'movepage-max-pages'      => "Ġie mċaqlaq in-numru massimu ta' {{PLURAL:$1|paġna u ma jistax jiġi mċaqlaq aktar awtomatikament|$1 paġni u ma jistgħux jiġu mċaqilqa aktar awtomatikament.}}",
-'1movedto2'               => '[[:$1]] imċaqlaq għal [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] imċaqlaq għal [[:$2]] fuq rindirizz',
+'1movedto2'               => '[[$1]] imċaqlaq għal [[$2]]',
+'1movedto2_redir'         => '[[$1]] imċaqlaq għal [[$2]] fuq rindirizz',
 'movelogpage'             => 'Ċaqlieq',
 'movelogpagetext'         => "Hawn taħt jinsab lista ta' paġni mċaqilqa.",
 'movereason'              => 'Raġuni:',
@@ -1918,7 +1919,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 # Import log
 'importlogpage'                    => 'Importazzjoni',
 'importlogpagetext'                => "Importi amministrativi ta' paġni b'kronoloġiji ta' modifiki minn wikis oħrajn.",
-'import-logentry-upload'           => "importajt [[:$1]] bl-użu ta' upload.",
+'import-logentry-upload'           => "importajt [[$1]] bl-użu ta' upload.",
 'import-logentry-upload-detail'    => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}',
 'import-logentry-interwiki'        => 'Trasferixxejt minn wiki ieħor il-paġna $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}} minn $2',
@@ -2489,8 +2490,14 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Neħħi kull kontenut mill-paġna',
 'autosumm-replace' => "Il-paġna qed tiġi mibdula ma' '$1'",
-'autoredircomment' => 'Rindirizzat għal [[:$1]]',
+'autoredircomment' => 'Rindirizzat għal [[$1]]',
 'autosumm-new'     => 'Paġna ġdida: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Tniżżil fil-progress…',

@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Desiphral
  * @author Niklas Laxström
+ * @author לערי ריינהארט
  */
 
 $fallback = 'ro';
@@ -227,7 +227,7 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'showlivepreview'    => 'Jivutno angledikhipen',
 'showdiff'           => 'Dikh le paruvimata',
 'whitelistedittitle' => 'Trebul o autentifikaripen kashte editisares',
-'whitelistedittext'  => 'Trebul te [[Special:Userlogin|autentifikisares]] kashte editisares artikolurya.',
+'whitelistedittext'  => 'Trebul te [[Special:UserLogin|autentifikisares]] kashte editisares artikolurya.',
 'accmailtitle'       => 'O nakhavipnasko lav bićhaldo.',
 'accmailtext'        => "O nakhavipnasko lav andar '$1' bićhaldo ko $2.",
 'newarticle'         => '(Nevo)',
@@ -452,7 +452,7 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'movepagebtn'     => 'Inger i patrin',
 'pagemovedsub'    => 'I patrin sas bićhaldi.',
 'movedto'         => 'ingerdi kai',
-'1movedto2'       => '[[:$1]] bichhaldo kai [[:$2]]',
+'1movedto2'       => '[[$1]] bichhaldo kai [[$2]]',
 'delete_and_move' => 'Khos thai inger',
 
 # Export

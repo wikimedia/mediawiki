@@ -4,19 +4,19 @@
  * @ingroup Language
  * @file
  *
+ * @author Boivie
+ * @author Dittaeva
  * @author Eirik
+ * @author Finnrind
+ * @author Guttorm Flatabø
+ * @author H92
  * @author Jon Harald Søby
  * @author Jorunn
- * @author לערי ריינהארט
- * @author Ranveig
- * @author Finnrind
- * @author H92
- * @author Dittaeva
- * @author Boivie
- * @author Olve Utne
- * @author Guttorm Flatabø
- * @author Shauni
  * @author Max sonnelid
+ * @author Olve Utne
+ * @author Ranveig
+ * @author Shauni
+ * @author לערי ריינהארט
  */
 
 /**
@@ -586,11 +586,13 @@ Grunnen som er gjeven er: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Logg ut',
-'logouttext'                 => '<strong>Du er no utlogga.</strong><br />
-Avhengig av innstillingane på tenaren kan nettlesaren no brukast anonymt på {{SITENAME}}, du kan logge inn att med same kontoen eller ein annan brukar kan logge inn. Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.',
+'logouttext'                 => '<strong>Du er no utlogga.</strong>
+
+Du kan no halde fram og bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn. 
+Ver merksam på at nokre sider kan halde fram med å verte viste som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.',
 'welcomecreation'            => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
 Brukarkontoen din har vorte oppretta.
-Det er tilrådd at du skriv litt om ser gjennom brukarinnstillingane dine.',
+Ikkje gløym å endre på [[Special:Preferences|innstillingane]] dine.',
 'loginpagetitle'             => 'Logg inn',
 'yourname'                   => 'Brukarnamn:',
 'yourpassword'               => 'Passord:',
@@ -722,15 +724,19 @@ Du kan sjå bort frå denne meldinga dersom kontoen vart oppretta med eit uhell.
 'summary-preview'                  => 'Førehandsvising av endringssamandraget',
 'subject-preview'                  => 'Førehandsvising av emne/overskrift',
 'blockedtitle'                     => 'Brukaren er blokkert',
-'blockedtext'                      => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring.'''</big>
+'blockedtext'                      => "<big>'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''</big>
 
-Blokkeringa vart gjort av $1. Denne grunnen vart gjeven: ''$2''.
+Blokkeringa vart gjort av $1. 
+Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
 * Blokkeringa utgår: $6
 * Blokkeringa var meint på: $7
 
-Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. IP-adressa di er $3, og blokkeringsnummeret er $5. Ver venleg og opplys om dette ved eventuelle førespurnader.",
+Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa. 
+Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post. 
+IP-adressa di er $3, og blokkeringsnummeret er $5. 
+Ver venleg og opplys om dette ved eventuelle førespurnader.",
 'autoblockedtext'                  => "IP-adressa di er automatisk blokkert frå endring fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
@@ -1641,9 +1647,9 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:ProtectedPages|Verna side]] for meir info.',
-'protectedarticle'            => 'verna «[[:$1]]»',
-'modifiedarticleprotection'   => 'endra nivået på vernet av «[[:$1]]»',
-'unprotectedarticle'          => 'fjerna vern av «[[:$1]]»',
+'protectedarticle'            => 'verna «[[$1]]»',
+'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
+'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
 'protect-title'               => 'Vernar «$1»',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunn til verning',
@@ -1744,7 +1750,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Lenkjer hit',
-'whatlinkshere-title'      => 'Sider som har lenkje til $1',
+'whatlinkshere-title'      => 'Sider som har lenkje til «$1»',
 'whatlinkshere-page'       => 'Side:',
 'linklistsub'              => '(Liste over lenkjer)',
 'linkshere'                => "Desse sidene har lenkjer til '''[[:$1]]''':",
@@ -1877,13 +1883,14 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-watch'              => 'Overvak denne sida',
 'movepagebtn'             => 'Flytt side',
 'pagemovedsub'            => 'Flyttinga er gjennomført',
+'movepage-moved'          => "<big>'''«$1» er flytt til «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Ei side med det namnet finst allereie, eller det namnet du har valt er ikkje gyldig. Vel eit anna namn.',
 'cantmove-titleprotected' => 'Du kan ikkje flytte sida hit, fordi det nye sidenamnet er verna mot oppretting.',
-'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt flette dei saman manuelt. Dersom det ikkje er mogleg for deg å gjera dette kan du kontakte ein <a href=\"{{localurl:Project:Administratorar}}\">administrator</a> &#8212; men <b>ikkje</b> bruk klipp-og-lim metoden sidan dette ikkje tek vare på endringshistorikken.'''",
+'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt difor flette dei saman manuelt.'''",
 'movedto'                 => 'er flytt til',
 'movetalk'                => 'Flytt diskusjonssida òg om ho finst.',
-'1movedto2'               => '«[[:$1]]» flytt til «[[:$2]]»',
-'1movedto2_redir'         => '«[[:$1]]» flytt over omdirigering til «[[:$2]]»',
+'1movedto2'               => '«[[$1]]» flytt til «[[$2]]»',
+'1movedto2_redir'         => '«[[$1]]» flytt over omdirigering til «[[$2]]»',
 'movelogpage'             => 'Flyttelogg',
 'movelogpagetext'         => 'Under er ei liste over sider som er flytte.',
 'movereason'              => 'Årsak:',
@@ -1927,6 +1934,8 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'thumbnail-more'  => 'Forstørr',
 'filemissing'     => 'Fila manglar',
 'thumbnail_error' => 'Feil ved oppretting av miniatyrbilete: $1',
+'djvu_page_error' => 'DjVu-sida er utanfor rekkjevidd',
+'djvu_no_xml'     => 'Klarte ikkje hente inn XML for DjVu-fila',
 
 # Special:Import
 'import'                     => 'Importer sider',
@@ -1934,8 +1943,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'import-interwiki-history'   => 'Kopier all historikken for denne sida',
 'import-interwiki-submit'    => 'Importer',
 'import-interwiki-namespace' => 'Flytt sidene til namnerommet:',
-'importtext'                 => 'Du må først eksportere sida du vil importere til ei fil som du lagrar på maskina di, deretter kan du laste ho inn her.
-For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hugs at kjelda òg må bruke MediaWiki-programvaren.',
+'importtext'                 => 'Eksporter fila frå kjeldewikien med [[Special:Export|eksporteringsverktøyet]], lagre ho på di eiga datamaskin, og last henne opp her.',
 'importstart'                => 'Importerer sidene…',
 'import-revision-count'      => '$1 {{PLURAL:$1|versjon|versjonar}}',
 'importnopages'              => 'Ingen sider å importere.',
@@ -1953,7 +1961,7 @@ For å eksportere bruker du [[Special:Export|eksportsida]] på kjeldewikien; hug
 
 # Import log
 'importlogpage'                    => 'Importeringslogg',
-'import-logentry-upload'           => 'importerte [[:$1]] frå opplasta fil',
+'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2',
 
@@ -2489,7 +2497,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Fjernar alt innhald på sida',
 'autosumm-replace' => 'Erstattar innhaldet på sida med «$1»',
-'autoredircomment' => 'Omdirigerer til [[:$1]]',
+'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview

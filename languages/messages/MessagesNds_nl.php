@@ -1,15 +1,15 @@
 <?php
-/** Nedersaksisch (Nedersaksisch)
+/**  ()
  *
  * @ingroup Language
  * @file
  *
- * @author Servien
- * @author לערי ריינהארט
- * @author Slomox
  * @author Erwin85
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
+ * @author Servien
+ * @author Slomox
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author לערי ריינהארט
  */
 
 $fallback = 'nl';

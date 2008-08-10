@@ -4,20 +4,20 @@
  * @ingroup Language
  * @file
  *
- * @author Jon Harald Søby
- * @author Kph
- * @author Stigmj
- * @author לערי ריינהארט
- * @author H92
- * @author Eirik
- * @author Jóna Þórunn
- * @author Finnrind
  * @author Boivie
+ * @author Eirik
  * @author EivindJ
- * @author Samuelsen
- * @author Teak
- * @author Max sonnelid
+ * @author Finnrind
+ * @author H92
+ * @author Jon Harald Søby
+ * @author Jóna Þórunn
+ * @author Kph
  * @author Kph-no
+ * @author Max sonnelid
+ * @author Samuelsen
+ * @author Stigmj
+ * @author Teak
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -650,7 +650,10 @@ Blokkeringen ble utført av $1. Grunnen som ble oppgitt var ''$2''.
 * Blokkeringen utgår: $6
 * Blokkering ment på: $7
 
-Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen. Du kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post. Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5. Vennligst ta med begge disse ved henvendelser.",
+Du kan kontakte $1 eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.
+Du kan ikke bruke «E-post til denne brukeren»-funksjonen med mindre du har oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]] og du ikke er blokkert fra å sende e-post.
+Din nåværende IP-adresse er $3, og blokkerings-ID-en er #$5.
+Vennligst ta all denne informasjonen ved henvendelser.",
 'autoblockedtext'                  => "Din IP-adresse har blitt automatisk blokkert fordi den ble brukt av en annen bruker som ble blokkert av $1.
 Den oppgitte grunnen var:
 
@@ -658,16 +661,18 @@ Den oppgitte grunnen var:
 
 * Blokkeringen begynte: $8
 * Blokkeringen utgår: $6
+* Blokkeringen er ment for: $7
 
 Du kan kontakte $1 eller en av de andre [[{{MediaWiki:Grouppage-sysop}}|administratorene]] for å diskutere blokkeringen.
 
 Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du har registrert en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].
 
-Din blokkerings-ID er $5. Vennligst ta med denne ID-en i din forespørsel.",
+Din IP-adresse er $3, og blokkerings-ID-en er #$5.
+Vennligst ta med all denne informasjonen ved henvendelser.",
 'blockednoreason'                  => 'ingen grunn gitt',
 'blockedoriginalsource'            => "Kildekoden til '''$1''' vises nedenfor:",
 'blockededitsource'                => "Kildekoden '''dine endringer''' på '''$1''' vises nedenfor:",
-'whitelistedittitle'               => 'Du må [[Special:Userlogin|logge inn]] for å redigere',
+'whitelistedittitle'               => 'Du må [[Special:UserLogin|logge inn]] for å redigere',
 'whitelistedittext'                => 'Du må $1 for å redigere artikler.',
 'confirmedittitle'                 => 'E-postbekreftelse nødvendig før du kan redigere',
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
@@ -1159,7 +1164,7 @@ For å inkludere en fil på en side, bruk en slik lenke:
 'uploadlog'                   => 'opplastingslogg',
 'uploadlogpage'               => 'Opplastingslogg',
 'uploadlogpagetext'           => 'Her er en liste over de siste opplastede filene.
-Se [[Special:Newimages|galleriet over nye filer]] for en mer visuell visning',
+Se [[Special:NewImages|galleriet over nye filer]] for en mer visuell visning',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse:',
@@ -1230,11 +1235,11 @@ PICT # div.
 'upload-proto-error'      => 'Gal protokoll',
 'upload-proto-error-text' => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
 'upload-file-error'       => 'Intern feil',
-'upload-file-error-text'  => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:Listusers/sysop|administrator]].',
+'upload-file-error-text'  => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error'       => 'Ukjent opplastingsfeil',
 'upload-misc-error-text'  => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
-Om problemet fortsetter, kontakt en [[Special:Listusers/sysop|administrator]].',
+Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',
@@ -1628,9 +1633,9 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'sessionfailure'              => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
 'protectlogpage'              => 'Låsingslogg',
 'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Special:ProtectedPages|listen over låste sider]] for en liste over nåværende låste sider.',
-'protectedarticle'            => 'låste [[:$1]]',
-'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[:$1]]»',
-'unprotectedarticle'          => 'åpnet [[:$1]]',
+'protectedarticle'            => 'låste [[$1]]',
+'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[$1]]»',
+'unprotectedarticle'          => 'åpnet [[$1]]',
 'protect-title'               => 'Låser «$1»',
 'protect-legend'              => 'Bekreft låsing',
 'protectcomment'              => 'Kommentar:',
@@ -1791,7 +1796,7 @@ $1',
 'ipusubmit'                       => 'Opphev blokkeringen av denne adressen',
 'unblocked'                       => '[[User:$1|$1]] ble avblokkert',
 'unblocked-id'                    => 'Blokkering $1 ble fjernet',
-'ipblocklist'                     => 'Liste over blokkerte IP-adresser og brukere',
+'ipblocklist'                     => 'Blokkerte IP-adresser og brukere',
 'ipblocklist-legend'              => 'Finn en blokkert bruker',
 'ipblocklist-username'            => 'Brukernavn eller IP-adresse:',
 'ipblocklist-submit'              => 'Søk',
@@ -1894,8 +1899,8 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.',
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Grensen på {{PLURAL:$1|én side|$1 sider}} er nådd; ingen flere sider vil bli flyttet automatisk.',
-'1movedto2'               => '[[:$1]] flyttet til [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] flyttet til [[:$2]] over omdirigeringsside',
+'1movedto2'               => '[[$1]] flyttet til [[$2]]',
+'1movedto2_redir'         => '[[$1]] flyttet til [[$2]] over omdirigeringsside',
 'movelogpage'             => 'Flyttelogg',
 'movelogpagetext'         => 'Her er ei liste over sider som har blitt flyttet.',
 'movereason'              => 'Årsak:',
@@ -1981,7 +1986,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 # Import log
 'importlogpage'                    => 'Importlogg',
 'importlogpagetext'                => 'Administrativ import av sider med redigeringshistorikk fra andre wikier.',
-'import-logentry-upload'           => 'importerte [[:$1]] ved opplasting',
+'import-logentry-upload'           => 'importerte [[$1]] ved opplasting',
 'import-logentry-upload-detail'    => 'Importerte {{PLURAL:$1|én revisjon|$1 revisjoner}}',
 'import-logentry-interwiki'        => 'transwikiimporterte $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} fra $2',
@@ -2059,15 +2064,15 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'modern.css'      => '/* CSS i denne fila vil gjelde alle som bruker drakta Modern */',
 
 # Scripts
-'common.js'      => '(* Javascript i denne fila vil gjelde for alle drakter. */',
-'standard.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
-'nostalgia.js'   => '(* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
-'cologneblue.js' => '(* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
-'monobook.js'    => '(* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
-'myskin.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
-'chick.js'       => '(* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
-'simple.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
-'modern.js'      => '(* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
+'common.js'      => '/* Javascript i denne fila vil gjelde for alle drakter. */',
+'standard.js'    => '/* Javascript i denne fila vil gjelde for brukere av drakta Standard */',
+'nostalgia.js'   => '/* Javascript i denne fila vil gjelde for brukere av drakta Nostalgia */',
+'cologneblue.js' => '/* Javascript i denne fila vil gjelde for brukere av drakta Kølnerblå */',
+'monobook.js'    => '/* Javascript i denne fila vil gjelde for brukere av drakta Monobook */',
+'myskin.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Myskin */',
+'chick.js'       => '/* Javascript i denne fila vil gjelde for brukere av drakta Chick */',
+'simple.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Simple */',
+'modern.js'      => '/* Javascript i denne fila vil gjelde for brukere av drakta Modern */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF-metadata er slått av på denne tjeneren.',
@@ -2533,7 +2538,7 @@ $1
 # Auto-summaries
 'autosumm-blank'   => 'Tømmer siden',
 'autosumm-replace' => 'Erstatter siden med «$1»',
-'autoredircomment' => 'Omdirigerer til [[:$1]]',
+'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview

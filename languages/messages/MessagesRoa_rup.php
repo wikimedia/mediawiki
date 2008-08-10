@@ -5,7 +5,6 @@
  * @file
  *
  * @author Hakka
- * @author Niklas Laxström
  * @author Hakka (with the help of a native speaker Dumitrachi T. Fundu)
  */
 
@@ -192,7 +191,7 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'move-watch'       => 'Mutrits-u frãndzã aistã',
 'movepagebtn'      => 'Tradzets-u frãndzã',
 'movedto'          => 'tradzitã tu',
-'1movedto2'        => '[[:$1]] s-trãdzi tu [[:$2]]',
+'1movedto2'        => '[[$1]] s-trãdzi tu [[$2]]',
 'movereason'       => 'Itia:',
 
 # Namespace 8 related

@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author UV
- * @author SPQRobin
- * @author Rafaelgarcia
- * @author לערי ריינהארט
- * @author Omnipaedista
  * @author LeighvsOptimvsMaximvs
+ * @author Omnipaedista
+ * @author Rafaelgarcia
+ * @author SPQRobin
+ * @author UV
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1205,9 +1205,9 @@ Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special
 'revertpage'                => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad mutationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogpage'            => 'Index protectionum',
 'protectlogtext'            => 'Subter est index protectionum et deprotectionum paginarum. Vide [[Special:ProtectedPages|indicem paginarum nunc protectarum]].',
-'protectedarticle'          => 'protegit "[[:$1]]"',
-'modifiedarticleprotection' => 'mutavit protectionem paginae "[[:$1]]"',
-'unprotectedarticle'        => 'deprotegit "[[:$1]]"',
+'protectedarticle'          => 'protegit "[[$1]]"',
+'modifiedarticleprotection' => 'mutavit protectionem paginae "[[$1]]"',
+'unprotectedarticle'        => 'deprotegit "[[$1]]"',
 'protect-title'             => 'Mutare protectionem paginae "$1"',
 'protect-legend'            => 'Protectionem adfirmare',
 'protectcomment'            => 'Ratio protegendo:',
@@ -1317,7 +1317,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, recensita restituta i
 'unblockip'                => 'Deobstruere locum IP',
 'unblockiptext'            => 'Formam inferam usere ut locum IP deobstruere.',
 'ipusubmit'                => 'Deobstruere hanc locum',
-'ipblocklist'              => 'Usores obstructi',
+'ipblocklist'              => 'Usores locique IP obstructi',
 'ipblocklist-legend'       => 'Usorem obstructum quaerere',
 'ipblocklist-username'     => 'Nomen usoris vel locus IP:',
 'ipblocklist-submit'       => 'Quaerere',
@@ -1392,8 +1392,8 @@ Quaesumus, titulum alterum elige.',
 'move-talk-subpages'      => 'Movere etiam omnes subpaginas paginae disputationis, si sunt',
 'movepage-page-moved'     => 'Pagina $1 mota est ad $2.',
 'movepage-page-unmoved'   => 'Pagina $1 ad $2 moveri non potuit.',
-'1movedto2'               => 'movit [[:$1]] ad [[:$2]]',
-'1movedto2_redir'         => 'movit [[:$1]] ad [[:$2]] praeter redirectionem',
+'1movedto2'               => 'movit [[$1]] ad [[$2]]',
+'1movedto2_redir'         => 'movit [[$1]] ad [[$2]] praeter redirectionem',
 'movereason'              => 'Causa:',
 'revertmove'              => 'reverti',
 'delete_and_move'         => 'Delere et movere',
@@ -1592,7 +1592,7 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # Auto-summaries
 'autosumm-blank'   => 'paginam vacuavit',
 'autosumm-replace' => "multa contenta ex pagina removit, contenta nova: '$1'",
-'autoredircomment' => 'Redirigens ad [[:$1]]',
+'autoredircomment' => 'Redirigens ad [[$1]]',
 'autosumm-new'     => 'Nova pagina: $1',
 
 # Size units

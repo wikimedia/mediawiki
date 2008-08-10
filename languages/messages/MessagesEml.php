@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Timichal
  * @author Ottaviano II
+ * @author Timichal
  * @author Tèstaquêdra
  */
 
@@ -144,7 +144,7 @@ Guèrda $2 par vèdder la lésta d\'al pàgin ch\'i sun stèdi scanzlèdi di rec
 'contribslink' => "còl ch'l'à scrét",
 
 # Move page
-'1movedto2'   => "[[:$1]] l'è stê mòs a [[:$2]]",
+'1movedto2'   => "[[$1]] l'è stê mòs a [[$2]]",
 'movelogpage' => 'Regestér di muvimèint',
 
 # Special:NewImages

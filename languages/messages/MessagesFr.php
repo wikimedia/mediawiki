@@ -4,26 +4,26 @@
  * @ingroup Language
  * @file
  *
- * @author Grondin
- * @author Urhixidur
- * @author IAlex
- * @author Meithal
- * @author Verdy p
- * @author Guillom
- * @author Seb35
- * @author לערי ריינהארט
- * @author Sherbrooke
- * @author Hégésippe Cormier
- * @author Louperivois
- * @author Dereckson
- * @author Korg
  * @author Cedric31
- * @author Omnipaedista
- * @author McDutchie
- * @author JeanVoisin
  * @author ChrisPtDe
- * @author Горан Анђелковић
+ * @author Dereckson
  * @author Esbardu
+ * @author Grondin
+ * @author Guillom
+ * @author Hégésippe Cormier
+ * @author IAlex
+ * @author JeanVoisin
+ * @author Korg
+ * @author Louperivois
+ * @author McDutchie
+ * @author Meithal
+ * @author Omnipaedista
+ * @author Seb35
+ * @author Sherbrooke
+ * @author Urhixidur
+ * @author Verdy p
+ * @author Горан Анђелковић
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -713,32 +713,38 @@ Si vous cliquez à nouveau sur « Publier », votre édition sera enregistrée s
 'summary-preview'                  => 'Prévisualiser le résumé',
 'subject-preview'                  => 'Prévisualisation du sujet/titre',
 'blockedtitle'                     => 'L’utilisateur est bloqué.',
-'blockedtext'                      => "<big>'''Votre compte utilisateur (ou votre adresse IP) a été bloqué.'''</big>
+'blockedtext'                      => "<big>'''Votre compte utilisateur ou votre adresse IP a été bloqué.'''</big>
 
-Le blocage a été effectué par $1 pour la raison suivante : ''$2''.
+Le blocage a été effectué par $1.
+La raison invoquée est la suivante : ''$2''.
 
-Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour en discuter. Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]]. Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5. Veuillez inclure cette adresse dans toute requête.
 * Début du blocage : $8
 * Expiration du blocage : $6
-* Compte bloqué : $7.",
+* Compte bloqué : $7.
+
+Vous pouvez contacter $1 ou un autre [[{{MediaWiki:Grouppage-sysop}}|administrateur]] pour en discuter.
+Vous ne pouvez utiliser la fonction « Envoyer un courriel à cet utilisateur » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]].
+Votre adresse IP actuelle est $3 et votre identifiant de blocage est #$5.
+Veuillez inclure cette adresse dans toute requête.",
 'autoblockedtext'                  => "Votre adresse IP a été bloquée automatiquement car elle a été utilisée par un autre utilisateur, lui-même bloqué par $1.
-La raison donnée est :
+La raison invoquée est :
 
 :''$2''
 
 * Début du blocage : $8
 * Expiration du blocage : $6
+* Compte bloqué : $7
 
 Vous pouvez contacter $1 ou l’un des autres [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] pour discuter de ce blocage.
 
 Notez que vous ne pouvez pas utiliser la fonctionnalité d’envoyer un courriel à cet utilisateur tant que vous n’aurez pas une adresse courriel enregistrée dans vos [[Special:Preferences|préférences utilisateur]] et tant que vous ne serez pas bloqué pour son utilisation.
 
-Votre numéro de blocage est $5.
-Veuillez préciser cet identifiant dans toutes les requêtes que vous ferez.",
+Votre adresse IP actuelle est $3, et le numéro de blocage est $5.
+Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'blockednoreason'                  => 'Aucune raison donnée',
 'blockedoriginalsource'            => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'                => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
-'whitelistedittitle'               => '[[Special:Userlogin|Connexion nécessaire]] pour modifier le contenu',
+'whitelistedittitle'               => '[[Special:UserLogin|Connexion nécessaire]] pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
@@ -1696,9 +1702,9 @@ L’heure indiquée est celle du serveur (UTC).',
 'protectlogpage'              => 'Historique des protections',
 'protectlogtext'              => 'Voici une liste des protections et des déprotections.
 Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la liste des protections actuelles.',
-'protectedarticle'            => 'a protégé « [[:$1]] »',
-'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[:$1]] »',
-'unprotectedarticle'          => 'a déprotégé « [[:$1]] »',
+'protectedarticle'            => 'a protégé « [[$1]] »',
+'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
+'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'protect-title'               => 'Protéger « $1 »',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
@@ -1873,7 +1879,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipusubmit'                       => 'Débloquer cette adresse',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
-'ipblocklist'                     => 'Liste des utilisateurs bloqués',
+'ipblocklist'                     => 'Liste adresses IP et des utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'ipblocklist-username'            => 'Nom de l’utilisateur ou adresse IP :',
 'ipblocklist-submit'              => 'Chercher',
@@ -1975,8 +1981,8 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
 'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
-'1movedto2'               => 'a renommé [[:$1]] en [[:$2]]',
-'1movedto2_redir'         => 'a redirigé [[:$1]] vers [[:$2]]',
+'1movedto2'               => 'a renommé [[$1]] en [[$2]]',
+'1movedto2_redir'         => 'a redirigé [[$1]] vers [[$2]]',
 'movelogpage'             => 'Historique des renommages',
 'movelogpagetext'         => 'Voici la liste des dernières pages renommées.',
 'movereason'              => 'Raison du renommage',
@@ -2064,7 +2070,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 # Import log
 'importlogpage'                    => 'Historique des importations de pages',
 'importlogpagetext'                => 'Imports administratifs de pages avec l’historique à partir des autres wikis.',
-'import-logentry-upload'           => 'a importé [[:$1]]',
+'import-logentry-upload'           => 'a importé [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importé (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} depuis $2',
@@ -2607,7 +2613,7 @@ Veuillez confirmer que vous désirez recréer cet article.",
 # Auto-summaries
 'autosumm-blank'   => 'Résumé automatique : blanchiment',
 'autosumm-replace' => 'Résumé automatique : contenu remplacé par « $1 ».',
-'autoredircomment' => 'Redirection vers [[:$1]]',
+'autoredircomment' => 'Redirection vers [[$1]]',
 'autosumm-new'     => 'Nouvelle page : $1',
 
 # Size units

@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
- * @author Wisesabre
  * @author Chris H
+ * @author Wisesabre
+ * @author לערי ריינהארט
  */
 
 $rtl = true;
@@ -254,7 +254,7 @@ $messages = array(
 'showpreview'          => 'نمائش',
 'anoneditwarning'      => 'آپ {{SITENAME}} میں داخل نہیں ہوۓ لہذا آپکا IP پتہ اس صفحہ کے تاریخچہ ء ترمیم میں محفوظ ہوجاۓ گا۔',
 'summary-preview'      => 'نمائش خلاصہ',
-'whitelistedittext'    => 'ترمیم و تدوین کے لیۓ آپکا [[Special:Userlogin|داخل ہونا]] لا زمی ہے۔',
+'whitelistedittext'    => 'ترمیم و تدوین کے لیۓ آپکا [[Special:UserLogin|داخل ہونا]] لا زمی ہے۔',
 'loginreqtitle'        => 'داخلہ / اندراج لازم',
 'loginreqlink'         => 'داخلہ',
 'accmailtitle'         => 'کلمہ شناخت بھیج دیا گیا۔',
@@ -545,8 +545,8 @@ $messages = array(
 'rollbackfailed'      => 'سابقہ حالت پر واپسی ناکام',
 'cantrollback'        => 'تدوین ثانی کا اعادہ نہیں کیا جاسکتا؛ کیونکہ اس میں آخری بار حصہ لینے والا ہی اس صفحہ کا واحد کاتب ہے۔',
 'protectlogpage'      => 'نوشتۂ محفوظ شدگی',
-'protectedarticle'    => '"[[:$1]]" کومحفوظ کردیا',
-'unprotectedarticle'  => '"[[:$1]]" کوغیر محفوظ کیا',
+'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
+'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
 'protectcomment'      => 'محفوظ کرنے کی وجہ',
 'protect-default'     => '(طے شدہ)',
 'protect-level-sysop' => 'صرف منتظمین',
@@ -602,7 +602,7 @@ $messages = array(
 'move-watch'              => 'صفحہ زیر نظر',
 'movepagebtn'             => 'مـنـتـقـل',
 'articleexists'           => 'اس عنوان سے کوئی صفحہ پہلے ہی موجود ہے، یا آپکا منتخب کردہ نام مستعمل نہیں۔ براۓ مہربانی دوسرا نام منتخب کیجیۓ۔',
-'1movedto2'               => '[[:$1]] بجانب [[:$2]] منتقل',
+'1movedto2'               => '[[$1]] بجانب [[$2]] منتقل',
 'movelogpage'             => 'نوشتۂ منتقلی',
 'movereason'              => 'وجہ',
 'delete_and_move'         => 'حذف اور منتقل',
@@ -670,7 +670,7 @@ $messages = array(
 
 # Auto-summaries
 'autosumm-blank'   => 'تمام مندرجات حذف',
-'autoredircomment' => '[[:$1]] سے رجوع مکرر',
+'autoredircomment' => '[[$1]] سے رجوع مکرر',
 'autosumm-new'     => 'نیا صفحہ: $1',
 
 # Special:Version

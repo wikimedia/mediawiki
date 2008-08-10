@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Ramsis II
+ * @author Alnokta
  * @author Ghaly
  * @author Meno25
- * @author Alnokta
+ * @author Ramsis II
  * @author Ramsis1978
  */
 
@@ -753,9 +753,7 @@ $2',
 'summary-preview'                  => 'بروفه للملخص',
 'subject-preview'                  => 'بروفة للعنوان\\الموضوع',
 'blockedtitle'                     => 'اليوزر ممنوع',
-'blockedtext'                      => "
-
-<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
+'blockedtext'                      => "<big>'''تم منع اسم اليوزر أو عنوان الااى بى بتاعك .'''</big>
 
 سبب المنع هو: ''$2''. وقام بالمنع $1.
 
@@ -1792,9 +1790,9 @@ $NEWPAGE
 'protectlogpage'              => 'سجل الحمايه',
 'protectlogtext'              => 'تحت في لستة بالصفحات اللي اعملها حماية او اتشالت منها الحماية.
 شوف [[Special:ProtectedPages|لستة الصفحات المحمية]] لستة بعمليات حماية الصفحات الشغالة دلوقتي.',
-'protectedarticle'            => 'حمى "[[:$1]]"',
-'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[:$1]]"',
-'unprotectedarticle'          => 'شال حماية [[:$1]]',
+'protectedarticle'            => 'حمى "[[$1]]"',
+'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
+'unprotectedarticle'          => 'شال حماية [[$1]]',
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
@@ -2078,8 +2076,8 @@ $1',
 'movepage-page-moved'     => 'الصفحة $1 اتنقلت لـ $2.',
 'movepage-page-unmoved'   => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
 'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تاني ح تتنقل اوتوماتيكي.',
-'1movedto2'               => '[[:$1]] اتنقلت ل [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] انقلت لـ[[:$2]] فوق التحويلة',
+'1movedto2'               => '[[$1]] اتنقلت ل [[$2]]',
+'1movedto2_redir'         => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
 'movelogpage'             => 'سجل النقل',
 'movelogpagetext'         => 'تحت في لستة الصفحات اللي اتنقلت.',
 'movereason'              => 'السبب:',
@@ -2169,7 +2167,7 @@ $1',
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
 'importlogpagetext'                => 'استيرادات إدارية لصفحات ليها تاريخ تعديل من مواقع ويكي تانية.',
-'import-logentry-upload'           => 'استورد [[:$1]] بواسطة تحميل ملف',
+'import-logentry-upload'           => 'استورد [[$1]] بواسطة تحميل ملف',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
 'import-logentry-interwiki'        => 'استيراد ويكى $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
@@ -2741,7 +2739,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'مسح كل اللي في الصفحة',
 'autosumm-replace' => "تبديل الصفحة ب'$1'",
-'autoredircomment' => 'تحويل لـ [[:$1]]',
+'autoredircomment' => 'تحويل لـ [[$1]]',
 'autosumm-new'     => 'صفحه جديده: $1',
 
 # Size units

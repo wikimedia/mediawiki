@@ -5,10 +5,10 @@
  * @file
  *
  * @author Cedric31
- * @author לערי ריינהארט
  * @author ChrisPtDe
  * @author Spacebirdy
  * @author Горан Анђелковић
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -740,7 +740,7 @@ Vòstre identificant de blocatge es $5. Precizatz-lo dins tota requèsta.',
 'blockednoreason'                  => 'Cap de rason balhada',
 'blockedoriginalsource'            => "Lo còde font de '''$1''' es indicat çaijós :",
 'blockededitsource'                => "Lo contengut de '''vòstras modificacions''' aportadas a '''$1''' es indicat çaijós :",
-'whitelistedittitle'               => '[[Special:Userlogin|Connexion necessària]] per modificar lo contengut',
+'whitelistedittitle'               => '[[Special:UserLogin|Connexion necessària]] per modificar lo contengut',
 'whitelistedittext'                => 'Vos cal èsser $1 per modificar las paginas.',
 'confirmedittitle'                 => "Validacion de l'adreça de corrièr electronic necessària per modificar lo contengut",
 'confirmedittext'                  => "Vos cal confirmar vòstra adreça electronica abans de modificar l'enciclopèdia. Picatz e validatz vòstra adreça electronica amb l'ajuda de la pagina [[Special:Preferences|preferéncias]].",
@@ -1721,9 +1721,9 @@ aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
 'protectlogpage'              => 'Istoric de las proteccions',
 'protectlogtext'              => 'Vejatz las [[Special:ProtectedPages|directivas]] per mai d’informacion.',
-'protectedarticle'            => 'a protegit « [[:$1]] »',
-'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[:$1]] »',
-'unprotectedarticle'          => 'a desprotegit « [[:$1]] »',
+'protectedarticle'            => 'a protegit « [[$1]] »',
+'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[$1]] »',
+'unprotectedarticle'          => 'a desprotegit « [[$1]] »',
 'protect-title'               => 'Cambiar lo nivèl de proteccion de « $1 »',
 'protect-legend'              => 'Confirmar la proteccion',
 'protectcomment'              => 'Motiu de la proteccion :',
@@ -1831,6 +1831,7 @@ $1",
 'whatlinkshere'            => 'Paginas ligadas a aquesta',
 'whatlinkshere-title'      => "Paginas qu'an de ligams puntant vèrs $1",
 'whatlinkshere-page'       => 'Pagina :',
+'whatlinkshere-barrow'     => '>',
 'linklistsub'              => '(Lista de ligams)',
 'linkshere'                => "Las paginas çaijós contenon un ligam vèrs '''[[:$1]]''':",
 'nolinkshere'              => "Cap de pagina conten pas de ligam vèrs '''[[:$1]]'''.",
@@ -1999,8 +2000,8 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.',
 'movepage-page-unmoved'   => 'La pagina $1 pòt èsser renomenada en $2.',
 'movepage-max-pages'      => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
-'1movedto2'               => 'a renomenat [[:$1]] en [[:$2]]',
-'1movedto2_redir'         => 'a redirigit [[:$1]] vèrs [[:$2]]',
+'1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
+'1movedto2_redir'         => 'a redirigit [[$1]] vèrs [[$2]]',
 'movelogpage'             => 'Istoric dels cambiaments de nom',
 'movelogpagetext'         => 'Vaquí la lista de las darrièras paginas renomenadas.',
 'movereason'              => 'Motiu :',
@@ -2088,7 +2089,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
 'importlogpagetext'                => 'Impòrts administratius de paginas amb l’istoric a partir dels autres wikis.',
-'import-logentry-upload'           => 'a importat (telecargament) [[:$1]]',
+'import-logentry-upload'           => 'a importat (telecargament) [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importat (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
@@ -2262,6 +2263,37 @@ $1",
 Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit.
 Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
 
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh'      => 'zh',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arab',
+
 # Metadata
 'metadata'          => 'Metadonadas',
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
@@ -2412,6 +2444,8 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-planarconfiguration-1' => 'Donadas atenentas',
 'exif-planarconfiguration-2' => 'Donadas separadas',
 
+'exif-xyresolution-c' => '$1 dpc',
+
 'exif-colorspace-ffff.h' => 'Pas calibrat',
 
 'exif-componentsconfiguration-0' => 'existís pas',
@@ -2453,6 +2487,8 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-lightsource-17'  => 'Lum estandard A',
 'exif-lightsource-18'  => 'Lum estandard B',
 'exif-lightsource-19'  => 'Lum estandard C',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => "Tungstèni ISO d'estudiò",
 'exif-lightsource-255' => 'Autra font de lum',
 
@@ -2637,7 +2673,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Resumit automatic : blanquiment',
 'autosumm-replace' => 'Resumit automatic : contengut remplaçat per « $1 ».',
-'autoredircomment' => 'Redireccion vèrs [[:$1]]',
+'autoredircomment' => 'Redireccion vèrs [[$1]]',
 'autosumm-new'     => 'Pagina novèla : $1',
 
 # Size units

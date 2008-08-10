@@ -4,20 +4,20 @@
  * @ingroup Language
  * @file
  *
- * @author Dead3y3
- * @author Badseed
- * @author Απεργός
- * @author Consta
- * @author Lou
- * @author ZaDiak
- * @author Omnipaedista
  * @author Assassingr
- * @author MF-Warburg
- * @author Geraki
- * @author Sinopeus
- * @author לערי ריינהארט
- * @author Flyax
+ * @author Badseed
+ * @author Consta
+ * @author Dead3y3
  * @author Demmy
+ * @author Flyax
+ * @author Geraki
+ * @author Lou
+ * @author MF-Warburg
+ * @author Omnipaedista
+ * @author Sinopeus
+ * @author ZaDiak
+ * @author Απεργός
+ * @author לערי ריינהארט
  */
 
 /**
@@ -884,10 +884,10 @@ $1 ώρες.',
 'revdelete-hide-comment'      => 'Κρύψε σχόλιο επεξεργασίας',
 'revdelete-hide-user'         => 'Κρύψε όνομα χρήστη/IP συντάκτη',
 'revdelete-hide-restricted'   => 'Εφαρμογή αυτών των περιορισμών σε Διαχειριστές και κλείδωμα αυτής της διεπαφής',
-'revdelete-suppress'          => 'Απέκρυψε δεδομένα από διαχειριστές όπως και από άλλους',
+'revdelete-suppress'          => 'Απόκρυψε δεδομένα από διαχειριστές όπως και από άλλους',
 'revdelete-hide-image'        => 'Κρύψε περιεχόμενο αρχείου',
 'revdelete-unsuppress'        => 'Αφαίρεσε περιορισμούς στις αποκατεστημένες αναθεωρήσεις',
-'revdelete-log'               => 'Κατέγραψε σχόλιο:',
+'revdelete-log'               => 'Κατάγραψε σχόλιο:',
 'revdelete-submit'            => 'Εφάρμοσε στην επιλεγμένη αναθεώρηση',
 'revdelete-logentry'          => 'η ορατότητα της αναθεώρησης του [[$1]] αλλάχθηκε',
 'logdelete-logentry'          => 'η ορατότητα γεγονότος του [[$1]] αλλάχθηκε',
@@ -1615,7 +1615,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'protectlogtext'              => 'Ακολουθεί κατάλογος ενεργειών κλειδώματος και ξεκλειδώματος σελίδων.
 (Βλ. [[{{ns:project}}:Σελίδες_υπό_προστασία]] για περισσότερες πληροφορίες).',
 'protectedarticle'            => 'Κλειδωμένο $1',
-'modifiedarticleprotection'   => 'αλλαγή επιπέδου προστασίας για "[[:$1]]"',
+'modifiedarticleprotection'   => 'αλλαγή επιπέδου προστασίας για "[[$1]]"',
 'unprotectedarticle'          => 'έχει αρθεί η προστασία του $1',
 'protect-title'               => 'Κλειδώνεται η "$1"',
 'protect-legend'              => 'Επιβεβαίωση κλειδώματος',
@@ -1881,7 +1881,7 @@ $1',
 'movetalk'                => 'Μετακίνηση της σελίδας "συζήτηση" (εάν υπάρχει)',
 'movepage-page-moved'     => 'Η σελίδα $1 μετακινήθηκε στο $2.',
 'movepage-page-unmoved'   => 'Η σελίδα $1 δεν μπόρεσε να μετακινηθεί στο $2.',
-'1movedto2'               => 'Η [[:$1]] μετακινήθηκε στη θέση [[:$2]]',
+'1movedto2'               => 'Η [[$1]] μετακινήθηκε στη θέση [[$2]]',
 '1movedto2_redir'         => 'Η $1 μετακινήθηκε στη θέση $2 (με ανακατεύθυνση)',
 'movelogpage'             => 'Αρχείο καταγραφής μετακινήσεων',
 'movelogpagetext'         => 'Ακολουθεί η λίστα με τις σελίδες που έχουν μετακινηθεί.',
@@ -1965,7 +1965,7 @@ $1',
 # Import log
 'importlogpage'                    => 'Αρχείο καταγραφής εισαγωγών',
 'importlogpagetext'                => 'Διαχειριστικές εισαγωγές σελίδων με ιστορικό επεξεργασίας από άλλα wiki.',
-'import-logentry-upload'           => 'εισάχθηκε η σελίδα [[:$1]] με επιφόρτωση αρχείου',
+'import-logentry-upload'           => 'εισάχθηκε η σελίδα [[$1]] με επιφόρτωση αρχείου',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}}',
 'import-logentry-interwiki'        => 'η σελίδα $1 εισάχθηκε μεταξύ wiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|αναθεώρηση|αναθεωρήσεις}} από $2',
@@ -2510,7 +2510,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Διαγραφή όλου του περιεχομένου της σελίδας',
 'autosumm-replace' => "Αντικατάσταση σελίδας με '$1'",
-'autoredircomment' => 'Ανακατεύθυνση στη σελίδα [[:$1]]',
+'autoredircomment' => 'Ανακατεύθυνση στη σελίδα [[$1]]',
 'autosumm-new'     => 'Νέα σελίδα: $1',
 
 # Live preview

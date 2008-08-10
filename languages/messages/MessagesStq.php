@@ -326,7 +326,7 @@ As Gruund wuude anroat: $1',
 Ju Siede is muugelkerwiese läsked of ferschäuwen wuuden.
 
 Fals dit nit die Fal is, hääst du eventuäl n Failer in ju Software fuunen.
-Mäld dit n administrator unner Naamenge fon ju URL.',
+Mäld dit n [[Special:ListUsers/sysop|Administrator]] unner Naamenge fon ju URL.',
 'missingarticle-rev'   => '(Versionsnuumer: $1)',
 'missingarticle-diff'  => '(Unnerscheed twiske Versione: $1, $2)',
 'readonly_lag'         => 'Dät Spiekerjen fon Annerengen wuude foar ne kuute Tied automatisk speerd, uum doo Doatenboank-Servere fon dän Wikipedia Tied tou reeken, do Inhoolde unnernunner outouglieken. Fersäik dät jädden in n poor Minuten noch moal.',
@@ -377,11 +377,11 @@ Ju Speere wuude truch [[User:$1|$1]] mäd ju Begruundenge ''$2'' ienroat.",
 
 # Login and logout pages
 'logouttitle'                => 'Benutser-Oumäldenge',
-'logouttext'                 => 'Du bäst nu oumälded.
-Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dän sälwe of n uur Benutsernoome wier anmäldje.',
+'logouttext'                 => '<strong>Du bäst nu oumälded.</strong>
+Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dän sälwe of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].',
 'welcomecreation'            => '== Wäilkuumen, $1 ==
 
-Dien Benutserkonto wuude mäd Ärfoulch iengjucht. Ferjeet nit, dien Ienstaalengen antoupaasjen.',
+Dien Benutserkonto wuude iengjucht. Ferjeet nit, dien Ienstaalengen antoupaasjen.',
 'loginpagetitle'             => 'Benutser-Anmäldenge',
 'yourname'                   => 'Benutsernoome:',
 'yourpassword'               => 'Paaswoud:',
@@ -572,7 +572,9 @@ Wan du n uunbekoanden Benutser bääst un du toankst dät du Kommentare krichst 
 'note'                             => '<strong>Waiwiesenge:</strong>',
 'previewnote'                      => '<strong>Dit is man ne Foarschau, die Artikkel wuude noch nit spiekerd!</strong>',
 'previewconflict'                  => 'Disse Foarschau rakt dän Inhoold fon dät buppere Täkstfäild wier; so wol die Artikkel uutsjo, wan du nu spiekerjen dääst.',
-'session_fail_preview'             => '<strong>Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt. Fersäik dät jädden fonnäien. Schuul dät Problem bestounden blieuwe, logge die kuut uut un wier ien.</strong>',
+'session_fail_preview'             => '<strong>Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt. 
+Fersäik dät jädden fonnäien, deertruch dät du unner ju foulgjende Foarschau nochmoal ap "Siede spiekerje" klikst. 
+Schuul dät Problem bestounden blieuwe, mäldje die ou un deerätter wier an.</strong>',
 'session_fail_preview_html'        => "<strong>Dien Beoarbaidenge kuud nit spiekerd wäide, deer dien Sitsengsdoaten ferlädden geen sunt.</strong>
 
 ''Deer in dissen Wiki scheen HTML aktivierd is, wuude ju Foarschau uutblended uum JavaScript Angriepe tou ferhinnerjen.''
@@ -1501,9 +1503,9 @@ Ju lääste Annerenge stamt fon [[User:$3|$3]] ([[User talk:$3|Diskussion]]).',
 'protectlogpage'              => 'Siedenschuts-Logbouk',
 'protectlogtext'              => 'Dit is ne Lieste fon do blokkierde Sieden.
 Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
-'protectedarticle'            => 'schutsede „[[:$1]]“',
-'modifiedarticleprotection'   => 'annerde dän Schuts fon „[[:$1]]“',
-'unprotectedarticle'          => 'hieuwede dän Schuts fon "[[:$1]]" ap',
+'protectedarticle'            => 'schutsede „[[$1]]“',
+'modifiedarticleprotection'   => 'annerde dän Schuts fon „[[$1]]“',
+'unprotectedarticle'          => 'hieuwede dän Schuts fon "[[$1]]" ap',
 'protect-title'               => 'Schuts annerje fon „$1“',
 'protect-legend'              => 'Siedenschutsstoatus annerje',
 'protectcomment'              => 'Gruund:',
@@ -1771,8 +1773,8 @@ Fersäik jädden n uur Noome.',
 'movepage-page-moved'     => 'Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.',
 'movepage-page-unmoved'   => 'Ju Siede „$1“ kuude nit ätter „$2“ ferschäuwen wäide.',
 'movepage-max-pages'      => 'Ju Maximoalantaal fon $1 {{PLURAL:$1|Siede|Sieden}} wuude ferschäuwen. Aal wiedere Sieden konnen nit automatisk ferschäuwen wäide.',
-'1movedto2'               => 'häd "[[:$1]]" ätter "[[:$2]]" ferschäuwen',
-'1movedto2_redir'         => 'häd „[[:$1]]“ ätter „[[:$2]]“ ferschäuwen un deerbie ne Fääreleedenge uurschrieuwen',
+'1movedto2'               => 'häd "[[$1]]" ätter "[[$2]]" ferschäuwen',
+'1movedto2_redir'         => 'häd „[[$1]]“ ätter „[[$2]]“ ferschäuwen un deerbie ne Fääreleedenge uurschrieuwen',
 'movelogpage'             => 'Ferschuuwengs-Logbouk',
 'movelogpagetext'         => 'Dit is ne Lieste fon aal ferschäuwene Sieden.',
 'movereason'              => 'Kuute Begründenge:',
@@ -1855,7 +1857,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 # Import log
 'importlogpage'                    => 'Import-Logbouk',
 'importlogpagetext'                => 'Administrativen Import fon Sieden mäd Versionsgeschichte fon uur Wikis.',
-'import-logentry-upload'           => 'häd „[[:$1]]“ fon ne Doatäi importierd',
+'import-logentry-upload'           => 'häd „[[$1]]“ fon ne Doatäi importierd',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versione}}',
 'import-logentry-interwiki'        => 'häd „[[$1]]“ importierd (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versione}} fon $2',
@@ -2403,7 +2405,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Disse Siede wuude loosmoaked.',
 'autosumm-replace' => "Die Siedeninhoold wuude truch n uur Text ärsät: '$1'",
-'autoredircomment' => 'Fäärelaited ätter [[:$1]]',
+'autoredircomment' => 'Fäärelaited ätter [[$1]]',
 'autosumm-new'     => 'Ju Siede wuude näi anlaid: $1',
 
 # Live preview
