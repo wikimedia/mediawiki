@@ -45,29 +45,28 @@ class Title {
 	 * @private
 	 */
 
-	var $mTextform = '';              # Text form (spaces not underscores) of the main part
-	var $mUrlform = '';               # URL-encoded form of the main part
-	var $mDbkeyform = '';             # Main part with underscores
+	var $mTextform = '';           	  # Text form (spaces not underscores) of the main part
+	var $mUrlform = '';            	  # URL-encoded form of the main part
+	var $mDbkeyform = '';          	  # Main part with underscores
 	var $mUserCaseDBKey;              # DB key with the initial letter in the case specified by the user
 	var $mNamespace = NS_MAIN;        # Namespace index, i.e. one of the NS_xxxx constants
-	var $mInterwiki = '';             # Interwiki prefix (or null string)
-	var $mFragment;                   # Title fragment (i.e. the bit after the #)
+	var $mInterwiki = '';          	  # Interwiki prefix (or null string)
+	var $mFragment;           	      # Title fragment (i.e. the bit after the #)
 	var $mArticleID = -1;             # Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           # ID of most recent revision
 	var $mRestrictions = array();     # Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
-	var $mCascadeRestriction;         # Cascade restrictions on this page to included templates and images?
-	var $mRestrictionsExpiry;         # When do the restrictions on this page expire?
+	var $mCascadeRestriction;	      # Cascade restrictions on this page to included templates and images?
+	var $mRestrictionsExpiry;	      # When do the restrictions on this page expire?
 	var $mHasCascadingRestrictions;	  # Are cascading restrictions in effect on this page?
 	var $mCascadeRestrictionSources;  # Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; # Boolean for initialisation on demand
-	var $mPrefixedText;               # Text form including namespace/interwiki, initialised on demand
-
+	var $mPrefixedText;       	      # Text form including namespace/interwiki, initialised on demand
 	# Don't change the following default, NS_MAIN is hardcoded in several
 	# places.  See bug 696.
 	var $mDefaultNamespace = NS_MAIN; # Namespace index when there is no namespace
-	                                  # Zero except in {{transclusion}} tags
-	var $mWatched = null;             # Is $wgUser watching this page? null if unfilled, accessed through userIsWatching()
+	                    		      # Zero except in {{transclusion}} tags
+	var $mWatched = null;      		  # Is $wgUser watching this page? null if unfilled, accessed through userIsWatching()
 	var $mLength = -1;                # The page length, 0 for special pages
 	var $mRedirect = null;            # Is the article at this title a redirect?
 	/**#@-*/
@@ -1340,26 +1339,15 @@ class Title {
 			return false;
 		}
 
-		// Cache to avoid multiple database queries for the same title
-		if ( isset($this->mProtections) ) {
-			return $this->mProtections;
-		}
-
-		$conds = array(
-			'pt_namespace' => $this->getNamespace(),
-			'pt_title' => $this->getDBkey()
-		);
-
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'protected_titles', '*', $conds, __METHOD__ );
+		$res = $dbr->select( 'protected_titles', '*',
+			array ('pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey()) );
 
 		if ($row = $dbr->fetchRow( $res )) {
-			$this->mProtections = $row;
+			return $row;
 		} else {
-			$this->mProtections = false;
+			return false;
 		}
-
-		return $this->mProtections;
 	}
 
 	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
@@ -1891,30 +1879,19 @@ class Title {
 	 * @return int the number of archived revisions
 	 */
 	public function isDeleted() {
+		$fname = 'Title::isDeleted';
 		if ( $this->getNamespace() < 0 ) {
-			return 0;
+			$n = 0;
+		} else {
+			$dbr = wfGetDB( DB_SLAVE );
+			$n = $dbr->selectField( 'archive', 'COUNT(*)', array( 'ar_namespace' => $this->getNamespace(),
+				'ar_title' => $this->getDBkey() ), $fname );
+			if( $this->getNamespace() == NS_IMAGE ) {
+				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
+					array( 'fa_name' => $this->getDBkey() ), $fname );
+			}
 		}
-
-		// Cache to avoid multiple queries for the same title
-		if ( isset($this->mIsDeleted) ) {
-			return $this->mIsDeleted;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$aConds = array(
-			'ar_namespace' => $this->getNamespace(),
-			'ar_title' => $this->getDBkey()
-		);
-		$n = $dbr->selectField( 'archive', 'COUNT(*)', $aConds, __METHOD__ );
-
-		if ( $this->getNamespace() == NS_IMAGE ) {
-			$faConds = array( 'fa_name' => $this->getDBkey() );
-			$n += $dbr->selectField( 'filearchive', 'COUNT(*)', $faConds , __METHOD__ );
-		}
-
-		$this->mIsDeleted = (int) $n;
-
-		return $this->mIsDeleted;
+		return (int)$n;
 	}
 
 	/**
