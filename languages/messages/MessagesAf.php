@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Naudefj
- * @author Arnobarnard
- * @author SPQRobin
- * @author Spacebirdy
  * @author Adriaan
  * @author Anrie
+ * @author Arnobarnard
  * @author Manie
+ * @author Naudefj
+ * @author SPQRobin
+ * @author Spacebirdy
  */
 
 $skinNames = array(
@@ -559,12 +559,13 @@ Die rede verskaf is:
 
 * Aanvang van blok: $8
 * Einde van blok: $6
+* Bedoelde blokkeerder: $7
 
 U kan die blok met $1 of enige van die [[{{MediaWiki:Grouppage-sysop}}|administrateurs]] bespreek.
 
-Neem kennis dat u nie die 'e-pos die gebruiker' funksionaliteit kan gebruik nie, tensy u 'n geldige e-posadres het in u [[Special:Preferences|voorkeure]] en die gebruik daarvan nie ook geblokkeer is nie.
+Neem kennis dat u slegs die 'e-pos die gebruiker' funksionaliteit kan gebruik as u 'n geldige e-posadres het in u [[Special:Preferences|voorkeure]] het, en die gebruik daarvan is nie ook geblokkeer is nie.
 
-U blokkadenommer is $5.
+U huidige IP-adres is $3 en die blokkadenommer is #$5.
 Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'blockednoreason'                  => 'geen rede gegeef nie',
 'blockedoriginalsource'            => "Die bronteks van '''$1''' word onder gewys:",
@@ -1434,8 +1435,8 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
 'protectlogpage'              => 'Beskermlogboek',
-'protectedarticle'            => 'het [[:$1]] beskerm',
-'unprotectedarticle'          => 'het beskerming van [[:$1]] verwyder',
+'protectedarticle'            => 'het [[$1]] beskerm',
+'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'protect-title'               => 'Beskerm "$1"',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede vir beskerming:',
@@ -1668,8 +1669,8 @@ Kies asseblief 'n ander naam.",
 'movepage-page-exists'    => 'Die bladsy $1 bestaan reeds en kan nie outomaties oorskryf word nie.',
 'movepage-page-moved'     => 'Die bladsy $1 was na $2 geskuif.',
 'movepage-page-unmoved'   => 'Die bladsy $1 kon nie na $2 geskuif word nie.',
-'1movedto2'               => '[[:$1]] geskuif na [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] geskuif na [[:$2]] oor bestaande aanstuur',
+'1movedto2'               => '[[$1]] geskuif na [[$2]]',
+'1movedto2_redir'         => '[[$1]] geskuif na [[$2]] oor bestaande aanstuur',
 'movelogpage'             => 'Skuiflogboek',
 'movelogpagetext'         => "Hieronder is 'n lys van geskuifde bladsye.",
 'movereason'              => 'Rede:',
@@ -2134,7 +2135,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Alle inhoud uit bladsy verwyder',
 'autosumm-replace' => "Vervang bladsyinhoud met '$1'",
-'autoredircomment' => 'Stuur aan na [[:$1]]',
+'autoredircomment' => 'Stuur aan na [[$1]]',
 'autosumm-new'     => 'Nuwe blad: $1',
 
 # Size units

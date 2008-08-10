@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author BobChao
  * @author Roc michael
  * @author לערי ריינהארט
- * @author BobChao
  */
 
 $fallback = 'zh-hant';
@@ -1275,9 +1275,9 @@ $NEWPAGE
 'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視當前進行的頁面保護。',
-'protectedarticle'            => '已保護"[[:$1]]"',
-'modifiedarticleprotection'   => '已經更改 "[[:$1]]" 的保護等級',
-'unprotectedarticle'          => '已解除保護"[[:$1]]"',
+'protectedarticle'            => '已保護"[[$1]]"',
+'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
+'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'protect-title'               => '正在保護"$1"',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',
@@ -1522,8 +1522,8 @@ $1',
 但是由於新標題下已經有對話頁存在，所以對話頁無法移動。請手工合併兩個頁面。',
 'movedto'                 => '移動到',
 'movetalk'                => '如果可能的話，請同時移動對話頁。',
-'1movedto2'               => '[[:$1]]移動到[[:$2]]',
-'1movedto2_redir'         => '[[:$1]]透過重定向移動到[[:$2]]',
+'1movedto2'               => '[[$1]]移動到[[$2]]',
+'1movedto2_redir'         => '[[$1]]透過重定向移動到[[$2]]',
 'movelogpage'             => '移動日誌',
 'movelogpagetext'         => '以下是已經移動的頁面清單:',
 'movereason'              => '原因',
@@ -2133,7 +2133,7 @@ $1
 # Auto-summaries
 'autosumm-blank'   => '移除所有頁面內容',
 'autosumm-replace' => "正在將頁面替換為 '$1'",
-'autoredircomment' => '正在重定向到 [[:$1]]',
+'autoredircomment' => '正在重定向到 [[$1]]',
 'autosumm-new'     => '新頁面: $1',
 
 # Size units

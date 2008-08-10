@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Helix84
  * @author Meursault2004
  * @author לערי ריינהארט
- * @author Helix84
  */
 
 $fallback = 'id';
@@ -1445,9 +1445,9 @@ diowahi bali menyang vèrsi pungkasan déning $2.',
 'protectlogpage'              => 'Log pangreksan',
 'protectlogtext'              => 'Ing ngisor iki kapacak log pangreksan lan panjabelan reksa kaca.
 Mangga mirsani [[Special:ProtectedPages|daftar kaca sing direksa]] kanggo daftar pangreksan kaca pungkasan.',
-'protectedarticle'            => 'ngreksa "[[:$1]]"',
-'modifiedarticleprotection'   => 'ngowahi tingkat pangreksan "[[:$1]]"',
-'unprotectedarticle'          => 'ngilangi pangreksan "[[:$1]]"',
+'protectedarticle'            => 'ngreksa "[[$1]]"',
+'modifiedarticleprotection'   => 'ngowahi tingkat pangreksan "[[$1]]"',
+'unprotectedarticle'          => 'ngilangi pangreksan "[[$1]]"',
 'protect-title'               => 'Ngowahi tingkatan pangreksan kanggo "$1"',
 'protect-legend'              => 'Konfirmasi pangreksan',
 'protectcomment'              => 'Komentar:',
@@ -1705,7 +1705,7 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'movedto'                 => 'dipindhah menyang',
 'movetalk'                => 'Pindahna kaca dhiskusi sing ana gandhèngané.',
 '1movedto2'               => '$1 dialihaké menyang $2',
-'1movedto2_redir'         => '[[:$1]] dipunalihaken menyang [[:$2]] via pangalihan',
+'1movedto2_redir'         => '[[$1]] dipunalihaken menyang [[$2]] via pangalihan',
 'movelogpage'             => 'Log pamindhahan',
 'movelogpagetext'         => 'Ing ngisor iki kapacak log pangalihan kaca.',
 'movereason'              => 'Alesan:',
@@ -1791,7 +1791,7 @@ Kabèh aktivitas impor transwiki bakal dilog ing [[Special:Log/import|log impor]
 # Import log
 'importlogpage'                    => 'Log impor',
 'importlogpagetext'                => 'Impor administratif kaca-kaca mawa sajarah panyuntingan saka wiki liya.',
-'import-logentry-upload'           => 'ngimpor [[:$1]] mawa pangunggahan berkas',
+'import-logentry-upload'           => 'ngimpor [[$1]] mawa pangunggahan berkas',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|révisi|révisi}}',
 'import-logentry-interwiki'        => 'wis nge-transwiki $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|révisi}} saka $2',
@@ -2318,7 +2318,7 @@ Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.
 # Auto-summaries
 'autosumm-blank'   => '←Ngosongaké kaca',
 'autosumm-replace' => "←Ngganti kaca karo '$1'",
-'autoredircomment' => '←Ngalihaké menyang [[:$1]]',
+'autoredircomment' => '←Ngalihaké menyang [[$1]]',
 'autosumm-new'     => "←Nggawé kaca sing isiné '$1'",
 
 # Live preview

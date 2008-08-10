@@ -5,13 +5,13 @@
  * @file
  *
  * @author Helix84
- * @author Michawiki
- * @author לערי ריינהארט
- * @author Sp5uhe
- * @author Valasek
- * @author Palica
  * @author Liso
  * @author Maros
+ * @author Michawiki
+ * @author Palica
+ * @author Sp5uhe
+ * @author Valasek
+ * @author לערי ריינהארט
  */
 
 $datePreferences = array(
@@ -1689,9 +1689,9 @@ Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a s
 'protectlogpage'              => 'Záznam zamknutí',
 'protectlogtext'              => 'Nižšie je zoznam zamknutí/odomknutí stránok.
 Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných zamknutí]].',
-'protectedarticle'            => 'zamyká „[[:$1]]“',
-'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[:$1]]“',
-'unprotectedarticle'          => 'odomyká „[[:$1]]“',
+'protectedarticle'            => 'zamyká „[[$1]]“',
+'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[$1]]“',
+'unprotectedarticle'          => 'odomyká „[[$1]]“',
 'protect-title'               => 'Zamykám „$1“',
 'protect-legend'              => 'Potvrďte zamknutie',
 'protectcomment'              => 'Komentár:',
@@ -1942,7 +1942,7 @@ Nezabudnite po dokončení údržby [[Special:UnlockDB|odstrániť zámok]].',
 Starý názov sa stane presmerovacou stránkou na nový názov.
 Môžete automaticky aktualizovať odkazy odkazujúce na pôvodný názov.
 Ak sa rozhodnete túto možnosť nevyužiť, ubezpečte sa, že ste skontrolovali
-výskyt [Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.
+výskyt [[Special:DoubleRedirects|dvojitých]] a [[Special:BrokenRedirects|pokazených]] presmerovaní.
 Vy ste zodpovedný za to, aby odkazy naďalej ukazovali tam, kam majú.
 
 Uvedomte si, že stránka sa '''nepremiestni''', ak pod novým názvom už stránka existuje.
@@ -2622,7 +2622,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Odstraňujem obsah stránky',
 'autosumm-replace' => 'Nahrádzam stránku textom „$1“',
-'autoredircomment' => 'Presmerovanie na [[:$1]]',
+'autoredircomment' => 'Presmerovanie na [[$1]]',
 'autosumm-new'     => 'Nová stránka: $1',
 
 # Live preview

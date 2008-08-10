@@ -4,21 +4,21 @@
  * @ingroup Language
  * @file
  *
- * @author Vinhtantran
- * @author Minh Nguyen
- * @author לערי ריינהארט
- * @author Trần Thế Trung
- * @author Nguyễn Thanh Quang
- * @author Mxn
  * @author Apple
  * @author Arisa
  * @author DHN
+ * @author Minh Nguyen
+ * @author Mxn
  * @author Neoneurone
+ * @author Nguyễn Thanh Quang
  * @author Thaisk
  * @author Tmct
+ * @author Trần Thế Trung
  * @author Tttrung
  * @author Vietbio
+ * @author Vinhtantran
  * @author Vương Ngân Hà
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1630,9 +1630,9 @@ Sửa đổi cuối cùng tại trang được thực hiện bởi [[User:$3|$3]
 'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
 'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:ProtectedPages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
-'protectedarticle'            => 'đã khóa “[[:$1]]”',
-'modifiedarticleprotection'   => 'đã đổi mức khóa cho “[[:$1]]”',
-'unprotectedarticle'          => 'đã mở khóa cho “[[:$1]]”',
+'protectedarticle'            => 'đã khóa “[[$1]]”',
+'modifiedarticleprotection'   => 'đã đổi mức khóa cho “[[$1]]”',
+'unprotectedarticle'          => 'đã mở khóa cho “[[$1]]”',
 'protect-title'               => 'Thiết lập mức khóa cho “$1”',
 'protect-legend'              => 'Xác nhận khóa',
 'protectcomment'              => 'Lý do:',
@@ -1913,8 +1913,8 @@ Xin hãy chọn tên khác.',
 'movepage-page-moved'     => 'Trang $1 đã được di chuyển đến $2.',
 'movepage-page-unmoved'   => 'Trang $1 không thể di chuyển đến $2.',
 'movepage-max-pages'      => 'Đã có tối đa $1 {{PLURAL:$1|trang|trang}} đã di chuyển và không tự động di chuyển thêm được nữa.',
-'1movedto2'               => '[[:$1]] đổi thành [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] đổi thành [[:$2]] qua đổi hướng',
+'1movedto2'               => '[[$1]] đổi thành [[$2]]',
+'1movedto2_redir'         => '[[$1]] đổi thành [[$2]] qua đổi hướng',
 'movelogpage'             => 'Nhật trình di chuyển',
 'movelogpagetext'         => 'Dưới đây là danh sách các trang đã được di chuyển.',
 'movereason'              => 'Lý do:',
@@ -2004,7 +2004,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',
 'importlogpagetext'                => 'Đây là danh sách các trang được quản lý nhập vào đây. Các trang này có lịch sử sửa đổi từ hồi ở wiki khác.',
-'import-logentry-upload'           => 'nhập vào [[:$1]] bằng cách tải tập tin',
+'import-logentry-upload'           => 'nhập vào [[$1]] bằng cách tải tập tin',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
 'import-logentry-interwiki'        => 'đã nhập vào $1 từ wiki khác',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|phiên bản|phiên bản}} từ $2',
@@ -2554,7 +2554,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Tẩy trống',
 'autosumm-replace' => 'Thay cả nội dung bằng “$1”',
-'autoredircomment' => 'Đổi hướng đến [[:$1]]',
+'autoredircomment' => 'Đổi hướng đến [[$1]]',
 'autosumm-new'     => 'Trang mới: $1',
 
 # Size units

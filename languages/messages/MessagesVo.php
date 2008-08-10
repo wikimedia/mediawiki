@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Smeira
  * @author Malafaya
+ * @author Smeira
  * @author לערי ריינהארט
  */
 
@@ -1494,9 +1494,9 @@ Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]
 'protectlogpage'              => 'Jenotalised jelodamas',
 'protectlogtext'              => 'Is palisedons pads pelökofärmüköl e pemaifüköls.
 Logolös [[Special:ProtectedPages|lisedi padas pejelöl]], kö pajonons padijelams anu lonöföls.',
-'protectedarticle'            => 'ejelon padi: "[[:$1]]"',
-'modifiedarticleprotection'   => 'evotükon jelanivodi pada: "[[:$1]]"',
-'unprotectedarticle'          => 'Pad: "[[:$1]]" pesäjelon.',
+'protectedarticle'            => 'ejelon padi: "[[$1]]"',
+'modifiedarticleprotection'   => 'evotükon jelanivodi pada: "[[$1]]"',
+'unprotectedarticle'          => 'Pad: "[[$1]]" pesäjelon.',
 'protect-title'               => 'lonon jelanivodi pada: "$1"',
 'protect-legend'              => 'Fümedolös jeli',
 'protectcomment'              => 'Küpet:',
@@ -1728,8 +1728,8 @@ Välolös nemi votik.',
 'talkexists'              => "'''Pad it petopätükon benosekiko, ab bespikapad onik no petopätükon bi ya dabinon pad labü tiäd ona. Ol it balolös onis.'''",
 'movedto'                 => 'petöpätükon lü',
 'movetalk'                => 'Topätükolöd bespikapadi tefik',
-'1movedto2'               => '[[:$1]] petopätükon lü [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] petopätükon lü [[:$2]] vegü lüodüköm',
+'1movedto2'               => '[[$1]] petopätükon lü [[$2]]',
+'1movedto2_redir'         => '[[$1]] petopätükon lü [[$2]] vegü lüodüköm',
 'movelogpage'             => 'Jenotalised topätükamas',
 'movelogpagetext'         => 'Is palisedons pads petopätüköl.',
 'movereason'              => 'Kod:',
@@ -1809,7 +1809,7 @@ Nüveigs vüvükik valik pajonons su [[Special:Log/import|nüveigamalised]].',
 # Import log
 'importlogpage'                    => 'Jenotalised nüveigamas',
 'importlogpagetext'                => 'Nüveigam guverik padas labü redakamajenotem se vüks votik',
-'import-logentry-upload'           => 'pad: [[:$1]] penüveigon medü ragivilöpükam',
+'import-logentry-upload'           => 'pad: [[$1]] penüveigon medü ragivilöpükam',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|fomam|fomams}} $1',
 'import-logentry-interwiki'        => 'pevotavükükon: $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|fomam|fomams}} $1 se $2',
@@ -2183,7 +2183,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ninäd valik pemoükon se pad',
 'autosumm-replace' => "Pad pepläadon me '$1'",
-'autoredircomment' => 'Lüodükon lü [[:$1]]',
+'autoredircomment' => 'Lüodükon lü [[$1]]',
 'autosumm-new'     => 'Pad nulik: $1',
 
 # Live preview

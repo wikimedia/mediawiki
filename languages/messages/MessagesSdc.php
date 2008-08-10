@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Felis
  * @author Antofa
  * @author Cornelia
+ * @author Felis
  */
 
 $messages = array(
@@ -1297,9 +1297,9 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'sessionfailure'              => "S'è verifigaddu un probrema i' la sissioni ch'identifigga l'intradda; lu sistham nò à eseguiddu lu cumandu imparthiddu pa precauzioni. Turrà a la pàgina prizzidenti cu' lu buttoni \"Indareddu\" di lu proprio nabigaddori, turrà a carriggà la pàgina e riprubà.",
 'protectlogpage'              => 'Prutizioni',
 'protectlogtext'              => "Inogghi v'è la listha di li pàgini broccaddi e ibbruccaddi. Védi la [[Special:ProtectedPages|listha di li pàgini prutiggiddi]] pa chiddi chi so attuarmenti prutiggiddi.",
-'protectedarticle'            => 'à prutiggiddu "[[:$1]]"',
-'modifiedarticleprotection'   => 'ha mudìfiggaddu lu libellu di prutizioni di "[[:$1]]"',
-'unprotectedarticle'          => 'à ibbruccaddu "[[:$1]]"',
+'protectedarticle'            => 'à prutiggiddu "[[$1]]"',
+'modifiedarticleprotection'   => 'ha mudìfiggaddu lu libellu di prutizioni di "[[$1]]"',
+'unprotectedarticle'          => 'à ibbruccaddu "[[$1]]"',
 'protect-title'               => 'Prutizioni di "$1"',
 'protect-legend'              => 'Cunfèimma la prutizioni',
 'protectcomment'              => 'Mutibu di la prutizioni:',
@@ -1516,8 +1516,8 @@ In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuim
 'talkexists'              => "'''La pàgina è isthadda ippusthadda currettamenti, ma nò è isthaddu pussìbiri ippusthà la pàgina di dischussioni parchí ni isisthi già un'althra cu' lu nobu tìturu. Aggiugnì a manu li cuntiniddi di li dui pàgini.'''",
 'movedto'                 => 'ippusthadda a',
 'movetalk'                => 'Ippustha puru la pàgina di dischussioni.',
-'1movedto2'               => 'ha ippusthaddu [[:$1]] a [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] ippusthadda a [[:$2]] attrabessu rinviu',
+'1movedto2'               => 'ha ippusthaddu [[$1]] a [[$2]]',
+'1movedto2_redir'         => '[[$1]] ippusthadda a [[$2]] attrabessu rinviu',
 'movelogpage'             => 'Ippusthamenti',
 'movelogpagetext'         => "Chisthu è l'erencu di li pàgini ippusthaddi.",
 'movereason'              => 'Mutibu',
@@ -1595,7 +1595,7 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 # Import log
 'importlogpage'                    => 'Impurthazioni',
 'importlogpagetext'                => "Rigisthru di l'impurthazioni di pàgini d'althri wiki, cumpreti di cronologia.",
-'import-logentry-upload'           => 'à impurthaddu [[:$1]] attrabessu lu carriggamentu',
+'import-logentry-upload'           => 'à impurthaddu [[$1]] attrabessu lu carriggamentu',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}}',
 'import-logentry-interwiki'        => "ha traiffiriddu da un'althra wiki la pàgina $1",
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una ribisioni impurthadda|$1 ribisioni impurthaddi}} da $2',
@@ -1931,7 +1931,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pàgina cumpretamenti ibbiuddadda',
 'autosumm-replace' => "Pàgina susthituidda cun '$1'",
-'autoredircomment' => 'Rinviu à la pàgina [[:$1]]',
+'autoredircomment' => 'Rinviu à la pàgina [[$1]]',
 'autosumm-new'     => 'Nóba pàgina: $1',
 
 # Live preview

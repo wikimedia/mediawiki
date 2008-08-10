@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Zaheen
  * @author Bellayet
+ * @author Zaheen
  * @author לערי ריינהארט
  */
 
@@ -1305,9 +1305,9 @@ $NEWPAGE
 অনুগ্রহ ব্রাউজারের "back" বোতাম চাপুন এবং যে পাতা থেকে এসেছিলেন, তা রিলোড করুন এবং আবার চেষ্টা করুন।',
 'protectlogpage'              => 'সুরক্ষা লগ্‌',
 'protectlogtext'              => 'নিচে পাতা বন্ধ ও খোলার একটি তালিকা দেয়া হল। বর্তমানে সক্রিয় পাতার সুরক্ষাগুলির তালিকা দেখতে [[Special:ProtectedPages|সুরক্ষিত পাতার তালিকা]] দেখুন।',
-'protectedarticle'            => 'সুরক্ষিত "[[:$1]]"',
-'modifiedarticleprotection'   => '"[[:$1]]"-এর জন্য সুরক্ষার স্তর পরিবর্তন করা হয়েছে',
-'unprotectedarticle'          => '"[[:$1]]"-এর সুরক্ষা সরিয়ে নেওয়া হয়েছে',
+'protectedarticle'            => 'সুরক্ষিত "[[$1]]"',
+'modifiedarticleprotection'   => '"[[$1]]"-এর জন্য সুরক্ষার স্তর পরিবর্তন করা হয়েছে',
+'unprotectedarticle'          => '"[[$1]]"-এর সুরক্ষা সরিয়ে নেওয়া হয়েছে',
 'protect-title'               => '"$1" সুরক্ষিত করা হচ্ছে',
 'protect-legend'              => 'সুরক্ষা নিশ্চিত করুন',
 'protectcomment'              => 'সুরক্ষার কারণ',
@@ -1548,8 +1548,8 @@ $1',
 'talkexists'              => "'''পাতাটি সফলভাবে সরানো গেলেও আলোচনা পাতাটিকে সরানো যায়নি, কারণ নতুন শিরোনামের অধীনে ইতিমধ্যেই একটি আলোচনা পাতা বিদ্যমান। অনুগ্রহ নিজের হাতে এগুলিকে একত্র করুন।'''",
 'movedto'                 => 'সরানো হয়েছে এখানে:',
 'movetalk'                => 'সংশ্লিষ্ট আলাপের পাতা সরিয়ে নাও',
-'1movedto2'               => '[[:$1]]-কে [[:$2]]-এ সরিয়ে নেওয়া হয়েছে',
-'1movedto2_redir'         => '[[:$1]]-কে [[:$2]]-তে পুনর্নির্দেশনার সাহায্যে সরিয়ে নেওয়া হয়েছে',
+'1movedto2'               => '[[$1]]-কে [[$2]]-এ সরিয়ে নেওয়া হয়েছে',
+'1movedto2_redir'         => '[[$1]]-কে [[$2]]-তে পুনর্নির্দেশনার সাহায্যে সরিয়ে নেওয়া হয়েছে',
 'movelogpage'             => 'পাতা স্থানান্তর লগ্',
 'movelogpagetext'         => 'সরানো পাতাগুলির একটি তালিকা নিচে দেয়া হল।',
 'movereason'              => 'কারণ',
@@ -1627,7 +1627,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => 'আমদানি লগ',
 'importlogpagetext'                => 'প্রশাসক কর্তৃক অন্যান্য উইকি থেকে সম্পাদনা ইতিহাসসহ পাতা আমদানি।',
-'import-logentry-upload'           => 'ফাইল আপলোডের মাধ্যমে [[:$1]] আমদানি করা হয়েছে',
+'import-logentry-upload'           => 'ফাইল আপলোডের মাধ্যমে [[$1]] আমদানি করা হয়েছে',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|টি সংশোধন|টি সংশোধন}}',
 'import-logentry-interwiki'        => '$1 উইকি-স্থানান্তরিত',
 'import-logentry-interwiki-detail' => '$2-এর করা $1 {{PLURAL:$1|সংশোধন|টি সংশোধন}}',
@@ -2147,7 +2147,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'পাতার সমস্ত বিষয়বস্তু মুছে ফেলা হল',
 'autosumm-replace' => "পাতাকে '$1' দিয়ে প্রতিস্থাপিত করা হল",
-'autoredircomment' => '[[:$1]]-এ পুনর্নির্দেশ করা হল',
+'autoredircomment' => '[[$1]]-এ পুনর্নির্দেশ করা হল',
 'autosumm-new'     => 'নতুন পাতা: $1',
 
 # Size units

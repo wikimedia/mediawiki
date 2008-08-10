@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Ahonc
  * @author AS
- * @author Innv
+ * @author Ahonc
  * @author Dubyk
  * @author EugeneZelenko
- * @author Kalan
  * @author Gutsul (Gutsul.ua at Google Mail)
+ * @author Innv
+ * @author Kalan
  */
 
 /*
@@ -1739,9 +1739,9 @@ $NEWPAGE
 'protectlogpage'              => 'Журнал захисту',
 'protectlogtext'              => 'Нижче наведено список установлень і знять захисту зі сторінки.
 Ви також можете переглянути [[Special:ProtectedPages|список захищених сторінок]].',
-'protectedarticle'            => 'захист на [[:$1]] встановлено',
-'modifiedarticleprotection'   => 'змінено рівень захисту сторінки «[[:$1]]»',
-'unprotectedarticle'          => 'знято захист зі сторінки «[[:$1]]»',
+'protectedarticle'            => 'захист на [[$1]] встановлено',
+'modifiedarticleprotection'   => 'змінено рівень захисту сторінки «[[$1]]»',
+'unprotectedarticle'          => 'знято захист зі сторінки «[[$1]]»',
 'protect-title'               => 'Встановлення захисту для «$1»',
 'protect-legend'              => 'Підтвердження встановлення захисту',
 'protectcomment'              => 'Причина встановлення захисту',
@@ -2010,8 +2010,8 @@ IP-адреси, що блокуються автоматично тут не в
 'movepage-page-moved'     => 'Сторінка $1 перейменована на $2.',
 'movepage-page-unmoved'   => 'Сторінка $1 не може бути перейменована на $2.',
 'movepage-max-pages'      => '$1 {{PLURAL:$1|сторінка була перейменована|сторінки були перейменовані|сторінок були перейменовані}} — це максимум, більше сторінок не можна перейменувати автоматично.',
-'1movedto2'               => '«[[:$1]]» перейменовано на «[[:$2]]»',
-'1movedto2_redir'         => '«[[:$1]]» перейменовано на «[[:$2]]» (поверх перенаправлення)',
+'1movedto2'               => '«[[$1]]» перейменовано на «[[$2]]»',
+'1movedto2_redir'         => '«[[$1]]» перейменовано на «[[$2]]» (поверх перенаправлення)',
 'movelogpage'             => 'Журнал перейменувань',
 'movelogpagetext'         => 'Далі подано список перейменованих сторінок.',
 'movereason'              => 'Причина',
@@ -2099,7 +2099,7 @@ IP-адреси, що блокуються автоматично тут не в
 # Import log
 'importlogpage'                    => 'Журнал імпорту',
 'importlogpagetext'                => 'Імпорт адміністраторами сторінок з історією редагувань з інших вікі.',
-'import-logentry-upload'           => '«[[:$1]]» — імпорт з файлу',
+'import-logentry-upload'           => '«[[$1]]» — імпорт з файлу',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|версія|версії|версій}}',
 'import-logentry-interwiki'        => '«$1» — міжвікі імпорт',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|версія|версії|версій}} з $2',
@@ -2661,7 +2661,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Видалений весь вміст сторінки',
 'autosumm-replace' => 'Замінено сторінку на «$1»',
-'autoredircomment' => 'Перенаправлено на [[:$1]]',
+'autoredircomment' => 'Перенаправлено на [[$1]]',
 'autosumm-new'     => 'Нова сторінка: $1',
 
 # Size units

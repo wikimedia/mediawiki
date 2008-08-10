@@ -978,7 +978,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'sessionfailure'              => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
 'protectlogpage'              => 'Dnevnik zaščit strani',
 'protectlogtext'              => 'Prikazan je seznam zaščit in odstranitev zaščit strani. Za več podatkov glejte [[Project:Zaščitena stran]] in [[Project:Pravila zaščite]]. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
-'protectedarticle'            => 'Zaščita strani "[[:$1]]"',
+'protectedarticle'            => 'Zaščita strani "[[$1]]"',
 'unprotectedarticle'          => 'Zaščita strani $1 je odstranjena.',
 'protect-title'               => 'Zaščita strani »$1«',
 'protect-legend'              => 'Potrdite zaščito',
@@ -1117,8 +1117,8 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 'talkexists'              => 'Sama stran je bila uspešno prestavljena, pripadajoča pogovorna stran pa ne, ker že obstaja na novem naslovu. Prosimo, združite ju ročno. Če tega ne morete storiti, prosite za pomoč katerega izmed administratorjev, nikakor pa tega NE počnite z izrezanjem in prilepljenjem vsebine.',
 'movedto'                 => 'prestavljeno na',
 'movetalk'                => 'Če je mogoče, prestavi tudi pogovorno stran.',
-'1movedto2'               => '- prestavitev [[:$1]] na [[:$2]]',
-'1movedto2_redir'         => '- prestavitev [[:$1]] na [[:$2]] čez preusmeritev',
+'1movedto2'               => '- prestavitev [[$1]] na [[$2]]',
+'1movedto2_redir'         => '- prestavitev [[$1]] na [[$2]] čez preusmeritev',
 'movelogpage'             => 'Dnevnik prestavljanja strani',
 'movelogpagetext'         => 'Prikazujem seznam prestavljenih strani. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
 'movereason'              => 'Razlog',
@@ -1621,7 +1621,7 @@ $1',
 'hideresults'      => 'Skrij zadetke',
 
 # Auto-summaries
-'autoredircomment' => 'preusmeritev na [[:$1]]',
+'autoredircomment' => 'preusmeritev na [[$1]]',
 
 # Special:Version
 'version' => 'Različica', # Not used as normal message but as header for the special page itself

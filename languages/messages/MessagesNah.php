@@ -803,8 +803,8 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'rollback_short'         => 'Tlacuepāz',
 'rollbacklink'           => 'tlacuepāz',
 'rollback-success'       => 'Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.',
-'protectedarticle'       => 'ōmoquīxti "[[:$1]]"',
-'unprotectedarticle'     => 'ōahmoquīxti "[[:$1]]"',
+'protectedarticle'       => 'ōmoquīxti "[[$1]]"',
+'unprotectedarticle'     => 'ōahmoquīxti "[[$1]]"',
 'protectexpiry'          => 'Tlamiliztli:',
 'protect_expiry_invalid' => 'Ahcualli tlamiliztli cāhuitl.',
 'protect-default'        => '(ic default)',
@@ -897,8 +897,8 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'movepage-moved'          => '<big>\'\'\'"$1" ōmotlacuep īhuīc "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'                 => 'ōmozacac īhuīc',
 'movetalk'                => 'Ticzacāz nō tēixnāmiquiliztli tlahcuilōltechcopa.',
-'1movedto2'               => '[[:$1]] ōmozacac īhuīc [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] ōmozacac īhuīc [[:$2]] tlacuepalpampa',
+'1movedto2'               => '[[$1]] ōmozacac īhuīc [[$2]]',
+'1movedto2_redir'         => '[[$1]] ōmozacac īhuīc [[$2]] tlacuepalpampa',
 'movelogpage'             => 'Tlazacaliztli tlahcuilōlloh',
 'movereason'              => 'Īxtlamatiliztli:',
 'revertmove'              => 'tlacuepāz',
@@ -1067,8 +1067,14 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 
 # Auto-summaries
 'autosumm-blank'   => 'Iztāc zāzanilli',
-'autoredircomment' => 'Mocuepahua īhuīc [[:$1]]',
+'autoredircomment' => 'Mocuepahua īhuīc [[$1]]',
 'autosumm-new'     => 'Yancuīc zāzanilli: $1',
+
+# Size units
+'size-bytes'     => '$1 B',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Tēmohua...',

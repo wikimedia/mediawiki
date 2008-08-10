@@ -4,16 +4,16 @@
  * @ingroup Language
  * @file
  *
- * @author SpeedyGonsales
  * @author Dalibor Bosits
- * @author MayaSimFan
- * @author Roberta F.
+ * @author Demicx
  * @author Dnik
  * @author Luka Krstulovic
- * @author לערי ריינהארט
- * @author Treecko
+ * @author MayaSimFan
+ * @author Roberta F.
+ * @author SpeedyGonsales
  * @author Suradnik13
- * @author Demicx
+ * @author Treecko
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1648,9 +1648,9 @@ s koje ste stigli.',
 'protectlogpage'              => 'Evidencija zaštićivanja',
 'protectlogtext'              => 'Ispod je evidencija zaštićivanja i uklanjanja zaštite pojedinih stranica.
 Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno zaštićenih stranica.',
-'protectedarticle'            => 'članak "[[:$1]]" je zaštićen',
-'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[:$1]]"',
-'unprotectedarticle'          => 'uklonjena zaštita članka "[[:$1]]"',
+'protectedarticle'            => 'članak "[[$1]]" je zaštićen',
+'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[$1]]"',
+'unprotectedarticle'          => 'uklonjena zaštita članka "[[$1]]"',
 'protect-title'               => 'Zaštićujem "$1"',
 'protect-legend'              => 'Potvrda zaštite',
 'protectcomment'              => 'Razlog za zaštitu',
@@ -2010,7 +2010,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 # Import log
 'importlogpage'                    => 'Evidencija uvoza članaka',
 'importlogpagetext'                => 'Administrativni uvoz stranica s poviješću uređivanja s drugih wikija.',
-'import-logentry-upload'           => 'uvezeno [[:$1]] uvozom datoteke',
+'import-logentry-upload'           => 'uvezeno [[$1]] uvozom datoteke',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 'import-logentry-interwiki'        => 'transwiki uvezeno $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|promjena|promjene|promjena}} od $2',
@@ -2561,7 +2561,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Uklonjen cjelokupni sadržaj stranice',
 'autosumm-replace' => "Tekst stranice se zamjenjuje s '$1'",
-'autoredircomment' => 'Preusmjeravanje na [[:$1]]',
+'autoredircomment' => 'Preusmjeravanje na [[$1]]',
 'autosumm-new'     => 'Nova stranica: $1',
 
 # Live preview

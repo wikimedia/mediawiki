@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Purodha
  * @author Caesius noh en Idee vum Manes
+ * @author Purodha
  */
 
 /**
@@ -499,7 +499,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'youremail'                  => 'E-Mail *',
 'username'                   => 'Metmaacher Name:',
 'uid'                        => 'Metmaacher Nommer:',
-'prefs-memberingroups'       => 'Bes en {{PLURAL:$1|de Metmaacherjrupp|<strong>$1</strong> Metmaacherjruppe|keijn Metmaacherjruppe}}',
+'prefs-memberingroups'       => 'Bes en {{PLURAL:$1|de Metmaacherjrupp:|<strong>$1</strong> Metmaacherjruppe:|keijn Metmaacherjruppe.}}',
 'yourrealname'               => 'Dinge richtije Name *',
 'yourlanguage'               => 'Die Sproch, die et Wiki kalle soll:',
 'yourvariant'                => 'Ding Variant',
@@ -928,6 +928,7 @@ dem Wiki singe Installation dat anders fassjelaht woode es.',
 'revdelete-hid'               => '$1 verstoche',
 'revdelete-unhid'             => '$1 weder seeschbaa jemaat',
 'revdelete-log-message'       => 'hät för {{PLURAL:$1|eij Version|$2 Versione|nix}} $1',
+'logdelete-log-message'       => '$1 för {{PLURAL:$2|eine Endraach|$2 Endräch|keine Endraach}} em Logbooch',
 
 # Suppression log
 'suppressionlogtext' => 'Hee noh kütt et Logboch fum Versteiche, woh Versione fun Sigge, Zosammefassunge, Quelle, Metmaachername un Metmaacher-Sperre ze fenge sin, di fun de Oure vun de Öffentleschkeit, un och fun de Wiki-Köbesse verstoche woodte, udder widder zeröck op nommaal jebraat woodte.',
@@ -1379,6 +1380,9 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'filehist-comment'               => 'Aanmerkung',
 'imagelinks'                     => 'Jebruch en',
 'linkstoimage'                   => 'Hee {{PLURAL:$1|kütt di Sigg|kumme de Sigge|sin keij Sigge}}, die op die Datei linke dun:',
+'linkstoimage-more'              => 'Mieh wie {{PLURAL:$1|ein Sigg link|$1 Sigge linke|kein Sigg link}} op di Datei.
+De Liß hee dronger zeisch nur {{PLURAL:$1|der eetse Link|de eetste $1 Links|keine Link}} op di Datei.
+Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'nolinkstoimage'                 => 'Nix link op hee die Datei.',
 'morelinkstoimage'               => 'Belohr Der [[Special:WhatLinksHere/$1|de Links]] op di Datei.',
 'redirectstofile'                => 'Di {{PLURAL:$1|Datei heenoh leid|$1 Dateie leide}} op he di Datei öm:',
@@ -1397,9 +1401,10 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'imagepage-searchdupe'           => 'Sök noh dubelte Dateie',
 
 # File reversion
-'filerevert'         => '„$1“ zerök holle',
-'filerevert-comment' => 'Jrond:',
-'filerevert-submit'  => 'Zeröcknemme',
+'filerevert'            => '„$1“ zerök holle',
+'filerevert-comment'    => 'Jrond:',
+'filerevert-submit'     => 'Zeröcknemme',
+'filerevert-badversion' => 'Mer han kei Version fun dä Datei för dä aanjejovve Zickpunk.',
 
 # File deletion
 'filedelete'                  => 'Schmieß „$1“ fott',
@@ -1771,9 +1776,9 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'sessionfailure'              => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
 'protectlogpage'              => 'Logboch vum Sigge Schötze',
 'protectlogtext'              => 'Hee es de Liss vun de Sigge, die jeschötz oder frei jejovve woode sin.',
-'protectedarticle'            => 'hät de Sigg „[[:$1]]“ jeschötz',
-'modifiedarticleprotection'   => 'hät dä Schoz för die Sigg „[[:$1]]“ jeändert',
-'unprotectedarticle'          => 'hät der Schotz för die Sigg „[[:$1]]“ opjehovve',
+'protectedarticle'            => 'hät de Sigg „[[$1]]“ jeschötz',
+'modifiedarticleprotection'   => 'hät dä Schoz för die Sigg „[[$1]]“ jeändert',
+'unprotectedarticle'          => 'hät der Schotz för die Sigg „[[$1]]“ opjehovve',
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
 'protect-legend'              => 'Sigg schötze',
 'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze',
@@ -1867,20 +1872,22 @@ $1',
 'blanknamespace' => '(Atikkele)',
 
 # Contributions
-'contributions' => 'Däm Metmaacher sing Beidräch',
-'mycontris'     => 'ming Beidräch',
-'contribsub2'   => 'För dä Metmaacher: $1 ($2)',
-'nocontribs'    => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
-'uctop'         => ' (Neuste)',
-'month'         => 'un Moohnt:',
-'year'          => 'Beß Johr:',
+'contributions'       => 'Däm Metmaacher sing Beidräch',
+'contributions-title' => 'Beidräsch fum  $1',
+'mycontris'           => 'ming Beidräch',
+'contribsub2'         => 'För dä Metmaacher: $1 ($2)',
+'nocontribs'          => 'Mer han kein Änderunge jefonge, en de Logböcher, die do passe däte.',
+'uctop'               => ' (Neuste)',
+'month'               => 'un Moohnt:',
+'year'                => 'Beß Johr:',
 
-'sp-contributions-newbies'     => 'Nor neu Metmaacher ier Beidräg zeije',
-'sp-contributions-newbies-sub' => 'För neu Metmaacher',
-'sp-contributions-blocklog'    => 'Logboch met Metmaacher-Sperre',
-'sp-contributions-search'      => 'Söök noh Metmaacher ier Beidräg',
-'sp-contributions-username'    => 'Metmaachername odder IP-Address:',
-'sp-contributions-submit'      => 'Sööke',
+'sp-contributions-newbies'       => 'Nor neu Metmaacher ier Beidräg zeije',
+'sp-contributions-newbies-sub'   => 'För neu Metmaacher',
+'sp-contributions-newbies-title' => 'Neu Metmaacher ier Beidräsch',
+'sp-contributions-blocklog'      => 'Logboch met Metmaacher-Sperre',
+'sp-contributions-search'        => 'Söök noh Metmaacher ier Beidräg',
+'sp-contributions-username'      => 'Metmaachername odder IP-Address:',
+'sp-contributions-submit'        => 'Sööke',
 
 # What links here
 'whatlinkshere'            => 'Wat noh hee link',
@@ -1967,7 +1974,7 @@ un och wann De se ändere wells.',
 'contribslink'                    => 'Beidräch',
 'autoblocker'                     => 'Automatich jesperrt. Ding IP_Adress wood vör kootem vun däm Metmaacher „[[User:$1|$1]]“ jebruch. Dä es jesperrt woode wäje: „<i>$2</i>“',
 'blocklogpage'                    => 'Logboch met Metmaacher-Sperre',
-'blocklogentry'                   => 'hät „[[$1]]“ fö de Zick vun $2 un $3 jesperrt.',
+'blocklogentry'                   => 'hät „[[$1]]“ fö de Zick vun $2 jesperrt. $3',
 'blocklogtext'                    => 'Hee es dat Logboch för et Metmaacher Sperre un Freijevve.
 Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|{{int:ipblocklist}}]] ze finge.',
 'unblocklogentry'                 => 'Metmaacher „$1“ freijejovve',
@@ -2051,8 +2058,8 @@ En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un e
 'movepage-page-moved'     => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
 'movepage-page-unmoved'   => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',
 'movepage-max-pages'      => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
-'1movedto2'               => 'hät de Sigg vun „[[:$1]]“ en „[[:$2]]“ ömjenannt.',
-'1movedto2_redir'         => 'hät de Sigg vun „[[:$1]]“ en „[[:$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
+'1movedto2'               => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
+'1movedto2_redir'         => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
 'movelogpage'             => 'Logboch vum Sigge Ömnenne',
 'movelogpagetext'         => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
 'movereason'              => 'Aanlass:',
@@ -2144,7 +2151,7 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit müjjelich.',
 # Import log
 'importlogpage'                    => 'Logboch met emporteerte Sigge',
 'importlogpagetext'                => 'Sigge met ehre Versione vun ander Wikis emporteere.',
-'import-logentry-upload'           => '„[[:$1]]“ emporteet fun enne huhjelade Dattei',
+'import-logentry-upload'           => '„[[$1]]“ emporteet fun enne huhjelade Dattei',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|ein Version|$1 Versione|kein Version}} emporteet',
 'import-logentry-interwiki'        => 'hät tirek vum ander Wiki emporteet: „$1“',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|ein Version|$1 Versione|kein Version}} vun „$2“',
@@ -2680,11 +2687,14 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Dä janze Enhald vun dä Sigg fottjemaht',
 'autosumm-replace' => "Dä jannze Enhallt fon dä Sigk ußjetuusch: '$1'",
-'autoredircomment' => 'Leit öm op „[[:$1]]“',
+'autoredircomment' => 'Leit öm op „[[$1]]“',
 'autosumm-new'     => 'Neu Sigg: $1',
 
 # Size units
-'size-bytes' => '$1 Bytes',
+'size-bytes'     => '$1 Bytes',
+'size-kilobytes' => '$1 KB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Ben am Lade …',

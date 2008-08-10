@@ -4,26 +4,27 @@
  * @ingroup Language
  * @file
  *
- * @author BrokenArrow
- * @author Nemo bis
- * @author Darth Kule
- * @author Cruccone
- * @author Melos
- * @author Gianfranco
- * @author Felis
- * @author Broc
- * @author Ramac
- * @author לערי ריינהארט
  * @author .anaconda
- * @author S.Örvarr.S
- * @author Xpensive
- * @author Nick1915
- * @author Tonyfroio
- * @author Pietrodn
- * @author Martorell
- * @author SabineCretella
+ * @author Broc
+ * @author BrokenArrow
+ * @author Brownout
  * @author Candalua
+ * @author Cruccone
  * @author Cryptex
+ * @author Darth Kule
+ * @author Felis
+ * @author Gianfranco
+ * @author Martorell
+ * @author Melos
+ * @author Nemo bis
+ * @author Nick1915
+ * @author Pietrodn
+ * @author Ramac
+ * @author S.Örvarr.S
+ * @author SabineCretella
+ * @author Tonyfroio
+ * @author Xpensive
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1630,9 +1631,9 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 'sessionfailure'              => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
 'protectlogpage'              => 'Protezioni',
 'protectlogtext'              => 'Di seguito sono elencate le azioni di protezione e sblocco delle pagine.',
-'protectedarticle'            => 'ha protetto "[[:$1]]"',
-'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[:$1]]"',
-'unprotectedarticle'          => 'ha sprotetto [[:$1]]',
+'protectedarticle'            => 'ha protetto "[[$1]]"',
+'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[$1]]"',
+'unprotectedarticle'          => 'ha sprotetto [[$1]]',
 'protect-title'               => 'Protezione di "$1"',
 'protect-legend'              => 'Conferma la protezione',
 'protectcomment'              => 'Motivo della protezione:',
@@ -1722,7 +1723,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contributi utente',
-'contributions-title' => 'Contributi per $1',
+'contributions-title' => 'Contributi di $1',
 'mycontris'           => 'Miei contributi',
 'contribsub2'         => 'Per $1 ($2)',
 'nocontribs'          => 'Non sono state trovate modifiche che soddisfino i criteri di ricerca.',
@@ -1766,9 +1767,9 @@ Il blocco dev\'essere operato per prevenire atti di vandalismo e in stretta osse
 
 Indica il motivo specifico per il quale procedi al blocco dell\'indirizzo IP o dell\'utente (per esempio, cita i titoli di eventuali pagine che siano state oggetto di vandalismo).
 
-Le durate del blocco diverse da quelle predefinite si possono specificare \'\'\'in lingua inglese\'\'\' usando il formato standard GNU, descritto nel [http://www.gnu.org/software/shishi/manual/html_node/Relative-items-in-date-strings.html manuale di tar] (per esempio: "1 hour", "2 days", "next Wednesday", "1 January 2017"). In alternativa, il blocco può essere "indefinite" o "infinite" (senza scadenza). 
+Le durate del blocco diverse da quelle predefinite si possono specificare \'\'\'in lingua inglese\'\'\' usando il formato standard GNU, descritto nel [http://www.gnu.org/software/shishi/manual/html_node/Relative-items-in-date-strings.html manuale di tar] (per esempio: "1 hour", "2 days", "next Wednesday", "1 January 2017"). In alternativa, il blocco può essere "indefinite" o "infinite" (senza scadenza).
 
-Per sbloccare qualcuno utilizza la [[{{ns:Special}}:Ipblocklist|lista degli IP e degli utenti bloccati]]. Ricorda infine che viene mantenuto un [[Special:Log/block|log dei blocchi]].',
+Per sbloccare qualcuno utilizza la [[Speciale:IPBloccati|lista degli IP e degli utenti bloccati]]. Ricorda infine che viene mantenuto un [[Speciale:Registri/block|log dei blocchi]].',
 'ipaddress'                       => 'Indirizzo IP:',
 'ipadressorusername'              => 'Indirizzo IP o nome utente:',
 'ipbexpiry'                       => 'Scadenza del blocco:',
@@ -1900,8 +1901,8 @@ In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manual
 'movepage-page-moved'     => 'La pagina $1 è stata spostata a $2.',
 'movepage-page-unmoved'   => 'La pagina $1 non può essere spostata a $2.',
 'movepage-max-pages'      => 'È stato spostato il numero massimo di $1 {{PLURAL:$1|pagina|pagine}} e non protranno essere spostate ulteriori pagine automaticamente.',
-'1movedto2'               => 'ha spostato [[:$1]] a [[:$2]]',
-'1movedto2_redir'         => 'ha spostato [[:$1]] a [[:$2]] tramite redirect',
+'1movedto2'               => 'ha spostato [[$1]] a [[$2]]',
+'1movedto2_redir'         => 'ha spostato [[$1]] a [[$2]] tramite redirect',
 'movelogpage'             => 'Spostamenti',
 'movelogpagetext'         => 'Di seguito sono elencate le pagine spostate di recente.',
 'movereason'              => 'Motivo:',
@@ -1988,7 +1989,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 # Import log
 'importlogpage'                    => 'Importazioni',
 'importlogpagetext'                => 'Di seguito sono elencate le importazioni di pagine provenienti da altre wiki, complete di cronologia.',
-'import-logentry-upload'           => 'ha importato [[:$1]] tramite upload',
+'import-logentry-upload'           => 'ha importato [[$1]] tramite upload',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}}',
 'import-logentry-interwiki'        => 'ha trasferito da altra wiki la pagina [[$1]]',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|una revisione importata|$1 revisioni importate}} da $2',
@@ -2565,7 +2566,7 @@ Pertanto, pulire (o aggiornare) la ''cache'' di una pagina, significa assicurars
 # Auto-summaries
 'autosumm-blank'   => 'Pagina svuotata completamente',
 'autosumm-replace' => "Pagina sostituita con '$1'",
-'autoredircomment' => 'Redirect alla pagina [[:$1]]',
+'autoredircomment' => 'Redirect alla pagina [[$1]]',
 'autosumm-new'     => 'Nuova pagina: $1',
 
 # Size units

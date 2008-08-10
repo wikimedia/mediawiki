@@ -4,18 +4,18 @@
  * @ingroup Language
  * @file
  *
- * @author Srhat
- * @author Uğur Başak
  * @author Dbl2010
- * @author Karduelis
- * @author Suelnur
  * @author Erkan Yilmaz
- * @author Runningfridgesrule
+ * @author Karduelis
  * @author Katpatuka
  * @author Mach
  * @author Mskyrider
- * @author לערי ריינהארט
  * @author Myildirim2007
+ * @author Runningfridgesrule
+ * @author Srhat
+ * @author Suelnur
+ * @author Uğur Başak
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1349,9 +1349,9 @@ $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
 'protectlogpage'              => 'Koruma kayıtları',
 'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
 Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',
-'protectedarticle'            => '"[[:$1]]" koruma altında alındı',
-'modifiedarticleprotection'   => '"[[:$1]]" için koruma düzeyi değiştirildi',
-'unprotectedarticle'          => 'koruma kaldırıldı: "[[:$1]]"',
+'protectedarticle'            => '"[[$1]]" koruma altında alındı',
+'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
+'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'protect-legend'              => 'Korumayı onayla',
 'protectcomment'              => 'Koruma altına alma nedeni',
@@ -1560,8 +1560,8 @@ Lütfen başka bir isim deneyiniz.',
 'movetalk'                => 'Varsa "tartışma" sayfasını da aktar.',
 'movepage-page-exists'    => '$1 maddesi zaten var olmaktadır, ve otomatikman yeniden yazılamaz.',
 'movepage-page-moved'     => '$1 sayfası $2 sayfasına taşındı.',
-'1movedto2'               => '[[:$1]] sayfasının yeni adı: [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] başlığı [[:$2]] sayfasına yönlendirildi',
+'1movedto2'               => '[[$1]] sayfasının yeni adı: [[$2]]',
+'1movedto2_redir'         => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
 'movelogpage'             => 'İsim değişikliği kayıtları',
 'movelogpagetext'         => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
 'movereason'              => 'Neden:',
@@ -2025,7 +2025,7 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 # Auto-summaries
 'autosumm-blank'   => 'Sayfa boşaltıldı',
 'autosumm-replace' => "Sayfa içeriği '$1' ile değiştiriliyor",
-'autoredircomment' => '[[:$1]] sayfasına yönlendirildi',
+'autoredircomment' => '[[$1]] sayfasına yönlendirildi',
 'autosumm-new'     => 'Yeni sayfa: $1',
 
 # Live preview

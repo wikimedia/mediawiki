@@ -4,15 +4,15 @@
  * @ingroup Language
  * @file
  *
- * @author Mahitgar
- * @author Kaustubh
- * @author प्रणव कुलकर्णी
  * @author Angela
- * @author Hemanshu
  * @author Harshalhayat
- * @author कोलࣿहापࣿरी
+ * @author Hemanshu
+ * @author Kaustubh
+ * @author Mahitgar
  * @author Sankalpdravid
  * @author अभय नातू
+ * @author कोलࣿहापࣿरी
+ * @author प्रणव कुलकर्णी
  * @author शࣿरीहरि
  */
 
@@ -1614,9 +1614,9 @@ $NEWPAGE
 'sessionfailure'              => 'तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणा पासून काळजी घेण्याच्या दृष्टीने ही कृती रद्द केली गेली आहे.कपया आपल्या विचरकाच्या "back" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि प्रत प्रयत्न करा.',
 'protectlogpage'              => 'सुरक्षा नोंदी',
 'protectlogtext'              => 'पानांना लावलेल्या ताळ्यांची आणि ताळे उघडण्याबद्दलच्या पानाची खाली सूची दिली आहे.सध्याच्या सुरक्षीत पानांबद्दलच्या माहितीकरिता [[Special:ProtectedPages|सुरक्षीत पानांची सूची]] पहा.',
-'protectedarticle'            => '"[[:$1]]" सुरक्षित केला',
-'modifiedarticleprotection'   => '"[[:$1]]"करिता सुरक्षापातळी बदलली',
-'unprotectedarticle'          => '"[[:$1]]" असुरक्षित केला.',
+'protectedarticle'            => '"[[$1]]" सुरक्षित केला',
+'modifiedarticleprotection'   => '"[[$1]]"करिता सुरक्षापातळी बदलली',
+'unprotectedarticle'          => '"[[$1]]" असुरक्षित केला.',
 'protect-title'               => '"$1" सुरक्षित करत आहे',
 'protect-legend'              => 'सुरक्षापातळीतील बदल निर्धारित करा',
 'protectcomment'              => 'सुरक्षित करण्यामागचे कारण',
@@ -1884,8 +1884,8 @@ $1',
 'movepage-page-moved'     => '$1 हे पान $2 या मथळ्याखाली स्थानांतरीत केले.',
 'movepage-page-unmoved'   => '$1 हे पान $2 या मथळ्याखाली स्थानांतरीत करता आलेले नाही.',
 'movepage-max-pages'      => 'जास्तीत जास्त $1 {{PLURAL:$1|पान|पाने}} स्थानांतरीत करण्यात {{PLURAL:$1|आलेले आहे|आलेली आहेत}} व आता आणखी पाने आपोआप स्थानांतरीत होणार नाहीत.',
-'1movedto2'               => '"[[:$1]]" हे पान "[[:$2]]" मथळ्याखाली स्थानांतरित केले.',
-'1movedto2_redir'         => '[[:$1]] हे पान [[:$2]] मथळ्याखाली स्थानांतरित केले (पुनर्निर्देशन).',
+'1movedto2'               => '"[[$1]]" हे पान "[[$2]]" मथळ्याखाली स्थानांतरित केले.',
+'1movedto2_redir'         => '[[$1]] हे पान [[$2]] मथळ्याखाली स्थानांतरित केले (पुनर्निर्देशन).',
 'movelogpage'             => 'स्थांनांतराची नोंद',
 'movelogpagetext'         => 'स्थानांतरित केलेल्या पानांची यादी.',
 'movereason'              => 'कारण:',
@@ -1970,7 +1970,7 @@ $1',
 # Import log
 'importlogpage'                    => 'ईम्पोर्ट सूची',
 'importlogpagetext'                => 'इतर विकिक्डून पानांची, संपादकीय इतिहासासहीत, प्रबंधकीय आयात.',
-'import-logentry-upload'           => 'संचिका चढवल्याने [[:$1]] आयात',
+'import-logentry-upload'           => 'संचिका चढवल्याने [[$1]] आयात',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
 'import-logentry-interwiki'        => 'आंतरविकिकरण $1',
 'import-logentry-interwiki-detail' => '$2 पासून $1 {{PLURAL:$1|आवर्तन|आवर्तने}}',
@@ -2495,7 +2495,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'या पानावरील सगळा मजकूर काढला',
 'autosumm-replace' => "पान '$1' वापरून बदलले.",
-'autoredircomment' => '[[:$1]] कडे पुनर्निर्देशित',
+'autoredircomment' => '[[$1]] कडे पुनर्निर्देशित',
 'autosumm-new'     => 'नवीन पान: $1',
 
 # Live preview

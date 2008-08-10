@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author SeriCtam
  * @author Ccaxjoj Iteja Z Iti Poop
+ * @author SeriCtam
  * @author Teak
  */
 
@@ -1010,7 +1010,7 @@ iitom e-iitomde diijömde caitóm.',
 'movepagebtn'      => 'Yacom páhina',
 'movedto'          => 'yacomöxde',
 'movetalk'         => 'Yacom czaxö páhina yodina ipríi',
-'1movedto2'        => '[[:$1]] yacomöxde [[:$2]]',
+'1movedto2'        => '[[$1]] yacomöxde [[$2]]',
 'movereason'       => 'Ra:',
 'delete_and_move'  => 'Delatom ö yacom',
 

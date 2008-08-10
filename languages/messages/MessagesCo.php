@@ -350,7 +350,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'excontentauthor'             => "u cuntenutu era: '$1' (è u solu cuntributore era '[[Special:Contributions/$2|$2]]')",
 'exblank'                     => 'a pagina era biota',
 'actioncomplete'              => 'Azzione compia',
-'protectedarticle'            => 'prutettu "[[:$1]]"',
+'protectedarticle'            => 'prutettu "[[$1]]"',
 'protect-legend'              => 'Cunfirmà a prutezzione',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',
 
@@ -391,8 +391,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'move-watch'              => 'Fighjulà issa pagina',
 'movepagebtn'             => 'Move a pagina',
 'movedto'                 => 'mossu à',
-'1movedto2'               => 'hà mossu [[:$1]] à [[:$2]]',
-'1movedto2_redir'         => 'hà reindirizzatu [[:$1]] à [[:$2]]',
+'1movedto2'               => 'hà mossu [[$1]] à [[$2]]',
+'1movedto2_redir'         => 'hà reindirizzatu [[$1]] à [[$2]]',
 'movereason'              => 'Mutivu',
 'delete_and_move_confirm' => 'Iè, supprimà issa pagina',
 
@@ -484,7 +484,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'table_pager_empty' => 'Micca risultati',
 
 # Auto-summaries
-'autoredircomment' => 'Reindirizzamentu à [[:$1]]',
+'autoredircomment' => 'Reindirizzamentu à [[$1]]',
 'autosumm-new'     => 'Pagina nova: $1',
 
 # Watchlist editor

@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Nepl1
+ * @author Dunak
+ * @author Dundak
  * @author Michawiki
+ * @author Murjarik
+ * @author Nepl1
  * @author Pe7er
  * @author Qualia
- * @author Dundak
- * @author Murjarik
  * @author Tlustulimu
- * @author Dunak
  * @author Tlustulimu Nepl1
  */
 
@@ -1612,9 +1612,9 @@ Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowan
 Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.',
 'protectlogpage'              => 'Log-lisćina šćitanych bokow.',
 'protectlogtext'              => 'To jo log-lisćina šćitanych bokow. Glědaj do [[Special:ProtectedPages|lisćiny šćitanych bokow]], aby wiźeł wšykne aktualnje šćitane boki.',
-'protectedarticle'            => 'Bok „[[:$1]]“ jo se šćitał.',
-'modifiedarticleprotection'   => 'Šćitanska rownina za „[[:$1]]“ jo se změniła.',
-'unprotectedarticle'          => 'Šćit za „[[:$1]]“ jo se wótpórał.',
+'protectedarticle'            => 'Bok „[[$1]]“ jo se šćitał.',
+'modifiedarticleprotection'   => 'Šćitanska rownina za „[[$1]]“ jo se změniła.',
+'unprotectedarticle'          => 'Šćit za „[[$1]]“ jo se wótpórał.',
 'protect-title'               => 'Šćit boka „$1“ změniś',
 'protect-legend'              => 'Šćitanje wobkšuśiś',
 'protectcomment'              => 'Komentar:',
@@ -1878,8 +1878,8 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-page-moved'     => 'Bok $1 jo se do $2 pśesunuł.',
 'movepage-page-unmoved'   => 'Bok $1 njejo se do $2 pśesunuś dał.',
 'movepage-max-pages'      => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
-'1movedto2'               => '„[[:$1]]“ pśesunjone na „[[:$2]]“',
-'1movedto2_redir'         => '„[[:$1]]“ jo se pśesunuł(o/a) na „[[:$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
+'1movedto2'               => '„[[$1]]“ pśesunjone na „[[$2]]“',
+'1movedto2_redir'         => '„[[$1]]“ jo se pśesunuł(o/a) na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
 'movelogpage'             => 'Protokol pśesunjenjow',
 'movelogpagetext'         => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movereason'              => 'Pśicyna',
@@ -1966,7 +1966,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',
 'importlogpagetext'                => 'Administratiwne importěrowanje bokow ze stawiznami z drugich wikijow.',
-'import-logentry-upload'           => 'Dataja [[:$1]] jo pśez uploadowanje se importěrowała.',
+'import-logentry-upload'           => 'Dataja [[$1]] jo pśez uploadowanje se importěrowała.',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}}',
 'import-logentry-interwiki'        => 'Dataja $1 jo se importěrowała (transwiki).',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}} wót $2',
@@ -2502,7 +2502,7 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 # Auto-summaries
 'autosumm-blank'   => 'Bok se wulašujo.',
 'autosumm-replace' => "Bok narownajo se z: '$1'",
-'autoredircomment' => 'Pśesměrowanje na [[:$1]]',
+'autoredircomment' => 'Pśesměrowanje na [[$1]]',
 'autosumm-new'     => 'Nowy bok: $1',
 
 # Live preview

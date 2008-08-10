@@ -5,8 +5,8 @@
  * @file
  *
  * @author Wantok
- * @author לערי ריינהארט
  * @author Wytukaze
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -214,7 +214,7 @@ Yu mas painim narapela nem.',
 'talkexists'      => "'''Pes bilong buk i surik pinis, tasol pes bilong toktok i no inap surik, bilong wanem wanpela pes bilong toktok istap pinis wantaim dispela nam.  Yu mas pasim wantaim tupela pes bilong toktok yu yet.'''",
 'movedto'         => 'i surik i go long',
 'movetalk'        => 'Surikim pes bilong toktok wantaim',
-'1movedto2'       => '[[:$1]] i surik i go long [[:$2]] pinis',
+'1movedto2'       => '[[$1]] i surik i go long [[$2]] pinis',
 'movelogpage'     => 'Buk bilong ol surik',
 'movelogpagetext' => 'Hia yumi lukim ol pes i surik pinis.',
 

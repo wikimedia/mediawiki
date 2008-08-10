@@ -5,8 +5,8 @@
  * @file
  *
  * @author Codex Sinaiticus
- * @author Teferra
  * @author Elfalem
+ * @author Teferra
  */
 
 $namespaceNames = array(
@@ -1233,9 +1233,9 @@ $NEWPAGE
 'rollback-success'            => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
 'protectlogpage'              => 'የማቆለፍ መዝገብ',
 'protectlogtext'              => 'ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:ProtectedPages|የቆለፉትን ገጾች]] ደግሞ ያዩ።',
-'protectedarticle'            => 'ገጹን «[[:$1]]» ቆለፈው።',
-'modifiedarticleprotection'   => 'የመቆለፍ ደረጃ ለ«[[:$1]]» ቀየረ።',
-'unprotectedarticle'          => 'ገጹን «[[:$1]]» ፈታ።',
+'protectedarticle'            => 'ገጹን «[[$1]]» ቆለፈው።',
+'modifiedarticleprotection'   => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
+'unprotectedarticle'          => 'ገጹን «[[$1]]» ፈታ።',
 'protect-title'               => 'ለ«$1» የመቆለፍ ደረጃ ለማስተካከል',
 'protect-legend'              => 'የመቆለፍ ማረጋገጫ',
 'protectcomment'              => 'ማጠቃለያ፦',
@@ -1456,8 +1456,8 @@ $1',
 'talkexists'              => "'''ገጹ ወደ አዲሱ አርዕስት ተዛወረ፤ እንጂ በአዲሱ አርዕስት የቆየ ውይይት ገጽ አስቀድሞ ስለ ኖረ የዚህ ውይይት ገጽ ሊዛወር አልተቻለም። እባክዎ፣ በእጅ ያጋጥሙአቸው።'''",
 'movedto'                 => 'የተዛወረ ወደ',
 'movetalk'                => 'ከተቻለ፣ ከነውይይቱ ገጽ ጋራ ይዛወር',
-'1movedto2'               => '«$1» ወደ «[[:$2]]» አዛወረ',
-'1movedto2_redir'         => '«$1» ወደ «[[:$2]]» አዛወረ -- በመምሪያ መንገድ ፈንታ',
+'1movedto2'               => '«$1» ወደ «[[$2]]» አዛወረ',
+'1movedto2_redir'         => '«$1» ወደ «[[$2]]» አዛወረ -- በመምሪያ መንገድ ፈንታ',
 'movelogpage'             => 'የማዛወር መዝገብ',
 'movelogpagetext'         => 'ይህ መዝገብ ገጽ ሲዛወር ይመዝገባል። <ይመለስ> ቢጫኑ ኖሮ መዛወሩን ይገለብጣል!',
 'movereason'              => 'ምክንያት',
@@ -1958,7 +1958,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'ጽሑፉን በሙሉ ደመሰሰ።',
 'autosumm-replace' => 'ጽሑፉ በ«$1» ተተካ።',
-'autoredircomment' => 'ወደ [[:$1]] መምሪያ መንገድ ፈጠረ',
+'autoredircomment' => 'ወደ [[$1]] መምሪያ መንገድ ፈጠረ',
 'autosumm-new'     => 'አዲስ ገጽ ፈጠረ፦ «$1»',
 
 # Live preview

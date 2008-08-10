@@ -163,8 +163,8 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 'blocklink' => 'aporfeqarneq',
 
 # Move page
-'1movedto2'       => '[[:$1]]-i nuunneqarsimavoq [[:$2]]-mut',
-'1movedto2_redir' => '[[:$1]] nuunneqarsimavoq [[:$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
+'1movedto2'       => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+'1movedto2_redir' => '[[$1]] nuunneqarsimavoq [[$2]]-mut adresse-ia aqqutigalugu allanngortillugu',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Ujaarlerit {{SITENAME}}',

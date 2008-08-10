@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Khazar II
  * @author Kranch
  * @author Numulunj pilgae
- * @author Khazar II
  */
 
 $fallbak = 'ru';
@@ -1502,9 +1502,9 @@ $NEWPAGE
 'sessionfailure'              => 'Улема, лиссь прябала тонь сувама пингста; програмонь якамась лотказевсь сувамать върьгятемада аралама туфталонкса. Эняльттяма, люпштак "меки" ди одонзафтт лопать, конаста тон сать, меле тик сембе одукс.',
 'protectlogpage'              => 'Аралама лувома',
 'protectlogtext'              => 'Ала лопань пякстама-панжема лувомась. Ванк [[Special:ProtectedPages|аралаф лопатнень лувомась]] тя пингонь системонь лопать араламанкса.',
-'protectedarticle'            => 'аралаф "[[:$1]]"',
-'modifiedarticleprotection'   => '"[[:$1]]"-нь араламань виенц полафтсь',
-'unprotectedarticle'          => '"[[:$1]]" аф аралаф',
+'protectedarticle'            => 'аралаф "[[$1]]"',
+'modifiedarticleprotection'   => '"[[$1]]"-нь араламань виенц полафтсь',
+'unprotectedarticle'          => '"[[$1]]" аф аралаф',
 'protect-title'               => '"$1"-нь араламань виец арафнема',
 'protect-legend'              => 'Араламать кемокстак',
 'protectcomment'              => 'Мяльполадкс:',
@@ -1777,8 +1777,8 @@ $1',
 'movepage-page-moved'     => 'Лопась $1 ётафтфоль $2-с.',
 'movepage-page-unmoved'   => 'Лопать $1 аш кода ётафтомс $2-с.',
 'movepage-max-pages'      => 'Сембода лама $1 {{PLURAL:$1|лопа|лопат}} йотафтфольхть иля вастс и фкявок сяда тов аф кармай эслек ётафтовома.',
-'1movedto2'               => '[[:$1]] йотафтф [[:$2]]-с',
-'1movedto2_redir'         => '[[:$1]] йотафтф [[:$2]]-с од вастс йотафтомать вельде',
+'1movedto2'               => '[[$1]] йотафтф [[$2]]-с',
+'1movedto2_redir'         => '[[$1]] йотафтф [[$2]]-с од вастс йотафтомать вельде',
 'movelogpage'             => 'Иля вастс йотафтомань лувомась',
 'movelogpagetext'         => 'Ала од вастс йотафтф лопатнень лувомась.',
 'movereason'              => 'Туфтал:',
@@ -1869,7 +1869,7 @@ $1',
 # Import log
 'importlogpage'                    => 'Сувафтомань лувома',
 'importlogpagetext'                => 'Администрациеса лопань ускоматне петнемань историяснон мархта иля Викиста.',
-'import-logentry-upload'           => 'ускф [[:$1]] файлонь тонгомать вельде',
+'import-logentry-upload'           => 'ускф [[$1]] файлонь тонгомать вельде',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|илякстоптома|илякстоптомат}}',
 'import-logentry-interwiki'        => 'йотафтф Викитнень йоткса $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|илякстоптома|илякстоптомат}} $2-ста',
@@ -2407,7 +2407,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Нардакшневи сембе лопаста',
 'autosumm-replace' => "Нардакшневи лопать '$1' мархта",
-'autoredircomment' => 'Йотафневи [[:$1]]-с',
+'autoredircomment' => 'Йотафневи [[$1]]-с',
 'autosumm-new'     => 'Од лопа: $1',
 
 # Live preview

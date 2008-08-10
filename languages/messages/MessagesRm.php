@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Gion-andri
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -271,6 +271,7 @@ Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. </stron
 'longpageerror'        => "<strong>ERRUR: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir arcunà. </strong>",
 'protectedpagewarning' => '<strong>ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. </strong>',
 'templatesused'        => 'Templates utilisads sin questa pagina:',
+'edittools'            => '<!-- Text here will be shown below edit and upload forms. -->',
 
 # Account creation failure
 'cantcreateaccounttitle' => "Betg pussaivel da crear l'account",
@@ -545,8 +546,8 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 # Move page
 'pagemovedsub'            => 'Spustà cun success',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
-'1movedto2'               => 'Spustà [[:$1]] tar [[:$2]]',
-'1movedto2_redir'         => 'Spustà [[:$1]] tar [[:$2]] cun in redirect',
+'1movedto2'               => 'Spustà [[$1]] tar [[$2]]',
+'1movedto2_redir'         => 'Spustà [[$1]] tar [[$2]] cun in redirect',
 'delete_and_move'         => 'Stidar e spustar',
 'delete_and_move_text'    => '==Stidar necessari==
 

@@ -9,9 +9,9 @@
  * @author Matasg
  * @author Pdxx
  * @author Siggis
+ * @author Tomasdd
  * @author Vpovilaitis
  * @author לערי ריינהארט
- * @author Tomasdd
  */
 
 $namespaceNames = array(
@@ -1551,9 +1551,9 @@ Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pa
 'protectlogpage'              => 'Rakinimų istorija',
 'protectlogtext'              => 'Žemiau yra puslapių užrakinimų bei atrakinimų istorija.
 Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|apsaugotų puslapių sąraše]].',
-'protectedarticle'            => 'užrakino „[[:$1]]“',
-'modifiedarticleprotection'   => 'pakeistas „[[:$1]]“ apsaugos lygis',
-'unprotectedarticle'          => 'atrakino „[[:$1]]“',
+'protectedarticle'            => 'užrakino „[[$1]]“',
+'modifiedarticleprotection'   => 'pakeistas „[[$1]]“ apsaugos lygis',
+'unprotectedarticle'          => 'atrakino „[[$1]]“',
 'protect-title'               => 'Nustatomas apsaugos lygis puslapiui „$1“',
 'protect-legend'              => 'Užrakinimo patvirtinimas',
 'protectcomment'              => 'Komentaras:',
@@ -1839,8 +1839,8 @@ Prašome sujungti šiuos puslapius.'''",
 'movepage-page-exists'    => 'Puslapis $1 jau egzistuoja ir negali būti automatiškai perrašytas.',
 'movepage-page-moved'     => 'Puslapis $1 perkeltas į $2.',
 'movepage-page-unmoved'   => 'Puslapio $1 negalima perkelti į $2.',
-'1movedto2'               => '[[:$1]] pervadintas į [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] pervadintas į [[:$2]] (anksčiau buvo nukreipiamasis)',
+'1movedto2'               => '[[$1]] pervadintas į [[$2]]',
+'1movedto2_redir'         => '[[$1]] pervadintas į [[$2]] (anksčiau buvo nukreipiamasis)',
 'movelogpage'             => 'Pervardinimų istorija',
 'movelogpagetext'         => 'Pervardintų puslapių sąrašas.',
 'movereason'              => 'Priežastis:',
@@ -2476,7 +2476,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Šalinamas visas turinys iš puslapio',
 'autosumm-replace' => 'Puslapis keičiamas su „$1“',
-'autoredircomment' => 'Nukreipiama į [[:$1]]',
+'autoredircomment' => 'Nukreipiama į [[$1]]',
 'autosumm-new'     => 'Naujas puslapis: $1',
 
 # Size units

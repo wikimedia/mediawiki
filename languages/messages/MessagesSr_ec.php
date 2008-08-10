@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Sasa Stefanovic
+ * @author Kale
  * @author Millosh
  * @author Red Baron
- * @author Kale
- * @author לערי ריינהארט
+ * @author Sasa Stefanovic
  * @author Јованвб
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1693,7 +1693,7 @@ $NEWPAGE
 'protectlogtext'              => 'Испод је списак заштићених страница.<br />
 Погледајте [[Special:ProtectedPages|правила о заштити страница]] за више информација.',
 'protectedarticle'            => 'заштитио $1',
-'modifiedarticleprotection'   => 'промењен ниво заштите за „[[:$1]]“',
+'modifiedarticleprotection'   => 'промењен ниво заштите за „[[$1]]“',
 'unprotectedarticle'          => 'скинуо заштиту са $1',
 'protect-title'               => 'стављање заштите "$1"',
 'protect-legend'              => 'Потврдите заштиту',
@@ -1971,8 +1971,8 @@ $1',
 'movepage-page-exists'    => 'Страна $1 већ постоји не може се аутоматски преписати.',
 'movepage-page-moved'     => 'Страна $1 је преименована у $2.',
 'movepage-page-unmoved'   => 'Страна $1 не може бити преименована у $2.',
-'1movedto2'               => 'је променио име чланку [[:$1]] у [[:$2]]',
-'1movedto2_redir'         => 'је променио име чланку [[:$1]] у [[:$2]] путем преусмерења',
+'1movedto2'               => 'је променио име чланку [[$1]] у [[$2]]',
+'1movedto2_redir'         => 'је променио име чланку [[$1]] у [[$2]] путем преусмерења',
 'movelogpage'             => 'историја премештања',
 'movelogpagetext'         => 'Испод је списак премештања чланака.',
 'movereason'              => 'Разлог:',
@@ -2599,7 +2599,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Уклањање целокупног садржаја са стране',
 'autosumm-replace' => "Замена странице са '$1'",
-'autoredircomment' => 'Преусмерење на [[:$1]]',
+'autoredircomment' => 'Преусмерење на [[$1]]',
 'autosumm-new'     => 'Нова страница: $1',
 
 # Live preview

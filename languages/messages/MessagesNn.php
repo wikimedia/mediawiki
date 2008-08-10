@@ -4,18 +4,18 @@
  * @ingroup Language
  * @file
  *
- * @author Eirik
- * @author Jon Harald Søby
- * @author Jorunn
- * @author Ranveig
- * @author לערי ריינהארט
- * @author Finnrind
- * @author H92
  * @author Boivie
  * @author Dittaeva
- * @author Olve Utne
+ * @author Eirik
+ * @author Finnrind
  * @author Guttorm Flatabø
+ * @author H92
+ * @author Jon Harald Søby
+ * @author Jorunn
+ * @author Olve Utne
+ * @author Ranveig
  * @author Shauni
+ * @author לערי ריינהארט
  */
 
 /**
@@ -1642,9 +1642,9 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:ProtectedPages|Verna side]] for meir info.',
-'protectedarticle'            => 'verna «[[:$1]]»',
-'modifiedarticleprotection'   => 'endra nivået på vernet av «[[:$1]]»',
-'unprotectedarticle'          => 'fjerna vern av «[[:$1]]»',
+'protectedarticle'            => 'verna «[[$1]]»',
+'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
+'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
 'protect-title'               => 'Vernar «$1»',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunn til verning',
@@ -1883,8 +1883,8 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'talkexists'              => "'''Innhaldssida vart flytt, men diskusjonssida som høyrer til kunne ikkje flyttast fordi det allereie finst ei side med den nye tittelen. Du lyt difor flette dei saman manuelt.'''",
 'movedto'                 => 'er flytt til',
 'movetalk'                => 'Flytt diskusjonssida òg om ho finst.',
-'1movedto2'               => '«[[:$1]]» flytt til «[[:$2]]»',
-'1movedto2_redir'         => '«[[:$1]]» flytt over omdirigering til «[[:$2]]»',
+'1movedto2'               => '«[[$1]]» flytt til «[[$2]]»',
+'1movedto2_redir'         => '«[[$1]]» flytt over omdirigering til «[[$2]]»',
 'movelogpage'             => 'Flyttelogg',
 'movelogpagetext'         => 'Under er ei liste over sider som er flytte.',
 'movereason'              => 'Årsak:',
@@ -1955,7 +1955,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 
 # Import log
 'importlogpage'                    => 'Importeringslogg',
-'import-logentry-upload'           => 'importerte [[:$1]] frå opplasta fil',
+'import-logentry-upload'           => 'importerte [[$1]] frå opplasta fil',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|Éin versjon|$1 versjonar}}',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} frå $2',
 
@@ -2491,7 +2491,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Fjernar alt innhald på sida',
 'autosumm-replace' => 'Erstattar innhaldet på sida med «$1»',
-'autoredircomment' => 'Omdirigerer til [[:$1]]',
+'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview

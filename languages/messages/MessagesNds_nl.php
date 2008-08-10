@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Servien
- * @author לערי ריינהארט
- * @author Slomox
  * @author Erwin85
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @author Jens Frank
+ * @author Servien
+ * @author Slomox
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author לערי ריינהארט
  */
 
 $fallback = 'nl';
@@ -1668,9 +1668,9 @@ De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
 'sessionfailure'              => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao een pagina weerumme, laot disse pagina opniej en prebeer \'t nog es.',
 'protectlogpage'              => 'Beveiligingslogboek',
 'protectlogtext'              => "Hieronder steet een lieste mit pagina's dee beveilig bin.",
-'protectedarticle'            => '[[:$1]] is beveilig',
-'modifiedarticleprotection'   => 'beveiligingsnivo van "[[:$1]]"  ewiezig',
-'unprotectedarticle'          => '[[:$1]] vrie-egeven',
+'protectedarticle'            => '[[$1]] is beveilig',
+'modifiedarticleprotection'   => 'beveiligingsnivo van "[[$1]]"  ewiezig',
+'unprotectedarticle'          => '[[$1]] vrie-egeven',
 'protectcomment'              => 'Rejen',
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
@@ -1884,8 +1884,8 @@ Mut de databanke vrie-egeven wonnen?',
 'talkexists'              => "De pagina zelf is verplaos, mar de overlegpagina kon neet verplaos wonnen, umdat de doelnaam al een neet-lege overlegpagina had. Combineer de overlegpagina's haandmaotig.",
 'movedto'                 => 'wiezigen naor',
 'movetalk'                => "De overlegpagina oek wiezigen, as 't meuglijk is.",
-'1movedto2'               => '[[:$1]] is ewiezig naor [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] is ewiezig over de deurverwiezing [[:$2]] hinne',
+'1movedto2'               => '[[$1]] is ewiezig naor [[$2]]',
+'1movedto2_redir'         => '[[$1]] is ewiezig over de deurverwiezing [[$2]] hinne',
 'movelogpage'             => 'Titelwiezigingen',
 'movelogpagetext'         => "Hieronder steet een lieste mit pagina's dee herneumd bin.",
 'movereason'              => 'Rejen:',
@@ -1950,7 +1950,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 # Import log
 'importlogpage'             => 'Invoerlogboek',
 'importlogpagetext'         => "Administratieve invoer van pagina's mit geschiedenisse van aandere wiki's.",
-'import-logentry-upload'    => '[[:$1]] in-evoerd via een bestanstoevoeging',
+'import-logentry-upload'    => '[[$1]] in-evoerd via een bestanstoevoeging',
 'import-logentry-interwiki' => 'transwiki $1',
 
 # Tooltip help for the actions
@@ -2373,7 +2373,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Pagina leeg-emaak',
 'autosumm-replace' => "Tekse vervungen deur '$1'",
-'autoredircomment' => 'deurverwiezing naor [[:$1]]',
+'autoredircomment' => 'deurverwiezing naor [[$1]]',
 'autosumm-new'     => 'Nieje pagina: $1',
 
 # Live preview

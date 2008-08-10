@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author EugeneZelenko
- * @author Red Winged Duck
- * @author Jim-by
  * @author Cesco
+ * @author EugeneZelenko
+ * @author Jim-by
+ * @author Red Winged Duck
  */
 
 $skinNames = array(
@@ -1783,9 +1783,9 @@ $NEWPAGE
 'protectlogpage'              => 'Журнал абаронаў',
 'protectlogtext'              => 'Ніжэй знаходзіцца сьпіс абаронаў і зьняцьцяў абаронаў.
 Глядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].',
-'protectedarticle'            => 'абароненая «[[:$1]]»',
-'modifiedarticleprotection'   => 'зьменены ўзровень абароны старонкі «[[:$1]]»',
-'unprotectedarticle'          => 'зьнятая абарона са старонкі «[[:$1]]»',
+'protectedarticle'            => 'абароненая «[[$1]]»',
+'modifiedarticleprotection'   => 'зьменены ўзровень абароны старонкі «[[$1]]»',
+'unprotectedarticle'          => 'зьнятая абарона са старонкі «[[$1]]»',
 'protect-title'               => 'Абарона «$1»',
 'protect-legend'              => 'Пацьверджаньне абароны',
 'protectcomment'              => 'Камэнтар:',
@@ -2063,8 +2063,8 @@ $1',
 'movepage-page-moved'     => 'Старонка $1 перанесеная ў $2.',
 'movepage-page-unmoved'   => 'Старонка $1 ня можа быць перанесеная ў $2.',
 'movepage-max-pages'      => '$1 {{PLURAL:$1|старонка была перанесеная|старонкі былі перанесеныя|старонак былі перанесеныя}} — гэта дазволены максымум, больш аўтаматычных пераносаў ня будзе.',
-'1movedto2'               => '[[:$1]] перанесеная ў [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] перанесеная ў [[:$2]] з выдаленьнем перанакіраваньня',
+'1movedto2'               => '[[$1]] перанесеная ў [[$2]]',
+'1movedto2_redir'         => '[[$1]] перанесеная ў [[$2]] з выдаленьнем перанакіраваньня',
 'movelogpage'             => 'Журнал пераносаў',
 'movelogpagetext'         => 'Ніжэй пададзены сьпіс перанесеных старонак.',
 'movereason'              => 'Прычына:',
@@ -2158,7 +2158,7 @@ $1',
 # Import log
 'importlogpage'                    => 'Журнал імпартаваньняў',
 'importlogpagetext'                => 'Імпартаваньне адміністратарамі старонак з гісторыяй зьменаў зь іншых вікі.',
-'import-logentry-upload'           => 'імпартавана [[:$1]] праз загрузку файла',
+'import-logentry-upload'           => 'імпартавана [[$1]] праз загрузку файла',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}}',
 'import-logentry-interwiki'        => 'імпартавана зь іншай вікі $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}} з $2',
@@ -2472,7 +2472,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Зьмест старонкі выдалены цалкам',
 'autosumm-replace' => "Старонка замененая на '$1'",
-'autoredircomment' => 'Перанакіроўвае на [[:$1]]',
+'autoredircomment' => 'Перанакіроўвае на [[$1]]',
 'autosumm-new'     => 'Новая старонка: $1',
 
 # Size units

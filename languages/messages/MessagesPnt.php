@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Sinopeus
  * @author Consta
+ * @author Sinopeus
  */
 
 $namespaceNames = array(
@@ -707,8 +707,8 @@ $messages = array(
 Ποίστεν τα ένα.'''",
 'movedto'                 => 'ετεροχλαεύτεν σο',
 'movetalk'                => 'Ετεροχλάεμαν τη σελίδας καλατσεματί',
-'1movedto2'               => '[[:$1]] ετερχλαεύτεν σο [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] ετερχλαεύτεν σο [[:$2]] σε σύνδεσμον απάν',
+'1movedto2'               => '[[$1]] ετερχλαεύτεν σο [[$2]]',
+'1movedto2_redir'         => '[[$1]] ετερχλαεύτεν σο [[$2]] σε σύνδεσμον απάν',
 'movelogpage'             => 'Αρχείον ετεροχλαεματί',
 'movereason'              => 'Λόγον:',
 'revertmove'              => 'επαναφορά',

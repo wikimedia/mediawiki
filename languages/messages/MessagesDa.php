@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Jan Friberg
- * @author Jon Harald Søby
- * @author Peter Andersen
+ * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author EPO
  * @author H92
+ * @author Jan Friberg
+ * @author Jon Harald Søby
  * @author Lars J. Helbo <lars.helbo@gmail.com>
- * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Morten LJ
+ * @author Peter Andersen
  */
 
 $namespaceNames = array(
@@ -1622,9 +1622,9 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'sessionfailure'              => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
 'protectlogpage'              => 'Liste_over_beskyttede_sider',
 'protectlogtext'              => 'Herunder er en liste med sider der er blevet beskyttet/har fået fjernet beskyttelsen.',
-'protectedarticle'            => '[[:$1]] beskyttet',
-'modifiedarticleprotection'   => 'ændrede beskyttelsen af "[[:$1]]"',
-'unprotectedarticle'          => 'fjernet beskyttelse af [[:$1]]',
+'protectedarticle'            => '[[$1]] beskyttet',
+'modifiedarticleprotection'   => 'ændrede beskyttelsen af "[[$1]]"',
+'unprotectedarticle'          => 'fjernet beskyttelse af [[$1]]',
 'protect-title'               => 'Ændre beskyttelse af "$1"',
 'protect-legend'              => 'Bekræft beskyttelse',
 'protectcomment'              => 'Begrundelse for beskyttelse',
@@ -1967,7 +1967,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 # Import log
 'importlogpage'                    => 'Importlog',
 'importlogpagetext'                => 'Administrativ import af sider med versionshistorik fra andre Wikis.',
-'import-logentry-upload'           => '[[:$1]] blev importeret',
+'import-logentry-upload'           => '[[$1]] blev importeret',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|1 version|$1 versioner}}',
 'import-logentry-interwiki'        => '[[$1]] blev importeret (Transwiki)',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|1 version|$1 versioner}} af $2 importeret',
@@ -2507,7 +2507,7 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 # Auto-summaries
 'autosumm-blank'   => 'Siden blev ryddet.',
 'autosumm-replace' => "Sidens indhold blev erstattet med: '$1'",
-'autoredircomment' => 'Omdirigering til [[:$1]] oprettet',
+'autoredircomment' => 'Omdirigering til [[$1]] oprettet',
 'autosumm-new'     => 'Siden blev oprettet: $1',
 
 # Live preview

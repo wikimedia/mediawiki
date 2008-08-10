@@ -5,10 +5,10 @@
  * @file
  *
  * @author Cedric31
- * @author לערי ריינהארט
  * @author ChrisPtDe
  * @author Spacebirdy
  * @author Горан Анђелковић
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1723,9 +1723,9 @@ aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
 'protectlogpage'              => 'Istoric de las proteccions',
 'protectlogtext'              => 'Vejatz las [[Special:ProtectedPages|directivas]] per mai d’informacion.',
-'protectedarticle'            => 'a protegit « [[:$1]] »',
-'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[:$1]] »',
-'unprotectedarticle'          => 'a desprotegit « [[:$1]] »',
+'protectedarticle'            => 'a protegit « [[$1]] »',
+'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[$1]] »',
+'unprotectedarticle'          => 'a desprotegit « [[$1]] »',
 'protect-title'               => 'Cambiar lo nivèl de proteccion de « $1 »',
 'protect-legend'              => 'Confirmar la proteccion',
 'protectcomment'              => 'Motiu de la proteccion :',
@@ -2000,8 +2000,8 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.',
 'movepage-page-unmoved'   => 'La pagina $1 pòt èsser renomenada en $2.',
 'movepage-max-pages'      => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
-'1movedto2'               => 'a renomenat [[:$1]] en [[:$2]]',
-'1movedto2_redir'         => 'a redirigit [[:$1]] vèrs [[:$2]]',
+'1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
+'1movedto2_redir'         => 'a redirigit [[$1]] vèrs [[$2]]',
 'movelogpage'             => 'Istoric dels cambiaments de nom',
 'movelogpagetext'         => 'Vaquí la lista de las darrièras paginas renomenadas.',
 'movereason'              => 'Motiu :',
@@ -2089,7 +2089,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 # Import log
 'importlogpage'                    => 'Istoric de las importacions de paginas',
 'importlogpagetext'                => 'Impòrts administratius de paginas amb l’istoric a partir dels autres wikis.',
-'import-logentry-upload'           => 'a importat (telecargament) [[:$1]]',
+'import-logentry-upload'           => 'a importat (telecargament) [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versions}}',
 'import-logentry-interwiki'        => 'a importat (transwiki) [[$1]]',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versions}} dempuèi $2',
@@ -2638,7 +2638,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Resumit automatic : blanquiment',
 'autosumm-replace' => 'Resumit automatic : contengut remplaçat per « $1 ».',
-'autoredircomment' => 'Redireccion vèrs [[:$1]]',
+'autoredircomment' => 'Redireccion vèrs [[$1]]',
 'autosumm-new'     => 'Pagina novèla : $1',
 
 # Size units

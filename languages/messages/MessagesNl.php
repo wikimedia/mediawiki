@@ -4,18 +4,18 @@
  * @ingroup Language
  * @file
  *
- * @author Siebrand
- * @author SPQRobin
- * @author GerardM
- * @author Hamaryns
  * @author Annabel
  * @author Effeietsanders
+ * @author Erwin85
+ * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  * @author Galwaygirl
+ * @author GerardM
+ * @author Hamaryns
+ * @author McDutchie
+ * @author SPQRobin
+ * @author Siebrand
  * @author Troefkaart
  * @author לערי ריינהארט
- * @author Erwin85
- * @author McDutchie
- * @author Extended by Hendrik Maryns <hendrik.maryns@uni-tuebingen.de>, March 2007.
  */
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );
@@ -1831,9 +1831,9 @@ De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overle
 'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie. Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie). Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 'protectlogpage'              => 'Beveiligingslogboek',
 'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven. Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",
-'protectedarticle'            => '"[[:$1]]" beveiligd',
-'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[:$1]]"',
-'unprotectedarticle'          => 'beveiliging "[[:$1]]" opgeheven',
+'protectedarticle'            => '"[[$1]]" beveiligd',
+'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
+'unprotectedarticle'          => 'beveiliging "[[$1]]" opgeheven',
 'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
 'protect-legend'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Opmerkingen:',
@@ -2104,8 +2104,8 @@ Combineer de overlegpagina's alstublieft handmatig.'''",
 'movepage-page-moved'     => 'De pagina $1 is hernoemd naar $2.',
 'movepage-page-unmoved'   => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'      => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}). De overige pagina's worden niet automatisch hernoemd.",
-'1movedto2'               => '[[:$1]] hernoemd naar [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] hernoemd over de doorverwijzing [[:$2]]',
+'1movedto2'               => '[[$1]] hernoemd naar [[$2]]',
+'1movedto2_redir'         => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
 'movelogpage'             => 'Hernoemingslogboek',
 'movelogpagetext'         => "Hieronder staan hernoemde pagina's.",
 'movereason'              => 'Reden:',
@@ -2194,7 +2194,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 # Import log
 'importlogpage'                    => 'Importlogboek',
 'importlogpagetext'                => "Administratieve import van pagina's met geschiedenis van andere wiki's.",
-'import-logentry-upload'           => 'importeerde [[:$1]] via een bestandsupload',
+'import-logentry-upload'           => 'importeerde [[$1]] via een bestandsupload',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'importeerde $1 via transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
@@ -2761,7 +2761,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pagina leeggehaald',
 'autosumm-replace' => "Tekst vervangen door '$1'",
-'autoredircomment' => 'Verwijst door naar [[:$1]]',
+'autoredircomment' => 'Verwijst door naar [[$1]]',
 'autosumm-new'     => 'Nieuwe pagina: $1',
 
 # Size units
