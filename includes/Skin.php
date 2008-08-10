@@ -589,8 +589,9 @@ END;
 		$a['onload'] = $wgOut->getOnloadHandler();
 		$a['class'] =
 			'mediawiki ns-'.$wgTitle->getNamespace().
-			' '.($wgContLang->isRTL() ? "rtl" : "ltr").
-			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() );
+			' '.( $wgContLang->isRTL() ? "rtl" : "ltr" ).
+			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ).
+			' '.( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) ) );
 		return $a;
 	}
 
