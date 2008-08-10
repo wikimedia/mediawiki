@@ -591,7 +591,8 @@ END;
 			'mediawiki ns-'.$wgTitle->getNamespace().
 			' '.( $wgContLang->isRTL() ? "rtl" : "ltr" ).
 			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ).
-			' '.( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) ) );
+			' '.( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) ) ).
+			' skin-'. Sanitizer::escapeClass( $this->getSkinName( ) );
 		return $a;
 	}
 

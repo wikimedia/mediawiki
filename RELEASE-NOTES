@@ -91,6 +91,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   allows having the unprefixed page title as the default category sortkey
 * (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to 
   special pages.
+* (bug 15052) Skins should add their name as a class in <body>
 
 === API changes in 1.14 ===
 
