@@ -89,6 +89,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   entirely, not just the display of it.
 * (bug 6387) Introduced new setting $wgCategoryPrefixedDefaultSortkey which
   allows having the unprefixed page title as the default category sortkey
+* (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to 
+  special pages.
 
 === API changes in 1.14 ===
 

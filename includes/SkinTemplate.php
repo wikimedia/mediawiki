@@ -192,6 +192,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pagetitle', $wgOut->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $wgOut->mPageLinkTitle );
 		$tpl->set( 'pageclass', Sanitizer::escapeClass( 'page-'.$this->mTitle->getPrefixedText() ) );
+		$tpl->set( 'talkclass', ( $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) ) );
 
 		$nsname = isset( $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] ) ?
 		          $wgCanonicalNamespaceNames[ $this->mTitle->getNamespace() ] :
