@@ -455,16 +455,6 @@ class EditPage {
 			$wgOut->addWikiMsg( 'talkpagetext' );
 		}
 
-		# Optional notices on a per-namespace and per-page basis
-		$editnotice_ns   = 'editnotice-'.Sanitizer::escapeClass( 'ns-'.$this->mTitle->getNamespace() );
-		$editnotice_page = 'editnotice-'.Sanitizer::escapeClass( 'page-'.$this->mTitle->getPrefixedText() );
-		if ( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
-			$wgOut->addWikiMsg( $editnotice_ns );
-		}
-		if ( !wfEmptyMsg( $editnotice_page, wfMsgForContent( $editnotice_page ) ) ) {
-			$wgOut->addWikiMsg( $editnotice_page );
-		}
-
 		# Attempt submission here.  This will check for edit conflicts,
 		# and redundantly check for locked database, blocked IPs, etc.
 		# that edit() already checked just in case someone tries to sneak
