@@ -7,6 +7,7 @@ if ( ! defined( 'MEDIAWIKI' ) )
  */
 class OutputPage {
 	var $mMetatags = array(), $mKeywords = array(), $mLinktags = array();
+	var $mExtStyles = array();
 	var $mPagetitle = '', $mBodytext = '', $mDebugtext = '';
 	var $mHTMLtitle = '', $mIsarticle = true, $mPrintable = false;
 	var $mSubtitle = '', $mRedirect = '', $mStatusCode;
@@ -76,6 +77,11 @@ class OutputPage {
 					'href' => $wgStylePath . '/' . $style . '?' . $wgStyleVersion,
 					'type' => 'text/css' ) );
 	}
+	
+	function addExtensionStyle( $url ) {
+		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
+		array_push( $this->mExtStyles, $linkarr );
+	}
 
 	/**
 	 * Add a JavaScript file out of skins/common, or a given relative path.
@@ -88,7 +94,6 @@ class OutputPage {
 		} else {
 			$path =  "{$wgStylePath}/common/{$file}";
 		}
-		$encPath = htmlspecialchars( $path );
 		$this->addScript( "<script type=\"{$wgJsMimeType}\" src=\"$path?$wgStyleVersion\"></script>\n" );
 	}
 	
@@ -128,6 +133,11 @@ class OutputPage {
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
 		array_push( $this->mLinktags, $linkarr );
+	}
+	
+	# Get all links added by extensions
+	function getExtStyle() {
+		return $this->mExtStyles;
 	}
 
 	function addMetadataLink( $linkarr ) {
@@ -1409,8 +1419,13 @@ class OutputPage {
 		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
 
 		$sk = $wgUser->getSkin();
+		// Load order here is key
 		$ret .= $sk->getHeadScripts( $this->mAllowUserJs );
 		$ret .= $this->mScripts;
+		$ret .= $sk->getSiteStyles();
+		foreach( $this->mExtStyles as $tag ) {
+			$ret .= Xml::element( 'link', $tag ) . "\n";
+		}
 		$ret .= $sk->getUserStyles();
 		$ret .= $this->getHeadItems();
 
