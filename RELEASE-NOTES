@@ -95,6 +95,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to 
   special pages.
 * (bug 15052) Skins should add their name as a class in <body>
+* (bug 14165, bug 14294) Wikimedia specific configuration in convertGrammar()
+  for several languages was removed. The settings have been put in extension
+  WikimediaMessages. Patch for Czech by Danny B.
 
 === API changes in 1.14 ===
 
