@@ -552,6 +552,7 @@ class PreferencesForm {
 		$this->mUsedToggles[ 'enotifrevealaddr' ] = true;
 		$this->mUsedToggles[ 'ccmeonemails' ] = true;
 		$this->mUsedToggles[ 'uselivepreview' ] = true;
+		$this->mUsedToggles[ 'noconvertlink' ] = true;
 
 
 		if ( !$this->mEmailFlag ) { $emfc = 'checked="checked"'; }
