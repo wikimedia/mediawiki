@@ -588,12 +588,24 @@ END;
 		}
 		$a['onload'] = $wgOut->getOnloadHandler();
 		$a['class'] =
-			'mediawiki ns-'.$wgTitle->getNamespace().
+			'mediawiki' .
+			' '.$this->getNamespaceClasses( $wgTitle ) .
 			' '.( $wgContLang->isRTL() ? "rtl" : "ltr" ).
 			' '.Sanitizer::escapeClass( 'page-'.$wgTitle->getPrefixedText() ).
-			' '. $wgTitle->isTalkPage() ? "ns-talk" : ( $wgTitle->getNamespace() == NS_SPECIAL ? "ns-special" : "ns-subject" ) .
 			' skin-'. Sanitizer::escapeClass( $this->getSkinName( ) );
 		return $a;
+	}
+	
+	function getNamespaceClasses( $title ) {
+		$numeric = 'ns-'.$title->getNamespace();
+		if( $title->getNamespace() == NS_SPECIAL ) {
+			$type = "ns-special";
+		} elseif( $title->isTalkPage() ) {
+			$type = "ns-talk";
+		} else {
+			$type = "ns-subject";
+		}
+		return "$numeric $type";
 	}
 
 	/**
