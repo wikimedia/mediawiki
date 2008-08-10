@@ -34,99 +34,11 @@ class LanguageBs extends Language {
 			return $wgGrammarForms['bs'][$case][$word];
 		}
 		switch ( $case ) {
-			case 'genitiv': # genitive
-				if ( $word == 'Wikipedia' ) {
-					$word = 'Wikipedije';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'Wikiknjiga';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 'Wikivijesti';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 'Wikicitata';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 'Wikiizvora';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 'Vikirječnika';
-				}
-			break;
-			case 'dativ': # dative
-				if ( $word == 'Wikipedia' ) {
-					$word = 'Wikipediji';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'Wikiknjigama';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 'Wikicitatima';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 'Wikivijestima';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 'Wikiizvoru';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 'Vikirječniku';
-				}
-			break;
-			case 'akuzativ': # akusative
-				if ( $word == 'Wikipedia' ) {
-					$word = 'Wikipediju';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'Wikiknjige';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 'Wikicitate';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 'Wikivijesti';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 'Wikiizvora';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 'Vikirječnika';
-				}
-			break;
-			case 'vokativ': # vocative
-				if ( $word == 'Wikipedia' ) {
-					$word = 'Wikipedijo';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'Wikiknjige';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 'Wikicitati';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 'Wikivijesti';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 'Wikizivoru';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 'Vikirječniče';
-				}
-			break;
 			case 'instrumental': # instrumental
-				if ( $word == 'Wikipedia' ) {
-					$word = 's Wikipediom';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 's Wikiknjigama';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 's Wikicitatima';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 's Wikivijestima';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 's Wikiizvorom';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 's Vikirječnikom';
-				} else {
-					$word = 's ' . $word;
-				}
+				$word = 's ' . $word;
 			break;
 			case 'lokativ': # locative
-				if ( $word == 'Wikipedia' ) {
-					$word = 'o Wikipediji';
-				} elseif ( $word == 'Wikiknjige' ) {
-					$word = 'o Wikiknjigama';
-				} elseif ( $word == 'Wikicitati' ) {
-					$word = 'o Wikicitatima';
-				} elseif ( $word == 'Wikivijesti' ) {
-					$word = 'o Wikivijestima';
-				} elseif ( $word == 'Wikiizvor' ) {
-					$word = 'o Wikiizvoru';
-				} elseif ( $word == 'Vikirječnik' ) {
-					$word = 'o Vikirječniku';
-				} else {
-					$word = 'o ' . $word;
-				}
+				$word = 'o ' . $word;
 			break;
 		}
 

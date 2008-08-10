@@ -27,31 +27,4 @@ class LanguageLv extends Language {
 
 		return ( ( $count % 10 == 1 ) && ( $count % 100 != 11 ) ) ? $forms[0] : $forms[1];
 	}
-
-	# Convert from the nominative form of a noun to some other case
-	# Invoked with {{GRAMMAR:case|word}}
-	# ģenitīvs - kā, datīvs - kam, akuzatīvs - ko, lokatīvs - kur.
-	/**
-	 * Cases: ģenitīvs, datīvs, akuzatīvs, lokatīvs
-	 */
-	function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-
-		$wgGrammarForms['lv']['ģenitīvs' ]['Vikipēdija']   = 'Vikipēdijas';
-		$wgGrammarForms['lv']['ģenitīvs' ]['Vikivārdnīca'] = 'Vikivārdnīcas';
-		$wgGrammarForms['lv']['datīvs'   ]['Vikipēdija']   = 'Vikipēdijai';
-		$wgGrammarForms['lv']['datīvs'   ]['Vikivārdnīca'] = 'Vikivārdnīcai';
-		$wgGrammarForms['lv']['akuzatīvs']['Vikipēdija']   = 'Vikipēdiju';
-		$wgGrammarForms['lv']['akuzatīvs']['Vikivārdnīca'] = 'Vikivārdnīcu';
-		$wgGrammarForms['lv']['lokatīvs' ]['Vikipēdija']   = 'Vikipēdijā';
-		$wgGrammarForms['lv']['lokatīvs' ]['Vikivārdnīca'] = 'Vikivārdnīcā';
-
-		if ( isset($wgGrammarForms['lv'][$case][$word]) ) {
-			return $wgGrammarForms['lv'][$case][$word];
-		}
-
-		return $word;
-	}
 }
-
-
