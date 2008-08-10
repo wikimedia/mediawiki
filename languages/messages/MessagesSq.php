@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Dori
  * @author Cradel
+ * @author Dori
  * @author Ergon
  * @author לערי ריינהארט
  */
@@ -1457,9 +1457,9 @@ Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|Diskutim]])
 'protectlogpage'              => 'Regjistri i mbrojtjeve',
 'protectlogtext'              => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve.
 Shikoni Faqe e mbrojtur për më shumë informacion.',
-'protectedarticle'            => 'mbrojti [[:$1]]',
-'modifiedarticleprotection'   => 'ndryshoi mbrojtjen e faqes "[[:$1]]"',
-'unprotectedarticle'          => 'liroi [[:$1]]',
+'protectedarticle'            => 'mbrojti [[$1]]',
+'modifiedarticleprotection'   => 'ndryshoi mbrojtjen e faqes "[[$1]]"',
+'unprotectedarticle'          => 'liroi [[$1]]',
 'protect-title'               => 'Duke ndryshuar mbrojtjen e "$1"',
 'protect-legend'              => 'Konfirmoni',
 'protectcomment'              => 'Arsyeja:',
@@ -1696,8 +1696,8 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movepage-page-moved'     => 'Faqja $1 është zhvendosur tek $2.',
 'movepage-page-unmoved'   => "Faqja $1 s'mund të zhvendosej tek $2.",
 'movepage-max-pages'      => "Maksimumi i lejuar, $1 faqe, janë zhvendosur dhe s'do të zhvendosen më faqe të tjera automatikisht.",
-'1movedto2'               => '[[:$1]] u zhvendos tek [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] u zhvendos tek [[:$2]] dhe u krijua një faqe përcjellimi',
+'1movedto2'               => '[[$1]] u zhvendos tek [[$2]]',
+'1movedto2_redir'         => '[[$1]] u zhvendos tek [[$2]] dhe u krijua një faqe përcjellimi',
 'movelogpage'             => 'Regjistri i zhvendosjeve',
 'movelogpagetext'         => 'Më poshtë është një listë e faqeve të zhvendosura',
 'movereason'              => 'Arsyeja',
@@ -2155,7 +2155,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'U largua krejt përmbajtja e artikullit',
 'autosumm-replace' => "Faqja u zëvendësua me '$1'",
-'autoredircomment' => 'Përcjellim te [[:$1]]',
+'autoredircomment' => 'Përcjellim te [[$1]]',
 'autosumm-new'     => 'Faqe e re: $1',
 
 # Live preview

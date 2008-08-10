@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Masterches
  * @author Jvm
+ * @author Masterches
  */
 
 $fallback = 'fr';
@@ -962,7 +962,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 'talkexists'       => 'Paj an men byen deplase. Mè paj diskisyon an pa deplase paske li te ja egziste yonn anlè nouvo paj an. Souple, fizyone de diskisyon sa yo, mete yo ansanmm anlè nouvo paj an.',
 'movedto'          => 'deplase nan',
 'movetalk'         => 'Renonmen ak deplase paj diskisyon an tou',
-'1movedto2'        => '[[:$1]] renonmen, li kounye a [[:$2]]',
+'1movedto2'        => '[[$1]] renonmen, li kounye a [[$2]]',
 'movelogpage'      => 'Istorik renomaj yo',
 'movereason'       => 'Poukisa nou deplase li :',
 'revertmove'       => 'anile',

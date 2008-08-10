@@ -4,17 +4,17 @@
  * @ingroup Language
  * @file
  *
- * @author Red Baron
- * @author Purodha
+ * @author Jimmy Collins <jimmy.collins@web.de>
  * @author MichaelFrey
  * @author Omnipaedista
- * @author Spacebirdy
- * @author Revolus
- * @author לערי ריינהארט
  * @author Pill
- * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Purodha
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
+ * @author Red Baron
+ * @author Revolus
+ * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1341,7 +1341,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'imagelinks'                     => 'Verwendung',
 'linkstoimage'                   => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
 'linkstoimage-more'              => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
-Die folgende Liste zeigt nur den {{PLURAL:$1|ersten Link|die ersten $1 Links}} auf diese Datei.
+Die folgende Liste zeigt nur {{PLURAL:$1|den ersten Link|die ersten $1 Links}} auf diese Datei.
 Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'nolinkstoimage'                 => 'Keine Seite benutzt diese Datei.',
 'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
@@ -1465,7 +1465,6 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
-'lonelypagestext'         => '',
 'uncategorizedpages'      => 'Nicht kategorisierte Seiten',
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages'     => 'Nicht kategorisierte Dateien',
@@ -1486,7 +1485,6 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Lange Seiten',
 'deadendpages'            => 'Sackgassenseiten',
-'deadendpagestext'        => '',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
 'protectedpagestext'      => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
@@ -1711,9 +1709,9 @@ Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 'protectlogpage'              => 'Seitenschutz-Logbuch',
 'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch.
 Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',
-'protectedarticle'            => 'schützte „[[:$1]]“',
-'modifiedarticleprotection'   => 'änderte den Schutz von „[[:$1]]“',
-'unprotectedarticle'          => 'hob den Schutz von „[[:$1]]“ auf',
+'protectedarticle'            => 'schützte „[[$1]]“',
+'modifiedarticleprotection'   => 'änderte den Schutz von „[[$1]]“',
+'unprotectedarticle'          => 'hob den Schutz von „[[$1]]“ auf',
 'protect-title'               => 'Schutz ändern von „$1“',
 'protect-legend'              => 'Seitenschutzstatus ändern',
 'protectcomment'              => 'Grund:',
@@ -1989,8 +1987,8 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
 'movepage-page-unmoved'   => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
 'movepage-max-pages'      => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
-'1movedto2'               => 'hat „[[:$1]]“ nach „[[:$2]]“ verschoben',
-'1movedto2_redir'         => 'hat „[[:$1]]“ nach „[[:$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
+'1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
+'1movedto2_redir'         => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
 'movelogpage'             => 'Verschiebungs-Logbuch',
 'movelogpagetext'         => 'Dies ist eine Liste aller verschobenen Seiten.',
 'movereason'              => 'Begründung:',
@@ -2078,7 +2076,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Import log
 'importlogpage'                    => 'Import-Logbuch',
 'importlogpagetext'                => 'Administrativer Import von Seiten mit Versionsgeschichte von anderen Wikis.',
-'import-logentry-upload'           => 'hat „[[:$1]]“ von einer Datei importiert',
+'import-logentry-upload'           => 'hat „[[$1]]“ von einer Datei importiert',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versionen}}',
 'import-logentry-interwiki'        => 'hat „[[$1]]“ importiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versionen}} von $2',
@@ -2639,7 +2637,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Auto-summaries
 'autosumm-blank'   => 'Die Seite wurde geleert.',
 'autosumm-replace' => "Der Seiteninhalt wurde durch einen anderen Text ersetzt: '$1'",
-'autoredircomment' => 'Weiterleitung nach [[:$1]] erstellt',
+'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
 'autosumm-new'     => 'Die Seite wurde neu angelegt: $1',
 
 # Size units

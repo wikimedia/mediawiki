@@ -4,18 +4,19 @@
  * @ingroup Language
  * @file
  *
- * @author Suisui
- * @author Marine-Blue
- * @author JtFuruhata
- * @author Broad-Sky
- * @author Kahusi
- * @author Emk
- * @author Mzm5zbC3
+ * @author Alexsh
  * @author Aotake
- * @author Iwai.masaharu
- * @author לערי ריינהארט
- * @author Kkkdc
+ * @author Broad-Sky
+ * @author Emk
  * @author Hatukanezumi
+ * @author Iwai.masaharu
+ * @author JtFuruhata
+ * @author Kahusi
+ * @author Kkkdc
+ * @author Marine-Blue
+ * @author Mzm5zbC3
+ * @author Suisui
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -549,7 +550,7 @@ $2',
 *ブロック解除予定: $6
 *ブロック対象: $7
 
-$1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
+$1 または他の[[{{int:Grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
@@ -1440,9 +1441,9 @@ $NEWPAGE
 'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
 'protectlogpage'              => '保護記録',
 'protectlogtext'              => '以下はページの保護・保護解除の一覧です。',
-'protectedarticle'            => '"[[:$1]]" を保護しました。',
-'modifiedarticleprotection'   => '"[[:$1]]" の保護レベルを変更しました。',
-'unprotectedarticle'          => '"[[:$1]]" の保護を解除しました。',
+'protectedarticle'            => '"[[$1]]" を保護しました。',
+'modifiedarticleprotection'   => '"[[$1]]" の保護レベルを変更しました。',
+'unprotectedarticle'          => '"[[$1]]" の保護を解除しました。',
 'protect-title'               => '"$1" の保護',
 'protect-legend'              => '保護の確認',
 'protectcomment'              => '保護・保護解除の理由',
@@ -1529,13 +1530,14 @@ $NEWPAGE
 'blanknamespace' => '（標準）',
 
 # Contributions
-'contributions' => '利用者の投稿記録',
-'mycontris'     => '自分の投稿記録',
-'contribsub2'   => '利用者名: $1 ($2)',
-'nocontribs'    => '利用者の投稿記録は見つかりませんでした。',
-'uctop'         => '（最新）',
-'month'         => '月:',
-'year'          => '年:',
+'contributions'       => '利用者の投稿記録',
+'contributions-title' => '$1の投稿記録',
+'mycontris'           => '自分の投稿記録',
+'contribsub2'         => '利用者名: $1 ($2)',
+'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
+'uctop'               => '（最新）',
+'month'               => '月:',
+'year'                => '年:',
 
 'sp-contributions-newbies'     => '新規利用者の投稿のみ表示',
 'sp-contributions-newbies-sub' => '新規利用者',
@@ -1703,8 +1705,8 @@ $NEWPAGE
 'movepage-page-moved'     => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'   => '$1 を $2 へ移動できませんでした。',
 'movepage-max-pages'      => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
-'1movedto2'               => 'ページ [[:$1]] を [[:$2]] へ移動',
-'1movedto2_redir'         => 'ページ [[:$1]] をこのページあてのリダイレクト [[:$2]] へ移動',
+'1movedto2'               => 'ページ [[$1]] を [[$2]] へ移動',
+'1movedto2_redir'         => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
 'movelogpage'             => '移動記録',
 'movelogpagetext'         => '以下はページ移動の記録です。',
 'movereason'              => '理由',
@@ -1784,7 +1786,7 @@ $NEWPAGE
 # Import log
 'importlogpage'                    => 'インポート記録',
 'importlogpagetext'                => '以下は管理者による他ウィキからのページデータの取り込み記録です。',
-'import-logentry-upload'           => 'ファイルのアップロードにより [[:$1]] をインポートしました',
+'import-logentry-upload'           => 'ファイルのアップロードにより [[$1]] をインポートしました',
 'import-logentry-upload-detail'    => '$1 版',
 'import-logentry-interwiki'        => '$1 をtranswikiしました',
 'import-logentry-interwiki-detail' => '$2 の $1 版',
@@ -2344,7 +2346,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'ページの白紙化',
 'autosumm-replace' => "ページの置換: '$1'",
-'autoredircomment' => '[[:$1]]へのリダイレクト',
+'autoredircomment' => '[[$1]]へのリダイレクト',
 'autosumm-new'     => "新しいページ: '$1'",
 
 # Size units

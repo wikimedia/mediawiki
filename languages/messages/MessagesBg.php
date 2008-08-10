@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author DCLXVI
- * @author Borislav
- * @author Spiritia
  * @author BloodIce
+ * @author Borislav
+ * @author DCLXVI
+ * @author Daggerstab
+ * @author Spiritia
  * @author Петър Петров
  * @author לערי ריינהארט
- * @author Daggerstab
  */
 
 $fallback8bitEncoding = 'windows-1251';
@@ -1695,9 +1695,9 @@ $NEWPAGE
 'protectlogpage'              => 'Дневник на защитата',
 'protectlogtext'              => 'Списък на защитите и техните сваляния за страницата.
 Можете да прегледате и [[Special:ProtectedPages|списъка на текущо защитените страници]].',
-'protectedarticle'            => 'защитаване на „[[:$1]]“',
-'modifiedarticleprotection'   => 'смяна на нивото на защита на „[[:$1]]“',
-'unprotectedarticle'          => 'сваляне на защитата на „[[:$1]]“',
+'protectedarticle'            => 'защитаване на „[[$1]]“',
+'modifiedarticleprotection'   => 'смяна на нивото на защита на „[[$1]]“',
+'unprotectedarticle'          => 'сваляне на защитата на „[[$1]]“',
 'protect-title'               => 'Защитаване на „$1“',
 'protect-legend'              => 'Потвърждение на защитата',
 'protectcomment'              => 'Коментар:',
@@ -1965,8 +1965,8 @@ $1',
 'movepage-page-moved'     => 'Страницата $1 беше преместена като $2.',
 'movepage-page-unmoved'   => 'Страницата $1 не може да бъде преместена като $2.',
 'movepage-max-pages'      => 'Преместен беше максималният брой от $1 {{PLURAL:$1|страница|страници}} и повече страници няма да бъдат премествани автоматично.',
-'1movedto2'               => '„[[:$1]]“ преместена като „[[:$2]]“',
-'1movedto2_redir'         => '„[[:$1]]“ преместена като „[[:$2]]“ (върху пренасочване)',
+'1movedto2'               => '„[[$1]]“ преместена като „[[$2]]“',
+'1movedto2_redir'         => '„[[$1]]“ преместена като „[[$2]]“ (върху пренасочване)',
 'movelogpage'             => 'Дневник на преместванията',
 'movelogpagetext'         => 'По-долу е показан списък на преместванията.',
 'movereason'              => 'Причина:',
@@ -2054,7 +2054,7 @@ $1',
 # Import log
 'importlogpage'                    => 'Дневник на внасянията',
 'importlogpagetext'                => 'Административни внасяния на страници с редакционна история от други уикита.',
-'import-logentry-upload'           => '[[:$1]] беше внесена от файл',
+'import-logentry-upload'           => '[[$1]] беше внесена от файл',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|една версия|$1 версии}}',
 'import-logentry-interwiki'        => '$1 беше внесена от друго уики',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|една версия|$1 версии}} на $2 бяха внесени',
@@ -2570,7 +2570,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Премахване на цялото съдържание на страницата',
 'autosumm-replace' => 'Заместване на съдържанието на страницата с „$1“',
-'autoredircomment' => 'Пренасочване към [[:$1]]',
+'autoredircomment' => 'Пренасочване към [[$1]]',
 'autosumm-new'     => 'Нова страница: $1',
 
 # Live preview

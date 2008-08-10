@@ -1127,7 +1127,7 @@ Tadhelt:
 Axdam-agi yebṭel axaṭer waqila yella wemdan nniḍen i yeddem isem n wemseqdac inek.
 G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, umbeɛd wekki ɣef "Actualiser/reload" akk ad tɛerḍeḍ tikelt nniḍen.',
 'protectlogpage'          => 'Aɣmis n wemḥay',
-'protectedarticle'        => '"[[:$1]]" yettwaḥrez',
+'protectedarticle'        => '"[[$1]]" yettwaḥrez',
 'protect-title'           => 'Ad yeḥrez "$1"',
 'protect-legend'          => 'Sentem tiḥḥerzi',
 'protect-default'         => '(ameslugen)',
@@ -1226,8 +1226,8 @@ Xtar yiwen nniḍen.',
 'talkexists'              => "'''Asemmimeḍ n usebter yekfa, meɛna asebter n umyannan ines ur yettusemmimeḍ ara axaṭer yella yagi yiwen s yisem kif-kif. G leɛnayek, xdem-it weḥd-ek.'''",
 'movedto'                 => 'yettusmimeḍ ar',
 'movetalk'                => 'Smimeḍ asebter n umyannan (n umagrad-nni)',
-'1movedto2'               => '[[:$1]] yettusmimeḍ ar [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] yettusmimeḍ ar [[:$2]] s redirect',
+'1movedto2'               => '[[$1]] yettusmimeḍ ar [[$2]]',
+'1movedto2_redir'         => '[[$1]] yettusmimeḍ ar [[$2]] s redirect',
 'movelogpage'             => 'Aɣmis n usemmimeḍ',
 'movelogpagetext'         => 'Akessar yella wumuɣ n isebtar yettusmimeḍen.',
 'movereason'              => 'Ayɣer',
@@ -1286,7 +1286,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => 'Aɣmis n usekcam',
 'importlogpagetext'                => 'Adeblan n usekcam n isebtar i yesɛan amezruy ubeddel seg wiki tiyaḍ.',
-'import-logentry-upload'           => 'Yessekcem [[:$1]] s usekcam n ufaylu',
+'import-logentry-upload'           => 'Yessekcem [[$1]] s usekcam n ufaylu',
 'import-logentry-upload-detail'    => '$1 tasiwelt(tisiwal)',
 'import-logentry-interwiki'        => '$1 s transwiki',
 'import-logentry-interwiki-detail' => '$1 tasiwelt(tisiwal) seg $2',
@@ -1529,7 +1529,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Yekkes akk aḍris seg usebter',
 'autosumm-replace' => "Ibeddel asebtar s '$1'",
-'autoredircomment' => 'Asemmimeḍ ar [[:$1]]',
+'autoredircomment' => 'Asemmimeḍ ar [[$1]]',
 'autosumm-new'     => 'Asebtar amaynut: $1',
 
 # Size units

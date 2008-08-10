@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Runningfridgesrule
- * @author לערי ריינהארט
  * @author ILVI
+ * @author Runningfridgesrule
  * @author Taichi
+ * @author לערי ריינהארט
  */
 
 $fallback = 'es';
@@ -231,8 +231,8 @@ $messages = array(
 'actioncomplete' => 'Aksion kompleta',
 
 # Move page
-'1movedto2'       => '[[:$1]] trasladado a [[:$2]]',
-'1movedto2_redir' => '[[:$1]] trasladado a [[:$2]] sovre una redireksion',
+'1movedto2'       => '[[$1]] trasladado a [[$2]]',
+'1movedto2_redir' => '[[$1]] trasladado a [[$2]] sovre una redireksion',
 
 # Namespace 8 related
 'allmessages'        => 'Mesajes del sistema',
@@ -301,7 +301,7 @@ $messages = array(
 'table_pager_empty'        => 'No hay resultados',
 
 # Auto-summaries
-'autoredircomment' => 'Redireksionado a [[:$1]]',
+'autoredircomment' => 'Redireksionado a [[$1]]',
 'autosumm-new'     => 'Pajina mueva: $1',
 
 # Special:Version

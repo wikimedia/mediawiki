@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author Dani
- * @author Tgr
- * @author Samat
- * @author Bdamokos
- * @author Cerasus
- * @author Dorgan
  * @author Balasyum
+ * @author Bdamokos
  * @author Bennó
+ * @author Cerasus
+ * @author Dani
+ * @author Dorgan
+ * @author Samat
+ * @author Tgr
  */
 
 $namespaceNames = array(
@@ -1810,9 +1810,9 @@ ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
 'protectlogpage'              => 'Lapvédelmi_napló',
 'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
-'protectedarticle'            => 'levédte a(z) [[:$1]] lapot',
-'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[:$1]]"',
-'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[:$1]]” lapról',
+'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
+'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[$1]]"',
+'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
 'protect-title'               => '„$1” levédése',
 'protect-legend'              => 'Levédés megerősítése',
 'protectcomment'              => 'A védelem oka',
@@ -2093,8 +2093,8 @@ Kérlek, válassz egy másik nevet.',
 'movepage-page-moved'     => 'A(z) „$1” nevű lap át lett nevezve „$2” névre.',
 'movepage-page-unmoved'   => 'A(z) „$1” nevű lap nem nevezhető át „$2” névre.',
 'movepage-max-pages'      => '{{PLURAL:$1|Egy|$1}} lapnál több nem nevezhető át automatikusan, így a további lapok a helyükön maradnak.',
-'1movedto2'               => '[[:$1]] lapot átneveztem [[:$2]] névre',
-'1movedto2_redir'         => '[[:$1]] lapot átneveztem [[:$2]] névre (az átirányítást felülírva)',
+'1movedto2'               => '[[$1]] lapot átneveztem [[$2]] névre',
+'1movedto2_redir'         => '[[$1]] lapot átneveztem [[$2]] névre (az átirányítást felülírva)',
 'movelogpage'             => 'Átnevezési napló',
 'movelogpagetext'         => 'Az alábbiakban az átnevezett lapok listája látható.',
 'movereason'              => 'Indoklás',
@@ -2186,7 +2186,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 # Import log
 'importlogpage'                    => 'Importnapló',
 'importlogpagetext'                => 'Lapok szerkesztési előzményekkel történő adminisztratív imporálása más wikikből.',
-'import-logentry-upload'           => '[[:$1]] importálása fájlfeltöltéssel kész',
+'import-logentry-upload'           => '[[$1]] importálása fájlfeltöltéssel kész',
 'import-logentry-upload-detail'    => '$1 változat',
 'import-logentry-interwiki'        => '$1 más wikiből áthozva',
 'import-logentry-interwiki-detail' => '$1 változat innen: $2',
@@ -2729,7 +2729,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'A lap teljes tartalmának eltávolítása',
 'autosumm-replace' => 'A lap tartalmának cseréje erre: $1',
-'autoredircomment' => 'Átirányítás ide: [[:$1]]',
+'autoredircomment' => 'Átirányítás ide: [[$1]]',
 'autosumm-new'     => 'Új oldal, tartalma: „$1”',
 
 # Live preview

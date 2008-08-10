@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Wikimistusik
- * @author Sab
  * @author Nkosi ya Cabinda
+ * @author Sab
+ * @author Wikimistusik
  */
 
 $messages = array(
@@ -1361,7 +1361,7 @@ Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:ProtectedPages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',
-'modifiedarticleprotection'   => 'betayana nendareka va "[[:$1]]"',
+'modifiedarticleprotection'   => 'betayana nendareka va "[[$1]]"',
 'unprotectedarticle'          => 'va « $1 » al dimnendar',
 'protect-title'               => 'Nendara va « $1 »',
 'protect-legend'              => 'Va nendara gruyel',
@@ -1660,7 +1660,7 @@ bu ika int me zo rotarrundar.',
 
 # Import log
 'importlogpage'                    => 'Koburera va "log" bu',
-'import-logentry-upload'           => 'kobureyen [[:$1]] kan iyeltakkalvajara',
+'import-logentry-upload'           => 'kobureyen [[$1]] kan iyeltakkalvajara',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|betaks|betaks}}',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|betaks|betaks}} male $2',
 
@@ -2103,7 +2103,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Sulas va varaf bucek',
 'autosumm-replace' => "Ikaplekura va bu kan '$1'",
-'autoredircomment' => 'Graskara va [[:$1]]',
+'autoredircomment' => 'Graskara va [[$1]]',
 'autosumm-new'     => 'Warzafu bu : $1',
 
 # Live preview

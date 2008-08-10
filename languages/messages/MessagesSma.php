@@ -681,7 +681,7 @@ nome dov åtna veeljeme lea ijje jiiltige.
 Gïemhpes veeljeme jeatjebh nomme.',
 'movedto'          => 'jåhta gåajkoe',
 'movetalk'         => 'Jåhta aaj dïerkestidhbielie, bïjre dïhte gååvnese.',
-'1movedto2'        => '[[:$1]] jåhta gåajkoe [[:$2]]',
+'1movedto2'        => '[[$1]] jåhta gåajkoe [[$2]]',
 'movelogpage'      => 'Jåhta logge',
 'movereason'       => 'Gaavhtan:',
 'revertmove'       => 'jåhta bååstede',

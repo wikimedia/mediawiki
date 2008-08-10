@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Ramsis II
+ * @author Alnokta
  * @author Ghaly
  * @author Meno25
- * @author Alnokta
+ * @author Ramsis II
  */
 
 $fallback = 'ar';
@@ -1123,25 +1123,26 @@ $2',
 'files'                    => 'ملفات',
 
 # User rights
-'userrights'                  => 'إدارة الحقوق بتاعة اليوزر', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'إدارة مجموعات اليوزر',
-'userrights-user-editname'    => 'دخل اسم يوزر:',
-'editusergroup'               => 'تعديل مجموعات اليوزر',
-'editinguser'                 => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'تعديل مجموعات اليوزر',
-'saveusergroups'              => 'حفظ مجموعات اليوزر',
-'userrights-groupsmember'     => 'عضو في:',
-'userrights-groups-help'      => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
+'userrights'                     => 'إدارة الحقوق بتاعة اليوزر', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'         => 'إدارة مجموعات اليوزر',
+'userrights-user-editname'       => 'دخل اسم يوزر:',
+'editusergroup'                  => 'تعديل مجموعات اليوزر',
+'editinguser'                    => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => 'تعديل مجموعات اليوزر',
+'saveusergroups'                 => 'حفظ مجموعات اليوزر',
+'userrights-groupsmember'        => 'عضو في:',
+'userrights-groups-help'         => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
 * صندوق متعلم يعني اليوزر دا عضو في المجموعة دي.
 * صندوق مش متعلم يعني  اليوزر دا مش عضو في المجموعة دي.
 * علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
-'userrights-reason'           => 'سبب التغيير:',
-'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
-'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
-'userrights-nologin'          => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
-'userrights-notallowed'       => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
-'userrights-changeable-col'   => 'المجموعات اللي تقدر تغييرها',
-'userrights-unchangeable-col' => 'المجموعات اللى مش ممكن انك تغيرها',
+'userrights-reason'              => 'سبب التغيير:',
+'userrights-no-interwiki'        => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
+'userrights-nodatabase'          => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
+'userrights-nologin'             => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
+'userrights-notallowed'          => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
+'userrights-changeable-col'      => 'المجموعات اللي تقدر تغييرها',
+'userrights-unchangeable-col'    => 'المجموعات اللى مش ممكن انك تغيرها',
+'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -1435,6 +1436,7 @@ PICT # misc.
 
 # File reversion
 'filerevert'                => 'استرجع $1',
+'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'استرجع الملف',
 'filerevert-intro'          => "أنت بترجع '''[[Media:$1|$1]]''' [$4 للنسخةاللي بتاريخ $2، $3].",
 'filerevert-comment'        => 'تعليق:',
@@ -1445,6 +1447,7 @@ PICT # misc.
 
 # File deletion
 'filedelete'                  => 'امسح $1',
+'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'امسح الملف',
 'filedelete-intro'            => "أنت بتمسح '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">أنت بتمسح نسخة \'\'\'[[Media:$1|$1]]\'\'\'اللي  بتاريخ [$4 $3، $2].</span>',
@@ -1639,6 +1642,7 @@ PICT # misc.
 'listgrouprights-rights'          => 'الحقوق',
 'listgrouprights-helppage'        => 'Help: حقوق المجموعات',
 'listgrouprights-members'         => '(لستة الأعضاء)',
+'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup'        => ' ممكن تضيف مجموعات : $1',
 'listgrouprights-removegroup'     => ' ممكن تشيل مجموعات : $1',
 'listgrouprights-addgroup-all'    => ' ممكن تضيف كل المجموعات : $1',
@@ -1794,10 +1798,11 @@ $NEWPAGE
 'protectlogpage'              => 'سجل الحمايه',
 'protectlogtext'              => 'تحت في لستة بالصفحات اللي اعملها حماية او اتشالت منها الحماية.
 شوف [[Special:ProtectedPages|لستة الصفحات المحمية]] لستة بعمليات حماية الصفحات الشغالة دلوقتي.',
-'protectedarticle'            => 'حمى "[[:$1]]"',
-'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[:$1]]"',
-'unprotectedarticle'          => 'شال حماية [[:$1]]',
+'protectedarticle'            => 'حمى "[[$1]]"',
+'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
+'unprotectedarticle'          => 'شال حماية [[$1]]',
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
+'protect-backlink'            => '← $1',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',
@@ -2044,6 +2049,7 @@ $1',
 
 # Move page
 'move-page'               => 'انقل $1',
+'move-page-backlink'      => '← $1',
 'move-page-legend'        => 'انقل الصفحة',
 'movepagetext'            => "لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
 هاتبتدى تحويله من العنوان القديم للصفحه بالعنوان الجديد.
@@ -2081,8 +2087,8 @@ $1',
 'movepage-page-moved'     => 'الصفحة $1 اتنقلت لـ $2.',
 'movepage-page-unmoved'   => 'ماقدرناش ننقل الصفحة $1 لـ $2.',
 'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} اتنقل. و مافيش حاجة تاني ح تتنقل اوتوماتيكي.',
-'1movedto2'               => '[[:$1]] اتنقلت ل [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] انقلت لـ[[:$2]] فوق التحويلة',
+'1movedto2'               => '[[$1]] اتنقلت ل [[$2]]',
+'1movedto2_redir'         => '[[$1]] انقلت لـ[[$2]] فوق التحويلة',
 'movelogpage'             => 'سجل النقل',
 'movelogpagetext'         => 'تحت في لستة الصفحات اللي اتنقلت.',
 'movereason'              => 'السبب:',
@@ -2172,7 +2178,7 @@ $1',
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
 'importlogpagetext'                => 'استيرادات إدارية لصفحات ليها تاريخ تعديل من مواقع ويكي تانية.',
-'import-logentry-upload'           => 'استورد [[:$1]] بواسطة تحميل ملف',
+'import-logentry-upload'           => 'استورد [[$1]] بواسطة تحميل ملف',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|تعديل واحد|تعديل}}',
 'import-logentry-interwiki'        => 'استيراد ويكى $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|تعديل واحد|تعديل}} من $2',
@@ -2325,6 +2331,7 @@ $1',
 'mediawarning'         => "'''تحذير''': الملف دا فيه كود خبيث، يمكن عند تشغيله يبوظ الكمبيوتر بتاعك.<hr />",
 'imagemaxsize'         => 'حدد الصور في صفحات وصف الملفات لـ:',
 'thumbsize'            => 'حجم العرض المتصغر:',
+'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
 'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الفايل: $3، نوع MIME: $4)',
@@ -2356,6 +2363,46 @@ $1',
 
 عناصر اللسته  بس (السطور اللى تبتدى ب *) ها تتاخد في الاعتبار. أول وصلة في السطر لازم تكون وصله لملف سيىء.
 أي وصلات بعد كده في نفس السطر هاتعتبر استثناءات، بمعنى تانى  مقالات ممكن الملف يكون موجود فيها.',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-mo'   => 'mo',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh-my'   => 'my',
+'variantname-zh'      => 'zh',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arab',
+'variantname-ku-latn' => 'ku-Latn',
+'variantname-ku'      => 'ku',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'tg-Cyrl',
+'variantname-tg-latn' => 'tg-Latn',
+'variantname-tg'      => 'tg',
 
 # Metadata
 'metadata'          => 'بيانات ميتا',
@@ -2722,8 +2769,11 @@ $1',
 'useajaxsearch'    => 'دور بـ أجاكس',
 
 # Separators for various lists, etc.
+'catseparator'        => '|',
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← الصفحة اللي فاتت',
@@ -2745,7 +2795,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'مسح كل اللي في الصفحة',
 'autosumm-replace' => "تبديل الصفحة ب'$1'",
-'autoredircomment' => 'تحويل لـ [[:$1]]',
+'autoredircomment' => 'تحويل لـ [[$1]]',
 'autosumm-new'     => 'صفحه جديده: $1',
 
 # Size units

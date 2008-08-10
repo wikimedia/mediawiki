@@ -4,19 +4,19 @@
  * @ingroup Language
  * @file
  *
- * @author Jon Harald Søby
- * @author Kph
- * @author Stigmj
- * @author לערי ריינהארט
- * @author H92
- * @author Eirik
- * @author Jóna Þórunn
- * @author Finnrind
  * @author Boivie
+ * @author Eirik
  * @author EivindJ
- * @author Samuelsen
- * @author Teak
+ * @author Finnrind
+ * @author H92
+ * @author Jon Harald Søby
+ * @author Jóna Þórunn
+ * @author Kph
  * @author Kph-no
+ * @author Samuelsen
+ * @author Stigmj
+ * @author Teak
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1638,9 +1638,9 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'sessionfailure'              => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
 'protectlogpage'              => 'Låsingslogg',
 'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Special:ProtectedPages|listen over låste sider]] for en liste over nåværende låste sider.',
-'protectedarticle'            => 'låste [[:$1]]',
-'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[:$1]]»',
-'unprotectedarticle'          => 'åpnet [[:$1]]',
+'protectedarticle'            => 'låste [[$1]]',
+'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[$1]]»',
+'unprotectedarticle'          => 'åpnet [[$1]]',
 'protect-title'               => 'Låser «$1»',
 'protect-legend'              => 'Bekreft låsing',
 'protectcomment'              => 'Kommentar:',
@@ -1905,8 +1905,8 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'movepage-page-moved'     => 'Siden $1 har blitt flyttet til $2.',
 'movepage-page-unmoved'   => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'      => 'Grensen på {{PLURAL:$1|én side|$1 sider}} er nådd; ingen flere sider vil bli flyttet automatisk.',
-'1movedto2'               => '[[:$1]] flyttet til [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] flyttet til [[:$2]] over omdirigeringsside',
+'1movedto2'               => '[[$1]] flyttet til [[$2]]',
+'1movedto2_redir'         => '[[$1]] flyttet til [[$2]] over omdirigeringsside',
 'movelogpage'             => 'Flyttelogg',
 'movelogpagetext'         => 'Her er ei liste over sider som har blitt flyttet.',
 'movereason'              => 'Årsak:',
@@ -1992,7 +1992,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 # Import log
 'importlogpage'                    => 'Importlogg',
 'importlogpagetext'                => 'Administrativ import av sider med redigeringshistorikk fra andre wikier.',
-'import-logentry-upload'           => 'importerte [[:$1]] ved opplasting',
+'import-logentry-upload'           => 'importerte [[$1]] ved opplasting',
 'import-logentry-upload-detail'    => 'Importerte {{PLURAL:$1|én revisjon|$1 revisjoner}}',
 'import-logentry-interwiki'        => 'transwikiimporterte $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} fra $2',
@@ -2546,7 +2546,7 @@ $1
 # Auto-summaries
 'autosumm-blank'   => 'Tømmer siden',
 'autosumm-replace' => 'Erstatter siden med «$1»',
-'autoredircomment' => 'Omdirigerer til [[:$1]]',
+'autoredircomment' => 'Omdirigerer til [[$1]]',
 'autosumm-new'     => 'Ny side: $1',
 
 # Live preview

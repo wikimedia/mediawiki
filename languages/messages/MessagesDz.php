@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Tenzin
  * @author CFynn
+ * @author Tenzin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -584,7 +584,7 @@ $messages = array(
 དེ་ཚུ་ ལག་ཐོག་ལས་མཉམ་བསྡོམས་འབད་གནང་།'''",
 'movedto'          => 'ལུ་སྤོ་བཤུད་འབད།',
 'movetalk'         => 'འབྲེལ་བ་ཡོད་པའི་ཁ་སླབ་ཤོག་ལེབ་ སྤོ་བཤུད་འབད།',
-'1movedto2'        => '[[:$1]] འདི་ [[:$2]] ལུ་སྤོ་བཤུད་འབད་ཡོདཔ།',
+'1movedto2'        => '[[$1]] འདི་ [[$2]] ལུ་སྤོ་བཤུད་འབད་ཡོདཔ།',
 'movelogpage'      => 'ལོག་སྤོ་བཤུད་འབད།',
 'movereason'       => 'རྒྱུ་མཚན:',
 'revertmove'       => 'རྒྱབ་ལོག།',

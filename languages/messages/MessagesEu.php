@@ -4,12 +4,12 @@
  * @ingroup Language
  * @file
  *
- * @author Theklan
  * @author Bengoa
- * @author לערי ריינהארט
- * @author Malafaya
- * @author Kaustubh
  * @author Helix84
+ * @author Kaustubh
+ * @author Malafaya
+ * @author Theklan
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1395,9 +1395,9 @@ Laguntza:
 'sessionfailure'              => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
 'protectlogpage'              => 'Babes erregistroa',
 'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.',
-'protectedarticle'            => '"[[:$1]]" babestu da"',
-'modifiedarticleprotection'   => '"[[:$1]]"(r)en babes maila aldatu da',
-'unprotectedarticle'          => '"[[:$1]]"(r)i babesa kendu zaio',
+'protectedarticle'            => '"[[$1]]" babestu da"',
+'modifiedarticleprotection'   => '"[[$1]]"(r)en babes maila aldatu da',
+'unprotectedarticle'          => '"[[$1]]"(r)i babesa kendu zaio',
 'protect-title'               => '"$1" babesten',
 'protect-legend'              => 'Babesa baieztatu',
 'protectcomment'              => 'Babesteko arrazoia',
@@ -1714,7 +1714,7 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 # Import log
 'importlogpage'                    => 'Inportazio erregistroa',
 'importlogpagetext'                => 'Beste wiki batzutatik historial eta guzti egindako orrialdeen inportazio administratiboak.',
-'import-logentry-upload'           => '[[:$1]] igoera bitartez inportatu da',
+'import-logentry-upload'           => '[[$1]] igoera bitartez inportatu da',
 'import-logentry-upload-detail'    => '$1 berrikuspen',
 'import-logentry-interwiki'        => '$1 wiki artean mugitu da',
 'import-logentry-interwiki-detail' => '$1 berrikuspen $2(e)tik',
@@ -2140,7 +2140,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Orrialdetik eduki guztia ezabatzen',
 'autosumm-replace' => "Orrialdea '$1'(r)engatik ordezten",
-'autoredircomment' => '[[:$1]] orrialdera birzuzentzentzen',
+'autoredircomment' => '[[$1]] orrialdera birzuzentzentzen',
 'autosumm-new'     => 'Orrialde berria: $1',
 
 # Live preview

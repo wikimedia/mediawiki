@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
-
  */
 
 $skinNames = array(
@@ -1626,9 +1625,9 @@ wiki: $PAGEEDITOR_WIKI
 'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面係一個保護同埋解除保護頁面嘅一覽表。睇吓[[Special:ProtectedPages|保護頁面一覽]]去拎現時進行緊嘅頁面保護一覽。',
-'protectedarticle'            => '已經保護 "[[:$1]]"',
-'modifiedarticleprotection'   => '已經改咗 "[[:$1]]" 嘅保護等級',
-'unprotectedarticle'          => '已經唔再保護 "[[:$1]]"',
+'protectedarticle'            => '已經保護 "[[$1]]"',
+'modifiedarticleprotection'   => '已經改咗 "[[$1]]" 嘅保護等級',
+'unprotectedarticle'          => '已經唔再保護 "[[$1]]"',
 'protect-title'               => '改緊「$1」嘅保護等級',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
@@ -1894,8 +1893,8 @@ $1',
 'movepage-page-moved'     => '版$1已經搬到去$2。',
 'movepage-page-unmoved'   => '版$1唔可以搬到去$2。',
 'movepage-max-pages'      => '最多有$1版已經搬咗同時唔可以自動噉再搬更多。',
-'1movedto2'               => '[[:$1]]搬到去[[:$2]]',
-'1movedto2_redir'         => '[[:$1]]通過跳轉搬到去[[:$2]]',
+'1movedto2'               => '[[$1]]搬到去[[$2]]',
+'1movedto2_redir'         => '[[$1]]通過跳轉搬到去[[$2]]',
 'movelogpage'             => '移動日誌',
 'movelogpagetext'         => '以下係搬過嘅頁面清單。',
 'movereason'              => '原因',
@@ -1984,7 +1983,7 @@ $1',
 # Import log
 'importlogpage'                    => '倒入日誌',
 'importlogpagetext'                => '管理員由其它嘅 wiki 倒入頁面同埋佢哋嘅編輯歷史記錄。',
-'import-logentry-upload'           => '由檔案上載倒入咗 [[:$1]]',
+'import-logentry-upload'           => '由檔案上載倒入咗 [[$1]]',
 'import-logentry-upload-detail'    => '$1個修訂',
 'import-logentry-interwiki'        => 'transwiki咗 $1',
 'import-logentry-interwiki-detail' => '由$2嘅$1個修訂',
@@ -2567,7 +2566,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '移除緊響嗰一版嘅全部內容',
 'autosumm-replace' => "用 '$1' 取代緊嗰一版",
-'autoredircomment' => '跳緊轉到[[:$1]]',
+'autoredircomment' => '跳緊轉到[[$1]]',
 'autosumm-new'     => '新頁： $1',
 
 # Live preview

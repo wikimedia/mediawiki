@@ -5,8 +5,8 @@
  * @file
  *
  * @author Juanpabl
- * @author לערי ריינהארט
  * @author Willtron
+ * @author לערי ריינהארט
  */
 
 $fallback = 'es';
@@ -465,7 +465,7 @@ A razón data ye ''$2''.",
 Puede continar nabegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|enzetar]] una nueba sesión con o mesmo nombre d'usuario u unatro diferent. Pare cuenta que, entre que se limpia a caché d'o nabegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
 'welcomecreation'            => "== ¡Bienbeniu(da), $1! ==
 S'ha creyato a suya cuenta.
-No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAME}]].",
+No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAME}}]].",
 'loginpagetitle'             => 'Enzetar a sesión',
 'yourname'                   => "Nombre d'usuario:",
 'yourpassword'               => 'Palabra de paso:',
@@ -1598,9 +1598,9 @@ s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
 Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á prebar alabez.',
 'protectlogpage'              => 'Protezions de pachinas',
 'protectlogtext'              => 'Contino se i amuestra una lista de protezions y esprotezions de pachinas. Se beiga [[Special:ProtectedPages|lista de pachinas protechitas]] ta más informazión.',
-'protectedarticle'            => "s'ha protechito [[:$1]]",
-'modifiedarticleprotection'   => 's\'ha cambiato o libel de protezión de "[[:$1]]"',
-'unprotectedarticle'          => "s'ha esprotechito [[:$1]]",
+'protectedarticle'            => "s'ha protechito [[$1]]",
+'modifiedarticleprotection'   => 's\'ha cambiato o libel de protezión de "[[$1]]"',
+'unprotectedarticle'          => "s'ha esprotechito [[$1]]",
 'protect-title'               => 'Protechendo "$1"',
 'protect-legend'              => 'Confirmar protezión',
 'protectcomment'              => 'Razón:',
@@ -1864,8 +1864,8 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'movepage-page-moved'     => "S'ha tresladato a pachina $1 ta $2.",
 'movepage-page-unmoved'   => "No s'ha puesto tresladar a pachina $1 ta $2.",
 'movepage-max-pages'      => "S'han tresladato o masimo posible de $1 {{PLURAL:$1|pachina|pachinas}} y no se tresladarán más automaticament.",
-'1movedto2'               => '[[:$1]] tresladada á [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] tresladada á [[:$2]] sobre una reendrezera',
+'1movedto2'               => '[[$1]] tresladada á [[$2]]',
+'1movedto2_redir'         => '[[$1]] tresladada á [[$2]] sobre una reendrezera',
 'movelogpage'             => 'Rechistro de treslatos',
 'movelogpagetext'         => 'Contino se i amuestra una lista de pachinas tresladatas.',
 'movereason'              => 'Razón:',
@@ -1953,7 +1953,7 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 # Import log
 'importlogpage'                    => "Rechistro d'importazions",
 'importlogpagetext'                => 'Importazions almenistratibas de pachinas con istorial dende atros wikis.',
-'import-logentry-upload'           => 'importata [[:$1]] cargando un archibo',
+'import-logentry-upload'           => 'importata [[$1]] cargando un archibo',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|bersión|bersions}}',
 'import-logentry-interwiki'        => 'Importata $1 entre wikis',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|bersión|bersions}} dende $2',
@@ -2483,7 +2483,7 @@ $1",
 # Auto-summaries
 'autosumm-blank'   => 'Pachina blanquiata',
 'autosumm-replace' => 'O conteniu s\'ha cambiato por "$1"',
-'autoredircomment' => 'Reendrezando ta [[:$1]]',
+'autoredircomment' => 'Reendrezando ta [[$1]]',
 'autosumm-new'     => 'Pachina nueba: $1',
 
 # Live preview

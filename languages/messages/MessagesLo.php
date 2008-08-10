@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Tuinui
  * @author Passawuth
+ * @author Tuinui
  */
 
 $namespaceNames = array(
@@ -657,8 +657,8 @@ $messages = array(
 'rollbacklink'                => 'ກັບຄືນ',
 'cantrollback'                => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
 'protectlogpage'              => 'ບັນທຶກການປົກປ້ອງ',
-'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[:$1]]"',
-'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[:$1]]"',
+'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
+'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
 'protect-title'               => 'ກຳລັງປົກປ້ອງໜ້າ "$1"',
 'protect-legend'              => 'ຢືນຢັນ ການປົກປ້ອງ',
 'protectexpiry'               => 'ໝົດກຳນົດ:',
@@ -737,8 +737,8 @@ $messages = array(
 ກະລຸນາເລືອກຊື່ອື່ນ.',
 'movedto'                 => 'ໄດ້ຖືກຍ້າຍໄປ',
 'movetalk'                => 'ຍ້າຍທັງ ໜ້າສົນທະນາ ທີ່ ກ່ຽວພັນ.',
-'1movedto2'               => '[[:$1]] ຍ້າຍໄປ [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] ຍ້າຍໄປ [[:$2]] ທັບ ການໂອນໜ້າ',
+'1movedto2'               => '[[$1]] ຍ້າຍໄປ [[$2]]',
+'1movedto2_redir'         => '[[$1]] ຍ້າຍໄປ [[$2]] ທັບ ການໂອນໜ້າ',
 'movelogpage'             => 'ບັນທຶກການຍ້າຍ',
 'movereason'              => 'ເຫດຜົນ:',
 'delete_and_move'         => 'ລຶບ ແລະ ຍ້າຍ',
@@ -884,7 +884,7 @@ $messages = array(
 # Auto-summaries
 'autosumm-blank'   => 'ພວມລຶບ ທຸກໆເນື້ອໃນ ຈາກ ໜ້ານີ້',
 'autosumm-replace' => "ປ່ຽນ ໜ້ານີ້ ໂດຍ  '$1'",
-'autoredircomment' => 'ພວມໂອນໄປ ຫາ [[:$1]]',
+'autoredircomment' => 'ພວມໂອນໄປ ຫາ [[$1]]',
 'autosumm-new'     => 'ໜ້າໃໝ່: $1',
 
 # Watchlist editor

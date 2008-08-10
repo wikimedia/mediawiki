@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Robby
  * @author Kaffi
+ * @author Robby
  * @author לערי ריינהארט
  */
 
@@ -634,13 +634,15 @@ De Grond dofir war:
 :\'\'$2\'\'
 
 * Ufank vun der Spär: $8
+* Dauer vun der Spär: $6
 * D\'Spär leeft of: $6
 
 Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren.
 
 Bedenkt datt Dir d\'Fonctioun "Dësem Benotzer eng E-Mail schécken" benotze kënnt wann Dir eng gülteg E-Mailadress an ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir iech gespaart gouf.
 
-D\'Nummer vun ärer Spär ass $5. Gitt dës Nummer w.e.g bei allen Ufroen zu dëser Spär un.',
+Är aktuell IP-Adress ass $3 an d\'Nummer vun ärer Spär ass $5. 
+Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'blockednoreason'                  => 'Kee Grond uginn',
 'blockedoriginalsource'            => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
 'blockededitsource'                => "Den Text vun '''ären Ännerungen''' op '''$1''' steet hei ënnendrënner:",
@@ -867,6 +869,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 
 # Search results
 'searchresults'             => 'Resultat vun der Sich',
+'searchresults-title'       => 'Resultater vun der Sich no $1',
 'searchresulttext'          => "Fir méi Informatiounen iwwert d'Sichfunktiounen op {{SITENAME}}, kuckt w.e.g op [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'            => 'Dir hutt no "[[:$1]]" gesicht ([[Special:Prefixindex/$1|all Säiten déi mat "$1" ufänken]] | [[Special:WhatLinksHere/$1|all Sàiten déi op "$1" linken]])',
 'searchsubtitleinvalid'     => 'Dir hutt no "$1" gesicht.',
@@ -1450,6 +1453,9 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'listgrouprights-rights'          => 'Rechter',
 'listgrouprights-helppage'        => 'Help:Grupperechter',
 'listgrouprights-members'         => '(Lëscht vun de Memberen)',
+'listgrouprights-addgroup'        => 'Kann {{PLURAL:$2|dëse Grupp|dës Gruppen}} derbäisetzen: $1',
+'listgrouprights-removegroup'     => 'Kann {{PLURAL:$2|dëse Gruppe|dës Gruppen}} ewechhuelen: $1',
+'listgrouprights-addgroup-all'    => 'Kann all Gruppen derbäisetzen',
 'listgrouprights-removegroup-all' => 'Ka Benotzer aus alle Gruppen eraushuelen',
 
 # E-mail user
@@ -1597,9 +1603,9 @@ KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versi
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
 Kuckt d'[[Special:ProtectedPages|Lëscht vun de protegéierte Säite]] fir eng L!escht vun den aktuelle Säite-Protectiounen.",
-'protectedarticle'            => 'huet [[:$1]] protegéiert',
-'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[:$1]]" geännert',
-'unprotectedarticle'          => "huet d'Spär vu(n) [[:$1]] opgehuewen",
+'protectedarticle'            => 'huet [[$1]] protegéiert',
+'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
+'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
 'protect-title'               => 'Ännerung vun der Protectioun vu(n) „$1“',
 'protect-legend'              => "Konfirméiert d'Protectioun",
 'protectcomment'              => 'Grond:',
@@ -1685,20 +1691,22 @@ $1',
 'blanknamespace' => '(Haapt)',
 
 # Contributions
-'contributions' => 'Kontributiounen vum Benotzer',
-'mycontris'     => 'Meng Kontributiounen',
-'contribsub2'   => 'Fir $1 ($2)',
-'nocontribs'    => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
-'uctop'         => '(aktuell)',
-'month'         => 'Vum Mount (a virdrun):',
-'year'          => 'Vum Joer (a virdrun):',
+'contributions'       => 'Kontributiounen vum Benotzer',
+'contributions-title' => 'Kontributioune vum $1',
+'mycontris'           => 'Meng Kontributiounen',
+'contribsub2'         => 'Fir $1 ($2)',
+'nocontribs'          => 'Et goufe keng Ännerunge fonnt, déi dëse Kritèren entspriechen.',
+'uctop'               => '(aktuell)',
+'month'               => 'Vum Mount (a virdrun):',
+'year'                => 'Vum Joer (a virdrun):',
 
-'sp-contributions-newbies'     => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
-'sp-contributions-newbies-sub' => 'Fir déi Nei',
-'sp-contributions-blocklog'    => 'Spärlescht',
-'sp-contributions-search'      => 'No Kontributioune sichen',
-'sp-contributions-username'    => 'IP-Adress oder Benotzernumm:',
-'sp-contributions-submit'      => 'Sichen',
+'sp-contributions-newbies'       => 'Nëmme Kontributioune vun neie Mataarbechter weisen',
+'sp-contributions-newbies-sub'   => 'Fir déi Nei',
+'sp-contributions-newbies-title' => 'Kontributioune vun neie Benotzer',
+'sp-contributions-blocklog'      => 'Spärlescht',
+'sp-contributions-search'        => 'No Kontributioune sichen',
+'sp-contributions-username'      => 'IP-Adress oder Benotzernumm:',
+'sp-contributions-submit'        => 'Sichen',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
@@ -1862,8 +1870,8 @@ An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéiere
 'movepage-page-moved'     => "D'Säit $1 gouf schonn op $2 geréckelt.",
 'movepage-page-unmoved'   => "D'Säit $1 konnt nett op $2 geréckelt ginn.",
 'movepage-max-pages'      => 'Déi Maximalzuel vun $1 {{PLURAL:$1|Säit gouf|Säite goufe}} gouf geréckelt. All déi aner Säite kënnen net automatesch geréckelt ginn.',
-'1movedto2'               => '[[:$1]] gouf op [[:$2]] geréckelt',
-'1movedto2_redir'         => '[[:$1]] gouf op [[:$2]] geréckelt, dobäi gouf eng Viruleedung iwwerschriwwen.',
+'1movedto2'               => '[[$1]] gouf op [[$2]] geréckelt',
+'1movedto2_redir'         => '[[$1]] gouf op [[$2]] geréckelt, dobäi gouf eng Viruleedung iwwerschriwwen.',
 'movelogpage'             => 'Réckellëscht',
 'movelogpagetext'         => 'Dëst ass eng Lëscht vun alle geréckelte Säiten.',
 'movereason'              => 'Grond:',
@@ -1945,7 +1953,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 # Import log
 'importlogpage'                    => 'Lëscht vun den Säitenimporten',
 'importlogpagetext'                => 'Administrativen Import vu Säite matt dem Historique vun de Ännerungen aus anere Wikien.',
-'import-logentry-upload'           => 'huet [[:$1]] vun engem Fichier duerch eroplueden importéiert',
+'import-logentry-upload'           => 'huet [[$1]] vun engem Fichier duerch eroplueden importéiert',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'import-logentry-interwiki'        => 'huet $1 importéiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Versioun|Versioune}} vum $2',
@@ -2420,7 +2428,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'All Inhalt vun der Säit gëtt geläscht',
 'autosumm-replace' => "Säit gëtt ersat duerch '$1'",
-'autoredircomment' => 'Virugeleet op [[:$1]]',
+'autoredircomment' => 'Virugeleet op [[$1]]',
 'autosumm-new'     => 'Nei Säit: $1',
 
 # Live preview

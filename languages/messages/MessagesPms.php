@@ -5,10 +5,10 @@
  * @file
  *
  * @author Bèrto 'd Sèra
- * @author לערי ריינהארט
  * @author SabineCretella
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
  * @author Teak
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
+ * @author לערי ריינהארט
  */
 
 $fallback = 'it';
@@ -1403,9 +1403,9 @@ L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]
 'protectlogpage'              => 'Registr dle protession',
 'protectlogtext'              => "Ambelessì sota a-i é na lista d'event ëd protession e dësprotession ëd pàgine.
 Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-ciairé le protession corente.",
-'protectedarticle'            => '"[[:$1]]" a l\'é protet',
-'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[:$1]]"',
-'unprotectedarticle'          => 'Dësprotegiù "[[:$1]]"',
+'protectedarticle'            => '"[[$1]]" a l\'é protet',
+'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[$1]]"',
+'unprotectedarticle'          => 'Dësprotegiù "[[$1]]"',
 'protect-title'               => 'I soma antramentr che i protegioma "$1"',
 'protect-legend'              => 'Che an conferma la protession',
 'protectcomment'              => 'Motiv dla protession',
@@ -1665,8 +1665,8 @@ Che as sërna, për piasì, un nòm diferent për st'articol.",
 'talkexists'              => "La pàgina a l'é staita bin tramudà, ma a l'é pa podusse tramudé soa pàgina ëd discussion, përchè a-i në j'é già n'àutra ant la pàgina con ël tìtol neuv. Për piasì, che a modìfica a man ij contnù dle doe pàgine ëd discussion, an manera che as perdo nen dij pensé anteressant.",
 'movedto'                 => 'tramudà a',
 'movetalk'                => "Podend, tramuda ëdcò la pàgina ëd discussion che a l'ha tacà.",
-'1movedto2'               => '[[:$1]] Tramudà a [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] tramudà a [[:$2]] ën passand për na ridiression',
+'1movedto2'               => '[[$1]] Tramudà a [[$2]]',
+'1movedto2_redir'         => '[[$1]] tramudà a [[$2]] ën passand për na ridiression',
 'movelogpage'             => 'Registr dij San Martin',
 'movelogpagetext'         => 'Ambelessì sota a-i é na lista ëd pàgine che a son staite tramudà.',
 'movereason'              => 'Motiv',
@@ -2308,7 +2308,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => "Pàgina dësveujdà d'autut",
 'autosumm-replace' => "Pàgina cambià con '$1'",
-'autoredircomment' => 'Ridiression anvers a [[:$1]]',
+'autoredircomment' => 'Ridiression anvers a [[$1]]',
 'autosumm-new'     => 'Pàgina neuva: $1',
 
 # Size units

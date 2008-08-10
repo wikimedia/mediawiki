@@ -5,9 +5,9 @@
  * @file
  *
  * @author Malangali
- * @author לערי ריינהארט
  * @author Marcos
  * @author Robert Ullmann
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -621,7 +621,7 @@ Chagua jina lengine.',
 'talkexists'       => "'''Ukurasa wenyewe ulisogezwa salama, lakini ukurasa wake wa majadiliano haujasogezwa kwa sababu tayari kuna ukurasa wenye jina lake.  Tafadhali ziunganishe kwa mkono.'''",
 'movedto'          => 'imesogezwa hadi',
 'movetalk'         => 'Sogeza ukurasa wake wa majadiliano',
-'1movedto2'        => '[[:$1]] umesogezwa hapa [[:$2]]',
+'1movedto2'        => '[[$1]] umesogezwa hapa [[$2]]',
 'movelogpage'      => 'Kumbukumbu ya uhamiaji',
 'movereason'       => 'Sababu:',
 'revertmove'       => 'rejesha',

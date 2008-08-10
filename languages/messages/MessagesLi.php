@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Ooswesthoesbes
+ * @author Cicero
  * @author Matthias
+ * @author Ooswesthoesbes
  * @author Tibor
  * @author לערי ריינהארט
- * @author Cicero
  */
 
 $fallback = 'nl';
@@ -1518,7 +1518,7 @@ De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]])."
 'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve.
 Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",
 'protectedarticle'            => '$1 besjermd',
-'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[:$1]]"',
+'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[$1]]"',
 'unprotectedarticle'          => 'besjerming van $1 opgeheve',
 'protect-title'               => 'Besjerme van "$1"',
 'protect-legend'              => 'Bevèstig besjerme',
@@ -1766,8 +1766,8 @@ Vergaet neet de database opnuuj te [[Special:UnlockDB|deblokkere]] wens te klaor
 'movepage-page-moved'     => 'De pazjena $1 is hernömp nao $2.',
 'movepage-page-unmoved'   => 'De pazjena $1 kós neet hernömp waere nao $2.',
 'movepage-max-pages'      => "'t Maximaal aantal automatisch te hernömme pazjena's is bereik ($1). De euverige pazjena's waere neet automatisch hernömp.",
-'1movedto2'               => '[[:$1]] verplaats nao [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] euver redirect verplaats nao [[:$2]]',
+'1movedto2'               => '[[$1]] verplaats nao [[$2]]',
+'1movedto2_redir'         => '[[$1]] euver redirect verplaats nao [[$2]]',
 'movelogpage'             => "Logbook verplaatsde pazjena's",
 'movelogpagetext'         => "Dit is de lies van verplaatsde pazjena's.",
 'movereason'              => 'Lèk oet woeróm',
@@ -1854,7 +1854,7 @@ Alle transwiki-importhanjelinge waere opgeslage in 't [[Special:Log/import|impor
 # Import log
 'importlogpage'                    => 'Importlogbook',
 'importlogpagetext'                => "Administratieve import van pazjena's mit gesjiedenis van anger wiki's.",
-'import-logentry-upload'           => "[[:$1]] geïmporteerd via 'ne bestandjsupload",
+'import-logentry-upload'           => "[[$1]] geïmporteerd via 'ne bestandjsupload",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'transwiki veur $1 geslaag',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
@@ -2386,7 +2386,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Pazjena laeggehaold',
 'autosumm-replace' => "Teks vervange mit '$1'",
-'autoredircomment' => 'Verwies door nao [[:$1]]',
+'autoredircomment' => 'Verwies door nao [[$1]]',
 'autosumm-new'     => 'Nuje pazjena: $1',
 
 # Live preview

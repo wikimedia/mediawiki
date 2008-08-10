@@ -352,8 +352,8 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'movearticle'             => 'Mova pagine',
 'move-watch'              => 'Observa disi pagine',
 'movedto'                 => 'movat a',
-'1movedto2'               => '[[:$1]] movat a [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] movat a [[:$2]] via ri-adreso',
+'1movedto2'               => '[[$1]] movat a [[$2]]',
+'1movedto2_redir'         => '[[$1]] movat a [[$2]] via ri-adreso',
 'delete_and_move'         => 'Ekarta e mova',
 'delete_and_move_confirm' => 'Yes, ekarta li pagine',
 'delete_and_move_reason'  => 'Ekartat por fa spatie por movo',
@@ -395,7 +395,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Auto-summaries
 'autosumm-replace' => "Remplasant pagine kun '$1'",
-'autoredircomment' => 'Ri-adresant a [[:$1]]',
+'autoredircomment' => 'Ri-adresant a [[$1]]',
 'autosumm-new'     => 'Novi pagine: $1',
 
 # Special:Version

@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Lajsikonik
- * @author Timpul
- * @author Herr Kriss
- * @author Pimke
- * @author Ozi64
- * @author Leinad
  * @author Danny B.
+ * @author Herr Kriss
+ * @author Lajsikonik
+ * @author Leinad
+ * @author Ozi64
+ * @author Pimke
+ * @author Timpul
  */
 
 $fallback = 'pl';
@@ -1462,9 +1462,9 @@ Naćiś „cofej”, přeuaduj zajta, a potym zaś wydej polecyńy',
 'protectlogpage'              => 'Zawarte',
 'protectlogtext'              => 'Půńižej znojdowo śe lista zawarć i uodymkńjyńć pojydynčych zajtůw.
 Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Special:ProtectedPages|zawartych zajtůw]].',
-'protectedarticle'            => 'zawar [[:$1]]',
-'modifiedarticleprotection'   => 'pomjyńiu poziům zawarćo [[:$1]]',
-'unprotectedarticle'          => 'uodymknyu [[:$1]]',
+'protectedarticle'            => 'zawar [[$1]]',
+'modifiedarticleprotection'   => 'pomjyńiu poziům zawarćo [[$1]]',
+'unprotectedarticle'          => 'uodymknyu [[$1]]',
 'protect-title'               => 'Pomjyńeńe poźomu zawarćo „$1”',
 'protect-legend'              => 'Potwjyrdź zawarće',
 'protectcomment'              => 'Kůmyntoř:',
@@ -1734,8 +1734,8 @@ Wybjer inkše mjano.',
 'movedto'                 => 'přećiśńjynto ku',
 'movetalk'                => 'Přećiś godke, jak možno.',
 'move-subpages'           => 'Přećepńij podzajty, jak śe do',
-'1movedto2'               => '[[:$1]] přećepano do [[:$2]]',
-'1movedto2_redir'         => 'zajta [[:$1]] přećepnůu do [[:$2]] nad překerowańem',
+'1movedto2'               => '[[$1]] přećepano do [[$2]]',
+'1movedto2_redir'         => 'zajta [[$1]] přećepnůu do [[$2]] nad překerowańem',
 'movelogpage'             => 'Přećepńynte',
 'movelogpagetext'         => 'Uoto lista zajtůw, kere uostatńo zostouy přećepane.',
 'movereason'              => 'Čymu:',
@@ -1824,7 +1824,7 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 # Import log
 'importlogpage'                    => 'Rejer importa',
 'importlogpagetext'                => 'Rejer přeprowadzůnych importůw zajtůw s inkšych serwisůw wiki.',
-'import-logentry-upload'           => 'zaimportowou [[:$1]] bez wćepańe sam plika',
+'import-logentry-upload'           => 'zaimportowou [[$1]] bez wćepańe sam plika',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersyja|wersyje|wersyji}}',
 'import-logentry-interwiki'        => 'zaimportowou $1 užywajůnc transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersyja|wersyje|wersyji}} ze $2',
@@ -2360,7 +2360,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'POZŮR! Usůńjyńće treśći (zajta pozostoua pusto)!',
 'autosumm-replace' => 'POZŮR! Zastůmpjyńy treśći hasua bardzo krůtkym tekstym: „$1”',
-'autoredircomment' => 'Překerowańy do [[:$1]]',
+'autoredircomment' => 'Překerowańy do [[$1]]',
 'autosumm-new'     => 'Nowo zajta: $1',
 
 # Live preview

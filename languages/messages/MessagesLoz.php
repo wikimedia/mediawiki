@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Litingatinga Silozi
  * @author Ooswesthoesbes
  * @author SF-Language
- * @author Litingatinga Silozi
  */
 
 $messages = array(
@@ -782,8 +782,8 @@ A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'rollbacklink'                => "afi hloli ye ng'i lila",
 'rollbackfailed'              => "Bufosi dafi hloli ye ng'i lila",
 'protectlogpage'              => 'Desu di bukelize',
-'protectedarticle'            => 'sa bukelelize "[[:$1]]"',
-'unprotectedarticle'          => 'sa ati-bukelelize "[[:$1]]"',
+'protectedarticle'            => 'sa bukelelize "[[$1]]"',
+'unprotectedarticle'          => 'sa ati-bukelelize "[[$1]]"',
 'protect-legend'              => 'Bukelezi',
 'protectcomment'              => 'Lyangutukezi:',
 'protectexpiry'               => 'Simpekile:',
@@ -898,8 +898,8 @@ Teri yaki, a nyanganyisize.",
 'talkexists'       => "'''No bufosi di nyanganyisize petulo, bufosi di nyanganyisize bulelezi, tubi hani.'''",
 'movedto'          => 'nyanganyisize di',
 'movetalk'         => 'Nyanganyisize petulo di bulelezi',
-'1movedto2'        => '[[:$1]] nyanganyisize di [[:$2]]',
-'1movedto2_redir'  => '[[:$1]] nyanganyisize di [[:$2]] alo petulo abezi',
+'1movedto2'        => '[[$1]] nyanganyisize di [[$2]]',
+'1movedto2_redir'  => '[[$1]] nyanganyisize di [[$2]] alo petulo abezi',
 'movelogpage'      => 'Desu di nyanganyisize',
 'movelogpagetext'  => 'Bye mukoloko sa mukoloko di petulo nyanganyisize.',
 'movereason'       => 'Lyangutukezi:',
@@ -1082,7 +1082,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 # Auto-summaries
 'autosumm-blank'   => 'Sa blanki petulo',
 'autosumm-replace' => "Sa blanki info con '$1'",
-'autoredircomment' => 'Abezi di [[:$1]]',
+'autoredircomment' => 'Abezi di [[$1]]',
 'autosumm-new'     => 'Nca petulo: $1',
 
 # Watchlist editor

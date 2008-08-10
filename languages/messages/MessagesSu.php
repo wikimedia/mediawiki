@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Kandar
  * @author Irwangatot
+ * @author Kandar
+ * @author Meursault2004
  * @author Mssetiadi
  * @author לערי ריינהארט
- * @author Meursault2004
  */
 
 $fallback = 'id';
@@ -1412,7 +1412,7 @@ Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
 'protectlogpage'              => 'Log_koncian',
 'protectlogtext'              => 'Di handap ieu mangrupa daptar koncian kaca. Tempo [[Special:ProtectedPages|kaca nu dikonci]] pikeun iber leuwih lengkep.',
 'protectedarticle'            => 'ngonci $1',
-'modifiedarticleprotection'   => 'hambalan koncian "[[:$1]]" geus dirobah',
+'modifiedarticleprotection'   => 'hambalan koncian "[[$1]]" geus dirobah',
 'unprotectedarticle'          => 'muka konci $1',
 'protect-title'               => 'Ngonci "$1"',
 'protect-legend'              => 'Konfirmasi ngonci',
@@ -1651,8 +1651,8 @@ Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagab
 'movepage-page-exists'    => 'Kaca $1 geus aya jeung teu bisa di timpahkeun sacara otomatis.',
 'movepage-page-moved'     => 'Kaca $1 geus dipindahkeun ka $2.',
 'movepage-page-unmoved'   => 'Kaca $1 teu bisa dipindahkeun ka $2.',
-'1movedto2'               => 'mindahkeun [[:$1]] ka [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] dipindahkeun ka [[:$2]]',
+'1movedto2'               => 'mindahkeun [[$1]] ka [[$2]]',
+'1movedto2_redir'         => '[[$1]] dipindahkeun ka [[$2]]',
 'movelogpage'             => 'Log mindahkeun',
 'movelogpagetext'         => 'Di handap ieu béréndélan kaca nu dipindahkeun.',
 'movereason'              => 'Alesan:',
@@ -1722,7 +1722,7 @@ Artikel nu dituju "[[:$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun
 # Import log
 'importlogpage'                    => 'Log impor',
 'importlogpagetext'                => 'Impor administratif kaca-kaca ti wiki séjén katut jujutanana.',
-'import-logentry-upload'           => 'Muatkeun [[:$1]] make pamuatan koropak',
+'import-logentry-upload'           => 'Muatkeun [[$1]] make pamuatan koropak',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|vérsi heubeul}}',
 'import-logentry-interwiki'        => '$1 geus ditranswikikeun',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|vérsi heubel}} ti $2',
@@ -2155,7 +2155,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ngahapus eusi ti kaca',
 'autosumm-replace' => "Ngaganti kaca ku '$1'",
-'autoredircomment' => 'Mindahkeun ka [[:$1]]',
+'autoredircomment' => 'Mindahkeun ka [[$1]]',
 'autosumm-new'     => 'Kaca anyar: $1',
 
 # Live preview

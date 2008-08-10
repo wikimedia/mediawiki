@@ -4,14 +4,14 @@
  * @ingroup Language
  * @file
  *
- * @author S.Örvarr.S
- * @author Steinninn
- * @author Jóna Þórunn
- * @author לערי ריינהארט
- * @author Spacebirdy
- * @author Friðrik Bragi Dýrfjörð
- * @author Krun
  * @author Cessator
+ * @author Friðrik Bragi Dýrfjörð
+ * @author Jóna Þórunn
+ * @author Krun
+ * @author S.Örvarr.S
+ * @author Spacebirdy
+ * @author Steinninn
+ * @author לערי ריינהארט
  */
 
 $skinNames = array(
@@ -1436,9 +1436,9 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
 Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
-'protectedarticle'            => 'verndaði „[[:$1]]“',
-'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[:$1]]"',
-'unprotectedarticle'          => 'afverndaði „[[:$1]]“',
+'protectedarticle'            => 'verndaði „[[$1]]“',
+'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
+'unprotectedarticle'          => 'afverndaði „[[$1]]“',
 'protect-title'               => 'Vernda „$1“',
 'protect-legend'              => 'Verndunarstaðfesting',
 'protectcomment'              => 'Ástæða',
@@ -1676,8 +1676,8 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
 'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
 'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
-'1movedto2'               => '[[:$1]] færð á [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] færð á [[:$2]] yfir tilvísun',
+'1movedto2'               => '[[$1]] færð á [[$2]]',
+'1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',
 'movelogpagetext'         => 'Þetta er listi yfir síður sem nýlega hafa verið færðar.',
 'movereason'              => 'Ástæða:',
@@ -1735,7 +1735,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
-'import-logentry-upload'           => 'flutti inn [[:$1]] með innflutningi',
+'import-logentry-upload'           => 'flutti inn [[$1]] með innflutningi',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'import-logentry-interwiki'        => 'flutti inn $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|breyting|breytingar}} frá $2',
@@ -2045,7 +2045,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Tæmdi síðuna',
 'autosumm-replace' => 'Skipti út innihaldi með „$1“',
-'autoredircomment' => 'Tilvísun á [[:$1]]',
+'autoredircomment' => 'Tilvísun á [[$1]]',
 'autosumm-new'     => 'Ný síða: $1',
 
 # Live preview

@@ -410,7 +410,7 @@ $messages = array(
 'actioncomplete'              => 'काम सकियो',
 'reverted'                    => 'अघिल्लो संशोधनको स्थितिमा फर्काइयो',
 'protectlogpage'              => 'सुरक्षण लग',
-'protectedarticle'            => '"[[:$1]]" लाई सुरक्षित गरियो',
+'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
 'protectcomment'              => 'बचाउको कारण',
 'protect-default'             => '(स्वतह)',
 'protect-level-autoconfirmed' => 'दर्ता नभएका प्रयोगकर्ताहरूलाई रोक',
@@ -457,7 +457,7 @@ $messages = array(
 'movepagebtn'             => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'            => 'सार्ने काम सफल भयो',
 'movedto'                 => 'मा सारियो',
-'1movedto2'               => '[[:$1]] लाई [[:$2]]मा सारियो',
+'1movedto2'               => '[[$1]] लाई [[$2]]मा सारियो',
 'movereason'              => 'कारण',
 'delete_and_move_confirm' => 'हो, पृष्ठ मेट्नुहोस्',
 

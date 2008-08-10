@@ -4,22 +4,22 @@
  * @ingroup Language
  * @file
  *
- * @author 555
- * @author Malafaya
  * @author Lijealso
- * @author לערי ריינהארט
+ * @author Lugusto
  * @author MCruz
- * @author Rei-artur
- * @author Waldir
- * @author Villate
+ * @author Malafaya
+ * @author Manuel Menezes de Sequeira
  * @author Minh Nguyen
- * @author Yves Marques Junqueira
- * @author Rodrigo Calanca Nishino
  * @author Nuno Tavares
  * @author Paulo Juntas
- * @author Manuel Menezes de Sequeira
+ * @author Rei-artur
+ * @author Rodrigo Calanca Nishino
  * @author Sérgio Ribeiro
- * @author Lugusto
+ * @author Villate
+ * @author Waldir
+ * @author Yves Marques Junqueira
+ * @author לערי ריינהארט
+ * @author 555
  */
 
 $namespaceNames = array(
@@ -1665,9 +1665,9 @@ Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente no
 'protectlogpage'              => 'Registo de protecção',
 'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
 Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
-'protectedarticle'            => 'protegeu "[[:$1]]"',
-'modifiedarticleprotection'   => 'foi alterado o nível de protecção para "[[:$1]]"',
-'unprotectedarticle'          => 'desprotegeu "[[:$1]]"',
+'protectedarticle'            => 'protegeu "[[$1]]"',
+'modifiedarticleprotection'   => 'foi alterado o nível de protecção para "[[$1]]"',
+'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
 'protect-legend'              => 'Confirmar protecção',
 'protectcomment'              => 'Motivo de protecção',
@@ -1932,8 +1932,8 @@ Por favor, escolha outro nome.',
 'movepage-page-moved'     => 'A página $1 foi movida para $2',
 'movepage-page-unmoved'   => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'      => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
-'1movedto2'               => '[[:$1]] foi movido para [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] foi movido para [[:$2]] sob redireccionamento',
+'1movedto2'               => '[[$1]] foi movido para [[$2]]',
+'1movedto2_redir'         => '[[$1]] foi movido para [[$2]] sob redireccionamento',
 'movelogpage'             => 'Registo de movimento',
 'movelogpagetext'         => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movereason'              => 'Motivo:',
@@ -2020,7 +2020,7 @@ Todas as acções de importação transwiki são registadas no [[Special:Log/imp
 # Import log
 'importlogpage'                    => 'Registo de importações',
 'importlogpagetext'                => 'Importações administrativas de páginas com a preservação do histórico de edição de outras wikis.',
-'import-logentry-upload'           => 'importou [[:$1]] através de ficheiro de importação',
+'import-logentry-upload'           => 'importou [[$1]] através de ficheiro de importação',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|uma edição|$1 edições}}',
 'import-logentry-interwiki'        => 'transwiki $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
@@ -2563,7 +2563,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Foi removido o conteúdo completo desta página',
 'autosumm-replace' => "Página substituída por '$1'",
-'autoredircomment' => 'Redireccionando para [[:$1]]',
+'autoredircomment' => 'Redireccionando para [[$1]]',
 'autosumm-new'     => 'Nova página: $1',
 
 # Live preview

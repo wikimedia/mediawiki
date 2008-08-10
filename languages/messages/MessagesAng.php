@@ -488,7 +488,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'rollbackfailed'     => 'Edhwierft misfangen',
 'editcomment'        => 'Sēo ādihtungymbsprǣc wæs: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'         => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'unprotectedarticle' => 'unweardod "[[:$1]]"',
+'unprotectedarticle' => 'unweardod "[[$1]]"',
 'protect-title'      => 'Weardiende "$1"',
 'restriction-type'   => 'Gelēafnes:',
 
@@ -549,8 +549,8 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 naman þu cēas nis andfenge.
 Bidde cēos ōðerne naman.',
 'movedto'         => 'gefered tō',
-'1movedto2'       => '[[:$1]] gefered tō [[:$2]]',
-'1movedto2_redir' => '[[:$1]] gefered tō [[:$2]] ofer edlǣdunge',
+'1movedto2'       => '[[$1]] gefered tō [[$2]]',
+'1movedto2_redir' => '[[$1]] gefered tō [[$2]] ofer edlǣdunge',
 'movereason'      => 'Racu:',
 
 # Namespace 8 related

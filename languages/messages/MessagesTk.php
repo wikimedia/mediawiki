@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Runningfridgesrule
  * @author Flrn
+ * @author Runningfridgesrule
  */
 
 $messages = array(
@@ -157,7 +157,7 @@ $messages = array(
 'blocklink' => 'bökdençle',
 
 # Move page
-'1movedto2' => '[[:$1]] sahypasy [[:$2]] sahypasyna göçürildi',
+'1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
 
 # Thumbnails
 'thumbnail-more' => 'Ulal',

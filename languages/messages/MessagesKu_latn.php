@@ -1133,9 +1133,9 @@ Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
 'revertpage'                  => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
 'protectlogpage'              => 'Reşahîya parastîyan',
-'protectedarticle'            => 'parastî [[:$1]]',
-'modifiedarticleprotection'   => 'parastina "[[:$1]]" guherand',
-'unprotectedarticle'          => '"[[:$1]]" niha vê parastin e',
+'protectedarticle'            => 'parastî [[$1]]',
+'modifiedarticleprotection'   => 'parastina "[[$1]]" guherand',
+'unprotectedarticle'          => '"[[$1]]" niha vê parastin e',
 'protect-title'               => 'parastina "$1" biguherîne',
 'protect-legend'              => 'Parastinê teyîd bike',
 'protectcomment'              => 'Sedema parastinê',
@@ -1582,7 +1582,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Rûpel hate vala kirin',
 'autosumm-replace' => "'$1' ket şûna rûpelê.",
-'autoredircomment' => 'Redirect berve [[:$1]]',
+'autoredircomment' => 'Redirect berve [[$1]]',
 'autosumm-new'     => 'Rûpela nû: $1',
 
 # Live preview

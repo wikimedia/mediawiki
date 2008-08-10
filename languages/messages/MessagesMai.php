@@ -247,7 +247,7 @@ $messages = array(
 'contribslink' => 'योगदान',
 
 # Move page
-'1movedto2' => '[[:$1]] गेल एतय [[:$2]]',
+'1movedto2' => '[[$1]] गेल एतय [[$2]]',
 
 # Thumbnails
 'thumbnail-more' => 'पैघ',

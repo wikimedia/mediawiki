@@ -5,10 +5,10 @@
  * @file
  *
  * @author Alma
- * @author Toliño
- * @author Prevert
- * @author Xosé
  * @author Lameiro
+ * @author Prevert
+ * @author Toliño
+ * @author Xosé
  * @author לערי ריינהארט
  */
 
@@ -1553,9 +1553,9 @@ volveuse á última edición, feita por $2.',
 'sessionfailure'              => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
 'protectlogpage'              => 'Rexistro de protección',
 'protectlogtext'              => 'Abaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas. Vexa a [[Special:ProtectedPages|listaxe de páxinas protexidas]] para unha listaxe coas proteccións de páxinas establecidas neste momento.',
-'protectedarticle'            => 'protexeu "[[:$1]]"',
-'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[:$1]]"',
-'unprotectedarticle'          => 'desprotexeu "[[:$1]]"',
+'protectedarticle'            => 'protexeu "[[$1]]"',
+'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
+'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
 'protect-title'               => 'Cambiar o nivel de protección de "$1"',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Razón para protexelo',
@@ -1824,8 +1824,8 @@ Por favor escolla outro nome.',
 'movepage-page-moved'     => 'A páxina "$1" foi movida a "$2".',
 'movepage-page-unmoved'   => 'A páxina "$1" non pode ser movida a "$2".',
 'movepage-max-pages'      => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
-'1movedto2'               => 'moveu "[[:$1]]" a "[[:$2]]"',
-'1movedto2_redir'         => 'moveu "[[:$1]]" a "[[:$2]]" sobre unha redirección',
+'1movedto2'               => 'moveu "[[$1]]" a "[[$2]]"',
+'1movedto2_redir'         => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
 'movelogpage'             => 'Rexistro de traslados',
 'movelogpagetext'         => 'Abaixo móstrase unha listaxe de páxinas trasladadas.',
 'movereason'              => 'Motivo:',
@@ -1913,7 +1913,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',
 'importlogpagetext'                => 'Rexistro de importación de páxinas xunto co seu historial de edicións procedentes doutros wikis.',
-'import-logentry-upload'           => 'importou "[[:$1]]" mediante a carga dun ficheiro',
+'import-logentry-upload'           => 'importou "[[$1]]" mediante a carga dun ficheiro',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisións}}',
 'import-logentry-interwiki'        => 'importada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
@@ -2457,7 +2457,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'O contido da páxina foi eliminado',
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
-'autoredircomment' => 'Redirixida a [[:$1]]',
+'autoredircomment' => 'Redirixida a [[$1]]',
 'autosumm-new'     => 'Nova páxina: $1',
 
 # Live preview

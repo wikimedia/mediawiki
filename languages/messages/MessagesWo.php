@@ -1042,8 +1042,8 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'articleexists'    => 'Am na ba noppi ab jukki gu am gii koj, walla koj gi nga tann baaxul. tannal bennen.',
 'movedto'          => 'Turam bu bees',
 'movetalk'         => 'Tuddewaat tamit xëtu waxtaanukaay wi mu andal',
-'1movedto2'        => 'tuddewaat ko [[:$1]] en [[:$2]]',
-'1movedto2_redir'  => 'yòonalaat ko [[:$1]] mu jëm [[:$2]]',
+'1movedto2'        => 'tuddewaat ko [[$1]] en [[$2]]',
+'1movedto2_redir'  => 'yòonalaat ko [[$1]] mu jëm [[$2]]',
 'movelogpage'      => 'Jaar-jaaru tuddewaat yi',
 'movelogpagetext'  => 'Lii mooy limu xët yi ñu mujje tuddewaat.',
 'movereason'       => 'Ngirtey tuddewaat bi',
@@ -1200,7 +1200,7 @@ Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 'articletitles' => 'Jukki yu tambalee « $1 »',
 
 # Auto-summaries
-'autoredircomment' => 'Jubluwaat fii [[:$1]]',
+'autoredircomment' => 'Jubluwaat fii [[$1]]',
 'autosumm-new'     => 'Xët wu bees : $1',
 
 # Watchlist editor

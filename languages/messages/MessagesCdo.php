@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
-
  */
 
 $datePreferences = array(
@@ -776,8 +775,8 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'talkexists'              => "'''Hiĕk-miêng buōng-sĭng ī-gĭng ké̤ṳk iè-dông go̤ lāu, dáng-sê tō̤-lâung-hiĕk mò̤ nièng-ngài iè-dông ĭng-ôi sĭng biĕu-dà̤ â-dā̤ ī-gĭng ô siŏh tiŏng tō̤-lâung-hiĕk lāu. Chiāng nṳ̄ cê-gă gâe̤ng cī lâng hiĕk biáng lâ.'''",
 'movedto'                 => 'iè gáu',
 'movetalk'                => 'Iè-dông siŏng-guăng tō̤-lâung hiĕk',
-'1movedto2'               => '[[:$1]] iè gáu [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] dṳ̀ng-sĭng dêng-hióng gáu [[:$2]]',
+'1movedto2'               => '[[$1]] iè gáu [[$2]]',
+'1movedto2_redir'         => '[[$1]] dṳ̀ng-sĭng dêng-hióng gáu [[$2]]',
 'movelogpage'             => 'Iè-dông nĭk-cé',
 'movelogpagetext'         => 'Â-dā̤ sê ké̤ṳk iè-dông guó gì hiĕk-miêng gì dăng-dăng.',
 'movereason'              => 'Nguòng-ĭng',
@@ -885,7 +884,7 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 
 # Auto-summaries
 'autosumm-blank'   => 'Dù lâi ciòng-buô ùng-cê',
-'autoredircomment' => 'Dṳ̀ng-sĭng dêng-hióng gáu [[:$1]]',
+'autoredircomment' => 'Dṳ̀ng-sĭng dêng-hióng gáu [[$1]]',
 'autosumm-new'     => 'Sĭng hiĕk: $1',
 
 # Live preview

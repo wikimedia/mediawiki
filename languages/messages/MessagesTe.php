@@ -4,13 +4,13 @@
  * @ingroup Language
  * @file
  *
- * @author Veeven
- * @author Mpradeep
  * @author Chaduvari
+ * @author Mpradeep
  * @author Sunil Mohan
- * @author వైజాసత్య
- * @author לערי ריינהארט
+ * @author Veeven
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author לערי ריינהארט
+ * @author వైజాసత్య
  */
 
 $namespaceNames = array(
@@ -1533,9 +1533,9 @@ $NEWPAGE
 "back" కొట్టి, ఎక్కడి నుండి వచ్చారో ఆ పేజీని మళ్ళీ లోడు చేసి, మళ్ళీ ప్రయత్నించండి.',
 'protectlogpage'              => 'సంరక్షణ దినచర్య',
 'protectlogtext'              => 'పేజీ సంరక్షణ గురించిన వివరాల జాబితా క్రింద వున్నది.',
-'protectedarticle'            => '"[[:$1]]" సంరక్షించబడింది.',
-'modifiedarticleprotection'   => '"[[:$1]]" సరక్షణ స్థాయిని మార్చాం',
-'unprotectedarticle'          => '"[[:$1]]" ను సంరక్షణ నుండి తీసేసాం',
+'protectedarticle'            => '"[[$1]]" సంరక్షించబడింది.',
+'modifiedarticleprotection'   => '"[[$1]]" సరక్షణ స్థాయిని మార్చాం',
+'unprotectedarticle'          => '"[[$1]]" ను సంరక్షణ నుండి తీసేసాం',
 'protect-title'               => '"$1" కు సంరక్షణ స్థాయిని సెట్ చేస్తున్నాం',
 'protect-legend'              => 'సంరక్షణను నిర్ధారించు',
 'protectcomment'              => 'సంరక్షించడానికి కారణం',
@@ -1799,7 +1799,7 @@ $NEWPAGE
 'movepage-page-unmoved'   => '$1 అనే పేజీని $2 కి తరలించలేకపోయాము.',
 'movepage-max-pages'      => '$1 యొక్క గరిష్ఠ పరిమితి {{PLURAL:$1|పేజీ|పేజీలు}} వరకు తరలించడమైనది. ఇక ఆటోమాటిగ్గా తరలించము.',
 '1movedto2'               => '$1, $2కు తరలించబడింది',
-'1movedto2_redir'         => '[[:$1]] ను దారిమార్పు ద్వారా [[:$2]] కు తరలించాం',
+'1movedto2_redir'         => '[[$1]] ను దారిమార్పు ద్వారా [[$2]] కు తరలించాం',
 'movelogpage'             => 'తరలింపు దినచర్య',
 'movelogpagetext'         => 'కింద తరలించిన పేజీల జాబితా ఉన్నది.',
 'movereason'              => 'కారణము',
@@ -1888,7 +1888,7 @@ $NEWPAGE
 # Import log
 'importlogpage'                    => 'దిగుమతి లాగ్',
 'importlogpagetext'                => 'ఇతర వికీల నుండీ మార్పుల చరిత్రతోసహా తెచ్చిన నిర్వహణా దిగుమతులు.',
-'import-logentry-upload'           => '[[:$1]]ను ఫైలు అప్లోడు ద్వారా దిగుమతి చేసాం',
+'import-logentry-upload'           => '[[$1]]ను ఫైలు అప్లోడు ద్వారా దిగుమతి చేసాం',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
 'import-logentry-interwiki'        => 'ఇతర వికీల నుండి $1',
 'import-logentry-interwiki-detail' => '$2 నుండి {{PLURAL:$1|ఒక కూర్పు|$1 కూర్పులు}}',
@@ -2421,7 +2421,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'పేజీలోని సమాచారాన్నంతటినీ తీసేస్తున్నారు',
 'autosumm-replace' => "పేజీని '$1' తో మారుస్తున్నాం",
-'autoredircomment' => '[[:$1]]కు మళ్ళించబడుతుంది',
+'autoredircomment' => '[[$1]]కు మళ్ళించబడుతుంది',
 'autosumm-new'     => 'కొత్త పేజీ: $1',
 
 # Live preview

@@ -95,8 +95,8 @@ $messages = array(
 # Move page
 'move-page-legend' => 'Seitn vaschiam',
 'move-watch'       => 'De Seitn beobachten',
-'1movedto2'        => 'håt [[:$1]] nåch [[:$2]] verschom',
-'1movedto2_redir'  => 'håt [[:$1]] nåch [[:$2]] verschom und dabei a Weiterleitung überschriem',
+'1movedto2'        => 'håt [[$1]] nåch [[$2]] verschom',
+'1movedto2_redir'  => 'håt [[$1]] nåch [[$2]] verschom und dabei a Weiterleitung überschriem',
 
 # Namespace 8 related
 'allmessagesname'     => 'Nam',

@@ -64,6 +64,7 @@ $messages = array(
 'delete'           => 'Paarẹ́',
 'deletethispage'   => 'Pa ojúewé yi rẹ́',
 'protect'          => 'Dábòbò',
+'protectthispage'  => 'Dá àbò bo ojúewé yìí',
 'newpage'          => 'Ojúewé tuntun',
 'talkpage'         => 'Kábárawasọ̀rọ̀ nípa ojúewé yi',
 'talkpagelinktext' => 'Kábárawasọ̀rọ̀',
@@ -75,6 +76,7 @@ $messages = array(
 'jumptonavigation' => 'atọ́ka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Nípa {{SITENAME}}',
 'currentevents'        => 'Ìròhìn nísinsìnyí',
 'edithelp'             => "Ìrànlọ́wọ́ láti s'àtúnṣe",
 'edithelppage'         => 'Help:Àtúnṣe',
@@ -85,6 +87,7 @@ $messages = array(
 
 'badaccess-group0' => "A kò gbàyín l'áyè l'áti ṣe ohun tí ẹ bèrè fún.",
 
+'youhavenewmessages'      => 'Ẹ ní $1 ($2).',
 'newmessageslink'         => 'ìfọ̀rọ̀ránsẹ́ tuntun',
 'youhavenewmessagesmulti' => 'Ẹ ní ìfọ̀rọ̀ránsẹ́ tuntun ni $1',
 'editsection'             => "s'àtúnṣe",
@@ -107,36 +110,50 @@ $messages = array(
 'titleprotected'    => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
-'logouttitle'        => 'Ẹnitínṣe tibọsóde',
-'welcomecreation'    => "== Ẹ kú àbọ̀, $1! ==
+'logouttitle'             => 'Ẹnitínṣe tibọsóde',
+'welcomecreation'         => "== Ẹ kú àbọ̀, $1! ==
 
 A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọn ìfẹ́ràn {{SITENAME}} yín.",
-'loginpagetitle'     => 'Ẹnitínṣe tiwọlé',
-'yourname'           => 'Orúkọ ẹnitínṣe (username):',
-'yourpassword'       => 'Ọ̀rọ̀ìpamọ́:',
-'yourpasswordagain'  => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
-'remembermypassword' => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
-'login'              => "Ẹ w'ọlé",
-'userlogin'          => "Ẹ w'ọlé / ẹ fi orúkọ sílẹ̀",
-'logout'             => "Ẹ bọ́s'óde",
-'userlogout'         => "Ẹ ti bọ́s'óde",
-'notloggedin'        => "Ẹ kò tí w'ọlé",
-'nologinlink'        => 'Ẹ fi orúkọ sílẹ̀',
-'createaccount'      => 'Ẹ fi orúkọ sílẹ̀',
-'gotaccountlink'     => "Ẹ w'ọlé",
-'createaccountmail'  => 'pẹ̀lú e-mail',
-'uid'                => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
-'yourlanguage'       => 'Èdè:',
-'accountcreated'     => 'Ẹ ti fi orúkọ sílẹ̀',
-'accountcreatedtext' => 'A ti fi orúkọ ẹnitínṣe sílẹ̀ fún $1',
-'loginlanguagelabel' => 'Èdè: $1',
+'loginpagetitle'          => 'Ẹnitínṣe tiwọlé',
+'yourname'                => 'Orúkọ ẹnitínṣe (username):',
+'yourpassword'            => 'Ọ̀rọ̀ìpamọ́:',
+'yourpasswordagain'       => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
+'remembermypassword'      => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
+'loginproblem'            => '<b>Ẹ ní ìṣòro láti wọlé.</b><br />Ẹ gbìyànjú lẹ́kan sí!',
+'login'                   => "Ẹ w'ọlé",
+'nav-login-createaccount' => 'Ẹ wọlẹ́ / Ẹ fi orúkọ sílẹ̀',
+'userlogin'               => "Ẹ w'ọlé / ẹ fi orúkọ sílẹ̀",
+'logout'                  => "Ẹ bọ́s'óde",
+'userlogout'              => "Ẹ ti bọ́s'óde",
+'notloggedin'             => "Ẹ kò tí w'ọlé",
+'nologinlink'             => 'Ẹ fi orúkọ sílẹ̀',
+'createaccount'           => 'Ẹ fi orúkọ sílẹ̀',
+'gotaccountlink'          => "Ẹ w'ọlé",
+'createaccountmail'       => 'pẹ̀lú e-mail',
+'uid'                     => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
+'yourlanguage'            => 'Èdè:',
+'accountcreated'          => 'Ẹ ti fi orúkọ sílẹ̀',
+'accountcreatedtext'      => 'A ti fi orúkọ ẹnitínṣe sílẹ̀ fún $1',
+'loginlanguagelabel'      => 'Èdè: $1',
 
 # Edit pages
-'savearticle' => 'Ẹ fi pamọ́',
-'preview'     => 'Àyẹ̀wò',
-'showpreview' => 'Àyẹ̀wò',
-'showdiff'    => 'Àfihàn àwọn àyípadà',
-'newarticle'  => '(Tuntun)',
+'minoredit'        => 'Àtúnṣe kékeré nìyí',
+'watchthis'        => "M'ójútó ojúewé yìí",
+'savearticle'      => 'Ẹ fi pamọ́',
+'preview'          => 'Àyẹ̀wò',
+'showpreview'      => 'Àyẹ̀wò',
+'showdiff'         => 'Àfihàn àwọn àyípadà',
+'anoneditwarning'  => "'''Ìkìlọ̀:''' Ẹ ò tíì wọlé.
+Á ṣe àkọsílẹ̀ ojúọ̀nà IP yín ninu ìwé àtúnṣe ojúewé yìí.",
+'newarticle'       => '(Tuntun)',
+'note'             => '<strong>Àkíyèsí:</strong>',
+'copyrightwarning' => 'Ẹ jọ̀wọ́ ẹ kíyèsi wípé gbogbo àwọn àfikún sí {{SITENAME}} jẹ́ bẹ̀ lábẹ́  $2 (Ẹ wo $1 fún ẹkunrẹrẹ ).
+If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
+You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
+<strong>Ẹ mọ́ fi iṣẹ́ ẹlòmíràn sílẹ̀ láì gbàṣẹ!</strong>',
+
+# Revision deletion
+'rev-delundel' => 'fihàn/fipamọ́',
 
 # Search results
 'powersearch' => 'Ṣe àwáàrí',
@@ -171,6 +188,8 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'allnotinnamespace' => 'Gbogbo ojúewé (tí kòsí ní $1 namespace)',
 
 # Watchlist
+'watchlist'       => 'Ìmójútó mi',
+'mywatchlist'     => 'Ìmójútó mi',
 'watch'           => "M'ójútó",
 'watchthispage'   => "M'ójútó ojúewé yi",
 'unwatch'         => "Já'wọ́ ìmójútó",
@@ -184,6 +203,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'mycontris'     => 'Àwọn àfikún mi',
 
 # What links here
+'whatlinkshere'      => 'Ìjápọ̀ mọ́ ojúewé yí',
 'whatlinkshere-page' => 'Ojúewé:',
 
 # Namespace 8 related

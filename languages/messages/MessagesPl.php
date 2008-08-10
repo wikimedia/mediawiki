@@ -4,22 +4,22 @@
  * @ingroup Language
  * @file
  *
- * @author Sp5uhe
- * @author Derbeth
- * @author ToSter
- * @author לערי ריינהארט
- * @author Wpedzich
- * @author Leinad
  * @author Beau
- * @author Stv
- * @author Masti
- * @author Maikking
- * @author Ymar
- * @author Matma Rex
+ * @author Derbeth
  * @author Equadus
- * @author Lajsikonik
- * @author Szczepan1990
  * @author Herr Kriss
+ * @author Lajsikonik
+ * @author Leinad
+ * @author Maikking
+ * @author Masti
+ * @author Matma Rex
+ * @author Sp5uhe
+ * @author Stv
+ * @author Szczepan1990
+ * @author ToSter
+ * @author Wpedzich
+ * @author Ymar
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -1780,9 +1780,9 @@ Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wyd
 'protectlogpage'              => 'Zabezpieczone',
 'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
 Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:ProtectedPages|zabezpieczonych stron]].',
-'protectedarticle'            => 'zabezpieczył [[:$1]]',
-'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[:$1]]',
-'unprotectedarticle'          => 'odbezpieczył [[:$1]]',
+'protectedarticle'            => 'zabezpieczył [[$1]]',
+'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
+'unprotectedarticle'          => 'odbezpieczył [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'powód zabezpieczenia',
@@ -2065,8 +2065,8 @@ Wybierz inną nazwę.',
 'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
 'movepage-max-pages'      => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
-'1movedto2'               => 'stronę [[:$1]] przeniósł do [[:$2]]',
-'1movedto2_redir'         => 'stronę [[:$1]] przeniósł do [[:$2]] nad przekierowaniem',
+'1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',
+'1movedto2_redir'         => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
 'movelogpage'             => 'Przeniesione',
 'movelogpagetext'         => 'Lista stron, które ostatnio zostały przeniesione.',
 'movereason'              => 'Powód',
@@ -2157,7 +2157,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 # Import log
 'importlogpage'                    => 'Rejestr importu',
 'importlogpagetext'                => 'Rejestr przeprowadzonych importów stron z innych serwisów wiki.',
-'import-logentry-upload'           => 'zaimportował [[:$1]] przez przesłanie pliku',
+'import-logentry-upload'           => 'zaimportował [[$1]] przez przesłanie pliku',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersja|wersje|wersji}}',
 'import-logentry-interwiki'        => 'zaimportował $1 używając transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2',
@@ -2708,7 +2708,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'UWAGA! Usunięcie treści (strona pozostała pusta)!',
 'autosumm-replace' => 'UWAGA! Zastąpienie treści hasła bardzo krótkim tekstem: „$1”',
-'autoredircomment' => 'Przekierowanie do [[:$1]]',
+'autoredircomment' => 'Przekierowanie do [[$1]]',
 'autosumm-new'     => 'Nowa strona: $1',
 
 # Size units

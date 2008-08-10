@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Krun
+ * @author Quackor
+ * @author S.Örvarr.S
  * @author Spacebirdy
  * @author לערי ריינהארט
- * @author Krun
- * @author S.Örvarr.S
- * @author Quackor
  */
 
 $skinNames = array(
@@ -866,8 +866,8 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'rollbacklink'        => 'afturrulling',
 'rollbackfailed'      => 'Afturrulling miseydnað',
 'protectlogpage'      => 'Friðingarbók',
-'protectedarticle'    => 'friðaði "[[:$1]]"',
-'unprotectedarticle'  => 'ófriðaði "[[:$1]]"',
+'protectedarticle'    => 'friðaði "[[$1]]"',
+'unprotectedarticle'  => 'ófriðaði "[[$1]]"',
 'protect-title'       => 'Friðar "$1"',
 'protect-legend'      => 'Vátta friðing',
 'protectcomment'      => 'Orsøk til friðing:',

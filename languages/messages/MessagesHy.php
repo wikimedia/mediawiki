@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
+ * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
  * @author לערי ריינהארט
- * @author Ruben Vardanyan (me@RubenVardanyan.com)
  */
 
 $separatorTransformTable = array(
@@ -1492,9 +1492,9 @@ $NEWPAGE
 Խնդրում ենք սեղմել «back» կոճակը և վերբեռնել այն էջը որտեղից եկել եք ու փորձել կրկին։',
 'protectlogpage'              => 'Պաշտպանման տեղեկամատյան',
 'protectlogtext'              => 'Ստորև բերված է պաշտպանված և պաշտպանումից հանված էջերի ցանկը։ Տես նաև [[Special:ProtectedPages|ներկայումս պաշտպանված էջերի ցանկը]]։',
-'protectedarticle'            => 'պաշտպանվեց «[[:$1]]» էջը',
-'modifiedarticleprotection'   => 'փոխվեց պաշտպանման մակարդակը «[[:$1]]» էջի համար',
-'unprotectedarticle'          => 'պաշտպանումը հանված է «[[:$1]]» էջից',
+'protectedarticle'            => 'պաշտպանվեց «[[$1]]» էջը',
+'modifiedarticleprotection'   => 'փոխվեց պաշտպանման մակարդակը «[[$1]]» էջի համար',
+'unprotectedarticle'          => 'պաշտպանումը հանված է «[[$1]]» էջից',
 'protect-title'               => '«$1» էջի պաշտպանման մակարդակի հաստատում',
 'protect-legend'              => 'Հաստատել պաշտպանումը',
 'protectcomment'              => 'Պաշտպանման պատճառը.',
@@ -1727,8 +1727,8 @@ $1',
 'talkexists'              => "'''Էջը հաջողությամբ տեղափոխվեց, սակայն կցված քննարկման էջը հնարավոր չէր տեղափոխել, քանի որ նոր անվանմամբ էջ արդեն գոյություն ուներ։ Խնդրում ենք միաձուլել դրանք ձեռքով։'''",
 'movedto'                 => 'տեղափոխված է',
 'movetalk'                => 'Տեղափոխել զուգակցված քննարկման էջը',
-'1movedto2'               => '«[[:$1]]» վերանվանված է «[[:$2]]»',
-'1movedto2_redir'         => '«[[:$1]]» վերանվանված է «[[:$2]]» վերահղմամբ',
+'1movedto2'               => '«[[$1]]» վերանվանված է «[[$2]]»',
+'1movedto2_redir'         => '«[[$1]]» վերանվանված է «[[$2]]» վերահղմամբ',
 'movelogpage'             => 'Տեղափոխման տեղեկամատյան',
 'movelogpagetext'         => 'Ստորև բերված է վերանվանված էջերի ցանկը։',
 'movereason'              => 'Պատճառ.',
@@ -1803,7 +1803,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Import log
 'importlogpage'                    => 'Ներմուծման տեղեկամատյան',
 'importlogpagetext'                => 'Ադմինիստրատորների կողմից այլ վիքիներից իրենց պատմությունների հետ էջերի ներմուծումներ։',
-'import-logentry-upload'           => 'ներմուծվել է «[[:$1]]» ֆայլի բեռնումով',
+'import-logentry-upload'           => 'ներմուծվել է «[[$1]]» ֆայլի բեռնումով',
 'import-logentry-upload-detail'    => '$1 տարբերակ',
 'import-logentry-interwiki'        => '«$1»՝ միջվիքի ներմուծմամբ',
 'import-logentry-interwiki-detail' => '$1 տարբերակ $2-ից',
@@ -2096,7 +2096,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Ջնջվում է էջի ամբողջ պարունակությունը',
 'autosumm-replace' => "Փոխվում է էջը '$1'-ով",
-'autoredircomment' => 'Վերահղվում է դեպի [[:$1]]',
+'autoredircomment' => 'Վերահղվում է դեպի [[$1]]',
 'autosumm-new'     => 'Նոր էջ. $1',
 
 # Size units

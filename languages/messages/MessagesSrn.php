@@ -4,10 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author Stretsh
  * @author Adfokati
  * @author Jordi
  * @author Ooswesthoesbes
+ * @author Stretsh
  */
 
 $fallback = 'nl';
@@ -995,7 +995,7 @@ Gi wan trawan papiranen.',
 'talkexists'       => "'''A papira ben dribi, ma a taki papira kan no dribi sey sins da ala wan papira nanga a nyun nen ben. Presi den takipeprewoysi yuse.'''",
 'movedto'          => 'ben dribi na',
 'movetalk'         => 'Taki papira nangadribi',
-'1movedto2'        => '[[:$1]] froisi go na [[:$2]]',
+'1movedto2'        => '[[$1]] froisi go na [[$2]]',
 'movelogpage'      => 'Log buku fu froisi',
 'movereason'       => 'Yesikrari:',
 'revertmove'       => 'drai baka',

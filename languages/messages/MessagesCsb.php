@@ -584,8 +584,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 Chtos jiny ju editowôł starnã abò copnął zmianë.
 
 Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]).',
-'protectedarticle'   => 'zazychrowónô [[:$1]]',
-'unprotectedarticle' => 'òdzychrowóny [[:$1]]',
+'protectedarticle'   => 'zazychrowónô [[$1]]',
+'unprotectedarticle' => 'òdzychrowóny [[$1]]',
 'protect-legend'     => 'Pòcwierdzë zazychrowanié',
 'protectcomment'     => 'Przëczëna zazychrowóniô',
 
@@ -641,7 +641,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',
 '1movedto2'               => '$1 przeniesłé do $2',
-'1movedto2_redir'         => '[[:$1]] przeniesłé do [[:$2]] nad przeczérowanim',
+'1movedto2_redir'         => '[[$1]] przeniesłé do [[$2]] nad przeczérowanim',
 'delete_and_move'         => 'Rëmôj ë przeniesë',
 'delete_and_move_confirm' => 'Jo, rëmôj ną starnã',
 
@@ -718,7 +718,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'imgmultigo' => 'Biéj!',
 
 # Auto-summaries
-'autoredircomment' => 'Przeczérowanié do [[:$1]]',
+'autoredircomment' => 'Przeczérowanié do [[$1]]',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Òbaczë wôżnészé zmianë',

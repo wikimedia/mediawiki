@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Aviator
  * @author Aurora
- * @author לערי ריינהארט
- * @author Putera Luqman Tunku Andre
+ * @author Aviator
  * @author Kurniasan
+ * @author Putera Luqman Tunku Andre
+ * @author לערי ריינהארט
  */
 
 /**
@@ -1659,9 +1659,9 @@ Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
 Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebelum ini, kemudian cuba lagi.',
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
-'protectedarticle'            => 'melindungi "[[:$1]]"',
-'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[:$1]]"',
-'unprotectedarticle'          => 'menyahlindung "[[:$1]]"',
+'protectedarticle'            => 'melindungi "[[$1]]"',
+'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[$1]]"',
+'unprotectedarticle'          => 'menyahlindung "[[$1]]"',
 'protect-title'               => 'Menetapkan peringkat perlindungan bagi "$1"',
 'protect-legend'              => 'Sahkan perlindungan',
 'protectcomment'              => 'Komen:',
@@ -1948,8 +1948,8 @@ Sila pilih nama lain.',
 'movepage-page-moved'     => 'Laman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'   => 'Laman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'      => 'Jumlah maksimum $1 laman telah dipindahkan secara automatik.',
-'1movedto2'               => '[[:$1]] dipindahkan ke [[:$2]]',
-'1movedto2_redir'         => '[[:$1]] dipindahkan ke [[:$2]] menerusi pelencongan',
+'1movedto2'               => '[[$1]] dipindahkan ke [[$2]]',
+'1movedto2_redir'         => '[[$1]] dipindahkan ke [[$2]] menerusi pelencongan',
 'movelogpage'             => 'Log pemindahan',
 'movelogpagetext'         => 'Berikut ialah senarai pemindahan laman.',
 'movereason'              => 'Sebab:',
@@ -2038,7 +2038,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 # Import log
 'importlogpage'                    => 'Log import',
 'importlogpagetext'                => 'Senarai tindakan import laman dengan keseluruhan sejarah suntingannya daripada wiki lain.',
-'import-logentry-upload'           => 'mengimport [[:$1]] dengan memuat naik fail',
+'import-logentry-upload'           => 'mengimport [[$1]] dengan memuat naik fail',
 'import-logentry-upload-detail'    => '$1 semakan',
 'import-logentry-interwiki'        => '$1 dipindahkan ke wiki lain',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
@@ -2584,7 +2584,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'Membuang semua kandungan daripada laman',
 'autosumm-replace' => "Menggantikan laman dengan '$1'",
-'autoredircomment' => 'Melencong ke [[:$1]]',
+'autoredircomment' => 'Melencong ke [[$1]]',
 'autosumm-new'     => 'Laman baru: $1',
 
 # Live preview
