@@ -266,7 +266,7 @@ class Skin extends Linker {
 		$this->initPage( $out );
 
 		// See self::afterContentHook() for documentation
-		$this->afterContentHook();
+		$afterContent = $this->afterContentHook();
 
 		$out->out( $out->headElement() );
 
@@ -286,6 +286,8 @@ class Skin extends Linker {
 		$out->out( $out->mBodytext . "\n" );
 
 		$out->out( $this->afterContent() );
+		
+		$out->out( $afterContent );
 
 		$out->out( $this->bottomScripts() );
 
