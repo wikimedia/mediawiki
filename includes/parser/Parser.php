@@ -133,7 +133,7 @@ class Parser
 		$this->mVarCache = array();
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
-		} elseif ( class_exists( 'DOMDocument' ) ) {
+		} elseif ( extension_loaded( 'dom' ) ) {
 			$this->mPreprocessorClass = 'Preprocessor_DOM';
 		} else {
 			$this->mPreprocessorClass = 'Preprocessor_Hash';
