@@ -1546,7 +1546,7 @@ $NEWPAGE
 'noimages'              => 'נישטא קיין בילדער.',
 'ilsubmit'              => 'זוכן',
 'bydate'                => 'לויטן דאטום',
-'sp-newimages-showfrom' => 'באַװײַזן נײַע טעקעס פון־$2, $1',
+'sp-newimages-showfrom' => 'באַװײַזן נײַע טעקעס פון $2, $1',
 
 # Bad image list
 'bad_image_list' => 'דער פֿאָרמאַט איז װי פֿאָלגנדיק:

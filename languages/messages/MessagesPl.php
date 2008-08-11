@@ -733,7 +733,8 @@ Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
 'blockedtitle'                     => 'Użytkownik jest zablokowany',
 'blockedtext'                      => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
 
-Blokada została nałożona przez $1. Podany powód to: ''$2''.
+Blokada została nałożona przez $1.
+Podany powód to: ''$2''.
 
 * Początek blokady: $8
 * Wygaśnięcie blokady: $6
@@ -741,7 +742,8 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
 Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika”, jeśli brak jest poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
-Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
+Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.
+Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'autoblockedtext'                  => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
 Powód blokady:
 
@@ -749,13 +751,14 @@ Powód blokady:
 
 * Początek blokady: $8
 * Wygaśnięcie blokady: $6
+* Cel blokady: $7
 
 Możesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
 
-Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail lub zablokowano Ci tę funkcjonalność, nie możesz skorzystać z opcji „Wyślij e-mail do tego użytkownika”.
+Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika”, jeśli brak jest poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 
-Identyfikator blokady to $5.
-Zanotuj go i podaj administratorowi.",
+Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.
+Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'blockednoreason'                  => 'nie podano przyczyny',
 'blockedoriginalsource'            => "Źródło '''$1''' zostało pokazane poniżej:",
 'blockededitsource'                => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
@@ -1897,7 +1900,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
-'whatlinkshere-title'      => 'Strony linkujące do $1',
+'whatlinkshere-title'      => 'Strony linkujące do „$1”',
 'whatlinkshere-page'       => 'Strona',
 'linklistsub'              => '(Lista linków)',
 'linkshere'                => "Następujące strony odwołują się do '''[[:$1]]''':",
@@ -1961,7 +1964,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipusubmit'                       => 'Odblokuj użytkownika',
 'unblocked'                       => '[[User:$1|$1]] został odblokowany.',
 'unblocked-id'                    => 'Blokada $1 została zdjęta',
-'ipblocklist'                     => 'Lista zablokowanych użytkowników i adresów IP',
+'ipblocklist'                     => 'Lista zablokowanych adresów IP i użytkowników',
 'ipblocklist-legend'              => 'Znajdź zablokowanego użytkownika',
 'ipblocklist-username'            => 'Nazwa użytkownika lub adres IP',
 'ipblocklist-submit'              => 'Szukaj',

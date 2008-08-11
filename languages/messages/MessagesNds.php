@@ -1824,7 +1824,7 @@ Ok den Grund för dat Blocken indregen.',
 'ipusubmit'                       => 'Disse Adress freegeven',
 'unblocked'                       => '[[User:$1|$1]] freegeven',
 'unblocked-id'                    => 'Sperr $1 freegeven',
-'ipblocklist'                     => 'List vun blockte IP-Adressen',
+'ipblocklist'                     => 'List vun blockte IP-Adressen un Brukernaams',
 'ipblocklist-legend'              => 'Blockten Bruker finnen',
 'ipblocklist-username'            => 'Brukernaam oder IP-Adress:',
 'ipblocklist-submit'              => 'Söken',
@@ -2132,9 +2132,10 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'markedaspatrollederror-noautopatrol' => 'Du kannst de Saken, de du sülvst ännert hest, nich as nakeken marken.',
 
 # Patrol log
-'patrol-log-page' => 'Nakiek-Logbook',
-'patrol-log-line' => '$1 vun $2 as nakeken markt $3',
-'patrol-log-auto' => '(automaatsch)',
+'patrol-log-page'   => 'Nakiek-Logbook',
+'patrol-log-header' => 'Dit is dat Patrolleer-Logbook.',
+'patrol-log-line'   => '$1 vun $2 as nakeken markt $3',
+'patrol-log-auto'   => '(automaatsch)',
 
 # Image deletion
 'deletedrevision'                 => 'Löschte ole Version $1',

@@ -1753,15 +1753,11 @@ $1',
 # Block/unblock
 'blockip'                         => 'Blocco utente',
 'blockip-legend'                  => "Blocca l'utente",
-'blockiptext'                     => 'Usa il modulo sottostante per bloccare l\'accesso in scrittura a uno specifico indirizzo IP o un utente registrato. 
+'blockiptext'                     => "Usa il modulo sottostante per bloccare l'accesso in scrittura a uno specifico indirizzo IP o un utente registrato. 
 
-Il blocco dev\'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].
+Il blocco dev'essere operato per prevenire atti di vandalismo e in stretta osservanza della [[{{MediaWiki:Policy-url}}|policy di {{SITENAME}}]].
 
-Indica il motivo specifico per il quale procedi al blocco dell\'indirizzo IP o dell\'utente (per esempio, cita i titoli di eventuali pagine che siano state oggetto di vandalismo).
-
-Le durate del blocco diverse da quelle predefinite si possono specificare \'\'\'in lingua inglese\'\'\' usando il formato standard GNU, descritto nel [http://www.gnu.org/software/shishi/manual/html_node/Relative-items-in-date-strings.html manuale di tar] (per esempio: "1 hour", "2 days", "next Wednesday", "1 January 2017"). In alternativa, il blocco può essere "indefinite" o "infinite" (senza scadenza).
-
-Per sbloccare qualcuno utilizza la [[{{ns:Special}}:Ipblocklist|lista degli IP e degli utenti bloccati]]. Ricorda infine che viene mantenuto un [[Special:Log/block|log dei blocchi]].',
+Indica il motivo specifico per il quale procedi al blocco dell'indirizzo IP o dell'utente (per esempio, cita i titoli di eventuali pagine che siano state oggetto di vandalismo).",
 'ipaddress'                       => 'Indirizzo IP:',
 'ipadressorusername'              => 'Indirizzo IP o nome utente:',
 'ipbexpiry'                       => 'Scadenza del blocco:',

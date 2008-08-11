@@ -602,31 +602,33 @@ Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutwori�
 'summary-preview'                  => 'Přehlad zjeća',
 'subject-preview'                  => 'Přehlad temy',
 'blockedtitle'                     => 'Wužiwar je zablokowany',
-'blockedtext'                      => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu $1 blokowane.'''</big>
+'blockedtext'                      => "<big>'''Twoje wužiwarske mjeno abo twoja IP-adresa bu zablokowane.'''</big>
 
-Podata přičina je: ''$2''.
+Blokowar je $1.
+Podata přičina je ''$2''.
 
 * Spočatk blokowanja: $8
 * Kónc blokowanja: $6
 * Zablokowany wužiwar: $7
 
-Ty móžeš $1 abo druheho [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktować, zo by wo blokowanju diskutował.
+Móžeš $1 abo druheho [[{{MediaWiki:Grouppage-sysop}}|administratora]] kontaktować, zo by wo blokowanju diskutował.
 Njemóžeš 'e-mejlowu funkciju' wužiwać, chibazo sy płaćiwu e-mejlowu adresu w swojich [[Special:Preferences|kontowych nastajenjach]] podał a njebu přećiwo jeje wužiwanju zablokowany.
-Twoja tuchwilna IP-adresa je $3 a blokowanski ID je #$5. Prošu podaj pak IP-adresu pak blokowanski ID abo wobaj w swojich naprašowanjach.",
+Twoja tuchwilna IP-adresa je $3 a blokowanski ID je #$5. Prošu podaj wšě horjeka naspomnjene podrobnosće w swojich naprašowanjach.",
 'autoblockedtext'                  => 'Twoja IP-adresa bu awtomatisce blokowana, dokelž ju druhi wužiwar wužiwaše, kiž bu wot $1 zablokowany.
-Přičina zablokowanja bě:
+Přičina blokowanja bě:
 
 :\'\'$2\'\'
 
 * Započatk blokowanja: $8
 * Kónc blokowanja: $6
+* Zablokowany wužiwar: $7
 
 Móžeš $1 abo jednoho z druhich [[{{MediaWiki:Grouppage-sysop}}|administratorow]] kontaktować, zo by blokowanje diskutował.
 
-Wobkedźbuj, zo njemóžeš funkciju "Wužiwarjej mejlku pósłać" wužiwać, jeli nimaš płaćiwu e-mejlowu adresu, kotraž je w twojich [[Special:Preferences|wužiwarskich nastajenjach]] zregistrowana a njesmě će blokować ju wužiwać.
+Wobkedźbuj, zo njemóžeš funkciju "Wužiwarjej mejlku pósłać" wužiwać, jeli nimaš płaćiwu e-mejlowu adresu, kotraž je w twojich [[Special:Preferences|wužiwarskich nastajenjach]] zregistrowana a njebi blokowany ju wužiwać.
 
-Twój ID blokowanja je $5.
-Prošu podaj tutón ID w kóždym naprašowanju, kotrež činiš.',
+Twój aktualna adresa IP je $3 a ID blokowanja je #$5.
+Prošu podaj wšě horjeka naspomnjene podrobnosće w naprašowanjach, kotrež činiš.',
 'blockednoreason'                  => 'žana přičina podata',
 'blockedoriginalsource'            => 'To je žórłowy tekst strony <b>$1</b>:',
 'blockededitsource'                => 'Tekst <b>twojich změnow</b> strony <b>$1</b> so tu pokazuje:',
@@ -690,7 +692,7 @@ Lubiš nam tež, zo sy jón sam napisał abo ze zjawneje domejny abo z podobneho
 'readonlywarning'                  => '<strong>KEDŹBU: Datowa banka bu wothladanja dla zawrjena, tohodla njemóžeš swoje wobdźěłowanja nětko składować. Móžeš tekst do tekstoweje dataje přesunyć a jón za pozdźišo składować.</strong>',
 'protectedpagewarning'             => '<strong>KEDŹBU: Strona bu škitana, tak zo jenož wužiwarjo z prawami administratora móža ju wobdźěłać.</strong>',
 'semiprotectedpagewarning'         => '<b>Kedźbu:</b> Strona bu škitana, tak zo jenož přizjewjeni wužiwarjo móža ju wobdźěłać.',
-'cascadeprotectedwarning'          => "'''KEDŹBU: Tuta strona je škitana, tak zo móža ju jenož wužiwarjo z prawami administratora wobdźělać, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}:'''",
+'cascadeprotectedwarning'          => "'''KEDŹBU:''' Tuta strona je škitana, tak zo móža ju jenož wužiwarjo z prawami administratora wobdźělać, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitane}}:",
 'titleprotectedwarning'            => '<strong>WARNOWANJE: Tuta strona bu zawrjena, jenož wěsći wužiwarjo móža ju wutworić.</strong>',
 'templatesused'                    => 'Na tutej stronje wužiwane předłohi:',
 'templatesusedpreview'             => 'W tutym přehledźe wužiwane předłohi:',
@@ -1188,9 +1190,9 @@ PICT # misc.
 'upload-proto-error'      => 'Wopačny protokol',
 'upload-proto-error-text' => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
 'upload-file-error'       => 'Nutřkowny zmylk',
-'upload-file-error-text'  => 'Nutřkowny zmylk wustupi při pospytu, nachwilnu dataju na serwerje wutworić. Prošu skontaktuj systemoweho administratora.',
+'upload-file-error-text'  => 'Nutřkowny zmylk wustupi při pospytu, nachwilnu dataju na serwerje wutworić. Prošu skontaktuj [[Special:ListUsers/sysop|administratora]].',
 'upload-misc-error'       => 'Njeznaty zmylk při nahraću',
-'upload-misc-error-text'  => 'Njeznaty zmylk wustupi za čas nahrawanja. Prošu přepruwuj, hač URL je płaćiwy a přistupny a spytaj hišće raz. Jeli problem dale eksistuje, skontaktuj systemoweho administratora.',
+'upload-misc-error-text'  => 'Njeznaty zmylk wustupi při nahrawanju. Prošu přepruwuj, hač URL je płaćiwy a přistupny a spytaj hišće raz. Jeli problem dale eksistuje, skontaktuj [[Special:ListUsers/sysop|administratora]].',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL docpějomny njeje.',
@@ -1437,7 +1439,7 @@ Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Prawa wužiwarskeje skupiny',
-'listgrouprights-summary'  => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiji z jich wotpowědnymi přistupnymi prawami. Přidatne informacije wo jednotliwych prawach móžeš [[{{MediaWiki:Listgrouprights-helppage}}|tu namakać]].',
+'listgrouprights-summary'  => 'Slěduje lisćina wužiwarskich skupinow na tutej wikiju z jich wotpowědnymi přistupnymi prawami. Tu móžeš [[{{MediaWiki:Listgrouprights-helppage}}|dalše informacije]] wo jednotliwych prawach namakać.',
 'listgrouprights-group'    => 'Skupina',
 'listgrouprights-rights'   => 'Prawa',
 'listgrouprights-helppage' => 'Help:Skupinske prawa',

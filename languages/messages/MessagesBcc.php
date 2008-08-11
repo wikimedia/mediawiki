@@ -2655,6 +2655,7 @@ $1',
 'useajaxsearch'    => 'چه گردگ آژاکسی استفاده کن',
 
 # Separators for various lists, etc.
+'colon-separator'    => ':&#32;',
 'autocomment-prefix' => '-',
 
 # Multipage image navigation

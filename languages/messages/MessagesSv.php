@@ -674,7 +674,7 @@ Kontrollera stavningen, eller skapa ett nytt konto.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort'           => 'Ditt lösenord är för kort.
-Det måste innehålla minst {{PLURAL:$1|1 tecken|$1 tecken}} och det får inte vara ditt användarnamn.',
+Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)

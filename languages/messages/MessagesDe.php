@@ -1361,7 +1361,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filerevert-legend'         => 'Datei zurücksetzen',
 'filerevert-intro'          => "Du setzt die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
 'filerevert-comment'        => 'Grund:',
-'filerevert-defaultcomment' => 'zurückgesetzt auf die Version vom $1, $2 Uhr',
+'filerevert-defaultcomment' => 'Zurückgesetzt auf die Version vom $1, $2 Uhr',
 'filerevert-submit'         => 'Zurücksetzen',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.",
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
