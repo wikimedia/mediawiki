@@ -5,7 +5,6 @@
  * @file
  *
  * @author Amkoullel
- * @author SPQRobin
  */
 
 $fallback='fr';

@@ -5,7 +5,6 @@
  * @file
  *
  * @author sm.wikipedia.org sysops
- * @author SPQRobin
  */
 
 $messages = array(

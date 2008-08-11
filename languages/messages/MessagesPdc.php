@@ -5,7 +5,6 @@
  * @file
  *
  * @author G - ג
- * @author SPQRobin
  */
 
 $fallback = 'de';

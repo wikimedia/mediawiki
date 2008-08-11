@@ -1,11 +1,10 @@
 <?php
-/** Bamanankan (Bamanankan)
+/** Bambara (Bamanankan)
  *
  * @ingroup Language
  * @file
  *
  * @author Guaka
- * @author Siebrand
  */
 
 $fallback = 'fr';
@@ -45,7 +44,7 @@ $messages = array(
 'editthispage'   => 'Nyɛ nin yɛlɛma',
 'newpage'        => 'Nyɛ kura',
 'specialpage'    => 'Nyɛ kɛrɛnkɛrɛnnen',
-'talk'           => 'Baro',
+'talk'           => 'Sɔsɔli',
 'toolbox'        => 'Minanw',
 'userpage'       => 'Utilisateur ka nyɛ',
 'imagepage'      => 'Janin ka nyɛ',

@@ -94,6 +94,7 @@ $messages = array(
 'create'           => 'Llitun',
 'editthispage'     => 'Wirin tüfachi página',
 'delete'           => 'Ñamümün',
+'deletethispage'   => 'Ñamümün tüfa pakina',
 'protect'          => 'Elulan ñi wiriael',
 'unprotect'        => 'Elun ñi wiriael',
 'talkpage'         => 'Nütramkafinge tüfachi pakina',
@@ -186,7 +187,9 @@ $messages = array(
 'powersearch-field'     => 'Kintun',
 
 # Preferences page
-'prefsnologin' => 'Mülelay Konün',
+'prefsnologin'      => 'Mülelay Konün',
+'textboxsize'       => 'Wirin',
+'searchresultshead' => 'Kintun',
 
 # Groups
 'group'       => 'Kisuwen:',

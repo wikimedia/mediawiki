@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author RonaldPanaligan
- * @author Jose77
  * @author Harvzsf
+ * @author Jose77
+ * @author RonaldPanaligan
  */
 
 $messages = array(

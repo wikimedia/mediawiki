@@ -6,9 +6,8 @@
  *
  * @author Blake
  * @author Niklas Laxström
- * @author Teak
  * @author Node ue
- * @author Siebrand
+ * @author Teak
  */
 
 $messages = array(

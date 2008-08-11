@@ -3,6 +3,7 @@
  *
  * @ingroup Language
  * @file
+ *
  */
 
 $digitTransformTable = array(
@@ -70,6 +71,9 @@ $messages = array(
 'oct'           => 'ཟླ་བཅུ་བ།',
 'nov'           => 'ཟླ་བཅུ་གཅིག་པ།',
 'dec'           => 'ཟླ་བཅུ་གཉིས་པ།',
+
+# Categories related messages
+'subcategories' => 'རིགས་ཕལ་བ།',
 
 'about'          => 'ཨཱབོཨུཏ་',
 'cancel'         => 'དོར་བ།',
