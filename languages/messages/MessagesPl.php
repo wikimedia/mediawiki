@@ -74,6 +74,8 @@ $separatorTransformTable = array(
 	'.' => ','
 );
 
+$linkTrail = '/^([a-zęóąśłżźćńĘÓĄŚŁŻŹĆŃ]+)(.*)$/sDu';
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Podwójne_przekierowania' ),
 	'BrokenRedirects'           => array( 'Zerwane_przekierowania' ),
