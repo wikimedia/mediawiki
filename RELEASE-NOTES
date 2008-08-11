@@ -3,7 +3,7 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.13.0rc2 ==
+== MediaWiki 1.13.0rc3 ==
 
 This is a release candidate of the Summer 2008 quarterly snapshot release 
 of MediaWiki.
@@ -18,6 +18,9 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.13.0rc2 ==
+* (bug 13770) Fixed incorrect detection of PHP's DOM module
 
 == Changes since 1.13.0rc1 ==
 
