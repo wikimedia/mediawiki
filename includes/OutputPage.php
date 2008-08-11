@@ -393,6 +393,7 @@ class OutputPage {
 	public function disallowUserJs() { $this->mAllowUserJs = false; }
 	public function isUserJsAllowed() { return $this->mAllowUserJs; }
 
+	public function prependHTML( $text ) { $this->mBodytext = $text . $this->mBodytext; }
 	public function addHTML( $text ) { $this->mBodytext .= $text; }
 	public function clearHTML() { $this->mBodytext = ''; }
 	public function getHTML() { return $this->mBodytext; }
