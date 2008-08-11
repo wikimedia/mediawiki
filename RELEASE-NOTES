@@ -103,6 +103,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   WikimediaMessages. Patch for Czech by Danny B.
 * (bug 15101) Displaying only bots edits in Special:Recentchanges now works
   again
+* (bug 13770) Fixed incorrect detection of PHP's DOM module
 
 === API changes in 1.14 ===
 
