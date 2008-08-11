@@ -265,6 +265,9 @@ class Skin extends Linker {
 		wfProfileIn( __METHOD__ );
 		$this->initPage( $out );
 
+		// See self::afterContentHook() for documentation
+		$this->afterContentHook();
+
 		$out->out( $out->headElement() );
 
 		$out->out( "\n<body" );
@@ -281,9 +284,6 @@ class Skin extends Linker {
 		$out->out( $this->beforeContent() );
 
 		$out->out( $out->mBodytext . "\n" );
-
-		// See self::afterContentHook() for documentation
-		$out->out ($this->afterContentHook());
 
 		$out->out( $this->afterContent() );
 
