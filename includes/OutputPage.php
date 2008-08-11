@@ -421,6 +421,10 @@ class OutputPage {
 		$val = is_null( $revid ) ? null : intval( $revid );
 		return wfSetVar( $this->mRevisionId, $val );
 	}
+	
+	public function getRevisionId() {
+		return $this->mRevisionId;
+	}
 
 	/**
 	 * Convert wikitext to HTML and add it to the buffer
