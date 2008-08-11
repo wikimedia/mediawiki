@@ -47,7 +47,7 @@ class MathRenderer {
 		if( !$this->_recall() ) {
 			# Ensure that the temp and output directories are available before continuing...
 			if( !file_exists( $wgTmpDirectory ) ) {
-				if( !@mkdir( $wgTmpDirectory ) ) {
+				if( !wfMkdirParents( $wgTmpDirectory ) ) {
 					return $this->_error( 'math_bad_tmpdir' );
 				}
 			} elseif( !is_dir( $wgTmpDirectory ) || !is_writable( $wgTmpDirectory ) ) {
