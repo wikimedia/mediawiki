@@ -1955,9 +1955,6 @@ $1
 請爾審視之。",
 'recreate'            => '復',
 
-# HTML dump
-'redirectingto' => '渡至[[:$1]]…',
-
 # action=purge
 'confirm_purge'        => '清謄本？
 
