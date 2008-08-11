@@ -55,7 +55,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the main page to be customized
 * Added $wgDisableTitleConversion to disabling the conversion for all pages on
   the wiki
-* Added 'noconvertlink' toogle that can be set per user preferences, also
+* Added 'noconvertlink' toggle that can be set per user preferences, also
   added 'convertlink=no|yes' on GET requests whether have the link titles
   being converted or not
 * (bug 14921) Special:Contributions/: add user name to <title>
