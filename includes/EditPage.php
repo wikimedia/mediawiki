@@ -455,6 +455,25 @@ class EditPage {
 			$wgOut->addWikiMsg( 'talkpagetext' );
 		}
 
+		# Optional notices on a per-namespace and per-page basis
+		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
+		$editnotice_page = $editnotice_ns.'-'.$this->mTitle->getDBkey();
+		if ( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
+			$wgOut->addWikiText( wfMsgForContent( $editnotice_ns )  );
+		}
+		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
+			$parts = explode( '/', $this->mTitle->getDBkey() );
+			$editnotice_base = $editnotice_ns;
+			while ( count( $parts ) > 0 ) {
+				$editnotice_base .= '-'.array_shift( $parts );
+				if ( !wfEmptyMsg( $editnotice_base, wfMsgForContent( $editnotice_base ) ) ) {
+					$wgOut->addWikiText( wfMsgForContent( $editnotice_base )  );
+				}
+			}
+		} else if ( !wfEmptyMsg( $editnotice_page, wfMsgForContent( $editnotice_page ) ) ) {
+			$wgOut->addWikiText( wfMsgForContent( $editnotice_page ) );
+		}
+
 		# Attempt submission here.  This will check for edit conflicts,
 		# and redundantly check for locked database, blocked IPs, etc.
 		# that edit() already checked just in case someone tries to sneak
