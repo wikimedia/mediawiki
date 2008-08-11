@@ -104,6 +104,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15101) Displaying only bots edits in Special:Recentchanges now works
   again
 * (bug 13770) Fixed incorrect detection of PHP's DOM module
+* (bug 14790) Export of category pages when using Category: prefix now actually
+  gives results
 
 === API changes in 1.14 ===
 

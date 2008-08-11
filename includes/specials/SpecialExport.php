@@ -126,7 +126,7 @@ function wfSpecialExport( $page = '' ) {
 		$catname = $wgRequest->getText( 'catname' );
 
 		if ( $catname !== '' && $catname !== NULL && $catname !== false ) {
-			$t = Title::makeTitleSafe( NS_CATEGORY, $catname );
+			$t = Title::makeTitleSafe( NS_MAIN, $catname );
 			if ( $t ) {
 				/**
 				 * @fixme This can lead to hitting memory limit for very large
