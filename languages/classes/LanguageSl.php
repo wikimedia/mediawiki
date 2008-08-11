@@ -18,7 +18,7 @@ class LanguageSl extends Language {
 
 		switch ( $case ) {
 			case 'mestnik': # locative
-				$word = 'o ' . $word; break 2;
+				$word = 'o ' . $word; break;
 			case 'orodnik': # instrumental
 				$word = 'z ' . $word;
 		}
