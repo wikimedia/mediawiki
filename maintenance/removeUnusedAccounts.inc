@@ -38,9 +38,9 @@ function isInactiveAccount( $id, $master = false ) {
  */
 function showHelp() {
 	echo( "Delete unused user accounts from the database.\n\n" );
-	echo( "Accounts touched within the last week will be ignored.\n\n" );
-	echo( "Sysops and bureaucrats will be ignored.\n\n" );
 	echo( "USAGE: php removeUnusedAccounts.php [--delete]\n\n" );
-	echo( "  --delete : Delete accounts which are discovered to be inactive\n" );
+	echo( "  --delete             : Delete accounts which are discovered to be inactive\n" );
+	echo( "  --ignore-touched=x   : Ignore accounts touched within the lasts x days\n" );
+	echo( "  --ignore-groups=x,y  : Ignore accounts within these groups\n" );
 	echo( "\n" );
 }

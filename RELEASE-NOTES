@@ -42,7 +42,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'EditSectionLinkForOther' hook has been removed, but 'EditSectionLink' is
   run in all cases instead, so extensions using the old hooks should still work
   if they ran roughly the same code for both hooks (as is almost certain).
-* Signature (~~~~) "cleaning", i.e. template removal, can be disabled with 
+* Signature (~~~~) "cleaning", i.e. template removal, can be disabled with
   $wgCleanSignatures=false
 * Extensions can use the SkinBuildSidebar hook to modify the content of the
   sidebar and add custom portlets to it
@@ -53,10 +53,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14377) Add a date selector to history pages
 * (bug 15007) New 'pagetitle-view-mainpage' message allows the HTML <title> of
   the main page to be customized
-* Added $wgDisableTitleConversion to disabling the conversion for all pages on 
+* Added $wgDisableTitleConversion to disabling the conversion for all pages on
   the wiki
-* Added 'noconvertlink' toogle that can be set per user preferences, also 
-  added 'convertlink=no|yes' on GET requests whether have the link titles 
+* Added 'noconvertlink' toogle that can be set per user preferences, also
+  added 'convertlink=no|yes' on GET requests whether have the link titles
   being converted or not
 * (bug 14921) Special:Contributions/: add user name to <title>
   Patch by Emufarmers
@@ -64,6 +64,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Introduced a new hook 'SkinAfterContent' that allows extensions to add text
   after the page content and article metadata. Updated all skins and skin
   templates to work with that hook.
+* (bug 14929) removeUnusedAccounts.php now supports 'ignore-touched' and
+  'ignore-groups'. Patch by Louperivois
 
 === Bug fixes in 1.14 ===
 
@@ -79,20 +81,20 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11035) Special:Search should have descriptive <title>
 * Special pages are now not subject to special handling for "self-links"
 * (bug 15053) Syntactically incorrect redirects with another link in them
-  no longer redirect to the second link 
+  no longer redirect to the second link
 * (bug 15049) Fix for CheckUser extension's log search: usernames containing
   a "-" were incorrectly turned into bogus IP range searches.
   Patch by Max Semenik.
 * (bug 15055) Talk page notifications no longer attempt to send mail when
   user's e-mail address is invalid or unconfirmed
 * (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5 minutes.
-* (bug 15016) 'Templates used on this page' list in view source should be wrapped 
+* (bug 15016) 'Templates used on this page' list in view source should be wrapped
   in a div with class "templatesUsed"
 * (bug 14868) Setting $wgFeedDiffCutoff to 0 now disables generation of the diff
   entirely, not just the display of it.
 * (bug 6387) Introduced new setting $wgCategoryPrefixedDefaultSortkey which
   allows having the unprefixed page title as the default category sortkey
-* (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to 
+* (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to
   special pages.
 * (bug 15052) Skins should add their name as a class in <body>
 * (bug 14165, bug 14294) Wikimedia specific configuration in convertGrammar()
@@ -114,7 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   between requests
 * (bug 15048) Added limit field for multivalue parameters to action=paraminfo
   output.
-* When the limit on multivalue parameters is exceeded, a warning is issued 
+* When the limit on multivalue parameters is exceeded, a warning is issued
 
 === Languages updated in 1.14 ===
 
