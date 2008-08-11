@@ -2408,9 +2408,6 @@ $wgMessageStructure = array(
 	'unit-pixel' => array(
 		'unit-pixel',
 	),
-	'htmldump' => array(
-		'redirectingto',
-	),
 	'purge' => array(
 		'confirm_purge',
 		'confirm_purge_button',
@@ -2782,7 +2779,6 @@ Variants for Chinese language",
 	'trackbacks'            => 'Trackbacks',
 	'deleteconflict'        => 'Delete conflict',
 	'unit-pixel'            => '',
-	'htmldump'              => 'HTML dump',
 	'purge'                 => 'action=purge',
 	'search2'               => 'AJAX search',
 	'separators'            => 'Separators for various lists, etc.',

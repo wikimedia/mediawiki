@@ -3261,9 +3261,6 @@ Please confirm that you really want to recreate this page.",
 
 'unit-pixel' => 'px', # only translate this message to other languages if you have to change it
 
-# HTML dump
-'redirectingto' => 'Redirecting to [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Clear the cache of this page?
 
