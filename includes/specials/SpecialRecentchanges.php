@@ -572,8 +572,9 @@ class SpecialRecentChanges extends SpecialPage {
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		global $wgUser;
 		$sk = $wgUser->getSkin();
-		return $sk->makeKnownLinkObj( $this->getTitle(), htmlspecialchars( $title ),
-			wfArrayToCGI( $override, $options ), '', '', $active ? 'style="font-weight: bold;"' : '' );
+		$params = wfArrayMerge( $options, $override );
+		return $sk->link( $this->getTitle(), htmlspecialchars( $title ),
+			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
 	}
 
 	/**
@@ -601,28 +602,28 @@ class SpecialRecentChanges extends SpecialPage {
 		# Sort data for display and make sure it's unique after we've added user data.
 		$wgRCLinkLimits[] = $options['limit'];
 		$wgRCLinkDays[] = $options['days'];
-		sort($wgRCLinkLimits);
-		sort($wgRCLinkDays);
-		$wgRCLinkLimits = array_unique($wgRCLinkLimits);
-		$wgRCLinkDays = array_unique($wgRCLinkDays);
+		sort( $wgRCLinkLimits );
+		sort( $wgRCLinkDays );
+		$wgRCLinkLimits = array_unique( $wgRCLinkLimits );
+		$wgRCLinkDays = array_unique( $wgRCLinkDays );
 
 		// limit links
 		foreach( $wgRCLinkLimits as $value ) {
 			$cl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
 				array( 'limit' => $value ), $nondefaults, $value == $options['limit'] ) ;
 		}
-		$cl = implode( ' | ', $cl);
+		$cl = implode( ' | ', $cl );
 
 		// day links, reset 'from' to none
 		foreach( $wgRCLinkDays as $value ) {
 			$dl[] = $this->makeOptionsLink( $wgLang->formatNum( $value ),
 				array( 'days' => $value, 'from' => '' ), $nondefaults, $value == $options['days'] ) ;
 		}
-		$dl = implode( ' | ', $dl);
+		$dl = implode( ' | ', $dl );
 
 
 		// show/hide links
-		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ));
+		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$minorLink = $this->makeOptionsLink( $showhide[1-$options['hideminor']],
 			array( 'hideminor' => 1-$options['hideminor'] ), $nondefaults);
 		$botLink = $this->makeOptionsLink( $showhide[1-$options['hidebots']],
@@ -647,11 +648,11 @@ class SpecialRecentChanges extends SpecialPage {
 
 		// show from this onward link
 		$now = $wgLang->timeanddate( wfTimestampNow(), true );
-		$tl =  $this->makeOptionsLink( $now, array( 'from' => wfTimestampNow()), $nondefaults );
+		$tl =  $this->makeOptionsLink( $now, array( 'from' => wfTimestampNow() ), $nondefaults );
 
-		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter'),
+		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
 			$cl, $dl, $hl );
-		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter'), $tl );
+		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
 		return "$note<br />$rclinks<br />$rclistfrom";
 	}
 }

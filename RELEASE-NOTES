@@ -87,19 +87,22 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Patch by Max Semenik.
 * (bug 15055) Talk page notifications no longer attempt to send mail when
   user's e-mail address is invalid or unconfirmed
-* (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5 minutes.
-* (bug 15016) 'Templates used on this page' list in view source should be wrapped
-  in a div with class "templatesUsed"
+* (bug 12370) Add throttle on password attempts. Defaults to max 5 attempts in 5
+  minutes.
+* (bug 15016) 'Templates used on this page' list in view source should be
+  wrapped in a div with class "templatesUsed"
 * (bug 14868) Setting $wgFeedDiffCutoff to 0 now disables generation of the diff
   entirely, not just the display of it.
 * (bug 6387) Introduced new setting $wgCategoryPrefixedDefaultSortkey which
   allows having the unprefixed page title as the default category sortkey
-* (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added ns-special to
-  special pages.
+* (bug 15079) Add class="ns-talk" / "ns-subject" to <body>. Also added
+  ns-special to special pages.
 * (bug 15052) Skins should add their name as a class in <body>
 * (bug 14165, bug 14294) Wikimedia specific configuration in convertGrammar()
   for several languages was removed. The settings have been put in extension
   WikimediaMessages. Patch for Czech by Danny B.
+* (bug 15101) Displaying only bots edits in Special:Recentchanges now works
+  again
 
 === API changes in 1.14 ===
 
