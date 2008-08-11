@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -2483,9 +2483,6 @@ $1
 'confirmrecreate'     => '在您编辑这个页面后，用户[[User:$1|$1]]([[User talk:$1|对话]])以下列原因删除了这个页面: $2。
 请确认在您重新创建页面前三思。',
 'recreate'            => '重建',
-
-# HTML dump
-'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '要清除此页面的缓存吗?\\n\\n$1',

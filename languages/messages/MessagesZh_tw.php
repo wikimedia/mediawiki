@@ -1,5 +1,5 @@
 <?php
-/** Taiwan Chinese (‪中文(台灣)‬)
+/** Chinese (Taiwan) (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
@@ -2100,9 +2100,6 @@ $1
 'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
 'confirmrecreate'     => '在您編輯這個頁面後，使用者[[User:$1|$1]]([[User talk:$1|對話]])以下列原因刪除了這個頁面: $2。請在重新建立頁面前三思。',
 'recreate'            => '重建',
-
-# HTML dump
-'redirectingto' => '重定向到[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',

@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -2529,9 +2529,6 @@ $1
 : ''$2''
 請確認你係咪真係想重新整過呢版。",
 'recreate'            => '重新整過',
-
-# HTML dump
-'redirectingto' => '跳轉去[[:$1]]...',
 
 # action=purge
 'confirm_purge'        => '肯定要洗咗呢版個快取版本？
