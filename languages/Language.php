@@ -1741,14 +1741,14 @@ class Language {
 
 				// Fail fast
 				if ( !file_exists($file) )
-					throw new MWException( 'Aliases file does not exist' );
+					throw new MWException( "Aliases file does not exist: $file" );
 
 				$aliases = array();
 				require($file);
 
 				// Check the availability of aliases
 				if ( !isset($aliases['en']) )
-					throw new MWException( 'Malformed aliases file' );
+					throw new MWException( "Malformed aliases file: $file" );
 
 				// Merge all aliases in fallback chain
 				$code = $this->getCode();
