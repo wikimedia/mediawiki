@@ -402,6 +402,8 @@ class MimeMagic {
 		wfRestoreWarnings();
 		if( !$f ) return "unknown/unknown";
 		$head = fread( $f, 1024 );
+		fseek( $f, -65558, SEEK_END );
+		$tail = fread( $f, 65558 ); // 65558 = maximum size of a zip EOCDR
 		fclose( $f );
 
 		// Hardcode a few magic number checks...
@@ -505,6 +507,12 @@ class MimeMagic {
 			}
 		}
 
+		// Check for ZIP (before getimagesize)
+		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
+			wfDebug( __METHOD__.": ZIP header present at end of $file\n" );
+			return 'application/zip';
+		}
+
 		wfSuppressWarnings();
 		$gis = getimagesize( $file );
 		wfRestoreWarnings();
@@ -513,8 +521,6 @@ class MimeMagic {
 			$mime = $gis['mime'];
 			wfDebug( __METHOD__.": getimagesize detected $file as $mime\n" );
 			return $mime;
-		} else {
-			return false;
 		}
 
 		// Also test DjVu
@@ -523,6 +529,8 @@ class MimeMagic {
 			wfDebug( __METHOD__.": detected $file as image/vnd.djvu\n" );
 			return 'image/vnd.djvu';
 		}
+
+		return false;
 	}
 
 	/** Internal mime type detection, please use guessMimeType() for application code instead.

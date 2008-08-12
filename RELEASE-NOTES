@@ -67,6 +67,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14929) removeUnusedAccounts.php now supports 'ignore-touched' and
   'ignore-groups'. Patch by Louperivois
 * (bug 15127) Work around minor display glitch in Opera.
+* By default, reject file uploads that look like ZIP files, to avoid the 
+  so-called GIFAR vulnerability.
 
 === Bug fixes in 1.14 ===
 
