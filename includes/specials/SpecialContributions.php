@@ -155,7 +155,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$mflag = '';
 		}
 
-		$ret = "{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink}{$comment} {$topmarktext}";
+		$ret = "{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
 		}
