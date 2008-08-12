@@ -55,7 +55,7 @@ class FeedItem {
 	/**
 	 * @static
 	 */
-	static function xmlEncode( $string ) {
+	function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
 		return htmlspecialchars( $string );

@@ -109,8 +109,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13770) Fixed incorrect detection of PHP's DOM module
 * (bug 14790) Export of category pages when using Category: prefix now actually
   gives results
-* (bug 15128) Feed::xmlEncode() function is now declared as static
-  
+
 === API changes in 1.14 ===
 
 * Registration time of users registered before the DB field was created is now
