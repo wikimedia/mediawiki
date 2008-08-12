@@ -2387,9 +2387,6 @@ $1
 Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 'recreate'            => 'Ricrea',
 
-# HTML dump
-'redirectingto' => 'Reindirizzamento a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Vóto scancełar ła cache in sta pàxena?
 

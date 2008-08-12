@@ -228,7 +228,7 @@ $messages = array(
 
 'badaccess'        => 'Noverarokla',
 'badaccess-group0' => 'Ta kucilana skura me zo rictal.',
-'badaccess-groups' => 'Kucilana skura gan favesik ke tana $1 lospa anton zo rictar.',
+'badaccess-groups' => 'Kucilana skura gan favesik ke {{PLURAL:$2|lospa|tana lospa}} anton zo rictar : $1.',
 
 'versionrequired'     => '$1 adraf siatos ke MediaWiki',
 'versionrequiredtext' => '$1 siatos ke MediaWiki tir adraf ta favera va batu bu. Voyez [[Special:Version]]',
@@ -471,7 +471,8 @@ Rin lanon vaon al betanhal oke va warzaf al kucilal.',
 'blockedtitle'              => 'Elekan favesik',
 'blockedtext'               => '<big>\'\'\'Rinafa favesikpata oku IP mane tid elekayane.\'\'\'</big>
 
-Elekara skuyuna gan $1. Lazava tir \'\'$2\'\'.
+Elekara skuyuna gan $1. 
+Lazava tir \'\'$2\'\'.
 
 * Elekaratoza : $8
 * Eleckaratena : $6
@@ -556,7 +557,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'undo-success' => 'Betaks tir rodimaskin. Va vlevefa dolunhera vay stujel nume ageltal da batcoba tir rinafa djumaskina aze ta tenukera va dimaskira va betara va vlevef betakseem giwal.',
 'undo-failure' => 'Betaks me zo rodimaskir golde kobodas walif betaks yo.',
 'undo-norev'   => 'Dimbetara tir merotisa golde metira ok sulara.',
-'undo-summary' => 'Dimaskira va $1 betaks gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]])',
+'undo-summary' => 'Dimaskira va $1 betaks ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Pataredura me tir',
@@ -672,7 +673,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 # Search results
 'searchresults'             => 'Aneyaradanekseem',
 'searchresulttext'          => 'Ta lo giva icde aneyara ko {{SITENAME}}, va [[{{MediaWiki:Helppage}}|{{int:help}}]] teliz disukel.',
-'searchsubtitle'            => "Rin va '''[[:$1]]''' aneyayal",
+'searchsubtitle'            => 'Rin va \'\'\'[[:$1]]\'\'\' aneyayal ([[Special:Prefixindex/$1|kotu bu dem "$1" toza]] | [[Special:WhatLinksHere/$1|kotu bu gluyasu va "$1"]])',
 'searchsubtitleinvalid'     => "Rin va '''$1''' aneyayal",
 'noexactmatch'              => "'''Manu \"\$1\" bu me tir.''' Va [[:\$1|batu bu]] roredul.",
 'noexactmatch-nocreate'     => "'''Me tir bu dem \"\$1\" vergumvelt.'''",
@@ -976,7 +977,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 
 'upload-proto-error'     => 'Kitsendaj',
 'upload-file-error'      => 'Koefa rokla',
-'upload-file-error-text' => 'Yawason va ugaloraf iyeltak mo zanisiko, koefa rokla sokir. Va bolkristusik vay uzeral !',
+'upload-file-error-text' => 'Yawason va ugaloraf iyeltak mo zanisiko, koefa rokla sokir. Va [[Special:ListUsers/sysop|bolkristusik]] vay uzeral !',
 'upload-misc-error'      => 'Megrupena kalvajararokla',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1352,7 +1353,7 @@ Bazen bartiv tir tel ke (UTC) zanisiko.',
 'rollbacklink'                => 'nabildara',
 'rollbackfailed'              => 'Rodjeyesa nabildara',
 'cantrollback'                => 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'               => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; ar kontan va teliz ixam al betar oke al dimplekur.
+'alreadyrolled'               => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
 'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
@@ -1454,7 +1455,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Gluyarakiraf bueem',
-'whatlinkshere-title'      => 'Bueem dem gluyasiki va $1',
+'whatlinkshere-title'      => 'Bu gluyasu va "$1"',
 'whatlinkshere-page'       => 'Bu :',
 'linkshere'                => "Van batu bu vlevef bueem va gluyasiki ruldar : '''[[:$1]]'''",
 'nolinkshere'              => "Van batu bu nedoyu bu va gluyasiki ruldar : '''[[:$1]]'''",
@@ -1503,7 +1504,7 @@ male abdion elekayane IP mane.',
 'ipusubmit'                => 'Grielekara va bate mane',
 'unblocked'                => '[[User:$1|$1]] su zo dimelekar',
 'unblocked-id'             => 'Dimelekara va $1 su zo skur',
-'ipblocklist'              => 'Elekareem',
+'ipblocklist'              => 'Elekayane IP mane isu favesikyolt',
 'ipblocklist-legend'       => 'Trasira va elekan favesik',
 'ipblocklist-username'     => 'Favesikyolt ok IP mane :',
 'ipblocklist-submit'       => 'Aneyara',
@@ -2066,9 +2067,6 @@ This confirmation code will expire at $4.',
 # Delete conflict
 'deletedwhileediting' => 'Obral : batu bu al zo sulayar mali da rin toz betayar !',
 'recreate'            => 'Tolredura',
-
-# HTML dump
-'redirectingto' => 'Graskas kal [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Palsexo ke batu bu zo gokarler ?

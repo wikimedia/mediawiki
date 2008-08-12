@@ -669,8 +669,8 @@ Kontrollera stavningen, eller skapa ett nytt konto.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
-'passwordtooshort'           => 'Ditt lösenord är för kort.
-Det måste innehålla minst {{PLURAL:$1|1 tecken|$1 tecken}} och det får inte vara ditt användarnamn.',
+'passwordtooshort'           => 'Ditt lösenord är ogiltigt eller för kort.
+Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)
@@ -2645,9 +2645,6 @@ Denna bekräftelsekod kommer inte att fungera efter $4.',
 : ''$2''
 Bekräfta att du verkligen vill återskapa sidan.",
 'recreate'            => 'Återskapa',
-
-# HTML dump
-'redirectingto' => 'Omdirigerar till [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Rensa denna sidas cache?

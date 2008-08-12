@@ -1444,9 +1444,6 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'deletedwhileediting' => 'Diemesė: Šėts poslapis ėštrints po šėta, kumet pradiejot redagoutė!',
 'recreate'            => 'Atkortė',
 
-# HTML dump
-'redirectingto' => 'Paradresounama i [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'Tink',
 

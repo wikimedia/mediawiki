@@ -6,6 +6,7 @@
  *
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
+ * @author דניאל ב.
  */
 
 $rtl = true;
@@ -1249,7 +1250,7 @@ $2',
 'right-editprotected'        => 'עריכת דפים מוגנים (ללא הגנה מדורגת)',
 'right-editinterface'        => 'עריכת ממשק המשתמש',
 'right-editusercssjs'        => 'עריכת דפי CSS ו־JS של משתמשים אחרים',
-'right-rollback'             => 'שחזור מהיר של העריכות של המשתמש האחרון שערך דף מסוים',
+'right-rollback'             => 'שחזור מהיר של עריכות המשתמש האחרון שערך דף מסוים',
 'right-markbotedits'         => 'סימון עריכות משוחזרות כעריכות של בוט',
 'right-noratelimit'          => 'עקיפת הגבלת קצב העריכות',
 'right-import'               => 'ייבוא דפים מאתרי ויקי אחרים',

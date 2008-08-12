@@ -1605,9 +1605,6 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 
 'unit-pixel' => ' točk',
 
-# HTML dump
-'redirectingto' => 'Preusmerjam na »[[:$1]]« ...',
-
 # action=purge
 'confirm_purge'        => 'Osvežim predpomnjenje strani? 
  

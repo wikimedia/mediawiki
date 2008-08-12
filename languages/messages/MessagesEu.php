@@ -2104,9 +2104,6 @@ Egiaztapen kode hau $4 iraungiko da.',
 'confirmrecreate'     => "[[User:$1|$1]] erabiltzaileak ([[User talk:$1|eztabaida]]) orrialde hau ezabatu zu aldatzen hasi eta gero. Hona arrazoia: : ''$2'' Mesedez, baieztatu orrialde hau berriz sortu nahi duzula.",
 'recreate'            => 'Birsortu',
 
-# HTML dump
-'redirectingto' => '[[:$1]] orrialdera berbideratzen...',
-
 # action=purge
 'confirm_purge'        => 'Orrialde honen katxea ezabatu?
 

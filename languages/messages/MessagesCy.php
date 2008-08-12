@@ -2200,9 +2200,6 @@ $1
 Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 'recreate'            => 'Ail-greu',
 
-# HTML dump
-'redirectingto' => "Wrthi'n ailgyfeirio i [[:$1]]...",
-
 # action=purge
 'confirm_purge'        => "Clirio'r dudalen o'r storfa?
 

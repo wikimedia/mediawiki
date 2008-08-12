@@ -2324,9 +2324,6 @@ Kod zawarty w linku straći wažność $4.',
 Potwjerdź chęć wćepańo nazod tygo artikla.",
 'recreate'            => 'Wćepej nazod',
 
-# HTML dump
-'redirectingto' => 'Překerowańy do [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Wyčyśćić pamjyńć podrynčnům do tyi zajty?
 

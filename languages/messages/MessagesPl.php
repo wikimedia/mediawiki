@@ -670,6 +670,7 @@ Wpisz poprawny adres e-mail lub wyczyść pole.',
 Zaloguj się teraz i je zmień.
 
 Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomyłkę.',
+'login-throttled'            => 'Wykonałeś zbyt wiele prób zalogowania się na to konto. Odczekaj chwilę przez spróbowaniem ponownie.',
 'loginlanguagelabel'         => 'Język: $1',
 
 # Password reset dialog
@@ -729,7 +730,8 @@ Jeśli tego nie zrobisz, Twój komentarz zostanie zapisany bez nagłówka.",
 'blockedtitle'                     => 'Użytkownik jest zablokowany',
 'blockedtext'                      => "<big>'''Twoje konto lub adres IP zostały zablokowane.'''</big>
 
-Blokada została nałożona przez $1. Podany powód to: ''$2''.
+Blokada została nałożona przez $1.
+Podany powód to: ''$2''.
 
 * Początek blokady: $8
 * Wygaśnięcie blokady: $6
@@ -737,7 +739,8 @@ Blokada została nałożona przez $1. Podany powód to: ''$2''.
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z $1 lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].
 Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika”, jeśli brak jest poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
-Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5. Prosimy o podanie jednego lub obu tych numerów przy wyjaśnianiu tej blokady.",
+Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.
+Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'autoblockedtext'                  => "Ten adres IP został zablokowany automatycznie, gdyż korzysta z niego inny użytkownik, zablokowany przez administratora $1.
 Powód blokady:
 
@@ -745,13 +748,14 @@ Powód blokady:
 
 * Początek blokady: $8
 * Wygaśnięcie blokady: $6
+* Cel blokady: $7
 
 Możesz skontaktować się z $1 lub jednym z pozostałych [[{{MediaWiki:Grouppage-sysop}}|administratorów]] w celu uzyskania informacji o blokadzie.
 
-Jeśli w [[Special:Preferences|preferencjach]] nie ustawiłeś prawidłowego adresu e-mail lub zablokowano Ci tę funkcjonalność, nie możesz skorzystać z opcji „Wyślij e-mail do tego użytkownika”.
+Nie możesz użyć funkcji „Wyślij e-mail do tego użytkownika”, jeśli brak jest poprawnego adresu e-mail w Twoich [[Special:Preferences|preferencjach]] lub jeśli taka możliwość została Ci zablokowana.
 
-Identyfikator blokady to $5.
-Zanotuj go i podaj administratorowi.",
+Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.
+Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'blockednoreason'                  => 'nie podano przyczyny',
 'blockedoriginalsource'            => "Źródło '''$1''' zostało pokazane poniżej:",
 'blockededitsource'                => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
@@ -1408,6 +1412,9 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filehist-comment'               => 'Opis',
 'imagelinks'                     => 'Odnośniki do pliku',
 'linkstoimage'                   => '{{PLURAL:$1|Poniższa strona odwołuje|Następujące strony odwołują}} się do tego pliku:',
+'linkstoimage-more'              => 'Więcej niż $1 {{PLURAL:$1|strona linkuje|strony linkują|stron linkuje}} do tego pliku.
+Poniższa lista pokazuje jedynie {{PLURAL:$1|pierwszy link|pierwsze $1 linki|pierwszych $1 linków}} do tego pliku.
+Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'nolinkstoimage'                 => 'Żadna strona nie odwołuje się do tego pliku.',
 'morelinkstoimage'               => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'redirectstofile'                => '{{PLURAL:$1|Następujący plik przekierowuje|Następujące pliki przekierowują}} do tego pliku:',
@@ -1881,24 +1888,26 @@ $1',
 'blanknamespace' => '(główna)',
 
 # Contributions
-'contributions' => 'Wkład użytkownika',
-'mycontris'     => 'moje edycje',
-'contribsub2'   => 'Dla użytkownika $1 ($2)',
-'nocontribs'    => 'Brak zmian odpowiadających tym kryteriom.',
-'uctop'         => ' (jako ostatnia)',
-'month'         => 'Przed miesiącem (włącznie)',
-'year'          => 'Przed rokiem (włącznie)',
+'contributions'       => 'Wkład użytkownika',
+'contributions-title' => 'Wkład użytkownika $1',
+'mycontris'           => 'moje edycje',
+'contribsub2'         => 'Dla użytkownika $1 ($2)',
+'nocontribs'          => 'Brak zmian odpowiadających tym kryteriom.',
+'uctop'               => ' (jako ostatnia)',
+'month'               => 'Przed miesiącem (włącznie)',
+'year'                => 'Przed rokiem (włącznie)',
 
-'sp-contributions-newbies'     => 'Pokaż wyłącznie wkład nowych użytkowników',
-'sp-contributions-newbies-sub' => 'Dla nowych użytkowników',
-'sp-contributions-blocklog'    => 'blokady',
-'sp-contributions-search'      => 'Szukaj wkładu',
-'sp-contributions-username'    => 'Adres IP lub nazwa użytkownika',
-'sp-contributions-submit'      => 'Szukaj',
+'sp-contributions-newbies'       => 'Pokaż wyłącznie wkład nowych użytkowników',
+'sp-contributions-newbies-sub'   => 'Dla nowych użytkowników',
+'sp-contributions-newbies-title' => 'Wkład nowych użytkowników',
+'sp-contributions-blocklog'      => 'blokady',
+'sp-contributions-search'        => 'Szukaj wkładu',
+'sp-contributions-username'      => 'Adres IP lub nazwa użytkownika',
+'sp-contributions-submit'        => 'Szukaj',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
-'whatlinkshere-title'      => 'Strony linkujące do $1',
+'whatlinkshere-title'      => 'Strony linkujące do „$1”',
 'whatlinkshere-page'       => 'Strona',
 'linkshere'                => "Następujące strony odwołują się do '''[[:$1]]''':",
 'nolinkshere'              => "Żadna strona nie odwołuje się do '''[[:$1]]'''.",
@@ -1961,7 +1970,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipusubmit'                       => 'Odblokuj użytkownika',
 'unblocked'                       => '[[User:$1|$1]] został odblokowany.',
 'unblocked-id'                    => 'Blokada $1 została zdjęta',
-'ipblocklist'                     => 'Lista zablokowanych użytkowników i adresów IP',
+'ipblocklist'                     => 'Lista zablokowanych adresów IP i użytkowników',
 'ipblocklist-legend'              => 'Znajdź zablokowanego użytkownika',
 'ipblocklist-username'            => 'Nazwa użytkownika lub adres IP',
 'ipblocklist-submit'              => 'Szukaj',
@@ -2321,6 +2330,8 @@ $1',
 'newimages'             => 'Najnowsze pliki',
 'imagelisttext'         => "Poniżej na {{PLURAL:$1||posortowanej $2}} liście {{PLURAL:$1|znajduje|znajdują|znajduje}} się '''$1''' {{PLURAL:$1|plik|pliki|plików}}.",
 'newimages-summary'     => 'Na tej stronie specjalnej prezentowane są ostatnio przesłane pliki.',
+'newimages-legend'      => 'Filtruj',
+'newimages-label'       => 'Nazwa pliku (lub jej fragment):',
 'showhidebots'          => '($1 boty)',
 'noimages'              => 'Brak plików do pokazania.',
 'ilsubmit'              => 'Szukaj',
@@ -2673,9 +2684,6 @@ Kod zawarty w linku straci ważność $4.',
 : ''$2''
 Czy na pewno chcesz go ponownie utworzyć?",
 'recreate'            => 'Utwórz ponownie',
-
-# HTML dump
-'redirectingto' => 'Przekierowanie do [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Wyczyścić pamięć podręczną dla tej strony?

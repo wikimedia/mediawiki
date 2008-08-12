@@ -259,7 +259,7 @@ $messages = array(
 
 'badaccess'        => 'Pèmisyon erè',
 'badaccess-group0' => 'Ou pa genyen pèmisyon pou ou ekzekite demand sa.',
-'badaccess-groups' => 'Aksion ke w vle reyalize a limite sèlman pou itilizatè ki nan group sa yo $1.',
+'badaccess-groups' => 'Aksyon ke w vle reyalize a limite sèlman pou itilizatè ki nan {{PLURAL:$2|gwoup sa |yonn nan gwoup sa yo}}: $1.',
 
 'versionrequired'     => 'Vèzion $1 de MediaWiki nesesè',
 'versionrequiredtext' => 'Vèzion $1 de MediaWiki nesesè pou itilize paj sa. Wè [[Special:Version|version page]].',
@@ -333,11 +333,11 @@ $1',
 Administratè a ki te fème l bay rezon sa a : $1',
 'missing-article'      => 'Bazdone an pa twouve tèks yon paj li te dwèt twouve toutbon; non li se « $1 » $2.
 
-Li sanble ke ou swiv yon lyen ki pa egziste ankò depi chanjman ki te fèt nan paj an oubyen istorik yon paj ki te efase.
+Li sanble ke ou swiv yon lyen ki pa egziste ankò depi chanjman ki te fèt nan paj sa oubyen istorik ou swiv yon paj ki te ja efase.
 
-Si rezon sa yo pa koresponn ak sityasyon ou an, ou gen dwa twouve yon erè nan lojisyèl nou an.
+Si rezon sa yo pa koresponn ak sityasyon ou an, ou gen dwa twouve kèk erè nan lojisyèl nou an.
 
-Souple, kontakte yon administratè, ba l adrès, lyen tout bagay pou li kapab twouve erè sa.',
+Souple, kontakte yon [[Special:ListUsers/sysop|administratè]], ba l adrès sa, lyen tout bagay pou li kapab twouve erè sa.',
 'missingarticle-rev'   => '(chanjman # : $1)',
 'missingarticle-diff'  => '(Diferans : $1, $2)',
 'readonly_lag'         => 'Bazdone a bloke otomatikman pandan lòt sèvè segondè yo ap travay pou bay lanmen nan sèvè prensipal an.',
@@ -386,11 +386,12 @@ Rezon li bay yo se « ''$2'' ».",
 
 # Login and logout pages
 'logouttitle'                => 'Dekoneksyon-Sòti',
-'logouttext'                 => "'''Monchè oubyen machè, ou dekonekte kounye a.'''<br />
-Ou mèt kontinye itilize {{SITENAME}} san ou konekte w, oubyen si ou rekonekte w ankò ak menm non an oubyen yon lòt.",
+'logouttext'                 => '<strong>Monchè oubyen machè, ou dekonekte kounye a.</strong>
+
+Ou mèt kontinye itilize {{SITENAME}} san ou pa bezwen konekte w, oubyen si ou [[Special:UserLogin|rekonekte]] w ankò ak menm non an oubyen yon lòt.',
 'welcomecreation'            => '== Byenvini, $1 ! ==
 
-Kont ou an kreye. Pa bliye pèsonalize l nan preferans ou an sou paj sa {{SITENAME}}.',
+Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou an sou paj sa {{SITENAME}}]].',
 'loginpagetitle'             => 'Koneksyon itilizatè',
 'yourname'                   => 'Non itilizatè ou an :',
 'yourpassword'               => 'Mopas ou an :',
@@ -401,7 +402,7 @@ Kont ou an kreye. Pa bliye pèsonalize l nan preferans ou an sou paj sa {{SITENA
 'loginproblem'               => '<b>Pwoblèm idantifikasyon nan sistèm an.</b><br />Tanpri, eseye ankò !',
 'login'                      => 'Idantifikasyon',
 'nav-login-createaccount'    => 'Kreye yon kont oubyen konekte ou',
-'loginprompt'                => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab konekte nan {{SITENAME}}.',
+'loginprompt'                => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab [[Special:UserLogin|konekte nan {{SITENAME}}]].',
 'userlogin'                  => 'Kreye yon kont oubyen konekte ou',
 'logout'                     => 'Dekonekte ou',
 'userlogout'                 => 'Dekoneksyon',
@@ -467,6 +468,7 @@ Anvan yon lòt imèl voye, swiv komand ki nan mesaj imèl an epi konfime ke kont
 'createaccount-text'         => 'Yon moun kreye yon kont pou adrès imèl ou an sou paj sa {{SITENAME}} ($4), non l se « $2 », mopas an se « $3 ». Ou ta dwèt ouvè yon sesyon pou chanje, kounye a mopas sa.
 
 Pa pòte atansyon pou mesaj sa si kont sa kreye pa erè.',
+'login-throttled'            => 'Ou fè twòp tantativ pou konekte w ak mopas ou an. Souple, atann yon ti moman anvan ou eseye ankò.',
 'loginlanguagelabel'         => 'Lang : $1',
 
 # Password reset dialog

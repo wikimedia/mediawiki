@@ -2170,9 +2170,6 @@ $1
 Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'recreate'            => 'Gorvel a crial',
 
-# HTML dump
-'redirectingto' => 'Rederihiendu a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Esborral el caché desta páhina?
 

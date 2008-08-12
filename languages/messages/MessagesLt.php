@@ -2440,9 +2440,6 @@ $1
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 'recreate'            => 'Atkurti',
 
-# HTML dump
-'redirectingto' => 'Peradresuojama į [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Išvalyti šio puslapio podėlį?
 

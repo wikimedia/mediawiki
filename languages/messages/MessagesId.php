@@ -698,6 +698,7 @@ Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan set
 'createaccount-text'         => 'Seseorang telah membuat sebuah akun untuk alamat surat-e Anda di {{SITENAME}} ($4) dengan nama "$2" dan kata sandi "$3". Anda dianjurkan untuk masuk log dan mengganti kata sandi Anda sekarang.
 
 Anda dapat mengabaikan pesan nini jika akun ini dibuat karena suatu kesalahan.',
+'login-throttled'            => 'Anda telah berkali-kali mencoba memasukkan kata sandi untuk akun ini. Silakan menunggu sebelum mencoba lagi.',
 'loginlanguagelabel'         => 'Bahasa: $1',
 
 # Password reset dialog
@@ -1461,8 +1462,8 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 
 'doubleredirects'            => 'Pengalihan ganda',
 'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
-'double-redirect-fixed-move' => '[[$1]] telah dipindahkan, sekarang menjadi halaman peralihan ke [[$2]]',
-'double-redirect-fixer'      => 'Pengguna yang memperbaiki pengalihan',
+'double-redirect-fixed-move' => '[[$1]] telah dipindahkan menjadi halaman peralihan ke [[$2]]',
+'double-redirect-fixer'      => 'Revisi pengalihan',
 
 'brokenredirects'        => 'Pengalihan rusak',
 'brokenredirectstext'    => 'Halaman-halaman berikut dialihkan ke halaman yang tidak ada.',
@@ -1897,7 +1898,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipusubmit'                       => 'Hilangkan blokir terhadap alamat ini',
 'unblocked'                       => 'Blokir terhadap [[User:$1|$1]] telah dicabut',
 'unblocked-id'                    => 'Blokir $1 telah dicabut',
-'ipblocklist'                     => 'Daftar pemblokiran',
+'ipblocklist'                     => 'Daftar pemblokiran alamat IP dan nama penguna',
 'ipblocklist-legend'              => 'Cari pengguna yang diblokir',
 'ipblocklist-username'            => 'Nama pengguna atau alamat IP:',
 'ipblocklist-submit'              => 'Cari',
@@ -2007,7 +2008,7 @@ Artikel yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapu
 'imagenocrossnamespace'   => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
 'imagetypemismatch'       => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
 'imageinvalidfilename'    => 'Nama berkas tujuan tidak sah',
-'fix-double-redirects'    => 'Perbaiki semua pengalihan yang merujuk ke artikel aslinya',
+'fix-double-redirects'    => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
 
 # Export
 'export'            => 'Ekspor halaman',
@@ -2578,9 +2579,6 @@ $1
 : ''$2''
 Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'recreate'            => 'Buat ulang',
-
-# HTML dump
-'redirectingto' => 'Sedang dialihkan ke [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Hapus ''cache'' halaman ini?

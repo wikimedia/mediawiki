@@ -2335,9 +2335,6 @@ $1
 Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 'recreate'            => 'Adkrouiñ',
 
-# HTML dump
-'redirectingto' => "Oc'h adkas da [[:$1]]...",
-
 # action=purge
 'confirm_purge'        => 'Spurjañ krubuilh ar bajenn-mañ?
 

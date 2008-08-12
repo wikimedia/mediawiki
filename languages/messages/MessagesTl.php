@@ -604,9 +604,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'deletedwhileediting' => 'Babala: Nabura na ang pahinang ito pagkatapos mong magsimulang magbago!',
 'recreate'            => 'Likhain muli',
 
-# HTML dump
-'redirectingto' => 'Nagkakarga sa [[:$1]]...',
-
 # action=purge
 'confirm_purge' => 'Linisin ang baunan ng pahinang ito?
 

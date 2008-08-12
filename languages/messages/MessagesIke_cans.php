@@ -380,9 +380,6 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'monthsall' => 'ᓱᓇᒥᑦᑐᖅ',
 
-# HTML dump
-'redirectingto' => 'ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'ᐊᑲᐅᔪᖅ',
 

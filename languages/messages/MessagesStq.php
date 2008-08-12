@@ -2365,9 +2365,6 @@ Wan du disse Siede spiekerst, wäd ju deeruum näi anlaid.',
 Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 'recreate'            => 'Wierhäärstaale',
 
-# HTML dump
-'redirectingto' => 'Fäärelaited ätter [[:$1]]',
-
 # action=purge
 'confirm_purge'        => 'Dän Cache fon disse Siede loosmoakje?
 

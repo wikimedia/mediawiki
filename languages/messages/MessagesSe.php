@@ -1251,9 +1251,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # Delete conflict
 'recreate' => 'Álggat ođđasit',
 
-# HTML dump
-'redirectingto' => 'Ođđasitstivrejuvvo siidui [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'Sihko',
 

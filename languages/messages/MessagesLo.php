@@ -867,9 +867,6 @@ $messages = array(
 # Delete conflict
 'recreate' => 'ສ້າງຄືນ',
 
-# HTML dump
-'redirectingto' => 'ພວມໂອນໄປ ຫາ [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'ຕົກລົງ',
 

@@ -2328,7 +2328,7 @@ $1',
 'importtext'                 => 'من فضلك صدر الملف من الويكي المصدر باستخدام [[Special:Export|أداة الاستيراد]].
 احفظها على حاسوبك ثم ارفعها هنا.',
 'importstart'                => 'استيراد صفحات...',
-'import-revision-count'      => '{{PLURAL:$1|مراجعة واحدة|مراجعة}} $1',
+'import-revision-count'      => '$1 {{PLURAL:$1|مراجعة|مراجعة}}',
 'importnopages'              => 'لا صفحات للاستيراد',
 'importfailed'               => 'فشل الاستيراد: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'نوع مصدر استيراد مجهول',
@@ -2916,9 +2916,6 @@ $1
 'recreate'            => 'أعد الإنشاء',
 
 'unit-pixel' => 'بك',
-
-# HTML dump
-'redirectingto' => 'جاري التحويل إلى [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'امسح مختزن هذه الصفحة؟

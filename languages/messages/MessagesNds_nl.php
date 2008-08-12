@@ -2340,9 +2340,6 @@ $1
 'confirmrecreate'     => "Gebruker [[User:$1|$1]] ([[User talk:$1|Overleeg]]) hef disse pagina vort-edaon naoda-j  begunnen bin mit joew wieziging, mit opgave van de volgende rejen: ''$2''. Bevestig da-j 't artikel herschrieven willen.",
 'recreate'            => 'Herschrieven',
 
-# HTML dump
-'redirectingto' => 'Bezig mit deursturen naor [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "Klik op 'bevestig' um de kas van disse pagina te legen.
 

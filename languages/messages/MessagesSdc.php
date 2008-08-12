@@ -1896,9 +1896,6 @@ $1
 Pa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
 'recreate'            => 'Ricrea',
 
-# HTML dump
-'redirectingto' => 'Rinviu a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Vói pulì la mimória cache di chistha pàgina?
 

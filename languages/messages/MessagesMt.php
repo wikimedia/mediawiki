@@ -329,8 +329,8 @@ Jekk din mhix ir-raġuni, inti wisq probabli sibt problema fis-software. Jekk jo
 'unexpected'           => 'Valur mhux mistenni: "$1"="$2".',
 'formerror'            => 'Problema: il-formula ma setgħatx tiġi proċessata',
 'badarticleerror'      => 'Din l-azzjoni ma setgħetx isseħħ fuq din il-paġna.',
-'cannotdelete'         => "Il-Fajl speċifikat jew paġna ma setgħatx tiġi mħassra.
-Jista' jkun li diġa ġiet imħassra minn xi ħaddieħor.",
+'cannotdelete'         => "Il-fajl jew il-paġna speċifikati ma setgħux jiġu mħassra.
+Jista' jkun li diġà tħassru minn xi ħaddieħor.",
 'badtitle'             => 'Titlu ħażin',
 'badtitletext'         => "It-Titlu tal-paġna rikjesta huwa invalidu, vojt, jew linjat ma' inter-lingwi jew titlu ta' inter-wiki żballjat.",
 'perfdisabled'         => "Skuzana! Din il-faċċilitá ġiet imneħija temporalment minħabba li qegħda jġiegħel id-database jmur aktar bil-mod sal-punt fejn ħadd ma jista' juża l-wiki.",
@@ -442,7 +442,7 @@ Jekk xi ħadd ieħor għamel din ir-rikjesta jew jekk int ftakart il-password ti
 'noemail'                    => 'M\'hemm l-ebda indirizz ta\' posta elettronika għall-utent "$1".',
 'passwordsent'               => 'Il-password il-ġdida ntbagħtet fl-indirizz tal-posta elettronika ta\' "$1".
 Jekk jogħġbok, għamel aċċess wara li tasallek.',
-'blocked-mailpassword'       => 'L-Indirizz tal-IP tiegħek ġie blokkat mill-modifiki, u għalhekk mhux possibli li tuża l-funżjoni sabiex iġġib lura l-password biex ma jkunx hemm abbuż.',
+'blocked-mailpassword'       => 'L-indirizz tal-IP tiegħek huwa bblokkjat u miżmum milli jwettaq modifiki. Għaldaqstant, mhuwiex possibli għalik li tuża l-funzjoni sabiex iġġib lura l-password, u dan sabiex ma jkunx hemm abbużi.',
 'eauthentsent'               => "Posta elettronika ta' konferma ġiet postjata fl-indirizz tal-posta elettronika nominata. Qabel xi posta elettronika oħra tiġi postjata lejn il-kont, inti trid isegwi dawn l-istruzzjonijiet li jinsabu fil-posta elettronika, sabiex tinkonferma li l-kont huwa tassew tiegħek.",
 'throttled-mailpassword'     => "Posta elettronika sabiex tfakrek il-password ġiet postjata, fl-aħħar {{PLURAL:$1|siegħa|$1 siegħat}}.
 Sabiex jitnaqqas l-abbuż, waħda biss tista' tiġi postjata f'kull {{PLURAL:$1|siegħa|$1 siegħat}}.",
@@ -509,15 +509,16 @@ Jista jkun li diġa b'suċċess bidilt il-password jew għamilt rikjesta għal p
 'showpreview'                      => 'Uri Previżjoni',
 'showlivepreview'                  => 'Previżjoni bħalissa',
 'showdiff'                         => 'Uri t-tibdiliet',
-'anoneditwarning'                  => "'''Twissija:''' Aċċess mhux inseħħ. L-Indirizz tal-IP tiegħek se jiġi reġistrat fil-kronoloġija tal-modifikar ta' din il-paġna.",
-'missingsummary'                   => "'''Ftakar:''' Li ma provdejtx taqsira dwar il-modifika.
-Jekk terġa tagħfas Modifika, l-modifika se tiġi salvata mingħajr waħda.",
+'anoneditwarning'                  => "'''Twissija:''' Ma rnexxilekx tidħol. 
+L-indirizz tal-IP tiegħek se jiġi reġistrat fil-kronoloġija tal-modifikar ta' din il-paġna.",
+'missingsummary'                   => "'''Twissija:''' Ma pprovdejt l-ebda taqsira dwar il-modifika.
+Jekk terġa' tagħfas Modifika, l-modifika se tiġi salvata mingħajr waħda.",
 'missingcommenttext'               => 'Jekk jogħġbok, ħalli kumment hawn taħt.',
-'missingcommentheader'             => "'''Ftakar:''' Int ma provdejtx suġġett/titlu għal dan il-kumment.
-Jekk terġa tagħfas Modifika, l-modifika tiegħek se tiġi salvata mingħajr waħda.",
+'missingcommentheader'             => "'''Twissija:''' Ma pprovdejtx suġġett/titlu għal dan il-kumment.
+Jekk terġa' tagħfas Modifika, l-modifika tiegħek se tiġi salvata mingħajr waħda.",
 'summary-preview'                  => "Previżjoni ta' taqsira",
 'subject-preview'                  => 'Previżjoni dwar suġġett/titlu',
-'blockedtitle'                     => 'L-Utent ibblokkjat',
+'blockedtitle'                     => 'L-utent ġie bblokkjat',
 'blockedtext'                      => "<big>'''L-isem ta' l-utent jew l-indirizz IP tiegħek ġew imblukkati.'''</big>
 
 Il-blokk twettaq minn \$1. Ir-raġuni mogħtiha kienet ''\$2''.
@@ -1369,20 +1370,20 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'log-title-wildcard'   => "Tfittxija ta' titli li jibdew b'dan it-test",
 
 # Special:AllPages
-'allpages'          => 'Il-Paġni kollha',
+'allpages'          => 'Il-paġni kollha',
 'alphaindexline'    => 'minn $1 sa $2',
 'nextpage'          => 'Il-paġna li jmiss ($1)',
 'prevpage'          => "Il-paġna ta' qabel ($1)",
 'allpagesfrom'      => 'Uri l-paġni li jibdew minn:',
-'allarticles'       => 'L-Artikli kollha',
-'allinnamespace'    => 'Il-Paġni kollha tan-namespace $1',
+'allarticles'       => 'Il-paġni kollha',
+'allinnamespace'    => 'Il-paġni kollha tan-namespace $1',
 'allnotinnamespace' => 'Il-paġni kollha, minbarra dawk tan-namespace $1',
 'allpagesprev'      => "Ta' qabel",
 'allpagesnext'      => 'Li jmiss',
 'allpagessubmit'    => 'Mur',
 'allpagesprefix'    => 'Uri l-paġni bil-prefiss:',
-'allpagesbadtitle'  => "It-Titlu indikat għal paġna mhux validu jew fih prefissi inter-lingwali jew interwiki. Jista' għalhekk ikun fih wieħed jew aktar karratri li ma jistgħux jintużaw fit-titli.",
-'allpages-bad-ns'   => 'In-Namespace "$1" ma jeżistiex fuq {{SITENAME}}.',
+'allpagesbadtitle'  => "It-titlu indikat għal dil-paġna mhuwiex validu jew inkella fih xi prefiss interlingwa jew interwiki. Għaldaqstant, jista' ikun fih xi karratru(i) li ma jistgħux jintużaw fit-titli.",
+'allpages-bad-ns'   => 'In-namespace "$1" ma jeżistix fuq {{SITENAME}}.',
 
 # Special:Categories
 'categories'                    => 'Kategoriji',
@@ -1618,8 +1619,8 @@ Int jista' jkollhok link ħażin, jew jista' jkun li ir-reviżjoni ġie rkuprat 
 'undeletedrevisions'           => '{{PLURAL:$1|reviżjoni irkuprata|$1 reviżjonijiet irkuprati}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|reviżjoni waħda|$1 reviżjonijiet}} u {{PLURAL:$2|fajl wieħed irkuprat|$2 fajls irkuprati}}',
 'undeletedfiles'               => '{{PLURAL:$1|file wieħed|$1 fajls}} irkuprati',
-'cannotundelete'               => "L-irkuprar ma irnexxiex;
-jista' jkun li xi ħadd ieħor rkupra l-paġna qabel.",
+'cannotundelete'               => "L-irkuprar ma rnexxiex;
+jista' jkun li xi ħadd ieħor irkupra l-paġna qabel.",
 'undeletedpage'                => "<big>'''$1 ġie irkuprat'''</big>
 
 Konsulta [[Special:Log/delete|l-log ta' tħassir]] għar-reġistru ta' tħassir riċenti u irkupri.",
@@ -1709,7 +1710,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'ipbhidename'                     => "Aħbi isem l-utent mir-reġistru tal-blokki, mil-lista ta' blokki attivi u mil-lista tal-utenti.",
 'ipbwatchuser'                    => "Osserva l-paġni u d-diskussjonijiet ta' dan l-utent",
 'badipaddress'                    => "Indirizz ta' IP invalidu",
-'blockipsuccesssub'               => 'Il-Blokk irnexxa',
+'blockipsuccesssub'               => 'Il-blokk irnexxa',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ġie blokkat.<br />
 Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attivi.",
 'ipb-edit-dropdown'               => 'Modifika r-raġuni tal-blokkar',
@@ -1864,7 +1865,7 @@ Fl-Aħħar każ inti tista' tuża link, e.ż.
 'allmessages'               => 'Il-Messaġġi kollha tas-sistema',
 'allmessagesname'           => 'Isem',
 'allmessagesdefault'        => 'Test predefinit',
-'allmessagescurrent'        => 'Test attwali',
+'allmessagescurrent'        => 'It-test attwali',
 'allmessagestext'           => 'Din hija l-lista tal-messaġġi kollha tas-sistema disponibbli fin-namespace MedjaWiki:',
 'allmessagesnotsupportedDB' => "Il-paġna ma tistax tintuża għax '''\$wgUseDatabaseMessages''' mhux attivat.",
 'allmessagesfilter'         => 'Filtru fuq l-ismijiet tal-messaġġi:',
@@ -2444,9 +2445,6 @@ $1
 : ''$2''
 Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 'recreate'            => "Erġa' oħloq",
-
-# HTML dump
-'redirectingto' => 'Rindirizzat għal [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Ħassar il-''cache'' ta' din il-paġna?

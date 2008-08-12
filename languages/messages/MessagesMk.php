@@ -4,6 +4,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Brainmachine
+ * @author Brest2008
  * @author FlavrSavr
  * @author Glupav
  * @author INkubusse
@@ -834,11 +836,13 @@ ID-то на вашето блокирање е $5.
 'userrights-groupsmember'  => 'Член на:',
 
 # Groups
-'group'            => 'Група:',
-'group-bot'        => 'Ботови',
-'group-sysop'      => 'Администратори',
-'group-bureaucrat' => 'Бирократи',
-'group-all'        => '(сите)',
+'group'               => 'Група:',
+'group-user'          => 'Корисници',
+'group-autoconfirmed' => 'Автопотврдени корисници',
+'group-bot'           => 'Ботови',
+'group-sysop'         => 'Администратори',
+'group-bureaucrat'    => 'Бирократи',
+'group-all'           => '(сите)',
 
 'group-bot-member'        => 'Бот',
 'group-sysop-member'      => 'Администратор',
@@ -1249,6 +1253,16 @@ $NEWPAGE
 'deletionlog'                 => 'дневник на бришењата',
 'reverted'                    => 'Вратено на претходната верзија',
 'deletecomment'               => 'Причина за бришење',
+'deleteotherreason'           => 'Друга/дополнителна причина:',
+'deletereasonotherlist'       => 'Друга причина',
+'deletereason-dropdown'       => '*Вообичаени причини
+** На барање на авторот
+** Прекршување на авторски права
+** Страница создадена по грешка
+** Несоодветен наслов
+
+*Спам
+**Спам',
 'rollback'                    => 'Врати промени',
 'rollback_short'              => 'Врати',
 'rollbacklink'                => 'Врати',
@@ -2002,9 +2016,6 @@ $1
 'recreate'            => 'Повторно направи',
 
 'unit-pixel' => 'п',
-
-# HTML dump
-'redirectingto' => 'Пренасочувам на [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Да се исчисти кешот на оваа страница?

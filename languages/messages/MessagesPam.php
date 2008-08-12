@@ -2299,9 +2299,6 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 'deletedwhileediting' => 'Kapiadian: Mebura ya ing bulung ini kaibat mung migumpisang mag-edit!',
 'recreate'            => 'Lalangan yang pasibayu',
 
-# HTML dump
-'redirectingto' => 'Iyalis ya direksion king [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Ilako ya king simpanan (cache) ing bulung a ine?
 

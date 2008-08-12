@@ -2447,9 +2447,6 @@ $1
 Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 'recreate'            => 'Creyar nuebament',
 
-# HTML dump
-'redirectingto' => 'Reendrezando ta [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "Limpiar a caché d'ista pachina?
 

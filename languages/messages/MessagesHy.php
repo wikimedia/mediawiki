@@ -2062,9 +2062,6 @@ $1
 
 'unit-pixel' => ' փիքսել',
 
-# HTML dump
-'redirectingto' => 'Վերահղվում է դեպի [[:$1]]…',
-
 # action=purge
 'confirm_purge'        => 'Մաքրե՞լ այս էջի քեշը։
 

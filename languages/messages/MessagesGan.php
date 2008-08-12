@@ -2034,9 +2034,6 @@ $3
 請想正後再重建頁面。",
 'recreate'            => '重建',
 
-# HTML dump
-'redirectingto' => '重定向到[[:$1]]...',
-
 # action=purge
 'confirm_purge'        => '想清卟箇頁嗰緩存?
 

@@ -1739,9 +1739,6 @@ $1
 Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 'recreate'            => 'Saifeni yañıdan yarat',
 
-# HTML dump
-'redirectingto' => 'Yollama [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Saife keşini temizlesinmi?
 

@@ -588,6 +588,7 @@ Apzīmējumi:
 "ar pašreizējo" = salīdzināt ar pašreizējo versiju,
 "ar iepriekšējo" = salīdzināt ar iepriekšējo versiju,
 m = maznozīmīgs labojums.',
+'history-search'      => 'Meklēt hronoloģijā',
 'deletedrev'          => '[izdzēsta]',
 'histfirst'           => 'Senākās',
 'histlast'            => 'Jaunākās',
@@ -1602,9 +1603,6 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 : ''$2''
 Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'recreate'            => 'Izveidot no jauna',
-
-# HTML dump
-'redirectingto' => 'Pāradresē uz [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => "Iztīrīt šīs lapas kešu (''cache'')?

@@ -2507,9 +2507,6 @@ $1
 Por favor, confirme que realmente deseja recriar esta página.",
 'recreate'            => 'Recriar',
 
-# HTML dump
-'redirectingto' => 'Redirecionando para [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Limpar a memória cache desta página?
 

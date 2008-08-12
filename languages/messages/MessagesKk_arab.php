@@ -2862,9 +2862,6 @@ $1
 
 'unit-pixel' => ' نۇكتە',
 
-# HTML dump
-'redirectingto' => '[[:$1]] بەتىنە ايداتۋدا…',
-
 # action=purge
 'confirm_purge'        => 'بۇل بەتتىن بۇركەمەسىن تازارتاسىز با?
 

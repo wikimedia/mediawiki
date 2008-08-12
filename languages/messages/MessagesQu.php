@@ -2370,9 +2370,6 @@ $1
 Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy.",
 'recreate'            => 'Musuqta paqarichiy',
 
-# HTML dump
-'redirectingto' => '[[:$1]]-man pusapuspa...',
-
 # action=purge
 'confirm_purge'        => "Kay p'anqap ''cache'' nisqa pakasqa hallch'an ch'usaqchasqa kachunchu?
 

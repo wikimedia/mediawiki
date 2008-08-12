@@ -1546,9 +1546,6 @@ Kó-yèn ngì *mò-yû* thì-chhut liá-ke chhiáng-khiù,  chhiáng put-yeu ti�
 Chhiáng chhai chhùng-sîn kien-chho vùn-chông chhièn sâm-sṳ̂.",
 'recreate'            => 'Chhùng-kien',
 
-# HTML dump
-'redirectingto' => 'Chhùng-thin-hiong to [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Chhîn-chhù pún-chông chhòng-chhùn？
 

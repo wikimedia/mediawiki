@@ -2468,9 +2468,6 @@ $1
 Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'recreate'            => 'Wótnowótki wutwóriś',
 
-# HTML dump
-'redirectingto' => 'Pśeadresěrowanje do [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Wulašowaś cache togo boka? $1',
 'confirm_purge_button' => 'W pórědku.',

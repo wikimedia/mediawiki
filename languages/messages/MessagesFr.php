@@ -1804,7 +1804,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Contributions de l’utilisateur',
-'contributions-title' => 'Les contributions de l’utilsateur pour $1',
+'contributions-title' => 'Liste des contributions de l’utilisateur $1',
 'mycontris'           => 'Contributions',
 'contribsub2'         => 'Liste des contributions de $1 ($2). Les pages qui ont été effacées ne sont pas affichées.',
 'nocontribs'          => 'Aucune modification correspondant à ces critères n’a été trouvée.',
@@ -2582,9 +2582,6 @@ Ce code de confirmation expirera le $4.',
 : ''$2''
 Veuillez confirmer que vous désirez recréer cet article.",
 'recreate'            => 'Recréer',
-
-# HTML dump
-'redirectingto' => 'Redirection vers [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Voulez-vous rafraîchir cette page (purger le cache) ? $1',

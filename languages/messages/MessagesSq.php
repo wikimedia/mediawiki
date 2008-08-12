@@ -2119,9 +2119,6 @@ $1
 Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artikull.",
 'recreate'            => 'Rikrijo',
 
-# HTML dump
-'redirectingto' => 'Përcjellin tek [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Pastro cache për këtë faqe?
 

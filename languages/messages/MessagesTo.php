@@ -1165,9 +1165,6 @@ Kapau ʻoku ʻikai ko koe, ʻoua ʻe fakaava ia. ʻE mate ʻa e lea fakapulipul�
 Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 'recreate'            => 'Toe fakatupu',
 
-# HTML dump
-'redirectingto' => 'ʻOku leʻei ki [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Fakaʻatā ko e fafaʻo ʻo e pēsí ni?
 

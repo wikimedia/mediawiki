@@ -2548,9 +2548,6 @@ $1
 Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'recreate'            => 'Cipta semula',
 
-# HTML dump
-'redirectingto' => 'Melencong ke [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Kosongkan fail simpanan bagi laman ini?
 

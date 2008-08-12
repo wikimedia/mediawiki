@@ -2445,9 +2445,6 @@ $1
 Por favor confirma que daveres quies volver a crear esta páxina.",
 'recreate'            => 'Volver a crear',
 
-# HTML dump
-'redirectingto' => 'Redireicionando a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "¿Llimpiar la caché d'esta páxina?
 
