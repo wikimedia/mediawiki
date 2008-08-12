@@ -587,7 +587,7 @@ class EnhancedChangesList extends ChangesList {
 			$text = $userlink;
 			$text .= $wgContLang->getDirMark();
 			if( $count > 1 ) {
-				$text .= ' ('.$count.'&times;)';
+				$text .= ' (' . $wgLang->formatNum( $count ) . '×)';
 			}
 			array_push( $users, $text );
 		}
