@@ -1802,7 +1802,10 @@ $wgMimeTypeBlacklist= array(
 	# Other types that may be interpreted by some servers
 	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh',
 	# Windows metafile, client-side vulnerability on some systems
-	'application/x-msmetafile'
+	'application/x-msmetafile',
+	# A ZIP file may be a valid Java archive containing an applet which exploits the 
+	# same-origin policy to steal cookies
+	'application/zip',
 );
 
 /** This is a flag to determine whether or not to check file extensions on upload. */
