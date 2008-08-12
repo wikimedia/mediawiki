@@ -178,21 +178,24 @@ itxessat ad di-s tili {{PLURAL:$1|1 usekkil|$1 isekkilen}} u ad tili temṣebda 
 adeff-d xmi ad-tetfed.',
 
 # Edit page toolbar
-'bold_sample'    => 'Tirra d-tiqebbuzin',
-'bold_tip'       => 'Tirra d-tiqebbuzin',
-'italic_sample'  => 'Tirra titalyanin',
-'italic_tip'     => 'Tirra titalyanin',
-'link_sample'    => 'isem n tzedayt',
-'link_tip'       => 'Tazdayt n dixl',
-'extlink_sample' => 'http://www.example.com isem n tezdayt',
-'extlink_tip'    => 'Tazdayt n baṛṛa (qa tettud http:// prefix)',
-'math_sample'    => 'Egg ijj n formula da',
-'math_tip'       => 'Mathematical formula (LaTeX)',
-'nowiki_sample'  => 'Sideff da tirra bla taseddast(formatting) n wiki',
-'nowiki_tip'     => 'Ur tawi x taseddast(formatting) n wiki',
-'image_tip'      => 'Afaylu war-itmesebḍi',
-'media_tip'      => 'Tazdayt ufaylu',
-'sig_tip'        => 'Azewl(signature) inec ag ukud(time) .',
+'bold_sample'     => 'Tirra d-tiqebbuzin',
+'bold_tip'        => 'Tirra d-tiqebbuzin',
+'italic_sample'   => 'Tirra titalyanin',
+'italic_tip'      => 'Tirra titalyanin',
+'link_sample'     => 'isem n tzedayt',
+'link_tip'        => 'Tazdayt n dixl',
+'extlink_sample'  => 'http://www.example.com isem n tezdayt',
+'extlink_tip'     => 'Tazdayt n baṛṛa (qa tettud http:// prefix)',
+'headline_sample' => 'Aḍris n ixf-isem',
+'headline_tip'    => 'Aswir 2 n ixf-isem',
+'math_sample'     => 'Egg ijj n formula da',
+'math_tip'        => 'Mathematical formula (LaTeX)',
+'nowiki_sample'   => 'Sideff da tirra bla taseddast(formatting) n wiki',
+'nowiki_tip'      => 'Ur tawi x taseddast(formatting) n wiki',
+'image_tip'       => 'Afaylu war-itmesebḍi',
+'media_tip'       => 'Tazdayt ufaylu',
+'sig_tip'         => 'Azewl(signature) inec ag ukud(time) .',
+'hr_tip'          => 'Acariḍ aglawan',
 
 # Edit pages
 'summary'                => 'Asgeber',
@@ -472,6 +475,7 @@ Aqa (settings) n tsebtert <strong>$1</strong>:',
 
 # Namespace form on various pages
 'namespace'      => 'Raq n isem:',
+'invert'         => 'Dren mayn tixtard',
 'blanknamespace' => '(Amenzaw)',
 
 # Contributions

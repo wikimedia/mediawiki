@@ -694,7 +694,7 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'savearticle'                      => 'Vista síðu',
 'preview'                          => 'Forskoða',
 'showpreview'                      => 'Forskoða',
-'showlivepreview'                  => 'Sýning',
+'showlivepreview'                  => 'Forskoða',
 'showdiff'                         => 'Sýna breytingar',
 'anoneditwarning'                  => "'''Viðvörun:''' Þú ert ekki innskráð(ur). Vistfang þitt skráist í breytingaskrá síðunnar.",
 'missingcommenttext'               => 'Gerðu svo vel og skrifaðu athugasemd fyrir neðan.',
@@ -1509,13 +1509,14 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'blanknamespace' => '(Aðalnafnrýmið)',
 
 # Contributions
-'contributions' => 'Framlög notanda',
-'mycontris'     => 'Framlög',
-'contribsub2'   => 'Eftir $1 ($2)',
-'nocontribs'    => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
-'uctop'         => '(nýjast)',
-'month'         => 'Frá mánuðinum (og fyrr):',
-'year'          => 'Frá árinu (og fyrr):',
+'contributions'       => 'Framlög notanda',
+'contributions-title' => 'Framlög notanda $1',
+'mycontris'           => 'Framlög',
+'contribsub2'         => 'Eftir $1 ($2)',
+'nocontribs'          => 'Engar breytingar fundnar sem passa við þessa viðmiðun.',
+'uctop'               => '(nýjast)',
+'month'               => 'Frá mánuðinum (og fyrr):',
+'year'                => 'Frá árinu (og fyrr):',
 
 'sp-contributions-newbies'     => 'Sýna aðeins breytingar frá nýjum notendum',
 'sp-contributions-newbies-sub' => 'Fyrir nýliða',
@@ -1526,12 +1527,12 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 
 # What links here
 'whatlinkshere'            => 'Hvað tengist hingað',
-'whatlinkshere-title'      => 'Síður sem tengjast $1',
+'whatlinkshere-title'      => 'Síður sem tengjast „$1“',
 'whatlinkshere-page'       => 'Síða:',
 'linkshere'                => "Eftirfarandi síður tengjast á '''[[:$1]]''':",
 'nolinkshere'              => "Engar síður tengjast á '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
-'isredirect'               => 'tilvísunarsíða',
+'isredirect'               => 'tilvísun',
 'istemplate'               => 'innifalið',
 'isimage'                  => 'myndatengill',
 'whatlinkshere-prev'       => '{{PLURAL:$1|fyrra|fyrri $1}}',
@@ -1588,7 +1589,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'unblocked'                   => '[[User:$1|$1]] hefur verið afbannaður',
 'unblocked-id'                => 'Bann $1 hefur verið fjarlægt',
 'ipblocklist'                 => 'Bannaðir notendur og vistföng',
-'ipblocklist-legend'          => 'Finna bannaðann notanda',
+'ipblocklist-legend'          => 'Finna bannaðan notanda',
 'ipblocklist-username'        => 'Notandanafn eða vistfang:',
 'ipblocklist-submit'          => 'Leita',
 'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
@@ -1596,7 +1597,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'expiringblock'               => 'rennur út  $1',
 'anononlyblock'               => 'bara ónafngreindir',
 'noautoblockblock'            => 'sjálfbönnun óvirk',
-'createaccountblock'          => 'bann við stofnun nýrra notenda',
+'createaccountblock'          => 'bann við stofnun nýrra aðganga',
 'emailblock'                  => 'tölvupóstur bannaður',
 'ipblocklist-empty'           => 'Bannlistinn er tómur.',
 'ipblocklist-no-results'      => 'Umbeðið vistfang eða notandanafn er ekki í banni.',
@@ -1617,7 +1618,7 @@ Sjá [[Special:IPBlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 'block-log-flags-noemail'     => 'netfang bannað',
 'ipb_expiry_invalid'          => 'Tími ógildur.',
 'ipb_already_blocked'         => '„$1“ er nú þegar í banni',
-'ipb_cant_unblock'            => 'Villa: Bann-tala $1 fannst ekki. Hún gæti nú þegar hafa verið afbönnuð.',
+'ipb_cant_unblock'            => 'Villa: Bann-tala $1 fannst ekki. Bannið gæti verið útrunnið eða hún afbönnuð.',
 'ip_range_invalid'            => 'Ógilt vistfangasvið.',
 'blockme'                     => 'Banna mig',
 'proxyblocker-disabled'       => 'Þessi virkni er óvirk.',
@@ -1626,11 +1627,12 @@ Sjá [[Special:IPBlockList|ítarlegri lista]] fyrir öll núgildandi bönn.',
 # Developer tools
 'lockdb'              => 'Læsa gagnagrunninum',
 'unlockdb'            => 'Opna gagnagrunninn',
-'lockconfirm'         => 'Já, ég er viss um að ég vilji læsa gagnagrunninum.',
+'lockconfirm'         => 'Já, ég vil læsa gagnagrunninum.',
 'unlockconfirm'       => 'Já, ég vil aflæsa gagnagrunninum.',
 'lockbtn'             => 'Læsa gagnagrunni',
 'unlockbtn'           => 'Aflæsa gagnagrunninum',
-'lockdbsuccesssub'    => 'Læsing á gagnagrunninum tóks',
+'locknoconfirm'       => 'Þú hakaðir ekki í staðfestingarrammann.',
+'lockdbsuccesssub'    => 'Læsing á gagnagrunninum tókst',
 'unlockdbsuccesssub'  => 'Læsing á gagnagrunninum hefur verið fjarlægð',
 'lockdbsuccesstext'   => 'Gagnagrunninum hefur verið læst.<br />
 Mundu að [[Special:UnlockDB|opna hann aftur]] þegar þú hefur lokið viðgerðum.',
@@ -1640,22 +1642,13 @@ Mundu að [[Special:UnlockDB|opna hann aftur]] þegar þú hefur lokið viðger�
 # Move page
 'move-page'               => 'Færa $1',
 'move-page-legend'        => 'Færa síðu',
-'movepagetext'            => "Hér er hægt að endurnefna síðu, hún mun ásamt breytingarskrá hennar
-verða færð á nýja nafnið og núverandi staðsetning mun
-breytast í tilvísun sem vísa mun á nýju staðsetninguna,
-tenglar í núverandi nafn munu hinsvegar ekki breytast,
-athugaðu að þetta búi ekki til margfaldar
-tilvísanir, það er á þína ábyrgð að tryggja það að tenglar haldi áfram
-að vísa á rétta síðu.
+'movepagetext'            => "Hér er hægt að endurnefna síðu. Hún færist, ásamt breytingaskránni, yfir á nýtt heiti og eldra heitið myndar tilvísun á það. Þú getur sjálfkrafa uppfært tilvísanir á nýja heitið. Ef þú vilt það síður, athugaðu þá hvort nokkuð myndist [[Special:DoubleRedirects|tvöfaldar]] eða [[Special:BrokenRedirects|brotnar tilvísanir]].
+Þú berð ábyrgð á því að tenglar vísi á rétta staði.
 
-Athugaðu að síðan mun '''ekki''' verða færð ef það er þegar síða á nafninu
-sem þú hyggst færa hana á, nema síða sú sé tóm eða tilvísun sem á sér enga
-breytingarsögu. Þú getur þar með fært síðuna aftur til baka án þess að
-missa breytingarsöguna, en ekki fært hana venjulega síðu.
+Athugaðu að síðan mun '''ekki''' færast ef þegar er síða á nafninu sem þú hyggst færa hana á, nema sú síða sé tóm eða tilvísun sem vísar á síðuna sem þú ætlar að færa. Þú getur þar með fært síðuna aftur til baka án þess að missa breytingarsöguna, en ekki fært hana yfir venjulega síðu.
 
 '''Varúð:'''
-Vertu viss um að skilja afleiðingarnar af þessari aðgerð vel. Þetta gæti þýtt
-mjög rótækar breytingar á vinsælum síðum og valdið titringi hjá öðrum notendum.",
+Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og getur þýtt mjög rótækar breytingar á vinsælum síðum.",
 'movepagetalktext'        => 'Spallsíða síðunnar verður sjálfkrafa færð með ef hún er til nema:
 * Þú sért að færa síðuna á milli nafnrýma
 * Spallsíða sé þegar til undir nýja nafninu
@@ -1674,8 +1667,11 @@ Vinsamlegast veldu annan titil.',
 Gjörðu svo vel og færðu hana handvirkt.'''",
 'movedto'                 => 'fært á',
 'movetalk'                => 'Færa meðfylgjandi spjallsíðu',
-'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifá sjálfkrafa.',
-'movepage-page-moved'     => 'Síðan $1 hefur verið fær á $2.',
+'move-subpages'           => 'Færa allar undirsíður ef það er hægt',
+'move-talk-subpages'      => 'Færa allar undirsíður spjallsíðunnar ef það er hægt',
+'movepage-page-exists'    => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifa sjálfkrafa.',
+'movepage-page-moved'     => 'Síðan $1 hefur verið færð á $2.',
+'movepage-page-unmoved'   => 'Ekki var hægt að færa síðuna $1 á $2.',
 '1movedto2'               => '[[$1]] færð á [[$2]]',
 '1movedto2_redir'         => '[[$1]] færð á [[$2]] yfir tilvísun',
 'movelogpage'             => 'Flutningaskrá',
@@ -1693,7 +1689,7 @@ Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til f
 
 # Export
 'export'            => 'Flytja út síður',
-'exportcuronly'     => 'Aðeins núverandi útgáfu án breytingarskrá',
+'exportcuronly'     => 'Aðeins núverandi útgáfu án breytingaskrár',
 'export-submit'     => 'Flytja',
 'export-addcattext' => 'Bæta við síðum frá flokkinum:',
 'export-addcat'     => 'Bæta við',
@@ -1844,9 +1840,10 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'markedaspatrollederror-noautopatrol' => 'Þú hefur ekki réttindi til að merkja eigin breytingar sem yfirfarnar.',
 
 # Patrol log
-'patrol-log-page' => 'Yfirferðarskrá',
-'patrol-log-line' => 'merkti $1 eftir $2 sem yfirfarið $3',
-'patrol-log-auto' => '(sjálfkrafa)',
+'patrol-log-page'   => 'Yfirferðarskrá',
+'patrol-log-header' => 'Þetta er skrá yfir yfirfarna breytingar.',
+'patrol-log-line'   => 'merkti $1 eftir $2 sem yfirfarið $3',
+'patrol-log-auto'   => '(sjálfkrafa)',
 
 # Image deletion
 'deletedrevision'       => 'Eydd gömul útgáfu $1',
@@ -1937,7 +1934,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-focalplaneresolutionunit-2' => 'tommur',
 
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
-'exif-gpsspeed-k' => 'Kílómetra á klukkustund',
+'exif-gpsspeed-k' => 'Kílómetrar á klukkustund',
 'exif-gpsspeed-m' => 'Mílur á klukkustund',
 'exif-gpsspeed-n' => 'Hnútar',
 
@@ -1964,8 +1961,8 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'confirmemail_send'        => 'Senda staðfestingarkóða með tölvupósti',
 'confirmemail_sent'        => 'Staðfestingartölvupóstur sendur.',
 'confirmemail_oncreate'    => 'Staðfestingarkóði hefur verði sendur á netfangið.
-Þennan kóða þarf ekki að staðfesta til að skrá sig inn, en þú munt þurfa gefa hann upp áður
-en opnað verður fyrir valmöguleika tengda netfanginu á þessu wiki-verkefni.',
+Þennan kóða þarf ekki að staðfesta til að skrá sig inn, en þú þarft að gefa hann upp áður
+en opnað verður fyrir valmöguleika tengdum netfangi á þessu wiki-verkefni.',
 'confirmemail_sendfailed'  => 'Gat ekki sent staðfestingarkóða. Athugaðu hvort netfangið sé rétt.
 
 Póstþjónninn gaf eftirfarandi skilaboð: $1',
@@ -1986,7 +1983,7 @@ Ef þú ert *ekki* sá/sú sem skráði þetta notandanafn, skaltu opna þennan 
 $5
 
 Þessi staðfestingarkóði rennur út $4.',
-'confirmemail_invalidated' => 'Staðfesting netfangs aflýst',
+'confirmemail_invalidated' => 'Hætt við staðfestingu netfangs',
 'invalidateemail'          => 'Hætta við staðfestingu netfangs',
 
 # Scary transclusion
@@ -2008,9 +2005,6 @@ $1
 : ''$2''
 Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'recreate'            => 'Endurvekja',
-
-# HTML dump
-'redirectingto' => 'Tilvísun á [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Hreinsa skyndiminni þessarar síðu?

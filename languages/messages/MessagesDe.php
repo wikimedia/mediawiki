@@ -14,6 +14,7 @@
  * @author Revolus
  * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
+ * @author W (aka Wuzur)
  * @author לערי ריינהארט
  */
 
@@ -1365,7 +1366,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'filerevert-legend'         => 'Datei zurücksetzen',
 'filerevert-intro'          => "Du setzt die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
 'filerevert-comment'        => 'Grund:',
-'filerevert-defaultcomment' => 'zurückgesetzt auf die Version vom $1, $2 Uhr',
+'filerevert-defaultcomment' => 'Zurückgesetzt auf die Version vom $1, $2 Uhr',
 'filerevert-submit'         => 'Zurücksetzen',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' wurde auf die [$4 Version vom $2, $3 Uhr] zurückgesetzt.",
 'filerevert-badversion'     => 'Es gibt keine Version der Datei zu dem angegebenen Zeitpunkt.',
@@ -2468,7 +2469,9 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-sensingmethod-2' => 'Ein-Chip-Farbsensor',
 'exif-sensingmethod-3' => 'Zwei-Chip-Farbsensor',
 'exif-sensingmethod-4' => 'Drei-Chip-Farbsensor',
+'exif-sensingmethod-5' => 'Farbraum sequentiell Sensor',
 'exif-sensingmethod-7' => 'Trilinearer Sensor',
+'exif-sensingmethod-8' => 'Farbraum linear sequentieller Sensor',
 
 'exif-scenetype-1' => 'Normal',
 
@@ -2602,9 +2605,6 @@ warum die Seite gelöscht wurde. Wenn du die Seite speicherst, wird sie neu ange
 :''$2''
 Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'recreate'            => 'Erneut anlegen',
-
-# HTML dump
-'redirectingto' => 'Weitergeleitet nach [[:$1]]',
 
 # action=purge
 'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',

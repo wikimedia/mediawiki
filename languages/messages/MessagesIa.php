@@ -843,9 +843,9 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 # Search results
 'searchresults'             => 'Resultatos del recerca',
 'searchresults-title'       => 'Resultatos del recerca de $1',
-'searchresulttext'          => 'Pro plus information super le recerca de {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'          => 'Pro plus informationes super le recerca in {{SITENAME}}, vide [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Tu cercava \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tote le paginas que comencia con "$1"]] | [[Special:WhatLinksHere/$1|tote le paginas con ligamines a "$1"]])',
-'searchsubtitleinvalid'     => 'Tu cercava "$1"',
+'searchsubtitleinvalid'     => "Tu cercava '''$1'''",
 'noexactmatch'              => "'''Non existe un pagina con le titulo \"\$1\".'''
 Tu pote [[:\$1|crear iste pagina]].",
 'noexactmatch-nocreate'     => "'''Non existe un pagina con titulo \"\$1\".'''",
@@ -862,7 +862,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'search-redirect'           => '(redirection verso $1)',
 'search-section'            => '(section $1)',
 'search-suggest'            => 'Esque tu vole dicer: $1',
-'search-interwiki-caption'  => 'Projectos-sorores',
+'search-interwiki-caption'  => 'Projectos fratres',
 'search-interwiki-default'  => 'Resultatos de $1:',
 'search-interwiki-more'     => '(plus)',
 'search-mwsuggest-enabled'  => 'con suggestiones',
@@ -893,7 +893,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'prefsnologintext'         => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter configurar tu preferentias.',
 'prefsreset'               => 'Tu preferentias anterior ha essite restaurate.',
 'qbsettings'               => 'Barra rapide',
-'qbsettings-none'          => 'Nulle',
+'qbsettings-none'          => 'Necun',
 'qbsettings-fixedleft'     => 'Fixe a sinistra',
 'qbsettings-fixedright'    => 'Fixe a derecta',
 'qbsettings-floatingleft'  => 'Flottante a sinistra',
@@ -920,7 +920,7 @@ per favor vide math/README pro configurar lo.",
 'prefs-rc'                 => 'Modificationes recente',
 'prefs-watchlist'          => 'Observatorio',
 'prefs-watchlist-days'     => 'Numero de dies a monstrar in le observatorio:',
-'prefs-watchlist-edits'    => 'Numero maximal de cambios a monstrar in le observatorio expandite:',
+'prefs-watchlist-edits'    => 'Numero maximal de modificationes a monstrar in le observatorio expandite:',
 'prefs-misc'               => 'Misc',
 'saveprefs'                => 'Confirmar',
 'resetprefs'               => 'Reverter cambios',
@@ -930,7 +930,7 @@ per favor vide math/README pro configurar lo.",
 'textboxsize'              => 'Modification',
 'rows'                     => 'Lineas:',
 'columns'                  => 'Columnas:',
-'searchresultshead'        => 'Cercar',
+'searchresultshead'        => 'Recerca',
 'resultsperpage'           => 'Resultatos per pagina:',
 'contextlines'             => 'Lineas per resultato:',
 'contextchars'             => 'Characteres de contexto per linea:',
@@ -939,7 +939,7 @@ per favor vide math/README pro configurar lo.",
 'recentchangescount'       => 'Numero de modificationes a monstrar in paginas de modificationes recente, de historia e de registro:',
 'savedprefs'               => 'Tu preferentias ha essite confirmate.',
 'timezonelegend'           => 'Fuso horari',
-'timezonetext'             => '¹Le numero de horas inter tu fuso horari e illo del servitor (UTC).',
+'timezonetext'             => '¹Le numero de horas inter tu hora local e le hora del servitor (UTC).',
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Differentia¹',
 'servertime'               => 'Hora del servitor',
@@ -1136,13 +1136,14 @@ Le {{PLURAL:\$3|typo|typos}} de file permittite es \$2.",
 'large-file'                  => 'Es recommendate que le files non sia plus grande de $1;
 iste file occupa $2.',
 'largefileserver'             => 'Le grandor de iste file excede le limite configurate in le servitor.',
-'emptyfile'                   => 'Le file que tu cargava pare esser vacue. Isto pote esser debite a un error in le nomine del file.
-Per favor assecura que tu realmente vole cargar un file con precisemente iste nomine.',
+'emptyfile'                   => 'Le file que tu cargava pare esser vacue.
+Isto pote esser debite a un error in le nomine del file.
+Per favor verifica que tu realmente vole cargar iste file.',
 'fileexists'                  => 'Un file con iste nomine existe ja. Per favor verifica <strong><tt>$1</tt></strong> si tu non es secur de voler cambiar lo.',
 'filepageexists'              => 'Le pagina de description correspondente a iste file ha jam essite create a <strong><tt>$1</tt></strong>, sed un file con iste nomine non existe al momento.
 Le summario que tu entra non apparera in le pagina de description.
 Si tu vole que illo appare, tu debe inserer lo manualmente.',
-'fileexists-extension'        => 'Un file con un nomine similar jam existe:<br />
+'fileexists-extension'        => 'Un file con un nomine similar existe ja:<br />
 Nomine del file que tu carga: <strong><tt>$1</tt></strong><br />
 Nomine del file existente: <strong><tt>$2</tt></strong><br />
 Per favor selige un altere nomine.',
@@ -1153,13 +1154,13 @@ Si le file verificate es le mesme imagine a grandor original, non es necessari c
 'file-thumbnail-no'           => 'Le nomine del file comencia con <strong><tt>$1</tt></strong>.
 Illo pare esser un imagine a grandor reducite <i>(miniatura)</i>.
 Si tu possede iste imagine in plen resolution, carga lo, alteremente cambia le nomine del file per favor.',
-'fileexists-forbidden'        => 'Un file con iste nomine jam existe;
+'fileexists-forbidden'        => 'Un file con iste nomine existe ja;
 per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un file con iste nomine jam existe in le repositorio de files commun;
+'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le repositorio de files commun;
 per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
-'successfulupload'            => 'Carga complete',
-'uploadwarning'               => 'Advertimento de carga',
+'successfulupload'            => 'Cargamento succedite',
+'uploadwarning'               => 'Advertimento de cargamento',
 'savefile'                    => 'Immagazinar file',
 'uploadedimage'               => '"[[$1]]" cargate',
 'overwroteimage'              => 'cargava un nove version de "[[$1]]"',
@@ -1174,14 +1175,14 @@ Per favor verifica le file e recarga lo.',
 'upload-maxfilesize'          => 'Grandor maximal del files: $1',
 'watchthisupload'             => 'Observar iste pagina',
 'filewasdeleted'              => 'Un file con iste nomine ha anteriormente essite cargate e postea delite.
-Tu debe revider le $1 ante de proceder e recargar lo.',
+Tu debe verificar le $1 ante de proceder e recargar lo.',
 'upload-wasdeleted'           => "'''Attention: Tu va cargar un file que esseva anteriormente delite.'''
 
 Tu debe considerar si es appropriate continuar a cargar iste file.
 Pro major commoditate se trova hic le registro de eliminationes correspondente a iste file:",
 'filename-bad-prefix'         => 'Le nomine del file que tu va cargar comencia con <strong>"$1"</strong>, le qual es un nomine non descriptive, typicamente assignate automaticamente per le cameras digital.
 Per favor selige un nomine plus descriptive pro tu file.',
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- non modificar de alcun modo iste linea --> <pre>
 # Le syntaxe es como seque:
 #   * Toto a partir de un character "#" usque al fin del linea es un commento
 #   * Cata linea non vacue es un prefixo pro tal nomines de file como automaticamente assignate per cameras digital
@@ -1194,7 +1195,7 @@ IMG # generic
 JD # Jenoptik
 MGP # Pentax
 PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- non modificar de alcun modo iste linea -->',
 
 'upload-proto-error'      => 'Protocollo incorrecte',
 'upload-proto-error-text' => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
@@ -1227,7 +1228,7 @@ Per predefinition le ultime files cargate se monstra al initio del lista.
 Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'imagelist_search_for'  => 'Cercar un nomine de media:',
 'imgfile'               => 'file',
-'imagelist'             => 'Lista de imagines',
+'imagelist'             => 'Lista de files',
 'imagelist_date'        => 'Data',
 'imagelist_name'        => 'Nomine',
 'imagelist_user'        => 'Usator',
@@ -1247,18 +1248,18 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'filehist-filesize'              => 'Grandor del file',
 'filehist-comment'               => 'Commento',
 'imagelinks'                     => 'Ligamines',
-'linkstoimage'                   => 'Le sequente {{PLURAL:$1|pagina ha un ligamine|$1 paginas ha ligamines}} a iste file:',
+'linkstoimage'                   => 'Le sequente {{PLURAL:$1|pagina ha un ligamine|$1 paginas ha ligamines}} verso iste file:',
 'linkstoimage-more'              => 'Plus de $1 {{PLURAL:$1|pagina ha un ligamine|paginas ha ligamines}} verso iste file.
 Le sequente lista monstra le {{PLURAL:$1|prime pagina|prime $1 paginas}} que puncta a iste file specific.
 Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
-'nolinkstoimage'                 => 'Necun pagina se liga a iste imagine.',
+'nolinkstoimage'                 => 'Nulle pagina se liga verso iste file.',
 'morelinkstoimage'               => 'Vider [[Special:WhatLinksHere/$1|plus ligamines]] a iste file.',
 'redirectstofile'                => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
 'duplicatesoffile'               => 'Le sequente {{PLURAL:$1|files es un duplicato|$1 files es duplicatos}} de iste file:',
 'sharedupload'                   => 'Iste file ha essite cargate pro uso in commun; altere projectos pote usar lo.',
 'shareduploadwiki'               => 'Per favor vide le $1 pro ulterior informationes.',
 'shareduploadwiki-desc'          => 'Infra se monstra le description in su $1 in le repositorio commun.',
-'shareduploadwiki-linktext'      => 'pagina de description de file',
+'shareduploadwiki-linktext'      => 'pagina de description del file',
 'shareduploadduplicate'          => 'Iste file es un duplicato de $1 del repositorio commun.',
 'shareduploadduplicate-linktext' => 'un altere file',
 'shareduploadconflict'           => 'Iste file ha le mesme nomine que $1 del repositorio commun.',
@@ -1344,7 +1345,7 @@ Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]
 'statistics-mostpopular' => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
-'disambiguationspage'  => '{{ns:project}}:Ligamines_a_paginas_de_disambiguation',
+'disambiguationspage'  => 'Template:Disambiguation',
 'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
 Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
 Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
@@ -1352,15 +1353,15 @@ Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual
 'doubleredirects'            => 'Redirectiones duple',
 'doubleredirectstext'        => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
 Cata linea contine ligamines al prime e al secunde redirection, con le destination del secunde redirection, le qual es normalmente un "ver" pagina de destination, verso le qual le prime redirection deberea punctar.',
-'double-redirect-fixed-move' => '[[$1]] ha essite renominate, e es ora un redirection verso [[$2]]',
+'double-redirect-fixed-move' => '[[$1]] ha essite renominate, illo es ora un redirection verso [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redirectiones',
 
 'brokenredirects'        => 'Redirectiones rupte',
-'brokenredirectstext'    => 'Le redirectiones sequente se liga a articulos inexistente.',
+'brokenredirectstext'    => 'Le redirectiones sequente se liga verso articulos inexistente.',
 'brokenredirects-edit'   => '(modificar)',
 'brokenredirects-delete' => '(deler)',
 
-'withoutinterwiki'         => 'Paginas sin ligamines de lingua',
+'withoutinterwiki'         => 'Paginas sin ligamines de linguas',
 'withoutinterwiki-summary' => 'Le sequente paginas non ha ligamines a versiones in altere linguas:',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Revelar',
@@ -1399,7 +1400,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'deadendpages'            => 'Paginas sin exito',
 'deadendpagestext'        => 'Le sequente paginas non ha ligamines a altere paginas in {{SITENAME}}.',
 'protectedpages'          => 'Paginas protegite',
-'protectedpages-indef'    => 'Solmente protectiones indeterminate',
+'protectedpages-indef'    => 'Solmente protectiones infinite',
 'protectedpagestext'      => 'Le sequente paginas es protegite de esser renominate o modificate',
 'protectedpagesempty'     => 'Nulle paginas es actualmente protegite con iste parametros.',
 'protectedtitles'         => 'Titulos protegite',
@@ -1491,7 +1492,7 @@ pro inviar e-mail a altere usatores.',
 'emailpage'       => 'Inviar e-mail al usator',
 'emailpagetext'   => 'Si iste usator forniva un adresse de e-mail valide in
 su preferentias de usator, le formulario infra le/la inviara un message.
-Le adresse de e-mail que tu forniva in tu preferentias de usator apparera
+Le adresse de e-mail que tu forniva in [[Special:Preferences|tu preferentias de usator]] apparera
 como le adresse del expeditor del e-mail, a fin que le destinatario
 pote responder te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
@@ -1535,8 +1536,8 @@ facilitar su identification.",
 'watchlist-details'    => '{{PLURAL:$1|$1 pagina|$1 paginas}} es sub observation, excludente paginas de discussion.',
 'wlheader-enotif'      => '* Le notificationes via e-mail es active.',
 'wlheader-showupdated' => "* Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''",
-'watchmethod-recent'   => 'cerca paginas que tu observa in modificationes recente',
-'watchmethod-list'     => 'cerca modificationes recente in paginas que tu observa',
+'watchmethod-recent'   => 'cerca paginas sub observation in modificationes recente',
+'watchmethod-list'     => 'cerca modificationes recente in paginas sub observation',
 'watchlistcontains'    => 'Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname'      => "Problema con entrata '$1', nomine invalide...",
 'wlnote'               => "Infra es le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}.",
@@ -1576,7 +1577,7 @@ e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
 Si tu non visita iste pagina, tu non recipera altere notificationes in caso de modificationes ulterior.
-Como alternativa tu pote reinitialisar le optiones de notification pro tote tu paginas in tu observatorio.
+Como alternativa tu pote reinitialisar le optiones de notification pro tote le paginas in tu observatorio.
 
              Le systema de notification de {{SITENAME}}, a tu servicio
 
@@ -1599,7 +1600,7 @@ Reactiones e ulterior assistentia:
 'historywarning'              => 'Attention: Le pagina que tu va deler ha un historia:',
 'confirmdeletetext'           => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
-'actioncomplete'              => 'Action complite',
+'actioncomplete'              => 'Action complete',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite eliminate.
 Vide $2 pro un registro de eliminationes recente.',
 'deletedarticle'              => '"$1" eliminate',
@@ -1612,7 +1613,7 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 'deletecomment'               => 'Motivo pro deletion:',
 'deleteotherreason'           => 'Motivo altere/additional:',
 'deletereasonotherlist'       => 'Altere motivo',
-'deletereason-dropdown'       => '*Motivos habitual pro deler
+'deletereason-dropdown'       => '*Motivos habitual pro deler paginas
 ** Requesta del autor
 ** Violation de copyright
 ** Vandalismo',
@@ -1691,8 +1692,8 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 'undeletepage'                 => 'Vider e restaurar paginas eliminate',
 'undeletepagetitle'            => "'''Lo sequente consiste de revisiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
-'undeletepagetext'             => 'Le paginas sequente ha essite eliminate mais ancora es in le archivo e
-pote esser restaurate. Le archivo pote esser evacuate periodicamente.',
+'undeletepagetext'             => 'Le paginas sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
+Le archivo pote esser vacuate periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Pro restaurar le pagina integre, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
 Pro executar un restauration selective, marca le quadratos correspondente al revisiones pro restaurar, e clicca '''''Restaurar'''''. Con le button '''''Reinitiar''''' tu pote rader le campo de commento e tote le quadratos.",
@@ -1789,7 +1790,7 @@ Isto debe esser facite solmente pro impedir vandalismo, e de
 accordo con le [[{{MediaWiki:Policy-url}}|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).',
-'ipaddress'                       => 'Adresse IP',
+'ipaddress'                       => 'Adresse IP:',
 'ipadressorusername'              => 'Adresse IP o nomine de usator:',
 'ipbexpiry'                       => 'Expiration:',
 'ipbreason'                       => 'Motivo:',
@@ -1805,7 +1806,7 @@ specific que ha essite vandalisate).',
 'ipbanononly'                     => 'Blocar solmente usatores anonyme',
 'ipbcreateaccount'                => 'Impedir creation de contos',
 'ipbemailban'                     => 'Impedir que le usator invia e-mail',
-'ipbenableautoblock'              => 'Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne IPs successive desde le quales ille/-a prova facer modificationes',
+'ipbenableautoblock'              => 'Blocar automaticamente le adresse IP usate le plus recentemente per iste usator, e omne IPs successive desde le quales ille/-a tenta facer modificationes',
 'ipbsubmit'                       => 'Blocar iste adresse',
 'ipbother'                        => 'Altere tempore:',
 'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
@@ -1942,7 +1943,7 @@ Per favor fusiona los manualmente.'''",
 'movepage-page-unmoved'   => 'Le pagina $1 non poteva esser renominate a $2.',
 'movepage-max-pages'      => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
 '1movedto2'               => '[[$1]] renominate a [[$2]]',
-'1movedto2_redir'         => '[[$1]] movite a [[$2]] trans redirection',
+'1movedto2_redir'         => '[[$1]] renominate a [[$2]] trans redirection',
 'movelogpage'             => 'Registro de renominationes',
 'movelogpagetext'         => 'Infra es un lista de paginas renominate.',
 'movereason'              => 'Motivo:',
@@ -1956,7 +1957,7 @@ Esque tu vole deler lo pro permitter le renomination?',
 'selfmove'                => 'Le titulos de origine e de destination es identic;
 non pote renominar un pagina al mesme titulo.',
 'immobile_namespace'      => 'Le titulo de origine o de destination es de un typo special;
-non pote renominar paginas ex o verso iste spatio de nomines.',
+es impossibile cambiar le spatio de nomines de tal paginas.',
 'imagenocrossnamespace'   => 'Non pote renominar file verso un spatio de nomines non-file',
 'imagetypemismatch'       => 'Le nove extension del nomine del file non corresponde al typo del file',
 'imageinvalidfilename'    => 'Le nomine del file de destination es invalide',
@@ -2010,7 +2011,7 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'import-interwiki-namespace' => 'Transferer paginas verso le spatio de nomines:',
 'importtext'                 => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate pro exportar]].
 Immagazina lo in tu disco e carga lo hic.',
-'importstart'                => 'In processo de importar paginas...',
+'importstart'                => 'Importation de paginas in curso…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revision|revisiones}}',
 'importnopages'              => 'Nulle paginas a importar.',
 'importfailed'               => 'Importation fallite: <nowiki>$1</nowiki>',
@@ -2563,9 +2564,6 @@ $1
 : ''$2''
 Per favor confirma que tu realmente vole recrear iste pagina.",
 'recreate'            => 'Recrear',
-
-# HTML dump
-'redirectingto' => 'Redirection verso [[:$1]] in curso…',
 
 # action=purge
 'confirm_purge'        => 'Rader le cache de iste pagina?

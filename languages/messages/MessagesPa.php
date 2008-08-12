@@ -990,9 +990,6 @@ to upload files.',
 # Delete conflict
 'recreate' => 'ਮੁੜ-ਬਣਾਓ',
 
-# HTML dump
-'redirectingto' => '[[:$1]] ਲਈ ਰੀ-ਡਿਰੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...',
-
 # action=purge
 'confirm_purge_button' => 'ਠੀਕ ਹੈ',
 

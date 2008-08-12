@@ -1496,9 +1496,6 @@ $1
 G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-agi.",
 'recreate'            => 'Ɛiwed xleq',
 
-# HTML dump
-'redirectingto' => 'Asemmimeḍ ar [[:$1]]...',
-
 # action=purge
 'confirm_purge' => 'Mḥu lkac n usebter-agi?
 

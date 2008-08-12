@@ -2512,9 +2512,6 @@ $1
 'confirmrecreate'     => '«[[User:$1|$1]]» ([[User talk:$1|diskusjon]]) slettet siden etter at du begynte å redigere den, med begrunnelsen «$2». Vennligst bekreft at du vil gjenopprette siden.',
 'recreate'            => 'Gjenopprett',
 
-# HTML dump
-'redirectingto' => 'Omdirigerer til [[:$1]]&nbsp;…',
-
 # action=purge
 'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
 'confirm_purge_button' => 'OK',

@@ -2257,9 +2257,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'deletedwhileediting' => "Accura: Sta pàggina hà statu cancillata doppu ch'hai accuminzatu a mudificàrila.",
 'confirmrecreate'     => "L'utenti [[User:$1|$1]] ([[User talk:$1|discussioni]]) hà cancillatu sta pàggina doppu ca hai nizziatu a canciàrila, pi lu siquenti mutivu: ''$2'' Pi favuri, cunferma ca addisìi veramenti criari n'àutra vota sta pàggina.",
 
-# HTML dump
-'redirectingto' => 'Rinnirizzamentu a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "S'addisìa puliri la cache di sta pàggina? $1",
 'confirm_purge_button' => 'Cunferma',

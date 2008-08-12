@@ -2148,9 +2148,6 @@ Fümedakot at operon lonöfi okik ün $4.',
 Fümedolös, das jenöfo vilol dönujafön padi at.",
 'recreate'            => 'Dönujafön',
 
-# HTML dump
-'redirectingto' => 'Lüodükölo lü: [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Vagükön eli caché pada at?
 

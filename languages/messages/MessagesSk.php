@@ -2586,9 +2586,6 @@ $1
 Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 'recreate'            => 'Znova vytvoriť',
 
-# HTML dump
-'redirectingto' => 'Presmerovanie na [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Vyčistiť vyrovnávaciu pamäť (cache) tejto stránky?
 

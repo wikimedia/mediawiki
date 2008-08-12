@@ -2548,9 +2548,6 @@ $1
 Confirmeu que realment voleu tornar-la a crear.",
 'recreate'            => 'Torna a crear',
 
-# HTML dump
-'redirectingto' => "S'està redirigint a [[:$1]]...",
-
 # action=purge
 'confirm_purge'        => "Voleu buidar la memòria cau d'aquesta pàgina?
 

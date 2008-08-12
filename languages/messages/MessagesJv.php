@@ -2284,9 +2284,6 @@ $1
 Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.",
 'recreate'            => 'Gawé ulang',
 
-# HTML dump
-'redirectingto' => 'Dipun-alihaken tumuju [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "Busak ''cache'' kaca iki?$1",
 'confirm_purge_button' => 'OK',

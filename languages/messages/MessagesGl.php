@@ -2421,9 +2421,6 @@ $1
 Por favor confirme que realmente quere crear o artigo de novo.",
 'recreate'            => 'Recrear',
 
-# HTML dump
-'redirectingto' => 'Redirixindo a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Está seguro de que desexa limpar a memoria caché desta páxina?
 

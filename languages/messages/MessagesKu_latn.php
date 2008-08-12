@@ -1558,9 +1558,6 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'recreate'            => 'Dîsa tomarbike',
 
-# HTML dump
-'redirectingto' => 'Redirect berve [[:$1]] tê çêkirin...',
-
 # action=purge
 'confirm_purge'        => 'Bîra vê rûpelê jêbîbe ?
 

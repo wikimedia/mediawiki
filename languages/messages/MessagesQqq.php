@@ -15,6 +15,7 @@
  * @author Garas
  * @author Helix84
  * @author INkubusse
+ * @author Jon Harald Søby
  * @author Kizito
  * @author Lejonel
  * @author Lloffiwr
@@ -24,13 +25,16 @@
  * @author Mormegil
  * @author Mpradeep
  * @author Nemo bis
+ * @author Nike
  * @author Node ue
  * @author Purodha
  * @author Raymond
+ * @author SPQRobin
  * @author Sanbec
  * @author Sborsody
  * @author Seb35
  * @author Shushruth
+ * @author Siebrand
  * @author Singularity
  * @author Slomox
  * @author Sp5uhe
@@ -1713,6 +1717,8 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'exif-gpslongitude' => '{{Identical|Longitude}}',
 
 'exif-orientation-1' => '{{Identical|Normal}}',
+
+'exif-subjectdistance-value' => '$1 is a distance measured in metres. The value can, and usually does, include decimal places.',
 
 'exif-meteringmode-0' => '{{Identical|Unknown}}',
 'exif-meteringmode-255' => '{{Identical|Other}}',

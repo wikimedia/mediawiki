@@ -347,9 +347,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # 'all' in various places, this might be different for inflected languages
 'monthsall' => 'sunamittuq',
 
-# HTML dump
-'redirectingto' => 'qaningani kamagijaq aasit nakit [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'akaujuq',
 

@@ -1925,9 +1925,6 @@ $3
 እባክዎ ገጹን እንደገና ለመፍጠር በውኑ እንደ ፈለጉ ያረጋግጡ።",
 'recreate'            => 'እንደገና ይፈጠር',
 
-# HTML dump
-'redirectingto' => 'ወደ [[:$1]] መምሪያ መንገድ ማድረግ...',
-
 # action=purge
 'confirm_purge'        => 'የዚሁ ገጽ ካሽ (cache) ይጠረግ?
 

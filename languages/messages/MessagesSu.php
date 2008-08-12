@@ -2119,9 +2119,6 @@ $1
 mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
 'recreate'            => 'Jieun deui',
 
-# HTML dump
-'redirectingto' => 'Mindahkeun ka [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Hapus sindangan kaca ieu?
 

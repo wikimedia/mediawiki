@@ -1805,9 +1805,6 @@ $1
 'deletedwhileediting' => 'Ballaag: Naikkaten daytoy a panid kalpasan a rinugiam nga editen!',
 'recreate'            => 'Partuaten manen',
 
-# HTML dump
-'redirectingto' => 'Maibawbaw-ing iti [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Dalusan ti cache daytoy a panid?
 

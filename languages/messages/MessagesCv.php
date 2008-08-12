@@ -1148,9 +1148,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'deletedwhileediting' => 'Асăрхăр: эсир тӳрлетнĕ вăхăтра ку страницăна кăларса парахнă!',
 'recreate'            => 'Çĕнĕрен пуçла',
 
-# HTML dump
-'redirectingto' => '[[:$1]] çине куçаракан страница …',
-
 # AJAX search
 'searchcontaining' => 'Ăшĕсенче «$1» пур статьясене шыратпăр.',
 'searchnamed'      => '$1 ятлă статьясене шыратпăр',

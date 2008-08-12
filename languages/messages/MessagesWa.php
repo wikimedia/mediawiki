@@ -1553,9 +1553,6 @@ po l' $4.",
 Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'recreate'            => 'Rifé',
 
-# HTML dump
-'redirectingto' => 'Redjiblant viè [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => "Netyî l' muchete di cisse pådje ci?
 

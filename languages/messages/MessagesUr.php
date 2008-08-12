@@ -656,9 +656,6 @@ $messages = array(
 # Delete conflict
 'deletedwhileediting' => 'انتباہ: آپ کے ترمیم شروع کرنے کے بعد یہ صفحہ حذف کیا جا چکا ہے!',
 
-# HTML dump
-'redirectingto' => 'کی جانب پلٹایا گیا [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'جی!',
 

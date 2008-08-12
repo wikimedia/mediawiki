@@ -2455,9 +2455,6 @@ $1
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Nyopprett',
 
-# HTML dump
-'redirectingto' => 'Omdirigerer til [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?
 

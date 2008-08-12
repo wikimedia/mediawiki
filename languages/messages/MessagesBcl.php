@@ -1889,9 +1889,6 @@ $1
 Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 'recreate'            => 'Gibohón giraray',
 
-# HTML dump
-'redirectingto' => 'Piglilikay sa [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Halîon an an aliho kaining páhina?
 

@@ -278,9 +278,6 @@ $messages = array(
 # Delete conflict
 'recreate' => 'Krear de muevo',
 
-# HTML dump
-'redirectingto' => 'Redirijiendo a [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'Akseptár',
 

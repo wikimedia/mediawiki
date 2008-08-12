@@ -2843,9 +2843,6 @@ Osı betti qaýta bastawın naqtı tilegeniñizdi quptañız.",
 
 'unit-pixel' => ' nükte',
 
-# HTML dump
-'redirectingto' => '[[:$1]] betine aýdatwda…',
-
 # action=purge
 'confirm_purge'        => 'Bul bettin bürkemesin tazartasız ba?
 

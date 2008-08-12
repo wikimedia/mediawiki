@@ -2645,9 +2645,6 @@ $1
 
 'unit-pixel' => 'پیکس',
 
-# HTML dump
-'redirectingto' => 'دگه شرگنگنت په [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'ذخیره ای صفحه پهک کنت؟
 
@@ -2663,6 +2660,7 @@ $1',
 
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
+'colon-separator'     => ':&#32;',
 'autocomment-prefix'  => '-',
 
 # Multipage image navigation

@@ -384,9 +384,6 @@ $messages = array(
 # E-mail address confirmation
 'confirmemail' => 'އީމޭލު އެޑްރެސް ޔަގީންކުރައްވާ',
 
-# HTML dump
-'redirectingto' => 'މިސްރާބު ކުރެވެނީ [[:$1]] އަށް...',
-
 # action=purge
 'confirm_purge_button' => 'ރަނގަޅު',
 

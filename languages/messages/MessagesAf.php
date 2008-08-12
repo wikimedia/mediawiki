@@ -2101,9 +2101,6 @@ Hierde bevestigingkode verval om $4.',
 Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'recreate'            => 'Herskep',
 
-# HTML dump
-'redirectingto' => 'Stuur aan na [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Verwyder die kas van hierdie blad?
 

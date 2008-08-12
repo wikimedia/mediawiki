@@ -1179,9 +1179,6 @@ This confirmation code will end at $4.',
 : ''$2''
 Please confirm that ye really want tae recreate this airticle.",
 
-# HTML dump
-'redirectingto' => 'Reguidin tae [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Clair the cache o this page?
 

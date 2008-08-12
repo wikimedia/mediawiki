@@ -355,6 +355,7 @@ $messages = array(
 # Special:Log
 'specialloguserlabel' => 'по́льꙃєватєл҄ь:',
 'log'                 => 'їсторі́ѩ',
+'all-logs-page'       => 'вьсѩ́ їсторі́ѩ',
 'log-search-submit'   => 'прѣиди́',
 
 # Special:AllPages
@@ -387,6 +388,7 @@ $messages = array(
 'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
 'dellogpage'      => 'поничьжє́ниꙗ їсторі́ꙗ',
 'deletionlog'     => 'поничьжє́ниꙗ їсторі́ꙗ',
+'protectlogpage'  => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'испра́ви',
@@ -437,6 +439,7 @@ $messages = array(
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'       => 'моꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
 'tooltip-p-logo'          => 'гла́вьна страни́ца',
 'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',

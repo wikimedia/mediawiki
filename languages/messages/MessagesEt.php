@@ -1328,9 +1328,6 @@ Kinnituskood aegub $4.',
 # Delete conflict
 'deletedwhileediting' => 'Hoiatus: Sel ajal, kui Te artiklit redigeerisite, on keegi selle kustutanud!',
 
-# HTML dump
-'redirectingto' => 'Ümbersuunamine lehele [[:$1]]...',
-
 # Auto-summaries
 'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',
 'autosumm-replace' => "Lehekülg asendatud tekstiga '$1'",

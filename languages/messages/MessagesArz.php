@@ -2752,9 +2752,6 @@ $1
 
 'unit-pixel' => 'بيكس',
 
-# HTML dump
-'redirectingto' => 'بتتحول لـ [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'امسح الكاش بتاع الصفحة دي؟
 

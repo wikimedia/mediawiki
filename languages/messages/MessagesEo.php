@@ -2465,9 +2465,6 @@ $1
 Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 'recreate'            => 'Rekrei',
 
-# HTML dump
-'redirectingto' => 'Redirektante al [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Ĉu forviŝigi la kaŝmemoron de tiu ĉi paĝo?
 

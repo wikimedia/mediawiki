@@ -1539,12 +1539,12 @@ $NEWPAGE
 'imagelisttext'         => 'פאלגנד א ליסטע פון {{PLURAL:$1|איין בילד|$1 בילדער}}, סארטירט $2:',
 'newimages-summary'     => 'דער באזונדערער בלאט ווײַזט די לעצטע ארויפגעלאדענע טעקעס',
 'newimages-legend'      => 'פֿילטער',
-'newimages-label'       => 'טעקע נאָמען (אדער אַ טײל פֿון איר):',
+'newimages-label'       => 'טעקע נאָמען (אדער אַ טײל פֿון אים):',
 'showhidebots'          => '($1 ראָבאָטן)',
 'noimages'              => 'נישטא קיין בילדער.',
 'ilsubmit'              => 'זוכן',
 'bydate'                => 'לויטן דאטום',
-'sp-newimages-showfrom' => 'באַװײַזן נײַע טעקעס פון־$2, $1',
+'sp-newimages-showfrom' => 'באַװײַזן נײַע טעקעס פון $2, $1',
 
 # Bad image list
 'bad_image_list' => 'דער פֿאָרמאַט איז װי פֿאָלגנדיק:

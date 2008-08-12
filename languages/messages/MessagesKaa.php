@@ -1525,9 +1525,6 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 
 'unit-pixel' => ' px',
 
-# HTML dump
-'redirectingto' => '[[:$1]] degenge burılmaqta...',
-
 # action=purge
 'confirm_purge_button' => 'OK',
 

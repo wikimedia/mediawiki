@@ -2473,9 +2473,6 @@ hvorfor siden blev slettet. Hvis du gemmer siden bliver den oprettet igen.</span
 Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'recreate'            => 'Opret igen',
 
-# HTML dump
-'redirectingto' => 'Videresendt til [[:$1]]',
-
 # action=purge
 'confirm_purge'        => 'Slette denne side fra serverens cache? $1',
 'confirm_purge_button' => 'OK',

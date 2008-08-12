@@ -2518,9 +2518,6 @@ $1
 Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'recreate'            => 'Tạo ra lại',
 
-# HTML dump
-'redirectingto' => 'Đang đổi hướng đến [[:$1]]…',
-
 # action=purge
 'confirm_purge'        => 'Làm sạch vùng nhớ đệm của trang này?
 

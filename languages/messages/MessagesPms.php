@@ -2273,9 +2273,6 @@ $1
 Për piasì, che an conferma che da bon a veul torna creélo.",
 'recreate'            => "Créa n'àutra vira",
 
-# HTML dump
-'redirectingto' => 'I soma antramentr che i foma na ridiression a [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Veujdé la memorisassion dë sta pàgina-sì?
 

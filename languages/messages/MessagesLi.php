@@ -2350,9 +2350,6 @@ $1
 Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
 'recreate'            => 'Pazjena obbenuujts make',
 
-# HTML dump
-'redirectingto' => "Aan 't doorverwieze nao [[:$1]]...",
-
 # action=purge
 'confirm_purge'        => 'Wils te de buffer vaan dees paas wisse?
 

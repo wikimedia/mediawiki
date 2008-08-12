@@ -754,6 +754,7 @@ Heslo: „$3“
 Měli byste se co nejdřív přihlásit a změnit si heslo.
 
 Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
+'login-throttled'            => 'Provedli jste v krátké době příliš mnoho pokusů zadat heslo k tomuto účtu. Počkejte chvíli, než to zkusíte znovu.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 
 # Password reset dialog
@@ -1960,7 +1961,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipusubmit'                       => 'Odblokovat',
 'unblocked'                       => '[[User:$1|$1]] byl odblokován',
 'unblocked-id'                    => 'Blok $1 byl zrušen',
-'ipblocklist'                     => 'Seznam blokovaných IP adres a uživatelských jmen',
+'ipblocklist'                     => 'Blokované IP adresy a uživatelská jména',
 'ipblocklist-legend'              => 'Hledat zablokovaného uživatele',
 'ipblocklist-username'            => 'Jméno nebo IP adresa:',
 'ipblocklist-submit'              => 'Hledat',
@@ -2641,9 +2642,6 @@ $1
 : „$2“
 Opravdu si přejete znovu tuto stránku založit?',
 'recreate'            => 'Znovu založit',
-
-# HTML dump
-'redirectingto' => 'Přesměrovává se na [[:$1]]…',
 
 # action=purge
 'confirm_purge'        => 'Aktualizovat cachovanou verzi této stránky?

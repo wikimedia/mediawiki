@@ -857,9 +857,6 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 'deletedwhileediting' => 'Gīng-gó̤: Cī miêng hiĕk găk nṳ̄ kī-chiū siŭ-gāi cĭ hâiu ké̤ṳk chēng lâi go̤ lāu!',
 'recreate'            => 'Dṳ̀ng-sĭng kŭi',
 
-# HTML dump
-'redirectingto' => 'Dṳ̀ng-sĭng dêng-hióng gáu [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'Hō̤',
 

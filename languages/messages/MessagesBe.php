@@ -2395,9 +2395,6 @@ $1
 
 'unit-pixel' => 'крпк',
 
-# HTML dump
-'redirectingto' => 'Перасылаемся да [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Ці ачысціць кэш для гэтай старонкі?
 

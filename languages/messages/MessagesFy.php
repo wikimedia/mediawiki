@@ -645,7 +645,7 @@ Besykje de side yn lytsere stikken te brekken.</strong>",
 It wie baas en nim de tekst foar letter oer yn in tekstbestân.</strong>',
 'protectedpagewarning'             => '<strong>Waarskôging: Dizze side is beskerme, dat gewoane brûkers dy net bewurkje kinne.</strong>',
 'semiprotectedpagewarning'         => "'''Tink derom:''' dizze side is befeilige en kin allinne troch registrearre brûkers bewurke wurde.",
-'cascadeprotectedwarning'          => "'''Warskoging:''' Dizze side is skoattele sadat allinnich behearders de side wizigje kinne, om't der in ûnderdiel útmakket fan de neikommende siden {{PLURAL:\$1|page|pages}}, dy't skoattele binne mei de \"ûnderlizzende siden\" opsje ynskeakele:",
+'cascadeprotectedwarning'          => "'''Warskôging:''' Dizze side is skoattele sadat allinnich behearders de side wizigje kinne, om't der in ûnderdiel útmakket fan de neikommende {{PLURAL:\$1|side|siden}}, dy't skoattele binne mei de \"ûnderlizzende siden\" opsje ynskeakele:",
 'titleprotectedwarning'            => '<strong>WARSKÔGING: Dizze side is befeilige, dat allinne inkelde brûkers kinne him oanmeitsje.</strong>',
 'templatesused'                    => 'Op dizze side brûkte sjabloanen:',
 'templatesusedpreview'             => 'Yn dit proefbyld sjabloanen:',
@@ -1749,9 +1749,6 @@ Dit berjocht jildt oant $4.',
 'confirmrecreate' => "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[User:$1|$1]] ([[User talk:$1|oerlis]]) de side wiske. De reden dy't derfoar jûn waard wie:
 : ''$2''
 Wolle jo de side wier op 'e nij skriuwe?",
-
-# HTML dump
-'redirectingto' => 'Synonym foar [[:$1]]...',
 
 # Auto-summaries
 'autosumm-blank'   => 'Alle ynhâld fan de side weismiten',

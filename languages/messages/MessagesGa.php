@@ -1807,9 +1807,6 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 # Delete conflict
 'recreate' => 'Athchruthaigh',
 
-# HTML dump
-'redirectingto' => 'Ag athdhíriú go [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'An bhfuil tú cinnte go dteastaíonn uait taisce an leathanaigh seo a bhánú?
 

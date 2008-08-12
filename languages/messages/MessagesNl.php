@@ -2725,9 +2725,6 @@ $1</div>",
 Bevestig alstublieft dat u de pagina opnieuw wilt aanmaken.",
 'recreate'            => 'Opnieuw aanmaken',
 
-# HTML dump
-'redirectingto' => 'Aan het doorverwijzen naar [[:$1]] ...',
-
 # action=purge
 'confirm_purge'        => 'De cache van deze pagina legen?
 

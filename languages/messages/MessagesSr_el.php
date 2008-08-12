@@ -1940,9 +1940,6 @@ $1
 Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'recreate'            => 'Ponovo napravi',
 
-# HTML dump
-'redirectingto' => 'Preusmeravam na [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Da li želite očistiti keš ove stranice?
 

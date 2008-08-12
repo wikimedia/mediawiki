@@ -2392,9 +2392,6 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 'confirmrecreate'     => "De Benotzer [[User:$1|$1]] ([[User talk:$1|Diskussioun]]) huet dës Säit geläscht, nodeems datt där ugefaangen hutt drun ze schaffen. D'Begrënnung war: ''$2'' Bestätegt w.e.g., datt Dir dës Säit wierklich erëm nei opmaache wëllt.",
 'recreate'            => 'Erëm uleeën',
 
-# HTML dump
-'redirectingto' => 'Virugeleed op [[:$1]]',
-
 # action=purge
 'confirm_purge'        => 'Dës Säit aus dem Server-Cache läschen?
 

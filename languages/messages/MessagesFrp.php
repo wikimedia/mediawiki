@@ -2240,9 +2240,6 @@ $1
 Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 'recreate'            => 'Recrèar',
 
-# HTML dump
-'redirectingto' => 'Redirèccion vers [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?
 

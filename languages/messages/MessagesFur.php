@@ -1256,9 +1256,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'scarytranscludefailed'   => '[Recupar dal model falît par $1; o si scusin]',
 'scarytranscludetoolong'  => '[URL masse lungje; o si scusin]',
 
-# HTML dump
-'redirectingto' => 'Daûr a tornâ a indreçâ a [[:$1]]...',
-
 # action=purge
 'confirm_purge_button' => 'Va indevant',
 

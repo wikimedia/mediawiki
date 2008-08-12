@@ -2693,9 +2693,6 @@ $1
 Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 'recreate'            => 'Újraírás',
 
-# HTML dump
-'redirectingto' => 'Átirányítás a következőre: [[:$1|$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Törlöd az oldal gyorsítótárban (cache) található változatát?
 

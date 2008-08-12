@@ -2016,9 +2016,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 Olõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",
 'recreate'            => 'Luuq vahtsõst',
 
-# HTML dump
-'redirectingto' => 'Saadõtas ümbre lehe pääle [[:$1]]...',
-
 # action=purge
 'confirm_purge'        => 'Kas taa lehe vaihõmälokujoq tulõvaq ärq kistutaq?
 
