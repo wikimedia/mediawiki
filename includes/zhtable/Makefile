@@ -202,7 +202,11 @@ simpphrases.notsure: simpphrases_2.t simpphrases_3.t simpphrases_4.t t2s_1tomany
 	for i in `$(SED) 's/"\(.\).*/\1/' t2s_1tomany.t ` ; do $(GREP) $$i t ; done | $(DIFF) t - | $(GREP) '>' | $(SED) 's/> //' > simpphrases.notsure
 
 trad2simp1to1.t: t2s_1tomany.t t2s_1to1.t trad2simp_noconvert.manual
-	$(SED)  's/\(.......\).*/\1",/' t2s_1tomany.t > trad2simp1to1.t
+	$(SED)  's/\(.......\).*/\1",/' t2s_1tomany.t > tt
+	colrm 1 7 < trad2simp.manual | colrm 3 > trad2simpcharsrc.t
+	colrm 1 17 < trad2simp.manual | colrm 3 > trad2simpchardest.t
+	cat trad2simpcharsrc.t | $(GREP) -f trad2simpchardest.t > trad2simprepeatedchar.t
+	cat tt | $(GREP) -vf trad2simprepeatedchar.t > trad2simp1to1.t
 	cat t2s_1to1.t >> trad2simp1to1.t
 	cat trad2simp1to1.t | $(GREP) -vf trad2simp_noconvert.manual > tt
 	mv tt trad2simp1to1.t
@@ -217,9 +221,10 @@ simp2trad1to1.t: s2t_1tomany.t s2t_1to1.t simp2trad.manual simp2trad_noconvert.m
 	cat simp2trad1to1.t | $(GREP) -vf simp2trad_noconvert.manual > tt
 	mv tt simp2trad1to1.t
 
-trad2simp.php: trad2simp1to1.t tradphrases.t trad2simp_supp_unset.manual
+trad2simp.php: trad2simp1to1.t tradphrases.t trad2simp_supp_unset.manual trad2simp_supp_set.manual
 	printf '<?php\n$$trad2simp=array(' > trad2simp.php
 	cat trad2simp1to1.t >> trad2simp.php
+	$(SED) 's/\(.*\)\t\(.*\)/"\1" => "\2",/' trad2simp_supp_set.manual >> trad2simp.php
 	printf ');\n$$str=\n"' >> trad2simp.php
 	cat tradphrases.t >> trad2simp.php
 	printf '";\n$$t=strtr($$str, $$trad2simp);\necho $$t;\n?>' >> trad2simp.php
@@ -242,10 +247,13 @@ simp2trad.phrases.t: trad2simp.php tradphrases.t simp2trad_supp_set.manual
 	cat trad2simp.php | $(GREP) -vf simp2trad_supp_noconvert.t > trad2simp.tt
 	mv trad2simp.tt trad2simp.php
 
-trad2simp.phrases.t: simp2trad.php simpphrases.t
+trad2simp.phrases.t: simp2trad.php simpphrases.t trad2simp_supp_set.manual
 	php -f simp2trad.php | $(SED)  's/\(.*\)/"\1" => /' > tmp1
 	cat simpphrases.t | $(SED)  's/\(.*\)/"\1",/' > tmp2
 	paste tmp1 tmp2 > trad2simp.phrases.t
+	colrm 3 < trad2simp_supp_set.manual > trad2simp_supp_noconvert.t
+	cat simp2trad.php | $(GREP) -vf trad2simp_supp_noconvert.t > simp2trad.tt
+	mv simp2trad.tt simp2trad.php
 
 toHans.dict: trad2simp1to1.t trad2simp.phrases.t toSimp.manual
 	cat trad2simp1to1.t | $(SED) 's/[, \t]//g' | $(SED) 's/=>/\t/' > toHans.dict
