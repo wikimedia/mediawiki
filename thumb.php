@@ -124,7 +124,7 @@ function wfThumbMain() {
 		$errorMsg = $thumb->getHtmlMsg();
 	} elseif ( !$thumb->getPath() ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
-	} elseif ( $thumb->getPath() == $img->getPath() ) {
+	} elseif ( $thumb->getPath() == $sourcePath ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
 			'is the requested width bigger than the source?' );
 	} else {
