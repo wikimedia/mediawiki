@@ -1667,9 +1667,9 @@ class Linker {
 			$attribs['accesskey'] = $accesskey;
 		}
 
-		$out = Xml::expandAttributes( $attribs );
+		$ret = Xml::expandAttributes( $attribs );
 		wfProfileOut( __METHOD__ );
-		return $out;
+		return $ret;
 	}
 
 	/**
@@ -1678,20 +1678,32 @@ class Linker {
 	 * isn't always, because sometimes the accesskey needs to go on a different
 	 * element than the id, for reverse-compatibility, etc.)
 	 *
-	 * @param string $name Id of the element, minus prefixes.
+	 * @param string $name    Id of the element, minus prefixes.
+	 * @param mixed  $options null or the string 'withaccess' to add an access-
+	 *   key hint
 	 * @return string title attribute, ready to drop in an element
 	 * (e.g., ' title="This does something"').
 	 */
-	public function tooltip( $name ) {
+	public function tooltip( $name, $options = null ) {
 		wfProfileIn( __METHOD__ );
 
+		$attribs = array();
+
 		$tooltip = wfMsg( "tooltip-$name" );
-		if ( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
-			wfProfileOut( __METHOD__ );
-			return ' title="'.htmlspecialchars( $tooltip ).'"';
+		if( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
+			$attribs['title'] = $tooltip;
 		}
 
+		if( isset( $attribs['title'] ) && $options == 'withaccess' ) {
+			$accesskey = wfMsg( "accesskey-$name" );
+			if( $accesskey && $accesskey != '-' &&
+			!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
+				$attribs['title'] .= " [$accesskey]";
+			}
+		}
+
+		$ret = Xml::expandAttributes( $attribs );
 		wfProfileOut( __METHOD__ );
-		return '';
+		return $ret;
 	}
 }

@@ -215,7 +215,7 @@ if (is_opera) {
 } else if (is_ff2) {
 	tooltipAccessKeyPrefix = 'alt-shift-';
 }
-var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?.\]$/;
+var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
 
 /**
  * Add the appropriate prefix to the accesskey shown in the tooltip.
@@ -240,10 +240,9 @@ function updateTooltipAccessKeys( nodeList ) {
 	for ( var i = 0; i < nodeList.length; i++ ) {
 		var element = nodeList[i];
 		var tip = element.getAttribute("title");
-		var key = element.getAttribute("accesskey");
-		if ( key && tooltipAccessKeyRegexp.exec(tip) ) {
+		if ( tip && tooltipAccessKeyRegexp.exec(tip) ) {
 			tip = tip.replace(tooltipAccessKeyRegexp,
-					  "["+tooltipAccessKeyPrefix+key+"]");
+					  "["+tooltipAccessKeyPrefix+"$5]");
 			element.setAttribute("title", tip );
 		}
 	}
