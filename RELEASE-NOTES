@@ -34,6 +34,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === New features in 1.14 ===
 
+* New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and 
+  'Special:ListUsers/GROUP/USER', in addition to the older syntax 
+  'Special:ListUsers/GROUP' where GROUP is a valid group name.
+* Configurable er-namespace and per-page notices for the edit form, 
+  respectively MediaWiki:Editnotice-# where # is the namespace number, and
+  MediaWiki:Editnotice-#-PAGENAME where # is the page's namespace number and 
+  PAGENAME is the page name minus the namespace prefix.
 * (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow user control of
   search engine indexing on a per-article basis.
 * Handheld stylesheet options
