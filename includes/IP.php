@@ -150,6 +150,24 @@ class IP {
    		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
        	return $ip_oct;
 	}
+	
+	/**
+	 * Given an unsigned integer, returns an IPv6 address in octet notation
+	 * @param $ip integer IP address.
+	 * @return string
+	 */
+	public static function HextoOctet( $ip_hex ) {
+   		// Convert to padded uppercase hex
+   		$ip_hex = str_pad( strtoupper($ip_hex), 32, '0');
+   		// Seperate into 8 octets
+   		$ip_oct = substr( $ip_hex, 0, 4 );
+   		for ($n=1; $n < 8; $n++) {
+   			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
+   		}
+   		// NO leading zeroes
+   		$ip_oct = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip_oct );
+       	return $ip_oct;
+	}
 
 	/**
 	 * Convert a network specification in IPv6 CIDR notation to an integer network and a number of bits
