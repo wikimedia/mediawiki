@@ -1945,6 +1945,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'protectedpages'                  => 'Protected pages',
 'protectedpages-indef'            => 'Indefinite protections only',
 'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
+'protectedpages-cascade'          => 'Cascading protections only',
 'protectedpagestext'              => 'The following pages are protected from moving or editing',
 'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
 'protectedtitles'                 => 'Protected titles',
