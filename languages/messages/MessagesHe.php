@@ -6,7 +6,6 @@
  *
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
- * @author דניאל ב.
  */
 
 $rtl = true;
