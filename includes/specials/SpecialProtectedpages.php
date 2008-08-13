@@ -32,10 +32,11 @@ class ProtectedPagesForm {
 		$size = $wgRequest->getIntOrNull( 'size' );
 		$NS = $wgRequest->getIntOrNull( 'namespace' );
 		$indefOnly = $wgRequest->getBool( 'indefonly' ) ? 1 : 0;
+		$cascadeOnly = $wgRequest->getBool('cascadeonly') ? 1 : 0;
 
-		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly );
+		$pager = new ProtectedPagesPager( $this, array(), $type, $level, $NS, $sizetype, $size, $indefOnly, $cascadeOnly );
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size, $indefOnly ) );
+		$wgOut->addHTML( $this->showOptions( $NS, $type, $level, $sizetype, $size, $indefOnly, $cascadeOnly ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -111,10 +112,11 @@ class ProtectedPagesForm {
 	 * @param $level string
 	 * @param $minsize int
 	 * @param $indefOnly bool
+	 * @param $cascadeOnly bool
 	 * @return string Input form
 	 * @private
 	 */
-	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly ) {
+	protected function showOptions( $namespace, $type='edit', $level, $sizetype, $size, $indefOnly, $cascadeOnly ) {
 		global $wgScript;
 		$title = SpecialPage::getTitleFor( 'ProtectedPages' );
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
@@ -126,6 +128,7 @@ class ProtectedPagesForm {
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
 			"<br /><span style='white-space: nowrap'>&nbsp;&nbsp;" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
+			$this->getCascadeCheck( $cascadeOnly ) . "&nbsp;\n" .
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
@@ -152,6 +155,14 @@ class ProtectedPagesForm {
 	protected function getExpiryCheck( $indefOnly ) {
 		return
 			Xml::checkLabel( wfMsg('protectedpages-indef'), 'indefonly', 'indefonly', $indefOnly ) . "\n";
+	}
+	
+	/**
+	 * @return string Formatted HTML
+	 */
+	protected function getCascadeCheck( $cascadeOnly ) {
+		return
+			Xml::checkLabel( wfMsg('protectedpages-cascade'), 'cascadeonly', 'cascadeonly', $cascadeOnly ) . "\n";
 	}
 
 	/**
@@ -237,7 +248,8 @@ class ProtectedPagesPager extends AlphabeticPager {
 	public $mForm, $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0, $indefonly=false ) {
+	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', 
+							$size=0, $indefonly = false, $cascadeonly = false ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
 		$this->type = ( $type ) ? $type : 'edit';
@@ -246,6 +258,7 @@ class ProtectedPagesPager extends AlphabeticPager {
 		$this->sizetype = $sizetype;
 		$this->size = intval($size);
 		$this->indefonly = (bool)$indefonly;
+		$this->cascadeonly = (bool)$cascadeonly;
 		parent::__construct();
 	}
 
@@ -280,6 +293,9 @@ class ProtectedPagesPager extends AlphabeticPager {
 
 		if( $this->indefonly ) {
 			$conds[] = "pr_expiry = 'infinity' OR pr_expiry IS NULL";
+		}
+		if ( $this->cascadeonly ) {
+			$conds[] = "pr_cascade = '1'";
 		}
 
 		if( $this->level )

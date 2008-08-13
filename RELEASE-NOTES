@@ -76,6 +76,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15127) Work around minor display glitch in Opera.
 * By default, reject file uploads that look like ZIP files, to avoid the 
   so-called GIFAR vulnerability.
+* (bug 15141) Give ability to only list protected pages with the cascading
+  option enabled on Special:ProtectedPages
 
 === Bug fixes in 1.14 ===
 
