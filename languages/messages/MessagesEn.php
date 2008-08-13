@@ -528,6 +528,8 @@ XHTML id names.
 'tog-watchlisthideown'        => 'Hide my edits from the watchlist',
 'tog-watchlisthidebots'       => 'Hide bot edits from the watchlist',
 'tog-watchlisthideminor'      => 'Hide minor edits from the watchlist',
+'tog-watchlisthideliu'        => 'Hide edits by logged in users from the watchlist',
+'tog-watchlisthideanons'      => 'Hide edits by anonymous users from the watchlist',
 'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',
@@ -2097,6 +2099,10 @@ Future changes to this page and its associated talk page will be listed there, a
 'watchlist-hide-own'   => 'Hide my edits',
 'watchlist-show-minor' => 'Show minor edits',
 'watchlist-hide-minor' => 'Hide minor edits',
+'watchlist-show-anons' => 'Show anonymous edits',
+'watchlist-hide-anons' => 'Hide anonymous edits',
+'watchlist-show-liu'   => 'Show logged-in user edits',
+'watchlist-hide-liu'   => 'Hide logged-in user edits',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watching...',
