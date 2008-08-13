@@ -35,10 +35,24 @@
  */
 class UsersPager extends AlphabeticPager {
 
-	function __construct($group=null) {
+	function __construct( $par=null ) {
 		global $wgRequest;
-		$this->requestedGroup = $group != "" ? $group : $wgRequest->getVal( 'group' );
-		$un = $wgRequest->getText( 'username' );
+		$parms = explode( '/', ($par = ( $par !== null ) ? $par : '' ) );
+		$symsForAll = array( '*', 'user' );
+		if ( $parms[0] != '' && ( in_array( $par, User::getAllGroups() ) || in_array( $par, $symsForAll ) ) ) {
+			$this->requestedGroup = $par;
+			$un = $wgRequest->getText( 'username' );
+		} else if ( count( $parms ) == 2 ) {
+			$this->requestedGroup = $parms[0];
+			$un = $parms[1];
+		} else {
+			$this->requestedGroup = $wgRequest->getVal( 'group' );
+			$un = ( $par != '' ) ? $par : $wgRequest->getText( 'username' );
+		}
+		if ( in_array( $this->requestedGroup, $symsForAll ) ) {
+			$this->requestedGroup = '';
+		}
+
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
