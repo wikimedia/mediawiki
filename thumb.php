@@ -73,7 +73,7 @@ function wfThumbMain() {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		return;
 	}
-	$sourcePath = $isOld ? $img->getArchivePath() : $img->getPath();
+	$sourcePath = $img->getPath();
 	if ( $sourcePath === false ) {
 		wfThumbError( 500, 'The source file is not locally accessible.' );
 		return;
@@ -124,7 +124,7 @@ function wfThumbMain() {
 		$errorMsg = $thumb->getHtmlMsg();
 	} elseif ( !$thumb->getPath() ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
-	} elseif ( $thumb->getPath() == $sourcePath ) {
+	} elseif ( $thumb->getPath() == $img->getPath() ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
 			'is the requested width bigger than the source?' );
 	} else {
