@@ -689,20 +689,22 @@ class Parser
 			2 => array('file', wfGetNull(), 'a')
 		);
 		$pipes = array();
-		$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
-		if (is_resource($process)) {
-			// Theoretically, this style of communication could cause a deadlock
-			// here. If the stdout buffer fills up, then writes to stdin could
-			// block. This doesn't appear to happen with tidy, because tidy only
-			// writes to stdout after it's finished reading from stdin. Search
-			// for tidyParseStdin and tidySaveStdout in console/tidy.c
-			fwrite($pipes[0], $text);
-			fclose($pipes[0]);
-			while (!feof($pipes[1])) {
-				$cleansource .= fgets($pipes[1], 1024);
+		if( function_exists('proc_open') ) {
+			$process = proc_open("$wgTidyBin -config $wgTidyConf $wgTidyOpts$opts", $descriptorspec, $pipes);
+			if (is_resource($process)) {
+				// Theoretically, this style of communication could cause a deadlock
+				// here. If the stdout buffer fills up, then writes to stdin could
+				// block. This doesn't appear to happen with tidy, because tidy only
+				// writes to stdout after it's finished reading from stdin. Search
+				// for tidyParseStdin and tidySaveStdout in console/tidy.c
+				fwrite($pipes[0], $text);
+				fclose($pipes[0]);
+				while (!feof($pipes[1])) {
+					$cleansource .= fgets($pipes[1], 1024);
+				}
+				fclose($pipes[1]);
+				proc_close($process);
 			}
-			fclose($pipes[1]);
-			proc_close($process);
 		}
 
 		wfProfileOut( $fname );
