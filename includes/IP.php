@@ -153,7 +153,7 @@ class IP {
 	
 	/**
 	 * Given an unsigned integer, returns an IPv6 address in octet notation
-	 * @param $ip integer IP address.
+	 * @param $ip string hex IP
 	 * @return string
 	 */
 	public static function HextoOctet( $ip_hex ) {
