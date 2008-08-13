@@ -55,7 +55,11 @@ function wfThumbMain() {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
 			return;
 		}
-		$title = Title::makeTitle( NS_IMAGE, $bits[1] );
+		$title = Title::makeTitleSafe( NS_IMAGE, $bits[1] );
+		if( is_null($title) ) {
+			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			return;
+		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
 	} else {
 		$img = wfLocalFile( $fileName );
