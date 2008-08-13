@@ -73,7 +73,7 @@ function wfThumbMain() {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		return;
 	}
-	$sourcePath = $img->getPath();
+	$sourcePath = $isOld ? $img->getArchivePath() : $img->getPath();
 	if ( $sourcePath === false ) {
 		wfThumbError( 500, 'The source file is not locally accessible.' );
 		return;
