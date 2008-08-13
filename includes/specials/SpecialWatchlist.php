@@ -47,33 +47,44 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$defaults = array(
-	/* float */ 'days' => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
-	/* bool  */ 'hideOwn' => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
-	/* bool  */ 'hideBots' => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
-	/* bool */ 'hideMinor' => (int)$wgUser->getBoolOption( 'watchlisthideminor' ),
+	/* float */ 'days'      => floatval( $wgUser->getOption( 'watchlistdays' ) ), /* 3.0 or 0.5, watch further below */
+	/* bool  */ 'hideMinor' => (int)$wgUser->getBoolOption( 'watchlisthideminor' ),
+	/* bool  */ 'hideBots'  => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
+	/* bool  */ 'hideAnons' => (int)$wgUser->getBoolOption( 'watchlisthideanons' ),
+	/* bool  */ 'hideLiu'   => (int)$wgUser->getBoolOption( 'watchlisthideliu' ),
+	/* bool  */ 'hideOwn'   => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
 	/* ?     */ 'namespace' => 'all',
+	/* ?     */ 'invert'    => false,
 	);
 
 	extract($defaults);
 
 	# Extract variables from the request, falling back to user preferences or
 	# other default values if these don't exist
-	$prefs['days'    ] = floatval( $wgUser->getOption( 'watchlistdays' ) );
-	$prefs['hideown' ] = $wgUser->getBoolOption( 'watchlisthideown' );
-	$prefs['hidebots'] = $wgUser->getBoolOption( 'watchlisthidebots' );
+	$prefs['days']      = floatval( $wgUser->getOption( 'watchlistdays' ) );
 	$prefs['hideminor'] = $wgUser->getBoolOption( 'watchlisthideminor' );
+	$prefs['hidebots']  = $wgUser->getBoolOption( 'watchlisthidebots' );
+	$prefs['hideanons'] = $wgUser->getBoolOption( 'watchlisthideanon' );
+	$prefs['hideliu']   = $wgUser->getBoolOption( 'watchlisthideliu' );
+	$prefs['hideown' ]  = $wgUser->getBoolOption( 'watchlisthideown' );
 
 	# Get query variables
-	$days     = $wgRequest->getVal(  'days', $prefs['days'] );
-	$hideOwn  = $wgRequest->getBool( 'hideOwn', $prefs['hideown'] );
-	$hideBots = $wgRequest->getBool( 'hideBots', $prefs['hidebots'] );
+	$days      = $wgRequest->getVal(  'days'     , $prefs['days'] );
 	$hideMinor = $wgRequest->getBool( 'hideMinor', $prefs['hideminor'] );
+	$hideBots  = $wgRequest->getBool( 'hideBots' , $prefs['hidebots'] );
+	$hideAnons = $wgRequest->getBool( 'hideAnons', $prefs['hideanons'] );
+	$hideLiu   = $wgRequest->getBool( 'hideLiu'  , $prefs['hideliu'] );
+	$hideOwn   = $wgRequest->getBool( 'hideOwn'  , $prefs['hideown'] );
 
 	# Get namespace value, if supplied, and prepare a WHERE fragment
 	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
+	$invert = $wgRequest->getIntOrNull( 'invert' );
 	if( !is_null( $nameSpace ) ) {
 		$nameSpace = intval( $nameSpace );
-		$nameSpaceClause = " AND rc_namespace = $nameSpace";
+		if( $invert && $nameSpace != 'all' )
+			$nameSpaceClause = " AND rc_namespace != $nameSpace";
+		else
+			$nameSpaceClause = " AND rc_namespace = $nameSpace";
 	} else {
 		$nameSpace = '';
 		$nameSpaceClause = '';
@@ -103,11 +114,13 @@ function wfSpecialWatchlist( $par ) {
 	// Dump everything here
 	$nondefaults = array();
 
-	wfAppendToArrayIfNotDefault('days'     , $days         , $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault('hideOwn'  , (int)$hideOwn , $defaults, $nondefaults);
-	wfAppendToArrayIfNotDefault('hideBots' , (int)$hideBots, $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'days'     , $days          , $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'hideMinor', (int)$hideMinor, $defaults, $nondefaults );
-	wfAppendToArrayIfNotDefault('namespace', $nameSpace    , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideBots' , (int)$hideBots , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hideAnons', (int)$hideAnons, $defaults, $nondefaults );
+	wfAppendToArrayIfNotDefault( 'hideLiu'  , (int)$hideLiu  , $defaults, $nondefaults );
+	wfAppendToArrayIfNotDefault( 'hideOwn'  , (int)$hideOwn  , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace     , $defaults, $nondefaults);
 
 	$hookSql = "";
 	if( ! wfRunHooks('BeforeWatchlist', array($nondefaults, $wgUser, &$hookSql)) ) {
@@ -140,9 +153,11 @@ function wfSpecialWatchlist( $par ) {
 	# Up estimate of watched items by 15% to compensate for talk pages...
 
 	# Toggles
-	$andHideOwn = $hideOwn ? "AND (rc_user <> $uid)" : '';
-	$andHideBots = $hideBots ? "AND (rc_bot = 0)" : '';
-	$andHideMinor = $hideMinor ? 'AND rc_minor = 0' : '';
+	$andHideOwn   = $hideOwn   ? "AND (rc_user <> $uid)" : '';
+	$andHideBots  = $hideBots  ? "AND (rc_bot = 0)" : '';
+	$andHideMinor = $hideMinor ? "AND (rc_minor = 0)" : '';
+	$andHideLiu   = $hideLiu   ? "AND (rc_user = 0)" : '';
+	$andHideAnons = $hideAnons ? "AND (rc_user != 0)" : '';
 
 	# Show watchlist header
 	$header = '';
@@ -194,6 +209,8 @@ function wfSpecialWatchlist( $par ) {
 	  $andHideOwn
 	  $andHideBots
 	  $andHideMinor
+	  $andHideLiu
+	  $andHideAnons
 	  $nameSpaceClause
 	  $hookSql
 	  ORDER BY rc_timestamp DESC
@@ -230,19 +247,29 @@ function wfSpecialWatchlist( $par ) {
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
 	$skin = $wgUser->getSkin();
 
+	# Hide/show minor edits
+	$label = $hideMinor ? wfMsgHtml( 'watchlist-show-minor' ) : wfMsgHtml( 'watchlist-hide-minor' );
+	$linkBits = wfArrayToCGI( array( 'hideMinor' => 1 - (int)$hideMinor ), $nondefaults );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+
 	# Hide/show bot edits
 	$label = $hideBots ? wfMsgHtml( 'watchlist-show-bots' ) : wfMsgHtml( 'watchlist-hide-bots' );
 	$linkBits = wfArrayToCGI( array( 'hideBots' => 1 - (int)$hideBots ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
+	# Hide/show anonymous edits
+	$label = $hideAnons ? wfMsgHtml( 'watchlist-show-anons' ) : wfMsgHtml( 'watchlist-hide-anons' );
+	$linkBits = wfArrayToCGI( array( 'hideAnons' => 1 - (int)$hideAnons ), $nondefaults );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+
+	# Hide/show logged in edits
+	$label = $hideLiu ? wfMsgHtml( 'watchlist-show-liu' ) : wfMsgHtml( 'watchlist-hide-liu' );
+	$linkBits = wfArrayToCGI( array( 'hideLiu' => 1 - (int)$hideLiu ), $nondefaults );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+
 	# Hide/show own edits
 	$label = $hideOwn ? wfMsgHtml( 'watchlist-show-own' ) : wfMsgHtml( 'watchlist-hide-own' );
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-
-	# Hide/show minor edits
-	$label = $hideMinor ? wfMsgHtml( 'watchlist-show-minor' ) : wfMsgHtml( 'watchlist-hide-minor' );
-	$linkBits = wfArrayToCGI( array( 'hideMinor' => 1 - (int)$hideMinor ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	$wgOut->addHTML( implode( ' | ', $links ) );
@@ -252,14 +279,19 @@ function wfSpecialWatchlist( $par ) {
 	$form .= '<p>';
 	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
 	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&nbsp;';
+	$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . "<br />";
 	$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
 	$form .= Xml::hidden( 'days', $days );
-	if( $hideOwn )
-		$form .= Xml::hidden( 'hideOwn', 1 );
-	if( $hideBots )
-		$form .= Xml::hidden( 'hideBots', 1 );
 	if( $hideMinor )
 		$form .= Xml::hidden( 'hideMinor', 1 );
+	if( $hideBots )
+		$form .= Xml::hidden( 'hideBots', 1 );
+	if( $hideAnons )
+		$form .= Xml::hidden( 'hideAnons', 1 );
+	if( $hideLiu )
+		$form .= Xml::hidden( 'hideLiu', 1 );
+	if( $hideOwn )
+		$form .= Xml::hidden( 'hideOwn', 1 );
 	$form .= Xml::closeElement( 'form' );
 	$wgOut->addHtml( $form );
 
@@ -316,7 +348,6 @@ function wfSpecialWatchlist( $par ) {
 
 	$dbr->freeResult( $res );
 	$wgOut->addHTML( $s );
-
 }
 
 function wlHoursLink( $h, $page, $options = array() ) {

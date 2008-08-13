@@ -78,6 +78,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   so-called GIFAR vulnerability.
 * (bug 15141) Give ability to only list protected pages with the cascading
   option enabled on Special:ProtectedPages
+* (bug 15157) Special:Watchlist has the same options as Special:Watchlist:
+  Show/Hide logged in users, Show/Hide anonymous, Invert namespace selection
 
 === Bug fixes in 1.14 ===
 
