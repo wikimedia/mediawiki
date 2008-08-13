@@ -40,10 +40,20 @@ function wfThumbMain() {
 	}
 	unset( $params['r'] );
 
+	// Is this a thumb of an archived file?
+	$isOld = (isset( $params['archived'] ) && $params['archived']);
+	unset( $params['archived'] );
+
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
 
-	$img = wfLocalFile( $fileName );
+	// Actually fetch the image. Method depends on whether it is archived or not.
+	if( $isOld ) {
+		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $fileName );
+	} else {
+		$img = wfLocalFile( $fileName );
+	}
+
 	if ( !$img ) {
 		wfThumbError( 404, wfMsg( 'badtitletext' ) );
 		return;
