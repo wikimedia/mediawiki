@@ -651,7 +651,10 @@ class LoginForm {
 		$u->saveSettings();
 
 		$ip = wfGetIP();
-		if ( '' == $ip ) { $ip = '(Unknown)'; }
+		if( !$ip ) {
+			return new WikiError( wfMsg( 'badipaddress' ) );
+		}
+		#if ( '' == $ip ) { $ip = '(Unknown)'; }
 
 		$m = wfMsg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript );
 		$result = $u->sendMail( wfMsg( $emailTitle ), $m );
