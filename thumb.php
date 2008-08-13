@@ -49,7 +49,14 @@ function wfThumbMain() {
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
 	if( $isOld ) {
-		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $fileName );
+		// Format is <timestamp>!<name>
+		$bits = explode( '!', $fileName, 2 );
+		if( !isset($bits[1]) ) {
+			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			return;
+		}
+		$title = Title::makeTitle( NS_IMAGE, $bits[1] );
+		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
