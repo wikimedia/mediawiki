@@ -1647,25 +1647,28 @@ class Linker {
 	 * @return string title and accesskey attributes, ready to drop in an
 	 *   element (e.g., ' title="This does something [x]" accesskey="x"').
 	 */
-	public function tooltipAndAccesskey($name) {
-		$fname="Linker::tooltipAndAccesskey";
-		wfProfileIn($fname);
-		$out = '';
+	public function tooltipAndAccesskey( $name ) {
+		wfProfileIn( __METHOD__ );
+		$attribs = array();
 
-		$tooltip = wfMsg('tooltip-'.$name);
-		if (!wfEmptyMsg('tooltip-'.$name, $tooltip) && $tooltip != '-') {
+		$tooltip = wfMsg( "tooltip-$name" );
+		if( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
 			// Compatibility: formerly some tooltips had [alt-.] hardcoded
 			$tooltip = preg_replace( "/ ?\[alt-.\]$/", '', $tooltip );
-			$out .= ' title="'.htmlspecialchars($tooltip);
+			$attribs['title'] = $tooltip;
 		}
-		$accesskey = wfMsg('accesskey-'.$name);
-		if ($accesskey && $accesskey != '-' && !wfEmptyMsg('accesskey-'.$name, $accesskey)) {
-			if ($out) $out .= " [$accesskey]\" accesskey=\"$accesskey\"";
-			else $out .= " title=\"[$accesskey]\" accesskey=\"$accesskey\"";
-		} elseif ($out) {
-			$out .= '"';
+
+		$accesskey = wfMsg( "accesskey-$name" );
+		if( $accesskey && $accesskey != '-' &&
+		!wfEmptyMsg( "accesskey-$name", $accesskey ) ) {
+			if( isset( $attribs['title'] ) ) {
+				$attribs['title'] .= " [$accesskey]";
+			}
+			$attribs['accesskey'] = $accesskey;
 		}
-		wfProfileOut($fname);
+
+		$out = Xml::expandAttributes( $attribs );
+		wfProfileOut( __METHOD__ );
 		return $out;
 	}
 
@@ -1679,14 +1682,16 @@ class Linker {
 	 * @return string title attribute, ready to drop in an element
 	 * (e.g., ' title="This does something"').
 	 */
-	public function tooltip($name) {
-		$out = '';
+	public function tooltip( $name ) {
+		wfProfileIn( __METHOD__ );
 
-		$tooltip = wfMsg('tooltip-'.$name);
-		if (!wfEmptyMsg('tooltip-'.$name, $tooltip) && $tooltip != '-') {
-			$out = ' title="'.htmlspecialchars($tooltip).'"';
+		$tooltip = wfMsg( "tooltip-$name" );
+		if ( !wfEmptyMsg( "tooltip-$name", $tooltip ) && $tooltip != '-' ) {
+			wfProfileOut( __METHOD__ );
+			return ' title="'.htmlspecialchars( $tooltip ).'"';
 		}
 
-		return $out;
+		wfProfileOut( __METHOD__ );
+		return '';
 	}
 }
