@@ -640,21 +640,21 @@ class LoginForm {
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
 		global $wgCookiePath, $wgCookieDomain, $wgCookiePrefix, $wgCookieSecure;
-		global $wgServer, $wgScript;
+		global $wgServer, $wgScript, $wgUser;
 
 		if ( '' == $u->getEmail() ) {
 			return new WikiError( wfMsg( 'noemail', $u->getName() ) );
 		}
-
-		$np = $u->randomPassword();
-		$u->setNewpassword( $np, $throttle );
-		$u->saveSettings();
-
 		$ip = wfGetIP();
 		if( !$ip ) {
 			return new WikiError( wfMsg( 'badipaddress' ) );
 		}
-		#if ( '' == $ip ) { $ip = '(Unknown)'; }
+		
+		wfRunHooks( 'User::mailPasswordInternal', array(&$wgUser, &$ip, &$u) );
+
+		$np = $u->randomPassword();
+		$u->setNewpassword( $np, $throttle );
+		$u->saveSettings();
 
 		$m = wfMsg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript );
 		$result = $u->sendMail( wfMsg( $emailTitle ), $m );
