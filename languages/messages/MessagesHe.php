@@ -341,6 +341,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'הסתרת עריכות שלי ברשימת המעקב',
 'tog-watchlisthidebots'       => 'הסתרת בוטים ברשימת המעקב',
 'tog-watchlisthideminor'      => 'הסתרת עריכות משניות ברשימת המעקב',
+'tog-watchlisthideliu'        => 'הסתרת עריכות של משתמשים רשומים מרשימת המעקב',
+'tog-watchlisthideanons'      => 'הסתרת עריכות של משתמשים אנונימיים מרשימת המעקב',
 'tog-nolangconversion'        => 'ביטול המרת גרסאות שפה',
 'tog-ccmeonemails'            => 'קבלת העתקים של הודעות דוא"ל הנשלחות ממני למשתמשים אחרים',
 'tog-diffonly'                => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
@@ -1595,6 +1597,7 @@ PICT # שונות
 'deadendpagestext'        => 'הדפים הבאים אינם מקשרים לדפים אחרים באתר.',
 'protectedpages'          => 'דפים מוגנים',
 'protectedpages-indef'    => 'הגנות לצמיתות בלבד',
+'protectedpages-cascade'  => 'הגנות מדורגות בלבד',
 'protectedpagestext'      => 'הדפים הבאים מוגנים מפני עריכה או העברה:',
 'protectedpagesempty'     => 'אין כרגע דפים מוגנים עם הפרמטרים הללו.',
 'protectedtitles'         => 'כותרות מוגנות',
@@ -1732,6 +1735,10 @@ PICT # שונות
 'watchlist-hide-own'   => 'הסתרת עריכות שלי',
 'watchlist-show-minor' => 'הצגת עריכות משניות',
 'watchlist-hide-minor' => 'הסתרת עריכות משניות',
+'watchlist-show-anons' => 'הצגת עריכות אנונימיות',
+'watchlist-hide-anons' => 'הסתרת עריכות אנונימיות',
+'watchlist-show-liu'   => 'הצגת עריכות של משתמשים רשומים',
+'watchlist-hide-liu'   => 'הסתרת עריכות של משתמשים רשומים',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'בהוספה לרשימת המעקב…',
