@@ -1184,46 +1184,58 @@ class Linker {
 	 * @todo Document the $local parameter.
 	 */
 	private function formatAutocomments( $comment, $title = null, $local = false ) {
-		$match = array();
-		while (preg_match('!(.*)/\*\s*(.*?)\s*\*/(.*)!', $comment,$match)) {
-			$pre=$match[1];
-			$auto=$match[2];
-			$post=$match[3];
-			$link='';
-			if( $title ) {
-				$section = $auto;
+		// Bah!
+		$this->autocommentTitle = $title;
+		$this->autocommentLocal = $local;
+		$comment = preg_replace_callback(
+			'!(.*?)/\*\s*(.*?)\s*\*/(.*?)!',
+			array( $this, 'formatAutocommentsCallback' ),
+			$comment );
+		unset( $this->autocommentTitle );
+		unset( $this->autocommentLocal );
+		return $comment;
+	}
+	
+	private function formatAutocommentsCallback( $match ) {
+		$title = $this->autocommentTitle;
+		$local = $this->autocommentLocal;
+		
+		$pre=$match[1];
+		$auto=$match[2];
+		$post=$match[3];
+		$link='';
+		if( $title ) {
+			$section = $auto;
 
-				# Generate a valid anchor name from the section title.
-				# Hackish, but should generally work - we strip wiki
-				# syntax, including the magic [[: that is used to
-				# "link rather than show" in case of images and
-				# interlanguage links.
-				$section = str_replace( '[[:', '', $section );
-				$section = str_replace( '[[', '', $section );
-				$section = str_replace( ']]', '', $section );
-				if ( $local ) {
-					$sectionTitle = Title::newFromText( '#' . $section );
-				} else {
-					$sectionTitle = clone( $title );
-					$sectionTitle->mFragment = $section;
-				}
-				$link = $this->link( $sectionTitle,
-					wfMsgForContent( 'sectionlink' ), array(), array(),
-					'noclasses' );
+			# Generate a valid anchor name from the section title.
+			# Hackish, but should generally work - we strip wiki
+			# syntax, including the magic [[: that is used to
+			# "link rather than show" in case of images and
+			# interlanguage links.
+			$section = str_replace( '[[:', '', $section );
+			$section = str_replace( '[[', '', $section );
+			$section = str_replace( ']]', '', $section );
+			if ( $local ) {
+				$sectionTitle = Title::newFromText( '#' . $section );
+			} else {
+				$sectionTitle = clone( $title );
+				$sectionTitle->mFragment = $section;
 			}
-			$auto = $link . $auto;
-			if( $pre ) {
-				# written summary $presep autocomment (summary /* section */)
-				$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
-			}
-			if( $post ) {
-				# autocomment $postsep written summary (/* section */ summary)
-				$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
-			}
-			$auto = '<span class="autocomment">' . $auto . '</span>';
-			$comment = $pre . $auto . $post;
+			$link = $this->link( $sectionTitle,
+				wfMsgForContent( 'sectionlink' ), array(), array(),
+				'noclasses' );
 		}
-
+		$auto = $link . $auto;
+		if( $pre ) {
+			# written summary $presep autocomment (summary /* section */)
+			$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
+		}
+		if( $post ) {
+			# autocomment $postsep written summary (/* section */ summary)
+			$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
+		}
+		$auto = '<span class="autocomment">' . $auto . '</span>';
+		$comment = $pre . $auto . $post;
 		return $comment;
 	}
 
