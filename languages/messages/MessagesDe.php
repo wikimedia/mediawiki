@@ -1379,7 +1379,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'filedelete-comment'          => 'Grund:',
 'filedelete-submit'           => 'Löschen',
 'filedelete-success'          => "'''„$1“''' wurde gelöscht.",
-'filedelete-success-old'      => '<span class="plainlinks">Von der Datei \'\'\'„[[Media:$1|$1]]“\'\'\' wurde die Version $2, $3 Uhr gelöscht.</span>',
+'filedelete-success-old'      => "Von der Datei '''„[[Media:$1|$1]]“''' wurde die Version vom $2, $3 Uhr gelöscht.",
 'filedelete-nofile'           => "'''„$1“''' ist auf {{SITENAME}} nicht vorhanden.",
 'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine archivierte Version mit den angegebenen Attributen.",
 'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
@@ -1488,6 +1488,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'deadendpages'            => 'Sackgassenseiten',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
+'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
 'protectedpagestext'      => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagesempty'     => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
 'protectedtitles'         => 'Gesperrte Titel',
@@ -1720,7 +1721,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect_expiry_invalid'      => 'Die eingegebene Dauer ist ungültig.',
 'protect_expiry_old'          => 'Die Sperrzeit liegt in der Vergangenheit.',
 'protect-unchain'             => 'Verschiebeschutz ändern',
-'protect-text'                => "Hier kannst du den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
+'protect-text'                => 'Hier kannst du den Schutzstatus für die Seite „$1“ einsehen und ändern.',
 'protect-locked-blocked'      => 'Du kannst den Seitenschutz nicht ändern, da dein Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-dblock'       => 'Die Datenbank ist gesperrt, der Seitenschutz kann daher nicht geändert werden. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'       => 'Dein Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
@@ -2009,12 +2010,12 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 
 # Export
 'export'            => 'Seiten exportieren',
-'exporttext'        => 'Mit dieser Spezialseite kannst du den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten in eine XML-Datei exportieren.
-Die Datei kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbeitet oder archiviert werden.
+'exporttext'        => 'Mit dieser Spezialseite kannst du den Text inklusive der Versionsgeschichte einzelner Seiten in eine XML-Datei exportieren.
+Die Datei kann in ein anderes MediaWiki-Wiki über die [[Special:Import|Importfunktion]] eingespielt werden.
 
 Trage den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:special}}<nowiki>:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory'   => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf weiteres nicht möglich.",

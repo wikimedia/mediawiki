@@ -172,8 +172,8 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
 'category_header'                => 'Artículos en la categoría "$1"',
 'subcategories'                  => 'Subcategorías',
-'category-media-header'          => 'Archivos multimedia en la categoría "$1"',
-'category-empty'                 => "''La categoría no contiene actualmente ningún artículo o archivo multimedia''",
+'category-media-header'          => 'Archivos multimedia en la categoría «$1»',
+'category-empty'                 => "''La categoría no contiene actualmente ningún artículo o archivo multimedia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoría escondida|Categorías escondidas}}',
 'hidden-category-category'       => 'Categorías escondidas', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Esta categoría comprende solamente la siguiente categoría.|Esta categoría incluye {{PLURAL:$1|la siguiente categorías|las siguientes $1 subcategorías}}, de un total de $2.}}',
@@ -184,7 +184,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|El siguiente fichero pertenece|Los siguientes $1 ficheros pertenecen}} a esta categoría.',
 'listingcontinuesabbrev'         => 'cont.',
 
-'mainpagetext'      => 'Software wiki instalado con éxito.',
+'mainpagetext'      => "<big>'''MediaWiki ha sido instalado con éxito.'''</big>",
 'mainpagedocfooter' => 'Consulta la [http://meta.wikimedia.org/wiki/Help:Contents Guía de usuario] para obtener información sobre el uso del software wiki.
 
 == Empezando ==
@@ -305,7 +305,7 @@ $messages = array(
 'retrievedfrom'           => 'Obtenido de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
 'newmessageslink'         => 'mensajes nuevos',
-'newmessagesdifflink'     => 'dif. entre las dos últimas versiones',
+'newmessagesdifflink'     => 'último cambio',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection'             => 'editar',
 'editold'                 => 'editar',
@@ -342,14 +342,16 @@ $messages = array(
 'nosuchaction'      => 'No existe tal acción',
 'nosuchactiontext'  => 'La acción especificada en la dirección no es válida en {{SITENAME}}',
 'nosuchspecialpage' => 'No existe esa página especial',
-'nospecialpagetext' => 'Ha requerido una página especial que no existe en {{SITENAME}}.',
+'nospecialpagetext' => "<big>'''Ha solicitado una página especial inexistente.'''</big>
+
+Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Error',
 'databaseerror'        => 'Error de la base de datos',
 'dberrortext'          => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 Esto puede indicar un error en el software.
-La última consulta que se intentó fue: <blockquote><tt>$1</tt></blockquote> dentro de la función "<tt>$2</tt>". El error devuelto por la base de datos fue"<tt>$3: $4</tt>".',
+La última consulta que se intentó fue: <blockquote><tt>$1</tt></blockquote> dentro de la función «<tt>$2</tt>». El error devuelto por la base de datos MySQL fue «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos. La última consulta que se intentó fue:
 "$1"
 desde la función "$2".
@@ -363,13 +365,13 @@ MySQL devolvió el error "$3: $4".',
 'readonlytext'         => 'La base de datos de {{SITENAME}} no permite nuevas entradas u otras modificaciones de forma temporal, probablemente por mantenimiento rutinario, tras de lo cual volverá a la normalidad.
 La explicación dada por el administrador que la bloqueó fue:
 <p>$1',
-'missing-article'      => "La base de datos no encuentra el texto de una página que debería hallarse, titulada \"\$1\" \$2.
+'missing-article'      => "La base de datos no encuentra el texto de una página que debería hallarse, llamada «$1» $2.
 
 La causa de esto suele deberse a un ''diff'' anacrónico o un enlace al historial de una página que ha sido borrada.
 
-Si no fuera el caso, puedes haber encontrado un ''bug'' en el software. 
+Si no fuera el caso, puedes haber encontrado un fallo en el software. 
 
-Por favor, avisa a un  [[Special:ListUsers/sysop|administrador]], tomando nota de la URL.",
+Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de la URL.",
 'missingarticle-rev'   => '(no. de revisión: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'La base de datos se ha bloqueado temporalmente mientras los servidores se sincronizan.',
@@ -384,7 +386,8 @@ Por favor, avisa a un  [[Special:ListUsers/sysop|administrador]], tomando nota d
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
 'formerror'            => 'Error: no se pudo enviar el formulario',
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
-'cannotdelete'         => 'No se pudo borrar la página o archivo especificada. (alguien puede haberla borrado antes)',
+'cannotdelete'         => 'No se pudo borrar la página o archivo especificado.
+Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada esta vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
 'perfdisabled'         => 'Lo sentimos, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki.',
@@ -400,8 +403,7 @@ Consulta: $2',
 'actionthrottledtext'  => "Como una medida contra el ''spam'', hay un límite para las veces que puedes en un corto periodo de tiempo y lo has sobrepasado. Por favor, inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido bloqueada para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
-'protectedinterface'   => 'Esta página provee texto del interfaz del software.
-Está protegida para evitar vandalismos.',
+'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
 'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto a la interfaz de {{SITENAME}}. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios.",
 'sqlhidden'            => '(Consulta SQL oculta)',
 'cascadeprotected'     => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con las opción de "cascada":
@@ -419,8 +421,10 @@ La motivo dado fue: ''$2''",
 
 # Login and logout pages
 'logouttitle'                => 'Fin de sesión',
-'logouttext'                 => 'Ha terminado su sesión.
-Puede continuar navegando por {{SITENAME}} de forma anónima, o puede iniciar sesión otra vez con el mismo u otro usuario.',
+'logouttext'                 => '<strong>Ha terminado su sesión.</strong>
+
+Puedes continuar usando {{SITENAME}} de forma anónima, o puedes [[Special:UserLogin|iniciar sesión otra vez]] con el mismo u otro usuario.
+Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.',
 'welcomecreation'            => '== ¡Bienvenido(a), $1! ==
 
 Tu cuenta ha sido creada. 
@@ -453,11 +457,11 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'username'                   => 'Nombre de usuario:',
 'uid'                        => 'ID de usuario:',
 'prefs-memberingroups'       => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
-'yourrealname'               => 'Su nombre real *',
+'yourrealname'               => 'Tu nombre real:',
 'yourlanguage'               => 'Idioma:',
 'yourvariant'                => 'Variante lingüística',
 'yournick'                   => 'Su apodo (para firmas)',
-'badsig'                     => 'Firma en crudo inválida; compruebe las etiquetas HTML.',
+'badsig'                     => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
 'badsiglength'               => 'El apodo para firmas es demasiado largo.
 Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'email'                      => 'Correo electrónico',
@@ -485,10 +489,11 @@ Ahora deberías iniciar sesión y cambiar tu contraseña.
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
 'noemail'                    => 'No hay una dirección de correo electrónico registrada para "$1".',
-'passwordsent'               => 'Una nueva contraseña ha sido enviada al correo electrónico de "$1".
-Por favor, identifíquese de nuevo tras recibirla.',
+'passwordsent'               => 'Se ha enviado una nueva contraseña al correo electrónico de «$1».
+Por favor, identifícate de nuevo tras recibirla.',
 'blocked-mailpassword'       => 'Tu dirección IP está bloqueada, y no se te permite el uso de la función de recuperación de contraseñas para prevenir abusos.',
-'eauthentsent'               => 'Un correo electrónico de confirmación ha sido enviado a la dirección especificada. Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las instrucciones enviadas en el mensaje,  para así confirmar que la dirección te pertenece.',
+'eauthentsent'               => 'Se ha enviado un correo electrónico de confirmación a la dirección especificada.
+Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las instrucciones enviadas en el mensaje para así confirmar que la dirección te pertenece.',
 'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
 Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
@@ -527,7 +532,7 @@ Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'italic_tip'      => 'Texto en cursiva',
 'link_sample'     => 'Título del enlace',
 'link_tip'        => 'Enlace interno',
-'extlink_sample'  => 'http://www.example.com Título del enlace',
+'extlink_sample'  => 'http://www.ejemplo.com Título del enlace',
 'extlink_tip'     => 'Enlace externo (recuerde añadir el prefijo http://)',
 'headline_sample' => 'Texto de titular',
 'headline_tip'    => 'Titular de nivel 2',
@@ -603,14 +608,15 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 'accmailtext'                      => "La contraseña para '$1' se ha enviado a $2.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
-'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin/log in|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
+'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'                    => 'En este momento no hay texto en esta página, puedes [[Special:Search/{{PAGENAME}}|buscar por el título de esta página]] en otras páginas o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página].',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
-*'''Mozilla:'''  ''ctrl-shift-r'',
-*'''Internet Explorer:''' ''ctrl-f5'',
-*'''Safari:''' ''cmd-shift-r'',
-*'''Konqueror''' ''f5''.",
+
+*'''Mozilla / Firefox / Safari:''' pulsa ''May.'' mientras haces click en el boton ''Reload,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)
+*'''Konqueror: '''Haz click en el botón ''Reload'' o pulsa ''F5;''
+*'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
+*'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Refresh,'' o pulsa ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
 'usercsspreview'                   => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
@@ -647,7 +653,7 @@ Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
 'copyrightwarning2'                => 'Por favor, ten en cuenta que todas las contribuciones a {{SITENAME}} pueden ser editadas, modificadas o eliminadas por otros colaboradores. Si no deseas que la gente corrija tus escritos sin piedad y los distribuya libremente, entonces no los pongas aquí. <br />También tú nos aseguras que escribiste esto tú mismo y eres dueño de los derechos de autor, o lo copiaste desde el dominio público u otra fuente libre. (véase $1 para detalles). <br /><strong>¡NO USES ESCRITOS CON COPYRIGHT SIN PERMISO!</strong>',
 'longpagewarning'                  => '<strong>Atención: Esta página tiene un tamaño de $1 kilobytes; algunos navegadores pueden tener problemas editando páginas de 32KB o más.
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
-'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, lo cual es mayor que $2 kilobytes. No se puede guardar.</strong>',
+'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.</strong>',
 'readonlywarning'                  => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
 Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
 'protectedpagewarning'             => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
@@ -707,14 +713,15 @@ Por favor, revise la dirección que usó para acceder a esta página.',
 'revision-info'       => 'Revisión a fecha de $1; $2',
 'previousrevision'    => '← Revisión anterior',
 'nextrevision'        => 'Revisión siguiente →',
-'currentrevisionlink' => 'Ver revisión actual',
+'currentrevisionlink' => 'Revisión actual',
 'cur'                 => 'act',
 'next'                => 'sig',
 'last'                => 'prev',
 'page_first'          => 'primeras',
 'page_last'           => 'últimas',
-'histlegend'          => 'Leyenda: (act) = diferencias con la versión actual,
-(prev) = diferencias con la versión previa, M = edición menor',
+'histlegend'          => "Selecciónde diferencias: marca los selectores de las versiones a comparar y pulta ''enter'' o el botón de abajo.<br />
+Leyenda: (act) = diferencias con la versión actual,
+(prev) = diferencias con la versión previa, M = edición menor",
 'history-search'      => 'Buscar en el historial',
 'deletedrev'          => '[borrado]',
 'histfirst'           => 'Primeras',
@@ -736,7 +743,7 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-event'           => '(entrada borrada)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta revisión de la página ha sido eliminada de los archivos públicos.
-puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de borrado].
+Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Esta revisión de la página ha sido eliminada de los archivos públicos.
@@ -749,10 +756,9 @@ puede haber detalles en el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} re
 'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
 'revdelete-selected'          => '{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:',
 'logdelete-selected'          => '{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:',
-'revdelete-text'              => 'Las revisiones borradas aún aparecerán en el historial de la página,
-pero sus contenidos no serán accesibles al público.
+'revdelete-text'              => 'Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.
 
-Otros administradores de este wiki aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos los operadores del sitio establezcan una restricción adicional.',
+Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.',
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
@@ -816,7 +822,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'mergelogpagetext'   => 'Debajo está una lista de las fusiones más recientes de historial de una página en otra.',
 
 # Diffs
-'history-title'           => 'Historial de revisiones para "$1"',
+'history-title'           => 'Historial de revisiones para «$1»',
 'difference'              => '(Diferencias entre revisiones)',
 'lineno'                  => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
@@ -828,9 +834,9 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchresults-title'       => 'Resultados de la búsqueda de $1',
 'searchresulttext'          => 'Para más información acerca de las búsquedas en {{SITENAME}}, consulte la [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Has consultado por '''[[:$1]]''' ([[Special:Prefixindex/$1|todas las páginas que empiezan por «$1»]] | [[Special:WhatLinksHere/$1|todas la páginas que enlazan con «$1»]])",
-'searchsubtitleinvalid'     => 'Para consulta "$1"',
+'searchsubtitleinvalid'     => "Buscaste '''$1'''",
 'noexactmatch'              => "'''No existe una página llamada \"\$1\".''' Puedes [[:\$1|crearla]].",
-'noexactmatch-nocreate'     => "'''No existe la página \"\$1\".'''",
+'noexactmatch-nocreate'     => "'''No existe la página «$1».'''",
 'toomanymatches'            => 'Los resultados fueron demasiado extensos, por favor intente una consulta diferente',
 'titlematches'              => 'Coincidencias de título de artículo',
 'notitlematches'            => 'No hay coincidencias de título de artículo',
@@ -855,7 +861,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchall'                 => 'todos',
 'showingresults'            => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'         => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
-'showingresultstotal'       => "Debajo se muestran {{PLURAL:$3|la resultado '''$1''' de un resultado total|los resultados entre el número '''$1''' y el '''$2''', de un total de $3 resultados totales}}.",
+'showingresultstotal'       => "Debajo se {{PLURAL:$3|muestra el resultado '''$1''' de '''$3'''|muestran los resultados entre el '''$1''' y el '''$2''', de un total de '''$3'''}}.",
 'nonefound'                 => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
 Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombre que quieras como prefijo. También puedes usar el formulario de búsqueda avanzada que aparece abajo.
 
@@ -920,11 +926,11 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'recentchangescount'       => 'Número de títulos en cambios recientes',
 'savedprefs'               => 'Sus preferencias han sido grabadas.',
 'timezonelegend'           => 'Huso horario',
-'timezonetext'             => 'Indique el número de horas de diferencia entre su hora local y la hora del servidor (UTC).',
+'timezonetext'             => '¹Indique el número de horas de diferencia entre su hora local y la hora del servidor (UTC).',
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Diferencia¹',
 'servertime'               => 'La hora en el servidor es',
-'guesstimezone'            => 'Obtener la hora del navegador',
+'guesstimezone'            => 'Rellenar a partir de la hora del navegador',
 'allowemail'               => 'Habilitar la recepción de correo de otros usuarios',
 'prefs-searchoptions'      => 'Opciones de búsqueda',
 'prefs-namespaces'         => 'Espacios de nombres',
@@ -999,7 +1005,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-apihighlimits'        => 'Tener límites más altos de peticiones a través del API',
 'right-writeapi'             => 'Hacer uso del API para escribir',
 'right-delete'               => 'Borrar páginas',
-'right-bigdelete'            => 'Borrar páginas con historiales de revisión largos',
+'right-bigdelete'            => 'Borrar páginas con historiales grandes',
 'right-deleterevision'       => 'Borrar y restaurar revisiones específicas de páginas',
 'right-deletedhistory'       => 'Ver el historial de páginas borradas, sin el texto asociado',
 'right-browsearchive'        => 'Buscar páginas borradas',
@@ -1013,7 +1019,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'right-proxyunbannable'      => 'Pasar por encima de bloqueos automáticos de proxies',
 'right-protect'              => 'Cambiar niveles de protección y editar páginas protegidas',
 'right-editprotected'        => 'Editar páginas protegidas (sin la protección «en cascada»)',
-'right-editinterface'        => 'Editar la interfáz de usuario',
+'right-editinterface'        => 'Editar la interfaz de usuario',
 'right-editusercssjs'        => 'Editar las páginas de CSS y JS de otros usuarios',
 'right-rollback'             => 'Rápidamente deshacer las ediciones del último usuario que modificó una página particular',
 'right-markbotedits'         => 'Marcar ediciones deshechas como ediciones de un bot',
@@ -1034,7 +1040,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'rightslog'      => 'Cambios de perfil de usuario',
 'rightslogtext'  => 'Este es un registro de cambios en los permisos de usuarios.',
 'rightslogentry' => 'modificó los grupos a los que pertenece $1: de $2 a $3',
-'rightsnone'     => 'ninguno',
+'rightsnone'     => '(ninguno)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
@@ -1059,7 +1065,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} vigilando]',
-'rc_categories'                     => 'Limitar a categorías (separadas por "|")',
+'rc_categories'                     => 'Limitar a las categorías (separadas por «|»)',
 'rc_categories_any'                 => 'Cualquiera',
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 
@@ -1067,7 +1073,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'recentchangeslinked'          => 'Cambios en enlazadas',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
-'recentchangeslinked-summary'  => "Esta página especial lista los últimos cambios en las páginas enlazadas. Las páginas en su lista de seguimiento están en '''negrita'''.",
+'recentchangeslinked-summary'  => "Esta página es una lista de los últimos cambios en las páginas enlazadas desde una página (o en las pertenecientes a una categoría). Las páginas que están en tu [[Special:Watchlist|lista de seguimiento]] aparecen en '''negrita'''.",
 'recentchangeslinked-page'     => 'Nombre de la página:',
 'recentchangeslinked-to'       => 'Muestra los cambios recientes en lugar de la página indicada',
 
@@ -1091,7 +1097,7 @@ Para incluir un archivo en una página, use un enlace como los que siguen
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
-'upload-preferred'            => 'Tipos de archivo preferidos: $1.',
+'upload-preferred'            => 'Tipos de archivo aconsejados: $1.',
 'upload-prohibited'           => 'Tipos de archivo prohibidos: $1.',
 'uploadlog'                   => 'registro de subidas',
 'uploadlogpage'               => 'Subidas de archivos',
@@ -2014,7 +2020,8 @@ No hay un directorio temporal.',
 
 # Scripts
 'common.js'   => '/* Cualquier código JavaScript escrito aquí se cargará para todos los usuarios en cada carga de página. */',
-'monobook.js' => '/* Obsoleto y desaconsejado; usa [[MediaWiki:common.js]] */',
+'monobook.js' => '/* El código JavaScript que se ponga aquí será cargado por los usuarios de la piel MonoBook */
+/* No obstante se recomienda usar únicamente MediaWiki:common.js que hará que todos carguen el código */',
 
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF deshabilitados en este servidor.',

@@ -1324,7 +1324,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filedelete-comment'          => 'Kommentar:',
 'filedelete-submit'           => 'Wegsmieten',
 'filedelete-success'          => "'''$1''' wegsmeten.",
-'filedelete-success-old'      => '<span class="plainlinks">De Version vun de Datei \'\'\'„[[Media:$1|$1]]“\'\'\' vun $2, $3 is wegsmeten worrn.</span>',
+'filedelete-success-old'      => "De Version vun de Datei '''„[[Media:$1|$1]]“''' vun $2, $3 is wegsmeten worrn.",
 'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Gifft keen Version vun '''„$1“''' in’t Archiv mit disse Egenschoppen.",
 'filedelete-otherreason'      => 'Annern/tosätzlichen Grund:',
