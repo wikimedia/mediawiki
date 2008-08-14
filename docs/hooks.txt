@@ -1343,6 +1343,18 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
+'UserrightsChangeableGroups': allows modification of the groups a user may add or remove via Special:UserRights
+$userrights  : UserrightsPage object
+$user        : User object of the current user
+$addergroups : Array of groups that the user is in
+&$groups     : Array of groups that can be added or removed. In format of
+				array( 
+					'add'         => array( addablegroups ), 
+					'remove'      => array( removablegroups ), 
+					'add-self'    => array( addablegroups to self ),
+					'remove-self' => array( removable groups from self )
+				)
+
 'UserRetrieveNewTalks': called when retrieving "You have new messages!" message(s)
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
