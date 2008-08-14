@@ -31,7 +31,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgSQLiteDataDirMode has been introduced as the default directory mode for
   SQLite data directories on creation. Note this setting is separate from
   $wgDirectoryMode, which applies to all normal directories created by MediaWiki.
-
+* $wgGroupsAddToSelf and $wgGroupsRemoveFromSelf now work more like
+  $wgAddGroups and $wgRemoveGroups, where the user must belong to a specified
+  group in order to add or remove those groups from themselves.
+  Backwards compatibility is maintained.
+  
 === New features in 1.14 ===
 
 * New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and 
@@ -80,7 +84,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   option enabled on Special:ProtectedPages
 * (bug 15157) Special:Watchlist has the same options as Special:Watchlist:
   Show/Hide logged in users, Show/Hide anonymous, Invert namespace selection
-
+* Added hook 'UserrightsChangeableGroups' to allow modification of what
+  groups may be added or removed via the Special:UserRights interface.
+  
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.
