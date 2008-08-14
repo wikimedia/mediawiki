@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -175,6 +175,8 @@ $messages = array(
 'tog-watchlisthideown'        => '響監視清單度隱藏我嘅編輯',
 'tog-watchlisthidebots'       => '響監視清單度隱藏機械人嘅編輯',
 'tog-watchlisthideminor'      => '響監視清單度隱藏小修改',
+'tog-watchlisthideliu'        => '響監視清單度隱藏登入用戶',
+'tog-watchlisthideanons'      => '響監視清單度隱藏匿名用戶',
 'tog-nolangconversion'        => '唔要用字轉換',
 'tog-ccmeonemails'            => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly'                => '響差異下面唔顯示頁面內容',
@@ -1406,6 +1408,7 @@ Template:搞清楚',
 'deadendpagestext'        => '呢啲頁無連到{{SITENAME}}內嘅任何一頁。',
 'protectedpages'          => '保護頁',
 'protectedpages-indef'    => '只有無期保謢頁',
+'protectedpages-cascade'  => '只有連串保護頁',
 'protectedpagestext'      => '以下嘅頁面係受保頁面，唔能夠移動或編輯',
 'protectedpagesempty'     => '響呢啲參數度，現時無頁面響度保護緊。',
 'protectedtitles'         => '保護咗嘅標題',
@@ -1541,6 +1544,10 @@ Template:搞清楚',
 'watchlist-hide-own'   => '隱藏我嘅編輯',
 'watchlist-show-minor' => '顯示小修改',
 'watchlist-hide-minor' => '隱藏小修改',
+'watchlist-show-anons' => '顯示匿名用戶嘅編輯',
+'watchlist-hide-anons' => '隱藏匿名用戶嘅編輯',
+'watchlist-show-liu'   => '顯示登入咗用戶嘅編輯',
+'watchlist-hide-liu'   => '隱藏登入咗用戶嘅編輯',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '監視緊...',
