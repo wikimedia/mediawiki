@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -101,6 +101,8 @@ $messages = array(
 'tog-watchlisthideown'        => '監視列表中隱藏我的編輯',
 'tog-watchlisthidebots'       => '監視列表中隱藏機器人的編輯',
 'tog-watchlisthideminor'      => '監視列表中隱藏小修改',
+'tog-watchlisthideliu'        => '監視列表中隱藏登入用戶',
+'tog-watchlisthideanons'      => '監視列表中隱藏匿名用戶',
 'tog-nolangconversion'        => '不進行用字轉換',
 'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
@@ -1328,6 +1330,7 @@ Template:消除歧義',
 'deadendpagestext'        => '以下頁面沒有連結到{{SITENAME}}中的其它頁面。',
 'protectedpages'          => '已保護頁面',
 'protectedpages-indef'    => '只有無期之保護頁面',
+'protectedpages-cascade'  => '只有連鎖之保護頁面',
 'protectedpagestext'      => '以下頁面已經被保護以防止移動或編輯',
 'protectedpagesempty'     => '在這些參數下沒有頁面正在保護。',
 'protectedtitles'         => '已保護的標題',
@@ -1469,6 +1472,10 @@ Template:消除歧義',
 'watchlist-hide-own'   => '隱藏我的修改',
 'watchlist-show-minor' => '顯示小修改',
 'watchlist-hide-minor' => '隱藏小修改',
+'watchlist-show-anons' => '顯示匿名用戶的編輯',
+'watchlist-hide-anons' => '隱藏匿名用戶的編輯',
+'watchlist-show-liu'   => '顯示已登入用戶的編輯',
+'watchlist-hide-liu'   => '隱藏已登入用戶的編輯',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',

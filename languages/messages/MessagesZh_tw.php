@@ -1,5 +1,5 @@
 <?php
-/** Taiwan Chinese (‪中文(台灣)‬)
+/** Chinese (Taiwan) (‪中文(台灣)‬)
  *
  * @ingroup Language
  * @file
@@ -971,7 +971,6 @@ $2',
 'filedelete-comment'     => '註解:',
 'filedelete-submit'      => '刪除',
 'filedelete-success'     => "'''$1'''已經刪除。",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'於 $2 $3 的版本已經刪除。</span>',
 'filedelete-nofile'      => "'''$1'''在這個網站中不存在。",
 'filedelete-nofile-old'  => "在已指定屬性的情況下，這裡沒有'''$1'''於 $2 $3 的版本。",
 

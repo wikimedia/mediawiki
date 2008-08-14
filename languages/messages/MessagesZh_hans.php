@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -119,6 +119,8 @@ $messages = array(
 'tog-watchlisthideown'        => '在监视列表中隐藏我的编辑',
 'tog-watchlisthidebots'       => '在监视列表中隐藏机器人的编辑',
 'tog-watchlisthideminor'      => '在监视列表中隐藏微小更改',
+'tog-watchlisthideliu'        => '在监视列表中隐藏登入用户',
+'tog-watchlisthideanons'      => '在监视列表中隐藏匿名用户',
 'tog-nolangconversion'        => '不进行用字转换',
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
@@ -1351,6 +1353,7 @@ Template:消除歧義',
 'deadendpagestext'        => '以下页面没有链接到{{SITENAME}}中的其它页面。',
 'protectedpages'          => '已保护页面',
 'protectedpages-indef'    => '只有无期之保护页面',
+'protectedpages-cascade'  => '只有连锁之保护页面',
 'protectedpagestext'      => '以下页面已经被保护以防止移移或编辑',
 'protectedpagesempty'     => '在这些参数下没有页面正在保护。',
 'protectedtitles'         => '已保护的标题',
@@ -1492,6 +1495,10 @@ Template:消除歧義',
 'watchlist-hide-own'   => '隐藏我的编辑',
 'watchlist-show-minor' => '显示小编辑',
 'watchlist-hide-minor' => '隐藏小编辑',
+'watchlist-show-anons' => '显示匿名用户的编辑',
+'watchlist-hide-anons' => '隐藏匿名用户的编辑',
+'watchlist-show-liu'   => '显示已登入用户的编辑',
+'watchlist-hide-liu'   => '隐藏已登入用户的编辑',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '监视……',
