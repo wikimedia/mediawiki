@@ -1262,6 +1262,11 @@ string &$error: output: HTML error to show if upload canceled by returning false
 'UploadComplete': Upon completion of a file upload
 $uploadForm: Upload form object. File can be accessed by $uploadForm->mLocalFile.
 
+'User::mailPasswordInternal': before creation and mailing of a user's new temporary password
+$user: the user who sent the message out
+$ip: IP of the user who sent the message out
+$u: the account whose new password will be set
+
 'UserArrayFromResult': called when creating an UserArray object from a database result
 &$userArray: set this to an object to override the default object returned
 $res: database result used to create the object
