@@ -471,7 +471,7 @@ $messages = array(
 'recentchanges-feed-description' => "Τ' ασ' όλεα καινούρεα αλλαγάς τη wiki ωρία σ' αβούτεν την περίληψην.",
 'rcnote'                         => "Αφκά {{PLURAL:$1|έχ' '''1''' αλλαγήν|έχ' τα '''$1''' τελευταία αλλαγάς}} τη {{PLURAL:$2|τελευταίας ημέρας|τελευταίων '''$2''' ημερίων}}, σα $5, $4.",
 'rcnotefrom'                     => "Αφκά καικά ευρίουνταν τ' αλλαγάς ασό <b>$2</b> (εμφάνιση <b>$1</b> αλλαγίων max).",
-'rclistfrom'                     => "Καινούρεα αλλαγάς ντ' εσκαλών'νε ασά $1",
+'rclistfrom'                     => "Δείξον τ' αλλαγάς ασα $1 μαναχόν",
 'rcshowhideminor'                => '$1 τα μικρά αλλαγάς',
 'rcshowhidebots'                 => '$1 bots',
 'rcshowhideliu'                  => '$1 χρήστες με λογαρίαν',
@@ -505,30 +505,45 @@ $messages = array(
 'uploadlog'         => 'αρχείον με τα φορτώματα',
 'uploadlogpage'     => 'Αρχείον ανεβασματίων',
 'uploadedfiles'     => 'Φορτωμένα αρχεία',
+'minlength1'        => "Τ' ονέματα τ' αρχείον πρέπ' να έχνε έναν γράμμαν και κιαλλαπάν.",
+'filetype-missing'  => "Τ' αρχείον τιδέν 'κ έχ' κατάληξην (άμον \".jpg\").",
+'savefile'          => "Αποθήκεψον τ' αρχείον",
 'uploadedimage'     => 'Εγέντον το φόρτωμαν τη "[[$1]]"',
 'watchthisupload'   => 'Ωρίαγμαν τη σελίδας',
 
 'upload-misc-error' => 'Αναγνώριμον λάθος φορτωματί',
 
 # Special:ImageList
-'imagelist' => 'Λίσταν εικονίων',
+'imgfile'               => 'αρχείον',
+'imagelist'             => 'Λίσταν εικονίων',
+'imagelist_date'        => 'Ημερομηνία',
+'imagelist_name'        => 'Όνεμαν',
+'imagelist_user'        => 'Χρήστες',
+'imagelist_size'        => 'Μέγεθος',
+'imagelist_description' => 'Σχόλιον',
 
 # Image description page
-'filehist'                  => 'Ιστορικό αρχείου',
-'filehist-help'             => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
-'filehist-current'          => 'υστερινά',
-'filehist-datetime'         => 'Ώραν/Ημερομ.',
-'filehist-user'             => 'Χρήστες',
-'filehist-dimensions'       => 'Διαστάσεις',
-'filehist-filesize'         => 'Μέγεθος',
-'filehist-comment'          => 'Σχόλιον',
-'imagelinks'                => 'Σύνδεσμοι',
-'linkstoimage'              => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
-'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
-'sharedupload'              => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
-'noimage'                   => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
-'noimage-linktext'          => "σκώσ' ατό",
-'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
+'filehist'                      => "Ιστορικόν τ' αρχείου",
+'filehist-help'                 => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
+'filehist-current'              => 'υστερινά',
+'filehist-datetime'             => 'Ώραν/Ημερομ.',
+'filehist-user'                 => 'Χρήστες',
+'filehist-dimensions'           => 'Διαστάσεις',
+'filehist-filesize'             => 'Μέγεθος',
+'filehist-comment'              => 'Σχόλιον',
+'imagelinks'                    => 'Σύνδεσμοι',
+'linkstoimage'                  => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
+'nolinkstoimage'                => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
+'sharedupload'                  => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
+'shareduploadconflict-linktext' => 'άλλον αρχείον',
+'noimage'                       => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
+'noimage-linktext'              => "σκώσ' ατό",
+'uploadnewversion-linktext'     => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
+
+# File deletion
+'filedelete-comment'          => 'Αιτία για το σβήσεμαν:',
+'filedelete-reason-otherlist' => 'Άλλον αιτία',
+'filedelete-edit-reasonlist'  => "Άλλαξον τ' αιτίας σβησεματί",
 
 # MIME search
 'mimesearch' => 'Αράεμαν MIME',
@@ -555,7 +570,8 @@ $messages = array(
 
 'brokenredirects' => 'Τσακωμένα διπλά συνδέσμ',
 
-'withoutinterwiki' => "Σελίδας ντο κ' έχνε συνδέσμ",
+'withoutinterwiki'        => "Σελίδας ντο κ' έχνε συνδέσμ",
+'withoutinterwiki-legend' => 'Προθέκεμαν',
 
 'fewestrevisions' => "Σελίδας με τ' ασόλων λιγότερα αλλαγάς.",
 

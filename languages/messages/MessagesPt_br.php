@@ -647,7 +647,8 @@ Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]]
 
 Note que não poderá utilizar a funcionalidade "Contactar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[Special:Preferences|preferências de usuário]] e se tiver sido bloqueado de utilizar tal recurso.
 
-O seu endereço de IP atual é $3 e a ID de bloqueio é $5. Por favor, inclua um desses (ou ambos) dados em quaisquer tentativas de esclarecimentos.',
+O seu endereço de IP atual é $3 e a ID de bloqueio é $5.
+Por favor, inclua tais dados em quaisquer tentativas de esclarecimentos.',
 'autoblockedtext'           => 'O seu endereço de IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro usuário, o qual foi bloqueado por $1.
 O motivo apresentado foi:
 
@@ -655,13 +656,14 @@ O motivo apresentado foi:
 
 * Início do bloqueio: $8
 * Expiração do bloqueio: $6
+* Destino do bloqueio: $7
 
 Você pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contactar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[Special:Preferences|preferências de usuário]] e se tiver sido bloqueado de utilizar tal recurso.
+Note que não poderá utilizar a funcionalidade "Contactar utilizador" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de email válido indicado nas suas [[Special:Preferences|preferências de utilizador]] e se tiver sido bloqueado de utilizar tal recurso.
 
-Sua ID de bloqueio é $5.
-Por favor, inclua esse dado em qualquer tentativa de esclarecimentos que for realizar.',
+Seu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.
+Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.',
 'blockednoreason'           => 'sem motivo especificado',
 'blockedoriginalsource'     => "O código de '''$1''' é mostrado abaixo:",
 'blockededitsource'         => "O texto das '''suas edições''' em '''$1''' é mostrado abaixo:",
@@ -1320,7 +1322,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filedelete-comment'          => 'Motivo de eliminação:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
-'filedelete-success-old'      => '<span class="plainlinks">A versão de \'\'\'[[Media:$1|$1]]\'\'\' tal como $3, $2 foi eliminada.</span>',
+'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
 'filedelete-nofile'           => "'''$1''' não existe em {{SITENAME}}.",
 'filedelete-nofile-old'       => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-otherreason'      => 'Outro/motivo adicional:',
@@ -1756,7 +1758,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
-'whatlinkshere-title'      => 'Páginas que apontam para $1',
+'whatlinkshere-title'      => 'Páginas que apontam para "$1"',
 'whatlinkshere-page'       => 'Página:',
 'linkshere'                => "As seguintes páginas possuem ligações para '''[[:$1]]''':",
 'nolinkshere'              => "Não existem ligações para '''[[:$1]]'''.",
@@ -1816,7 +1818,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipusubmit'                       => 'Desbloquear este usuário',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'O bloqueio de $1 foi removido com sucesso',
-'ipblocklist'                     => 'Lista de IPs e usuários bloqueados',
+'ipblocklist'                     => 'Usuários e endereços de IP bloqueados',
 'ipblocklist-legend'              => 'Procurar por um usuário bloqueado',
 'ipblocklist-username'            => 'Usuário ou endereço de IP:',
 'ipblocklist-submit'              => 'Pesquisar',

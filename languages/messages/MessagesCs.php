@@ -1469,7 +1469,7 @@ Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 'filedelete-comment'          => 'Důvod smazání:',
 'filedelete-submit'           => 'Smazat',
 'filedelete-success'          => "Soubor '''$1''' byl smazán.",
-'filedelete-success-old'      => '<span class="plainlinks">Verze souboru \'\'\'[[Media:$1|$1]]\'\'\' z $3 $2 byla smazána.</span>',
+'filedelete-success-old'      => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
 'filedelete-nofile'           => "Soubor '''$1''' na {{grammar:6sg|{{SITENAME}}}} neexistuje.",
 'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
 'filedelete-otherreason'      => 'Jiný či další důvod:',
@@ -1573,6 +1573,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'deadendpagestext'        => 'Následující stránky neodkazují na žádnou jinou stránku {{grammar:2sg|{{SITENAME}}}}.',
 'protectedpages'          => 'Zamčené stránky',
 'protectedpages-indef'    => 'Pouze zámky na neurčito',
+'protectedpages-cascade'  => 'Pouze kaskádové zámky',
 'protectedpagestext'      => 'Následující stránky jsou zamčeny nebo polozamčeny pro editaci nebo přesun:',
 'protectedpagesempty'     => 'Žádná stránka není zamčena s těmito parametry.',
 'protectedtitles'         => 'Zamčené názvy stránek',
@@ -2068,7 +2069,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:Special}}:Import]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí [[Special:Import|stránky importů]].
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 
@@ -2258,9 +2259,10 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
 
 # Patrol log
-'patrol-log-page' => 'Kniha prověřených editací',
-'patrol-log-line' => 'označuje revizi $1 stránky $2 za prověřenou $3',
-'patrol-log-auto' => '(automaticky)',
+'patrol-log-page'   => 'Kniha prověřených editací',
+'patrol-log-header' => 'Toto je kniha prověřených verzí.',
+'patrol-log-line'   => 'označuje revizi $1 stránky $2 za prověřenou $3',
+'patrol-log-auto'   => '(automaticky)',
 
 # Image deletion
 'deletedrevision'                 => 'Smazána stará revize $1',

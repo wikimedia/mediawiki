@@ -94,7 +94,7 @@ $messages = array(
 'create'           => 'Llitun',
 'editthispage'     => 'Wirin tüfachi página',
 'delete'           => 'Ñamümün',
-'deletethispage'   => 'Ñamümün tüfa pakina',
+'deletethispage'   => 'Ñamümün tüfachi pakina',
 'protect'          => 'Elulan ñi wiriael',
 'unprotect'        => 'Elun ñi wiriael',
 'talkpage'         => 'Nütramkafinge tüfachi pakina',
@@ -104,7 +104,7 @@ $messages = array(
 'toolbox'          => 'Küdawpeyüm',
 'userpage'         => 'adkintun página de usuario',
 'projectpage'      => 'adkintun página meta',
-'imagepage'        => 'adkintun página de imagen',
+'imagepage'        => 'adkintun pakina imagen',
 'mediawikipage'    => 'adkintun página de mensaje',
 'templatepage'     => 'adkintun página de plantilla',
 'viewhelppage'     => 'adkintun página de ayuda',
@@ -159,6 +159,7 @@ $messages = array(
 
 # Edit pages
 'subject'      => 'Dungu/üy',
+'showpreview'  => 'Pen chum müley',
 'loginreqlink' => 'Koni',
 'newarticle'   => '(We)',
 'editing'      => 'Wirimekey $1',
@@ -184,10 +185,11 @@ $messages = array(
 'viewprevnext'          => 'Pen ($1) ($2) ($3).',
 'search-interwiki-more' => '(Doy)',
 'searchall'             => 'Fill',
-'powersearch'           => 'Kintu',
+'powersearch'           => 'Kintun',
 'powersearch-field'     => 'Kintun',
 
 # Preferences page
+'prefs-edits'       => 'Rakin Wirin:',
 'prefsnologin'      => 'Mülelay Konün',
 'skin-preview'      => 'Pen chum müley',
 'textboxsize'       => 'Wirin',

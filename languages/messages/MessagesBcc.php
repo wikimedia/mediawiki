@@ -1448,6 +1448,7 @@ PICT # misc.
 'deadendpagestext'        => 'جهلیگین صفحات په صفحات دگر لینک نهنت ته {{SITENAME}}.',
 'protectedpages'          => 'صفحات حفاظت بیتگین',
 'protectedpages-indef'    => 'فقط محافظت نامحدود',
+'protectedpages-cascade'  => 'محافظتان آبشاری فقط',
 'protectedpagestext'      => 'جهلیگین صفحات محافظت بوتگین چه اصلاح و جاه په جاه بیگ',
 'protectedpagesempty'     => 'هچ صفحه ای گون ای پارامترآن',
 'protectedtitles'         => 'عناوین محافظتی',

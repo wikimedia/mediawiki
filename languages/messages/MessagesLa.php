@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Esteban97
  * @author LeighvsOptimvsMaximvs
  * @author Omnipaedista
  * @author Rafaelgarcia
@@ -179,6 +180,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Celare recensiones automatarias in paginarum custoditarum indice',
 'tog-watchlisthideminor'      => 'Celare recensiones minores in paginarum custoditarum indice',
 'tog-ccmeonemails'            => 'Mitte mihi transcriptiones litterarum quas ad alios usores mitto',
+'tog-diffonly'                => 'Operor non ostendo page impleo subter supter funis.',
 'tog-showhiddencats'          => 'Categorias celatas monstrare',
 
 'underline-always'  => 'Semper',
@@ -956,7 +958,7 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'filedelete-comment'          => 'Causa deletionis:',
 'filedelete-submit'           => 'Delere',
 'filedelete-success'          => "'''$1''' deletum est.",
-'filedelete-success-old'      => '<span class="plainlinks">Emendatio fasciculi \'\'\'[[Media:$1|$1]]\'\'\' ex $3, $2 deletum est.</span>',
+'filedelete-success-old'      => "Emendatio fasciculi '''[[Media:$1|$1]]''' ex $3, $2 deletum est.",
 'filedelete-otherreason'      => 'Causa alia vel explicatio:',
 'filedelete-reason-otherlist' => 'Causa alia',
 'filedelete-edit-reasonlist'  => 'Causas deletionum fasciculorum recensere',

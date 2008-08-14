@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Pill
- * @author Leithian
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Leithian
+ * @author Pill
  * @author Raimond Spekking (Raymond) <raimond.spekking@gmail.com> since January 2007
  * @author Tim Bartel (avatar) <wikipedia@computerkultur.org> formal addressing
  */
@@ -367,7 +367,7 @@ Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie: {{fullurl
 'sessionfailure'         => 'Es gab ein Problem mit der Übertragung Ihrer Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung Ihrer Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
-'protect-text'           => "Hier können Sie den Schutzstatus für die Seite '''<nowiki>$1</nowiki>''' einsehen und ändern.",
+'protect-text'           => 'Hier können Sie den Schutzstatus für die Seite „$1“ einsehen und ändern.',
 'protect-locked-blocked' => 'Sie können den Seitenschutz nicht ändern, da Ihr Benutzerkonto gesperrt ist. Hier sind die aktuellen Seitenschutz-Einstellungen für die Seite <strong>„$1“:</strong>',
 'protect-locked-access'  => 'Ihr Benutzerkonto verfügt nicht über die notwendigen Rechte zur Änderung des Seitenschutzes. Hier sind die aktuellen Seitenschutzeinstellungen für die Seite <strong>„$1“:</strong>',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',
@@ -426,12 +426,12 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 Die Seite „[[:$1]]“ existiert bereits. Möchten Sie diese löschen, um die Seite verschieben zu können?',
 
 # Export
-'exporttext' => 'Mit dieser Spezialseite können Sie den Text (und die Bearbeitungs-/Versionsgeschichte) einzelner Seiten in eine XML-Datei exportieren.
-Die Datei kann in ein anderes Wiki mit MediaWiki-Software eingespielt, bearbeitet oder archiviert werden.
+'exporttext' => 'Mit dieser Spezialseite können Sie den Text inklusive der Versionsgeschichte einzelner Seiten in eine XML-Datei exportieren.
+Die Datei kann in ein anderes MediaWiki-Wiki über die [[Special:Import|Importfunktion]] eingespielt werden.
 
-Trage Sie den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
+Tragen Sie den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur für eine Seite).
 
-Alternativ ist der Export auch mit der Syntax <tt><nowiki>[[</nowiki>{{ns:special}}<nowiki>:Export/Seitentitel]]</nowiki></tt> möglich, zum Beispiel [[{{ns:special}}:Export/{{Mediawiki:mainpage}}]] für die [[{{Mediawiki:mainpage}}]].',
+Alternativ ist der Export auch mit der Syntax [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
 
 # Special:Import
 'import-interwiki-text' => 'Wählen Sie ein Wiki und eine Seite zum Importieren aus.

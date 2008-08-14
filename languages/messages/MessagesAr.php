@@ -376,7 +376,7 @@ $imageFiles = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'ضع خطًا تحت الوصلات:',
+'tog-underline'               => 'ضع خطا تحت الوصلات:',
 'tog-highlightbroken'         => 'أأظهر الوصلات المعطوبة <a href="" class="new">هكذا</a> (البديل: كهذا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساوِ الفقرات',
 'tog-hideminor'               => 'أخف التعديلات الطفيفة في أحدث التغييرات',
@@ -1620,7 +1620,7 @@ PICT # misc.
 'filedelete-comment'          => 'السبب للحذف:',
 'filedelete-submit'           => 'حذف',
 'filedelete-success'          => "'''$1''' تم حذفه.",
-'filedelete-success-old'      => '<span class="plainlinks">نسخة \'\'\'[[Media:$1|$1]]\'\'\' بتاريخ $3، $2 تم حذفها.</span>',
+'filedelete-success-old'      => "نسخة '''[[Media:$1|$1]]''' بتاريخ $3، $2 تم حذفها.",
 'filedelete-nofile'           => "'''$1''' غير موجود في {{SITENAME}}.",
 'filedelete-nofile-old'       => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
 'filedelete-otherreason'      => 'سبب إضافي/آخر:',
@@ -1735,6 +1735,7 @@ PICT # misc.
 'deadendpagestext'        => 'الصفحات التالية لا تصل إلى صفحات أخرى في {{SITENAME}}.',
 'protectedpages'          => 'صفحات محمية',
 'protectedpages-indef'    => 'عمليات الحماية غير المحددة فقط',
+'protectedpages-cascade'  => 'الحماية المضمنة فقط',
 'protectedpagestext'      => 'الصفحات التالية محمية من النقل أو التعديل',
 'protectedpagesempty'     => 'لا توجد صفحات محمية حاليا بهذه المحددات.',
 'protectedtitles'         => 'عناوين محمية',

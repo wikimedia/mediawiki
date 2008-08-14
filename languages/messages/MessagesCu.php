@@ -283,6 +283,9 @@ $messages = array(
 'grouppage-sysop'      => '{{ns:project}}:Съмотри́тєлє',
 'grouppage-bureaucrat' => '{{ns:project}}:Чинода́тєлє',
 
+# User rights log
+'rightslog' => 'чинода́тєльства їсторі́ꙗ',
+
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|мѣ́на|мѣ́нꙑ|мѣ́нъ}}',
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
@@ -308,6 +311,7 @@ $messages = array(
 
 # Special:ImageList
 'imgfile'        => 'дѣ́ло',
+'imagelist'      => 'дѣ́лъ ката́логъ',
 'imagelist_name' => 'и́мѧ',
 'imagelist_user' => 'по́льꙃєватєл҄ь',
 'imagelist_size' => 'мѣ́ра',
@@ -339,6 +343,8 @@ $messages = array(
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота '''$7''' ѥ́стъ",
 
+'disambiguations' => 'мъногосъмꙑ́слиꙗ',
+
 'brokenredirects-edit'   => '(испра́ви)',
 'brokenredirects-delete' => '(поничьжє́ниѥ)',
 
@@ -353,10 +359,11 @@ $messages = array(
 'booksources-go' => 'прѣиди́',
 
 # Special:Log
-'specialloguserlabel' => 'по́льꙃєватєл҄ь:',
-'log'                 => 'їсторі́ѩ',
-'all-logs-page'       => 'вьсѩ́ їсторі́ѩ',
-'log-search-submit'   => 'прѣиди́',
+'specialloguserlabel'  => 'по́льꙃєватєл҄ь:',
+'speciallogtitlelabel' => 'страни́цѧ и́мѧ :',
+'log'                  => 'їсторі́ѩ',
+'all-logs-page'        => 'вьсѩ́ їсторі́ѩ',
+'log-search-submit'    => 'прѣиди́',
 
 # Special:AllPages
 'allpages'       => 'вьсѩ́ страни́цѧ',
@@ -382,13 +389,16 @@ $messages = array(
 'created' => 'сътворѥ́нъ ѥ́стъ',
 
 # Delete/protect/revert
-'excontent'       => "вънѫтри бѣ: '$1'",
-'excontentauthor' => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
-'delete-legend'   => 'поничьжє́ниѥ',
-'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
-'dellogpage'      => 'поничьжє́ниꙗ їсторі́ꙗ',
-'deletionlog'     => 'поничьжє́ниꙗ їсторі́ꙗ',
-'protectlogpage'  => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
+'deletepage'          => 'поничьжє́ниѥ',
+'excontent'           => "вънѫтри бѣ: '$1'",
+'excontentauthor'     => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
+'delete-legend'       => 'поничьжє́ниѥ',
+'actioncomplete'      => 'дѣ́иство сътворєно́ ѥ́стъ',
+'deletedarticle'      => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
+'dellogpage'          => 'поничьжє́ниꙗ їсторі́ꙗ',
+'deletionlog'         => 'поничьжє́ниꙗ їсторі́ꙗ',
+'protectlogpage'      => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
+'protect-level-sysop' => 'то́лико съмотри́тєлє',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'испра́ви',
@@ -429,6 +439,7 @@ $messages = array(
 'movearticle'      => 'страни́ца :',
 'move-watch'       => 'си страни́цѧ блюдє́ниѥ',
 'movepagebtn'      => 'прѣимєнова́ниѥ',
+'pagemovedsub'     => 'прѣимєнова́ниѥ сътворѥно́ ѥ́стъ',
 'movepage-moved'   => "<big>'''⁖ $1 ⁖ нарєчє́нъ ⁖ $2⁖ ѥ́стъ'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movetalk'         => 'си страни́цѧ бєсѣ́дꙑ прѣимєнова́ниѥ',
 '1movedto2'        => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
@@ -436,6 +447,7 @@ $messages = array(
 'movelogpage'      => 'прѣимєнова́ниꙗ їсторі́ꙗ',
 
 # Namespace 8 related
+'allmessages'     => 'сѷсти́мьнꙑ напьса́ниꙗ',
 'allmessagesname' => 'и́мѧ',
 
 # Tooltip help for the actions

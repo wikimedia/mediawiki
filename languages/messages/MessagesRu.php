@@ -1419,7 +1419,7 @@ PICT # различные
 'filedelete-comment'          => 'Причина удаления:',
 'filedelete-submit'           => 'Удалить',
 'filedelete-success'          => "'''$1''' был удалён.",
-'filedelete-success-old'      => '<span class="plainlinks">Версия \'\'\'[[Media:$1|$1]]\'\'\' от $3, $2 была удалена.</span>',
+'filedelete-success-old'      => "Версия '''[[Media:$1|$1]]''' от $3 $2 была удалена.",
 'filedelete-nofile'           => "'''$1''' не существует на этом сайте.",
 'filedelete-nofile-old'       => "Не существует архивной версии '''$1''' с указанными атрибутами.",
 'filedelete-otherreason'      => 'Другая причина:',

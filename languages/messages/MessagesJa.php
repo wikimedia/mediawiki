@@ -1124,7 +1124,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filedelete-comment'          => 'コメント:',
 'filedelete-submit'           => '削除する',
 'filedelete-success'          => "'''$1''' は削除されました。",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' の $2 $3 の版は削除されています。</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]''' の $2 $3 版は削除されています。",
 'filedelete-nofile'           => "'''$1''' は{{SITENAME}}上に存在しません。",
 'filedelete-nofile-old'       => "指定された属性を持つ'''$1'''の古い版は存在しません。",
 'filedelete-otherreason'      => 'その他/理由の付記:',
