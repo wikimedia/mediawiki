@@ -490,7 +490,7 @@ $messages = array(
 'mainpage-description' => 'صفحهٔ اصلی',
 'policy-url'           => 'Project:سیاست‌ها',
 'portal'               => 'درگاه کاربران',
-'portal-url'           => 'Project:ورودی کاربران',
+'portal-url'           => 'Project:درگاه کاربران',
 'privacy'              => 'سیاست حفظ اسرار',
 'privacypage'          => 'Project:سیاست_حفظ_اسرار',
 
