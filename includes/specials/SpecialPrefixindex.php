@@ -26,13 +26,13 @@ function wfSpecialPrefixIndex( $par=NULL, $specialPage ) {
 	);
 
 	if ( isset($par) ) {
-		$indexPage->showChunk( $namespace, $par, $specialPage->including(), $from );
+		$indexPage->showPrefixChunk( $namespace, $par, $specialPage->including(), $from );
 	} elseif ( isset($prefix) ) {
-		$indexPage->showChunk( $namespace, $prefix, $specialPage->including(), $from );
+		$indexPage->showPrefixChunk( $namespace, $prefix, $specialPage->including(), $from );
 	} elseif ( isset($from) ) {
-		$indexPage->showChunk( $namespace, $from, $specialPage->including(), $from );
+		$indexPage->showPrefixChunk( $namespace, $from, $specialPage->including(), $from );
 	} else {
-		$wgOut->addHtml($indexPage->namespaceForm ( $namespace, null ));
+		$wgOut->addHtml( $indexPage->namespacePrefixForm( $namespace, null ) );
 	}
 }
 
@@ -46,12 +46,51 @@ class SpecialPrefixindex extends SpecialAllpages {
 	// Define other properties
 	protected $name = 'Prefixindex';
 	protected $nsfromMsg = 'allpagesprefix';
+	
+	/**
+	* HTML for the top form
+	* @param integer $namespace A namespace constant (default NS_MAIN).
+	* @param string $from dbKey we are starting listing at.
+	*/
+	function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
+		global $wgScript;
+		$t = SpecialPage::getTitleFor( $this->name );
+
+		$out  = Xml::openElement( 'div', array( 'class' => 'namespaceoptions' ) );
+		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
+		$out .= Xml::hidden( 'title', $t->getPrefixedText() );
+		$out .= Xml::openElement( 'fieldset' );
+		$out .= Xml::element( 'legend', null, wfMsg( 'allpages' ) );
+		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
+		$out .= "<tr>
+				<td class='mw-label'>" .
+				Xml::label( wfMsg( 'allpagesfrom' ), 'nsfrom' ) .
+				"</td>
+				<td class='mw-input'>" .
+					Xml::input( 'from', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+				"</td>
+				<td class='mw-input'>" .
+					Xml::namespaceSelector( $namespace, null ) . ' ' .
+					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+				"</td>
+				</tr>";
+		$out .= Xml::closeElement( 'table' );
+		$out .= Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'form' );
+		$out .= Xml::closeElement( 'div' );
+		return $out;
+	}
 
 	/**
 	 * @param integer $namespace (Default NS_MAIN)
 	 * @param string $from list all pages from this name (default FALSE)
 	 */
-	function showChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = null ) {
+	function showPrefixChunk( $namespace = NS_MAIN, $prefix, $including = false, $from = null ) {
 		global $wgOut, $wgUser, $wgContLang;
 
 		$fname = 'indexShowChunk';
@@ -130,7 +169,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		if ( $including ) {
 			$out2 = '';
 		} else {
-			$nsForm = $this->namespaceForm ( $namespace, $prefix );
+			$nsForm = $this->namespacePrefixForm( $namespace, $prefix );
 			$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 			$out2 .= '<tr valign="top"><td>' . $nsForm;
 			$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
