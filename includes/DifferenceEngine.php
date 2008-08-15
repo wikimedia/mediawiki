@@ -74,8 +74,9 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage( $diffOnly = false ) {
-		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgUseExternalEditor, $wgUseRCPatrol, $wgEnableHtmlDiff;
 		wfProfileIn( __METHOD__ );
+
 
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
@@ -265,11 +266,16 @@ CONTROL;
 			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		$this->showDiff( $oldHeader, $newHeader );
+		if($wgEnableHtmlDiff){
+			$this->renderHtmlDiff();
+		}else{
 
-		if ( !$diffOnly )
-		$this->renderNewRevision();
+			$this->showDiff( $oldHeader, $newHeader );
 
+			if ( !$diffOnly ){
+				$this->renderNewRevision();
+			}
+		}
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -315,6 +321,65 @@ CONTROL;
 		if( !$this->mNewRev->isCurrent() ) {
 			$wgOut->parserOptions()->setEditSection( $oldEditSectionSetting );
 		}
+
+		wfProfileOut( __METHOD__ );
+	}
+
+
+	function renderHtmlDiff() {
+		global $wgOut, $IP;
+		wfProfileIn( __METHOD__ );
+
+		$this->showDiffStyle();
+
+		require_once( "$IP/includes/HTMLDiff.php" );
+
+		#add deleted rev tag if needed
+		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
+			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
+		} else if( $this->mNewRev->isDeleted(Revision::DELETED_TEXT) ) {
+			$wgOut->addWikiMsg( 'rev-deleted-text-view' );
+		}
+
+		if( !$this->mNewRev->isCurrent() ) {
+			$oldEditSectionSetting = $wgOut->parserOptions()->setEditSection( false );
+		}
+
+		$this->loadText();
+
+		if( is_object( $this->mOldRev ) ) {
+			$wgOut->setRevisionId( $this->mOldRev->getId() );
+		}
+
+		global $wgTitle, $wgParser, $wgTitle;
+		$popts = $wgOut->parserOptions();
+		$oldTidy = $popts->setTidy( TRUE );
+
+		$parserOutput = $wgParser->parse($this->mOldtext, $wgTitle, $popts, TRUE, TRUE, $wgOut->mRevisionId );
+		$popts->setTidy( $oldTidy );
+
+		//only for new?
+		//$wgOut->addParserOutputNoText( $parserOutput );
+		$oldHtml =	$parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$oldHtml ) );
+
+		if( is_object( $this->mNewRev ) ) {
+			$wgOut->setRevisionId( $this->mNewRev->getId() );
+		}
+
+		$popts = $wgOut->parserOptions();
+		$oldTidy = $popts->setTidy( TRUE );
+
+		$parserOutput = $wgParser->parse($this->mNewtext, $wgTitle, $popts, TRUE, TRUE, $wgOut->mRevisionId );
+		$popts->setTidy( $oldTidy );
+
+		//only for new?
+		$wgOut->addParserOutputNoText( $parserOutput );
+		$newHtml =	$parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$newHtml ) );
+
+		$differ = new HTMLDiffer(new DelegatingContentHandler($wgOut));
+		$differ->htmlDiff($oldHtml, $newHtml);
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -893,6 +958,30 @@ class _DiffOp_Change extends _DiffOp {
 }
 
 /**
+ * Alternative representation of a set of changes, by the index
+ * ranges that are changed.
+ */
+class RangeDifference {
+
+	public $leftstart;
+	public $leftend;
+	public $leftlength;
+
+	public $rightstart;
+	public $rightend;
+	public $rightlength;
+
+	function __construct($leftstart, $leftend, $rightstart, $rightend){
+		$this->leftstart = $leftstart;
+		$this->leftend = $leftend;
+		$this->leftlength = $leftend-$leftstart;
+		$this->rightstart = $rightstart;
+		$this->rightend = $rightend;
+		$this->rightlength = $rightend-$rightstart;
+	}
+}
+
+/**
  * Class used internally by Diff to actually compute the diffs.
  *
  * The algorithm used here is mostly lifted from the perl module
@@ -920,22 +1009,108 @@ class _DiffEngine {
 
 	const MAX_XREF_LENGTH =  10000;
 
-	function diff ($from_lines, $to_lines) {
+	function diff ($from_lines, $to_lines){
 		wfProfileIn( __METHOD__ );
 
-		global $wgExternalDiffEngine;
+		// Diff and store locally
+		$this->diff_local($from_lines, $to_lines);
 
+		// Merge edits when possible
+		$this->_shift_boundaries($from_lines, $this->xchanged, $this->ychanged);
+		$this->_shift_boundaries($to_lines, $this->ychanged, $this->xchanged);
+
+		// Compute the edit operations.
 		$n_from = sizeof($from_lines);
 		$n_to = sizeof($to_lines);
+
+		$edits = array();
+		$xi = $yi = 0;
+		while ($xi < $n_from || $yi < $n_to) {
+			USE_ASSERTS && assert($yi < $n_to || $this->xchanged[$xi]);
+			USE_ASSERTS && assert($xi < $n_from || $this->ychanged[$yi]);
+
+			// Skip matching "snake".
+			$copy = array();
+			while ( $xi < $n_from && $yi < $n_to
+			&& !$this->xchanged[$xi] && !$this->ychanged[$yi]) {
+				$copy[] = $from_lines[$xi++];
+				++$yi;
+			}
+			if ($copy)
+			$edits[] = new _DiffOp_Copy($copy);
+
+			// Find deletes & adds.
+			$delete = array();
+			while ($xi < $n_from && $this->xchanged[$xi])
+			$delete[] = $from_lines[$xi++];
+
+			$add = array();
+			while ($yi < $n_to && $this->ychanged[$yi])
+			$add[] = $to_lines[$yi++];
+
+			if ($delete && $add)
+			$edits[] = new _DiffOp_Change($delete, $add);
+			elseif ($delete)
+			$edits[] = new _DiffOp_Delete($delete);
+			elseif ($add)
+			$edits[] = new _DiffOp_Add($add);
+		}
+		wfProfileOut( __METHOD__ );
+		return $edits;
+	}
+
+	function diff_range ($from_lines, $to_lines){
+		wfProfileIn( __METHOD__ );
+
+		// Diff and store locally
+		$this->diff_local($from_lines, $to_lines);
+
+		// Compute the ranges operations.
+		$n_from = sizeof($from_lines);
+		$n_to = sizeof($to_lines);
+
+		$ranges = array();
+		$xi = $yi = 0;
+		while ($xi < $n_from || $yi < $n_to) {
+			// Matching "snake".
+			while ( $xi < $n_from && $yi < $n_to
+			&& !$this->xchanged[$xi] && !$this->ychanged[$yi]) {
+				++$xi;
+				++$yi;
+			}
+			// Find deletes & adds.
+			$xstart = $xi;
+			while ($xi < $n_from && $this->xchanged[$xi]){
+				++$xi;
+			}
+
+			$ystart = $yi;
+			while ($yi < $n_to && $this->ychanged[$yi]){
+				++$yi;
+			}
+
+			if ($xi>$xstart || $yi>$ystart){
+				$ranges[] = new RangeDifference($xstart,$xi,$ystart,$yi);
+			}
+		}
+		wfProfileOut( __METHOD__ );
+		return $ranges;
+	}
+
+	function diff_local ($from_lines, $to_lines) {
+		global $wgExternalDiffEngine;
+		wfProfileIn( __METHOD__);
 
 		if($wgExternalDiffEngine == 'wikidiff3'){
 			// wikidiff3
 			global $IP;
 			require_once( "$IP/includes/Diff.php" );
-			list($this->xchanged, $this->ychanged) = wikidiff3_diff($from_lines, $to_lines, TRUE, 100000);
+			$wikidiff3 = new WikiDiff3();
+			list($this->xchanged, $this->ychanged) = $wikidiff3->diff($from_lines, $to_lines);
 		}else{
 			// old diff
-			wfProfileIn( __METHOD__ ." - basicdiff");
+			$n_from = sizeof($from_lines);
+			$n_to = sizeof($to_lines);
 			$this->xchanged = $this->ychanged = array();
 			$this->xv = $this->yv = array();
 			$this->xind = $this->yind = array();
@@ -980,48 +1155,8 @@ class _DiffEngine {
 
 			// Find the LCS.
 			$this->_compareseq(0, sizeof($this->xv), 0, sizeof($this->yv));
-			wfProfileOut( __METHOD__ ." - basicdiff");
-		}
-
-		// Merge edits when possible
-		$this->_shift_boundaries($from_lines, $this->xchanged, $this->ychanged);
-		$this->_shift_boundaries($to_lines, $this->ychanged, $this->xchanged);
-
-		// Compute the edit operations.
-		$edits = array();
-		$xi = $yi = 0;
-		while ($xi < $n_from || $yi < $n_to) {
-			USE_ASSERTS && assert($yi < $n_to || $this->xchanged[$xi]);
-			USE_ASSERTS && assert($xi < $n_from || $this->ychanged[$yi]);
-
-			// Skip matching "snake".
-			$copy = array();
-			while ( $xi < $n_from && $yi < $n_to
-			&& !$this->xchanged[$xi] && !$this->ychanged[$yi]) {
-				$copy[] = $from_lines[$xi++];
-				++$yi;
-			}
-			if ($copy)
-			$edits[] = new _DiffOp_Copy($copy);
-
-			// Find deletes & adds.
-			$delete = array();
-			while ($xi < $n_from && $this->xchanged[$xi])
-			$delete[] = $from_lines[$xi++];
-
-			$add = array();
-			while ($yi < $n_to && $this->ychanged[$yi])
-			$add[] = $to_lines[$yi++];
-
-			if ($delete && $add)
-			$edits[] = new _DiffOp_Change($delete, $add);
-			elseif ($delete)
-			$edits[] = new _DiffOp_Delete($delete);
-			elseif ($add)
-			$edits[] = new _DiffOp_Add($add);
 		}
 		wfProfileOut( __METHOD__ );
-		return $edits;
 	}
 
 	/**
@@ -1077,7 +1212,6 @@ class _DiffEngine {
 		$numer = $xlim - $xoff + $nchunks - 1;
 		$x = $xoff;
 		for ($chunk = 0; $chunk < $nchunks; $chunk++) {
-			wfProfileIn( __METHOD__ . "-chunk" );
 			if ($chunk > 0)
 			for ($i = 0; $i <= $this->lcs; $i++)
 			$ymids[$i][$chunk-1] = $this->seq[$i];
@@ -1130,7 +1264,6 @@ class _DiffEngine {
 		if ($end == 0 || $ypos > $this->seq[$end]) {
 			$this->seq[++$this->lcs] = $ypos;
 			$this->in_seq[$ypos] = 1;
-			wfProfileOut( __METHOD__ );
 			return $this->lcs;
 		}
 

@@ -18,3 +18,15 @@ if (navigator && navigator.product == "Gecko" && navigator.productSub < "2002113
 		"table.diff td div { overflow: visible; }",
 		lastSheet.cssRules.length);
 }
+    
+function tipA(content){
+    return false;
+}
+
+function tipR(content){
+    return false;
+}
+
+function tipC(content){
+    return false;
+}
