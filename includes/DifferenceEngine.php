@@ -327,12 +327,10 @@ CONTROL;
 
 
 	function renderHtmlDiff() {
-		global $wgOut, $IP;
+		global $wgOut;
 		wfProfileIn( __METHOD__ );
 
 		$this->showDiffStyle();
-
-		require_once( "$IP/includes/HTMLDiff.php" );
 
 		#add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
