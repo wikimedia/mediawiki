@@ -6,6 +6,7 @@
 class Parser_DiffTest
 {
 	var $parsers, $conf;
+	var $shortOutput = false;
 
 	var $dfUniqPrefix;
 
@@ -27,6 +28,9 @@ class Parser_DiffTest
 		if ( !$doneHook ) {
 			$doneHook = true;
 			$wgHooks['ParserClearState'][] = array( $this, 'onClearState' );
+		}
+		if ( isset( $this->conf['shortOutput'] ) ) {
+			$this->shortOutput = $this->conf['shortOutput'];
 		}
 
 		foreach ( $this->conf['parsers'] as $i => $parserConf ) {
@@ -66,10 +70,21 @@ class Parser_DiffTest
 		}
 		if ( $mismatch ) {
 			throw new MWException( "Parser_DiffTest: results mismatch on call to $name\n" .
-				'Arguments: ' . var_export( $args, true ) . "\n" .
-				'Results: ' . var_export( $results, true ) . "\n" );
+				'Arguments: ' . $this->formatArray( $args ) . "\n" .
+				'Results: ' . $this->formatArray( $results ) . "\n" );
 		}
 		return $lastResult;
+	}
+
+	function formatArray( $array ) {
+		if ( $this->shortOutput ) {
+			foreach ( $array as $key => $value ) {
+				if ( $value instanceof ParserOutput ) {
+					$array[$key] = "ParserOutput: {$value->getText()}";
+				}
+			}
+		}
+		return var_export( $array, true );
 	}
 
 	function setFunctionHook( $id, $callback, $flags = 0 ) {
