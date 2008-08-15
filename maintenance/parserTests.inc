@@ -336,7 +336,11 @@ class ParserTest {
 				global $wgOut;
 				$wgOut->addCategoryLinks($output->getCategories());
 				$cats = $wgOut->getCategoryLinks();
-				$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+				if ( isset( $cats['normal'] ) ) {
+					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
+				} else {
+					$out = '';
+				}
 			}
 
 			$result = $this->tidy($result);
