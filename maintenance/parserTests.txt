@@ -1363,7 +1363,7 @@ Link with suffix
 !! input
 [[Main Page]]xxx, [[Main Page]]XXX, [[Main Page]]!!!
 !! result
-<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main PageXXX</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>!!!
+<p><a href="/wiki/Main_Page" title="Main Page">Main Pagexxx</a>, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>XXX, <a href="/wiki/Main_Page" title="Main Page">Main Page</a>!!!
 </p>
 !! end
 
