@@ -35,6 +35,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgAddGroups and $wgRemoveGroups, where the user must belong to a specified
   group in order to add or remove those groups from themselves.
   Backwards compatibility is maintained.
+* $wgEnablePersistentCookies has been added. Setting to false disables the
+  setting of persistent cookies. Defaults to true.
   
 === New features in 1.14 ===
 

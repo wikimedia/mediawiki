@@ -2189,46 +2189,12 @@ class User {
 	}
 	
 	/**
-	 * Set a cookie on the user's client
-	 * @param $name \type{\string} Name of the cookie to set
-	 * @param $name \type{\string} Value to set
-	 * @param $name \type{\int} Expiration time, as a UNIX time value; 
-	 *                   if 0 or not specified, use the default $wgCookieExpiration
+	 * Set a cookie on the user's client. Wrapper for 
+	 * WebResponse::setCookie
 	 */
 	protected function setCookie( $name, $value, $exp=0 ) {
-		global $wgCookiePrefix,$wgCookieDomain,$wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
-		if( $exp == 0 ) {
-			$exp = time() + $wgCookieExpiration;
-		}
-		$httpOnlySafe = wfHttpOnlySafe();
-		wfDebugLog( 'cookie',
-			'setcookie: "' . implode( '", "',
-				array(
-					$wgCookiePrefix . $name,
-					$value,
-					$exp,
-					'/',
-					$wgCookieDomain,
-					$wgCookieSecure,
-					$httpOnlySafe && $wgCookieHttpOnly ) ) . '"' );
-		if( $httpOnlySafe && isset( $wgCookieHttpOnly ) ) {
-			setcookie( $wgCookiePrefix . $name,
-				$value,
-				$exp,
-				'/',
-				$wgCookieDomain,
-				$wgCookieSecure,
-				$wgCookieHttpOnly );
-		} else {
-			// setcookie() fails on PHP 5.1 if you give it future-compat paramters.
-			// stab stab!
-			setcookie( $wgCookiePrefix . $name,
-				$value,
-				$exp,
-				'/',
-				$wgCookieDomain,
-				$wgCookieSecure );
-		}
+		global $wgRequest;
+		$wgRequest->response()->setcookie( $name, $value, $exp );
 	}
 	
 	/**
