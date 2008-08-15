@@ -2,6 +2,7 @@
 /**
  * @file
  * @ingroup SpecialPage
+ * Note that Special:Prefixindex.php depends on this
  */
 
 /**
@@ -19,14 +20,18 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 
 	$namespaces = $wgContLang->getNamespaces();
 
-	$indexPage = new SpecialAllpages();
-
 	$wgOut->setPagetitle( ( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) )  ?
 		wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 		wfMsg( 'allarticles' )
 		);
 	
-	$indexPage->showToplevel( $namespace, $from, $to, $specialPage->including() );
+	if( isset($par) ) {
+		$indexPage = new SpecialPrefixIndex();
+		$indexPage->showPrefixChunk( $namespace, $par, $specialPage->including(), $from );
+	} else {
+		$indexPage = new SpecialAllpages();
+		$indexPage->showToplevel( $namespace, $from, $to, $specialPage->including() );
+	}
 }
 
 /**
