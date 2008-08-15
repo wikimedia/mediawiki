@@ -114,8 +114,8 @@ function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = 
 	
 	$from = Title::makeTitleSafe( $namespace, $from );
 	$to = Title::makeTitleSafe( $namespace, $to );
-	$from = $from ? $from->getDBKey() : null;
-	$to = $to ? $to->getDBKey() : null;
+	$from = ( $from && $from->isLocal() ) ? $from->getDBKey() : null;
+	$to = ( $to && $to->isLocal() ) ? $to->getDBKey() : null;
 	
 	if( isset($from) )
 		$where[] = 'page_title >= '.$dbr->addQuotes( $from );
