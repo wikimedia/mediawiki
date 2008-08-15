@@ -9,7 +9,6 @@ class LinkCache {
 	// becomes incompatible with the new version.
 	/* private */ var $mClassVer = 4;
 
-	/* private */ var $mPageLinks;
 	/* private */ var $mGoodLinks, $mBadLinks;
 	/* private */ var $mForUpdate;
 
@@ -26,7 +25,6 @@ class LinkCache {
 
 	function __construct() {
 		$this->mForUpdate = false;
-		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mGoodLinkFields = array();
 		$this->mBadLinks = array();
@@ -78,14 +76,12 @@ class LinkCache {
 		$dbkey = $title->getPrefixedDbKey();
 		$this->mGoodLinks[$dbkey] = $id;
 		$this->mGoodLinkFields[$dbkey] = array( 'length' => $len, 'redirect' => $redir );
-		$this->mPageLinks[$dbkey] = $title;
 	}
 
 	public function addBadLinkObj( $title ) {
 		$dbkey = $title->getPrefixedDbKey();
 		if ( ! $this->isBadLink( $dbkey ) ) {
 			$this->mBadLinks[$dbkey] = 1;
-			$this->mPageLinks[$dbkey] = $title;
 		}
 	}
 
@@ -96,7 +92,6 @@ class LinkCache {
 	/* obsolete, for old $wgLinkCacheMemcached stuff */
 	public function clearLink( $title ) {}
 
-	public function getPageLinks() { return $this->mPageLinks; }
 	public function getGoodLinks() { return $this->mGoodLinks; }
 	public function getBadLinks() { return array_keys( $this->mBadLinks ); }
 
@@ -181,7 +176,6 @@ class LinkCache {
 	 * Clears cache
 	 */
 	public function clear() {
-		$this->mPageLinks = array();
 		$this->mGoodLinks = array();
 		$this->mGoodLinkFields = array();
 		$this->mBadLinks = array();
