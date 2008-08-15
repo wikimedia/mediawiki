@@ -64,6 +64,7 @@ $wgAutoloadLocalClasses = array(
 	'EnotifNotifyJob' => 'includes/EnotifNotifyJob.php',
 	'ErrorPageError' => 'includes/Exception.php',
 	'Exif' => 'includes/Exif.php',
+	'ExplodeIterator' => 'includes/StringUtils.php',
 	'ExternalEdit' => 'includes/ExternalEdit.php',
 	'ExternalStoreDB' => 'includes/ExternalStoreDB.php',
 	'ExternalStoreHttp' => 'includes/ExternalStoreHttp.php',
@@ -351,6 +352,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/parser
 	'CoreParserFunctions' => 'includes/parser/CoreParserFunctions.php',
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
+	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
 	'OnlyIncludeReplacer' => 'includes/parser/Parser.php',
 	'PPDAccum_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'PPDPart' => 'includes/parser/Preprocessor_DOM.php',
