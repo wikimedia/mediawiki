@@ -1557,6 +1557,11 @@ $wgCookiePrefix = false;
 $wgCookieHttpOnly = version_compare("5.2", PHP_VERSION, "<");
 
 /**
+ * Allow MediaWiki to set persistent cookies for login, etc.
+ */
+$wgEnablePersistentCookies = true;
+
+/**
  * If the requesting browser matches a regex in this blacklist, we won't
  * send it cookies with HttpOnly mode, even if $wgCookieHttpOnly is on.
  */
