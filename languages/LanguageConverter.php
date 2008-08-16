@@ -392,7 +392,7 @@ class LanguageConverter {
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
-		if ( $isredir == 'no' || $action == 'edit' || $linkconvert == 'no' ) {
+		if ( $isredir == 'no' || $action == 'edit' || $action == 'submit' || $linkconvert == 'no' ) {
 			return $text;
 		} else {
 			$this->mTitleDisplay = $this->convert($text);
@@ -479,7 +479,7 @@ class LanguageConverter {
 
 		$ns=NS_MAIN;
 
-		if ( $disableLinkConversion || $isredir == 'no' || $action == 'edit'
+		if ( $disableLinkConversion || $isredir == 'no' || $action == 'edit' || $action == 'submit'
 			|| $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) {
 			return;
 		}
