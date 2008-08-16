@@ -10,12 +10,6 @@ if ( !class_exists( 'UtfNormal' ) ) {
 
 define ( 'GAID_FOR_UPDATE', 1 );
 
-/**
- * Title::newFromText maintains a cache to avoid expensive re-normalization of
- * commonly used titles. On a batch operation this can become a memory leak
- * if not bounded. After hitting this many titles reset the cache.
- */
-define( 'MW_TITLECACHE_MAX', 1000 );
 
 /**
  * Constants for pr_cascade bitfield
@@ -34,6 +28,14 @@ class Title {
 	static private $titleCache=array();
 	static private $interwikiCache=array();
 	//@}
+
+	/**
+	 * Title::newFromText maintains a cache to avoid expensive re-normalization of
+	 * commonly used titles. On a batch operation this can become a memory leak
+	 * if not bounded. After hitting this many titles reset the cache.
+	 */
+	const CACHE_MAX = 1000;
+
 
 	/**
 	 * @name Private member variables
@@ -131,7 +133,7 @@ class Title {
 		static $cachedcount = 0 ;
 		if( $t->secureAndSplit() ) {
 			if( $defaultNamespace == NS_MAIN ) {
-				if( $cachedcount >= MW_TITLECACHE_MAX ) {
+				if( $cachedcount >= self::CACHE_MAX ) {
 					# Avoid memory leaks on mass operations...
 					Title::$titleCache = array();
 					$cachedcount=0;
