@@ -148,6 +148,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15048) Added limit field for multivalue parameters to action=paraminfo
   output.
 * When the limit on multivalue parameters is exceeded, a warning is issued
+* list=search doesn't list missing pages any more
 
 === Languages updated in 1.14 ===
 
