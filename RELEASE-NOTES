@@ -151,6 +151,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   output.
 * When the limit on multivalue parameters is exceeded, a warning is issued
 * list=search doesn't list missing pages any more
+* (bug 15178) Added clshow to prop=categories to allow filtering for hidden/
+  non-hidden categories
 
 === Languages updated in 1.14 ===
 
