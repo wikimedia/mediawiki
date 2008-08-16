@@ -167,6 +167,18 @@ class StringUtils {
 		$string = str_replace( '$', '\\$', $string );
 		return $string;
 	}
+
+	/**
+	 * Workalike for explode() with limited memory usage.
+	 * Returns an Iterator
+	 */
+	static function explode( $separator, $subject ) {
+		if ( substr_count( $subject, $separator ) > 1000 ) {
+			return new ExplodeIterator( $separator, $subject );
+		} else {
+			return new ArrayIterator( explode( $separator, $subject ) );
+		}
+	}
 }
 
 /**
@@ -310,3 +322,90 @@ class ReplacementArray {
 		return $result;
 	}
 }
+
+/**
+ * An iterator which works exactly like:
+ * 
+ * foreach ( explode( $delim, $s ) as $element ) {
+ *    ...
+ * }
+ *
+ * Except it doesn't use 193 byte per element
+ */
+class ExplodeIterator implements Iterator {
+	// The subject string
+	var $subject, $subjectLength;
+
+	// The delimiter
+	var $delim, $delimLength;
+
+	// The position of the start of the line
+	var $curPos;
+
+	// The position after the end of the next delimiter
+	var $endPos;
+
+	// The current token
+	var $current;
+
+	/** 
+	 * Construct a DelimIterator
+	 */
+	function __construct( $delim, $s ) {
+		$this->subject = $s;
+		$this->delim = $delim;
+
+		// Micro-optimisation (theoretical)
+		$this->subjectLength = strlen( $s );
+		$this->delimLength = strlen( $delim );
+
+		$this->rewind();
+	}
+
+	function rewind() {
+		$this->curPos = 0;
+		$this->endPos = strpos( $this->subject, $this->delim );
+		$this->refreshCurrent();
+	}
+
+
+	function refreshCurrent() {
+		if ( $this->curPos === false ) {
+			$this->current = false;
+		} elseif ( $this->curPos >= $this->subjectLength ) {
+			$this->current = '';
+		} elseif ( $this->endPos === false ) {
+			$this->current = substr( $this->subject, $this->curPos );
+		} else {
+			$this->current = substr( $this->subject, $this->curPos, $this->endPos - $this->curPos );
+		}
+	}
+
+	function current() {
+		return $this->current;
+	}
+
+	function key() {
+		return $this->curPos;
+	}
+
+	function next() {
+		if ( $this->endPos === false ) {
+			$this->curPos = false;
+		} else {
+			$this->curPos = $this->endPos + $this->delimLength;
+			if ( $this->curPos >= $this->subjectLength ) {
+				$this->endPos = false;
+			} else {
+				$this->endPos = strpos( $this->subject, $this->delim, $this->curPos );
+			}
+		}
+		$this->refreshCurrent();
+		return $this->current;
+	}
+
+	function valid() {
+		return $this->curPos !== false;
+	}
+}
+
