@@ -54,6 +54,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 		$prop = $params['prop'];
+		$show = array_flip((array)$params['show']);
 
 		$this->addFields(array (
 			'cl_from',
@@ -91,6 +92,15 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					"(cl_from = $clfrom AND ".
 					"cl_to >= '$clto')");
 		}
+		if(isset($show['hidden']) && isset($show['!hidden']))
+			$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
+		if(isset($show['hidden']) || isset($show['!hidden']))
+		{
+			$this->addTables('category');
+			$this->addWhere(array(	'cl_to = cat_title',
+						'cat_hidden' => isset($show['hidden'])));
+		}
+
 		# Don't order by cl_from if it's constant in the WHERE clause
 		if(count($this->getPageSet()->getGoodTitles()) == 1)
 			$this->addOption('ORDER BY', 'cl_to');
@@ -166,6 +176,13 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					'timestamp',
 				)
 			),
+			'show' => array(
+				ApiBase :: PARAM_ISMULTI => true,
+				ApiBase :: PARAM_TYPE => array(
+					'hidden',
+					'!hidden',
+				)
+			),
 			'limit' => array(
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -181,6 +198,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return array (
 			'prop' => 'Which additional properties to get for each category.',
 			'limit' => 'How many categories to return',
+			'show' => 'Which kind of categories to show',
 			'continue' => 'When more results are available, use this to continue',
 		);
 	}
