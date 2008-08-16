@@ -247,3 +247,8 @@ h4.mw-specialpagesgroup {
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
 }
+
+/* Alternating background colours on Watchlist and RecentChanges */
+li.odd {
+	background-color: #e8e8e8
+}

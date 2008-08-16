@@ -88,8 +88,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Show/Hide logged in users, Show/Hide anonymous, Invert namespace selection
 * Added hook 'UserrightsChangeableGroups' to allow modification of what
   groups may be added or removed via the Special:UserRights interface.
-* (bug 14468) Lines in classic RecentChanges and Watchlist have classes "odd"
-  and "even" to make colouring using css possible.
+* (bug 14468) Lines in classic RecentChanges and Watchlist have alternating
+  background colours based on classes "odd" and "even".
 
 === Bug fixes in 1.14 ===
 
