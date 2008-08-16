@@ -378,7 +378,7 @@ class SpecialRecentChanges extends SpecialPage {
 					}
 					$rc->numberofWatchingusers = $watcherCache[$obj->rc_namespace][$obj->rc_title];
 				}
-				$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ) );
+				$s .= $list->recentChangesLine( $rc, !empty( $obj->wl_user ), $counter );
 				--$limit;
 			}
 		}
