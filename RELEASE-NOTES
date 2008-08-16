@@ -130,7 +130,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   gives results
 * Avoid recursive crazy expansions in section edit comments for pages which
   contain '/*' in the title
-* Fix excessive memory usage when parsing pages with lots of links
 
 === API changes in 1.14 ===
 

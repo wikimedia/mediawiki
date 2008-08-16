@@ -44,6 +44,7 @@ class MessageCache {
 
 	/**
 	 * ParserOptions is lazy initialised.
+	 * Access should probably be protected.
 	 */
 	function getParserOptions() {
 		if ( !$this->mParserOptions ) {
