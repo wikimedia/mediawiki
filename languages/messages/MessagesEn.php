@@ -2019,7 +2019,8 @@ It may contain one or more characters which cannot be used in titles.',
 # Special:Categories
 'categories'                    => 'Categories',
 'categories-summary'            => '', # do not translate or duplicate this message to other languages
-'categoriespagetext'            => 'The following categories contain pages or media.',
+'categoriespagetext'            => 'The following categories contain pages or media.
+[[Special:UnusedCategories|Unused categories]], and [[Special:WantedCategories|wanted categories]] are not shown here.',
 'categoriesfrom'                => 'Display categories starting at:',
 'special-categories-sort-count' => 'sort by count',
 'special-categories-sort-abc'   => 'sort alphabetically',
