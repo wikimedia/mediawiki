@@ -738,7 +738,7 @@ class LoginForm {
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
 		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
-		global $wgAuth, $wgEmailConfirmToEdit;
+		global $wgAuth, $wgEmailConfirmToEdit, $wgEnablePersistentCookies;
 		
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 		
@@ -816,6 +816,7 @@ class LoginForm {
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
+		$template->set( 'canremember', (bool)$wgEnablePersistentCookies );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 
 		# Prepare language selection links as needed
