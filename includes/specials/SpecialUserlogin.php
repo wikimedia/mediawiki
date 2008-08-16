@@ -816,7 +816,7 @@ class LoginForm {
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
-		$template->set( 'canremember', (bool)$wgEnablePersistentCookies );
+		$template->set( 'canremember', $wgEnablePersistentCookies );
 		$template->set( 'remember', $wgUser->getOption( 'rememberpassword' ) or $this->mRemember  );
 
 		# Prepare language selection links as needed
