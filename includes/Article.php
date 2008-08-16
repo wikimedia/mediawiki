@@ -51,6 +51,16 @@ class Article {
 		$this->mTitle =& $title;
 		$this->mOldId = $oldId;
 	}
+	
+	/**
+	 * Constructor from an article article
+	 * @param $id The article ID to load
+	 */
+	public static function newFromID( $id ) {
+		$t = Title::newFromID( $id );
+		
+		return $t == null ? null : new Article( $t );
+	}
 
 	/**
 	 * Tell the page view functions that this view was redirected
@@ -1390,8 +1400,12 @@ class Article {
 	 *
 	 * @return bool success
 	 */
-	function doEdit( $text, $summary, $flags = 0, $baseRevId = false ) {
+	function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
+		
+		if ($user == null) {
+			$user = $wgUser;
+		}
 
 		wfProfileIn( __METHOD__ );
 		$good = true;
@@ -1405,7 +1419,7 @@ class Article {
 			}
 		}
 
-		if( !wfRunHooks( 'ArticleSave', array( &$this, &$wgUser, &$text,
+		if( !wfRunHooks( 'ArticleSave', array( &$this, &$user, &$text,
 			&$summary, $flags & EDIT_MINOR,
 			null, null, &$flags ) ) )
 		{
@@ -1415,7 +1429,7 @@ class Article {
 		}
 
 		# Silently ignore EDIT_MINOR if not allowed
-		$isminor = ( $flags & EDIT_MINOR ) && $wgUser->isAllowed('minoredit');
+		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed('minoredit');
 		$bot = $flags & EDIT_FORCE_BOT;
 
 		$oldtext = $this->getContent();
@@ -1484,17 +1498,17 @@ class Article {
 
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
-						$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $wgUser, $summary,
+						$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
 							$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId );
 
 						# Mark as patrolled if the user can do so
-						if( $GLOBALS['wgUseRCPatrol'] && $wgUser->isAllowed( 'autopatrol' ) ) {
+						if( $GLOBALS['wgUseRCPatrol'] && $user->isAllowed( 'autopatrol' ) ) {
 							RecentChange::markPatrolled( $rcid );
 							PatrolLog::record( $rcid, true );
 						}
 					}
-					$wgUser->incEditCount();
+					$user->incEditCount();
 					$dbw->commit();
 				}
 			} else {
@@ -1550,15 +1564,15 @@ class Article {
 			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $wgUser, $summary, $bot,
+				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
 				  '', strlen( $text ), $revisionId );
 				# Mark as patrolled if the user can
-				if( ($GLOBALS['wgUseRCPatrol'] || $GLOBALS['wgUseNPPatrol']) && $wgUser->isAllowed( 'autopatrol' ) ) {
+				if( ($GLOBALS['wgUseRCPatrol'] || $GLOBALS['wgUseNPPatrol']) && $user->isAllowed( 'autopatrol' ) ) {
 					RecentChange::markPatrolled( $rcid );
 					PatrolLog::record( $rcid, true );
 				}
 			}
-			$wgUser->incEditCount();
+			$user->incEditCount();
 			$dbw->commit();
 
 			# Update links, etc.
@@ -1567,7 +1581,7 @@ class Article {
 			# Clear caches
 			Article::onArticleCreate( $this->mTitle );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$wgUser, $text, $summary,
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $text, $summary,
 			 $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
@@ -1576,7 +1590,7 @@ class Article {
 		}
 
 		if ( $good ) {
-			wfRunHooks( 'ArticleSaveComplete', array( &$this, &$wgUser, $text, $summary,
+			wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
