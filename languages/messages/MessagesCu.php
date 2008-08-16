@@ -291,6 +291,7 @@ $messages = array(
 'recentchanges'   => 'послѣ́дьнѩ мѣ́нꙑ',
 'rcshowhideminor' => '$1 ма́лꙑ мѣ́нꙑ',
 'rcshowhidebots'  => '$1 аѵтома́тъ',
+'rcshowhidemine'  => '$1 моꙗ́ мѣ́нꙑ',
 'diff'            => 'ра҃ꙁн',
 'hist'            => 'їс҃т',
 'hide'            => 'съкрꙑи',
@@ -343,17 +344,20 @@ $messages = array(
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота '''$7''' ѥ́стъ",
 
-'disambiguations' => 'мъногосъмꙑ́слиꙗ',
+'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
+'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',
 
 'brokenredirects-edit'   => '(испра́ви)',
 'brokenredirects-delete' => '(поничьжє́ниѥ)',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ба́итъ|ба́ита|ба́итъ}}',
+'nlinks'            => '$1 {{PLURAL:$1|съвѧ́ꙁь|съвѧ́ꙁѧ|съвѧ́ꙁи}}',
 'listusers'         => 'по́льꙃєватєлъ катало́гъ',
 'newpages'          => 'но́ви члѣ́ни',
 'newpages-username' => 'по́льꙃєватєлꙗ и́мѧ :',
 'move'              => 'прѣимєнова́ниѥ',
+'movethispage'      => 'си страни́цѧ прѣимєнова́ниѥ',
 
 # Book sources
 'booksources-go' => 'прѣиди́',
@@ -453,11 +457,17 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-mytalk'       => 'моꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
+'tooltip-ca-protect'      => 'си страни́цѧ ꙁабранє́ниѥ',
+'tooltip-ca-delete'       => 'си страни́цѧ поничьжє́ниѥ',
+'tooltip-ca-move'         => 'си страни́цѧ прѣимєнова́ниѥ',
+'tooltip-ca-watch'        => 'си страни́цѧ блюдє́ниѥ',
 'tooltip-p-logo'          => 'гла́вьна страни́ца',
 'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',
+'tooltip-watch'           => 'си страни́цѧ блюдє́ниѥ',
 
 # Media information
 'file-info-size' => '($1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3 · MIME тѵ́пъ : $4)',
+'svg-long-desc'  => '(дѣ́ло SVG · обꙑ́чьнъ о́браꙁъ : $1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3)',
 
 # Special:NewImages
 'ilsubmit' => 'ищи́',
@@ -468,6 +478,7 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вьсꙗ́',
 'namespacesall' => 'вьсꙗ́',
+'monthsall'     => 'вьсѩ́',
 
 'unit-pixel' => 'п҃ѯ',
 

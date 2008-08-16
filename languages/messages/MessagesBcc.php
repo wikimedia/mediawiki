@@ -144,6 +144,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'منی اصلاحات آ چه لیست چارگ پناه کن',
 'tog-watchlisthidebots'       => 'اصلاحات بوت چه لیست چارگ پناه کن',
 'tog-watchlisthideminor'      => 'هوردین اصلاحات چه لیست چارگ پناه کن',
+'tog-watchlisthideliu'        => 'اصلاحات چه وارد بوتگین کاربران چه لیست چارگان پناه کن',
+'tog-watchlisthideanons'      => 'اصلاحات ناشناسین کاربرانء چه لیست چارگ پناه کن',
 'tog-nolangconversion'        => 'غیر فعال کتن بدل کتن مغایرت آن',
 'tog-ccmeonemails'            => 'په من یک کپی چه ایمیل آنی که من په دگه کاربران راه داته دیم دی',
 'tog-diffonly'                => 'چیر تفاوت محتوای صفحه ی پیش مدار',
@@ -1495,6 +1497,7 @@ PICT # misc.
 'nextpage'          => 'صفحه ی بعدی ($1)',
 'prevpage'          => ' ($1)پیشگین صفحه',
 'allpagesfrom'      => 'پیش در صفحات شروع بنت ته:',
+'allpagesto'        => 'پیش بدار صفحاتی که هلنت گون:',
 'allarticles'       => 'کل صفحات',
 'allinnamespace'    => 'کل صفحات($1 نام فضا)',
 'allnotinnamespace' => 'صفحات کل (ته نام فضا $1 نه)',
@@ -1588,6 +1591,10 @@ PICT # misc.
 'watchlist-hide-own'   => 'منی اصلاحات آ پناه کن',
 'watchlist-show-minor' => 'پیش دار هوردین اصلاحاتء',
 'watchlist-hide-minor' => 'هوردین تغییرات پناه کن',
+'watchlist-show-anons' => 'اصلاحات نشاسناس پیش دار',
+'watchlist-hide-anons' => 'نشاشناسین اصلاحات پناه کن',
+'watchlist-show-liu'   => 'پیش دار اصلاحات کاربرانی که وارد بوتگن',
+'watchlist-hide-liu'   => 'پناه کن اصلاحات  کاربرانی که وارد بوتگن',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'چارگ بین',

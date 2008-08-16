@@ -97,6 +97,8 @@ $messages = array(
 'tog-watchlisthideown'        => '自分の編集を表示しない',
 'tog-watchlisthidebots'       => 'ボットによる編集を表示しない',
 'tog-watchlisthideminor'      => '細部の編集を表示しない',
+'tog-watchlisthideliu'        => 'ウォッチリストからログイン利用者の編集を隠す',
+'tog-watchlisthideanons'      => 'ウォッチリストから匿名利用者の編集を隠す',
 'tog-nolangconversion'        => '字形変換を無効にする',
 'tog-ccmeonemails'            => '他ユーザーに送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
@@ -360,6 +362,12 @@ MySQL returned error "$3: $4"',
 'readonlytext'         => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらく定期的なメンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。データベースをロックしたサーバー管理者は次のような説明をしています:
 
 $1',
+'missing-article'      => '「$1」 $2 というページのテキストをデータベース上に見つけることができませんでした。
+
+削除された版のページへの古い差分表示や固定リンクをたどった時にこのようなことになります。
+
+それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグの可能性があります。
+[[Special:ListUsers/sysop|管理者]]までURL の情報を添えてお知らせください。',
 'missingarticle-rev'   => '(版#: $1)',
 'missingarticle-diff'  => '(差分: $1, $2)',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスタ・サーバーに同期するまで自動的にロックされています。しばらくお待ちください。',
@@ -493,6 +501,7 @@ $2',
 今すぐログインし、パスワードを変更してください。
 
 何かの手違いでアカウントが作成されたと思う場合、このメッセージは無視してください。',
+'login-throttled'            => 'パスワード入力の失敗が制限回数を超えました。しばらく時間をおいてから再度お試しください。',
 'loginlanguagelabel'         => '言語: $1',
 
 # Password reset dialog
@@ -553,18 +562,19 @@ $2',
 $1 または他の[[{{int:Grouppage-sysop}}|管理者]]にこの件についてメールで問い合わせることができます。ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
 
 あなたのIPアドレスは「$3」、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
-'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされています。理由は次の通りです。
+'autoblockedtext'                  => 'ご利用のIPアドレスは $1 によって投稿をブロックされた利用者によって使用されたために自動的にブロックされています。理由は次の通りです。
 
 :$2
 
-ブロック解除予定: $6<br />
-ブロック対象: $8
+* ブロックの開始: $8
+* ブロック解除予定: $6
+* 意図されているブロック対象者: $7
 
 $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
 
-ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、メール送信機能が使えないことに注意してください。
+ただし、[[Special:Preferences|オプション]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、メール送信機能が使えないことに注意してください。
 
-あなたのブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
+あなたの現在のIPアドレスは $3 、ブロックIDは &#x23;$5 です。問い合わせを行う際には、この情報を必ず書いてください。',
 'blockednoreason'                  => '理由が設定されていません',
 'blockedoriginalsource'            => "以下に '''$1''' のソースを示します:",
 'blockededitsource'                => "'''$1''' への '''あなたの編集''' を以下に示します:",
@@ -650,15 +660,19 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'       => '警告: このページは条件文関数の呼び出し負荷が高過ぎます。
+'expensive-parserfunction-warning'        => '警告：このページは条件文関数の呼び出し負荷が高過ぎます。
 
 現在は $1 です。$2 より低い必要があります。',
-'expensive-parserfunction-category'      => '条件文関数の呼び出しが高負荷となっているページ',
-'post-expand-template-inclusion-warning' => '警告: テンプレートのデータサイズが大き過ぎます。いくつかのテンプレートが含まれません。',
+'expensive-parserfunction-category'       => '条件文関数の呼び出しが高負荷となっているページ',
+'post-expand-template-inclusion-warning'  => '警告: テンプレートのデータサイズが大き過ぎます。いくつかのテンプレートが含まれません。',
+'post-expand-template-inclusion-category' => 'テンプレート読み込みサイズが制限値を越えているページ',
+'post-expand-template-argument-warning'   => '警告：このページには展開後のサイズが大きすぎるテンプレートが1つ以上含まれています。これらのテンプレートは展開されませんでした。',
+'post-expand-template-argument-category'  => '展開されなかったテンプレートを含むページ',
 
 # "Undo" feature
 'undo-success' => '編集の取り消しに成功しました。保存ボタンを押すと変更が確定されます。',
 'undo-failure' => '中間の版での編集と競合したため、自動取り消しできませんでした。',
+'undo-norev'   => '取り消そうとした編集は存在しないかすでに削除されたために取り消せませんでした。',
 'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) による $1 版の編集を取り消し',
 
 # Account creation failure
@@ -730,10 +744,23 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'logdelete-logentry'          => '[[$1]]の版の操作情報を変更しました',
 'revdelete-success'           => '版の隠蔽状態を変更しました',
 'logdelete-success'           => '操作情報の隠蔽状態を変更しました',
+'revdel-restore'              => '表示内容の変更',
 'pagehist'                    => 'ページの履歴',
 'deletedhist'                 => '削除された履歴',
+'revdelete-content'           => '本文',
 'revdelete-summary'           => '編集内容の要約',
 'revdelete-uname'             => '利用者名',
+'revdelete-restricted'        => '管理者に対して制限を実施',
+'revdelete-unrestricted'      => '管理者に対する制限を解除',
+'revdelete-hid'               => '$1 を隠す',
+'revdelete-unhid'             => '$1 を表示する',
+'revdelete-log-message'       => '$2版に対して$1',
+'logdelete-log-message'       => '$2の操作に対して$1',
+
+# Suppression log
+'suppressionlog'     => '秘匿記録',
+'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロック記録です。
+現在操作できるブロックについては[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 
 # History merging
 'mergehistory'                     => 'ページの統合履歴',
@@ -772,6 +799,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Search results
 'searchresults'            => '検索結果',
+'searchresults-title'      => '$1の検索結果',
 'searchresulttext'         => '{{SITENAME}}の検索に関する詳しい情報は、[[{{MediaWiki:Helppage}}|{{int:help}}]]をご覧ください。',
 'searchsubtitle'           => '検索語: \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|"$1" から始まるページ]] | [[Special:WhatLinksHere/$1|"$1" のリンク元]])',
 'searchsubtitleinvalid'    => "検索語: '''$1'''",
@@ -789,8 +817,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'search-result-score'      => '関連度: $1%',
 'search-redirect'          => '($1 のリダイレクト)',
 'search-section'           => '(節 $1)',
+'search-suggest'           => 'もしかして: $1',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'search-interwiki-default' => '$1の結果:',
+'search-interwiki-more'    => '(つづき)',
 'mwsuggest-disable'        => 'AJAX によるサジェストを無効にする',
 'searchall'                => 'all',
 'showingresults'           => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
@@ -1353,6 +1383,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'watchlist-hide-own'   => '自分の編集を隠す',
 'watchlist-show-minor' => '細部の編集を表示',
 'watchlist-hide-minor' => '細部の編集を隠す',
+'watchlist-show-anons' => 'IPユーザの編集を表示',
+'watchlist-hide-anons' => 'IPユーザの編集を隠す',
+'watchlist-show-liu'   => 'ログインユーザの編集を表示',
+'watchlist-hide-liu'   => 'ログインユーザの編集を隠す',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ウォッチリストに追加しています...',

@@ -452,12 +452,12 @@ $1",
 'readonlytext'         => "La base de dades està temporalment bloquejada segurament per tasques de manteniment, després de les quals es tornarà a la normalitat.
 
 L'administrador que l'ha bloquejada ha donat aquesta explicació: $1",
-'missing-article'      => "La base de dades no ha pogut trobar el text de la pàgina que hauria d'aparèixer, anomenada «$1» $2.
+'missing-article'      => "La base de dades no ha trobat el text d'una pàgina que hauria d'haver trobat, anomenada «$1» $2.
 
-Segurament això passa perquè s'ha seguit un enllaç trencat o a una pàgina que ha estat eliminada.
+Normalment això passa perquè s'ha seguit una diferència desactualitzada o un enllaç d'historial a una pàgina que s'ha suprimit.
 
-Si esteu segurs que no és aquest el cas, podeu haver trobat un error al programari.
-Aviseu-ho a un administrador, deixant-li clar l'adreça URL causant del problema.",
+Si no fos el cas, podríeu haver trobat un error en el programari.
+Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li clar l'adreça URL causant del problema.",
 'missingarticle-rev'   => '(revisió#: $1)',
 'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
@@ -507,10 +507,12 @@ Els seus motius han estat: «''$2''».",
 # Login and logout pages
 'logouttitle'                => 'Fi de la sessió',
 'logouttext'                 => '<strong>Heu finalitzat la vostra sessió.</strong><br />
-Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu iniciar una sessió una altra vegada amb el mateix o un altre usuari. Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.',
+Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu [[Special:UserLogin|iniciar una sessió una altra vegada]] amb el mateix o un altre usuari. 
+Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.',
 'welcomecreation'            => "== Us donem la benvinguda, $1! ==
 
-S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
+S'ha creat el vostre compte. 
+No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITENAME}}]].",
 'loginpagetitle'             => 'Inici de sessió',
 'yourname'                   => "Nom d'usuari",
 'yourpassword'               => 'Contrasenya',
@@ -521,7 +523,7 @@ S'ha creat el vostre compte. No oblideu de canviar les vostres preferències.",
 'loginproblem'               => "<strong>S'ha produït un problema en iniciar la sessió.</strong><br />Proveu-ho de nou!",
 'login'                      => 'Inici de sessió',
 'nav-login-createaccount'    => 'Inicia una sessió / crea un compte',
-'loginprompt'                => 'Heu de tenir les galetes activades per a poder-vos registar.',
+'loginprompt'                => 'Heu de tenir les galetes habilitades per a poder iniciar una sessió a {{SITENAME}}.',
 'userlogin'                  => 'Inicia una sessió / crea un compte',
 'logout'                     => 'Finalitza la sessió',
 'userlogout'                 => 'Finalitza la sessió',
@@ -645,19 +647,21 @@ Si no hi teniu cap relació i aquest compte ha estat creat per error, simplement
 'summary-preview'                  => 'Previsualització del resum',
 'subject-preview'                  => 'Previsualització de tema/capçalera',
 'blockedtitle'                     => "L'usuari està blocat",
-'blockedtext'                      => "<big>'''S'ha procedit al bloqueig del vostre compte d'usuari o la vostra adreça IP.'''</big>
+'blockedtext'                      => "<big>'''S'ha procedit al blocatge del vostre compte d'usuari o la vostra adreça IP.'''</big>
 
-El bloqueig l'ha dut a terme l'usuari $1, amb el següent motiu: ''$2''
+El blocatge l'ha dut a terme l'usuari $1.
+El motiu donat és ''$2''.
 
-* Inici del bloqueig: $8
-* Final del bloqueig: $6
+* Inici del blocatge: $8
+* Final del blocatge: $6
 * Compte blocat: $7
 
-Podeu contactar $1 o un dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir el bloqueig.
+Podeu contactar amb $1 o un dels [[{{MediaWiki:Grouppage-sysop}}|administradors]] per a discutir-ho.
 
-Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges de correu electrònic a cap usuari, fins que no tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]].
+Tingueu en compte que no podeu fer servir el formulari d'enviament de missatges de correu electrònic a cap usuari, a menys que tingueu una adreça de correu vàlida registrada a les vostres [[Special:Preferences|preferències d'usuari]] i no ho tingueu tampoc blocat.
 
-La vostra adreça IP és $3, i el núm. ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
+La vostra adreça IP actual és $3, i el número d'identificació del blocatge és #$5. 
+Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'autoblockedtext'                  => "La vostra adreça IP ha estat blocada automàticament perquè va ser usada per un usuari actualment bloquejat. Aquest usuari va ser blocat per l'administrador $1. El motiu donat per al bloqueig ha estat:
 
 :''$2''
@@ -673,7 +677,7 @@ El número d'identificació ID del bloqueig és #$5. Si us plau, incloeu aqueste
 'blockednoreason'                  => "no s'ha donat cap motiu",
 'blockedoriginalsource'            => "La font de '''$1''' es mostra a sota:",
 'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
-'whitelistedittitle'               => 'Cal iniciar una sessió per a poder editar',
+'whitelistedittitle'               => 'Cal iniciar una sessió per a poder editar-hi',
 'whitelistedittext'                => 'Heu de $1 per editar pàgines.',
 'confirmedittitle'                 => "Cal una confirmació de l'adreça electrònica per a poder editar",
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder editar pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
@@ -1958,7 +1962,7 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 'imagenocrossnamespace'   => 'No es pot moure la imatge a un espai de noms on no li correspon',
 'imagetypemismatch'       => 'La nova extensió de fitxer no coincideix amb el seu tipus',
 'imageinvalidfilename'    => 'El nom de fitxer indicat no és vàlid',
-'fix-double-redirects'    => "Actualitza també redireccions que apuntin a l'article original",
+'fix-double-redirects'    => "Actualitza també les redireccions que apuntin a l'article original",
 
 # Export
 'export'            => 'Exporta les pàgines',
@@ -2004,7 +2008,8 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'import-interwiki-history'   => "Copia totes les versions de l'historial d'aquesta pàgina",
 'import-interwiki-submit'    => 'Importa',
 'import-interwiki-namespace' => "Transfereix les pàgines a l'espai de noms:",
-'importtext'                 => "Exporteu el fitxer des del wiki d'origen utilitzant l'eina Special:Export, deseu-lo al vostre disc dur i carregueu-ne una còpia ací.",
+'importtext'                 => "Exporteu el fitxer des del wiki d'origen utilitzant l'[[Special:Export|eina d'exportació]]. 
+Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'importstart'                => "S'estan important pàgines...",
 'import-revision-count'      => '$1 {{PLURAL:$1|revisió|revisions}}',
 'importnopages'              => 'No hi ha cap pàgina per importar.',

@@ -369,6 +369,12 @@ $1',
 'readonly'             => 'Базата е заклучена',
 'enterlockreason'      => 'Внесете причина за заклучувањето, вклулувајќи и време на отклучување (приближно)',
 'readonlytext'         => 'Базата е моментално затворена за нови статии и други модификации, најверојатно за рутинска проверка, по која ќе се врати во нормалната состојба. Администраторот кој ја заклучи го понуди следното објаснување: <p>$1',
+'missing-article'      => 'Датотеката на податоци не го пронајде текстот на страницата кој требаше да го пронајде, именуван „$1“ $2.
+
+Ова најчесто е предизвикано од застарена разл. или врска до историја на страница која била избришана.
+
+Ако ова не е случајот, можеби сте нашле софтверска грешка (баг).
+Ве молиме пријавете го ова на [[Special:ListUsers/sysop|администратор]], давајќи врска до URL-то.',
 'missingarticle-rev'   => '(измена#: $1)',
 'missingarticle-diff'  => '(разлика: $1, $2)',
 'readonly_lag'         => 'Базата е автоматски заклучена додека помошните сервери не се синхронизираат',
@@ -844,13 +850,17 @@ ID-то на вашето блокирање е $5.
 'group-bureaucrat'    => 'Бирократи',
 'group-all'           => '(сите)',
 
-'group-bot-member'        => 'Бот',
-'group-sysop-member'      => 'Администратор',
-'group-bureaucrat-member' => 'Бирократ',
+'group-user-member'          => 'корисник',
+'group-autoconfirmed-member' => 'автопотврден корисник',
+'group-bot-member'           => 'Бот',
+'group-sysop-member'         => 'Администратор',
+'group-bureaucrat-member'    => 'Бирократ',
 
-'grouppage-bot'        => '{{ns:project}}:Ботови',
-'grouppage-sysop'      => '{{ns:project}}:Администратори',
-'grouppage-bureaucrat' => '{{ns:project}}:Бирократи',
+'grouppage-user'          => '{{ns:project}}:Корисници',
+'grouppage-autoconfirmed' => '{{ns:project}}:Автопотврдени корисници',
+'grouppage-bot'           => '{{ns:project}}:Ботови',
+'grouppage-sysop'         => '{{ns:project}}:Администратори',
+'grouppage-bureaucrat'    => '{{ns:project}}:Бирократи',
 
 # User rights log
 'rightslog'      => 'Историја на корисничките права',
@@ -901,6 +911,7 @@ ID-то на вашето блокирање е $5.
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|alt text]]</nowiki>''' или
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki>''' за директно поврзување со податокот.",
+'upload-permitted'            => 'Дозволени видови на датотеки: $1.',
 'uploadlog'                   => 'дневник на подигнувањата',
 'uploadlogpage'               => 'Дневник на подигнувањата',
 'uploadlogpagetext'           => 'Подолу е листа на најновите подигнувања на датотеки.',

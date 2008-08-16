@@ -175,6 +175,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Nascondi le mie modifiche negli osservati speciali',
 'tog-watchlisthidebots'       => 'Nascondi le modifiche dei bot negli osservati speciali',
 'tog-watchlisthideminor'      => 'Nascondi le modifiche minori negli osservati speciali',
+'tog-watchlisthideliu'        => 'Nascondi le modifiche degli utenti registrati negli osservati speciali',
+'tog-watchlisthideanons'      => 'Nascondi le modifiche degli utenti anonimi negli osservati speciali',
 'tog-nolangconversion'        => 'Disattiva la conversione tra varianti linguistiche',
 'tog-ccmeonemails'            => 'Inviami una copia dei messaggi spediti agli altri utenti',
 'tog-diffonly'                => 'Non visualizzare il contenuto della pagina dopo il confronto tra versioni',
@@ -1456,6 +1458,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'nextpage'          => 'Pagina successiva ($1)',
 'prevpage'          => 'Pagina precedente ($1)',
 'allpagesfrom'      => 'Mostra le pagine a partire da:',
+'allpagesto'        => 'Mostra le pagine fino a:',
 'allarticles'       => 'Tutte le voci',
 'allinnamespace'    => 'Tutte le pagine del namespace $1',
 'allnotinnamespace' => 'Tutte le pagine, escluso il namespace $1',
@@ -1550,6 +1553,10 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'watchlist-hide-own'   => 'Nascondi le mie modifiche',
 'watchlist-show-minor' => 'Mostra le modifiche minori',
 'watchlist-hide-minor' => 'Nascondi le modifiche minori',
+'watchlist-show-anons' => 'Mostra modifiche degli utenti anonimi',
+'watchlist-hide-anons' => 'Nascondi le modifiche degli utenti anonimi',
+'watchlist-show-liu'   => 'Mostra le modifiche degli utenti registrati',
+'watchlist-hide-liu'   => 'Nascondi le modifiche degli utenti registrati',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aggiunta agli osservati speciali...',

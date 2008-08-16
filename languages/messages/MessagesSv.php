@@ -300,6 +300,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Visa inte mina redigeringar i bevakningslistan',
 'tog-watchlisthidebots'       => 'Visa inte robotredigeringar i bevakningslistan',
 'tog-watchlisthideminor'      => 'Visa inte mindre ändringar i bevakningslistan',
+'tog-watchlisthideliu'        => 'Visa inte redigeringar av inloggade användare i bevakningslistan',
+'tog-watchlisthideanons'      => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
@@ -1556,7 +1558,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'deadendpagestext'        => 'Följande sidor saknar länkar till andra sidor på den här wikin.',
 'protectedpages'          => 'Skyddade sidor',
 'protectedpages-indef'    => 'Endast skydd på obestämd tid',
-'protectedpages-cascade'  => 'Endast kaskaderande skrivskydd',
+'protectedpages-cascade'  => 'Endast kaskaderande skydd',
 'protectedpagestext'      => 'Följande sidor är skyddade mot redigering eller flyttning.',
 'protectedpagesempty'     => 'Inga sidor är skyddade under de villkoren.',
 'protectedtitles'         => 'Skyddade titlar',
@@ -1601,6 +1603,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'nextpage'          => 'Nästa sida ($1)',
 'prevpage'          => 'Föregående sida ($1)',
 'allpagesfrom'      => 'Visa sidor från och med:',
+'allpagesto'        => 'Visa sidor till och med:',
 'allarticles'       => 'Alla sidor',
 'allinnamespace'    => 'Alla sidor (i namnrymden $1)',
 'allnotinnamespace' => 'Alla sidor (inte i namnrymden $1)',
@@ -1659,7 +1662,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailuserfooter' => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Min bevakningslista',
+'watchlist'            => 'Bevakningslista',
 'mywatchlist'          => 'Min bevakningslista',
 'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du har inga sidor i din bevakningslista.',
@@ -1693,6 +1696,10 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchlist-hide-own'   => 'Göm mina redigeringar',
 'watchlist-show-minor' => 'Visa mindre ändringar',
 'watchlist-hide-minor' => 'Göm mindre ändringar',
+'watchlist-show-anons' => 'Visa anonyma ändringar',
+'watchlist-hide-anons' => 'Göm anonyma ändringar',
+'watchlist-show-liu'   => 'Visa ändringar av inloggade användare',
+'watchlist-hide-liu'   => 'Göm ändringar av inloggade användare',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bevakar...',

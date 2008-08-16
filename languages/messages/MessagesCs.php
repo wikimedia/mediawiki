@@ -351,6 +351,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Na seznamu sledovaných stránek skrýt moje editace',
 'tog-watchlisthidebots'       => 'Na seznamu sledovaných stránek skrýt editace botů',
 'tog-watchlisthideminor'      => 'Skrýt malé editace z mých sledovaných stránek',
+'tog-watchlisthideliu'        => 'Na seznamu sledovaných stránek skrýt editace přihlášených uživatelů',
+'tog-watchlisthideanons'      => 'Na seznamu sledovaných stránek skrýt editace nepřihlášených uživatelů',
 'tog-nolangconversion'        => 'Vypnout konverzi variant',
 'tog-ccmeonemails'            => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly'                => 'Nezobrazovat obsah stránky pod rozdílem verzí',
@@ -1193,7 +1195,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 # Groups
 'group'               => 'Skupina:',
 'group-user'          => 'Uživatelé',
-'group-autoconfirmed' => 'schválení uživatelé',
+'group-autoconfirmed' => 'Schválení uživatelé',
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
@@ -1201,7 +1203,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'group-all'           => '(všechny)',
 
 'group-user-member'          => 'Uživatel',
-'group-autoconfirmed-member' => 'schválený uživatel',
+'group-autoconfirmed-member' => 'Schválený uživatel',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Správce',
 'group-bureaucrat-member'    => 'Byrokrat',
@@ -1651,7 +1653,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'listgrouprights-helppage'        => 'Help:Práva skupiny',
 'listgrouprights-members'         => '(seznam členů)',
 'listgrouprights-addgroup'        => 'Přidávání uživatelů do {{PLURAL:$2|skupiny|skupin}} $1',
-'listgrouprights-removegroup'     => 'Vyřazování uživatelů ze {{PLURAL:$2|skupiny|skupin}}: $1',
+'listgrouprights-removegroup'     => 'Vyřazování uživatelů ze {{PLURAL:$2|skupiny|skupin}} $1',
 'listgrouprights-addgroup-all'    => 'Přidávání uživatelů do libovolné skupiny',
 'listgrouprights-removegroup-all' => 'Vyřazování uživatelů z libovolné skupiny',
 
@@ -1710,6 +1712,10 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'watchlist-hide-own'   => 'skrýt mé editace',
 'watchlist-show-minor' => 'ukázat malé editace',
 'watchlist-hide-minor' => 'skrýt malé editace',
+'watchlist-show-anons' => 'zobrazit anonymní uživatele',
+'watchlist-hide-anons' => 'skrýt anonymní uživatele',
+'watchlist-show-liu'   => 'zobrazit přihlášené uživatele',
+'watchlist-hide-liu'   => 'skrýt přihlášené uživatele',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Přidávám na seznam sledovaných stránek…',
@@ -2069,7 +2075,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí [[Special:Import|stránky importů]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí [[Special:Import|importovací stránky]].
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 

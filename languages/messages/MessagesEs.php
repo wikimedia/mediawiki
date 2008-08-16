@@ -107,6 +107,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Ocultar mis ediciones en la lista de seguimiento',
 'tog-watchlisthidebots'       => 'Ocultar ediciones de bots en la lista de seguimiento',
 'tog-watchlisthideminor'      => 'Ocultar ediciones menores en la lista de seguimiento',
+'tog-watchlisthideliu'        => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
+'tog-watchlisthideanons'      => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
 'tog-nolangconversion'        => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails'            => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly'                => 'No mostrar el contenido de la página bajo las diferencias',
@@ -1232,11 +1234,11 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 # File reversion
 'filerevert'                => 'Revertir $1',
 'filerevert-legend'         => 'Reversión de archivos',
-'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [version $4 desde la $3, $2].",
+'filerevert-intro'          => "Estás revirtiendo '''[[Media:$1|$1]]''' a la [$4 version del $2 a las $3].",
 'filerevert-comment'        => 'Comentario:',
 'filerevert-defaultcomment' => 'Revirtiendo a la versión subida el $1 a las $2',
 'filerevert-submit'         => 'Revertir',
-'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [version $4 desde la $3, $2].",
+'filerevert-success'        => "'''[[Media:$1|$1]]''' ha sido revertido a la [$4 version del $2 a las $3].",
 'filerevert-badversion'     => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
@@ -1247,7 +1249,7 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "'''$1''' ha sido borrado.",
-'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' del $2 a las $3 ha sido borrada.</span>',
+'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' del $2 a las $3 ha sido borrada.",
 'filedelete-nofile'           => "El archivo '''$1''' no existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "No existe una versión guardada de '''$1''' con los atributos especificados.",
 'filedelete-otherreason'      => 'Otra razón:',
@@ -1285,7 +1287,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 
 # Statistics
 'statistics'             => 'Estadísticas',
-'sitestats'              => 'Estadísticas del sitio',
+'sitestats'              => 'Estadísticas de {{SITENAME}}',
 'userstats'              => 'Estadísticas de usuario',
 'sitestatstext'          => "Hay un total de {{PLURAL:$1|'''1''' página|'''$1''' páginas}} en la base de datos.
 Esto incluye páginas de discusión, páginas sobre {{SITENAME}}, esbozos mínimos, redirecciones y otras que probablemente no puedan ser consideradas páginas de contenidos.
@@ -1357,7 +1359,8 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'deadendpages'            => 'Páginas sin salida',
 'deadendpagestext'        => 'Las siguientes páginas no enlazan a otras páginas de {{SITENAME}}.',
 'protectedpages'          => 'Páginas protegidas',
-'protectedpages-indef'    => 'Solamente protecciones infinitas',
+'protectedpages-indef'    => 'Sólo protecciones infinitas',
+'protectedpages-cascade'  => 'Sólo protecciones en cascada',
 'protectedpagestext'      => 'Las siguientes páginas están protegidas para su edición o traslado',
 'protectedpagesempty'     => 'Actualmente no hay ninguna página protegida con esos parámetros.',
 'protectedtitles'         => 'Títulos protegidos',
@@ -1411,7 +1414,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagessubmit'    => 'Mostrar',
 'allpagesprefix'    => 'Mostrar páginas con el prefijo:',
 'allpagesbadtitle'  => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
-'allpages-bad-ns'   => '{{SITENAME}} no tiene un espacio de nombres llamado "$1".',
+'allpages-bad-ns'   => '{{SITENAME}} no tiene un espacio de nombres llamado «$1».',
 
 # Special:Categories
 'categories'                    => 'Categorías',
@@ -1427,7 +1430,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Permisos del grupo de usuarios',
-'listgrouprights-summary'         => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki, y de sus privilegios de acceso asociados.
+'listgrouprights-summary'         => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki y de sus privilegios de acceso asociados.
 Puede haber información adicional sobre privilegios individuales en [[{{MediaWiki:Listgrouprights-helppage}}]]',
 'listgrouprights-group'           => 'Grupo',
 'listgrouprights-rights'          => 'Derechos',
@@ -1471,7 +1474,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'addedwatch'           => 'Añadido a la lista de seguimiento',
 'addedwatchtext'       => "La página «[[:\$1]]» ha sido añadida a tu [[Special:Watchlist|lista se seguimiento]]. Cambios futuros en esta página y su página de discusión asociada se indicarán ahí, y la página aparecerá '''en negritas''' en la [[Special:RecentChanges|lista de cambios recientes]] para hacerla más fácil de detectar. <p>Cuando quieras eliminar la página de tu lista de seguimiento, presiona \"Dejar de vigilar\" en el menú.",
 'removedwatch'         => 'Eliminada de la lista de seguimiento',
-'removedwatchtext'     => 'La página "[[:$1]]" ha sido eliminada de su lista de seguimiento.',
+'removedwatchtext'     => 'La página «[[:$1]]» ha sido eliminada de tu [[Special:Watchlist|lista de seguimiento]].',
 'watch'                => 'Vigilar',
 'watchthispage'        => 'Vigilar esta página',
 'unwatch'              => 'Dejar de vigilar',
@@ -1494,6 +1497,10 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'watchlist-hide-own'   => 'Ocultar mis ediciones',
 'watchlist-show-minor' => 'Mostrar ediciones menores',
 'watchlist-hide-minor' => 'Esconder ediciones menores',
+'watchlist-show-anons' => 'Mostrar ediciones anónimas',
+'watchlist-hide-anons' => 'Ocultar ediciones anónimas',
+'watchlist-show-liu'   => 'Mostrar ediciones de usuarios registrados',
+'watchlist-hide-liu'   => 'Ocultar ediciones de usuarios registrados',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigilando...',
@@ -1537,7 +1544,7 @@ Cambie las opciones de su lista de seguimiento en:
 'deletepage'                  => 'Borrar esta página',
 'confirm'                     => 'Confirmar',
 'excontent'                   => "El contenido era: '$1'",
-'excontentauthor'             => "El contenido era: '$1' (y el único autor fue '$2')",
+'excontentauthor'             => "El contenido era: '$1' (y el único autor fue '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'               => "El contenido antes de blanquear era: '$1'",
 'exblank'                     => 'página estaba vacía',
 'delete-confirm'              => 'Borrar "$1"',
@@ -1551,7 +1558,7 @@ consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}
 'actioncomplete'              => 'Acción completa',
 'deletedtext'                 => '"<nowiki>$1</nowiki>" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
-'deletedarticle'              => 'borró "$1"',
+'deletedarticle'              => '«[[$1]]» borrado',
 'suppressedarticle'           => 'se ha suprimido «[[$1]]»',
 'dellogpage'                  => 'Registro de borrados',
 'dellogpagetext'              => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor (UTC).',
@@ -1583,10 +1590,10 @@ esta acción ha sido cancelada como medida de precaución contra secuestros de s
 Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de nuevo.',
 'protectlogpage'              => 'Protecciones de páginas',
 'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
-'protectedarticle'            => 'protegió [[$1]]',
-'modifiedarticleprotection'   => 'Cambiado el nivel de protección de "[[$1]]"',
+'protectedarticle'            => '«[[$1]]» protegido',
+'modifiedarticleprotection'   => 'cambiado el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
-'protect-title'               => 'Protegiendo "$1"',
+'protect-title'               => 'Cambiando el nivel de protección de «$1»',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo de la protección',
 'protectexpiry'               => 'Caducidad:',
@@ -1601,7 +1608,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 A continuación se muestran las opciones actuales de la página <strong>$1</strong>:',
 'protect-cascadeon'           => 'Actualmente esta página está protegida porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que tienen activada la opción de protección en cascada. Puedes cambiar el nivel de protección de esta página, pero no afectará a la protección en cascada.',
 'protect-default'             => '(por defecto)',
-'protect-fallback'            => 'Necesita permiso: "$1"',
+'protect-fallback'            => 'Necesita el permiso «$1»',
 'protect-level-autoconfirmed' => 'Bloquear usuarios no registrados',
 'protect-level-sysop'         => 'Sólo administradores',
 'protect-summary-cascade'     => 'en cascada',
@@ -1823,7 +1830,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'movepagetext'            => "Usando el siguiente formulario se renombrará una página, moviendo todo su historial al nuevo nombre.
 El título anterior se convertirá en una redirección al nuevo título.
 Los enlaces al antiguo título de la página no se cambiarán.
-Asegúrate de no dejar redirecciones dobles o rotas.
+Asegúrate de no dejar  [[Special:DoubleRedirects|redirecciones dobles]] o [[Special:BrokenRedirects|rotas]].
 Tú eres responsable de hacer que los enlaces sigan apuntando adonde se supone que deberían hacerlo.
 
 
@@ -1920,7 +1927,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'import-interwiki-history'   => 'Copiar todas las versiones históricas para esta página',
 'import-interwiki-submit'    => 'Importar',
 'import-interwiki-namespace' => 'Transferir páginas al espacio de nombres:',
-'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la utilidad Special:Export, guárdelo en su ordenador y súbalo aquí.',
+'importtext'                 => 'Por favor, exporte el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], guárdelo en su ordenador y súbalo aquí.',
 'importstart'                => 'Importando páginas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'importnopages'              => 'No hay páginas que importar.',
@@ -2402,9 +2409,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'monthsall'        => '(todos)',
 
 # E-mail address confirmation
-'confirmemail'             => 'Confirmar dirección E-mail',
+'confirmemail'             => 'Confirmar dirección de correo electrónico',
 'confirmemail_noemail'     => 'No tienes una dirección de correo electrónico válida en tus [[Special:Preferences|preferencias de usuario]].',
-'confirmemail_text'        => 'Este wiki requiere que valide su dirección de correo antes de usarlo. Pulse el botón de abajo para enviar la confirmación.
+'confirmemail_text'        => '{{SITENAME}} requiere que valide su dirección de correo antes de usarlo. Pulse el botón de abajo para enviar la confirmación.
 El correo incluirá un enlace con un código. Introdúzcalo para confirmar la validez de su dirección.',
 'confirmemail_pending'     => '<div class="error">
 Ya se te ha enviado un código de confirmación; si creaste una cuenta recientemente, puede que tengas que esperar unos minutos para que te llegue antes de intentar pedir un nuevo código.
@@ -2418,8 +2425,9 @@ Este código no es necesario para entrar, pero necesitarás darlo antes de activ
 Correo devuelto: $1',
 'confirmemail_invalid'     => 'Código de confirmación incorrecto. El código debe haber expirado.',
 'confirmemail_needlogin'   => 'Necesitas $1 para confirmar tu dirección electrónica.',
-'confirmemail_success'     => 'Su dirección de correo ha sido confirmada. Ahora puedes registrarse y colaborar en el wiki.',
-'confirmemail_loggedin'    => 'Tu dirección e-mail ha sido confirmada.',
+'confirmemail_success'     => 'Su dirección de correo ha sido confirmada
+Ahora puedes [[Special:UserLogin|identificarte]] y colaborar en el wiki.',
+'confirmemail_loggedin'    => 'Tu dirección de correo electrónico ha sido confirmada.',
 'confirmemail_error'       => 'Algo salió mal al guardar su confirmación.',
 'confirmemail_subject'     => 'confirmación de la dirección de correo de {{SITENAME}}',
 'confirmemail_body'        => 'Alguien, probablemente usted mismo, ha registrado una cuenta "$2" con esta dirección de correo en {{SITENAME}}, desde la dirección IP $1.
