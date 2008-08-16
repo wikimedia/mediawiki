@@ -37,15 +37,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Backwards compatibility is maintained.
 * $wgEnablePersistentCookies has been added. Setting to false disables the
   setting of persistent cookies. Defaults to true.
-  
+
 === New features in 1.14 ===
 
-* New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and 
-  'Special:ListUsers/GROUP/USER', in addition to the older syntax 
+* New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and
+  'Special:ListUsers/GROUP/USER', in addition to the older syntax
   'Special:ListUsers/GROUP' where GROUP is a valid group name.
-* Configurable er-namespace and per-page notices for the edit form, 
+* Configurable er-namespace and per-page notices for the edit form,
   respectively MediaWiki:Editnotice-# where # is the namespace number, and
-  MediaWiki:Editnotice-#-PAGENAME where # is the page's namespace number and 
+  MediaWiki:Editnotice-#-PAGENAME where # is the page's namespace number and
   PAGENAME is the page name minus the namespace prefix.
 * (bug 8068) New __INDEX__ and __NOINDEX__ magic words allow user control of
   search engine indexing on a per-article basis.
@@ -80,7 +80,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14929) removeUnusedAccounts.php now supports 'ignore-touched' and
   'ignore-groups'. Patch by Louperivois
 * (bug 15127) Work around minor display glitch in Opera.
-* By default, reject file uploads that look like ZIP files, to avoid the 
+* By default, reject file uploads that look like ZIP files, to avoid the
   so-called GIFAR vulnerability.
 * (bug 15141) Give ability to only list protected pages with the cascading
   option enabled on Special:ProtectedPages
@@ -88,7 +88,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Show/Hide logged in users, Show/Hide anonymous, Invert namespace selection
 * Added hook 'UserrightsChangeableGroups' to allow modification of what
   groups may be added or removed via the Special:UserRights interface.
-  
+* (bug 14468) Lines in classic RecentChanges and Watchlist have classes "odd"
+  and "even" to make colouring using css possible.
+
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.
