@@ -139,6 +139,9 @@ class ApiLogin extends ApiBase {
 				$result['result'] = 'CreateBlocked';
 				$result['details'] = 'Your IP address is blocked from account creation';
 				break;
+			case LoginForm :: THROTTLED :
+				$result['result'] = 'Throttled';
+				break;
 			default :
 				ApiBase :: dieDebug(__METHOD__, 'Unhandled case value');
 		}
