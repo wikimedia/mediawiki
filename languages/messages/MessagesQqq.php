@@ -84,6 +84,8 @@ $messages = array(
 'tog-watchlisthideown' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist.",
 'tog-watchlisthidebots' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist.",
 'tog-watchlisthideminor' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist.",
+'tog-watchlisthideliu' => "Option in tab 'Watchlist' of [[Special:Preferences]]",
+'tog-watchlisthideanons' => "Option in tab 'Watchlist' of [[Special:Preferences]]",
 'tog-nolangconversion' => 'In user preferences.',
 'tog-ccmeonemails' => 'In user preferences',
 'tog-diffonly' => 'Toggle option used in [[Special:Preferences]].',
@@ -323,8 +325,12 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 View or restore <nowiki>{{PLURAL:\$1|one deleted edit|\$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or 
 ''View or restore n deleted edits?''",
 'feed-unavailable' => 'This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.',
-'site-rss-feed' => "Used in the HTML header of a wiki's RSS feed. $1 is {{SITENAME}}.",
-'site-atom-feed' => "Used in the HTML header of a wiki's Atom feed. $1 is {{SITENAME}}.",
+'site-rss-feed' => "Used in the HTML header of a wiki's RSS feed.
+$1 is <nowiki>{{SITENAME}}</nowiki>.
+HTML markup cannot be used.",
+'site-atom-feed' => "Used in the HTML header of a wiki's Atom feed.
+$1 is <nowiki>{{SITENAME}}</nowiki>.
+HTML markup cannot be used.",
 'red-link-title' => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1037,6 +1043,8 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 * $3 is a hour
 * $4 is an URL and must follow square bracket: [$4',
 'filerevert-comment' => '{{Identical|Comment}}',
+'filerevert-defaultcomment' => '* $1 is a date
+* $2 is an hour',
 'filerevert-submit' => '{{Identical|Revert}}',
 'filerevert-success' => 'Message displayed when you succeed in reverting a version of a file.
 * $1 is the name of the media
@@ -1198,6 +1206,8 @@ Don\'t translate the "Template:" part!',
 'prevpage' => 'Second part of the navigation bar for the special page [[Special:AllPages]]. $1 is a page title. The other parts are [[MediaWiki:Allarticles]] and [[MediaWiki:Nextpage]].
 
 {{Identical|Previous page}}',
+'allpagesfrom' => 'Option in [[Special:AllPages]]. See also {{msg|allpagesto}}.',
+'allpagesto' => 'Option in [[Special:AllPages]]. See also {{msg|allpagesfrom}}.',
 'allarticles' => 'First part of the navigation bar for the special page [[Special:AllPages]]. The other parts are [[MediaWiki:Prevpage]] and [[MediaWiki:Nextpage]].
 {{Identical|All pages}}',
 'allpagesprev' => "Allegedly used in [[Special:AllPages]], although I haven't seen it.
@@ -1277,6 +1287,10 @@ Don\'t translate the "Template:" part!',
 'watchlist-hide-own' => 'Option in [[Special:Watchlist]].',
 'watchlist-show-minor' => 'Option in [[Special:Watchlist]].',
 'watchlist-hide-minor' => 'Option in [[Special:Watchlist]].',
+'watchlist-show-anons' => 'Option in [[Special:Watchlist]]',
+'watchlist-hide-anons' => 'Option in [[Special:Watchlist]]',
+'watchlist-show-liu' => 'Option in [[Special:Watchlist]]',
+'watchlist-hide-liu' => 'Option in [[Special:Watchlist]]',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
@@ -1966,5 +1980,8 @@ $1 is the name of the requested file.',
 'specialpages-group-pagetools' => 'Title of the special pages group containing special pages like [[Special:MovePage]], [[Special:Undelete]], [[Special:WhatLinksHere]], [[Special:Export]] etc.',
 'specialpages-group-wiki' => 'Title of the special pages group, containing special pages like [[Special:Version]], [[Special:Statistics]], [[Special:LockDB]], etc.',
 'specialpages-group-redirects' => 'Title of the special pages group, containing special pages that redirect to another location, like [[Special:Randompage]], [[Special:Mypage]], [[Special:Mytalk]], etc.',
+
+# Special:BlankPage
+'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
 
 );

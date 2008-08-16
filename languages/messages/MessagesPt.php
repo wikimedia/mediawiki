@@ -188,9 +188,11 @@ $messages = array(
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
-'tog-watchlisthideown'        => 'Esconder as minhas edições da lista de artigos vigiados',
-'tog-watchlisthidebots'       => 'Esconder edições efectuadas por robôs da lista de artigos vigiados',
-'tog-watchlisthideminor'      => 'Esconder edições menores da lista de artigos vigiados',
+'tog-watchlisthideown'        => 'Esconder as minhas edições da lista de vigiados',
+'tog-watchlisthidebots'       => 'Esconder edições efectuadas por robôs da lista de vigiados',
+'tog-watchlisthideminor'      => 'Esconder edições menores da lista de vigiados',
+'tog-watchlisthideliu'        => 'Ocultar edições de utilizadores autenticados da lista de vigiados',
+'tog-watchlisthideanons'      => 'Ocultar edições de utilizadores anônimos da lista de vigiados',
 'tog-nolangconversion'        => 'Desabilitar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
@@ -260,8 +262,8 @@ $messages = array(
 'category-empty'                 => "''Esta categoria de momento não possui nenhuma página de conteúdo ou ficheiro multimédia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}}',
 'hidden-category-category'       => 'Categorias ocultas', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Esta categoria possui apenas a sub-categoria a seguir.|Há, nesta categoria {{PLURAL:$1|uma sub-categoria|$1 sub-categorias}} (dentre um total de $2).}}',
-'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte sub-categoria|as $1 sub-categorias a seguir}}.',
+'category-subcat-count'          => '{{PLURAL:$2|Esta categoria possui apenas a subcategoria a seguir.|Há, nesta categoria {{PLURAL:$1|uma sub-categoria|$1 subcategorias}} (dentre um total de $2).}}',
+'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte subcategoria|as $1 subcategorias a seguir}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
 'category-article-count-limited' => 'Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}}.',
 'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 seguintes ficheiros}} (dentre um total de $2.)}}',
@@ -997,8 +999,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'math_notexvc'             => 'O executável texvc não foi encontrado. Consulte math/README para instruções da configuração.',
 'prefs-personal'           => 'Perfil de utilizador',
 'prefs-rc'                 => 'Mudanças recentes',
-'prefs-watchlist'          => 'Lista de artigos vigiados',
-'prefs-watchlist-days'     => 'Dias a mostrar na lista de artigos vigiados:',
+'prefs-watchlist'          => 'Lista de páginas vigiadas',
+'prefs-watchlist-days'     => 'Dias a mostrar na lista de vigiados:',
 'prefs-watchlist-edits'    => 'Número de edições a mostrar na lista de vigiados expandida:',
 'prefs-misc'               => 'Diversos',
 'saveprefs'                => 'Salvar',
@@ -1455,7 +1457,8 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'deadendpages'            => 'Páginas sem saída',
 'deadendpagestext'        => 'As seguintes páginas não contêm hiperligações para outras páginas nesta wiki.',
 'protectedpages'          => 'Páginas protegidas',
-'protectedpages-indef'    => 'Protecções infinitas apenas',
+'protectedpages-indef'    => 'Apenas protecções infinitas',
+'protectedpages-cascade'  => 'Apenas protecções progressivas',
 'protectedpagestext'      => 'As seguintes páginas encontram-se protegidas contra edições ou movimentações',
 'protectedpagesempty'     => 'Não existem páginas, neste momento, protegidas com tais parâmetros.',
 'protectedtitles'         => 'Títulos protegidos',
@@ -1563,14 +1566,14 @@ O endereço que introduziu nas [[Special:Preferences|suas preferências]] irá a
 'mywatchlist'          => 'Artigos vigiados',
 'watchlistfor'         => "(para '''$1''')",
 'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
-'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de artigos vigiados.',
+'watchlistanontext'    => 'Por favor, $1 para ver ou editar os itens na sua lista de vigiados.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de artigos vigiados.',
+'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de vigiados.',
 'addedwatch'           => 'Adicionado à lista',
 'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de vigiados]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
-'removedwatch'         => 'Removida da lista de artigos vigiados',
-'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de [[Special:Watchlist|sua lista de artigos vigiados]].',
+'removedwatch'         => 'Removida da lista de vigiados',
+'removedwatchtext'     => 'A página "[[:$1]]" foi removida de [[Special:Watchlist|sua lista de vigiados]].',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
 'unwatch'              => 'Desinteressar-se',
@@ -1581,7 +1584,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'watchlist-details'    => '{{PLURAL:$1|$1 página vigiada|$1 páginas vigiadas}}, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por email encontra-se activada.',
 'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas a '''negrito'''",
-'watchmethod-recent'   => 'verificando edições recentes para os artigos vigiados',
+'watchmethod-recent'   => 'verificando edições recentes para os vigiados',
 'watchmethod-list'     => 'verificando páginas vigiadas para edições recentes',
 'watchlistcontains'    => 'Sua lista de vigiados contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname'      => "Problema com item '$1', nome inválido...",
@@ -1593,6 +1596,10 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'watchlist-hide-own'   => 'Ocultar minhas edições',
 'watchlist-show-minor' => 'Exibir edições menores',
 'watchlist-hide-minor' => 'Ocultar edições menores',
+'watchlist-show-anons' => 'Exibir edições de anônimos',
+'watchlist-hide-anons' => 'Ocultar edições de anônimos',
+'watchlist-show-liu'   => 'Exibir edições de utilizadores autenticados',
+'watchlist-hide-liu'   => 'Ocultar edições de utilizadores autenticados',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
@@ -1621,15 +1628,15 @@ Contacte o editor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de artigos vigiados.
+Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de vigiados.
 
              O seu amigável sistema de notificação da {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de artigos vigiados, visite
+Para alterar as suas preferências da lista de vigiados, visite
 {{fullurl:Special:Watchlist/edit}}
 
-Contacto e assistência
+Contacto e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
@@ -1902,9 +1909,10 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 # Developer tools
 'lockdb'              => 'Trancar base de dados',
 'unlockdb'            => 'Destrancar base de dados',
-'lockdbtext'          => 'Trancar a base de dados suspenderá a habilidade de todos os utilizadores de editarem páginas, mudarem suas preferências, lista de artigos vigiados e outras coisas que requerem mudanças na base de dados.<br />
+'lockdbtext'          => 'Trancar a base de dados suspenderá a habilidade de todos os utilizadores de editarem páginas, mudarem suas preferências, lista de vigiados e outras coisas que requerem mudanças na base de dados.
 Por favor, confirme que você realmente pretende fazer isso e que vai destrancar a base de dados quando a manutenção estiver concluída.',
-'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os utilizadores de editarem páginas,  mudarem suas preferências, alterarem suas listas de artigos vigiados e outras coisas que requerem mudanças na base de dados. Por favor, confirme que realmente pretende fazer isso.',
+'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os utilizadores de editarem páginas,  mudarem suas preferências, alterarem suas listas de vigiados e outras coisas que requerem mudanças na base de dados.
+Por favor, confirme que realmente pretende fazer isso.',
 'lockconfirm'         => 'Sim, eu realmente desejo bloquear a base de dados.',
 'unlockconfirm'       => 'Sim, eu realmente desejo desbloquear a base de dados.',
 'lockbtn'             => 'Bloquear base de dados',
@@ -2056,7 +2064,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'tooltip-pt-mytalk'               => 'Minha página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições deste endereço de ip',
 'tooltip-pt-preferences'          => 'Minhas preferências',
-'tooltip-pt-watchlist'            => 'Lista de artigos vigiados.',
+'tooltip-pt-watchlist'            => 'A lista de páginas às quais você está monitorando alterações',
 'tooltip-pt-mycontris'            => 'Lista das minhas contribuições',
 'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
 'tooltip-pt-anonlogin'            => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
@@ -2070,8 +2078,8 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',
-'tooltip-ca-watch'                => 'Adicionar esta página aos artigos vigiados',
-'tooltip-ca-unwatch'              => 'Remover esta página dos artigos vigiados',
+'tooltip-ca-watch'                => 'Adicionar esta página aos vigiados',
+'tooltip-ca-unwatch'              => 'Remover esta página dos vigiados',
 'tooltip-search'                  => 'Pesquisar nesta wiki',
 'tooltip-search-go'               => 'Ir a uma página com este exato nome, caso exista',
 'tooltip-search-fulltext'         => 'Procurar por páginas contendo este texto',
@@ -2107,7 +2115,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de salvar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões seleccionadas desta página.',
-'tooltip-watch'                   => 'Adicionar esta página à sua lista de artigos vigiados',
+'tooltip-watch'                   => 'Adicionar esta página à sua lista de vigiados',
 'tooltip-recreate'                => 'Recriar a página apesar de ter sido eliminada',
 'tooltip-upload'                  => 'Iniciar o upload',
 

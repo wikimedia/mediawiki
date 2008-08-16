@@ -316,6 +316,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Sembunyikan suntingan saya di daftar pantauan',
 'tog-watchlisthidebots'       => 'Sembunyikan suntingan bot di daftar pantauan',
 'tog-watchlisthideminor'      => 'Sembunyikan suntingan kecil di daftar pantauan',
+'tog-watchlisthideliu'        => 'Sembunyikan suntingan pengguna yang masuk log dari daftar pantauan',
+'tog-watchlisthideanons'      => 'Sembunyikan suntingan pengguna anonim dari daftar pantauan',
 'tog-nolangconversion'        => 'Matikan konversi varian',
 'tog-ccmeonemails'            => 'Kirimkan saya salinan surat-e yang saya kirimkan ke orang lain',
 'tog-diffonly'                => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
@@ -1510,6 +1512,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'deadendpagestext'        => 'Halaman-halaman berikut tidak memiliki pranala ke halaman manapun di wiki ini.',
 'protectedpages'          => 'Halaman yang dilindungi',
 'protectedpages-indef'    => 'Hanya untuk perlindungan dengan jangka waktu tak terbatas',
+'protectedpages-cascade'  => 'Hanya perlindungan runtun',
 'protectedpagestext'      => 'Halaman-halaman berikut dilindungi dari pemindahan atau penyuntingan.',
 'protectedpagesempty'     => 'Saat ini tidak ada halaman yang sedang dilindungi dengan parameter-parameter tersebut.',
 'protectedtitles'         => 'Judul yang dilindungi',
@@ -1645,6 +1648,10 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'watchlist-hide-own'   => 'Sembunyikan suntingan saya',
 'watchlist-show-minor' => 'Tampilkan suntingan kecil',
 'watchlist-hide-minor' => 'Sembunyikan suntingan kecil',
+'watchlist-show-anons' => 'Tampilkan suntingan anonim',
+'watchlist-hide-anons' => 'Sembunyikan suntingan anonim',
+'watchlist-show-liu'   => 'Tampilkan suntingan pengguna yang masuk log',
+'watchlist-hide-liu'   => 'Sembunyikan suntingan pengguna yang masuk log',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',

@@ -358,7 +358,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'categorypage'      => 'Kategorie ankieken',
 'viewtalkpage'      => 'Diskuschoon ankieken',
 'otherlanguages'    => 'Annere Spraken',
-'redirectedfrom'    => '(Wiederleiden vun $1)',
+'redirectedfrom'    => '(wiederwiest vun $1)',
 'redirectpagesub'   => 'Redirectsiet',
 'lastmodifiedat'    => 'Disse Siet is toletzt üm $2, $1 ännert worrn.', # $1 date, $2 time
 'viewcount'         => 'Disse Siet is {{PLURAL:$1|een|$1}} Maal opropen worrn.',
@@ -2040,7 +2040,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'tooltip-n-mainpage'              => 'Besöök de Hööftsiet',
 'tooltip-n-portal'                => 'över dat Projekt, wat du doon kannst, woans du de Saken finnen kannst',
 'tooltip-n-currentevents'         => 'Achtergrünn to aktuellen Schehn finnen',
-'tooltip-n-recentchanges'         => 'List vun de letzten Ännern in dissen Wiki.',
+'tooltip-n-recentchanges'         => 'Wat in dit Wiki toletzt ännert worrn is.',
 'tooltip-n-randompage'            => 'Tofällige Siet',
 'tooltip-n-help'                  => 'Hier kriegst du Hülp.',
 'tooltip-t-whatlinkshere'         => 'Wat wiest hierher',

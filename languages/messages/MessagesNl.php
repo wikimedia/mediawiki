@@ -1658,6 +1658,7 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 'nextpage'          => 'Volgende pagina ($1)',
 'prevpage'          => 'Vorige pagina ($1)',
 'allpagesfrom'      => "Pagina's bekijken vanaf:",
+'allpagesto'        => "Pagina's bekijken tot:",
 'allarticles'       => "Alle pagina's",
 'allinnamespace'    => "Alle pagina's (naamruimte $1)",
 'allnotinnamespace' => "Alle pagina's (niet in naamruimte $1)",

@@ -79,6 +79,7 @@ $messages = array(
 'moredotdotdot' => 'Doy...',
 'mypage'        => 'tañi nütramkawe',
 'mytalk'        => 'Tañi nütramkawe',
+'anontalk'      => 'chillkatuen mew Tüfachi IP',
 'and'           => 'ka',
 
 'returnto'         => 'Amutun $1 püle.',
@@ -93,6 +94,7 @@ $messages = array(
 'edit'             => 'Wirin',
 'create'           => 'Llitun',
 'editthispage'     => 'Wirin tüfachi página',
+'create-this-page' => 'Llitun tüfachi pakina',
 'delete'           => 'Ñamümün',
 'deletethispage'   => 'Ñamümün tüfachi pakina',
 'protect'          => 'Elulan ñi wiriael',
@@ -104,7 +106,7 @@ $messages = array(
 'toolbox'          => 'Küdawpeyüm',
 'userpage'         => 'adkintun página de usuario',
 'projectpage'      => 'adkintun página meta',
-'imagepage'        => 'adkintun pakina imagen',
+'imagepage'        => 'Adkintun ad pakina',
 'mediawikipage'    => 'adkintun página de mensaje',
 'templatepage'     => 'adkintun página de plantilla',
 'viewhelppage'     => 'adkintun página de ayuda',
@@ -130,6 +132,7 @@ $messages = array(
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'pakina',
 'nstab-user'      => 'Lludüchi',
 'nstab-special'   => 'Kangelu',
 'nstab-mediawiki' => 'Dungu',
@@ -158,12 +161,13 @@ $messages = array(
 'loginlanguagelabel'      => 'Dungun: $1',
 
 # Edit pages
-'subject'      => 'Dungu/üy',
-'showpreview'  => 'Pen chum müley',
-'loginreqlink' => 'Koni',
-'newarticle'   => '(We)',
-'editing'      => 'Wirimekey $1',
-'yourtext'     => 'Tami wirin',
+'subject'            => 'Dungu/üy',
+'showpreview'        => 'Pen chum müley',
+'loginreqlink'       => 'Koni',
+'newarticle'         => '(We)',
+'editing'            => 'Wirimekey $1',
+'yourtext'           => 'Tami wirin',
+'template-protected' => '(Ngünaytun)',
 
 # History pages
 'page_first'     => 'wünen',
@@ -175,6 +179,7 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'  => 'pengelün/ellkan',
+'pagehist'      => 'pünon pakina',
 'revdelete-hid' => 'Ellkan $1',
 
 # Diffs
@@ -199,6 +204,9 @@ $messages = array(
 'group'       => 'Kisuwen:',
 'group-sysop' => 'Pu ngünefe',
 'group-all'   => '(kom pu che)',
+
+# Rights
+'right-edit' => 'Wirin pakina',
 
 # User rights log
 'rightsnone' => 'chemnorume',

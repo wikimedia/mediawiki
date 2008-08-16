@@ -176,11 +176,13 @@ $messages = array(
 'tog-showjumplinks'           => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview'          => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary'        => 'Si recensionem non summatim descripsero, me roga si continuare velim',
-'tog-watchlisthideown'        => 'Celare meas recensiones in paginarum custoditarum indice',
+'tog-watchlisthideown'        => 'Celare recensiones meas in paginarum custoditarum indice',
 'tog-watchlisthidebots'       => 'Celare recensiones automatarias in paginarum custoditarum indice',
 'tog-watchlisthideminor'      => 'Celare recensiones minores in paginarum custoditarum indice',
+'tog-watchlisthideliu'        => 'Celare recensiones usorum notorum in paginarum custoditarum indice',
+'tog-watchlisthideanons'      => 'Celare recensiones usorum ignotorum in paginarum custoditarum indice',
 'tog-ccmeonemails'            => 'Mitte mihi transcriptiones litterarum quas ad alios usores mitto',
-'tog-diffonly'                => 'Operor non ostendo page impleo subter supter funis.',
+'tog-diffonly'                => 'Noli monstrare contenta paginae sub dissimilitudine',
 'tog-showhiddencats'          => 'Categorias celatas monstrare',
 
 'underline-always'  => 'Semper',
@@ -355,7 +357,7 @@ $messages = array(
 
 'badaccess'        => 'Permissus erratum',
 'badaccess-group0' => 'Non licet tibi actum quod petivisti agere.',
-'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex uno gregum $1.',
+'badaccess-groups' => 'Actum quod petivisti solum potest agi ab usoribus ex {{PLURAL:$2|grege|uno gregum}}: $1.',
 
 'ok'                      => 'Age',
 'retrievedfrom'           => 'Receptum de "$1"',
@@ -430,11 +432,13 @@ Ratio data est ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Conventum concludere',
-'logouttext'                 => '<strong>Conventum tuum conclusum est.</strong><br />
-Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine aperias. Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusquam navigatrum purgaveris.',
-'welcomecreation'            => '== Salve, $1! ==
+'logouttext'                 => '<strong>Conventum tuum conclusum est.</strong>
 
-Ratio tua iam creata est. Noli oblivisci praeferentias tuas mutare.',
+Ignote continues {{grammar:ablative|{{SITENAME}}}} uti, aut conventum novum vel sub eodem vel novo nomine [[Special:UserLogin|aperias]].
+Nota bene paginas fortasse videantur quasi tuum conventum esset apertum, priusquam navigatrum purgaveris.',
+'welcomecreation'            => '== Salve, $1! ==
+Ratio tua iam creata est.
+Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusative|{{SITENAME}}}} mutare.',
 'loginpagetitle'             => 'Conventum aperire',
 'yourname'                   => 'Nomen tuum usoris:',
 'yourpassword'               => 'Tessera tua:',
@@ -582,7 +586,7 @@ Numerus obstructionis tuus est #$5. Quaesumus te eum scripturum si quaestiones u
 Novam paginam si vis creare, in capsam infra praebitam scribe.
 (Vide [[{{MediaWiki:Helppage}}|paginam auxilii]] si plura cognoscere vis.)
 Si hic es propter errorem, solum '''Retrorsum''' in navigatro tuo preme.",
-'anontalkpagetext'          => "---- ''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine ratione datae sunt, conventum [[Special:UserLogin|aperi vel crea]] ad confusionem solvendam. Nota locum IP tuum concelatum esse convento aperto si de rebus privatis tuis es sollicitatus.''",
+'anontalkpagetext'          => "----''Haec est pagina disputationis usoris anonymi, solum a loco IP suo noti. Memento locos IP aliquando mutaturos, et a usoribus multis fortasse adhibitos. Si es usor ignotus, et tibi querulae sine causa datae sunt, conventum [[Special:UserLogin/signup|crea]] vel [[Special:UserLogin|aperi]] ad confusionem futuram evitendam.''",
 'noarticletext'             => 'In hac pagina nondum litterae sunt. Potes etiam [[Special:Search/{{PAGENAME}}|hanc rem in aliis paginis quaerere]] aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare].',
 'userpage-userdoesnotexist' => 'Usor "$1" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated'                   => '(Novata)',
@@ -653,6 +657,7 @@ Confirma URL paginae.',
 'histlegend'          => 'Selige pro dissimilitudine: indica in botones radiales et "intrare" in claviatura imprime ut conferas.
 
 Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma proxima, M = recensio minor',
+'history-search'      => 'Quaerere in paginae historia',
 'deletedrev'          => '[deleta]',
 'histfirst'           => 'Veterrimus',
 'histlast'            => 'Novissimus',
@@ -683,7 +688,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 # Search results
 'searchresults'         => 'Eventum investigationis',
 'searchresulttext'      => 'Pro plurimis nuntiis de investigatione in {{grammar:ablative|{{SITENAME}}}}, vide [[{{MediaWiki:Helppage}}|{{MediaWiki:Help}}]].',
-'searchsubtitle'        => "Pro investigatione '''[[:$1]]'''",
+'searchsubtitle'        => 'Quaesitum est \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|omnes paginae quarum titulus incipit litteris "$1"]] | [[Special:WhatLinksHere/$1|omnes paginae quae ad "$1" nectunt]])',
 'searchsubtitleinvalid' => 'Pro investigatione "$1"',
 'noexactmatch'          => "'''Nulla pagina cum titulo \"\$1\" exacto existit.''' Potes [[:\$1|eam creare]].",
 'noexactmatch-nocreate' => "'''Nulla pagina cum titulo \"\$1\" exacto existit.'''",
@@ -881,7 +886,8 @@ Ad fasciculum in pagina includendum, utere nexu
 'upload-preferred'   => 'Genera fasciculorum suasa: $1.',
 'uploadlog'          => 'notatio fasciculorum impositorum',
 'uploadlogpage'      => 'Notatio fasciculorum impositorum',
-'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.',
+'uploadlogpagetext'  => 'Subter est index fasciculorum recentissimorum impositorum.
+Vide etiam [[Special:NewImages|pinacothecam fasciculorum recentissimorum impositorum]].',
 'filename'           => 'Nomen fasciculi',
 'filedesc'           => 'Descriptio',
 'fileuploadsummary'  => 'Descriptio:',
@@ -1052,6 +1058,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'deadendpagestext'        => 'Paginae subter non nectunt ad alias paginas ullas in {{grammar:ablative|{{SITENAME}}}}.',
 'protectedpages'          => 'Paginae protectae',
 'protectedpages-indef'    => 'Solum protectiones infinitas',
+'protectedpages-cascade'  => 'Solum protectiones defluentes quasi cataracta',
 'protectedpagestext'      => 'Paginae sequentes protectae sunt a movendo ac recensendo',
 'protectedtitles'         => 'Tituli protecti',
 'protectedtitlestext'     => 'Hi tituli protecti sunt ne creentur paginae',
@@ -1087,6 +1094,7 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum pagi
 'nextpage'          => 'Pagina proxima ($1)',
 'prevpage'          => 'Pagina superior ($1)',
 'allpagesfrom'      => 'Monstrare paginas ab:',
+'allpagesto'        => 'Monstrare paginas usque ad:',
 'allarticles'       => 'Omnes paginae',
 'allinnamespace'    => 'Omnes paginae (in spatio nominali $1)',
 'allnotinnamespace' => 'Omnes paginae (quibus in spatio nominali $1 exclusis)',
@@ -1106,11 +1114,17 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum pagi
 # Special:ListUsers
 'listusers-submit' => 'Monstrare',
 
+# Special:ListGroupRights
+'listgrouprights-addgroup'        => 'Potest usores addere ad {{PLURAL:$2|gregem|greges}}: $1',
+'listgrouprights-removegroup'     => 'Potest usores removere ex {{PLURAL:$2|grege|gregibus}}: $1',
+'listgrouprights-addgroup-all'    => 'Potest usores addere ad omnes greges',
+'listgrouprights-removegroup-all' => 'Potest usores removere ex omnibus gregibus',
+
 # E-mail user
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
 'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
-Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi respondere poterit.',
+Inscriptio electronica quae in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',
 'noemailtext'     => 'Hic usor inscriptionem electronicam ratam non dedit, aut nuntia ab aliis usoribus non vult.',
@@ -1136,7 +1150,7 @@ Inscriptio electronica qui in praeferentiis tuis dedis ut "Ab" inscriptione appa
 
 Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\" ab summa pagina.",
 'removedwatch'         => 'Non iam custodita',
-'removedwatchtext'     => 'Pagina "[[:$1]]" non iam custodita est.',
+'removedwatchtext'     => 'Pagina "[[:$1]]" ex [[Special:Watchlist|indice paginarum custoditarum]] remota est.',
 'watch'                => 'Custodire',
 'watchthispage'        => 'Custodire hanc paginam',
 'unwatch'              => 'Decustodire',
@@ -1157,6 +1171,10 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchlist-hide-own'   => 'Celare recensiones meas',
 'watchlist-show-minor' => 'Monstrare recensiones minores',
 'watchlist-hide-minor' => 'Celare recensiones minores',
+'watchlist-show-anons' => 'Monstrare recensiones usorum ignotorum',
+'watchlist-hide-anons' => 'Celare recensiones usorum ignotorum',
+'watchlist-show-liu'   => 'Monstrare recensiones usorum notorum',
+'watchlist-hide-liu'   => 'Celare recensiones usorum notorum',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Custodiens...',
@@ -1539,7 +1557,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 Nuntius reddidit: $1',
 'confirmemail_invalid'     => 'Codex adfirmationis invalidus. Fortasse id exitum est.',
 'confirmemail_needlogin'   => 'Necesse est tibi $1 ut inscriptionem tuam electronicam adfirmes.',
-'confirmemail_success'     => 'Tua inscriptio electronica adfirmata est. Libenter utaris {{grammar:ablative|{{SITENAME}}}}.',
+'confirmemail_success'     => 'Tua inscriptio electronica adfirmata est.
+Libenter [[Special:UserLogin|conventum aperias]] utarisque {{grammar:ablative|{{SITENAME}}}}.',
 'confirmemail_loggedin'    => 'Inscriptio tua electronica iam adfirmata est.',
 'confirmemail_error'       => 'Aliquid erravit quando adfirmationem tuam servabamus.',
 'confirmemail_subject'     => '{{SITENAME}} - Adfirmatio inscriptionis electronicae',

@@ -182,6 +182,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Sembunyikan suntingan saya daripada senarai pantau',
 'tog-watchlisthidebots'       => 'Sembunyikan suntingan bot daripada senarai pantau',
 'tog-watchlisthideminor'      => 'Sembunyikan suntingan kecil daripada senarai pantau',
+'tog-watchlisthideliu'        => 'Sembunyikan suntingan oleh pengguna log masuk daripada senarai pantau',
+'tog-watchlisthideanons'      => 'Sembunyikan suntingan oleh pengguna tanpa nama daripada senarai pantau',
 'tog-nolangconversion'        => 'Matikan penukaran kelainan',
 'tog-ccmeonemails'            => 'Kirim kepada saya salinan bagi e-mel yang saya hantar kepada orang lain',
 'tog-diffonly'                => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
@@ -1469,6 +1471,7 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 'nextpage'          => 'Halaman berikutnya ($1)',
 'prevpage'          => 'Halaman sebelumnya ($1)',
 'allpagesfrom'      => 'Tunjukkan laman bermula pada:',
+'allpagesto'        => 'Tunjukkan laman berakhir pada:',
 'allarticles'       => 'Semua laman',
 'allinnamespace'    => 'Semua laman (ruang nama $1)',
 'allnotinnamespace' => 'Semua laman (bukan dalam ruang nama $1)',
@@ -1571,6 +1574,10 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'watchlist-hide-own'   => 'Sembunyi suntingan saya',
 'watchlist-show-minor' => 'Papar suntingan kecil',
 'watchlist-hide-minor' => 'Sembunyi suntingan kecil',
+'watchlist-show-anons' => 'Munculkan suntingan pengguna tanpa nama',
+'watchlist-hide-anons' => 'Sembunyikan suntingan pengguna tanpa nama',
+'watchlist-show-liu'   => 'Munculkan suntingan pengguna log masuk',
+'watchlist-hide-liu'   => 'Sembunyikan suntingan pengguna log masuk',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',

@@ -82,6 +82,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Esconder les mios ediciones na llista de vixilancia',
 'tog-watchlisthidebots'       => 'Esconder les ediciones de bots na llista de vixilancia',
 'tog-watchlisthideminor'      => 'Esconder les ediciones menores na llista de vixilancia',
+'tog-watchlisthideliu'        => "Ocultar ediciones d'usuarios rexistraos na llista de vixilancia",
+'tog-watchlisthideanons'      => "Ocultar ediciones d'usuarios anónimos na llista de vixilancia",
 'tog-nolangconversion'        => 'Deshabilitar la conversión de variantes de llingua',
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
@@ -1331,6 +1333,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'deadendpagestext'        => 'Les páxines siguientes nun enllacien a páxina dala de {{SITENAME}}.',
 'protectedpages'          => 'Páxines protexíes',
 'protectedpages-indef'    => 'Namái les proteiciones permanentes',
+'protectedpages-cascade'  => 'Namái proteiciones en cascada',
 'protectedpagestext'      => "Les páxines siguientes tán protexíes escontra'l treslláu y la edición",
 'protectedpagesempty'     => 'Nun hai páxines protexíes anguaño con estos parámetros.',
 'protectedtitles'         => 'Títulos protexíos',
@@ -1470,6 +1473,10 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watchlist-hide-own'   => 'Esconder les mios ediciones',
 'watchlist-show-minor' => 'Amosar ediciones menores',
 'watchlist-hide-minor' => 'Esconder ediciones menores',
+'watchlist-show-anons' => 'Amosar ediciones anónimes',
+'watchlist-hide-anons' => 'Ocultar ediciones anónimes',
+'watchlist-show-liu'   => "Amosar ediciones d'usuarios rexistraos",
+'watchlist-hide-liu'   => "Ocultar ediciones d'usuarios rexistraos",
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vixilando...',

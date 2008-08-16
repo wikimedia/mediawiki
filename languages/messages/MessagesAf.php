@@ -544,14 +544,17 @@ U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'blockedtitle'                     => 'Gebruiker is geblokkeer',
 'blockedtext'                      => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
-Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
+Die blokkering is deur $1 gedoen.
+Die rede gegee is ''$2''.
 
-* Begin van blokkering: $8
-* Verval van blokkering: $6
+* Begin van blokkade: $8
+* Blokkade eindig: $6
 * Blokkering gemik op: $7
 
 U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
-U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. U huidige IP-adres is $3, en die blokkering ID is #$5. Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
+U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. 
+U huidige IP-adres is $3, en die blokkering ID is #$5. 
+Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
 'autoblockedtext'                  => "U IP-adres is outomaties geblok omdat dit deur 'n gebruiker gebruik was, wat deur $1 geblokkeer is. 
 Die rede verskaf is:
 
@@ -1527,7 +1530,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',
-'whatlinkshere-title'      => 'Bladsye die skakel na $1',
+'whatlinkshere-title'      => 'Bladsye wat verwys na "$1"',
 'whatlinkshere-page'       => 'Bladsy:',
 'linkshere'                => "Die volgende bladsye skakel na '''[[:$1]]''':",
 'nolinkshere'              => "Geen bladsye skakel na '''[[:$1]]'''.",
@@ -1585,7 +1588,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipusubmit'                => 'Maak hierdie adres oop',
 'unblocked'                => 'Blokkade van [[User:$1|$1]] is opgehef',
 'unblocked-id'             => 'Blokkade $1 is opgehef',
-'ipblocklist'              => 'Lys van geblokkeerde IP-adresse',
+'ipblocklist'              => 'Geblokkeerde IP-adresse en gebruikers',
 'ipblocklist-legend'       => "Soek 'n geblokkeerde gebruiker",
 'ipblocklist-username'     => 'Gebruikersnaam of IP adres:',
 'ipblocklist-submit'       => 'Soek',

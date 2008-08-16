@@ -313,6 +313,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Saját szerkesztések elrejtése',
 'tog-watchlisthidebots'       => 'Robotok szerkesztéseinek elrejtése',
 'tog-watchlisthideminor'      => 'Apró változtatások elrejtése',
+'tog-watchlisthideliu'        => 'Bejelentkezett szerkesztők módosításainak elrejtése a figyelőlistáról',
+'tog-watchlisthideanons'      => 'Névtelen szerkesztések elrejtése a figyelőlistáról',
 'tog-nolangconversion'        => 'A változók átalakításának letiltása',
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailekről kapjak én is egy másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
@@ -1629,6 +1631,7 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 'nextpage'          => 'Következő lap ($1)',
 'prevpage'          => 'Előző oldal ($1)',
 'allpagesfrom'      => 'Lapok listázása a következő címtől kezdve:',
+'allpagesto'        => 'Lapok listázása a következő címig:',
 'allarticles'       => 'Az összes lap listája',
 'allinnamespace'    => 'Összes lap ($1 névtér)',
 'allnotinnamespace' => 'Minden olyan lap, ami nem a(z) $1 névtérben van.',
@@ -1721,6 +1724,10 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchlist-hide-own'   => 'Saját szerkesztések elrejtése',
 'watchlist-show-minor' => 'Apró módosítások megjelenítése',
 'watchlist-hide-minor' => 'Apró módosítások elrejtése',
+'watchlist-show-anons' => 'Névtelen szerkesztések megjelenítése',
+'watchlist-hide-anons' => 'Névtelen szerkesztések elrejtése',
+'watchlist-show-liu'   => 'Bejelentkezett szerkesztők módosításainak megjelenítése',
+'watchlist-hide-liu'   => 'Bejelentkezett szerkesztők módosításainak elrejtése',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Figyelés...',
