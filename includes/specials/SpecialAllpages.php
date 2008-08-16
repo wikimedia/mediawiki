@@ -183,7 +183,7 @@ function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = 
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
-		$this->showChunk( $namespace, $from, $to, $including );
+		$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1], $including );
 		return;
 	}
 
@@ -240,8 +240,9 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 /**
  * @param integer $namespace (Default NS_MAIN)
  * @param string $from list all pages from this name (default FALSE)
+ * @param string $from list all pages to this name (default FALSE)
  */
-function showChunk( $namespace = NS_MAIN, $from, $to, $including = false ) {
+function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $including = false ) {
 	global $wgOut, $wgUser, $wgContLang;
 
 	$sk = $wgUser->getSkin();
