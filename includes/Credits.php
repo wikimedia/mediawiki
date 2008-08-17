@@ -144,7 +144,7 @@ function getContributorCredits($article, $cnt, $showIfMax) {
 	# "ThisSite user(s) A, B and C"
 
 	if (!empty($user)) {
-		$user = wfMsg('siteusers', $user);
+		$user = wfMsg('siteusers', array( $user, count($contributors) ) );
 	}
 
 	# This is the big list, all mooshed together. We sift for blank strings

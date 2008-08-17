@@ -2758,7 +2758,7 @@ You can view its source.',
 'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Based on work by $1.',
 'others'           => 'others',
-'siteusers'        => '{{SITENAME}} user(s) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|user|users}} $1',
 'creditspage'      => 'Page credits',
 'nocredits'        => 'There is no credits info available for this page.',
 
