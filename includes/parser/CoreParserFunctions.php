@@ -170,10 +170,16 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function displaytitle( $parser, $text = '' ) {
+		global $wgRestrictDisplayTitle;
 		$text = trim( Sanitizer::decodeCharReferences( $text ) );
-		$title = Title::newFromText( $text );
-		if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
+
+		if ( !$wgRestrictDisplayTitle ) {
 			$parser->mOutput->setDisplayTitle( $text );
+		} else {
+			$title = Title::newFromText( $text );
+			if( $title instanceof Title && $title->getFragment() == '' && $title->equals( $parser->mTitle ) )
+				$parser->mOutput->setDisplayTitle( $text );
+		}
 		return '';
 	}
 
