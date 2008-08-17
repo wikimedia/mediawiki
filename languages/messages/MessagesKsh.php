@@ -1618,7 +1618,10 @@ eins vun all däm op eimol.',
 
 # Special:Categories
 'categories'                    => 'Saachjruppe',
-'categoriespagetext'            => 'Hee sin nur Saachjruppe met jät dren jeliss.',
+'categoriespagetext'            => 'Hee sin nur Saachjruppe met jät dren jeliss.
+Mer han_er eije Leßte för de
+[[Special:UnusedCategories|Saachjruppe met nix dren]], un de
+[[Special:WantedCategories|jewönschte un nit aanjelaate Saachjruppe]].',
 'categoriesfrom'                => 'Zeich Saachjruppe vun hee af:',
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
@@ -2399,6 +2402,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'exif-jpeginterchangeformatlength' => 'Bytes aan JPEG-Date',
 'exif-transferfunction'            => 'Övverdrarongsfungxjohn',
 'exif-whitepoint'                  => 'Fun Hand met Messung',
+'exif-primarychromaticities'       => 'De drei Houpfärve ier Färf-Intensität',
 'exif-ycbcrcoefficients'           => 'YCbCr-Geweeschte',
 'exif-referenceblackwhite'         => 'Schwazz-Wiiß-Bezochs-Punk-Paare',
 'exif-datetime'                    => 'Zickpunk fum Affshpeischere',

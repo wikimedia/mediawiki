@@ -79,7 +79,7 @@ $messages = array(
 'moredotdotdot' => 'Doy...',
 'mypage'        => 'tañi nütramkawe',
 'mytalk'        => 'Tañi nütramkawe',
-'anontalk'      => 'chillkatuen mew Tüfachi IP',
+'anontalk'      => 'Tüfachi IP ñi nütramkawe',
 'and'           => 'ka',
 
 'returnto'         => 'Amutun $1 püle.',
@@ -148,7 +148,7 @@ $messages = array(
 'yourname'                => 'Tami lludüchi üy',
 'yourpassword'            => 'Tami kondungu',
 'login'                   => 'Konün',
-'nav-login-createaccount' => 'Registrarse/Konün',
+'nav-login-createaccount' => 'Konün',
 'userlogin'               => 'Konün',
 'logout'                  => 'Tripan',
 'userlogout'              => 'Tripan',
@@ -172,6 +172,7 @@ $messages = array(
 # History pages
 'page_first'     => 'wünen',
 'history-search' => 'Kintun pünon',
+'deletedrev'     => '[ñamümüngelu]',
 'historyempty'   => '(welli)',
 
 # Revision feed
@@ -180,6 +181,7 @@ $messages = array(
 # Revision deletion
 'rev-delundel'  => 'pengelün/ellkan',
 'pagehist'      => 'pünon pakina',
+'deletedhist'   => 'Ñamümüngelu pünon',
 'revdelete-hid' => 'Ellkan $1',
 
 # Diffs
@@ -206,12 +208,16 @@ $messages = array(
 'group-all'   => '(kom pu che)',
 
 # Rights
-'right-edit' => 'Wirin pakina',
+'right-edit'       => 'Wirin pakina',
+'right-createpage' => 'Llitun pakina (nütramkayam pakinanongelu)',
+'right-createtalk' => 'Llitun nütramkayam pakina',
+'right-delete'     => 'Ñamümün pakina',
 
 # User rights log
 'rightsnone' => 'chemnorume',
 
 # Recent changes
+'rcshowhidemine'  => '$1 tañi wirin',
 'hide'            => 'Ellkan',
 'minoreditletter' => 'p',
 'newpageletter'   => 'W',
@@ -223,7 +229,7 @@ $messages = array(
 
 # Image description page
 'filehist-deleteall' => 'kom ñamümün',
-'filehist-deleteone' => 'tüfa ñamümün',
+'filehist-deleteone' => 'ñamümün tüfa',
 
 # File deletion
 'filedelete'         => '$1 ñamümün',
@@ -262,7 +268,12 @@ $messages = array(
 'unwatch'         => 'Llaytuwelan',
 'unwatchthispage' => 'Llaytuwelan',
 
+'created' => 'Llituy',
+
 # Delete/protect/revert
+'deletepage'              => 'Ñamümün tüfachi pakina',
+'delete-legend'           => 'Ñamümün',
+'deletedarticle'          => '«[[$1]]» Ñamümün',
 'protectexpiry'           => 'Afi:',
 'protect-level-sysop'     => 'Pu ngünefe müṯen',
 'protect-summary-cascade' => 'Trayengko',
@@ -282,6 +293,7 @@ $messages = array(
 
 # Block/unblock
 'ipbexpiry'          => 'Afi',
+'ipbotheroption'     => 'Kakelu',
 'ipblocklist-submit' => 'Kintun',
 'expiringblock'      => 'afi $1',
 
@@ -295,6 +307,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-mytalk' => 'Tañi nütramkawe',
 'tooltip-pt-logout' => 'Tripan',
+'tooltip-ca-delete' => 'Ñamümün tüfachi pakina',
 
 # Patrol log
 'patrol-log-diff' => 'ng$1',
@@ -308,7 +321,8 @@ $messages = array(
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',
 
-'exif-meteringmode-0' => 'Kimnoelchi',
+'exif-meteringmode-0'   => 'Kimnoelchi',
+'exif-meteringmode-255' => 'Kakelu',
 
 'exif-lightsource-0' => 'Kimnoelchi',
 
@@ -319,8 +333,12 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kom',
 'imagelistall'     => 'kom',
+'watchlistall2'    => 'Fill',
 'namespacesall'    => 'kom',
 'monthsall'        => '(kom)',
+
+# Trackbacks
+'trackbackremove' => ' ([$1 Ñamümün])',
 
 # action=purge
 'confirm_purge_button' => 'Feley may',
@@ -336,6 +354,12 @@ $messages = array(
 'size-kilobytes' => '$1 Kb',
 'size-megabytes' => '$1 Mb',
 'size-gigabytes' => '$1 Gb',
+
+# Special:Version
+'version-other' => 'Kakelu',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Kintun',
 
 # Special:SpecialPages
 'specialpages-group-login' => 'Konün',

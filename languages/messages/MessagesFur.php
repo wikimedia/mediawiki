@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Helix84
  * @author Klenje
  * @author לערי ריינהארט
- * @author Helix84
  */
 
 $fallback = 'it';

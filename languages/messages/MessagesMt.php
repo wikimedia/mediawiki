@@ -54,7 +54,7 @@ $messages = array(
 
 'underline-always'  => 'Dejjem',
 'underline-never'   => 'Qatt',
-'underline-default' => "''Browser predefinit''",
+'underline-default' => 'Żomm l-issettjar tal-browser',
 
 # Dates
 'sunday'        => 'Il-Ħadd',
@@ -659,8 +659,8 @@ Dawn l-argumenti tħallew barra.",
 
 # "Undo" feature
 'undo-success' => "Din il-modifika tista' tiġi mneħħija. Jekk jogħġbok verifika il-paragun t'hawn taħt u verifika li dan huwa dak li trid int, imbgħad salva l-bidliet t'hawn taħt sabiex tlesti l-proċedura ta' tneħħija.",
-'undo-failure' => "Il-Modifika ma setgħatx tiġi mneħħija minħabba kunflitt ta' modifiki intermedji.",
-'undo-norev'   => 'Il-Modifika ma setgħatx tiġi mneħħija minħabba li ma teżistix jew ġiet imħassra.',
+'undo-failure' => "Huwa impossibbli li tiġi annullata l-modifika, minħabba kunflitt ta' modifiki intermedji.",
+'undo-norev'   => 'Il-modifika ma tistax tiġi annullata peress li ma teżistix jew inkella għax ġiet diġà imħassra.',
 'undo-summary' => "Neħħi r-reviżjoni $1 ta' [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussjoni]])",
 
 # Account creation failure
@@ -1307,10 +1307,10 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'specialpage-empty'       => 'Dan ir-rapport ma fih l-ebda riżultat.',
 'lonelypages'             => 'Paġni orfni',
 'lonelypagestext'         => "Il-paġni indikati m'għandhomx links f'paġni oħrajn fis-sit.",
-'uncategorizedpages'      => 'Paġni mhux kategorizati',
-'uncategorizedcategories' => 'Kategoriji mhux kategorizati',
+'uncategorizedpages'      => 'Paġni mhux ikkategorizzati',
+'uncategorizedcategories' => 'Kategoriji mhux ikkategorizzati',
 'uncategorizedimages'     => 'Fajl mhux kategorizati',
-'uncategorizedtemplates'  => 'Templates mhux kategorizati',
+'uncategorizedtemplates'  => 'Templates mhux ikkategorizzati',
 'unusedcategories'        => 'Kategoriji mhux użati',
 'unusedimages'            => 'Fajls mhux użati',
 'popularpages'            => 'L-iktar paġni popolari',
@@ -1342,7 +1342,7 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'move'                    => 'Mexxi',
 'movethispage'            => 'Ċaqlaq din il-paġna',
 'unusedimagestext'        => "Jekk jogħġbok nota li siti tal-web oħrajn jistgħu jagħmlu link ma' fajl b'URL dirett, u għalhekk xorta jistgħu jiġu użati minkejja li m'għandhomx użu attiv.",
-'unusedcategoriestext'    => 'Il-Paġni tal-kategoriji segwenti jeżistu għalkemm l-ebda paġna jew kategorija tagħmel użu minna.',
+'unusedcategoriestext'    => 'Il-paġni tal-kategoriji segwenti jeżistu, għalkemm ma teżisti l-ebda paġna jew kategorija li tagħmel użu minnhom',
 'notargettitle'           => 'L-Ebda tarka',
 'notargettext'            => "L-Ebda paġna tarka jew utent ma ġie speċifikat f'relazzjoni mal-funżjoni rikjesta.",
 'nopagetitle'             => 'L-Ebda paġna tarka',
@@ -1597,8 +1597,8 @@ Il-Preferenzi kurrenti ta' din il-paġni huma <strong>$1</strong>:",
 'undeletepage'                 => 'Ara u rkupra l-paġni mħassra',
 'undeletepagetitle'            => "'''Hawn jinsabu reviżjonijiet imħassra ta' [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Ara l-paġni mħassra',
-'undeletepagetext'             => 'Il-Paġni indikati ġew imħassra, però għadhom fl-arkivju u għalhekk jistgħu jiġu irkuprati.
-L-Arkivju huwa perjodikament imnadaf.',
+'undeletepagetext'             => "Il-paġni segwenti ġew imħassra, però għadhom fl-arkivju u għalhekk jistgħu jiġu irkuprati.
+L-arkivju jista' jiġi mnaddaf perjodikament.",
 'undelete-fieldset-title'      => 'Irkupra reviżjonijiet',
 'undeleteextrahelp'            => "Biex tirkupra l-paġna sħiħa, ħalli l-kaxxi kollha vojta u kklikkja fuq '''''Irkupra'''''.
 Biex tirkupra partijiet speċifiċi, agħżel il-kaxxi korrispondenti mar-reviżjonijiet li tixtieq tirkupra u agħfas '''''Irkupra'''''. Jekk tagħfas '''''Irrisettja''''', kemm il-kaxxi kif ukoll l-ispazju għall-kummenti jiżvujtjaw.",
@@ -1630,7 +1630,7 @@ Konsulta [[Special:Log/delete|l-log ta' tħassir]] għar-reġistru ta' tħassir 
 'undelete-search-submit'       => 'Fittex',
 'undelete-no-results'          => "L-ebda paġna korrispondenti ma ġiet misjuba fl-arkivju ta' tħassir.",
 'undelete-filename-mismatch'   => 'Ir-Reviżjoni tal-fajl bit-timbru tal-ħin $1 ma setgħax jiġi mħassar: isem tal-fajl ma jaqbilx',
-'undelete-bad-store-key'       => 'Ir-Reviżjoni tal-fajl bit-timbru tal-ħin $1 ma setgħax jiġi mħassar: fajl kien nieqes qabel it-tħassir.',
+'undelete-bad-store-key'       => 'Huwa impossibbli li jiġi annullat it-tħassir tar-reviżjoni tal-fajl bit-timbru tal-ħin $1: il-fajl kien nieqes qabel it-tħassir.',
 'undelete-cleanup-error'       => 'Problema fit-tħassir ta\' fajl "$1" tal-arkivju li mhux użat.',
 'undelete-missing-filearchive' => "Impossibli tirkupra l-fajl tal-arkivju b'ID $1 minħabba li mhux qiegħed fid-database.
 Jista' jkun li ġa ġie rkuprat.",
@@ -1721,8 +1721,8 @@ Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attiv
 'unblockip'                       => 'Żblokkja l-utent',
 'unblockiptext'                   => "Uża l-formula t'hawn taħt sabiex tirkupra aċċess tal-kitba 'l utent jew indirizz tal-IP blokkat.",
 'ipusubmit'                       => 'Żblokkja dan l-indirizz',
-'unblocked'                       => 'L-Utent [[User:$1|$1]] ġie sblokkat',
-'unblocked-id'                    => 'L-Imblokk $1 tneħħa',
+'unblocked'                       => 'L-utent [[User:$1|$1]] ġie żblokkjat',
+'unblocked-id'                    => 'Il-blokk $1 tneħħa',
 'ipblocklist'                     => 'Lista tal-utenti u indirizzi IP imblukkati',
 'ipblocklist-legend'              => 'Fittex utent ibblokkjat',
 'ipblocklist-username'            => 'Isem tal-utent u indirizz IP:',
@@ -1778,7 +1778,7 @@ Jekk jogħġbok konferma mill-ġdid li dan huwa li tixtieq li tagħmel.",
 'unlockbtn'           => 'Iftaħ id-database',
 'locknoconfirm'       => 'Inti ma għażiltx il-kaxxa tal-konferma.',
 'lockdbsuccesssub'    => "Id-Database ngħalaq b'suċċess",
-'unlockdbsuccesssub'  => 'Id-Database infetaħ',
+'unlockdbsuccesssub'  => 'Id-database infetħet',
 'lockdbsuccesstext'   => 'Id-Database ngħalaq.<br />
 Ftakar li [[Special:UnlockDB|tiftaħ]] wara l-manteniment ikun lest.',
 'unlockdbsuccesstext' => 'Id-database infetaħ.',
@@ -2543,7 +2543,7 @@ Int tista' ukoll tuża l-[[Special:Watchlist/edit|modifikatur standard]].",
 'iranian-calendar-m10' => 'Dey',
 
 # Core parser functions
-'unknown_extension_tag' => 'Tag estenżjoni mhux magħruf "$1"',
+'unknown_extension_tag' => 'Estensjoni tat-tag mhux magħrufa "$1"',
 
 # Special:Version
 'version'                          => 'Verżjoni', # Not used as normal message but as header for the special page itself

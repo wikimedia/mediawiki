@@ -1378,6 +1378,7 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'nextpage'          => 'Páxina siguiente ($1)',
 'prevpage'          => 'Páxina anterior ($1)',
 'allpagesfrom'      => "Amosar páxines qu'entamen por:",
+'allpagesto'        => 'Amosar páxines que finen por:',
 'allarticles'       => 'Toles páxines',
 'allinnamespace'    => 'Toles páxines (espaciu de nomes $1)',
 'allnotinnamespace' => 'Toles páxines (sacantes les del espaciu de nomes $1)',
@@ -1390,7 +1391,8 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 
 # Special:Categories
 'categories'                    => 'Categoríes',
-'categoriespagetext'            => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
+'categoriespagetext'            => "Les categoríes que vienen darréu contienen páxines o archivos multimedia.
+Les [[Special:UnusedCategories|categoríes non usaes]] y les [[Special:WantedCategories|categoríes más buscaes]] nun s'amuesen equí.",
 'categoriesfrom'                => "Amosar categoríes qu'emprimen por:",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',

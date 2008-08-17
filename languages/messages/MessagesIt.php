@@ -1471,7 +1471,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 
 # Special:Categories
 'categories'                    => 'Categorie',
-'categoriespagetext'            => 'Elenco completo delle categorie presenti sul sito.',
+'categoriespagetext'            => 'Le categorie indicate di seguito contengono pagine o file multimediali.
+Le [[Special:UnusedCategories|categorie vuote]] e le [[Special:WantedCategories|categorie richieste]] non sono mostrate qui.',
 'categoriesfrom'                => 'Mostra le categorie a partire da:',
 'special-categories-sort-count' => 'ordina per numero',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',

@@ -1222,6 +1222,7 @@ Don\'t translate the "Template:" part!',
 
 # Special:Categories
 'categories' => '{{Identical|Categories}}',
+'categoriespagetext' => "Text displayed in [[Special:Categories]]. Do not translate or change links. In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:ListUsers
@@ -1723,6 +1724,7 @@ Variants for Chinese language
 # EXIF tags
 'exif-imagewidth' => '{{Identical|Width}}',
 'exif-imagelength' => '{{Identical|Height}}',
+'exif-primarychromaticities' => 'The chromacity of the three primary colours of the image. Normally this tag is not necessary, since colour space is specified in the colour space information tag. This shoudl probably be translated it as "Chromacity of primary colours".',
 'exif-artist' => '{{Identical|Author}}',
 'exif-flash' => '{{Identical|Flash}}',
 'exif-subjectarea' => 'This exif property contains the position of the main subject of the picture in pixels from the upper left corner and additionally its width and heigth in pixels.',
