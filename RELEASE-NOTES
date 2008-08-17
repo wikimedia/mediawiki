@@ -19,9 +19,6 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.14 ===
-* $wgRestrictDisplayTitle controls if the use of the {{DISPLAYTITLE}} magic
-  word is restricted to titles equivalent to the actual page title. This
-  is true per default, but can be set to false to allow any title.
 * $wgExemptFromUserRobotsControl is an array of namespaces to be exempt from
   the effect of the new __INDEX__/__NOINDEX__ magic words.  (Default: null, ex-
   empt all content namespaces.)
@@ -39,6 +36,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Backwards compatibility is maintained.
 * $wgEnablePersistentCookies has been added. Setting to false disables the
   setting of persistent cookies. Defaults to true.
+* $wgRestrictDisplayTitle controls if the use of the {{DISPLAYTITLE}} magic
+  word is restricted to titles equivalent to the actual page title. This
+  is true per default, but can be set to false to allow any title.
 
 === New features in 1.14 ===
 
