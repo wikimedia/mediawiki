@@ -87,7 +87,7 @@ class LinksUpdate {
 
 	}
 
-	function doIncrementalUpdate() {
+	protected function doIncrementalUpdate() {
 		wfProfileIn( __METHOD__ );
 
 		# Page links
@@ -158,7 +158,7 @@ class LinksUpdate {
 	 * May be slower or faster depending on level of lock contention and write speed of DB
 	 * Also useful where link table corruption needs to be repaired, e.g. in refreshLinks.php
 	 */
-	function doDumbUpdate() {
+	protected function doDumbUpdate() {
 		wfProfileIn( __METHOD__ );
 
 		# Refresh category pages and image description pages
