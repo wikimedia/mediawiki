@@ -1725,10 +1725,10 @@ class Parser
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text, $holders ) ) . $trail;
 
 						wfProfileOut( __METHOD__."-image" );
-						continue;
 					}
 					$this->mOutput->addImage( $nt->getDBkey() );
 					wfProfileOut( __METHOD__."-image" );
+					continue;
 
 				}
 
