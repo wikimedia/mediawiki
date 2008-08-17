@@ -188,7 +188,11 @@ function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = 
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
-		$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1], $including );
+		if( !empty($lines) ) {
+			$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1], $including );
+		} else {
+			$wgOut->addHtml( $this->namespaceForm( $namespace, $from, $to ) );
+		}
 		return;
 	}
 
