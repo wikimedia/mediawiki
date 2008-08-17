@@ -48,6 +48,11 @@ class SpecialAllpages {
 	 * Maximum number of pages to show on single index subpage.
 	 */
 	protected $maxLineCount = 200;
+	
+	/**
+	 * Maximum number of chars to show for an entry.
+	 */
+	protected $maxPageLength = 70;
 
 	/**
 	 * Name of this special page. Used to make title objects that reference back
@@ -225,12 +230,15 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$align = $wgContLang->isRtl() ? 'left' : 'right';
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
+	// Don't let the length runaway
+	$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength, '...' );
+	$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength, '...' );
+
 	$queryparams = $namespace ? "namespace=$namespace&" : '';
 	$special = SpecialPage::getTitleFor( $this->name );
 	$link = $special->escapeLocalUrl( $queryparams . 'from=' . urlencode($inpoint) . '&to=' . urlencode($outpoint) );
 
-	$out = wfMsgHtml(
-		'alphaindexline',
+	$out = wfMsgHtml( 'alphaindexline',
 		"<a href=\"$link\">$inpointf</a></td><td>",
 		"</td><td><a href=\"$link\">$outpointf</a>"
 	);
