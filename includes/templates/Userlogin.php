@@ -79,7 +79,7 @@ class UserloginTemplate extends QuickTemplate {
 		<tr>
 			<td></td>
 			<td class="mw-submit">
-				<input type='submit' name="wpLoginattempt" id="wpLoginattempt" tabindex="5" value="<?php $this->msg('login') ?>" />&nbsp;<?php if( $this->data['useemail'] && $this->data['canreset']) { ?><input type='submit' name="wpMailmypassword" id="wpMailmypassword"
+				<input type='submit' class="mw-loginbutton" name="wpLoginattempt" id="wpLoginattempt" tabindex="5" value="<?php $this->msg('login') ?>" />&nbsp;<?php if( $this->data['useemail'] && $this->data['canreset']) { ?><input type='submit' class="mw-mailmypasswordbutton" name="wpMailmypassword" id="wpMailmypassword"
 					tabindex="6"
 									value="<?php $this->msg('mailmypassword') ?>" />
 				<?php } ?>

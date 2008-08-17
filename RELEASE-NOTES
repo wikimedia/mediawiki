@@ -90,6 +90,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   groups may be added or removed via the Special:UserRights interface.
 * (bug 14468) Lines in classic RecentChanges and Watchlist have alternating
   background colours based on classes "odd" and "even".
+* (bug 14187) In Special:Userlogin the buttons "Log in" and "E-mail new
+  password" now have classes "mw-loginbutton" and "mw-mailmypasswordbutton".
 
 === Bug fixes in 1.14 ===
 
