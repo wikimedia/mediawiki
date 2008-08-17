@@ -1460,7 +1460,7 @@ $3
 'filedelete-comment'          => 'توضیح:',
 'filedelete-submit'           => 'حذف',
 'filedelete-success'          => "'''$1''' حذف شد.",
-'filedelete-success-old'      => '<span class="plainlinks">نسخه \'\'\'[[Media:$1|$1]]\'\'\' به تاریخ $3، $2 حذف شد.</span>',
+'filedelete-success-old'      => "نسخهٔ '''[[Media:$1|$1]]''' به تاریخ $3، $2 حذف شد.",
 'filedelete-nofile'           => "'''$1''' در این وبگاه وجود ندارد.",
 'filedelete-nofile-old'       => "نسخه بایگانی شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد..",
 'filedelete-otherreason'      => 'دلایل دیگر/اضافی:',
@@ -1616,6 +1616,7 @@ $3
 'nextpage'          => 'صفحهٔ بعد ($1)',
 'prevpage'          => 'صفحهٔ قبلی ($1)',
 'allpagesfrom'      => 'نمایش صفحه‌ها با شروع از:',
+'allpagesto'        => 'نمایش صفحه‌ها با پایان در:',
 'allarticles'       => 'همهٔ مقاله‌ها',
 'allinnamespace'    => 'همهٔ صفحه‌ها (فضای نام $1)',
 'allnotinnamespace' => 'همهٔ صفحه‌ها (که در فضای نام $1 است)',
@@ -1628,7 +1629,8 @@ $3
 
 # Special:Categories
 'categories'                    => 'رده‌های صفحه',
-'categoriespagetext'            => 'رده‌های زیر حاوی صفحه یا پرونده هستند.',
+'categoriespagetext'            => 'رده‌های زیر حاوی صفحه یا پرونده هستند.
+[[Special:UnusedCategories|رده‌های استفاده نشده]] و [[Special:WantedCategories|رده‌های مورد نیاز]] در این‌جا نمایش داده نشده‌اند.',
 'categoriesfrom'                => 'نمایش رده‌ها با شروع از:',
 'special-categories-sort-count' => 'مرتب کردن بر اساس تعداد',
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',

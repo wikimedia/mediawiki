@@ -1013,13 +1013,16 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'right-minoredit'        => '사소한 편집 사용 가능',
 'right-move'             => '문서 이동',
 'right-move-subpages'    => '문서와 하위 문서 이동하기',
+'right-suppressredirect' => '문서 이동시에 옛날 이름에 넘겨주기를 남기지 않음',
 'right-upload'           => '파일 올리기',
 'right-reupload'         => '이미 존재하는 파일 덮어쓰기',
 'right-reupload-own'     => '자신이 이미 올린 파일 덮어쓰기',
 'right-upload_by_url'    => 'URL 주소에서 파일 올리기',
+'right-autoconfirmed'    => '준보호된 문서 편집',
 'right-delete'           => '문서 삭제',
 'right-browsearchive'    => '삭제된 문서 검색',
 'right-suppressrevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
+'right-patrol'           => '다른 사용자의 편집을 검토',
 
 # User rights log
 'rightslog'      => '사용자 권한 기록',
@@ -1367,7 +1370,11 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-noresult' => '해당 사용자가 없습니다.',
 
 # Special:ListGroupRights
-'listgrouprights' => '사용자 권한 목록',
+'listgrouprights'                 => '사용자 권한 목록',
+'listgrouprights-addgroup'        => '$1 권한을 부여',
+'listgrouprights-removegroup'     => '$1 권한을 회수',
+'listgrouprights-addgroup-all'    => '모든 권한을 부여',
+'listgrouprights-removegroup-all' => '모든 권한을 회수',
 
 # E-mail user
 'mailnologin'     => '보낼 이메일 주소가 없음',

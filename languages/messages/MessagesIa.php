@@ -1450,6 +1450,7 @@ Restringe le presentation seligente un typo de registro, nomine de usator, o pag
 'nextpage'          => 'Sequente pagina ($1)',
 'prevpage'          => 'Precedente pagina ($1)',
 'allpagesfrom'      => 'Monstrar le paginas a partir de:',
+'allpagesto'        => 'Monstrar le paginas usque a:',
 'allarticles'       => 'Tote le paginas',
 'allinnamespace'    => 'Tote le paginas (del spatio de nomines $1)',
 'allnotinnamespace' => 'Tote le paginas (non in le spatio de nomines $1)',

@@ -694,6 +694,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'noexactmatch-nocreate' => "'''Nulla pagina cum titulo \"\$1\" exacto existit.'''",
 'titlematches'          => 'Exaequata indicibus rerum',
 'notitlematches'        => 'Nulla exaequata',
+'notextmatches'         => 'Nihil verbis quaesitis congruit',
 'prevn'                 => '$1 superiores',
 'nextn'                 => '$1 proxima',
 'viewprevnext'          => 'Videre ($1) ($2) ($3).',
@@ -1107,7 +1108,8 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum pagi
 
 # Special:Categories
 'categories'                    => 'Categoriae',
-'categoriespagetext'            => 'Categoriae subter paginas vel fasciculos continent.',
+'categoriespagetext'            => 'Categoriae subter paginas vel fasciculos continent.
+[[Special:UnusedCategories|Categoriae non in usu]] et [[Special:WantedCategories|categoriae desideratae]] non monstrantur.',
 'special-categories-sort-count' => 'ordinare secundum numerum',
 'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
 

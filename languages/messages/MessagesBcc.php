@@ -254,7 +254,7 @@ $messages = array(
 
 'errorpagetitle'    => 'حطا',
 'returnto'          => 'تررگ به $1.',
-'tagline'           => 'چه {{sitename}}',
+'tagline'           => 'چه {{SITENAME}}',
 'help'              => 'کمک',
 'search'            => 'گردگ',
 'searchbutton'      => 'گردگ',

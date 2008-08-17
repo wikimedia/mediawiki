@@ -1467,6 +1467,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'nextpage'          => 'Neste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
 'allpagesfrom'      => 'Vis sider fra og med:',
+'allpagesto'        => 'Vis sider til og med:',
 'allarticles'       => 'Alle sider',
 'allinnamespace'    => 'Alle sider i $1-navnerommet',
 'allnotinnamespace' => 'Alle sider (ikke i $1-navnerommet)',

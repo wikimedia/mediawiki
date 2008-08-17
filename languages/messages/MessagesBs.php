@@ -420,11 +420,18 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'perfdisabled'         => 'Žao nam je!  Ova mogućnost je privremeno onemogućena jer usporava bazu do te mjere da više niko ne može da koristi viki.',
 'perfcached'           => 'Sledeći podaci su keširani i možda neće biti u potpunosti ažurirani:',
 'perfcachedts'         => 'Sljedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1.',
+'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
+Podaci koji se ovdje nalaze ne moraju biti aktualni.',
 'wrong_wfQuery_params' => 'Netačni parametri za wfQuery()<br />
 Funkcija: $1<br />
 Pretraga: $2',
 'viewsource'           => 'pogledaj kod',
 'viewsourcefor'        => 'za $1',
+'actionthrottled'      => 'Akcija je usporena',
+'actionthrottledtext'  => 'Kao anti-spam mjera, ograničene su vam izmjene u određenom vremenu, i trenutačno ste dostigli to ograničenje. Pokušajte ponovo poslije nekoliko minuta.',
+'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječile izmjene.',
+'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
+'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 
 # Login and logout pages
