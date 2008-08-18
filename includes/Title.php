@@ -3119,11 +3119,12 @@ class Title {
 
 	/**
 	 * Get the last touched timestamp
+	 * @param Database $db, optional db
 	 * @return \type{\string} Last touched timestamp
 	 */
-	public function getTouched() {
-		$dbr = wfGetDB( DB_SLAVE );
-		$touched = $dbr->selectField( 'page', 'page_touched',
+	public function getTouched( $db = NULL ) {
+		$db = isset($db) ? $db : wfGetDB( DB_SLAVE );
+		$touched = $db->selectField( 'page', 'page_touched',
 			array(
 				'page_namespace' => $this->getNamespace(),
 				'page_title' => $this->getDBkey()
