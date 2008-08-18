@@ -55,6 +55,7 @@
 </head>
 <body>
 <?php
+ini_set( 'zlib.output_compression', 'off' );
 
 $wgDBadminuser = $wgDBadminpassword = $wgDBserver = $wgDBname = $wgEnableProfileInfo = $wgDBprefix = false;
 
