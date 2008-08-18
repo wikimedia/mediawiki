@@ -4678,7 +4678,7 @@ class StripState {
 		do {
 			$oldText = $text;
 			$text = $this->general->replace( $text );
-		} while ( $text != $oldText );
+		} while ( $text !== $oldText );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -4688,7 +4688,7 @@ class StripState {
 		do {
 			$oldText = $text;
 			$text = $this->nowiki->replace( $text );
-		} while ( $text != $oldText );
+		} while ( $text !== $oldText );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -4699,7 +4699,7 @@ class StripState {
 			$oldText = $text;
 			$text = $this->general->replace( $text );
 			$text = $this->nowiki->replace( $text );
-		} while ( $text != $oldText );
+		} while ( $text !== $oldText );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
