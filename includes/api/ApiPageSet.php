@@ -53,7 +53,7 @@ class ApiPageSet extends ApiQueryBase {
 	private $mRequestedPageFields;
 
 	public function __construct($query, $resolveRedirects = false) {
-		parent :: __construct($query, __CLASS__);
+		parent :: __construct($query, 'query');
 
 		$this->mAllPages = array ();
 		$this->mTitles = array();
@@ -254,7 +254,9 @@ class ApiPageSet extends ApiQueryBase {
 				break;
 			case 'revids' :
 				if($this->mResolveRedirects)
-					$this->dieUsage('revids may not be used with redirect resolution', 'params');
+					$this->setWarning('Redirect resolution cannot be used together with the revids= parameter. '.
+					'Any redirects the revids= point to have not been resolved.');
+				$this->mResolveRedirects = false;
 				$this->initFromRevIDs($revids);
 				break;
 			default :
@@ -475,8 +477,6 @@ class ApiPageSet extends ApiQueryBase {
 		$this->mMissingRevIDs = array_keys($remaining);
 
 		// Populate all the page information
-		if($this->mResolveRedirects)
-			ApiBase :: dieDebug(__METHOD__, 'revids may not be used with redirect resolution');
 		$this->initFromPageIds(array_keys($pageids));
 	}
 
