@@ -1656,7 +1656,9 @@ PICT # שונות
 
 # Special:Categories
 'categories'                    => 'קטגוריות',
-'categoriespagetext'            => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.',
+'categoriespagetext'            => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.
+[[Special:UnusedCategories|קטגוריות שאינן בשימוש]] אינן מוצגות כאן.
+ראו גם את [[Special:WantedCategories|רשימת הקטגוריות המבוקשות]].',
 'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
 'special-categories-sort-count' => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
@@ -2295,7 +2297,7 @@ $1',
 'lastmodifiedatby' => 'דף זה שונה לאחרונה בתאריך $2, $1 על ידי $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'מבוסס על העבודה של $1.',
 'others'           => 'אחרים',
-'siteusers'        => 'משתמש(י) {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|משתמש|משתמשי}} {{SITENAME}} $1',
 'creditspage'      => 'קרדיטים בדף',
 'nocredits'        => 'אין קרדיטים זמינים בדף זה.',
 
