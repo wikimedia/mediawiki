@@ -178,7 +178,16 @@ class SiteConfiguration {
 	function extractGlobal( $setting, $wiki, $suffix, $params, $wikiTags = array() ) {
 		$value = $this->get( $setting, $wiki, $suffix, $params, $wikiTags );
 		if ( !is_null( $value ) ) {
-			$GLOBALS[$setting] = $value;
+			if (substr($setting,0,1) == '+' && is_array($value)) {
+				$setting = substr($setting,1);
+				if ( is_array($GLOBALS[$setting]) ) {
+					$GLOBALS[$setting] = array_merge( $GLOBALS[$setting], $value );
+				} else {
+					$GLOBALS[$setting] = $value;
+				}
+			} else {
+				$GLOBALS[$setting] = $value;
+			}
 		}
 	}
 
