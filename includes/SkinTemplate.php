@@ -370,11 +370,10 @@ class SkinTemplate extends Skin {
 
 			$this->credits = false;
 
-			if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
-				require_once("Credits.php");
-				$this->credits = getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+			if( $wgMaxCredits != 0 ){
+				$this->credits = Credits::getCredits( $wgArticle, $wgMaxCredits, $wgShowCreditsIfMax );
 			} else {
-				$tpl->set('lastmod', $this->lastModified());
+				$tpl->set( 'lastmod', $this->lastModified() );
 			}
 
 			$tpl->setRef( 'credits', $this->credits );

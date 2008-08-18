@@ -458,21 +458,20 @@ class MediaWiki {
 				if( !$this->getVal( 'EnableDublinCoreRdf' ) ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nodublincore' ) );
 				} else {
-					require_once( 'includes/Metadata.php' );
-					wfDublinCoreRdf( $article );
+					$rdf = new DublinCoreRdf( $article );
+					$rdf->show();
 				}
 				break;
 			case 'creativecommons':
 				if( !$this->getVal( 'EnableCreativeCommonsRdf' ) ) {
 					wfHttpError( 403, 'Forbidden', wfMsg( 'nocreativecommons' ) );
 				} else {
-					require_once( 'includes/Metadata.php' );
-					wfCreativeCommonsRdf( $article );
+					$rdf = new CreativeCommonsRdf( $article );
+					$rdf->show();
 				}
 				break;
 			case 'credits':
-				require_once( 'includes/Credits.php' );
-				showCreditsPage( $article );
+				Credits::showPage( $article );
 				break;
 			case 'submit':
 				if( session_id() == '' ) {

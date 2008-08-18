@@ -660,7 +660,7 @@ class Article {
 		$user = $this->getUser();
 		$pageId = $this->getId();
 
-		$sql = "SELECT rev_user, rev_user_text, user_real_name, MAX(rev_timestamp) as timestamp
+		$sql = "SELECT {$userTable}.*, MAX(rev_timestamp) as timestamp
 			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
 			WHERE rev_page = $pageId
 			AND rev_user != $user
@@ -672,14 +672,9 @@ class Article {
 
 		$sql .= ' '. $this->getSelectOptions();
 
-		$res = $dbr->query($sql, __METHOD__);
+		$res = $dbr->query($sql, __METHOD__ );
 
-		while ( $line = $dbr->fetchObject( $res ) ) {
-			$contribs[] = array($line->rev_user, $line->rev_user_text, $line->user_real_name);
-		}
-
-		$dbr->freeResult($res);
-		return $contribs;
+		return new UserArrayFromResult( $res );
 	}
 
 	/**

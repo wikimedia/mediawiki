@@ -1214,14 +1214,13 @@ END;
 			}
 		}
 
-	        if (isset($wgMaxCredits) && $wgMaxCredits != 0) {
-		    require_once('Credits.php');
-		    $s .= ' ' . getCredits($wgArticle, $wgMaxCredits, $wgShowCreditsIfMax);
+		if( $wgMaxCredits != 0 ){
+			$s .= ' ' . Credits::getCredits( $wgArticle, $wgMaxCredits, $wgShowCreditsIfMax );
 		} else {
-		    $s .= $this->lastModified();
+			$s .= $this->lastModified();
 		}
 
-		if ($wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' )) {
+		if( $wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$watchlist = $dbr->tableName( 'watchlist' );
 			$sql = "SELECT COUNT(*) AS n FROM $watchlist

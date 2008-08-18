@@ -20,347 +20,299 @@
  * @author Evan Prodromou <evan@wikitravel.org>
  */
 
-/**
- * TODO: Perhaps make this file into a Metadata class, with static methods (declared
- * as private where indicated), to move these functions out of the global namespace?
- */
-define('RDF_TYPE_PREFS', "application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1");
+abstract class RdfMetaData {
+	const RDF_TYPE_PREFS = 'application/rdf+xml,text/xml;q=0.7,application/xml;q=0.5,text/rdf;q=0.1';
 
-function wfDublinCoreRdf($article) {
-
-	$url = dcReallyFullUrl($article->mTitle);
-
-	if (rdfSetup()) {
-		dcPrologue($url);
-		dcBasics($article);
-		dcEpilogue();
-	}
-}
-
-function wfCreativeCommonsRdf($article) {
-
-	if (rdfSetup()) {
-		global $wgRightsUrl;
-
-		$url = dcReallyFullUrl($article->mTitle);
-
-		ccPrologue();
-		ccSubPrologue('Work', $url);
-		dcBasics($article);
-		if (isset($wgRightsUrl)) {
-			$url = htmlspecialchars( $wgRightsUrl );
-			print "    <cc:license rdf:resource=\"$url\" />\n";
-		}
-
-		ccSubEpilogue('Work');
-
-		if (isset($wgRightsUrl)) {
-			$terms = ccGetTerms($wgRightsUrl);
-			if ($terms) {
-				ccSubPrologue('License', $wgRightsUrl);
-				ccLicense($terms);
-				ccSubEpilogue('License');
-			}
-		}
+	/**
+	 * Constructor
+	 * @param $article Article object
+	 */
+	public function __construct( Article $article ){
+		$this->mArticle = $article;
 	}
 
-	ccEpilogue();
-}
+	public abstract function show();
 
-/**
- * @private
- */
-function rdfSetup() {
-	global $wgOut, $_SERVER;
+	/**
+	 *
+	 */
+	protected function setup() {
+		global $wgOut, $wgRequest;
 
-	$httpaccept = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : null;
+		$httpaccept = isset( $_SERVER['HTTP_ACCEPT'] ) ? $_SERVER['HTTP_ACCEPT'] : null;
+		$rdftype = wfNegotiateType( wfAcceptToPrefs( $httpaccept ), wfAcceptToPrefs( self::RDF_TYPE_PREFS ) );
 
-	$rdftype = wfNegotiateType(wfAcceptToPrefs($httpaccept), wfAcceptToPrefs(RDF_TYPE_PREFS));
-
-	if (!$rdftype) {
-		wfHttpError(406, "Not Acceptable", wfMsg("notacceptable"));
-		return false;
-	} else {
-		$wgOut->disable();
-		header( "Content-type: {$rdftype}; charset=utf-8" );
-		$wgOut->sendCacheControl();
-		return true;
-	}
-}
-
-/**
- * @private
- */
-function dcPrologue($url) {
-	global $wgOutputEncoding;
-
-	$url = htmlspecialchars( $url );
-	print "<" . "?xml version=\"1.0\" encoding=\"{$wgOutputEncoding}\" ?" . ">
-
-																			  <!DOCTYPE rdf:RDF PUBLIC \"-//DUBLIN CORE//DCMES DTD 2002/07/31//EN\" \"http://dublincore.org/documents/2002/07/31/dcmes-xml/dcmes-xml-dtd.dtd\">
-
-																			  <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
-																			  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">
-																			  <rdf:Description rdf:about=\"$url\">
-																			  ";
-}
-
-/**
- * @private
- */
-function dcEpilogue() {
-	print "
-			</rdf:Description>
-			</rdf:RDF>
-			";
-}
-
-/**
- * @private
- */
-function dcBasics($article) {
-	global $wgContLanguageCode, $wgSitename;
-
-	dcElement('title', $article->mTitle->getText());
-	dcPageOrString('publisher', wfMsg('aboutpage'), $wgSitename);
-	dcElement('language', $wgContLanguageCode);
-	dcElement('type', 'Text');
-	dcElement('format', 'text/html');
-	dcElement('identifier', dcReallyFullUrl($article->mTitle));
-	dcElement('date', dcDate($article->getTimestamp()));
-
-	$last_editor = $article->getUser();
-
-	if ($last_editor == 0) {
-		dcPerson('creator', 0);
-	} else {
-		dcPerson('creator', $last_editor, $article->getUserText(),
-				 User::whoIsReal($last_editor));
-	}
-
-	$contributors = $article->getContributors();
-
-	foreach ($contributors as $user_parts) {
-		dcPerson('contributor', $user_parts[0], $user_parts[1], $user_parts[2]);
-	}
-
-	dcRights();
-}
-
-/**
- * @private
- */
-function ccPrologue() {
-	global $wgOutputEncoding;
-
-	echo "<" . "?xml version='1.0'  encoding='{$wgOutputEncoding}' ?" . ">
-
-																		  <rdf:RDF xmlns:cc=\"http://web.resource.org/cc/\"
-																		  xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
-																		  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">
-																		  ";
-}
-
-/**
- * @private
- */
-function ccSubPrologue($type, $url) {
-	$url = htmlspecialchars( $url );
-	echo "  <cc:{$type} rdf:about=\"{$url}\">\n";
-}
-
-/**
- * @private
- */
-function ccSubEpilogue($type) {
-	echo "  </cc:{$type}>\n";
-}
-
-/**
- * @private
- */
-function ccLicense($terms) {
-
-	foreach ($terms as $term) {
-		switch ($term) {
-		 case 're':
-			ccTerm('permits', 'Reproduction'); break;
-		 case 'di':
-			ccTerm('permits', 'Distribution'); break;
-		 case 'de':
-			ccTerm('permits', 'DerivativeWorks'); break;
-		 case 'nc':
-			ccTerm('prohibits', 'CommercialUse'); break;
-		 case 'no':
-			ccTerm('requires', 'Notice'); break;
-		 case 'by':
-			ccTerm('requires', 'Attribution'); break;
-		 case 'sa':
-			ccTerm('requires', 'ShareAlike'); break;
-		 case 'sc':
-			ccTerm('requires', 'SourceCode'); break;
-		}
-	}
-}
-
-/**
- * @private
- */
-function ccTerm($term, $name) {
-	print "    <cc:{$term} rdf:resource=\"http://web.resource.org/cc/{$name}\" />\n";
-}
-
-/**
- * @private
- */
-function ccEpilogue() {
-	echo "</rdf:RDF>\n";
-}
-
-/**
- * @private
- */
-function dcElement($name, $value) {
-	$value = htmlspecialchars( $value );
-	print "    <dc:{$name}>{$value}</dc:{$name}>\n";
-}
-
-/**
- * @private
- */
-function dcDate($timestamp) {
-	return substr($timestamp, 0, 4) . '-'
-	  . substr($timestamp, 4, 2) . '-'
-	  . substr($timestamp, 6, 2);
-}
-
-/**
- * @private
- */
-function dcReallyFullUrl($title) {
-	return $title->getFullURL();
-}
-
-/**
- * @private
- */
-function dcPageOrString($name, $page, $str) {
-	$nt = Title::newFromText($page);
-
-	if (!$nt || $nt->getArticleID() == 0) {
-		dcElement($name, $str);
-	} else {
-		dcPage($name, $nt);
-	}
-}
-
-/**
- * @private
- */
-function dcPage($name, $title) {
-	dcUrl($name, dcReallyFullUrl($title));
-}
-
-/**
- * @private
- */
-function dcUrl($name, $url) {
-	$url = htmlspecialchars( $url );
-	print "    <dc:{$name} rdf:resource=\"{$url}\" />\n";
-}
-
-/**
- * @private
- */
-function dcPerson($name, $id, $user_name='', $user_real_name='') {
-	global $wgContLang;
-
-	if ($id == 0) {
-		dcElement($name, wfMsg('anonymous'));
-	} else if ( !empty($user_real_name) ) {
-		dcElement($name, $user_real_name);
-	} else {
-		# XXX: This shouldn't happen.
-		if( empty( $user_name ) ) {
-			$user_name = User::whoIs($id);
-		}
-		dcPageOrString($name, $wgContLang->getNsText(NS_USER) . ':' . $user_name, wfMsg('siteuser', $user_name));
-	}
-}
-
-/**
- * Takes an arg, for future enhancement with different rights for
- * different pages.
- * @private
- */
-function dcRights() {
-
-	global $wgRightsPage, $wgRightsUrl, $wgRightsText;
-
-	if (isset($wgRightsPage) &&
-		($nt = Title::newFromText($wgRightsPage))
-		&& ($nt->getArticleID() != 0)) {
-		dcPage('rights', $nt);
-	} else if (isset($wgRightsUrl)) {
-		dcUrl('rights', $wgRightsUrl);
-	} else if (isset($wgRightsText)) {
-		dcElement('rights', $wgRightsText);
-	}
-}
-
-/**
- * @private
- */
-function ccGetTerms($url) {
-	global $wgLicenseTerms;
-
-	if (isset($wgLicenseTerms)) {
-		return $wgLicenseTerms;
-	} else {
-		$known = getKnownLicenses();
-		if( isset( $known[$url] ) ) {
-			return $known[$url];
+		if( !$rdftype ){
+			wfHttpError( 406, 'Not Acceptable', wfMsg( 'notacceptable' ) );
+			return false;
 		} else {
-			return array();
+			$wgOut->disable();
+			$wgRequest->response()->header( "Content-type: {$rdftype}; charset=utf-8" );
+			$wgOut->sendCacheControl();
+			return true;
 		}
+	}
+
+	/**
+	 *
+	 */
+	protected function reallyFullUrl() {
+		return $this->mArticle->getTitle()->getFullURL();
+	}
+
+	protected function basics() {
+		global $wgContLanguageCode, $wgSitename;
+
+		$this->element( 'title', $this->mArticle->mTitle->getText() );
+		$this->pageOrString( 'publisher', wfMsg( 'aboutpage' ), $wgSitename );
+		$this->element( 'language', $wgContLanguageCode );
+		$this->element( 'type', 'Text' );
+		$this->element( 'format', 'text/html' );
+		$this->element( 'identifier', $this->reallyFullUrl() );
+		$this->element( 'date', $this->date( $this->mArticle->getTimestamp() ) );
+
+		$lastEditor = User::newFromId( $this->mArticle->getUser() );
+		$this->person( 'creator', $lastEditor );
+
+		foreach( $this->mArticle->getContributors() as $user ){
+			$this->person( 'contributor', $user );
+		}
+
+		$this->rights();
+	}
+
+	protected function element( $name, $value ) {
+		$value = htmlspecialchars( $value );
+		print "\t\t<dc:{$name}>{$value}</dc:{$name}>\n";
+	}
+
+	protected function date($timestamp) {
+		return substr($timestamp, 0, 4) . '-'
+		  . substr($timestamp, 4, 2) . '-'
+		  . substr($timestamp, 6, 2);
+	}
+
+	protected function pageOrString( $name, $page, $str ){
+		if( $page instanceof Title )
+			$nt = $page;
+		else
+			$nt = Title::newFromText( $page );
+
+		if( !$nt || $nt->getArticleID() == 0 ){
+			$this->element( $name, $str );
+		} else {
+			$this->page( $name, $nt );
+		}
+	}
+
+	protected function page( $name, $title ){
+		$this->url( $name, $title->getFullUrl() );
+	}
+
+	protected function url($name, $url) {
+		$url = htmlspecialchars( $url );
+		print "\t\t<dc:{$name} rdf:resource=\"{$url}\" />\n";
+	}
+
+	protected function person($name, User $user ){
+		global $wgContLang;
+
+		if( $user->isAnon() ){
+			$this->element( $name, wfMsg( 'anonymous' ) );
+		} else if( $real = $user->getRealName() ) {
+			$this->element( $name, $real );
+		} else {
+			$this->pageOrString( $name, $user->getUserPage(), wfMsg( 'siteuser', $user->getName() ) );
+		}
+	}
+
+	/**
+	 * Takes an arg, for future enhancement with different rights for
+	 * different pages.
+	 */
+	protected function rights() {
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+
+		if( $wgRightsPage && ( $nt = Title::newFromText( $wgRightsPage ) )
+			&& ($nt->getArticleID() != 0)) {
+			$this->page('rights', $nt);
+		} else if( $wgRightsUrl ){
+			$this->url('rights', $wgRightsUrl);
+		} else if( $wgRightsText ){
+			$this->element( 'rights', $wgRightsText );
+		}
+	}
+
+	protected function getTerms( $url ){
+		global $wgLicenseTerms;
+
+		if( $wgLicenseTerms ){
+			return $wgLicenseTerms;
+		} else {
+			$known = $this->getKnownLicenses();
+			if( isset( $known[$url] ) ) {
+				return $known[$url];
+			} else {
+				return array();
+			}
+		}
+	}
+
+	protected function getKnownLicenses() {
+		$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc',
+							'by-nc-sa', 'by-sa');
+		$ccVersions = array('1.0', '2.0');
+		$knownLicenses = array();
+
+		foreach ($ccVersions as $version) {
+			foreach ($ccLicenses as $license) {
+				if( $version == '2.0' && substr( $license, 0, 2) != 'by' ) {
+					# 2.0 dropped the non-attribs licenses
+					continue;
+				}
+				$lurl = "http://creativecommons.org/licenses/{$license}/{$version}/";
+				$knownLicenses[$lurl] = explode('-', $license);
+				$knownLicenses[$lurl][] = 're';
+				$knownLicenses[$lurl][] = 'di';
+				$knownLicenses[$lurl][] = 'no';
+				if (!in_array('nd', $knownLicenses[$lurl])) {
+					$knownLicenses[$lurl][] = 'de';
+				}
+			}
+		}
+
+		/* Handle the GPL and LGPL, too. */
+
+		$knownLicenses['http://creativecommons.org/licenses/GPL/2.0/'] =
+		  array('de', 're', 'di', 'no', 'sa', 'sc');
+		$knownLicenses['http://creativecommons.org/licenses/LGPL/2.1/'] =
+		  array('de', 're', 'di', 'no', 'sa', 'sc');
+		$knownLicenses['http://www.gnu.org/copyleft/fdl.html'] =
+		  array('de', 're', 'di', 'no', 'sa', 'sc');
+
+		return $knownLicenses;
 	}
 }
 
-/**
- * @private
- */
-function getKnownLicenses() {
+class DublinCoreRdf extends RdfMetaData {
 
-	$ccLicenses = array('by', 'by-nd', 'by-nd-nc', 'by-nc',
-						'by-nc-sa', 'by-sa');
-	$ccVersions = array('1.0', '2.0');
-	$knownLicenses = array();
+	public function show(){
+		if( $this->setup() ){
+			$this->prologue();
+			$this->basics();
+			$this->epilogue();
+		}
+	}
 
-	foreach ($ccVersions as $version) {
-		foreach ($ccLicenses as $license) {
-			if( $version == '2.0' && substr( $license, 0, 2) != 'by' ) {
-				# 2.0 dropped the non-attribs licenses
-				continue;
+	/**
+	 * begin of the page
+	 */
+	protected function prologue() {
+		global $wgOutputEncoding;
+
+		$url = htmlspecialchars( $this->reallyFullUrl() );
+		print <<<PROLOGUE
+<?xml version="1.0" encoding="{$wgOutputEncoding}" ?>
+<!DOCTYPE rdf:RDF PUBLIC "-//DUBLIN CORE//DCMES DTD 2002/07/31//EN" "http://dublincore.org/documents/2002/07/31/dcmes-xml/dcmes-xml-dtd.dtd">
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<rdf:Description rdf:about="{$url}">
+
+PROLOGUE;
+	}
+
+	/**
+	 * end of the page
+	 */
+	protected function epilogue() {
+		print <<<EPILOGUE
+	</rdf:Description>
+</rdf:RDF>
+EPILOGUE;
+	}
+}
+
+class CreativeCommonsRdf extends RdfMetaData {
+
+	public function show(){
+		if( $this->setup() ){
+			global $wgRightsUrl;
+
+			$url = $this->reallyFullUrl();
+
+			$this->prologue();
+			$this->subPrologue('Work', $url);
+
+			$this->basics();
+			if( $wgRightsUrl ){
+				$url = htmlspecialchars( $wgRightsUrl );
+				print "\t\t<cc:license rdf:resource=\"$url\" />\n";
 			}
-			$lurl = "http://creativecommons.org/licenses/{$license}/{$version}/";
-			$knownLicenses[$lurl] = explode('-', $license);
-			$knownLicenses[$lurl][] = 're';
-			$knownLicenses[$lurl][] = 'di';
-			$knownLicenses[$lurl][] = 'no';
-			if (!in_array('nd', $knownLicenses[$lurl])) {
-				$knownLicenses[$lurl][] = 'de';
+
+			$this->subEpilogue('Work');
+
+			if( $wgRightsUrl ){
+				$terms = $this->getTerms( $wgRightsUrl );
+				if( $terms ){
+					$this->subPrologue( 'License', $wgRightsUrl );
+					$this->license( $terms );
+					$this->subEpilogue( 'License' );
+				}
+			}
+		}
+
+		$this->epilogue();
+	}
+
+	protected function prologue() {
+		global $wgOutputEncoding;
+		echo <<<PROLOGUE
+<?xml version='1.0'  encoding="{$wgOutputEncoding}" ?>
+<rdf:RDF xmlns:cc="http://web.resource.org/cc/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+PROLOGUE;
+	}
+
+	protected function subPrologue( $type, $url ){
+		$url = htmlspecialchars( $url );
+		echo "\t<cc:{$type} rdf:about=\"{$url}\">\n";
+	}
+
+	protected function subEpilogue($type) {
+		echo "\t</cc:{$type}>\n";
+	}
+
+	protected function license($terms) {
+
+		foreach( $terms as $term ){
+			switch( $term ) {
+			 case 're':
+				$this->term('permits', 'Reproduction'); break;
+			 case 'di':
+				$this->term('permits', 'Distribution'); break;
+			 case 'de':
+				$this->term('permits', 'DerivativeWorks'); break;
+			 case 'nc':
+				$this->term('prohibits', 'CommercialUse'); break;
+			 case 'no':
+				$this->term('requires', 'Notice'); break;
+			 case 'by':
+				$this->term('requires', 'Attribution'); break;
+			 case 'sa':
+				$this->term('requires', 'ShareAlike'); break;
+			 case 'sc':
+				$this->term('requires', 'SourceCode'); break;
 			}
 		}
 	}
 
-	/* Handle the GPL and LGPL, too. */
+	protected function term( $term, $name ){
+		print "\t\t<cc:{$term} rdf:resource=\"http://web.resource.org/cc/{$name}\" />\n";
+	}
 
-	$knownLicenses['http://creativecommons.org/licenses/GPL/2.0/'] =
-	  array('de', 're', 'di', 'no', 'sa', 'sc');
-	$knownLicenses['http://creativecommons.org/licenses/LGPL/2.1/'] =
-	  array('de', 're', 'di', 'no', 'sa', 'sc');
-	$knownLicenses['http://www.gnu.org/copyleft/fdl.html'] =
-	  array('de', 're', 'di', 'no', 'sa', 'sc');
-
-	return $knownLicenses;
+	protected function epilogue() {
+		echo "</rdf:RDF>\n";
+	}
 }
