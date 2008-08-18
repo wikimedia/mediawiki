@@ -26,21 +26,10 @@
  * constructor
  */
 function wfSpecialLog( $par = '' ) {
-	global $wgRequest, $wgOut, $wgUser, $wgLogTypes;
-
+	global $wgRequest, $wgOut, $wgUser;
 	# Get parameters
-	$parms = explode( '/', ($par = ( $par !== null ) ? $par : '' ) );
-	$symsForAll = array( '*', 'all' );
-	if ( $parms[0] != '' && ( in_array( $par, $wgLogTypes ) || in_array( $par, $symsForAll ) ) ) {
-		$type = $par;
-		$user = $wgRequest->getText( 'user' );
-	} else if ( count( $parms ) == 2 ) {
-		$type = $parms[0];
-		$user = $parms[1];
-	} else {
-		$type = $wgRequest->getVal( 'group' );
-		$user = ( $par != '' ) ? $par : $wgRequest->getText( 'user' );
-	}
+	$type = $wgRequest->getVal( 'type', $par );
+	$user = $wgRequest->getText( 'user' );
 	$title = $wgRequest->getText( 'page' );
 	$pattern = $wgRequest->getBool( 'pattern' );
 	$y = $wgRequest->getIntOrNull( 'year' );
