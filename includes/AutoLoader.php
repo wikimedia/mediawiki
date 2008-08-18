@@ -356,9 +356,11 @@ $wgAutoloadLocalClasses = array(
 	'UtfNormal' => 'includes/normal/UtfNormal.php',
 
 	# includes/parser
+	'CoreLinkFunctions' => 'includes/parser/CoreLinkFunctions.php',
 	'CoreParserFunctions' => 'includes/parser/CoreParserFunctions.php',
 	'DateFormatter' => 'includes/parser/DateFormatter.php',
 	'LinkHolderArray' => 'includes/parser/LinkHolderArray.php',
+	'LinkMarkerReplacer' => 'includes/parser/LinkMarkerReplacer.php',
 	'OnlyIncludeReplacer' => 'includes/parser/Parser.php',
 	'PPDAccum_Hash' => 'includes/parser/Preprocessor_Hash.php',
 	'PPDPart' => 'includes/parser/Preprocessor_DOM.php',

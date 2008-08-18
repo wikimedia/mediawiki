@@ -181,4 +181,201 @@ class Parser_LinkHooks extends Parser
 			'deps' => $deps );
 	}
 	
+	/**
+	 * Process [[ ]] wikilinks
+	 * @return LinkHolderArray
+	 *
+	 * @private
+	 */
+	function replaceInternalLinks2( &$s ) {
+		global $wgContLang;
+
+		wfProfileIn( __METHOD__ );
+
+		wfProfileIn( __METHOD__.'-setup' );
+		static $tc = FALSE, $titleRegex;//$e1, $e1_img;
+		if( !$tc ) {
+			# the % is needed to support urlencoded titles as well
+			$tc = Title::legalChars() . '#%';
+			# Match a link having the form [[namespace:link|alternate]]trail
+			//$e1 = "/^([{$tc}]+)(?:\\|(.+?))?]](.*)\$/sD";
+			# Match cases where there is no "]]", which might still be images
+			//$e1_img = "/^([{$tc}]+)\\|(.*)\$/sD";
+			# Match a valid plain title
+			$titleRegex = "/^([{$tc}]+)$/sD";
+		}
+
+		$sk = $this->mOptions->getSkin();
+		$holders = new LinkHolderArray( $this );
+		
+		if( is_null( $this->mTitle ) ) {
+			wfProfileOut( __METHOD__ );
+			wfProfileOut( __METHOD__.'-setup' );
+			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
+		}
+		$nottalk = !$this->mTitle->isTalkPage();
+		
+		if($wgContLang->hasVariants()) {
+			$selflink = $wgContLang->convertLinkToAllVariants($this->mTitle->getPrefixedText());
+		} else {
+			$selflink = array($this->mTitle->getPrefixedText());
+		}
+		wfProfileOut( __METHOD__.'-setup' );
+		
+		$offset = 0;
+		$offsetStack = array();
+		$markerReplacer = new LinkMarkerReplacer( array( &$this, 'replaceInternalLinksCallback' ) );
+		$markerReplacer->holders( $holders );
+		while( true ) {
+			$startBracketOffset = strpos( $s, '[[', $offset );
+			$endBracketOffset   = strpos( $s, ']]', $offset );
+			# Finish when there are no more brackets
+			if( $startBracketOffset === false && $endBracketOffset === false ) break;
+			# Determine if the bracket is a starting or ending bracket
+			# When we find both, use the first one
+			elseif( $startBracketOffset !== false && $endBracketOffset !== false )
+			     $isStart = $startBracketOffset <= $endBracketOffset;
+			# When we only found one, check which it is
+			else $isStart = $startBracketOffset !== false;
+			$bracketOffset = $isStart ? $startBracketOffset : $endBracketOffset;
+			if( $isStart ) {
+				/** Opening bracket **/
+				# Just push our current offset in the string onto the stack
+				$offsetStack[] = $startBracketOffset;
+			} else {
+				/** Closing bracket **/
+				# Pop the start pos for our current link zone off the stack
+				$startBracketOffset = array_pop($offsetStack);
+				# Just to clean up the code, lets place offsets on the outer ends
+				$endBracketOffset += 2;
+				
+				# Only do logic if we actually have a opening bracket for this
+				if( isset($startBracketOffset) ) {
+					# Extract text inside the link
+					@list( $titleText, $paramText ) = explode('|',
+						substr($s, $startBracketOffset+2, $endBracketOffset-$startBracketOffset-4), 2);
+					# Create markers only for valid links
+					if( preg_match( $titleRegex, $titleText ) ) {
+						# Store the text for the marker
+						$marker = $markerReplacer->addMarker($titleText, $paramText);
+						# Replace the current link with the marker
+						$s = substr($s,0,$startBracketOffset).
+							$marker.
+							substr($s, $endBracketOffset);
+						# We have modified $s, because of this we need to set the
+						# offset manually since the end position is different now
+						$offset = $startBracketOffset+strlen($marker);
+						continue;
+					}
+					# ToDo: Some LinkHooks may allow recursive links inside of
+					# the link text, create a regex that also matches our
+					# <!-- LINKMARKER ### --> sequence in titles
+					# ToDO: Some LinkHooks use patterns rather than namespaces
+					# these need to be tested at this point here
+				}
+				
+			}
+			# Bump our offset to after our current bracket
+			$offset = $bracketOffset+2;
+		}
+		
+		
+		# Now expand our tree
+		wfProfileIn( __METHOD__.'-expand' );
+		$s = $markerReplacer->expand( $s );
+		wfProfileOut( __METHOD__.'-expand' );
+		
+		wfProfileOut( __METHOD__ );
+		return $holders;
+	}
+	
+	function replaceInternalLinksCallback( $markerReplacer, $titleText, $paramText ) {
+		wfProfileIn( __METHOD__ );
+		$wt = isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
+		wfProfileIn( __METHOD__."-misc" );
+		# Don't allow internal links to pages containing
+		# PROTO: where PROTO is a valid URL protocol; these
+		# should be external links.
+		if( preg_match('/^\b(?:' . wfUrlProtocols() . ')/', $titleText) ) {
+			wfProfileOut( __METHOD__ );
+			return $wt;
+		}
+		
+		# Make subpage if necessary
+		if( $this->areSubpagesAllowed() ) {
+			$titleText = $this->maybeDoSubpageLink( $titleText, $paramText );
+		}
+		
+		# Check for a leading colon and strip it if it is there
+		$leadingColon = $titleText[0] == ':';
+		if( $leadingColon ) $titleText = substr( $titleText, 1 );
+		
+		wfProfileOut( __METHOD__."-misc" );
+		# Make title object
+		wfProfileIn( __METHOD__."-title" );
+		$title = Title::newFromText( $this->mStripState->unstripNoWiki($titleText) );
+		if( !$title ) {
+			wfProfileOut( __METHOD__."-title" );
+			wfProfileOut( __METHOD__ );
+			return $wt;
+		}
+		$ns = $title->getNamespace();
+		wfProfileOut( __METHOD__."-title" );
+		
+		$callback = array( 'CoreLinkFunctions', 'defaultLinkHook' );
+		$args = array( $markerReplacer, $title, $titleText, &$paramText, &$leadingColon );
+		$return = call_user_func_array( $callback, $args );
+		if( $return === false ) {
+			# False (no link) was returned, output plain wikitext
+			# Build it again as the hook is allowed to modify $paramText
+			return isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
+		} elseif( $return === true ) {
+			# True (treat as plain link) was returned, call the defaultLinkHook
+			$args = array( $markerReplacer, $title, $titleText, &$paramText, &$leadingColon );
+			$return = call_user_func_array( array( &$this, 'defaultLinkHook' ), $args );
+		}
+		# Content was returned, return it
+		return $return;
+	}
+	
+}
+
+class LinkMarkerReplacer {
+	
+	protected $markers, $nextId, $holders;
+	
+	function __construct( $callback ) {
+		$this->nextId  = 0;
+		$this->markers = array();
+		$this->callback = $callback;
+		$this->holders = null;
+	}
+	
+	# Note: This is a bit of an ugly way to do this. It works for now, but before
+	# this feature becomes usable we should come up with a better arg list.
+	# $parser, $holders, and $linkMarkers appear to be 3 needed ones
+	function holders( $holders = null ) { return wfSetVar( $this->holders, $holders ); }
+	
+	function addMarker($titleText, $paramText) {
+		$id = $this->nextId++;
+		$this->markers[$id] = array( $titleText, $paramText );
+		return "<!-- LINKMARKER $id -->";
+	}
+	
+	function findMarker( $string ) {
+		return (bool) preg_match('/<!-- LINKMARKER [0-9]+ -->/', $string );
+	}
+	
+	function expand( $string ) {
+		return StringUtils::delimiterReplaceCallback( "<!-- LINKMARKER ", " -->", array( &$this, 'callback' ), $string );
+	}
+	
+	function callback( $m ) {
+		$id = intval($m[1]);
+		if( !array_key_exists($id, $this->markers) ) return $m[0];
+		$args = $this->markers[$id];
+		array_unshift( $args, $this );
+		return call_user_func_array( $this->callback, $args );
+	}
+	
 }
