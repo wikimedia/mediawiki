@@ -43,32 +43,35 @@ class WikiDiff3{
 
 	//State variables
 	private $maxDifferences;
-	
+	private $lcsLengthCorrectedForHeuristic = false;
+
 	//Output variables
 	public $length;
-	public $added;
 	public $removed;
+	public $added;
 	public $heuristicUsed;
-	
+
 	function __construct($tooLong = 2000000, $powLimit = 1.45){
 		$this->tooLong = $tooLong;
 		$this->powLimit = $powLimit;
 	}
 
 	public function diff(/*array*/ $from, /*array*/ $to){
+		//remember initial lengths
 		$m = sizeof($from);
 		$n = sizeof($to);
-		
+
 		$this->heuristicUsed = FALSE;
 
-		$result_from =  $m>0?array_fill(0,$m,true):array();
-		$result_to =  $n>0?array_fill(0,$n,true):array();
+		//output
+		$removed =  $m>0?array_fill(0,$m,true):array();
+		$added =  $n>0?array_fill(0,$n,true):array();
 
 		//reduce the complexity for the next step (intentionally done twice)
 		//remove common tokens at the start
 		$i=0;
 		while($i<$m && $i<$n && $from[$i]===$to[$i]){
-			$result_from[$i] = $result_to[$i] = false;
+			$removed[$i] = $added[$i] = false;
 			unset($from[$i],$to[$i]);
 			++$i;
 		}
@@ -76,12 +79,12 @@ class WikiDiff3{
 		//remove common tokens at the end
 		$j=1;
 		while($i+$j<=$m && $i+$j<=$n && $from[$m-$j]===$to[$n-$j]){
-			$result_from[$m-$j] = $result_to[$n-$j] = false;
+			$removed[$m-$j] = $added[$n-$j] = false;
 			unset($from[$m-$j],$to[$n-$j]);
 			++$j;
 		}
 
-		$newFrom = $newFromIndex = $newTo = $newToIndex = array();
+		$this->from = $newFromIndex = $this->to = $newToIndex = array();
 
 		//remove tokens not in both sequences
 		$shared = array_fill_keys($from,false);
@@ -101,71 +104,100 @@ class WikiDiff3{
 			}
 		}
 
-		unset($shared);
+		unset($shared, $from, $to);
 
 		$this->m = sizeof($this->from);
 		$this->n = sizeof($this->to);
+
 		$this->removed =  $this->m>0?array_fill(0,$this->m,true):array();
 		$this->added =  $this->n>0?array_fill(0,$this->n,true):array();
 
-		$this->longestCommonSubsequence();
+		if ($this->m == 0 || $this->n == 0) {
+			$this->length = 0;
+		}else{
+			$this->maxDifferences = ceil(($this->m + $this->n) / 2.0);
+			if ($this->m * $this->n > $this->tooLong) {
+				// limit complexity to D^POW_LIMIT for long sequences
+				$this->maxDifferences = floor(pow($this->maxDifferences, $this->powLimit - 1.0));
+				wfDebug("Limiting max number of differences to $this->maxDifferences\n");
+			}
+
+			/*
+			 * The common prefixes and suffixes are always part of some LCS, include
+			 * them now to reduce our search space
+			 */
+			$max = min($this->m, $this->n);
+			for ($forwardBound = 0; $forwardBound < $max
+			&& $this->from[$forwardBound]===$this->to[$forwardBound]; ++$forwardBound) {
+				$this->removed[$forwardBound] = $this->added[$forwardBound] = false;
+			}
+
+			$backBoundL1 = $this->m - 1;
+			$backBoundL2 = $this->n - 1;
+
+			while ($backBoundL1 >= $forwardBound && $backBoundL2 >= $forwardBound
+			&& $this->from[$backBoundL1] === $this->to[$backBoundL2]) {
+				$this->removed[$backBoundL1--] = $this->added[$backBoundL2--] = false;
+			}
+
+			$temp = array_fill(0,$this->m + $this->n + 1, 0);
+			$V = array($temp,$temp);
+			$snake = array(0,0,0);
+
+			$this->length = $forwardBound + $this->m - $backBoundL1 - 1
+			+ $this->lcs_rec($forwardBound, $backBoundL1, $forwardBound, $backBoundL2,
+			$V, $snake);
+		}
 
 		$this->m = $m;
 		$this->n = $n;
+
 		$this->length += $i+$j-1;
 
-		foreach($this->removed as $key => $removed){
-			if(!$removed){
-				$result_from[$newFromIndex[$key]] = false;
+		foreach($this->removed as $key => $removed_elem){
+			if(!$removed_elem){
+				$removed[$newFromIndex[$key]] = false;
 			}
 		}
-		foreach($this->added as $key => $added){
-			if(!$added){
-				$result_to[$newToIndex[$key]] = false;
+		foreach($this->added as $key => $added_elem){
+			if(!$added_elem){
+				$added[$newToIndex[$key]] = false;
 			}
 		}
-		unset($this->added, $this->removed);
-		return array($result_from, $result_to);
+		$this->removed = $removed;
+		$this->added = $added;
 	}
 
-	public function longestCommonSubsequence() {
-		if ($this->m == 0 || $this->n == 0) {
-			$this->length = 0;
-			return;
+	function diff_range ($from_lines, $to_lines){
+		// Diff and store locally
+		$this->diff($from_lines, $to_lines);
+		unset($from_lines, $to_lines);
+
+		$ranges = array();
+		$xi = $yi = 0;
+		while ($xi < $this->m || $yi < $this->n) {
+			// Matching "snake".
+			while ( $xi < $this->m && $yi < $this->n
+			&& !$this->removed[$xi] && !$this->added[$yi]) {
+				++$xi;
+				++$yi;
+			}
+			// Find deletes & adds.
+			$xstart = $xi;
+			while ($xi < $this->m && $this->removed[$xi]){
+				++$xi;
+			}
+
+			$ystart = $yi;
+			while ($yi < $this->n && $this->added[$yi]){
+				++$yi;
+			}
+
+			if ($xi>$xstart || $yi>$ystart){
+				$ranges[] = new RangeDifference($xstart,$xi,$ystart,$yi);
+			}
 		}
-
-		$this->maxDifferences = ceil(($this->m + $this->n) / 2.0);
-		if ($this->m * $this->n > $this->tooLong) {
-			// limit complexity to D^POW_LIMIT for long sequences
-			$this->maxDifferences = floor(pow($this->maxDifferences, $this->powLimit - 1.0));
-			wfDebug("Limiting max number of differences to $this->maxDifferences");
-		}
-
-		/*
-		 * The common prefixes and suffixes are always part of some LCS, include
-		 * them now to reduce our search space
-		 */
-		$max = min($this->m, $this->n);
-		for ($forwardBound = 0; $forwardBound < $max
-		&& $this->from[$forwardBound]===$this->to[$forwardBound]; ++$forwardBound) {
-			$this->removed[$forwardBound] = $this->added[$forwardBound] = false;
-		}
-
-		$backBoundL1 = $this->m - 1;
-		$backBoundL2 = $this->n - 1;
-
-		while ($backBoundL1 >= $forwardBound && $backBoundL2 >= $forwardBound
-		&& $this->from[$backBoundL1] === $this->to[$backBoundL2]) {
-			$this->removed[$backBoundL1--] = $this->added[$backBoundL2--] = false;
-		}
-
-		$temp = array_fill(0,$this->m + $this->n + 1, 0);
-		$V = array($temp,$temp);
-		$snake = array(0,0,0);
-
-		$this->length = $forwardBound + $this->m - $backBoundL1 - 1
-		+ $this->lcs_rec($forwardBound, $backBoundL1, $forwardBound, $backBoundL2,
-		$V, $snake);
+		return $ranges;
 	}
 
 	private function lcs_rec($bottoml1, $topl1, $bottoml2, $topl2, &$V, &$snake) {
@@ -267,13 +299,13 @@ class WikiDiff3{
 
 					$absx = $snake0 = $x + $bottoml1;
 					$absy = $snake1 = $x - $k + $bottoml2;
-						
+
 					while ($absx < $maxabsx && $absy < $maxabsy && $from[$absx] === $to[$absy]) {
 						++$absx;
 						++$absy;
 					}
 					$x = $absx-$bottoml1;
-						
+
 					$snake2 = $absx -$snake0;
 					$V0[$limit + $k] = $x;
 					if ($k >= $delta - $d + 1 && $k <= $delta + $d - 1
@@ -340,7 +372,7 @@ class WikiDiff3{
 
 					$absx = $snake0 = $x + $bottoml1;
 					$absy = $snake1 = $x - $k + $bottoml2;
-						
+
 					while ($absx < $maxabsx && $absy < $maxabsy && $from[$absx] === $to[$absy]) {
 						++$absx;
 						++$absy;
@@ -410,7 +442,7 @@ class WikiDiff3{
 		$snake0 = $bottoml1 + $most_progress[0];
 		$snake1 = $bottoml2 + $most_progress[1];
 		$snake2 = 0;
-		wfDebug('Computing the LCS is too expensive. Using a heuristic.');
+		wfDebug('Computing the LCS is too expensive. Using a heuristic.\n');
 		$this->heuristicUsed = true;
 		return 5; /*
 		* HACK: since we didn't really finish the LCS computation
@@ -501,5 +533,36 @@ class WikiDiff3{
 		return $max_progress[floor($num_progress / 2)];
 	}
 
+	public function getLcsLength(){
+		if($this->heuristicUsed && !$this->lcsLengthCorrectedForHeuristic){
+			$this->lcsLengthCorrectedForHeuristic = true;
+			$this->length = $this->m-array_sum($this->added);
+		}
+		return $this->length;
+	}
+
 }
 
+/**
+ * Alternative representation of a set of changes, by the index
+ * ranges that are changed.
+ */
+class RangeDifference {
+
+	public $leftstart;
+	public $leftend;
+	public $leftlength;
+
+	public $rightstart;
+	public $rightend;
+	public $rightlength;
+
+	function __construct($leftstart, $leftend, $rightstart, $rightend){
+		$this->leftstart = $leftstart;
+		$this->leftend = $leftend;
+		$this->leftlength = $leftend-$leftstart;
+		$this->rightstart = $rightstart;
+		$this->rightend = $rightend;
+		$this->rightlength = $rightend-$rightstart;
+	}
+}

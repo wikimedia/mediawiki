@@ -376,6 +376,8 @@ CONTROL;
 		$newHtml =	$parserOutput->getText();
 		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$newHtml ) );
 
+		unset($parserOutput,$popts);
+
 		$differ = new HTMLDiffer(new DelegatingContentHandler($wgOut));
 		$differ->htmlDiff($oldHtml, $newHtml);
 
@@ -956,30 +958,6 @@ class _DiffOp_Change extends _DiffOp {
 }
 
 /**
- * Alternative representation of a set of changes, by the index
- * ranges that are changed.
- */
-class RangeDifference {
-
-	public $leftstart;
-	public $leftend;
-	public $leftlength;
-
-	public $rightstart;
-	public $rightend;
-	public $rightlength;
-
-	function __construct($leftstart, $leftend, $rightstart, $rightend){
-		$this->leftstart = $leftstart;
-		$this->leftend = $leftend;
-		$this->leftlength = $leftend-$leftstart;
-		$this->rightstart = $rightstart;
-		$this->rightend = $rightend;
-		$this->rightlength = $rightend-$rightstart;
-	}
-}
-
-/**
  * Class used internally by Diff to actually compute the diffs.
  *
  * The algorithm used here is mostly lifted from the perl module
@@ -1057,54 +1035,17 @@ class _DiffEngine {
 		return $edits;
 	}
 
-	function diff_range ($from_lines, $to_lines){
-		wfProfileIn( __METHOD__ );
-
-		// Diff and store locally
-		$this->diff_local($from_lines, $to_lines);
-
-		// Compute the ranges operations.
-		$n_from = sizeof($from_lines);
-		$n_to = sizeof($to_lines);
-
-		$ranges = array();
-		$xi = $yi = 0;
-		while ($xi < $n_from || $yi < $n_to) {
-			// Matching "snake".
-			while ( $xi < $n_from && $yi < $n_to
-			&& !$this->xchanged[$xi] && !$this->ychanged[$yi]) {
-				++$xi;
-				++$yi;
-			}
-			// Find deletes & adds.
-			$xstart = $xi;
-			while ($xi < $n_from && $this->xchanged[$xi]){
-				++$xi;
-			}
-
-			$ystart = $yi;
-			while ($yi < $n_to && $this->ychanged[$yi]){
-				++$yi;
-			}
-
-			if ($xi>$xstart || $yi>$ystart){
-				$ranges[] = new RangeDifference($xstart,$xi,$ystart,$yi);
-			}
-		}
-		wfProfileOut( __METHOD__ );
-		return $ranges;
-	}
-
 	function diff_local ($from_lines, $to_lines) {
 		global $wgExternalDiffEngine;
 		wfProfileIn( __METHOD__);
 
 		if($wgExternalDiffEngine == 'wikidiff3'){
 			// wikidiff3
-			global $IP;
-			require_once( "$IP/includes/Diff.php" );
 			$wikidiff3 = new WikiDiff3();
-			list($this->xchanged, $this->ychanged) = $wikidiff3->diff($from_lines, $to_lines);
+			$wikidiff3->diff($from_lines, $to_lines);
+			$this->xchanged = $wikidiff3->removed;
+			$this->ychanged = $wikidiff3->added;
+			unset($wikidiff3);
 		}else{
 			// old diff
 			$n_from = sizeof($from_lines);
