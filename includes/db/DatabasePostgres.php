@@ -1390,5 +1390,9 @@ END;
 	public function unlock( $lockName, $method ) {
 		return true;
 	}
+	
+	public function getSearchEngine() {
+		return "SearchPostgres";
+	}
 
 } // end DatabasePostgres class

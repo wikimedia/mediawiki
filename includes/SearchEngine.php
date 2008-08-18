@@ -282,19 +282,14 @@ class SearchEngine {
 	 * @return SearchEngine
 	 */
 	public static function create() {
-		global $wgDBtype, $wgSearchType;
+		global $wgSearchType;
+		$dbr = wfGetDB( DB_SLAVE );
 		if( $wgSearchType ) {
 			$class = $wgSearchType;
-		} elseif( $wgDBtype == 'mysql' ) {
-			$class = 'SearchMySQL';
-		} else if ( $wgDBtype == 'postgres' ) {
-			$class = 'SearchPostgres';
-		} else if ( $wgDBtype == 'oracle' ) {
-			$class = 'SearchOracle';
 		} else {
-			$class = 'SearchEngineDummy';
+			$class = $dbr->getSearchEngine();
 		}
-		$search = new $class( wfGetDB( DB_SLAVE ) );
+		$search = new $class( $dbr );
 		$search->setLimitOffset(0,0);
 		return $search;
 	}

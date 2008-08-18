@@ -716,5 +716,9 @@ echo "error!\n";
 	public function unlock( $lockName, $method ) {
 		return true;
 	}
+	
+	public function getSearchEngine() {
+		return "SearchOracle";
+	}
 
 } // end DatabaseOracle class
