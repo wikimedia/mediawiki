@@ -75,6 +75,7 @@ class Node {
 			$result->splittingNeeded = true;
 		} else if ($nbMyParents <= $nbOtherParents) {
 			$result->indexInLastCommonParent = $myParents[$i - 1]->getIndexOf($this);
+		}
 		return $result;
 	}
 
@@ -85,7 +86,7 @@ class Node {
 
 	public function inPre() {
 		$tree = $this->getParentTree();
-		foreach ($tree as $ancestor) {
+		foreach ($tree as &$ancestor) {
 			if ($ancestor->isPre()) {
 				return true;
 			}
@@ -110,7 +111,7 @@ class TagNode extends Node {
 	function __construct($parent, $qName, /*array*/ $attributes) {
 		parent::__construct($parent);
 		$this->qName = strtolower($qName);
-		foreach($attributes as $key => $value){
+		foreach($attributes as $key => &$value){
 			$this->attributes[strtolower($key)] = $value;
 		}
 		return $this->openingTag = Xml::openElement($this->qName, $this->attributes);
@@ -122,7 +123,7 @@ class TagNode extends Node {
 
 	public function getIndexOf(Node $child) {
 		// don't trust array_search with objects
-		foreach ($this->children as $key => $value){
+		foreach ($this->children as $key => &$value){
 			if ($value === $child) {
 				return $key;
 			}
@@ -145,7 +146,7 @@ class TagNode extends Node {
 			return $nodes;
 		}
 
-		foreach ($this->children as $child) {
+		foreach ($this->children as &$child) {
 			$allDeleted_local = false;
 			$somethingDeleted_local = false;
 			$childrenChildren = $child->getMinimalDeletedSet($id, $allDeleted_local, $somethingDeleted_local);
@@ -227,7 +228,7 @@ class TagNode extends Node {
 		$newThis = new TagNode(null, $this->qName, $this->attributes);
 		$newThis->whiteBefore = $this->whiteBefore;
 		$newThis->whiteAfter = $this->whiteAfter;
-		foreach ($this->children as $child) {
+		foreach ($this->children as &$child) {
 			$newChild = $child->copyTree();
 			$newChild->setParent($newThis);
 			$newThis->children[] = $newChild;
@@ -367,7 +368,7 @@ class BodyNode extends TagNode {
 
 	public function copyTree() {
 		$newThis = new BodyNode();
-		foreach ($this->children as $child) {
+		foreach ($this->children as &$child) {
 			$newChild = $child->copyTree();
 			$newChild->setParent($newThis);
 			$newThis->children[] = $newChild;
@@ -377,7 +378,7 @@ class BodyNode extends TagNode {
 
 	public function getMinimalDeletedSet($id, &$allDeleted, &$somethingDeleted) {
 		$nodes = array();
-		foreach ($this->children as $child) {
+		foreach ($this->children as &$child) {
 			$childrenChildren = $child->getMinimalDeletedSet($id,
 						$allDeleted, $somethingDeleted);
 			$nodes = array_merge($nodes, $childrenChildren);
@@ -398,7 +399,7 @@ class ImageNode extends TextNode {
 	function __construct(TagNode $parent, /*array*/ $attrs) {
 		if(!array_key_exists('src', $attrs)) {
 			//wfDebug('Image without a source:');
-			//foreach ($attrs as $key => $value) {
+			//foreach ($attrs as $key => &$value) {
 				//wfDebug("$key = $value");
 			//}
 			parent::__construct($parent, '<img></img>');
@@ -563,7 +564,7 @@ class DomTreeBuilder {
 	public function characters($parser, $data) {
 		$matches = preg_split(self::regex, $data, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-		foreach($matches as $word) {
+		foreach($matches as &$word) {
 			if (preg_match(self::whitespace, $word) && $this->notInPre) {
 				$this->endWord();
 				$this->lastSibling->whiteAfter = true;
@@ -608,9 +609,9 @@ class TextNodeDiffer {
 	private $oldBodyNode;
 
 	private $lastModified = array();
-	
+
 	private $newID = 0;
-	
+
 	private $changedID = 0;
 
 	private $changedIDUsed = false;
@@ -644,7 +645,7 @@ class TextNodeDiffer {
 			if (count($this->lastModified) > 0) {
 				$mod->prevMod = $this->lastModified[0];
 				if (is_null($this->lastModified[0]->nextMod )) {
-					foreach ($this->lastModified as $lastMod) {
+					foreach ($this->lastModified as &$lastMod) {
 						$lastMod->nextMod = $mod;
 					}
 				}
@@ -699,7 +700,7 @@ class TextNodeDiffer {
 				if ($nbLastModified > 0) {
 					$mod->prevMod = $this->lastModified[0];
 					if (is_null($this->lastModified[0]->nextMod )) {
-						foreach ($this->lastModified as $lastMod) {
+						foreach ($this->lastModified as &$lastMod) {
 							$lastMod->nextMod = $mod;
 						}
 					}
@@ -744,7 +745,7 @@ class TextNodeDiffer {
 			if (count($this->lastModified) > 0) {
 				$mod->prevMod = $this->lastModified[0];
 				if (is_null($this->lastModified[0]->nextMod )) {
-					foreach ($this->lastModified as $lastMod) {
+					foreach ($this->lastModified as &$lastMod) {
 						$lastMod->nextMod = $mod;
 					}
 				}
@@ -919,7 +920,7 @@ class HTMLDiffer {
 
 		$currentIndexLeft = 0;
 		$currentIndexRight = 0;
-		foreach ($differences as $d) {
+		foreach ($differences as &$d) {
 			if ($d->leftstart > $currentIndexLeft) {
 				$domdiffer->handlePossibleChangedPart($currentIndexLeft, $d->leftstart,
 					$currentIndexRight, $d->rightstart);
@@ -981,7 +982,7 @@ class HTMLDiffer {
 		}
 		$numbers = array($ll, $nll, $rl, $nrl);
 		$d = 0;
-		foreach ($numbers as $number) {
+		foreach ($numbers as &$number) {
 			while ($number > 3) {
 				$d += 3;
 				$number -= 3;
@@ -1005,7 +1006,7 @@ class TextOnlyComparator {
 	}
 
 	private function addRecursive(TagNode $tree) {
-		foreach ($tree->children as $child) {
+		foreach ($tree->children as &$child) {
 			if ($child instanceof TagNode) {
 				$this->addRecursive($child);
 			} else if ($child instanceof TextNode) {
@@ -1194,11 +1195,11 @@ class ChangeText {
 
 class TagToStringFactory {
 
-	private static $containerTags = array('html', 'body', 'p', 'blockquote', 
+	private static $containerTags = array('html', 'body', 'p', 'blockquote',
 		'h1', 'h2', 'h3', 'h4', 'h5', 'pre', 'div', 'ul', 'ol', 'li',
 		'table', 'tbody', 'tr', 'td', 'th', 'br', 'hr', 'code', 'dl',
 		'dt', 'dd', 'input', 'form', 'img', 'span', 'a');
-	
+
 	private static $styleTags = array('i', 'b', 'strong', 'em', 'font',
 		'big', 'del', 'tt', 'sub', 'sup', 'strike');
 
@@ -1313,10 +1314,10 @@ class TagToString {
 		if (count($attributes) < 1) {
 			return;
 		}
-		
+
 		$firstOne = true;
 		$lastKey = null;
-		foreach ($attributes as $key => $attr) {
+		foreach ($attributes as $key => &$attr) {
 			$lastKey = $key;
 			if($firstOne) {
 				$firstOne = false;
@@ -1549,7 +1550,7 @@ class HTMLOutput{
 		$changeStarted = false;
 		$changeTXT = '';
 
-		foreach ($node->children as $child) {
+		foreach ($node->children as &$child) {
 			if ($child instanceof TagNode) {
 				if ($newStarted) {
 					$handler->endElement('span');
@@ -1568,7 +1569,7 @@ class HTMLOutput{
 				if ($newStarted && ($mod->type != Modification::ADDED || $mod->firstOfID)) {
 					$handler->endElement('span');
 					$newStarted = false;
-				} else if ($changeStarted && ($mod->type != Modification::CHANGED 
+				} else if ($changeStarted && ($mod->type != Modification::CHANGED
 						|| $mod->changes != $changeTXT || $mod->firstOfID)) {
 					$handler->endElement('span');
 					$changeStarted = false;

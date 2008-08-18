@@ -88,7 +88,7 @@ class WikiDiff3 {
 
 		//remove tokens not in both sequences
 		$shared = array_fill_keys($from, false);
-		foreach($to as $index => $el) {
+		foreach($to as $index => &$el) {
 			if(array_key_exists($el, $shared)) {
 				//keep it
 				$this->to[] = $el;
@@ -96,7 +96,7 @@ class WikiDiff3 {
 				$newToIndex[] = $index;
 			}
 		}
-		foreach($from as $index => $el) {
+		foreach($from as $index => &$el) {
 			if($shared[$el]) {
 				//keep it
 				$this->from[] = $el;
@@ -155,12 +155,12 @@ class WikiDiff3 {
 
 		$this->length += $i + $j - 1;
 
-		foreach($this->removed as $key => $removed_elem) {
+		foreach($this->removed as $key => &$removed_elem) {
 			if(!$removed_elem) {
 				$removed[$newFromIndex[$key]] = false;
 			}
 		}
-		foreach($this->added as $key => $added_elem) {
+		foreach($this->added as $key => &$added_elem) {
 			if(!$added_elem) {
 				$added[$newToIndex[$key]] = false;
 			}
@@ -287,7 +287,7 @@ class WikiDiff3 {
 		$V0[$limit_plus_1] = 0;
 		$V1[$limit_min_1] = $N;
 		$limit = min($this->maxDifferences, ceil(($N + $M ) / 2));
-			
+
 		if (($delta & 1) == 1) {
 			for ($d = 0; $d <= $limit; ++$d) {
 				$start_diag = max($value_to_add_forward + $start_forward, -$d);
@@ -296,7 +296,7 @@ class WikiDiff3 {
 
 				// compute forward furthest reaching paths
 				for ($k = $start_diag; $k <= $end_diag; $k += 2) {
-					if ($k == -$d || ($k < $d 
+					if ($k == -$d || ($k < $d
 							&& $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k])) {
 						$x = $V0[$limit_plus_1 + $k];
 					} else {
