@@ -46,7 +46,7 @@ class SiteConfiguration {
 				// Do tag settings
 				foreach ( $wikiTags as $tag ) {
 					if ( array_key_exists( $tag, $thisSetting ) ) {
-						if ( is_array($retval) && is_array($thisSetting[$tag]) ) {
+						if ( isset($retval) && is_array($retval) && is_array($thisSetting[$tag]) ) {
 							$retval = array_merge( $retval, $thisSetting[$tag] );
 						} else {
 							$retval = $thisSetting[$tag];
@@ -61,7 +61,7 @@ class SiteConfiguration {
 				
 				// Do suffix settings
 				if ( array_key_exists( $suffix, $thisSetting ) ) {
-					if ( is_array($retval) && is_array($thisSetting[$suffix]) ) {
+					if ( isset($retval) && is_array($retval) && is_array($thisSetting[$suffix]) ) {
 						$retval = array_merge( $retval, $thisSetting[$suffix] );
 					} else {
 						$retval = $thisSetting[$suffix];
@@ -75,7 +75,7 @@ class SiteConfiguration {
 				
 				// Fall back to default.
 				if ( array_key_exists( 'default', $thisSetting ) ) {
-					if ( is_array($retval) && is_array($thisSetting['default']) ) {
+					if ( isset($retval) && is_array($retval) && is_array($thisSetting['default']) ) {
 						$retval = array_merge( $retval, $thisSetting['default'] );
 					} else {
 						$retval = $thisSetting['default'];
