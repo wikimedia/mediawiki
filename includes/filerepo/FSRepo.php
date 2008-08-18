@@ -519,13 +519,13 @@ class FSRepo extends FileRepo {
 		if ( !isset( $this->simpleCleanPairs ) ) {
 			global $IP;
 			$this->simpleCleanPairs = array(
-				$this->directory => 'public',
-				"{$this->directory}/temp" => 'temp',
+				$this->directory => "mwrepo://{$this->name}/public",
+				"{$this->directory}/temp" => "mwrepo://{$this->name}/temp",
 				$IP => '$IP',
 				dirname( __FILE__ ) => '$IP/extensions/WebStore',
 			);
 			if ( $this->deletedDir ) {
-				$this->simpleCleanPairs[$this->deletedDir] = 'deleted';
+				$this->simpleCleanPairs[$this->deletedDir] = "mwrepo://{$this->name}/deleted";
 			}
 		}
 		return strtr( $param, $this->simpleCleanPairs );
