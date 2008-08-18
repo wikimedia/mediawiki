@@ -504,7 +504,7 @@ class Parser
 	 * @public
 	 * @static
 	 */
-	function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
+	static function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
 		static $n = 1;
 		$stripped = '';
 		$matches = array();
@@ -644,7 +644,7 @@ class Parser
 	 * @public
 	 * @static
 	 */
-	function tidy( $text ) {
+	static function tidy( $text ) {
 		global $wgTidyInternal;
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
@@ -667,7 +667,7 @@ class Parser
 	 * @private
 	 * @static
 	 */
-	function externalTidy( $text ) {
+	static function externalTidy( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		wfProfileIn( __METHOD__ );
 
@@ -718,7 +718,7 @@ class Parser
 	 * @private
 	 * @static
 	 */
-	function internalTidy( $text ) {
+	static function internalTidy( $text ) {
 		global $wgTidyConf, $IP, $wgDebugTidy;
 		wfProfileIn( __METHOD__ );
 
@@ -1054,7 +1054,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	function doHeadings( $text ) {
+	static function doHeadings( $text ) {
 		wfProfileIn( __METHOD__ );
 		for ( $i = 6; $i >= 1; --$i ) {
 			$h = str_repeat( '=', $i );
@@ -1070,12 +1070,12 @@ class Parser
 	 * @private
 	 * @return string the altered text
 	 */
-	function doAllQuotes( $text ) {
+	static function doAllQuotes( $text ) {
 		wfProfileIn( __METHOD__ );
 		$outtext = '';
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
-			$outtext .= $this->doQuotes( $line ) . "\n";
+			$outtext .= self::doQuotes( $line ) . "\n";
 		}
 		$outtext = substr($outtext, 0,-1);
 		wfProfileOut( __METHOD__ );
@@ -1085,7 +1085,7 @@ class Parser
 	/**
 	 * Helper function for doAllQuotes()
 	 */
-	public function doQuotes( $text ) {
+	public static function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( count( $arr ) == 1 )
 			return $text;
@@ -1955,7 +1955,7 @@ class Parser
 	# getCommon() returns the length of the longest common substring
 	# of both arguments, starting at the beginning of both.
 	#
-	/* private */ function getCommon( $st1, $st2 ) {
+	/* private */ static function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
 		$shorter = strlen( $st2 );
 		if ( $fl < $shorter ) { $shorter = $fl; }
@@ -2194,7 +2194,7 @@ class Parser
 	 * @param string &$after set to everything after the ':'
 	 * return string the position of the ':', or false if none found
 	 */
-	function findColonNoLinks($str, &$before, &$after) {
+	static function findColonNoLinks($str, &$before, &$after) {
 		wfProfileIn( __METHOD__ );
 
 		$pos = strpos( $str, ':' );
@@ -3143,7 +3143,7 @@ class Parser
 		return $this->fetchScaryTemplateMaybeFromCache($url);
 	}
 
-	function fetchScaryTemplateMaybeFromCache($url) {
+	static function fetchScaryTemplateMaybeFromCache($url) {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB(DB_SLAVE);
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
@@ -3798,7 +3798,7 @@ class Parser
 	 * @param string $text
 	 * @return mixed An expanded string, or false if invalid.
 	 */
-	function validateSig( $text ) {
+	static function validateSig( $text ) {
 		return( wfIsWellFormedXmlFragment( $text ) ? $text : false );
 	}
 
@@ -3850,7 +3850,7 @@ class Parser
 	 * @param string $text
 	 * @return string Signature text with /~{3,5}/ removed
 	 */
-	function cleanSigInSig( $text ) {
+	static function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
 	}
@@ -4042,7 +4042,7 @@ class Parser
 	/**
 	 * Tag hook handler for 'pre'.
 	 */
-	function renderPreTag( $text, $attribs ) {
+	static function renderPreTag( $text, $attribs ) {
 		// Backwards-compatibility hack
 		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $text, 'i' );
 
