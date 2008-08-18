@@ -60,6 +60,7 @@ class MediaWiki {
 			} elseif( is_string( $new_article ) ) {
 				$output->redirect( $new_article );
 			} else {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
 		}
