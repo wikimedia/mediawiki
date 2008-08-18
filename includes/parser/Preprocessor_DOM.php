@@ -830,6 +830,7 @@ class PPFrame_DOM implements PPFrame {
 		if ( is_string( $root ) ) {
 			return $root;
 		}
+		wfProfileIn( __METHOD__ );
 
 		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->mMaxPPNodeCount )
 		{
@@ -1005,6 +1006,7 @@ class PPFrame_DOM implements PPFrame {
 					$newIterator = $contextNode->childNodes;
 				}
 			} else {
+				wfProfileOut( __METHOD__ );
 				throw new MWException( __METHOD__.': Invalid parameter type' );
 			}
 
@@ -1028,6 +1030,7 @@ class PPFrame_DOM implements PPFrame {
 			}
 		}
 		--$depth;
+		wfProfileOut( __METHOD__ );
 		return $outStack[0];
 	}
 
