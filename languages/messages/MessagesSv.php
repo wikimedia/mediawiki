@@ -1616,7 +1616,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 
 # Special:Categories
 'categories'                    => 'Kategorier',
-'categoriespagetext'            => 'Följande kategorier innehåller sidor eller media.',
+'categoriespagetext'            => 'Följande kategorier innehåller sidor eller media.
+[[Special:UnusedCategories|Oanvända kategorier]] visas inte här; [[Special:WantedCategories|önskade kategorier]] listas även separat.',
 'categoriesfrom'                => 'Visa kategorier från och med:',
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
@@ -2231,11 +2232,11 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Attribution
 'anonymous'        => 'Anonym användare på {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} användare $1',
-'lastmodifiedatby' => 'Den här sidan ändrades senast $2, $1 av $3.', # $1 date, $2 time, $3 user
+'siteuser'         => 'användaren $1 på {{SITENAME}}',
+'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baserad på arbete av $1.',
 'others'           => 'andra',
-'siteusers'        => '{{SITENAME}} användare $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|användaren|användarna}} $1',
 'creditspage'      => 'Användare som bidragit till sidan',
 'nocredits'        => 'Det finns ingen information tillgänglig om vem som bidragit till denna sida.',
 

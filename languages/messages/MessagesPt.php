@@ -382,7 +382,7 @@ $messages = array(
 
 'badaccess'        => 'Erro de permissão',
 'badaccess-group0' => 'Você não está autorizado a executar a acção requisitada.',
-'badaccess-groups' => 'A acção que você requisitou está limitada a utilizadores de um dos seguintes grupos: $1.',
+'badaccess-groups' => 'A acção que você requisitou está limitada a utilizadores {{PLURAL:$2|do grupo|de um dos seguintes grupos}}: $1.',
 
 'versionrequired'     => 'É necessária a versão $1 do MediaWiki',
 'versionrequiredtext' => 'Esta página requer a versão $1 do MediaWiki para poder ser utilizada. Consulte [[Special:Version|a página sobre a versão do sistema]]',
@@ -1503,7 +1503,8 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'alphaindexline'    => '$1 até $2',
 'nextpage'          => 'Próxima página ($1)',
 'prevpage'          => 'Página anterior ($1)',
-'allpagesfrom'      => 'Mostrar páginas começando em:',
+'allpagesfrom'      => 'Começar exibindo páginas com:',
+'allpagesto'        => 'Terminar de exibir páginas em:',
 'allarticles'       => 'Todas as páginas',
 'allinnamespace'    => 'Todas as páginas (espaço nominal $1)',
 'allnotinnamespace' => 'Todas as páginas (excepto as do espaço nominal $1)',
@@ -1516,7 +1517,9 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'As seguintes categorias existem na wiki.',
+'categoriespagetext'            => 'As categorias a seguir contém páginas ou multimédia.
+As [[Special:UnusedCategories|categorias não utilizadas]] não são exibidas nesta listagem.
+Veja também as [[Special:WantedCategories|categorias pedidas]].',
 'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
@@ -2138,7 +2141,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'lastmodifiedatby' => 'Esta página foi modificada pela última vez a $2, $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseado no trabalho de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{SITENAME}} utilizador(es) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|utilizador|utilizadores}} $1',
 'creditspage'      => 'Créditos da página',
 'nocredits'        => 'Não há informação disponível sobre os créditos desta página.',
 
@@ -2700,6 +2703,6 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 
 # Special:BlankPage
 'blankpage'              => 'Página em branco',
-'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco e é usada para medições de performance, etc.',
+'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco',
 
 );

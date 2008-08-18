@@ -1480,7 +1480,9 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 
 # Special:Categories
 'categories'                    => 'Kategorier',
-'categoriespagetext'            => 'Følgende kategorier inneholder sider eller media.',
+'categoriespagetext'            => 'Følgende kategorier inneholder sider eller media.
+[[Special:Unusedcategories|Ubrukte kategorier]] vises ikke her.
+Se også [[Special:Wantedcategories|ønskede kategorier]].',
 'categoriesfrom'                => 'Vis kategorier fra og med:',
 'special-categories-sort-count' => 'soter etter antall',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
@@ -2099,7 +2101,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'lastmodifiedatby' => 'Denne siden ble sist redigert $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',
 'others'           => 'andre',
-'siteusers'        => '{{SITENAME}}-bruker(e) $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|bruker|brukere}} $1',
 'creditspage'      => 'Sidekrediteringer',
 'nocredits'        => 'Ingen krediteringer er tilgjengelig for denne siden.',
 

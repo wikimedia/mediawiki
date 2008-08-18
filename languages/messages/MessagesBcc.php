@@ -1511,7 +1511,9 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'دسته یان',
-'categoriespagetext'            => 'جهلیگین دسته جات شامل صفحات یا مدیا انت',
+'categoriespagetext'            => 'جهلیگین دسته جات شامل صفحات یا مدیا انت
+[[Special:UnusedCategories|دسته جات بی استفاده]] ادان پیشدارگ نه بنت.
+ هنچوش بچار[[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'پیشدار دسته جات که شروع بنت گون:',
 'special-categories-sort-count' => 'ترتیب په اساس شمار',
 'special-categories-sort-abc'   => 'ترتیب الفبی',
@@ -2153,7 +2155,7 @@ $1',
 'lastmodifiedatby' => 'ای صفحه اهری رندی که تغییر دهگ بیته $2, $1گون $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'براساس کار توسط $1.',
 'others'           => 'دگران',
-'siteusers'        => '{{SITENAME}} کاربر(آن) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|کاربر|کاربران}} $1',
 'creditspage'      => 'اعتبارات صفحه',
 'nocredits'        => 'په ای صفحه اطلاعات اعتبارات موجود نهنت.',
 

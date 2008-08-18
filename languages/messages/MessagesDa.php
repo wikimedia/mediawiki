@@ -2053,7 +2053,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'lastmodifiedatby' => 'Denne side blev senest ændret $2, $1 af $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseret på arbejde af $1.',
 'others'           => 'andre',
-'siteusers'        => '{{SITENAME}} bruger(e) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|bruger|brugere}} $1',
 'creditspage'      => 'Sidens forfattere',
 'nocredits'        => 'Der er ingen forfatteroplysninger om denne side.',
 

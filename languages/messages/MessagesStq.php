@@ -69,6 +69,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Oaine Biedraage in ju Beooboachtengslieste ferbierge',
 'tog-watchlisthidebots'       => 'Bot-Biedraage in ju Beooboachtengslieste ferbierge',
 'tog-watchlisthideminor'      => 'Litje Biedraage in ju Beooboachtengslieste ferbierge',
+'tog-watchlisthideliu'        => 'Beoarbaidengen truch ounmäldede Benutsere in ju Beoboachtengslieste uutbländje',
+'tog-watchlisthideanons'      => 'Beoarbaidengen truch anonyme Benutsere (IP) in ju Beoboachtengslieste uutbländje',
 'tog-nolangconversion'        => 'Konvertierenge fon Sproakvarianten deaktivierje',
 'tog-ccmeonemails'            => 'Seend mie Kopien fon do E-Maile, do iek uur Benutsere seende.',
 'tog-diffonly'                => 'Wies bie dän Versionsfergliek bloot do Unnerscheede, nit ju fulboodige Siede',
@@ -1364,6 +1366,7 @@ Deeruum kon ju hier noch aptäld weese, wan ju uk aktiv benutsed wäd.',
 'nextpage'          => 'Naiste Siede ($1)',
 'prevpage'          => 'Foarige Siede ($1)',
 'allpagesfrom'      => 'Sieden wiese fon:',
+'allpagesto'        => 'Sieden anwiese bit:',
 'allarticles'       => 'Aal do Artikkele',
 'allinnamespace'    => 'Aal Sieden in $1 Noomenruum',
 'allnotinnamespace' => 'Aal Sieden, bute in dän $1 Noomenruum',
@@ -1376,7 +1379,7 @@ Deeruum kon ju hier noch aptäld weese, wan ju uk aktiv benutsed wäd.',
 
 # Special:Categories
 'categories'                    => 'Kategorien',
-'categoriespagetext'            => 'Do foulgjende Kategorien änthoolde Sieden of Medien.',
+'categoriespagetext'            => 'Do foulgjende Kategorien in {{SITENAME}} änthoolde Sieden of Medien.',
 'categoriesfrom'                => 'Wies Kategorien siet:',
 'special-categories-sort-count' => 'Sortierenge ätter Antaal',
 'special-categories-sort-abc'   => 'Sortierenge ätter Alphabet',
@@ -1458,6 +1461,10 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'watchlist-hide-own'   => 'oaine Annerengen ferbierge',
 'watchlist-show-minor' => 'litje Annerengen ienbländje',
 'watchlist-hide-minor' => 'litje Annerengen ferbierge',
+'watchlist-show-anons' => 'Anonyme Benutsere ienbländje',
+'watchlist-hide-anons' => 'Anonyme Benutsere uutbländje',
+'watchlist-show-liu'   => 'Anmäldede Benutsere ienbländje',
+'watchlist-hide-liu'   => 'Anmäldede Benutsere uutbländje',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Beooboachtje …',
@@ -1983,7 +1990,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'lastmodifiedatby' => 'Disse Siede wuude toulääst annerd uum $2, $1 fon $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basierd ap ju Oarbaid fon $1.',
 'others'           => 'uur',
-'siteusers'        => '{{SITENAME}}-Benutser $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benutser|Benutsere}} $1',
 'creditspage'      => 'Siedenstatistik',
 'nocredits'        => 'Foar disse Siede sunt neen Informationen deer.',
 

@@ -548,7 +548,10 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'template-semiprotected' => 'Used on [[Special:ProtectedPages]]. Appears in brackets after listed page titles which are semi-protected.',
 'hiddencategories' => "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.",
 'edittools' => 'This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
-'permissionserrorstext-withaction' => 'The second parameter $2 is one of the right-* messages. Please report at [[Support]] if you are unable to properly translate this message.',
+'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
+* $2 is one of the right-* messages.
+
+Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -934,6 +937,7 @@ Parameter $2 is a date and time.',
 'newsectionsummary' => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
+'recentchangeslinked' => 'Title of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-title' => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
 'recentchangeslinked-page' => '{{Identical|Page name}}',
 
@@ -1009,6 +1013,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'filehist-current' => 'Link in file description page.
 
 {{Identical|Current}}',
+'filehist-datetime' => 'Used on image descriptions, see for example [[:Image:Yes.png#filehistory]].',
 'filehist-user' => 'In image description page.
 
 {{Identical|User}}',
@@ -1020,6 +1025,8 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'imagelinks' => 'In image description page
 
 {{Identical|Links}}',
+'linkstoimage' => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
+* Parameter $1 is the number of pages that link to the file/image.',
 'linkstoimage-more' => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
 
 * $1: limit. At the moment hardcoded at 100
@@ -1078,6 +1085,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 {{Identical|Edit delete reasons}}',
 
 # MIME search
+'mimesearch' => 'Title of [[Special:MIMESearch]].',
 'mimesearch-summary' => 'Text for [[Special:MIMESearch]]',
 'download' => 'Direct download link in each line returned by [[Special:MIMESearch]]. Points to the actual file, rather than the image description page.',
 
@@ -1191,6 +1199,7 @@ Don\'t translate the "Template:" part!',
 
 {{Identical|Title}}',
 'log' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'all-logs-page' => 'Title of [[Special:Log]].',
 'log-search-submit' => 'Button name in [[Special:Log]]
 
 {{Identical|Go}}',
@@ -1310,6 +1319,7 @@ $1 = the name of the page',
 'delete-legend' => '{{Identical|Delete}}',
 'historywarning' => 'Warning when about to delete a page that has history.',
 'confirmdeletetext' => 'Introduction shown when deleting a page.',
+'actioncomplete' => 'Used in several situations, for example when a page has been deleted.',
 'deletedarticle' => "This is a ''logentry'' message. $1 is deleted page name.",
 'dellogpage' => 'The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 
@@ -1342,6 +1352,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-expiring' => 'Used in page history.
 
 {{Identical|Expires $1 (UTC)}}',
+'protect-cascade' => 'See [[meta:Protect]] for more information.',
 'restriction-type' => 'Used on [[Special:ProtectedPages]].',
 'restriction-level' => 'Used on [[Special:ProtectedPages]].',
 
@@ -1602,13 +1613,18 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-p-logo' => '{{Identical|Main page}}',
 'tooltip-n-mainpage' => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].',
 'tooltip-n-portal' => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
+'tooltip-n-currentevents' => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
 'tooltip-n-recentchanges' => 'The tooltip when hovering over the "[[MediaWiki:Recentchanges/{{SUBPAGENAME}}|{{int:recentchanges}}]]" link in the sidebar going to the special page [[Special:RecentChanges]].',
 'tooltip-n-randompage' => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.",
 'tooltip-n-help' => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.",
+'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
+'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
 'tooltip-t-upload' => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.
 
 {{Identical|Upload files}}',
 'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
+'tooltip-ca-nstab-user' => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
+'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
 'tooltip-ca-nstab-help' => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
 'tooltip-minoredit' => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
 'tooltip-save' => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
@@ -1632,6 +1648,8 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 * $3: user
 
 See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].',
+'siteusers' => '* $1 is a list of user names (example: "\'\'Jim, Janet, Jane, Joe\'\'")
+* $2 is the number of user names in $1',
 'creditspage' => "This message is the ''contentSub'' (the grey subtitle) shown when viewing credits of a page (example: {{fullurl:Betawiki:News|action=credits}}). Note that the credits action is disabled by default (currently enabled on Betawiki).",
 'nocredits' => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}) but when there are no credits available. Note that the credits action is disabled by default (currently enabled on Betawiki).',
 
@@ -1655,6 +1673,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].',
 'file-info' => 'File info displayed on file description page.',
 'file-info-size' => 'File info displayed on file description page.',
 'file-nohires' => 'File info displayed on file description page.',
+'svg-long-desc' => 'Displayed under an SVG image at the image description page. See for example [[:Image:Wiki.svg]].',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 
 # Special:NewImages
@@ -1724,7 +1743,7 @@ Variants for Chinese language
 # EXIF tags
 'exif-imagewidth' => '{{Identical|Width}}',
 'exif-imagelength' => '{{Identical|Height}}',
-'exif-primarychromaticities' => 'The chromacity of the three primary colours of the image. Normally this tag is not necessary, since colour space is specified in the colour space information tag. This shoudl probably be translated it as "Chromacity of primary colours".',
+'exif-primarychromaticities' => 'The chromaticity of the three primary colours of the image. Normally this tag is not necessary, since colour space is specified in the colour space information tag. This should probably be translated it as "Chromaticity of primary colours".',
 'exif-artist' => '{{Identical|Author}}',
 'exif-flash' => '{{Identical|Flash}}',
 'exif-subjectarea' => 'This exif property contains the position of the main subject of the picture in pixels from the upper left corner and additionally its width and heigth in pixels.',

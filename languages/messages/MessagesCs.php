@@ -1634,7 +1634,9 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 
 # Special:Categories
 'categories'                    => 'Kategorie',
-'categoriespagetext'            => 'Ve wiki existují následující kategorie:',
+'categoriespagetext'            => 'Následující kategorie obsahují stránky nebo soubory.
+[[Special:UnusedCategories|Nepoužívané kategorie]] nejsou zobrazeny.
+Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'categoriesfrom'                => 'Zobrazit kategorie začínající na:',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
@@ -2226,7 +2228,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Do textu přispěli $1.',
 'others'           => 'ostatní',
-'siteusers'        => 'uživatel(é) {{grammar:2sg|{{SITENAME}}}} $1',
+'siteusers'        => '{{PLURAL:$2|uživatel|uživatelé|uživatelé}} {{grammar:2sg|{{SITENAME}}}} $1',
 'creditspage'      => 'Zásluhy za stránku',
 'nocredits'        => 'K této stránce neexistuje informace o zásluhách.',
 

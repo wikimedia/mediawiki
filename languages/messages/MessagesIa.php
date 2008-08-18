@@ -1464,7 +1464,9 @@ Es possibile que illo contine un o plus characteres que non pote esser usate in 
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'Le sequente categorias contine paginas o media.',
+'categoriespagetext'            => 'Le sequente categorias contine paginas o media.
+Le [[Special:UnusedCategories|categorias non usate]] non se monstra hic.
+Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'categoriesfrom'                => 'Monstrar categorias a partir de:',
 'special-categories-sort-count' => 'ordinar per numero',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
@@ -2142,7 +2144,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'lastmodifiedatby' => 'Le modification le plus recente de iste pagina esseva facite le $1 a $2 per $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'A base de contributiones per $1.',
 'others'           => 'alteres',
-'siteusers'        => 'Usator(es) de {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|Usator|Usatores}} $1 de {{SITENAME}}',
 'creditspage'      => 'Autores del pagina',
 'nocredits'        => 'Nulle information es disponibile super le autores de iste pagina.',
 

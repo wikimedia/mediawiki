@@ -2047,7 +2047,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'lastmodifiedatby' => 'Tätä sivua muokkasi viimeksi ”$3” $2 kello $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Perustuu työlle, jonka teki $1.',
 'others'           => 'muut',
-'siteusers'        => '{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä(t) $1',
+'siteusers'        => '{{GRAMMAR:genitive|{{SITENAME}}}} {{PLURAL:$2|käyttäjä|käyttäjät}} $1',
 'creditspage'      => 'Sivun tekijäluettelo',
 'nocredits'        => 'Tämän sivun tekijäluettelotietoja ei löydy.',
 

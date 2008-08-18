@@ -1348,7 +1348,9 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 
 # Special:Categories
 'categories'                    => 'Categorïau',
-'categoriespagetext'            => "Mae'r categorïau isod yn y wici.",
+'categoriespagetext'            => "Mae'r categorïau isod yn cynnwys tudalennau neu ffeiliau.
+Ni ddangosir [[Special:UnusedCategories|categorïau gwag]] yma.
+Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'categoriesfrom'                => 'Dangos categorïau gan ddechrau gyda:',
 'special-categories-sort-count' => 'trefnu yn ôl nifer',
 'special-categories-sort-abc'   => 'trefnu yn ôl yr wyddor',
@@ -1673,6 +1675,7 @@ $1',
 'unblockip'                   => 'Dadflocio defnyddiwr',
 'unblockiptext'               => "Defnyddiwch y ffurflen isod i ail-alluogi golygiadau gan ddefnyddiwr neu o gyfeiriad IP a fu gynt wedi'i flocio.",
 'ipusubmit'                   => 'Datflociwch y cyfeiriad hwn',
+'unblocked'                   => 'Mae [[User:$1|$1]] wedi cael ei ddad-flocio',
 'unblocked-id'                => 'Tynnwyd y bloc $1',
 'ipblocklist'                 => "Cyfeiriadau IP ac enwau defnyddwyr sydd wedi'u blocio",
 'ipblocklist-legend'          => 'Dod o hyd i ddefnyddiwr sydd wedi ei blocio',
@@ -1823,6 +1826,7 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'importtext'              => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
 'import-revision-count'   => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'importfailed'            => 'Mewnforio wedi methu: $1',
+'importbadinterwiki'      => 'Cyswllt rhyngwici gwallus',
 'importnotext'            => 'Gwag, neu heb destun',
 'importsuccess'           => 'Mewnforio wedi llwyddo!',
 'importhistoryconflict'   => "Mae gwrthdaro rhwng adolygiadau hanes (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
@@ -2024,6 +2028,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-jpeginterchangeformatlength' => "Nifer beitiau'r data JPEG",
 'exif-transferfunction'            => 'Ffwythiant trosglwyddo',
 'exif-whitepoint'                  => 'Cromatigedd y cyfeirbwynt gwyn',
+'exif-primarychromaticities'       => 'Cromatigedd y lliwiau cysefin',
 'exif-datetime'                    => "Dyddiad ac amser y newid i'r ffeil",
 'exif-imagedescription'            => 'Teitl y ddelwedd',
 'exif-make'                        => 'Gwneuthurwr y camera',
@@ -2070,15 +2075,19 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-cfapattern'                  => 'Patrwm CFA',
 'exif-exposuremode'                => 'Modd dinoethi',
 'exif-whitebalance'                => 'Cydbwysedd Gwyn',
+'exif-digitalzoomratio'            => 'Cymhareb closio digidol',
 'exif-contrast'                    => 'Cyferbyniad',
 'exif-saturation'                  => 'Dirlawnder',
 'exif-sharpness'                   => 'Eglurder',
+'exif-imageuniqueid'               => 'ID unigryw y ddelwedd',
 'exif-gpslatituderef'              => "Lledred i'r Gogledd neu i'r De",
 'exif-gpslatitude'                 => 'Lledred',
 'exif-gpslongituderef'             => "Hydred i'r Dwyrain neu i'r Gorllewin",
 'exif-gpslongitude'                => 'Hydred',
 'exif-gpsaltituderef'              => 'Cyfeirnod uchder',
 'exif-gpsaltitude'                 => 'Uchder',
+'exif-gpsmeasuremode'              => 'Modd mesur',
+'exif-gpsdop'                      => 'Manylder mesur',
 'exif-gpsdestdistance'             => 'Pellter i ben y daith',
 'exif-gpsdatestamp'                => 'Dyddiad GPS',
 
@@ -2138,9 +2147,11 @@ Cuddir y meysydd eraill trwy ragosodiad.
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
 'exif-gpsspeed-m' => 'Milltir yr awr',
+'exif-gpsspeed-n' => 'Notiau',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',
+'exif-gpsdirection-m' => 'Cyfeiriad magnetig',
 
 # External editor support
 'edit-externally'      => 'Golygwch y ffeil gyda rhaglen allanol',

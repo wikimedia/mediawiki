@@ -1644,7 +1644,9 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 
 # Special:Categories
 'categories'                    => 'Kategóriák',
-'categoriespagetext'            => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
+'categoriespagetext'            => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.
+A [[Special:UnusedCategories|nem használt kategóriák nem jelennek meg.
+Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'categoriesfrom'                => 'Kategóriák listázása a következő névtől kezdve:',
 'special-categories-sort-count' => 'rendezés elemszám szerint',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
@@ -2279,7 +2281,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'lastmodifiedatby' => 'Ezt a lapot utoljára $3 módosította $2, $1 időpontban.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1 munkája alapján.',
 'others'           => 'mások',
-'siteusers'        => '$1 {{SITENAME}}-felhasználó(k)',
+'siteusers'        => '$1 {{SITENAME}}-{{PLURAL:$2|szerkesztő|szerkesztők}}',
 'creditspage'      => 'A lap közreműködői',
 'nocredits'        => 'Ennek a lapnak nincs közreműködői információja.',
 

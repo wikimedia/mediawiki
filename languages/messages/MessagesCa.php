@@ -910,6 +910,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 
 # Search results
 'searchresults'             => 'Resultats de la cerca',
+'searchresults-title'       => 'Resultats de la cerca per $1',
 'searchresulttext'          => 'Per a més informació de les cerques del projecte {{SITENAME}}, aneu a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => "Heu cercat '''[[:$1]]'''",
 'searchsubtitleinvalid'     => 'Per consulta "$1"',

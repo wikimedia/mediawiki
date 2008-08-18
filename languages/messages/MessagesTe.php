@@ -1441,6 +1441,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'watchlist-hide-own'   => 'నా దిద్దుబాట్లను దాచు',
 'watchlist-show-minor' => 'చిన్న దిద్దుబాట్లను చూపించు',
 'watchlist-hide-minor' => 'చిన్న మార్పులను దాచు',
+'watchlist-show-anons' => 'అజ్ఞాతవాడుకర్ల మార్పులు చూపించు',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'గమనిస్తున్నాం...',

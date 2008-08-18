@@ -1472,7 +1472,8 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 # Special:Categories
 'categories'                    => 'Categorie',
 'categoriespagetext'            => 'Le categorie indicate di seguito contengono pagine o file multimediali.
-Le [[Special:UnusedCategories|categorie vuote]] e le [[Special:WantedCategories|categorie richieste]] non sono mostrate qui.',
+Le [[Special:UnusedCategories|categorie vuote]] non sono mostrate qui.
+Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'categoriesfrom'                => 'Mostra le categorie a partire da:',
 'special-categories-sort-count' => 'ordina per numero',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
@@ -2093,7 +2094,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'lastmodifiedatby' => "Questa pagina è stata modificata per l'ultima volta il $2, $1 da $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Il testo attuale è basato su contributi di $1.',
 'others'           => 'altri',
-'siteusers'        => '$1, utenti di {{SITENAME}}',
+'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} di {{SITENAME}}',
 'creditspage'      => 'Autori della pagina',
 'nocredits'        => 'Nessuna informazione sugli autori disponibile per questa pagina.',
 

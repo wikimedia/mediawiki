@@ -1798,7 +1798,8 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'تصنيفات',
-'categoriespagetext'            => 'التصنيفات التالية تحتوي على صفحات أو ميديا.',
+'categoriespagetext'            => 'التصنيفات التالية تحتوي على صفحات أو ميديا.
+[[Special:UnusedCategories|التصنيفات غير المستخدمة]]، و [[Special:WantedCategories|التصنيفات المطلوبة]] غير معروضة هنا.',
 'categoriesfrom'                => 'أظهر التصنيفات بدءا من:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
