@@ -10,6 +10,21 @@ class LocalRepo extends FSRepo {
 	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
 	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
 
+	function __construct( $info ) {
+		parent::__construct( $info );
+
+		# Initialize simpleCleanPairs, to make errors less misleading
+		global $IP;
+		$this->simpleCleanPairs = array(
+			$this->directory => '$wgUploadDirectory',
+			wfTempDir() => '{wfTempDir()}',
+			$IP => '$IP',
+		);
+		if ( $this->deletedDir ) {
+			$this->simpleCleanPairs[$this->deletedDir] = '{$wgFileStore[\'deleted\'][\'directory\']}';
+		}
+	}
+
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE );
 	}
