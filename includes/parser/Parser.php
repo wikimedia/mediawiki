@@ -541,7 +541,7 @@ class Parser
 				$text = $inside;
 				$tail = null;
 			} else {
-				if( $element == '!--' ) {
+				if( $element === '!--' ) {
 					$end = '/(-->)/';
 				} else {
 					$end = "/(<\\/$element\\s*>)/i";
@@ -786,7 +786,7 @@ class Parser
 				// Don't do any of the following
 				$out .= $outLine."\n";
 				continue;
-			} else if ( substr ( $line , 0 , 2 ) == '|}' ) {
+			} else if ( substr ( $line , 0 , 2 ) === '|}' ) {
 				// We are ending a table
 				$line = '</table>' . substr ( $line , 2 );
 				$last_tag = array_pop ( $last_tag_history );
@@ -804,7 +804,7 @@ class Parser
 				}
 				array_pop ( $tr_attributes );
 				$outLine = $line . str_repeat( '</dd></dl>' , $indent_level );
-			} else if ( substr ( $line , 0 , 2 ) == '|-' ) {
+			} else if ( substr ( $line , 0 , 2 ) === '|-' ) {
 				// Now we have a table row
 				$line = preg_replace( '#^\|-+#', '', $line );
 
@@ -832,16 +832,16 @@ class Parser
 				array_push ( $td_history , false );
 				array_push ( $last_tag_history , '' );
 			}
-			else if ( $first_character == '|' || $first_character == '!' || substr ( $line , 0 , 2 )  == '|+' ) {
+			else if ( $first_character === '|' || $first_character === '!' || substr ( $line , 0 , 2 )  === '|+' ) {
 				// This might be cell elements, td, th or captions
-				if ( substr ( $line , 0 , 2 ) == '|+' ) {
+				if ( substr ( $line , 0 , 2 ) === '|+' ) {
 					$first_character = '+';
 					$line = substr ( $line , 1 );
 				}
 
 				$line = substr ( $line , 1 );
 
-				if ( $first_character == '!' ) {
+				if ( $first_character === '!' ) {
 					$line = str_replace ( '!!' , '||' , $line );
 				}
 
@@ -857,7 +857,7 @@ class Parser
 				foreach ( $cells as $cell )
 				{
 					$previous = '';
-					if ( $first_character != '+' )
+					if ( $first_character !== '+' )
 					{
 						$tr_after = array_pop ( $tr_attributes );
 						if ( !array_pop ( $tr_history ) ) {
@@ -875,11 +875,11 @@ class Parser
 						$previous = "</{$last_tag}>{$previous}";
 					}
 
-					if ( $first_character == '|' ) {
+					if ( $first_character === '|' ) {
 						$last_tag = 'td';
-					} else if ( $first_character == '!' ) {
+					} else if ( $first_character === '!' ) {
 						$last_tag = 'th';
-					} else if ( $first_character == '+' ) {
+					} else if ( $first_character === '+' ) {
 						$last_tag = 'caption';
 					} else {
 						$last_tag = '';
@@ -926,12 +926,12 @@ class Parser
 		}
 
 		// Remove trailing line-ending (b/c)
-		if ( substr( $out, -1 ) == "\n" ) {
+		if ( substr( $out, -1 ) === "\n" ) {
 			$out = substr( $out, 0, -1 );
 		}
 
 		// special case: don't return empty table
-		if( $out == "<table>\n<tr><td></td></tr>\n</table>" ) {
+		if( $out === "<table>\n<tr><td></td></tr>\n</table>" ) {
 			$out = '';
 		}
 
@@ -1013,10 +1013,10 @@ class Parser
 	}
 
 	function magicLinkCallback( $m ) {
-		if ( substr( $m[0], 0, 1 ) == '<' ) {
+		if ( substr( $m[0], 0, 1 ) === '<' ) {
 			# Skip HTML element
 			return $m[0];
-		} elseif ( substr( $m[0], 0, 4 ) == 'ISBN' ) {
+		} elseif ( substr( $m[0], 0, 4 ) === 'ISBN' ) {
 			$isbn = $m[2];
 			$num = strtr( $isbn, array(
 				'-' => '',
@@ -1028,11 +1028,11 @@ class Parser
 				$titleObj->escapeLocalUrl() .
 				"\" class=\"internal\">ISBN $isbn</a>";
 		} else {
-			if ( substr( $m[0], 0, 3 ) == 'RFC' ) {
+			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$id = $m[1];
-			} elseif ( substr( $m[0], 0, 4 ) == 'PMID' ) {
+			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$id = $m[1];
@@ -1140,9 +1140,9 @@ class Parser
 					{
 						$x1 = substr ($arr[$i-1], -1);
 						$x2 = substr ($arr[$i-1], -2, 1);
-						if ($x1 == ' ') {
+						if ($x1 === ' ') {
 							if ($firstspace == -1) $firstspace = $i;
-						} else if ($x2 == ' ') {
+						} else if ($x2 === ' ') {
 							if ($firstsingleletterword == -1) $firstsingleletterword = $i;
 						} else {
 							if ($firstmultiletterword == -1) $firstmultiletterword = $i;
@@ -1182,7 +1182,7 @@ class Parser
 			{
 				if (($i % 2) == 0)
 				{
-					if ($state == 'both')
+					if ($state === 'both')
 						$buffer .= $r;
 					else
 						$output .= $r;
@@ -1191,41 +1191,41 @@ class Parser
 				{
 					if (strlen ($r) == 2)
 					{
-						if ($state == 'i')
+						if ($state === 'i')
 						{ $output .= '</i>'; $state = ''; }
-						else if ($state == 'bi')
+						else if ($state === 'bi')
 						{ $output .= '</i>'; $state = 'b'; }
-						else if ($state == 'ib')
+						else if ($state === 'ib')
 						{ $output .= '</b></i><b>'; $state = 'b'; }
-						else if ($state == 'both')
+						else if ($state === 'both')
 						{ $output .= '<b><i>'.$buffer.'</i>'; $state = 'b'; }
 						else # $state can be 'b' or ''
 						{ $output .= '<i>'; $state .= 'i'; }
 					}
 					else if (strlen ($r) == 3)
 					{
-						if ($state == 'b')
+						if ($state === 'b')
 						{ $output .= '</b>'; $state = ''; }
-						else if ($state == 'bi')
+						else if ($state === 'bi')
 						{ $output .= '</i></b><i>'; $state = 'i'; }
-						else if ($state == 'ib')
+						else if ($state === 'ib')
 						{ $output .= '</b>'; $state = 'i'; }
-						else if ($state == 'both')
+						else if ($state === 'both')
 						{ $output .= '<i><b>'.$buffer.'</b>'; $state = 'i'; }
 						else # $state can be 'i' or ''
 						{ $output .= '<b>'; $state .= 'b'; }
 					}
 					else if (strlen ($r) == 5)
 					{
-						if ($state == 'b')
+						if ($state === 'b')
 						{ $output .= '</b><i>'; $state = 'i'; }
-						else if ($state == 'i')
+						else if ($state === 'i')
 						{ $output .= '</i><b>'; $state = 'b'; }
-						else if ($state == 'bi')
+						else if ($state === 'bi')
 						{ $output .= '</i></b>'; $state = ''; }
-						else if ($state == 'ib')
+						else if ($state === 'ib')
 						{ $output .= '</b></i>'; $state = ''; }
-						else if ($state == 'both')
+						else if ($state === 'both')
 						{ $output .= '<i><b>'.$buffer.'</b></i>'; $state = ''; }
 						else # ($state == '')
 						{ $buffer = ''; $state = 'both'; }
@@ -1234,14 +1234,14 @@ class Parser
 				$i++;
 			}
 			# Now close all remaining tags.  Notice that the order is important.
-			if ($state == 'b' || $state == 'ib')
+			if ($state === 'b' || $state === 'ib')
 				$output .= '</b>';
-			if ($state == 'i' || $state == 'bi' || $state == 'ib')
+			if ($state === 'i' || $state === 'bi' || $state === 'ib')
 				$output .= '</i>';
-			if ($state == 'bi')
+			if ($state === 'bi')
 				$output .= '</b>';
 			# There might be lonely ''''', so make sure we have a buffer
-			if ($state == 'both' && $buffer)
+			if ($state === 'both' && $buffer)
 				$output .= '<b><i>'.$buffer.'</i></b>';
 			return $output;
 		}
@@ -1291,7 +1291,7 @@ class Parser
 			$dtrail = '';
 
 			# Set linktype for CSS - if URL==text, link is essentially free
-			$linktype = ($text == $url) ? 'free' : 'text';
+			$linktype = ($text === $url) ? 'free' : 'text';
 
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
@@ -1631,7 +1631,7 @@ class Parser
 				$link = $m[1];
 			}
 
-			$noforce = (substr($m[1], 0, 1) != ':');
+			$noforce = (substr($m[1], 0, 1) !== ':');
 			if (!$noforce) {
 				# Strip off leading ':'
 				$link = substr($link, 1);
@@ -1892,7 +1892,7 @@ class Parser
 			# bug 7425
 			$target = trim( $target );
 			# Look at the first character
-			if( $target != '' && $target{0} == '/' ) {
+			if( $target != '' && $target{0} === '/' ) {
 				# / at end means we don't want the slash to be shown
 				$m = array();
 				$trailingSlashes = preg_match_all( '%(/+)$%', $target, $m );
@@ -1919,7 +1919,7 @@ class Parser
 					if( count( $exploded ) > $dotdotcount ) { # not allowed to go below top level page
 						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
 						# / at the end means don't show full path
-						if( substr( $nodotdot, -1, 1 ) == '/' ) {
+						if( substr( $nodotdot, -1, 1 ) === '/' ) {
 							$nodotdot = substr( $nodotdot, 0, -1 );
 							if( '' === $text ) {
 								$text = $nodotdot . $suffix;
@@ -1971,10 +1971,10 @@ class Parser
 	/* private */ function openList( $char ) {
 		$result = $this->closeParagraph();
 
-		if ( '*' == $char ) { $result .= '<ul><li>'; }
-		else if ( '#' == $char ) { $result .= '<ol><li>'; }
-		else if ( ':' == $char ) { $result .= '<dl><dd>'; }
-		else if ( ';' == $char ) {
+		if ( '*' === $char ) { $result .= '<ul><li>'; }
+		else if ( '#' === $char ) { $result .= '<ol><li>'; }
+		else if ( ':' === $char ) { $result .= '<dl><dd>'; }
+		else if ( ';' === $char ) {
 			$result .= '<dl><dt>';
 			$this->mDTopen = true;
 		}
@@ -1984,11 +1984,11 @@ class Parser
 	}
 
 	/* private */ function nextItem( $char ) {
-		if ( '*' == $char || '#' == $char ) { return '</li><li>'; }
-		else if ( ':' == $char || ';' == $char ) {
+		if ( '*' === $char || '#' === $char ) { return '</li><li>'; }
+		else if ( ':' === $char || ';' === $char ) {
 			$close = '</dd>';
 			if ( $this->mDTopen ) { $close = '</dt>'; }
-			if ( ';' == $char ) {
+			if ( ';' === $char ) {
 				$this->mDTopen = true;
 				return $close . '<dt>';
 			} else {
@@ -2000,9 +2000,9 @@ class Parser
 	}
 
 	/* private */ function closeList( $char ) {
-		if ( '*' == $char ) { $text = '</li></ul>'; }
-		else if ( '#' == $char ) { $text = '</li></ol>'; }
-		else if ( ':' == $char ) {
+		if ( '*' === $char ) { $text = '</li></ul>'; }
+		else if ( '#' === $char ) { $text = '</li></ol>'; }
+		else if ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
 				$text = '</dt></dl>';
@@ -2068,7 +2068,7 @@ class Parser
 				$output .= $this->nextItem( substr( $prefix, -1 ) );
 				$paragraphStack = false;
 
-				if ( substr( $prefix, -1 ) == ';') {
+				if ( substr( $prefix, -1 ) === ';') {
 					# The one nasty exception: definition lists work like this:
 					# ; title : definition text
 					# So we check for : in the remainder text to split up the
@@ -2095,7 +2095,7 @@ class Parser
 					$char = substr( $prefix, $commonPrefixLength, 1 );
 					$output .= $this->openList( $char );
 
-					if ( ';' == $char ) {
+					if ( ';' === $char ) {
 						# FIXME: This is dupe of code above
 						if ($this->findColonNoLinks($t, $term, $t2) !== false) {
 							$t = $t2;
@@ -2127,9 +2127,9 @@ class Parser
 						$inBlockElem = true;
 					}
 				} else if ( !$inBlockElem && !$this->mInPre ) {
-					if ( ' ' == $t{0} and ( $this->mLastSection == 'pre' or trim($t) != '' ) ) {
+					if ( ' ' == $t{0} and ( $this->mLastSection === 'pre' or trim($t) != '' ) ) {
 						// pre
-						if ($this->mLastSection != 'pre') {
+						if ($this->mLastSection !== 'pre') {
 							$paragraphStack = false;
 							$output .= $this->closeParagraph().'<pre>';
 							$this->mLastSection = 'pre';
@@ -2143,7 +2143,7 @@ class Parser
 								$paragraphStack = false;
 								$this->mLastSection = 'p';
 							} else {
-								if ($this->mLastSection != 'p' ) {
+								if ($this->mLastSection !== 'p' ) {
 									$output .= $this->closeParagraph();
 									$this->mLastSection = '';
 									$paragraphStack = '<p>';
@@ -2156,7 +2156,7 @@ class Parser
 								$output .= $paragraphStack;
 								$paragraphStack = false;
 								$this->mLastSection = 'p';
-							} else if ($this->mLastSection != 'p') {
+							} else if ($this->mLastSection !== 'p') {
 								$output .= $this->closeParagraph().'<p>';
 								$this->mLastSection = 'p';
 							}
@@ -2299,7 +2299,7 @@ class Parser
 				break;
 			case 3: // self::COLON_STATE_CLOSETAG:
 				// In a </tag>
-				if( $c == ">" ) {
+				if( $c === ">" ) {
 					$stack--;
 					if( $stack < 0 ) {
 						wfDebug( __METHOD__.": Invalid input; too many close tags\n" );
@@ -2310,7 +2310,7 @@ class Parser
 				}
 				break;
 			case self::COLON_STATE_TAGSLASH:
-				if( $c == ">" ) {
+				if( $c === ">" ) {
 					// Yes, a self-closed tag <blah/>
 					$state = self::COLON_STATE_TEXT;
 				} else {
@@ -2319,19 +2319,19 @@ class Parser
 				}
 				break;
 			case 5: // self::COLON_STATE_COMMENT:
-				if( $c == "-" ) {
+				if( $c === "-" ) {
 					$state = self::COLON_STATE_COMMENTDASH;
 				}
 				break;
 			case self::COLON_STATE_COMMENTDASH:
-				if( $c == "-" ) {
+				if( $c === "-" ) {
 					$state = self::COLON_STATE_COMMENTDASHDASH;
 				} else {
 					$state = self::COLON_STATE_COMMENT;
 				}
 				break;
 			case self::COLON_STATE_COMMENTDASHDASH:
-				if( $c == ">" ) {
+				if( $c === ">" ) {
 					$state = self::COLON_STATE_TEXT;
 				} else {
 					$state = self::COLON_STATE_COMMENT;
@@ -3291,7 +3291,7 @@ class Parser
 			}
 		}
 
-		if ( $name == 'html' || $name == 'nowiki' ) {
+		if ( $name === 'html' || $name === 'nowiki' ) {
 			$this->mStripState->nowiki->setPair( $marker, $output );
 		} else {
 			$this->mStripState->general->setPair( $marker, $output );
@@ -3623,7 +3623,7 @@ class Parser
 		$i = 0;
 
 		foreach( $blocks as $block ) {
-			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block != "\n" ) {
+			if( $showEditLink && $headlineCount > 0 && $i == 0 && $block !== "\n" ) {
 				# This is the [edit] link that appears for the top block of text when
 				# section editing is enabled
 
@@ -4003,7 +4003,7 @@ class Parser
 				$syn = '#' . $syn;
 			}
 			# Remove trailing colon
-			if ( substr( $syn, -1, 1 ) == ':' ) {
+			if ( substr( $syn, -1, 1 ) === ':' ) {
 				$syn = substr( $syn, 0, -1 );
 			}
 			$this->mFunctionSynonyms[$sensitive][$syn] = $id;
@@ -4224,7 +4224,7 @@ class Parser
 				list( $type, $paramName ) = $paramMap[$magicName];
 
 				// Special case; width and height come in one variable together
-				if( $type == 'handler' && $paramName == 'width' ) {
+				if( $type === 'handler' && $paramName === 'width' ) {
 					$m = array();
 					# (bug 13500) In both cases (width/height and width only),
 					# permit trailing "px" for backward compatibility.
@@ -4247,7 +4247,7 @@ class Parser
 						}
 					} // else no validation -- bug 13436
 				} else {
-					if ( $type == 'handler' ) {
+					if ( $type === 'handler' ) {
 						# Validate handler parameter
 						$validated = $handler->validateParam( $paramName, $value );
 					} else {
@@ -4392,7 +4392,7 @@ class Parser
 		$sectionParts = explode( '-', $section );
 		$sectionIndex = array_pop( $sectionParts );
 		foreach ( $sectionParts as $part ) {
-			if ( $part == 'T' ) {
+			if ( $part === 'T' ) {
 				$flags |= self::PTD_FOR_INCLUSION;
 			}
 		}
@@ -4409,14 +4409,14 @@ class Parser
 			$targetLevel = 1000;
 		} else {
             while ( $node ) {
-                if ( $node->getName() == 'h' ) {
+                if ( $node->getName() === 'h' ) {
                     $bits = $node->splitHeading();
 					if ( $bits['i'] == $sectionIndex ) {
         				$targetLevel = $bits['level'];
 						break;
 					}
 				}
-				if ( $mode == 'replace' ) {
+				if ( $mode === 'replace' ) {
 					$outText .= $frame->expand( $node, PPFrame::RECOVER_ORIG );
 				}
 				$node = $node->getNextSibling();
@@ -4425,7 +4425,7 @@ class Parser
 
 		if ( !$node ) {
 			// Not found
-			if ( $mode == 'get' ) {
+			if ( $mode === 'get' ) {
 				return $newText;
 			} else {
 				return $text;
@@ -4434,21 +4434,21 @@ class Parser
 
 		// Find the end of the section, including nested sections
 		do {
-			if ( $node->getName() == 'h' ) {
+			if ( $node->getName() === 'h' ) {
 				$bits = $node->splitHeading();
 				$curLevel = $bits['level'];
 				if ( $bits['i'] != $sectionIndex && $curLevel <= $targetLevel ) {
 					break;
 				}
 			}
-			if ( $mode == 'get' ) {
+			if ( $mode === 'get' ) {
 				$outText .= $frame->expand( $node, PPFrame::RECOVER_ORIG );
 			}
 			$node = $node->getNextSibling();
 		} while ( $node );
 
 		// Write out the remainder (in replace mode only)
-		if ( $mode == 'replace' ) {
+		if ( $mode === 'replace' ) {
 			// Output the replacement text
 			// Add two newlines on -- trailing whitespace in $newText is conventionally
 			// stripped by the editor, so we need both newlines to restore the paragraph gap
@@ -4713,7 +4713,7 @@ class OnlyIncludeReplacer {
 	var $output = '';
 
 	function replace( $matches ) {
-		if ( substr( $matches[1], -1 ) == "\n" ) {
+		if ( substr( $matches[1], -1 ) === "\n" ) {
 			$this->output .= substr( $matches[1], 0, -1 );
 		} else {
 			$this->output .= $matches[1];
