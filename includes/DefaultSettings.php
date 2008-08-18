@@ -1470,6 +1470,9 @@ $wgRCChangedSizeThreshold			= -500;
  * view for watched pages with new changes */
 $wgShowUpdatedMarker 				= true;
 
+/**
+ * Default cookie expiration time. Setting to 0 disables makes all cookies session-only.
+ */
 $wgCookieExpiration = 30*86400;
 
 /** Clock skew or the one-second resolution of time() can occasionally cause cache
@@ -1555,11 +1558,6 @@ $wgCookiePrefix = false;
  * Only supported on PHP 5.2 or higher.
  */
 $wgCookieHttpOnly = version_compare("5.2", PHP_VERSION, "<");
-
-/**
- * Allow MediaWiki to set persistent cookies for login, etc.
- */
-$wgEnablePersistentCookies = true;
 
 /**
  * If the requesting browser matches a regex in this blacklist, we won't

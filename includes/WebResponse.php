@@ -12,13 +12,9 @@ class WebResponse {
 
 	/** Set the browser cookie */
 	function setcookie( $name, $value, $expire = 0 ) {
-		global $wgEnablePersistentCookies;
-		if ( !$wgEnablePersistentCookies ) {
-			return false;
-		}
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
-		if( $expire == 0 ) {
+		if ( $expire == 0 ) {
 			$expire = time() + $wgCookieExpiration;
 		}
 		$httpOnlySafe = wfHttpOnlySafe();
