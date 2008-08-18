@@ -1689,7 +1689,9 @@ class Language {
 			} else {
 				# Fall back to English if local list is incomplete
 				$magicWords =& Language::getMagicWords();
-				if ( !isset($magicWords[$mw->mId]) ) { throw new MWException("Magic word not found" ); }
+				if ( !isset($magicWords[$mw->mId]) ) {
+					throw new MWException("Magic word '{$mw->mId}' not found" ); 
+				}
 				$rawEntry = $magicWords[$mw->mId];
 			}
 		}
