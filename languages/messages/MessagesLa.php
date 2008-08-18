@@ -1109,7 +1109,8 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum pagi
 # Special:Categories
 'categories'                    => 'Categoriae',
 'categoriespagetext'            => 'Categoriae subter paginas vel fasciculos continent.
-[[Special:UnusedCategories|Categoriae non in usu]] et [[Special:WantedCategories|categoriae desideratae]] non monstrantur.',
+[[Special:UnusedCategories|Categoriae non in usu]] non monstrantur.
+Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'special-categories-sort-count' => 'ordinare secundum numerum',
 'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
 
@@ -1502,6 +1503,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'anonymous'        => 'Usor ignotus {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}} usor $1',
 'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
+'siteusers'        => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',
 
 # Info page
 'numedits'     => 'Numerus recensionum (pagina): $1',

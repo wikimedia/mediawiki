@@ -6,6 +6,7 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author Izzudin
  * @author Kurniasan
  * @author Putera Luqman Tunku Andre
  * @author לערי ריינהארט
@@ -1484,7 +1485,9 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 
 # Special:Categories
 'categories'                    => 'Kategori',
-'categoriespagetext'            => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'categoriespagetext'            => 'Kategori-kategori berikut mengandungi laman-laman atau media.
+[[Special:UnusedCategories|Kategori tidak diguna]] tidak ditunjukkan di sini.
+Lihat juga [[Special:WantedCategories|kategori dikehendaki]].',
 'categoriesfrom'                => 'Paparkan kategori bermula daripada:',
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
@@ -2123,7 +2126,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'lastmodifiedatby' => 'Laman ini diubah buat kali terakhir pada $2, $1 oleh $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Berdasarkan karya $1.',
 'others'           => 'lain-lain',
-'siteusers'        => 'Pengguna-pengguna {{SITENAME}}, $1',
+'siteusers'        => '{{PLURAL:$2|pengguna|pengguna-pengguna}} {{SITENAME}} $1',
 'creditspage'      => 'Penghargaan',
 'nocredits'        => 'Tiada maklumat penghargaan bagi laman ini.',
 
@@ -2626,6 +2629,20 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'watchlisttools-view' => 'Lihat perubahan',
 'watchlisttools-edit' => 'Sunting senarai pantau',
 'watchlisttools-raw'  => 'Sunting senarai pantau mentah',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharam',
+'hijri-calendar-m2'  => 'Safar',
+'hijri-calendar-m3'  => 'Rabiulawal',
+'hijri-calendar-m4'  => 'Rabiulakhir',
+'hijri-calendar-m5'  => 'Jamadilawal',
+'hijri-calendar-m6'  => 'Jamadilakhir',
+'hijri-calendar-m7'  => 'Rejab',
+'hijri-calendar-m8'  => 'Syaaban',
+'hijri-calendar-m9'  => 'Ramadan',
+'hijri-calendar-m10' => 'Syawal',
+'hijri-calendar-m11' => 'Zulkaedah',
+'hijri-calendar-m12' => 'Zulhijah',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag penyambung "$1" tidak dikenali',

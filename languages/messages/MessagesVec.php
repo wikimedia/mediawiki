@@ -1365,7 +1365,8 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 # Special:Categories
 'categories'                    => 'Categorie',
 'categoriespagetext'            => 'Ste categorie qua soto le gà drento pagine o file multimediài.
-Le [[Special:UnusedCategories|categorie mìa doparà]] e le [[Special:WantedCategories|le categorie domandà]] no le vien mìa fate védar.',
+Le [[Special:UnusedCategories|categorie mìa doparà]] no le vien mìa fate védar.
+Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'categoriesfrom'                => 'Mostra le categorie tacando da :',
 'special-categories-sort-count' => 'ordina par nùmaro',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',

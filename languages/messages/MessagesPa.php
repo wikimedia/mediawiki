@@ -4,11 +4,11 @@
  * @ingroup Language
  * @file
  *
+ * @author AS Alam
  * @author Gman124
- * @author לערי ריינהארט
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
- * @author AS Alam
+ * @author לערי ריינהארט
  *
  * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License

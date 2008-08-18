@@ -15,6 +15,7 @@
  * @author SPQRobin
  * @author Siebrand
  * @author Troefkaart
+ * @author Tvdm
  * @author לערי ריינהארט
  */
 
@@ -515,7 +516,7 @@ $messages = array(
 'retrievedfrom'           => 'Teruggeplaatst van "$1"',
 'youhavenewmessages'      => 'U hebt $1 ($2).',
 'newmessageslink'         => 'nieuwe berichten',
-'newmessagesdifflink'     => 'de bewerking bekijken',
+'newmessagesdifflink'     => 'laatste wijziging',
 'youhavenewmessagesmulti' => 'U hebt nieuwe berichten op $1',
 'editsection'             => 'bewerken',
 'editold'                 => 'bewerken',
@@ -698,7 +699,7 @@ Schakel die alstublieft in en meld daarna aan met uw nieuwe gebruikersnaam en wa
 'wrongpasswordempty'         => 'Het opgegeven wachtwoord was leeg. Probeer het opnieuw.',
 'passwordtooshort'           => 'Uw wachtwoord is te kort.
 Het moet minstens uit {{PLURAL:$1|1 teken|$1 tekens}} bestaan.',
-'mailmypassword'             => 'E-mail wachtwoord',
+'mailmypassword'             => 'Wachtwoord e-mailen',
 'passwordremindertitle'      => 'Nieuw tijdelijk wachtwoord voor {{SITENAME}}',
 'passwordremindertext'       => 'Iemand, waarschijnlijk u, heeft vanaf IP-adres $1 een verzoek gedaan tot het toezenden van het wachtwoord voor {{SITENAME}} ($4).
 Het wachtwoord voor gebruiker "$2" is "$3".
@@ -876,8 +877,8 @@ Hiermee wordt door de MediaWiki-software rekening gehouden zodat u toch zonder p
 U bewerkt een oude versie van deze pagina.
 Als u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gemaakt zijn verloren.</strong>',
 'yourdiff'                         => 'Wijzigingen',
-'copyrightwarning'                 => "Opgelet: Alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
-Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina Opslaan'.<br />
+'copyrightwarning'                 => "Opgelet: alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
+Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina opslaan'.<br />
 Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br />
 <strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARVOOR TOESTEMMING HEBT!</strong>",
 'copyrightwarning2'                => 'Al uw bijdragen aan {{SITENAME}} kunnen bewerkt, gewijzigd of verwijderd worden door andere gebruikers.
@@ -1595,7 +1596,7 @@ Meestal is de laatste pagina het eigenlijke doel.",
 'unusedimages'            => 'Ongebruikte bestanden',
 'popularpages'            => "Populaire pagina's",
 'wantedcategories'        => 'Niet-bestaande categorieën met de meeste verwijzingen',
-'wantedpages'             => "Niet-bestaande pagina's met de meeste verwijzingen",
+'wantedpages'             => "Niet-bestaande pagina's met verwijzingen",
 'missingfiles'            => 'Niet-bestaande bestanden met verwijzingen',
 'mostlinked'              => "Pagina's waar het meest naar verwezen wordt",
 'mostlinkedcategories'    => 'Categorieën waar het meest naar verwezen wordt',
@@ -1671,8 +1672,9 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginana
 
 # Special:Categories
 'categories'                    => 'Categorieën',
-'categoriespagetext'            => "De volgende categorieën bevatten pagina's of media.
-[[Special:UnusedCategories|Ongebruikte categorieën]] en [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]] worden hier niet weergegeven.",
+'categoriespagetext'            => "De volgende categorieën bevatten pagina's of mediabestanden.
+[[Special:UnusedCategories|Ongebruikte categorieën]] worden hier niet weergegeven.
+Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]].",
 'categoriesfrom'                => 'Categorieën weergeven vanaf:',
 'special-categories-sort-count' => 'op aantal sorteren',
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
@@ -1864,7 +1866,7 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'protect-level-sysop'         => 'Alleen beheerders',
 'protect-summary-cascade'     => 'cascade',
 'protect-expiring'            => 'verloopt op $1',
-'protect-cascade'             => "Cascadebeveiliging - beveilig alle pagina's en sjablonen die in deze pagina opgenomen zijn (let op; dit kan grote gevolgen hebben).",
+'protect-cascade'             => "Cascadebeveiliging: beveilig alle pagina's en sjablonen die in deze pagina opgenomen zijn (let op: dit kan grote gevolgen hebben).",
 'protect-cantedit'            => 'U kunt het beveiligingsniveau van deze pagina niet wijzigen, omdat u geen rechten hebt om het te bewerken.',
 'restriction-type'            => 'Rechten:',
 'restriction-level'           => 'Beperkingsniveau:',
@@ -2304,7 +2306,7 @@ U kunt wel de broncode bekijken.',
 'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
-'siteusers'        => '{{SITENAME}}-gebruiker(s) $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
 'creditspage'      => 'Auteurspagina',
 'nocredits'        => 'Er is geen auteursinformatie beschikbaar voor deze pagina.',
 
@@ -2402,7 +2404,7 @@ Alle volgende verwijzingen die op dezelfde regel staan, worden behandeld als uit
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand is aangepast, dan komen details mogelijk niet overeen met het gewijzigde bestand.',
+'metadata-help'     => 'Dit bestand bevat aanvullende informatie, die door een fotocamera, scanner of fotobewerkingsprogramma toegevoegd kan zijn. Als het bestand aangepast is, komen details mogelijk niet overeen met het gewijzigde bestand.',
 'metadata-expand'   => 'Uitgebreide gegevens bekijken',
 'metadata-collapse' => 'Uitgebreide gegevens verbergen',
 'metadata-fields'   => 'De EXIF-metadatavelden in dit bericht worden ook weergegeven op een afbeeldingspagina als de metadatatabel ingeklapt is. Andere velden worden verborgen.

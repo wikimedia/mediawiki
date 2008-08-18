@@ -71,6 +71,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Agochar as edicións propias na listaxe de vixilancia',
 'tog-watchlisthidebots'       => 'Agochar as edicións dos bots na listaxe de vixilancia',
 'tog-watchlisthideminor'      => 'Agochar as edicións pequenas na listaxe de vixilancia',
+'tog-watchlisthideliu'        => 'Agochar as edicións dos usuarios rexistrados na listaxe de vixilancia',
+'tog-watchlisthideanons'      => 'Agochar as edicións dos usuarios anónimos na listaxe de vixilancia',
 'tog-nolangconversion'        => 'Desactivar a conversión de variantes',
 'tog-ccmeonemails'            => 'Enviar ao meu enderezo copia das mensaxes que envíe a outros usuarios',
 'tog-diffonly'                => 'Non mostrar o contido da páxina debaixo das diferenzas entre edicións (dif)',
@@ -259,7 +261,7 @@ $messages = array(
 
 'badaccess'        => 'Erro de permisos',
 'badaccess-group0' => 'Non ten autorización para executar a acción que solicitou.',
-'badaccess-groups' => 'A acción solicitada está limitada aos usuarios nalgún dos grupos $1.',
+'badaccess-groups' => 'A acción que solicitou está limitada aos usuarios que están {{PLURAL:$2|neste grupo|nalgún destes grupos}}: $1.',
 
 'versionrequired'     => 'Necesítase a versión $1 de MediaWiki',
 'versionrequiredtext' => 'Necesítase a versión $1 de MediaWiki para utilizar esta páxina. Vexa [[Special:Version|a páxina da versión]].',
@@ -390,11 +392,11 @@ A razón dada foi ''$2''.",
 'logouttitle'                => 'Saída de usuario a anónimo',
 'logouttext'                 => '<strong>Agora está fóra do sistema.</strong>
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode acceder de novo co mesmo nome de usuario ou con outro.
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
 Teña en conta que mentres se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.',
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
-Creouse a súa conta.
-Non esqueza personalizar as súas preferencias en {{SITENAME}}.',
+A súa conta foi creada correctamente.
+Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
 'loginpagetitle'             => 'Acceso de usuario',
 'yourname'                   => 'O seu nome de usuario:',
 'yourpassword'               => 'O seu contrasinal:',
@@ -405,7 +407,7 @@ Non esqueza personalizar as súas preferencias en {{SITENAME}}.',
 'loginproblem'               => '<b>Houbo algún problema co seu acceso.</b><br />Ténteo de novo!',
 'login'                      => 'Acceder ao sistema',
 'nav-login-createaccount'    => 'Rexistro',
-'loginprompt'                => "Debe permitir as ''cookies'' para acceder a {{SITENAME}}.",
+'loginprompt'                => 'Debe ter as cookies permitidas para acceder a {{SITENAME}}.',
 'userlogin'                  => 'Rexistro',
 'logout'                     => 'Saír do sistema',
 'userlogout'                 => 'Saír ao anonimato',
@@ -532,18 +534,19 @@ Se preme en \"Gardar a páxina\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo',
 'subject-preview'                  => 'Vista previa do asunto/cabeceira',
 'blockedtitle'                     => 'O usuario está bloqueado',
-'blockedtext'                      => '<big>\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado\'\'\'</big>
+'blockedtext'                      => '<big>\'\'\'O seu nome de usuario ou enderezo IP foi bloqueado.\'\'\'</big>
 
-O bloqueo foi realizado por $1. A razón que deu foi \'\'$2\'\'.
+O bloqueo foi realizado por $1.
+A razón que deu foi \'\'$2\'\'.
 
 * Inicio do bloqueo: $8
 * Caducidade do bloqueo: $6
-* Pretendeuse bloquear a: $7
+* Pretendeuse bloquear: $7
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
-Non pode empregar "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas
-[[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
-O seu enderezo IP actual é $3 e o ID do bloqueo é nº $5. Por favor inclúa eses datos nas consultas que faga.',
+Non pode empregar a característica "enviar un correo a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
+O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
+Por favor, inclúa eses datos nas consultas que faga.',
 'autoblockedtext'                  => 'O seu enderezo IP foi bloqueado automaticamente porque o empregou outro usuario, que foi bloqueado por $1.
 
 A razón que deu foi a seguinte:
@@ -561,7 +564,7 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'blockednoreason'                  => 'ningunha razón foi dada',
 'blockedoriginalsource'            => "O código fonte de '''$1''' móstrase a continuación:",
 'blockededitsource'                => "O texto das '''súas edicións''' en '''$1''' móstrase a continuación:",
-'whitelistedittitle'               => 'Cómpre rexistrarse para poder editar',
+'whitelistedittitle'               => 'Cómpre acceder ao sistema para poder editar',
 'whitelistedittext'                => 'Ten que $1 para poder editar páxinas.',
 'confirmedittitle'                 => 'Requírese confirmar o enderezo electrónico para editar',
 'confirmedittext'                  => 'Debe confirmar o enderezo electrónico antes de comezar a editar. Por favor configure e valide o enderezo electrónico mediante as [[Special:Preferences|preferencias de usuario]].',
@@ -576,7 +579,7 @@ O ID do seu bloqueo é $5. Inclúao nas consultas que faga.',
 'newarticletext'                   => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
-'anontalkpagetext'                 => "---- ''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se vostede pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor [[Special:UserLogin|cree unha conta]] para evitar futuras confusións con outros usuarios anónimos.''",
+'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta, ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódenno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                    => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror: '''faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
@@ -667,7 +670,7 @@ Estes argumentos serán omitidos.',
 'undo-success' => 'A edición desfíxose. Por favor a continuación confirme e garde os cambios.',
 'undo-failure' => 'A edición non se pode desfacer debido a un conflito con algunha das edicións intermedias.',
 'undo-norev'   => 'A edición non se pode desfacer porque non existe ou foi eliminada.',
-'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]])',
+'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Non pode crear unha conta de usuario',
@@ -676,7 +679,7 @@ Estes argumentos serán omitidos.',
 A razón dada por $3 foi ''$2''",
 
 # History pages
-'viewpagelogs'        => 'Ver os rexistros (logs) desta páxina',
+'viewpagelogs'        => 'Ver os rexistros desta páxina',
 'nohistory'           => 'Non existe un historial de edicións para esta páxina.',
 'revnotfound'         => 'A revisión non foi atopada',
 'revnotfoundtext'     => 'A revisión vella que pediu non se deu atopado.
@@ -695,6 +698,7 @@ Por favor verifique o URL que utilizou para acceder a esta páxina.',
 'histlegend'          => 'Selección de diferenzas: marque as versións que queira comparar e prema no botón ao final.<br />
 Lenda: (actual) = diferenza coa versión actual,
 (última) = diferenza coa versión precedente, m = edición pequena.',
+'history-search'      => 'Procurar no historial',
 'deletedrev'          => '[borrado]',
 'histfirst'           => 'Primeiras',
 'histlast'            => 'Últimas',
@@ -802,8 +806,9 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 
 # Search results
 'searchresults'             => 'Resultados da procura',
+'searchresults-title'       => 'Resultados da procura "$1"',
 'searchresulttext'          => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => "A súa busca de '''[[:$1]]'''",
+'searchsubtitle'            => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]] | [[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
 'searchsubtitleinvalid'     => "A súa busca de '''$1'''",
 'noexactmatch'              => "'''Non hai ningunha páxina titulada \"\$1\".'''
 Se quere, pode [[:\$1|creala]].",
@@ -1317,7 +1322,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'unusedcategories'        => 'Categorías sen uso',
 'unusedimages'            => 'Imaxes sen uso',
 'popularpages'            => 'Páxinas populares',
-'wantedcategories'        => 'Categorías sen comprobar',
+'wantedcategories'        => 'Categorías requiridas',
 'wantedpages'             => 'Páxinas requiridas',
 'missingfiles'            => 'Ficheiros que faltan',
 'mostlinked'              => 'Páxinas máis enlazadas',
@@ -1363,7 +1368,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Título:',
-'log'                  => 'Rexistros (logs)',
+'log'                  => 'Rexistros',
 'all-logs-page'        => 'Todos os rexistros',
 'log-search-legend'    => 'Procurar rexistros',
 'log-search-submit'    => 'Executar',
@@ -1390,7 +1395,9 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 
 # Special:Categories
 'categories'                    => 'Categorías',
-'categoriespagetext'            => 'As seguintes categorías conteñen páxinas ou contidos multimedia.',
+'categoriespagetext'            => 'As seguintes categorías conteñen páxinas ou contidos multimedia.
+Aquí non se amosan as [[Special:UnusedCategories|categorías non usadas]].
+Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'categoriesfrom'                => 'Amosar as categorías comezando por:',
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
@@ -1442,7 +1449,7 @@ Se quere máis información acerca dos dereitos individuais pode atopala [[{{Med
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
 'removedwatch'         => 'Quitado da listaxe de vixilancia',
-'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada da súa listaxe de vixilancia.',
+'removedwatchtext'     => 'A páxina "[[:$1]]" foi eliminada [[Special:Watchlist|da súa listaxe de vixilancia]].',
 'watch'                => 'Vixiar',
 'watchthispage'        => 'Vixiar esta páxina',
 'unwatch'              => 'Deixar de vixiar',
@@ -1647,24 +1654,26 @@ $1',
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Contribucións do usuario',
-'mycontris'     => 'As miñas contribucións',
-'contribsub2'   => 'De $1 ($2)',
-'nocontribs'    => 'Non se deron atopado cambios con eses criterios.',
-'uctop'         => '(última revisión)',
-'month'         => 'Desde o mes de (e anteriores):',
-'year'          => 'Desde o ano (e anteriores):',
+'contributions'       => 'Contribucións do usuario',
+'contributions-title' => 'Contribucións do usuario $1',
+'mycontris'           => 'As miñas contribucións',
+'contribsub2'         => 'De $1 ($2)',
+'nocontribs'          => 'Non se deron atopado cambios con eses criterios.',
+'uctop'               => '(última revisión)',
+'month'               => 'Desde o mes de (e anteriores):',
+'year'                => 'Desde o ano (e anteriores):',
 
-'sp-contributions-newbies'     => 'Mostrar só as contribucións das contas de usuario novas',
-'sp-contributions-newbies-sub' => 'Contribucións dos novos usuarios',
-'sp-contributions-blocklog'    => 'Rexistro de bloqueos',
-'sp-contributions-search'      => 'Busca de contribucións',
-'sp-contributions-username'    => 'Enderezo IP ou nome de usuario:',
-'sp-contributions-submit'      => 'Procurar',
+'sp-contributions-newbies'       => 'Mostrar só as contribucións das contas de usuario novas',
+'sp-contributions-newbies-sub'   => 'Contribucións dos usuarios novos',
+'sp-contributions-newbies-title' => 'Contribucións dos usuarios novos',
+'sp-contributions-blocklog'      => 'Rexistro de bloqueos',
+'sp-contributions-search'        => 'Busca de contribucións',
+'sp-contributions-username'      => 'Enderezo IP ou nome de usuario:',
+'sp-contributions-submit'        => 'Procurar',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
-'whatlinkshere-title'      => 'Páxinas que ligan con $1',
+'whatlinkshere-title'      => 'Páxinas que ligan con "$1"',
 'whatlinkshere-page'       => 'Páxina:',
 'linkshere'                => "As seguintes páxinas ligan con '''[[:$1]]''':",
 'nolinkshere'              => "Ningunha páxina liga con \"'''[[:\$1]]'''\".",
@@ -1726,7 +1735,7 @@ Olle a [[Special:IPBlockList|listaxe de IP bloqueados]] para revisalo.',
 'ipusubmit'                       => 'Desbloquear este enderezo',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
 'unblocked-id'                    => 'Eliminouse o bloqueo de $1',
-'ipblocklist'                     => 'Listaxe de enderezos IP e usuarios bloqueados',
+'ipblocklist'                     => 'Enderezos IP e usuarios bloqueados',
 'ipblocklist-legend'              => 'Buscar un usuario bloqueado',
 'ipblocklist-username'            => 'Nome de usuario ou enderezo IP:',
 'ipblocklist-submit'              => 'Procurar',
@@ -1792,13 +1801,16 @@ Por favor confirme que isto é o que quere facer.',
 'move-page-legend'        => 'Mover páxina',
 'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
-As ligazóns cara á páxina vella non van ser cambiadas; asegúrese de verificar se hai redireccións dobres ou crebadas.
+Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
+Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
 Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
-Fíxese que a páxina '''non''' vai ser movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións. Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina que xa existe.
+Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións.
+Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina que xa existe.
 
 '''ATENCIÓN!'''
-Este cambio nunha páxina popular pode ser drástico e inesperado; por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
+Este cambio nunha páxina popular pode ser drástico e inesperado;
+por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
 'movepagetalktext'        => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
 *Xa exista unha páxina de conversa con ese nome, ou
@@ -1998,7 +2010,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 as $2 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseado no traballo de $1.',
 'others'           => 'outros',
-'siteusers'        => '{{SITENAME}} usuario(s) $1',
+'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} de {{SITENAME}} $1',
 'creditspage'      => 'Páxina de créditos',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 
@@ -2039,9 +2051,10 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo.",
 'markedaspatrollederror-noautopatrol' => 'Non está permitido que un mesmo marque as propias edicións como revisadas.',
 
 # Patrol log
-'patrol-log-page' => 'Rexistro de revisións',
-'patrol-log-line' => 'marcada $1 de $2 como revisada $3',
-'patrol-log-auto' => '(automático)',
+'patrol-log-page'   => 'Rexistro de revisións',
+'patrol-log-header' => 'Este é un rexistro das revisións patrulladas.',
+'patrol-log-line'   => 'marcada $1 de $2 como revisada $3',
+'patrol-log-auto'   => '(automático)',
 
 # Image deletion
 'deletedrevision'                 => 'A revisión vella $1 foi borrada.',
@@ -2074,6 +2087,8 @@ $1',
 'newimages'             => 'Galería de imaxes novas',
 'imagelisttext'         => "Abaixo amósase unha listaxe de '''$1''' {{PLURAL:$1|ficheiro|ficheiros}} ordenados $2.",
 'newimages-summary'     => 'Esta páxina especial amosa os ficheiros cargados máis recentemente.',
+'newimages-legend'      => 'Filtro',
+'newimages-label'       => 'Nome do ficheiro (ou parte del):',
 'showhidebots'          => '($1 os bots)',
 'noimages'              => 'Non hai imaxes para ver.',
 'ilsubmit'              => 'Procurar',

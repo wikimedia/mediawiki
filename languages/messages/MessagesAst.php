@@ -1392,7 +1392,8 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 # Special:Categories
 'categories'                    => 'Categoríes',
 'categoriespagetext'            => "Les categoríes que vienen darréu contienen páxines o archivos multimedia.
-Les [[Special:UnusedCategories|categoríes non usaes]] y les [[Special:WantedCategories|categoríes más buscaes]] nun s'amuesen equí.",
+Les [[Special:UnusedCategories|categoríes non usaes]] nun s'amuesen equí.
+Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'categoriesfrom'                => "Amosar categoríes qu'emprimen por:",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
@@ -2026,7 +2027,7 @@ Guárdalu nel to ordenador y xúbilu equí.",
 'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basao nel trabayu fechu por $1.',
 'others'           => 'otros',
-'siteusers'        => '{{SITENAME}} usuariu/os $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|usuariu|usuarios}} $1',
 'creditspage'      => 'Páxina de creitos',
 'nocredits'        => 'Nun hai disponible información de creitos pa esta páxina.',
 

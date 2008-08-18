@@ -694,7 +694,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'hr_tip'          => 'Ligne horizontale (ne pas en abuser)',
 
 # Edit pages
-'summary'                          => 'Résumé&nbsp;',
+'summary'                          => 'Résumé',
 'subject'                          => 'Sujet/titre',
 'minoredit'                        => 'Modification mineure',
 'watchthis'                        => 'Suivre cette page',
@@ -1549,7 +1549,9 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 
 # Special:Categories
 'categories'                    => 'Catégories',
-'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.',
+'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.
+[[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.
+Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
@@ -2170,7 +2172,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basé sur le travail de $1.',
 'others'           => 'autres',
-'siteusers'        => 'Utilisateur(s) $1',
+'siteusers'        => '{{PLURAL:$2|utilisateur|utilisateurs}} $1 de {{SITENAME}}',
 'creditspage'      => 'Crédits de la page',
 'nocredits'        => 'Il n’y a pas d’informations d’attribution disponibles pour cette page.',
 

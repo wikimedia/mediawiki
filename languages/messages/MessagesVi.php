@@ -1136,8 +1136,8 @@ việc tải lên và tải lên lại được ghi lại trong [[Special:Log/up
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
-* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</tt></nowiki>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></tt>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
 'upload-prohibited'           => 'Các định dạng tập tin bị cấm: $1.',
@@ -1452,6 +1452,7 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'nextpage'          => 'Trang sau ($1)',
 'prevpage'          => 'Trang trước ($1)',
 'allpagesfrom'      => 'Xem trang từ:',
+'allpagesto'        => 'Xem đến trang:',
 'allarticles'       => 'Mọi trang',
 'allinnamespace'    => 'Mọi trang (không gian $1)',
 'allnotinnamespace' => 'Mọi trang (không trong không gian $1)',
@@ -1464,7 +1465,9 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 
 # Special:Categories
 'categories'                    => 'Thể loại',
-'categoriespagetext'            => 'Các thể loại có chứa trang hoặc tập tin phương tiện.',
+'categoriespagetext'            => 'Các thể loại dưới đây là thể loại có trang hoặc tập tin phương tiện.
+[[Special:UnusedCategories|Thể loại trống]] không được hiển thị tại đây.
+Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'categoriesfrom'                => 'Hiển thị thể loại bằng đầu từ:',
 'special-categories-sort-count' => 'xếp theo số trang',
 'special-categories-sort-abc'   => 'xếp theo vần',

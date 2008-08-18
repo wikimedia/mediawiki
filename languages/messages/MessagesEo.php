@@ -1259,7 +1259,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'filedelete-comment'          => 'Kialo por forigo:',
 'filedelete-submit'           => 'Forigi',
 'filedelete-success'          => "'''$1''' estas forigita.",
-'filedelete-success-old'      => '<span class="plainlinks">La versio de \'\'\'[[Media:$1|$1]]\'\'\' ekde $3, $2 estas forigita.</span>',
+'filedelete-success-old'      => "La versio de '''[[Media:$1|$1]]''' ekde $3, $2 estas forigita.",
 'filedelete-nofile'           => "'''$1''' ne ekzistas en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Estas neniuarkivita versio de '''$1''' kun la specifigitaj atribuoj.",
 'filedelete-otherreason'      => 'Alia/plua kialo:',
@@ -1368,6 +1368,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'deadendpagestext'        => 'La sekvaj paĝoj ne ligas al aliaj paĝoj en {{SITENAME}}.',
 'protectedpages'          => 'Protektitaj paĝoj',
 'protectedpages-indef'    => 'Nur ĉiamaj protektaĵoj',
+'protectedpages-cascade'  => 'Nur kaskadaj protektoj',
 'protectedpagestext'      => 'La sekvaj paĝoj estas protektitaj kontraŭ movigo aŭ redaktado',
 'protectedpagesempty'     => 'Neniuj paĝoj estas momente protektitaj kun ĉi tiuj parametroj.',
 'protectedtitles'         => 'Protektitaj titoloj',
@@ -1417,6 +1418,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 'nextpage'          => 'Sekvanta paĝo ($1)',
 'prevpage'          => 'Antaŭa paĝo ($1)',
 'allpagesfrom'      => 'Montri paĝojn ekde:',
+'allpagesto'        => 'Montri paĝoj finante de:',
 'allarticles'       => 'Ĉiuj paĝoj',
 'allinnamespace'    => 'Ĉiuj paĝoj ($1 nomspaco)',
 'allnotinnamespace' => 'Ĉiuj paĝoj (ne en nomspaco $1)',
@@ -1429,7 +1431,9 @@ komprenata kiel rekomendo aŭ reklamo.',
 
 # Special:Categories
 'categories'                    => 'Kategorioj',
-'categoriespagetext'            => 'La sekvantaj kategorioj ekzistas jam en la vikio.',
+'categoriespagetext'            => 'La jenaj kategorioj ekzistas jam en la vikio.
+[[Special:UnusedCategories|Neuzataj kategorioj]] ne estis montrataj ĉi tie.
+Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'categoriesfrom'                => 'Montri kategoriojn komencante de:',
 'special-categories-sort-count' => 'oridigi laŭ nombrado',
 'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
@@ -1508,6 +1512,8 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'watchlist-hide-own'   => 'Kaŝi miajn redaktojn',
 'watchlist-show-minor' => 'Montri redaktetojn',
 'watchlist-hide-minor' => 'Kaŝi redaktetojn',
+'watchlist-show-anons' => 'Montri anonimajn redaktojn',
+'watchlist-hide-anons' => 'Kaŝi anonimajn redaktojn',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aldonanta al la atentaro...',
@@ -2040,7 +2046,7 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 'lastmodifiedatby' => 'Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazita sur la laboro de $1.',
 'others'           => 'aliaj',
-'siteusers'        => '{{SITENAME}} uzanto(j) $1',
+'siteusers'        => '{{PLURAL:$2|uzanto|uzantoj}} de {{SITENAME}} $1',
 'creditspage'      => 'Atribuoj de paĝo',
 'nocredits'        => 'Ne estas informo pri atribuoj por ĉi paĝo.',
 

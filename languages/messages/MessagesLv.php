@@ -346,7 +346,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'loginproblem'               => '<b>Radās problēma ar ieiešanu.</b><br />Mēģini vēlreiz!',
 'login'                      => 'Ieiet',
 'nav-login-createaccount'    => 'Izveidot jaunu lietotāju vai doties iekšā',
-'loginprompt'                => 'Lai [[Special:UserLogin|ieietu {{grammar:lokatīvs|{{SITENAME}}}}]], tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
+'loginprompt'                => 'Lai ieietu {{grammar:lokatīvs|{{SITENAME}}}}, tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'                  => 'Izveidot jaunu lietotāju vai doties iekšā',
 'logout'                     => 'Iziet',
 'userlogout'                 => 'Iziet',
@@ -951,11 +951,15 @@ Vidēji tas ir '''\$5''' labojumi uz lapu un apskatīšanas/labojumu attiecība 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "Reģistrēto [[Special:ListUsers|lietotāju]] skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir {{PLURAL:$2|administrators|administratori}} (skat. $5).",
 
-'disambiguations'     => 'Nozīmju atdalīšanas lapas',
-'disambiguationspage' => 'Template:Disambig',
+'disambiguations'      => 'Nozīmju atdalīšanas lapas',
+'disambiguationspage'  => 'Template:Disambig',
+'disambiguations-text' => "Šeit esošajās lapās ir saite uz '''nozīmju atdalīšanas lapu'''.
+Šīs saites vajadzētu izlabot, lai tās vestu tieši uz attiecīgo lapu.<br />
+Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir saite no [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Divkāršas pāradresācijas lapas',
-'doubleredirectstext' => 'Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.',
+'doubleredirects'            => 'Divkāršas pāradresācijas lapas',
+'doubleredirectstext'        => 'Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.',
+'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
 
 'brokenredirects'     => 'Kļūdainas pāradresācijas',
 'brokenredirectstext' => 'Šīs ir pāradresācijas lapas uz neesošām lapām.',
@@ -1029,7 +1033,9 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 
 # Special:Categories
 'categories'         => 'Kategorijas',
-'categoriespagetext' => 'Wiki ir atrodamas šādas kategorijas.',
+'categoriespagetext' => "Šīs kategorijas satur lapas vai failus.
+Šeit nav parādītas [[Special:UnusedCategories|neizmantotās kategorijas]].
+Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',
 
 # Special:ListUsers
@@ -1203,13 +1209,14 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 'blanknamespace' => '(Pamatlapa)',
 
 # Contributions
-'contributions' => 'Lietotāja devums',
-'mycontris'     => 'Mans devums',
-'contribsub2'   => 'Lietotājs: $1 ($2)',
-'nocontribs'    => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
-'uctop'         => '(pēdējā izmaiņa)',
-'month'         => 'No mēneša (un senāki):',
-'year'          => 'No gada (un senāki):',
+'contributions'       => 'Lietotāja devums',
+'contributions-title' => 'Lietotāja $1 devums',
+'mycontris'           => 'Mans devums',
+'contribsub2'         => 'Lietotājs: $1 ($2)',
+'nocontribs'          => 'Netika atrastas izmaiņas, kas atbilstu šiem kritērijiem.',
+'uctop'               => '(pēdējā izmaiņa)',
+'month'               => 'No mēneša (un senāki):',
+'year'                => 'No gada (un senāki):',
 
 'sp-contributions-newbies'     => 'Rādīt jauno lietotāju devumu',
 'sp-contributions-newbies-sub' => 'Jaunie lietotāji',

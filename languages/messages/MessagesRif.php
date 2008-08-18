@@ -102,6 +102,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Xeff {{SITENAME}}',
 'aboutpage'            => 'Project:Xeff',
+'bugreports'           => 'ina-neɣ x ca n (Bug)',
+'bugreportspage'       => 'Project:ina-neɣ x ca n (Bug)',
 'copyrightpage'        => '{{ns:project}}:izrefan ussenɣel',
 'currentevents'        => 'Mayn itemsaren rux',
 'currentevents-url'    => 'Project:mayn itmesaren ruxa',
@@ -177,9 +179,17 @@ xemm tirra.',
 itxessat ad di-s tili {{PLURAL:$1|1 usekkil|$1 isekkilen}} u ad tili temṣebda x isem n useqdac inec.',
 'mailmypassword'          => 'Sekk tawalt n uεddu di E-mail',
 'passwordremindertitle'   => 'Tawalt n εuddu tamaynut n ruxa waha {{SITENAME}}',
+'passwordremindertext'    => 'Ca n ijj (teqqad ad yili d cekk, zi tansa IP a $1)
+inna neɣ ada-s-ad nesekk tawalt n uɛeddu d tamaynut i {{SITENAME}} ($4).
+tawalt n uɛeddu n useqdac "$2" ruxa d "$3".
+ixessa ad tadeffed bac ad tbeddeled ruxa.
+
+mala war illi d cekk ur tawi x manaya , qim sexdam tawalt n uɛeddu inecc taqburt.',
 'noemail'                 => 'War illi ca n e-mail ɣar useqdac a "$1".',
 'passwordsent'            => 'Tawalt n εuddu tamaynut twassekked i e-mail  "$1".
 adeff-d xmi ad-tetfed.',
+'eauthentsent'            => 'ijj n e-mail itwasekked ɣar e-mail nni.
+ẓẓat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged manayenni di e-mail, bac ad nessen ila qa amiḍan a inec.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tirra d-tiqebbuzin',
@@ -213,6 +223,19 @@ adeff-d xmi ad-tetfed.',
 'anoneditwarning'        => "'''ɣark:''' war tudifd ca s isem inec.
 Tansa n IP inac ad-iqqim deg umezruy n teẓrigin n tsebtert a .",
 'summary-preview'        => 'Azar-ascan n ugzul',
+'blockedtext'            => "<big>'''Isem useqdac niɣ tansa IP inecc tewabluca  .'''</big>
+
+iblocat  $1.
+Maynzi ''$2''.
+
+* Abluki ibda di: $8
+* Ad ikemmel di: $6
+* Abluki ig itwaxsen d: $7
+
+Tzemred ad temsawaded ag $1 niɣ [[{{MediaWiki:Grouppage-sysop}}|administrator]] nniḍn bac ad tsiwled x ubluki a.
+war tzemred ca ad ad tesxedmed 'e-mail this user' ɣar mala ca n e-mail illa ɣark di [[Special:Preferences|iɣewwaren n umiḍan]] u war twabluki ca usexdem ines.
+Tansa IP inecc n ruxa d $3, u ID icecc iteblukan d #$5.
+maṛṛa manaya deg ujenna eggit di tabrat i ɣ-ad tsekked.",
 'newarticle'             => '(Amaynu)',
 'newarticletext'         => "Tdefar-d tazdayt n tsebtert εad war telli .
 bac attegged , arri di taflwit a swadday (xemm i [[{{MediaWiki:Helppage}}| Tasebtert n Tallalt]] i ktar n inɣmisen).
@@ -226,6 +249,9 @@ tiẓrigin εad war twaḥḍent!</strong>',
 mala war texsed tirra inacc ad twaẓregent u ad twamsebḍant, iwa ur ten-tag ca da.<br />
 Ɛawtani tjadjid-anɣ ila qa d cekk ig yuran manaya, niɣ tesneɣlet-id zi ca n uɣbal nniḍn d alelli.
 <strong>UR SADDAF CA TIRRA ɣARSENT COPYRIGHTE BLA MA AD-IXES BAB-INES !</strong>',
+'longpagewarning'        => '<strong>WARNING: Tasebtert a dag-s $1 kilobyte ;
+ca n imsuṭṭuyen(browsers) war zemren ca ad ẓregen tisebtar dag-sent 32kb niɣ ktar.
+ixessa ad ten tebḍid ɣar tigezmin(sections) d timeẓyanin.</strong>',
 'templatesused'          => 'Timudmiwin itwaggen di tsebtert a:',
 'templatesusedpreview'   => 'Timudmiwin igg itwasxdemen dg uzar-ascan a :',
 'template-protected'     => '(twaḥḍa)',
@@ -248,6 +274,9 @@ tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]]
 'last'                => 'anggaru',
 'page_first'          => 'amzwaru',
 'page_last'           => 'anggaru',
+'histlegend'          => 'imṣebḍiyen: ixder tibellutin a ɣar waddauy n tilqimin(versions) n tsebtert bac ad tsemquddid.<br />
+Tasarut: (cur) = imṣebḍiyen ag talqemt n ruxa,
+(last) = imṣebḍiyen ag talqemt n zik, M = taẓrigt d-tamẓeyant.',
 'histfirst'           => 'Amzwaru qaε',
 'histlast'            => 'Anggaru qaε',
 
@@ -260,6 +289,7 @@ tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]]
 'lineno'                  => 'Tabrit $1:',
 'compareselectedversions' => 'Smequdda Tilqimin a',
 'editundo'                => 'Dwel',
+'diff-multi'              => '({{PLURAL:$1|ijj n ufegged|$1 ifeggiden}} war ad twamlen ca.)',
 
 # Search results
 'noexactmatch' => "'''war telli ca n tsebtert qarn-as \"\$1\".'''
@@ -349,15 +379,26 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 # MIME search
 'mimesearch' => 'tarezzut n MIME',
 
+# List redirects
+'listredirects' => 'Ẓar (redirects)',
+
 # Unused templates
 'unusedtemplates' => 'Timudmiwin war twasexedment',
 
 # Random page
 'randompage' => 'Tasebtert zi ṭṭarf',
 
+# Random redirect
+'randomredirect' => '(redirect) zi ṭṭarf',
+
 # Statistics
 'statistics' => 'tisiḍanin',
 
+'disambiguations' => 'Tisebtar n usefhem',
+
+'doubleredirects' => '(redirects) ɛɛawdent',
+
+'brokenredirects'        => '(redirects) arẓent',
 'brokenredirects-edit'   => '(arri)',
 'brokenredirects-delete' => '(sfaḍ)',
 
@@ -385,8 +426,10 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 'mostcategories'          => 'Tasebtert iɣar llan taggayin aṭṭas',
 'mostimages'              => 'ifayluten iɣar-d tewaqqenen aṭṭas',
 'mostrevisions'           => 'Tasebtert iɣa illa aṭṭas qaɛ n ifeggiden',
+'prefixindex'             => 'Afran s usekkil amẓwaru',
 'shortpages'              => 'Tasebtert d taqudat',
 'longpages'               => 'Tisebtar ttizirarin',
+'deadendpages'            => 'Tisebtar s tizdayin mmutent',
 'protectedpages'          => 'Tisebtar ẓarqent',
 'listusers'               => 'Tabdart n iseqdacen',
 'newpages'                => 'Tisebtar timaynutin',
@@ -413,6 +456,7 @@ Tisebtar di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 'allpagesfrom'   => 'Scan-ad tisebetar beddant zi:',
 'allarticles'    => 'Maṛṛa Tisebtar',
 'allpagessubmit' => 'Raḥ ɣa',
+'allpagesprefix' => 'Ẓar tisebtar s usekkil amzwaru:',
 
 # Special:Categories
 'categories' => 'Taggayin',
@@ -528,6 +572,18 @@ Tezemred ad tbedeld aswir n uḥeṭṭu n tsebtert a, maca war itegg walu i u�
 'blocklogentry'      => 'ibloka [[$1]] ar $2 $3',
 
 # Move page
+'movepagetext'     => "mala tesxedmed taseddast(form) a swadday, ad tessenaqled maṛṛa amzruy ines ɣar isem amaynu.
+isem aqbur ad idwel d tasebtert n (redirect) ɣar isem amaynu .
+tzemred ad tebedled (redirects) bac ad qnent ɣar isem amezwaru s ufus.
+mala war texsed ca, ẓar [[Special:DoubleRedirects|double]] niɣ [[Special:BrokenRedirects|broken redirects]].
+xak ig illa ad txemmed ma tizdayin zedyent mani ig ixeṣ niɣ lla.
+
+Tasebtert  '''war tniqil ca''' mala qaddin ca n tesebtert s isem a amaynu, ɣar mala texwa niɣ d (redirect) u war ɣar-s bu ca n umzruy n uẓreg
+
+mala amya, itxessa cekk ad tesnaqled s ufus mala txisdunless it is empty or a redirect and has no past edit history.
+
+'''ɣark!'''
+manaya itebeddal tisebtar, ixessa ad tesned mliḥ man tegged ẓẓat ma ad tkemled manaya.",
 'movepagetalktext' => "Tasebtert n usiwl ad twanqel ag tasebtert ines '''ɣar mala:'''
 *Ca n tsebtert usiwl tella dini s isem a amaynu, niɣ
 *Mala war tixtard tabelludt a swadday.
@@ -584,7 +640,7 @@ snaqlitent s ufus.'''",
 'tooltip-p-logo'                  => 'Tasbtirt Tamzwarut',
 'tooltip-n-mainpage'              => 'Raḥ ɣar Tasebtert Tamzwarut',
 'tooltip-n-portal'                => 'Xeff usenfar, mayn tezmerd ad tegged, mani ɣa tafed tilɣa',
-'tooltip-n-currentevents'         => 'Aff tilɣa(information) x manaya',
+'tooltip-n-currentevents'         => 'Aff tilɣa(informations) x manaya',
 'tooltip-n-recentchanges'         => 'Tabdart n teẓrigin timaynutin di wiki.',
 'tooltip-n-randompage'            => 'Ẓar Tasebtert zi ṭṭarf',
 'tooltip-n-help'                  => 'Raq di ɣa tafd.',
@@ -634,6 +690,14 @@ kur tazdayt tdeffad a tmekkas .',
 mala afaylu a itwabeddel x mamec ja illa g umezwaru, ca n tilɣa teqqad ad ilint msebḍant x ufaylu amezwaru.',
 'metadata-expand'   => 'Sicen-d tilɣa nnumɣarent',
 'metadata-collapse' => 'Senuffar tilɣa innumɣarent',
+'metadata-fields'   => 'Tilɣa(informations)n EXIF ig illan di tsebtert a ad banent di tsebtert n tewlaft xmi ɣar twassemɣar taflwit(table) n metadata.
+mayn nniḍn ad itwasenfar.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # External editor support
 'edit-externally'      => 'Ẓreg afaylu a s usnas zi baṛṛa',

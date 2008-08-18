@@ -1492,7 +1492,9 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 
 # Special:Categories
 'categories'                    => 'Kategorien',
-'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.',
+'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.
+[[Special:UnusedCategories|Nich bruukte Kategorien]] warrt hier nich wiest.
+Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'categoriesfrom'                => 'Wies Kategorien anfungen mit:',
 'special-categories-sort-count' => 'na Tall sorteren',
 'special-categories-sort-abc'   => 'alphabeetsch sorteren',
@@ -2087,7 +2089,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'lastmodifiedatby' => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Grünnt op Arbeid vun $1.',
 'others'           => 'annere',
-'siteusers'        => '{{SITENAME}}-Bruker $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Bruker|Brukers}} $1',
 'creditspage'      => 'Sieten-Autoren',
 'nocredits'        => 'Dor is keen Autorenlist för disse Siet verfögbor.',
 

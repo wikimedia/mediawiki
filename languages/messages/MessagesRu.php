@@ -1575,6 +1575,7 @@ PICT # различные
 'nextpage'          => 'Следующая страница ($1)',
 'prevpage'          => 'Предыдущая страница ($1)',
 'allpagesfrom'      => 'Вывести страницы, начинающиеся на:',
+'allpagesto'        => 'Остановить вывод на:',
 'allarticles'       => 'Все статьи',
 'allinnamespace'    => 'Все страницы в пространстве имён «$1»',
 'allnotinnamespace' => 'Все страницы (кроме пространства имён «$1»)',
@@ -1587,7 +1588,9 @@ PICT # различные
 
 # Special:Categories
 'categories'                    => 'Категории',
-'categoriespagetext'            => 'В вики имеются следующие категории.',
+'categoriespagetext'            => 'Следующие категории содержат страницы или медиа-файлы.
+Здесь не показаны [[Special:UnusedCategories|Неиспользуемые категоии]].
+См. также [[Special:WantedCategories|список требуемых категорий]].',
 'categoriesfrom'                => 'Показать категории, начинающиеся с:',
 'special-categories-sort-count' => 'упорядочить по количеству',
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
@@ -2232,7 +2235,7 @@ The wiki server can't provide data in a format your client can read.",
 'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Основано на работе $1.',
 'others'           => 'другие',
-'siteusers'        => 'Участник(и) {{grammar:genitive|{{SITENAME}}}} $1',
+'siteusers'        => '{{PLURAL:$2|Участник|Участники}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Благодарности',
 'nocredits'        => 'Нет списка участников для этой статьи',
 

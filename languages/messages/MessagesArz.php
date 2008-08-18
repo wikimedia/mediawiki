@@ -489,7 +489,7 @@ $messages = array(
 
 'badaccess'        => 'غلطه فى السماح',
 'badaccess-group0' => 'انت مش مسموح لك تنفذ الطلب بتاعك',
-'badaccess-groups' => 'الفعل الذي طلبته مسموح بيه بس لليوزرز  اللي في واحدة من المجموعات دي  $1.',
+'badaccess-groups' => 'الفعل الذي طلبته مسموح بيه بس لليوزرز  اللي في {{PLURAL:$2|المجموعة|إحدى المجموعات}}: $1.',
 
 'versionrequired'     => 'لازم نسخة $1 من ميدياويكي',
 'versionrequiredtext' => ' النسخة $1 من ميدياويكي لازم علشان تستعمل الصفحة دي . شوف [[Special:Version|صفحة النسخة]]',
@@ -769,13 +769,14 @@ $2',
 
 * بداية المنع: $8
 * انهاية المنع: $6
+* الممنوع المقصود: $7
 
 ممكن تتصل  ب $1 أو واحد من 
 [[{{MediaWiki:Grouppage-sysop}}|الإداريين]] االتانيين لمناقشة المنع.
 
 لاحظ أنه مش ممكن استخدام خاصية "ابعت رسالة لليوزر دا" إلا اذا كان عندك ايميل صحيح متسجل في [[Special:Preferences|تفضيلاتك]].
 
-رقم المنع هو $5. لو سمحت تذكر الرقم دا في اي استفسار.',
+عنوان الأيبي الحالي الخاص بك هو $3، رقم المنع هو $5. لو سمحت تذكر الرقم دا في اي استفسار.',
 'blockednoreason'                  => 'ما فيش سبب',
 'blockedoriginalsource'            => "المصدر بتاع '''$1''' معروض تحت:",
 'blockededitsource'                => "نص '''تعديلاتك''' في '''$1''' معروض هنا:",
@@ -871,7 +872,7 @@ $2',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
 
-لازم تكون أقل من $2، فيها دلوقتى $1.',
+لازم تكون أقل من $2 {{PLURAL:$2|استدعاء|استدعاء}}، يوجد {{PLURAL:$1|الآن $1 استدعاء|الآن $1 استدعاء}}..',
 'expensive-parserfunction-category'       => 'صفحات فيها استدعاءات دوال محلل كثيرة ومكلفة',
 'post-expand-template-inclusion-warning'  => 'تحذير: حجم تضمين القالب كبير قوي.
 بعض القوالب مش ح تتضمن.',
@@ -1235,7 +1236,7 @@ $2',
 'recentchanges'                     => 'احدث التعديلات',
 'recentchangestext'                 => 'تابع آخر التغييرات في الويكي على الصفحة دي.',
 'recentchanges-feed-description'    => 'تابع احدث التعديلات للويكى ده عن طريق الفييد ده .',
-'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تعديل|آخر '''$1''' تعديل}} في اخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدايه من $3.",
+'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} في آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom'                        => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom'                        => 'اظهر التعديلات بدايه من $1',
 'rcshowhideminor'                   => '$1 تعديلات صغيره',
@@ -1629,7 +1630,9 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'تصانيف',
-'categoriespagetext'            => 'التصنيفات دي فيها صفحات أو ميديا.',
+'categoriespagetext'            => 'التصنيفات دي فيها صفحات أو ميديا
+[[Special:UnusedCategories|التصنيفات المش مستعملة]] مش معروضة هنا.
+شوف كمان [[Special:WantedCategories|التصنيفات المطلوبة]].',
 'categoriesfrom'                => 'اعرض التصانيف من أول:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'ترتيب ابجدي',
@@ -1648,8 +1651,8 @@ PICT # misc.
 'listgrouprights-helppage'        => 'Help: حقوق المجموعات',
 'listgrouprights-members'         => '(لستة الأعضاء)',
 'listgrouprights-right-display'   => '$1 ($2)',
-'listgrouprights-addgroup'        => ' ممكن تضيف مجموعات : $1',
-'listgrouprights-removegroup'     => ' ممكن تشيل مجموعات : $1',
+'listgrouprights-addgroup'        => 'ممكن تضيف {{PLURAL:$2|المجموعة|المجموعات}}: $1',
+'listgrouprights-removegroup'     => 'ممكن تشيل {{PLURAL:$2|المجموعة|المجموعات}}: $1',
 'listgrouprights-addgroup-all'    => ' ممكن تضيف كل المجموعات : $1',
 'listgrouprights-removegroup-all' => ' ممكن تشيل كل المجموعات : $1',
 
@@ -2275,7 +2278,7 @@ $1',
 'lastmodifiedatby' => 'آخر تعديل  للصفحة دي كان في $2، $1 عن طريق $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'بناء على عمل $1.',
 'others'           => 'تانيين',
-'siteusers'        => '{{SITENAME}} يوزر(و) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|يوزر|يوزرز}} $1',
 'creditspage'      => 'حقوق الصفحة',
 'nocredits'        => 'مافيش معلومات حقوق متوفرة للصفحة دي.',
 
