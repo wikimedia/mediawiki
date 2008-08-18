@@ -1007,6 +1007,10 @@ class DatabaseMssql extends Database {
 	public function unlock( $lockName, $method ) {
 		return true;
 	}
+	
+	public function getSearchEngine() {
+		return "SearchEngineDummy";
+	}
 
 }
 
