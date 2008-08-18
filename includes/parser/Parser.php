@@ -1522,8 +1522,8 @@ class Parser
 		}
 
 		if( is_null( $this->mTitle ) ) {
-			wfProfileOut( __METHOD__ );
 			wfProfileOut( __METHOD__.'-setup' );
+			wfProfileOut( __METHOD__ );
 			throw new MWException( __METHOD__.": \$this->mTitle is null\n" );
 		}
 		$nottalk = !$this->mTitle->isTalkPage();
@@ -1723,8 +1723,6 @@ class Parser
 
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text, $holders ) ) . $trail;
-
-						wfProfileOut( __METHOD__."-image" );
 					}
 					$this->mOutput->addImage( $nt->getDBkey() );
 					wfProfileOut( __METHOD__."-image" );
