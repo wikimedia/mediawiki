@@ -383,6 +383,7 @@ $wgAutoloadLocalClasses = array(
 	'ParserOptions' => 'includes/parser/ParserOptions.php',
 	'ParserOutput' => 'includes/parser/ParserOutput.php',
 	'Parser_DiffTest' => 'includes/parser/Parser_DiffTest.php',
+	'Parser_LinkHooks' => 'includes/parser/Parser_LinkHooks.php',
 	'Parser_OldPP' => 'includes/parser/Parser_OldPP.php',
 	'Preprocessor' => 'includes/parser/Preprocessor.php',
 	'Preprocessor_DOM' => 'includes/parser/Preprocessor_DOM.php',
