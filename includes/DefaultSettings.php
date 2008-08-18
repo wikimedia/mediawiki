@@ -1471,7 +1471,7 @@ $wgRCChangedSizeThreshold			= -500;
 $wgShowUpdatedMarker 				= true;
 
 /**
- * Default cookie expiration time. Setting to 0 disables makes all cookies session-only.
+ * Default cookie expiration time. Setting to 0 makes all cookies session-only.
  */
 $wgCookieExpiration = 30*86400;
 

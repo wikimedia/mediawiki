@@ -517,7 +517,7 @@ class PreferencesForm {
 		global $wgEnotifWatchlist, $wgEnotifUserTalk,$wgEnotifMinorEdits;
 		global $wgRCShowWatchingUsers, $wgEnotifRevealEditorAddress;
 		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
-		global $wgContLanguageCode, $wgDefaultSkin, $wgEnablePersistentCookies;
+		global $wgContLanguageCode, $wgDefaultSkin, $wgCookieExpiration;
 		global $wgEmailConfirmToEdit, $wgAjaxSearch, $wgEnableMWSuggest;
 
 		$wgOut->setPageTitle( wfMsg( 'preferences' ) );
@@ -764,7 +764,7 @@ class PreferencesForm {
 					Xml::password( 'wpRetypePass', 25, $this->mRetypePass, array( 'id' => 'wpRetypePass' ) )
 				)
 			);
-			if( $wgEnablePersistentCookies ){
+			if( $wgCookieExpiration > 0 ){
 				$wgOut->addHTML(
 					Xml::tags( 'tr', null,
 						Xml::tags( 'td', array( 'colspan' => '2' ),
