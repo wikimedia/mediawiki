@@ -1188,7 +1188,7 @@ class Linker {
 		$this->autocommentTitle = $title;
 		$this->autocommentLocal = $local;
 		$comment = preg_replace_callback(
-			'!(.*?)/\*\s*(.*?)\s*\*/(.*?)!',
+			'!(.*)/\*\s*(.*?)\s*\*/(.*)!',
 			array( $this, 'formatAutocommentsCallback' ),
 			$comment );
 		unset( $this->autocommentTitle );
