@@ -19,7 +19,7 @@ class Autopromote {
 				$promote[] = $group;
 		}
 		
-		wfRunHooks( 'GetAutoPromoteGroups', array($user, &$promote) );
+		wfRunHooks( 'GetAutoPromoteGroups', array( $user, &$promote ) );
 		
 		return $promote;
 	}
