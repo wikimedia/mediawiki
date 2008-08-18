@@ -94,6 +94,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   background colours based on classes "odd" and "even".
 * (bug 14187) In Special:Userlogin the buttons "Log in" and "E-mail new
   password" now have classes "mw-loginbutton" and "mw-mailmypasswordbutton".
+* HTML entities like &nbsp; now work (are not escaped) in edit summaries.
+* (bug 13815) In the comment for page moves, use the colon-separator message
+  instead of a hardcoded colon.
 
 === Bug fixes in 1.14 ===
 
