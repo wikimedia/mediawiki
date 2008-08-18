@@ -5,11 +5,11 @@
  * @ingroup Parser
  */
 class CoreLinkFunctions {
-	static static function register( $parser ) {
+	static function register( $parser ) {
 		
 		
 	}
-	
+
 	static function defaultLinkHook( $markers, Title $title, $titleText, &$displayText = null, &$leadingColon = false ) {
 		# Warning: This hook should NEVER return true as it is the fallback
 		# default for when other hooks return true
