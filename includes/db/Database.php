@@ -2271,6 +2271,16 @@ class Database {
 		$result = $this->query( "SELECT RELEASE_LOCK($lockName)", $method );
 		$this->freeResult( $result );
 	}
+	
+	/**
+	 * Get search engine class. All subclasses of this
+	 * need to implement this if they wish to use searching.
+	 * 
+	 * @return string
+	 */
+	public function getSearchEngine() {
+		return "SearchMySQL";
+	}
 }
 
 /**
