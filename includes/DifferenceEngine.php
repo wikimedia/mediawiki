@@ -266,13 +266,13 @@ CONTROL;
 			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		if($wgEnableHtmlDiff){
+		if( $wgEnableHtmlDiff ) {
 			$this->renderHtmlDiff();
-		}else{
+		} else {
 
 			$this->showDiff( $oldHeader, $newHeader );
 
-			if ( !$diffOnly ){
+			if( !$diffOnly ) {
 				$this->renderNewRevision();
 			}
 		}
@@ -327,7 +327,7 @@ CONTROL;
 
 
 	function renderHtmlDiff() {
-		global $wgOut;
+		global $wgOut, $wgTitle, $wgParser;
 		wfProfileIn( __METHOD__ );
 
 		$this->showDiffStyle();
@@ -345,38 +345,38 @@ CONTROL;
 
 		$this->loadText();
 
+		// Old revision
 		if( is_object( $this->mOldRev ) ) {
 			$wgOut->setRevisionId( $this->mOldRev->getId() );
 		}
 
-		global $wgTitle, $wgParser, $wgTitle;
 		$popts = $wgOut->parserOptions();
-		$oldTidy = $popts->setTidy( TRUE );
+		$oldTidy = $popts->setTidy( true );
 
-		$parserOutput = $wgParser->parse($this->mOldtext, $wgTitle, $popts, TRUE, TRUE, $wgOut->mRevisionId );
+		$parserOutput = $wgParser->parse( $this->mOldtext, $wgTitle, $popts, true, true, $wgOut->getRevisionId() );
 		$popts->setTidy( $oldTidy );
 
 		//only for new?
 		//$wgOut->addParserOutputNoText( $parserOutput );
-		$oldHtml =	$parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$oldHtml ) );
+		$oldHtml = $parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$oldHtml ) );
 
+		// New revision
 		if( is_object( $this->mNewRev ) ) {
 			$wgOut->setRevisionId( $this->mNewRev->getId() );
 		}
 
 		$popts = $wgOut->parserOptions();
-		$oldTidy = $popts->setTidy( TRUE );
+		$oldTidy = $popts->setTidy( true );
 
-		$parserOutput = $wgParser->parse($this->mNewtext, $wgTitle, $popts, TRUE, TRUE, $wgOut->mRevisionId );
+		$parserOutput = $wgParser->parse( $this->mNewtext, $wgTitle, $popts, true, true, $wgOut->getRevisionId() );
 		$popts->setTidy( $oldTidy );
 
-		//only for new?
 		$wgOut->addParserOutputNoText( $parserOutput );
-		$newHtml =	$parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$newHtml ) );
+		$newHtml = $parserOutput->getText();
+		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$newHtml ) );
 
-		unset($parserOutput,$popts);
+		unset($parserOutput, $popts);
 
 		$differ = new HTMLDiffer(new DelegatingContentHandler($wgOut));
 		$differ->htmlDiff($oldHtml, $newHtml);

@@ -30,7 +30,7 @@
  * @author Guy Van den Broeck
  *
  */
-class WikiDiff3{
+class WikiDiff3 {
 
 	//Input variables
 	private $from;
@@ -59,45 +59,45 @@ class WikiDiff3{
 	public function diff(/*array*/ $from, /*array*/ $to){
 		//remember initial lengths
 		$m = sizeof($from);
-		$n = sizeof($to);
+		$n = count($to);
 
-		$this->heuristicUsed = FALSE;
+		$this->heuristicUsed = false;
 
 		//output
-		$removed =  $m>0?array_fill(0,$m,true):array();
-		$added =  $n>0?array_fill(0,$n,true):array();
+		$removed = $m > 0 ? array_fill(0, $m, true) : array();
+		$added = $n > 0 ? array_fill(0, $n, true) : array();
 
 		//reduce the complexity for the next step (intentionally done twice)
 		//remove common tokens at the start
-		$i=0;
-		while($i<$m && $i<$n && $from[$i]===$to[$i]){
+		$i = 0;
+		while($i < $m && $i < $n && $from[$i] === $to[$i]) {
 			$removed[$i] = $added[$i] = false;
-			unset($from[$i],$to[$i]);
+			unset($from[$i], $to[$i]);
 			++$i;
 		}
 
 		//remove common tokens at the end
-		$j=1;
-		while($i+$j<=$m && $i+$j<=$n && $from[$m-$j]===$to[$n-$j]){
-			$removed[$m-$j] = $added[$n-$j] = false;
-			unset($from[$m-$j],$to[$n-$j]);
+		$j = 1;
+		while($i + $j <= $m && $i + $j <= $n && $from[$m - $j] === $to[$n - $j]) {
+			$removed[$m - $j] = $added[$n - $j] = false;
+			unset($from[$m - $j], $to[$n - $j]);
 			++$j;
 		}
 
 		$this->from = $newFromIndex = $this->to = $newToIndex = array();
 
 		//remove tokens not in both sequences
-		$shared = array_fill_keys($from,false);
-		foreach($to as $index => $el){
-			if(array_key_exists($el,$shared)){
+		$shared = array_fill_keys($from, false);
+		foreach($to as $index => $el) {
+			if(array_key_exists($el, $shared)) {
 				//keep it
 				$this->to[] = $el;
 				$shared[$el] = true;
 				$newToIndex[] = $index;
 			}
 		}
-		foreach($from as $index => $el){
-			if($shared[$el]){
+		foreach($from as $index => $el) {
+			if($shared[$el]) {
 				//keep it
 				$this->from[] = $el;
 				$newFromIndex[] = $index;
@@ -106,15 +106,15 @@ class WikiDiff3{
 
 		unset($shared, $from, $to);
 
-		$this->m = sizeof($this->from);
-		$this->n = sizeof($this->to);
+		$this->m = count($this->from);
+		$this->n = count($this->to);
 
-		$this->removed =  $this->m>0?array_fill(0,$this->m,true):array();
-		$this->added =  $this->n>0?array_fill(0,$this->n,true):array();
+		$this->removed = $this->m > 0 ? array_fill(0, $this->m, true) : array();
+		$this->added = $this->n > 0 ? array_fill(0, $this->n, true) : array();
 
 		if ($this->m == 0 || $this->n == 0) {
 			$this->length = 0;
-		}else{
+		} else {
 			$this->maxDifferences = ceil(($this->m + $this->n) / 2.0);
 			if ($this->m * $this->n > $this->tooLong) {
 				// limit complexity to D^POW_LIMIT for long sequences
@@ -128,7 +128,8 @@ class WikiDiff3{
 			 */
 			$max = min($this->m, $this->n);
 			for ($forwardBound = 0; $forwardBound < $max
-			&& $this->from[$forwardBound]===$this->to[$forwardBound]; ++$forwardBound) {
+					&& $this->from[$forwardBound] === $this->to[$forwardBound];
+					++$forwardBound) {
 				$this->removed[$forwardBound] = $this->added[$forwardBound] = false;
 			}
 
@@ -136,31 +137,31 @@ class WikiDiff3{
 			$backBoundL2 = $this->n - 1;
 
 			while ($backBoundL1 >= $forwardBound && $backBoundL2 >= $forwardBound
-			&& $this->from[$backBoundL1] === $this->to[$backBoundL2]) {
+					&& $this->from[$backBoundL1] === $this->to[$backBoundL2]) {
 				$this->removed[$backBoundL1--] = $this->added[$backBoundL2--] = false;
 			}
 
-			$temp = array_fill(0,$this->m + $this->n + 1, 0);
-			$V = array($temp,$temp);
-			$snake = array(0,0,0);
+			$temp = array_fill(0, $this->m + $this->n + 1, 0);
+			$V = array($temp, $temp);
+			$snake = array(0, 0, 0);
 
 			$this->length = $forwardBound + $this->m - $backBoundL1 - 1
-			+ $this->lcs_rec($forwardBound, $backBoundL1, $forwardBound, $backBoundL2,
-			$V, $snake);
+				+ $this->lcs_rec($forwardBound, $backBoundL1,
+				$forwardBound, $backBoundL2, $V, $snake);
 		}
 
 		$this->m = $m;
 		$this->n = $n;
 
-		$this->length += $i+$j-1;
+		$this->length += $i + $j - 1;
 
-		foreach($this->removed as $key => $removed_elem){
-			if(!$removed_elem){
+		foreach($this->removed as $key => $removed_elem) {
+			if(!$removed_elem) {
 				$removed[$newFromIndex[$key]] = false;
 			}
 		}
-		foreach($this->added as $key => $added_elem){
-			if(!$added_elem){
+		foreach($this->added as $key => $added_elem) {
+			if(!$added_elem) {
 				$added[$newToIndex[$key]] = false;
 			}
 		}
@@ -168,7 +169,7 @@ class WikiDiff3{
 		$this->added = $added;
 	}
 
-	function diff_range ($from_lines, $to_lines){
+	function diff_range($from_lines, $to_lines) {
 		// Diff and store locally
 		$this->diff($from_lines, $to_lines);
 		unset($from_lines, $to_lines);
@@ -177,24 +178,26 @@ class WikiDiff3{
 		$xi = $yi = 0;
 		while ($xi < $this->m || $yi < $this->n) {
 			// Matching "snake".
-			while ( $xi < $this->m && $yi < $this->n
-			&& !$this->removed[$xi] && !$this->added[$yi]) {
+			while ($xi < $this->m && $yi < $this->n
+					&& !$this->removed[$xi]
+					&& !$this->added[$yi]) {
 				++$xi;
 				++$yi;
 			}
 			// Find deletes & adds.
 			$xstart = $xi;
-			while ($xi < $this->m && $this->removed[$xi]){
+			while ($xi < $this->m && $this->removed[$xi]) {
 				++$xi;
 			}
 
 			$ystart = $yi;
-			while ($yi < $this->n && $this->added[$yi]){
+			while ($yi < $this->n && $this->added[$yi]) {
 				++$yi;
 			}
 
-			if ($xi>$xstart || $yi>$ystart){
-				$ranges[] = new RangeDifference($xstart,$xi,$ystart,$yi);
+			if ($xi > $xstart || $yi > $ystart) {
+				$ranges[] = new RangeDifference($xstart, $xi,
+								$ystart, $yi);
 			}
 		}
 		return $ranges;
@@ -206,10 +209,11 @@ class WikiDiff3{
 			return 0;
 		}
 
-		$d = $this->find_middle_snake($bottoml1, $topl1, $bottoml2, $topl2, $V, $snake);
+		$d = $this->find_middle_snake($bottoml1, $topl1, $bottoml2,
+							$topl2, $V, $snake);
 
-		// need to store these so we don't lose them when they're overwritten by
-		// the recursion
+		// need to store these so we don't lose them when they're
+		// overwritten by the recursion
 		$len = $snake[2];
 		$startx = $snake[0];
 		$starty = $snake[1];
@@ -221,8 +225,10 @@ class WikiDiff3{
 
 		if ($d > 1) {
 			return $len
-			+ $this->lcs_rec($bottoml1, $startx - 1, $bottoml2, $starty - 1, $V, $snake)
-			+ $this->lcs_rec($startx + $len, $topl1, $starty + $len, $topl2, $V, $snake);
+			+ $this->lcs_rec($bottoml1, $startx - 1, $bottoml2,
+							$starty - 1, $V, $snake)
+			+ $this->lcs_rec($startx + $len, $topl1, $starty + $len,
+							$topl2, $V, $snake);
 		} else if ($d == 1) {
 			/*
 			 * In this case the sequences differ by exactly 1 line. We have
@@ -231,7 +237,8 @@ class WikiDiff3{
 			 */
 			$max = min($startx - $bottoml1, $starty - $bottoml2);
 			for ($i = 0; $i < $max; ++$i) {
-				$this->removed[$bottoml1 + $i] = $this->added[$bottoml2 + $i] = false;
+				$this->removed[$bottoml1 + $i] =
+					$this->added[$bottoml2 + $i] = false;
 			}
 			return $max + $len;
 		}
@@ -253,11 +260,10 @@ class WikiDiff3{
 		$delta = $N - $M;
 		$maxabsx = $N+$bottoml1;
 		$maxabsy = $M+$bottoml2;
-		$limit = min($this->maxDifferences, ceil(($N + $M ) / 2)); // ceil((N+M)/2)
+		$limit = min($this->maxDifferences, ceil(($N + $M ) / 2));
 
 		//value_to_add_forward: a 0 or 1 that we add to the start
-		// offset
-		// to make it odd/even
+		// offset to make it odd/even
 		if (($M & 1) == 1) {
 			$value_to_add_forward = 1;
 		} else {
@@ -275,12 +281,12 @@ class WikiDiff3{
 		$start_backward = -$N;
 		$end_backward = $M;
 
-		$limit_min_1 = $limit-1;
-		$limit_plus_1 = $limit+1;
+		$limit_min_1 = $limit - 1;
+		$limit_plus_1 = $limit + 1;
 
 		$V0[$limit_plus_1] = 0;
 		$V1[$limit_min_1] = $N;
-		$limit = min($this->maxDifferences, ceil(($N + $M ) / 2)); // ceil((N+M)/2)
+		$limit = min($this->maxDifferences, ceil(($N + $M ) / 2));
 			
 		if (($delta & 1) == 1) {
 			for ($d = 0; $d <= $limit; ++$d) {
@@ -290,8 +296,8 @@ class WikiDiff3{
 
 				// compute forward furthest reaching paths
 				for ($k = $start_diag; $k <= $end_diag; $k += 2) {
-					if ($k == -$d
-					|| ($k < $d && $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k])) {
+					if ($k == -$d || ($k < $d 
+							&& $V0[$limit_min_1 + $k] < $V0[$limit_plus_1 + $k])) {
 						$x = $V0[$limit_plus_1 + $k];
 					} else {
 						$x = $V0[$limit_min_1 + $k] + 1;
@@ -309,14 +315,14 @@ class WikiDiff3{
 					$snake2 = $absx -$snake0;
 					$V0[$limit + $k] = $x;
 					if ($k >= $delta - $d + 1 && $k <= $delta + $d - 1
-					&& $x >= $V1[$limit + $k - $delta]) {
+							&& $x >= $V1[$limit + $k - $delta]) {
 						return 2 * $d - 1;
 					}
 
 					// check to see if we can cut down the diagonal range
 					if ($x >= $N && $end_forward > $k - 1) {
 						$end_forward = $k - 1;
-					} else if ($absy-$bottoml2 >= $M) {
+					} else if ($absy - $bottoml2 >= $M) {
 						$start_forward = $k + 1;
 						$value_to_add_forward = 0;
 					}
@@ -407,7 +413,7 @@ class WikiDiff3{
 
 					$snake2 = 0;
 					while ($x > 0 && $y > 0
-					&& $from[$x +$bottoml1_min_1] === $to[$y + $bottoml2_min_1]) {
+							&& $from[$x +$bottoml1_min_1] === $to[$y + $bottoml2_min_1]) {
 						--$x;
 						--$y;
 						++$snake2;
@@ -415,7 +421,7 @@ class WikiDiff3{
 					$V1[$limit + $k] = $x;
 
 					if ($k >= -$delta - $d && $k <= $d - $delta
-					&& $x <= $V0[$limit + $k + $delta]) {
+							&& $x <= $V0[$limit + $k + $delta]) {
 						$snake0 = $bottoml1 + $x;
 						$snake1 = $bottoml2 + $y;
 						return 2 * $d;
@@ -472,11 +478,11 @@ class WikiDiff3{
 
 		$backward_end_diag = -min($M, $limit);
 
-		$temp = array(0,0,0);
+		$temp = array(0, 0, 0);
 
 
-		$max_progress = array_fill(0,ceil(max($forward_end_diag
-		- $forward_start_diag, $backward_end_diag - $backward_start_diag) / 2), $temp);
+		$max_progress = array_fill(0, ceil(max($forward_end_diag - $forward_start_diag,
+				$backward_end_diag - $backward_start_diag) / 2), $temp);
 		$num_progress = 0; // the 1st entry is current, it is initialized
 		// with 0s
 
@@ -560,9 +566,9 @@ class RangeDifference {
 	function __construct($leftstart, $leftend, $rightstart, $rightend){
 		$this->leftstart = $leftstart;
 		$this->leftend = $leftend;
-		$this->leftlength = $leftend-$leftstart;
+		$this->leftlength = $leftend - $leftstart;
 		$this->rightstart = $rightstart;
 		$this->rightend = $rightend;
-		$this->rightlength = $rightend-$rightstart;
+		$this->rightlength = $rightend - $rightstart;
 	}
 }
