@@ -108,6 +108,10 @@ let find = function
     | "\\nu"               -> LITERAL (HTMLABLEC (FONT_UF,  "\\nu ", "&nu;"))
     | "\\Nu"               -> (tex_use_ams (); LITERAL (HTMLABLEC (FONT_UF,
     "\\mathrm{N}", "&Nu;")))
+    | "\\omicron"          -> (tex_use_ams (); LITERAL (HTMLABLEC (FONT_UF,
+    "\\mathrm{o}", "&omicron;")))
+    | "\\Omicron"          -> (tex_use_ams (); LITERAL (HTMLABLEC (FONT_UF,
+    "\\mathrm{O}", "&Omicron;")))
     | "\\pi"               -> LITERAL (HTMLABLEC (FONT_UF,  "\\pi ", "&pi;"))
     | "\\Pi"               -> LITERAL (HTMLABLEC (FONT_UF, "\\Pi ", "&Pi;"))
     | "\\varpi"            -> LITERAL (TEX_ONLY "\\varpi ")
