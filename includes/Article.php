@@ -1037,8 +1037,9 @@ class Article {
 
 	/**
 	 * Handle action=purge
+	 * @param bool $showPage Show the page after purging?
 	 */
-	function purge() {
+	function purge( $showPage = true ) {
 		global $wgUser, $wgRequest, $wgOut;
 
 		if ( $wgUser->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
@@ -1057,6 +1058,10 @@ class Article {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 			$wgOut->addHTML( $msg );
+		}
+		// Show the page post-purge? 99.99% of the time yes, but sometimes no.
+		if ( $showPage ) {
+			$this->view();
 		}
 	}
 
@@ -1086,7 +1091,6 @@ class Article {
 			}
 			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
 		}
-		$this->view();
 	}
 
 	/**
