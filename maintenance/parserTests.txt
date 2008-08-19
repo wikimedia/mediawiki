@@ -6230,6 +6230,15 @@ Width-sized image (using px, with following whitespace - test regression from r3
 !!end
 
 !! test
+Width-sized image (using px, with preceding whitespace - test regression from r39467)
+!! input
+[[Image:foobar.jpg| 640px]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg" width="640" height="73" border="0" /></a>
+</p>
+!!end
+
+!! test
 Another italics / bold test
 !! input
  ''' ''x'
