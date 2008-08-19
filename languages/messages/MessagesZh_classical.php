@@ -1239,7 +1239,9 @@ $2',
 
 # Special:Categories
 'categories'                    => '類',
-'categoriespagetext'            => '大典有頁或媒。',
+'categoriespagetext'            => '大典有頁或媒。
+[[Special:UnusedCategories|未類]]無示之。
+閱[[Special:WantedCategories|需類]]也。',
 'categoriesfrom'                => '示此項起之類：',
 'special-categories-sort-count' => '排數',
 'special-categories-sort-abc'   => '排字',
@@ -1812,7 +1814,7 @@ $NEWPAGE
 'lastmodifiedatby' => '$1$2，$3新易此頁。', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1主撰',
 'others'           => '他',
-'siteusers'        => '{{SITENAME}}有簿者$1',
+'siteusers'        => '{{SITENAME}}有{{PLURAL:$2|簿|簿}}者$1',
 'creditspage'      => '頁贊',
 'nocredits'        => '本頁未有贊信也。',
 

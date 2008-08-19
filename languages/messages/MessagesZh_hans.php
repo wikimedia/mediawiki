@@ -1412,7 +1412,9 @@ Template:消除歧義',
 
 # Special:Categories
 'categories'                    => '页面分类',
-'categoriespagetext'            => '以下的分类中包含了页面或媒体。',
+'categoriespagetext'            => '以下的分类中包含了页面或媒体。
+[[Special:UnusedCategories|未用分类]]不会在这里列示。
+请同时参阅[[Special:WantedCategories|需要的分类]]。',
 'categoriesfrom'                => '显示由此项起之分类:',
 'special-categories-sort-count' => '按数量排列',
 'special-categories-sort-abc'   => '按字母排列',
@@ -2053,7 +2055,7 @@ $1',
 'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '在$1的工作基础上。',
 'others'           => '其他',
-'siteusers'        => '{{SITENAME}}用户$1',
+'siteusers'        => '{{SITENAME}}{{PLURAL:$2|用户|用户}}$1',
 'creditspage'      => '页面致谢',
 'nocredits'        => '该页没有致谢名单信息。',
 

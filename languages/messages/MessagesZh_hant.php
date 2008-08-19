@@ -1388,7 +1388,9 @@ Template:消除歧義',
 
 # Special:Categories
 'categories'                    => '頁面分類',
-'categoriespagetext'            => '以下的分類中包含了頁面或媒體。',
+'categoriespagetext'            => '以下的分類中包含了頁面或媒體。
+[[Special:UnusedCategories|未用分類]]不會在這裏列示。
+請同時參閱[[Special:WantedCategories|需要的分類]]。',
 'categoriesfrom'                => '顯示由此項起之分類:',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
@@ -2028,7 +2030,7 @@ $1',
 'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '在$1的工作基礎上。',
 'others'           => '其他',
-'siteusers'        => '{{SITENAME}}用戶$1',
+'siteusers'        => '{{SITENAME}}{{PLURAL:$2|用戶|用戶}}$1',
 'creditspage'      => '頁面致謝',
 'nocredits'        => '該頁沒有致謝名單訊息。',
 
