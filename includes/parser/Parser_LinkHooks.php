@@ -362,7 +362,7 @@ class LinkMarkerReplacer {
 		return "<!-- LINKMARKER $id -->";
 	}
 	
-	static function findMarker( $string ) {
+	function findMarker( $string ) {
 		return (bool) preg_match('/<!-- LINKMARKER [0-9]+ -->/', $string );
 	}
 	
