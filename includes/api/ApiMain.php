@@ -521,7 +521,7 @@ class ApiMain extends ApiBase {
 			'API developers:',
 			'    Roan Kattouw <Firstname>.<Lastname>@home.nl (lead developer Sep 2007-present)',
 			'    Victor Vasiliev - vasilvv at gee mail dot com',
-			'    Bryan Tongh Minh - bryan dot tonghminh at gee mail dot com',
+			'    Bryan Tong Minh - bryan . tongminh @ gmail . com',
 			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, lead developer Sep 2006-Sep 2007)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
