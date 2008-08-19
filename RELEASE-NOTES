@@ -37,6 +37,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgRestrictDisplayTitle controls if the use of the {{DISPLAYTITLE}} magic
   word is restricted to titles equivalent to the actual page title. This
   is true per default, but can be set to false to allow any title.
+* $wgSpamRegex may now be an array of multiple regular expressions.
 
 === New features in 1.14 ===
 
@@ -134,6 +135,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Avoid recursive crazy expansions in section edit comments for pages which
   contain '/*' in the title
 * Fix excessive memory usage when parsing pages with lots of links
+* $wgSpamRegex now matches the edit summary and page move descriptions in
+  addition to body text.
+
 
 === API changes in 1.14 ===
 
