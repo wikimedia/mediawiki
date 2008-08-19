@@ -229,7 +229,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$resultData = array();
 			foreach($this->data as $ns => $a)
 				foreach($a as $title => $arr)
-					$resultData[$arr['pageid']] = $arr;
+					$resultData[] = $arr;
 			$result = $this->getResult();
 			$result->setIndexedTagName($resultData, $this->bl_code);
 			$result->addValue('query', $this->getModuleName(), $resultData);
