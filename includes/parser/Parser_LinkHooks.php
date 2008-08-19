@@ -12,10 +12,9 @@ class Parser_LinkHooks extends Parser
 	 */
 	const VERSION = '1.6.4';
 	
-	# Flags for Parser::setFunctionHook
+	# Flags for Parser::setLinkHook
 	# Also available as global constants from Defines.php
-	const SFH_NO_HASH = 1;
-	const SFH_OBJECT_ARGS = 2;
+	const SLH_PATTERN = 1;
 
 	# Constants needed for external link processing
 	# Everything except bracket, space, or control characters
@@ -23,162 +22,86 @@ class Parser_LinkHooks extends Parser
 	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F]+)
 		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sx';
 
-	// State constants for the definition list colon extraction
-	const COLON_STATE_TEXT = 0;
-	const COLON_STATE_TAG = 1;
-	const COLON_STATE_TAGSTART = 2;
-	const COLON_STATE_CLOSETAG = 3;
-	const COLON_STATE_TAGSLASH = 4;
-	const COLON_STATE_COMMENT = 5;
-	const COLON_STATE_COMMENTDASH = 6;
-	const COLON_STATE_COMMENTDASHDASH = 7;
-
-	// Flags for preprocessToDom
-	const PTD_FOR_INCLUSION = 1;
-
-	// Allowed values for $this->mOutputType
-	// Parameter to startExternalParse().
-	const OT_HTML = 1;
-	const OT_WIKI = 2;
-	const OT_PREPROCESS = 3;
-	const OT_MSG = 3;
-
-	// Marker Suffix needs to be accessible staticly.
-	const MARKER_SUFFIX = "-QINU\x7f";
-	
-	/**
-	 * Replace unusual URL escape codes with their equivalent characters
-	 * @param string
-	 * @return string
-	 * @static
-	 * @todo  This can merge genuinely required bits in the path or query string,
-	 *        breaking legit URLs. A proper fix would treat the various parts of
-	 *        the URL differently; as a workaround, just use the output for
-	 *        statistical records, not for actual linking/output.
-	 */
-	static function replaceUnusualEscapes( $url ) {
-		return preg_replace_callback( '/%[0-9A-Fa-f]{2}/',
-			array( __CLASS__, 'replaceUnusualEscapesCallback' ), $url );
-	}
-	
-	/**
-	 * Callback function used in replaceUnusualEscapes().
-	 * Replaces unusual URL escape codes with their equivalent character
-	 * @static
+	/**#@+
 	 * @private
 	 */
-	private static function replaceUnusualEscapesCallback( $matches ) {
-		$char = urldecode( $matches[0] );
-		$ord = ord( $char );
-		// Is it an unsafe or HTTP reserved character according to RFC 1738?
-		if ( $ord > 32 && $ord < 127 && strpos( '<>"#{}|\^~[]`;/?', $char ) === false ) {
-			// No, shouldn't be escaped
-			return $char;
-		} else {
-			// Yes, leave it escaped
-			return $matches[0];
-		}
-	}
-	
-	/*
-	 * Return a three-element array: leading whitespace, string contents, trailing whitespace
-	 */
-	public static function splitWhitespace( $s ) {
-		$ltrimmed = ltrim( $s );
-		$w1 = substr( $s, 0, strlen( $s ) - strlen( $ltrimmed ) );
-		$trimmed = rtrim( $ltrimmed );
-		$diff = strlen( $ltrimmed ) - strlen( $trimmed );
-		if ( $diff > 0 ) {
-			$w2 = substr( $ltrimmed, -$diff );
-		} else {
-			$w2 = '';
-		}
-		return array( $w1, $trimmed, $w2 );
-	}
-	
-	/// Clean up argument array - refactored in 1.9 so parserfunctions can use it, too.
-	static function createAssocArgs( $args ) {
-		$assocArgs = array();
-		$index = 1;
-		foreach( $args as $arg ) {
-			$eqpos = strpos( $arg, '=' );
-			if ( $eqpos === false ) {
-				$assocArgs[$index++] = $arg;
-			} else {
-				$name = trim( substr( $arg, 0, $eqpos ) );
-				$value = trim( substr( $arg, $eqpos+1 ) );
-				if ( $value === false ) {
-					$value = '';
-				}
-				if ( $name !== false ) {
-					$assocArgs[$name] = $value;
-				}
-			}
-		}
+	# Persistent:
+	var $mLinkHooks;
 
-		return $assocArgs;
+	/**#@-*/
+
+	/**
+	 * Constructor
+	 *
+	 * @public
+	 */
+	function __construct( $conf = array() ) {
+		parent::__construct( $conf );
+		$this->mLinkHooks = array();
+	}
+
+	/**
+	 * Do various kinds of initialisation on the first call of the parser
+	 */
+	function firstCallInit() {
+		parent::__construct();
+		if ( !$this->mFirstCall ) {
+			return;
+		}
+		$this->mFirstCall = false;
+
+		wfProfileIn( __METHOD__ );
+
+		$this->setHook( 'pre', array( $this, 'renderPreTag' ) );
+		CoreParserFunctions::register( $this );
+		CoreLinkFunctions::register( $this );
+		$this->initialiseVariables();
+
+		wfRunHooks( 'ParserFirstCallInit', array( &$this ) );
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Create a link hook, e.g. [[Namepsace:...|display}}
+	 * The callback function should have the form:
+	 *    function myLinkCallback( $parser, $holders, $markers,
+	 *    	Title $title, $titleText, &$sortText = null, &$leadingColon = false ) { ... }
+	 *
+	 * Or with SLH_PATTERN:
+	 *    function myLinkCallback( $parser, $holders, $markers, )
+	 *    	&$titleText, &$sortText = null, &$leadingColon = false ) { ... }
+	 *
+	 * The callback may either return a number of different possible values:
+	 * String) Text result of the link
+	 * True) (Treat as link) Parse the link according to normal link rules
+	 * False) (Bad link) Just output the raw wikitext (You may modify the text first)
+	 *
+	 * @public
+	 *
+	 * @param integer|string $ns The Namespace ID or regex pattern if SLH_PATTERN is set
+	 * @param mixed $callback The callback function (and object) to use
+	 * @param integer $flags a combination of the following flags:
+	 *     SLH_PATTERN   Use a regex link pattern rather than a namespace
+	 *
+	 * @return The old callback function for this name, if any
+	 */
+	function setLinkHook( $ns, $callback, $flags = 0 ) {
+		if( $flags & SLH_PATTERN && !is_string($ns) )
+			throw new MWException( __METHOD__.'() expecting a regex string pattern.' );
+		elseif( $flags | ~SLH_PATTERN && !is_int($ns) )
+			throw new MWException( __METHOD__.'() expecting a namespace index.' );
+		$oldVal = isset( $this->mLinkHooks[$ns] ) ? $this->mLinkHooks[$ns][0] : null;
+		$this->mLinkHooks[$ns] = array( $callback, $flags );
+		return $oldVal;
 	}
 	
 	/**
-	 * Static function to get a template
-	 * Can be overridden via ParserOptions::setTemplateCallback().
+	 * Get all registered link hook identifiers
+	 *
+	 * @return array
 	 */
-	static function statelessFetchTemplate( $title, $parser=false ) {
-		$text = $skip = false;
-		$finalTitle = $title;
-		$deps = array();
-
-		// Loop to fetch the article, with up to 1 redirect
-		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
-			# Give extensions a chance to select the revision instead
-			$id = false; // Assume current
-			wfRunHooks( 'BeforeParserFetchTemplateAndtitle', array( $parser, &$title, &$skip, &$id ) );
-
-			if( $skip ) {
-				$text = false;
-				$deps[] = array(
-					'title' => $title,
-					'page_id' => $title->getArticleID(),
-					'rev_id' => null );
-				break;
-			}
-			$rev = $id ? Revision::newFromId( $id ) : Revision::newFromTitle( $title );
-			$rev_id = $rev ? $rev->getId() : 0;
-			// If there is no current revision, there is no page
-			if( $id === false && !$rev ) {
-				$linkCache = LinkCache::singleton();
-				$linkCache->addBadLinkObj( $title );
-			}
-
-			$deps[] = array(
-				'title' => $title,
-				'page_id' => $title->getArticleID(),
-				'rev_id' => $rev_id );
-
-			if( $rev ) {
-				$text = $rev->getText();
-			} elseif( $title->getNamespace() == NS_MEDIAWIKI ) {
-				global $wgLang;
-				$message = $wgLang->lcfirst( $title->getText() );
-				$text = wfMsgForContentNoTrans( $message );
-				if( wfEmptyMsg( $message, $text ) ) {
-					$text = false;
-					break;
-				}
-			} else {
-				break;
-			}
-			if ( $text === false ) {
-				break;
-			}
-			// Redirect?
-			$finalTitle = $title;
-			$title = Title::newFromRedirect( $text );
-		}
-		return array(
-			'text' => $text,
-			'finalTitle' => $finalTitle,
-			'deps' => $deps );
+	function getLinkHooks() {
+		return array_keys( $this->mLinkHooks );
 	}
 	
 	/**
@@ -224,8 +147,7 @@ class Parser_LinkHooks extends Parser
 		
 		$offset = 0;
 		$offsetStack = array();
-		$markerReplacer = new LinkMarkerReplacer( array( &$this, 'replaceInternalLinksCallback' ) );
-		$markerReplacer->holders( $holders );
+		$markers = new LinkMarkerReplacer( $this, $holders, array( &$this, 'replaceInternalLinksCallback' ) );
 		while( true ) {
 			$startBracketOffset = strpos( $s, '[[', $offset );
 			$endBracketOffset   = strpos( $s, ']]', $offset );
@@ -257,7 +179,7 @@ class Parser_LinkHooks extends Parser
 					# Create markers only for valid links
 					if( preg_match( $titleRegex, $titleText ) ) {
 						# Store the text for the marker
-						$marker = $markerReplacer->addMarker($titleText, $paramText);
+						$marker = $markers->addMarker($titleText, $paramText);
 						# Replace the current link with the marker
 						$s = substr($s,0,$startBracketOffset).
 							$marker.
@@ -282,14 +204,14 @@ class Parser_LinkHooks extends Parser
 		
 		# Now expand our tree
 		wfProfileIn( __METHOD__.'-expand' );
-		$s = $markerReplacer->expand( $s );
+		$s = $markers->expand( $s );
 		wfProfileOut( __METHOD__.'-expand' );
 		
 		wfProfileOut( __METHOD__ );
 		return $holders;
 	}
 	
-	function replaceInternalLinksCallback( $markerReplacer, $titleText, $paramText ) {
+	function replaceInternalLinksCallback( $parser, $holders, $markers, $titleText, $paramText ) {
 		wfProfileIn( __METHOD__ );
 		$wt = isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
 		wfProfileIn( __METHOD__."-misc" );
@@ -322,17 +244,31 @@ class Parser_LinkHooks extends Parser
 		$ns = $title->getNamespace();
 		wfProfileOut( __METHOD__."-title" );
 		
-		$callback = array( 'CoreLinkFunctions', 'defaultLinkHook' );
-		$args = array( $markerReplacer, $title, $titleText, &$paramText, &$leadingColon );
-		$return = call_user_func_array( $callback, $args );
+		# Default for Namespaces is a default link
+		# ToDo: Default for patterns is plain wikitext
+		$return = true;
+		if( isset($this->mLinkHooks[$ns]) ) {
+			list( $callback, $flags ) = $this->mLinkHooks[$ns];
+			if( $flags & SLH_PATTERN ) {
+				$args = array( $parser, $holders, $markers, $titleText, &$paramText, &$leadingColon );
+			} else {
+				$args = array( $parser, $holders, $markers, $title, $titleText, &$paramText, &$leadingColon );
+			}
+			# Workaround for PHP bug 35229 and similar
+			if ( !is_callable( $callback ) ) {
+				throw new MWException( "Tag hook for $name is not callable\n" );
+			}
+			$return = call_user_func_array( $callback, $args );
+		}
+		if( $return === true ) {
+			# True (treat as plain link) was returned, call the defaultLinkHook
+			$args = array( $parser, $holders, $markers, $title, $titleText, &$paramText, &$leadingColon );
+			$return = call_user_func_array( array( 'CoreLinkFunctions', 'defaultLinkHook' ), $args );
+		}
 		if( $return === false ) {
 			# False (no link) was returned, output plain wikitext
 			# Build it again as the hook is allowed to modify $paramText
 			return isset($paramText) ? "[[$titleText|$paramText]]" : "[[$titleText]]";
-		} elseif( $return === true ) {
-			# True (treat as plain link) was returned, call the defaultLinkHook
-			$args = array( $markerReplacer, $title, $titleText, &$paramText, &$leadingColon );
-			$return = call_user_func_array( array( &$this, 'defaultLinkHook' ), $args );
 		}
 		# Content was returned, return it
 		return $return;
@@ -342,19 +278,15 @@ class Parser_LinkHooks extends Parser
 
 class LinkMarkerReplacer {
 	
-	protected $markers, $nextId, $holders;
+	protected $markers, $nextId, $parser, $holders, $callback;
 	
-	function __construct( $callback ) {
-		$this->nextId  = 0;
-		$this->markers = array();
+	function __construct( $parser, $holders, $callback ) {
+		$this->nextId   = 0;
+		$this->markers  = array();
+		$this->parser   = $parser;
+		$this->holders  = $holders;
 		$this->callback = $callback;
-		$this->holders = null;
 	}
-	
-	# Note: This is a bit of an ugly way to do this. It works for now, but before
-	# this feature becomes usable we should come up with a better arg list.
-	# $parser, $holders, and $linkMarkers appear to be 3 needed ones
-	function holders( $holders = null ) { return wfSetVar( $this->holders, $holders ); }
 	
 	function addMarker($titleText, $paramText) {
 		$id = $this->nextId++;
@@ -375,6 +307,8 @@ class LinkMarkerReplacer {
 		if( !array_key_exists($id, $this->markers) ) return $m[0];
 		$args = $this->markers[$id];
 		array_unshift( $args, $this );
+		array_unshift( $args, $this->holders );
+		array_unshift( $args, $this->parser );
 		return call_user_func_array( $this->callback, $args );
 	}
 	
