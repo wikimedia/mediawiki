@@ -1044,6 +1044,7 @@ class Article {
 		if ( $wgUser->isAllowed( 'purge' ) || $wgRequest->wasPosted() ) {
 			if( wfRunHooks( 'ArticlePurge', array( &$this ) ) ) {
 				$this->doPurge();
+				$this->view();
 			}
 		} else {
 			$msg = $wgOut->parse( wfMsg( 'confirm_purge' ) );
@@ -1086,7 +1087,6 @@ class Article {
 			}
 			$wgMessageCache->replace( $this->mTitle->getDBkey(), $text );
 		}
-		$this->view();
 	}
 
 	/**
