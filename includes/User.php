@@ -166,7 +166,6 @@ class User {
 		'upload',
 		'upload_by_url',
 		'userrights',
-		'userrights-interwiki',
 	);
 	/**
 	 * \type{\string} Cached results of getAllRights()
