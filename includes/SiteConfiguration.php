@@ -47,7 +47,7 @@ class SiteConfiguration {
 				foreach ( $wikiTags as $tag ) {
 					if ( array_key_exists( $tag, $thisSetting ) ) {
 						if ( isset($retval) && is_array($retval) && is_array($thisSetting[$tag]) ) {
-							$retval = array_merge( $retval, $thisSetting[$tag] );
+							$retval = array_merge_recursive( $retval, $thisSetting[$tag] );
 						} else {
 							$retval = $thisSetting[$tag];
 						}
@@ -55,14 +55,14 @@ class SiteConfiguration {
 					} elseif ( array_key_exists( "+$tag", $thisSetting ) && is_array($thisSetting["+$tag"]) ) {
 						if (!isset($retval))
 							$retval = array();
-						$retval = array_merge( $retval, $thisSetting["+$tag"] );
+						$retval = array_merge_recursive( $retval, $thisSetting["+$tag"] );
 					}
 				}
 				
 				// Do suffix settings
 				if ( array_key_exists( $suffix, $thisSetting ) ) {
 					if ( isset($retval) && is_array($retval) && is_array($thisSetting[$suffix]) ) {
-						$retval = array_merge( $retval, $thisSetting[$suffix] );
+						$retval = array_merge_recursive( $retval, $thisSetting[$suffix] );
 					} else {
 						$retval = $thisSetting[$suffix];
 					}
@@ -70,13 +70,13 @@ class SiteConfiguration {
 				} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array($thisSetting["+$suffix"]) ) {
 					if (!isset($retval))
 						$retval = array();
-					$retval = array_merge( $retval, $thisSetting["+$suffix"] );
+					$retval = array_merge_recursive( $retval, $thisSetting["+$suffix"] );
 				}
 				
 				// Fall back to default.
 				if ( array_key_exists( 'default', $thisSetting ) ) {
 					if ( isset($retval) && is_array($retval) && is_array($thisSetting['default']) ) {
-						$retval = array_merge( $retval, $thisSetting['default'] );
+						$retval = array_merge_recursive( $retval, $thisSetting['default'] );
 					} else {
 						$retval = $thisSetting['default'];
 					}
@@ -181,7 +181,7 @@ class SiteConfiguration {
 			if (substr($setting,0,1) == '+' && is_array($value)) {
 				$setting = substr($setting,1);
 				if ( is_array($GLOBALS[$setting]) ) {
-					$GLOBALS[$setting] = array_merge( $GLOBALS[$setting], $value );
+					$GLOBALS[$setting] = array_merge_recursive( $GLOBALS[$setting], $value );
 				} else {
 					$GLOBALS[$setting] = $value;
 				}
