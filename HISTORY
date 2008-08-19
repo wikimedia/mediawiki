@@ -565,7 +565,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
      remove the groups specified in $wgAddGroups and $wgRemoveGroups for
      any groups they are in.
 * New permission userrights-interwiki for changing user rights on foreign wikis.
-* $wgImplictGroups for groups that are hidden from Special:Listusers, etc.
+* $wgImplicitGroups for groups that are hidden from Special:Listusers, etc.
 * $wgAutopromote: automatically promote users who match specified criteria
 * $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf: allow users to add or remove
   themselves from specified groups via Special:Userrights.
