@@ -1466,7 +1466,9 @@ Template:搞清楚',
 
 # Special:Categories
 'categories'                    => '類',
-'categoriespagetext'            => '下面嘅類有版或媒體。',
+'categoriespagetext'            => '下面嘅類有版或媒體。
+[[Special:UnusedCategories|未用類]]唔會響呢度列示。
+請同時參閱[[Special:WantedCategories|需要嘅分類]]。',
 'categoriesfrom'                => '顯示由呢項起嘅類:',
 'special-categories-sort-count' => '跟數量排',
 'special-categories-sort-abc'   => '跟字母排',
@@ -2090,7 +2092,7 @@ $1',
 'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '以$1嘅作品為基礎。',
 'others'           => '其他',
-'siteusers'        => '{{SITENAME}}嘅用戶$1',
+'siteusers'        => '{{SITENAME}}嘅{{PLURAL:$2|用戶|用戶}}$1',
 'creditspage'      => '頁面信譽',
 'nocredits'        => '呢一頁並無任何嘅信譽資料可以提供。',
 
