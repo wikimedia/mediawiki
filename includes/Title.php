@@ -2500,6 +2500,12 @@ class Title {
 					$nt->getUserPermissionsErrors('edit', $wgUser));
 		}
 
+		$match = EditPage::matchSpamRegex( $reason );
+		if( $match !== false ) {
+			// This is kind of lame, won't display nice
+			$errors[] = array('spamprotectiontext');
+		}
+		
 		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err, $reason ) ) ) {

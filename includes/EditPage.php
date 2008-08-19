@@ -733,7 +733,7 @@ class EditPage {
 	 * @return one of the constants describing the result
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgSpamRegex, $wgFilterCallback, $wgUser, $wgOut, $wgParser;
+		global $wgFilterCallback, $wgUser, $wgOut, $wgParser;
 		global $wgMaxArticleSize;
 
 		$fname = 'EditPage::attemptSave';
@@ -762,12 +762,15 @@ class EditPage {
 		$this->mMetaData = '' ;
 
 		# Check for spam
-		$matches = array();
-		if ( $wgSpamRegex && preg_match( $wgSpamRegex, $this->textbox1, $matches ) ) {
-			$result['spam'] = $matches[0];
+		$match = self::matchSpamRegex( $this->summary );
+		if( $match === false ) {
+			$match = self::matchSpamRegex( $this->textbox1 );
+		}
+		if( $match !== false ) {
+			$result['spam'] = $match;
 			$ip = wfGetIP();
 			$pdbk = $this->mTitle->getPrefixedDBkey();
-			$match = str_replace( "\n", '', $matches[0] );
+			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
@@ -1021,6 +1024,25 @@ class EditPage {
 		}
 		wfProfileOut( $fname );
 		return self::AS_END;
+	}
+	
+	/**
+	 * Check given input text against $wgSpamRegex, and return the text of the first match.
+	 * @return mixed -- matching string or false
+	 */
+	public static function matchSpamRegex( $text ) {
+		global $wgSpamRegex;
+		if( $wgSpamRegex ) {
+			// For back compatibility, $wgSpamRegex may be a single string or an array of regexes.
+			$regexes = (array)$wgSpamRegex;
+			foreach( $regexes as $regex ) {
+				$matches = array();
+				if ( preg_match( $regex, $text, $matches ) ) {
+					return $matches[0];
+				}
+			}
+		}
+		return false;
 	}
 
 	/**

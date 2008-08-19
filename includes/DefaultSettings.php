@@ -2095,9 +2095,17 @@ $wgExportMaxHistory = 0;
 $wgExportAllowListContributors = false ;
 
 
-/** Text matching this regular expression will be recognised as spam
- * See http://en.wikipedia.org/wiki/Regular_expression */
-$wgSpamRegex = false;
+/**
+ * Edits matching these regular expressions in body text or edit summary
+ * will be recognised as spam and rejected automatically.
+ *
+ * There's no administrator override on-wiki, so be careful what you set. :)
+ * May be an array of regexes or a single string for backwards compatibility.
+ *
+ * See http://en.wikipedia.org/wiki/Regular_expression
+ */
+$wgSpamRegex = array();
+
 /** Similarly you can get a function to do the job. The function will be given
  * the following args:
  *   - a Title object for the article the edit is made on
