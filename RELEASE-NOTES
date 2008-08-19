@@ -88,8 +88,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Show/Hide logged in users, Show/Hide anonymous, Invert namespace selection
 * Added hook 'UserrightsChangeableGroups' to allow modification of what
   groups may be added or removed via the Special:UserRights interface.
-* (bug 14187) In Special:Userlogin the buttons "Log in" and "E-mail new
-  password" now have classes "mw-loginbutton" and "mw-mailmypasswordbutton".
 * HTML entities like &nbsp; now work (are not escaped) in edit summaries.
 * (bug 13815) In the comment for page moves, use the colon-separator message
   instead of a hardcoded colon.
