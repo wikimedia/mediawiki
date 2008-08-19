@@ -500,6 +500,14 @@ class LoginForm {
 			return self::CREATE_BLOCKED;
 		}
 
+		$abortError = '';
+		if( !wfRunHooks( 'AbortNewAccount', array( $user->getName(), &$abortError ) ) ) {
+			// Hook point to add extra creation throttles and blocks
+			wfDebug(  __METHOD__.": a hook blocked creation\n" );
+			$this->mainLoginForm( $abortError );
+			return self::ABORTED;
+		}
+
 		wfDebug( __METHOD__.": creating account\n" );
 		$user = $this->initUser( $user, true );
 		return self::SUCCESS;
