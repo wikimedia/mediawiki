@@ -57,8 +57,7 @@ class UserrightsPage extends SpecialPage {
 			 * edit their own groups, automatically set them as the
 			 * target.
 			 */
-			global $wgUser;
-			$available = $this->changeableGroups($wgUser);
+			$available = $this->changeableGroups();
 			if (empty($available['add']) && empty($available['remove']))
 				$this->mTarget = $wgUser->getName();
 		}
@@ -124,7 +123,7 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
-		$allgroups = $this->getAllGroups($user);
+		$allgroups = $this->getAllGroups();
 		$addgroup = array();
 		$removegroup = array();
 
@@ -141,7 +140,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		// Validate input set...
-		$changeable = $this->changeableGroups($user);
+		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $this->isself ? $changeable['add-self'] : array() );
 		$removable = array_merge( $changeable['remove'], $this->isself ? $changeable['remove-self'] : array() );
 
@@ -322,12 +321,10 @@ class UserrightsPage extends SpecialPage {
 	 * permissions.
 	 *
 	 * @param $groups Array: list of groups the given user is in
-	 * @param $user User object to edit.
 	 * @return Array:  Tuple of addable, then removable groups
 	 */
-	protected function splitGroups( $groups, $user = null ) {
-		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
-		list($addable, $removable, $addself, $removeself) = array_values( $this->changeableGroups( $user ) );
+	protected function splitGroups( $groups ) {
+		list($addable, $removable, $addself, $removeself) = array_values( $this->changeableGroups() );
 
 		$removable = array_intersect(
 				array_merge( $this->isself ? $removeself : array(), $removable ),
@@ -348,7 +345,7 @@ class UserrightsPage extends SpecialPage {
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		global $wgOut, $wgUser, $wgLang;
 
-		list( $addable, $removable ) = $this->splitGroups( $groups, $user );
+		list( $addable, $removable ) = $this->splitGroups( $groups );
 
 		$list = array();
 		foreach( $user->getGroups() as $group )
@@ -368,7 +365,7 @@ class UserrightsPage extends SpecialPage {
 			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
 			wfMsgExt( 'userrights-groups-help', array( 'parse' ) ) .
 			$grouplist .
-			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
+			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) .
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
@@ -405,62 +402,20 @@ class UserrightsPage extends SpecialPage {
 	
 	/**
 	 * Returns an array of all groups that may be edited
-	 * @param $user User object of the user whose groups are being edited. Optional.
 	 * @return array Array of groups that may be edited.
 	 */
-	 protected static function getAllGroups($user=null) {
-	 	if ($user instanceof UserRightsProxy) {
-	 		// Remote user object.
-			return self::getRemoteGroups( $user->database );
-	 	}
-	 	
-	 	// Regular user object
+	 protected static function getAllGroups() {
 	 	return User::getAllGroups();
-	 }
-	 
-	 /**
-	  * Returns all groups which can be set on a remote wiki.
-	  * @param $db String - database name of the foreign wiki.
-	  * @return array Array of groups that may be edited.
-	  */
-	 static function getRemoteGroups( $wiki ) {
-	 	// Stolen from CentralAuth - a dirty hack indeed.
-		global $wgConf, $IP;
-		static $initialiseSettingsDone = false;
-
-		// This is a damn dirty hack
-		if ( !$initialiseSettingsDone ) {
-			$initialiseSettingsDone = true;
-			if( file_exists( "$IP/InitialiseSettings.php" ) ) {
-				require_once "$IP/InitialiseSettings.php";
-			}
-		}
-
-		list( $major, $minor ) = $wgConf->siteFromDB( $wiki );
-		if( isset( $major ) ) {
-			$groupperms = $wgConf->get( 'wgGroupPermissions', $wiki, $major,
-				array( 'lang' => $minor, 'site' => $major ) );
-				
-			$groups = array_keys($groupperms);
-			
-			if (count($groups)==0) {
-				// Fallback
-				return User::getAllGroups();
-			}
-			
-			return $groups;
-		}
 	 }
 
 	/**
 	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
 	 * @param $usergroups Array: groups the user belongs to
-	 * @param $user User object: the user to build checkboxes for.
 	 * @return string XHTML table element with checkboxes
 	 */
-	private function groupCheckboxes( $usergroups, $user ) {
-		$allgroups = $this->getAllGroups( $user );
+	private function groupCheckboxes( $usergroups ) {
+		$allgroups = $this->getAllGroups();
 		$ret = '';
 
 		$column = 1;
@@ -471,12 +426,12 @@ class UserrightsPage extends SpecialPage {
 			$set = in_array( $group, $usergroups );
 			# Should the checkbox be disabled?
 			$disabled = !(
-				( $set && $this->canRemove( $group, $user ) ) ||
-				( !$set && $this->canAdd( $group, $user ) ) );
+				( $set && $this->canRemove( $group ) ) ||
+				( !$set && $this->canAdd( $group ) ) );
 			# Do we need to point out that this action is irreversible?
 			$irreversible = !$disabled && (
-				($set && !$this->canAdd( $group, $user )) ||
-				(!$set && !$this->canRemove( $group, $user ) ) );
+				($set && !$this->canAdd( $group )) ||
+				(!$set && !$this->canRemove( $group ) ) );
 
 			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
 			$text = $irreversible
@@ -528,54 +483,44 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * @param  $group String: the name of the group to check
-	 * @param  $user User object: The user in question.
 	 * @return bool Can we remove the group?
 	 */
-	private function canRemove( $group, $user=null ) {
+	private function canRemove( $group ) {
 		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks,
 		// PHP.
-		$groups = $this->changeableGroups($user);
+		$groups = $this->changeableGroups();
 		return in_array( $group, $groups['remove'] ) || ($this->isself && in_array( $group, $groups['remove-self'] ));
 	}
 
 	/**
 	 * @param $group string: the name of the group to check
-	 * @param  $user User object: The user in question.
 	 * @return bool Can we add the group?
 	 */
-	private function canAdd( $group, $user=null ) {
-		$groups = $this->changeableGroups($user);
+	private function canAdd( $group ) {
+		$groups = $this->changeableGroups();
 		return in_array( $group, $groups['add'] ) || ($this->isself && in_array( $group, $groups['add-self'] ));
 	}
 
 	/**
 	 * Returns an array of the groups that the user can add/remove.
 	 *
-	 * @param $user User object to check groups for.
 	 * @return Array array( 'add' => array( addablegroups ), 'remove' => array( removablegroups ) , 'add-self' => array( addablegroups to self), 'remove-self' => array( removable groups from self) )
 	 */
-	function changeableGroups( $user=null ) {
+	function changeableGroups() {
 		global $wgUser;
-		
-		if ($user == null)
-			$user = $wgUser; // Doesn't make a difference which user, so long as it's a local one.
 
-		if( $wgUser->isAllowed( 'userrights' ) ||
-			$wgUser->isAllowed( 'userrights-interwiki' ) && $user instanceof UserRightsProxy ) {
+		if( $wgUser->isAllowed( 'userrights' ) ) {
 			// This group gives the right to modify everything (reverse-
 			// compatibility with old "userrights lets you change
 			// everything")
 			// Using array_merge to make the groups reindexed
-			$all = array_merge( $this->getAllGroups( $user ) );
+			$all = array_merge( User::getAllGroups() );
 			return array(
 				'add' => $all,
 				'remove' => $all,
 				'add-self' => array(),
 				'remove-self' => array()
 			);
-		} elseif ( $user instanceof UserRightsProxy ) {
-			// Userrightsproxy without userrights-interwiki rights. Should have already been rejected.
-			return array( 'add' => array(), 'remove' => array(), 'add-self' => array(), 'remove-self' => array() );
 		}
 
 		// Okay, it's not so simple, we will have to go through the arrays
