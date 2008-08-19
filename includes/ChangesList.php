@@ -306,7 +306,7 @@ class OldChangesList extends ChangesList {
 	/**
 	 * Format a line using the old system (aka without any javascript).
 	 */
-	public function recentChangesLine( &$rc, $watched = false, $linenumber = NULL ) {
+	public function recentChangesLine( &$rc, $watched = false ) {
 		global $wgContLang, $wgRCShowChangedSize, $wgUser;
 
 		$fname = 'ChangesList::recentChangesLineOld';
@@ -321,17 +321,7 @@ class OldChangesList extends ChangesList {
 
 		$this->insertDateHeader($s,$rc_timestamp);
 
-		// use even/odd class only if linenumber is given (feature from bug 14468)
-		if( $linenumber ) {
-			if( $linenumber & 1 ) {
-				$s .= '<li class="odd">';
-			}
-			else {
-				$s .= '<li class="even">';
-			}
-		} else {
-			$s .= '<li>';
-		}
+		$s .= '<li>';
 
 		// Moved pages
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
