@@ -277,8 +277,6 @@ class SearchEngine {
 	 * Load up the appropriate search engine class for the currently
 	 * active database backend, and return a configured instance.
 	 *
-	 * @fixme Ask the database class for his default search class
-	 * instead of knowing about every backend here.
 	 * @return SearchEngine
 	 */
 	public static function create() {
