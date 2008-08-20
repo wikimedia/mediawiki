@@ -2821,6 +2821,9 @@ $1',
 'previousdiff' => '← Previous diff',
 'nextdiff'     => 'Next diff →',
 
+#Visual Comparison
+'visual-comparison' => 'Visual Comparison',
+
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
 'imagemaxsize'         => 'Limit images on file description pages to:',

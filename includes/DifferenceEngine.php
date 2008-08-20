@@ -334,7 +334,7 @@ CONTROL;
 
 		$this->showDiffStyle();
 
-		$wgOut->addHTML( "<hr /><h2>HTML diff</h2>\n" );
+		$wgOut->addHTML( '<h2>'.wfMsgHtml( 'visual-comparison' )."</h2>\n" );
 		#add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );

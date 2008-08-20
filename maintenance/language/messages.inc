@@ -717,10 +717,10 @@ $wgMessageStructure = array(
 		'search-interwiki-custom',
 		'search-interwiki-more',
 		'search-mwsuggest-enabled',
-		'search-mwsuggest-disabled',	
+		'search-mwsuggest-disabled',
 		'search-relatedarticle',
 		'mwsuggest-disable',
-		'searchrelated',	
+		'searchrelated',
 		'searchall',
 		'showingresults',
 		'showingresultsnum',
@@ -1982,6 +1982,9 @@ $wgMessageStructure = array(
 	'browsediffs' => array(
 		'previousdiff',
 		'nextdiff',
+	),
+	'visual-comparison' => array(
+		'visual-comparison',
 	),
 	'media-info' => array(
 		'mediawarning',
