@@ -2004,7 +2004,6 @@ You can narrow down the view by selecting a log type, the user name, or the affe
 'nextpage'          => 'Next page ($1)',
 'prevpage'          => 'Previous page ($1)',
 'allpagesfrom'      => 'Display pages starting at:',
-'allpagesto'        => 'Display pages ending at:',
 'allarticles'       => 'All pages',
 'allinnamespace'    => 'All pages ($1 namespace)',
 'allnotinnamespace' => 'All pages (not in $1 namespace)',
