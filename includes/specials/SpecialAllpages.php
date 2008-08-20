@@ -2,7 +2,6 @@
 /**
  * @file
  * @ingroup SpecialPage
- * Note that Special:Prefixindex.php depends on this
  */
 
 /**
@@ -14,23 +13,24 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
 	global $wgRequest, $wgOut, $wgContLang;
 
 	# GET values
-	$from = $wgRequest->getVal( 'from', '' );
-	$to = $wgRequest->getVal( 'to', '' );
+	$from = $wgRequest->getVal( 'from' );
 	$namespace = $wgRequest->getInt( 'namespace' );
 
 	$namespaces = $wgContLang->getNamespaces();
+
+	$indexPage = new SpecialAllpages();
 
 	$wgOut->setPagetitle( ( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) )  ?
 		wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 		wfMsg( 'allarticles' )
 		);
-	
-	if( isset($par) ) {
-		$indexPage = new SpecialPrefixIndex();
-		$indexPage->showPrefixChunk( $namespace, $par, $specialPage->including(), $from );
+
+	if ( isset($par) ) {
+		$indexPage->showChunk( $namespace, $par, $specialPage->including() );
+	} elseif ( isset($from) ) {
+		$indexPage->showChunk( $namespace, $from, $specialPage->including() );
 	} else {
-		$indexPage = new SpecialAllpages();
-		$indexPage->showToplevel( $namespace, $from, $to, $specialPage->including() );
+		$indexPage->showToplevel ( $namespace, $specialPage->including() );
 	}
 }
 
@@ -40,19 +40,9 @@ function wfSpecialAllpages( $par=NULL, $specialPage ) {
  */
 class SpecialAllpages {
 	/**
-	 * Maximum number of pages to show on single list subpage.
+	 * Maximum number of pages to show on single subpage.
 	 */
-	protected $maxPerPage = 345;
-	
-	/**
-	 * Maximum number of pages to show on single index subpage.
-	 */
-	protected $maxLineCount = 200;
-	
-	/**
-	 * Maximum number of chars to show for an entry.
-	 */
-	protected $maxPageLength = 70;
+	protected $maxPerPage = 960;
 
 	/**
 	 * Name of this special page. Used to make title objects that reference back
@@ -60,13 +50,17 @@ class SpecialAllpages {
 	 */
 	protected $name = 'Allpages';
 
+	/**
+	 * Determines, which message describes the input field 'nsfrom'.
+	 */
+	protected $nsfromMsg = 'allpagesfrom';
+
 /**
  * HTML for the top form
  * @param integer $namespace A namespace constant (default NS_MAIN).
- * @param string $from dbKey we are starting listing at.
- * @param string $to dbKey we are ending listing at.
+ * @param string $from Article name we are starting listing at.
  */
-function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
+function namespaceForm ( $namespace = NS_MAIN, $from = '' ) {
 	global $wgScript;
 	$t = SpecialPage::getTitleFor( $this->name );
 
@@ -78,18 +72,10 @@ function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
 	$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 	$out .= "<tr>
 			<td class='mw-label'>" .
-				Xml::label( wfMsg( 'allpagesfrom' ), 'nsfrom' ) .
+				Xml::label( wfMsg( $this->nsfromMsg ), 'nsfrom' ) .
 			"</td>
 			<td class='mw-input'>" .
-				Xml::input( 'from', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
-			"</td>
-		</tr>
-		<tr>
-			<td class='mw-label'>" .
-				Xml::label( wfMsg( 'allpagesto' ), 'nsto' ) .
-			"</td>
-			<td class='mw-input'>" .
-				Xml::input( 'to', 30, str_replace('_',' ',$to), array( 'id' => 'nsto' ) ) .
+				Xml::input( 'from', 20, $from, array( 'id' => 'nsfrom' ) ) .
 			"</td>
 		</tr>
 		<tr>
@@ -111,7 +97,7 @@ function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
 /**
  * @param integer $namespace (default NS_MAIN)
  */
-function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = false ) {
+function showToplevel ( $namespace = NS_MAIN, $including = false ) {
 	global $wgOut, $wgContLang;
 	$align = $wgContLang->isRtl() ? 'left' : 'right';
 
@@ -121,54 +107,45 @@ function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = 
 	$dbr = wfGetDB( DB_SLAVE );
 	$out = "";
 	$where = array( 'page_namespace' => $namespace );
-	
-	$from = Title::makeTitleSafe( $namespace, $from );
-	$to = Title::makeTitleSafe( $namespace, $to );
-	$from = ( $from && $from->isLocal() ) ? $from->getDBKey() : null;
-	$to = ( $to && $to->isLocal() ) ? $to->getDBKey() : null;
-	
-	if( isset($from) )
-		$where[] = 'page_title >= '.$dbr->addQuotes( $from );
-	if( isset($to) )
-		$where[] = 'page_title <= '.$dbr->addQuotes( $to );
 
 	global $wgMemc;
-	$key = wfMemcKey( 'allpages', 'ns', $namespace, $from, $to );
+	$key = wfMemcKey( 'allpages', 'ns', $namespace );
 	$lines = $wgMemc->get( $key );
-	
-	$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
-	$maxPerSubpage = intval($count/$this->maxLineCount);
-	$maxPerSubpage = max($maxPerSubpage,$this->maxPerPage);
 
 	if( !is_array( $lines ) ) {
 		$options = array( 'LIMIT' => 1 );
-		$options['ORDER BY'] = 'page_title ASC';
+		if ( ! $dbr->implicitOrderby() ) {
+			$options['ORDER BY'] = 'page_title';
+		}
 		$firstTitle = $dbr->selectField( 'page', 'page_title', $where, __METHOD__, $options );
 		$lastTitle = $firstTitle;
+
 		# This array is going to hold the page_titles in order.
 		$lines = array( $firstTitle );
+
 		# If we are going to show n rows, we need n+1 queries to find the relevant titles.
 		$done = false;
-		while( !$done ) {
+		for( $i = 0; !$done; ++$i ) {
 			// Fetch the last title of this chunk and the first of the next
 			$chunk = is_null( $lastTitle )
 				? ''
 				: 'page_title >= ' . $dbr->addQuotes( $lastTitle );
-			$chunk = array($chunk);
-			$res = $dbr->select( 'page', /* FROM */
+			$res = $dbr->select(
+				'page', /* FROM */
 				'page_title', /* WHAT */
-				array_merge($where,$chunk),
+				$where + array($chunk),
 				__METHOD__,
-				array ('LIMIT' => 2, 'OFFSET' => $maxPerSubpage - 1, 'ORDER BY' => 'page_title ASC') 
-			);
+				array ('LIMIT' => 2, 'OFFSET' => $this->maxPerPage - 1, 'ORDER BY' => 'page_title') );
 
-			if( $s = $dbr->fetchObject( $res ) ) {
+			if ( $s = $dbr->fetchObject( $res ) ) {
 				array_push( $lines, $s->page_title );
 			} else {
 				// Final chunk, but ended prematurely. Go back and find the end.
 				$endTitle = $dbr->selectField( 'page', 'MAX(page_title)',
-					array_merge($where,$chunk), 
-					__METHOD__ );
+					array(
+						'page_namespace' => $namespace,
+						$chunk
+					), __METHOD__ );
 				array_push( $lines, $endTitle );
 				$done = true;
 			}
@@ -188,39 +165,35 @@ function showToplevel( $namespace = NS_MAIN, $from = '', $to = '', $including = 
 	// If there are only two or less sections, don't even display them.
 	// Instead, display the first section directly.
 	if( count( $lines ) <= 2 ) {
-		if( !empty($lines) ) {
-			$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1], $including );
-		} else {
-			$wgOut->addHtml( $this->namespaceForm( $namespace, $from, $to ) );
-		}
+		$this->showChunk( $namespace, '', $including );
 		return;
 	}
 
 	# At this point, $lines should contain an even number of elements.
 	$out .= "<table class='allpageslist' style='background: inherit;'>";
-	while( count ( $lines ) > 0 ) {
-		$inpoint = array_shift( $lines );
-		$outpoint = array_shift( $lines );
-		$out .= $this->showline( $inpoint, $outpoint, $namespace );
+	while ( count ( $lines ) > 0 ) {
+		$inpoint = array_shift ( $lines );
+		$outpoint = array_shift ( $lines );
+		$out .= $this->showline ( $inpoint, $outpoint, $namespace, false );
 	}
 	$out .= '</table>';
-	$nsForm = $this->namespaceForm( $namespace, $from, $to );
+	$nsForm = $this->namespaceForm( $namespace, '', false );
 
 	# Is there more?
-	if( $including ) {
+	if ( $including ) {
 		$out2 = '';
 	} else {
-		if( isset($from) || isset($to) ) {
-			global $wgUser;
+		$morelinks = '';
+		if ( $morelinks != '' ) {
 			$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 			$out2 .= '<tr valign="top"><td>' . $nsForm;
-			$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
-				$wgUser->getSkin()->makeKnownLink( $wgContLang->specialPage( "Allpages" ), wfMsgHtml ( 'allpages' ) );
-			$out2 .= "</td></tr></table><hr />";
+			$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">';
+			$out2 .= $morelinks . '</td></tr></table><hr />';
 		} else {
 			$out2 = $nsForm . '<hr />';
 		}
 	}
+
 	$wgOut->addHtml( $out2 . $out );
 }
 
@@ -234,17 +207,14 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 	$align = $wgContLang->isRtl() ? 'left' : 'right';
 	$inpointf = htmlspecialchars( str_replace( '_', ' ', $inpoint ) );
 	$outpointf = htmlspecialchars( str_replace( '_', ' ', $outpoint ) );
-	// Don't let the length runaway
-	$inpointf = $wgContLang->truncate( $inpointf, $this->maxPageLength, '...' );
-	$outpointf = $wgContLang->truncate( $outpointf, $this->maxPageLength, '...' );
+	$queryparams = ($namespace ? "namespace=$namespace" : '');
+	$special = SpecialPage::getTitleFor( $this->name, $inpoint );
+	$link = $special->escapeLocalUrl( $queryparams );
 
-	$queryparams = $namespace ? "namespace=$namespace&" : '';
-	$special = SpecialPage::getTitleFor( $this->name );
-	$link = $special->escapeLocalUrl( $queryparams . 'from=' . urlencode($inpoint) . '&to=' . urlencode($outpoint) );
-
-	$out = wfMsgHtml( 'alphaindexline',
-		"<a href=\"$link\">$inpointf</a></td><td>",
-		"</td><td><a href=\"$link\">$outpointf</a>"
+	$out = wfMsgHtml(
+		'alphaindexline',
+		"<a href=\"$link\">$inpointf</a></td><td><a href=\"$link\">",
+		"</a></td><td><a href=\"$link\">$outpointf</a>"
 	);
 	return '<tr><td align="' . $align . '">'.$out.'</td></tr>';
 }
@@ -252,22 +222,19 @@ function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 /**
  * @param integer $namespace (Default NS_MAIN)
  * @param string $from list all pages from this name (default FALSE)
- * @param string $from list all pages to this name (default FALSE)
  */
-function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $including = false ) {
+function showChunk( $namespace = NS_MAIN, $from, $including = false ) {
 	global $wgOut, $wgUser, $wgContLang;
 
 	$sk = $wgUser->getSkin();
 
-	$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
-	$toList = $this->getNamespaceKeyAndText( $namespace, $to );
-	
+	$fromList = $this->getNamespaceKeyAndText($namespace, $from);
 	$namespaces = $wgContLang->getNamespaces();
 	$align = $wgContLang->isRtl() ? 'left' : 'right';
 
 	$n = 0;
 
-	if ( !$fromList || !$toList ) {
+	if ( !$fromList ) {
 		$out = wfMsgWikiHtml( 'allpagesbadtitle' );
 	} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
 		// Show errormessage and reset to NS_MAIN
@@ -275,19 +242,17 @@ function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $including
 		$namespace = NS_MAIN;
 	} else {
 		list( $namespace, $fromKey, $from ) = $fromList;
-		list( $namespace, $toKey, $to ) = $toList;
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
 			array( 'page_namespace', 'page_title', 'page_is_redirect' ),
 			array(
 				'page_namespace' => $namespace,
-				'page_title >= ' . $dbr->addQuotes( $fromKey ),
-				'page_title <= ' . $dbr->addQuotes( $toKey ),
+				'page_title >= ' . $dbr->addQuotes( $fromKey )
 			),
 			__METHOD__,
 			array(
-				'ORDER BY'  => 'page_title ASC',
+				'ORDER BY'  => 'page_title',
 				'LIMIT'     => $this->maxPerPage + 1,
 				'USE INDEX' => 'name_title',
 			)
@@ -326,15 +291,87 @@ function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $including
 	if ( $including ) {
 		$out2 = '';
 	} else {
-		$nsForm = $this->namespaceForm( $namespace, $from, $to );
+		if( $from == '' ) {
+			// First chunk; no previous link.
+			$prevTitle = null;
+		} else {
+			# Get the last title from previous chunk
+			$dbr = wfGetDB( DB_SLAVE );
+			$res_prev = $dbr->select(
+				'page',
+				'page_title',
+				array( 'page_namespace' => $namespace, 'page_title < '.$dbr->addQuotes($from) ),
+				__METHOD__,
+				array( 'ORDER BY' => 'page_title DESC', 'LIMIT' => $this->maxPerPage, 'OFFSET' => ($this->maxPerPage - 1 ) )
+			);
+
+			# Get first title of previous complete chunk
+			if( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
+				$pt = $dbr->fetchObject( $res_prev );
+				$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
+			} else {
+				# The previous chunk is not complete, need to link to the very first title
+				# available in the database
+				$options = array( 'LIMIT' => 1 );
+				if ( ! $dbr->implicitOrderby() ) {
+					$options['ORDER BY'] = 'page_title';
+				}
+				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title', array( 'page_namespace' => $namespace ), __METHOD__, $options );
+				# Show the previous link if it s not the current requested chunk
+				if( $from != $reallyFirstPage_title ) {
+					$prevTitle =  Title::makeTitle( $namespace, $reallyFirstPage_title );
+				} else {
+					$prevTitle = null;
+				}
+			}
+		}
+
+		$nsForm = $this->namespaceForm( $namespace, $from );
 		$out2 = '<table style="background: inherit;" width="100%" cellpadding="0" cellspacing="0" border="0">';
 		$out2 .= '<tr valign="top"><td>' . $nsForm;
 		$out2 .= '</td><td align="' . $align . '" style="font-size: smaller; margin-bottom: 1em;">' .
-			$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ), wfMsgHtml ( 'allpages' ) );
+				$sk->makeKnownLink( $wgContLang->specialPage( "Allpages" ),
+					wfMsgHtml ( 'allpages' ) );
+
+		$self = SpecialPage::getTitleFor( 'Allpages' );
+
+		# Do we put a previous link ?
+		if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
+			$q = 'from=' . $prevTitle->getPartialUrl()
+				. ( $namespace ? '&namespace=' . $namespace : '' );
+			$prevLink = $sk->makeKnownLinkObj( $self,
+				wfMsgHTML( 'prevpage', htmlspecialchars( $pt ) ), $q );
+			$out2 .= ' | ' . $prevLink;
+		}
+
+		if( $n == $this->maxPerPage && $s = $dbr->fetchObject($res) ) {
+			# $s is the first link of the next chunk
+			$t = Title::MakeTitle($namespace, $s->page_title);
+			$q = 'from=' . $t->getPartialUrl()
+				. ( $namespace ? '&namespace=' . $namespace : '' );
+			$nextLink = $sk->makeKnownLinkObj( $self,
+				wfMsgHtml( 'nextpage', htmlspecialchars( $t->getText() ) ), $q );
+			$out2 .= ' | ' . $nextLink;
+		}
 		$out2 .= "</td></tr></table><hr />";
 	}
 
 	$wgOut->addHtml( $out2 . $out );
+	if( isset($prevLink) or isset($nextLink) ) {
+		$wgOut->addHtml( '<hr /><p style="font-size: smaller; float: ' . $align . '">' );
+		if( isset( $prevLink ) ) {
+			$wgOut->addHTML( $prevLink );
+		}
+		if( isset( $prevLink ) && isset( $nextLink ) ) {
+			$wgOut->addHTML( ' | ' );
+		}
+		if( isset( $nextLink ) ) {
+			$wgOut->addHTML( $nextLink );
+		}
+		$wgOut->addHTML( '</p>' );
+
+	}
+
 }
 
 /**
@@ -344,7 +381,7 @@ function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $including
  * @static (sort of)
  * @access private
  */
-function getNamespaceKeyAndText( $ns, $text ) {
+function getNamespaceKeyAndText ($ns, $text) {
 	if ( $text == '' )
 		return array( $ns, '', '' ); # shortcut for common case
 
@@ -364,5 +401,4 @@ function getNamespaceKeyAndText( $ns, $text ) {
 		return NULL;
 	}
 }
-
 }
