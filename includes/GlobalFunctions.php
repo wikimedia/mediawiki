@@ -2243,6 +2243,28 @@ function wfArrayMerge( $array1/* ... */ ) {
 }
 
 /**
+ * Merge multiple arrays together.
+ * On encountering duplicate keys, merge the two, but ONLY if they're arrays.
+ * PHP's array_merge_recursive() merges ANY duplicate values into arrays,
+ * which is not fun
+ */
+function wfArrayDeepMerge( $array1/* ... */ ) {
+	$out = $array1;
+	for( $i=1; $i< func_num_args(); $i++ ) {
+		foreach( func_get_arg( $i ) as $key => $value ) {
+			if ( isset($out[$key]) && is_array($out[$key]) && is_array($value) ) {
+				$out[$key] = wfArrayDeepMerge( $out[$key], $value );
+			} elseif ( !isset($out[$key] || !$out[$key] ) {
+				// Values that evaluate to true given precedence, for the primary purpose of merging permissions arrays.
+				$out[$key] = $value;
+			}
+		}
+	}
+	
+	return $out;
+}
+
+/**
  * Make a URL index, appropriate for the el_index field of externallinks.
  */
 function wfMakeUrlIndex( $url ) {
