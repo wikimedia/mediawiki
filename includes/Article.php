@@ -125,7 +125,7 @@ class Article {
 	 */
 	public function followRedirect() {
 		$text = $this->getContent();
-		return self::followRedirectText( $text );
+		return $this->followRedirectText( $text );
 	}
 
 	/**
