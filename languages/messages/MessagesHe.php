@@ -1643,6 +1643,7 @@ PICT # שונות
 'nextpage'          => 'הדף הבא ($1)',
 'prevpage'          => 'הדף הקודם ($1)',
 'allpagesfrom'      => 'הצגת דפים החל מ:',
+'allpagesto'        => 'הצגת דפים עד:',
 'allarticles'       => 'כל הדפים',
 'allinnamespace'    => 'כל הדפים (מרחב שם $1)',
 'allnotinnamespace' => 'כל הדפים (שלא במרחב השם $1)',
