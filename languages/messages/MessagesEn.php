@@ -2821,7 +2821,7 @@ $1',
 'previousdiff' => '← Previous diff',
 'nextdiff'     => 'Next diff →',
 
-#Visual comparison
+# Visual comparison
 'visual-comparison' => 'Visual comparison',
 
 # Media information
