@@ -121,9 +121,18 @@ class SiteConfiguration {
 	function getAll( $wiki, $suffix, $params, $wikiTags = array() ) {
 		$localSettings = array();
 		foreach ( $this->settings as $varname => $stuff ) {
+			$append = false;
+			$var = $varname;
+			if ( substr( $varname, 0, 1 ) == '+' ) {
+				$append = true;
+				$var = substr( $varname, 1 );
+			}
+			
 			$value = $this->get( $varname, $wiki, $suffix, $params, $wikiTags );
+			if ( $append && is_array($value) && is_array( $GLOBALS[$var] ) )
+				$value = array_merge( $value, $GLOBALS[$var] );
 			if ( !is_null( $value ) ) {
-				$localSettings[$varname] = $value;
+				$localSettings[$var] = $value;
 			}
 		}
 		return $localSettings;
