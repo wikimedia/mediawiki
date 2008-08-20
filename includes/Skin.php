@@ -582,7 +582,7 @@ END;
 		}
 		else $a = array( 'bgcolor' => '#FFFFFF' );
 		if($wgOut->isArticle() && $wgUser->getOption('editondblclick') &&
-		  $wgTitle->userCan( 'edit' ) ) {
+		  $wgTitle->quickUserCan( 'edit' ) ) {
 			$s = $wgTitle->getFullURL( $this->editUrlOptions() );
 			$s = 'document.location = "' .wfEscapeJSString( $s ) .'";';
 			$a += array ('ondblclick' => $s);
@@ -1403,9 +1403,9 @@ END;
 		if ( !$wgOut->isArticleRelated() ) {
 			$s = wfMsg( 'protectedpage' );
 		} else {
-			if( $wgTitle->userCan( 'edit' ) && $wgTitle->exists() ) {
+			if( $wgTitle->quickUserCan( 'edit' ) && $wgTitle->exists() ) {
 				$t = wfMsg( 'editthispage' );
-			} elseif( $wgTitle->userCan( 'create' ) && !$wgTitle->exists() ) {
+			} elseif( $wgTitle->quickUserCan( 'create' ) && !$wgTitle->exists() ) {
 				$t = wfMsg( 'create-this-page' );
 			} else {
 				$t = wfMsg( 'viewsource' );
@@ -1490,7 +1490,7 @@ END;
 	function moveThisPage() {
 		global $wgTitle;
 
-		if ( $wgTitle->userCan( 'move' ) ) {
+		if ( $wgTitle->quickUserCan( 'move' ) ) {
 			return $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
 			  wfMsg( 'movethispage' ), 'target=' . $wgTitle->getPrefixedURL() );
 		} else {
