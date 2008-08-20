@@ -706,7 +706,7 @@ class SkinTemplate extends Skin {
 			wfProfileOut( __METHOD__."-edit" );
 
 			wfProfileIn( __METHOD__."-live" );
-			if ( $this->mTitle->getArticleId() ) {
+			if ( $this->mTitle->exists() ) {
 
 				$content_actions['history'] = array(
 					'class' => ($action == 'history') ? 'selected' : false,
@@ -731,7 +731,7 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $this->mTitle->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
-					if(!$this->mTitle->isProtected()){
+					if( !$this->mTitle->isProtected() ){
 						$content_actions['protect'] = array(
 							'class' => ($action == 'protect') ? 'selected' : false,
 							'text' => wfMsg('protect'),
