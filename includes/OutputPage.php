@@ -853,11 +853,6 @@ class OutputPage {
 
 			wfRunHooks( 'AjaxAddScript', array( &$this ) );
 
-			if( $wgAjaxSearch && $wgUser->getBoolOption( 'ajaxsearch' ) ) {
-				$this->addScriptFile( 'ajaxsearch.js' );
-				$this->addScript( "<script type=\"{$wgJsMimeType}\">hookEvent(\"load\", sajax_onload);</script>\n" );
-			}
-
 			if( $wgAjaxWatch && $wgUser->isLoggedIn() ) {
 				$this->addScriptFile( 'ajaxwatch.js' );
 			}

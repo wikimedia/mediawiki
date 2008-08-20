@@ -2206,7 +2206,6 @@ $wgDefaultUserOptions = array(
 	'contextlines'            => 5,
 	'contextchars'            => 50,
 	'disablesuggest'          => 0,
-	'ajaxsearch'              => 0,
 	'skin'                    => false,
 	'math'                    => 1,
 	'usenewrc'                => 0,
@@ -3126,13 +3125,6 @@ $wgUpdateRowsPerQuery = 10;
  * Enable AJAX framework
  */
 $wgUseAjax = true;
-
-/**
- * Enable auto suggestion for the search bar
- * Requires $wgUseAjax to be true too.
- * Causes wfSajaxSearch to be added to $wgAjaxExportList
- */
-$wgAjaxSearch = false;
 
 /**
  * List of Ajax-callable functions.

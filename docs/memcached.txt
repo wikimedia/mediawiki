@@ -97,13 +97,6 @@ this is mentionned below.
 
 (incomplete, out of date)
 
-Ajax Search:
-	key: $wgDBname:ajaxsearch:md5( $search )
-	ex: wikidb:ajaxsearch:9565814d5d564fa898dd6111b94fae0b
-	stores: array with the result of research of a given text
-	cleared by: nothing
-	expiry: 30 minutes
-
 Date Formatter:
 	key: $wgDBname:dateformatter
 	ex: wikidb:dateformatter
