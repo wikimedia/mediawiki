@@ -1285,6 +1285,7 @@ $wgMessageStructure = array(
 		'nextpage',
 		'prevpage',
 		'allpagesfrom',
+		'allpagesto',
 		'allarticles',
 		'allinnamespace',
 		'allnotinnamespace',
