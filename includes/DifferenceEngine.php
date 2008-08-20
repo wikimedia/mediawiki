@@ -267,6 +267,8 @@ CONTROL;
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
 		if( $wgEnableHtmlDiff ) {
+			$multi = $this->getMultiNotice();
+			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
 			$this->renderHtmlDiff();
 		} else {
 
@@ -332,6 +334,7 @@ CONTROL;
 
 		$this->showDiffStyle();
 
+		$wgOut->addHTML( "<hr /><h2>HTML diff</h2>\n" );
 		#add deleted rev tag if needed
 		if( !$this->mNewRev->userCan(Revision::DELETED_TEXT) ) {
 			$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
@@ -672,8 +675,6 @@ CONTROL;
 	 * Add the header to a diff body
 	 */
 	static function addHeader( $diff, $otitle, $ntitle, $multi = '' ) {
-		global $wgOut;
-
 		$header = "
 		<table class='diff'>
 		<col class='diff-marker' />
