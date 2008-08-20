@@ -32,6 +32,13 @@ class SiteConfiguration {
 	 * @return Mixed the value of the setting requested.
 	 */
 	function get( $settingName, $wiki, $suffix, $params = array(), $wikiTags = array() ) {
+		$append = false;
+		$var = $settingName;
+		if ( substr( $varname, 0, 1 ) == '+' ) {
+			$append = true;
+			$var = substr( $settingName, 1 );
+		}
+	
 		if ( array_key_exists( $settingName, $this->settings ) ) {
 			$thisSetting =& $this->settings[$settingName];
 			do {
@@ -47,7 +54,7 @@ class SiteConfiguration {
 				foreach ( $wikiTags as $tag ) {
 					if ( array_key_exists( $tag, $thisSetting ) ) {
 						if ( isset($retval) && is_array($retval) && is_array($thisSetting[$tag]) ) {
-							$retval = array_merge( $retval, $thisSetting[$tag] );
+							$retval = wfArrayDeepMerge( $retval, $thisSetting[$tag] );
 						} else {
 							$retval = $thisSetting[$tag];
 						}
@@ -55,14 +62,14 @@ class SiteConfiguration {
 					} elseif ( array_key_exists( "+$tag", $thisSetting ) && is_array($thisSetting["+$tag"]) ) {
 						if (!isset($retval))
 							$retval = array();
-						$retval = array_merge( $retval, $thisSetting["+$tag"] );
+						$retval = wfArrayDeepMerge( $retval, $thisSetting["+$tag"] );
 					}
 				}
 				
 				// Do suffix settings
 				if ( array_key_exists( $suffix, $thisSetting ) ) {
 					if ( isset($retval) && is_array($retval) && is_array($thisSetting[$suffix]) ) {
-						$retval = array_merge( $retval, $thisSetting[$suffix] );
+						$retval = wfArrayDeepMerge( $retval, $thisSetting[$suffix] );
 					} else {
 						$retval = $thisSetting[$suffix];
 					}
@@ -70,13 +77,13 @@ class SiteConfiguration {
 				} elseif ( array_key_exists( "+$suffix", $thisSetting ) && is_array($thisSetting["+$suffix"]) ) {
 					if (!isset($retval))
 						$retval = array();
-					$retval = array_merge( $retval, $thisSetting["+$suffix"] );
+					$retval = wfArrayDeepMerge( $retval, $thisSetting["+$suffix"] );
 				}
 				
 				// Fall back to default.
 				if ( array_key_exists( 'default', $thisSetting ) ) {
 					if ( isset($retval) && is_array($retval) && is_array($thisSetting['default']) ) {
-						$retval = array_merge( $retval, $thisSetting['default'] );
+						$retval = wfArrayDeepMerge( $retval, $thisSetting['default'] );
 					} else {
 						$retval = $thisSetting['default'];
 					}
@@ -93,6 +100,10 @@ class SiteConfiguration {
 				$retval = $this->doReplace( '$' . $key, $value, $retval );
 			}
 		}
+		
+		if ( $append && is_array($value) && is_array( $GLOBALS[$var] ) )
+			$value = wfArrayDeepMerge( $value, $GLOBALS[$var] );
+				
 		return $retval;
 	}
 
@@ -121,16 +132,8 @@ class SiteConfiguration {
 	function getAll( $wiki, $suffix, $params, $wikiTags = array() ) {
 		$localSettings = array();
 		foreach ( $this->settings as $varname => $stuff ) {
-			$append = false;
-			$var = $varname;
-			if ( substr( $varname, 0, 1 ) == '+' ) {
-				$append = true;
-				$var = substr( $varname, 1 );
-			}
-			
 			$value = $this->get( $varname, $wiki, $suffix, $params, $wikiTags );
-			if ( $append && is_array($value) && is_array( $GLOBALS[$var] ) )
-				$value = array_merge( $value, $GLOBALS[$var] );
+
 			if ( !is_null( $value ) ) {
 				$localSettings[$var] = $value;
 			}
@@ -187,16 +190,7 @@ class SiteConfiguration {
 	function extractGlobal( $setting, $wiki, $suffix, $params, $wikiTags = array() ) {
 		$value = $this->get( $setting, $wiki, $suffix, $params, $wikiTags );
 		if ( !is_null( $value ) ) {
-			if (substr($setting,0,1) == '+' && is_array($value)) {
-				$setting = substr($setting,1);
-				if ( is_array($GLOBALS[$setting]) ) {
-					$GLOBALS[$setting] = array_merge( $GLOBALS[$setting], $value );
-				} else {
-					$GLOBALS[$setting] = $value;
-				}
-			} else {
-				$GLOBALS[$setting] = $value;
-			}
+			$GLOBALS[$setting] = $value;
 		}
 	}
 
