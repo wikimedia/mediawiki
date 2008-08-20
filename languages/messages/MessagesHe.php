@@ -2358,6 +2358,9 @@ $1',
 'previousdiff' => '→ מעבר להשוואת הגרסאות הקודמת',
 'nextdiff'     => 'מעבר להשוואת הגרסאות הבאה ←',
 
+# Visual comparison
+'visual-comparison' => 'השוואה חזותית',
+
 # Media information
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
 'imagemaxsize'         => 'הגבלת תמונות בדפי תיאור תמונה ל:',
