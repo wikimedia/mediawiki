@@ -232,6 +232,11 @@ function wfSpecialExport( $page = '' ) {
 			$lb = wfGetLBFactory()->newMainLB();
 			$db = $lb->getConnection( DB_LAST );
 			$buffer = WikiExporter::STREAM;
+			
+			// This might take a while... :D
+			wfSuppressWarnings();
+			set_time_limit(0);
+			wfRestoreWarnings();
 		}
 
 		$exporter = new WikiExporter( $db, $history, $buffer );
