@@ -1714,6 +1714,6 @@ class DelegatingContentHandler {
 	}
 
 	function characters($chars){
-		$this->delegate->addHtml($chars);
+		$this->delegate->addHtml(htmlspecialchars($chars));
 	}
 }
