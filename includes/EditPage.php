@@ -122,7 +122,7 @@ class EditPage {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->loadAllMessages();
 				# If this is a system message, get the default text.
-				$text = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
+				$text = wfMsgWeirdKey( $this->mTitle->getText() ) ;
 			} else {
 				# If requested, preload some text.
 				$text = $this->getPreloadedText( $preload );
@@ -370,7 +370,7 @@ class EditPage {
 		wfDebug( __METHOD__.": enter\n" );
 
 		// this is not an article
-		$wgOut->setArticleFlag(false);
+		$wgOut->setArticleFlag( false );
 
 		$this->importFormData( $wgRequest );
 		$this->firsttime = false;
@@ -380,20 +380,28 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
-		$wgOut->addScriptFile( 'edit.js' );
 
 		if( wfReadOnly() ) {
-			$this->readOnlyPage( $this->getContent() );
-			wfProfileOut( __METHOD__ );
-			return;
+			if( $this->save ){
+				// Force preview
+				$this->save = false;
+				$this->preview = true;
+			} elseif( $this->preview || $this->diff ){
+				// A warning will be displayed instead
+			} else {
+				$this->readOnlyPage( $this->getContent() );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 
-		$permErrors = $this->mTitle->getUserPermissionsErrors('edit', $wgUser);
+		$wgOut->addScriptFile( 'edit.js' );
+
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
 		
 		if( !$this->mTitle->exists() ) {
 			$permErrors = array_merge( $permErrors,
-				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors('create', $wgUser), $permErrors ) );
+				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $wgUser ), $permErrors ) );
 		}
 
 		# Ignore some permissions errors.
@@ -404,15 +412,6 @@ class EditPage {
 			{
 				// Don't worry about blocks when previewing/diffing
 				$remove[] = $error;
-			}
-
-			if ($error[0] == 'readonlytext')
-			{
-				if ($this->edit) {
-					$this->formtype = 'preview';
-				} elseif ($this->save || $this->preview || $this->diff) {
-					$remove[] = $error;
-				}
 			}
 		}
 		$permErrors = wfArrayDiff2( $permErrors, $remove );
@@ -425,7 +424,7 @@ class EditPage {
 		} else {
 			if ( $this->save ) {
 				$this->formtype = 'save';
-			} else if ( $this->preview ) {
+			} else if( $this->preview ) {
 				$this->formtype = 'preview';
 			} else if ( $this->diff ) {
 				$this->formtype = 'diff';
@@ -1160,9 +1159,9 @@ class EditPage {
 		}
 
 		if( wfReadOnly() ) {
-			$wgOut->addHTML( '<div id="mw-read-only-warning">'.wfMsgWikiHTML( 'readonlywarning' ).'</div>' );
+			$wgOut->wrapWikiMsg( "<div id=\"mw-read-only-warning\">\n$1\n</div>", array( 'readonlywarning', wfReadOnlyReason() ) );
 		} elseif( $wgUser->isAnon() && $this->formtype != 'preview' ) {
-			$wgOut->addHTML( '<div id="mw-anon-edit-warning">'.wfMsgWikiHTML( 'anoneditwarning' ).'</div>' );
+			$wgOut->wrapWikiMsg( '<div id="mw-anon-edit-warning">$1</div>', 'anoneditwarning' );
 		} else {
 			if( $this->isCssJsSubpage && $this->formtype != 'preview' ) {
 				# Check the skin exists

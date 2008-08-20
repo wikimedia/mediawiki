@@ -1149,7 +1149,9 @@ Please consider breaking the page into smaller sections.</strong>',
 'longpageerror'                    => '<strong>ERROR: The text you have submitted is $1 kilobytes long, which is longer than the maximum of $2 kilobytes.
 It cannot be saved.</strong>',
 'readonlywarning'                  => '<strong>WARNING: The database has been locked for maintenance, so you will not be able to save your edits right now.
-You may wish to cut-n-paste the text into a text file and save it for later.</strong>',
+You may wish to cut-n-paste the text into a text file and save it for later.</strong>
+
+The administrator who locked it offered this explanation: $1',
 'protectedpagewarning'             => '<strong>WARNING: This page has been locked so that only users with sysop privileges can edit it.</strong>',
 'semiprotectedpagewarning'         => "'''Note:''' This page has been locked so that only registered users can edit it.",
 'cascadeprotectedwarning'          => "'''Warning:''' This page has been locked so that only users with sysop privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
