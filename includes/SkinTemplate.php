@@ -432,6 +432,7 @@ class SkinTemplate extends Skin {
 		}
 		wfProfileOut( __METHOD__."-stuff4" );
 
+		wfProfileIn( __METHOD__."-stuff5" );
 		# Personal toolbar
 		$tpl->set('personal_urls', $this->buildPersonalUrls());
 		$content_actions = $this->buildContentActionUrls();
@@ -457,6 +458,7 @@ class SkinTemplate extends Skin {
 		// allow extensions adding stuff after the page content.
 		// See Skin::afterContentHook() for further documentation.
 		$tpl->set ('dataAfterContent', $this->afterContentHook());
+		wfProfileOut( __METHOD__."-stuff5" );
 
 		// execute template
 		wfProfileIn( __METHOD__."-execute" );
@@ -714,7 +716,7 @@ class SkinTemplate extends Skin {
 					'href' => $this->mTitle->getLocalUrl( 'action=history')
 				);
 
-				if($wgUser->isAllowed('delete')){
+				if( $wgUser->isAllowed('delete') ) {
 					$content_actions['delete'] = array(
 						'class' => ($action == 'delete') ? 'selected' : false,
 						'text' => wfMsg('delete'),
