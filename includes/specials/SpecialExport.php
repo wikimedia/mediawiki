@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2003 Brion Vibber <brion@pobox.com>
+# Copyright (C) 2003-2008 Brion Vibber <brion@pobox.com>
 # http://www.mediawiki.org/
 #
 # This program is free software; you can redistribute it and/or modify
@@ -223,8 +223,18 @@ function wfSpecialExport( $page = '' ) {
 
 		/* Ok, let's get to it... */
 
-		$db = wfGetDB( DB_SLAVE );
-		$exporter = new WikiExporter( $db, $history );
+		if( $history == WikiExporter::CURRENT ) {
+			$lb = false;
+			$db = wfGetDB( DB_SLAVE );
+			$buffer = WikiExporter::BUFFER;
+		} else {
+			// Use an unbuffered query; histories may be very long!
+			$lb = wfGetLBFactory()->newMainLB();
+			$db = $lb->getConnection( DB_LAST );
+			$buffer = WikiExporter::STREAM;
+		}
+
+		$exporter = new WikiExporter( $db, $history, $buffer );
 		$exporter->list_authors = $list_authors ;
 		$exporter->openStream();
 
@@ -251,6 +261,9 @@ function wfSpecialExport( $page = '' ) {
 		}
 
 		$exporter->closeStream();
+		if( $lb ) {
+			$lb->closeAll();
+		}
 		return;
 	}
 
