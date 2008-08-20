@@ -9,7 +9,9 @@ if( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /**
- * @todo document
+ * Handle responses for Ajax requests (send headers, print
+ * content, that sort of thing)
+ * 
  * @ingroup Ajax
  */
 class AjaxResponse {
@@ -20,7 +22,7 @@ class AjaxResponse {
 	/** HTTP header Content-Type */
 	private $mContentType;
 
-	/** @todo document */
+	/** Disables output. Can be set by calling $AjaxResponse->disable() */
 	private $mDisabled;
 
 	/** Date for the HTTP header Last-modified */
