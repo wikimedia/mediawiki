@@ -394,7 +394,7 @@ class BodyNode extends TagNode {
  */
 class ImageNode extends TextNode {
 
-	private $attributes;
+	public $attributes;
 
 	function __construct(TagNode $parent, /*array*/ $attrs) {
 		if(!array_key_exists('src', $attrs)) {
