@@ -136,7 +136,8 @@ class LogPage {
 	 * @return string Headertext of this logtype
 	 */
 	static function logHeader( $type ) {
-		global $wgLogHeaders;
+		global $wgLogHeaders, $wgMessageCache;
+		$wgMessageCache->loadAllMessages();
 		return wfMsgExt($wgLogHeaders[$type],array('parseinline'));
 	}
 
@@ -145,8 +146,9 @@ class LogPage {
 	 * @return HTML string
 	 */
 	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
-		global $wgLang, $wgContLang, $wgLogActions;
+		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
 
+		$wgMessageCache->loadAllMessages();
 		$key = "$type/$action";
 
 		if( $key == 'patrol/patrol' )
