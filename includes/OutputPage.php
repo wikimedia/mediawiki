@@ -35,6 +35,13 @@ class OutputPage {
 	var $mSquidMaxage = 0;
 	var $mRevisionId = null;
 
+	/**
+	 * An array of stylesheet filenames (relative from skins path), with options
+	 * for CSS media, IE conditions, and RTL/LTR direction.
+	 * For internal use; add settings in the skin via $this->addStyle()
+	 */
+	var $styles = array();
+
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
 
@@ -65,18 +72,19 @@ class OutputPage {
 	 */
 	function setStatusCode( $statusCode ) { $this->mStatusCode = $statusCode; }
 
-	# To add an http-equiv meta tag, precede the name with "http:"
-	function addMeta( $name, $val ) { array_push( $this->mMetatags, array( $name, $val ) ); }
+	/**
+	 * Add a new <meta> tag
+	 * To add an http-equiv meta tag, precede the name with "http:"
+	 *
+	 * @param $name tag name
+	 * @param $val tag value
+	 */
+	function addMeta( $name, $val ) {
+		array_push( $this->mMetatags, array( $name, $val ) );
+	}
+
 	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
 	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
-	function addStyle( $style ) {
-		global $wgStylePath, $wgStyleVersion;
-		$this->addLink(
-				array(
-					'rel' => 'stylesheet',
-					'href' => $wgStylePath . '/' . $style . '?' . $wgStyleVersion,
-					'type' => 'text/css' ) );
-	}
 	
 	function addExtensionStyle( $url ) {
 		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
@@ -1382,15 +1390,19 @@ class OutputPage {
 	/**
 	 * @return string The doctype, opening <html>, and head element.
 	 */
-	public function headElement() {
+	public function headElement( Skin $sk ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
 		global $wgUser, $wgContLang, $wgUseTrackbacks, $wgTitle, $wgStyleVersion;
 
+		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
+		$this->addStyle( 'common/wikiprintable.css', 'print' );
+		$sk->setupUserCss( $this );
+
+		$ret = '';
+
 		if( $wgMimeType == 'text/xml' || $wgMimeType == 'application/xhtml+xml' || $wgMimeType == 'application/xml' ) {
-			$ret = "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
-		} else {
-			$ret = '';
+			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?>\n";
 		}
 
 		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
@@ -1405,29 +1417,17 @@ class OutputPage {
 			$ret .= "xmlns:{$tag}=\"{$ns}\" ";
 		}
 		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
-		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
-		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
-		
-		$ret .= $this->getHeadLinks();
-		global $wgStylePath;
-		if( $this->isPrintable() ) {
-			$media = '';
-		} else {
-			$media = "media='print'";
+		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n\t\t";
+		$ret .= implode( "\t\t", array(
+			$this->getHeadLinks(),
+			$this->buildCssLinks(),
+			$sk->getHeadScripts( $this->mAllowUserJs ),
+			$this->mScripts,
+			$this->getHeadItems(),
+		));
+		if( $sk->usercss ){
+			$ret .= "<style type='text/css'>{$sk->usercss}</style>";
 		}
-		$printsheet = htmlspecialchars( "$wgStylePath/common/wikiprintable.css?$wgStyleVersion" );
-		$ret .= "<link rel='stylesheet' type='text/css' $media href='$printsheet' />\n";
-
-		$sk = $wgUser->getSkin();
-		// Load order here is key
-		$ret .= $sk->getHeadScripts( $this->mAllowUserJs );
-		$ret .= $this->mScripts;
-		$ret .= $sk->getSiteStyles();
-		foreach( $this->mExtStyles as $tag ) {
-			$ret .= Xml::element( 'link', $tag ) . "\n";
-		}
-		$ret .= $sk->getUserStyles();
-		$ret .= $this->getHeadItems();
 
 		if ($wgUseTrackbacks && $this->isArticleRelated())
 			$ret .= $wgTitle->trackbackRDF();
@@ -1562,6 +1562,118 @@ class OutputPage {
 			'type' => "application/$type+xml",
 			'title' => $text,
 			'href' => $url ) );
+	}
+
+	/**
+	 * Add a local or specified stylesheet, with the given media options.
+	 * Meant primarily for internal use...
+	 *
+	 * @param $media -- to specify a media type, 'screen', 'printable', 'handheld' or any.
+	 * @param $conditional -- for IE conditional comments, specifying an IE version
+	 * @param $dir -- set to 'rtl' or 'ltr' for direction-specific sheets
+	 */
+	public function addStyle( $style, $media='', $condition='', $dir='' ) {
+		$options = array();
+		if( $media )
+			$options['media'] = $media;
+		if( $condition )
+			$options['condition'] = $condition;
+		if( $dir )
+			$options['dir'] = $dir;
+		$this->styles[$style] = $options;
+	}
+
+	/**
+	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
+	 * These will be applied to various media & IE conditionals.
+	 */
+	public function buildCssLinks() {
+		$links = array();
+		foreach( $this->styles as $file => $options ) {
+			$link = $this->styleLink( $file, $options );
+			if( $link )
+				$links[] = $link;
+		}
+
+		return implode( "\n\t\t", $links );
+	}
+
+	protected function styleLink( $style, $options ) {
+		global $wgRequest;
+
+		if( isset( $options['dir'] ) ) {
+			global $wgContLang;
+			$siteDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+			if( $siteDir != $options['dir'] )
+				return '';
+		}
+
+		if( isset( $options['media'] ) ) {
+			$media = $this->transformCssMedia( $options['media'] );
+			if( is_null( $media ) ) {
+				return '';
+			}
+		} else {
+			$media = '';
+		}
+
+		if( substr( $style, 0, 1 ) == '/' ||
+			substr( $style, 0, 5 ) == 'http:' ||
+			substr( $style, 0, 6 ) == 'https:' ) {
+			$url = $style;
+		} else {
+			global $wgStylePath, $wgStyleVersion;
+			$url = $wgStylePath . '/' . $style . '?' . $wgStyleVersion;
+		}
+
+		$attribs = array(
+			'rel' => 'stylesheet',
+			'href' => $url,
+			'type' => 'text/css' );
+		if( $media ) {
+			$attribs['media'] = $media;
+		}
+
+		$link = Xml::element( 'link', $attribs );
+
+		if( isset( $options['condition'] ) ) {
+			$condition = htmlspecialchars( $options['condition'] );
+			$link = "<!--[if $condition]>$link<![endif]-->";
+		}
+		return $link;
+	}
+
+	function transformCssMedia( $media ) {
+		global $wgRequest, $wgHandheldForIPhone;
+
+		// Switch in on-screen display for media testing
+		$switches = array(
+			'printable' => 'print',
+			'handheld' => 'handheld',
+		);
+		foreach( $switches as $switch => $targetMedia ) {
+			if( $wgRequest->getBool( $switch ) ) {
+				if( $media == $targetMedia ) {
+					$media = '';
+				} elseif( $media == 'screen' ) {
+					return null;
+				}
+			}
+		}
+
+		// Expand longer media queries as iPhone doesn't grok 'handheld'
+		if( $wgHandheldForIPhone ) {
+			$mediaAliases = array(
+				'screen' => 'screen and (min-device-width: 481px)',
+				'handheld' => 'handheld, only screen and (max-device-width: 480px)',
+			);
+
+			if( isset( $mediaAliases[$media] ) ) {
+				$media = $mediaAliases[$media];
+			}
+		}
+
+		return $media;
 	}
 
 	/**

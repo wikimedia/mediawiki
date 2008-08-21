@@ -171,7 +171,7 @@ class Skin extends Linker {
 		return $q;
 	}
 
-	function initPage( &$out ) {
+	function initPage( OutputPage $out ) {
 		global $wgFavicon, $wgAppleTouchIcon;
 
 		wfProfileIn( __METHOD__ );
@@ -223,7 +223,7 @@ class Skin extends Linker {
 		$lb->execute();
 	}
 
-	function addMetadataLinks( &$out ) {
+	function addMetadataLinks( OutputPage $out ) {
 		global $wgTitle, $wgEnableDublinCoreRdf, $wgEnableCreativeCommonsRdf;
 		global $wgRightsPage, $wgRightsUrl;
 
@@ -259,16 +259,25 @@ class Skin extends Linker {
 		}
 	}
 
-	function outputPage( &$out ) {
-		global $wgDebugComments;
+	function setMembers(){
+		global $wgTitle, $wgUser;
+		$this->mTitle = $wgTitle;
+		$this->mUser = $wgUser;
+		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
+		$this->usercss = false;
+	}
 
+	function outputPage( OutputPage $out ) {
+		global $wgDebugComments;
 		wfProfileIn( __METHOD__ );
+
+		$this->setMembers();
 		$this->initPage( $out );
 
 		// See self::afterContentHook() for documentation
 		$afterContent = $this->afterContentHook();
 
-		$out->out( $out->headElement() );
+		$out->out( $out->headElement( $this ) );
 
 		$out->out( "\n<body" );
 		$ops = $this->getBodyOptions();
@@ -336,7 +345,7 @@ class Skin extends Linker {
 			'wgScriptPath' => $wgScriptPath,
 			'wgScript' => $wgScript,
 			'wgVariantArticlePath' => $wgVariantArticlePath,
-			'wgActionPaths' => $wgActionPaths,
+			'wgActionPaths' => (object)$wgActionPaths,
 			'wgServer' => $wgServer,
 			'wgCanonicalNamespace' => $nsname,
 			'wgCanonicalSpecialPageName' => SpecialPage::resolveAlias( $wgTitle->getDBkey() ),
@@ -390,26 +399,26 @@ class Skin extends Linker {
 	function getHeadScripts( $allowUserJs ) {
 		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion;
 
-		$r = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
+		$vars = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
 
-		$r .= "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n";
+		$r = array( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>" );
 		global $wgUseSiteJs;
 		if ($wgUseSiteJs) {
 			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
-			$r .= "<script type=\"$wgJsMimeType\" src=\"".
+			$r[] = "<script type=\"$wgJsMimeType\" src=\"".
 				htmlspecialchars(self::makeUrl('-',
 					"action=raw$jsCache&gen=js&useskin=" .
 					urlencode( $this->getSkinName() ) ) ) .
-				"\"><!-- site js --></script>\n";
+				"\"><!-- site js --></script>";
 		}
 		if( $allowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
 			$userjs = htmlspecialchars( self::makeUrl(
 				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
 				'action=raw&ctype='.$wgJsMimeType));
-			$r .= '<script type="'.$wgJsMimeType.'" src="'.$userjs."\"></script>\n";
+			$r[] = '<script type="'.$wgJsMimeType.'" src="'.$userjs."\"></script>";
 		}
-		return $r;
+		return $vars . "\t\t" . implode ( "\n\t\t", $r );
 	}
 
 	/**
@@ -437,46 +446,23 @@ class Skin extends Linker {
 	}
 
 	/**
-	 * Get the site-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
-	 */
-	function getSiteStylesheet() {
-		global $wgStylePath, $wgContLang, $wgStyleVersion;
-		$sheet = $this->getStylesheet();
-		$s = "@import \"$wgStylePath/common/shared.css?$wgStyleVersion\";\n";
-		$s .= "@import \"$wgStylePath/common/oldshared.css?$wgStyleVersion\";\n";
-		$s .= "@import \"$wgStylePath/$sheet?$wgStyleVersion\";\n";
-		if( $wgContLang->isRTL() )
-			$s .= "@import \"$wgStylePath/common/common_rtl.css?$wgStyleVersion\";\n";
-		return "$s\n";
-	}
-
-	/**
-	 * Get the user-specific stylesheet, SkinTemplate loads via RawPage.php (settings are cached that way)
-	 */
-	function getUserStylesheet() {
-		global $wgContLang, $wgSquidMaxage, $wgStyleVersion;
-		$query = "usemsgcache=yes&action=raw&ctype=text/css&smaxage=$wgSquidMaxage";
-		$s = '@import "' . self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) . "\";\n";
-		$s .= '@import "' . self::makeNSUrl( ucfirst( $this->getSkinName() . '.css' ), $query, NS_MEDIAWIKI ) . "\";\n";
-		$s .= $this->doGetUserStyles();
-		return "$s\n";
-	}
-
-	/**
-	 * This returns MediaWiki:Common.js, and derived classes may add other JS.
-	 * Despite its name, it does *not* return any custom user JS from user
-	 * subpages.  The returned script is sitewide and publicly cacheable and
-	 * therefore must not include anything that varies according to user,
-	 * interface language, etc. (although it may vary by skin).  See
-	 * makeGlobalVariablesScript for things that can vary per page view and are
-	 * not cacheable.
+	 * generated JavaScript action=raw&gen=js
+	 * This returns MediaWiki:Common.js and MediaWiki:[Skinname].js concate-
+	 * nated together.  For some bizarre reason, it does *not* return any
+	 * custom user JS from subpages.  Huh?
 	 *
-	 * @return string Raw JavaScript to be returned
+	 * There's absolutely no reason to have separate Monobook/Common JSes.
+	 * Any JS that cares can just check the skin variable generated at the
+	 * top.  For now Monobook.js will be maintained, but it should be consi-
+	 * dered deprecated.
+	 *
+	 * @return string
 	 */
-	public function getUserJs() {
+	public function generateUserJs() {
+		global $wgStylePath;
+
 		wfProfileIn( __METHOD__ );
 
-		global $wgStylePath;
 		$s = "/* generated javascript */\n";
 		$s .= "var skin = '" . Xml::escapeJsString( $this->getSkinName() ) . "';\n";
 		$s .= "var stylepath = '" . Xml::escapeJsString( $wgStylePath ) . "';";
@@ -485,57 +471,35 @@ class Skin extends Linker {
 		if ( !wfEmptyMsg ( 'common.js', $commonJs ) ) {
 			$s .= $commonJs;
 		}
+
+		$s .= "\n\n/* MediaWiki:".ucfirst( $this->getSkinName() ).".js */\n";
+		// avoid inclusion of non defined user JavaScript (with custom skins only)
+		// by checking for default message content
+		$msgKey = ucfirst( $this->getSkinName() ).'.js';
+		$userJS = wfMsgForContent($msgKey);
+		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
+			$s .= $userJS;
+		}
+
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 
 	/**
-	 * Return html code that include site stylesheets
+	 * generate user stylesheet for action=raw&gen=css
 	 */
-	function getSiteStyles() {
-		$s = "<style type='text/css'>\n";
-		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
-		$s .= $this->getSiteStylesheet();
-		$s .= "/*]]>*/ /* */\n";
-		$s .= "</style>\n";
+	public function generateUserStylesheet() {
+		wfProfileIn( __METHOD__ );
+		$s = "/* generated user stylesheet */\n" .
+			$this->reallyGenerateUserStylesheet();
+		wfProfileOut( __METHOD__ );
 		return $s;
 	}
 	
 	/**
-	 * Return html code that include User stylesheets
+	 * Split for easier subclassing in SkinSimple, SkinStandard and SkinCologneBlue
 	 */
-	function getUserStyles() {
-		$s = "<style type='text/css'>\n";
-		$s .= "/*/*/ /*<![CDATA[*/\n"; # <-- Hide the styles from Netscape 4 without hiding them from IE/Mac
-		$s .= $this->getUserStylesheet();
-		$s .= "/*]]>*/ /* */\n";
-		$s .= "</style>\n";
-		return $s;
-	}
-
-	/**
-	 * Some styles that are set by user through the user settings interface.
-	 */
-	function doGetUserStyles() {
-		global $wgUser, $wgUser, $wgRequest, $wgTitle, $wgAllowUserCss;
-
-		$s = '';
-
-		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) { # logged in
-			if($wgTitle->isCssSubpage() && $this->userCanPreview( $wgRequest->getText( 'action' ) ) ) {
-				$s .= $wgRequest->getText('wpTextbox1');
-			} else {
-				$userpage = $wgUser->getUserPage();
-				$s.= '@import "'.self::makeUrl(
-					$userpage->getPrefixedText().'/'.$this->getSkinName().'.css',
-					'action=raw&ctype=text/css').'";'."\n";
-			}
-		}
-
-		return $s . $this->reallyDoGetUserStyles();
-	}
-
-	function reallyDoGetUserStyles() {
+	protected function reallyGenerateUserStylesheet(){
 		global $wgUser;
 		$s = '';
 		if (($undopt = $wgUser->getOption("underline")) < 2) {
@@ -570,6 +534,81 @@ END;
 			$s .= ".editsection { display: none; }\n";
 		}
 		return $s;
+	}
+
+	/**
+	 * @private
+	 */
+	function setupUserCss( OutputPage $out ) {
+		global $wgRequest, $wgContLang, $wgUser;
+		global $wgAllowUserCss, $wgUseSiteCss, $wgSquidMaxage, $wgStylePath;
+
+		wfProfileIn( __METHOD__ );
+
+		$this->setupSkinUserCss( $out );
+
+		$siteargs = array(
+			'action' => 'raw',
+			'maxage' => $wgSquidMaxage,
+		);
+		if( $wgUser->isLoggedIn() ) {
+			// Ensure that logged-in users' generated CSS isn't clobbered
+			// by anons' publicly cacheable generated CSS.
+			$siteargs['smaxage'] = '0';
+			$siteargs['ts'] = $wgUser->mTouched;
+		}
+
+		// Add any extension CSS
+		foreach( $out->getExtStyle() as $tag ) {
+			$out->addStyle( $tag['href'] );
+		}
+
+		// If we use the site's dynamic CSS, throw that in, too
+		// Per-site custom styles
+		if( $wgUseSiteCss ) {
+			$query = wfArrayToCGI( array(
+				'usemsgcache' => 'yes',
+				'ctype' => 'text/css',
+				'smaxage' => $wgSquidMaxage
+			) + $siteargs );
+			# Site settings must override extension css! (bug 15025)
+			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) );
+			$out->addStyle( self::makeNSUrl( $this->getSkinName() . '.css', $query, NS_MEDIAWIKI ) );
+		}
+
+		// Per-user styles based on preferences
+		$siteargs['gen'] = 'css';
+		if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' ) {
+			$siteargs['useskin'] = $us;
+		}
+		$out->addStyle( self::makeUrl( '-', wfArrayToCGI( $siteargs ) ) );
+
+		// Per-user custom style pages
+		if( $wgAllowUserCss && $wgUser->isLoggedIn() ) {
+			$action = $wgRequest->getVal('action');
+			# If we're previewing the CSS page, use it
+			if( $this->mTitle->isCssSubpage() && $this->userCanPreview( $action ) ) {
+				$previewCss = $wgRequest->getText('wpTextbox1');
+				// @FIXME: properly escape the cdata!
+				$this->usercss = "/*<![CDATA[*/\n" . $previewCss . "/*]]>*/";
+			} else {
+				$out->addStyle( self::makeUrl($this->userpage .'/'.$this->getSkinName() .'.css',
+					'action=raw&ctype=text/css') );
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Add skin specific stylesheets
+	 * @param $out OutputPage
+	 */
+	function setupSkinUserCss( OutputPage $out ) {
+		$out->addStyle( 'common/shared.css' );
+		$out->addStyle( 'common/oldshared.css' );
+		$out->addStyle( $this->getStylesheet() );
+		$out->addStyle( 'common/common_rtl.css', '', '', 'rtl' );
 	}
 
 	function getBodyOptions() {
@@ -646,11 +685,11 @@ END;
 		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
 		  "<table border='0' cellspacing='0' width='98%'>\n<tr>\n";
 
-		$shove = ($qb != 0);
-		$left = ($qb == 1 || $qb == 3);
-		if($wgContLang->isRTL()) $left = !$left;
+		$shove = ( $qb != 0 );
+		$left = ( $qb == 1 || $qb == 3 );
+		if( $wgContLang->isRTL() ) $left = !$left;
 
-		if ( !$shove ) {
+		if( !$shove ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
 			  $this->logoText() . '</td>';
 		} elseif( $left ) {
@@ -733,7 +772,7 @@ END;
 
 		# optional 'dmoz-like' category browser. Will be shown under the list
 		# of categories an article belong to
-		if($wgUseCategoryBrowser) {
+		if( $wgUseCategoryBrowser ){
 			$s .= '<br /><hr />';
 
 			# get a big array of the parents tree
@@ -756,7 +795,7 @@ END;
 	 * @param &skin Object: skin passed by reference
 	 * @return String separated by &gt;, terminate with "\n"
 	 */
-	function drawCategoryBrowser($tree, &$skin) {
+	function drawCategoryBrowser( $tree, &$skin ){
 		$return = '';
 		foreach ($tree as $element => $parent) {
 			if (empty($parent)) {
@@ -806,13 +845,13 @@ END;
 	 *
 	 * Returns an empty string by default, if not changed by any hook function.
 	 */
-	protected function afterContentHook () {
+	protected function afterContentHook() {
 		$data = "";
 
-		if (wfRunHooks ('SkinAfterContent', array (&$data))) {
+		if( wfRunHooks( 'SkinAfterContent', array( &$data ) ) ){
 			// adding just some spaces shouldn't toggle the output
 			// of the whole <div/>, so we use trim() here
-			if (trim ($data) != "") {
+			if( trim( $data ) != '' ){
 				// Doing this here instead of in the skins to
 				// ensure that the div has the same ID in all
 				// skins
@@ -821,15 +860,15 @@ END;
 					"</div>\n";
 			}
 		} else {
-			wfDebug ('Hook SkinAfterContent changed output processing.');
+			wfDebug( "Hook SkinAfterContent changed output processing.\n" );
 		}
 
 		return $data;
 	}
 
 	/**
-	 * This gets called shortly before the \</body\> tag.
-	 * @return String HTML to be put before \</body\>
+	 * This gets called shortly before the </body> tag.
+	 * @return String HTML to be put before </body>
 	 */
 	function afterContent() {
 		$printfooter = "<div class=\"printfooter\">\n" . $this->printFooter() . "</div>\n";
@@ -837,8 +876,8 @@ END;
 	}
 
 	/**
-	 * This gets called shortly before the \</body\> tag.
-	 * @return String HTML-wrapped JS code to be put before \</body\>
+	 * This gets called shortly before the </body> tag.
+	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
 	function bottomScripts() {
 		global $wgJsMimeType;
@@ -860,7 +899,7 @@ END;
 	}
 
 	/** overloaded by derived classes */
-	function doAfterContent() { }
+	function doAfterContent() { return "</div></div>"; }
 
 	function pageTitleLinks() {
 		global $wgOut, $wgTitle, $wgUser, $wgRequest;

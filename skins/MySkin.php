@@ -10,20 +10,15 @@
 if( !defined( 'MEDIAWIKI' ) )
 	die( -1 );
 
-/** */
-require_once( dirname(__FILE__) . '/MonoBook.php' );
-
 /**
  * @todo document
  * @ingroup Skins
  */
 class SkinMySkin extends SkinTemplate {
-	function initPage( &$out ) {
-		SkinTemplate::initPage( $out );
+	function initPage( OutputPage $out ) {
+		parent::initPage( $out );
 		$this->skinname  = 'myskin';
 		$this->stylename = 'myskin';
 		$this->template  = 'MonoBookTemplate';
 	}
 }
-
-

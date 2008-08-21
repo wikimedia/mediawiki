@@ -20,27 +20,32 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	function initPage( &$out ) {
-		global $wgHandheldStyle;
-		
-		SkinTemplate::initPage( $out );
+	function initPage( OutputPage $out ) {
+		parent::initPage( $out );
 		$this->skinname  = 'monobook';
 		$this->stylename = 'monobook';
 		$this->template  = 'MonoBookTemplate';
 		
+	}
+	
+	function setupSkinUserCss( OutputPage $out ) {
+		global $wgHandheldStyle;
+
+		parent::setupSkinUserCss( $out );
+
 		// Append to the default screen common & print styles...
-		$this->addStyle( 'monobook/main.css', 'screen' );
+		$out->addStyle( 'monobook/main.css', 'screen' );
 		if( $wgHandheldStyle ) {
 			// Currently in testing... try 'chick/main.css'
-			$this->addStyle( $wgHandheldStyle, 'handheld' );
+			$out->addStyle( $wgHandheldStyle, 'handheld' );
 		}
 		
-		$this->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
-		$this->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
-		$this->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
-		$this->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
+		$out->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
+		$out->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
+		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
+		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
 		
-		$this->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
 	}
 }
 
