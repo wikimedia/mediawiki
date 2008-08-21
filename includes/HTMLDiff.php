@@ -1268,7 +1268,7 @@ class TagToString {
 
 	protected function translateArgument($name) {
 		$translation = wfMsgExt('diff-' . $name, 'parseinline' );
-		if(!$translation){
+		if ( wfEmptyMsg( 'diff-' . $name, $translation ) ) {
 			$translation = $name;
 		}
 		return htmlspecialchars( $translation );
