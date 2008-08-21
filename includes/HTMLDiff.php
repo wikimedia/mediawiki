@@ -1215,7 +1215,7 @@ class TagToString {
 			$tagDescription = $this->node->qName;
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addHtml( wfMsgExt( 'diff-movedoutof' , 'parseinline' ) . ' ' . $tagDescription );
+			$txt->addHtml( wfMsgExt( 'diff-movedoutof', 'parseinline', $tagDescription ) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
 			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleremoved' , 'parseinline' ) );
 		} else {
@@ -1231,11 +1231,11 @@ class TagToString {
 			$tagDescription = $this->node->qName;
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline' ) . ' ' . $tagDescription);
+			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline', $tagDescription) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleadded', 'parseinline'  ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleadded', 'parseinline' ) );
 		} else {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-added', 'parseinline'  ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-added', 'parseinline' ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
@@ -1253,16 +1253,19 @@ class TagToString {
 			$attr = $attributes[$key];
 			if($firstOne) {
 				$firstOne = false;
-				$txt->addHtml(' ' . wfMsgExt('diff-with', 'parseinline' ) . ' ' . $this->translateArgument($key) . ' '
-				. htmlspecialchars($attr));
+				$txt->addHtml( wfMsgExt('diff-with', 'escapenoentities', $this->translateArgument($key), htmlspecialchars($attr) ) );
 				continue;
 			}
-			$txt->addHtml(', ' . $this->translateArgument($key) . ' ' . htmlspecialchars($attr));
+			$txt->addHtml( wfMsgExt( 'comma-separator', 'escapenoentities' ) .
+				wfMsgExt( 'diff-with-additional', 'escapenoentities',
+				$this->translateArgument( $key ), htmlspecialchars( $attr ) )
+			);
 		}
 
 		if ($nbAttributes_min_1 > 0) {
-			$txt->addHtml(' ' . wfMsgExt('diff-and', 'parseinline' ) . ' ' . $this->translateArgument($keys[$nbAttributes_min_1]) . ' '
-			. htmlspecialchars($attributes[$keys[$nbAttributes_min_1]]));
+			$txt->addHtml( wfMsgExt( 'diff-with-final', 'escapenoentities',
+			$this->translateArgument($keys[$nbAttributes_min_1]),
+			htmlspecialchars($attributes[$keys[$nbAttributes_min_1]]) ) );
 		}
 	}
 
