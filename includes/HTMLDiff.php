@@ -1240,26 +1240,22 @@ class TagToString {
 		$this->sem = $sem;
 	}
 
-	public function getDescription() {
-		return $this->getString('diff-' . $this->node->qName);
-	}
-
 	public function getRemovedDescription(ChangeText $txt) {
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addText($this->getMovedOutOf() . ' ' . strtolower($this->getArticle()) . ' ');
+			$txt->addText( $this->getString('diff-movedoutof') . ' ' . strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
 			$txt->addHtml('<b>');
-			$txt->addText(strtolower($this->getDescription()));
+			$txt->addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
 			$txt->addHtml('</b>');
 		} else if ($this->sem == TagToStringFactory::STYLE) {
 			$txt->addHtml('<b>');
-			$txt->addText($this->getDescription());
+			$txt->addText( $this->getString('diff-' . $this->node->qName) );
 			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower($this->getStyleRemoved()));
+			$txt->addText(' ' . strtolower( $this->getString('diff-styleremoved') ) );
 		} else {
 			$txt->addHtml('<b>');
-			$txt->addText($this->getDescription());
+			$txt->addText( $this->getString('diff-' . $this->node->qName) );
 			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower($this->getRemoved()));
+			$txt->addText(' ' . strtolower( $this->getString('diff-removed') ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addText('.');
@@ -1267,47 +1263,23 @@ class TagToString {
 
 	public function getAddedDescription(ChangeText $txt) {
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addText($this->getMovedTo() . ' ' . strtolower($this->getArticle()) . ' ');
+			$txt->addText( $this->getString('diff-movedto') . ' ' . strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
 			$txt->addHtml('<b>');
-			$txt->addText(strtolower($this->getDescription()));
+			$txt->addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
 			$txt->addHtml('</b>');
 		} else if ($this->sem == TagToStringFactory::STYLE) {
 			$txt->addHtml('<b>');
-			$txt->addText($this->getDescription());
+			$txt->addText( $this->getString('diff-' . $this->node->qName) );
 			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower($this->getStyleAdded()));
+			$txt->addText(' ' . strtolower( $this->getString('diff-styleadded') ) );
 		} else {
 			$txt->addHtml('<b>');
-			$txt->addText($this->getDescription());
+			$txt->addText( $this->getString('diff-' . $this->node->qName) );
 			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower($this->getAdded()));
+			$txt->addText(' ' . strtolower( $this->getString('diff-added') ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addText('.');
-	}
-
-	protected function getMovedTo() {
-		return $this->getString('diff-movedto');
-	}
-
-	protected function getStyleAdded() {
-		return $this->getString('diff-styleadded');
-	}
-
-	protected function getAdded() {
-		return $this->getString('diff-added');
-	}
-
-	protected function getMovedOutOf() {
-		return $this->getString('diff-movedoutof');
-	}
-
-	protected function getStyleRemoved() {
-		return $this->getString('diff-styleremoved');
-	}
-
-	protected function getRemoved() {
-		return $this->getString('diff-removed');
 	}
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
@@ -1321,7 +1293,7 @@ class TagToString {
 			$lastKey = $key;
 			if($firstOne) {
 				$firstOne = false;
-				$txt->addText(' ' . strtolower($this->getWith())
+				$txt->addText(' ' . strtolower( $this->getString('diff-with') )
 				. ' ' . $this->translateArgument($key) . ' '
 				. $attr);
 				continue;
@@ -1332,141 +1304,19 @@ class TagToString {
 
 		if (count($attributes) > 1) {
 			$txt->addText(' '
-			. strtolower($this->getAnd())
+			. strtolower( $this->getString('diff-and') )
 			. ' '
 			. $this->translateArgument($lastKey) . ' '
 			. $attributes[$lastKey]);
 		}
 	}
 
-	private function getAnd() {
-		return $this->getString('diff-and');
-	}
-
-	private function getWith() {
-		return $this->getString('diff-with');
-	}
-
 	protected function translateArgument($name) {
-		if (strcasecmp($name, 'src') == 0) {
-			return strtolower($this->getSource());
-		}
-		if (strcasecmp($name, 'width') == 0) {
-			return strtolower($this->getWidth());
-		}
-		if (strcasecmp($name, 'height') == 0) {
-			return strtolower($this->getHeight());
-		}
-		return $name;
+		return strtolower( $this->getString('diff-' . strtolower( $name ) ) );
 	}
-
-	private function getHeight() {
-		return $this->getString('diff-height');
-	}
-
-	private function getWidth() {
-		return $this->getString('diff-width');
-	}
-
-	protected function getSource() {
-		return $this->getString('diff-source');
-	}
-
-	protected function getArticle() {
-		return $this->getString('diff-' . $this->node->qName . '-article');
-	}
-
-	// FIXME: Use messages for this
-	public static $bundle = array(
-		'diff-movedto' => 'Moved to',
-		'diff-styleadded' => 'Style added',
-		'diff-added' => 'Added',
-		'diff-changedto' => 'Changed to',
-		'diff-movedoutof' => 'Moved out of',
-		'diff-styleremoved' => 'Style removed',
-		'diff-removed' => 'Removed',
-		'diff-changedfrom' => 'Changed from',
-		'diff-source' => 'Source',
-		'diff-withdestination' => 'With destination',
-		'diff-and' => 'And',
-		'diff-with' => 'With',
-		'diff-width' => 'Width',
-		'diff-height' => 'Height',
-		'diff-html-article' => 'A',
-		'diff-html' => 'Html page',
-		'diff-body-article' => 'A',
-		'diff-body' => 'Html document',
-		'diff-p-article' => 'A',
-		'diff-p' => 'Paragraph',
-		'diff-blockquote-article' => 'A',
-		'diff-blockquote' => 'Quote',
-		'diff-h1-article' => 'A',
-		'diff-h1' => 'Heading (level 1)',
-		'diff-h2-article' => 'A',
-		'diff-h2' => 'Heading (level 2)',
-		'diff-h3-article' => 'A',
-		'diff-h3' => 'Heading (level 3)',
-		'diff-h4-article' => 'A',
-		'diff-h4' => 'Heading (level 4)',
-		'diff-h5-article' => 'A',
-		'diff-h5' => 'Heading (level 5)',
-		'diff-pre-article' => 'A',
-		'diff-pre' => 'Preformatted block',
-		'diff-div-article' => 'A',
-		'diff-div' => 'Division',
-		'diff-ul-article' => 'An',
-		'diff-ul' => 'Unordered list',
-		'diff-ol-article' => 'An',
-		'diff-ol' => 'Ordered list',
-		'diff-li-article' => 'A',
-		'diff-li' => 'List item',
-		'diff-table-article' => 'A',
-		'diff-table' => 'Table',
-		'diff-tbody-article' => 'A',
-		'diff-tbody' => "Table's content",
-		'diff-tr-article' => 'A',
-		'diff-tr' => 'Row',
-		'diff-td-article' => 'A',
-		'diff-td' => 'Cell',
-		'diff-th-article' => 'A',
-		'diff-th' => 'Header',
-		'diff-br-article' => 'A',
-		'diff-br' => 'Break',
-		'diff-hr-article' => 'A',
-		'diff-hr' => 'Horizontal rule',
-		'diff-code-article' => 'A',
-		'diff-code' => 'Computer code block',
-		'diff-dl-article' => 'A',
-		'diff-dl' => 'Definition list',
-		'diff-dt-article' => 'A',
-		'diff-dt' => 'Definition term',
-		'diff-dd-article' => 'A',
-		'diff-dd' => 'Definition',
-		'diff-input-article' => 'An',
-		'diff-input' => 'Input',
-		'diff-form-article' => 'A',
-		'diff-form' => 'Form',
-		'diff-img-article' => 'An',
-		'diff-img' => 'Image',
-		'diff-span-article' => 'A',
-		'diff-span' => 'Span',
-		'diff-a-article' => 'A',
-		'diff-a' => 'Link',
-		'diff-i' => 'Italics',
-		'diff-b' => 'Bold',
-		'diff-strong' => 'Strong',
-		'diff-em' => 'Emphasis',
-		'diff-font' => 'Font',
-		'diff-big' => 'Big',
-		'diff-del' => 'Deleted',
-		'diff-tt' => 'Fixed width',
-		'diff-sub' => 'Subscript',
-		'diff-sup' => 'Superscript',
-		'diff-strike' => 'Strikethrough'
-	);
 
 	public function getString($key) {
-		return self::$bundle[$key];
+		return htmlspecialchars( wfMsgNoTrans( $key ) );
 	}
 }
 
@@ -1477,31 +1327,23 @@ class NoContentTagToString extends TagToString {
 	}
 
 	public function getAddedDescription(ChangeText $txt) {
-		$txt.addText($this->getChangedTo() . ' ' + strtolower($this->getArticle()) . ' ');
+		$txt.addText( $this->getString('diff-changedto') . ' ' + strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
 		$txt.addHtml('<b>');
-		$txt.addText(strtolower($this->getDescription()));
+		$txt.addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
 		$txt.addHtml('</b>');
 
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt.addText('.');
-	}
-
-	private function getChangedTo() {
-		return $this->getString('diff-changedto');
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
-		$txt.addText($this->getChangedFrom() . ' ' + strtolower($this->getArticle()) . ' ');
+		$txt.addText( $this->getString('diff-changedfrom') . ' ' + strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
 		$txt.addHtml('<b>');
-		$txt.addText(strtolower($this->getDescription()));
+		$txt.addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
 		$txt.addHtml('</b>');
 
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt.addText('.');
-	}
-
-	private function getChangedFrom() {
-		return $this->getString('diff-changedfrom');
 	}
 }
 
@@ -1513,16 +1355,11 @@ class AnchorToString extends TagToString {
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
 		if (array_key_exists('href', $attributes)) {
-			$txt->addText(' ' . strtolower($this->getWithDestination()) . ' ' . $attributes['href']);
+			$txt->addText(' ' . strtolower( $this->getString('diff-withdestination') ) . ' ' . $attributes['href']);
 			unset($attributes['href']);
 		}
 		parent::addAttributes($txt, $attributes);
 	}
-
-	private function getWithDestination() {
-		return $this->getString('diff-withdestination');
-	}
-
 }
 
 /**
