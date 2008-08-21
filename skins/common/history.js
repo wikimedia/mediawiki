@@ -80,4 +80,52 @@ function histrowinit() {
 	diffcheck();
 }
 
+// attach htmldiff event handler
+function htmldiffsubmit() {
+	var hf = document.getElementById('submithtmldiff1');
+	if (!hf) {
+		return;
+	}
+	hf.onclick = enablehtmldiff;
+	hf = document.getElementById('submithtmldiff2');
+	if (!hf) {
+		return;
+	}
+	hf.onclick = enablehtmldiff;
+}
+
+// change hidden field when choosing html compare
+function enablehtmldiff() {
+	var hf = document.getElementById('htmldiff');
+	if (!hf) {
+		return;
+	}
+	hf.value = 1;
+}
+
+// attach source diff event handler
+function sourcediffsubmit() {
+	var hf = document.getElementById('submitsourcediff1');
+	if (!hf) {
+		return;
+	}
+	hf.onclick = disablehtmldiff;
+	hf = document.getElementById('submitsourcediff2');
+	if (!hf) {
+		return;
+	}
+	hf.onclick = disablehtmldiff;
+}
+
+// change hidden field when choosing source diff
+function disablehtmldiff() {
+	var hf = document.getElementById('htmldiff');
+	if (!hf) {
+		return;
+	}
+	hf.value = 0;
+}
+
 hookEvent("load", histrowinit);
+hookEvent("load", htmldiffsubmit);
+hookEvent("load", sourcediffsubmit);

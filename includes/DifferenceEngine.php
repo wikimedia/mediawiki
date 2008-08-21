@@ -27,6 +27,7 @@ class DifferenceEngine {
 	var $mOldRev, $mNewRev;
 	var $mRevisionsLoaded = false; // Have the revisions been loaded
 	var $mTextLoaded = 0; // How many text blobs have been loaded, 0, 1 or 2?
+	var $htmldiff;
 	/**#@-*/
 
 	/**
@@ -37,7 +38,7 @@ class DifferenceEngine {
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 */
-	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false ) {
+	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false , $htmldiff = false) {
 		$this->mTitle = $titleObj;
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
@@ -67,6 +68,7 @@ class DifferenceEngine {
 		}
 		$this->mRcidMarkPatrolled = intval($rcid);  # force it to be an integer
 		$this->mRefreshCache = $refreshCache;
+		$this->htmldiff = $htmldiff;
 	}
 
 	function getTitle() {
@@ -202,13 +204,14 @@ CONTROL;
 			$patrol = '';
 		}
 
+		$htmldiffarg = $this->htmlDiffArgument();
 		$prevlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'previousdiff' ),
-			'diff=prev&oldid='.$this->mOldid, '', '', 'id="differences-prevlink"' );
+			'diff=prev&oldid='.$this->mOldid.$htmldiffarg, '', '', 'id="differences-prevlink"' );
 		if ( $this->mNewRev->isCurrent() ) {
 			$nextlink = '&nbsp;';
 		} else {
 			$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ),
-				'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
+				'diff=next&oldid='.$this->mNewid.$htmldiffarg, '', '', 'id="differences-nextlink"' );
 		}
 
 		$oldminor = '';
@@ -266,14 +269,18 @@ CONTROL;
 			'<div id="mw-diff-ntitle3">' . $newminor . $sk->revComment( $this->mNewRev, !$diffOnly, true ) . $rdel . "</div>" .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $patrol . '</div>';
 
-		if( $wgEnableHtmlDiff ) {
+		if( $wgEnableHtmlDiff && $this->htmldiff) {
 			$multi = $this->getMultiNotice();
+			$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'wikicodecomparison' ),
+			'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=0', '', '', 'id="differences-switchtype"' ).'</div>');
 			$wgOut->addHTML( $this->addHeader( '', $oldHeader, $newHeader, $multi ) );
 			$this->renderHtmlDiff();
 		} else {
-
+			if($wgEnableHtmlDiff){
+				$wgOut->addHTML('<div class="diff-switchtype">'.$sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'visualcomparison' ),
+				'diff='.$this->mNewid.'&oldid='.$this->mOldid.'&htmldiff=1', '', '', 'id="differences-switchtype"' ).'</div>');
+			}
 			$this->showDiff( $oldHeader, $newHeader );
-
 			if( !$diffOnly ) {
 				$this->renderNewRevision();
 			}
@@ -422,7 +429,7 @@ CONTROL;
 		#
 		$sk = $wgUser->getSkin();
 
-		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid, '', '', 'id="differences-nextlink"' );
+		$nextlink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'nextdiff' ), 'diff=next&oldid='.$this->mNewid.$this->htmlDiffArgument(), '', '', 'id="differences-nextlink"' );
 		$header = "<div class=\"firstrevisionheader\" style=\"text-align: center\"><strong>{$this->mOldtitle}</strong><br />" .
 		$sk->revUserTools( $this->mNewRev ) . "<br />" .
 		$sk->revComment( $this->mNewRev ) . "<br />" .
@@ -434,6 +441,19 @@ CONTROL;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	function htmlDiffArgument(){
+		global $wgEnableHtmlDiff;
+		if($wgEnableHtmlDiff){
+			if($this->htmldiff){
+				return '&htmldiff=1';
+			}else{
+				return '&htmldiff=0';
+			}
+		}else{
+			return '';
+		}
 	}
 
 	/**

@@ -51,14 +51,14 @@ class Article {
 		$this->mTitle =& $title;
 		$this->mOldId = $oldId;
 	}
-	
+
 	/**
 	 * Constructor from an article article
 	 * @param $id The article ID to load
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		
+
 		return $t == null ? null : new Article( $t );
 	}
 
@@ -730,7 +730,9 @@ class Article {
 		if ( !is_null( $diff ) ) {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
-			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge );
+			$diff = $wgRequest->getVal( 'diff' );
+			$htmldiff = $wgRequest->getVal( 'htmldiff' );
+			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $htmldiff);
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;
 			$de->showDiffPage( $diffOnly );
@@ -1397,7 +1399,7 @@ class Article {
 	 */
 	function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
-		
+
 		if ($user == null) {
 			$user = $wgUser;
 		}
