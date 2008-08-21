@@ -597,7 +597,8 @@ class SkinTemplate extends Skin {
 		if( $selected ) {
 			$classes[] = 'selected';
 		}
-		if( $checkEdit && !$title->isAlwaysKnown() && $title->getArticleId() == 0 ) {
+		if( $checkEdit && !$title->isAlwaysKnown() && $title->getArticleId() == 0 &&
+			!($title->getNamespace() == NS_IMAGE && wfFindFile( $title )) ) {
 			$classes[] = 'new';
 			$query = 'action=edit';
 		}
