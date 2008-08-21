@@ -198,8 +198,8 @@ class Title {
 
 	/**
 	 * Make an array of titles from an array of IDs
-	 * @param $ids \arrayof{\int} Array of IDs
-	 * @return \arrayof{Title} Array of Titles
+	 * @param $ids \type{\arrayof{\int}} Array of IDs
+	 * @return \type{\arrayof{Title}} Array of Titles
 	 */
 	public static function newFromIDs( $ids ) {
 		if ( !count( $ids ) ) {
@@ -879,7 +879,7 @@ class Title {
 	 * there's a fragment but the prefixed text is empty, we just return a link
 	 * to the fragment.
 	 *
-	 * @param $query \arrayof{\string} An associative array of key => value pairs for the
+	 * @param $query \type{\arrayof{\string}} An associative array of key => value pairs for the
 	 *   query string.  Keys and values will be escaped.
 	 * @param $variant \type{\string} Language variant of URL (for sr, zh..).  Ignored
 	 *   for external links.  Default is "false" (same variant as current page,
@@ -1071,7 +1071,7 @@ class Title {
 
 	/**
 	 * Can $wgUser perform $action on this page?
-	 * @param \type{\string} $action action that permission needs to be checked for
+	 * @param $action \type{\string} action that permission needs to be checked for
 	 * @param $doExpensiveQueries \type{\bool} Set this to false to avoid doing unnecessary queries.
 	 * @return \type{\bool}
  	 */
@@ -1088,7 +1088,7 @@ class Title {
 	 * @param $action \type{\string}action that permission needs to be checked for
 	 * @param $user \type{User} user to check
 	 * @param $doExpensiveQueries \type{\bool} Set this to false to avoid doing unnecessary queries.
-	 * @param $ignoreErrors \arrayof{\string} Set this to a list of message keys whose corresponding errors may be ignored.
+	 * @param $ignoreErrors \type{\arrayof{\string}} Set this to a list of message keys whose corresponding errors may be ignored.
 	 * @return \type{\array} Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
@@ -1650,7 +1650,7 @@ class Title {
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
 	 * @param $get_pages \type{\bool} Whether or not to retrieve the actual pages that the restrictions have come from.
-	 * @return \arrayof{mixed title array, restriction array} Array of the Title objects of the pages from 
+	 * @return \type{\arrayof{mixed title array, restriction array}} Array of the Title objects of the pages from 
 	 *         which cascading restrictions have come, false for none, or true if such restrictions exist, but $get_pages was not set.
 	 *         The restriction array is an array of each type, each of which contains an array of unique groups.
 	 */
@@ -1875,7 +1875,7 @@ class Title {
 	 * Accessor/initialisation for mRestrictions
 	 *
 	 * @param $action \type{\string} action that permission needs to be checked for
-	 * @return \arrayof{\string} the array of groups allowed to edit this article
+	 * @return \type{\arrayof{\string}} the array of groups allowed to edit this article
 	 */
 	public function getRestrictions( $action ) {
 		if( !$this->mRestrictionsLoaded ) {
@@ -2303,7 +2303,7 @@ class Title {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param $options \type{\string} may be FOR UPDATE
-	 * @return \arrayof{Title} the Title objects linking here
+	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
 	public function getLinksTo( $options = '', $table = 'pagelinks', $prefix = 'pl' ) {
 		$linkCache = LinkCache::singleton();
@@ -2344,7 +2344,7 @@ class Title {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param $options \type{\string} may be FOR UPDATE
-	 * @return \arrayof{Title} the Title objects linking here
+	 * @return \type{\arrayof{Title}} the Title objects linking here
 	 */
 	public function getTemplateLinksTo( $options = '' ) {
 		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
@@ -2355,7 +2355,7 @@ class Title {
 	 *
 	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and should use redirect table in this case)
 	 * @param $options \type{\string} may be FOR UPDATE
-	 * @return \arrayof{Title} the Title objects
+	 * @return \type{\arrayof{Title}} the Title objects
 	 */
 	public function getBrokenLinksFrom( $options = '' ) {
 		if ( $this->getArticleId() == 0 ) {
@@ -2398,7 +2398,7 @@ class Title {
 	 * Get a list of URLs to purge from the Squid cache when this
 	 * page changes
 	 *
-	 * @return \arrayof{\string} the URLs
+	 * @return \type{\arrayof{\string}} the URLs
 	 */
 	public function getSquidURLs() {
 		global $wgContLang;
@@ -3266,7 +3266,7 @@ class Title {
 	 *
 	 * @param $ns \twotypes{\int,\null} Single namespace to consider; 
 	 *            NULL to consider all namespaces
-	 * @return \arrayof{Title} Redirects to this title
+	 * @return \type{\arrayof{Title}} Redirects to this title
 	 */
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = array();

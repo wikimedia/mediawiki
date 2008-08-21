@@ -43,7 +43,7 @@ class PasswordError extends MWException {
 class User {
 
 	/**
-	 * \arrayof{\string} A list of default user toggles, i.e., boolean user 
+	 * \type{\arrayof{\string}} A list of default user toggles, i.e., boolean user 
          * preferences that are displayed by Special:Preferences as checkboxes.
 	 * This list can be extended via the UserToggles hook or by
 	 * $wgContLang::getExtraUserToggles().
@@ -94,7 +94,7 @@ class User {
 	);
 
 	/**
-	 * \arrayof{\string} List of member variables which are saved to the 
+	 * \type{\arrayof{\string}} List of member variables which are saved to the 
 	 * shared cache (memcached). Any operation which changes the 
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
@@ -121,7 +121,7 @@ class User {
 	);
 
 	/**
-	 * \arrayof{\string} Core rights.
+	 * \type{\arrayof{\string}} Core rights.
 	 * Each of these should have a corresponding message of the form 
 	 * "right-$right".
 	 * @showinitializer
@@ -888,7 +888,7 @@ class User {
 	/**
 	 * Initialize this object from a row from the user table.
 	 *
-	 * @param $row \arrayof{\mixed} Row from the user table to load.
+	 * @param $row \type{\arrayof{\mixed}} Row from the user table to load.
 	 */
 	function loadFromRow( $row ) {
 		$this->mDataLoaded = true;
@@ -955,7 +955,7 @@ class User {
 	 * Combine the language default options with any site-specific options
 	 * and add the default language variants.
 	 *
-	 * @return \arrayof{\string} Array of options
+	 * @return \type{\arrayof{\string}} Array of options
 	 */
 	static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault;
@@ -995,7 +995,7 @@ class User {
 
 	/**
 	 * Get a list of user toggle names
-	 * @return \arrayof{\string} Array of user toggle names
+	 * @return \type{\arrayof{\string}} Array of user toggle names
 	 */
 	static function getToggles() {
 		global $wgContLang;
@@ -1397,7 +1397,7 @@ class User {
 
 	/**
 	 * Return the talk page(s) this user has new messages on.
-	 * @return \arrayof{\string} Array of page URLs
+	 * @return \type{\arrayof{\string}} Array of page URLs
 	 */
 	function getNewMessageLinks() {
 		$talks = array();
@@ -1849,7 +1849,7 @@ class User {
 
 	/**
 	 * Get the permissions this user has.
-	 * @return \arrayof{\string} Array of permission names
+	 * @return \type{\arrayof{\string}} Array of permission names
 	 */
 	function getRights() {
 		if ( is_null( $this->mRights ) ) {
@@ -1864,7 +1864,7 @@ class User {
 	/**
 	 * Get the list of explicit group memberships this user has.
 	 * The implicit * and user groups are not included.
-	 * @return \arrayof{\string} Array of internal group names
+	 * @return \type{\arrayof{\string}} Array of internal group names
 	 */
 	function getGroups() {
 		$this->load();
@@ -1877,7 +1877,7 @@ class User {
 	 * '*' for all accounts and autopromoted groups
 	 *
 	 * @param $recache \type{\bool} Whether to avoid the cache
-	 * @return \arrayof{\string} Array of internal group names
+	 * @return \type{\arrayof{\string}} Array of internal group names
 	 */
 	function getEffectiveGroups( $recache = false ) {
 		if ( $recache || is_null( $this->mEffectiveGroups ) ) {
@@ -2319,7 +2319,7 @@ class User {
 	 * Add a user to the database, return the user object
 	 *
 	 * @param $name \type{\string} Username to add
-	 * @param $params \arrayof{\string} Non-default parameters to save to the database:
+	 * @param $params \type{\arrayof{\string}} Non-default parameters to save to the database:
 	 *   - password             The user's password. Password logins will be disabled if this is omitted.
 	 *   - newpassword          A temporary password mailed to the user
 	 *   - email                The user's email address
@@ -2897,8 +2897,8 @@ class User {
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
-	 * @param $groups \arrayof{\string} List of internal group names
-	 * @return \arrayof{\string} List of permission key names for given groups combined
+	 * @param $groups \type{\arrayof{\string}} List of internal group names
+	 * @return \type{\arrayof{\string}} List of permission key names for given groups combined
 	 */
 	static function getGroupPermissions( $groups ) {
 		global $wgGroupPermissions;
@@ -2916,7 +2916,7 @@ class User {
 	 * Get all the groups who have a given permission
 	 * 
 	 * @param $role \type{\string} Role to check
-	 * @return \arrayof{\string} List of internal group names with the given permission
+	 * @return \type{\arrayof{\string}} List of internal group names with the given permission
 	 */
 	static function getGroupsWithPermission( $role ) {
 		global $wgGroupPermissions;
@@ -2965,7 +2965,7 @@ class User {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @return \arrayof{\string} Array of internal group names
+	 * @return \type{\arrayof{\string}} Array of internal group names
 	 */
 	static function getAllGroups() {
 		global $wgGroupPermissions;
@@ -2977,7 +2977,7 @@ class User {
 
 	/**
 	 * Get a list of all available permissions.
-	 * @return \arrayof{\string} Array of permission names
+	 * @return \type{\arrayof{\string}} Array of permission names
 	 */
 	static function getAllRights() {
 		if ( self::$mAllRights === false ) {
@@ -2994,7 +2994,7 @@ class User {
 
 	/**
 	 * Get a list of implicit groups
-	 * @return \arrayof{\string} Array of internal group names
+	 * @return \type{\arrayof{\string}} Array of internal group names
 	 */
 	public static function getImplicitGroups() {
 		global $wgImplicitGroups;

@@ -1,4 +1,4 @@
-# Doxyfile 1.5.5
+# Doxyfile 1.5.6
 
 #
 # Some placeholders have been added for MediaWiki usage:
@@ -42,8 +42,21 @@ MULTILINE_CPP_IS_BRIEF = NO
 DETAILS_AT_TOP         = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
-TAB_SIZE               = 4
-#ALIASES               =
+TAB_SIZE               = 8
+ALIASES                = \
+	"type{1}=<b>\1</b>:" \
+	"twotypes{2}=<b>\1</b> or <b>\2</b>:" \
+	"threetypes{3}=<b>\1</b>, <b>\2</b>, or <b>\3</b>:" \
+	"arrayof{1}=<b>Array</b> of <b>\1</b>" \
+	"null=Null" \
+	"boolean=Boolean" \
+	"bool=\boolean" \
+	"integer=Integer" \
+	"int=\integer" \
+	"string=String" \
+	"str=\string" \
+	"array=Array" \
+	"mixed=Mixed"
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 BUILTIN_STL_SUPPORT    = NO
@@ -60,7 +73,7 @@ EXTRACT_LOCAL_METHODS  = NO
 HIDE_UNDOC_MEMBERS     = NO
 HIDE_UNDOC_CLASSES     = NO
 HIDE_FRIEND_COMPOUNDS  = NO
-HIDE_IN_BODY_DOCS      = NO
+HIDE_IN_BODY_DOCS      = YES
 INTERNAL_DOCS          = NO
 CASE_SENSE_NAMES       = YES
 HIDE_SCOPE_NAMES       = NO
@@ -278,17 +291,3 @@ DOT_CLEANUP            = YES
 # Configuration::additions related to the search engine   
 #---------------------------------------------------------------------------
 SEARCHENGINE           = NO
-
-ALIASES =	"type{1}=<b>\1</b>:" \
-		"twotypes{2}=<b>\1</b> or <b>\2</b>:" \
-		"threetypes{3}=<b>\1</b>, <b>\2</b>, or <b>\3</b>:" \
-		"arrayof{1}=<b>Array</b> of <b>\1</b>:" \
-		"null=Null" \
-		"boolean=Boolean" \
-		"bool=\boolean" \
-		"integer=Integer" \
-		"int=\integer" \
-		"string=String" \
-		"str=\string" \
-		"array=Array" \
-		"mixed=Mixed"
