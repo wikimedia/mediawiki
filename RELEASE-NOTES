@@ -167,6 +167,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * list={backlinks,embeddedin,imageusage} now return arrays with keys 0, 1, 2,
   etc. (AKA lists) instead of arrays with pageIDs as keys (AKA hash tables)
   for consistency with other list modules.
+* Added action=watch
 
 === Languages updated in 1.14 ===
 
