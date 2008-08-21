@@ -1059,7 +1059,7 @@ class AncestorComparator {
 		$result = new AncestorComparatorResult();
 
 		$diffengine = new WikiDiff3(10000, 1.35);
-		$differences = $diffengine->diff_range($this->ancestorsText, $other->ancestorsText);
+		$differences = $diffengine->diff_range($other->ancestorsText,$this->ancestorsText);
 
 		if (count($differences) == 0){
 			return $result;
@@ -1075,85 +1075,69 @@ class AncestorComparator {
 
 class ChangeTextGenerator {
 
-	private $new;
-	private $old;
+	private $ancestorComparator;
+	private $other;
 
 	private $factory;
 
-	function __construct(AncestorComparator $old, AncestorComparator $new) {
-		$this->new = $new;
-		$this->old = $old;
+	function __construct(AncestorComparator $ancestorComparator, AncestorComparator $other) {
+		$this->ancestorComparator = $ancestorComparator;
+		$this->other = $other;
 		$this->factory = new TagToStringFactory();
 	}
 
 	public function getChanged(/*array*/ $differences) {
 		$txt = new ChangeText;
-
 		$rootlistopened = false;
-
 		if (count($differences) > 1) {
 			$txt->addHtml('<ul class="changelist">');
 			$rootlistopened = true;
 		}
-
 		$nbDifferences = count($differences);
 		for ($j = 0; $j < $nbDifferences; ++$j) {
 			$d = $differences[$j];
-
 			$lvl1listopened = false;
-
 			if ($rootlistopened) {
 				$txt->addHtml('<li>');
 			}
-
 			if ($d->leftlength + $d->rightlength > 1) {
 				$txt->addHtml('<ul class="changelist">');
 				$lvl1listopened = true;
 			}
-
 			// left are the old ones
 			for ($i = $d->leftstart; $i < $d->leftend; ++$i) {
 				if ($lvl1listopened){
 					$txt->addHtml('<li>');
 				}
 				// add a bullet for a old tag
-				$this->addTagOld($txt, $this->old->ancestors[$i]);
-
+				$this->addTagOld($txt, $this->other->ancestors[$i]);
 				if ($lvl1listopened){
 					$txt->addHtml('</li>');
 				}
 			}
-
 			// right are the new ones
 			for ($i = $d->rightstart; $i < $d->rightend; ++$i) {
 				if ($lvl1listopened){
 					$txt->addHtml('<li>');
 				}
-
 				// add a bullet for a new tag
-				$this->addTagNew($txt, $this->new->ancestors[$i]);
+				$this->addTagNew($txt, $this->ancestorComparator->ancestors[$i]);
 
 				if ($lvl1listopened){
 					$txt->addHtml('</li>');
 				}
-
 			}
-
 			if ($lvl1listopened) {
 				$txt->addHtml('</ul>');
 			}
-
 			if ($rootlistopened) {
 				$txt->addHtml('</li>');
 			}
 		}
-
 		if ($rootlistopened) {
 			$txt->addHtml('</ul>');
 		}
-
 		return $txt;
-
 	}
 
 	private function addTagOld(ChangeText $txt, TagNode $ancestor) {
@@ -1169,27 +1153,12 @@ class ChangeText {
 
 	private $txt = "";
 
-	const newLine = "<br/>";
-
-	public function addText($s) {
-		$s = $this->clean($s);
-		$this->txt .= $s;
-	}
-
 	public function addHtml($s) {
 		$this->txt .= $s;
 	}
 
-	public function addNewLine() {
-		$this->addHtml(self::newLine);
-	}
-
 	public function toString() {
 		return $this->txt;
-	}
-
-	private function clean($s) {
-		return htmlspecialchars($s);
 	}
 }
 
@@ -1241,82 +1210,68 @@ class TagToString {
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
+		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
+		if(!$tagDescription){
+			$tagDescription = $this->node->qName;
+		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addText( $this->getString('diff-movedoutof') . ' ' . strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
-			$txt->addHtml('<b>');
-			$txt->addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
-			$txt->addHtml('</b>');
+			$txt->addHtml( wfMsgExt( 'diff-movedoutof' , 'parseinline' ) . ' ' . $tagDescription );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHtml('<b>');
-			$txt->addText( $this->getString('diff-' . $this->node->qName) );
-			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower( $this->getString('diff-styleremoved') ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleremoved' , 'parseinline' ) );
 		} else {
-			$txt->addHtml('<b>');
-			$txt->addText( $this->getString('diff-' . $this->node->qName) );
-			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower( $this->getString('diff-removed') ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-removed' , 'parseinline' ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addText('.');
+		$txt->addHtml('.');
 	}
 
 	public function getAddedDescription(ChangeText $txt) {
+		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
+		if(!$tagDescription){
+			$tagDescription = $this->node->qName;
+		}
 		if ($this->sem == TagToStringFactory::MOVED) {
-			$txt->addText( $this->getString('diff-movedto') . ' ' . strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
-			$txt->addHtml('<b>');
-			$txt->addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
-			$txt->addHtml('</b>');
+			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline' ) . ' ' . $tagDescription);
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHtml('<b>');
-			$txt->addText( $this->getString('diff-' . $this->node->qName) );
-			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower( $this->getString('diff-styleadded') ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleadded', 'parseinline'  ) );
 		} else {
-			$txt->addHtml('<b>');
-			$txt->addText( $this->getString('diff-' . $this->node->qName) );
-			$txt->addHtml('</b>');
-			$txt->addText(' ' . strtolower( $this->getString('diff-added') ) );
+			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-added', 'parseinline'  ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt->addText('.');
+		$txt->addHtml('.');
 	}
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
 		if (count($attributes) < 1) {
 			return;
 		}
-
 		$firstOne = true;
-		$lastKey = null;
-		foreach ($attributes as $key => &$attr) {
-			$lastKey = $key;
+		$nbAttributes_min_1 = count($attributes)-1;
+		$keys = array_keys($attributes);
+		for ($i=0;$i<$nbAttributes_min_1;$i++) {
+			$key = $keys[$i];
+			$attr = $attributes[$key];
 			if($firstOne) {
 				$firstOne = false;
-				$txt->addText(' ' . strtolower( $this->getString('diff-with') )
-				. ' ' . $this->translateArgument($key) . ' '
-				. $attr);
+				$txt->addHtml(' ' . wfMsgExt('diff-with', 'parseinline' ) . ' ' . $this->translateArgument($key) . ' '
+				. htmlspecialchars($attr));
 				continue;
 			}
-			$txt->addText(', ' . $this->translateArgument($key) . ' '
-			. $attr);
+			$txt->addHtml(', ' . $this->translateArgument($key) . ' ' . htmlspecialchars($attr));
 		}
 
-		if (count($attributes) > 1) {
-			$txt->addText(' '
-			. strtolower( $this->getString('diff-and') )
-			. ' '
-			. $this->translateArgument($lastKey) . ' '
-			. $attributes[$lastKey]);
+		if ($nbAttributes_min_1 > 0) {
+			$txt->addHtml(' ' . wfMsgExt('diff-and', 'parseinline' ) . ' ' . $this->translateArgument($keys[$nbAttributes_min_1]) . ' '
+			. htmlspecialchars($attributes[$keys[$nbAttributes_min_1]]));
 		}
 	}
 
 	protected function translateArgument($name) {
-		return strtolower( $this->getString('diff-' . strtolower( $name ) ) );
-	}
-
-	public function getString($key) {
-		return htmlspecialchars( wfMsgNoTrans( $key ) );
+		$translation = wfMsgExt('diff-' . $name, 'parseinline' );
+		if(!$translation){
+			$translation = $name;
+		}
+		return htmlspecialchars( $translation );
 	}
 }
 
@@ -1327,23 +1282,19 @@ class NoContentTagToString extends TagToString {
 	}
 
 	public function getAddedDescription(ChangeText $txt) {
-		$txt.addText( $this->getString('diff-changedto') . ' ' + strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
-		$txt.addHtml('<b>');
-		$txt.addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
-		$txt.addHtml('</b>');
-
+		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
+		if(!$tagDescription){
+			$tagDescription = $this->node->qName;
+		}
+		$txt->addHtml( wfMsgExt('diff-changedto', 'parseinline' ) . ' ' . $tagDescription);
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt.addText('.');
+		$txt->addHtml('.');
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
-		$txt.addText( $this->getString('diff-changedfrom') . ' ' + strtolower( $this->getString('diff-' . $this->node->qName . '-article') ) . ' ');
-		$txt.addHtml('<b>');
-		$txt.addText(strtolower( $this->getString('diff-' . $this->node->qName) ));
-		$txt.addHtml('</b>');
-
+		$txt->addHtml( wfMsgExt('diff-changedfrom', 'parseinline' ) . ' ' . $tagDescription);
 		$this->addAttributes($txt, $this->node->attributes);
-		$txt.addText('.');
+		$txt->addHtml('.');
 	}
 }
 
@@ -1355,7 +1306,7 @@ class AnchorToString extends TagToString {
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
 		if (array_key_exists('href', $attributes)) {
-			$txt->addText(' ' . strtolower( $this->getString('diff-withdestination') ) . ' ' . $attributes['href']);
+			$txt->addHtml(' ' . wfMsgExt( 'diff-withdestination', 'parseinline' ) . ' ' . htmlspecialchars($attributes['href']));
 			unset($attributes['href']);
 		}
 		parent::addAttributes($txt, $attributes);
@@ -1437,7 +1388,7 @@ class HTMLOutput{
 
 					//tooltip
 					$handler->startElement('span', array('class' => 'tip'));
-					$handler->characters($mod->changes);
+					$handler->html($mod->changes);
 					$handler->endElement('span');
 
 					$changeStarted = true;
@@ -1529,7 +1480,11 @@ class EchoingContentHandler {
 	}
 
 	function characters($chars){
-		echo $chars;
+		echo htmlspecialchars($chars);
+	}
+
+	function html($html){
+		echo $html;
 	}
 
 }
@@ -1552,5 +1507,9 @@ class DelegatingContentHandler {
 
 	function characters($chars){
 		$this->delegate->addHtml(htmlspecialchars($chars));
+	}
+
+	function html($html){
+		$this->delegate->addHtml($html);
 	}
 }
