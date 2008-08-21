@@ -87,7 +87,11 @@ class WikiDiff3 {
 		$this->from = $newFromIndex = $this->to = $newToIndex = array();
 
 		//remove tokens not in both sequences
-		$shared = array_fill_keys($from, false);
+		$shared = array();
+		foreach( $from as $key ) {
+			$shared[$key] = false;
+		}
+
 		foreach($to as $index => &$el) {
 			if(array_key_exists($el, $shared)) {
 				//keep it
