@@ -90,7 +90,7 @@ class languages {
 	 * all - all the messages.
 	 * required - messages which should be translated in order to get a complete translation.
 	 * optional - messages which can be translated, the fallback translation is used if not translated.
-	 * obsolete - messages which should not be translated, either because they are not exist, or they are ignored messages.
+	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
 	 * translated - messages which are either required or optional, but translated from English and needed.
 	 *
 	 * @param $code The language code.
@@ -156,7 +156,7 @@ class languages {
 	 * all - all the messages.
 	 * required - messages which should be translated in order to get a complete translation.
 	 * optional - messages which can be translated, the fallback translation is used if not translated.
-	 * obsolete - messages which should not be translated, either because they are not exist, or they are ignored messages.
+	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
 	 * translated - messages which are either required or optional, but translated from English and needed.
 	 *
 	 * @param $code The language code.
