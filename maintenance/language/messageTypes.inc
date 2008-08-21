@@ -315,6 +315,7 @@ $wgOptionalMessages = array(
 	'timezone-utc',
 	'whatlinkshere-backlink',
 	'recentchangeslinked-backlink',
+	'diff-with-additional',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
