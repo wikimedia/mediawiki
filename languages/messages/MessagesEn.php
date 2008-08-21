@@ -1327,6 +1327,8 @@ Note that using the navigation links will reset this column.',
 'difference'              => '(Difference between revisions)',
 'lineno'                  => 'Line $1:',
 'compareselectedversions' => 'Compare selected versions',
+'visualcomparison' 	      => 'Visual comparison',
+'wikicodecomparison'      => 'Wikitext comparison',
 'editundo'                => 'undo',
 'diff-multi'              => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} not shown.)',
 'diff-movedto'            => 'Moved to',
@@ -2746,6 +2748,7 @@ A temporary folder is missing.',
 'accesskey-preview'                 => 'p', # do not translate or duplicate this message to other languages
 'accesskey-diff'                    => 'v', # do not translate or duplicate this message to other languages
 'accesskey-compareselectedversions' => 'v', # do not translate or duplicate this message to other languages
+'accesskey-visualcomparison'   		=> 'b', # do not translate or duplicate this message to other languages
 'accesskey-watch'                   => 'w', # do not translate or duplicate this message to other languages
 'accesskey-upload'                  => 's', # do not translate or duplicate this message to other languages
 

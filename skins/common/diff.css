@@ -78,6 +78,12 @@ table.diff td div {
 /*
  * Styles for the HTML Diff
  */
+div.diff-switchtype{
+	text-align: center;
+	font-weight: bold;
+	font-size: smaller;
+}
+
 span.diff-html-added {
   font-size: 100%;
   background-color: #20ff20
