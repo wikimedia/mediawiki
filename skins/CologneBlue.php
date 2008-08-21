@@ -96,9 +96,8 @@ class SkinCologneBlue extends Skin {
 		return $s;
 	}
 
-	function doGetUserStyles() {
-		global $wgOut;
-		$s = parent::doGetUserStyles();
+	function reallyGenerateUserStylesheet() {
+		$s = parent::reallyGenerateUserStylesheet();
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right

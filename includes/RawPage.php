@@ -163,11 +163,13 @@ class RawPage {
 		global $wgUser, $wgOut, $wgRequest;
 		if($this->mGen) {
 			$sk = $wgUser->getSkin();
-			$sk->initPage($wgOut);
+			if( !StubObject::isRealObject( $wgOut ) )
+				$wgOut->_unstub( 2 );
+			$sk->initPage( $wgOut );
 			if($this->mGen == 'css') {
-				return $sk->getUserStylesheet();
+				return $sk->generateUserStylesheet();
 			} else if($this->mGen == 'js') {
-				return $sk->getUserJs();
+				return $sk->generateUserJs();
 			}
 		} else {
 			return $this->getArticleText();

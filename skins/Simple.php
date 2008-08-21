@@ -18,17 +18,20 @@ require_once( dirname(__FILE__) . '/MonoBook.php' );
  * @ingroup Skins
  */
 class SkinSimple extends SkinTemplate {
-	function initPage( &$out ) {
+	function initPage( OutputPage $out ) {
 		SkinTemplate::initPage( $out );
 		$this->skinname  = 'simple';
 		$this->stylename = 'simple';
 		$this->template  = 'MonoBookTemplate';
-		$this->addStyle( 'simple/main.css', 'screen' );
-		$this->addStyle( 'simple/rtl.css', '', '', 'rtl' );
+	}
+
+	function setupSkinUserCss( OutputPage $out ){
+		$out->addStyle( 'simple/main.css', 'screen' );
+		$out->addStyle( 'simple/rtl.css', '', '', 'rtl' );
 
 	}
 
-	function reallyDoGetUserStyles() {
+	function reallyGenerateUserStylesheet() {
 		global $wgUser;
 		$s = '';
 		if (($undopt = $wgUser->getOption("underline")) != 2) {

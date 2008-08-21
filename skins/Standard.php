@@ -33,27 +33,20 @@ class SkinStandard extends Skin {
 	/**
 	 *
 	 */
-	function getUserStyles() {
-		global $wgStylePath, $wgStyleVersion;
-		$s = '';
+	function setupSkinUserCss( OutputPage $out ){
 		if ( 3 == $this->qbSetting() ) { # Floating left
-			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStylePath}/common/quickbar.css?$wgStyleVersion';\n</style>\n";
+			$out->addStyle( 'common/quickbar.css' );
 		} else if ( 4 == $this->qbSetting() ) { # Floating right
-			$s .= "<style type='text/css'>\n" .
-			  "@import '{$wgStylePath}/common/quickbar-right.css?$wgStyleVersion';\n</style>\n";
+			$out->addStyle( 'common/quickbar-right.css' );
 		}
-		$s .= parent::getUserStyles();
-		return $s;
+		parent::setupSkinUserCss( $out );
 	}
 
 	/**
 	 *
 	 */
-	function doGetUserStyles() {
-		global $wgStylePath;
-
-		$s = parent::doGetUserStyles();
+	function reallyGenerateUserStylesheet() {
+		$s = parent::reallyGenerateUserStylesheet();
 		$qb = $this->qbSetting();
 
 		if ( 2 == $qb ) { # Right
@@ -273,7 +266,7 @@ class SkinStandard extends Skin {
 				$id=User::idFromName($wgTitle->getText());
 				$ip=User::isIP($wgTitle->getText());
 
-				if($id||$ip) {
+				if( $id || $ip ){
 					$s .= $sep . $this->userContribsLink();
 				}
 				if( $this->showEmailUser( $id ) ) {
@@ -302,5 +295,3 @@ class SkinStandard extends Skin {
 
 
 }
-
-

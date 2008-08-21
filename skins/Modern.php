@@ -25,15 +25,18 @@ class SkinModern extends SkinTemplate {
 		return "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
 	}
 
-	function initPage( &$out ) {
-		Skin::initPage( $out );
+	function initPage( OutputPage $out ) {
+		parent::initPage( $out );
 		$this->skinname  = 'modern';
 		$this->stylename = 'modern';
 		$this->template  = 'ModernTemplate';
-		
-		$this->addStyle( 'common/shared.css', 'screen' );
-		$this->addStyle( 'modern/main.css', 'screen' );
-		$this->addStyle( 'modern/print.css', 'print' );
+	}
+	
+	function setupSkinUserCss( OutputPage $out ){
+		// Do not call parent::setupSkinUserCss(), we have our own print style
+		$out->addStyle( 'common/shared.css', 'screen' );
+		$out->addStyle( 'modern/main.css', 'screen' );
+		$out->addStyle( 'modern/print.css', 'print' );
 	}
 }
 
