@@ -14,8 +14,8 @@ class CheckLanguageCLI {
 	protected $L = null;
 
 	protected $defaultChecks = array(
-		'untranslated', 'obsolete', 'variables', 'empty', 'plural',
-		'whitespace', 'xhtml', 'chars', 'links', 'unbalanced'
+		'untranslated', 'duplicate', 'obsolete', 'variables', 'empty', 'plural',
+		'whitespace', 'xhtml', 'chars', 'links', 'unbalanced',
 	);
 
 	protected $results = array();
@@ -66,11 +66,6 @@ class CheckLanguageCLI {
 			$this->output = $options['output'];
 		}
 
-		# Some additional checks not enabled by default
-		if ( isset( $options['duplicate'] ) ) {
-			$this->checks[] = 'duplicate';
-		}
-
 		$this->L = new languages( $this->includeExif );
 	}
 
@@ -119,7 +114,6 @@ Parameters:
 	* wikilang: For the links, what is the content language of the wiki to display the output in (default en).
 	* whitelist: Do only the following checks (form: code,code).
 	* blacklist: Don't do the following checks (form: code,code).
-	* duplicate: Additionally check for messages which are translated the same to English (default off).
 	* noexif: Don't check for EXIF messages (a bit hard and boring to translate), if you know that they are currently not translated and want to focus on other problems (default off).
 Check codes (ideally, all of them should result 0; all the checks are executed by default (except duplicate and language specific check blacklists in checkLanguage.inc):
 	* untranslated: Messages which are required to translate, but are not translated.
