@@ -486,7 +486,7 @@ class DomTreeBuilder {
 
 	private $currentParent;
 
-	private $newWord = "";
+	private $newWord = '';
 
 	protected $bodyStarted = false;
 
@@ -584,7 +584,7 @@ class DomTreeBuilder {
 	}
 
 	private function endWord() {
-		if (!empty($this->newWord)) {
+		if ($this->newWord !== '') {
 			$node = new TextNode($this->currentParent, $this->newWord);
 			$this->currentParent->children[] = $node;
 			$node->whiteBefore = $this->whiteSpaceBeforeThis;
