@@ -136,6 +136,7 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)(„|«)$/sD',
 
+'about'          => 'опьса́ниѥ',
 'qbedit'         => 'испра́ви',
 'qbpageoptions'  => 'си страни́ца',
 'qbmyoptions'    => 'моꙗ́ страни́цѧ',
@@ -155,15 +156,21 @@ $messages = array(
 'printableversion' => 'пєча́тьнъ о́браꙁъ',
 'permalink'        => 'въи́ньна съвѧ́ꙁь',
 'edit'             => 'испра́ви',
+'create'           => 'сътворѥ́ниѥ',
+'editthispage'     => 'си страни́цѧ исправлѥ́ниѥ',
 'delete'           => 'поничьжє́ниѥ',
+'deletethispage'   => 'си страни́цѧ поничьжє́ниѥ',
 'protect'          => 'ꙁабранѥ́ниѥ',
+'protectthispage'  => 'си страни́цѧ ꙁабранє́ниѥ',
 'unprotect'        => 'поущє́ниѥ',
 'newpage'          => 'но́ва страни́ца',
+'talkpage'         => 'си страни́цѧ бєсѣ́да',
 'talkpagelinktext' => 'бєсѣ́да',
 'specialpage'      => 'наро́чьна страни́ца',
 'talk'             => 'бєсѣ́да',
 'toolbox'          => 'орѫ́диꙗ',
 'otherlanguages'   => 'ДРОУГꙐ́ ѨꙀꙐКꙐ́',
+'redirectedfrom'   => '(прѣнаправлѥ́ниѥ о́тъ ⁖ $1 ⁖)',
 'redirectpagesub'  => 'прѣнаправлѥ́ниѥ',
 'lastmodifiedat'   => 'страни́цѧ послѣ́дьнꙗ мѣ́на сътворѥна́ $2 · $1 бѣ ⁙', # $1 date, $2 time
 'jumptonavigation' => 'пла́ваниѥ',
@@ -205,24 +212,25 @@ $messages = array(
 'viewsource' => 'страни́цѧ исто́чьнъ о́браꙁъ',
 
 # Login and logout pages
-'loginpagetitle'     => 'Въходъ',
-'yourname'           => 'твоѥ́ и́мѧ',
-'yourpassword'       => 'Таино слово напиши',
-'yourpasswordagain'  => 'Опакы таиноѥ слово напиши',
-'login'              => 'Въниди',
-'userlogin'          => 'Въниди / съзижди си мѣсто',
-'logout'             => 'ис̾хо́дъ',
-'userlogout'         => 'ис̾хо́дъ',
-'createaccount'      => 'Cъзижди си мѣсто',
-'gotaccount'         => 'Мѣсто ти ѥстъ ли? $1.',
-'gotaccountlink'     => 'Въниди',
-'userexists'         => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
-'username'           => 'по́льꙃєватєлꙗ и́мѧ :',
-'uid'                => 'по́льꙃєватєлꙗ число́ :',
-'yourlanguage'       => 'ѩꙁꙑ́къ :',
-'yournick'           => 'аѵто́графъ :',
-'loginerror'         => 'Въхода блазна',
-'loginlanguagelabel' => 'ѩꙁꙑ́къ : $1',
+'loginpagetitle'          => 'Въходъ',
+'yourname'                => 'твоѥ́ и́мѧ',
+'yourpassword'            => 'Таино слово напиши',
+'yourpasswordagain'       => 'Опакы таиноѥ слово напиши',
+'login'                   => 'Въниди',
+'nav-login-createaccount' => 'въниди / съзи́жди си мѣ́сто',
+'userlogin'               => 'въниди / съзи́жди си мѣ́сто',
+'logout'                  => 'ис̾хо́дъ',
+'userlogout'              => 'ис̾хо́дъ',
+'createaccount'           => 'Cъзижди си мѣсто',
+'gotaccount'              => 'Мѣсто ти ѥстъ ли? $1.',
+'gotaccountlink'          => 'Въниди',
+'userexists'              => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
+'username'                => 'по́льꙃєватєлꙗ и́мѧ :',
+'uid'                     => 'по́льꙃєватєлꙗ число́ :',
+'yourlanguage'            => 'ѩꙁꙑ́къ :',
+'yournick'                => 'аѵто́графъ :',
+'loginerror'              => 'Въхода блазна',
+'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
 
 # Edit page toolbar
 'link_sample'    => 'съвѧ́ꙁи и́мѧ',
@@ -343,6 +351,7 @@ $messages = array(
 О прьваѥго {{grammar:genitive|{{SITENAME}}}} дьнє '''$4''' {{PLURAL:$4|исправлѥ́ниѥ сътворѥно ѥ́стъ|исправлѥ́нии сътворѥнѣ ѥ́стє|исправлѥ́ниꙗ сътворѥно сѫ́тъ|исправлѥ́нии сътворѥно сѫ́тъ}} ⁙ Сѥ значитъ ꙗко кажьдо страница '''$5''' исправлѥниꙗ иматъ · а къжьдо мѣ́на '''$6''' {{PLURAL:$6|раꙁъ съмощрѥна бѣ|раꙁа съмощрѥна бѣашєтє|раꙁъ съмощрѥна бѣ|раꙁъ съмощрѥна бѣашѧ}}  
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота '''$7''' ѥ́стъ",
+'userstatstext' => "С҄ьдє $1 [[Special:ListUsers|{{plural:$1|по́льꙃєватєл҄ь|по́льꙃеватєлꙗ|п́ольꙃєватєлє|по́льꙃєватєлъ}}]] {{plural:$1|ѥ́стъ|ѥ́стє|сѫ́тъ|сѫ́тъ}} · {{plural:$1|ижажє|ижєюжє|ижихъжє|ижихъжє}} '''$2''' (или '''$4%''') {{plural:$5|[[Project:Съмотри́тєлє|{{plural:$2|съмотри́тєл҄ь|съмотри́тєлє|съмотри́тєлє|съмотри́тєлъ}}]]}} {{plural:$2|ѥ́стъ|ѥ́стє|сѫ́тъ|сѫ́тъ}}",
 
 'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
 'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',
@@ -383,12 +392,14 @@ $messages = array(
 'emailuser' => 'Посъли епїстолѫ',
 
 # Watchlist
-'watchlist'     => 'моꙗ́ блюдє́ниꙗ',
-'mywatchlist'   => 'Моꙗ́ блюдє́ниꙗ',
-'watchlistfor'  => "(по́льꙃєватєлꙗ и́мѧ '''$1''' ѥ́стъ)",
-'watch'         => 'блюдє́ниѥ',
-'watchthispage' => 'си страни́цѧ блюдє́ниѥ',
-'unwatch'       => 'оста́ви блюдє́ниѥ',
+'watchlist'      => 'моꙗ́ блюдє́ниꙗ',
+'mywatchlist'    => 'Моꙗ́ блюдє́ниꙗ',
+'watchlistfor'   => "(по́льꙃєватєлꙗ и́мѧ '''$1''' ѥ́стъ)",
+'addedwatchtext' => "страни́ца ⁖ [[:$1]] ⁖ нꙑнѣ по́дъ твоимь [[Special:Watchlist|блюдє́ниѥмь]] ѥ́стъ ⁙
+всꙗ ѥѩ и ѥѩжє бєсѣдꙑ мѣ́нꙑ страни́цѧ ⁖ [[Special:Watchlist|моꙗ́ блюдє́ниꙗ]] ⁖ покаꙁанꙑ сѫ́тъ и  [[Special:RecentChanges|послѣ́дьнъ мѣ́нъ]] ката́лоꙃѣ '''чрьнꙑимъ''' сѧ авлꙗѭтъ",
+'watch'          => 'блюдє́ниѥ',
+'watchthispage'  => 'си страни́цѧ блюдє́ниѥ',
+'unwatch'        => 'оста́ви блюдє́ниѥ',
 
 'created' => 'сътворѥ́нъ ѥ́стъ',
 
@@ -425,6 +436,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'           => 'дос̑ьдє́щьнѩ съвѧ́ꙁи',
+'whatlinkshere-title'     => 'страни́цѧ ижє съ ⁖ $1 ⁖ съвѧ́ꙁи имѫтъ',
 'whatlinkshere-page'      => 'страни́ца :',
 'isredirect'              => 'прѣнаправлѥ́ниѥ',
 'whatlinkshere-links'     => '← съвѧ́ꙁи',
@@ -457,12 +469,15 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-mytalk'       => 'моꙗ́ бєсѣ́дꙑ страни́ца',
 'tooltip-pt-logout'       => 'ис̾хо́дъ',
+'tooltip-ca-viewsource'   => 'си страни́ца ꙁабранєна́ ѥ́стъ ⁙
+ѥѩ исто́чьнъ о́браꙁъ ви́дєти мо́жєщи',
 'tooltip-ca-protect'      => 'си страни́цѧ ꙁабранє́ниѥ',
 'tooltip-ca-delete'       => 'си страни́цѧ поничьжє́ниѥ',
 'tooltip-ca-move'         => 'си страни́цѧ прѣимєнова́ниѥ',
 'tooltip-ca-watch'        => 'си страни́цѧ блюдє́ниѥ',
 'tooltip-p-logo'          => 'гла́вьна страни́ца',
 'tooltip-n-recentchanges' => 'послѣ́дьнъ мѣ́нъ катало́гъ',
+'tooltip-t-upload'        => 'положє́ниѥ дѣ́лъ',
 'tooltip-watch'           => 'си страни́цѧ блюдє́ниѥ',
 
 # Media information

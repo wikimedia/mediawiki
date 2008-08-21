@@ -464,7 +464,7 @@ Cinntigh do litriú, nó bain úsáid as an foirm thíos chun cuntas úsáideora
 'wrongpassword'              => "D'iontráil tú focal faire mícheart (nó ar iarraidh). Déan iarracht eile le do thoil.",
 'wrongpasswordempty'         => 'Níor iontráil tú focal faire. Bain triail eile as.',
 'passwordtooshort'           => "Tá d'fhocal faire ró-ghearr.
-Caithfidh go bhfuil $1 carachtar ann ar a laghad.",
+Caithfidh go bhfuil {{PLURAL:$1|1 carachtar|$1 carachtair}} carachtar ann ar a laghad.",
 'mailmypassword'             => "Seol m'fhocal faire chugam.",
 'passwordremindertitle'      => 'Cuimneachán an fhocail faire ó {{SITENAME}}',
 'passwordremindertext'       => 'D\'iarr duine éigin (tusa de réir cosúlachta, ón seoladh IP $1)
@@ -539,21 +539,23 @@ Ná tabhair aird don teachtaireacht seo má cruthaíodh an cuntas seo trí earr�
 'missingsummary'         => "'''Cuimhneachán:''' Níor thug tú achoimriú don athrú. Má chliceáileann tú Sábháil arís, sábhálfar an t-athrú gan é a hachoimriú.",
 'summary-preview'        => 'Réamhamharc an achoimre',
 'blockedtitle'           => 'Tá an úsáideoir seo faoi chosc',
-'blockedtext'            => 'Chuir $1 cosc ar d’ainm úsáideora nó ar do sheoladh IP. Is í seo an chúis a thugadh:<br />\'\'$2\'\'.<p>Is féidir leat teagmháil a dhéanamh le $1 nó le duine eile de na [[{{SITENAME}}:Administrators|riarthóirí]] chun an cosc a phléigh.
+'blockedtext'            => "<big>'''Chuir \$1 cosc ar d’ainm úsáideora nó ar do sheoladh IP.'''</big>
 
-* Tús an chosc: $8
-* Dul as feidhm: $6
-* Sprioc an chosc: $7
+Is í seo an chúis a thugadh:<br />''\$2''.<p>Is féidir leat teagmháil a dhéanamh le \$1 nó le duine eile de na [[{{MediaWiki:Grouppage-sysop}}|riarthóirí]] chun an cosc a phléigh.
+
+* Tús an chosc: \$8
+* Dul as feidhm: \$6
+* Sprioc an chosc: \$7
 <br />
-Tabhair faoi deara nach féidir leat an gné "cuir ríomhphost chuig an úsáideoir seo" a úsáid mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Special:Preferences|shocruithe úsáideora]]. 
+Tabhair faoi deara nach féidir leat an gné \"cuir ríomhphost chuig an úsáideoir seo\" a úsáid mura bhfuil seoladh ríomhphoist bailí cláraithe i do [[Special:Preferences|shocruithe úsáideora]]. 
 
-Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le gach ceist a chuirfeá.
+Is é \$3 do sheoladh IP agus #\$5 do ID coisc. Déan tagairt don seoladh seo le gach ceist a chuirfeá.
 
 ==Nóta do úsáideoirí AOL==
 De bhrí ghníomhartha leanúnacha creachadóireachta a dhéanann aon úsáideoir AOL áirithe, is minic a coisceann {{SITENAME}} ar friothálaithe AOL. Faraor, áfach, is féidir le 
-go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is minic a coiscaítear úsáideoirí AOL neamhchiontacha. Gabh ár leithscéal d\'aon trioblóid. 
+go leor úsáídeoirí AOL an friothálaí céanna a úsáid, agus mar sin is minic a coiscaítear úsáideoirí AOL neamhchiontacha. Gabh ár leithscéal d'aon trioblóid. 
 
-Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.',
+Dá dtarlódh an scéal seo duit, cuir ríomhphost chuig riarthóir le seoladh ríomhphoist AOL. Bheith cinnte tagairt a dhéanamh leis an seoladh IP seo thuas.",
 'whitelistedittitle'     => 'Logáil isteach chun athrú a dhéanamh',
 'whitelistedittext'      => 'Ní mór duit $1 chun ailt a athrú.',
 'loginreqtitle'          => 'Tá logáil isteach de dhíth ort',
@@ -775,7 +777,7 @@ den am an freastalaí (UTC).',
 'nchanges'                          => '$1 {{PLURAL:$1|athrú amháin|athruithe}}',
 'recentchanges'                     => 'Athruithe is déanaí',
 'recentchangestext'                 => 'Déan faire ar na hathruithe is déanaí sa vicí ar an leathanach seo.',
-'rcnote'                            => "Is {{PLURAL:$1|é seo a leanas <strong>an t-athrú amháin</strong>|iad seo a leanas na <strong>$1</strong> athruithe is déanaí}} {{PLURAL:$2|ar feadh an lae dheireanaigh|ar feadh na '''$2''' lá deireanacha}}, ag $3.",
+'rcnote'                            => "Is {{PLURAL:$1|é seo a leanas <strong>an t-athrú amháin</strong>|iad seo a leanas na <strong>$1</strong> athruithe is déanaí}} {{PLURAL:$2|ar feadh an lae dheireanaigh|ar feadh na '''$2''' lá deireanacha}}, as $5, $4.",
 'rcnotefrom'                        => 'Is iad seo a leanas na hathruithe ó <b>$2</b> (go dti <b>$1</b> taispeánaithe).',
 'rclistfrom'                        => 'Taispeáin nua-athruithe dom ó $1 anuas',
 'rcshowhideminor'                   => '$1 mionathruithe',
@@ -1022,7 +1024,7 @@ mian leis ríomhphost a fháil ón úsáideoirí eile.',
 Amach anseo liostálfar athruithe don leathanach seo agus dá leathanach plé ansin,
 agus beidh '''cló trom''' ar a theideal san [[Special:RecentChanges|liosta de na hathruithe is déanaí]] sa chaoi go bhfeicfeá iad go héasca.",
 'removedwatch'         => 'Bainte den liosta faire',
-'removedwatchtext'     => 'Baineadh an leathanach "<nowiki>$1</nowiki>" de do liosta faire.',
+'removedwatchtext'     => 'Baineadh an leathanach "<nowiki>$1</nowiki>" as [[Special:Watchlist|do liosta faire]].',
 'watch'                => 'Fair',
 'watchthispage'        => 'Déan faire ar an leathanach seo',
 'unwatch'              => 'Ná fair',
@@ -1123,11 +1125,14 @@ Féach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eol
 'protect-title'               => 'Ag glasáil "$1"',
 'protect-legend'              => 'Cinntigh an glasáil',
 'protectcomment'              => 'Cúis don glasáil',
+'protectexpiry'               => 'As feidhm:',
 'protect-unchain'             => 'Díghlasáil an cead athainmithe',
 'protect-text'                => 'Is féidir leat an leibhéal glasála a athrú anseo don leathanach <strong><nowiki>$1</nowiki></strong>.',
 'protect-default'             => '(réamhshocrú)',
+'protect-fallback'            => 'Ceadúnas "$1" riachtanach',
 'protect-level-autoconfirmed' => 'Bac úsáideoirí neamhchláraithe',
 'protect-level-sysop'         => 'Oibreoirí chórais amháin',
+'protect-expiring'            => 'as feidhm $1 (UTC)',
 'restriction-type'            => 'Ceadúnas:',
 'pagesize'                    => '(bearta)',
 
@@ -1197,6 +1202,15 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 'ipbexpiry'               => 'Am éaga',
 'ipbreason'               => 'Cúis',
 'ipbreasonotherlist'      => 'Fáth eile',
+'ipbreason-dropdown'      => '*Fáthanna coitianta
+** Loitiméaracht
+** Naisc turscar
+** Fadhbanna cóipcheart
+** Ag iarraidh ciapadh daoine eile
+** Drochúsáid as cuntasaí iolrach
+** Fadhbanna idirvicí
+** Feallaire
+** Seachfhreastalaí Oscailte',
 'ipbsubmit'               => 'Coisc an úsáideoir seo',
 'ipbother'                => 'Méid eile ama',
 'ipboptions'              => '2 uair:2 hours,1 lá amháin:1 day,3 lá:3 days,1 sheachtain amháin:1 week,2 sheachtain:2 weeks,1 mhí amháin:1 month,3 mhí:3 months,6 mhí:6 months,1 bhliain amháin:1 year,gan teorainn:infinite', # display1:time1,display2:time2,...
@@ -1272,13 +1286,13 @@ Cinntigh go bhfuil an scéal seo d'intinn agat.",
 'movepagetext'            => "Úsáid an fhoirm seo thíos chun leathanach a athainmniú. Aistreofar a chuid staire go léir chuig an teideal nua.
 Déanfar leathanach atreoraithe den sean-teideal chuig an teideal nua.
 Ní athrófar naisc chuig sean-teideal an leathanaigh; 
-bí cinnte go ndéanfá cuardach ar atreoruithe dúbailte nó briste.
+bí cinnte go ndéanfá cuardach ar atreoruithe [[Special:DoubleRedirects|dúbailte]] nó [[Special:BrokenRedirects|briste]].
 Tá dualgas ort bheith cinnte go rachaidh na naisc chuig an áit is ceart fós.
 
 Tabhair faoi deara '''nach''' n-athainmneofar an leathanach má tá leathanach ann cheana féin faoin teideal nua, ach amháin más folamh nó atreorú é nó mura bhfuil aon stair athraithe aige cheana.
 Mar sin, is féidir leathanach a athainmniú ar ais chuig an teideal a raibh air roimhe má tá botún déanta agat, agus ní féidir leathanach atá ann cheana a fhorscríobh.
 
-'''AIRE!'''
+<font color=\"red\">'''AIRE!'''</font>
 Is féidir gur dianbheart gan choinne é athrú a dhéanamh ar leathanach móréilimh;
 cinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 'movepagetalktext'        => "Aistreofar an leathanach phlé leis, má tá sin ann:
@@ -1293,6 +1307,7 @@ Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lám
 'move-watch'              => 'Déan faire an leathanach seo',
 'movepagebtn'             => 'Athainmnigh an leathanach',
 'pagemovedsub'            => "D'éirigh leis an athainmniú",
+'movepage-moved'          => '<big>\'\'\'Athainmníodh "$1" mar "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Tá leathanach leis an teideal seo ann fós, nó níl an
 teideal a rinne tú rogha air ina theideal bailí.
 Toghaigh teideal eile le do thoil.',
@@ -1476,6 +1491,8 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'imagemaxsize'         => 'Cuir an teorann seo ar na íomhánna atá le fáil ar leathanaigh cuir síos íomhánna:',
 'thumbsize'            => 'Méid mionshamhla :',
 'file-info-size'       => '($1 × $2 picteilín, méid comhaid: $3, cineál MIME: $4)',
+'file-nohires'         => '<small>Níl aon taifeach is mó ar fáil.</small>',
+'svg-long-desc'        => '(Comhad SVG, ainmniúil $1 × $2 picteilíni, méid comhaid: $3)',
 'show-big-image'       => 'Taispeáin leagan ardtaifigh den íomhá',
 'show-big-image-thumb' => '<small>Méid an réamhamhairc seo: $1 × $2 picteilín</small>',
 

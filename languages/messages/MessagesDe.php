@@ -782,8 +782,10 @@ Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder di
 'longpagewarning'                  => '<strong>WARNUNG: Diese Seite ist $1 KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 KB sind.
 Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>',
 'longpageerror'                    => '<strong>FEHLER: Der Text, den du zu speichern versuchst, ist $1 KB groß. Das ist größer als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.</strong>',
-'readonlywarning'                  => '<strong>WARNUNG: Die Datenbank wurde während der Seitenbearbeitung für Wartungsarbeiten gesperrt, so dass du die Seite im Moment nicht
-speichern kannst. Sichere den Text und versuche die Änderungen später einzuspielen.</strong>',
+'readonlywarning'                  => '<strong>WARNUNG: Die Datenbank wurde während der Seitenbearbeitung für Wartungsarbeiten gesperrt, so dass du die Seite im Moment nicht speichern kannst.
+Sichere den Text und versuche die Änderungen später einzuspielen.</strong>
+
+Grund für die Sperre: $1',
 'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
 'semiprotectedpagewarning'         => "'''Halbsperrung:''' Die Seite wurde so gesperrt, dass nur registrierte Benutzer diese ändern können.",
 'cascadeprotectedwarning'          => "'''ACHTUNG: Diese Seite wurde gesperrt, so dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:'''",
@@ -942,6 +944,8 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'difference'              => '(Unterschied zwischen Versionen)',
 'lineno'                  => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versionen vergleichen',
+'visualcomparison'        => 'Visueller Vergleich',
+'wikicodecomparison'      => 'Wikitext-Vergleich',
 'editundo'                => 'rückgängig',
 'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
 
@@ -981,7 +985,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'searchall'                 => 'alle',
 'showingresults'            => "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
 'showingresultsnum'         => "Hier {{PLURAL:$3|ist '''1''' Ergebnis|sind '''$3''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
-'showingresultstotal'       => "Es {{PLURAL:$3|folgt Suchergebnis '''$1''' von '''$3:'''|folgen die Suchergebnisse '''$1–$2''' von '''$3:'''}}",
+'showingresultstotal'       => "Es {{PLURAL:$4|folgt Suchergebnis '''$1''' von '''$3:'''|folgen die Suchergebnisse '''$1–$2''' von '''$3:'''}}",
 'nonefound'                 => "'''Hinweis:''' Es werden standardmäßig nur einige Namensräume durchsucht. Setze ''all:'' vor deinen Suchbegriff, um alle Seiten (inkl. Diskussionsseiten, Vorlagen usw.) zu durchsuchen oder gezielt den Namen des zu durchsuchenden Namensraumes.",
 'powersearch'               => 'Erweiterte Suche',
 'powersearch-legend'        => 'Erweiterte Suche',
@@ -1013,7 +1017,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'datetime'                 => 'Datum und Zeit',
 'math_failure'             => 'Parser-Fehler',
 'math_unknown_error'       => 'Unbekannter Fehler',
-'math_unknown_function'    => 'Unbekannte Funktion',
+'math_unknown_function'    => 'Unbekannte Funktion&nbsp;',
 'math_lexing_error'        => "'Lexing'-Fehler",
 'math_syntax_error'        => 'Syntaxfehler',
 'math_image_error'         => 'die PNG-Konvertierung schlug fehl',
@@ -2253,6 +2257,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Zum vorherigen Versionsunterschied',
 'nextdiff'     => 'Zum nächsten Versionsunterschied →',
+
+# Visual comparison
+'visual-comparison' => 'Visueller Vergleich',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.<hr />",

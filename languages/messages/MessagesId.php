@@ -384,13 +384,13 @@ $messages = array(
 'category_header'                => 'Artikel dalam kategori "$1"',
 'subcategories'                  => 'Subkategori',
 'category-media-header'          => 'Media dalam kategori "$1"',
-'category-empty'                 => "''Kategori ini saat ini tak memiliki artikel atau media.''",
+'category-empty'                 => "''Tidak terdapat artikel maupun media dalam kategori ini.''",
 'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori tersembunyi}}',
 'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Kategori ini hanya memiliki satu subkategori berikut.|Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut, dari total $2.}}',
 'category-subcat-count-limited'  => 'Kategori ini memiliki {{PLURAL:$1|subkategori|$1 subkategori}} berikut.',
 'category-article-count'         => '{{PLURAL:$2|Kategori ini hanya memiliki satu halaman berikut.|Kategori ini memiliki {{PLURAL:$1|halaman|$1 halaman}}, dari total $2.}}',
-'category-article-count-limited' => 'Kategori ini memiliki {{PLURAL:$1|halaman|$1 halaman}} berikut.',
+'category-article-count-limited' => 'Kategori ini memiliki {{PLURAL:$1|satu halaman|$1 halaman}} berikut.',
 'category-file-count'            => '{{PLURAL:$2|Kategori ini hanya memiliki satu berkas berikut.|Kategori ini memiliki {{PLURAL:$1|berkas|$1 berkas}} berikut, dari total $2.}}',
 'category-file-count-limited'    => 'Kategori ini memiliki {{PLURAL:$1|berkas|$1 berkas}} berikut.',
 'listingcontinuesabbrev'         => 'samb.',
@@ -837,7 +837,10 @@ Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hi
 'copyrightwarning2'                => 'Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan artikel Anda ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). <strong>JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!</strong>',
 'longpagewarning'                  => "'''PERINGATAN: Halaman ini panjangnya adalah $1 kilobita; beberapa penjelajah web mungkin mengalami masalah dalam menyunting halaman yang panjangnya 32 kb atau lebih. Harap pertimbangkan untuk memecah halaman menjadi beberapa bagian yang lebih kecil.'''",
 'longpageerror'                    => '<strong>KESALAHAN: Teks yang Anda kirimkan sebesar $1 kilobita, yang berarti lebih besar dari jumlah maksimum $2 kilobita. Teks tidak dapat disimpan.</strong>',
-'readonlywarning'                  => '<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak akan dapat menyimpan hasil penyuntingan Anda. Anda mungkin perlu memindahkan hasil penyuntingan Anda ini ke tempat lain untuk disimpan belakangan.</strong>',
+'readonlywarning'                  => '<strong>PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak dapat menyimpan hasil suntingan Anda.
+Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi setelah pemeliharaan selesai.</strong>
+
+Pengurus yang mengunci basis data memberikan penjelasan berikut: $1',
 'protectedpagewarning'             => '<strong>PERINGATAN: Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya.</strong>',
 'semiprotectedpagewarning'         => "'''Catatan:''' Halaman ini sedang dilindungi, sehingga hanya pengguna terdaftar yang bisa menyuntingnya.",
 'cascadeprotectedwarning'          => "'''PERINGATAN:''' Halaman ini sedang dilindungi sehingga hanya pengguna dengan hak akses pengurus saja yang dapat menyuntingnya karena disertakan dalam {{PLURAL:$1|halaman|halaman-halaman}} berikut yang telah dilindungi dengan opsi 'perlindungan runtun':",
@@ -996,6 +999,8 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'difference'              => '(Perbedaan antarrevisi)',
 'lineno'                  => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi terpilih',
+'visualcomparison'        => 'Perbandingan visual',
+'wikicodecomparison'      => 'Perbandingan teks wiki',
 'editundo'                => 'batalkan',
 'diff-multi'              => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
 
@@ -1031,7 +1036,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'searchall'                 => 'semua',
 'showingresults'            => "Di bawah ini ditampilkan hingga {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimulai dari #'''$2'''.",
 'showingresultsnum'         => "Di bawah ini ditampilkan{{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimulai dari #'''$2'''.",
-'showingresultstotal'       => "Hasil pencarian {{PLURAL:$3|'''$1''' dari '''$3'''|'''$1 - $2''' dari '''$3'''}}",
+'showingresultstotal'       => "Hasil pencarian {{PLURAL:$4|'''$1'''|'''$1 - $2'''}} dari '''$3'''",
 'nonefound'                 => "'''Catatan''': Kegagalan pencarian biasanya disebabkan oleh pencarian kata-kata umum dalam bahasa Inggris, seperti \"have\" dan \"from\", yang biasanya tidak diindeks, atau dengan menentukan lebih dari satu kriteria pencarian (hanya halaman yang mengandung semua kriteria pencarianlah yang akan ditampilkan dalam hasil pencarian)",
 'powersearch'               => 'Pencarian lanjut',
 'powersearch-legend'        => 'Pencarian lanjut',
@@ -1571,9 +1576,9 @@ Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna
 
 # Special:Categories
 'categories'                    => 'Daftar kategori',
-'categoriespagetext'            => 'Kategori-kategori berikut mengandung halaman atau media.
-[[Special:UnusedCategories|Kategori-kategori yang tidak digunakan]] tidak ditampilkan di sini.
-Lihat pula [[Special:WantedCategories|kategori yang dibutuhkan]].',
+'categoriespagetext'            => 'Terdapat halaman-halaman atau media dalam kategori-kategori berikut.
+[[Special:UnusedCategories|Kategori-kategori tanpa isi]] tidak ditampilkan di sini.
+Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'categoriesfrom'                => 'Tampilkan kategori-kategori dimulai dengan:',
 'special-categories-sort-count' => 'urutkan menurut jumlah',
 'special-categories-sort-abc'   => 'urutkan menurut abjad',
@@ -2233,6 +2238,9 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 # Browsing diffs
 'previousdiff' => '←Perbedaan sebelumnya',
 'nextdiff'     => 'Perbedaan selanjutnya→',
+
+# Visual comparison
+'visual-comparison' => 'Perbandingan visual',
 
 # Media information
 'mediawarning'         => "'''Peringatan:''' Berkas ini mungkin mengandung kode berbahaya yang jika dijalankan dapat mempengaruhi sistem Anda.<hr />",

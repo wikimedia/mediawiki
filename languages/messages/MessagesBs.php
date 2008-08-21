@@ -432,7 +432,22 @@ Pretraga: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječile izmjene.',
 'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
 'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
+'editinginterface'     => "'''Upozorenje:''' Vi meijenjate stranicu koja sadrzi aktivan tekst programa.
+Promjene na ovoj stranici dovode i do promjena za druge korisnike.
+Za prevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=en Betawiki], projekt prijevoda za MediaWiki.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
+'cascadeprotected'     => 'Uređivanje ove sranice je zabranjeno jer sadrži {{PLURAL:$1|stranicu zaštićeu|stranice zaštićene}} od uređivanja iz razloga:
+$2',
+'namespaceprotected'   => "Vi nemate dozvulu da mijenjate stranicu '''$1'''.",
+'customcssjsprotected' => 'Nemate dozvolu za mijenjanje ove stranice jer sadrži osobne postavke nekog drugog korisnika.',
+'ns-specialprotected'  => 'Specijalne stranice se ne mogu uređivati.',
+'titleprotected'       => "Naslov stranice je zaštićen od postavljanja od [[User:$1|$1]].
+Iz razloga ''$2''.",
+
+# Virus scanner
+'virus-badscanner'     => 'Loša konfiguracija: nepoznati anti-virus program: <i>$1</i>',
+'virus-scanfailed'     => 'kontrolisani fajlovi (code $1)',
+'virus-unknownscanner' => 'nepoznati anti-virus program:',
 
 # Login and logout pages
 'logouttitle'             => 'Odjavite se',
@@ -566,11 +581,10 @@ Molimo Vas da navedete gornje podatke pri zahtjevu za deblokadu.",
 'noarticletext'            => "<div style=\"border: 1px solid #ccc; padding: 7px;\">'''{{SITENAME}} još nema ovaj članak.'''
 * Da započnete članak, kliknite '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} uredite ovu stranicu]'''.
 * [[Special:Search/{{PAGENAME}}|Pretraži {{PAGENAME}}]] u ostalim člancima
-* [[Special:WhatLinksHere/{{NAMESPACE}}:{{PAGENAME}}|Stranice koje su povezane za]] {{PAGENAME}} članak
+* [[Special:WhatLinksHere/{{NAMESPACE}}{{PAGENAME}}|Stranice koje su povezane za]] {{PAGENAME}} članak
 ----
 * '''Ukoliko ste napravili ovaj članak u poslednjih nekoliko minuta i još se nije pojavio, postoji mogućnost da je server u zastoju zbog osvježavanja baze podataka.''' Molimo Vas da probate sa <span class=\"plainlinks\">[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=purge}} osvježavanjem]<span> ili sačekajte i provjerite kasnije ponovo prije ponovnog pravljenja članka.
-* Ako ste napravili članak pod ovim imenom ranije, moguće je da je bio izbrisan.  Potražite '''{{FULLPAGENAME}}''' [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} u spisku brisanja].
-</div>",
+* Ako ste napravili članak pod ovim imenom ranije, moguće je da je bio izbrisan.  Potražite '''{{FULLPAGENAME}}''' [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} u spisku brisanja].",
 'usercssjsyoucanpreview'   => "<strong>Pažnja:</strong> Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS/JS prije nego što sačuvate.",
 'usercsspreview'           => "'''Zapamtite ovo je samo izgled vašeg CSS-a, još uvijek nije sačuvan!'''",
 'userjspreview'            => "'''Zapamtite ovo je samo izgled vaše JavaScript-e, još uvijek nije sačuvan!'''",
@@ -749,7 +763,8 @@ koje sadrže sve izraze koji se traže će se pojaviti u rezultatima).",
 'recentchangeslinked'          => 'Srodne izmjene',
 'recentchangeslinked-title'    => 'Srodne promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema izmjena na povezanim stranicama u zadanom periodu.',
-'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. Stranice koje su na vašem spisku praćenja su '''podebljane'''.",
+'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. 
+Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podebljane'''.",
 
 # Upload
 'upload'                      => 'Postavi datoteku',
@@ -832,10 +847,13 @@ The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7''
 'brokenredirectstext' => 'Sledeća preusmjerenja su povezana na nepostojeći članak:',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bajtova',
-'nlinks'                  => '$1 veza',
-'nmembers'                => '$1 {{PLURAL:$1|član|člana|članova}}',
-'nviews'                  => '$1 puta pogledano',
+'nbytes'                  => '$1 {{PLURAL:$1|bajt|bajtova}}',
+'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorije}}',
+'nlinks'                  => '$1 {{PLURAL:$1|veza|veze}}',
+'nmembers'                => '$1 {{PLURAL:$1|član|članova}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revizija|revizije}}',
+'nviews'                  => '$1 {{PLURAL:$1|pregled|pregleda}}',
+'specialpage-empty'       => 'Nepostoje rezultati za ovaj izvještaj.',
 'lonelypages'             => 'Siročići',
 'uncategorizedpages'      => 'Nekategorisane stranice',
 'uncategorizedcategories' => 'Nekategorisane kategorije',
@@ -872,6 +890,7 @@ na kome bi se izvela ova funkcija.',
 # Special:AllPages
 'allpages'       => 'Sve stranice',
 'alphaindexline' => '$1 do $2',
+'nextpage'       => 'Sljedeća strana ($1)',
 'prevpage'       => 'Prethodna stranica ($1)',
 'allpagesfrom'   => 'Prikaži stranice počev od:',
 'allarticles'    => 'Svi članci',
@@ -1041,7 +1060,7 @@ neće biti automatski zamijenjena.',
 
 # What links here
 'whatlinkshere'       => 'Šta je povezano ovdje',
-'whatlinkshere-title' => 'Stranice koje vode na $1',
+'whatlinkshere-title' => 'Stranice koje vode na "$1"',
 'linkshere'           => "Sljedeći članci vode na '''[[:$1]]''':",
 'nolinkshere'         => "Nema linkova na '''[[:$1]]'''.",
 'isredirect'          => 'preusmjerivač',
@@ -1263,6 +1282,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'thumbsize'            => 'Veličina umanjenog prikaza:',
 'file-info-size'       => '($1 × $2 piksela, veličina datoteke: $3, MIME tip: $4)',
 'file-nohires'         => '<small>Veća rezolucija nije dostupna.</small>',
+'svg-long-desc'        => '(SVG fajl, dozvoljeno $1 × $2 piksela, veličina fajla: $3)',
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina ovoga prikaza: $1 × $2 piksela</small>',
 

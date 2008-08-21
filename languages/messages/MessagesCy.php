@@ -1705,6 +1705,8 @@ $1',
 'range_block_disabled'        => 'Ar hyn o bryd nid yw gweinyddwyr yn gallu blocio ystod o gyfeiriadau IP.',
 'ipb_expiry_invalid'          => 'Amser terfynu yn annilys.',
 'ipb_already_blocked'         => 'Mae "$1" eisoes wedi ei flocio',
+'ipb_cant_unblock'            => "Gwall: Ni chafwyd hyd i'r bloc a'r ID $1.
+Hwyrach ei fod wedi ei ddad-flocio'n barod.",
 'ipb_blocked_as_range'        => "Gwall: Nid yw'r IP $1 wedi ei blocio'n uniongyrchol ac felly ni ellir ei datflocio. Wedi dweud hynny, y mae'n rhan o'r amrediad $2 sydd wedi ei blocio; gellir datflocio'r amrediad.",
 'ip_range_invalid'            => 'Dewis IP annilys.',
 'proxyblocker'                => 'Dirprwy-flociwr',
@@ -1798,6 +1800,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{ns:special}}:Export
 'export-addcattext' => "Ychwanegu tudalennau i'w hallforio o'r categori:",
 'export-addcat'     => 'Ychwaneger',
 'export-download'   => 'Cynnig rhoi ar gadw ar ffurf ffeil',
+'export-templates'  => 'Cynnwys nodiadau',
 
 # Namespace 8 related
 'allmessages'               => 'Pob neges',

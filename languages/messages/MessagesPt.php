@@ -754,7 +754,10 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 navegadores possuem problemas em editar páginas maiores que 32kb.
 Por favor, considere seccionar a página em secções de menor dimensão.</strong>',
 'longpageerror'                    => '<strong>ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.</strong>',
-'readonlywarning'                  => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
+'readonlywarning'                  => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento.
+Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>
+
+Quem bloqueou a base de dados forneceu a seguinte justificativa: $1',
 'protectedpagewarning'             => '<strong>AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
@@ -829,7 +832,7 @@ Legenda: (actu) = diferenças da versão actual,
 
 # Revision feed
 'history-feed-title'          => 'História de revisão',
-'history-feed-description'    => 'Histórico de revisões para esta página nesta wiki',
+'history-feed-description'    => 'Histórico de edições para esta página nesta wiki',
 'history-feed-item-nocomment' => '$1 em $2', # user at time
 'history-feed-empty'          => 'A página requisitada não existe.
 Poderá ter sido eliminada da wiki ou renomeada.
@@ -840,21 +843,20 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
-Esta revisão desta página foi removida dos arquivos públicos.
+Esta edição desta página foi removida dos arquivos públicos.
 Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].
 </div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
-A revisão desta página foi removida dos arquivos públicos.
-Como um administrador desta wiki pode a ver;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].
-</div>',
+Esta edição desta página foi removida dos arquivos públicos.
+Sendo um administrador desta wiki, pode a ver;
+mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].</div>',
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
-'revdelete-nooldid-title'     => 'Nenhuma revisão seleccionada',
+'revdelete-nooldid-title'     => 'Edição de destino inválida',
 'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
 'revdelete-selected'          => '{{PLURAL:$2|Edição seleccionada|Edições seleccionadas}} de [[:$1]]:',
 'logdelete-selected'          => '{{PLURAL:$1|Evento de registo seleccionado|Eventos de registo seleccionados}}:',
-'revdelete-text'              => "Revisões eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
+'revdelete-text'              => "Edições eliminadas continuarão a aparecer no histórico da página, apesar de o seu conteúdo textual estar inacessível ao público.
 
 Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
 'revdelete-legend'            => 'Definir restrições de visualização',
@@ -868,7 +870,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
 'revdelete-log'               => 'Comentário de registo:',
 'revdelete-submit'            => 'Aplicar à edição seleccionada',
-'revdelete-logentry'          => 'modificou visibilidade de revisão para [[$1]]',
+'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
 'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
 'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
@@ -882,7 +884,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-unrestricted'      => 'restrições a administradores removidas',
 'revdelete-hid'               => 'ocultado $1',
 'revdelete-unhid'             => 'desocultado $1',
-'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisão|revisões}}',
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|edição|edições}}',
 'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
@@ -894,7 +896,7 @@ Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e
 'mergehistory'                     => 'Fundir histórico de páginas',
 'mergehistory-header'              => 'A partir desta página é possível fundir históricos de edições de uma página em outra.
 Certifique-se de que tal alteração manterá a continuidade das ações.',
-'mergehistory-box'                 => 'Fundir revisões de duas páginas:',
+'mergehistory-box'                 => 'Fundir edições de duas páginas:',
 'mergehistory-from'                => 'Página de origem:',
 'mergehistory-into'                => 'Página de destino:',
 'mergehistory-list'                => 'Histórico de edições habilitadas para fusão',
@@ -902,7 +904,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'mergehistory-go'                  => 'Exibir edições habilitadas a serem fundidas',
 'mergehistory-submit'              => 'Fundir edições',
 'mergehistory-empty'               => 'Não existem edições habilitadas a serem fundidas.',
-'mergehistory-success'             => '$3 {{PLURAL:$3|revisão|revisões}} de [[:$1]] fundidas em [[:$2]] com sucesso.',
+'mergehistory-success'             => 'Foram fundidas $3 {{PLURAL:$3|edição|edições}} de [[:$1]] em [[:$2]].',
 'mergehistory-fail'                => 'Não foi possível fundir os históricos; por gentileza, verifique a página e os parâmetros de tempo.',
 'mergehistory-no-source'           => 'A página de origem ($1) não existe.',
 'mergehistory-no-destination'      => 'A página de destino ($1) não existe.',
@@ -919,7 +921,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 
 # Diffs
 'history-title'           => 'Histórico de edições de "$1"',
-'difference'              => '(Diferença entre revisões)',
+'difference'              => '(Diferença entre edições)',
 'lineno'                  => 'Linha $1:',
 'compareselectedversions' => 'Compare as versões seleccionadas',
 'editundo'                => 'desfazer',
@@ -957,7 +959,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'searchall'                 => 'todos',
 'showingresults'            => "A seguir {{PLURAL:$1|é mostrado '''um''' resultado|são mostrados até '''$1''' resultados}}, iniciando no '''$2'''º.",
 'showingresultsnum'         => "A seguir {{PLURAL:$3|é mostrado '''um''' resultado|são mostrados '''$3''' resultados}}, iniciando com o '''$2'''º.",
-'showingresultstotal'       => "Exibindo {{PLURAL:$3|o resultado '''$1''' de '''$3'''|os resultados '''$1 a $2''' de '''$3'''}}",
+'showingresultstotal'       => "Exibindo {{PLURAL:$4|o resultado '''$1''' de '''$3'''|os resultados '''$1 a $2''' de '''$3'''}}",
 'nonefound'                 => "'''Nota''': apenas alguns espaços nominais são pesquisados por padrão. Tente utilizar o prefixo ''all:'' em sua busca, para pesquisar por todos os conteúdos deste wiki (inclusive páginas de discussão, predefinições etc), ou mesmo, utilizando o espaço nominal desejado como prefixo.",
 'powersearch'               => 'Pesquisa avançada',
 'powersearch-legend'        => 'Pesquisa avançada',
@@ -1100,11 +1102,11 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-writeapi'             => 'Uso da API de escrita',
 'right-delete'               => 'Eliminar páginas',
 'right-bigdelete'            => 'Eliminar páginas com histórico grande',
-'right-deleterevision'       => 'Eliminar e restaurar revisões específicas de páginas',
+'right-deleterevision'       => 'Eliminar e restaurar edições específicas de páginas',
 'right-deletedhistory'       => 'Ver entradas de histórico eliminadas, sem o texto associado',
 'right-browsearchive'        => 'Buscar páginas eliminadas',
 'right-undelete'             => 'Restaurar uma página',
-'right-suppressrevision'     => 'Rever e restaurar revisões ocultadas dos Sysops',
+'right-suppressrevision'     => 'Rever e restaurar edições ocultadas dos Sysops',
 'right-suppressionlog'       => 'Ver registos privados',
 'right-block'                => 'Impedir outros utilizadores de editarem',
 'right-blockemail'           => 'Impedir um utilizador de enviar email',
@@ -1430,7 +1432,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'ncategories'             => '$1 {{PLURAL:$1|categoria|categorias}}',
 'nlinks'                  => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                => '$1 {{PLURAL:$1|membro|membros}}',
-'nrevisions'              => '$1 {{PLURAL:$1|revisão|revisões}}',
+'nrevisions'              => '$1 {{PLURAL:$1|edição|edições}}',
 'nviews'                  => '$1 {{PLURAL:$1|visita|visitas}}',
 'specialpage-empty'       => 'Actualmente não há dados a serem exibidos nesta página.',
 'lonelypages'             => 'Páginas órfãs',
@@ -1450,7 +1452,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'mostlinkedtemplates'     => 'Predefinições com mais afluentes',
 'mostcategories'          => 'Páginas de conteúdo com mais categorias',
 'mostimages'              => 'Imagens com mais afluentes',
-'mostrevisions'           => 'Páginas de conteúdo com mais revisões',
+'mostrevisions'           => 'Páginas de conteúdo com mais edições',
 'prefixindex'             => 'Índice de prefixo',
 'shortpages'              => 'Páginas curtas',
 'longpages'               => 'Páginas longas',
@@ -1792,7 +1794,7 @@ $1',
 'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas mudanças com este critério.',
-'uctop'               => ' (revisão actual)',
+'uctop'               => ' (edição actual)',
 'month'               => 'Mês (inclusive anteriores):',
 'year'                => 'Ano (inclusive anteriores):',
 
@@ -1992,7 +1994,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e seleccione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
 Se desejar, pode utilizar uma ligação (por exemplo, [[{{ns:special}}:Export/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
-'exportcuronly'     => 'Incluir apenas a revisão actual, não o histórico inteiro',
+'exportcuronly'     => 'Incluir apenas a edição actual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
 'export-submit'     => 'Exportar',
@@ -2151,7 +2153,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'spamprotectionmatch' => 'O seguinte texto activou o filtro de spam: $1',
 'spambot_username'    => 'MediaWiki limpeza de spam',
 'spam_reverting'      => 'Revertendo para a última versão não contendo hiperligações para $1',
-'spam_blanking'       => 'Todas revisões contendo hiperligações para $1, limpando',
+'spam_blanking'       => 'Limpando todas as edições contendo hiperligações para $1',
 
 # Info page
 'infosubtitle'   => 'Informação para página',
@@ -2173,11 +2175,11 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'markaspatrolleddiff'                 => 'Marcar como verificado',
 'markaspatrolledtext'                 => 'Marcar esta página como verificada',
 'markedaspatrolled'                   => 'Marcado como verificado',
-'markedaspatrolledtext'               => 'A revisão seleccionada foi marcada como verificada.',
+'markedaspatrolledtext'               => 'A edição seleccionada foi marcada como verificada.',
 'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desactivadas',
 'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está actualmente desactivada.',
 'markedaspatrollederror'              => 'Não é possível marcar como verificado',
-'markedaspatrollederrortext'          => 'Você precisa de especificar uma revisão para poder marcar como verificado.',
+'markedaspatrollederrortext'          => 'É necessário especificar uma edição a ser marcada como verificada.',
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
 
 # Patrol log
@@ -2193,13 +2195,16 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 
 $1',
 'filedelete-missing'              => 'Não é possível eliminar "$1" já que o ficheiro não existe.',
-'filedelete-old-unregistered'     => 'A revisão de ficheiro especificada para "$1" não se encontra na base de dados.',
+'filedelete-old-unregistered'     => 'A edição de ficheiro especificada para "$1" não se encontra na base de dados.',
 'filedelete-current-unregistered' => 'O ficheiro "$1" não se encontra na base de dados.',
 'filedelete-archive-read-only'    => 'O servidor web não é capaz de fazer alterações no diretório "$1".',
 
 # Browsing diffs
 'previousdiff' => '← Ver a alteração anterior',
 'nextdiff'     => 'Ver a alteração posterior →',
+
+# Visual comparison
+'visual-comparison' => 'Comparação visual',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",

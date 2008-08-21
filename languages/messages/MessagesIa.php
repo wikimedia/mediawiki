@@ -667,7 +667,9 @@ Per favor considera divider le pagina in sectiones minus grande.</strong>',
 'longpageerror'                    => '<strong>ERROR: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.
 Illo non pote esser immagazinate.</strong>',
 'readonlywarning'                  => '<strong>ATTENTION: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote immagazinar tu modificationes justo nunc.
-Nos recommenda copiar-e-collar le texto pro salveguardar lo in un file de texto, assi que tu potera publicar lo plus tarde.</strong>',
+Nos recommenda copiar-e-collar le texto pro immagazinar lo in un file de texto, assi que tu potera publicar lo plus tarde.</strong>
+
+Le administrator qui lo blocava dava iste explication: $1',
 'protectedpagewarning'             => '<strong>ATTENTION:  Iste pagina ha essite protegite. Solmente administratores pote modificar lo.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Iste pagina ha essite protegite de maniera que solmente usatores registrate pote modificar lo.",
 'cascadeprotectedwarning'          => "'''Attention:''' Iste pagina ha essite protegite de maniera que solmente administratores pote modificar lo, proque illo es includite in le protection in cascada del sequente {{PLURAL:$1|pagina|paginas}}:",
@@ -686,7 +688,7 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 'permissionserrors'                => 'Errores de permissiones',
 'permissionserrorstext'            => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
 'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente eliminate.'''
+'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente delite.'''
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
@@ -839,6 +841,8 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'difference'              => '(Differentia inter revisiones)',
 'lineno'                  => 'Linea $1:',
 'compareselectedversions' => 'Comparar versiones seligite',
+'visualcomparison'        => 'Comparation visual',
+'wikicodecomparison'      => 'Comparation del wikitexto',
 'editundo'                => 'annullar',
 'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
 
@@ -875,7 +879,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'searchall'                 => 'totes',
 'showingresults'            => "Infra se monstra non plus de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir del numero '''$2'''.",
 'showingresultsnum'         => "Infra se monstra {{PLURAL:$3|'''1''' resultato|'''$3''' resultatos}} a partir del numero '''$2'''.",
-'showingresultstotal'       => "Infra se monstra le {{PLURAL:$3|resultato '''$1''' de '''$3'''|resultatos '''$1 - $2''' de '''$3'''}}",
+'showingresultstotal'       => "Infra se monstra le {{PLURAL:$4|resultato '''$1''' de '''$3'''|resultatos '''$1 - $2''' de '''$3'''}}",
 'nonefound'                 => "'''Nota:''' Normalmente, se cerca solmente in alcun spatios de nomines. Prova prefixar tu consulta con ''all:'' pro cercar in tote le contento (includente paginas de discussion, patronos, etc.), o usa le spatio de nomines desirate como prefixo.",
 'powersearch'               => 'Recerca avantiate',
 'powersearch-legend'        => 'Recerca avantiate',
@@ -1181,7 +1185,7 @@ Tu debe verificar le $1 ante de proceder e recargar lo.',
 'upload-wasdeleted'           => "'''Attention: Tu va cargar un file que esseva anteriormente delite.'''
 
 Tu debe considerar si es appropriate continuar a cargar iste file.
-Pro major commoditate se trova hic le registro de eliminationes correspondente a iste file:",
+Pro major commoditate se trova hic le registro de deletiones correspondente a iste file:",
 'filename-bad-prefix'         => 'Le nomine del file que tu va cargar comencia con <strong>"$1"</strong>, le qual es un nomine non descriptive, typicamente assignate automaticamente per le cameras digital.
 Per favor selige un nomine plus descriptive pro tu file.',
 'filename-prefix-blacklist'   => ' #<!-- non modificar de alcun modo iste linea --> <pre>
@@ -1611,14 +1615,14 @@ Reactiones e ulterior assistentia:
 'confirmdeletetext'           => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'              => 'Action complete',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite eliminate.
-Vide $2 pro un registro de eliminationes recente.',
-'deletedarticle'              => '"$1" eliminate',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite delite.
+Vide $2 pro un registro de deletiones recente.',
+'deletedarticle'              => 'deleva "[[$1]]"',
 'suppressedarticle'           => 'supprimeva "[[$1]]"',
-'dellogpage'                  => 'Registro de eliminationes',
-'dellogpagetext'              => 'Infra es un lista del plus recente eliminationes.
+'dellogpage'                  => 'Registro de deletiones',
+'dellogpagetext'              => 'Infra es un lista del plus recente deletiones.
 Tote le horas es in le fuso horari del servitor (UTC).',
-'deletionlog'                 => 'registro de eliminationes',
+'deletionlog'                 => 'registro de deletiones',
 'reverted'                    => 'Revertite a revision anterior',
 'deletecomment'               => 'Motivo pro deletion:',
 'deleteotherreason'           => 'Motivo altere/additional:',
@@ -1699,7 +1703,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 
 # Undelete
 'undelete'                     => 'Vider paginas delite',
-'undeletepage'                 => 'Vider e restaurar paginas eliminate',
+'undeletepage'                 => 'Vider e restaurar paginas delite',
 'undeletepagetitle'            => "'''Lo sequente consiste de revisiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
 'undeletepagetext'             => 'Le paginas sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
@@ -1725,7 +1729,7 @@ Es possibile que le adresse URL es invalide, o que le revision ha essite restaur
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Reinitiar',
 'undeletecomment'              => 'Commento:',
-'undeletedarticle'             => '"$1" restaurate',
+'undeletedarticle'             => 'restaurava "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurate',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
@@ -2204,6 +2208,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Precedente diff',
 'nextdiff'     => 'Sequente diff →',
+
+# Visual comparison
+'visual-comparison' => 'Comparation visual',
 
 # Media information
 'mediawarning'         => "'''Attention''': Iste file pote continer codice maligne. Si tu lo executa, tu systema pote esser compromittite.<hr />",

@@ -889,7 +889,9 @@ U belooft ook u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u
 'longpageerror'                    => '<strong>FOUT: de tekst die u hebt toegevoegd heeft is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.
 Opslaan is niet mogelijk.</strong>',
 'readonlywarning'                  => '<strong>WAARSCHUWING: de database is geblokkeerd voor onderhoud, dus u kunt deze nu niet opslaan.
-Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.</strong>',
+Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.</strong>
+
+Een beheerder heeft de database geblokkeerd om de volgende reden: $1',
 'protectedpagewarning'             => '<strong>WAARSCHUWING! Deze beveiligde pagina kan alleen door gebruikers met beheerdersrechten bewerkt worden.</strong>',
 'semiprotectedpagewarning'         => "'''Let op:''' deze pagina is beveiligd en kan alleen door geregistreerde gebruikers bewerkt worden.",
 'cascadeprotectedwarning'          => "'''Waarschuwing:''' Deze pagina is beveiligd en kan alleen door beheerders bewerkt worden, omdat deze is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:",
@@ -1057,6 +1059,8 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'difference'              => '(Verschil tussen bewerkingen)',
 'lineno'                  => 'Regel $1:',
 'compareselectedversions' => 'Aangevinkte versies vergelijken',
+'visualcomparison'        => 'Visuele vergelijking',
+'wikicodecomparison'      => 'Wikitekstvergelijking',
 'editundo'                => 'ongedaan maken',
 'diff-multi'              => '({{PLURAL:$1|Eén tussenliggende versie wordt|$1 tussenliggende versies worden}} niet weergegeven)',
 
@@ -1092,7 +1096,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'searchall'                 => 'alle',
 'showingresults'            => "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|staat '''1''' resultaat|staan '''$3''' resultaten}} vanaf #'''$2'''.",
-'showingresultstotal'       => "Hieronder {{PLURAL:$3|wordt resultaat '''$1'''|worden resultaten '''$1 tot $2'''}} van '''$3''' weergegeven",
+'showingresultstotal'       => "Hieronder {{PLURAL:$4|wordt resultaat '''$1'''|worden resultaten '''$1 tot $2'''}} van '''$3''' weergegeven",
 'nonefound'                 => "'''Opmerking''': standaard worden niet alle naamruimten doorzocht. Als u in uw zoekopdracht als voorvoegsel \"''all:''\" gebruikt worden alle pagina's doorzocht (inclusief overlegpagina's, sjablonen, enzovoort). U kunt ook een naamruimte als voorvoegsel gebruiken.",
 'powersearch'               => 'Uitgebreid zoeken',
 'powersearch-legend'        => 'Uitgebreid zoeken',
@@ -2366,6 +2370,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Vorige wijziging',
 'nextdiff'     => 'Volgende wijziging →',
+
+# Visual comparison
+'visual-comparison' => 'Visuele vergelijking',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",

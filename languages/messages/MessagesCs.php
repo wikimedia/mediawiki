@@ -895,7 +895,9 @@ Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírová
 Uložením příspěvku se zavazujete, že je vaším dílem nebo je zkopírován ze zdrojů, které nejsou chráněny autorským právem (tzv. <em>public domain</em>), podrobnosti najdete na $1. <strong>Nekopírujte díla chráněná autorským právem bez dovolení!</strong>',
 'longpagewarning'                  => 'VAROVÁNÍ: Tato stránka je $1 KB dlouhá; některé prohlížeče mohou mít problémy s editováním stran, které se blíží nebo jsou delší než 32 KB. Prosím zvažte rozdělení stránky na více částí.',
 'longpageerror'                    => '<strong>CHYBA: Pokoušíte se uložit text o velikosti $1 KB, přičemž dovolené maximum je $2 KB. Vaše editace nemůže být uložena.</strong>',
-'readonlywarning'                  => 'VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.',
+'readonlywarning'                  => '<strong>VAROVÁNÍ: Databáze byla uzamčena kvůli údržbě, takže nebudete moci uložit své změny. Můžete si okopírovat text do souboru a uložit ho na později.</strong>
+
+Správce serveru, který databázi zamkl, poskytl toto zdůvodnění: $1',
 'protectedpagewarning'             => '<strong>Varování:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze správci.',
 'semiprotectedpagewarning'         => '<strong>Poznámka:</strong> Tato stránka byla zamčena, takže ji mohou editovat pouze registrovaní uživatelé.',
 'cascadeprotectedwarning'          => "'''Varování:''' Tato stránka byla zamčena, takže ji mohou editovat pouze správci. Je vložena na následující, kaskádním zámkem  {{PLURAL:$1|zamčenou, stránku|zamčené, stránky|zamčené, stránky}}:",
@@ -1097,7 +1099,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchall'                 => 'vše',
 'showingresults'            => 'Zobrazuji <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
 'showingresultsnum'         => 'Zobrazuji <strong>$3</strong> {{PLURAL:$3|výsledek|výsledky|výsledků}} počínaje od <strong>$2</strong>.',
-'showingresultstotal'       => "{{PLURAL:$3|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
+'showingresultstotal'       => "{{PLURAL:$4|Zobrazuje se výsledek '''$1''' z&nbsp;'''$3'''|Zobrazují se výsledky '''$1–$2''' z&nbsp;'''$3'''}}",
 'nonefound'                 => '<strong>Poznámka</strong>: neúspěšná hledání jsou často důsledkem zadání slov, která nejsou indexována, nebo uvedením mnoha slov najednou (ve výsledku se objeví jen ty stránky, které obsahují všechna zadaná slova).',
 'powersearch'               => 'Hledání',
 'powersearch-legend'        => 'Rozšířené vyhledávání',
@@ -1175,7 +1177,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'userrights'                  => 'Správa uživatelských skupin', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Spravovat uživatelské skupiny',
 'userrights-user-editname'    => 'Zadejte uživatelské jméno:',
-'editusergroup'               => 'Upravit uživatelskou skupinu',
+'editusergroup'               => 'Upravit uživatelské skupiny',
 'editinguser'                 => "Úprava práv uživatele '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Upravit uživatelské skupiny',
 'saveusergroups'              => 'Uložit uživatelské skupiny',
@@ -1184,7 +1186,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 * Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
 * Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
-'userrights-reason'           => 'Zdůvodnění:',
+'userrights-reason'           => 'Zdůvodnění změny:',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
@@ -1200,14 +1202,14 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
 'group-suppress'      => 'Dohlížitelé',
-'group-all'           => '(všechny)',
+'group-all'           => '(všichni)',
 
-'group-user-member'          => 'Uživatel',
-'group-autoconfirmed-member' => 'Schválený uživatel',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Správce',
-'group-bureaucrat-member'    => 'Byrokrat',
-'group-suppress-member'      => 'Dohlížitel',
+'group-user-member'          => 'uživatel',
+'group-autoconfirmed-member' => 'schválený uživatel',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'správce',
+'group-bureaucrat-member'    => 'byrokrat',
+'group-suppress-member'      => 'dohlížitel',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
 'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
@@ -1933,10 +1935,10 @@ $1',
 'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
 Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
 Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).',
-'ipaddress'                       => 'IP adresa',
-'ipadressorusername'              => 'IP adresa nebo uživatelské jméno',
-'ipbexpiry'                       => 'Čas vypršení',
-'ipbreason'                       => 'Důvod',
+'ipaddress'                       => 'IP adresa:',
+'ipadressorusername'              => 'IP adresa nebo uživatelské jméno:',
+'ipbexpiry'                       => 'Čas vypršení:',
+'ipbreason'                       => 'Důvod:',
 'ipbreasonotherlist'              => 'Jiný důvod',
 'ipbreason-dropdown'              => '*Časté důvody blokování
 ** Vkládání klamných informací
@@ -1951,7 +1953,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbemailban'                     => 'Bránit uživateli v posílání e-mailů',
 'ipbenableautoblock'              => 'Automaticky blokovat IP adresy používané tímto uživatelem',
 'ipbsubmit'                       => 'Zablokovat',
-'ipbother'                        => 'Jiný čas vypršení',
+'ipbother'                        => 'Jiný čas vypršení:',
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',

@@ -640,9 +640,10 @@ llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 'longpagewarning'                  => '<strong>AVISU: Esta páxina tien más de $1 quilobytes; dellos navegadores puen tener problemes editando páxines de 32 ó más kb. Habríes dixebrar la páxina en seiciones más pequeñes.</strong>',
 'longpageerror'                    => "<strong>ERROR: El testu qu'unviasti tien $1 quilobytes, que ye
 más que'l máximu de $2 quilobytes. Nun pue ser grabáu.</strong>",
-'readonlywarning'                  => '<strong>AVISU: La base de datos ta protexida por mantenimientu,
-polo que nun vas poder grabar les tos ediciones nestos momentos. Seique habríes copiar
-el testu nun archivu de testu y grabalu pa intentalo lluéu. </strong>',
+'readonlywarning'                  => "<strong>AVISU: La base de datos ta candada por mantenimientu, polo que nun vas poder guardar les tos ediciones nestos momentos.
+Seique habríes copiar el testu nun archivu de testu y guardalu pa intentalo lluéu. </strong>
+
+L'alministrador que la candó ufrió una esplicación: $1",
 'protectedpagewarning'             => '<strong>AVISU: Esta páxina ta protexida pa que sólo los alministradores puean editala.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida pa que nun puean editala namái que los usuarios rexistraos.",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta protexida pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
@@ -695,7 +696,7 @@ El motivu dau por $3 ye ''$2''",
 'revnotfound'         => 'Revisión non atopada',
 'revnotfoundtext'     => "La revisión antigua de la páxina que solicitasti nun se pudo atopar. Por favor comprueba l'URL qu'usasti p'acceder a esta páxina.",
 'currentrev'          => 'Revisión actual',
-'revisionasof'        => 'Revisión de $1',
+'revisionasof'        => 'Revisión a fecha de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
 'previousrevision'    => '←Revisión anterior',
 'nextrevision'        => 'Revisión siguiente→',
@@ -813,7 +814,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'lineno'                  => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les versiones seleicionaes',
 'editundo'                => 'esfacer',
-'diff-multi'              => '(Non {{PLURAL:$1|amosada una revisión intermedia|amosaes $1 revisiones intermedies}}.)',
+'diff-multi'              => '({{PLURAL:$1|1 revisión intermedia non amosada|$1 revisiones intermedies non amosaes}})',
 
 # Search results
 'searchresults'             => 'Resultaos de la busca',
@@ -847,7 +848,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'searchall'                 => 'toos',
 'showingresults'            => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'         => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
-'showingresultstotal'       => "Amosando embaxo {{PLURAL:$3|el resultáu '''$1''' de '''$3'''|los resultaos '''$1 - $2''' de '''$3'''}}",
+'showingresultstotal'       => "Amosando {{PLURAL:$4|embaxo'l resultáu '''$1''' de '''$3'''|embaxo los resultaos '''$1 - $2''' de '''$3'''}}",
 'nonefound'                 => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'powersearch'               => 'Buscar',
 'powersearch-legend'        => 'Busca avanzada',
@@ -2086,6 +2087,9 @@ $1",
 # Browsing diffs
 'previousdiff' => '← Diferencia anterior',
 'nextdiff'     => 'Diferencia siguiente →',
+
+# Visual comparison
+'visual-comparison' => 'Comparación visual',
 
 # Media information
 'mediawarning'         => "'''Avisu''': Esti archivu pue contener códigu maliciosu, pue ser comprometío executalu nel to sistema.<hr />",

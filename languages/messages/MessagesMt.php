@@ -827,7 +827,8 @@ Inti tista' [[:\$1|toħloq din il-paġna]].",
 'showingresults'            => "Hawnhekk {{PLURAL:$1|instab riżultat għal massimu ta' '''1'''|instab '''$1''' riżultati għal massimu}} li jibda' bin-numru '''$2'''.",
 'showingresultsnum'         => "Hawnhekk jinstabu {{PLURAL:$3|riżultat '''1'''|'''$3''' riżultati}} li jibdew bin-numru '''$2'''.",
 'showingresultstotal'       => "{{PLURAL:$3|Riżultati minn '''$1''' sa '''$3'''|Riżultati '''$1 - $2''' ta' '''$3'''}} jinstabu hawn taħt",
-'nonefound'                 => "'''Nota''': Awtomatikament, huma ftit spazji tal-isem imfittxija.<br/>Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''kollha:'' sabiex tfittex il-kontenut kollu (inkluż paġni ta' diskussjoni, templates, etċ), jew uża l-ispazju tal-isem mixtieq bħala prefiss.",
+'nonefound'                 => "'''Nota''': Awtomatikament, huma ftit spazji tal-isem imfittxija.
+Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''kollha:'' sabiex tfittex il-kontenut kollu (inkluż paġni ta' diskussjoni, templates, etċ), jew uża l-ispazju tal-isem mixtieq bħala prefiss.",
 'powersearch'               => 'Tfittxija avvanzata',
 'powersearch-legend'        => 'Tfittxija avvanzata',
 'powersearch-ns'            => "Fittex fin-''namespace'':",
@@ -1090,14 +1091,14 @@ Jekk jogħġbok verifika jekk xorta waħda trid itella' dan il-fajl.",
 'fileexists'                  => "Fajl b'dan l-isem ġa jeżisti, jekk jogħġbok verifika l-ewwel <strong><tt>$1</tt></strong> jekk ma tridx tikteb fuqu.",
 'filepageexists'              => "Il-paġna ta' deskrizzjoni għal dan il-fajl ġie ġa maħluq f'<strong><tt>$1</tt></strong>, iżda l-ebda fajl b'dan l-isem jeżisti bħalissa. It-Taqsira li daħħalt mhux se tidher fuq il-paġna tad-deskrizzjoni.
 Sabiex it-taqsira tidher hemm, huwa neċessarju li tagħmel il-modifiki manwalment.",
-'fileexists-extension'        => "Fajl b'isem simili ġa jeżisti:<br />
-Isem tal-fajl imtella: <strong><tt>$1</tt></strong><br />
-Isem tal-fajl eżistenti: <strong><tt>$2</tt></strong><br />
-Jekk jogħġbok agħżel isem differenti.",
+'fileexists-extension'        => "Diġà jeżisti fajl b'isem simili:<br />
+L-isem tal-fajl imtella': <strong><tt>$1</tt></strong><br />
+L-isem tal-fajl eżistenti: <strong><tt>$2</tt></strong><br />
+Jekk jogħġbok, agħżel isem differenti.",
 'fileexists-thumb'            => "<center>'''Fajl eżistenti'''</center>",
-'fileexists-thumbnail-yes'    => "Il-Fajl li itella' jidher li huwa riżultat ta' xi previżjoni 
-<i>(thumbnail)</i>. Verifika, dan il-fajl <strong><tt>$1</tt></strong>.<br /> 
-Jekk il-fajl verifikat huwa l-istess stampa tad-daqs oriġinali, l-istampa mhux neċessarja.",
+'fileexists-thumbnail-yes'    => "Il-fajl li ttella' jidher li huwa stampa żgħira <i>(minjatura)</i>. 
+Jekk jogħġbok, iċċekkja dan il-fajl <strong><tt>$1</tt></strong>.<br /> 
+Jekk il-fajl li ċċekkjajt huwa l-istess stampa fid-daqs oriġinali, m'hemmx bżonn li ttella' minjatura oħra.",
 'file-thumbnail-no'           => "L-Isem tal-fajl jibda' b'<strong><tt>$1</tt></strong>. Jidher ukoll li din hija stampa tad-daqs imnaqqas <i>(thumbnail)</i>.
 Jekk għandhek din l-istampa ta' riżuluzzjoni sħiħa, tella' dan il-fajl, inkella modifika l-isem tal-fajl jekk jogħġbok.",
 'fileexists-forbidden'        => "Fajl b'dan l-isem ġa jeżisti;
@@ -1190,7 +1191,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'filehist-dimensions'            => 'Qisien',
 'filehist-filesize'              => 'Daqs tal-fajl',
 'filehist-comment'               => 'Kumment',
-'imagelinks'                     => 'Paġni li jużaw din l-istampa',
+'imagelinks'                     => 'Paġni li jużaw dan il-fajl',
 'linkstoimage'                   => '{{PLURAL:$1|Il-Paġna segwenti għandha|Il-$1 paġni segwenti għandhom}} links għal-fajl:',
 'nolinkstoimage'                 => "M'hemmx paġni li huma relatati ma' dan il-fajl.",
 'morelinkstoimage'               => 'Uri [[Special:WhatLinksHere/$1|aktar links]] għal dan il-fajl.',
@@ -1364,7 +1365,7 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'Ir-Reġistri kollha',
+'all-logs-page'        => 'Ir-reġistri kollha',
 'log-search-legend'    => 'Fittex logs',
 'log-search-submit'    => 'Mur',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri relattivi għall-operazzjonijiet tal-upload, tħassir, protezzjoni, blokki u amministrazzjoni tas-sit. Tista' ddejjaq il-kriterji ta' riċerka billi tagħżel it-tip ta' reġistru, isem l-utent jew il-paġna affetwata.",
@@ -2112,9 +2113,9 @@ L-ewwel link fil-linja hija link għal fajl ħażin.
 Il-links suċċessivi fuq l-istess linja huma kkunsidrati bħala eċċezzjonijiet, ċoè, paġni fejn il-fajl jista' jiġi rikjamat b'mod normali.",
 
 # Metadata
-'metadata'          => 'Metadata',
-'metadata-help'     => 'Dan il-fajl fih aktar informazzjoni, probabli miżjud minn kamera diġitali jew skanner użat sabiex joħolqu jew inkella sabiex jagħmlu diġitali. 
-Jekk il-fajl ġie modifikat mill-istat oriġinal, ftit dettalji mhux biżżejjed.',
+'metadata'          => 'Metadati',
+'metadata-help'     => 'Dan il-fajl fih aktar informazzjoni, aktarx ġie miżjud minn kamera diġitali jew skanner li ġew użati sabiex joħolquh jew biex jagħmluh diġitali. 
+Jekk il-fajl ġie modifikat mill-istat oriġinali, xi dettalji jistgħu ma jikkorispondux mal-verżjoni kurrenti.',
 'metadata-expand'   => 'Uri d-dettalji',
 'metadata-collapse' => 'Aħbi d-dettalji',
 'metadata-fields'   => "EXIF metadata mniżżel f'din il-lista tal-messaġġ se jiġu inkluż fil-veduta tal-paġna tal-istampa meta t-tabella tiġi murija fil-forma qasira. 
@@ -2129,15 +2130,15 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 # EXIF tags
 'exif-imagewidth'                  => "Wisa'",
 'exif-imagelength'                 => 'Għoli',
-'exif-bitspersample'               => 'Bit per komponent',
-'exif-compression'                 => 'Skema tar-rassa',
+'exif-bitspersample'               => 'Bits għal kull komponent',
+'exif-compression'                 => 'Skema tal-kompressjoni',
 'exif-photometricinterpretation'   => 'Struttura tal-pixel',
 'exif-orientation'                 => 'Orjentazzjoni',
 'exif-samplesperpixel'             => "Numru ta' komponenti",
-'exif-planarconfiguration'         => 'Tqassim tad-data',
+'exif-planarconfiguration'         => 'Tqassim tad-dati',
 'exif-ycbcrsubsampling'            => 'Rapport tal-provi Y / C',
 'exif-ycbcrpositioning'            => 'Pożizzjonament tal-komponenti Y u C',
-'exif-xresolution'                 => 'Riżoluzzjoni oriżżontali',
+'exif-xresolution'                 => 'Riżoluzzjoni orizzontali',
 'exif-yresolution'                 => 'Riżoluzzjoni vertikali',
 'exif-resolutionunit'              => 'Unita tar-riżoluzzjoni X u Y',
 'exif-stripoffsets'                => 'Post fejn jinsab id-data tal-istampa',
@@ -2382,8 +2383,8 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpsdirection-m' => 'Direzzjoni tal-kalamita',
 
 # External editor support
-'edit-externally'      => "Modifika dan il-fajl b'użu ta' applikazzjoni estern",
-'edit-externally-help' => 'Għal aktar informazzjoni ara [http://www.mediawiki.org/wiki/Manual:External_editors l-istruzzjonijiet] (bl-ingliż).',
+'edit-externally'      => "Immodifika dan il-fajl b'użu ta' applikazzjoni esterna",
+'edit-externally-help' => 'Għal aktar informazzjoni ara l-[http://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet] (bl-Ingliż)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kollha',
