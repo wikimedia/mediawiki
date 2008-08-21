@@ -252,12 +252,12 @@ class MediaWiki {
 		}
 
 		switch( $title->getNamespace() ) {
-		case NS_IMAGE:
-			return new ImagePage( $title );
-		case NS_CATEGORY:
-			return new CategoryPage( $title );
-		default:
-			return new Article( $title );
+			case NS_IMAGE:
+				return new ImagePage( $title );
+			case NS_CATEGORY:
+				return new CategoryPage( $title );
+			default:
+				return new Article( $title );
 		}
 	}
 
@@ -274,8 +274,6 @@ class MediaWiki {
 
 		$action = $this->getVal( 'action' );
 		$article = self::articleFromTitle( $title );
-		
-		wfDebug("Article: ".$title->getPrefixedText()."\n");
 		
 		// Namespace might change when using redirects
 		// Check for redirects ...
