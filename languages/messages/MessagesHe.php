@@ -2363,7 +2363,7 @@ $1',
 'spamprotectiontitle' => 'מנגנון מסנן הספאם',
 'spamprotectiontext'  => 'הדף אותו רצית לשמור נחסם על ידי מסנן הספאם. הסיבה לכך היא לרוב קישור לאתר חיצוני.',
 'spamprotectionmatch' => 'הטקסט הבא הוא שגרם להפעלת סינון הספאם: $1',
-'spambot_username'    => 'MediaWiki spam cleanup',
+'spambot_username'    => 'מנקה הספאם של מדיה ויקי',
 'spam_reverting'      => 'שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1',
 'spam_blanking'       => 'כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף',
 
