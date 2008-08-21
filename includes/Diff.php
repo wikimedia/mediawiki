@@ -452,7 +452,7 @@ class WikiDiff3 {
 		$snake0 = $bottoml1 + $most_progress[0];
 		$snake1 = $bottoml2 + $most_progress[1];
 		$snake2 = 0;
-		wfDebug('Computing the LCS is too expensive. Using a heuristic.\n');
+		wfDebug("Computing the LCS is too expensive. Using a heuristic.\n");
 		$this->heuristicUsed = true;
 		return 5; /*
 		* HACK: since we didn't really finish the LCS computation
