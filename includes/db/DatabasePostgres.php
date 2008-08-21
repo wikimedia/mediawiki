@@ -1271,6 +1271,8 @@ END;
 	function addQuotes( $s ) {
 		if ( is_null( $s ) ) {
 			return 'NULL';
+		} else if ( is_bool( $s ) ) {
+			return intval( $s );
 		} else if ($s instanceof Blob) {
 			return "'".$s->fetch($s)."'";
 		}
