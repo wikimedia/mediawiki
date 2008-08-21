@@ -1605,6 +1605,8 @@ END;
 			return '';
 		}
 
+		$linkOptions = array();
+
 		if( $wgTitle->isTalkPage() ) {
 			$link = $wgTitle->getSubjectPage();
 			switch( $link->getNamespace() ) {
@@ -1619,6 +1621,9 @@ END;
 					break;
 				case NS_IMAGE:
 					$text = wfMsg( 'imagepage' );
+					# Make link known if image exists, even if the desc. page doesn't.
+					if( wfFindFile( $link ) )
+						$linkOptions[] = 'known';
 					break;
 				case NS_MEDIAWIKI:
 					$text = wfMsg( 'mediawikipage' );
@@ -1640,7 +1645,7 @@ END;
 			$text = wfMsg( 'talkpage' );
 		}
 
-		$s = $this->makeLinkObj( $link, $text );
+		$s = $this->link( $link, $text, array(), array(), $linkOptions );
 
 		return $s;
 	}

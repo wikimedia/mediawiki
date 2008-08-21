@@ -139,8 +139,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix excessive memory usage when parsing pages with lots of links
 * $wgSpamRegex now matches the edit summary and page move descriptions in
   addition to body text.
-* The "image" tab on the Monobook skin now appears blue for images available
-  from a shared repository
+* Navigation links to images available from a shared repository (like Commons)
+  from their local talk pages no longer appear as redlinks
 
 
 === API changes in 1.14 ===
