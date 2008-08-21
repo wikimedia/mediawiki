@@ -1078,7 +1078,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'searchall'                 => 'mind',
 'showingresults'            => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
 'showingresultsnum'         => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
-'showingresultstotal'       => "{{PLURAL:$3|Találat: '''$1''' (összesen '''$3''')|Találatok: '''$1 – $2''' (összesen '''$3''')}}",
+'showingresultstotal'       => "{{PLURAL:$4|Találat: '''$1''' (összesen '''$3''')|Találatok: '''$1 – $2''' (összesen '''$3''')}}",
 'nonefound'                 => "'''Megjegyzés''': A sikertelen keresések
 gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
 rendszer nem indexel, vagy több független keresési kifejezés megadása
@@ -1645,7 +1645,7 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 # Special:Categories
 'categories'                    => 'Kategóriák',
 'categoriespagetext'            => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.
-A [[Special:UnusedCategories|nem használt kategóriák nem jelennek meg.
+A [[Special:UnusedCategories|nem használt kategóriák]] nem jelennek meg.
 Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'categoriesfrom'                => 'Kategóriák listázása a következő névtől kezdve:',
 'special-categories-sort-count' => 'rendezés elemszám szerint',
@@ -2340,6 +2340,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Előző változtatások',
 'nextdiff'     => 'Következő változtatások →',
+
+# Visual comparison
+'visual-comparison' => 'Vizuális összehasonlítás',
 
 # Media information
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",

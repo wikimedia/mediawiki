@@ -829,7 +829,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchall'                 => 'all',
 'showingresults'            => '<b>$2</b> 件目から <b>$1</b> 件を表示しています。',
 'showingresultsnum'         => '<b>$2</b> 件目から <b>$3</b> 件を表示しています。',
-'showingresultstotal'       => "'''$3''' 件中 {{PLURAL:$3|'''$1''|'''$1 - $2'''}} 件目の検索結果を表示",
+'showingresultstotal'       => "'''$3''' 件中 {{PLURAL:$4|'''$1''|'''$1 - $2'''}}件目の検索結果を表示",
 'nonefound'                 => "'''※'''検索がうまくいかないのは、「ある」や「から」のような一般的な語で索引付けがされていないか、複数の検索語を指定している（全ての検索語を含むページだけが結果に示されます）などのためかもしれません。",
 'powersearch'               => '検索',
 'powersearch-legend'        => '高度な検索',
@@ -931,6 +931,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'group-bot'           => 'ボット',
 'group-sysop'         => '管理者',
 'group-bureaucrat'    => 'ビューロクラット',
+'group-suppress'      => 'Oversights',
 'group-all'           => '（すべて）',
 
 'group-user-member'          => '利用者',
@@ -938,12 +939,14 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'group-bot-member'           => '{{int:group-bot}}',
 'group-sysop-member'         => '{{int:group-sysop}}',
 'group-bureaucrat-member'    => '{{int:group-bureaucrat}}',
+'group-suppress-member'      => 'Oversight',
 
 'grouppage-user'          => '{{ns:project}}:利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
 'grouppage-bot'           => '{{ns:project}}:ボット',
 'grouppage-sysop'         => '{{ns:project}}:管理者',
 'grouppage-bureaucrat'    => '{{ns:project}}:ビューロクラット',
+'grouppage-suppress'      => '{{ns:project}}:Oversight',
 
 # Rights
 'right-read'                 => 'ページの閲覧',

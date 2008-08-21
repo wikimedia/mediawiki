@@ -730,7 +730,9 @@ Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs so
 'longpageerror'                    => '<strong>FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.</strong>',
 'readonlywarning'                  => '<strong>ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
-kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>',
+kopiere teksten din til en tekstfil, så du kan lagre den til senere.</strong>
+
+Systemadministratoren som låste databasen oppga følgende årsak: $1',
 'protectedpagewarning'             => '<strong>ADVARSEL: Denne siden er låst, slik at kun brukere med administratorrettigheter kan redigere den.</strong>',
 'semiprotectedpagewarning'         => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan endre den. Nyopprettede og uregistrerte brukere kan ikke redigere.",
 'cascadeprotectedwarning'          => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan redigere den, fordi den inkluderes på følgende dypbeskyttede sider:<!--{{PLURAL:$1}}-->",
@@ -890,6 +892,8 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'difference'              => '(Forskjeller mellom versjoner)',
 'lineno'                  => 'Linje $1:',
 'compareselectedversions' => 'Sammenlign valgte versjoner',
+'visualcomparison'        => 'Visuell sammenligning',
+'wikicodecomparison'      => 'Wikitekstsammenligning',
 'editundo'                => 'omgjør',
 'diff-multi'              => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} ikke vist.)',
 
@@ -925,7 +929,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'searchall'                 => 'alle',
 'showingresults'            => "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
 'showingresultsnum'         => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
-'showingresultstotal'       => "Viser resultat '''{{PLURAL:$3|$1|$1–$2}}''' av '''$3''' nedenfor",
+'showingresultstotal'       => "Viser resultat {{PLURAL:$4|resultat '''$1''' av '''$3'''|resultat '''$1&ndash;$2''' av '''$3'''}} nedenfor",
 'nonefound'                 => "'''Merk:''' Som standard søkes det kun i enkelte navnerom. For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler etc.), eller bruk det ønskede navnerommet som prefiks.",
 'powersearch'               => 'Avansert søk',
 'powersearch-legend'        => 'Avansert søk',
@@ -2160,6 +2164,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Gå til forrige revisjon',
 'nextdiff'     => 'Gå til neste diff →',
+
+# Visual comparison
+'visual-comparison' => 'Visuell sammenligning',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode; ved å åpne den kan systemet ditt kompromitteres.<hr />",

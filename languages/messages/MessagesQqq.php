@@ -672,6 +672,7 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
+'visualcomparison' => '{{Identical|Visual comparison}}',
 'editundo' => 'Undo link when viewing diffs',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
 
@@ -712,7 +713,10 @@ $1 is the relevance of this result in per cent.
 'searchall' => '{{Identical|All}}',
 'showingresults' => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
 'showingresultsnum' => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
-'showingresultstotal' => 'Text above list of search results on special page of search results. $1 - $2 is the range of results shown on the page and $3 is the total number of results from the search.',
+'showingresultstotal' => 'Text above list of search results on special page of search results. 
+* $1–$2 is the range of results shown on the page
+* $3 is the total number of results from the search
+* $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
 'nonefound' => 'This message appears on the search results page if no results are found.',
 'powersearch' => 'Verb. Text of search button at the bottom of [[Special:Search]], for searching in selected namespaces.
 
@@ -1667,6 +1671,9 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].',
 'patrol-log-auto' => 'Automated edit summary when patrolling.
 
 {{Identical|Automatic}}',
+
+# Visual comparison
+'visual-comparison' => '{{Identical|Visual comparison}}',
 
 # Media information
 'widthheightpage' => 'This message is used on image pages in the dimensions column in the file history section for images  with more than one page. Parameter $1 is the image width (in pixels), parameter $2 is the image height, and parameter $3 is the number of pages.',

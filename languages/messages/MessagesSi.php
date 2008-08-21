@@ -324,7 +324,7 @@ $messages = array(
 'booksources-go' => 'යන්න',
 
 # Special:Log
-'log'               => 'ලඝු',
+'log'               => 'Logs',
 'log-search-submit' => 'යන්න',
 
 # Special:AllPages

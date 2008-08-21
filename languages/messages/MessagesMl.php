@@ -5,6 +5,7 @@
  * @file
  *
  * @author Anoopan
+ * @author Chrisportelli
  * @author Jacob.jose
  * @author Jyothis
  * @author Manjith Joseph <manjithkaini@gmail.com>
@@ -428,7 +429,7 @@ $messages = array(
 'red-link-title'          => '$1 (ഇതുവരെ എഴുതപ്പെട്ടിട്ടില്ല)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'പ്രധാനതാള്‍',
+'nstab-main'      => 'ലേഖനം',
 'nstab-user'      => 'ഉപയോക്തൃതാള്‍',
 'nstab-media'     => 'മീഡിയാ താള്‍',
 'nstab-special'   => 'പ്രത്യേക താള്‍',

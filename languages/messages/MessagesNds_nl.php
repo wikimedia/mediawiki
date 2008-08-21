@@ -742,21 +742,24 @@ De op-egeven rejen is: ''$2''.
 
 Je kunnen kontak opnemen mit $1 of een aandere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] um de blokkering te bepraoten.
 Je kunnen gien gebruukmaken van de functie 'een berich sturen', behalven a-j een geldig e-mailadres op-egeven hemmen in joew [[Special:Preferences|veurkeuren]] en 't gebruuk van disse functie neet eblokkeerd is.
-'t IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. Vermeld ze allebeie a-j argens op disse blokkering reageren.",
+'t IP-adres da-j noen gebruken is $3 en 't blokkeringsnummer is #$5. 
+Vermeld 't allebeie a-j argens op disse blokkering reageren.",
 'autoblockedtext'                  => 'Joew IP-adres is autematisch eblokkeerd umdat \'t gebruuk wönnen deur een aandere gebruker, dee eblokkeerd wönnen deur $1.
 De rejen hierveur was:
 
 :\'\'$2\'\'
 
-* Aanvang: $8
+* Begint: $8
 * Verloop nao: $6
+* Wee eblokkeerd wonnen: $7
 
 Je kunnen kontak opnemen mit $1 of een van de aandere
-[[{{MediaWiki:Grouppage-sysop}}|beheerders]] um de blokkering te bespreken.
+[[{{MediaWiki:Grouppage-sysop}}|beheerders]] um de blokkering te bepraoten.
 
-NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig e-mailadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]].
+NB: je kunnen de optie "een berich sturen" neet gebruken, behalven a-j een geldig e-mailadres op-egeven hemmen in de [[Special:Preferences|gebrukersveurkeuren]] en je neet eblokkeerd bin.
 
-Joew blokkeer-ID is $5. Geef dit nummer deur a-j kontak mit ene opnemen over de blokkering.',
+Joew IP-adres is $3 en joew blokkeernummer is $5. 
+Geef disse nummers deur a-j kontak mit ene opnemen over de blokkering.',
 'blockednoreason'                  => 'gien rejen op-egeven',
 'blockedoriginalsource'            => "De brontekse van '''$1''' wonnen hieronder weer-egeven:",
 'blockededitsource'                => "De tekse van '''joew eigen bewarkingen''' an '''$1''' wonnen hieronder weer-egeven:",
@@ -1010,7 +1013,7 @@ Aandere beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't w
 'searchall'                 => 'alles',
 'showingresults'            => "Hieronder {{PLURAL:$1|steet '''1''' risseltaot|staon '''$1''' risseltaoten}}  <b>$1</b> vanof nummer <b>$2</b>.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|steet '''1''' risseltaot|staon '''$3''' risseltaoten}} vanof nummer '''$2'''.",
-'showingresultstotal'       => "Hieronder {{PLURAL:$3|wordt et risseltaot '''$1''' van '''$3''' weer-egeven|wonnen de risseltaoten '''$1 tot $2''' van '''$3''' weer-egeven}}",
+'showingresultstotal'       => "Hieronder {{PLURAL:$4|wordt et risseltaot '''$1''' van '''$3''' weer-egeven|wonnen de risseltaoten '''$1 tot $2''' van '''$3''' weer-egeven}}",
 'nonefound'                 => '<strong>Let wel:</strong> as een zeukopdrachte mislok kump dat vake deur gebruuk van veulveurkoemmende woorden as "de" en "het", dee neet eïndexeerd bin.',
 'powersearch'               => 'Zeuk',
 'powersearch-legend'        => 'Uut-ebreid zeuken',
@@ -1384,7 +1387,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'filedelete-comment'          => 'Opmarking:',
 'filedelete-submit'           => 'Vortdoon',
 'filedelete-success'          => "'''$1''' is vort-edaon.",
-'filedelete-success-old'      => '<span class="plainlinks">De versie van \'\'\'[[Media:$1|$1]]\'\'\' van $3, $2 is vort-edaon.</span>',
+'filedelete-success-old'      => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vort-edaon.",
 'filedelete-nofile'           => "'''$1''' besteet neet op disse webstee.",
 'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in 't archief mit de an-egeven eigenschappen.",
 'filedelete-otherreason'      => 'Aandere rejen:',
@@ -1439,8 +1442,9 @@ De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue taakwachrie] is
 
 Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen dat vermeld steet op [[MediaWiki:Disambiguationspage]]",
 
-'doubleredirects'     => 'Dubbele deurverwiezingen',
-'doubleredirectstext' => "Op elke regel steet de eerste deurstuurpagina, de tweede deurstuurpagina en de eerste regel van de tweede deurverwiezing. Meestentieds is leste pagina 't eigenlijke doel.",
+'doubleredirects'       => 'Dubbele deurverwiezingen',
+'doubleredirectstext'   => "Op elke regel steet de eerste deurstuurpagina, de tweede deurstuurpagina en de eerste regel van de tweede deurverwiezing. Meestentieds is leste pagina 't eigenlijke doel.",
+'double-redirect-fixer' => 'Deurverwiezingsverbeteraar',
 
 'brokenredirects'        => 'Doodlopende deurverwiezingen',
 'brokenredirectstext'    => "De onderstaonde pagina's bevatten een deurverwiezingen naor een neet-bestaonde pagina.",
@@ -1543,7 +1547,11 @@ Pagina's wonnen ezien as een deurverwiespagina, as 't sjabloon gebruuk wonnen da
 
 # Special:Categories
 'categories'                    => 'Kattegerieën',
-'categoriespagetext'            => 'De volgende kattegerieën bin anwezig in {{SITENAME}}.',
+'categoriespagetext'            => "De volgende kattegerieën bin anwezig in {{SITENAME}}.
+
+De volgende kattegerieën bevatten pagina's of media.
+[[Special:UnusedCategories|ongebruken kattegerieën]] zie-j hier neet.
+Zie oek [[Special:WantedCategories|gewunste kattegerieën]].",
 'categoriesfrom'                => 'Kattegerieën weergeven vanof:',
 'special-categories-sort-count' => 'op antal sorteren',
 'special-categories-sort-abc'   => 'alfebetisch sorteren',
@@ -1757,7 +1765,7 @@ Bekiek 't [[Special:Log/delete|logboek vort-edaone pagina's]] veur een overzicht
 
 # What links here
 'whatlinkshere'            => 'Verwiezingen naor disse pagina',
-'whatlinkshere-title'      => "Pagina's dee verwiezen naor $1",
+'whatlinkshere-title'      => 'Pagina\'s dee verwiezen naor "$1"',
 'whatlinkshere-page'       => 'Pagina:',
 'linkshere'                => "Disse pagina's verwiezen naor '''[[:$1]]''':",
 'nolinkshere'              => "Gien enkele pagina verwies naor '''[[:$1]]'''.",
@@ -1814,7 +1822,7 @@ Op de [[Special:IPBlockList|IP-blokkeerlieste]] steet een lieste mit alle blokke
 'ipusubmit'                   => 'Dit adres deblokkeren',
 'unblocked'                   => '[[User:$1|$1]] is edeblokeerd',
 'unblocked-id'                => 'Blokkade $1 is derof ehaold',
-'ipblocklist'                 => 'Lieste van IP-adressen dee eblokkeerd bin',
+'ipblocklist'                 => 'Lieste van IP-adressen en gebrukers dee eblokkeerd bin',
 'ipblocklist-legend'          => 'Een eblokkeren gebruker zeuken',
 'ipblocklist-username'        => 'Gebrukersnaam of IP-adres:',
 'ipblocklist-submit'          => 'Zeuk',
@@ -2024,7 +2032,7 @@ Alle transwiki-invoerhaandelingen wonnen op-esleugen in 't [[Special:Log/import|
 'lastmodifiedatby' => "Disse pagina is 't les ewiezig op $2, $1 deur $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Ebaseerd op wark van $1.',
 'others'           => 'aandere',
-'siteusers'        => '{{SITENAME}}-gebruker(s) $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruker|gebrukers}}  $1',
 'creditspage'      => 'Pagina-auteurs',
 'nocredits'        => 'Der is gien auteursinfermasie beschikbaor veur disse pagina.',
 

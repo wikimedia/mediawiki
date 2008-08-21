@@ -121,7 +121,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'remembermypassword'      => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
 'loginproblem'            => '<b>Ẹ ní ìṣòro láti wọlé.</b><br />Ẹ gbìyànjú lẹ́kan sí!',
 'login'                   => "Ẹ w'ọlé",
-'nav-login-createaccount' => 'Ẹ wọlẹ́ / Ẹ fi orúkọ sílẹ̀',
+'nav-login-createaccount' => 'Ẹ wọlé / Ẹ fi orúkọ sílẹ̀',
 'userlogin'               => "Ẹ w'ọlé / ẹ fi orúkọ sílẹ̀",
 'logout'                  => "Ẹ bọ́s'óde",
 'userlogout'              => "Ẹ ti bọ́s'óde",

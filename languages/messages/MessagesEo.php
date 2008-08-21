@@ -115,6 +115,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Kaŝi miajn redaktojn de la atentaro',
 'tog-watchlisthidebots'       => 'Kaŝu bot-redaktojn de la atentaro',
 'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
+'tog-watchlisthideliu'        => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
+'tog-watchlisthideanons'      => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-ccmeonemails'            => 'Sendu al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
@@ -238,7 +240,7 @@ $messages = array(
 'print'             => 'Printi',
 'edit'              => 'Redakti',
 'create'            => 'Krei',
-'editthispage'      => 'Redaktu la paĝon',
+'editthispage'      => 'Redakti la paĝon',
 'create-this-page'  => 'Krei ĉi tiun paĝon',
 'delete'            => 'Forigi',
 'deletethispage'    => 'Forigi ĉi tiun paĝon',
@@ -470,7 +472,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'username'                   => 'Salutnomo:',
 'uid'                        => 'Uzantnumero:',
 'prefs-memberingroups'       => 'Ano de {{PLURAL:$1|grupo|grupoj}}:',
-'yourrealname'               => 'Reala nomo:',
+'yourrealname'               => 'Vera nomo:',
 'yourlanguage'               => 'Lingvo',
 'yourvariant'                => 'Varianto',
 'yournick'                   => 'Subskribo:',
@@ -670,9 +672,10 @@ Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ 
 povas fuŝi redaktante paĝojn je longo proksime aŭ preter 32kb.
 Se eble, bonvolu disigi la paĝon al malpli grandajn paĝerojn.</strong>',
 'longpageerror'                    => '<strong>Eraro: La teksto, kiun vi prezentis, longas $1 kilobajtojn, kio estas pli longa ol la maksimumo de $2 kilobajtoj. Ĝi ne povas esti storata.</strong>',
-'readonlywarning'                  => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro;
-pro tio neeblas nun konservi vian redaktadon. Vi povas elkopii kaj englui
-la tekston al tekstdosiero por poste reenmeti ĝin al la vikio.</strong>',
+'readonlywarning'                  => '<strong>AVERTO: La datumbazo estas ŝlosita por teknika laboro, do vi ne eblas konservi viajn redaktojn nune.
+Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin por posta uzo.</strong>
+
+La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1',
 'protectedpagewarning'             => '<strong>AVERTO: Tiu ĉi paĝo estas ŝlosita kontraŭ redaktado krom de administrantoj (t.e., vi). Bv certiĝi, ke vi sekvas la normojn de la komunumo per via redaktado.</strong>',
 'semiprotectedpagewarning'         => "'''Notu:''' Ĉi paĝo estas protektita tiel ke nur ensalutintaj uzantoj povas redakti ĝin.",
 'cascadeprotectedwarning'          => "'''Averto:''' Ĉi tiu paĝo estas ŝlosita tiel ke nur uzantoj kun administrantaj privilegioj povas redakti ĝin, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan kaskade protektitan paĝon|sekvajn kaskade protektitajn paĝojn}}:",
@@ -840,6 +843,8 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'difference'              => '(Malsamoj inter versioj)',
 'lineno'                  => 'Linio $1:',
 'compareselectedversions' => 'Kompari la selektitajn versiojn',
+'visualcomparison'        => 'Vida komparo',
+'wikicodecomparison'      => 'Vikiteksta komparo',
 'editundo'                => 'malfari',
 'diff-multi'              => '({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} ne montrata.)',
 
@@ -875,7 +880,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'searchall'                 => 'ĉiuj',
 'showingresults'            => "Montras {{PLURAL:$1|'''1''' trovitan|'''$1''' trovitajn}} ekde la #'''$2'''-a.",
 'showingresultsnum'         => "Montras {{PLURAL:$3|'''1''' trovitan|'''$3''' trovitajn}} ekde la #'''$2'''-a.",
-'showingresultstotal'       => "Montrante suben {{PLURAL:$3|rezulton '''$1''' of '''$3'''|rezultojn '''$1 - $2''' el '''$3'''}}",
+'showingresultstotal'       => "Montras jene {{PLURAL:$4|rezulton '''$1''' el '''$3'''|rezultojn '''$1 - $2''' el '''$3'''}}",
 'nonefound'                 => '<strong>Noto</strong>: malsukcesaj serĉoj ofte
 okazas ĉar oni serĉas tro da ofte uzataj vortoj, kiujn ne enhavas la indekso,
 aŭ ĉar oni petas tro da serĉvortoj (nur paĝoj kiuj enhavas ĉiun serĉvorton
@@ -897,7 +902,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefsnologintext'         => '[[Special:UserLogin|Ensalutu]] kaj vi povos ŝanĝi viajn preferojn.',
 'prefsreset'               => 'Preferoj reprenitaj el la registro.',
 'qbsettings'               => 'Preferoj pri ilaro',
-'qbsettings-none'          => 'Nenia',
+'qbsettings-none'          => 'Neniu',
 'qbsettings-fixedleft'     => 'Fiksiĝas maldekstre',
 'qbsettings-fixedright'    => 'Fiksiĝas dekstre',
 'qbsettings-floatingleft'  => 'Ŝvebas maldekstre',
@@ -1066,7 +1071,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'recentchanges-feed-description'    => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $5, $4.",
 'rcnotefrom'                        => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
-'rclistfrom'                        => 'Montru novajn ŝanĝojn ekde "$1"',
+'rclistfrom'                        => 'Montri novajn ŝanĝojn ekde "$1"',
 'rcshowhideminor'                   => '$1 redaktetojn',
 'rcshowhidebots'                    => '$1 robotojn',
 'rcshowhideliu'                     => '$1 ensalutantojn',
@@ -1486,7 +1491,7 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'watchlistanontext'    => 'Bonvolu $1 por vidi aŭ redakti erojn en via atentaro.',
 'watchnologin'         => 'Ne ensalutinta',
 'watchnologintext'     => 'Nepras [[Special:UserLogin|ensaluti]] por ŝanĝi vian atentaron.',
-'addedwatch'           => 'Aldonis al atentaro',
+'addedwatch'           => 'Aldoniĝis al atentaro',
 'addedwatchtext'       => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
 'removedwatch'         => 'Forigis el atentaro',
 'removedwatchtext'     => 'La paĝo "[[:$1]]" estas forigita el via atentaro.',
@@ -1514,6 +1519,8 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'watchlist-hide-minor' => 'Kaŝi redaktetojn',
 'watchlist-show-anons' => 'Montri anonimajn redaktojn',
 'watchlist-hide-anons' => 'Kaŝi anonimajn redaktojn',
+'watchlist-show-liu'   => 'Montri redaktojn de ensalutitaj uzantoj',
+'watchlist-hide-liu'   => 'Kaŝi redaktojn de ensalutitaj uzantoj',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aldonanta al la atentaro...',
@@ -1597,7 +1604,7 @@ La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:C
 'sessionfailure'              => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
-'protectlogpage'              => 'Protokolo de protektoj',
+'protectlogpage'              => 'Protokolo pri protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',
 'protectedarticle'            => 'protektita [[$1]]',
@@ -1788,7 +1795,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'unblocklink'                     => 'restarigi',
 'contribslink'                    => 'kontribuoj',
 'autoblocker'                     => 'Provizore forbarita aŭtomate pro tio, ke vi uzas la saman IP-adreson kiel "$1", kiu estis forbarita pro : "$2".',
-'blocklogpage'                    => 'Protokolo de forbaroj',
+'blocklogpage'                    => 'Protokolo pri forbaroj',
 'blocklogentry'                   => 'forbaris [[$1]] por daŭro de $2 $3',
 'blocklogtext'                    => 'Ĉi tio estas loglibro pri forbaraj kaj malforbaraj agoj. Aŭtomate forbaritaj IP adresoj ne estas listigitaj. Vidu la [[Special:IPBlockList|IP forbarliston]] por ĉi-momente fobaritaj uzantoj kaj IP-adresoj.',
 'unblocklogentry'                 => '$1 estis restarigita',
@@ -1869,7 +1876,7 @@ Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
 'newtitle'                => 'Al nova titolo',
 'move-watch'              => 'Atenti ĉi tiun paĝon',
 'movepagebtn'             => 'Alinomigi paĝon',
-'pagemovedsub'            => 'Sukcesis movi',
+'pagemovedsub'            => 'Sukcesis alinomigo',
 'movepage-moved'          => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
@@ -1877,8 +1884,8 @@ Bonvolu elekti alian nomon.',
 'talkexists'              => 'Oni ja sukcesis movi la paĝon mem, sed
 ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
 Bonvolu permane kunigi ilin.',
-'movedto'                 => 'movita al',
-'movetalk'                => 'Movu ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
+'movedto'                 => 'alinomita al',
+'movetalk'                => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
 'move-subpages'           => 'Alinomigi ĉiujn subpaĝojn, se fareble.',
 'move-talk-subpages'      => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
 'movepage-page-exists'    => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
@@ -1887,7 +1894,7 @@ Bonvolu permane kunigi ilin.',
 'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
 '1movedto2'               => '[[$1]] movita al [[$2]]',
 '1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
-'movelogpage'             => 'Protokolo de paĝmovoj',
+'movelogpage'             => 'Protokolo pri paĝmovoj',
 'movelogpagetext'         => 'Jen listo de movitaj paĝoj',
 'movereason'              => 'Kialo:',
 'revertmove'              => 'restarigi',
@@ -2105,6 +2112,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Iru al antaŭa ŝanĝo',
 'nextdiff'     => 'Iri al sekvanta ŝanĝo →',
+
+# Visual comparison
+'visual-comparison' => 'Vida komparo',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.

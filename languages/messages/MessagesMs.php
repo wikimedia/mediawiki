@@ -734,9 +734,10 @@ Terdapat beberapa pelayar web yang mempunyai masalah jika digunakan untuk menyun
 Sila bahagikan rencana ini, jika boleh.</strong>',
 'longpageerror'                    => '<strong>RALAT: Panjang teks yang dikirim ialah $1 kilobait,
 melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.</strong>',
-'readonlywarning'                  => '<strong>AMARAN: Pangkalan data telah dikunci untuk penyenggaraan.
-Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
-Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.</strong>',
+'readonlywarning'                  => '<strong>AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
+Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.</strong>
+
+Berikut ialah penjelasan yang diberikan: $1',
 'protectedpagewarning'             => '<strong>AMARAN: Laman ini telah dikunci supaya hanya penyelia boleh menyuntingnya.</strong>',
 'semiprotectedpagewarning'         => "'''Catatan:''' Laman ini telah dikunci supaya hanya pengguna berdaftar sahaja yang boleh menyuntingnya.",
 'cascadeprotectedwarning'          => "'''Amaran:''' Laman ini telah dikunci, oleh itu hanya penyelia boleh menyuntingnya. Ini kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut yang dilindungi secara melata:",
@@ -908,6 +909,8 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'difference'              => '(Perbezaan antara semakan)',
 'lineno'                  => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi-versi yang dipilih',
+'visualcomparison'        => 'Perbandingan visual',
+'wikicodecomparison'      => 'Perbandingan wikitext',
 'editundo'                => 'batal',
 'diff-multi'              => '({{PLURAL:$1|Satu|$1}} semakan pertengahan tidak ditunjukkan.)',
 
@@ -943,7 +946,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchall'                 => 'semua',
 'showingresults'            => "Berikut ialah '''$1''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
 'showingresultsnum'         => "Berikut ialah '''$3''' hasil bermula daripada yang {{PLURAL:$2|pertama|ke-'''$2'''}}.",
-'showingresultstotal'       => "Berikut ialah {{PLURAL:$3|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
+'showingresultstotal'       => "Berikut ialah {{PLURAL:$4|hasil '''$1'''|hasil '''$1 - $2'''}} daripada '''$3'''",
 'nonefound'                 => "'''Catatan''': Kegagalan pencarian biasanya
 disebabkan oleh pencarian perkataan-perkataan yang terlalu umum, seperti \"ada\"
 dan \"dari\" yang tidak diindekskan, atau disebabkan oleh pencarian lebih
@@ -2186,6 +2189,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Beza sebelumnya',
 'nextdiff'     => 'Perbezaan berikutnya →',
+
+# Visual comparison
+'visual-comparison' => 'Perbandingan visual',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",

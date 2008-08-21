@@ -378,7 +378,7 @@ $messages = array(
 'searchbutton'      => 'Rechercher',
 'go'                => 'Consulter',
 'searcharticle'     => 'Consulter',
-'history'           => 'hist',
+'history'           => 'Historique de la page',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
@@ -452,7 +452,7 @@ $messages = array(
 
 'badaccess'        => 'Erreur de permission',
 'badaccess-group0' => 'Vous n’avez pas les droits suffisants pour réaliser l’action que vous demandez.',
-'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs des groupes $1.',
+'badaccess-groups' => 'L’action que vous essayez de réaliser n’est accessible qu’aux utilisateurs {{PLURAL:$2|du groupe|des groupes}} : $1.',
 
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
@@ -520,7 +520,9 @@ $1',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
-'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre. L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
+'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
+
+L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
 'missing-article'      => 'La base de données n’a pas trouvé le texte d’une page qu’elle aurait dû trouver, intitulée « $1 » $2.
 
 Ceci est habituellement causé en suivant le lien périmé d’un diff ou de l’historique vers une page ayant été supprimée.
@@ -591,7 +593,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
 'login'                      => 'Identification',
 'nav-login-createaccount'    => 'Créer un compte ou se connecter',
-'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous [[Special:UserLogin|connecter à {{SITENAME}}]].",
+'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
 'userlogin'                  => 'Créer un compte ou se connecter',
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
@@ -797,8 +799,10 @@ Vous nous promettez aussi que vous avez écrit ceci vous-même, ou que vous l’
 'longpagewarning'                  => "'''AVERTISSEMENT : cette page a une longueur de $1 Kio ;
 certains navigateurs Web gèrent mal la modification des pages approchant ou dépassant 32 Kio. Peut-être devriez-vous diviser la page en sections plus petites.'''",
 'longpageerror'                    => '<strong>ERREUR : Le texte que vous avez soumis fait $1 Kio, ce qui dépasse la limite fixée à $2 Kio. Le texte ne peut pas être sauvegardé.</strong>',
-'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance,
-vous ne pourrez donc pas publier vos modifications maintenant. Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''",
+'readonlywarning'                  => "'''AVERTISSEMENT : La base de données a été verrouillée pour maintenance, vous ne pourrez donc pas publier vos modifications maintenant.
+Vous pouvez copier le texte dans un fichier texte et le publier pour plus tard.'''
+
+L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1",
 'protectedpagewarning'             => "'''AVERTISSEMENT : cette page est protégée.
 Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.'''",
 'semiprotectedpagewarning'         => "'''Note :''' Cette page a été protégée de telle façon que seuls les contributeurs enregistrés puissent la modifier.",
@@ -954,6 +958,8 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'difference'              => '(Différences entre les versions)',
 'lineno'                  => 'Ligne $1 :',
 'compareselectedversions' => 'Comparer les versions sélectionnées',
+'visualcomparison'        => 'Comparison visuelle',
+'wikicodecomparison'      => 'Comparison du wikitexte',
 'editundo'                => 'défaire',
 'diff-multi'              => '({{PLURAL:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
 
@@ -989,7 +995,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'searchall'                 => 'Tous',
 'showingresults'            => 'Affichage de <b>$1</b> {{PLURAL:$1|résultat|résultats}} à partir du #<b>$2</b>.',
 'showingresultsnum'         => 'Affichage de <b>$3</b> {{PLURAL:$3|résultat|résultats}} à partir du #<b>$2</b>.',
-'showingresultstotal'       => "Ci-dessous l’affichage {{PLURAL:$3|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
+'showingresultstotal'       => "Ci-dessous l’affichage {{PLURAL:$4|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
 'nonefound'                 => '<strong>Note</strong> : l’absence de résultat est souvent due à l’emploi de termes de recherche trop courants, comme « à » ou « de », qui ne sont pas indexés, ou à l’emploi de plusieurs termes de recherche (seules les pages contenant tous les termes apparaissent dans les résultats).',
 'powersearch'               => 'Rechercher',
 'powersearch-legend'        => 'Recherche avancée',
@@ -2154,8 +2160,15 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-upload'                  => 'Commencer l’envoi',
 
 # Stylesheets
-'common.css'   => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
-'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
+'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
+'standard.css'    => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Standard. */',
+'nostalgia.css'   => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Nostalgia. */',
+'cologneblue.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Cologne Blue. */',
+'monobook.css'    => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
+'myskin.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Myskin. */',
+'chick.css'       => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
+'simple.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
+'modern.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 
 # Scripts
 'common.js'   => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
@@ -2232,6 +2245,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Différence précédente',
 'nextdiff'     => 'Différence suivante →',
+
+# Visual comparison
+'visual-comparison' => 'Comparison visuelle',
 
 # Media information
 'mediawarning'         => '<b>Attention</b>: Ce fichier peut contenir du code malveillant, votre système pouvant être mis en danger par son exécution.
@@ -2647,8 +2663,8 @@ Essayez la prévisualisation normale.',
 Essayez la prévisualisation normale.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Les modifications datant de moins de $1 secondes peuvent ne pas apparaître dans cette liste.',
-'lag-warn-high'   => 'En raison d’une forte charge des bases de données, les modifications datant de moins de $1 secondes peuvent ne pas apparaître dans cette liste.',
+'lag-warn-normal' => 'Les modifications datant de moins de $1 {{PLURAL:$1|seconde|secondes}} peuvent ne pas apparaître dans cette liste.',
+'lag-warn-high'   => 'En raison d’une forte charge des bases de données, les modifications datant de moins de $1 {{PLURAL:$1|seconde|secondes}} peuvent ne pas apparaître dans cette liste.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Votre liste de suivi contient {{PLURAL:$1|une page|$1 pages}}, sans compter les pages de discussion',

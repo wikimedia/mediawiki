@@ -864,6 +864,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'deletedhist'       => '삭제된 역사',
 'revdelete-content' => '내용',
 
+# Merge log
+'mergelog' => '합병 기록',
+
 # Diffs
 'history-title'           => '"$1" 문서의 변경 내력',
 'difference'              => '(버전 사이의 차이)',
@@ -1020,6 +1023,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'right-upload_by_url'    => 'URL 주소에서 파일 올리기',
 'right-autoconfirmed'    => '준보호된 문서 편집',
 'right-apihighlimits'    => 'API 상한 상승',
+'right-writeapi'         => 'API 작성',
 'right-delete'           => '문서 삭제',
 'right-browsearchive'    => '삭제된 문서 검색',
 'right-undelete'         => '삭제된 문서 복구',
@@ -1274,7 +1278,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'doubleredirects'            => '이중 넘겨주기 목록',
 'doubleredirectstext'        => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
-'double-redirect-fixed-move' => '넘겨주기 수정: [[$1]] 문서가 [[$2]]로 이동되었습니다.',
+'double-redirect-fixed-move' => '넘겨주기 수정: [[$1]] 문서가 [[$2]] (으)로 이동되었습니다.',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
 'brokenredirectstext'    => '존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:',
@@ -1748,6 +1752,7 @@ $1',
 'move-subpages'           => '하위 문서도 함께 이동합니다.',
 'move-talk-subpages'      => '토론 문서에 딸린 문서도 함께 이동합니다.',
 'movepage-page-exists'    => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
+'movepage-page-moved'     => '$1 문서가 $2 (으)로 이동되었습니다.',
 '1movedto2'               => '[[$1]]을(를) [[$2]](으)로 옮김',
 '1movedto2_redir'         => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'movelogpage'             => '이동 기록',

@@ -803,8 +803,10 @@ Anatz dever aportar vòstras modificacions al tèxt existent.
 'longpagewarning'                  => "<strong>AVERTIMENT : aquesta pagina a una longor de $1 ko.
 De delà de 32 ko, es preferible per d'unes navigadors de devesir aquesta pagina en seccions mai pichonas. Benlèu deuriatz devesir la pagina en seccions mai pichonas.</strong>",
 'longpageerror'                    => "<strong>ERROR: Lo tèxt qu'avètz mandat es de $1 Ko, e despassa doncas lo limit autorizat dels $2 Ko. Lo tèxt pòt pas èsser salvat.</strong>",
-'readonlywarning'                  => '<strong>AVERTIMENT : La banca de donadas es estada varrolhada per mantenença,
-doncas poiretz pas salvar vòstras modificacions ara. Podètz copiar lo tèxt dins un fichièr tèxt e lo salvar per mai tard.</strong>',
+'readonlywarning'                  => "'''AVERTIMENT : La banca de donadas es estada varrolhada per mantenença, doncas poiretz pas salvar vòstras modificacions ara.
+Podètz copiar lo tèxt dins un fichièr tèxt e lo salvar per mai tard.'''
+
+L’administrator qu'a varrolhat la banca de donadas a balhat l’explicacion seguenta : $1",
 'protectedpagewarning'             => "<strong>AVERTIMENT : Aquesta pagina es protegida.
 Sols los utilizaires amb l'estatut d'administrator la pòdon modificar. Asseguratz-vos que seguissètz las directivas concernent las paginas protegidas.</strong>",
 'semiprotectedpagewarning'         => "'''Nòta:''' Aquesta pagina es estada blocada, pòt pas èsser editada que pels utilizaires enregistats.",
@@ -967,6 +969,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'difference'              => '(Diferéncias entre las versions)',
 'lineno'                  => 'Linha $1 :',
 'compareselectedversions' => 'Comparar las versions seleccionadas',
+'visualcomparison'        => 'Comparason visuala',
+'wikicodecomparison'      => 'Comparason del wikitèxt',
 'editundo'                => 'desfar',
 'diff-multi'              => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}})',
 
@@ -1003,7 +1007,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchall'                 => 'Totes',
 'showingresults'            => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'         => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
-'showingresultstotal'       => "Visionament çaijós {{PLURAL:$3|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
+'showingresultstotal'       => "Visionament çaijós {{PLURAL:$4|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
 'nonefound'                 => '<strong>Nòta</strong>: l\'abséncia de resultat es sovent deguda a l\'emplec de tèrmes de recèrca tròp corrents, coma "a" o "de",
 que son pas indexats, o a l\'emplec de mantun tèrme de recèrca (solas las paginas que
 contenon totes los tèrmes apareisson dins los resultats).',
@@ -1568,7 +1572,8 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 # Special:Categories
 'categories'                    => 'Categorias',
 'categoriespagetext'            => 'Las categorias seguentas contenon de paginas o de fichièrs.
-[[Special:UnusedCategories|Las categorias inutilizadas]] e [[Special:WantedCategories|las categorias demandadas]] son pas afichadas aicí.',
+[[Special:UnusedCategories|Las categorias inutilizadas]] son pas afichadas aicí.
+Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'categoriesfrom'                => 'Afichar las categorias que començan a :',
 'special-categories-sort-count' => 'triada per compte',
 'special-categories-sort-abc'   => 'triada alfabetica',
@@ -2190,7 +2195,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'lastmodifiedatby' => 'Aquesta pagina es estada modificada pel darrièr còp lo $1 a $2 per $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basat sul trabalh de $1.',
 'others'           => 'autres',
-'siteusers'        => 'Utilizaire(s) $1',
+'siteusers'        => '{{PLURAL:$2|utilizaire|utilizaires}} $1 de {{SITENAME}}',
 'creditspage'      => 'Pagina de crèdits',
 'nocredits'        => 'I a pas d’entresenhas d’atribucion disponiblas per aquesta pagina.',
 
@@ -2250,6 +2255,9 @@ $1",
 # Browsing diffs
 'previousdiff' => '← Diferéncia precedenta',
 'nextdiff'     => 'Diferéncia seguenta →',
+
+# Visual comparison
+'visual-comparison' => 'Comparason visuala',
 
 # Media information
 'mediawarning'         => '<b>Atencion</b>: Aqueste fichièr pòt conténer de còde malvolent, vòstre sistèma pòt èsser mes en dangièr per son execucion. <hr />',

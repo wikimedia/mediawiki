@@ -757,7 +757,9 @@ Zvážte, či by nebolo možné rozdeliť stránku na menšie sekcie.</strong>',
 'longpageerror'                    => '<strong>CHYBA: Text, ktorý ste poslali má $1 kilobajtov, čo je viac ako maximum $2 kilobajtov. Nie je možné ho uložiť.</strong>',
 'readonlywarning'                  => '<strong>UPOZORNENIE: Databáza bola počas upravovania stránky zamknutá z dôvodu údržby,
 takže stránku momentálne nemôžete uložiť. Môžete skopírovať a vložiť
-text do textového súboru a uložiť si ho na neskôr.</strong>',
+text do textového súboru a uložiť si ho na neskôr.</strong>
+
+Správca, ktorý ju zamkol, uviedol nasledovné vysvetlenie: $1',
 'protectedpagewarning'             => '<strong>UPOZORNENIE: Táto stránka bola zamknutá, takže ju môžu upravovať iba používatelia s oprávnením správcu.</strong>',
 'semiprotectedpagewarning'         => "'''Poznámka:''' Táto stránka bola zamknutá tak, aby ju mohli upravovať iba registrovaní používatelia.",
 'cascadeprotectedwarning'          => "'''Upozornenie:''' Táto stránka bola zamknutá (takže ju môžu upravovať iba používatelia s privilégiami správcu), pretože je použitá na {{PLURAL:$1|nasledovnej stránke|nasledovných stránkach}} s kaskádovým zamknutím:",
@@ -929,6 +931,8 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'difference'              => '(Rozdiel medzi revíziami)',
 'lineno'                  => 'Riadok $1:',
 'compareselectedversions' => 'Porovnať označené verzie',
+'visualcomparison'        => 'Vizuálne porovnanie',
+'wikicodecomparison'      => 'Porovnanie wikitextu',
 'editundo'                => 'vrátiť',
 'diff-multi'              => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
 
@@ -964,7 +968,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'searchall'                 => 'všetko',
 'showingresults'            => "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
 'showingresultsnum'         => "Nižšie {{PLURAL:$3|je zobrazený najviac '''1''' výsledok|sú zobrazené najviac '''$3''' výsledky|je zobrazených najviac '''$3''' výsledkov}}, počnúc od  #'''$2'''.",
-'showingresultstotal'       => "{{PLURAL:$3|Zobrazuje sa výsledok '''$1''' z '''$3'''|Zobrazujú sa výsledky '''$1 - $2''' z '''$3'''}}",
+'showingresultstotal'       => "{{PLURAL:$4|Zobrazuje sa výsledok '''$1''' z '''$3'''|Zobrazujú sa výsledky '''$1 - $2''' z '''$3'''}}",
 'nonefound'                 => "'''Poznámka''': Štandardne sa vyhľadáva iba v niektorých menných priestoroch. Skúste pred vyhľadávaný reťazec napísať ''all:'', aby sa hľadalo v celom obsahu (vrátane diskusných stránok, šablón atď.) alebo použite ako predponu požadovaný menný priestor.",
 'powersearch'               => 'Vyhľadávanie',
 'powersearch-legend'        => 'Pokročilé hľadanie',
@@ -2225,6 +2229,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Predchádzajúci rozdiel',
 'nextdiff'     => 'Ďalší rozdiel →',
+
+# Visual comparison
+'visual-comparison' => 'Vizuálne porovnanie',
 
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.

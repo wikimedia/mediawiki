@@ -854,7 +854,10 @@ vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är st
 Överväg att bryta upp sidan i mindre delar.</strong>',
 'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
 'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
-dina ändringar just nu. Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>',
+dina ändringar just nu. 
+Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>
+
+Administratören som låste databasen har framfört den här förklaringen. $1',
 'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
 'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
@@ -1021,6 +1024,8 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'difference'              => '(Skillnad mellan versioner)',
 'lineno'                  => 'Rad $1:',
 'compareselectedversions' => 'Jämför angivna versioner',
+'visualcomparison'        => 'Visuell jämförelse',
+'wikicodecomparison'      => 'Wikitextjämförelse',
 'editundo'                => 'avlägsna',
 'diff-multi'              => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
 
@@ -1056,7 +1061,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'searchall'                 => 'alla',
 'showingresults'            => "Nedan visas upp till {{PLURAL:$1|'''1''' post|'''$1''' poster}} från och med nummer '''$2'''.",
 'showingresultsnum'         => "Nedan visas {{PLURAL:$3|'''1''' post|'''$3''' poster}} från och med nummer '''$2'''.",
-'showingresultstotal'       => "Härunder visas resultat {{PLURAL:$3|'''$1'''|'''$1 - $2'''}} av '''$3'''",
+'showingresultstotal'       => "Härunder visas resultat {{PLURAL:$4|'''$1'''|'''$1 - $2'''}} av '''$3'''",
 'nonefound'                 => "'''Observera:''' Som standard sker sökning endast i vissa namnrymder. Du kan pröva att skriva ''all:'' i början av din sökning om du vill söka i alla sidor (inklusive diskussionssidor, mallar, m.m.), eller så kan du att börja din sökning med namnet på den namnrymd du vill söka i.",
 'powersearch'               => 'Sök',
 'powersearch-legend'        => 'Avancerad sökning',
@@ -2296,6 +2301,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Föregående ändring',
 'nextdiff'     => 'Nästa ändring →',
+
+# Visual comparison
+'visual-comparison' => 'Visuell jämförelse',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
