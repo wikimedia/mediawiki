@@ -52,8 +52,6 @@ class ApiEmailUser extends ApiBase {
 		
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
-		if ( $targetUser === false )
-			$this->dieUsageMsg( array( 'notargettitle' ) );
 		if ( !( $targetUser instanceof User ) )
 			$this->dieUsageMsg( array( $targetUser[0] ) );
 		

@@ -14,7 +14,7 @@ function wfSpecialEmailuser( $par ) {
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	$targetUser = EmailUserForm::validateEmailTarget( $target );
 	
-	if ( !( $targetUser instanceof User ) && $targetUser !== false ) {
+	if ( !( $targetUser instanceof User ) ) {
 		$wgOut->showErrorPage( $targetUser[0], $targetUser[1] );
 		return;
 	}
@@ -47,7 +47,7 @@ function wfSpecialEmailuser( $par ) {
 	}	
 		
 	
-	if ( "submit" == $action && $wgRequest->wasPosted() && $targetUser !== false ) {
+	if ( "submit" == $action && $wgRequest->wasPosted() ) {
 		$result = $form->doSubmit();
 		
 		if ( !is_null( $result ) ) {
@@ -98,9 +98,8 @@ class EmailUserForm {
 		$senderLink = $skin->makeLinkObj(
 			$wgUser->getUserPage(), htmlspecialchars( $wgUser->getName() ) );
 		$emt = wfMsg( "emailto" );
-		$recipient = $this->target instanceof User ? 
-			htmlspecialchars( $this->target->getName() ) :
-			'';
+		$recipientLink = $skin->makeLinkObj(
+			$this->target->getUserPage(), htmlspecialchars( $this->target->getName() ) );
 		$emr = wfMsg( "emailsubject" );
 		$emm = wfMsg( "emailmessage" );
 		$ems = wfMsg( "emailsend" );
@@ -108,7 +107,8 @@ class EmailUserForm {
 		$encSubject = htmlspecialchars( $this->subject );
 
 		$titleObj = SpecialPage::getTitleFor( "Emailuser" );
-		$action = $titleObj->escapeLocalURL( "action=submit" );
+		$action = $titleObj->escapeLocalURL( "target=" .
+			urlencode( $this->target->getName() ) . "&action=submit" );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
 		$wgOut->addHTML( "
@@ -118,7 +118,7 @@ class EmailUserForm {
 <td align='left'><strong>{$senderLink}</strong></td>
 </tr><tr>
 <td align='right'>{$emt}:</td>
-<td align='left'><input type='text' size='60' name='target' value='{$recipient}' /></td>
+<td align='left'><strong>{$recipientLink}</strong></td>
 </tr><tr>
 <td align='right'>{$emr}:</td>
 <td align='left'>
@@ -235,7 +235,8 @@ class EmailUserForm {
 			return array( "nosuchspecialpage", "nospecialpagetext" );
 		
 		if ( "" == $target ) {
-			return false;
+			wfDebug( "Target is empty.\n" );
+			return array( "notargettitle", "notargettext" );
 		}
 	
 		$nt = Title::newFromURL( $target );
