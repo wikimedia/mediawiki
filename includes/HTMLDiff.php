@@ -456,10 +456,6 @@ class Modification{
 
 	public $id = -1;
 
-	public $prevMod;
-
-	public $nextMod;
-
 	public $firstOfID = false;
 
 	public $changes;
@@ -608,8 +604,6 @@ class TextNodeDiffer {
 	private $oldTextNodes;
 	private $oldBodyNode;
 
-	private $lastModified = array();
-
 	private $newID = 0;
 
 	private $changedID = 0;
@@ -637,27 +631,15 @@ class TextNodeDiffer {
 			$this->textNodes[$start]->whiteBefore = false;
 		}
 
-		$nextLastModified = array();
-
 		for ($i = $start; $i < $end; ++$i) {
 			$mod = new Modification(Modification::ADDED);
 			$mod->id = $this->newID;
-			if (count($this->lastModified) > 0) {
-				$mod->prevMod = $this->lastModified[0];
-				if (is_null($this->lastModified[0]->nextMod )) {
-					foreach ($this->lastModified as &$lastMod) {
-						$lastMod->nextMod = $mod;
-					}
-				}
-			}
-			$nextLastModified[] = $mod;
 			$this->textNodes[$i]->modification = $mod;
 		}
 		if ($start < $end) {
 			$this->textNodes[$start]->modification->firstOfID = true;
 		}
 		++$this->newID;
-		$this->lastModified = $nextLastModified;
 	}
 
 	public function handlePossibleChangedPart($leftstart, $leftend,	$rightstart, $rightend) {
@@ -669,8 +651,6 @@ class TextNodeDiffer {
 			$this->changedIDUsed = false;
 		}
 
-		$nextLastModified = array();
-
 		$changes;
 		while ($i < $rightend) {
 			$acthis = new AncestorComparator($this->textNodes[$i]->getParentTree());
@@ -678,34 +658,15 @@ class TextNodeDiffer {
 			$result = $acthis->getResult($acother);
 			unset($acthis, $acother);
 
-			$nbLastModified = count($this->lastModified);
 			if ($result->changed) {
 				$mod = new Modification(Modification::CHANGED);
 
 				if (!$this->changedIDUsed) {
 					$mod->firstOfID = true;
-					if (count($nextLastModified) > 0) {
-						$this->lastModified = $nextLastModified;
-						$nextLastModified = array();
-					}
 				} else if (!is_null($result->changes) && $result->changes !== $this->changes) {
 					++$this->changedID;
 					$mod->firstOfID = true;
-					if (count($nextLastModified) > 0) {
-						$this->lastModified = $nextLastModified;
-						$nextLastModified = array();
-					}
 				}
-
-				if ($nbLastModified > 0) {
-					$mod->prevMod = $this->lastModified[0];
-					if (is_null($this->lastModified[0]->nextMod )) {
-						foreach ($this->lastModified as &$lastMod) {
-							$lastMod->nextMod = $mod;
-						}
-					}
-				}
-				$nextLastModified[] = $mod;
 
 				$mod->changes = $result->changes;
 				$mod->id = $this->changedID;
@@ -719,9 +680,6 @@ class TextNodeDiffer {
 			}
 			++$i;
 			++$j;
-		}
-		if (count($nextLastModified) > 0) {
-			$this->lastModified = $nextLastModified;
 		}
 	}
 
@@ -737,20 +695,9 @@ class TextNodeDiffer {
 			$this->whiteAfterLastChangedPart = false;
 		}
 
-		$nextLastModified = array();
-
 		for ($i = $start; $i < $end; ++$i) {
 			$mod = new Modification(Modification::REMOVED);
 			$mod->id = $this->deletedID;
-			if (count($this->lastModified) > 0) {
-				$mod->prevMod = $this->lastModified[0];
-				if (is_null($this->lastModified[0]->nextMod )) {
-					foreach ($this->lastModified as &$lastMod) {
-						$lastMod->nextMod = $mod;
-					}
-				}
-			}
-			$nextLastModified[] = $mod;
 
 			// oldTextNodes is used here because we're going to move its deleted
 			// elements to this tree!
@@ -842,7 +789,6 @@ class TextNodeDiffer {
 				throw new Exception("Uh?");
 			}
 		}
-		$this->lastModified = $nextLastModified;
 		++$this->deletedID;
 	}
 
@@ -1376,8 +1322,6 @@ class HTMLOutput{
 					if ($mod->firstOfID) {
 						$attrs['id'] = "added-{$this->prefix}-{$mod->id}";
 					}
-					$this->addAttributes($mod, $attrs);
-					$attrs['onclick'] = 'return tipA(constructToolTipA(this));';
 					$handler->startElement('span', $attrs);
 					$newStarted = true;
 				} else if (!$changeStarted && $mod->type == Modification::CHANGED) {
@@ -1385,8 +1329,6 @@ class HTMLOutput{
 					if ($mod->firstOfID) {
 						$attrs['id'] = "changed-{$this->prefix}-{$mod->id}";
 					}
-					$this->addAttributes($mod, $attrs);
-					$attrs['onclick'] = 'return tipC(constructToolTipC(this));';
 					$handler->startElement('span', $attrs);
 
 					//tooltip
@@ -1401,8 +1343,6 @@ class HTMLOutput{
 					if ($mod->firstOfID) {
 						$attrs['id'] = "removed-{$this->prefix}-{$mod->id}";
 					}
-					$this->addAttributes($mod, $attrs);
-					$attrs['onclick'] = 'return tipR(constructToolTipR(this));';
 					$handler->startElement('span', $attrs);
 					$remStarted = true;
 				}
@@ -1414,7 +1354,6 @@ class HTMLOutput{
 				} else {
 					$handler->characters($chars);
 				}
-
 			}
 		}
 
@@ -1437,38 +1376,8 @@ class HTMLOutput{
 
 	private function writeImage(ImageNode  $imgNode) {
 		$attrs = $imgNode->attributes;
-		if ($imgNode->modification->type == Modification::REMOVED) {
-			$attrs['changeType']='diff-removed-image';
-		} else if ($imgNode->modification->type == Modification::ADDED) {
-			$attrs['changeType'] = 'diff-added-image';
-		}
-		$attrs['onload'] = 'updateOverlays()';
-		$attrs['onError'] = 'updateOverlays()';
-		$attrs['onAbort'] = 'updateOverlays()';
 		$this->handler->startElement('img', $attrs);
 		$this->handler->endElement('img');
-	}
-
-	private function addAttributes(Modification $mod, /*array*/ &$attrs) {
-		if (is_null($mod->prevMod)) {
-			$previous = 'first-' . $this->prefix;
-		} else {
-			$type = Modification::typeToString($mod->prevMod->type);
-			$previous = "$type-{$this->prefix}-{$mod->prevMod->id}";
-		}
-		$attrs['previous'] = $previous;
-
-		$type = Modification::typeToString($mod->type);
-		$changeId = "$type-{$this->prefix}-{$mod->id}";
-		$attrs['changeId'] = $changeId;
-
-		if (is_null($mod->nextMod )) {
-			$next = "last-{$this->prefix}";
-		} else {
-			$type = Modification::typeToString($mod->nextMod->type);
-			$next = "$type-{$this->prefix}-{$mod->nextMod->id}";
-		}
-		$attrs['next'] = $next;
 	}
 }
 
