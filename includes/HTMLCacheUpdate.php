@@ -37,7 +37,7 @@ class HTMLCacheUpdate
 		$this->mRowsPerQuery = $wgUpdateRowsPerQuery;
 	}
 
-	function doUpdate() {
+	public function doUpdate() {
 		# Fetch the IDs
 		$cond = $this->getToCondition();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -50,6 +50,7 @@ class HTMLCacheUpdate
 				$this->invalidateIDs( $res );
 			}
 		}
+		wfRunHooks( 'HTMLCacheUpdate::doUpdate', array($this->mTitle) );
 	}
 
 	function insertJobs( ResultWrapper $res ) {
