@@ -221,7 +221,8 @@ class SiteConfiguration {
 		$site = NULL;
 		$lang = NULL;
 		
-		if (!wfRunHooks( 'SiteFromDB', array( $db, &$site, &$lang ) ) )
+		// Only run hooks if they *can* be run.
+		if (function_exists( 'wfRunHooks' ) && !wfRunHooks( 'SiteFromDB', array( $db, &$site, &$lang ) ) )
 			return array( $site, $lang );
 		foreach ( $this->suffixes as $suffix ) {
 			if ( $suffix === '' ) {
