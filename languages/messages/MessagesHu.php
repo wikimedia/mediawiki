@@ -875,9 +875,10 @@ A beküldéssel egyben azt is tanúsítod, hogy a beküldött szöveget magad í
 böngészőknek problémát okoz a 32 kB-os vagy nagyobb lapok szerkesztése.
 Fontold meg a lap kisebb szakaszokra bontását.</strong>',
 'longpageerror'                    => '<strong>HIBA: Az általad beküldött szöveg $1 kilobájt hosszú, ami több a még engedélyezett $2 kilobájtnál, ezért nem tudom elmenteni.</strong>',
-'readonlywarning'                  => '<strong>FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták,
-ezért sajnos nem tudod majd elmenteni a szerkesztéseidet. A lap szöveget kimásolhatod
-egy szövegfájlba, amit elmenthetsz későbbre.</strong>',
+'readonlywarning'                  => '<strong>FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták, ezért sajnos nem tudod majd elmenteni a szerkesztéseidet.
+A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.</strong>
+
+Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1',
 'protectedpagewarning'             => '<strong>FIGYELEM: Ez a lap védett, csak adminisztrátorok szerkeszthetik.</strong>',
 'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, nem vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
@@ -1043,6 +1044,8 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'difference'              => '(Változatok közti eltérés)',
 'lineno'                  => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',
+'visualcomparison'        => 'Vizuális összehasonlítás',
+'wikicodecomparison'      => 'Wikikód összehasonlítása',
 'editundo'                => 'visszavonás',
 'diff-multi'              => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
 

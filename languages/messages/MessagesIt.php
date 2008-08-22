@@ -888,6 +888,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',
 'visualcomparison'        => 'Confronto visuale',
+'wikicodecomparison'      => 'Confronto del wikitext',
 'editundo'                => 'annulla',
 'diff-multi'              => '({{PLURAL:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
 

@@ -702,7 +702,9 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 <strong>ĐỪNG ĐĂNG TÁC PHẨM CÓ BẢN QUYỀN MÀ CHƯA XIN PHÉP!</strong>',
 'longpagewarning'                  => '<strong>CẢNH BÁO: Trang này dài $1 kilobyte; một số trình duyệt không tải được trang dài hơn 32 kb. Bạn nên chia nhỏ trang này thành nhiều trang.</strong>',
 'longpageerror'                    => '<strong>LỖI: Văn bạn mà bạn muốn lưu dài $1 kilobyte, dài hơn độ dài tối đa cho phép $2 kilobyte. Không thể lưu trang.</strong>',
-'readonlywarning'                  => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>',
+'readonlywarning'                  => '<strong>CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.</strong>
+
+Người quản lý khi khóa dữ liệu đã đưa ra lý do: $1',
 'protectedpagewarning'             => '<strong>CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.</strong>',
 'semiprotectedpagewarning'         => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
 'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
@@ -871,6 +873,8 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'difference'              => '(Khác biệt giữa các bản)',
 'lineno'                  => 'Dòng $1:',
 'compareselectedversions' => 'So sánh các bản đã chọn',
+'visualcomparison'        => 'So sánh hình dạng',
+'wikicodecomparison'      => 'So sánh mã wiki',
 'editundo'                => 'lùi sửa',
 'diff-multi'              => '(Không hiển thị {{PLURAL:$1|một|$1}} phiên bản ở giữa)',
 
@@ -906,7 +910,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchall'                 => 'tất cả',
 'showingresults'            => "Dưới đây là {{PLURAL:$1|'''1'''|'''$1'''}} kết quả bắt đầu từ #'''$2'''.",
 'showingresultsnum'         => "Dưới đây là {{PLURAL:$3|'''1'''|'''$3'''}} kết quả bắt đầu từ #'''$2'''.",
-'showingresultstotal'       => "Dưới đây là {{PLURAL:$3|kết quả '''$1''' trong '''$3'''|những kết quả từ '''$1 - $2''' trong tổng số '''$3'''}}",
+'showingresultstotal'       => "Dưới đây là {{PLURAL:$4|kết quả thứ '''$1''' trong tổng số '''$3'''|những kết quả từ '''$1 - $2''' trong tổng số '''$3'''}}",
 'nonefound'                 => "'''Chú ý''': Theo mặc định chỉ tìm kiếm một số không gian tên. Hãy thử bắt đầu từ khóa bằng ''all:'' để tìm mọi nội dung (kể cả trang thảo luận, tiêu bản, v.v.), hoặc bắt đầu bằng không gian tên mong muốn (ví dụ ''Thảo luận:'', ''Tiêu bản:'', ''Thể loại:''…).",
 'powersearch'               => 'Tìm kiếm nâng cao',
 'powersearch-legend'        => 'Tìm kiếm nâng cao',
@@ -2099,7 +2103,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Dựa trên công trình của $1.',
 'others'           => 'những người khác',
-'siteusers'        => 'Thành viên $1 của {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|Thành viên|Các thành viên}} $1 của {{SITENAME}}',
 'creditspage'      => 'Trang ghi nhận đóng góp',
 'nocredits'        => 'Không có thông tin ghi nhận đóng góp cho trang này.',
 
@@ -2159,6 +2163,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Thay đổi trước',
 'nextdiff'     => 'Thay đổi sau →',
+
+# Visual comparison
+'visual-comparison' => 'So sánh hình dạng',
 
 # Media information
 'mediawarning'         => "'''Cảnh báo''': Tập tin này có thể chứa mã hiểm độc, nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",

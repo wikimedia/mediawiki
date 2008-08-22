@@ -455,7 +455,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'group-all'        => '(yn clane)',
 
 'group-user-member'       => 'Ymmydeyr',
-'group-bot-member'        => 'Bot',
+'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Reireyder',
 'group-bureaucrat-member' => 'Oikreilleyder',
 'group-suppress-member'   => 'Meehastid',
@@ -486,7 +486,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'show'            => 'Taishbyney',
 'minoreditletter' => 'm',
 'newpageletter'   => 'N',
-'boteditletter'   => 'b',
+'boteditletter'   => 'r',
 
 # Recent changes linked
 'recentchangeslinked'       => 'Caghlaaghyn-vooinjerys',
@@ -537,7 +537,7 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'filehist-filesize'              => 'Mooadys y choadan',
 'filehist-comment'               => 'Cohaggloo',
 'imagelinks'                     => 'Kianglaghyn',
-'linkstoimage'                   => 'Ta ny duillagyn eiyrtyssagh kianglt lesh y coadan shoh:',
+'linkstoimage'                   => 'Ta {{PLURAL:$1|an duillag|$1 ny duillagyn}} eiyrtyssagh kianglt lesh y coadan shoh:',
 'nolinkstoimage'                 => 'Cha nel duillag erbee kianglt lesh y coadan shoh.',
 'shareduploadwiki-linktext'      => 'duillag huarastyl y choadan',
 'shareduploadduplicate-linktext' => 'coadyn elley',
@@ -905,7 +905,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'anonymous' => 'Ymmeyder(yn) neuenmyssit dy {{SITENAME}}',
 'siteuser'  => 'ymmydeyr {{SITENAME}} $1',
 'others'    => 'sleih elley',
-'siteusers' => 'Ymmydeyr(yn) ec {{SITENAME}} $1',
+'siteusers' => '{{PLURAL:$2|Ymmydeyr|Ymmydeyryn}} ec {{SITENAME}} $1',
 
 # Info page
 'infosubtitle' => 'Oayllys da duillag',
@@ -921,7 +921,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'nextdiff'     => 'Yn chied caghlaa elley →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 duillagyn',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|duillag|duillagyn}}',
 'file-info-size'       => '($1 × $2 pixel, mooadys y choadan: $3, sorçh MIME: $4)',
 'file-nohires'         => '<small>Cha nel jeeskeaylley ny smoo ry-gheddyn.</small>',
 'svg-long-desc'        => '(coadan SVG, $1 × $2 pixelyn dy ennymagh, mooadys y choadan: $3)',

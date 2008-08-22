@@ -448,7 +448,7 @@ $messages = array(
 
 'badaccess'        => 'Aðgangsvilla',
 'badaccess-group0' => 'Þú hefur ekki leyfi til að framkvæma þá aðgerð sem þú baðst um.',
-'badaccess-groups' => 'Aðgerðin sem þú reyndir að framkvæma er takmörkuð einum af hópunum $1.',
+'badaccess-groups' => 'Aðgerðin sem þú reyndir að framkvæma er takmörkuð notendum í {{PLURAL:$2|hópnum|einum af hópunum}}: $1.',
 
 'versionrequired'     => 'Þarfnast úgáfu $1 af MediaWiki',
 'versionrequiredtext' => 'Útgáfa $1 af MediaWiki er nauðsynlegt til að geta skoðað þessa síðu. Sjá [[Special:Version|útgáfusíðuna]].',
@@ -703,29 +703,32 @@ Gjörðu svo vel að setja inn rétt netfang eða tæmdu reitinn.',
 'blockedtitle'                     => 'Notandi er bannaður',
 'blockedtext'                      => "<big>'''Notandanafn þitt eða vistfang hefur verið bannað.'''</big>
 
-Bannið var sett af $1. Ástæðan sem gefin var er eftirfarandi: ''$2''.
+Bannið var sett af $1.
+Ástæðan er eftirfarandi: ''$2''.
 
 * Bannið hófst: $8
 * Banninu lýkur: $6
 * Sá sem banna átti: $7
 
-Þú getur reynt að hafa samband við $1 eða einhvern annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.
-Athugaðu að möguleikinn „Senda þessum notanda tölvupóst“ er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|notandastillingum þínum]] og að þér hafi ekki verið bannaður sá möguleiki.
-Vistfangið þitt er $3 og bönnunarnúmerið er #$5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
-'autoblockedtext'                  => "Vistfang þitt hefur verið sjálvirkt bannað því það var notuð af öðrum notanda, sem var bannaður af $1.
-Ástæðan sem gefin var er eftirfarandi:
+Þú getur haft samband við $1 eða annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.
+Þú getur ekki notað „Senda þessum notanda tölvupóst“ aðgerðina nema gilt netfang sé skráð í [[Special:Preferences|notandastillingum þínum]] og að þér hafi ekki verið óheimilað það.
+Núverandi vistfang þitt er $3, og bönnunarnúmerið er #$5.
+Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
+'autoblockedtext'                  => "Vistfang þitt hefur verið sjálfvirkt bannað því það var notað af öðrum notanda, sem var bannaður af $1.
+Ástæðan er eftirfarandi:
 
 :''$2''
 
-* Bann byrjaði: $8
-* Bannið endist til: $6
+* Bannið hófst: $8
+* Banninu lýkur: $6
+* Sá sem banna átti: $7
 
-Þú getur haft samband við $1 eða einn af hinum
-[[{{MediaWiki:Grouppage-sysop}}|stjórendunum]] til að ræða bannið.
+Þú getur haft samband við $1 eða annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.
 
-Athugið að „Senda þessum notanda tölvupóst“ möguleikinn er óvirkur nema þú hafir skráð gilt netfang í [[Special:Preferences|stillingunum]] þínum.
+Athugaðu að þú getur ekki notað „Senda þessum notanda tölvupóst“ aðgerðina nema gilt netfang sé skráð í [[Special:Preferences|notandastillingum þínum]] og að þér hafi ekki verið óheimilað það.
 
-Vistfangið þitt er $5. Vinsamlegast taktu það fram í fyrirspurnum þínum.",
+Núverandi vistfang þitt er $3, og bönnunarnúmerið er #$5.
+Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 'blockednoreason'                  => 'engin ástæða gefin',
 'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'               => 'Innskráningar er krafist til að breyta',
@@ -774,7 +777,10 @@ Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br
 vafrar gætu átt erfitt með að gera breytingar á síðum sem nálgast eða eru lengri en 32kb.
 Vinsamlegast íhugaðu að skipta síðunni niður í smærri einingar.</strong>',
 'longpageerror'                    => '<strong>VILLA: Textinn sem þú sendir inn er $1 kílóbæti að lengd, en hámarkið er $2 kílóbæti. Ekki er hægt að vista textann.</strong>',
-'readonlywarning'                  => '<strong>VIÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo að þú getur ekki vistað breytingar þínar núna. Þú gætir viljað afrita breyttan texta síðunnar yfir í textaskjal og geyma hann þar til síðar.</strong>',
+'readonlywarning'                  => '<strong>AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.
+Þú kannt að vilja að klippa og líma textann í textaskjal og vista hann fyrir síðar.</strong>
+
+Stjórnandinn sem læsti honum gaf þessa skýringu: $1',
 'protectedpagewarning'             => '<strong>Viðvörun: Þessari síðu hefur verið læst svo aðeins notendur með möppudýraréttindi geti breytt henni.</strong>',
 'semiprotectedpagewarning'         => "'''Athugið''': Þessari síðu hefur verið læst þannig að aðeins innskráðir notendur geti breytt henni.",
 'titleprotectedwarning'            => '<strong>VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins notendur geta breytt henni.</strong>',
@@ -900,7 +906,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchall'                 => 'öllum',
 'showingresults'            => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
 'showingresultsnum'         => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
-'showingresultstotal'       => "Sýni að neðan {{PLURAL:$3|útkomu '''$1''' af '''$3'''|útkomur '''$1 - $2''' af '''$3'''}}",
+'showingresultstotal'       => "Sýni að neðan {{PLURAL:$4|útkomu '''$1''' af '''$3'''|útkomur '''$1 - $2''' af '''$3'''}}",
 'nonefound'                 => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'powersearch'               => 'Ítarleg leit',
 'powersearch-legend'        => 'Ítarlegri leit',
@@ -1810,7 +1816,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Byggt á verkum $1.',
 'others'           => 'aðrir',
-'siteusers'        => '{{SITENAME}} notandi/notendur $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|notandi|notendur}} $1',
 
 # Info page
 'infosubtitle'   => 'Upplýsingar um síðu',
@@ -2047,8 +2053,8 @@ $1',
 'livepreview-ready'   => '… framköllun lokið!',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Breytingar nýrri en $1 sekúndur gætu ekki verið sýndar á þessum lista.',
-'lag-warn-high'   => 'Vegna mikils álags á vefþjónanna munu breytingar yngry en $1 sekúndur ekki vera sýndar á þessum lista.',
+'lag-warn-normal' => 'Breytingar nýrri en $1 {{PLURAL:$1|sekúnda|sekúndur}} kunna að vera ekki á þessm lista.',
+'lag-warn-high'   => 'Vegna mikils álags á vefþjónanna, kunna breytingar yngri en $1 {{PLURAL:$1|sekúnda|sekúndur}} ekki að vera á þessum lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Á vaktlista þínum {{PLURAL:$1|er 1 síða|eru $1 síður}}, að undanskildum spjallsíðum.',

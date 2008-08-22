@@ -1025,6 +1025,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'right-apihighlimits'    => 'API 상한 상승',
 'right-writeapi'         => 'API 작성',
 'right-delete'           => '문서 삭제',
+'right-deleterevision'   => '문서의 특정 판을 삭제 및 복구',
 'right-browsearchive'    => '삭제된 문서 검색',
 'right-undelete'         => '삭제된 문서 복구',
 'right-suppressrevision' => '관리자도 보지 못하도록 숨겨진 판의 확인 및 복구',
@@ -1356,6 +1357,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'log-search-submit'    => '찾기',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다.',
 'logempty'             => '일치하는 항목이 없습니다.',
+'log-title-wildcard'   => '다음 글로 시작하는 제목 검색',
 
 # Special:AllPages
 'allpages'          => '모든 문서 목록',
