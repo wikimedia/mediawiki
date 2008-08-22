@@ -1150,7 +1150,6 @@ $2',
 'userrights-notallowed'          => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
 'userrights-changeable-col'      => 'المجموعات اللي تقدر تغييرها',
 'userrights-unchangeable-col'    => 'المجموعات اللى مش ممكن انك تغيرها',
-'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -1444,7 +1443,6 @@ PICT # misc.
 
 # File reversion
 'filerevert'                => 'استرجع $1',
-'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'استرجع الملف',
 'filerevert-intro'          => "أنت بترجع '''[[Media:$1|$1]]''' [$4 للنسخةاللي بتاريخ $2، $3].",
 'filerevert-comment'        => 'تعليق:',
@@ -1455,7 +1453,6 @@ PICT # misc.
 
 # File deletion
 'filedelete'                  => 'امسح $1',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'امسح الملف',
 'filedelete-intro'            => "أنت بتمسح '''[[Media:$1|$1]]'''.",
 'filedelete-intro-old'        => '<span class="plainlinks">أنت بتمسح نسخة \'\'\'[[Media:$1|$1]]\'\'\'اللي  بتاريخ [$4 $3، $2].</span>',
@@ -1654,7 +1651,6 @@ PICT # misc.
 'listgrouprights-rights'          => 'الحقوق',
 'listgrouprights-helppage'        => 'Help: حقوق المجموعات',
 'listgrouprights-members'         => '(لستة الأعضاء)',
-'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup'        => 'ممكن تضيف {{PLURAL:$2|المجموعة|المجموعات}}: $1',
 'listgrouprights-removegroup'     => 'ممكن تشيل {{PLURAL:$2|المجموعة|المجموعات}}: $1',
 'listgrouprights-addgroup-all'    => ' ممكن تضيف كل المجموعات : $1',
@@ -1818,7 +1814,6 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
 'unprotectedarticle'          => 'شال حماية [[$1]]',
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
-'protect-backlink'            => '← $1',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',
@@ -2065,7 +2060,6 @@ $1',
 
 # Move page
 'move-page'               => 'انقل $1',
-'move-page-backlink'      => '← $1',
 'move-page-legend'        => 'انقل الصفحة',
 'movepagetext'            => "لو استعملت النموذج ده ممكن تغير اسم الصفحه، و تنقل تاريخها للاسم الجديد.
 هاتبتدى تحويله من العنوان القديم للصفحه بالعنوان الجديد.
@@ -2350,7 +2344,6 @@ $1',
 'mediawarning'         => "'''تحذير''': الملف دا فيه كود خبيث، يمكن عند تشغيله يبوظ الكمبيوتر بتاعك.<hr />",
 'imagemaxsize'         => 'حدد الصور في صفحات وصف الملفات لـ:',
 'thumbsize'            => 'حجم العرض المتصغر:',
-'widthheight'          => '$1×$2',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
 'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
 'file-info-size'       => '($1 × $2 بكسل حجم الفايل: $3، نوع MIME: $4)',
@@ -2745,11 +2738,8 @@ $1',
 'useajaxsearch'    => 'دور بـ أجاكس',
 
 # Separators for various lists, etc.
-'catseparator'        => '|',
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
-'colon-separator'     => ':&#32;',
-'autocomment-prefix'  => '-&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← الصفحة اللي فاتت',
