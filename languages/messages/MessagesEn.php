@@ -1342,7 +1342,7 @@ Note that using the navigation links will reset this column.',
 'diff-src'                => 'source',
 'diff-withdestination'    => 'with destination',
 'diff-with'               => '&#32;with $1 $2',
-'diff-with-additional'    => '$1 $2',
+'diff-with-additional'    => '$1 $2', # only translate this message to other languages if you have to change it
 'diff-with-final'         => '&#32;and $1 $2',
 'diff-width'              => 'width',
 'diff-height'             => 'height',
