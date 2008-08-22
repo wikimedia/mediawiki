@@ -1064,6 +1064,11 @@ $text: Text being shown
 $title: Title of the custom script/stylesheet page
 $output: Current OutputPage object
 
+'SiteFromDB': Customise the conversion of a database name to site information in SiteConfiguration
+$db: The DB name being converted.
+&$site: The site type (out).
+&$lang: The "language" (subdomain)
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,
