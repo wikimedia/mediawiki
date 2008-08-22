@@ -731,7 +731,7 @@ class Article {
 			$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
 			$diff = $wgRequest->getVal( 'diff' );
-			$htmldiff = $wgRequest->getVal( 'htmldiff' );
+			$htmldiff = $wgRequest->getVal( 'htmldiff' , false);
 			$de = new DifferenceEngine( $this->mTitle, $oldid, $diff, $rcid, $purge, $htmldiff);
 			// DifferenceEngine directly fetched the revision:
 			$this->mRevIdFetched = $de->mNewid;

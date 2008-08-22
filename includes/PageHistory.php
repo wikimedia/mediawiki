@@ -201,10 +201,9 @@ class PageHistory {
 		$s .= Xml::openElement( 'form', array( 'action' => $wgScript ) );
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
 		if($wgEnableHtmlDiff){
-			$s .= Xml::hidden( 'htmldiff', 0 , array('id' => 'htmldiff'));
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
 			array(
-					'id' => 'submithtmldiff1',
+					'name' => 'htmldiff',
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
@@ -212,7 +211,6 @@ class PageHistory {
 			);
 			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
 			array(
-					'id' => 'submitsourcediff1',
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
@@ -242,7 +240,7 @@ class PageHistory {
 		if($wgEnableHtmlDiff){
 			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
 			array(
-					'id' => 'submithtmldiff2',
+					'name' => 'htmldiff',
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
@@ -250,7 +248,6 @@ class PageHistory {
 			);
 			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
 			array(
-					'id' => 'submitsourcediff2',
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
