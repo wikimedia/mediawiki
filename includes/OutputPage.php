@@ -766,7 +766,7 @@ class OutputPage {
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgJsMimeType, $wgUseAjax, $wgAjaxSearch, $wgAjaxWatch;
+		global $wgJsMimeType, $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest;
 
 		if( $this->mDoNothing ){
