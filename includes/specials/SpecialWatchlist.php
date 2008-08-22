@@ -279,7 +279,7 @@ function wfSpecialWatchlist( $par ) {
 	$form .= '<p>';
 	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
 	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&nbsp;';
-	$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . "<br />";
+	$form .= Xml::checkLabel( wfMsg('invert'), 'invert', 'nsinvert', $invert ) . '&nbsp;';
 	$form .= Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . '</p>';
 	$form .= Xml::hidden( 'days', $days );
 	if( $hideMinor )
