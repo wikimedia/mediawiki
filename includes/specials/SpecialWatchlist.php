@@ -241,7 +241,7 @@ function wfSpecialWatchlist( $par ) {
 		);
 	}
 
-	$wgOut->addHTML( "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n" );
+	$cutofflinks = "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n";
 
 	# Spit out some control panel links
 	$thisTitle = SpecialPage::getTitleFor( 'Watchlist' );
@@ -272,10 +272,14 @@ function wfSpecialWatchlist( $par ) {
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
-	$wgOut->addHTML( implode( ' | ', $links ) );
-
-	# Form for namespace filtering
-	$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
+	# Namespace filter and put the whole form together.
+	$form  = Xml::openElement( 'fieldset', array( 'id' => 'mw-watchlist-options' ) );
+	$form .= Xml::openElement( 'legend', array( 'id' => 'mw-watchlist-legend' ) );
+	$form .= wfMsgExt( 'watchlist-options', array('escape') );
+	$form .= Xml::closeElement( 'legend' );
+	$form .= $cutofflinks;
+	$form .= implode( ' | ', $links );
+	$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
 	$form .= '<p>';
 	$form .= Xml::label( wfMsg( 'namespace' ), 'namespace' ) . '&nbsp;';
 	$form .= Xml::namespaceSelector( $nameSpace, '' ) . '&nbsp;';
@@ -293,6 +297,7 @@ function wfSpecialWatchlist( $par ) {
 	if( $hideOwn )
 		$form .= Xml::hidden( 'hideOwn', 1 );
 	$form .= Xml::closeElement( 'form' );
+	$form .= Xml::closeElement( 'fieldset' );
 	$wgOut->addHtml( $form );
 
 	# If there's nothing to show, stop here
