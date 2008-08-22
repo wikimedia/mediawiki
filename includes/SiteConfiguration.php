@@ -218,13 +218,11 @@ class SiteConfiguration {
 	 * @param $db
 	 */
 	function siteFromDB( $db ) {
-		$site = $lang = '';
+		$site = NULL;
+		$lang = NULL;
 		
 		if (!wfRunHooks( 'SiteFromDB', array( $db, &$site, &$lang ) ) )
 			return array( $site, $lang );
-			
-		$site = NULL;
-		$lang = NULL;
 		foreach ( $this->suffixes as $suffix ) {
 			if ( $suffix === '' ) {
 				$site = '';
