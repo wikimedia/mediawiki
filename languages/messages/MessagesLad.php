@@ -7,6 +7,7 @@
  * @author ILVI
  * @author Runningfridgesrule
  * @author Taichi
+ * @author Universal Life
  * @author לערי ריינהארט
  */
 
@@ -45,7 +46,7 @@ $messages = array(
 'thu'           => 'dju',
 'fri'           => 'vié',
 'sat'           => 'sha',
-'january'       => 'enéro',
+'january'       => 'Januario',
 'february'      => 'fevrero',
 'march'         => 'márso',
 'april'         => 'avril',
@@ -56,7 +57,7 @@ $messages = array(
 'september'     => 'septiembre',
 'october'       => 'oktúbre',
 'november'      => 'noviembre',
-'december'      => 'disiémbre',
+'december'      => 'diziembre',
 'january-gen'   => 'enéro',
 'february-gen'  => 'fevrero',
 'march-gen'     => 'márso',
@@ -90,10 +91,10 @@ $messages = array(
 'hidden-category-category' => 'Kategorías eskondidas', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'kont.',
 
-'about'          => 'Aserka de',
+'about'          => 'Encima de',
 'article'        => 'Artikolo',
 'newwindow'      => '(Se avre en una ventana mueva)',
-'qbfind'         => 'Bushkar',
+'qbfind'         => 'Buscar',
 'qbedit'         => 'Editar',
 'qbpageoptions'  => 'Opsiones de pajina',
 'qbmyoptions'    => 'Mis opsiones',
@@ -105,9 +106,9 @@ $messages = array(
 'and'            => 'e',
 
 'errorpagetitle'   => 'Yerro',
-'help'             => 'Ayuda',
-'search'           => 'Bushkar',
-'searchbutton'     => 'Bushkar',
+'help'             => 'Ayudo',
+'search'           => 'Buscar',
+'searchbutton'     => 'Buscar',
 'go'               => 'Ir',
 'searcharticle'    => 'Ir',
 'history'          => 'Istorial',
@@ -139,20 +140,20 @@ $messages = array(
 'redirectedfrom'   => '(Redirijido desde $1)',
 'redirectpagesub'  => 'Pajina redirijida',
 'protectedpage'    => 'Pajina abrigida',
-'jumptosearch'     => 'bushkeda',
+'jumptosearch'     => 'búsqueda',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'Aserka de {{SITENAME}}',
-'aboutpage'            => 'Project:Aserka de',
+'aboutsite'            => 'Encima de {{SITENAME}}',
+'aboutpage'            => 'Project:Encima de',
 'currentevents'        => 'Aktualidad',
 'currentevents-url'    => 'Project:Aktualidad',
-'edithelp'             => 'Ayuda de edision',
+'edithelp'             => 'Ayudo de edición',
 'edithelppage'         => 'Help:Komo se edita una pajina',
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
-'helppage'             => 'Help:Ayuda',
-'mainpage'             => 'Kacha',
-'mainpage-description' => 'Kacha',
+'helppage'             => 'Help:Ayudo',
+'mainpage'             => 'Página de Entrada',
+'mainpage-description' => 'Página de Entrada',
 'policy-url'           => 'Project:Politikas',
 'portal'               => 'Portal de la komunidád',
 'privacy'              => 'Politika de proteksion de informasiones',

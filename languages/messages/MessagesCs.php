@@ -1064,6 +1064,8 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'difference'              => '(Rozdíly mezi verzemi)',
 'lineno'                  => 'Řádka $1:',
 'compareselectedversions' => 'Porovnat vybrané verze',
+'visualcomparison'        => 'Porovnání vzhledu',
+'wikicodecomparison'      => 'Porovnání wikitextu',
 'editundo'                => 'zrušit editaci',
 'diff-multi'              => '({{PLURAL:$1|Není zobrazena jedna mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}}.)',
 
@@ -2289,6 +2291,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Předchozí porovnání',
 'nextdiff'     => 'Následující porovnání →',
+
+# Visual comparison
+'visual-comparison' => 'Porovnání vzhledu',
 
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento soubor může obsahovat škodlivý kód, spuštěním můžete ohrozit svůj počítač.<hr />",

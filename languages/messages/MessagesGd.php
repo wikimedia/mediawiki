@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alison
  * @author Raymond
  * @author Sionnach
  * @author לערי ריינהארט
@@ -170,8 +171,8 @@ $1",
 'prevn'             => '$1 mu dheireadh',
 'nextn'             => 'an ath $1',
 'viewprevnext'      => 'Seall ($1) ($2) ($3).',
-'showingresults'    => "A'nochdadh '''$1''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
-'showingresultsnum' => "A'nochdadh '''$3''' toraidhean gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresults'    => "A'nochdadh {{PLURAL:$1|'''1''' toradh|'''$1''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
+'showingresultsnum' => "A'nochdadh {{PLURAL:$3|'''1''' toradh|'''$3''' toraidhean}} gu h-ìosal a'tòiseachadh le #'''$2'''.",
 'powersearch'       => 'Rannsaich',
 
 # Preferences page
@@ -194,7 +195,7 @@ $1",
 'nchanges'          => '$1 {{PLURAL:$1|mùthadh|mùthaidhean}}',
 'recentchanges'     => 'Mùthaidhean ùra',
 'recentchangestext' => 'Lean mùthaidhean ùra aig an wiki air an duilleag seo.',
-'rcnote'            => "Tha na {{PLURAL:$1|'''1''' mùthadh|$1 mùthaidhean}} deireanach air na {{PLURAL:$2|là|'''$2''' laithean}} deireanach gu h-ìosal ($3).",
+'rcnote'            => "Tha na {{PLURAL:$1|'''1''' mùthadh|$1 mùthaidhean}} deireanach air na {{PLURAL:$2|là|'''$2''' laithean}} deireanach gu h-ìosal as  $5, $4.",
 'rcnotefrom'        => "Gheibhear na mùthaidhean o chionn <b>$2</b> shios (a'nochdadh suas ri <b>$1</b>).",
 'rclistfrom'        => 'Nochd mùthaidhean ùra o chionn $1',
 'rclinks'           => 'Nochd na $1 mùthaidhean deireanach air na $2 laithean deireanach<br />$3',
@@ -226,13 +227,14 @@ $1",
 'randompage' => 'Duilleag thuairmeach',
 
 # Statistics
-'sitestatstext' => "Tha '''\$1''' duilleagan gu lèir anns an stor-dàta, a'cur san àireamh duilleagan-làbhairt, duilleagan mu dheidhinn a'{{SITENAME}} fhèin, duilleagan \"bun\", ath-stiùireidhean, agus feadhainn eile nach eil nan duilleag brìgheil. As aonais sin, tha '''\$2''' duilleagan ann le brìgh.
+'sitestatstext' => "Tha {{PLURAL:\$1|'''1''' duilleag|'''\$1''' duilleagan gu lèir}} anns an stor-dàta, a'cur san àireamh duilleagan-làbhairt, duilleagan mu dheidhinn a'{{SITENAME}} fhèin, duilleagan \"bun\", ath-stiùireidhean, agus feadhainn eile nach eil nan duilleag brìgheil. As aonais sin, tha '''\$2''' duilleagan ann le brìgh.
 
-'''\$8''' files have been uploaded.
+'''\$8''' {{PLURAL:\$8|fhaidhl|fhaidhle}} a cuir ri.
 
-Tha na duilleagan air an sealladh '''\$3''' uairean, agus air an deasaicheadh '''\$4''' uairean o'n deach an wiki a shuidheachadh. Thig sin ri '''\$5''' deasaicheidhean anns a'mheadhan gach duilleag, agus '''\$6''' seallaidhean gach duilleag.
+Tha na duilleagan air an sealladh '''\$3''' {{PLURAL:\$3|uair|uairean}}, agus air an deasaicheadh '''\$4''' {{PLURAL:\$4|uair|uairean}} o'n deach an wiki a shuidheachadh.
+Thig sin ri '''\$5''' deasaicheidhean anns a'mheadhan gach duilleag, agus '''\$6''' seallaidhean gach duilleag.
 
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
+Tha feadh an [http://www.mediawiki.org/wiki/Manual:Job_queue queue tùrn] na '''\$7'''.",
 
 'doubleredirects' => 'Ath-stiùreidhean dùbailte',
 

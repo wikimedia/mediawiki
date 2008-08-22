@@ -1017,6 +1017,8 @@ $2',
 'difference'              => '(Адрозьненьні паміж вэрсіямі)',
 'lineno'                  => 'Радок $1:',
 'compareselectedversions' => 'Параўнаць выбраныя вэрсіі',
+'visualcomparison'        => 'Візуальнае параўнаньне',
+'wikicodecomparison'      => 'Параўнаньне вікі-тэксту',
 'editundo'                => 'адмяніць',
 'diff-multi'              => '($1 {{PLURAL:$1|прамежная вэрсія не паказаная|прамежныя вэрсіі не паказаныя|прамежных вэрсіяў не паказаныя}}.)',
 
@@ -2307,6 +2309,9 @@ $1',
 'previousdiff' => '← Перайсьці да папярэдняй зьмены',
 'nextdiff'     => 'Перайсьці да наступнай зьмены →',
 
+# Visual comparison
+'visual-comparison' => 'Візуальнае параўнаньне',
+
 # Media information
 'mediawarning'         => "'''Папярэджаньне''': гэты файл можа ўтрымліваць зламысны код, выкананьне якога можа нашкодзіць вашай сыстэме.<hr />",
 'imagemaxsize'         => 'Абмяжоўваць памер выяваў на старонках апісаньня да:',
@@ -2467,8 +2472,21 @@ $1',
 'exif-gpsdestlatitude'             => "Шырата аб'екту",
 'exif-gpsdestlongituderef'         => "Пункт адліку даўгаты аб'екту",
 'exif-gpsdestlongitude'            => "Даўгата аб'екту",
+'exif-gpsdestbearingref'           => "Пункт адліку для азімуту аб'екту",
+'exif-gpsdestbearing'              => "Азімут аб'екту",
+'exif-gpsdestdistanceref'          => "Пункт адліку адлегласьці да аб'екту",
+'exif-gpsdestdistance'             => "Адлегласьць да аб'екту",
+'exif-gpsprocessingmethod'         => 'Назва мэтаду вылічэньня GPS',
+'exif-gpsareainformation'          => 'Назва GPS-зоны',
+'exif-gpsdatestamp'                => 'Дата GPS',
+'exif-gpsdifferential'             => 'Дыфэрэнцыяльная папраўка GPS',
+
+# EXIF attributes
+'exif-compression-1' => 'Нясьціснуты',
 
 'exif-unknowndate' => 'Невядомая дата',
+
+'exif-orientation-1' => 'Звычайна', # 0th row: top; 0th column: left
 
 'exif-lightsource-0' => 'Невядомая',
 'exif-lightsource-4' => 'Успышка',

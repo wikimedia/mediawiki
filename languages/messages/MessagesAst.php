@@ -813,6 +813,8 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'difference'              => '(Diferencia ente revisiones)',
 'lineno'                  => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les versiones seleicionaes',
+'visualcomparison'        => 'Comparación visual',
+'wikicodecomparison'      => 'Comparación wikitestu',
 'editundo'                => 'esfacer',
 'diff-multi'              => '({{PLURAL:$1|1 revisión intermedia non amosada|$1 revisiones intermedies non amosaes}})',
 

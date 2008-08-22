@@ -111,7 +111,7 @@ $specialPageAliases = array(
 	'Protectedpages'            => array( 'Geschützte_Seiten' ),
 	'Protectedtitles'           => array( 'Gesperrte_Titel' ),
 	'Allpages'                  => array( 'Alle_Seiten' ),
-	'Prefixindex'               => array( 'Präfixindex' ) ,
+	'Prefixindex'               => array( 'Präfixindex' ),
 	'Ipblocklist'               => array( 'Gesperrte_IPs' ),
 	'Specialpages'              => array( 'Spezialseiten' ),
 	'Contributions'             => array( 'Beiträge' ),
@@ -124,7 +124,6 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'ISBN-Suche' ),
 	'Categories'                => array( 'Kategorien' ),
 	'Export'                    => array( 'Exportieren' ),
-	'Version'                   => array( 'Version' ),
 	'Allmessages'               => array( 'MediaWiki-Systemnachrichten' ),
 	'Log'                       => array( 'Logbuch' ),
 	'Blockip'                   => array( 'Sperren' ),
@@ -152,6 +151,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Versionsgeschichten_vereinen' ),
 	'Filepath'                  => array( 'Dateipfad' ),
 	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen' ),
+	'Blankpage'                 => array( 'Leerseite' ),
 );
 
 $datePreferences = array(
@@ -222,11 +222,11 @@ $messages = array(
 'tog-showjumplinks'           => '„Wechseln-zu“-Links ermöglichen',
 'tog-uselivepreview'          => 'Live-Vorschau nutzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wenn beim Speichern die Zusammenfassung fehlt',
-'tog-watchlisthideown'        => 'Eigene Bearbeitungen in der Beobachtungsliste ausblenden',
-'tog-watchlisthidebots'       => 'Bearbeitungen durch Bots in der Beobachtungsliste ausblenden',
-'tog-watchlisthideminor'      => 'Kleine Bearbeitungen in der Beobachtungsliste ausblenden',
-'tog-watchlisthideliu'        => 'Bearbeitungen durch angemeldete Benutzer in der Beobachtungsliste ausblenden',
-'tog-watchlisthideanons'      => 'Bearbeitungen durch anonyme Benutzer (IP) in der Beobachtungsliste ausblenden',
+'tog-watchlisthideown'        => 'Eigene Bearbeitungen ausblenden',
+'tog-watchlisthidebots'       => 'Bearbeitungen durch Bots ausblenden',
+'tog-watchlisthideminor'      => 'Kleine Bearbeitungen ausblenden',
+'tog-watchlisthideliu'        => 'Bearbeitungen angemeldeter Benutzer ausblenden',
+'tog-watchlisthideanons'      => 'Bearbeitungen anonymer Benutzer (IP-Adressen) ausblenden',
 'tog-nolangconversion'        => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
@@ -782,8 +782,8 @@ Du bestätigst hiermit auch, dass du diese Texte selbst geschrieben hast oder di
 'longpagewarning'                  => '<strong>WARNUNG: Diese Seite ist $1 KB groß; einige Browser könnten Probleme haben, Seiten zu bearbeiten, die größer als 32 KB sind.
 Überlege bitte, ob eine Aufteilung der Seite in kleinere Abschnitte möglich ist.</strong>',
 'longpageerror'                    => '<strong>FEHLER: Der Text, den du zu speichern versuchst, ist $1 KB groß. Das ist größer als das erlaubte Maximum von $2 KB – Speicherung nicht möglich.</strong>',
-'readonlywarning'                  => '<strong>WARNUNG: Die Datenbank wurde während der Seitenbearbeitung für Wartungsarbeiten gesperrt, so dass du die Seite im Moment nicht speichern kannst.
-Sichere den Text und versuche die Änderungen später einzuspielen.</strong>
+'readonlywarning'                  => '<strong>ACHTUNG: Die Datenbank wurde für Wartungsarbeiten gesperrt, so dass deine Änderungen derzeit nicht gespeichert werden können.
+Sichere den Text bitte lokal auf deinem Computer und versuche zu einem späteren Zeitpunkt, die Änderungen zu übertragen.</strong>
 
 Grund für die Sperre: $1',
 'protectedpagewarning'             => "'''ACHTUNG: Diese Seite wurde gesperrt. Nur Benutzer mit Administratorrechten können die Seite bearbeiten.'''",
@@ -1028,7 +1028,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ ve
 'prefs-rc'                 => 'Anzeige von „Letzte Änderungen“',
 'prefs-watchlist'          => 'Beobachtungsliste',
 'prefs-watchlist-days'     => 'Anzahl der Tage, die die Beobachtungsliste standardmäßig umfassen soll:',
-'prefs-watchlist-edits'    => 'Maximale Anzahl der Einträge in der erweiterten Beobachtungsliste:',
+'prefs-watchlist-edits'    => 'Maximale Zahl der Einträge:',
 'prefs-misc'               => 'Verschiedenes',
 'saveprefs'                => 'Einstellungen speichern',
 'resetprefs'               => 'Eingaben verwerfen',

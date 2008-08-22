@@ -309,7 +309,7 @@ $messages = array(
 'nosuchspecialpage' => 'Non existe esa páxina especial',
 'nospecialpagetext' => "<big>'''Pediu unha páxina especial que non está recoñecida polo wiki.'''</big>
 
-Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:SpecialPages]].",
+Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',
@@ -582,7 +582,7 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'newarticletext'                   => "Seguiu unha ligazón a unha páxina que aínda non existe.
 Para crear a páxina, comece a escribir na caixa de embaixo (vexa a [[{{MediaWiki:Helppage}}|páxina de axuda]] para máis información).
 Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navegador.",
-'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta, ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódenno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
+'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódenno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                    => 'Actualmente non existe texto nesta páxina. Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editala].',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror: '''faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
@@ -651,7 +651,7 @@ O administrador que a fechou deu esta explicación: $1',
 'edittools'                        => '<!-- O texto que apareza aquí mostrarase por debaixo dos formularios de edición e envío. -->',
 'nocreatetitle'                    => 'Limitada a creación de páxinas',
 'nocreatetext'                     => '{{SITENAME}} ten restrinxida a posibilidade de crear páxinas novas.
-Pode volver atrás e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta de acceso]].',
+Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|rexistrarse ou crear unha conta]].',
 'nocreate-loggedin'                => 'Non dispón de permiso para crear páxinas novas en {{SITENAME}}.',
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
@@ -862,7 +862,7 @@ Se quere, pode [[:\$1|creala]].",
 'mypreferences'            => 'As miñas preferencias',
 'prefs-edits'              => 'Número de edicións:',
 'prefsnologin'             => 'Non está dentro do sistema',
-'prefsnologintext'         => 'Debe estar [[Special:UserLogin|dentro do sistema]] para modificar as preferencias de usuario.',
+'prefsnologintext'         => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar as preferencias de usuario.',
 'prefsreset'               => 'As preferencias foron postas cos valores orixinais.',
 'qbsettings'               => 'Opcións da barra rápida',
 'qbsettings-none'          => 'Ningunha',
@@ -937,7 +937,7 @@ Se quere, pode [[:\$1|creala]].",
 'userrights-reason'           => 'Razón para a modificación:',
 'userrights-no-interwiki'     => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'       => 'A base de datos $1 non existe ou non é local.',
-'userrights-nologin'          => 'Ten que [[Special:UserLogin|rexistrarse]] cunta conta de administrador para asignar dereitos de usuario.',
+'userrights-nologin'          => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
 'userrights-notallowed'       => 'A súa conta non dispón de permiso para asignar dereitos de usuario.',
 'userrights-changeable-col'   => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col' => 'Os grupos que non pode cambiar',
@@ -1008,7 +1008,7 @@ Se quere, pode [[:\$1|creala]].",
 'right-markbotedits'         => 'Marcar as edicións desfeitas como edicións dun bot',
 'right-noratelimit'          => 'Non lle afectan os límites superiores',
 'right-import'               => 'Importar páxinas doutros wikis',
-'right-importupload'         => 'Importar páxinas dun ficheiro cargado',
+'right-importupload'         => 'Importar páxinas desde un ficheiro cargado',
 'right-patrol'               => 'Marcar edicións como patrulladas',
 'right-autopatrol'           => 'Ter as edicións marcadas automaticamente como patrulladas',
 'right-patrolmarks'          => 'Ver os cambios que están marcados coma patrullados',
@@ -1067,7 +1067,7 @@ As páxinas da súa [[Special:Watchlist|listaxe de vixilancia]] aparecen en '''n
 'reupload'                    => 'Volver cargar',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
 'uploadnologin'               => 'Non está dentro do sistema',
-'uploadnologintext'           => 'Ha de [[Special:UserLogin|entrar no sistema]] para poder subir ficheiros.',
+'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
@@ -1244,7 +1244,7 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'filedelete-comment'          => 'Comentario:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "Eliminouse '''$1'''.",
-'filedelete-success-old'      => 'Eliminouse a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" ás $3, $2.',
+'filedelete-success-old'      => 'Eliminouse a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" o $2 ás $3.',
 'filedelete-nofile'           => "'''$1''' non existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
 'filedelete-otherreason'      => 'Outra/razón adicional:',
@@ -1295,7 +1295,7 @@ Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$
 Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
 
 A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos] é de '''\$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rexistrado|'''$1''' [[Special:ListUsers|usuarios]] rexistrados}}, dos cales '''$2''' (ou '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
+'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rexistrado|'''$1''' [[Special:ListUsers|usuarios]] rexistrados}}, dos cales '''$2''' (ou o '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.",
 'statistics-mostpopular' => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',
@@ -1440,7 +1440,7 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 
 # E-mail user
 'mailnologin'     => 'Non existe enderezo para o envío',
-'mailnologintext' => 'Debe estar [[Special:UserLogin|dentro do sistema]] e ter un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
+'mailnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] e ter rexistrado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] para enviar correos electrónicos a outros usuarios.',
 'emailuser'       => 'Enviarlle un correo electrónico a este usuario',
 'emailpage'       => 'Enviar un correo electrónico a un usuario',
 'emailpagetext'   => 'Se o usuario introduciu un enderezo de correo electrónico válido nas súas preferencias, este formulario serve para enviarlle unha única mensaxe.
@@ -1467,7 +1467,7 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'nowatchlist'          => 'Non ten ítems na súa listaxe de vixilancia.',
 'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os ítems da súa listaxe de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
-'watchnologintext'     => 'Para modificar a súa listaxe de vixilancia debe estar [[Special:UserLogin|rexistrado]].',
+'watchnologintext'     => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa listaxe de vixilancia.',
 'addedwatch'           => 'Engadido á listaxe de vixilancia',
 'addedwatchtext'       => "A páxina \"[[:\$1]]\" foi engadida á súa [[Special:Watchlist|listaxe de vixilancia]].
 Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán listados alí, e a páxina aparecerá en '''negra''' na [[Special:RecentChanges|listaxe de cambios recentes]] para facer máis sinxela a súa sinalización.",
@@ -1586,7 +1586,8 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]] | [[Special:
 volveuse á última edición, feita por $2.',
 'sessionfailure'              => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
 'protectlogpage'              => 'Rexistro de protección',
-'protectlogtext'              => 'Abaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas. Vexa a [[Special:ProtectedPages|listaxe de páxinas protexidas]] para unha listaxe coas proteccións de páxinas establecidas neste momento.',
+'protectlogtext'              => 'Embaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas.
+Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a lista coas proteccións de páxinas establecidas neste momento.',
 'protectedarticle'            => 'protexeu "[[$1]]"',
 'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
@@ -1751,7 +1752,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo con éxito',
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:IPBlockList|listaxe de IP bloqueados]] para revisalo.',
+Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
 'ipb-edit-dropdown'               => 'Editar as razóns do bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear usuario ou enderezo IP',
@@ -1781,7 +1782,9 @@ Olle a [[Special:IPBlockList|listaxe de IP bloqueados]] para revisalo.',
 'autoblocker'                     => 'Autobloqueado porque "[[User:$1|$1]]" usou recentemente este enderezo IP. O motivo do bloqueo de $1 é: "$2".',
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
-'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios. Non se listan os enderezos IP bloqueados automaticamente. Para ver a listaxe de bloqueos vixentes revise esta [[Special:IPBlockList|listaxe]].',
+'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
+Non se listan os enderezos IP bloqueados automaticamente.
+Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
 'unblocklogentry'                 => 'desbloqueou a "$1"',
 'block-log-flags-anononly'        => 'só usuarios anónimos',
 'block-log-flags-nocreate'        => 'desactivada a creación de contas de usuario',
@@ -1817,8 +1820,8 @@ Por favor confirme que isto é o que quere facer.',
 'locknoconfirm'       => 'Vostede non marcou o sinal de confirmación.',
 'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
-'lockdbsuccesstext'   => 'A base de datos foi bloqueada.
-<br />Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
+'lockdbsuccesstext'   => 'A base de datos foi fechada.<br />
+Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
@@ -1871,8 +1874,8 @@ Por favor escolla outro nome.',
 'revertmove'              => 'desfacer',
 'delete_and_move'         => 'Borrar e mover',
 'delete_and_move_text'    => '==Precísase borrar==
-
-O artigo de destino "[[:$1]]" xa existe. Quéreo eliminar para facer sitio para mover?',
+A páxina de destino, chamada "[[:$1]]", xa existe.
+Quérea eliminar para facer sitio para mover?',
 'delete_and_move_confirm' => 'Si, borrar a páxina',
 'delete_and_move_reason'  => 'Eliminado para facer sitio para mover',
 'selfmove'                => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
@@ -2500,7 +2503,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'O contido da páxina foi eliminado',
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
-'autoredircomment' => 'Redirixida a [[$1]]',
+'autoredircomment' => 'Redirixindo cara a "[[$1]]"',
 'autosumm-new'     => 'Nova páxina: $1',
 
 # Live preview

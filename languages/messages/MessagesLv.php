@@ -538,7 +538,9 @@ Tu apliecini, ka šo rakstu esi rakstījis vai papildinājis pats vai izmantojis
 'longpageerror'             => '<strong>Kļūda: Teksts, kuru tu mēģināji saglabāt, ir $1 kilobaitus garš, kas ir vairāk nekā pieļaujamie $2 kilobaiti.
 Tas nevar tikt saglabāts.</strong>',
 'readonlywarning'           => '<strong>Brīdinājums: Datubāze ir slēgta apkopei, tāpēc tu tagad nevarēsi saglabāt veiktās izmaiņas.
-Tu varētu nokopēt tekstu un saglabāt kā teksta failu vēlākam laikam.</strong>',
+Tu varētu nokopēt tekstu un saglabāt kā teksta failu vēlākam laikam.</strong>
+
+Admins, kas slēdza datubāzi, norādīja šādu paskaidrojumu: $1',
 'protectedpagewarning'      => "'''BRĪDINĀJUMS: Šī lapa ir bloķēta pret izmaiņām, tikai lietotāji ar admina privilēģijām var to izmainīt. To darot, noteikti ievēro [[Project:Norādījumi par aizsargātajām lapām|norādījumus par aizsargātajām lapām]].'''",
 'semiprotectedpagewarning'  => "'''Piezīme:''' Izmaiņu veikšana šajā lapā ir atļauta tikai reģistrētiem lietotājiem.",
 'titleprotectedwarning'     => '<strong>Brīdinājums: Šī lapa ir slēgta un to var izveidot tikai noteikti lietotāji.</strong>',
