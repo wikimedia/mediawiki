@@ -1382,7 +1382,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches don't keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '167';
+$wgStyleVersion = '168';
 
 
 # Server-side caching:
@@ -1806,7 +1806,7 @@ $wgMimeTypeBlacklist= array(
 	'text/x-python', 'text/x-perl', 'text/x-bash', 'text/x-sh', 'text/x-csh',
 	# Windows metafile, client-side vulnerability on some systems
 	'application/x-msmetafile',
-	# A ZIP file may be a valid Java archive containing an applet which exploits the 
+	# A ZIP file may be a valid Java archive containing an applet which exploits the
 	# same-origin policy to steal cookies
 	'application/zip',
 );
@@ -2412,7 +2412,7 @@ $wgFeedCacheTimeout = 60;
 $wgFeedDiffCutoff = 32768;
 
 /** Override the site's default RSS/ATOM feed for recentchanges that appears on
- * every page. Some sites might have a different feed they'd like to promote 
+ * every page. Some sites might have a different feed they'd like to promote
  * instead of the RC feed (maybe like a "Recent New Articles" or "Breaking news" one).
  * Ex: $wgSiteFeed['format'] = "http://example.com/somefeed.xml"; Format can be one
  * of either 'rss' or 'atom'.
@@ -3155,7 +3155,7 @@ $wgAjaxLicensePreview = true;
 $wgAllowDisplayTitle = true;
 
 /**
- * for consistency, restrict DISPLAYTITLE to titles that normalize to the same canonical DB key 
+ * for consistency, restrict DISPLAYTITLE to titles that normalize to the same canonical DB key
  */
 $wgRestrictDisplayTitle = true;
 
