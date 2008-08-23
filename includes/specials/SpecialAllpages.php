@@ -136,7 +136,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		global $wgMemc;
 		$key = wfMemcKey( 'allpages', 'ns', $namespace, $from, $to );
-		$lines = '';//$wgMemc->get( $key );
+		$lines = $wgMemc->get( $key );
 
 		$count = $dbr->estimateRowCount( 'page', '*', $where, __METHOD__ );
 		$maxPerSubpage = intval($count/$this->maxLineCount);
