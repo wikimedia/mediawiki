@@ -60,7 +60,7 @@ class HTMLCacheUpdate
 		$start = false;
 		$jobs = array();
 		do {
-			for ( $i = 0; $i < $realBatchSize - 1; $i++ ) {
+			for ( $i = 0; $i <= $realBatchSize - 1; $i++ ) {
 				$row = $res->fetchRow();
 				if ( $row ) {
 					$id = $row[0];
