@@ -1115,8 +1115,8 @@ class LocalFile extends File
 		if ( !$revision ) return false;
 		$text = $revision->getText();
 		if ( !$text ) return false;
-		$html = $wgParser->parse( $text, $this->title, new ParserOptions() );
-		return $html;
+		$pout = $wgParser->parse( $text, $this->title, new ParserOptions() );
+		return $pout->getText();
 	}
 
 	function getDescription() {
