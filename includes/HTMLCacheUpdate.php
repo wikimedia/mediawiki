@@ -90,10 +90,6 @@ class HTMLCacheUpdate
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect' => 'rd',
-
-			# Not needed
-			# 'externallinks' => 'el',
-			# 'langlinks' => 'll'
 		);
 
 		if ( is_null( $this->mPrefix ) ) {
