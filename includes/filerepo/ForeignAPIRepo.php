@@ -74,7 +74,7 @@ class ForeignAPIRepo extends FileRepo {
 						'prop' => 'imageinfo' ) ) );
 		
 		if( !isset( $this->mQueryCache[$url] ) ) {
-			$key = wfMemcKey( 'ForeignAPIRepo', 'Metadata', $url );
+			$key = wfMemcKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
 			$data = $wgMemc->get( $key );
 			if( !$data ) {
 				$data = Http::get( $url );
