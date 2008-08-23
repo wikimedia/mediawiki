@@ -1559,6 +1559,7 @@ Template:消除歧義',
 'watchlist-hide-anons' => '隐藏匿名用户的编辑',
 'watchlist-show-liu'   => '显示已登入用户的编辑',
 'watchlist-hide-liu'   => '隐藏已登入用户的编辑',
+'watchlist-options'    => '监视列表选项',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '监视……',
