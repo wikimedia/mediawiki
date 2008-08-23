@@ -53,7 +53,7 @@ class HTMLCacheUpdate
 		wfRunHooks( 'HTMLCacheUpdate::doUpdate', array($this->mTitle) );
 	}
 
-	function insertJobs( ResultWrapper $res ) {
+	protected function insertJobs( ResultWrapper $res ) {
 		$numRows = $res->numRows();
 		$numBatches = ceil( $numRows / $this->mRowsPerJob );
 		$realBatchSize = $numRows / $numBatches;
@@ -83,7 +83,7 @@ class HTMLCacheUpdate
 		Job::batchInsert( $jobs );
 	}
 
-	function getPrefix() {
+	protected function getPrefix() {
 		static $prefixes = array(
 			'pagelinks' => 'pl',
 			'imagelinks' => 'il',
@@ -101,11 +101,11 @@ class HTMLCacheUpdate
 		return $this->mPrefix;
 	}
 
-	function getFromField() {
+	protected function getFromField() {
 		return $this->getPrefix() . '_from';
 	}
 
-	function getToCondition() {
+	protected function getToCondition() {
 		$prefix = $this->getPrefix();
 		switch ( $this->mTable ) {
 			case 'pagelinks':
@@ -126,7 +126,7 @@ class HTMLCacheUpdate
 	/**
 	 * Invalidate a set of IDs, right now
 	 */
-	function invalidateIDs( ResultWrapper $res ) {
+	public function invalidateIDs( ResultWrapper $res ) {
 		global $wgUseFileCache, $wgUseSquid;
 
 		if ( $res->numRows() == 0 ) {
@@ -201,7 +201,7 @@ class HTMLCacheUpdateJob extends Job {
 		$this->end = $params['end'];
 	}
 
-	function run() {
+	public function run() {
 		$update = new HTMLCacheUpdate( $this->title, $this->table );
 
 		$fromField = $update->getFromField();
