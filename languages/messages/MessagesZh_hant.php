@@ -1535,6 +1535,7 @@ Template:消除歧義',
 'watchlist-hide-anons' => '隱藏匿名用戶的編輯',
 'watchlist-show-liu'   => '顯示已登入用戶的編輯',
 'watchlist-hide-liu'   => '隱藏已登入用戶的編輯',
+'watchlist-options'    => '監視列表選項',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '正在監視...',

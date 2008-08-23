@@ -1608,6 +1608,7 @@ Template:搞清楚',
 'watchlist-hide-anons' => '隱藏匿名用戶嘅編輯',
 'watchlist-show-liu'   => '顯示登入咗用戶嘅編輯',
 'watchlist-hide-liu'   => '隱藏登入咗用戶嘅編輯',
+'watchlist-options'    => '監視清單選項',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '監視緊...',

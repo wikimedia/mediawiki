@@ -1381,6 +1381,7 @@ $2',
 'watchlist-hide-anons' => '藏匿',
 'watchlist-show-liu'   => '見登',
 'watchlist-hide-liu'   => '藏登',
+'watchlist-options'    => '哨項',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => '出陣…',
