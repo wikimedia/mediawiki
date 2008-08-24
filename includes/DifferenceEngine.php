@@ -37,6 +37,7 @@ class DifferenceEngine {
 	 * @param $new String: either 'prev' or 'next'.
 	 * @param $rcid Integer: ??? FIXME (default 0)
 	 * @param $refreshCache boolean If set, refreshes the diff cache
+	 * @param $htmldiff boolean If set, output using HTMLDiff instead of raw wikicode diff
 	 */
 	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0, $refreshCache = false , $htmldiff = false) {
 		$this->mTitle = $titleObj;
