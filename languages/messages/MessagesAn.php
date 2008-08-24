@@ -1528,15 +1528,15 @@ L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias 
 
 A pachina «$PAGETITLE» de {{SITENAME}}
 ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE.
-Puede trobar a bersión autual en {{fullurl:$PAGETITLE_RAWURL}}
+Puede trobar a bersión autual en {{fullurl:$PAGETITLE}}
 
 $NEWPAGE
 
 O resumen d\'a edizión ye: $PAGESUMMARY $PAGEMINOREDIT
 
 Ta comunicar-se con l\'usuario:
-por correu: {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-en o wiki: {{fullurl:User:$PAGEEDITOR_RAWURL}}
+por correu: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
+en o wiki: {{fullurl:User:$PAGEEDITOR}}
 
 Ta recullir nuebas notificazions de cambios d\'ista pachina abrá de besitar-la nuebament.
 Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que ye cosirando.

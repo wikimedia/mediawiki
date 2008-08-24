@@ -1524,15 +1524,15 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 
 La página de {{SITENAME}} «$PAGETITLE»
 ha sido $CHANGEDORCREATED por el usuario $PAGEEDITOR el $PAGEEDITDATE.
-La versión actual se encuentra en {{fullurl:$PAGETITLE_RAWURL}}
+La versión actual se encuentra en {{fullurl:$PAGETITLE}}
 
 $NEWPAGE
 
 El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
 
 Para comunicarse con el usuario:
-por correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-en el wiki: {{fullurl:User:$PAGEEDITOR_RAWURL}}
+por correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
+en el wiki: {{fullurl:User:$PAGEEDITOR}}
 
 Para recibir nuevas notificaciones de cambios de esta página, deberá visitarla nuevamente.
 También puede, en su lista de seguimiento, modificar las opciones de notificación de sus

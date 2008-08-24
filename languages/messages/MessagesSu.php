@@ -1348,15 +1348,15 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'enotif_anon_editor'           => 'pamaké anonim $1',
 'enotif_body'                  => 'Sadérék $WATCHINGUSERNAME,
 
-Kaca $PAGETITLE na {{SITENAME}} geus $CHANGEDORCREATED tanggal $PAGEEDITDATE ku $PAGEEDITOR. Mangga tingal {{SERVER}}{{localurl:$PAGETITLE_RAWURL}} pikeun vérsi kiwari.
+Kaca $PAGETITLE na {{SITENAME}} geus $CHANGEDORCREATED tanggal $PAGEEDITDATE ku $PAGEEDITOR. Mangga tingal {{SERVER}}{{localurl:$PAGETITLE}} pikeun vérsi kiwari.
 
 $NEWPAGE
 
 Ringkesan éditor: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontak éditor:
-surat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR_RAWURL}}
-wiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR_RAWURL}}
+surat {{SERVER}}{{localurl:Husus:Emailuser|target=$PAGEEDITOR}}
+wiki {{SERVER}}{{localurl:Pamaké:$PAGEEDITOR}}
 
 Mun anjeun teu sindang deui ka ieu kaca, parobahan salajengna moal diémbarkeun. Anjeun bisa ogé nyetél deui umbul-umbul pikeun sadaya kaca nu aya na daptar awaseun anjeun.
 
