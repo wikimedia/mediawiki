@@ -1699,7 +1699,7 @@ CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # some mobil phones
+DUW # some mobile phones
 IMG # generic
 JD # Jenoptik
 MGP # Pentax
