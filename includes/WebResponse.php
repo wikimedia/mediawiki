@@ -5,13 +5,22 @@
  */
 class WebResponse {
 
-	/** Output a HTTP header */
-	function header($string, $replace=true) {
+	/** 
+	 * Output a HTTP header, wrapper for PHP's
+	 * header()
+	 * @param string $string Header to output
+	 * @param bool $replace Replace current similar header
+	 */
+	public function header($string, $replace=true) {
 		header($string,$replace);
 	}
 
-	/** Set the browser cookie */
-	function setcookie( $name, $value, $expire = 0 ) {
+	/** Set the browser cookie
+	 * @param string $name Name of cookie
+	 * @param string $value Value to give cookie
+	 * @param int $expire Number of seconds til cookie expires
+	 */
+	public function setcookie( $name, $value, $expire = 0 ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
 		if ( $expire == 0 ) {
