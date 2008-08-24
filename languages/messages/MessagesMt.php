@@ -335,7 +335,7 @@ Jista' jkun li diġà tħassru minn xi ħaddieħor.",
 'badtitletext'         => "It-Titlu tal-paġna rikjesta huwa invalidu, vojt, jew linjat ma' inter-lingwi jew titlu ta' inter-wiki żballjat.",
 'perfdisabled'         => "Skuzana! Din il-faċċilitá ġiet imneħija temporalment minħabba li qegħda jġiegħel id-database jmur aktar bil-mod sal-punt fejn ħadd ma jista' juża l-wiki.",
 'perfcached'           => "L-informazzjoni li jmiss huwa kopja ''cache'' u jista' ma jkunx aġġornat.",
-'perfcachedts'         => "L-Informazzjoni li ssegwi huwa estratt ta' kopja ''cache'' mill-''database''. L-Aħħar aġġornament: $1.",
+'perfcachedts'         => "Id-dati segwenti huma estratt ta' kopja cache tad-database. L-aħħar aġġornament: $1.",
 'querypage-no-updates' => 'Aġġornamenti għal din il-paġna huma temporalment sospesi. L-Informazzjoni hawnhekk preżentament mhux qiegħed jiġi aġġornat.',
 'wrong_wfQuery_params' => 'Parametri skoretti għal wfQuery()<br />
 Funżjoni: $1<br />
@@ -621,7 +621,9 @@ Inti qiegħed ukoll qiegħed twiegħed li ktibt dan ix-xogħol int, jew ġibtu m
 ċerta browsers jista' jkollhom problemi biex jagħmlu modifiki lil paġni li qegħdin lejn jew aktar minn 32kb.
 Jekk jogħġbok konsidra taqsam din il-paġna f'sezzjonijiet iż-żgħar.</strong>",
 'longpageerror'                    => "<strong>PROBLEMA: Il-Modifika li għamilt hija twila $1 ''kilobyte'', li hija aktar mill-massimu ta' $2 ''kilobyte''. Il-Modifiki ma jistgħux jiġu salvati.</strong>",
-'readonlywarning'                  => "<strong>TWISSIJA: Id-database ġiet ibblokkjata għall-manutenzjoni, u għaldaqstant m'huwiex possibbli ssalva l-modifiki f'dal-ħin. Biex ma titlifhomx, għalissa salva xogħlok ġo fajl u ladarba terġa' tinfetaħ id-database, ikkopja kollox. Grazzi.</strong>",
+'readonlywarning'                  => "<strong>TWISSIJA: Id-database ġiet imblukkata għall-manutenzjoni, u għaldaqstant m'huwiex possibbli ssalva l-modifiki f'dal-ħin. Biex ma titlifhomx, għalissa salva xogħlok ġo fajl u ladarba terġa' tinfetaħ id-database, ikkopja kollox. Grazzi.</strong>
+
+L-amministratur li bblokkja d-database offra din ir-raġuni: $1",
 'protectedpagewarning'             => "<strong>TWISSIJA:  Din il-paġna ġiet magħluqa sabiex utenti bi privileġi ta' amministratur biss ikunu jistgħu jagħmel modifiki.</strong>",
 'semiprotectedpagewarning'         => "'''Nota:''' Din il-paġna ġiet magħluqa sabiex utenti reġistrati biss ikunu jistgħu jagħmlu modifiki.",
 'cascadeprotectedwarning'          => "'''Twissija:''' Din il-paġna ġiet magħluqa biex utenti bi privileġi ta' amministratur biss ikunu jistgħu jagħmlu modifiki, minħabba li hija inkluża fil-{{PLURAL:$1|paġna|paġni}} li huma protetti-kaskata:",
@@ -1197,7 +1199,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'morelinkstoimage'               => 'Uri [[Special:WhatLinksHere/$1|aktar links]] għal dan il-fajl.',
 'redirectstofile'                => '{{PLURAL:$1|Il-fajl segwenti huwa rindirizzat|Il-$1 fajls segwenti huma rindirizzati}} għal dan il-fajl.',
 'duplicatesoffile'               => "{{PLURAL:$1|Il-fajl segwenti huwa duplikat|Il-$1 fajls segwenti huma duplikati}} ta' dan il-fajl:",
-'sharedupload'                   => "Dan il-fajl huwa upload li jista' jiġi użat fuq proġetti tal-wiki oħrajn.",
+'sharedupload'                   => "Dan il-fajl huwa upload li jista' jiġi wżat minn proġetti oħra.",
 'shareduploadwiki'               => 'Jekk jogħġbok ara $1 għal aktar informazzjoni.',
 'shareduploadwiki-desc'          => 'Id-deskrizzjoni fuq il-$1, tinsab ħawn taħt.',
 'shareduploadwiki-linktext'      => 'paġna tad-deskrizzjoni tal-fajl',
@@ -1228,7 +1230,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'filedelete-comment'          => 'Raġuni għat-tħassir:',
 'filedelete-submit'           => 'Ħassar',
 'filedelete-success'          => "'''$1''' ġie mħassar.",
-'filedelete-success-old'      => '<span class="plainlinks">Il-verżjoni $3, $2 tal-fajl \'\'\'[[Media:$1|$1]]\'\'\' ġiet mħassra.</span>',
+'filedelete-success-old'      => "Il-verżjoni tal-fajl '''[[Media:$1|$1]]''' tal-$2, $3 ġiet mħassra.",
 'filedelete-nofile'           => "Fuq {{SITENAME}} il-fajl '''$1''' ma jeżistiex.",
 'filedelete-nofile-old'       => "Fl-Arkivju m'hemmx verżjoni ta' '''$1''' bil-karrateristiċi indikati.",
 'filedelete-otherreason'      => 'Oħrajn/aktar raġunijiet:',

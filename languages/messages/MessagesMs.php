@@ -913,6 +913,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'wikicodecomparison'      => 'Perbandingan wikitext',
 'editundo'                => 'batal',
 'diff-multi'              => '({{PLURAL:$1|Satu|$1}} semakan pertengahan tidak ditunjukkan.)',
+'diff-with-final'         => '&#32;dan $1 $2',
 
 # Search results
 'searchresults'             => 'Keputusan carian',
@@ -1584,6 +1585,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'watchlist-hide-anons' => 'Sembunyikan suntingan pengguna tanpa nama',
 'watchlist-show-liu'   => 'Munculkan suntingan pengguna log masuk',
 'watchlist-hide-liu'   => 'Sembunyikan suntingan pengguna log masuk',
+'watchlist-options'    => 'Pilihan senarai pantau',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',

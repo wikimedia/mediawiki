@@ -166,6 +166,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Meng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthidebots'       => 'Ännerunge vu Botten op menger Iwwerwaachungslëscht verstoppen',
 'tog-watchlisthideminor'      => 'Kleng Ännerungen op menger Iwwerwaachungslëscht verstoppen',
+'tog-watchlisthideanons'      => 'Ännerunge vun anonyme Benotzer (IP-Adressen) verstoppen',
 'tog-nolangconversion'        => 'Ëmwandlung vu Sproochvarianten ausschalten',
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
@@ -483,7 +484,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 Probéiert et w.e.g. nach eng Kéier!",
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen',
-'loginprompt'                => "Fir sech op [[Special:UserLogin|{{SITENAME}} umellen]] ze kënnen, mussen d'Cookien aktivéiert sinn.",
+'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
@@ -635,7 +636,7 @@ De Grond dofir war:
 
 * Ufank vun der Spär: $8
 * Dauer vun der Spär: $6
-* D\'Spär leeft of: $6
+* D\'Spär leeft of: $7
 
 Dir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer dës Spär ze diskutéieren.
 
@@ -646,7 +647,7 @@ Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'blockednoreason'                  => 'Kee Grond uginn',
 'blockedoriginalsource'            => "De Quelltext vun '''$1''' steet hei ënnendrënner:",
 'blockededitsource'                => "Den Text vun '''ären Ännerungen''' op '''$1''' steet hei ënnendrënner:",
-'whitelistedittitle'               => "[[Special:UserLogin|Login noutwännesch]] fir z'änneren",
+'whitelistedittitle'               => "Login noutwännesch fir z'änneren",
 'whitelistedittext'                => 'Dir musst iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittitle'                 => "Konfirmatioun vun ärer E-Mailadress ass erfuederlech fir z'änneren.",
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress conirméieren, ier Dir ännerunge maache kënnt.
@@ -743,7 +744,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'undo-success' => "D'Ännerung gëtt réckgängeg gemaach. Iwwerpréift w.e.g. de Verglach ënnedrënner fir nozekuckeen ob et esou richteg ass, duerno späichert w.e.g d'Ännerungen of fir dës Aktioun ofzeschléissen.",
 'undo-failure' => '<span class="error">D\'Ännerung konnt net réckgängeg gemaach ginn, wëll de betraffenen Abschnitt an der Tëschenzäit geännert gouf.</span>',
 'undo-norev'   => "D'Ännerung kann net zréckgesat ginn, well et se net gëtt oder well se scho geläscht ass.",
-'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])) annulléieren.',
+'undo-summary' => 'Ännerung $1 vu(n) [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]]) annulléieren.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benotzerkont konnt net opgemaach ginn',
@@ -1268,7 +1269,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filedelete-comment'          => 'Grond:',
 'filedelete-submit'           => 'Läschen',
 'filedelete-success'          => "'''$1''' gouf geläscht.",
-'filedelete-success-old'      => "<span class=\"plainlinks\">D'Versioun vum Fichier '''[[Media:\$1|\$1]]''' vum \$2, \$3 Auer gouf geläscht.</span>",
+'filedelete-success-old'      => "D'Versioun vu(n) '''[[Media:$1|$1]]''' vum $2, $3 Auer gouf geläscht.",
 'filedelete-nofile'           => "'''$1''' gëtt et net op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Et gëtt vun '''$1''' keng archivéiert Versioun mat den Attributer déi dir uginn hutt.",
 'filedelete-otherreason'      => 'Aneren/zousätzleche Grond:',
@@ -1435,7 +1436,9 @@ Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm oder déi gefr
 
 # Special:Categories
 'categories'                    => 'Kategorien',
-'categoriespagetext'            => 'An dëse Kategorie gëtt et Säiten oder Medien.',
+'categoriespagetext'            => 'Dës Kategorie huet Säiten oder Medien.
+[[Special:UnusedCategories|Kategorien déi net benotzt ginn]] ginn hei net gewisen.
+Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'categoriesfrom'                => 'Weis Kategorien ugefaang bäi:',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
@@ -1515,6 +1518,8 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watchlist-hide-own'   => 'Meng Ännerunge verstoppen',
 'watchlist-show-minor' => 'Kleng Ännerunge weisen',
 'watchlist-hide-minor' => 'kleng Ännerunge verstoppen',
+'watchlist-hide-liu'   => 'Ageloggt Benotzer verstoppen',
+'watchlist-options'    => 'Optioune vun der Iwwerwaachungslëscht',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Iwwerwaachen …',
@@ -1590,7 +1595,7 @@ dës Aktioun soll mat Vierssiicht gemaach ginn.",
 'rollbacklink'                => 'Zrécksetzen',
 'rollbackfailed'              => 'Zrécksetzen huet net geklappt',
 'cantrollback'                => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{int:contribslink}}]]);) kann net zréckgesat ginn; 
+'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
 een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
@@ -2030,7 +2035,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'lastmodifiedatby' => "Dës Säit gouf den $1 ëm $2 Auer voum $3 fir d'lescht geännert.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Op der Basis vun der Aarbecht vum $1',
 'others'           => 'anerer',
-'siteusers'        => '{{SITENAME}}-Benotzer $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|Benotzer|Benotzer}} $1',
 'creditspage'      => 'Quellen',
 'nocredits'        => "Fir dës Säit si keng Informatiounen iwwert d'Mataarbechter vun der Säit disponibel.",
 

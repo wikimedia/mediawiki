@@ -165,7 +165,7 @@ $messages = array(
 
 # Edit pages
 'subject'            => 'Dungu/üy',
-'minoredit'          => 'Tügachi ta kiñe menor wirin',
+'minoredit'          => 'Tüfachi ta kiñe menor wirin',
 'preview'            => 'Pen chum müley',
 'showpreview'        => 'Pen chum müley',
 'loginreqlink'       => 'Koni',
@@ -234,16 +234,19 @@ $messages = array(
 'newpageletter'   => 'W',
 
 # Upload
-'uploadnologin' => 'Eymi Konülay',
+'uploadnologin'   => 'Eymi Konülay',
+'watchthisupload' => 'Llaytun tüfachi pakina',
 
 'nolicense' => 'Chemnorume dullinnongey',
 
 # Special:ImageList
 'imagelist_name' => 'Üy',
+'imagelist_user' => 'Lludüchi',
 
 # Image description page
 'filehist-deleteall' => 'kom ñamümün',
 'filehist-deleteone' => 'ñamümün tüfa',
+'filehist-user'      => 'Lludüchi',
 
 # File deletion
 'filedelete'         => '$1 ñamümün',
@@ -260,9 +263,10 @@ $messages = array(
 'withoutinterwiki-submit' => 'Pengelün',
 
 # Miscellaneous special pages
-'nviews'   => '$1 {{PLURAL:$1|pey|pey}}',
-'newpages' => 'We pakina',
-'move'     => 'Wiñamün',
+'nviews'       => '$1 {{PLURAL:$1|pey|pey}}',
+'newpages'     => 'We pakina',
+'move'         => 'Wiñamün',
+'movethispage' => 'Nengümün tüfachi pakina',
 
 # Book sources
 'booksources-go' => 'Amun',
@@ -287,6 +291,7 @@ $messages = array(
 
 # Watchlist
 'watch'           => 'Llaytun',
+'watchthispage'   => 'Llaytun tüfachi pakina',
 'unwatch'         => 'Llaytuwelan',
 'unwatchthispage' => 'Llaytuwelan',
 
@@ -312,6 +317,9 @@ $messages = array(
 'undelete-search-box'    => 'Kintun ñamümüngelu pakina',
 'undelete-search-submit' => 'Kintun',
 
+# Namespace form on various pages
+'blanknamespace' => '(Wüne pakina)',
+
 # Contributions
 'month' => 'Küyeṉ:',
 'year'  => 'Tripantu:',
@@ -328,10 +336,12 @@ $messages = array(
 'expiringblock'      => 'afi $1',
 
 # Move page
-'move-page'   => 'Nengümün $1',
-'newtitle'    => 'We üy püle',
-'movepagebtn' => 'Nengümün pakina',
-'1movedto2'   => '[[$1]] wiñamngey [[$2]] püle',
+'move-page'        => 'Nengümün $1',
+'move-page-legend' => 'Nengümün pakina',
+'newtitle'         => 'We üy püle',
+'move-watch'       => 'Llaytun tüfachi pakina',
+'movepagebtn'      => 'Nengümün pakina',
+'1movedto2'        => '[[$1]] wiñamngey [[$2]] püle',
 
 # Namespace 8 related
 'allmessagesname' => 'Üy',

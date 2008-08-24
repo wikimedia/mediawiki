@@ -1587,7 +1587,7 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'rollbacklink'                => 'Esfer',
 'rollbackfailed'              => "No s'ha puesto esfer",
 'cantrollback'                => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
-'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]])|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
+'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]]|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
 
 A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]).',
 'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment

@@ -414,7 +414,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
-'loginprompt'                => 'U blaaier moet koekies toelaat om by [[Special:Userlog|{{SITENAME}} te kan aanteken]].',
+'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
@@ -573,7 +573,7 @@ Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'blockednoreason'                  => 'geen rede gegeef nie',
 'blockedoriginalsource'            => "Die bronteks van '''$1''' word onder gewys:",
 'blockededitsource'                => "Die teks van '''jou wysigings''' aan '''$1''' word hieronder vertoon:",
-'whitelistedittitle'               => 'U moet [[Special:UserLogin|aanteken]] wees om te kan redigeer.',
+'whitelistedittitle'               => 'U moet aanteken wees om te kan redigeer.',
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittitle'                 => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
@@ -633,7 +633,9 @@ Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gek
 Probeer asseblief die bladsy verkort en die detail na subartikels skuif sodat dit nie 32 kG oorskry nie.',
 'longpageerror'                    => '<strong>FOUT: die teks wat u bygevoeg het is $1 kilogrepe groot, wat groter is as die maximum van $2 kilogrepe.
 Die bladsy kan nie gestoor word nie.</strong>',
-'readonlywarning'                  => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later. </strong>",
+'readonlywarning'                  => "<strong>WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.</strong>
+
+Een administrateur het die databasis geblokkeer vir hierdie rede: $1",
 'protectedpagewarning'             => '<strong>WAARSKUWING: Hierdie blad is beskerm, en slegs administrateurs kan die inhoud verander.</strong>',
 'semiprotectedpagewarning'         => "'''Let wel:''' Hierdie artikel is beskerm sodat slegs ingetekende gebruikers dit kan wysig.",
 'cascadeprotectedwarning'          => "'''Waarskuwing:''' Die bladsy was beveilig sodat dit slegs deur administrateurs gewysig kan word, omrede dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat kaskade-beskerming geniet:",
@@ -798,7 +800,7 @@ Die rede verskaf deur $3 is ''$2''",
 'searchall'                 => 'alle',
 'showingresults'            => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
 'showingresultsnum'         => "Hieronder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
-'showingresultstotal'       => "Hieronder is {{PLURAL:$3|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
+'showingresultstotal'       => "Hieronder is {{PLURAL:$4|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
 'nonefound'                 => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
 woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde
 bevat, word gewys).",
@@ -1809,7 +1811,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'lastmodifiedatby' => 'Hierdie bladsy is laaste gewysig $2, $1 deur $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Gebaseer op werk van $1.',
 'others'           => 'ander',
-'siteusers'        => '{{SITENAME}} gebruiker(s) $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
 
 # Info page
 'infosubtitle'   => 'Inligting vir bladsy',

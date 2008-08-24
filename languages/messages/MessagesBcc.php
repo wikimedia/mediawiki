@@ -898,6 +898,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'wikicodecomparison'      => 'مقایسه متن ویکی',
 'editundo'                => 'خنثی کتن',
 'diff-multi'              => '({{PLURAL:$1|یک متوسطین بازبینیان میانی}} پیش دارگ نه بیت .)',
+'diff-with-final'         => '&#32;و $1 $2',
 
 # Search results
 'searchresults'             => 'نتایج گردگ',
@@ -1600,6 +1601,7 @@ PICT # misc.
 'watchlist-hide-anons' => 'نشاشناسین اصلاحات پناه کن',
 'watchlist-show-liu'   => 'پیش دار اصلاحات کاربرانی که وارد بوتگن',
 'watchlist-hide-liu'   => 'پناه کن اصلاحات  کاربرانی که وارد بوتگن',
+'watchlist-options'    => 'گزینه یان لیست چارگ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'چارگ بین',

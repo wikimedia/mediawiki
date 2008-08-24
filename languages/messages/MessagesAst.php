@@ -817,6 +817,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'wikicodecomparison'      => 'Comparación wikitestu',
 'editundo'                => 'esfacer',
 'diff-multi'              => '({{PLURAL:$1|1 revisión intermedia non amosada|$1 revisiones intermedies non amosaes}})',
+'diff-with-final'         => '&#32;y $1 $2',
 
 # Search results
 'searchresults'             => 'Resultaos de la busca',
@@ -1483,6 +1484,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watchlist-hide-anons' => 'Ocultar ediciones anónimes',
 'watchlist-show-liu'   => "Amosar ediciones d'usuarios rexistraos",
 'watchlist-hide-liu'   => "Ocultar ediciones d'usuarios rexistraos",
+'watchlist-options'    => 'Opciones de la llista de vixilancia',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vixilando...',

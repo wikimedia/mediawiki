@@ -184,6 +184,7 @@ $messages = array(
 'category-empty'              => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
 'hidden-categories'           => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
 'hidden-category-category'    => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
+'category-article-count'      => '{{PLURAL:$2|په همدې وېشنيزه کې يواځې دغه لاندينی مخ شته.|دا {{PLURAL:$1|لاندينی مخ|$1 لانديني مخونه}}، له ټولټال $2 مخونو نه په دې وېشنيزه کې شته.}}',
 'category-file-count-limited' => 'په اوسنۍ وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
 'listingcontinuesabbrev'      => 'پرله پسې',
 
@@ -355,7 +356,9 @@ $messages = array(
 'viewsourcefor'        => 'د $1 لپاره',
 'protectedpagetext'    => 'همدا مخ د سمادولو د مخنيوي په تکل تړل شوی دی.',
 'viewsourcetext'       => 'تاسو د همدغه مخ توکي او سرچينې کتلی او لمېسلی شی:',
+'protectedinterface'   => 'په همدې مخ کې د پوستکالي د ليدنمخ متن دی او دا متن د ناسمو کارولو د مخنيوي په تکل تړل شوی.',
 'namespaceprotected'   => "تاسو ته د '''$1''' په نوم-تشيال کې د مخونو د سمادولو اجازه نشته.",
+'ns-specialprotected'  => 'ځانګړې مخونه د سمادولو وړ نه دي.',
 
 # Login and logout pages
 'logouttitle'                => 'کارن-حساب نه وتنه',
@@ -390,9 +393,12 @@ $messages = array(
 'youremail'                  => 'برېښليک *',
 'username'                   => 'کارن-نوم:',
 'uid'                        => 'د کارونکي پېژندنه:',
+'prefs-memberingroups'       => 'د {{PLURAL:$1|ډلې|ډلو}} غړی:',
 'yourrealname'               => 'اصلي نوم:',
 'yourlanguage'               => 'ژبه:',
 'yournick'                   => 'کورنی نوم:',
+'badsiglength'               => 'ستاسو لاسليک ډېر اوږد دی.
+پکار ده چې لاسليک مو له $1 {{PLURAL:$1|توری|تورو}} نه لږ وي.',
 'email'                      => 'برېښليک',
 'prefs-help-realname'        => 'د اصلي نوم ليکل ستاسو په خوښه دی خو که تاسو خپل اصلي نوم وټاکۍ پدې سره به ستاسو ټول کارونه او ونډې ستاسو د نوم په اړوندولو کې وکارېږي.',
 'loginerror'                 => 'د ننوتنې ستونزه',
@@ -1190,7 +1196,7 @@ $messages = array(
 # Special:NewImages
 'newimages'             => 'د نوو دوتنو نندارتون',
 'imagelisttext'         => "دلته لاندې د '''$1''' {{PLURAL:$1|دوتنه|دوتنې}} يو لړليک دی چې اوډل شوي $2.",
-'newimages-summary'     => 'هغه دوتنې چې غونډال کې تازه پورته شوي، په همدې ځانګړي مخ کې ښکاري',
+'newimages-summary'     => 'همدا ځانګړی مخ، وروستنۍ پورته شوې دوتنې ښکاره کوي.',
 'noimages'              => 'د کتلو لپاره څه نشته.',
 'ilsubmit'              => 'پلټل',
 'bydate'                => 'د نېټې له مخې',
@@ -1247,6 +1253,8 @@ $messages = array(
 'exif-contrast-0' => 'نورمال',
 
 'exif-saturation-0' => 'نورمال',
+
+'exif-sharpness-0' => 'نورمال',
 
 'exif-subjectdistancerange-0' => 'ناجوت',
 
@@ -1355,8 +1363,17 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                 => 'ځانګړي مخونه',
+'specialpages-group-other'     => 'نور ځانګړي مخونه',
+'specialpages-group-login'     => 'ننوتل / کارن-حساب جوړول',
+'specialpages-group-changes'   => 'وروستي بدلونونه او يادښتونه',
+'specialpages-group-users'     => 'کارونکي او رښتې',
+'specialpages-group-highuse'   => 'ډېر کارېدونکي مخونه',
 'specialpages-group-pages'     => 'د مخونو لړليک',
 'specialpages-group-pagetools' => 'د مخ اوزارونه',
 'specialpages-group-wiki'      => 'ويکيډاټا او اوزارونه',
+
+# Special:BlankPage
+'blankpage'              => 'تش مخ',
+'intentionallyblankpage' => 'همدا مخ په لوی لاس تش پرېښودل شوی دی',
 
 );

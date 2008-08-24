@@ -828,8 +828,11 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'difference'              => '(Diferencias entre revisiones)',
 'lineno'                  => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',
+'visualcomparison'        => 'Comparación visual',
+'wikicodecomparison'      => 'Comparación de texto wiki',
 'editundo'                => 'deshacer',
 'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-with-final'         => '&#32;y $1 $2',
 
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',
@@ -1406,6 +1409,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'nextpage'          => 'Siguiente página ($1)',
 'prevpage'          => 'Página anterior ($1)',
 'allpagesfrom'      => 'Mostrar páginas que empiecen por:',
+'allpagesto'        => 'Mostrar páginas terminadas con:',
 'allarticles'       => 'Todos los artículos',
 'allinnamespace'    => 'Todas las páginas (espacio $1)',
 'allnotinnamespace' => 'Todas las páginas (fuera del espacio $1)',
@@ -2100,6 +2104,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Ir a diferencias anteriores',
 'nextdiff'     => 'Ir a las siguientes diferencias →',
+
+# Visual comparison
+'visual-comparison' => 'Comparación visual',
 
 # Media information
 'mediawarning'         => "'''Atención''': Este fichero puede contener código malicioso, ejecutarlo podría comprometer la seguridad de tu equipo.<hr />",

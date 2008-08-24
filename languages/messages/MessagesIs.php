@@ -571,7 +571,7 @@ $2',
 'logouttitle'                => 'Útskráning notanda',
 'logouttext'                 => 'Þú hefur verið skráð(ur) út.
 Þú getur þó haldið áfram að nota {{SITENAME}} nafnlaust og þú getur skráð þig inn sem annar notandi. Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá innskráður, hægt er að koma í veg fyrir það með því að hreinsa biðminnið í vafranum.',
-'welcomecreation'            => '== Velkomin, $1! ==
+'welcomecreation'            => '== Velkomin(n), $1! ==
 Aðgangurinn þinn hefur verið búinn til.
 Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum.',
 'loginpagetitle'             => 'Innskráning notanda',
@@ -939,9 +939,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'math_syntax_error'       => 'málfræðivilla',
 'prefs-personal'          => 'Notandaupplýsingar',
 'prefs-rc'                => 'Nýlegar breytingar',
-'prefs-watchlist'         => 'Vaktalistinn',
+'prefs-watchlist'         => 'Vaktlistinn',
 'prefs-watchlist-days'    => 'Fjöldi daga sem vaktlistinn nær yfir:',
-'prefs-watchlist-edits'   => 'Fjöldi breytinga sem vaktalistinn nær yfir:',
+'prefs-watchlist-edits'   => 'Fjöldi breytinga sem vaktlistinn nær yfir:',
 'prefs-misc'              => 'Aðrar stillingar',
 'saveprefs'               => 'Vista',
 'resetprefs'              => 'Endurstilla valmöguleika',
@@ -1136,7 +1136,7 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'filehist'                  => 'Breytingaskrá skjals',
 'filehist-help'             => 'Smelltu á dagsetningu eða tímasetningu til að sjá hvernig hún leit þá út.',
 'filehist-deleteall'        => 'eyða öllu',
-'filehist-deleteone'        => 'eyða þessu',
+'filehist-deleteone'        => 'eyða',
 'filehist-revert'           => 'taka aftur',
 'filehist-current'          => 'núverandi',
 'filehist-datetime'         => 'Dagsetning/Tími',
@@ -1317,7 +1317,9 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 
 # Special:Categories
 'categories'                    => 'Flokkar',
-'categoriespagetext'            => 'Eftirfarandi flokkar innihalda síður eða margmiðlunarefni.',
+'categoriespagetext'            => 'Eftirfarandi flokkar innihalda síður eða skrár.
+[[Special:UnusedCategories|Ónotaðir flokkar]] birtast ekki hér.
+Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'categoriesfrom'                => 'Sýna flokka frá:',
 'special-categories-sort-count' => 'raða eftir fjölda',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
@@ -2058,9 +2060,9 @@ $1',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Á vaktlista þínum {{PLURAL:$1|er 1 síða|eru $1 síður}}, að undanskildum spjallsíðum.',
-'watchlistedit-noitems'        => 'Vaktalistinn þinn inniheldur enga titla.',
-'watchlistedit-normal-title'   => 'Breyta vaktalistanum',
-'watchlistedit-normal-legend'  => 'Fjarlægja titla af vaktalistanum',
+'watchlistedit-noitems'        => 'Vaktlistinn þinn inniheldur enga titla.',
+'watchlistedit-normal-title'   => 'Breyta vaktlistanum',
+'watchlistedit-normal-legend'  => 'Fjarlægja titla af vaktlistanum',
 'watchlistedit-normal-explain' => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan. Til að fjarlægja titil hakaðu í kassan við hliðina á honum og smelltu á „Fjarlægja titla“. Þú getur einnig [[Special:Watchlist/raw|breytt honum opnum]].',
 'watchlistedit-normal-submit'  => 'Fjarlægja titla',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Ein síða var fjarlægð|$1 síður voru fjarlægðar}} af vaktlistanum þínum:',
@@ -2068,8 +2070,8 @@ $1',
 'watchlistedit-raw-legend'     => 'Breyta opnum vaktlistanum',
 'watchlistedit-raw-explain'    => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan, þar sem mögulegt er að breyta þeim með því að bæta við hann og taka af honum; einn tiltil í hverri línu. Þegar þú er búinn, smelltu þá á „Uppfæra vaktlistann“. Þú getur einnig notað [[Special:Watchlist/edit|staðlaða breytinn]].',
 'watchlistedit-raw-titles'     => 'Titlar:',
-'watchlistedit-raw-submit'     => 'Uppfæra vaktalistann',
-'watchlistedit-raw-done'       => 'Vaktalistinn þinn hefur verið uppfærður.',
+'watchlistedit-raw-submit'     => 'Uppfæra vaktlistann',
+'watchlistedit-raw-done'       => 'Vaktlistinn þinn hefur verið uppfærður.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Einum titli|$1 titlum}} var bætt við:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 titill var fjarlægður|$1 titlar voru fjarlægðir}}:',
 

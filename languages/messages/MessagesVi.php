@@ -877,6 +877,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'wikicodecomparison'      => 'So sánh mã wiki',
 'editundo'                => 'lùi sửa',
 'diff-multi'              => '(Không hiển thị {{PLURAL:$1|một|$1}} phiên bản ở giữa)',
+'diff-with-final'         => '&#32;và $1 $2',
 
 # Search results
 'searchresults'             => 'Kết quả tìm kiếm',

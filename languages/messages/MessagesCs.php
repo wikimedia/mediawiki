@@ -1723,6 +1723,7 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'watchlist-hide-anons' => 'skrýt anonymní uživatele',
 'watchlist-show-liu'   => 'zobrazit přihlášené uživatele',
 'watchlist-hide-liu'   => 'skrýt přihlášené uživatele',
+'watchlist-options'    => 'Možnosti sledovaných stránek',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Přidávám na seznam sledovaných stránek…',

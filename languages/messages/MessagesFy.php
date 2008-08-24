@@ -973,13 +973,13 @@ wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn
 'uploadnologintext'          => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in triem oanbiede te kinnen.',
 'upload_directory_read_only' => 'De webserver kin net skriuwe yn de oanbiedpad ($1).',
 'uploaderror'                => 'Oanbiedfout',
-'uploadtext'                 => "Om't nije triemmen oan te bieden, brûke jo de ûndersteande fekjes. Earder oanbeane triemmen, kinne jo fine op de [[Special:ImageList|list of oanbeane ôfbylden]].
+'uploadtext'                 => "Om in nije triemmen oan te bieden, brûke jo de ûndersteande formulier. Earder oanbeane triemmen, kinne jo fine op de [[Special:ImageList|list fan oanbeane ôfbylden]].
 Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it [[Special:Log/upload|lochboek]].
 
 Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_foto.jpg]]</nowiki>''',
-*'''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki>''', of
-*'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki>''', foar direkt keppeling fan mediatriemmen dy't gjin ôfbylden binne.",
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_foto.jpg]]</nowiki></tt>''', foar grutte ferzje,
+*'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></tt>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
+*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki></tt>''', foar direkt keppeling nei de triem (sûnder byld).",
 'upload-prohibited'          => 'Ferbouden triemtypes: $1.',
 'uploadlog'                  => 'oanbiedloch',
 'uploadlogpage'              => 'Oanbiedloch',

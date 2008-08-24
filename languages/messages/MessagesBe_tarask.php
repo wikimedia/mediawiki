@@ -1021,6 +1021,7 @@ $2',
 'wikicodecomparison'      => 'Параўнаньне вікі-тэксту',
 'editundo'                => 'адмяніць',
 'diff-multi'              => '($1 {{PLURAL:$1|прамежная вэрсія не паказаная|прамежныя вэрсіі не паказаныя|прамежных вэрсіяў не паказаныя}}.)',
+'diff-with-final'         => '&#32;і $1 $2',
 
 # Search results
 'searchresults'             => 'Вынікі пошуку',
@@ -1705,6 +1706,7 @@ $2',
 'watchlist-hide-anons' => 'схаваць ананімаў',
 'watchlist-show-liu'   => 'паказаць зарэгістраваных',
 'watchlist-hide-liu'   => 'схаваць зарэгістраваных',
+'watchlist-options'    => 'Устаноўкі сьпісу назіраньня',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Дадаецца ў сьпіс назіраньня…',
@@ -2472,8 +2474,8 @@ $1',
 'exif-gpsdestlatitude'             => "Шырата аб'екту",
 'exif-gpsdestlongituderef'         => "Пункт адліку даўгаты аб'екту",
 'exif-gpsdestlongitude'            => "Даўгата аб'екту",
-'exif-gpsdestbearingref'           => "Пункт адліку для азімуту аб'екту",
-'exif-gpsdestbearing'              => "Азімут аб'екту",
+'exif-gpsdestbearingref'           => "Тып пэленгу аб'екту",
+'exif-gpsdestbearing'              => "Пэленг аб'екту",
 'exif-gpsdestdistanceref'          => "Пункт адліку адлегласьці да аб'екту",
 'exif-gpsdestdistance'             => "Адлегласьць да аб'екту",
 'exif-gpsprocessingmethod'         => 'Назва мэтаду вылічэньня GPS',
@@ -2486,7 +2488,29 @@ $1',
 
 'exif-unknowndate' => 'Невядомая дата',
 
-'exif-orientation-1' => 'Звычайна', # 0th row: top; 0th column: left
+'exif-orientation-1' => 'Звычайная', # 0th row: top; 0th column: left
+'exif-orientation-2' => 'Адлюстраваная па гарызанталі', # 0th row: top; 0th column: right
+'exif-orientation-3' => 'Павернутая на 180°', # 0th row: bottom; 0th column: right
+'exif-orientation-4' => 'Адлюстраваная па вэртыкалі', # 0th row: bottom; 0th column: left
+'exif-orientation-5' => 'Павернутая на 90° супраць руху гадзіньнікавай стрэлкі і адлюстраваная вэртыкальна', # 0th row: left; 0th column: top
+'exif-orientation-6' => 'Павернутая на 90° па руху гадзіньнікавай стрэлкі', # 0th row: right; 0th column: top
+'exif-orientation-7' => 'Павернутая на 90° па руху гадзіньнікавай стрэлкі і адлюстраваная вэртыкальна', # 0th row: right; 0th column: bottom
+'exif-orientation-8' => 'Павернутая на 90° супраць руху гадзіньнікавай стрэлкі', # 0th row: left; 0th column: bottom
+
+'exif-planarconfiguration-1' => 'фармат «chunky»',
+'exif-planarconfiguration-2' => 'фармат «planar»',
+
+'exif-componentsconfiguration-0' => 'не існуе',
+
+'exif-exposureprogram-0' => 'Ня вызначана',
+'exif-exposureprogram-1' => 'Ручны лад',
+'exif-exposureprogram-2' => 'Праграмны лад',
+'exif-exposureprogram-3' => 'Прыярытэт дыяфрагмы',
+'exif-exposureprogram-4' => 'Прыярытэт затвора',
+'exif-exposureprogram-5' => 'Творчы лад (перавага глыбіні рэзкасьці)',
+'exif-exposureprogram-6' => 'Лад руху (перавага хуткасьці затвора)',
+'exif-exposureprogram-7' => 'Партрэтны лад (здымкі ў набліжэньня, з фонам ня ў фокусе)',
+'exif-exposureprogram-8' => 'Пэйзажны лад (для здымкаў краявідаў, з фонам у фокусе)',
 
 'exif-lightsource-0' => 'Невядомая',
 'exif-lightsource-4' => 'Успышка',

@@ -486,7 +486,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'loginproblem'               => '<strong>Met däm Enlogge es jet scheiv jelaufe.</strong><br />Bes esu jod, un dun et noch ens versöke!',
 'login'                      => 'Enlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
-'loginprompt'                => 'Öm [[Special:UserLogin|op de {{SITENAME}} enlogge]] ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
+'loginprompt'                => 'Öm op de {{SITENAME}} enlogge ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',
 'userlogin'                  => 'Enlogge odder Metmaacher wääde',
 'logout'                     => 'Uslogge',
 'userlogout'                 => 'Uslogge',
@@ -685,7 +685,7 @@ Do kanns och noch en et <span class=\"plainlinks\">[{{fullurl:Special:IPBlockLis
 'blockednoreason'                  => 'Keine Aanlass aanjejovve',
 'blockedoriginalsource'            => 'Dä orjenal Wiki Tex vun dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
 'blockededitsource'                => 'Dä Wiki Tex vun <strong>Dinge Änderunge</strong> aan dä Sigg „<strong>$1</strong>“ steiht hee drunger:',
-'whitelistedittitle'               => '[[Special:UserLogin|Enlogge]] es nüdich för Sigge ze Ändere',
+'whitelistedittitle'               => 'Enlogge es nüdich för Sigge ze Ändere',
 'whitelistedittext'                => 'Do mööts ald $1, öm hee em Wiki Sigge ändere ze dürfe.',
 'confirmedittitle'                 => 'För et Sigge Ändere muss De Ding E-Mail Adress ald bestätich han.',
 'confirmedittext'                  => 'Do muss Ding E-Mail Adress ald bestätich han, ih dat De hee Sigge ändere darfs.
@@ -976,6 +976,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'wikicodecomparison'      => 'Wikitex-Verjleisch',
 'editundo'                => 'zeröck nämme',
 'diff-multi'              => '(Mer don hee {{PLURAL:$1|eij Version|$1 Versione|keij Version}} dozwesche beim Verjliesche översprenge)',
+'diff-with-final'         => ', un $1 $2',
 
 # Search results
 'searchresults'             => 'Wat beim Söke eruskom',

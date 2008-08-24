@@ -845,6 +845,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'wikicodecomparison'      => 'Comparation del wikitexto',
 'editundo'                => 'annullar',
 'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
+'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Resultatos del recerca',
@@ -1562,6 +1563,7 @@ facilitar su identification.",
 'watchlist-hide-anons' => 'Celar modificationes anonyme',
 'watchlist-show-liu'   => 'Monstrar modificationes per usatores authenticate',
 'watchlist-hide-liu'   => 'Celar modificationes per usatores authenticate',
+'watchlist-options'    => 'Optiones del observatorio',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Observation in curso...',

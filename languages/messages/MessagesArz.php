@@ -1184,25 +1184,25 @@ $2',
 'files'                    => 'ملفات',
 
 # User rights
-'userrights'                     => 'إدارة الحقوق بتاعة اليوزر', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'         => 'إدارة مجموعات اليوزر',
-'userrights-user-editname'       => 'دخل اسم يوزر:',
-'editusergroup'                  => 'تعديل مجموعات اليوزر',
-'editinguser'                    => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'       => 'تعديل مجموعات اليوزر',
-'saveusergroups'                 => 'حفظ مجموعات اليوزر',
-'userrights-groupsmember'        => 'عضو في:',
-'userrights-groups-help'         => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
+'userrights'                  => 'إدارة الحقوق بتاعة اليوزر', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'إدارة مجموعات اليوزر',
+'userrights-user-editname'    => 'دخل اسم يوزر:',
+'editusergroup'               => 'تعديل مجموعات اليوزر',
+'editinguser'                 => "تغيير حقوق االيوزر بتاعة اليوزر'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'تعديل مجموعات اليوزر',
+'saveusergroups'              => 'حفظ مجموعات اليوزر',
+'userrights-groupsmember'     => 'عضو في:',
+'userrights-groups-help'      => 'إنت ممكن تغير المجموعات اللي اليوزر دا عضو فيها .
 * صندوق متعلم يعني اليوزر دا عضو في المجموعة دي.
 * صندوق مش متعلم يعني  اليوزر دا مش عضو في المجموعة دي.
 * علامة * يعنى انك مش ممكن تشيل المجموعات بعد ما تضيفها و العكس بالعكس.',
-'userrights-reason'              => 'سبب التغيير:',
-'userrights-no-interwiki'        => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
-'userrights-nodatabase'          => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
-'userrights-nologin'             => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
-'userrights-notallowed'          => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
-'userrights-changeable-col'      => 'المجموعات اللي تقدر تغييرها',
-'userrights-unchangeable-col'    => 'المجموعات اللى مش ممكن انك تغيرها',
+'userrights-reason'           => 'سبب التغيير:',
+'userrights-no-interwiki'     => 'أنت  مش من حقك تعدل صلاحيات اليوزرز على الويكيات التانية.',
+'userrights-nodatabase'       => 'قاعدة البيانات $1  مش موجودة أو مش محلية.',
+'userrights-nologin'          => 'انت لازم [[Special:UserLogin|تسجيل الدخول]] بحساب  مدير لتعديل حقوق اليوزر.',
+'userrights-notallowed'       => 'حسابك  ماعندوش  إذن لتعديل حقوق اليوزر.',
+'userrights-changeable-col'   => 'المجموعات اللي تقدر تغييرها',
+'userrights-unchangeable-col' => 'المجموعات اللى مش ممكن انك تغيرها',
 
 # Groups
 'group'               => 'المجموعة:',
@@ -1706,8 +1706,8 @@ PICT # misc.
 'listgrouprights-members'         => '(لستة الأعضاء)',
 'listgrouprights-addgroup'        => 'ممكن تضيف {{PLURAL:$2|المجموعة|المجموعات}}: $1',
 'listgrouprights-removegroup'     => 'ممكن تشيل {{PLURAL:$2|المجموعة|المجموعات}}: $1',
-'listgrouprights-addgroup-all'    => ' ممكن تضيف كل المجموعات : $1',
-'listgrouprights-removegroup-all' => ' ممكن تشيل كل المجموعات : $1',
+'listgrouprights-addgroup-all'    => 'ممكن تضيف كل المجموعات',
+'listgrouprights-removegroup-all' => 'ممكن تشيل كل المجموعات',
 
 # E-mail user
 'mailnologin'     => 'مافيش عنوان نبعت عليه',
@@ -1774,6 +1774,7 @@ PICT # misc.
 'watchlist-hide-anons' => 'خبي التعديلات بتاعة اليوزرز المجهولين',
 'watchlist-show-liu'   => 'اعرض التعديلات بتاعة اليوزرز المسجلين دخولهم',
 'watchlist-hide-liu'   => 'خبي التعديلات بتاعة اليوزرز المسجلين دخولهم',
+'watchlist-options'    => 'اختيارات قايمة المراقبة',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'راقب...',
@@ -2003,7 +2004,7 @@ $1',
 'blockiptext'                     => 'استخدم الاستمارة اللي تحت لمنع عنوان أيبي أو يوزر معين من الكتابة.
 دا لازم يحصل بس علشان تمنع التخريب ،و على حسب 
 [[{{MediaWiki:Policy-url}}|السياسة]].
-اكتب سبب محدد تحت (يعنى مثلا، اكتب الصفحات المعينة اللي اتخربت بسببه)).',
+اكتب سبب محدد تحت (يعنى مثلا، اكتب الصفحات المعينة اللي اتخربت بسببه).',
 'ipaddress'                       => 'عنوان الأيبي:',
 'ipadressorusername'              => 'عنوان الأيبي أو اسم اليوزر:',
 'ipbexpiry'                       => 'مدة المنع:',

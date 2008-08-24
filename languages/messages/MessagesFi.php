@@ -419,7 +419,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 
 'badaccess'        => 'Lupa evätty',
 'badaccess-group0' => 'Sinulla ei ole lupaa suorittaa pyydettyä toimintoa.',
-'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu ryhmien $1 henkilöille.',
+'badaccess-groups' => 'Pyytämäsi toiminto on rajoitettu {{PLURAL:$2|ryhmän|ryhmien}} $1 henkilöille.',
 
 'versionrequired'     => 'MediaWikistä tarvitaan vähintään versio $1',
 'versionrequiredtext' => 'MediaWikistä tarvitaan vähintään versio $1 tämän sivun käyttämiseen. Katso [[Special:Version|versio]].',
@@ -659,22 +659,34 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'summary-preview'                  => 'Yhteenvedon esikatselu',
 'subject-preview'                  => 'Otsikon esikatselu',
 'blockedtitle'                     => 'Pääsy estetty',
-'blockedtext'                      => "<strong>Käyttäjätunnuksesi tai IP-osoitteesi on estetty.</strong>
+'blockedtext'                      => "<big>'''Käyttäjätunnuksesi tai IP-osoitteesi on estetty.'''</big>
 
-Ylläpitäjä $1 on poistanut '''muokkausoikeutesi'''  ''$6'' asti estolla, jonka kohde on $7. Esto alkoi $8.
+Eston on asettanut $1.
+Syy: '''$2'''
 
-Eston syyksi on annettu ''$2''.
+* Eston alkamisaika: $8
+* Eston päättymisaika: $6
+* Kohde: $7
 
-Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. IP-osoitteesi on $3 ja estotunnus on #$5. Liitä ne kyselyihisi.",
+Voit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.
+Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.
+IP-osoitteesi on $3 ja estotunnus on #$5.
+Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 'autoblockedtext'                  => "IP-osoitteesi on estetty automaattisesti, koska sitä on käyttänyt toinen käyttäjä, jonka on estänyt ylläpitäjä $1.
 Eston syy on:
 
 :''$2''
 
-*Esto alkoi: $8
-*Esto vanhenee: $6
+* Eston alkamisaika: $8
+* Eston päättymisaika: $6
+* Kohde: $7
 
-Jos olet sitä mieltä, että sinut on estetty syyttä, voit keskustella asiasta [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa. Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]]. Jos IP-osoitteesi on dynaaminen, eli se voi toisinaan vaihtua, olet saattanut saada estetyn osoitteen käyttöösi, ja esto vaikuttaa nyt sinuun. Estotunnus on #$5. Liitä se kyselyihisi.",
+Voit keskustella ylläpitäjän $1 tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa estosta.
+
+Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} kautta, ellet ole asettanut olemassa olevaa sähköpostiosoitetta [[Special:Preferences|asetuksissa]] tai jos esto on asetettu koskemaan myös sähköpostin lähettämistä.
+
+IP-osoitteesi on $3 ja estotunnus on #$5.
+Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 'blockednoreason'                  => '(syytä ei annettu)',
 'blockedoriginalsource'            => 'Sivun ”$1” lähdekoodi:',
 'blockededitsource'                => 'Muokkauksesi sivuun ”$1”:',
@@ -730,7 +742,9 @@ Yritä uudelleen. Jos ongelma ei katoa, yritä kirjautua ulos ja takaisin sisä�
 'copyrightwarning2'                => 'Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. <strong>TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!</strong>',
 'longpagewarning'                  => '<center>Tämän sivun tekstiosuus on $1 binäärikilotavua pitkä. Harkitse, voisiko sivun jakaa pienempiin osiin.</center>',
 'longpageerror'                    => '<strong>Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.</strong>',
-'readonlywarning'                  => '<strong>Varoitus</strong>: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.',
+'readonlywarning'                  => '<strong>Varoitus: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt. Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.</strong>
+
+Lukitsemisen syy: $1',
 'protectedpagewarning'             => '<center><small>Tämä sivu on lukittu. Vain ylläpitäjät voivat muokata sitä.</small></center>',
 'semiprotectedpagewarning'         => 'Vain rekisteröityneet käyttäjät voivat muokata tätä sivua.',
 'cascadeprotectedwarning'          => '<strong>Vain ylläpitäjät voivat muokata tätä sivua, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}</strong>:',
@@ -887,6 +901,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'difference'              => 'Versioiden väliset erot',
 'lineno'                  => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
+'visualcomparison'        => 'Visuaalinen vertailu',
+'wikicodecomparison'      => 'Wikitekstin vertailu',
 'editundo'                => 'kumoa',
 'diff-multi'              => '(Versioiden välissä {{PLURAL:$1|yksi muu muokkaus|$1 muuta muokkausta}}.)',
 
@@ -924,7 +940,7 @@ $1 | $2',
 'searchall'                 => 'kaikki',
 'showingresults'            => "{{PLURAL:$1|'''Yksi''' tulos|'''$1''' tulosta}} tuloksesta '''$2''' alkaen.",
 'showingresultsnum'         => "Alla on {{PLURAL:$3|'''Yksi''' hakutulos|'''$3''' hakutulosta}} alkaen '''$2.''' tuloksesta.",
-'showingresultstotal'       => 'Alla on {{PLURAL:$3|tulos $1|tulokset $1–$2}}; yhteensä $3.',
+'showingresultstotal'       => "Alla on {{PLURAL:$4|tulos '''$1'''|tulokset '''$1–$2'''}}; yhteensä '''$3'''.",
 'nonefound'                 => "'''Huomautus''': Epäonnistuneet haut johtuvat usein hyvin yleisten sanojen, kuten ''on'' ja ''ei'', etsimisestä tai useamman kuin yhden hakutermin määrittelemisestä. Vain sivut, joilla on kaikki hakutermin sanat, näkyvät tuloksissa.",
 'powersearch'               => 'Etsi',
 'powersearch-legend'        => 'Laajennettu haku',
@@ -1451,7 +1467,9 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Special:Categories
 'categories'                    => 'Luokat',
-'categoriespagetext'            => '{{GRAMMAR:inessive|{{SITENAME}}}} on seuraavat luokat:',
+'categoriespagetext'            => 'Seuraavat luokat sisältävät sivuja tai mediatiedostoja.
+[[Special:UnusedCategories|Käyttämättömiä luokkia]] ei näytetä.
+Katso myös [[Special:WantedCategories|halutut luokat]].',
 'categoriesfrom'                => 'Näytä alkaen luokasta',
 'special-categories-sort-count' => 'järjestä koon mukaan',
 'special-categories-sort-abc'   => 'järjestä nimen mukaan',
@@ -1463,8 +1481,8 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Käyttäjäryhmien oikeudet',
-'listgrouprights-summary'         => 'Tässä on lista {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjäryhmistä ja niiden oikeudet.
-Lisätietoa yksittäisistä käyttäjäoikeuksista on [[{{MediaWiki:Listgrouprights-helppage}}|ohjesivulla]].',
+'listgrouprights-summary'         => 'Tämä lista sisältää tämän wikin käyttäjäryhmät sekä ryhmiin liitetyt käyttöoikeudet.
+Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWiki:Listgrouprights-helppage}}|erilliseltä ohjesivulta]].',
 'listgrouprights-group'           => 'Ryhmä',
 'listgrouprights-rights'          => 'Oikeudet',
 'listgrouprights-helppage'        => 'Help:Käyttöoikeudet',
@@ -1533,6 +1551,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista on [[{{MediaWiki:Listgrouprig
 'watchlist-hide-anons' => 'Piilota anonyymit muokkaukset',
 'watchlist-show-liu'   => 'Näytä kirjautuneiden muokkaukset',
 'watchlist-hide-liu'   => 'Piilota kirjautuneiden muokkaukset',
+'watchlist-options'    => 'Tarkkailulistan asetukset',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Lisätään tarkkailulistalle...',
@@ -2106,6 +2125,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Edellinen muutos',
 'nextdiff'     => 'Seuraava muutos →',
+
+# Visual comparison
+'visual-comparison' => 'Visuaalinen vertailu',
 
 # Media information
 'mediawarning'         => "'''Varoitus''': Tämä tiedosto saattaa sisältää vahingollista koodia, ja suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.<hr />",

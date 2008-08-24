@@ -54,7 +54,7 @@ $messages = array(
 'tog-watchmoves'              => 'Engadir as páxinas que mova á miña listaxe de vixilancia',
 'tog-watchdeletion'           => 'Engadir as páxinas que borre á miña listaxe de vixilancia',
 'tog-minordefault'            => 'Marcar por omisión todas as edicións como pequenas',
-'tog-previewontop'            => 'Mostrar botón de vista previa antes da caixa de edición e non despois dela',
+'tog-previewontop'            => 'Mostrar o botón de vista previa antes da caixa de edición e non despois dela',
 'tog-previewonfirst'          => 'Mostrar a vista previa na primeira edición',
 'tog-nocache'                 => 'Deshabilitar a memoria caché das páxinas',
 'tog-enotifwatchlistpages'    => 'Envíenme unha mensaxe de correo electrónico cando unha páxina da miña listaxe de vixilancia cambie',
@@ -307,9 +307,9 @@ $messages = array(
 'nosuchaction'      => 'Non existe esa acción',
 'nosuchactiontext'  => 'A acción especificada polo URL non é recoñecida polo wiki',
 'nosuchspecialpage' => 'Non existe esa páxina especial',
-'nospecialpagetext' => "<big>'''Pediu unha páxina especial que non está recoñecida polo wiki.'''</big>
+'nospecialpagetext' => "<big>'''Solicitou unha páxina especial que non está recoñecida polo wiki.'''</big>
 
-Pode atopar unha listaxe coas páxinas especiais válidas en [[Special:SpecialPages|{{int:specialpages}}]].",
+Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Erro',
@@ -393,7 +393,7 @@ A razón dada foi ''$2''.",
 'logouttext'                 => '<strong>Agora está fóra do sistema.</strong>
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
-Teña en conta que mentres se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.',
+Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.',
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
@@ -812,6 +812,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'wikicodecomparison'      => 'Comparación do texto wiki',
 'editundo'                => 'desfacer',
 'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial.)',
+'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Resultados da procura',
@@ -847,7 +848,7 @@ Se quere, pode [[:\$1|creala]].",
 'showingresults'            => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
 'showingresultsnum'         => "Embaixo {{PLURAL:$3|amósase '''1''' resultado|amósanse '''$3''' resultados}}, comezando polo número '''$2'''.",
 'showingresultstotal'       => "Embaixo {{PLURAL:$4|amósase o resultado '''$1''', dun total de '''$3'''|amósanse os resultados do '''$1''' ao '''$2''', dun total de '''$3'''}}",
-'nonefound'                 => "'''Nota:''' só algúns espazos de nomes son procurados por omisión. Probe a fixar a súa petición con ''todos:'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos, etc.) ou use como prefixo o espazo de nomes desexado.",
+'nonefound'                 => "'''Nota:''' só algúns espazos de nomes son procurados por omisión. Probe a fixar a súa petición con ''(Principal)'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos, etc.) ou use como prefixo o espazo de nomes desexado.",
 'powersearch'               => 'Procurar',
 'powersearch-legend'        => 'Busca avanzada',
 'powersearch-ns'            => 'Procurar nos espazos de nomes:',
@@ -1499,6 +1500,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchlist-hide-anons' => 'Agochar as edicións anónimas',
 'watchlist-show-liu'   => 'Amosar as edicións dos usuarios rexistrados',
 'watchlist-hide-liu'   => 'Agochar as edicións dos usuarios rexistrados',
+'watchlist-options'    => 'Opcións de vixilancia',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vixiando...',
@@ -2005,17 +2007,17 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'tooltip-t-permalink'             => 'Ligazón permanente a esta versión da páxina',
 'tooltip-ca-nstab-main'           => 'Ver o contido da páxina',
 'tooltip-ca-nstab-user'           => 'Ver a páxina do usuario',
-'tooltip-ca-nstab-media'          => 'Ver a páxina de multimedia',
+'tooltip-ca-nstab-media'          => 'Ver a páxina con contido multimedia',
 'tooltip-ca-nstab-special'        => 'Esta é unha páxina especial, polo que non a pode editar',
 'tooltip-ca-nstab-project'        => 'Ver a páxina do proxecto',
 'tooltip-ca-nstab-image'          => 'Ver a páxina do ficheiro',
 'tooltip-ca-nstab-mediawiki'      => 'Ver a mensaxe do sistema',
 'tooltip-ca-nstab-template'       => 'Ver o modelo',
 'tooltip-ca-nstab-help'           => 'Ver a páxina de axuda',
-'tooltip-ca-nstab-category'       => 'Ver a páxina de categorías',
+'tooltip-ca-nstab-category'       => 'Ver a páxina da categoría',
 'tooltip-minoredit'               => 'Marcar isto coma unha edición pequena',
 'tooltip-save'                    => 'Gravar os seus cambios',
-'tooltip-preview'                 => 'Vista previa dos seus cambios, por favor, úsea antes de gravalos!',
+'tooltip-preview'                 => 'Vista previa dos seus cambios; por favor, úsea antes de gravalos!',
 'tooltip-diff'                    => 'Mostrar os cambios que fixo no texto',
 'tooltip-compareselectedversions' => 'Ver as diferenzas entre as dúas versións seleccionadas desta páxina',
 'tooltip-watch'                   => 'Engadir esta páxina á súa listaxe de vixilancia [alt-w]',
@@ -2416,7 +2418,7 @@ Outros agocharanse por omisión.
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar o enderezo de correo electrónico',
-'confirmemail_noemail'     => 'Non ten configurado un enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias]] de usuario.',
+'confirmemail_noemail'     => 'Non ten rexistrado ningún enderezo de correo electrónico válido nas súas [[Special:Preferences|preferencias de usuario]].',
 'confirmemail_text'        => '{{SITENAME}} require que vostede valide o seu enderezo de correo electrónico antes de utilizar as funcións relacionadas con el.
 Prema no botón de embaixo para enviar un correo de confirmación ao seu enderezo.
 O correo incluirá unha ligazón cun código: clique nesta ligazón para abrila no navegador web e confirmar que o seu enderezo é válido.',
@@ -2515,7 +2517,7 @@ Tente a vista previa normal.',
 Tente a vista previa normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Pode que as edicións feitas {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} non aparezan nesta lista.',
+'lag-warn-normal' => 'Pode que os cambios feitos {{PLURAL:$1|no último segundo|nos últimos $1 segundos}} non aparezan nesta lista.',
 'lag-warn-high'   => 'Debido a unha gran demora do servidor da base de datos, pode que nesta lista non aparezan os cambios feitos {{PLURAL:$1|no último segundo|nos últimos $1 segundos}}.',
 
 # Watchlist editor

@@ -847,6 +847,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'wikicodecomparison'      => 'Vikiteksta komparo',
 'editundo'                => 'malfari',
 'diff-multi'              => '({{PLURAL:$1|Unu meza versio|$1 mezaj versioj}} ne montrata.)',
+'diff-with-final'         => '&#32;kaj $1 $2',
 
 # Search results
 'searchresults'             => 'Serĉrezultoj',
@@ -1521,6 +1522,7 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'watchlist-hide-anons' => 'Kaŝi anonimajn redaktojn',
 'watchlist-show-liu'   => 'Montri redaktojn de ensalutitaj uzantoj',
 'watchlist-hide-liu'   => 'Kaŝi redaktojn de ensalutitaj uzantoj',
+'watchlist-options'    => 'Opcioj por atentaro',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aldonanta al la atentaro...',
@@ -1595,7 +1597,7 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollbacklink'                => 'restarigi antaŭan',
 'rollbackfailed'              => 'Restarigo malsukcesis',
 'cantrollback'                => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
-'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]) | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment

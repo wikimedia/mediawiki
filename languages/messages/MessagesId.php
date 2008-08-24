@@ -1003,6 +1003,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'wikicodecomparison'      => 'Perbandingan teks wiki',
 'editundo'                => 'batalkan',
 'diff-multi'              => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
+'diff-with-final'         => '&#32;dan $1 $2',
 
 # Search results
 'searchresults'             => 'Hasil pencarian',
@@ -1660,6 +1661,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'watchlist-hide-anons' => 'Sembunyikan suntingan anonim',
 'watchlist-show-liu'   => 'Tampilkan suntingan pengguna yang masuk log',
 'watchlist-hide-liu'   => 'Sembunyikan suntingan pengguna yang masuk log',
+'watchlist-options'    => 'Opsi daftar pantauan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Memantau...',
@@ -2647,7 +2649,7 @@ Coba dengan pratayang normal.',
 'lag-warn-high'   => 'Karenanya besarnya keterlambatan basis data server, perubahan yang lebih baru dari $1 {{PLURAL:$1|detik|detik}} mungkin tidak muncul di daftar ini.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Daftar pantauan Anda berisi {{PLURAL:$1|1 judul|$1 judul}},tidak termasuk halaman pembicaraan.',
+'watchlistedit-numitems'       => 'Daftar pantauan Anda berisi {{PLURAL:$1|1 judul|$1 judul}}, tidak termasuk halaman pembicaraan.',
 'watchlistedit-noitems'        => 'Daftar pantauan Anda kosong.',
 'watchlistedit-normal-title'   => 'Sunting daftar pantauan',
 'watchlistedit-normal-legend'  => 'Hapus judul dari daftar pantauan',

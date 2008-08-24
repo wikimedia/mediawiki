@@ -374,7 +374,7 @@ $2',
 'loginproblem'               => '<span style="color:red">Эн аатыҥ ылыныллыбата.</span> Өссө суруйан көр!',
 'login'                      => 'Киир',
 'nav-login-createaccount'    => 'Киир / бэлиэтэн',
-'loginprompt'                => '[[Special:UserLogin|{{SITENAME}} саайтыгар киирэргэ ]] «cookies» туттары көҥүллээ.',
+'loginprompt'                => '{{SITENAME}} саайтыгар киирэргэ «cookies» туттары көҥүллээ.',
 'userlogin'                  => 'Киир / бэлиэтэн',
 'logout'                     => 'Таҕыс',
 'userlogout'                 => 'Таҕыс',
@@ -530,7 +530,7 @@ IP-аадырыһыҥ $3, бобуу нүөмэрэ — #$5.
 'blockednoreason'                  => 'биир да биричиинэ сөп түбэспэт',
 'blockedoriginalsource'            => "Манна бу сирэй '''$1''' көрдөрүлүннэ:",
 'blockededitsource'                => "Манна '''$1''' сирэйгэ '''эн уларытыыларыҥ''' көрдөрүлүннулэр:",
-'whitelistedittitle'               => 'Уларытарга [[Special:UserLogin|киириэххин]] наада',
+'whitelistedittitle'               => 'Уларытарга киириэххин наада',
 'whitelistedittext'                => 'Улатыаххын баҕарар буоллаххына маны $1 гын.',
 'confirmedittitle'                 => 'Эл. почтаҥ аадырыһын бигэргэт',
 'confirmedittext'                  => 'Уларытарга эл. почтаҥ аадырыһын бигэргэтиэхтээххин. Бастаан [[Special:Preferences|манна]] киирэн бэйэн ааккын уонна эл. почтаҕын суруй. Онтон эл. аадырыскын бигэргэт.',
@@ -1499,7 +1499,7 @@ $NEWPAGE
 
 Кэнники уларытыыны [[User:$3|$3]] ([[User talk:$3|Ырытыы]] | [[Special:Contributions/$3|{{int:contribslink}}]]) оҥорбут.',
 'editcomment'                 => 'Уларытыыны маннык быһаарбыттар: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '([[User_talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',
 'sessionfailure'              => 'Арааһа туох эрэ сатаммата, дьайыыҥ оҥоһуллубата. Браузергар "Төнүн" тимэҕи баттаа уонна бу иннинээҕи сирэйгин иккистээн киллэрэн көр.',
 'protectlogpage'              => 'Харысхал сурунаала (көннөрүүттэн көмүскэммит билэлэр испииһэктэрэ)',
