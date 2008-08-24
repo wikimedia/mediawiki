@@ -73,11 +73,17 @@ $messages = array(
 'toolbox'          => 'Àpótí irinṣẹ',
 'otherlanguages'   => 'Àwọn èdè míràn',
 'lastmodifiedat'   => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time
+'viewcount'        => 'A ti wo ojúewé yi ni {{PLURAL:$1|ẹ̀kan péré|iye ìgbà $1}}.',
 'jumptonavigation' => 'atọ́ka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nípa {{SITENAME}}',
+'aboutpage'            => 'Project:Nípa',
+'copyright'            => 'Gbogbo ohun inú ibí yi wà lábẹ́  $1.',
+'copyrightpagename'    => '{{SITENAME}} ẹ̀tọ́àwòkọ',
+'copyrightpage'        => '{{ns:project}}:Ẹ̀tọ́àwòko',
 'currentevents'        => 'Ìròhìn nísinsìnyí',
+'currentevents-url'    => 'Project:Ìròhìn nísinsìnyí',
 'edithelp'             => "Ìrànlọ́wọ́ láti s'àtúnṣe",
 'edithelppage'         => 'Help:Àtúnṣe',
 'mainpage'             => 'Ojúewé Àkọ́kọ́',
@@ -145,7 +151,11 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'showdiff'         => 'Àfihàn àwọn àyípadà',
 'anoneditwarning'  => "'''Ìkìlọ̀:''' Ẹ ò tíì wọlé.
 Á ṣe àkọsílẹ̀ ojúọ̀nà IP yín ninu ìwé àtúnṣe ojúewé yìí.",
+'loginreqtitle'    => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
 'newarticle'       => '(Tuntun)',
+'newarticletext'   => "Ẹ ti tẹ̀lé ìjápọ̀ mọ́ ojúewé tí kò sí.
+Láti dá ojúewé yí ẹ bẹ̀rẹ̀ síní tẹ́kọ sí inú àpótí ìsàlẹ̀ yí (ẹ wo [[{{MediaWiki:Helppage}}|ojúewé ìrànlọ́wọ́ ]] fun ẹ̀kúnrẹ́rẹ́ ).
+T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́yìn.",
 'note'             => '<strong>Àkíyèsí:</strong>',
 'copyrightwarning' => 'Ẹ jọ̀wọ́ ẹ kíyèsi wípé gbogbo àwọn àfikún sí {{SITENAME}} jẹ́ bẹ̀ lábẹ́  $2 (Ẹ wo $1 fún ẹkunrẹrẹ ).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />

@@ -1028,6 +1028,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'wikicodecomparison'      => 'Wikitextjämförelse',
 'editundo'                => 'avlägsna',
 'diff-multi'              => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} visas inte.)',
+'diff-with-final'         => '&#32;och $1 $2',
 
 # Search results
 'searchresults'             => 'Sökresultat',
@@ -1706,6 +1707,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchlist-hide-anons' => 'Göm anonyma ändringar',
 'watchlist-show-liu'   => 'Visa ändringar av inloggade användare',
 'watchlist-hide-liu'   => 'Göm ändringar av inloggade användare',
+'watchlist-options'    => 'Alternativ för bevakningslistan',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Bevakar...',
@@ -2223,8 +2225,15 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-upload'                  => 'Starta uppladdning',
 
 # Stylesheets
-'common.css'   => '/* CSS som skrivs här påverkar alla skal */',
-'monobook.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
+'common.css'      => '/* CSS som skrivs här påverkar alla skal */',
+'standard.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Standard */',
+'nostalgia.css'   => '/* CSS som skrivs här kommer att påverka alla användare av skalet Nostalgi */',
+'cologneblue.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Cologne blå */',
+'monobook.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
+'myskin.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Mitt skal */',
+'chick.css'       => '/* CSS som skrivs här kommer att påverka alla användare av skalet Chick */',
+'simple.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Enkelt */',
+'modern.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
 
 # Scripts
 'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',

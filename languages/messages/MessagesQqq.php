@@ -675,6 +675,9 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'visualcomparison' => '{{Identical|Visual comparison}}',
 'editundo' => 'Undo link when viewing diffs',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
+'diff-with-final' => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
+* $1 is <need more info>
+* $2 is <need more info>',
 
 # Search results
 'searchresults-title' => 'Appears as page title in the html header of the search result special page.',
@@ -1305,6 +1308,7 @@ Don\'t translate the "Template:" part!',
 'watchlist-hide-anons' => 'Option in [[Special:Watchlist]]',
 'watchlist-show-liu' => 'Option in [[Special:Watchlist]]',
 'watchlist-hide-liu' => 'Option in [[Special:Watchlist]]',
+'watchlist-options' => 'Legend of the fieldset of [[Special:Watchlist]]',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',

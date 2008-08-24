@@ -355,11 +355,11 @@ $messages = array(
 'category-empty'                 => '이 분류에 속하는 문서나 자료가 없습니다.',
 'hidden-categories'              => '숨겨진 분류',
 'hidden-category-category'       => '숨겨진 분류', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '이 분류에는 하위 분류가 $1개 있고, 그 중 $2개를 보여주고 있습니다.',
+'category-subcat-count'          => '{{PLURAL:$2|이 분류에는 다음의 하위 분류만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 하위 분류 중 $1 개입니다.}}',
 'category-subcat-count-limited'  => '이 분류에는 하위 분류가 $1개 있습니다.',
 'category-article-count'         => '{{PLURAL:$2|이 분류에는 다음의 문서만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 문서 중 $1 개입니다.}}',
 'category-article-count-limited' => '이 분류에 $1개의 문서가 속해 있습니다.',
-'category-file-count'            => '이 분류에는 아래 $1개를 포함해 $2개의 파일이 있습니다.',
+'category-file-count'            => '{{PLURAL:$2|이 분류에는 다음의 파일만이 속해 있습니다.|다음은 이 분류에 속하는 $2 개의 파일 중 $1 개입니다.}}',
 'category-file-count-limited'    => '$1개의 파일이 이 분류에 있습니다.',
 'listingcontinuesabbrev'         => ' (계속)',
 

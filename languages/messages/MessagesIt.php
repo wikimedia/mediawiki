@@ -891,6 +891,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'wikicodecomparison'      => 'Confronto del wikitext',
 'editundo'                => 'annulla',
 'diff-multi'              => '({{PLURAL:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
+'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Risultati della ricerca',
@@ -1563,6 +1564,7 @@ Se in un secondo tempo si desidera eliminare la pagina dalla lista degli osserva
 'watchlist-hide-anons' => 'Nascondi le modifiche degli utenti anonimi',
 'watchlist-show-liu'   => 'Mostra le modifiche degli utenti registrati',
 'watchlist-hide-liu'   => 'Nascondi le modifiche degli utenti registrati',
+'watchlist-options'    => 'Opzioni osservati speciali',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aggiunta agli osservati speciali...',

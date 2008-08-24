@@ -621,7 +621,10 @@ Sapi che te stè prometendo che te stè inserendo un testo scrito de to pugno, o
 'longpagewarning'                  => "<strong>OCIO: Sta pàxena la xè longa $1 kilobyte; çerti browser i podarìa verghe dei problemi ne ła modifega de pàxene che se aviçina o supera i 32 KB. Valuta l'oportunità de sudivìdar ła pàxena in sezion pìassè picenine.</strong>",
 'longpageerror'                    => '<strong>ERROR: The text you have submitted is $1 kilobytes 
 long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</strong>',
-'readonlywarning'                  => '<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento. Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.</strong>',
+'readonlywarning'                  => "<strong>OCIO: El database el xe stà blocà par manutenzion, quindi no se pol salvar le modifiche in sto momento.
+Par no pèrdarle, te pol copiar tuto quel che te ghè inserìo fin desso ne la casela de modifica, incolarlo in un programa de elaborazion de testi e salvarlo, intanto che te speti che i sbloca el database.</strong>
+
+L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $1",
 'protectedpagewarning'             => '<strong>OCIO: Sta pagina la xe sta proteta e solo i aministradori i pode modificarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Sta pàxena la xè stà blocà in modo che solo i utenti registrài i poda modefegarla.",
 'cascadeprotectedwarning'          => "'''Ocio:''' Sta pagina la xe stà blocà in modo che solo i utenti con privilegi de aministrador i possa modificarla. Questo sucede parché la pagina la xe inclusa {{PLURAL:\$1|ne la pagina indicà de seguito, che la xe stà proteta|ne le pagine indicà de seguito, che le xe stà protete}} selezionando la protezion \"ricorsiva\":",
@@ -785,8 +788,11 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'difference'              => '(Difarense fra łe version)',
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => 'Confronta łe version selezionà',
+'visualcomparison'        => 'Confronto visuale',
+'wikicodecomparison'      => 'Confronto del wikitext',
 'editundo'                => 'annulla',
 'diff-multi'              => '({{PLURAL:$1|Una revision intermedia non mostrà|$1 revision intermedie non mostrà}}.)',
+'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
 'searchresults'             => 'Risultato de la riçerca',
@@ -820,7 +826,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'searchall'                 => 'tuti',
 'showingresults'            => "Qua de soto vien mostrà al massimo {{PLURAL:$1|'''1''' risultato|'''$1''' risultati}} a partir dal nùmaro '''$2'''.",
 'showingresultsnum'         => "Qua soto ghe xe {{PLURAL:$3|'''1''' risultato|'''$3''' risultati}} a partir da #'''$2'''.",
-'showingresultstotal'       => "De seguito vien mostrà {{PLURAL:$3|l'unico risultato|i risultati da '''$1''' a '''$2''' su un totale de '''$3'''}}",
+'showingresultstotal'       => "De seguito vien mostrà {{PLURAL:$4|el risultato '''$1'''|i risultati da '''$1''' a '''$2'''}} su un totale de '''$3'''",
 'nonefound'                 => "'''Ocio''': la riçerca la vien fata in automatico solo in çerti namespace. Se te voli sercar tra tuti i contenuti (conprese pagine de discussion, template, etc.) zónteghe ''all:'' davanti al testo che te serchi, o senò specifica el namespace in cui sercar.",
 'powersearch'               => 'Riçerca avansada',
 'powersearch-legend'        => 'Riçerca avanzada',
@@ -1452,6 +1458,7 @@ Se pì avanti te vorè cavar sta articolo da la to lista de Osservati Speciali, 
 'watchlist-hide-anons' => 'Scondi le modifiche dei utenti anonimi',
 'watchlist-show-liu'   => 'Fà védar le modifiche dei utenti registrà',
 'watchlist-hide-liu'   => 'Scondi le modifiche dei utenti registrà',
+'watchlist-options'    => 'Preferense par i osservati speciali',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Zonto ai oservati speciali...',
@@ -1963,7 +1970,7 @@ Salvalo sul to computer e càrghelo qua.',
 'lastmodifiedatby' => "Sta pàxena la xè stà modificà l'ultima olta el $2, $1 da $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'El testo atuale el xe basà su contributi de $1.',
 'others'           => 'altri',
-'siteusers'        => '$1, utenti de {{SITENAME}}',
+'siteusers'        => '$1, {{PLURAL:$2|utente|utenti}} de {{SITENAME}}',
 'creditspage'      => 'Autori de ła pàxena',
 'nocredits'        => 'Nissuna informazion sui autori disponibile par sta pagina.',
 
@@ -2022,6 +2029,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Difarenza precedente',
 'nextdiff'     => 'Prossima difarenza →',
+
+# Visual comparison
+'visual-comparison' => 'Confronto visuale',
 
 # Media information
 'mediawarning'         => "'''Ocio''': Sto file qua el podarìa contegner codice maligno; la so esecuzion la podarìa danegiar el proprio sistema informatico.<hr />",

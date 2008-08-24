@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
  * @author Dereckson
@@ -745,7 +746,7 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'blockednoreason'                  => 'Aucune raison donnée',
 'blockedoriginalsource'            => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'                => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
-'whitelistedittitle'               => '[[Special:UserLogin|Connexion nécessaire]] pour modifier le contenu',
+'whitelistedittitle'               => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
@@ -962,6 +963,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'wikicodecomparison'      => 'Comparison du wikitexte',
 'editundo'                => 'défaire',
 'diff-multi'              => '({{PLURAL:$1|Une révision intermédiaire masquée|$1 révisions intermédiaires masquées}})',
+'diff-with-final'         => '&#32;et $1 $2',
 
 # Search results
 'searchresults'             => 'Résultats de la recherche',
@@ -1642,6 +1644,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchlist-hide-anons' => 'Cache les modifications anonymes',
 'watchlist-show-liu'   => 'Affiche les modifications des utilisateurs connectés',
 'watchlist-hide-liu'   => 'Cache les modifications des utilisateurs connectés',
+'watchlist-options'    => 'Options de la liste de suivi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Suivi...',

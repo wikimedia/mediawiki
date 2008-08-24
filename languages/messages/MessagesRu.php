@@ -5,6 +5,7 @@
  * @file
  *
  * @author Ahonc
+ * @author Aleksandrit
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author EugeneZelenko
@@ -462,7 +463,7 @@ $messages = array(
 
 'badaccess'        => 'Ошибка доступа',
 'badaccess-group0' => 'Вы не можете выполнять запрошенное действие.',
-'badaccess-groups' => 'Запрошенное действие могут выполнять только участники из групп $1.',
+'badaccess-groups' => 'Запрошенное действие могут выполнять только участники из {{PLURAL:$2|группы|групп}} $1.',
 
 'versionrequired'     => 'Требуется MediaWiki версии $1',
 'versionrequiredtext' => 'Для работы с этой страницей требуется MediaWiki версии $1. См. [[Special:Version|информацию о версиях используемого ПО]].',
@@ -999,6 +1000,7 @@ $3 указал следующую причину: ''$2''",
 'wikicodecomparison'      => 'Сравнение вики-текста',
 'editundo'                => 'отменить',
 'diff-multi'              => '({{PLURAL:$1|$1 промежуточная версия не показана|$1 промежуточные версии не показаны|$1 промежуточных версий не показаны.}})',
+'diff-with-final'         => '&#32;и $1 $2',
 
 # Search results
 'searchresults'             => 'Результаты поиска',
@@ -1592,7 +1594,7 @@ PICT # различные
 # Special:Categories
 'categories'                    => 'Категории',
 'categoriespagetext'            => 'Следующие категории содержат страницы или медиа-файлы.
-Здесь не показаны [[Special:UnusedCategories|Неиспользуемые категоии]].
+Здесь не показаны [[Special:UnusedCategories|Неиспользуемые категории]].
 См. также [[Special:WantedCategories|список требуемых категорий]].',
 'categoriesfrom'                => 'Показать категории, начинающиеся с:',
 'special-categories-sort-count' => 'упорядочить по количеству',
@@ -1677,6 +1679,7 @@ PICT # различные
 'watchlist-hide-anons' => 'Скрыть анонимов',
 'watchlist-show-liu'   => 'Показать представившихся',
 'watchlist-hide-liu'   => 'Скрыть представившихся',
+'watchlist-options'    => 'Опции списка наблюдения',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Добавление в список наблюдения…',
@@ -2622,7 +2625,7 @@ $1',
 
 # E-mail address confirmation
 'confirmemail'             => 'Подтверждение адреса электронной почты',
-'confirmemail_noemail'     => 'Вы не задали адрес электронной почты в [[{{ns:special}}:Preferences|настройках]], либо он некорректен.',
+'confirmemail_noemail'     => 'Вы не задали адрес электронной почты в своих [[Special:Preferences|настройках]], либо он некорректен.',
 'confirmemail_text'        => 'Вики-движок требует подтверждения адреса электронной почты перед тем, как начать с ним работать.
 Нажмите на кнопку, чтобы на указанный адрес было отправлено письмо, содержащее ссылку на специальную страницу, после открытия которой в браузере адрес электронной почты будет считаться подтверждённым.',
 'confirmemail_pending'     => '<div class="error">
@@ -2679,7 +2682,7 @@ $1
 
 # Delete conflict
 'deletedwhileediting' => 'Внимание: пока вы редактировали эту страницу, она была удалена!',
-'confirmrecreate'     => "Участник [[User:$1|$1]] ([[User_talk:$1|обсуждение]]) удалил эту страницу после того, как вы начали её редактировать, причина удаления:
+'confirmrecreate'     => "Участник [[User:$1|$1]] ([[User talk:$1|обсуждение]]) удалил эту страницу после того, как вы начали её редактировать, причина удаления:
 : ''$2''
 Пожалуйста, подтвердите, что вы хотите восстановить эту страницу.",
 'recreate'            => 'Создать заново',

@@ -935,6 +935,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'wikicodecomparison'      => 'Porovnanie wikitextu',
 'editundo'                => 'vrátiť',
 'diff-multi'              => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
+'diff-with-final'         => '&#32;a $1 $2',
 
 # Search results
 'searchresults'             => 'Výsledky vyhľadávania',

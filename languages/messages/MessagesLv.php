@@ -239,8 +239,8 @@ $messages = array(
 'currentevents-url'    => 'Project:Aktualitātes',
 'disclaimers'          => 'Saistību atrunas',
 'edithelp'             => 'Palīdzība izmaiņām',
-'edithelppage'         => 'Palīdzība:Rediģēšana',
-'helppage'             => 'Palīdzība:Saturs',
+'edithelppage'         => 'Help:Rediģēšana',
+'helppage'             => 'Help:Saturs',
 'mainpage'             => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
 'portal'               => 'Kopienas portāls',
@@ -1095,6 +1095,11 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'watchlist-hide-own'   => 'Paslēpt manas izmaiņas',
 'watchlist-show-minor' => 'Parādīt maznozīmīgās izmaiņas',
 'watchlist-hide-minor' => 'Paslēpt maznozīmīgās izmaiņas',
+'watchlist-show-anons' => 'Parādīt anonīmo lietotāju izmaiņas',
+'watchlist-hide-anons' => 'Paslēpt anonīmo lietotāju izmaiņas',
+'watchlist-show-liu'   => 'Parādīt reģistrēto lietotāju izmaiņas',
+'watchlist-hide-liu'   => 'Paslēpt reģistrēto lietotāju izmaiņas',
+'watchlist-options'    => 'Uzraugāmo rakstu saraksta opcijas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Uzrauga...',

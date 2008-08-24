@@ -948,6 +948,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'wikicodecomparison'      => 'Wikitext-Vergleich',
 'editundo'                => 'rückgängig',
 'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
+'diff-with-final'         => '&#32;und $1 $2',
 
 # Search results
 'searchresults'             => 'Suchergebnisse',
@@ -1641,6 +1642,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'watchlist-hide-anons' => 'Anonyme Benutzer ausblenden',
 'watchlist-show-liu'   => 'Angemeldete Benutzer einblenden',
 'watchlist-hide-liu'   => 'Angemeldete Benutzer ausblenden',
+'watchlist-options'    => 'Anzeigeoptionen',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Beobachten …',

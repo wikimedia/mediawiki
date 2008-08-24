@@ -807,7 +807,7 @@ Kérjük, hogy érdeklődés esetén mindkettőt add meg.",
 'blockednoreason'                  => 'nem lett ok megadva',
 'blockedoriginalsource'            => "'''$1''' forrása alább látható:",
 'blockededitsource'                => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
-'whitelistedittitle'               => 'A szerkesztéshez [[Special:UserLogin|be kell jelentkezned]]',
+'whitelistedittitle'               => 'A szerkesztéshez be kell jelentkezned',
 'whitelistedittext'                => 'A szócikkek szerkesztéséhez $1.',
 'confirmedittitle'                 => 'Szerkesztéshez az e-mail cím megerősítése szükséges',
 'confirmedittext'                  => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|szerkesztői beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
@@ -1048,6 +1048,9 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'wikicodecomparison'      => 'Wikikód összehasonlítása',
 'editundo'                => 'visszavonás',
 'diff-multi'              => '({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva)',
+'diff-with-final'         => '&#32;és $1 $2',
+'diff-sup'                => "'''felső index'''",
+'diff-strike'             => "'''áthúzás'''",
 
 # Search results
 'searchresults'             => 'A keresés eredménye',
@@ -1733,6 +1736,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchlist-hide-anons' => 'Névtelen szerkesztések elrejtése',
 'watchlist-show-liu'   => 'Bejelentkezett szerkesztők módosításainak megjelenítése',
 'watchlist-hide-liu'   => 'Bejelentkezett szerkesztők módosításainak elrejtése',
+'watchlist-options'    => 'A figyelőlista beállításai',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Figyelés...',

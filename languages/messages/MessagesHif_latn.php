@@ -588,6 +588,15 @@ Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {
 'session_fail_preview'             => '<strong> Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
 Agar ii fir bhi nai chale tab kosis karna [[Special:UserLogout|logging out]]aur fir logging back in.</strong>',
+'session_fail_preview_html'        => "<strong>Maaf karna! Ham log aap ke badlao ke process ke process nai kare sakaa kahe ki session data abhi nai dekhae hai.</strong>
+
+''Iske kaaran hai ki {{SITENAME}} me raw HTML enabled hai, preview ke lukae dewa gais hai as a precaution against JavaScript attacks.''
+
+<strong> Agar ii legitimate edit attempt tab, fir se kosis karna.
+Agar ii fir bhi kaam nai kare, tab [[Special:UserLogout|logging out]] aur logging back in ke kosis karna.</strong>",
+'token_suffix_mismatch'            => '<strong> Aap ke badlao ke reject kar dewa gais hai kahe ki aap ke client punctuation charcters ke token edit me mangle kar diis hai.
+Ii badlao ke reject kar dewa gais hai to prevent corruption of the page text.
+Ii kabhi kabhi hoe hai jab aap ek buggy web-based anonymous proxy service ke use karta hai.</strong>',
 'editing'                          => '$1 badlawa jae hai',
 'editingsection'                   => 'Sampadan $1 (bhaag)',
 'editingcomment'                   => '$1 badla jae hai (comment)',
@@ -613,6 +622,15 @@ Aap ii bhi kasam khata hai ki aap iske apne se likha hai aur kahin se copy nai k
 <strong> COPYRIGHT WORK KE BINA AUNUMATI KE SUBMIT NAI KARNA!</strong>',
 'longpagewarning'                  => '<strong>Sawadhan: Ii panna $1 kilobytes lamba hai; kuch browsers sait etna barra panna ke khole nai pai.
 Meherbani kar ke ii page ke chotachota tukrra me kar do.</strong>',
+'longpageerror'                    => '<strong>ERROR: Jon text aap submit karaa hai uu $1 kilobytes lamba hai, ii maximum $2 kilobytes se lamba hai.
+Iske save nai karaa jae sake hai.</strong>',
+'readonlywarning'                  => '<strong>WARNING: Database ke maintenance khatir band kar dewa gais hai, tab abhi aap aapan badlao ke save nai kare paega.
+Aap sait aapan badlao ke ek text file me cut-n-paste kar ke baad me use kare khatir save kae le sakta hai.</strong>
+
+Administrator jon ki iske lock karis hai ii kaaran diis hai: $1',
+'protectedpagewarning'             => '<strong>WARNING: Ii panna ke band kar dewa gais hai jisse ke khali uu sadasya jiske sysop privileges hai iske badle sake hai.</strong>',
+'semiprotectedpagewarning'         => "'''Suchna:''' Ii panna ke band kar dewa gais hai jisse ki khali registered sadasya iske badle sake hai.",
+'cascadeprotectedwarning'          => "'''Chetawani:''' Ii panna ke band kar dewa gais jiske kaaran khali uu sadasya jiske lage sysop privileges hai iske badle sake hai, kahe ki iske niche likha gais cascade-protected {{PLURAL:$1|panna|panna}} me rakkha gais hai:",
 'titleprotectedwarning'            => '<strong>CHETAUNI: Ii panna ke lock kar dewa gais hai jisse ki khali kuch sadasya iske badle sake hai.</strong>',
 'templatesused'                    => 'Ii panna me kaam me lawa gae templates:',
 'templatesusedpreview'             => 'Ii jhalak me jon template kaam me lawa gais hai',
@@ -644,8 +662,25 @@ Some templates will not be included.',
 Ii sab arguments ke omit kar dewa gais hai.',
 'post-expand-template-argument-category'  => 'Panna jisme omitted template arguments hai',
 
+# "Undo" feature
+'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
+Niche ke comparison ke check kar ke dekho ki aap yahi kare mangta rahaa, aur fir niche ke badlao ke save kar ke aapan badlao ke pahile jaise karo.',
+'undo-failure' => 'Ii badalo ke paile jaise nai karaa jaae sake hai kahe ki biich me badlao hai.',
+'undo-norev'   => 'Ii badlao ke pahile jaise nai karaa jaae sake hai kahe ki ii badalo abhi nai hai nai to iske mitae dewa gais hai.',
+'undo-summary' => '$1 badlao [[Special:Contributions/$2|$2]] se, ke pahile jaise karo ([[User talk:$2|Talk]])',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Account nai banae sakta hai',
+'cantcreateaccount-text' => "Ii IP address ('''$1''') se nawaa account banae ke [[User:$3|$3]] block kar diis hai.
+
+Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
+
 # History pages
 'viewpagelogs'        => 'Ii panna ke suchi dekho',
+'nohistory'           => 'Ii panna ke khatir koi badlao ke itihaas nai hai.',
+'revnotfound'         => 'Badlao nai mila',
+'revnotfoundtext'     => 'Jon panna ke aap mangta rahaa, uske purana badlao nai mila.
+Aap jon URL ke use kar ke ii panna ke acess karaa hai, uske check karo.',
 'currentrev'          => 'Abhi ke sansodhan',
 'revisionasof'        => '$1 ke badlao',
 'revision-info'       => '$2 ke badlao $1 tak',
@@ -653,6 +688,7 @@ Ii sab arguments ke omit kar dewa gais hai.',
 'nextrevision'        => 'Nawaa badlao→',
 'currentrevisionlink' => 'Abhi ke badlao',
 'cur'                 => 'abhi waala',
+'next'                => 'duusra',
 'last'                => 'aakhri',
 'page_first'          => 'pahila',
 'page_last'           => 'aakhri',
@@ -660,11 +696,20 @@ Ii sab arguments ke omit kar dewa gais hai.',
 
 Legend: (abhi) = abhi ke version se farka,
 (pahile waala) = pahile waala version se farka, M = chhota sampadan.',
+'history-search'      => 'Itihaas me khojo',
+'deletedrev'          => '[matae dewa gais hai]',
 'histfirst'           => 'Sab se puraana',
 'histlast'            => 'Sab se nawaa',
+'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'        => '(khali)',
 
 # Revision feed
+'history-feed-title'          => 'Badlao ke itihass',
+'history-feed-description'    => 'Ii panaa ke wiki me badlao ke itihaas',
 'history-feed-item-nocomment' => '$1 pe $2', # user at time
+
+# Revision deletion
+'rev-delundel' => 'dekhao/lukao',
 
 # Diffs
 'history-title'           => ' "$1" ke sansodhan ke itihaas',
