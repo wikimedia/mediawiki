@@ -965,15 +965,15 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_body'        => 'Dragi $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
-pogledajte {{fullurl:$PAGETITLE_RAWURL}} za trenutnu verziju.
+pogledajte {{fullurl:$PAGETITLE}} za trenutnu verziju.
 
 $NEWPAGE
 
 Rezime editora: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktirajte editora:
-pošta {{fullurl:Special:Emailuser|target=$PAGEEDITOR_RAWURL}}
-viki {{fullurl:User:$PAGEEDITOR_RAWURL}}
+pošta {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
+viki {{fullurl:User:$PAGEEDITOR}}
 
 Neće biti drugih obaviještenja u slučaju daljih izmjena ukoliko ne posjetite ovu stranu.
 Takođe možete da resetujete zastavice za obaviještenja za sve Vaše praćene stranice na vašem spisku praćenenih članaka.

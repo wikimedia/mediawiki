@@ -1553,7 +1553,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'enotif_impersonal_salutation' => '{{SITENAME}} bruger',
 'changed'                      => 'ændret',
 'created'                      => 'oprettet',
-'enotif_subject'               => '{{SITENAME}}-siden $PAGETITLE_QP er blevet ændret af $PAGEEDITOR_QP',
+'enotif_subject'               => '{{SITENAME}}-siden $PAGETITLE er blevet ændret af $PAGEEDITOR',
 'enotif_lastvisited'           => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff'              => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor'           => 'anonym bruger $1',
