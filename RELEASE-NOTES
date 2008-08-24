@@ -141,6 +141,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   addition to body text.
 * Navigation links to images available from a shared repository (like Commons)
   from their local talk pages no longer appear as redlinks
+* Action=purge on ForeignApiFiles now works (purges their thumbnails and description 
+  pages).
 
 
 === API changes in 1.14 ===
