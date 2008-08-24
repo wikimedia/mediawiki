@@ -104,4 +104,65 @@ class ForeignAPIFile extends File {
 			? $this->mInfo['descriptionurl']
 			: false;
 	}
+	
+	/**
+	 * Only useful if we're locally caching thumbs anyway...
+	 */
+	function getThumbPath( $suffix = '' ) {
+		$ret = null;
+		if ( $this->repo->apiThumbCacheExpiry > 0 && $this->repo->apiThumbCacheDir ) {
+			global $wgUploadDirectory;
+			$path = $wgUploadDirectory . '/' . $this->repo->apiThumbCacheDir . '/' . $this->repo->name . '/';
+			if ( $suffix ) {
+				$path = $path . $suffix . '/';
+			}
+			return $path;
+		}
+		else {
+			return null;	
+		}
+	}
+	
+	function getThumbnails() {
+		$files = array();
+		$dir = $this->getThumbPath( $this->getName() );
+		if ( is_dir( $dir ) ) {
+			$handle = opendir( $dir );
+			if ( $handle ) {
+				while ( false !== ( $file = readdir($handle) ) ) {
+					if ( $file{0} != '.'  ) {
+						$files[] = $file;
+					}
+				}
+				closedir( $handle );
+			}
+		}
+		return $files;
+	}
+	
+	function purgeCache() {
+		$this->purgeThumbnails();
+		$this->purgeDescriptionPage();
+	}
+	
+	function purgeDescriptionPage() {
+		global $wgMemc;
+		$url = $this->repo->getDescriptionRenderUrl( $this->getName() );
+		$key = wfMemcKey( 'RemoteFileDescription', 'url', md5($renderUrl) );
+		$wgMemc->delete( $key );
+	}
+	
+	function purgeThumbnails() {
+		global $wgMemc;
+		$key = wfMemcKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
+		$wgMemc->delete( $key );
+		$files = $this->getThumbnails();
+		$dir = $this->getThumbPath( $this->getName() );
+		foreach ( $files as $file ) {
+			unlink( $dir . $file );
+		}
+		if ( is_dir( $dir ) ) {
+			rmdir( $dir ); // Might have already gone away, spews errors if we don't.
+		}
+	}
 }
