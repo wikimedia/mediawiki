@@ -675,9 +675,12 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 'visualcomparison' => '{{Identical|Visual comparison}}',
 'editundo' => 'Undo link when viewing diffs',
 'diff-multi' => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.",
+'diff-src' => '{{Identical|Source}}',
 'diff-with-final' => '* "<code><nowiki>&amp;#32;</nowiki></code>" is a forced space; leave it in if your language uses spaces
 * $1 is <need more info>
 * $2 is <need more info>',
+'diff-width' => '{{Identical|Width}}',
+'diff-height' => '{{Identical|Height}}',
 
 # Search results
 'searchresults-title' => 'Appears as page title in the html header of the search result special page.',

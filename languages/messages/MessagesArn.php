@@ -166,6 +166,7 @@ $messages = array(
 # Edit pages
 'subject'            => 'Dungu/üy',
 'minoredit'          => 'Tüfachi ta kiñe menor wirin',
+'watchthis'          => 'Llaytun tüfachi pakina',
 'preview'            => 'Pen chum müley',
 'showpreview'        => 'Pen chum müley',
 'loginreqlink'       => 'Koni',
@@ -190,8 +191,10 @@ $messages = array(
 'revdelete-hid' => 'Ellkan $1',
 
 # Diffs
-'lineno'   => 'Wirin $1:',
-'editundo' => 'wüñoeltun',
+'lineno'       => 'Wirin $1:',
+'editundo'     => 'wüñoeltun',
+'diff-movedto' => 'Nengümün $1',
+'diff-del'     => "'''Ñamümün'''",
 
 # Search results
 'viewprevnext'          => 'Pen ($1) ($2) ($3).',
@@ -214,6 +217,8 @@ $messages = array(
 
 'group-user-member' => 'Lludüchi',
 
+'grouppage-user' => '{{ns:project}}: Lludüchi',
+
 # Rights
 'right-edit'          => 'Wirin pakina',
 'right-createpage'    => 'Llitun pakina (nütramkayam pakinanongelu)',
@@ -221,6 +226,7 @@ $messages = array(
 'right-move'          => 'Nengümün pakina',
 'right-delete'        => 'Ñamümün pakina',
 'right-browsearchive' => 'kintun pakina ñamümüngelu',
+'right-undelete'      => 'Deumalay Ñamümün kiñe pakina',
 
 # User rights log
 'rightsnone' => 'chemnorume',
@@ -294,9 +300,11 @@ $messages = array(
 'watchthispage'   => 'Llaytun tüfachi pakina',
 'unwatch'         => 'Llaytuwelan',
 'unwatchthispage' => 'Llaytuwelan',
+'notanarticle'    => 'Ngelay kiñe pakina',
 
-'enotif_newpagetext' => 'Tüfachi ta we pakina',
-'created'            => 'Llituy',
+'enotif_newpagetext'           => 'Tüfachi ta we pakina',
+'enotif_impersonal_salutation' => 'Lludüchi {{SITENAME}}',
+'created'                      => 'Llituy',
 
 # Delete/protect/revert
 'deletepage'              => 'Ñamümün tüfachi pakina',
@@ -336,29 +344,37 @@ $messages = array(
 'expiringblock'      => 'afi $1',
 
 # Move page
-'move-page'        => 'Nengümün $1',
-'move-page-legend' => 'Nengümün pakina',
-'newtitle'         => 'We üy püle',
-'move-watch'       => 'Llaytun tüfachi pakina',
-'movepagebtn'      => 'Nengümün pakina',
-'1movedto2'        => '[[$1]] wiñamngey [[$2]] püle',
+'move-page'               => 'Nengümün $1',
+'move-page-legend'        => 'Nengümün pakina',
+'movearticle'             => 'Nengümün pakina',
+'newtitle'                => 'We üy püle',
+'move-watch'              => 'Llaytun tüfachi pakina',
+'movepagebtn'             => 'Nengümün pakina',
+'movedto'                 => 'Nengümün',
+'1movedto2'               => '[[$1]] wiñamngey [[$2]] püle',
+'delete_and_move'         => 'Ñamümün y nengümün',
+'delete_and_move_confirm' => 'May, ñamümün pakina',
 
 # Namespace 8 related
 'allmessagesname' => 'Üy',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'   => 'Ñi pakina lludüchi',
 'tooltip-pt-mytalk'     => 'Tañi nütramkawe',
 'tooltip-pt-logout'     => 'Tripan',
 'tooltip-ca-delete'     => 'Ñamümün tüfachi pakina',
 'tooltip-ca-move'       => 'Nengümün tüfachi pakina',
 'tooltip-search'        => 'Kintun tüfachi wiki mew',
+'tooltip-p-logo'        => 'Wellü pakina',
 'tooltip-ca-nstab-user' => 'Pen pakina Lludüchi',
+'tooltip-ca-nstab-help' => 'Pen pakina kellu',
 
 # Attribution
 'others' => 'fill',
 
 # Info page
-'numedits' => 'Rakin wirin (pakina): $1',
+'numedits'     => 'Rakin wirin (pakina): $1',
+'numtalkedits' => 'Rakin wirin (pakina nütramkawe): $1',
 
 # Patrol log
 'patrol-log-diff' => 'ng$1',
