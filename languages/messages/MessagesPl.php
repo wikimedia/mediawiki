@@ -441,7 +441,7 @@ $messages = array(
 
 'badaccess'        => 'Niewłaściwe uprawnienia',
 'badaccess-group0' => 'Nie masz uprawnień wymaganych do wykonania tej operacji.',
-'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w jednej z grup $1.',
+'badaccess-groups' => 'Wykonywanie tej operacji zostało ograniczone do użytkowników w {{PLURAL:$2|grupie|jednej z grup}}: $1.',
 
 'versionrequired'     => 'Wymagane MediaWiki w wersji $1',
 'versionrequiredtext' => 'Użycie tej strony wymaga oprogramowania MediaWiki w wersji $1. Zobacz stronę [[Special:Version|wersja oprogramowania]].',

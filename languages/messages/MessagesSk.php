@@ -674,6 +674,7 @@ Udaný dôvod zablokovania:
 
 * Blokovanie začalo: $8
 * Blokovanie vyprší: $6
+* Blokovanie sa týka: $6
 
 Ak potrebujete informácie o blokovaní, môžete kontaktovať $1 alebo niektorého iného
 [[{{MediaWiki:Grouppage-sysop}}|správcu]].
@@ -681,7 +682,8 @@ Ak potrebujete informácie o blokovaní, môžete kontaktovať $1 alebo niektor�
 Pozn.: Nemôžete použiť funkciu „{{MediaWiki:emailuser}}“, ak ste si vo svojich
 [[Special:Preferences|používateľských nastaveniach]] nezaregistrovali platnú emailovú adresu.
 
-ID vášho blokovania je $5. Prosím, uveďte tento ID v akýchkoľvek otázkach, ktoré sa opýtate.",
+Vaša aktuálna IP adresa je $3. ID vášho blokovania je $5.
+Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate.",
 'blockednoreason'                  => 'nebol uvedený dôvod',
 'blockedoriginalsource'            => "Zdroj '''$1''' je zobrazený nižšie:",
 'blockededitsource'                => "Text '''vašich úprav''' stránky '''$1''' je zobrazený nižšie:",
@@ -935,7 +937,59 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'wikicodecomparison'      => 'Porovnanie wikitextu',
 'editundo'                => 'vrátiť',
 'diff-multi'              => '{{PLURAL:$1|Jedna medziľahlá revízia nie je zobrazená|$1 medziľahlé revízie nie sú zobrazené|$1 medziľahlých revízií nie je zobrazených}}.',
+'diff-movedto'            => 'presunuté na $1',
+'diff-styleadded'         => 'pridaný štýl',
+'diff-added'              => 'pridané',
+'diff-changedto'          => 'zmenené na',
+'diff-movedoutof'         => 'presunuté z $1',
+'diff-styleremoved'       => 'odstránený štýl',
+'diff-removed'            => 'odstránené',
+'diff-changedfrom'        => 'zmenené z',
+'diff-src'                => 'zdroj',
+'diff-withdestination'    => 's cieľom',
+'diff-with'               => '&#32;s $1 $2',
 'diff-with-final'         => '&#32;a $1 $2',
+'diff-width'              => 'šírka',
+'diff-height'             => 'výška',
+'diff-p'                  => "'''odstavec'''",
+'diff-blockquote'         => "'''citácia'''",
+'diff-h1'                 => "'''nadpis (úroveň 1)'''",
+'diff-h2'                 => "'''nadpis (úroveň 2)'''",
+'diff-h3'                 => "'''nadpis (úroveň 3)'''",
+'diff-h4'                 => "'''nadpis (úroveň 4)'''",
+'diff-h5'                 => "'''nadpis (úroveň 5)'''",
+'diff-pre'                => "'''predformátovaný blok'''",
+'diff-div'                => "'''rozdelenie'''",
+'diff-ul'                 => "'''nezoradený zoznam'''",
+'diff-ol'                 => "'''zoradený zoznam'''",
+'diff-li'                 => "'''položka zoznamu'''",
+'diff-table'              => "'''tabuľka'''",
+'diff-tbody'              => "'''obsah tabuľky'''",
+'diff-tr'                 => "'''riadok'''",
+'diff-td'                 => "'''bunka'''",
+'diff-th'                 => "'''hlavička'''",
+'diff-br'                 => "'''zalomenie'''",
+'diff-hr'                 => "'''vodorovná čiara'''",
+'diff-code'               => "'''blok počítačového kódu'''",
+'diff-dl'                 => "'''definičný zoznam'''",
+'diff-dt'                 => "'''definičný termín'''",
+'diff-dd'                 => "'''definícia'''",
+'diff-input'              => "'''vstup'''",
+'diff-form'               => "'''formulár'''",
+'diff-img'                => "'''obrázok'''",
+'diff-span'               => "'''interval'''",
+'diff-a'                  => "'''odkaz'''",
+'diff-i'                  => "'''kurzíva'''",
+'diff-b'                  => "'''hrubé'''",
+'diff-strong'             => "'''zvýraznené'''",
+'diff-em'                 => "'''dôraz'''",
+'diff-font'               => "'''písmo'''",
+'diff-big'                => "'''veľké'''",
+'diff-del'                => "'''zmazané'''",
+'diff-tt'                 => "'''s pevnou šírkou'''",
+'diff-sub'                => "'''dolný index'''",
+'diff-sup'                => "'''horný index'''",
+'diff-strike'             => "'''prečiarknuté'''",
 
 # Search results
 'searchresults'             => 'Výsledky vyhľadávania',
@@ -1620,6 +1674,7 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'watchlist-hide-anons' => 'Skryť anonymné úpravy',
 'watchlist-show-liu'   => 'Zobraziť úpravy prihlásených používateľov',
 'watchlist-hide-liu'   => 'Skryť úpravy prihlásených používateľov',
+'watchlist-options'    => 'Nastavenia zoznamu sledovaných',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pridávam do zoznamu sledovaných...',

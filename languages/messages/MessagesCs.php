@@ -949,7 +949,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'viewpagelogs'        => 'Zobrazit protokolovací záznamy k této stránce',
 'nohistory'           => 'O této stránce neexistuje historie editací.',
 'revnotfound'         => 'Verze nenalezena',
-'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.\\b',
+'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.',
 'currentrev'          => 'Aktuální verze',
 'revisionasof'        => 'Verze z $1',
 'revision-info'       => 'Verze z $1; $2',
@@ -1389,7 +1389,21 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 
 Zvažte zda je vhodné pokračovat v načítání tohoto souboru.
 Zde je příslušný výpis z knihy smazaných stránek:",
-'filename-bad-prefix'         => 'Jméno souboru, který načítáte, začíná na <strong>"$1"</strong>, což je nevhodné jméno, obvykle automaticky přiřazované digitálním fotoaparátem. Zvolte jméno, která Váš soubor lépe popíše.',
+'filename-bad-prefix'         => 'Jméno souboru, který načítáte, začíná na <strong>„$1“</strong>, což je nevhodné jméno, obvykle automaticky přiřazované digitálním fotoaparátem. Zvolte jméno, která váš soubor lépe popíše.',
+'filename-prefix-blacklist'   => ' #<!-- tuto řádku ponechte beze změny --> <pre>
+# Používá se následující syntaxe:
+#   * Cokoli od znaku „#“ až do konce řádky je komentář
+#   * Každá neprázdná řádka je prefix typických jmen souborů automaticky generovaných digitálními fotoaparáty
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # některé mobilní telefony
+IMG # obecné
+JD # Jenoptik
+MGP # Pentax
+PICT # různé
+ #</pre> <!-- tuto řádku ponechte beze změny -->',
 
 'upload-proto-error'      => 'Neplatný protokol',
 'upload-proto-error-text' => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
@@ -2123,7 +2137,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-interwiki-history'   => 'Zkopírovat všechny historické verze této stránky',
 'import-interwiki-submit'    => 'Importovat',
 'import-interwiki-namespace' => 'Stránky přenést do jmenného prostoru:',
-'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje {{ns:special}}:Export, uložte ji na svůj disk a nahrajte ji sem.',
+'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje [[Special:Export|{{ns:special}}:Export]], uložte jej na svůj disk a nahrajte ho sem.',
 'importstart'                => 'Stránky se importují…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'importnopages'              => 'Není co importovat.',

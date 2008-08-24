@@ -948,7 +948,59 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'wikicodecomparison'      => 'Wikitext-Vergleich',
 'editundo'                => 'rückgängig',
 'diff-multi'              => '(Der Versionsvergleich bezieht {{PLURAL:$1|1 dazwischen liegende Version|$1 dazwischen liegende Versionen}} mit ein.)',
+'diff-movedto'            => 'verschoben nach $1',
+'diff-styleadded'         => 'Style ergänzt',
+'diff-added'              => 'hinzugefügt',
+'diff-changedto'          => 'verändert nach',
+'diff-movedoutof'         => 'verschoben aus $1',
+'diff-styleremoved'       => 'Style entfernt',
+'diff-removed'            => 'entfernt',
+'diff-changedfrom'        => 'verändert von',
+'diff-src'                => 'Quelle',
+'diff-withdestination'    => 'mit Ziel',
+'diff-with'               => '&#32;mit $1 $2',
 'diff-with-final'         => '&#32;und $1 $2',
+'diff-width'              => 'Breite',
+'diff-height'             => 'Höhe',
+'diff-p'                  => "ein '''Absatz'''",
+'diff-blockquote'         => "einen '''Block'''",
+'diff-h1'                 => "eine '''Überschrift (1. Ordnung)'''",
+'diff-h2'                 => "eine '''Überschrift (2. Ordnung)'''",
+'diff-h3'                 => "eine '''Überschrift (3. Ordnung)'''",
+'diff-h4'                 => "eine '''Überschrift (4. Ordnung)'''",
+'diff-h5'                 => "eine '''Überschrift (5. Ordnung)'''",
+'diff-pre'                => "einen '''formattierten Block'''",
+'diff-div'                => "ein '''Blockelement'''",
+'diff-ul'                 => "eine '''Liste'''",
+'diff-ol'                 => "eine '''numerierte Liste'''",
+'diff-li'                 => "einen '''Listeneintrag'''",
+'diff-table'              => "eine '''Tabelle'''",
+'diff-tbody'              => "ein '''Tabelleninhalt'''",
+'diff-tr'                 => "eine '''Zeile'''",
+'diff-td'                 => "eine '''Zelle'''",
+'diff-th'                 => "eine '''Spaltenüberschrift'''",
+'diff-br'                 => "einen '''Zeilenumbruch'''",
+'diff-hr'                 => "eine '''horizontale Linie'''",
+'diff-code'               => "einen '''Block Computercode'''",
+'diff-dl'                 => "eine '''Definitionsliste'''",
+'diff-dt'                 => "eine '''Definitionterm'''",
+'diff-dd'                 => "eine '''Definition'''",
+'diff-input'              => "eine '''Eingabe'''",
+'diff-form'               => "ein '''Formular'''",
+'diff-img'                => "ein '''Bild'''",
+'diff-span'               => "ein '''Span'''",
+'diff-a'                  => "einen '''Link'''",
+'diff-i'                  => "'''kursiv'''",
+'diff-b'                  => "'''fett'''",
+'diff-strong'             => "'''hervorgehoben'''",
+'diff-em'                 => "'''betont'''",
+'diff-font'               => "'''Schriftart'''",
+'diff-big'                => "'''groß'''",
+'diff-del'                => "'''gelöscht'''",
+'diff-tt'                 => "'''feste Weite'''",
+'diff-sub'                => "'''tiefgestellt'''",
+'diff-sup'                => "'''hochgestellt'''",
+'diff-strike'             => "'''durchgestrichen'''",
 
 # Search results
 'searchresults'             => 'Suchergebnisse',
@@ -957,10 +1009,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'searchsubtitle'            => 'Deine Suchanfrage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|alle mit „$1“ beginnenden Seiten]] | [[Special:WhatLinksHere/$1|alle Seiten, die nach „$1“ verlinken]])',
 'searchsubtitleinvalid'     => 'Deine Suchanfrage: „$1“.',
 'noexactmatch'              => "'''Es existiert keine Seite mit dem Titel „$1“.'''
-
-Alternativ kannst du auch den [[Special:Allpages|alphabetischen Index]] nach ähnlichen Begriffen durchsuchen.
-
-Wenn du dich mit dem Thema auskennst, kannst du selbst die Seite „[[$1]]“ verfassen.",
+Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen]].",
 'noexactmatch-nocreate'     => "'''Es existiert keine Seite mit dem Titel „$1“.'''",
 'toomanymatches'            => 'Die Anzahl der Suchergebnisse ist zu groß, bitte versuche eine andere Abfrage.',
 'titlematches'              => 'Übereinstimmungen mit Seitentiteln',
@@ -1718,7 +1767,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 
 Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
 'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderungen von [[User:$2|$2]] ([[Special:Contributions/$2|Beiträge]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
 'sessionfailure'              => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
@@ -1892,8 +1941,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
 'badipaddress'                    => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'               => 'Sperre erfolgreich',
-'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt und die Aktion im [[Special:Log/block|Benutzersperr-Logbuch]] protokolliert.
-
+'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
 Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Sperren]].',
 'ipb-edit-dropdown'               => 'Sperrgründe bearbeiten',
 'ipb-unblock-addr'                => '„$1“ freigeben',
