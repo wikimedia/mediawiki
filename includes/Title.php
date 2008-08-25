@@ -410,12 +410,6 @@ class Title {
 		global $wgInterwikiCache, $wgContLang;
 		$fname = 'Title::getInterwikiLink';
 
-		if ( count( Title::$interwikiCache ) >= self::CACHE_MAX ) {
-			// Don't use infinite memory
-			reset( Title::$interwikiCache );
-			unset( Title::$interwikiCache[ key( Title::$interwikiCache ) ] );
-		}
-
 		$key = $wgContLang->lc( $key );
 
 		$k = wfMemcKey( 'interwiki', $key );

@@ -177,15 +177,6 @@ class Language {
 	}
 
 	/**
-	 * Reduce memory usage
-	 */
-	function __destruct() {
-		foreach ( $this as $name => $value ) {
-			unset( $this->$name );
-		}
-	}
-
-	/**
 	 * Hook which will be called if this is the content language.
 	 * Descendants can use this to register hook functions or modify globals
 	 */

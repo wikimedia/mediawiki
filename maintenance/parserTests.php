@@ -28,21 +28,22 @@ require('parserTests.inc');
 if( isset( $options['help'] ) ) {
     echo <<<ENDS
 MediaWiki $wgVersion parser test suite
-Usage: php parserTests.php [options...]
-
+Usage: php parserTests.php [--quick] [--quiet] [--show-output]
+                           [--color[=(yes|no)]]
+                           [--regex=<expression>] [--file=<testfile>]
+                           [--record] [--compare]
+                           [--help]
 Options:
   --quick          Suppress diff output of failed tests
   --quiet          Suppress notification of passed tests (shows only failed tests)
   --show-output    Show expected and actual output
-  --color[=yes|no] Override terminal detection and force color output on or off
+  --color          Override terminal detection and force color output on or off
                    use wgCommandLineDarkBg = true; if your term is dark 
   --regex          Only run tests whose descriptions which match given regex
-  --file=<testfile> Run test cases from a custom file instead of parserTests.txt
+  --file           Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database
   --compare        Compare with recorded results, without updating the database.
   --keep-uploads   Re-use the same upload directory for each test, don't delete it
-  --fuzz           Do a fuzz test instead of a normal test
-  --seed <n>       Start the fuzz test from the specified seed
   --help           Show this help message
 
 
@@ -66,10 +67,7 @@ if( isset( $options['file'] ) ) {
 # Print out software version to assist with locating regressions
 $version = SpecialVersion::getVersion();
 echo( "This is MediaWiki version {$version}.\n\n" );
+$ok = $tester->runTestsFromFiles( $files );
 
-if ( isset( $options['fuzz'] ) ) {
-	$tester->fuzzTest( $files );
-} else {
-	$ok = $tester->runTestsFromFiles( $files );
-	exit ($ok ? 0 : -1);
-}
+exit ($ok ? 0 : -1);
+
