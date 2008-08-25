@@ -89,6 +89,9 @@ class LogPage {
 		return true;
 	}
 
+	/**
+	 * Get the RC comment from the last addEntry() call
+	 */
 	public function getRcComment() {
 		$rcComment = $this->actionText;
 		if( '' != $this->comment ) {
@@ -98,6 +101,13 @@ class LogPage {
 				$rcComment .= ': ' . $this->comment;
 		}
 		return $rcComment;
+	}
+
+	/**
+	 * Get the comment from the last addEntry() call
+	 */
+	public function getComment() {
+		return $this->comment;
 	}
 
 	/**

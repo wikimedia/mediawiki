@@ -431,7 +431,6 @@ class RecentChange
 		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
 	}
 
-	# A log entry is different to an edit in that previous revisions are not kept
 	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='',
 	   $type, $action, $target, $logComment, $params, $newId=0 )
 	{
