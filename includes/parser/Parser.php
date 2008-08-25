@@ -512,7 +512,7 @@ class Parser
 	 * @public
 	 * @static
 	 */
-	static function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
+	function extractTagsAndParams($elements, $text, &$matches, $uniq_prefix = ''){
 		static $n = 1;
 		$stripped = '';
 		$matches = array();
@@ -652,7 +652,7 @@ class Parser
 	 * @public
 	 * @static
 	 */
-	static function tidy( $text ) {
+	function tidy( $text ) {
 		global $wgTidyInternal;
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
@@ -675,7 +675,7 @@ class Parser
 	 * @private
 	 * @static
 	 */
-	static function externalTidy( $text ) {
+	function externalTidy( $text ) {
 		global $wgTidyConf, $wgTidyBin, $wgTidyOpts;
 		$fname = 'Parser::externalTidy';
 		wfProfileIn( $fname );
@@ -727,7 +727,7 @@ class Parser
 	 * @private
 	 * @static
 	 */
-	static function internalTidy( $text ) {
+	function internalTidy( $text ) {
 		global $wgTidyConf, $IP, $wgDebugTidy;
 		$fname = 'Parser::internalTidy';
 		wfProfileIn( $fname );
@@ -974,12 +974,12 @@ class Parser
 		$text = preg_replace( '/(^|\n)-----*/', '\\1<hr />', $text );
 
 		$text = $this->doDoubleUnderscore( $text );
-		$text = self::doHeadings( $text );
+		$text = $this->doHeadings( $text );
 		if($this->mOptions->getUseDynamicDates()) {
 			$df = DateFormatter::getInstance();
 			$text = $df->reformat( $this->mOptions->getDateFormat(), $text );
 		}
-		$text = self::doAllQuotes( $text );
+		$text = $this->doAllQuotes( $text );
 		$text = $this->replaceInternalLinks( $text );
 		$text = $this->replaceExternalLinks( $text );
 
@@ -1059,7 +1059,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	static function doHeadings( $text ) {
+	function doHeadings( $text ) {
 		$fname = 'Parser::doHeadings';
 		wfProfileIn( $fname );
 		for ( $i = 6; $i >= 1; --$i ) {
@@ -1076,13 +1076,13 @@ class Parser
 	 * @private
 	 * @return string the altered text
 	 */
-	static function doAllQuotes( $text ) {
+	function doAllQuotes( $text ) {
 		$fname = 'Parser::doAllQuotes';
 		wfProfileIn( $fname );
 		$outtext = '';
 		$lines = explode( "\n", $text );
 		foreach ( $lines as $line ) {
-			$outtext .= self::doQuotes( $line ) . "\n";
+			$outtext .= $this->doQuotes ( $line ) . "\n";
 		}
 		$outtext = substr($outtext, 0,-1);
 		wfProfileOut( $fname );
@@ -1092,7 +1092,7 @@ class Parser
 	/**
 	 * Helper function for doAllQuotes()
 	 */
-	public static function doQuotes( $text ) {
+	public function doQuotes( $text ) {
 		$arr = preg_split( "/(''+)/", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( count( $arr ) == 1 )
 			return $text;
@@ -1969,7 +1969,7 @@ class Parser
 	# getCommon() returns the length of the longest common substring
 	# of both arguments, starting at the beginning of both.
 	#
-	/* private */ static function getCommon( $st1, $st2 ) {
+	/* private */ function getCommon( $st1, $st2 ) {
 		$fl = strlen( $st1 );
 		$shorter = strlen( $st2 );
 		if ( $fl < $shorter ) { $shorter = $fl; }
@@ -2085,14 +2085,14 @@ class Parser
 					# So we check for : in the remainder text to split up the
 					# title and definition, without b0rking links.
 					$term = $t2 = '';
-					if ( self::findColonNoLinks($t, $term, $t2) !== false ) {
+					if ($this->findColonNoLinks($t, $term, $t2) !== false) {
 						$t = $t2;
 						$output .= $term . $this->nextItem( ':' );
 					}
 				}
 			} elseif( $prefixLength || $lastPrefixLength ) {
 				# Either open or close a level...
-				$commonPrefixLength = self::getCommon( $pref, $lastPrefix );
+				$commonPrefixLength = $this->getCommon( $pref, $lastPrefix );
 				$paragraphStack = false;
 
 				while( $commonPrefixLength < $lastPrefixLength ) {
@@ -2108,7 +2108,7 @@ class Parser
 
 					if ( ';' == $char ) {
 						# FIXME: This is dupe of code above
-						if ( self::findColonNoLinks($t, $term, $t2) !== false ) {
+						if ($this->findColonNoLinks($t, $term, $t2) !== false) {
 							$t = $t2;
 							$output .= $term . $this->nextItem( ':' );
 						}
@@ -2205,7 +2205,7 @@ class Parser
 	 * @param string &$after set to everything after the ':'
 	 * return string the position of the ':', or false if none found
 	 */
-	static function findColonNoLinks($str, &$before, &$after) {
+	function findColonNoLinks($str, &$before, &$after) {
 		$fname = 'Parser::findColonNoLinks';
 		wfProfileIn( $fname );
 
@@ -3155,10 +3155,10 @@ class Parser
 
 		if (strlen($url) > 255)
 			return wfMsg('scarytranscludetoolong');
-		return self::fetchScaryTemplateMaybeFromCache($url);
+		return $this->fetchScaryTemplateMaybeFromCache($url);
 	}
 
-	static function fetchScaryTemplateMaybeFromCache($url) {
+	function fetchScaryTemplateMaybeFromCache($url) {
 		global $wgTranscludeCacheExpiry;
 		$dbr = wfGetDB(DB_SLAVE);
 		$obj = $dbr->selectRow('transcache', array('tc_time', 'tc_contents'),
@@ -3789,7 +3789,7 @@ class Parser
 			wfDebug( __METHOD__ . ": $username has overlong signature.\n" );
 		} elseif( $user->getBoolOption( 'fancysig' ) !== false ) {
 			# Sig. might contain markup; validate this
-			if( self::validateSig( $nickname ) !== false ) {
+			if( $this->validateSig( $nickname ) !== false ) {
 				# Validated; clean up (if needed) and return it
 				return $this->cleanSig( $nickname, true );
 			} else {
@@ -3800,7 +3800,7 @@ class Parser
 		}
 
 		// Make sure nickname doesnt get a sig in a sig
-		$nickname = self::cleanSigInSig( $nickname );
+		$nickname = $this->cleanSigInSig( $nickname );
 
 		# If we're still here, make it a link to the user page
 		$userText = wfEscapeWikiText( $username );
@@ -3818,7 +3818,7 @@ class Parser
 	 * @param string $text
 	 * @return mixed An expanded string, or false if invalid.
 	 */
-	static function validateSig( $text ) {
+	function validateSig( $text ) {
 		return( wfIsWellFormedXmlFragment( $text ) ? $text : false );
 	}
 
@@ -3853,7 +3853,7 @@ class Parser
 		$substText = '{{' . $substWord->getSynonym( 0 );
 
 		$text = preg_replace( $substRegex, $substText, $text );
-		$text = self::cleanSigInSig( $text );
+		$text = $this->cleanSigInSig( $text );
 		$dom = $this->preprocessToDom( $text );
 		$frame = $this->getPreprocessor()->newFrame();
 		$text = $frame->expand( $dom );
@@ -3870,7 +3870,7 @@ class Parser
 	 * @param string $text
 	 * @return string Signature text with /~{3,5}/ removed
 	 */
-	static function cleanSigInSig( $text ) {
+	function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
 		return $text;
 	}
