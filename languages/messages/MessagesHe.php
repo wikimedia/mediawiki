@@ -2351,7 +2351,7 @@ $1',
 'notacceptable'     => 'האתר לא יכול לספק מידע בפורמט שתוכנת הלקוח יכולה לקרוא.',
 
 # Attribution
-'anonymous'        => 'משתמש(ים) אנונימי(ים) של {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|משתמש אנונימי|משתמשים אנונימיים}} של {{SITENAME}}',
 'siteuser'         => 'משתמש {{SITENAME}} $1',
 'lastmodifiedatby' => 'דף זה שונה לאחרונה בתאריך $2, $1 על ידי $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'מבוסס על העבודה של $1.',
