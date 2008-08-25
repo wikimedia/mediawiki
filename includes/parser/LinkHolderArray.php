@@ -307,7 +307,7 @@ class LinkHolderArray {
 							$newCats[$varCategories[$cat]] = $sortkey;
 						else $newCats[$cat] = $sortkey;
 					}
-					$this->mOutput->parent->setCategoryLinks($newCats);
+					$this->parent->mOutput->setCategoryLinks($newCats);
 				}
 			}
 		}
