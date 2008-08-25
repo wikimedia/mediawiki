@@ -101,11 +101,11 @@ class HTMLCacheUpdate
 		return $this->mPrefix;
 	}
 
-	protected function getFromField() {
+	public function getFromField() {
 		return $this->getPrefix() . '_from';
 	}
 
-	protected function getToCondition() {
+	public function getToCondition() {
 		$prefix = $this->getPrefix();
 		switch ( $this->mTable ) {
 			case 'pagelinks':
