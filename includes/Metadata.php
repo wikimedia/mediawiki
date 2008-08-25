@@ -118,7 +118,7 @@ abstract class RdfMetaData {
 		global $wgContLang;
 
 		if( $user->isAnon() ){
-			$this->element( $name, wfMsg( 'anonymous' ), 1 );
+			$this->element( $name, wfMsgExt( 'anonymous', array( 'parsemag' ), 1 ) );
 		} else if( $real = $user->getRealName() ) {
 			$this->element( $name, $real );
 		} else {
