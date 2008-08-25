@@ -479,7 +479,7 @@ class LanguageConverter {
 	 * @return null the input parameters may be modified upon return
 	 * @public
 	 */
-	function findVariantLink( &$link, &$nt ) {
+	function findVariantLink( &$link, &$nt, $forTemplate = false ) {
 		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
@@ -489,8 +489,8 @@ class LanguageConverter {
 
 		$ns=NS_MAIN;
 
-		if ( $disableLinkConversion || $isredir == 'no' || $action == 'edit' || $action == 'submit'
-			|| $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) {
+		if ( $disableLinkConversion || ( !$forTemplate && ( $isredir == 'no' || $action == 'edit'
+			|| $action == 'submit' || $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) ) ) {
 			return;
 		}
 

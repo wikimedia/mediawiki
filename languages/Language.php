@@ -39,7 +39,7 @@ class FakeConverter {
 	function parserConvert($t, $p) {return $t;}
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() {return $this->mLang->getCode(); }
-	function findVariantLink(&$l, &$n) {}
+	function findVariantLink(&$l, &$n, $forTemplate = false) {}
 	function getExtraHashOptions() {return '';}
 	function getParsedTitle() {return '';}
 	function markNoConversion($text, $noParse=false) {return $text;}
@@ -2107,8 +2107,8 @@ class Language {
 	 * @param $nt Mixed: the title object of the link
 	 * @return null the input parameters may be modified upon return
 	 */
-	function findVariantLink( &$link, &$nt ) {
-		$this->mConverter->findVariantLink($link, $nt);
+	function findVariantLink( &$link, &$nt, $forTemplate = false ) {
+		$this->mConverter->findVariantLink($link, $nt, $forTemplate );
 	}
 
 	/**
