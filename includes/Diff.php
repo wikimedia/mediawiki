@@ -28,7 +28,7 @@
  * Complexity: O((M + N)D) worst case time, O(M + N + D^2) expected time, O(M + N) space
  *
  * @author Guy Van den Broeck
- *
+ * @ingroup DifferenceEngine
  */
 class WikiDiff3 {
 
@@ -556,6 +556,8 @@ class WikiDiff3 {
 /**
  * Alternative representation of a set of changes, by the index
  * ranges that are changed.
+ * 
+ * @ingroup DifferenceEngine
  */
 class RangeDifference {
 
