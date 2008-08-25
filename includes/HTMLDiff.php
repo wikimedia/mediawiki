@@ -398,10 +398,7 @@ class ImageNode extends TextNode {
 
 	function __construct(TagNode $parent, /*array*/ $attrs) {
 		if(!array_key_exists('src', $attrs)) {
-			//wfDebug('Image without a source:');
-			//foreach ($attrs as $key => &$value) {
-				//wfDebug("$key = $value");
-			//}
+			HTMLDiffer::diffDebug( "Image without a source\n" );
 			parent::__construct($parent, '<img></img>');
 		}else{
 			parent::__construct($parent, '<img>' . strtolower($attrs['src']) . '</img>');
@@ -504,12 +501,12 @@ class DomTreeBuilder {
 	 */
 	public function endDocument() {
 		$this->endWord();
-		//wfDebug(count($this->textNodes) . ' text nodes in document.');
+		HTMLDiffer::diffDebug( count($this->textNodes) . " text nodes in document.\n" );
 	}
 
 	public function startElement($parser, $name, /*array*/ $attributes) {
 		if (strcasecmp($name, 'body') != 0) {
-			//wfDebug("Starting $name node.");
+			HTMLDiffer::diffDebug( "Starting $name node.\n" );
 			$this->endWord();
 
 			$newNode = new TagNode($this->currentParent, $name, $attributes);
@@ -528,7 +525,7 @@ class DomTreeBuilder {
 
 	public function endElement($parser, $name) {
 		if(strcasecmp($name, 'body') != 0) {
-			//wfDebug("Ending $name node.");
+			HTMLDiffer::diffDebug( "Ending $name node.\n");
 			if (0 == strcasecmp($name,'img')) {
 				// Insert a dummy leaf for the image
 				$img = new ImageNode($this->currentParent, $this->currentParent->attributes);
@@ -710,7 +707,7 @@ class TextNodeDiffer {
 		$junk1 = $junk2 = null;
 		$deletedNodes = $root->getMinimalDeletedSet($this->deletedID, $junk1, $junk2);
 
-		//wfDebug("Minimal set of deleted nodes of size " . count($deletedNodes));
+		HTMLDiffer::diffDebug( "Minimal set of deleted nodes of size " . count($deletedNodes) . "\n" );
 
 		// Set prevLeaf to the leaf after which the old HTML needs to be
 		// inserted
@@ -806,6 +803,7 @@ class TextNodeDiffer {
 class HTMLDiffer {
 
 	private $output;
+	private static $debug = '';
 
 	function __construct($output) {
 		$this->output = $output;
@@ -824,13 +822,13 @@ class HTMLDiffer {
 		// Set the function to handle blocks of character data
 		xml_set_character_data_handler($xml_parser, array($domfrom, "characters"));
 
-		//wfDebug('Parsing '.strlen($from)." characters worth of HTML\n");
+		HTMLDiffer::diffDebug( "Parsing " . strlen($from) . " characters worth of HTML\n" );
 		if (!xml_parse($xml_parser, '<?xml version="1.0" encoding="UTF-8"?>'.Sanitizer::hackDocType().'<body>', false)
 					|| !xml_parse($xml_parser, $from, false)
 					|| !xml_parse($xml_parser, '</body>', true)){
 			$error = xml_error_string(xml_get_error_code($xml_parser));
 			$line = xml_get_current_line_number($xml_parser);
-			wfDebug("XML error: $error at line $line\n");
+			HTMLDiffer::diffDebug( "XML error: $error at line $line\n" );
 		}
 		xml_parser_free($xml_parser);
 		unset($from);
@@ -845,13 +843,13 @@ class HTMLDiffer {
 		// Set the function to handle blocks of character data
 		xml_set_character_data_handler($xml_parser, array($domto, "characters"));
 
-		//wfDebug('Parsing '.strlen($to)." characters worth of HTML\n");
+		HTMLDiffer::diffDebug( "Parsing " . strlen($to) . " characters worth of HTML\n" );
 		if (!xml_parse($xml_parser, '<?xml version="1.0" encoding="UTF-8"?>'.Sanitizer::hackDocType().'<body>', false)
 		|| !xml_parse($xml_parser, $to, false)
 		|| !xml_parse($xml_parser, '</body>', true)){
 			$error = xml_error_string(xml_get_error_code($xml_parser));
 			$line = xml_get_current_line_number($xml_parser);
-			wfDebug("XML error: $error at line $line\n");
+			HTMLDiffer::diffDebug( "XML error: $error at line $line\n" );
 		}
 		xml_parser_free($xml_parser);
 		unset($to);
@@ -936,6 +934,22 @@ class HTMLDiffer {
 
 		}
 		return $d / (1.5 * count($numbers));
+	}
+
+	/**
+	 * Add to debug output
+	 * @param string $str Debug output
+	 */
+	public static function diffDebug( $str ) {
+		self :: $debug .= $str;
+	}
+	
+	/**
+	 * Get debug output
+	 * @return string
+	 */
+	public static function getDebugOutput() {
+		return self :: $debug;
 	}
 
 }

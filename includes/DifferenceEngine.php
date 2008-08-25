@@ -337,7 +337,7 @@ CONTROL;
 
 
 	function renderHtmlDiff() {
-		global $wgOut, $wgTitle, $wgParser;
+		global $wgOut, $wgTitle, $wgParser, $wgDebugComments;
 		wfProfileIn( __METHOD__ );
 
 		$this->showDiffStyle();
@@ -392,6 +392,9 @@ CONTROL;
 
 		$differ = new HTMLDiffer(new DelegatingContentHandler($wgOut));
 		$differ->htmlDiff($oldHtml, $newHtml);
+		if ( $wgDebugComments ) {
+			$wgOut->addHtml( "\n<!-- HtmlDiff Debug Output:\n" . HTMLDiffer::getDebugOutput() . " End Debug -->" );
+		}
 
 		wfProfileOut( __METHOD__ );
 	}
