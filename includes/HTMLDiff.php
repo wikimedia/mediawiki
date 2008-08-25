@@ -1157,8 +1157,8 @@ class TagToString {
 
 	public function getRemovedDescription(ChangeText $txt) {
 		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
-		if(!$tagDescription){
-			$tagDescription = $this->node->qName;
+		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
+			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
 			$txt->addHtml( wfMsgExt( 'diff-movedoutof', 'parseinline', $tagDescription ) );
@@ -1173,8 +1173,8 @@ class TagToString {
 
 	public function getAddedDescription(ChangeText $txt) {
 		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
-		if(!$tagDescription){
-			$tagDescription = $this->node->qName;
+		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
+			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
 		if ($this->sem == TagToStringFactory::MOVED) {
 			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline', $tagDescription) );
@@ -1218,7 +1218,7 @@ class TagToString {
 	protected function translateArgument($name) {
 		$translation = wfMsgExt('diff-' . $name, 'parseinline' );
 		if ( wfEmptyMsg( 'diff-' . $name, $translation ) ) {
-			$translation = $name;
+			$translation = "&lt;" . $name . "&gt;";;
 		}
 		return htmlspecialchars( $translation );
 	}
@@ -1232,8 +1232,8 @@ class NoContentTagToString extends TagToString {
 
 	public function getAddedDescription(ChangeText $txt) {
 		$tagDescription = wfMsgExt('diff-' . $this->node->qName, 'parseinline' );
-		if(!$tagDescription){
-			$tagDescription = $this->node->qName;
+		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
+			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
 		$txt->addHtml( wfMsgExt('diff-changedto', 'parseinline' ) . ' ' . $tagDescription);
 		$this->addAttributes($txt, $this->node->attributes);
