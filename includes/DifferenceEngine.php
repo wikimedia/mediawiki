@@ -363,6 +363,7 @@ CONTROL;
 
 		$popts = $wgOut->parserOptions();
 		$oldTidy = $popts->setTidy( true );
+		$popts->setEditSection( false );
 
 		$parserOutput = $wgParser->parse( $this->mOldtext, $wgTitle, $popts, true, true, $wgOut->getRevisionId() );
 		$popts->setTidy( $oldTidy );
