@@ -2813,7 +2813,7 @@ You can view its source.',
 'notacceptable'     => 'The wiki server cannot provide data in a format your client can read.',
 
 # Attribution
-'anonymous'        => 'Anonymous user(s) of {{SITENAME}}',
+'anonymous'        => 'Anonymous {{PLURAL:$1|user|users}} of {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} user $1',
 'lastmodifiedatby' => 'This page was last modified $2, $1 by $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Based on work by $1.',
