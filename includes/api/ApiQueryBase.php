@@ -324,6 +324,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with underscores
 	 */
 	public function titleToKey($title) {
+		global $wgContLang, $wgCapitalLinks;
+		if($wgCaptialLinks)
+			$title = $wgContLang->ucfirst($title);
 		return str_replace(' ', '_', $title);
 	}
 
