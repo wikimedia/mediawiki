@@ -3076,7 +3076,7 @@ class Parser_OldPP
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
 				if($wgContLang->hasVariants() && $title->getArticleID() == 0){
-					$wgContLang->findVariantLink( $part1, $title, false );
+					$wgContLang->findVariantLink( $part1, $title, true );
 				}
 
 				if ( !$title->isExternal() ) {
