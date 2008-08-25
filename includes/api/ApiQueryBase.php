@@ -324,14 +324,10 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with underscores
 	 */
 	public function titleToKey($title) {
+		# Don't throw an error if we got an empty string
+		if(trim($title) == '') return '';
 		$t = Title::newFromText($title);
-		if(!$t)
-		{
-			# Don't throw an error if we got an empty string
-			if($title == '')
-				return '';
-			$this->dieUsageMsg(array('invalidtitle', $title));
-		}
+		if(!$t) $this->dieUsageMsg(array('invalidtitle', $title));
 		return $t->getDbKey();
 	}
 
@@ -341,15 +337,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Page title with spaces
 	 */
 	public function keyToTitle($key) {
+		# Don't throw an error if we got an empty string
+		if(trim($key) == '') return '';
 		$t = Title::newFromDbKey($key);
 		# This really shouldn't happen but we gotta check anyway
-		if(!$t)
-		{
-			# Don't throw an error if we got an empty string
-			if($key == '')
-				return '';
-			$this->dieUsageMsg(array('invalidtitle', $key));
-		}
+		if(!$t) $this->dieUsageMsg(array('invalidtitle', $key));
 		return $t->getPrefixedText();
 	}
 
