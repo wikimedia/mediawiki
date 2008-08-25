@@ -785,8 +785,6 @@ class TextNodeDiffer {
 				$deletedNodes = array_values($deletedNodes);
 				$nextLeaf->setParent($nextResult->parent);
 				$nextResult->parent->addChildAbsolute($nextLeaf,$nextResult->indexInLastCommonParent);
-			} else {
-				throw new Exception("Uh?");
 			}
 		}
 		++$this->deletedID;
