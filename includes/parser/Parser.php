@@ -2894,7 +2894,7 @@ class Parser
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
 				if($wgContLang->hasVariants() && $title->getArticleID() == 0){
-					$wgContLang->findVariantLink($part1, $title);
+					$wgContLang->findVariantLink( $part1, $title, true );
 				}
 				# Do infinite loop check
 				if ( !$frame->loopCheck( $title ) ) {

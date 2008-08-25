@@ -46,7 +46,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and
   'Special:ListUsers/GROUP/USER', in addition to the older syntax
   'Special:ListUsers/GROUP' where GROUP is a valid group name.
-* Configurable er-namespace and per-page notices for the edit form,
+* Configurable per-namespace and per-page notices for the edit form,
   respectively MediaWiki:Editnotice-# where # is the namespace number, and
   MediaWiki:Editnotice-#-PAGENAME where # is the page's namespace number and
   PAGENAME is the page name minus the namespace prefix.
@@ -142,9 +142,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   addition to body text.
 * Navigation links to images available from a shared repository (like Commons)
   from their local talk pages no longer appear as redlinks
-* Action=purge on ForeignApiFiles now works (purges their thumbnails and description 
-  pages).
-
+* Action=purge on ForeignApiFiles now works (purges their thumbnails and 
+  description pages).
+* (bug 15303) Title conversion for templates wasn't working in some cases.
 
 === API changes in 1.14 ===
 
