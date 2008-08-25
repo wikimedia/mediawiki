@@ -27,18 +27,19 @@ function wfParserTestStaticParserHookHook( $in, $argv ) {
 	if ( ! count( $argv ) ) {
 		$buf = $in;
 		return '';
-	} else if ( count( $argv ) === 1 && $argv['action'] === 'flush' && $in === null ) {
+	} else if ( count( $argv ) === 1 && isset( $argv['action'] ) 
+		&& $argv['action'] === 'flush' && $in === null ) 
+	{
 		// Clear the buffer, we probably don't need to
 		$tmp = $buf;
 		$buf = null;
 		return $tmp;
 	} else
 		// wtf?
-		die(
+		return
 			"\nCall this extension as <statictag>string</statictag> or as" .
 			" <statictag action=flush/>, not in any other way.\n" .
 			"text: " . var_export( $in, true ) . "\n" .
-			"argv: " . var_export( $argv, true ) . "\n"
-		);
+			"argv: " . var_export( $argv, true ) . "\n";
 }
 

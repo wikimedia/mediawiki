@@ -26,7 +26,7 @@
 
 /** */
 $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record' );
-$optionsWithArgs = array( 'regex' );
+$optionsWithArgs = array( 'regex', 'seed' );
 
 require_once( 'commandLine.inc' );
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
@@ -61,6 +61,11 @@ class ParserTest {
 	 * string $oldTablePrefix Original table prefix
 	 */
 	private $oldTablePrefix;
+
+	private $maxFuzzHairLength = 20;
+	private $maxFuzzTestLength = 1000;
+	private $fuzzSeed = 0;
+	private $memoryLimit = 50;
 
 	/**
 	 * Sets terminal colorization and diff/quick modes depending on OS and
@@ -117,6 +122,10 @@ class ParserTest {
 		}
 		$this->keepUploads = isset( $options['keep-uploads'] );
 
+		if ( isset( $options['seed'] ) ) {
+			$this->fuzzSeed = intval( $options['seed'] ) - 1;
+		}
+
 		$this->hooks = array();
 		$this->functionHooks = array();
 	}
@@ -131,6 +140,116 @@ class ParserTest {
 		else {
 			return $s;
 		}
+	}
+
+	/**
+	 * Run a fuzz test series
+	 * Draw input from a set of test files
+	 */
+	function fuzzTest( $filenames ) {
+		$dict = $this->getFuzzInput( $filenames );
+		$this->setupDatabase();
+		ini_set( 'memory_limit', $this->memoryLimit * 1048576 );
+
+		$numTotal = 0;
+		$numSuccess = 0;
+		$user = new User;
+		$opts = ParserOptions::newFromUser( $user );
+		$title = Title::makeTitle( NS_MAIN, 'Parser_test' );
+
+		while ( true ) {
+			// Generate test input
+			mt_srand( ++$this->fuzzSeed );
+			$totalLength = mt_rand( 1, $this->maxFuzzTestLength );
+			$input = '';
+			while ( strlen( $input ) < $totalLength ) {
+				$hairLength = mt_rand( 1, $this->maxFuzzHairLength );
+				$offset = mt_rand( 0, strlen( $dict ) - $hairLength );
+				$input .= substr( $dict, $offset, $hairLength );
+			}
+
+			$this->setupGlobals();
+			$parser = $this->getParser();
+			// Run the test
+			try {
+				$parser->parse( $input, $title, $opts );
+				$fail = false;
+			} catch ( Exception $exception ) {
+				$fail = true;
+			}
+
+			if ( $fail ) {
+				echo "Test failed with seed {$this->fuzzSeed}\n";
+				echo "Input:\n";
+				var_dump( $input );
+				echo "\n\n";
+				echo "$exception\n";
+			} else {
+				$numSuccess++;
+			}
+			$numTotal++;
+			$this->teardownGlobals();
+			$parser->__destruct();
+
+			if ( $numTotal % 100 == 0 ) {
+				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
+				echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
+				if ( $usage > 90 ) {
+					echo "Out of memory:\n";
+					$memStats = $this->getMemoryBreakdown();
+					foreach ( $memStats as $name => $usage ) {
+						echo "$name: $usage\n";
+					}
+					$this->abort();
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get an input dictionary from a set of parser test files
+	 */
+	function getFuzzInput( $filenames ) {
+		$dict = '';
+		foreach( $filenames as $filename ) {
+			$contents = file_get_contents( $filename );
+			preg_match_all( '/!!\s*input\n(.*?)\n!!\s*result/s', $contents, $matches );
+			foreach ( $matches[1] as $match ) {
+				$dict .= $match . "\n";
+			}
+		}
+		return $dict;
+	}
+
+	/**
+	 * Get a memory usage breakdown
+	 */
+	function getMemoryBreakdown() {
+		$memStats = array();
+		foreach ( $GLOBALS as $name => $value ) {
+			$memStats['$'.$name] = strlen( serialize( $value ) );
+		}
+		$classes = get_declared_classes();
+		foreach ( $classes as $class ) {
+			$rc = new ReflectionClass( $class );
+			$props = $rc->getStaticProperties();
+			$memStats[$class] = strlen( serialize( $props ) );
+			$methods = $rc->getMethods();
+			foreach ( $methods as $method ) {
+				$memStats[$class] += strlen( serialize( $method->getStaticVariables() ) );
+			}
+		}
+		$functions = get_defined_functions();
+		foreach ( $functions['user'] as $function ) {
+			$rf = new ReflectionFunction( $function );
+			$memStats["$function()"] = strlen( serialize( $rf->getStaticVariables() ) );
+		}
+		asort( $memStats );
+		return $memStats;
+	}
+
+	function abort() {
+		$this->abort();
 	}
 
 	/**
@@ -267,6 +386,24 @@ class ParserTest {
 	}
 
 	/**
+	 * Get a Parser object
+	 */
+	function getParser() {
+		global $wgParserConf;
+		$class = $wgParserConf['class'];
+		$parser = new $class( $wgParserConf );
+		foreach( $this->hooks as $tag => $callback ) {
+			$parser->setHook( $tag, $callback );
+		}
+		foreach( $this->functionHooks as $tag => $bits ) {
+			list( $callback, $flags ) = $bits;
+			$parser->setFunctionHook( $tag, $callback, $flags );
+		}
+		wfRunHooks( 'ParserTestParser', array( &$parser ) );
+		return $parser;
+	}
+
+	/**
 	 * Run a given wikitext input through a freshly-constructed wiki parser,
 	 * and compare the output against the expected results.
 	 * Prints status and explanatory messages to stdout.
@@ -276,7 +413,6 @@ class ParserTest {
 	 * @return bool
 	 */
 	private function runTest( $desc, $input, $result, $opts ) {
-		global $wgParserConf;
 		if( $this->showProgress ) {
 			$this->showTesting( $desc );
 		}
@@ -300,18 +436,7 @@ class ParserTest {
 		}
 
 		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
-
-		$class = $wgParserConf['class'];
-		$parser = new $class( $wgParserConf );
-		foreach( $this->hooks as $tag => $callback ) {
-			$parser->setHook( $tag, $callback );
-		}
-		foreach( $this->functionHooks as $tag => $bits ) {
-			list( $callback, $flags ) = $bits;
-			$parser->setFunctionHook( $tag, $callback, $flags );
-		}
-		wfRunHooks( 'ParserTestParser', array( &$parser ) );
-
+		$parser = $this->getParser();
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		$matches = array();
@@ -441,6 +566,7 @@ class ParserTest {
 		$langObj = Language::factory( $lang );
 		$GLOBALS['wgLang'] = $langObj;
 		$GLOBALS['wgContLang'] = $langObj;
+		$GLOBALS['wgMemc'] = new FakeMemCachedClient;
 
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 
@@ -551,10 +677,10 @@ class ParserTest {
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
 		$db->insert( 'interwiki', array(
-			array( 'iw_prefix' => 'Wikipedia',
+			array( 'iw_prefix' => 'wikipedia',
 				   'iw_url'    => 'http://en.wikipedia.org/wiki/$1',
 				   'iw_local'  => 0 ),
-			array( 'iw_prefix' => 'MeatBall',
+			array( 'iw_prefix' => 'meatball',
 				   'iw_url'    => 'http://www.usemod.com/cgi-bin/mb.pl?$1',
 				   'iw_local'  => 0 ),
 			array( 'iw_prefix' => 'zh',
@@ -621,11 +747,12 @@ class ParserTest {
 			return;
 		}
 
+		/*
 		$tables = $this->listTables();
 		$db = wfGetDB( DB_MASTER );
 		foreach ( $tables as $table ) {
 			$db->query( "DROP TABLE `parsertest_$table`" );
-		}
+		}*/
 	}
 	
 	/**
@@ -645,6 +772,10 @@ class ParserTest {
 		}
 
 		wfDebug( "Creating upload directory $dir\n" );
+		if ( file_exists( $dir ) ) {
+			wfDebug( "Already exists!\n" );
+			return $dir;
+		}
 		mkdir( $dir );
 		mkdir( $dir . '/3' );
 		mkdir( $dir . '/3/3a' );
@@ -658,6 +789,8 @@ class ParserTest {
 	 */
 	private function teardownGlobals() {
 		RepoGroup::destroySingleton();
+		LinkCache::singleton()->clear();
+		$GLOBALS['wgLang']->__destruct();
 		foreach( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}

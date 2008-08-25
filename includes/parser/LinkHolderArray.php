@@ -12,6 +12,15 @@ class LinkHolderArray {
 	}
 
 	/**
+	 * Reduce memory usage to reduce the impact of circular references
+	 */
+	function __destruct() {
+		foreach ( $this as $name => $value ) {
+			unset( $this->$name );
+		}
+	}
+
+	/**
 	 * Merge another LinkHolderArray into this one
 	 */
 	function merge( $other ) {

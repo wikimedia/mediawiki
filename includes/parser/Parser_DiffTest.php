@@ -69,9 +69,17 @@ class Parser_DiffTest
 			$lastResult = $currentResult;
 		}
 		if ( $mismatch ) {
+			if ( count( $results ) == 2 ) {
+				$results2 = array_values( $results );
+				$diff = wfDiff( var_export( $results2[0], true ), var_export( $results2[1], true ) );
+			} else {
+				$diff = '[too many parsers]';
+			}
 			throw new MWException( "Parser_DiffTest: results mismatch on call to $name\n" .
 				'Arguments: ' . $this->formatArray( $args ) . "\n" .
-				'Results: ' . $this->formatArray( $results ) . "\n" );
+				'Results: ' . $this->formatArray( $results ) . "\n" .
+				"Diff: $diff\n"
+				);
 		}
 		return $lastResult;
 	}
