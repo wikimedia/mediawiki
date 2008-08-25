@@ -159,6 +159,7 @@ class User {
 		'reupload',
 		'reupload-shared',
 		'rollback',
+		'siteadmin',
 		'suppressredirect',
 		'trackback',
 		'undelete',
