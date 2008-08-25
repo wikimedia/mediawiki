@@ -170,6 +170,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   etc. (AKA lists) instead of arrays with pageIDs as keys (AKA hash tables)
   for consistency with other list modules.
 * Added action=watch
+* (bug 15275) apprefix and related parameters ignore spaces at the end
 
 === Languages updated in 1.14 ===
 
