@@ -324,12 +324,6 @@ class SiteConfiguration {
 			$ret['params']['site'] = $ret['suffix'];
 	
 		$ret['params'] += $params;
-		/*echo "$wiki<br/>\n";
-		var_dump( $ret );
-		echo "<br/>\n";
-		foreach( debug_backtrace() as $row )
-		echo "File: {$row['file']} Line: {$row['line']}<br/>\n";
-		echo "<br/>\n";*/
 		return $ret;
 	}
 
