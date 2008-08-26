@@ -17,11 +17,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  * or see http://www.gnu.org/
  * 
- * @ingroup DifferenceEngine
  */
  
 /**
  * Any element in the DOM tree of an HTML document.
+ * @ingroup DifferenceEngine
  */
 class Node {
 
@@ -100,6 +100,7 @@ class Node {
 
 /**
  * Node that can contain other nodes. Represents an HTML tag.
+ * @ingroup DifferenceEngine
  */
 class TagNode extends Node {
 
@@ -299,6 +300,7 @@ class TagNode extends Node {
 
 /**
  * Represents a piece of text in the HTML file.
+ * @ingroup DifferenceEngine
  */
 class TextNode extends Node {
 
@@ -348,6 +350,10 @@ class TextNode extends Node {
 	}
 }
 
+/**
+ * @todo Document
+ * @ingroup DifferenceEngine
+ */
 class WhiteSpaceNode extends TextNode {
 
 	function __construct($parent, $s, Node $like = null) {
@@ -362,6 +368,7 @@ class WhiteSpaceNode extends TextNode {
 
 /**
  * Represents the root of a HTML document.
+ * @ingroup DifferenceEngine
  */
 class BodyNode extends TagNode {
 
@@ -394,6 +401,7 @@ class BodyNode extends TagNode {
 /**
  * Represents an image in HTML. Even though images do not contain any text they
  * are independent visible objects on the page. They are logically a TextNode.
+ * @ingroup DifferenceEngine
  */
 class ImageNode extends TextNode {
 
@@ -420,6 +428,7 @@ class ImageNode extends TextNode {
 
 /**
  * No-op node
+ * @ingroup DifferenceEngine
  */
 class DummyNode extends Node {
 
