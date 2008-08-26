@@ -362,10 +362,17 @@ class PageHistory {
 			if( $this->mTitle->quickUserCan( 'edit' ) &&
 			!$rev->isDeleted( Revision::DELETED_TEXT ) &&
 			!$next->rev_deleted & Revision::DELETED_TEXT ) {
-				$undolink = $this->mSkin->makeKnownLinkObj(
-				$this->mTitle,
-				wfMsgHtml( 'editundo' ),
-					'action=edit&undoafter=' . $next->rev_id . '&undo=' . $rev->getId()
+
+				# Create undo tooltip for the first (=latest) line only
+				$undoTooltip = $latest
+					? array( 'title' => wfMsg( 'tooltip-undo' ) )
+					: array();
+				$undolink = $this->mSkin->link(
+					$this->mTitle,
+					wfMsgHtml( 'editundo' ),
+					$undoTooltip,
+					array( 'action' => 'edit', 'undoafter' => $next->rev_id, 'undo' => $rev->getId() ),
+					array( 'known', 'noclasses' )
 				);
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
