@@ -68,7 +68,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			'protect' => array( 'ApiQueryInfo', 'getProtectToken' ),
 			'move' => array( 'ApiQueryInfo', 'getMoveToken' ),
 			'block' => array( 'ApiQueryInfo', 'getBlockToken' ),
-			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' )
+			'unblock' => array( 'ApiQueryInfo', 'getUnblockToken' ),
+			'email' => array( 'ApiQueryInfo', 'getEmailToken' ),
 		);
 		wfRunHooks('APIQueryInfoTokens', array(&$this->tokenFunctions));
 		return $this->tokenFunctions;
@@ -151,6 +152,20 @@ class ApiQueryInfo extends ApiQueryBase {
 	{
 		// Currently, this is exactly the same as the block token
 		return self::getBlockToken($pageid, $title);
+	}
+
+	public static function getEmailToken($pageid, $title)
+	{
+		global $wgUser;
+		if(!$wgUser->canSendEmail() || $wgUser->isBlockedFromEmailUser())
+			return false;
+
+		static $cachedEmailToken = null;
+		if(!is_null($cachedEmailToken))
+			return $cachedEmailToken;
+
+		$cachedEmailToken = $wgUser->editToken();
+		return $cachedEmailToken;
 	}
 
 	public function execute() {
