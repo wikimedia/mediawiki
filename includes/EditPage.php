@@ -44,6 +44,7 @@ class EditPage {
 
 	var $mArticle;
 	var $mTitle;
+	var $action;
 	var $mMetaData = '';
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
@@ -61,7 +62,8 @@ class EditPage {
 	var $allowBlankSummary = false;
 	var $autoSumm = '';
 	var $hookError = '';
-	var $mPreviewTemplates;
+	#var $mPreviewTemplates;
+	var $mParserOutput;
 	var $mBaseRevision = false;
 
 	# Form values
@@ -92,6 +94,7 @@ class EditPage {
 	function EditPage( $article ) {
 		$this->mArticle =& $article;
 		$this->mTitle = $article->getTitle();
+		$this->action = 'submit';
 
 		# Placeholders for text injection by hooks (empty per default)
 		$this->editFormPageTop =
@@ -1059,6 +1062,30 @@ class EditPage {
 		return true;
 	}
 
+	function setHeaders() {
+		global $wgOut, $wgTitle;
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		if ( $this->formtype == 'preview' ) {
+			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
+		}
+		if ( $this->isConflict ) {
+			$wgOut->setPageTitle( wfMsg( 'editconflict', $wgTitle->getPrefixedText() ) );
+		}
+		if( $this->section != '' ) {
+			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
+			$wgOut->setPageTitle( wfMsg( $msg, $wgTitle->getPrefixedText() ) );
+		} else {
+			# Use the title defined by DISPLAYTITLE magic word when present
+			if( isset($this->mParserOutput)
+			 && ( $dt = $this->mParserOutput->getDisplayTitle() ) !== false ) {
+				$title = $dt;
+			} else {
+				$title = $wgTitle->getPrefixedText();
+			}
+			$wgOut->setPageTitle( wfMsg( 'editing', $title ) );
+		}
+	}
+
 	/**
 	 * Send the edit form and related headers to $wgOut
 	 * @param $formCallback Optional callable that takes an OutputPage
@@ -1082,46 +1109,41 @@ class EditPage {
 
 		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		#need to parse the preview early so that we know which templates are used,
+		#otherwise users with "show preview after edit box" will get a blank list
+		#we parse this near the beginning so that setHeaders can do the title
+		#setting work instead of leaving it in getPreviewText
+		$previewOutput = '';
+		if ( $this->formtype == 'preview' ) {
+			$previewOutput = $this->getPreviewText();
+		}
+
+		$this->setHeaders();
 
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		if ( $this->formtype == 'preview' ) {
-			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
-		}
-
 		if ( $this->isConflict ) {
-			$s = wfMsg( 'editconflict', $wgTitle->getPrefixedText() );
-			$wgOut->setPageTitle( $s );
 			$wgOut->addWikiMsg( 'explainconflict' );
 
 			$this->textbox2 = $this->textbox1;
 			$this->textbox1 = $this->getContent();
 			$this->edittime = $this->mArticle->getTimestamp();
 		} else {
-			if( $this->section != '' ) {
-				if( $this->section == 'new' ) {
-					$s = wfMsg('editingcomment', $wgTitle->getPrefixedText() );
-				} else {
-					$s = wfMsg('editingsection', $wgTitle->getPrefixedText() );
-					$matches = array();
-					if( !$this->summary && !$this->preview && !$this->diff ) {
-						preg_match( "/^(=+)(.+)\\1/mi",
-							$this->textbox1,
-							$matches );
-						if( !empty( $matches[2] ) ) {
-							global $wgParser;
-							$this->summary = "/* " .
-								$wgParser->stripSectionName(trim($matches[2])) .
-								" */ ";
-						}
+			if( $this->section != '' && $this->section != 'new' ) {
+				$matches = array();
+				if( !$this->summary && !$this->preview && !$this->diff ) {
+					preg_match( "/^(=+)(.+)\\1/mi",
+						$this->textbox1,
+						$matches );
+					if( !empty( $matches[2] ) ) {
+						global $wgParser;
+						$this->summary = "/* " .
+							$wgParser->stripSectionName(trim($matches[2])) .
+							" */ ";
 					}
 				}
-			} else {
-				$s = wfMsg( 'editing', $wgTitle->getPrefixedText() );
 			}
-			$wgOut->setPageTitle( $s );
 
 			if ( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>',  'missingcommenttext' );
@@ -1217,20 +1239,7 @@ class EditPage {
 			$wgOut->addHTML( "</div>\n" );
 		}
 
-		#need to parse the preview early so that we know which templates are used,
-		#otherwise users with "show preview after edit box" will get a blank list
-		if ( $this->formtype == 'preview' ) {
-			$previewOutput = $this->getPreviewText();
-		}
-
-		$rows = $wgUser->getIntOption( 'rows' );
-		$cols = $wgUser->getIntOption( 'cols' );
-
-		$ew = $wgUser->getOption( 'editwidth' );
-		if ( $ew ) $ew = " style=\"width:100%\"";
-		else $ew = '';
-
-		$q = 'action=submit';
+		$q = 'action='.$this->action;
 		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $wgTitle->escapeLocalURL( $q );
 
@@ -1282,16 +1291,9 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormPageTop );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
-
-			if ( 'preview' == $this->formtype ) {
-				$this->showPreview( $previewOutput );
-			} else {
-				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
-			}
-
-			if ( 'diff' == $this->formtype ) {
-				$this->showDiff();
-			}
+			$this->displayPreviewArea( $previewOutput );
+			// Spacer for the edit toolbar
+			$wgOut->addHTML( '<p><br /></p>' );
 		}
 
 
@@ -1330,7 +1332,7 @@ class EditPage {
 		if( !$this->preview && !$this->diff ) {
 			$wgOut->setOnloadHandler( 'document.editform.wpTextbox1.focus()' );
 		}
-		$templates = ($this->preview || $this->section != '') ? $this->mPreviewTemplates : $this->mArticle->getUsedTemplates();
+		$templates = $this->getTemplates();
 		$formattedtemplates = $sk->formatTemplates( $templates, $this->preview, $this->section != '');
 
 		$hiddencats = $this->mArticle->getHiddenCategories();
@@ -1341,11 +1343,15 @@ class EditPage {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
 			$top = wfMsgWikiHtml( 'metadata_help' );
+			/* ToDo: Replace with clean code */
+			$ew = $wgUser->getOption( 'editwidth' );
+			if ( $ew ) $ew = " style=\"width:100%\"";
+			else $ew = '';
+			/* /ToDo */
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
 		else $metadata = "" ;
 
-		$hidden = '';
 		$recreate = '';
 		if ($this->wasDeletedSinceLastEdit()) {
 			if ( 'save' != $this->formtype ) {
@@ -1354,7 +1360,6 @@ class EditPage {
 				// Hide the toolbar and edit area, use can click preview to get it back
 				// Add an confirmation checkbox and explanation.
 				$toolbar = '';
-				$hidden = 'type="hidden" style="display:none;"';
 				$recreate = $wgOut->parse( wfMsg( 'confirmrecreate',  $this->lastDelete->user_name , $this->lastDelete->log_comment ));
 				$recreate .=
 					"<br /><input tabindex='1' type='checkbox' value='1' name='wpRecreate' id='wpRecreate' />".
@@ -1388,40 +1393,27 @@ END
 		wfRunHooks( 'EditPage::showEditForm:fields', array( &$this, &$wgOut ) );
 
 		// Put these up at the top to ensure they aren't lost on early form submission
-		$wgOut->addHTML( "
-<input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
-<input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
-<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
-<input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
-
-		$encodedtext = htmlspecialchars( $this->safeUnicodeOutput( $this->textbox1 ) );
-		if( $encodedtext !== '' ) {
-			// Ensure there's a newline at the end, otherwise adding lines
-			// is awkward.
-			// But don't add a newline if the ext is empty, or Firefox in XHTML
-			// mode will show an extra newline. A bit annoying.
-			$encodedtext .= "\n";
-		}
+		$this->showFormBeforeText();
 
 		$wgOut->addHTML( <<<END
-$recreate
+{$recreate}
 {$commentsubject}
 {$subjectpreview}
 {$this->editFormTextBeforeContent}
-<textarea tabindex='1' accesskey="," name="wpTextbox1" id="wpTextbox1" rows='{$rows}'
-cols='{$cols}'{$ew} $hidden>{$encodedtext}</textarea>
 END
 );
+		$this->showTextbox1();
 
 		$wgOut->wrapWikiMsg( "<div id=\"editpage-copywarn\">\n$1\n</div>", $copywarnMsg );
-		$wgOut->addHTML( $this->editFormTextAfterWarn );
-		$wgOut->addHTML( "
+		$wgOut->addHTML( <<<END
+{$this->editFormTextAfterWarn}
 {$metadata}
 {$editsummary}
 {$summarypreview}
 {$checkboxhtml}
 {$safemodehtml}
-");
+END
+);
 
 		$wgOut->addHTML(
 "<div class='editButtons'>
@@ -1445,20 +1437,18 @@ END
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 
-		$wgOut->addHtml( '<div class="mw-editTools">' );
-		$wgOut->addWikiMsgArray( 'edittools', array(), array( 'content' ) );
-		$wgOut->addHtml( '</div>' );
+		$this->showEditTools();
 
-		$wgOut->addHTML( $this->editFormTextAfterTools );
-
-		$wgOut->addHTML( "
+		$wgOut->addHTML( <<<END
+{$this->editFormTextAfterTools}
 <div class='templatesUsed'>
 {$formattedtemplates}
 </div>
 <div class='hiddencats'>
 {$formattedhiddencats}
 </div>
-");
+END
+);
 
 		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
@@ -1468,26 +1458,89 @@ END
 			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
 
 			$wgOut->wrapWikiMsg( '==$1==', "yourtext" );
-			$wgOut->addHTML( "<textarea tabindex='6' id='wpTextbox2' name=\"wpTextbox2\" rows='{$rows}' cols='{$cols}'>"
-				. htmlspecialchars( $this->safeUnicodeOutput( $this->textbox2 ) ) . "\n</textarea>" );
+			$this->showTextbox2();
 		}
 		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
-
-			if ( $this->formtype == 'preview') {
-				$this->showPreview( $previewOutput );
-			} else {
-				$wgOut->addHTML( '<div id="wikiPreview"></div>' );
-			}
-
-			if ( $this->formtype == 'diff') {
-				$this->showDiff();
-			}
-
+			$this->displayPreviewArea( $previewOutput );
 		}
 
 		wfProfileOut( $fname );
+	}
+
+	protected function showFormBeforeText() {
+		return "
+<input type='hidden' value=\"" . htmlspecialchars( $this->section ) . "\" name=\"wpSection\" />
+<input type='hidden' value=\"{$this->starttime}\" name=\"wpStarttime\" />\n
+<input type='hidden' value=\"{$this->edittime}\" name=\"wpEdittime\" />\n
+<input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n";
+	}
+	
+	protected function showTextbox1() {
+		$attribs = array( 'tabindex' => 1 );
+		
+		if( $this->wasDeletedSinceLastEdit() )
+			$attribs['type'] = 'hidden';
+		
+		$this->showTextbox( $this->textbox1, 'wpTextbox1', $attribs );
+	}
+	
+	protected function showTextbox2() {
+		$this->showTextbox( $encodedtext, 'wpTextbox2', array( 'tabindex' => 6 ) );
+	}
+	
+	protected function showTextbox( $content, $name, $attribs = array() ) {
+		global $wgOut, $wgUser;
+		
+		$encodedtext = htmlspecialchars( $this->safeUnicodeOutput( $content ) );
+		if( $encodedtext !== '' ) {
+			// Ensure there's a newline at the end, otherwise adding lines
+			// is awkward.
+			// But don't add a newline if the ext is empty, or Firefox in XHTML
+			// mode will show an extra newline. A bit annoying.
+			$encodedtext .= "\n";
+		}
+		
+		$attribs = array(
+			'accesskey' => ',',
+			'id'        => $name,
+		);
+		
+		if( $wgUser->getOption( 'editwidth' ) )
+			$attribs['style'] = 'width: 100%';
+		
+		$wgOut->addHTML( Xml::textarea(
+			$name,
+			$encodedtext,
+			$wgUser->getIntOption( 'cols' ), $wgUser->getIntOption( 'rows' ),
+			$attribs ) );
+	}
+
+	protected function displayPreviewArea( $previewOutput ) {
+		global $wgOut;
+		if ( $this->formtype == 'preview') {
+			$this->showPreview( $previewOutput );
+		} else {
+			$wgOut->addHTML( '<div id="wikiPreview"></div>' );
+		}
+
+		if ( $this->formtype == 'diff') {
+			$this->showDiff();
+		}
+	}
+	
+	protected function displayPreviewArea( $previewOutput ) {
+		global $wgOut;
+		if ( $this->formtype == 'preview') {
+			$this->showPreview( $previewOutput );
+		} else {
+			$wgOut->addHTML( '<div id="wikiPreview"></div>' );
+		}
+
+		if ( $this->formtype == 'diff') {
+			$this->showDiff();
+		}
 	}
 
 	/**
@@ -1524,10 +1577,17 @@ END
 	function doLivePreviewScript() {
 		global $wgOut, $wgTitle;
 		$wgOut->addScriptFile( 'preview.js' );
-		$liveAction = $wgTitle->getLocalUrl( 'action=submit&wpPreview=true&live=true' );
+		$liveAction = $wgTitle->getLocalUrl( "action={$this->action}&wpPreview=true&live=true" );
 		return "return !lpDoPreview(" .
 			"editform.wpTextbox1.value," .
 			'"' . $liveAction . '"' . ")";
+	}
+
+	protected function showEditTools() {
+		global $wgOut;
+		$wgOut->addHtml( '<div class="mw-editTools">' );
+		$wgOut->addWikiMsgArray( 'edittools', array(), array( 'content' ) );
+		$wgOut->addHtml( '</div>' );
 	}
 
 	function getLastDelete() {
@@ -1569,8 +1629,7 @@ END
 	function getPreviewText() {
 		global $wgOut, $wgUser, $wgTitle, $wgParser, $wgLang, $wgContLang;
 
-		$fname = 'EditPage::getPreviewText';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			if ( $this->mTokenOkExceptSuffix ) {
@@ -1604,9 +1663,9 @@ END
 			}
 			$parserOptions->setTidy(true);
 			$parserOutput = $wgParser->parse( $previewtext , $this->mTitle, $parserOptions );
-			$wgOut->addHTML( $parserOutput->mText );
+			//$wgOut->addHTML( $parserOutput->mText );
 			$previewHTML = '';
-		} else if( $rt = Title::newFromRedirect( $this->textbox1 ) ) {
+		} elseif( $rt = Title::newFromRedirect( $this->textbox1 ) ) {
 			$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 		} else {
 			$toparse = $this->textbox1;
@@ -1643,19 +1702,8 @@ END
 					$this->mTitle, $parserOptions );
 
 			$previewHTML = $parserOutput->getText();
+			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputNoText( $parserOutput );
-
-			# ParserOutput might have altered the page title, so reset it
-			# Also, use the title defined by DISPLAYTITLE magic word when present
-			if( ( $dt = $parserOutput->getDisplayTitle() ) !== false ) {
-				$wgOut->setPageTitle( wfMsg( 'editing', $dt ) );
-			} else {
-				$wgOut->setPageTitle( wfMsg( 'editing', $wgTitle->getPrefixedText() ) );
-			}
-
-			foreach ( $parserOutput->getTemplates() as $ns => $template)
-				foreach ( array_keys( $template ) as $dbk)
-					$this->mPreviewTemplates[] = Title::makeTitle($ns, $dbk);
 
 			if ( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
@@ -1665,18 +1713,26 @@ END
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<div class='previewnote'>" . $wgOut->parse( $note ) . "</div>\n";
 		if ( $this->isConflict ) {
-			$previewhead.='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+			$previewhead .='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
 		}
 
-		if( $wgUser->getOption( 'previewontop' ) ) {
-			// Spacer for the edit toolbar
-			$previewfoot = '<p><br /></p>';
+		wfProfileOut( __METHOD__ );
+		return $previewhead . $previewHTML;
+	}
+	
+	function getTemplates() {
+		if( $this->preview || $this->section != '' ) {
+			$templates = array();
+			if( !isset($this->mParserOutput) ) return $templates;
+			foreach( $this->mParserOutput->getTemplates() as $ns => $template) {
+				foreach( array_keys( $template ) as $dbk ) {
+					$templates[] = Title::makeTitle($ns, $dbk);
+				}
+			}
+			return $templates;
 		} else {
-			$previewfoot = '';
+			return $this->mArticle->getUsedTemplates();
 		}
-		
-		wfProfileOut( $fname );
-		return $previewhead . $previewHTML . $previewfoot;
 	}
 
 	/**
@@ -1697,8 +1753,8 @@ END
 
 		# Spit out the source or the user's modified version
 		if( $source !== false ) {
-			$rows = $wgUser->getOption( 'rows' );
-			$cols = $wgUser->getOption( 'cols' );
+			$rows = $wgUser->getIntOption( 'rows' );
+			$cols = $wgUser->getIntOption( 'cols' );
 			$attribs = array( 'id' => 'wpTextbox1', 'name' => 'wpTextbox1', 'cols' => $cols, 'rows' => $rows, 'readonly' => 'readonly' );
 			$wgOut->addHtml( '<hr />' );
 			$wgOut->addWikiMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() );
