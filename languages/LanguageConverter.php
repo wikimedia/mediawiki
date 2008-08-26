@@ -435,8 +435,9 @@ class LanguageConverter {
 		if ($isTitle) return $this->convertTitle($text);
 
 		$plang = $this->getPreferredVariant();
-		$tarray = explode($this->mMarkup['end'], $text);
+		$tarray = StringUtils::explode($this->mMarkup['end'], $text);
 		$text = '';
+		$lastDelim = false;
 		foreach($tarray as $txt) {
 			$marked = explode($this->mMarkup['begin'], $txt, 2);
 
@@ -452,7 +453,16 @@ class LanguageConverter {
 
 				$text .= $crule->getDisplay();
 				$this->applyManualConv($crule);
+				$lastDelim = false;
+			} else {
+				// Reinsert the }- which wasn't part of anything
+				$text .= $this->mMarkup['end'];
+				$lastDelim = true;
 			}
+		}
+		if ( $lastDelim ) {
+			// Remove the last delimiter (wasn't real)
+			$text = substr( $text, 0, -strlen( $this->mMarkup['end'] ) );
 		}
 
 		return $text;

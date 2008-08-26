@@ -94,6 +94,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * HTML entities like &nbsp; now work (are not escaped) in edit summaries.
 * (bug 13815) In the comment for page moves, use the colon-separator message
   instead of a hardcoded colon.
+* Allow <gallery> to accept image names without an Image: prefix
 
 === Bug fixes in 1.14 ===
 

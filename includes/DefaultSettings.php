@@ -3336,6 +3336,12 @@ $wgParserConf = array(
 );
 
 /**
+ * LinkHolderArray batch size
+ * For debugging
+ */
+$wgLinkHolderBatchSize = 1000;
+
+/**
  * Hooks that are used for outputting exceptions.  Format is:
  *   $wgExceptionHooks[] = $funcname
  * or:

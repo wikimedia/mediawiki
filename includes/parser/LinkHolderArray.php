@@ -1,14 +1,21 @@
 <?php
 
 class LinkHolderArray {
-	var $batchSize = 1000;
-
 	var $internals = array(), $interwikis = array();
 	var $size = 0;
 	var $parent;
 
 	function __construct( $parent ) {
 		$this->parent = $parent;
+	}
+
+	/**
+	 * Reduce memory usage to reduce the impact of circular references
+	 */
+	function __destruct() {
+		foreach ( $this as $name => $value ) {
+			unset( $this->$name );
+		}
 	}
 
 	/**
@@ -30,7 +37,8 @@ class LinkHolderArray {
 	 * Returns true if the memory requirements of this object are getting large
 	 */
 	function isBig() {
-		return $this->size > $this->batchSize;
+		global $wgLinkHolderBatchSize;
+		return $this->size > $wgLinkHolderBatchSize;
 	}
 
 	/**
@@ -145,7 +153,7 @@ class LinkHolderArray {
 				if ( $title->isAlwaysKnown() ) {
 					$colours[$pdbk] = '';
 				} elseif ( ( $id = $linkCache->getGoodLinkID( $pdbk ) ) != 0 ) {
-					$colours[$pdbk] = '';
+					$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 					$output->addLink( $title, $id );
 				} elseif ( $linkCache->isBadLink( $pdbk ) ) {
 					$colours[$pdbk] = 'new';
@@ -180,6 +188,9 @@ class LinkHolderArray {
 				$pdbk = $title->getPrefixedDBkey();
 				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect );
 				$output->addLink( $title, $s->page_id );
+				# FIXME: convoluted data flow
+				# The redirect status and length is passed to getLinkColour via the LinkCache
+				# Use formal parameters instead
 				$colours[$pdbk] = $sk->getLinkColour( $title, $threshold );
 				//add id to the extension todolist
 				$linkcolour_ids[$s->page_id] = $pdbk;
@@ -274,6 +285,9 @@ class LinkHolderArray {
 							$entry['pdbk'] = $varPdbk;
 
 							// set pdbk and colour
+							# FIXME: convoluted data flow
+							# The redirect status and length is passed to getLinkColour via the LinkCache
+							# Use formal parameters instead
 							$colours[$varPdbk] = $sk->getLinkColour( $variantTitle, $threshold );
 							$linkcolour_ids[$s->page_id] = $pdbk;
 						}

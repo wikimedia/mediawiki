@@ -649,12 +649,18 @@ class MessageCache {
 			return $message;
 		}
 
-		global $wgParser;
+		global $wgParser, $wgParserConf;
 		if ( !$this->mParser && isset( $wgParser ) ) {
 			# Do some initialisation so that we don't have to do it twice
 			$wgParser->firstCallInit();
 			# Clone it and store it
-			$this->mParser = clone $wgParser;
+			$class = $wgParserConf['class'];
+			if ( $class == 'Parser_DiffTest' ) {
+				# Uncloneable
+				$this->mParser = new $class( $wgParserConf );
+			} else {
+				$this->mParser = clone $wgParser;
+			}
 			#wfDebug( __METHOD__ . ": following contents triggered transform: $message\n" );
 		}
 		if ( $this->mParser ) {
