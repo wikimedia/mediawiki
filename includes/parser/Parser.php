@@ -143,6 +143,15 @@ class Parser
 	}
 
 	/**
+	 * Reduce memory usage to reduce the impact of circular references
+	 */
+	function __destruct() {
+		foreach ( $this as $name => $value ) {
+			unset( $this->$name );
+		}
+	}
+
+	/**
 	 * Do various kinds of initialisation on the first call of the parser
 	 */
 	function firstCallInit() {
