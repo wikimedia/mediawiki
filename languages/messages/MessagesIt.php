@@ -891,7 +891,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'wikicodecomparison'      => 'Confronto del wikitext',
 'editundo'                => 'annulla',
 'diff-multi'              => '({{PLURAL:$1|Una revisione intermedia non mostrata|$1 revisioni intermedie non mostrate}}.)',
-'diff-movedto'            => 'spostata a $1',
+'diff-movedto'            => 'spostato a $1',
 'diff-styleadded'         => 'stile aggiunto',
 'diff-added'              => 'aggiunto',
 'diff-changedto'          => 'cambiato in',
@@ -899,12 +899,16 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'diff-removed'            => 'rimosso',
 'diff-changedfrom'        => 'cambiato da',
 'diff-src'                => 'fonte',
+'diff-withdestination'    => 'con destinazione',
 'diff-with'               => '&#32;con $1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-width'              => 'larghezza',
 'diff-height'             => 'altezza',
 'diff-p'                  => "un '''paragrafo'''",
 'diff-blockquote'         => "una '''citazione'''",
+'diff-ul'                 => "un '''elenco puntato'''",
+'diff-ol'                 => "un '''elenco numerato'''",
+'diff-a'                  => "un '''link'''",
 'diff-i'                  => "'''corsivo'''",
 'diff-b'                  => "'''grassetto'''",
 
@@ -2110,7 +2114,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'notacceptable'     => 'Il server wiki non è in grado di fornire i dati in un formato leggibile dal tuo client.',
 
 # Attribution
-'anonymous'        => 'uno o più utenti anonimi di {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Utente anonimo|Utenti anonimi}} di {{SITENAME}}',
 'siteuser'         => '$1, utente di {{SITENAME}}',
 'lastmodifiedatby' => "Questa pagina è stata modificata per l'ultima volta il $2, $1 da $3.", # $1 date, $2 time, $3 user
 'othercontribs'    => 'Il testo attuale è basato su contributi di $1.',

@@ -100,7 +100,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'ウォッチリストからログイン利用者の編集を隠す',
 'tog-watchlisthideanons'      => 'ウォッチリストから匿名利用者の編集を隠す',
 'tog-nolangconversion'        => '字形変換を無効にする',
-'tog-ccmeonemails'            => '他ユーザーに送信したメールの控えを自分にも送る',
+'tog-ccmeonemails'            => '他の利用者に送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
 'tog-showhiddencats'          => '非公開カテゴリを表示する',
 
@@ -404,7 +404,7 @@ $1',
 'cascadeprotected'     => 'このページはカスケード保護されている以下のページから呼び出されているため、編集できないように保護されています。
 $2',
 'namespaceprotected'   => "'''$1''' 名前空間に属するページを編集する権限がありません。",
-'customcssjsprotected' => 'このページはユーザーの環境設定を記録するページです。ユーザー本人以外は編集できません。',
+'customcssjsprotected' => 'このページは利用者の環境設定を記録するページです。利用者本人以外は編集できません。',
 'ns-specialprotected'  => '{{ns:special}}名前空間内にあるページは編集できません。',
 'titleprotected'       => "このページは [[User:$1|$1]] によりページの作成が保護されています。
 保護の理由は次の通りです。: ''$2''",
@@ -984,7 +984,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Groups
 'group'               => 'グループ:',
-'group-user'          => 'ログインユーザー',
+'group-user'          => 'ログイン利用者',
 'group-autoconfirmed' => '自動承認された利用者',
 'group-bot'           => 'ボット',
 'group-sysop'         => '管理者',
@@ -1431,7 +1431,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'ユーザのグループと権限',
+'listgrouprights'                 => '利用者グループの権限',
 'listgrouprights-summary'         => '以下はこのウィキに登録されている利用者グループとそれぞれに割り当てられている権限の一覧です。
 個々の権限に関する更なる情報は[[{{MediaWiki:Listgrouprights-helppage}}]]を見てください。',
 'listgrouprights-group'           => 'グループ',
@@ -1503,10 +1503,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'watchlist-hide-own'   => '自分の編集を隠す',
 'watchlist-show-minor' => '細部の編集を表示',
 'watchlist-hide-minor' => '細部の編集を隠す',
-'watchlist-show-anons' => 'IPユーザの編集を表示',
-'watchlist-hide-anons' => 'IPユーザの編集を隠す',
-'watchlist-show-liu'   => 'ログインユーザの編集を表示',
-'watchlist-hide-liu'   => 'ログインユーザの編集を隠す',
+'watchlist-show-anons' => 'IP利用者の編集を表示',
+'watchlist-hide-anons' => 'IP利用者の編集を隠す',
+'watchlist-show-liu'   => 'ログイン利用者の編集を表示',
+'watchlist-hide-liu'   => 'ログイン利用者の編集を隠す',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1767,7 +1767,7 @@ $NEWPAGE
 'unblocked-id'                    => 'ブロック $1 は解除されました',
 'ipblocklist'                     => '投稿ブロック中の利用者やIPアドレス',
 'ipblocklist-legend'              => 'ブロック中の利用者を検索',
-'ipblocklist-username'            => 'ユーザー名またはIPアドレス:',
+'ipblocklist-username'            => '利用者名またはIPアドレス:',
 'ipblocklist-submit'              => '検索',
 'blocklistline'                   => '$1, $2 は $3 をブロック （$4）',
 'infiniteblock'                   => '無期限',
@@ -2031,7 +2031,7 @@ $NEWPAGE
 'notacceptable'     => 'ウィキサーバーはあなたの使用しているクライアントが読める形式で情報を提供できません。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}の匿名利用者',
+'anonymous'        => '{{SITENAME}}の$1人の匿名利用者',
 'siteuser'         => '{{SITENAME}}の利用者$1',
 'lastmodifiedatby' => '最終更新は $3 による $2, $1 の編集です。', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1の版に基づきます。',
@@ -2195,7 +2195,7 @@ Variants for Chinese language
 'exif-pixelydimension'             => '実効画像幅',
 'exif-pixelxdimension'             => '実効画像高さ',
 'exif-makernote'                   => 'メーカーノート',
-'exif-usercomment'                 => 'ユーザーコメント',
+'exif-usercomment'                 => '利用者のコメント',
 'exif-relatedsoundfile'            => '関連音声ファイル',
 'exif-datetimeoriginal'            => '画像データ生成日時',
 'exif-datetimedigitized'           => 'デジタルデータ作成日時',

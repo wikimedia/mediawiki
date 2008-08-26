@@ -2325,7 +2325,7 @@ $1',
 'notacceptable'     => 'السيرفر بتاع الويكي مش ممكن يديلك بيانات بصيغة ممكن عميلك يقراها.',
 
 # Attribution
-'anonymous'        => 'يوزر مجهول ل {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|يوزر مجهول|يوزرز مجهولين}} ل {{SITENAME}}',
 'siteuser'         => 'يوزر {{SITENAME}} $1',
 'lastmodifiedatby' => 'آخر تعديل  للصفحة دي كان في $2، $1 عن طريق $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'بناء على عمل $1.',

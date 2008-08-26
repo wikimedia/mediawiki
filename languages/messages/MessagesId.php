@@ -1040,6 +1040,8 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'diff-dl'                 => "sebuah '''daftar definisi'''",
 'diff-dt'                 => "sebuah '''definisi istilah'''",
 'diff-dd'                 => "sebuah '''definisi'''",
+'diff-input'              => "sebuah '''masukan'''",
+'diff-form'               => "sebuah '''formulir'''",
 'diff-img'                => "sebuah '''gambar'''",
 'diff-span'               => "sebuah '''rentang'''",
 'diff-a'                  => "sebuah '''pranala'''",
@@ -2228,7 +2230,7 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'notacceptable'     => 'Server wiki tidak dapat menyediakan data dalam format yang dapat dibaca oleh client Anda.',
 
 # Attribution
-'anonymous'        => 'Pengguna(-pengguna) anonim {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Pengguna|Pengguna-pengguna}} anonim di {{SITENAME}}',
 'siteuser'         => 'Pengguna {{SITENAME}} $1',
 'lastmodifiedatby' => 'Halaman ini terakhir kali diubah $2, $1 oleh $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Didasarkan pada karya $1.',

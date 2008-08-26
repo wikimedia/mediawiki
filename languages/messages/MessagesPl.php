@@ -835,7 +835,9 @@ Zapisując swoją edycję, oświadczasz, że ten tekst jest Twoim dziełem lub p
 <strong>PROSZĘ NIE UŻYWAĆ MATERIAŁÓW CHRONIONYCH PRAWEM AUTORSKIM BEZ POZWOLENIA WŁAŚCICIELA!</strong>",
 'longpagewarning'                  => '<strong>Ta strona ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Jeśli to możliwe, spróbuj podzielić tekst na mniejsze części.</strong>',
 'longpageerror'                    => '<strong>Błąd! Wprowadzony przez Ciebie tekst ma {{PLURAL:$1|1 kilobajt|$1 kilobajty|$1 kilobajtów}}. Długość tekstu nie może przekraczać {{PLURAL:$2|1 kilobajt|$2 kilobajty|$2 kilobajtów}}. Tekst nie może być zapisany.</strong>',
-'readonlywarning'                  => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku, używając wytnij/wklej, i zachowaj na później.</strong>',
+'readonlywarning'                  => '<strong>Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Zapisz jej treść do pliku, używając wytnij/wklej, i zachowaj na później.</strong>
+
+Administrator, który zablokował bazę, podał następujące wyjaśnienie: $1',
 'protectedpagewarning'             => '<strong>Uwaga! Modyfikacja tej strony została zablokowana. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.</strong>',
 'semiprotectedpagewarning'         => "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.",
 'cascadeprotectedwarning'          => "'''Uwaga!''' Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Strona ta jest zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
@@ -1005,8 +1007,14 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'difference'              => '(Różnice między wersjami)',
 'lineno'                  => 'Linia $1:',
 'compareselectedversions' => 'porównaj wybrane wersje',
+'visualcomparison'        => 'Porównanie treści',
+'wikicodecomparison'      => 'Porównanie wikitekstu',
 'editundo'                => 'anuluj zmiany',
 'diff-multi'              => '(Nie pokazano $1 {{PLURAL:$1|wersji|wersji}} pomiędzy niniejszymi.)',
+'diff-movedto'            => 'przeniesiono do $1',
+'diff-styleadded'         => 'dodano metodę formatowania tekstu',
+'diff-added'              => 'dodano',
+'diff-changedto'          => 'zmieniono na',
 
 # Search results
 'searchresults'             => 'Wyniki wyszukiwania',
@@ -1622,7 +1630,9 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 
 # Special:Categories
 'categories'                    => 'Kategorie',
-'categoriespagetext'            => 'Lista kategorii dla stron i plików.',
+'categoriespagetext'            => 'Strona przedstawia listę kategorii zawierających strony i pliki.
+[[Special:UnusedCategories|Nieużywane kategorie]] nie zostały tutaj pokazane.
+Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 'categoriesfrom'                => 'Wyświetl kategorie, zaczynając od:',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
@@ -1706,6 +1716,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'watchlist-hide-anons' => 'Ukryj edycje anonimowych użytkowników',
 'watchlist-show-liu'   => 'Pokaż edycje zalogowanych użytkowników',
 'watchlist-hide-liu'   => 'Ukryj edycje zalogowanych użytkowników',
+'watchlist-options'    => 'Opcje obserwowanych',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Obserwuję...',
@@ -2256,12 +2267,12 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'notacceptable'     => 'Serwer wiki nie może dostarczyć danych w formacie, którego Twoja przeglądarka oczekuje.',
 
 # Attribution
-'anonymous'        => 'Anonimowi użytkownicy {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'anonymous'        => '{{PLURAL:$1|Anonimowy użytkownik|Anonimowi użytkownicy}} {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'siteuser'         => 'Użytkownik {{GRAMMAR:D.lp|{{SITENAME}}}} – $1',
 'lastmodifiedatby' => 'Ostatnia edycja tej strony: $2, $1 (autor zmian: $3)', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Inni autorzy: $1.',
 'others'           => 'inni',
-'siteusers'        => 'Użytkownicy {{GRAMMAR:D.lp|{{SITENAME}}}}: $1',
+'siteusers'        => '{{PLURAL:$2|Użytkownik|Użytkownicy}} {{GRAMMAR:D.lp|{{SITENAME}}}}: $1',
 'creditspage'      => 'Autorzy',
 'nocredits'        => 'Brak informacji o autorach tej strony.',
 
@@ -2321,6 +2332,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← poprzednia edycja',
 'nextdiff'     => 'następna edycja →',
+
+# Visual comparison
+'visual-comparison' => 'Porównanie treści',
 
 # Media information
 'mediawarning'         => "'''Uwaga!''' Plik może zawierać złośliwy kod. Jeśli go otworzysz, możesz zarazić swój system.<hr />",

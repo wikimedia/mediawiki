@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Julian Mendez
  * @author Malafaya
  * @author McDutchie
  * @author לערי ריינהארט
@@ -254,8 +255,8 @@ $messages = array(
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Contento',
-'mainpage'             => 'Frontispicio',
-'mainpage-description' => 'Frontispicio',
+'mainpage'             => 'Pagina principal',
+'mainpage-description' => 'Pagina principal',
 'policy-url'           => 'Project:Politica',
 'portal'               => 'Portal del communitate',
 'portal-url'           => 'Project:Portal del communitate',
@@ -845,7 +846,32 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'wikicodecomparison'      => 'Comparation del wikitexto',
 'editundo'                => 'annullar',
 'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
+'diff-movedto'            => 'displaciate verso $1',
+'diff-styleadded'         => 'stilo addite',
+'diff-added'              => 'addite',
+'diff-changedto'          => 'cambiate a',
+'diff-movedoutof'         => 'displaciate ex $1',
+'diff-styleremoved'       => 'stilo eliminate',
+'diff-removed'            => 'removite',
+'diff-changedfrom'        => 'cambiate ab',
+'diff-src'                => 'origine',
+'diff-withdestination'    => 'con destination',
+'diff-with'               => '&#32;con $1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
+'diff-width'              => 'latitude',
+'diff-height'             => 'altitude',
+'diff-p'                  => "un '''paragrapho'''",
+'diff-blockquote'         => "un '''citation'''",
+'diff-h1'                 => "un '''titulo (nivello 1)'''",
+'diff-h2'                 => "un '''titulo (nivello 2)'''",
+'diff-h3'                 => "un '''titulo (nivello 3)'''",
+'diff-h4'                 => "un '''titulo (nivello 4)'''",
+'diff-h5'                 => "un '''titulo (nivello 5)'''",
+'diff-pre'                => "un '''bloco preformatate'''",
+'diff-div'                => "un '''division'''",
+'diff-ul'                 => "un '''lista non ordinate'''",
+'diff-ol'                 => "un '''lista ordinate'''",
+'diff-li'                 => "un '''entrata de lista'''",
 
 # Search results
 'searchresults'             => 'Resultatos del recerca',

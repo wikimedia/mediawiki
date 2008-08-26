@@ -799,6 +799,11 @@ $3 చెప్పిన కారణం: ''$2''",
 'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
 'editundo'                => 'దిద్దుబాటు రద్దుచెయ్యి',
 'diff-multi'              => '(మధ్యలో ఉన్న {{PLURAL:$1|ఒక కూర్పును|$1 కూర్పులను}} చూపించటం లేదు.)',
+'diff-with-final'         => '&#32;మరియు $1 $2',
+'diff-width'              => 'వెడల్పు',
+'diff-height'             => 'ఎత్తు',
+'diff-i'                  => "'''వాలు'''",
+'diff-b'                  => "'''బొద్దు'''",
 
 # Search results
 'searchresults'             => 'అన్వేషణ ఫలితాలు',
@@ -1646,7 +1651,7 @@ $NEWPAGE
 
 # What links here
 'whatlinkshere'            => 'ఇక్కడికి లింకు చేస్తున్న పేజీలు',
-'whatlinkshere-title'      => '$1 కు లింకున్న పేజీలు',
+'whatlinkshere-title'      => '"$1"కి లింకున్న పేజీలు',
 'whatlinkshere-page'       => 'పేజీ:',
 'linkshere'                => "కిందనున్న పేజీల నుండి '''[[:$1]]'''కు లింకులు ఉన్నాయి:",
 'nolinkshere'              => "'''[[:$1]]'''కు ఏ పేజీ నుండీ లింకు లేదు.",

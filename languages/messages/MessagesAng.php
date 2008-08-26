@@ -176,6 +176,7 @@ $messages = array(
 'nstab-category' => 'Flocc',
 
 # Main script and global functions
+'nosuchaction'      => 'Nān swilc dǣd',
 'nosuchspecialpage' => 'Nān swilc syndrig tramet',
 
 # General errors

@@ -237,16 +237,17 @@ $messages = array(
 'extlink_sample' => 'http://www.example.com съвѧ́ꙁи и́мѧ',
 
 # Edit pages
-'summary'        => 'опьса́ниѥ',
-'minoredit'      => 'ма́лаꙗ мѣ́на',
-'watchthis'      => 'си страни́цѧ блюдє́ниѥ',
-'savearticle'    => 'съхранѥ́ниѥ',
-'loginreqlink'   => 'Въниди',
-'newarticle'     => '(но́въ)',
-'clearyourcache' => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
-'note'           => '<strong>НАРОЧИ́ТО:</strong>',
-'editing'        => 'исправлѥ́ниѥ: $1',
-'templatesused'  => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
+'summary'            => 'опьса́ниѥ',
+'minoredit'          => 'ма́лаꙗ мѣ́на',
+'watchthis'          => 'си страни́цѧ блюдє́ниѥ',
+'savearticle'        => 'съхранѥ́ниѥ',
+'loginreqlink'       => 'Въниди',
+'newarticle'         => '(но́въ)',
+'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
+'note'               => '<strong>НАРОЧИ́ТО:</strong>',
+'editing'            => 'исправлѥ́ниѥ: $1',
+'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
+'template-protected' => '(ꙁабранєно ѥ́стъ)',
 
 # History pages
 'cur'          => 'нꙑ҃н',
@@ -400,6 +401,10 @@ $messages = array(
 'watch'          => 'блюдє́ниѥ',
 'watchthispage'  => 'си страни́цѧ блюдє́ниѥ',
 'unwatch'        => 'оста́ви блюдє́ниѥ',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'блюдє́ниѥ ...',
+'unwatching' => 'оставьлє́ниѥ блюдє́ниꙗ ...',
 
 'created' => 'сътворѥ́нъ ѥ́стъ',
 
