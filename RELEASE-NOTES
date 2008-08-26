@@ -1,4 +1,4 @@
-= MediaWiki release notes =
+T= MediaWiki release notes =
 
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
@@ -146,6 +146,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Action=purge on ForeignApiFiles now works (purges their thumbnails and 
   description pages).
 * (bug 15303) Title conversion for templates wasn't working in some cases.
+* (bug 15264) Underscores in Special:Search/Foo_bar parameters were taken
+  literally; now converting them to spaces per expectation.
+
 
 === API changes in 1.14 ===
 
