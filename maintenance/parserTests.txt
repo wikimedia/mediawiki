@@ -7066,6 +7066,29 @@ Line two
 
 !! end
 
+!! test
+Interwiki links trounced by replaceExternalLinks after early LinkHolderArray expansion
+!! options
+wgLinkHolderBatchSize=0
+!! input
+[[meatball:1]]
+[[meatball:2]]
+[[meatball:3]]
+!! result
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?1" class="extiw" title="meatball:1">meatball:1</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?2" class="extiw" title="meatball:2">meatball:2</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?3" class="extiw" title="meatball:3">meatball:3</a>
+</p>
+!! end
+
+!! test
+Free external link invading image caption
+!! input
+[[Image:Foobar.jpg|thumb|http://x|hello]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/Image:Foobar.jpg" class="image" title="hello"><img alt="hello" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" border="0" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/Image:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>hello</div></div></div>
+
+!! end
 
 #
 #

@@ -83,7 +83,7 @@ class MWException extends Exception {
 	function getHTML() {
 		global $wgShowExceptionDetails;
 		if( $wgShowExceptionDetails ) {
-			return '<p>' . htmlspecialchars( $this->getMessage() ) .
+			return '<p>' . nl2br( htmlspecialchars( $this->getMessage() ) ) .
 				'</p><p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) ) .
 				"</p>\n";
 		} else {
