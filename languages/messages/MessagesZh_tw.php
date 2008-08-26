@@ -1677,7 +1677,7 @@ $1',
 'notacceptable'     => '該網站伺服器不能提供您的客戶端能識別的數據格式。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}的匿名使用者',
+'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|使用者|使用者}}',
 'siteuser'         => '{{SITENAME}}使用者$1',
 'lastmodifiedatby' => '此頁由$3於$1 $2的最後更改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '在$1的工作基礎上。',
