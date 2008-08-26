@@ -212,7 +212,12 @@ class ApiEditPage extends ApiBase {
 				$r['result'] = "Success";
 				$r['pageid'] = $titleObj->getArticleID();
 				$r['title'] = $titleObj->getPrefixedText();
-				$newRevId = $titleObj->getLatestRevId();
+				# HACK: We create a new Article object here because getRevIdFetched()
+				# refuses to be run twice, and because Title::getLatestRevId()
+				# won't fetch from the master unless we select for update, which we
+				# don't want to do.
+				$newArticle = new Article($titleObj);
+				$newRevId = $newArticle->getRevIdFetched();
 				if($newRevId == $oldRevId)
 					$r['nochange'] = '';
 				else
