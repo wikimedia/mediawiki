@@ -1171,7 +1171,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Rights
 'right-read'                 => 'Lire les pages',
-'right-edit'                 => 'Modifier les pages (qui n’ont pas de page de discussion)',
+'right-edit'                 => 'Modifier les pages',
 'right-createpage'           => 'Créer des pages (qui ne sont pas des pages de discussion)',
 'right-createtalk'           => 'Créer des pages de discussion',
 'right-createaccount'        => 'Créer de nouveaux comptes utilisateur',

@@ -16,14 +16,14 @@ $fallback = 'es';
 $messages = array(
 # User preference toggles
 'tog-justify'              => 'Atacanar paragrafos',
-'tog-hideminor'            => 'Eskonder edisiones minores en «trokos resientes»',
+'tog-hideminor'            => 'Esconder ediciones chiquiticas de los «trocamientos frescos»',
 'tog-showtoolbar'          => 'Amostrár la barra de edision',
 'tog-rememberpassword'     => 'Akodrár mis informasiones sobre ésta komputadóra',
 'tog-watchcreations'       => 'Vigilar las páginas que estó creando.',
 'tog-watchdefault'         => 'Vijilar las pajinas ke yo modifike',
 'tog-watchmoves'           => 'Vijilar las pajinas ke renombre',
 'tog-watchdeletion'        => 'Vigilar las pajinas ke efase',
-'tog-enotifwatchlistpages' => 'Embiame una pósta kuando aya trokos en una pajina vijilada',
+'tog-enotifwatchlistpages' => 'Émbiame una letra electrónica kuando ay trocamientos en una página vigilada',
 'tog-enotifusertalkpages'  => 'Embiame una pósta kuando troka mi pajina de diskusion de uzuario',
 'tog-shownumberswatching'  => 'Amostrár el número de uzuarios ke la vijilan',
 'tog-showhiddencats'       => 'Amostrár kategorías eskondidas',
@@ -147,7 +147,7 @@ $messages = array(
 'redirectpagesub'  => 'Pajina redirijida',
 'protectedpage'    => 'Pajina abrigida',
 'jumpto'           => 'Saltar a:',
-'jumptonavigation' => 'navegación',
+'jumptonavigation' => 'paśeo',
 'jumptosearch'     => 'búsqueda',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -217,7 +217,7 @@ $messages = array(
 'watchthis'    => 'Vigilar este artículo',
 'savearticle'  => 'Registrar la página',
 'showpreview'  => 'Mostrar la previsualización',
-'showdiff'     => 'Amostrar trokos',
+'showdiff'     => 'Amostrar trocamientos',
 'accmailtitle' => 'La kontrasenya ha sido embiada.',
 'accmailtext'  => 'La kontrasenya para "$1" se ha embiado a $2.',
 
@@ -227,7 +227,7 @@ $messages = array(
 'last'         => 'dal cabo',
 
 # Diffs
-'lineno'   => 'Satir $1:',
+'lineno'   => 'Liña $1:',
 'editundo' => 'deshazer',
 
 # Search results
@@ -238,20 +238,20 @@ $messages = array(
 'mypreferences' => 'Mis preferencias',
 
 # Recent changes
-'recentchanges'   => 'Trocos frescos',
-'rcnote'          => "Debaxo {{PLURAL:$1|ay '''1''' troco realizado|están los dal cabo '''$1''' trocos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",
+'recentchanges'   => 'Trocamientos frescos',
+'rcnote'          => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",
 'rcshowhideminor' => '$1 ediciones chiquiticas',
 'rcshowhideliu'   => '$1 usuarios rejistrados',
 'rcshowhideanons' => '$1 usuarios anonimos',
 'rcshowhidemine'  => '$1 mis edisiones',
-'rclinks'         => 'Ver los dal cabo $1 trocos en los dal cabo $2 días.<br />$3',
+'rclinks'         => 'Ver los dal cabo $1 trocamientos en los dal cabo $2 días.<br />$3',
 'diff'            => 'dif',
 'hist'            => 'ist',
 'hide'            => 'Esconder',
 'show'            => 'Amostrar',
 
 # Recent changes linked
-'recentchangeslinked' => 'Trocos atados',
+'recentchangeslinked' => 'Trocamientos conectados',
 
 # Upload
 'upload' => 'Cargar un dosyé',
@@ -282,8 +282,8 @@ $messages = array(
 'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
 # Watchlist
-'watchlist'            => 'Liste que estó persiguiendo',
-'mywatchlist'          => 'Liste que estó persiguiendo',
+'watchlist'            => 'Mi lista de vigilancia',
+'mywatchlist'          => 'Mi lista de vigilancia',
 'watch'                => 'Vigilar',
 'unwatch'              => 'Dexar de vigilar',
 'watchlist-hide-minor' => 'Esconder ediciones chiquiticas',
@@ -326,8 +326,8 @@ $messages = array(
 'tooltip-pt-userpage'     => 'Mi página de usuario',
 'tooltip-pt-mytalk'       => 'Mi página de diścuśión',
 'tooltip-pt-preferences'  => 'Mis preferencias',
-'tooltip-pt-watchlist'    => 'El liste de las páginas cuyas trocos está vigilando',
-'tooltip-pt-mycontris'    => 'Liste de mis contribuciones',
+'tooltip-pt-watchlist'    => 'La lista de los trocamientos acontecidos en las páginas vigiladas.',
+'tooltip-pt-mycontris'    => 'La lista de mis contribuciones',
 'tooltip-pt-login'        => 'Se le aconseja a entrar, ma no es obligado.',
 'tooltip-pt-logout'       => 'Salir de la seśión',
 'tooltip-ca-talk'         => 'Diścuśión encima del artículo',
@@ -337,13 +337,13 @@ Si puede ser, que use el botón de previsualización antes de registrarla.',
 'tooltip-n-mainpage'      => 'Visitar la Página de Entrada',
 'tooltip-n-portal'        => 'Encima del proyecto, ¿qué se puede hazer y ánde topar todo?',
 'tooltip-n-currentevents' => 'Topar informaciones encima de los acontecimientos actuales',
-'tooltip-n-recentchanges' => 'El liste de trokos frescos en el viki',
+'tooltip-n-recentchanges' => 'La lista de los trocamientos frescos en el viki',
 'tooltip-n-randompage'    => 'Cargar una página por ventura',
 'tooltip-n-help'          => 'El lugar para ambezarse',
-'tooltip-t-whatlinkshere' => 'Liste de todas las páginas del viki que se atan con ésta',
+'tooltip-t-whatlinkshere' => 'La lista de todas las páginas del viki que se atan con ésta',
 'tooltip-t-upload'        => 'Mandar imágenes o arxivos de multimedia al servidor',
-'tooltip-t-specialpages'  => 'Liste de todas las páginas especiales',
-'tooltip-save'            => 'Guardar los trocos',
+'tooltip-t-specialpages'  => 'La lista de todas las páginas especiales',
+'tooltip-save'            => 'Guardar los trocamientos',
 
 # Attribution
 'anonymous' => 'Uzuario(s) anonimo(s) de {{SITENAME}}',

@@ -853,11 +853,10 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 vissa webbläsare kan ha problem att redigera sidor som närmar sig eller är större än 32 kB.
 Överväg att bryta upp sidan i mindre delar.</strong>',
 'longpageerror'                    => '<strong>FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.</strong>',
-'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara
-dina ändringar just nu. 
+'readonlywarning'                  => '<strong>VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu. 
 Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.</strong>
 
-Administratören som låste databasen har framfört den här förklaringen. $1',
+Administratören som låste databasen gav följande förklaring: $1',
 'protectedpagewarning'             => '<strong>VARNING: Den här sidan är låst så att bara administratörer kan redigera den.
 Försäkra dig om att du följer riktlinjerna för redigering av skyddade sidor.</strong>',
 'semiprotectedpagewarning'         => "'''Observera:''' Denna sida har delvis skrivskyddats, så att endast registrerade användare kan redigera den.",
@@ -1032,7 +1031,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'diff-styleadded'         => 'stil tillagd',
 'diff-added'              => 'tillagd',
 'diff-changedto'          => 'ändrad till',
-'diff-movedoutof'         => 'utflyttad av $1',
+'diff-movedoutof'         => 'flyttad ut från $1',
 'diff-styleremoved'       => 'stil borttagen',
 'diff-removed'            => 'borttagen',
 'diff-changedfrom'        => 'ändrad från',
@@ -2297,7 +2296,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'notacceptable'     => 'Den här wiki-servern kan inte erbjuda data i ett format som din klient kan läsa.',
 
 # Attribution
-'anonymous'        => 'Anonym användare på {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonym användare|Anonyma användare}} på {{SITENAME}}',
 'siteuser'         => 'användaren $1 på {{SITENAME}}',
 'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baserad på arbete av $1.',

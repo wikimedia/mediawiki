@@ -2358,7 +2358,7 @@ U kunt wel de broncode bekijken.',
 'notacceptable'     => 'De wikiserver kan de gegevens niet leveren in een vorm die uw browser kan lezen.',
 
 # Attribution
-'anonymous'        => 'Anonieme gebruiker(s) van {{SITENAME}}',
+'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
 'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Gebaseerd op werk van $1.',

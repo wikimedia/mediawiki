@@ -667,7 +667,7 @@ Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{Medi
 * Block-ID: #$5
 * Grund för’n Block: #$2
 * Wokeen hett blockt: $1',
-'autoblockedtext'                  => "Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
+'autoblockedtext'                  => "Diene IP-Adress ($3) is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
 As Grund is angeven: ''$2'' (de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich.
@@ -676,6 +676,7 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 
 * Anfang vun’n Block: $8
 * Enn vun’n Block: $6
+* Wokeen is blockt worrn: $7
 * Block-ID: #$5
 * Grund för’n Block: $2
 * Wokeen hett blockt: $1",
@@ -746,9 +747,10 @@ Du bestätigst ok, dat du den Text sülvst schreven hest oder ut en „Public Do
 'longpagewarning'                  => '<strong>Wohrscho: Disse Siet is $1 KB groot; en poor Browser köönt Probleme hebben, Sieten to bearbeiden, de grötter as 32 KB sünd.
 Bedenk of disse Siet vilicht in lüttere Afsnitten opdeelt warrn kann.</strong>',
 'longpageerror'                    => "'''Fehler: Dien Text is $1 Kilobytes lang. Dat is länger as dat Maximum vun $2 Kilobytes. Kann den Text nich spiekern.'''",
-'readonlywarning'                  => '<strong>Wohrscho: De Datenbank is wiel dat Ännern vun de
-Siet för Pleegarbeiden sparrt worrn, so dat du de Siet en Stoot nich
-spiekern kannst. Seker di den Text un versöök later weer de Ännern to spiekern.</strong>',
+'readonlywarning'                  => '<strong>Wohrscho: De Datenbank is för Pleegarbeiden sparrt worrn, so dat du de Sied en Stoot nich
+spiekern kannst. Seker di den Text un versöök dat later noch wedder.</strong>
+
+As Grund is angeven: $1',
 'protectedpagewarning'             => '<strong>Wohrscho: Disse Siet is sparrt worrn, so dat blots
 Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'semiprotectedpagewarning'         => "'''Henwies:''' Disse Siet is sparrt. Blots anmellt Brukers köönt de Siet ännern.",
@@ -2084,7 +2086,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'notacceptable'     => 'Dat Wiki-Server kann kene Daten in enen Format levern, dat dien Klient lesen kann.',
 
 # Attribution
-'anonymous'        => 'Anonyme Bruker vun {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonym Bruker|Anonyme Brukers}} vun {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Bruker $1',
 'lastmodifiedatby' => 'Disse Siet weer dat letzte Maal $2, $1 vun $3 ännert.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Grünnt op Arbeid vun $1.',

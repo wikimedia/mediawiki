@@ -975,7 +975,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'siteuser'         => '$1 tlatequitiltilīlli īpan {{SITENAME}}',
 'lastmodifiedatby' => 'Inīn zāzanilli ōtlapatlac catca īpan $2, $1 īpal $3.', # $1 date, $2 time, $3 user
 'others'           => 'occequīntīn',
-'siteusers'        => '$1 tlatequitiltilīlli īpan {{SITENAME}}',
+'siteusers'        => '$1 {{PLURAL:$2|tlatequitiltilīlli|tlatequitiltilīlli}} īpan {{SITENAME}}',
 
 # Browsing diffs
 'previousdiff' => '← Achtopa',

@@ -2178,7 +2178,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'notacceptable'     => 'Pelayan wiki ini tidak mampu menyediakan data dalam format yang boleh dibaca oleh pelanggan anda.',
 
 # Attribution
-'anonymous'        => 'Penguna {{SITENAME}} tanpa nama',
+'anonymous'        => '{{PLURAL:$1|Pengguna|Pengguna-pengguna}} {{SITENAME}} tanpa nama',
 'siteuser'         => 'Pengguna {{SITENAME}}, $1',
 'lastmodifiedatby' => 'Laman ini diubah buat kali terakhir pada $2, $1 oleh $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Berdasarkan karya $1.',

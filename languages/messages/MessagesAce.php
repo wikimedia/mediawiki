@@ -60,13 +60,18 @@ $messages = array(
 # Categories related messages
 'category_header'        => 'Teunuléh lam kawan "$1"',
 'subcategories'          => 'Subkategori',
+'category-media-header'  => 'Alat lam kawan "$1"',
+'category-empty'         => "''Kawan nyoë jinoë hat hana teunuléh atawa media.''",
 'listingcontinuesabbrev' => 'samb.',
 
 'about'     => 'Bhah',
 'newwindow' => '(peuhah bak tingkap barô)',
 'cancel'    => 'Peubateuë',
+'qbfind'    => 'Mita',
+'qbedit'    => 'Andam',
 'mytalk'    => 'Peugah haba lôn',
 
+'errorpagetitle'   => 'Seunalah',
 'returnto'         => 'Gisa u $1.',
 'tagline'          => 'Nibak {{SITENAME}}',
 'help'             => 'Beunantu',
@@ -77,15 +82,18 @@ $messages = array(
 'printableversion' => 'Seunalén citak',
 'permalink'        => 'Hubông teutap',
 'edit'             => 'Andam',
+'editthispage'     => 'Andam ôn nyoë',
 'delete'           => 'Sampôh',
 'protect'          => 'Peulindông',
 'newpage'          => 'Ôn barô',
+'talkpage'         => 'Peugah haba bhah ôn nyoë',
 'talkpagelinktext' => 'Peugah haba',
 'personaltools'    => 'Alat droë',
 'talk'             => 'Peugah haba',
 'views'            => 'Leumah',
 'toolbox'          => 'Plôk alat',
 'redirectedfrom'   => '(Geupeupinah nibak $1)',
+'redirectpagesub'  => 'Ôn peupinah',
 'jumpto'           => 'Langsông u:',
 'jumptonavigation' => 'navigasi',
 'jumptosearch'     => 'mita',
@@ -93,6 +101,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Bhah {{SITENAME}}',
 'aboutpage'            => 'Project:Bhah Ôn',
+'bugreports'           => 'Neubri thèë bug',
+'bugreportspage'       => 'Buët:Neubri thèë bug',
 'copyrightpage'        => '{{ns:project}}:Hak karang',
 'currentevents'        => 'Peristiwa paléng barô',
 'currentevents-url'    => 'Project:Peristiwa paléng barô',
@@ -126,17 +136,31 @@ $messages = array(
 'nstab-user'     => 'Nyang nguy',
 'nstab-project'  => 'Proyèk ôn',
 'nstab-image'    => 'Beureukah',
+'nstab-template' => 'Templat',
 'nstab-category' => 'Kawan',
 
 # General errors
-'viewsource'    => 'Eu nè',
-'viewsourcefor' => 'keu $1',
+'badtitle'       => 'Nan hana sah',
+'badtitletext'   => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
+'viewsource'     => 'Eu nè',
+'viewsourcefor'  => 'keu $1',
+'viewsourcetext' => 'Droëneuh  jeuët neu’eu',
 
 # Login and logout pages
+'yourname'                => 'Nan nyang nguy:',
+'yourpassword'            => 'Lageuëm rahsia:',
+'remembermypassword'      => 'Ingat lageuëm rahsia lôn bak komputer nyoë',
 'login'                   => 'Tamong',
 'nav-login-createaccount' => 'Tamong log / dapeuta',
+'loginprompt'             => "Droëneuh payah neupeu’udép ''cookies'' beujeuët neutamong u {{SITENAME}}",
 'userlogin'               => 'Tamong log / dapeuta',
+'logout'                  => 'Teubiët',
 'userlogout'              => 'Teubiët',
+'nologin'                 => 'Goh na nan nyang nguy? $1.',
+'nologinlink'             => 'Peudapeuta nan barô',
+'createaccount'           => 'Peudapeuta nan barô',
+'loginsuccesstitle'       => 'Meuhasé tamong',
+'mailmypassword'          => 'Kirém lageuëm rahsia barô',
 
 # Edit page toolbar
 'bold_sample'     => 'Citak teubay naseukah nyoë',
@@ -167,6 +191,7 @@ $messages = array(
 'showpreview'            => 'Peuleumah hasé',
 'showdiff'               => 'Peuleumah neu’ubah',
 'anoneditwarning'        => 'Droëneuh   hana teudapeuta tamong. Alamat IP Droëneuh   teucatat lam tarèh (riwayat away) ôn nyoë.',
+'summary-preview'        => 'Eu dilèë reuningkah',
 'blockedtext'            => "<big>'''Nan nyang nguy atawa alamat IP Droëneuh  ka geutheun.'''</big> 
 
 Geutheun lé $1. Dalèh jih nakeuh ''$2''. 
@@ -183,11 +208,14 @@ Alamat IP Droëneuh nakeuh $3, ngön ID neutheun nakeuh $5. Tulông peuseureuta 
 'newarticle'             => '(Barô)',
 'newarticletext'         => "Droëneuh   ka neuseutot u ôn nyang goh na. Keu peugöt ôn nyan, neukeutik asoë ôn di  kutak di yup nyoë (ngiëng [[{{MediaWiki:Helppage}}|ôn bantu]] keu beurita leubèh lanjut). Meunyo Droëneuh  hana neusaja ka trôk keunoë, teugon '''back''' nyang na bak layeuë.",
 'noarticletext'          => 'Hana naseukah jinoë lam ôn nyoë. I Droëneuh   jeuët [[Special:Search/{{PAGENAME}}|mita keu nan ôn nyoë]] bak ôn-ôn la’én atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} andam ôn nyoë].',
+'previewnote'            => '<strong>Beuneuingat meunyo nyoë goh lom neukeubah!</strong>',
 'editing'                => 'Andam $1',
 'editingsection'         => 'Andam $1 (bideuëng)',
 'copyrightwarning'       => 'Beuneuingat bahwa ban mandum nyang Droëneuh   tuléh keu {{SITENAME}} geukira geupeuteubiët di yup $2 (ngiëng $1 keu leubèh jeulah). Meunyoë Droëneuh h‘an neutém teunuléh Droëneuh  ji’andam ngön jiba ho ho la’én, bèk neupasoë teunuléh Droëneuh  keunoë.<br />Droëneuh  neumeujanji chit meunyoë teunuléh nyoë nakeuh atra neutuléh keudroë, atawa neucok nibak nè nè atra umôm atawa nè bibeuëh la’én.
 <strong>BÈK NEUPASOË TEUNULÉH NYANG GEUPEULINDÔNG HAK KARANG NYANG HANA IDIN</strong>',
+'longpagewarning'        => "'''INGAT: Ôn nyoë panyangjih nakeuh $1 kilobit; ladôm alat rawoh web kadang na masalah bak ji’andam ôn nyang panyangjih 32 kb atawa leubèh. Beu neupeutimang keu neuplah jeuët padum boh beunagi nyang leubèh cut. '''",
 'templatesused'          => 'Templat nyang geunguy bak ôn nyoë:',
+'templatesusedpreview'   => 'Templat nyang geunguy bak eu dilèë nyoë',
 'template-protected'     => '(geulindông)',
 'template-semiprotected' => '(seumi-lindông)',
 'nocreatetext'           => '{{SITENAME}} ka jikot bak peugöt ôn barô. Ji Droëneuh   jeuët neuriwang teuma ngön neu’andam ôn nyang ka na, atawa [[Special:UserLogin|neutamong atawa neudapeuta]].',
@@ -197,15 +225,23 @@ Neutimang-timang dilèë peuë ék patôt neupeulanjut atra nyang teungoh neu’
 Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 
 # History pages
-'viewpagelogs'     => 'Eu log ôn nyoë',
-'currentrev'       => 'Geunantoë jinoë',
-'revisionasof'     => 'Gantoë tiëp $1',
-'previousrevision' => '←Geunantoë sigohlomjih',
-'cur'              => 'jin',
-'last'             => 'akhé',
-'histlegend'       => "Piléh duwa teuneugön radiô, lheuëh nyan teugön teuneugön ''peubandéng'' keu peubandéng seunalén. Teugön saboh tanggay keu eu seunalén ôn bak tanggay nyan.<br />(skr) = bida ngön seunalén jinoë, (akhé) = bida ngön seunalén sigohlomjih. '''b''' = andam bacut, '''b''' = andam bot, → = andam bideuëng, ← = reuningkah keudroë",
-'histfirst'        => 'Paléng trép',
-'histlast'         => 'Paléng barô',
+'viewpagelogs'        => 'Eu log ôn nyoë',
+'currentrev'          => 'Geunantoë jinoë',
+'revisionasof'        => 'Gantoë tiëp $1',
+'revision-info'       => 'Geunantoë tiëp $1; $2',
+'previousrevision'    => '←Geunantoë sigohlomjih',
+'nextrevision'        => 'Geunantoë lheuëh nyan→',
+'currentrevisionlink' => 'Geunantoë jinoë',
+'cur'                 => 'jin',
+'last'                => 'akhé',
+'page_first'          => 'phôn',
+'page_last'           => 'keuneulheuëh',
+'histlegend'          => "Piléh duwa teuneugön radiô, lheuëh nyan teugön teuneugön ''peubandéng'' keu peubandéng seunalén. Teugön saboh tanggay keu eu seunalén ôn bak tanggay nyan.<br />(skr) = bida ngön seunalén jinoë, (akhé) = bida ngön seunalén sigohlomjih. '''b''' = andam bacut, '''b''' = andam bot, → = andam bideuëng, ← = reuningkah keudroë",
+'histfirst'           => 'Paléng trép',
+'histlast'            => 'Paléng barô',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 bak $2', # user at time
 
 # Diffs
 'history-title'           => 'Riwayat geunantoë nibak "$1"',
@@ -213,6 +249,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'lineno'                  => 'Baréh $1:',
 'compareselectedversions' => 'Peubandéng curak teupiléh',
 'editundo'                => 'peubateuë',
+'diff-multi'              => '({{PLURAL:$1|Sa|$1}} geunantoë antara hana geupeuleumah.)',
 
 # Search results
 'noexactmatch' => "'''Hana ôn nyang nanjih ''$1''. ''' Droëneuh   jeuët [[:$1|peugèt ôn nyoë]].",
@@ -222,17 +259,26 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'powersearch'  => 'Mita lanjut',
 
 # Preferences page
+'preferences'   => 'Geunalak',
 'mypreferences' => 'Geunalak lôn',
 
+'grouppage-sysop' => '{{ns:project}}:Nyang urôh',
+
+# User rights log
+'rightslog' => 'Log neu’ubah hak peuhah',
+
 # Recent changes
+'nchanges'                       => '$1 {{PLURAL:$1|neu’ubah|neu’ubah}}',
 'recentchanges'                  => 'Neu’ubah paléng barô',
 'recentchanges-feed-description' => 'Peutumèë neu’ubah paléng barô lam wiki bak eumpeuën nyoë.',
 'rcnote'                         => "Di yup nyoë nakeuh {{PLURAL:$1|nakeuh '''1''' neu’ubah paléng barô |nakeuh '''$1''' neu’ubah paléng barô}} lam {{PLURAL:$2|'''1''' uroë|'''$2''' uroë}} nyoë, trôk ‘an $5, $4.",
+'rcnotefrom'                     => 'Di yup nyoë nakeuh neu’ubah yôh <strong>$2</strong> (geupeuleumah trôh ‘an <strong>$1</strong> neu’ubah).',
 'rclistfrom'                     => 'Peuleumah neu’ubah paléng barô yôh $1 kön',
 'rcshowhideminor'                => '$1 andam bacut',
 'rcshowhidebots'                 => '$1 bot',
 'rcshowhideliu'                  => '$1 nyang nguy tamong',
 'rcshowhideanons'                => '$1 nyang nguy hana nan',
+'rcshowhidepatr'                 => '$1 andam teurunda',
 'rcshowhidemine'                 => '$1 atra lôn andam',
 'rclinks'                        => 'Peuleumah $1 neu’ubah paléng barô lam $2 uroë nyoë<br />$3',
 'diff'                           => 'bida',
@@ -250,44 +296,98 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'recentchangeslinked-summary'  => "Ôn husôh nyoë geupeuleumah dapeuta neu’ubah keuneulheuëh bak ôn ôn meuhubông. Ôn nyang neukalön geubri tanda ngön '''citak teubay'''.",
 
 # Upload
-'upload' => 'Peutamong',
+'upload'        => 'Peutamong',
+'uploadbtn'     => 'Peutamong beureukah',
+'uploadlogpage' => 'Log peutamong',
+'uploadedimage' => 'peutamong "[[$1]]"',
+
+# Special:ImageList
+'imagelist' => 'Dapeuta beureukah',
 
 # Image description page
-'filehist'            => 'Riwayat beureukah',
-'filehist-help'       => 'Teugon bak tanggay/watèë keu eu beureukah nyoë ‘oh watèë nyan.',
-'filehist-current'    => 'jinoë hat',
-'filehist-datetime'   => 'Tanggay/Watèë',
-'filehist-user'       => 'Nyang nguy',
-'filehist-dimensions' => 'Dimènsi',
-'filehist-filesize'   => 'Rayek beureukah',
-'filehist-comment'    => 'Tapeusé',
-'imagelinks'          => 'Hubông',
-'linkstoimage'        => 'Ôn di yup nyoë na {{PLURAL:$1|hubông|$1 hubông}} u beureukah nyoë:',
-'sharedupload'        => 'Beureukah nyoë nakeuh teunamong sama-sama nyang mungkén geunguy lé reunancang la’én.',
+'filehist'                  => 'Riwayat beureukah',
+'filehist-help'             => 'Teugon bak tanggay/watèë keu eu beureukah nyoë ‘oh watèë nyan.',
+'filehist-current'          => 'jinoë hat',
+'filehist-datetime'         => 'Tanggay/Watèë',
+'filehist-user'             => 'Nyang nguy',
+'filehist-dimensions'       => 'Dimènsi',
+'filehist-filesize'         => 'Rayek beureukah',
+'filehist-comment'          => 'Tapeusé',
+'imagelinks'                => 'Hubông',
+'linkstoimage'              => 'Ôn di yup nyoë na {{PLURAL:$1|hubông|$1 hubông}} u beureukah nyoë:',
+'nolinkstoimage'            => 'Hana ôn nyang na hubông u beureukah nyoë.',
+'sharedupload'              => 'Beureukah nyoë nakeuh teunamong sama-sama nyang mungkén geunguy lé reunancang la’én.',
+'noimage'                   => 'Hana beureukah ngön nan nyan, Droëneuh jeuët $1.',
+'noimage-linktext'          => 'peutamong beureukah',
+'uploadnewversion-linktext' => 'Peulöt seunalén nyang leubèh barô nibak beureukah nyoë.',
+
+# List redirects
+'listredirects' => 'Dapeuta peuninah',
 
 # Random page
 'randompage' => 'Ôn beurangkari',
 
+# Statistics
+'statistics' => 'Statistik',
+
+'disambiguations' => 'Ôn disambiguasi',
+
+'doubleredirects' => 'Peuninah ganda',
+
+'brokenredirects' => 'Peuninah reulöh',
+
 # Miscellaneous special pages
-'nbytes'   => '$1 {{PLURAL:$1|bit|bit}}',
-'nmembers' => '$1 {{PLURAL:$1|asoë|asoë}}',
-'newpages' => 'Ôn barô',
-'move'     => 'Peupinah',
+'nbytes'         => '$1 {{PLURAL:$1|bit|bit}}',
+'nlinks'         => '$1 {{PLURAL:$1|hubông|hubông}}',
+'nmembers'       => '$1 {{PLURAL:$1|asoë|asoë}}',
+'lonelypages'    => 'Ôn tan hubông balék',
+'prefixindex'    => 'Dapeuta ôn ngön away harah',
+'longpages'      => 'Ôn panyang',
+'deadendpages'   => 'Ôn buntu',
+'protectedpages' => 'Ôn nyang geulindông',
+'listusers'      => 'Dapeuta nyang nguy',
+'newpages'       => 'Ôn barô',
+'ancientpages'   => 'Teunuléh away',
+'move'           => 'Peupinah',
+'movethispage'   => 'Peupinah ôn nyoë',
+
+# Book sources
+'booksources' => 'Nè kitab',
 
 # Special:Log
-'log' => 'Log',
+'specialloguserlabel'  => 'Nyang nguy:',
+'speciallogtitlelabel' => 'Nan:',
+'log'                  => 'Log',
+'all-logs-page'        => 'Ban dum log',
 
 # Special:AllPages
 'allpages'       => 'Dapeuta ôn',
 'alphaindexline' => '$1 u $2',
+'nextpage'       => 'Ôn lheuëh nyan ($1)',
+'prevpage'       => 'Ôn sigohlomjih ($1)',
+'allpagesfrom'   => 'Peuleumah ôn peuphôn nibak:',
 'allarticles'    => 'Dapeuta teunuléh',
 'allpagessubmit' => 'Mita',
+'allpagesprefix' => 'Peuleumah ôn ngön harah phôn:',
+
+# Special:Categories
+'categories' => 'Dapeuta kawan',
+
+# E-mail user
+'emailuser' => 'Surat-e nyang nguy',
 
 # Watchlist
-'watchlist'   => 'Dapeuta keunalön lôn',
-'mywatchlist' => 'Keunalön lôn',
-'watch'       => 'Kalön',
-'unwatch'     => 'Bateuë kalön',
+'watchlist'            => 'Dapeuta keunalön lôn',
+'mywatchlist'          => 'Keunalön lôn',
+'watchlistfor'         => "(keu '''$1''')",
+'watch'                => 'Kalön',
+'watchthispage'        => 'Kalön ôn nyoë',
+'unwatch'              => 'Bateuë kalön',
+'watchlist-details'    => '{{PLURAL:$1|$1 ôn|$1 ôn}} geukalön, hana kira ôn peugah haba.',
+'wlshowlast'           => 'Peuleumah $1 jeum $2 uroë $3 keuneulheuëh',
+'watchlist-hide-bots'  => 'Peusom andam bot',
+'watchlist-hide-own'   => 'Peusom andam lôn',
+'watchlist-hide-minor' => 'Peusom andam bacut',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Kalön...',
@@ -297,6 +397,10 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'deletedarticle' => 'sampôh "[[$1]]"',
 'dellogpage'     => 'Log seunampoh',
 'rollbacklink'   => 'pulang',
+'protectlogpage' => 'Log lindông',
+
+# Undelete
+'undeletebtn' => 'Peuriwang!',
 
 # Namespace form on various pages
 'namespace'      => 'Ruweuëng nan:',
@@ -306,9 +410,13 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 # Contributions
 'contributions' => 'Nyang ka jituléh lé nyang nguy',
 'mycontris'     => 'Nyang lôn peugèt',
+'contribsub2'   => 'Keu $1 ($2)',
 'uctop'         => '(ateuëh)',
 'month'         => 'Yôh buleuën (ngön yôh goh lom nyan)',
 'year'          => 'Yôh thôn (ngön yôh goh lom nyan)',
+
+'sp-contributions-newbies-sub' => 'Keu nyang nguy barô',
+'sp-contributions-blocklog'    => 'Log peutheun',
 
 # What links here
 'whatlinkshere'       => 'Hubông balék',
@@ -322,21 +430,31 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'whatlinkshere-links' => '← hubông',
 
 # Block/unblock
-'ipboptions'   => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite', # display1:time1,display2:time2,...
-'blocklink'    => 'theun',
-'contribslink' => 'nyang lôn peugèt',
-'blocklogpage' => 'Log peutheun',
+'blockip'       => 'Theun nyang nguy',
+'ipboptions'    => '2 jeum:2 hours,1 uroë:1 day,3 uroë:3 days,1 minggu:1 week,2 minggu:2 weeks,1 buleuën:1 month,3 buleuën:3 months,6 buleuën:6 months,1 thôn:1 year,sabé:infinite', # display1:time1,display2:time2,...
+'ipblocklist'   => 'Dapeuta neutheun',
+'blocklink'     => 'theun',
+'contribslink'  => 'nyang lôn peugèt',
+'blocklogpage'  => 'Log peutheun',
+'blocklogentry' => 'theun [[$1]] ngön watèë maté tanggay $2 $3',
 
 # Move page
+'1movedto2'   => 'peupinah [[$1]] u [[$2]]',
 'movelogpage' => 'Log pinah',
 'revertmove'  => 'peuriwang',
 
 # Export
 'export' => 'Èkspor ôn',
 
+# Namespace 8 related
+'allmessages' => 'Peusan sistem',
+
 # Thumbnails
 'thumbnail-more'  => 'Peurayek',
 'thumbnail_error' => 'Salah bak peugöt gamba cut: $1',
+
+# Import log
+'importlogpage' => 'Log impor',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ôn lôn',
@@ -365,11 +483,13 @@ Droëneuh cuman jeuët neu’eu nèjih.',
 'tooltip-n-help'                  => 'Bak mita bantu.',
 'tooltip-t-whatlinkshere'         => 'Dapeuta mandum ôn wiki nyang na hubông u ôn nyoë',
 'tooltip-t-contributions'         => 'Eu dapeuta nyang ka geutuléh lé nyang nguy nyoë',
+'tooltip-t-emailuser'             => 'Kirém surat-e u nyang nguy nyoë',
 'tooltip-t-upload'                => 'Peutamong gamba atawa beureukah alat',
 'tooltip-t-specialpages'          => 'Dapeuta mandum ôn husôh',
 'tooltip-ca-nstab-user'           => 'Eu ôn nyang nguy',
 'tooltip-ca-nstab-project'        => 'Eu ôn buët',
 'tooltip-ca-nstab-image'          => 'Eu ôn beureukah',
+'tooltip-ca-nstab-template'       => 'Eu templat',
 'tooltip-ca-nstab-category'       => 'Eu ôn kawan',
 'tooltip-minoredit'               => 'Bôh tanda keu nyoë sibagoë andam bacut',
 'tooltip-save'                    => 'Keubah neu’ubah Droëneuh',
@@ -380,12 +500,17 @@ Droëneuh cuman jeuët neu’eu nèjih.',
 
 # Browsing diffs
 'previousdiff' => '←Bida away',
+'nextdiff'     => 'Bida lheuëh nyan→',
 
 # Media information
 'file-info-size'       => '($1 × $2 piksel, rayek beureukah: $3, MIME jeunèh: $4)',
 'file-nohires'         => '<small>Hana resolusi nyang leubèh manyang.</small>',
+'svg-long-desc'        => '(Beureukah SVG, nominal $1 x $2 piksel, rayek beureukah: $3)',
 'show-big-image'       => 'Resolusi peunoh',
 'show-big-image-thumb' => '<small>Rayek atra nyoë: $1 x $2 piksel</small>',
+
+# Special:NewImages
+'newimages' => 'Beureukah barô',
 
 # Bad image list
 'bad_image_list' => 'Beuntukjih lagèë di miyub nyoë:
@@ -411,8 +536,14 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 'edit-externally-help' => 'Ngiëng [http://meta.wikimedia.org/wiki/Help:External_editors arah atô] keu beurita leubèh lanjut.',
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'ban dum',
 'namespacesall' => 'ban dum',
 'monthsall'     => 'ban dum',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Peuleumah neu’ubah meuhubông',
+'watchlisttools-edit' => 'Peuleumah ngön andam dapeuta kaeunalön',
+'watchlisttools-raw'  => 'Andam dapeuta keunalön meuntah',
 
 # Special:SpecialPages
 'specialpages' => 'Ôn husôh',

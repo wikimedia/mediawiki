@@ -177,6 +177,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:Nā a‘o ‘ana laulā',
 'edithelp'             => 'Kōkua me ka ho‘ololi ‘ana',
 'edithelppage'         => 'Help:Ho‘ololi',
+'helppage'             => 'Help:Papa kuhikuhi',
 'mainpage'             => 'Ka papa kinohi',
 'mainpage-description' => 'Ka papa kinohi',
 'policy-url'           => 'Project:Palapala',
@@ -248,6 +249,7 @@ He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'logout'                  => "E ha'alele",
 'userlogout'              => "E ha'alele",
 'notloggedin'             => 'Mai ‘e‘e',
+'nologin'                 => 'ʻAʻohe waihona kāu? $1.',
 'nologinlink'             => "Lilo i mea ho'ohana",
 'createaccount'           => 'E hana',
 'gotaccountlink'          => 'E komo',
@@ -417,6 +419,8 @@ hō‘ike ‘ia i lalo:",
 # Special:AllPages
 'allpages'       => 'Nā ‘ao‘ao loa apau',
 'alphaindexline' => '$1 i $2',
+'nextpage'       => 'Mea aʻe ($1)',
+'prevpage'       => 'Mea ma mua aʻe ($1)',
 'allarticles'    => 'Nā mo‘olelo apau loa',
 'allpagesprev'   => 'Mua',
 'allpagesnext'   => 'Hope',
@@ -548,6 +552,14 @@ hō‘ike ‘ia i lalo:",
 
 # action=purge
 'confirm_purge_button' => 'Hiki nō',
+
+# Multipage image navigation
+'imgmultipageprev' => '← mea ma mua aʻe',
+'imgmultipagenext' => 'mea aʻe →',
+
+# Table pager
+'table_pager_next' => 'Mea aʻe',
+'table_pager_prev' => 'Mea ma mua aʻe',
 
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",
