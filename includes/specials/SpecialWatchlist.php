@@ -220,25 +220,21 @@ function wfSpecialWatchlist( $par ) {
 	$numRows = $dbr->numRows( $res );
 
 	/* Start bottom header */
-	$wgOut->addHTML( "<hr />\n" );
 
-	if($days >= 1) {
-		$wgOut->addHTML(
-			wfMsgExt( 'rcnote', 'parseinline',
+	$wlInfo = '';
+	if( $days >= 1 ) {
+		$wlInfo = wfMsgExt( 'rcnote', 'parseinline',
 				$wgLang->formatNum( $numRows ),
 				$wgLang->formatNum( $days ),
 				$wgLang->timeAndDate( wfTimestampNow(), true ),
 				$wgLang->date( wfTimestampNow(), true ),
 				$wgLang->time( wfTimestampNow(), true )
-			) . '<br />'
-		);
-	} elseif($days > 0) {
-		$wgOut->addHtml(
-			wfMsgExt( 'wlnote', 'parseinline',
+			) . '<br />';
+	} elseif( $days > 0 ) {
+		$wlInfo = wfMsgExt( 'wlnote', 'parseinline',
 				$wgLang->formatNum( $numRows ),
 				$wgLang->formatNum( round($days*24) )
-			) . '<br />'
-		);
+			) . '<br />';
 	}
 
 	$cutofflinks = "\n" . wlCutoffLinks( $days, 'Watchlist', $nondefaults ) . "<br />\n";
@@ -277,6 +273,7 @@ function wfSpecialWatchlist( $par ) {
 	$form .= Xml::openElement( 'legend', array( 'id' => 'mw-watchlist-legend' ) );
 	$form .= wfMsgExt( 'watchlist-options', array('escape') );
 	$form .= Xml::closeElement( 'legend' );
+	$form .= $wlInfo;
 	$form .= $cutofflinks;
 	$form .= implode( ' | ', $links );
 	$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
