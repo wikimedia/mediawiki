@@ -12,7 +12,7 @@ plan( 13 );
 require_ok( 'includes/ProfilerStub.php' );
 require_ok( 'includes/GlobalFunctions.php' );
 require_ok( 'includes/Exception.php' );
-require_ok( 'includes/Database.php' );
+require_ok( 'includes/db/Database.php' );
 
 $db = new Database( $wgDBserver, $wgDBuser, $wgDBpassword );
 
