@@ -266,7 +266,7 @@ class Article {
 	 *
 	 * @return int The old id for the request
 	 */
-	function getOldIDFromRequest() {
+	public function getOldIDFromRequest() {
 		global $wgRequest;
 		$this->mRedirectUrl = false;
 		$oldid = $wgRequest->getVal( 'oldid' );
