@@ -797,7 +797,7 @@ class memcached
       {
 	     // temp logging for strange bug
 		 if( !isset($this->_buckets[$hv % $this->_bucketcount]) ) {
-		    wfDebugLog( "memcached", "Invalid bucket key '". $hv % $this->_bucketcount . "' given!" );
+		    wfDebugLog( "memcached", "Invalid bucket hash '$hv' from key '$realkey' given!" );
 		    continue;
 		 }
          $host = $this->_buckets[$hv % $this->_bucketcount];
