@@ -520,6 +520,11 @@ class LoginForm {
 				}
 				$wgUser->setCookies();
 
+				// Reset the throttle
+				$key = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
+				global $wgMemc;
+				$wgMemc->delete( $key );
+
 				if( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
 					/* Replace the language object to provide user interface in correct
 					 * language immediately on this first page load.
