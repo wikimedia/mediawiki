@@ -176,6 +176,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for consistency with other list modules.
 * Added action=watch
 * (bug 15275) apprefix and related parameters ignore spaces at the end
+* action=edit no longer throws unknown error 228  when trying to create an empty
+  section with section=new
 
 === Languages updated in 1.14 ===
 
