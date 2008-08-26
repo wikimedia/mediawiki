@@ -200,7 +200,8 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_CONFLICT_DETECTED:
 				$this->dieUsageMsg(array('editconflict'));
 			#case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
-			#case EditPage::AS_TEXTBOX_EMPTY: Can't happen since we don't do sections
+			case EditPage::AS_TEXTBOX_EMPTY:
+				$this->dieUsageMsg(array('emptynewsection'));
 			case EditPage::AS_END:
 				# This usually means some kind of race condition
 				# or DB weirdness occurred. Throw an unknown error here.
