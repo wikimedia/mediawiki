@@ -1552,7 +1552,8 @@ class Linker {
 		}
 		$query['token'] = $wgUser->editToken( array( $title->getPrefixedText(),
 			$rev->getUserText() ) );
-		return $this->link( $title, wfMsgHtml( 'rollbacklink' ), array(),
+		return $this->link( $title, wfMsgHtml( 'rollbacklink' ),
+			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
 			$query,	array( 'known', 'noclasses' ) );
 	}
 

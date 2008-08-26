@@ -1947,6 +1947,8 @@ $wgMessageStructure = array(
 		'tooltip-watch',
 		'tooltip-recreate',
 		'tooltip-upload',
+		'tooltip-rollback',
+		'tooltip-undo',
 	),
 	'stylesheets' => array(
 		'common.css',
