@@ -1070,8 +1070,7 @@ class EditPage {
 		}
 		if ( $this->isConflict ) {
 			$wgOut->setPageTitle( wfMsg( 'editconflict', $wgTitle->getPrefixedText() ) );
-		}
-		if( $this->section != '' ) {
+		} elseif( $this->section != '' ) {
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
 			$wgOut->setPageTitle( wfMsg( $msg, $wgTitle->getPrefixedText() ) );
 		} else {
