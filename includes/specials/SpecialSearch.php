@@ -31,7 +31,11 @@
 function wfSpecialSearch( $par = '' ) {
 	global $wgRequest, $wgUser;
 
-	$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $par ) );
+	// Strip underscores from title parameter; most of the time we'll want
+	// text form here. But don't strip underscores from actual text params!
+	$titleParam = str_replace( '_', ' ', $par );
+	
+	$search = str_replace( "\n", " ", $wgRequest->getText( 'search', $titleParam ) );
 	$searchPage = new SpecialSearch( $wgRequest, $wgUser );
 	if( $wgRequest->getVal( 'fulltext' ) 
 		|| !is_null( $wgRequest->getVal( 'offset' )) 
