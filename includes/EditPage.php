@@ -1528,19 +1528,6 @@ END
 			$this->showDiff();
 		}
 	}
-	
-	protected function displayPreviewArea( $previewOutput ) {
-		global $wgOut;
-		if ( $this->formtype == 'preview') {
-			$this->showPreview( $previewOutput );
-		} else {
-			$wgOut->addHTML( '<div id="wikiPreview"></div>' );
-		}
-
-		if ( $this->formtype == 'diff') {
-			$this->showDiff();
-		}
-	}
 
 	/**
 	 * Append preview output to $wgOut.
