@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -2108,7 +2108,7 @@ $1',
 'notacceptable'     => '该网站服务器不能提供您的客户端能识别的数据格式。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}的匿名用户',
+'anonymous'        => '{{SITENAME}}的匿名{{PLURAL:$1|用户|用户}}',
 'siteuser'         => '{{SITENAME}}用户$1',
 'lastmodifiedatby' => '此页由$3于$1 $2的最后更改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '在$1的工作基础上。',

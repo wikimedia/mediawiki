@@ -1868,7 +1868,7 @@ $NEWPAGE
 'modern.js'      => '/* 此之JavaScript將載於用時髦面之簿 */',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}無簿者',
+'anonymous'        => '{{SITENAME}}無{{PLURAL:$1|簿|簿}}者',
 'siteuser'         => '{{SITENAME}}有簿者$1',
 'lastmodifiedatby' => '$1$2，$3新易此頁。', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1主撰',

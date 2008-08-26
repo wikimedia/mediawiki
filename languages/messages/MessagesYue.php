@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -2145,7 +2145,7 @@ $1',
 'notacceptable'     => '呢個 wiki 伺服器唔能夠畀一個可以讀嘅資料畀個客。',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}嘅匿名用戶',
+'anonymous'        => '{{SITENAME}}嘅匿名{{PLURAL:$1|用戶|用戶}}',
 'siteuser'         => '{{SITENAME}}嘅用戶$1',
 'lastmodifiedatby' => '呢一頁最後響 $1 $2 畀 $3 修改。', # $1 date, $2 time, $3 user
 'othercontribs'    => '以$1嘅作品為基礎。',
