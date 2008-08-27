@@ -81,7 +81,7 @@ function wfSpecialWatchlist( $par ) {
 	$invert = $wgRequest->getIntOrNull( 'invert' );
 	if( !is_null( $nameSpace ) ) {
 		$nameSpace = intval( $nameSpace );
-		if( $invert && $nameSpace != 'all' )
+		if( $invert && $nameSpace !== 'all' )
 			$nameSpaceClause = " AND rc_namespace != $nameSpace";
 		else
 			$nameSpaceClause = " AND rc_namespace = $nameSpace";

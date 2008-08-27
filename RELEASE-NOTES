@@ -151,6 +151,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15303) Title conversion for templates wasn't working in some cases.
 * (bug 15264) Underscores in Special:Search/Foo_bar parameters were taken
   literally; now converting them to spaces per expectation.
+* (bug 15342) "Invert" checkbox now works correctly when selecting main
+  namespace in Special:Watchlist
 
 
 === API changes in 1.14 ===
