@@ -96,6 +96,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   instead of a hardcoded colon.
 * Allow <gallery> to accept image names without an Image: prefix
 * Add tooltips to rollback and undo links
+* Backend upload code has been removed from SpecialUpload.php. This may cause 
+  backwards incompatibility with upload extensions.
+
 
 === Bug fixes in 1.14 ===
 
