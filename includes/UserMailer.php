@@ -98,9 +98,10 @@ class UserMailer {
 	 * @param $subject String: email's subject.
 	 * @param $body String: email's text.
 	 * @param $replyto String: optional reply-to email (default: null).
+	 * @param $contentType String: optional custom Content-Type
 	 * @return mixed True on success, a WikiError object on failure.
 	 */
-	static function send( $to, $from, $subject, $body, $replyto=null ) {
+	static function send( $to, $from, $subject, $body, $replyto=null, $contentType=null ) {
 		global $wgSMTP, $wgOutputEncoding, $wgErrorString, $wgEnotifImpersonal;
 		global $wgEnotifMaxRecips;
 
@@ -139,7 +140,12 @@ class UserMailer {
 			$headers['Subject'] = wfQuotedPrintable( $subject );
 			$headers['Date'] = date( 'r' );
 			$headers['MIME-Version'] = '1.0';
-			$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
+			$headers['Content-type'] = (is_null($contentType) ?
+					'text/plain; charset='.$wgOutputEncoding : $contentType);
+			if(is_null($contentType))
+				$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
+			else
+				$headers['Content-type'] = $contentType;
 			$headers['Content-transfer-encoding'] = '8bit';
 			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>'; // FIXME
 			$headers['X-Mailer'] = 'MediaWiki mailer';
@@ -170,9 +176,11 @@ class UserMailer {
 			} else {
 				$endl = "\n";
 			}
+			$ctype = (is_null($contentType) ? 
+					'text/plain; charset='.$wgOutputEncoding : $contentType);
 			$headers =
 				"MIME-Version: 1.0$endl" .
-				"Content-type: text/plain; charset={$wgOutputEncoding}$endl" .
+				"Content-type: $ctype$endl" .
 				"Content-Transfer-Encoding: 8bit$endl" .
 				"X-Mailer: MediaWiki mailer$endl".
 				'From: ' . $from->toString();
