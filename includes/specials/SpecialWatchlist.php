@@ -269,10 +269,6 @@ function wfSpecialWatchlist( $par ) {
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	# Namespace filter and put the whole form together.
-	$form  = Xml::openElement( 'fieldset', array( 'id' => 'mw-watchlist-options' ) );
-	$form .= Xml::openElement( 'legend', array( 'id' => 'mw-watchlist-legend' ) );
-	$form .= wfMsgExt( 'watchlist-options', array('escape') );
-	$form .= Xml::closeElement( 'legend' );
 	$form .= $wlInfo;
 	$form .= $cutofflinks;
 	$form .= implode( ' | ', $links );
@@ -294,7 +290,6 @@ function wfSpecialWatchlist( $par ) {
 	if( $hideOwn )
 		$form .= Xml::hidden( 'hideOwn', 1 );
 	$form .= Xml::closeElement( 'form' );
-	$form .= Xml::closeElement( 'fieldset' );
 	$wgOut->addHtml( $form );
 
 	# If there's nothing to show, stop here

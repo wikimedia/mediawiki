@@ -2164,7 +2164,6 @@ Future changes to this page and its associated talk page will be listed there, a
 'watchlist-hide-anons' => 'Hide anonymous edits',
 'watchlist-show-liu'   => 'Show logged-in user edits',
 'watchlist-hide-liu'   => 'Hide logged-in user edits',
-'watchlist-options'    => 'Watchlist options',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watching...',
