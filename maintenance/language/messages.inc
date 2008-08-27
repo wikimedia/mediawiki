@@ -1437,6 +1437,7 @@ $wgMessageStructure = array(
 		'watchlist-hide-anons',
 		'watchlist-show-liu',
 		'watchlist-hide-liu',
+		'watchlist-options',
 	),
 	'watching' => array(
 		'watching',
