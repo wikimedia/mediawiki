@@ -165,7 +165,7 @@ $messages = array(
 
 # Edit pages
 'subject'            => 'Dungu/üy',
-'minoredit'          => 'Tüfachi ta kiñe menor wirin',
+'minoredit'          => 'Tüfachi ta kiñe pichi wirin',
 'watchthis'          => 'Llaytun tüfachi pakina',
 'preview'            => 'Pen chum müley',
 'showpreview'        => 'Pen chum müley',
@@ -193,7 +193,7 @@ $messages = array(
 # Diffs
 'lineno'       => 'Wirin $1:',
 'editundo'     => 'wüñoeltun',
-'diff-movedto' => 'Nengümün $1',
+'diff-movedto' => 'Nengümülu $1 püle',
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results
@@ -226,7 +226,7 @@ $messages = array(
 'right-move'          => 'Nengümün pakina',
 'right-delete'        => 'Ñamümün pakina',
 'right-browsearchive' => 'kintun pakina ñamümüngelu',
-'right-undelete'      => 'Deumalay Ñamümün kiñe pakina',
+'right-undelete'      => 'Wüñoñamümün kiñe pakina',
 
 # User rights log
 'rightsnone' => 'chemnorume',
@@ -240,7 +240,7 @@ $messages = array(
 'newpageletter'   => 'W',
 
 # Upload
-'uploadnologin'   => 'Eymi Konülay',
+'uploadnologin'   => 'Petu konlaymi',
 'watchthisupload' => 'Llaytun tüfachi pakina',
 
 'nolicense' => 'Chemnorume dullinnongey',
@@ -261,7 +261,7 @@ $messages = array(
 'filedelete-success' => "'''$1''' ñamümngey.",
 
 # Unused templates
-'unusedtemplateswlh' => 'Fill link',
+'unusedtemplateswlh' => "Kake ''enlase''",
 
 'brokenredirects-edit'   => '(wirin)',
 'brokenredirects-delete' => '(ñamümün)',
@@ -269,7 +269,7 @@ $messages = array(
 'withoutinterwiki-submit' => 'Pengelün',
 
 # Miscellaneous special pages
-'nviews'       => '$1 {{PLURAL:$1|pey|pey}}',
+'nviews'       => '$1 {{PLURAL:$1|pen|pen}}',
 'newpages'     => 'We pakina',
 'move'         => 'Wiñamün',
 'movethispage' => 'Nengümün tüfachi pakina',
@@ -303,7 +303,7 @@ $messages = array(
 'notanarticle'    => 'Ngelay kiñe pakina',
 
 'enotif_newpagetext'           => 'Tüfachi ta we pakina',
-'enotif_impersonal_salutation' => 'Lludüchi {{SITENAME}}',
+'enotif_impersonal_salutation' => '{{SITENAME}} lludüchi',
 'created'                      => 'Llituy',
 
 # Delete/protect/revert
@@ -352,7 +352,7 @@ $messages = array(
 'movepagebtn'             => 'Nengümün pakina',
 'movedto'                 => 'Nengümün',
 '1movedto2'               => '[[$1]] wiñamngey [[$2]] püle',
-'delete_and_move'         => 'Ñamümün y nengümün',
+'delete_and_move'         => 'Ñamümün ka nengümün',
 'delete_and_move_confirm' => 'May, ñamümün pakina',
 
 # Namespace 8 related
@@ -365,9 +365,9 @@ $messages = array(
 'tooltip-ca-delete'     => 'Ñamümün tüfachi pakina',
 'tooltip-ca-move'       => 'Nengümün tüfachi pakina',
 'tooltip-search'        => 'Kintun tüfachi wiki mew',
-'tooltip-p-logo'        => 'Wellü pakina',
-'tooltip-ca-nstab-user' => 'Pen pakina Lludüchi',
-'tooltip-ca-nstab-help' => 'Pen pakina kellu',
+'tooltip-p-logo'        => 'Wüne pakina',
+'tooltip-ca-nstab-user' => 'Pen lludüchi pakina',
+'tooltip-ca-nstab-help' => 'Pen kellupakina',
 
 # Attribution
 'others' => 'fill',

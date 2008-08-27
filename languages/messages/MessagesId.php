@@ -2215,6 +2215,8 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'tooltip-watch'                   => 'Tambahkan halaman ini ke daftar pantauan Anda',
 'tooltip-recreate'                => 'Buat ulang halaman walaupun sebenarnya telah dihapus',
 'tooltip-upload'                  => 'Mulai pemuatan',
+'tooltip-rollback'                => 'Mengembalikan suntingan-suntingan di halaman ini ke kontributor terakhir dalam satu kali klik.',
+'tooltip-undo'                    => 'Mengembalikan revisi ini dan membuka kotak penyuntingan dengan mode pratayang. Alasan dapat ditambahkan di kotak ringkasan.',
 
 # Stylesheets
 'common.css'   => '/* CSS yang ada di sini akan diterapkan untuk semua kulit. */',

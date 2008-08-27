@@ -1198,9 +1198,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-comment'          => '내용',
 'imagelinks'                => '그림 링크',
 'linkstoimage'              => '다음 $1개의 문서가 이 그림을 사용하고 있습니다:',
-'linkstoimage-more'         => '$1개 문서 이상이 이 파일을 가리키고 있습니다.
+'linkstoimage-more'         => '$1개 이상의 문서들이 이 파일을 가리키고 있습니다.
 다음 목록은 이 파일을 가리키는 처음 $1개 문서만 보여주고 있습니다. 
-이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|이곳]]을 참고해 주십시오.',
+이 파일을 가리키는 모든 문서를 보려면 [[Special:WhatLinksHere/$2|여기]]를 참고해 주십시오.',
 'nolinkstoimage'            => '이 그림을 사용하는 문서가 없습니다.',
 'morelinkstoimage'          => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'duplicatesoffile'          => '다음의 $1개의 파일이 중복됩니다:',

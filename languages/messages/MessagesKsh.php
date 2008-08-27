@@ -872,8 +872,10 @@ fottjeschmesse hät?',
 'page_last'           => 'Engk',
 'histlegend'          => 'Hee kanns De Versione för et Verjliche ussöke: Dun met dä Knöpp die zweij markiere, 
 zwesche dänne De de Ungerscheed jezeich krije wells, dann dröck „<b style="padding:2px; background-color:#ddd; 
-color:black">Dun de markeete Versione verjliche</b>“ bei Dinge Taste, oder klick op ein vun dä Knöpp üvver oder 
-unger de Liss.
+color:black">{{int:compareselectedversions}}</b>“ udder „<b style="padding:2px; background-color:#ddd; 
+color:black">{{int:visualcomparison}}</b>“ udder „<b style="padding:2px; background-color:#ddd; 
+color:black">{{int:wikicodecomparison}}</b>“ met Dinge Taste, oder klick op ein vun dä Knöpp üvver oder unger de Liss.
+<br />
 Erklärung: (neu) = Verjliche met de neuste Version, (letz) = Verjliche met de Version ein doför, <b>M</b> = en 
 kleine <b>M</b>ini-Änderung.',
 'history-search'      => 'Us de Verjangeheit ußsöke',
@@ -973,11 +975,12 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'difference'              => '(Ungerscheed zwesche de Versione)',
 'lineno'                  => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',
-'wikicodecomparison'      => 'Wikitex-Verjleisch',
+'visualcomparison'        => 'Änderonge als Sigge ungernander aanzeije',
+'wikicodecomparison'      => 'Wikitäxte nevvenanderlääje',
 'editundo'                => 'zeröck nämme',
 'diff-multi'              => '(Mer don hee {{PLURAL:$1|eij Version|$1 Versione|keij Version}} dozwesche beim Verjliesche översprenge)',
 'diff-movedto'            => 'noh $1 jebraat',
-'diff-styleadded'         => 'Ene Stil för_t CSS sobei jedonn',
+'diff-styleadded'         => 'Ene Stil för_t CSS dobei jedonn',
 'diff-added'              => 'dobei jedonn',
 'diff-changedto'          => 'ömjeändert noh',
 'diff-movedoutof'         => 'fun $1 noh he jebraat',
@@ -1014,15 +1017,22 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'diff-dl'                 => "en '''Leß met su jenannte Definizjuhne'''",
 'diff-dt'                 => "ene '''Jäjestand uß ene su jenannte Definizjuhn'''",
 'diff-dd'                 => "en '''su jenannte Definizjuhn'''",
+'diff-input'              => "e '''Feld för jet Enzejävve'''",
 'diff-form'               => "e '''Fommulaa'''",
 'diff-img'                => "e '''Beld'''",
 'diff-span'               => "e '''inline-Element'''",
 'diff-a'                  => "ene '''Lengk'''",
 'diff-i'                  => "'''scheive Schreff'''",
 'diff-b'                  => "'''fätte Schreff'''",
+'diff-strong'             => "'''kräfteje Schreff'''",
+'diff-em'                 => "'''fürjehovve Schreff'''",
 'diff-font'               => "en '''Schrefftüpe'''",
 'diff-big'                => "'''jruße Schreff'''",
 'diff-del'                => "'''Fottjelohße'''",
+'diff-tt'                 => "'''Schreff met einheitlesch ejaale Wigde fun de Boochshtave'''",
+'diff-sub'                => "'''deefjestallte Schreff'''",
+'diff-sup'                => "'''huhjestallte Schreff'''",
+'diff-strike'             => "'''dorschjeshtreche Schreff'''",
 
 # Search results
 'searchresults'             => 'Wat beim Söke eruskom',
@@ -1764,6 +1774,7 @@ Schirm häs.",
 'watchlist-hide-anons' => 'de namelose Metmaacher ier Änderunge fottlohße',
 'watchlist-show-liu'   => 'de enjelogte Metmaacher ier Änderunge zeije',
 'watchlist-hide-liu'   => 'de enjelogte Metmaacher ier Änderunge fottlohße',
+'watchlist-options'    => 'Eijeschaffte fun de Oppassless',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Drop oppasse…',
@@ -2382,6 +2393,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← De Ungerscheede dovör zeije',
 'nextdiff'     => 'De Ungerscheede donoh zeije →',
+
+# Visual comparison
+'visual-comparison' => 'De Ungerscheede',
 
 # Media information
 'mediawarning'         => "<strong>Opjepass</strong>: En dä Datei künnt en <b>jefährlich Projrammstöck</b> dren stecke. Wa'mer et laufe looße dät, do künnt dä Sörver met för de Cracker opjemaht wääde. <hr />",

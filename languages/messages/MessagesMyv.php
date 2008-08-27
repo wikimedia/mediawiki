@@ -453,7 +453,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'noarticletext'                    => "Неень шкасто те лопасонть сёрмадовкс арась. Мусак [[Special:Search/{{PAGENAME}}|ледстнеманть те лемензэ]] лия сёрмадовкстнэсэ али '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} теемс лопа истямо лем марто]'''.",
 'updated'                          => '(Одолгавтозь)',
 'note'                             => '<strong>Явт мель:</strong>',
-'previewnote'                      => '<strong>Те - ансяк икелев ваномась; полавтоматне зярс апак вансто!</strong>',
+'previewnote'                      => '<strong>Те - ансяк васнянь невтевкс; полавтоматне зярс апак вансто!</strong>',
 'editing'                          => 'Витнят-петнят $1',
 'editingsection'                   => 'Витнеме-петнеме $1 (секциянть)',
 'editingcomment'                   => 'Витнят-петнят $1 (мельть-арьсемат)',
@@ -928,17 +928,18 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'log-search-submit'    => 'Адя',
 
 # Special:AllPages
-'allpages'       => 'Весе лопат',
-'alphaindexline' => '$1-сто  $2-нтень',
-'nextpage'       => 'Сы лопа ($1)',
-'prevpage'       => 'Седе икелень лопа ($1)',
-'allpagesfrom'   => 'Невтемс лопатнень тестэ ушодозь:',
-'allarticles'    => 'Весе сёрмадовкст',
-'allinnamespace' => 'Весе лопат ($1 сёрмадовксонть лемезе)',
-'allpagesprev'   => 'Икеле',
-'allpagesnext'   => 'Сыця',
-'allpagessubmit' => 'Молемс',
-'allpagesprefix' => 'Невтевкс лопась полаткс марто:',
+'allpages'        => 'Весе лопат',
+'alphaindexline'  => '$1-сто  $2-нтень',
+'nextpage'        => 'Сы лопа ($1)',
+'prevpage'        => 'Седе икелень лопа ($1)',
+'allpagesfrom'    => 'Невтемс лопатнень тестэ ушодозь:',
+'allarticles'     => 'Весе сёрмадовкст',
+'allinnamespace'  => 'Весе лопат ($1 сёрмадовксонть лемезе)',
+'allpagesprev'    => 'Икеле',
+'allpagesnext'    => 'Сыця',
+'allpagessubmit'  => 'Молемс',
+'allpagesprefix'  => 'Невтевкс лопась полаткс марто:',
+'allpages-bad-ns' => '{{SITENAME}} сайтсэнть арась лем потмо "$1".',
 
 # Special:Categories
 'categories'                    => 'Категорият',
@@ -1313,7 +1314,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'file-nohires'         => '<small>Арась версия покш разрешения марто.</small>',
 'svg-long-desc'        => '(SVG файла, $1 × $2 пиксельть, файланть покшолмазо: $3)',
 'show-big-image'       => 'Пешксе теевксесь',
-'show-big-image-thumb' => '<small>Покшолма икелев ваноманть: $1 × $2 пиксэлт</small>',
+'show-big-image-thumb' => '<small>Васнянь невтевксэнть покшолмазо: $1 × $2 пиксэлт</small>',
 
 # Special:NewImages
 'newimages'    => 'Од файлатьнень галлереясь',

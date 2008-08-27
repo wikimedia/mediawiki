@@ -620,7 +620,10 @@ Du toukwäst uus hiermäd, dät du dän Text <strong>sälwen ferfoated</strong> 
 Jie fersicherje hiermäd uk, dät Jie dän Biedraach sälwen ferfoated hääbe blw. dät hie neen froamd Gjucht ferlätset (sjuch fääre: $1).',
 'longpagewarning'                  => '<strong>WOARSCHAUENGE: Disse Siede is $1kb groot; eenige Browsere kuuden Probleme hääbe, Sieden tou beoarbaidjen, do der gratter as 32kb sunt. Uurlääse Jou jädden, of ne Oudeelenge fon do Sieden in litjere Ousnitte muugelk is.</strong>',
 'longpageerror'                    => '<strong>FAILER: Die Text, dän du tou spiekerjen fersäkst, is $1 KB groot. Dät is gratter as dät ferlööwede Maximum fon $2 KB – Spiekerenge nit muugelk.</strong>',
-'readonlywarning'                  => '<strong>WOARSCHAUENGE: Ju Doatenboank wuude foar Wartengsoarbaiden speerd, so dät dien Annerengen apstuuns nit spiekerd wäide konnen. Sicherje dän Text jädden lokoal ap dien Computer un fersäik tou n leeteren Tiedpunkt, do Annerengen in ju Wikipedia tou uurdreegen.</strong>',
+'readonlywarning'                  => '<strong>WOARSCHAUENGE: Ju Doatenboank wuude foar Wartengsoarbaiden speerd, so dät dien Annerengen apstuuns nit spiekerd wäide konnen. 
+Sicherje dän Text jädden lokoal ap dien Computer un fersäik tou n leeteren Tiedpunkt, do Annerengen in ju Wikipedia tou uurdreegen.</strong>
+
+Gruund foar ju Speere: $1',
 'protectedpagewarning'             => '<strong>WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administrationsgjuchte beoarbeded wäide kon.</strong>',
 'semiprotectedpagewarning'         => "'''Oachtenge:''' Disse Siede is ousleeten un kon bloot fon anmäldede Besäikere beoarbaided wäide.",
 'cascadeprotectedwarning'          => "'''WOARSCHAUENGE: Disse Siede wuude speerd, so dät ju bloot truch Benutsere mäd Administratorgjuchte beoarbaided wäide kon. Ju is in do {{PLURAL:$1|foulgjende Siede|foulgjende Sieden}} ienbuunen, do der middels ju Kaskadenspeeroption schutsed {{PLURAL:$1|is|sunt}}:'''",
@@ -797,6 +800,45 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 'diff-with-final'         => '&#32;un $1 $2',
 'diff-width'              => 'Bratte',
 'diff-height'             => 'Höchte',
+'diff-p'                  => "een '''Stuk'''",
+'diff-blockquote'         => "aan '''Blok'''",
+'diff-h1'                 => "ne '''Uurschrift (1. Oardnenge)'''",
+'diff-h2'                 => "ne '''Uurschrift (2. Oardnenge)'''",
+'diff-h3'                 => "ne '''Uurschrift (3. Oardnenge)'''",
+'diff-h4'                 => "ne '''Uurschrift (4. Oardnenge)'''",
+'diff-h5'                 => "ne '''Uurschrift (5. Oardnenge)'''",
+'diff-pre'                => "aan '''formattierden Blok'''",
+'diff-div'                => "een '''Blokelement'''",
+'diff-ul'                 => "ne '''Lieste'''",
+'diff-ol'                 => "ne '''numerierde Lieste'''",
+'diff-li'                 => "aan '''Liesteniendraach'''",
+'diff-table'              => "ne '''Tabelle'''",
+'diff-tbody'              => "n '''Tabelleninhoold'''",
+'diff-tr'                 => "ne '''Riege'''",
+'diff-td'                 => "ne '''Zelle'''",
+'diff-th'                 => "ne '''Spaltenuurschrift'''",
+'diff-br'                 => "n '''Riegenuumbreek'''",
+'diff-hr'                 => "ne '''horizontoale Lienje'''",
+'diff-code'               => "n '''Beräk Computercode'''",
+'diff-dl'                 => "ne '''Definitionslieste'''",
+'diff-dt'                 => "n '''Definitionsterm'''",
+'diff-dd'                 => "ne '''Definition'''",
+'diff-input'              => "ne '''Iengoawe'''",
+'diff-form'               => "n '''Formular'''",
+'diff-img'                => "ne '''Bielde'''",
+'diff-span'               => "n '''Span'''",
+'diff-a'                  => "n '''Link'''",
+'diff-i'                  => "'''scheeuw'''",
+'diff-b'                  => "'''fat'''",
+'diff-strong'             => "'''mäd Ätterdruk'''",
+'diff-em'                 => "'''betoond'''",
+'diff-font'               => "'''Schriftoard'''",
+'diff-big'                => "'''groot'''",
+'diff-del'                => "'''läsked'''",
+'diff-tt'                 => "'''fääste Wiete'''",
+'diff-sub'                => "'''djoopstoald'''",
+'diff-sup'                => "'''hoochstoald'''",
+'diff-strike'             => "'''truchstrieked'''",
 
 # Search results
 'searchresults'             => 'Säikresultoate',
@@ -832,7 +874,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'searchall'                 => 'aal',
 'showingresults'            => "Hier {{PLURAL:$1|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'showingresultsnum'         => "Hier {{PLURAL:$3|is '''1''' Resultoat|sunt '''$3''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
-'showingresultstotal'       => "Hier {{PLURAL:$3|foulget Säikresultoat '''$1''' fon '''$3:'''|foulgje do Säikresultoate '''$1–$2''' fon '''$3:'''}}",
+'showingresultstotal'       => "Hier {{PLURAL:$4|foulget Säikresultoat '''$1''' fon '''$3:'''|foulgje do Säikresultoate '''$1–$2''' fon '''$3:'''}}",
 'nonefound'                 => "'''Waiwiesenge:''' Der wäide standoardmäitich man oankelde Noomensruume truchsoacht. Sät ''all:'' foar din Säikbegrip, uum aal Sieden (bietou Diskussionssieden, Foarloagen usw.) tou truchsäiken of sield dän Noome fon dän truchtousäikende Noomensruum.",
 'powersearch'               => 'Fääre säike',
 'powersearch-legend'        => 'Fääre säike',
@@ -1481,6 +1523,7 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'watchlist-hide-anons' => 'Anonyme Benutsere uutbländje',
 'watchlist-show-liu'   => 'Anmäldede Benutsere ienbländje',
 'watchlist-hide-liu'   => 'Anmäldede Benutsere uutbländje',
+'watchlist-options'    => 'Anwiesoptione',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Beooboachtje …',
@@ -2001,7 +2044,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'notacceptable'     => 'Die Wiki-Server kon do Doaten foar dien Uutgoawe-Reewe nit apberaitje.',
 
 # Attribution
-'anonymous'        => 'Anonyme(n) Benutser ap {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonymen Benutser|Anonyme Benutsere}} ap {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutser $1',
 'lastmodifiedatby' => 'Disse Siede wuude toulääst annerd uum $2, $1 fon $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basierd ap ju Oarbaid fon $1.',
@@ -2066,6 +2109,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Toun foarigen Versionsunnerscheed',
 'nextdiff'     => 'Toun naisten Versionsunnerscheed →',
+
+# Visual comparison
+'visual-comparison' => 'Visuellen Fergliek',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Disse Oard fon Doatäi kon n schoadelken Programcode änthoolde. Truch dät Deelleeden of Eepenjen fon dissen Doatäi kon dän Computer Schoade toubroacht wäide. Al dät Anklikken fon dän Link kon deertou fiere, dät die Browser ju Doatäi eepen moaket un uunbekoande Programcode tou Uutfierenge kumt. Do Bedrieuwere fon ju Wikipedia uurnieme neen Feroantwoudenge foar dän Inhoold fon disse Doatäi! Schuul disse Doatäi wuddelk schoadelke Programcode änthoolde, schuul n Administrator informierd wäide.<hr />",

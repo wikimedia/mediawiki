@@ -2152,7 +2152,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'notacceptable'     => 'Máy chủ không thể cho ra định dạng dữ liệu tương thích với phần mềm của bạn.',
 
 # Attribution
-'anonymous'        => 'Thành viên vô danh của {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
 'siteuser'         => 'Thành viên $1 của {{SITENAME}}',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Dựa trên công trình của $1.',

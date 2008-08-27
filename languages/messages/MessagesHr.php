@@ -1032,6 +1032,8 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'difference'              => '(Usporedba među inačicama)',
 'lineno'                  => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
+'visualcomparison'        => 'Vidna usporedba',
+'wikicodecomparison'      => 'Wikitekst usporedba',
 'editundo'                => 'ukloni ovu izmjenu',
 'diff-multi'              => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
 
@@ -1699,16 +1701,17 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
 'wlnote'               => "Ovdje {{PLURAL:$1|je posljednja $1 promjena|su posljednje $1 promjene|je posljednjih $1 promjena}} u {{PLURAL:$2|posljednjem '''$2''' satu|posljednja '''$2''' sata|posljednjih '''$2''' sati}}.",
 'wlshowlast'           => 'Pokaži zadnjih $1 sati $2 dana $3',
-'watchlist-show-bots'  => 'prikaži botovske promjene',
-'watchlist-hide-bots'  => 'sakrij botovske promjene',
-'watchlist-show-own'   => 'prikaži moje promjene',
-'watchlist-hide-own'   => 'sakrij moje promjene',
-'watchlist-show-minor' => 'prikaži manje promjene',
-'watchlist-hide-minor' => 'sakrij manje promjene',
+'watchlist-show-bots'  => 'Prikaži botovske promjene',
+'watchlist-hide-bots'  => 'Sakrij botovske promjene',
+'watchlist-show-own'   => 'Prikaži moje promjene',
+'watchlist-hide-own'   => 'Sakrij moje promjene',
+'watchlist-show-minor' => 'Prikaži manje promjene',
+'watchlist-hide-minor' => 'Sakrij manje promjene',
 'watchlist-show-anons' => 'Pokaži uređivanja anonimnih',
 'watchlist-hide-anons' => 'Sakrij uređivanja anonimnih',
 'watchlist-show-liu'   => 'Pokaži uređivanja prijavljenih',
 'watchlist-hide-liu'   => 'Sakrij uređivanja prijavljenih',
+'watchlist-options'    => 'Izbornik popisa praćenja',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pratim...',
@@ -2307,6 +2310,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← Usporedba s prethodnom',
 'nextdiff'     => 'Usporedba sa sljedećom →',
+
+# Visual comparison
+'visual-comparison' => 'Vidna usporedba',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ova datoteka možda sadrži zlonamjerni program čije bi izvršavanje moglo ugroziti vaš računalni sustav.

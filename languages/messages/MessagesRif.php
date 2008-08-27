@@ -80,7 +80,7 @@ $messages = array(
 'searcharticle'    => 'Raḥ',
 'history'          => 'Amzruy n Tasna',
 'history_short'    => 'Amzruy',
-'printableversion' => 'Talqemt n usiggez',
+'printableversion' => 'Tunɣilt n usiggez',
 'permalink'        => 'Tazdayt war tbeddil',
 'edit'             => 'Ẓreg',
 'editthispage'     => 'Ẓreg Tasna ya',
@@ -111,7 +111,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:Asmigl n umatu',
 'edithelp'             => 'Tallalt deg uẓareg',
 'edithelppage'         => 'Help:Aẓareg',
-'helppage'             => 'Help:igburen(Contents)',
+'helppage'             => 'Help:Contents',
 'mainpage'             => 'Tasna Tamzwarut',
 'mainpage-description' => 'Tasna Tamzwarut',
 'portal'               => 'Tawwart n timetti(Community)',
@@ -126,7 +126,7 @@ $messages = array(
 'editsection'         => 'Ẓreg',
 'editold'             => 'ẓreg',
 'editsectionhint'     => 'Ẓreg tigezmi: $1',
-'toc'                 => 'Tingawin',
+'toc'                 => 'Contents',
 'showtoc'             => 'semmel',
 'hidetoc'             => 'snuffar',
 'site-rss-feed'       => 'Asudem n RSS n $1',
@@ -135,7 +135,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'Tasna n User',
-'nstab-project'  => 'Tasebtert n usenfar',
+'nstab-project'  => 'Tasna usenfar',
 'nstab-image'    => 'Afaylu',
 'nstab-template' => 'Tamudemt',
 'nstab-category' => 'Taggayt(category)',
@@ -150,7 +150,7 @@ teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 
 # Login and logout pages
 'yourname'                => 'isem useqdac:',
-'yourpassword'            => 'Tawalt uεeddu:',
+'yourpassword'            => 'Taguri n wadaf:',
 'remembermypassword'      => 'ejj (login) inu deg uselkim a',
 'login'                   => 'Adeff',
 'nav-login-createaccount' => 'Adeff / egg amiḍan',
@@ -173,27 +173,27 @@ xemm tirra , niɣ egg amiḍan d amaynu.',
 'nosuchusershort'         => 'War illi ca n useqdac s isem a "<nowiki>$1</nowiki>".
 xemm tirra.',
 'nouserspecified'         => 'ixessa ad tuced isem n useqdac.',
-'wrongpassword'           => 'Tawalt n uεddu war tceni ca. Sideff tenni nican.',
-'wrongpasswordempty'      => 'Tawalt n uεddu i tucid texwa. Sideff tenni nican.',
-'passwordtooshort'        => 'Tawalt n uεeddu inec war d tusi ca.
+'wrongpassword'           => 'Taguri n wadaf war tceni ca. Sideff tenni nican.',
+'wrongpasswordempty'      => 'Taguri n wadaf i tucid texwa. Sideff tenni nican.',
+'passwordtooshort'        => 'Taguri n wadaf inec war d tusi ca.
 itxessat ad di-s tili {{PLURAL:$1|1 usekkil|$1 isekkilen}} u ad tili temṣebda x isem n useqdac inec.',
-'mailmypassword'          => 'Sekk tawalt n uεddu di E-mail',
-'passwordremindertitle'   => 'Tawalt n εuddu tamaynut n ruxa waha {{SITENAME}}',
+'mailmypassword'          => 'Sekk Taguri n wadaf di E-mail',
+'passwordremindertitle'   => 'Taguri n wadaf tamaynut n ruxa waha {{SITENAME}}',
 'passwordremindertext'    => 'Ca n ijj (teqqad ad yili d cekk, zi tansa IP a $1)
-inna neɣ ada-s-ad nesekk tawalt n uɛeddu d tamaynut i {{SITENAME}} ($4).
-tawalt n uɛeddu n useqdac "$2" ruxa d "$3".
+inna neɣ ada-s-ad nesekk Taguri n wadaf tamaynut i {{SITENAME}} ($4).
+Taguri n wadaf n useqdac "$2" ruxa d "$3".
 ixessa ad tadeffed bac ad tbeddeled ruxa.
 
-mala war illi d cekk ur tawi x manaya , qim sexdam tawalt n uɛeddu inecc taqburt.',
+mala war illi d cekk ur tawi x manaya , qim sexdam Taguri n wadaf inecc taqburt.',
 'noemail'                 => 'War illi ca n e-mail ɣar useqdac a "$1".',
-'passwordsent'            => 'Tawalt n εuddu tamaynut twassekked i e-mail  "$1".
-adeff-d xmi ad-tetfed.',
+'passwordsent'            => 'Taguri n wadaf tamaynut twassekked i e-mail  "$1".
+adeff-d xmi ɣa teṭfed.',
 'eauthentsent'            => 'ijj n e-mail itwasekked ɣar e-mail nni.
 ẓẓat ma ca n e-mail nniḍen ma ad itwasekk ɣar umiḍan , ixessa ad tegged manayenni di e-mail, bac ad nessen ila qa amiḍan a inec.',
 
 # Edit page toolbar
-'bold_sample'     => 'Tirra d-tiqebbuzin',
-'bold_tip'        => 'Tirra d-tiqebbuzin',
+'bold_sample'     => 'Tirra tizurarin',
+'bold_tip'        => 'Tirra tizurarin',
 'italic_sample'   => 'Tirra titalyanin',
 'italic_tip'      => 'Tirra titalyanin',
 'link_sample'     => 'isem n tzedayt',
@@ -252,7 +252,7 @@ mala war texsed tirra inacc ad twaẓregent u ad twamsebḍant, iwa ur ten-tag c
 'longpagewarning'        => '<strong>WARNING: Tasna ya dag-s $1 kilobyte ;
 ca n imsuṭṭuyen(browsers) war zemren ca ad ẓregen tasniwin dag-sent 32kb niɣ ktar.
 ixessa ad ten tebḍid ɣar tigezmin(sections) d timeẓyanin.</strong>',
-'templatesused'          => 'Timudmiwin itwaggen di tsebtert a:',
+'templatesused'          => 'Timudmiwin itwaggen di Tasna ya:',
 'templatesusedpreview'   => 'Timudmiwin igg itwasxdemen dg uzar-ascan a :',
 'template-protected'     => '(twaḥḍa)',
 'template-semiprotected' => '(semi-protected)',
@@ -274,7 +274,7 @@ tzemred addewred ɣar deffar, niɣ [[Special:UserLogin|Adeff niɣ egg amiḍan]]
 'last'                => 'anggaru',
 'page_first'          => 'amzwaru',
 'page_last'           => 'anggaru',
-'histlegend'          => 'imṣebḍiyen: ixder tibellutin a ɣar waddauy n tilqimin(versions) n Tasna bac ad tsemquddid.<br />
+'histlegend'          => 'imṣebḍiyen: Sti(ixter) tibellutin a ɣar wadday n tunɣilin n Tasna bac ad tsmzazal(compare).<br />
 Tasarut: (cur) = imṣebḍiyen ag talqemt n ruxa,
 (last) = imṣebḍiyen ag talqemt n zik, M = taẓrigt d-tamẓeyant.',
 'histfirst'           => 'Amzwaru qaε',
@@ -287,7 +287,7 @@ Tasarut: (cur) = imṣebḍiyen ag talqemt n ruxa,
 'history-title'           => 'Amezruy n ufegged n "$1"',
 'difference'              => '(Amsebḍi jar ifeggiden)',
 'lineno'                  => 'Tabrit $1:',
-'compareselectedversions' => 'Smequdda Tilqimin a',
+'compareselectedversions' => 'Smequdda tunɣilin a',
 'editundo'                => 'Dwel',
 'diff-multi'              => '({{PLURAL:$1|ijj n ufegged|$1 ifeggiden}} war ad twamlen ca.)',
 
@@ -303,7 +303,7 @@ tzemred ad [[:\$1|tarnid cek]].",
 # Preferences page
 'preferences'       => 'iɣewwaren inu',
 'mypreferences'     => 'iɣewwaren inu',
-'retypenew'         => 'Ɛawd arri tawalt n uεddu tamaynut:',
+'retypenew'         => 'Ɛawd arri Taguri n wadaf tamaynut:',
 'searchresultshead' => 'Tarzzut',
 
 # Groups
@@ -341,7 +341,7 @@ tzemred ad [[:\$1|tarnid cek]].",
 'recentchangeslinked-title'    => 'Tiẓrigin ssaɣant-id ɣa "$1"',
 'recentchangeslinked-noresult' => 'War llint ca n tiẓrigin di Tasna ya di lwaqt id-tucid .',
 'recentchangeslinked-summary'  => "Ta d Tabdart n tirra itwaggen εad mamc di Tasna id-izdin (iqnen) zg ijjen n Tasna nniḍn (niɣ iwdan zi category nniḍn).
-Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
+Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 
 # Upload
 'upload'            => 'Zdem-d afaylu',
@@ -371,7 +371,7 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tiqebbuzin'''.",
 'sharedupload'              => 'Wa d ijj ufaylu itwacrec jar aṭṭas n isenfaren(projects).',
 'noimage'                   => 'war illi ca n ufaylu s isem a , tzemred ad $1.',
 'noimage-linktext'          => 'Zdem-it-id',
-'uploadnewversion-linktext' => 'Zdem-d talqemt d tamaynut n ufaylu a',
+'uploadnewversion-linktext' => 'Zdem-d tunɣilt d-tamaynut n ufaylu a',
 
 # File deletion
 'filedelete-submit' => 'Sfaḍ',
@@ -508,22 +508,22 @@ Xemm $2 i tikkas timaynutin.',
 'protectexpiry'               => 'itsala:',
 'protect_expiry_invalid'      => 'Akud n usali war icni ca.',
 'protect_expiry_old'          => 'Akud usali yeεda.',
-'protect-unchain'             => 'Arzem ipirmiyen n usnaqel',
+'protect-unchain'             => 'Arzem turagin n usnaqel',
 'protect-text'                => 'tezemred ad teẓred u atbedeld aswir n uḥeṭṭu n Tasna ya da <strong><nowiki>$1</nowiki></strong>.',
-'protect-locked-access'       => 'Amiḍan inecc war ɣars pirmi bac ad ibeddel aswir n uḥeṭṭu n Tasna .
+'protect-locked-access'       => 'Amiḍan inecc war ɣars turagt bac ad ibeddel aswir n uḥeṭṭu n Tasna .
 Aqa (settings) n Tasna <strong>$1</strong>:',
 'protect-cascadeon'           => 'Tasna ya tẓarq ruxa mayenzi tudef di {{PLURAL:$1|Tasna, iɣa illa|Tasniwin, iɣa illa}} aḥeṭṭu n usmuzzar(cascading protection).
 Tezemred ad tbedeld aswir n uḥeṭṭu n Tasna ya, maca war itegg walu i uḥeṭṭu n usmuzzar(cascading protection).',
 'protect-default'             => '(amzwar)',
-'protect-fallback'            => 'itxessat "$1"',
+'protect-fallback'            => 'itxessat turagt n "$1"',
 'protect-level-autoconfirmed' => 'Bluka iseqdacen war ɣasen ca amiḍan',
 'protect-level-sysop'         => 'inedbalen waha',
 'protect-summary-cascade'     => 'Asmuzzar',
 'protect-expiring'            => 'itsala deg $1 (UTC)',
 'protect-cascade'             => 'Ḥḍa Tasniwin i yudfen di Tasna ya (cascading protection)',
-'protect-cantedit'            => 'war tezemred ca ad tbedeld iswiren n uḥeṭṭu n tsebtert a, mayenzi war ɣark illi apirmi bac ad tẓregd.',
-'restriction-type'            => 'Apirmi:',
-'restriction-level'           => 'Aswir n uceraf:',
+'protect-cantedit'            => 'war tezemred ca ad tbedeld iswiren n uḥeṭṭu n Tasna ya, mayenzi war ɣark turagt bac ad tẓregd.',
+'restriction-type'            => 'turagt:',
+'restriction-level'           => 'Aswir usekref:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Arri',
@@ -534,7 +534,7 @@ Tezemred ad tbedeld aswir n uḥeṭṭu n Tasna ya, maca war itegg walu i uḥe
 
 # Namespace form on various pages
 'namespace'      => 'Raq n isem:',
-'invert'         => 'Dren mayn tixtard',
+'invert'         => 'Dren mayn testid (tixtard)',
 'blanknamespace' => '(Amenzaw)',
 
 # Contributions
@@ -606,7 +606,7 @@ snaqlitent s ufus.'''",
 'revertmove'       => 'war tegg ca',
 
 # Export
-'export' => 'Sekk Tisebtar',
+'export' => 'Sekk tasniwin',
 
 # Namespace 8 related
 'allmessages' => 'inzan n unagraw',
@@ -638,7 +638,7 @@ snaqlitent s ufus.'''",
 'tooltip-search'                  => 'Tarezzut {{SITENAME}}',
 'tooltip-p-logo'                  => 'Tasbtirt Tamzwarut',
 'tooltip-n-mainpage'              => 'Raḥ ɣar Tasna Tamzwarut',
-'tooltip-n-portal'                => 'Xef usenfar, mayn tezmerd ad tegged, mani ɣa tafed tilɣa',
+'tooltip-n-portal'                => 'Xef usenfar, mayn tezmerd ad tegged, mani ɣa tafed tiɣawsiwin',
 'tooltip-n-currentevents'         => 'Aff tilɣa(informations) x manaya',
 'tooltip-n-recentchanges'         => 'Tabdart n teẓrigin timaynutin di wiki.',
 'tooltip-n-randompage'            => 'Ẓar Tasna zi ṭṭarf',
@@ -658,7 +658,7 @@ snaqlitent s ufus.'''",
 'tooltip-save'                    => 'Ḥaḍ-itt',
 'tooltip-preview'                 => 'Ẓar mayn turid, ẓẓat ma ad teḥḥaḍeḍ!',
 'tooltip-diff'                    => 'Semmel-ad tiẓrigin i teggid di tarrat a.',
-'tooltip-compareselectedversions' => 'Ẓar imsebeḍiyen jar Tilqimin a di Tasna ya.',
+'tooltip-compareselectedversions' => 'Ẓar imsebeḍiyen jar tunɣilin n Tasna ya.',
 'tooltip-watch'                   => 'Arni Tasna ya ɣa Tabdart uḥṭṭu inec',
 
 # Browsing diffs
@@ -684,12 +684,12 @@ Tazdayt tamzwarut di tebrit ixessa atzdi ɣa afaylu war icni  .
 kur tazdayt tdeffad a tmekkas .',
 
 # Metadata
-'metadata'          => 'adfer-sefku',
+'metadata'          => 'Timuca Meta',
 'metadata-help'     => 'Afaylu a ɣar-s tilɣa(informations) nniḍn, teqqad ad tili tarnitent camera niɣ scanner i tiggin.
 mala afaylu a itwabeddel x mamec ja illa g umezwaru, ca n tilɣa teqqad ad ilint msebḍant x ufaylu amezwaru.',
 'metadata-expand'   => 'Sicen-d tilɣa nnumɣarent',
 'metadata-collapse' => 'Senuffar tilɣa innumɣarent',
-'metadata-fields'   => 'Tilɣa(informations)n EXIF ig illan di tsebtert a ad banent di Tasna n tewlaft xmi ɣar twassemɣar taflwit(table) n metadata.
+'metadata-fields'   => 'Tilɣa(informations)n EXIF ig illan di Tasna ya ad banent di Tasna n tewlaft xmi ɣar twassemɣar taflwit(table) n metadata.
 mayn nniḍn ad itwasenfar.
 * make
 * model
@@ -721,7 +721,7 @@ mayn nniḍn ad itwasenfar.
 'watchlisttools-raw'  => 'Ẓreg Tabdart uḥṭṭu tamenzut',
 
 # Special:Version
-'version'              => 'Talqemt', # Not used as normal message but as header for the special page itself
+'version'              => 'Tunɣilt', # Not used as normal message but as header for the special page itself
 'version-specialpages' => 'Tudmawin Special',
 
 # Special:FileDuplicateSearch
