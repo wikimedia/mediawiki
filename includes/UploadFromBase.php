@@ -344,6 +344,7 @@ class UploadFromBase {
 	function unsaveUploadedFile() {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$success = $repo->freeTemp( $this->mTempPath );
+		return $success;
 	}
 	
 	/**
