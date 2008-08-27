@@ -177,7 +177,6 @@ class UploadForm {
 	 	$details = null;
 	 	$value = null;
 	 	$value = $this->internalProcessUpload( $details );
-	 	header("X-Internal-Process-Upload: $value");
 
 	 	switch($value) {
 			case UploadFromBase::SUCCESS:
