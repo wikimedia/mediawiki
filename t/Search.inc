@@ -14,19 +14,15 @@ function buildTestDatabase( $tables ) {
 	global $wgDBprefix, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, $wgDBtype;
 	$oldPrefix = $wgDBprefix;
 	$wgDBprefix = 'parsertest';
-	$class = 'Database' . ucfirst( $wgDBtype );
-	$db = new $class (
-		$wgDBserver,
-		$wgDBadminuser,
-		$wgDBadminpassword,
-		$wgDBname );
+
+	$db = wfGetDB ( DB_SLAVE );
+
 	if( $db->isOpen() ) {
 		if ( !( stristr( $db->getSoftwareLink(), 'MySQL') && version_compare( $db->getServerVersion(), '4.1', '<' ) ) ) {
 			# Database that supports CREATE TABLE ... LIKE
 			foreach ($tables as $tbl) {
 				$newTableName = $db->tableName( $tbl );
-				#$tableName = $oldPrefix . $tbl;
-				$tableName = $tbl;
+				$tableName = $oldPrefix . $tbl;
 				$db->query("CREATE TEMPORARY TABLE $newTableName (LIKE $tableName)");
 			}
 		} else {
