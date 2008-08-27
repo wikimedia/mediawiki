@@ -764,10 +764,10 @@ CONTROL;
 		$this->mNewPage = $this->mNewRev->getTitle();
 		if( $this->mNewRev->isCurrent() ) {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
-			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev' ) );
+			$this->mPagetitle = wfMsgHTML( 'currentrev-asof', $timestamp );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
-			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a> ($timestamp)";
+			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";
 
 		} else {
