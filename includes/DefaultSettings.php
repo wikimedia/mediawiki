@@ -3200,6 +3200,11 @@ $wgMaxShellMemory = 102400;
 $wgMaxShellFileSize = 102400;
 
 /**
+* Executable name of PHP cli client (php/php5)
+*/
+$wgPhpCli = 'php';
+
+/**
  * DJVU settings
  * Path of the djvudump executable
  * Enable this and $wgDjvuRenderer to enable djvu rendering
