@@ -234,7 +234,7 @@ class EmailUserForm {
 	
 	static function userEmailEnabled() {
 		global $wgEnableEmail, $wgEnableUserEmail;
-		return $wgEnableEmail && $wgEnableEmail;
+		return $wgEnableEmail && $wgEnableUserEmail;
 		
 	}
 	static function validateEmailTarget ( $target ) {
