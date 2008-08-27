@@ -969,6 +969,7 @@ $wgMessageStructure = array(
 		'nchanges',
 		'recentchanges',
 		'recentchanges-url',
+		'recentchanges-legend',
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'rcnote',
