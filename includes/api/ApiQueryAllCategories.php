@@ -57,9 +57,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addFields('cat_title');
 
 		if (!is_null($params['from']))
-			$this->addWhere('cat_title>=' . $db->addQuotes($this->titleToKey($params['from'])));
+			$this->addWhere('cat_title>=' . $db->addQuotes($this->titlePartToKey($params['from'])));
 		if (isset ($params['prefix']))
-			$this->addWhere("cat_title LIKE '" . $db->escapeLike($this->titleToKey($params['prefix'])) . "%'");
+			$this->addWhere("cat_title LIKE '" . $db->escapeLike($this->titlePartToKey($params['prefix'])) . "%'");
 
 		$this->addOption('LIMIT', $params['limit']+1);
 		$this->addOption('ORDER BY', 'cat_title' . ($params['dir'] == 'descending' ? ' DESC' : ''));

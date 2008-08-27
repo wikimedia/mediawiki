@@ -325,9 +325,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function titleToKey($title) {
 		# Don't throw an error if we got an empty string
-		if(trim($title) == '') return '';
+		if(trim($title) == '')
+			return '';
 		$t = Title::newFromText($title);
-		if(!$t) $this->dieUsageMsg(array('invalidtitle', $title));
+		if(!$t)
+			$this->dieUsageMsg(array('invalidtitle', $title));
 		return $t->getDbKey();
 	}
 
@@ -338,11 +340,31 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function keyToTitle($key) {
 		# Don't throw an error if we got an empty string
-		if(trim($key) == '') return '';
+		if(trim($key) == '')
+			return '';
 		$t = Title::newFromDbKey($key);
 		# This really shouldn't happen but we gotta check anyway
-		if(!$t) $this->dieUsageMsg(array('invalidtitle', $key));
+		if(!$t)
+			$this->dieUsageMsg(array('invalidtitle', $key));
 		return $t->getPrefixedText();
+	}
+	
+	/**
+	 * An alternative to titleToKey() that doesn't trim trailing spaces
+	 * @param string $titlePart Title part with spaces
+	 * @return string Title part with underscores
+	 */
+	public function titlePartToKey($titlePart) {
+		return substr($this->titleToKey($titlePart . '.'), 0, -1);
+	}
+	
+	/**
+	 * An alternative to keyToTitle() that doesn't trim trailing spaces
+	 * @param string $keyPart Key part with spaces
+	 * @return string Key part with underscores
+	 */
+	public function keyPartToTitle($keyPart) {
+		return substr($this->keyToTitle($keyPart . '.'), 0, -1);
 	}
 
 	/**
