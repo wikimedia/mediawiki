@@ -1502,8 +1502,8 @@ END
 			$wikitext .= "\n";
 		}
 		
-		$attribs['accesskey'] => ',';
-		$attribs['id'] => $name;
+		$attribs['accesskey'] = ',';
+		$attribs['id'] = $name;
 		
 		if( $wgUser->getOption( 'editwidth' ) )
 			$attribs['style'] = 'width: 100%';
