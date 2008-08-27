@@ -98,7 +98,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add tooltips to rollback and undo links
 * Backend upload code has been removed from SpecialUpload.php. This may cause 
   backwards incompatibility with upload extensions.
-
+* BMP images are now displayed as PNG
 
 === Bug fixes in 1.14 ===
 

@@ -59,7 +59,7 @@ class BitmapHandler extends ImageHandler {
 		$retval = 0;
 		wfDebug( __METHOD__.": creating {$physicalWidth}x{$physicalHeight} thumbnail at $dstPath\n" );
 
-		if ( $physicalWidth == $srcWidth && $physicalHeight == $srcHeight ) {
+		if ( !$image->mustRender() && $physicalWidth == $srcWidth && $physicalHeight == $srcHeight ) {
 			# normaliseParams (or the user) wants us to return the unscaled image
 			wfDebug( __METHOD__.": returning unscaled image\n" );
 			return new ThumbnailImage( $image, $image->getURL(), $clientWidth, $clientHeight, $srcPath );
