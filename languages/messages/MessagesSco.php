@@ -1185,11 +1185,6 @@ Please confirm that ye really want tae recreate this airticle.",
 $1',
 'confirm_purge_button' => 'Aye',
 
-# AJAX search
-'searchcontaining' => "Rake for airticles wi ''$1'' in them.",
-'searchnamed'      => "Rake for airticles cried ''$1''.",
-'articletitles'    => "Airticles stairting wi ''$1''",
-
 # Multipage image navigation
 'imgmultigo' => 'Gang!',
 

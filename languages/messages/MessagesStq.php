@@ -2442,13 +2442,6 @@ Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Säik ätter Sieden, in do ''$1'' foarkumt.",
-'searchnamed'      => "Säik ätter Sieden, wierfon die Noome ''$1'' änthaalt.",
-'articletitles'    => "Sieden, do der mäd ''$1'' ounfange",
-'hideresults'      => 'ferbierge',
-'useajaxsearch'    => 'Benutsje AJAX-unnerstutsede Säike',
-
 # Multipage image navigation
 'imgmultipageprev' => '← foarige Siede',
 'imgmultipagenext' => 'naiste Siede →',

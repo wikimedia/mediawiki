@@ -817,11 +817,6 @@ Variants for Chinese language
 # action=purge
 'confirm_purge_button' => '确定',
 
-# AJAX search
-'searchcontaining' => "搜寻里向有 ''$1'' 个页面。",
-'articletitles'    => "以 ''$1'' 开头个页面",
-'hideresults'      => '囥脱结果',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',
 'imgmultipagenext' => '下一页 →',

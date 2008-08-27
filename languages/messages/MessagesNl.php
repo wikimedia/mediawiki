@@ -2802,13 +2802,6 @@ Bevestig alstublieft dat u de pagina opnieuw wilt aanmaken.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Zoeken naar pagina's die ''$1'' bevatten.",
-'searchnamed'      => "Zoeken naar pagina's met de naam ''$1''.",
-'articletitles'    => "Pagina's die met ''$1'' beginnen",
-'hideresults'      => 'Resultaten verbergen',
-'useajaxsearch'    => 'AJAX-zoeken gebruiken',
-
 # Multipage image navigation
 'imgmultipageprev' => '← vorige pagina',
 'imgmultipagenext' => 'volgende pagina →',

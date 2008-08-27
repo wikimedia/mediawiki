@@ -2762,13 +2762,6 @@ Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "''$1''-t tartalmazó lapokra keresés.",
-'searchnamed'      => "''$1'' című lapok keresése.",
-'articletitles'    => "''$1'' kezdetű szócikkek",
-'hideresults'      => 'Eredmények elrejtése',
-'useajaxsearch'    => 'AJAX-alapú kereső használata',
-
 # Multipage image navigation
 'imgmultipageprev' => '← előző oldal',
 'imgmultipagenext' => 'következő oldal →',

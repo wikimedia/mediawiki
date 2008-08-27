@@ -1047,11 +1047,6 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 # action=purge
 'confirm_purge_button' => 'Cualli',
 
-# AJAX search
-'searchcontaining' => "Tiquintēmōz zāzaniltin quipiyah ''$1''.",
-'searchnamed'      => "Tiquintēmōz zāzaniltin īntōcā ''$1''.",
-'articletitles'    => "Tlahcuilōlli mopēhuah īca ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← achto zāzanilli',
 'imgmultipagenext' => 'niman zāzanilli →',

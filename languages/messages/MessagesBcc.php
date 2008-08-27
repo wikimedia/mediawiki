@@ -2721,13 +2721,6 @@ $1
 $1',
 'confirm_purge_button' => 'هوبنت',
 
-# AJAX search
-'searchcontaining' => "گردگ په صفحات شامل ''$1''.",
-'searchnamed'      => "گردگ په صفحات په نام ''$1''.",
-'articletitles'    => "صفحات شروع بیت گون ''$1''",
-'hideresults'      => 'پناه کن نتایجء',
-'useajaxsearch'    => 'چه گردگ آژاکسی استفاده کن',
-
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'colon-separator'     => ':&#32;',

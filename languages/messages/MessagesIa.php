@@ -2616,13 +2616,6 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Cercar paginas continente ''$1''.",
-'searchnamed'      => "Cercar paginas nominate ''$1''.",
-'articletitles'    => "Paginas comenciante con ''$1''",
-'hideresults'      => 'Celar resultatos',
-'useajaxsearch'    => 'Usar cerca con AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← precedente pagina',
 'imgmultipagenext' => 'sequente pagina →',

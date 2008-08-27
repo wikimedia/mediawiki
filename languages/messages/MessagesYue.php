@@ -2607,13 +2607,6 @@ $1
 $1',
 'confirm_purge_button' => '肯定',
 
-# AJAX search
-'searchcontaining' => "搵含有''$1''嘅版。",
-'searchnamed'      => "搵個名係''$1''嘅版。",
-'articletitles'    => "以''$1''開頭嘅版",
-'hideresults'      => '收埋結果',
-'useajaxsearch'    => '用AJAX來搵嘢',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',
 'imgmultipagenext' => '下一版 →',

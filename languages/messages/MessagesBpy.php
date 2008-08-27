@@ -905,9 +905,6 @@ $messages = array(
 $1',
 'confirm_purge_button' => 'চুমিসে',
 
-# AJAX search
-'articletitles' => "যে পাতাহানি ''$1'' ন অকরাগ, অতার তালিকা",
-
 # Auto-summaries
 'autoredircomment' => '[[$1]]-ত যানার বারো-র্নিদেশ করানি ইল',
 

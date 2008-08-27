@@ -1995,13 +1995,6 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 'confirm_purge'        => 'Sayfa önbelleği temizlensin mi? $1',
 'confirm_purge_button' => 'Tamam',
 
-# AJAX search
-'searchcontaining' => "''$1'' içeren sayfaları ara.",
-'searchnamed'      => "''$1'' isimli sayfaları ara.",
-'articletitles'    => "''$1'' ile başlayan maddeler",
-'hideresults'      => 'sonuçları gizle',
-'useajaxsearch'    => 'AJAX arama kullan',
-
 # Multipage image navigation
 'imgmultipageprev' => '← önceki sayfa',
 'imgmultipagenext' => 'sonraki sayfa →',

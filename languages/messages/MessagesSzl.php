@@ -2330,13 +2330,6 @@ Potwjerdź chęć wćepańo nazod tygo artikla.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Šnupej za artiklami we kerych je ''$1''.",
-'searchnamed'      => "Šnupej za artiklami uo mjańe ''$1''.",
-'articletitles'    => "Artikle uo titlu začynojůncym śe uod ''$1''",
-'hideresults'      => 'Schowej wyniki',
-'useajaxsearch'    => 'Užywej šnupańo AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← popředńo zajta',
 'imgmultipagenext' => 'nostympno zajta →',

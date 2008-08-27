@@ -2443,13 +2443,6 @@ Sollt et sech net ëm äre Benotzerkont handelen, da maacht de Link *net* op. De
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "No Säite siche mat ''$1''.",
-'searchnamed'      => "Sich no Säiten, an deenen hirem Numm ''$1'' virkënnt.",
-'articletitles'    => "Säiten déi mat ''$1'' ufänken",
-'hideresults'      => 'Verstopp',
-'useajaxsearch'    => 'AJAX-ënnerstetzt Sich benotzen',
-
 # Multipage image navigation
 'imgmultipageprev' => '← Säit virdrun',
 'imgmultipagenext' => 'nächst Säit →',

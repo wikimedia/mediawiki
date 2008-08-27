@@ -416,9 +416,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 # Delete conflict
 'deletedwhileediting' => 'Attenziòne: quaccherùno have scancellàto chesta pàggena prìmma ca tu accuminciàste â scrìvere!',
 
-# AJAX search
-'hideresults' => "Annasconne 'e risultate",
-
 # Auto-summaries
 'autoredircomment' => 'Redirect â paggena [[$1]]',
 'autosumm-new'     => 'Paggena nuova: $1',

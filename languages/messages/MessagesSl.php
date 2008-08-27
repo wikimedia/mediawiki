@@ -1611,12 +1611,6 @@ Prosimo, potrdite, da jo resnično želite znova ustvariti.",
 $1',
 'confirm_purge_button' => 'Osveži',
 
-# AJAX search
-'searchcontaining' => "Poišči članke, ki vsebujejo ''$1''.",
-'searchnamed'      => "Poišči članke, ki se imenujejo ''$1''.",
-'articletitles'    => "Članki, ki se začnejo na ''$1''",
-'hideresults'      => 'Skrij zadetke',
-
 # Auto-summaries
 'autoredircomment' => 'preusmeritev na [[$1]]',
 

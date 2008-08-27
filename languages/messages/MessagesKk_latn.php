@@ -2849,13 +2849,6 @@ Osı betti qaýta bastawın naqtı tilegeniñizdi quptañız.",
 $1',
 'confirm_purge_button' => 'Jaraýdı',
 
-# AJAX search
-'searchcontaining' => "''$1'' mağlumatı bar betterden izdew.",
-'searchnamed'      => "''$1'' atawı bar betterden izdew.",
-'articletitles'    => "''$1'' dep bastalğan betterdi",
-'hideresults'      => 'Nätïjelerdi jasır',
-'useajaxsearch'    => 'AJAX qoldanıp izdew',
-
 # Multipage image navigation
 'imgmultipageprev' => '← aldıñğı betke',
 'imgmultipagenext' => 'kelesi betke →',

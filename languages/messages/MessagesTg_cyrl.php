@@ -2281,13 +2281,6 @@ $5
 $1',
 'confirm_purge_button' => 'Таъйид',
 
-# AJAX search
-'searchcontaining' => "Ҷустуҷӯи саҳифаҳое ки ''$1'' доранд.",
-'searchnamed'      => "Ҷустуҷӯи мақолаҳое, ки ''$1'' ном доранд.",
-'articletitles'    => "Мақолаҳое, кт бо ''$1'' оғоз мешаванд",
-'hideresults'      => 'Натоиҷро пинҳон кун',
-'useajaxsearch'    => 'Аз ҷустуҷӯи AJAX истифода кун',
-
 # Multipage image navigation
 'imgmultipageprev' => '← саҳифаи пешин',
 'imgmultipagenext' => 'саҳифаи баъд →',

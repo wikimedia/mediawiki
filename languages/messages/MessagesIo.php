@@ -1032,9 +1032,6 @@ Voluntez selektar altra nomo.',
 # E-mail address confirmation
 'confirmemail_needlogin' => 'Vu mustas $1 pro konfirmar vua adreso di e-posto.',
 
-# AJAX search
-'articletitles' => "Pagini komencanta per ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← antea pagino',
 'imgmultipagenext' => 'sequanta pagino →',

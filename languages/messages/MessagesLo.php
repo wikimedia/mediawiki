@@ -870,11 +870,6 @@ $messages = array(
 # action=purge
 'confirm_purge_button' => 'ຕົກລົງ',
 
-# AJAX search
-'searchcontaining' => "ຊອກຫາ ບົດຄວາມ ທີ່ປະກອບມີ  ''$1''.",
-'searchnamed'      => "ຊອກຫາ ບົດຄວາມ ຊື່ ''$1''.",
-'articletitles'    => "ບົດຄວາມ ເລີ່ມດ້ວຍ ''$1''",
-
 # Multipage image navigation
 'imgmultigo' => 'ໄປ!',
 

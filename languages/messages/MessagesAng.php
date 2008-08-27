@@ -673,9 +673,6 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 'scarytranscludefailed'  => '[Bisenfeccung getrucod for $1; sarig]',
 'scarytranscludetoolong' => '[URL is tō lang; sarig]',
 
-# AJAX search
-'searchnamed' => "Sēcan gewritu genemnodu ''$1''.",
-
 # Multipage image navigation
 'imgmultigo' => 'Gān!',
 

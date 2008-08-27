@@ -2354,12 +2354,6 @@ $1
 $1",
 'confirm_purge_button' => 'Bevestig',
 
-# AJAX search
-'searchcontaining' => "Zeuk naor artikels dee ''$1'' bevatten.",
-'searchnamed'      => "Zeuk naor artikels mit de naam ''$1''.",
-'articletitles'    => "Artikels dee beginnen mit ''$1''",
-'hideresults'      => 'Verbarg risseltaoten',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; veurige',
 'imgmultipagenext' => 'volgende &rarr;',

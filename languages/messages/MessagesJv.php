@@ -2288,13 +2288,6 @@ Mangga didhedhes (dikonfirmasi) menawa panjenengan kersa nggawé ulang kaca iki.
 'confirm_purge'        => "Busak ''cache'' kaca iki?$1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Golèk artikel sing ngamot ''$1''.",
-'searchnamed'      => "Golèk artikel sing ajudhul ''$1''.",
-'articletitles'    => "Artikel sing diawali ''$1''",
-'hideresults'      => 'Delikna pituwas',
-'useajaxsearch'    => 'Nganggoa panggolèkan AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; kaca sadurungé',
 'imgmultipagenext' => 'kaca sabanjuré →',

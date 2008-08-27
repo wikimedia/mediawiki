@@ -2074,13 +2074,6 @@ This confirmation code will expire at $4.',
 $1',
 'confirm_purge_button' => 'En',
 
-# AJAX search
-'searchcontaining' => "Aneyara va teliz yo dem ''$1''.",
-'searchnamed'      => "Aneyara va teliz yo yoltkiraf gu ''$1''.",
-'articletitles'    => "Teliz yo tozakiraf gu ''$1''",
-'hideresults'      => 'Palsera va trasiks',
-'useajaxsearch'    => 'Favera va AJAX aneyara',
-
 # Multipage image navigation
 'imgmultipageprev' => '← abduebu',
 'imgmultipagenext' => 'radimebu →',

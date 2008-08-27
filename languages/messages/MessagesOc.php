@@ -2684,13 +2684,6 @@ Confirmatz que desiratz tornar crear aqueste article.",
 $1",
 'confirm_purge_button' => 'Confirmar',
 
-# AJAX search
-'searchcontaining' => 'Cercar los articles que contenon « $1 ».',
-'searchnamed'      => 'Cercar los articles nomenats « $1 ».',
-'articletitles'    => 'Articles que començan per « $1 »',
-'hideresults'      => 'Amagar los resultats',
-'useajaxsearch'    => 'Utilizar la recèrca AJAX',
-
 # Separators for various lists, etc.
 'colon-separator'    => '&nbsp;:&#32;',
 'autocomment-prefix' => '-',

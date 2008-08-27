@@ -2385,13 +2385,6 @@ $1
 $1',
 'confirm_purge_button' => 'Сөп',
 
-# AJAX search
-'searchcontaining' => "Маннык тыллаах/тыллардаах сирэйдэри көрдөөһүн: ''$1''.",
-'searchnamed'      => "Маннык ааттаах сирэйи көрдөөһүн: ''$1''.",
-'articletitles'    => "Мантан саҕаланар ыстатыйалары көрдөөһүн: ''$1''",
-'hideresults'      => 'Булуллубуту көстүбэт оҥор',
-'useajaxsearch'    => 'AJAX көрдөөһүнү туһаныы',
-
 # Multipage image navigation
 'imgmultipageprev' => '← инники сирэй',
 'imgmultipagenext' => 'аныгыскы сирэй →',

@@ -2020,13 +2020,6 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 $1',
 'confirm_purge_button' => 'Í lagi',
 
-# AJAX search
-'searchcontaining' => "Leita að greinum sem innihalda ''$1''.",
-'searchnamed'      => "Leita að greinum sem heita ''$1''.",
-'articletitles'    => "Greinar sem hefjast á ''$1''",
-'hideresults'      => 'Fela niðurstöður',
-'useajaxsearch'    => 'Nota AJAX-leit',
-
 # Multipage image navigation
 'imgmultipageprev' => '← fyrri síða',
 'imgmultipagenext' => 'næsta síða →',

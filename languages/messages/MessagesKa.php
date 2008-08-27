@@ -1813,12 +1813,6 @@ $1
 $1',
 'confirm_purge_button' => 'კარგი',
 
-# AJAX search
-'searchcontaining' => "მოძებნე სტატიები, რომლებიც შეიცავს ''$1''.",
-'searchnamed'      => "მოძებნე სტატიები სახელით ''$1''.",
-'articletitles'    => "სტატიები, რომლებიც იწყება ''$1''-ით",
-'hideresults'      => 'დამალე შედეგები',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',
 'imgmultipagenext' => 'შემდეგი გვერდი &rarr;',

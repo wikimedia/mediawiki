@@ -1946,12 +1946,6 @@ Molimo potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 $1',
 'confirm_purge_button' => 'Da',
 
-# AJAX search
-'searchcontaining' => "Pretraži članke koji sadrže ''$1''.",
-'searchnamed'      => "Pretraži članke koji se zovu ''$1''.",
-'articletitles'    => "Članci počevši od ''$1''",
-'hideresults'      => 'Sakrij rezultate',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; prethodna stranica',
 'imgmultipagenext' => 'sledeća stranica &rarr;',

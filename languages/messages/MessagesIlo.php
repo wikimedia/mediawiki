@@ -1811,13 +1811,6 @@ $1
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Agsapul iti pampanid nga addaan ''$1''.",
-'searchnamed'      => "Agsapul iti pampanid a managan ''$1''.",
-'articletitles'    => "Pampanid nga agrugi iti ''$1''",
-'hideresults'      => 'Ilemmeng dagiti resulta',
-'useajaxsearch'    => 'Agaramat iti AJAX a pagbirok',
-
 # Multipage image navigation
 'imgmultipageprev' => '← napalabas a panid',
 'imgmultipagenext' => 'sumaruno a panid →',

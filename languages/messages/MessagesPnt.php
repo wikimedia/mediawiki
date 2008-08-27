@@ -950,9 +950,6 @@ $messages = array(
 'namespacesall'    => 'ούλαι',
 'monthsall'        => 'ούλαι',
 
-# AJAX search
-'useajaxsearch' => "Κουλάνεμαν τ' αραεματί AJAX",
-
 # Multipage image navigation
 'imgmultipageprev' => '← πρωτεζνόν σελίδα',
 'imgmultipagenext' => 'επόμενον σελίδα →',

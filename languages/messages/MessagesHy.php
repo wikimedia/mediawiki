@@ -2068,12 +2068,6 @@ $1
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => 'Որոնել էջեր, որոնք պարունակում են «$1»։',
-'searchnamed'      => '«$1» անվանմամբ էջերի որոնում։',
-'articletitles'    => "Հոդվածներ, որոնք սկսվում են ''$1''-ով։",
-'hideresults'      => 'Թաքցնել արդյունքները',
-
 # Multipage image navigation
 'imgmultipageprev' => '← նախորդ էջ',
 'imgmultipagenext' => 'հաջորդ էջ →',

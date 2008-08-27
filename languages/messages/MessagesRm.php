@@ -657,10 +657,6 @@ Conferma per plaschair che ti vuls propi crear danovamain quest artitgel.",
 $1',
 'confirm_purge_button' => 'ok',
 
-# AJAX search
-'articletitles' => "Artitgels che entschaivan cun ''$1''",
-'hideresults'   => 'zuppar ils resultats',
-
 # Special:Version
 'version' => 'Versiun', # Not used as normal message but as header for the special page itself
 

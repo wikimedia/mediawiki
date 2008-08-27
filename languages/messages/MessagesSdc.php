@@ -1902,13 +1902,6 @@ Pa piazeri, cunfèimma chi vòi ricrià avveru chistha pàgina.",
 $1',
 'confirm_purge_button' => 'Cunfèimma',
 
-# AJAX search
-'searchcontaining' => "Zercha li pàgini chi cuntènini ''$1''.",
-'searchnamed'      => "Zercha li pàgini cun tìturu ''$1''.",
-'articletitles'    => "Zercha di li pàgini ch'ischuminzani cun ''$1''",
-'hideresults'      => 'Cua li risulthaddi',
-'useajaxsearch'    => "Zercha cu'AJAX",
-
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina prizzidenti',
 'imgmultipagenext' => 'pàgina sighenti →',

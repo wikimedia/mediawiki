@@ -2125,13 +2125,6 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
 $1',
 'confirm_purge_button' => 'Heug',
 
-# AJAX search
-'searchcontaining' => "Sungsi artikel nu ngandung ''$1''.",
-'searchnamed'      => "Sungsi artikel nu judulna ''$1''.",
-'articletitles'    => "Artikel nu dimimitian ku ''$1''",
-'hideresults'      => 'Sumputkeun hasil',
-'useajaxsearch'    => 'Paké sungsi AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; kaca saacana',
 'imgmultipagenext' => 'kaca salajeungna &rarr;',

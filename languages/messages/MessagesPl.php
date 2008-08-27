@@ -2713,13 +2713,6 @@ Czy na pewno chcesz go ponownie utworzyć?",
 $1',
 'confirm_purge_button' => 'Wyczyść',
 
-# AJAX search
-'searchcontaining' => "Szukaj artykułów zawierających ''$1''.",
-'searchnamed'      => "Szukaj artykułów nazywających się ''$1''.",
-'articletitles'    => "Artykuły o tytule rozpoczynającym się od ''$1''",
-'hideresults'      => 'Ukryj wyniki',
-'useajaxsearch'    => 'Użyj wyszukiwania AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← poprzednia strona',
 'imgmultipagenext' => 'następna strona →',

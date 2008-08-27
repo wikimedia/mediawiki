@@ -2851,13 +2851,6 @@ $1
 $1',
 'confirm_purge_button' => 'Жарайды',
 
-# AJAX search
-'searchcontaining' => "''$1'' мағлұматы бар беттерден іздеу.",
-'searchnamed'      => "''$1'' атауы бар беттерден іздеу.",
-'articletitles'    => "''$1'' деп басталған беттерді",
-'hideresults'      => 'Нәтижелерді жасыр',
-'useajaxsearch'    => 'AJAX қолданып іздеу',
-
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'colon-separator'     => ':&#32;',

@@ -2110,13 +2110,6 @@ Egiaztapen kode hau $4 iraungiko da.',
 $1',
 'confirm_purge_button' => 'Ados',
 
-# AJAX search
-'searchcontaining' => "''$1'' barne duten orrialdeen bilaketa.",
-'searchnamed'      => "''$1'' izenburua duten artikuluen bilaketa.",
-'articletitles'    => "''$1''(r)ekin hasten diren artikuluak",
-'hideresults'      => 'Emaitzak ezkutatu',
-'useajaxsearch'    => 'AJAX bilaketa erabili',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; aurreko orrialdea',
 'imgmultipagenext' => 'hurrengo orrialdea &rarr;',

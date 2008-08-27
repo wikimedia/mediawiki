@@ -1724,9 +1724,6 @@ $5
 $1',
 'confirm_purge_button' => 'אויקעי',
 
-# AJAX search
-'articletitles' => "זוכט בלעטער וואס הייבן זיך אן מיט '''$1'''",
-
 # Table pager
 'ascending_abbrev'         => 'ארויף',
 'descending_abbrev'        => 'נידערן',

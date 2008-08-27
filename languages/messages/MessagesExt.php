@@ -2176,13 +2176,6 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 $1',
 'confirm_purge_button' => 'Dalcuerdu',
 
-# AJAX search
-'searchcontaining' => "Landeal páhinas que contengan ''$1''.",
-'searchnamed'      => "Landeal artículus llamaus ''$1''.",
-'articletitles'    => "Artículus qu'esmiencin pol ''$1''",
-'hideresults'      => 'Açonchal resurtaus',
-'useajaxsearch'    => 'Usa el landeru AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← páhina anteriol',
 'imgmultipagenext' => 'páhina siguienti →',

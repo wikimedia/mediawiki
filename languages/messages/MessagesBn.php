@@ -2118,13 +2118,6 @@ $1
 $1',
 'confirm_purge_button' => 'ঠিক আছে',
 
-# AJAX search
-'searchcontaining' => "''$1'' আছে এমন নিবন্ধগুলো অনুসন্ধান করো।",
-'searchnamed'      => "''$1'' শিরোনামের পাতা অনুসন্ধান করো।",
-'articletitles'    => "যেসব পাতা ''$1'' দিয়ে শুরু হয়েছে, তাদের তালিকা",
-'hideresults'      => 'ফলাফলগুলো দেখিও না',
-'useajaxsearch'    => 'এজ্যাক্স (AJAX) অনুসন্ধান ব্যবহার করা হোক',
-
 # Multipage image navigation
 'imgmultipageprev' => '← পূর্ববর্তী পাতা',
 'imgmultipagenext' => 'পরবর্তী পাতা →',

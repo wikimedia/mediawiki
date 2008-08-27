@@ -1290,12 +1290,6 @@ $messages = array(
 $1',
 'confirm_purge_button' => 'ښه/هو',
 
-# AJAX search
-'searchcontaining' => "د هغو ليکنو لټون چې ''$1'' په کې شته.",
-'searchnamed'      => "د هغې ليکنې لټون چې نوم يې ''$1'' دی.",
-'articletitles'    => "هغه ليکنې چې په ''$1'' پيلېږي",
-'hideresults'      => 'پايلې پټول',
-
 # Multipage image navigation
 'imgmultipageprev' => '← پخوانی مخ',
 'imgmultipagenext' => 'راتلونکی مخ →',

@@ -1467,11 +1467,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # action=purge
 'confirm_purge_button' => 'ОК',
 
-# AJAX search
-'searchcontaining' => "Вешнемс лопат конатнесэ ''$1''.",
-'searchnamed'      => "Вешнемс лопат конань лемест ''$1''.",
-'articletitles'    => "Лопатне конат ушодовить ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← седикелень лопась',
 'imgmultipagenext' => 'седе мейлень лопась →',

@@ -388,11 +388,6 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 # 'all' in various places, this might be different for inflected languages
 'imagelistall' => 'omnes',
 
-# AJAX search
-'searchcontaining' => "Sercha artikles kel kontena ''$1''.",
-'searchnamed'      => "Sercha artikles nomat ''$1''.",
-'articletitles'    => "Artikles kel starta kun ''$1''",
-
 # Auto-summaries
 'autosumm-replace' => "Remplasant pagine kun '$1'",
 'autoredircomment' => 'Ri-adresant a [[$1]]',

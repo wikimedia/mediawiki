@@ -1501,12 +1501,6 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 
 $1',
 
-# AJAX search
-'searchcontaining' => "Inadi isebtar i yesɛan ''$1''.",
-'searchnamed'      => "Nadi ɣef imagraden ttusemman ''$1''.",
-'articletitles'    => "Imagraden i yebdan s ''$1''",
-'hideresults'      => 'Ffer igmad',
-
 # Multipage image navigation
 'imgmultipageprev' => '← asebter ssabeq',
 'imgmultipagenext' => 'asebter ameḍfir →',

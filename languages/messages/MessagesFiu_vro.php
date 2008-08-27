@@ -2022,12 +2022,6 @@ Olõq hää, kinnüdäq, et tahat taad lehte vahtsõst luvvaq.",
 $1',
 'confirm_purge_button' => 'Hää külh',
 
-# AJAX search
-'searchcontaining' => "Otsiq artikliid, kon om seen ''$1''.",
-'searchnamed'      => "Otsiq artikliid nimega ''$1''.",
-'articletitles'    => "Artikliq, miä nakkasõq pääle ''$1''",
-'hideresults'      => 'Käkiq tulõmusõq ärq',
-
 # Multipage image navigation
 'imgmultipageprev' => '← mineväne leht',
 'imgmultipagenext' => 'järgmäne leht →',

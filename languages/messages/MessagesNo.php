@@ -2587,13 +2587,6 @@ $1
 'confirm_purge'        => "Vil du slette tjenerens mellomlagrede versjon (''cache'') av denne siden? $1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Søk etter artikler som inneholder ''$1''.",
-'searchnamed'      => "Søk for artikler ved navn ''$1''.",
-'articletitles'    => "Artikler som begynner med ''$1''",
-'hideresults'      => 'Skjul resultater',
-'useajaxsearch'    => 'Bruk AJAX-søk',
-
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',
 'imgmultipagenext' => 'neste side &rarr;',

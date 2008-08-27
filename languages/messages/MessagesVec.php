@@ -2456,13 +2456,6 @@ Par piaser, conferma che te vołi dal bon ricrear sta voçe.",
 $1',
 'confirm_purge_button' => 'Conferma',
 
-# AJAX search
-'searchcontaining' => "Riçerca de łe voçi che contegne ''$1''.",
-'searchnamed'      => "Riçerca de le voçi con titolo ''$1''.",
-'articletitles'    => "Riçerca de łe voçi che łe scuminsia par ''$1''",
-'hideresults'      => 'Scondi i risultati',
-'useajaxsearch'    => 'Dòpara la riçerca AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',
 'imgmultipagenext' => 'pagina seguente →',

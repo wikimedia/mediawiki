@@ -994,9 +994,6 @@ to upload files.',
 # action=purge
 'confirm_purge_button' => 'ਠੀਕ ਹੈ',
 
-# AJAX search
-'hideresults' => 'ਨਤੀਜੇ ਓਹਲੇ',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ਪਿਛਲਾ ਪੇਜ',
 'imgmultipagenext' => 'ਅਗਲਾ ਪੇਜ →',

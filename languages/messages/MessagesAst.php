@@ -2469,13 +2469,6 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 $1",
 'confirm_purge_button' => 'Aceutar',
 
-# AJAX search
-'searchcontaining' => "Buscar páxines que contengan ''$1''.",
-'searchnamed'      => "Buscar páxines col nome ''$1''.",
-'articletitles'    => "Páxines qu'emprimen por ''$1''",
-'hideresults'      => 'Esconder resultaos',
-'useajaxsearch'    => 'Usar la busca AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
 'imgmultipagenext' => 'páxina siguiente →',

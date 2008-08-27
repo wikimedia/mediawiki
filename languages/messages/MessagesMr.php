@@ -2465,13 +2465,6 @@ $5
 $1',
 'confirm_purge_button' => 'ठीक',
 
-# AJAX search
-'searchcontaining' => "''$1'' शब्द असलेले लेख शोधा.",
-'searchnamed'      => "''$1'' या नावाचे लेख शोधा.",
-'articletitles'    => "''$1'' पासून सुरू होणारे लेख",
-'hideresults'      => 'निकाल लपवा',
-'useajaxsearch'    => 'AJAX शोध वापरा',
-
 # Multipage image navigation
 'imgmultipageprev' => '← मागील पान',
 'imgmultipagenext' => 'पुढील पान →',

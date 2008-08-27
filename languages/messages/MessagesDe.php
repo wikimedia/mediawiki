@@ -2677,13 +2677,6 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'confirm_purge'        => 'Diese Seite aus dem Server-Cache löschen? $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Suche nach Seiten, in denen ''$1'' vorkommt.",
-'searchnamed'      => "Suche nach Seiten, deren Name ''$1'' enthält.",
-'articletitles'    => "Seiten, die mit ''$1'' beginnen",
-'hideresults'      => 'Verbergen',
-'useajaxsearch'    => 'Benutze AJAX-unterstützte Suche',
-
 # Multipage image navigation
 'imgmultipageprev' => '← vorige Seite',
 'imgmultipagenext' => 'nächste Seite →',

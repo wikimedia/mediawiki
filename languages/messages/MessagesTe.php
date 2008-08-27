@@ -2405,13 +2405,6 @@ $1
 $1',
 'confirm_purge_button' => 'సరే',
 
-# AJAX search
-'searchcontaining' => "''$1'' ను కలిగి ఉన్న వ్యాసాల కోసం వెతుకు.",
-'searchnamed'      => "''$1'' పేరుతో ఉన్న వ్యాసాల కోసం వెతుకు.",
-'articletitles'    => "''$1''తొ మొదలయ్యే వ్యాసాలు",
-'hideresults'      => 'ఫలితాలను దాచు',
-'useajaxsearch'    => 'వెతకేటప్పుడు AJAXను ఉపయోగించు',
-
 # Multipage image navigation
 'imgmultipageprev' => '← మునుపటి పేజీ',
 'imgmultipagenext' => 'తరువాతి పేజీ →',

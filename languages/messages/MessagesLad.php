@@ -393,9 +393,6 @@ El resto de los linkes del mismo satir se juzgan como eccepciones (por enxemplo,
 # action=purge
 'confirm_purge_button' => 'Akseptár',
 
-# AJAX search
-'hideresults' => 'Eskonder resultados',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pajina anterior',
 'imgmultipagenext' => 'siguiente pajina →',

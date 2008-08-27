@@ -2490,13 +2490,6 @@ $1
 $1',
 'confirm_purge_button' => 'はい',
 
-# AJAX search
-'searchcontaining' => "'''$1''' を含むページの検索。",
-'searchnamed'      => "ページ名が '''$1''' の項目の検索。",
-'articletitles'    => "''$1'' からはじまる項目",
-'hideresults'      => '結果を隠す',
-'useajaxsearch'    => 'Ajax による検索を利用する',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; 前ページ',
 'imgmultipagenext' => '次ページ &rarr;',

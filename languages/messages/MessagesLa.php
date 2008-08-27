@@ -1595,9 +1595,6 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 # action=purge
 'confirm_purge_button' => 'Licet',
 
-# AJAX search
-'articletitles' => "Paginae ab ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagina superior',
 'imgmultipagenext' => 'pagina proxima →',

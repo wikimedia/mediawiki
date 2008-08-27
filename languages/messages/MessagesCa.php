@@ -2570,13 +2570,6 @@ Confirmeu que realment voleu tornar-la a crear.",
 $1",
 'confirm_purge_button' => "D'acord",
 
-# AJAX search
-'searchcontaining' => "Cerca pàgines que continguin ''$1''.",
-'searchnamed'      => "Cerca pàgines que s'anomenin ''$1''.",
-'articletitles'    => "Pàgines que comencen amb ''$1''",
-'hideresults'      => 'Amaga els resultats',
-'useajaxsearch'    => 'Utilitza la cerca en AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina anterior',
 'imgmultipagenext' => 'pàgina següent →',

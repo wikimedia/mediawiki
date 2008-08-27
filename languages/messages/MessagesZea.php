@@ -1139,9 +1139,6 @@ Kiest 'n aore naem.",
 'watchlistall2' => 'aol',
 'namespacesall' => 'aol',
 
-# AJAX search
-'articletitles' => "Artikels die-an beginne mee ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← vorrege bladzie',
 'imgmultipagenext' => 'volgende bladzie →',

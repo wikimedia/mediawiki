@@ -2729,13 +2729,6 @@ Bekräfta att du verkligen vill återskapa sidan.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Leta efter sidor som innehåller ''$1''.",
-'searchnamed'      => "Leta efter sidor som heter ''$1''.",
-'articletitles'    => "Sidor som börjar med ''$1''",
-'hideresults'      => 'Göm resultat',
-'useajaxsearch'    => 'Använd AJAX-sökning',
-
 # Multipage image navigation
 'imgmultipageprev' => '← föregående sida',
 'imgmultipagenext' => 'nästa sida →',

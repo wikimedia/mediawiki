@@ -2658,13 +2658,6 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 $1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Mencari artikel yang mengandung ''$1''.",
-'searchnamed'      => "Mencari artikel yang berjudul ''$1''.",
-'articletitles'    => "Artikel yang diawali ''$1''",
-'hideresults'      => 'Sembunyikan hasil',
-'useajaxsearch'    => 'Gunakan pencarian AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; halaman sebelumnya',
 'imgmultipagenext' => 'halaman selanjutnya &rarr;',

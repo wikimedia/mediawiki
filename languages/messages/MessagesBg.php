@@ -2558,13 +2558,6 @@ $1
 $1',
 'confirm_purge_button' => 'Добре',
 
-# AJAX search
-'searchcontaining' => "Търсене на статии, съдържащи ''$1''.",
-'searchnamed'      => "Търсене на статии, чиито имена съдържат ''$1''.",
-'articletitles'    => "Страници, започващи с ''$1''",
-'hideresults'      => 'Скриване на резултатите',
-'useajaxsearch'    => 'Използване на AJAX-търсене',
-
 # Multipage image navigation
 'imgmultipageprev' => '← предишна страница',
 'imgmultipagenext' => 'следваща страница →',

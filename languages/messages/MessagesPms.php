@@ -2279,13 +2279,6 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 $1',
 'confirm_purge_button' => 'Va bin',
 
-# AJAX search
-'searchcontaining' => "Sërca le vos che a l'han andrinta ''$1''.",
-'searchnamed'      => "Sërca le vos che a l'han për tìtol ''$1''.",
-'articletitles'    => "Artìcoj che as anandio për ''$1''",
-'hideresults'      => "Stërma j'arsultà",
-'useajaxsearch'    => "Dovré l'arsërca AJAX",
-
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',
 'imgmultipagenext' => 'pàgina anans →',

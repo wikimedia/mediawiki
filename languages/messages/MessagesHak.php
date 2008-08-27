@@ -1552,12 +1552,6 @@ Chhiáng chhai chhùng-sîn kien-chho vùn-chông chhièn sâm-sṳ̂.",
 $1',
 'confirm_purge_button' => 'Khok-thin',
 
-# AJAX search
-'searchcontaining' => "Chhìm-cháu pâu-hàm ''$1'' ke vùn-chông.",
-'searchnamed'      => "Chhìm-cháu ''$1'' miàng-chhṳ̂n ke vùn-chông.",
-'articletitles'    => 'Vùn-chông kûi-yî "$1" khôi-thèu',
-'hideresults'      => 'Yún-chhòng kiet-kó',
-
 # Multipage image navigation
 'imgmultipageprev' => '← sông yit-chông',
 'imgmultipagenext' => 'hâ yit-chông →',

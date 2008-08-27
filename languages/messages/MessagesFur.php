@@ -1259,13 +1259,6 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # action=purge
 'confirm_purge_button' => 'Va indevant',
 
-# AJAX search
-'searchcontaining' => "Ricercje des pagjinis che a àn dentri ''$1''.",
-'searchnamed'      => "Ricercje des pagjinis cun titul ''$1''.",
-'articletitles'    => "Ricercje des pagjinis che a scomencin cun ''$1''",
-'hideresults'      => 'Plate risultâts',
-'useajaxsearch'    => 'Dopre la ricercje AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagjine precedente',
 'imgmultipagenext' => 'pagjine sucessive →',

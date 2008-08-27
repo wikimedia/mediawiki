@@ -1895,12 +1895,6 @@ Ikonpirmar tabi na talagang gusto mong gibohon giraray ining pahina.",
 $1',
 'confirm_purge_button' => 'Sige',
 
-# AJAX search
-'searchcontaining' => "Hanápon an mga artikulong may ''$1''.",
-'searchnamed'      => "Hanápon an mga artikulong ''$1''.",
-'articletitles'    => "Mga artikulong nagpopoon sa ''$1''",
-'hideresults'      => 'Tagôon an mga resulta',
-
 # Multipage image navigation
 'imgmultipageprev' => '← nakaaging pahina',
 'imgmultipagenext' => 'sunod na pahina →',

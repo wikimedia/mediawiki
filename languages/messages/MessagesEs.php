@@ -2476,13 +2476,6 @@ $1
 $1',
 'confirm_purge_button' => 'Aceptar',
 
-# AJAX search
-'searchcontaining' => "Buscar artículos que contengan ''$1''.",
-'searchnamed'      => "Buscar artículos con este nombre ''$1''.",
-'articletitles'    => "Artículos que comienzan por ''$1''",
-'hideresults'      => 'Ocultar resultados',
-'useajaxsearch'    => 'Buscar usando AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'siguiente página →',

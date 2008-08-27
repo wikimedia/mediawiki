@@ -1052,9 +1052,6 @@ Fafana ve ny cache-n'ity pejy ity?
 $1",
 'confirm_purge_button' => 'Eka',
 
-# AJAX search
-'articletitles' => "Lahatsoratra manomboka amin'ny ''$1''",
-
 # Special:SpecialPages
 'specialpages' => 'Pejy manokana',
 

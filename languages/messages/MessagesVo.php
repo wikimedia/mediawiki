@@ -2154,13 +2154,6 @@ Fümedolös, das jenöfo vilol dönujafön padi at.",
 $1',
 'confirm_purge_button' => 'Si!',
 
-# AJAX search
-'searchcontaining' => "Sukön padis labü ''$1''.",
-'searchnamed'      => "Sukön padis tiädü ''$1''.",
-'articletitles'    => "Yegeds me ''$1'' primöls",
-'hideresults'      => 'Klänedön sekis',
-'useajaxsearch'    => 'Gebön suki ela AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pad büik',
 'imgmultipagenext' => 'pad sököl →',

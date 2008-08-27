@@ -2061,13 +2061,6 @@ $5
 $1',
 'confirm_purge_button' => '확인',
 
-# AJAX search
-'searchcontaining' => '"$1"이 포함된 글을 검색합니다.',
-'searchnamed'      => '"$1" 이름을 가진 문서를 검색합니다.',
-'articletitles'    => "''$1''로 시작하는 문서들",
-'hideresults'      => '결과 숨기기',
-'useajaxsearch'    => 'AJAX 찾기 기능 사용하기',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 문서',
 'imgmultipagenext' => '다음 문서 →',

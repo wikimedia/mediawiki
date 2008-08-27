@@ -2376,13 +2376,6 @@ Ama hina kaspa, chiqapta kay p'anqatam musuqmanta kamayta munani nispa takyachiy
 $1",
 'confirm_purge_button' => 'Arí niy',
 
-# AJAX search
-'searchcontaining' => "''$1'' nisqa samiqniyuq p'anqakunata maskay.",
-'searchnamed'      => "''$1'' sutiyuq p'anqakunata maskay.",
-'articletitles'    => "''$1'' nisqawan qallariq p'anqakunata maskay",
-'hideresults'      => 'Lluqsiykunata pakay',
-'useajaxsearch'    => 'AJAX nisqawan maskay',
-
 # Multipage image navigation
 'imgmultipageprev' => "← ñawpaq p'anqa",
 'imgmultipagenext' => "qatiq p'anqa →",

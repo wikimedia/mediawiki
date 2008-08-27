@@ -1794,13 +1794,6 @@ $5
 ದಯವಿಟ್ಟು ಈ ಪುಟವನ್ನು ನೀವು ಪುನಃ ಸೃಷ್ಟಿಸಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಧೃಡೀಕರಿಸಿ.",
 'recreate'            => 'ಪುನಃ ಸೃಷ್ಟಿಸು',
 
-# AJAX search
-'searchcontaining' => "''$1'' ಅನ್ನು ಹೊಂದಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕು.",
-'searchnamed'      => "''$1'' ಎಂದು ಹೆಸರಿಸಲಾದ ಪುಟಗಳನ್ನು ಹುಡುಕು.",
-'articletitles'    => "''$1'' ಇಂದ ಪ್ರಾರಂಭವಾಗುವ ಪುಟಗಳು",
-'hideresults'      => 'ಫಲಿತಾಂಶಗಳನ್ನು ಅಡಗಿಸು',
-'useajaxsearch'    => 'AJAX ಹುಡುಕಾಟವನ್ನು ಉಪಯೋಗಿಸಿ',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ಹಿಂದಿನ ಪುಟ',
 'imgmultipagenext' => 'ಮುಂದಿನ ಪುಟ →',

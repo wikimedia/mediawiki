@@ -2379,13 +2379,6 @@ $1
 $1',
 'confirm_purge_button' => 'ОК',
 
-# AJAX search
-'searchcontaining' => "Вешендемс лопатне конатнень ули ''$1''.",
-'searchnamed'      => "Вешендемс лопат ''$1'' лемса.",
-'articletitles'    => "Лопатне ''$1''-ста ушедомс",
-'hideresults'      => 'Кяшемс муфкст',
-'useajaxsearch'    => 'Нолдак тевс AJAX вешендема',
-
 # Multipage image navigation
 'imgmultipageprev' => '← сядынгольдень лопась',
 'imgmultipagenext' => 'сай лопась →',
