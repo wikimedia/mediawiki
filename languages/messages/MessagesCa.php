@@ -811,6 +811,7 @@ Reviseu l'URL que heu emprat per a accedir-hi.",
 'page_last'           => 'última',
 'histlegend'          => 'Simbologia: (act) = diferència amb la versió actual,
 (prev) = diferència amb la versió anterior, m = edició menor',
+'history-search'      => "Cerca a l'historial",
 'deletedrev'          => '[suprimit]',
 'histfirst'           => 'El primer',
 'histlast'            => 'El darrer',
@@ -1182,7 +1183,7 @@ Per a incloure una imatge en una pàgina, feu un enllaç en una de les formes se
 'upload-prohibited'           => 'Tipus de fitxer prohibits: $1.',
 'uploadlog'                   => 'registre de càrregues',
 'uploadlogpage'               => 'Registre de càrregues',
-'uploadlogpagetext'           => "A sota hi ha un llistat dels fitxers que s'han carregat més recentment.
+'uploadlogpagetext'           => "A sota hi ha una llista dels fitxers que s'han carregat més recentment.
 Vegeu la [[Special:NewImages|galeria de nous fitxers]] per a una presentació més visual.",
 'filename'                    => 'Nom de fitxer',
 'filedesc'                    => 'Resum',
@@ -1542,7 +1543,7 @@ respondre.",
 'watchlist'            => 'Llista de seguiment',
 'mywatchlist'          => 'Llista de seguiment',
 'watchlistfor'         => "(per a '''$1''')",
-'nowatchlist'          => 'No teniu cap element en el vostre llistat de seguiment.',
+'nowatchlist'          => 'No teniu cap element en la vostra llista de seguiment.',
 'watchlistanontext'    => 'Premeu $1 per a visualitzar o editar elements de la vostra llista de seguiment.',
 'watchnologin'         => 'No heu iniciat la sessió',
 'watchnologintext'     => "Heu d'[[Special:UserLogin|entrar]]
@@ -1893,10 +1894,10 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 # Developer tools
 'lockdb'              => 'Bloca la base de dades',
 'unlockdb'            => 'Desbloca la base de dades',
-'lockdbtext'          => "Blocant la base de dades s'anul·larà la capacitat de tots els
+'lockdbtext'          => "Blocant la base de dades es suspendrà la capacitat de tots els
 usuaris d'editar pàgines, canviar les preferències, editar la llista de seguiment, i
-altres canvis que requereixen canvis en la base de dades.
-Confirmeu que això és el que intenteu fer, i sobretot no us oblideu
+altres canvis que requereixin modificacions en la base de dades.
+Confirmeu que això és el que voleu fer, i sobretot no us oblideu
 de desblocar la base de dades quan acabeu el manteniment.",
 'unlockdbtext'        => "Desblocant la base de dades es restaurarà l'habilitat de tots
 els usuaris d'editar pàgines, canviar les preferències, editar els llistats de seguiment, i

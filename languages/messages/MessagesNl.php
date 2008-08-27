@@ -944,6 +944,7 @@ De door $3 opgegeven reden is ''$2''",
 'revnotfoundtext'     => 'De opgevraagde oude versie van deze pagina is onvindbaar.
 Controleer alstublieft de URL die u gebruikte om naar deze pagina te gaan.',
 'currentrev'          => 'Huidige versie',
+'currentrev-asof'     => 'Huidige versie per $1',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 van $2',
 'previousrevision'    => '←Oudere versie',
@@ -1331,6 +1332,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
 'recentchanges'                     => 'Recente wijzigingen',
+'recentchanges-legend'              => 'Rapportage-instellingen',
 'recentchangestext'                 => 'Op deze pagina kunt u de recentste wijzigingen in deze wiki bekijken.',
 'recentchanges-feed-description'    => 'Met deze feed kunt u de recentste wijzigingen in deze wiki bekijken.',
 'rcnote'                            => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $4 om $5.",
@@ -1747,9 +1749,9 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'listgrouprights-rights'          => 'Rechten',
 'listgrouprights-helppage'        => 'Help:Gebruikersrechten',
 'listgrouprights-members'         => '(ledenlijst)',
-'listgrouprights-addgroup'        => 'Kan deze {{PLURAL:$2|groep|groepen}} toevoegen aan gebruikers: $1',
+'listgrouprights-addgroup'        => 'Kan gebruikers aan deze {{PLURAL:$2|groep|groepen}} toevoegen: $1',
 'listgrouprights-removegroup'     => 'Kan gebruikers uit deze {{PLURAL:$2|groep|groepen}} verwijderen: $1',
-'listgrouprights-addgroup-all'    => 'Kan alle groepen toevoegen aan gebruikers',
+'listgrouprights-addgroup-all'    => 'Kan gebruikers aan alle groepen toevoegen',
 'listgrouprights-removegroup-all' => 'Kan gebruikers uit alle groepen verwijderen',
 
 # E-mail user
@@ -2329,6 +2331,9 @@ U kunt wel de broncode bekijken.',
 'tooltip-watch'                   => 'Deze pagina aan uw volglijst toevoegen',
 'tooltip-recreate'                => 'Deze pagina opnieuw aanmaken ondanks eerdere verwijdering',
 'tooltip-upload'                  => 'Uploaden',
+'tooltip-rollback'                => 'Met "terugdraaien" draait u met één klik de bewerking(en) terug van de laatste gebruiker die deze pagina heeft bewerkt.',
+'tooltip-undo'                    => 'Met "ongedaan maken" draait u deze bewerking terug en komt in het bewerkingsvenster.
+U kunt in de bewerkingssamenvatting een reden opgeven.',
 
 # Stylesheets
 'common.css'      => '/** CSS die hier wordt geplaatst heeft invloed op alle skins */',

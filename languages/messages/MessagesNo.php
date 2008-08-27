@@ -2125,6 +2125,8 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'tooltip-watch'                   => 'Legg denne siden til overvåkningslisten din',
 'tooltip-recreate'                => 'Gjenopprett siden til tross for at den har blitt slettet',
 'tooltip-upload'                  => 'Start opplasting',
+'tooltip-rollback'                => '«Tilbakestill»-knappen tilbakestiller redigeringer på denne siden til den forrige versjonen av en annen bidragsyter med ett klikk.',
+'tooltip-undo'                    => '«Omgjør» tilbakestiller redigeringer og åpner redigeringssiden med forhåndsvisning. Gjør at man kan legge til en begrunnelse i redigeringsforklaringen.',
 
 # Stylesheets
 'common.css'      => '/* CSS plassert i denne fila vil gjelde for alle utseender. */',
@@ -2154,7 +2156,7 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 'notacceptable'     => 'Tjeneren har ingen mulige måter å vise data i din nettleser.',
 
 # Attribution
-'anonymous'        => 'Anonym(e) bruker(e) av {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonym bruker|Anonyme brukere}} av {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-bruker $1',
 'lastmodifiedatby' => 'Denne siden ble sist redigert $1 kl. $2 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basert på arbeid av $1.',

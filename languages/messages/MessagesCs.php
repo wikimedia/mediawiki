@@ -2270,6 +2270,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'tooltip-watch'                   => 'Přidat stránku do seznamu sledovaných',
 'tooltip-recreate'                => 'Obnovit stánku i když byla smazána',
 'tooltip-upload'                  => 'Odesílání souboru',
+'tooltip-rollback'                => '„Vrácení zpět“ jedním kliknutím zruší všechny editace provedené posledním uživatelem.',
+'tooltip-undo'                    => '„Zrušit editaci“ otevře okno editace, které neobsahuje změny provedené v rušené editaci. Je možné doplnit zdůvodnění do shrnutí editace.',
 
 # Stylesheets
 'common.css'   => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',

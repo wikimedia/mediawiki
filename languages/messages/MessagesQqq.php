@@ -1643,6 +1643,8 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-diff' => "This is the text that appears when you hover the mouse over the 'Show changes' button on the edit page",
 'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
 'tooltip-watch' => '{{Identical|Add this page to your watchlist}}',
+'tooltip-rollback' => 'Tooltip of the rollback link on the history page and the diff view',
+'tooltip-undo' => 'Tooltip of the undo link on the history page and the diff view',
 
 # Stylesheets
 'common.css' => 'CSS applied to all users.',

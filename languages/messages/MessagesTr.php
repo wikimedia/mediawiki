@@ -1138,6 +1138,7 @@ Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görünt�
 'popularpages'            => 'Popüler sayfalar',
 'wantedcategories'        => 'İstenen kategoriler',
 'wantedpages'             => 'İstenen sayfalar',
+'missingfiles'            => 'Eksik dosyalar',
 'mostlinked'              => 'Kendisine en fazla bağlantı verilmiş sayfalar',
 'mostlinkedcategories'    => 'En çok maddeye sahip kategoriler',
 'mostlinkedtemplates'     => 'En çok kullanılan şablonlar',
@@ -1259,7 +1260,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
 'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
 'watchmethod-list'     => 'izleme listenizdeki sayfalar kontrol ediliyor',
-'watchlistcontains'    => 'İzleme listenizde $1 sayfa var.',
+'watchlistcontains'    => 'İzleme listenizde $1 tane sayfa var.',
 'wlnote'               => '{{CURRENTTIME}} {{CURRENTMONTHNAME}} {{CURRENTDAY}} (UTC) tarihinde son <b>$2</b> saatte yapılan $1 değişiklik aşağıdadır.',
 'wlshowlast'           => 'Son $1 saati $2 günü göster $3',
 'watchlist-show-bots'  => 'Bot değişikliklerini göster',
@@ -1333,6 +1334,8 @@ Yakın zamanda silinenleri görmek için: $2.',
 ** Telif hakları ihlali
 ** Vandalizm',
 'delete-edit-reasonlist'      => 'Silme nedenlerini değiştir',
+'delete-toobig'               => 'Bu sayfa, $1 {{PLURAL:$1|tane değişiklik|tane değişiklik}} ile çok uzun bir geçmişe sahiptir.
+Böyle sayfaların silinmesi, {{SITENAME}} sitesini bozmamak için sınırlanmaktadır.',
 'rollback'                    => 'değişiklikleri geri al',
 'rollback_short'              => 'geri al',
 'rollbacklink'                => 'eski haline getir',
@@ -1430,6 +1433,7 @@ $1',
 'month'         => 'Ay:',
 'year'          => 'Yıl:',
 
+'sp-contributions-newbies'     => 'Sadece yeni hesap açan kullanıcıların katkılarını göster',
 'sp-contributions-newbies-sub' => 'Yeni kullanıcılar için',
 'sp-contributions-blocklog'    => 'Engel kaydı',
 'sp-contributions-search'      => 'Katkıları ara',
@@ -1652,6 +1656,7 @@ Lütfen başka bir isim deneyiniz.',
 'tooltip-t-emailuser'             => 'Kullanıcıya e-posta gönder',
 'tooltip-t-upload'                => 'Sisteme resim ya da medya dosyaları yükleyin',
 'tooltip-t-specialpages'          => 'Tüm özel sayfaların listesini göster',
+'tooltip-t-print'                 => 'Bu sayfanın basılmaya uygun görünümü',
 'tooltip-ca-nstab-main'           => 'Sayfayı göster',
 'tooltip-ca-nstab-user'           => 'Kullanıcı sayfasını göster',
 'tooltip-ca-nstab-media'          => 'Medya sayfasını göster',
@@ -1792,6 +1797,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-pixelydimension'           => 'Geçerli resim genişliği',
 'exif-makernote'                 => 'Yapımcı notları',
 'exif-usercomment'               => 'Kullanıcı yorumları',
+'exif-relatedsoundfile'          => 'İlişkin ses dosyası',
 'exif-datetimeoriginal'          => 'Orjinal yaratma zamanı',
 'exif-datetimedigitized'         => 'Dijitalleştirme zamanı',
 'exif-exposuretime'              => 'Çekim süresi',
@@ -1813,6 +1819,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-focalplanexresolution'     => 'Odaksal düzey X çözünürlüğü',
 'exif-focalplaneyresolution'     => 'Odaksal düzey Y çözünürlüğü',
 'exif-focalplaneresolutionunit'  => 'Odaksal düzey çözünürlük ünitesi',
+'exif-subjectlocation'           => 'Konu konumu',
 'exif-exposureindex'             => 'Poz dizini',
 'exif-sensingmethod'             => 'Algılama metodu',
 'exif-filesource'                => 'Dosya kaynağı',
@@ -1919,6 +1926,8 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 
 'exif-subjectdistancerange-0' => 'Bilinmiyor',
 'exif-subjectdistancerange-1' => 'Makro (Yakın çekim)',
+'exif-subjectdistancerange-2' => 'Yakın',
+'exif-subjectdistancerange-3' => 'Uzak',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Kuzey enlemi',
@@ -2081,5 +2090,8 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'specialpages-group-pagetools'   => 'Sayfa araçları',
 'specialpages-group-wiki'        => 'Viki bilgiler ve araçlar',
 'specialpages-group-spam'        => 'Spam araçları',
+
+# Special:BlankPage
+'blankpage' => 'Boş sayfa',
 
 );

@@ -2206,6 +2206,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
 'tooltip-upload'                  => 'Hochladen starten',
+'tooltip-rollback'                => 'macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
+'tooltip-undo'                    => 'macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 
 # Stylesheets
 'common.css'      => '/* CSS an dieser Stelle wirkt sich auf alle Skins aus */',

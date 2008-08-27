@@ -22,6 +22,7 @@
  * @author Lin linao
  * @author Mahadeva
  * @author McDutchie
+ * @author Muro de Aguas
  * @author Omnipaedista
  * @author Orgullomoore
  * @author Piolinfax
@@ -657,7 +658,9 @@ Si la grabas, los cambios hechos desde esa revisión se perderán.</strong>',
 Por favor considere la posibilidad de dividir esta página en secciones más pequeñas.</strong>',
 'longpageerror'                    => '<strong>ERROR: El texto que has enviado ocupa $1 kilobytes, que excede el máximo de $2 kilobytes. No se puede guardar.</strong>',
 'readonlywarning'                  => '<strong>Atención: La base de datos ha sido bloqueada por cuestiones de mantenimiento, así que no podrá guardar sus modificaciones en este momento.
-Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>',
+Puede copiar y pegar el texto a un archivo en su ordenador y grabarlo para más tarde.</strong>
+
+El administrador que la bloqueó dio esta explicación: $1',
 'protectedpagewarning'             => '<strong>ADVERTENCIA: Esta página ha sido protegida de manera que sólo usuarios con permisos de administrador pueden editarla.</strong>',
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página ha sido protegida para que sólo usuarios registrados puedan editarla.",
 'cascadeprotectedwarning'          => "'''Aviso:''' Esta página está protegida, sólo los administradores pueden editarla porque está incluida en  {{PLURAL:$1|la siguiente página protegida|las siguientes páginas protegidas}} en cascada:",
@@ -832,6 +835,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'wikicodecomparison'      => 'Comparación de texto wiki',
 'editundo'                => 'deshacer',
 'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
+'diff-movedto'            => 'movido a $1',
 'diff-with-final'         => '&#32;y $1 $2',
 
 # Search results
@@ -866,7 +870,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchall'                 => 'todos',
 'showingresults'            => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
 'showingresultsnum'         => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
-'showingresultstotal'       => "Debajo se {{PLURAL:$3|muestra el resultado '''$1''' de '''$3'''|muestran los resultados entre el '''$1''' y el '''$2''', de un total de '''$3'''}}.",
+'showingresultstotal'       => "Debajo se {{PLURAL:$4|muestra el resultado '''$1''' de '''$3'''|muestran los resultados entre el '''$1''' y el '''$2''', de un total de '''$3'''}}.",
 'nonefound'                 => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
 Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombre que quieras como prefijo. También puedes usar el formulario de búsqueda avanzada que aparece abajo.
 
@@ -1422,7 +1426,9 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 
 # Special:Categories
 'categories'                    => 'Categorías',
-'categoriespagetext'            => 'Existen las siguientes categorías en este wiki.',
+'categoriespagetext'            => 'Las siguientes categorías contienen páginas o ficheros.
+No se muestran las [[Special:UnusedCategories|categorías sin uso]].
+Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'categoriesfrom'                => 'Mostrar categorías que empiecen por:',
 'special-categories-sort-count' => 'ordenar por conteo',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
@@ -1505,6 +1511,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'watchlist-hide-anons' => 'Ocultar ediciones anónimas',
 'watchlist-show-liu'   => 'Mostrar ediciones de usuarios registrados',
 'watchlist-hide-liu'   => 'Ocultar ediciones de usuarios registrados',
+'watchlist-options'    => 'Opciones de la lista de seguimiento',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigilando...',
@@ -2024,6 +2031,8 @@ No hay un directorio temporal.',
 'tooltip-watch'                   => 'Añadir esta página a su lista de seguimiento',
 'tooltip-recreate'                => 'Recupera una página que ha sido borrada',
 'tooltip-upload'                  => 'Empieza la subida',
+'tooltip-rollback'                => '"Revertir" revierte todas las últimas ediciones de un mismo usuario con un clic.',
+'tooltip-undo'                    => '"Deshacer" revierte la edición seleccionada y abre la página de edición en el modo de previsualización. Permite añadir una razón al resumen de edición.',
 
 # Stylesheets
 'common.css'   => '/* Los estilos CSS definidos aquí aplicarán a todas las pieles (skins) */',
@@ -2040,12 +2049,12 @@ No hay un directorio temporal.',
 'notacceptable'     => 'El servidor wiki no puede proveer los datos en un formato que su cliente (navegador) pueda entender.',
 
 # Attribution
-'anonymous'        => 'Usuario(s) anónimo(s) de {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => 'Usuario $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Esta página fue modificada por última vez en $2, $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basado en el trabajo de $1.',
 'others'           => 'otros',
-'siteusers'        => 'Usuario(s) $1 de {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} $1 de {{SITENAME}}',
 'creditspage'      => 'Créditos de la página',
 'nocredits'        => 'Hay información de créditos para esta página.',
 

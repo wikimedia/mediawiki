@@ -644,6 +644,7 @@ Ille hanc causam dedit: ''$2''",
 'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est.
 Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
+'currentrev-asof'     => 'Emendatio recentissima ex $1',
 'revisionasof'        => 'Emendatio ex $1',
 'revision-info'       => 'Emendatio ex $1 ab $2',
 'previousrevision'    => '← Emendatio senior',
@@ -1500,7 +1501,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'tooltip-recreate'                => 'Recreare hanc paginam etiamsi deleta est',
 
 # Attribution
-'anonymous'        => 'Usor ignotus {{grammar:genitive|{{SITENAME}}}}',
+'anonymous'        => '{{PLURAL:$1|Usor ignotus|Usores ignoti}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => '{{SITENAME}} usor $1',
 'lastmodifiedatby' => 'Ultima mutatio: $2, $1 ab $3.', # $1 date, $2 time, $3 user
 'siteusers'        => '{{PLURAL:$2|usor|usores}} {{grammar:genitive|{{SITENAME}}}} $1',

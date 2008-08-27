@@ -1692,10 +1692,10 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchlist-hide-own'   => 'Masquer mes modifications',
 'watchlist-show-minor' => 'Afficher les modifications mineures',
 'watchlist-hide-minor' => 'Masquer les modifications mineures',
-'watchlist-show-anons' => 'Affiche les modifications anonymes',
-'watchlist-hide-anons' => 'Cache les modifications anonymes',
-'watchlist-show-liu'   => 'Affiche les modifications des utilisateurs connectés',
-'watchlist-hide-liu'   => 'Cache les modifications des utilisateurs connectés',
+'watchlist-show-anons' => 'Afficher les modifications anonymes',
+'watchlist-hide-anons' => 'Cacher les modifications anonymes',
+'watchlist-show-liu'   => 'Afficher les modifications des utilisateurs connectés',
+'watchlist-hide-liu'   => 'Cacher les modifications des utilisateurs connectés',
 'watchlist-options'    => 'Options de la liste de suivi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2213,6 +2213,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-watch'                   => 'Ajouter cette page à votre liste de suivi',
 'tooltip-recreate'                => 'Recréer la page même si celle-ci a été effacée',
 'tooltip-upload'                  => 'Commencer l’envoi',
+'tooltip-rollback'                => '"Révoquer" annule en un clic la ou les édition(s) sur cette page du dernier contributeur.',
+'tooltip-undo'                    => '"Défaire" révoque cette édition et ouvre la fenêtre d’édition en mode prévisualisation. Permet d’ajouter une raison dans la boîte de résumé.',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
@@ -2235,7 +2237,7 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'notacceptable'     => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client est capable de lire.',
 
 # Attribution
-'anonymous'        => 'Utilisateur(s) non enregistré(s) de {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Utilisateur non enregistré|Utilisateurs non enregistrés}} de {{SITENAME}}',
 'siteuser'         => 'Utilisateur $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Cette page a été modifiée pour la dernière fois le $1 à $2 par $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basé sur le travail de $1.',

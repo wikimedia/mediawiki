@@ -2462,13 +2462,6 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 $1',
 'confirm_purge_button' => 'Ja',
 
-# AJAX search
-'searchcontaining' => "Søk etter sider som inneheld ''$1''.",
-'searchnamed'      => "Søk etter sider som heiter ''$1''.",
-'articletitles'    => "Sider som byrjar med ''$1''",
-'hideresults'      => 'Gøym resultatet',
-'useajaxsearch'    => 'Bruk AJAX-søk',
-
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
 'imgmultipagenext' => 'neste side →',
