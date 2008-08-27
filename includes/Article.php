@@ -1288,9 +1288,6 @@ class Article {
 				# Replacing an existing section; roll out the big guns
 				global $wgParser;
 				$text = $wgParser->replaceSection( $oldtext, $section, $text );
-				# If $section is bogus, replaceSection() will be a no-op
-				if($text == $oldtext)
-					return null;
 			}
 
 		}
