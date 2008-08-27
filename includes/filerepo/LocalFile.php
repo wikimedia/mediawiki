@@ -737,11 +737,11 @@ class LocalFile extends File
 	 * @return FileRepoStatus object. On success, the value member contains the
 	 *     archive name, or an empty string if it was a new file.
 	 */
-	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false ) {
+	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false, $user = null ) {
 		$this->lock();
 		$status = $this->publish( $srcPath, $flags );
 		if ( $status->ok ) {
-			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp ) ) {
+			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
 		}
@@ -771,9 +771,12 @@ class LocalFile extends File
 	/**
 	 * Record a file upload in the upload log and the image table
 	 */
-	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false )
+	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null )
 	{
-		global $wgUser;
+		if( is_null( $user ) ) {
+			global $wgUser;
+			$user = $wgUser; 
+		}
 
 		$dbw = $this->repo->getMasterDB();
 
@@ -781,8 +784,8 @@ class LocalFile extends File
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
 		}
 		$props['description'] = $comment;
-		$props['user'] = $wgUser->getId();
-		$props['user_text'] = $wgUser->getName();
+		$props['user'] = $user->getId();
+		$props['user_text'] = $user->getName();
 		$props['timestamp'] = wfTimestamp( TS_MW );
 		$this->setProps( $props );
 
@@ -817,8 +820,8 @@ class LocalFile extends File
 				'img_minor_mime' => $this->minor_mime,
 				'img_timestamp' => $timestamp,
 				'img_description' => $comment,
-				'img_user' => $wgUser->getId(),
-				'img_user_text' => $wgUser->getName(),
+				'img_user' => $user->getId(),
+				'img_user_text' => $user->getName(),
 				'img_metadata' => $this->metadata,
 				'img_sha1' => $this->sha1
 			),
@@ -863,8 +866,8 @@ class LocalFile extends File
 					'img_minor_mime' => $this->minor_mime,
 					'img_timestamp' => $timestamp,
 					'img_description' => $comment,
-					'img_user' => $wgUser->getId(),
-					'img_user_text' => $wgUser->getName(),
+					'img_user' => $user->getId(),
+					'img_user_text' => $user->getName(),
 					'img_metadata' => $this->metadata,
 					'img_sha1' => $this->sha1
 				), array( /* WHERE */
@@ -884,7 +887,7 @@ class LocalFile extends File
 		# Add the log entry
 		$log = new LogPage( 'upload' );
 		$action = $reupload ? 'overwrite' : 'upload';
-		$log->addEntry( $action, $descTitle, $comment );
+		$log->addEntry( $action, $descTitle, $comment, array(), $user );
 
 		if( $descTitle->exists() ) {
 			# Create a null revision

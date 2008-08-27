@@ -1,0 +1,40 @@
+Special:Upload:
+
+wfSpecialUpload
+	new UploadForm
+		mUpload = new UploadFrom...
+	execute()
+		$wgEnableUploads
+		isAllowed(upload)
+		isBlocked()
+		wfReadOnly()
+		processUpload()
+			internalProcessUpload()
+				wfRunHooks(UploadForm:BeforeProcessing)
+				mUpload->getTitle()
+					wfStripIllegalFilenameChars
+					splitExtensions()
+					checkFileExtension()
+					Title::makeTitleSafe
+				getUserPermissionsErrors(edit; upload; create)
+				mUpload->verifyUpload()
+					empty(mFileSize)
+					getTitle()
+					checkOverwrite()
+					verifyFile()
+						checkMacBinary()
+					wfRunHooks(UploadVerification)
+				if(!ignoreWarning) mUpload->checkWarnings()
+				getInitialPageText()
+				mUpload->performUpload()
+					mLocalFile->upload()
+					if(isGood() && $watch) addWatch()
+					if(isGood()) wfRunHooks(UploadComplete)
+					wfRunHooks(SpecialUploadComplete)
+
+Changes:
+	* "Your file will be renamed to $1" check now done on the result of 
+	  Title::makeTitleSafe instead of filteredName
+	* getExistWarning only really does existence checks
+	* Other stuff forgotten to be documented
+	
