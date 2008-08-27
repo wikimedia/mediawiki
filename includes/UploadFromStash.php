@@ -20,13 +20,13 @@ class UploadFromStash extends UploadFromBase {
 	/*
 	 * File has been previously verified so no need to do so again.
 	 */
-	protected function verifyFile( $tmpfile, $extension ) {
+	protected function verifyFile( $tmpfile ) {
 		return true;
 	}
 	/*
 	 * We're here from "ignore warnings anyway" so return just OK
 	 */
-	function checkWarnings( &$resultDetails ) {
-		return self::OK;
+	function checkWarnings() {
+		return array();
 	}
 }
