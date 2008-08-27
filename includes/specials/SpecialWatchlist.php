@@ -269,7 +269,7 @@ function wfSpecialWatchlist( $par ) {
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	# Namespace filter and put the whole form together.
-	$form .= $wlInfo;
+	$form  = $wlInfo;
 	$form .= $cutofflinks;
 	$form .= implode( ' | ', $links );
 	$form .= Xml::openElement( 'form', array( 'method' => 'post', 'action' => $thisTitle->getLocalUrl() ) );
