@@ -39,6 +39,11 @@ class ApiEmailUser extends ApiBase {
 
 	public function execute() {
 		global $wgUser;
+		
+		// Check whether email is enabled
+		if ( !EmailUserForm::userEmailEnabled() )
+			$this->dieUsageMsg( array( 'usermaildisabled' ) );
+		
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 		
@@ -53,12 +58,12 @@ class ApiEmailUser extends ApiBase {
 		// Validate target 
 		$targetUser = EmailUserForm::validateEmailTarget( $params['target'] );
 		if ( !( $targetUser instanceof User ) )
-			$this->dieUsageMsg( array( $targetUser[0] ) );
+			$this->dieUsageMsg( array( $targetUser ) );
 		
 		// Check permissions
 		$error = EmailUserForm::getPermissionsError( $wgUser, $params['token'] );
 		if ( $error )
-			$this->dieUsageMsg( array( $error[0] ) );
+			$this->dieUsageMsg( array( $error ) );
 		
 			
 		$form = new EmailUserForm( $targetUser, $params['text'], $params['subject'], $params['ccme'] );

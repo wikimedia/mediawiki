@@ -10,12 +10,17 @@
 function wfSpecialEmailuser( $par ) {
 	global $wgRequest, $wgUser, $wgOut;
 
+	if ( !EmailUserForm::userEmailEnabled() ) {
+		$wgOut->showErrorPage( 'nosuchspecialpage', 'nospecialpagetext' );
+		return;
+	}
+
 	$action = $wgRequest->getVal( 'action' );
 	$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 	$targetUser = EmailUserForm::validateEmailTarget( $target );
 	
 	if ( !( $targetUser instanceof User ) ) {
-		$wgOut->showErrorPage( $targetUser[0], $targetUser[1] );
+		$wgOut->showErrorPage( $targetUser.'title', $targetUser.'text' );
 		return;
 	}
 	
@@ -30,7 +35,7 @@ function wfSpecialEmailuser( $par ) {
 					
 	$error = EmailUserForm::getPermissionsError( $wgUser, $wgRequest->getVal( 'wpEditToken' ) );
 	if ( $error ) {
-		switch ( $error[0] ) {
+		switch ( $error ) {
 			case 'blockedemailuser':
 				$wgOut->blockedPage();
 				return;
@@ -40,12 +45,11 @@ function wfSpecialEmailuser( $par ) {
 			case 'sessionfailure':
 				$form->showForm();
 				return;
-			default:
-				$wgOut->showErrorPage( $error[0], $error[1] );
+			case 'mailnologin':
+				$wgOut->showErrorPage( 'mailnologin', 'mailnologintext' );
 				return;
 		}
 	}	
-		
 	
 	if ( "submit" == $action && $wgRequest->wasPosted() ) {
 		$result = $form->doSubmit();
@@ -228,27 +232,27 @@ class EmailUserForm {
 		return $this->target;
 	}
 	
-	static function validateEmailTarget ( $target ) {
+	static function userEmailEnabled() {
 		global $wgEnableEmail, $wgEnableUserEmail;
-
-		if( !( $wgEnableEmail && $wgEnableUserEmail ) ) 
-			return array( "nosuchspecialpage", "nospecialpagetext" );
+		return $wgEnableEmail && $wgEnableEmail;
 		
+	}
+	static function validateEmailTarget ( $target ) {
 		if ( "" == $target ) {
 			wfDebug( "Target is empty.\n" );
-			return array( "notargettitle", "notargettext" );
+			return "notarget";
 		}
 	
 		$nt = Title::newFromURL( $target );
 		if ( is_null( $nt ) ) {
 			wfDebug( "Target is invalid title.\n" );
-			return array( "notargettitle", "notargettext" );
+			return "notarget";
 		}
 	
 		$nu = User::newFromName( $nt->getText() );
 		if( is_null( $nu ) || !$nu->canReceiveEmail() ) {
 			wfDebug( "Target is invalid user or can't receive.\n" );
-			return array( "noemailtitle", "noemailtext" );
+			return "noemail";
 		}
 		
 		return $nu;
@@ -256,22 +260,22 @@ class EmailUserForm {
 	static function getPermissionsError ( $user, $editToken ) {
 		if( !$user->canSendEmail() ) {
 			wfDebug( "User can't send.\n" );
-			return array( "mailnologin", "mailnologintext" );
+			return "mailnologin";
 		}
 		
 		if( $user->isBlockedFromEmailuser() ) {
 			wfDebug( "User is blocked from sending e-mail.\n" );
-			return array( "blockedemailuser", "" );
+			return "blockedemailuser";
 		}
 		
 		if( $user->pingLimiter( 'emailuser' ) ) {
 			wfDebug( "Ping limiter triggered.\n" );	
-			return array( 'actionthrottledtext', '' );
+			return 'actionthrottledtext';
 		}
 		
 		if( !$user->matchEditToken( $editToken ) ) {
 			wfDebug( "Matching edit token failed.\n" );
-			return array( 'sessionfailure', '' );
+			return 'sessionfailure';
 		}
 		
 		return;
