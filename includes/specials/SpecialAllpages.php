@@ -276,7 +276,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$namespace = NS_MAIN;
 		} else {
 			list( $namespace, $fromKey, $from ) = $fromList;
-			list( $namespace, $toKey, $to ) = $toList;
+			list( $namespace2, $toKey, $to ) = $toList;
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$conds = array(
