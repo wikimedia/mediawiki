@@ -3342,13 +3342,6 @@ Please confirm that you really want to recreate this page.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Search for pages containing ''$1''.",
-'searchnamed'      => "Search for pages named ''$1''.",
-'articletitles'    => "Pages starting with ''$1''",
-'hideresults'      => 'Hide results',
-'useajaxsearch'    => 'Use AJAX search',
-
 # Separators for various lists, etc.
 'catseparator'        => '|', # only translate this message to other languages if you have to change it
 'semicolon-separator' => ';&#32;', # only translate this message to other languages if you have to change it
