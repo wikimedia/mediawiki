@@ -583,6 +583,7 @@ $wgMessageStructure = array(
 		'revnotfound',
 		'revnotfoundtext',
 		'currentrev',
+		'currentrev-asof',
 		'revisionasof',
 		'revision-info',
 		'revision-info-current',

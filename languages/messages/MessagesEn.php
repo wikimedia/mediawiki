@@ -1208,6 +1208,7 @@ The reason given by $3 is ''$2''",
 'revnotfoundtext'       => 'The old revision of the page you asked for could not be found.
 Please check the URL you used to access this page.',
 'currentrev'            => 'Current revision',
+'currentrev-asof'       => 'Current revision as of $1',
 'revisionasof'          => 'Revision as of $1',
 'revision-info'         => 'Revision as of $1 by $2',
 'revision-info-current' => '-', # do not translate or duplicate this message to other languages
