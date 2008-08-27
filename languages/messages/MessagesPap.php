@@ -375,10 +375,6 @@ E kódigo di konfirmashon aki lo kaduká riba $4.',
 : ''$2''
 Por fabor konfirmá ku bo ke traha e artíkulo aki di nobo.",
 
-# AJAX search
-'articletitles' => "Artíkulonan kuminsando ku ''$1''",
-'hideresults'   => 'Skonde resultado',
-
 # Special:SpecialPages
 'specialpages' => 'Páginanan Spesial',
 

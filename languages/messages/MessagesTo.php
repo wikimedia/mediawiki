@@ -1171,12 +1171,6 @@ Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 $1',
 'confirm_purge_button' => 'Fai ā',
 
-# AJAX search
-'searchcontaining' => "Kumi ha ngaahi kupu ʻoku faʻo ai ʻa e ''$1''.",
-'searchnamed'      => "Kumi ha ngaahi kupu ʻoku nau hingoa ''$11''.",
-'articletitles'    => "Ngaahi kupu ʻoku kamata mo e ''$1''",
-'hideresults'      => 'Toi fua',
-
 # Multipage image navigation
 'imgmultipageprev' => '← Peesi ki muʻa',
 'imgmultipagenext' => 'Peesi hoko →',

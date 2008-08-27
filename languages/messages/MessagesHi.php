@@ -2470,13 +2470,6 @@ $5
 $1',
 'confirm_purge_button' => 'ओके',
 
-# AJAX search
-'searchcontaining' => 'उन लेखों को खोजे जिनमे $1 हो।',
-'searchnamed'      => "''$1'' नाम से शुरू होने वाले पन्ने खोजें",
-'articletitles'    => "लेख जो ''$1'' से शुरु होते हैं",
-'hideresults'      => 'रिज़ल्ट छुपायें',
-'useajaxsearch'    => 'AJAX खोज का इस्तेमाल करें',
-
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'autocomment-prefix'  => '-',

@@ -473,10 +473,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # action=purge
 'confirm_purge_button' => "D'accordu",
 
-# AJAX search
-'articletitles' => "Articuli chì cumincianu cù ''$1''",
-'hideresults'   => 'Piattà i risultati',
-
 # Table pager
 'table_pager_next'  => 'Prossima pagina',
 'table_pager_first' => 'Prima pagina',

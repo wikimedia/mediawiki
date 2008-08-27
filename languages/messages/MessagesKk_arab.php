@@ -2868,13 +2868,6 @@ $1
 $1',
 'confirm_purge_button' => 'جارايدى',
 
-# AJAX search
-'searchcontaining' => "''$1'' ماعلۇماتى بار بەتتەردەن ىزدەۋ.",
-'searchnamed'      => "''$1'' اتاۋى بار بەتتەردەن ىزدەۋ.",
-'articletitles'    => "''$1'' دەپ باستالعان بەتتەردى",
-'hideresults'      => 'ناتىيجەلەردى جاسىر',
-'useajaxsearch'    => 'AJAX قولدانىپ ىزدەۋ',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',

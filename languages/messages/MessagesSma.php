@@ -853,9 +853,6 @@ Jeatjebh dajveh lea gaptjedh goh sïejhme, bine vuesehte gåessie taabelle stoer
 
 $1',
 
-# AJAX search
-'useajaxsearch' => 'Nuhtjie AJAX ohtsedh',
-
 # Multipage image navigation
 'imgmultipageprev' => '← övtebe bielie',
 'imgmultipagenext' => 'minngebe bielie →',

@@ -587,9 +587,6 @@ $messages = array(
 # action=purge
 'confirm_purge_button' => 'हुन्छ',
 
-# AJAX search
-'hideresults' => 'नतिजा लुकाउनुहोस्',
-
 # Multipage image navigation
 'imgmultipageprev' => '← अघिल्लो पृष्ठ',
 'imgmultipagenext' => 'पछिल्लो पृष्ठ →',

@@ -2338,13 +2338,6 @@ $1
 $1',
 'confirm_purge_button' => 'ตกลง',
 
-# AJAX search
-'searchcontaining' => "ค้นหาที่มีส่วนประกอบ ''$1''",
-'searchnamed'      => "ค้นหาหน้าชื่อ ''$1''",
-'articletitles'    => "หน้าที่เริ่มต้นด้วย ''$1''",
-'hideresults'      => 'ซ่อนผลลัพธ์',
-'useajaxsearch'    => 'ใช้การค้นหาผ่านเอแจ็กซ์',
-
 # Multipage image navigation
 'imgmultipageprev' => '← หน้าก่อนหน้า',
 'imgmultipagenext' => 'หน้าถัดไป →',

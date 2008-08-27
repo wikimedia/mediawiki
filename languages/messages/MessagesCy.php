@@ -2226,13 +2226,6 @@ Cadarnhewch eich bod chi wir am ail-greu'r erthygl.",
 $1",
 'confirm_purge_button' => 'Iawn',
 
-# AJAX search
-'searchcontaining' => "Chwilio am dudalennau yn cynnwys ''$1''.",
-'searchnamed'      => "Chwilio am dudalennau a'r enw ''$1''.",
-'articletitles'    => "Erthyglau'n dechrau gyda: ''$1''",
-'hideresults'      => "Cuddio'r canlyniadau",
-'useajaxsearch'    => 'Chwilio gyda AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => "← i'r dudalen gynt",
 'imgmultipagenext' => "i'r dudalen nesaf →",

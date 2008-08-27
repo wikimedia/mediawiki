@@ -2125,13 +2125,6 @@ Ju lutem konfirmoni nëse dëshironi me të vertetë ta ri-krijoni këtë artiku
 $1',
 'confirm_purge_button' => 'Shko',
 
-# AJAX search
-'searchcontaining' => "Kërko për artikuj që përmbajnë ''$1''.",
-'searchnamed'      => "Kërko për artikuj të quajtur ''$1''.",
-'articletitles'    => "Artikuj që fillojnë me ''$1''",
-'hideresults'      => 'Fshih rezultatet',
-'useajaxsearch'    => 'Përdor kërkim me AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← faqja e kaluar',
 'imgmultipagenext' => 'faqja tjetër →',

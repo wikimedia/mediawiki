@@ -1447,12 +1447,6 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 # action=purge
 'confirm_purge_button' => 'Tink',
 
-# AJAX search
-'searchcontaining' => "Ėiškuotė straipsniu, katrė prasided ''$1''.",
-'searchnamed'      => "Ėiškuotė straipsniu, so pavadėnėmu ''$1''.",
-'articletitles'    => "Straipsnē, pradedont nu ''$1''",
-'hideresults'      => 'Kavuotė rezoltatus',
-
 # Multipage image navigation
 'imgmultipageprev' => '← onkstesnis poslapis',
 'imgmultipagenext' => 'kėts poslapis →',

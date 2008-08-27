@@ -711,9 +711,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # E-mail address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',
 
-# AJAX search
-'articletitles' => "Artikle naczënającë sã na ''$1''",
-
 # Multipage image navigation
 'imgmultigo' => 'Biéj!',
 

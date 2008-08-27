@@ -827,9 +827,6 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Delete conflict
 'recreate' => 'ورسجيو',
 
-# AJAX search
-'articletitles' => "''$1'' سان شروع ٿيندڙ مضمون",
-
 # Watchlist editing tools
 'watchlisttools-view' => 'لاڳاپيل تبديليون ڏسو',
 'watchlisttools-edit' => 'ٽيٽ فهرست ڏسو ۽ سنواريو',

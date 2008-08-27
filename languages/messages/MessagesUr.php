@@ -659,11 +659,6 @@ $messages = array(
 # action=purge
 'confirm_purge_button' => 'جی!',
 
-# AJAX search
-'searchnamed'   => "مضمون بنام ''$1'' کیلیۓ تلاش۔",
-'articletitles' => "''$1'' سے شروع ہونے والے مضامین",
-'hideresults'   => 'نتیجہ چھپائیں',
-
 # Auto-summaries
 'autosumm-blank'   => 'تمام مندرجات حذف',
 'autoredircomment' => '[[$1]] سے رجوع مکرر',

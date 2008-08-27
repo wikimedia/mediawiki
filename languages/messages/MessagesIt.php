@@ -2570,13 +2570,6 @@ Per le pagine più frequentemente richieste, questo processo risulterebbe troppo
 Pertanto, pulire (o aggiornare) la ''cache'' di una pagina, significa assicurarsi di visualizzare la versione più recente.",
 'confirm_purge_button' => 'Conferma',
 
-# AJAX search
-'searchcontaining' => "Ricerca delle voci che contengono ''$1''.",
-'searchnamed'      => "Ricerca delle voci con titolo ''$1''.",
-'articletitles'    => "Ricerca delle voci che iniziano con ''$1''",
-'hideresults'      => 'Nascondi i risultati',
-'useajaxsearch'    => 'Usa la ricerca AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagina precedente',
 'imgmultipagenext' => 'pagina seguente →',

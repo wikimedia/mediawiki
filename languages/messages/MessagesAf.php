@@ -2112,13 +2112,6 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Soek na bladsye wat ''$1'' bevat.",
-'searchnamed'      => "Soek vir bladsye genaamd ''$1''.",
-'articletitles'    => "Artikels wat met ''$1'' begin",
-'hideresults'      => 'Steek resultate weg',
-'useajaxsearch'    => 'Gebruik AJAX-soek',
-
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
 'imgmultipagenext' => 'volgende bladsy →',

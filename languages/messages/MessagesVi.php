@@ -2595,13 +2595,6 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Tìm những trang có chứa ''$1''.",
-'searchnamed'      => "Tìm những trang có tên ''$1''.",
-'articletitles'    => "Những trang bắt đầu bằng ''$1''",
-'hideresults'      => 'Ẩn kết quả',
-'useajaxsearch'    => 'Dùng tìm kiếm AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← trang trước',
 'imgmultipagenext' => 'trang sau →',

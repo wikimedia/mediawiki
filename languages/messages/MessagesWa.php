@@ -1559,12 +1559,6 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 $1",
 'confirm_purge_button' => "'l est bon",
 
-# AJAX search
-'searchcontaining' => "Cweri après des årtikes k' ont «''$1''» å dvins.",
-'searchnamed'      => "Cweri après des årtikes lomés «''$1''».",
-'articletitles'    => "Årtikes ki cmincèt avou «''$1''»",
-'hideresults'      => 'Catchî les rzultats',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pådje di dvant',
 'imgmultipagenext' => 'pådje shuvante →',

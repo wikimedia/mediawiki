@@ -3000,13 +3000,6 @@ $1
 $1',
 'confirm_purge_button' => 'موافق',
 
-# AJAX search
-'searchcontaining' => "ابحث عن الصفحات المحتوية على ''$1''.",
-'searchnamed'      => "ابحث عن الصفحات المسماة ''$1''.",
-'articletitles'    => "الصفحات التي تبدأ ب''$1''",
-'hideresults'      => 'إخفاء النتائج',
-'useajaxsearch'    => 'استخدم بحث أجاكس',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',

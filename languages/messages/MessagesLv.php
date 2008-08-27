@@ -1624,12 +1624,6 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 $1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Meklēt rakstus, kas satur ''$1''.",
-'searchnamed'      => "Meklēt rakstus ar nosaukumu ''$1''.",
-'articletitles'    => "Raksti, kas sākas ar ''$1''",
-'hideresults'      => 'Paslēpt rezultātus',
-
 # Multipage image navigation
 'imgmultipageprev' => '← iepriekšējā lapa',
 'imgmultipagenext' => 'nākamā lapa →',

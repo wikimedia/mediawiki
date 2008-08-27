@@ -2446,13 +2446,6 @@ Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
 $1',
 'confirm_purge_button' => 'Gerai',
 
-# AJAX search
-'searchcontaining' => "Ieškoti puslapių, prasidedančių ''$1''.",
-'searchnamed'      => "Ieškoti puslapių, pavadintų ''$1''.",
-'articletitles'    => "Puslapiai, pradedant nuo ''$1''",
-'hideresults'      => 'Slėpti rezultatus',
-'useajaxsearch'    => 'Naudoti AJAX paiešką',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ankstesnis puslapis',
 'imgmultipagenext' => 'kitas puslapis →',

@@ -2784,13 +2784,6 @@ $1
 $1',
 'confirm_purge_button' => 'طيب',
 
-# AJAX search
-'searchcontaining' => "دور على الصفحات اللي فيها ''$1''.",
-'searchnamed'      => "دور على الصفحات اللي اسمها ''$1''.",
-'articletitles'    => "الصفحات اللي بتبتدي بـ''$1''",
-'hideresults'      => 'خبي النتايج',
-'useajaxsearch'    => 'دور بـ أجاكس',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',

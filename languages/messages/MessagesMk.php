@@ -2041,12 +2041,6 @@ $1
 $1',
 'confirm_purge_button' => 'Да',
 
-# AJAX search
-'searchcontaining' => "Барам статии што содржат ''$1''.",
-'searchnamed'      => "Статии со име: ''$1''.",
-'articletitles'    => "Статии кои почнуваат со ''$1''",
-'hideresults'      => 'Сокриј резултати',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страница',
 'imgmultipagenext' => 'следна страница &rarr;',

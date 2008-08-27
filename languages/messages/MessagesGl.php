@@ -2478,13 +2478,6 @@ Por favor confirme que realmente quere crear o artigo de novo.",
 $1',
 'confirm_purge_button' => 'Si',
 
-# AJAX search
-'searchcontaining' => "Procurar artigos que conteñan ''$1''.",
-'searchnamed'      => "Buscar artigos chamados ''$1''.",
-'articletitles'    => "Artigos que comezan por ''$1''",
-'hideresults'      => 'Agochar resultados',
-'useajaxsearch'    => 'Usar a procura AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← páxina anterior',
 'imgmultipagenext' => 'seguinte páxina →',

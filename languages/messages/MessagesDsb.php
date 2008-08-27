@@ -2472,13 +2472,6 @@ Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
 'confirm_purge'        => 'Wulašowaś cache togo boka? $1',
 'confirm_purge_button' => 'W pórědku.',
 
-# AJAX search
-'searchcontaining' => "Nastawki pytaś, do kótarychž słuša tekst ''$1''.",
-'searchnamed'      => "Pytaś nastawki z mjenim ''$1''",
-'articletitles'    => "Nastawki, kótarež zachopiju z ''$1''",
-'hideresults'      => 'rezultat schowaś',
-'useajaxsearch'    => 'Pytanje z AJAX wužywaś',
-
 # Multipage image navigation
 'imgmultipageprev' => '← slědny bok',
 'imgmultipagenext' => 'pśiducy bok →',

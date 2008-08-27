@@ -2121,13 +2121,6 @@ $5
 $1',
 'confirm_purge_button' => 'ശരി',
 
-# AJAX search
-'searchcontaining' => "''$1'' എന്ന വാക്കുള്ള താളുകള്‍ തിരയുക.",
-'searchnamed'      => "''$1'' എന്ന പേരുള്ള താളുകള്‍ തിരയുക.",
-'articletitles'    => "''$1'' എന്നു തുടങ്ങുന്ന താളുകള്‍",
-'hideresults'      => 'ഫലങ്ങള്‍ മറയ്ക്കുക',
-'useajaxsearch'    => 'AJAX തിരച്ചില്‍ സം‌വിധാനം ഉപയോഗിക്കുക',
-
 # Multipage image navigation
 'imgmultipageprev' => '← മുന്‍പത്തെ താള്‍',
 'imgmultipagenext' => 'അടുത്ത താള്‍ →',

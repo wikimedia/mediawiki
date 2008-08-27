@@ -2686,13 +2686,6 @@ Potvrdite namjeru vraćanja ovog članka.",
 $1',
 'confirm_purge_button' => 'U redu',
 
-# AJAX search
-'searchcontaining' => "Traži članke koji sadržavaju ''$1''.",
-'searchnamed'      => "Traži članke po imenu ''$1''.",
-'articletitles'    => "Članci koji počinju s ''$1''",
-'hideresults'      => 'Sakrij rezultate',
-'useajaxsearch'    => 'Koristite AJAX-pretragu',
-
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna slika',
 'imgmultipagenext' => 'slijedeća slika →',

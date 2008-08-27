@@ -391,9 +391,6 @@ $messages = array(
 # action=purge
 'confirm_purge_button' => 'හරි',
 
-# AJAX search
-'useajaxsearch' => 'AJAX සෙවුම භාවිත කරන්න',
-
 # Multipage image navigation
 'imgmultipageprev' => '← පෙර පිටුව',
 'imgmultipagenext' => 'ඊළඟ පිටුව →',

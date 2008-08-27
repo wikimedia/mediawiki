@@ -1196,9 +1196,6 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 : ''$2''
 Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 
-# AJAX search
-'articletitles' => 'Jukki yu tambalee « $1 »',
-
 # Auto-summaries
 'autoredircomment' => 'Jubluwaat fii [[$1]]',
 'autosumm-new'     => 'Xët wu bees : $1',

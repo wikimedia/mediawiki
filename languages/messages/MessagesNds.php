@@ -2512,13 +2512,6 @@ Wist du de Siet würklich nee anleggen?",
 $1',
 'confirm_purge_button' => 'Jo',
 
-# AJAX search
-'searchcontaining' => "Na Artikels söken, in de ''$1'' binnen is.",
-'searchnamed'      => "Na Artikels söken, de ''$1'' heten doot.",
-'articletitles'    => 'Artikels, de mit „$1“ anfangt',
-'hideresults'      => 'Resultaten verstecken',
-'useajaxsearch'    => 'Bruuk de AJAX-Söök',
-
 # Multipage image navigation
 'imgmultipageprev' => '← vörige Siet',
 'imgmultipagenext' => 'nächste Siet →',

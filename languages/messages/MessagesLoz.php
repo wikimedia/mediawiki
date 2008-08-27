@@ -1057,11 +1057,6 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 # action=purge
 'confirm_purge_button' => 'Afi',
 
-# AJAX search
-'searchcontaining' => "Fatukile di petulo con selt ''$1''.",
-'searchnamed'      => "Fatukile di petulo di sebu ''$1''.",
-'articletitles'    => "Petulo di ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← kona petulo',
 'imgmultipagenext' => 'lila petulo →',

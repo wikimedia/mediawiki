@@ -2476,13 +2476,6 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'confirm_purge'        => 'Doriţi să reîncărcaţi pagina? $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Caută articolele care conţin ''$1''.",
-'searchnamed'      => "Caută articole cu numele ''$1''.",
-'articletitles'    => "Articole începând cu ''$1''",
-'hideresults'      => 'Ascunde rezultatele',
-'useajaxsearch'    => 'Foloseşte căutare AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pagina anterioară',
 'imgmultipagenext' => 'pagina următoare →',

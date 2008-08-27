@@ -2559,13 +2559,6 @@ $1
 'confirm_purge'        => '要清除此页面的缓存吗?\\n\\n$1',
 'confirm_purge_button' => '确定',
 
-# AJAX search
-'searchcontaining' => "搜索包含''$1''的页面。",
-'searchnamed'      => "搜索名为''$1''的页面。",
-'articletitles'    => '页面以"$1"开头',
-'hideresults'      => '隐藏结果',
-'useajaxsearch'    => '使用AJAX搜索',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',
 'imgmultipagenext' => '下一页 →',

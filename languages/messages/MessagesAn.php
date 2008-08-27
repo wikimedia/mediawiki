@@ -2453,13 +2453,6 @@ Por fabor, confirme que reyalment deseya creyar l'articlo nuebament.",
 $1",
 'confirm_purge_button' => 'Confirmar',
 
-# AJAX search
-'searchcontaining' => "Mirar articlos que contiengan ''$1''.",
-'searchnamed'      => "Mirar articlos con o títol ''$1''.",
-'articletitles'    => "Articlos que prenzipian por ''$1''",
-'hideresults'      => 'Amagar resultaus',
-'useajaxsearch'    => 'Faiga serbir a busca en AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pachina anterior',
 'imgmultipagenext' => 'pachina siguient →',

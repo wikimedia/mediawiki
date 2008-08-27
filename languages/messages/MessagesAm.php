@@ -1931,13 +1931,6 @@ $3
 $1',
 'confirm_purge_button' => 'እሺ',
 
-# AJAX search
-'searchcontaining' => "''$1'' ላለባቸው ገጾች ለመፈልግ።",
-'searchnamed'      => "''$1'' ለተባሉት ገጾች ለመፈልግ።",
-'articletitles'    => "በ''$1'' የሚጀመሩ ገጾች፦",
-'hideresults'      => 'ውጤቶች ለመደብቅ',
-'useajaxsearch'    => 'የAJAX ፍለጋ ይጠቀም',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ፊተኛው ገጽ',
 'imgmultipagenext' => 'የሚቀጥለው ገጽ →',

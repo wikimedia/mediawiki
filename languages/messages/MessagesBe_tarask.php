@@ -2590,10 +2590,6 @@ $5
 $1',
 'confirm_purge_button' => 'Так',
 
-# AJAX search
-'articletitles' => "Старонкі, якія пачынаюцца з ''$1''",
-'hideresults'   => 'Схаваць вынікі',
-
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
 'imgmultipagenext' => 'наступная старонка →',

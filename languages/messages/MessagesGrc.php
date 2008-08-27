@@ -1777,10 +1777,6 @@ $1
 $1',
 'confirm_purge_button' => 'εἶεν',
 
-# AJAX search
-'hideresults'   => 'Ἀποκρύπτειν ἀποτελέσματα',
-'useajaxsearch' => 'Χρῆσθαι ἀναζήτησιν AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← Δέλτος προτέρα',
 'imgmultipagenext' => 'Δέλτος ἡ ἐχομένη →',

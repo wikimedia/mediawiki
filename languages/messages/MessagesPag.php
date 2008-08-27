@@ -370,10 +370,6 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 
 $1',
 
-# AJAX search
-'articletitles' => "Saray article na manggagapo ed ''$1''",
-'hideresults'   => 'Iyamot so saray result',
-
 # Multipage image navigation
 'imgmultipagenext' => 'ontombok ya bolong →',
 'imgmultigo'       => 'Ula!',

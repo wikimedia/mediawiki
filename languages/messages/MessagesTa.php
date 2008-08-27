@@ -2189,13 +2189,6 @@ $5
 $1',
 'confirm_purge_button' => 'ஆம்',
 
-# AJAX search
-'searchcontaining' => "''$1''ஐ உள்ளடக்கத்தில் கொண்ட பக்கங்களைத் தேடல்.",
-'searchnamed'      => "''$1''ஐத் தலைப்பாக கொண்ட பக்கங்களைத் தேடல்.",
-'articletitles'    => "''$1'' என்ற எழுத்தில் தொடங்கும் கட்டுரைகள்",
-'hideresults'      => 'முடிவுகளை மறை',
-'useajaxsearch'    => 'AJAX தேடலைப் பயன்படுத்து',
-
 # Multipage image navigation
 'imgmultipageprev' => '← முந்தைய பக்கம்',
 'imgmultipagenext' => 'அடுத்தப் பக்கம் →',

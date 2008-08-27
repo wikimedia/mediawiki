@@ -2787,13 +2787,6 @@ $1
 $1',
 'confirm_purge_button' => 'אישור',
 
-# AJAX search
-'searchcontaining' => "חיפוש דפים המכילים את הטקסט '''$1'''.",
-'searchnamed'      => "חיפוש דפים בשם '''$1'''.",
-'articletitles'    => "חיפוש דפים המתחילים עם '''$1'''",
-'hideresults'      => 'הסתרת התוצאות',
-'useajaxsearch'    => 'שימוש בחיפוש AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '&rarr; לדף הקודם',
 'imgmultipagenext' => 'לדף הבא &larr;',

@@ -2716,13 +2716,6 @@ $1
 $1',
 'confirm_purge_button' => 'تأیید',
 
-# AJAX search
-'searchcontaining' => "جستجوی مقاله‌هایی که ''$1'' می‌دارند.",
-'searchnamed'      => "جستجوی مقاله‌هایی با نام ''$1''.",
-'articletitles'    => "مقاله‌هایی که با ''$1'' آغاز می‌شوند.",
-'hideresults'      => 'نهفتن نتایج',
-'useajaxsearch'    => 'از جستجوی مبتنی بر AJAX استفاده کن',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',

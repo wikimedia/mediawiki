@@ -2440,13 +2440,6 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 'confirm_purge'        => 'Pufrowak strony wuprózdnić? $1',
 'confirm_purge_button' => 'W porjadku',
 
-# AJAX search
-'searchcontaining' => 'Strony pytać, kotrež <i>$1</i> wobsahuja.',
-'searchnamed'      => 'Strony pytać, w kotrychž titlach so <i>$1</i> jewi.',
-'articletitles'    => 'Strony pytać, kotrež so z <i>$1</i> započinaja',
-'hideresults'      => 'Wuslědki schować',
-'useajaxsearch'    => 'Pytanje AJAX wužiwać',
-
 # Multipage image navigation
 'imgmultipageprev' => '← předchadna strona',
 'imgmultipagenext' => 'přichodna strona →',

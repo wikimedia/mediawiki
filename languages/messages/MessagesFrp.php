@@ -2246,13 +2246,6 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 $1',
 'confirm_purge_button' => 'Confirmar',
 
-# AJAX search
-'searchcontaining' => 'Chèrchiér los articllos contegnent « $1 ».',
-'searchnamed'      => 'Chèrchiér los articllos apelâs « $1 ».',
-'articletitles'    => 'Articllos comencient per « $1 »',
-'hideresults'      => 'Cachiér los rèsultats',
-'useajaxsearch'    => 'Utilisar la rechèrche AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pâge prècèdenta',
 'imgmultipagenext' => 'pâge siuventa →',

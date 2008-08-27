@@ -2460,13 +2460,6 @@ Jekk jogħġbok konferma jekk vera trid terġa' toħloq din il-paġna.",
 $1",
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Fittex paġna li għandhom ''$1''.",
-'searchnamed'      => "Fittex għal paġna bl-isem ''$1''.",
-'articletitles'    => "Fittex dawk il-paġni li jibdew b' ''$1''",
-'hideresults'      => 'Aħbi r-riżultati',
-'useajaxsearch'    => 'Uża tfittxija AJAX',
-
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'autocomment-prefix'  => '-',

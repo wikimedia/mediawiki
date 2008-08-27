@@ -2786,13 +2786,6 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 $1',
 'confirm_purge_button' => 'Jo — loss jonn!',
 
-# AJAX search
-'searchcontaining' => 'Sök noh Atikkele, wo „$1“ em Tex vörkütt.',
-'searchnamed'      => 'Sök noh Atikkele, wo „$1“ em Name vörkütt.',
-'articletitles'    => 'Atikkele, die met „$1“ aanfange',
-'hideresults'      => 'Versteiche wat erus küt',
-'useajaxsearch'    => 'AJAX-Hölp beim Sööke bruche',
-
 # Separators for various lists, etc.
 'semicolon-separator' => ';',
 'autocomment-prefix'  => '-',

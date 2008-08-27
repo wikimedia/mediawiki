@@ -2725,13 +2725,6 @@ Opravdu si přejete znovu tuto stránku založit?',
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Hledat stránky obsahující ''$1''.",
-'searchnamed'      => "Hledat stránky pojmenované ''$1''.",
-'articletitles'    => "Stránky začínající ''$1''",
-'hideresults'      => 'Skrýt výsledky',
-'useajaxsearch'    => 'Použít při hledání AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',
 'imgmultipagenext' => 'následující stránka →',

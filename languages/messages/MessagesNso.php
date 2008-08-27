@@ -1017,9 +1017,6 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'namespacesall'    => 'ka moka',
 'monthsall'        => 'ka moka',
 
-# AJAX search
-'articletitles' => "Matlakala a go thoma ka ''$1''",
-
 # Multipage image navigation
 'imgmultipageprev' => '← letlakala la go feta',
 'imgmultipagenext' => 'letlakala lago latela →',

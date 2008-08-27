@@ -2305,13 +2305,6 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 $1',
 'confirm_purge_button' => 'Sigi',
 
-# AJAX search
-'searchcontaining' => "Maintun kareng bulung a maki ''$1''.",
-'searchnamed'      => "Maintun bulung a maki lagiung ''$1''.",
-'articletitles'    => "Ding articulung magumpisa king ''$1''",
-'hideresults'      => 'Isalikut la reng linual/resulta',
-'useajaxsearch'    => 'Maintun kapamilatan ning AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← minunang bulung',
 'imgmultipagenext' => 'tutuking bulung →',

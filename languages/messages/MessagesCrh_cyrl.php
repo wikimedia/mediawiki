@@ -1744,13 +1744,6 @@ $1
 $1',
 'confirm_purge_button' => 'Ок',
 
-# AJAX search
-'searchcontaining' => "''$1'' деген сёзлер иле саифелерни къыдырув.",
-'searchnamed'      => "''$1'' адлы саифелерни къыдырув.",
-'articletitles'    => "''$1'' иле башлагъан саифелерни къыдырув.",
-'hideresults'      => 'Нетиджелерни гизле',
-'useajaxsearch'    => 'AJAX къыдырувы къуллан',
-
 # Multipage image navigation
 'imgmultipageprev' => '← эвельки саифе',
 'imgmultipagenext' => 'сонъраки саифе →',

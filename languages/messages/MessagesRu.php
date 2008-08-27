@@ -2694,13 +2694,6 @@ $1
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => 'Поиск статей, содержащих «$1».',
-'searchnamed'      => "Поиск страниц с именем ''$1''.",
-'articletitles'    => 'Статьи, начинающиеся с «$1»',
-'hideresults'      => 'Скрыть результаты',
-'useajaxsearch'    => 'Использовать AJAX-поиск',
-
 # Multipage image navigation
 'imgmultipageprev' => '← предыдущая страница',
 'imgmultipagenext' => 'следующая страница →',

@@ -2037,13 +2037,6 @@ $1
 $1',
 'confirm_purge_button' => '准',
 
-# AJAX search
-'searchcontaining' => "尋文含''$1''",
-'searchnamed'      => "尋文名''$1''.",
-'articletitles'    => "文首為''$1''",
-'hideresults'      => '藏',
-'useajaxsearch'    => '用AJAX尋之',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '；',
 'comma-separator'     => '、',

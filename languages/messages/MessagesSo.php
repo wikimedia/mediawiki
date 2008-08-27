@@ -600,11 +600,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # E-mail address confirmation
 'confirmemail_noemail' => 'Kuma haysatid cinwaan E-boosto sax [[Special:Preferences|isticmaala dooqiisa]].',
 
-# AJAX search
-'searchcontaining' => "Raadi maqaal uu ku jiro ''$1''.",
-'searchnamed'      => "Raadi maqaalada magacoodu uu yahay ''$1''.",
-'articletitles'    => "Maqaalada ka bilaawdo ''$1''",
-
 # Multipage image navigation
 'imgmultigo' => 'Soco!',
 

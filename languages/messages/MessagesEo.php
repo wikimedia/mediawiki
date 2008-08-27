@@ -2527,13 +2527,6 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",
 $1',
 'confirm_purge_button' => 'Ek!',
 
-# AJAX search
-'searchcontaining' => "Serĉo de paĝoj enhavantaj ''$1''.",
-'searchnamed'      => "Serĉo de paĝoj nomataj ''$1''.",
-'articletitles'    => "Artikoloj komencante de ''$1''",
-'hideresults'      => 'Kaŝi rezultojn',
-'useajaxsearch'    => 'Uzi AJAX serĉon',
-
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',
 'imgmultipagenext' => 'sekva paĝo →',

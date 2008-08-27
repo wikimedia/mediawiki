@@ -2665,13 +2665,6 @@ Prosím, potvrďte, že túto stránku chcete skutočne znovu vytvoriť.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Hľadať stránky obsahujúce ''$1''.",
-'searchnamed'      => "Hľadať stránky s názvom ''$1''.",
-'articletitles'    => "Stránky začínajúce na ''$1''",
-'hideresults'      => 'Skryť výsledky',
-'useajaxsearch'    => 'Použiť AJAX vyhľadávanie',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; predošlá stránka',
 'imgmultipagenext' => 'ďalšia stránka &rarr;',

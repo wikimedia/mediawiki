@@ -2515,13 +2515,6 @@ Por favor, confirme que realmente deseja recriar esta página.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Pesquisar por páginas contendo ''$1''.",
-'searchnamed'      => "Pesquisar por páginas nomeadas como ''$1''.",
-'articletitles'    => "Páginas começando com ''$1''",
-'hideresults'      => 'Esconder resultados',
-'useajaxsearch'    => 'Usar busca AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'próxima página →',

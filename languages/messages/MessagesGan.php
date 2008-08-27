@@ -2040,13 +2040,6 @@ $3
 $1',
 'confirm_purge_button' => '做得',
 
-# AJAX search
-'searchcontaining' => "尋含到''$1''嗰文章。",
-'searchnamed'      => "尋叫''$1''嗰文章。",
-'articletitles'    => '以"$1"開頭嗰文章',
-'hideresults'      => '弆到嗰結果',
-'useajaxsearch'    => '用 AJAX 尋',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 上頁',
 'imgmultipagenext' => '下頁 →',

@@ -1124,9 +1124,6 @@ fer úr gildi tann $4.',
 # action=purge
 'confirm_purge_button' => 'Í lagi',
 
-# AJAX search
-'hideresults' => 'Fjal úrslit',
-
 # Multipage image navigation
 'imgmultipageprev' => '← fyrrverandi síða',
 'imgmultipagenext' => 'næsta síða →',

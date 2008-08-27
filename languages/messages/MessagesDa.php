@@ -2478,13 +2478,6 @@ Bekræft venligst, at du virkelig vil oprette denne side igen.",
 'confirm_purge'        => 'Slette denne side fra serverens cache? $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Søger efter sider, hvori ''$1'' forekommer.",
-'searchnamed'      => "Søger efter sider, hvis navn indeholder ''$1''.",
-'articletitles'    => "Sider, som begynder med ''$1''",
-'hideresults'      => 'Skjul',
-'useajaxsearch'    => 'Brug AJAX-søgning',
-
 # Multipage image navigation
 'imgmultipageprev' => '← forrige side',
 'imgmultipagenext' => 'næste side →',

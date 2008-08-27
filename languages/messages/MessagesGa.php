@@ -1835,11 +1835,6 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 $1',
 'confirm_purge_button' => 'Tá',
 
-# AJAX search
-'searchnamed'   => "Cuardaigh le leathanaigh ab ainm ''$1''.",
-'articletitles' => "Ailt a tosaíonn le ''$1''",
-'hideresults'   => 'Folaigh torthaí',
-
 # Multipage image navigation
 'imgmultigoto' => 'Téigh go leathanach $1',
 

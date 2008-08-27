@@ -976,10 +976,6 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 'namespacesall' => 'Tûtti',
 'monthsall'     => 'Tûtti',
 
-# AJAX search
-'articletitles' => "Pagine che comensan con ''$1''",
-'hideresults'   => 'Ascondi i resultæ',
-
 # Multipage image navigation
 'imgmultipageprev' => '← Pagina de primma',
 'imgmultipagenext' => 'Proscima pagina →',

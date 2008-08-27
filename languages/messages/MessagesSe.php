@@ -1254,12 +1254,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 # action=purge
 'confirm_purge_button' => 'Sihko',
 
-# AJAX search
-'searchcontaining' => 'Oza artihkkaliid, mat sisdisdollet ”$1”.',
-'searchnamed'      => 'Oza artihkkaliid, maid namma lea ”$1”.',
-'articletitles'    => 'Artihkkalat, mat álget ”$1”',
-'hideresults'      => 'Čiega bohtosiid',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ovddit siidu',
 'imgmultipagenext' => 'čuovvovaš siidu →',

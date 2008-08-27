@@ -2625,13 +2625,6 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 $1',
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "Cari laman mengandungi ''$1''.",
-'searchnamed'      => "Cari laman bernama ''$1''.",
-'articletitles'    => "Laman bermula dengan ''$1''",
-'hideresults'      => 'Sembunyikan keputusan',
-'useajaxsearch'    => 'Gunakan carian AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← halaman sebelumnya',
 'imgmultipagenext' => 'halaman berikutnya →',

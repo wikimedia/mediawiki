@@ -2356,13 +2356,6 @@ Bevèsteg estebleef dats te dees pazjena ech obbenuujts wils make.",
 $1',
 'confirm_purge_button' => 'ok',
 
-# AJAX search
-'searchcontaining' => "Zeuk nao pazjena's die ''$1'' bevatte.",
-'searchnamed'      => "Zeuk nao pazjena's mit de naam ''$1''.",
-'articletitles'    => "Pazjena's die mit ''$1'' beginne",
-'hideresults'      => 'Versjtaek resultate',
-'useajaxsearch'    => 'AJAX-zeuke gebroeke',
-
 # Multipage image navigation
 'imgmultipageprev' => '← veurige pazjena',
 'imgmultipagenext' => 'volgende pazjena →',

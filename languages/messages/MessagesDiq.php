@@ -427,9 +427,6 @@ It must have at least $1 characters and be different from your username.',
 
 'exif-gaincontrol-0' => 'çino',
 
-# AJAX search
-'articletitles' => "Perri be ''$1'' dest cı kenê",
-
 # Special:FilePath
 'filepath-page' => 'Dosya:',
 

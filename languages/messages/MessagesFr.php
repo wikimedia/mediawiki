@@ -2668,13 +2668,6 @@ Veuillez confirmer que vous désirez recréer cet article.",
 'confirm_purge'        => 'Voulez-vous rafraîchir cette page (purger le cache) ? $1',
 'confirm_purge_button' => 'Confirmer',
 
-# AJAX search
-'searchcontaining' => 'Chercher les articles contenant « $1 ».',
-'searchnamed'      => 'Chercher les articles nommés « $1 ».',
-'articletitles'    => 'Articles commençant par « $1 »',
-'hideresults'      => 'Cacher les résultats',
-'useajaxsearch'    => 'Utiliser la recherche AJAX',
-
 # Separators for various lists, etc.
 'semicolon-separator' => '&nbsp;;&#32;',
 'colon-separator'     => '&nbsp;:&#32;',

@@ -860,9 +860,6 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 # action=purge
 'confirm_purge_button' => 'Hō̤',
 
-# AJAX search
-'hideresults' => 'Káung kī giék-guō',
-
 # Multipage image navigation
 'imgmultipageprev' => '← sèng 1 hiĕk',
 'imgmultipagenext' => 'â 1 hiĕk →',

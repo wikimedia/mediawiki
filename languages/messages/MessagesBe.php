@@ -2401,13 +2401,6 @@ $1
 $1',
 'confirm_purge_button' => 'ОК',
 
-# AJAX search
-'searchcontaining' => "Знайсці артыкулы, у якіх ёсць ''$1''.",
-'searchnamed'      => "Знайсці артыкулы з назвай ''$1''.",
-'articletitles'    => "Артыкулы, чые назвы пачынаюцца з ''$1''",
-'hideresults'      => 'Не паказваць вынікаў',
-'useajaxsearch'    => 'Пошук праз AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← папярэдняя старонка',
 'imgmultipagenext' => 'наступная старонка →',

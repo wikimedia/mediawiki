@@ -1745,13 +1745,6 @@ Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
 $1',
 'confirm_purge_button' => 'Ok',
 
-# AJAX search
-'searchcontaining' => "''$1'' degen sözler ile saifelerni qıdıruv.",
-'searchnamed'      => "''$1'' adlı saifelerni qıdıruv.",
-'articletitles'    => "''$1'' ile başlağan saifelerni qıdıruv.",
-'hideresults'      => 'Neticelerni gizle',
-'useajaxsearch'    => 'AJAX qıdıruvı qullan',
-
 # Multipage image navigation
 'imgmultipageprev' => '← evelki saife',
 'imgmultipagenext' => 'soñraki saife →',

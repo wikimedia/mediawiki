@@ -2490,13 +2490,6 @@ Varmista, että haluat luoda sivun uudelleen.",
 $1',
 'confirm_purge_button' => 'Poista',
 
-# AJAX search
-'searchcontaining' => 'Etsi artikkeleita, jotka sisältävät ”$1”.',
-'searchnamed'      => 'Etsi artikkeleita, joiden nimi on ”$1”.',
-'articletitles'    => 'Artikkelit, jotka alkavat merkkijonolla ”$1”',
-'hideresults'      => 'Piilota tulokset',
-'useajaxsearch'    => 'Käytä AJAX-hakua',
-
 # Multipage image navigation
 'imgmultipageprev' => '← edellinen sivu',
 'imgmultipagenext' => 'seuraava sivu →',

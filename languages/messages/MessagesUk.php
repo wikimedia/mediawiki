@@ -2665,13 +2665,6 @@ $1
 $1',
 'confirm_purge_button' => 'Гаразд',
 
-# AJAX search
-'searchcontaining' => 'Шукати статті, які містять «$1».',
-'searchnamed'      => 'Шукати статті з назвою «$1».',
-'articletitles'    => 'Статті, що починаються з «$1»',
-'hideresults'      => 'Сховати результати',
-'useajaxsearch'    => 'Використовувати AJAX-пошук',
-
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
 'imgmultipagenext' => 'наступна сторінка →',

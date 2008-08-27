@@ -1528,12 +1528,6 @@ Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
 # action=purge
 'confirm_purge_button' => 'OK',
 
-# AJAX search
-'searchcontaining' => "''$1'' mag'lıwmatı bar betlerdi izlew.",
-'searchnamed'      => "''$1'' ataması bar betlerdi izlew.",
-'articletitles'    => "''$1'' degen menen baslag'an betlerdi",
-'hideresults'      => "Na'tiyjelerdi jasır",
-
 # Multipage image navigation
 'imgmultipageprev' => "← aldıng'ı bet",
 'imgmultipagenext' => 'keyingi bet →',

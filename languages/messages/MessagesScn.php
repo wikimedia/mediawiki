@@ -2261,12 +2261,6 @@ Stu còdici di cunferma scadi automaticamenti a li $4.',
 'confirm_purge'        => "S'addisìa puliri la cache di sta pàggina? $1",
 'confirm_purge_button' => 'Cunferma',
 
-# AJAX search
-'searchcontaining' => "Circata di l'artìculi ca cuntèninu ''$1''.",
-'searchnamed'      => "Circata d'artìculi ca si chiàmanu ''$1''.",
-'articletitles'    => "Ricerca di l'artìculi ca accumènzanu cu ''$1''",
-'hideresults'      => 'Ammuccia li risurtati',
-
 # Multipage image navigation
 'imgmultipageprev' => '← pàggina pricidenti',
 'imgmultipagenext' => 'pàggina siquenti →',

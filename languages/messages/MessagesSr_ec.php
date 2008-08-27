@@ -2569,13 +2569,6 @@ $1
 $1',
 'confirm_purge_button' => 'Да',
 
-# AJAX search
-'searchcontaining' => "Тражи чланке који садрже ''$1''.",
-'searchnamed'      => "Чланци који се зову ''$1''.",
-'articletitles'    => "Чланци почећи са ''$1''",
-'hideresults'      => 'Сакриј резултате',
-'useajaxsearch'    => 'Користи AJAX претрагу',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; претходна страна',
 'imgmultipagenext' => 'следећа страна &rarr;',

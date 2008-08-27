@@ -2341,13 +2341,6 @@ Kadarnait mar plij e fell deoc'h krouiñ ar pennad-mañ da vat.",
 $1',
 'confirm_purge_button' => 'Mat eo',
 
-# AJAX search
-'searchcontaining' => "Klask ar pennadoù enno ''$1''.",
-'searchnamed'      => "Klask ar pennadoù anvet ''$1''.",
-'articletitles'    => "Pennadoù a grog gant ''$1''",
-'hideresults'      => "Kuzhat an disoc'hoù",
-'useajaxsearch'    => 'Grit gant ar klask AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '&larr; pajenn gent',
 'imgmultipagenext' => "pajenn war-lerc'h &rarr;",

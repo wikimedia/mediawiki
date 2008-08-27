@@ -2236,13 +2236,6 @@ $5
 $1',
 'confirm_purge_button' => 'យល់ព្រម',
 
-# AJAX search
-'searchcontaining' => "ស្វែងរកអត្ថបទដែលផ្ទុក ''$1'' ។",
-'searchnamed'      => "ស្វែងរកអត្ថបទដែលមានឈ្មោះ ''$1'' ។",
-'articletitles'    => "អត្ថបទផ្តើមដោយ ''$1''",
-'hideresults'      => 'លាក់លទ្ធផល',
-'useajaxsearch'    => 'ប្រើប្រាស់ការស្វែងរករបស់ AJAX',
-
 # Multipage image navigation
 'imgmultipageprev' => '← ទំព័រមុន',
 'imgmultipagenext' => 'ទំព័របន្ទាប់ →',

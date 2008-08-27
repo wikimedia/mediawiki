@@ -2103,12 +2103,6 @@ $1
 'confirm_purge'        => '要清除此頁面的快取嗎?\\n\\n$1',
 'confirm_purge_button' => '確定',
 
-# AJAX search
-'searchcontaining' => "搜尋包含''$1''的頁面。",
-'searchnamed'      => "搜尋名稱為''$1''的頁面。",
-'articletitles'    => '頁面以"$1"開頭',
-'hideresults'      => '隱藏結果',
-
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',
 'imgmultipagenext' => '下一頁 →',

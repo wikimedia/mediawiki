@@ -687,9 +687,6 @@ $1',
 'namespacesall'    => 'шупту',
 'monthsall'        => 'шупту',
 
-# AJAX search
-'hideresults' => 'Түңнелдерни чажырар',
-
 # Multipage image navigation
 'imgmultipageprev' => '← бүрүнгү арын',
 'imgmultipagenext' => 'соонда арын →',
