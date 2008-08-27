@@ -1290,9 +1290,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormPageTop );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
-			$this->displayPreviewArea( $previewOutput );
-			// Spacer for the edit toolbar
-			$wgOut->addHTML( '<p><br /></p>' );
+			$this->displayPreviewArea( $previewOutput, true );
 		}
 
 
@@ -1462,7 +1460,7 @@ END
 		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
-			$this->displayPreviewArea( $previewOutput );
+			$this->displayPreviewArea( $previewOutput, false );
 		}
 
 		wfProfileOut( $fname );
@@ -1515,10 +1513,12 @@ END
 			$attribs ) );
 	}
 
-	protected function displayPreviewArea( $previewOutput ) {
+	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
 		if ( $this->formtype == 'preview') {
 			$this->showPreview( $previewOutput );
+			// Spacer for the edit toolbar
+			$wgOut->addHTML( '<p><br /></p>' );
 		} else {
 			$wgOut->addHTML( '<div id="wikiPreview"></div>' );
 		}
