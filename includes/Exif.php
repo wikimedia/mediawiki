@@ -780,7 +780,28 @@ class FormatExif {
 				}
 				break;
 
-			// TODO: Flash
+			case 'Flash':
+				$flashDecode = array(
+					'fired'    => $val & bindec( '00000001' ),
+					'return'   => ($val & bindec( '00000110' )) >> 1,
+					'mode'     => ($val & bindec( '00011000' )) >> 3,
+					'function' => ($val & bindec( '00100000' )) >> 5,
+					'redeye'   => ($val & bindec( '01000000' )) >> 6,
+//					'reserved' => ($val & bindec( '10000000' )) >> 7,
+				);
+
+				# We do not need to handle unknown values since all are used.
+				foreach( $flashDecode as $subTag => $subValue ) {
+					# We do not need any message for zeroed values.
+					if( $subTag != 'fired' && $subValue == 0) {
+						continue;
+					}
+					$fullTag = $tag . '-' . $subTag ;
+					$flashMsgs[] = $this->msg( $fullTag, $subValue );
+				}
+				$tags[$tag] = join( ',', $flashMsgs );
+			break;
+
 			case 'FocalPlaneResolutionUnit':
 				switch( $val ) {
 				case 2:

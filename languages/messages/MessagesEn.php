@@ -3188,6 +3188,17 @@ Others will be hidden by default.
 'exif-lightsource-24'  => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Other light source',
 
+'exif-flash-fired-0' => 'Flash did not fire',
+'exif-flash-fired-1' => 'Flash fired',
+'exif-flash-return-0' => 'no strobe return detection function',
+'exif-flash-return-2' => 'strobe return light not detected',
+'exif-flash-return-3' => 'strobe return light detected',
+'exif-flash-mode-1' => 'compuslory flash firing',
+'exif-flash-mode-2' => 'compuslory flash suppression',
+'exif-flash-mode-3' => 'auto mode',
+'exif-flash-function-1' => 'No flash function',
+'exif-flash-redeye-1' => 'red-eye reduction mode',
+
 'exif-focalplaneresolutionunit-2' => 'inches',
 
 'exif-sensingmethod-1' => 'Undefined',
