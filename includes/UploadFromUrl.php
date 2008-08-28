@@ -2,6 +2,11 @@
 
 
 class UploadFromUrl extends UploadFromBase {
+	static function isAllowed( User $user ) {
+		if( !$user->isAllowed( 'upload_by_url' ) )
+			return 'upload_by_url';
+		return parent::isAllowed( $user );
+	}
 	static function isEnabled() {
 		global $wgAllowCopyUploads;
 		return $wgAllowCopyUploads && parent::isEnabled();
