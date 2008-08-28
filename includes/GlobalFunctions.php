@@ -1391,6 +1391,7 @@ function wfResetOutputBuffers( $resetGzipEncoding=true ) {
 				// Reset the 'Content-Encoding' field set by this handler
 				// so we can start fresh.
 				header( 'Content-Encoding:', true );
+				break;
 			}
 		}
 	}
