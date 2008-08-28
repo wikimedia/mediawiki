@@ -1752,6 +1752,7 @@ PICT # שונות
 'defemailsubject' => 'דוא"ל {{SITENAME}}',
 'noemailtitle'    => 'אין כתובת דואר אלקטרוני',
 'noemailtext'     => 'משתמש זה לא הזין כתובת דואר אלקטרוני חוקית או בחר שלא לקבל דואר אלקטרוני ממשתמשים אחרים.',
+'email-legend'    => 'שליחת דואר אלקטרוני למשתמש אחר של {{SITENAME}}',
 'emailfrom'       => 'מאת:',
 'emailto'         => 'אל:',
 'emailsubject'    => 'נושא:',
