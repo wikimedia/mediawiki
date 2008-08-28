@@ -100,6 +100,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   backwards incompatibility with upload extensions.
 * BMP images are now displayed as PNG
 * (bug 13471) Added NUMBERINGROUP magic word
+* (bug 11884) Now support Flash EXIF attribute
 
 === Bug fixes in 1.14 ===
 
