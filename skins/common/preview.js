@@ -87,6 +87,7 @@ function lpStatusUpdate() {
 	var previewContainer = document.getElementById( lpIdPreview );
 	if ( previewContainer && previewElement ) {
 		previewContainer.innerHTML = previewElement.firstChild.data;
+		previewContainer.style.display = 'block';
 	} else {
 		/* Should never happen */
 		window.alert(i18n(wgLivepreviewMessageFailed));
