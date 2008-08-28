@@ -99,6 +99,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Backend upload code has been removed from SpecialUpload.php. This may cause 
   backwards incompatibility with upload extensions.
 * BMP images are now displayed as PNG
+* (bug 13471) Added NUMBERINGROUP magic word
 
 === Bug fixes in 1.14 ===
 
