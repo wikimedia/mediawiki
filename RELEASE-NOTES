@@ -154,6 +154,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   literally; now converting them to spaces per expectation.
 * (bug 15342) "Invert" checkbox now works correctly when selecting main
   namespace in Special:Watchlist
+* (bug 15172) 'Go' button of Special:Recentchanges now on the same line as the
+  last input element (like Special:Watchlist too)
 
 
 === API changes in 1.14 ===
