@@ -90,8 +90,6 @@ class ApiDelete extends ApiBase {
 
 	private static function getPermissionsError(&$title, $token) {
 		global $wgUser;
-		// Check wiki readonly
-		if (wfReadOnly()) return array(array('readonlytext'));
 		
 		// Check permissions
 		$errors = $title->getUserPermissionsErrors('delete', $wgUser);

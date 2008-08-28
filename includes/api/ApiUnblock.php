@@ -64,8 +64,6 @@ class ApiUnblock extends ApiBase {
 			$this->dieUsageMsg(array('sessionfailure'));
 		if(!$wgUser->isAllowed('block'))
 			$this->dieUsageMsg(array('cantunblock'));
-		if(wfReadOnly())
-			$this->dieUsageMsg(array('readonlytext'));
 
 		$id = $params['id'];
 		$user = $params['user'];
