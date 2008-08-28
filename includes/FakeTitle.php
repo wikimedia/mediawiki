@@ -3,15 +3,13 @@
 /**
  * Fake title class that triggers an error if any members are called
  */
-class FakeTitle {
+class FakeTitle extends Title {
 	function error() { throw new MWException( "Attempt to call member function of FakeTitle\n" ); }
 
 	// PHP 5.1 method overload
 	function __call( $name, $args ) { $this->error(); }
 
 	// PHP <5.1 compatibility
-	function getInterwikiLink()  { $this->error(); }
-	function getInterwikiCached() { $this->error(); }
 	function isLocal() { $this->error(); }
 	function isTrans() { $this->error(); }
 	function getText() { $this->error(); }
