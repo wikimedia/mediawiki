@@ -406,15 +406,22 @@ class SpecialRecentChanges extends SpecialPage {
 		$panel[] = '<hr />';
 
 		$extraOpts = $this->getExtraOptions( $opts );
+		$extraOptsCount = count( $extraOpts );
+		$count = 0;
+		$submit = ' ' . Xml::submitbutton( wfMsg( 'allpagessubmit' ) );
 
-		$out = Xml::openElement( 'table' );
+		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
 		foreach ( $extraOpts as $optionRow ) {
+			# Add submit button to the last row only
+			++$count;
+			$addSubmit = $count === $extraOptsCount ? $submit : '';
+
 			$out .= Xml::openElement( 'tr' );
-			if ( is_array($optionRow) ) {
-				$out .= Xml::tags( 'td', null, $optionRow[0] );
-				$out .= Xml::tags( 'td', null, $optionRow[1] );
+			if ( is_array( $optionRow ) ) {
+				$out .= Xml::tags( 'td', array( 'class' => 'mw-label' ), $optionRow[0] );
+				$out .= Xml::tags( 'td', array( 'class' => 'mw-input' ), $optionRow[1] . $addSubmit );
 			} else {
-				$out .= Xml::tags( 'td', array( 'colspan' => 2 ), $optionRow );
+				$out .= Xml::tags( 'td', array( 'class' => 'mw-input', 'colspan' => 2 ), $optionRow . $addSubmit );
 			}
 			$out .= Xml::closeElement( 'tr' );
 		}
@@ -454,7 +461,6 @@ class SpecialRecentChanges extends SpecialPage {
 		}
 
 		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
-		$extraOpts['submit'] = Xml::submitbutton( wfMsg('allpagessubmit') );
 		return $extraOpts;
 	}
 
