@@ -345,11 +345,11 @@ waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missing-article'      => 'Die databasis kon nie soos verwag die teks vir die bladsy genaamd "$1" $2 kry nie.
+'missing-article'      => "Die databasis kon nie soos verwag die teks vir die bladsy genaamd \"\$1\" \$2 kry nie.
 
-Dit gebeur gewoonlik as mens \'n verouderde verskil- of geskiedenis-skakel volg na \'n bladsy wat reeds verwyder is.
+Dit gebeur gewoonlik as mens 'n verouderde verskil- of geskiedenis-skakel volg na 'n bladsy wat reeds verwyder is.
 
-Indien dit nie die geval is nie, het u moontlik \'n fout in die sagteware ontdek. Rapporteer asseblief die probleem aan die administrateur, en maak \'n nota van die URL.',
+Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek. Rapporteer asseblief die probleem aan 'n [[Special:ListUsers/sysop|administrateur]], en maak 'n nota van die URL.",
 'missingarticle-rev'   => '(weergawe#: $1)',
 'missingarticle-diff'  => '(Wysiging: $1, $2)',
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
@@ -399,8 +399,9 @@ Die rede gegee is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
-'logouttext'                 => "U is nou uitgeteken, en kan aanhou om
-{{SITENAME}} anoniem te gebruik; of U kan inteken as dieselfde of 'n ander gebruiker.",
+'logouttext'                 => "<strong>U is nou uitgeteken</strong>
+
+U kan aanhou om {{SITENAME}} anoniem te gebruik; of U kan [[Special:Userlogin|inteken]] as dieselfde of 'n ander gebruiker.",
 'welcomecreation'            => '<h2>Welkom, $1.</h2>
 Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.',
@@ -607,7 +608,7 @@ Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te
 
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
 
-<strong>As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, teen dan af en weer aan.</strong>",
+<strong>As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.</strong>",
 'editing'                          => 'Besig om $1 te wysig',
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 (kommentaar) te wysig',
@@ -669,7 +670,7 @@ Daar is {{PLURAL:$1|$1 funksie|$1 funksies}}, terwyl die bladsy minder as $2 moe
 # "Undo" feature
 'undo-failure' => 'Die wysiging kan nie ongedaan gemaak word nie omdat dit met intermediêre wysigings bots.',
 'undo-norev'   => 'Die wysiging kon nie ongedaan gemaak word nie omdat dit nie bestaan nie of reeds verwyder is.',
-'undo-summary' => 'Rol weergawe $1 deur [[Special:Contributions/$2|$2]] terug. ([[User talk:$2|Bespreek]])',
+'undo-summary' => 'Rol weergawe $1 deur [[Special:Contributions/$2|$2]] ([[User talk:$2|bespreek]]) terug.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan nie rekening skep nie',
@@ -683,6 +684,7 @@ Die rede verskaf deur $3 is ''$2''",
 'revnotfound'         => 'Weergawe nie gevind nie',
 'revnotfoundtext'     => 'Die ou weergawe wat jy aangevra het kon nie gevind word nie. Gaan asseblief die URL na wat jy gebruik het.',
 'currentrev'          => 'Huidige wysiging',
+'currentrev-asof'     => 'Huidige wysiging per $1',
 'revisionasof'        => 'Wysiging soos op $1',
 'revision-info'       => 'Weergawe soos op $1 deur $2',
 'previousrevision'    => '← Ouer weergawe',
@@ -695,6 +697,7 @@ Die rede verskaf deur $3 is ''$2''",
 'page_last'           => 'laaste',
 'histlegend'          => 'Byskrif: (huidige) = verskil van huidige weergawe,
 (vorige) = verskil van vorige weergawe, M = klein wysiging',
+'history-search'      => 'Soek in geskiedenis',
 'deletedrev'          => '[geskrap]',
 'histfirst'           => 'Oudste',
 'histlast'            => 'Nuutste',
@@ -1119,6 +1122,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 
 # File reversion
 'filerevert'         => 'Maak $1 ongedaan',
+'filerevert-legend'  => 'Maak lêer ongedaan',
 'filerevert-comment' => 'Opmerking:',
 'filerevert-submit'  => 'Rol terug',
 
@@ -1317,10 +1321,10 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'defemailsubject' => '{{SITENAME}}-epos',
 'noemailtitle'    => 'Geen e-posadres',
 'noemailtext'     => "Hierdie gebruiker het nie 'n geldige e-posadres gespesifiseer nie of het gekies om nie e-pos van ander gebruikers te ontvang nie.",
-'emailfrom'       => 'Van',
-'emailto'         => 'Aan',
-'emailsubject'    => 'Onderwerp',
-'emailmessage'    => 'Boodskap',
+'emailfrom'       => 'Van:',
+'emailto'         => 'Aan:',
+'emailsubject'    => 'Onderwerp:',
+'emailmessage'    => 'Boodskap:',
 'emailsend'       => 'Stuur',
 'emailccme'       => "E-pos vir my 'n kopie van my boodskap.",
 'emailccsubject'  => 'Kopie van U boodskap aan $1: $2',
@@ -1363,6 +1367,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'watchlist-hide-own'   => 'Versteek my wysigings',
 'watchlist-show-minor' => 'Wys klein wysigings',
 'watchlist-hide-minor' => 'Versteek klein wysigings',
+'watchlist-options'    => 'Opsies vir dophoulys',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Plaas op dophoulys...',
@@ -1806,7 +1811,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'common.css' => '/** Gemeenskaplike CSS vir alle omslae */',
 
 # Attribution
-'anonymous'        => 'Anonieme gebruiker(s) van {{SITENAME}}',
+'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} gebruiker $1',
 'lastmodifiedatby' => 'Hierdie bladsy is laaste gewysig $2, $1 deur $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Gebaseer op werk van $1.',

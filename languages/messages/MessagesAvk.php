@@ -1230,7 +1230,7 @@ L'adresse électronique que vous avez indiquée dans vos préférences apparaît
 'noemailtitle'    => 'Me internetmane',
 'noemailtext'     => "Cet utilisateur n'a pas spécifié d'adresse électronique valide ou a choisi de ne pas recevoir de courrier électronique des autres utilisateurs.",
 'emailfrom'       => 'Staksasik',
-'emailto'         => 'Staksanik',
+'emailto'         => 'Staksanik:',
 'emailsubject'    => 'Detce',
 'emailmessage'    => 'Staksa',
 'emailsend'       => 'Staksara',

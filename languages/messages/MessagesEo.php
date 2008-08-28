@@ -729,6 +729,7 @@ La kialo donata de $3 estas ''$2''.",
 'revnotfoundtext'     => 'Ne eblis trovi malnovan version de la artikolo kiun vi petis.
 Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'currentrev'          => 'Aktuala versio',
+'currentrev-asof'     => 'Nuna revizio ekde $1',
 'revisionasof'        => 'Kiel registrite je $1',
 'revision-info'       => 'Redakto de $1 de $2',
 'previousrevision'    => '← Antaŭa versio',
@@ -1120,6 +1121,7 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 'recentchanges'                     => 'Lastaj ŝanĝoj',
+'recentchanges-legend'              => 'Opcioj pri lastaj ŝanĝoj',
 'recentchangestext'                 => 'Sekvi la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
 'recentchanges-feed-description'    => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $5, $4.",
@@ -1525,10 +1527,11 @@ La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos 
 'defemailsubject' => '{{SITENAME}} ****-retmesaĝo',
 'noemailtitle'    => 'Neniu retpoŝtadreso',
 'noemailtext'     => 'Ĉi tiu uzanto aŭ ne donis validan retpoŝtadreson aŭ elektis ne ricevi retpoŝton de aliaj uzantoj.',
-'emailfrom'       => 'El',
-'emailto'         => 'Al',
-'emailsubject'    => 'Subjekto',
-'emailmessage'    => 'Mesaĝo',
+'email-legend'    => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
+'emailfrom'       => 'De:',
+'emailto'         => 'Al:',
+'emailsubject'    => 'Subjekto:',
+'emailmessage'    => 'Mesaĝo:',
 'emailsend'       => 'Sendi',
 'emailccme'       => 'Retpoŝti al mi kopion de mia mesaĝo.',
 'emailccsubject'  => 'Kopio de via mesaĝo al $1: $2',
@@ -2395,6 +2398,12 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-lightsource-19'  => 'Norma lumo C',
 'exif-lightsource-24'  => 'ISO artefarita lumo volframa',
 'exif-lightsource-255' => 'Alia luma fonto',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Fulmilo ne ekbruliĝis',
+'exif-flash-fired-1'    => 'Fulmilo ekbriliĝis',
+'exif-flash-mode-3'     => 'aŭtomata reĝimo',
+'exif-flash-function-1' => 'Neniu fulmila funkcio',
 
 'exif-focalplaneresolutionunit-2' => 'coloj',
 

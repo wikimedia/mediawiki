@@ -102,7 +102,7 @@ $messages = array(
 
 # E-mail user
 'emailfrom' => 'Kam long',
-'emailto'   => 'Go long',
+'emailto'   => 'Go long:',
 
 # Contributions
 'year' => 'Yia:',

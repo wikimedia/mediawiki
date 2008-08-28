@@ -1310,6 +1310,7 @@ rendszer nem indexel, vagy több független keresési kifejezés megadása
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',
 'recentchanges'                     => 'Friss változtatások',
+'recentchanges-legend'              => 'A friss változások beállításai',
 'recentchangestext'                 => 'Ezen a lapon a wikiben történt legutóbbi változásokat lehet nyomonkövetni.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
 'rcnote'                            => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' nap utolsó '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának időpontja $4, $5.",
@@ -1729,10 +1730,11 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'noemailtitle'    => 'Nincs e-mail cím',
 'noemailtext'     => 'Ez a felhasználó nem adott meg e-mail címet, vagy
 nem kíván másoktól leveleket kapni.',
-'emailfrom'       => 'Feladó',
-'emailto'         => 'Címzett',
-'emailsubject'    => 'Téma',
-'emailmessage'    => 'Üzenet',
+'email-legend'    => 'E-mail küldése egy másik {{SITENAME}}-szerkesztőnek',
+'emailfrom'       => 'Feladó:',
+'emailto'         => 'Címzett:',
+'emailsubject'    => 'Téma:',
+'emailmessage'    => 'Üzenet:',
 'emailsend'       => 'Küldés',
 'emailccme'       => 'Az üzenet másolatát küldje el nekem is e-mailben.',
 'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',

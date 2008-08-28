@@ -1465,7 +1465,7 @@ L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias 
 'noemailtitle'    => 'No bi ha garra adreza de correu eletronico',
 'noemailtext'     => "Iste usuario no ha espezificato una adreza conforme de correu electronico, u s'ha estimato más no recullir correu electronico d'atros usuarios.",
 'emailfrom'       => 'De',
-'emailto'         => 'Ta',
+'emailto'         => 'Ta:',
 'emailsubject'    => 'Afer',
 'emailmessage'    => 'Mensache',
 'emailsend'       => 'Nimbiar',

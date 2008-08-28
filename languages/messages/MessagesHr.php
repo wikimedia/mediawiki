@@ -311,7 +311,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Sakrij uređivanja botova s popisa praćenja',
 'tog-watchlisthideminor'      => 'Sakrij manje promjene s popisa praćenja',
 'tog-watchlisthideliu'        => 'Sakrij uređivanja prijavljenih s popisa praćenja',
-'tog-watchlisthideanons'      => 'Sakrij uređivanja anonimnih s popisa praćenja',
+'tog-watchlisthideanons'      => 'Sakrij uređivanja neprijavljenih s popisa praćenja',
 'tog-nolangconversion'        => 'Isključi pretvaranje pisma (latinica-ćirilica, kineske varijante itd.) ako to wiki podržava',
 'tog-ccmeonemails'            => 'Pošalji mi kopiju e-maila kojeg pošaljem drugim suradnicima',
 'tog-diffonly'                => 'Ne prikazuj sadržaj stranice prilikom usporedbe inačica',
@@ -624,7 +624,7 @@ $2',
 # Login and logout pages
 'logouttitle'                => 'Odjava suradnika',
 'logouttext'                 => 'Odjavili ste se.<br />
-Možete nastaviti s korištenjem projekta {{SITENAME}} anonimno,
+Možete nastaviti s korištenjem projekta {{SITENAME}} neprijavljeni,
 ili se možete ponovo prijaviti pod istim ili drugim imenom. Neke se stranice mogu
 prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.',
 'welcomecreation'            => '== Dobrodošli, $1! ==
@@ -768,18 +768,17 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'blockedtext'                      => '<big>\'\'\'Vaše suradničko ime ili IP adresa je blokirana\'\'\'</big>
 
 Blokirao vas je $1.
-Iz slijedećeg razloga: \'\'$2\'\'.
+Iz sljedećeg razloga: \'\'$2\'\'.
 
 * Početak bloka: $8
 * Istek bloka: $6
 * Ime blokiranog suradnika: $7
 
-Ako želite raspraviti blokiranje
-javite se administratoru $1 ili nekom drugom [[{{MediaWiki:Grouppage-sysop}}|administratoru]].
+Ako želite raspraviti blokiranje javite se administratoru $1 ili nekom drugom [[{{MediaWiki:Grouppage-sysop}}|administratoru]].
 
-Ne možete se koristiti naredbom "piši suradniku" ako niste registrirali valjanu e-mail adresu u svojim [[Special:Preferences|postavkama]].
+Ne možete se koristiti naredbom "piši suradniku" ako niste upisali valjanu e-mail adresu u svojim [[Special:Preferences|postavkama]].
 
-Vaša IP adresa je $3, oznaka bloka je $5. Molimo vas da je spomenete u porukama o ovom predmetu.',
+Vaša IP adresa je $3, oznaka bloka je #$5. Molimo vas da je spomenete u porukama o ovom predmetu.',
 'autoblockedtext'                  => 'Vaša IP adresa automatski je blokirana zbog toga što ju je koristio drugi suradnik, kojeg je blokirao $1.
 Razlog blokiranja je sljedeći:
 
@@ -791,7 +790,7 @@ Razlog blokiranja je sljedeći:
 
 Možete kontaktirati $1 ili jednog od [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako bi vam pojasnili razlog blokiranja.
 
-Primjetite da ne možete koristiti opciju "Pošalji mu e-mail" ukoliko niste unijeli valjanu e-mail adresu u vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
+Primijetite da ne možete koristiti opciju "Pošalji mu e-mail" ukoliko niste upisali valjanu e-mail adresu u vašim [[Special:Preferences|suradničkim postavkama]] i ako niste u tome onemogućeni prilikom blokiranja.
 
 Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj kod svakog upita vezano za razlog blokiranja.',
 'blockednoreason'                  => 'bez obrazloženja',
@@ -813,7 +812,7 @@ Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj
 *Ako želite unijeti sadržaj, počnite tipkati u prozor ispod ovog teksta.
 *Ako vam treba pomoć, idite na [[{{MediaWiki:Helppage}}|stranicu za pomoć]].
 *Ako ste ovamo dospjeli slučajno, kliknite "Natrag" (Back) u svom programu.',
-'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s anonimnim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste anonimni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim anonimnim suradnicima.''",
+'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s neprijavljenim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste neprijavljeni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutačno nema sadržaja, možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] u drugim stranicama ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu].',
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
@@ -846,7 +845,7 @@ U donjem polju prikazane su vaše promjene. Morat ćete unijeti vaše promjene u
 u u gornjem polju biti sačuvan kad pritisnete "Snimi stranicu".',
 'yourtext'                         => 'Vaš tekst',
 'storedversion'                    => 'Pohranjena inačica',
-'nonunicodebrowser'                => '<strong>UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molim promijenite ga prije sljedećeg uređivanja članaka.</strong>',
+'nonunicodebrowser'                => '<strong>UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova, molimo promijenite ga prije sljedećeg uređivanja članaka.</strong>',
 'editingold'                       => '<strong>UPOZORENJE: Uređujete stariju inačicu
 ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice biti izgubljene.</strong>',
 'yourdiff'                         => 'Razlike',
@@ -980,7 +979,7 @@ postavili dodatna ograničenja.',
 'logdelete-logentry'          => 'promijenjena vidljivost uređivanja [[$1]]',
 'revdelete-success'           => "'''Vidljivost promjene uspješno postavljena.'''",
 'logdelete-success'           => "'''Vidljivost uređivanja uspješno postavljena.'''",
-'revdel-restore'              => 'Promjeni dostupnost',
+'revdel-restore'              => 'Promijeni dostupnost',
 'pagehist'                    => 'Povijest stranice',
 'deletedhist'                 => 'Obrisana povijest',
 'revdelete-content'           => 'sadržaj',
@@ -1153,7 +1152,7 @@ za podešavanje suradničkih postavki.',
 'userrights-editusergroup'    => 'Uredi skupine suradnika',
 'saveusergroups'              => 'Snimi skupine suradnika',
 'userrights-groupsmember'     => 'Član:',
-'userrights-groups-help'      => 'Možete promjeniti skupine za ovog suradnika.
+'userrights-groups-help'      => 'Možete promijeniti skupine za ovog suradnika.
 * Označena kućica pokazuje da suradnik pripada skupini.
 * Neoznačena kućica pokazuje da suradnik ne pripada skupini.
 * Zvjezdica * označava da ne možete ukloniti skupinu kad ju jednom dodate, ili obratno.',
@@ -1162,8 +1161,8 @@ za podešavanje suradničkih postavki.',
 'userrights-nodatabase'       => 'Baza podataka $1 ne postoji ili nije lokalno dostupna.',
 'userrights-nologin'          => 'Trebate se [[Special:UserLogin|prijaviti]] s administratorskim računom da bi mogli dodijeliti suradnička prava.',
 'userrights-notallowed'       => 'Vaš trenutačni suradnički račun nema ovlasti mijenjanja suradničkih prava.',
-'userrights-changeable-col'   => 'Grupe koje možete promjeniti',
-'userrights-unchangeable-col' => 'Grupe koje nemožete promjeniti',
+'userrights-changeable-col'   => 'Skupine koje možete promijeniti',
+'userrights-unchangeable-col' => 'Skupine koje ne možete promijeniti',
 
 # Groups
 'group'               => 'Skupina:',
@@ -1205,7 +1204,7 @@ za podešavanje suradničkih postavki.',
 'right-reupload-shared'      => 'Lokalno postavljanje novih inačica datoteka na zajedničkom poslužitelju',
 'right-upload_by_url'        => 'Postavljanje datoteke s URL adrese',
 'right-purge'                => 'Čišćenje priručne memorije stranice bez stranice za potvrdu',
-'right-autoconfirmed'        => 'Uređivanje stranica zaštićenih za anonimne suradnike',
+'right-autoconfirmed'        => 'Uređivanje stranica zaštićenih za neprijavljene suradnike',
 'right-bot'                  => 'Izmjene su tretirane kao automatski proces (bot)',
 'right-nominornewtalk'       => 'Bez manjih izmjena na novim stranicama za razgovor',
 'right-apihighlimits'        => 'Korištenje viših granica kod API upita',
@@ -1259,7 +1258,7 @@ za podešavanje suradničkih postavki.',
 'rcshowhideminor'                   => '$1 manje promjene',
 'rcshowhidebots'                    => '$1 botove',
 'rcshowhideliu'                     => '$1 prijavljene suradnike',
-'rcshowhideanons'                   => '$1 anonimne suradnike',
+'rcshowhideanons'                   => '$1 neprijavljene suradnike',
 'rcshowhidepatr'                    => '$1 provjerene promjene',
 'rcshowhidemine'                    => '$1 moje promjene',
 'rclinks'                           => 'Prikaži zadnjih $1 promjena u zadnjih $2 dana; $3',
@@ -1707,8 +1706,8 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'watchlist-hide-own'   => 'Sakrij moje promjene',
 'watchlist-show-minor' => 'Prikaži manje promjene',
 'watchlist-hide-minor' => 'Sakrij manje promjene',
-'watchlist-show-anons' => 'Pokaži uređivanja anonimnih',
-'watchlist-hide-anons' => 'Sakrij uređivanja anonimnih',
+'watchlist-show-anons' => 'Pokaži uređivanja neprijavljenih',
+'watchlist-hide-anons' => 'Sakrij uređivanja neprijavljenih',
 'watchlist-show-liu'   => 'Pokaži uređivanja prijavljenih',
 'watchlist-hide-liu'   => 'Sakrij uređivanja prijavljenih',
 'watchlist-options'    => 'Izbornik popisa praćenja',
@@ -1726,7 +1725,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'enotif_subject'               => '{{SITENAME}}: Stranicu $PAGETITLE je $CHANGEDORCREATED suradnik $PAGEEDITOR',
 'enotif_lastvisited'           => 'Pogledaj $1 za promjene od zadnjeg posjeta.',
 'enotif_lastdiff'              => 'Pogledajte $1 kako biste mogli vidjeti tu izmjenu.',
-'enotif_anon_editor'           => 'anonimni suradnik $1',
+'enotif_anon_editor'           => 'neprijavljeni suradnik $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
 stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATE $CHANGEDORCREATED suradnik $PAGEEDITOR,
@@ -1822,7 +1821,7 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'protect-cascadeon'           => 'Ova stranica je zaštićena jer je uključena u {{PLURAL:$1|stranicu, koja ima|stranice, koje imaju|stranice, koje imaju}} uključenu prenosivu zaštitu. Možete promijeniti stupanj zaštite ove stranice, no to neće utjecati na prenosivu zaštitu.',
 'protect-default'             => '(bez zaštite)',
 'protect-fallback'            => 'Potrebno je imati "$1" ovlasti',
-'protect-level-autoconfirmed' => 'Blokiraj neregistrirane suradnike',
+'protect-level-autoconfirmed' => 'Blokiraj neprijavljene suradnike',
 'protect-level-sysop'         => 'Samo administratori',
 'protect-summary-cascade'     => 'prenosiva zaštita',
 'protect-expiring'            => 'istječe $1 (UTC)',
@@ -1953,8 +1952,8 @@ vandalizirane).',
 ** Osobni napadi (ili napadačko ponašanje)
 ** Čarapare (zloporaba više suradničkih računa)
 ** Neprihvatljivo suradničko ime",
-'ipbanononly'                     => 'Blokiraj samo anonimnu IP adresu (ne prijavljenog suradnika koji ima navedenu IP adresu)',
-'ipbcreateaccount'                => 'Spriječi da se s blokirane IP adrese napravi novi suradnički račun',
+'ipbanononly'                     => 'Blokiraj samo neprijavljene suradnike',
+'ipbcreateaccount'                => 'Spriječi otvaranje suradničkih računa',
 'ipbemailban'                     => 'Onemogući blokiranom suradniku slanje e-mailova',
 'ipbenableautoblock'              => 'Automatski blokiraj IP adrese koje koristi ovaj suradnik',
 'ipbsubmit'                       => 'Blokiraj ovog suradnika',
@@ -1999,7 +1998,7 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'blocklogentry'                   => 'Blokiran je "[[$1]]" na rok $2 $3',
 'blocklogtext'                    => 'Ovo je evidencija blokiranja i deblokiranja. Na popisu nema automatski blokiranih IP adresa. Za popis trenutačnih zabrana i blokiranja vidi [[Special:IPBlockList|popis IP blokiranja]].',
 'unblocklogentry'                 => 'Deblokiran "$1"',
-'block-log-flags-anononly'        => 'samo za neprijavljene (anonimne) suradnike',
+'block-log-flags-anononly'        => 'samo za neprijavljene suradnike',
 'block-log-flags-nocreate'        => 'otvaranje novih suradničkih imena nije moguće',
 'block-log-flags-noautoblock'     => 'autoblok je onemogućen',
 'block-log-flags-noemail'         => 'e-mail je blokiran',
