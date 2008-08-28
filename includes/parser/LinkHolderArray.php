@@ -94,6 +94,17 @@ class LinkHolderArray {
 	}
 
 	/**
+	 * Get the stub threshold
+	 */
+	function getStubThreshold() {
+		global $wgUser;
+		if ( !isset( $this->stubThreshold ) ) {
+			$this->stubThreshold = $wgUser->getOption('stubthreshold');
+		}
+		return $this->stubThreshold;
+	}
+
+	/**
 	 * Replace <!--LINK--> link placeholders with actual links, in the buffer
 	 * Placeholders created in Skin::makeLinkObj()
 	 * Returns an array of link CSS classes, indexed by PDBK.
@@ -117,11 +128,9 @@ class LinkHolderArray {
 		}
 
 		wfProfileIn( __METHOD__ );
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
-		$pdbks = array();
 		$colours = array();
-		$linkcolour_ids = array();
 		$sk = $this->parent->getOptions()->getSkin();
 		$linkCache = LinkCache::singleton();
 		$output = $this->parent->getOutput();
@@ -129,7 +138,7 @@ class LinkHolderArray {
 		wfProfileIn( __METHOD__.'-check' );
 		$dbr = wfGetDB( DB_SLAVE );
 		$page = $dbr->tableName( 'page' );
-		$threshold = $wgUser->getOption('stubthreshold');
+		$threshold = $this->getStubThreshold();
 
 		# Sort by namespace
 		ksort( $this->internals );
@@ -183,6 +192,7 @@ class LinkHolderArray {
 
 			# Fetch data and form into an associative array
 			# non-existent = broken
+			$linkcolour_ids = array();
 			while ( $s = $dbr->fetchObject($res) ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$pdbk = $title->getPrefixedDBkey();
@@ -202,119 +212,8 @@ class LinkHolderArray {
 		wfProfileOut( __METHOD__.'-check' );
 
 		# Do a second query for different language variants of links and categories
-		if($wgContLang->hasVariants()){
-			$linkBatch = new LinkBatch();
-			$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
-			$categoryMap = array(); // maps $category_variant => $category (dbkeys)
-			$varCategories = array(); // category replacements oldDBkey => newDBkey
-
-			$categories = $output->getCategoryLinks();
-
-			// Add variants of links to link batch
-			foreach ( $this->internals as $ns => $entries ) {
-				foreach ( $entries as $index => $entry ) {
-					$key = "$ns:$index";
-					$pdbk = $entry['pdbk'];
-					$title = $entry['title'];
-					$titleText = $title->getText();
-
-					// generate all variants of the link title text
-					$allTextVariants = $wgContLang->convertLinkToAllVariants($titleText);
-
-					// if link was not found (in first query), add all variants to query
-					if ( !isset($colours[$pdbk]) ){
-						foreach($allTextVariants as $textVariant){
-							if($textVariant != $titleText){
-								$variantTitle = Title::makeTitle( $ns, $textVariant );
-								if(is_null($variantTitle)) continue;
-								$linkBatch->addObj( $variantTitle );
-								$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
-							}
-						}
-					}
-				}
-			}
-
-			// process categories, check if a category exists in some variant
-			foreach( $categories as $category ){
-				$variants = $wgContLang->convertLinkToAllVariants($category);
-				foreach($variants as $variant){
-					if($variant != $category){
-						$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
-						if(is_null($variantTitle)) continue;
-						$linkBatch->addObj( $variantTitle );
-						$categoryMap[$variant] = $category;
-					}
-				}
-			}
-
-
-			if(!$linkBatch->isEmpty()){
-				// construct query
-				$titleClause = $linkBatch->constructSet('page', $dbr);
-
-				$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
-
-				$variantQuery .= " FROM $page WHERE $titleClause";
-
-				$varRes = $dbr->query( $variantQuery, __METHOD__ );
-
-				// for each found variants, figure out link holders and replace
-				while ( $s = $dbr->fetchObject($varRes) ) {
-
-					$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
-					$varPdbk = $variantTitle->getPrefixedDBkey();
-					$vardbk = $variantTitle->getDBkey();
-
-					$holderKeys = array();
-					if(isset($variantMap[$varPdbk])){
-						$holderKeys = $variantMap[$varPdbk];
-						$linkCache->addGoodLinkObj( $s->page_id, $variantTitle, $s->page_len, $s->page_is_redirect );
-						$output->addLink( $variantTitle, $s->page_id );
-					}
-
-					// loop over link holders
-					foreach($holderKeys as $key){
-						list( $ns, $index ) = explode( ':', $key, 2 );
-						$entry =& $this->internals[$ns][$index];
-						$pdbk = $entry['pdbk'];
-
-						if(!isset($colours[$pdbk])){
-							// found link in some of the variants, replace the link holder data
-							$entry['title'] = $variantTitle;
-							$entry['pdbk'] = $varPdbk;
-
-							// set pdbk and colour
-							# FIXME: convoluted data flow
-							# The redirect status and length is passed to getLinkColour via the LinkCache
-							# Use formal parameters instead
-							$colours[$varPdbk] = $sk->getLinkColour( $variantTitle, $threshold );
-							$linkcolour_ids[$s->page_id] = $pdbk;
-						}
-						wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
-					}
-
-					// check if the object is a variant of a category
-					if(isset($categoryMap[$vardbk])){
-						$oldkey = $categoryMap[$vardbk];
-						if($oldkey != $vardbk)
-							$varCategories[$oldkey]=$vardbk;
-					}
-				}
-
-				// rebuild the categories in original order (if there are replacements)
-				if(count($varCategories)>0){
-					$newCats = array();
-					$originalCats = $output->getCategories();
-					foreach($originalCats as $cat => $sortkey){
-						// make the replacement
-						if( array_key_exists($cat,$varCategories) )
-							$newCats[$varCategories[$cat]] = $sortkey;
-						else $newCats[$cat] = $sortkey;
-					}
-					$this->parent->mOutput->setCategoryLinks($newCats);
-				}
-			}
+		if($wgContLang->hasVariants()) {
+			$this->doVariants( $colours );
 		}
 
 		# Construct search and replace arrays
@@ -377,6 +276,127 @@ class LinkHolderArray {
 			$replacer->cb(),
 			$text );
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Modify $this->internals and $colours according to language variant linking rules
+	 */
+	protected function doVariants( &$colours ) {
+		global $wgContLang;
+		$linkBatch = new LinkBatch();
+		$variantMap = array(); // maps $pdbkey_Variant => $keys (of link holders)
+		$output = $this->parent->getOutput();
+		$linkCache = LinkCache::singleton();
+		$sk = $this->parent->getOptions()->getSkin();
+		$threshold = $this->getStubThreshold();
+
+		// Add variants of links to link batch
+		foreach ( $this->internals as $ns => $entries ) {
+			foreach ( $entries as $index => $entry ) {
+				$key = "$ns:$index";
+				$pdbk = $entry['pdbk'];
+				$title = $entry['title'];
+				$titleText = $title->getText();
+
+				// generate all variants of the link title text
+				$allTextVariants = $wgContLang->convertLinkToAllVariants($titleText);
+
+				// if link was not found (in first query), add all variants to query
+				if ( !isset($colours[$pdbk]) ){
+					foreach($allTextVariants as $textVariant){
+						if($textVariant != $titleText){
+							$variantTitle = Title::makeTitle( $ns, $textVariant );
+							if(is_null($variantTitle)) continue;
+							$linkBatch->addObj( $variantTitle );
+							$variantMap[$variantTitle->getPrefixedDBkey()][] = $key;
+						}
+					}
+				}
+			}
+		}
+
+		// process categories, check if a category exists in some variant
+		$categoryMap = array(); // maps $category_variant => $category (dbkeys)
+		$varCategories = array(); // category replacements oldDBkey => newDBkey
+		foreach( $output->getCategoryLinks() as $category ){
+			$variants = $wgContLang->convertLinkToAllVariants($category);
+			foreach($variants as $variant){
+				if($variant != $category){
+					$variantTitle = Title::newFromDBkey( Title::makeName(NS_CATEGORY,$variant) );
+					if(is_null($variantTitle)) continue;
+					$linkBatch->addObj( $variantTitle );
+					$categoryMap[$variant] = $category;
+				}
+			}
+		}
+
+
+		if(!$linkBatch->isEmpty()){
+			// construct query
+			$dbr = wfGetDB( DB_SLAVE );
+			$page = $dbr->tableName( 'page' );
+			$titleClause = $linkBatch->constructSet('page', $dbr);
+			$variantQuery =  "SELECT page_id, page_namespace, page_title, page_is_redirect, page_len";
+			$variantQuery .= " FROM $page WHERE $titleClause";
+			$varRes = $dbr->query( $variantQuery, __METHOD__ );
+			$linkcolour_ids = array();
+
+			// for each found variants, figure out link holders and replace
+			while ( $s = $dbr->fetchObject($varRes) ) {
+
+				$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
+				$varPdbk = $variantTitle->getPrefixedDBkey();
+				$vardbk = $variantTitle->getDBkey();
+
+				$holderKeys = array();
+				if(isset($variantMap[$varPdbk])){
+					$holderKeys = $variantMap[$varPdbk];
+					$linkCache->addGoodLinkObj( $s->page_id, $variantTitle, $s->page_len, $s->page_is_redirect );
+					$output->addLink( $variantTitle, $s->page_id );
+				}
+
+				// loop over link holders
+				foreach($holderKeys as $key){
+					list( $ns, $index ) = explode( ':', $key, 2 );
+					$entry =& $this->internals[$ns][$index];
+					$pdbk = $entry['pdbk'];
+
+					if(!isset($colours[$pdbk])){
+						// found link in some of the variants, replace the link holder data
+						$entry['title'] = $variantTitle;
+						$entry['pdbk'] = $varPdbk;
+
+						// set pdbk and colour
+						# FIXME: convoluted data flow
+						# The redirect status and length is passed to getLinkColour via the LinkCache
+						# Use formal parameters instead
+						$colours[$varPdbk] = $sk->getLinkColour( $variantTitle, $threshold );
+						$linkcolour_ids[$s->page_id] = $pdbk;
+					}
+				}
+
+				// check if the object is a variant of a category
+				if(isset($categoryMap[$vardbk])){
+					$oldkey = $categoryMap[$vardbk];
+					if($oldkey != $vardbk)
+						$varCategories[$oldkey]=$vardbk;
+				}
+			}
+			wfRunHooks( 'GetLinkColours', array( $linkcolour_ids, &$colours ) );
+
+			// rebuild the categories in original order (if there are replacements)
+			if(count($varCategories)>0){
+				$newCats = array();
+				$originalCats = $output->getCategories();
+				foreach($originalCats as $cat => $sortkey){
+					// make the replacement
+					if( array_key_exists($cat,$varCategories) )
+						$newCats[$varCategories[$cat]] = $sortkey;
+					else $newCats[$cat] = $sortkey;
+				}
+				$output->setCategoryLinks($newCats);
+			}
+		}
 	}
 
 	/**
