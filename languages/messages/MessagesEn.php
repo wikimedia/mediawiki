@@ -2117,6 +2117,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'No e-mail address',
 'noemailtext'     => 'This user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users.',
+'email-legend'    => 'Send an e-mail to another {{SITENAME}} user',
 'emailfrom'       => 'From:',
 'emailto'         => 'To:',
 'emailsubject'    => 'Subject:',
