@@ -28,6 +28,11 @@ class UploadFromBase {
 		global $wgEnableUploads;
 		return $wgEnableUploads;
 	}
+	static function isAllowed( User $user ) {
+		if( !$user->isAllowed( 'upload' ) )
+			return 'upload';
+		return true;
+	}
 	
 	function __construct( $name ) {
 		$this->mDesiredDestName = $name;
