@@ -114,9 +114,16 @@ class SiteStats {
 	 */
 	static function numberingroup($group) {
 		if ( !isset( self::$groupMemberCounts[$group] ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			self::$groupMemberCounts[$group] = $dbr->selectField( 'user_groups', 'COUNT(*)', 
+			global $wgMemc;
+			$key = wfMemcKey( 'SiteStats', 'groupcounts', $group );
+			$hit = $wgMemc->get( $key );
+			if ( !$hit ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$hit = $dbr->selectField( 'user_groups', 'COUNT(*)', 
 													array( 'ug_group' => $group ), __METHOD__ );
+				$wgMemc->set( $key, $hit, 3600 );
+			}
+			self::$groupMemberCounts[$group] = $hit;
 		}
 		return self::$groupMemberCounts[$group];		
 	}
