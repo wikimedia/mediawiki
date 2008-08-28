@@ -24,6 +24,11 @@ class UploadFromBase {
 	
 	const SESSION_VERSION = 2;
 	
+	static function isEnabled() {
+		global $wgEnableUploads;
+		return $wgEnableUploads;
+	}
+	
 	function __construct( $name ) {
 		$this->mDesiredDestName = $name;
 	}

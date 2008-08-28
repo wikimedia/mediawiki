@@ -2,6 +2,11 @@
 
 
 class UploadFromUrl extends UploadFromBase {
+	static function isEnabled() {
+		global $wgAllowCopyUploads;
+		return $wgAllowCopyUploads && parent::isEnabled();
+	}
+	
 	function initialize( $url ) {
 		global $wgTmpDirectory;
 		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
