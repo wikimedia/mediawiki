@@ -232,6 +232,20 @@ function wfDebug( $text, $logonly = false ) {
 }
 
 /**
+ * Send a line giving PHP memory usage.
+ * @param $exact Bool : print exact values instead of kilobytes (default: false)
+ */
+function wfDebugMem( $exact = false ) {
+	$mem = memory_get_usage();
+	if( !$exact ) {
+		$mem = floor( $mem / 1024 ) . ' kilobytes';
+	} else {
+		$mem .= ' bytes';
+	}
+	wfDebug( "Memory usage: $mem\n" );
+}
+
+/**
  * Send a line to a supplementary debug log file, if configured, or main debug log if not.
  * $wgDebugLogGroups[$logGroup] should be set to a filename to send to a separate log.
  *
