@@ -1515,16 +1515,37 @@ END
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
-		if ( $this->formtype == 'preview') {
+		$classes = array( 'wikiPreview' );
+		if( $isOnTop ) $classes[] = 'ontop';
+		$attribs = array( 'class' => implode( ' ', $classes ) );
+		if( $this->formtype != 'preview' ) $attribs['style'] = 'display: none;';
+		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
+		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
-			// Spacer for the edit toolbar
-			$wgOut->addHTML( '<p><br /></p>' );
-		} else {
-			$wgOut->addHTML( '<div id="wikiPreview"></div>' );
 		}
+		$wgOut->addHTML( '</div>' );
 
 		if ( $this->formtype == 'diff') {
 			$this->showDiff();
+		}
+	}
+
+	/**
+	 * Append preview output to $wgOut.
+	 * Includes category rendering if this is a category page.
+	 *
+	 * @param string $text The HTML to be output for the preview.
+	 */
+	protected function showPreview( $text ) {
+		global $wgOut;
+		
+		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+			$this->mArticle->openShowCategory();
+		}
+		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$text ) );
+		$wgOut->addHTML( $text );
+		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+			$this->mArticle->closeShowCategory();
 		}
 	}
 
