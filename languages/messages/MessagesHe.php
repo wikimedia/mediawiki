@@ -193,6 +193,7 @@ $magicWords = array(
 	'pagesize'              => array( 1,    'גודל דף',                            'PAGESIZE'               ),
 	'index'                 => array( 1,    '__לחיפוש__',                         '__INDEX__'              ),
 	'noindex'               => array( 1,    '__לא_לחיפוש__',                      '__NOINDEX__'            ),
+	'numberingroup'         => array( 1,    'מספר בקבוצה',                        'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( 1,    '__הפניה_קבועה__',                     '__STATICREDIRECT__'     ),
 );
 
@@ -1751,10 +1752,10 @@ PICT # שונות
 'defemailsubject' => 'דוא"ל {{SITENAME}}',
 'noemailtitle'    => 'אין כתובת דואר אלקטרוני',
 'noemailtext'     => 'משתמש זה לא הזין כתובת דואר אלקטרוני חוקית או בחר שלא לקבל דואר אלקטרוני ממשתמשים אחרים.',
-'emailfrom'       => 'מאת',
-'emailto'         => 'אל',
-'emailsubject'    => 'נושא',
-'emailmessage'    => 'הודעה',
+'emailfrom'       => 'מאת:',
+'emailto'         => 'אל:',
+'emailsubject'    => 'נושא:',
+'emailmessage'    => 'הודעה:',
 'emailsend'       => 'שליחה',
 'emailccme'       => 'קבלת העתק של הודעה זו בדואר האלקטרוני.',
 'emailccsubject'  => 'העתק של הודעתך למשתמש $1: $2',
