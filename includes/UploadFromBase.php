@@ -3,7 +3,7 @@
 class UploadFromBase {
 	var $mTempPath;
 	var $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
-	var $mTitle = false;
+	var $mTitle = false, $mTitleError = 0;
 	var $mFilteredName, $mFinalExtension;
 	
 	const SUCCESS = 0;
@@ -45,13 +45,12 @@ class UploadFromBase {
 		}
 
 		$nt = $this->getTitle();
-		if( !( $nt instanceof Title ) ) {
-			if( $nt == self::ILLEGAL_FILENAME )
+		if( is_null( $nt ) ) {
+			if( $this->mTitleError == self::ILLEGAL_FILENAME )
 				$resultDetails = array( 'filtered' => $this->mFilteredName );
-			if ( $nt == self::FILETYPE_BADTYPE )
+			if ( $this->mTitleError == self::FILETYPE_BADTYPE )
 				$resultDetails = array( 'finalExt' => $this->mFinalExtension );
-			// $nt is an error constant
-			return $nt;
+			return $this->mTitleError;
 		}
 		$this->mLocalFile = wfLocalFile( $nt );
 		$this->mDestName = $this->mLocalFile->getName();
@@ -146,6 +145,8 @@ class UploadFromBase {
 		 * to modify it by uploading a new revision.
 		 */
 		$nt = $this->getTitle();
+		if( is_null( $nt ) )
+			return true;
 		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
 		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
 		$permErrorsCreate = ( $nt->exists() ? array() : $nt->getUserPermissionsErrors( 'create', $user ) );
@@ -228,7 +229,7 @@ class UploadFromBase {
 	}
 
 	/**
-	 * Returns a title or a numeric error constant
+	 * Returns a title or null
 	 */
 	function getTitle() {
 		if ( $this->mTitle !== false )
@@ -260,11 +261,13 @@ class UploadFromBase {
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
 		global $wgFileExtensions, $wgFileBlacklist;
 		if ( $this->mFinalExtension == '' ) {
-			return self::FILETYPE_MISSING;
+			$this->mTitleError = self::FILETYPE_MISSING;
+			return $this->mTitle = null;
 		} elseif ( $this->checkFileExtensionList( $ext, $wgFileBlacklist ) ||
 				( $wgCheckFileExtensions && $wgStrictFileExtensions &&
 					!$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) ) ) {
-			return self::FILETYPE_BADTYPE;
+			$this->mTitleError = self::FILETYPE_BADTYPE;
+			return $this->mTitle = null;
 		}
 
 		# If there was more than one "extension", reassemble the base
@@ -275,18 +278,23 @@ class UploadFromBase {
 		}
 
 		if( strlen( $partname ) < 1 ) {
-			return self::MIN_LENGHT_PARTNAME;
+			$this->mTitleError =  self::MIN_LENGHT_PARTNAME;
+			return $this->mTitle = null;
 		}
 		
 		$nt = Title::makeTitleSafe( NS_IMAGE, $this->mFilteredName );
-		if( is_null( $nt ) )
-			return self::ILLEGAL_FILENAME;
+		if( is_null( $nt ) ) {
+			$this->mTitleError = self::ILLEGAL_FILENAME;
+			return $this->mTitle = null;
+		}
 		return $this->mTitle = $nt;
 	}
 	
 	function getLocalFile() {
-		if( is_null( $this->mLocalFile ) )
-			$this->mLocalFile = wfLocalFile( $this->getTitle() );	
+		if( is_null( $this->mLocalFile ) ) {
+			$nt = $this->getTitle();
+			$this->mLocalFile = is_null( $nt ) ? null : wfLocalFile( $nt );
+		}	
 		return $this->mLocalFile;
 	}
 	

@@ -273,18 +273,14 @@ class UploadForm {
 			return UploadFromBase::BEFORE_PROCESSING;
 		}
 
-		$nt = $this->mUpload->getTitle();
-		// Hold back returning errors for a bit so that verifyUpload can fill in the details
-		if ( $nt instanceof Title ) {
-			/**
-			 * If the image is protected, non-sysop users won't be able
-			 * to modify it by uploading a new revision.
-			 */
-			$permErrors = $this->mUpload->verifyPermissions( $wgUser );
-			if( $permErrors !== true ) {
-				$resultDetails = array( 'permissionserrors' => $permErrors );
-				return UploadFromBase::PROTECTED_PAGE;
-			}
+		/**
+		 * If the image is protected, non-sysop users won't be able
+		 * to modify it by uploading a new revision.
+		 */
+		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
+		if( $permErrors !== true ) {
+			$resultDetails = array( 'permissionserrors' => $permErrors );
+			return UploadFromBase::PROTECTED_PAGE;
 		}
 
 		// Check whether this is a sane upload
