@@ -157,6 +157,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   namespace in Special:Watchlist
 * (bug 15172) 'Go' button of Special:Recentchanges now on the same line as the
   last input element (like Special:Watchlist too)
+* (bug 15351) Fix fatal error for invalid section fragments in autocomments
 
 
 === API changes in 1.14 ===
