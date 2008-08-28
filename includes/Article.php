@@ -1477,7 +1477,9 @@ class Article {
 					'comment'    => $summary,
 					'minor_edit' => $isminor,
 					'text'       => $text,
-					'parent_id'  => $lastRevision
+					'parent_id'  => $lastRevision,
+					'user'       => $user->getId(),
+					'user_text'  => $user->getName(),
 					) );
 
 				$dbw->begin();
