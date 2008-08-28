@@ -2648,6 +2648,18 @@ $1',
 'exif-lightsource-24'  => 'טונגסטן אולפן ISO',
 'exif-lightsource-255' => 'מקור אור אחר',
 
+# Flash modes
+'exif-flash-fired-0'    => 'הפלאש לא הופעל',
+'exif-flash-fired-1'    => 'הפלאש הופעל',
+'exif-flash-return-0'   => 'ללא התכונה של גילוי חזרת סטרובוסקופ',
+'exif-flash-return-2'   => 'לא התגלה אור חזרת סטרובוסקופ',
+'exif-flash-return-3'   => 'התגלה אור חזרת סטרובוסקופ',
+'exif-flash-mode-1'     => 'מצב פלאש מופעל תמיד',
+'exif-flash-mode-2'     => 'מצב פלאש כבוי תמיד',
+'exif-flash-mode-3'     => 'מצב פלאש אוטומטי',
+'exif-flash-function-1' => 'ללא תכונת פלאש',
+'exif-flash-redeye-1'   => 'מצב מניעת עיניים אדומות',
+
 'exif-focalplaneresolutionunit-2' => "אינצ'ים",
 
 'exif-sensingmethod-1' => 'לא מוגדרת',
