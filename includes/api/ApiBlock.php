@@ -72,8 +72,6 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg(array('canthide'));
 		if($params['noemail'] && !$wgUser->isAllowed('blockemail'))
 			$this->dieUsageMsg(array('cantblock-email'));
-		if(wfReadOnly())
-			$this->dieUsageMsg(array('readonlytext'));
 
 		$form = new IPBlockForm('');
 		$form->BlockAddress = $params['user'];

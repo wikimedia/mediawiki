@@ -51,8 +51,6 @@ class ApiUndelete extends ApiBase {
 			$this->dieUsageMsg(array('permdenied-undelete'));
 		if($wgUser->isBlocked())
 			$this->dieUsageMsg(array('blockedtext'));
-		if(wfReadOnly())
-			$this->dieUsageMsg(array('readonlytext'));
 		if(!$wgUser->matchEditToken($params['token']))
 			$this->dieUsageMsg(array('sessionfailure'));
 

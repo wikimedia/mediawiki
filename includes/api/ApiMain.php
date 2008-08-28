@@ -211,6 +211,8 @@ class ApiMain extends ApiBase {
 		if (!$wgUser->isAllowed('writeapi'))
 			$this->dieUsage('You\'re not allowed to edit this ' .
 			'wiki through the API', 'writeapidenied');
+		if (wfReadOnly())
+			$this->dieUsageMsg(array('readonlytext'));
 	}
 
 	/**
