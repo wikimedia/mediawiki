@@ -42,7 +42,6 @@ class UploadForm {
 	 * @param $request Data posted.
 	 */
 	function __construct( &$request ) {
-		global $wgAllowCopyUploads;
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mComment           = $request->getText( 'wpUploadDescription' );
@@ -93,7 +92,7 @@ class UploadForm {
 			/**
 			 *Check for a newly uploaded file.
 			 */
-			if( $wgAllowCopyUploads && $this->mSourceType == 'web' ) {
+			if( UploadFromUrl::isEnabled() && $this->mSourceType == 'web' ) {
 				$this->mUpload = new UploadFromUrl( $desiredDestName );
 				$this->mUpload->initialize( $request->getText( 'wpUploadFileURL' ) );
 			} else {
@@ -115,10 +114,9 @@ class UploadForm {
 	 */
 	function execute() {
 		global $wgUser, $wgOut;
-		global $wgEnableUploads;
 
 		# Check uploading enabled
-		if( !$wgEnableUploads ) {
+		if( !UploadFromBase::isEnabled() ) {
 			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDesiredDestName ) );
 			return;
 		}
@@ -579,7 +577,7 @@ class UploadForm {
 	function mainUploadForm( $msg='' ) {
 		global $wgOut, $wgUser, $wgLang, $wgMaxUploadSize;
 		global $wgUseCopyrightUpload, $wgUseAjax, $wgAjaxUploadDestCheck, $wgAjaxLicensePreview;
-		global $wgRequest, $wgAllowCopyUploads;
+		global $wgRequest;
 		global $wgStylePath, $wgStyleVersion;
 
 		$useAjaxDestCheck = $wgUseAjax && $wgAjaxUploadDestCheck;
@@ -687,7 +685,7 @@ wgUploadAutoFill = {$autofill};
 			default:
 				$val2 = $val;
 		}
-		$val2 = $wgAllowCopyUploads ? min( $wgMaxUploadSize, $val2 ) : $val2;
+		$val2 = UploadFromUrl::isEnabled() ? min( $wgMaxUploadSize, $val2 ) : $val2;
 		$maxUploadSize = '<div id="mw-upload-maxfilesize">' . 
 			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ), 
 				$wgLang->formatSize( $val2 ) ) .
@@ -716,7 +714,7 @@ wgUploadAutoFill = {$autofill};
 		$warningChecked = $this->mIgnoreWarning ? 'checked' : '';
 
 		// Prepare form for upload or upload/copy
-		if( $wgAllowCopyUploads && $wgUser->isAllowed( 'upload_by_url' ) ) {
+		if( UploadFromUrl::isEnabled() && $wgUser->isAllowed( 'upload_by_url' ) ) {
 			$filename_form =
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
 				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
