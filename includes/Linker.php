@@ -1222,11 +1222,18 @@ class Linker {
 				$sectionTitle = clone( $title );
 				$sectionTitle->mFragment = $section;
 			}
-			$link = $this->link( $sectionTitle,
-				wfMsgForContent( 'sectionlink' ), array(), array(),
-				'noclasses' );
+			# FIXME: $sectionTitle should probably always be valid at this
+			# point, but in some scenarios it's not (bug 15351).  Is this cor-
+			# rect?
+			if( $title instanceof Title ) {
+				$link = $this->link( $sectionTitle,
+					wfMsgForContent( 'sectionlink' ), array(), array(),
+					'noclasses' );
+			} else {
+				$link = '';
+			}
 		}
-		$auto = $link . $auto;
+		$auto = "$link$auto";
 		if( $pre ) {
 			# written summary $presep autocomment (summary /* section */)
 			$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
