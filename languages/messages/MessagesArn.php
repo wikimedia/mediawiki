@@ -296,6 +296,7 @@ $messages = array(
 'emailsend'    => 'Werkün',
 
 # Watchlist
+'watchnologin'    => 'Petu konlaymi',
 'watch'           => 'Llaytun',
 'watchthispage'   => 'Llaytun tüfachi pakina',
 'unwatch'         => 'Llaytuwelan',

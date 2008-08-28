@@ -908,6 +908,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-font'               => "'''Schrëft'''",
 'diff-big'                => "'''grouss'''",
 'diff-del'                => "'''geläscht'''",
+'diff-tt'                 => "'''fest Breet'''",
 'diff-strike'             => "'''duerchgestrach'''",
 
 # Search results
@@ -1514,10 +1515,10 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
 'noemailtext'     => 'Dëse Benotzer huet keng gülteg E-Mailadress uginn, oder well keng E-Mail vun anere Wikipedianer kréien.',
-'emailfrom'       => 'Vum',
-'emailto'         => 'Fir',
-'emailsubject'    => 'Sujet',
-'emailmessage'    => 'Message',
+'emailfrom'       => 'Vum:',
+'emailto'         => 'Fir:',
+'emailsubject'    => 'Sujet:',
+'emailmessage'    => 'Message:',
 'emailsend'       => 'Schécken',
 'emailccme'       => 'Eng E-Mailkopie vun der Noriicht fir mech',
 'emailccsubject'  => 'Kopie vun denger Noriicht un $1: $2',
@@ -1563,6 +1564,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'watchlist-hide-minor' => 'kleng Ännerunge verstoppen',
 'watchlist-show-anons' => 'ännerunge vun anonyme Benotzer weisen',
 'watchlist-hide-anons' => 'Ännerung vun anonyme Benotzer verstoppen',
+'watchlist-show-liu'   => 'Weis Ännerunge vun ageloggte Benotzer',
 'watchlist-hide-liu'   => 'Ageloggt Benotzer verstoppen',
 'watchlist-options'    => 'Optioune vun der Iwwerwaachungslëscht',
 

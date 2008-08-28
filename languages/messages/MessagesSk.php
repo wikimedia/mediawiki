@@ -816,6 +816,7 @@ Dôvod, ktorý $3 uviedol, je ''$2''",
 'revnotfoundtext'     => 'Požadovaná staršia verzia stránky nebola nájdená.
 Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.',
 'currentrev'          => 'Aktuálna verzia',
+'currentrev-asof'     => 'Aktuálna revízia z $1',
 'revisionasof'        => 'Verzia zo dňa a času $1',
 'revision-info'       => 'Revízia z $1; $2',
 'previousrevision'    => '← Staršia verzia',
@@ -1204,6 +1205,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmena|zmeny|zmien}}',
 'recentchanges'                     => 'Posledné úpravy',
+'recentchanges-legend'              => 'Možnosti posledných zmien',
 'recentchangestext'                 => 'Pomocou tejto stránky sledujete posledné úpravy stránok {{GRAMMAR:genitív|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto kanálom.',
 'rcnote'                            => "Tu {{PLURAL:$1|je posledná úprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} z $4, $5.",
@@ -1623,10 +1625,11 @@ Emailová adresa, ktorú ste zadali vo svojich [[Special:Preferences|nastaveniac
 'noemailtitle'    => 'Chýba e-mailová adresa',
 'noemailtext'     => 'Tento používateľ nešpecifikoval platnú e-mailovú adresu
 alebo sa rozhodol, že nebude prijímať e-maily od druhých používateľov.',
-'emailfrom'       => 'Odosielateľ',
-'emailto'         => 'Príjemca',
-'emailsubject'    => 'Predmet',
-'emailmessage'    => 'Správa',
+'email-legend'    => 'Poslať email používateľovi {{GRAMMAR:genitív|{{SITENAME}}}}',
+'emailfrom'       => 'Od:',
+'emailto'         => 'Komu:',
+'emailsubject'    => 'Predmet:',
+'emailmessage'    => 'Správa:',
 'emailsend'       => 'Odoslať',
 'emailccme'       => 'Pošli mi emailom kópiu mojej správy.',
 'emailccsubject'  => 'Kópia správy pre $1: $2',
@@ -2206,6 +2209,8 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-watch'                   => 'Pridať túto stránku k sledovaným.',
 'tooltip-recreate'                => 'Znovu vytvoriť stránku napriek tomu, že bola zmazaná',
 'tooltip-upload'                  => 'Začať nahrávanie',
+'tooltip-rollback'                => '„Rollback” vracia úpravy posledného prispievateľa tejto stránky jedným kliknutím.',
+'tooltip-undo'                    => '„Vrátiť” vráti túto úpravu a otvorí formulár úprav v režime náhľadu. Umožnuje do zhrnutia pridať dôvod.',
 
 # Stylesheets
 'common.css'   => '/** Tu sa nachádzajúce CSS sa použije pri všetkých skinoch */',
@@ -2510,6 +2515,18 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-lightsource-19'  => 'Štandardné svetlo C',
 'exif-lightsource-24'  => 'ISO štúdiový volfrám',
 'exif-lightsource-255' => 'Iný svetelný zdroj',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Blesk sa nespustil',
+'exif-flash-fired-1'    => 'Blesk sa spustil',
+'exif-flash-return-0'   => 'bez funkcie detekcie odrazeného svetla',
+'exif-flash-return-2'   => 'odrazené svetlo nebolo detekované',
+'exif-flash-return-3'   => 'odrazené svetlo bolo detekované',
+'exif-flash-mode-1'     => 'povinné spustenie blesku',
+'exif-flash-mode-2'     => 'povinné potlačenie blesku',
+'exif-flash-mode-3'     => 'automatický režim',
+'exif-flash-function-1' => 'Bez funkcie blesku',
+'exif-flash-redeye-1'   => 'režim potlačenia červených očí',
 
 'exif-focalplaneresolutionunit-2' => 'palcov',
 

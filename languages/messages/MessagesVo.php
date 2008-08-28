@@ -1484,8 +1484,9 @@ $2 jonon moükamis nulik.',
 ** Kopiedagitäts
 ** Vandalim',
 'delete-edit-reasonlist'      => 'Redakön kodis moükama',
-'delete-toobig'               => 'Pad at labon redakamajenotemi lunik (revids plu $1). Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
-'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: votükams plu $1.
+'delete-toobig'               => 'Pad at labon redakamajenotemi lunik ({{PLURAL:$1|revid|revids}} plu $1).
+Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
+'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.
 Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'rollback'                    => 'Sädunön redakamis',
 'rollback_short'              => 'Sädunön vali',

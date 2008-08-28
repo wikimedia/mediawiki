@@ -178,14 +178,15 @@ $messages = array(
 'listingcontinuesabbrev' => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
 
-'mainpagetext' => 'Along with [[MediaWiki:Mainpagedocfooter]], the text you will see on the Main Page when your wiki is installed.',
-'mainpagedocfooter' => 'Along with [[MediaWiki:Mainpagetext]], the text you will see on the Main Page when your wiki is installed.',
+'mainpagetext' => 'Along with {{msg|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.',
+'mainpagedocfooter' => 'Along with {{msg|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.',
 
 'about' => '{{Identical|About}}',
 'newwindow' => 'Below the edit form, next to "[[MediaWiki:Edithelp/{{SUBPAGENAME}}|Editing help]]".',
 'cancel' => 'Message shown below the edit form, and if you click on it, you stop with editing the page and go back to the normal page view.
 
 {{Identical|Cancel}}',
+'qbfind' => 'Alternative for "search" as used in Cologne Blue skin.',
 'qbedit' => '{{Identical|Edit}}',
 'qbmyoptions' => '{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
@@ -231,7 +232,8 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'create' => 'The text on the tab for to the edit form on unexisting pages.
 
 {{Identical|Create}}',
-'create-this-page' => 'In some skins (not Monobook or Modern) this is the text for the link leading to the edit form on pages that have not yet been created.',
+'editthispage' => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
+'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.',
 'delete' => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
 
 {{Identical|Delete}}',
@@ -273,7 +275,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 {{Identical|About}}',
 'aboutpage' => 'Used as page for that contains the site description. Used at the bottom of every page on the wiki. Do not translate "Project:". Example: [[{{MediaWiki:Aboutpage}}|{{MediaWiki:About}} {{SITENAME}}]].',
 'bugreportspage' => 'Not used in Monobook skin. Please do not translate <tt>Project:</tt> part.',
-'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. Do not translate <tt>Project:</tt> part.",
+'currentevents' => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
+'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
+{{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'disclaimerpage' => "Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]]. Don't translate <tt>Project:</tt> part.",
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
@@ -297,6 +301,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 
 * $1 is a list of groups.
 * $2 is the number of groups.",
+
+'versionrequired' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequiredtext}}.',
+'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
 
 'ok' => '{{Identical|OK}}',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
@@ -365,18 +372,16 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 # General errors
 'error' => '{{Identical|Error}}',
 'enterlockreason' => 'For developers when locking the database',
-'missing-article' => 'This message is shown when a revision does not exist, either as permalink or as diff. Examples:
+'missing-article' => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 
 # [http://translatewiki.net/w/i.php?title=Betawiki:News&oldid=9999999 Permalink with invalid revision#]
 # [http://translatewiki.net/w/i.php?title=Betawiki:News&diff=426850&oldid=99999999 Diff with invalid revision#]
 
-Old version of the message see at [[MediaWiki:Missingarticle]]
-
-== Parameters ==
+'''Parameters'''
 * $1: Pagename
 * $2: Content of 
 *# {{msg|Missingarticle-rev}} - Permalink with invalid revision#
-*# {{msg|Missingarticle-diff}} - Diff with invalid revision#',
+*# {{msg|Missingarticle-diff}} - Diff with invalid revision#",
 'missingarticle-rev' => 'Parameter $2 of {{msg|Missing-article}}: It is shown after the articlename.
 
 * $1: revision# of the requested id
@@ -517,6 +522,8 @@ $1 is the number of necessary chararcters of the password.',
 'preview' => '{{Identical|Preview}}',
 'showpreview' => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
 'showdiff' => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
+'anoneditwarning' => 'Shown when editing a page anonymously.',
+'summary-preview' => 'Preview of the edit summary, shown under the edit summary itself.',
 'blockedtext' => 'Text displayed to blocked users',
 'autoblockedtext' => 'Text displayed to automatically blocked users',
 'blockednoreason' => '{{Identical|No reason given}}',
@@ -552,6 +559,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 * $2 is one of the right-* messages.
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
+'recreate-deleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -670,6 +678,7 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 
 # Diffs
 'history-title' => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
+'difference' => 'Displayed under the title when viewing the difference between two or more edits.',
 'lineno' => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
 'compareselectedversions' => 'Used as button in history pages.',
 'visualcomparison' => '{{Identical|Visual comparison}}',
@@ -912,6 +921,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'recentchanges' => 'The text of the link in sidebar going to the special page [[Special:RecentChanges]]. Also the page title of that special page.
 
 {{Identical|Recent changes}}',
+'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchangestext' => 'Text in recent changes',
 'rcnote' => 'Used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
@@ -925,6 +935,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 
 Parameter $1 is the maximum number of changes that are displayed.
 Parameter $2 is a date and time.',
+'rclistfrom' => 'Used on [[Special:RecentChanges]]. Parameter $1 is a date.',
 'rcshowhideminor' => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots' => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
 
@@ -941,14 +952,15 @@ Parameter $2 is a date and time.',
 
 {{Identical|Hide}}',
 'show' => '{{Identical|Show}}',
-'minoreditletter' => 'In [[Special:RecentChanges]]',
-'newpageletter' => 'In [[Special:RecentChanges]]',
+'minoreditletter' => "Very short form of \"'''minor edit'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]], [[Special:Contributions]] and history pages.",
+'newpageletter' => "Very short form of \"'''new page'''\". Used in [[Special:RecentChanges]], [[Special:Watchlist]] and [[Special:Contributions]].",
 'boteditletter' => 'Abbreviation of "bot". Appears in [[Special:RecentChanges]] and [[Special:Watchlist]].',
 'newsectionsummary' => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
 'recentchangeslinked' => 'Title of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-title' => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
+'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page' => '{{Identical|Page name}}',
 
 # Upload
@@ -1041,6 +1053,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 * $1: limit. At the moment hardcoded at 100
 * $2: filename',
+'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'redirectstofile' => 'Used on file description pages after the list of pages which used this file',
 'shareduploadwiki' => 'The variable $1 is {{msg|shareduploadwiki-linktext}}',
 'shareduploadwiki-desc' => "This message appears after [[MediaWiki:Sharedupload]]. \$1 is a link to the file description page on the shared repository with [[MediaWiki:Shareduploadwiki-linktext]] as display text. Example: \"''The description on its file description page there is shown below.''\"",
@@ -1349,6 +1362,7 @@ $1 = the name of the page',
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.',
+'protectlogpage' => 'Title of [[Special:Log/protect]].',
 'protectlogtext' => 'Text in [[Special:Log/protect]].',
 'protect-title' => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
 'protect-backlink' => 'Optional message. Translate it only if you have to change it, i.e. for RTL wikis
@@ -1357,6 +1371,8 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-legend' => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment' => '{{Identical|Comment}}',
 'protectexpiry' => '{{Identical|Expires}}',
+'protect-unchain' => 'Used for a checkbox to be able to change move permissions. See [[meta:Protect]] for more information.',
+'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page.',
@@ -1582,6 +1598,10 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'allmessagestext' => 'Used in [[Special:AllMessages]].',
 'allmessagesnotsupportedDB' => 'This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.',
 
+# Thumbnails
+'thumbnail-more' => '[[Image:Yes.png|thumb|This:]]
+Tooltip shown when hovering over a little sign of a thumb image, to go to the image page (where it is bigger). For example, see the image at the right:',
+
 # Special:Import
 'import' => 'The title of the special page [[Special:Import]];',
 'import-interwiki-submit' => '{{Identical|Import}}',
@@ -1611,6 +1631,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 {{Identical|Log out}}',
 'tooltip-ca-talk' => 'Tooltip shown when hovering over the "[[MediaWiki:Talk/{{SUBPAGENAME}}|{{int:talk}}]]" tab.',
 'tooltip-ca-edit' => 'The tooltip when hovering over the "[[MediaWiki:Edit/{{SUBPAGENAME}}|{{int:edit}}]]" tab.',
+'tooltip-ca-addsection' => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).',
 'tooltip-ca-viewsource' => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.',
 'tooltip-ca-protect' => '{{Identical|Protect this page}}',
 'tooltip-ca-delete' => 'Tooltip shown when hovering over the "[[MediaWiki:Delete/{{SUBPAGENAME}}|{{int:delete}}]]" tab.
@@ -1618,6 +1639,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 {{Identical|Delete this page}}',
 'tooltip-ca-move' => '{{Identical|Move this page}}',
 'tooltip-ca-watch' => '{{Identical|Add this page to your watchlist}}',
+'tooltip-ca-unwatch' => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.',
 'tooltip-search' => 'The tooltip when hovering over the search menu.',
 'tooltip-search-go' => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
 'tooltip-search-fulltext' => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
@@ -1630,17 +1652,20 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-n-help' => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.",
 'tooltip-t-whatlinkshere' => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
 'tooltip-t-contributions' => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
+'tooltip-t-emailuser' => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).',
 'tooltip-t-upload' => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.
 
 {{Identical|Upload files}}',
 'tooltip-t-specialpages' => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
 'tooltip-ca-nstab-user' => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
 'tooltip-ca-nstab-image' => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
+'tooltip-ca-nstab-template' => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
 'tooltip-ca-nstab-help' => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
+'tooltip-ca-nstab-category' => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
 'tooltip-minoredit' => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
 'tooltip-save' => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
 'tooltip-preview' => 'Tooltip shown when hovering over the "Show preview" button.',
-'tooltip-diff' => "This is the text that appears when you hover the mouse over the 'Show changes' button on the edit page",
+'tooltip-diff' => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
 'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
 'tooltip-watch' => '{{Identical|Add this page to your watchlist}}',
 'tooltip-rollback' => 'Tooltip of the rollback link on the history page and the diff view',
@@ -1681,6 +1706,10 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].',
 
 {{Identical|Automatic}}',
 
+# Browsing diffs
+'previousdiff' => 'Used when viewing the difference between edits. See also {{msg|nextdiff}}.',
+'nextdiff' => 'Used when viewing the difference between edits. See also {{msg|previousdiff}}.',
+
 # Visual comparison
 'visual-comparison' => '{{Identical|Visual comparison}}',
 
@@ -1690,6 +1719,7 @@ See also [[MediaWiki:Lastmodifiedat/{{SUBPAGENAME}}]].',
 'file-info-size' => 'File info displayed on file description page.',
 'file-nohires' => 'File info displayed on file description page.',
 'svg-long-desc' => 'Displayed under an SVG image at the image description page. See for example [[:Image:Wiki.svg]].',
+'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 
 # Special:NewImages
@@ -1818,6 +1848,12 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 # Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
 'exif-gpsspeed-n' => "Knots: ''Knot'' is a unit of speed on water used for ships, etc., equal to one nautical mile per hour.",
 
+# External editor support
+'edit-externally' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].',
+'edit-externally-help' => 'Displayed on image description pages. See for example [[:Image:Yes.png#filehistory]].
+
+Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exactly as it is.',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => '{{Identical|All}}',
 'imagelistall' => '{{Identical|All}}',
@@ -1886,7 +1922,11 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 'watchlistedit-raw-removed' => 'Message on special page: Edit raw watchlist. The message appears after at least 1 message is deleted from the raw watchlist.',
 
 # Watchlist editing tools
-'watchlisttools-raw' => '{{Identical|Edit raw watchlist}}',
+'watchlisttools-view' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-edit}} and {{msg|watchlisttools-raw}}.',
+'watchlisttools-edit' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-view}} and {{msg|watchlisttools-raw}}.',
+'watchlisttools-raw' => '[[Special:Watchlist]]: Navigation link under the title. See also {{msg|watchlisttools-view}} and {{msg|watchlisttools-edit}}.
+
+{{Identical|Edit raw watchlist}}',
 
 # Iranian month names
 'iranian-calendar-m1' => 'Name of month in Iranian calender.',

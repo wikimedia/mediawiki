@@ -860,6 +860,7 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 op die URL, die Dich herjebraht hät, die weed verkihrt sin, oder se es villeich üvverhollt, weil einer die Sigg 
 fottjeschmesse hät?',
 'currentrev'          => 'Neuste Version',
+'currentrev-asof'     => 'De neuste Version fum $1',
 'revisionasof'        => 'Version vum $1',
 'revision-info'       => 'Dat es de Version vum $1 vum $2.',
 'previousrevision'    => '← De Version dovör zeije',
@@ -975,9 +976,9 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'difference'              => '(Ungerscheed zwesche de Versione)',
 'lineno'                  => 'Reih $1:',
 'compareselectedversions' => 'Dun de markeete Version verjliche',
-'visualcomparison'        => 'Änderonge als Sigge ungernander aanzeije',
+'visualcomparison'        => 'Änderonge en dä Sigg makeere',
 'wikicodecomparison'      => 'Wikitäxte nevvenanderlääje',
-'editundo'                => 'zeröck nämme',
+'editundo'                => 'De letzte Änderung zeröck nämme',
 'diff-multi'              => '(Mer don hee {{PLURAL:$1|eij Version|$1 Versione|keij Version}} dozwesche beim Verjliesche översprenge)',
 'diff-movedto'            => 'noh $1 jebraat',
 'diff-styleadded'         => 'Ene Stil för_t CSS dobei jedonn',
@@ -1258,6 +1259,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges'                     => 'Neuste Änderunge',
+'recentchanges-legend'              => 'Enstellunge',
 'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
 'recentchanges-feed-description'    => 'Op dämm Abonnomang-Kannal (<i lang="en">Feed</i>) kannze de {{int:recentchanges}} aam Wiki en Laif un en Färve metloore.',
 'rcnote'                            => '{{PLURAL:$1|Hee is de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Et jit <strong>kei</strong> Änderunge en}} {{PLURAL:$2|däm letzte Dag|de letzte <strong>$2</strong> Dage|dä Zick}} vum $4 aff $5 Uhr beß jetz.',
@@ -1843,7 +1845,7 @@ Do kanns hee noh Hölp luure:
 'delete-edit-reasonlist'      => 'De Jrönde för et Fottschmieße beärbeide',
 'delete-toobig'               => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Domet unsere ßööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
 'delete-warning-toobig'       => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
-'rollback'                    => 'Änderunge Zeröcknemme',
+'rollback'                    => 'Em Letzte sing Änderunge zeröcknemme',
 'rollback_short'              => 'Zeröcknemme',
 'rollbacklink'                => 'Zeröcknemme',
 'rollbackfailed'              => 'Dat Zeröcknemme jingk scheiv',
@@ -2299,6 +2301,10 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit müjjelich.',
 'tooltip-watch'                   => 'Op die Sigg hee oppasse.',
 'tooltip-recreate'                => 'En fottjeschmesse Sigg widder zeröckholle',
 'tooltip-upload'                  => 'Mem Dattei-Huhlaade loßlääje',
+'tooltip-rollback'                => 'Nemmp alle Änderunge zeröck, di dä Läzde jemaat hät, dä aan dä Sigg övverhoup jet jedonn hät. Deit nimmieh frore un määd ene automattesche Endraach en „{{int:Summary}}“',
+'tooltip-undo'                    => '„{{UCfirst:{{int:editundo}}}}“ määt der förije Zostand
+fun dä Sigg op, zom Beärbeide un widder Afspeichere.
+Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 
 # Stylesheets
 'common.css'      => '/* CSS hee aan dä Stell hät Uswirkunge op all Ovverflääsche */',
