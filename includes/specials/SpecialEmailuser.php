@@ -98,46 +98,64 @@ class EmailUserForm {
 			$this->subject = wfMsgExt( 'defemailsubject', array( 'content', 'parsemag' ) );
 		}
 
-		$emf = wfMsg( "emailfrom" );
-		$senderLink = $skin->makeLinkObj(
-			$wgUser->getUserPage(), htmlspecialchars( $wgUser->getName() ) );
-		$emt = wfMsg( "emailto" );
-		$recipientLink = $skin->makeLinkObj(
-			$this->target->getUserPage(), htmlspecialchars( $this->target->getName() ) );
-		$emr = wfMsg( "emailsubject" );
-		$emm = wfMsg( "emailmessage" );
-		$ems = wfMsg( "emailsend" );
-		$emc = wfMsg( "emailccme" );
-		$encSubject = htmlspecialchars( $this->subject );
-
 		$titleObj = SpecialPage::getTitleFor( "Emailuser" );
-		$action = $titleObj->escapeLocalURL( "target=" .
+		$action = $titleObj->getLocalURL( "target=" .
 			urlencode( $this->target->getName() ) . "&action=submit" );
-		$token = htmlspecialchars( $wgUser->editToken() );
 
-		$wgOut->addHTML( "
-<form id=\"emailuser\" method=\"post\" action=\"{$action}\">
-<table border='0' id='mailheader'><tr>
-<td align='right'>{$emf}:</td>
-<td align='left'><strong>{$senderLink}</strong></td>
-</tr><tr>
-<td align='right'>{$emt}:</td>
-<td align='left'><strong>{$recipientLink}</strong></td>
-</tr><tr>
-<td align='right'>{$emr}:</td>
-<td align='left'>
-<input type='text' size='60' maxlength='200' name=\"wpSubject\" value=\"{$encSubject}\" />
-</td>
-</tr>
-</table>
-<span id='wpTextLabel'><label for=\"wpText\">{$emm}:</label><br /></span>
-<textarea id=\"wpText\" name=\"wpText\" rows='20' cols='80' style=\"width: 100%;\">" . htmlspecialchars( $this->text ) .
-"</textarea>
-" . wfCheckLabel( $emc, 'wpCCMe', 'wpCCMe', $wgUser->getBoolOption( 'ccmeonemails' ) ) . "<br />
-<input type='submit' name=\"wpSend\" value=\"{$ems}\" accesskey=\"s\" />
-<input type='hidden' name='wpEditToken' value=\"$token\" />
-</form>\n" );
-
+		$wgOut->addHTML(  
+			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'emailuser' ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'email-legend' ) ) .
+			Xml::openElement( 'table', array( 'class' => 'mw-emailuser-table' ) ) .
+			"<tr>
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'emailfrom' ), 'emailfrom' ) .
+				"</td>
+				<td class='mw-input' id='mw-emailuser-sender'>" .
+					$skin->link( $wgUser->getUserPage(), htmlspecialchars( $wgUser->getName() ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'emailto' ), 'emailto' ) .
+				"</td>
+				<td class='mw-input' id='mw-emailuser-recipient'>" .
+					$skin->link( $this->target->getUserPage(), htmlspecialchars( $this->target->getName() ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'emailsubject' ), 'wpSubject' ) .
+				"</td>
+				<td class='mw-input'>" .
+					Xml::input( 'wpSubject', 60, $this->subject, array( 'type' => 'text', 'maxlength' => 200 ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'emailmessage' ), 'wpText' ) .
+				"</td>
+				<td class='mw-input'>" .
+					Xml::textarea( 'wpText', $this->text, 80, 20, array( 'id' => 'wpText' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'emailccme' ), 'wpCCMe', 'wpCCMe', $wgUser->getBoolOption( 'ccmeonemails' ) ) .
+				"</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td class='mw-submit'>" .
+					Xml::submitButton( wfMsg( 'emailsend' ), array( 'name' => 'wpSend', 'accesskey' => 's' ) ) .
+				"</td>
+			</tr>" .
+			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
+		);
 	}
 
 	/*

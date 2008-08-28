@@ -247,3 +247,12 @@ h4.mw-specialpagesgroup {
 #shared-image-dup, #shared-image-conflict {
 	font-style: italic;
 }
+
+/* Special:EmailUser styling */
+table.mw-emailuser-table {
+	width: 98%;
+}
+td#mw-emailuser-sender, td#mw-emailuser-recipient {
+	font-weight: bold;
+}
+

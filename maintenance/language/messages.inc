@@ -1390,6 +1390,7 @@ $wgMessageStructure = array(
 		'defemailsubject',
 		'noemailtitle',
 		'noemailtext',
+		'email-legend',
 		'emailfrom',
 		'emailto',
 		'emailsubject',
