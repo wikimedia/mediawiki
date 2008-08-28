@@ -138,7 +138,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ($fld_sortkey)
 					$vals['sortkey'] = $row->cl_sortkey;
 				if ($fld_timestamp)
-					$vals['timestamp'] = $row->cl_timestamp;
+					$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->cl_timestamp);
 
 				$data[] = $vals;
 			}
