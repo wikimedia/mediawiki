@@ -1550,27 +1550,6 @@ END
 	}
 
 	/**
-	 * Append preview output to $wgOut.
-	 * Includes category rendering if this is a category page.
-	 *
-	 * @param string $text The HTML to be output for the preview.
-	 */
-	protected function showPreview( $text ) {
-		global $wgOut;
-
-		$wgOut->addHTML( '<div id="wikiPreview">' );
-		if($this->mTitle->getNamespace() == NS_CATEGORY) {
-			$this->mArticle->openShowCategory();
-		}
-		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$text ) );
-		$wgOut->addHTML( $text );
-		if($this->mTitle->getNamespace() == NS_CATEGORY) {
-			$this->mArticle->closeShowCategory();
-		}
-		$wgOut->addHTML( '</div>' );
-	}
-
-	/**
 	 * Live Preview lets us fetch rendered preview page content and
 	 * add it to the page without refreshing the whole page.
 	 * If not supported by the browser it will fall through to the normal form
