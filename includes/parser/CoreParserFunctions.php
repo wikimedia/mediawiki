@@ -33,6 +33,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'numberofarticles', array( __CLASS__, 'numberofarticles' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberoffiles',    array( __CLASS__, 'numberoffiles'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofadmins',   array( __CLASS__, 'numberofadmins'   ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'numberingroup',    array( __CLASS__, 'numberingroup'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofedits',    array( __CLASS__, 'numberofedits'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'language',         array( __CLASS__, 'language'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'padleft',          array( __CLASS__, 'padleft'          ), SFH_NO_HASH );
@@ -224,6 +225,9 @@ class CoreParserFunctions {
 	static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw( SiteStats::pagesInNs( intval( $namespace ) ), $raw );
 	}
+	static function numberingroup( $parser, $name = '', $raw = null) {
+		return self::formatRaw( SiteStats::numberingroup( strtolower( $name ) ), $raw );
+	} 
 
 	/**
 	 * Return the number of pages in the given category, or 0 if it's nonexis-
