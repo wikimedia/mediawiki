@@ -256,14 +256,14 @@ $magicWords = array(
 );
 
 $skinNames = array(
-	'standard'    => 'كلاسيكية',
-	'nostalgia'   => 'نوستالجيا',
-	'cologneblue' => 'كولون بلو',
-	'monobook'    => 'مونوبوك',
-	'myskin'      => 'واجهتي',
-	'chick'       => 'تشيك',
-	'simple'      => 'بسيطة',
-	'modern'      => 'حديثة',
+	'standard'      => 'كلاسيك',
+	'nostalgia'     => 'نوستالجيا',
+	'cologneblue'   => 'كولون بلو',
+	'monobook'      => 'مونوبوك',
+	'myskin'        => 'ماي سكين',
+	'chick'         => 'تشيك',
+	'simple'        => 'سيمبل',
+	'modern'        => 'مودرن',
 );
 
 $digitTransformTable = array(
@@ -359,7 +359,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'عرض_البوتات' ),
 	'Popularpages'              => array( 'صفحات_مشهورة' ),
 	'Search'                    => array( 'بحث' ),
-	'Resetpass'                 => array( 'ضبط_كلمة_السر' ),
+	'Resetpass'                 => array( 'ضبط_كلمة_السر', 'صفر_كلمة_السر' ),
 	'Withoutinterwiki'          => array( 'بدون_إنترويكي' ),
 	'MergeHistory'              => array( 'دمج_التاريخ' ),
 	'Filepath'                  => array( 'مسار_ملف' ),
