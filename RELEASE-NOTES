@@ -158,6 +158,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15172) 'Go' button of Special:Recentchanges now on the same line as the
   last input element (like Special:Watchlist too)
 * (bug 15351) Fix fatal error for invalid section fragments in autocomments
+* Fixed intermittent deadlock errors involving objectcache table queries. 
+  Use a separate database connection for the objectcache table to avoid 
+  long-lasting locks on that table.
 
 
 === API changes in 1.14 ===
