@@ -373,7 +373,9 @@ abstract class ApiBase {
 		$required = func_get_args();
 		array_shift($required);
 		
-		$intersection = array_intersect(array_keys($params), $required);
+		$intersection = array_intersect(array_keys(array_filter($params,
+				create_function('$x', 'return !is_null($x);')
+			)), $required);
 		if (count($intersection) > 1) {
 			$this->dieUsage('The parameters '.implode(', ', $intersection).' can not be used together', 'invalidparammix');
 		} elseif (count($intersection) == 0) {
