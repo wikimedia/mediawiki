@@ -904,7 +904,7 @@ CREATE TABLE /*$wgDBprefix*/recentchanges (
   rc_old_len int,
   rc_new_len int,
 
-  -- Visibility of deleted revisions, bitfield
+  -- Visibility of recent changes items, bitfield
   rc_deleted tinyint unsigned NOT NULL default '0',
 
   -- Value corresonding to log_id, specific log entries
