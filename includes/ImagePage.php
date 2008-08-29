@@ -935,7 +935,7 @@ class ImageHistoryList {
 			);
 			$row .= '</td><td>' . $thumbnail->toHtml( $options );
 		} else {
-			$row .= '</td><td>' . wfMsg( 'filehist-nothumb' );
+			$row .= '</td><td>' . wfMsgHtml( 'filehist-nothumb' );
 		}
 		$row .= "</td><td>";
 
