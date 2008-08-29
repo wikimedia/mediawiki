@@ -640,15 +640,19 @@ class Xml {
 			
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
 			$form .= Xml::tags( 'td', array('class' => 'mw-label'), wfMsgExt( $labelmsg, array('parseinline') ) );
-			$form .= Xml::openElement( 'td' ) . $input . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
+			$form .= Xml::closeElement( 'tr' );
+		}
+
+		if( $submitLabel ) {
+			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
+			$form .= Xml::tags( 'td', array(), '' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . Xml::submitButton( wfMsg( $submitLabel ) ) . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 	
 		$form .= "</tbody></table>";
-		
-		if ($submitLabel) {	
-			$form .= Xml::submitButton( wfMsg($submitLabel) );
-		}
+
 	
 		return $form;
 	}
