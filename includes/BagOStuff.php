@@ -271,12 +271,15 @@ abstract class SqlBagOStuff extends BagOStuff {
 				$exptime += time();
 			$exp = $this->_fromunixtime($exptime);
 		}
-		$this->delete( $key );
+		$this->_begin();
+		$this->_query(
+			"DELETE FROM $0 WHERE keyname='$1'", $key );
 		$this->_doinsert($this->getTableName(), array(
 					'keyname' => $key,
 					'value' => $this->_blobencode($this->_serialize($value)),
 					'exptime' => $exp
 				));
+		$this->_commit();
 		return true; /* ? */
 	}
 
@@ -284,8 +287,10 @@ abstract class SqlBagOStuff extends BagOStuff {
 		if ( $this->_readonly() ) {
 			return false;
 		}
+		$this->_begin();
 		$this->_query(
 			"DELETE FROM $0 WHERE keyname='$1'", $key );
+		$this->_commit();
 		return true; /* ? */
 	}
 
@@ -339,6 +344,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 
 	abstract function _readonly();
 
+	function _begin() {}
+	function _commit() {}
+
 	function _freeresult($result) {
 		/* stub */
 		return false;
@@ -370,7 +378,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 			return false;
 		}
 		$now = $this->_fromunixtime( time() );
+		$this->_begin();
 		$this->_query( "DELETE FROM $0 WHERE exptime < '$now'" );
+		$this->_commit();
 	}
 
 	function deleteall() {
@@ -378,7 +388,9 @@ abstract class SqlBagOStuff extends BagOStuff {
 		if ( $this->_readonly() ) {
 			return false;
 		}
+		$this->_begin();
 		$this->_query( "DELETE FROM $0" );
+		$this->_commit();
 	}
 
 	/**
@@ -422,12 +434,21 @@ abstract class SqlBagOStuff extends BagOStuff {
  */
 class MediaWikiBagOStuff extends SqlBagOStuff {
 	var $tableInitialised = false;
+	var $lb, $db;
 
 	function _getDB(){
-		static $db;
-		if( !isset( $db ) )
-			$db = wfGetDB( DB_MASTER );
-		return $db;
+		if ( !isset( $this->lb ) ) {
+			$this->lb = wfGetLBFactory()->newMainLB();
+			$this->db = $this->lb->getConnection( DB_MASTER );
+			$this->db->clearFlag( DBO_TRX );
+		}
+		return $this->db;
+	}
+	function _begin() {
+		$this->_getDB()->begin();
+	}
+	function _commit() {
+		$this->_getDB()->commit();
 	}
 	function _doquery($sql) {
 		return $this->_getDB()->query( $sql, __METHOD__ );
