@@ -819,6 +819,7 @@ class ImageHistoryList {
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
+			. '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-comment' ) . '</th>'
@@ -921,6 +922,21 @@ class ImageHistoryList {
 			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeAndDate( $timestamp, true ) );
 		}
 
+		// Thumbnail
+		if( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
+			$params = array(
+				'width' => '120',
+				'height' => '120',
+			);
+			$thumbnail = $file->transform( $params );
+			$options = array(
+				'alt' => wfMsg( 'filehist-thumbtext', $wgLang->timeAndDate( $timestamp, true ) ),
+				'file-link' => true,
+			);
+			$row .= '</td><td>' . $thumbnail->toHtml( $options );
+		} else {
+			$row .= '</td><td>' . wfMsg( 'filehist-nothumb' );
+		}
 		$row .= "</td><td>";
 
 		// Image dimensions
