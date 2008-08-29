@@ -970,8 +970,6 @@ Dirêjahîya [http://www.mediawiki.org/wiki/Manual:Job_queue ''job queue''] '''$
 'speciallogtitlelabel' => 'Sernav:',
 'log'                  => 'Reşahîyan',
 'all-logs-page'        => 'Hemû reşahîyan',
-'log-search-legend'    => 'Li reşahîyan bigere',
-'log-search-submit'    => 'Dê',
 'alllogstext'          => 'Ev nîşandana hemû reşahîyên {{SITENAME}} e.
 
 Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpelekê binivisînê û înformasyonan li ser wê bibînê.',

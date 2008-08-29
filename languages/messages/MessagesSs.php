@@ -106,7 +106,6 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => 'Umuntfu:',
-'log-search-submit'   => 'Kúhámba',
 
 # Special:AllPages
 'allpagessubmit' => 'Kúhámba',

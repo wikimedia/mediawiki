@@ -1406,8 +1406,6 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'speciallogtitlelabel' => 'Títol:',
 'log'                  => 'Rechistros',
 'all-logs-page'        => 'Toz os rechistros',
-'log-search-legend'    => 'Mirar rechistros',
-'log-search-submit'    => 'Ir-ie',
 'alllogstext'          => "Presentazión conchunta de toz os rechistros de  {{SITENAME}}.
 Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a pachina afeutata.",
 'logempty'             => 'No bi ha garra elemento en o rechistro con ixas carauteristicas.',

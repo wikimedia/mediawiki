@@ -1515,8 +1515,6 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'speciallogtitlelabel' => 'Tajuk:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log',
-'log-search-legend'    => 'Cari log',
-'log-search-submit'    => 'Pergi',
 'alllogstext'          => 'Berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}.
 Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama laman yang terjejas.',
 'logempty'             => 'Tiada item yang sepadan dalam log.',

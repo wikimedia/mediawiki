@@ -997,8 +997,6 @@ $1',
 'speciallogtitlelabel' => 'Ὄνομα:',
 'log'                  => 'Κατάλογοι',
 'all-logs-page'        => 'Κατάλογοι ἅπαντες',
-'log-search-legend'    => 'Ἀναζητεῖν καταλόγους',
-'log-search-submit'    => 'Ἰέναι',
 
 # Special:AllPages
 'allpages'          => 'Πᾶσαι αἱ δέλτοι',

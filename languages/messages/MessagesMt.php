@@ -1368,8 +1368,6 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Logs',
 'all-logs-page'        => 'Ir-reġistri kollha',
-'log-search-legend'    => 'Fittex logs',
-'log-search-submit'    => 'Mur',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri relattivi għall-operazzjonijiet tal-upload, tħassir, protezzjoni, blokki u amministrazzjoni tas-sit. Tista' ddejjaq il-kriterji ta' riċerka billi tagħżel it-tip ta' reġistru, isem l-utent jew il-paġna affetwata.",
 'logempty'             => "Il-Log m'għandux elementi korrespondenti mat-tfittxija tiegħek.",
 'log-title-wildcard'   => "Tfittxija ta' titli li jibdew b'dan it-test",

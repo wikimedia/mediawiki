@@ -244,9 +244,6 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Book sources
 'booksources-go' => 'Agto',
 
-# Special:Log
-'log-search-submit' => 'Agto',
-
 # Special:Categories
 'categories' => 'Manga Kategorya',
 

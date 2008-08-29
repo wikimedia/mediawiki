@@ -573,11 +573,9 @@ $messages = array(
 'booksources-go' => 'ໄປ',
 
 # Special:Log
-'log'               => 'ບັນທຶກ',
-'all-logs-page'     => 'ທຸກໆຂໍ້ມູນບັນທຶກການນຳໃຊ້',
-'log-search-legend' => 'ຊອກຫາ ໃນ ບັນທຶກການນຳໃຊ້',
-'log-search-submit' => 'ໄປ',
-'logempty'          => 'ຍັງບໍ່ພົບເນື້ອໃນບັນທຶກ.',
+'log'           => 'ບັນທຶກ',
+'all-logs-page' => 'ທຸກໆຂໍ້ມູນບັນທຶກການນຳໃຊ້',
+'logempty'      => 'ຍັງບໍ່ພົບເນື້ອໃນບັນທຶກ.',
 
 # Special:AllPages
 'allpages'       => 'ທຸກໆໜ້າ',

@@ -1400,8 +1400,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos los registros',
-'log-search-legend'    => 'Buscar registros',
-'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Vista combinada de todos los registros de {{SITENAME}}.
 Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario o la página afectada.',
 'logempty'             => 'No hay elementos en el registro con esas condiciones.',

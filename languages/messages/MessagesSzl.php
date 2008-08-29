@@ -1272,8 +1272,6 @@ Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Rejery uoperacjůw',
 'all-logs-page'        => 'Wšyjstkie uoperacyje',
-'log-search-legend'    => 'Šnupej w rejeře',
-'log-search-submit'    => 'Šnupej',
 'alllogstext'          => 'Wspůlny rejer wšyjstkych typůw uoperacyji do {{GRAMMAR:D.lp|{{SITENAME}}}}.
 Možeš zawyńźić ličba wyńikůw wybjerajůnc typ rejeru, mjano užytkowńika abo titel zajty',
 'logempty'             => 'Ńy ma wpisůw we rejeře',

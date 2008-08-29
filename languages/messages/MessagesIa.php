@@ -1497,8 +1497,6 @@ executar iste function.',
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Tote le registros',
-'log-search-legend'    => 'Cercar registros',
-'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Presentation combinate de tote le registros disponibile de {{SITENAME}}.
 Restringe le presentation seligente un typo de registro, nomine de usator, o pagina.',
 'logempty'             => 'Le registro contine nihil pro iste pagina.',

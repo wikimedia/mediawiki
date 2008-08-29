@@ -95,7 +95,6 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Apnaqiri:',
 'speciallogtitlelabel' => 'Titulu:',
-'log-search-submit'    => 'Saraña',
 
 # Special:ListUsers
 'listusers-submit' => 'Uñachayaña',

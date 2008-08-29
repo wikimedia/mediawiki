@@ -1332,8 +1332,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbeuk',
 'all-logs-page'        => 'Alle logbeuk',
-'log-search-legend'    => 'Zeuk logbeuk',
-'log-search-submit'    => "Zeuk d'rs door",
 'alllogstext'          => "Dit is 't gecombineerd logbook. De kins ouch 'n bepaald logbook keze, of filtere op gebroekersnaam of  pazjena.",
 'logempty'             => "d'r Zeen gein regels in 't logbook die voldaon aan deze criteria.",
 'log-title-wildcard'   => "Zeuk pagina's die met deze naam beginne",

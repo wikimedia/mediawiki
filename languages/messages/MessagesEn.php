@@ -2054,8 +2054,6 @@ Each row contains links to the first and second redirect, as well as the target 
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Logs',
 'all-logs-page'        => 'All logs',
-'log-search-legend'    => 'Search for logs',
-'log-search-submit'    => 'Go',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
 You can narrow down the view by selecting a log type, the user name, or the affected page.',
 'logempty'             => 'No matching items in log.',

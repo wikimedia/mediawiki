@@ -133,7 +133,6 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => 'ኣባል:',
-'log-search-submit'   => 'ኪድ',
 
 # Special:AllPages
 'alphaindexline' => '$1 ናብ $2',

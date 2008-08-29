@@ -853,7 +853,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'specialloguserlabel' => 'Хутшăнакан:',
 'log'                 => 'Журналсем',
 'all-logs-page'       => 'Журналсем',
-'log-search-submit'   => 'Туп',
 
 # Special:AllPages
 'allpages'         => 'Пěтěм страницăсем',

@@ -887,8 +887,6 @@ katram ivīkdītė šėta funkcėjė.',
 'speciallogtitlelabel' => 'Pavadėnims:',
 'log'                  => 'Specēliūju veiksmū istuorėjė',
 'all-logs-page'        => 'Vėsos istuorėjės',
-'log-search-legend'    => 'Ėiškuotė istuorėjuosė',
-'log-search-submit'    => 'Ēk!',
 'alllogstext'          => 'Bėndra idietu failu, ėštrīnėmu, ožrakėnėmu, bluokavėmu ė prėvėlėju soteikėmu istuorėjė.
 Īr galėmībė somažintė rezoltatu skaitliu patėkslėnont vēksma tėpa, nauduotuojė a sosėjosė poslapė.',
 'logempty'             => 'Istuorėjuo nier anėjuokiū atitinkontiu atsėtėkimu.',

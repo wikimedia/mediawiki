@@ -516,7 +516,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'speciallogtitlelabel' => 'Tiitele:',
 'log'                  => 'Loggeh',
 'all-logs-page'        => 'Gaajhke loggeh',
-'log-search-submit'    => 'Vaadtsa',
 
 # Special:AllPages
 'allpages'       => 'Gaajhke bielieh',

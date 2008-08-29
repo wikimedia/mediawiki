@@ -830,7 +830,6 @@ A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7
 'speciallogtitlelabel' => 'Papira nen:',
 'log'                  => 'Log buku',
 'all-logs-page'        => 'Ala log buku',
-'log-search-submit'    => 'Go',
 'log-title-wildcard'   => 'Peprewoysi suku dy nanga disi nen bigin',
 
 # Special:AllPages

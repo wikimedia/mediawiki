@@ -1586,8 +1586,6 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'speciallogtitlelabel' => 'Titre :',
 'log'                  => 'Opérations',
 'all-logs-page'        => 'Toutes les opérations',
-'log-search-legend'    => 'Chercher dans les historiques',
-'log-search-submit'    => 'OK',
 'alllogstext'          => 'Affichage combiné des historiques de copie, suppression, protection, blocage, etc. Vous pouvez restreindre la vue en sélectionnant un type d’historique, un nom d’utilisateur ou une page ciblée.',
 'logempty'             => 'Il n’y a rien dans l’historique pour cette page.',
 'log-title-wildcard'   => 'Chercher les titres commençant par le texte suivant',

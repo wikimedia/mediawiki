@@ -797,8 +797,6 @@ $1 | $2',
 'speciallogtitlelabel' => 'Mearri',
 'log'                  => 'Loggat',
 'all-logs-page'        => 'Buot loggat',
-'log-search-legend'    => 'Oza loggain',
-'log-search-submit'    => 'Oza',
 'logempty'             => 'Eai dáhpáhusat loggas.',
 'log-title-wildcard'   => 'Mearri álgá mearkkaiguin',
 

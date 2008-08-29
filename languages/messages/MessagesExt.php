@@ -1205,8 +1205,6 @@ El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] e
 'speciallogtitlelabel' => 'Entítulu:',
 'log'                  => 'Rustrihus',
 'all-logs-page'        => 'Tolos rustrihus',
-'log-search-legend'    => 'Landeal rustrihus',
-'log-search-submit'    => 'Dil',
 'logempty'             => 'Nu desistin elementus con esas condicionis nel rustrihu.',
 'log-title-wildcard'   => 'Landeal entítulus qu´esmiencin con esti testu',
 

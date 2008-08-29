@@ -1424,8 +1424,6 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 'speciallogtitlelabel' => 'Títulu:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Tolos rexistros',
-'log-search-legend'    => 'Buscar rexistros',
-'log-search-submit'    => 'Dir',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}. Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usuariu o la páxina afectada.",
 'logempty'             => 'Nun hai coincidencies nel rexistru.',
 'log-title-wildcard'   => "Buscar títulos qu'emprimen con esti testu",

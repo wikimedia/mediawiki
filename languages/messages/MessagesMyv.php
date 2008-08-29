@@ -925,7 +925,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'speciallogtitlelabel' => 'Конякс:',
 'log'                  => 'Совамо-лисема тевть (регистрациясь)',
 'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
-'log-search-submit'    => 'Адя',
 
 # Special:AllPages
 'allpages'        => 'Весе лопат',

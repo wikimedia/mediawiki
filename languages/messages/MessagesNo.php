@@ -1512,8 +1512,6 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Logger',
 'all-logs-page'        => 'Alle logger',
-'log-search-legend'    => 'Søk i loggene.',
-'log-search-submit'    => 'Gå',
 'alllogstext'          => 'Kombinert visning av alle loggene. Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket.',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',

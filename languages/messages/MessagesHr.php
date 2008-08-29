@@ -1593,8 +1593,6 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Evidencije',
 'all-logs-page'        => 'Sve evidencije',
-'log-search-legend'    => 'Pretraži evidencije',
-'log-search-submit'    => 'Kreni',
 'alllogstext'          => 'Skupni prikaz evidencija postavljenih datoteka, brisanja, zaštite, blokiranja, i administratorskih prava.
 Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u pitanju.',
 'logempty'             => 'Nema pronađenih stavki.',

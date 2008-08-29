@@ -1215,8 +1215,6 @@ Cen reprèsente una moyena de {{PLURAL:$5|'''1''' modificacion|'''$5''' modifica
 'speciallogtitlelabel' => 'Titro :',
 'log'                  => 'Jornals',
 'all-logs-page'        => 'Tôs los jornals',
-'log-search-legend'    => 'Chèrchiér dens los jornals',
-'log-search-submit'    => 'D’acôrd',
 'alllogstext'          => 'Afichâjo combinâ des jornals de copia, de suprèssion, de protèccion, de blocâjo et d’administrator. Vos pouede rètrendre la vua en sèlèccionent un tipo de jornal, un nom d’utilisator ou la pâge regardâ.',
 'logempty'             => 'Y at ren dens l’historico por ceta pâge.',
 'log-title-wildcard'   => 'Chèrchiér los titros comencient per lo tèxte siuvent',

@@ -494,7 +494,6 @@ $messages = array(
 'speciallogtitlelabel' => 'શિર્ષક:',
 'log'                  => 'લૉગ',
 'all-logs-page'        => 'બધાં માહિતિ પત્રકો',
-'log-search-submit'    => 'શોધો',
 
 # Special:AllPages
 'allpages'       => 'બધા પાના',

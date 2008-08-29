@@ -446,7 +446,6 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'speciallogtitlelabel' => 'isem:',
 'log'                  => 'Aɣmis',
 'all-logs-page'        => 'Maṛṛa iɣmisen',
-'log-search-submit'    => 'Raḥ ɣa',
 
 # Special:AllPages
 'allpages'       => 'Maṛṛa Tasniwin',

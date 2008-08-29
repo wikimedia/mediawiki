@@ -915,8 +915,6 @@ Chit mî-chông phìn-kiûn phiên-cho '''\$5'''-chhṳ, kok-chhṳ phiên-siá 
 'specialloguserlabel'  => 'Yung-fu:',
 'speciallogtitlelabel' => 'Phêu-thì:',
 'log'                  => 'Ngit-ki',
-'log-search-legend'    => 'Chhìm-chhut ngit-ki',
-'log-search-submit'    => 'Chhìm-hi',
 'alllogstext'          => 'Lièn-ha̍p hién-sṳ song-chhòn, chhù-chhiang, pó-fu, chhà-fûng yî-khi̍p chham-vu',
 'logempty'             => 'Mò-yû siông-thùng ki-liu̍k.',
 'log-title-wildcard'   => 'Chhà-chhìm liá-ke vùn-sṳ khôi-sṳ́ ke phêu-thì',

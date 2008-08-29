@@ -1496,8 +1496,6 @@ Có '''$8''' tập tin đã được tải lên.
 'speciallogtitlelabel' => 'Tên trang:',
 'log'                  => 'Nhật trình',
 'all-logs-page'        => 'Tất cả các nhật trình',
-'log-search-legend'    => 'Tìm kiếm nhật trình',
-'log-search-submit'    => 'Tìm kiếm',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.
 Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên, hoặc các trang bị ảnh hưởng.',
 'logempty'             => 'Không có mục nào khớp với từ khóa.',

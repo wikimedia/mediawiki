@@ -424,9 +424,6 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 # Book sources
 'booksources-go' => 'Soco',
 
-# Special:Log
-'log-search-submit' => 'Soco',
-
 # Special:AllPages
 'allpages'          => 'Dhamaan boggaga',
 'alphaindexline'    => '$1 ilaa $2',

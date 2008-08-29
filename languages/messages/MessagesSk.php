@@ -1561,8 +1561,6 @@ na ktorý/-ého chcete aplikovať túto funkciu.',
 'speciallogtitlelabel' => 'Názov:',
 'log'                  => 'Záznamy',
 'all-logs-page'        => 'Všetky záznamy',
-'log-search-legend'    => 'Hľadať záznamy',
-'log-search-submit'    => 'Spustiť',
 'alllogstext'          => 'Kombinované zobrazenie nahrávaní, mazaní, zamknutí, blokovaní a akcií správcu.
 Môžete zmenšiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku.',
 'logempty'             => 'V zázname neboli nájdené zodpovedajúce položky.',

@@ -1288,8 +1288,6 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'speciallogtitlelabel' => 'Tìtulu:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tutti li log',
-'log-search-legend'    => "Va' cerca nte riggistri",
-'log-search-submit'    => 'Vai',
 'alllogstext'          => "Prisintazzioni unificata di tutti li log di {{SITENAME}}. Jinchennu l'appòsiti campi si pò limitari la visualizzazzioni a unu spicìficu log, nomu utenti o pàggina.",
 'logempty'             => 'Lu log nun cunteni elementi currispunnenti â ricerca.',
 'log-title-wildcard'   => 'Attrova tituli chi ncignanu cu',

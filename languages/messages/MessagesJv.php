@@ -1261,8 +1261,6 @@ Sawijining kaca dianggep minangka kaca disambiguasi yèn kaca iku nganggo cithak
 'speciallogtitlelabel' => 'Irah-irahan (judhul):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Kabèh log',
-'log-search-legend'    => 'Golèk log',
-'log-search-submit'    => 'Golèk',
 'alllogstext'          => 'Ing ngisor iki kapacak gabungan log impor, pamblokiran, pamindhahan, pangunggahan, pambusakan, pangreksan, pangowahan hak aksès, lan liya-liyané ing {{SITENAME}}. 
 Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utawa irah-irahan kaca sing dipengaruhi.',
 'logempty'             => 'Ora ditemokaké èntri log sing pas.',

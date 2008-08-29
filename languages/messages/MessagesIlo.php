@@ -1017,8 +1017,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Dagiti Logs',
 'all-logs-page'        => 'Amin a log',
-'log-search-legend'    => 'Agsapul kadagiti logs',
-'log-search-submit'    => 'Inkan',
 'log-title-wildcard'   => 'Agsapul iti titulos nga agrugi iti daytoy a texto',
 
 # Special:AllPages

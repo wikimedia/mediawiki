@@ -666,8 +666,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'speciallogtitlelabel' => 'Hingoa:',
 'log'                  => 'Tohinoa',
 'all-logs-page'        => 'Tohinoa kātoa',
-'log-search-legend'    => 'Kumi ha ngaahi tohinoa',
-'log-search-submit'    => 'Fai ā',
 'alllogstext'          => 'Fakaʻaliʻali fakakātoa ʻo e ngaahi tohinoa hiki hake, mo tāmateʻi, mo maluʻi, mo taʻofi, mo fakapule. ʻOku lava ke ke sivi ʻa e fakaʻaliʻalí ni ʻi he fili ʻo e falenga tohinoa pe hingoa ʻo e ʻetita pe peesi hūkitonu.',
 'logempty'             => 'ʻOku maha ʻa e tohinoa.',
 

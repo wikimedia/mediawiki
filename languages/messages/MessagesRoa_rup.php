@@ -151,9 +151,6 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 # Book sources
 'booksources-go' => 'Du-vã',
 
-# Special:Log
-'log-search-submit' => 'Du-vã',
-
 # Special:AllPages
 'allpagessubmit' => 'Du-vã',
 

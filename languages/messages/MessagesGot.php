@@ -335,7 +335,6 @@ $messages = array(
 'speciallogtitlelabel' => 'Namo:',
 'log'                  => 'Logbokos',
 'all-logs-page'        => 'Alla logos',
-'log-search-submit'    => 'Afgaggan',
 
 # Special:AllPages
 'allpages'       => 'Allis seidos',

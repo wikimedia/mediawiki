@@ -1579,8 +1579,6 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbücher',
 'all-logs-page'        => 'Alle Logbücher',
-'log-search-legend'    => 'Logbücher durchsuchen',
-'log-search-submit'    => 'Suchen',
 'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher. Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden.',
 'logempty'             => 'Keine passenden Einträge.',
 'log-title-wildcard'   => 'Titel beginnt mit …',

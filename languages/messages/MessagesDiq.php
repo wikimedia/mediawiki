@@ -386,7 +386,6 @@ It must have at least $1 characters and be different from your username.',
 
 # Special:Log
 'specialloguserlabel' => 'Karber:',
-'log-search-submit'   => 'Şo',
 
 # Special:AllPages
 'allpagessubmit' => 'Şo',

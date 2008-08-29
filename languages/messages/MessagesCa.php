@@ -1463,8 +1463,6 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'speciallogtitlelabel' => 'Títol:',
 'log'                  => 'Registres',
 'all-logs-page'        => 'Tots els registres',
-'log-search-legend'    => 'Cerca als registres',
-'log-search-submit'    => 'Vés-hi',
 'alllogstext'          => "Presentació combinada de càrregues, eliminacions, proteccions, bloquejos, i registres d'administrador.
 Podeu reduir l'extensió seleccionant el tipus de identificació, el nom del usuari, o la pàgina afectada.",
 'logempty'             => 'No hi ha cap coincidència en el registre.',

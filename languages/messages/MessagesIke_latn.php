@@ -232,9 +232,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 # Book sources
 'booksources-go' => 'aivuq',
 
-# Special:Log
-'log-search-submit' => 'aivuk',
-
 # Special:AllPages
 'allpages'       => 'sunamittuq mappitaq',
 'nextpage'       => 'tagga mappitaq ($1)',

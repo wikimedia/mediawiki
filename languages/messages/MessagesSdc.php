@@ -1129,8 +1129,6 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è long
 'speciallogtitlelabel' => 'Tìturu:',
 'log'                  => 'Rigisthri',
 'all-logs-page'        => 'Tutti li rigisthri',
-'log-search-legend'    => "Zercha i' li rigisthri",
-'log-search-submit'    => 'Vai',
 'alllogstext'          => "Prisintazioni unifiggadda di li rigisthri reratibi a li operazioni di carriggamentu, canzilladdura, prutizioni, broccu e amministhrazioni di lu situ. Ribbendi li appósiddi campi si pò limità la visuarizzazioni a un'ippizzificu rigisthru, nommu utenti o pàgina.",
 'logempty'             => 'Lu rigisthru nò cunteni erementi curripundenti.',
 'log-title-wildcard'   => "Zercha li tìturi ch'ischuminzani cun",

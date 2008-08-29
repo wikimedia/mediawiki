@@ -1409,8 +1409,6 @@ Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''
 'speciallogtitlelabel' => 'Strona:',
 'log'                  => 'Protokole',
 'all-logs-page'        => 'Wšě protokole',
-'log-search-legend'    => 'Protokole přepytować',
-'log-search-submit'    => 'OK',
 'alllogstext'          => 'To je kombinowany pohlad wšěch w {{GRAMMAR:lokatiw|{{SITENAME}}}} wjedźenych protokolow. Móžeš pohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno abo potrjechenu stronu.',
 'logempty'             => 'Žane wotpowědowace zapiski w protokolu.',
 'log-title-wildcard'   => 'Titul započina so z …',

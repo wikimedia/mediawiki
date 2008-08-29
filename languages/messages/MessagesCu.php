@@ -377,7 +377,6 @@ $messages = array(
 'speciallogtitlelabel' => 'страни́цѧ и́мѧ :',
 'log'                  => 'їсторі́ѩ',
 'all-logs-page'        => 'вьсѩ́ їсторі́ѩ',
-'log-search-submit'    => 'прѣиди́',
 
 # Special:AllPages
 'allpages'       => 'вьсѩ́ страни́цѧ',

@@ -1113,8 +1113,6 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'speciallogtitlelabel' => 'Serleva:',
 'log'                  => 'Jurnallar',
 'all-logs-page'        => 'Bütün jurnallar',
-'log-search-legend'    => 'Jurnal qıdıruv',
-'log-search-submit'    => 'Qıdır',
 'logempty'             => 'Jurnalda bir kelgen malümat yoq.',
 'log-title-wildcard'   => 'Bu simvollardan başlanğan serlevalarnı qıdır',
 

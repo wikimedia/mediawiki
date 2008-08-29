@@ -574,7 +574,6 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Lista de atas',
 'all-logs-page'        => 'Tota catalogos',
-'log-search-submit'    => 'Vade',
 
 # Special:AllPages
 'allpages'       => 'Tota pajes',

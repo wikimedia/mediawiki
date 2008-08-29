@@ -754,8 +754,6 @@ $2',
 'speciallogtitlelabel' => 'Башлам:',
 'log'                  => 'Журналлар',
 'all-logs-page'        => 'Барлык журналлар',
-'log-search-legend'    => 'Журналларны эзләү',
-'log-search-submit'    => 'Башкару',
 
 # Special:AllPages
 'allpages'       => 'Барлык битләр',

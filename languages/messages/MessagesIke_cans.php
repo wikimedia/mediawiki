@@ -260,9 +260,6 @@ $messages = array(
 # Book sources
 'booksources-go' => 'ᐊᐃᕗᖅ',
 
-# Special:Log
-'log-search-submit' => 'ᐊᐃᕗᖅ',
-
 # Special:AllPages
 'allpages'       => 'ᓱᓇᒥᑦᑐᖅ ᒪᑉᐱᑕᖅ',
 'nextpage'       => 'ᑕᒡᒐ ᒪᑉᐱᑕᖅ ($1)',

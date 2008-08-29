@@ -1292,8 +1292,6 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'speciallogtitlelabel' => 'Titill:',
 'log'                  => 'Aðgerðaskrár',
 'all-logs-page'        => 'Allar aðgerðir',
-'log-search-legend'    => 'Leita að aðgerð',
-'log-search-submit'    => 'Áfram',
 'alllogstext'          => 'Safn allra aðgerðaskráa {{SITENAME}}.
 Þú getur takmarkað listann með því að velja tegund aðgerðaskráar, notandarnafn, eða síðu.',
 'logempty'             => 'Engin slík aðgerð fannst.',

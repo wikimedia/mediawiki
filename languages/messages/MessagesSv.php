@@ -1650,8 +1650,6 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alla loggar',
-'log-search-legend'    => 'Sök efter loggar',
-'log-search-submit'    => 'Sök',
 'alllogstext'          => 'Kombinerad visning av alla tillgängliga loggar för {{SITENAME}}. Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, användarnamn, eller sida.',
 'logempty'             => 'Inga matchande träffar i loggen.',
 'log-title-wildcard'   => 'Sök efter sidtitlar som börjar med texten',

@@ -432,9 +432,8 @@ Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
 'movethispage'            => 'Bu sahifani koʻchir',
 
 # Special:Log
-'log'               => 'Qaydlar',
-'all-logs-page'     => 'Barcha qaydlar',
-'log-search-submit' => "O'tish",
+'log'           => 'Qaydlar',
+'all-logs-page' => 'Barcha qaydlar',
 
 # Special:AllPages
 'allpages'       => 'Barcha sahifalar',

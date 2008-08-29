@@ -673,7 +673,6 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'speciallogtitlelabel' => 'Thaetlele:',
 'log'                  => "Di-''log''",
 'all-logs-page'        => "Di-''log'' kamoka",
-'log-search-submit'    => 'Sepela',
 
 # Special:AllPages
 'allpages'       => 'Matlakala ka moka',

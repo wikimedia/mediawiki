@@ -1269,8 +1269,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle logboeke',
-'log-search-legend'    => 'Soek vir logboeke',
-'log-search-submit'    => 'Gaan',
 'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, versper- en administrateurboekstawings van {{SITENAME}}.
 U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke blad te kies.",
 'logempty'             => 'Geen inskrywings in die logboek voldoen aan die kriteria.',
