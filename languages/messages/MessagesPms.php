@@ -1223,8 +1223,6 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 'speciallogtitlelabel' => 'Tìtol:',
 'log'                  => 'Registr',
 'all-logs-page'        => 'Tuti ij registr',
-'log-search-legend'    => 'Sërchè ant ij registr',
-'log-search-submit'    => 'Va',
 'alllogstext'          => "Son a mostra na combinassion dij registr ëd lòn che a l'é cariasse, scancelasse, blocasse e ëd lòn che a l'han fait j'aministrator.
 A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola, un nòm Utent ò pura la pàgina che a-j anteressa.",
 'logempty'             => 'Pa gnun element parej che a sia trovasse ant ij registr.',

@@ -1454,8 +1454,6 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbicher',
 'all-logs-page'        => "All d'Logbicher",
-'log-search-legend'    => 'Logbicher duerchsichen',
-'log-search-submit'    => 'Sichen',
 'alllogstext'          => "Dëst ass eng kombinéiert Lëscht vu Logbicher op {{SITENAME}}.
 Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm oder déi gefrote Säit agitt.",
 'logempty'             => 'Näischt fonnt.',

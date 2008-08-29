@@ -104,9 +104,6 @@ $messages = array(
 'move'              => 'Caen',
 'movethispage'      => 'Caen mae nej',
 
-# Special:Log
-'log-search-submit' => 'Bei',
-
 # Watchlist
 'watchlist'     => 'Gaeq gou demq',
 'mywatchlist'   => 'Gaeq gou demq',

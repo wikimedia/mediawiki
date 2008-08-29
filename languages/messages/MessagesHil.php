@@ -212,9 +212,6 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Book sources
 'booksources-go' => 'Lakat',
 
-# Special:Log
-'log-search-submit' => 'Lakat',
-
 # Special:AllPages
 'alphaindexline' => '$1 sa $2',
 'allpagessubmit' => 'Sige',

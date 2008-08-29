@@ -1116,8 +1116,6 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Mga usip',
 'all-logs-page'        => 'Gabos na usip',
-'log-search-legend'    => 'Hanapon an  mga historial',
-'log-search-submit'    => 'Dumanán',
 'alllogstext'          => 'Sinalak na hihilngon kan gabos na historial na igwa sa {{SITENAME}}. Kun boot mong pasaditon an seleksyon magpili tabî nin klase kan historial, ngaran nin parágamit, o páhinang naapektaran.',
 'logempty'             => 'Mayong angay na bagay sa historial.',
 'log-title-wildcard'   => 'Hanapon an mga titulong napopoon sa tekstong ini',

@@ -763,7 +763,6 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'speciallogtitlelabel' => 'Heitið:',
 'log'                  => 'Gerðabøkur',
 'all-logs-page'        => 'Allar gerðabøkur',
-'log-search-submit'    => 'Far',
 'alllogstext'          => 'Samansett sýning av upplegging, striking, friðing, forðing og sysop-gerðabókum.
 Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella ávirkaðu síðuna.',
 

@@ -1542,8 +1542,6 @@ PICT # misc.
 'speciallogtitlelabel' => 'عنوان:',
 'log'                  => 'ورودان',
 'all-logs-page'        => 'کل ورودان',
-'log-search-legend'    => 'گردگ په آمار',
-'log-search-submit'    => 'برو',
 'alllogstext'          => 'هور کت پیش دارگ کل موجودین آمار {{SITENAME}}.
 شما تونیت دیستنء بارگ تر کنیت گون انتخاب یک نوع آمار،کاربری نام یا اثر گیرن صفحه.',
 'logempty'             => 'هچ آیتم هم دپ ته آمار',

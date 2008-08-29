@@ -1391,8 +1391,6 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Registro',
 'all-logs-page'        => 'Tuti i registri',
-'log-search-legend'    => 'Riçerca nei registri',
-'log-search-submit'    => 'Và',
 'alllogstext'          => 'Vixualixazion unificà de i registri de caricamento, scancełazion, protezion, blochi e aministrazion del sito. Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, nome utente, o la pàxena interessà.',
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard'   => 'Riçerca dei titoli che scuminsia con',

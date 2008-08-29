@@ -729,8 +729,6 @@ Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah 
 'speciallogtitlelabel' => 'Tōcāitl:',
 'log'                  => 'Tlahcuilōlloh',
 'all-logs-page'        => 'Mochīntīn tlahcuilōlloh',
-'log-search-legend'    => 'Tiquintēmōz tlahcuilōlloh',
-'log-search-submit'    => 'Yāuh',
 
 # Special:AllPages
 'allpages'          => 'Mochīntīn zāzanilli',

@@ -1456,8 +1456,6 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos os registros',
-'log-search-legend'    => 'Pesquisar nos registros',
-'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Exposição combinada de todos registros disponíveis no wiki {{SITENAME}}.
 Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário, ou uma página afetada.',
 'logempty'             => 'Nenhum item idêntico no registro.',

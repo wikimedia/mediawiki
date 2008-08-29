@@ -863,8 +863,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'speciallogtitlelabel' => 'Titlenam:',
 'log'                  => 'Logám',
 'all-logs-page'        => 'Jömde logám',
-'log-search-legend'    => 'Yahöxde logám',
-'log-search-submit'    => 'Caátemöx',
 
 # Special:AllPages
 'allpages'          => 'Jöxde páhinám',

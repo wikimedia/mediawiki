@@ -1307,8 +1307,6 @@ Tuturing yang bulung pamipalino ing metung a bulung nung gagamit yang modelung (
 'speciallogtitlelabel' => 'Bansag:',
 'log'                  => 'Deng tala (logs)',
 'all-logs-page'        => 'Eganaganang tala/listaan',
-'log-search-legend'    => 'Maintun tala (log)',
-'log-search-submit'    => 'Sulung',
 'alllogstext'          => 'Piyabeng talatag da ring pamanyampa, pamaglako, proteksyun, pamanyabat, at sysop pamangamittala.
 Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nung sanu ing pamangamittala.',
 'logempty'             => 'Ala yang kapareu (matching items) king tala (log).',

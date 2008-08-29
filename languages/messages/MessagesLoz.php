@@ -691,7 +691,6 @@ di uplodezi media.',
 'speciallogtitlelabel' => 'Sebu:',
 'log'                  => 'Desuni',
 'all-logs-page'        => 'Xete desu',
-'log-search-submit'    => 'Afi',
 
 # Special:AllPages
 'allpages'       => 'Mukoloko di petulo',

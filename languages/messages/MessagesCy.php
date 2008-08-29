@@ -1322,8 +1322,6 @@ Mae gan '''$2''' (neu '''$4%''') ohonynt alluoedd $5.",
 'speciallogtitlelabel' => 'Teitl:',
 'log'                  => 'Logiau',
 'all-logs-page'        => 'Pob lòg',
-'log-search-legend'    => 'Chwilio am logiau',
-'log-search-submit'    => 'Eler',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
 Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig.
 Sylwer bod prif lythrennau o bwys i'r chwiliad.",

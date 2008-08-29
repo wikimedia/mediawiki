@@ -903,8 +903,6 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'speciallogtitlelabel' => 'Koj :',
 'log'                  => 'Yéenekaay',
 'all-logs-page'        => 'Yéenekaay yëpp',
-'log-search-legend'    => 'Seet ci yéenekaay yi',
-'log-search-submit'    => 'waaw',
 'logempty'             => 'Dara nekkul ci jaar-jaaru xët mii.',
 
 # Special:AllPages

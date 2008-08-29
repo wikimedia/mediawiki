@@ -1443,8 +1443,6 @@ Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale
 'speciallogtitlelabel' => 'Kohde',
 'log'                  => 'Lokit',
 'all-logs-page'        => 'Kaikki lokit',
-'log-search-legend'    => 'Etsi lokeista',
-'log-search-submit'    => 'Hae',
 'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
 'logempty'             => 'Ei tapahtumia lokissa.',
 'log-title-wildcard'   => 'Kohde alkaa merkkijonolla',

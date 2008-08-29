@@ -1177,8 +1177,6 @@ Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir 
 'speciallogtitlelabel' => 'Vergumvelt:',
 'log'                  => '"logs"',
 'all-logs-page'        => '"log" bueem',
-'log-search-legend'    => 'Aneyara va log',
-'log-search-submit'    => 'Rupera',
 'logempty'             => 'Mek trasiks koe "log" iyeltak.',
 'log-title-wildcard'   => 'Aneyara va vergumvelt dem mana toza',
 

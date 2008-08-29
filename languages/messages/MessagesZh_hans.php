@@ -1445,8 +1445,6 @@ Template:消除歧義',
 'speciallogtitlelabel' => '标题:',
 'log'                  => '日志',
 'all-logs-page'        => '所有日志',
-'log-search-legend'    => '搜寻日志',
-'log-search-submit'    => '去',
 'alllogstext'          => '综合显示上传、删除、保护、查封以及管理日志。
 您可以选择日志类型，用户名或者相关页面来缩小查询范围。',
 'logempty'             => '在日志中不存在匹配项。',

@@ -973,8 +973,6 @@ Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mku
 'speciallogtitlelabel' => 'Azwel:',
 'log'                  => 'Aɣmis',
 'all-logs-page'        => 'Akk iɣmisen',
-'log-search-legend'    => 'Nadi ɣef yiɣmisen',
-'log-search-submit'    => 'OK',
 'alllogstext'          => 'Ssken akk iɣmisen n {{SITENAME}}.
 Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 'logempty'             => 'Ur yufi ara deg uɣmis.',

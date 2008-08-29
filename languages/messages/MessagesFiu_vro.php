@@ -1082,8 +1082,6 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 'speciallogtitlelabel' => 'Päälkiri:',
 'log'                  => 'Muutmisnimekiri',
 'all-logs-page'        => 'Kõik muutmisõq',
-'log-search-legend'    => 'Muutmiisi otsminõ',
-'log-search-submit'    => 'Otsiq',
 'alllogstext'          => '{{SITENAME}} kõiki muutmiisi - kistutamiisi, kaitsmiisi, kinniqpidämiisi ja kõrraldamiisi ütine nimekiri. Võit valliq ka eräle muutmistüübi, pruukjanime vai lehe päälkirä perrä.',
 'logempty'             => 'Muutmisnimekirän olõ-i sääntsit kiräkotussit.',
 'log-title-wildcard'   => 'Otsiq päälkirjo, miä alostasõq taa tekstiga',

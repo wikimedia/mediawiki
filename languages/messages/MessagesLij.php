@@ -622,7 +622,6 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'speciallogtitlelabel' => 'Tittolo:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tûtti i registri',
-'log-search-submit'    => 'Vanni',
 'alllogstext'          => 'Presentaçion unega de tutti i registri do scito {{SITENAME}}.
 Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un utente o de pagina.',
 

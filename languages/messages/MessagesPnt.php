@@ -631,7 +631,6 @@ $messages = array(
 'speciallogtitlelabel' => 'Τίτλος:',
 'log'                  => 'Αρχεία',
 'all-logs-page'        => "Όλεα τ' αρχεία",
-'log-search-submit'    => 'Δέβα',
 
 # Special:AllPages
 'allpages'       => 'Όλεα τα σελίδας',

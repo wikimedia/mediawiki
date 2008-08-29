@@ -1668,8 +1668,6 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 'speciallogtitlelabel' => 'Cím:',
 'log'                  => 'Rendszernaplók',
 'all-logs-page'        => 'Rendszernaplók',
-'log-search-legend'    => 'Naplók keresése',
-'log-search-submit'    => 'Menj',
 'alllogstext'          => 'Az átnevezési, feltöltési, törlési, lapvédelmi, blokkolási, bürokrata és szerkesztőátnevezési naplók közös listája.
 Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy az érintett oldal megadásával.',
 'logempty'             => 'Nincs illeszkedő naplóbejegyzés.',

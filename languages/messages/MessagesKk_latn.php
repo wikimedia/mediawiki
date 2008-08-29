@@ -1737,8 +1737,6 @@ Eger [[{{ns:mediawiki}}:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet
 'speciallogtitlelabel' => 'Taqırıp atı:',
 'log'                  => 'Jwrnaldar',
 'all-logs-page'        => 'Barlıq jwrnaldar',
-'log-search-legend'    => 'Jwrnaldardan izdew',
-'log-search-submit'    => 'Öt',
 'alllogstext'          => '{{SITENAME}} jobasınıñ barlıq qatınawlı jwrnaldarın biriktirip körsetwi.
 Jwrnal türin, qatıswşı atın, ne tïisti betin bölektep, tarıltıp qaraý alasız.',
 'logempty'             => 'Jwrnalda säýkes danalar joq.',

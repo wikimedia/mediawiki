@@ -1652,8 +1652,6 @@ wadd_Er am Sööke sidt.',
 'speciallogtitlelabel' => 'Siggename:',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
 'all-logs-page'        => 'All Logböcher',
-'log-search-legend'    => 'En de Logböcher söke',
-'log-search-submit'    => 'Loß Jonn!',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher.
 Dä Logböcher ehre Enhald ka'mer all noh de Aat, de Metmaacher, oder de Sigge ehr Name, un esu, einzel zoteet 
 aanluure.",

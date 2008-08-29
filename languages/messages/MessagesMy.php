@@ -278,9 +278,6 @@ $messages = array(
 # Book sources
 'booksources-go' => 'သွား​ပါ​',
 
-# Special:Log
-'log-search-submit' => 'သွား​ပါ​',
-
 # Special:AllPages
 'allpages'       => 'စာမျက်နှာအားလုံး',
 'allarticles'    => 'စာမျက်နှာအားလုံး',

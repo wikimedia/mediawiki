@@ -1408,8 +1408,6 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Rapoarte',
 'all-logs-page'        => 'Toate jurnalele',
-'log-search-legend'    => 'Caută jurnale',
-'log-search-submit'    => 'Du-te',
 'alllogstext'          => 'Afişare combinată a încărcărilor, ştergerilor, protecţiilor, blocărilor şi a rapoartelor administratorilor. Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
 'logempty'             => 'Nici o înregistrare în raport.',
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',

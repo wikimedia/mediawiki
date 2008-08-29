@@ -1600,8 +1600,6 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'speciallogtitlelabel' => 'Títol :',
 'log'                  => 'Jornals',
 'all-logs-page'        => 'Totes los jornals',
-'log-search-legend'    => "Recèrca d'istorics",
-'log-search-submit'    => 'Anar',
 'alllogstext'          => 'Afichatge combinat dels jornals de còpia, supression, proteccion, blocatge, e administrator. Podètz restrénher la vista en seleccionant un tipe de jornal, un nom d’utilizaire o la pagina concernida.',
 'logempty'             => 'I a pas res dins l’istoric per aquesta pagina.',
 'log-title-wildcard'   => 'Recercar de títols que començan per aqueste tèxt',

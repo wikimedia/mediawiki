@@ -1388,8 +1388,6 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Todos os rexistros',
-'log-search-legend'    => 'Procurar rexistros',
-'log-search-submit'    => 'Executar',
 'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
 'logempty'             => 'Non se atopou ningún ítem relacionado no rexistro.',

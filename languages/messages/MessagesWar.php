@@ -228,9 +228,6 @@ $messages = array(
 # Book sources
 'booksources-go' => 'Kadto-a',
 
-# Special:Log
-'log-search-submit' => 'Kadto-a',
-
 # Special:AllPages
 'allpages'       => 'Ngatanan nga mga pakli',
 'allarticles'    => 'Ngatanan nga mga artikulo',

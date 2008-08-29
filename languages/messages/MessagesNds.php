@@ -1469,8 +1469,6 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logböker',
 'all-logs-page'        => 'All Logböker',
-'log-search-legend'    => 'Na Logbook-Indrääg söken',
-'log-search-submit'    => 'Los',
 'alllogstext'          => 'Kombineerte Ansicht vun all Logböker bi {{SITENAME}}.
 Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de Siet angiffst.',
 'logempty'             => 'In’e Logböker nix funnen, wat passt.',

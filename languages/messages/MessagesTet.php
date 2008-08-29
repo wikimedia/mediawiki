@@ -434,7 +434,6 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => "Uza-na'in:",
-'log-search-submit'   => 'Bá',
 
 # Special:AllPages
 'allpages'       => 'Pájina hotu',

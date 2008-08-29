@@ -280,7 +280,6 @@ $messages = array(
 # Special:Log
 'specialloguserlabel'  => 'Lludüchi:',
 'speciallogtitlelabel' => 'Üy:',
-'log-search-submit'    => 'Amun',
 
 # Special:AllPages
 'allpages'       => 'Kakelu pakina',

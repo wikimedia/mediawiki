@@ -852,8 +852,6 @@ $messages = array(
 'speciallogtitlelabel' => 'سرليک:',
 'log'                  => 'يادښتونه',
 'all-logs-page'        => 'ټول يادښتونه',
-'log-search-legend'    => 'د يادښتونو لپاره لټون',
-'log-search-submit'    => 'ورځه',
 
 # Special:AllPages
 'allpages'          => 'ټول مخونه',

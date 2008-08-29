@@ -633,7 +633,6 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 # Special:Log
 'specialloguserlabel'  => 'Ymmydeyr:',
 'speciallogtitlelabel' => 'Ennym:',
-'log-search-submit'    => 'Gow',
 
 # Special:AllPages
 'allpages'       => 'Dagh ooilley ghuillag',

@@ -1324,8 +1324,6 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'speciallogtitlelabel' => 'Sutichay:',
 'log'                  => "Hallch'asqakuna",
 'all-logs-page'        => "Tukuy hallch'akuna",
-'log-search-legend'    => "Hallch'asqakunata maskay",
-'log-search-submit'    => 'Riy',
 'alllogstext'          => "{{SITENAME}}pa tukuy hallch'ankunamanta ch'allisqa rikuy.
 Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta icha chayachisqa p'anqata akllaspa.",
 'logempty'             => "Manam hallch'asqakuna kachkanchu.",

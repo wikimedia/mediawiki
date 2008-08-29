@@ -1609,8 +1609,6 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'speciallogtitlelabel' => 'Tytuł',
 'log'                  => 'Rejestr operacji',
 'all-logs-page'        => 'Wszystkie operacje',
-'log-search-legend'    => 'Szukaj w rejestrze',
-'log-search-submit'    => 'Szukaj',
 'alllogstext'          => 'Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.
 Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika albo tytułu strony.',
 'logempty'             => 'Brak wpisów w rejestrze.',

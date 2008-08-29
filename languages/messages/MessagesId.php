@@ -1603,8 +1603,6 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'speciallogtitlelabel' => 'Judul:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log',
-'log-search-legend'    => 'Pencarian log',
-'log-search-submit'    => 'Cari',
 'alllogstext'          => 'Berikut adalah gabungan semua log yang tersedia di {{SITENAME}}.
 Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau judul halaman.',
 'logempty'             => 'Tidak ditemukan entri log yang sesuai.',

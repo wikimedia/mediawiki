@@ -432,7 +432,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'specialloguserlabel'  => 'Brūcend:',
 'speciallogtitlelabel' => 'Titul:',
 'log'                  => 'Cranicas',
-'log-search-submit'    => 'Gān',
 
 # Special:AllPages
 'allpages'       => 'Trametas',

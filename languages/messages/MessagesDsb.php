@@ -1430,8 +1430,6 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'speciallogtitlelabel' => 'Nadpismo:',
 'log'                  => 'Protokole',
 'all-logs-page'        => 'Wšykne protokole',
-'log-search-legend'    => 'Protokole pytaś',
-'log-search-submit'    => 'Start',
 'alllogstext'          => 'To jo kombiněrowana pokazka wšyknych w(e) {{SITENAME}} wjeźonych log-lisćinow. Pśez wuzwólenje typa log-lisćiny, wužywarja abo mjenja boka móžo se output wobgranicowaś.',
 'logempty'             => 'Žedne se góźece zapise njeeksistěruju.',
 'log-title-wildcard'   => 'Pytaś nadpismo, kótarež zachopijo z ...',

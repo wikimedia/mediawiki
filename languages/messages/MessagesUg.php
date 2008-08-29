@@ -97,9 +97,6 @@ $messages = array(
 # Book sources
 'booksources-go' => 'Kuchush',
 
-# Special:Log
-'log-search-submit' => 'Kuchush',
-
 # Special:AllPages
 'allpagessubmit' => 'Kuchush',
 

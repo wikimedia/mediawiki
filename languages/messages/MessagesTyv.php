@@ -504,7 +504,6 @@ $1',
 # Special:Log
 'specialloguserlabel'  => 'Ажыглакчы:',
 'speciallogtitlelabel' => 'Ат:',
-'log-search-submit'    => 'Чоруур',
 
 # Special:AllPages
 'allpages'       => 'Шупту арыннар',

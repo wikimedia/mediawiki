@@ -688,7 +688,6 @@ to upload files.',
 'speciallogtitlelabel' => 'ਟਾਇਟਲ:',
 'log'                  => 'ਲਾਗ',
 'all-logs-page'        => 'ਸਭ ਲਾਗ',
-'log-search-submit'    => 'ਜਾਓ',
 
 # Special:AllPages
 'allpages'          => 'ਸਭ ਪੇਜ',

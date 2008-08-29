@@ -1670,8 +1670,6 @@ Aktuální délka fronty údržby je '''$7'''.",
 'speciallogtitlelabel' => 'Název:',
 'log'                  => 'Protokolovací záznamy',
 'all-logs-page'        => 'Všechny záznamy',
-'log-search-legend'    => 'Hledání v protokolovacích záznamech',
-'log-search-submit'    => 'Hledat',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
 Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo dotčené stránky.',
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',

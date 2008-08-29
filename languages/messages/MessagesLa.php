@@ -1084,8 +1084,6 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'speciallogtitlelabel' => 'Titulus:',
 'log'                  => 'Acta',
 'all-logs-page'        => 'Acta omnia',
-'log-search-legend'    => 'In actis quaerere',
-'log-search-submit'    => 'Ire',
 'alllogstext'          => 'Ostentantur omnia acta {{grammar:genitive|{{SITENAME}}}}.
 Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum paginae seligendo.',
 'log-title-wildcard'   => 'Quaerere titulos qui incipiunt litteris',

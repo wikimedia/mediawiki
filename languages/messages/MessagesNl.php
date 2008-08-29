@@ -1704,8 +1704,6 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'speciallogtitlelabel' => 'Paginanaam:',
 'log'                  => 'Logboeken',
 'all-logs-page'        => 'Alle logboeken',
-'log-search-legend'    => 'Zoek logboeken',
-'log-search-submit'    => 'OK',
 'alllogstext'          => 'Dit is het gecombineerde logboek.
 U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginanaam.',
 'logempty'             => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',

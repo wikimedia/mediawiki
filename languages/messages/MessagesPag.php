@@ -215,8 +215,7 @@ $messages = array(
 'booksources-go'            => 'Ula',
 
 # Special:Log
-'all-logs-page'     => 'Amin ran log',
-'log-search-submit' => 'Ula',
+'all-logs-page' => 'Amin ran log',
 
 # Special:AllPages
 'allpages'          => 'Amin ya bolobolong',

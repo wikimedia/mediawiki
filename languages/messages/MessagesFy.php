@@ -1151,7 +1151,6 @@ Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as be
 'speciallogtitlelabel' => 'Sidenamme:',
 'log'                  => 'Lochs',
 'all-logs-page'        => 'Alle lochboeken',
-'log-search-submit'    => 'Sykje',
 'alllogstext'          => 'Kombinearre loch de {{SITENAME}}.
 Jo kinne it oersjoch beheine troch in loch, in meidoggernamme of in side oan te jaan.',
 'logempty'             => 'Gjin treffers yn it loch.',

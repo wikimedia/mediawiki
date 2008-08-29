@@ -879,7 +879,6 @@ Masumma '''\$5''' na medianun tinilaika kada påhina, yan '''\$6''' na inatan ka
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Logs',
 'all-logs-page'        => 'Todu i logs siha',
-'log-search-submit'    => 'Hånao',
 
 # Special:AllPages
 'allpages'       => 'Todu i påhina siha',

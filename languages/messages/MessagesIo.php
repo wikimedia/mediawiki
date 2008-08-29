@@ -674,7 +674,6 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 # Special:Log
 'specialloguserlabel'  => 'Uzero:',
 'speciallogtitlelabel' => 'Titulo:',
-'log-search-submit'    => 'Irar',
 
 # Special:AllPages
 'allpages'          => 'Omna pagini',

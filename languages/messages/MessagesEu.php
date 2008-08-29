@@ -1219,8 +1219,6 @@ Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.
 'speciallogtitlelabel' => 'Izenburua:',
 'log'                  => 'Erregistroak',
 'all-logs-page'        => 'Erregistro guztiak',
-'log-search-legend'    => 'Logak bilatu',
-'log-search-submit'    => 'Joan',
 'alllogstext'          => 'Igoera, ezabaketa, babes, blokeaketa eta administratzaile erregistroen erakusketa. Zerrenda mugatu dezakezu erregistro mota, erabiltzaile izena edo eragindako orrialdea aukeratuz.',
 'logempty'             => 'Ez dago emaitzarik erregistroan.',
 'log-title-wildcard'   => 'Testu honekin hasten diren izenburuak bilatu',

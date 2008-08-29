@@ -1006,8 +1006,6 @@ Bunın' na'tiyjesinde ortasha esap penen ha'r bir betke '''$5''' o'zgeris tuwrı
 'speciallogtitlelabel' => 'Atama:',
 'log'                  => 'Jurnallar',
 'all-logs-page'        => "Ha'mme jurnallar",
-'log-search-legend'    => 'Jurnallardı izlew',
-'log-search-submit'    => "O'tin'",
 'log-title-wildcard'   => "Usı tekstten baslang'an atamalardı izlew",
 
 # Special:AllPages
