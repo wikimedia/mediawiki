@@ -1515,14 +1515,21 @@ END
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
-		$classes = array( 'wikiPreview' );
-		if( $isOnTop ) $classes[] = 'ontop';
-		$attribs = array( 'class' => implode( ' ', $classes ) );
-		if( $this->formtype != 'preview' ) $attribs['style'] = 'display: none;';
+		$classes = array();
+		if( $isOnTop )
+			$classes[] = 'ontop';
+
+		$attribs = array( 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) );
+
+		if( $this->formtype != 'preview' )
+			$attribs['style'] = 'display: none;';
+
 		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
+
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
 		}
+
 		$wgOut->addHTML( '</div>' );
 
 		if ( $this->formtype == 'diff') {
