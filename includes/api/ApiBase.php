@@ -365,6 +365,21 @@ abstract class ApiBase {
 		$paramSettings = $params[$paramName];
 		return $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
 	}
+	
+	/**
+	 * Die if none or more than one of a certain set of parameters is set
+	 */
+	public function requireOnlyOneParameter($params) {
+		$required = func_get_args();
+		array_shift($required);
+		
+		$intersection = array_intersect(array_keys($params), $required);
+		if (count($intersection) > 1) {
+			$this->dieUsage('The parameters '.implode(', ', $intersection).' can not be used together', 'invalidparammix');
+		} elseif (count($intersection) == 0) {
+			$this->dieUsage('One of the parameters '.implode(', ', $required).' is required', 'missingparam');
+		}
+	}
 
 	/**
 	 * Returns an array of the namespaces (by integer id) that exist on the
