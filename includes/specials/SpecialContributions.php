@@ -30,8 +30,6 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['target'] = $this->target;
-		$query['month'] = $this->mMonth;
-		$query['year'] = $this->mYear;
 		return $query;
 	}
 
