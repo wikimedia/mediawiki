@@ -162,6 +162,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed intermittent deadlock errors involving objectcache table queries. 
   Use a separate database connection for the objectcache table to avoid 
   long-lasting locks on that table.
+* Respect file restrictions in the file history list
 
 
 === API changes in 1.14 ===
