@@ -101,6 +101,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * BMP images are now displayed as PNG
 * (bug 13471) Added NUMBERINGROUP magic word
 * (bug 11884) Now support Flash EXIF attribute
+* Show thumbnails in the file history list
 
 === Bug fixes in 1.14 ===
 
