@@ -1625,6 +1625,7 @@ class LocalFileRestoreBatch {
 			$deleteIds[] = $row->fa_id;
 			if( !$this->unsuppress && $row->fa_deleted & File::DELETED_FILE ) {
 				// private files can stay where they are
+				$status->successCount++;
 			} else {
 				$storeBatch[] = array( $deletedUrl, 'public', $destRel );
 				$this->cleanupBatch[] = $row->fa_storage_key;
