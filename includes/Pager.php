@@ -352,6 +352,8 @@ abstract class IndexPager implements Pager {
 			unset( $this->mDefaultQuery['offset'] );
 			unset( $this->mDefaultQuery['limit'] );
 			unset( $this->mDefaultQuery['order'] );
+			unset( $this->mDefaultQuery['month'] );
+			unset( $this->mDefaultQuery['year'] );
 		}
 		return $this->mDefaultQuery;
 	}
