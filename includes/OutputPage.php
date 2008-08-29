@@ -161,62 +161,87 @@ class OutputPage {
 	 * possible. If sucessful, the OutputPage is disabled so that
 	 * any future call to OutputPage->output() have no effect.
 	 *
+	 * Side effect: sets mLastModified for Last-Modified header
+	 *
 	 * @return bool True iff cache-ok headers was sent.
 	 */
 	function checkLastModified ( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser, $wgRequest;
-
+		
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
-			return;
+			return false;
 		}
 		if( !$wgCachePages ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
-			return;
+			return false;
 		}
 		if( $wgUser->getOption( 'nocache' ) ) {
 			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
-			return;
+			return false;
 		}
 
-		$timestamp=wfTimestamp(TS_MW,$timestamp);
-		$lastmod = wfTimestamp( TS_RFC2822, max( $timestamp, $wgUser->mTouched, $wgCacheEpoch ) );
+		$timestamp = wfTimestamp( TS_MW, $timestamp );
+		$modifiedTimes = array(
+			'page' => $timestamp,
+			'user' => $wgUser->getTouched(),
+			'epoch' => $wgCacheEpoch
+		);
+		wfRunHooks( 'OutputPageCheckLastModified', array( &$modifiedTimes ) );
 
-		if( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
-			# IE sends sizes after the date like this:
-			# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
-			# this breaks strtotime().
-			$modsince = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
+		$maxModified = max( $modifiedTimes );
+		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
 
-			wfSuppressWarnings(); // E_STRICT system time bitching
-			$modsinceTime = strtotime( $modsince );
-			wfRestoreWarnings();
-
-			$ismodsince = wfTimestamp( TS_MW, $modsinceTime ? $modsinceTime : 1 );
-			wfDebug( __METHOD__ . ": -- client send If-Modified-Since: " . $modsince . "\n", false );
-			wfDebug( __METHOD__ . ": --  we might send Last-Modified : $lastmod\n", false );
-			if( ($ismodsince >= $timestamp ) && $wgUser->validateCache( $ismodsince ) && $ismodsince >= $wgCacheEpoch ) {
-				# Make sure you're in a place you can leave when you call us!
-				$wgRequest->response()->header( "HTTP/1.0 304 Not Modified" );
-				$this->mLastModified = $lastmod;
-				$this->sendCacheControl();
-				wfDebug( __METHOD__ . ": CACHED client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
-				$this->disable();
-
-				// Don't output a compressed blob when using ob_gzhandler;
-				// it's technically against HTTP spec and seems to confuse
-				// Firefox when the response gets split over two packets.
-				wfClearOutputBuffers();
-
-				return true;
-			} else {
-				wfDebug( __METHOD__ . ": READY  client: $ismodsince ; user: $wgUser->mTouched ; page: $timestamp ; site $wgCacheEpoch\n", false );
-				$this->mLastModified = $lastmod;
-			}
-		} else {
+		if( empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header\n", false );
-			$this->mLastModified = $lastmod;
+			return false;
 		}
+
+		# Make debug info
+		$info = '';
+		foreach ( $modifiedTimes as $name => $value ) {
+			if ( $info !== '' ) {
+				$info .= ', ';
+			}
+			$info .= "$name=" . wfTimestamp( TS_ISO_8601, $value );
+		}
+
+		# IE sends sizes after the date like this:
+		# Wed, 20 Aug 2003 06:51:19 GMT; length=5202
+		# this breaks strtotime().
+		$clientHeader = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
+
+		wfSuppressWarnings(); // E_STRICT system time bitching
+		$clientHeaderTime = strtotime( $clientHeader );
+		wfRestoreWarnings();
+		if ( !$clientHeaderTime ) {
+			wfDebug( __METHOD__ . ": unable to parse the client's If-Modified-Since header: $clientHeader\n" );
+			return false;
+		}
+		$clientHeaderTime = wfTimestamp( TS_MW, $clientHeaderTime );
+
+		wfDebug( __METHOD__ . ": client sent If-Modified-Since: " . 
+			wfTimestamp( TS_ISO_8601, $clientHeaderTime ) . "\n", false );
+		wfDebug( __METHOD__ . ": effective Last-Modified: " . 
+			wfTimestamp( TS_ISO_8601, $maxModified ) . "\n", false );
+		if( $clientHeaderTime < $maxModified ) {
+			wfDebug( __METHOD__ . ": STALE, $info\n", false );
+			return false;
+		}
+
+		# Not modified
+		# Give a 304 response code and disable body output 
+		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", false );
+		$wgRequest->response()->header( "HTTP/1.1 304 Not Modified" );
+		$this->sendCacheControl();
+		$this->disable();
+
+		// Don't output a compressed blob when using ob_gzhandler;
+		// it's technically against HTTP spec and seems to confuse
+		// Firefox when the response gets split over two packets.
+		wfClearOutputBuffers();
+
+		return true;
 	}
 
 	function setPageTitleActionText( $text ) {
@@ -747,7 +772,9 @@ class OutputPage {
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
 				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
-			if($this->mLastModified) $response->header( "Last-modified: {$this->mLastModified}" );
+			if($this->mLastModified) {
+				$response->header( "Last-Modified: {$this->mLastModified}" );
+			}
 		} else {
 			wfDebug( __METHOD__ . ": no caching **\n", false );
 

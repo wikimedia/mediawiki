@@ -1569,6 +1569,14 @@ class User {
 	}
 
 	/**
+	 * Get the user touched timestamp
+	 */
+	function getTouched() {
+		$this->load();
+		return $this->mTouched;
+	}
+
+	/**
 	 * Set the password and reset the random token.
 	 * Calls through to authentication plugin if necessary;
 	 * will have no effect if the auth plugin refuses to
