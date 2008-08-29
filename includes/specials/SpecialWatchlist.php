@@ -159,16 +159,7 @@ function wfSpecialWatchlist( $par ) {
 	$andHideLiu   = $hideLiu   ? "AND (rc_user = 0)" : '';
 	$andHideAnons = $hideAnons ? "AND (rc_user != 0)" : '';
 
-	# Show watchlist header
-	$header = '';
-	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
-		$header .= wfMsg( 'wlheader-enotif' ) . "\n";
-	}
-	if ( $wgShowUpdatedMarker ) {
-		$header .= wfMsg( 'wlheader-showupdated' ) . "\n";
-	}
-
-  # Toggle watchlist content (all recent edits or just the latest)
+	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
 		$andLatest='';
  		$limitWatchlist = 'LIMIT ' . intval( $wgUser->getOption( 'wllimit' ) );
@@ -178,21 +169,30 @@ function wfSpecialWatchlist( $par ) {
 		$limitWatchlist = '';
 	}
 
-	$header .= wfMsgExt( 'watchlist-details', array( 'parsemag' ), $wgLang->formatNum( $nitems ) );
-	$wgOut->addWikiText( $header );
-
 	# Show a message about slave lag, if applicable
 	if( ( $lag = $dbr->getLag() ) > 0 )
 		$wgOut->showLagWarning( $lag );
 
-	if ( $wgShowUpdatedMarker ) {
-		$wgOut->addHTML( '<form action="' .
-			$specialTitle->escapeLocalUrl() .
-			'" method="post"><input type="submit" name="dummy" value="' .
-			htmlspecialchars( wfMsg( 'enotif_reset' ) ) .
-			'" /><input type="hidden" name="reset" value="all" /></form>' .
-			"\n\n" );
+	# Create output form
+	$form  = Xml::fieldset( wfMsg( 'watchlist-options' ), false, array( 'id' => 'mw-watchlist-options' ) );
+
+	# Show watchlist header
+	$form .= wfMsgExt( 'watchlist-details', array( 'parseinline' ), $wgLang->formatNum( $nitems ) );
+
+	if( $wgUser->getOption( 'enotifwatchlistpages' ) && $wgEnotifWatchlist) {
+		$form .= wfMsgExt( 'wlheader-enotif', 'parse' ) . "\n";
 	}
+	if ( $wgShowUpdatedMarker ) {
+		$form .= Xml::openElement( 'form', array( 'method' => 'post',
+					'action' => $specialTitle->getLocalUrl(),
+					'id' => 'mw-watchlist-resetbutton' ) ) .
+				wfMsgExt( 'wlheader-showupdated', array( 'parseinline' ) ) . ' ' .
+				Xml::submitButton( wfMsg( 'enotif_reset' ), array( 'name' => 'dummy' ) ) .
+				Xml::hidden( 'reset', 'all' ) .
+				Xml::closeElement( 'form' );
+	}
+	$form .= '<hr />';
+
 	if ( $wgShowUpdatedMarker ) {
 		$wltsfield = ", ${watchlist}.wl_notificationtimestamp ";
 	} else {
@@ -269,10 +269,6 @@ function wfSpecialWatchlist( $par ) {
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	# Namespace filter and put the whole form together.
-	$form  = Xml::openElement( 'fieldset', array( 'id' => 'mw-watchlist-options' ) );
-	$form .= Xml::openElement( 'legend', array( 'id' => 'mw-watchlist-legend' ) );
-	$form .= wfMsgExt( 'watchlist-options', array('escape') );
-	$form .= Xml::closeElement( 'legend' );
 	$form .= $wlInfo;
 	$form .= $cutofflinks;
 	$form .= implode( ' | ', $links );
