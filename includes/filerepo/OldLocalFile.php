@@ -64,6 +64,7 @@ class OldLocalFile extends LocalFile {
 			'oi_user',
 			'oi_user_text',
 			'oi_timestamp',
+			'oi_deleted',
 			'oi_sha1',
 		);
 	}
