@@ -1275,6 +1275,9 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'filehist-revert'                => 'restarigi',
 'filehist-current'               => 'nuna',
 'filehist-datetime'              => 'Dato/Tempo',
+'filehist-thumb'                 => 'Bildeto',
+'filehist-thumbtext'             => 'Bildeto por versio ekde $1',
+'filehist-nothumb'               => 'Neniu bildeto',
 'filehist-user'                  => 'Uzanto',
 'filehist-dimensions'            => 'Dimensioj',
 'filehist-filesize'              => 'Pezo de dosiero',
@@ -1714,9 +1717,8 @@ kaj oni povas restarigi ilin. La arkivo povas esti malplenigita periode.',
 'undelete-fieldset-title'      => 'Restarigi reviziojn',
 'undeleteextrahelp'            => "Por restarigi la tuton de la paĝo, marku neniun markobutonon kaj klaku la butonon '''''Restarigu'''''. Por restarigi selektitajn versiojn de la paĝo, marku la butonojn konformajn al la dezirataj versioj, kaj klaku la butonon '''''Restarigu'''''. Klako je '''''Restarigu''''' malplenigos la komentozonon kaj malmarkos ĉiujn la markobutonojn.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versio arkivita|versioj arkivitaj}}',
-'undeletehistory'              => 'Se vi restarigos la paĝon, ĉiuj versioj estos restarigitaj
-en la historio. Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj
-versioj aperos antaŭe en la historio, kaj la aktuala versio ne estos anstataŭigita.',
+'undeletehistory'              => 'Se vi restarigos la paĝon, ĉiuj versioj estos restarigitaj en la historio. 
+Se nova paĝo kun la sama nomo estis kreita post la forigo, la restarigitaj versioj aperos antaŭe en la antaŭa historio.',
 'undeleterevdel'               => 'Restarigo ne estos farita se ĝi rezultos en la supera paĝa aŭ dosiera revizio estonte parte forigita. Tiuzake, vi malmarku aŭ malkaŝu la plej novajn forigitajn reviziojn.',
 'undeletehistorynoadmin'       => 'Ĉi tiu artikolo estis forigita. La kaŭzo por la forigo estas montrata en la malsupra resumo, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo. La aktuala teksto de ĉi tiuj forigitaj revizioj estas atingebla nur por administrantoj.',
 'undelete-revision'            => 'Forigita revizio de $1 (de $2) fare de $3:',
@@ -2400,8 +2402,14 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 # Flash modes
 'exif-flash-fired-0'    => 'Fulmilo ne ekbruliĝis',
 'exif-flash-fired-1'    => 'Fulmilo ekbriliĝis',
+'exif-flash-return-0'   => 'neniu funkcio por detekti liveraĵon de stroboskopo',
+'exif-flash-return-2'   => 'revenanta lumo de stroboskopo ne detektiĝis',
+'exif-flash-return-3'   => 'revenanta lumo de stroboskopo detektiĝis',
+'exif-flash-mode-1'     => 'deviga fulmado',
+'exif-flash-mode-2'     => 'deviga dampado de fulmilo',
 'exif-flash-mode-3'     => 'aŭtomata reĝimo',
 'exif-flash-function-1' => 'Neniu fulmila funkcio',
+'exif-flash-redeye-1'   => 'reĝimo por ruĝokula redukcio',
 
 'exif-focalplaneresolutionunit-2' => 'coloj',
 

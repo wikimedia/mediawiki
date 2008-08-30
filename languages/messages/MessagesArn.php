@@ -104,6 +104,7 @@ $messages = array(
 'talkpagelinktext' => 'Nütramkawe',
 'articlepage'      => 'adkintun artículo',
 'talk'             => 'Nütramkawe',
+'views'            => 'Pen',
 'toolbox'          => 'Küdawpeyüm',
 'userpage'         => 'adkintun página de usuario',
 'projectpage'      => 'adkintun página meta',
@@ -133,6 +134,7 @@ $messages = array(
 'showtoc'                 => 'pengelün',
 'hidetoc'                 => 'ellkan',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
+'restorelink'             => '{{PLURAL:$1|kiñe wirin ñamümgün|$1 wirin ñamümün}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'pakina',
@@ -172,6 +174,7 @@ $messages = array(
 'loginreqlink'       => 'Koni',
 'newarticle'         => '(We)',
 'editing'            => 'Wirimekey $1',
+'editingcomment'     => 'Wirin $1 (Dungu)',
 'yourtext'           => 'Tami wirin',
 'template-protected' => '(Ngünaytun)',
 
@@ -212,6 +215,7 @@ $messages = array(
 
 # Groups
 'group'       => 'Kisuwen:',
+'group-user'  => 'Lludüchi',
 'group-sysop' => 'Pu ngünefe',
 'group-all'   => '(kom pu che)',
 
@@ -232,12 +236,14 @@ $messages = array(
 'rightsnone' => 'chemnorume',
 
 # Recent changes
-'rcshowhidemine'  => '$1 tañi wirin',
-'hist'            => 'Püno',
-'hide'            => 'Ellkan',
-'show'            => 'pengelün',
-'minoreditletter' => 'p',
-'newpageletter'   => 'W',
+'rcshowhideminor'                   => '$1 wirin pichi',
+'rcshowhidemine'                    => '$1 tañi wirin',
+'hist'                              => 'Püno',
+'hide'                              => 'Ellkan',
+'show'                              => 'pengelün',
+'minoreditletter'                   => 'p',
+'newpageletter'                     => 'W',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|Lludüchi|Lludüchi}} wiñamüy]',
 
 # Upload
 'uploadnologin'   => 'Petu konlaymi',
@@ -269,10 +275,13 @@ $messages = array(
 'withoutinterwiki-submit' => 'Pengelün',
 
 # Miscellaneous special pages
-'nviews'       => '$1 {{PLURAL:$1|pen|pen}}',
-'newpages'     => 'We pakina',
-'move'         => 'Wiñamün',
-'movethispage' => 'Nengümün tüfachi pakina',
+'nbytes'            => '$1 {{PLURAL:$1|byte|bytes}}',
+'nviews'            => '$1 {{PLURAL:$1|pen|pen}}',
+'shortpages'        => 'Pichi pakina',
+'newpages'          => 'We pakina',
+'newpages-username' => 'Güy lludüchi',
+'move'              => 'Wiñamün',
+'movethispage'      => 'Nengümün tüfachi pakina',
 
 # Book sources
 'booksources-go' => 'Amun',
@@ -292,15 +301,20 @@ $messages = array(
 
 # E-mail user
 'emailsubject' => 'Dungu',
+'emailmessage' => 'Dungu',
 'emailsend'    => 'Werkün',
 
 # Watchlist
-'watchnologin'    => 'Petu konlaymi',
-'watch'           => 'Llaytun',
-'watchthispage'   => 'Llaytun tüfachi pakina',
-'unwatch'         => 'Llaytuwelan',
-'unwatchthispage' => 'Llaytuwelan',
-'notanarticle'    => 'Ngelay kiñe pakina',
+'watchnologin'         => 'Petu konlaymi',
+'watch'                => 'Llaytun',
+'watchthispage'        => 'Llaytun tüfachi pakina',
+'unwatch'              => 'Llaytuwelan',
+'unwatchthispage'      => 'Llaytuwelan',
+'notanarticle'         => 'Ngelay kiñe pakina',
+'watchlist-show-own'   => 'Nülan ñi wirin',
+'watchlist-hide-own'   => 'Ellkan ñi wirin',
+'watchlist-show-minor' => 'Nülan pichi wirin',
+'watchlist-hide-minor' => 'Ellkan wirin pichi',
 
 'enotif_newpagetext'           => 'Tüfachi ta we pakina',
 'enotif_impersonal_salutation' => '{{SITENAME}} lludüchi',
@@ -336,6 +350,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere-page' => 'Pakina:',
+'whatlinkshere-prev' => '{{PLURAL:$1|Pen chum müley|Pen chum müluey $1}}',
 
 # Block/unblock
 'ipbexpiry'          => 'Afi',
@@ -370,7 +385,9 @@ $messages = array(
 'tooltip-ca-nstab-help' => 'Pen kellupakina',
 
 # Attribution
-'others' => 'fill',
+'siteuser'  => 'Lludüchi $1 {{SITENAME}}',
+'others'    => 'fill',
+'siteusers' => '{{PLURAL:$2|Lludüchi|Lludüchi}} $1 {{SITENAME}}',
 
 # Info page
 'numedits'     => 'Rakin wirin (pakina): $1',

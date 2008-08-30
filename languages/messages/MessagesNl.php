@@ -1248,16 +1248,16 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 
 # Groups
 'group'               => 'Groep:',
-'group-user'          => 'Gebruikers',
-'group-autoconfirmed' => 'Bevestigde gebruikers',
-'group-bot'           => 'Bots',
-'group-sysop'         => 'Beheerders',
-'group-bureaucrat'    => 'Bureaucraten',
-'group-suppress'      => 'Toezichthouders',
+'group-user'          => 'gebruikers',
+'group-autoconfirmed' => 'bevestigde gebruikers',
+'group-bot'           => 'bots',
+'group-sysop'         => 'beheerders',
+'group-bureaucrat'    => 'bureaucraten',
+'group-suppress'      => 'toezichthouders',
 'group-all'           => '(iedereen)',
 
-'group-user-member'          => 'Gebruiker',
-'group-autoconfirmed-member' => 'Geregistreerde gebruiker',
+'group-user-member'          => 'gebruiker',
+'group-autoconfirmed-member' => 'geregistreerde gebruiker',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'beheerder',
 'group-bureaucrat-member'    => 'bureaucraat',
@@ -1426,10 +1426,11 @@ Naam van het geüploade bestand: <strong><tt>$1</tt></strong><br />
 Naam van het bestaande bestand: <strong><tt>$2</tt></strong><br />
 Kies een andere naam.',
 'fileexists-thumb'            => "<center>'''Bestaande afbeelding'''</center>",
-'fileexists-thumbnail-yes'    => 'Het bestand lijkt een verkleinde versie te zijn <i>(thumbnail)</i>. Controleer het bestand <strong><tt>$1</tt></strong>.<br />
-Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra thumbnail te uploaden.',
+'fileexists-thumbnail-yes'    => 'Het bestand lijkt een verkleinde versie te zijn <i>(miniatuurafbeelding)</i>.
+Controleer het bestand <strong><tt>$1</tt></strong>.<br />
+Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra miniatuurafbeelding te uploaden.',
 'file-thumbnail-no'           => 'De bestandsnaam begint met <strong><tt>$1</tt></strong>.
-Het lijkt een verkleinde afbeelding te zijn <i>(thumbnail)</i>.
+Het lijkt een verkleinde afbeelding te zijn <i>(miniatuurafbeelding)</i>.
 Als u deze afbeelding in volledige resolutie hebt, upload die afbeelding dan.
 Wijzig anders alstublieft de bestandsnaam.',
 'fileexists-forbidden'        => 'Er bestaat al een bestand met deze naam. Upload uw bestand onder een andere naam.
@@ -1513,6 +1514,9 @@ Klikken op een kolomkop verandert de sortering.',
 'filehist-revert'                => 'terugdraaien',
 'filehist-current'               => 'huidige versie',
 'filehist-datetime'              => 'Datum/tijd',
+'filehist-thumb'                 => 'Miniatuurafbeelding',
+'filehist-thumbtext'             => 'Miniatuurafbeelding voor versie per $1',
+'filehist-nothumb'               => 'Geen miniatuurafbeelding',
 'filehist-user'                  => 'Gebruiker',
 'filehist-dimensions'            => 'Afmetingen',
 'filehist-filesize'              => 'Bestandsgrootte',
@@ -1952,7 +1956,8 @@ Dit zijn de huidige instellingen voor de pagina <strong>[[$1]]</strong>:",
 'undelete-fieldset-title'      => 'Versies terugplaatsen',
 'undeleteextrahelp'            => "Om de hele pagina inclusief alle eerdere versies terug te plaatsen: laat alle hokjes onafgevinkt en klik op '''''Terugplaatsen'''''. Om slechts bepaalde versies terug te zetten: vink de terug te plaatsen versies aan en klik op '''''Terugplaatsen'''''. Als u op '''''Herinstellen''''' klikt wordt het toelichtingsveld leeggemaakt en worden alle versies gedeselecteerd.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|versie|versies}} gearchiveerd',
-'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld. Als er al een nieuwe pagina met dezelfde naam is aangemaakt sinds de pagina is verwijderd, worden de eerder verwijderde versies teruggeplaatst en blijft de huidige versie intact. Beperkingen op bestandsversies worden opgeheven bij terugplaatsen.',
+'undeletehistory'              => 'Als u een pagina terugplaatst, worden alle versies hersteld.
+Als er al een nieuwe pagina met dezelfde naam is aangemaakt sinds de pagina is verwijderd, worden de eerder verwijderde versies teruggeplaatst en blijft de huidige versie intact.',
 'undeleterevdel'               => 'Herstellen is niet mogelijk als daardoor de meest recente versie van de pagina of het bestand gedeeltelijk wordt verwijderd.
 Verwijder in die gevallen de meest recent verwijderde versie uit de selectie.',
 'undeletehistorynoadmin'       => 'Deze pagina is verwijderd. De reden hiervoor staat hieronder, samen met de details van de gebruikers die deze pagina hebben bewerkt vóór de verwijdering. De verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.',
@@ -2223,10 +2228,10 @@ Ga alstublieft naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-locali
 # Thumbnails
 'thumbnail-more'           => 'Groter',
 'filemissing'              => 'Bestand is zoek',
-'thumbnail_error'          => 'Fout bij het aanmaken van thumbnail: $1',
+'thumbnail_error'          => 'Fout bij het aanmaken van de miniatuurafbeelding: $1',
 'djvu_page_error'          => 'DjVu-pagina buiten bereik',
 'djvu_no_xml'              => 'De XML voor het DjVu-bestand kon niet opgehaald worden',
-'thumbnail_invalid_params' => 'Onjuiste thumbnailparameters',
+'thumbnail_invalid_params' => 'Onjuiste parameters voor miniatuurafbeelding',
 'thumbnail_dest_directory' => 'Niet in staat doelmap aan te maken',
 
 # Special:Import
@@ -2434,7 +2439,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
 'imagemaxsize'         => 'Maximale grootte beelden op beschrijvingspagina:',
-'thumbsize'            => 'Grootte thumbnail:',
+'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'            => '(bestandsgrootte: $1, MIME-type: $2)',
@@ -2668,7 +2673,7 @@ Alle volgende verwijzingen die op dezelfde regel staan, worden behandeld als uit
 'exif-flash-mode-1'     => 'verplicht met flitser',
 'exif-flash-mode-2'     => 'flitser verplicht onderdrukt',
 'exif-flash-mode-3'     => 'automatische modus',
-'exif-flash-function-1' => 'Geen flitersfuntie',
+'exif-flash-function-1' => 'Geen flitersfunctie',
 'exif-flash-redeye-1'   => 'filter rode ogen verwijderen',
 
 'exif-focalplaneresolutionunit-2' => 'inch',

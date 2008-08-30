@@ -18,6 +18,7 @@
  * @author Jon Harald Søby
  * @author Kizito
  * @author Lejonel
+ * @author Li-sung
  * @author Lloffiwr
  * @author Malafaya
  * @author McDutchie
@@ -53,7 +54,9 @@ $messages = array(
 'tog-extendwatchlist' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown).",
 'tog-usenewrc' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]].",
 'tog-numberheadings' => "[[Special:Preferences]], tab 'Misc'. Offers user to numbered headings on content pages.",
-'tog-showtoolbar' => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.",
+'tog-showtoolbar' => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.
+
+This is the toolbar: [[Image:Toolbar.png]]",
 'tog-editondblclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
 'tog-editsection' => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections.",
 'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
@@ -270,33 +273,48 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 {{Identical|Search}}',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite' => 'Used as page name and link at the bottom of each wiki page. The contents of the page explain the purpose of the site. Example: [[About {{SITENAME}}]].
+'aboutsite' => 'Used as page name and link at the bottom of each wiki page. The contents of the page explain the purpose of the site.
+
+{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>}}
 
 {{Identical|About}}',
-'aboutpage' => 'Used as page for that contains the site description. Used at the bottom of every page on the wiki. Do not translate "Project:". Example: [[{{MediaWiki:Aboutpage}}|{{MediaWiki:About}} {{SITENAME}}]].',
-'bugreportspage' => 'Not used in Monobook skin. Please do not translate <tt>Project:</tt> part.',
+'aboutpage' => 'Used as page for that contains the site description. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Aboutpage}}|{{MediaWiki:About}} {{SITENAME}}]].
+
+{{doc-important|Do not translate "Project:" part}}',
+'bugreportspage' => 'Not used in Monobook skin. 
+{{doc-important|Do not change <tt>Project:</tt> part.}}',
+'copyrightpagename' => '{{doc-important|Do not change <nowiki>{{SITENAME}}</nowiki>}}',
+'copyrightpage' => '{{doc-important|Do not change <nowiki>{{ns:project}}</nowiki>}}',
 'currentevents' => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
 'currentevents-url' => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'disclaimers' => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
-'disclaimerpage' => "Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]]. Don't translate <tt>Project:</tt> part.",
+'disclaimerpage' => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]]. 
+{{doc-important|Do not change <tt>Project:</tt> part.}}',
 'edithelp' => 'This is the text that appears on the editing help link that is near the bottom of the editing page',
-'edithelppage' => "The help page displayed when a user clicks on editing help link which is present on the right of Show changes button. Don't translate the namespace part.",
-'faqpage' => "Do not translate <tt>Project:</tt> — It is used to refer the project namespace in generic way. FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.",
-'helppage' => "The link destination used by default in the sidebar, and in [[MediaWiki:Noarticletext/{{SUBPAGENAME}}]]. Warning: '''Do not translate the first part''', so leave <tt>Help:</tt> completely as it is!",
+'edithelppage' => 'The help page displayed when a user clicks on editing help link which is present on the right of Show changes button. 
+{{doc-important|Do not change <tt>Help:</tt> part.}}',
+'faqpage' => "FAQ is short for ''frequently asked questions''. This page is only linked on some of the old skins, not in Monobook or Modern.
+
+{{doc-important|Do not translate <tt>Project:</tt> part.}}",
+'helppage' => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}. 
+{{doc-important|Do not change <tt>Help:</tt> part.}}',
 'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Example: [[Main Page]].
 
 {{Identical|Main page}}',
 'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.',
-'policy-url' => '* Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
-* Warning: Do not translate the "Project:" part. Otherwise links may be broken.',
+'policy-url' => 'Description: The URL of the project page describing the policies of the wiki. This is shown below every page (the left link).
+{{doc-important|Do not change "Project:" part.}}',
 'portal' => "Display name for the 'Community portal', shown in the sidebar menu of all pages. The target page is meant to be a portal for users where useful links are to be found about the wiki's operation.",
-'portal-url' => '* Description: The URL of the community portal. This is shown in the sidebar by default (removed on Betawiki).
-* Warning: Do not translate the "Project:" part. Otherwise links may be broken.',
+'portal-url' => 'Description: The URL of the community portal. This is shown in the sidebar by default (removed on Betawiki).
+{{doc-important|Do not change "Project:" part.}}',
 'privacy' => 'Used as page name and link at the bottom of each wiki page. The page contains a legal notice providing information about the use of personal information by the website owner.of the site. Example: [[Privacy policy]].',
-'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Do not translate "Project:". Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].',
+'privacypage' => 'Used as page for that contains the privacy policy. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Privacypage}}|{{MediaWiki:Privacy}}]].
+
+{{doc-important|Do not change <tt>Project:</tt> part.}}',
 
 'badaccess' => 'Title shown within page indicating unauthorized access.',
+'badaccess-group0' => 'Shown when you are not allowed to do something.',
 'badaccess-groups' => "Error message when you aren't allowed to do something.
 
 * $1 is a list of groups.
@@ -306,6 +324,7 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'versionrequiredtext' => 'This message is not used in the MediaWiki core, but was introduced with the reason that it could be useful for extensions. See also {{msg|versionrequired}}.',
 
 'ok' => '{{Identical|OK}}',
+'pagetitle' => '{{doc-important|You most probably do not need to translate this message.}}',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages' => 'The orange message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
@@ -317,6 +336,7 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 'editsection' => 'Display name of link to edit a section on a content page. Example: [{{MediaWiki:Editsection}}].
 
 {{Identical|Edit}}',
+'editsection-brackets' => '{{doc-important|This message should most probably not be translated.}}',
 'editold' => '{{Identical|Edit}}',
 'editsectionhint' => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
 'toc' => 'This is the title of the table of contents displayed in pages with more than 3 sections
@@ -1036,6 +1056,15 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 {{Identical|Current}}',
 'filehist-datetime' => 'Used on image descriptions, see for example [[:Image:Yes.png#filehistory]].',
+'filehist-thumb' => 'Shown in the file history list of a file desription page.
+
+Example: [[:Image:Addon-icn.png]]',
+'filehist-thumbtext' => 'Shown in the file history list of a file desription page.
+
+Example: [[:Image:Addon-icn.png]]',
+'filehist-nothumb' => 'Shown if no thumbnail is available in the file history list of a file desription page.
+
+Example: [[:Image:Addon-icn.png]]',
 'filehist-user' => 'In image description page.
 
 {{Identical|User}}',
@@ -1055,6 +1084,8 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 * $2: filename',
 'nolinkstoimage' => 'Displayed on image description pages, see for exampe [[:Image:Tournesol.png#filelinks]].',
 'redirectstofile' => 'Used on file description pages after the list of pages which used this file',
+'sharedupload' => 'Shown on an image description page when it is used in a central repository (i.e. [http://commons.wikimedia.org/ Commons] for Wikimedia wikis).
+{{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'shareduploadwiki' => 'The variable $1 is {{msg|shareduploadwiki-linktext}}',
 'shareduploadwiki-desc' => "This message appears after [[MediaWiki:Sharedupload]]. \$1 is a link to the file description page on the shared repository with [[MediaWiki:Shareduploadwiki-linktext]] as display text. Example: \"''The description on its file description page there is shown below.''\"",
 'shareduploadwiki-linktext' => 'This message is used as variable $1 in [[MediaWiki:Shareduploadwiki]] and in [[MediaWiki:Shareduploadwiki-desc]]',
@@ -1223,9 +1254,6 @@ Don\'t translate the "Template:" part!',
 {{Identical|Title}}',
 'log' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'all-logs-page' => 'Title of [[Special:Log]].',
-'log-search-submit' => 'Button name in [[Special:Log]]
-
-{{Identical|Go}}',
 
 # Special:AllPages
 'allpages' => 'Name of special page displayed in [[Special:AllPages]]
@@ -1790,6 +1818,7 @@ Variants for Chinese language
 'exif-imagewidth' => '{{Identical|Width}}',
 'exif-imagelength' => '{{Identical|Height}}',
 'exif-primarychromaticities' => 'The chromaticity of the three primary colours of the image. Normally this tag is not necessary, since colour space is specified in the colour space information tag. This should probably be translated it as "Chromaticity of primary colours".',
+'exif-software' => 'Short for "The software which was used to create this image".',
 'exif-artist' => '{{Identical|Author}}',
 'exif-flash' => '{{Identical|Flash}}',
 'exif-subjectarea' => 'This exif property contains the position of the main subject of the picture in pixels from the upper left corner and additionally its width and heigth in pixels.',
@@ -1808,6 +1837,10 @@ Spatial frequency response is a measure for the capability of camera lenses to d
 
 'exif-lightsource-0' => '{{Identical|Unknown}}',
 'exif-lightsource-4' => '{{Identical|Flash}}',
+
+# Flash modes
+'exif-flash-mode-1' => 'This is when you have chosen that your camera must use a flash for this picture.',
+'exif-flash-mode-2' => "This is when you have chosen that your camera must ''not'' use a flash for this picture.",
 
 'exif-sensingmethod-5' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",
 'exif-sensingmethod-8' => "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).",

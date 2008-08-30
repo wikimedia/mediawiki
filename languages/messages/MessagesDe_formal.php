@@ -246,7 +246,8 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'recentchanges-feed-description' => 'Verfolgen Sie mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
 
 # Recent changes linked
-'recentchangeslinked-summary' => "Diese Spezialseite listet die letzten Änderungen an den verlinkten Seiten auf (bzw. bei Kategorien an den Mitgliedern dieser Kategorie). Seiten auf ihrer [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargestellt.",
+'recentchangeslinked-summary' => "Diese Spezialseite listet die letzten Änderungen an den verlinkten Seiten auf (bzw. bei Kategorien an den Mitgliedern dieser Kategorie).
+Seiten auf Ihrer [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargestellt.",
 
 # Upload
 'uploadnologintext'           => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
@@ -302,7 +303,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfen Sie sowohl die URL auf Fehler als auch den Online-Status der Seite.',
 'upload-curl-error28-text' => 'Die Seite braucht zu lange für eine Antwort. Prüfen Sie, ob die Seite online ist, warten Sie einen kurzen Moment und versuchen es dann erneut. Es kann sinnvoll sein, einen erneuten Versuch zu einem anderen Zeitpunkt zu probieren.',
 
-'upload_source_file' => ' (eine Datei auf ihrem Computer)',
+'upload_source_file' => ' (eine Datei auf Ihrem Computer)',
 
 # Image description page
 'filehist-help' => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
@@ -381,10 +382,8 @@ Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
 'undeleteextrahelp' => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken Sie auf „Wiederherstellen“.
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln anhand der Markierungen aus, geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
-'undeletehistory'   => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten
-Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
-Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.
-Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
+'undeletehistory'   => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten Versionen wiederhergestellt.
+Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
 'undeleterevdel'    => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
 In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.
 Versionen von Dateien, auf die Sie keinen Zugriff haben, werden nicht wiederhergestellt.',
@@ -446,10 +445,10 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 # Tooltip help for the actions
 'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
 'tooltip-n-portal'        => 'Über das Portal, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'           => 'Fügt diese Seite ihrer Beobachtungsliste hinzu',
+'tooltip-watch'           => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
 
 # Metadata
-'notacceptable' => 'Der Wiki-Server kann die Daten nicht für ihr Ausgabegerät aufbereiten.',
+'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',
 
 # Spam protection
 'spamprotectiontext' => 'Die Seite, die Sie speichern wollen, wurde vom Spamschutzfilter blockiert. Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
