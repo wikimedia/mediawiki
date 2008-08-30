@@ -213,7 +213,7 @@ class UploadFromBase {
 		
 		# If the file existed before and was deleted, warn the user of this
 		# Don't bother doing so if the file exists now, however
-		if( $this->mLocalFile->wasDeleted() && !$file->exists() )
+		if( $this->mLocalFile->wasDeleted() && !$this->mLocalFile->exists() )
 			$warning['filewasdeleted'] = true;
 			
 		return $warning;
