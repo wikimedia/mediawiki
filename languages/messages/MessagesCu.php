@@ -212,6 +212,7 @@ $messages = array(
 'viewsource' => 'страни́цѧ исто́чьнъ о́браꙁъ',
 
 # Login and logout pages
+'logouttitle'             => 'ис̾хо́дъ',
 'loginpagetitle'          => 'Въходъ',
 'yourname'                => 'твоѥ́ и́мѧ',
 'yourpassword'            => 'Таино слово напиши',

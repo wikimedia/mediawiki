@@ -481,8 +481,8 @@ $messages = array(
 'copyright'            => 'محتوا تحت اجازه‌نامهٔ $1 در دسترس است.',
 'copyrightpagename'    => 'حق تکثیر {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:حق_تکثیر',
-'currentevents'        => 'رویدادهای کنونی',
-'currentevents-url'    => 'Project:رویدادهای کنونی',
+'currentevents'        => 'وقایع کنونی',
+'currentevents-url'    => 'Project:وقایع کنونی',
 'disclaimers'          => 'تکذیب‌نامه‌ها',
 'disclaimerpage'       => 'Project:تکذیب‌نامهٔ عمومی',
 'edithelp'             => 'راهنمای ویرایش کردن',
@@ -936,6 +936,7 @@ $3
 'revnotfoundtext'     => 'نسخهٔ قدیمی‌ای از صفحه که درخواسته بودید یافت نشد.
 لطفاً URLی را که برای دسترسی به این صفحه استفاده کرده‌اید، بررسی کنید.',
 'currentrev'          => 'نسخهٔ فعلی',
+'currentrev-asof'     => 'نسخهٔ کنونی تا $1',
 'revisionasof'        => 'نسخهٔ $1',
 'revision-info'       => '<div id="viewingold-warning" style="background: #FFBDBD; border: 1px solid #BB7979; color: #000000; margin: 2em 0 .5em; padding: .5em 1em; vertical-align: middle; clear: both; font-size:small;">شما یک نسخه از تاریخچهٔ این صفحه را می‌بینید، که حاصل ویرایش $2 در تاریخ $1 است. این نسخه ممکن است تفاوت‌های اساسی با <a href="/wiki/{{FULLPAGENAME}}" title="{{FULLPAGENAME}}">نسخهٔ فعلی</a> داشته باشد.</div>
 <div id="viewingold-plain" style="display:none;">Revision as of $1 by $2</div>',
@@ -1313,6 +1314,7 @@ $3
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',
 'recentchanges'                     => 'تغییرات اخیر',
+'recentchanges-legend'              => 'گزینه‌های تغییرات اخیر',
 'recentchangestext'                 => 'آخرین تغییرات ویکی را در این صفحه پی‌گیری کنید.',
 'recentchanges-feed-description'    => 'ردیابی آخرین تغییرات این ویکی در این خورد.',
 'rcnote'                            => "در زیر {{PLURAL:$1|'''۱''' تغییر|آخرین '''$1''' تغییر}} در آخرین {{PLURAL:$2|روز|'''$2''' روز}} را، تا $5، $4 می‌بینید.",
@@ -1469,6 +1471,9 @@ $3
 'filehist-revert'                => 'واگردانی',
 'filehist-current'               => 'نسخهٔ فعلی',
 'filehist-datetime'              => 'تاریخ',
+'filehist-thumb'                 => 'بند انگشتی',
+'filehist-thumbtext'             => 'تصویر بند انگشتی از نسخه تا $1',
+'filehist-nothumb'               => 'فاقد بند انگشتی',
 'filehist-user'                  => 'کاربر',
 'filehist-dimensions'            => 'ابعاد',
 'filehist-filesize'              => 'اندازه پرونده',
@@ -1723,10 +1728,11 @@ $3
 'noemailtitle'    => 'نشانی پست الکترونیکی موجود نیست',
 'noemailtext'     => 'این کاربر نشانی پست الکترونیکی معتبری مشخص نکرده است،
 یا تصمیم گرفته از کاربران دیگر پست الکترونیکی دریافت نکند.',
-'emailfrom'       => 'از',
-'emailto'         => 'به',
-'emailsubject'    => 'عنوان',
-'emailmessage'    => 'پیغام',
+'email-legend'    => 'ارسال نامه الکترونیکی به یک کاربر دیگر {{SITENAME}}',
+'emailfrom'       => 'از:',
+'emailto'         => 'به:',
+'emailsubject'    => 'عنوان:',
+'emailmessage'    => 'پیغام:',
 'emailsend'       => 'فرستاده شود',
 'emailccme'       => 'رونوشت پیغام را برایم بفرست.',
 'emailccsubject'  => 'رونوشت پیغام شما به $1: $2',
@@ -1920,8 +1926,7 @@ $NEWPAGE
 'undeleteextrahelp'            => "برای احیای تمام صفحه، همهٔ جعبه‌ها را تیک‌ناخورده رها کرده و دکمهٔ '''''احیا''''' را کلیک کنید. برای انجام احیایی منتخبانه، جعبه‌های متناظر با نسخه‌های موردِنظر برای احیا را تیک زده و دکمهٔ '''''احیا''''' را کلیک کنید. دکمهٔ '''''از نو''''' محتویات بخش «توضیح»  را پاک و تمام جعبه‌ها را تیک‌ناخورده می‌کند.",
 'undeleterevisions'            => '$1 نسخه بایگانی {{PLURAL:$1|شده‌است|شده‌اند}}',
 'undeletehistory'              => 'اگر این صفحه را احیا کنید، همهٔ نسخه‌های آن در تاریخچه احیا خواهند شد.
-اگر صفحهٔ جدیدی با نام یکسان از زمان حذف ایجاد شده باشد، نسخه‌های احیاشده در تاریخچهٔ قبلی خواهند آمد،
-و نسخهٔ فعلی صفحهٔ زنده به طور خودکار جایگزین نخواهد شد.',
+اگر صفحهٔ جدیدی با نام یکسان از زمان حذف ایجاد شده باشد، نسخه‌های احیاشده در تاریخچهٔ قبلی خواهند آمد.',
 'undeleterevdel'               => 'احیا صفحه‌های در حالتی که باعث حذف شدن بخشی از آخرین نسخهٔ صفحه بشود مقدور نیست.
 در این حالت شما باید چند نسخهٔ اخیر صفحه را نیز احیا کنید.
 نسخه‌هایی از پرونده‌ها که شما اجازه دیدنش را نداشته باشید قابل احیا نخواهند بود.',
@@ -2259,7 +2264,7 @@ $1',
 'tooltip-p-logo'                  => 'صفحهٔ اصلی',
 'tooltip-n-mainpage'              => 'بازدید از صفحهٔ اصلی',
 'tooltip-n-portal'                => 'پیرامون پروژه، چه‌ها توانید کرد و کجا توانید یافت',
-'tooltip-n-currentevents'         => 'یافتن اطلاعات پیش‌زمینه پیرامون رویدادهای کنونی',
+'tooltip-n-currentevents'         => 'یافتن اطلاعات پیشزمینه پیرامون وقایع کنونی',
 'tooltip-n-recentchanges'         => 'فهرست تغییرات اخیر در ویکی.',
 'tooltip-n-randompage'            => 'آوردن یک صفحهٔ تصادفی',
 'tooltip-n-help'                  => 'مکانی برای دریافتن.',
@@ -2600,6 +2605,18 @@ $1',
 'exif-lightsource-19'  => 'نور استاندارد C',
 'exif-lightsource-24'  => 'لامپ تنگستن کارخانه ISO',
 'exif-lightsource-255' => 'سایر',
+
+# Flash modes
+'exif-flash-fired-0'    => 'بدون زدن فلاش',
+'exif-flash-fired-1'    => 'با زدن فلاش',
+'exif-flash-return-0'   => 'فاقد عملکرد کشف نور انعکاسی',
+'exif-flash-return-2'   => 'نور انعکاسی کشف نشد',
+'exif-flash-return-3'   => 'نور انعکاسی کشف شد',
+'exif-flash-mode-1'     => 'فلاش زدن جبرانی',
+'exif-flash-mode-2'     => 'فلاش نزدن جبرانی',
+'exif-flash-mode-3'     => 'حالت خودکار',
+'exif-flash-function-1' => 'فاقد عملکرد فلاش',
+'exif-flash-redeye-1'   => 'حالت اصلاح سرخی چشم‌ها',
 
 'exif-focalplaneresolutionunit-2' => 'اینچ',
 

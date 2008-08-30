@@ -1468,6 +1468,9 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filehist-revert'                => 'återställ',
 'filehist-current'               => 'nuvarande',
 'filehist-datetime'              => 'Datum/Tid',
+'filehist-thumb'                 => 'Miniatyrbild',
+'filehist-thumbtext'             => 'Miniatyrbild för versionen från den $1',
+'filehist-nothumb'               => 'Ingen miniatyrbild',
 'filehist-user'                  => 'Användare',
 'filehist-dimensions'            => 'Dimensioner',
 'filehist-filesize'              => 'Filstorlek',
@@ -1899,7 +1902,8 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 * För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''.
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
-'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Notera att restriktioner på sidversioner förloras i samband med återställningen.',
+'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken.
+Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken.',
 'undeleterevdel'               => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
 I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.',
 'undeletehistorynoadmin'       => 'Den här sidan har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
@@ -2590,6 +2594,12 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-lightsource-19'  => 'Standardljus C',
 'exif-lightsource-24'  => 'ISO studiobelysning',
 'exif-lightsource-255' => 'Annan ljuskälla',
+
+# Flash modes
+'exif-flash-fired-0'  => 'Blixten utlöstes ej',
+'exif-flash-fired-1'  => 'Blixten utlöstes',
+'exif-flash-mode-3'   => 'autoläge',
+'exif-flash-redeye-1' => 'röda-ögon-reducering',
 
 'exif-focalplaneresolutionunit-2' => 'tum',
 

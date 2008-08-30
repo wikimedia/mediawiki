@@ -211,20 +211,30 @@ $messages = array(
 'accountcreated'          => 'Kuenta kreada',
 'accountcreatedtext'      => 'La kuenta de uzuario para $1 ha sido kreada.',
 
+# Edit page toolbar
+'italic_tip'     => 'Texhto en cursiva',
+'extlink_sample' => 'http://www.enxemplo.com Título del link',
+'headline_tip'   => 'Titular de nivel 2',
+'image_tip'      => 'Imagen incorporada',
+'media_tip'      => 'Link al arxivo multimedia',
+
 # Edit pages
-'summary'      => 'Resumen',
-'minoredit'    => 'Esta es una edición chiquitica',
-'watchthis'    => 'Vigilar este artículo',
-'savearticle'  => 'Registrar la página',
-'showpreview'  => 'Mostrar la previsualización',
-'showdiff'     => 'Amostrar trocamientos',
-'accmailtitle' => 'La kontrasenya ha sido embiada.',
-'accmailtext'  => 'La kontrasenya para "$1" se ha embiado a $2.',
+'summary'          => 'Resumen',
+'subject'          => 'Tema/título',
+'minoredit'        => 'Esta es una edición chiquitica',
+'watchthis'        => 'Vigilar este artículo',
+'savearticle'      => 'Registrar la página',
+'showpreview'      => 'Mostrar la previsualización',
+'showdiff'         => 'Amostrar trocamientos',
+'accmailtitle'     => 'La kontrasenya ha sido embiada.',
+'accmailtext'      => 'La kontrasenya para "$1" se ha embiado a $2.',
+'copyrightwarning' => 'Si puede ser, que observe que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detayes en $1). Si no quere que la gente endereche tus texhtos escritos sin piedad y los distribuya libbremente, alora no los meta aquí. También él/ella nos está asegurando ansí que escribió este texhto su mismo y es dueño de los derechos de autor, o lo copió desde el dominio público u otra fuente libbero.<strong>¡QUE N0 USE TEXHTOS ESCRITOS CON COPYRIGHT SIN PERMIŚIÓN!</strong><br />',
 
 # History pages
-'revisionasof' => 'Rêvizión de $1',
-'cur'          => 'act',
-'last'         => 'dal cabo',
+'revisionasof'     => 'Rêvizión de $1',
+'previousrevision' => '← Rêvizión de antes',
+'cur'              => 'act',
+'last'             => 'dal cabo',
 
 # Diffs
 'lineno'   => 'Liña $1:',
@@ -249,6 +259,9 @@ $messages = array(
 'hist'            => 'ist',
 'hide'            => 'Esconder',
 'show'            => 'Amostrar',
+'minoreditletter' => 'c',
+'newpageletter'   => 'N',
+'boteditletter'   => 'b',
 
 # Recent changes linked
 'recentchangeslinked' => 'Trocamientos conectados',
@@ -265,6 +278,7 @@ $messages = array(
 'randompage' => 'Página por ventura',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 {{PLURAL:$1|byte|bytes}}',
 'ancientpages' => 'Artikolos mas viejos',
 'move'         => 'Trasladar',
 
@@ -344,6 +358,8 @@ Si puede ser, que use el botón de previsualización antes de registrarla.',
 'tooltip-t-upload'        => 'Mandar imágenes o arxivos de multimedia al servidor',
 'tooltip-t-specialpages'  => 'La lista de todas las páginas especiales',
 'tooltip-save'            => 'Guardar los trocamientos',
+'tooltip-preview'         => 'Que previzualize sus trocamientos, ¡si puede ser, que use esto antes de enregistrar!',
+'tooltip-diff'            => 'Mostra los trocamientos que él/ella hizo en el texhto.',
 
 # Attribution
 'anonymous' => 'Uzuario(s) anonimo(s) de {{SITENAME}}',

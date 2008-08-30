@@ -1218,6 +1218,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filehist-revert'                => '差し戻す',
 'filehist-current'               => '現在の版',
 'filehist-datetime'              => '日付/時刻',
+'filehist-thumb'                 => 'サムネイル',
+'filehist-thumbtext'             => '$1時点における版のサムネイル',
+'filehist-nothumb'               => 'サムネイルなし',
 'filehist-user'                  => '利用者',
 'filehist-dimensions'            => '解像度',
 'filehist-filesize'              => 'ファイルサイズ',
@@ -1454,6 +1457,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
 'noemailtext'     => 'この利用者は有効なメールアドレスを登録していないか、メールを受け取りたくないというオプションを選択しています。',
+'email-legend'    => '{{SITENAME}}の他の利用者に電子メールを送る',
 'emailfrom'       => 'あなたのアドレス',
 'emailto'         => 'あて先',
 'emailsubject'    => '題名',
@@ -1651,7 +1655,7 @@ $NEWPAGE
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
 'undeleterevisions'            => '$1版保管',
-'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。ファイル履歴の制限は、この操作によって失われることにも注意してください。特定版の復帰を行う場合は、{{int:undeletebtn}}ボタンを押す前に復帰対象版のチェックボックスを選択してください。',
+'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。',
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
 'undelete-revision'            => '$1 の削除された $2 の版 投稿者 $3 :',
@@ -2338,6 +2342,18 @@ Variants for Chinese language
 'exif-lightsource-19'  => '標準光C',
 'exif-lightsource-24'  => 'ISOスタジオタングステン',
 'exif-lightsource-255' => 'その他',
+
+# Flash modes
+'exif-flash-fired-0'    => 'フラッシュが光りませんでした',
+'exif-flash-fired-1'    => 'フラッシュが光りました',
+'exif-flash-return-0'   => 'ストロボ反応検知機能がありません',
+'exif-flash-return-2'   => 'ストロボ反応光が検知されませんでした',
+'exif-flash-return-3'   => 'ストロボ反応光が検知されました',
+'exif-flash-mode-1'     => '強制フラッシュ',
+'exif-flash-mode-2'     => '強制フラッシュ禁止',
+'exif-flash-mode-3'     => '自動モード',
+'exif-flash-function-1' => 'フラッシュ機能がありません',
+'exif-flash-redeye-1'   => '赤目防止モード',
 
 'exif-focalplaneresolutionunit-2' => 'インチ',
 

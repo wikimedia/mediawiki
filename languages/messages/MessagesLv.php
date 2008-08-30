@@ -691,8 +691,25 @@ m = maznozīmīgs labojums.',
 'files'                 => 'Attēli',
 
 # User rights
-'userrights-user-editname' => 'Ievadi lietotājvārdu:',
-'editinguser'              => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
+'userrights'                  => 'Lietotāju tiesību pārvaldība', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Pārvaldīt lietotāja grupas',
+'userrights-user-editname'    => 'Ievadi lietotājvārdu:',
+'editusergroup'               => 'Izmainīt lietotāja grupas',
+'editinguser'                 => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
+'userrights-editusergroup'    => 'Izmainīt lietotāja grupas',
+'saveusergroups'              => 'Saglabāt lietotāja grupas',
+'userrights-groupsmember'     => 'Šobrīd ietilpst grupās:',
+'userrights-groups-help'      => 'Tu vari izmainīt kādās grupās šis lietotājs ir:
+* Ieķeksēts lauciņš noāda, ka lietotājs ir attiecīgajā grupā.
+* Neieķeksēts lauciņš norāda, ka lietotājs nav attiecīgajā grupā.
+* * norāda, ka šo grupu tu nevarēsi noņemt, pēc tam, kad to būsi pielicis, vai otrādāk (tu nevarēsi atcelt savas izmaiņas).',
+'userrights-reason'           => 'Izmaiņas iemesls:',
+'userrights-no-interwiki'     => 'Tev nav tiesību izmainīt lietotāju tiesības citos wiki.',
+'userrights-nodatabase'       => 'Datubāze $1 neeksistē vai nav lokāla.',
+'userrights-nologin'          => 'Tev ir [[Special:UserLogin|jāieiet iekšā]] kā adminam, lai varētu izmainīt lietotāju grupas.',
+'userrights-notallowed'       => 'Tavam lietotājvārdam nav tiesību izmainīt lietotāju grupas.',
+'userrights-changeable-col'   => 'Grupas, kuras tu vari izmainīt',
+'userrights-unchangeable-col' => 'Grupas, kuras tu nevari izmainīt',
 
 # Groups
 'group'            => 'Grupa:',
@@ -738,7 +755,9 @@ m = maznozīmīgs labojums.',
 'right-importupload'     => 'Importēt lapas no failu augšuplādes',
 
 # User rights log
-'rightslog' => 'Lietotāju tiesību reģistrs',
+'rightslog'      => 'Lietotāju tiesību reģistrs',
+'rightslogtext'  => 'Šis ir lietotāju tiesību izmaiņu reģistrs.',
+'rightslogentry' => 'izmainīja $1 grupas no $2 uz $3',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
@@ -1059,10 +1078,10 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'defemailsubject' => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'    => 'Nav e-pasta adreses',
 'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi vai arī ir izvēlējies nesaņemt e-pastu no citiem lietotājiem.',
-'emailfrom'       => 'No',
-'emailto'         => 'Kam',
-'emailsubject'    => 'Temats',
-'emailmessage'    => 'Vēstījums',
+'emailfrom'       => 'No:',
+'emailto'         => 'Kam:',
+'emailsubject'    => 'Temats:',
+'emailmessage'    => 'Vēstījums:',
 'emailsend'       => 'Nosūtīt',
 'emailsent'       => 'E-pasts nosūtīts',
 'emailsenttext'   => 'Tavs e-pasts ir nosūtīts.',
@@ -1185,8 +1204,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 Lai atjaunotu tikai noteiktas versijas, ieķeksē vajadzīgās versijas un spied uz '''''Atjaunot!'''''. Uzspiešana uz '''''Notīrīt''''' notīrīs komentāru lauku un visus keķšus.",
 'undeleterevisions'        => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
 'undeletehistory'          => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
-Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta. 
-Tas arī var ietekmēt failu versiju aizsardzības līmeni.',
+Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta.',
 'undeleterevdel'           => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
 Šādos gadījumos ir vai nu jāizņem ķeksis no jaunākās versijas, vai arī jāatslēpj jaunākā versija.',
 'undeletehistorynoadmin'   => 'Šī lapa ir tikusi izdzēsta. 

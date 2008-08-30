@@ -23,6 +23,7 @@
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Zetud
  * @author Горан Анђелковић
  * @author לערי ריינהארט
  */
@@ -1400,6 +1401,9 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filehist-revert'                => 'révoquer',
 'filehist-current'               => 'actuel',
 'filehist-datetime'              => 'Date et heure',
+'filehist-thumb'                 => 'Miniature',
+'filehist-thumbtext'             => 'Miniature pour la version du $1',
+'filehist-nothumb'               => 'Pas de miniature',
 'filehist-user'                  => 'Utilisateur',
 'filehist-dimensions'            => 'Dimensions',
 'filehist-filesize'              => 'Taille du fichier',
@@ -2101,7 +2105,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
 'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki.
-Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MédiaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MédiaWiki générique.',
+Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MediaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MediaWiki générique.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' n’est pas disponible car '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',

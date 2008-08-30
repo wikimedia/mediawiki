@@ -408,7 +408,7 @@ All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun d
 # General errors
 'error'                => 'Feeler',
 'databaseerror'        => 'Datebank Feeler',
-'dberrortext'          => 'En Datebank Syntax Fehler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". MySQL Feeler "$3: $4".',
+'dberrortext'          => 'En Datebank Syntax Feeler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". MySQL Feeler "$3: $4".',
 'dberrortextcl'        => 'En Datebank Syntax Feeler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". De MySQL Feeler war "$3: $4".',
 'noconnect'            => 'Pardon! Et gëtt zur Zäit technesch Problemer op dëser Wiki, an et konnt keng Verbindung mat der Datebank op $1 gemaach ginn',
 'nodb'                 => "D'Datebank $1 konnt net gewielt ginn",
@@ -760,6 +760,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'revnotfound'         => 'Dës Versioun gouf net fonnt.',
 'revnotfoundtext'     => "Déi Versioun vun der Säit déi Dir gefrot hutt konnt net fonnt ginn. Kuckt d'URL no, déi Dir benotzt hutt fir op dës Säit ze kommen.",
 'currentrev'          => 'Aktuell Versioun',
+'currentrev-asof'     => 'Aktuell Versioun vum $1',
 'revisionasof'        => 'Versioun vum $1',
 'revision-info'       => 'Versioun vum $1 vum $2.',
 'previousrevision'    => '← Méi al Versioun',
@@ -891,6 +892,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-h3'                 => "eng '''Iwwerschrëft (3. Niveau)'''",
 'diff-h4'                 => "eng '''Iwwerschrëft (4. Niveau)'''",
 'diff-h5'                 => "eng '''Iwwerschrëft (5. Niveau)'''",
+'diff-div'                => "e '''Blockelement'''",
 'diff-ul'                 => "eng '''Lëscht'''",
 'diff-ol'                 => "eng '''numeréiert Lëscht'''",
 'diff-table'              => "eng '''Tabell'''",
@@ -1513,6 +1515,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'defemailsubject' => 'E-Mail vu(n) {{SITENAME}}',
 'noemailtitle'    => 'Keng E-Mailadress',
 'noemailtext'     => 'Dëse Benotzer huet keng gülteg E-Mailadress uginn, oder well keng E-Mail vun anere Wikipedianer kréien.',
+'email-legend'    => 'Engem anere(n) {{SITENAME}}-Benotzer eng E-Mail schécken',
 'emailfrom'       => 'Vum:',
 'emailto'         => 'Fir:',
 'emailsubject'    => 'Sujet:',
@@ -1664,6 +1667,8 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de protegéierte Säite]] fir eng L
 'protect_expiry_old'          => "D'Spärzäit läit an der Vergaangenheet.",
 'protect-unchain'             => 'Réckel-Protectioun änneren',
 'protect-text'                => "Hei kënnt Dir de Protectiounsstatus fir d'Säit <strong>$1</strong> kucken an änneren.",
+'protect-locked-dblock'       => "Den Niveau vun der Proectioun vun der Säit kann net geänenert ginn, well d'Datebank gespaart ass.
+Hei sinn déi aktuell Astellungen fir d'Säit <strong>$1</strong>:",
 'protect-locked-access'       => "Dir hutt net déi néideg Rechter fir de Protectiouns-Niveau vun dëser Säit z'änneren.
 Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-cascadeon'           => "Dës Säit ass elo gespaart well si an déi folgend {{PLURAL:$1|Säit|Säiten}} agebonn ass déi duerch eng Kaskadespär gespaart {{PLURAL:$1|ass|sinn}}. De Protectiounsniveau ka fir dës Seite geännert ginn, dëst huet awer keen Afloss op d'Kaskadespär.",
@@ -1703,8 +1708,8 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 * Fir nëmmen eng bestëmmte Versioun vun der Säit ze retabléieren, markéiert d'Case vun der gewënschter Versioun mat engem Krop, a klickt duerno op '''''Restauréiere'''''. 
 * '''''Reset''''' mécht d'Kommentarfeld eidel an hëlt d'Kreep vun all de Casen ewech.",
 'undeleterevisions'            => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} archivéiert',
-'undeletehistory'              => "Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert. Wann zënter dem Läschen eng nei Säit mat dem selweschte Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedro.
-D'Astellunge - wien eng Versioun ka gesinn - gi beim Restauréiere verluer.",
+'undeletehistory'              => 'Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert.
+Wann zënter dem Läschen eng nei Säit mat dem selweschte Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedro.',
 'undeletehistorynoadmin'       => "Dës Säit gouf geläscht. De Grond fir d'Läsche gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. Déi verschidden Textversioune kënnen awer just vun Administrateure gekuckt a restauréiert ginn.",
 'undelete-revision'            => 'Geläschte Versioun vun $1 (Versioun  vum $2) vum $3:',
 'undeleterevision-missing'     => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
@@ -2153,6 +2158,7 @@ $1',
 'imagelisttext'         => "Hei ass eng Lëscht vun '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
 'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
 'newimages-legend'      => 'Filter',
+'newimages-label'       => 'Numm vum Fichier (oder en Deel dovun):',
 'showhidebots'          => '($1 Botten)',
 'noimages'              => 'Keng Biller fonnt.',
 'ilsubmit'              => 'Sichen',
@@ -2325,6 +2331,12 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-lightsource-18'  => 'Standardluucht B',
 'exif-lightsource-19'  => 'Standardluucht C',
 'exif-lightsource-255' => 'Aner Liichtquell',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Ouni Blëtz',
+'exif-flash-fired-1'    => 'mat Blëtz',
+'exif-flash-mode-3'     => 'Automatik',
+'exif-flash-function-1' => 'Ouni Blëtzfonctioun',
 
 'exif-focalplaneresolutionunit-2' => 'Zoll/Inchen',
 

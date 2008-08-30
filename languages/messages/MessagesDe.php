@@ -5,6 +5,7 @@
  * @file
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Li-sung
  * @author MichaelFrey
  * @author Omnipaedista
  * @author Pill
@@ -630,6 +631,7 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 # Password reset dialog
 'resetpass'               => 'Passwort für Benutzerkonto zurücksetzen',
 'resetpass_announce'      => 'Anmeldung mit dem per E-Mail zugesandten Code. Um die Anmeldung abzuschließen, musst du jetzt ein neues Passwort wählen.',
+'resetpass_text'          => '<!-- Ergänze den Text hier -->',
 'resetpass_header'        => 'Passwort zurücksetzen',
 'resetpass_submit'        => 'Passwort übermitteln und anmelden',
 'resetpass_success'       => 'Dein Passwort wurde erfolgreich geändert. Es folgt die Anmeldung …',
@@ -1393,6 +1395,9 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filehist-revert'                => 'zurücksetzen',
 'filehist-current'               => 'aktuell',
 'filehist-datetime'              => 'Version vom',
+'filehist-thumb'                 => 'Vorschaubild',
+'filehist-thumbtext'             => 'Vorschaubild für Version vom $1',
+'filehist-nothumb'               => 'Kein Vorschaubild vorhanden',
 'filehist-user'                  => 'Benutzer',
 'filehist-dimensions'            => 'Maße',
 'filehist-filesize'              => 'Dateigröße',
@@ -1827,10 +1832,8 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 * Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
-'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten
-Versionen wiederhergestellt. Wenn seit der Löschung eine neue Seite gleichen
-Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.
-Sichtbarkeits-Einschränkungen an Dateiversionen gehen bei einer Wiederherstellung verloren.',
+'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, werden auch alle alten Versionen wiederhergestellt.
+Wenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.',
 'undeleterevdel'               => 'Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.
 In diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.',
 'undeletehistorynoadmin'       => 'Diese Seite wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,

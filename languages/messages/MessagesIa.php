@@ -1770,8 +1770,7 @@ Pro executar un restauration selective, marca le quadratos correspondente al rev
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
 'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al historia.
 Si un nove pagina con le mesme nomine ha essite create post le deletion, le revisiones
-restaurate apparera in le historia anterior.
-Nota etiam que le restrictiones super revisiones de files es perdite al tempore de restauration.',
+restaurate apparera in le historia anterior.',
 'undeleterevdel'               => 'Le restauration non essera executate si illo resultara in le deletion partial del revision le plus recente del pagina o del file.
 In tal casos, tu debe dismarcar o revelar le revision delite le plus recente.',
 'undeletehistorynoadmin'       => 'Iste pagina ha essite delite.
@@ -2493,6 +2492,18 @@ Le alteres essera initialmente celate.
 'exif-lightsource-19'  => 'Lumine standard C',
 'exif-lightsource-24'  => 'Tungsten de studio ISO',
 'exif-lightsource-255' => 'Altere origine de lumine',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Flash non fulgurava',
+'exif-flash-fired-1'    => 'Flash fulgurava',
+'exif-flash-return-0'   => 'nulle function pro deteger stroboscopio',
+'exif-flash-return-2'   => 'stroboscopio non detegite',
+'exif-flash-return-3'   => 'stroboscopio detegite',
+'exif-flash-mode-1'     => 'fulguration flash compulsori',
+'exif-flash-mode-2'     => 'suppression del flash compulsori',
+'exif-flash-mode-3'     => 'modo automatic',
+'exif-flash-function-1' => 'Nulle function de flash',
+'exif-flash-redeye-1'   => 'modo de reduction de oculos rubie',
 
 'exif-focalplaneresolutionunit-2' => 'uncias',
 

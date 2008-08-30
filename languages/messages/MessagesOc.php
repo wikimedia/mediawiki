@@ -1247,6 +1247,7 @@ per modificar vòstras preferéncias d'utilizaire.",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'recentchanges'                     => 'Darrièrs cambiaments',
+'recentchanges-legend'              => 'Opcions dels darrièrs cambiaments',
 'recentchangestext'                 => 'Vaquí sus aquesta pagina, los darrièrs cambiaments de {{SITENAME}}.',
 'recentchanges-feed-description'    => "Seguissètz los darrièrs cambiaments d'aqueste wiki dins un flus.",
 'rcnote'                            => 'Vaquí {{PLURAL:$1|lo darrièr cambiament|los $1 darrièrs cambiaments}} dempuèi {{PLURAL:$2|lo darrièr jorn|los <b>$2</b> darrièrs jorns}}, determinat{{PLURAL:$1||s}} lo $4, a $5.',
@@ -1527,7 +1528,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'brokenredirects-delete' => '(suprimir)',
 
 'withoutinterwiki'         => 'Paginas sens ligams interlengas',
-'withoutinterwiki-summary' => "Aquesta pagina a pas de ligams vèrs las versions dins d'autras lengas:",
+'withoutinterwiki-summary' => "Las paginas seguentas an pas de ligams cap a las versions dins d'autras lengas.",
 'withoutinterwiki-legend'  => 'Prefix',
 'withoutinterwiki-submit'  => 'Afichar',
 
@@ -2232,12 +2233,19 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-undo'                    => '"Desfar" revòca aquesta edicion e dobrís la fenèstra d’edicion en mòde previsualizacion. Permet d’apondre una rason dins la bóstia de resumit.',
 
 # Stylesheets
-'common.css'   => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
-'monobook.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires del skin Monobook */',
+'common.css'      => '/** Lo CSS plaçat aicí serà aplicat a totas las aparéncias. */',
+'standard.css'    => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Estandard. */',
+'nostalgia.css'   => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Nostalgia. */',
+'cologneblue.css' => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Cologne Blue */',
+'monobook.css'    => '/* Lo CSS plaçat aicí afectarà los utilizaires del skin Monobook */',
+'myskin.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Myskin */',
+'chick.css'       => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Chick */',
+'simple.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Simple */',
+'modern.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
 
 # Scripts
 'common.js'   => '/* Un JavaScript quin que siá aicí serà cargat per un utilizaire quin que siá e per cada pagina accedida. */',
-'monobook.js' => '/* Perimit; utilizatz [[MediaWiki:common.js]] */',
+'monobook.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
 
 # Metadata
 'nodublincore'      => 'Las metadonadas « Dublin Core RDF » son desactivadas sus aqueste servidor.',
@@ -2294,7 +2302,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'patrol-log-header' => 'Vaquí un jornal de las versions patrolhadas.',
 'patrol-log-line'   => 'a marcat la version $1 de $2 coma verificada $3',
 'patrol-log-auto'   => '(automatic)',
-'patrol-log-diff'   => '$1',
+'patrol-log-diff'   => 'v$1',
 
 # Image deletion
 'deletedrevision'                 => 'La version anciana $1 es estada suprimida.',

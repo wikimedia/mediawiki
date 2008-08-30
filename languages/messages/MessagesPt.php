@@ -1800,7 +1800,7 @@ edições a serem restauradas e clique em '''''Restaurar'''''. Clicar em '''''Li
 campo de comentário e todas as caixas de selecção.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|edição disponível|edições disponíveis}}',
 'undeletehistory'              => 'Se restaurar uma página, todas as edições serão restauradas para o histórico.
-Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão primeiro no histórico e a página actual não será automaticamente trocada. Note que as restrições de acesso às edições serão perdidas ao ser feita a restauração.',
+Se uma nova página foi criada com o mesmo nome desde a eliminação, as edições restauradas aparecerão no histórico anterior.',
 'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página ou ficheiro.
 Em tais casos, deverá desseleccionar ou reverter a ocultação da versão apagada mais recente.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
@@ -2479,6 +2479,15 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-lightsource-19'  => 'Padrão de lâmpada C',
 'exif-lightsource-24'  => 'Tungsténio de estúdio ISO',
 'exif-lightsource-255' => 'Outra fonte de luz',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Flash não disparou',
+'exif-flash-fired-1'    => 'Flash disparado',
+'exif-flash-mode-1'     => 'disparo de flash forçado',
+'exif-flash-mode-2'     => 'disparo de flash suprimido',
+'exif-flash-mode-3'     => 'modo auto',
+'exif-flash-function-1' => 'Sem função de flash',
+'exif-flash-redeye-1'   => 'modo de redução de olhos vermelhos',
 
 'exif-focalplaneresolutionunit-2' => 'polegadas',
 

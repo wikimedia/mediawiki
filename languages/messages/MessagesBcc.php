@@ -1171,7 +1171,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییرات}}',
 'recentchanges'                     => 'نوکین تغییرات',
-'recentchanges-legend'              => 'گزارش گزینه یان',
+'recentchanges-legend'              => 'گزینه ی نوکین تغییرات',
 'recentchangestext'                 => 'رندگر نوکترین تغییرات ته ویکی تی ای صفحه.',
 'recentchanges-feed-description'    => 'آهرین تغییرات ته وی کی چه ای فید رند گر',
 'rcnote'                            => "جهلء{{PLURAL:$1|هست '''1''' تغییری|هستن آهری '''$1''' تغییرات}} ته آهرین {{PLURAL:$2|روچ|'''$2''' روچان}}, چه$5, $4.",
@@ -1355,6 +1355,9 @@ PICT # misc.
 'filehist-revert'                => 'واتر',
 'filehist-current'               => 'هنو',
 'filehist-datetime'              => 'تاریح/زمان',
+'filehist-thumb'                 => 'بند انگشت',
+'filehist-thumbtext'             => 'بند انگشتی عکس چه $1',
+'filehist-nothumb'               => 'بی بند انگشتی',
 'filehist-user'                  => 'کاربر',
 'filehist-dimensions'            => 'جنبه یان',
 'filehist-filesize'              => 'اندازه فایل',
@@ -1603,10 +1606,11 @@ PICT # misc.
 'defemailsubject' => '{{SITENAME}} ایمیل',
 'noemailtitle'    => 'هچ آدرس ایمیل',
 'noemailtext'     => 'ای کاربر یک آدرس ایمیل معتبری مشخص نه کتت یا انتخابی کت ای که چه دگه کابران ایمیل مه گریت.',
-'emailfrom'       => 'چه',
+'email-legend'    => 'یک ایمیلی په دگه کاربر {{SITENAME}} دیم دی',
+'emailfrom'       => ':چه',
 'emailto'         => 'به:',
-'emailsubject'    => 'موضوغ',
-'emailmessage'    => 'کوله',
+'emailsubject'    => 'موضوع:',
+'emailmessage'    => 'کوله:',
 'emailsend'       => 'دیم دی',
 'emailccme'       => 'یک کپی چه منی کوله په من وت ایمیل کن.',
 'emailccsubject'  => 'کپی چه شمی کوله په $1: $2',
@@ -1803,8 +1807,7 @@ $NEWPAGE
 په اجرا کتن تررینگ انتخابی جعبه هانی که مطابق بازبینی آن باید تررینگ بیت نشان بلیت، و کلیک کنیت '''''تررین''''. کلیک کتن '''''Reset''''' فیلد نظرء و کل جعبه نشان پهک کنت.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}} آرشیو بوتنت',
 'undeletehistory'              => 'اگر  صفحه ای تررینیت، کل بازبینی آن ته تاریح دکه ذخیره بنت.
-اگر یک نوکین صفحه گون یک دابی نام بعد چه حذف شر بوتت، دگه ذخیره بوتگین بازبینی آن ته تاریح اولتر جاه کآینت.
-هنچوش توجه بیت که محدودیات ته بازبینی آن فایل ته دگه تررینگ گار بنت.',
+اگر یک نوکین صفحه گون یک دابی نام بعد چه حذف شر بوتت، دگه ذخیره بوتگین بازبینی آن ته تاریح اولتر جاه کآینت.',
 'undeleterevdel'               => 'تررینگ حذف انجام نه بیت اگر آی تاثیری ته اصلی صفحه یا فایل بازبینی که جری جذف بوتت.
 ته ای موارد شما بایدن چک می کنیت یا پناه مه کنیت نوکترین بازبینی حدفیء.',
 'undeletehistorynoadmin'       => 'ای صفحه حذف بوتت.
@@ -2566,6 +2569,18 @@ Variants for Chinese language
 'exif-lightsource-23'  => 'د50',
 'exif-lightsource-24'  => 'ایزو استدیو تنگستن',
 'exif-lightsource-255' => 'دگ منبع نور',
+
+# Flash modes
+'exif-flash-fired-0'    => 'بی فلاش جنگ',
+'exif-flash-fired-1'    => 'فلاش جنت',
+'exif-flash-return-0'   => 'بی عملگر درگیزگ نور انعکاسی',
+'exif-flash-return-2'   => 'نور انعکاسی درگیزگ نه بوت',
+'exif-flash-return-3'   => 'نور انعکاسی درگیزگ بوت',
+'exif-flash-mode-1'     => 'فلاش جنگ جبرانی',
+'exif-flash-mode-2'     => 'فلاش نه جنگ جبرانی',
+'exif-flash-mode-3'     => 'اتوماتیکی حالت',
+'exif-flash-function-1' => 'بی عملگر فلاش',
+'exif-flash-redeye-1'   => 'حالت کم کتن سهری چمء',
 
 'exif-focalplaneresolutionunit-2' => 'اینچ',
 

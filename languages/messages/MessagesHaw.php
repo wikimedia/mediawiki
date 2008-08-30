@@ -312,6 +312,7 @@ hō‘ike ‘ia i lalo:",
 'protectedpagewarning'   => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
 'template-protected'     => '(ho‘omalu ‘ia)',
 'template-semiprotected' => '(hapa-ho‘omalu ‘ia)',
+'edittools'              => '<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->',
 
 # History pages
 'currentrev'          => 'Kāmua hou',

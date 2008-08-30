@@ -747,7 +747,7 @@ Những giá trị này sẽ bị bỏ đi.',
 'undo-summary' => 'Đã lùi lại sửa đổi $1 của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]])',
 
 # Account creation failure
-'cantcreateaccounttitle' => 'Không có thể mở tài khoản',
+'cantcreateaccounttitle' => 'Không thể mở tài khoản',
 'cantcreateaccount-text' => "Chức năng tài tạo khoản từ địa chỉ IP này ('''$1''') đã bị [[User:$3|$3]] cấm.
 
 Lý do được $3 đưa ra là ''$2''",
@@ -758,6 +758,7 @@ Lý do được $3 đưa ra là ''$2''",
 'revnotfound'         => 'Không thấy',
 'revnotfoundtext'     => 'Không thấy phiên bản trước của trang này. Xin kiểm tra lại.',
 'currentrev'          => 'Bản hiện tại',
+'currentrev-asof'     => 'Phiên bản hiện tại như vào lúc $1',
 'revisionasof'        => 'Phiên bản vào lúc $1',
 'revision-info'       => 'Phiên bản vào lúc $1 do $2 sửa đổi',
 'previousrevision'    => '← Phiên bản cũ',
@@ -1008,7 +1009,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-watchlist-days'     => 'Số ngày hiển thị trong danh sách theo dõi:',
 'prefs-watchlist-edits'    => 'Số lần sửa đổi tối đa trong danh sách theo dõi mở rộng:',
 'prefs-misc'               => 'Linh tinh',
-'saveprefs'                => 'Lưu lựa chọn',
+'saveprefs'                => 'Lưu tùy chọn',
 'resetprefs'               => 'Mặc định lại lựa chọn',
 'oldpassword'              => 'Mật khẩu cũ:',
 'newpassword'              => 'Mật khẩu mới:',
@@ -1120,7 +1121,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'right-editprotected'        => 'Sửa trang khóa (không bị khóa theo tầng)',
 'right-editinterface'        => 'Sửa giao diện người dùng',
 'right-editusercssjs'        => 'Sửa tập tin CSS và JS của người dùng khác',
-'right-rollback'             => 'Nhanh chóng lùi thành viên cuối cùng sửa đổi tại trang nào đó',
+'right-rollback'             => 'Nhanh chóng lùi tất cả sửa đổi của thành viên cuối cùng sửa đổi tại trang nào đó',
 'right-markbotedits'         => 'Đánh dấu sửa đổi phục hồi là sửa đổi bot',
 'right-noratelimit'          => 'Không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng',
 'right-import'               => 'Nhập trang từ wiki khác',
@@ -1144,6 +1145,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 'recentchanges'                     => 'Thay đổi gần đây',
+'recentchanges-legend'              => 'Tùy chọn thay đổi gần đây',
 'recentchangestext'                 => 'Xem các thay đổi gần đây nhất tại wiki trên trang này.',
 'recentchanges-feed-description'    => 'Theo dõi các thay đổi gần đây nhất của wiki dùng feed này.',
 'rcnote'                            => "Dưới đây là {{PLURAL:$1|'''1''' thay đổi|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5, $4.",
@@ -1208,7 +1210,7 @@ Xem [[Special:NewImages|trang trưng bày các tập tin mới]] để xem trự
 'filestatus'                  => 'Bản quyền:',
 'filesource'                  => 'Nguồn:',
 'uploadedfiles'               => 'Tập tin đã tải',
-'ignorewarning'               => 'Bỏ qua cảnh báo và lưu tập tin.',
+'ignorewarning'               => 'Bỏ qua cảnh báo và lưu tập tin',
 'ignorewarnings'              => 'Bỏ qua cảnh báo',
 'minlength1'                  => 'Tên tập tin phải có ít nhất một ký tự.',
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
@@ -1314,6 +1316,9 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'filehist-revert'                => 'lùi lại',
 'filehist-current'               => 'hiện',
 'filehist-datetime'              => 'Ngày/Giờ',
+'filehist-thumb'                 => 'Thu nhỏ',
+'filehist-thumbtext'             => 'Hình thu nhỏ của phiên bản vào lúc $1',
+'filehist-nothumb'               => 'Không có hình thu nhỏ',
 'filehist-user'                  => 'Thành viên',
 'filehist-dimensions'            => 'Kích cỡ',
 'filehist-filesize'              => 'Kích thước tập tin',
@@ -1556,10 +1561,11 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'defemailsubject' => 'thư gửi từ {{SITENAME}}',
 'noemailtitle'    => 'Không có địa chỉ nhận thư',
 'noemailtext'     => 'Người này không cung cấp một địa chỉ thư hợp lệ, hoặc đã chọn không nhận thư từ người khác.',
-'emailfrom'       => 'Từ',
-'emailto'         => 'Đến',
-'emailsubject'    => 'Chủ đề',
-'emailmessage'    => 'Nội dung',
+'email-legend'    => 'Gửi thư điện tử đến thành viên {{SITENAME}} khác',
+'emailfrom'       => 'Người gửi:',
+'emailto'         => 'Người nhận:',
+'emailsubject'    => 'Chủ đề:',
+'emailmessage'    => 'Nội dung:',
 'emailsend'       => 'Gửi',
 'emailccme'       => 'Gửi cho tôi bản sao của thư này.',
 'emailccsubject'  => 'Bản sao của thư gửi cho $1: $2',
@@ -1682,17 +1688,19 @@ Việc xóa các trang như vậy bị hạn chế để ngăn ngừa phá hoạ
 'delete-warning-toobig'       => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu {{SITENAME}};
 hãy cẩn trọng khi thực hiện.',
-'rollback'                    => 'Phục hồi sửa đổi',
-'rollback_short'              => 'Phục hồi',
-'rollbacklink'                => 'phục hồi',
-'rollbackfailed'              => 'Không phục hồi được',
-'cantrollback'                => 'Không lùi sửa đổi được; người viết trang cuối cùng là tác giả duy nhất của trang này.',
-'alreadyrolled'               => 'Không thể phục hồi các sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|thảo luận]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tại [[:$1]]; ai đó đã thực hiện sửa đổi hoặc phục hồi rồi.
+'rollback'                    => 'Lùi tất cả sửa đổi',
+'rollback_short'              => 'Lùi tất cả',
+'rollbacklink'                => 'lùi tất cả',
+'rollbackfailed'              => 'Lùi sửa đổi không thành công',
+'cantrollback'                => 'Không lùi sửa đổi được;
+người viết trang cuối cùng cũng là tác giả duy nhất của trang này.',
+'alreadyrolled'               => 'Không thể lùi tất cả sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|thảo luận]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tại [[:$1]]; ai đó đã thực hiện sửa đổi hoặc thực hiện lùi tất cả rồi.
 
-Sửa đổi cuối cùng tại trang được thực hiện bởi [[User:$3|$3]] ([[User talk:$3|thảo luận]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo luận]] | [[Special:Contributions/$3|{{int:contribslink}}]]) thực hiện.',
 'editcomment'                 => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Đã lùi sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) đến phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Đã hủy sửa đổi của $1; quay về phiên bản trước của $2.',
+'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success'            => 'Đã hủy sửa đổi của $1;
+quay về phiên bản cuối của $2.',
 'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
 'protectlogpage'              => 'Nhật trình khóa',
 'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:ProtectedPages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
@@ -1750,9 +1758,8 @@ hiện tại của trang <strong>$1</strong>:',
 Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''.
 Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bản|bản}} đã được lưu',
-'undeletehistory'              => 'Nếu bạn khôi phục trang này, tất cả các phiên bản của nó sẽ được phục hồi vào lịch sử của trang.
-Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản được khôi phục sẽ xuất hiện trong lịch sử trước.
-Cũng chú ý rằng các giới hạn áp dụng lên các phiên bản tập tin sẽ bị mất khi phục hồi',
+'undeletehistory'              => 'Nếu bạn phục hồi trang này, tất cả các phiên bản của nó cũng sẽ được phục hồi vào lịch sử của trang.
+Nếu một trang mới có cùng tên đã được tạo ra kể từ khi xóa trang này, các phiên bản được khôi phục sẽ xuất hiện trong lịch sử trước.',
 'undeleterevdel'               => 'Việc phục hồi sẽ không được thực hiện nếu nó dẫn đến việc phiên bản trang hoặc tập tin trên cùng bị xóa mất một phần.
 Trong trường hợp đó, bạn phải bỏ đánh dấu hộp kiểm hoặc bỏ ẩn những phiên bản bị xóa mới nhất.',
 'undeletehistorynoadmin'       => 'Trang này đã bị xóa.
@@ -2135,6 +2142,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-watch'                   => 'Thêm trang này vào danh sách theo dõi',
 'tooltip-recreate'                => 'Tạo lại trang dù cho nó vừa bị xóa',
 'tooltip-upload'                  => 'Bắt đầu tải lên',
+'tooltip-rollback'                => '"Lùi tất cả" sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
+'tooltip-undo'                    => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
 
 # Stylesheets
 'common.css'   => '/* Mã CSS đặt ở đây sẽ áp dụng cho mọi hình dạng */',
@@ -2440,6 +2449,13 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-lightsource-19'  => 'Ánh chuẩn C',
 'exif-lightsource-24'  => 'Vonfram xưởng ISO',
 'exif-lightsource-255' => 'Nguồn ánh sáng khác',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Đèn flash không chớp',
+'exif-flash-fired-1'    => 'Có chớp đèn flash',
+'exif-flash-mode-3'     => 'chế độ tự động',
+'exif-flash-function-1' => 'Không có chức năng flash',
+'exif-flash-redeye-1'   => 'chế độ giảm mắt đỏ',
 
 'exif-focalplaneresolutionunit-2' => 'inch',
 

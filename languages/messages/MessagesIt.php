@@ -845,8 +845,8 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'revdelete-content'           => 'contenuto',
 'revdelete-summary'           => 'riassunto della modifica',
 'revdelete-uname'             => 'nome utente',
-'revdelete-restricted'        => 'restrizioni ai soli amministratori attivate',
-'revdelete-unrestricted'      => 'restrizioni ai soli amministratori rimosse',
+'revdelete-restricted'        => 'limitazioni ai soli amministratori attivate',
+'revdelete-unrestricted'      => 'limitazioni ai soli amministratori rimosse',
 'revdelete-hid'               => 'nascondi $1',
 'revdelete-unhid'             => 'rendi visibile $1',
 'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
@@ -1289,6 +1289,9 @@ Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelt
 'filehist-revert'                => 'ripristina',
 'filehist-current'               => 'corrente',
 'filehist-datetime'              => 'Data/Ora',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => 'Miniatura per la versione del $1',
+'filehist-nothumb'               => 'Nessuna miniatura',
 'filehist-user'                  => 'Utente',
 'filehist-dimensions'            => 'Dimensioni',
 'filehist-filesize'              => 'Dimensione del file',
@@ -2415,6 +2418,12 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-lightsource-23'  => 'Illuminante D50',
 'exif-lightsource-24'  => 'Lampada da studio ISO al tungsteno',
 'exif-lightsource-255' => 'Altra sorgente luminosa',
+
+# Flash modes
+'exif-flash-mode-1'     => 'attivazione flash forzato',
+'exif-flash-mode-2'     => 'rimozione flash forzato',
+'exif-flash-function-1' => 'Disattiva flash',
+'exif-flash-redeye-1'   => 'modalità riduzione occhi rossi',
 
 'exif-focalplaneresolutionunit-2' => 'pollici',
 

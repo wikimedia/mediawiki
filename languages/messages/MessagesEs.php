@@ -11,6 +11,7 @@
  * @author Bengoa
  * @author Better
  * @author Boivie
+ * @author Cerealito
  * @author Cvmontuy
  * @author Dmcdevit
  * @author Drini
@@ -83,7 +84,7 @@ $messages = array(
 'tog-editondblclick'          => 'Editar páginas con doble click (JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha<br /> en los títulos de secciones (JavaScript)',
-'tog-showtoc'                 => 'Mostrar la tabla de contenidos (para paginas con más de 3 encabezados)',
+'tog-showtoc'                 => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword'        => 'Recordar la contraseña entre sesiones',
 'tog-editwidth'               => 'La caja de edición tiene el ancho máximo',
 'tog-watchcreations'          => 'Vigilar las páginas que yo cree.',
@@ -314,7 +315,7 @@ $messages = array(
 'editold'                 => 'editar',
 'viewsourceold'           => 'ver código fuente',
 'editsectionhint'         => 'Editar sección: $1',
-'toc'                     => 'Tabla de contenidos',
+'toc'                     => 'Contenido',
 'showtoc'                 => 'mostrar',
 'hidetoc'                 => 'ocultar',
 'thisisdeleted'           => '¿Ver o restaurar $1?',
@@ -714,6 +715,7 @@ El motivo dado por $3 es ''$2''",
 'revnotfoundtext'     => 'No se pudo encontrar la revisión antigua de la página que ha solicitado.
 Por favor, revise la dirección que usó para acceder a esta página.',
 'currentrev'          => 'Revisión actual',
+'currentrev-asof'     => 'última version al $1',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
 'previousrevision'    => '← Revisión anterior',
@@ -836,7 +838,19 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'editundo'                => 'deshacer',
 'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 'diff-movedto'            => 'movido a $1',
+'diff-styleadded'         => 'estilo añadido',
+'diff-added'              => 'añadido',
+'diff-changedto'          => 'modificado a',
+'diff-movedoutof'         => 'retirado de $1',
+'diff-styleremoved'       => 'estilo suprimido',
+'diff-removed'            => 'suprimido',
+'diff-changedfrom'        => 'modificado a partir de',
+'diff-src'                => 'código fuente',
+'diff-withdestination'    => 'con destino',
+'diff-with'               => '&#32;con $1 $2',
 'diff-with-final'         => '&#32;y $1 $2',
+'diff-width'              => 'ancho',
+'diff-height'             => 'alto',
 
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',
@@ -1054,6 +1068,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recientes',
+'recentchanges-legend'              => 'Opciones sobre cambios recientes',
 'recentchangestext'                 => 'Sigue los cambios más recientes de la wiki en esta página.',
 'recentchanges-feed-description'    => 'Seguir los cambios más recientes en el wiki en este feed.',
 'rcnote'                            => "Debajo {{PLURAL:$1|hay '''1''' cambio efectuado|están los últimos '''$1''' cambios efectuados}} en  {{PLURAL:$2|el último día|los últimos '''$2''' días}}, hasta el $4, $5.",
@@ -1211,6 +1226,9 @@ archivo a esa fecha.',
 'filehist-revert'                => 'revertir',
 'filehist-current'               => 'act',
 'filehist-datetime'              => 'Fecha/Hora',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => 'Minuatura de la versión de $1',
+'filehist-nothumb'               => 'Sin miniatura',
 'filehist-user'                  => 'Usuario',
 'filehist-dimensions'            => 'Dimesiones',
 'filehist-filesize'              => 'Tamaño',
@@ -1460,10 +1478,11 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'defemailsubject' => 'Correo de {{SITENAME}}',
 'noemailtitle'    => 'No hay dirección de correo electrónico',
 'noemailtext'     => 'Este usuario no ha especificado una dirección de correo electrónico válida, o ha elegido no recibir correo electrónico de otros usuarios.',
-'emailfrom'       => 'De',
-'emailto'         => 'Para',
-'emailsubject'    => 'Asunto',
-'emailmessage'    => 'Mensaje',
+'email-legend'    => 'Enviar un correo electrónico a otro usuario de {{SITENAME}}',
+'emailfrom'       => 'De:',
+'emailto'         => 'Para:',
+'emailsubject'    => 'Asunto:',
+'emailmessage'    => 'Mensaje:',
 'emailsend'       => 'Enviar',
 'emailccme'       => 'Enviarme una copia de mi mensaje.',
 'emailccsubject'  => 'Copia de tu mensaje a $1: $2',
@@ -1650,7 +1669,8 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 'undelete-fieldset-title'      => 'Restaurar revisiones',
 'undeleteextrahelp'            => "Para restaurar todas las revisiones, deja todas las casillas sin seleccionar y pulsa '''¡Restaurar!'''. Para restaurar sólo algunas revisiones, marca las revisiones que quieres restaurar y pulsa '''¡Restaurar!'''. Haciendo clic en al botón '''Nada''', se deseleccionarán todas las casillas y eliminará el comentario actual.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión|revisiones}} archivadas',
-'undeletehistory'              => 'Si restaura una página, todas sus revisiones serán restauradas al historial. Si una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.',
+'undeletehistory'              => 'Si restauras una página, todas sus revisiones serán restauradas al historial.
+Si una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.',
 'undeleterevdel'               => 'No se deshará el borrado si éste resulta en el borrado parcial de la última revisión de la página. En tal caso, desmarque o muestre las revisiones borradas más recientes. Las revisiones de archivos que no tiene permitido ver no se restaurarán.',
 'undeletehistorynoadmin'       => 'El artículo ha sido borrado. La razón de su eliminación se indica abajo en el resumen, así como los detalles de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de administrador.',
 'undelete-revision'            => 'Edición borrada de $1 (fechada $2)  por $3',
@@ -2337,6 +2357,11 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-lightsource-19'  => 'Luz estándar C',
 'exif-lightsource-24'  => 'Tungsteno de estudio ISO',
 'exif-lightsource-255' => 'Otra fuente de luz',
+
+# Flash modes
+'exif-flash-mode-3'     => 'modo automático',
+'exif-flash-function-1' => 'Modo sin flash',
+'exif-flash-redeye-1'   => 'modo de reducción de ojos rojos',
 
 'exif-focalplaneresolutionunit-2' => 'pulgadas',
 

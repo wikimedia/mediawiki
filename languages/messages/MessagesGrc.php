@@ -1042,10 +1042,10 @@ $1',
 'usermailererror' => 'Τὸ ἠλ-ταχυδρομεῖον ἐπέστρεψεν σφάλμα:',
 'defemailsubject' => '{{SITENAME}} ἠλ.-ταχυδρομεῖον',
 'noemailtitle'    => 'Οὐδεμία ἠλ-διεύθυνσις',
-'emailfrom'       => 'Ἐκ',
-'emailto'         => 'Πρός',
-'emailsubject'    => 'Θέμα',
-'emailmessage'    => 'Ἀγγελία',
+'emailfrom'       => 'Ἐκ:',
+'emailto'         => 'Πρός:',
+'emailsubject'    => 'Χρῆμα:',
+'emailmessage'    => 'Ἀγγελία:',
 'emailsend'       => 'Πέμπειν',
 'emailsent'       => 'Ἠλ.-ἐπιστολὴ ἀπεστάλη',
 
@@ -1424,7 +1424,7 @@ $1',
 'nocreativecommons' => 'Τὰ RDF-μεταδεδομένα τὰ ἀφορῶντα τὰ Creative Commons (Δημιουργικὰ Κοινά) ἀπενεργηθέντα εἰσὶ ἐν τῇδε τῇ ἐξυπηρετικῇ μηχανῇ.',
 
 # Attribution
-'anonymous'        => 'Ἀνώνυμ-ος,-οι χρώμεν-ος,-οι τῷ {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Ἀνώνυμος χρώμενος|Ἀνώνυμοι χρώμενοι}} τῷ {{SITENAME}}',
 'siteuser'         => 'Χρώμενος τῷ {{SITENAME}} $1',
 'lastmodifiedatby' => 'Ἥδε ἡ δἐλτος ἠλλάχθη ὑστάτως $2, $1 ἐκ τοῦ $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Βεβασισμένον τῷ ἔργῳ τοῦ/τῶν $1.',
@@ -1459,6 +1459,9 @@ $1',
 # Browsing diffs
 'previousdiff' => '← ἡ διαφορὰ ἡ προτέρα',
 'nextdiff'     => 'ἡ μεταβολὴ ἡ ἐχομένη →',
+
+# Visual comparison
+'visual-comparison' => 'Ὀπτικὴ σύγκρισις',
 
 # Media information
 'thumbsize'            => 'Μέγεθος μικρογραφίας:',
@@ -1656,6 +1659,9 @@ $1',
 'exif-lightsource-19'  => 'Τυπικὸν φῶς C',
 'exif-lightsource-24'  => 'Βαρυλίθιον τοῦ ἐργαστηρίου ISO',
 'exif-lightsource-255' => 'Ἑτέραι φωτοπηγαί',
+
+# Flash modes
+'exif-flash-mode-3' => 'αὐτόματος τρόπος',
 
 'exif-focalplaneresolutionunit-2' => 'οὐγκιαί',
 
