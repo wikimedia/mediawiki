@@ -4,14 +4,11 @@
  * @ingroup Language
  * @file
  *
- * @author Wantok
  * @author Niklas Laxström
- * @author לערי ריינהארט
- * @author Siebrand
+ * @author Wantok
  * @author Wytukaze
+ * @author לערי ריינהארט
  */
-
-
 
 $messages = array(
 # User preference toggles
@@ -184,11 +181,11 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'watchlistfor'         => "(bilong '''$1''')",
 'nowatchlist'          => 'Nogat wanpela samting istap long lukautbuk bilong yu.',
 'watchlistanontext'    => 'Yu mas $1 long lukim o senisim ol samting long lukautbuk bilong yu.',
-'watchnologintext'     => 'Yu mas [[Special:Userlogin|login]] long senisim lukautbuk bilong yu.',
+'watchnologintext'     => 'Yu mas [[Special:UserLogin|login]] long senisim lukautbuk bilong yu.',
 'addedwatch'           => 'Igo insait long lukautbuk',
 'addedwatchtext'       => "Pes \"[[:\$1]]\" igo insait long [[Special:Watchlist|lukautbuk]] bilong yu nau.
 Bai yu lukim ol nupela senis long dispela pes, na pes toktok bilong en, long lukautbuk, 
-na dispela pes bai kamap '''strongpela''' long [[Special:Recentchanges|pes bilong ol nupela senis]]
+na dispela pes bai kamap '''strongpela''' long [[Special:RecentChanges|pes bilong ol nupela senis]]
 na olsem bai isi long lukim em.
 
 Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis long lukautim\" taim yu lukim pes.",

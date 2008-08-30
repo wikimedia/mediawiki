@@ -81,7 +81,38 @@ $messages = array(
 'november'  => 'कार्तिकमार्गशीर्षे',
 'december'  => 'मार्गशीर्षपौषे',
 
+'and' => 'एवम्',
+
+'help' => 'सहायता',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'edithelp' => 'संपादनार्थं सहायता',
+'mainpage' => 'मुखपृष्ठं',
+
+# Miscellaneous special pages
+'ancientpages' => 'प्राचीनतम् पृष्ठा',
+
+# Book sources
+'booksources-go' => 'प्रस्थानम्',
+
+# Special:Allpages
+'allarticles' => 'सर्व लेखा',
+
+# E-mail user
+'emailsubject' => 'विषयः',
+'emailmessage' => 'सन्देशः',
+
+# Delete/protect/revert
+'actioncomplete' => 'कार्य समापनम्',
+
+# Block/unblock
+'blocklink' => 'निषेध',
+
 # Namespace 8 related
-'allmessages' => 'व्यवस्था सन्देशानि',
+'allmessages'     => 'व्यवस्था सन्देशानि',
+'allmessagesname' => 'नाम',
+
+# Auto-summaries
+'autosumm-new' => 'नवीन पृष्ठं: $1',
 
 );

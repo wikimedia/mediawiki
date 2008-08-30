@@ -264,7 +264,7 @@ $messages = array(
 # E-mail user
 'emailuser'    => 'Ҡатнашыусыға хат',
 'emailfrom'    => 'Кемдән',
-'emailto'      => 'Кемгә',
+'emailto'      => 'Кемгә:',
 'emailmessage' => 'Хәбәр',
 
 # Watchlist

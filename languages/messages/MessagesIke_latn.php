@@ -1,10 +1,9 @@
 <?php
-/** Eastern Canadian (Latin) (inuktitut)
+/**  ()
  *
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  */
 
 $messages = array(
@@ -353,7 +352,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'monthsall' => 'sunamittuq',
 
 # HTML dump
-'redirectingto' => 'qaningani kamagijaq aasit nakit [[$1]]...',
+'redirectingto' => 'qaningani kamagijaq aasit nakit [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'akaujuq',

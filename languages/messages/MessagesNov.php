@@ -5,7 +5,6 @@
  * @file
  *
  * @author Malafaya
- * @author SPQRobin
  * @author nov.wikipedia.org sysops
  */
 
@@ -213,7 +212,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'preferences'       => 'Preferos',
 'mypreferences'     => 'Men preferos',
 'prefsnologin'      => 'Non ensignatat',
-'prefsnologintext'  => 'Vu mus es [[Special:Userlogin|ensignatat]] por determina useren preferos.',
+'prefsnologintext'  => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
 'prefs-rc'          => 'Resenti chanjos',
 'searchresultshead' => 'Sercha',
 
@@ -307,7 +306,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'watchnologin'    => 'Non ensignatat',
 'addedwatch'      => 'Adit a observa-liste',
 'addedwatchtext'  => "Li pagine \"[[:\$1]]\" ha bli adi a vun [[Special:Watchlist|observa-liste]].
-Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:Recentchanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
+Futuri chanjos a disi pagine e lun asosiati Parla-pagine sal bli lista tilok, e li pagine sal apari '''diki''' in li [[Special:RecentChanges|liste de resenti chanjos]] por ke on trova lu plu fasilim.
 
 Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserva\" in li lateral kolumne.",
 'watch'           => 'Observa',

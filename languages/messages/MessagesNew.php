@@ -5,8 +5,6 @@
  * @file
  *
  * @author Eukesh
- * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $namespaceNames = array(

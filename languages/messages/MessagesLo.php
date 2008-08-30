@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Tuinui
  * @author Passawuth
+ * @author Tuinui
  */
 
 $namespaceNames = array(
@@ -180,7 +180,7 @@ $messages = array(
 'redirectedfrom'   => '(ໂອນມາຈາກ $1)',
 'redirectpagesub'  => 'ໜ້າໂອນ',
 'lastmodifiedat'   => 'ໜ້ານີ້ຖຶກດັດແກ້ຫຼ້າສຸດ $2, $1.', # $1 date, $2 time
-'viewcount'        => 'ໜ້ານີ້ຖືກເຂົ້າເບິ່ງ {{plural:$1|ເທື່ອໜຶ່ງ|$1 ເທື່ອ}}.',
+'viewcount'        => 'ໜ້ານີ້ຖືກເຂົ້າເບິ່ງ {{PLURAL:$1|ເທື່ອໜຶ່ງ|$1 ເທື່ອ}}.',
 'protectedpage'    => 'ໜ້າຖືກປົກປ້ອງ',
 'jumpto'           => 'ໄປຫາ:',
 'jumptonavigation' => 'ນຳທິດ',
@@ -259,7 +259,7 @@ $messages = array(
 'logouttext'                 => '<strong>ທ່່ານ ໄດ້ ເຊັນອອກແລ້ວ.</strong><br />
 ທ່ານ ສາມາດສືບຕໍ່ໃຊ້ {{SITENAME}} ແບບບໍ່ສະແດງຊື່, ຫຼື ທ່ານ ສາມາດ ເຊັນເຂົ້າ
 ອີກ ໂດຍ ຊື່ຜູ້ໃຊ້ ເກົ່າ ຫຼື ໃໝ່ ກໍ່ໄດ້. ກະລຸນາ ຮັບຊາບວ່າ ບາງໜ້າ ອາດຈະສືບຕໍ່ ສະແດງ
-ຄືວ່າ ທ່ານ ຍັງເຊັນເຂົ້າຢູ່ ຈົນກວ່າ ທ່ານ ຂໍ້ມູນບັນທຶກຊົ່ວຄາວ ໃນ ໂປຣແກຣມທ່ອງເວັບ 
+ຄືວ່າ ທ່ານ ຍັງເຊັນເຂົ້າຢູ່ ຈົນກວ່າ ທ່ານ ຂໍ້ມູນບັນທຶກຊົ່ວຄາວ ໃນ ໂປຣແກຣມທ່ອງເວັບ
 ຂອງ ທ່ານ ຈະຖືກລຶບ.',
 'welcomecreation'            => '== ຍິນດີຕ້ອນຮັບ, $1! ==
 
@@ -368,7 +368,7 @@ $messages = array(
 'template-protected'       => '(ປົກປ້ອງ)',
 'template-semiprotected'   => '(ເຄິ່ງປົກປ້ອງ)',
 'nocreatetext'             => '{{SITENAME}} ໄດ້ຈຳກັດການສ້າງໜ້າໃໝ່.
-ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:Userlogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
+ທ່ານສາມາດກັບໄປ ດັດແກ້ ໜ້າທີ່ມີແລ້ວ ຫຼື [[Special:UserLogin|ເຊັນເຂົ້າ ຫຼື ສ້າງບັນຊີ]].',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ບໍ່ສາມາດສ້າງ ບັນຊີ ໄດ້',
@@ -856,7 +856,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'ດັດແກ້ໄຟລ໌ນີ້ໂດຍໂປແກຣມພາຍນອກ',
-'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions]',
+'edit-externally-help' => 'ເບິ່ງ ຂໍ້ມູນເພີ່ມຕື່ມ ຢູ່ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions]',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ທັງໝົດ',
@@ -876,7 +876,7 @@ $messages = array(
 'confirmemail_send'       => 'ສົ່ງ ລະຫັດ ຢືນຢັນ',
 'confirmemail_sent'       => 'ອີເມລຢືນຢັນ ໄດ້ຖືກສົ່ງໄປແລ້ວ.',
 'confirmemail_oncreate'   => 'ລະຫັດ ຢືນຢັນ ໄດ້ຖືກສົງໄປ ຫາ ທີ່ຢູ່ ອີເມລ ຂອງ ທ່ານແລ້ວ.
-ລະຫັດດັ່ງກ່າວ ບໍ່ຈຳເປັນ ສຳຫຼັບ ການເຊັນເຂົ້າ, ແຕ່ ທ່ານ ຕ້ອງໃຊ້ມັນ ເພື່ອ ໃຊ້ 
+ລະຫັດດັ່ງກ່າວ ບໍ່ຈຳເປັນ ສຳຫຼັບ ການເຊັນເຂົ້າ, ແຕ່ ທ່ານ ຕ້ອງໃຊ້ມັນ ເພື່ອ ໃຊ້
 ການບໍລິການຕ່າງໆ ທີ່ ອີງໃສ່ ອີເມລ ຢູ່ ວິກີ.',
 'confirmemail_sendfailed' => 'ບໍ່ສາມາດ ສົ່ງອີເມລ ຢືນຢັນ. ກະລຸນາກວດເບິ່ງວ່າ ມີໂຕໜັງສືບໍ່ຖືກຕ້ອງ ໃນ ທີ່ຢູ່ອີເມລບໍ່.
 
@@ -912,7 +912,7 @@ will expire at $4.',
 'recreate' => 'ສ້າງຄືນ',
 
 # HTML dump
-'redirectingto' => 'ພວມໂອນໄປ ຫາ [[$1]]...',
+'redirectingto' => 'ພວມໂອນໄປ ຫາ [[:$1]]...',
 
 # action=purge
 'confirm_purge_button' => 'ຕົກລົງ',

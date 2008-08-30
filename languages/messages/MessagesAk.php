@@ -1,12 +1,11 @@
 <?php
 /** Akan (Akan)
  *
- * @addtogroup Language
+ * @ingroup Language
+ * @file
  *
  * @author Natsubee
- * @author Siebrand
  * @author Paa.kwesi
- * @author SPQRobin
  */
 
 $messages = array(

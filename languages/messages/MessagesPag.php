@@ -5,7 +5,6 @@
  * @file
  *
  * @author Arikasikis
- * @author SPQRobin
  */
 
 $messages = array(
@@ -177,10 +176,10 @@ $messages = array(
 # Upload
 'upload'          => 'Mangisigep na file',
 'uploadlog'       => 'Isigep so log',
-'filesource'      => 'Pinanlapuan',
+'filesource'      => 'Pinanlapuan:',
 'uploadedfiles'   => 'Insegep ran file',
 'badfilename'     => 'Binalo so ngaran na file, umpian "$1" so balon ngaran to.',
-'sourcefilename'  => 'Filename na pinanlapuan',
+'sourcefilename'  => 'Filename na pinanlapuan:',
 'watchthisupload' => 'Bantayan yan bolong',
 
 # Image list
@@ -200,8 +199,9 @@ $messages = array(
 'randompage'         => 'Random ya bolong',
 'randompage-nopages' => 'Anggapoy bolong ya wadya ed ayan namespace.',
 
-'withoutinterwiki'        => 'Saray bolobolong ya anggapoy gawing ya language',
-'withoutinterwiki-header' => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
+'withoutinterwiki'         => 'Saray bolobolong ya anggapoy gawing ya language',
+'withoutinterwiki-header'  => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
+'withoutinterwiki-summary' => 'Anggapoy gawin paulad version na arum ran salita so ontombok ran bolobolong:',
 
 # Miscellaneous special pages
 'allpages'       => 'Amin ya bolobolong',
@@ -249,7 +249,7 @@ $messages = array(
 'mywatchlist'    => 'Listaan na babantayan ko',
 'watchnologin'   => 'Agka ni akaloob',
 'addedwatch'     => 'Enyarom ed listaan na bantayan',
-'addedwatchtext' => "Impila so bolong ya \"[[:\$1]]\" diad [[Special:Watchlist|listaan na babantayan]] mo. Isulat diman so saray ontombok ran idagdag o panagbalo ed sayan bolong san diad bolong na tongtongan. San akasulat ran '''mapatnag''' (bolded) ed [[Special:Recentchanges|listaan na saray sampot ran binalo]] umpian mas maganom ya nanengneng.
+'addedwatchtext' => "Impila so bolong ya \"[[:\$1]]\" diad [[Special:Watchlist|listaan na babantayan]] mo. Isulat diman so saray ontombok ran idagdag o panagbalo ed sayan bolong san diad bolong na tongtongan. San akasulat ran '''mapatnag''' (bolded) ed [[Special:RecentChanges|listaan na saray sampot ran binalo]] umpian mas maganom ya nanengneng.
 
 No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"ekalen ed babantayan\" (unwatch) diad gilig ya bar.",
 'watch'          => 'bantayan',

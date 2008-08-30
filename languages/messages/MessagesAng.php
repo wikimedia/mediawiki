@@ -5,9 +5,8 @@
  * @file
  *
  * @author JJohnson
- * @author SPQRobin
+ * @author Spacebirdy
  * @author Wōdenhelm
- * @author Jon Harald Søby
  */
 
 $messages = array(
@@ -177,6 +176,7 @@ $messages = array(
 'nstab-category' => 'Flocc',
 
 # Main script and global functions
+'nosuchaction'      => 'Nān swilc dǣd',
 'nosuchspecialpage' => 'Nān swilc syndrig tramet',
 
 # General errors
@@ -359,7 +359,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'uploadnologin' => 'Ne inmeldod',
 'filename'      => 'Þrǣdnama',
 'filedesc'      => 'Scortnes',
-'filesource'    => 'Fruma',
+'filesource'    => 'Fruma:',
 'badfilename'   => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
 'savefile'      => 'Sparian þrǣd',
 
@@ -461,7 +461,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 # E-mail user
 'emailfrom'     => 'Fram',
-'emailto'       => 'Tō',
+'emailto'       => 'Tō:',
 'emailsubject'  => 'Forþsetennes',
 'emailmessage'  => 'Ǣrendgewrit',
 'emailsend'     => 'Ǣrendian',
@@ -544,7 +544,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 ** Uncwēme brūcendnama',
 'ipbsubmit'          => 'Gǣlan þisne brūcend',
 'ipbother'           => 'Ōðeru tīd',
-'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wucu:2 wuca,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
+'ipboptions'         => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'     => 'ōðer',
 'ipbotherreason'     => 'Ōðeru/geīecendlicu racu:',
 'ipblocklist-submit' => 'Sēcan',
@@ -684,7 +684,7 @@ Gif þis is *nā* þū, ne folga þisne bend. Þēos āsēðungrūn forealdaþ �
 'scarytranscludetoolong' => '[URL is tō lang; sarig]',
 
 # HTML dump
-'redirectingto' => 'Edlǣdeþ tō [[$1]]...',
+'redirectingto' => 'Edlǣdeþ tō [[:$1]]...',
 
 # AJAX search
 'searchnamed' => "Sēcan gewritu genemnodu ''$1''.",

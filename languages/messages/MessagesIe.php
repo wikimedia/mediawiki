@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Malafaya
- * @author SPQRobin
- * @author לערי ריינהארט
  * @author Jmb
+ * @author Malafaya
+ * @author לערי ריינהארט
  */
 
 $messages = array(
@@ -285,7 +284,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 # Watchlist
 'watchlist'            => 'Liste de sequet págines',
 'addedwatch'           => 'Adjuntet al liste',
-'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:Recentchanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
+'addedwatchtext'       => "Li págine ''[[$1]]'' ha esset adjuntet a vor [[Special:Watchlist|liste de sequet págines]]. Li proxim modificationes de ti ci págine e del associat págine de discussion va esser listat ci, e li págine va aperir '''aspessat''' in li [[Special:RecentChanges|liste de recent modificationes]] por esser trovat plu facilmen. Por supresser ti ci págine ex vor liste, ples claccar sur « Ne plu sequer » in li cadre de navigation.",
 'watch'                => 'Sequer',
 'watchthispage'        => 'Sequer ti págine',
 'watchlist-hide-bots'  => 'Celar modificationes de bot',

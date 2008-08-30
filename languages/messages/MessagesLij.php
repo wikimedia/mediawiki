@@ -4,12 +4,10 @@
  * @ingroup Language
  * @file
  *
- * @author ZeneizeForesto
- * @author SPQRobin
- * @author Jon Harald Søby
- * @author Malafaya
  * @author Dario vet
  * @author Dedee
+ * @author Malafaya
+ * @author ZeneizeForesto
  */
 
 $fallback = 'it';
@@ -362,7 +360,7 @@ O têu blòcco ID o l'è \$5. Pe piaxei metti 'sto ID in tûtte e domande che ti
 'whitelistedittitle'     => "Bezêugna registrâse pe modificâ 'na pagina.",
 'whitelistedittext'      => 'Pe cangia sta pagina devvi $1.',
 'whitelistreadtitle'     => 'Besêugna registrâse pe poéi lêze.',
-'whitelistreadtext'      => "Ti dêvi [[Special:Userlogin|intrâ]] pe lêze 'sta pagina.",
+'whitelistreadtext'      => "Ti dêvi [[Special:UserLogin|intrâ]] pe lêze 'sta pagina.",
 'whitelistacctitle'      => 'Ti non ti peu registräte',
 'loginreqtitle'          => "Besêugna registrâse primma de modificâ 'sta paggina.",
 'accmailtitle'           => 'Pòula segretta spedïa',
@@ -391,7 +389,7 @@ Pe piaxei conscidera l'opportûnitæ de soddividde a paggina in sessioîn ciû p
 'template-protected'     => '(protezûo)',
 'template-semiprotected' => '(semiprotezûo)',
 'nocreatetext'           => "A poscibilitæ de creâ nêuve paggine insce {{SITENAME}} a l'è stæta limitâ solo a-i ûtenti registræ.
-O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:Userlogin|intrâ ò creâ 'n accesso nêuvo]].",
+O se pêu tornâ inderê e modificâ 'na paggina escistente, oppûre [[Special:UserLogin|intrâ ò creâ 'n accesso nêuvo]].",
 'recreate-deleted-warn'  => "'''Attension: o se sta pe ricreâ 'na paggina zà scassâa into passòu.'''
 
 O se deive consciderâ se o l'è davvei corretto continuâ avanti a modificâ 'sta paggina.
@@ -500,7 +498,7 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'uploadbtn'            => "Carega 'n archivvio",
 'uploadlogpage'        => 'Log di archivi careghæ',
 'filename'             => 'Nomme do papê',
-'filesource'           => 'Reixe',
+'filesource'           => 'Reixe:',
 'uploadedfiles'        => 'Papê caregæ',
 'badfilename'          => 'O nomme do papê o l\'è stæto cangioö in "$1".',
 'fileexists'           => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a <strong><tt>$1</tt></strong> se non ti tei seguo de voleilo cangiâ.",
@@ -510,12 +508,12 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'uploaddisabledtext'   => 'In {{SITENAME}} non se peu caregâ de papê.',
 'uploadcorrupt'        => "O papê o gh'à di erroì ò-o gh'à unn'estenscion sbaliâ. Pe piaxei dagghe unn'euggiâ a-o papê e càreghilo tórna.",
 'uploadvirus'          => 'O papê gha un virus!! Dettaggi: $1',
-'sourcefilename'       => "Nomme do papê d'origine",
-'destfilename'         => 'Nomme do papê de destin',
+'sourcefilename'       => "Nomme do papê d'origine:",
+'destfilename'         => 'Nomme do papê de destin:',
 
 'upload-file-error' => 'Errô interno',
 
-'license'   => 'Permisso',
+'license'   => 'Permisso:',
 'nolicense' => 'Nisciûnn-a liçensa indicâa',
 
 # Image list
@@ -673,9 +671,9 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'mywatchlist'          => 'Lista in osservaçion',
 'watchlistfor'         => "(pe '''$1''')",
 'watchnologin'         => "Non ti t'æ entroö",
-'watchnologintext'     => 'Devvi [[Special:Userlogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
+'watchnologintext'     => 'Devvi [[Special:UserLogin|entrâ]] pe cangiâ a toa lista in osservaçion.',
 'addedwatch'           => 'Azzonto a a lista in osservaçion',
-'addedwatchtext'       => "A paggina \"[[:\$1]]\" a l'è stæta azzonta a-a pròpia [[Special:Watchlist|lista in osservaçion]]. De chì in avanti, i cangiamenti fæti a-a paggina e a-a sêu discûxon sajàn missi in lista lì; o tittolo da paggina o sajà scrîo in '''grascietto''' inta paggina di [[Special:Recentchanges|ûrtimi cangiamenti]] coscì ti o veddi megio. Se ti vêu eliminâla da-a lista in osservaçion ciû târdi, sciacca \"no seguî\" inscia barra de d'âto.",
+'addedwatchtext'       => "A paggina \"[[:\$1]]\" a l'è stæta azzonta a-a pròpia [[Special:Watchlist|lista in osservaçion]]. De chì in avanti, i cangiamenti fæti a-a paggina e a-a sêu discûxon sajàn missi in lista lì; o tittolo da paggina o sajà scrîo in '''grascietto''' inta paggina di [[Special:RecentChanges|ûrtimi cangiamenti]] coscì ti o veddi megio. Se ti vêu eliminâla da-a lista in osservaçion ciû târdi, sciacca \"no seguî\" inscia barra de d'âto.",
 'removedwatch'         => 'Scassæ da a lista in osservaçion',
 'removedwatchtext'     => 'A paggina "[[:$1]]" a l\'è stæta scassâa da-a têu lista in osservaçion.',
 'watch'                => 'Inta lista in osservaçion',
@@ -796,7 +794,7 @@ $1',
 'badipaddress'                => 'Indirisso IP non valido',
 'blockipsuccesssub'           => 'Affermaçion arriescïa',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] o l'è stæto affermoö.
-<br />Veddi [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] te cangia e affermaçioin.",
+<br />Veddi [[Special:IPBlockList|Lista de i indirissi IP affermæ]] te cangia e affermaçioin.",
 'ipblocklist'                 => "Lista de l'indirissi IP e nommi d'ûtenti bloccæ",
 'blocklistline'               => "$1, $2 o l'ha affermoö $3 fin a $4",
 'anononlyblock'               => 'Non ti tè registroö. Non ti peu fanni de i cangiamenti! (Registräse o non vegne ninte!)',
@@ -811,7 +809,7 @@ $1',
 'blocklogentry'               => "O s'ha bloccòu [[$1]] scinn-a $2 $3",
 'blocklogtext'                => "Sta chie a l'è unn-a lista de affermaçioin fæte e levæ.
 I indirissi IP affermæ automaticamente non son  consideræ.
-Veddi a [[Special:Ipblocklist|Lista de i indirissi IP affermæ]] pe e informaçioin neuve.",
+Veddi a [[Special:IPBlockList|Lista de i indirissi IP affermæ]] pe e informaçioin neuve.",
 'block-log-flags-anononly'    => 'Utenti anonimmi soö',
 'block-log-flags-nocreate'    => 'Neuve registrascioin non son permisse',
 'block-log-flags-noautoblock' => "O blocco automatego o non l'è attïvo",
@@ -981,7 +979,7 @@ L'ingançi succescivi, inscia mæxima riga, van conscideræ comme eccescioîn (p
 
 # External editor support
 'edit-externally'      => "Modiffica 'st'archivvio co unn-a applicassion esterna",
-'edit-externally-help' => "Pe ciû informassion consûltâ l' [http://meta.wikimedia.org/wiki/Help:External_editors istrûssioîn] (in ingleise)",
+'edit-externally-help' => "Pe ciû informassion consûltâ l' [http://www.mediawiki.org/wiki/Manual:External_editors istrûssioîn] (in ingleise)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Tùtti',

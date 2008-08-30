@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Макѕе
  * @author Кумулај Маркус
+ * @author Макѕе
  * @author Приетен тев
  */
 

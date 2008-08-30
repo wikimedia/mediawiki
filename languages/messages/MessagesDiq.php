@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Mirzali
  * @author Belekvor
- * @author SPQRobin
+ * @author Mirzali
  */
 
 $messages = array(
@@ -252,7 +251,7 @@ href="" class="internal"}?{/a}) bımocne.',
 'nosuchspecialpage' => 'Pela xasa henêne/otir çina',
 'nospecialpagetext' => "<big>'''To yew pela xasa nêvêrdiye waşte.'''</big>
 
-Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:Specialpages|{{int:specialpages}}]].",
+Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'               => 'Ğelet',
@@ -339,7 +338,7 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'upload'     => 'Dosya bar ke',
 'uploadbtn'  => 'Dosya bar ke',
 'filename'   => 'Namey Dosya',
-'filesource' => 'Çımey',
+'filesource' => 'Çımey:',
 'savefile'   => 'Dosya qeyd ke',
 
 # Image list

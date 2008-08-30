@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Singularity
  * @author Kalani
- * @author SPQRobin
  * @author Node ue
+ * @author Singularity
  */
 
 $messages = array(
@@ -175,6 +174,7 @@ $messages = array(
 'disclaimerpage'    => 'Project:Nā a‘o ‘ana laulā',
 'edithelp'          => 'Kōkua me ka ho‘ololi ‘ana',
 'edithelppage'      => 'Help:Ho‘ololi',
+'helppage'          => 'Help:Papa kuhikuhi',
 'mainpage'          => 'Ka papa kinohi',
 'policy-url'        => 'Project:Palapala',
 'portal'            => 'Ka hui kaiaulu',
@@ -243,6 +243,7 @@ He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'logout'             => "E ha'alele",
 'userlogout'         => "E ha'alele",
 'notloggedin'        => 'Mai ‘e‘e',
+'nologin'            => 'ʻAʻohe waihona kāu? $1.',
 'nologinlink'        => "Lilo i mea ho'ohana",
 'createaccount'      => 'E hana',
 'gotaccountlink'     => 'E komo',
@@ -288,13 +289,13 @@ E koho i kekahi inoa, ke ‘olu‘olu.',
 'anoneditwarning'        => "'''Aʻo ʻana:''' ʻO ʻoe ʻaʻole ʻeʻe. E hoʻopaʻa ʻia ana kou IP ma \"he aha i hoʻololi ʻia ai\" o kēia ʻaoʻao.",
 'blockedtitle'           => 'Ua ke‘a ‘ia ka mea ho‘ohana',
 'blockednoreason'        => '‘a‘ohe kumu',
-'blockedoriginalsource'  => "Aia ke kumu o '''$1''' 
+'blockedoriginalsource'  => "Aia ke kumu o '''$1'''
 hō‘ike ‘ia i lalo:",
 'blockededitsource'      => "Aia ka mo‘olelo o '''kou mau ho‘opololei''' i '''$1''' hō‘ike ‘ia i lalo:",
 'loginreqlink'           => 'E komo',
 'accmailtitle'           => 'Ua ho‘ouna ‘ia ka hua‘ōlelo huna',
 'newarticle'             => '(Hou)',
-'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:Userlogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
+'anontalkpagetext'       => "---''‘O kēia ke kūkākūkā no he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa i hana ʻia he mea ho‘ohana ai‘ole ‘a‘ole ho‘ohana ia. Pēlā, e pono mākou ke ho‘ohana ka wahi noho IP e hōʻoia ‘oia. Inā he mea ho‘ohana ‘a‘ohe i hō‘ike‘ia ka inoa ‘oe, ke ho‘olale nei ‘ia ‘oe [[Special:UserLogin|e hana he mea ho‘ohana ai‘ole e komo]].''",
 'previewnote'            => '<strong>‘O keia ka nāmua;
 ‘a‘ole i mālama ‘ia ka ho‘ololi!</strong>',
 'editing'                => 'Ke ho‘ololi nei iā $1',
@@ -305,6 +306,7 @@ hō‘ike ‘ia i lalo:",
 'protectedpagewarning'   => '<strong>A‘o ‘ana:  Ua laka ‘ia kēia ‘ao‘ao, pēlā, hiki i nā "kahu" ke ho‘opololei wale nō.</strong>',
 'template-protected'     => '(ho‘omalu ‘ia)',
 'template-semiprotected' => '(hapa-ho‘omalu ‘ia)',
+'edittools'              => '<!-- Eia ka ‘ōlelo e hō‘ike ‘ia malalo o nā palapala ho‘ololi ame nā palapala ho‘ohui. -->',
 
 # History pages
 'currentrev'          => 'Kāmua hou',
@@ -409,6 +411,8 @@ hō‘ike ‘ia i lalo:",
 'log' => 'Nā mo‘olelo',
 
 # Special:Allpages
+'nextpage'       => 'Mea aʻe ($1)',
+'prevpage'       => 'Mea ma mua aʻe ($1)',
 'allarticles'    => 'Nā mo‘olelo apau loa',
 'allpagesprev'   => 'Mua',
 'allpagesnext'   => 'Hope',
@@ -516,7 +520,7 @@ hō‘ike ‘ia i lalo:",
 'tooltip-n-randompage'     => 'Ho‘ouka i he akikala kaulele',
 'tooltip-n-help'           => 'Ka wahi e kōkua ai iā‘oe.',
 'tooltip-n-sitesupport'    => 'Kāko‘o mai',
-'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai.',
+'tooltip-t-whatlinkshere'  => 'Ka papa o nā ‘ao‘ao āpau e loulou mai',
 'tooltip-t-upload'         => 'Ho‘ouka i nā waihona',
 'tooltip-t-specialpages'   => 'Helu o nā papa nui apau',
 'tooltip-ca-nstab-project' => 'Nānā i ka ‘ao‘ao papahana',
@@ -538,6 +542,14 @@ hō‘ike ‘ia i lalo:",
 
 # action=purge
 'confirm_purge_button' => 'Hiki nō',
+
+# Multipage image navigation
+'imgmultipageprev' => '← mea ma mua aʻe',
+'imgmultipagenext' => 'mea aʻe →',
+
+# Table pager
+'table_pager_next' => 'Mea aʻe',
+'table_pager_prev' => 'Mea ma mua aʻe',
 
 # Auto-summaries
 'autosumm-replace' => "Ke pani nei i ka ‘ao‘ao me '$1'",

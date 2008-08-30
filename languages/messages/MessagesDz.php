@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Tenzin
  * @author CFynn
- * @author Jon Harald Søby
+ * @author Tenzin
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -269,7 +268,7 @@ $messages = array(
 'template-protected'     => '(ཉེན་སྐྱོབ་འབད་ཡོདཔ།)',
 'template-semiprotected' => '(ཉེན་སྐྱོབ་ཕྱེད་ཀ་འབད་ཡོདཔ་)',
 'nocreatetext'           => '{{SITENAME}} གིས་ ཤོག་ལེབ་གསརཔ་བཟོ་ནི་ལས་ བཀག་དམ་འབད་ཡོདཔ།
-ཁྱོད་ཀྱིས་ ལོག་འགྱོ་ཞིནམ་ལས་ ཡོད་བཞིན་པའི་ཤོག་ལེབ་འདི་ཞུན་དག་འབད་ ཡང་ན་  [[Special:Userlogin|ནང་བསྐྱོད་དང་ ཡངན་ རྩིས་ཐོ་གསརཔ་བཟོ་]].',
+ཁྱོད་ཀྱིས་ ལོག་འགྱོ་ཞིནམ་ལས་ ཡོད་བཞིན་པའི་ཤོག་ལེབ་འདི་ཞུན་དག་འབད་ ཡང་ན་  [[Special:UserLogin|ནང་བསྐྱོད་དང་ ཡངན་ རྩིས་ཐོ་གསརཔ་བཟོ་]].',
 'recreate-deleted-warn'  => "'''ཉེན་བརྡ་: ཁྱོད་ཀྱིས་ ཧ་མ་ལས་བཏོན་བཏང་ཡོད་པའི་ཤོག་ལེབ་ཅིག་ ལོག་གསར་བཟོ་འབདཝ་ཨིན་པས།'''
 
 ཁྱོད་ཀྱིས་ ཤོག་ལེབ་འདི་འཕྲོ་མཐུད་དེ་ཞུན་དག་འབད་ནི་གི་འོས་འབབ་ཡོད་མེད་བལྟ་དགོ།
@@ -462,7 +461,7 @@ $messages = array(
 'watchlistfor'         => "('''$1''' གི་དོན་ལུ་)",
 'addedwatch'           => 'བལྟ་ཞིབ་ཐོ་ཡིག་ལུ་ཁ་སྐོང་རྐྱབ་ཅི།',
 'addedwatchtext'       => "ཤོག་ལེབ་  \"[[:\$1]]\" འདི་ ཁྱོད་རའི་ [[Special:Watchlist|watchlist]] ལུ་ ཁ་སྐོང་བརྐྱབས་ནུག།\\n
-ཤོག་ལེབ་དེ་ལུ་མ་འོངས་བསྒྱུར་བཅོས་དང་ དེ་གི་འབྲེལ་ཡོད་བློ་ཤོག་འདི་ དེ་ཁར་ཐོ་བཀོད་འབད་ནི་དང་ འཇམ་ཏོང་ཏོ་སྦེ་གདམ་ཁ་བརྐྱབ་ཚུགས་ནི་གི་དོན་ལུ་  ཤོག་ལེབ་འདི་ [[Special:Recentchanges|list of recent changes]] ནང་ལུ་ '''མངོན་གསལ་''' སྦེ་འབྱུང་འོང་།",
+ཤོག་ལེབ་དེ་ལུ་མ་འོངས་བསྒྱུར་བཅོས་དང་ དེ་གི་འབྲེལ་ཡོད་བློ་ཤོག་འདི་ དེ་ཁར་ཐོ་བཀོད་འབད་ནི་དང་ འཇམ་ཏོང་ཏོ་སྦེ་གདམ་ཁ་བརྐྱབ་ཚུགས་ནི་གི་དོན་ལུ་  ཤོག་ལེབ་འདི་ [[Special:RecentChanges|list of recent changes]] ནང་ལུ་ '''མངོན་གསལ་''' སྦེ་འབྱུང་འོང་།",
 'removedwatch'         => 'བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་བཏོན་བཀོག་ཡོདཔ།',
 'removedwatchtext'     => 'ཤོག་ལེབ་  "[[:$1]]" འདི་ ཁྱོད་རའི་བལྟ་ཞིབ་ཐོ་ཡིག་ནང་ལས་ བཏོན་བཀོག་ནུག།',
 'watch'                => 'བལྟ་ཞིབ་འབད།',
@@ -686,7 +685,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'ཕྱིའི་གློག་རིམ་ལག་ལེན་འཐབ་ཐོག་ལས་ ཡིག་སྣོད་འདི་ཞུན་དག་འབད།',
-'edit-externally-help' => 'བརྡ་དོན་ཁ་གསལ་གྱི་དོན་ལུ་ [http://meta.wikimedia.org/wiki/Help:External_editors setup instructions] ལུ་ལྟ།',
+'edit-externally-help' => 'བརྡ་དོན་ཁ་གསལ་གྱི་དོན་ལུ་ [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] ལུ་ལྟ།',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ཆ་མཉམ།',

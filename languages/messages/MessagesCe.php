@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
+ * @author Chechenka
  * @author Girdi
  * @author Mega programmer
- * @author Chechenka
  */
 
 $fallback = 'ru';

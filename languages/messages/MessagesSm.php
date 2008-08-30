@@ -5,18 +5,17 @@
  * @file
  *
  * @author sm.wikipedia.org sysops
- * @author SPQRobin
  */
 
 $messages = array(
 # Dates
 'sunday'        => 'Aso sa',
 'monday'        => 'Aso-gafua',
-'tuesday'       => 'O le aso lua',
+'tuesday'       => '‘O le aso lua',
 'wednesday'     => 'Aso lulu',
 'thursday'      => 'Aso totofi',
 'friday'        => 'Aso falaile',
-'saturday'      => 'Aso toonai',
+'saturday'      => 'Aso to‘ona‘i',
 'sun'           => 'Aso sa',
 'mon'           => 'Aso gafua',
 'wed'           => 'Aso lulu',
@@ -125,7 +124,7 @@ $messages = array(
 'savearticle'      => 'Sefe le itulau',
 'showpreview'      => "Fa'aali teuteuga",
 'showdiff'         => "Fa'aali suiga",
-'whitelistacctext' => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:Userlogin|log]] in and have the appropriate permissions.',
+'whitelistacctext' => 'To be allowed to create accounts in {{SITENAME}} you have to [[Special:UserLogin|log]] in and have the appropriate permissions.',
 'loginreqlink'     => "Fa'aola",
 
 # Search results

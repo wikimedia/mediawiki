@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author SPQRobin
  * @author Tbc
  * @author לערי ריינהארט
  */

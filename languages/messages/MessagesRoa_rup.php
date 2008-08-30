@@ -5,8 +5,8 @@
  * @file
  *
  * @author Hakka
- * @author Niklas Laxström
  * @author Hakka (with the help of a native speaker Dumitrachi T. Fundu)
+ * @author Niklas Laxström
  */
 
 $messages = array(

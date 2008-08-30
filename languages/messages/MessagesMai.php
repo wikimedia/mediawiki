@@ -4,9 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Ggajendra
- * @author SPQRobin
  * @author GerardM
+ * @author Ggajendra
  */
 
 $fallback = 'hi';
@@ -17,6 +16,7 @@ $messages = array(
 'tog-highlightbroken'     => 'टूटल श्रृंखला <a href="" class="new">एना देखाऊ</a> (आकि फेर: एना देखाऊ<a href="" class="internal">?</a>).',
 'tog-justify'             => 'सुगढ़ बनाऊ',
 'tog-hideminor'           => 'सन्निकट परिवर्त्तनमे छोट परिवर्त्तन नुकाऊ',
+'tog-extendwatchlist'     => 'ध्यानसूचीमे सभ परिवर्तन देखाऊ',
 'tog-usenewrc'            => 'बढ़ल सन्निकट परिवर्त्तन (जावास्क्रीप्ट)',
 'tog-numberheadings'      => 'शीर्षक स्वयं-क्रमांकित करू',
 'tog-showtoolbar'         => 'संपादन ओजारपेटी देखाऊ (जावास्क्रीप्ट)',
@@ -160,6 +160,7 @@ $messages = array(
 एतय अहाँ ईहो सप्पत खाइत छी जी ई अहाँक अपन रचना छी आकि अहाँ एकरा कोनो सार्वजनिक डोमेन किंवा ओह्ने कोनो मँगनीक संदर्भ-स्थलसँ कॉपी कएने छी। 
 < दृढ़> सर्वाधिकार सुरक्षित कार्य एतय नहि दी।!</दृढ़>',
 'templatesusedpreview' => 'एहि पूर्वप्रदर्शनमे प्रयुक्त मास्टरफाइल:',
+'template-protected'   => '(सुरक्षित)',
 
 # History pages
 'revisionasof'     => 'अंतिम परिवर्त्तन  $1',
@@ -172,7 +173,8 @@ $messages = array(
 'editundo' => 'असंपादन',
 
 # Search results
-'powersearch' => 'त्वरित खोज',
+'noexactmatch' => "'''\"\$1\" नामसँ कोनो लेख नहि अछि।''' अहाँ ई लेख [[:\$1|बना सकैत छी]]।",
+'powersearch'  => 'त्वरित खोज',
 
 # Preferences page
 'preferences'   => 'विकल्प',
@@ -191,7 +193,8 @@ $messages = array(
 'boteditletter'   => 'ब',
 
 # Recent changes linked
-'recentchangeslinked' => 'संबंधित परिवर्त्तन',
+'recentchangeslinked'       => 'संबंधित परिवर्त्तन',
+'recentchangeslinked-title' => '"$1" मे भेल परिवर्तन',
 
 # Upload
 'upload'        => 'फाइल अपलोड करू',

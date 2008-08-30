@@ -7,8 +7,6 @@
  * @author Node ue
  */
 
-
-
 $messages = array(
 'search'       => 'Ṱolani',
 'searchbutton' => 'Ṱolani',

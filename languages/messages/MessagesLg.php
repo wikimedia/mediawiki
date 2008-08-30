@@ -195,6 +195,7 @@ kalambula-neti yo.",
 'gotaccountlink'             => 'Yingira',
 'username'                   => "Ery'obwa memba:",
 'yourlanguage'               => 'Lulimi lwo:',
+'yournick'                   => 'Empaako yo (ssi ya tteeka):',
 'prefs-help-email'           => "* E-mail (ssi kya tteeka): Bw'ogiwayo, basobola okukutuukirira nga bayitira ku enfo yo ey'obwa memba oba olupapula lwo
 olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'loginsuccesstitle'          => 'Oyingidde',
@@ -270,7 +271,7 @@ Tukwesiga nti by'owandiika muno bibyo oba wabigya mu kya bonna oba awalala gye b
 'templatesused'          => 'Olupapula luno entiba ze lukozesa ze:',
 'template-protected'     => '(luno lusibidwa)',
 'template-semiprotected' => '(ebimu ku lupapula luno bisibidwa)',
-'nocreatetext'           => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:Userlogin|okufuna obuyinza obw'obwamemba]].",
+'nocreatetext'           => "Ku {{SITENAME}} tosobola okukolawo empapula mpya nga tokozesa buyinza obw'obwamemba. Kati oyinza kugenda n'okyusamu olupapula olulala olwakolebwa dda, oba oyinza [[Special:UserLogin|okufuna obuyinza obw'obwamemba]].",
 'recreate-deleted-warn'  => "'''Kulabula: Ogenda okuzzaawo olupapuka olwagyibwawo.'''
 
 Okakasa nti kisaanira okuluzzaawo?
@@ -307,9 +308,15 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Preferences page
 'mypreferences'     => 'Enteekateeka yange',
+'prefs-personal'    => 'Ebikufaako',
+'saveprefs'         => 'Bino bikaze',
+'resetprefs'        => 'Gyawo enkyukakyuka ze sinnakaza',
 'oldpassword'       => 'Ekigambo ekikuumi ekikadde:',
 'newpassword'       => 'Ekigambo ekikuumi ekipya:',
+'retypenew'         => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
 'searchresultshead' => 'Noonya',
+'savedprefs'        => 'Enteekateeka yo ekazidwa.',
+'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',
 
 # Recent changes
 'recentchanges'     => 'Ebyakakyuusibwa',
@@ -356,6 +363,7 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|bayiti|bayiti}} $1',
+'ncategories'       => '$1 {{PLURAL:$1|ttuluba|matuluba}}',
 'nmembers'          => '{{PLURAL:$1|memba|bamemba}} $1',
 'allpages'          => 'Empapula zonna',
 'specialpages'      => "Empapula ez'enjawulo",
@@ -388,7 +396,7 @@ oba ku gano agali ku lupapula luno.<br />
 'addedwatch'     => "Kigattiddwa ku by'ogoberera",
 'addedwatchtext' => 'Olupapula "[[:$1]]" kati luli mu [[Special:Watchlist|by\'ogoberera]].
 Buli olupapula olwo oba olw\'emboozi lwalwo lwe binaakyuusibwamu, enkyuukakyuka ezo
-zijjakulabika wano. Era erinnya lyalwo mu [[Special:Recentchanges|lukalala olw\'ebyakakyuuisbwa]]
+zijjakulabika wano. Era erinnya lyalwo mu [[Special:RecentChanges|lukalala olw\'ebyakakyuuisbwa]]
 lijja okuba mu nukuta enziggumivu oyanguyirwe okuliraba.
 
 Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali.',
@@ -449,6 +457,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'move-watch'  => 'Goberera olupapula luno',
 'movepagebtn' => 'Lusimbulize',
 'movelogpage' => 'Ebikyusidwa manya',
+'movereason'  => 'Nsonga:',
 'revertmove'  => 'zaawo erinya ekkadde',
 
 # Export
@@ -542,7 +551,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 
 # External editor support
 'edit-externally'      => 'Fayiro eno gikolereko mu pulogulamu endala',
-'edit-externally-help' => '[http://meta.wikimedia.org/wiki/Help:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
+'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
 
 # 'all' in various places, this might be different for inflected languages
 'namespacesall' => 'Gonna',

@@ -1,13 +1,12 @@
 <?php
-/** Nauru (Ekakairũ Naoero)
+/** Nauru (Dorerin Naoero)
  *
  * @ingroup Language
  * @file
  *
- * @author CdaMVvWgS
  * @author Belgian man
+ * @author CdaMVvWgS
  * @author Node ue
- * @author SPQRobin
  */
 
 $messages = array(

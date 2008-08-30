@@ -4,9 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Felipe Aira
  * @author Sky Harbor
  * @author לערי ריינהארט
- * @author Felipe Aira
  */
 
 $messages = array(
@@ -233,7 +233,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Mayroon kang mga bagong mensahe sa $1',
 'editsection'             => 'baguhin',
 'editold'                 => 'baguhin',
-'editsectionhint'         => 'Baguhin seksyon: $1',
+'editsectionhint'         => 'Baguhin ang seksyon: $1',
 'toc'                     => 'Mga nilalaman',
 'showtoc'                 => 'ipakita',
 'hidetoc'                 => 'itago',
@@ -260,7 +260,7 @@ ang gawang itinakda ng URL',
 'nosuchspecialpage' => 'Walang ganoong natatanging pahina',
 'nospecialpagetext' => "<big>'''Humiling ka ng isang natatanging pahina na walang saysay.'''</big>
 
-Isang tala ng mga natatanging pahina na may saysay ay matatagpuan sa [[Special:Specialpages|{{int:specialpages}}]].",
+Isang tala ng mga natatanging pahina na may saysay ay matatagpuan sa [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Kamalian',
@@ -357,7 +357,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 # Edit pages
 'summary'                => 'Buod',
 'subject'                => 'Paksa/punong pamagat',
-'minoredit'              => 'Ito ay isang maliit na pagbabago',
+'minoredit'              => 'Ito ay isang munting pagbabago',
 'watchthis'              => 'Bantayan itong pahina',
 'savearticle'            => 'Itala ang pahina',
 'preview'                => 'Pribyu',
@@ -389,7 +389,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'reupload'          => 'Magkarga muli',
 'reuploaddesc'      => 'Bumalik sa pormularyo ng pagkarga',
 'uploadnologin'     => 'Hindi nakalagda',
-'uploadnologintext' => 'Dapat ikaw ay [[Special:Userlogin|nakalagda]]
+'uploadnologintext' => 'Dapat ikaw ay [[Special:UserLogin|nakalagda]]
 upang makapagkarga ng talaksan.',
 'uploaderror'       => 'Kamalian sa pagkarga',
 'watchthisupload'   => 'Bantayan itong pahina',
@@ -441,6 +441,7 @@ upang makapagkarga ng talaksan.',
 'movethispage'       => 'Ilipat itong pahina',
 
 'categoriespagetext' => 'Ang mga sumusunod na kategorya ay naglalaman ng mga pahina o midya.',
+'alphaindexline'     => '$1 hanggang $2',
 'version'            => 'Bersyon',
 
 # Special:Allpages
@@ -459,6 +460,7 @@ upang makapagkarga ng talaksan.',
 'watchthispage' => 'Bantayan itong pahina',
 
 # Delete/protect/revert
+'deletepage'                  => 'Burahin ang pahina',
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',
@@ -529,7 +531,7 @@ $1',
 
 # Move page
 'movenologin'             => 'Hindi nakalagda',
-'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
+'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:UserLogin|nakalagda]] upang makapaglipat ng pahina.',
 'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa {{SITENAME}}.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',
@@ -616,7 +618,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'recreate'            => 'Likhain muli',
 
 # HTML dump
-'redirectingto' => 'Nagkakarga sa [[$1]]...',
+'redirectingto' => 'Nagkakarga sa [[:$1]]...',
 
 # action=purge
 'confirm_purge' => 'Linisin ang baunan ng pahinang ito?

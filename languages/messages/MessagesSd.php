@@ -5,8 +5,6 @@
  * @file
  *
  * @author Aursani
- * @author SPQRobin
- * @author Jon Harald Søby
  */
 
 $rtl = true;
@@ -329,7 +327,7 @@ $messages = array(
 'template-protected'     => '(تحفظيل)',
 'template-semiprotected' => '(نيم تحفظيل)',
 'nocreatetext'           => '{{SITENAME}} نوان صفحا سرجڻ جي روڪَ ڪئي آهي.
-توهان اڳي ئي موجود صفحن کي سنواري سگھو ٿا، يا [[Special:Userlogin|لاگ اِن ٿي يا نئون کاتو کولي سگھو ٿا]].',
+توهان اڳي ئي موجود صفحن کي سنواري سگھو ٿا، يا [[Special:UserLogin|لاگ اِن ٿي يا نئون کاتو کولي سگھو ٿا]].',
 'recreate-deleted-warn'  => "'''خبردار: توهان اهڙو صفحو نئين سر سرجي رهيا آهيو جيڪو اڳي ڊاٺو ويو آهي.'''
 
 بهتر ٿيندو ته توهان سوچي وٺو ته ڇا ان صفحي کي سنوارڻ بهتر ٿيندو.
@@ -533,7 +531,7 @@ $messages = array(
 'mywatchlist'          => 'منهنجي ٽيٽ فهرست',
 'watchlistfor'         => "(براءِ '''$1''')",
 'addedwatch'           => 'ٽيٽ فھرست ۾ شامل ڪيو ويو.',
-'addedwatchtext'       => "صفحو بعنوان \"[[:\$1]]\" اوهان جي [[Special:Watchlist|ٽيٽ فهرست]] ۾ شامل ٿي ويو. استقبالي تبديليون هتي درج ٿينديون وينديون. اهو صفحو [[Special:Recentchanges|تازين تبديلين]] واري صفحي تي '''گهرن''' اکرن ۾ نمايان ڪري ڏيکاريو ويندو. جيڪڏهن اوهان اهو سڀ نه ٿا چاهيو ته '''اڻ ٽيٽيو''' تي ڪلڪ ڪريو.",
+'addedwatchtext'       => "صفحو بعنوان \"[[:\$1]]\" اوهان جي [[Special:Watchlist|ٽيٽ فهرست]] ۾ شامل ٿي ويو. استقبالي تبديليون هتي درج ٿينديون وينديون. اهو صفحو [[Special:RecentChanges|تازين تبديلين]] واري صفحي تي '''گهرن''' اکرن ۾ نمايان ڪري ڏيکاريو ويندو. جيڪڏهن اوهان اهو سڀ نه ٿا چاهيو ته '''اڻ ٽيٽيو''' تي ڪلڪ ڪريو.",
 'removedwatch'         => 'ٽيٽ فهرست مان هٽايو ويو',
 'removedwatchtext'     => 'صفحو بعنوان "[[:$1]]" توهان جي ٽيٽ فهرست مان هٽي چڪو آهي.',
 'watch'                => 'ٽيٽيو',
@@ -800,7 +798,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'هيءُ فائيل ڪنهن خارجي منتقڪريءَ سان سنواريو',
-'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://meta.wikimedia.org/wiki/Help:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
+'edit-externally-help' => 'وڌيڪ معلومات لاءِ [http://www.mediawiki.org/wiki/Manual:External_editors هدايتون براءِ تنصيبڪاري] ڏسندا.',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'سڀ',

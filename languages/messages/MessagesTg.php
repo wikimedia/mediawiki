@@ -1,19 +1,16 @@
 <?php
-/** Tajik (Тоҷикӣ/tojikī)
+/** Tajik (Тоҷикӣ)
  *
  * @ingroup Language
  * @file
  *
- * @author Francis Tyers
- * @author SPQRobin
- * @author Soroush
- * @author FrancisTyers
- * @author Siebrand
- * @author לערי ריינהארט
  * @author Cbrown1023
- * @author Ibrahim
- * @author Nike
  * @author Farrukh
+ * @author Francis Tyers
+ * @author FrancisTyers
+ * @author Ibrahim
+ * @author Soroush
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(

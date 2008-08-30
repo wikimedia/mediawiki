@@ -19,50 +19,129 @@ $messages = array(
 'thursday'      => 'четверг',
 'friday'        => 'пекнича',
 'saturday'      => 'субöта',
-'january'       => 'тöв шöр',
-'february'      => 'урасьöм',
+'january'       => 'тӧв шӧр',
+'february'      => 'урасьӧм',
 'march'         => 'рака',
 'april'         => 'кос му',
 'may_long'      => 'ода кора',
-'june'          => 'лöддза-номъя',
+'june'          => 'лӧддза-номъя',
 'july'          => 'сора',
 'august'        => 'моз',
-'september'     => 'кöч',
+'september'     => 'кӧч',
 'october'       => 'йирым',
-'november'      => 'вöльгым',
-'december'      => 'öшым',
-'january-gen'   => 'тöв шöр',
-'february-gen'  => 'урасьöм',
+'november'      => 'вӧльгым',
+'december'      => 'ӧшым',
+'january-gen'   => 'тӧв шӧр',
+'february-gen'  => 'урасьӧм',
 'march-gen'     => 'рака',
 'april-gen'     => 'кос му',
 'may-gen'       => 'ода кора',
-'june-gen'      => 'лöддза-номъя',
+'june-gen'      => 'лӧддза-номъя',
 'july-gen'      => 'сора',
 'august-gen'    => 'моз',
-'september-gen' => 'кöч',
+'september-gen' => 'кӧч',
 'october-gen'   => 'йирым',
-'november-gen'  => 'вöльгым',
-'december-gen'  => 'öшым',
+'november-gen'  => 'вӧльгым',
+'december-gen'  => 'ӧшым',
 
-'search'        => 'Корсьысьöм',
-'searchbutton'  => 'Аддзыны',
-'searcharticle' => 'Вуджны',
-'edit'          => 'Веськöдны',
-'talk'          => 'Сёрнитöм',
-'jumptosearch'  => 'корсьысьöм',
+'cancel' => 'Дугӧдны',
+'qbfind' => 'Корсьысьӧм',
+'qbedit' => 'Веськӧдны',
+'mytalk' => 'Сёрнитӧм лист бокӧй',
+
+'search'           => 'Корсьысьӧм',
+'searchbutton'     => 'Аддзыны',
+'searcharticle'    => 'Вуджны',
+'history_short'    => 'Важвылӧм',
+'printableversion' => 'Лэдзӧм версия',
+'permalink'        => 'Вежласьтӧм ыстӧд',
+'edit'             => 'Веськӧдны',
+'delete'           => 'Бырӧдны',
+'protect'          => 'Дорйыны',
+'newpage'          => 'Выль лист бок',
+'talk'             => 'Сёрнитӧм',
+'toolbox'          => 'Инструментъяс',
+'jumptosearch'     => 'корсьысьӧм',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'mainpage' => 'Медшöр лист бок',
+'currentevents' => 'Быд лунся лоӧмтор',
+'mainpage'      => 'Медшӧр лист бок',
+'portal'        => 'Йитчӧм',
+'portal-url'    => 'Project:Йитчӧм портал',
 
-'editsection' => 'веськöдны',
+'newmessageslink' => 'выль юӧртӧмъяс',
+'editsection'     => 'веськӧдны',
+'editold'         => 'веськӧдны',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Гижöд',
+'nstab-main'    => 'Гижӧд',
+'nstab-user'    => 'Вӧлысь',
+'nstab-project' => 'Проект йылысь',
 
 # Login and logout pages
-'userlogin' => 'Висьтасьны али гижсьыны',
+'yourname'           => 'Вӧлысьлӧн ним:',
+'login'              => 'Висьтасьны',
+'userlogin'          => 'Висьтасьны али гижсьыны',
+'logout'             => 'Сеанс эштӧдӧм',
+'userlogout'         => 'Сеанс эштӧдӧм',
+'gotaccountlink'     => 'Висьтасьӧй',
+'loginlanguagelabel' => 'Кыв: $1',
+
+# Edit pages
+'savearticle' => 'Лист бокӧс гижны',
+'newarticle'  => '(Выль)',
+
+# History pages
+'currentrev' => 'Быд лунся версия',
+
+# Preferences page
+'timezonelegend' => 'Час кытш',
+
+# Recent changes
+'hide' => 'Дзебны',
 
 # Upload
-'upload' => 'Файл сöвтны',
+'upload'    => 'Файл сӧвтны',
+'uploadbtn' => 'Файл сӧвтны',
+
+# Image list
+'filehist-datetime' => 'Кадпас/кад',
+'filehist-user'     => 'Вӧлысь',
+'filehist-comment'  => 'Пасйӧд',
+
+# Random page
+'randompage' => 'Кӧсйытӧг гижӧд',
+
+# Miscellaneous special pages
+'specialpages' => 'Торъя лист бокъяс',
+'newpages'     => 'Выль лист бокъяс',
+'move'         => 'Ним вежны',
+
+# Special:Log
+'specialloguserlabel' => 'Вӧлысь:',
+'log'                 => 'Журналъяс',
+
+# Special:Allpages
+'allarticles' => 'Став гижӧдъяс',
+
+# Delete/protect/revert
+'deletepage'          => 'Лист бокӧс бырӧдны',
+'protect-level-sysop' => 'Администраторъяс сӧмын',
+
+# Contributions
+'contributions' => 'Вӧлысьлӧн чӧжӧс',
+
+# What links here
+'whatlinkshere' => 'Ыстӧдъяс татчӧ',
+
+# Move page
+'newtitle'    => 'Выль ним',
+'movepagebtn' => 'Лист бокӧс ним вежны',
+
+# Namespace 8 related
+'allmessages' => 'Система юӧртӧмъяс',
+
+# Tooltip help for the actions
+'tooltip-pt-userpage' => 'Вӧлысьлӧн лист бокӧй',
 
 );

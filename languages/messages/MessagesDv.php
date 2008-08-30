@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Glacious
  * @author MF-Warburg
  * @author לערי ריינהארט
- * @author Siebrand
- * @author Glacious
  */
 
 $rtl = true;
@@ -242,8 +241,8 @@ $messages = array(
 'uploadbtn'         => 'ފައިލު ފޮނުވާ',
 'filedesc'          => 'ހުލާސާ',
 'fileuploadsummary' => 'ހުލާސާ:',
-'filestatus'        => 'ނަކަލުކުރުމުގެހައްގުގެ ހާލަތު',
-'filesource'        => 'މަސްދަރު',
+'filestatus'        => 'ނަކަލުކުރުމުގެހައްގުގެ ހާލަތު:',
+'filesource'        => 'މަސްދަރު:',
 'uploadedfiles'     => 'ފޮނުވިފައިވާ ފައިލުތައް',
 'uploadwarning'     => 'ފައިލުފޮނުއްވުމުގެ ކުރިން ދެވޭ އިންޒާރު',
 
@@ -391,7 +390,7 @@ $messages = array(
 'confirmemail' => 'އީމޭލު އެޑްރެސް ޔަގީންކުރައްވާ',
 
 # HTML dump
-'redirectingto' => 'މިސްރާބު ކުރެވެނީ [[$1]] އަށް...',
+'redirectingto' => 'މިސްރާބު ކުރެވެނީ [[:$1]] އަށް...',
 
 # action=purge
 'confirm_purge_button' => 'ރަނގަޅު',

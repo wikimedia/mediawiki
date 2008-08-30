@@ -6,7 +6,6 @@
  *
  * @author Cgboeree
  * @author Malafaya
- * @author SPQRobin
  */
 
 $messages = array(
@@ -358,7 +357,7 @@ Per favore, considera parti la paje en pesos plu poca.</strong>',
 'template-protected'     => '(protejeda)',
 'template-semiprotected' => '(proteje en parte)',
 'nocreatetext'           => '{{SITENAME}} ave un restringe a la capas per crea pajes nova.
-Tu pote vade a retro e edita un paje esistente, o  [[Special:Userlogin|sinia per entra o crea un conta]].',
+Tu pote vade a retro e edita un paje esistente, o  [[Special:UserLogin|sinia per entra o crea un conta]].',
 'recreate-deleted-warn'  => "'''Avisa: Tu es recrea un paje ce ia es sutraed en la pasada.'''
 Tu debe pensa ce es bon continua edita esta paje.
 La arcivo de sutraes per esta paje es asi per conveni:",
@@ -595,7 +594,7 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'nowatchlist'          => 'Tu ave no cosas en tu lista oservada',
 'addedwatch'           => 'Juntada a la lista de pajes oservada',
 'addedwatchtext'       => "La paje \"[[:\$1]]\" ia es juntada a tu [[Special:Watchlist|lista de pajes oservada]].
-Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:Recentchanges|lista de cambias resente]] per es plu fasil oservada.
+Cambias future a esta paje e se paje de discutes va es listada ala, e la paje va apera en leteras '''forte''' en la [[Special:RecentChanges|lista de cambias resente]] per es plu fasil oservada.
 
 Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"no oserva\" en la bara a la lado.",
 'removedwatch'         => 'Sutraeda de la lista de pajes oservada',
@@ -681,7 +680,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 
 # What links here
 'whatlinkshere'       => 'Ce es liada a asi',
-'whatlinkshere-title' => 'Pajes ci lia a $1',
+'whatlinkshere-title' => 'Pajes ci lia a "$1"',
 'whatlinkshere-page'  => 'Paje:',
 'linklistsub'         => '(Lista de lias)',
 'linkshere'           => "Esta pajes lia a '''[[:$1]]''':",
@@ -853,7 +852,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 
 # External editor support
 'edit-externally'      => 'Edita esta fix con un programa esterna',
-'edit-externally-help' => 'Vide la [http://meta.wikimedia.org/wiki/Help:External_editors instruis per comensa] per plu instruis.',
+'edit-externally-help' => 'Vide la [http://www.mediawiki.org/wiki/Manual:External_editors instruis per comensa] per plu instruis.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tota',

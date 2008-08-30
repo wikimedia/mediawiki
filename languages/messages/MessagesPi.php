@@ -4,7 +4,6 @@
  * @ingroup Language
  * @file
  *
- * @author Jon Harald Søby
  */
 
 $digitTransformTable = array(

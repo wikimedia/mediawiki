@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Timichal
  * @author Ottaviano II
+ * @author Timichal
  * @author Tèstaquêdra
- * @author SPQRobin
  */
 
 $fallback = 'it';
@@ -83,7 +82,7 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'showpreview'      => 'Anteprémma',
 'showdiff'         => 'Guèrda al differèinzi',
 'anoneditwarning'  => "'''Attenziòun:''' An sîv ménga vgnû dèinter. Al vòster indirézz IP al vrà signê in d'la stòria d'i cambiamèint ed sta pagina chè..",
-'anontalkpagetext' => "----''Sta chè l'éla pàgina ed discussiòun d'un utèint anònim c'al n'à brisa criê un sô account o c'an l'usa ménga. Bsògna quindi usêr al sô indirézz IP par identifichèrel. L'istèss indirézz IP al pôl èsser usê da di mòndi utèint. Se sèt un utèint anònim e pèinset c'a-t in sun stèdi fâti di cummèint irrilevànt, per piasér [[Special:Userlogin|criêt un account o fê al log-in]] par evitèr confusiòuni futuri cun di èter utèint anònim.''",
+'anontalkpagetext' => "----''Sta chè l'éla pàgina ed discussiòun d'un utèint anònim c'al n'à brisa criê un sô account o c'an l'usa ménga. Bsògna quindi usêr al sô indirézz IP par identifichèrel. L'istèss indirézz IP al pôl èsser usê da di mòndi utèint. Se sèt un utèint anònim e pèinset c'a-t in sun stèdi fâti di cummèint irrilevànt, per piasér [[Special:UserLogin|criêt un account o fê al log-in]] par evitèr confusiòuni futuri cun di èter utèint anònim.''",
 'editing'          => 'Cambiamèint ed $1',
 'yourdiff'         => 'Differèinzi',
 'templatesused'    => 'Modêl usèdi in sta pàgina:',

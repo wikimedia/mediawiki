@@ -5,9 +5,6 @@
  * @file
  *
  * @author Better
- * @author Jon Harald Søby
- * @author M.M.S.
- * @author SPQRobin
  */
 
 $messages = array(
@@ -278,7 +275,7 @@ especificá ena URL",
 'nosuchspecialpage' => 'Nu desisti tal páhina especial',
 'nospecialpagetext' => "<big>'''Nu desisti esa páhina especial.'''</big>
 
-Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:Specialpages]].",
+Pueis alcuentral una lista colas páhinas especialis desistentis en [[Special:SpecialPages]].",
 
 # General errors
 'error'                => 'Marru',
@@ -514,9 +511,9 @@ La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 'whitelistedittitle'        => 'Es mestel rustrilsi pa eital',
 'whitelistedittext'         => 'Tiinis que $1 pa eital páhinas.',
 'whitelistreadtitle'        => 'Es mestel rustrilsi pa leyel',
-'whitelistreadtext'         => 'Ebis [[Special:Userlogin|rustrilti]] pa leyel páhinas.',
+'whitelistreadtext'         => 'Ebis [[Special:UserLogin|rustrilti]] pa leyel páhinas.',
 'whitelistacctitle'         => 'Nu se te premiti crial denguna cuenta',
-'whitelistacctext'          => 'Pa que se te premita crial cuentas nesti güiqui, ebis [[Special:Userlogin|rustrilti]] i tenel los premisus correspondientis.',
+'whitelistacctext'          => 'Pa que se te premita crial cuentas nesti güiqui, ebis [[Special:UserLogin|rustrilti]] i tenel los premisus correspondientis.',
 'confirmedittitle'          => 'Es mestel confirmal el tu email pa puel eital',
 'confirmedittext'           => 'Ebis confirmal la tu direción d´email enantis d´eital páhinas. Pol favol, escrebi i compreba el tu email pol meyu las tus [[Special:Preferences|preferéncias d´usuáriu]].',
 'nosuchsectiontitle'        => 'Nu esa seción',
@@ -531,7 +528,7 @@ La ID el tu tarugu es $5. Pol favol, escrebi esta ID enas tus solicituis.",
 Si quieis crial esti artículu, escribi nel cuairu d'embahu
 (si t'es mestel, mira la [[{{MediaWiki:Helppage}}|páhina d'ayua]]).
 Si nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás'''\" del tu escrucaol.",
-'anontalkpagetext'          => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:Userlogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
+'anontalkpagetext'          => "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:UserLogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 'noarticletext'             => 'Entovia nu ai dengún testu escrebiu nesta páhina, pueis [[Special:Search/{{PAGENAME}}|landeal el entítulu el artículu]] n´otras páhinas u [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta].',
 'userpage-userdoesnotexist' => 'La cuenta d\'usuáriu "$1" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.',
 'clearyourcache'            => "'''Nota:''' Aluspués d'emburacal el archivu, ebi gorvel a cargal la páhina pa vel los chambus. *'''Mozilla:''' Pursa ''ctrl-shift-r'' *'''Internet Explorer:''' Pursa ''ctrl-f5'' *'''Safari:''' Pursa ''cmd-shift-r'' *'''Konqueror:''' Pursa ''f5'' *'''Opera:''' Los usuárius d'Opera nesezitarás esborral totalmenti el caché en ''Herramientas→Preferéncias''.",
@@ -591,7 +588,7 @@ razón pola que nu pueis emburacal los tus chambus agora. Pa nu perdel los chamb
 'edittools'                 => '<!-- Esti testu apaicirá embahu los hormulárius d´eición i empuntu. -->',
 'nocreatetitle'             => 'Criaeru e páhinas enlimitau',
 'nocreatetext'              => 'Nu se premiti crial páhinas nuevas a usuárius anónimus.
-Pueis gorvel i eital anguna páhina ya desistenti, u [[Special:Userlogin|rustrilti]].',
+Pueis gorvel i eital anguna páhina ya desistenti, u [[Special:UserLogin|rustrilti]].',
 'nocreate-loggedin'         => 'Nu tienis premisu pa crial nuevas páhinas nesti güiqui.',
 'permissionserrors'         => 'Marrus colos premisus',
 'permissionserrorstext'     => 'Nu t´está premitiu hazel esu, {{PLURAL:$1|pola siguienti razón|polas siguientis razonis}}:',
@@ -686,7 +683,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 
 # Oversight log
 'oversightlog'    => 'Rustrihu e descúdius',
-'overlogpagetext' => "Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los çahorilis. Consurta la [[Special:Ipblocklist|lista d'IP atarugás]] pa vel una lista colos úrtimus tarugus.",
+'overlogpagetext' => "Embahu se muestra una lista al tentu los úrtimus esborraus i tarugus relacionaus con continius açonchaus de los çahorilis. Consurta la [[Special:IPBlockList|lista d'IP atarugás]] pa vel una lista colos úrtimus tarugus.",
 
 # History merging
 'mergehistory'                     => 'Uñifical el estorial las páhinas',
@@ -749,7 +746,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'mypreferences'            => 'Las mis preferéncias',
 'prefs-edits'              => "Númiru d'eicionis:",
 'prefsnologin'             => "Nu t'alcuentras rustriu",
-'prefsnologintext'         => 'Ebis estal [[Special:Userlogin|rustriu]] pa chambal las tus preferéncias.',
+'prefsnologintext'         => 'Ebis estal [[Special:UserLogin|rustriu]] pa chambal las tus preferéncias.',
 'prefsreset'               => "S'an restaurau las preferéncias a los valoris pol defetu.",
 'qbsettings'               => 'Preferéncias la "Quickbar"',
 'qbsettings-none'          => 'Dengunu',
@@ -823,7 +820,7 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'userrights-available-remove-self' => 'Pueis esborralti {{PLURAL:$2|del siguienti grupu|de los siguientis grupus}}: $1.',
 'userrights-no-interwiki'          => 'Nu tienis premisu pa eital los derechus los usuárius en otras güiquis.',
 'userrights-nodatabase'            => 'La basi e datus $1 nu desisti, u nu es local.',
-'userrights-nologin'               => "Ebis [[Special:Userlogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
+'userrights-nologin'               => "Ebis [[Special:UserLogin|rustrilti]] con una cuenta d'alministraol pa puel asinal derechus a los usuárius.",
 'userrights-notallowed'            => "Nu tienis los permisus nesezárius p'asinal derechus a los usuárius.",
 
 # Groups
@@ -887,11 +884,11 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.
 'reupload'                    => 'Re-empuntal',
 'reuploaddesc'                => 'Cancelal el empuntu i gorvel al hormuláriu.',
 'uploadnologin'               => 'Nu estás rustriu',
-'uploadnologintext'           => 'Ebis estal [[Special:Userlogin|rustriu]]
+'uploadnologintext'           => 'Ebis estal [[Special:UserLogin|rustriu]]
 pa empuntal archivus.',
 'upload_directory_read_only'  => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
 'uploaderror'                 => 'Marru d´empuntu',
-'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:Imagelist|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
+'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:ImageList|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
 
 P'añiil la imahin nuna páhina, gasta el atihu el hormuláriu
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki>''',
@@ -1082,7 +1079,7 @@ endi que {{SITENAME}} prencipió a huncional.
 Estu resurta un promeyu e '''\$5''' eicionis pol páhina, i '''\$6''' vesitas pol eición.
 
 El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] es de '''\$7'''.",
-'userstatstext'          => "Ai {{PLURAL:$1|un [[Special:Listusers|usuáriu]] rustriu|'''$1''' [[Special:Listusers|usuárius]] rustrius}}, de los cualis,
+'userstatstext'          => "Ai {{PLURAL:$1|un [[Special:ListUsers|usuáriu]] rustriu|'''$1''' [[Special:ListUsers|usuárius]] rustrius}}, de los cualis,
 '''$2''' (un '''$4%''') {{PLURAL:$2|es|son}} $5.",
 'statistics-mostpopular' => 'Páhinas mas visoreás',
 
@@ -1202,7 +1199,7 @@ El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] e
 
 # E-mail user
 'mailnologin'     => 'Nu envial direción',
-'mailnologintext' => 'Ebis estal [[Special:Userlogin|rutrau]]
+'mailnologintext' => 'Ebis estal [[Special:UserLogin|rutrau]]
 i tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]
 pa envial correus a otrus usuárius.',
 'emailuser'       => 'Envial un email a esti usuáriu',
@@ -1230,11 +1227,11 @@ La direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remit
 'nowatchlist'          => 'La tu lista e seguimientu está vacia.',
 'watchlistanontext'    => 'Pa vel u eital las entrás ena tu lista e seguimientu es mestel $1.',
 'watchnologin'         => 'Nu estás rustriu',
-'watchnologintext'     => 'Ebis [[Special:Userlogin|abril la tu cuenta]] pa puel hazel chambus ena tu lista e seguimientu.',
+'watchnologintext'     => 'Ebis [[Special:UserLogin|abril la tu cuenta]] pa puel hazel chambus ena tu lista e seguimientu.',
 'addedwatch'           => 'Añiiu a la lista e seguimientu',
 'addedwatchtext'       => "S´á añiiu la páhina \"[[:\$1]]\" a la tu [[Special:Watchlist|lista e seguimientu]].
 Los huturus chambus de la páhina i ena su caraba se muestrarán aquí,
-i el su entítulu apaicirá en '''negrina''' ena [[Special:Recentchanges|lista d´úrtimus chambus]].
+i el su entítulu apaicirá en '''negrina''' ena [[Special:RecentChanges|lista d´úrtimus chambus]].
 
 Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'removedwatch'         => 'Esborrau e la lista e seguimientu',
@@ -1343,7 +1340,7 @@ La úrtima eición á siu hecha pol [[User:$3|$3]] ([[User talk:$3|Caraba]]).',
 s'á cancelau l'ación solicitá. Pursa nel botón \"Atrás\" del
 tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
 'protectlogpage'              => 'Rustrihu e proteción',
-'protectlogtext'              => 'Embahu se muestra una lista cola proteción i desproteción la páhina. Pa mas enhormación, lei "[[Special:Protectedpages|Esta páhina está protehia]]".',
+'protectlogtext'              => 'Embahu se muestra una lista cola proteción i desproteción la páhina. Pa mas enhormación, lei "[[Special:ProtectedPages|Esta páhina está protehia]]".',
 'protectedarticle'            => '"[[$1]]" protehiu',
 'modifiedarticleprotection'   => 'chambau el nivel de proteción a "[[$1]]"',
 'unprotectedarticle'          => '"[[$1]]" esprotehiu',
@@ -1494,7 +1491,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'badipaddress'                => 'Direción IP nu premitia',
 'blockipsuccesssub'           => 'Usuáriu atarugau!',
 'blockipsuccesstext'          => "La direción IP [[Special:Contributions/$1|$1]] á siu atarugá.
-<br />Consurta la [[Special:Ipblocklist|lista d'IP atarugás]] pa visoreal los tarugus.",
+<br />Consurta la [[Special:IPBlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
 'ipb-edit-dropdown'           => 'Eital las razonis el tarugu',
 'ipb-unblock-addr'            => 'Desatarugal $1',
 'ipb-unblock'                 => 'Desatarugal un nombri d´usuáriu u direción IP',
@@ -1563,7 +1560,7 @@ ena basi e datus. Pol favol, confirma qu'es lo que quieis hazel.",
 'lockdbsuccesssub'    => 'Tarugu la basi e datus ativu',
 'unlockdbsuccesssub'  => 'Esborrau el tarugu la basi e datus',
 'lockdbsuccesstext'   => 'La basi e datus á siu atarugá.
-<br />Alcuerdati d´[[Special:Unlockdb|esborral el tarugu]] cuandu aigas acabihau.',
+<br />Alcuerdati d´[[Special:UnlockDB|esborral el tarugu]] cuandu aigas acabihau.',
 'unlockdbsuccesstext' => "S'á desatarugau la basi e datus.",
 'lockfilenotwritable' => "El tarugu la basi e datus nu se puei sobriescribil. P'atarugual u desatarugal la basi e datus, esta ebi puel sel escrita pol sirviol web.",
 'databasenotlocked'   => 'La basi e datus nu está atarugá.',
@@ -1586,7 +1583,7 @@ pol favol, asigurati e qu'entiendis las consecuéncias enantis d'acontinal.",
 En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhina manualmenti.",
 'movearticle'             => 'Movel páhina:',
 'movenologin'             => "Nu t'alcuentras rustriu",
-'movenologintext'         => 'Ebis estal rustriu i [[Special:Userlogin|entral ena tu cuenta]] pa movel una páhina.',
+'movenologintext'         => 'Ebis estal rustriu i [[Special:UserLogin|entral ena tu cuenta]] pa movel una páhina.',
 'movenotallowed'          => 'Nu tiinis premisu pa mual páhinas nesti güiqui.',
 'newtitle'                => 'Nuevu entítulu:',
 'move-watch'              => 'Vehilal esta páhina',
@@ -1610,7 +1607,7 @@ Pol favol, escrebi otru entítulu.',
 'delete_and_move'         => 'Esborral i movel',
 'delete_and_move_text'    => '==Es mestel esborral==
 
-Ya desisti la páhina "[[$1]]". Te petaria esborrala pa premitil el treslau?',
+Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'delete_and_move_confirm' => 'Sí, esborral la páhina',
 'delete_and_move_reason'  => 'Esborrá pa premitil el treslau',
 'selfmove'                => "Los entítulus d'orihin i destinu son los mesmus. Nu es posibri movel una páhina sobri sí mesma..",
@@ -2058,7 +2055,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 
 # External editor support
 'edit-externally'      => 'Eital esti archivu gastandu una apricación esterna',
-'edit-externally-help' => 'Pa mas enhormación, lei las [http://meta.wikimedia.org/wiki/Help:External_editors istrucionis de configuración] (en ingrés).',
+'edit-externally-help' => 'Pa mas enhormación, lei las [http://www.mediawiki.org/wiki/Manual:External_editors istrucionis de configuración] (en ingrés).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tó',
@@ -2123,7 +2120,7 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'recreate'            => 'Gorvel a crial',
 
 # HTML dump
-'redirectingto' => 'Rederihiendu a [[$1]]...',
+'redirectingto' => 'Rederihiendu a [[:$1]]...',
 
 # action=purge
 'confirm_purge'        => 'Esborral el caché desta páhina?

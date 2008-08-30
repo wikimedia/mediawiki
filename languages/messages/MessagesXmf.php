@@ -4,10 +4,9 @@
  * @ingroup Language
  * @file
  *
- * @author Dato deutschland
  * @author Alsandro
+ * @author Dato deutschland
  * @author Malafaya
- * @author M.M.S.
  */
 
 $fallback = 'ka';
@@ -239,7 +238,11 @@ $messages = array(
 'showdiff'               => 'თირაფეფიშ ძირაფა',
 'anoneditwarning'        => "'''გათხილება:''' თქვა ვარეთ რეგისტრირებულ. თქვან IP მისამართ დინოჭარილ იჸიი თე ხასილაშ რედაქტირაფაშ ისტორიას.",
 'summary-preview'        => 'რეზიუმეშ ოწოხიან გინოჯინა',
-'blockedtext'            => "<big>'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. '''</big> ბლოკირაფა ღოლუ $-ქ. სამანჯელო წუმორინაფილქ იჸუ გეჸვენჯიქ: ''$2''.
+'blockedtext'            => "<big>'''თქვან მახვარებუშ ჯოხო ვარა IP მიოწურაფუქ ბლოკირქ იჸუ. '''</big> 
+
+ბლოკირაფა ღოლუ $-ქ. 
+სამანჯელო წუმორინაფილქ იჸუ გეჸვენჯიქ: ''$2''.
+
 * ბლოკუაშ დაჭყაფურ: $8
 * ბლოკიშ ვადაშ გულა ბორჯი: $6
 * ბლოკირქ იჸუ: $7
@@ -611,7 +614,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'თე ფაილიშ რედაქტირაფა ბორჯის გიმირინეთ გალენ პროგრამა.',
-'edit-externally-help' => 'რსულ ინფორმაციაშენ ქოძირეთ [http://meta.wikimedia.org/wiki/Help:External_editors ჩადგმიშ ინსტრუქციეფ].',
+'edit-externally-help' => 'რსულ ინფორმაციაშენ ქოძირეთ [http://www.mediawiki.org/wiki/Manual:External_editors ჩადგმიშ ინსტრუქციეფ].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'არძა',
