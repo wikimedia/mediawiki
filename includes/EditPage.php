@@ -699,7 +699,7 @@ class EditPage {
 			}
 		}
 
-		if( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
+		if( !$this->mTitle->exists() && !$this->showCustomIntro() ) {
 			if( $wgUser->isLoggedIn() ) {
 				$wgOut->wrapWikiMsg( '<div class="mw-newarticletext">$1</div>', 'newarticletext' );
 			} else {
@@ -1163,15 +1163,15 @@ class EditPage {
 			if ( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
 			}
-			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
-			// Let sysop know that this will make private content public if saved
 
+			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
+				// Let sysop know that this will make private content public if saved
 				if( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
 					$wgOut->addWikiMsg( 'rev-deleted-text-permission' );
 				} else if( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 					$wgOut->addWikiMsg( 'rev-deleted-text-view' );
 				}
-
+				// Let user know they are editing an old version
 				if( !$this->mArticle->mRevision->isCurrent() ) {
 					$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
 					$wgOut->addWikiMsg( 'editingold' );
