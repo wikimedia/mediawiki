@@ -509,7 +509,7 @@ class UploadForm {
 	 * @access private
 	 */
 	function uploadWarning( $warnings ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 		global $wgUseCopyrightUpload;
 
 		$this->mSessionKey = $this->mUpload->stashSession();
@@ -517,6 +517,8 @@ class UploadForm {
 			# Couldn't save file; an error has been displayed so let's go.
 			return;
 		}
+		
+		$sk = $wgUser->getSkin();
 
 		$wgOut->addHTML( '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" );
 		$wgOut->addHTML( '<ul class="warning">' );
@@ -530,7 +532,7 @@ class UploadForm {
 				} elseif( $warning == 'filewasdeleted' ) {
 					$ltitle = SpecialPage::getTitleFor( 'Log' );
 					$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ),
-						'type=delete&page=' . $file->getTitle()->getPrefixedUrl() );
+						'type=delete&page=' . $args->getPrefixedUrl() );
 					$msg = "\t<li>" . wfMsgWikiHtml( 'filewasdeleted', $llink ) . "</li>\n";
 				} else {
 					if( is_bool( $args ) )
