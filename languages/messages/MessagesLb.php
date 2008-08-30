@@ -892,6 +892,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-h3'                 => "eng '''Iwwerschrëft (3. Niveau)'''",
 'diff-h4'                 => "eng '''Iwwerschrëft (4. Niveau)'''",
 'diff-h5'                 => "eng '''Iwwerschrëft (5. Niveau)'''",
+'diff-pre'                => "e '''formatéierte Block'''",
 'diff-div'                => "e '''Blockelement'''",
 'diff-ul'                 => "eng '''Lëscht'''",
 'diff-ol'                 => "eng '''numeréiert Lëscht'''",
@@ -1120,6 +1121,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'recentchanges'                     => 'Rezent Ännerungen',
+'recentchanges-legend'              => 'Optioune vun de rezenten Ännerungen',
 'recentchangestext'                 => "Op dëser Säit kënnt Dir déi rezent Ännerungen op '''{{SITENAME}}''' gesinn.",
 'recentchanges-feed-description'    => 'Verfollegt mat dësem Feed déi rezent Ännerungen op {{SITENAME}}.',
 'rcnote'                            => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
@@ -2335,8 +2337,10 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 # Flash modes
 'exif-flash-fired-0'    => 'Ouni Blëtz',
 'exif-flash-fired-1'    => 'mat Blëtz',
+'exif-flash-mode-2'     => 'De Blëtz war ausgeschalt',
 'exif-flash-mode-3'     => 'Automatik',
 'exif-flash-function-1' => 'Ouni Blëtzfonctioun',
+'exif-flash-redeye-1'   => 'Reduktioun vun de rouden Aen',
 
 'exif-focalplaneresolutionunit-2' => 'Zoll/Inchen',
 

@@ -912,6 +912,7 @@ Razlog koji je dao/la $3 je ''$2''",
 'revnotfoundtext'     => 'Ne mogu pronaći staru izmjenu stranice koju ste zatražili.
 Molimo provjerite URL koji vas je doveo ovamo.',
 'currentrev'          => 'Trenutačna inačica',
+'currentrev-asof'     => 'Trenutačna izmjena od $1',
 'revisionasof'        => 'Inačica od $1',
 'revision-info'       => 'Inačica od $1 koju je unio/unijela $2',
 'previousrevision'    => '←Starija inačica',
@@ -1250,6 +1251,7 @@ za podešavanje suradničkih postavki.',
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|$1 promjena|$1 promjene|$1 promjena}}',
 'recentchanges'                     => 'Nedavne promjene',
+'recentchanges-legend'              => 'Izbornik nedavnih promjena',
 'recentchangestext'                 => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
 'recentchanges-feed-description'    => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
 'rcnote'                            => "{{PLURAL:$1|Slijedi zadnja '''$1''' promjena|Slijede zadnje '''$1''' promjene|Slijedi zadnjih '''$1''' promjena}} u {{PLURAL:$2|zadnjem '''$2''' danu|zadnja '''$2''' dana|zadnjih '''$2''' dana}}, od $5, $4.",
@@ -1401,6 +1403,9 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'filehist-revert'                => 'vrati',
 'filehist-current'               => 'sadašnja',
 'filehist-datetime'              => 'Datum/Vrijeme',
+'filehist-thumb'                 => 'Minijatura',
+'filehist-thumbtext'             => 'Minijatura za inačicu od $1',
+'filehist-nothumb'               => 'Nema minijature',
 'filehist-user'                  => 'Suradnik',
 'filehist-dimensions'            => 'Dimenzije',
 'filehist-filesize'              => 'Veličina datoteke',
@@ -1655,10 +1660,11 @@ E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatel
 'defemailsubject' => '{{SITENAME}} elektronička pošta (e-mail)',
 'noemailtitle'    => 'Nema adrese primaoca',
 'noemailtext'     => 'Ovaj suradnik nije unio valjanu e-mail adresu ili se odlučio na neće primati poštu od drugih suradnika.',
-'emailfrom'       => 'Od',
-'emailto'         => 'Za',
-'emailsubject'    => 'Tema',
-'emailmessage'    => 'Poruka',
+'email-legend'    => 'Pošalji elektroničku poštu drugom {{SITENAME}} suradniku',
+'emailfrom'       => 'Od:',
+'emailto'         => 'Za:',
+'emailsubject'    => 'Tema:',
+'emailmessage'    => 'Poruka:',
 'emailsend'       => 'Pošalji',
 'emailccme'       => 'Pošalji mi e-mailom kopiju moje poruke.',
 'emailccsubject'  => 'Kopija vaše poruke suradniku $1: $2',
@@ -1851,7 +1857,7 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'undelete-fieldset-title'      => 'Vrati izmjene',
 'undeleteextrahelp'            => "Da biste vratili cijelu stranicu, ostavite sve ''kućice'' neoznačene i kliknite '''Vrati!'''. Ako želite vratiti određenu reviziju, označite je i kliknite '''Vrati!'''. Klik na gumb '''Očisti''' će odznačiti sve ''kućice'' i obrisati polje za komentar.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|inačica je arhivirana|inačice su arhivirane|inačica je arhivirano}}',
-'undeletehistory'              => 'Ako vratite izbrisanu stranicu, bit će vraćene i sve prijašnje promjene. Ako je u međuvremenu stvorena nova stranica s istim imenom, vraćena stranica bit će upisana kao prijašnja promjena sadašnje. Sadašnja stranica neće biti zamijenjena.',
+'undeletehistory'              => 'Ako vratite izbrisanu stranicu, bit će vraćene i sve prijašnje promjene. Ako je u međuvremenu stvorena nova stranica s istim imenom, vraćena stranica bit će upisana kao prijašnja promjena sadašnje.',
 'undeleterevdel'               => 'Vraćanje stranice neće biti izvršeno ako je rezultat toga djelomično brisanje zadnjeg uređivanja.
 U takvim slučajevima morate isključiti ili otkriti najnovije obrisane promjene.',
 'undeletehistorynoadmin'       => 'Ovaj je članak izbrisan. Razlog za brisanje prikazan je u donjem sažetku, zajedno s
@@ -2228,6 +2234,8 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'tooltip-watch'                   => 'Dodaj na popis praćenja',
 'tooltip-recreate'                => 'Vrati stranicu unatoč tome što je obrisana',
 'tooltip-upload'                  => "Pokreni snimanje (''upload'')",
+'tooltip-rollback'                => '"Ukloni" uklanja uređivanja zadnjeg suradnika na ovoj stranici.',
+'tooltip-undo'                    => '"Ukloni ovu izmjenu" uklanja ovu izmjenu i otvara okvir za uređivanje. Omogućava unošenje razloga u sažetak.',
 
 # Stylesheets
 'common.css'   => '/** Uređivanje ove CSS datoteke će se odraziti na sve skinove */',
@@ -2243,7 +2251,7 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 'notacceptable'     => 'Wiki server ne može dobaviti podatke u obliku kojega vaš klijent može pročitati.',
 
 # Attribution
-'anonymous'        => 'Anonimni suradnik projekta {{SITENAME}}',
+'anonymous'        => 'Neprijavljeni {{PLURAL:$1|suradnik|suradnici}} projekta {{SITENAME}}',
 'siteuser'         => 'Suradnik $1 na projektu {{SITENAME}}',
 'lastmodifiedatby' => 'Ovu je stranicu zadnji put mijenjao dana $2, $1 suradnik $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Temelji se na doprinosu suradnika $1.',
@@ -2536,6 +2544,12 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'exif-lightsource-19'  => 'Standardno svjetlo C',
 'exif-lightsource-24'  => 'ISO studijska svjetiljka',
 'exif-lightsource-255' => 'Drugi izvor svjetla',
+
+# Flash modes
+'exif-flash-fired-0'  => 'Bez upotrebe bljeskalice',
+'exif-flash-fired-1'  => 'S upotrebom bljeskalice',
+'exif-flash-mode-3'   => 'automatski način rada',
+'exif-flash-redeye-1' => 'način rada za smanjenje crvenih očiju',
 
 'exif-focalplaneresolutionunit-2' => 'inči',
 

@@ -769,6 +769,15 @@ Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'compareselectedversions' => 'Ferlykje selektearre ferzjes',
 'editundo'                => 'werom sette',
 'diff-multi'              => '({{PLURAL:$1|Ien tuskenlizzende ferzje wurdt|$1 tuskenlizzende ferzjes wurde}} net sjen litten.)',
+'diff-removed'            => 'wiske',
+'diff-src'                => 'boarne',
+'diff-withdestination'    => 'mei bestimming',
+'diff-with'               => '&#32;mei $1 $2',
+'diff-with-final'         => '&#32;en $1 $2',
+'diff-width'              => 'breedte',
+'diff-a'                  => "in '''keppeling'''",
+'diff-b'                  => "'''fet'''",
+'diff-del'                => "'''wiske'''",
 
 # Search results
 'searchresults'             => 'Sykresultaat',
@@ -885,6 +894,7 @@ wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn
 'userrights-groupsmember'     => 'Sit yn group:',
 'userrights-reason'           => 'Reden foar wizigjen:',
 'userrights-no-interwiki'     => 'Jo hawwe gjin foech om rjochten fan meidoggers op oare wikis te wizigjen.',
+'userrights-nodatabase'       => 'Databank $1 bestiet net of is net lokaal.',
 'userrights-nologin'          => 'Jo moatte jo [[Special:UserLogin|oanmelde]] as rjochtenútfurder om rjochten fan meidoggers wizigje te kinnen.',
 'userrights-notallowed'       => 'Jo hawwe gjin rjochten om rjochten fan meidoggers te wizigjen.',
 'userrights-changeable-col'   => "Groepen dy't jo beheare kinne",
@@ -955,6 +965,7 @@ wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 folgjende {{PLURAL:$1|meidogger|meidoggers}}]',
 'rc_categories'                     => 'Alline kategoryen (skiede mei in "|")',
+'rc_categories_any'                 => 'Elk',
 'newsectionsummary'                 => '/* $1 */ nije seksje',
 
 # Recent changes linked
@@ -994,6 +1005,8 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'ignorewarnings'             => 'Negearje warskôgings',
 'minlength1'                 => 'Triemnammen moatte minstens út ien teken bestean.',
 'badfilename'                => 'De ôfbyldnamme is feroare nei "$1".',
+'filetype-missing'           => 'De triem hat gjin taheaksel (lykas ".jpg").',
+'fileexists-thumb'           => "<center>'''Besteande ôfbylding'''</center>",
 'successfulupload'           => 'Oanbieden slagge.',
 'uploadwarning'              => 'Oanbied waarskôging',
 'savefile'                   => 'Lis triem fêst',
@@ -1004,33 +1017,41 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'watchthisupload'            => 'Folgje dizze side',
 'filename-bad-prefix'        => 'De namme fan de triem dy\'t jo oanbied begjint mei <strong>"$1"</strong>, dit wiist op in namme dy\'t automatysk troch in digitale kamera oanmakke wurdt. Feroarje de namme as jo wolle yn ien dy\'t in omskriuwing jout fan de triem.',
 
+'upload-file-error' => 'Ynterne fout',
+
 'license'   => 'Lisinsje:',
 'nolicense' => 'Neat keazen',
 
 # Special:ImageList
-'imgfile'        => 'triem',
-'imagelist'      => 'Ofbyld list',
-'imagelist_name' => 'Namme',
+'imgfile'               => 'triem',
+'imagelist'             => 'Ofbyld list',
+'imagelist_date'        => 'Datum',
+'imagelist_name'        => 'Namme',
+'imagelist_user'        => 'Meidogger',
+'imagelist_size'        => 'Grutte',
+'imagelist_description' => 'Beskriuwing',
 
 # Image description page
-'filehist'                  => 'Triem skiednis',
-'filehist-help'             => 'Klik op in tiid om de ferzje fan de triem op dat stuit te sjen.',
-'filehist-deleteall'        => 'wiskje alles',
-'filehist-deleteone'        => 'wiskje dizze',
-'filehist-revert'           => 'werom sette',
-'filehist-current'          => 'lêste',
-'filehist-datetime'         => 'Tiid',
-'filehist-user'             => 'Meidogger',
-'filehist-dimensions'       => 'Ofmjittings',
-'filehist-filesize'         => 'Triem grutte',
-'filehist-comment'          => 'Opmerkings',
-'imagelinks'                => 'Ofbyldkeppelings',
-'linkstoimage'              => 'Dizze {{PLURAL:$1|side is|$1 siden binne}} keppele oan it ôfbyld:',
-'nolinkstoimage'            => 'Der binne gjin siden oan dit ôfbyld keppele.',
-'sharedupload'              => 'Dizze triem is in dielde oplading en kin ek troch oare projektren brûkt wurde.',
-'noimage'                   => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
-'noimage-linktext'          => 'oplade',
-'uploadnewversion-linktext' => 'Bied in nije ferzje fan dizze triem oan',
+'filehist'                       => 'Triem skiednis',
+'filehist-help'                  => 'Klik op in tiid om de ferzje fan de triem op dat stuit te sjen.',
+'filehist-deleteall'             => 'wiskje alles',
+'filehist-deleteone'             => 'wiskje dizze',
+'filehist-revert'                => 'werom sette',
+'filehist-current'               => 'lêste',
+'filehist-datetime'              => 'Tiid',
+'filehist-user'                  => 'Meidogger',
+'filehist-dimensions'            => 'Ofmjittings',
+'filehist-filesize'              => 'Triem grutte',
+'filehist-comment'               => 'Opmerkings',
+'imagelinks'                     => 'Ofbyldkeppelings',
+'linkstoimage'                   => 'Dizze {{PLURAL:$1|side is|$1 siden binne}} keppele oan it ôfbyld:',
+'nolinkstoimage'                 => 'Der binne gjin siden oan dit ôfbyld keppele.',
+'sharedupload'                   => 'Dizze triem is in dielde oplading en kin ek troch oare projektren brûkt wurde.',
+'shareduploadduplicate-linktext' => 'in oare triem',
+'shareduploadconflict-linktext'  => 'in oare triem',
+'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
+'noimage-linktext'               => 'oplade',
+'uploadnewversion-linktext'      => 'Bied in nije ferzje fan dizze triem oan',
 
 # File reversion
 'filerevert'         => '$1 weromsette',
@@ -1051,6 +1072,8 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 
 # MIME search
 'mimesearch' => 'Sykje op MIME-type',
+'mimetype'   => 'MIME-type:',
+'download'   => 'oanbiede',
 
 # Unwatched pages
 'unwatchedpages' => "Siden dy't net op in folchlist steane",
@@ -1063,7 +1086,8 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'unusedtemplateswlh' => 'oare keppelings',
 
 # Random page
-'randompage' => 'Samar in side',
+'randompage'         => 'Samar in side',
+'randompage-nopages' => 'Der binne gjin siden yn dizze nammeromte.',
 
 # Random redirect
 'randomredirect' => 'Samar in trochferwizing',
@@ -1131,6 +1155,7 @@ Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as be
 'deadendpages'            => 'Siden sûnder ferwizings',
 'protectedpages'          => 'Skoattele siden',
 'protectedpagestext'      => 'De neikommende siden binne skoattele foar werneamen of wizigjen',
+'protectedtitles'         => 'Skoattele titels',
 'listusers'               => 'Meidoggerlist',
 'newpages'                => 'Nije siden',
 'newpages-username'       => 'Meidoggernamme:',
@@ -1140,6 +1165,7 @@ Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as be
 'unusedimagestext'        => '<p>Tink derom dat oare websiden fan oare parten fan it meartalige projekt mooglik in keppeling nei it URL fan it ôfbyld makke hawwe. Sokke ôfbylden wurde wol brûkt, mar steane dochs op dizze list.',
 'notargettitle'           => 'Gjin side',
 'notargettext'            => 'Jo hawwe net sein oer hokfoar side jo dit witte wolle.',
+'nopagetitle'             => 'Side bestiet net',
 'pager-older-n'           => '{{PLURAL:$1|1 âlder|$1 âlder}}',
 
 # Book sources
@@ -1190,8 +1216,8 @@ Jo kinne it oersjoch beheine troch in loch, in meidoggernamme of in side oan te 
 'defemailsubject' => 'E-post fan {{SITENAME}}',
 'noemailtitle'    => 'Gjin e-postadres',
 'noemailtext'     => 'Dizze meidogger hat gjin jildich e-postadres ynsteld, of hat oanjûn gjin post fan oare meidoggers krije te wollen.',
-'emailfrom'       => 'Fan',
-'emailto'         => 'Oan',
+'emailfrom'       => 'Fan:',
+'emailto'         => 'Oan:',
 'emailsubject'    => 'Oer',
 'emailmessage'    => 'Tekst',
 'emailsend'       => 'Stjoer',
@@ -1232,10 +1258,11 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'watching'   => "Dwaande mei op'e folchlist te setten ...",
 'unwatching' => "Dwaande mei fan'e folchlist ôf te heljen ...",
 
-'enotif_newpagetext' => 'Dit is in nije side.',
-'changed'            => 'feroare',
-'created'            => 'oanmakke',
-'enotif_body'        => 'Bêste $WATCHINGUSERNAME,
+'enotif_newpagetext'           => 'Dit is in nije side.',
+'enotif_impersonal_salutation' => 'meidogger fan {{SITENAME}}',
+'changed'                      => 'feroare',
+'created'                      => 'oanmakke',
+'enotif_body'                  => 'Bêste $WATCHINGUSERNAME,
 
 De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR; 
 sjoch $PAGETITLE_URL foar de aktuele ferzje.
@@ -1335,6 +1362,7 @@ Dit binne de rinnende ynstellings foar de side <strong>$1</strong>:",
 'restriction-edit'   => 'Wizigje',
 'restriction-move'   => 'Werneam',
 'restriction-create' => 'Oanmeitsje',
+'restriction-upload' => 'Oanbiede',
 
 # Restriction levels
 'restriction-level-sysop'         => 'folslein skoattele',
@@ -1403,51 +1431,52 @@ Dit binne de rinnende ynstellings foar de side <strong>$1</strong>:",
 'whatlinkshere-hidelinks'  => '$1 keppelings',
 
 # Block/unblock
-'blockip'             => 'Slút meidogger út',
-'blockip-legend'      => 'Slút brûker út',
-'blockiptext'         => "Brûk dizze fjilden om in meidogger fan skriuwtagong út te sluten.
+'blockip'              => 'Slút meidogger út',
+'blockip-legend'       => 'Slút brûker út',
+'blockiptext'          => "Brûk dizze fjilden om in meidogger fan skriuwtagong út te sluten.
 Dat soe allinnich fanwege fandalisme dien wurde moatte, sa't de
 [[{{MediaWiki:Policy-url}}|útslut-rie]] it oanjout.
 Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
-'ipaddress'           => 'Meidochnamme of ynternet-adres',
-'ipadressorusername'  => 'IP Adres of meidoggernamme:',
-'ipbexpiry'           => 'Ferrint nei:',
-'ipbreason'           => 'Reden',
-'ipbreasonotherlist'  => 'Oare reden',
-'ipbanononly'         => 'Slút allinich anonyme meidoggers út',
-'ipbcreateaccount'    => 'Blokkearje it oanmeitsjen fan in nij profyl',
-'ipbenableautoblock'  => "Automatysk de lêste IP adressen útslute dy't troch dizze meidogger brûkt binne.",
-'ipbsubmit'           => 'Slút dizze meidogger út',
-'ipbother'            => 'In oare tiid:',
-'ipboptions'          => '15 minuten:15 min,1 oere:1 hour,2 oeren:2 hours,6 oeren:6 hours,12 oeren:12 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'      => 'oare tiid',
-'ipbotherreason'      => 'Oare/eventuele reden:',
-'badipaddress'        => 'Gjin jildige IP-adres',
-'blockipsuccesssub'   => 'Utsluting slagge',
-'blockipsuccesstext'  => 'Meidogger [[Special:Contributions/$1|$1]] is útsletten.<br />
+'ipaddress'            => 'Meidochnamme of ynternet-adres',
+'ipadressorusername'   => 'IP Adres of meidoggernamme:',
+'ipbexpiry'            => 'Ferrint nei:',
+'ipbreason'            => 'Reden',
+'ipbreasonotherlist'   => 'Oare reden',
+'ipbanononly'          => 'Slút allinich anonyme meidoggers út',
+'ipbcreateaccount'     => 'Blokkearje it oanmeitsjen fan in nij profyl',
+'ipbenableautoblock'   => "Automatysk de lêste IP adressen útslute dy't troch dizze meidogger brûkt binne.",
+'ipbsubmit'            => 'Slút dizze meidogger út',
+'ipbother'             => 'In oare tiid:',
+'ipboptions'           => '15 minuten:15 min,1 oere:1 hour,2 oeren:2 hours,6 oeren:6 hours,12 oeren:12 hours,1 dei:1 day,3 dagen:3 days,1 wike:1 week,2 wiken:2 weeks,1 moanne:1 month,3 moanne:3 months,6 moanne:6 months,1 jier:1 year,ûnbeheind:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'       => 'oare tiid',
+'ipbotherreason'       => 'Oare/eventuele reden:',
+'badipaddress'         => 'Gjin jildige IP-adres',
+'blockipsuccesssub'    => 'Utsluting slagge',
+'blockipsuccesstext'   => 'Meidogger [[Special:Contributions/$1|$1]] is útsletten.<br />
 (List fan [[Special:IPBlockList|útslette meidoggers]].)',
-'ipb-unblock-addr'    => 'Lit $1 yn',
-'ipb-unblock'         => 'Lit in meidogger of IP-adres yn',
-'ipb-blocklist-addr'  => 'Besteande útsluting foar $1 besjen',
-'ipb-blocklist'       => 'Besteande útslutings besjen',
-'unblockip'           => 'Lit meidogger wer ta',
-'unblockiptext'       => 'Brûk dizze fjilden om in meidogger wer skriuwtagong te jaan.',
-'ipusubmit'           => 'Lit dizze meidogger wer ta.',
-'ipblocklist'         => 'List fan útsletten ynternet-adressen en meidochnammen',
-'ipblocklist-submit'  => 'Sykje',
-'blocklistline'       => '"$3", troch "$2" op $1 ($4)',
-'infiniteblock'       => 'trochgeand',
-'blocklink'           => 'slút út',
-'unblocklink'         => 'lit yn',
-'contribslink'        => 'bydragen',
-'autoblocker'         => 'Jo wiene útsletten om\'t jo ynternet-adres oerienkomt mei dat fan "[[User:$1|$1]]". Foar it útsluten fan dy meidogger waard dizze reden jûn: "$2".',
-'blocklogpage'        => 'Utslútloch',
-'blocklogentry'       => '"[[$1]]" útsletten foar $2 $3',
-'blocklogtext'        => 'Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:IPBlockList|útsletlist]] foar de no jildende utslettings.',
-'ipb_expiry_invalid'  => 'Tiid fan ferrinnen is net goed.',
-'ipb_already_blocked' => '"$1" is al útsluten',
-'ipb_cant_unblock'    => 'Flater: It útsluten fan ID $1 kin net fûn wurde. It is miskien al net mear útsluten.',
-'proxyblocksuccess'   => 'Dien.',
+'ipb-unblock-addr'     => 'Lit $1 yn',
+'ipb-unblock'          => 'Lit in meidogger of IP-adres yn',
+'ipb-blocklist-addr'   => 'Besteande útsluting foar $1 besjen',
+'ipb-blocklist'        => 'Besteande útslutings besjen',
+'unblockip'            => 'Lit meidogger wer ta',
+'unblockiptext'        => 'Brûk dizze fjilden om in meidogger wer skriuwtagong te jaan.',
+'ipusubmit'            => 'Lit dizze meidogger wer ta.',
+'ipblocklist'          => 'List fan útsletten ynternet-adressen en meidochnammen',
+'ipblocklist-username' => 'Meidoggernamme of IP-adres:',
+'ipblocklist-submit'   => 'Sykje',
+'blocklistline'        => '"$3", troch "$2" op $1 ($4)',
+'infiniteblock'        => 'trochgeand',
+'blocklink'            => 'slút út',
+'unblocklink'          => 'lit yn',
+'contribslink'         => 'bydragen',
+'autoblocker'          => 'Jo wiene útsletten om\'t jo ynternet-adres oerienkomt mei dat fan "[[User:$1|$1]]". Foar it útsluten fan dy meidogger waard dizze reden jûn: "$2".',
+'blocklogpage'         => 'Utslútloch',
+'blocklogentry'        => '"[[$1]]" útsletten foar $2 $3',
+'blocklogtext'         => 'Dit is in loch fan it útsluten en talitten fan meidoggers. Fansels útsletten net-adressen binne net opnaam. Sjoch de [[Special:IPBlockList|útsletlist]] foar de no jildende utslettings.',
+'ipb_expiry_invalid'   => 'Tiid fan ferrinnen is net goed.',
+'ipb_already_blocked'  => '"$1" is al útsluten',
+'ipb_cant_unblock'     => 'Flater: It útsluten fan ID $1 kin net fûn wurde. It is miskien al net mear útsluten.',
+'proxyblocksuccess'    => 'Dien.',
 
 # Developer tools
 'lockdb'              => "Meitsje de database 'Net-skriuwe'",
@@ -1510,11 +1539,12 @@ De doelside "[[:$1]]" is der al. Moat dy wiske wurde om plak te meitsjen foar it
 'immobile_namespace'      => "De nije titel is yn in nammeromte dêr't gjin siden oan tafoege wurde kinne.",
 
 # Export
-'export'           => 'Eksportearje',
-'export-submit'    => 'Eksportearje',
-'export-addcat'    => 'Tafoegje',
-'export-download'  => 'Fêstlizze as triem',
-'export-templates' => 'Tafoegje berjochten',
+'export'            => 'Eksportearje',
+'export-submit'     => 'Eksportearje',
+'export-addcattext' => 'Siden tafoegje fan kategory:',
+'export-addcat'     => 'Tafoegje',
+'export-download'   => 'Fêstlizze as triem',
+'export-templates'  => 'Tafoegje berjochten',
 
 # Namespace 8 related
 'allmessages'         => 'Alle wikiberjochten',
@@ -1527,9 +1557,10 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'allmessagesmodified' => 'Allinne wizige berjochten',
 
 # Thumbnails
-'thumbnail-more'  => 'Fergrutsje',
-'filemissing'     => 'Triem net fûn',
-'thumbnail_error' => 'Flater by it oanmeitsjen fan thumbnail: $1',
+'thumbnail-more'           => 'Fergrutsje',
+'filemissing'              => 'Triem net fûn',
+'thumbnail_error'          => 'Flater by it oanmeitsjen fan thumbnail: $1',
+'thumbnail_dest_directory' => 'Kin de doelmap net oanmeitsje',
 
 # Special:Import
 'import'                  => 'Importearje siden',
@@ -1538,6 +1569,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'import-revision-count'   => '$1 {{PLURAL:$1|ferzje|ferzjes}}',
 'importnopages'           => 'Gjin siden te ymportearjen.',
 'importfailed'            => 'Ymport fout: <nowiki>$1</nowiki>',
+'importunknownsource'     => 'Unbekende ymportboarnetype',
 'importcantopen'          => 'De ymporttriem koe net iepenen wurde.',
 'importbadinterwiki'      => 'Ferkearde ynterwikiferwizing',
 'importnotext'            => 'Leech of gjin tekst',
@@ -1546,6 +1578,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'import-noarticle'        => 'Gjin side te ymportearjen!',
 'import-nonewrevisions'   => 'Alle ferzjes wurde al ymportearre.',
 'xml-error-string'        => '$1 op regel $2, kolom $3 (byte $4): $5',
+'import-upload'           => 'XML-gegevens oanbiede',
 
 # Import log
 'importlogpage'                    => 'Ymportlochboek',
@@ -1564,6 +1597,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'tooltip-ca-edit'                 => "Jo kinne dizze side bewurkje. Brûk a.j.w. de foarbyldwerjefteknop foar't Jo de boel bewarje.",
 'tooltip-ca-addsection'           => 'In opmerking tafoegje oan de oerlis-side.',
 'tooltip-ca-viewsource'           => 'Dizze side is befeilige, mar jo kinne de boarne wol besjen.',
+'tooltip-ca-history'              => 'Eardere ferzjes fan dizze side.',
 'tooltip-ca-protect'              => 'Dizze side befeiligje',
 'tooltip-ca-delete'               => 'Dizze side weidwaan',
 'tooltip-ca-move'                 => 'Dizze side ferskowe',
@@ -1578,6 +1612,8 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'tooltip-n-randompage'            => 'Samar in side sjen litte.',
 'tooltip-n-help'                  => 'Helpynformaasje oer dizze wiki.',
 'tooltip-t-whatlinkshere'         => "List fan alle siden dy't nei dizze side ferwize",
+'tooltip-feed-rss'                => 'RSS-feed foar dizze side',
+'tooltip-feed-atom'               => 'Atom-feed foar dizze side',
 'tooltip-t-contributions'         => 'Bydragen fan dizze brûker',
 'tooltip-t-emailuser'             => 'Stjoer in e-mail nei dizze brûker',
 'tooltip-t-upload'                => 'Triemmen oplade',
@@ -1585,6 +1621,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'tooltip-ca-nstab-user'           => 'Brûkersside sjen litte',
 'tooltip-ca-nstab-project'        => 'Projektside sjen litte',
 'tooltip-ca-nstab-image'          => 'De triemside sjen litte',
+'tooltip-ca-nstab-mediawiki'      => 'Systeemberjocht sjen litte',
 'tooltip-ca-nstab-template'       => 'Sjabloan sjen litte',
 'tooltip-ca-nstab-help'           => 'Helpside sjen litte',
 'tooltip-ca-nstab-category'       => 'Kategory-side sjen litte',
@@ -1599,9 +1636,11 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'common.js' => '/* Alles wat hjir oan JavaScript delset wurdt, wurdt foar alle brûkers laden foar eltse side! */',
 
 # Attribution
-'anonymous' => 'Anonime meidogger(s) fan {{SITENAME}}',
-'siteuser'  => '{{SITENAME}} meidogger $1',
-'siteusers' => '{{SITENAME}} meidogger(s) $1',
+'anonymous'     => 'Anonime {{PLURAL:$1|meidogger|meidoggers}} fan {{SITENAME}}',
+'siteuser'      => '{{SITENAME}} meidogger $1',
+'othercontribs' => 'Basearre op wurk fan $1.',
+'others'        => 'Oaren',
+'siteusers'     => '{{SITENAME}} {{PLURAL:$2|meidogger|meidoggers}} $1',
 
 # Spam protection
 'spamprotectiontext'  => "De side dy't jo fêstlizze woene is blokkearre troch in spam filter. Dit wurdt wierskynlik feroarsake troch in ferwizing nei in ekstern webstee.",
@@ -1642,12 +1681,13 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'show-big-image-thumb' => '<small>Grutte fan dizze ôfbylding: $1 × $2 pixels</small>',
 
 # Special:NewImages
-'newimages'     => 'Nije ôfbylden',
-'imagelisttext' => "Dit is in list fan '''$1''' {{PLURAL:$1|triem|triemen}}, op $2.",
-'showhidebots'  => '(Bots $1)',
-'noimages'      => 'Neat te sjen.',
-'ilsubmit'      => 'Sykje',
-'bydate'        => 'datum',
+'newimages'        => 'Nije ôfbylden',
+'imagelisttext'    => "Dit is in list fan '''$1''' {{PLURAL:$1|triem|triemen}}, op $2.",
+'newimages-legend' => 'Filter',
+'showhidebots'     => '(Bots $1)',
+'noimages'         => 'Neat te sjen.',
+'ilsubmit'         => 'Sykje',
+'bydate'           => 'datum',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as folget:
@@ -1669,18 +1709,27 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagedescription'    => 'Ofbylding titel',
-'exif-make'                => 'Kamera makker',
-'exif-artist'              => 'Auteur',
-'exif-makernote'           => 'Opmerkings fan makker',
-'exif-usercomment'         => 'Opmerkings',
-'exif-relatedsoundfile'    => 'Besibbe audiotriem',
-'exif-exposuretime-format' => '$1 sek ($2)',
-'exif-gpsdatestamp'        => 'GPS-datum',
+'exif-samplesperpixel'        => 'Oantal komponinten',
+'exif-xresolution'            => 'Horizontale resolúsje',
+'exif-yresolution'            => 'Fertikale resolúsje',
+'exif-imagedescription'       => 'Ofbylding titel',
+'exif-make'                   => 'Kamera makker',
+'exif-artist'                 => 'Auteur',
+'exif-colorspace'             => 'Kleurromte',
+'exif-compressedbitsperpixel' => 'Ofbylding kompresjemetoade',
+'exif-makernote'              => 'Opmerkings fan makker',
+'exif-usercomment'            => 'Opmerkings',
+'exif-relatedsoundfile'       => 'Besibbe audiotriem',
+'exif-exposuretime-format'    => '$1 sek ($2)',
+'exif-flash'                  => 'Flits',
+'exif-filesource'             => 'Triemboarne',
+'exif-gpsdatestamp'           => 'GPS-datum',
 
 'exif-unknowndate' => 'Datum ûnbekend',
 
 'exif-orientation-1' => 'Normaal', # 0th row: top; 0th column: left
+
+'exif-componentsconfiguration-0' => 'bestiet net',
 
 'exif-exposureprogram-0' => 'Net bepaald',
 'exif-exposureprogram-2' => 'Normaal programma',
@@ -1688,12 +1737,16 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'exif-subjectdistance-value' => '$1 meter',
 
 'exif-meteringmode-0' => 'Unbekend',
+'exif-meteringmode-5' => 'Patroan',
 
 'exif-lightsource-0' => 'Unbekend',
+'exif-lightsource-1' => 'Deiljocht',
+'exif-lightsource-4' => 'Flits',
 
 'exif-customrendered-0' => 'Normale ferwurking',
 
 'exif-scenecapturetype-0' => 'Standert',
+'exif-scenecapturetype-1' => 'Lânskip',
 
 'exif-gaincontrol-0' => 'Gjin',
 
@@ -1704,6 +1757,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'exif-sharpness-0' => 'Normaal',
 
 'exif-subjectdistancerange-0' => 'Unbekend',
+'exif-subjectdistancerange-2' => 'Tichtby',
 
 # External editor support
 'edit-externally'      => 'Wizigje dizze triem mei in ekstern programma',
@@ -1742,10 +1796,27 @@ $5
 
 Dizze befêstigingskoade ferrint dan op $4.',
 
+# Scary transclusion
+'scarytranscludetoolong' => '[URL-adres is te lang; sorry]',
+
+# Trackbacks
+'trackbackremove' => ' ([$1 Wiskje])',
+
 # Delete conflict
 'confirmrecreate' => "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[User:$1|$1]] ([[User talk:$1|oerlis]]) de side wiske. De reden dy't derfoar jûn waard wie:
 : ''$2''
 Wolle jo de side wier op 'e nij skriuwe?",
+
+# Multipage image navigation
+'imgmultipagenext' => 'folgjende side →',
+'imgmultigo'       => 'Los!',
+'imgmultigoto'     => 'Gean nei side $1',
+
+# Table pager
+'table_pager_next'         => 'Folgjende side',
+'table_pager_first'        => 'Earste side',
+'table_pager_limit_submit' => 'Los!',
+'table_pager_empty'        => 'Gjin resultaat',
 
 # Auto-summaries
 'autosumm-blank'   => 'Alle ynhâld fan de side weismiten',
@@ -1757,8 +1828,12 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'livepreview-loading' => 'Ynlade...',
 
 # Watchlist editor
-'watchlistedit-raw-titles' => 'Siden:',
-'watchlistedit-raw-added'  => '{{PLURAL:$1|1 side is|$1 siden binne}} tafoege:',
+'watchlistedit-normal-title'  => 'Folchlist bewurkje',
+'watchlistedit-normal-submit' => 'Siden wiskje',
+'watchlistedit-raw-titles'    => 'Siden:',
+'watchlistedit-raw-submit'    => 'Folchlist bewurkje',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 side is|$1 siden binne}} tafoege:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 side|$1 siden}} wiske:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Folchlist besjen',
@@ -1767,8 +1842,12 @@ Wolle jo de side wier op 'e nij skriuwe?",
 
 # Special:Version
 'version'                  => 'Ferzje', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'Bysûndere siden',
+'version-variables'        => 'Fariabels',
+'version-other'            => 'Oare',
 'version-version'          => 'Ferzje',
 'version-license'          => 'Lisinsje',
+'version-software'         => 'Ynsteld software',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Ferzje',
 

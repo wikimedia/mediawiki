@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author Mirzali
  * @author Belekvor
+ * @author Mirzali
  */
 
 $messages = array(

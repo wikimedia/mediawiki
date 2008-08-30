@@ -2596,10 +2596,11 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-lightsource-255' => 'Annan ljuskälla',
 
 # Flash modes
-'exif-flash-fired-0'  => 'Blixten utlöstes ej',
-'exif-flash-fired-1'  => 'Blixten utlöstes',
-'exif-flash-mode-3'   => 'autoläge',
-'exif-flash-redeye-1' => 'röda-ögon-reducering',
+'exif-flash-fired-0'    => 'Blixten utlöstes ej',
+'exif-flash-fired-1'    => 'Blixten utlöstes',
+'exif-flash-mode-3'     => 'autoläge',
+'exif-flash-function-1' => 'Ingen blixtfunktion',
+'exif-flash-redeye-1'   => 'röda-ögon-reducering',
 
 'exif-focalplaneresolutionunit-2' => 'tum',
 
