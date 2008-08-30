@@ -1421,6 +1421,8 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filehist-revert'                => 'cofnij',
 'filehist-current'               => 'aktualny',
 'filehist-datetime'              => 'Data/czas',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-nothumb'               => 'Brak miniatury',
 'filehist-user'                  => 'Użytkownik',
 'filehist-dimensions'            => 'Wymiary',
 'filehist-filesize'              => 'Rozmiar pliku',
@@ -1866,8 +1868,7 @@ Częściowe odtworzenie możesz wykonać, zaznaczając odpowiednie pola, odpowia
 Naciśnięcie '''''Wyczyść''''' usunie wszystkie zaznaczenia i wyczyści pole komentarza.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|zarchiwizowana wersja|zarchiwizowane wersje|zarchiwizowanych wersji}}',
 'undeletehistory'              => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji.
-Jeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.
-Ograniczenia dotyczące wersji pliku zostaną usunięte w trakcie odtwarzania.',
+Jeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
 'undeleterevdel'               => 'Odtworzenie nie zostanie przeprowadzone, jeśli mogłoby spowodować częściowe usunięcie aktualnej wersji strony lub pliku.
 W takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszej usuniętej wersji.',
 'undeletehistorynoadmin'       => 'Ta strona została usunięta.

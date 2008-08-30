@@ -507,7 +507,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
-'remembermypassword'         => 'Ingat saya pada komputer ini',
+'remembermypassword'         => 'Ingat saya dari komputer ini',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'loginproblem'               => '<b>Berlaku sedikit masalah ketika log masuk.</b><br />Sila cuba lagi!',

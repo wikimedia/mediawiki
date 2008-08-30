@@ -1240,6 +1240,9 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'filehist-revert'                => 'revertir',
 'filehist-current'               => 'actual',
 'filehist-datetime'              => 'Fecha/Hora',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => 'Miniatura de la versión a fecha de $1',
+'filehist-nothumb'               => 'Ensin miniatura',
 'filehist-user'                  => 'Usuariu',
 'filehist-dimensions'            => 'Dimensiones',
 'filehist-filesize'              => 'Tamañu del archivu',
@@ -1685,9 +1688,7 @@ que quies restaurar y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar'''
 el campu de comentarios y toles caxelles.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
 'undeletehistory'              => 'Si restaures la páxina, restauraránse toles revisiones al historial.
-Si se creó una páxina col mesmu nome dende que foi borrada, les revisiones
-restauraes van apaecer nel historial anterior. Date cuenta tamién de que les restricciones del archivu de revisiones
-perderánse depués de la restauración',
+Si se creó una páxina col mesmu nome dende que fuera borrada, les revisiones restauraes van apaecer nel historial anterior.',
 'undeleterevdel'               => 'Nun se fadrá la restauración si ésta provoca un borráu parcial de la páxina cimera o de la revisión
 del archivu. Nestos casos, tienes que desmarcar o amosar les revisiones borraes más recién.',
 'undeletehistorynoadmin'       => "Esta páxina foi borrada. El motivu del borráu amuésase
@@ -2371,6 +2372,15 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-lightsource-19'  => 'Lluz estándar C',
 'exif-lightsource-24'  => "Tungstenu ISO d'estudio",
 'exif-lightsource-255' => 'Otra fonte de lluz',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Flax non disparáu',
+'exif-flash-fired-1'    => 'Flax disparáu',
+'exif-flash-mode-1'     => 'disparu de flax forciáu',
+'exif-flash-mode-2'     => 'supresión de flax forciáu',
+'exif-flash-mode-3'     => 'mou automáticu',
+'exif-flash-function-1' => 'Ensin función de flax',
+'exif-flash-redeye-1'   => "mou d'amenorgamientu de güeyos encarnaos",
 
 'exif-focalplaneresolutionunit-2' => 'pulgaes',
 
