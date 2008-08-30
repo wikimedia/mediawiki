@@ -738,8 +738,7 @@ nechcete, můžete tuto zprávu ignorovat a používat staré heslo.',
 'passwordsent'               => 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlaste se, prosím, znovu, jakmile ho obdržíte.',
 'blocked-mailpassword'       => 'Vaší IP adrese byla zablokována možnost editace, a současně s tím je zablokována funkce pro zaslání nového hesla.',
 'eauthentsent'               => 'Potvrzovací e-mail byl zaslán na zadanou adresu.
-Před tím, než vám na tuto adresu budou moci být zasílány další zprávy, následujte instrukce
-v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
+Před tím, než vám na tuto adresu budou moci být zasílány další zprávy, následujte instrukce v e-mailu, abyste potvrdili, že tato adresa skutečně patří vám.',
 'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin.
 Heslo může být zasláno jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
@@ -948,7 +947,7 @@ $3 uvádí toto zdůvodnění: ''$2''",
 'viewpagelogs'        => 'Zobrazit protokolovací záznamy k této stránce',
 'nohistory'           => 'O této stránce neexistuje historie editací.',
 'revnotfound'         => 'Verze nenalezena',
-'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.\\b',
+'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.',
 'currentrev'          => 'Aktuální verze',
 'revisionasof'        => 'Verze z $1',
 'revision-info'       => 'Verze z $1; $2',
@@ -1173,7 +1172,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'userrights'                  => 'Správa uživatelských skupin', # Not used as normal message but as header for the special page itself
 'userrights-lookup-user'      => 'Spravovat uživatelské skupiny',
 'userrights-user-editname'    => 'Zadejte uživatelské jméno:',
-'editusergroup'               => 'Upravit uživatelskou skupinu',
+'editusergroup'               => 'Upravit uživatelské skupiny',
 'editinguser'                 => "Úprava práv uživatele '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Upravit uživatelské skupiny',
 'saveusergroups'              => 'Uložit uživatelské skupiny',
@@ -1182,7 +1181,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 * Zaškrtnuté políčko znamená, že uživatel je v dané skupině.
 * Nezaškrtnuté políčko značí, že uživatel v dané skupině není.
 * Hvězdička (*) znamená, že nemůžete danou skupinu odstranit, jakmile ji přidáte, nebo naopak.',
-'userrights-reason'           => 'Zdůvodnění:',
+'userrights-reason'           => 'Zdůvodnění změny:',
 'userrights-no-interwiki'     => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'       => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'          => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
@@ -1193,19 +1192,19 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 # Groups
 'group'               => 'Skupina:',
 'group-user'          => 'Uživatelé',
-'group-autoconfirmed' => 'schválení uživatelé',
+'group-autoconfirmed' => 'Schválení uživatelé',
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
 'group-suppress'      => 'Dohlížitelé',
-'group-all'           => '(všechny)',
+'group-all'           => '(všichni)',
 
-'group-user-member'          => 'Uživatel',
+'group-user-member'          => 'uživatel',
 'group-autoconfirmed-member' => 'schválený uživatel',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Správce',
-'group-bureaucrat-member'    => 'Byrokrat',
-'group-suppress-member'      => 'Dohlížitel',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'správce',
+'group-bureaucrat-member'    => 'byrokrat',
+'group-suppress-member'      => 'dohlížitel',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
 'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
@@ -1383,7 +1382,21 @@ Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jmé
 
 Zvažte zda je vhodné pokračovat v načítání tohoto souboru.
 Zde je příslušný výpis z knihy smazaných stránek:",
-'filename-bad-prefix'         => 'Jméno souboru, který načítáte, začíná na <strong>"$1"</strong>, což je nevhodné jméno, obvykle automaticky přiřazované digitálním fotoaparátem. Zvolte jméno, která Váš soubor lépe popíše.',
+'filename-bad-prefix'         => 'Jméno souboru, který načítáte, začíná na <strong>„$1“</strong>, což je nevhodné jméno, obvykle automaticky přiřazované digitálním fotoaparátem. Zvolte jméno, která váš soubor lépe popíše.',
+'filename-prefix-blacklist'   => ' #<!-- tuto řádku ponechte beze změny --> <pre>
+# Používá se následující syntaxe:
+#   * Cokoli od znaku „#“ až do konce řádky je komentář
+#   * Každá neprázdná řádka je prefix typických jmen souborů automaticky generovaných digitálními fotoaparáty
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # některé mobilní telefony
+IMG # obecné
+JD # Jenoptik
+MGP # Pentax
+PICT # různé
+ #</pre> <!-- tuto řádku ponechte beze změny -->',
 
 'upload-proto-error'      => 'Neplatný protokol',
 'upload-proto-error-text' => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
@@ -1466,7 +1479,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filedelete-comment'          => 'Důvod smazání:',
 'filedelete-submit'           => 'Smazat',
 'filedelete-success'          => "Soubor '''$1''' byl smazán.",
-'filedelete-success-old'      => '<span class="plainlinks">Verze souboru \'\'\'[[Media:$1|$1]]\'\'\' z $3 $2 byla smazána.</span>',
+'filedelete-success-old'      => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
 'filedelete-nofile'           => "Soubor '''$1''' na {{grammar:6sg|{{SITENAME}}}} neexistuje.",
 'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
 'filedelete-iscurrent'        => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
@@ -1615,7 +1628,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Další stránka ($1)',
 'prevpage'          => 'Předchozí stránka ($1)',
-'allpagesfrom'      => 'Všechny stránky počínaje od:',
+'allpagesfrom'      => 'Zobrazit stránky počínaje od:',
 'allarticles'       => 'Všechny stránky',
 'allinnamespace'    => 'Všechny stránky (jmenný prostor $1)',
 'allnotinnamespace' => 'Všechny stránky (mimo jmenný prostor $1)',
@@ -1628,7 +1641,9 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 
 # Special:Categories
 'categories'                    => 'Kategorie',
-'categoriespagetext'            => 'Ve wiki existují následující kategorie:',
+'categoriespagetext'            => 'Následující kategorie obsahují stránky nebo soubory.
+[[Special:UnusedCategories|Nepoužívané kategorie]] nejsou zobrazeny.
+Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'categoriesfrom'                => 'Zobrazit kategorie začínající na:',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
@@ -1658,10 +1673,10 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo
 'defemailsubject' => 'E-mail z {{grammar:2sg|{{SITENAME}}}}',
 'noemailtitle'    => 'Bez e-mailové adresy',
 'noemailtext'     => 'Tento uživatel buď nezadal platnou adresu nebo zakázal přijímat zprávy od jiných uživatelů.',
-'emailfrom'       => 'Od',
-'emailto'         => 'Komu',
-'emailsubject'    => 'Předmět',
-'emailmessage'    => 'Zpráva',
+'emailfrom'       => 'Od:',
+'emailto'         => 'Komu:',
+'emailsubject'    => 'Předmět:',
+'emailmessage'    => 'Zpráva:',
 'emailsend'       => 'Odeslat',
 'emailccme'       => 'Poslat kopii zprávy na můj e-mail',
 'emailccsubject'  => 'Kopie Vaší zprávy pro uživatele $1: $2',
@@ -1837,7 +1852,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'undelete-fieldset-title'      => 'Obnovit revize',
 'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zašrktněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|verze je archivována|verze jsou archivovány|verzí je archivováno}}',
-'undeletehistory'              => 'Pokud stránku obnovíte, všechny revize budou v historii obnoveny. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené revize se zapíší na starší místo v historii a nová stránka nebude nahrazena.',
+'undeletehistory'              => 'Pokud stránku obnovíte, budou  v historii obnoveny všechny verze. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené verze se zapíší na starší místo v historii novější stránky.',
 'undeleterevdel'               => 'Obnovení nebude provedeno, pokud by vedlo k částečnému odstranění aktuální verze stránky. V takovém případě musíte odznačit nebo odkrýt nejnovější smazanou verzi.',
 'undeletehistorynoadmin'       => 'Tato stránka byla smazána. Důvod smazání je uveden níže, spolu s informacemi o uživatelích, kteří tuto stránku před smazáním editovali. Samotný text stránky je dostupný pouze správcům.',
 'undelete-revision'            => 'Smazaná verze stránky $1 (z $2) - $3:',
@@ -1916,10 +1931,10 @@ $1',
 'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
 Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
 Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).',
-'ipaddress'                       => 'IP adresa',
-'ipadressorusername'              => 'IP adresa nebo uživatelské jméno',
-'ipbexpiry'                       => 'Čas vypršení',
-'ipbreason'                       => 'Důvod',
+'ipaddress'                       => 'IP adresa:',
+'ipadressorusername'              => 'IP adresa nebo uživatelské jméno:',
+'ipbexpiry'                       => 'Čas vypršení:',
+'ipbreason'                       => 'Důvod:',
 'ipbreasonotherlist'              => 'Jiný důvod',
 'ipbreason-dropdown'              => '*Časté důvody blokování
 ** Vkládání klamných informací
@@ -1934,7 +1949,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbemailban'                     => 'Bránit uživateli v posílání e-mailů',
 'ipbenableautoblock'              => 'Automaticky blokovat IP adresy používané tímto uživatelem',
 'ipbsubmit'                       => 'Zablokovat',
-'ipbother'                        => 'Jiný čas vypršení',
+'ipbother'                        => 'Jiný čas vypršení:',
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
@@ -1954,7 +1969,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'ipusubmit'                       => 'Odblokovat',
 'unblocked'                       => '[[User:$1|$1]] byl odblokován',
 'unblocked-id'                    => 'Blok $1 byl zrušen',
-'ipblocklist'                     => 'Seznam blokovaných IP adres a uživatelských jmen',
+'ipblocklist'                     => 'Blokované IP adresy a uživatelská jména',
 'ipblocklist-legend'              => 'Hledat zablokovaného uživatele',
 'ipblocklist-username'            => 'Jméno nebo IP adresa:',
 'ipblocklist-submit'              => 'Hledat',
@@ -2061,7 +2076,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 
 # Export
 'export'            => 'Exportovat stránky',
-'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí stránky [[{{ns:Special}}:Import]].
+'exporttext'        => 'Můžete exportovat text a historii editací některé stránky nebo sady stránek zabalené v XML. Výsledný soubor lze naimportovat do jiné wiki, která běží na software MediaWiki, pomocí [[Special:Import|importovací stránky]].
 
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 
@@ -2101,7 +2116,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'import-interwiki-history'   => 'Zkopírovat všechny historické verze této stránky',
 'import-interwiki-submit'    => 'Importovat',
 'import-interwiki-namespace' => 'Stránky přenést do jmenného prostoru:',
-'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje {{ns:special}}:Export, uložte ji na svůj disk a nahrajte ji sem.',
+'importtext'                 => 'Prosím exportujte soubor ze zdrojové wiki pomocí nástroje [[Special:Export|{{ns:special}}:Export]], uložte jej na svůj disk a nahrajte ho sem.',
 'importstart'                => 'Stránky se importují…',
 'import-revision-count'      => '$1 {{PLURAL:$1|revize|revize|revizí}}',
 'importnopages'              => 'Není co importovat.',
@@ -2193,12 +2208,26 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'tooltip-upload'                  => 'Odesílání souboru',
 
 # Stylesheets
-'common.css'   => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
-'monobook.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „monobook“ */',
+'common.css'      => '/* Zde uvedené CSS bude ovlivňovat všechny styly */',
+'standard.css'    => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Klasický“  */',
+'nostalgia.css'   => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Nostalgie“  */',
+'cologneblue.css' => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kolínská modř“  */',
+'monobook.css'    => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Monobook“ */',
+'myskin.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Můj vzhled“ */',
+'chick.css'       => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kuře“ */',
+'simple.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Jednoduchý“ */',
+'modern.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
 
 # Scripts
-'common.js'   => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
-'monobook.js' => '/* JavaScript pro uživatele používající vzhled MonoBook */',
+'common.js'      => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',
+'standard.js'    => '/* JavaScript pro uživatele používající vzhled „Klasický“ */',
+'nostalgia.js'   => '/* JavaScript pro uživatele používající vzhled „Nostalgie“  */',
+'cologneblue.js' => '/* JavaScript pro uživatele používající vzhled „Kolínská modř“  */',
+'monobook.js'    => '/* JavaScript pro uživatele používající vzhled MonoBook */',
+'myskin.js'      => '/* JavaScript pro uživatele používající vzhled „Můj vzhled“ */',
+'chick.js'       => '/* JavaScript pro uživatele používající vzhled „Kuře“ */',
+'simple.js'      => '/* JavaScript pro uživatele používající vzhled „Jednoduchý“ */',
+'modern.js'      => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
 
 # Metadata
 'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
@@ -2251,9 +2280,10 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'markedaspatrollederror-noautopatrol' => 'Nemáte dovoleno označovat vlastní editace jako prověřené.',
 
 # Patrol log
-'patrol-log-page' => 'Kniha prověřených editací',
-'patrol-log-line' => 'označuje revizi $1 stránky $2 za prověřenou $3',
-'patrol-log-auto' => '(automaticky)',
+'patrol-log-page'   => 'Kniha prověřených editací',
+'patrol-log-header' => 'Toto je kniha prověřených verzí.',
+'patrol-log-line'   => 'označuje revizi $1 stránky $2 za prověřenou $3',
+'patrol-log-auto'   => '(automaticky)',
 
 # Image deletion
 'deletedrevision'                 => 'Smazána stará revize $1',

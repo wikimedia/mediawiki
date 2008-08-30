@@ -1,5 +1,5 @@
 <?php
-/** Bishnupriya (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
+/** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
  * @ingroup Language
  * @file

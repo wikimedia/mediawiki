@@ -236,7 +236,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Mayroon kang mga bagong mensahe sa $1',
 'editsection'             => 'baguhin',
 'editold'                 => 'baguhin',
-'editsectionhint'         => 'Baguhin seksyon: $1',
+'editsectionhint'         => 'Baguhin ang seksyon: $1',
 'toc'                     => 'Mga nilalaman',
 'showtoc'                 => 'ipakita',
 'hidetoc'                 => 'itago',
@@ -360,7 +360,7 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 # Edit pages
 'summary'                => 'Buod',
 'subject'                => 'Paksa/punong pamagat',
-'minoredit'              => 'Ito ay isang maliit na pagbabago',
+'minoredit'              => 'Ito ay isang munting pagbabago',
 'watchthis'              => 'Bantayan itong pahina',
 'savearticle'            => 'Itala ang pahina',
 'preview'                => 'Pribyu',
@@ -441,6 +441,7 @@ upang makapagkarga ng talaksan.',
 
 # Special:AllPages
 'allpages'        => 'Lahat ng pahina',
+'alphaindexline'  => '$1 hanggang $2',
 'allpages-bad-ns' => 'Wala sa {{SITENAME}} ang ngalan-espasyong "$1".',
 
 # Special:Categories
@@ -460,6 +461,7 @@ upang makapagkarga ng talaksan.',
 'watchthispage' => 'Bantayan itong pahina',
 
 # Delete/protect/revert
+'deletepage'                  => 'Burahin ang pahina',
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',

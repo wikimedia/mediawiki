@@ -5,7 +5,6 @@
  * @file
  *
  * @author Itsmine
- * @comment Based on http://zh-classical.wikipedia.org/w/index.php?title=Wikipedia:%E7%94%A8%E6%88%B6%E4%BB%8B%E9%9D%A2%E7%BF%BB%E8%AD%AF/MessagesZh_classical.php&oldid=60161
  */
 
 $skinNames = array(
@@ -108,6 +107,10 @@ $messages = array(
 'tog-forceeditsummary'        => '漏概醒之',
 'tog-watchlisthideown'        => '不哨己文',
 'tog-watchlisthidebots'       => '不哨僕文',
+'tog-watchlisthideminor'      => '不哨小纂',
+'tog-nolangconversion'        => '非轉',
+'tog-ccmeonemails'            => '傳己之副信',
+'tog-diffonly'                => '異下無示頁',
 'tog-showhiddencats'          => '示隱類',
 
 'underline-always'  => '恆',
@@ -543,7 +546,7 @@ $2',
 'accmailtitle'                     => '符節傳矣',
 'accmailtext'                      => '"$1"符節至$2矣',
 'newarticle'                       => '撰',
-'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{ns:help}}:Contents|助]]。
+'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{MediaWiki:Helppage}}|助]]。
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext'                    => '此頁無文。子可 [[Special:Search/{{PAGENAME}}|尋同題]]，或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 撰新文]。',
@@ -734,6 +737,7 @@ $2',
 'lineno'                  => '列$1：',
 'compareselectedversions' => '辨二擇',
 'editundo'                => '悔',
+'diff-multi'              => '（未示之途審有$1。）',
 
 # Search results
 'searchresults'             => '得尋',
@@ -1226,7 +1230,9 @@ $2',
 
 # Special:Categories
 'categories'                    => '類',
-'categoriespagetext'            => '大典有頁或媒。',
+'categoriespagetext'            => '大典有頁或媒。
+[[Special:UnusedCategories|未類]]無示之。
+閱[[Special:WantedCategories|需類]]也。',
 'categoriesfrom'                => '示此項起之類：',
 'special-categories-sort-count' => '排數',
 'special-categories-sort-abc'   => '排字',
@@ -1255,10 +1261,10 @@ $2',
 'defemailsubject' => '{{SITENAME}}來書',
 'noemailtitle'    => '無郵',
 'noemailtext'     => '此君無郵，或謝收之。',
-'emailfrom'       => '自',
-'emailto'         => '致',
-'emailsubject'    => '題',
-'emailmessage'    => '訊',
+'emailfrom'       => '自：',
+'emailto'         => '致：',
+'emailsubject'    => '題：',
+'emailmessage'    => '訊：',
 'emailsend'       => '遣',
 'emailccme'       => '謄複本。',
 'emailccsubject'  => '致$1複本：$2',
@@ -1422,7 +1428,7 @@ $NEWPAGE
 'undelete-fieldset-title'      => '復審',
 'undeleteextrahelp'            => "欲還題，撤核後令'''''還刪'''''。欲還某審，核之再令。欲清核、贊，令之'''''歸白'''''。",
 'undeleterevisions'            => '審備$1',
-'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。夫還而啟，註記之。',
+'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。',
 'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。',
 'undeletehistorynoadmin'       => '文刪矣，何由如下；並示末纂者。詳文藏，惟有迭可閱。',
 'undelete-revision'            => '自$2，$3纂之$1審刪如下：',

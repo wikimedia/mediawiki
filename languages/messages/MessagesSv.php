@@ -673,7 +673,7 @@ Kontrollera stavningen, eller skapa ett nytt konto.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
-'passwordtooshort'           => 'Ditt lösenord är för kort.
+'passwordtooshort'           => 'Ditt lösenord är ogiltigt eller för kort.
 Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Sänd mig ett nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
@@ -1448,7 +1448,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filedelete-comment'          => 'Anledning:',
 'filedelete-submit'           => 'Radera',
 'filedelete-success'          => "'''$1''' har raderats.",
-'filedelete-success-old'      => 'Versionen av [[Media:$1|$1]] från $2 kl. $3 har raderats.',
+'filedelete-success-old'      => "Versionen av '''[[Media:$1|$1]]''' från $2 kl. $3 har raderats.",
 'filedelete-nofile'           => "Filen '''$1''' finns inte på den här webplatsen.",
 'filedelete-nofile-old'       => "Den versionen av '''$1''' kan inte raderas eftersom den inte finns.",
 'filedelete-iscurrent'        => 'Du försöker radera den senaste versionen av en fil. För att göra det måste du först återställa till en äldre version av filen.',
@@ -1610,7 +1610,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 
 # Special:Categories
 'categories'                    => 'Kategorier',
-'categoriespagetext'            => 'Följande kategorier innehåller sidor eller media.',
+'categoriespagetext'            => 'Följande kategorier innehåller sidor eller media.
+[[Special:UnusedCategories|Oanvända kategorier]] visas inte här; [[Special:WantedCategories|önskade kategorier]] listas även separat.',
 'categoriesfrom'                => 'Visa kategorier från och med:',
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
@@ -1639,11 +1640,11 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post',
 'noemailtitle'    => 'Ingen e-postadress',
-'noemailtext'     => 'Den här användaren har antingen inte angivet en korrekt e-postadress, valt att inte ta emot mail från andra användare, eller inte verifierat sin e-postadress.',
-'emailfrom'       => 'Från',
-'emailto'         => 'Till',
-'emailsubject'    => 'Ämne',
-'emailmessage'    => 'Meddelande',
+'noemailtext'     => 'Den här användaren har inte angivet en giltig e-postadress eller har valt att inte ta emot mail från andra användare.',
+'emailfrom'       => 'Från:',
+'emailto'         => 'Till:',
+'emailsubject'    => 'Ämne:',
+'emailmessage'    => 'Meddelande:',
 'emailsend'       => 'Skicka',
 'emailccme'       => 'Skicka en kopia av meddelandet till mig.',
 'emailccsubject'  => 'Kopia av ditt meddelande till $1: $2',
@@ -1652,7 +1653,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'emailuserfooter' => 'Detta e-brev skickades av $1 till $2 genom "Skicka e-post"-funktionen på {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Min bevakningslista',
+'watchlist'            => 'Bevakningslista',
 'mywatchlist'          => 'Min bevakningslista',
 'watchlistfor'         => "(för '''$1''')",
 'nowatchlist'          => 'Du har inga sidor i din bevakningslista.',
@@ -1825,7 +1826,8 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 * För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''.
 * '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
-'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken. Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken. Notera att restriktioner på sidversioner förloras i samband med återställningen.',
+'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken.
+Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken.',
 'undeleterevdel'               => 'Återställningen kan inte utföras om den resulterar i att den senaste versionen är delvis borttagen.
 I sådana fall måste du se till att den senaste raderade versionen inte är ikryssad, eller att den inte är dold.',
 'undeletehistorynoadmin'       => 'Den här sidan har blivit raderad. Anledningen till detta anges i sammanfattningen nedan, tillsammans med uppgifter om de användare som redigerat sidan innan den raderades. Enbart administratörerna har tillgång till den raderade texten.',
@@ -2202,8 +2204,15 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'tooltip-upload'                  => 'Starta uppladdning',
 
 # Stylesheets
-'common.css'   => '/* CSS som skrivs här påverkar alla skal */',
-'monobook.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
+'common.css'      => '/* CSS som skrivs här påverkar alla skal */',
+'standard.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Standard */',
+'nostalgia.css'   => '/* CSS som skrivs här kommer att påverka alla användare av skalet Nostalgi */',
+'cologneblue.css' => '/* CSS som skrivs här kommer att påverka alla användare av skalet Cologne blå */',
+'monobook.css'    => '/* CSS som skrivs här kommer att påverka alla användare av skalet Monobook */',
+'myskin.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Mitt skal */',
+'chick.css'       => '/* CSS som skrivs här kommer att påverka alla användare av skalet Chick */',
+'simple.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Enkelt */',
+'modern.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
 
 # Scripts
 'common.js'   => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
@@ -2216,8 +2225,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Attribution
 'anonymous'        => 'Anonym användare på {{SITENAME}}',
-'siteuser'         => '{{SITENAME}} användare $1',
-'lastmodifiedatby' => 'Den här sidan ändrades senast $2, $1 av $3.', # $1 date, $2 time, $3 user
+'siteuser'         => 'användaren $1 på {{SITENAME}}',
+'lastmodifiedatby' => 'Den här sidan ändrades senast kl. $2 den $1 av $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baserad på arbete av $1.',
 'others'           => 'andra',
 'siteusers'        => '{{SITENAME}} användare $1',

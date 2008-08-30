@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Julian Mendez
  * @author Malafaya
  * @author McDutchie
  * @author לערי ריינהארט
@@ -227,7 +228,7 @@ $messages = array(
 'categorypage'      => 'Vider pagina de categoria',
 'viewtalkpage'      => 'Vider discussion',
 'otherlanguages'    => 'In altere linguas',
-'redirectedfrom'    => '(Redirigite de $1)',
+'redirectedfrom'    => '(Redirigite ab $1)',
 'redirectpagesub'   => 'Pagina de redirection',
 'lastmodifiedat'    => 'Ultime modification de iste pagina: le $1 a $2.', # $1 date, $2 time
 'viewcount'         => 'Iste pagina ha essite visitate {{PLURAL:$1|un vice|$1 vices}}.',
@@ -253,8 +254,8 @@ $messages = array(
 'faq'                  => 'FAQ',
 'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Contento',
-'mainpage'             => 'Frontispicio',
-'mainpage-description' => 'Frontispicio',
+'mainpage'             => 'Pagina principal',
+'mainpage-description' => 'Pagina principal',
 'policy-url'           => 'Project:Politica',
 'portal'               => 'Portal del communitate',
 'portal-url'           => 'Project:Portal del communitate',
@@ -686,7 +687,7 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 'permissionserrors'                => 'Errores de permissiones',
 'permissionserrorstext'            => 'Tu non ha le permission de facer isto, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
 'permissionserrorstext-withaction' => 'Tu non ha le permission de $2, pro le sequente {{PLURAL:$1|motivo|motivos}}:',
-'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente eliminate.'''
+'recreate-deleted-warn'            => "'''Attention: Tu va recrear un pagina que esseva anteriormente delite.'''
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
@@ -1073,7 +1074,7 @@ per favor vide math/README pro configurar lo.",
 'hist'                              => 'hist',
 'hide'                              => 'Celar',
 'show'                              => 'Revelar',
-'minoreditletter'                   => 'M',
+'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[observate per $1 {{PLURAL:$1|usator|usatores}}]',
@@ -1178,7 +1179,7 @@ Tu debe verificar le $1 ante de proceder e recargar lo.',
 'upload-wasdeleted'           => "'''Attention: Tu va cargar un file que esseva anteriormente delite.'''
 
 Tu debe considerar si es appropriate continuar a cargar iste file.
-Pro major commoditate se trova hic le registro de eliminationes correspondente a iste file:",
+Pro major commoditate se trova hic le registro de deletiones correspondente a iste file:",
 'filename-bad-prefix'         => 'Le nomine del file que tu va cargar comencia con <strong>"$1"</strong>, le qual es un nomine non descriptive, typicamente assignate automaticamente per le cameras digital.
 Per favor selige un nomine plus descriptive pro tu file.',
 'filename-prefix-blacklist'   => ' #<!-- non modificar de alcun modo iste linea --> <pre>
@@ -1283,7 +1284,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'filedelete-comment'          => 'Motivo pro deletion:',
 'filedelete-submit'           => 'Deler',
 'filedelete-success'          => "'''$1''' ha essite delite.",
-'filedelete-success-old'      => '<span class="plainlinks">Le version de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a $2 ha essite delite.</span>',
+'filedelete-success-old'      => "Le version de '''[[Media:$1|$1]]''' del $3 a $2 ha essite delite.",
 'filedelete-nofile'           => "'''$1''' non existe in {{SITENAME}}.",
 'filedelete-nofile-old'       => "Non existe un version archivate de '''$1''' con le attributos specificate.",
 'filedelete-iscurrent'        => 'Tu essaya deler le version le plus recente de iste file.
@@ -1458,7 +1459,9 @@ Es possibile que illo contine un o plus characteres que non pote esser usate in 
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'Le sequente categorias contine paginas o media.',
+'categoriespagetext'            => 'Le sequente categorias contine paginas o media.
+Le [[Special:UnusedCategories|categorias non usate]] non se monstra hic.
+Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'categoriesfrom'                => 'Monstrar categorias a partir de:',
 'special-categories-sort-count' => 'ordinar per numero',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
@@ -1494,10 +1497,10 @@ pote responder te.',
 'noemailtitle'    => 'Necun adresse de e-mail',
 'noemailtext'     => 'Iste usator non ha specificate un adresse de e-mail valide,
 o ha optate pro non reciper e-mail de altere usatores.',
-'emailfrom'       => 'De',
-'emailto'         => 'A',
-'emailsubject'    => 'Subjecto',
-'emailmessage'    => 'Message',
+'emailfrom'       => 'Expeditor:',
+'emailto'         => 'Destinatario:',
+'emailsubject'    => 'Subjecto:',
+'emailmessage'    => 'Message:',
 'emailsend'       => 'Inviar',
 'emailccme'       => 'Inviar me un copia de mi message.',
 'emailccsubject'  => 'Copia de tu message a $1: $2',
@@ -1595,14 +1598,14 @@ Reactiones e ulterior assistentia:
 'confirmdeletetext'           => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
 'actioncomplete'              => 'Action complete',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite eliminate.
-Vide $2 pro un registro de eliminationes recente.',
-'deletedarticle'              => '"$1" eliminate',
+'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite delite.
+Vide $2 pro un registro de deletiones recente.',
+'deletedarticle'              => 'deleva "[[$1]]"',
 'suppressedarticle'           => 'supprimeva "[[$1]]"',
-'dellogpage'                  => 'Registro de eliminationes',
-'dellogpagetext'              => 'Infra es un lista del plus recente eliminationes.
+'dellogpage'                  => 'Registro de deletiones',
+'dellogpagetext'              => 'Infra es un lista del plus recente deletiones.
 Tote le horas es in le fuso horari del servitor (UTC).',
-'deletionlog'                 => 'registro de eliminationes',
+'deletionlog'                 => 'registro de deletiones',
 'reverted'                    => 'Revertite a revision anterior',
 'deletecomment'               => 'Motivo pro deletion:',
 'deleteotherreason'           => 'Motivo altere/additional:',
@@ -1683,7 +1686,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 
 # Undelete
 'undelete'                     => 'Vider paginas delite',
-'undeletepage'                 => 'Vider e restaurar paginas eliminate',
+'undeletepage'                 => 'Vider e restaurar paginas delite',
 'undeletepagetitle'            => "'''Lo sequente consiste de revisiones delite de [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Vider paginas delite',
 'undeletepagetext'             => 'Le paginas sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
@@ -1694,8 +1697,7 @@ Pro executar un restauration selective, marca le quadratos correspondente al rev
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
 'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al historia.
 Si un nove pagina con le mesme nomine ha essite create post le deletion, le revisiones
-restaurate apparera in le historia anterior.
-Nota etiam que le restrictiones super revisiones de files es perdite al tempore de restauration.',
+restaurate apparera in le historia anterior.',
 'undeleterevdel'               => 'Le restauration non essera executate si illo resultara in le deletion partial del revision le plus recente del pagina o del file.
 In tal casos, tu debe dismarcar o revelar le revision delite le plus recente.',
 'undeletehistorynoadmin'       => 'Iste pagina ha essite delite.
@@ -1709,7 +1711,7 @@ Es possibile que le adresse URL es invalide, o que le revision ha essite restaur
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Reinitiar',
 'undeletecomment'              => 'Commento:',
-'undeletedarticle'             => '"$1" restaurate',
+'undeletedarticle'             => 'restaurava "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurate',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
 'undeletedfiles'               => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
@@ -1743,7 +1745,7 @@ $1',
 'mycontris'     => 'Mi contributiones',
 'contribsub2'   => 'Pro $1 ($2)',
 'nocontribs'    => 'Necun modification ha essite trovate secundo iste criterios.',
-'uctop'         => ' (alto)',
+'uctop'         => '(ultime)',
 'month'         => 'A partir del mense (e anterior):',
 'year'          => 'A partir del anno (e anterior):',
 
@@ -2058,8 +2060,8 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-search'                  => 'Cercar in {{SITENAME}}',
 'tooltip-search-go'               => 'Visitar un pagina con iste nomine exacte si existe',
 'tooltip-search-fulltext'         => 'Cercar iste texto in le paginas',
-'tooltip-p-logo'                  => 'Frontispicio',
-'tooltip-n-mainpage'              => 'Visitar le Frontispicio',
+'tooltip-p-logo'                  => 'Pagina principal',
+'tooltip-n-mainpage'              => 'Visitar le pagina principal',
 'tooltip-n-portal'                => 'A proposito del projecto, que tu pote facer, ubi trovar cosas',
 'tooltip-n-currentevents'         => 'Cerca informationes de fundo relative al actualitate',
 'tooltip-n-recentchanges'         => 'Le lista de modificationes recente in le wiki.',
@@ -2085,7 +2087,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-ca-nstab-template'       => 'Vider le patrono',
 'tooltip-ca-nstab-help'           => 'Vider le pagina de adjuta',
 'tooltip-ca-nstab-category'       => 'Vider le pagina del categoria',
-'tooltip-minoredit'               => 'Marcar isto como un modification minor',
+'tooltip-minoredit'               => 'Marcar iste modification como minor',
 'tooltip-save'                    => 'Confirmar tu modificationes',
 'tooltip-preview'                 => 'Per favor verifica tu modificationes ante que tu los publica!',
 'tooltip-diff'                    => 'Detaliar le modificationes que tu ha facite in le texto.',

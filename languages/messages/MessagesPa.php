@@ -9,11 +9,6 @@
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
- *
- * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
- * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=1478
- * @see http://bugzilla.wikimedia.org/show_bug.cgi?id=11145
  */
 
 $skinNames = array(
@@ -252,6 +247,7 @@ $messages = array(
 'thisisdeleted'           => 'ਵੇਖੋ ਜਾਂ $1 ਰੀਸਟੋਰ?',
 'viewdeleted'             => '$1 ਵੇਖਣਾ?',
 'feedlinks'               => 'ਫੀਡ:',
+'red-link-title'          => '$1 (ਹੁਣ ਤਕ ਨਹੀਂ ਲਿਖਿਆ ਗਿਆ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ਲੇਖ',

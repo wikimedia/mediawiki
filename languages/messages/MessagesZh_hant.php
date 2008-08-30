@@ -366,8 +366,7 @@ MySQL返回錯誤「$3: $4」。',
 'enterlockreason'      => '請輸入禁止訪問原因, 包括估計重新開放的時間',
 'readonlytext'         => '資料庫目前禁止輸入新內容及更改，
 這很可能是由於資料庫正在維修，之後即可恢復。
-管理員有如下解釋:
-<p>$1</p>',
+管理員有如下解釋: $1',
 'missing-article'      => '資料庫找不到文字"$1" $2。
 
 <p>通常這是由於修訂歷史頁上過時的連結到已經被刪除的頁面所導致的。</p>
@@ -1381,7 +1380,9 @@ Template:消除歧義',
 
 # Special:Categories
 'categories'                    => '頁面分類',
-'categoriespagetext'            => '以下的分類中包含了頁面或媒體。',
+'categoriespagetext'            => '以下的分類中包含了頁面或媒體。
+[[Special:UnusedCategories|未用分類]]不會在這裏列示。
+請同時參閱[[Special:WantedCategories|需要的分類]]。',
 'categoriesfrom'                => '顯示由此項起之分類:',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
@@ -1413,10 +1414,10 @@ Template:消除歧義',
 'noemailtitle'    => '無e-mail地址',
 'noemailtext'     => '該用戶還沒有指定一個有效的e-mail地址，
 或者選擇不接受來自其他用戶的e-mail。',
-'emailfrom'       => '發件人',
-'emailto'         => '收件人',
-'emailsubject'    => '主題',
-'emailmessage'    => '訊息',
+'emailfrom'       => '發件人:',
+'emailto'         => '收件人:',
+'emailsubject'    => '主題:',
+'emailmessage'    => '訊息:',
 'emailsend'       => '發送',
 'emailccme'       => '將我的消息的副本發送一份到我的電郵信箱。',
 'emailccsubject'  => '將您的訊息複製到 $1: $2',
@@ -1602,7 +1603,7 @@ $NEWPAGE
 'undeleteextrahelp'            => "恢復整個頁面時，請清除所有複選框後按 '''''恢復''''' 。 恢復特定版本時，請選擇相應版本前的複選框後按'''''恢復''''' 。按 '''''重設''''' 將清除評論內容及所有複選框。",
 'undeleterevisions'            => '$1版本存檔',
 'undeletehistory'              => '如果您恢復了該頁面，所有版本都會被恢復到修訂歷史中。
-如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。同時請留意在檔案修訂中的限制會在恢復時遺失。',
+如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。',
 'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。',
 'undeletehistorynoadmin'       => '這個頁面已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等細節只有管理員可以看見。',
 'undelete-revision'            => '刪除$1時由$3（在$2）所編寫的修訂版本:',

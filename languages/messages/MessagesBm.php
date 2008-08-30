@@ -5,6 +5,7 @@
  * @file
  *
  * @author Guaka
+ * @author לערי ריינהארט
  */
 
 $fallback = 'fr';

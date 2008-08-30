@@ -241,8 +241,8 @@ $messages = array(
 'currentevents-url'    => 'Project:Aktualitātes',
 'disclaimers'          => 'Saistību atrunas',
 'edithelp'             => 'Palīdzība izmaiņām',
-'edithelppage'         => 'Palīdzība:Rediģēšana',
-'helppage'             => 'Palīdzība:Saturs',
+'edithelppage'         => 'Help:Rediģēšana',
+'helppage'             => 'Help:Saturs',
 'mainpage'             => 'Sākumlapa',
 'mainpage-description' => 'Sākumlapa',
 'portal'               => 'Kopienas portāls',
@@ -348,7 +348,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'loginproblem'               => '<b>Radās problēma ar ieiešanu.</b><br />Mēģini vēlreiz!',
 'login'                      => 'Ieiet',
 'nav-login-createaccount'    => 'Izveidot jaunu lietotāju vai doties iekšā',
-'loginprompt'                => 'Lai [[Special:UserLogin|ieietu {{grammar:lokatīvs|{{SITENAME}}}}]], tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
+'loginprompt'                => 'Lai ieietu {{grammar:lokatīvs|{{SITENAME}}}}, tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'                  => 'Izveidot jaunu lietotāju vai doties iekšā',
 'logout'                     => 'Iziet',
 'userlogout'                 => 'Iziet',
@@ -689,8 +689,25 @@ m = maznozīmīgs labojums.',
 'files'                 => 'Attēli',
 
 # User rights
-'userrights-user-editname' => 'Ievadi lietotājvārdu:',
-'editinguser'              => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
+'userrights'                  => 'Lietotāju tiesību pārvaldība', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'Pārvaldīt lietotāja grupas',
+'userrights-user-editname'    => 'Ievadi lietotājvārdu:',
+'editusergroup'               => 'Izmainīt lietotāja grupas',
+'editinguser'                 => "Izmainīt lietotāja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]]) statusu",
+'userrights-editusergroup'    => 'Izmainīt lietotāja grupas',
+'saveusergroups'              => 'Saglabāt lietotāja grupas',
+'userrights-groupsmember'     => 'Šobrīd ietilpst grupās:',
+'userrights-groups-help'      => 'Tu vari izmainīt kādās grupās šis lietotājs ir:
+* Ieķeksēts lauciņš noāda, ka lietotājs ir attiecīgajā grupā.
+* Neieķeksēts lauciņš norāda, ka lietotājs nav attiecīgajā grupā.
+* * norāda, ka šo grupu tu nevarēsi noņemt, pēc tam, kad to būsi pielicis, vai otrādāk (tu nevarēsi atcelt savas izmaiņas).',
+'userrights-reason'           => 'Izmaiņas iemesls:',
+'userrights-no-interwiki'     => 'Tev nav tiesību izmainīt lietotāju tiesības citos wiki.',
+'userrights-nodatabase'       => 'Datubāze $1 neeksistē vai nav lokāla.',
+'userrights-nologin'          => 'Tev ir [[Special:UserLogin|jāieiet iekšā]] kā adminam, lai varētu izmainīt lietotāju grupas.',
+'userrights-notallowed'       => 'Tavam lietotājvārdam nav tiesību izmainīt lietotāju grupas.',
+'userrights-changeable-col'   => 'Grupas, kuras tu vari izmainīt',
+'userrights-unchangeable-col' => 'Grupas, kuras tu nevari izmainīt',
 
 # Groups
 'group'            => 'Grupa:',
@@ -736,7 +753,9 @@ m = maznozīmīgs labojums.',
 'right-importupload'     => 'Importēt lapas no failu augšuplādes',
 
 # User rights log
-'rightslog' => 'Lietotāju tiesību reģistrs',
+'rightslog'      => 'Lietotāju tiesību reģistrs',
+'rightslogtext'  => 'Šis ir lietotāju tiesību izmaiņu reģistrs.',
+'rightslogentry' => 'izmainīja $1 grupas no $2 uz $3',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
@@ -910,7 +929,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'filedelete-comment'          => 'Dzēšanas iemesls:',
 'filedelete-submit'           => 'Izdzēst',
 'filedelete-success'          => "'''$1''' tika veiksmīgi izdzēsts.",
-'filedelete-success-old'      => '<span class="plainlinks">Faila \'\'\'[[Media:$1|$1]]\'\'\' versija $3, $2 tika izdzēsta.</span>',
+'filedelete-success-old'      => "Faila '''[[Media:$1|$1]]''' versija $3, $2 tika izdzēsta.",
 'filedelete-nofile'           => "'''$1''' {{grammar:lokatīvs|{{SITENAME}}}} nav atrodams.",
 'filedelete-nofile-old'       => "Failam '''$1''' nav vecas versijas ar norādītajiem parametriem.",
 'filedelete-iscurrent'        => 'Tu mēģini izdzēst šī faila vissvaigāko versiju.
@@ -953,11 +972,15 @@ Vidēji tas ir '''\$5''' labojumi uz lapu un apskatīšanas/labojumu attiecība 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
 'userstatstext' => "Reģistrēto [[Special:ListUsers|lietotāju]] skaits ir '''$1'''. No tiem '''$2''' (jeb '''$4%''') ir {{PLURAL:$2|administrators|administratori}} (skat. $5).",
 
-'disambiguations'     => 'Nozīmju atdalīšanas lapas',
-'disambiguationspage' => 'Template:Disambig',
+'disambiguations'      => 'Nozīmju atdalīšanas lapas',
+'disambiguationspage'  => 'Template:Disambig',
+'disambiguations-text' => "Šeit esošajās lapās ir saite uz '''nozīmju atdalīšanas lapu'''.
+Šīs saites vajadzētu izlabot, lai tās vestu tieši uz attiecīgo lapu.<br />
+Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir saite no [[MediaWiki:Disambiguationspage]].",
 
-'doubleredirects'     => 'Divkāršas pāradresācijas lapas',
-'doubleredirectstext' => 'Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.',
+'doubleredirects'            => 'Divkāršas pāradresācijas lapas',
+'doubleredirectstext'        => 'Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.',
+'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
 
 'brokenredirects'     => 'Kļūdainas pāradresācijas',
 'brokenredirectstext' => 'Šīs ir pāradresācijas lapas uz neesošām lapām.',
@@ -1031,7 +1054,9 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 
 # Special:Categories
 'categories'         => 'Kategorijas',
-'categoriespagetext' => 'Wiki ir atrodamas šādas kategorijas.',
+'categoriespagetext' => "Šīs kategorijas satur lapas vai failus.
+Šeit nav parādītas [[Special:UnusedCategories|neizmantotās kategorijas]].
+Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',
 
 # Special:ListUsers
@@ -1053,10 +1078,10 @@ Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējam
 'defemailsubject' => 'E-pasts par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'noemailtitle'    => 'Nav e-pasta adreses',
 'noemailtext'     => 'Šis lietotājs nav norādījis derīgu e-pasta adresi vai arī ir izvēlējies nesaņemt e-pastu no citiem lietotājiem.',
-'emailfrom'       => 'No',
-'emailto'         => 'Kam',
-'emailsubject'    => 'Temats',
-'emailmessage'    => 'Vēstījums',
+'emailfrom'       => 'No:',
+'emailto'         => 'Kam:',
+'emailsubject'    => 'Temats:',
+'emailmessage'    => 'Vēstījums:',
 'emailsend'       => 'Nosūtīt',
 'emailsent'       => 'E-pasts nosūtīts',
 'emailsenttext'   => 'Tavs e-pasts ir nosūtīts.',
@@ -1174,8 +1199,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 Lai atjaunotu tikai noteiktas versijas, ieķeksē vajadzīgās versijas un spied uz '''''Atjaunot!'''''. Uzspiešana uz '''''Notīrīt''''' notīrīs komentāru lauku un visus keķšus.",
 'undeleterevisions'        => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|arhivēta|arhivētas}}',
 'undeletehistory'          => 'Ja tu atjauno lapu, visas versijas tiks atjaunotas tās hronoloģijā.
-Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta. 
-Tas arī var ietekmēt failu versiju aizsardzības līmeni.',
+Ja pēc dzēšanas ir izveidota jauna lapa ar tādu pašu nosaukumu, atjaunotās versijas tiks ievietotas lapas hronoloģijā attiecīgā secībā un konkrētās lapas pašreizējā versija netiks automātiski nomainīta.',
 'undeleterevdel'           => 'Atjaunošana nenotiks, ja tas izraisīs jaunākās versijas izdzēšanu.
 Šādos gadījumos ir vai nu jāizņem ķeksis no jaunākās versijas, vai arī jāatslēpj jaunākā versija.',
 'undeletehistorynoadmin'   => 'Šī lapa ir tikusi izdzēsta. 

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
  * @author Dereckson
@@ -22,6 +23,7 @@
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Zetud
  * @author Горан Анђелковић
  * @author לערי ריינהארט
  */
@@ -378,7 +380,7 @@ $messages = array(
 'searchbutton'      => 'Rechercher',
 'go'                => 'Consulter',
 'searcharticle'     => 'Consulter',
-'history'           => 'hist',
+'history'           => 'Historique de la page',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
 'info_short'        => 'Informations',
@@ -522,7 +524,9 @@ $1',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
-'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre. L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
+'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
+
+L’administrateur ayant verrouillé la base de données a donné l’explication suivante : $1',
 'missing-article'      => 'La base de données n’a pas trouvé le texte d’une page qu’elle aurait dû trouver, intitulée « $1 » $2.
 
 Ceci est habituellement causé en suivant le lien périmé d’un diff ou de l’historique vers une page ayant été supprimée.
@@ -593,7 +597,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
 'login'                      => 'Identification',
 'nav-login-createaccount'    => 'Créer un compte ou se connecter',
-'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous [[Special:UserLogin|connecter à {{SITENAME}}]].",
+'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",
 'userlogin'                  => 'Créer un compte ou se connecter',
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
@@ -695,7 +699,7 @@ Ignorez ce message si ce compte a été créé par erreur.",
 'hr_tip'          => 'Ligne horizontale (ne pas en abuser)',
 
 # Edit pages
-'summary'                          => 'Résumé&nbsp;',
+'summary'                          => 'Résumé',
 'subject'                          => 'Sujet/titre',
 'minoredit'                        => 'Modification mineure',
 'watchthis'                        => 'Suivre cette page',
@@ -744,7 +748,7 @@ Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'blockednoreason'                  => 'Aucune raison donnée',
 'blockedoriginalsource'            => "Le code source de  '''$1''' est indiqué ci-dessous :",
 'blockededitsource'                => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
-'whitelistedittitle'               => '[[Special:UserLogin|Connexion nécessaire]] pour modifier le contenu',
+'whitelistedittitle'               => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittitle'                 => 'Validation de l’adresse de courriel nécessaire pour modifier le contenu',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse courriel avant de modifier {{SITENAME}}. Veuillez entrer et valider votre adresse électronique à l’aide de la page [[Special:Preferences|préférences]].',
@@ -1109,7 +1113,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 
 # Rights
 'right-read'                 => 'Lire les pages',
-'right-edit'                 => 'Modifier les pages (qui n’ont pas de page de discussion)',
+'right-edit'                 => 'Modifier les pages',
 'right-createpage'           => 'Créer des pages (qui ne sont pas des pages de discussion)',
 'right-createtalk'           => 'Créer des pages de discussion',
 'right-createaccount'        => 'Créer de nouveaux comptes utilisateur',
@@ -1377,7 +1381,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filedelete-comment'          => 'Commentaire :',
 'filedelete-submit'           => 'Supprimer',
 'filedelete-success'          => "'''$1''' a été supprimé.",
-'filedelete-success-old'      => '<span class="plainlinks">La version de \'\'\'[[Media:$1|$1]]\'\'\' du $2 à $3 a été supprimée.</span>',
+'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' du $2 à $3 a été supprimée.",
 'filedelete-nofile'           => "'''$1''' n’existe pas sur {{SITENAME}}.",
 'filedelete-nofile-old'       => "Il n’existe aucune version archivée de '''$1''' avec les attributs indiqués.",
 'filedelete-iscurrent'        => 'Vous êtes en train d’essayer de supprimer la version la plus récente de ce fichier. Vous devez, au préalable, rétablir une ancienne version de celui-ci.',
@@ -1386,7 +1390,7 @@ Un clic en tête de colonne change l’ordre d’affichage.',
 'filedelete-reason-dropdown'  => '*Motifs de suppression habituels
 ** Violation de droit d’auteur
 ** Fichier dupliqué',
-'filedelete-edit-reasonlist'  => 'Modifie les motifs de la suppression',
+'filedelete-edit-reasonlist'  => 'Modifier les motifs de la suppression',
 
 # MIME search
 'mimesearch'         => 'Recherche par type MIME',
@@ -1543,7 +1547,9 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 
 # Special:Categories
 'categories'                    => 'Catégories',
-'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.',
+'categoriespagetext'            => 'Les catégories suivantes contiennent des pages ou fichiers.
+[[Special:UnusedCategories|Les catégories inutilisées]] ne sont pas affichées ici.
+Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
@@ -1575,10 +1581,10 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'noemailtext'     => 'Vous ne pouvez joindre cet utilisateur par courrier électronique :
 * soit parce qu’il n’a pas spécifié d’adresse électronique valide (et authentifiée),
 * soit parce qu’il a choisi, dans ses préférences utilisateur, de ne pas recevoir de courrier électronique des autres utilisateurs.',
-'emailfrom'       => 'Expéditeur&nbsp;',
-'emailto'         => 'Destinataire&nbsp;',
-'emailsubject'    => 'Objet&nbsp;',
-'emailmessage'    => 'Message&nbsp;',
+'emailfrom'       => 'Expéditeur :',
+'emailto'         => 'Destinataire :',
+'emailsubject'    => 'Objet :',
+'emailmessage'    => 'Message :',
 'emailsend'       => 'Envoyer',
 'emailccme'       => 'M’envoyer par courriel une copie de mon message.',
 'emailccsubject'  => 'Copie de votre message à $1 : $2',
@@ -1686,7 +1692,7 @@ L’heure indiquée est celle du serveur (UTC).',
 ** Demande de l’auteur
 ** Violation des droits d’auteur
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Modifie les motifs de la suppression',
+'delete-edit-reasonlist'      => 'Modifier les motifs de la suppression',
 'delete-toobig'               => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La suppression de telles pages a été limitée afin d’éviter des perturbations accidentelles de {{SITENAME}}.',
 'delete-warning-toobig'       => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ; à effectuer avec prudence.',
 'rollback'                    => 'révoquer modifications',
@@ -1879,7 +1885,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'ipusubmit'                       => 'Débloquer cette adresse',
 'unblocked'                       => '[[User:$1|$1]] a été débloqué',
 'unblocked-id'                    => 'Le blocage $1 a été enlevé',
-'ipblocklist'                     => 'Liste adresses IP et des utilisateurs bloqués',
+'ipblocklist'                     => 'Adresses IP et des utilisateurs bloqués',
 'ipblocklist-legend'              => 'Chercher un utilisateur bloqué',
 'ipblocklist-username'            => 'Nom de l’utilisateur ou adresse IP :',
 'ipblocklist-submit'              => 'Chercher',
@@ -2022,7 +2028,7 @@ Dans ce dernier cas, vous pouvez aussi utiliser un lien, comme [[{{ns:special}}:
 'allmessagesdefault'        => 'Message par défaut',
 'allmessagescurrent'        => 'Message actuel',
 'allmessagestext'           => 'Ceci est la liste de tous les messages disponibles dans l’espace MediaWiki.
-Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MédiaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MédiaWiki générique.',
+Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation MediaWiki] et [http://translatewiki.net Betawiki] si vous désirez contribuer à la localisation MediaWiki générique.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' n’est pas disponible car '''\$wgUseDatabaseMessages''' est désactivé.",
 'allmessagesfilter'         => 'Filtre d’expression rationnelle :',
 'allmessagesmodified'       => 'N’afficher que les modifications',
@@ -2137,8 +2143,15 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'tooltip-upload'                  => 'Commencer l’envoi',
 
 # Stylesheets
-'common.css'   => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
-'monobook.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
+'common.css'      => '/* Le CSS placé ici sera appliqué à tous les habillages. */',
+'standard.css'    => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Standard. */',
+'nostalgia.css'   => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Nostalgia. */',
+'cologneblue.css' => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Cologne Blue. */',
+'monobook.css'    => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Monobook. */',
+'myskin.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Myskin. */',
+'chick.css'       => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
+'simple.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
+'modern.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 
 # Scripts
 'common.js'   => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
@@ -2631,8 +2644,8 @@ Essayez la prévisualisation normale.',
 Essayez la prévisualisation normale.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Les modifications datant de moins de $1 secondes peuvent ne pas apparaître dans cette liste.',
-'lag-warn-high'   => 'En raison d’une forte charge des bases de données, les modifications datant de moins de $1 secondes peuvent ne pas apparaître dans cette liste.',
+'lag-warn-normal' => 'Les modifications datant de moins de $1 {{PLURAL:$1|seconde|secondes}} peuvent ne pas apparaître dans cette liste.',
+'lag-warn-high'   => 'En raison d’une forte charge des bases de données, les modifications datant de moins de $1 {{PLURAL:$1|seconde|secondes}} peuvent ne pas apparaître dans cette liste.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Votre liste de suivi contient {{PLURAL:$1|une page|$1 pages}}, sans compter les pages de discussion',

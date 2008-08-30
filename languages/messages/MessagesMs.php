@@ -510,7 +510,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
-'remembermypassword'         => 'Ingat saya pada komputer ini',
+'remembermypassword'         => 'Ingat saya dari komputer ini',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'loginproblem'               => '<b>Berlaku sedikit masalah ketika log masuk.</b><br />Sila cuba lagi!',
@@ -1314,7 +1314,7 @@ Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
 'filedelete-comment'          => 'Sebab hapus:',
 'filedelete-submit'           => 'Hapus',
 'filedelete-success'          => "'''$1''' telah dihapuskan.",
-'filedelete-success-old'      => '<span class="plainlinks">Versi \'\'\'[[Media:$1|$1]]\'\'\' pada $3, $2 telah dihapuskan.</span>',
+'filedelete-success-old'      => "Versi '''[[Media:$1|$1]]''' pada $3, $2 telah dihapuskan.",
 'filedelete-nofile'           => "'''$1''' tidak wujud di {{SITENAME}}.",
 'filedelete-nofile-old'       => "Tiada versi arkib bagi '''$1''' dengan sifat-sifat yang dinyatakan.",
 'filedelete-iscurrent'        => 'Anda telah mencuba untuk menghapuskan versi terkini bagi fail ini. Sila balikkannya kepada versi yang lama terlebih dahulu.',
@@ -1480,7 +1480,9 @@ Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna atau nama
 
 # Special:Categories
 'categories'                    => 'Kategori',
-'categoriespagetext'            => 'Kategori-kategori berikut wujud dalam wiki ini.',
+'categoriespagetext'            => 'Kategori-kategori berikut mengandungi laman-laman dan bahan-bahan media.
+[[Special:UnusedCategories|Kategori yang tidak digunakan]] tidak dipaparkan di sini.
+Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'categoriesfrom'                => 'Paparkan kategori bermula daripada:',
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
@@ -1516,10 +1518,10 @@ alamat "Daripada" supaya si penerima boleh membalasnya.',
 'noemailtitle'    => 'Tiada alamat e-mel',
 'noemailtext'     => 'Pengguna ini tidak menetapkan alamat e-mel yang sah,
 atau telah memilih untuk tidak menerima e-mel daripada pengguna lain.',
-'emailfrom'       => 'Daripada',
-'emailto'         => 'Kepada',
-'emailsubject'    => 'Perkara',
-'emailmessage'    => 'Pesanan',
+'emailfrom'       => 'Daripada:',
+'emailto'         => 'Kepada:',
+'emailsubject'    => 'Perkara:',
+'emailmessage'    => 'Pesanan:',
 'emailsend'       => 'Kirim',
 'emailccme'       => 'Kirim salinan mesej ini kepada saya.',
 'emailccsubject'  => 'Salinan bagi mesej anda kepada $1: $2',
@@ -1711,10 +1713,7 @@ klik '''''Pulih'''''. Untuk melaksanakan pemulihan tertentu, semak kotak yang be
 semakan untuk dipulihkan dan klik '''''Pulih'''''. Klik '''''Set semula''''' untuk mengosongkan
 borang ini.",
 'undeleterevisions'            => '$1 semakan telah diarkibkan.',
-'undeletehistory'              => 'Jika anda memulihkan laman tersebut, semua semakan akan dipulihkan kepada sejarahnya.
-Jika sebuah laman baru yang mempunyai nama yang sama telah dicipta sejak penghapusan,
-semakan yang dipulihkan akan muncul dalam sejarah terdahulu, dan semakan terkini bagi laman yang wujud tersebut
-tidak akan digantikan secara automatik. Sila ambil perhatian bahawa sebarang batasan terhadap semakan fail akan hilang',
+'undeletehistory'              => 'Jika anda memulihkan laman tersebut, semua semakan akan dipulihkan kepada sejarahnya. Jika sebuah laman baru yang mempunyai nama yang sama telah dicipta sejak penghapusan, semakan yang dipulihkan akan muncul dalam sejarah terdahulu.',
 'undeleterevdel'               => 'Penyahhapusan tidak akan dilaksanakan sekiranya ia menyebabkan sebahagian semakan puncak dihapuskan.
 Dalam hal tersebut, anda perlu membuang semak atau menyemak semakan yang baru dihapuskan. Semakan fail
 yang anda tidak dibenarkan melihatnya tidak akan dipulihkan.',
@@ -2614,6 +2613,20 @@ Anda juga boleh [[Special:Watchlist/edit|menggunakan penyunting standard]].',
 'watchlisttools-view' => 'Lihat perubahan',
 'watchlisttools-edit' => 'Sunting senarai pantau',
 'watchlisttools-raw'  => 'Sunting senarai pantau mentah',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharam',
+'hijri-calendar-m2'  => 'Safar',
+'hijri-calendar-m3'  => 'Rabiulawal',
+'hijri-calendar-m4'  => 'Rabiulakhir',
+'hijri-calendar-m5'  => 'Jamadilawal',
+'hijri-calendar-m6'  => 'Jamadilakhir',
+'hijri-calendar-m7'  => 'Rejab',
+'hijri-calendar-m8'  => 'Syaaban',
+'hijri-calendar-m9'  => 'Ramadan',
+'hijri-calendar-m10' => 'Syawal',
+'hijri-calendar-m11' => 'Zulkaedah',
+'hijri-calendar-m12' => 'Zulhijah',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag penyambung "$1" tidak dikenali',

@@ -687,7 +687,7 @@ Muton labön vokis läs $2, ab labon anu vokis $1.',
 'undo-success' => 'Redakam at kanon pasädunön. Reidolös leigodi dono ad fümükön, va vilol vo dunön atosi, e poso dakipolös votükamis ad fisädunön redakami.',
 'undo-failure' => 'No eplöpos ad sädunön redakami at sekü konflits vü redakams vüik.',
 'undo-norev'   => 'No eplöpos ad sädunön redakami at, bi no dabinon u pämoükon.',
-'undo-summary' => 'Äsädunon votükami $1 fa geban: [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespikapad]])',
+'undo-summary' => 'Äsädunon votükami $1 fa [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespikapad]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kal no kanon pajafön',
@@ -1062,8 +1062,10 @@ Ad pladön magodi at ini pad semik, gebolös yümi fomätü:
 'illegalfilename'             => 'Ragivanem: „$1“ labon malatis no pedälölis pö padatiäds. Votanemolös ragivi e steifülolös ad löpükön oni dönu.',
 'badfilename'                 => 'Ragivanem pevotükon ad "$1".',
 'filetype-badmime'            => 'Ragivs MIME-pateda "$1" no dalons palöpükön.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' binon ragivasot no pavipöl. Ragivasots pabuüköl binons \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' binon ragivasot no pedälöl. Ragivasots pedälöl binons \$2.",
+'filetype-unwanted-type'      => "'''\".\$1\"''' binon ragivasot no pavipöl.
+{{PLURAL:\$3|Ragivasot pabuüköl binon|Ragivasots pabuüköl binons}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' binon ragivasot no pedälöl.
+{{PLURAL:\$3|Ragivasot pedälöl binon|Ragivasots pedälöl binons}} \$2.",
 'filetype-missing'            => 'Ragiv no labon stäänükoti (äs el „.jpg“).',
 'large-file'                  => 'Pakomandos, das ragivs no binons gretikums ka mö $1; ragiv at binon mö $2.',
 'largefileserver'             => 'Ragiv at binon tu gretik: dünanünöm no kanon dälon oni.',
@@ -1104,7 +1106,8 @@ Vätälolös, va pötos ad löpükön ragivi at. Kodü koveniäl, jenotalised te
 'upload-proto-error'      => 'Protok neverätik',
 'upload-proto-error-text' => 'Löpükam flagon elis URLs me <code>http://</code> u <code>ftp://</code> primölis.',
 'upload-file-error'       => 'Pöl ninik',
-'upload-file-error-text'  => 'Pöl ninik äjenon dü steifül ad jafön ragivi nelaidüpik pö dünanünöm. Begolös yufi guvana.',
+'upload-file-error-text'  => 'Pöl ninik äjenon dü steifül ad jafön ragivi nelaidüpik pö dünanünöm.
+Begolös yufi [[Special:ListUsers/sysop|guvana]].',
 'upload-misc-error'       => 'Pök nesevädik pö löpükam',
 'upload-misc-error-text'  => 'Pöl nesevädik äjenon dü löpükam.
 Fümedolös, begö! das el URL lonöfon e kanon palogön, e poso steifülolös nogna.
@@ -1481,8 +1484,9 @@ $2 jonon moükamis nulik.',
 ** Kopiedagitäts
 ** Vandalim',
 'delete-edit-reasonlist'      => 'Redakön kodis moükama',
-'delete-toobig'               => 'Pad at labon redakamajenotemi lunik (revids plu $1). Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
-'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: votükams plu $1.
+'delete-toobig'               => 'Pad at labon redakamajenotemi lunik ({{PLURAL:$1|revid|revids}} plu $1).
+Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
+'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.
 Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
 'rollback'                    => 'Sädunön redakamis',
 'rollback_short'              => 'Sädunön vali',
@@ -1604,7 +1608,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Yüms isio',
-'whatlinkshere-title'      => 'Pads ad $1 yumöls',
+'whatlinkshere-title'      => 'Pads ad "$1" yumöls',
 'whatlinkshere-page'       => 'Pad:',
 'linklistsub'              => '(Yümalised)',
 'linkshere'                => "Pads sököl payümons ko '''[[:$1]]''':",
@@ -1615,8 +1619,9 @@ $1',
 'whatlinkshere-prev'       => '{{PLURAL:$1|büik|büik $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sököl|sököl $1}}',
 'whatlinkshere-links'      => '← yüms',
-'whatlinkshere-hideredirs' => '$1 lüodüköms',
-'whatlinkshere-hidelinks'  => '$1 yüms',
+'whatlinkshere-hideredirs' => '$1 lüodükömis',
+'whatlinkshere-hidelinks'  => '$1 yümis',
+'whatlinkshere-hideimages' => '$1 yümis magodas',
 
 # Block/unblock
 'blockip'                     => 'Blokön gebani',
@@ -1651,7 +1656,7 @@ $1',
 'ipusubmit'                   => 'Säblokön ladeti at',
 'unblocked'                   => '[[User:$1|$1]] pesäblokon',
 'unblocked-id'                => 'Blokam: $1 pesädunon',
-'ipblocklist'                 => 'Lised Ladetas-IP e gebananemas peblokölas',
+'ipblocklist'                 => 'Ladets-IP e gebananems pebloköls',
 'ipblocklist-legend'          => 'Tuvön gebani pebloköl',
 'ipblocklist-username'        => 'Gebananem u ladet IP:',
 'ipblocklist-submit'          => 'Suk',
@@ -1790,7 +1795,8 @@ Nüveigs vüvükik valik pajonons su [[Special:Log/import|nüveigamalised]].',
 'import-interwiki-history'   => 'Kopiedön fomamis valik jenotema pada at',
 'import-interwiki-submit'    => 'Nüveigön',
 'import-interwiki-namespace' => 'Topätükon padis ini nemaspad:',
-'importtext'                 => 'Seveigolös ragivi se fonätavük me el Patikos:Seveig, dakipolös oni su nünöm olik e löpükolös oni isio.',
+'importtext'                 => 'Seveigolös ragivi se fonätavük me [[Special:Export|stum seveiga]].
+Dakipolös oni su nünöm olik e löpükolös oni isio.',
 'importstart'                => 'Nüveigölo padis...',
 'import-revision-count'      => '{{PLURAL:$1|fomam|fomams}} $1',
 'importnopages'              => 'Pads nonik ad nüveigön.',
@@ -2198,7 +2204,7 @@ $1',
 'livepreview-error'   => 'Yümätam no eplöpon: $1 „$2“. Steifülolös me büologed kösömik.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Votükams ün sekuns lätik $1 ba no polisedons is.',
+'lag-warn-normal' => 'Votükams ün {{PLURAL:$1|sekun|sekuns}} lätik $1 ba no polisedons is.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Galädalised olik labon {{PLURAL:$1|tiädi bal|tiädis $1}}, fakipü bespikapads.',
@@ -2252,5 +2258,8 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 'specialpages-group-changes' => 'Votükams nulik e jenotaliseds',
 'specialpages-group-users'   => 'Gebans e gitäts',
 'specialpages-group-highuse' => 'Pads suvo pegeböls',
+
+# Special:BlankPage
+'blankpage' => 'Pad vagik',
 
 );

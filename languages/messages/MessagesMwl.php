@@ -518,7 +518,7 @@ Consulte $2 para um registo de eliminações recentes.',
 # Block/unblock
 'blockip'       => 'Bloquear outelizador',
 'ipboptions'    => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 anho:1 year,indefinido:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'Lhista de IPs i outelizadores bloqueados',
+'ipblocklist'   => 'IPs i outelizadores bloqueados',
 'blocklink'     => 'bloquear',
 'unblocklink'   => 'desbloquear',
 'contribslink'  => 'contribs',

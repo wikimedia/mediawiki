@@ -961,7 +961,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'unblockip'                   => 'Unblock uiser',
 'unblockiptext'               => 'Uise the form ablo tae restore screivin richts
 tae an afore-blockit IP address or uisername.',
-'ipblocklist'                 => 'Leet o blockit IP addresses an uisernames',
+'ipblocklist'                 => 'Blockit IP addresses an uisernames',
 'blocklistline'               => '$1, $2 blockit $3 (expires $4)',
 'anononlyblock'               => 'anon. juist',
 'createaccountblock'          => 'accoont-makkin blockit',

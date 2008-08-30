@@ -532,7 +532,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'           => "Artigu sira ne'ebé bá iha ne'e",
-'whatlinkshere-title'     => "Pájina sira ne'ebé bá $1",
+'whatlinkshere-title'     => 'Pájina sira ne\'ebé bá "$1".',
 'whatlinkshere-page'      => 'Pájina:',
 'linklistsub'             => '(Lista ligasaun nian)',
 'linkshere'               => "Pájina sira ne'e link ba '''[[:$1]]''':",
@@ -546,7 +546,7 @@ $messages = array(
 'blockip-legend'          => "Blokeiu uza-na'in",
 'ipboptions'              => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'seluk',
-'ipblocklist'             => 'Lista ema anónimu no rejista nablokeiu nian',
+'ipblocklist'             => "Ema anónimu no rejista ne'ebé nablokeiu",
 'ipblocklist-username'    => "Naran uza-na'in ka IP:",
 'ipblocklist-submit'      => 'Buka',
 'blocklink'               => 'blokeiu',

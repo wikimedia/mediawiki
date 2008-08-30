@@ -186,6 +186,7 @@ $messages = array(
 'category-empty'              => "''تر اوسه پورې همدا وېشنيزه هېڅ کوم مخ يا کومه رسنيزه دوتنه نلري.''",
 'hidden-categories'           => '{{PLURAL:$1|پټه وېشنيزه|پټې وېشنيزې}}',
 'hidden-category-category'    => 'پټې وېشنيزې', # Name of the category where hidden categories will be listed
+'category-article-count'      => '{{PLURAL:$2|په همدې وېشنيزه کې يواځې دغه لاندينی مخ شته.|دا {{PLURAL:$1|لاندينی مخ|$1 لانديني مخونه}}، له ټولټال $2 مخونو نه په دې وېشنيزه کې شته.}}',
 'category-file-count-limited' => 'په اوسنۍ وېشنيزه کې {{PLURAL:$1|يوه دوتنه ده|$1 دوتنې دي}}.',
 'listingcontinuesabbrev'      => 'پرله پسې',
 
@@ -359,7 +360,9 @@ $messages = array(
 'viewsourcefor'        => 'د $1 لپاره',
 'protectedpagetext'    => 'همدا مخ د سمادولو د مخنيوي په تکل تړل شوی دی.',
 'viewsourcetext'       => 'تاسو د همدغه مخ توکي او سرچينې کتلی او لمېسلی شی:',
+'protectedinterface'   => 'په همدې مخ کې د پوستکالي د ليدنمخ متن دی او دا متن د ناسمو کارولو د مخنيوي په تکل تړل شوی.',
 'namespaceprotected'   => "تاسو ته د '''$1''' په نوم-تشيال کې د مخونو د سمادولو اجازه نشته.",
+'ns-specialprotected'  => 'ځانګړې مخونه د سمادولو وړ نه دي.',
 
 # Login and logout pages
 'logouttitle'                => 'کارن-حساب نه وتنه',
@@ -394,9 +397,12 @@ $messages = array(
 'youremail'                  => 'برېښليک *',
 'username'                   => 'کارن-نوم:',
 'uid'                        => 'د کارونکي پېژندنه:',
+'prefs-memberingroups'       => 'د {{PLURAL:$1|ډلې|ډلو}} غړی:',
 'yourrealname'               => 'اصلي نوم:',
 'yourlanguage'               => 'ژبه:',
 'yournick'                   => 'کورنی نوم:',
+'badsiglength'               => 'ستاسو لاسليک ډېر اوږد دی.
+پکار ده چې لاسليک مو له $1 {{PLURAL:$1|توری|تورو}} نه لږ وي.',
 'email'                      => 'برېښليک',
 'prefs-help-realname'        => 'د اصلي نوم ليکل ستاسو په خوښه دی خو که تاسو خپل اصلي نوم وټاکۍ پدې سره به ستاسو ټول کارونه او ونډې ستاسو د نوم په اړوندولو کې وکارېږي.',
 'loginerror'                 => 'د ننوتنې ستونزه',
@@ -476,7 +482,7 @@ $messages = array(
 'summary-preview'          => 'د لنډيز مخکتنه',
 'subject-preview'          => 'موضوع/سرليک مخکتنه',
 'blockedtitle'             => 'د کارونکي مخه نيول شوې',
-'blockedtext'              => "<big>'''ستاسو د کارن-نوم يا IP پتې مخنيوی شوی.'''</big>
+'blockedtext'              => "<big>'''ستاسو د کارن-نوم يا آی پي پتې مخنيوی شوی.'''</big>
 
 همدا بنديز د $1 له خوا پر تاسو لږېدلی. او د همدې کړنې سبب دی ''$2''.
 
@@ -486,7 +492,7 @@ $messages = array(
 
 تاسو کولای شی چې د $1 او يا هم د يو بل [[{{MediaWiki:Grouppage-sysop}}|پازوال]] سره اړيکې ټينګې کړی او د بنديز ستونزې مو هوارې کړی.
 تاسو نه شی کولای چې د 'همدې کارونکي ته برېښلک لېږل ' کړنې نه ګټه پورته کړی تر څو چې تاسو د خپل کارن-حساب په [[Special:Preferences|غوره توبونو]] کې يوه کره برېښليک پته نه وي ځانګړې کړې او تر دې بريده چې پر تاسو د هغې د کارولو بنديز نه وي لګېدلی.
-ستاسو د دم مهال IP پته ده $3، او ستاسو د مخنيوي پېژند #$5 دی. مهرباني وکړۍ د خپلې يادونې پر مهال د دغو دوو څخه د يوه او يا هم د دواړو ورکول مه هېروۍ.",
+ستاسو د دم مهال آی پي پته ده $3، او ستاسو د مخنيوي پېژند #$5 دی. مهرباني وکړۍ د خپلې يادونې پر مهال د دغو دوو څخه د يوه او يا هم د دواړو ورکول مه هېروۍ.",
 'blockednoreason'          => 'هېڅ سبب نه دی ورکړ شوی',
 'blockedoriginalsource'    => "د '''$1''' سرچينې لاندې ښودل شوي:",
 'whitelistedittitle'       => 'که د سمادولو تکل لری نو بايد غونډال ته ورننوځۍ.',
@@ -645,7 +651,7 @@ $messages = array(
 'recentchanges'                  => 'وروستي بدلونونه',
 'recentchangestext'              => 'په همدې مخ باندې د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ.',
 'recentchanges-feed-description' => 'همدلته د ويکي ترټولو تازه وروستي بدلونونه وڅارۍ او وګورۍ چې څه پېښ شوي.',
-'rcnote'                         => "دلته لاندې {{PLURAL:$1|وروستی '''1''' بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په {{PLURAL:$2|يوې ورځ|'''$2''' ورځو}}، کې تر $3 پېښ شوي.",
+'rcnote'                         => "دلته لاندې {{PLURAL:$1|وروستی '''1''' بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په  {{PLURAL:$2| يوې ورځ|'''$2''' ورځو}} کې تر $4 نېټې او $5 بجو پېښ شوي.",
 'rcnotefrom'                     => "په همدې ځای کې لاندې هغه بدلونونه دي چې د '''$2''' نه راپدېخوا پېښ شوي (تر '''$1''' پورې ښکاره شوي).",
 'rclistfrom'                     => 'هغه بدلونونه ښکاره کړی چې له $1 نه پيلېږي',
 'rcshowhideminor'                => 'وړې سمادېدنې $1',
@@ -1020,7 +1026,7 @@ $messages = array(
 
 # What links here
 'whatlinkshere'       => 'د همدې پاڼې تړنونه',
-'whatlinkshere-title' => 'هغه سره تړنې لري مخونه چې $1',
+'whatlinkshere-title' => 'هغه مخونه چې د "$1" سره تړنې لري',
 'whatlinkshere-page'  => 'مخ:',
 'linklistsub'         => '(د تړنونو لړليک)',
 'linkshere'           => "دغه لانديني مخونه د '''[[:$1]]''' سره تړنې لري:",
@@ -1044,7 +1050,7 @@ $messages = array(
 'blockipsuccesssub'        => 'مخنيوی په برياليتوب سره ترسره شو',
 'blockipsuccesstext'       => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
 <br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:IPBlockList|مخنيول شويو IP لړليک]] وګورۍ.',
-'ipblocklist'              => 'د مخنيول شويو IP پتو او کارن نومونو لړليک',
+'ipblocklist'              => 'د مخنيول شويو آی پي پتو او کارن نومونو لړليک',
 'ipblocklist-username'     => 'کارن-نوم يا IP پته:',
 'ipblocklist-submit'       => 'پلټل',
 'infiniteblock'            => 'لامحدوده',
@@ -1194,7 +1200,7 @@ $messages = array(
 # Special:NewImages
 'newimages'             => 'د نوو دوتنو نندارتون',
 'imagelisttext'         => "دلته لاندې د '''$1''' {{PLURAL:$1|دوتنه|دوتنې}} يو لړليک دی چې اوډل شوي $2.",
-'newimages-summary'     => 'هغه دوتنې چې غونډال کې تازه پورته شوي، په همدې ځانګړي مخ کې ښکاري',
+'newimages-summary'     => 'همدا ځانګړی مخ، وروستنۍ پورته شوې دوتنې ښکاره کوي.',
 'noimages'              => 'د کتلو لپاره څه نشته.',
 'ilsubmit'              => 'پلټل',
 'bydate'                => 'د نېټې له مخې',
@@ -1251,6 +1257,8 @@ $messages = array(
 'exif-contrast-0' => 'نورمال',
 
 'exif-saturation-0' => 'نورمال',
+
+'exif-sharpness-0' => 'نورمال',
 
 'exif-subjectdistancerange-0' => 'ناجوت',
 
@@ -1359,8 +1367,17 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                 => 'ځانګړي مخونه',
+'specialpages-group-other'     => 'نور ځانګړي مخونه',
+'specialpages-group-login'     => 'ننوتل / کارن-حساب جوړول',
+'specialpages-group-changes'   => 'وروستي بدلونونه او يادښتونه',
+'specialpages-group-users'     => 'کارونکي او رښتې',
+'specialpages-group-highuse'   => 'ډېر کارېدونکي مخونه',
 'specialpages-group-pages'     => 'د مخونو لړليک',
 'specialpages-group-pagetools' => 'د مخ اوزارونه',
 'specialpages-group-wiki'      => 'ويکيډاټا او اوزارونه',
+
+# Special:BlankPage
+'blankpage'              => 'تش مخ',
+'intentionallyblankpage' => 'همدا مخ په لوی لاس تش پرېښودل شوی دی',
 
 );

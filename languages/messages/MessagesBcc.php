@@ -153,7 +153,7 @@ $messages = array(
 'underline-never'   => 'هچ وهد',
 'underline-default' => 'پیشفرضین بروزر',
 
-'skinpreview' => '(بازین)',
+'skinpreview' => '(بازبینی)',
 
 # Dates
 'sunday'        => 'یک شنبه',
@@ -254,7 +254,7 @@ $messages = array(
 
 'errorpagetitle'    => 'حطا',
 'returnto'          => 'تررگ به $1.',
-'tagline'           => 'چه {{sitename}}',
+'tagline'           => 'چه {{SITENAME}}',
 'help'              => 'کمک',
 'search'            => 'گردگ',
 'searchbutton'      => 'گردگ',
@@ -1415,7 +1415,7 @@ PICT # misc.
 'fewestrevisions' => 'صفحات گون کمترین بازبینی',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'nbytes'                  => '$1 {{PLURAL:$1|بایت|بایت}}',
 'ncategories'             => '$1 {{PLURAL:$1|دسته|دسته جات}}',
 'nlinks'                  => '$1 {{PLURAL:$1|link|لینک}}',
 'nmembers'                => '$1 {{PLURAL:$1|member|اعضا}}',
@@ -1506,7 +1506,9 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'دسته یان',
-'categoriespagetext'            => 'جهلیگین دسته جات شامل صفحات یا مدیا انت',
+'categoriespagetext'            => 'جهلیگین دسته جات شامل صفحات یا مدیا انت
+[[Special:UnusedCategories|دسته جات بی استفاده]] ادان پیشدارگ نه بنت.
+ هنچوش بچار[[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'پیشدار دسته جات که شروع بنت گون:',
 'special-categories-sort-count' => 'ترتیب په اساس شمار',
 'special-categories-sort-abc'   => 'ترتیب الفبی',
@@ -1536,10 +1538,10 @@ PICT # misc.
 'defemailsubject' => '{{SITENAME}} ایمیل',
 'noemailtitle'    => 'هچ آدرس ایمیل',
 'noemailtext'     => 'ای کاربر یک آدرس ایمیل معتبری مشخص نه کتت یا انتخابی کت ای که چه دگه کابران ایمیل مه گریت.',
-'emailfrom'       => 'چه',
-'emailto'         => 'به',
-'emailsubject'    => 'موضوغ',
-'emailmessage'    => 'کوله',
+'emailfrom'       => ':چه',
+'emailto'         => 'به:',
+'emailsubject'    => 'موضوع:',
+'emailmessage'    => 'کوله:',
 'emailsend'       => 'دیم دی',
 'emailccme'       => 'یک کپی چه منی کوله په من وت ایمیل کن.',
 'emailccsubject'  => 'کپی چه شمی کوله په $1: $2',
@@ -1731,8 +1733,7 @@ $NEWPAGE
 په اجرا کتن تررینگ انتخابی جعبه هانی که مطابق بازبینی آن باید تررینگ بیت نشان بلیت، و کلیک کنیت '''''تررین''''. کلیک کتن '''''Reset''''' فیلد نظرء و کل جعبه نشان پهک کنت.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|بازبینی|بازبینی ان}} آرشیو بوتنت',
 'undeletehistory'              => 'اگر  صفحه ای تررینیت، کل بازبینی آن ته تاریح دکه ذخیره بنت.
-اگر یک نوکین صفحه گون یک دابی نام بعد چه حذف شر بوتت، دگه ذخیره بوتگین بازبینی آن ته تاریح اولتر جاه کآینت.
-هنچوش توجه بیت که محدودیات ته بازبینی آن فایل ته دگه تررینگ گار بنت.',
+اگر یک نوکین صفحه گون یک دابی نام بعد چه حذف شر بوتت، دگه ذخیره بوتگین بازبینی آن ته تاریح اولتر جاه کآینت.',
 'undeleterevdel'               => 'تررینگ حذف انجام نه بیت اگر آی تاثیری ته اصلی صفحه یا فایل بازبینی که جری جذف بوتت.
 ته ای موارد شما بایدن چک می کنیت یا پناه مه کنیت نوکترین بازبینی حدفیء.',
 'undeletehistorynoadmin'       => 'ای صفحه حذف بوتت.

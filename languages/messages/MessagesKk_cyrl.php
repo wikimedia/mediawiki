@@ -590,28 +590,28 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} туралы',
-'aboutpage'            => '{{ns:project}}:Жоба туралы',
+'aboutpage'            => 'Project:Жоба туралы',
 'bugreports'           => 'Қателік баянаттары',
-'bugreportspage'       => '{{ns:project}}:Қателік баянаттары',
+'bugreportspage'       => 'Project:Қателік баянаттары',
 'copyright'            => 'Мағлұмат $1 шартымен жетімді.',
 'copyrightpagename'    => '{{SITENAME}} ауторлық құқықтары',
 'copyrightpage'        => '{{ns:project}}:Ауторлық құқықтар',
 'currentevents'        => 'Ағымдағы оқиғалар',
-'currentevents-url'    => '{{ns:project}}:Ағымдағы оқиғалар',
+'currentevents-url'    => 'Project:Ағымдағы оқиғалар',
 'disclaimers'          => 'Жауапкершіліктен бас тарту',
-'disclaimerpage'       => '{{ns:project}}:Жауапкершіліктен бас тарту',
+'disclaimerpage'       => 'Project:Жауапкершіліктен бас тарту',
 'edithelp'             => 'Өндеу анықтамасы',
-'edithelppage'         => '{{ns:help}}:Өңдеу',
+'edithelppage'         => 'Help:Өңдеу',
 'faq'                  => 'Жиі қойылған сауалдар',
-'faqpage'              => '{{ns:project}}:Жиі қойылған сауалдар',
-'helppage'             => '{{ns:help}}:Мазмұны',
+'faqpage'              => 'Project:Жиі қойылған сауалдар',
+'helppage'             => 'Help:Мазмұны',
 'mainpage'             => 'Басты бет',
 'mainpage-description' => 'Басты бет',
-'policy-url'           => '{{ns:project}}:Ережелер',
+'policy-url'           => 'Project:Ережелер',
 'portal'               => 'Қауым порталы',
-'portal-url'           => '{{ns:project}}:Қауым порталы',
+'portal-url'           => 'Project:Қауым порталы',
 'privacy'              => 'Жеке құпиясын сақтау',
-'privacypage'          => '{{ns:project}}:Жеке құпиясын сақтау',
+'privacypage'          => 'Project:Жеке құпиясын сақтау',
 
 'badaccess'        => 'Рұқсат қатесі',
 'badaccess-group0' => 'Сұратылған әрекетіңізді жегуіңізге рұқсат етілмейді.',
@@ -620,7 +620,7 @@ $messages = array(
 'badaccess-groups' => 'Сұратылған әрекетіңіз $1 топтары бірінің қатусышыларына шектеледі.',
 
 'versionrequired'     => 'MediaWiki $1 нұсқасы керек',
-'versionrequiredtext' => 'Бұл бетті қолдану үшін MediaWiki $1 нұсқасы керек. [[{{ns:special}}:Version|Жүйе нұсқасы бетін]] қараңыз.',
+'versionrequiredtext' => 'Бұл бетті қолдану үшін MediaWiki $1 нұсқасы керек. [[Special:Version|Жүйе нұсқасы бетін]] қараңыз.',
 
 'ok'                      => 'Жарайды',
 'pagetitle'               => '$1 — {{SITENAME}}',
@@ -904,13 +904,14 @@ IP мекенжайыңыз бұл беттің түзету тарихында 
 
 Осы бұғаттауды $1 істеген. Келтірілген себебі: ''$2''.
 
-* Бұғаттау басталғаны: $8
-* Бұғаттау бітетіні: $6
-* Бұғаттау мақсаты: $7
+* Бұғаттаудың басталғаны: $8
+* Бұғаттаудың бітетіні: $6
+* Бұғаттау нысанасы: $7
 
-Осы бұғаттауды талқылау үшін $1 дегенмен, не өзге [[{{{{ns:mediawiki}}:grouppage-sysop}}|әкімшімен]] қатынасуыңызға болады.
-[[{{#special:Preferences}}|Тіркелгіңіз бапталымдарын]] қолданып жарамды е-пошта мекенжайын енгізгенше дейін және бұны пайдалануы бұғатталмағанша дейін «Қатысушыға хат жазу» мүмкіндігін қолдана алмайсыз.
-Ағымдық IP мекенжайыңыз: $3, және бұғатау нөмірі: $5. Соның біреуін, немесе екеуін де әрбір сұранымыңызға кірістіріңіз.",
+Осы бұғаттауды талқылау үшін $1, не өзге [[{{MediaWiki:Grouppage-sysop}}|әкімшімен]] қатынасуыңызға болады.
+[[Special:Preferences|Тіркелгі бапталымдары]]ңызда жарамды е-пошта мекенжайын ұсынып және де оны пайдаланудан бұғатталмаған жағдайыңызда ғана «Қатысушыға хат жазу» қызметін қолдана аласыз.
+Ағымдық IP мекенжайыңыз: $3, және бұғатау нөмірі: $5. 
+Сұраным жасағанда осының екеуін де кірістіруіңізді сұраймыз.",
 'autoblockedtext'                  => "$1 деген бұрын өзге қатысушы пайдаланған болғасын осы IP мекенжайыңыз өздіктік бұғатталған.
 Келтірілген себебі:
 

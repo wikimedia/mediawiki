@@ -808,7 +808,7 @@ Kérjük, hogy érdeklődés esetén mindkettőt add meg.",
 'blockednoreason'                  => 'nem lett ok megadva',
 'blockedoriginalsource'            => "'''$1''' forrása alább látható:",
 'blockededitsource'                => "'''$1''' lapon '''általad végrehajtott szerkesztések''' szövege:",
-'whitelistedittitle'               => 'A szerkesztéshez [[Special:UserLogin|be kell jelentkezned]]',
+'whitelistedittitle'               => 'A szerkesztéshez be kell jelentkezned',
 'whitelistedittext'                => 'A szócikkek szerkesztéséhez $1.',
 'confirmedittitle'                 => 'Szerkesztéshez az e-mail cím megerősítése szükséges',
 'confirmedittext'                  => 'A lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|szerkesztői beállításaidban]] írd be, majd erősítsd meg az e-mail címedet.',
@@ -1469,7 +1469,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'filedelete-comment'          => 'Indoklás:',
 'filedelete-submit'           => 'Törlés',
 'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
-'filedelete-success-old'      => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: $3, $2 törlése sikerült.</span>',
+'filedelete-success-old'      => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
 'filedelete-nofile'           => "'''$1''' nevű fájl nem létezik ezen a wikin.",
 'filedelete-nofile-old'       => "A(z) '''$1''' fájlnak nincs a megadott tulajdonságokkal rendelkező archivált változata.",
 'filedelete-iscurrent'        => 'A fájl aktuális változatát próbáltad meg törölni.
@@ -1639,7 +1639,9 @@ Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy a
 
 # Special:Categories
 'categories'                    => 'Kategóriák',
-'categoriespagetext'            => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.',
+'categoriespagetext'            => 'A következő kategóriák tartalmaznak lapokat vagy fájlokat.
+A [[Special:UnusedCategories|nem használt kategóriák]] nem jelennek meg.
+Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'categoriesfrom'                => 'Kategóriák listázása a következő névtől kezdve:',
 'special-categories-sort-count' => 'rendezés elemszám szerint',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
@@ -1669,10 +1671,10 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'noemailtitle'    => 'Nincs e-mail cím',
 'noemailtext'     => 'Ez a felhasználó nem adott meg e-mail címet, vagy
 nem kíván másoktól leveleket kapni.',
-'emailfrom'       => 'Feladó',
-'emailto'         => 'Címzett',
-'emailsubject'    => 'Téma',
-'emailmessage'    => 'Üzenet',
+'emailfrom'       => 'Feladó:',
+'emailto'         => 'Címzett:',
+'emailsubject'    => 'Téma:',
+'emailmessage'    => 'Üzenet:',
 'emailsend'       => 'Küldés',
 'emailccme'       => 'Az üzenet másolatát küldje el nekem is e-mailben.',
 'emailccsubject'  => '$1 szerkesztőnek küldött $2 tárgyú üzenet másolata',

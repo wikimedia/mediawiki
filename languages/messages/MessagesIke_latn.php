@@ -1,5 +1,5 @@
 <?php
-/** Eastern Canadian (Latin) (inuktitut)
+/**  ()
  *
  * @ingroup Language
  * @file

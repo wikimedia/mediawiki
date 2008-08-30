@@ -1239,8 +1239,8 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'rclinks'                           => 'Pokaż ostatnie $1 zmian w ciągu ostatnich $2 dni.<br />$3',
 'diff'                              => 'różn.',
 'hist'                              => 'hist.',
-'hide'                              => 'ukryj',
-'show'                              => 'pokaż',
+'hide'                              => 'Ukryj',
+'show'                              => 'Pokaż',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1604,7 +1604,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'alphaindexline'    => 'od $1 do $2',
 'nextpage'          => 'Następna strona ($1)',
 'prevpage'          => 'Poprzednia strona ($1)',
-'allpagesfrom'      => 'Strony o tytułach rozpoczynających się od',
+'allpagesfrom'      => 'Strony o tytułach rozpoczynających się od:',
 'allarticles'       => 'Wszystkie artykuły',
 'allinnamespace'    => 'Wszystkie strony (w przestrzeni nazw $1)',
 'allnotinnamespace' => 'Wszystkie strony (oprócz przestrzeni nazw $1)',
@@ -1617,7 +1617,9 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 
 # Special:Categories
 'categories'                    => 'Kategorie',
-'categoriespagetext'            => 'Lista kategorii dla stron i plików.',
+'categoriespagetext'            => 'Strona przedstawia listę kategorii zawierających strony i pliki.
+[[Special:UnusedCategories|Nieużywane kategorie]] nie zostały tutaj pokazane.
+Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 'categoriesfrom'                => 'Wyświetl kategorie, zaczynając od:',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
@@ -1647,10 +1649,10 @@ Adres e-mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences
 'defemailsubject' => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'noemailtitle'    => 'Brak adresu e-mail',
 'noemailtext'     => 'Ten użytkownik nie podał poprawnego adresu e-mail albo zadecydował, że nie chce otrzymywać wiadomości e-mail od innych użytkowników.',
-'emailfrom'       => 'Od',
-'emailto'         => 'Do',
-'emailsubject'    => 'Temat',
-'emailmessage'    => 'Wiadomość',
+'emailfrom'       => 'Od:',
+'emailto'         => 'Do:',
+'emailsubject'    => 'Temat:',
+'emailmessage'    => 'Wiadomość:',
 'emailsend'       => 'Wyślij',
 'emailccme'       => 'Wyślij mi kopię mojej wiadomości.',
 'emailccsubject'  => 'Kopia Twojej wiadomości do $1: $2',
@@ -1687,12 +1689,12 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'iteminvalidname'      => 'Problem z pozycją „$1”, niepoprawna nazwa...',
 'wlnote'               => "Poniżej pokazano {{PLURAL:$1|ostatnią zmianę wykonaną|ostatnie '''$1''' zmiany wykonane|ostatnich '''$1''' zmian wykonanych}} w ciągu {{PLURAL:$2|ostatniej godziny|ostatnich '''$2''' godzin}}.",
 'wlshowlast'           => 'Pokaż ostatnie $1 godzin, $2 dni ($3)',
-'watchlist-show-bots'  => 'pokaż edycje botów',
-'watchlist-hide-bots'  => 'ukryj edycje botów',
-'watchlist-show-own'   => 'pokaż moje edycje',
-'watchlist-hide-own'   => 'ukryj moje edycje',
-'watchlist-show-minor' => 'pokaż drobne zmiany',
-'watchlist-hide-minor' => 'ukryj drobne zmiany',
+'watchlist-show-bots'  => 'Pokaż edycje botów',
+'watchlist-hide-bots'  => 'Ukryj edycje botów',
+'watchlist-show-own'   => 'Pokaż moje edycje',
+'watchlist-hide-own'   => 'Ukryj moje edycje',
+'watchlist-show-minor' => 'Pokaż drobne edycje',
+'watchlist-hide-minor' => 'Ukryj drobne edycje',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Obserwuję...',
@@ -1838,8 +1840,7 @@ Częściowe odtworzenie możesz wykonać, zaznaczając odpowiednie pola, odpowia
 Naciśnięcie '''''Wyczyść''''' usunie wszystkie zaznaczenia i wyczyści pole komentarza.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|zarchiwizowana wersja|zarchiwizowane wersje|zarchiwizowanych wersji}}',
 'undeletehistory'              => 'Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji.
-Jeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.
-Ograniczenia dotyczące wersji pliku zostaną usunięte w trakcie odtwarzania.',
+Jeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.',
 'undeleterevdel'               => 'Odtworzenie nie zostanie przeprowadzone, jeśli mogłoby spowodować częściowe usunięcie aktualnej wersji strony lub pliku.
 W takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszej usuniętej wersji.',
 'undeletehistorynoadmin'       => 'Ta strona została usunięta.

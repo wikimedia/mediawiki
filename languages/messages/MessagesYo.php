@@ -73,11 +73,17 @@ $messages = array(
 'toolbox'          => 'Àpótí irinṣẹ',
 'otherlanguages'   => 'Àwọn èdè míràn',
 'lastmodifiedat'   => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time
+'viewcount'        => 'A ti wo ojúewé yi ni {{PLURAL:$1|ẹ̀kan péré|iye ìgbà $1}}.',
 'jumptonavigation' => 'atọ́ka',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nípa {{SITENAME}}',
+'aboutpage'            => 'Project:Nípa',
+'copyright'            => 'Gbogbo ohun inú ibí yi wà lábẹ́  $1.',
+'copyrightpagename'    => '{{SITENAME}} ẹ̀tọ́àwòkọ',
+'copyrightpage'        => '{{ns:project}}:Ẹ̀tọ́àwòko',
 'currentevents'        => 'Ìròhìn nísinsìnyí',
+'currentevents-url'    => 'Project:Ìròhìn nísinsìnyí',
 'edithelp'             => "Ìrànlọ́wọ́ láti s'àtúnṣe",
 'edithelppage'         => 'Help:Àtúnṣe',
 'mainpage'             => 'Ojúewé Àkọ́kọ́',
@@ -97,11 +103,11 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Àyọkà',
-'nstab-user'      => 'Ojúewé ẹnitínṣe',
+'nstab-user'      => 'Ojúewé oníṣe',
 'nstab-media'     => 'Ojúewé amóhùnmáwòrán',
 'nstab-special'   => 'Pàtàkì',
 'nstab-mediawiki' => 'Ìfọ̀rọ̀ránsẹ',
-'nstab-category'  => 'Ẹ̀yà',
+'nstab-category'  => 'Ẹ̀ka',
 
 # General errors
 'viewsource'        => 'Àfihàn ọ̀rọ̀àmì',
@@ -110,30 +116,33 @@ $messages = array(
 'titleprotected'    => "This title has been protected from creation by [[User:$1|$1]]. The reason given is ''$2''.",
 
 # Login and logout pages
-'logouttitle'             => 'Ẹnitínṣe tibọsóde',
+'logouttitle'             => 'Ibọsóde oníṣe',
 'welcomecreation'         => "== Ẹ kú àbọ̀, $1! ==
 
 A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọn ìfẹ́ràn {{SITENAME}} yín.",
-'loginpagetitle'          => 'Ẹnitínṣe tiwọlé',
-'yourname'                => 'Orúkọ ẹnitínṣe (username):',
+'loginpagetitle'          => 'Ìwọlé oníṣe',
+'yourname'                => 'Orúkọ oníṣe (username):',
 'yourpassword'            => 'Ọ̀rọ̀ìpamọ́:',
 'yourpasswordagain'       => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
 'remembermypassword'      => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
 'loginproblem'            => '<b>Ẹ ní ìṣòro láti wọlé.</b><br />Ẹ gbìyànjú lẹ́kan sí!',
-'login'                   => "Ẹ w'ọlé",
-'nav-login-createaccount' => 'Ẹ wọlẹ́ / Ẹ fi orúkọ sílẹ̀',
-'userlogin'               => "Ẹ w'ọlé / ẹ fi orúkọ sílẹ̀",
-'logout'                  => "Ẹ bọ́s'óde",
-'userlogout'              => "Ẹ ti bọ́s'óde",
+'login'                   => 'Ìwọlé',
+'nav-login-createaccount' => 'Ìwọlé / Ìforúkọ sílẹ̀',
+'userlogin'               => 'Ìwọlé / ìforúkọ sílẹ̀',
+'logout'                  => 'Ìbọ́sóde',
+'userlogout'              => 'Ìbọ́sóde',
 'notloggedin'             => "Ẹ kò tí w'ọlé",
 'nologinlink'             => 'Ẹ fi orúkọ sílẹ̀',
 'createaccount'           => 'Ẹ fi orúkọ sílẹ̀',
 'gotaccountlink'          => "Ẹ w'ọlé",
 'createaccountmail'       => 'pẹ̀lú e-mail',
+'badretype'               => 'Àwọn ọ̀rọ̀ìpamọ́ tí ẹ kọ kò jọ ra wọn.',
+'username'                => 'Orúkọ oníṣe:',
 'uid'                     => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
 'yourlanguage'            => 'Èdè:',
 'accountcreated'          => 'Ẹ ti fi orúkọ sílẹ̀',
 'accountcreatedtext'      => 'A ti fi orúkọ ẹnitínṣe sílẹ̀ fún $1',
+'createaccount-title'     => 'Ìforúkọ sílẹ̀ fún {{SITENAME}}',
 'loginlanguagelabel'      => 'Èdè: $1',
 
 # Edit pages
@@ -145,7 +154,11 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'showdiff'         => 'Àfihàn àwọn àyípadà',
 'anoneditwarning'  => "'''Ìkìlọ̀:''' Ẹ ò tíì wọlé.
 Á ṣe àkọsílẹ̀ ojúọ̀nà IP yín ninu ìwé àtúnṣe ojúewé yìí.",
+'loginreqtitle'    => "Ẹ gbọ́dọ̀ kọ́kọ́ w'ọlé ná",
 'newarticle'       => '(Tuntun)',
+'newarticletext'   => "Ẹ ti tẹ̀lé ìjápọ̀ mọ́ ojúewé tí kò sí.
+Láti dá ojúewé yí ẹ bẹ̀rẹ̀ síní tẹ́kọ sí inú àpótí ìsàlẹ̀ yí (ẹ wo [[{{MediaWiki:Helppage}}|ojúewé ìrànlọ́wọ́ ]] fun ẹ̀kúnrẹ́rẹ́ ).
+T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́yìn.",
 'note'             => '<strong>Àkíyèsí:</strong>',
 'copyrightwarning' => 'Ẹ jọ̀wọ́ ẹ kíyèsi wípé gbogbo àwọn àfikún sí {{SITENAME}} jẹ́ bẹ̀ lábẹ́  $2 (Ẹ wo $1 fún ẹkunrẹrẹ ).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
@@ -156,18 +169,27 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'rev-delundel' => 'fihàn/fipamọ́',
 
 # Search results
-'powersearch' => 'Ṣe àwáàrí',
+'searchresults' => 'Àwọn èsì àwáàrí',
+'powersearch'   => 'Ṣe àwáàrí',
 
 # Preferences page
-'preferences'   => 'Àwọn ìfẹ́ràn',
-'mypreferences' => 'Àwọn ìfẹ́ràn mi',
+'preferences'      => 'Àwọn ìfẹ́ràn',
+'mypreferences'    => 'Àwọn ìfẹ́ràn mi',
+'prefs-edits'      => 'Iye àwọn àtúnṣe:',
+'prefsnologintext' => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlé]] láti to àwọn ìfẹ́ràn oníṣe.',
+'prefs-personal'   => 'Ọ̀rọ̀ nípa oníṣe',
+'savedprefs'       => 'Àwọn ìfẹ́ràn yín ti wà nípamọ́.',
 
 # Recent changes
 'recentchanges' => 'Àwọn àtúnṣe tuntun',
 
 # Special:ImageList
 'imagelist_name' => 'Orúkọ',
-'imagelist_user' => 'Ẹnitínṣe',
+'imagelist_user' => 'Oníṣe',
+
+# Image description page
+'filehist-user' => 'Oníṣe',
+'linkstoimage'  => '{{PLURAL:$1|Ojúewé yí|$1 Àwọn ojúewé yí}} jápọ̀ mọ́ àpò yí:',
 
 # File deletion
 'filedelete'        => 'Paarẹ́ $1',
@@ -175,10 +197,10 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 
 # Miscellaneous special pages
 'newpages'          => 'Àwọn ojúewé tuntun',
-'newpages-username' => 'Orúkọ Ẹnitínṣe:',
+'newpages-username' => 'Orúkọ oníṣe:',
 
 # Special:Log
-'specialloguserlabel'  => 'Ẹnitínṣe:',
+'specialloguserlabel'  => 'Oníṣe:',
 'speciallogtitlelabel' => 'Àkọlé:',
 
 # Special:AllPages

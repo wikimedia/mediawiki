@@ -178,6 +178,7 @@ $messages = array(
 'nstab-category' => 'Flocc',
 
 # Main script and global functions
+'nosuchaction'      => 'Nān swilc dǣd',
 'nosuchspecialpage' => 'Nān swilc syndrig tramet',
 
 # General errors
@@ -453,7 +454,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 # E-mail user
 'emailfrom'     => 'Fram',
-'emailto'       => 'Tō',
+'emailto'       => 'Tō:',
 'emailsubject'  => 'Forþsetennes',
 'emailmessage'  => 'Ǣrendgewrit',
 'emailsend'     => 'Ǣrendian',

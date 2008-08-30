@@ -349,11 +349,11 @@ waarna dit terug sal wees na normaal.
 Die administreerder wat dit gesluit het se verduideliking:
 
 $1',
-'missing-article'      => 'Die databasis kon nie soos verwag die teks vir die bladsy genaamd "$1" $2 kry nie.
+'missing-article'      => "Die databasis kon nie soos verwag die teks vir die bladsy genaamd \"\$1\" \$2 kry nie.
 
-Dit gebeur gewoonlik as mens \'n verouderde verskil- of geskiedenis-skakel volg na \'n bladsy wat reeds verwyder is.
+Dit gebeur gewoonlik as mens 'n verouderde verskil- of geskiedenis-skakel volg na 'n bladsy wat reeds verwyder is.
 
-Indien dit nie die geval is nie, het u moontlik \'n fout in die sagteware ontdek. Rapporteer asseblief die probleem aan die administrateur, en maak \'n nota van die URL.',
+Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek. Rapporteer asseblief die probleem aan 'n [[Special:ListUsers/sysop|administrateur]], en maak 'n nota van die URL.",
 'missingarticle-rev'   => '(weergawe#: $1)',
 'missingarticle-diff'  => '(Wysiging: $1, $2)',
 'readonly_lag'         => 'Die databasis is outomaties gesluit terwyl die slaafdatabasisse sinchroniseer met die meester',
@@ -403,8 +403,9 @@ Die rede gegee is ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Teken uit',
-'logouttext'                 => "U is nou uitgeteken, en kan aanhou om
-{{SITENAME}} anoniem te gebruik; of U kan inteken as dieselfde of 'n ander gebruiker.",
+'logouttext'                 => "<strong>U is nou uitgeteken</strong>
+
+U kan aanhou om {{SITENAME}} anoniem te gebruik; of U kan [[Special:Userlogin|inteken]] as dieselfde of 'n ander gebruiker.",
 'welcomecreation'            => '<h2>Welkom, $1.</h2>
 Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.',
@@ -418,7 +419,7 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'loginproblem'               => '<b>Daar was probleme met jou intekening.</b><br />Probeer weer.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
-'loginprompt'                => 'U blaaier moet koekies toelaat om by [[Special:Userlog|{{SITENAME}} te kan aanteken]].',
+'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
 'userlogin'                  => 'Teken in',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
@@ -548,14 +549,17 @@ U het u wagwoord al gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'blockedtitle'                     => 'Gebruiker is geblokkeer',
 'blockedtext'                      => "<big>'''U gebruikersnaam of IP-adres is geblokkeer.'''</big>
 
-Die blokkering is deur $1 gedoen. Die rede gegee is ''$2''.
+Die blokkering is deur $1 gedoen.
+Die rede gegee is ''$2''.
 
-* Begin van blokkering: $8
-* Verval van blokkering: $6
+* Begin van blokkade: $8
+* Blokkade eindig: $6
 * Blokkering gemik op: $7
 
 U mag $1 of een van die ander [[{{MediaWiki:Grouppage-sysop}}|administreerders]] kontak om dit te bespreek.
-U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. U huidige IP-adres is $3, en die blokkering ID is #$5. Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
+U kan nie die 'e-pos hierdie gebruiker' opsie gebruik tensy 'n geldige e-pos adres gespesifiseer is in U [[Special:Preferences|rekening voorkeure]] en U is nie geblokkeer om dit te gebruik nie. 
+U huidige IP-adres is $3, en die blokkering ID is #$5. 
+Sluit asseblief een of albei hierdie verwysings in by enige navrae.",
 'autoblockedtext'                  => "U IP-adres is outomaties geblok omdat dit deur 'n gebruiker gebruik was, wat deur $1 geblokkeer is. 
 Die rede verskaf is:
 
@@ -574,7 +578,7 @@ Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'blockednoreason'                  => 'geen rede gegeef nie',
 'blockedoriginalsource'            => "Die bronteks van '''$1''' word onder gewys:",
 'blockededitsource'                => "Die teks van '''jou wysigings''' aan '''$1''' word hieronder vertoon:",
-'whitelistedittitle'               => 'U moet [[Special:UserLogin|aanteken]] wees om te kan redigeer.',
+'whitelistedittitle'               => 'U moet aanteken wees om te kan redigeer.',
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittitle'                 => 'E-pos-bevestiging nodig om te redigeer',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
@@ -608,7 +612,7 @@ Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te
 
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
 
-<strong>As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, teen dan af en weer aan.</strong>",
+<strong>As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.</strong>",
 'editing'                          => 'Besig om $1 te wysig',
 'editingsection'                   => 'Besig om $1 (onderafdeling) te wysig',
 'editingcomment'                   => 'Besig om $1 (kommentaar) te wysig',
@@ -668,7 +672,7 @@ Daar is $1 funksies, terwyl die bladsy minder as $2 moet hê.',
 # "Undo" feature
 'undo-failure' => 'Die wysiging kan nie ongedaan gemaak word nie omdat dit met intermediêre wysigings bots.',
 'undo-norev'   => 'Die wysiging kon nie ongedaan gemaak word nie omdat dit nie bestaan nie of reeds verwyder is.',
-'undo-summary' => 'Rol weergawe $1 deur [[Special:Contributions/$2|$2]] terug. ([[User talk:$2|Bespreek]])',
+'undo-summary' => 'Rol weergawe $1 deur [[Special:Contributions/$2|$2]] ([[User talk:$2|bespreek]]) terug.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan nie rekening skep nie',
@@ -1117,6 +1121,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 
 # File reversion
 'filerevert'         => 'Maak $1 ongedaan',
+'filerevert-legend'  => 'Maak lêer ongedaan',
 'filerevert-comment' => 'Opmerking:',
 'filerevert-submit'  => 'Rol terug',
 
@@ -1315,10 +1320,10 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'defemailsubject' => '{{SITENAME}}-epos',
 'noemailtitle'    => 'Geen e-posadres',
 'noemailtext'     => "Hierdie gebruiker het nie 'n geldige e-posadres gespesifiseer nie of het gekies om nie e-pos van ander gebruikers te ontvang nie.",
-'emailfrom'       => 'Van',
-'emailto'         => 'Aan',
-'emailsubject'    => 'Onderwerp',
-'emailmessage'    => 'Boodskap',
+'emailfrom'       => 'Van:',
+'emailto'         => 'Aan:',
+'emailsubject'    => 'Onderwerp:',
+'emailmessage'    => 'Boodskap:',
 'emailsend'       => 'Stuur',
 'emailccme'       => "E-pos vir my 'n kopie van my boodskap.",
 'emailccsubject'  => 'Kopie van U boodskap aan $1: $2',
@@ -1528,7 +1533,7 @@ Die verwyderde inhoud is slegs vir administrateurs sigbaar.',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',
-'whatlinkshere-title'      => 'Bladsye die skakel na $1',
+'whatlinkshere-title'      => 'Bladsye wat verwys na "$1"',
 'whatlinkshere-page'       => 'Bladsy:',
 'linklistsub'              => '(Lys van skakels)',
 'linkshere'                => "Die volgende bladsye skakel na '''[[:$1]]''':",
@@ -1587,7 +1592,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipusubmit'                => 'Maak hierdie adres oop',
 'unblocked'                => 'Blokkade van [[User:$1|$1]] is opgehef',
 'unblocked-id'             => 'Blokkade $1 is opgehef',
-'ipblocklist'              => 'Lys van geblokkeerde IP-adresse',
+'ipblocklist'              => 'Geblokkeerde IP-adresse en gebruikers',
 'ipblocklist-legend'       => "Soek 'n geblokkeerde gebruiker",
 'ipblocklist-username'     => 'Gebruikersnaam of IP adres:',
 'ipblocklist-submit'       => 'Soek',

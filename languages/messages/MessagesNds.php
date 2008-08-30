@@ -360,7 +360,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'categorypage'      => 'Kategorie ankieken',
 'viewtalkpage'      => 'Diskuschoon ankieken',
 'otherlanguages'    => 'Annere Spraken',
-'redirectedfrom'    => '(Wiederleiden vun $1)',
+'redirectedfrom'    => '(wiederwiest vun $1)',
 'redirectpagesub'   => 'Redirectsiet',
 'lastmodifiedat'    => 'Disse Siet is toletzt üm $2, $1 ännert worrn.', # $1 date, $2 time
 'viewcount'         => 'Disse Siet is {{PLURAL:$1|een|$1}} Maal opropen worrn.',
@@ -671,7 +671,7 @@ Wenn du glöövst, dat Sparren weer unrecht, denn mell di bi een vun de [[{{Medi
 * Block-ID: #$5
 * Grund för’n Block: #$2
 * Wokeen hett blockt: $1',
-'autoblockedtext'                  => "Diene IP-Adress is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
+'autoblockedtext'                  => "Diene IP-Adress ($3) is blockt, denn en annern Bruker hett ehr vördem bruukt un is dör $1 blockt worrn.
 As Grund is angeven: ''$2'' (de Block-ID is $5).
 
 Du dröffst aver jümmer noch lesen. Blot dat Schrieven geiht nich.
@@ -680,6 +680,7 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 
 * Anfang vun’n Block: $8
 * Enn vun’n Block: $6
+* Wokeen is blockt worrn: $7
 * Block-ID: #$5
 * Grund för’n Block: $2
 * Wokeen hett blockt: $1",
@@ -1327,7 +1328,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filedelete-comment'          => 'Kommentar:',
 'filedelete-submit'           => 'Wegsmieten',
 'filedelete-success'          => "'''$1''' wegsmeten.",
-'filedelete-success-old'      => '<span class="plainlinks">De Version vun de Datei \'\'\'„[[Media:$1|$1]]“\'\'\' vun $2, $3 is wegsmeten worrn.</span>',
+'filedelete-success-old'      => "De Version vun de Datei '''„[[Media:$1|$1]]“''' vun $2, $3 is wegsmeten worrn.",
 'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
 'filedelete-nofile-old'       => "Gifft keen Version vun '''„$1“''' in’t Archiv mit disse Egenschoppen.",
 'filedelete-iscurrent'        => 'Du versöchst de aktuelle Version vun disse Datei wegtosmieten. Sett de Datei vörher eerst op en öllere Version trüch.',
@@ -1496,7 +1497,9 @@ Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de
 
 # Special:Categories
 'categories'                    => 'Kategorien',
-'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.',
+'categoriespagetext'            => 'In disse Kategorien staht Sieden oder Mediendatein.
+[[Special:UnusedCategories|Nich bruukte Kategorien]] warrt hier nich wiest.
+Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'categoriesfrom'                => 'Wies Kategorien anfungen mit:',
 'special-categories-sort-count' => 'na Tall sorteren',
 'special-categories-sort-abc'   => 'alphabeetsch sorteren',
@@ -2045,7 +2048,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 'tooltip-n-mainpage'              => 'Besöök de Hööftsiet',
 'tooltip-n-portal'                => 'över dat Projekt, wat du doon kannst, woans du de Saken finnen kannst',
 'tooltip-n-currentevents'         => 'Achtergrünn to aktuellen Schehn finnen',
-'tooltip-n-recentchanges'         => 'List vun de letzten Ännern in dissen Wiki.',
+'tooltip-n-recentchanges'         => 'Wat in dit Wiki toletzt ännert worrn is.',
 'tooltip-n-randompage'            => 'Tofällige Siet',
 'tooltip-n-help'                  => 'Hier kriegst du Hülp.',
 'tooltip-t-whatlinkshere'         => 'Wat wiest hierher',

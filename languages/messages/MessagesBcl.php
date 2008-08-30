@@ -1171,7 +1171,7 @@ An kinaag mong ''e''-surat sa saimong mga kabôtan nin paragamit mahihiling bila
 'noemailtext'     => 'Dai nagpili nin tama na direccion nin e-surat an paragamit,
 o habo magresibo nin e-surat sa ibang paragamit.',
 'emailfrom'       => 'Poon',
-'emailto'         => 'Hasta',
+'emailto'         => 'Hasta:',
 'emailsubject'    => 'Tema',
 'emailmessage'    => 'Mensahe',
 'emailsend'       => 'Ipadara',

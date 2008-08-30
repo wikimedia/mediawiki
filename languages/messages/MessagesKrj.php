@@ -5,6 +5,7 @@
  * @file
  *
  * @author Harvzsf
+ * @author Joebertj
  * @author Jose77
  * @author RonaldPanaligan
  */
@@ -12,6 +13,7 @@
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Koritan ang dalum kang manga ''link'':",
+'tog-highlightbroken'      => 'I-format ang mga guba nga links <a href="" class="new">paryas kaja</a> (alternative: paryas kaja<a href="" class="internal">?</a>).',
 'tog-justify'              => 'Tururupungun ang kilid kang manga paragraph',
 'tog-hideminor'            => "Tagoon ang gagmay nga ''edit'' sa mga bag-o nga ilis",
 'tog-extendwatchlist'      => "Palapadun ang ''watchlist'' agud nga mapakita ang tanan nga ginasogtan nga pag-ilis",
@@ -150,15 +152,29 @@ $messages = array(
 'jumptosearch'      => 'sagap',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Tunggəd sa {{SITENAME}}',
+'aboutpage'            => 'Proyekto:Tunggəd',
 'bugreports'           => "Mga report kang ''bug''",
+'disclaimers'          => 'Mga Panginwala',
+'disclaimerpage'       => 'Proyekto:Panginwala nga Pangtanan',
 'edithelp'             => 'Panoytoy sa Pag-ilis',
+'edithelppage'         => 'Bulig:Pag-ilis',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Proyekto:FAQ',
 'mainpage'             => 'Pono nga Pahina',
 'mainpage-description' => 'Pono nga Pahina',
+'privacy'              => 'Surundun sa Privacy',
+'privacypage'          => 'Proyekto:Surundun sa Privacy',
 
 'badaccess'        => 'Sayup sa lisensya',
 'badaccess-group0' => 'Indi kaw ginpasogtan nga himoon ang lihuk nga ginalaum mo.',
 
+'versionrequired'     => 'Version $1 kang MediaWiki kinahanglan',
+'versionrequiredtext' => 'Version $1 of MediaWiki kinahanglan para magamit ang page nga ja.
+Lantawa sa [[Special:Version|version kang page]].',
+
 'ok'                      => 'OK dun',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'youhavenewmessages'      => 'May rudyan kaw nga $1 ($2).',
 'newmessageslink'         => 'bag-o nga manga mensahe',
 'newmessagesdifflink'     => 'orihi nga ilis',
@@ -259,9 +275,21 @@ $messages = array(
 'ipblocklist-submit' => 'Sagap',
 
 # Tooltip help for the actions
-'tooltip-ca-protect' => 'Amligan ang dya nga pahina',
-'tooltip-ca-delete'  => 'Paraun ang dya nga Pahina',
-'tooltip-p-logo'     => 'Pono nga Pahina',
+'tooltip-ca-protect'            => 'Amligan ang dya nga pahina',
+'tooltip-ca-delete'             => 'Paraun ang dya nga Pahina',
+'tooltip-p-logo'                => 'Pono nga Pahina',
+'tooltip-n-mainpage'            => 'Agtoni ang Main Page',
+'tooltip-n-portal'              => 'Tunggəd sa project, ano pwede mo mahimo, diin mo makita ang mga bagay bagay',
+'tooltip-n-currentevents'       => 'Pangita-a ang mga ginhalinan sa mga nagakaratabo sa tulad',
+'tooltip-n-recentchanges'       => 'Listahan kang mga bag-o lang na-ilis sa wiki.',
+'tooltip-n-randompage'          => 'Magkarga kang random nga page',
+'tooltip-n-help'                => 'Lugar kun diin mo masagap.',
+'tooltip-t-whatlinkshere'       => 'Listahan kang tanan nga mga wiki pages nga naga-link paagto ja',
+'tooltip-t-recentchangeslinked' => 'Mga bag-o lng ilis nga mga page nga naka-link halin sa page nga ja',
+'tooltip-feed-rss'              => 'RSS feed para sa page nga ja',
+'tooltip-feed-atom'             => 'Atom feed para sa page nga ja',
+'tooltip-t-contributions'       => 'Lantawa ang listahan kang mga ginbulig kang user nga ja',
+'tooltip-t-emailuser'           => 'Padarhi kang e-mail ang user nga ja',
 
 # Special:NewImages
 'ilsubmit' => 'Sagap',

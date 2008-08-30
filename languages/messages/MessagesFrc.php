@@ -6,6 +6,7 @@
  *
  * @author JeanVoisin
  * @author RoyAlcatraz
+ * @author Zetud
  */
 
 $messages = array(
@@ -224,8 +225,8 @@ $messages = array(
 'badaccess-group2' => "L'action que vous avez demandé est juste pour les useurs dans une des groupes $1.",
 'badaccess-groups' => "L'action que vous avez demandé est juste pour les useurs dans une des groupes $1.",
 
-'versionrequired'     => 'Vous avez besoin de la version $1 de MédiaWiki.',
-'versionrequiredtext' => 'Vous avez besoin de la version $1 de MédiaWiki pour user cette page. Voir [[Special:Version]].',
+'versionrequired'     => 'Vous avez besoin de la version $1 de MediaWiki.',
+'versionrequiredtext' => 'Vous avez besoin de la version $1 de MediaWiki pour utiliser cette page. Voir [[Special:Version]].',
 
 'retrievedfrom'           => 'Pris de "$1"',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',

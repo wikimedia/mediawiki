@@ -300,6 +300,7 @@ $messages = array(
 'recentchanges'   => '‍නව වෙනස්වීම්',
 'rcshowhideminor' => 'සුළු සංස්කරණ $1',
 'rcshowhideanons' => 'නිර්නාමික පරිශීලකයෝ $1',
+'diff'            => 'වෙනස',
 'hide'            => 'සඟවන්න',
 'show'            => 'පෙන්වන්න',
 
@@ -325,12 +326,13 @@ $messages = array(
 'booksources-go' => 'යන්න',
 
 # Special:Log
-'log'               => 'ලඝු',
+'log'               => 'Logs',
 'log-search-submit' => 'යන්න',
 
 # Special:AllPages
 'allpages'       => 'සියලු පිටු',
 'alphaindexline' => '$1 සි‍ට $2',
+'allarticles'    => 'සියලු පිටු',
 'allpagessubmit' => 'යන්න',
 
 # Special:ListUsers
@@ -361,13 +363,14 @@ $messages = array(
 'allmessagesname' => 'නම',
 
 # Tooltip help for the actions
-'tooltip-pt-preferences' => 'මගේ අභිරුචි',
-'tooltip-ca-edit'        => 'ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක. කරුණාකර සුරැකීමට පෙර පෙරදසුන බොත්තම භාවිතා කරන්න.',
-'tooltip-ca-delete'      => 'මේ පිටුව මකන්න',
-'tooltip-search'         => 'සොයන්න {{SITENAME}}',
-'tooltip-n-mainpage'     => 'මුල් පිටුව‍ට යන්න',
-'tooltip-t-specialpages' => 'සියලු විශේෂ පිටු ලැයිස්තුව',
-'tooltip-save'           => 'ඔබගේ වෙනස් කිරීම් සුරකින්න',
+'tooltip-pt-preferences'   => 'මගේ අභිරුචි',
+'tooltip-ca-edit'          => 'ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක. කරුණාකර සුරැකීමට පෙර පෙරදසුන බොත්තම භාවිතා කරන්න.',
+'tooltip-ca-delete'        => 'මේ පිටුව මකන්න',
+'tooltip-search'           => 'සොයන්න {{SITENAME}}',
+'tooltip-n-mainpage'       => 'මුල් පිටුව‍ට යන්න',
+'tooltip-t-specialpages'   => 'සියලු විශේෂ පිටු ලැයිස්තුව',
+'tooltip-ca-nstab-project' => 'ව්‍යාපෘති පිටුව පෙන්වන්න',
+'tooltip-save'             => 'ඔබගේ වෙනස් කිරීම් සුරකින්න',
 
 # Special:NewImages
 'ilsubmit' => 'සොයන්න',

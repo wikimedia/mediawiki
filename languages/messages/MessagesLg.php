@@ -194,6 +194,7 @@ kalambula-neti yo.",
 'gotaccountlink'             => 'Yingira',
 'username'                   => "Ery'obwa memba:",
 'yourlanguage'               => 'Lulimi lwo:',
+'yournick'                   => 'Empaako yo (ssi ya tteeka):',
 'prefs-help-email'           => "* E-mail (ssi kya tteeka): Bw'ogiwayo, basobola okukutuukirira nga bayitira ku enfo yo ey'obwa memba oba olupapula lwo
 olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'loginsuccesstitle'          => 'Oyingidde',
@@ -305,9 +306,15 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Preferences page
 'mypreferences'     => 'Enteekateeka yange',
+'prefs-personal'    => 'Ebikufaako',
+'saveprefs'         => 'Bino bikaze',
+'resetprefs'        => 'Gyawo enkyukakyuka ze sinnakaza',
 'oldpassword'       => 'Ekigambo ekikuumi ekikadde:',
 'newpassword'       => 'Ekigambo ekikuumi ekipya:',
+'retypenew'         => 'Ddamu ekikagambo ekikuumi ekipya ekyo:',
 'searchresultshead' => 'Noonya',
+'savedprefs'        => 'Enteekateeka yo ekazidwa.',
+'allowemail'        => 'Kkiriza bamemba abalala okukusindikira e-mail',
 
 # User rights
 'editinguser' => "Kukyuusa ebya memba '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -359,6 +366,7 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|bayiti|bayiti}} $1',
+'ncategories'       => '$1 {{PLURAL:$1|ttuluba|matuluba}}',
 'nmembers'          => '{{PLURAL:$1|memba|bamemba}} $1',
 'newpages'          => 'Empapula empya',
 'newpages-username' => "Ery'obwa memba:",
@@ -453,6 +461,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'move-watch'       => 'Goberera olupapula luno',
 'movepagebtn'      => 'Lusimbulize',
 'movelogpage'      => 'Ebikyusidwa manya',
+'movereason'       => 'Nsonga:',
 'revertmove'       => 'zaawo erinya ekkadde',
 
 # Export

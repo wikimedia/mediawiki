@@ -696,7 +696,7 @@ El motivu dau por $3 ye ''$2''",
 'revnotfound'         => 'Revisión non atopada',
 'revnotfoundtext'     => "La revisión antigua de la páxina que solicitasti nun se pudo atopar. Por favor comprueba l'URL qu'usasti p'acceder a esta páxina.",
 'currentrev'          => 'Revisión actual',
-'revisionasof'        => 'Revisión de $1',
+'revisionasof'        => 'Revisión a fecha de $1',
 'revision-info'       => 'Revisión a fecha de $1; $2',
 'previousrevision'    => '←Revisión anterior',
 'nextrevision'        => 'Revisión siguiente→',
@@ -813,7 +813,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'lineno'                  => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les versiones seleicionaes',
 'editundo'                => 'esfacer',
-'diff-multi'              => '(Non {{PLURAL:$1|amosada una revisión intermedia|amosaes $1 revisiones intermedies}}.)',
+'diff-multi'              => '({{PLURAL:$1|1 revisión intermedia non amosada|$1 revisiones intermedies non amosaes}})',
 
 # Search results
 'searchresults'             => 'Resultaos de la busca',
@@ -1221,7 +1221,7 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'filedelete-comment'          => 'Comentariu:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "'''$1''' foi borráu.",
-'filedelete-success-old'      => '<span class="plainlinks">La versión de \'\'\'[[Media:$1|$1]]\'\'\' del $3 a les $2 foi borrada.</span>',
+'filedelete-success-old'      => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
 'filedelete-nofile'           => "'''$1''' nun esiste en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
 'filedelete-iscurrent'        => "Tas tentando de borrar la versión más reciente d'esti archivu. Por favor revierti primero a una versión más antigua.",
@@ -1385,7 +1385,9 @@ La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7''
 
 # Special:Categories
 'categories'                    => 'Categoríes',
-'categoriespagetext'            => 'Les categoríes que vienen darréu contienen páxines o archivos multimedia.',
+'categoriespagetext'            => "Les categoríes que vienen darréu contienen páxines o archivos multimedia.
+Les [[Special:UnusedCategories|categoríes non usaes]] nun s'amuesen equí.
+Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'categoriesfrom'                => "Amosar categoríes qu'emprimen por:",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
@@ -1417,10 +1419,10 @@ pa poder unviar correos a otros usuarios.',
 'noemailtitle'    => 'Ensin direición de corréu',
 'noemailtext'     => "Esti usuariu nun punxo una dirección de corréu válida,
 o nun quier recibir correos d'otros usuarios.",
-'emailfrom'       => 'De',
-'emailto'         => 'A',
-'emailsubject'    => 'Asuntu',
-'emailmessage'    => 'Mensaxe',
+'emailfrom'       => 'De:',
+'emailto'         => 'A:',
+'emailsubject'    => 'Asuntu:',
+'emailmessage'    => 'Mensaxe:',
 'emailsend'       => 'Unviar',
 'emailccme'       => 'Unviame per corréu una copia del mio mensaxe.',
 'emailccsubject'  => 'Copia del to mensaxe a $1: $2',
@@ -1611,9 +1613,7 @@ que quies restaurar y calca en '''''Restaurar'''''. Calcando en '''''Llimpiar'''
 el campu de comentarios y toles caxelles.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisión archivada|revisiones archivaes}}',
 'undeletehistory'              => 'Si restaures la páxina, restauraránse toles revisiones al historial.
-Si se creó una páxina col mesmu nome dende que foi borrada, les revisiones
-restauraes van apaecer nel historial anterior. Date cuenta tamién de que les restricciones del archivu de revisiones
-perderánse depués de la restauración',
+Si se creó una páxina col mesmu nome dende que fuera borrada, les revisiones restauraes van apaecer nel historial anterior.',
 'undeleterevdel'               => 'Nun se fadrá la restauración si ésta provoca un borráu parcial de la páxina cimera o de la revisión
 del archivu. Nestos casos, tienes que desmarcar o amosar les revisiones borraes más recién.',
 'undeletehistorynoadmin'       => "Esta páxina foi borrada. El motivu del borráu amuésase
