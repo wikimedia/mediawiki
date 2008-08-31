@@ -1711,7 +1711,7 @@ Den e-postadress du har angivit i [[Special:Preferences|dina användarinställni
 'defemailsubject' => '{{SITENAME}} e-post',
 'noemailtitle'    => 'Ingen e-postadress',
 'noemailtext'     => 'Den här användaren har inte angivet en giltig e-postadress eller har valt att inte ta emot mail från andra användare.',
-'email-legend'    => 'Skicka ett mail till en annan {{SITENAME}}-användare',
+'email-legend'    => 'Skicka ett mail till en annan användare på {{SITENAME}}',
 'emailfrom'       => 'Från:',
 'emailto'         => 'Till:',
 'emailsubject'    => 'Ämne:',

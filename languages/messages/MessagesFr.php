@@ -15,6 +15,7 @@
  * @author IAlex
  * @author JeanVoisin
  * @author Korg
+ * @author Korrigan
  * @author Louperivois
  * @author McDutchie
  * @author Meithal
@@ -263,8 +264,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Masquer mes propres modifications dans la liste de suivi',
 'tog-watchlisthidebots'       => 'Masquer les modifications faites par les bots dans la liste de suivi',
 'tog-watchlisthideminor'      => 'Masquer les modifications mineures dans la liste de suivi',
-'tog-watchlisthideliu'        => 'Cache, de la liste, les modifications par les utilisateurs connectés',
-'tog-watchlisthideanons'      => 'Cache, de la liste, les modifications anonymes',
+'tog-watchlisthideliu'        => 'Masquer les modifications par les utilisateurs connectés dans la liste de suivi',
+'tog-watchlisthideanons'      => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-nolangconversion'        => 'Désactiver la conversion des variantes de langue',
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
@@ -2535,6 +2536,18 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-lightsource-19'  => 'Lumière standard C',
 'exif-lightsource-24'  => 'Tungstène ISO de studio',
 'exif-lightsource-255' => 'Autre source de lumière',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Flash non déclenché',
+'exif-flash-fired-1'    => 'Flash déclenché',
+'exif-flash-return-0'   => 'aucun stroboscope ne retourne une fonction de détection',
+'exif-flash-return-2'   => 'le stroboscope retourne une lumière non détectée',
+'exif-flash-return-3'   => 'le stroboscope retourne une lumière détectée',
+'exif-flash-mode-1'     => 'lumière du flash obligatoire',
+'exif-flash-mode-2'     => 'suppression du flash obligatoire',
+'exif-flash-mode-3'     => 'Mode automatique',
+'exif-flash-function-1' => 'Pas de fonction de flash',
+'exif-flash-redeye-1'   => 'Mode anti-yeux rouges',
 
 'exif-focalplaneresolutionunit-2' => 'Pouce',
 

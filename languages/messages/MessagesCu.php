@@ -251,6 +251,7 @@ $messages = array(
 'template-protected' => '(ꙁабранєно ѥ́стъ)',
 
 # History pages
+'viewpagelogs' => 'си страни́цѧ їсторі́ѩ',
 'cur'          => 'нꙑ҃н',
 'last'         => 'пс҃лд',
 'historyempty' => '(поу́сто)',
@@ -458,6 +459,7 @@ $messages = array(
 'move-page'        => 'прѣимєнова́ниѥ ⁖ $1 ⁖',
 'move-page-legend' => 'страни́цѧ прѣимєнова́ниѥ',
 'movearticle'      => 'страни́ца :',
+'newtitle'         => 'но́во и́мѧ :',
 'move-watch'       => 'си страни́цѧ блюдє́ниѥ',
 'movepagebtn'      => 'прѣимєнова́ниѥ',
 'pagemovedsub'     => 'прѣимєнова́ниѥ сътворѥно́ ѥ́стъ',

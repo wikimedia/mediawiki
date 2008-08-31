@@ -2549,6 +2549,18 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-lightsource-24'  => "Tungstèni ISO d'estudiò",
 'exif-lightsource-255' => 'Autra font de lum',
 
+# Flash modes
+'exif-flash-fired-0'    => 'Flash pas desenclavat',
+'exif-flash-fired-1'    => 'Flash desenclavat',
+'exif-flash-return-0'   => "cap d'estroboscòpi retorna pas una foncion de deteccion",
+'exif-flash-return-2'   => "l'estroboscòpi retorna un lum pas detectat",
+'exif-flash-return-3'   => "l'estroboscòpi retorna un lum detectat",
+'exif-flash-mode-1'     => 'lum del flash obligatòri',
+'exif-flash-mode-2'     => 'supression del flash obligatòri',
+'exif-flash-mode-3'     => 'Mòde automatic',
+'exif-flash-function-1' => 'Pas de foncion de flash',
+'exif-flash-redeye-1'   => 'Mòde anti uèlhs roges',
+
 'exif-focalplaneresolutionunit-2' => 'poce',
 
 'exif-sensingmethod-1' => 'Pas definit',

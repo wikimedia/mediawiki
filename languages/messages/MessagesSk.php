@@ -1375,6 +1375,9 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'filehist-revert'                => 'obnoviť',
 'filehist-current'               => 'aktuálna',
 'filehist-datetime'              => 'dátum/čas',
+'filehist-thumb'                 => 'Náhľad',
+'filehist-thumbtext'             => 'Náhľad verzie z $1',
+'filehist-nothumb'               => 'Bez náhľadu',
 'filehist-user'                  => 'používateľ',
 'filehist-dimensions'            => 'rozmery',
 'filehist-filesize'              => 'veľkosť súboru',
@@ -1816,10 +1819,7 @@ Ak chcete vykonať selektívnu obnovu, zašktrnite polia zodpovedajúce revízi�
 Kliknutie na '''''Reset''''' vyčistí pole s komentárom a všetky zaškrtávacie polia.",
 'undeleterevisions'            => '$1 {{PLURAL:verzia je archivovaná|verzie sú archivované|verzií je archivovaných}}',
 'undeletehistory'              => 'Ak obnovíte túto stránku, obnovia sa aj všetky predchádzajúce verzie do histórie predchádzajúcich verzií.
-Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, zobrazia sa
-obnovené verzie ako posledné úpravy novej stránky a aktuálna verzia novej stránky
-nebude automaticky nahradená.
-Tiež pamätajte, že obmedzenia vzťahujúce sa na revízie súborov sa pri obnovení stratia.',
+Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené revízie sa objavia v histórii stránky.',
 'undeleterevdel'               => 'Obnovenie sa nevykoná, ak by malo mať za dôsledok čiastočné zmazanie poslednej revízie. V takých prípadoch musíte odznačiť alebo odkryť najnovšie zmazané revízie.',
 'undeletehistorynoadmin'       => 'Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.',
 'undelete-revision'            => '$3 zmazal revíziu $1 (z $2):',

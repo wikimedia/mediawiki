@@ -878,6 +878,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-styleadded'         => 'Style derbäigesat',
 'diff-added'              => 'derbäigesat',
 'diff-changedto'          => 'geännert op',
+'diff-movedoutof'         => 'aus $1 geréckelt',
 'diff-styleremoved'       => 'Style ewechgeholl',
 'diff-removed'            => 'ewechgeholl',
 'diff-changedfrom'        => 'geännert vu(n)',
@@ -897,6 +898,7 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'diff-ul'                 => "eng '''Lëscht'''",
 'diff-ol'                 => "eng '''numeréiert Lëscht'''",
 'diff-table'              => "eng '''Tabell'''",
+'diff-tbody'              => "en '''Inhalt vun enger Tabell'''",
 'diff-tr'                 => "eine '''Reih'''",
 'diff-td'                 => "eng '''Zell'''",
 'diff-th'                 => "eng '''Iwwerschrëft'''",
@@ -2337,6 +2339,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 # Flash modes
 'exif-flash-fired-0'    => 'Ouni Blëtz',
 'exif-flash-fired-1'    => 'mat Blëtz',
+'exif-flash-mode-1'     => 'erzwongene Blëtz',
 'exif-flash-mode-2'     => 'De Blëtz war ausgeschalt',
 'exif-flash-mode-3'     => 'Automatik',
 'exif-flash-function-1' => 'Ouni Blëtzfonctioun',

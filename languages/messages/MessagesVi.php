@@ -2453,6 +2453,11 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 # Flash modes
 'exif-flash-fired-0'    => 'Đèn flash không chớp',
 'exif-flash-fired-1'    => 'Có chớp đèn flash',
+'exif-flash-return-0'   => 'không có chức năng kiểm tra tín hiệu trả về nhấp nháy',
+'exif-flash-return-2'   => 'không phát hiện ra ánh sáng trả về nhấp nháy',
+'exif-flash-return-3'   => 'phát hiện ra ánh sáng trả về nhấp nháy',
+'exif-flash-mode-1'     => 'chớp flash cưỡng ép',
+'exif-flash-mode-2'     => 'tắt flash cưỡng ép',
 'exif-flash-mode-3'     => 'chế độ tự động',
 'exif-flash-function-1' => 'Không có chức năng flash',
 'exif-flash-redeye-1'   => 'chế độ giảm mắt đỏ',
