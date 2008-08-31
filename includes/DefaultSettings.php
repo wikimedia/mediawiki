@@ -1244,9 +1244,10 @@ $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
  * Set the minimum permissions required to edit pages in each
  * namespace.  If you list more than one permission, a user must
  * have all of them to edit pages in that namespace.
+ *
+ * Note: NS_MEDIAWIKI is implicitly restricted to editinterface.
  */
 $wgNamespaceProtection = array();
-$wgNamespaceProtection[ NS_MEDIAWIKI ] = array( 'editinterface' );
 
 /**
  * Pages in namespaces in this array can not be used as templates.
