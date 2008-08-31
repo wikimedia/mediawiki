@@ -25,7 +25,31 @@ if(@$options['help']) {
 $wgOut->disable();
 $dbw = wfGetDB( DB_MASTER );
 
-foreach ( $wgQueryPages as $page ) {
+foreach( $wgSpecialPageCacheUpdates as $special => $call ) {
+	if( !is_callable($call) ) {
+		print "Uncallable function $call!\n";
+		continue;
+	}
+	$t1 = explode( ' ', microtime() );
+	call_user_func( $call, $dbw );
+	$t2 = explode( ' ', microtime() );
+	printf( '%-30s ', $special );
+	$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
+	$hours = intval( $elapsed / 3600 );
+	$minutes = intval( $elapsed % 3600 / 60 );
+	$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+	if ( $hours ) {
+		print $hours . 'h ';
+	}
+	if ( $minutes ) {
+		print $minutes . 'm ';
+	}
+	printf( "completed in %.2fs\n", $seconds );
+	# Wait for the slave to catch up
+	wfWaitForSlaves( 5 );
+}
+
+foreach( $wgQueryPages as $page ) {
 	@list( $class, $special, $limit ) = $page;
 
 	# --list : just show the name of pages
@@ -50,33 +74,30 @@ foreach ( $wgQueryPages as $page ) {
 	}
 	$queryPage = new $class;
 
-	if( !(isset($options['only'])) or ($options['only'] == $queryPage->getName()) ) {
-	printf( '%-30s ',  $special );
+	if( !isset($options['only']) or $options['only'] == $queryPage->getName() ) {
+		printf( '%-30s ',  $special );
+		if ( $queryPage->isExpensive() ) {
+			$t1 = explode( ' ', microtime() );
+			# Do the query
+			$num = $queryPage->recache( $limit === null ? $wgQueryCacheLimit : $limit );
+			$t2 = explode( ' ', microtime() );
+			if ( $num === false ) {
+				print "FAILED: database error\n";
+			} else {
+				print "got $num rows in ";
 
-	if ( $queryPage->isExpensive() ) {
-		$t1 = explode( ' ', microtime() );
-		# Do the query
-		$num = $queryPage->recache( $limit === null ? $wgQueryCacheLimit : $limit );
-		$t2 = explode( ' ', microtime() );
-
-		if ( $num === false ) {
-			print "FAILED: database error\n";
-		} else {
-			print "got $num rows in ";
-
-			$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
-			$hours = intval( $elapsed / 3600 );
-			$minutes = intval( $elapsed % 3600 / 60 );
-			$seconds = $elapsed - $hours * 3600 - $minutes * 60;
-			if ( $hours ) {
-				print $hours . 'h ';
-			}
-			if ( $minutes ) {
-				print $minutes . 'm ';
-			}
-			printf( "%.2fs\n", $seconds );
+				$elapsed = ($t2[0] - $t1[0]) + ($t2[1] - $t1[1]);
+				$hours = intval( $elapsed / 3600 );
+				$minutes = intval( $elapsed % 3600 / 60 );
+				$seconds = $elapsed - $hours * 3600 - $minutes * 60;
+				if ( $hours ) {
+					print $hours . 'h ';
+				}
+				if ( $minutes ) {
+					print $minutes . 'm ';
+				}
+				printf( "%.2fs\n", $seconds );
 		}
-
 		# Reopen any connections that have closed
 		if ( !wfGetLB()->pingAll())  {
 			print "\n";
@@ -89,22 +110,10 @@ foreach ( $wgQueryPages as $page ) {
 			# Commit the results
 			$dbw->immediateCommit();
 		}
-
 		# Wait for the slave to catch up
-		/*
-		$slaveDB = wfGetDB( DB_SLAVE, array('QueryPage::recache', 'vslow' ) );
-		while( $slaveDB->getLag() > 600 ) {
-			print "Slave lagged, waiting...\n";
-			sleep(30);
-
-		}
-		*/
 		wfWaitForSlaves( 5 );
-
-	} else {
-		print "cheap, skipped\n";
-	}
+		} else {
+			print "cheap, skipped\n";
+		}
 	}
 }
-
-

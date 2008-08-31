@@ -596,6 +596,9 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
 
   -- Number of users, theoretically equal to SELECT COUNT(*) FROM user;
   ss_users bigint default '-1',
+  
+  -- Number of users that still edit
+  ss_active_users bigint default '-1',
 
   -- Deprecated, no longer updated as of 1.5
   ss_admins int default '-1',

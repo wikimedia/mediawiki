@@ -1617,6 +1617,14 @@ $wgJobClasses = array(
 );
 
 /**
+ * Additional functions to be performed with updateSpecialPages.
+ * Expensive Querypages are already updated.
+ */
+$wgSpecialPageCacheUpdates = array(
+	'Statistics' => 'SiteStatsUpdate::cacheUpdate'
+);
+
+/**
  * To use inline TeX, you need to compile 'texvc' (in the 'math' subdirectory of
  * the MediaWiki package and have latex, dvips, gs (ghostscript), andconvert
  * (ImageMagick) installed and available in the PATH.
