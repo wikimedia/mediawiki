@@ -1612,7 +1612,8 @@ Dat komt uit op gemiddeld '''$5''' bewerkingen per pagina en '''$6''' weergegeve
 
 De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''$7'''.",
 'userstatstext'          => "Er {{PLURAL:$1|is '''1''' geregistreerde gebruiker|zijn '''$1''' geregistreerde gebruikers}}, waarvan er
-'''$2''' (of '''$4%''') $5rechten {{PLURAL:$2|heeft|hebben}}.",
+'''$2''' (of '''$4%''') $5rechten {{PLURAL:$2|heeft|hebben}}.
+Er {{PLURAL:$6|is|zijn}} ongeveer '''$6''' actieve geregistreerde {{PLURAL:$6|gebruiker|gebruikers}}.",
 'statistics-mostpopular' => "Meestbekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",

@@ -2376,6 +2376,9 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 # Flash modes
 'exif-flash-fired-0'    => 'Flax non disparáu',
 'exif-flash-fired-1'    => 'Flax disparáu',
+'exif-flash-return-0'   => 'ensin función de deteición de retornu estroboscópicu',
+'exif-flash-return-2'   => 'lluz de retornu estroboscópicu non detectada',
+'exif-flash-return-3'   => 'lluz de retornu estroboscópicu detectada',
 'exif-flash-mode-1'     => 'disparu de flax forciáu',
 'exif-flash-mode-2'     => 'supresión de flax forciáu',
 'exif-flash-mode-3'     => 'mou automáticu',

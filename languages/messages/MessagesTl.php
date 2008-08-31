@@ -381,7 +381,8 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'recentchangestext' => 'Subaybayan ang mga pinakahuling pagbabago sa wiki sa pahinang ito.',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mga kaugnay na binago',
+'recentchangeslinked'       => 'Mga kaugnay na binago',
+'recentchangeslinked-title' => 'Mga pagbabagong magkaugnay sa "$1"',
 
 # Upload
 'upload'            => 'Magkarga ng talaksan',
@@ -395,7 +396,11 @@ upang makapagkarga ng talaksan.',
 'watchthisupload'   => 'Bantayan itong pahina',
 
 # Image description page
+'filehist'          => 'Kasaysayan ng talaksan',
+'filehist-datetime' => 'Petsa/Oras',
+'filehist-user'     => 'Tagagamit',
 'filehist-filesize' => 'Laki ng talaksan',
+'filehist-comment'  => 'Komento',
 'nolinkstoimage'    => 'Walang pahing tumuturo sa talaksang ito.',
 
 # File reversion
@@ -405,7 +410,7 @@ upang makapagkarga ng talaksan.',
 'filedelete'         => 'Burahin ang $1',
 'filedelete-legend'  => 'Burahin ang talaksan',
 'filedelete-intro'   => "Binubura mo ang '''[[Media:$1|$1]]'''.",
-'filedelete-comment' => 'Komento:',
+'filedelete-comment' => 'Dahilan sa pagkabura:',
 'filedelete-submit'  => 'Burahin',
 'filedelete-success' => "Binura na ang '''$1'''.",
 'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa {{SITENAME}}.",
@@ -459,6 +464,8 @@ upang makapagkarga ng talaksan.',
 
 # Delete/protect/revert
 'deletepage'                  => 'Burahin ang pahina',
+'deletedarticle'              => 'ibinura ang "[[$1]]"',
+'deletecomment'               => 'Dahilan sa pagkabura:',
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',
@@ -528,11 +535,13 @@ $1',
 'unlockdb' => 'Buksan ang kalipunan ng datos',
 
 # Move page
+'movearticle'             => 'Ilipat ang pahina:',
 'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa {{SITENAME}}.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',
 'movepagebtn'             => 'Ilipat ang pahina',
 'pagemovedsub'            => 'Matagumpay ang paglipat',
+'movepage-moved'          => '<big>\'\'\'Inilipat ang "$1" sa "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'May umiiral nang pahinang may ganitong pangalan, o ang
 pangalang pinili mo ay hindi mabisa.
 Pumili muli ng ibang pangalan.',
@@ -627,6 +636,9 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Maaaring hindi mapakita sa talang ito ang mga pagbabagong mas bago sa $1 segundo.',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Tingnan ang mga magkaugnay na pagbabago',
 
 # Special:Version
 'version'                   => 'Bersyon', # Not used as normal message but as header for the special page itself

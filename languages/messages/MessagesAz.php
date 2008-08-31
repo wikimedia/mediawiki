@@ -4,8 +4,8 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
+ * @author לערי ריינהארט
  */
 
 $namespaceNames = array(
@@ -592,9 +592,9 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'randomredirect' => 'İxtiyari istiqamətləndirmə',
 
 # Statistics
-'statistics' => 'Statistika',
-'sitestats'  => '{{SITENAME}} statistika',
-'userstats'  => 'İstifadəçi statistika',
+'statistics'    => 'Statistika',
+'sitestats'     => '{{SITENAME}} statistika',
+'userstats'     => 'İstifadəçi statistika',
 
 'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
 'disambiguationspage'  => 'Şablon:dəqiqləşdirmə',
@@ -694,10 +694,10 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'defemailsubject' => '{{SITENAME}} e-məktub',
 'noemailtitle'    => 'E-məktub ünvanı yox',
 'noemailtext'     => 'Bu istifadəçi e-məktub ünvanını qeyd etməmişdir və ya digər istifadəçilərdən e-məktub almamaq opsiyasını seçmişdir',
-'emailfrom'       => 'Kimdən',
+'emailfrom'       => 'Kimdən:',
 'emailto'         => 'Kimə',
-'emailsubject'    => 'Mövzu',
-'emailmessage'    => 'Mesaj',
+'emailsubject'    => 'Mövzu:',
+'emailmessage'    => 'Mesaj:',
 'emailsend'       => 'Göndər',
 'emailsent'       => 'E-məktub göndərildi',
 'emailsenttext'   => 'E-məktub mesajınız göndərildi.',

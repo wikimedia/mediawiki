@@ -2539,9 +2539,11 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 # Flash modes
 'exif-flash-fired-0'    => 'kein Blitz',
 'exif-flash-fired-1'    => 'Blitz ausgelöst',
+'exif-flash-return-0'   => 'Blitz sendet keine Daten',
 'exif-flash-return-2'   => 'keine Reflexion des Blitz festgestellt',
 'exif-flash-return-3'   => 'Reflexion des Blitz festgestellt',
 'exif-flash-mode-1'     => 'erzwungenes blitzen',
+'exif-flash-mode-2'     => 'Blitz abgeschaltet',
 'exif-flash-mode-3'     => 'Automatik',
 'exif-flash-function-1' => 'Keine Blitzfunktion',
 'exif-flash-redeye-1'   => 'Rotaugen Reduktion',

@@ -319,6 +319,8 @@ hō‘ike ‘ia i lalo:",
 'currentrevisionlink' => 'Kāmua hou',
 'cur'                 => 'hou',
 'last'                => 'hope',
+'page_first'          => 'mua',
+'page_last'           => 'hope',
 'deletedrev'          => '[ua kāpae ‘ia]',
 'histfirst'           => 'Kahiko loa',
 'histlast'            => 'Hou loa',
@@ -415,7 +417,8 @@ hō‘ike ‘ia i lalo:",
 'movethispage'      => "E ho'ololi kēia",
 
 # Special:Log
-'log' => 'Nā mo‘olelo',
+'log'           => 'Nā mo‘olelo',
+'all-logs-page' => 'Nā moʻolelo āpau',
 
 # Special:AllPages
 'allpages'       => 'Nā ‘ao‘ao loa apau',
@@ -498,7 +501,9 @@ hō‘ike ‘ia i lalo:",
 # Move page
 'move-page-legend'        => "E ho'ololi",
 'movearticle'             => "E ho'ololi",
+'move-watch'              => 'E nānā pono i kēia mea',
 'movepagebtn'             => "E ho'ololi",
+'1movedto2'               => 'Ua hoʻoneʻe ʻo [[$1]] iā [[$2]]',
 'movereason'              => 'Kumu:',
 'delete_and_move'         => 'E kāpae a e ho‘ololi i ka inoa',
 'delete_and_move_confirm' => '‘Ae, e kāpae i ka ‘ao‘ao',

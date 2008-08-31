@@ -481,6 +481,7 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'username'                => 'Korisničko ime:',
 'uid'                     => 'Korisnički ID:',
 'yourrealname'            => 'Vaše pravo ime *',
+'yourlanguage'            => 'Jezik:',
 'yournick'                => 'Nadimak (za potpise):',
 'email'                   => 'E-mail',
 'loginerror'              => 'Greška pri prijavljivanju',
@@ -1356,6 +1357,13 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 
 # Table pager
 'table_pager_prev' => 'Prethodna stranica',
+
+# Watchlist editing tools
+'watchlisttools-edit' => 'Pogledaj i uredi listu praćenih članaka.',
+'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru praćenja.',
+
+# Iranian month names
+'iranian-calendar-m1' => 'Farvardin (Iranski kalendar)',
 
 # Special:Version
 'version' => 'Verzija', # Not used as normal message but as header for the special page itself
