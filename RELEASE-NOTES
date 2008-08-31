@@ -199,13 +199,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   section with section=new
 * Database replication lag doesn't cause all action=edit requests to return the
   nochange flag any more
+* (bug 15392) ApiFormatBase::formatHTML now uses $wgUrlProtocols.
+
 
 === Languages updated in 1.14 ===
 
 MediaWiki supports over 300 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed.
 
-﻿* Fiji Hindi (Devanagari script) (hif-deva)
+* Fiji Hindi (Devanagari script) (hif-deva)
 * Krio (kri)
 * Lezghian (lez)
 * Laz (lzz)
