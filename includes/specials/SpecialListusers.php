@@ -236,7 +236,8 @@ function wfSpecialListusers( $par = null ) {
 
 	# getBody() first to check, if empty
 	$usersbody = $up->getBody();
-	$s = $up->getPageHeader();
+	$s = XML::openElement( 'div', array('class' => 'mw-spcontent') );
+	$s .= $up->getPageHeader();
 	if( $usersbody ) {
 		$s .=	$up->getNavigationBar();
 		$s .=	'<ul>' . $usersbody . '</ul>';
@@ -244,6 +245,6 @@ function wfSpecialListusers( $par = null ) {
 	} else {
 		$s .=	'<p>' . wfMsgHTML('listusers-noresult') . '</p>';
 	};
-
+	$s .= XML::closeElement( 'div' );
 	$wgOut->addHTML( $s );
 }
