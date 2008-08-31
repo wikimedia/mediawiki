@@ -40,6 +40,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   is true per default, but can be set to false to allow any title.
 * $wgSpamRegex may now be an array of multiple regular expressions.
 * $wgAjaxSearch has been removed; use $wgEnableMWSuggest instead.
+* Editing the MediaWiki namespace is now unconditionally restricted to people 
+  with the editinterface right, configuring this in $wgNamespaceProtection 
+  is not required.
 
 === New features in 1.14 ===
 

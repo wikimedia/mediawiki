@@ -59,6 +59,15 @@ if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 }
 
 /**
+ * Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a 
+ * sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure. 
+ *
+ * Note that this is the definition of editinterface and it can be granted to 
+ * all users if desired.
+ */
+$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
+
+/**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
