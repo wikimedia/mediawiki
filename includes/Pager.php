@@ -292,6 +292,10 @@ abstract class IndexPager implements Pager {
 			# HTML 4 has no rel="end" . . .
 			$attrs = '';
 		}
+
+		if( $type ) {
+			$attrs .= " class=\"mw-{$type}link\"" ;
+		}
 		return $this->getSkin()->makeKnownLinkObj( $this->getTitle(), $text,
 				wfArrayToCGI( $query, $this->getDefaultQuery() ), '', '',
 				$attrs );
@@ -427,7 +431,7 @@ abstract class IndexPager implements Pager {
 		}
 		foreach ( $this->mLimitsShown as $limit ) {
 			$links[] = $this->makeLink( $wgLang->formatNum( $limit ),
-				array( 'offset' => $offset, 'limit' => $limit ) );
+				array( 'offset' => $offset, 'limit' => $limit ), 'num' );
 		}
 		return $links;
 	}
