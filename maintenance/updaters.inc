@@ -143,6 +143,9 @@ $wgMysqlUpdates = array(
 	array( 'maybe_do_profiling_memory_update' ),
 	array( 'do_filearchive_indices_update' ),
 	array( 'update_password_format' ),
+	
+	// 1.14
+	array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
 );
 
 
@@ -1463,6 +1466,7 @@ function do_postgres_updates() {
 		array("revision",      "rev_len",              "INTEGER"),
 		array("revision",      "rev_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
 		array("user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ"),
+		array("site_stats",    "ss_active_users",      "INTERGER DEFAULT '-1'"),
 	);
 
 

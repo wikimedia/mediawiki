@@ -93,6 +93,11 @@ class SiteStats {
 		self::load();
 		return self::$row->ss_users;
 	}
+	
+	static function activeUsers() {
+		self::load();
+		return self::$row->ss_active_users;
+	}
 
 	static function images() {
 		self::load();
@@ -248,13 +253,20 @@ class SiteStatsUpdate {
 			$dbw->query( $sql, $fname );
 			$dbw->commit();
 		}
-
-		/*
-		global $wgDBname, $wgTitle;
-		if ( $this->mGood && $wgDBname == 'enwiki' ) {
-			$good = $dbw->selectField( 'site_stats', 'ss_good_articles', '', $fname );
-			error_log( $good . ' ' . $wgTitle->getPrefixedDBkey() . "\n", 3, '/home/wikipedia/logs/million.log' );
-		}
-		*/
+	}
+	
+	public static function cacheUpdate( $dbw ) {
+		$dbr = wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
+		# Get non-bot users than did some recent action other than making accounts.
+		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
+		$activeUsers = $dbr->selectField( 'recentchanges', 'COUNT( DISTINCT rc_user_text )',
+			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ),
+			__METHOD__ );
+		$dbw->begin();
+		$dbw->update( 'site_stats', 
+			array( 'ss_active_users' => intval($activeUsers) ),
+				array('1 = 1'), __METHOD__, array( 'LIMIT' => 1 )
+		);
+		$dbw->commit();
 	}
 }

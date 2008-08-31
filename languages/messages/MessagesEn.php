@@ -1926,7 +1926,8 @@ There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and ''
 That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
 
 The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
+'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.
+There {{PLURAL:$6|is|are}} currently about '''$6''' active registered user {{PLURAL:$6|account|accounts}}.",
 'statistics-mostpopular' => 'Most viewed pages',
 'statistics-footer'      => '', # do not translate or duplicate this message to other languages
 

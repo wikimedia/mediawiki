@@ -23,13 +23,15 @@ function wfSpecialStatistics( $par = '' ) {
 	$images = SiteStats::images();
 	$total = SiteStats::pages();
 	$users = SiteStats::users();
+	$activeUsers = SiteStats::activeUsers();
 	$admins = SiteStats::numberingroup('sysop');
 	$numJobs = SiteStats::jobs();
 
 	if( $wgRequest->getVal( 'action' ) == 'raw' ) {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
-		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;admins=$admins;images=$images;jobs=$numJobs\n";
+		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;";
+		echo "activeusers=$activeusers;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
 		$text = "__NOTOC__\n";
@@ -51,7 +53,8 @@ function wfSpecialStatistics( $par = '' ) {
 			$wgLang->formatNum( $admins ),
 			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
 			$wgLang->formatNum( @sprintf( '%.2f', $admins / $users * 100 ) ),
-			User::makeGroupLinkWiki( 'sysop' )
+			User::makeGroupLinkWiki( 'sysop' ),
+			$wgLang->formatNum( $activeUsers )
 		)."\n";
 
 		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
