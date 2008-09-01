@@ -614,7 +614,7 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^[\u00a3$\u20ac]/)) // pound dollar euro
+	if (itm.match(/^[\u00a3$\u20ac\u00a5]/)) // pound dollar euro yen
 		sortfn = ts_sort_currency;
 	if (itm.match(/^[\d.,]+\%?$/))
 		sortfn = ts_sort_numeric;
