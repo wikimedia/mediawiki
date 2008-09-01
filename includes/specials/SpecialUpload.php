@@ -198,7 +198,7 @@ class UploadForm {
 				$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
 				break;
 
-			case UploadFromBase::MIN_LENGHT_PARTNAME:
+			case UploadFromBase::MIN_LENGTH_PARTNAME:
 				$this->mainUploadForm( wfMsgHtml( 'minlength1' ) );
 				break;
 
