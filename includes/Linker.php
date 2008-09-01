@@ -1219,13 +1219,10 @@ class Linker {
 			if ( $local ) {
 				$sectionTitle = Title::newFromText( '#' . $section );
 			} else {
-				$sectionTitle = clone( $title );
-				$sectionTitle->mFragment = $section;
+				$sectionTitle = Title::makeTitleSafe( $title->getNamespace(), 
+					$title->getDBkey(), $section );
 			}
-			# FIXME: $sectionTitle should probably always be valid at this
-			# point, but in some scenarios it's not (bug 15351).  Is this cor-
-			# rect?
-			if( $title instanceof Title ) {
+			if ( $sectionTitle ) {
 				$link = $this->link( $sectionTitle,
 					wfMsgForContent( 'sectionlink' ), array(), array(),
 					'noclasses' );
