@@ -146,6 +146,7 @@ $wgMysqlUpdates = array(
 	
 	// 1.14
 	array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
+	array( 'do_active_users_init' )
 );
 
 
@@ -1025,6 +1026,23 @@ function do_stats_init() {
 	} else {
 		echo "ok.\n";
 	}
+}
+
+function do_active_users_init() {
+	global $wgDatabase;
+	$activeUsers = $wgDatabase->selectField( 'site_stats', 'ss_active_users', 
+		array( 'ss_row_id' => 1 ), __METHOD__ );
+	if( $activeUsers === -1 ) {
+		$activeUsers = $wgDatabase->selectField( 'recentchanges', 
+			'COUNT( DISTINCT rc_user_text )',
+			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ), __METHOD__ 
+		);
+		$wgDatabase->update( 'site_stats', 
+			array( 'ss_active_users' => intval($activeUsers) ),
+			array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
+		);
+	}
+	echo( "...ss_active_users user count set...\n" );
 }
 
 function purge_cache() {
