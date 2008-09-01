@@ -173,6 +173,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Use a separate database connection for the objectcache table to avoid 
   long-lasting locks on that table.
 * Respect file restrictions in the file history list
+* (bug 15399) Odd/even classes on sortable tables' rows could be slow for large
+  tables, and have been disabled by default.
 
 
 === API changes in 1.14 ===
