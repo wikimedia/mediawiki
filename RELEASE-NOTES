@@ -112,6 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added an on-wiki external image whitelist. Items in this whitelist are
   treated as regular expression fragments to match for when possibly
   displaying an external image inline.
+* (bug 15405) Sort yen correctly in sortable tables
 
 === Bug fixes in 1.14 ===
 
