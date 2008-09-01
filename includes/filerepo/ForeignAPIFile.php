@@ -148,7 +148,7 @@ class ForeignAPIFile extends File {
 	function purgeDescriptionPage() {
 		global $wgMemc;
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName() );
-		$key = wfMemcKey( 'RemoteFileDescription', 'url', md5($renderUrl) );
+		$key = wfMemcKey( 'RemoteFileDescription', 'url', md5($url) );
 		$wgMemc->delete( $key );
 	}
 	
