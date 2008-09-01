@@ -265,7 +265,7 @@ class SiteStatsUpdate {
 		$dbw->begin();
 		$dbw->update( 'site_stats', 
 			array( 'ss_active_users' => intval($activeUsers) ),
-				array('1 = 1'), __METHOD__, array( 'LIMIT' => 1 )
+			array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
 		);
 		$dbw->commit();
 	}
