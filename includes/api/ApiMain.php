@@ -268,7 +268,7 @@ class ApiMain extends ApiBase {
 
 			$headerStr = 'MediaWiki-API-Error: ' . $errCode;
 			if ($e->getCode() === 0)
-				header($headerStr, true);
+				header($headerStr);
 			else
 				header($headerStr, true, $e->getCode());
 
