@@ -2694,6 +2694,9 @@ $wgMessageStructure = array(
 		'blankpage',
 		'intentionallyblankpage',
 	),
+	'external_images' => array(
+		'external_image_whitelist',
+	),
 );
 
 /** Comments for each block */
@@ -2882,6 +2885,7 @@ Variants for Chinese language",
 	'fileduplicatesearch'   => 'Special:FileDuplicateSearch',
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
+	'external_images'       => 'External image whitelist',
 );
 
 /** Short comments for standalone messages */
