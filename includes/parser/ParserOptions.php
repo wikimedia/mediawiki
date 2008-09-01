@@ -13,6 +13,7 @@ class ParserOptions
 	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
 	var $mAllowExternalImages;       # Allow external images inline
 	var $mAllowExternalImagesFrom;   # If not, any exception?
+	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist?
 	var $mSkin;                      # Reference to the preferred skin
 	var $mDateFormat;                # Date format index
 	var $mEditSection;               # Create "edit section" links
@@ -37,6 +38,7 @@ class ParserOptions
 	function getInterwikiMagic()                { return $this->mInterwikiMagic; }
 	function getAllowExternalImages()           { return $this->mAllowExternalImages; }
 	function getAllowExternalImagesFrom()       { return $this->mAllowExternalImagesFrom; }
+	function getEnableImageWhitelist()          { return $this->mEnableImageWhitelist; }
 	function getEditSection()                   { return $this->mEditSection; }
 	function getNumberHeadings()                { return $this->mNumberHeadings; }
 	function getAllowSpecialInclusion()         { return $this->mAllowSpecialInclusion; }
@@ -77,6 +79,7 @@ class ParserOptions
 	function setInterwikiMagic( $x )            { return wfSetVar( $this->mInterwikiMagic, $x ); }
 	function setAllowExternalImages( $x )       { return wfSetVar( $this->mAllowExternalImages, $x ); }
 	function setAllowExternalImagesFrom( $x )   { return wfSetVar( $this->mAllowExternalImagesFrom, $x ); }
+	function setEnableImageWhitelist( $x )      { return wfSetVar( $this->mEnableImageWhitelist, $x ); }
 	function setDateFormat( $x )                { return wfSetVar( $this->mDateFormat, $x ); }
 	function setEditSection( $x )               { return wfSetVar( $this->mEditSection, $x ); }
 	function setNumberHeadings( $x )            { return wfSetVar( $this->mNumberHeadings, $x ); }
@@ -109,7 +112,7 @@ class ParserOptions
 	/** Get user options */
 	function initialiseFromUser( $userInput ) {
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-		global $wgAllowExternalImagesFrom, $wgAllowSpecialInclusion, $wgMaxArticleSize;
+		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
@@ -131,6 +134,7 @@ class ParserOptions
 		$this->mInterwikiMagic = $wgInterwikiMagic;
 		$this->mAllowExternalImages = $wgAllowExternalImages;
 		$this->mAllowExternalImagesFrom = $wgAllowExternalImagesFrom;
+		$this->mEnableImageWhitelist = $wgEnableImageWhitelist;
 		$this->mSkin = null; # Deferred
 		$this->mDateFormat = null; # Deferred
 		$this->mEditSection = true;

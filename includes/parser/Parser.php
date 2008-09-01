@@ -1442,7 +1442,7 @@ class Parser
 
 	/**
 	 * make an image if it's allowed, either through the global
-	 * option or through the exception
+	 * option, through the exception, or through the on-wiki whitelist
 	 * @private
 	 */
 	function maybeMakeExternalImage( $url ) {
@@ -1450,11 +1450,39 @@ class Parser
 		$imagesfrom = $this->mOptions->getAllowExternalImagesFrom();
 		$imagesexception = !empty($imagesfrom);
 		$text = false;
+		# $imagesfrom could be either a single string or an array of strings, parse out the latter
+		if( $imagesexception && is_array( $imagesfrom ) ) {
+			$imagematch = false;
+			foreach( $imagesfrom as $match ) {
+				if( strpos( $url, $match ) === 0 ) {
+					$imagematch = true;
+					break;
+				}
+			}
+		} elseif( $imagesexception ) {
+			$imagematch = (strpos( $url, $imagesfrom ) === 0);
+		} else {
+			$imagematch = false;
+		}
 		if ( $this->mOptions->getAllowExternalImages()
-		     || ( $imagesexception && strpos( $url, $imagesfrom ) === 0 ) ) {
+		     || ( $imagesexception && $imagematch ) ) {
 			if ( preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
 				# Image found
 				$text = $sk->makeExternalImage( $url );
+			}
+		}
+		if( !$text && $this->mOptions->getEnableImageWhitelist()
+			 && preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
+			$whitelist = explode( "\n", wfMsgForContent( 'external_image_whitelist' ) );
+			foreach( $whitelist as $entry ) {
+				# Sanitize the regex fragment, make it case-insensitive, ignore blank entries/comments
+				if( strpos( $entry, '#' ) === 0 || $entry === '' )
+					continue;
+				if( preg_match( '/' . str_replace( '/', '\\/', $entry ) . '/i', $url ) ) {
+					# Image matches a whitelist entry
+					$text = $sk->makeExternalImage( $url );
+					break;
+				}
 			}
 		}
 		return $text;
