@@ -1583,12 +1583,24 @@ $wgAllowExternalImages = false;
 /** If the above is false, you can specify an exception here. Image URLs
   * that start with this string are then rendered, while all others are not.
   * You can use this to set up a trusted, simple repository of images.
+  * You may also specify an array of strings to allow multiple sites
   *
-  * Example:
+  * Examples:
   * $wgAllowExternalImagesFrom = 'http://127.0.0.1/';
+  * $wgAllowExternalImagesFrom = array( 'http://127.0.0.1/', 'http://example.com' );
   */
 $wgAllowExternalImagesFrom = '';
 
+/** If $wgAllowExternalImages is false, you can allow an on-wiki
+ * whitelist of regular expression fragments to match the image URL
+ * against. If the image matches one of the regular expression fragments,
+ * The image will be displayed.
+ *
+ * Set this to true to enable the on-wiki whitelist (MediaWiki:External image whitelist)
+ * Or false to disable it
+ */
+$wgEnableImageWhitelist = true;
+ 
 /** Allows to move images and other media files. Experemintal, not sure if it always works */
 $wgAllowImageMoving = false;
 
