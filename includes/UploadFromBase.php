@@ -11,7 +11,7 @@ class UploadFromBase {
 	const BEFORE_PROCESSING = 1;
 	const LARGE_FILE_SERVER = 2;
 	const EMPTY_FILE = 3;
-	const MIN_LENGHT_PARTNAME = 4;
+	const MIN_LENGTH_PARTNAME = 4;
 	const ILLEGAL_FILENAME = 5;
 	const PROTECTED_PAGE = 6;
 	const OVERWRITE_EXISTING_FILE = 7;
@@ -283,7 +283,7 @@ class UploadFromBase {
 		}
 
 		if( strlen( $partname ) < 1 ) {
-			$this->mTitleError =  self::MIN_LENGHT_PARTNAME;
+			$this->mTitleError =  self::MIN_LENGTH_PARTNAME;
 			return $this->mTitle = null;
 		}
 		
