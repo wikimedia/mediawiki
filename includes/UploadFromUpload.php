@@ -1,6 +1,6 @@
 <?php
 
-class UploadFromUpload extends UploadFromBase {
+class UploadFromUpload extends UploadBase {
 	function initialize( $tempPath, $fileSize, $fileName ) {
 		$this->mTempPath       = $tempPath;
 		$this->mFileSize       = $fileSize;
