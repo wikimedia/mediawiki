@@ -27,7 +27,7 @@ class UploadForm {
 	var $mDestWarningAck;
 	var $mLocalFile;
 	
-	var $mUpload;	// Instance of UploadFromBase or derivative
+	var $mUpload;	// Instance of UploadBase or derivative
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -76,7 +76,7 @@ class UploadForm {
 		if( !empty( $this->mSessionKey ) &&
 				isset( $_SESSION['wsUploadData'][$this->mSessionKey]['version'] ) &&
 				$_SESSION['wsUploadData'][$this->mSessionKey]['version'] == 
-					UploadFromBase::SESSION_VERSION ) {
+					UploadBase::SESSION_VERSION ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
@@ -116,7 +116,7 @@ class UploadForm {
 		global $wgUser, $wgOut;
 
 		# Check uploading enabled
-		if( !UploadFromBase::isEnabled() ) {
+		if( !UploadBase::isEnabled() ) {
 			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext', array( $this->mDesiredDestName ) );
 			return;
 		}
@@ -182,45 +182,45 @@ class UploadForm {
 	 	$value = $this->internalProcessUpload( $details );
 
 	 	switch($value) {
-			case UploadFromBase::SUCCESS:
+			case UploadBase::SUCCESS:
 				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 				break;
 
-			case UploadFromBase::BEFORE_PROCESSING:
+			case UploadBase::BEFORE_PROCESSING:
 				// Do... nothing? Why?
 				break;
 
-			case UploadFromBase::LARGE_FILE_SERVER:
+			case UploadBase::LARGE_FILE_SERVER:
 				$this->mainUploadForm( wfMsgHtml( 'largefileserver' ) );
 				break;
 
-			case UploadFromBase::EMPTY_FILE:
+			case UploadBase::EMPTY_FILE:
 				$this->mainUploadForm( wfMsgHtml( 'emptyfile' ) );
 				break;
 
-			case UploadFromBase::MIN_LENGTH_PARTNAME:
+			case UploadBase::MIN_LENGTH_PARTNAME:
 				$this->mainUploadForm( wfMsgHtml( 'minlength1' ) );
 				break;
 
-			case UploadFromBase::ILLEGAL_FILENAME:
+			case UploadBase::ILLEGAL_FILENAME:
 				$this->uploadError( wfMsgExt( 'illegalfilename',
 					'parseinline', $details['filtered'] ) );
 				break;
 
-			case UploadFromBase::PROTECTED_PAGE:
+			case UploadBase::PROTECTED_PAGE:
 				$wgOut->showPermissionsErrorPage( $details['permissionserrors'] );
 				break;
 
-			case UploadFromBase::OVERWRITE_EXISTING_FILE:
+			case UploadBase::OVERWRITE_EXISTING_FILE:
 				$this->uploadError( wfMsgExt( $details['overwrite'],
 					'parseinline' ) );
 				break;
 
-			case UploadFromBase::FILETYPE_MISSING:
+			case UploadBase::FILETYPE_MISSING:
 				$this->uploadError( wfMsgExt( 'filetype-missing', array ( 'parseinline' ) ) );
 				break;
 
-			case UploadFromBase::FILETYPE_BADTYPE:
+			case UploadBase::FILETYPE_BADTYPE:
 				$finalExt = $details['finalExt'];
 				$this->uploadError(
 					wfMsgExt( 'filetype-banned-type',
@@ -235,23 +235,23 @@ class UploadForm {
 				);
 				break;
 
-			case UploadFromBase::VERIFICATION_ERROR:
+			case UploadBase::VERIFICATION_ERROR:
 				$args = $details['veri'];
 				$code = array_shift( $args );
 				$this->uploadError( wfMsgExt( $code, 'parseinline', $args ) );
 				break;
 
-			case UploadFromBase::UPLOAD_VERIFICATION_ERROR:
+			case UploadBase::UPLOAD_VERIFICATION_ERROR:
 				$error = $details['error'];
 				$this->uploadError( wfMsgExt( $error, 'parseinline' ) );
 				break;
 
-			case UploadFromBase::UPLOAD_WARNING:
+			case UploadBase::UPLOAD_WARNING:
 				$warning = $details['warning'];
 				$this->uploadWarning( $warning );
 				break;
 
-			case UploadFromBase::INTERNAL_ERROR:
+			case UploadBase::INTERNAL_ERROR:
 				$status = $details['internal'];
 				$this->showError( $wgOut->parse( $status->getWikiText() ) );
 				break;
@@ -275,7 +275,7 @@ class UploadForm {
 		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) )
 		{
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file." );
-			return UploadFromBase::BEFORE_PROCESSING;
+			return UploadBase::BEFORE_PROCESSING;
 		}
 
 		/**
@@ -285,12 +285,12 @@ class UploadForm {
 		$permErrors = $this->mUpload->verifyPermissions( $wgUser );
 		if( $permErrors !== true ) {
 			$resultDetails = array( 'permissionserrors' => $permErrors );
-			return UploadFromBase::PROTECTED_PAGE;
+			return UploadBase::PROTECTED_PAGE;
 		}
 
 		// Check whether this is a sane upload
 		$result = $this->mUpload->verifyUpload( $resultDetails );
-		if( $result != UploadFromBase::OK )
+		if( $result != UploadBase::OK )
 			return $result;
 
 		$this->mLocalFile = $this->mUpload->getLocalFile();
@@ -300,7 +300,7 @@ class UploadForm {
 	
 			if( count( $warnings ) ) {
 				$resultDetails = array( 'warning' => $warnings );
-				return UploadFromBase::UPLOAD_WARNING;
+				return UploadBase::UPLOAD_WARNING;
 			}
 		}
 
@@ -316,13 +316,13 @@ class UploadForm {
 
 		if ( !$status->isGood() ) {
 			$resultDetails = array( 'internal' => $status );
-			return UploadFromBase::INTERNAL_ERROR;
+			return UploadBase::INTERNAL_ERROR;
 		} else {
 			// Success, redirect to description page
 			// WTF WTF WTF?
 			$img = null; // @todo: added to avoid passing a ref to null - should this be defined somewhere?
 			wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
-			return UploadFromBase::SUCCESS;
+			return UploadBase::SUCCESS;
 		}
 	}
 
@@ -420,7 +420,7 @@ class UploadForm {
 		}
 		$s = '&nbsp;';
 		if ( $file ) {
-			$exists = UploadFromBase::getExistsWarning( $file );			
+			$exists = UploadBase::getExistsWarning( $file );			
 			$warning = self::getExistsWarning( $exists );
 			// FIXME: We probably also want the prefix blacklist and the wasdeleted check here
 			if ( $warning !== '' ) {
@@ -921,7 +921,7 @@ wgUploadAutoFill = {$autofill};
 	 * @param User $user
 	 * @param string $img, image name
 	 * @return bool
-	 * @deprecated Use UploadFromBase::userCanReUpload
+	 * @deprecated Use UploadBase::userCanReUpload
 	 */
 	public static function userCanReUpload( User $user, $img ) {
 		wfDeprecated( __METHOD__ );

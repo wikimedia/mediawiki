@@ -1,6 +1,6 @@
 <?php
 
-class UploadFromBase {
+class UploadBase {
 	var $mTempPath;
 	var $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
 	var $mTitle = false, $mTitleError = 0;

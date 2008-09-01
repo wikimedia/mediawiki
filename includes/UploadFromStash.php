@@ -1,6 +1,6 @@
 <?php
 
-class UploadFromStash extends UploadFromBase {
+class UploadFromStash extends UploadBase {
 	function initialize( &$sessionData ) {
 			/**
 			 * Confirming a temporarily stashed upload.

@@ -1,7 +1,7 @@
 <?php
 
 
-class UploadFromUrl extends UploadFromBase {
+class UploadFromUrl extends UploadBase {
 	static function isAllowed( User $user ) {
 		if( !$user->isAllowed( 'upload_by_url' ) )
 			return 'upload_by_url';
