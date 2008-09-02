@@ -613,7 +613,8 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_date;
 	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^[\u00a3$\u20ac\u00a5]/)) // pound dollar euro yen
+	// pound dollar euro yen currency cents
+	if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
 		sortfn = ts_sort_currency;
 	if (itm.match(/^[\d.,]+\%?$/))
 		sortfn = ts_sort_numeric;
@@ -719,8 +720,8 @@ function ts_sort_date(a,b) {
 }
 
 function ts_sort_currency(a,b) {
-	var aa = ts_parseFloat(a[1].replace(/[^0-9.]/g,''));
-	var bb = ts_parseFloat(b[1].replace(/[^0-9.]/g,''));
+	var aa = ts_parseFloat(a[1].replace(/[^0-9.,]/g,''));
+	var bb = ts_parseFloat(b[1].replace(/[^0-9.,]/g,''));
 	return (aa != bb ? aa - bb : a[2] - b[2]);
 }
 
