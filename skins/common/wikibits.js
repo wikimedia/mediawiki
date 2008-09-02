@@ -519,7 +519,6 @@ var ts_image_down = "sort_down.gif";
 var ts_image_none = "sort_none.gif";
 var ts_europeandate = wgContentLanguage != "en"; // The non-American-inclined can change to "true"
 var ts_alternate_row_colors = false;
-var SORT_COLUMN_INDEX;
 
 function sortables_init() {
 	var idnum = 0;
