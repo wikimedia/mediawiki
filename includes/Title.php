@@ -1979,14 +1979,14 @@ class Title {
 	 * @return \type{\int}
 	 */
 	public function getLatestRevID( $flags = 0 ) {
-		if ($this->mLatestID !== false)
+		if( $this->mLatestID !== false )
 			return $this->mLatestID;
 
 		$db = ($flags & GAID_FOR_UPDATE) ? wfGetDB(DB_MASTER) : wfGetDB(DB_SLAVE);
-		return $this->mLatestID = $db->selectField( 'revision',
-			"max(rev_id)",
-			array('rev_page' => $this->getArticleID($flags)),
-			'Title::getLatestRevID' );
+		$this->mLatestID = $db->selectField( 'page', 'page_latest',
+			array( 'page_namespace' => $this->getNamespace(), 'page_title' => $this->getDBKey() ),
+			__METHOD__ );
+		return $this->mLatestID;
 	}
 
 	/**
