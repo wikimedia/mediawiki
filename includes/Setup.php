@@ -150,6 +150,10 @@ require_once( "$IP/includes/StubObject.php" );
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 
+# Override SecretKey with ProxyKey if a site is using the old setting
+if ( isset( $wgProxyKey ) ) {
+	$wgSecretKey = $wgProxyKey;
+}
 
 $wgIP = false; # Load on demand
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor

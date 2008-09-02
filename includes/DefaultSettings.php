@@ -1357,8 +1357,6 @@ $wgProxyMemcExpiry = 86400;
 $wgSecretKey = false;
 /** big list of banned IP addresses, in the keys not the values */
 $wgProxyList = array();
-/** deprecated */
-$wgProxyKey = false;
 
 /** Number of accounts each IP address may create, 0 to disable.
  * Requires memcached */
