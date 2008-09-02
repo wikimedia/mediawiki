@@ -2970,7 +2970,7 @@ class Article {
 
 		if ( $cacheable ) {
 			//extension may have reason to disable file caching on some pages.
-			$cacheable = wfRunHooks( 'IsFileCacheable', array( $this ) );
+			$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
 		}
 
 		return $cacheable;
