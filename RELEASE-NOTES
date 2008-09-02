@@ -46,6 +46,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgAllowExternalImagesFrom may now be an array of multiple strings.
 * Introduced $wgEnableImageWhitelist to toggle the on-wiki external image
   whitelist on or off.
+* $wgProxyKey has been fully deprecated (marked as such since 1.4, never
+  seems to have been completed). $wgSecretKey is the official documented
+  setting now.
   
 === New features in 1.14 ===
 

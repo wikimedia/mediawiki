@@ -1650,13 +1650,11 @@ class User {
 	 * @private
 	 */
 	function setToken( $token = false ) {
-		global $wgSecretKey, $wgProxyKey;
+		global $wgSecretKey;
 		$this->load();
 		if ( !$token ) {
 			if ( $wgSecretKey ) {
 				$key = $wgSecretKey;
-			} elseif ( $wgProxyKey ) {
-				$key = $wgProxyKey;
 			} else {
 				$key = microtime();
 			}
