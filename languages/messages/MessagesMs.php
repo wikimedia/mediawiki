@@ -507,7 +507,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'yourname'                   => 'Nama pengguna:',
 'yourpassword'               => 'Kata laluan:',
 'yourpasswordagain'          => 'Ulangi kata laluan:',
-'remembermypassword'         => 'Ingat saya dari komputer ini',
+'remembermypassword'         => 'Ingat log masuk saya di komputer ini',
 'yourdomainname'             => 'Domain anda:',
 'externaldberror'            => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'loginproblem'               => '<b>Berlaku sedikit masalah ketika log masuk.</b><br />Sila cuba lagi!',
@@ -1427,7 +1427,8 @@ lencongan, dan lain-lain yang tidak dikira sebagai laman kandungan. Dengan menge
 Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dibuka. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
 
 Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' pengguna berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.",
+'userstatstext'          => "Terdapat '''$1''' [[Special:ListUsers|pengguna]] berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.
+Terdapat lebih kurang '''$6''' akaun pengguna berdaftar yang aktif.",
 'statistics-mostpopular' => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
@@ -2778,5 +2779,14 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Laman kosong',
 'intentionallyblankpage' => 'Laman ini sengaja dibiarkan kosong dan digunakan untuk kerja-kerja ujian dan sebagainya.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Jangan ubah baris ini<pre>
+#Letakkan senarai ungkapan nalar (tidak termasuk apitan //) di baris kosong di bawah
+#Setiap ungkapan akan dipadankan dengan pautan imej luar
+#Pautan yang sepadan sahaja akan dijadikan imej
+#Baris yang bermula dengan aksara # diabaikan
+
+#Jangan letak ungkapan nalar di bawah baris ini dan jangan ubah baris ini</pre>',
 
 );

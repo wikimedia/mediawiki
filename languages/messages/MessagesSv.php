@@ -1561,7 +1561,8 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|gånger}}, och <b>$4</b> {{PLURAL:$4|sida|sidor}} har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkön]s längd är för tillfället '''$7'''.",
-'userstatstext'          => "Det finns '''$1''' {{PLURAL:$1|registrerad|registrerade}} [[Special:ListUsers|användare]]. Av dem är '''$2''' (eller '''$4%''') $5.",
+'userstatstext'          => "Det finns {{PLURAL:$1|'''1''' registrerad|'''$1''' registrerade}} [[Special:ListUsers|användare]], varav '''$2''' (eller '''$4 %''') är {{lc:$5}}.
+Det finns just nu {{PLURAL:$6|'''1''' aktivt registrerat användarkonto|'''$6''' aktiva registrerade användarkonton}}.",
 'statistics-mostpopular' => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
@@ -1575,7 +1576,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsrättaren',
 
-'brokenredirects'        => 'Dåliga omdirigeringar',
+'brokenredirects'        => 'Trasiga omdirigeringar',
 'brokenredirectstext'    => 'Följande länkar omdirigerar till sidor som inte existerar.',
 'brokenredirects-edit'   => '(redigera)',
 'brokenredirects-delete' => '(radera)',
@@ -1745,7 +1746,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchnochange'        => 'Inga av dina bevakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details'    => '$1 {{PLURAL:$1|sida bevakad|sidor bevakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
-'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
+'wlheader-showupdated' => "* Sidor som har ändrats sedan ditt senaste besök visas i '''fetstil.'''",
 'watchmethod-recent'   => 'letar efter bevakade sidor bland senaste ändringar',
 'watchmethod-list'     => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains'    => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
@@ -2333,7 +2334,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'mw_math_simple' => 'HTML om mycket enkel, annars PNG',
 'mw_math_html'   => 'HTML om möjligt, annars PNG',
 'mw_math_source' => 'Låt vara TeX (för textbaserade webbläsare)',
-'mw_math_modern' => 'Har du modern webbläsare, använd detta alternativ',
+'mw_math_modern' => 'Rekommenderat för modern webbläsare',
 'mw_math_mathml' => 'MathML om möjligt (experimentellt)',
 
 # Patrolling
@@ -2598,6 +2599,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 # Flash modes
 'exif-flash-fired-0'    => 'Blixten utlöstes ej',
 'exif-flash-fired-1'    => 'Blixten utlöstes',
+'exif-flash-mode-1'     => 'obligatorisk blixtutlösning',
 'exif-flash-mode-3'     => 'autoläge',
 'exif-flash-function-1' => 'Ingen blixtfunktion',
 'exif-flash-redeye-1'   => 'röda-ögon-reducering',

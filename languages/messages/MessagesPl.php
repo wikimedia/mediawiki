@@ -1039,12 +1039,17 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'diff-hr'                 => "'''linia pozioma'''",
 'diff-code'               => "'''blok kodu'''",
 'diff-dl'                 => "'''lista definicji'''",
+'diff-dt'                 => "'''termin w definicji'''",
 'diff-dd'                 => "'''definicja'''",
+'diff-form'               => "'''formularz'''",
+'diff-img'                => "'''grafika'''",
+'diff-a'                  => "'''link'''",
 'diff-i'                  => "'''kursywa'''",
 'diff-b'                  => "'''pogrubienie'''",
 'diff-font'               => "'''czcionka'''",
 'diff-sub'                => "'''indeks dolny'''",
 'diff-sup'                => "'''indeks górny'''",
+'diff-strike'             => "'''przekreślenie'''",
 
 # Search results
 'searchresults'             => 'Wyniki wyszukiwania',
@@ -1448,6 +1453,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'filehist-current'               => 'aktualny',
 'filehist-datetime'              => 'Data/czas',
 'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => 'Miniatura wersji z $1',
 'filehist-nothumb'               => 'Brak miniatury',
 'filehist-user'                  => 'Użytkownik',
 'filehist-dimensions'            => 'Wymiary',
@@ -1545,7 +1551,8 @@ Od uruchomienia {{GRAMMAR:D.lp|{{SITENAME}}}} {{PLURAL:$3|'''1''' raz odwiedzono
 Daje to średnio '''$5''' {{PLURAL:$5|edycję|edycje|edycji}} na stronę i '''$6''' {{PLURAL:$6|odwiedzinę|odwiedziny|odwiedzin}} na edycję.
 
 Długość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] wynosi '''$7'''.",
-'userstatstext'          => "Jest {{PLURAL:$1|'''1''' zarejestrowany użytkownik|'''$1''' zarejestrowanych użytkowników}}. {{PLURAL:$1|Użytkownik ten|Spośród nich '''$2''' (czyli '''$4%''')}} ma status $5.",
+'userstatstext'          => "Jest {{PLURAL:$1|'''1''' zarejestrowany [[Special:ListUsers|użytkownik]]|'''$1''' zarejestrowanych [[Special:ListUsers|użytkowników]]}}. {{PLURAL:$1|Użytkownik ten|Spośród nich '''$2''' (czyli '''$4%''')}} ma status $5.
+Obecnie jest około '''$6''' {{PLURAL:$6|aktywny użytkownik|aktywnych użytkowników}}.",
 'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
 
 'disambiguations'      => 'Strony ujednoznaczniające',

@@ -1454,7 +1454,8 @@ Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma pá
 Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado, o que resulta em aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
 
 O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
-'userstatstext'          => "Há actualmente {{PLURAL:$1|'''$1''' utilizador registado|'''$1''' utilizadores registados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
+'userstatstext'          => "Há {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizador]] registado|'''$1''' [[Special:ListUsers|utilizadores]] registados}}, dos quais '''$2''' (ou '''$4%''') {{PLURAL:$2|tem|têm}} privilégios de $5.
+Há actualmente cerca de '''$6''' {{PLURAL:$6|conta|contas}} de utilizador {{PLURAL:$6| registada activa|registadas activas}}.",
 'statistics-mostpopular' => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',

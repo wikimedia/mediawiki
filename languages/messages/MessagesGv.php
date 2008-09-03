@@ -901,7 +901,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'tooltip-watch'                   => 'Cur y duillag shoh lesh dty rolley arrey',
 
 # Attribution
-'anonymous' => 'Ymmeyder(yn) neuenmyssit dy {{SITENAME}}',
+'anonymous' => '{{PLURAL:$1|Ymmeyder|Ymmeyderny}} neuenmyssit dy {{SITENAME}}',
 'siteuser'  => 'ymmydeyr {{SITENAME}} $1',
 'others'    => 'sleih elley',
 'siteusers' => '{{PLURAL:$2|Ymmydeyr|Ymmydeyryn}} ec {{SITENAME}} $1',

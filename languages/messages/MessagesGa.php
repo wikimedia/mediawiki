@@ -189,12 +189,14 @@ $messages = array(
 'dec'           => 'Noll',
 
 # Categories related messages
-'pagecategories'         => '{{PLURAL:$1|Catagóir|Catagóirí}}',
-'category_header'        => 'Ailt sa chatagóir "$1"',
-'subcategories'          => 'Fo-chatagóirí',
-'category-media-header'  => 'Meáin sa chatagóir "$1"',
-'category-empty'         => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
-'listingcontinuesabbrev' => 'ar lean.',
+'pagecategories'              => '{{PLURAL:$1|Catagóir|Catagóirí}}',
+'category_header'             => 'Ailt sa chatagóir "$1"',
+'subcategories'               => 'Fo-chatagóirí',
+'category-media-header'       => 'Meáin sa chatagóir "$1"',
+'category-empty'              => "''Níl aon leathanaigh ná méid sa chatagóir ar an am seo.''",
+'category-file-count'         => '{{PLURAL:$2|Tá ach an comhad a leanas sa chatagóir seo|Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir seo, as $2 san iomlán.}}',
+'category-file-count-limited' => 'Tá {{PLURAL:$1|an comhad seo|$1 na comhaid seo}} a leanas sa chatagóir reatha.',
+'listingcontinuesabbrev'      => 'ar lean.',
 
 'mainpagetext'      => "<big>'''D'éirigh le suiteáil MediaWiki.'''</big>",
 'mainpagedocfooter' => 'Féach ar [http://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]
@@ -239,10 +241,12 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'edit'              => 'Athraigh an lch seo',
 'create'            => 'Cruthaigh',
 'editthispage'      => 'Athraigh an lch seo',
+'create-this-page'  => 'Cruthaigh an lch seo',
 'delete'            => 'Scrios',
 'deletethispage'    => 'Scrios an lch seo',
 'undelete_short'    => 'Díscrios {{PLURAL:$1|athrú amháin|$1 athruithe}}',
 'protect'           => 'Glasáil',
+'protect_change'    => 'athraigh an leibhéal cosanta',
 'protectthispage'   => 'Glasáil an lch seo',
 'unprotect'         => 'Díghlasáil',
 'unprotectthispage' => 'Díghlasáil an lch seo',
@@ -259,7 +263,10 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'userpage'          => 'Féach ar lch úsáideora',
 'projectpage'       => 'Féach ar lch thionscadail',
 'imagepage'         => 'Féach ar lch íomhá',
+'mediawikipage'     => 'Féach ar lch teachtaireacht',
 'templatepage'      => 'Féach ar leathanach an teimpléad',
+'viewhelppage'      => 'Féach ar lch chabhair',
+'categorypage'      => 'Féach ar lch chatagóir',
 'viewtalkpage'      => 'Féach ar phlé',
 'otherlanguages'    => 'I dteangacha eile',
 'redirectedfrom'    => '(Athsheolta ó $1)',
@@ -309,6 +316,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'youhavenewmessagesmulti' => 'Tá teachtaireachtaí nua agat ar $1',
 'editsection'             => 'athraigh',
 'editold'                 => 'athraigh',
+'viewsourceold'           => 'féach ar foinse',
 'editsectionhint'         => 'Athraigh mír: $1',
 'toc'                     => 'Clár ábhair',
 'showtoc'                 => 'taispeáin',
@@ -317,9 +325,12 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'viewdeleted'             => 'Féach ar $1?',
 'restorelink'             => '{{PLURAL:$1|athrú scriosta amháin|$1 athruithe scriosta}}',
 'feedlinks'               => 'Fotha:',
+'feed-invalid'            => 'Cineál liostáil fotha neamhbhailí.',
+'feed-unavailable'        => 'Níl fotha sindeacáitiú ar fáil ar {{SITENAME}}.',
 'site-rss-feed'           => '$1 Fotha RSS',
 'site-atom-feed'          => '$1 Fotha Atom',
 'page-rss-feed'           => '"$1" Fotha RSS',
+'page-atom-feed'          => '"$1" Fotha Atom',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Alt',
@@ -393,6 +404,8 @@ Feidhm: $1<br />
 Iarratas: $2',
 'viewsource'           => 'Féach ar fhoinse',
 'viewsourcefor'        => 'le haghaidh $1',
+'protectedpagetext'    => 'Tá an leathanach seo glasáilte chun coisc ar eagarthóireacht.',
+'viewsourcetext'       => 'Is féidir foinse an leathanach seo a fheiceáil ná a cóipeáil:',
 'editinginterface'     => "'''Rabhadh:''' Tá tú ag athrú leathanaigh a bhfuil téacs comhéadain do na bogearraí air. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.
 Más maith leat MediaWiki a aistriú, cuimhnigh ar [http://translatewiki.net/wiki/Main_Page?setlang=ga Betawiki] (tionscadal logánaithe MediaWiki) a úsáid.",
 'sqlhidden'            => '(Iarratas SQL folaithe)',
@@ -674,6 +687,7 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'lineno'                  => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo'                => 'cealaigh',
+'diff-multi'              => '({{PLURAL:$1|Leasú idirmheánach amháin|$1 leasú idirmheánach}} nach thaispeántar.)',
 
 # Search results
 'searchresults'         => 'Torthaí an chuardaigh',
@@ -893,6 +907,9 @@ uaslódáil é arís, le do thoil.',
 'randompage'         => 'Leathanach fánach',
 'randompage-nopages' => 'Níl aon leathanaigh san ainmspás seo.',
 
+# Random redirect
+'randomredirect' => 'Atreorú randamach',
+
 # Statistics
 'statistics'    => 'Staidreamh',
 'sitestats'     => 'Staidreamh do {{SITENAME}}',
@@ -907,7 +924,8 @@ Ina iomlán, tharla {{PLURAL:$3|'''radhairc leathanaigh amháin'''|'''$3''' radh
 Is é sin '''$5''' athruithe ar meán do gach leathanach, agus '''$6''' radhairc do gach athrú.
 
 Fad an [http://www.mediawiki.org/wiki/Manual:Job_queue scuaine jabanna]: '''$7'''.",
-'userstatstext' => "Tá {{PLURAL:$1|'''[[Special:ListUsers|úsáideoir]] cláraithe amháin'''|'''$1''' [[Special:ListUsers|úsáideoirí]] cláraithe}} anseo agus tá {{PLURAL:$2|'''duine amháin'''|'''$2'''}} (nó '''$4%''') díobh leis na cearta $5.",
+'userstatstext' => "Tá {{PLURAL:$1|'''[[Special:ListUsers|úsáideoir]] cláraithe amháin'''|'''$1''' [[Special:ListUsers|úsáideoirí]] cláraithe}} anseo agus tá {{PLURAL:$2|'''duine amháin'''|'''$2'''}} (nó '''$4%''') díobh leis na cearta $5.
+Tá timpeall '''$6''' {{PLURAL:$6|cuntas|cuntais}} beo cláraithe anseo.",
 
 'disambiguations'     => 'Leathanaigh idirdhealaithe',
 'disambiguationspage' => '{{ns:project}}:Naisc_go_leathanaigh_idirdhealaithe',
@@ -924,6 +942,10 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'brokenredirects-edit'   => '(athraigh)',
 'brokenredirects-delete' => '(scrios)',
 
+'withoutinterwiki' => 'Leathanaigh gan naisc idirvicí',
+
+'fewestrevisions' => 'Leathanaigh leis na leasaithe is lú',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bheart amháin|bearta}}',
 'ncategories'             => '$1 {{PLURAL:$1|chatagóir amháin|catagóirí}}',
@@ -934,11 +956,14 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 'uncategorizedpages'      => 'Leathanaigh gan catagóir',
 'uncategorizedcategories' => 'Catagóirí gan catagórú',
 'uncategorizedimages'     => 'Íomhánna gan chatagóir',
+'uncategorizedtemplates'  => 'Teimpléid gan catagóir',
 'unusedcategories'        => 'Catagóirí nach úsáidtear',
 'unusedimages'            => 'Íomhánna nach úsáidtear',
 'popularpages'            => 'Leathanaigh coitianta',
 'wantedcategories'        => 'Catagóirí agus iarraidh ag gabháil leis',
 'wantedpages'             => 'Leathanaigh de dhíth',
+'mostcategories'          => 'Leathanaigh leis na chatagóir is mó',
+'mostrevisions'           => 'Leathanaigh leis na leasaithe is mó',
 'prefixindex'             => 'Innéacs réimír',
 'shortpages'              => 'Leathanaigh gearra',
 'longpages'               => 'Leathanaigh fada',
@@ -1105,6 +1130,7 @@ Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
 'deletionlog'                 => 'cuntas scriosaidh',
 'reverted'                    => 'Tá eagrán níos luaithe in úsáid anois',
 'deletecomment'               => 'Cúis don scriosadh',
+'deleteotherreason'           => 'Fáth eile/breise:',
 'deletereasonotherlist'       => 'Fáth eile',
 'deletereason-dropdown'       => '*Fáthanna coitianta scriosta
 ** Iarratas ón údar
@@ -1131,14 +1157,22 @@ Féach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eol
 'protect-legend'              => 'Cinntigh an glasáil',
 'protectcomment'              => 'Cúis don glasáil',
 'protectexpiry'               => 'As feidhm:',
+'protect_expiry_invalid'      => 'Am éaga neamhbhailí.',
+'protect_expiry_old'          => 'Am éaga san am atá thart.',
 'protect-unchain'             => 'Díghlasáil an cead athainmithe',
 'protect-text'                => 'Is féidir leat an leibhéal glasála a athrú anseo don leathanach <strong><nowiki>$1</nowiki></strong>.',
+'protect-locked-access'       => 'Ní chead ag do chuntas chun athraigh leibhéal cosaint an leathanach.
+Seo iad na socruithe reatha faoin leathanach <strong>$1</strong>:',
 'protect-default'             => '(réamhshocrú)',
 'protect-fallback'            => 'Ceadúnas "$1" riachtanach',
 'protect-level-autoconfirmed' => 'Bac úsáideoirí neamhchláraithe',
 'protect-level-sysop'         => 'Oibreoirí chórais amháin',
+'protect-summary-cascade'     => 'cascáidithe',
 'protect-expiring'            => 'as feidhm $1 (UTC)',
+'protect-cascade'             => 'Coisc leathanaigh san áireamh an leathanach seo (cosanta cascáideach)',
+'protect-cantedit'            => 'Ní féidir leat na leibhéil cosanta a athrú faoin leathanach seo, mar níl cead agat é a cur in eagar.',
 'restriction-type'            => 'Ceadúnas:',
+'restriction-level'           => 'Leibhéal srianadh:',
 'pagesize'                    => '(bearta)',
 
 # Restrictions (nouns)
@@ -1176,7 +1210,7 @@ leathanaigh go huathoibríoch.',
 'month'         => 'As mí (agus is luaithe):',
 'year'          => 'As bliain (agus is luaithe):',
 
-'sp-contributions-newbies-sub' => 'Le cuntasaí nua',
+'sp-contributions-newbies-sub' => 'Le cuntais nua',
 'sp-contributions-blocklog'    => 'Log coisc',
 'sp-contributions-username'    => 'Seoladh IP ná ainm úsáideoir:',
 
@@ -1212,7 +1246,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 ** Naisc turscar
 ** Fadhbanna cóipcheart
 ** Ag iarraidh ciapadh daoine eile
-** Drochúsáid as cuntasaí iolrach
+** Drochúsáid as cuntais iolrach
 ** Fadhbanna idirvicí
 ** Feallaire
 ** Seachfhreastalaí Oscailte',
@@ -1440,7 +1474,7 @@ ní féidir uaslódála staire díreacha a dhéanamh faoi láthair.",
 'notacceptable'     => 'Ní féidir leis an freastalaí vicí na sonraí a chur ar fáil i bhformáid atá inléite ag do chliant.',
 
 # Attribution
-'anonymous'        => 'Úsáideoir(í) gan ainm ar {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Úsáideoir|Úsáideoirí}} gan ainm ar {{SITENAME}}',
 'siteuser'         => 'Úsáideoir $1 ag {{SITENAME}}',
 'lastmodifiedatby' => 'Leasaigh $3 an leathanach seo go déanaí ag $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bunaithe ar saothair le $1.',
@@ -1850,6 +1884,7 @@ $1',
 'watchlistedit-raw-titles' => 'Teideail:',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Féach ar na hathruithe ábhartha',
 'watchlisttools-edit' => 'Féach ar do liosta faire ná cuir in eagar é',
 'watchlisttools-raw'  => 'Cuir do amhliosta faire in eagar',
 

@@ -1411,7 +1411,8 @@ Có '''$8''' tập tin đã được tải lên.
 Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
 
 Độ dài của [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc] là '''$7'''.",
-'userstatstext'          => "Có '''$1''' [[Special:ListUsers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.",
+'userstatstext'          => "Có {{PLURAL:$1|'''$1'''|'''$1'''}} [[Special:ListUsers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.
+Hiện có khoảng {{PLURAL:$6||}} '''$6''' thành viên tích cực có tài khoản.",
 'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',
@@ -2739,5 +2740,14 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 # Special:BlankPage
 'blankpage'              => 'Trang trắng',
 'intentionallyblankpage' => 'Trang này được chủ định để trắng',
+
+# External image whitelist
+'external_image_whitelist' => ' #Hãy để yên dòng này.<pre>
+#Hãy cho vào các mảnh biểu thức chính quy -- chỉ phần ở giữa đôi dấu chéo (/) -- ở dưới.
+#Các mảnh này sẽ được so với địa chỉ của các hình được nhúng từ bên ngoài.
+#Các trang sẽ hiển thị những hình ảnhy có địa chỉ trùng với nó, còn chỉ liên kết đến các hình ảnh kia.
+#Các dòng chú thích bắt đầu với dấu thăng (#).
+
+#Hãy cho vào các mảnh biểu thức chính quy ở trên dòng này. Xin để yên dòng này.</pre>',
 
 );

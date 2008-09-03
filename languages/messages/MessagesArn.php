@@ -121,6 +121,8 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'edithelp'             => 'Kellü wirin',
 'edithelppage'         => 'Help:Chum wiringekey pakina',
+'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Kellu',
 'mainpage'             => 'Wüne pakina',
 'mainpage-description' => 'Wüne pakina',
@@ -244,6 +246,9 @@ $messages = array(
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'W',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|Lludüchi|Lludüchi}} wiñamüy]',
+
+# Recent changes linked
+'recentchangeslinked-page' => 'Güy pakina:',
 
 # Upload
 'uploadnologin'   => 'Petu konlaymi',
@@ -404,6 +409,8 @@ $messages = array(
 
 # EXIF tags
 'exif-exposuretime-format' => '$1 sek ($2)',
+
+'exif-exposureprogram-1' => 'Chillka kellu',
 
 'exif-meteringmode-0'   => 'Kimnoelchi',
 'exif-meteringmode-255' => 'Kakelu',

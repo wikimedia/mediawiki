@@ -81,6 +81,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly'                => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats'          => 'Monstrar categorias celate',
+'tog-noconvertlink'           => 'Disactivar conversion del titulo de ligamine',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunquam',
@@ -640,13 +641,13 @@ Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a 
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (commento)',
 'editconflict'                     => 'Conflicto de modification: $1',
-'explainconflict'                  => "Alcuno ha modificate iste pagina post que tu
+'explainconflict'                  => "Alicuno ha modificate iste pagina post que tu
 ha comenciate a modificar lo.
 Le area de texto superior contine le texto del pagina como illo existe actualmente.
 Tu modificationes se monstra in le area de texto inferior.
 Tu debera incorporar tu modificationes in le texto existente.
 '''Solmente''' le texto del area superior essera publicate
-quando tu cliccara super \"Publicar articulo\".",
+quando tu clicca super \"Publicar articulo\".",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Version immagazinate',
 'nonunicodebrowser'                => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
@@ -833,7 +834,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergehistory-comment'             => 'Fusionava [[:$1]] in [[:$2]]: $3',
 
 # Merge log
-'mergelog'           => 'Fusionar registro',
+'mergelog'           => 'Registro de fusiones',
 'pagemerge-logentry' => 'fusionava [[$1]] in [[$2]] (revisiones usque a $3)',
 'revertmerge'        => 'Reverter fusion',
 'mergelogpagetext'   => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
@@ -1113,7 +1114,7 @@ per favor vide math/README pro configurar lo.",
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
 'rightslogtext'  => 'Isto es un registro de cambios in derectos de usator.',
-'rightslogentry' => 'cambiava le membrato de gruppos del usator $1 de $2 a $3',
+'rightslogentry' => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
 'rightsnone'     => '(nulle)',
 
 # Recent changes
@@ -1305,6 +1306,9 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'filehist-revert'                => 'reverter',
 'filehist-current'               => 'actual',
 'filehist-datetime'              => 'Data/Hora',
+'filehist-thumb'                 => 'Miniatura',
+'filehist-thumbtext'             => 'Miniatura pro le version del $1',
+'filehist-nothumb'               => 'Nulle miniatura',
 'filehist-user'                  => 'Usator',
 'filehist-dimensions'            => 'Dimensiones',
 'filehist-filesize'              => 'Grandor del file',
@@ -1403,7 +1407,8 @@ desde le establimento de {{SITENAME}}.
 Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.
 
 Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones] es '''\$7'''.",
-'userstatstext'          => "Il ha {{PLURAL:$1|'''1''' [[Special:ListUsers|usator]]|'''$1''' [[Special:ListUsers|usatores]]}} registrate, del quales '''$2''' (i.e. '''$4%''') ha le derectos de $5.",
+'userstatstext'          => "Il ha {{PLURAL:$1|'''1''' [[Special:ListUsers|usator]]|'''$1''' [[Special:ListUsers|usatores]]}} registrate, del quales '''$2''' (i.e. '''$4%''') ha le derectos de $5.
+Al momento il ha circa '''$6''' {{PLURAL:$6|conto|contos}} de usatores registrate active.",
 'statistics-mostpopular' => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
@@ -1561,7 +1566,7 @@ como le adresse del expeditor del e-mail, a fin que le destinatario
 pote responder te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
-'noemailtitle'    => 'Necun adresse de e-mail',
+'noemailtitle'    => 'Nulle adresse de e-mail',
 'noemailtext'     => 'Iste usator non ha specificate un adresse de e-mail valide,
 o ha optate pro non reciper e-mail de altere usatores.',
 'email-legend'    => 'Inviar e-mail a un altere usator de {{SITENAME}}',
@@ -2783,5 +2788,14 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 # Special:BlankPage
 'blankpage'              => 'Pagina vacue',
 'intentionallyblankpage' => 'Iste pagina es intentionalmente vacue',
+
+# External image whitelist
+'external_image_whitelist' => ' #Lassa iste linea exactemente como illo es<pre>
+#Pone fragmentos de expressiones regular (solmente le parte que va inter //) infra
+#Istes correspondera con le adresses URL de imagines externe (a ligamine directe)
+#Le correspondentes se monstrara como imagines, le alteres solmente como ligamines a imagines
+#Le lineas comenciante con # essera tractate como commentos
+
+#Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
 
 );

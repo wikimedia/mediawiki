@@ -85,6 +85,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Vodada',
 'returnto'         => 'Gbugbɔ yi $1.',
+'tagline'          => 'Tso {{SITENAME}}',
 'help'             => 'Kpekpeɖeŋu',
 'search'           => 'Dii',
 'searchbutton'     => 'Dii',
@@ -92,6 +93,7 @@ $messages = array(
 'searcharticle'    => 'Yi',
 'history_short'    => 'Xoxoawo',
 'edit'             => 'Trɔ asi le eŋu',
+'editthispage'     => 'Ðɔ axa sia ɖo',
 'delete'           => 'Tutui',
 'newpage'          => 'Axa yeye',
 'talkpagelinktext' => 'Nyamedzroƒe',

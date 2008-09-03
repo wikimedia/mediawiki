@@ -10,6 +10,7 @@
  * @author Cerasus
  * @author Dani
  * @author Dorgan
+ * @author Gondnok
  * @author Samat
  * @author Tgr
  */
@@ -931,6 +932,7 @@ Néhány sablon nem fog megjelenni.',
 'revnotfound'         => 'A változat nem található',
 'revnotfoundtext'     => 'A lap általad kért régi változatát nem találom. Kérlek, ellenőrizd az URL-t, amivel erre a lapra jutottál.',
 'currentrev'          => 'Aktuális változat',
+'currentrev-asof'     => 'A lap jelenlegi, $1-kori változata',
 'revisionasof'        => 'A lap $1-kori változata',
 'revision-info'       => 'A lap korábbi változatát látod, amilyen $2 $1-kor történt szerkesztése után volt.',
 'previousrevision'    => '←Régebbi változat',
@@ -1128,10 +1130,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'showingresults'            => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
 'showingresultsnum'         => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
 'showingresultstotal'       => "{{PLURAL:$4|Találat: '''$1''' (összesen '''$3''')|Találatok: '''$1 – $2''' (összesen '''$3''')}}",
-'nonefound'                 => "'''Megjegyzés''': A sikertelen keresések
-gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
-rendszer nem indexel, vagy több független keresési kifejezés megadása
-(csak minden megadott szót tartalmazó találatok jelennek meg az eredményben).",
+'nonefound'                 => "'''Megjegyzés''': Alapértelmezésben a keresés nem terjed ki minden névtérre. Ha az összes névtérben keresni akarsz, írd az ''all:'' karaktersorozatot a keresett kifejezés elé.",
 'powersearch'               => 'Részletes keresés',
 'powersearch-legend'        => 'Részletes keresés',
 'powersearch-ns'            => 'Névterek:',
@@ -1576,7 +1575,7 @@ Ezeket is beleszámítva '''{{PLURAL:$1|egy|$1}}''' lapunk van.
 Összesen '''{{PLURAL:$3|egy|$3}}''' alkalommal tekintették meg az oldalakat, és '''{{PLURAL:$4|egy|$4}}''' szerkesztés történt a {{SITENAME}} indulása óta, ami oldalanként '''$5''' szerkesztésnek és '''$6''' megtekintésnek számít.
 
 A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban álló feladatok] száma '''$7'''.",
-'userstatstext'          => "Jelenleg '''{{PLURAL:$1|egy|$1}}''' regisztrált szerkesztőnk van; közülük '''{{PLURAL:$2|egy|$2}}''' ($4%) $5.",
+'userstatstext'          => "!Jelenleg '''{{PLURAL:$1|egy|$1}}''' regisztrált szerkesztőnk van; közülük '''{{PLURAL:$6|egy|$6}}''' aktív, valamint '''{{PLURAL:$2|egy|$2}}''' ($4%) $5.",
 'statistics-mostpopular' => 'Legtöbbször megtekintett lapok',
 
 'disambiguations'      => 'Egyértelműsítő lapok',
@@ -2314,6 +2313,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-watch'                   => 'Lap hozzáadása a figyelőlistádhoz',
 'tooltip-recreate'                => 'A lap újra létrehozása a törlés ellenére',
 'tooltip-upload'                  => 'Feltöltés indítása',
+'tooltip-rollback'                => '„Visszaállítás”: egy kattintással visszavonja az utolsó felhasználó egy vagy több szerkesztését.',
+'tooltip-undo'                    => '„Visszavonás”: visszavonja ezt a szerkesztést, valamint megnyitja a szerkesztőt előnézet módban. A szerkesztési összefoglalóban meg lehet adni a visszavonás okát.',
 
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felszínnek */',

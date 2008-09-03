@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hendergassler
+ * @author MichaelFrey
  * @author Spacebirdy
  * @author לערי ריינהארט
  * @author 80686
@@ -88,6 +89,7 @@ $messages = array(
 'november'      => 'Novämber',
 'december'      => 'Dezämber',
 'january-gen'   => "Jan'r",
+'february-gen'  => 'Hornung',
 'march-gen'     => 'März',
 'april-gen'     => 'Avrel',
 'may-gen'       => 'Mai',
@@ -99,6 +101,7 @@ $messages = array(
 'november-gen'  => "Nowamb'r",
 'december-gen'  => "Dezamb'r",
 'jan'           => 'Jan.',
+'feb'           => 'Hor.',
 'mar'           => 'Mär.',
 'apr'           => "Aw'.",
 'may'           => 'Mei',
@@ -163,7 +166,7 @@ $messages = array(
 'editthispage'      => 'Syte bearbeite',
 'delete'            => 'lösche',
 'deletethispage'    => 'Syte lösche',
-'undelete_short'    => '$1 widerherstelle',
+'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versione}} widerherstelle',
 'protect'           => 'schütze',
 'protectthispage'   => 'Artikel schütze',
 'unprotect'         => 'nümm schütze',
@@ -347,7 +350,7 @@ Yberprüf d Schribwis, odr meld dich als neijer Benutzer ô.',
 'wrongpasswordempty'         => 'Du hesch vagässe diin Basswort iizgeh. Bitte probiers nomol.',
 'mailmypassword'             => 'Es nöis Passwort schicke',
 'passwordremindertitle'      => 'Neijs Password fier {{SITENAME}}',
-'passwordremindertext'       => 'Ebber mit dr IP-Adress $1 het ä neijs Passwort fier d Anmeldung bi {{SITENAME}} ongfordert.
+'passwordremindertext'       => 'Ebber mit dr IP-Adress $1 het ä neijs Passwort fier d Anmeldung bi {{SITENAME}} ($4) ongfordert.
 
 S automatisch generiert Passwort fier de Benutzer $2 lutet jetzert: $3
 
@@ -558,7 +561,7 @@ go direkt e Gleich uff d Datei z'mache.",
 
 # Image description page
 'imagelinks'       => 'Bildverweise',
-'linkstoimage'     => 'Di folgende Sytene händ en Link zu dem Bildli:',
+'linkstoimage'     => 'Di {{PLURAL:$1|folgendi Syte|$1 folgende Sytene}} händ en Link zu dem Bildli:',
 'nolinkstoimage'   => 'Kein Artikel benutzt dieses Bild.',
 'sharedupload'     => 'Selli Datei wird vo verschiedene Projekt bruucht.',
 'noimage-linktext' => 'Lads uffe!',
@@ -575,18 +578,18 @@ go direkt e Gleich uff d Datei z'mache.",
 # Statistics
 'sitestats'     => 'Statistik',
 'userstats'     => 'Benützer-Statistik',
-'sitestatstext' => "Zuer Ziit git's '''$2''' [[Special:Allpages|Artikel]] in {{SITENAME}}.
+'sitestatstext' => "Zuer Ziit git's '''$2''' Artikel in {{SITENAME}}.
 
-Insgsamt sin '''$1''' Syte in de Datebank. Selli sin au alli Sytene wo usserhalb vom Hauptnamensruum exischtiere (z.B. Diskussionssyte) odr wo cheini interne Gleicher hen odr wo au numme [[Special:Listredirects|Weiterleitige]] sin.
+Insgsamt sin '''$1''' Syte in de Datebank. Selli sin au alli Sytene wo usserhalb vom Hauptnamensruum exischtiere (z.B. Diskussionssyte) odr wo cheini interne Gleicher hen odr wo au numme Weiterleitige sin.
 
 Insgesamt wurden '''$8''' Dateien hochgeladen.
 
-Es isch insgsamt '''$4''' mol öbbis gänderet worde un drmit jedi Syte im Durchschnitt '''$5''' mol und '''$6''' Seitenabrufe pro Bearbeitung.
+Es isch insgsamt häts '''$3''' {{PLURAL:$3|Seiteabruf|Seiteabruf}} gäh, '''$4''' mol öbbis gänderet worde un drmit jedi Syte im Durchschnitt '''$5''' mol und '''$6''' Seitenabrufe pro Bearbeitung.
 
 Es het '''$8''' uffegladeni Dateie.
 
-Zuer Ziit stöhn '''$7''' Arbete zuem mache aa.",
-'userstatstext' => "S git '''$1''' regischtriirte Benutzer. Dodrvo sin '''$2''' (also '''$4 %''') Administratore (lueg au uff $3).",
+Längi vo de [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
+'userstatstext' => "S git '''$1''' regischtriirte Benutzer. Dodrvo händ '''$2''' (also '''$4 %''') $5-Recht. S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
 
 'disambiguationspage' => 'Template:Begriffsklärig',
 
@@ -715,7 +718,7 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 'alreadyrolled'     => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
-'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
 'protectcomment'    => 'Grund der Sperrung',
 
@@ -737,8 +740,8 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 
 # What links here
 'whatlinkshere' => 'Was linkt da ane?',
-'linkshere'     => 'Di folgende Sytene händ en Link wo da ane führt:',
-'nolinkshere'   => 'Kein Artikel verweist hierhin.',
+'linkshere'     => "Di folgende Sytene händ en Link wo zu '''„[[:$1]]“''' führe:",
+'nolinkshere'   => "Kein Artikel verwiest zu '''„[[:$1]]“'''.",
 'istemplate'    => 'Vorlageybindig',
 
 # Block/unblock
@@ -838,7 +841,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-category'     => 'D Kategoryesyten aaluege',
 
 # Attribution
-'anonymous'        => 'Anonyme Benutzer uff {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt geändert um $2, $1 von $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basiert auf der Arbeit von $1.',
 
@@ -900,7 +903,7 @@ sollte umgehend ein Administrator informiert werden!',
 'confirmemail_success'  => 'Dyni e-Mail-Adrässen isch bestätiget worde. Du chasch di jitz ylogge.',
 'confirmemail_loggedin' => 'Dyni e-Mail-Adrässen isch jitz bestätiget.',
 'confirmemail_subject'  => '{{SITENAME}} e-Mail-Adrässbestätigung',
-'confirmemail_body'     => 'Hallo
+'confirmemail_body'     => "Hallo
 
 {{SITENAME}}-BenutzerIn «$2» — das bisch allwäg du — het sech vor IP-Adrässen $1 uus mit deren e-Mail-Adrässe bi {{SITENAME}} aagmäldet.
 
@@ -908,11 +911,13 @@ Für z bestätige, das die Adrässe würklech dir isch, u für dyni erwytereten 
 
 $3
 
-Falls du *nid* $2 sötsch sy, de tue dä Link bitte nid uuf.
+Falls du *nid* $2 sötsch sy, de tue bitte de  Link unte dra uf um d'e-Mail-Bestätigung abzbreche:
 
-Die Bestätigung isch nume müglech bis $4.
+$5
 
-Fründtlechi Grüess',
+De Bestätigung Code isch gültug bis $4.
+
+Fründtlechi Grüess",
 
 # action=purge
 'confirm_purge' => "Die Zwischeschpoicherung vo der Syte „{{FULLPAGENAME}}“ lösche?

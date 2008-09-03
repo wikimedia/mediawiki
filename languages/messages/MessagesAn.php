@@ -594,33 +594,32 @@ Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 'summary-preview'                  => "Beyer ambiesta prebia d'o resumen",
 'subject-preview'                  => "Ambiesta prebia d'o tema/títol",
 'blockedtitle'                     => "L'usuario ye bloqueyato",
-'blockedtext'                      => "<big>'''O suyo nombre d'usuario u adreza IP ha estato bloqueyato.'''</big>
+'blockedtext'                      => "<big>'''O suyo nombre d'usuario u adreza IP ye bloqueyato.'''</big>
 
-O bloqueyo fue feito por \$1. A razón data ye ''\$2''.
+O bloqueyo lo fazió $1. 
+A razón data ye ''$2''.
 
-* Prenzipio d'o bloqueyo: \$8
-* Fin d'o bloqueyo: \$6
-* Indentificazión bloqueyata: \$7
+* Prenzipio d'o bloqueyo: $8
+* Fin d'o bloqueyo: $6
+* Indentificazión bloqueyata: $7
 
-Puede contautar con \$1 u con atro [[{{MediaWiki:Grouppage-sysop}}|almenistrador]] ta letigar sobre o bloqueyo.
-
-No puede fer serbir o binclo \"nimbiar correu electronico ta iste usuario\" si no ha rechistrato una adreza conforme de correu electronico en as suyas [[Special:Preferences|preferenzias]]. A suya adreza IP autual ye \$3, y o identificador d'o bloqueyo ye #\$5. Por fabor encluiga belún u os dos datos cuan faga cualsiquier consulta.",
-'autoblockedtext'                  => "A suya adreza IP fue bloqueyata automaticament porque l'eba feito serbir un atro usuario bloqueyato por \$1.
+Puede contautar con $1 u con atro [[{{MediaWiki:Grouppage-sysop}}|almenistrador]] ta letigar sobre o bloqueyo.
+No puede fer serbir o binclo 'nimbiar correu electronico ta iste usuario' si no ha rechistrato una adreza conforme de correu electronico en as suyas [[Special:Preferences|preferenzias]] y si no se l'ha bedau d'emplegar-la. A suya adreza IP autual ye $3, y o identificador d'o bloqueyo ye #$5. Por fabor encluiga ixos datos cuan faga cualsiquier consulta.",
+'autoblockedtext'                  => "A suya adreza IP s'ha bloqueyata automaticament porque la eba feito serbir un atro usuario bloqueyato por \$1.
 
 A razón d'o bloqueyo ye ista:
 
 :''\$2''
 
-
 * Prenzipio d'o bloqueyo: \$8
 * Fin d'o bloqueyo: \$6
-
+* Usuario que se prebaba de bloqueyar: \$7
 
 Puede contautar con \$1 u con atro d'os [[{{MediaWiki:Grouppage-sysop}}|almenistradors]] ta litigar sobre o bloqueyo.
 
-Pare cuenta que no puede emplegar a funzión \"Nimbiar correu electronico ta iste usuario\" si no tiene una adreza de correu electronico conforme rechistrada en as suyas [[Special:Preferences|preferenzias d'usuario]] u si li ha estato biedata ista funzión.
+Pare cuenta que no puede emplegar a funzión \"Nimbiar correu electronico ta iste usuario\" si no tiene una adreza de correu electronico conforme rechistrada en as suyas [[Special:Preferences|preferenzias d'usuario]] u si se l'ha bedato d'emplegar ista funzión.
 
-O suyo identificador de bloqueyo ye \$5. Por fabor encluiga belún u os dos datos cuan faga cualsiquier consulta.",
+A suya adreza IP autual ye \$3, y o identificador de bloqueyo ye #\$5. Por fabor encluiga os datos anteriors cuan faga cualsiquier consulta.",
 'blockednoreason'                  => "No s'ha dato garra causa",
 'blockedoriginalsource'            => "Contino s'amuestra o codigo fuent de  '''$1''':",
 'blockededitsource'                => "Contino s'amuestra o testo d'as suyas '''edizions''' á '''$1''':",
@@ -682,7 +681,9 @@ Abrá d'encorporar os suyos cambeos en o testo esistent.
 'longpagewarning'                  => '<strong>Pare cuenta: Ista pachina tiene ya $1 kilobytes; bels nabegadors pueden tener problemas en editar pachinas de 32KB o más.
 Considere, por fabor, a posibilidat de troxar ista pachina en trestallos más chicoz.</strong>',
 'longpageerror'                    => '<strong>ERROR: O testo que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maisima de $2 kilobytes. No se puede alzar.</strong>',
-'readonlywarning'                  => '<strong>Pare cuenta: A base de datos ha estato bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>',
+'readonlywarning'                  => "<strong>Pare cuenta: A base de datos ye bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible d'alzar as suyas edizions. Puede copiar y apegar o testo en un archibo y alzar-lo ta dimpués.</strong>
+
+A esplicazión ufierta por l'almenistrador que bloqueyó a base de datos ye ista: $1",
 'protectedpagewarning'             => "<strong>PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.</strong>",
 'semiprotectedpagewarning'         => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
 'cascadeprotectedwarning'          => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
@@ -881,7 +882,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'searchall'                 => 'toz',
 'showingresults'            => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'         => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
-'showingresultstotal'       => "{{PLURAL:$3|S'amuestra contino o resultau '''$1''' de '''$3'''|S'amuestran contino os resultaus '''$1 - $2''' de '''$3'''}}",
+'showingresultstotal'       => "Contino {{PLURAL:$4|s'amuestra o resultau '''$1''' de '''$3'''|s'amuestran os resultaus '''$1 - $2''' de '''$3'''}}",
 'nonefound'                 => "'''Pare cuenta''': Por defeuto nomás se mira en bels espazios de nombres. Si quiere mirar en toz os contenius (encluyendo pachinas de descusión, plantillas, etc), adiba o prefixo ''all:'' u clabe como prefixo o espazio de nombres deseyau.",
 'powersearch'               => 'Busca abanzata',
 'powersearch-legend'        => 'Busca abanzata',
@@ -1265,7 +1266,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'filedelete-comment'          => 'Causa:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "S'ha borrato '''$1'''.",
-'filedelete-success-old'      => "<span class=\"plainlinks\">S'ha borrato a bersión de '''[[Media:\$1|\$1]]''' de \$3, \$2.</span>",
+'filedelete-success-old'      => "S'ha borrato a bersión de '''[[Media:$1|$1]]''' de $3, $2.",
 'filedelete-nofile'           => "'''$1''' no esiste en {{SITENAME}}.",
 'filedelete-nofile-old'       => "No bi ha garra bersión alzata de '''$1''' con ixos atributos.",
 'filedelete-otherreason'      => 'Atras razons:',
@@ -1314,8 +1315,9 @@ Dende a debantadera d'o wiki bi ha abito un total de '''$3''' {{PLURAL:$3|besita
 Isto resulta en una meya de '''$5''' {{PLURAL:$5|edizión|edizions}} por pachina y '''$6''' {{PLURAL:$6|besita|besitas}} por edizión.
 
 A longaria d'a [http://www.mediawiki.org/wiki/Manual:Job_queue coda de quefers] ye de '''$7'''",
-'userstatstext'          => "Bi ha {{PLURAL:$1|'''1''' usuario rechistrato|'''$1''' usuarios rechistratos}},
-d'os que '''$2''' (o '''$4%''') {{PLURAL:$1|en ye $5|en son $5}}.",
+'userstatstext'          => "Bi ha {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rechistrato|'''$1''' [[Special:ListUsers|usuarios]] rechistratos}},
+d'os que '''$2''' (u '''$4%''') {{PLURAL:$2|en tiene|en tienen}} dreitos d'$5.
+Bi ha autualment {{PLURAL:$6||}} {{PLURAL:$6|una cuenta autiba d'usuario rechistrato|bellas '''$6''' cuentas autibas d'usuarios rechistratos}}.",
 'statistics-mostpopular' => 'Pachinas más bistas',
 
 'disambiguations'      => 'Pachinas de desambigazión',
@@ -1429,7 +1431,9 @@ Ta reduzir o listau puede trigar un tipo de rechistro, o nombre de l'usuario u a
 
 # Special:Categories
 'categories'                    => 'Categorías',
-'categoriespagetext'            => 'As siguients categorías contienen bella pachina u archibo',
+'categoriespagetext'            => "As siguients categorías contienen bella pachina u archibo multimedia.
+No s'amuestran aquí as [[Special:UnusedCategories|categorías no emplegatas]].
+Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'categoriesfrom'                => 'Amostrar as categoría que prenzipien por:',
 'special-categories-sort-count' => 'ordenar por recuento',
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
@@ -1462,10 +1466,10 @@ L'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias 
 'defemailsubject' => 'Correu de {{SITENAME}}',
 'noemailtitle'    => 'No bi ha garra adreza de correu eletronico',
 'noemailtext'     => "Iste usuario no ha espezificato una adreza conforme de correu electronico, u s'ha estimato más no recullir correu electronico d'atros usuarios.",
-'emailfrom'       => 'De',
+'emailfrom'       => 'De:',
 'emailto'         => 'Ta:',
-'emailsubject'    => 'Afer',
-'emailmessage'    => 'Mensache',
+'emailsubject'    => 'Afer:',
+'emailmessage'    => 'Mensache:',
 'emailsend'       => 'Nimbiar',
 'emailccme'       => "Nimbiar-me una copia d'o mío mensache.",
 'emailccsubject'  => "Copia d'o suyo mensache ta $1: $2",
@@ -1585,9 +1589,9 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 'rollbacklink'                => 'Esfer',
 'rollbackfailed'              => "No s'ha puesto esfer",
 'cantrollback'                => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
-'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[$1]] por [[User:$2|$2]] ([[User talk:$2|descusión]]|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
+'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
 
-A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]).',
+A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'                  => "S'han esfeitas as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
@@ -1646,7 +1650,8 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'undelete-fieldset-title'      => 'Restaurar bersions',
 'undeleteextrahelp'            => "Ta restaurar a pachina antera con todas as bersions, deixe todas as caixetas sin siñalar y prete '''''Restaurar!'''''. Ta restaurar sólo belunas d'as bersions, siñale as caixetas correspondients á las bersions que quiere restaurar y punche dimpués '''''Restaurar!'''''. Punchando '''''Prenzipiar''''' se borrará o comentario y se tirarán os siñals d'as caixetas.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bersión|bersions}} archibatas',
-'undeletehistory'              => "Si restaura una pachina, todas as suyas bersions serán restauratas ta o suyo istorial. Si dende que se borró a orichinal s'ha creyato una nueba pachina con o mesmo nombre, as bersions restauradas amanixerán como anteriors á las d'a pachina autual. Pare cuenta tamién que as posibles restrizions se pierden en fer a restaurazión",
+'undeletehistory'              => "Si restaura a pachina, se restaurarán  todas as bersions en o suyo istorial. 
+Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orichinal, as bersions restauradas amaneixerán antes en o istorial.",
 'undeleterevdel'               => "No s'esfará o borrau si isto resulta en o borrau parzial d'a pachina d'alto u a rebisión de l'archibo. En ixe caso, deselezione u amuestre as bersions borratas más rezients.",
 'undeletehistorynoadmin'       => "Esta pachina ye borrata. A razón d'o suyo borrau s'amuestra más t'abaixo en o resumen, asinas como os detalles d'os usuarios que eban editato a pachina antes d'o borrau. O testo completo d'istas edizions borratas ye disponible nomás ta os almenistradors.",
 'undelete-revision'            => "S'ha borrato a bersión de $1 de $2 (por $3):",
@@ -1764,7 +1769,7 @@ as pachinas que s'han bandalizatas).",
 'ipusubmit'                       => 'Esbloqueyar ista adreza',
 'unblocked'                       => '[[User:$1|$1]] ha estato esbloqueyato',
 'unblocked-id'                    => "S'ha sacato o bloqueyo $1",
-'ipblocklist'                     => "Lista d'as adrezas IP bloqueyatas",
+'ipblocklist'                     => "Adrezas IP y nombres d'usuario bloqueyatos",
 'ipblocklist-legend'              => 'Mirar un usuario bloqueyato',
 'ipblocklist-username'            => "Nombre d'usuario u adreza IP:",
 'ipblocklist-submit'              => 'Mirar',
@@ -2023,12 +2028,12 @@ Todas as importazions interwiki se rechistran en o [[Special:Log/import|rechistr
 'notacceptable'     => 'O serbidor wiki no puede ufrir os datos en un formato que o suyo client (nabegador) pueda leyer.',
 
 # Attribution
-'anonymous'        => 'Usuario(s) anonimo(s) de {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => 'Usuario $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ista pachina estió modificata por zaguer begada á $2, $1 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Basato en o treballo de $1.',
 'others'           => 'atros',
-'siteusers'        => 'Usuario(s) $1 de {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|Usuario|Usuarios}} $1 de {{SITENAME}}',
 'creditspage'      => "Creditos d'a pachina",
 'nocredits'        => 'No bi ha informazión de creditos ta ista pachina.',
 

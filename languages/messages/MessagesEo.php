@@ -1371,7 +1371,8 @@ Oni vidis sume '''\$3''' {{PLURAL:\$3|paĝo|paĝojn}}, kaj redaktis sume '''\$4'
 Tio estas meznombre po unu paĝo por '''\$5''' paĝoj viditaj, kaj por '''\$6''' redaktoj.
 
 La nuna longeco de la [http://www.mediawiki.org/wiki/Manual:Job_queue laborenda vico] estas '''\$7'''.",
-'userstatstext'          => "Enskribiĝis '''$1''' {{PLURAL:$1|[[Special:ListUsers|uzanto]]|[[Special:ListUsers|uzantoj]]}}. El tiuj, '''$2''' (aŭ '''$4%''') havas rajtojn de $5.",
+'userstatstext'          => "Enskribiĝis '''$1''' {{PLURAL:$1|[[Special:ListUsers|uzanto]]|[[Special:ListUsers|uzantoj]]}}. El tiuj, '''$2''' (aŭ '''$4%''') havas rajtojn de $5.
+Pli-malpli estas nun '''$6''' {{PLURAL:$6|aktiva registrita uzula konto|aktivaj registritaj uzulaj kontoj}}.",
 'statistics-mostpopular' => 'Plej ofte montrataj paĝoj',
 
 'disambiguations'      => 'Misligitaj apartigiloj',
@@ -2679,5 +2680,14 @@ Enigu la dosiernomon sen la "{{ns:image}}:" prefikso.',
 # Special:BlankPage
 'blankpage'              => 'Malplena paĝo',
 'intentionallyblankpage' => 'Ĉi tiu paĝo intencie estas malplena kaj estas uzata por testado, ktp.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Lasu ĉi tiun linion senŝanĝe<pre>
+#Enmetu parto de regula esprimo (nur la parton enmetinda en //) suben
+#Ĝi estos kongruita kun la URL-o de eksteraj (ligeblaj) bildoj
+#Kongruantaĵoj estos montritaj kiel bildoj; se ne eble montri, nur ligilo estos montrita
+#Linioj komencantaj kun # estas traktata kiel komentoj.
+
+#Enmetu ĉiujn koderojn pri regulaj esprimoj super ĉi tiu linio. Lasu la linion senŝanĝe.</pre>',
 
 );

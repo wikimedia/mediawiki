@@ -120,6 +120,7 @@ $messages = array(
 'dec'           => 'Dekabr',
 
 # Categories related messages
+'pagecategories'         => 'Kateqoriyalar',
 'category_header'        => '"$1" kategoriyasındaki məqalələr',
 'subcategories'          => 'Alt kategoriyalar',
 'category-media-header'  => '"$1" kateqoriyasında mediya',
@@ -444,6 +445,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'recentchangescount'    => 'Son dəyişikliklərdə başlıq sayı:',
 'savedprefs'            => 'Tərcihlər qeyd edildi.',
 'timezonelegend'        => 'Saat qurşağı',
+'timezonetext'          => 'Server ilə vaxt fərqı. (Azərbaycan üçün +04:00)',
 'localtime'             => 'Məhəlli vaxt',
 'timezoneoffset'        => 'Vaxt fərqı¹',
 'servertime'            => 'Server vaxtı',
@@ -493,6 +495,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # Recent changes
 'recentchanges'     => 'Son dəyişikliklər',
 'recentchangestext' => "'''Ən son dəyişiklikləri bu səhifədən izləyin.'''",
+'rcnote'            => 'Aşağıdakı son <strong>$1</strong> dəyişiklik son <strong>$2</strong> gün ərzində edilmişdir.',
 'rclistfrom'        => '$1 vaxtından başlayaraq yeni dəyişiklikləri göstər',
 'rcshowhideminor'   => 'Kiçik redaktələri $1',
 'rcshowhidebots'    => 'Botları $1',
@@ -595,6 +598,16 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'statistics'    => 'Statistika',
 'sitestats'     => '{{SITENAME}} statistika',
 'userstats'     => 'İstifadəçi statistika',
+'sitestatstext' => "{{SITENAME}}-da hal-hazırda məqalələrin sayı: '''$2'''
+
+Verilənlər bazasında yekun '''$1''' səhifə var. Buna müzakirələr, istifadəçi səhifələri, köməklər, wikipedia lahiye səhifələri, xüsusi səhifələr, istiqamətləndirmə səhifələri, boş səhifələr ilə fayllar v əşablonlar daxildir.
+
+There have been a total of '''$3''' page views, and '''$4''' page edits
+since the wiki was setup.
+That comes to '''$5''' average edits per page, and '''$6''' views per edit.
+
+Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '''$7'''.",
+'userstatstext' => "Hal-hazırda '''$1''' istifadəçi, '''2''' (və ya '''4%''') tanesi idarəçi. (baxınız $3).",
 
 'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
 'disambiguationspage'  => 'Şablon:dəqiqləşdirmə',
@@ -613,6 +626,8 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'fewestrevisions' => 'Az dəyişiklik edilmiş məqalələr',
 
 # Miscellaneous special pages
+'nbytes'                  => '$1 bayt',
+'nlinks'                  => '$1 bağlantı',
 'specialpage-empty'       => 'Bu səhifə boşdur.',
 'lonelypages'             => 'Yetim səhifələr',
 'uncategorizedpages'      => 'Kateqoriyasız səhifələr',
@@ -719,10 +734,13 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'unwatch'              => 'İzləmə',
 'unwatchthispage'      => 'İzləmə',
 'watchnochange'        => 'Verilən vaxt ərzində heç bir izlədiyiniz səhifə redaktə edilməmişdir.',
+'watchlist-details'    => 'müzakirə səhifələri çıxmaq şərtilə $1 səhifəni izləyirsiniz',
 'wlheader-enotif'      => '*  E-məktubla bildiriş aktivdir.',
 'wlheader-showupdated' => "* Son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlərlə''' göstərilmişdir.",
 'watchmethod-recent'   => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list'     => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
+'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
+'wlnote'               => "Aşağıdakılar son '''$2''' saatdakı son $1 dəyişiklikdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
 'watchlist-show-bots'  => 'Bot redaktələrini göstər',
 'watchlist-hide-bots'  => 'Bot redaktələrini gizlət',

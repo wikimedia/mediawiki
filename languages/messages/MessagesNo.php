@@ -1425,7 +1425,8 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt {{PLURAL:$5|'''én''' redigering|'''$5''' redigeringer}} per side, og {{PLURAL:$6|'''én''' visning|'''$6''' visninger}} per redigering.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Arbeidskøen] er på '''$7'''.",
-'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert bruker|'''$1''' registrerte brukere}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har {{lc:$5rettigheter}}.",
+'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert [[Special:ListUsers|bruker]]|'''$1''' registrerte [[Special:ListUsers|brukere]]}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har {{lc:$5rettigheter}}.
+Det er for tiden {{PLURAL:$6|'''én''' aktiv konto|'''$6''' aktive kontoer}}.",
 'statistics-mostpopular' => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
@@ -2756,5 +2757,14 @@ Skriv inn filnavn uten «{{ns:image}}:»-prefikset.',
 # Special:BlankPage
 'blankpage'              => 'Tom side',
 'intentionallyblankpage' => 'Denne siden er tom med vilje',
+
+# External image whitelist
+'external_image_whitelist' => ' #La denne linja være som den er<pre>
+#Skriv fragmenter av regulære uttrykk (delen som går mellom //) nedenfor
+#Disse vil sjekkes mot adresser til bilder fra eksterne sider
+#De som blir godkjent vil vises, ellers vil det gis en lenke til bildet
+#Linjer som begynner med # anses som kommentarer
+
+#Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>',
 
 );

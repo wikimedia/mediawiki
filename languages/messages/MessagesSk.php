@@ -1470,8 +1470,8 @@ Celkovo {{PLURAL:$8|bol nahraný jeden súbor|boli nahrané '''$8''' súbory|bol
 Celkovo boli stránky navštívené '''$3'''-krát a upravené '''$4'''-krát. To znamená, že pripadá priemerne '''$5''' úprav na každú stránku a '''$6''' návštev na každú úpravu.
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Dĺžka frontu úloh] je momentálne '''$7'''.",
-'userstatstext'          => "Celkovo {{PLURAL:$1|je jeden zaregistrovaný používateľ|sú '''$1''' zaregistrovaní používatelia|je '''$1''' zaregistrovaných používateľov}},
-z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (pozri $5).",
+'userstatstext'          => "Celkovo {{PLURAL:$1|je jeden zaregistrovaný používateľ|sú '''$1''' zaregistrovaní používatelia|je '''$1''' zaregistrovaných používateľov}}, z čoho '''$2''' (alebo '''$4 %''') {{PLURAL:$2|je správca|sú správcovia}} (pozri $5).
+Okolo '''$6''' {{PLURAL:$6|registrovaný používateľský účet je aktívny|registrované používateľské účty sú aktívne|registrovaných používateľských účtov je aktívnych}}.",
 'statistics-mostpopular' => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
@@ -2806,5 +2806,14 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 # Special:BlankPage
 'blankpage'              => 'Prázdna stránka',
 'intentionallyblankpage' => 'Táto stránka je zámerne prázdna. Používa sa na meranie výkonnosti atď.',
+
+# External image whitelist
+'external_image_whitelist' => '  #Nechajte tento riadok presne tak, ako je<pre>
+#Časti regulárnych výrazov (tie, ktoré sa píšu medzi //) napíšte dolu
+#Budú porovnané s URL externých obrázkov
+#Tie, ktoré budú zodpovedať reg. výrazu sa zobrazia ako obrázky, inak sa zobrazí iba odkaz na obrázok
+#Riadky, ktoré začínajú znakom # sa považujú za komentáre
+
+#Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
 
 );

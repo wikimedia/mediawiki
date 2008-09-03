@@ -2481,7 +2481,7 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => 'Neħħi kull kontenut mill-paġna',
-'autosumm-replace' => "Il-paġna qed tiġi mibdula ma' '$1'",
+'autosumm-replace' => "Il-paġna ġiet mibdula ma' '$1'",
 'autoredircomment' => 'Rindirizzat għal [[$1]]',
 'autosumm-new'     => 'Paġna ġdida: $1',
 
