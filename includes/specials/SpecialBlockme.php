@@ -8,11 +8,11 @@
  *
  */
 function wfSpecialBlockme() {
-	global $wgRequest, $wgBlockOpenProxies, $wgOut, $wgSecretKey;
+	global $wgRequest, $wgBlockOpenProxies, $wgOut, $wgProxyKey;
 
 	$ip = wfGetIP();
 
-	if( !$wgBlockOpenProxies || $wgRequest->getText( 'ip' ) != md5( $ip . $wgSecretKey ) ) {
+	if( !$wgBlockOpenProxies || $wgRequest->getText( 'ip' ) != md5( $ip . $wgProxyKey ) ) {
 		$wgOut->addWikiMsg( 'proxyblocker-disabled' );
 		return;
 	}

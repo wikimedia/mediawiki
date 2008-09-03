@@ -138,7 +138,7 @@ function wfIsTrustedProxy( $ip ) {
 function wfProxyCheck() {
 	global $wgBlockOpenProxies, $wgProxyPorts, $wgProxyScriptPath;
 	global $wgMemc, $wgProxyMemcExpiry;
-	global $wgSecretKey;
+	global $wgProxyKey;
 
 	if ( !$wgBlockOpenProxies ) {
 		return;
@@ -154,7 +154,7 @@ function wfProxyCheck() {
 	# Fork the processes
 	if ( !$skip ) {
 		$title = SpecialPage::getTitleFor( 'Blockme' );
-		$iphash = md5( $ip . $wgSecretKey );
+		$iphash = md5( $ip . $wgProxyKey );
 		$url = $title->getFullURL( 'ip='.$iphash );
 
 		foreach ( $wgProxyPorts as $port ) {
