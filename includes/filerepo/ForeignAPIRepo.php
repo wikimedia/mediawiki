@@ -121,7 +121,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 		else {
 			$foreignUrl = $this->getThumbUrl( $name, $width, $height );
-			$path = $this->apiThumbCacheDir . '/' . $this->name . '/' .
+			$path = $this->thumbDir . '/' . $this->name . '/' .
 						$name . '/';
 			if ( !is_dir($wgUploadDirectory . '/' . $path) ) {
 				wfMkdirParents($wgUploadDirectory . '/' . $path);
