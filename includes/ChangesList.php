@@ -130,7 +130,6 @@ class ChangesList {
 
 		# Make date header if necessary
 		$date = $wgLang->date( $rc_timestamp, true, true );
-		$s = '';
 		if( $date != $this->lastdate ) {
 			if( '' != $this->lastdate ) {
 				$s .= "</ul>\n";
@@ -319,9 +318,10 @@ class OldChangesList extends ChangesList {
 		# Should patrol-related stuff be shown?
 		$unpatrolled = $wgUser->useRCPatrol() && $rc_patrolled == 0;
 
-		$this->insertDateHeader($s,$rc_timestamp);
+		$dateheader = ""; // $s now contains only <li>...</li>, for hooks' convenience.
+		$this->insertDateHeader($dateheader,$rc_timestamp);
 
-		$s .= '<li>';
+		$s = '<li>';
 
 		// Moved pages
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
@@ -374,10 +374,12 @@ class OldChangesList extends ChangesList {
 
 		$s .= "</li>\n";
 
+		wfRunHooks('OldChangesListRecentChangesLine', array(&$this, &$s, &$rc));
+
 		wfProfileOut( $fname.'-rest' );
 
 		wfProfileOut( $fname );
-		return $s;
+		return $dateheader . $s;
 	}
 }
 

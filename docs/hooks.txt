@@ -895,6 +895,11 @@ $baseID: the revision ID this was based off, if any
   whether to use the content language (true) or site language (false) (bool)
 &$transform: whether or not to expand variables and templates in the message (bool)
 
+'OldChangesListRecentChangesLine': Customize entire Recent Changes line.
+&$changeslist: The OldChangesList instance.
+&$s: HTML of the form "<li>...</li>" containing one RC entry.
+&$rc: The RecentChange object.
+
 'OpenSearchUrls': Called when constructing the OpenSearch description XML.
 Hooks can alter or append to the array of URLs for search & suggestion formats.
 &$urls: array of associative arrays with Url element attributes
