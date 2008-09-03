@@ -1337,7 +1337,8 @@ Esto fai una media de '''\$5''' ediciones per páxina, y '''\$6''' visites per e
 
 La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7'''.",
 'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuariu]] rexistráu, del|'''$1''' [[Special:ListUsers|usuarios]] rexistraos, de los}} que
-'''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.",
+'''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.
+Hai nestos momentos {{PLURAL:$6|'''$6''' cuenta d'usuariu rexistráu activa|'''$6''' cuentes d'usuariu rexistráu actives}}.",
 'statistics-mostpopular' => 'Páxines más vistes',
 
 'disambiguations'      => 'Páxines de dixebra',

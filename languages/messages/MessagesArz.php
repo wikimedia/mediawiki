@@ -308,6 +308,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'ابعتلى  نسخ من رسايل الايميل اللى بابعتها لليوزرز التانيين',
 'tog-diffonly'                => 'ما تبين ش محتوى الصفحة تحت الفروقات',
 'tog-showhiddencats'          => 'بين التّصنيفات المستخبية',
+'tog-noconvertlink'           => 'عطل تحويل عناوين الوصلات',
 
 'underline-always'  => 'دايما',
 'underline-never'   => 'ابدا',
@@ -655,6 +656,7 @@ $2',
 'prefs-memberingroups'       => 'عضو فى {{PLURAL:$1|مجموعة|مجموعة}}:',
 'yourrealname'               => 'الاسم الحقيقى:',
 'yourlanguage'               => 'اللغة:',
+'yourvariant'                => 'اللهجة:',
 'yournick'                   => 'الإمضا:',
 'badsig'                     => 'الامضا الخام بتاعتك مش صح؛ اتإكد من التاجز بتاعة الHTML.',
 'badsiglength'               => 'الإمضا بتاعتك طويلة جدا.
@@ -711,6 +713,7 @@ $2',
 # Password reset dialog
 'resetpass'               => 'غير الباسورد بتاعة الحساب',
 'resetpass_announce'      => 'اتسجل دخولك دلوقتى بالكود اللى اتبعتلك فى الايميل. علشان تخلص عملية الدخول ،لازم تعملك باسورد جديدة هنا:',
+'resetpass_text'          => '<!-- أضف نصا هنا -->',
 'resetpass_header'        => 'غير الباسورد',
 'resetpass_submit'        => 'اظبط الباسورد و ادخل',
 'resetpass_success'       => 'الباسورد بتاعتك اتغيرت بنجاح! دلوقتى  بنسجل دخولك...',
@@ -864,6 +867,7 @@ $2',
 'template-protected'               => '(حمايه كامله)',
 'template-semiprotected'           => '(حمايه جزئيه )',
 'hiddencategories'                 => ' الصفحه دى موجوده فى {{PLURAL:$1|تصنيف مخفى واحد|$1 تصنيف مخفى}}:',
+'edittools'                        => '<!-- النص هنا سيظهر تحت صندوق التحرير و استمارة رفع الصور. -->',
 'nocreatetitle'                    => 'إنشاء الصفحات اتحدد',
 'nocreatetext'                     => '{{SITENAME}} حدد القدره على انشاء صفحات جديده.
 ممكن ترجع وتحرر صفحه موجوده بالفعل، او [[Special:UserLogin|الدخول / فتح حساب]].',
@@ -1417,7 +1421,7 @@ $2',
 سجل المسح بتاع الملف دا معروض هنا علشان تبص عليه:",
 'filename-bad-prefix'         => 'اسم الملف اللى بتحمله بيبتدى بـ<strong>"$1"</strong>، واللى هو اسم مش وصفى بيتحط غالبا من الكاميرات الديجيتال اوتوماتيكي.
 لو سمحت تختار اسم يكون بيوصف الملف بتاعك احسن من كدا.',
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- سيب السطر ده زى ما هوه --> <pre>
 # الصيغة كدا: 
 #   * كل حاجة من أول علامة "#" لحد أخر السطر هى تعليق
 #   * كل سطر مش فاضى هو بريفيكس لأسماء الملفات النمطية اللى بتحطها اوتوماتيكى  الكاميرات الديجيتال
@@ -1425,12 +1429,12 @@ CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # some mobil phones
+DUW # بعض التليفونات المحمولة
 IMG # generic
 JD # Jenoptik
 MGP # Pentax
 PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- سيب السطر ده زى ما هوه -->',
 
 'upload-proto-error'      => 'بروتوكول مش صحيح',
 'upload-proto-error-text' => 'االتحميل عن بعد لازمله يوأرإل بيبتدى بـ <code>http://</code> أو <code>ftp://</code>.',
@@ -1576,7 +1580,8 @@ PICT # misc.
 ده يعنى '''\$5''' تعديل متوسط لكل صفحة، و '''\$6''' عرض لكل تعديل.
 
 طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل] هو '''\$7'''.",
-'userstatstext'          => "فى {{PLURAL:$1|[[Special:ListUsers|يوزر]] متسجل '''واحد'''|'''$1''' [[Special:ListUsers|يوزر]] متسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|عنده|عندهم}} صلاحيات $5.",
+'userstatstext'          => "فى {{PLURAL:$1|[[Special:ListUsers|يوزر]] متسجل '''واحد'''|'''$1''' [[Special:ListUsers|يوزر]] متسجل}}، منهم '''$2''' (أو '''$4%''') {{PLURAL:$2|عنده|عندهم}} صلاحيات $5.
+{{PLURAL:$6|فيه|فيه}} دلوقتى حوالى '''$6''' {{PLURAL:$6|حساب|حساب}} يوزر مسجل نشط.",
 'statistics-mostpopular' => 'اكتر صفحات اتشافت',
 
 'disambiguations'      => 'صفحات التوضيح',
@@ -2317,6 +2322,17 @@ $1',
 'tooltip-rollback'                => '"رول باك" بترجع التعديل (التعديلات)  فى  الصفحة دى للمساهم الأخير بدوسة واحدة.',
 'tooltip-undo'                    => '"رجوع" بترجع  التعديل دا وبتفتح استمارة التعديل فى شكل البروفة. بتسمح بإضافة سبب فى الملخص.',
 
+# Stylesheets
+'common.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على كل الواجهات */',
+'standard.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ستاندرد */',
+'nostalgia.css'   => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة نوستالشيا */',
+'cologneblue.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة كولون بلو */',
+'monobook.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مونوبوك */',
+'myskin.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ماى سكين */',
+'chick.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة تشيك */',
+'simple.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة سيمبل */',
+'modern.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مودرن */',
+
 # Scripts
 'common.js'      => '/*  أى جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',
 'standard.js'    => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة ستاندرد */',
@@ -2542,7 +2558,7 @@ Variants for Chinese language
 'exif-exposuretime'                => 'مدة التعرض',
 'exif-exposuretime-format'         => '$1 ثانية ($2)',
 'exif-fnumber'                     => 'العدد البؤرى',
-'exif-fnumber-format'              => 'البعد البؤري/$1',
+'exif-fnumber-format'              => 'البعد البؤرى/$1',
 'exif-exposureprogram'             => 'برنامج التعرض',
 'exif-spectralsensitivity'         => 'الحساسية الطيفية',
 'exif-isospeedratings'             => 'تقييم سرعة أيزو',
@@ -2619,7 +2635,7 @@ Variants for Chinese language
 'exif-compression-1' => 'مش مضغوط',
 'exif-compression-6' => 'جيه بى إى جي',
 
-'exif-photometricinterpretation-2' => 'آر جى بي',
+'exif-photometricinterpretation-2' => 'آر جى بى',
 'exif-photometricinterpretation-6' => 'واى سب سر',
 
 'exif-unknowndate' => 'تاريخ مش معروف',
@@ -2915,12 +2931,66 @@ $1',
 'watchlisttools-edit' => 'عرض وتعديل لستة الصفحات اللى باراقبها',
 'watchlisttools-raw'  => 'عدل لستة المراقبه الخام',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'فروردین',
+'iranian-calendar-m2'  => 'أردیبهشت',
+'iranian-calendar-m3'  => 'خرداد',
+'iranian-calendar-m4'  => 'تیر',
+'iranian-calendar-m5'  => 'امرداد',
+'iranian-calendar-m6'  => 'شهریور',
+'iranian-calendar-m7'  => 'مهر',
+'iranian-calendar-m8'  => 'آبان',
+'iranian-calendar-m9'  => 'آذر',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'إسفند',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'محرم',
+'hijri-calendar-m2'  => 'صفر',
+'hijri-calendar-m3'  => 'ربيع الأول',
+'hijri-calendar-m4'  => 'ربيع الثانى',
+'hijri-calendar-m5'  => 'جمادى الأول',
+'hijri-calendar-m6'  => 'جمادى الثانى',
+'hijri-calendar-m7'  => 'رجب',
+'hijri-calendar-m8'  => 'شعبان',
+'hijri-calendar-m9'  => 'رمضان',
+'hijri-calendar-m10' => 'شوال',
+'hijri-calendar-m11' => 'ذو القعدة',
+'hijri-calendar-m12' => 'ذو الحجة',
+
 # Hebrew month names
+'hebrew-calendar-m1'      => 'تيشرى',
+'hebrew-calendar-m2'      => 'تيشفان',
+'hebrew-calendar-m3'      => 'كيسليف',
+'hebrew-calendar-m4'      => 'تيفيت',
+'hebrew-calendar-m5'      => 'شيفات',
+'hebrew-calendar-m6'      => 'أدار',
+'hebrew-calendar-m6a'     => 'أدار الأول',
+'hebrew-calendar-m6b'     => 'أدار الثانى',
+'hebrew-calendar-m7'      => 'نيزان',
+'hebrew-calendar-m8'      => 'أيار',
+'hebrew-calendar-m9'      => 'سيفان',
+'hebrew-calendar-m10'     => 'تموز',
+'hebrew-calendar-m11'     => 'آف',
+'hebrew-calendar-m12'     => 'أيلول',
+'hebrew-calendar-m1-gen'  => 'تيشرى',
+'hebrew-calendar-m2-gen'  => 'تيشفان',
+'hebrew-calendar-m3-gen'  => 'كيسليف',
+'hebrew-calendar-m4-gen'  => 'تيفيت',
+'hebrew-calendar-m5-gen'  => 'شيفات',
+'hebrew-calendar-m6-gen'  => 'أدار',
+'hebrew-calendar-m6a-gen' => 'أدار الأول',
+'hebrew-calendar-m6b-gen' => 'أدار الثانى',
+'hebrew-calendar-m7-gen'  => 'نيزان',
+'hebrew-calendar-m8-gen'  => 'أيار',
+'hebrew-calendar-m9-gen'  => 'سيفان',
+'hebrew-calendar-m10-gen' => 'تموز',
 'hebrew-calendar-m11-gen' => 'آب',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
 # Signatures
-'timezone-utc' => 'يو تى سي',
+'timezone-utc' => 'يو تى سى',
 
 # Core parser functions
 'unknown_extension_tag' => 'تاج بتاع امتداد مش معروف "$1"',
@@ -2985,5 +3055,14 @@ $1',
 # Special:BlankPage
 'blankpage'              => 'صفحة فاضية',
 'intentionallyblankpage' => 'الصفحة دى متسابة فاضية بالقصد',
+
+# External image whitelist
+'external_image_whitelist' => '   #<pre>سيب السطر ده تمام كما هو
+#ضع منثورات التعبيرات المنتظمة (بس الجزء الذى يذهب بين //) بالأسفل
+#هذه ستتم مطابقتها مع مسارات الصور الخرجية (الموصولة بشكل مباشر)
+#هذه اللى تطابق سيتم عرضها كصور، غير كده فقط وصلة إلى الصورة سيتم عرضها
+#السطور اللى تبدأ ب# تتم معاملتها كتعليقات
+
+#ضع كل منثورات التعبيرات المنتظمة فوق السطر ده. سيب السطر ده تمام كما هو</pre>',
 
 );

@@ -12,6 +12,7 @@
  * @author Better
  * @author Boivie
  * @author Cerealito
+ * @author Clerc
  * @author Cvmontuy
  * @author Dmcdevit
  * @author Drini
@@ -851,6 +852,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'diff-with-final'         => '&#32;y $1 $2',
 'diff-width'              => 'ancho',
 'diff-height'             => 'alto',
+'diff-img'                => "una '''imagen'''",
+'diff-big'                => "'''grande'''",
 
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',
@@ -1324,8 +1327,10 @@ Desde la instalación del wiki ha habido un total de '''$3''' {{PLURAL:$3|visita
 Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por página y '''$6''' {{PLURAL:$6|visita|visitas}} por edición.
 
 La longitud de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de tareas] es de '''$7'''",
-'userstatstext'          => "Hay {{PLURAL:$1|'''1''' usuario registrado|'''$1''' usuarios registrados}},
-de los cuales '''$2''' (el '''$4%''') tienen privilegios de $5.",
+'userstatstext'          => "Hay {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] registrado|'''$1''' [[Special:ListUsers|usuarios]] registrados}},
+de los cuales '''$2''' (el '''$4%''') {{PLURAL:$2|tiene|tienen}} privilegios de $5.
+
+Actualmente hay alrededor de  {{PLURAL:$6|una cuenta de usuario activa|'''$6''' cuentas de usuario activas}}.",
 'statistics-mostpopular' => 'Páginas más vistas',
 
 'disambiguations'      => 'Páginas de desambiguación',
@@ -2359,6 +2364,10 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-lightsource-255' => 'Otra fuente de luz',
 
 # Flash modes
+'exif-flash-fired-0'    => 'No se disparó el flash',
+'exif-flash-fired-1'    => 'Flash disparado',
+'exif-flash-mode-1'     => 'disparo de flash forzado',
+'exif-flash-mode-2'     => 'disparo de flash anulado',
 'exif-flash-mode-3'     => 'modo automático',
 'exif-flash-function-1' => 'Modo sin flash',
 'exif-flash-redeye-1'   => 'modo de reducción de ojos rojos',
@@ -2634,5 +2643,14 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Página vacía',
 'intentionallyblankpage' => 'Esta pagina está en blanco intencionadamente',
+
+# External image whitelist
+'external_image_whitelist' => ' #Deja esta línea exactamente como está<pre>
+#Put regular expression fragments (just the part that goes between the //) below
+#These will be matched with the URLs of external (hotlinked) images
+#Those that match will be displayed as images, otherwise only a link to the image will be shown
+#Las líneas que empiezan por «#» se consideran comentarios
+
+#Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
 
 );

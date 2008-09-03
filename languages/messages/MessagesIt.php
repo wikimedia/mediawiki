@@ -761,7 +761,7 @@ Alcuni template non verranno inclusi.',
 'undo-success' => 'Questa modifica può essere annullata. Verificare il confronto presentato di seguito per accertarsi che il contenuto corrisponda a quanto desiderato e quindi salvare le modifiche per completare la procedura di annullamento.',
 'undo-failure' => 'Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.',
 'undo-norev'   => 'La modifica non può essere annullata perché non esiste o è stata cancellata.',
-'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussione]] | [[Special:Contributions/$2|{{MediaWiki:Contribslink}}]])',
+'undo-summary' => 'Annullata la modifica $1 di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Impossibile registrare un utente',
@@ -980,7 +980,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'showingresults'            => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",
 'showingresultsnum'         => "Di seguito {{PLURAL:$3|viene presentato '''1''' risultato|vengono presentati '''$3''' risultati}} a partire dal numero '''$2'''.",
 'showingresultstotal'       => "Di seguito {{PLURAL:$4|viene mostrato il risultato '''$1''' di '''$3'''|vengono mostrati i risultati '''$1 - $2''' di '''$3'''}}",
-'nonefound'                 => '<strong>Nota</strong>: alcune parole comuni nella lingua inglese, come  "zero" o "more", non sono indicizzate e possono quindi dare luogo a risultati nulli, così come l\'indicazione di più termini da ricercare (solo le pagine che contengano tutti i termini richiesti vengono visualizzate fra i risultati).',
+'nonefound'                 => "'''Nota''': la ricerca è effettuata per default solo in alcuni namespace. Prova a premettere ''all:'' al testo della ricerca per cercare in tutti i namespace (compresi pagine di discussione, template, ecc) oppure usa il namespace desiderato come prefisso.",
 'powersearch'               => 'Ricerca',
 'powersearch-legend'        => 'Ricerca avanzata',
 'powersearch-ns'            => 'Cerca nei namespace:',
@@ -2747,5 +2747,14 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 # Special:BlankPage
 'blankpage'              => 'Pagina vuota',
 'intentionallyblankpage' => 'Questa pagina è lasciata volutamente vuota ed è usata per benchmark, ecc.',
+
+# External image whitelist
+'external_image_whitelist' => " #lascia questa riga esattamente com'è<pre>
+#Inserisci i frammenti di espressioni regolari (solo la parte che va fra //) di seguito
+#Queste corrisponderanno con gli URL di immagini esterne (hotlinked)
+#Quelle che corrisponderanno saranno mostrate come immagini, altrimenti verrà mostrano solo un collegamento all'immagine
+#Le linee che iniziano con # sono di commento
+
+#Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
 
 );

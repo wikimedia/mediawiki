@@ -1499,7 +1499,8 @@ Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}
 Cela représente une moyenne de '''$5''' modification{{PLURAL:$5||s}} par page et de '''$6''' consultation{{PLURAL:$6||s}} pour une modification.
 
 Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manual:Job_queue/fr la file des tâches].",
-'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilisateur enregistré]]|'''$1''' [[Special:ListUsers|utilisateurs enregistrés]]}} dont '''$2''' (ou '''$4%''') {{PLURAL:$2|dispose|disposent}} des droits $5.",
+'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilisateur enregistré]]|'''$1''' [[Special:ListUsers|utilisateurs enregistrés]]}} dont '''$2''' (ou '''$4%''') {{PLURAL:$2|dispose|disposent}} des droits $5.
+Il y a actuellement environ $6 {{PLURAL:$6|compte utilisateur enregistré|comptes utilisateur enregistrés}}.",
 'statistics-mostpopular' => 'Pages les plus consultées',
 
 'disambiguations'      => 'Pages d’homonymie',
@@ -2823,5 +2824,14 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 # Special:BlankPage
 'blankpage'              => 'Page vide',
 'intentionallyblankpage' => 'Cette page est intentionellement vide et elle est usée comme un test de performance, etc.',
+
+# External image whitelist
+'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle<pre>
+#Indiquer les codes d’expression régulières (juste la partire indiquée entre les //) ci-dessous
+#Ils correspondront avec les URLs des images (très liées) externes 
+#Ainsi, cette correspondance s'affichera comme des images, autrement un lien ne s'affichera uniquement vers l'image qui sera affichée
+#Les lignes commençant avec # seront considérées comme des commentaires
+
+#Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",
 
 );

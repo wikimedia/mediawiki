@@ -229,6 +229,8 @@ Mehmba se sohmtehm dehm indeks-dehm noh ohp-tu-det {{SITENAME}}.',
 
 # Image description page
 'filehist-deleteone' => 'ires',
+'filehist-datetime'  => 'Det/Taim',
+'filehist-thumb'     => 'Tohmnel',
 'imagelinks'         => 'Link-dehm',
 'linkstoimage'       => 'Dehm {{PLURAL:$1|pej de link|pej-dehm ya de link}} go dis fail:',
 'linkstoimage-more'  => 'I pahs wan $1 {{PLURAL:$1|pej we de link|pej-dem we delink}} go dis fail-ya.
@@ -252,13 +254,22 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 'alphaindexline' => '$1 tu $2',
 
 # Watchlist
-'watchnologin'    => 'Yu noh kam insai di sait yet',
-'watch'           => 'Wach',
-'watchthispage'   => 'Wach dis pej-ya',
-'unwatch'         => 'Lehf foh wach dis pej-ya',
-'unwatchthispage' => 'Lehf foh wach',
-'notanarticle'    => 'Dis pej-ya noh de tehl yu wetin de insai',
-'notvisiblerev'   => 'Dehm dohn ires di rivizhon',
+'watchlist'         => 'Mi list foh wach',
+'mywatchlist'       => 'Mi list foh wach',
+'watchlistfor'      => "(foh '''$1''')",
+'nowatchlist'       => 'Yu noh geht natin na yu list foh wach.',
+'watchlistanontext' => '$1 Foh luk o chenj wetin de na yu list foh wach',
+'watchnologin'      => 'Yu noh kam insai di sait yet',
+'watch'             => 'Wach',
+'watchthispage'     => 'Wach dis pej-ya',
+'unwatch'           => 'Lehf foh wach dis pej-ya',
+'unwatchthispage'   => 'Lehf foh wach',
+'notanarticle'      => 'Dis pej-ya noh de tehl yu wetin de insai',
+'notvisiblerev'     => 'Dehm dohn ires di rivizhon',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Ah de wach...',
+'unwatching' => 'Ah de lehf foh wach...',
 
 # Delete/protect/revert
 'deletepage'    => 'Ires dis pej-ya',

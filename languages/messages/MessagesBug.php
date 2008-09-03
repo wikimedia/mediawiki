@@ -20,6 +20,16 @@ $messages = array(
 'saturday'  => 'ᨔᨈᨘ',
 'january'   => 'ᨙᨍᨊᨘᨕᨑᨗ',
 'february'  => 'ᨙᨄᨅᨛᨑᨘᨕᨑᨗ',
+'march'     => 'ᨆᨙᨑ',
+'april'     => 'ᨕᨄᨛᨑᨗᨒᨗ',
+'may_long'  => 'ᨙᨆᨕᨗ',
+'june'      => 'ᨍᨘᨊᨗ',
+'july'      => 'ᨍᨘᨒᨗ',
+'august'    => 'ᨕᨁᨘᨔᨘᨈᨘᨔᨘ',
+'september' => 'ᨙᨔᨙᨈᨇᨛᨑᨛ',
+'october'   => 'ᨕᨚᨀᨛᨈᨚᨅᨛᨑᨛ',
+'november'  => 'ᨊᨚᨙᨅᨇᨛᨑᨛ',
+'december'  => 'ᨉᨗᨙᨔᨇᨛᨑᨛ',
 
 # Categories related messages
 'category_header' => 'ᨒᨛᨄ ᨑᨗᨒᨒᨛ ᨙᨀᨈᨛᨁᨚᨑᨗ "$1"',
