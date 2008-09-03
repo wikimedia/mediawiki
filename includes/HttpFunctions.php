@@ -2,6 +2,7 @@
 
 /**
  * Various HTTP related functions
+ * @ingroup HTTP
  */
 class Http {
 	static function get( $url, $timeout = 'default' ) {

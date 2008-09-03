@@ -2,6 +2,7 @@
 /**
  * Allow programs to request this object from WebRequest::response()
  * and handle all outputting (or lack of outputting) via it.
+ * @ingroup HTTP
  */
 class WebResponse {
 

@@ -39,7 +39,8 @@ if ( !function_exists( '__autoload' ) ) {
  * not create a second WebRequest object; make a FauxRequest object if
  * you want to pass arbitrary data to some function in place of the web
  * input.
- *
+ * 
+ * @ingroup HTTP
  */
 class WebRequest {
 	var $data = array();
@@ -641,6 +642,7 @@ class WebRequest {
 /**
  * WebRequest clone which takes values from a provided array.
  *
+ * @ingroup HTTP
  */
 class FauxRequest extends WebRequest {
 	var $wasPosted = false;
