@@ -3,6 +3,18 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
+== MediaWiki 1.13.1 ==
+
+September XX, 2008
+
+This is a bugfix release of the Summer 2008 snapshot release of MediaWiki.
+
+Changes in this release:
+
+* (bug 15460) Fixed intermittent deadlock errors involving objectcache
+  table queries. Use a separate database connection for the objectcache table
+  to avoid long-lasting locks on that table.
+
 == MediaWiki 1.13.0 ==
 
 This is the first stable release of the Summer 2008 quarterly snapshot release 
