@@ -205,7 +205,7 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_END:
 				# This usually means some kind of race condition
 				# or DB weirdness occurred. Throw an unknown error here.
-				$this->dieUsageMsg(array('unknownerror', 'AS_END'));
+				$this->dieUsageMsg(array('unknownerror'));
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
 				$r['new'] = '';
 			case EditPage::AS_SUCCESS_UPDATE:
