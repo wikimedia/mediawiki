@@ -316,6 +316,15 @@ b
 </p>
 !! end
 
+!! test
+Empty SGML directive (bug 15453)
+!! input
+A<!>B
+!! result
+<p>A<!>B
+</p>
+!! end
+
 ###
 ### Preformatted text
 ###
