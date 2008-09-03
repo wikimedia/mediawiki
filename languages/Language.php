@@ -1981,7 +1981,7 @@ class Language {
 		if ( !count($forms) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
 
-		return ( abs($count) == 1 ) ? $forms[0] : $forms[1];
+		return ( $count == 1 ) ? $forms[0] : $forms[1];
 	}
 
 	/**
