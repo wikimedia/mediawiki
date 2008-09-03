@@ -205,7 +205,7 @@ class MovePageForm {
 						Xml::checkLabel( wfMsg( 'fix-double-redirects' ), 'wpFixRedirects', 
 							'wpFixRedirects', $this->fixRedirects ) .
 					"</td>
-				</td>"
+				</tr>"
 			);
 		}
 
