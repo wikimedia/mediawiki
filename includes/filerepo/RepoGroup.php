@@ -176,6 +176,11 @@ class RepoGroup {
 		return $this->getRepo( 'local' );
 	}
 
+	/**
+	 * Run a function across all foreign repos.
+	 * @param $callback string Name of method to call
+	 * @param $params array Optional params to pass to the function
+	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
 		foreach( $this->foreignRepos as $repo ) {
 			$args = array_merge( array( $repo ), $params );
@@ -186,6 +191,10 @@ class RepoGroup {
 		return false;
 	}
 
+	/**
+	 * Does the installation have foreign repos set up?
+	 * @return bool
+	 */
 	function hasForeignRepos() {
 		return !empty( $this->foreignRepos );
 	}
