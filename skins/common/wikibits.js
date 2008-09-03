@@ -616,7 +616,7 @@ function ts_resortTable(lnk) {
 	// pound dollar euro yen currency cents
 	if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
 		sortfn = ts_sort_currency;
-	if (itm.match(/^[\d.,]+\%?$/))
+	if (itm.match(/^[\d.,eE+-]+\%?$/))
 		sortfn = ts_sort_numeric;
 
 	var reverse = (span.getAttribute("sortdir") == 'down');

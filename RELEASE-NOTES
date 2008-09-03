@@ -116,6 +116,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   treated as regular expression fragments to match for when possibly
   displaying an external image inline.
 * (bugs 15405, 15436) Sort more currency types correctly in sortable tables
+* (bug 15422) Sort more different types of numbers in sortable tables
 
 === Bug fixes in 1.14 ===
 
