@@ -618,9 +618,9 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_currency;
 	// We allow a trailing percent sign, which we just strip.  This works fine
 	// if percents and regular numbers aren't being mixed.
-	else if (itm.match(/^[+-]?[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?\%?$/) ||
-	itm.match(/^[+-]?\.[0-9]+([eE][+-]?[0-9]+)?\%?$/) ||
-	itm.match(/^0[xX][0-9a-fA-F]+$/))
+	else if (itm.match(/^[+-]?[\d,]+(\.[\d,]*)?([eE][+-]?[\d,]+)?\%?$/) ||
+	itm.match(/^[+-]?\.[\d,]+([eE][+-]?[\d,]+)?\%?$/) ||
+	itm.match(/^0x[\da-f]+$/i))
 		sortfn = ts_sort_numeric;
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
