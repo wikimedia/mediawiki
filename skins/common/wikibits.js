@@ -616,7 +616,11 @@ function ts_resortTable(lnk) {
 	// pound dollar euro yen currency cents
 	else if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
 		sortfn = ts_sort_currency;
-	else if (itm.match(/^[\d.,eE+-]+\%?$/))
+	// We allow a trailing percent sign, which we just strip.  This works fine
+	// if percents and regular numbers aren't being mixed.
+	else if (itm.match(/^[+-]?[0-9]+(\.[0-9]*)?([eE][+-]?[0-9]+)?\%?$/) ||
+	itm.match(/^[+-]?\.[0-9]+([eE][+-]?[0-9]+)?\%?$/) ||
+	itm.match(/^0[xX][0-9a-fA-F]+$/))
 		sortfn = ts_sort_numeric;
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
