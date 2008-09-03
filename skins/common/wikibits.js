@@ -606,17 +606,17 @@ function ts_resortTable(lnk) {
 		}
 	}
 
-	sortfn = ts_sort_caseinsensitive;
+	var sortfn = ts_sort_caseinsensitive;
 	if (itm.match(/^\d\d[\/. -][a-zA-Z]{3}[\/. -]\d\d\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d\d\d$/))
+	else if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d\d\d$/))
 		sortfn = ts_sort_date;
-	if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
+	else if (itm.match(/^\d\d[\/.-]\d\d[\/.-]\d\d$/))
 		sortfn = ts_sort_date;
 	// pound dollar euro yen currency cents
-	if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
+	else if (itm.match(/(^[\u00a3$\u20ac\u00a4\u00a5]|\u00a2$)/))
 		sortfn = ts_sort_currency;
-	if (itm.match(/^[\d.,eE+-]+\%?$/))
+	else if (itm.match(/^[\d.,eE+-]+\%?$/))
 		sortfn = ts_sort_numeric;
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
