@@ -208,8 +208,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Database replication lag doesn't cause all action=edit requests to return the
   nochange flag any more
 * (bug 15392) ApiFormatBase::formatHTML now uses $wgUrlProtocols.
-* (bug 15444) action=edit returned "Unknown error: ``AS_END''" where it should
+* (bug 15444) action=edit returns "Unknown error: ``AS_END''" where it should
   return just "Unknown error"
+* (bug 15448) YAML output returns empty values instead of 0
 
 === Languages updated in 1.14 ===
 

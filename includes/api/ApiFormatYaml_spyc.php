@@ -424,14 +424,14 @@
 
       if (is_int($key)) {
         // It's a sequence
-		if ($value)
+		if ($value !== '' && !is_null($value))
 			$string = $spaces.'- '.$value."\n";
 		else
 			$string = $spaces . "-\n";
       } else {
 		// It's mapped
-		if ($value)
-	        $string = $spaces.$key.': '.$value."\n";
+		if ($value !== '' && !is_null($value))
+			$string = $spaces . $key . ': ' . $value . "\n";
 		else
 			$string = $spaces . $key . ":\n";
       }
@@ -589,7 +589,7 @@
           $array = $array + $this->_toType($v);
         }
         $value = $array;
-      } elseif (strtolower($value) == 'null' or $value == '' or $value == '~') {
+      } elseif (strtolower($value) == 'null' or $value === '' or $value == '~') {
         $value = NULL;
       } elseif (ctype_digit($value)) {
         $value = (int)$value;
