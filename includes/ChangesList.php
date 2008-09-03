@@ -204,7 +204,7 @@ class ChangesList {
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link */
-	protected function insertUserRelatedLinks(&$s, &$rc) {
+	public function insertUserRelatedLinks(&$s, &$rc) {
 		if ( $this->isDeleted($rc,Revision::DELETED_USER) ) {
 		   $s .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-user') . '</span>';
 		} else {
