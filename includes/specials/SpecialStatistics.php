@@ -31,7 +31,7 @@ function wfSpecialStatistics( $par = '' ) {
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
 		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;";
-		echo "activeusers=$activeusers;admins=$admins;images=$images;jobs=$numJobs\n";
+		echo "activeusers=$activeUsers;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
 		$text = "__NOTOC__\n";
