@@ -1706,7 +1706,7 @@ if ( \$wgCommandLineMode ) {
 
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
 
-\$wgSecretKey = \"$secretKey\";
+\$wgProxyKey = \"$secretKey\";
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':
