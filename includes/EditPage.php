@@ -683,30 +683,30 @@ class EditPage {
 	 */
 	protected function showIntro() {
 		global $wgOut, $wgUser;
-		if( $this->suppressIntro )
+		if( $this->suppressIntro ) {
 			return;
-
+		}
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exists
 		if( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
 			$parts = explode( '/', $this->mTitle->getText(), 2 );
 			$username = $parts[0];
 			$id = User::idFromName( $username );
 			$ip = User::isIP( $username );
-
-			if ( $id == 0 && !$ip ) {
+			if( $id == 0 && !$ip ) {
 				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
 					array( 'userpage-userdoesnotexist', $username ) );
 			}
 		}
-
+		# Try to add a custom edit intro, or use the standard one if this is not possible.
 		if( !$this->showCustomIntro() && !$this->mTitle->exists() ) {
 			if( $wgUser->isLoggedIn() ) {
 				$wgOut->wrapWikiMsg( '<div class="mw-newarticletext">$1</div>', 'newarticletext' );
 			} else {
 				$wgOut->wrapWikiMsg( '<div class="mw-newarticletextanon">$1</div>', 'newarticletextanon' );
 			}
-			$this->showDeletionLog( $wgOut );
 		}
+		# Give a notice if the user is editing a deleted page...
+		$this->showDeletionLog( $wgOut );
 	}
 
 	/**
@@ -2346,19 +2346,23 @@ END
 	 * @param OutputPage $out
 	 */
 	protected function showDeletionLog( $out ) {
-		global $wgUser;
-		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
-		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
-		if( $pager->getNumRows() > 0 ) {
-			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
-			$out->addWikiMsg( 'recreate-deleted-warn' );
-			$out->addHTML(
-				$loglist->beginLogEventsList() .
-				$pager->getBody() .
-				$loglist->endLogEventsList()
-			);
-			$out->addHtml( '</div>' );
+		if( !$this->mTitle->exists() ) {
+			global $wgUser;
+			$loglist = new LogEventsList( $wgUser->getSkin(), $out );
+			$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+			if( $pager->getNumRows() > 0 ) {
+				$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
+				$out->addWikiMsg( 'recreate-deleted-warn' );
+				$out->addHTML(
+					$loglist->beginLogEventsList() .
+					$pager->getBody() .
+					$loglist->endLogEventsList()
+				);
+				$out->addHtml( '</div>' );
+				return true;
+			}
 		}
+		return false;
 	}
 
 	/**
