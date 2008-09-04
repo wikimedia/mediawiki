@@ -355,7 +355,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Title part with underscores
 	 */
 	public function titlePartToKey($titlePart) {
-		return substr($this->titleToKey($titlePart . '.'), 0, -1);
+		return substr($this->titleToKey($titlePart . 'x'), 0, -1);
 	}
 	
 	/**
@@ -364,7 +364,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return string Key part with underscores
 	 */
 	public function keyPartToTitle($keyPart) {
-		return substr($this->keyToTitle($keyPart . '.'), 0, -1);
+		return substr($this->keyToTitle($keyPart . 'x'), 0, -1);
 	}
 
 	/**
