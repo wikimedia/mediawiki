@@ -155,7 +155,9 @@ class LogPage {
 	 * @static
 	 * @return HTML string
 	 */
-	static function actionText( $type, $action, $title = NULL, $skin = NULL, $params = array(), $filterWikilinks=false ) {
+	static function actionText( $type, $action, $title = NULL, $skin = NULL, 
+		$params = array(), $filterWikilinks=false ) 
+	{
 		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
 
 		$wgMessageCache->loadAllMessages();
@@ -172,8 +174,15 @@ class LogPage {
 
 					switch( $type ) {
 						case 'move':
-							$titleLink = $skin->makeLinkObj( $title, htmlspecialchars( $title->getPrefixedText() ), 'redirect=no' );
-							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
+							$titleLink = $skin->makeLinkObj( $title, 
+								htmlspecialchars( $title->getPrefixedText() ), 'redirect=no' );
+							$targetTitle = Title::newFromText( $params[0] );
+							if ( !$targetTitle ) {
+								# Workaround for broken database
+								$params[0] = htmlspecialchars( $params[0] );
+							} else {
+								$params[0] = $skin->makeLinkObj( $targetTitle, htmlspecialchars( $params[0] ) );
+							}
 							break;
 						case 'block':
 							if( substr( $title->getText(), 0, 1 ) == '#' ) {
