@@ -112,17 +112,18 @@ class EditPage {
 	function getContent( $def_text = '' ) {
 		global $wgOut, $wgRequest, $wgParser, $wgMessageCache;
 
+		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
 		$section = $wgRequest->getVal( 'section' );
 		$preload = $wgRequest->getVal( 'preload' );
 		$undoafter = $wgRequest->getVal( 'undoafter' );
 		$undo = $wgRequest->getVal( 'undo' );
 
-		wfProfileIn( __METHOD__ );
-
 		$text = '';
+		// For message page not locally set, use the i18n message.
+		// For other non-existent articles, use preload text if any.
 		if( !$this->mTitle->exists() ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->loadAllMessages();
 				# If this is a system message, get the default text.
 				$text = wfMsgWeirdKey( $this->mTitle->getText() ) ;
@@ -130,27 +131,17 @@ class EditPage {
 				# If requested, preload some text.
 				$text = $this->getPreloadedText( $preload );
 			}
-			# We used to put MediaWiki:Newarticletext here if
-			# $text was empty at this point.
-			# This is now shown above the edit box instead.
+		// For existing pages, get text based on "undo" or section parameters.
 		} else {
-			// FIXME: may be better to use Revision class directly
-			// But don't mess with it just yet. Article knows how to
-			// fetch the page record from the high-priority server,
-			// which is needed to guarantee we don't pick up lagged
-			// information.
-
 			$text = $this->mArticle->getContent();
-
-			if ($undo > 0 && $undoafter > 0 && $undo < $undoafter) {
+			if( $undo > 0 && $undoafter > 0 && $undo < $undoafter ) {
 				# If they got undoafter and undo round the wrong way, switch them
 				list( $undo, $undoafter ) = array( $undoafter, $undo );
 			}
-
-			if ( $undo > 0 && $undo > $undoafter ) {
+			if( $undo > 0 && $undo > $undoafter ) {
 				# Undoing a specific edit overrides section editing; section-editing
 				# doesn't work with undoing.
-				if ( $undoafter ) {
+				if( $undoafter ) {
 					$undorev = Revision::newFromId($undo);
 					$oldrev = Revision::newFromId($undoafter);
 				} else {
@@ -170,7 +161,7 @@ class EditPage {
 					$oldrev_text = $oldrev->getText();
 					$currev_text = $text;
 
-					if ( $currev_text != $undorev_text ) {
+					if( $currev_text != $undorev_text ) {
 						$result = wfMerge( $undorev_text, $oldrev_text, $currev_text, $text );
 					} else {
 						# No use doing a merge if it's just a straight revert.
@@ -215,14 +206,14 @@ class EditPage {
 	 * @param $preload String: the title of the page.
 	 * @return string The contents of the page.
 	 */
-	protected function getPreloadedText($preload) {
-		if ( $preload === '' )
+	protected function getPreloadedText( $preload ) {
+		if( $preload === '' ) {
 			return '';
-		else {
+		} else {
 			$preloadTitle = Title::newFromText( $preload );
-			if ( isset( $preloadTitle ) && $preloadTitle->userCanRead() ) {
-				$rev=Revision::newFromTitle($preloadTitle);
-				if ( is_object( $rev ) ) {
+			if( isset( $preloadTitle ) && $preloadTitle->userCanRead() ) {
+				$rev = Revision::newFromTitle($preloadTitle);
+				if( is_object( $rev ) ) {
 					$text = $rev->getText();
 					// TODO FIXME: AAAAAAAAAAA, this shouldn't be implementing
 					// its own mini-parser! -ævar
@@ -242,8 +233,8 @@ class EditPage {
 	function extractMetaDataFromArticle () {
 		global $wgUseMetadataEdit , $wgMetadataWhitelist , $wgLang ;
 		$this->mMetaData = '' ;
-		if ( !$wgUseMetadataEdit ) return ;
-		if ( $wgMetadataWhitelist == '' ) return ;
+		if( !$wgUseMetadataEdit ) return ;
+		if( $wgMetadataWhitelist == '' ) return ;
 		$s = '' ;
 		$t = $this->getContent();
 
@@ -263,10 +254,10 @@ class EditPage {
 				$first = explode ( ':' , $first ) ;
 				$ns = array_shift ( $first ) ;
 				$ns = trim ( str_replace ( '[' , '' , $ns ) ) ;
-				if ( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
+				if( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
 				{
 					$add = '[[' . $ns . ':' . implode ( ':' , $first ) . ']]' ;
-					if ( strtolower ( $ns ) == $catlow ) $cat[] = $add ;
+					if( strtolower ( $ns ) == $catlow ) $cat[] = $add ;
 					else $ll[] = $add ;
 					$x = implode ( ']]' , $y ) ;
 					$t[$key] = $x ;
@@ -274,8 +265,8 @@ class EditPage {
 				}
 			}
 		}
-		if ( count ( $cat ) ) $s .= implode ( ' ' , $cat ) . "\n" ;
-		if ( count ( $ll ) ) $s .= implode ( ' ' , $ll ) . "\n" ;
+		if( count ( $cat ) ) $s .= implode ( ' ' , $cat ) . "\n" ;
+		if( count ( $ll ) ) $s .= implode ( ' ' , $ll ) . "\n" ;
 		$t = implode ( "\n" , $t ) ;
 
 		# Load whitelist
@@ -292,7 +283,7 @@ class EditPage {
 				$isentry = true ;
 				$x = trim ( substr ( $x , 1 ) ) ;
 			}
-			if ( $isentry )
+			if( $isentry )
 			{
 				$sat[] = strtolower ( $x ) ;
 			}
@@ -305,12 +296,12 @@ class EditPage {
 		foreach ( $t AS $key => $x )
 		{
 			$y = explode ( '}}' , $x , 2 ) ;
-			if ( count ( $y ) == 2 )
+			if( count ( $y ) == 2 )
 			{
 				$z = $y[0] ;
 				$z = explode ( '|' , $z ) ;
 				$tn = array_shift ( $z ) ;
-				if ( in_array ( strtolower ( $tn ) , $sat ) )
+				if( in_array ( strtolower ( $tn ) , $sat ) )
 				{
 					$tl[] = '{{' . $y[0] . '}}' ;
 					$t[$key] = $y[1] ;
@@ -318,10 +309,10 @@ class EditPage {
 				}
 				else $t[$key] = '{{' . $x ;
 			}
-			else if ( $key != 0 ) $t[$key] = '{{' . $x ;
+			else if( $key != 0 ) $t[$key] = '{{' . $x ;
 			else $t[$key] = $x ;
 		}
-		if ( count ( $tl ) ) $s .= implode ( ' ' , $tl ) ;
+		if( count ( $tl ) ) $s .= implode ( ' ' , $tl ) ;
 		$t = implode ( '' , $t ) ;
 
 		$t = str_replace ( "\n\n\n" , "\n" , $t ) ;
@@ -329,18 +320,20 @@ class EditPage {
 		$this->mMetaData = $s ;
 	}
 
+	/* 
+	 * Check if a page was deleted while the user was editing it, before submit.
+	 * Note that we rely on the logging table, which hasn't been always there,
+	 * but that doesn't matter, because this only applies to brand new
+	 * deletes.
+	 */
 	protected function wasDeletedSinceLastEdit() {
-		/* Note that we rely on the logging table, which hasn't been always there,
-		 * but that doesn't matter, because this only applies to brand new
-		 * deletes.
-		 */
-		if ( $this->deletedSinceEdit )
+		if( $this->deletedSinceEdit )
 			return true;
-		if ( $this->mTitle->isDeleted() ) {
+		if( $this->mTitle->isDeleted() ) {
 			$this->lastDelete = $this->getLastDelete();
-			if ( !is_null($this->lastDelete) ) {
+			if( !is_null($this->lastDelete) ) {
 				$deletetime = $this->lastDelete->log_timestamp;
-				if ( ($deletetime - $this->starttime) > 0 ) {
+				if( ($deletetime - $this->starttime) > 0 ) {
 					$this->deletedSinceEdit = true;
 				}
 			}
@@ -365,14 +358,15 @@ class EditPage {
 	 */
 	function edit() {
 		global $wgOut, $wgUser, $wgRequest;
-
-		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) )
+		// Allow extensions to modify/prevent this form or submission
+		if( !wfRunHooks( 'AlternateEdit', array( &$this ) ) ) {
 			return;
+		}
 
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": enter\n" );
 
-		// this is not an article
+		// This is not an article
 		$wgOut->setArticleFlag( false );
 
 		$this->importFormData( $wgRequest );
@@ -389,7 +383,7 @@ class EditPage {
 				// Force preview
 				$this->save = false;
 				$this->preview = true;
-			} elseif( $this->preview || $this->diff ){
+			} elseif( $this->preview || $this->diff ) {
 				// A warning will be displayed instead
 			} else {
 				$this->readOnlyPage( $this->getContent() );
@@ -400,36 +394,17 @@ class EditPage {
 
 		$wgOut->addScriptFile( 'edit.js' );
 
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
-		
-		if( !$this->mTitle->exists() ) {
-			$permErrors = array_merge( $permErrors,
-				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $wgUser ), $permErrors ) );
-		}
-
-		# Ignore some permissions errors.
-		$remove = array();
-		foreach( $permErrors as $error ) {
-			if ( ( $this->preview || $this->diff ) &&
-				($error[0] == 'blockedtext' || $error[0] == 'autoblockedtext'))
-			{
-				// Don't worry about blocks when previewing/diffing
-				$remove[] = $error;
-			}
-		}
-		$permErrors = wfArrayDiff2( $permErrors, $remove );
-		
-		if ( $permErrors ) {
+		if( $permErrors = $this->getEditPermissionErrors() ) {
 			wfDebug( __METHOD__.": User can't edit\n" );
 			$this->readOnlyPage( $this->getContent(), true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
 		} else {
-			if ( $this->save ) {
+			if( $this->save ) {
 				$this->formtype = 'save';
 			} else if( $this->preview ) {
 				$this->formtype = 'preview';
-			} else if ( $this->diff ) {
+			} else if( $this->diff ) {
 				$this->formtype = 'diff';
 			} else { # First time through
 				$this->firsttime = true;
@@ -460,19 +435,19 @@ class EditPage {
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
 		$editnotice_page = $editnotice_ns.'-'.$this->mTitle->getDBkey();
-		if ( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
+		if( !wfEmptyMsg( $editnotice_ns, wfMsgForContent( $editnotice_ns ) ) ) {
 			$wgOut->addWikiText( wfMsgForContent( $editnotice_ns )  );
 		}
-		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
+		if( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
 			$parts = explode( '/', $this->mTitle->getDBkey() );
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-'.array_shift( $parts );
-				if ( !wfEmptyMsg( $editnotice_base, wfMsgForContent( $editnotice_base ) ) ) {
+				if( !wfEmptyMsg( $editnotice_base, wfMsgForContent( $editnotice_base ) ) ) {
 					$wgOut->addWikiText( wfMsgForContent( $editnotice_base )  );
 				}
 			}
-		} else if ( !wfEmptyMsg( $editnotice_page, wfMsgForContent( $editnotice_page ) ) ) {
+		} else if( !wfEmptyMsg( $editnotice_page, wfMsgForContent( $editnotice_page ) ) ) {
 			$wgOut->addWikiText( wfMsgForContent( $editnotice_page ) );
 		}
 
@@ -481,8 +456,8 @@ class EditPage {
 		# that edit() already checked just in case someone tries to sneak
 		# in the back door with a hand-edited submission URL.
 
-		if ( 'save' == $this->formtype ) {
-			if ( !$this->attemptSave() ) {
+		if( 'save' == $this->formtype ) {
+			if( !$this->attemptSave() ) {
 				wfProfileOut( __METHOD__."-business-end" );
 				wfProfileOut( __METHOD__ );
 				return;
@@ -491,8 +466,8 @@ class EditPage {
 
 		# First time through: get contents, set time for conflict
 		# checking, etc.
-		if ( 'initial' == $this->formtype || $this->firsttime ) {
-			if ($this->initialiseForm() === false) {
+		if( 'initial' == $this->formtype || $this->firsttime ) {
+			if( $this->initialiseForm() === false) {
 				$this->noSuchSectionPage();
 				wfProfileOut( __METHOD__."-business-end" );
 				wfProfileOut( __METHOD__ );
@@ -506,6 +481,27 @@ class EditPage {
 		wfProfileOut( __METHOD__."-business-end" );
 		wfProfileOut( __METHOD__ );
 	}
+	
+	protected function getEditPermissionErrors() {
+		global $wgUser;
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
+		# Can this title be created?
+		if( !$this->mTitle->exists() ) {
+			$permErrors = array_merge( $permErrors,
+				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $wgUser ), $permErrors ) );
+		}
+		# Ignore some permissions errors when a user is just previewing/viewing diffs
+		$remove = array();
+		foreach( $permErrors as $error ) {
+			if( ($this->preview || $this->diff) && 
+				($error[0] == 'blockedtext' || $error[0] == 'autoblockedtext') )
+			{
+				$remove[] = $error;
+			}
+		}
+		$permErrors = wfArrayDiff2( $permErrors, $remove );
+		return $permErrors;
+	}
 
 	/**
 	 * Show a read-only error
@@ -514,7 +510,7 @@ class EditPage {
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		global $wgRequest, $wgOut;
-		if ( $wgRequest->getBool( 'redlink' ) ) {
+		if( $wgRequest->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
 			// Redirect to the article page and let them click the edit tab if
 			// they really want a permission error.
@@ -595,13 +591,13 @@ class EditPage {
 				// if we forced preview due to session failure.
 				$this->mTriedSave = !$this->preview;
 
-				if ( $this->tokenOk( $request ) ) {
+				if( $this->tokenOk( $request ) ) {
 					# Some browsers will not report any submit button
 					# if the user hits enter in the comment box.
 					# The unmarked state will be assumed to be a save,
 					# if the form seems otherwise complete.
 					wfDebug( "$fname: Passed token check.\n" );
-				} else if ( $this->diff ) {
+				} else if( $this->diff ) {
 					# Failed token check, but only requested "Show Changes".
 					wfDebug( "$fname: Failed token check; Show Changes requested.\n" );
 				} else {
@@ -650,7 +646,7 @@ class EditPage {
 			$this->watchthis = false;
 			$this->recreate  = false;
 
-			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+			if( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
 				$this->summary = $request->getVal( 'preloadtitle' );
 			}
 		}
@@ -749,7 +745,7 @@ class EditPage {
 		}
 
 		# Check image redirect
-		if ( $this->mTitle->getNamespace() == NS_IMAGE &&
+		if( $this->mTitle->getNamespace() == NS_IMAGE &&
 			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
 			!$wgUser->isAllowed( 'upload' ) ) {
 				if( $wgUser->isAnon() ) {
@@ -760,7 +756,7 @@ class EditPage {
 		}
 
 		# Reintegrate metadata
-		if ( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
+		if( $this->mMetaData != '' ) $this->textbox1 .= "\n" . $this->mMetaData ;
 		$this->mMetaData = '' ;
 
 		# Check for spam
@@ -778,13 +774,13 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_SPAM_ERROR;
 		}
-		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
+		if( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_FILTERING;
 		}
-		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) ) {
+		if( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
@@ -795,14 +791,14 @@ class EditPage {
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR_EXPECTED;
 		}
-		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+		if( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_BLOCKED_PAGE_FOR_USER;
 		}
 		$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
-		if ( $this->kblength > $wgMaxArticleSize ) {
+		if( $this->kblength > $wgMaxArticleSize ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
 			wfProfileOut( "$fname-checks" );
@@ -810,8 +806,8 @@ class EditPage {
 			return self::AS_CONTENT_TOO_BIG;
 		}
 
-		if ( !$wgUser->isAllowed('edit') ) {
-			if ( $wgUser->isAnon() ) {
+		if( !$wgUser->isAllowed('edit') ) {
+			if( $wgUser->isAnon() ) {
 				wfProfileOut( "$fname-checks" );
 				wfProfileOut( $fname );
 				return self::AS_READ_ONLY_PAGE_ANON;
@@ -823,12 +819,12 @@ class EditPage {
 			}
 		}
 
-		if ( wfReadOnly() ) {
+		if( wfReadOnly() ) {
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_READ_ONLY_PAGE;
 		}
-		if ( $wgUser->pingLimiter() ) {
+		if( $wgUser->pingLimiter() ) {
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_RATE_LIMITED;
@@ -836,7 +832,7 @@ class EditPage {
 
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
-		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
+		if( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
 			wfProfileOut( "$fname-checks" );
 			wfProfileOut( $fname );
 			return self::AS_ARTICLE_WAS_DELETED;
@@ -846,23 +842,23 @@ class EditPage {
 
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
-		if ( 0 == $aid ) {
+		if( 0 == $aid ) {
 
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create' ) ) {
+			if( !$this->mTitle->userCan( 'create' ) ) {
 				wfDebug( "$fname: no create permission\n" );
 				wfProfileOut( $fname );
 				return self::AS_NO_CREATE_PERMISSION;
 			}
 
 			# Don't save a new article if it's blank.
-			if ( '' == $this->textbox1 ) {
+			if( '' == $this->textbox1 ) {
 					wfProfileOut( $fname );
 					return self::AS_BLANK_ARTICLE;
 			}
 
 			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
+			if( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
@@ -902,7 +898,7 @@ class EditPage {
 		}
 		$userid = $wgUser->getId();
 
-		if ( $this->isConflict) {
+		if( $this->isConflict ) {
 			wfDebug( "EditPage::editForm conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
 				$this->mArticle->getTimestamp() . "')\n" );
 			$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime);
@@ -918,14 +914,14 @@ class EditPage {
 		}
 
 		# Suppress edit conflict with self, except for section edits where merging is required.
-		if ( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
+		if( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
 			wfDebug( "EditPage::editForm Suppressing edit conflict, same user.\n" );
 			$this->isConflict = false;
 		} else {
 			# switch from section editing to normal editing in edit conflict
-			if($this->isConflict) {
+			if( $this->isConflict ) {
 				# Attempt merge
-				if( $this->mergeChangesInto( $text ) ){
+				if( $this->mergeChangesInto( $text ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
 					wfDebug( "EditPage::editForm Suppressing edit conflict, successful merge.\n" );
@@ -937,7 +933,7 @@ class EditPage {
 			}
 		}
 
-		if ( $this->isConflict ) {
+		if( $this->isConflict ) {
 			wfProfileOut( $fname );
 			return self::AS_CONFLICT_DETECTED;
 		}
@@ -945,7 +941,7 @@ class EditPage {
 		$oldtext = $this->mArticle->getContent();
 
 		// Run post-section-merge edit filter
-		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
+		if( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
@@ -966,7 +962,7 @@ class EditPage {
 
 		# And a similar thing for new sections
 		if( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
-			if (trim($this->summary) == '') {
+			if(trim($this->summary) == '') {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
 				return self::AS_SUMMARY_NEEDED;
@@ -977,7 +973,7 @@ class EditPage {
 		wfProfileIn( "$fname-sectionanchor" );
 		$sectionanchor = '';
 		if( $this->section == 'new' ) {
-			if ( $this->textbox1 == '' ) {
+			if( $this->textbox1 == '' ) {
 				$this->missingComment = true;
 				return self::AS_TEXTBOX_EMPTY;
 			}
@@ -995,7 +991,7 @@ class EditPage {
 			$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
 			# we can't deal with anchors, includes, html etc in the header for now,
 			# headline would need to be parsed to improve this
-			if($hasmatch and strlen($matches[2]) > 0) {
+			if( $hasmatch and strlen($matches[2]) > 0 ) {
 				$sectionanchor = $wgParser->guessSectionNameFromWikiText( $matches[2] );
 			}
 		}
@@ -1010,7 +1006,7 @@ class EditPage {
 
 		// Check for length errors again now that the section is merged in
 		$this->kblength = (int)(strlen( $text ) / 1024);
-		if ( $this->kblength > $wgMaxArticleSize ) {
+		if( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			wfProfileOut( $fname );
 			return self::AS_MAX_ARTICLE_SIZE_EXCEEDED;
@@ -1039,7 +1035,7 @@ class EditPage {
 			$regexes = (array)$wgSpamRegex;
 			foreach( $regexes as $regex ) {
 				$matches = array();
-				if ( preg_match( $regex, $text, $matches ) ) {
+				if( preg_match( $regex, $text, $matches ) ) {
 					return $matches[0];
 				}
 			}
@@ -1054,9 +1050,9 @@ class EditPage {
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
 		$this->textbox1 = $this->getContent(false);
-		if ($this->textbox1 === false) return false;
+		if( $this->textbox1 === false) return false;
 
-		if ( !$this->mArticle->exists() && $this->mTitle->getNamespace() == NS_MEDIAWIKI )
+		if( !$this->mArticle->exists() && $this->mTitle->getNamespace() == NS_MEDIAWIKI )
 			$this->textbox1 = wfMsgWeirdKey( $this->mTitle->getText() );
 		wfProxyCheck();
 		return true;
@@ -1065,10 +1061,10 @@ class EditPage {
 	function setHeaders() {
 		global $wgOut, $wgTitle;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		if ( $this->formtype == 'preview' ) {
+		if( $this->formtype == 'preview' ) {
 			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
 		}
-		if ( $this->isConflict ) {
+		if( $this->isConflict ) {
 			$wgOut->setPageTitle( wfMsg( 'editconflict', $wgTitle->getPrefixedText() ) );
 		} elseif( $this->section != '' ) {
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
@@ -1113,7 +1109,7 @@ class EditPage {
 		#we parse this near the beginning so that setHeaders can do the title
 		#setting work instead of leaving it in getPreviewText
 		$previewOutput = '';
-		if ( $this->formtype == 'preview' ) {
+		if( $this->formtype == 'preview' ) {
 			$previewOutput = $this->getPreviewText();
 		}
 
@@ -1122,7 +1118,7 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
-		if ( $this->isConflict ) {
+		if( $this->isConflict ) {
 			$wgOut->addWikiMsg( 'explainconflict' );
 
 			$this->textbox2 = $this->textbox1;
@@ -1144,7 +1140,7 @@ class EditPage {
 				}
 			}
 
-			if ( $this->missingComment ) {
+			if( $this->missingComment ) {
 				$wgOut->wrapWikiMsg( '<div id="mw-missingcommenttext">$1</div>',  'missingcommenttext' );
 			}
 
@@ -1160,10 +1156,10 @@ class EditPage {
 				$wgOut->addWikiText( $this->hookError );
 			}
 
-			if ( !$this->checkUnicodeCompliantBrowser() ) {
+			if( !$this->checkUnicodeCompliantBrowser() ) {
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
 			}
-			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
+			if( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
 			// Let sysop know that this will make private content public if saved
 
 				if( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
@@ -1209,11 +1205,11 @@ class EditPage {
 			$wgOut->addWikiMsg( $noticeMsg );
 			$wgOut->addHTML( "</div>\n" );
 		}
-		if ( $this->mTitle->isCascadeProtected() ) {
+		if( $this->mTitle->isCascadeProtected() ) {
 			# Is this page under cascading protection from some source pages?
 			list($cascadeSources, /* $restrictions */) = $this->mTitle->getCascadeProtectionSources();
 			$notice = "$1\n";
-			if ( count($cascadeSources) > 0 ) {
+			if( count($cascadeSources) > 0 ) {
 				# Explain, and list the titles responsible
 				foreach( $cascadeSources as $page ) {
 					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
@@ -1225,10 +1221,10 @@ class EditPage {
 			$wgOut->addWikiMsg( 'titleprotectedwarning' );
 		}
 
-		if ( $this->kblength === false ) {
+		if( $this->kblength === false ) {
 			$this->kblength = (int)(strlen( $this->textbox1 ) / 1024);
 		}
-		if ( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
+		if( $this->tooBig || $this->kblength > $wgMaxArticleSize ) {
 			$wgOut->addHTML( "<div id='mw-edit-longpageerror'>\n" );
 			$wgOut->addWikiMsg( 'longpageerror', $wgLang->formatNum( $this->kblength ), $wgLang->formatNum( $wgMaxArticleSize ) );
 			$wgOut->addHTML( "</div>\n" );
@@ -1239,7 +1235,7 @@ class EditPage {
 		}
 
 		$q = 'action='.$this->action;
-		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
+		#if( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $wgTitle->escapeLocalURL( $q );
 
 		$colonSep = wfMsg( 'colon-separator' );
@@ -1254,7 +1250,7 @@ class EditPage {
 			htmlspecialchars( wfMsg( 'newwindow' ) );
 
 		global $wgRightsText;
-		if ( $wgRightsText ) {
+		if( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]',
 				$wgRightsText );
@@ -1289,7 +1285,7 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormPageTop );
 
-		if ( $wgUser->getOption( 'previewontop' ) ) {
+		if( $wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, true );
 		}
 
@@ -1336,13 +1332,13 @@ class EditPage {
 		$formattedhiddencats = $sk->formatHiddenCategories( $hiddencats );
 
 		global $wgUseMetadataEdit ;
-		if ( $wgUseMetadataEdit ) {
+		if( $wgUseMetadataEdit ) {
 			$metadata = $this->mMetaData ;
 			$metadata = htmlspecialchars( $wgContLang->recodeForEdit( $metadata ) ) ;
 			$top = wfMsgWikiHtml( 'metadata_help' );
 			/* ToDo: Replace with clean code */
 			$ew = $wgUser->getOption( 'editwidth' );
-			if ( $ew ) $ew = " style=\"width:100%\"";
+			if( $ew ) $ew = " style=\"width:100%\"";
 			else $ew = '';
 			/* /ToDo */
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
@@ -1350,8 +1346,8 @@ class EditPage {
 		else $metadata = "" ;
 
 		$recreate = '';
-		if ($this->wasDeletedSinceLastEdit()) {
-			if ( 'save' != $this->formtype ) {
+		if( $this->wasDeletedSinceLastEdit() ) {
+			if( 'save' != $this->formtype ) {
 				$wgOut->addWikiMsg('deletedwhileediting');
 			} else {
 				// Hide the toolbar and edit area, use can click preview to get it back
@@ -1447,7 +1443,7 @@ END
 END
 );
 
-		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
+		if( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
 
 			$de = new DifferenceEngine( $this->mTitle );
@@ -1459,7 +1455,7 @@ END
 		}
 		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
-		if ( !$wgUser->getOption( 'previewontop' ) ) {
+		if( !$wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
 
@@ -1526,13 +1522,13 @@ END
 
 		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
 
-		if ( $this->formtype == 'preview' ) {
+		if( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
 		}
 
 		$wgOut->addHTML( '</div>' );
 
-		if ( $this->formtype == 'diff') {
+		if( $this->formtype == 'diff') {
 			$this->showDiff();
 		}
 	}
@@ -1545,13 +1541,14 @@ END
 	 */
 	protected function showPreview( $text ) {
 		global $wgOut;
-		
-		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+		if( $this->mTitle->getNamespace() == NS_CATEGORY) {
 			$this->mArticle->openShowCategory();
 		}
+		# This hook seems slightly odd here, but makes things more
+		# consistent for extensions.
 		wfRunHooks( 'OutputPageBeforeHTML',array( &$wgOut, &$text ) );
 		$wgOut->addHTML( $text );
-		if($this->mTitle->getNamespace() == NS_CATEGORY) {
+		if( $this->mTitle->getNamespace() == NS_CATEGORY ) {
 			$this->mArticle->closeShowCategory();
 		}
 	}
@@ -1604,10 +1601,8 @@ END
 			$fname,
 			array( 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ) );
 
-		if($dbr->numRows($res) == 1) {
-			while ( $x = $dbr->fetchObject ( $res ) )
-				$data = $x;
-			$dbr->freeResult ( $res ) ;
+		if( $dbr->numRows($res) ) {
+			$data = $dbr->fetchObject( $res );
 		} else {
 			$data = null;
 		}
@@ -1623,8 +1618,8 @@ END
 
 		wfProfileIn( __METHOD__ );
 
-		if ( $this->mTriedSave && !$this->mTokenOk ) {
-			if ( $this->mTokenOkExceptSuffix ) {
+		if( $this->mTriedSave && !$this->mTokenOk ) {
+			if( $this->mTokenOkExceptSuffix ) {
 				$note = wfMsg( 'token_suffix_mismatch' );
 			} else {
 				$note = wfMsg( 'session_fail_preview' );
@@ -1647,7 +1642,7 @@ END
 		# don't parse user css/js, show message about preview
 		# XXX: stupid php bug won't let us use $wgTitle->isCssJsSubpage() here
 
-		if ( $this->isCssJsSubpage ) {
+		if( $this->isCssJsSubpage ) {
 			if(preg_match("/\\.css$/", $this->mTitle->getText() ) ) {
 				$previewtext = wfMsg('usercsspreview');
 			} else if(preg_match("/\\.js$/", $this->mTitle->getText() ) ) {
@@ -1664,16 +1659,16 @@ END
 
 			# If we're adding a comment, we need to show the
 			# summary as the headline
-			if($this->section=="new" && $this->summary!="") {
+			if( $this->section=="new" && $this->summary!="" ) {
 				$toparse="== {$this->summary} ==\n\n".$toparse;
 			}
 
-			if ( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData;
+			if( $this->mMetaData != "" ) $toparse .= "\n" . $this->mMetaData;
 
 			// Parse mediawiki messages with correct target language
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$pos = strrpos( $this->mTitle->getText(), '/' );
-				if ( $pos !== false ) {
+				if( $pos !== false ) {
 					$code = substr( $this->mTitle->getText(), $pos+1 );
 					switch ($code) {
 						case $wgLang->getCode():
@@ -1697,14 +1692,14 @@ END
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputNoText( $parserOutput );
 
-			if ( count( $parserOutput->getWarnings() ) ) {
+			if( count( $parserOutput->getWarnings() ) ) {
 				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
 			}
 		}
 
 		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
 			"<div class='previewnote'>" . $wgOut->parse( $note ) . "</div>\n";
-		if ( $this->isConflict ) {
+		if( $this->isConflict ) {
 			$previewhead .='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
 		}
 
@@ -1803,7 +1798,7 @@ END
 
 		$wgOut->addHtml( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
-		if ( $match )
+		if( $match )
 			$wgOut->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
 		$wgOut->addHtml( '</div>' );
 
@@ -1838,7 +1833,7 @@ END
 		$currentText = $currentRevision->getText();
 
 		$result = '';
-		if( wfMerge( $baseText, $editText, $currentText, $result ) ){
+		if( wfMerge( $baseText, $editText, $currentText, $result ) ) {
 			$editText = $result;
 			wfProfileOut( $fname );
 			return true;
@@ -1863,7 +1858,7 @@ END
 		}
 		$currentbrowser = $_SERVER["HTTP_USER_AGENT"];
 		foreach ( $wgBrowserBlackList as $browser ) {
-			if ( preg_match($browser, $currentbrowser) ) {
+			if( preg_match($browser, $currentbrowser) ) {
 				return false;
 			}
 		}
@@ -2056,7 +2051,7 @@ END
 
 		$checkboxes['minor'] = '';
 		$minorLabel = wfMsgExt('minoredit', array('parseinline'));
-		if ( $wgUser->isAllowed('minoredit') ) {
+		if( $wgUser->isAllowed('minoredit') ) {
 			$attribs = array(
 				'tabindex'  => ++$tabindex,
 				'accesskey' => wfMsg( 'accesskey-minoredit' ),
@@ -2069,7 +2064,7 @@ END
 
 		$watchLabel = wfMsgExt('watchthis', array('parseinline'));
 		$checkboxes['watch'] = '';
-		if ( $wgUser->isLoggedIn() ) {
+		if( $wgUser->isLoggedIn() ) {
 			$attribs = array(
 				'tabindex'  => ++$tabindex,
 				'accesskey' => wfMsg( 'accesskey-watch' ),
@@ -2107,7 +2102,7 @@ END
 		$buttons['save'] = Xml::element('input', $temp, '');
 
 		++$tabindex; // use the same for preview and live preview
-		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
+		if( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
 			$temp = array(
 				'id'        => 'wpPreview',
 				'name'      => 'wpPreview',
@@ -2205,7 +2200,7 @@ END
 		$newtext = $this->mArticle->preSaveTransform( $newtext );
 		$oldtitle = wfMsgExt( 'currentrev', array('parseinline') );
 		$newtitle = wfMsgExt( 'yourtext', array('parseinline') );
-		if ( $oldtext !== false  || $newtext != '' ) {
+		if( $oldtext !== false  || $newtext != '' ) {
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $oldtext, $newtext );
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
@@ -2319,7 +2314,7 @@ END
 				// Do some sanity checks. These aren't needed for reversability,
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
-				if ((substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6)) {
+				if( (substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6) ) {
 					$codepoint = hexdec($hexstring);
 					$result .= codepointToUtf8( $codepoint );
 				} else {
@@ -2436,7 +2431,7 @@ END
 	}
 	
 	function getBaseRevision() {
-		if ($this->mBaseRevision == false) {
+		if( $this->mBaseRevision == false ) {
 			$db = wfGetDB( DB_MASTER );
 			$baseRevision = Revision::loadFromTimestamp(
 				$db, $this->mTitle, $this->edittime );
