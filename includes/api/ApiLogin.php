@@ -113,7 +113,9 @@ class ApiLogin extends ApiBase {
 				$result['details'] = 'Your IP address is blocked from account creation';
 				break;
 			case LoginForm :: THROTTLED :
+				global $wgPasswordAttemptThrottle;
 				$result['result'] = 'Throttled';
+				$result['wait'] = $wgPasswordAttemptThrottle['seconds'];
 				break;
 			default :
 				ApiBase :: dieDebug(__METHOD__, "Unhandled case value: {$authRes}");
