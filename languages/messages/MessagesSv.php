@@ -1509,7 +1509,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsrättaren',
 
-'brokenredirects'        => 'Dåliga omdirigeringar',
+'brokenredirects'        => 'Trasiga omdirigeringar',
 'brokenredirectstext'    => 'Följande länkar omdirigerar till sidor som inte existerar.',
 'brokenredirects-edit'   => '(redigera)',
 'brokenredirects-delete' => '(radera)',
@@ -1674,7 +1674,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchnochange'        => 'Inga av dina bevakade sidor har ändrats inom den visade tidsperioden.',
 'watchlist-details'    => '$1 {{PLURAL:$1|sida bevakad|sidor bevakade}} (utöver diskussionssidor).',
 'wlheader-enotif'      => '* Bekräftelse per e-post är aktiverad.',
-'wlheader-showupdated' => "* Sidor som ändrats sedan ditt senaste besök visas i '''fet stil.'''",
+'wlheader-showupdated' => "* Sidor som har ändrats sedan ditt senaste besök visas i '''fetstil.'''",
 'watchmethod-recent'   => 'letar efter bevakade sidor bland senaste ändringar',
 'watchmethod-list'     => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains'    => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
@@ -2254,7 +2254,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'mw_math_simple' => 'HTML om mycket enkel, annars PNG',
 'mw_math_html'   => 'HTML om möjligt, annars PNG',
 'mw_math_source' => 'Låt vara TeX (för textbaserade webbläsare)',
-'mw_math_modern' => 'Har du modern webbläsare, använd detta alternativ',
+'mw_math_modern' => 'Rekommenderat för modern webbläsare',
 'mw_math_mathml' => 'MathML om möjligt (experimentellt)',
 
 # Patrolling

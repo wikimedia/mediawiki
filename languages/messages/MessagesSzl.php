@@ -45,7 +45,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Ńy chowej adresa mojygo e-brifa w powjadomjyńach',
 'tog-shownumberswatching'     => 'Pokož wjela užytkownikůw dowo pozůr',
 'tog-fancysig'                => 'Šrajbowańy bez automatyčnego linka',
-'tog-externaleditor'          => 'Domyślńy užywej zewnyntřny edytor',
+'tog-externaleditor'          => 'Domyślńy užywej zewnyntřnygo edytora (ino lo ekspertůw, wymogo ekstra štalowań we Twojym systymje)',
 'tog-externaldiff'            => 'Domyślńy užywej zewnyntřny program do filowańo w pomjyńańa',
 'tog-showjumplinks'           => 'Zauůnč cajchnůndzki "přyńdź do"',
 'tog-uselivepreview'          => 'Užywej dynamičnego podglůndu (JavaScript) (experymentalny)',
@@ -315,12 +315,11 @@ MySQL zguośiu feler "$3: $4"',
 - ńy do śe wćepywać nowych artikli ńi sprowjać juž wćepanych. Powodym
 sům prawdopodańy čynnośći admińistracyjne. Po jejich zakůńčeńu pouno funkcjonalność bazy bydźe přywrůcono.
 Administrator, kery zablokowou baza, podou takie wyjaśńyńy:<br /> $1',
-'missing-article'      => 'W baźe danych ńy do śe znejść treśći zajty „$1” $2.
+'missing-article'      => 'We baźe danych ńy do śe znejść treśći zajty „$1” $2.
 
-Normalńy je to wywouane uodwouańem do nieaktualnego linku prowadzącego do różnicy pomiędzy dwoma wersjami strony lub do wersji z historii usuniętej strony.
+Normalńy je to wywouane uodwouańem do ńyaktualnego linka jery prowadźi do růžńicy mjyndzy půmjyńańami abo do wyćepanyj wersyje ze historyje sprowjyń zajty.
 
-Jeśli tak nie jest, możliwe, że problem został wywołany przez błąd w oprogramowaniu.
-Można zgłosić ten fakt administratorowi, podając adres URL.',
+Jeli tak ńy je, moguo śe trefić coś znod feler we uoprůgramowańu MediaWiki. Kej by tak bůuo, dej uo tym znać [[Special:ListUsers/sysop|admińistratorowi]] a podej mu adres URL.',
 'missingarticle-rev'   => '(wersyjo#: $1)',
 'missingarticle-diff'  => '(dyferencyjo: $1, $2)',
 'readonly_lag'         => 'Baza danych zostoua automatyčńy zawarto na čas potřebny na synchrońizacyjo zmjan mjyndzy serwerym guůwnym a serwerami postředńičůncymi.',

@@ -640,13 +640,13 @@ Isto pote occurrer quando tu usa un servicio problematic de ''proxy'' anonyme a 
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (commento)',
 'editconflict'                     => 'Conflicto de modification: $1',
-'explainconflict'                  => "Alcuno ha modificate iste pagina post que tu
+'explainconflict'                  => "Alicuno ha modificate iste pagina post que tu
 ha comenciate a modificar lo.
 Le area de texto superior contine le texto del pagina como illo existe actualmente.
 Tu modificationes se monstra in le area de texto inferior.
 Tu debera incorporar tu modificationes in le texto existente.
 '''Solmente''' le texto del area superior essera publicate
-quando tu cliccara super \"Publicar articulo\".",
+quando tu clicca super \"Publicar articulo\".",
 'yourtext'                         => 'Tu texto',
 'storedversion'                    => 'Version immagazinate',
 'nonunicodebrowser'                => '<strong>ATTENTION: Tu utilisa un navigator non compatibile con le characteres Unicode.
@@ -829,7 +829,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergehistory-comment'             => 'Fusionava [[:$1]] in [[:$2]]: $3',
 
 # Merge log
-'mergelog'           => 'Fusionar registro',
+'mergelog'           => 'Registro de fusiones',
 'pagemerge-logentry' => 'fusionava [[$1]] in [[$2]] (revisiones usque a $3)',
 'revertmerge'        => 'Reverter fusion',
 'mergelogpagetext'   => 'Infra es un lista del fusiones le plus recente de un historia de pagina in un altere.',
@@ -1052,7 +1052,7 @@ per favor vide math/README pro configurar lo.",
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
 'rightslogtext'  => 'Isto es un registro de cambios in derectos de usator.',
-'rightslogentry' => 'cambiava le membrato de gruppos del usator $1 de $2 a $3',
+'rightslogentry' => 'cambiava le gruppos del quales $1 es membro de $2 a $3',
 'rightsnone'     => '(nulle)',
 
 # Recent changes
@@ -1494,7 +1494,7 @@ como le adresse del expeditor del e-mail, a fin que le destinatario
 pote responder te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
-'noemailtitle'    => 'Necun adresse de e-mail',
+'noemailtitle'    => 'Nulle adresse de e-mail',
 'noemailtext'     => 'Iste usator non ha specificate un adresse de e-mail valide,
 o ha optate pro non reciper e-mail de altere usatores.',
 'emailfrom'       => 'Expeditor:',

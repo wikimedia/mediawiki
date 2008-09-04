@@ -701,9 +701,90 @@ Legend: (abhi) = abhi ke version se farka,
 'history-feed-title'          => 'Badlao ke itihass',
 'history-feed-description'    => 'Ii panaa ke wiki me badlao ke itihaas',
 'history-feed-item-nocomment' => '$1 pe $2', # user at time
+'history-feed-empty'          => 'Aap jon panna mangta hai uu abhi tak banaa nai hai.
+Saait iske wiki me se mitae dewa gae hoi, nai to iske naam badal dewa gae hoi.
+Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 
 # Revision deletion
-'rev-delundel' => 'dekhao/lukao',
+'rev-deleted-comment'         => '(comment ke hatae dewa gais hai)',
+'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
+'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
+'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
+Panna ke ii badla ke public archives me se hatae dewa gais hai.
+Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log me saait hoi.</div>',
+'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
+Panna ke ii badla ke public archives me se hatae dewa gais hai.
+Aap {{SITENAME}} me ek administrator hoe ke kaara iske dekhe sakta hai;
+Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log me saait hoi.</div>',
+'rev-delundel'                => 'dekhao/lukao',
+'revisiondelete'              => 'Badlao ke mitao/nai mitao',
+'revdelete-nooldid-title'     => 'Target revision jon ki valid nai hai',
+'revdelete-nooldid-text'      => 'Aap chaahe target revision(s) ke specify nai karaa hai, ii function ke perform kare ke khatir, specified revision haiye nai, nai to aap abhi ke badlao ke lukae ke kosis karta hai.',
+'revdelete-selected'          => '{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:',
+'logdelete-selected'          => '{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:',
+'revdelete-text'              => 'Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.
+Duusra admins {{SITENAME}} me, lukawa gais content ke khole saki aur iske mitae bhi saki yahi interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.',
+'revdelete-legend'            => 'Dekhe waala rukawat set karo',
+'revdelete-hide-text'         => 'Badlawa gais text ke lukao',
+'revdelete-hide-name'         => 'Kaam aur manjil ke lukao',
+'revdelete-hide-comment'      => 'Badlao ke baare me comment ke lukao',
+'revdelete-hide-user'         => "Editor's username/IP ke lukao",
+'revdelete-hide-restricted'   => 'Ii rukawat ke Sysops pe lagae ke interface ke lock karo.',
+'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
+'revdelete-hide-image'        => 'File content ke lukao',
+'revdelete-unsuppress'        => 'Restored revisions me se rukawat hatao',
+'revdelete-log'               => 'Comment ke log karo:',
+'revdelete-submit'            => 'Chuna gae badlao ke apply karo',
+'revdelete-logentry'          => 'badla gae revision visibility of [[$1]]',
+'logdelete-logentry'          => 'badla gais event visibility of [[$1]]',
+'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
+'logdelete-success'           => "'''Log dekhe khatir taiyaar hai.'''",
+'revdel-restore'              => 'Visibility ke badlo',
+'pagehist'                    => 'Panna ke itihaas',
+'deletedhist'                 => 'Mitawa gae itihass',
+'revdelete-content'           => 'suchi',
+'revdelete-summary'           => 'summary ke badlo',
+'revdelete-uname'             => 'username',
+'revdelete-restricted'        => 'sysops pe llabu restrictions',
+'revdelete-unrestricted'      => 'sysops se hatawa gae rukawat',
+'revdelete-hid'               => '$1 lukaya',
+'revdelete-unhid'             => '$1 ke fir se dekhaya',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|badlao|badlao}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|ghatna|ghatna}}',
+
+# Suppression log
+'suppressionlog'     => 'Dabae waala log',
+'suppressionlogtext' => 'Niche ke suchi me sysops se lukawa gais deletions au rukawat hai.
+Dekho [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
+
+# History merging
+'mergehistory'                     => 'Panna ke itihass ke jorro',
+'mergehistory-header'              => 'Ii panna aap ke ek panna ke balao ke itihaas ke duusra panna ke badlao ke itihaas se jorre sake hai.
+Make sure that this change will maintain historical page continuity.',
+'mergehistory-box'                 => 'Dui panna ke badlao ke itihaas ke jorro:',
+'mergehistory-from'                => 'Source panna:',
+'mergehistory-into'                => 'Destination panna:',
+'mergehistory-list'                => 'Mergeable badalao ke itihaas',
+'mergehistory-merge'               => 'Niche likha [[:$1]] ke badlao ke [[:$2]] me jorra jaae sake hai.
+Use the radio button column to merge in only the revisions created at and before the specified time.
+Note that using the navigation links will reset this column.',
+'mergehistory-go'                  => 'Jorre jaae sake badlao ke dekhao',
+'mergehistory-submit'              => 'Badlao ke jorro',
+'mergehistory-empty'               => 'Koi badlao ke jorraa nai jaae sake hai.',
+'mergehistory-success'             => '[[:$1]]ke $3 {{PLURAL:$3|badlao|badlao}} ke safalta se [[:$2]] me jorr dewa gais hai.',
+'mergehistory-fail'                => 'Itihas ke nai jorre paya hai, please recheck the page and time parameters.',
+'mergehistory-no-source'           => 'Source panna $1 nai hai.',
+'mergehistory-no-destination'      => 'Destination panna $1 nai hai.',
+'mergehistory-invalid-source'      => 'Source panna must be a valid title.',
+'mergehistory-invalid-destination' => 'Destination panna must be a valid title.',
+'mergehistory-autocomment'         => '[[:$1]] [[:$2]] me jorr dewa gais hai',
+'mergehistory-comment'             => '[[:$1]] [[:$2]] me jorr dewa gais hai: $3',
+
+# Merge log
+'mergelog'           => 'Log ke jorro',
+'pagemerge-logentry' => '[[$1]] [[$2]] me jorr dewa gais hai ($3 talak ke badlao)',
+'revertmerge'        => 'Jorr ke ulta karo',
+'mergelogpagetext'   => 'Niche ke suchi me nawaa itihass ke jorr ke suchi hai',
 
 # Diffs
 'history-title'           => ' "$1" ke sansodhan ke itihaas',
@@ -714,11 +795,12 @@ Legend: (abhi) = abhi ke version se farka,
 'diff-multi'              => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} nai dekhawa jae hai.)',
 
 # Search results
-'noexactmatch' => "'''\"\$1\" naam ke koi panna nai hai.''' Aap saktaa hai [[:\$1|ii panna ke banae]].",
-'prevn'        => 'pahile waala $1',
-'nextn'        => 'aage waala $1',
-'viewprevnext' => 'Dekho ($1) ($2) ($3)',
-'powersearch'  => 'Visesh khoj',
+'searchresults' => 'Khij ke results',
+'noexactmatch'  => "'''\"\$1\" naam ke koi panna nai hai.''' Aap saktaa hai [[:\$1|ii panna ke banae]].",
+'prevn'         => 'pahile waala $1',
+'nextn'         => 'aage waala $1',
+'viewprevnext'  => 'Dekho ($1) ($2) ($3)',
+'powersearch'   => 'Visesh khoj',
 
 # Preferences page
 'preferences'   => 'Pasand',
@@ -949,7 +1031,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 
 # What links here
 'whatlinkshere'       => 'Hian konchi link hoe',
-'whatlinkshere-title' => '$1 se jurra panna',
+'whatlinkshere-title' => 'Panna jon ki $1 se jurre hai',
 'linklistsub'         => '(Links ke list)',
 'linkshere'           => "Niche waala panna '''[[:$1]]''' se jorre hai:",
 'nolinkshere'         => "Koi panna '''[[:$1]]''' ke nai jorre hai.",

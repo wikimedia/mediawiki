@@ -1078,10 +1078,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'showingresults'            => "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje <b>$2</b>.",
 'showingresultsnum'         => "Lent '''{{PLURAL:$3|egy|$3}}''' találat látható, az eleje '''$2'''.",
 'showingresultstotal'       => "{{PLURAL:$3|Találat: '''$1''' (összesen '''$3''')|Találatok: '''$1 – $2''' (összesen '''$3''')}}",
-'nonefound'                 => "'''Megjegyzés''': A sikertelen keresések
-gyakori oka olyan szavak keresése (pl. \"have\" és \"from\"), amiket a
-rendszer nem indexel, vagy több független keresési kifejezés megadása
-(csak minden megadott szót tartalmazó találatok jelennek meg az eredményben).",
+'nonefound'                 => "'''Megjegyzés''': Alapértelmezésben a keresés nem terjed ki minden névtérre. Ha az összes névtérben keresni akarsz, írd az ''all:'' karaktersorozatot a keresett kifejezés elé.",
 'powersearch'               => 'Részletes keresés',
 'powersearch-legend'        => 'Részletes keresés',
 'powersearch-ns'            => 'Névterek:',

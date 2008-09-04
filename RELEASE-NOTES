@@ -26,6 +26,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   performance for installations without memcached.
 * (bug 13770) Fixed DOM module detection for installations with both dom 
   and domxml.
+* Localisation updates, Achinese (ace) added.
 
 == Changes since 1.13.0rc2 ==
 

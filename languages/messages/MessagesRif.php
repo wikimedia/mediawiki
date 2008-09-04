@@ -116,8 +116,8 @@ $messages = array(
 'mainpage-description' => 'Tasna Tamzwarut',
 'portal'               => 'Tawwart n timetti',
 'portal-url'           => 'Project:tawwart n timetti',
-'privacy'              => 'Tasertit n tusligt',
-'privacypage'          => 'Project:Tasertit n tusligt',
+'privacy'              => 'Tasertit taslgant',
+'privacypage'          => 'Project:Tasertit taslgant',
 
 'retrievedfrom'       => 'itwar-d zi "$1"',
 'youhavenewmessages'  => 'ɣak $1 ($2).',
@@ -233,7 +233,7 @@ Maynzi ''$2''.
 * Abluki ig itwaxsen d: $7
 
 Tzemred ad temsawaded ag $1 niɣ [[{{MediaWiki:Grouppage-sysop}}|administrator]] nniḍn bac ad tsiwled x ubluki a.
-war tzemred ca ad ad tesxedmed 'e-mail this user' ɣar mala ca n e-mail illa ɣark di [[Special:Preferences|iɣewwaren n umiḍan]] u war twabluki ca usexdem ines.
+war tzemred ca ad ad tesxedmed 'e-mail this user' ɣar mala ca n e-mail illa ɣark di [[Special:Preferences|Isemyifiyen n umiḍan]] u war twabluki ca usexdem ines.
 Tansa IP inecc n ruxa d $3, u ID icecc iteblukan d #$5.
 maṛṛa manaya deg ujenna eggit di tabrat i ɣ-ad tsekked.",
 'newarticle'             => '(Amaynu)',
@@ -302,8 +302,8 @@ tzemred ad [[:\$1|tarnid cek]].",
 'powersearch'  => 'Tarezzut cwa-cway',
 
 # Preferences page
-'preferences'       => 'iɣewwaren inu',
-'mypreferences'     => 'iɣewwaren inu',
+'preferences'       => 'Isemyifiyen',
+'mypreferences'     => 'Isemyifiyen inu',
 'retypenew'         => 'Ɛawd arri Taguri n wadaf tamaynut:',
 'searchresultshead' => 'Tarzzut',
 
@@ -623,7 +623,7 @@ snaqlitent s ufus.'''",
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tasna inu',
 'tooltip-pt-mytalk'               => 'Tasna usiwl inu',
-'tooltip-pt-preferences'          => 'iɣewwaren inu',
+'tooltip-pt-preferences'          => 'Isemyifiyen inu',
 'tooltip-pt-watchlist'            => 'Tabdart n Tasniwin umi txmamd bac ad-ten teẓṛegd',
 'tooltip-pt-mycontris'            => 'Tabdart n tiggawin inu',
 'tooltip-pt-login'                => 'Neqqar-ac adeff, macca war illi bessif .',

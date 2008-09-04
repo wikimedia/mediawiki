@@ -322,7 +322,7 @@ $messages = array(
 'editsection'             => 'cambie',
 'editold'                 => 'cambie',
 'editsectionhint'         => 'cambie la sezion $1',
-'toc'                     => 'Indis',
+'toc'                     => 'Tabele dai contignûts',
 'showtoc'                 => 'mostre',
 'hidetoc'                 => 'plate',
 'thisisdeleted'           => 'Vuelistu cjalâ o ripristinâ $1?',
@@ -798,7 +798,7 @@ La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e co
 'mostcategories'          => 'Vôs cul maiôr numar di categoriis',
 'mostimages'              => 'Figuris a cui pontin il maiôr numar di leams',
 'mostrevisions'           => 'Vôs cul maiôr numar di revisions',
-'prefixindex'             => 'Indis des vôs par letare iniziâl',
+'prefixindex'             => 'Tabele des vôs par letare iniziâl',
 'shortpages'              => 'Pagjinis curtis',
 'longpages'               => 'Pagjinis lungjis',
 'deadendpages'            => 'Pagjinis cence usite',
@@ -985,7 +985,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 
 # What links here
 'whatlinkshere'           => 'Leams a cheste vôs',
-'whatlinkshere-title'     => 'Pagjinis che a son leadis a $1',
+'whatlinkshere-title'     => 'Pagjinis che a son leadis a "$1"',
 'whatlinkshere-page'      => 'Pagjine:',
 'linklistsub'             => '(Liste di leams)',
 'linkshere'               => "Lis pagjinis ca sot a son leadis a '''[[:$1]]''':",
@@ -1007,7 +1007,7 @@ Tu puedis cambiâ il nivel di protezion di cheste pagjine, ma chest nol varà ef
 'ipbreason'          => 'Reson dal bloc:',
 'ipbsubmit'          => 'Bloche chest utent',
 'ipboptions'         => '2 oris:2 hours,1 zornade:1 day,3 zornadis:3 days,1 setemane:1 week,2 setemanis:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,infinît:infinite', # display1:time1,display2:time2,...
-'ipblocklist'        => 'Liste dai utents e des direzions IP blocâts',
+'ipblocklist'        => 'Utents e direzions IP blocadis',
 'blocklink'          => 'bloche',
 'unblocklink'        => 'sbloche',
 'contribslink'       => 'contribûts',
