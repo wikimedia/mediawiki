@@ -5,20 +5,9 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.13.1 ==
 
-September XX, 2008
+September 4, 2008
 
 This is a bugfix release of the Summer 2008 snapshot release of MediaWiki.
-
-Changes in this release:
-
-* (bug 15460) Fixed intermittent deadlock errors involving objectcache
-  table queries. Use a separate database connection for the objectcache table
-  to avoid long-lasting locks on that table.
-
-== MediaWiki 1.13.0 ==
-
-This is the first stable release of the Summer 2008 quarterly snapshot release 
-of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -30,6 +19,13 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.13.0
+
+* (bug 15460) Fixed intermittent deadlock errors and poor concurrent 
+  performance for installations without memcached.
+* (bug 13770) Fixed DOM module detection for installations with both dom 
+  and domxml.
 
 == Changes since 1.13.0rc2 ==
 
