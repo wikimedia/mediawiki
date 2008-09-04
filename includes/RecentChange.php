@@ -249,12 +249,56 @@ class RecentChange
 	 * Mark a given change as patrolled
 	 *
 	 * @param mixed $change RecentChange or corresponding rc_id
-	 * @returns integer number of affected rows
+	 * @return See doMarkPatrolled(), or null if $change is not an existing rc_id
 	 */
 	public static function markPatrolled( $change ) {
-		$rcid = $change instanceof RecentChange
-			? $change->mAttribs['rc_id']
-			: $change;
+		$change = $change instanceof RecentChange
+			? $change
+			: RecentChange::newFromId($change);
+		if(!$change instanceof RecentChange)
+			return null;
+		return $change->doMarkPatrolled();
+	}
+	
+	/**
+	 * Mark this RecentChange as patrolled
+	 *
+	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and 'markedaspatrollederror-noautopatrol' as errors
+	 * @return array of permissions errors, see Title::getUserPermissionsErrors()
+	 */
+	public function doMarkPatrolled() {
+		global $wgUser, $wgUseRCPatrol, $wgUseNPPatrol;
+		$errors = array();
+		// If recentchanges patrol is disabled, only new pages
+		// can be patrolled
+		if(!$wgUseRCPatrol && (!$wgUseNPPatrol || $this->getAttribute('rc_type') != RC_NEW))
+			$errors[] = array('rcpatroldisabled');
+		$errors = array_merge($errors, $this->getTitle()->getUserPermissionsErrors('patrol', $wgUser));
+		if(!wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)))
+			$errors[] = array('hookaborted');		
+		// Users without the 'autopatrol' right can't patrol their
+		// own revisions
+		if($wgUser->getName() == $this->getAttribute('rc_user_text') &&
+				!$wgUser->isAllowed('autopatrol'))
+			$errors[] = array('markedaspatrollederror-noautopatrol');
+		if(!empty($errors))
+			return $errors;
+
+		// If the change was patrolled already, do nothing
+		if($this->getAttribute('rc_patrolled'))
+			return array();
+		$this->reallyMarkPatrolled();
+		PatrolLog::record($this);
+		wfRunHooks('MarkPatrolledComplete',
+			array($this->getAttribute('rc_id'), &$wgUser, false));
+		return array();
+	}
+	
+	/**
+	 * Mark this RecentChange patrolled, without error checking
+	 * @return int Number of affected rows
+	 */
+	public function reallyMarkPatrolled() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update(
 			'recentchanges',
@@ -262,7 +306,7 @@ class RecentChange
 				'rc_patrolled' => 1
 			),
 			array(
-				'rc_id' => $rcid
+				'rc_id' => $this->getAttribute('rc_id')
 			),
 			__METHOD__
 		);

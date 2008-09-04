@@ -78,6 +78,7 @@ class ApiMain extends ApiBase {
 		'edit' => 'ApiEditPage',
 		'emailuser' => 'ApiEmailUser',
 		'watch' => 'ApiWatch',
+		'patrol' => 'ApiPatrol',
 	);
 
 	/**

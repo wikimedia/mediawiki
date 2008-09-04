@@ -159,6 +159,10 @@ abstract class ApiBase {
 		$data =& $this->getResult()->getData();
 		if(isset($data['warnings'][$this->getModuleName()]))
 		{
+			# Don't add duplicate warnings
+			$warn_regex = preg_quote($warning, '/');
+			if(preg_match("/{$warn_regex}(\\n|$)/", $data['warnings'][$this->getModuleName()]['*']))
+				return;
 			$warning = "{$data['warnings'][$this->getModuleName()]['*']}\n$warning";
 			unset($data['warnings'][$this->getModuleName()]);
 		}
@@ -654,8 +658,8 @@ abstract class ApiBase {
 		'blockedemailuser' => array('code' => 'blockedfrommail', 'info' => "You have been blocked from sending e-mail"),
 		'notarget' => array('code' => 'notarget', 'info' => "You have not specified a valid target for this action"),
 		'noemail' => array('code' => 'noemail', 'info' => "The user has not specified a valid e-mail address, or has chosen not to receive e-mail from other users"),
-		
-
+		'rcpatroldisabled' => array('code' => 'patroldisabled', 'info' => "Patrolling is disabled on this wiki"),
+		'markedaspatrollederror-noautopatrol' => array('code' => 'noautopatrol', 'info' => "You don't have permission to patrol your own changes"),
 
 		// API-specific messages
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
@@ -675,6 +679,7 @@ abstract class ApiBase {
 		'permdenied-undelete' => array('code' => 'permissiondenied', 'info' => "You don't have permission to restore deleted revisions"),
 		'createonly-exists' => array('code' => 'articleexists', 'info' => "The article you tried to create has been created already"),
 		'nocreate-missing' => array('code' => 'missingtitle', 'info' => "The article you tried to edit doesn't exist"),
+		'nosuchrcid' => array('code' => 'nosuchrcid', 'info' => "There is no change with rcid ``$1''"),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),
