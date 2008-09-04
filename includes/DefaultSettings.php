@@ -1636,7 +1636,7 @@ $wgJobClasses = array(
  * Expensive Querypages are already updated.
  */
 $wgSpecialPageCacheUpdates = array(
-	'Statistics' => 'SiteStatsUpdate::cacheUpdate'
+	'Statistics' => array('SiteStatsUpdate','cacheUpdate')
 );
 
 /**
