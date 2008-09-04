@@ -65,6 +65,7 @@ class ApiMain extends ApiBase {
 		'feedwatchlist' => 'ApiFeedWatchlist',
 		'help' => 'ApiHelp',
 		'paraminfo' => 'ApiParamInfo',
+		'purge' => 'ApiPurge',
 	);
 
 	private static $WriteModules = array (

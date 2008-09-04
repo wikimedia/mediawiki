@@ -240,6 +240,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiParse' => 'includes/api/ApiParse.php',
 	'ApiPatrol' => 'includes/api/ApiPatrol.php',
 	'ApiProtect' => 'includes/api/ApiProtect.php',
+	'ApiPurge' => 'includes/api/ApiPurge.php',
 	'ApiQuery' => 'includes/api/ApiQuery.php',
 	'ApiQueryAllCategories' => 'includes/api/ApiQueryAllCategories.php',
 	'ApiQueryAllimages' => 'includes/api/ApiQueryAllimages.php',
