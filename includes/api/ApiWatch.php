@@ -94,6 +94,6 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiLogout.php 35294 2008-05-24 20:44:49Z btongminh $';
+		return __CLASS__ . ': $Id$';
 	}
 }
