@@ -2271,13 +2271,13 @@ class Title {
 	}
 
 	/**
-	 * Set the fragment for this title
-	 * This is kind of bad, since except for this rarely-used function, Title objects
-	 * are immutable. The reason this is here is because it's better than setting the
-	 * members directly, which is what Linker::formatComment was doing previously.
+	 * Set the fragment for this title. Removes the first character from the
+	 * specified fragment before setting, so it assumes you're passing it with 
+	 * an initial "#".
+	 *
+	 * @deprecated Use Title::makeTitle() with fragment parameter.
 	 *
 	 * @param $fragment \type{\string} text
-	 * @todo clarify whether access is supposed to be public (was marked as "kind of public")
 	 */
 	public function setFragment( $fragment ) {
 		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
