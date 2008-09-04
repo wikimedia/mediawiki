@@ -2827,9 +2827,9 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 
 # External image whitelist
 'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle<pre>
-#Indiquer les codes d’expression régulières (juste la partire indiquée entre les //) ci-dessous
+#Indiquer les codes d’expression régulières (juste la partie indiquée entre les //) ci-dessous
 #Ils correspondront avec les URLs des images (très liées) externes 
-#Ainsi, cette correspondance s'affichera comme des images, autrement un lien ne s'affichera uniquement vers l'image qui sera affichée
+#Ainsi, cette correspondance s'affichera comme des images, autrement seulement un lien vers l'image sera affiché
 #Les lignes commençant avec # seront considérées comme des commentaires
 
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",

@@ -852,8 +852,18 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'diff-with-final'         => '&#32;y $1 $2',
 'diff-width'              => 'ancho',
 'diff-height'             => 'alto',
+'diff-p'                  => "un '''párrafo'''",
+'diff-ul'                 => "una '''lista desordenada'''",
+'diff-ol'                 => "una '''lista ordenada'''",
+'diff-table'              => "una '''tabla'''",
+'diff-tr'                 => "una '''fila'''",
+'diff-td'                 => "una '''celda'''",
+'diff-form'               => "un '''formulario'''",
 'diff-img'                => "una '''imagen'''",
+'diff-a'                  => "un '''enlace'''",
+'diff-i'                  => "'''cursivas'''",
 'diff-big'                => "'''grande'''",
+'diff-tt'                 => "'''anchura fija'''",
 
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',

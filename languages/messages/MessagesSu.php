@@ -986,7 +986,9 @@ Pikeun némbongkeun atawa néang gambar-gambar nu pernah dimuat saméméhna, man
 
 Paké formulir di handap pikeun ngamuat koropak gambar anyar pikeun ilustrasi kaca anjeun. Na kalolobaan panyungsi, anjeun bakal manggihan tombol \"Sungsi/''Browse''...\", nu bakal nganteur ka dialog muka-koropak nu baku na sistim operasi anjeun. Milih hiji koropak bakal ngeusian ngaran koropakna kana rohangan téks gigireun tombol nu tadi. Anjeun ogé kudu nyontréng kotak nu nandakeun yén anjeun teu ngarumpak hak cipta batur ku dimuatna ieu koropak. Pencét tombol \"Muatkeun/''Upload''\" pikeun ngeréngsékeun muatan. Prosés ieu bisa lila mun anjeun migunakeun sambungan internét nu lambat.
 
-Format nu dianjurkeun nyéta JPEG pikeun gambar fotografik, PNG pikeun hasil ngagambar sarta gambar séjénna, sarta OGG pikeun sora. Pilih ngaran koropak nu déskriptif sangkan teu ngalieurkeun. Pikeun ngasupkeun gambarna na kaca séjén, pigunakeun tumbu dina wujud <b>[[Image:file.jpg]]</b> atawa <b>[[Image:file.ogg]]</b> pikeun sora.
+Format nu dianjurkeun nyéta JPEG pikeun gambar fotografik, PNG pikeun hasil ngagambar sarta gambar séjénna, sarta OGG pikeun sora. Pilih ngaran koropak nu déskriptif sangkan teu ngalieurkeun. Pikeun ngasupkeun gambarna na kaca séjén, pigunakeun tumbu dina wujud
+* '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:Gambar.jpg]]</nowiki></tt>''' pikeun gambar dina ukuran aslina
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' pikeun sora.
 
 Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anjeun mun maranéhna nganggap ieu saluyu jeung kapentingan proyék, sarta anjeun bisa waé dipeungpeuk ti ngamuat koropak mun anjeun ngaruksak/ngaganggu sistim.",
 'upload-permitted'            => 'Tipeu koropak nu diwidian: $1.',
@@ -1151,7 +1153,8 @@ Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{P
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue Antrian gawé] lobana '''\$7'''.",
 'userstatstext'          => "Aya '''$1''' [[Special:ListUsers|{{PLURAL:$1|pamaké|pamaké}}]] nu kadaptar.
-'''$2''' ($4) di antarana boga hak $5.",
+'''$2''' ($4) di antarana boga hak $5.
+Ayeuna {{PLURAL:$6|aya|aya}} kira-kira '''$6''' {{PLURAL:$6|pamaké|pamaké}} kadaptar anu aktip.",
 'statistics-mostpopular' => 'Kaca nu pangmindengna dibuka',
 
 'disambiguations'      => 'Kaca disambiguasi',

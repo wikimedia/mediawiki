@@ -17,6 +17,7 @@
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
+ * @author StefanB
  * @author Steinninn
  * @author לערי ריינהארט
  */
@@ -1080,7 +1081,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'diff-tt'                 => "'''fast bredd'''",
 'diff-sub'                => "'''nedsänkt'''",
 'diff-sup'                => "'''upphöjd'''",
-'diff-strike'             => "'''överstruken'''",
+'diff-strike'             => "'''genomstruken'''",
 
 # Search results
 'searchresults'             => 'Sökresultat',

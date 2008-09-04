@@ -5,6 +5,7 @@
  * @file
  *
  * @author Hendergassler
+ * @author J. 'mach' wust
  * @author MichaelFrey
  * @author Spacebirdy
  * @author לערי ריינהארט
@@ -141,6 +142,7 @@ $messages = array(
 'mypage'         => 'Minni Syte',
 'mytalk'         => 'mini Diskussionsyte',
 'anontalk'       => 'Diskussionssyste vo sellere IP',
+'navigation'     => 'Nawigation',
 'and'            => 'un',
 
 # Metadata in edit box
@@ -164,10 +166,12 @@ $messages = array(
 'edit'              => 'ändere',
 'create'            => 'Erstela',
 'editthispage'      => 'Syte bearbeite',
+'create-this-page'  => 'Dia Syt erstela',
 'delete'            => 'lösche',
 'deletethispage'    => 'Syte lösche',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versione}} widerherstelle',
 'protect'           => 'schütze',
+'protect_change'    => 'Schutz andara',
 'protectthispage'   => 'Artikel schütze',
 'unprotect'         => 'nümm schütze',
 'unprotectthispage' => 'Schutz ufhebe',
@@ -182,6 +186,7 @@ $messages = array(
 'views'             => 'Asecht',
 'toolbox'           => 'Wärkzügkäschtli',
 'userpage'          => 'Benutzersyte',
+'projectpage'       => 'Projaktsyt àzaïga',
 'imagepage'         => 'Bildsyte',
 'viewhelppage'      => 'Helf sah',
 'otherlanguages'    => 'Andere Schprôche',
@@ -191,6 +196,7 @@ $messages = array(
 'viewcount'         => 'Selli Syte isch {{PLURAL:$1|eimol|$1 Mol}} bsuecht worde.',
 'protectedpage'     => 'Gschützt Syte',
 'jumpto'            => 'Hops zue:',
+'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'Suech',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -228,6 +234,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
 'editsection'             => 'ändere',
 'editold'                 => 'Andara',
+'viewsourceold'           => 'Qualltext àzaïga',
 'editsectionhint'         => 'Abschnitt ändere: $1',
 'toc'                     => 'Inhaltsferzeichnis',
 'showtoc'                 => 'ufklappe',
@@ -236,6 +243,7 @@ $messages = array(
 'viewdeleted'             => '$1 onluege?',
 'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
 'site-rss-feed'           => "RSS-fiad'r fer $1",
+'site-atom-feed'          => 'Atom-Feed für $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Syt',
@@ -246,6 +254,7 @@ $messages = array(
 'nstab-mediawiki' => 'Nochricht',
 'nstab-template'  => 'Vorlag',
 'nstab-help'      => 'Hilf',
+'nstab-category'  => 'Kategorie',
 
 # Main script and global functions
 'nosuchaction'      => 'Di Aktion gibts nit',
@@ -312,6 +321,7 @@ Vergis nid, dyni Ystelligen aazpasse.',
 'externaldberror'            => 'Entwedr s ligt ä Fähler bi dr extern Authentifizierung vor, odr du derfsch din externs Benutzerkonto nit aktualisiere.',
 'loginproblem'               => "'''S het ä Problem mit dinre Onmeldung gäbe.'''<br />Bitte vosuechs grad nomal!",
 'login'                      => 'Aamälde',
+'nav-login-createaccount'    => 'Amälde/Regischtriere',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde',
 'logout'                     => 'Abmälde',
@@ -380,20 +390,25 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'italic_sample'   => 'kursiv gschribe',
 'italic_tip'      => 'Kursiv gschribe',
 'link_sample'     => 'Stichwort',
+'link_tip'        => 'Interne Link',
 'extlink_sample'  => 'http://www.example.com Linktekscht',
 'extlink_tip'     => 'Externer Link (http:// beachte)',
 'headline_sample' => 'Abschnitts-Überschrift',
+'headline_tip'    => 'Überschrift Äbeni 2',
 'math_sample'     => 'Formel do yfüge',
 'math_tip'        => 'Mathematisch Formel (LaTeX)',
 'nowiki_sample'   => 'Was da inne staht wird nid formatiert',
+'nowiki_tip'      => 'Wiki-Formatierige ignoriere',
 'image_sample'    => 'Byschpil.jpg',
 'image_tip'       => 'Bildvoweis',
 'media_sample'    => 'Byschpil.mp3',
 'media_tip'       => 'Mediedateivoweis',
+'sig_tip'         => 'Dyni Signatur mit Zytagab',
 'hr_tip'          => 'Horizontal Linie (sparsom vowende)',
 
 # Edit pages
 'summary'                  => 'Zämefassig',
+'subject'                  => 'Beträff',
 'minoredit'                => 'Numen es birebitzeli gänderet',
 'watchthis'                => 'Dä Artikel beobachte',
 'savearticle'              => 'Syte spychere',
@@ -412,9 +427,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 {{MediaWiki:Newarticletext/{{NAMESPACE}}}}
 </div>',
 'anontalkpagetext'         => "----''Sell isch e Diskussionssyte vome anonyme Benutzer wo chei Zuegang aaglegt het odr wo ihn nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche um ihn odr si z'identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un 's Gfuehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, denn [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] go in Zuekunft Verwirrige mit andere anonyme Benutzer z'vermeide.''",
-'noarticletext'            => '<div id="noarticletext">
-{{MediaWiki:Noarticletext/{{NAMESPACE}}}}
-</div>',
+'noarticletext'            => "Uf dere Syte het's no kei Tekscht. Du chasch uf anderne Syte [[Special:Search/{{PAGENAME}}|dä Ytrag sueche]] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite].",
 'clearyourcache'           => "'''Hywys:''' Nôch dyner Änderig muess no der Browser-Cache gleert wärde!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaste-R'' (oder ''Umschalttaste'' drückt halte und uf’s ''Neu-Laden''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
 'usercsspreview'           => "== Vorschau ihres Benutzer-CSS. ==
 '''Beachten Sie:''' Nach dem Speichern müssen Sie ihrem Browser sagen, die neue Version zu laden: '''Mozilla:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
@@ -435,6 +448,9 @@ We du «Syte spychere» drücksch, de wird '''nume''' der Inhalt vom obere Teksc
 'editingold'               => '<strong>Obacht: Du bisch en alti Version vo däm Artikel am Bearbeite.
 Alli nöiere Versione wärden überschribe, we du uf «Syte spychere» drücksch.</strong>',
 'yourdiff'                 => 'Untrschied',
+'copyrightwarning'         => "<strong>Bitte <big>kopier kener Internetsyte</big>, wo nid dyner eigete sy, bruuch <big>kener urhäberrächtlech gschützte Wärch</big> ohni Erloubnis vor Copyright-Inhaberschaft!</strong><br />
+Hiemit gisch du zue, das du dä Tekscht <strong>sälber gschribe</strong> hesch, das der Tekscht Allgmeinguet (<strong>public domain</strong>) isch, oder das der <strong>Copyright-Inhaberschaft</strong> iri <strong>Zuestimmig</strong> het 'gä. Falls dä Tekscht scho nöumen anders isch veröffentlecht worde, de schryb das bitte uf d Diskussionssyte.
+<i>Bis dir bewusst, dass alli {{SITENAME}}-Byträg outomatisch under der „$2“ stöh (für Details vgl. $1). We du nid wosch, das anderi dy Bytrag chöu veränderen u wyterverbreite, de drück nid uf „Syte spychere“.</i>",
 'copyrightwarning2'        => 'Dängge Si dra, dass alli Änderige {{GRAMMAR:dativ {{SITENAME}}}} vo andere Benutzer wiedr gänderet odr glöscht wärde chönne. Wenn Si nit wänn, dass ander Lüt an Ihrem tekscht ummedoktere denn schicke Si ihn jetz nit ab.<br />
 Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Quälle kopiert hen, wo Public Domain odr sunscht frei isch (lueg $1 für Details).
 <strong>SETZE SI DO OHNI ERLAUBNIS CHEINI URHEBERRÄCHTLICH GSCHÜTZTI WÄRK INE!</strong>',
@@ -442,6 +458,7 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'protectedpagewarning'     => '<strong>WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.</strong>',
 'semiprotectedpagewarning' => "'''''Halbsperrung''': Diese Seite kann von angemeldeten Benutzern bearbeitet werden. Für nicht angemeldete oder gerade eben erst angemeldete Benutzer ist der Schreibzugang gesperrt.''",
 'templatesused'            => 'Selli Vorlage wärde in sellem Artikel bruucht:',
+'template-protected'       => '(schrybgschützt)',
 'template-semiprotected'   => '(schrybgschützt für unaagmoldeni un neui Benutzer)',
 'edittools'                => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
 
@@ -462,21 +479,26 @@ Erklärig: (aktuell) = Underschid zu jetz,
 
 # Diffs
 'difference'              => '(Unterschide zwüsche Versione)',
+'lineno'                  => 'Zyle $1:',
 'compareselectedversions' => 'Usgwählti Versione verglyche',
+'editundo'                => 'rückgängig',
 
 # Search results
 'searchresults'         => 'Suech-Ergäbnis',
 'searchresulttext'      => 'Für wiiteri Informatione zuem Sueche uff {{SITENAME}} chönne Si mol uff [[{{MediaWiki:Helppage}}|{{int:help}}]] luege.',
 'searchsubtitle'        => 'Für d Suechaafrag «[[:$1]]»',
 'searchsubtitleinvalid' => 'Für d Suechaafrag «$1»',
+'noexactmatch'          => "'''Es git kei Syte mit em Tiel „$1“.'''
+Du chasch die [[:$1|Syte nöu schrybe]].",
 'prevn'                 => 'vorderi $1',
 'nextn'                 => 'nächschti $1',
 'viewprevnext'          => '($1) ($2) aazeige; ($3) uf ds Mal',
-'powersearch'           => 'Suechi',
+'powersearch'           => 'Erwytereti Suechi',
 'searchdisabled'        => '<p>Die Volltextsuche wurde wegen Überlastung temporär deaktiviert. Derweil können Sie entweder folgende Google- oder Yahoo-Suche verwenden, die allerdings nicht den aktuellen Stand widerspiegeln.</p>',
 
 # Preferences page
 'preferences'        => 'Iistellige',
+'mypreferences'      => 'Ystellige',
 'prefsnologin'       => 'Nid aagmäldet',
 'prefsnologintext'   => 'Du muesch [[Special:UserLogin|aagmäldet]] sy, für Benutzerystellige chönne z ändere',
 'prefsreset'         => 'Du hesch itz wider Standardystellige',
@@ -526,7 +548,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 # Recent changes
 'recentchanges'     => 'Letschti Änderige',
 'recentchangestext' => 'Uff sellere Syte chönne Si die letschte Änderige in sellem Wiki aaluege.',
-'rcnote'            => 'Anzeig: <b>$1</b> Änderige; <b>$2</b> Täg   (<b>N</b> = nöji Artikel; <b>K</b> = chlyni Änderig; <b><span style="color:#ff0000">!</span></b> = unprüeft)',
+'rcnote'            => "Azeigt {{PLURAL:\$1|wird '''1''' Änderig|wärde di letschte '''\$1''' Änderige}} {{PLURAL:\$2|vom letschte Tag|i de letschte '''\$2''' Täg}} (Stand: \$4, \$5)",
 'rcnotefrom'        => 'Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).',
 'rclistfrom'        => '<small>Nöji Änderige ab $1 aazeige (UTC)</small>',
 'rcshowhideminor'   => 'Chlynigkeite $1',
@@ -539,9 +561,16 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'hist'              => 'Versione',
 'hide'              => 'usblände',
 'show'              => 'yblände',
+'minoreditletter'   => 'C',
+'newpageletter'     => 'N',
+'boteditletter'     => 'B',
 
 # Recent changes linked
-'recentchangeslinked' => 'Verlinktes prüefe',
+'recentchangeslinked'          => 'Verlinktes prüefe',
+'recentchangeslinked-title'    => 'Änderigen a Sytene, wo „$1“ druf verlinkt',
+'recentchangeslinked-noresult' => 'Kener Änderigen a verlinkte Sytenen im usgwählte Zytruum.',
+'recentchangeslinked-summary'  => "Die Spezialsyte zeigt d Änderige vo allne Syte, wo ei vo dir bestimmti Syte druf verlinkt, bzw. vo allne Syte, wo zu eire vo dir bestimmte Kategorie ghöre.
+Sytene, wo zu dyre [[Special:Watchlist|Beobachtigslischte]] ghöre, erschyne '''fett'''.",
 
 # Upload
 'upload'            => 'Datei uffelade',
@@ -560,11 +589,19 @@ go direkt e Gleich uff d Datei z'mache.",
 'imagelist' => 'Lischte vo Bilder',
 
 # Image description page
-'imagelinks'       => 'Bildverweise',
-'linkstoimage'     => 'Di {{PLURAL:$1|folgendi Syte|$1 folgende Sytene}} händ en Link zu dem Bildli:',
-'nolinkstoimage'   => 'Kein Artikel benutzt dieses Bild.',
-'sharedupload'     => 'Selli Datei wird vo verschiedene Projekt bruucht.',
-'noimage-linktext' => 'Lads uffe!',
+'filehist'            => 'Dateiversione',
+'filehist-help'       => "Klick uf'ne Zytpunkt für azzeige, wie's denn het usgseh.",
+'filehist-current'    => 'aktuell',
+'filehist-datetime'   => 'Version vom',
+'filehist-user'       => 'Benutzer',
+'filehist-dimensions' => 'Mäß',
+'filehist-filesize'   => 'Dateigrößi',
+'filehist-comment'    => 'Kommentar',
+'imagelinks'          => 'Bildverweise',
+'linkstoimage'        => 'Di {{PLURAL:$1|folgendi Syte|$1 folgende Sytene}} händ en Link zu dem Bildli:',
+'nolinkstoimage'      => 'Kein Artikel benutzt dieses Bild.',
+'sharedupload'        => 'Selli Datei wird vo verschiedene Projekt bruucht.',
+'noimage-linktext'    => 'Lads uffe!',
 
 # Unwatched pages
 'unwatchedpages' => 'Unbeobachteti Sytene',
@@ -589,7 +626,8 @@ Es isch insgsamt häts '''$3''' {{PLURAL:$3|Seiteabruf|Seiteabruf}} gäh, '''$4'
 Es het '''$8''' uffegladeni Dateie.
 
 Längi vo de [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
-'userstatstext' => "S git '''$1''' regischtriirte Benutzer. Dodrvo händ '''$2''' (also '''$4 %''') $5-Recht. S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
+'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:ListUsers|Benutzer]] isch|[[Special:ListUsers|Benutzer]] sy}} regischtriirt. Dodrvo {{PLURAL:$2|hät|händ}} '''$2''' (also '''$4 %''') $5-Recht.
+S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
 
 'disambiguationspage' => 'Template:Begriffsklärig',
 
@@ -678,8 +716,12 @@ Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach 
 'watchthispage'     => 'Die Syte beobachte',
 'unwatch'           => 'nümm beobachte',
 'watchnochange'     => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchlist-details' => '$1 Artikel wärde beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
+'watchlist-details' => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
 'wlshowlast'        => 'Zeig di letschte $1 Stunde $2 Tage $3',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'Am beobachte …',
+'unwatching' => 'Nümm am beobachten …',
 
 'enotif_subject'     => 'Die {{SITENAME}} Seite $PAGETITLE wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '$1 zeigt alle Änderungen auf einen Blick.',
@@ -713,6 +755,7 @@ Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{M
 'actioncomplete'    => 'Uftrag usgfuehrt.',
 'deletedtext'       => '«<nowiki>$1</nowiki>» isch glösche worde.
 Im $2 het’s e Lischte vo de letschte Löschige.',
+'deletedarticle'    => '„[[$1]]“ glösche',
 'deletionlog'       => 'Lösch-Logbuech',
 'deletecomment'     => 'Löschigsgrund',
 'alreadyrolled'     => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
@@ -726,7 +769,7 @@ Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'undeletehistorynoadmin' => 'Dieser Artikel wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
 genauso wie Details zum letzten Benutzer der diesen Artikel vor der Löschung bearbeitet hat.
 Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.',
-'undeletebtn'            => 'Wiederherstellen!',
+'undeletebtn'            => 'Widerhärstelle',
 'undeletedrevisions'     => '{{PLURAL:$1|ei Revision|$1 Revisione}} wiedr zruckgholt.',
 
 # Namespace form on various pages
@@ -739,10 +782,15 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'mycontris'     => 'mini Biiträg',
 
 # What links here
-'whatlinkshere' => 'Was linkt da ane?',
-'linkshere'     => "Di folgende Sytene händ en Link wo zu '''„[[:$1]]“''' führe:",
-'nolinkshere'   => "Kein Artikel verwiest zu '''„[[:$1]]“'''.",
-'istemplate'    => 'Vorlageybindig',
+'whatlinkshere'       => 'Was linkt da ane?',
+'whatlinkshere-title' => 'Sytene, wo uf „$1“ verlinke',
+'linkshere'           => "Di folgende Sytene händ en Link wo zu '''„[[:$1]]“''' führe:",
+'nolinkshere'         => "Kein Artikel verwiest zu '''„[[:$1]]“'''.",
+'isredirect'          => 'Wyterleitigssyte',
+'istemplate'          => 'Vorlageybindig',
+'whatlinkshere-prev'  => '{{PLURAL:$1|vorder|vorderi $1}}',
+'whatlinkshere-next'  => '{{PLURAL:$1|nächscht|nächschti $1}}',
+'whatlinkshere-links' => '← Links',
 
 # Block/unblock
 'blockip'         => 'Benutzer bzw. IP blockyre',
@@ -793,52 +841,62 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'allmessagesfilter'         => 'Nochrichte nochem Name filtere:',
 'allmessagesmodified'       => 'numme gänderti aazeige',
 
+# Thumbnails
+'thumbnail-more'  => 'vergrösere',
+'thumbnail_error' => "Fähler bir Härstellig vo're Vorschou: $1",
+
 # Special:Import
 'importtext' => 'Bitte speichere Si selli Syte vom Quellwiki met em Special:Export Wärkzüg ab un lade Si denn di Datei denn do uffe.',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'           => 'Myni Benutzersyte',
-'tooltip-pt-mytalk'             => 'Myni Diskussionssyte',
-'tooltip-pt-preferences'        => 'Myni Ystellige',
-'tooltip-pt-watchlist'          => 'Lischte vo de beobachtete Syte.',
-'tooltip-pt-mycontris'          => 'Lischte vo myne Byträg',
-'tooltip-pt-login'              => 'Ylogge',
-'tooltip-pt-logout'             => 'Uslogge',
-'tooltip-ca-talk'               => 'Diskussion zum Artikelinhalt',
-'tooltip-ca-edit'               => 'Syte bearbeite. Bitte vor em Spychere d Vorschou aaluege.',
-'tooltip-ca-addsection'         => 'E Kommentar zu dere Syte derzuetue.',
-'tooltip-ca-viewsource'         => 'Die Syte isch geschützt. Du chasch der Quelltext aaluege.',
-'tooltip-ca-history'            => 'Früecheri Versione vo dere Syte.',
-'tooltip-ca-protect'            => 'Seite beschütze',
-'tooltip-ca-delete'             => 'Syten entsorge',
-'tooltip-ca-undelete'           => 'Sodeli, da isch es wider.',
-'tooltip-ca-move'               => 'Dür ds Verschiebe gits e nöie Name.',
-'tooltip-ca-watch'              => 'Tue die Syten uf dyni Beobachtigslischte.',
-'tooltip-ca-unwatch'            => 'Nim die Syte us dyre Beobachtungslischte furt.',
-'tooltip-search'                => 'Dürchsuech das Wiki',
-'tooltip-p-logo'                => 'Houptsyte',
-'tooltip-n-mainpage'            => 'Gang uf d Houptsyte',
-'tooltip-n-portal'              => 'Über ds Projekt, was du chasch mache, wo du was findsch',
-'tooltip-n-recentchanges'       => 'Lischte vo de letschten Änderige i däm Wiki.',
-'tooltip-n-randompage'          => 'E zuefälligi Syte',
-'tooltip-n-help'                => 'Ds Ort zum Usefinde.',
-'tooltip-t-whatlinkshere'       => 'Lischte vo allne Sytene, wo do ane linke',
-'tooltip-t-recentchangeslinked' => 'Letschti Änderige vo de Syte, wo vo do verlinkt sin',
-'tooltip-feed-rss'              => 'RSS-Feed für selli Syte',
-'tooltip-feed-atom'             => 'Atom-Feed für selli Syte',
-'tooltip-t-contributions'       => 'Lischte vo de Byträg vo däm Benutzer',
-'tooltip-t-emailuser'           => 'Schick däm Benutzer e E-Bost',
-'tooltip-t-specialpages'        => 'Lischte vo allne Spezialsyte',
-'tooltip-ca-nstab-main'         => 'Artikelinhalt aaluege',
-'tooltip-ca-nstab-user'         => 'Benutzersyte aaluege',
-'tooltip-ca-nstab-media'        => 'Mediasyte aaluege',
-'tooltip-ca-nstab-special'      => 'Sell isch e Spezialsyte, du chasch se nid bearbeite.',
-'tooltip-ca-nstab-project'      => 'D Projektsyte aaluege',
-'tooltip-ca-nstab-image'        => 'Die Bildsyten aaluege',
-'tooltip-ca-nstab-mediawiki'    => 'D Systemmäldige aaluege',
-'tooltip-ca-nstab-template'     => 'D Vorlag aaluege',
-'tooltip-ca-nstab-help'         => 'D Hilfssyten aaluege',
-'tooltip-ca-nstab-category'     => 'D Kategoryesyten aaluege',
+'tooltip-pt-userpage'             => 'Myni Benutzersyte',
+'tooltip-pt-mytalk'               => 'Myni Diskussionssyte',
+'tooltip-pt-preferences'          => 'Myni Ystellige',
+'tooltip-pt-watchlist'            => 'Lischte vo de beobachtete Syte.',
+'tooltip-pt-mycontris'            => 'Lischte vo myne Byträg',
+'tooltip-pt-login'                => 'Ylogge',
+'tooltip-pt-logout'               => 'Uslogge',
+'tooltip-ca-talk'                 => 'Diskussion zum Artikelinhalt',
+'tooltip-ca-edit'                 => 'Syte bearbeite. Bitte vor em Spychere d Vorschou aaluege.',
+'tooltip-ca-addsection'           => 'E Kommentar zu dere Syte derzuetue.',
+'tooltip-ca-viewsource'           => 'Die Syte isch geschützt. Du chasch der Quelltext aaluege.',
+'tooltip-ca-history'              => 'Früecheri Versione vo dere Syte.',
+'tooltip-ca-protect'              => 'Seite beschütze',
+'tooltip-ca-delete'               => 'Syten entsorge',
+'tooltip-ca-undelete'             => 'Sodeli, da isch es wider.',
+'tooltip-ca-move'                 => 'Dür ds Verschiebe gits e nöie Name.',
+'tooltip-ca-watch'                => 'Tue die Syten uf dyni Beobachtigslischte.',
+'tooltip-ca-unwatch'              => 'Nim die Syte us dyre Beobachtungslischte furt.',
+'tooltip-search'                  => 'Dürchsuech das Wiki',
+'tooltip-p-logo'                  => 'Houptsyte',
+'tooltip-n-mainpage'              => 'Gang uf d Houptsyte',
+'tooltip-n-portal'                => 'Über ds Projekt, was du chasch mache, wo du was findsch',
+'tooltip-n-currentevents'         => 'Hindergrundinformatione zu aktuellen Ereignis finde',
+'tooltip-n-recentchanges'         => 'Lischte vo de letschten Änderige i däm Wiki.',
+'tooltip-n-randompage'            => 'E zuefälligi Syte',
+'tooltip-n-help'                  => 'Ds Ort zum Usefinde.',
+'tooltip-t-whatlinkshere'         => 'Lischte vo allne Sytene, wo do ane linke',
+'tooltip-t-recentchangeslinked'   => 'Letschti Änderige vo de Syte, wo vo do verlinkt sin',
+'tooltip-feed-rss'                => 'RSS-Feed für selli Syte',
+'tooltip-feed-atom'               => 'Atom-Feed für selli Syte',
+'tooltip-t-contributions'         => 'Lischte vo de Byträg vo däm Benutzer',
+'tooltip-t-emailuser'             => 'Schick däm Benutzer e E-Bost',
+'tooltip-t-upload'                => 'Dateien ufelade',
+'tooltip-t-specialpages'          => 'Lischte vo allne Spezialsyte',
+'tooltip-ca-nstab-main'           => 'Artikelinhalt aaluege',
+'tooltip-ca-nstab-user'           => 'Benutzersyte aaluege',
+'tooltip-ca-nstab-media'          => 'Mediasyte aaluege',
+'tooltip-ca-nstab-special'        => 'Sell isch e Spezialsyte, du chasch se nid bearbeite.',
+'tooltip-ca-nstab-project'        => 'D Projektsyte aaluege',
+'tooltip-ca-nstab-image'          => 'Die Bildsyten aaluege',
+'tooltip-ca-nstab-mediawiki'      => 'D Systemmäldige aaluege',
+'tooltip-ca-nstab-template'       => 'D Vorlag aaluege',
+'tooltip-ca-nstab-help'           => 'D Hilfssyten aaluege',
+'tooltip-ca-nstab-category'       => 'D Kategoryesyten aaluege',
+'tooltip-save'                    => 'Änderige spychere',
+'tooltip-preview'                 => 'Vorschou vo dynen Änderige. Bitte vor em Spycheren aluege!',
+'tooltip-diff'                    => 'Zeigt a, was du am Tekscht hesch veränderet.',
+'tooltip-compareselectedversions' => 'Underschide zwüsche zwo usgwählte Versione vo dere Syten azeige.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
@@ -865,7 +923,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'nextdiff'     => 'Nächschti Änderig →',
 
 # Media information
-'mediawarning' => '
+'mediawarning'         => '
 ===Warnung!===
 Diese Art von Datei kann böswilligen Programmcode enthalten.
 Durch das Herunterladen oder Öffnen der Datei kann der Computer beschädigt werden.
@@ -875,13 +933,38 @@ und unbekannter Programmcode zur Ausführung kommt.
 Die Betreiber dieses Wikis können keine Verantwortung für den Inhalte
 dieser Datei übernehmen. Sollte diese Datei tatsächlich böswilligen Programmcode enthalten,
 sollte umgehend ein Administrator informiert werden!',
-'imagemaxsize' => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
-'thumbsize'    => 'Bildvorschou-Gröössi:',
+'imagemaxsize'         => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
+'thumbsize'            => 'Bildvorschou-Gröössi:',
+'file-info-size'       => '($1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4)',
+'file-nohires'         => '<small>Kei höcheri Uflösig verfüegbar.</small>',
+'show-big-image'       => 'Originalgrößi',
+'show-big-image-thumb' => '<small>Größi vo dere Vorschou: $1 × $2 Pixel</small>',
 
 # Special:NewImages
 'newimages'     => 'Gallery vo noie Bilder',
-'imagelisttext' => 'Hier ist eine Liste von $1 Bildern, sortiert $2.',
+'imagelisttext' => "Hie isch e Lischte vo '''$1''' {{PLURAL:$1|Datei|Dateie}}, sortiert $2.",
 'ilsubmit'      => 'Suech',
+
+# Bad image list
+'bad_image_list' => 'Format:
+
+Nume Zylene, wo mit emne * afö, wärde berücksichtigt.
+Nach em * mues zersch e Link zuren Unerwünschte Datei cho.
+Wyteri Links uf der glyche Zyle wärden als Usnahme behandlet, wo die Datei trotzdäm darff vorcho.',
+
+# Metadata
+'metadata'        => 'Metadate',
+'metadata-help'   => "Die Datei het wyteri Informatione, allwäg vor Digitalkamera oder vom Scanner wo se het gschaffe.
+We die Datei isch veränderet worde, de cha's sy, das die zuesätzlechi Informatin für di verändereti Datei nümm richtig zuetrifft.",
+'metadata-expand' => 'Erwytereti Details azeige',
+'metadata-fields' => 'Die EXIF-Metadate wärden ir Bildbeschrybig ou denn azeigt, we d Metadate-Tabälle versteckt isch.
+Anderi Metadate sy standardmäßig versteckt.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-orientation'     => 'Orientierung',
@@ -890,10 +973,12 @@ sollte umgehend ein Administrator informiert werden!',
 'exif-isospeedratings' => 'Filmempfindlichkeit (ISO)',
 
 # External editor support
+'edit-externally'      => 'Die Datei mit emnen externe Programm bearbeite',
 'edit-externally-help' => 'Siehe [http://meta.wikimedia.org/wiki/Hilfe:Externe_Editoren Installations-Anweisungen] für weitere Informationen',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alli',
+'namespacesall' => 'alli',
 
 # E-mail address confirmation
 'confirmemail'          => 'Bschtätigung vo Ihre E-Bost-Adräss',
