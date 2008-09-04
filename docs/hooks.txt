@@ -920,6 +920,9 @@ the resulting HTML is about to be displayed.
 $parserOutput: the parserOutput (object) that corresponds to the page 
 $text: the text that will be displayed, in HTML (string)
 
+'OutputPageCheckLastModified': when checking if the page has been modified since the last visit
+&$modifiedTimes: array of timestamps, the following keys are set: page, user, epoch
+
 'OutputPageParserOutput': after adding a parserOutput to $wgOut
 $out: OutputPage instance (object)
 $parserOutput: parserOutput instance being added in $out
