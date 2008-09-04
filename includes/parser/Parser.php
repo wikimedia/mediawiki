@@ -133,6 +133,10 @@ class Parser
 		$this->mVarCache = array();
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
+		} elseif ( extension_loaded( 'domxml' ) ) {
+			// PECL extension that conflicts with the core DOM extension (bug 13770)
+			wfDebug( "Warning: you have the obsolete domxml extension for PHP. Please remove it!\n" );
+			$this->mPreprocessorClass = 'Preprocessor_Hash';
 		} elseif ( extension_loaded( 'dom' ) ) {
 			$this->mPreprocessorClass = 'Preprocessor_DOM';
 		} else {
