@@ -680,6 +680,7 @@ abstract class ApiBase {
 		'createonly-exists' => array('code' => 'articleexists', 'info' => "The article you tried to create has been created already"),
 		'nocreate-missing' => array('code' => 'missingtitle', 'info' => "The article you tried to edit doesn't exist"),
 		'nosuchrcid' => array('code' => 'nosuchrcid', 'info' => "There is no change with rcid ``$1''"),
+		'cantpurge' => array('code' => 'cantpurge', 'info' => "Only users with the 'purge' right can purge pages via the API"),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),
