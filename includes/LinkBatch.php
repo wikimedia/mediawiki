@@ -134,7 +134,7 @@ class LinkBatch {
 		$sql = "SELECT page_id, page_namespace, page_title, page_len, page_is_redirect FROM $page WHERE $set";
 
 		// Do query
-		$res = new ResultWrapper( $dbr,  $dbr->query( $sql, __METHOD__ ) );
+		$res = $dbr->query( $sql, __METHOD__ );
 		wfProfileOut( __METHOD__ );
 		return $res;
 	}
