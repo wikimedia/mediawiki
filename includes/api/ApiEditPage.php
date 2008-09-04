@@ -29,8 +29,10 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * A query module to list all external URLs found on a given set of pages.
+ * A module that allows for editing and creating pages.
  *
+ * Currently, this wraps around the EditPage class in an ugly way,
+ * EditPage.php should be rewritten to provide a cleaner interface
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
