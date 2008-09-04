@@ -2275,7 +2275,8 @@ class Title {
 	 * specified fragment before setting, so it assumes you're passing it with 
 	 * an initial "#".
 	 *
-	 * @deprecated Use Title::makeTitle() with fragment parameter.
+	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
+	 * Still in active use privately.
 	 *
 	 * @param $fragment \type{\string} text
 	 */
