@@ -176,6 +176,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Respect file restrictions in the file history list
 * (bug 15399) Odd/even classes on sortable tables' rows could be slow for large
   tables, and have been disabled by default.
+* (bug 15482) Special:Recentchangeslinked has no longer two submit buttons
 
 
 === API changes in 1.14 ===
