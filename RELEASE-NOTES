@@ -212,6 +212,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15444) action=edit returns "Unknown error: ``AS_END''" where it should
   return just "Unknown error"
 * (bug 15448) YAML output returns empty values instead of 0
+* (bug 15445) Added action=patrol
 
 === Languages updated in 1.14 ===
 

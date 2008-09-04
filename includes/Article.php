@@ -1631,41 +1631,12 @@ class Article {
 		global $wgOut, $wgRequest, $wgUseRCPatrol, $wgUseNPPatrol, $wgUser;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
-		# Check patrol config options
-
-		if ( !($wgUseNPPatrol || $wgUseRCPatrol)) {
-			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
-			return;
-		}
-
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = (int) $wgRequest->getVal('rcid');
-		$rc = $rcid ? RecentChange::newFromId($rcid) : null;
-		if ( is_null ( $rc ) )
+		$rc = RecentChange::newFromId($rcid);
+		if (is_null($rc))
 		{
 			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
-			return;
-		}
-
-		if ( !$wgUseRCPatrol && $rc->getAttribute( 'rc_type' ) != RC_NEW) {
-			// Only new pages can be patrolled if the general patrolling is off....???
-			// @fixme -- is this necessary? Shouldn't we only bother controlling the
-			// front end here?
-			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
-			return;
-		}
-
-		# Check permissions
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'patrol', $wgUser );
-
-		if (count($permission_errors)>0)
-		{
-			$wgOut->showPermissionsErrorPage( $permission_errors );
-			return;
-		}
-
-		# Handle the 'MarkPatrolled' hook
-		if( !wfRunHooks( 'MarkPatrolled', array( $rcid, &$wgUser, false ) ) ) {
 			return;
 		}
 
@@ -1673,31 +1644,28 @@ class Article {
 		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = Title::makeTitle( NS_SPECIAL, $returnto );
 
-		# If it's left up to us, check that the user is allowed to patrol this edit
-		# If the user has the "autopatrol" right, then we'll assume there are no
-		# other conditions stopping them doing so
-		if( !$wgUser->isAllowed( 'autopatrol' ) ) {
-			$rc = RecentChange::newFromId( $rcid );
-			# Graceful error handling, as we've done before here...
-			# (If the recent change doesn't exist, then it doesn't matter whether
-			# the user is allowed to patrol it or not; nothing is going to happen
-			if( is_object( $rc ) && $wgUser->getName() == $rc->getAttribute( 'rc_user_text' ) ) {
-				# The user made this edit, and can't patrol it
-				# Tell them so, and then back off
-				$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
-				$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
-				$wgOut->returnToMain( false, $return );
-				return;
-			}
+		$errors = $rc->doMarkPatrolled();
+		if (in_array(array('rcpatroldisabled'), $errors)) {
+			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
+			return;
+		}
+		
+		if (in_array(array('hookaborted'), $errors)) {
+			// The hook itself has handled any output
+			return;
+		}
+		
+		if (in_array(array('markedaspatrollederror-noautopatrol'), $errors)) {
+			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
+			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
+			$wgOut->returnToMain( false, $return );
+			return;
 		}
 
-		# Check that the revision isn't patrolled already
-		# Prevents duplicate log entries
-		if( !$rc->getAttribute( 'rc_patrolled' ) ) {
-			# Mark the edit as patrolled
-			RecentChange::markPatrolled( $rcid );
-			PatrolLog::record( $rcid );
-			wfRunHooks( 'MarkPatrolledComplete', array( &$rcid, &$wgUser, false ) );
+		if (!empty($errors))
+		{
+			$wgOut->showPermissionsErrorPage( $errors );
+			return;
 		}
 
 		# Inform the user
