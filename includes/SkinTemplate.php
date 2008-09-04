@@ -413,11 +413,13 @@ class SkinTemplate extends Skin {
 				$class = 'interwiki-' . $tmp[0];
 				unset($tmp);
 				$nt = Title::newFromText( $l );
-				$language_urls[] = array(
-					'href' => $nt->getFullURL(),
-					'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
-					'class' => $class
-				);
+				if ( $nt ) {
+					$language_urls[] = array(
+						'href' => $nt->getFullURL(),
+						'text' => ($wgContLang->getLanguageName( $nt->getInterwiki()) != ''?$wgContLang->getLanguageName( $nt->getInterwiki()) : $l),
+						'class' => $class
+					);
+				}
 			}
 		}
 		if(count($language_urls)) {
