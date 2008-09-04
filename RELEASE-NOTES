@@ -177,6 +177,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15399) Odd/even classes on sortable tables' rows could be slow for large
   tables, and have been disabled by default.
 * (bug 15482) Special:Recentchangeslinked has no longer two submit buttons
+* (bug 15292) New message notification for unregistred users now works again
 
 
 === API changes in 1.14 ===

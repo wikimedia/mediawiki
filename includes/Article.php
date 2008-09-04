@@ -2745,9 +2745,9 @@ class Article {
 		# load of user talk pages and piss people off, nor if it's a minor edit
 		# by a properly-flagged bot.
 		if( $this->mTitle->getNamespace() == NS_USER_TALK && $shortTitle != $wgUser->getTitleKey() && $changed
-			&& !($minoredit && $wgUser->isAllowed('nominornewtalk') ) ) {
-			if (wfRunHooks('ArticleEditUpdateNewTalk', array(&$this)) ) {
-				$other = User::newFromName( $shortTitle );
+			&& !( $minoredit && $wgUser->isAllowed( 'nominornewtalk' ) ) ) {
+			if( wfRunHooks('ArticleEditUpdateNewTalk', array( &$this ) ) ) {
+				$other = User::newFromName( $shortTitle, false );
 				if ( !$other ) {
 					wfDebug( __METHOD__.": invalid username\n" );
 				} elseif( User::isIP( $shortTitle ) ) {
