@@ -112,6 +112,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   displaying an external image inline.
 * (bugs 15405, 15436) Sort more currency types correctly in sortable tables
 * (bug 15422) Sort more different types of numbers in sortable tables
+* (bug 2889) MediaWiki:Print.css applies to the printable version
 
 === Bug fixes in 1.14 ===
 
