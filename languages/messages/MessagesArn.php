@@ -199,6 +199,7 @@ $messages = array(
 'lineno'       => 'Wirin $1:',
 'editundo'     => 'wüñoeltun',
 'diff-movedto' => 'Nengümülu $1 püle',
+'diff-img'     => "kiñe '''ad'''",
 'diff-del'     => "'''Ñamümün'''",
 
 # Search results

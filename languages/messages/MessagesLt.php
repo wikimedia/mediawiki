@@ -103,6 +103,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Slėpti mano keitimus stebimų sąraše',
 'tog-watchlisthidebots'       => 'Slėpti robotų keitimus stebimų sąraše',
 'tog-watchlisthideminor'      => 'Slėpti smulkius keitimus stebimų sąraše',
+'tog-watchlisthideliu'        => 'Slėpti prisijungusių naudotojų keitimus stebimųjų sąraše',
+'tog-watchlisthideanons'      => 'Slėpti anoniminių naudotojų keitimus stebimųjų sąraše',
 'tog-nolangconversion'        => 'Išjungti variantų keitimą',
 'tog-ccmeonemails'            => 'Siųsti man laiškų kopijas, kuriuos siunčiu kitiems naudotojams',
 'tog-diffonly'                => 'Nerodyti puslapio turinio po skirtumais',
@@ -292,7 +294,7 @@ $messages = array(
 
 'badaccess'        => 'Teisių klaida',
 'badaccess-group0' => 'Jums neleidžiama įvykdyti veiksmo, kurio prašėte.',
-'badaccess-groups' => 'Veiksmas, kurio prašėte, galimas tik naudotojams, esantiems vienoje iš šių grupių $1.',
+'badaccess-groups' => 'Veiksmas, kurio prašėte, galimas tik naudotojams, esantiems {{PLURAL:$2|šioje grupėje|vienoje iš šių grupių}} $1.',
 
 'versionrequired'     => 'Reikalinga $1 MediaWiki versija',
 'versionrequiredtext' => 'Reikalinga $1 MediaWiki versija, kad pamatytumėte šį puslapį. Žiūrėkite [[Special:Version|versijos puslapį]].',
@@ -515,6 +517,7 @@ nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 Jūs turėtumėte prisijungti ir pasikeisti savo slaptažodį.
 
 Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per klaidą.',
+'login-throttled'            => 'Jūs padarėte pernelyg daug bandymų parašyti šios paskyros slaptažodį. Palaukite prieš bandant vėl.',
 'loginlanguagelabel'         => 'Kalba: $1',
 
 # Password reset dialog
@@ -586,13 +589,14 @@ Nurodyta priežastis yra ši:
 
 * Blokavimo pradžia: $8
 * Blokavimo pabaiga: $6
+* Numatomas blokavimo laikas: $7
 
 Jūs galite susisiekti su $1 arba kitu [[{{MediaWiki:Grouppage-sysop}}|administratoriumi]], kad aptartumėte užblokavimą.
 
 Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nesate užregistravę tikro el. pašto adreso savo [[Special:Preferences|naudotojo nustatymuose]] ir nesate užblokuotas nuo jos naudojimo.
 
-Jūsų blokavimo ID yra $5.
-Prašome nurodyti šį ID visuose prašymuose, kuriuos darote.",
+Jūsų esamas IP adresas yra $3, blokavimo ID yra $5.
+Prašome nurodyti šiuos duomenis visuose prašymuose, kuriuos darote.",
 'blockednoreason'                  => 'priežastis nenurodyta',
 'blockedoriginalsource'            => "Žemiau yra rodomas '''$1''' turinys:",
 'blockededitsource'                => "''Jūsų keitimų''' tekstas puslapiui '''$1''' yra rodomas žemiau:",
@@ -665,7 +669,9 @@ Prašome pamėginti puslapį padalinti į keletą smulkesnių dalių.</strong>',
 kuris yra didesnis nei daugiausiai leistini $2 kilobaitai. Jis nebus išsaugotas.</strong>',
 'readonlywarning'                  => '<strong>DĖMESIO: Duomenų bazė buvo užrakinta techninei profilaktikai,
 taigi negalėsite išsaugoti savo pakeitimų dabar. Jūs gali nusikopijuoti tekstą į tekstinį failą
-ir vėliau įkelti jį čia.</strong>',
+ir vėliau įkelti jį čia.</strong>
+
+Ją užrakinusio administratoriaus paaiškinimas: $1',
 'protectedpagewarning'             => '<strong>DĖMESIO:  Šis puslapis yra užrakintas ir jį redaguoti gali tik administratoriaus teises turintys naudotojai.</strong>',
 'semiprotectedpagewarning'         => "'''Pastaba:''' Šis puslapis buvo užrakintas ir jį gali redaguoti tik registruoti naudotojai.",
 'cascadeprotectedwarning'          => "'''Dėmesio''': Šis puslapis buvo užrakintas taip, kad tik naudotojai su administratoriaus teisėmis galėtų jį redaguoti, nes jis yra įtrauktas į {{PLURAL:$1|šį puslapį, apsaugotą|šiuos puslapius, apsaugotus}} „pakopinės apsaugos“ pasirinktimi:",
@@ -719,6 +725,7 @@ $3 nurodyta priežastis yra ''$2''",
 'revnotfound'         => 'Versija nerasta',
 'revnotfoundtext'     => 'Norima puslapio versija nerasta. Patikrinkite URL, kuriuo patekote į šį puslapį.',
 'currentrev'          => 'Dabartinė versija',
+'currentrev-asof'     => 'Dabartinė versija kaip $1',
 'revisionasof'        => '$1 versija',
 'revision-info'       => '$1 versija naudotojo $2',
 'previousrevision'    => '←Ankstesnė versija',
@@ -732,6 +739,7 @@ $3 nurodyta priežastis yra ''$2''",
 'histlegend'          => "Skirtumai tarp versijų: pažymėkite lyginamas versijas ir spustelkite ''Enter'' klavišą arba mygtuką apačioje.<br />
 Žymėjimai: (dab) = palyginimas su naujausia versija,
 (pask) = palyginimas su prieš tai buvusia versija, S = smulkus keitimas.",
+'history-search'      => 'Ieškoti istorijoje',
 'deletedrev'          => '[ištrinta]',
 'histfirst'           => 'Seniausi',
 'histlast'            => 'Paskutiniai',
@@ -827,8 +835,39 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'difference'              => '(Skirtumai tarp versijų)',
 'lineno'                  => 'Eilutė $1:',
 'compareselectedversions' => 'Palyginti pasirinktas versijas',
+'visualcomparison'        => 'Vizualinis palyginimas',
+'wikicodecomparison'      => 'Vikiteksto palyginimas',
 'editundo'                => 'atšaukti',
 'diff-multi'              => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
+'diff-movedto'            => 'perkelta į $1',
+'diff-styleadded'         => 'stilius pridėtas',
+'diff-added'              => 'pridėta',
+'diff-changedto'          => 'pakeista į',
+'diff-movedoutof'         => 'iškelta iš $1',
+'diff-styleremoved'       => 'stilius pašalintas',
+'diff-removed'            => 'pašalinta',
+'diff-changedfrom'        => 'pakeista iš',
+'diff-src'                => 'šaltinis',
+'diff-withdestination'    => 'su tikslu',
+'diff-with'               => '&#32;su $1 $2',
+'diff-with-final'         => '&#32;ir $1 $2',
+'diff-width'              => 'plotis',
+'diff-height'             => 'aukštis',
+'diff-p'                  => "'''paragrafas'''",
+'diff-blockquote'         => "'''citata'''",
+'diff-h1'                 => "'''antraštė (I lygis)'''",
+'diff-h2'                 => "'''antraštė (II lygis)'''",
+'diff-h3'                 => "'''antraštė (III lygis)'''",
+'diff-h4'                 => "'''antraštė (IV lygis)'''",
+'diff-h5'                 => "'''antraštė (V lygis)'''",
+'diff-pre'                => "'''išankstinis blokavimas'''",
+'diff-ul'                 => "'''nesutvarkytas sąrašas'''",
+'diff-ol'                 => "'''sutvarkytas sąrašas'''",
+'diff-table'              => "'''lentelė'''",
+'diff-tbody'              => "'''lentelės turinys'''",
+'diff-tr'                 => "'''eilutė'''",
+'diff-td'                 => "'''langelis'''",
+'diff-th'                 => "'''antraštė'''",
 
 # Search results
 'searchresults'             => 'Paieškos rezultatai',

@@ -103,7 +103,8 @@ $messages = array(
 'tog-nolangconversion'        => '字形変換を無効にする',
 'tog-ccmeonemails'            => '他の利用者に送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
-'tog-showhiddencats'          => '非公開カテゴリを表示する',
+'tog-showhiddencats'          => '隠しカテゴリを表示する',
+'tog-noconvertlink'           => 'リンクタイトル変換を無効化する',
 
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
@@ -289,7 +290,7 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => 'あなたはこの処理を行う権限を持っていません。',
-'badaccess-groups' => 'この処理は $1 {{PLURAL:$2|の|のいずれか}} のグループに属する利用者のみが実行できます。',
+'badaccess-groups' => 'この処理は $1 のグループに属する利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
@@ -1693,7 +1694,7 @@ $NEWPAGE
 
 # Contributions
 'contributions'       => '利用者の投稿記録',
-'contributions-title' => '$1の投稿記録',
+'contributions-title' => '$1 の投稿記録',
 'mycontris'           => '自分の投稿記録',
 'contribsub2'         => '利用者名: $1 ($2)',
 'nocontribs'          => '利用者の投稿記録は見つかりませんでした。',
@@ -1789,7 +1790,7 @@ $NEWPAGE
 'autoblocker'                     => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                    => '投稿ブロック記録',
 'blocklogentry'                   => '"$1" を $2 ブロックしました $3',
-'blocklogtext'                    => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|{{int:ipblocklist}}]]をご覧ください。',
+'blocklogtext'                    => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '"$1" をブロック解除しました',
 'block-log-flags-anononly'        => '匿名のみ',
 'block-log-flags-nocreate'        => 'アカウント作成のブロック',

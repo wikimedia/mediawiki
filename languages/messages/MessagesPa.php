@@ -155,7 +155,7 @@ $messages = array(
 'and'            => 'ਅਤੇ',
 
 'errorpagetitle'    => 'ਗਲਤੀ',
-'returnto'          => '$1 ਨੇ ਗਲਤੀ ਦਿੱਤੀ',
+'returnto'          => '$1 ਤੇ ਵਾਪਸ ਜਾਓ',
 'tagline'           => '{{SITENAME}} ਤੋਂ',
 'help'              => 'ਮੱਦਦ',
 'search'            => 'ਖੋਜ',

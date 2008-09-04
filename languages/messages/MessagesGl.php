@@ -439,7 +439,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nocookiesnew'               => "A conta de usuario foi creada, pero non está rexistrado. {{SITENAME}} usa ''cookies'' para o rexistro. Vostede ten deshabilitadas as ''cookies''. Por favor, habilíteas, e logo rexístrese co seu novo nome de usuario e contrasinal.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies para rexistrar os usuarios. Vostede ten as cookies deshabilitadas. Por favor, habilíteas e ténteo de novo.',
 'noname'                     => 'Non especificou un nome de usuario válido.',
-'loginsuccesstitle'          => 'Acceso con éxito',
+'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
 Verifique o nome que inseriu ou cree unha nova conta.',
@@ -656,10 +656,10 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 'permissionserrors'                => 'Erros de permisos',
 'permissionserrorstext'            => 'Non dispón de permiso para facelo por {{PLURAL:$1|esta razón|estas razóns}}:',
 'permissionserrorstext-withaction' => 'Non ten permiso para $2, {{PLURAL:$1|pola seguinte razón|polas seguintes razóns}}:',
-'recreate-deleted-warn'            => "'''Atención: vai volver crear unha páxina que xa se eliminou anteriormente.'''
+'recreate-deleted-warn'            => "'''Atención: vai volver crear unha páxina que xa foi eliminada anteriormente.
 
-Debe considerar se é apropiado continuar a editar esta páxina.
-Velaquí o rexistro de borrado desta páxina, por se quere consultalo:",
+Debería considerar se é apropiado continuar a editar esta páxina.
+Velaquí está o rexistro de borrado desta páxina, por se quere consultalo:",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
@@ -688,7 +688,7 @@ A razón dada por $3 foi ''$2''",
 
 # History pages
 'viewpagelogs'        => 'Ver os rexistros desta páxina',
-'nohistory'           => 'Non existe un historial de edicións para esta páxina.',
+'nohistory'           => 'Esta páxina non posúe ningún historial de edicións.',
 'revnotfound'         => 'A revisión non foi atopada',
 'revnotfoundtext'     => 'A revisión vella que pediu non se deu atopado.
 Por favor verifique o URL que utilizou para acceder a esta páxina.',
@@ -1694,7 +1694,8 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'undeletepage'                 => 'Ver e restaurar páxinas borradas',
 'undeletepagetitle'            => "'''A continuación amósanse as revisións eliminadas de''' \"'''[[:\$1|\$1]]'''\".",
 'viewdeletedpage'              => 'Ver as páxinas borradas',
-'undeletepagetext'             => 'As seguintes páxinas foron borradas pero aínda están no arquivo e poden ser restauradas. O arquivo vai ser limpado periodicamente.',
+'undeletepagetext'             => 'As seguintes páxinas foron borradas, pero aínda están no arquivo e poden ser restauradas.
+O arquivo será limpado periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar as revisións',
 'undeleteextrahelp'            => "Para restaurar a páxina completa deixe todas as caixas sen marcar e prema en '''''Restaurar'''''.
 Para realizar unha recuperación parcial, marque só aquelas caixas que correspondan ás revisións que se queiran recuperar e a continuación prema en '''''Restaurar'''''.
@@ -1706,7 +1707,7 @@ Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións r
 Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.',
 'undeletehistorynoadmin'       => 'Esta páxina foi borrada. O motivo do borrado consta no resumo de embaixo, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
 O texto das revisións eliminadas só está á disposición dos administradores.',
-'undelete-revision'            => 'Revisión de $1 eliminada (en $2) por $3:',
+'undelete-revision'            => 'Revisión eliminada de "$1" (ás $2) feita por $3:',
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',
 'undelete-nodiff'              => 'Non se atopou ningunha revisión anterior.',
 'undeletebtn'                  => 'Restaurar',
@@ -1723,7 +1724,7 @@ O texto das revisións eliminadas só está á disposición dos administradores.
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
 'undelete-search-box'          => 'Buscar páxinas borradas',
-'undelete-search-prefix'       => 'Mostrar páxinas que comecen por:',
+'undelete-search-prefix'       => 'Mostrar as páxinas que comecen por:',
 'undelete-search-submit'       => 'Procurar',
 'undelete-no-results'          => 'Non se atoparon páxinas coincidentes no arquivo de eliminacións.',
 'undelete-filename-mismatch'   => 'Non se pode desfacer a eliminación da revisión do ficheiro datada en $1: non corresponde o nome do ficheiro',

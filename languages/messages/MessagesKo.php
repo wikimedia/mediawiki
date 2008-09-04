@@ -833,8 +833,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revnotfound'         => '버전 없음',
 'revnotfoundtext'     => '문서의 해당 버전을 찾지 못했습니다. 접속 URL을 확인해 주세요.',
 'currentrev'          => '현재 판',
-'currentrev-asof'     => '현재 버전 - $1',
-'revisionasof'        => '$1 버전',
+'currentrev-asof'     => '$1 현재 판',
+'revisionasof'        => '$1 판',
 'revision-info'       => '$2 사용자의 $1 버전',
 'previousrevision'    => '←이전 버전',
 'nextrevision'        => '다음 버전→',
@@ -1996,12 +1996,13 @@ $1',
 * focallength', # Do not translate list items
 
 # EXIF tags
-'exif-imagedescription'  => '그림 제목',
-'exif-make'              => '카메라 제조사',
-'exif-model'             => '카메라 모델',
-'exif-datetimeoriginal'  => '날짜와 시간',
-'exif-exposuretime'      => '노출 시간',
-'exif-shutterspeedvalue' => '셔터 속도',
+'exif-imagedescription'    => '그림 제목',
+'exif-make'                => '카메라 제조사',
+'exif-model'               => '카메라 모델',
+'exif-datetimeoriginal'    => '날짜와 시간',
+'exif-exposuretime'        => '노출 시간',
+'exif-exposuretime-format' => '$1초 ($2)',
+'exif-shutterspeedvalue'   => '셔터 속도',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

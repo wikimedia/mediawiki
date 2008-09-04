@@ -2823,4 +2823,12 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 'blankpage'              => 'Leere Seite',
 'intentionallyblankpage' => 'Diese Seite ist absichtlich ohne Inhalt. Sie wird für Benchmarks verwendet.',
 
+# External image whitelist
+'external_image_whitelist' => ' #Diese Zeile nicht verändern<pre>
+#Untenstehend können Fragmente regulärer Ausdrücke (der Teil zwischen den //) eingegeben werden.
+#Diese werden mit den URLs von Bildern aus externen Quellen verglichen
+#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
+#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
+#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+
 );

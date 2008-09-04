@@ -1180,9 +1180,7 @@ Don\'t translate the "Template:" part!',
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
 'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username [[MediaWiki:Double-redirect-fixer]]) update the redirects after a page move. See also [[MediaWiki:Fix-double-redirects]].',
-'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.
-
-นี่เป็น'''ชื่อผู้ใช้'''สำหรับปรับปรุงหน้าเปลี่ยนทางซ้ำซ้อนที่เกิดขึ้นหลังจากการเปลี่ยนชื่อหน้า ผู้ใช้จะถูกสร้างขึ้นด้วยชื่อนี้ ดังนั้นจึงไม่ควรเปลี่ยนข้อความนี้บ่อยเกินไป ดูเพิ่มที่ {{msg|double-redirect-fixed-move}} และ {{msg|fix-double-redirects}}",
+'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
 'brokenredirects' => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
 'brokenredirectstext' => 'Shown on top of [[Special:Brokenredirects]].',
