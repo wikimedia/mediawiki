@@ -566,6 +566,7 @@ END;
 		// If we use the site's dynamic CSS, throw that in, too
 		// Per-site custom styles
 		if( $wgUseSiteCss ) {
+			global $wgHandheldStyle;
 			$query = wfArrayToCGI( array(
 				'usemsgcache' => 'yes',
 				'ctype' => 'text/css',
@@ -573,6 +574,10 @@ END;
 			) + $siteargs );
 			# Site settings must override extension css! (bug 15025)
 			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) );
+			$out->addStyle( self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI), "print" );
+			if( $wgHandheldStyle ) {
+				$out->addStyle( self::makeNSUrl( 'Handheld.css', $query, NS_MEDIAWIKI), "handheld" );
+			}
 			$out->addStyle( self::makeNSUrl( $this->getSkinName() . '.css', $query, NS_MEDIAWIKI ) );
 		}
 
