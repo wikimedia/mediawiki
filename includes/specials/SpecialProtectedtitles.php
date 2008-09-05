@@ -102,7 +102,7 @@ class ProtectedTitlesForm {
 			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
 			Xml::hidden( 'title', $special ) . "&nbsp;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
-			// $this->getLevelMenu( $level ) . "<br/>\n" .
+			$this->getLevelMenu( $level ) . "&nbsp;\n" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
 			"</fieldset></form>";
 	}
@@ -137,7 +137,10 @@ class ProtectedTitlesForm {
 				$m[$text] = $type;
 			}
 		}
-
+		// Is there only one level (aside from "all")?
+		if( count($m) <= 2 ) {
+			return '';
+		}
 		// Third pass generates sorted XHTML content
 		foreach( $m as $text => $type ) {
 			$selected = ($type == $pr_level );
@@ -190,7 +193,8 @@ class ProtectedtitlesPager extends AlphabeticPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
-
+		if( $this->level )
+			$conds['pt_create_perm'] = $this->level;
 		if( !is_null($this->namespace) )
 			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
 		return array(
