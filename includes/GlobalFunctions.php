@@ -255,12 +255,17 @@ function wfDebugMem( $exact = false ) {
  *                     log file is specified, (default true)
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
-	global $wgDebugLogGroups;
+	global $wgDebugLogGroups, $wgShowHostnames;
 	if( $text{strlen( $text ) - 1} != "\n" ) $text .= "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
-		wfErrorLog( "$time $wiki: $text", $wgDebugLogGroups[$logGroup] );
+		if ( $wgShowHostnames ) {
+			$host = wfHostname();
+		} else {
+			$host = '';
+		}
+		wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
 	} else if ( $public === true ) {
 		wfDebug( $text, true );
 	}
@@ -767,18 +772,22 @@ function wfDebugDieBacktrace( $msg = '' ) {
  * @return string
  */
 function wfHostname() {
-	if ( function_exists( 'posix_uname' ) ) {
-		// This function not present on Windows
-		$uname = @posix_uname();
-	} else {
-		$uname = false;
+	static $host;
+	if ( is_null( $host ) ) {
+		if ( function_exists( 'posix_uname' ) ) {
+			// This function not present on Windows
+			$uname = @posix_uname();
+		} else {
+			$uname = false;
+		}
+		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
+			$host = $uname['nodename'];
+		} else {
+			# This may be a virtual server.
+			$host = $_SERVER['SERVER_NAME'];
+		}
 	}
-	if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
-		return $uname['nodename'];
-	} else {
-		# This may be a virtual server.
-		return $_SERVER['SERVER_NAME'];
-	}
+	return $host;
 }
 
 	/**
