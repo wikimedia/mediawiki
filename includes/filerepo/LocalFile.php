@@ -779,6 +779,7 @@ class LocalFile extends File
 		}
 
 		$dbw = $this->repo->getMasterDB();
+		$dbw->begin();
 
 		if ( !$props ) {
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
