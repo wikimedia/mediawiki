@@ -38,7 +38,7 @@ class LogEventsList {
 	private function preCacheMessages() {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
-			$messages = 'revertmerge protect_change unblocklink revertmove undeletelink revdel-restore rev-delundel';
+			$messages = 'revertmerge protect_change unblocklink revertmove undeletelink revdel-restore rev-delundel hist';
 			foreach( explode(' ', $messages ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escape') );
 			}
@@ -216,69 +216,73 @@ class LogEventsList {
 			$del = $this->showhideLinks( $row ) . ' ';
 		}
 		// Add review links and such...
-		if( !($this->flags & self::NO_ACTION_LINK) && !($row->log_deleted & LogPage::DELETED_ACTION) ) {
-			if( self::typeAction($row,'move','move') && isset( $paramArray[0] ) && $wgUser->isAllowed( 'move' ) ) {
-				$destTitle = Title::newFromText( $paramArray[0] );
-				if( $destTitle ) {
-					$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
-						$this->message['revertmove'],
-						'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
-						'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
-						'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
-						'&wpMovetalk=0' ) . ')';
-				}
-			// Show undelete link
-			} else if( self::typeAction($row,array('delete','suppress'),'delete') && $wgUser->isAllowed( 'delete' ) ) {
-				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-					$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
-			// Show unblock link
-			} else if( self::typeAction($row,array('block','suppress'),'block') && $wgUser->isAllowed( 'block' ) ) {
-				$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
-					$this->message['unblocklink'],
-					'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
-			// Show change protection link
-			} else if( self::typeAction($row,'protect','modify') && $wgUser->isAllowed( 'protect' ) ) {
-				$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 'action=unprotect' ) . ')';
-			// Show unmerge link
-			} else if ( self::typeAction($row,'merge','merge') ) {
-				$merge = SpecialPage::getTitleFor( 'Mergehistory' );
-				$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
-					wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedDBkey(), 
-						'mergepoint' => $paramArray[1] ) ) ) . ')';
-			// If an edit was hidden from a page give a review link to the history
-			} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
-				if( count($paramArray) == 2 ) {
-					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-					// Different revision types use different URL params...
-					$key = $paramArray[0];
-					// Link to each hidden object ID, $paramArray[1] is the url param
-					$Ids = explode( ',', $paramArray[1] );
-					$revParams = '';
-					foreach( $Ids as $n => $id ) {
-						$revParams .= '&' . urlencode($key) . '[]=' . urlencode($id);
-					}
-					$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-						'target=' . $title->getPrefixedUrl() . $revParams ) . ')';
-				}
-			// Hidden log items, give review link
-			} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
-				if( count($paramArray) == 1 ) {
-					$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-					$Ids = explode( ',', $paramArray[0] );
-					// Link to each hidden object ID, $paramArray[1] is the url param
-					$logParams = '';
-					foreach( $Ids as $n => $id ) {
-						$logParams .= '&logid[]=' . intval($id);
-					}
-					$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-						'target=' . $title->getPrefixedUrl() . $logParams ) . ')';
-				}
-			} else {
-				wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
-					&$comment, &$revert, $row->log_timestamp ) );
-				// wfDebug( "Invoked LogLine hook for " $row->log_type . ", " . $row->log_action . "\n" );
-				// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
+		if( ($this->flags & self::NO_ACTION_LINK) || ($row->log_deleted & LogPage::DELETED_ACTION) ) {
+			// Action text is suppressed...
+		} else if( self::typeAction($row,'move','move') && !empty($paramArray[0]) && $wgUser->isAllowed( 'move' ) ) {
+			$destTitle = Title::newFromText( $paramArray[0] );
+			if( $destTitle ) {
+				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+					$this->message['revertmove'],
+					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
+					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
+					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
+					'&wpMovetalk=0' ) . ')';
 			}
+		// Show undelete link
+		} else if( self::typeAction($row,array('delete','suppress'),'delete') && $wgUser->isAllowed( 'delete' ) ) {
+			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
+				$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+		// Show unblock link
+		} else if( self::typeAction($row,array('block','suppress'),'block') && $wgUser->isAllowed( 'block' ) ) {
+			$revert = '(' .  $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Ipblocklist' ),
+				$this->message['unblocklink'],
+				'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
+		// Show change protection link
+		} else if( self::typeAction($row,'protect',array('modify','protect','unprotect')) ) {
+			$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 
+				'action=history&offset=' . urlencode($row->log_timestamp) ) . ')';
+			if( self::typeAction($row,'protect','modify') && $wgUser->isAllowed('protect') ) {
+				$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 
+					'action=unprotect' ) . ')';
+			}
+		// Show unmerge link
+		} else if ( self::typeAction($row,'merge','merge') ) {
+			$merge = SpecialPage::getTitleFor( 'Mergehistory' );
+			$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
+				wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedDBkey(), 
+					'mergepoint' => $paramArray[1] ) ) ) . ')';
+		// If an edit was hidden from a page give a review link to the history
+		} else if( self::typeAction($row,array('delete','suppress'),'revision') && $wgUser->isAllowed( 'deleterevision' ) ) {
+			if( count($paramArray) == 2 ) {
+				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+				// Different revision types use different URL params...
+				$key = $paramArray[0];
+				// Link to each hidden object ID, $paramArray[1] is the url param
+				$Ids = explode( ',', $paramArray[1] );
+				$revParams = '';
+				foreach( $Ids as $n => $id ) {
+					$revParams .= '&' . urlencode($key) . '[]=' . urlencode($id);
+				}
+				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+					'target=' . $title->getPrefixedUrl() . $revParams ) . ')';
+			}
+		// Hidden log items, give review link
+		} else if( self::typeAction($row,array('delete','suppress'),'event') && $wgUser->isAllowed( 'deleterevision' ) ) {
+			if( count($paramArray) == 1 ) {
+				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
+				$Ids = explode( ',', $paramArray[0] );
+				// Link to each hidden object ID, $paramArray[1] is the url param
+				$logParams = '';
+				foreach( $Ids as $n => $id ) {
+					$logParams .= '&logid[]=' . intval($id);
+				}
+				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
+					'target=' . $title->getPrefixedUrl() . $logParams ) . ')';
+			}
+		} else {
+			wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
+				&$comment, &$revert, $row->log_timestamp ) );
+			// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		}
 		// Event description
 		if( self::isDeleted($row,LogPage::DELETED_ACTION) ) {
@@ -316,15 +320,15 @@ class LogEventsList {
 	/**
 	 * @param Row $row
 	 * @param mixed $type (string/array)
-	 * @param string $action
+	 * @param mixed $action (string/array)
 	 * @return bool
 	 */
 	public static function typeAction( $row, $type, $action ) {
-		if( is_array($type) ) {
-			return ( in_array($row->log_type,$type) && $row->log_action == $action );
-		} else {
-			return ( $row->log_type == $type && $row->log_action == $action );
+		$match = is_array($type) ? in_array($row->log_type,$type) : $row->log_type == $type;
+		if( $match ) {
+			$match = is_array($action) ? in_array($row->log_action,$action) : $row->log_action == $action;
 		}
+		return $match;
 	}
 
 	/**
