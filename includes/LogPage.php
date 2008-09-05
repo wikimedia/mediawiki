@@ -206,7 +206,7 @@ class LogPage {
 						default:
 							if( $title->getNamespace() == NS_SPECIAL ) {
 								list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBKey() );
-								# Use the langauge name for log titles
+								# Use the language name for log titles, rather than Log/X
 								if( $name == 'Log' ) {
 									$titleLink = '('.$skin->makeLinkObj( $title, LogPage::logName( $par ) ).')';
 								} else {
