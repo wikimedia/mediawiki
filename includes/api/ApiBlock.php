@@ -81,7 +81,7 @@ class ApiBlock extends ApiBase {
 		$form->BlockOther = '';
 		$form->BlockAnonOnly = $params['anononly'];
 		$form->BlockCreateAccount = $params['nocreate'];
-		$form->BlockEnableAutoBlock = $params['autoblock'];
+		$form->BlockEnableAutoblock = $params['autoblock'];
 		$form->BlockEmail = $params['noemail'];
 		$form->BlockHideName = $params['hidename'];
 
