@@ -1483,7 +1483,7 @@ function do_postgres_updates() {
 		array("revision",      "rev_len",              "INTEGER"),
 		array("revision",      "rev_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
 		array("user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ"),
-		array("site_stats",    "ss_active_users",      "INTERGER DEFAULT '-1'"),
+		array("site_stats",    "ss_active_users",      "INTEGER DEFAULT '-1'"),
 	);
 
 
