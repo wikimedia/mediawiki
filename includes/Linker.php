@@ -178,7 +178,7 @@ class Linker {
 		}
 
 		if( !$target instanceof Title ) {
-			throw new MWException( 'Linker::link passed invalid target' );
+			return "<!-- ERROR -->$text";
 		}
 		$options = (array)$options;
 
