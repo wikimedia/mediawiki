@@ -500,8 +500,12 @@ class CategoryViewer {
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
 		} elseif($totalrescnt < $this->limit && !$this->from && !$this->until){
-			# Case 2: not sane, but salvageable.
+			# Case 2: not sane, but salvageable.  Use the number of results.
+			# Since there are fewer than 200, we can also take this opportunity
+			# to refresh the incorrect category table entry -- which should be
+			# quick due to the small number of entries.
 			$totalcnt = $rescnt;
+			$this->cat->refreshCounts();
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
 			return wfMsgExt("category-$type-count-limited", 'parse',
