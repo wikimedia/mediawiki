@@ -205,12 +205,17 @@ class Database {
 		return false;
 	}
 
-	/**#@+
-	 * Get function
+	/**
+	 * Return the last query that went through Database::query()
+	 * @return string
 	 */
 	function lastQuery() { return $this->mLastQuery; }
+	
+	/**
+	 * Is the a connection to the database open?
+	 * @return bool
+	 */
 	function isOpen() { return $this->mOpened; }
-	/**#@-*/
 
 	function setFlag( $flag ) {
 		$this->mFlags |= $flag;
