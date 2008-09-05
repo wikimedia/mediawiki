@@ -206,9 +206,6 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  *                      May be 'paranoid' to remove all parameters from error messages, 'none' to
  *                      leave the paths in unchanged, or 'simple' to replace paths with
  *                      placeholders. Default for LocalRepo is 'simple'.
- *    thumbDir
- *                      Sub-directory of $wgUploadPath in which to place thumbnails. Defaults to 
- *                      'thumb/'.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
