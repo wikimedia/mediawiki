@@ -48,7 +48,7 @@ is( wfQuotedPrintable( "\xc4\x88u legebla?", "UTF-8" ),
 $start = wfTime();
 is( gettype( $start ), 'float', 'Time (type)' );
 $end = wfTime();
-cmp_ok( $end, '>', $start, 'Time' );
+cmp_ok( $end, '>', $start, 'Time (compare)' );
 
 $arr = wfArrayToCGI(
 	array( 'baz' => 'AT&T', 'ignore' => '' ),
