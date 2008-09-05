@@ -100,7 +100,7 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 		# Show a thumbnail of the file
 		$img = wfFindFile( $title );
 		if ( $img ) {
-			$thumb = $img->getThumbnail( 120, 120 );
+			$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 			if( $thumb ) {
 				$wgOut->addHTML( '<div style="float:' . $align . '" id="mw-fileduplicatesearch-icon">' .
 					$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .

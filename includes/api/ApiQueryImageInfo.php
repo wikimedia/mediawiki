@@ -123,12 +123,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 		if( isset( $prop['url'] ) ) {
 			if( !is_null( $scale ) && !$file->isOld() ) {
-				$thumb = $file->getThumbnail( $scale['width'], $scale['height'] );
-				if( $thumb )
+				$mto = $file->transform( array( 'width' => $scale['width'], 'height' => $scale['height'] ) );
+				if( $mto && !$mto->isError() )
 				{
-					$vals['thumburl'] = wfExpandUrl( $thumb->getURL() );
-					$vals['thumbwidth'] = $thumb->getWidth();
-					$vals['thumbheight'] = $thumb->getHeight();
+					$vals['thumburl'] = $mto->getUrl();
+					$vals['thumbwidth'] = $mto->getWidth();
+					$vals['thumbheight'] = $mto->getHeight();
 				}
 			}
 			$vals['url'] = $file->getFullURL();

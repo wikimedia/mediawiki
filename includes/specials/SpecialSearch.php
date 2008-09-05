@@ -448,7 +448,7 @@ class SpecialSearch {
 		if( $t->getNamespace() == NS_IMAGE ) {
 			$img = wfFindFile( $t );
 			if( $img ) {
-				$thumb = $img->getThumbnail( 120, 120 );
+				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
 					$desc = $img->getShortDesc();
 					wfProfileOut( $fname );

@@ -506,8 +506,7 @@ abstract class File {
 	 *
 	 * @param integer $width	maximum width of the generated thumbnail
 	 * @param integer $height	maximum height of the image (optional)
-	 * @param boolean $render	True to render the thumbnail if it doesn't exist,
-	 *                       	false to just return the URL
+	 * @param boolean $render	Deprecated
 	 *
 	 * @return ThumbnailImage or null on failure
 	 *
@@ -518,7 +517,6 @@ abstract class File {
 		if ( $height != -1 ) {
 			$params['height'] = $height;
 		}
-		$flags = $render ? self::RENDER_NOW : 0;
 		return $this->transform( $params, $flags );
 	}
 
