@@ -891,7 +891,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
 'notloggedin'                => 'Not logged in',
-'nologin'                    => "Don't have a login? $1.",
+'nologin'                    => "Don't have an account? $1.",
 'nologinlink'                => 'Create an account',
 'createaccount'              => 'Create account',
 'gotaccount'                 => 'Already have an account? $1.',
@@ -915,7 +915,7 @@ It must be under $1 {{PLURAL:$1|character|characters}}.',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Login error',
-'prefs-help-email'           => 'E-mail address is optional, but it enables others to contact you through your user or user_talk page without needing to reveal your identity.',
+'prefs-help-email'           => 'E-mail address is optional, but allows your password to be emailed to you if you forget it.  You can also choose to let others to contact you through your user or user_talk page without needing to reveal your identity.',
 'prefs-help-email-required'  => 'E-mail address is required.',
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
@@ -938,7 +938,7 @@ Please try again.',
 Please try again.',
 'passwordtooshort'           => 'Your password is invalid or too short.
 It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different from your username.',
-'mailmypassword'             => 'E-mail password',
+'mailmypassword'             => 'E-mail new password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
 'passwordremindertext'       => 'Someone (probably you, from IP address $1)
 requested that we send you a new password for {{SITENAME}} ($4).
@@ -1099,7 +1099,7 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 Please check if you want to create/edit this page.',
 'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview'                   => "'''Remember that you are only previewing your user CSS, it has not yet been saved!'''",
+'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.  It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
@@ -1214,8 +1214,8 @@ Please check the URL you used to access this page.',
 'revision-info'         => 'Revision as of $1 by $2',
 'revision-info-current' => '-', # do not translate or duplicate this message to other languages
 'revision-nav'          => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
-'previousrevision'      => '←Older revision',
-'nextrevision'          => 'Newer revision→',
+'previousrevision'      => '← Older revision',
+'nextrevision'          => 'Newer revision →',
 'currentrevisionlink'   => 'Current revision',
 'cur'                   => 'cur',
 'next'                  => 'next',
@@ -1731,10 +1731,10 @@ If the checked file is the same image of original size it is not necessary to up
 'file-thumbnail-no'           => 'The filename begins with <strong><tt>$1</tt></strong>.
 It seems to be an image of reduced size <i>(thumbnail)</i>.
 If you have this image in full resolution upload this one, otherwise change the file name please.',
-'fileexists-forbidden'        => 'A file with this name exists already;
-please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository;
-please go back and upload this file under a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-forbidden'        => 'A file with this name exists already.
+If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'A file with this name exists already in the shared file repository.
+If you still want to upload your file, please go back and use a new name. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'This file is a duplicate of the following {{PLURAL:$1|file|files}}:',
 'successfulupload'            => 'Successful upload',
 'uploadwarning'               => 'Upload warning',
@@ -1846,8 +1846,8 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 'shareduploadduplicate-linktext' => 'another file',
 'shareduploadconflict'           => 'This file has the same name as $1 from the shared repository.',
 'shareduploadconflict-linktext'  => 'another file',
-'noimage'                        => 'No file by this name exists, you can $1.',
-'noimage-linktext'               => 'upload it',
+'noimage'                        => 'No file by this name exists, but you can $1.',
+'noimage-linktext'               => 'upload one',
 'uploadnewversion-linktext'      => 'Upload a new version of this file',
 'imagepage-searchdupe'           => 'Search for duplicate files',
 
@@ -2029,7 +2029,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'move'                            => 'Move',
 'movethispage'                    => 'Move this page',
 'unusedimagestext'                => 'Please note that other web sites may link to a file with a direct URL, and so may still be listed here despite being in active use.',
-'unusedcategoriestext'            => 'The following category pages exist although no other page or category make use of them.',
+'unusedcategoriestext'            => 'The following category pages exist, although no other page or category makes use of them.',
 'notargettitle'                   => 'No target',
 'notargettext'                    => 'You have not specified a target page or user to perform this function on.',
 'nopagetitle'                     => 'No such target page',
@@ -2056,7 +2056,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'log'                  => 'Logs',
 'all-logs-page'        => 'All logs',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
-You can narrow down the view by selecting a log type, the user name, or the affected page.',
+You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'No matching items in log.',
 'log-title-wildcard'   => 'Search titles starting with this text',
 
@@ -2114,7 +2114,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'emailuser'       => 'E-mail this user',
 'emailpage'       => 'E-mail user',
 'emailpagetext'   => 'If this user has entered a valid e-mail address in his or her user preferences, the form below will send a single message.
-The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply.',
+The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror' => 'Mail object returned error:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'No e-mail address',
@@ -2319,7 +2319,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'undeletepagetext'             => 'The following pages have been deleted but are still in the archive and can be restored.
 The archive may be periodically cleaned out.',
 'undelete-fieldset-title'      => 'Restore revisions',
-'undeleteextrahelp'            => "To restore the entire page, leave all checkboxes deselected and click '''''Restore'''''.
+'undeleteextrahelp'            => "To restore the page's entire history, leave all checkboxes deselected and click '''''Restore'''''.
 To perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click '''''Restore'''''.
 Clicking '''''Reset''''' will clear the comment field and all checkboxes.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisions}} archived',
@@ -2787,7 +2787,7 @@ You can view its source.',
 'tooltip-diff'                    => 'Show which changes you made to the text.',
 'tooltip-compareselectedversions' => 'See the differences between the two selected versions of this page.',
 'tooltip-watch'                   => 'Add this page to your watchlist',
-'tooltip-recreate'                => 'Recreate the page despite it having been deleted',
+'tooltip-recreate'                => 'Recreate the page even though it has been deleted',
 'tooltip-upload'                  => 'Start upload',
 'tooltip-rollback'                => '"Rollback" reverts edit(s) to this page of the last contributor in one click.',
 'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. Allows adding a reason in the summary.',
@@ -2832,7 +2832,7 @@ You can view its source.',
 # Spam protection
 'spamprotectiontitle' => 'Spam protection filter',
 'spamprotectiontext'  => 'The page you wanted to save was blocked by the spam filter.
-This is probably caused by a link to an external site.',
+This is probably caused by a link to a blacklisted external site.',
 'spamprotectionmatch' => 'The following text is what triggered our spam filter: $1',
 'spambot_username'    => 'MediaWiki spam cleanup',
 'spam_reverting'      => 'Reverting to last version not containing links to $1',
@@ -2885,8 +2885,8 @@ $1',
 'filedelete-archive-read-only'    => 'The archive directory "$1" is not writable by the webserver.',
 
 # Browsing diffs
-'previousdiff' => '← Previous diff',
-'nextdiff'     => 'Next diff →',
+'previousdiff' => '← Older edit',
+'nextdiff'     => 'Newer edit →',
 
 # Visual comparison
 'visual-comparison' => 'Visual comparison',
@@ -3300,8 +3300,8 @@ if you recently created your account, you may wish to wait a few minutes for it 
 'confirmemail_sent'        => 'Confirmation e-mail sent.',
 'confirmemail_oncreate'    => 'A confirmation code was sent to your e-mail address.
 This code is not required to log in, but you will need to provide it before enabling any e-mail-based features in the wiki.',
-'confirmemail_sendfailed'  => 'Could not send confirmation mail.
-Check address for invalid characters.
+'confirmemail_sendfailed'  => '{{SITENAME}} could not send your confirmation mail.
+Please check your email address for invalid characters.
 
 Mailer returned: $1',
 'confirmemail_invalid'     => 'Invalid confirmation code.
@@ -3345,7 +3345,7 @@ $1
 'trackbackdeleteok' => 'The trackback was successfully deleted.',
 
 # Delete conflict
-'deletedwhileediting' => 'Warning: This page has been deleted after you started editing!',
+'deletedwhileediting' => "'''Warning''': This page was deleted after you started editing!",
 'confirmrecreate'     => "User [[User:$1|$1]] ([[User talk:$1|talk]]) deleted this page after you started editing with reason:
 : ''$2''
 Please confirm that you really want to recreate this page.",
