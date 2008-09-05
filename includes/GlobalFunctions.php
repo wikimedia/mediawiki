@@ -2113,6 +2113,10 @@ function wfShellExec( $cmd, &$retval=null ) {
 	passthru( $cmd, $retval );
 	$output = ob_get_contents();
 	ob_end_clean();
+
+	if ( $retval == 127 ) {
+		wfDebugLog( 'exec', "Possibly missing executable file: $cmd\n" );
+	}
 	return $output;
 
 }
