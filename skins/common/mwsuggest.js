@@ -31,12 +31,34 @@ var os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 's
 var os_is_stopped = false;
 // max lines to show in suggest table
 var os_max_lines_per_suggest = 7;
+// number of steps to animate expansion/contraction of container width
+var os_animation_steps = 6;
+// num of pixels of smallest step
+var os_animation_min_step = 2;
+// delay between steps (in ms)
+var os_animation_delay = 30;
+// max width of container in percent of normal size (1 == 100%) 
+var os_container_max_width = 2;
+// currently active animation timer
+var os_animation_timer = null;
 
 /** Timeout timer class that will fetch the results */ 
 function os_Timer(id,r,query){
 	this.id = id;
 	this.r = r;
 	this.query = query;	
+}
+
+/** Timer user to animate expansion/contraction of container width */
+function os_AnimationTimer(r, target){
+	this.r = r;
+	var current = document.getElementById(r.container).offsetWidth;
+	this.inc = Math.round((target-current) / os_animation_steps);
+	if(this.inc < os_animation_min_step && this.inc >=0)
+		this.inc = os_animation_min_step; // minimal animation step
+	if(this.inc > -os_animation_min_step && this.inc <0)
+		this.inc = -os_animation_min_step;
+	this.target = target;
 }
 
 /** Property class for single search box */
@@ -84,9 +106,9 @@ function os_showResults(r){
 function os_operaWidthFix(x){
 	// TODO: better css2 incompatibility detection here
 	if(is_opera || is_khtml || navigator.userAgent.toLowerCase().indexOf('firefox/1')!=-1){
-		return x - 30; // opera&konqueror & old firefox don't understand overflow-x, estimate scrollbar width
+		return 30; // opera&konqueror & old firefox don't understand overflow-x, estimate scrollbar width
 	}	
-	return x;
+	return 0;
 }
 
 function os_encodeQuery(value){
@@ -217,11 +239,41 @@ function os_fitContainer(r){
 }
 /** If some entries are longer than the box, replace text with "..." */
 function os_trimResultText(r){
+	// find max width, first see if we could expand the container to fit it
+	var maxW = 0;
+	for(var i=0;i<r.resultCount;i++){
+		var e = document.getElementById(r.resultText+i);
+		if(e.offsetWidth > maxW)
+			maxW = e.offsetWidth;
+	}
 	var w = document.getElementById(r.container).offsetWidth;
+	var fix = 0;
 	if(r.containerCount < r.resultCount){		
-		w -= 20; // give 20px for scrollbar		
+		fix = 20; // give 20px for scrollbar		
 	} else
-		w = os_operaWidthFix(w);
+		fix = os_operaWidthFix(w);
+	if(fix < 4)
+		fix = 4; // basic padding
+	maxW += fix;
+	
+	// resize container to fit more data if permitted	
+	var normW = document.getElementById(r.searchbox).offsetWidth;
+	var prop = maxW / normW;
+	if(prop > os_container_max_width)
+		prop = os_container_max_width;
+	else if(prop < 1)
+		prop = 1;
+	var newW = Math.round( normW * prop ); 
+	if( w != newW ){	
+		w = newW;
+		if( os_animation_timer != null )
+			clearInterval(os_animation_timer.id)
+		os_animation_timer = new os_AnimationTimer(r,w);
+		os_animation_timer.id = setInterval("os_animateChangeWidth()",os_animation_delay);
+		w -= fix; // this much is reserved
+	}
+	
+	// trim results
 	if(w < 10)
 		return;
 	for(var i=0;i<r.resultCount;i++){
@@ -242,6 +294,25 @@ function os_trimResultText(r){
 			// show hint for trimmed titles
 			document.getElementById(r.resultTable+i).setAttribute("title",r.results[i]);
 		}
+	}
+}
+
+/** Invoked on timer to animate change in container width */
+function os_animateChangeWidth(){
+	var r = os_animation_timer.r;
+	var c = document.getElementById(r.container);
+	var w = c.offsetWidth;
+	var inc = os_animation_timer.inc;
+	var target = os_animation_timer.target;
+	var nw = w + inc;
+	if( (inc > 0 && nw >= target) || (inc <= 0 && nw <= target) ){
+		// finished !
+		c.style.width = target+"px";
+		clearInterval(os_animation_timer.id)
+		os_animation_timer = null;
+	} else{
+		// in-progress
+		c.style.width = nw+"px";
 	}
 }
 
@@ -271,6 +342,7 @@ function os_updateResults(r, query, text, cacheKey){
 			var t = document.getElementById(r.resultTable);		
 			r.containerTotal = t.offsetHeight;	
 			r.containerRow = t.offsetHeight / r.resultCount;
+			os_fitContainer(r);
 			os_trimResultText(r);				
 			os_showResults(r);
 		} catch(e){
@@ -284,7 +356,7 @@ function os_updateResults(r, query, text, cacheKey){
 /** Create the result table to be placed in the container div */
 function os_createResultTable(r, results){
 	var c = document.getElementById(r.container);
-	var width = os_operaWidthFix(c.offsetWidth);	
+	var width = c.offsetWidth - os_operaWidthFix(c.offsetWidth);	
 	var html = "<table class=\"os-suggest-results\" id=\""+r.resultTable+"\" style=\"width: "+width+"px;\">";
 	r.results = new Array();
 	r.resultCount = results.length;
