@@ -1328,7 +1328,8 @@ $2',
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
 'userstatstext'          => "網站有'''$1'''位註冊[[Special:ListUsers|用戶]]，其中
-'''$2''' (或 '''$4%''') 有$5許可權。",
+'''$2''' (或 '''$4%''') 有$5許可權。
+現時有'''$6'''個活躍的已註冊用戶賬戶。",
 'statistics-mostpopular' => '被查閱次數最多的頁面',
 
 'disambiguations'      => '消含糊頁',
@@ -2674,5 +2675,14 @@ $1
 # Special:BlankPage
 'blankpage'              => '空白頁面',
 'intentionallyblankpage' => '這個頁面是為空白，以用來作測試速度等用途',
+
+# External image whitelist
+'external_image_whitelist' => ' #留下這行一樣的文字<pre>
+#在下面（//之中間部份）輸入正規表達式
+#這些將會跟外部（已超連結的）圖像配合
+#那些配合到出來的會顯示成圖像，否則就只會顯示成連結
+#有 # 開頭的行會當成註解
+
+#在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
 );

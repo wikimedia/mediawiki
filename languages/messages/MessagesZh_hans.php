@@ -1352,7 +1352,8 @@ $2',
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue 工作排队]的长度是'''\$7'''。",
 'userstatstext'          => "网站有'''$1'''位注册[[Special:ListUsers|用户]]，其中
-'''$2''' (或 '''$4%''') 有$5权限。",
+'''$2''' (或 '''$4%''') 有$5权限。
+现时有'''$6'''个活跃的已注册用户账户。",
 'statistics-mostpopular' => '浏览最多的页面',
 
 'disambiguations'      => '消含糊页',
@@ -2700,5 +2701,14 @@ $1
 # Special:BlankPage
 'blankpage'              => '空白页面',
 'intentionallyblankpage' => '这个页面是为空白，以用来作测试速度等用途',
+
+# External image whitelist
+'external_image_whitelist' => ' #留下这行一样的文字<pre>
+#在下面（//之中间部份）输入正规表达式
+#这些将会跟外部（已超连结的）图像配合
+#那些配合到出来的会显示成图像，否则就只会显示成连结
+#有 # 开头的行会当成注解
+
+#在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
 );
