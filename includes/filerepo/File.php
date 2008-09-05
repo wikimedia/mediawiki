@@ -747,7 +747,7 @@ abstract class File {
 
 	/** Get relative path for a thumbnail file */
 	function getThumbRel( $suffix = false ) {
-		$path = $this->repo->thumbDir . $this->getRel();
+		$path = 'thumb/' . $this->getRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . $suffix;
 		}
@@ -777,7 +777,7 @@ abstract class File {
 
 	/** Get the URL of the thumbnail directory, or a particular file if $suffix is specified */
 	function getThumbUrl( $suffix = false ) {
-		$path = $this->repo->getZoneUrl('public') . '/'. $this->repo->thumbDir . $this->getUrlRel();
+		$path = $this->repo->getZoneUrl('public') . '/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
@@ -797,7 +797,7 @@ abstract class File {
 
 	/** Get the virtual URL for a thumbnail file or directory */
 	function getThumbVirtualUrl( $suffix = false ) {
-		$path = $this->repo->getVirtualUrl() . '/public/' . $this->repo->thumbDir . $this->getUrlRel();
+		$path = $this->repo->getVirtualUrl() . '/public/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
