@@ -367,11 +367,12 @@ class LogEventsList {
 	 * @param string $page
 	 * @param string $user
 	 */
-	 public static function showLogExtract( $out, $type='', $page='', $user='' ) {
+	public static function showLogExtract( $out, $type='', $page='', $user='', $limit = NULL ) {
 		global $wgUser;
 		# Insert list of top 50 or so items
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out, 0 );
 		$pager = new LogPager( $loglist, $type, $user, $page, '' );
+		if( $limit ) $pager->mLimit = $limit;
 		$logBody = $pager->getBody();
 		if( $logBody ) {
 			$out->addHTML(
@@ -382,7 +383,7 @@ class LogEventsList {
 		} else {
 			$out->addWikiMsg( 'logempty' );
 		}
-	 }
+	}
 
 	 /**
 	 * SQL clause to skip forbidden log types for this user

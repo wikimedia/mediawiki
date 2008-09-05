@@ -1203,6 +1203,7 @@ class EditPage {
 			}
 			$wgOut->addHTML( "<div id='mw-edit-$noticeMsg'>\n" );
 			$wgOut->addWikiMsg( $noticeMsg );
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '', 1 );
 			$wgOut->addHTML( "</div>\n" );
 		}
 		if( $this->mTitle->isCascadeProtected() ) {
