@@ -1412,7 +1412,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 平均每個頁面有'''$5'''次瀏覽，同埋'''$6'''次編輯。
 
 [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]嘅長度係'''$7'''。",
-'userstatstext'          => "目前有'''$1'''個註冊[[Special:ListUsers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。",
+'userstatstext'          => "目前有'''$1'''個註冊[[Special:ListUsers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。
+現時有'''$6'''個活躍嘅註冊用戶戶口。",
 'statistics-mostpopular' => '最多人睇嘅頁',
 
 'disambiguations'      => '搞清楚頁',
@@ -2745,5 +2746,14 @@ $1',
 # Special:BlankPage
 'blankpage'              => '空白頁',
 'intentionallyblankpage' => '呢一版係留空咗嘅，用來作測速等用嘅',
+
+# External image whitelist
+'external_image_whitelist' => ' #留番呢行一樣嘅字<pre>
+#響下面（//嘅中間部份）入正規表達式
+#呢啲將會同外面（已超連結嘅）圖像配合
+#嗰啲晒對到出來嘅會顯示做圖像，唔係嘅話就只係會顯示連結
+#有 # 開頭嘅行會當做註解
+
+#響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
 
 );
