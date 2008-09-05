@@ -168,10 +168,9 @@ class LogPage {
 
 		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
-				$rv=wfMsg( $wgLogActions[$key] );
+				$rv = wfMsg( $wgLogActions[$key] );
 			} else {
 				if( $skin ) {
-
 					switch( $type ) {
 						case 'move':
 							$titleLink = $skin->makeLinkObj( $title, 
@@ -205,14 +204,23 @@ class LogPage {
 							$params[1] = $wgLang->timeanddate( $params[1] );
 							break;
 						default:
-							$titleLink = $skin->makeLinkObj( $title );
+							if( $title->getNamespace() == NS_SPECIAL ) {
+								list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBKey() );
+								# Use the langauge name for log titles
+								if( $name == 'Log' ) {
+									$titleLink = '('.$skin->makeLinkObj( $title, LogPage::logName( $par ) ).')';
+								} else {
+									$titleLink = $skin->makeLinkObj( $title );
+								}
+							} else {
+								$titleLink = $skin->makeLinkObj( $title );
+							}
 					}
-
 				} else {
 					$titleLink = $title->getPrefixedText();
 				}
 				if( $key == 'rights/rights' ) {
-					if ($skin) {
+					if( $skin ) {
 						$rightsnone = wfMsg( 'rightsnone' );
 						foreach ( $params as &$param ) {
 							$groupArray = array_map( 'trim', explode( ',', $param ) );
