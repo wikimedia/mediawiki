@@ -46,16 +46,18 @@ class WebRequest {
 	var $data = array();
 	var $headers;
 	private $_response;
+	private $cookies = array();
 
 	function __construct() {
-		/// @fixme This preemptive de-quoting can interfere with other web libraries
-		///        and increases our memory footprint. It would be cleaner to do on
-		///        demand; but currently we have no wrapper for $_SERVER etc.
-		$this->checkMagicQuotes();
-
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = wfArrayMerge( $_GET, $_POST );
+		$this->cookies = $_COOKIE;
+
+		/// @fixme This preemptive de-quoting increases our memory footprint. 
+		/// It would be cleaner to do on demand; but currently we have no 
+		/// wrapper for $_SERVER etc.
+		$this->checkMagicQuotes();		
 	}
 
 	/**
@@ -183,10 +185,9 @@ class WebRequest {
 	 */
 	function checkMagicQuotes() {
 		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-			$this->fix_magic_quotes( $_COOKIE );
+			$this->fix_magic_quotes( $this->cookies );
 			$this->fix_magic_quotes( $_ENV );
-			$this->fix_magic_quotes( $_GET );
-			$this->fix_magic_quotes( $_POST );
+			$this->fix_magic_quotes( $this->data );
 			$this->fix_magic_quotes( $_REQUEST );
 			$this->fix_magic_quotes( $_SERVER );
 		}
@@ -399,6 +400,23 @@ class WebRequest {
 	}
 
 	/**
+	 * Get a cookie that has been sent through fix_magic_quotes().
+	 * $wgCookiePrefix added before requesting, so no need to do
+	 * it yourself.
+	 * 
+	 * @param string $key Key of the cookie name
+	 * @param bool $addPrefix Whether to append $wgCookiePrefix (ie: most of the time)
+	 * @return mixed (value or null if not found)
+	 */
+	function getCookie( $key, $addPrefix = true ) {
+		if ( $addPrefix ) {
+			global $wgCookiePrefix;
+			$key = $wgCookiePrefix . $key;
+		}
+		return isset( $this->cookies[$key] ) ? $this->cookies[$key] : null;
+	}
+
+	/**
 	 * Returns true if there is a session cookie set.
 	 * This does not necessarily mean that the user is logged in!
 	 *
@@ -410,7 +428,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		return !is_null( $this->getCookie( session_name(), false ) );
 	}
 
 	/**

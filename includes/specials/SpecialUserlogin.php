@@ -742,7 +742,7 @@ class LoginForm {
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
 		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
-		global $wgCookiePrefix, $wgAuth, $wgLoginLanguageSelector;
+		global $wgRequest, $wgAuth, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
@@ -767,7 +767,7 @@ class LoginForm {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {
-				$this->mName = isset( $_COOKIE[$wgCookiePrefix.'UserName'] ) ? $_COOKIE[$wgCookiePrefix.'UserName'] : null;
+				$this->mName = isset( $wgRequest->getCookie('UserName') ) ? $wgRequest->getCookie('UserName') : null;
 			}
 		}
 
