@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.13.1 ==
 
-September 4, 2008
+September 6, 2008
 
 This is a bugfix release of the Summer 2008 snapshot release of MediaWiki.
 
@@ -26,6 +26,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   performance for installations without memcached.
 * (bug 13770) Fixed DOM module detection for installations with both dom 
   and domxml.
+* (bug 15148) Fixed Special:BlockIP for PostgreSQL
 * Localisation updates, Achinese (ace) added.
 
 == Changes since 1.13.0rc2 ==
