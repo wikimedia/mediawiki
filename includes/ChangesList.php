@@ -89,7 +89,7 @@ class ChangesList {
 		return $f;
 	}
 	
-	protected static function userIsNew( Array $attribs ) {
+	protected static function userIsNew( $attribs ) {
 		global $wgAutoConfirmCount, $wgAutoConfirmAge;
 		if( !array_key_exists('user_editcount',$attribs) || !array_key_exists('user_registration',$attribs) ) {
 			return false; // missing input!
