@@ -637,6 +637,18 @@ class WebRequest {
 			}
 		}
 	}
+	
+	/*
+	 * Get data from $_SESSION
+	 */
+	function getSessionData( $key ) {
+		if( !isset( $_SESSION[$key] ) )
+			return null;
+		return $_SESSION[$key];
+	}
+	function setSessionData( $key, $data ) {
+		$_SESSION[$key] = $data;
+	}
 }
 
 /**
@@ -652,7 +664,7 @@ class FauxRequest extends WebRequest {
 	 *   fake GET/POST values
 	 * @param $wasPosted Bool: whether to treat the data as POST
 	 */
-	function FauxRequest( $data, $wasPosted = false ) {
+	function FauxRequest( $data, $wasPosted = false, $session ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
@@ -660,6 +672,11 @@ class FauxRequest extends WebRequest {
 		}
 		$this->wasPosted = $wasPosted;
 		$this->headers = array();
+		$this->session = $session;
+	}
+	
+	function notImplemented( $method ) {
+		throw new MWException( "{$method}() not implemented" );
 	}
 
 	function getText( $name, $default = '' ) {
@@ -680,15 +697,24 @@ class FauxRequest extends WebRequest {
 	}
 
 	function getRequestURL() {
-		throw new MWException( 'FauxRequest::getRequestURL() not implemented' );
+		$this->notImplemented( __METHOD__ );
 	}
 
 	function appendQuery( $query ) {
-		throw new MWException( 'FauxRequest::appendQuery() not implemented' );
+		$this->notImplemented( __METHOD__ );
 	}
 
 	function getHeader( $name ) {
 		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
+	}
+
+	function getSessionData( $key ) {
+		if( !isset( $this->session[$key] ) )
+			return null;
+		return $this->session[$key];
+	}
+	function setSessionData( $key, $data ) {
+		$this->notImplemented( __METHOD__ );
 	}
 
 }
