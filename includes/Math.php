@@ -172,7 +172,7 @@ class MathRenderer {
 					'math_html_conservativeness' => $this->conservativeness,
 					'math_html' => $this->html,
 					'math_mathml' => $this->mathml,
-				  ), $fname, array( 'IGNORE' )
+				  ), $fname
 				);
 			}
 
