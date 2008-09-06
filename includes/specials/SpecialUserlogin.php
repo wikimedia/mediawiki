@@ -767,7 +767,7 @@ class LoginForm {
 			if ( $wgUser->isLoggedIn() ) {
 				$this->mName = $wgUser->getName();
 			} else {
-				$this->mName = isset( $wgRequest->getCookie('UserName') ) ? $wgRequest->getCookie('UserName') : null;
+				$this->mName = $wgRequest->getCookie('UserName');
 			}
 		}
 
