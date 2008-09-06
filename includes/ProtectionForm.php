@@ -65,8 +65,14 @@ class ProtectionForm {
 			: array();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
+		$this->mReasonList = $wgRequest->getText( 'wpProtectReasonList' );
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
-		$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry', $this->mExpiry );
+		// Let dropdown have 'infinite' for unprotected pages
+		if( !($expiry = $wgRequest->getText( 'mwProtect-expiry' )) && $this->mExpiry != 'infinite' ) {
+			$expiry = $this->mExpiry;
+		}
+		$this->mExpiry = $expiry;
+		$this->mExpiryList = $wgRequest->getText( 'wpProtectExpiryList', $this->mExpiry ? '' : 'infinite' );
 
 		foreach( $this->mApplicableTypes as $action ) {
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
@@ -150,20 +156,29 @@ class ProtectionForm {
 
 	function save() {
 		global $wgRequest, $wgUser, $wgOut;
-
-		if( $this->disabled ) {
+		# Permission check!
+		if ( $this->disabled ) {
 			$this->show();
 			return false;
 		}
 
 		$token = $wgRequest->getVal( 'wpEditToken' );
-		if( !$wgUser->matchEditToken( $token ) ) {
+		if ( !$wgUser->matchEditToken( $token ) ) {
 			$this->show( wfMsg( 'sessionfailure' ) );
 			return false;
 		}
-
+		
+		# Create reason string. Use list and/or custom string.
+		$reasonstr = $this->mReasonList;
+		if ( $reasonstr != 'other' && $this->mReason != '' ) {
+			// Entry from drop down menu + additional comment
+			$reasonstr .= ': ' . $this->mReason;
+		} elseif ( $reasonstr == 'other' ) {
+			$reasonstr = $this->mReason;
+		}
+		# Custom expiry takes precedence
 		if ( strlen( $this->mExpiry ) == 0 ) {
-			$this->mExpiry = 'infinite';
+			$this->mExpiry = strlen($this->mExpiryList) ? $this->mExpiryList : 'infinite';
 		}
 
 		if ( $this->mExpiry == 'infinite' || $this->mExpiry == 'indefinite' ) {
@@ -185,7 +200,6 @@ class ProtectionForm {
 				$this->show( wfMsg( 'protect_expiry_old' ) );
 				return false;
 			}
-
 		}
 
 		# They shouldn't be able to do this anyway, but just to make sure, ensure that cascading restrictions aren't being applied
@@ -199,9 +213,9 @@ class ProtectionForm {
 			$this->mCascade = false;
 
 		if ($this->mTitle->exists()) {
-			$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $this->mReason, $this->mCascade, $expiry );
+			$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $reasonstr, $this->mCascade, $expiry );
 		} else {
-			$ok = $this->mTitle->updateTitleProtection( $this->mRestrictions['create'], $this->mReason, $expiry );
+			$ok = $this->mTitle->updateTitleProtection( $this->mRestrictions['create'], $reasonstr, $expiry );
 		}
 
 		if( !$ok ) {
@@ -225,13 +239,20 @@ class ProtectionForm {
 	function buildForm() {
 		global $wgUser;
 
+		$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), 'mwProtectExpiryList' );
+		$mProtectother = Xml::label( wfMsg( 'protect-otheroption' ), 'expires' );
+		$mProtectreasonother = Xml::label( wfMsg( 'protectcomment' ), 'wpProtectReasonList' );
+		$mProtectreason = Xml::label( wfMsg( 'protect-otherreason' ), 'mwProtect-reason' );
+
 		$out = '';
 		if( !$this->disabled ) {
 			$out .= $this->buildScript();
 			// The submission needs to reenable the move permission selector
 			// if it's in locked mode, or some browsers won't submit the data.
-			$out .=	Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->mTitle->getLocalUrl( 'action=protect' ), 'id' => 'mw-Protect-Form', 'onsubmit' => 'protectEnable(true)' ) ) .
-				Xml::hidden( 'wpEditToken',$wgUser->editToken() );
+			$out .= Xml::openElement( 'form', array( 'method' => 'post', 
+				'action' => $this->mTitle->getLocalUrl( 'action=protect' ), 
+				'id' => 'mw-Protect-Form', 'onsubmit' => 'protectEnable(true)' ) );
+			$out .= Xml::hidden( 'wpEditToken',$wgUser->editToken() );
 		}
 
 		$out .= Xml::openElement( 'fieldset' ) .
@@ -255,9 +276,27 @@ class ProtectionForm {
 				"</td>";
 		}
 		$out .= "</tr>\n";
+		
+		$scExpiryOptions = wfMsgForContent( 'ipboptions' ); // FIXME: use its own message
+
+		$showProtectOptions = ($scExpiryOptions !== '-' && !$this->disabled);
+		if( !$showProtectOptions )
+			$mProtectother = $mProtectexpiry;
+
+		$expiryFormOptions = Xml::option( wfMsg( 'protect-otheroption' ), 'wpProtectExpiryList' );
+		foreach( explode(',', $scExpiryOptions) as $option ) {
+			if ( strpos($option, ":") === false ) $option = "$option:$option";
+			list($show, $value) = explode(":", $option);
+			$show = htmlspecialchars($show);
+			$value = htmlspecialchars($value);
+			$expiryFormOptions .= Xml::option( $show, $value, $this->mExpiryList === $value ? true : false ) . "\n";
+		}
+		
+		$reasonDropDown = Xml::listDropDown( 'wpProtectReasonList',
+			wfMsgForContent( 'protect-dropdown' ),
+			wfMsgForContent( 'protect-otherreason' ), '', 'mwProtect-reason', 4 );
 
 		// JavaScript will add another row with a value-chaining checkbox
-
 		$out .= Xml::closeElement( 'tbody' ) .
 			Xml::closeElement( 'table' ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
@@ -267,29 +306,57 @@ class ProtectionForm {
 			$out .= '<tr>
 					<td></td>
 					<td class="mw-input">' .
-						Xml::checkLabel( wfMsg( 'protect-cascade' ), 'mwProtect-cascade', 'mwProtect-cascade', $this->mCascade, $this->disabledAttrib ) .
+						Xml::checkLabel( wfMsg( 'protect-cascade' ), 'mwProtect-cascade', 'mwProtect-cascade', 
+							$this->mCascade, $this->disabledAttrib ) .
 					"</td>
 				</tr>\n";
 		}
-
+		# Add expiry dropdown
+		if( $showProtectOptions && !$this->disabled ) {
+			$out .= "
+				<tr>
+					<td class='mw-label'>
+						{$mProtectexpiry}
+					</td>
+					<td class='mw-input'>" .
+						Xml::tags( 'select',
+							array(
+								'id' => 'mwProtectExpiryList',
+								'name' => 'wpProtectExpiryList',
+								'onchange' => "document.getElementById('expires').value='';",
+								'tabindex' => '2' ) + $this->disabledAttrib,
+							$expiryFormOptions ) .
+					"</td>
+				</tr>";
+		}
+		# Add custom expiry field
 		$attribs = array( 'id' => 'expires' ) + $this->disabledAttrib;
 		$out .= "<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsgExt( 'protectexpiry', array( 'parseinline' ) ), 'expires' ) .
+					$mProtectother .
 				'</td>
 				<td class="mw-input">' .
 					Xml::input( 'mwProtect-expiry', 60, $this->mExpiry, $attribs ) .
 				'</td>
 			</tr>';
-
+		# Add manual and custom reason field/selects
 		if( !$this->disabled ) {
-			$id = 'mwProtect-reason';
-			$out .= "<tr>
-					<td class='mw-label'>" .
-						Xml::label( wfMsg( 'protectcomment' ), $id ) .
-					'</td>
-					<td class="mw-input">' .
-						Xml::input( $id, 60, $this->mReason, array( 'type' => 'text', 'id' => $id, 'maxlength' => 255 ) ) .
+			$out .= "
+				<tr>
+					<td class='mw-label'>
+						{$mProtectreasonother}
+					</td>
+					<td class='mw-input'>
+						{$reasonDropDown}
+					</td>
+				</tr>
+				<tr>
+					<td class='mw-label'>
+						{$mProtectreason}
+					</td>
+					<td class='mw-input'>" .
+						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text', 
+							'id' => 'mwProtect-reason', 'maxlength' => 255 ) ) .
 					"</td>
 				</tr>
 				<tr>
