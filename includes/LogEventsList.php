@@ -241,7 +241,7 @@ class LogEventsList {
 		} else if( self::typeAction($row,'protect',array('modify','protect','unprotect')) ) {
 			$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 
 				'action=history&offset=' . urlencode($row->log_timestamp) ) . ')';
-			if( self::typeAction($row,'protect','modify') && $wgUser->isAllowed('protect') ) {
+			if( $wgUser->isAllowed('protect') && $row->log_action != 'unprotect' ) {
 				$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 
 					'action=unprotect' ) . ')';
 			}
