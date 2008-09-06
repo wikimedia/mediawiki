@@ -65,8 +65,8 @@ class ProtectionForm {
 			: array();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
-		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
-		$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry', 'infinite' );
+		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
+		$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry', $this->mExpiry );
 
 		foreach( $this->mApplicableTypes as $action ) {
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
