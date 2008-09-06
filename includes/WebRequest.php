@@ -664,7 +664,7 @@ class FauxRequest extends WebRequest {
 	 *   fake GET/POST values
 	 * @param $wasPosted Bool: whether to treat the data as POST
 	 */
-	function FauxRequest( $data, $wasPosted = false, $session ) {
+	function FauxRequest( $data, $wasPosted = false, $session = null ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
@@ -672,7 +672,7 @@ class FauxRequest extends WebRequest {
 		}
 		$this->wasPosted = $wasPosted;
 		$this->headers = array();
-		$this->session = $session;
+		$this->session = $session ? $session : array();
 	}
 	
 	function notImplemented( $method ) {
