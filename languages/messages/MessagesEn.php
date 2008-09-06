@@ -663,7 +663,7 @@ XHTML id names.
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'protect'           => 'Protect',
-'protect_change'    => 'change protection',
+'protect_change'    => 'change',
 'protectthispage'   => 'Protect this page',
 'unprotect'         => 'Unprotect',
 'unprotectthispage' => 'Unprotect this page',
@@ -2298,6 +2298,13 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
+'protect-otheroption'         => 'other',
+'protect-otherreason'         => 'other/additional:',
+'protect-dropdown'            => '*Common protection reasons
+** Excessive vandalism
+** Excessive spamming
+** Counter-productive edit warring
+** High traffic page',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
