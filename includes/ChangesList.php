@@ -365,7 +365,7 @@ class OldChangesList extends ChangesList {
 
 			$this->insertDiffHist($s, $rc, $unpatrolled);
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$newbie = self::userIsNew( $rcObj->mAttribs );
+			$newbie = self::userIsNew( $rc->mAttribs );
 			$s .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', 
 				$rc_bot, $newbie );
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
