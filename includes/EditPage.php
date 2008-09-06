@@ -1190,6 +1190,7 @@ class EditPage {
 			}
 		}
 
+		$classes = array(); // Textarea CSS
 		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$wgOut->addWikiMsg( 'editinginterface' );
@@ -1197,9 +1198,11 @@ class EditPage {
 			# Is the title semi-protected?
 			if( $this->mTitle->isSemiProtected() ) {
 				$noticeMsg = 'semiprotectedpagewarning';
+				$classes[] = 'mw-textarea-sprotected';
 			} else {
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
+				$classes[] = 'mw-textarea-protected';
 			}
 			$wgOut->addHTML( "<div id='mw-edit-$noticeMsg'>\n" );
 			$wgOut->addWikiMsg( $noticeMsg );
@@ -1396,7 +1399,7 @@ END
 {$this->editFormTextBeforeContent}
 END
 );
-		$this->showTextbox1();
+		$this->showTextbox1( $classes );
 
 		$wgOut->wrapWikiMsg( "<div id=\"editpage-copywarn\">\n$1\n</div>", $copywarnMsg );
 		$wgOut->addHTML( <<<END
@@ -1472,11 +1475,13 @@ END
 <input type='hidden' value=\"{$this->scrolltop}\" name=\"wpScrolltop\" id=\"wpScrolltop\" />\n" );
 	}
 	
-	protected function showTextbox1() {
+	protected function showTextbox1( $classes ) {
 		$attribs = array( 'tabindex' => 1 );
 		
 		if( $this->wasDeletedSinceLastEdit() )
 			$attribs['type'] = 'hidden';
+		if( !empty($classes) )
+			$attribs['class'] = implode(' ',$classes);
 		
 		$this->showTextbox( $this->textbox1, 'wpTextbox1', $attribs );
 	}
