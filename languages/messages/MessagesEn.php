@@ -799,7 +799,7 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
+'noconnect'            => 'The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
 $1',
 'nodb'                 => 'Could not select database $1',
 'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
@@ -834,7 +834,7 @@ It may have already been deleted by someone else.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
-'perfdisabled'         => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
+'perfdisabled'         => 'This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
 'perfcached'           => 'The following data is cached and may not be up to date.',
 'perfcachedts'         => 'The following data is cached, and was last updated $1.',
 'querypage-no-updates' => 'Updates for this page are currently disabled.
@@ -899,7 +899,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'createaccountmail'          => 'by e-mail',
 'badretype'                  => 'The passwords you entered do not match.',
 'userexists'                 => 'Username entered already in use.
-Please choose a different name.',
+Choose a different name.',
 'youremail'                  => 'E-mail:',
 'username'                   => 'Username:',
 'uid'                        => 'User ID:',
@@ -908,14 +908,16 @@ Please choose a different name.',
 'yourlanguage'               => 'Language:',
 'yourvariant'                => 'Variant:', # only translate this message to other languages if you have to change it
 'yournick'                   => 'Signature:',
-'badsig'                     => 'Invalid raw signature; check HTML tags.',
+'badsig'                     => 'Invalid raw signature.
+Check HTML tags.',
 'badsiglength'               => 'The signature is too long.
 It must be under $1 {{PLURAL:$1|character|characters}}.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Real name is optional.
 If you choose to provide it, this will be used for giving you attribution for your work.',
 'loginerror'                 => 'Login error',
-'prefs-help-email'           => 'E-mail address is optional, but allows your password to be emailed to you if you forget it.  You can also choose to let others to contact you through your user or user_talk page without needing to reveal your identity.',
+'prefs-help-email'           => 'E-mail address is optional, but allows your password to be emailed to you if you forget it.
+You can also choose to let others to contact you through your user or user_talk page without needing to reveal your identity.',
 'prefs-help-email-required'  => 'E-mail address is required.',
 'nocookiesnew'               => 'The user account was created, but you are not logged in.
 {{SITENAME}} uses cookies to log in users.
@@ -958,7 +960,7 @@ To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
-'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts.
+'acct_creation_throttle_hit' => 'You have already created $1 accounts.
 You cannot make any more.',
 'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.
@@ -966,7 +968,7 @@ No e-mail will be sent for any of the following features.',
 'noemailprefs'               => 'Specify an e-mail address for these features to work.',
 'emailconfirmlink'           => 'Confirm your e-mail address',
 'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format.
-Please enter a well-formatted address or empty that field.',
+Enter a well-formatted address or empty that field.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
@@ -974,7 +976,8 @@ Please enter a well-formatted address or empty that field.',
 You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
-'login-throttled'            => "You have made too many recent attempts on this account's password. Please wait before trying again.",
+'login-throttled'            => "You have made too many recent attempts on this account's password.
+Please wait before trying again.",
 'loginlanguagelabel'         => 'Language: $1',
 'loginlanguagelinks'         => '* Deutsch|de
 * English|en
@@ -1097,9 +1100,10 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
-'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh); '''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);'''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.  It has not yet been saved!'''",
+'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.
+It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript, it has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
@@ -1108,10 +1112,10 @@ Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:
 'previewnote'                      => '<strong>This is only a preview;
 changes have not yet been saved!</strong>',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
+'session_fail_preview'             => '<strong>We could not process your edit due to a loss of session data.
 Please try again.
 If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>',
-'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
+'session_fail_preview_html'        => "<strong>We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
@@ -2790,7 +2794,8 @@ You can view its source.',
 'tooltip-recreate'                => 'Recreate the page even though it has been deleted',
 'tooltip-upload'                  => 'Start upload',
 'tooltip-rollback'                => '"Rollback" reverts edit(s) to this page of the last contributor in one click.',
-'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. Allows adding a reason in the summary.',
+'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode.
+Allows adding a reason in the summary.',
 
 # Stylesheets
 'common.css'      => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
@@ -3331,8 +3336,8 @@ This confirmation code will expire at $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed'   => '[Template fetch failed for $1; sorry]',
-'scarytranscludetoolong'  => '[URL is too long; sorry]',
+'scarytranscludefailed'   => '[Template fetch failed for $1]',
+'scarytranscludetoolong'  => '[URL is too long]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Trackbacks for this page:<br />
