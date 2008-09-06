@@ -360,7 +360,7 @@ MySQL報有誤"<tt>$3: $4</tt>"。',
 "$1"
 內此函式"$2".
 MySQL報有誤"$3: $4"',
-'noconnect'            => '歉哉有變，莫能問庫藏。<br />
+'noconnect'            => '有變，莫能問庫藏。<br />
 $1',
 'nodb'                 => '莫能擇庫$1',
 'cachederror'          => '此為謄本，恐不新也',
@@ -387,7 +387,7 @@ $1',
 'cannotdelete'         => '此頁或刪矣，不復為之。',
 'badtitle'             => '無此題',
 'badtitletext'         => '或別、或缺、或違、或他山謬鏈，此題不存也。',
-'perfdisabled'         => '歉哉，此舉累及他人，故謝之。',
+'perfdisabled'         => '此舉累及他人，故謝之。',
 'perfcached'           => '下為謄本，恐不新也。',
 'perfcachedts'         => '下為謄本，$1新之。',
 'wrong_wfQuery_params' => 'wfQuery()參數謬然<br />
@@ -445,6 +445,8 @@ $2',
 'yourlanguage'               => '語言：',
 'yourvariant'                => '變字：',
 'yournick'                   => '自畫：',
+'badsig'                     => '無效之自畫。
+查HTML籤之。',
 'badsiglength'               => '自畫長哉。
 莫逾$1字。',
 'email'                      => '郵',
@@ -475,7 +477,7 @@ $2',
 'throttled-mailpassword'     => '密記已寄之於$1時前。
 防濫，單一密記短至$1時寄之。',
 'mailerror'                  => '信失遣如下：$1',
-'acct_creation_throttle_hit' => '歉哉，$1存矣，不可復增也。',
+'acct_creation_throttle_hit' => '$1存矣，不可復增也。',
 'emailauthenticated'         => '$1郵驛證矣',
 'emailnotauthenticated'      => '郵驛<strong>未證</strong>，下不遺書。',
 'noemailprefs'               => '郵驛須然如下：',
@@ -566,8 +568,8 @@ $2',
 'updated'                          => '（新）',
 'note'                             => '<strong>註</strong>',
 'previewnote'                      => '<strong>此乃預覽，尚未儲焉。</strong>',
-'session_fail_preview'             => '<strong>歉哉有變，子纂未存焉，惠再之。如復不成，[[Special:UserLogout|重登]]再試也。</strong>',
-'session_fail_preview_html'        => "<strong>歉哉有變，子纂未存焉</strong>
+'session_fail_preview'             => '<strong>有變，子纂未存焉，惠再之。如復不成，[[Special:UserLogout|重登]]再試也。</strong>',
+'session_fail_preview_html'        => "<strong>有變，子纂未存焉</strong>
 
 ''此維基亦合純HTML，除預覽以遠惡JavaScript侵。''
 <strong>纂文若合，惠再之。如復不成，簿[[Special:UserLogout|重登]]焉。</strong>",
@@ -2032,8 +2034,8 @@ $NEWPAGE
 
 # Scary transclusion
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
-'scarytranscludefailed'   => '[歉哉，$1模不得]',
-'scarytranscludetoolong'  => '[歉哉，網址過長]',
+'scarytranscludefailed'   => '[$1模不得]',
+'scarytranscludetoolong'  => '[網址過長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">此文之引:

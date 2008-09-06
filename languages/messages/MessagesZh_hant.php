@@ -357,7 +357,8 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 「$1」
 來自於函數「$2」。
 MySQL返回錯誤「$3: $4」。',
-'noconnect'            => '無法在$1上連接資料庫',
+'noconnect'            => '網站遇到一些技術問題，無法連接數據庫伺服器。<br />
+$1',
 'nodb'                 => '無法選擇資料庫 $1',
 'cachederror'          => '以下頁面是快取中的副本，未必是最新版本。',
 'laggedslavemode'      => '警告: 頁面可能不包含最近的更新。',
@@ -389,7 +390,7 @@ MySQL返回錯誤「$3: $4」。',
 'cannotdelete'         => '無法刪除選定的頁面或圖像（它可能已經被其他人刪除了）。',
 'badtitle'             => '錯誤的標題',
 'badtitletext'         => '所請求頁面的標題是無效的、不存在，跨語言或跨wiki連結的標題錯誤。',
-'perfdisabled'         => '抱歉！由於此項操作有可能造成資料庫癱瘓，目前暫時無法使用。',
+'perfdisabled'         => '由於此項操作有可能造成資料庫癱瘓，目前暫時無法使用。',
 'perfcached'           => '下列是快取資料，因此可能不是最新的:',
 'perfcachedts'         => '下列是快取資料，其最後更新時間是$1。',
 'querypage-no-updates' => '當前禁止對此頁面進行更新。此處的資料將不能被立即重新整理。',
@@ -442,7 +443,7 @@ $2',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過e-Mail',
 'badretype'                  => '您所輸入的密碼並不相同。',
-'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個。',
+'userexists'                 => '您所輸入的用戶名稱已經存在，另選一個名稱。',
 'youremail'                  => '電子郵件:',
 'username'                   => '用戶名:',
 'uid'                        => '用戶ID:',
@@ -451,7 +452,7 @@ $2',
 'yourlanguage'               => '介面語言:',
 'yourvariant'                => '字體變換:',
 'yournick'                   => '簽名:',
-'badsig'                     => '錯誤的原始簽名；請檢查HTML標籤。',
+'badsig'                     => '錯誤的原始簽名。檢查一下HTML標籤。',
 'badsiglength'               => '簽名過長。
 它的長度必須在$1個字元以下。',
 'email'                      => '電子郵件',
@@ -482,12 +483,12 @@ $2',
 'eauthentsent'               => '一封確認信已經發送到所示的地址。在發送其它郵件到此帳戶前，您必須首先依照這封信中的指導確認這個電子郵件信箱真實有效。',
 'throttled-mailpassword'     => '密碼提醒已經在前$1小時內發送。為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror'                  => '發送郵件錯誤: $1',
-'acct_creation_throttle_hit' => '對不起，您已經註冊了$1帳號。你不能再註冊了。',
+'acct_creation_throttle_hit' => '您已經註冊了$1帳號。你不能再註冊了。',
 'emailauthenticated'         => '您的電子郵件地址已經於$1確認有效。',
 'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
 'noemailprefs'               => '<strong>指定一個電子郵件地址以使用此功能</strong>',
 'emailconfirmlink'           => '確認您的郵箱地址',
-'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
+'invalidemailaddress'        => '郵箱地址格式不正確，輸入正確的郵箱位址或清空該輸入框。',
 'accountcreated'             => '已建立帳戶',
 'accountcreatedtext'         => '$1的帳戶已經被創建。',
 'createaccount-title'        => '在{{SITENAME}}中創建新帳戶',
@@ -600,8 +601,8 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>請記住這只是預覽，內容還未保存！</strong>',
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。</strong>',
-'session_fail_preview_html'        => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
+'session_fail_preview'             => '<strong>由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。</strong>',
+'session_fail_preview_html'        => "<strong>部份資料已遺失，我們無法處理您的編輯。</strong>
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
@@ -2531,8 +2532,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
-'scarytranscludefailed'   => '[抱歉，模板$1讀取失敗]',
-'scarytranscludetoolong'  => '[抱歉，URL 地址太長]',
+'scarytranscludefailed'   => '[模板$1讀取失敗]',
+'scarytranscludetoolong'  => '[URL 地址太長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">此頁面的引用:

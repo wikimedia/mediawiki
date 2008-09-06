@@ -375,7 +375,8 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 “$1”
 来自于函数“$2”。
 MySQL返回错误“$3: $4”。',
-'noconnect'            => '抱歉！网站遇到一些技术问题，无法连接数据库服务器。<br />$1',
+'noconnect'            => '网站遇到一些技术问题，无法连接数据库服务器。<br />
+$1',
 'nodb'                 => '无法选择数据库$1',
 'cachederror'          => '以下页面是缓存中的副本，未必是最新版本。',
 'laggedslavemode'      => '警告: 页面可能不包含最近的更新。',
@@ -408,7 +409,7 @@ MySQL返回错误“$3: $4”。',
 'cannotdelete'         => '无法删除选定的页面或图像（它可能已经被其他人删除了）。',
 'badtitle'             => '错误的标题',
 'badtitletext'         => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
-'perfdisabled'         => '抱歉！由于此项操作有可能造成数据库瘫痪，目前暂时无法使用。',
+'perfdisabled'         => '由于此项操作有可能造成数据库瘫痪，目前暂时无法使用。',
 'perfcached'           => '下列是缓存数据，因此可能不是最新的:',
 'perfcachedts'         => '下列是缓存数据，其最后更新时间是$1。',
 'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
@@ -466,7 +467,7 @@ $2',
 'gotaccountlink'             => '登录',
 'createaccountmail'          => '通过电子邮件',
 'badretype'                  => '您所输入的密码并不相同。',
-'userexists'                 => '您所输入的用户名已有人使用。请另选一个。',
+'userexists'                 => '您所输入的用户名已有人使用。另选一个名。',
 'youremail'                  => '电子邮件:',
 'username'                   => '用户名:',
 'uid'                        => '用户ID:',
@@ -475,7 +476,7 @@ $2',
 'yourlanguage'               => '界面语言:',
 'yourvariant'                => '字体变换:',
 'yournick'                   => '签名:',
-'badsig'                     => '错误的原始签名；请检查HTML标签。',
+'badsig'                     => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'               => '签名过长。
 它的长度必须在$1个字符以下。',
 'email'                      => '电子邮箱',
@@ -505,12 +506,12 @@ $2',
 'eauthentsent'               => '一封确认信已经发送到推荐的地址。在发送其它邮件到此账户前，您必须首先依照这封信中的指导确认这个电子邮箱真实有效。',
 'throttled-mailpassword'     => '密码提醒已在最近$1小时内发送。为了安全起见，在每$1小时内只能发送一个密码提醒。',
 'mailerror'                  => '发送邮件错误: $1',
-'acct_creation_throttle_hit' => '对不起，您已经创建了$1个账号。你不能再创建了。',
+'acct_creation_throttle_hit' => '您已经创建了$1个账号。你不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$1确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
 'noemailprefs'               => '<strong>指定一个电子邮箱地址以使用此功能</strong>',
 'emailconfirmlink'           => '确认您的邮箱地址',
-'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
+'invalidemailaddress'        => '邮箱地址格式不正确，输入正确的邮箱地址或清空该输入框。',
 'accountcreated'             => '已建立账户',
 'accountcreatedtext'         => '$1的账户已经被创建。',
 'createaccount-title'        => '在{{SITENAME}}中创建新账户',
@@ -624,8 +625,8 @@ $2',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
-'session_fail_preview_html'        => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
+'session_fail_preview'             => '<strong>我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
+'session_fail_preview_html'        => "<strong>我们不能处理你在进程数据丢失时的编辑。</strong>
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
@@ -2557,8 +2558,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
-'scarytranscludefailed'   => '[抱歉，提取$1失败]',
-'scarytranscludetoolong'  => '[抱歉，URL 过长]',
+'scarytranscludefailed'   => '[提取$1失败]',
+'scarytranscludetoolong'  => '[URL 过长]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">此页面的引用:
