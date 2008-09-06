@@ -241,9 +241,8 @@ CREATE TABLE ipblocks (
   ipb_range_end         TEXT,
   ipb_deleted           SMALLINT     NOT NULL  DEFAULT 0,
   ipb_block_email       SMALLINT     NOT NULL  DEFAULT 0
-
 );
-CREATE INDEX ipb_address ON ipblocks (ipb_address);
+CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto,ipb_anon_only);
 CREATE INDEX ipb_user    ON ipblocks (ipb_user);
 CREATE INDEX ipb_range   ON ipblocks (ipb_range_start,ipb_range_end);
 
@@ -352,7 +351,7 @@ CREATE TABLE recentchanges (
   rc_params          TEXT
 );
 CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
-CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp) WHERE rc_bot = '0';
+CREATE INDEX rc_timestamp_bot   ON recentchanges (rc_timestamp) WHERE rc_bot = '0';
 CREATE INDEX rc_namespace_title ON recentchanges (rc_namespace, rc_title);
 CREATE INDEX rc_cur_id          ON recentchanges (rc_cur_id);
 CREATE INDEX new_name_timestamp ON recentchanges (rc_new, rc_namespace, rc_timestamp);
