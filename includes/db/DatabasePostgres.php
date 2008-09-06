@@ -72,6 +72,7 @@ class DatabasePostgres extends Database {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 	var $numeric_version = NULL;
+	var $mAffectedRows = NULL;
 
 	function DatabasePostgres($server = false, $user = false, $password = false, $dbName = false,
 		$failFunction = false, $flags = 0 )
@@ -546,9 +547,11 @@ class DatabasePostgres extends Database {
 
 	function doQuery( $sql ) {
 		if (function_exists('mb_convert_encoding')) {
-			return $this->mLastResult=pg_query( $this->mConn , mb_convert_encoding($sql,'UTF-8') );
+			$sql = mb_convert_encoding($sql,'UTF-8');
 		}
-		return $this->mLastResult=pg_query( $this->mConn , $sql);
+		$this->mLastResult = pg_query( $this->mConn, $sql);
+		$this->mAffectedRows = NULL; // use pg_affected_rows(mLastResult)
+		return $this->mLastResult;
 	}
 
 	function queryIgnore( $sql, $fname = '' ) {
@@ -641,9 +644,12 @@ class DatabasePostgres extends Database {
 	}
 
 	function affectedRows() {
-		if( !isset( $this->mLastResult ) or ! $this->mLastResult )
+		if ( !is_null( $this->mAffectedRows ) ) {
+			// Forced result for simulated queries
+			return $this->mAffectedRows;
+		}
+		if( empty( $this->mLastResult ) )
 			return 0;
-
 		return pg_affected_rows( $this->mLastResult );
 	}
 
@@ -809,7 +815,6 @@ class DatabasePostgres extends Database {
 
 			$sql .= '(' . $this->makeList( $args ) . ')';
 			$res = (bool)$this->query( $sql, $fname, $ignore );
-
 			if ( $ignore ) {
 				$bar = pg_last_error();
 				if ($bar != false) {
@@ -821,12 +826,14 @@ class DatabasePostgres extends Database {
 				}
 			}
 		}
-
 		if ( $ignore ) {
 			$olde = error_reporting( $olde );
 			if ($didbegin) {
 				$this->commit();
 			}
+
+			// Set the affected row count for the whole operation
+			$this->mAffectedRows = $numrowsinserted;
 
 			// IGNORE always returns true
 			return true;

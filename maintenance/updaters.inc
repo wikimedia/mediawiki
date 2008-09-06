@@ -1686,7 +1686,7 @@ function do_postgres_updates() {
 		$wgDatabase->query("CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)");
 	}
 	else
-		echo "... index \"pagelink_unique_index\" aready exists\n";
+		echo "... index \"pagelink_unique_index\" already exists\n";
 
 	if (pg_fkey_deltype("revision_rev_user_fkey") == 'r') {
 		echo "... constraint \"revision_rev_user_fkey\" is ON DELETE RESTRICT\n";
@@ -1694,6 +1694,14 @@ function do_postgres_updates() {
 	else {
 		echo "Changing constraint \"revision_rev_user_fkey\" to ON DELETE RESTRICT\n";
 		dbsource(archive('patch-revision_rev_user_fkey.sql'));
+	}
+
+	# Fix ipb_address index
+	if (pg_index_exists('ipblocks', 'ipb_address_unique' )) {
+		echo "... have ipb_address_unique\n";
+	} else {
+		echo "Adding ipb_address_unique index\n";
+		dbsource(archive('patch-ipb_address_unique.sql'));
 	}
 
 	global $wgExtNewTables, $wgExtPGNewFields, $wgExtNewIndexes;
