@@ -330,7 +330,7 @@ Le ultime consulta que se tentava es:
 "$1"
 effectuate per le function "$2".
 MySQL retornava le error "$3: $4"',
-'noconnect'            => 'Excusa! Le wiki ha difficultates technic al momento, e non pote contactar le servitor del base de datos.<br />
+'noconnect'            => 'Le wiki ha difficultates technic al momento, e non pote contactar le servitor del base de datos.<br />
 $1',
 'nodb'                 => 'Non poteva seliger le base de datos $1',
 'cachederror'          => 'Le sequente copia del pagina se recuperava del cache, e possibilemente non es actual.',
@@ -430,7 +430,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'createaccountmail'          => 'per e-mail',
 'badretype'                  => 'Le duo contrasignos que tu scribeva non es identic.',
 'userexists'                 => 'Le nomine de usator que tu entrava es ja in uso.
-Per favor selige un altere nomine.',
+Selige un altere nomine.',
 'youremail'                  => 'E-mail:',
 'username'                   => 'Nomine de usator:',
 'uid'                        => 'ID del usator:',
@@ -446,7 +446,7 @@ Illo debe haber minus de $1 {{PLURAL:$1|character|characteres}}.',
 'prefs-help-realname'        => 'Le nomine real es optional.
 Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contributiones.',
 'loginerror'                 => 'Error in le apertura del session',
-'prefs-help-email'           => 'Le adresse de e-mail es optional, sed permitte que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
+'prefs-help-email'           => 'Le adresse de e-mail es optional, sed permitte facer inviar te tu contrasigno in caso que tu lo oblida. Tu pote etiam optar pro permitter que altere personas te contacta via tu pagina de usator o de discussion, sin necessitate de revelar tu identitate.',
 'prefs-help-email-required'  => 'Le adresse de e-mail es requirite.',
 'nocookiesnew'               => "Le conto de usator ha essite create, sed tu non ha aperite un session.
 {{SITENAME}} usa ''cookies'' pro mantener le sessiones del usatores.
@@ -467,7 +467,7 @@ Verifica le orthographia.',
 'wrongpasswordempty'         => 'Tu non entrava un contrasigno. Per favor reprova.',
 'passwordtooshort'           => 'Tu contrasigno es invalide o troppo curte.
 Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}} e debe differer de tu nomine de usator.',
-'mailmypassword'             => 'Inviar contrasigno in e-mail',
+'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, con le adresse IP $1)
 demandava que nos te invia un nove contrasigno pro {{SITENAME}} ($4).
@@ -485,7 +485,7 @@ Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructione
 'throttled-mailpassword'     => 'Un memento del contrasigno jam esseva inviate durante le ultime {{PLURAL:$1|hora|$1 horas}}.
 Pro impedir le abuso, nos invia solmente un memento de contrasigno per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error de inviar e-mail: $1',
-'acct_creation_throttle_hit' => 'Excusa, tu jam ha create $1 contos.
+'acct_creation_throttle_hit' => 'Tu ha ja create $1 contos.
 Tu non pote facer plus.',
 'emailauthenticated'         => 'Tu adresse de e-mail se authentificava le $1.',
 'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
@@ -493,7 +493,7 @@ Nos non inviara e-mail pro alcun del sequente functiones.',
 'noemailprefs'               => 'Specifica un adresse de e-mail pro poter executar iste functiones.',
 'emailconfirmlink'           => 'Confirmar tu adresse de e-mail',
 'invalidemailaddress'        => 'Le adresse de e-mail ha un formato invalide e non pote esser acceptate.
-Per favor entra un adresse ben formatate, o vacua ille campo.',
+Entra un adresse ben formatate, o vacua ille campo.',
 'accountcreated'             => 'Conto create',
 'accountcreatedtext'         => 'Le conto del usator $1 ha essite create.',
 'createaccount-title'        => 'Creation de contos pro {{SITENAME}}',
@@ -615,7 +615,8 @@ Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite 
 'userpage-userdoesnotexist'        => 'Le conto de usator "$1" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'clearyourcache'                   => "'''Nota - Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.''' '''Mozilla / Firefox / Safari:''' tenente ''Shift'' clicca ''Reload,'' o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' in un Macintosh); '''Konqueror: '''clicca ''Reload'' o preme ''F5;'' '''Opera:''' vacua le ''cache'' in ''Tools → Preferences;'' '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh,'' o preme ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Consilio:</strong> Usa le button 'Monstrar previsualisation' pro testar tu nove CSS/JS ante de publicar lo.",
-'usercsspreview'                   => "'''Memora que isto es solmente un previsualisation de tu CSS personalisate, illo non ha ancora essite immagazinate!'''",
+'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.
+Le modificationes non ha ancora essite immagazinate!'''",
 'userjspreview'                    => "'''Memora que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
 'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
@@ -625,12 +626,12 @@ Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.
 le modificationes non ha ancora essite publicate!</strong>',
 'previewconflict'                  => 'Iste previsualisation reflecte le apparentia final del texto in le area de modification superior
 si tu opta pro publicar lo.',
-'session_fail_preview'             => '<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.
+'session_fail_preview'             => '<strong>Nos non poteva processar tu modification proque nos perdeva le datos del session.
 Per favor reprova.
 Si illo ancora non va, prova [[Special:UserLogout|clauder tu session]] e aperir un nove session.</strong>',
-'session_fail_preview_html'        => "<strong>Excusa! Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
+'session_fail_preview_html'        => "<strong>Nos non poteva processar tu modification proque nos perdeva le datos del session.</strong>
 
-''Viste que HTML crude es active in {{SITENAME}}, le previsualisation es celate como precaution contra attaccos via JavaScript.''
+''Post que HTML crude es active in {{SITENAME}}, le previsualisation es celate como precaution contra attaccos via JavaScript.''
 
 <strong>Si isto es un tentativa de modification legitime, per favor reprova lo.
 Si illo ancora non va, prova [[Special:UserLogout|clauder tu session]] e aperir un nove session.</strong>",
@@ -1219,8 +1220,8 @@ Illo pare esser un imagine a grandor reducite <i>(miniatura)</i>.
 Si tu possede iste imagine in plen resolution, carga lo, alteremente cambia le nomine del file per favor.',
 'fileexists-forbidden'        => 'Un file con iste nomine existe ja;
 per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le repositorio de files commun;
-per favor retorna e carga iste file sub un altere nomine. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un file con iste nomine existe ja in le repositorio de files commun.
+Si tu vole totevia cargar iste file, per favor retorna e usa un nove nomine. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Iste file es un duplicato del sequente {{PLURAL:$1|file|files}}:',
 'successfulupload'            => 'Cargamento succedite',
 'uploadwarning'               => 'Advertimento de cargamento',
@@ -1330,8 +1331,8 @@ Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
 'shareduploadduplicate-linktext' => 'un altere file',
 'shareduploadconflict'           => 'Iste file ha le mesme nomine que $1 del repositorio commun.',
 'shareduploadconflict-linktext'  => 'un altere file',
-'noimage'                        => 'Non existe un file con iste nomine. Tu pote $1.',
-'noimage-linktext'               => 'cargar lo',
+'noimage'                        => 'Non existe un file con iste nomine, sed tu pote $1.',
+'noimage-linktext'               => 'cargar un',
 'uploadnewversion-linktext'      => 'Cargar un nove version de iste file',
 'imagepage-searchdupe'           => 'Cercar files duplicate',
 
@@ -1503,7 +1504,7 @@ executar iste function.',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Tote le registros',
 'alllogstext'          => 'Presentation combinate de tote le registros disponibile de {{SITENAME}}.
-Restringe le presentation seligente un typo de registro, nomine de usator, o pagina.',
+Pro restringer le presentation, selige un typo de registro, le nomine de usator (sensibile al majusculas e minusculas), o le pagina in question (etiam sensibile al majusculas e minusculas).',
 'logempty'             => 'Le registro contine nihil pro iste pagina.',
 'log-title-wildcard'   => 'Cercar titulos que comencia con iste texto',
 
@@ -1559,11 +1560,9 @@ e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
 'emailuser'       => 'Inviar e-mail a iste usator',
 'emailpage'       => 'Inviar e-mail al usator',
-'emailpagetext'   => 'Si iste usator forniva un adresse de e-mail valide in
-su preferentias de usator, le formulario infra le/la inviara un message.
+'emailpagetext'   => 'Si iste usator forniva un adresse de e-mail valide in su preferentias de usator, le formulario infra le/la inviara un singule message.
 Le adresse de e-mail que tu forniva in [[Special:Preferences|tu preferentias de usator]] apparera
-como le adresse del expeditor del e-mail, a fin que le destinatario
-pote responder te.',
+como le adresse del expeditor del e-mail, a fin que le destinatario pote responder directemente a te.',
 'usermailererror' => 'Le objecto de e-mail retornava le error:',
 'defemailsubject' => 'E-mail de {{SITENAME}}',
 'noemailtitle'    => 'Nulle adresse de e-mail',
@@ -1770,8 +1769,9 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 'undeletepagetext'             => 'Le paginas sequente ha essite delite, sed es ancora in le archivo e pote esser restaurate.
 Le archivo pote esser vacuate periodicamente.',
 'undelete-fieldset-title'      => 'Restaurar revisiones',
-'undeleteextrahelp'            => "Pro restaurar le pagina integre, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
-Pro executar un restauration selective, marca le quadratos correspondente al revisiones pro restaurar, e clicca '''''Restaurar'''''. Con le button '''''Reinitiar''''' tu pote rader le campo de commento e tote le quadratos.",
+'undeleteextrahelp'            => "Pro restaurar le historia integre del pagina, lassa tote le quadratos dismarcate e clicca '''''Restaurar'''''.
+Pro executar un restauration selective, marca le quadratos correspondente al versiones pro restaurar, e clicca '''''Restaurar'''''.
+Le button '''''Reinitiar''''' face rader le campo de commento e tote le quadratos.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} archivate',
 'undeletehistory'              => 'Si tu restaura un pagina, tote le revisiones essera restaurate al historia.
 Si un nove pagina con le mesme nomine ha essite create post le deletion, le revisiones
@@ -2217,7 +2217,7 @@ Immagazina lo in tu disco e carga lo hic.',
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protection antispam',
 'spamprotectiontext'  => 'Le pagina que tu voleva immagazinar esseva blocate per le filtro antispam.
-Le causa es probabilemente un ligamine a un sito externe.',
+Le causa es probabilemente un ligamine verso un sito externe que es presente in un lista nigre.',
 'spamprotectionmatch' => 'Le sequente texto es lo que activava nostre filtro antispam: $1',
 'spambot_username'    => 'Nettamento de spam in MediaWiki',
 'spam_reverting'      => 'Revertite al ultime version que non contine ligamines a $1',
@@ -2268,8 +2268,8 @@ $1',
 'filedelete-archive-read-only'    => 'Le servitor de web non pote scriber al directorio de archivo "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Precedente diff',
-'nextdiff'     => 'Sequente diff →',
+'previousdiff' => '← Version plus ancian',
+'nextdiff'     => 'Version plus nove →',
 
 # Visual comparison
 'visual-comparison' => 'Comparation visual',
@@ -2607,8 +2607,8 @@ si tu ha recentemente create tu conto, es recommendate attender le arrivata de i
 'confirmemail_sent'        => 'Message de confirmation inviate.',
 'confirmemail_oncreate'    => 'Un codice de confirmation ha essite inviate a tu adresse de e-mail.
 Iste codice non es necessari pro aperir un session, ma es requirite pro activar omne functiones a base de e-mail in le wiki.',
-'confirmemail_sendfailed'  => 'Non poteva inviar message de confirmation.
-Verifica que le adresse non ha characteres invalide.
+'confirmemail_sendfailed'  => '{{SITENAME}} non poteva inviar te le message de confirmation.
+Per favor verifica que tu adresse de e-mail non ha characteres invalide.
 
 Le servitor de e-mail retornava: $1',
 'confirmemail_invalid'     => 'Codice de confirmation invalide.
@@ -2638,8 +2638,8 @@ Iste codice de confirmation expirara a $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Le transclusion interwiki es disactivate]',
-'scarytranscludefailed'   => '[Falleva de obtener patrono pro $1; pardono]',
-'scarytranscludetoolong'  => '[URL es troppo longe; pardono]',
+'scarytranscludefailed'   => '[Falleva de obtener le patrono pro $1]',
+'scarytranscludetoolong'  => '[URL es troppo longe]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Retroligamines a iste pagina:<br />
@@ -2650,7 +2650,7 @@ $1
 'trackbackdeleteok' => 'Le retroligamine ha essite delite con successo.',
 
 # Delete conflict
-'deletedwhileediting' => 'Attention: Iste pagina ha essite delite post que tu comenciava a modificar lo!',
+'deletedwhileediting' => "'''Attention:''' Iste pagina esseva delite post que tu comenciava a modificar lo!",
 'confirmrecreate'     => "Le usator [[User:$1|$1]] ([[User talk:$1|discussion]]) ha delite iste pagina post que tu comenciava a modificar lo, dante le motivo:
 : ''$2''
 Per favor confirma que tu realmente vole recrear iste pagina.",

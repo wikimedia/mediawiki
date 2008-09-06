@@ -690,7 +690,8 @@ Deze moet minder dan $1 {{PLURAL:$1|karakters|karakters}} bevatten.',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Echte naam is optioneel, als u deze opgeeft kan deze naam gebruikt worden om u erkenning te geven voor uw werk.',
 'loginerror'                 => 'Aanmeldfout',
-'prefs-help-email'           => 'E-mailadres is optioneel, maar stelt anderen in staat contact met u op te nemen via uw gebruikers- of overlegpagina zonder dat u uw identiteit prijsgeeft.',
+'prefs-help-email'           => 'E-mailadres is optioneel, maar maakt het mogelijk om u uw wachtwoord te e-mail als u het bent vergeten.
+U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een verwijzing op uw gebruikers- en overlegpagina zonder dat u uw identiteit prijsgeeft.',
 'prefs-help-email-required'  => 'Hiervoor is een e-mailadres nodig.',
 'nocookiesnew'               => 'De gebruiker is geregistreerd, maar niet aangemeld.
 {{SITENAME}} gebruikt cookies voor het aanmelden van gebruikers.
@@ -712,7 +713,7 @@ Probeer het opnieuw.',
 Probeer het opnieuw.',
 'passwordtooshort'           => 'Uw wachtwoord is te kort.
 Het moet minstens uit {{PLURAL:$1|1 teken|$1 tekens}} bestaan.',
-'mailmypassword'             => 'Wachtwoord e-mailen',
+'mailmypassword'             => 'Nieuw wachtwoord e-mailen',
 'passwordremindertitle'      => 'Nieuw tijdelijk wachtwoord voor {{SITENAME}}',
 'passwordremindertext'       => 'Iemand, waarschijnlijk u, heeft vanaf IP-adres $1 een verzoek gedaan tot het toezenden van het wachtwoord voor {{SITENAME}} ($4).
 Het wachtwoord voor gebruiker "$2" is "$3".
@@ -868,7 +869,8 @@ Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 
 '''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Gebruik de knop 'Bewerking ter controle bekijken' om uw nieuwe CSS/JS te testen alvorens op te slaan.",
-'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS, deze is nog niet opgeslagen!'''",
+'usercsspreview'                   => "'''Dit is alleen een voorvertoning van uw persoonlijke CSS.
+Deze is nog niet opgeslagen!'''",
 'userjspreview'                    => "'''Let op: u test nu uw persoonlijke JavaScript.
 De pagina is niet opgeslagen!'''",
 'userinvalidcssjstitle'            => "'''Waarschuwing:''' er is geen skin \"\$1\".
@@ -1476,7 +1478,7 @@ Wijzig anders de bestandsnaam.',
 Upload uw bestand onder een andere naam.
 [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Er bestaat al een bestand met deze naam bij de gedeelte bestanden.
-Upload het bestand onder een andere naam.
+Als u het bestand alsnog wilt uploaden, ga dan terug en kies een andere naam.
 [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dit bestand is indentiek aan {{PLURAL:$1|het volgende bestand|de volgende bestanden}}:',
 'successfulupload'            => 'De upload is geslaagd',
@@ -1587,8 +1589,7 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'shareduploadduplicate-linktext' => 'een ander bestand',
 'shareduploadconflict'           => 'Dit bestand heeft dezelfde naam als $1 in de gedeelde mediabank.',
 'shareduploadconflict-linktext'  => 'een ander bestand',
-'noimage'                        => 'Er bestaat geen bestand met deze naam.
-U kunt het $1.',
+'noimage'                        => 'Er bestaat geen bestand met deze naam, maar u kunt het $1.',
 'noimage-linktext'               => 'uploaden',
 'uploadnewversion-linktext'      => 'Een nieuwe versie van dit bestand uploaden',
 'imagepage-searchdupe'           => 'Duplicaatbestanden zoeken',
@@ -1759,8 +1760,8 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'speciallogtitlelabel' => 'Paginanaam:',
 'log'                  => 'Logboeken',
 'all-logs-page'        => 'Alle logboeken',
-'alllogstext'          => 'Dit is het gecombineerde logboek.
-U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker en paginanaam.',
+'alllogstext'          => 'Dit is het gecombineerde logboek van {{SITENAME}}.
+U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlettergevoelig) en paginanaam (hoofdlettergevoelig).',
 'logempty'             => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',
 'log-title-wildcard'   => "Pagina's zoeken die met deze naam beginnen",
 
@@ -1815,7 +1816,8 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 'emailuser'       => 'Deze gebruiker e-mailen',
 'emailpage'       => 'Gebruiker e-mailen',
 'emailpagetext'   => 'Als deze gebruiker een geldig e-mailadres heeft opgegeven, dan kunt u via dit formulier een bericht verzenden.
-Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.',
+Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.
+De ontvanger kan dus direct naar u reageren.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
 'defemailsubject' => 'E-mail van {{SITENAME}}',
 'noemailtitle'    => 'Van deze gebruiker is geen e-mailadres bekend',
@@ -2457,7 +2459,7 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
 'spamprotectiontext'  => 'De pagina die u wilde opslaan is geblokkeerd door het spamfilter.
-Meestal wordt dit door een externe verwijzing veroorzaakt.',
+Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'spamprotectionmatch' => 'De volgende tekst veroorzaakte een alarm van de spamfilter: $1',
 'spambot_username'    => 'MediaWiki opschoning spam',
 'spam_reverting'      => 'Bezig met terugdraaien naar de laatste versie die geen verwijzing heeft naar $1',
@@ -2509,8 +2511,8 @@ $1',
 'filedelete-archive-read-only'    => 'De webserver kan niet in de archiefmap "$1" schrijven.',
 
 # Browsing diffs
-'previousdiff' => '← Vorige wijziging',
-'nextdiff'     => 'Volgende wijziging →',
+'previousdiff' => '← Eerdere bewerking',
+'nextdiff'     => 'Nieuwere bewerking →',
 
 # Visual comparison
 'visual-comparison' => 'Visuele vergelijking',
@@ -2854,8 +2856,8 @@ Als u recentelijk uw gebruiker hebt aangemaakt, wacht dan een paar minuten totda
 'confirmemail_sent'        => 'Bevestigingscode verzonden.',
 'confirmemail_oncreate'    => 'Er is een bevestigingscode is naar uw e-mailadres verzonden.
 Deze code is niet nodig om u aan te melden, maar u dient deze wel te bevestigen voordat u de e-mailmogelijkheden van deze wiki kunt gebruiken.',
-'confirmemail_sendfailed'  => 'Het was niet mogelijk een bevestigingscode te verzenden.
-Controleer het adres op ongeldige tekens.
+'confirmemail_sendfailed'  => '{{SITENAME}} kon uw bevestigingscode niet verzenden.
+Controleer uw e-mailadres op ongeldige tekens.
 
 Het e-mailprogramma meldde: $1',
 'confirmemail_invalid'     => 'Ongeldige bevestigingscode.
@@ -2882,8 +2884,8 @@ De bevestigingscode verloopt op $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',
-'scarytranscludefailed'   => '[Sjabloon $1 kon niet opgehaald worden]',
-'scarytranscludetoolong'  => '[URL is te lang]',
+'scarytranscludefailed'   => '[Het sjabloon $1 kon niet opgehaald worden]',
+'scarytranscludetoolong'  => '[De URL is te lang]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2894,7 +2896,7 @@ $1</div>",
 'trackbackdeleteok' => 'De trackback is verwijderd.',
 
 # Delete conflict
-'deletedwhileediting' => 'Let op: deze pagina is verwijderd terwijl u bezig was met uw bewerking!',
+'deletedwhileediting' => "'''Let op''': deze pagina is verwijderd terwijl u bezig was met uw bewerking!",
 'confirmrecreate'     => "Nadat u begonnen bent met uw wijziging heeft [[User:$1|$1]] ([[User talk:$1|overleg]]) deze pagina verwijderd met opgave van de volgende reden:
 : ''$2''
 Bevestig dat u de pagina opnieuw wilt aanmaken.",

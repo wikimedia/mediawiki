@@ -793,7 +793,8 @@ Estes argumentos foram omitidos.',
 'post-expand-template-argument-category'  => 'Páginas com omissões de argumentos em predefinições',
 
 # "Undo" feature
-'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar  de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
+'undo-success' => 'A edição pode ser desfeita.
+Por favor, verifique a seguinte comparação para se certificar de que é o que pretende fazer, e grave abaixo as alterações para finalizar e desfazer a edição.',
 'undo-failure' => 'A edição não pôde ser desfeita devido a alterações intermediárias conflitantes.',
 'undo-norev'   => 'A edição não pôde ser desfeita porque não existe ou foi apagada.',
 'undo-summary' => 'Desfeita a edição $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussão]])',

@@ -531,7 +531,7 @@ $messages = array(
 'databaseerror'        => '데이터베이스 오류',
 'dberrortext'          => '데이터베이스 쿼리 구문 오류가 발생했습니다. 소프트웨어의 버그가 있을 수 있습니다. 마지막으로 요청한 데이터베이스 쿼리는 "<tt>$2</tt>" 함수에서 쓰인 <blockquote><tt>$1</tt></blockquote>입니다. MySQL은 "<tt>$3: $4</tt>" 오류를 냈습니다.',
 'dberrortextcl'        => '데이터베이스 쿼리 구문 오류가 발생했습니다. 마지막으로 요청한 데이터베이스 쿼리는 "$2" 함수에서 쓰인 "$1"입니다. MySQL은 "$3: $4" 오류를 냈습니다.',
-'noconnect'            => '죄송합니다. 위키의 기술적인 문제로 인해 데이터베이스 서버에 접근할 수 없습니다.<br />$1',
+'noconnect'            => '위키의 기술적인 문제로 인해 데이터베이스 서버에 접근할 수 없습니다.<br />$1',
 'nodb'                 => '$1 데이터베이스를 선택할 수 없습니다.',
 'cachederror'          => '아래는 요청한 문서의 캐시 복사본으로, 최신이 아닐 수 있습니다.',
 'laggedslavemode'      => '주의: 문서가 최근 것이 아닐 수 있습니다.',
@@ -608,7 +608,8 @@ $messages = array(
 'gotaccountlink'             => '로그인하세요',
 'createaccountmail'          => '이메일로 보내기',
 'badretype'                  => '암호가 서로 다릅니다.',
-'userexists'                 => '사용자 이름이 이미 등록되어 있습니다. 다른 이름으로 만들어주십시오.',
+'userexists'                 => '입력하신 사용자 이름이 이미 등록되어 있습니다.
+다른 이름으로 만들어주십시오.',
 'youremail'                  => '이메일:',
 'username'                   => '계정 이름:',
 'uid'                        => '사용자 ID:',
@@ -621,7 +622,8 @@ $messages = array(
 'email'                      => '이메일',
 'prefs-help-realname'        => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
 'loginerror'                 => '로그인 오류',
-'prefs-help-email'           => '이메일(선택): 당신의 메일 주소를 공개하지 않고 다른 사용자들과 이야기를 할 수 있습니다.',
+'prefs-help-email'           => '이메일 주소 입력은 선택이지만, 비밀번호를 잊었을 때 찾기 위해 이메일 주소가 필요할 수 있습니다.
+당신의 메일 주소를 공개하지 않고 사용자 및 사용자토론 문서를 통해 다른 사용자들과 이야기를 할 수 있습니다.',
 'prefs-help-email-required'  => '이메일 주소가 필요합니다.',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
 'nocookieslogin'             => '{{SITENAME}}에서는 로그인을 위해 쿠키를 사용합니다. 당신의 웹 브라우저에서 쿠키가 비활성되어 있습니다. 쿠키 사용을 활성화한 다음 로그인해 주세요.',
@@ -647,12 +649,14 @@ $messages = array(
 'eauthentsent'               => '확인 이메일을 보냈습니다. 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
 'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다. 악용을 방지하기 위해 비밀번호 확인은 $1시간마다 하나씩만 보낼 수 있습니다.',
 'mailerror'                  => '메일 보내기 오류: $1',
-'acct_creation_throttle_hit' => '당신은 이미 $1개의 계정이 있습니다. 더 이상 만들 수 없습니다.',
+'acct_creation_throttle_hit' => '당신은 이미 $1개의 계정이 있습니다.
+더 이상 만들 수 없습니다.',
 'emailauthenticated'         => '당신의 이메일 주소는 $1에 인증되었습니다.',
 'emailnotauthenticated'      => '이메일 주소를 인증하지 않았습니다. 이메일 확인 절차를 거치지 않으면 다음 이메일 기능을 사용할 수 없습니다.',
 'noemailprefs'               => '이 기능을 사용하기 위해서는 이메일 주소를 기입해야 합니다.',
 'emailconfirmlink'           => '이메일 주소 확인',
-'invalidemailaddress'        => '이메일 주소 입력이 잘못되었습니다. 정상적인 이메일을 입력하거나, 칸을 비워 주세요.',
+'invalidemailaddress'        => '이메일 주소 입력이 잘못되어 인식할 수 없습니다.
+정상적인 이메일을 입력하거나, 칸을 비워 주세요.',
 'accountcreated'             => '계정 만들어짐',
 'accountcreatedtext'         => '‘$1’ 사용자 계정이 만들어졌습니다.',
 'createaccount-title'        => '{{SITENAME}} 계정 만들기',
@@ -756,19 +760,20 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 
 '''모질라 / 파이어폭스 / 사파리''': Shift 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5 또는 Ctrl-R 을 입력 (매킨토시에서는 Command-R); '''컨커러''': 새로고침을 클릭하거나 F5를 입력; '''오페라''': 도구→설정에서 캐시를 비움; '''인터넷 익스플로러''': Ctrl 키를 누르면서 새로 고침을 클릭하거나, Ctrl-F5를 입력.",
 'usercssjsyoucanpreview'           => "'''안내''': CSS/JS 문서를 저장하기 전에 ‘미리 보기’ 기능을 통해 작동을 확인해주세요.",
-'usercsspreview'                   => "'''이것은 CSS 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
+'usercsspreview'                   => "'''이것은 사용자 CSS의 미리 보기이며, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userjspreview'                    => "'''이것은 자바스크립트 미리 보기로, 아직 저장하지 않았다는 것을 주의해 주세요!'''",
 'userinvalidcssjstitle'            => "'''경고''': ‘$1’ 스킨이 존재하지 않습니다. .css와 .js 문서의 제목은 {{ns:user}}:Foo/monobook.css처럼 소문자로 써야 합니다. {{ns:user}}:Foo/Monobook.css와 같이 대문자로 쓸 경우 작동하지 않습니다.",
 'updated'                          => '(바뀜)',
 'note'                             => '<strong>주의:</strong>',
 'previewnote'                      => '<strong>지금 미리 보기로 보고 있는 내용은 아직 저장되지 않았습니다!</strong>',
 'previewconflict'                  => '이 미리 보기는 저장할 때의 모습, 즉 위쪽 편집창의 문서를 반영합니다.',
-'session_fail_preview'             => '<strong>죄송합니다. 세션 데이터가 없어져 편집을 저장하지 못했습니다. 다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인해 보십시오.</strong>',
-'session_fail_preview_html'        => '<strong>죄송합니다. 세션 데이터가 없어져 편집을 저장하지 못했습니다.</strong>
+'session_fail_preview'             => '<strong>세션 데이터가 없어져 편집을 저장하지 못했습니다.
+다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인해 보십시오.</strong>',
+'session_fail_preview_html'        => '<strong>세션 데이터가 없어져 편집을 저장하지 못했습니다.</strong>
 
 {{SITENAME}}에서 HTML 입력을 허용하기 때문에, 자바스크립트 공격을 막기 위해 미리 보기는 숨겨져 있습니다.
 
-<strong>다시 저장을 해 주세요. 만약 계속해서 문제가 생긴다면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인을 해 보세요.</strong>',
+<strong>다시 시도해도 되지 않으면 [[Special:UserLogout|로그아웃]]한 다음 다시 로그인을 해 보십시오.</strong>',
 'editing'                          => '$1 편집하기',
 'editingsection'                   => '$1 편집하기 (부분)',
 'editingcomment'                   => '$1 편집하기 (덧붙이기)',
@@ -792,7 +797,10 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 '''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
 'longpagewarning'                  => "'''주의: 이 문서의 용량이 $1킬로바이트입니다. 몇몇 웹 브라우저에서는 32킬로바이트 이상의 문서를 편집할 때 문제가 발생할 수 있습니다. 만약의 경우를 대비하여, 문서를 여러 문단으로 나누어서 편집할 수 있습니다.'''",
 'longpageerror'                    => "'''오류: 문서의 크기가 $1킬로바이트로, 최대 가능한 크기인 $2킬로바이트보다 큽니다. 저장할 수 없습니다.'''",
-'readonlywarning'                  => "'''주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다. 편집 내용을 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''",
+'readonlywarning'                  => '<strong>주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다.
+편집 내용을 복사 붙여넣기 등을 사용하여 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.</strong>
+
+잠근 관리자가 남긴 설명은 다음과 같습니다: $1',
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
 'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
@@ -836,8 +844,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'currentrev-asof'     => '$1 현재 판',
 'revisionasof'        => '$1 판',
 'revision-info'       => '$2 사용자의 $1 버전',
-'previousrevision'    => '←이전 버전',
-'nextrevision'        => '다음 버전→',
+'previousrevision'    => '← 이전 판',
+'nextrevision'        => '다음 판 →',
 'currentrevisionlink' => '현재 판',
 'cur'                 => '현재',
 'next'                => '다음',
@@ -1133,7 +1141,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 다른 이름으로 시도해 주세요.',
 'fileexists-thumb'            => "<center>'''존재하는 그림'''</center>",
 'fileexists-forbidden'        => '같은 이름의 파일이 이미 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 공용 파일 저장소에 있습니다. 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '같은 이름의 파일이 이미 공용 파일 저장소에 있습니다.
+파일을 업로드하길 원하신다면 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다. [[Image:$1|thumb|center|$1]]',
 'successfulupload'            => '올리기 성공',
 'uploadwarning'               => '올리기 경고',
 'savefile'                    => '파일 저장',
@@ -1195,7 +1204,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-revert'           => '되돌리기',
 'filehist-current'          => '현재',
 'filehist-datetime'         => '날짜/시간',
-'filehist-thumb'            => '그림',
+'filehist-thumb'            => '섬네일',
 'filehist-thumbtext'        => '$1 버전의 그림',
 'filehist-user'             => '사용자',
 'filehist-dimensions'       => '크기',
@@ -1212,7 +1221,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'sharedupload'              => '이 파일은 공용 저장소에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.',
 'shareduploadwiki'          => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
 'shareduploadwiki-linktext' => '파일 설명 문서',
-'noimage'                   => '파일이 없습니다. $1할 수 있습니다.',
+'noimage'                   => '파일이 없습니다. $1 할 수 있습니다.',
 'noimage-linktext'          => '업로드',
 'uploadnewversion-linktext' => '이 파일의 새로운 버전을 올리기',
 'imagepage-searchdupe'      => '중복 파일 찾기',
@@ -1234,7 +1243,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filedelete-comment'          => '삭제 이유:',
 'filedelete-submit'           => '삭제',
 'filedelete-success'          => "'''$1''' 파일을 삭제했습니다.",
-'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' 파일의 $2 $3 버전을 삭제했습니다.</span>',
+'filedelete-success-old'      => "'''[[Media:$1|$1]]''' 파일의 $2 $3 버전을 삭제했습니다.",
 'filedelete-nofile'           => "{{SITENAME}}에 '''$1''' 파일이 존재하지 않습니다.",
 'filedelete-nofile-old'       => "해당 조건에 맞는 과거 '''$1''' 파일이 존재하지 않습니다.",
 'filedelete-otherreason'      => '다른 이유/추가적인 이유:',
@@ -1366,7 +1375,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'speciallogtitlelabel' => '제목:',
 'log'                  => '로그 목록',
 'all-logs-page'        => '모든 기록',
-'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다. 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다.',
+'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
+로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다. 검색시에는 대소문자를 구별합니다.',
 'logempty'             => '일치하는 항목이 없습니다.',
 'log-title-wildcard'   => '다음 글로 시작하는 제목 검색',
 
@@ -1388,7 +1398,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:Categories
 'categories'         => '분류',
-'categoriespagetext' => '문서나 자료를 담고 있는 분류 목록입니다.',
+'categoriespagetext' => '문서나 자료를 담고 있는 분류 목록입니다.
+[[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
+[[Special:WantedCategories|필요한 분류]]도 참고하세요.',
 
 # Special:ListUsers
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
@@ -1407,7 +1419,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'mailnologintext' => '다른 사용자에게 이메일을 보내려면, [[Special:UserLogin|로그인]]한 다음 [[Special:Preferences|사용자 환경 설정]]에서 자신의 이메일 주소를 저장해야 합니다.',
 'emailuser'       => '이메일 보내기',
 'emailpage'       => '사용자에게 이메일 보내기',
-'emailpagetext'   => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다. 이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해 당신이 [[Special:Preferences|사용자 환경 설정]]에 적은 이메일 주소가 "발신자" 정보에 들어갑니다.',
+'emailpagetext'   => '이 사용자가 환경 설정에 올바른 이메일 주소를 적었다면, 아래 양식을 통해 이메일을 보낼 수 있습니다.
+이메일을 받은 사용자가 바로 답장할 수 있도록 하기 위해 당신이 [[Special:Preferences|사용자 환경 설정]]에 적은 이메일 주소가 "발신자" 정보에 들어갑니다.',
 'usermailererror' => '메일 객체에서 오류 발생:',
 'defemailsubject' => '{{SITENAME}} 이메일',
 'noemailtitle'    => '이메일 주소 없음',
@@ -1585,7 +1598,8 @@ $NEWPAGE
 'undeleteextrahelp'        => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
 특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
 'undeleterevisions'        => '$1개의 버전 보관중',
-'undeletehistory'          => '문서를 되살리면 모든 역사가 같이 복구됩니다. 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다. 문서 보호 등의 설정은 역사를 복구하는 과정에서 사라진다는 점을 유의해 주세요.',
+'undeletehistory'          => '문서를 되살리면 모든 역사가 같이 복구됩니다.
+문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
 'undeletehistorynoadmin'   => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
 'undeletebtn'              => '복구',
 'undeletelink'             => '되살리기',
@@ -1889,7 +1903,7 @@ $1',
 
 # Scripts
 'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
-'monobook.js' => '/* 현재는 사용하지 않습니다. 대신 [[MediaWiki:common.js]]를 사용해주세요. */',
+'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
 'nodublincore'      => '더블린 코어 RDF 메타데이터 기능은 비활성되어 있습니다.',
@@ -1907,7 +1921,8 @@ $1',
 
 # Spam protection
 'spamprotectiontitle' => '스팸 방지 필터',
-'spamprotectiontext'  => '스팸 필터가 문서 저장을 막았습니다. 다른 사이트로 연결하는 링크 중에 문제가 되는 사이트가 있을 것입니다.',
+'spamprotectiontext'  => '스팸 필터가 문서 저장을 막았습니다.
+외부 사이트로 연결하는 링크 중에 블랙리스트에 포함된 사이트가 있을 것입니다.',
 'spamprotectionmatch' => '문제가 되는 부분은 다음과 같습니다: $1',
 'spambot_username'    => 'MediaWiki 스팸 제거',
 'spam_reverting'      => '$1을 포함하지 않는 최신 버전으로 되돌림',
@@ -1951,8 +1966,8 @@ $1',
 'filedelete-archive-read-only' => '웹 서버의 파일 저장 위치 ‘$1’에 쓰기 권한이 없습니다.',
 
 # Browsing diffs
-'previousdiff' => '← 이전 비교',
-'nextdiff'     => '다음 비교 →',
+'previousdiff' => '← 이전 편집',
+'nextdiff'     => '다음 편집 →',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
@@ -2022,7 +2037,8 @@ $1',
 'confirmemail_pending'     => '<div class="error">이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.</div>',
 'confirmemail_send'        => '인증 코드를 메일로 보내기',
 'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
-'confirmemail_sendfailed'  => '인증 이메일을 보낼 수 없습니다. 이메일 주소를 잘못 입력했는지 확인해주세요.
+'confirmemail_sendfailed'  => '{{SITENAME}}에서 인증 이메일을 보낼 수 없습니다.
+이메일 주소를 잘못 입력했는지 확인해주세요.
 
 메일 서버로부터의 응답: $1',
 'confirmemail_invalid'     => '인증 코드가 올바르지 않습니다. 코드가 소멸되었을 수도 있습니다.',
@@ -2057,7 +2073,7 @@ $5
 'trackbackdeleteok' => '트랙백이 삭제되었습니다.',
 
 # Delete conflict
-'deletedwhileediting' => '주의: 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.',
+'deletedwhileediting' => "'''주의''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.",
 'confirmrecreate'     => '[[User:$1|$1]]([[User talk:$1|토론]]) 사용자가 당신의 편집 도중 문서를 지웠습니다. 삭제 이유는 다음과 같습니다:
 : $2
 문서를 다시 되살릴 필요가 있는지를 확인해주세요.',

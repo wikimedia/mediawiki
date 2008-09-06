@@ -5,6 +5,7 @@
  * @file
  *
  * @author Consta
+ * @author Omnipaedista
  * @author Sinopeus
  */
 
@@ -295,7 +296,7 @@ $messages = array(
 Ποίστεν άλλο προσπάθειαν.',
 'passwordtooshort'        => "Το σημάδι εν πολλά μικρόν.
 Πρέπ' να εχ' {{PLURAL:$1|1 γράμμαν|$1 γράμματα}} κιαν. Το σημάδινεσουν πρέπ' να εν αλλέτερον ασόν όνομαν τη χρήστε.",
-'mailmypassword'          => 'Αποστολή κωδικού',
+'mailmypassword'          => 'Αποστολή νέονος κωδικού',
 'passwordremindertitle'   => 'Καινούρεον σημάδιν για {{SITENAME}}',
 'passwordremindertext'    => 'Κάποιος (ίσως εσείς, ασήν διεύθυνσην IP $1)
 εποίκεν ψαλαφίον να στείλκουμες έναν νέον σημάδιν για τον ιστοτόπον {{SITENAME}} ($4).
@@ -365,10 +366,11 @@ $messages = array(
 
 * Ασπάλιγμαν αχπάσκεται: $8
 * Ασπάλιγμαν τελείται: $6
+* Ασπαλιζὀμενον: $7
 
-Για το ασπάλιγμαν επορείτε να συντισένετε με το χρήστεν $1 ή με τ' αλλτς τ' [[{{MediaWiki:Grouppage-sysop}}|administrators]]. Για να γράφετε ελεκτρονικόν μένεμαν ('e-mail this user') βαλέστεν το τεσέτερον το σωστόν το e-mail address σα [[Special:Preferences|προτιμήσαι τη λογαρίας εσούν]]. Εάν 'κ εν ασπαλιγμένον η χρήσηνατ, επορείτε να γράφετε μένεμαν. 
+Για το ασπάλιγμαν επορείτε να συντισένετε με το χρήστεν $1 ή με τ' αλλτς τ' [[{{MediaWiki:Grouppage-sysop}}|διαχειριστάδες]]. Για να γράφετε ελεκτρονικόν μένεμαν ('e-mail this user') βαλέστεν το τεσέτερον το σωστόν το e-mail address σα [[Special:Preferences|προτιμήσαι τη λογαρίας εσούν]]. Εάν 'κ εν ασπαλιγμένον η χρήσηνατ, επορείτε να γράφετε μένεμαν. 
 
-Το ID τη ασπαλιγματίνεσουν εν $5.
+Το IP εσούν εν $3 και το ID τη ασπαλιγματίνεσουν εν #$5.
 Ποδεδίζουμε σας να γράφτατο σο μένεμαν εσούν.",
 'blockednoreason'        => "'Κ εγράφτεν αιτίαν",
 'whitelistedittitle'     => "Εμπάτε για να φτάτε τ' αλλαγάς",
@@ -553,7 +555,7 @@ $messages = array(
 'sharedupload'                  => "Αβούτον τ' αρχείον εφορτώθεν για κοινόν κουλάνεμαν κι εν δυνατόν να χρησιμοπισκάται και σ' άλλα έργα.",
 'shareduploadconflict-linktext' => 'άλλον αρχείον',
 'noimage'                       => "Αρχείον με αείκον όνεμαν 'κ έχ', άμα επορείς να $1.",
-'noimage-linktext'              => "σκώσ' ατό",
+'noimage-linktext'              => "σκώσ' έναν",
 'uploadnewversion-linktext'     => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
 
 # File deletion
@@ -653,7 +655,7 @@ $messages = array(
 
 # E-mail user
 'emailuser'    => 'Στείλον μένεμαν σον χρήστεν ατόν.',
-'emailmessage' => 'Μένεμαν',
+'emailmessage' => 'Μένεμαν:',
 
 # Watchlist
 'watchlist'            => "Σελίδας ντ' ωριάζω",
@@ -975,7 +977,8 @@ $messages = array(
 'filepath-page' => 'Αρχείον:',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Εύρον',
+'fileduplicatesearch-filename' => 'Όνεμα αρχείου:',
+'fileduplicatesearch-submit'   => 'Εύρον',
 
 # Special:SpecialPages
 'specialpages'             => 'Ειδικά σελίδας',

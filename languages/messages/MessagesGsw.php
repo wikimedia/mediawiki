@@ -244,6 +244,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
 'site-rss-feed'           => "RSS-fiad'r fer $1",
 'site-atom-feed'          => 'Atom-Feed für $1',
+'page-rss-feed'           => 'RSS-Feed für „$1“',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Syt',
@@ -412,6 +413,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'minoredit'                => 'Numen es birebitzeli gänderet',
 'watchthis'                => 'Dä Artikel beobachte',
 'savearticle'              => 'Syte spychere',
+'preview'                  => 'Vorschou',
 'showpreview'              => 'Vorschau aaluege',
 'showdiff'                 => 'Zeig Änderige',
 'anoneditwarning'          => "'''Warnig:''' Si sin nit agmolde. Ihri IP-Adrässe wird in de Gschicht vo sellem Artikel gspeicheret.",
@@ -423,6 +425,7 @@ Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasc
 'confirmedittext'          => 'Si muen Ihri E-Bost-Adräss erscht bstätige bevor Si Syte go ändere chönne. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Bost Adräss ii un löhn Si si pruefe.',
 'accmailtitle'             => 'S Bassword isch verschickt worre.',
 'accmailtext'              => 'S Basswort für "$1" isch uf $2 gschickt worde.',
+'newarticle'               => '(Nöu)',
 'newarticletext'           => '<div id="newarticletext">
 {{MediaWiki:Newarticletext/{{NAMESPACE}}}}
 </div>',
@@ -461,8 +464,15 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'template-protected'       => '(schrybgschützt)',
 'template-semiprotected'   => '(schrybgschützt für unaagmoldeni un neui Benutzer)',
 'edittools'                => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
+'nocreatetext'             => "Uf {{SITENAME}} isch d Erstellig vo nöue Syten ygschränkt.
+Du chasch nur Syten ändere, wo's scho git, oder muesch di [[Special:UserLogin|amälde]].",
+'recreate-deleted-warn'    => "'''Obacht: Du bisch e Syten am kreiere, wo scho einisch isch glösche worde.'''
+
+Bitte überprüeff, öb's sinnvoll isch, mit em Bearbeite wyter z mache.
+Hie gesehsch ds Lösch-Logbuech vo dere Syte:",
 
 # History pages
+'viewpagelogs'        => 'Logbüecher für die Syten azeige',
 'currentrev'          => 'Itzigi Version',
 'revisionasof'        => 'Version vo $1',
 'previousrevision'    => '← Vorderi Version',
@@ -478,6 +488,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'histlast'            => 'Nöischti',
 
 # Diffs
+'history-title'           => 'Versionsgschicht vo „$1“',
 'difference'              => '(Unterschide zwüsche Versione)',
 'lineno'                  => 'Zyle $1:',
 'compareselectedversions' => 'Usgwählti Versione verglyche',
@@ -546,24 +557,26 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'rightslogtext' => 'Des ischs Logbuech vun de Änderunge on Bnutzerrechte.',
 
 # Recent changes
-'recentchanges'     => 'Letschti Änderige',
-'recentchangestext' => 'Uff sellere Syte chönne Si die letschte Änderige in sellem Wiki aaluege.',
-'rcnote'            => "Azeigt {{PLURAL:\$1|wird '''1''' Änderig|wärde di letschte '''\$1''' Änderige}} {{PLURAL:\$2|vom letschte Tag|i de letschte '''\$2''' Täg}} (Stand: \$4, \$5)",
-'rcnotefrom'        => 'Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).',
-'rclistfrom'        => '<small>Nöji Änderige ab $1 aazeige (UTC)</small>',
-'rcshowhideminor'   => 'Chlynigkeite $1',
-'rcshowhideliu'     => 'Aagmoldene Benützer $1',
-'rcshowhideanons'   => 'Uuaagmoldene Benützer $1',
-'rcshowhidepatr'    => 'Patrulyrtes $1',
-'rcshowhidemine'    => 'Eigeni Änderige $1',
-'rclinks'           => 'Zeig di letschte $1 Änderige vo de vergangene $2 Täg.<br />$3',
-'diff'              => 'Unterschid',
-'hist'              => 'Versione',
-'hide'              => 'usblände',
-'show'              => 'yblände',
-'minoreditletter'   => 'C',
-'newpageletter'     => 'N',
-'boteditletter'     => 'B',
+'recentchanges'                  => 'Letschti Änderige',
+'recentchangestext'              => 'Uff sellere Syte chönne Si die letschte Änderige in sellem Wiki aaluege.',
+'recentchanges-feed-description' => 'Di letschten Änderige vo {{SITENAME}} i däm Feed abonniere.',
+'rcnote'                         => "Azeigt {{PLURAL:$1|wird '''1''' Änderig|wärde di letschte '''$1''' Änderige}} {{PLURAL:$2|vom letschte Tag|i de letschte '''$2''' Täg}} (Stand: $4, $5)",
+'rcnotefrom'                     => 'Dies sind die Änderungen seit <b>$2</b> (bis zu <b>$1</b> gezeigt).',
+'rclistfrom'                     => '<small>Nöji Änderige ab $1 aazeige (UTC)</small>',
+'rcshowhideminor'                => 'Chlynigkeite $1',
+'rcshowhidebots'                 => 'Bots $1',
+'rcshowhideliu'                  => 'Aagmoldene Benützer $1',
+'rcshowhideanons'                => 'Uuaagmoldene Benützer $1',
+'rcshowhidepatr'                 => 'Patrulyrtes $1',
+'rcshowhidemine'                 => 'Eigeni Änderige $1',
+'rclinks'                        => 'Zeig di letschte $1 Änderige vo de vergangene $2 Täg.<br />$3',
+'diff'                           => 'Unterschid',
+'hist'                           => 'Versione',
+'hide'                           => 'usblände',
+'show'                           => 'yblände',
+'minoreditletter'                => 'C',
+'newpageletter'                  => 'N',
+'boteditletter'                  => 'B',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verlinktes prüefe',
@@ -664,6 +677,7 @@ S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
 'booksources' => 'ISBN-Suech',
 
 # Special:Log
+'log'         => 'Logbüecher',
 'alllogstext' => 'Kombinierti Aasicht vo de Protokoll vom Ufelade, Lösche, Schütze, Spärre un de Adminischtratore.
 Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Sytename iigän.',
 'logempty'    => 'Kei passendi Yträg gfunde.',
@@ -756,8 +770,11 @@ Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{M
 'deletedtext'       => '«<nowiki>$1</nowiki>» isch glösche worde.
 Im $2 het’s e Lischte vo de letschte Löschige.',
 'deletedarticle'    => '„[[$1]]“ glösche',
+'dellogpage'        => 'Lösch-Logbuech',
 'deletionlog'       => 'Lösch-Logbuech',
 'deletecomment'     => 'Löschigsgrund',
+'rollback_short'    => 'Zrüggsetze',
+'rollbacklink'      => 'Zrüggsetze',
 'alreadyrolled'     => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
@@ -780,6 +797,9 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 # Contributions
 'contributions' => 'Benutzer-Byträg',
 'mycontris'     => 'mini Biiträg',
+'uctop'         => '(aktuell)',
+'month'         => 'u Monet:',
+'year'          => 'bis Jahr:',
 
 # What links here
 'whatlinkshere'       => 'Was linkt da ane?',
@@ -893,10 +913,12 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-template'       => 'D Vorlag aaluege',
 'tooltip-ca-nstab-help'           => 'D Hilfssyten aaluege',
 'tooltip-ca-nstab-category'       => 'D Kategoryesyten aaluege',
+'tooltip-minoredit'               => 'Die Änderig als chly markiere.',
 'tooltip-save'                    => 'Änderige spychere',
 'tooltip-preview'                 => 'Vorschou vo dynen Änderige. Bitte vor em Spycheren aluege!',
 'tooltip-diff'                    => 'Zeigt a, was du am Tekscht hesch veränderet.',
 'tooltip-compareselectedversions' => 'Underschide zwüsche zwo usgwählte Versione vo dere Syten azeige.',
+'tooltip-watch'                   => 'Tue die Syten uf dyni Beobachtigslischte.',
 
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonyme Benutzer|Anonymi Benutzer}} uff {{SITENAME}}',
@@ -953,11 +975,12 @@ Nach em * mues zersch e Link zuren Unerwünschte Datei cho.
 Wyteri Links uf der glyche Zyle wärden als Usnahme behandlet, wo die Datei trotzdäm darff vorcho.',
 
 # Metadata
-'metadata'        => 'Metadate',
-'metadata-help'   => "Die Datei het wyteri Informatione, allwäg vor Digitalkamera oder vom Scanner wo se het gschaffe.
+'metadata'          => 'Metadate',
+'metadata-help'     => "Die Datei het wyteri Informatione, allwäg vor Digitalkamera oder vom Scanner wo se het gschaffe.
 We die Datei isch veränderet worde, de cha's sy, das die zuesätzlechi Informatin für di verändereti Datei nümm richtig zuetrifft.",
-'metadata-expand' => 'Erwytereti Details azeige',
-'metadata-fields' => 'Die EXIF-Metadate wärden ir Bildbeschrybig ou denn azeigt, we d Metadate-Tabälle versteckt isch.
+'metadata-expand'   => 'Erwytereti Details azeige',
+'metadata-collapse' => 'Erwytereti Details verstecke',
+'metadata-fields'   => 'Die EXIF-Metadate wärden ir Bildbeschrybig ou denn azeigt, we d Metadate-Tabälle versteckt isch.
 Anderi Metadate sy standardmäßig versteckt.
 * make
 * model
@@ -979,6 +1002,7 @@ Anderi Metadate sy standardmäßig versteckt.
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alli',
 'namespacesall' => 'alli',
+'monthsall'     => 'alli',
 
 # E-mail address confirmation
 'confirmemail'          => 'Bschtätigung vo Ihre E-Bost-Adräss',

@@ -516,7 +516,7 @@ La dernière requête traitée par la base de données était :
 depuis la fonction « <tt>$2</tt> ».
 MySQL a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Une requête à la base de données comporte une erreur de syntaxe. La dernière requête envoyée était : « $1 » effectuée par la fonction « $2 ». MySQL a retourné l’erreur « $3 : $4 ».',
-'noconnect'            => 'Désolé ! À la suite de problèmes techniques, il est impossible de se connecter à la base de données pour le moment. <br />
+'noconnect'            => 'Le wiki rencontre actuellement quelques difficultés techniques, et ne peut se connecter au serveur de la base de données. <br />
 $1',
 'nodb'                 => 'Impossible de sélectionner la base de données $1',
 'cachederror'          => 'Cette page est une version en cache et peut ne pas être à jour.',
@@ -601,14 +601,15 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'logout'                     => 'Se déconnecter',
 'userlogout'                 => 'Déconnexion',
 'notloggedin'                => 'Non connecté',
-'nologin'                    => 'Vous n’avez pas de compte ? $1.',
+'nologin'                    => 'N’avez-vous pas un compte ? $1.',
 'nologinlink'                => 'Créer un compte',
 'createaccount'              => 'Créer un compte',
 'gotaccount'                 => 'Vous avez déjà un compte ? $1.',
 'gotaccountlink'             => 'Identifiez-vous',
 'createaccountmail'          => 'par courriel',
 'badretype'                  => 'Les mots de passe que vous avez saisis ne sont pas identiques.',
-'userexists'                 => 'Le nom d’utilisateur que vous avez saisi est déjà utilisé. Veuillez en choisir un autre.',
+'userexists'                 => 'Le nom d’utilisateur que vous avez saisi est déjà utilisé.
+Veuillez en choisir un autre.',
 'youremail'                  => 'Adresse de courriel :',
 'username'                   => 'Nom de l’utilisateur :',
 'uid'                        => 'Numéro de l’utilisateur :',
@@ -622,7 +623,8 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'email'                      => 'Courriel',
 'prefs-help-realname'        => '(facultatif) : si vous le spécifiez, il sera utilisé pour vous attribuer vos contributions.',
 'loginerror'                 => 'Erreur d’identification',
-'prefs-help-email'           => '(facultatif) : permet aux autres utilisateurs de vous contacter par courriel (lien sur vos pages utilisateur) sans que votre courriel soit visible, et de vous envoyer un nouveau mot de passe si vous l’oubliez.',
+'prefs-help-email'           => 'L’adresse courriel est facultative mais permet de vous faire adresser votre mot de passe si vous l’oubliez.
+Vous pouvez aussi choisir de permettre à d’autres de vous contacter au moyen de votre page d’utilisateur principale ou celle de discussion sans avoir besoin de révéler votre idendité.',
 'prefs-help-email-required'  => 'Une adresse de courriel est requise.',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
@@ -636,7 +638,7 @@ Vérifiez que vous avez bien orthographié le nom, ou utilisez le formulaire ci-
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
 'passwordtooshort'           => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractère{{PLURAL:$1||s}} et être différent de votre nom d’utilisateur.',
-'mailmypassword'             => 'Envoyez-moi un nouveau mot de passe',
+'mailmypassword'             => 'Envoyer un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire sur {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous) ayant l’adresse IP $1 a demandé à ce qu’un nouveau mot de passe vous soit envoyé pour {{SITENAME}} ($4).
 Le mot de passe de l’utilisateur « $2 » est à présent « $3 ».
@@ -650,12 +652,14 @@ Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à p
 Avant qu’un autre courriel ne soit envoyé à ce compte, vous devrez suivre les instructions du courriel et confirmer que le compte est bien le vôtre.',
 'throttled-mailpassword'     => 'Un courriel de rappel de votre mot de passe a déjà été envoyé durant {{PLURAL:$1|la dernière heure|les $1 dernières heures}}. Afin d’éviter les abus, un seul courriel de rappel sera envoyé par {{PLURAL:$1|heure|intervalle de $1 heures}}.',
 'mailerror'                  => 'Erreur en envoyant le courriel : $1',
-'acct_creation_throttle_hit' => 'Désolé, vous avez déjà créé {{PLURAL:$1|$1 compte|$1 comptes}}. Vous ne pouvez pas en créer de nouveaux.',
+'acct_creation_throttle_hit' => 'Vous avez déjà créé {{PLURAL:$1|$1 compte|$1 comptes}}.
+Vous ne pouvez plus en créer de nouveaux.',
 'emailauthenticated'         => 'Votre adresse de courriel a été authentifiée le $1.',
 'emailnotauthenticated'      => 'Votre adresse de courriel n’est <strong>pas encore authentifiée</strong>. Aucun courriel ne sera envoyé pour chacune des fonctions suivantes.',
 'noemailprefs'               => '<strong>Aucune adresse électronique n’a été indiquée,</strong> les fonctions suivantes ne seront pas disponibles.',
 'emailconfirmlink'           => 'Confirmez votre adresse de courriel',
-'invalidemailaddress'        => 'Cette adresse de courriel ne peut pas être acceptée car elle semble avoir un format invalide. Veuillez entrer une adresse valide ou laisser ce champ vide.',
+'invalidemailaddress'        => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.
+Entrez une adresse bien formatée ou laisser ce champ vide.',
 'accountcreated'             => 'Compte créé',
 'accountcreatedtext'         => 'Le compte utilisateur pour $1 a été créé.',
 'createaccount-title'        => 'Création d’un compte pour {{SITENAME}}',
@@ -769,19 +773,23 @@ Si vous êtes arrivé ici par erreur, cliquez sur le bouton '''retour''' de votr
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer son rechargement complet en ignorant le contenu actuel du cache de votre explorateur pour voir les changements : '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant le bouton ''Actualiser'' (''Reload,'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ; '''Internet Explorer / Opera :''' maintenez la touche ''Ctrl'' en cliquant le bouton ''Actualiser'' ou pressez ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Astuce :''' utilisez le bouton « Prévisualisation » pour tester votre nouvelle feuille CSS/JS avant de l’enregistrer.",
-'usercsspreview'                   => "'''Rappelez-vous que vous êtes en train de prévisualiser votre propre feuille CSS et qu’elle n’a pas encore été enregistrée !'''",
+'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
+'''Elle n’a pas encore été enregistrée !'''",
 'userjspreview'                    => "'''Rappelez-vous que vous êtes en train de visualiser ou de tester votre code JavaScript et qu’il n’a pas encore été enregistré !'''",
 'userinvalidcssjstitle'            => "'''Attention :''' il n’existe pas de style « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/monobook.css et non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mis à jour)',
 'note'                             => '<strong>Note :</strong>',
 'previewnote'                      => '<strong>Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !</strong>',
 'previewconflict'                  => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
-'session_fail_preview'             => '<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session. Veuillez réessayer. Si cela échoue à nouveau, veuillez vous déconnecter, puis vous reconnecter.</strong>',
-'session_fail_preview_html'        => "<strong>Désolé ! Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
+'session_fail_preview'             => '<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.
+Veuillez réessayer.
+Si cela échoue à nouveau, essayez de vous déconnecter, puis connectez-vous à nouveau.</strong>',
+'session_fail_preview_html'        => "<strong>Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.</strong>
 
-''L’HTML brut étant activé sur ce wiki, la prévisualisation a été masquée afin de prévenir une attaque par JavaScript.''
+''Parce que {{SITENAME}} a activé l’HTML brut, la prévisualisation a été masquée afin de prévenir une attaque par JavaScript.''
 
-<strong>Si la tentative de modification était légitime, veuillez réessayer. Si cela échoue à nouveau, veuillez vous déconnecter, puis vous reconnecter.</strong>",
+<strong>Si la tentative de modification était légitime, veuillez réessayer.
+Si cela échoue à nouveau, déconnectez-vous, puis reconnectez-vous.</strong>",
 'token_suffix_mismatch'            => '<strong>Votre modification n’a pas été acceptée car votre navigateur Web a mélangé les caractères de ponctuation dans l’identifiant d’édition. La modification a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un mandataire anonyme problématique.</strong>',
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
@@ -1320,10 +1328,12 @@ la seule différence est la casse (majuscules / minuscules) de l’extension. Ve
 'fileexists-thumb'            => "<center>'''Image existante'''</center>",
 'fileexists-thumbnail-yes'    => 'Le fichier semble être une image en taille réduite <i>(vignette)</i>. Veuillez vérifier le fichier <strong><tt>$1</tt></strong>.<br />
 Si le fichier vérifié est la même image (dans une meilleure résolution), il n’y a pas besoin d’importer une version réduite.',
-'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>. Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
-Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez changer le nom du fichier.',
+'file-thumbnail-no'           => 'Le nom du fichier commence par <strong><tt>$1</tt></strong>.
+Il est possible qu’il s’agisse d’une version réduite <i>(vignette)</i>.
+Si vous disposez du fichier en haute résolution, importez-le, sinon changez-lui son nom.',
 'fileexists-forbidden'        => 'Un fichier avec ce nom existe déjà ; merci de retourner en arrière et de copier le fichier sous un nouveau nom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune ; veuillez revenir en arrière et le renvoyer sous un autre nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Un fichier portant le même nom existe déjà dans la base de données commune.
+Si vous voulez encore l’importer, veuillez revenir en arrière et l’importer sous un autre nom. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
 'successfulupload'            => 'Import réussi',
 'uploadwarning'               => 'Attention !',
@@ -1592,7 +1602,8 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'speciallogtitlelabel' => 'Titre :',
 'log'                  => 'Opérations',
 'all-logs-page'        => 'Toutes les opérations',
-'alllogstext'          => 'Affichage combiné des historiques de copie, suppression, protection, blocage, etc. Vous pouvez restreindre la vue en sélectionnant un type d’historique, un nom d’utilisateur ou une page ciblée.',
+'alllogstext'          => 'Affichage combiné de tous les journaux disponibles de {{SITENAME}}.
+Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur (casse sensible) ou une page ciblée (idem).',
 'logempty'             => 'Il n’y a rien dans l’historique pour cette page.',
 'log-title-wildcard'   => 'Chercher les titres commençant par le texte suivant',
 
@@ -1646,7 +1657,7 @@ Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additi
 'emailuser'       => 'Envoyer un message à cet utilisateur',
 'emailpage'       => 'Envoyer un courriel à l’utilisateur',
 'emailpagetext'   => 'Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.
-L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.',
+L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message. Ainsi, le destinataire pourra vous répondre directement.',
 'usermailererror' => 'Erreur dans le sujet du courriel :',
 'defemailsubject' => 'Courriel envoyé depuis {{SITENAME}}',
 'noemailtitle'    => 'Pas d’adresse électronique',
@@ -1837,9 +1848,9 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'undeletepagetext'             => 'Ces pages ont été supprimées et se trouvent dans l’archive. Elles figurent toujours dans la base de données et peuvent être restaurées.
 L’archive peut être effacée périodiquement.',
 'undelete-fieldset-title'      => 'Restaurer les versions',
-'undeleteextrahelp'            => "* Pour restaurer toutes les versions de cette page, laissez vierges toutes les cases à cocher. Pour ne restaurer que certaines versions, cochez les cases correspondant aux versions qui sont à restaurer, puis cliquez sur '''''Restaurer'''''.
-* Astuce : Pour sélectionner plusieurs versions à la suite, cliquez sur la première case, puis faites Maj+clic sur la dernière case : toutes les cases intermédiaires seront cochées.
-* En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
+'undeleteextrahelp'            => "Pour restaurer l’historique complet de cette page, laissez vierges toutes les cases à cocher et cliquez '''''Restaurer'''''.
+Pour ne restaurer que certaines versions, cochez les cases correspondant aux versions qui sont à rétablir, puis cliquez sur '''''Restaurer'''''.
+En cliquant sur le bouton '''''Réinitialiser''''', la boîte de résumé et les cases cochées seront remises à zéro.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|révision archivée|révisions archivées}}',
 'undeletehistory'              => 'Si vous restaurez la page, toutes les révisions seront replacées dans l’historique.
 
@@ -2255,7 +2266,8 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 
 # Spam protection
 'spamprotectiontitle' => 'Page automatiquement protégée pour cause de pourriel',
-'spamprotectiontext'  => 'La page que vous avez tenté de publier a été bloquée par le filtre anti-pourriel. Ceci est probablement causé par un lien vers un site externe.',
+'spamprotectiontext'  => 'La page que vous avez voulu publier a été bloquée par le filtre anti-pourriel.
+Ceci est probablement causé par un lien sur liste noire pointant vers un site externe.',
 'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
 'spambot_username'    => 'Nettoyage de pourriels par MediaWiki',
 'spam_reverting'      => 'Restauration de la dernière version ne contenant pas de lien vers $1',
@@ -2307,8 +2319,8 @@ $1',
 'filedelete-archive-read-only'    => 'Le dossier d’archivage « $1 » n’est pas modifiable par le serveur.',
 
 # Browsing diffs
-'previousdiff' => '← Différence précédente',
-'nextdiff'     => 'Différence suivante →',
+'previousdiff' => '← Modification précédente',
+'nextdiff'     => 'Modification suivante →',
 
 # Visual comparison
 'visual-comparison' => 'Comparison visuelle',
@@ -2644,7 +2656,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'confirmemail_send'        => 'Envoyer un code de confirmation',
 'confirmemail_sent'        => 'Courriel de confirmation envoyé',
 'confirmemail_oncreate'    => 'Un code de confirmation a été envoyé à votre adresse de courriel. Ce code n’est pas requis pour se connecter, mais vous en aurez besoin pour activer les fonctionnalités liées aux courriels sur ce wiki.',
-'confirmemail_sendfailed'  => 'Impossible d’envoyer le courriel de confirmation. Vérifiez votre adresse.
+'confirmemail_sendfailed'  => '{{SITENAME}} ne peut envoyer le courriel de confirmation.
+Veuillez vérifiez si votre adresse ne comprend pas de caractères interdits.
 
 Retour du programme de courriel : $1',
 'confirmemail_invalid'     => 'Code de confirmation incorrect. Celui-ci a peut-être expiré',
@@ -2669,8 +2682,8 @@ Ce code de confirmation expirera le $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',
-'scarytranscludefailed'   => '[La récupération de modèle a échoué pour $1 ; désolé]',
-'scarytranscludetoolong'  => '[L’URL est trop longue ; désolé]',
+'scarytranscludefailed'   => '[La récupération de modèle a échoué pour $1]',
+'scarytranscludetoolong'  => '[L’URL est trop longue]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks"> Rétroliens vers cet article :<br /> $1 </div>',
@@ -2679,7 +2692,7 @@ Ce code de confirmation expirera le $4.',
 'trackbackdeleteok' => 'Le rétrolien a été supprimé avec succès.',
 
 # Delete conflict
-'deletedwhileediting' => 'Attention : cette page a été supprimée après que vous ayez commencé à la modifier.',
+'deletedwhileediting' => "'''Attention''' : cette page a été supprimée après que vous ayez commencé à la modifier !",
 'confirmrecreate'     => "L’utilisateur [[User:$1|$1]] ([[User talk:$1|Discussion]]) a supprimé cette page, alors que vous aviez commencé à l’éditer, pour le motif suivant :
 : ''$2''
 Veuillez confirmer que vous désirez recréer cet article.",
@@ -2829,7 +2842,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'external_image_whitelist' => " #Laisser cette ligne exactement telle quelle<pre>
 #Indiquer les codes d’expression régulières (juste la partie indiquée entre les //) ci-dessous
 #Ils correspondront avec les URLs des images (très liées) externes 
-#Ainsi, cette correspondance s'affichera comme des images, autrement seulement un lien vers l'image sera affiché
+#Ainsi, cette correspondance s'affichera comme des images, sinon seulement un lien vers l'image sera affiché
 #Les lignes commençant avec # seront considérées comme des commentaires
 
 #Indiquez tous les fragments d’expressions régulières en bas de celle-ligne. Cette dernière doit être laissée exactement telle quelle.</pre>",

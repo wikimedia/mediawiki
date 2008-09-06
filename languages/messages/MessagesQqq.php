@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ahonc
  * @author Ans
  * @author Bangin
  * @author BrokenArrow
@@ -482,8 +483,9 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 * [[Special:Preferences]]
 * [[Special:CreateAccount]]
 
-$1 is the number of necessary chararcters of the password.',
-'mailmypassword' => '{{Identical|E-mail password}}',
+$1 is the minimum number of characters in the password.',
+'mailmypassword' => 'Shown at [[Special:UserLogin]]
+{{Identical|E-mail password}}',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
 'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
 * $1 is an IP addres. Example: 123.123.123.123
@@ -491,6 +493,7 @@ $1 is the number of necessary chararcters of the password.',
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com',
 'noemail' => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
+'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].',
 'emailauthenticated' => 'In user preferences.',
 'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text' => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
@@ -1015,6 +1018,8 @@ Parameter $2 is a date and time.',
 'largefileserver' => 'Error message when uploading a file whose size is larger than the maximum allowed',
 'emptyfile' => 'Error message when trying to upload an empty file',
 'filepageexists' => 'Shown on [[Special:Upload]], $1 is link to the page. This message is displayed if a description page exists, but a file with the same name does not yet exists, and a user tries to upload a file with that name. In that case the description page is not changed, even if the uploading user specifies a description with the upload.',
+'file-thumbnail-no' => 'Error message at [[Special:Upload]]',
+'fileexists-shared-forbidden' => 'Error message at [[Special:Upload]]',
 'savefile' => 'When uploading a file',
 'overwroteimage' => 'Log text when uploading a new version of a file',
 'uploaddisabledtext' => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
@@ -1256,6 +1261,7 @@ Don\'t translate the "Template:" part!',
 {{Identical|Title}}',
 'log' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'all-logs-page' => 'Title of [[Special:Log]].',
+'alllogstext' => 'Header of [[Special:Log]]',
 
 # Special:AllPages
 'allpages' => 'Name of special page displayed in [[Special:AllPages]]
@@ -1307,6 +1313,7 @@ Don\'t translate the "Template:" part!',
 # E-mail user
 'emailuser' => 'Link in the sidebar',
 'emailpagetext' => 'This is the text that is displayed above the e-mail form on Special:EmailUser.',
+'email-legend' => 'Title of the box in [[Special:EmailUser]]',
 'emailfrom' => 'Field in [[Special:EmailUser]].',
 'emailto' => 'Field in [[Special:EmailUser]].',
 'emailsubject' => 'Field in [[Special:EmailUser]].
@@ -1432,6 +1439,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 {{Identical|View deleted pages}}',
 'undeletepage' => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
 'viewdeletedpage' => '{{Identical|View deleted pages}}',
+'undeleteextrahelp' => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
 'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]])
 * $1: deleted page name
 * $2: timestamp of that revision
@@ -1442,7 +1450,8 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undeletelink' => 'Display name of link to undelete a page used on [[Special:Log/delete]]
 
 {{Identical|Restore}}',
-'undeletereset' => '{{Identical|Reset}}',
+'undeletereset' => 'Shown on [[Special:Undelete]] as button caption.
+{{Identical|Reset}}',
 'undeletecomment' => '{{Identical|Comment}}',
 'undelete-search-submit' => '{{Identical|Search}}',
 

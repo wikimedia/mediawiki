@@ -795,7 +795,7 @@ Käyttäjän $3 antama syy on ''$2''",
 'revnotfound'         => 'Versiota ei löydy',
 'revnotfoundtext'     => 'Pyytämääsi versiota ei löydy. Tarkista URL-osoite, jolla hait tätä sivua.',
 'currentrev'          => 'Nykyinen versio',
-'currentrev-asof'     => '$1 tallennettu versio',
+'currentrev-asof'     => 'Nykyinen versio $1',
 'revisionasof'        => 'Versio $1',
 'revision-info'       => 'Versio hetkellä $1 – tehnyt $2',
 'previousrevision'    => '← Vanhempi versio',
@@ -1384,7 +1384,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 Sivuja on katsottu yhteensä '''$3''' {{PLURAL:$3|kerran|kertaa}} ja muokattu '''$4''' {{PLURAL:$4|kerran|kertaa}}. Keskimäärin yhtä sivua on muokattu '''$5''' kertaa, ja muokkausta kohden sivua on katsottu keskimäärin '''$6''' kertaa.
 
 Ohjelmiston suorittamia ylläpitotöitä on jonossa '''$7''' {{PLURAL:$7|kappale|kappaletta}}.",
-'userstatstext'          => "Rekisteröityneitä käyttäjiä on '''$1'''. Näistä '''$2''' ($4%) on {{PLURAL:$2|ylläpitäjä|ylläpitäjiä}} ($5).",
+'userstatstext'          => "Rekisteröityneitä [[Special:ListUsers|käyttäjiä]] on '''$1'''. Näistä '''$2''' ($4%) on {{PLURAL:$2|ylläpitäjä|ylläpitäjiä}} ($5).",
 'statistics-mostpopular' => 'Katsotuimmat sivut',
 
 'disambiguations'      => 'Linkit täsmennyssivuihin',
@@ -2078,8 +2078,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'tooltip-recreate'                => 'Luo sivu uudelleen',
 'tooltip-upload'                  => 'Aloita tallennus',
 'tooltip-rollback'                => '"Palauta" kumoaa viimeisimmän muokkaajan yhden tai useamman muutoksen yhdellä klikkauksella.',
-'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. Allows adding a reason in the summary.
-"Kumoa" palauttaa tämän muutoksen ja avaa artikkelin esikatselussa. Yhteenvetokenttään voi kirjoittaa palautuksen syyn.',
+'tooltip-undo'                    => '"Kumoa" palauttaa tämän muutoksen ja avaa artikkelin esikatselussa. Yhteenvetokenttään voi kirjoittaa palautuksen syyn.',
 
 # Stylesheets
 'common.css'   => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',

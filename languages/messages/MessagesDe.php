@@ -6,6 +6,7 @@
  *
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
+ * @author Meno25
  * @author MichaelFrey
  * @author Omnipaedista
  * @author Pill
@@ -478,7 +479,8 @@ MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
-'noconnect'            => 'Konnte keine Verbindung zur Datenbank auf $1 herstellen',
+'noconnect'            => 'Im Wiki sind technische Schwierigkeiten aufgetreten; es konnte keine Verbindung zur Datenbank hergestellt werden.<br />
+$1',
 'nodb'                 => 'Konnte Datenbank $1 nicht auswählen',
 'cachederror'          => 'Das Folgende ist eine Kopie aus dem Cache und möglicherweise nicht aktuell.',
 'laggedslavemode'      => 'Achtung: Die angezeigte Seite enthält unter Umständen nicht die jüngsten Bearbeitungen.',
@@ -613,7 +615,8 @@ Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt 
 Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungs-E-Mail.',
 'throttled-mailpassword'     => 'Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits ein neues Passwort angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} ein neues Passwort angefordert werden.',
 'mailerror'                  => 'Fehler beim Senden der E-Mail: $1',
-'acct_creation_throttle_hit' => 'Du hast schon $1 Benutzerkonten angelegt und kannst jetzt keine weiteren mehr anlegen.',
+'acct_creation_throttle_hit' => 'Du hast schon $1 Benutzerkonten angelegt.
+Weitere Benutzerkonten können nicht angelegt werden.',
 'emailauthenticated'         => 'Deine E-Mail-Adresse wurde bestätigt: $1.',
 'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs'               => 'Gib eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
@@ -749,14 +752,15 @@ Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administrato
 'note'                             => '<strong>Hinweis:</strong>',
 'previewnote'                      => '<strong>Dies ist nur eine Vorschau, die Seite wurde noch nicht gespeichert!</strong>',
 'previewconflict'                  => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird der Artikel aussehen, wenn du jetzt speicherst.',
-'session_fail_preview'             => '<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.
+'session_fail_preview'             => '<strong>Deine Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.
 Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.
-Sollte das Problem bestehen bleiben, melde dich ab und danach wieder an.</strong>',
-'session_fail_preview_html'        => "<strong>Deine Bearbeitung konnte nicht gespeichert werden, da deine Sitzungsdaten verloren gegangen sind.</strong>
+Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und danach wieder an.</strong>',
+'session_fail_preview_html'        => "<strong>Deine Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.</strong>
 
 ''Da in {{SITENAME}} das Speichern von reinem HTML aktiviert ist, wurde die Vorschau ausgeblendet, um JavaScript-Attacken vorzubeugen.''
 
-<strong>Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst. Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und danach wieder an.</strong>",
+<strong>Bitte versuche es erneut, indem du unter der folgenden Textvorschau nochmals auf „Seite speichern“ klickst.
+Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und danach wieder an.</strong>",
 'token_suffix_mismatch'            => '<strong>Deine Bearbeitung wurde zurückgewiesen, da dein Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'editing'                          => 'Bearbeiten von $1',
@@ -1316,7 +1320,9 @@ Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates V
 'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
 Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.',
 'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehe zurück und lade diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
+Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere den Namen.
+[[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Diese Datei ist ein Duplikat der folgenden {{PLURAL:$1|Datei|$1 Dateien}}:',
 'successfulupload'            => 'Erfolgreich hochgeladen',
 'uploadwarning'               => 'Warnung',
@@ -1530,6 +1536,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
+'lonelypagestext'         => '',
 'uncategorizedpages'      => 'Nicht kategorisierte Seiten',
 'uncategorizedcategories' => 'Nicht kategorisierte Kategorien',
 'uncategorizedimages'     => 'Nicht kategorisierte Dateien',
@@ -1550,6 +1557,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Lange Seiten',
 'deadendpages'            => 'Sackgassenseiten',
+'deadendpagestext'        => '',
 'protectedpages'          => 'Geschützte Seiten',
 'protectedpages-indef'    => 'Nur unbeschränkt geschützte Seiten zeigen',
 'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
@@ -1585,7 +1593,8 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbücher',
 'all-logs-page'        => 'Alle Logbücher',
-'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher. Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden.',
+'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher.
+Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seitentitels eingeschränkt werden (Groß-/Kleinschreibung muss beachtet werden).',
 'logempty'             => 'Keine passenden Einträge.',
 'log-title-wildcard'   => 'Titel beginnt mit …',
 
@@ -1638,7 +1647,8 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'mailnologintext' => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser'       => 'E-Mail an diesen Benutzer',
 'emailpage'       => 'E-Mail an Benutzer',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
+'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse in seinen Benutzereinstellungen eingetragen hat, kannst du ihm mit dem untenstehenden Formular eine E-Mail senden.
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
 'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject' => '{{SITENAME}}-E-Mail',
 'noemailtitle'    => 'Keine E-Mail-Adresse',
@@ -1829,7 +1839,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'viewdeletedpage'              => 'Gelöschte Seiten anzeigen',
 'undeletepagetext'             => 'Die folgenden Seiten wurden gelöscht und können von Administratoren wiederhergestellt werden:',
 'undelete-fieldset-title'      => 'Wiederherstellen',
-'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, gib bitte eine Begründung an und klicke auf „Wiederherstellen“.
+'undeleteextrahelp'            => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke auf „Wiederherstellen“.
 * Möchtest du nur bestimmte Versionen wiederherstellen, so wähle diese bitte einzeln anhand der Markierungen aus, gib eine Begründung an und klicke dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeleterevisions'            => '{{PLURAL:$1|1 Version|$1 Versionen}} archiviert',
@@ -2641,7 +2651,8 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'confirmemail_send'        => 'Bestätigungscode zuschicken',
 'confirmemail_sent'        => 'Bestätigungs-E-Mail wurde verschickt.',
 'confirmemail_oncreate'    => 'Ein Bestätigungs-Code wurde an deine E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
-'confirmemail_sendfailed'  => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
+'confirmemail_sendfailed'  => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an dich versenden.
+Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
 'confirmemail_invalid'     => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
@@ -2672,7 +2683,7 @@ Dieser Bestätigungscode ist gültig bis $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',
 'scarytranscludefailed'   => '[Vorlageneinbindung für $1 ist gescheitert]',
-'scarytranscludetoolong'  => '[URL ist zu lang; Entschuldigung]',
+'scarytranscludetoolong'  => '[URL ist zu lang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">

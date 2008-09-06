@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bekiroflaz
  * @author Dbl2010
  * @author Erkan Yilmaz
  * @author Karduelis
@@ -80,6 +81,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'İzleme listemden benim değişikliklerimi gizle',
 'tog-watchlisthidebots'       => 'İzleme listemden bot değişikliklerini gizle',
 'tog-watchlisthideminor'      => 'İzleme listemden küçük değişiklikleri gizle',
+'tog-watchlisthideliu'        => 'İzleme listemde, kayıtlı kullanıcılar tarafından yapılan değişiklikleri gösterme',
+'tog-watchlisthideanons'      => 'İzleme listemde, anonim kullanıcılar tarafından yapılan değişiklikleri gösterme',
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly'                => 'Sayfa içeriğini sürüm farklarının aşağısında gösterme',
 'tog-showhiddencats'          => 'Gizli kategorileri göster',
@@ -157,12 +160,12 @@ $messages = array(
 'listingcontinuesabbrev'         => '(devam)',
 
 'mainpagetext'      => "<big>'''MediaWiki başarı ile kuruldu.'''</big>",
-'mainpagedocfooter' => "Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] sayfasına bakınız.
+'mainpagedocfooter' => 'Viki yazılımının kullanımı hakkında bilgi almak için [http://meta.wikimedia.org/wiki/Help:Contents kullanıcı rehberine] bakınız.
 
 == Yeni Başlayanlar ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
+* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
 
 'about'          => 'Hakkında',
 'article'        => 'Madde',
@@ -177,7 +180,7 @@ $messages = array(
 'qbspecialpages' => 'Özel sayfalar',
 'moredotdotdot'  => 'Daha...',
 'mypage'         => 'Sayfam',
-'mytalk'         => 'Mesaj Sayfam',
+'mytalk'         => 'Mesaj sayfam',
 'anontalk'       => "Bu IP'nin mesajları",
 'navigation'     => 'Sitede yol bulma',
 'and'            => 've',
@@ -413,7 +416,7 @@ Hesabınız açıldı. {{SITENAME}} tercihlerinizi değiştirmeyi unutmayın.',
 'logout'                     => 'Oturumu kapat',
 'userlogout'                 => 'Oturumu kapat',
 'notloggedin'                => 'Oturum açık değil',
-'nologin'                    => 'Daha üye değil misiniz? $1.',
+'nologin'                    => 'Daha üye değil misiniz? $1',
 'nologinlink'                => 'Eğer şimdiye kadar kayıt olmadıysanız bu bağlantıyı takip edin.',
 'createaccount'              => 'Yeni hesap aç',
 'gotaccount'                 => 'Daha önceden kayıt oldunuz mu? $1.',
@@ -451,7 +454,7 @@ Lütfen çerez kullanımını açınız ve yeni kullanıcı adınız ve şifreni
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
 'wrongpasswordempty'         => 'Boş parola girdiniz. Lütfen tekrar deneyiniz.',
 'passwordtooshort'           => 'Parolanız çok kısa. En az $1 harf ve/veya rakam içermeli.',
-'mailmypassword'             => 'Bana e-posta ile yeni bir parola gönder',
+'mailmypassword'             => 'Bana e-posta ile yeni parola gönder',
 'passwordremindertitle'      => '{{SITENAME}} için yeni geçici şifre',
 'passwordremindertext'       => '$1 IP adresinden (muhtemelen siz) {{SERVERNAME}} için yeni bir {{SITENAME}} ($4) parolası gönderilmesi istendi.
 "$2" rumuzlu kullanıcının yeni parolası: "$3"
@@ -534,17 +537,18 @@ Kaydet tuşuna tekrar basarsan sayfa özetsiz kaydedilecek.",
 'summary-preview'                  => 'Önizleme özeti',
 'subject-preview'                  => 'Konu/Başlık önizlemesi',
 'blockedtitle'                     => 'Kullanıcı erişimi engellendi.',
-'blockedtext'                      => '<big>Erişiminiz $1 tarafından durdurulmuştur.</big>
+'blockedtext'                      => '<big>\'\'\'Kullanıcı adı veya IP adresiniz engellenmiştir.\'\'\'</big>
 
-Sizi engelleyen hizmetli: $1. Engelleme sebebi: \'\'$2\'\'.
+Sizi engelleyen hizmetli: $1.<br />
+Engelleme sebebi: \'\'$2\'\'.
 
-*Engellenmenin başlangıcı: $8
-*Engellenmenin bitişi: $6
-*Engellenme süresi: $7
+* Engellenmenin başlangıcı: $8
+* Engellenmenin bitişi: $6
+* Engellenme süresi: $7
 
-Belirtilen nedene göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ile ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|hizmetli]] ile bu durumu görüşebilirsiniz.
-Eğer [[Special:Preferences|tercihler]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız.
-Şu anda IP adresiniz $3 ve engellenme numaranız #$5. Lütfen sorgu yaparken bu bilgileri belirtiniz.',
+Belirtilen nedene göre engellenmenizin uygun olmadığını düşünüyorsanız, $1 ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|hizmetli]] ile bu durumu görüşebilirsiniz. [[Special:Preferences|Tercihlerim]] kısmında geçerli bir e-posta adresi girmediyseniz "Kullanıcıya e-posta gönder" özelliğini kullanamazsınız, tercihlerinize e-posta adresinizi eklediğinizde e-posta gönderme hakkına sahip olacaksınız. 
+<br />Şu anki IP adresiniz $3, engellenme numaranız #$5.
+<br />Bir hizmetliden durumunuz hakkında bilgi almak istediğinizde veya herhangi bir sorguda bu bilgiler gerekecektir, lütfen not ediniz.',
 'autoblockedtext'                  => 'IP adresiniz otomatik olarak engellendi çünkü $1 tarafından engellenmiş başka bir kullanıcı tarafından kullanılmaktaydı. 
 Belirtilen sebep şudur:
 
@@ -664,6 +668,7 @@ $3 tarafından verilen sebep ''$2''",
 'histlegend'          => "Fark seçimi: karşılaştımayı istediğiniz 2 sürümün önündeki dairelere taıkayıp, enter'a basın ya da sayfanın en atında bulunan düğmeye basın.<br />
 Tanımlar: (güncel) = güncel sürümle aradaki fark,
 (önceki) = bir önceki sürümle aradaki fark, K = küçük değişiklik",
+'history-search'      => 'Geçmişte ara',
 'deletedrev'          => '[silindi]',
 'histfirst'           => 'En eski',
 'histlast'            => 'En yeni',
@@ -1528,17 +1533,12 @@ $1',
 # Move page
 'move-page'               => '$1 taşınıyor',
 'move-page-legend'        => 'İsim değişikliği',
-'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir.Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır.
-Eski isim yeni isme yönlendirme haline dönüşür.
-Otomatik olarak orijinal başlığa yönlendiren yönlendirmeleri güncelleyebilirsiniz.
-Yapacağınız bu değişikllike tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
+'movepagetext'            => "Aşağıdaki form kullanılarak sayfanın adı değiştirilir. Beraberinde tüm geçmiş kayıtları da yeni isme aktarılır. Eski isim yeni isme yönlendirme hâline dönüşür. Otomatik olarak eski başlığa yönlendirmeleri güncelleyebilirsiniz. Bu işlemi otomatik yapmak istemezseniz tüm [[Special:DoubleRedirects|çift]] veya [[Special:BrokenRedirects|geçersiz]] yönlendirmeleri kendiniz düzeltmeniz gerekecek. Yapacağınız bu değişikllikle tüm bağlantıların olması gerektiği gibi çalıştığından sizin sorumlu olduğunuzu unutmayınız.
 
-Eğer yeni isimde bir isim zaten mevcutsa, isim değişikliği '''yapılmayacaktır''', ancak varolan sayfa içerik olarak boş ise veya sadece yönlendirme ise ve hiç geçmiş hali yoksa isim değişikliği mümkün olacaktır.
-Bu yanı zamanda demektir ki, yaptığınız isim değişikliğini ilk ismine değiştirerek geri alabilirsiniz ve hiç bir başka sayfaya da dokunmamış olursunuz.
+Eğer yeni isimde bir madde zaten varsa isim değişikliği '''yapılmayacaktır'''. Ayrıca, isim değişikliğinden pişman olursanız değişikliği geri alabilir ve başka hiçbir sayfaya da dokunmamış olursunuz.
 
 '''UYARI!'''
-Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir;
-lütfen değişikliği yapmadan önce olabilecekleri göz önüne alın.",
+Bu değişim popüler bir sayfa için beklenmeyen sonuçlar doğurabilir; lütfen değişikliği yapmadan önce olabilecekleri göz önünde bulundurun.",
 'movepagetalktext'        => "İlişikteki tartışma sayfası da (eğer varsa) otomatik olarak yeni isme taşınacaktır. Ama şu durumlarda '''taşınmaz''':
 
 *Alanlar arası bir taşıma ise, (örnek: \"Project:\" --> \"Help:\")
@@ -2059,7 +2059,7 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 'version-other'                    => 'Diğer',
 'version-extension-functions'      => 'Ek fonksiyonları',
 'version-skin-extension-functions' => 'Tema eki fonksiyonları',
-'version-version'                  => 'Versiyon',
+'version-version'                  => 'Sürüm',
 'version-license'                  => 'Lisans',
 'version-software'                 => 'Yüklü yazılım',
 'version-software-product'         => 'Ürün',
