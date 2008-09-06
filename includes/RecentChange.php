@@ -49,15 +49,13 @@ class RecentChange
 
 	# Factory methods
 
-	public static function newFromRow( $row )
-	{
+	public static function newFromRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
 	}
 
-	public static function newFromCurRow( $row )
-	{
+	public static function newFromCurRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row );
 		$rc->notificationtimestamp = false;
@@ -110,26 +108,22 @@ class RecentChange
 
 	# Accessors
 
-	function setAttribs( $attribs )
-	{
+	function setAttribs( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 
-	function setExtra( $extra )
-	{
+	function setExtra( $extra ) {
 		$this->mExtra = $extra;
 	}
 
-	function &getTitle()
-	{
+	function &getTitle() {
 		if ( $this->mTitle === false ) {
 			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
 		}
 		return $this->mTitle;
 	}
 
-	function getMovedToTitle()
-	{
+	function getMovedToTitle() {
 		if ( $this->mMovedToTitle === false ) {
 			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'],
 				$this->mAttribs['rc_moved_to_title'] );
@@ -138,8 +132,7 @@ class RecentChange
 	}
 
 	# Writes the data in this object to the database
-	function save()
-	{
+	function save() {
 		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, 
 		$wgRC2UDPPort, $wgRC2UDPPrefix, $wgRC2UDPOmitBots;
 		$fname = 'RecentChange::save';
@@ -178,35 +171,6 @@ class RecentChange
 		# Update old rows, if necessary
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
 			$lastTime = $this->mExtra['lastTimestamp'];
-			#$now = $this->mAttribs['rc_timestamp'];
-			#$curId = $this->mAttribs['rc_cur_id'];
-
-			# Don't bother looking for entries that have probably
-			# been purged, it just locks up the indexes needlessly.
-			global $wgRCMaxAge;
-			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
-			if( $age < $wgRCMaxAge ) {
-				# live hack, will commit once tested - kate
-				# Update rc_this_oldid for the entries which were current
-				#
-				#$oldid = $this->mAttribs['rc_last_oldid'];
-				#$ns = $this->mAttribs['rc_namespace'];
-				#$title = $this->mAttribs['rc_title'];
-				#
-				#$dbw->update( 'recentchanges',
-				#	array( /* SET */
-				#		'rc_this_oldid' => $oldid
-				#	), array( /* WHERE */
-				#		'rc_namespace' => $ns,
-				#		'rc_title' => $title,
-				#		'rc_timestamp' => $dbw->timestamp( $lastTime )
-				#	), $fname
-				#);
-			}
-
-			# Update rc_cur_time
-			#$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
-			#	array( 'rc_cur_id' => $curId ), $fname );
 		}
 
 		# Notify external application via UDP
@@ -576,13 +540,43 @@ class RecentChange
 	public function getAttribute( $name ) {
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : NULL;
 	}
+	
+	/*
+	* Get RC select fields for changes lists
+	*/
+	public static function getSelectFields() {
+		return array( 
+			'rc_timestamp', 
+			'rc_cur_time', 
+			'rc_user',
+			'rc_user_text',
+			'rc_namespace',
+			'rc_title',
+			'rc_comment',
+			'rc_minor',
+			'rc_type',
+			'rc_cur_id',
+			'rc_this_oldid',
+			'rc_last_oldid',
+			'rc_bot',
+			'rc_moved_to_ns',
+			'rc_moved_to_title',
+			'rc_patrolled',
+			'rc_old_len',
+			'rc_new_len',
+			'rc_params',
+			'rc_log_type',
+			'rc_log_action',
+			'rc_log_id',
+			'rc_deleted' // this one REALLY should be set...
+		);
+	}
 
 	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
 	 */
-	function diffLinkTrail( $forceCur )
-	{
+	function diffLinkTrail( $forceCur ) {
 		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
 			$trail = "curid=" . (int)($this->mAttribs['rc_cur_id']) .
 				"&oldid=" . (int)($this->mAttribs['rc_last_oldid']);

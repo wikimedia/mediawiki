@@ -212,6 +212,10 @@ span.unpatrolled {
 	font-weight:bold;
 	color:red;
 }
+span.newuser {
+	font-weight:bold;
+	color:orange;
+}
 
 span.updatedmarker {
 	color:black;
