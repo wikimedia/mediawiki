@@ -430,7 +430,8 @@ MySQL 嘅錯誤回應 "<tt>$3: $4</tt>"。',
 "$1"
 於 "$2"功能中。
 MySQL 嘅錯誤回應 "$3: $4"',
-'noconnect'            => '對唔住！Wiki 而家有啲技術問題，連唔上資料庫伺服器。<br />$1',
+'noconnect'            => 'Wiki 而家有啲技術問題，連唔上資料庫伺服器。<br />
+$1',
 'nodb'                 => '伺服器 $1 唔選得',
 'cachederror'          => '以下係已請求頁嘅快取複本，內容可能唔係最新嘅。',
 'laggedslavemode'      => '警告：呢頁可能未包括最新嘅更新。',
@@ -462,7 +463,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'cannotdelete'         => '指定嗰頁或檔案唔刪得。（可能已經刪咗。）',
 'badtitle'             => '錯嘅標題',
 'badtitletext'         => '要求嘅標題唔啱、空白，跨語言或者跨維基連結標題錯誤。亦可能係標題包括咗一個或多過一個字元。',
-'perfdisabled'         => '對唔住！呢個功能有可能造成資料庫癱瘓，所以要暫時停用。',
+'perfdisabled'         => '呢個功能有可能造成資料庫癱瘓，所以要暫時停用。',
 'perfcached'           => '以下嘅資料係嚟自快取，可能唔係最新嘅。',
 'perfcachedts'         => '以下嘅資料係嚟自快取，上一次嘅更新喺$1。',
 'querypage-no-updates' => '響呢一頁嘅更新現時停用。啲資料將唔會即時更新。',
@@ -521,7 +522,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '用電郵',
 'badretype'                  => '你所入嘅密碼唔一致。',
-'userexists'                 => '你入嘅用戶名已經有人用緊，唔該揀過另外一個名啦。',
+'userexists'                 => '你入嘅用戶名已經有人用緊，揀過另外一個名啦。',
 'youremail'                  => '電郵:',
 'username'                   => '用戶名:',
 'uid'                        => '用戶 ID:',
@@ -530,7 +531,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'yourlanguage'               => '語言:',
 'yourvariant'                => '字體變化:',
 'yournick'                   => '簽名:',
-'badsig'                     => '無效嘅程式碼簽名；請檢查 HTML 有無錯。所有屬性都要用雙引號括住。',
+'badsig'                     => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
 'badsiglength'               => '簽名太長喇。
 佢嘅長度一定要響$1個字元以下。',
 'email'                      => '電郵',
@@ -564,12 +565,12 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'eauthentsent'               => '確認電郵已經傳送到指定嘅電郵地址。喺其它嘅郵件傳送到呢個戶口之前，你需要按電郵嘅指示，嚟確認呢個戶口真係屬於你嘅。',
 'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
 'mailerror'                  => '傳送電郵錯誤： $1',
-'acct_creation_throttle_hit' => '對唔住，你已經開咗 $1 個戶口，唔可以再開多個戶口。',
+'acct_creation_throttle_hit' => '你已經開咗 $1 個戶口，唔可以再開多個戶口。',
 'emailauthenticated'         => '你嘅電郵地址已經喺 $1 確認。',
 'emailnotauthenticated'      => '你嘅電郵地址重未確認。 任何傳送電郵嘅功能都唔會運作。',
 'noemailprefs'               => '設置一個電郵地址令到呢啲功能開始運作。',
 'emailconfirmlink'           => '確認你嘅電郵地址',
-'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。唔該輸入一個啱格式嘅地址，或清咗嗰個空格。',
+'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。輸入一個啱格式嘅地址，或清咗嗰個空格。',
 'accountcreated'             => '戶口已經建立咗',
 'accountcreatedtext'         => '$1嘅戶口起好咗。',
 'createaccount-title'        => '響{{SITENAME}}度開個新戶口',
@@ -683,9 +684,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'note'                             => '<strong>留意:</strong>',
 'previewnote'                      => '<strong>請記住呢個只係預覽；更改嘅内容重未儲存！</strong>',
 'previewconflict'                  => '呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。',
-'session_fail_preview'             => "'''對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
+'session_fail_preview'             => "'''由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。
 請再試過喇。如果仍然唔得嘅話，試下[[Special:UserLogout|登出]]，然後重新登入。'''",
-'session_fail_preview_html'        => "'''對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
+'session_fail_preview_html'        => "'''有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。'''
 
 ''由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。''
 
@@ -2602,8 +2603,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',
-'scarytranscludefailed'   => '[$1嘅頡取模動作失敗；對唔住]',
-'scarytranscludetoolong'  => '[URL 太長；對唔住]',
+'scarytranscludefailed'   => '[$1嘅頡取模動作失敗]',
+'scarytranscludetoolong'  => '[URL 太長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">呢一版嘅過去追蹤：
