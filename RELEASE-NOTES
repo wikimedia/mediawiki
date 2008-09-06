@@ -27,6 +27,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13770) Fixed DOM module detection for installations with both dom 
   and domxml.
 * (bug 15148) Fixed Special:BlockIP for PostgreSQL
+* Fixed SQLite support for non-memcached installations
 * Localisation updates, Achinese (ace) added.
 
 == Changes since 1.13.0rc2 ==

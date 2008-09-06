@@ -289,15 +289,22 @@ class DatabaseSqlite extends Database {
 	}
 
 	function encodeBlob($b) {
-		return $this->strencode($b);
+		return new Blob( $b );
 	}
 
 	function decodeBlob($b) {
+		if ($b instanceof Blob) {
+			$b = $b->fetch();
+		}
 		return $b;
 	}
 
 	function addQuotes($s) {
-		return $this->mConn->quote($s);
+		if ( $s instanceof Blob ) {
+			return "x'" . bin2hex( $s->fetch() ) . "'";
+		} else {
+			return $this->mConn->quote($s);
+		}
 	}
 
 	function quote_ident($s) { return $s; }
