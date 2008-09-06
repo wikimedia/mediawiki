@@ -56,7 +56,19 @@ table.filehistory td.filehistory-selected {
 }
 
 /*
- * rev_deleted stuff
+ * Recent changes
+ */
+span.unpatrolled {
+	font-weight: bold;
+	color: red;
+}
+span.newuser {
+	font-weight:bold;
+	color:orange;
+}
+
+/*
+ * RevisionDelete stuff
  */
 li span.deleted, span.history-deleted {
 	text-decoration: line-through;

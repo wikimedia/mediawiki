@@ -75,16 +75,37 @@ class ChangesList {
 	 * @param bool $patrolled
 	 * @param string $nothing, string to use for empty space
 	 * @param bool $bot
+	 * @param bool $newbie
 	 * @return string
 	 */
-	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
+	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false, $newbie = false ) {
 		$f = $new ? '<span class="newpage">' . $this->message['newpageletter'] . '</span>'
 				: $nothing;
 		$f .= $minor ? '<span class="minor">' . $this->message['minoreditletter'] . '</span>'
 				: $nothing;
 		$f .= $bot ? '<span class="bot">' . $this->message['boteditletter'] . '</span>' : $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
+		$f .= $newbie ? '<span class="newuser">*</span>' : $nothing;
 		return $f;
+	}
+	
+	protected static function userIsNew( Array $attribs ) {
+		global $wgAutoConfirmCount, $wgAutoConfirmAge;
+		if( !array_key_exists('user_editcount',$attribs) || !array_key_exists('user_registration',$attribs) ) {
+			return false; // missing input!
+		}
+		static $time;
+		$time = time();
+		$edits = $attribs['user_editcount'];
+		$age = $attribs['user_registration'];
+		if( $wgAutoConfirmCount && !$edits || $wgAutoConfirmAge && !$age ) {
+			return true;
+		} else if( $wgAutoConfirmCount && $edits < $wgAutoConfirmCount ) {
+			return true;
+		} else if( $wgAutoConfirmAge && ($time - wfTimestampOrNull(TS_UNIX,$age)) < $wgAutoConfirmAge ) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -343,9 +364,10 @@ class OldChangesList extends ChangesList {
 			wfProfileIn($fname.'-page');
 
 			$this->insertDiffHist($s, $rc, $unpatrolled);
-
 			# M, N, b and ! (minor, new, bot and unpatrolled)
-			$s .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', $rc_bot );
+			$newbie = self::userIsNew( $rcObj->mAttribs );
+			$s .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $unpatrolled, '', 
+				$rc_bot, $newbie );
 			$this->insertArticleLink($s, $rc, $unpatrolled, $watched);
 
 			wfProfileOut($fname.'-page');
@@ -542,15 +564,14 @@ class EnhancedChangesList extends ChangesList {
 		# Collate list of users
 		$userlinks = array();
 		# Other properties
-		$unpatrolled = false;
-		$isnew = false;
+		$unpatrolled = $isnew = $newbie = false;
 		$curId = $currentRevision = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$alllogs = true;
 		foreach( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
-			if( $rcObj->mAttribs['rc_new'] ) {
+			if( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
 				$isnew = true;
 			}
 			// If all log actions to this page were hidden, then don't
@@ -567,6 +588,9 @@ class EnhancedChangesList extends ChangesList {
 			}
 			if( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$alllogs = false;
+			}
+			if( self::userIsNew( $rcObj->mAttribs ) ) {
+				$newbie = true;
 			}
 			# Get the latest entry with a page_id and oldid
 			# since logs may not have these.
@@ -606,7 +630,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>'.$tl.'&nbsp;';
 
 		# Main line
-		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
+		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot, $newbie );
 
 		# Timestamp
 		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
@@ -689,7 +713,8 @@ class EnhancedChangesList extends ChangesList {
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
 			$r .= '<tr><td valign="top">';
 			$r .= '<tt>'.$this->spacerIndent() . $this->spacerIndent();
-			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
+			$newbie = self::userIsNew( $rcObj->mAttribs );
+			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot, $newbie );
 			$r .= '&nbsp;</tt></td><td valign="top">';
 
 			$o = '';
@@ -815,14 +840,15 @@ class EnhancedChangesList extends ChangesList {
 		$curIdEq = 'curid='.$rc_cur_id;
 
 		$r = '<table cellspacing="0" cellpadding="0" border="0" style="background: none"><tr>';
-
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
 
 		# Flag and Timestamp
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
 		} else {
-			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
+			$newbie = self::userIsNew( $rcObj->mAttribs );
+			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, 
+				'&nbsp;', $rc_bot, $newbie );
 		}
 		$r .= '&nbsp;'.$rcObj->timestamp.'&nbsp;</tt></td><td>';
 
@@ -838,7 +864,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Diff and hist links
-		if ( $rc_type != RC_LOG ) {
+		if( $rc_type != RC_LOG ) {
 		   $r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
 		   $r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), wfMsg( 'hist' ), $curIdEq.'&action=history' ) . ')';
 		}

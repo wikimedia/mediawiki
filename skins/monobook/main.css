@@ -1154,10 +1154,6 @@ div.patrollink {
 span.newpage, span.minor, span.bot {
 	font-weight: bold;
 }
-span.unpatrolled {
-	font-weight: bold;
-	color: red;
-}
 
 .sharedUploadNotice {
 	font-style: italic;
