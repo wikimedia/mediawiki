@@ -180,6 +180,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->fld_sizes = isset ($prop['sizes']);
 			$this->fld_redirect = isset($prop['redirect']);
 			$this->fld_patrolled = isset($prop['patrolled']);
+			$this->fld_loginfo = isset($prop['loginfo']);
 
 			global $wgUser;
 			if($this->fld_patrolled && !$wgUser->isAllowed('patrol'))
@@ -198,6 +199,10 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->addFieldsIf('rc_old_len', $this->fld_sizes);
 			$this->addFieldsIf('rc_new_len', $this->fld_sizes);
 			$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
+			$this->addFieldsIf('rc_logid', $this->fld_loginfo);
+			$this->addFieldsIf('rc_log_type', $this->fld_loginfo);
+			$this->addFieldsIf('rc_log_action', $this->fld_loginfo);
+			$this->addFieldsIf('rc_params', $this->fld_loginfo);
 			if($this->fld_redirect || isset($show['redirect']) || isset($show['!redirect']))
 			{
 				$this->addTables('page');
@@ -326,6 +331,15 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 		/* Add the patrolled flag */
 		if ($this->fld_patrolled && $row->rc_patrolled == 1)
 			$vals['patrolled'] = '';
+			
+		if ($this->fld_loginfo && $row->rc_type == RC_LOG) {
+			$vals['logid'] = $row->rc_logid;
+			$vals['logtype'] = $row->rc_log_type;
+			$vals['logaction'] = $row->rc_log_action;
+			ApiQueryLogEvents::addLogParams($this->getResult(),
+				$vals, $row->rc_params,
+				$row->rc_log_type);
+		}
 		
 		if(!is_null($this->token))
 		{
@@ -395,7 +409,8 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'ids',
 					'sizes',
 					'redirect',
-					'patrolled'
+					'patrolled',
+					'loginfo',
 				)
 			),
 			'token' => array(

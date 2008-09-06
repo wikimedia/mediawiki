@@ -134,6 +134,46 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->getResult()->setIndexedTagName($data, 'item');
 		$this->getResult()->addValue('query', $this->getModuleName(), $data);
 	}
+	
+	public static function addLogParams($result, &$vals, $params, $type) {
+		$params = explode("\n", $params);
+		switch ($type) {
+			case 'move':
+				if (isset ($params[0])) {
+					$title = Title :: newFromText($params[0]);
+					if ($title) {
+						$vals2 = array();
+						ApiQueryBase :: addTitleInfo($vals2, $title, "new_");
+						$vals[$type] = $vals2;
+						$params = null;
+					}
+				}
+				break;
+			case 'patrol':
+				$vals2 = array();
+				list( $vals2['cur'], $vals2['prev'], $vals2['auto'] ) = $params;
+				$vals[$type] = $vals2;
+				$params = null;
+				break;
+			case 'rights':
+				$vals2 = array();
+				list( $vals2['old'], $vals2['new'] ) = $params;
+				$vals[$type] = $vals2;
+				$params = null;
+				break;
+			case 'block':
+				$vals2 = array();
+				list( $vals2['duration'], $vals2['flags'] ) = $params;
+				$vals[$type] = $vals2;
+				$params = null;
+				break;
+		}
+		if (!is_null($params)) {
+			$result->setIndexedTagName($params, 'param');
+			$vals = array_merge($vals, $params);
+		}
+		return $vals;
+	}
 
 	private function extractRowInfo($row) {
 		$vals = array();
@@ -154,43 +194,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ($this->fld_details && $row->log_params !== '') {
-			$params = explode("\n", $row->log_params);
-			switch ($row->log_type) {
-				case 'move':
-					if (isset ($params[0])) {
-						$title = Title :: newFromText($params[0]);
-						if ($title) {
-							$vals2 = array();
-							ApiQueryBase :: addTitleInfo($vals2, $title, "new_");
-							$vals[$row->log_type] = $vals2;
-							$params = null;
-						}
-					}
-					break;
-				case 'patrol':
-					$vals2 = array();
-					list( $vals2['cur'], $vals2['prev'], $vals2['auto'] ) = $params;
-					$vals[$row->log_type] = $vals2;
-					$params = null;
-					break;
-				case 'rights':
-					$vals2 = array();
-					list( $vals2['old'], $vals2['new'] ) = $params;
-					$vals[$row->log_type] = $vals2;
-					$params = null;
-					break;
-				case 'block':
-					$vals2 = array();
-					list( $vals2['duration'], $vals2['flags'] ) = $params;
-					$vals[$row->log_type] = $vals2;
-					$params = null;
-					break;
-			}
-
-			if (isset($params)) {
-				$this->getResult()->setIndexedTagName($params, 'param');
-				$vals = array_merge($vals, $params);
-			}
+			self::addLogParams($this->getResult(), $vals,
+				$row->log_params, $row->log_type);
 		}
 
 		if ($this->fld_user) {
