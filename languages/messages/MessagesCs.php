@@ -607,7 +607,7 @@ Poslední dotaz byl:
 "$1"
 z funkce "$2".
 MySQL vrátil chybu "$3: $4"',
-'noconnect'            => 'Promiňte! Tato wiki má nějaké technické potíže a nepodařilo se připojit k databázovém serveru.<br />
+'noconnect'            => 'Tato wiki má nějaké technické potíže a nepodařilo se připojit k databázovém serveru.<br />
 $1',
 'nodb'                 => 'Nebylo možné vybrat databázi $1',
 'cachederror'          => 'Následuje kopie požadované stránky z cache, která nemusí být aktuální.',
@@ -711,7 +711,7 @@ Zkuste to znovu!',
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'Skutečné jméno (volitelné): pokud ho zadáte, bude použito pro označení autorství vaší práce.',
 'loginerror'                 => 'Chyba při přihlašování',
-'prefs-help-email'           => 'E-mail (volitelný): Umožní ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena; také vám na tuto adresu může být zasláno nové heslo v případě, že své heslo zapomenete.',
+'prefs-help-email'           => 'E-mail (volitelný): Může vám být zasláno nové heslo v případě, že své heslo zapomenete. Také můžete dovolit ostatním uživatelům vás kontaktovat, aniž by tato adresa byla zobrazena.',
 'prefs-help-email-required'  => 'Je vyžadována e-mailová adresa.',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
 'nocookieslogin'             => '{{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a zkuste znovu.',
@@ -725,7 +725,7 @@ Zkuste to znovu!',
 'wrongpasswordempty'         => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
 'passwordtooshort'           => 'Vaše heslo není validní nebo je příliš krátké.
 Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
-'mailmypassword'             => 'Poslat e-mailem dočasné heslo',
+'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
 'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) žádal, abychom Vám poslali nové heslo pro přihlášení do {{SITENAME}} ($4).
 
@@ -740,12 +740,12 @@ Před tím, než vám na tuto adresu budou moci být zasílány další zprávy,
 'throttled-mailpassword'     => 'Heslo již bylo jednou zasláno během uplynulých $1 hodin.
 Heslo může být zasláno jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'mailerror'                  => 'Chyba při zasílání e-mailu: $1',
-'acct_creation_throttle_hit' => 'Omlouváme se, ale už jste vytvořil(a) $1 {{PLURAL:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
+'acct_creation_throttle_hit' => 'Už jste vytvořil(a) $1 {{PLURAL:$1|účet|účty|účtů}}. Žádný další už nemůžete vytvořit.',
 'emailauthenticated'         => 'Vaše e-mailová adresa byla ověřena $1.',
 'emailnotauthenticated'      => 'Vaše e-mailová adresa dosud nebyla ověřena a e-mailové funkce do té doby nejsou dostupné.',
 'noemailprefs'               => 'Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.',
 'emailconfirmlink'           => 'Podvrďte svou e-mailovou adresu',
-'invalidemailaddress'        => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte laskavě platnou e-mailovou adresu, nebo obsah tohoto pole vymažte.',
+'invalidemailaddress'        => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.',
 'accountcreated'             => 'Účet vytvořen',
 'accountcreatedtext'         => 'Uživatelský účet $1 byl vytvořen.',
 'createaccount-title'        => 'Vytvoření účtu na {{grammar:6sg|{{SITENAME}}}}',
@@ -858,15 +858,18 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
 'usercssjsyoucanpreview'           => '<strong>Tip:</strong> Použijte tlačítko „Ukázat náhled“ k testování vašeho nového CSS/JS před uložením.',
-'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS, neboť ještě nebylo uloženo!'''",
+'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
+'''Zatím nebylo uloženo!'''",
 'userjspreview'                    => "'''Pamatujte, že testujete a prohlížíte pouze náhled vašeho uživatelského JavaScriptu, dosud nebyl uložen!'''",
 'userinvalidcssjstitle'            => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/monobook.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Monobook.css.",
 'updated'                          => '(Změna uložena)',
 'note'                             => '<strong>Poznámka:</strong>&nbsp;',
 'previewnote'                      => '<strong>Pamatujte, že toto je pouze náhled, změny zatím nebyly uloženy!</strong>',
 'previewconflict'                  => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
-'session_fail_preview'             => '<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat. Zkuste to prosím znovu. Pokud se tento problém bude opakovat, zkuste se odhlásit a znovu přihlásit.</strong>',
-'session_fail_preview_html'        => "<strong>Omlouváme se, ale váš požadavek se nepodařilo zpracovat.</strong>
+'session_fail_preview'             => '<strong>Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
+Zkuste to prosím znovu.
+Pokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]] a znovu přihlásit.</strong>',
+'session_fail_preview_html'        => "<strong>Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.</strong>
 
 ''Jelikož má {{SITENAME}} zapnuto používání neomezeného HTML, náhled se kvůli prevenci proti útokům JavaScriptem nezobrazuje.''
 
@@ -1422,7 +1425,7 @@ Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvláš�
 Možná to je obrázek ve zmenšené velikosti <i>(náhled)</i>.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.',
 'fileexists-forbidden'        => 'Soubor s tímto názvem již existuje; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti; vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Soubor s tímto názvem již existuje ve sdíleném úložišti. Pokud přesto chcete váš soubor načíst, vraťte se a zvolte jiný název. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tento soubor je duplikát {{PLURAL:$1|následujícího souboru|následujících souborů}}:',
 'successfulupload'            => 'Načtení úspěšně provedeno!',
 'uploadwarning'               => 'Varování',
@@ -1685,7 +1688,7 @@ V současné době je zde asi '''$6''' {{PLURAL:$6|aktivní uživatelský účet
 'log'                  => 'Protokolovací záznamy',
 'all-logs-page'        => 'Všechny záznamy',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
-Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména nebo dotčené stránky.',
+Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (záleží na velikosti písmen) nebo dotčené stránky (také záleží na velikosti písmen).',
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',
 'log-title-wildcard'   => 'Hledat názvy začínající na tento text',
 
@@ -1739,7 +1742,7 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'mailnologintext' => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser'       => 'Poslat e-mail',
 'emailpage'       => 'Poslat e-mail',
-'emailpagetext'   => 'Pokud tento uživatel uvedl platnou e-mailovou adresu ve svém nastavení, tímto formulářem mu lze poslat zprávu. E-mailová adresa, kterou máte uvedenu v nastavení, se objeví jako adresa odesílatele pošty, aby adresát mohl odpovědět.',
+'emailpagetext'   => 'Pokud tento uživatel uvedl platnou e-mailovou adresu ve svém nastavení, tímto formulářem mu lze poslat zprávu. E-mailová adresa, kterou máte uvedenu v nastavení, se objeví jako adresa odesílatele pošty, aby vám adresát mohl odpovědět přímo.',
 'usermailererror' => 'Chyba poštovního programu:',
 'defemailsubject' => 'E-mail z {{grammar:2sg|{{SITENAME}}}}',
 'noemailtitle'    => 'Bez e-mailové adresy',
@@ -1927,7 +1930,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'viewdeletedpage'              => 'Zobrazení smazané stránky',
 'undeletepagetext'             => 'Tyto stránky jsou smazány, avšak dosud archivovány, a proto je možno je obnovit. Archiv může být pravidelně vyprazdňován.',
 'undelete-fieldset-title'      => 'Obnovit revize',
-'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zašrktněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
+'undeleteextrahelp'            => "Pro úplné obnovení stránky s kompletní historií ponechte všechny čtverečky nezaškrtnuté a klikněte na '''''Obnovit'''''. Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a klikněte na '''''Obnovit'''''. Kliknutí na '''''Reset''''' vyprázdní komentář a zruší všechna zaškrtnutí.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|verze je archivována|verze jsou archivovány|verzí je archivováno}}',
 'undeletehistory'              => 'Pokud stránku obnovíte, budou  v historii obnoveny všechny verze. Pokud byla vytvořena nová stránka se stejným jménem jako smazaná, obnovené verze se zapíší na starší místo v historii novější stránky.',
 'undeleterevdel'               => 'Obnovení nebude provedeno, pokud by vedlo k částečnému odstranění aktuální verze stránky. V takovém případě musíte odznačit nebo odkrýt nejnovější smazanou verzi.',
@@ -2326,7 +2329,7 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 
 # Spam protection
 'spamprotectiontitle' => 'Protispamový filtr',
-'spamprotectiontext'  => 'Stránka, kterou jste se pokusil(a) uložit, byla zablokována protispamovým filtrem. Pravděpodobnou příčinou je odkaz na externí stránky. Může vás zajímat následující regulární výraz, který označuje v současné době blokované stránky:',
+'spamprotectiontext'  => 'Stránka, kterou jste se pokusil(a) uložit, byla zablokována protispamovým filtrem. Pravděpodobnou příčinou je odkaz na externí stránku, která je na černé listině.',
 'spamprotectionmatch' => 'Následující text spustil náš filtr proti spamu: $1',
 'spambot_username'    => 'Systémový čistič spamu',
 'spam_reverting'      => 'Revert na poslední verzi neobsahující odkazy na $1',
@@ -2377,8 +2380,8 @@ $1',
 'filedelete-archive-read-only'    => 'Do archivního adresáře „$1“ nemůže webový server psát.',
 
 # Browsing diffs
-'previousdiff' => '← Předchozí porovnání',
-'nextdiff'     => 'Následující porovnání →',
+'previousdiff' => '← Porovnání se starší verzí',
+'nextdiff'     => 'Porovnání s novější verzí →',
 
 # Visual comparison
 'visual-comparison' => 'Porovnání vzhledu',
@@ -2717,7 +2720,7 @@ Pokud jste si založili účet před chvílí, vyčkejte, prosíme, několik min
 'confirmemail_sent'        => 'Potvrzovací e-mail byl odeslán',
 'confirmemail_oncreate'    => 'Na vaši e-mailovou adresu byl zaslán potvrzovací kód.
 Tento kód není zapotřebí k přihlášení, ale budete ho potřebovat k aktivaci některých funkcí založených na využití e-mailu.',
-'confirmemail_sendfailed'  => 'Nepodařilo se odeslat potvrzovací e-mail. Zkontrolujte, zda adresa neobsahuje chybné znaky.
+'confirmemail_sendfailed'  => '{{GRAMMAR:3sg|{{SITENAME}}}} se nepodařilo odeslat potvrzovací e-mail. Zkontrolujte, zda e-mailová adresa neobsahuje chybné znaky.
 
 Poštovní program hlásí: $1',
 'confirmemail_invalid'     => 'Neplatný potvrzovací kód. Možná již vypršela platnost kódu.',
@@ -2742,8 +2745,8 @@ Platnost tohoto potvrzovacího kódu vyprší $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Vkládání šablon mezi wiki je vypnuto]',
-'scarytranscludefailed'   => '[Nepodařilo se načíst šablonu pro $1; je mi líto]',
-'scarytranscludetoolong'  => '[Příliš dlouhé URL; je mi líto]',
+'scarytranscludefailed'   => '[Nepodařilo se načíst šablonu pro $1]',
+'scarytranscludetoolong'  => '[Příliš dlouhé URL]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2755,7 +2758,7 @@ $1
 'trackbackdeleteok' => 'Zpětný odkaz byl úspěšně smazán.',
 
 # Delete conflict
-'deletedwhileediting' => 'Upozornění: V průběhu vaší editace byla tato stránka smazána!',
+'deletedwhileediting' => "'''Upozornění''': V průběhu vaší editace byla tato stránka smazána!",
 'confirmrecreate'     => 'Uživatel [[User:$1|$1]] ([[User talk:$1|diskuse]]) tuto stránku smazal poté, co jste začali editovat, s odůvodněním:
 : „$2“
 Opravdu si přejete znovu tuto stránku založit?',

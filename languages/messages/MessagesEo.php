@@ -390,8 +390,7 @@ La lasta provita peto estis:
 "$1"
 el la funkcio "$2".
 \'\'MySQL\'\' resendis la erarmesaĝon "$3: $4".',
-'noconnect'            => 'Neeblis konekti al la datumbazo; estas ia erarao aŭ oni riparadas la servilon.
-<br />
+'noconnect'            => 'La vikio suferas teknikajn problemojn, kaj ne eblas kontakti la datumbazan servilon<br />
 $1',
 'nodb'                 => 'Neeblis elekti datumaron $1',
 'cachederror'          => 'Intertempe, jen konservita kopio de la petita paĝo (ĝi eble ne estas ĝisdata).',
@@ -483,14 +482,15 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'logout'                     => 'Elsaluti',
 'userlogout'                 => 'Elsaluti',
 'notloggedin'                => 'Ne ensalutinta',
-'nologin'                    => 'Ĉu vi ne jam havas salutnomon? $1.',
+'nologin'                    => 'Ĉu vi ne havas konton? $1.',
 'nologinlink'                => 'Krei konton',
 'createaccount'              => 'Krei novan konton',
 'gotaccount'                 => 'Ĉu vi jam havas konton? $1.',
 'gotaccountlink'             => 'Ensaluti',
 'createaccountmail'          => 'retpoŝte',
 'badretype'                  => 'La pasvortojn kiujn vi tajpis ne egalas.',
-'userexists'                 => 'Jam estas uzanto kun la nomo kiun vi elektis. Bonvolu elekti alian nomon.',
+'userexists'                 => 'Salutnomo enigita jam estas uzata.
+Bonvolu elekti alian nomon.',
 'youremail'                  => 'Retadreso:',
 'username'                   => 'Salutnomo:',
 'uid'                        => 'Uzantnumero:',
@@ -505,7 +505,8 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'email'                      => 'Retadreso',
 'prefs-help-realname'        => '* Vera nomo (opcia): se vi elektas sciigi ĝin, ĝi estos uzita por aŭtorigi vin pri viaj kontribuoj.',
 'loginerror'                 => 'Ensaluta eraro',
-'prefs-help-email'           => '* Retpoŝto (opcia) : ebligas al aliaj kontakti vin tra via uzantpaĝo aŭ diskutpaĝo sen neceso malkaŝi vian identecon.',
+'prefs-help-email'           => 'Retadreso estas nedeviga, sed permesus por via pasvorto esti retpoŝtita al vi se vi forgesus ĝin.
+Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo aŭ diskuto-paĝo sen malkaŝante vian identeco.',
 'prefs-help-email-required'  => 'Ret-adreso estas bezonata.',
 'nocookiesnew'               => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin'             => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
@@ -520,7 +521,7 @@ Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei nova
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
 'passwordtooshort'           => 'Via pasvorto estas nevalida aŭ tro mallonga. 
 Ĝi entenu minimume $1 {{PLURAL:$1|1 signon|$1 signojn}} kaj nepre malsamas vian salutnomon.',
-'mailmypassword'             => 'Retpoŝti al mi novan pasvorton',
+'mailmypassword'             => 'Retpoŝti novan pasvorton',
 'passwordremindertitle'      => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
 'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1)
 petis, ke ni sendu al vi novan pasvorton por ensaluti {{SITENAME}}n ($4).
@@ -535,12 +536,14 @@ ne rajtas uzi la pasvorto-rekovran funkcion por malebligi misuzon.',
 'eauthentsent'               => 'Konfirma retmesaĝo estas sendita al la nomita retadreso. Antaŭ ol iu ajn alia mesaĝo estos sendita al la konto, vi devos sekvi la instrukciojn en la mesaĝo por konfirmi ke la konto ja estas la via.',
 'throttled-mailpassword'     => 'Pasvorta rememorigilo estis jam sendita, ene de la {{PLURAL:$1|lasta $1 horo|lastaj $1 horoj}}. Por preventi misuzo, nur unu pasvorto-rememorigilo estos sendita po {{PLURAL:$1|$1 horo|$1 horoj}}.',
 'mailerror'                  => 'Okazis eraro sendante retpoŝtaĵon: $1',
-'acct_creation_throttle_hit' => 'Ni pardonpetas! Vi jam kreis $1 kontojn kaj ne povas krei pluajn.',
+'acct_creation_throttle_hit' => 'Vi jam estas kreita $1 kontojn.
+Vi ne povas krei pluajn.',
 'emailauthenticated'         => 'Via retpoŝta adreso estis aŭtentikigita ĉe $1.',
 'emailnotauthenticated'      => 'Via retadreso <strong>ne jam estas aŭtentigata.</strong> Tial ne eblas elekti ajnan funkcion sube listigatan.',
 'noemailprefs'               => 'Specifigu retpoŝtan adreson por ĉi tiuj ecoj funkcii.',
 'emailconfirmlink'           => 'Konfirmu vian retpoŝtan adreson',
-'invalidemailaddress'        => 'La retpoŝt-adreso ne estas akceptebla ĉar ĝi ŝajne havas nevalidan formaton. Bonvole entajpu ĝust-formatan adreson, aŭ malplenigu la zonon.',
+'invalidemailaddress'        => 'La retadreso ne povas esti akceptita, ĉar ĝi verŝajne havas nevalidan formaton.
+Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'accountcreated'             => 'Konto kreita',
 'accountcreatedtext'         => 'La uzanto-konto por $1 estas kreita.',
 'createaccount-title'        => 'Konto-kreado por {{SITENAME}}',
@@ -652,7 +655,8 @@ Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuzi�
 'userpage-userdoesnotexist'        => 'Uzanto-konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti cxi tiu pagxo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
 'usercssjsyoucanpreview'           => '<strong>Konsileto:</strong> Uzu la "Antaŭrigardan" butonon por provi vian novan css/js antaŭ konservi.',
-'usercsspreview'                   => '<strong>Memoru ke vi nur antaŭrigardas vian uzanto-CSS. Ĝi ne jam estas konservita!</strong>',
+'usercsspreview'                   => "'''Notu ke vi nur antaŭvidas vian uzanto-CSS.
+Ĝi ne jam estis konservita!'''",
 'userjspreview'                    => "'''Memoru ke vi nun nur provas kaj antaŭrigardas vian uzantan javaskripton, ĝi ne estas jam konservita'''",
 'userinvalidcssjstitle'            => "'''Averto:''' Ne ekzistas aspekto \"\$1\". Rememoru ke individuaj .css-aj kaj .js-aj paĝoj uzas minusklan titolon, ekz. {{ns:user}}:Foo/monobook.css kontraŭe  al {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Ŝanĝo registrita)',
@@ -660,12 +664,15 @@ Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuzi�
 'previewnote'                      => '<strong>Memoru, ke ĉi tio estas nur antaŭrigardo kaj ankoraŭ ne konservita!</strong>',
 'previewconflict'                  => 'La jena antaŭrigardo montras la tekston el la supra tekstujo,
 kiel ĝi aperos se vi elektos konservi la paĝon.',
-'session_fail_preview'             => '<strong>Bedaŭrinde ne eblis trakti vian redakton pro manko de sesiaj datenoj. Bonvolu provi refoje. Se ankoraŭ ne efikas post tio, elsalutu kaj poste re-ensalutu.</strong>',
-'session_fail_preview_html'        => "<strong>Pardonu! Ne eblas procesi vian redakton pro manko de seancaj datenoj.</strong>
+'session_fail_preview'             => '<strong>Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.
+Bonvolu retrovi.
+Se ankoraŭ ne funkcios, trovu [[Special:UserLogout|elsaluti]] kaj reensaluti.</strong>',
+'session_fail_preview_html'        => "<strong>Ne eblas trakti vian redakton pro manko de seancaj datenoj.</strong>
 
-''Ĉar {{SITENAME}} ebligas krudan HTML, cxi tiu antaŭrigardo estas kaŝita kiel prevento kontraŭ Javascript-atakoj.
+''Ĉar {{SITENAME}} ebligas krudan HTML, ĉi tiu antaŭrigardo estas kaŝita kiel prevento kontraŭ Javascript-atakoj.''
 
-<strong>Se ĉi tiu estas taŭga provo por redakti, bonvolu reprovi. Se ankoraŭ ne funkcias, provu [[Special:UserLogout|elsaluti]] kaj reensaluti.</strong>",
+<strong>Se ĉi tiu estas taŭga provo por redakti, bonvolu reprovi.
+Se ankoraŭ ne funkcias, provu [[Special:UserLogout|elsaluti]] kaj reensaluti.</strong>",
 'token_suffix_mismatch'            => '<strong>Via redakto estis malpermesita ĉar via klienta fuŝis la interpunkcio en la redakto-signo.
 La redakto estis malpermesita por preventi koruptado de la teksto de la paĝo.
 Ĉi tiel malofte okazas kiam vi uzas fuŝan TTT-an anoniman prokurilon.</strong>',
@@ -1230,10 +1237,12 @@ Nomo de la ekzistanta dosiero: <strong><tt>$2</tt></strong><br />
 Bonvolu elekti malsaman nomon.',
 'fileexists-thumb'            => "<center>'''Ekzistanta bildo'''</center>",
 'fileexists-thumbnail-yes'    => 'Ĉi dosiero ŝajnas kiel bildo de malkreskigita grandeco <i>(bildeto)</i>. Bonvolu kontroli la dosiero <strong><tt>$1</tt></strong>.<br /> Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne nepras alŝuti plian bideton.',
-'file-thumbnail-no'           => 'La dosiernomo komencas kun <strong><tt>$1</tt></strong>. Ĝi ŝajnas kiel bildo de malgrandigita grandeco <i>(thumbnail)</i>.
-Se vi havas ĉi bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.',
+'file-thumbnail-no'           => 'La dosiernomo komencas kun <strong><tt>$1</tt></strong>. 
+Ĝi ŝajnas kiel bildo de malgrandigita grandeco <i>(thumbnail)</i>.
+Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.',
 'fileexists-forbidden'        => 'Dosiero kun tia ĉi nomo jam ekzistas; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Dosiero kun tia ĉi nomo jam ekzistas en la komuna dosiero-deponejo; bonvole realŝutu ĉi tiun dosieron per nova nomo. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Dosiero kun ĉi tia nomo jam ekzistas en la komuna dosierujo.
+Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon.[[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ĉi tiu dosiero estas duplikato de la {{PLURAL:$1|jena dosiero|jenaj dosieroj}}:',
 'successfulupload'            => 'Alŝuto sukcesis!',
 'uploadwarning'               => 'Alŝuta averto',
@@ -1322,8 +1331,8 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'shareduploadduplicate-linktext' => 'alia dosiero',
 'shareduploadconflict'           => 'Ĉi tiu dosiero havas la saman nomon kiel $1 de la kolektiva dosierujo.',
 'shareduploadconflict-linktext'  => 'alia dosiero',
-'noimage'                        => 'Ne ekzistas dosiero kun tia nomo vi povas $1.',
-'noimage-linktext'               => 'alŝuti ĝin',
+'noimage'                        => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas $1.',
+'noimage-linktext'               => 'alŝuti unu',
 'uploadnewversion-linktext'      => 'Alŝuti novan version de ĉi tiu dosiero',
 'imagepage-searchdupe'           => 'Serĉu duplikatajn dosierojn',
 
@@ -1546,8 +1555,8 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'mailnologintext' => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
 'emailuser'       => 'Retpoŝti ĉi tiun uzanton',
 'emailpage'       => 'Retpoŝti uzanton',
-'emailpagetext'   => 'Se la alsendota uzanto donis validan retpoŝtadreson en la preferoj, vi povas sendi unu mesaĝon per la jena formulo. 
-La retpoŝtadreso, kiun vi metis en [[Special:Preferences|la preferoj]], aperos kiel "El"-adreso de la poŝto, por ke la alsendonto povos respondi.',
+'emailpagetext'   => 'Se ĉi tiu uzanto enigis validan retadreson en ties uzanto-preferoj, la jena paĝo sendos unuopan mesaĝon.
+La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevanto eblos respondi rekte al vi.',
 'usermailererror' => 'Resendita retmesaĝa erarsubjekto:',
 'defemailsubject' => '{{SITENAME}} ****-retmesaĝo',
 'noemailtitle'    => 'Neniu retpoŝtadreso',
@@ -2142,7 +2151,8 @@ Datoj de revizioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Spam protection
 'spamprotectiontitle' => 'Filtrilo kontraŭ spamo',
-'spamprotectiontext'  => 'La paĝo kiun vi trovis konservi estis blokita per la spam-filtrilo. Ĉi tia eraro estas kaŭzata pro ekstera ligilo al malpermesata retejo.',
+'spamprotectiontext'  => 'La paĝo kiun vi volis konservi estis blokita per la spam-filtrilo.
+Ĉi tia eraro estas verŝajne kaŭzata pro ekstera ligilo al malpermesata (nigralistigita) ekstera retejo.',
 'spamprotectionmatch' => 'La jena teksto ekagigis la spam-filtrilon: $1',
 'spambot_username'    => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting'      => 'Restarigo de lasta versio ne entenante ligilojn al $1',
@@ -2193,8 +2203,8 @@ $1',
 'filedelete-archive-read-only'    => 'La arkiva dosierujo "$1" ne estas skribebla de la retservilo.',
 
 # Browsing diffs
-'previousdiff' => '← Iru al antaŭa ŝanĝo',
-'nextdiff'     => 'Iri al sekvanta ŝanĝo →',
+'previousdiff' => '← Pli malnova redakto',
+'nextdiff'     => 'Pli nova redakto →',
 
 # Visual comparison
 'visual-comparison' => 'Vida komparo',
@@ -2528,9 +2538,10 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'confirmemail_sent'        => 'Konfirma retmesaĝo estas sendita.',
 'confirmemail_oncreate'    => 'Konfirma kodo estis sendita al via retpoŝta adreso.
 Ĉi kodo ne estas bezonata ensaluti, sed vi bezonos doni ĝin antaŭ uzante iujn ajn retpoŝt-bazitajn ecojn de la vikio.',
-'confirmemail_sendfailed'  => 'Ne eblis sendi konfirmretmesaĝon. Bonvolu kontroli ĉu en la adreso ne estus nevalidaj karaktroj.
+'confirmemail_sendfailed'  => '{{SITENAME}} ne eblis sendi vian konfirmretmesaĝon. 
+Bonvolu kontroli vian retadreson por nevalidaj signoj.
 
-Retpoŝta programo sciigis: $1',
+Retpoŝta programo respondis: $1',
 'confirmemail_invalid'     => 'Nevalida konfirmkodo. La kodo eble ne plu validas.',
 'confirmemail_needlogin'   => 'Vi devas $1 por konfirmi vian retpoŝtan adreson.',
 'confirmemail_success'     => 'Via retadreso estas konfirmita. Vi povas nun ensaluti kaj ĝui la vikion.',
@@ -2557,8 +2568,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Intervikia transinkluzivado estas malebligita.]',
-'scarytranscludefailed'   => '[Bedaŭrinde, akiro de ŝablono $1 malsukcesis.]',
-'scarytranscludetoolong'  => '[Bedaŭrinde la URL estas tro longa]',
+'scarytranscludefailed'   => '[Akiro de ŝablono $1 malsukcesis.]',
+'scarytranscludetoolong'  => '[URL-o estas tro longa]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2570,7 +2581,7 @@ $1
 'trackbackdeleteok' => 'La postspurado estis sukcese forigita.',
 
 # Delete conflict
-'deletedwhileediting' => 'Averto: Oni forigis ĉi tiun paĝon post tiam, kiam vi ekredaktis ĝin!',
+'deletedwhileediting' => "'''Averto''': Ĉi tiu paĝo estis forigita post vi ekredaktis!",
 'confirmrecreate'     => "Uzanto [[User:$1|$1]] ([[User talk:$1|diskuto]]) forigis ĉi paĝon post vi ekredaktis ĝin kun kialo:
 : ''$2''
 Bonvolu konfirmi ke vi ja volas rekrei la paĝon.",

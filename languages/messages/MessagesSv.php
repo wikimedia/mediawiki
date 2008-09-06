@@ -553,7 +553,8 @@ Den senaste utförda databasfrågan var:
 från funktionen "<tt>$2</tt>".
 MySQL returnerade felen "$3<tt>: $4</tt>".',
 'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". MySQL svarade med felmeddelandet "$3: $4"',
-'noconnect'            => 'Kunde inte ansluta till databasen på $1',
+'noconnect'            => 'Wikin har tekniska problem, och kan inte komma i kontakt med databasservern.<br />
+$1',
 'nodb'                 => 'Kunde inte välja databasen $1',
 'cachederror'          => 'Detta är en cachad kopia av den efterfrågade sidan. Det är inte säkert att den är aktuell.',
 'laggedslavemode'      => '<b>Observera: det kan dröja en stund innan de senaste redigeringarna blir synliga.</b>',
@@ -585,7 +586,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'badtitletext'         => 'Den sidtiteln är antingen inte tillåten, sidan är tom, eller så är sidan
 felaktigt länkad till.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
-'perfdisabled'         => 'Denna funktion har tyvärr stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
+'perfdisabled'         => 'Denna funktion har stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
 'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
@@ -637,14 +638,15 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'logout'                     => 'Logga ut',
 'userlogout'                 => 'Logga ut',
 'notloggedin'                => 'Inte inloggad',
-'nologin'                    => 'Saknar du ett användarkonto? $1.',
+'nologin'                    => 'Har du inget användarkonto? $1.',
 'nologinlink'                => 'Skapa ett användarkonto',
 'createaccount'              => 'Skapa ett konto',
 'gotaccount'                 => 'Har du redan ett användarkonto? $1.',
 'gotaccountlink'             => 'Logga in',
 'createaccountmail'          => 'med e-post',
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
-'userexists'                 => 'Detta användarnamn är upptaget. Välj ett annat användarnamn.',
+'userexists'                 => 'Det valda användarnamnet används redan.
+Välj ett annat namn.',
 'youremail'                  => 'E-post:',
 'username'                   => 'Användarnamn:',
 'uid'                        => 'Användar-ID:',
@@ -659,9 +661,13 @@ Den får innehålla högst $1 {{PLURAL:$1|tecken|tecken}}.',
 'prefs-help-realname'        => 'Riktigt namn behöver inte anges.
 Om du väljer att ange ditt riktiga namn, kommer det att användas för att tillskriva dig ditt arbete.',
 'loginerror'                 => 'Inloggningsproblem',
-'prefs-help-email'           => 'E-postadress behöver inte anges, men den gör det möjligt för andra användare att kontakta dig, utan att du behöver avslöja din identitet och/eller e-postadress.',
+'prefs-help-email'           => 'Att ange e-postadress är valfritt, men gör det möjligt att få ditt lösenord mejlat till dig om du glömmer det.
+Du kan också välja att låta andra användare kontakta dig genom din användar- eller användardiskussionssida utan att du behöver avslöja din identitet.',
 'prefs-help-email-required'  => 'E-postadress måste anges.',
-'nocookiesnew'               => 'Användarkontot skapades, men du blev inte inloggad. {{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din bläddrare. Om du slår på cookies kan du logga in med ditt nya användarnamn och lösenord.',
+'nocookiesnew'               => 'Användarkontot skapades, men du är inte inloggad.
+{{SITENAME}} använder cookies för att logga in användare.
+Du har cookies avaktiverade.
+Aktivera dem, och logga sen in med ditt nya användarnamn och lösenord.',
 'nocookieslogin'             => '{{SITENAME}} använder cookies för att logga in användare. Du har stängt av cookies i din webbläsare. Försök igen med stöd för cookies aktiverat.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
@@ -674,7 +680,7 @@ Kontrollera stavningen, eller skapa ett nytt konto.',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort'           => 'Ditt lösenord är ogiltigt eller för kort.
 Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
-'mailmypassword'             => 'Sänd mig ett nytt lösenord',
+'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)
 har bett oss sända dig ett nytt lösenord till {{SITENAME}} ($4). 
@@ -690,20 +696,22 @@ Innan någon annan e-post kan skickas härifrån till kontot, måste du följa i
 'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
-'acct_creation_throttle_hit' => 'Du har redan skapat $1 användare och kan inte göra fler.',
+'acct_creation_throttle_hit' => 'Du har redan skapat $1 användarkonton.
+Du får inte skapa fler.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $1.',
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
-'noemailprefs'               => 'Det krävs att en e-postadress uppgivits för att dessa funktioner skall gå att använda.',
+'noemailprefs'               => 'Uppge en e-postadress för att dessa funktioner skall gå att använda.',
 'emailconfirmlink'           => 'Bekräfta din e-postadress',
 'invalidemailaddress'        => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
-Skriv in en adress med korrekt format, eller töm fältet.',
+Skriv in en adress med korrekt format eller töm fältet.',
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
 'createaccount-title'        => 'Konto skapat på {{SITENAME}}',
 'createaccount-text'         => 'Någon har skapat ett konto åt din e-postadress på {{SITENAME}} ($4) med namnet "$2" och lösenordet "$3". Du bör nu logga in och ändra ditt lösenord.
 
 Du kan ignorera detta meddelande om kontot skapats av misstag.',
-'login-throttled'            => 'Du har gjort för många försök nyligen på det här kontots lösenord. Var god vänta innan du försöker igen.',
+'login-throttled'            => 'Du har nyligen gjort för många inloggningsförsök med fel lösenord till det här kontot.
+Vänta innan du försöker igen.',
 'loginlanguagelabel'         => 'Språk: $1',
 
 # Password reset dialog
@@ -810,7 +818,8 @@ Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna 
 'userpage-userdoesnotexist'        => '"$1" är inte ett registrerat användarkonto. Tänk efter om du vill skapa/redigera den här sidan.',
 'clearyourcache'                   => "'''Observera: Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.''' '''Mozilla/Firefox/Safari:''' håll ner ''Skift'' och klicka på ''Reload'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Macintosh); '''Konqueror:''': klicka ''Reload'' eller tryck ''F5;'' '''Opera:''' rensa cachen i ''Tools → Preferences;'' '''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Refresh'' eller tryck ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Använd 'Visa förhandsgranskning' för att testa din nya css/js innan du sparar.",
-'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din CSS, den har inte sparats än!'''",
+'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
+Den har inte sparats än!'''",
 'userjspreview'                    => "'''Kom ihåg att du bara testar/förhandsgranskar ditt JavaScript, det har inte sparats än!'''",
 'userinvalidcssjstitle'            => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/monobook.css i stället för {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Uppdaterad)',
@@ -820,13 +829,14 @@ Om du får meddelanden här som inte tycks vara riktade till dig, kan du gärna 
 'previewconflict'                  => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
-'session_fail_preview'             => '<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.
-Försök igen; om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>',
-'session_fail_preview_html'        => "<strong>Tyvärr kunde inte din redigering behandlas, eftersom sessionsdata gått förlorad.</strong>
+'session_fail_preview'             => '<strong>Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.
+Var god försök igen.
+Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>',
+'session_fail_preview_html'        => "<strong>Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.</strong>
 
-''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd med syfte att förhindra JavaScript-attacker.''
+''Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd mot JavaScript-attacker.''
 
-<strong>Om det är ett försök att göra en rättmätig redigering, så försök igen.
+<strong>Om detta är ett försök att göra en rättmätig redigering, så försök igen.
 Om det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen.</strong>",
 'token_suffix_mismatch'            => '<strong>Din redigering har stoppats eftersom din klient har ändrat tecknen
 i redigeringens "edit token". Redigeringen stoppades för att förhindra att sidtexten skadas.
@@ -1386,10 +1396,13 @@ Den enda skillnaden är versaliseringen av filnamnsändelsen. Var vänlig kontro
 'fileexists-thumb'            => "<center>'''Den existerande filen'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>. Var vänlig kontrollera filen <strong><tt>$1</tt></strong>.<br />
 Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.',
-'file-thumbnail-no'           => 'Filnamnet börjar med <strong><tt>$1</tt></strong>. Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.
-Om du har tillgång till bilden i full storlek, ladda då hellre upp den, annars bör du ändra filens namn.',
-'fileexists-forbidden'        => 'Det finns redan en fil med detta namn; gå tillbaka och ladda upp din fil under ett nytt namn. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna; vänligen backa och ladda upp din fil under ett annat namn. [[Image:$1|thumb|center|$1]]',
+'file-thumbnail-no'           => 'Filnamnet börjar med <strong><tt>$1</tt></strong>.
+Det verkar vara en bild med förminskad storlek <i>(miniatyrbild)</i>.
+Om du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.',
+'fileexists-forbidden'        => 'Det finns redan en fil med detta namn.
+Om du ändå vill ladda upp din fil, gå då tillbaka och välj ett annat namn. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'En fil med detta namn finns redan bland de delade filerna.
+Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Den här filen är en dubblett till följande {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Uppladdningen lyckades',
 'uploadwarning'               => 'Uppladdningsvarning',
@@ -1493,8 +1506,8 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'shareduploadduplicate-linktext' => 'en fil',
 'shareduploadconflict'           => 'Den här filen har samma namn som $1 i den delade filförvaringen.',
 'shareduploadconflict-linktext'  => 'en fil',
-'noimage'                        => 'Det finns ingen fil med detta namn, du kan $1.',
-'noimage-linktext'               => 'ladda upp den',
+'noimage'                        => 'Det finns ingen fil med detta namn, men du kan $1.',
+'noimage-linktext'               => 'ladda upp en',
 'uploadnewversion-linktext'      => 'Ladda upp en ny version av denna fil',
 'imagepage-searchdupe'           => 'Sök efter dubbletter till denna fil',
 
@@ -1655,7 +1668,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alla loggar',
-'alllogstext'          => 'Kombinerad visning av alla tillgängliga loggar för {{SITENAME}}. Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, användarnamn, eller sida.',
+'alllogstext'          => 'Kombinerad visning av alla tillgängliga loggar för {{SITENAME}}.
+Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, användarnamn (skiftlägeskänsligt), eller berörd sida (också skiftlägeskänsligt).',
 'logempty'             => 'Inga matchande träffar i loggen.',
 'log-title-wildcard'   => 'Sök efter sidtitlar som börjar med texten',
 
@@ -1708,7 +1722,7 @@ Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]
 'emailuser'       => 'Skicka e-post till den här användaren',
 'emailpage'       => 'Skicka e-post till annan användare',
 'emailpagetext'   => 'Om den här användaren har skrivit in en giltig e-postadress i sina användarinställningar, kommer formuläret nedan att skicka ett meddelande.
-Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas i "Från"-fältet i meddelandet, så att mottagaren har möjlighet att svara.',
+Den e-postadress du har angivit i [[Special:Preferences|dina användarinställningar]] kommer att visas som "Från"-adress i meddelandet, så att mottagaren har möjlighet att svara direkt till dig.',
 'usermailererror' => 'Fel i hanteringen av mail:',
 'defemailsubject' => '{{SITENAME}} e-post',
 'noemailtitle'    => 'Ingen e-postadress',
@@ -1900,9 +1914,9 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'viewdeletedpage'              => 'Visa raderade sidor',
 'undeletepagetext'             => 'Följande sidor har blivit borttagna, men finns fortfarande i ett arkiv och kan återställas. Arkivet kan ibland rensas på gamla versioner.',
 'undelete-fieldset-title'      => 'Återställ sidversioner',
-'undeleteextrahelp'            => "* För att återställa alla versioner, välj '''Återställ''' utan att kryssa i några rutor.
-* För att återställa bara vissa versioner, kryssa i de kryssrutor som hör till de versioner som ska återställas och välj '''Återställ'''.
-* '''Rensa''' tömmer kommentarfältet och kryssrutorna.",
+'undeleteextrahelp'            => "För att återställa sidans hela historik, lämna alla rutor oifyllda och klicka '''''Återställ'''''.
+För att göra en selektiv återställning, kryssa i de rutor som hör till de versioner som ska återställas, och klicka '''''Återställ'''''.
+Om du klickar '''''Rensa''''' så töms kommentarfältet och alla kryssrutorna.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|version|versioner}} arkiverade',
 'undeletehistory'              => 'Om du återställer sidan kommer alla tidigare versioner att återfinnas i versionshistoriken.
 Om en ny sida med samma namn har skapats sedan sidan raderades, kommer den återskapade historiken automatiskt att återfinnas i den äldre historiken.',
@@ -2316,7 +2330,8 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 
 # Spam protection
 'spamprotectiontitle' => 'Spamfilter',
-'spamprotectiontext'  => 'Sidan du ville spara blockerades av spamfiltret. Detta orsakades troligen av en extern länk på sidan.',
+'spamprotectiontext'  => 'Sidan du ville spara blockerades av spamfiltret.
+Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'spamprotectionmatch' => 'Följande text aktiverade vårt spamfilter: $1',
 'spambot_username'    => 'MediaWikis spampatrull',
 'spam_reverting'      => 'Återställer till den senaste versionen som inte innehåller länkar till $1',
@@ -2368,8 +2383,8 @@ $1',
 'filedelete-archive-read-only'    => 'Webbservern kan inte skriva till arkivkatalogen "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Föregående ändring',
-'nextdiff'     => 'Nästa ändring →',
+'previousdiff' => '← Äldre redigering',
+'nextdiff'     => 'Nyare redigering →',
 
 # Visual comparison
 'visual-comparison' => 'Visuell jämförelse',
@@ -2600,7 +2615,11 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 # Flash modes
 'exif-flash-fired-0'    => 'Blixten utlöstes ej',
 'exif-flash-fired-1'    => 'Blixten utlöstes',
-'exif-flash-mode-1'     => 'obligatorisk blixtutlösning',
+'exif-flash-return-0'   => 'ingen funktion för upptäckande av pulserande ljus',
+'exif-flash-return-2'   => 'pulserande ljus inte upptäckt',
+'exif-flash-return-3'   => 'pulserande ljus upptäckt',
+'exif-flash-mode-1'     => 'tvingad blixtutlösning',
+'exif-flash-mode-2'     => 'blixten avstängd',
 'exif-flash-mode-3'     => 'autoläge',
 'exif-flash-function-1' => 'Ingen blixtfunktion',
 'exif-flash-redeye-1'   => 'röda-ögon-reducering',
@@ -2697,10 +2716,10 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'confirmemail_send'        => 'Skicka bekräftelsekod',
 'confirmemail_sent'        => 'E-post med bekräftelse skickat.',
 'confirmemail_oncreate'    => 'En bekräftelsekod skickades till din epostadress. Koden behövs inte för att logga in, men du behöver koden för att få tillgång till de epostbaserade funktionerna på wikin.',
-'confirmemail_sendfailed'  => 'E-post med bekräftelse kunde inte skickas.
-Kontrollera om adressen innehåller ogiltiga tecken.
+'confirmemail_sendfailed'  => '{{SITENAME}} kunde inte skicka din e-postbekräftelse.
+Kontrollera om e-postadressen innehåller ogiltiga tecken.
 
-Mailservern meddelade: $1',
+Mailservern svarade: $1',
 'confirmemail_invalid'     => 'Ogiltig bekräftelsekod. Dess giltighetstid kan ha löpt ut.',
 'confirmemail_needlogin'   => 'Du behöver $1 för att bekräfta din e-postadress',
 'confirmemail_success'     => 'Din e-postadress har bekräftats. 
@@ -2724,8 +2743,8 @@ Denna bekräftelsekod kommer inte att fungera efter $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',
-'scarytranscludefailed'   => '[Beklagar, hämtning av mall för $1 misslyckades]',
-'scarytranscludetoolong'  => '[Beklagar, URL:en är för lång]',
+'scarytranscludefailed'   => '[Hämtning av mall för $1 misslyckades]',
+'scarytranscludetoolong'  => '[För lång URL]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks"> Till denna sida finns följande trackback:<br /> $1 </div>',
@@ -2734,7 +2753,7 @@ Denna bekräftelsekod kommer inte att fungera efter $4.',
 'trackbackdeleteok' => 'Trackback har tagits bort.',
 
 # Delete conflict
-'deletedwhileediting' => 'Varning: Denna sida har tagits bort efter att du började redigera den!',
+'deletedwhileediting' => "'''Varning''': Denna sida raderades efter att du började redigera!",
 'confirmrecreate'     => "Användaren [[User:$1|$1]] ([[User talk:$1|diskussion]]) raderade den här sidan efter att du började redigera den med motiveringen:
 : ''$2''
 Bekräfta att du verkligen vill återskapa sidan.",
@@ -2879,5 +2898,14 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 # Special:BlankPage
 'blankpage'              => 'Tom sida',
 'intentionallyblankpage' => 'Denna sida har avsiktligen lämnats tom.',
+
+# External image whitelist
+'external_image_whitelist' => '  #Lämna den här raden precis som den är<pre>
+#Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) här nedan
+#Dessa kommer att jämföras med URL för externa (hotlinkade) bilder
+#De som matchar kommer att visas som bilder, annars visas bara en länk till bilden
+#Rader som börjar med # behandlas som kommentarer
+
+#Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 
 );

@@ -530,7 +530,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'logout'                     => 'Finalitza la sessió',
 'userlogout'                 => 'Finalitza la sessió',
 'notloggedin'                => 'No us heu identificat',
-'nologin'                    => 'No teniu cap compte? $1.',
+'nologin'                    => 'No teniu un compte? $1.',
 'nologinlink'                => 'Crea un compte',
 'createaccount'              => 'Crea un compte',
 'gotaccount'                 => 'Ja teniu un compte? $1.',
@@ -1297,7 +1297,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'shareduploadconflict'           => 'El fitxer té el mateix nom que té $1 del repositori compartit.',
 'shareduploadconflict-linktext'  => 'un altre fitxer',
 'noimage'                        => 'No existeix cap fitxer amb aquest nom, però podeu $1.',
-'noimage-linktext'               => 'Carrega',
+'noimage-linktext'               => "Carrega'n una",
 'uploadnewversion-linktext'      => "Carrega una nova versió d'aquest fitxer",
 'imagepage-searchdupe'           => 'Cerca fitxers duplicats',
 
@@ -1526,10 +1526,10 @@ respondre.",
 'noemailtext'     => "Aquest usuari no ha especificat una adreça electrònica vàlida, o ha escollit no rebre correu electrònic d'altres usuaris
 
 .",
-'emailfrom'       => 'De',
-'emailto'         => 'Per',
-'emailsubject'    => 'Assumpte',
-'emailmessage'    => 'Missatge',
+'emailfrom'       => 'De:',
+'emailto'         => 'Per a:',
+'emailsubject'    => 'Assumpte:',
+'emailmessage'    => 'Missatge:',
 'emailsend'       => 'Envia',
 'emailccme'       => "Envia'm una còpia del meu missatge.",
 'emailccsubject'  => 'Còpia del vostre missatge a $1: $2',
@@ -1722,10 +1722,9 @@ cliqueu a  '''''Restaura'''''. Per a realitzar una restauració selectiva, marqu
 a les revisions que voleu recuperar, i feu clic a '''''Restaura'''''. Si cliqueu '''''Reinicia''''', es netejarà el
 camp de comentari i es desmarcaran totes les caselles.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisió arxivada|$1 revisions arxivades}}',
-'undeletehistory'              => 'Si restaureu una pàgina, totes les revisions seran restaurades a la història.
-Si una nova pàgina amb el mateix nom ha estat creada des de l\'esborrat, les versions restaurades apareixeran com a història anterior, i la
+'undeletehistory'              => "Si restaureu la pàgina, totes les revisions seran restaurades a l'historial.
 
-revisió actual del la pàgina "viva" no serà substituïda automàticament.',
+Si s'hagués creat una nova pàgina amb el mateix nom d'ençà que la vàreu esborrar, les versions restaurades apareixeran abans a l'historial.",
 'undeleterevdel'               => "No es revertirà l'eliminació si això resulta que la pàgina superior se suprimeixi parcialment.
 
 En aqueixos casos, heu de desmarcar o mostrar les revisions eliminades més noves.",
@@ -2185,8 +2184,8 @@ $1",
 'filedelete-archive-read-only'    => "El directori d'arxiu «$1» no té permisos d'escriptura per al servidor web.",
 
 # Browsing diffs
-'previousdiff' => '← Vés a la diferència anterior',
-'nextdiff'     => 'Vés a la diferència següent →',
+'previousdiff' => "← Vés a l'edició anterior",
+'nextdiff'     => "Vés a l'edició següent →",
 
 # Media information
 'mediawarning'         => "'''Advertència''': Aquest fitxer podria contenir codi maliciós, si l'executeu podeu comprometre la seguretat del vostre sistema.<hr />",
@@ -2534,7 +2533,7 @@ i així activar les opcions de correu del programari, seguiu aquest enllaç:
 
 $3
 
-Si *no* heu estat vós, seguiu aquest altre enllaç per a cancel·lar la confirmació demanada:
+Si *no* heu estat qui ho ha fet, seguiu aquest altre enllaç per a cancel·lar la confirmació demanada:
 
 $5
 

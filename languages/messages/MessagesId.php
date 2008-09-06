@@ -562,7 +562,8 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 'databaseerror'        => 'Kesalahan basis data',
 'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya \'\'bug\'\' dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi "<tt>$2</tt>". Kesalahan MySQL "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data. Permintaan basis data yang terakhir adalah: "$1" dari dalam fungsi "$2". Kesalahan MySQL "$3: $4".',
-'noconnect'            => 'Maaf! Wiki mengalami masalah teknis dan tidak dapat menghubungi basis data.<br />$1',
+'noconnect'            => 'Wiki ini sedang mengalami masalah teknis dan tidak dapat menghubungi server basis data.<br />
+$1',
 'nodb'                 => 'Tidak dapat memilih basis data $1',
 'cachederror'          => 'Berikut ini adalah salinan <em>cache</em> dari halaman yang diminta, yang mungkin tidak up-to-date.',
 'laggedslavemode'      => 'Peringatan: Halaman mungkin tidak berisi perubahan terbaru.',
@@ -640,14 +641,15 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi {{SITENAME}} Anda.',
 'logout'                     => 'Keluar log',
 'userlogout'                 => 'Keluar log',
 'notloggedin'                => 'Belum masuk log',
-'nologin'                    => 'Belum mempunyai nama pengguna? $1.',
+'nologin'                    => 'Belum mempunyai akun? $1.',
 'nologinlink'                => 'Daftarkan akun baru',
 'createaccount'              => 'Buat akun baru',
 'gotaccount'                 => 'Sudah terdaftar sebagai pengguna? $1.',
 'gotaccountlink'             => 'Masuk log',
 'createaccountmail'          => 'melalui surat-e',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
-'userexists'                 => 'Nama pengguna yang Anda masukkan telah dipakai. Silakan pilih nama yang lain.',
+'userexists'                 => 'Nama pengguna yang Anda masukkan sudah dipakai.
+Silakan pilih nama yang lain.',
 'youremail'                  => 'Surat elektronik:',
 'username'                   => 'Nama pengguna:',
 'uid'                        => 'ID pengguna:',
@@ -662,7 +664,8 @@ Maksimal $1 {{PLURAL:$1|karakter|karakter}}.',
 'email'                      => 'Surat elektronik',
 'prefs-help-realname'        => '* Nama asli bersifat opsional dan jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
 'loginerror'                 => 'Kesalahan masuk log',
-'prefs-help-email'           => '* Alamat surat-e bersifat opsional, namun akan memungkinkan orang lain untuk menghubungi Anda melalui situs tanpa perlu membongkar identitas Anda.',
+'prefs-help-email'           => 'Alamat surat-e bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surat-e tersebut.
+Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
 'prefs-help-email-required'  => 'Alamat surat-e dibutuhkan.',
 'nocookiesnew'               => "Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan ''cookies'' untuk log pengguna. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.",
 'nocookieslogin'             => "{{SITENAME}} menggunakan ''cookies'' untuk log penggunanya. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan coba lagi.",
@@ -678,7 +681,7 @@ Silakan periksa kembali ejaan Anda.',
 'wrongpasswordempty'         => 'Anda tidak memasukkan kata sandi. Silakan coba lagi.',
 'passwordtooshort'           => 'Kata sandi Anda tidak sah atau terlalu pendek. 
 Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}} dan harus berbeda dengan nama pengguna Anda.',
-'mailmypassword'             => 'Kirimkan kata sandi baru',
+'mailmypassword'             => 'Surat-e kata sandi baru',
 'passwordremindertitle'      => 'Peringatan kata sandi dari {{SITENAME}}',
 'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kami mengirimkan kata sandi yang baru untuk {{SITENAME}} ($4). Kata sandi untuk pengguna "$2" sekarang adalah "$3". Anda disarankan segera masuk log dan mengganti kata sandi.',
 'noemail'                    => 'Tidak ada alamat surat-e yang tercatat untuk pengguna "$1".',
@@ -688,12 +691,14 @@ Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}} 
 'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir. 
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
-'acct_creation_throttle_hit' => 'Alamat IP yang Anda gunakan telah membuat $1 akun dalam 24 jam terakhir, jumlah maksimum pembuatan akun yang diizinkan. Untuk sementara waktu pengguna dari alamat IP ini tidak bisa lagi membuat akun.',
+'acct_creation_throttle_hit' => 'Anda telah membuat $1 akun.
+Anda tidak dapat membuat akun lagi.',
 'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
 'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
 'noemailprefs'               => 'Anda harus memasukkan suatu alamat surat-e untuk dapat menggunakan fitur ini.',
 'emailconfirmlink'           => 'Konfirmasikan alamat surat-e Anda',
-'invalidemailaddress'        => 'Alamat surat-e ini tidak dapat diterima karena formatnya tidak sesuai. Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian tersebut.',
+'invalidemailaddress'        => 'Alamat surat-e ini tidak dapat diterima karena formatnya tidak sesuai.
+Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian tersebut.',
 'accountcreated'             => 'Akun dibuat',
 'accountcreatedtext'         => 'Akun pengguna untuk $1 telah dibuat.',
 'createaccount-title'        => 'Pembuatan akun untuk {{SITENAME}}',
@@ -807,19 +812,23 @@ Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komenta
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview'           => "<strong>Tips:</strong> Gunakan tombol 'Lihat pratayang' untuk menguji CSS/JS baru Anda sebelum menyimpannya.",
-'usercsspreview'                   => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang CSS Anda, dan bahwa pratayang tersebut belum disimpan!'''",
+'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
+Pratayang ini belum disimpan!'''",
 'userjspreview'                    => "'''Ingatlah bahwa yang Anda lihat hanyalah pratayang JavaScript Anda, dan bahwa pratayang tersebut belum disimpan!'''",
 'userinvalidcssjstitle'            => "'''Peringatan:''' Kulit \"\$1\" tidak ditemukan. Harap diingat bahwa halaman .css dan .js menggunakan huruf kecil, contoh {{ns:user}}:Foo/monobook.css dan bukannya {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Diperbarui)',
 'note'                             => '<strong>Catatan:</strong>',
 'previewnote'                      => '<strong>Ingatlah bahwa ini hanyalah pratayang yang belum disimpan!</strong>',
 'previewconflict'                  => 'Pratayang ini mencerminkan teks pada bagian atas kotak suntingan teks sebagaimana akan terlihat bila Anda menyimpannya.',
-'session_fail_preview'             => '<strong>Maaf, kami tidak dapat mengolah suntingan Anda akibat terhapusnya data sesi. Silakan coba sekali lagi. Jika masih tidak berhasil, cobalah keluar log dan masuk log kembali.</strong>',
-'session_fail_preview_html'        => "<strong>Maaf! Kami tidak dapat memproses suntingan Anda karena hilangnya data sesi.</strong>
+'session_fail_preview'             => '<strong>Maaf, kami tidak dapat mengolah suntingan Anda akibat terhapusnya data sesi.
+Silakan coba sekali lagi.
+Jika masih tidak berhasil, cobalah [[Special:UserLogout|keluar lo]]g dan masuk log kembali.</strong>',
+'session_fail_preview_html'        => "<strong>Kami tidak dapat memproses suntingan Anda karena hilangnya data sesi.</strong>
 
-''Karena wiki ini mengizinkan penggunaan HTML mentah, pratayang disembunyikan sebagai pencegahan terhadap serangan JavaScript.''
+''Karena {{SITENAME}} mengizinkan penggunaan HTML mentah, pratayang telah disembunyikan sebagai pencegahan terhadap serangan JavaScript.''
 
-<strong>Jika ini merupakan upaya suntingan yang sahih, silakan coba lagi. Jika masih tetap tidak berhasil, cobalah keluar log dan masuk kembali.</strong>",
+<strong>Jika ini merupakan upaya suntingan yang sahih, silakan coba lagi.
+Jika masih tetap tidak berhasil, cobalah [[Special:UserLogout|keluar log]] dan masuk kembali.</strong>",
 'token_suffix_mismatch'            => '<strong>Suntingan Anda ditolak karena aplikasi klien Anda mengubah karakter tanda baca pada suntingan. Suntingan tersebut ditolak untuk mencegah kesalahan pada artikel teks. Hal ini kadang terjadi jika Anda menggunakan layanan proxy anonim berbasis web yang bermasalah.</strong>',
 'editing'                          => 'Menyunting $1',
 'editingsection'                   => 'Menyunting $1 (bagian)',
@@ -1363,8 +1372,8 @@ Tampaknya berkas ini merupakan gambar dengan ukuran diperkecil <i>(miniatur)</i>
 Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas tersebut. Jika tidak, harap ubah nama berkas ini.',
 'fileexists-forbidden'        => 'Ditemukan berkas dengan nama yang sama;
 harap kembali dan muatkan berkas dengan nama lain. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama;
-harap kembali dan muatkan berkas dengan nama lain. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ditemukan berkas lain dengan nama yang sama di repositori bersama.
+Jika Anda tetap ingin memuatkan berkas Anda, harap kembali dan gunakan nama lain. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Berkas ini berduplikasi dengan {{PLURAL:$1|berkas|berkas-berkas}} berikut:',
 'successfulupload'            => 'Berhasil dimuat',
 'uploadwarning'               => 'Peringatan pemuatan',
@@ -1451,7 +1460,7 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'shareduploadduplicate-linktext' => 'berkas lain',
 'shareduploadconflict'           => 'Berkas ini memiliki nama yang sama dengan $1 dari tempat penyimpanan bersama.',
 'shareduploadconflict-linktext'  => 'berkas lain',
-'noimage'                        => 'Tidak ada berkas dengan nama tersebut, Anda dapat $1.',
+'noimage'                        => 'Tidak ada berkas dengan nama tersebut, tetapi Anda dapat $1.',
 'noimage-linktext'               => 'memuat berkas',
 'uploadnewversion-linktext'      => 'Muatkan versi yang lebih baru dari berkas ini',
 'imagepage-searchdupe'           => 'Cari berkas duplikat',
@@ -1611,8 +1620,8 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'speciallogtitlelabel' => 'Judul:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log',
-'alllogstext'          => 'Berikut adalah gabungan semua log yang tersedia di {{SITENAME}}.
-Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna, atau judul halaman.',
+'alllogstext'          => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
+Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapital), atau judul halaman (juga sensitif kapital).',
 'logempty'             => 'Tidak ditemukan entri log yang sesuai.',
 'log-title-wildcard'   => 'Cari judul yang diawali dengan teks tersebut',
 
@@ -1664,7 +1673,8 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'mailnologintext' => 'Anda harus [[Special:UserLogin|masuk log]] dan mempunyai alamat surat-e yang sah di dalam [[Special:Preferences|preferensi]] untuk mengirimkan surat-e kepada pengguna lain.',
 'emailuser'       => 'Surat-e pengguna',
 'emailpage'       => 'Kirimi pengguna ini surat-e',
-'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir di bawah ini akan mengirimkan sebuah surat-e. Alamat surat-e yg terdapat pada preferensi Anda akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut.',
+'emailpagetext'   => 'Jika pengguna ini memasukkan alamat surat-e yang sah dalam preferensinya, formulir di bawah ini akan mengirimkan sebuah surat-e.
+Alamat surat-e yg terdapat pada [[Special:Preferences|preferensi Anda]] akan muncul sebagai alamat "Dari" dalam surat-e tersebut, sehingga penerima dapat membalas surat-e tersebut langsung kepada Anda.',
 'usermailererror' => 'Kesalahan objek surat:',
 'defemailsubject' => 'Surat-e {{SITENAME}}',
 'noemailtitle'    => 'Tidak ada alamat surat-e',
@@ -1853,7 +1863,9 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'viewdeletedpage'              => 'Lihat halaman yang telah dihapus',
 'undeletepagetext'             => 'Halaman-halaman berikut ini telah dihapus tapi masih ada di dalam arsip dan dapat dikembalikan. Arsip tersebut mungkin akan dibersihkan secara berkala.',
 'undelete-fieldset-title'      => 'Mengembalikan revisi',
-'undeleteextrahelp'            => "Untuk mengembalikan keseluruhan halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''''Kembalikan'''''. Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''''Kembalikan'''''. Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua kotak cek.",
+'undeleteextrahelp'            => "Untuk mengembalikan seluruh revisi-revisi terdahulu halaman, biarkan seluruh kotak cek tidak terpilih dan klik '''''Kembalikan'''''.
+Untuk melakukan pengembalian selektif, cek kotak revisi yang diinginkan dan klik '''''Kembalikan'''''.
+Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua kotak cek.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revisi|revisi}} diarsipkan',
 'undeletehistory'              => 'Jika Anda mengembalikan halaman tersebut, semua revisi juga akan dikembalikan ke dalam daftar versi terdahulu halaman.
 Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi-revisi yang dikembalikan tersebut akan ditampilkan dalam daftar versi terdahulu.',
@@ -2251,7 +2263,8 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filter pencegah spam',
-'spamprotectiontext'  => 'Halaman yang ingin Anda simpan diblokir oleh filter spam. Ini mungkin disebabkan oleh pranala ke situs luar.',
+'spamprotectiontext'  => 'Halaman yang ingin Anda simpan telah diblokir oleh filter spam.
+Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hitam.',
 'spamprotectionmatch' => 'Teks berikut ini memancing filter spam kami: $1',
 'spambot_username'    => 'Pembersihan span MediaWiki',
 'spam_reverting'      => 'Mengembalikan ke versi terakhir yang tak memiliki pranala ke $1',
@@ -2300,8 +2313,8 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'filedelete-archive-read-only'    => 'Direktori arsip "$1" tak dapat ditulis oleh server web.',
 
 # Browsing diffs
-'previousdiff' => '←Perbedaan sebelumnya',
-'nextdiff'     => 'Perbedaan selanjutnya→',
+'previousdiff' => '← Revisi sebelumnya',
+'nextdiff'     => 'Revisi selanjutnya →',
 
 # Visual comparison
 'visual-comparison' => 'Perbandingan visual',
@@ -2625,7 +2638,10 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'confirmemail_send'        => 'Kirim kode konfirmasi',
 'confirmemail_sent'        => 'Surat elektronik berisi kode konfirmasi telah dikirim.',
 'confirmemail_oncreate'    => 'Suatu kode konfirmasi telah dikirimkan ke alamat surat-e Anda. Kode ini tidak dibutuhkan untuk masuk log, tapi dibutuhkan sebelum menggunakan semua fitur yang menggunakan surat-e di wiki ini.',
-'confirmemail_sendfailed'  => 'Surat-e konfirmasi tidak berhasil dikirim. Harap cek kemungkinan karakter ilegal pada alamat surat-e. Pengirim menginformasikan: $1',
+'confirmemail_sendfailed'  => '{{SITENAME}} tidak berhasil mengirimkan surat konfirmasi Anda.
+Harap cek kemungkinan karakter ilegal pada alamat surat-e.
+
+Aplikasi pengiriman surat-e menginformasikan: $1',
 'confirmemail_invalid'     => 'Kode konfirmasi salah. Kode tersebut mungkin sudah kadaluwarsa.',
 'confirmemail_needlogin'   => 'Anda harus melakukan $1 untuk mengkonfirmasikan alamat surat-e Anda.',
 'confirmemail_success'     => 'Alamat surat-e Anda telah dikonfirmasi. Sekarang Anda dapat masuk log dan mulai menggunakan wiki.',
@@ -2649,8 +2665,8 @@ Kode konfirmasi ini akan kadaluwarsa pada $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',
-'scarytranscludefailed'   => '[Pengambilan templat $1 gagal; maaf]',
-'scarytranscludetoolong'  => '[URL terlalu panjang; maaf]',
+'scarytranscludefailed'   => '[Pengambilan templat $1 gagal]',
+'scarytranscludetoolong'  => '[URL terlalu panjang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2662,7 +2678,7 @@ $1
 'trackbackdeleteok' => 'Pelacakan balik berhasil dihapus.',
 
 # Delete conflict
-'deletedwhileediting' => 'Perhatian: Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!',
+'deletedwhileediting' => "'''Peringatan''': Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!",
 'confirmrecreate'     => "Pengguna [[User:$1|$1]] ([[User talk:$1|bicara]]) telah menghapus halaman selagi Anda mulai melakukan penyuntingan dengan alasan:
 : ''$2''
 Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",

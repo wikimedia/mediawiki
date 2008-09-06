@@ -11,6 +11,13 @@ $messages = array(
 'underline-always' => 'Sembre',
 
 # Dates
+'sunday'        => 'Dumèneche',
+'monday'        => 'Lunedìe',
+'tuesday'       => 'Martedìe',
+'wednesday'     => 'Mercrudìe',
+'thursday'      => 'Sciuvedìe',
+'friday'        => 'Venerdìe',
+'saturday'      => 'Sàbbete',
 'sun'           => 'Dum',
 'mon'           => 'Lun',
 'tue'           => 'Mar',

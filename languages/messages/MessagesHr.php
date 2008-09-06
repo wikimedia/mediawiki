@@ -1855,7 +1855,7 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'viewdeletedpage'              => 'Pogledaj izbrisanu stranicu',
 'undeletepagetext'             => 'Sljedeće su stranice izbrisane, ali se još uvijek nalaze u bazi i mogu se obnoviti. Baza se povremeno čisti od ovakvih stranica.',
 'undelete-fieldset-title'      => 'Vrati izmjene',
-'undeleteextrahelp'            => "Da biste vratili cijelu stranicu, ostavite sve ''kućice'' neoznačene i kliknite '''Vrati!'''. Ako želite vratiti određenu reviziju, označite je i kliknite '''Vrati!'''. Klik na gumb '''Očisti''' će odznačiti sve ''kućice'' i obrisati polje za komentar.",
+'undeleteextrahelp'            => "Da biste vratili cijelu stranicu, ostavite sve ''kućice'' neoznačene i kliknite '''Vrati!'''. Ako želite vratiti određene izmjene, označite ih i kliknite '''Vrati!'''. Klik na gumb '''Očisti''' će odznačiti sve ''kućice'' i obrisati polje za komentar.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|inačica je arhivirana|inačice su arhivirane|inačica je arhivirano}}',
 'undeletehistory'              => 'Ako vratite izbrisanu stranicu, bit će vraćene i sve prijašnje promjene. Ako je u međuvremenu stvorena nova stranica s istim imenom, vraćena stranica bit će upisana kao prijašnja promjena sadašnje.',
 'undeleterevdel'               => 'Vraćanje stranice neće biti izvršeno ako je rezultat toga djelomično brisanje zadnjeg uređivanja.

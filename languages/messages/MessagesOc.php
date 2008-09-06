@@ -511,7 +511,7 @@ La darrièra requèsta mandada èra :
 « $1 »
 efectuada per la foncion « $2 ».
 MySQL a retornat l\'error "$3: $4"',
-'noconnect'            => 'O planhèm ! En seguida a de problèmas tecnics, es impossible de se connectar a la banca de donadas pel moment. <br />
+'noconnect'            => 'Lo wiki rencontra actualament qualques dificultats tecnicas, e se pòt pas connectar al servidor de la banca de donadas. <br />
 $1',
 'nodb'                 => 'Impossible de seleccionar la banca de donadas $1',
 'cachederror'          => 'Aquò es una còpia de la pagina demandada (version en amagatal) e poiriá èsser pas mesa a jorn.',
@@ -596,7 +596,7 @@ Doblidetz pas de personalizar vòstras [[Special:Preferences|{{SITENAME}} prefer
 'logout'                     => 'Se desconnectar',
 'userlogout'                 => 'Desconnexion',
 'notloggedin'                => 'Vos sètz pas identificat(ada)',
-'nologin'                    => 'Avètz pas de compte ? $1.',
+'nologin'                    => 'Avètz pas un compte ? $1.',
 'nologinlink'                => 'Creatz un compte',
 'createaccount'              => 'Crear un compte novèl',
 'gotaccount'                 => 'Ja avètz un compte ? $1.',
@@ -619,7 +619,8 @@ Sa talha maximala deu èsser de $1 {{PLURAL:$1|caractèr|caractèrs}}.',
 'email'                      => 'Corrièr electronic',
 'prefs-help-realname'        => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
 'loginerror'                 => "Error d'identificacion",
-'prefs-help-email'           => "(facultatiu) : permet als autres utilizaires de vos contactar per corrièr electronic (ligam sus vòstras paginas d'utilizaire) sens que vòstre corrièr electronic siá visible, e de vos mandar un senhal novèl se l’avètz doblidat.",
+'prefs-help-email'           => "L’adreça de corrièr electronic es facultativa mas permet de vos far adreçar vòstre senhal s'o doblidatz.
+Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de vòstra pagina d’utilizaire principala o la de discussion sens aver besonh de revelar vòstra idenditat.",
 'prefs-help-email-required'  => 'Una adreça de corrièr electronic es requesa.',
 'nocookiesnew'               => "Lo compte d'utilizaire es estat creat, mas sètz pas connectat. {{SITENAME}} utiliza de cookies per la connexion mas los avètz desactivats. Activatz-los e reconnectatz-vos amb lo meteis nom e lo meteis senhal.",
 'nocookieslogin'             => '{{SITENAME}} utiliza de cookies per la connexion mas avètz los cookies desactivats. Activatz-los e reconnectatz-vos.',
@@ -634,7 +635,7 @@ Verificatz qu'avètz plan ortografiat lo nom, o utilizatz lo formulari çaijós 
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal es tròp cort.
 Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòtre nom d’utilizaire.',
-'mailmypassword'             => 'Mandatz-me un senhal novèl',
+'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
 'passwordremindertext'       => 'Qualqu\'un (probablament vos) que son adreça IP es $1 a demandat qu\'un senhal novèl vos siá mandat per vòstre accès a {{SITENAME}} ($4).
 Lo senhal de l\'utilizaire "$2" es a present "$3".
@@ -650,12 +651,14 @@ Identificatz-vos tre que l'aurètz recebut.",
 Abans qu’un autre corrièr sià mandat a aqueste compte, deuretz seguir las instruccions donadas dins lo messatge per confirmar que sètz plan lo titular.',
 'throttled-mailpassword'     => 'Un corrièr electronic de rapèl de vòstre senhal ja es estat mandat durant {{PLURAL:$1|la darrièra ora|las $1 darrièras oras}}. Per evitar los abuses, un sol corrièr de rapèl serà mandat per {{PLURAL:$1|ora|interval de $1 oras}}.',
 'mailerror'                  => 'Error en mandant lo corrièr electronic : $1',
-'acct_creation_throttle_hit' => "O planhèm, ja avètz {{PLURAL:$1|$1 compte creat|$1 comptes creats}}. Ne podètz pas crear d'autres.",
+'acct_creation_throttle_hit' => "Ja avètz creat {{PLURAL:$1|$1 compte|$1 comptes}}.
+Ne podètz pas crear d'autres.",
 'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $1.',
 'emailnotauthenticated'      => 'Vòstra adreça de corrièr electronic es <strong>pas encara autentificada</strong>. Cap corrièr serà pas mandat per caduna de las foncions seguentas.',
 'noemailprefs'               => "<strong>Cap d'adreça electronica es pas estada indicada,</strong> las foncions seguentas seràn pas disponiblas.",
 'emailconfirmlink'           => 'Confirmatz vòstra adreça de corrièr electronic',
-'invalidemailaddress'        => 'Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla aver un format invalid. Entratz una adreça valida o daissatz aqueste camp void.',
+'invalidemailaddress'        => "Aquesta adreça de corrièr electronic pòt pas èsser acceptada perque sembla qu'a un format incorrècte.
+Picatz una adreça plan formatada o daissatz aqueste camp void.",
 'accountcreated'             => 'Compte creat.',
 'accountcreatedtext'         => "Lo compte d'utilizaire de $1 es estat creat.",
 'createaccount-title'        => "Creacion d'un compte per {{SITENAME}}",
@@ -768,21 +771,23 @@ Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça
 'userpage-userdoesnotexist'        => "Lo compte d'utilizaire « $1 » es pas enregistrat. Indicatz se volètz crear o editar aquesta pagina.",
 'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Astúcia :</strong> Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh novèl css/js abans de l'enregistrar.",
-'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS e qu’encara es pas estat enregistrat !'''",
+'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
+'''Es pas estada encara enregistrada !'''",
 'userjspreview'                    => "'''Remembratz-vos que sètz a visualizar o testar vòstre còde JavaScript e qu’es pas encara estat enregistrat !'''",
 'userinvalidcssjstitle'            => "'''Atencion :''' existís pas d'estil « $1 ». Remembratz-vos que las paginas personalas amb extensions .css e .js utilizan de títols en minusculas, per exemple, {{ns:user}}:Foo/monobook.css e non pas {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Mes a jorn)',
 'note'                             => '<strong>Nòta :</strong>',
 'previewnote'                      => "<strong>Atencion, aqueste tèxt es pas qu'una previsualizacion e es pas encara estat salvat !</strong>",
 'previewconflict'                  => 'Aquesta previsualizacion mòstra lo tèxt de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
-'session_fail_preview'             => "<strong>O planhèm ! Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
+'session_fail_preview'             => "<strong>Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
 Ensajatz tornarmai.
-S'aquò capita pas encara, desconnectatz-vos, puèi [[Special:UserLogout|connectatz-vos]] tornamai.</strong>",
-'session_fail_preview_html'        => "<strong>O planhèm ! Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.</strong>
+S'aquò fracassa encara, desconnectatz-vos, puèi [[Special:UserLogout|connectatz-vos]] tornamai.</strong>",
+'session_fail_preview_html'        => "<strong>Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions que concernís vòstra sesilha.</strong>
 
-''L’HTML brut essent activat sus {{SITENAME}}, la previsualizacion es estada amagada per prevenir un atac per JavaScript.''
+''Perque {{SITENAME}} a activat l’HTML brut, la previsualizacion es estada amagada per prevenir un atac per JavaScript.''
 
-<strong>Se la temptativa de modificacion èra legitima, ensajatz encara. S'aquò capita pas un còp de mai, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.</strong>",
+<strong>Se la temptativa de modificacion èra legitima, ensajatz encara.
+S'aquò capita pas un còp de mai, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.</strong>",
 'token_suffix_mismatch'            => '<strong>Vòstra modificacion es pas estada acceptada perque vòstre navigador a mesclat los caractèrs de ponctuacion dins l’identificant d’edicion. La modificacion es estada regetada per empachar la corrupcion del tèxt de l’article. Aqueste problèma se produtz quand utilizatz un mandatari (proxy) anonim problematic.</strong>',
 'editing'                          => 'Modificacion de $1',
 'editingsection'                   => 'Modificacion de $1 (seccion)',
@@ -1333,9 +1338,12 @@ Nom del fichièr existent : <strong><tt>$2</tt></strong><br />
 la sola diferéncia es la cassa (majusculas / minusculas) de l’extension. Verificatz que lo fichièr es diferent e cambiatz son nom.",
 'fileexists-thumb'            => "<center>'''Imatge existent'''</center>",
 'fileexists-thumbnail-yes'    => 'Lo fichièr sembla èsser un imatge en talha reducha <i>(thumbnail)</i>. Verificatz lo fichièr <strong><tt>$1</tt></strong>.<br /> Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.',
-'file-thumbnail-no'           => 'Lo nom del fichièr comença per <strong><tt>$1</tt></strong>. Es possible que s’agisca d’una version reducha <i>(thumbnail)</i>. Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.',
+'file-thumbnail-no'           => 'Lo nom del fichièr comença per <strong><tt>$1</tt></strong>.
+Es possible que s’agisca d’una version reducha <i>(miniatura)</i>.
+Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.',
 'fileexists-forbidden'        => 'Un fichièr amb aqueste nom existís ja ; mercé de tornar en arrièr e de copiar lo fichièr jos un nom novèl. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Un fichièr portant lo meteis nom existís ja dins la banca de donadas comuna ; tornatz en arrièr e mandatz-lo tornarmai jos un autre nom. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => "Un fichièr amb lo meteis nom existís ja dins la banca de donadas comuna.
+S'o volètz importar tornamai, tornatz en rèire e importatz-lo jos un autre nom. [[Image:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Aqueste fichièr es un doble {{PLURAL:$1|del fichièr seguent|dels fichièrs seguents}} :',
 'successfulupload'            => 'Importacion capitada',
 'uploadwarning'               => 'Atencion !',
@@ -1437,7 +1445,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'shareduploadduplicate-linktext' => 'un autre fichièr',
 'shareduploadconflict'           => "Aqueste fichièr a lo meteis nom que $1 qu'es dins un depaus partejat.",
 'shareduploadconflict-linktext'  => 'un autre fichièr',
-'noimage'                        => 'Cap de fichièr possedissent aqueste nom existís pas, podètz $1.',
+'noimage'                        => 'Cap de fichièr amb aqueste nom existís pas, mas podètz $1.',
 'noimage-linktext'               => "n'importar un",
 'uploadnewversion-linktext'      => "Importar una version novèla d'aqueste fichièr",
 'imagepage-searchdupe'           => 'Recèrca dels fichièrs en doble',
@@ -1511,7 +1519,8 @@ Se s'exclutz aquestes paginas,  <b>{{PLURAL:\$2|'''\$2''' pagina es probablament
 Aquò representa una mejana de {{PLURAL:\$5|'''\$5''' modificacion|'''\$5''' modificacions}} per pagina e de {{PLURAL:\$6|'''\$6''' consultacion|'''\$6''' consultacions}} per una modificacion.
 
 I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [http://www.mediawiki.org/wiki/Manual:Job_queue la fila de prètzfaches].",
-'userstatstext'          => "I a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizaire enregistrat]]. I a '''$2''' (o '''$4%''') que es|'''$1''' [[Special:ListUsers|utilizaires enregistrats]]. Demest eles, '''$2''' (o '''$4%''') son}} $5.",
+'userstatstext'          => "I a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizaire enregistrat]]|'''$1''' [[Special:ListUsers|utilizaires enregistrats]]}} dont '''$2''' (o '''$4%''') {{PLURAL:$2|dispausa|dispausan}} dels dreches $5.
+I a actualament environ $6 {{PLURAL:$6|compte d'utilizaire enregistrat|comptes d'utilizaire enregistrats}}.",
 'statistics-mostpopular' => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",
@@ -1604,7 +1613,8 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'speciallogtitlelabel' => 'Títol :',
 'log'                  => 'Jornals',
 'all-logs-page'        => 'Totes los jornals',
-'alllogstext'          => 'Afichatge combinat dels jornals de còpia, supression, proteccion, blocatge, e administrator. Podètz restrénher la vista en seleccionant un tipe de jornal, un nom d’utilizaire o la pagina concernida.',
+'alllogstext'          => 'Afichatge combinat de totes los jornals de {{SITENAME}}.
+Podètz restrénher la vista en seleccionant un tipe de jornal, un nom d’utilizaire (cassa sensibla) o una pagina ciblada (idem).',
 'logempty'             => 'I a pas res dins l’istoric per aquesta pagina.',
 'log-title-wildcard'   => 'Recercar de títols que començan per aqueste tèxt',
 
@@ -1660,7 +1670,7 @@ per poder mandar un messatge a un autre utilizaire.',
 'emailuser'       => 'Mandar un messatge a aqueste utilizaire',
 'emailpage'       => 'Mandar un corrièr electronic a l’utilizaire',
 'emailpagetext'   => "S'aqueste utilizaire a indicat una adreça electronica valida dins sas preferéncias, lo formulari çaijós li mandarà un messatge.
-L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge, per que lo destinatari vos pòsca respondre.",
+L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
 'usermailererror' => 'Error dins lo subjècte del corrièr electronic :',
 'defemailsubject' => 'Corrièr electronic mandat dempuèi {{SITENAME}}',
 'noemailtitle'    => "Pas d'adreça electronica",
@@ -1855,7 +1865,9 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'undeletepagetext'             => "Aquestas paginas son estadas escafadas e se tròban dins l'archiu. Figuran totjorn dins la banca de donada e pòdon èsser restablidas.
 L'archiu pòt èsser escafat periodicament.",
 'undelete-fieldset-title'      => 'Restablir las versions',
-'undeleteextrahelp'            => "Per restablir totas las versions d'aquesta pagina, daissatz vèrjas totas las casas de marcar, puèi clicatz sus '''''Procedir al restabliment'''''.<br />Per procedir a un restabliment selectiu, marcatz las casas correspondent a las versions que son de restablir, puèi clicatz sus '''''Procedir a la restabliment'''''.<br />En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas marcadas seràn remesas a zèro.",
+'undeleteextrahelp'            => "Per restablir l'istoric complet d'aquesta pagina, daissatz vèrjas totas las casas de marcar, puèi clicatz sus '''''Restablir'''''.
+Per restablir pas que d'unas versions, marcatz las casas que correspondon a las versions que son de restablir, puèi clicatz sus '''''Restablir'''''.
+En clicant sul boton '''''Reïnicializar''''', la bóstia de resumit e las casas marcadas seràn remesas a zèro.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|revision archivada|revisions archivadas}}',
 'undeletehistory'              => "Se restablissètz la pagina, totas las revisions seràn plaçadas tornamai dins l'istoric.
 
@@ -2267,7 +2279,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Spam protection
 'spamprotectiontitle' => 'Pagina protegida automaticament per causa de spam',
-'spamprotectiontext'  => "La pagina qu'avètz ensajat de salvar es estada blocada pel filtre anti-spam. Aquò es probablament causat per un ligam vèrs un sit extèrn.",
+'spamprotectiontext'  => "La pagina qu'avètz ensajat de publicar es estada blocada pel filtre anti-spam.
+Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit extèrn.",
 'spamprotectionmatch' => "La cadena de caractèrs « '''$1''' » a desenclavat lo detector de spam.",
 'spambot_username'    => 'Netejatge de spam de MediaWiki',
 'spam_reverting'      => 'Restabliment de la darrièra version que conten pas de ligam vèrs $1',
@@ -2319,8 +2332,8 @@ $1",
 'filedelete-archive-read-only'    => 'Lo dorsièr d’archivatge « $1 » es pas modificable pel servidor.',
 
 # Browsing diffs
-'previousdiff' => '← Diferéncia precedenta',
-'nextdiff'     => 'Diferéncia seguenta →',
+'previousdiff' => '← Cambiament precedent',
+'nextdiff'     => 'Cambiament seguent →',
 
 # Visual comparison
 'visual-comparison' => 'Comparason visuala',
@@ -2657,9 +2670,10 @@ Un còde de confirmacion ja vos es estat mandat per corrièr electronic ; se ven
 'confirmemail_sent'        => 'Corrièr electronic de confirmacion mandat.',
 'confirmemail_oncreate'    => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
 Aqueste còde es pas requesit per se connectar, mas n'aurètz besonh per activar las foncionalitats ligadas als corrièrs electronics sus aqueste wiki.",
-'confirmemail_sendfailed'  => 'Impossible de mandar lo corrièr electronic de confirmacion.
+'confirmemail_sendfailed'  => '{{SITENAME}} pòt pas mandar lo corrièr de confirmacion.
+Verificatz se vòstra adreça conten pas de caractèrs interdiches.
 
-Verificatz vòstra adreça. Retorn del programa de corrièr electronic : $1',
+Retorn del programa de corrièr : $1',
 'confirmemail_invalid'     => 'Còde de confirmacion incorrècte. Benlèu lo còde a expirat.',
 'confirmemail_needlogin'   => 'Vos cal vos $1 per confirmar vòstra adreça de corrièr electronic.',
 'confirmemail_success'     => 'Vòstra adreça de corrièr electronic es confirmada. Ara, vos podètz connectar e aprofechar del wiki.',
@@ -2683,8 +2697,8 @@ Aqueste còde de confirmacion expirarà lo $4.",
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
-'scarytranscludefailed'   => '[La recuperacion de modèl a pas capitat per $1 ; o planhèm]',
-'scarytranscludetoolong'  => '[L’URL es tròp longa ; o planhèm]',
+'scarytranscludefailed'   => '[La recuperacion de modèl a pas capitat per $1]',
+'scarytranscludetoolong'  => '[L’URL es tròp longa]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2696,7 +2710,7 @@ $1
 'trackbackdeleteok' => 'Lo retroligam es estat suprimit amb succès.',
 
 # Delete conflict
-'deletedwhileediting' => "Atencion : aquesta pagina es estada suprimida aprèp qu'avètz començat de la modificar.",
+'deletedwhileediting' => "'''Atencion''' : aquesta pagina es estada suprimida aprèp qu'avètz començat de la modificar !",
 'confirmrecreate'     => "L'utilizaire [[User:$1|$1]] ([[User talk:$1|talk]]) a suprimit aquesta pagina, alara que l'aviatz començat d'editar, pel motiu seguent:
 : ''$2''
 Confirmatz que desiratz tornar crear aqueste article.",
@@ -2840,5 +2854,14 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 # Special:BlankPage
 'blankpage'              => 'Pagina voida',
 'intentionallyblankpage' => 'Aquesta pagina es intencionalament voida e es utilizada coma un tèst de performància, eca.',
+
+# External image whitelist
+'external_image_whitelist' => " #Daissatz aquesta linha exactament coma es<pre>
+#Indicatz los còdes d’expression regularas (sonque la partida indicada entre los //) çaijós
+#Correspondràn amb las URLs dels imatges (fòrt ligadas) extèrnes 
+#Atal, aquesta correspondéncia s'aficharà coma d'imatges, siquenon solament un ligam cap a l'imatge serà afichat
+#Las linhas que començan amb # seràn consideradas coma de comentaris
+
+#Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
 
 );

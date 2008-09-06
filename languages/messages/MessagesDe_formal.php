@@ -58,6 +58,7 @@ Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen an
 'loginproblem'               => "'''Es gab ein Problem mit Ihrer Anmeldung.'''<br />Bitte versuchen Sie es noch einmal!",
 'nologin'                    => 'Haben Sie kein Benutzerkonto? $1.',
 'gotaccount'                 => 'Haben Sie bereits ein Benutzerkonto? $1.',
+'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',
 'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
 'prefs-help-email'           => 'Optional. Ermöglicht anderen Benutzern, über E-Mail Kontakt mit Ihnen aufzunehmen, ohne dass Sie Ihre Identität offenlegen müssen, sowie das Zustellen eines Ersatzpasswortes.',
 'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.',
@@ -80,7 +81,8 @@ Bitte ignorieren Sie diese E-Mail, falls Sie sie nicht selbst angefordert haben.
 'passwordsent'               => 'Ein neues, temporäres Passwort wurde an die E-Mail-Adresse von Benutzer „$1“ gesandt.
 Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort bleibt weiterhin gültig.',
 'blocked-mailpassword'       => 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
-'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten angelegt und können jetzt keine weiteren mehr anlegen.',
+'acct_creation_throttle_hit' => 'Sie haben schon $1 Benutzerkonten angelegt.
+Weitere Benutzerkonten können nicht angelegt werden.',
 'emailauthenticated'         => 'Ihre E-Mail-Adresse wurde bestätigt: $1.',
 'emailnotauthenticated'      => 'Ihre E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs'               => 'Geben Sie eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
@@ -159,14 +161,15 @@ Sie können $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administra
 '''Hinweis:''' Nach dem Speichern müssen Sie Ihren Browser anweisen, die neue Version zu laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''Internet Explorer:''' ''Strg-F5'', '''Opera:''' ''F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'userinvalidcssjstitle'            => "'''Warnung:''' Es existiert kein Skin „$1“. Bitte bedenken Sie, dass benutzerspezifische .css- und .js-Seiten mit einem Kleinbuchstaben anfangen müssen, also z.B. ''{{ns:user}}:Mustermann/monobook.css'' an Stelle von ''{{ns:user}}:Mustermann/Monobook.css''.",
 'previewconflict'                  => 'Diese Vorschau gibt den Inhalt des oberen Textfeldes wieder. So wird die Seite aussehen, wenn Sie jetzt speichern.',
-'session_fail_preview'             => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.
+'session_fail_preview'             => '<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.
 Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken.
-Sollte das Problem bestehen bleiben, melden Sie sich ab und danach wieder an.</strong>',
-'session_fail_preview_html'        => "<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Ihre Sitzungsdaten verloren gegangen sind.</strong>
+Sollte das Problem bestehen bleiben, [[Special:UserLogout|melden Sie sich ab]] und danach wieder an.</strong>',
+'session_fail_preview_html'        => "<strong>Ihre Bearbeitung konnte nicht gespeichert werden, da Sitzungsdaten verloren gegangen sind.</strong>
 
 ''Da in {{SITENAME}} das Speichern von reinem HTML aktiviert ist, wurde die Vorschau ausgeblendet, um JavaScript-Attacken vorzubeugen.''
 
-<strong>Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken. Sollte das Problem bestehen bleiben, [[Special:UserLogout|melden Sie sich ab]] und danach wieder an.</strong>",
+<strong>Bitte versuchen Sie es erneut, indem Sie unter der folgenden Textvorschau nochmals auf „Seite speichern“ klicken.
+Sollte das Problem bestehen bleiben, [[Special:UserLogout|melden Sie sich ab]] und danach wieder an.</strong>",
 'token_suffix_mismatch'            => '<strong>Ihre Bearbeitung wurde zurückgewiesen, da Ihr Browser Zeichen im Bearbeiten-Token verstümmelt hat.
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.</strong>',
 'explainconflict'                  => "Jemand anders hat diese Seite geändert, nachdem Sie angefangen haben diese zu bearbeiten.
@@ -283,7 +286,9 @@ Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates V
 'file-thumbnail-no'           => 'Der Dateiname beginnt mit <strong><tt>$1</tt></strong>. Dies deutet auf ein Bild verringerter Größe <i>(thumbnail)</i> hin.
 Bitte prüfen Sie, ob Sie das Bild in voller Auflösung vorliegen haben und laden dieses unter dem Originalnamen hoch.',
 'fileexists-forbidden'        => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei. Bitte gehen Sie zurück und laden Sie diese Datei unter einem anderen Namen hoch. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
+Wenn Sie diese Datei trotzdem hochladen möchten, gehen Sie bitte zurück und ändern den Namen.
+[[Image:$1|thumb|center|$1]]',
 'uploadcorrupt'               => 'Die Datei ist beschädigt oder hat eine falsche Datei-Erweiterung. Bitte überprüfen Sie die Datei und wiederholen Sie den Hochlade-Vorgang.',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfen Sie zuerst den Eintrag im $1, bevor Sie die Datei wirklich speichern.',
 'upload-wasdeleted'           => "'''Achtung: Sie laden eine Datei hoch, die bereits früher gelöscht wurde.'''
@@ -325,7 +330,8 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
-'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse angegeben hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden. Als Absender wird die E-Mail-Adresse aus Ihren [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer Ihnen antworten kann.',
+'emailpagetext'   => 'Wenn dieser Benutzer eine gültige E-Mail-Adresse in seinen Benutzereinstellungen eingetragen hat, können Sie ihm mit dem untenstehenden Formular eine E-Mail senden.
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer Ihnen antworten kann.',
 'emailccsubject'  => 'Kopie Ihrer Nachricht an $1: $2',
 'emailsenttext'   => 'Ihre E-Mail wurde verschickt.',
 
@@ -379,7 +385,7 @@ Bitte gehen Sie zurück und versuchen Sie den Vorgang erneut auszuführen.',
 'protect-cantedit'       => 'Sie können die Sperre dieser Seite nicht ändern, da Sie keine Berechtigung zum Bearbeiten der Seite haben.',
 
 # Undelete
-'undeleteextrahelp' => '* Um die Seite komplett mit allen Versionen wiederherzustellen, geben Sie bitte eine Begründung an und klicken Sie auf „Wiederherstellen“.
+'undeleteextrahelp' => '* Um die Seite komplett mit allen Versionen wiederherzustellen, wählen Sie keine Version aus, geben Sie eine Begründung an und klicken Sie auf „Wiederherstellen“.
 * Möchten Sie nur bestimmte Versionen wiederherstellen, so wählen Sie diese bitte einzeln anhand der Markierungen aus, geben eine Begründung an und klicken dann auf „Wiederherstellen“.
 * „Abbrechen“ leert das Kommentarfeld und entfernt alle Markierungen bei den Versionen.',
 'undeletehistory'   => 'Wenn Sie diese Seite wiederherstellen, werden auch alle alten Versionen wiederhergestellt.
@@ -464,7 +470,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'confirmemail_text'       => '{{SITENAME}} erfordert, dass Sie Ihre E-Mail-Adresse bestätigen (authentifizieren), bevor Sie die erweiterten E-Mail-Funktionen benutzen können. Klicken Sie bitte auf die unten stehende, mit „Bestätigungscode zuschicken“ beschriftete Schaltfläche, damit eine automatisch erstellte E-Mail an die angegebene Adresse geschickt wird. Diese E-Mail enthält eine Web-Adresse mit einem Bestätigungscode. Indem Sie diese Webseite in Ihrem Webbrowser öffnen, bestätigen Sie, dass die angegebene E-Mail-Adresse korrekt und gültig ist.',
 'confirmemail_pending'    => '<div class="error">Es wurde Ihnen bereits ein Bestätigungs-Code per E-Mail zugeschickt. Wenn Sie Ihr Benutzerkonto erst vor kurzem erstellt haben, warte Sie bitte noch ein paar Minuten auf die E-Mail, bevor Sie einen neuen Code anfordern.</div>',
 'confirmemail_oncreate'   => 'Ein Bestätigungs-Code wurde an Ihre E-Mail-Adresse gesandt. Dieser Code wird für die Anmeldung nicht benötigt, jedoch wird er zur Aktivierung der E-Mail-Funktionen innerhalb des Wikis gebraucht.',
-'confirmemail_sendfailed' => 'Die Bestätigungs-E-Mail konnte nicht versendet werden. Bitte prüfen Sie die E-Mail-Adresse auf ungültige Zeichen.
+'confirmemail_sendfailed' => '{{SITENAME}} konnte die Bestätigungs-E-Mail nicht an Sie versenden.
+Bitte prüfen Sie die E-Mail-Adresse auf ungültige Zeichen.
 
 Rückmeldung des Mailservers: $1',
 'confirmemail_invalid'    => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuchen Sie bitte, die Bestätigung zu wiederholen.',

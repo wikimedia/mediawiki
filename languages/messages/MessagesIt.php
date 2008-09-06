@@ -523,7 +523,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'gotaccountlink'             => 'Entra',
 'createaccountmail'          => 'via e-mail',
 'badretype'                  => 'Le password inserite non coincidono tra loro.',
-'userexists'                 => 'Il nome utente inserito è già utilizzato. Si prega di scegliere un nome utente diverso.',
+'userexists'                 => 'Il nome utente inserito è già utilizzato. Si scelga un nome utente diverso.',
 'youremail'                  => 'Indirizzo e-mail:',
 'username'                   => 'Nome utente:',
 'uid'                        => 'ID utente:',
@@ -537,7 +537,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'email'                      => 'Indirizzo e-mail',
 'prefs-help-realname'        => "L'indicazione del proprio nome vero è opzionale; se si sceglie di inserirlo, verrà utilizzato per attribuire la paternità dei contenuti inviati.",
 'loginerror'                 => "Errore nell'accesso",
-'prefs-help-email'           => "L'inserimento del proprio indirizzo e-mail è opzionale. Se si sceglie di inserirlo, consente di essere contattati attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.",
+'prefs-help-email'           => "L'inserimento del proprio indirizzo e-mail è opzionale ma permette di ricevere la propria password via e-mail qualora venisse dimenticata. È inoltre possibile scegliere di permettere di essere contattati dagli altri utenti attraverso la propria pagina utente o la relativa pagina di discussione, senza dover rivelare la propria identità.",
 'prefs-help-email-required'  => 'Indirizzo e-mail necessario.',
 'nocookiesnew'               => "La registrazione è stata completata, ma non è stato possibile accedere a {{SITENAME}} perché i cookie sono disattivati. Riprovare l'accesso con il nome utente e la password appena creati dopo aver attivato i cookie nel proprio browser.",
 'nocookieslogin'             => "L'accesso a {{SITENAME}} richiede l'uso dei cookie, che risultano disattivati. Riprovare l'accesso dopo aver attivato i cookie nel proprio browser.",
@@ -567,7 +567,7 @@ Per abilitare l'invio di messaggi e-mail per questo accesso è necessario seguir
 'throttled-mailpassword'     => 'Una nuova password è già stata inviata da meno di {{PLURAL:$1|1 ora|$1 ore}}.
 Per prevenire abusi, la funzione "Invia nuova password" può essere usata solo una volta ogni {{PLURAL:$1|ora|$1 ore}}.',
 'mailerror'                  => "Errore nell'invio del messaggio: $1",
-'acct_creation_throttle_hit' => 'Spiacente, hai già creato $1 account. Non puoi crearne altri.',
+'acct_creation_throttle_hit' => 'Hai già creato $1 account. Non puoi crearne altri.',
 'emailauthenticated'         => "L'indirizzo e-mail è stato confermato il $1.",
 'emailnotauthenticated'      => "L'indirizzo e-mail non è stato ancora confermato. Non verranno inviati messaggi e-mail attraverso le funzioni elencate di seguito.",
 'noemailprefs'               => 'Indicare un indirizzo e-mail per attivare queste funzioni.',
@@ -686,19 +686,19 @@ Se il collegamento è stato seguito per errore, è sufficiente fare clic sul pul
 'userpage-userdoesnotexist'        => 'L\'account "$1" non corrisponde a un utente registrato. Verificare che si intenda davvero creare o modificare questa pagina.',
 'clearyourcache'                   => "'''Nota: dopo aver salvato è necessario pulire la cache del proprio browser per vedere i cambiamenti.''' Per '''Mozilla / Firefox / Safari''': fare clic su ''Ricarica'' tenendo premuto il tasto delle maiuscole, oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' su Mac); per '''Konqueror''': premere il pulsante ''Ricarica'' o il tasto ''F5''; per '''Opera''' può essere necessario svuotare completamente la cache dal menu ''Strumenti → Preferenze''; per '''Internet Explorer:''' mantenere premuto il tasto ''Ctrl'' mentre si preme il pulsante ''Aggiorna'' o premere ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Suggerimento:</strong> si consiglia di usare il pulsante 'Visualizza anteprima' per provare i nuovi CSS o JavaScript prima di salvarli.",
-'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale; le modifiche non sono ancora state salvate!'''",
+'usercsspreview'                   => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
 'userjspreview'                    => "'''Questa è solo un'anteprima per provare il proprio JavaScript personale; le modifiche non sono ancora state salvate!'''",
 'userinvalidcssjstitle'            => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/monobook.css e non {{ns:user}}:Esempio/Monobook.css.",
 'updated'                          => '(Aggiornato)',
 'note'                             => '<strong>NOTA:</strong>',
 'previewnote'                      => '<strong>Questa è solo una anteprima; le modifiche alla pagina NON sono ancora state salvate!</strong>',
 'previewconflict'                  => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
-'session_fail_preview'             => '<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>',
-'session_fail_preview_html'        => "<strong>Siamo spiacenti, non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
+'session_fail_preview'             => '<strong>Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione. Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.</strong>',
+'session_fail_preview_html'        => "<strong>Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.</strong>
 
-''Poiché in questo sito è abilitato l'uso di HTML senza limitazioni, l'anteprima non viene visualizzata; si tratta di una misura di sicurezza contro gli attacchi JavaScript.''
+''Poiché in {{SITENAME}} è abilitato l'uso di HTML senza limitazioni, l'anteprima non viene visualizzata; si tratta di una misura di sicurezza contro gli attacchi JavaScript.''
 
-<strong>Se il problema persiste, si può provare a scollegarsi ed effettuare un nuovo accesso.</strong>",
+<strong>Se questo è un legittimo tentativo di modifica, riprovare. Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.</strong>",
 'token_suffix_mismatch'            => "<strong>La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.</strong>",
 'editing'                          => 'Modifica di $1',
 'editingsection'                   => 'Modifica di $1 (sezione)',
@@ -1246,7 +1246,7 @@ Se si tratta della stessa immagine, nelle dimensioni originali, non è necessari
 'file-thumbnail-no'           => "Il nome del file inizia con <strong><tt>$1</tt></strong>; sembra quindi essere il risultato di un'anteprima <i>(thumbnail)</i>.
 Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. In caso contrario, si prega di cambiare il nome del file.",
 'fileexists-forbidden'        => 'Un file con questo nome esiste già. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Se si desidera ancora caricare il file, tornare indietro e modificare il nome con il quale caricare il file. [[Image:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Questo file è un duplicato {{PLURAL:$1|del seguente|dei seguenti}} file:',
 'successfulupload'            => 'Caricamento completato',
 'uploadwarning'               => 'Avviso di caricamento',
@@ -1347,7 +1347,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'shareduploadduplicate-linktext' => 'un altro file',
 'shareduploadconflict'           => "Questo file ha lo stesso nome di $1, presente nell'archivio condiviso.",
 'shareduploadconflict-linktext'  => 'un altro file',
-'noimage'                        => 'Un file con questo nome non esiste, vuoi $1 tu?',
+'noimage'                        => 'Un file con questo nome non esiste ma è possibile $1.',
 'noimage-linktext'               => 'caricarlo ora',
 'uploadnewversion-linktext'      => 'Carica una nuova versione di questo file',
 'imagepage-searchdupe'           => 'Ricerca dei file duplicati',
@@ -1509,7 +1509,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'speciallogtitlelabel' => 'Azione effettuata su:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tutti i registri',
-'alllogstext'          => "Presentazione unificata dei registri relativi alle operazioni di caricamento, cancellazione, protezione, blocco e amministrazione del sito. Puoi restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata.",
+'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}. Puoi restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione (case-sensitive), e/o la pagina interessata (anch'essa case-sensitive).",
 'logempty'             => 'Il log non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
 
@@ -1562,7 +1562,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'mailnologintext' => 'Per inviare messaggi e-mail ad altri utenti è necessario [[Special:UserLogin|accedere al sito]] e aver registrato un indirizzo valido nelle proprie [[Special:Preferences|preferenze]].',
 'emailuser'       => "Scrivi all'utente",
 'emailpage'       => "Invia un messaggio e-mail all'utente",
-'emailpagetext'   => "Se l'utente ha registrato un indirizzo e-mail valido nelle proprie preferenze, il modulo qui sotto consente di scrivere allo stesso un solo messaggio. L'indirizzo indicato nelle preferenze del mittente apparirà nel campo \"Da:\" del messaggio per consentire al destinatario l'eventuale risposta.",
+'emailpagetext'   => 'Se l\'utente ha registrato un indirizzo e-mail valido nelle proprie preferenze, il modulo qui sotto consente di scrivere allo stesso un solo messaggio. L\'indirizzo indicato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
 'usermailererror' => "L'oggetto mail ha restituito l'errore:",
 'defemailsubject' => 'Messaggio da {{SITENAME}}',
 'noemailtitle'    => 'Nessun indirizzo e-mail',
@@ -1753,7 +1753,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'viewdeletedpage'              => 'Visualizza le pagine cancellate',
 'undeletepagetext'             => "Le pagine indicate di seguito sono state cancellate, ma sono ancora in archivio e pertanto possono essere recuperate. L'archivio può essere svuotato periodicamente.",
 'undelete-fieldset-title'      => 'Recupera revisioni',
-'undeleteextrahelp'            => "Per recuperare l'intera pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reset''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
+'undeleteextrahelp'            => "Per recuperare l'intera cronologia della pagina, lasciare tutte le caselle deselezionate e fare clic su '''''Ripristina'''''. Per effettuare un ripristino selettivo, selezionare le caselle corrispondenti alle revisioni da ripristinare e fare clic su '''''Ripristina'''''. Facendo clic su '''''Reimposta''''' verranno deselezionate tutte le caselle e svuotato lo spazio per il commento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revisione|$1 revisioni}} in archivio',
 'undeletehistory'              => 'Recuperando questa pagina, tutte le sue revisioni verranno inserite di nuovo nella relativa cronologia. Se dopo la cancellazione è stata creata una nuova pagina con lo stesso titolo, le revisioni recuperate saranno inserite nella cronologia e la versione attualmente online della pagina non verrà modificata.',
 'undeleterevdel'               => "Il ripristino non verrà effettuato se determina la cancellazione parziale della versione corrente della pagina o del file interessato. In tal caso, è necessario rimuovere il segno di spunta o l'oscuramento dalle revisioni cancellate più recenti.",
@@ -2165,7 +2165,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro anti-spam',
-'spamprotectiontext'  => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno bloccato.',
+'spamprotectiontext'  => 'La pagina che si è tentato di salvare è stata bloccata dal filtro anti-spam. Ciò è probabilmente dovuto alla presenza di un collegamento a un sito esterno presente nella blacklist.',
 'spamprotectionmatch' => 'Il filtro anti-spam è stato attivato dal seguente testo: $1',
 'spambot_username'    => 'MediaWiki - sistema di rimozione spam',
 'spam_reverting'      => "Ripristinata l'ultima versione priva di collegamenti a $1",
@@ -2564,9 +2564,9 @@ di tentare di richiederne uno nuovo.
 di posta elettronica indicato. Il codice non è necessario per accedere al sito,
 ma è necessario fornirlo per poter abilitare tutte le funzioni del sito che fanno
 uso della posta elettronica.",
-'confirmemail_sendfailed'  => "Impossibile inviare il messaggio e-mail di conferma. Verificare che l'indirizzo non contenga caratteri non validi.
+'confirmemail_sendfailed'  => '{{SITENAME}} non può inviare il messaggio e-mail di conferma. Verificare che il proprio indirizzo e-mail non contenga caratteri non validi.
 
-Messaggio di errore del mailer: $1",
+Messaggio di errore del mailer: $1',
 'confirmemail_invalid'     => 'Codice di conferma non valido. Il codice potrebbe essere scaduto.',
 'confirmemail_needlogin'   => 'È necessario $1 per confermare il proprio indirizzo e-mail.',
 'confirmemail_success'     => "L'indirizzo e-mail è confermato. Ora è possibile eseguire l'accesso e fare pieno uso del sito.",
@@ -2590,7 +2590,7 @@ Questo codice di conferma scadrà automaticamente alle $4.',
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusione di pagine tra siti wiki non è attiva]",
 'scarytranscludefailed'   => '[Errore: Impossibile ottenere il template $1]',
-'scarytranscludetoolong'  => '[Errore: URL troppo lunga]',
+'scarytranscludetoolong'  => '[Errore: URL troppo lungo]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2602,7 +2602,7 @@ $1
 'trackbackdeleteok' => 'Informazioni di trackback eliminate correttamente.',
 
 # Delete conflict
-'deletedwhileediting' => 'Attenzione: questa pagina è stata cancellata dopo che hai cominciato a modificarla!',
+'deletedwhileediting' => "'''Attenzione''': questa pagina è stata cancellata dopo che hai cominciato a modificarla!",
 'confirmrecreate'     => "L'utente [[User:$1|$1]] ([[User talk:$1|discussioni]]) ha cancellato questa pagina dopo che hai iniziato a modificarla, per il seguente motivo: ''$2''
 Per favore, conferma che desideri veramente ricreare questa pagina.",
 'recreate'            => 'Ricrea',

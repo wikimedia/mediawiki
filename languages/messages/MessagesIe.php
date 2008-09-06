@@ -137,6 +137,7 @@ $messages = array(
 'newmessageslink'    => 'nov missages',
 'editsection'        => 'modificar',
 'editold'            => 'redacter',
+'editsectionhint'    => 'Modification de section: $1',
 'toc'                => 'Tabelle de contenetes',
 'showtoc'            => 'monstrar',
 'hidetoc'            => 'celar',
@@ -196,7 +197,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'accmailtitle'     => 'Li passa-parol es inviat.',
 'accmailtext'      => "Li passa-parol por '$1' ha esset inviat a $2.",
 'newarticle'       => '(Nov)',
-'editing'          => 'modification de $1',
+'editing'          => 'Modification de $1',
 'editingsection'   => 'modification de $1 (section)',
 'editingcomment'   => 'modification de $1 (comenta)',
 'copyrightwarning' => 'Omni contributiones a {{SITENAME}} es considerat quam publicat sub li termines del $2 (ples vider $1 por plu mult detallies). Si vu ne vole que vor ovres mey esser modificat e distribuet secun arbitrie, ples ne inviar les. Adplu, ples contribuer solmen vor propri ovres o ovres ex un fonte quel es líber de jures. <strong>NE UTILISA OVRES SUB JURE EDITORIAL SIN DEFINITIV AUTORISATION!</strong>',
@@ -284,6 +285,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 
 # Special:AllPages
 'allpages'       => 'Omni págines',
+'alphaindexline' => '$1 a $2',
 'allarticles'    => 'Omni págines',
 'allpagessubmit' => 'Vade',
 
@@ -319,7 +321,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'whatlinkshere' => 'Ligat págines',
 
 # Block/unblock
-'ipblocklist'  => 'Liste de blocat adresses e usatores',
+'ipblocklist'  => 'Blocat adresses e usatores',
 'contribslink' => 'contribs',
 
 # Move page

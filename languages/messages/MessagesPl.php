@@ -2739,7 +2739,7 @@ Kod zawarty w linku straci ważność $4.',
 'trackbackdeleteok' => 'TrackBack został usunięty.',
 
 # Delete conflict
-'deletedwhileediting' => 'Uwaga! Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!',
+'deletedwhileediting' => "'''Uwaga!''' Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!",
 'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : ''$2''
 Czy na pewno chcesz go ponownie utworzyć?",
