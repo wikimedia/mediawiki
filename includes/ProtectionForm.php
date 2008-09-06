@@ -64,25 +64,23 @@ class ProtectionForm {
 			? array( 'disabled' => 'disabled' )
 			: array();
 
-		if( $wgRequest->wasPosted() ) {
-			$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
-			$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
-			$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry' );
+		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
+		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
+		$this->mExpiry = $wgRequest->getText( 'mwProtect-expiry', 'infinite' );
 
-			foreach( $this->mApplicableTypes as $action ) {
-				$val = $wgRequest->getVal( "mwProtect-level-$action" );
-				if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
-					//prevent users from setting levels that they cannot later unset
-					if( $val == 'sysop' ) {
-						//special case, rewrite sysop to either protect and editprotected
-						if( !$wgUser->isAllowed('protect') && !$wgUser->isAllowed('editprotected') )
-							continue;
-					} else {
-						if( !$wgUser->isAllowed($val) )
-							continue;
-					}
-					$this->mRestrictions[$action] = $val;
+		foreach( $this->mApplicableTypes as $action ) {
+			$val = $wgRequest->getVal( "mwProtect-level-$action" );
+			if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
+				// Prevent users from setting levels that they cannot later unset
+				if( $val == 'sysop' ) {
+					// Special case, rewrite sysop to either protect and editprotected
+					if( !$wgUser->isAllowed('protect') && !$wgUser->isAllowed('editprotected') )
+						continue;
+				} else {
+					if( !$wgUser->isAllowed($val) )
+						continue;
 				}
+				$this->mRestrictions[$action] = $val;
 			}
 		}
 	}
