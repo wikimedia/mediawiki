@@ -52,6 +52,7 @@ class UsersPager extends AlphabeticPager {
 		if ( in_array( $this->requestedGroup, $symsForAll ) ) {
 			$this->requestedGroup = '';
 		}
+		$this->editsOnly = $wgRequest->getBool( 'editsOnly' );
 
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -70,9 +71,9 @@ class UsersPager extends AlphabeticPager {
 
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$conds=array();
-		// don't show hidden names
-		$conds[]='ipb_deleted IS NULL OR ipb_deleted = 0';
+		$conds = array();
+		// Don't show hidden names
+		$conds[] = 'ipb_deleted IS NULL OR ipb_deleted = 0';
 		if ($this->requestedGroup != "") {
 			$conds['ug_group'] = $this->requestedGroup;
 			$useIndex = '';
@@ -81,6 +82,9 @@ class UsersPager extends AlphabeticPager {
 		}
 		if ($this->requestedUser != "") {
 			$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
+		}
+		if( $this->editsOnly ) {
+			$conds[] = 'user_editcount > 0';
 		}
 
 		list ($user,$user_groups,$ipblocks) = $dbr->tableNamesN('user','user_groups','ipblocks');
@@ -121,13 +125,11 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function getBody() {
-		if (!$this->mQueryDone) {
+		if( !$this->mQueryDone ) {
 			$this->doQuery();
 		}
-		$batch = new LinkBatch;
-
 		$this->mResult->rewind();
-
+		$batch = new LinkBatch;
 		while ( $row = $this->mResult->fetchObject() ) {
 			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 		}
@@ -156,7 +158,9 @@ class UsersPager extends AlphabeticPager {
 			Xml::option( wfMsg( 'group-all' ), '' );
 		foreach( $this->getAllGroups() as $group => $groupText )
 			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
-		$out .= Xml::closeElement( 'select' ) . ' ';
+		$out .= Xml::closeElement( 'select' ) . '<br/>';
+		$out .= Xml::checkLabel( wfMsg('listusers-editsonly'), 'editsOnly', 'editsOnly', $this->editsOnly );
+		$out .= '&nbsp;';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 
