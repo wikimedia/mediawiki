@@ -24,38 +24,74 @@ class UploadBase {
 	
 	const SESSION_VERSION = 2;
 	
+	/*
+	 * Returns true if uploads are enabled.
+	 * Can be overriden by subclasses.
+	 */
 	static function isEnabled() {
 		global $wgEnableUploads;
 		return $wgEnableUploads;
 	}
-	static function isAllowed( User $user ) {
+	/*
+	 * Returns true if the user can use this upload module or else a string 
+	 * identifying the missing permission.
+	 * Can be overriden by subclasses.
+	 */
+	static function isAllowed( $user ) {
 		if( !$user->isAllowed( 'upload' ) )
 			return 'upload';
 		return true;
 	}
 	
-	function __construct( $name ) {
-		$this->mDesiredDestName = $name;
+	static $uploadHandlers = array( 'Stash', 'Upload', 'Url' );
+	static function createFromRequest( &$request, $type = null ) {
+		$type = $type ? $type : $request->getVal( 'wpSourceType' );
+		if( !$type ) 
+			return null;
+		$type = ucfirst($type);
+		$className = 'UploadFrom'.$type;
+		if( !in_array( $type, self::$uploadHandlers ) )
+			return null;
+		if( !call_user_func( array( $className, 'isEnabled' ) ) )
+			return null;
+		if( !call_user_func( array( $className, 'isValidRequest' ), $request ) )
+			return null;
+		
+		$handler = new $className;
+		$handler->initializeFromRequest( $request );
+		return $handler;
 	}
 	
+	static function isValidRequest( $request ) {
+		return false;
+	}
 	
-	function verifyUpload( &$resultDetails ) {
+	function __construct() {}
+	
+	function initialize( $name, $tempPath, $fileSize, $removeTempFile = false ) {
+		$this->mDesiredDestName = $name;
+		$this->mTempPath = $tempPath;
+		$this->mFileSize = $fileSize;
+		$this->mRemoveTempFile = $removeTempFile;
+	}
+
+	function verifyUpload() {
 		global $wgUser;
 		
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
-		if( empty( $this->mFileSize ) ) {
-			return self::EMPTY_FILE;
-		}
+		if( empty( $this->mFileSize ) ) 
+			return array( 'status' => self::EMPTY_FILE );
 
 		$nt = $this->getTitle();
 		if( is_null( $nt ) ) {
+			$result = array( 'status' => $this->mTitleError );
 			if( $this->mTitleError == self::ILLEGAL_FILENAME )
-				$resultDetails = array( 'filtered' => $this->mFilteredName );
+				$resul['filtered'] = $this->mFilteredName;
 			if ( $this->mTitleError == self::FILETYPE_BADTYPE )
-				$resultDetails = array( 'finalExt' => $this->mFinalExtension );
-			return $this->mTitleError;
+				$result['finalExt'] = $this->mFinalExtension;
+			return $result;
 		}
 		$this->mLocalFile = wfLocalFile( $nt );
 		$this->mDestName = $this->mLocalFile->getName();
@@ -64,30 +100,27 @@ class UploadBase {
 		 * In some cases we may forbid overwriting of existing files.
 		 */
 		$overwrite = $this->checkOverwrite( $this->mDestName );
-		if( $overwrite !== true ) {
-			$resultDetails = array( 'overwrite' => $overwrite );
-			return self::OVERWRITE_EXISTING_FILE;
-		}
+		if( $overwrite !== true )
+			return array( 'status' => self::OVERWRITE_EXISTING_FILE, 'overwrite' => $overwrite );
 		
 		/**
 		 * Look at the contents of the file; if we can recognize the
 		 * type but it's corrupt or data of the wrong type, we should
 		 * probably not accept it.
 		 */
-		$veri = $this->verifyFile( $this->mTempPath );
+		$verification = $this->verifyFile( $this->mTempPath );
 
-		if( $veri !== true ) {
-			if( !is_array( $veri ) ) 
-				$veri = array( $veri );
-			$resultDetails = array( 'veri' => $veri );
-			return self::VERIFICATION_ERROR;
+		if( $verification !== true ) {
+			if( !is_array( $verification ) ) 
+				$verification = array( $verification );
+			$verification['status'] = self::VERIFICATION_ERROR;
+			return $verification;
 		}
 		
 		$error = '';
 		if( !wfRunHooks( 'UploadVerification',
 				array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
-			$resultDetails = array( 'error' => $error );
-			return self::UPLOAD_VERIFICATION_ERROR;
+			return array( 'status' => self::UPLOAD_VERIFICATION_ERROR, 'error' => $error );
 		}
 		
 		return self::OK;
@@ -97,8 +130,7 @@ class UploadBase {
 	 * Verifies that it's ok to include the uploaded file
 	 *
 	 * @param string $tmpfile the full path of the temporary file to verify
-	 * @param string $extension The filename extension that the file is to be served with
-	 * @return mixed true of the file is verified, a WikiError object otherwise.
+	 * @return mixed true of the file is verified, a string or array otherwise.
 	 */
 	protected function verifyFile( $tmpfile ) {
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, 
@@ -172,7 +204,6 @@ class UploadBase {
 
 		global $wgCapitalLinks;
 		if( $this->mDesiredDestName != $filename )
-			// Use mFilteredName so that we don't have to bother about spaces
 			$warning['badfilename'] = $filename;
 
 		global $wgCheckFileExtensions, $wgFileExtensions;
@@ -319,12 +350,7 @@ class UploadBase {
 		global $wgOut;
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->storeTemp( $saveName, $tempName );
-		if ( !$status->isGood() ) {
-			$this->showError( $status->getWikiText() );
-			return false;
-		} else {
-			return $status->value;
-		}
+		return $status;
 	}
 	
 	/**
@@ -337,18 +363,17 @@ class UploadBase {
 	 * @access private
 	 */
 	function stashSession() {
-		$stash = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
+		$status = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
 
-		if( !$stash ) {
+		if( !$status->isGood() ) {
 			# Couldn't save the file.
 			return false;
 		}
 
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array(
-			'mTempPath'       => $stash,
+			'mTempPath'       => $status->value,
 			'mFileSize'       => $this->mFileSize,
-			'mSrcName'        => $this->mSrcName,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
 	   	);

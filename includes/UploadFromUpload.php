@@ -1,12 +1,20 @@
 <?php
 
 class UploadFromUpload extends UploadBase {
-	function initialize( $tempPath, $fileSize, $fileName ) {
-		$this->mTempPath       = $tempPath;
-		$this->mFileSize       = $fileSize;
-		$this->mSrcName        = $fileName;
-		$this->mSessionKey     = false;
-		$this->mStashed        = false;
-		$this->mRemoveTempFile = false; // PHP will handle this
+
+	function initializeFromRequest( &$request ) {
+		$desiredDestName = $request->getText( 'wpDestFile' );
+		if( !$desiredDestName )
+			$desiredDestName = $request->getText( 'wpUploadFile' );
+		
+		return $this->initialize( 
+			$desiredDestName, 
+			$request->getFileTempName( 'wpUploadFile' ), 
+			$request->getFileSize( 'wpUploadFile' ) 
+		);
+	}
+	
+	static function isValidRequest( $request ) {
+		return (bool)$request->getFileTempName( 'wpUploadFile' );
 	}
 }
