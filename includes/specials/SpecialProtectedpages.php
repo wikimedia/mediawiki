@@ -122,13 +122,14 @@ class ProtectedPagesForm {
 		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'protectedpages' ) ) .
-			Xml::hidden( 'title', $title->getPrefixedDBkey() ) . "&nbsp;\n" .
+			Xml::hidden( 'title', $title->getPrefixedDBkey() ) . "\n" .
 			$this->getNamespaceMenu( $namespace ) . "&nbsp;\n" .
 			$this->getTypeMenu( $type ) . "&nbsp;\n" .
 			$this->getLevelMenu( $level ) . "&nbsp;\n" .
-			"<br /><span style='white-space: nowrap'>&nbsp;&nbsp;" .
+			"<br/><span style='white-space: nowrap'>" .
 			$this->getExpiryCheck( $indefOnly ) . "&nbsp;\n" .
 			$this->getCascadeCheck( $cascadeOnly ) . "&nbsp;\n" .
+			"</span><br/><span style='white-space: nowrap'>" .
 			$this->getSizeLimit( $sizetype, $size ) . "&nbsp;\n" .
 			"</span>" .
 			"&nbsp;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
