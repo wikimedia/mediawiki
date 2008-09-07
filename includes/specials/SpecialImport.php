@@ -217,12 +217,13 @@ class ImportReporter {
 
 			$comment = $detail; // quick
 			$dbw = wfGetDB( DB_MASTER );
+			$latest = $title->getLatestRevID();
 			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleId(), $comment, true );
 			$nullRevision->insertOn( $dbw );
 			$article = new Article( $title );
 			# Update page record
 			$article->updateRevisionOn( $dbw, $nullRevision );
-			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, false) );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
 		} else {
 			$wgOut->addHtml( '<li>' . wfMsgHtml( 'import-nonewrevisions' ) . '</li>' );
 		}
