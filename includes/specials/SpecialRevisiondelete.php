@@ -1344,7 +1344,7 @@ class RevisionDeleter {
 	function updatePage( $title ) {
 		$title->invalidateCache();
 		$title->purgeSquid();
-
+		$title->touchLinks();
 		// Extensions that require referencing previous revisions may need this
 		wfRunHooks( 'ArticleRevisionVisiblitySet', array( &$title ) );
 	}
