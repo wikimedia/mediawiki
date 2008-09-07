@@ -2482,46 +2482,6 @@ $1',
 عناصر اللسته  بس (السطور اللى تبتدى ب *) ها تتاخد فى الاعتبار. أول وصلة فى السطر لازم تكون وصله لملف سيىء.
 أى وصلات بعد كده فى نفس السطر هاتعتبر استثناءات، بمعنى تانى  مقالات ممكن الملف يكون موجود فيها.',
 
-/*
-Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
-Variants for Chinese language
-*/
-'variantname-zh-hans' => 'hans',
-'variantname-zh-hant' => 'hant',
-'variantname-zh-cn'   => 'cn',
-'variantname-zh-tw'   => 'tw',
-'variantname-zh-hk'   => 'hk',
-'variantname-zh-mo'   => 'mo',
-'variantname-zh-sg'   => 'sg',
-'variantname-zh-my'   => 'my',
-'variantname-zh'      => 'zh',
-
-# Variants for Serbian language
-'variantname-sr-ec' => 'sr-ec',
-'variantname-sr-el' => 'sr-el',
-'variantname-sr'    => 'sr',
-
-# Variants for Kazakh language
-'variantname-kk-kz'   => 'kk-kz',
-'variantname-kk-tr'   => 'kk-tr',
-'variantname-kk-cn'   => 'kk-cn',
-'variantname-kk-cyrl' => 'kk-cyrl',
-'variantname-kk-latn' => 'kk-latn',
-'variantname-kk-arab' => 'kk-arab',
-'variantname-kk'      => 'kk',
-
-# Variants for Kurdish language
-'variantname-ku-arab' => 'ku-Arab',
-'variantname-ku-latn' => 'ku-Latn',
-'variantname-ku'      => 'ku',
-
-# Variants for Tajiki language
-'variantname-tg-cyrl' => 'tg-Cyrl',
-'variantname-tg-latn' => 'tg-Latn',
-'variantname-tg'      => 'tg',
-
 # Metadata
 'metadata'          => 'بيانات ميتا',
 'metadata-help'     => '
