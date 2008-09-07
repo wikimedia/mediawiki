@@ -240,7 +240,7 @@ class ProtectionForm {
 		global $wgUser;
 
 		$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), 'mwProtectExpiryList' );
-		$mProtectother = Xml::label( wfMsg( 'protect-otheroption' ), 'expires' );
+		$mProtectother = Xml::label( wfMsg( 'protect-othertime' ), 'expires' );
 		$mProtectreasonother = Xml::label( wfMsg( 'protectcomment' ), 'wpProtectReasonList' );
 		$mProtectreason = Xml::label( wfMsg( 'protect-otherreason' ), 'mwProtect-reason' );
 
@@ -283,7 +283,7 @@ class ProtectionForm {
 		if( !$showProtectOptions )
 			$mProtectother = $mProtectexpiry;
 
-		$expiryFormOptions = Xml::option( wfMsg( 'protect-otheroption' ), 'wpProtectExpiryList' );
+		$expiryFormOptions = Xml::option( wfMsg( 'protect-othertime-op' ), 'wpProtectExpiryList' );
 		foreach( explode(',', $scExpiryOptions) as $option ) {
 			if ( strpos($option, ":") === false ) $option = "$option:$option";
 			list($show, $value) = explode(":", $option);
@@ -294,7 +294,7 @@ class ProtectionForm {
 		
 		$reasonDropDown = Xml::listDropDown( 'wpProtectReasonList',
 			wfMsgForContent( 'protect-dropdown' ),
-			wfMsgForContent( 'protect-otherreason' ), '', 'mwProtect-reason', 4 );
+			wfMsgForContent( 'protect-otherreason-op' ), '', 'mwProtect-reason', 4 );
 
 		// JavaScript will add another row with a value-chaining checkbox
 		$out .= Xml::closeElement( 'tbody' ) .

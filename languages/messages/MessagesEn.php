@@ -2299,8 +2299,10 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-expiring'            => 'expires $1 (UTC)',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
-'protect-otheroption'         => 'other',
-'protect-otherreason'         => 'other/additional:',
+'protect-othertime'           => 'Other time:',
+'protect-othertime-op'        => 'other time',
+'protect-otherreason'         => 'Other/additional:',
+'protect-otherreason-op'      => 'other/additional',
 'protect-dropdown'            => '*Common protection reasons
 ** Excessive vandalism
 ** Excessive spamming
