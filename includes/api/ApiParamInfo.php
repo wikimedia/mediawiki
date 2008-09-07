@@ -86,12 +86,12 @@ class ApiParamInfo extends ApiBase {
 		$retval['classname'] = get_class($obj);
 		$retval['description'] = (is_array($obj->getDescription()) ? implode("\n", $obj->getDescription()) : $obj->getDescription());
 		$retval['prefix'] = $obj->getModulePrefix();
-		$allowedParams = $obj->getAllowedParams();
+		$allowedParams = $obj->getFinalParams();
 		if(!is_array($allowedParams))
 			return $retval;
 		$retval['parameters'] = array();
-		$paramDesc = $obj->getParamDescription();
-		foreach($obj->getAllowedParams() as $n => $p)
+		$paramDesc = $obj->getFinalParamDescription();
+		foreach($allowedParams as $n => $p)
 		{
 			$a = array('name' => $n);
 			if(!is_array($p))

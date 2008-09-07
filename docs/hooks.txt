@@ -273,6 +273,15 @@ $EditPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 $resultArr : data in this array will be added to the API result
 
+'APIGetAllowedParams': use this hook to modify a module's parameters.
+&$module: Module object
+&$params: Array of parameters
+
+'APIGetParamDescription': use this hook to modify a module's parameter
+descriptions.
+&$module: Module object
+&$desc: Array of parameter descriptions
+
 'APIQueryInfoTokens': use this hook to add custom tokens to prop=info.
 Every token has an action, which will be used in the intoken parameter
 and in the output (actiontoken="..."), and a callback function which
