@@ -113,7 +113,6 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'ملف'             => NS_MEDIA,
-	'نقاش_قالب'       => NS_TEMPLATE_TALK,
 );
 
 $magicWords = array(
@@ -241,14 +240,14 @@ $magicWords = array(
 );
 
 $skinNames = array(
-	'standard'    => 'كلاسيك',
-	'nostalgia'   => 'نوستالجيا',
-	'cologneblue' => 'كولون بلو',
-	'monobook'    => 'مونوبوك',
-	'myskin'      => 'واجهتي',
-	'chick'       => 'تشيك',
-	'simple'      => 'سيمبل',
-	'modern'      => 'مودرن',
+	'standard'      => 'كلاسيك',
+	'nostalgia'     => 'نوستالجيا',
+	'cologneblue'   => 'كولون بلو',
+	'monobook'      => 'مونوبوك',
+	'myskin'        => 'ماي سكين',
+	'chick'         => 'تشيك',
+	'simple'        => 'سيمبل',
+	'modern'        => 'مودرن',
 );
 
 $digitTransformTable = array(
