@@ -1933,8 +1933,8 @@ $NEWPAGE
 'protect-cantedit'            => 'אינכם יכולים לשנות את רמת ההגנה על דף זה, כיוון שאין לכם הרשאה לערוך אותו.',
 'protect-othertime'           => 'זמן אחר:',
 'protect-othertime-op'        => 'זמן אחר',
-'protect-otherreason'         => 'אחר/נוסף:',
-'protect-otherreason-op'      => 'אחר/נוסף',
+'protect-otherreason'         => 'סיבה אחרת/נוספת:',
+'protect-otherreason-op'      => 'סיבה אחרת/נוספת',
 'protect-dropdown'            => '* סיבות הגנה נפוצות
 ** השחתה רבה
 ** ספאם רב
