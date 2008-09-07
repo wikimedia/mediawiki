@@ -389,15 +389,8 @@ class ProtectionForm {
 
 	function buildSelector( $action, $selected ) {
 		global $wgRestrictionLevels, $wgUser;
-		$id = 'mwProtect-level-' . $action;
-		$attribs = array(
-			'id' => $id,
-			'name' => $id,
-			'size' => count( $wgRestrictionLevels ),
-			'onchange' => 'protectLevelsUpdate(this)',
-			) + $this->disabledAttrib;
 
-		$out = Xml::openElement( 'select', $attribs );
+		$levels = array();
 		foreach( $wgRestrictionLevels as $key ) {
 			//don't let them choose levels above their own (aka so they can still unprotect and edit the page). but only when the form isn't disabled
 			if( $key == 'sysop' ) {
@@ -408,6 +401,19 @@ class ProtectionForm {
 				if( !$wgUser->isAllowed($key) && !$this->disabled )
 					continue;
 			}
+			$levels[] = $key;
+		}
+
+		$id = 'mwProtect-level-' . $action;
+		$attribs = array(
+			'id' => $id,
+			'name' => $id,
+			'size' => count( $levels ),
+			'onchange' => 'protectLevelsUpdate(this)',
+			) + $this->disabledAttrib;
+
+		$out = Xml::openElement( 'select', $attribs );
+		foreach( $levels as $key ) {
 			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
 		}
 		$out .= Xml::closeElement( 'select' );
