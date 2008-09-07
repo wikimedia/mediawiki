@@ -799,7 +799,7 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => 'The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
+'noconnect'            => 'Sorry! The wiki is experiencing some technical difficulties, and cannot contact the database server.<br />
 $1',
 'nodb'                 => 'Could not select database $1',
 'cachederror'          => 'The following is a cached copy of the requested page, and may not be up to date.',
@@ -834,7 +834,7 @@ It may have already been deleted by someone else.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
-'perfdisabled'         => 'This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
+'perfdisabled'         => 'Sorry! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
 'perfcached'           => 'The following data is cached and may not be up to date.',
 'perfcachedts'         => 'The following data is cached, and was last updated $1.',
 'querypage-no-updates' => 'Updates for this page are currently disabled.
@@ -899,7 +899,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'createaccountmail'          => 'by e-mail',
 'badretype'                  => 'The passwords you entered do not match.',
 'userexists'                 => 'Username entered already in use.
-Choose a different name.',
+Please choose a different name.',
 'youremail'                  => 'E-mail:',
 'username'                   => 'Username:',
 'uid'                        => 'User ID:',
@@ -960,7 +960,7 @@ To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
-'acct_creation_throttle_hit' => 'You have already created $1 accounts.
+'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts.
 You cannot make any more.',
 'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.
@@ -968,7 +968,7 @@ No e-mail will be sent for any of the following features.',
 'noemailprefs'               => 'Specify an e-mail address for these features to work.',
 'emailconfirmlink'           => 'Confirm your e-mail address',
 'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format.
-Enter a well-formatted address or empty that field.',
+Please enter a well-formatted address or empty that field.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
@@ -1113,10 +1113,10 @@ Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:
 'previewnote'                      => '<strong>This is only a preview;
 changes have not yet been saved!</strong>',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
-'session_fail_preview'             => '<strong>We could not process your edit due to a loss of session data.
+'session_fail_preview'             => '<strong>Sorry! We could not process your edit due to a loss of session data.
 Please try again.
 If it still does not work, try [[Special:UserLogout|logging out]] and logging back in.</strong>',
-'session_fail_preview_html'        => "<strong>We could not process your edit due to a loss of session data.</strong>
+'session_fail_preview_html'        => "<strong>Sorry! We could not process your edit due to a loss of session data.</strong>
 
 ''Because {{SITENAME}} has raw HTML enabled, the preview is hidden as a precaution against JavaScript attacks.''
 
