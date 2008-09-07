@@ -105,7 +105,7 @@ class EmailUserForm {
 		$wgOut->addHTML(  
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'emailuser' ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'email-legend' ) ) .
+			Xml::element( 'legend', null, wfMsgExt( 'email-legend', 'parsemag' ) ) .
 			Xml::openElement( 'table', array( 'class' => 'mw-emailuser-table' ) ) .
 			"<tr>
 				<td class='mw-label'>" .
