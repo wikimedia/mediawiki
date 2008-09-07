@@ -1921,12 +1921,13 @@ class Title {
 	 */
 	public function getArticleID( $flags = 0 ) {
 		$linkCache = LinkCache::singleton();
-		if ( $flags & GAID_FOR_UPDATE ) {
+		if( $flags & GAID_FOR_UPDATE ) {
 			$oldUpdate = $linkCache->forUpdate( true );
+			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
 		} else {
-			if ( -1 == $this->mArticleID ) {
+			if( -1 == $this->mArticleID ) {
 				$this->mArticleID = $linkCache->addLinkObj( $this );
 			}
 		}
