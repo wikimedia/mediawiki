@@ -58,7 +58,7 @@ class Title {
 	var $mCascadeRestriction;	  ///< Cascade restrictions on this page to included templates and images?
 	var $mRestrictionsExpiry;	  ///< When do the restrictions on this page expire?
 	var $mHasCascadingRestrictions;	  ///< Are cascading restrictions in effect on this page?
-	var $mCascadeRestrictionSources;  ///< Where are the cascading restrictions coming from on this page?
+	var $mCascadeSources;  ///< Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
 	var $mPrefixedText;       	  ///< Text form including namespace/interwiki, initialised on demand
 	# Don't change the following default, NS_MAIN is hardcoded in several
