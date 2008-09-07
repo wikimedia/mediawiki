@@ -102,7 +102,7 @@ class ApiEmailUser extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Emails a user.'
+			'Email a user.'
 		);
 	}
 

@@ -107,8 +107,8 @@ class ApiRollback extends ApiBase {
 
 	public function getDescription() {
 		return array(
-				'Undoes the last edit to the page. If the last user who edited the page made multiple edits in a row,',
-				'they will all be rolled back. You need to be logged in as a sysop to use this function, see also action=login.'
+				'Undo the last edit to the page. If the last user who edited the page made multiple edits in a row,',
+				'they will all be rolled back.'
 			);
 	}
 
