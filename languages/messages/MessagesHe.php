@@ -2832,8 +2832,8 @@ $1',
 'confirm_purge_button' => 'אישור',
 
 # Multipage image navigation
-'imgmultipageprev' => '&rarr; לדף הקודם',
-'imgmultipagenext' => 'לדף הבא &larr;',
+'imgmultipageprev' => '→ לדף הקודם',
+'imgmultipagenext' => 'לדף הבא ←',
 'imgmultigo'       => 'הצגה',
 'imgmultigoto'     => 'מעבר לדף $1',
 
