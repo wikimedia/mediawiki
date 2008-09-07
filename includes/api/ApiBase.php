@@ -242,10 +242,10 @@ abstract class ApiBase {
 	 * module's help.
 	 */
 	public function makeHelpMsgParameters() {
-		$params = $this->getAllowedParams();
+		$params = $this->getFinalParams();
 		if ($params !== false) {
 
-			$paramsDescription = $this->getParamDescription();
+			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat(' ', 19);
 			foreach ($params as $paramName => $paramSettings) {
@@ -323,17 +323,38 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Returns an array of allowed parameters (keys) => default value for that parameter
+	 * Returns an array of allowed parameters (keys) => default value for that parameter.
+	 * Don't call this function directly: use getFinalParams() to allow hooks
+	 * to modify parameters as needed.
 	 */
 	protected function getAllowedParams() {
 		return false;
 	}
 
 	/**
-	 * Returns the description string for the given parameter.
+	 * Returns an array of parameter descriptions.
+	 * Don't call this functon directly: use getFinalParamDescription() to allow
+	 * hooks to modify descriptions as needed.
 	 */
 	protected function getParamDescription() {
 		return false;
+	}
+	
+	/**
+	 * Get final list of parameters, after hooks have had
+	 * a chance to tweak it as needed.
+	 */
+	public function getFinalParams() {
+		$params = $this->getAllowedParams();
+		wfRunHooks('APIGetAllowedParams', array(&$this, &$params));
+		return $params;
+	}
+	
+	
+	public function getFinalParamDescription() {
+		$desc = $this->getParamDescription();
+		wfRunHooks('APIGetParamDescription', array(&$this, &$desc));
+		return $desc;
 	}
 
 	/**
@@ -352,7 +373,7 @@ abstract class ApiBase {
 	* when the max limit is not definite, e.g. when getting revisions.
 	*/
 	public function extractRequestParams($parseMaxLimit = true) {
-		$params = $this->getAllowedParams();
+		$params = $this->getFinalParams();
 		$results = array ();
 
 		foreach ($params as $paramName => $paramSettings)
@@ -365,7 +386,7 @@ abstract class ApiBase {
 	 * Get a value for the given parameter
 	 */
 	protected function getParameter($paramName, $parseMaxLimit = true) {
-		$params = $this->getAllowedParams();
+		$params = $this->getFinalParams();
 		$paramSettings = $params[$paramName];
 		return $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
 	}
