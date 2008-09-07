@@ -154,7 +154,7 @@ class ApiMove extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Moves a page.'
+			'Move a page.'
 		);
 	}
 

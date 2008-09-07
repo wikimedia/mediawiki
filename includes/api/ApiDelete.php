@@ -189,7 +189,7 @@ class ApiDelete extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Deletes a page. You need to be logged in as a sysop to use this function, see also action=login.'
+			'Delete a page.'
 		);
 	}
 
