@@ -166,14 +166,14 @@ $magicWords = array(
 );
 
 $skinNames = array(
-	'standard'    => 'كلاسيك',
-	'nostalgia'   => 'نوستالجيا',
-	'cologneblue' => 'كولون بلو',
-	'monobook'    => 'مونوبوك',
-	'myskin'      => 'ماى سكين',
-	'chick'       => 'تشيك',
-	'simple'      => 'سيمبل',
-	'modern'      => 'مودرن',
+	'standard'      => 'كلاسيك',
+	'nostalgia'     => 'نوستالجيا',
+	'cologneblue'   => 'كولون بلو',
+	'monobook'      => 'مونوبوك',
+	'myskin'        => 'ماى سكين',
+	'chick'         => 'تشيك',
+	'simple'        => 'سيمبل',
+	'modern'        => 'مودرن',
 );
 
 $specialPageAliases = array(
