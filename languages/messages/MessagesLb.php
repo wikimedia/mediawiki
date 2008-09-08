@@ -297,7 +297,7 @@ $messages = array(
 'deletethispage'    => 'Dës Säit läschen',
 'undelete_short'    => '$1 {{PLURAL:$1|Versioun|Versiounen}} restauréieren',
 'protect'           => 'Protegéieren',
-'protect_change'    => 'Protectioun änneren',
+'protect_change'    => 'änneren',
 'protectthispage'   => 'Dës Säit schützen',
 'unprotect'         => 'Deprotegéieren',
 'unprotectthispage' => 'Protectioun vun dëser Säit annulléieren',
@@ -453,7 +453,7 @@ Ufro: $2',
 'protectedinterface'   => 'Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software an dofir ass si gespaart fir Mëssbrauch ze verhenneren.',
 'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, je no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren onvitéiere mir iech de  [http://translatewiki.net/wiki/Main_Page?setlang=lb Projet Betawiki] vun den internationale Messagen ze benotzen.",
 'sqlhidden'            => '(SQL-Offro verstoppt)',
-'cascadeprotected'     => 'Dës Säit ass gespaart, well duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} protegéiert ass:
+'cascadeprotected'     => 'Dës Säit gouf fir Ännerunge gespaart, well se duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} protegéiert ass mat der Cascadenoptioun:
 $2',
 'namespaceprotected'   => "Dir hutt net déi néideg Rechter fir d'Säiten am Nummraum '''$1''' ze änneren.",
 'customcssjsprotected' => 'Dir hutt net déi néideg Rechter fir dës Säit ze änneren, wëll si zu de perséinlechen Astellungen vun engem anere Benotzer gehéiert.',
@@ -1212,6 +1212,10 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.",
 'filepageexists'              => "Eng Beschreiwungssäit gouf schonns als <strong><tt>$1</tt></strong> geschriwwen, et gëtt awer kee Fichier mat deem Numm.
 
 Dir kënnt also äre Fichier eroplueden, mee déi Beschreiwung déi dir aginn hutt gëtt net op d'Beschreiwungssäit iwwerholl. D'Beschreiwungssäit musst der nom Eropluede vum Fichier nach manuell änneren.",
+'fileexists-extension'        => 'E Fichier mat engem ähnlechen Namen gëtt et schonn:<br />
+Numm vum Fichier den Dir versicht eropzelueden: <strong><tt>$1</tt></strong><br />
+Numm vum Fichier den et scho gëtt: <strong><tt>$2</tt></strong><br />
+Wielt w.e.g. en anere Numm.',
 'fileexists-thumb'            => "<center>'''Dëse Fichier gëtt et'''</center>",
 'file-thumbnail-no'           => 'Den Numm vum Fichier fänkt mat <strong><tt>$1</tt></strong> unn.
 Da däit drop hin dat et e Bild vu reduzéierter Gréisst <i>(thumbnail)</i> ass.
@@ -1335,9 +1339,11 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filedelete-edit-reasonlist'  => 'Läschgrënn änneren',
 
 # MIME search
-'mimesearch' => 'Sich no MIME-Zort',
-'mimetype'   => 'MIME-Typ:',
-'download'   => 'eroflueden',
+'mimesearch'         => 'Sich no MIME-Zort',
+'mimesearch-summary' => "Op dëser Spezialsäit kënnen d'Fichieren no hirem MIME-Typ gefiltert ginn.
+Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
+'mimetype'           => 'MIME-Typ:',
+'download'           => 'eroflueden',
 
 # Unwatched pages
 'unwatchedpages' => 'Nët iwwerwaachte Säiten',
@@ -1441,6 +1447,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'protectedtitlestext'     => 'Dës Titele si protegéiert an e ka keng Säit mat deenen Titelen ugeluecht ginn',
 'protectedtitlesempty'    => 'Zur Zäit si mat de Parameteren déi Dir uginn huet keng Säite gespaart esou datt si net ugeluecht kënne ginn.',
 'listusers'               => 'Benotzerlëscht',
+'listusers-editsonly'     => 'Nëmme Benotzer mat Ännerunge weisen',
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
 'ancientpages'            => 'Al Säiten',
@@ -1691,6 +1698,10 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-expiring'            => 'bis $1 (UTC)',
 'protect-cascade'             => "Kaskade-Spär – alleguerten d'Schablounen déi an dës Säit agebonne si ginn och gespaart.",
 'protect-cantedit'            => "Dir kënnt d'Spär vun dëser Seite net änneren, well Dir net déi néideg Rechter hutt fir déi Säit z'änneren.",
+'protect-othertime'           => 'Aner Zäit:',
+'protect-othertime-op'        => 'aner Zäit',
+'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
+'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
 'restriction-type'            => 'Berechtigung:',
 'restriction-level'           => 'NIveau vun de Limitatiounen:',
 'minimum-size'                => 'Mindestgréisst',
@@ -1977,7 +1988,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagescurrent'        => 'Aktuellen Text',
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
 Besicht w.e.g. [http://translatewiki.net Betawiki] an [http://translatewiki.net Betawiki] wann Dir wëllt bei de MediaWiki Iwwersetzungen matschaffen.",
-'allmessagesnotsupportedDB' => "Dës Sàit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
+'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessagesfilter'         => 'Noriichtennummfilter:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',
 

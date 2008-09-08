@@ -117,10 +117,10 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Kategorija moħbija|Kategoriji moħbijin}}',
 'hidden-category-category'       => 'Kategoriji moħbija', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => "{{PLURAL:$2|Din il-kategorija għanda biss din is-subkategorija.|Din il-kategorija għanda biss din {{PLURAL:$1|subkategorija|$1 subkategoriji}}, minn total ta' $2.}}",
-'category-subcat-count-limited'  => 'Din il-kategorija għanda biss {{PLURAL:$1|subkategorija|$1 bħalha subkategoriji}}.',
-'category-article-count'         => "{{PLURAL:$2|Din il-kategorija għanda biss din il-paġna, kif indikat.| Din il-kategorija għanda {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}, minn total ta' $2.}}",
+'category-subcat-count-limited'  => 'Din il-kategorija għandha {{PLURAL:$1|sottokategorija|$1 sottokategoriji}}.',
+'category-article-count'         => "{{PLURAL:$2|Din il-kategorija għandha biss din il-paġna, kif indikat.| Din il-kategorija għandha {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}, minn total ta' $2.}}",
 'category-article-count-limited' => 'Din il-kategorija għanda {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}.',
-'category-file-count'            => "{{PLURAL:$2|Din il-kategorija għanda biss dan il-fajl, kif indikat|Din il-kategorija għanda {{PLURAL:$1|fajl, kif indikat|$1 fajls, indikati}}, minn total ta' $2.}}",
+'category-file-count'            => "{{PLURAL:$2|Din il-kategorija għandha biss dan il-fajl, kif indikat|Din il-kategorija għandha {{PLURAL:$1|fajl, kif indikat|$1 fajls, indikati}}, minn total ta' $2.}}",
 'category-file-count-limited'    => "Il-{{PLURAL:$1|fajl indikat huwa|$1 fajls indikati huma}} f'din il-kategorija.",
 'listingcontinuesabbrev'         => 'kompli',
 

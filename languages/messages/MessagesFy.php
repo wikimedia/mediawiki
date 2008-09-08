@@ -355,7 +355,7 @@ De lêst besochte databankfraach wie:
 "$1"
 fan funksje "$2" út.
 MySQL joech fout "<tt>$3: $4</tt>" werom.',
-'noconnect'            => 'Sorry! Troch in fout yn de technyk, kin de Wiki gjin ferbining meitsje mei de databanktsjinner. <br />
+'noconnect'            => 'Troch in fout yn de technyk, kin de Wiki gjin ferbining meitsje mei de databanktsjinner. <br />
 $1',
 'nodb'                 => 'Kin databank "$1" net berikke.',
 'cachederror'          => "Dit is in bewarre ferzje dy't mooglik ferâldere is.",
@@ -491,7 +491,7 @@ As immen oars as Jo dit fersyk dien hat of as it wachtwurd Jo yntuskentiid wer y
 'throttled-mailpassword'     => "Yn {{PLURAL:$1|de lêste oere|de lêste $1 oeren}} is der al in wachtwurdwink ferstjoerd.
 Om misbrûk tefoaren te kommen wurdt der mar ien wachtwurdwink yn 'e {{PLURAL:$1|oere|$1 oeren}} ferstjoerd.",
 'mailerror'                  => 'Fout by it ferstjoeren fan e-mail: $1',
-'acct_creation_throttle_hit' => 'Sorry, jo hawwe al $1 meidochnammen oanmakke; jo kinne net mear oanmeitsje.',
+'acct_creation_throttle_hit' => 'Sorry, jo hawwe al $1 meidochnammen oanmakke. Jo kinne net mear oanmeitsje.',
 'emailauthenticated'         => 'Jo netpostadres waard befêstige op $1.',
 'emailnotauthenticated'      => 'Jo netpostadres is <strong>noch net befêstige</strong>. Jo kinne oare brûkers gjin post stjoere, en foar de neikommende opsjes wurdt jo gjin post stjoerd.',
 'noemailprefs'               => 'Jou in e-mailadres op om dizze funksjes te brûken.',
@@ -607,14 +607,14 @@ Kontrolearje oft jo dizze side wol oanmeitsje/bewurkje wolle.',
 
 '''Mozilla / Firefox / Safari:''' hâld ''Shift'' yntreaun wylst jo op ''Dizze side fernije'' klikke, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op in Macintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leegje jo cache yn ''Extra → Voorkeuren;'' '''Internet Explorer:''' hâld ''Ctrl'' yntreaun wylst jo ''Vernieuwen'' klikke of typ ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Brûk de knop 'Earst oerlêze' om jo nije CSS/JS te testen foar it fêstlizzen.",
-'usercsspreview'                   => "'''Dit is allinne mar it oerlêzen fan jo peroanlike CSS, hy is noch net fêstlein!'''",
+'usercsspreview'                   => "'''Dit is allinne mar it oerlêzen fan jo persoanlike CSS. Hy is noch net fêstlein!'''",
 'userjspreview'                    => "'''Tink derom: jo besjogge no jo persoanlike JavaScript. De side is net fêstlein!'''",
 'userinvalidcssjstitle'            => "'''Warskôging:''' der is gjin skin \"\$1\". Tink derom: jo eigen .css- en .js-siden begjinne mei in lytse letter, bygelyks {{ns:user}}:Namme/monobook.css ynsté fan {{ns:user}}:Namme/Monobook.css.",
 'updated'                          => '(Bewurke)',
 'note'                             => '<strong>Opmerking:</strong>',
 'previewnote'                      => '<strong>Tink der om dat dizze side noch net fêstlein is!</strong>',
 'previewconflict'                  => 'Dizze side belanget allinich it earste bewurkingsfjild oan.',
-'session_fail_preview'             => "<strong>Spitich! Jo bewurking is net ferwurke, om't de sessygegevens ferlern gien binne.
+'session_fail_preview'             => "<strong>Jo bewurking is net ferwurke, om't de sessygegevens ferlern gien binne.
 Besykje it nochris. As it dan noch net slagget, [[Special:UserLogout|meld jo dan ôf]] en wer oan.</strong>",
 'token_suffix_mismatch'            => "<strong>Jo bewurking is wegere om't jo blêder de lêstekens yn it bewurkingstoken ûnkrekt behannele hat.
 De bewurking is wegere om skeinen fan 'e sidetekst tefoaren te kommen.
@@ -810,7 +810,7 @@ Jo kinne de [[:\$1|side oanmeitsje]].",
 'searchall'                 => 'alle',
 'showingresults'            => "{{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} fan #'''$2''' ôf.",
 'showingresultsnum'         => "{{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} fan #'''$2''' ôf.",
-'showingresultstotal'       => "It binne hjirûnder  {{PLURAL:$3|resultaat '''$1''' fan '''$3'''|resultaten '''$1 - $2''' fan '''$3'''}}",
+'showingresultstotal'       => "It binne hjirûnder  {{PLURAL:$4|resultaat '''$1''' fan '''$3'''|resultaten '''$1 - $2''' fan '''$3'''}}",
 'nonefound'                 => 'As der gjin resultaten binne, tink der dan om dat der <b>net</b> socht
 wurde kin om wurden as "it" en "in", om\'t dy net byhâlden wurde, en dat as der mear
 wurden syke wurde, allinnich siden fûn wurde wêr\'t <b>alle</b> worden op fûn wurde.',
@@ -1050,7 +1050,7 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'shareduploadduplicate-linktext' => 'in oare triem',
 'shareduploadconflict-linktext'  => 'in oare triem',
 'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
-'noimage-linktext'               => 'oplade',
+'noimage-linktext'               => 'bied triem oan',
 'uploadnewversion-linktext'      => 'Bied in nije ferzje fan dizze triem oan',
 
 # File reversion
@@ -1775,7 +1775,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'confirmemail_text'       => '{{SITENAME}} freget dat jo jo netpostadres befêstigje eart jo hjir netpost brûke. Brûk de knop hjirûnder om josels in befêstigingskoade ta te stjoeren op it adres dat jo opjûn hawwe. Iepenje de koade dan yn jo blêder om te befêstigjen dat jo netpostadres jildich is.',
 'confirmemail_send'       => 'Stjoer in befêstigingskoade',
 'confirmemail_sent'       => 'Befêstiginskoade tastjoerd.',
-'confirmemail_sendfailed' => 'De befêstiginskoade koe net stjoerd wurde. Faaks stean der ferkearde tekens yn it netpostadres.
+'confirmemail_sendfailed' => 'De befêstigingskoade koe net stjoerd wurde. Faaks stean der ferkearde tekens yn it e-postadres.
 
 Berjocht: $1',
 'confirmemail_invalid'    => 'Dizze befêstiginskoade jildt net (mear). 
@@ -1797,7 +1797,7 @@ $5
 Dizze befêstigingskoade ferrint dan op $4.',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL-adres is te lang; sorry]',
+'scarytranscludetoolong' => '[URL-adres is te lang]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Wiskje])',

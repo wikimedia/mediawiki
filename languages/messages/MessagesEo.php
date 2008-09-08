@@ -269,7 +269,7 @@ $messages = array(
 'deletethispage'    => 'Forigi ĉi tiun paĝon',
 'undelete_short'    => 'Malforigi {{PLURAL:$1|redakton|$1 redaktojn}}',
 'protect'           => 'Protekti',
-'protect_change'    => 'ŝanĝi protekton',
+'protect_change'    => 'ŝanĝi',
 'protectthispage'   => 'Protekti la paĝon',
 'unprotect'         => 'Malprotekti',
 'unprotectthispage' => 'Malprotekti la paĝon',
@@ -1471,6 +1471,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'protectedtitlestext'     => 'La jenaj titoloj estas protektitaj kontraŭ kreado',
 'protectedtitlesempty'    => 'Neniuj titoloj estas nune protektitaj kun ĉi parametroj.',
 'listusers'               => 'Uzantaro',
+'listusers-editsonly'     => 'Montri uzantojn kun redaktoj nur',
 'newpages'                => 'Novaj paĝoj',
 'newpages-username'       => 'Salutnomo:',
 'ancientpages'            => 'Plej malnovaj artikoloj',
@@ -1502,7 +1503,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Protokoloj',
 'all-logs-page'        => 'Ĉiuj protokoloj',
-'alllogstext'          => 'Suma kompilaĵo de ĉiuj alŝutoj, forigoj, protektoj, blokadoj kaj agoj de administrantoj. Vi povas pliprecizigi la kompilaĵon laŭ loglibra tipo, **** vikipediista **** nomo aŭ koncernita paĝo.',
+'alllogstext'          => 'Suma kompilaĵo de ĉiuj protokoloj de {{SITENAME}}.
+Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (inkluzivante uskladon) aŭ la efika paĝo (ankaŭ inkluzivas uskladon).',
 'logempty'             => 'Neniaj artikoloj en la loglibro.',
 'log-title-wildcard'   => 'Serĉu titolojn komencantajn kun ĉi teksto',
 
@@ -1723,6 +1725,15 @@ Jen la aktualaj valoroj por la paĝo <strong>$1</strong>:',
 'protect-expiring'            => 'finiĝas je $1 (UTC)',
 'protect-cascade'             => 'Protekti ĉiujn paĝojn inkluzivitajn en ĉi paĝo (kaskada protekto)',
 'protect-cantedit'            => 'Vi ne povas ŝanĝi la protekt-nivelojn de ĉi tiu paĝo, ĉar vi ne rajtas redakti ĝin.',
+'protect-othertime'           => 'Alia tempo:',
+'protect-othertime-op'        => 'alia tempo',
+'protect-otherreason'         => 'Alia/plua kialo:',
+'protect-otherreason-op'      => 'alia/plua kialo',
+'protect-dropdown'            => '*Oftaj kialoj por protektado
+** Tro da vanadlismo
+** Tro da spamado
+** Malutila redakto-milito
+** Paĝo kun multo da trafiko',
 'restriction-type'            => 'Permeso:',
 'restriction-level'           => 'Nivelo de limigo:',
 'minimum-size'                => 'Minimuma pezo',

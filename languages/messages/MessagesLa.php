@@ -300,7 +300,7 @@ $messages = array(
 'deletethispage'    => 'Delere hanc paginam',
 'undelete_short'    => 'Restituere {{PLURAL:$1|unam emendationem|$1 emendationes}}',
 'protect'           => 'Protegere',
-'protect_change'    => 'protectionem mutare',
+'protect_change'    => 'mutare',
 'protectthispage'   => 'Protegere hanc paginam',
 'unprotect'         => 'Deprotegere',
 'unprotectthispage' => 'Deprotegere hanc paginam',
@@ -401,7 +401,7 @@ Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:spec
 # General errors
 'error'                => 'Erratum',
 'databaseerror'        => 'Erratum in basi datorum',
-'noconnect'            => 'Nos paenitet! {{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest. <br />
+'noconnect'            => '{{SITENAME}} per aerumnas technicas agit, et server basis datorum invenire non potest.<br />
 $1',
 'cachederror'          => 'Quae sequuntur sunt ex exemplo conditivo paginae quaesitae, fortasse non recente.',
 'readonly'             => 'Basis datorum obstructa',
@@ -455,14 +455,15 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'logout'                     => 'Conventum concludere',
 'userlogout'                 => 'Conventum concludere',
 'notloggedin'                => 'Conventum non apertum est',
-'nologin'                    => 'Num rationem non habes? $1!',
+'nologin'                    => 'Num rationem non habes? $1.',
 'nologinlink'                => 'Eam crea',
 'createaccount'              => 'Rationem novam creare',
 'gotaccount'                 => 'Habesne iam rationem? $1.',
 'gotaccountlink'             => 'Conventum aperi',
 'createaccountmail'          => 'ab inscriptione electronica',
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
-'userexists'                 => 'Nomen usoris quod selegisti iam est. Nomen usoris alium selige.',
+'userexists'                 => 'Nomen usoris quod selegisti iam est.
+Nomen usoris alium selige.',
 'youremail'                  => 'Inscriptio tua electronica:',
 'username'                   => 'Nomen usoris:',
 'uid'                        => 'ID usoris:',
@@ -477,7 +478,8 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'prefs-help-realname'        => 'Nomen verum non necesse est.
 Si vis id dare, opera tua tibi ascribentur.',
 'loginerror'                 => 'Error factus est in aperiendo conventum',
-'prefs-help-email'           => 'Inscriptio electronica non necesse est, sed sinit aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
+'prefs-help-email'           => 'Inscriptio electronica non necesse est, sed sinit tesseram novam tibi mitti si eae oblitus es.
+Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis, nisi te reveles.',
 'prefs-help-email-required'  => 'Inscriptio electronica necesse est.',
 'nocookiesnew'               => "Ratio usoris creata est, sed conventum non apertum est. {{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conventum aperi cum nomine usoris tesseraque tua nova.",
 'nocookieslogin'             => "{{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conare denuo.",
@@ -500,7 +502,8 @@ Conventum aperias et statim tesseram tuam mutes.
 Si non ipse hanc petitionem fecisti, aut si tesseram tuam
 meministi et etiam nolis eam mutare, potes hunc nuntium
 ignorare, et tessera seni uti continuare.',
-'acct_creation_throttle_hit' => 'Nos paenitet, etiam rationes $1 creavisti. Plurimas non tibi licet creare.',
+'acct_creation_throttle_hit' => 'Iam rationes $1 creavisti.
+Plurimas non tibi licet creare.',
 'emailauthenticated'         => 'Tua inscriptio electronica recognita est $1.',
 'accountcreated'             => 'Ratio creata',
 'accountcreatedtext'         => 'Ratio pro usore $1 creata est.',
@@ -955,8 +958,8 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'nolinkstoimage'            => 'Nullae paginae ad hunc fasciculum nectunt.',
 'morelinkstoimage'          => 'Videre [[Special:WhatLinksHere/$1|plures nexus]] ad hunc fasciculum.',
 'redirectstofile'           => '{{PLURAL:$1|Fasciculus sequens ad hunc fasciculum redirigit:|Hae $1 fasciculi sequentes ad hunc fasciculum redirigunt:}}',
-'noimage'                   => 'Fasciculus huius nominis non est. $1 potes.',
-'noimage-linktext'          => 'Fasciculum huius nominis imponere',
+'noimage'                   => 'Fasciculus huius nominis non est, sed $1 potes.',
+'noimage-linktext'          => 'fasciculum imponere',
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
 
 # File reversion
@@ -1075,6 +1078,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'protectedtitles'         => 'Tituli protecti',
 'protectedtitlestext'     => 'Hi tituli protecti sunt ne creentur paginae',
 'listusers'               => 'Usores',
+'listusers-editsonly'     => 'Monstrare solum usores qui recensuerunt',
 'newpages'                => 'Paginae novae',
 'newpages-username'       => 'Nomen usoris:',
 'ancientpages'            => 'Paginae veterrimae',
@@ -1095,7 +1099,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'log'                  => 'Acta',
 'all-logs-page'        => 'Acta omnia',
 'alllogstext'          => 'Ostentantur omnia acta {{grammar:genitive|{{SITENAME}}}}.
-Adspectum graciliorem potes facere modum indicum, nomen usoris, vel titulum paginae seligendo.',
+Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras maiusculas minusculasque), vel titulum paginae (cave etiam litteras maiusculas minusculasque) seligendo.',
 'log-title-wildcard'   => 'Quaerere titulos qui incipiunt litteris',
 
 # Special:AllPages
@@ -1136,7 +1140,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
 'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
-Inscriptio electronica quae in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi respondere poterit.',
+Inscriptio electronica quae in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',
 'noemailtext'     => 'Hic usor inscriptionem electronicam ratam non dedit, aut nuntia ab aliis usoribus non vult.',
@@ -1250,6 +1254,10 @@ ad emendationem proximam ab $2.',
 'protect-summary-cascade'   => 'defluens',
 'protect-expiring'          => 'exit $1',
 'protect-cascade'           => 'Formulas aliasque paginas hac in pagina adhibitas protegere (protectio defluens quasi cataracta)',
+'protect-othertime'         => 'Exitus alius:',
+'protect-othertime-op'      => 'exitus alius',
+'protect-otherreason'       => 'Causa alia vel explicatio:',
+'protect-otherreason-op'    => 'causa alia',
 'restriction-type'          => 'Permissus:',
 'restriction-level'         => 'Gradus cohibitionis:',
 'pagesize'                  => '(octeti)',
@@ -1540,8 +1548,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'deletedrevision' => 'Delevit emendationem $1 veterem',
 
 # Browsing diffs
-'previousdiff' => '← Dissimilitudo superior',
-'nextdiff'     => 'Dissimilitudo proxima →',
+'previousdiff' => '← Dissimilitudo senior',
+'nextdiff'     => 'Dissimilitudo novior →',
 
 # Media information
 'imagemaxsize'    => 'Terminare imagines in paginis imaginum ad:',
@@ -1575,7 +1583,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'confirmemail_text'        => '{{SITENAME}} te postulat inscriptionem tuam electronicam adfirmare priusquam proprietatibus litterarum electronicarum fruaris. Imprime botonem subter ut nuntium adfirmationis tibi mittatur. Nuntio nexus inerit quod est scribendus in tuo navigatro interretiali ut validum adfirmes tuam inscriptionem electronicam.',
 'confirmemail_send'        => 'Mittere codicem adfirmationis',
 'confirmemail_sent'        => 'Missae sunt litterae electronicae adfirmationis.',
-'confirmemail_sendfailed'  => 'Litteras electronicas adfirmationis non potuimus mittere. Inspice inscriptionem tuam electronicam ut errores invenias.
+'confirmemail_sendfailed'  => 'Litteras electronicas adfirmationis non potuimus mittere.
+Inspice inscriptionem tuam electronicam ut litteras prohibitas invenias.
 
 Nuntius reddidit: $1',
 'confirmemail_invalid'     => 'Codex adfirmationis invalidus. Fortasse id exitum est.',
@@ -1605,7 +1614,7 @@ Hic codex adfirmationis exibit $4.',
 'trackbackremove' => ' ([$1 Delere])',
 
 # Delete conflict
-'deletedwhileediting' => 'Caveat censor: Haec pagina deleta est postquam inceperis eam recensere!',
+'deletedwhileediting' => "'''Monitio:''' Haec pagina deleta est postquam inceperis eam recensere!",
 'confirmrecreate'     => "Usor [[User:$1|$1]] ([[User talk:$1|disputatio]]) delevit hanc paginam postquam eam emendare inceperis cum ratione:
 : ''$2''
 Quaesumus, adfirma ut iterum hanc paginam crees.",

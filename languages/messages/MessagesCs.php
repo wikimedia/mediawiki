@@ -483,7 +483,7 @@ $messages = array(
 'deletethispage'    => 'Smazat stránku',
 'undelete_short'    => 'Obnovit $1 {{PLURAL:$1|verzi|verze|verzí}}',
 'protect'           => 'Zamknout',
-'protect_change'    => 'změnit zámek',
+'protect_change'    => 'změnit',
 'protectthispage'   => 'Zamknout stránku',
 'unprotect'         => 'Odemknout',
 'unprotectthispage' => 'Odemknout stránku',
@@ -1661,6 +1661,7 @@ V současné době je zde asi '''$6''' {{PLURAL:$6|aktivní uživatelský účet
 'protectedtitlestext'     => 'Následující názvy jsou zamčeny a nelze na nich zakládat stránky',
 'protectedtitlesempty'    => 'S těmito parametry nejsou zamčeny žádné názvy.',
 'listusers'               => 'Uživatelé',
+'listusers-editsonly'     => 'Zobrazit pouze uživatele s editacemi',
 'newpages'                => 'Nejnovější stránky',
 'newpages-username'       => 'Uživatelské jméno:',
 'ancientpages'            => 'Nejdéle needitované stránky',
@@ -1906,6 +1907,15 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-expiring'            => 'vyprší $1 (UTC)',
 'protect-cascade'             => 'Kaskádní zámek - zamkne všechny stránky vložené do této stránky.',
 'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
+'protect-othertime'           => 'Jiný čas vypršení:',
+'protect-othertime-op'        => 'jiný čas',
+'protect-otherreason'         => 'Jiný nebo další důvod:',
+'protect-otherreason-op'      => 'jiný/další důvod',
+'protect-dropdown'            => '*Obvyklé důvody zamčení
+** Silný vandalismu
+** Vkládání reklamních externích odkazů
+** Editační válka
+** Velice často používaná stránka',
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',

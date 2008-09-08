@@ -171,7 +171,7 @@ $messages = array(
 'deletethispage'    => 'Syte lösche',
 'undelete_short'    => '{{PLURAL:$1|1 Version|$1 Versione}} widerherstelle',
 'protect'           => 'schütze',
-'protect_change'    => 'Schutz andara',
+'protect_change'    => 'andara',
 'protectthispage'   => 'Artikel schütze',
 'unprotect'         => 'nümm schütze',
 'unprotectthispage' => 'Schutz ufhebe',
@@ -328,14 +328,15 @@ Vergis nid, dyni Ystelligen aazpasse.',
 'logout'                     => 'Abmälde',
 'userlogout'                 => 'Abmälde',
 'notloggedin'                => 'Nit aagmäldet',
-'nologin'                    => 'No chei Benutzerchonto? $1',
+'nologin'                    => 'No chei Benutzerchonto? $1.',
 'nologinlink'                => '»Chonto aaleege«',
 'createaccount'              => 'Nöis Benutzerkonto aalege',
 'gotaccount'                 => 'Du häsch scho a Chonto? $1',
 'gotaccountlink'             => '»Login für beryts aagmeldete Benutzer«',
 'createaccountmail'          => 'yber eMail',
 'badretype'                  => 'Di beidi Passwörter stimme nit yberi.',
-'userexists'                 => 'Dä Benutzername git’s scho. Bitte lis en anderen uus.',
+'userexists'                 => 'Dä Benutzername git’s scho.
+Bitte lis en anderen uus.',
 'youremail'                  => 'Ihri E-Bost-Adräss**',
 'username'                   => 'Benutzernome:',
 'yourrealname'               => 'Ihre Name*',
@@ -375,13 +376,15 @@ Bitte meld dich domit ô, wenns bekumme hesch.',
 
 Bevor das wyteri Mails yber d {{SITENAME}}-Mailfunktion a die Adrässe gschickt wärde, muesch du d Instruktionen i däm Mail befolge, für z bestätige, das es würklech dys isch.',
 'mailerror'                  => 'Fähler bim Sende vun de Mail: $1',
-'acct_creation_throttle_hit' => 'Duet mr leid, so hän scho $1 Benutzer. Si chönne cheini meh aalege.',
+'acct_creation_throttle_hit' => 'Si hand bereits $1 Benutzerkontos agleit.
+Si chönne cheini meh aalege.',
 'emailauthenticated'         => 'Di E-Bost-Adräss isch am $1 bschtätigt worde.',
 'emailnotauthenticated'      => 'Dyni e-Mail-Adrässen isch no nid bestätiget. Drum göh di erwytereten e-Mail-Funktione no nid.
 Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasch ou e nöie söttige Link aafordere:',
 'noemailprefs'               => '<strong>Du hesch kei E-Mail-Adrässen aaggä</strong>, drum sy di folgende Funktione nid müglech.',
 'emailconfirmlink'           => 'E-Bost-Adräss bschtätige',
-'invalidemailaddress'        => 'Diä E-Mail-Adress isch nit akzeptiert worre, wil s ä ugültigs Format ghet het. Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
+'invalidemailaddress'        => 'Diä E-Mail-Adress isch nit akzeptiert worre, wil s ä ugültigs Format ghet het.
+Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'accountcreated'             => 'De Benutzer isch agleit worre.',
 'accountcreatedtext'         => 'De Benutzer $1 isch aagleit worre.',
 
@@ -678,8 +681,8 @@ S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
 
 # Special:Log
 'log'         => 'Logbüecher',
-'alllogstext' => 'Kombinierti Aasicht vo de Protokoll vom Ufelade, Lösche, Schütze, Spärre un de Adminischtratore.
-Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Sytename iigän.',
+'alllogstext' => "Kombinierti Aasicht vo alle i {{SITENAME}} gführte Protokoll.
+D'Aazeig cha  durch d'Auswahl vo emne Protokoll, emne Benutzername odr emne Sytename iischränkt werde (Gross- u Chlischribig beachte).",
 'logempty'    => 'Kei passendi Yträg gfunde.',
 
 # Special:AllPages
@@ -704,7 +707,8 @@ Si chönnet d Aazeig iischränke wenn Si e Protokoll, e Benutzername odr e Syten
 'mailnologintext' => 'Du muesch [[Special:UserLogin|aagmäldet sy]] und e bestätigeti e-Mail-Adrässen i dynen [[Special:Preferences|Ystelligen]] aaggä ha, für das du öpper anderem es e-Mail chasch schicke.',
 'emailuser'       => 'Es Mail schrybe',
 'emailpage'       => 'e-Mail ane BenutzerIn',
-'emailpagetext'   => 'Öpperem, wo sälber e bestätigeti e-Mail-Adrässe het aaggä, chasch du mit däm Formular es Mail schicke. Im Absänder steit dyni eigeti e-Mail-Adrässe, so das me dir cha antworte.',
+'emailpagetext'   => 'Öpperem, wo sälber e bestätigeti e-Mail-Adrässe het aaggä, chasch du mit däm Formular es Mail schicke.
+Im Absänder steit dyni eigeti e-Mail-Adrässe us dine [[Special:Preferences|Istellige]], so das me dir cha antworte.',
 'usermailererror' => 'Das Mail-Objekt gab einen Fehler zurück:',
 'noemailtitle'    => 'Kei e-Mail-Adrässe',
 'noemailtext'     => 'Dä Benutzer het kei bestätigeti e-Mail-Adrässen aaggä oder wot kei e-Mails vo anderne Benutzer empfa.',
