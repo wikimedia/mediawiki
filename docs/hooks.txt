@@ -1357,9 +1357,7 @@ $user: user object being loaded
 
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
-$inject_html: Any HTML to inject after the "logged in" message.  As of 1.14,
-  this only applies to new account creations, since simple logins are HTTP re-
-  directs.
+$inject_html: Any HTML to inject after the "logged in" message.
 		    
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
