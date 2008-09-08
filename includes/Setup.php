@@ -238,7 +238,7 @@ $wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
 if( !wfIniGetBool( 'session.auto_start' ) )
 	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
 
-if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || !is_null( $wgRequest->getCookie('Token') ) ) ) {
+if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
 	wfIncrStats( 'request_with_session' );
 	wfSetupSession();
 	$wgSessionStarted = true;

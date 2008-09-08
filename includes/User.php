@@ -747,7 +747,7 @@ class User {
 	function loadDefaults( $name = false ) {
 		wfProfileIn( __METHOD__ );
 
-		global $wgRequest;
+		global $wgCookiePrefix;
 
 		$this->mId = 0;
 		$this->mName = $name;
@@ -757,8 +757,8 @@ class User {
 		$this->mEmail = '';
 		$this->mOptions = null; # Defer init
 
-		if ( !is_null( $wgRequest->getCookie('LoggedOut') ) ) {
-			$this->mTouched = wfTimestamp( TS_MW, $wgRequest->getCookie('LoggedOut') );
+		if ( isset( $_COOKIE[$wgCookiePrefix.'LoggedOut'] ) ) {
+			$this->mTouched = wfTimestamp( TS_MW, $_COOKIE[$wgCookiePrefix.'LoggedOut'] );
 		} else {
 			$this->mTouched = '0'; # Allow any pages to be cached
 		}
@@ -789,7 +789,7 @@ class User {
 	 * @return \type{\bool} True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
-		global $wgMemc, $wgRequest;
+		global $wgMemc, $wgCookiePrefix;
 
 		$result = null;
 		wfRunHooks( 'UserLoadFromSession', array( $this, &$result ) );
@@ -804,8 +804,8 @@ class User {
 				$this->loadDefaults();
 				return false;
 			}
-		} else if ( !is_null( $wgRequest->getCookie( 'UserID' ) ) ) {
-			$sId = intval( $wgRequest->getCookie( 'UserID' ) );
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
+			$sId = intval( $_COOKIE["{$wgCookiePrefix}UserID"] );
 			$_SESSION['wsUserID'] = $sId;
 		} else {
 			$this->loadDefaults();
@@ -813,8 +813,8 @@ class User {
 		}
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
-		} else if ( !is_null( $wgRequest->getCookie( 'UserName' ) ) ) {
-			$sName = $wgRequest->getCookie( 'UserName' );
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
+			$sName = $_COOKIE["{$wgCookiePrefix}UserName"];
 			$_SESSION['wsUserName'] = $sName;
 		} else {
 			$this->loadDefaults();
@@ -831,8 +831,8 @@ class User {
 		if ( isset( $_SESSION['wsToken'] ) ) {
 			$passwordCorrect = $_SESSION['wsToken'] == $this->mToken;
 			$from = 'session';
-		} else if ( !is_null( $wgRequest->getCookie( 'Token' ) ) ) {
-			$passwordCorrect = $this->mToken == $wgRequest->getCookie( 'Token' );
+		} else if ( isset( $_COOKIE["{$wgCookiePrefix}Token"] ) ) {
+			$passwordCorrect = $this->mToken == $_COOKIE["{$wgCookiePrefix}Token"];
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
