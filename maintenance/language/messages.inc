@@ -1970,6 +1970,8 @@ $wgMessageStructure = array(
 		'chick.css',
 		'simple.css',
 		'modern.css',
+		'print.css',
+		'handheld.css',
 	),
 	'scripts' => array(
 		'common.js',
