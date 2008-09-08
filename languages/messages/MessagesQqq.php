@@ -245,6 +245,7 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'deletethispage' => '{{Identical|Delete this page}}',
 'undelete_short' => "It is tab label. It's really can be named ''nstab-undelete''.",
 'protect' => 'Name of protect tab displayed for admins',
+'protect_change' => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).',
 'protectthispage' => '{{Identical|Protect this page}}',
 'unprotect' => 'Name of unprotect tab displayed for admins',
 'talkpagelinktext' => 'Used as name of links going to talk page in some places, like in the subheading of [[Special:Mycontributions|Special:Contributions]], in [[Special:RecentChanges]], and in [[Special:Watchlist]].
@@ -471,6 +472,7 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.',
+'prefs-help-email' => 'Shown as explanation text on [[Special:Preferences]].',
 'nocookiesnew' => "This message is displayed when a new account was successfully created, but the browser doesn't accept cookies.",
 'nocookieslogin' => "This message is displayed when someone tried to login, but the browser doesn't accept cookies.",
 'loginsuccesstitle' => 'The title of the page saying that you are logged in. The content of the page is the message "[[MediaWiki:Loginsuccess/{{SUBPAGENAME}}]]".',
@@ -1065,9 +1067,9 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'filehist-thumb' => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-thumbtext' => 'Shown in the file history list of a file desription page.
+'filehist-thumbtext' => 'Shown in the file history list of a file description page.
 
-Example: [[:Image:Addon-icn.png]]',
+Example: [[:Image:Addon-icn.png]] (where?, I cannot see it)',
 'filehist-nothumb' => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
@@ -1236,6 +1238,7 @@ Don\'t translate the "Template:" part!',
 'protectedtitles' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'protectedtitlestext' => 'Shown on top of [[Special:Protectedtitles]]',
 'listusers' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
 'newpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'newpages-username' => '{{Identical|Username}}',
 'ancientpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1417,6 +1420,18 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 
 {{Identical|Expires $1 (UTC)}}',
 'protect-cascade' => 'See [[meta:Protect]] for more information.',
+'protect-othertime' => 'Used on the page protection form as label for the following input field (text)
+{{Identical|Other time}}',
+'protect-othertime-op' => 'Used on the page protection form in the drop down menu
+{{Identical|Other time}}',
+'protect-otherreason' => 'Shown on the page protection form as label for the following input field (text)
+{{Identical|Other/additional reason}}',
+'protect-otherreason-op' => 'Shown on the page protection form in the drop down menu
+{{Identical|Other/additional reason}}',
+'protect-dropdown' => 'Shown on the page protection form as drop down menu for protection reasons.
+
+<tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
+<tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
 'restriction-type' => 'Used on [[Special:ProtectedPages]].',
 'restriction-level' => 'Used on [[Special:ProtectedPages]].',
 

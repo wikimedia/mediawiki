@@ -1576,6 +1576,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'protectedtitlestext'     => 'Les titres suivants sont protégés à la création',
 'protectedtitlesempty'    => 'Aucun titre n’est actuellement protégé avec ces paramètres.',
 'listusers'               => 'Liste des inscrits',
+'listusers-editsonly'     => 'Ne montrer que les utilisateurs ayant au moins une contribution',
 'newpages'                => 'Nouvelles pages',
 'newpages-username'       => 'Utilisateur :',
 'ancientpages'            => 'Articles les moins récemment modifiés',
@@ -1823,6 +1824,15 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-expiring'            => 'expire le $1',
 'protect-cascade'             => 'Protection en cascade - Protège toutes les pages incluses dans celle-ci.',
 'protect-cantedit'            => 'Vous ne pouvez pas changer les niveaux de protection de cette page car vous n’avez pas la permission de la modifier.',
+'protect-othertime'           => 'Autre expiration :',
+'protect-othertime-op'        => 'Autre expiration',
+'protect-otherreason'         => 'Motif supplémentaire ou autre :',
+'protect-otherreason-op'      => 'Motif supplémentaire ou autre',
+'protect-dropdown'            => "*Motifs de protection les plus courants
+** Vandalisme excessif
+** Spam excessif
+** Guerre d'édition
+** Page à fort trafic",
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Niveau de restriction :',
 'minimum-size'                => 'Taille minimum',

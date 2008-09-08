@@ -434,7 +434,7 @@ $messages = array(
 'deletethispage'    => 'Radera denna sida',
 'undelete_short'    => 'Återställ {{PLURAL:$1|en version|$1 versioner}}',
 'protect'           => 'Skrivskydda',
-'protect_change'    => 'ändra skrivskydd',
+'protect_change'    => 'ändra',
 'protectthispage'   => 'Skrivskydda denna sida',
 'unprotect'         => 'Ta bort skrivskydd',
 'unprotectthispage' => 'Ta bort skrivskyddet från den här sidan',
@@ -553,7 +553,7 @@ Den senaste utförda databasfrågan var:
 från funktionen "<tt>$2</tt>".
 MySQL returnerade felen "$3<tt>: $4</tt>".',
 'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". MySQL svarade med felmeddelandet "$3: $4"',
-'noconnect'            => 'Wikin har tekniska problem, och kan inte komma i kontakt med databasservern.<br />
+'noconnect'            => 'Wikin har tekniska problem, och kan inte få kontakt med databasservern.<br />
 $1',
 'nodb'                 => 'Kunde inte välja databasen $1',
 'cachederror'          => 'Detta är en cachad kopia av den efterfrågade sidan. Det är inte säkert att den är aktuell.',
@@ -583,8 +583,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'badarticleerror'      => 'Den åtgärden kan inte utföras på den här sidan.',
 'cannotdelete'         => 'Det gick inte att radera sidan eller bilden, kanske för att någon annan redan raderat den.',
 'badtitle'             => 'Felaktig titel',
-'badtitletext'         => 'Den sidtiteln är antingen inte tillåten, sidan är tom, eller så är sidan
-felaktigt länkad till.
+'badtitletext'         => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'perfdisabled'         => 'Denna funktion har stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
@@ -1642,6 +1641,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'protectedtitlestext'     => 'Följande sidtitlar är skyddade från att skapas',
 'protectedtitlesempty'    => 'Just nu finns inga skyddade sidtitlar med de parametrarna.',
 'listusers'               => 'Användarlista',
+'listusers-editsonly'     => 'Visa endast användare som redigerat',
 'newpages'                => 'Nya sidor',
 'newpages-username'       => 'Användare:',
 'ancientpages'            => 'Äldsta sidorna',
@@ -1890,6 +1890,15 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'protect-expiring'            => 'upphör den $1 (UTC)',
 'protect-cascade'             => 'Skydda sidor som är inkluderade i den här sidan (kaskaderande skydd)',
 'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
+'protect-othertime'           => 'Annan tidsperiod:',
+'protect-othertime-op'        => 'annan tidsperiod',
+'protect-otherreason'         => 'Annan/ytterligare anledning:',
+'protect-otherreason-op'      => 'Annan anledning',
+'protect-dropdown'            => '*Vanliga anledningar för skrivskydd
+** Upprepad vandalisering
+** Upprepad spam
+** Redigeringskrig
+** Sida med många besökare',
 'restriction-type'            => 'Typ av skydd:',
 'restriction-level'           => 'Skyddsnivå:',
 'minimum-size'                => 'Minsta storlek',
@@ -2902,7 +2911,7 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 # External image whitelist
 'external_image_whitelist' => '  #Lämna den här raden precis som den är<pre>
 #Skriv fragment av reguljära uttryck (bara delen som ska vara mellan //) här nedan
-#Dessa kommer att jämföras med URL för externa (hotlinkade) bilder
+#Dessa kommer att jämföras med URL:er för externa (hotlinkade) bilder
 #De som matchar kommer att visas som bilder, annars visas bara en länk till bilden
 #Rader som börjar med # behandlas som kommentarer
 

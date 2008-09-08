@@ -546,7 +546,7 @@ $messages = array(
 'deletethispage'    => 'احذف هذه الصفحة',
 'undelete_short'    => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلان|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'protect'           => 'حماية',
-'protect_change'    => 'تغيير الحماية',
+'protect_change'    => 'تغيير',
 'protectthispage'   => 'احم هذه الصفحة',
 'unprotect'         => 'إزالة الحماية',
 'unprotectthispage' => 'أزل حماية هذه الصفحة',
@@ -1817,6 +1817,7 @@ PICT # متنوع
 'protectedtitlestext'     => 'العناوين التالية محمية ضد الإنشاء',
 'protectedtitlesempty'    => 'لا توجد عناوين محمية حاليا بهذه المحددات.',
 'listusers'               => 'قائمة الأعضاء',
+'listusers-editsonly'     => 'عرض المستخدمين الذين قاموا بتعديلات فقط',
 'newpages'                => 'صفحات جديدة',
 'newpages-username'       => 'اسم المستخدم:',
 'ancientpages'            => 'أقدم الصفحات',
@@ -2076,6 +2077,15 @@ $NEWPAGE
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
 'protect-cascade'             => 'احم الصفحات المضمنة في هذه الصفحة (حماية مضمنة)',
 'protect-cantedit'            => 'لا يمكنك تغيير مستويات الحماية لهذه الصفحة، لأنك لا تمتلك الصلاحية لتعديلها.',
+'protect-othertime'           => 'وقت آخر:',
+'protect-othertime-op'        => 'وقت آخر',
+'protect-otherreason'         => 'سبب آخر/إضافي:',
+'protect-otherreason-op'      => 'سبب آخر/إضافي',
+'protect-dropdown'            => '*أسباب الحماية الشائعة
+** تخريب شديد
+** سبام شديد
+** حرب تحرير معرقلة للعمل المنتج
+** صفحة زوارها كثيرون',
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',

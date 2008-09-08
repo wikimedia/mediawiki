@@ -441,7 +441,7 @@ Byen gade ke ou byen ekri non ou, oubyen kreye yon nouvo kont.',
 'wrongpassword'              => 'Mopas an pa korèk. Eseye ankò.',
 'wrongpasswordempty'         => 'Ou pa antre mopas ou an. Eseye ankò.',
 'passwordtooshort'           => 'Mopas ou an two kout. Li dwèt kontni $1 karaktè{{PLURAL:$1||}} oubyen plis epitou li dwèt diferan de non itilizatè ou an.',
-'mailmypassword'             => 'Voye mwen yon nouvo mopas',
+'mailmypassword'             => 'Voye mwen yon nouvo mopas pa imèl',
 'passwordremindertitle'      => 'Nouvo mopas tanporè, li pap dire (yon kout tan) pou pajwèb sa a {{SITENAME}}',
 'passwordremindertext'       => 'Kèk moun (ou menm?) ki genyen adrès IP sa a $1 mande ke nou voye ou yon nouvo mopas pou {{SITENAME}} ($4).
 Mopas itilizatè « $2 » se kounye a « $3 ».
@@ -522,13 +522,15 @@ Si ou klike sou \"Pibliye\", edisyon ou an pap genyen yon tit.",
 'blockedtitle'                     => 'itilizatè a bloke.',
 'blockedtext'                      => "<big>'''Kont itilizatè ou an (oubyen adrès IP ou an) bloke.'''</big>
 
-Blokaj an fèt pa $1 pou rezon sa : ''$2''.
+Blokaj an fèt pa $1.
+Rezon li bay se : ''$2''.
 
-Ou mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou diskite plis. Ou pa kapab itilize fonksyon  « Voye yon imèl ba itilizatè sa a » eksepte si ou mete yon adrès imèl nan paj  [[Special:Preferences|preferans ou an]]. Adrès IP ou an kounye a se $3 e idantifyan blokaj ou an se #$5. Mete souple referans adrès sa a nan demann ou yo.
 
 * Komansman blokaj an : $8
 * Dat pou blokaj an fini : $6
-* Kont bloke a : $7.",
+* Kont bloke a : $7.
+
+Ou mèt kontakte $1 oubyen yon lòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou diskite plis. Ou pa kapab itilize fonksyon  « Voye yon imèl ba itilizatè sa a » eksepte si ou mete yon adrès imèl nan paj  [[Special:Preferences|preferans ou an]]. Adrès IP ou an kounye a se $3 e idantifyan blokaj ou an se #$5. Mete souple referans adrès sa a nan demann ou yo.",
 'autoblockedtext'                  => 'Adrès IP ou an bloke otomatikman pa yon lòt itilizatè, li menm men bloke pa l pa $1.
 
 Rezon bagay sa yo :
@@ -749,8 +751,8 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'linkstoimage'              => '{{PLURAL:$1|Paj ki ap swiv an|Paj yo ki ap swiv}} genyen imaj sa a :',
 'nolinkstoimage'            => 'Pyès paj pa genyen imaj sa a.',
 'sharedupload'              => 'Fichye sa a pataje e li kapab itilize pa lòt pwojè yo.',
-'noimage'                   => 'Pa genyen pyès fichye ki genyen non sa a, ou mèt $1.',
-'noimage-linktext'          => 'chaje li',
+'noimage'                   => 'Pa genyen pyès fichye ki genyen non sa a, men ou mèt $1.',
+'noimage-linktext'          => 'chaje yonn',
 'uploadnewversion-linktext' => 'Kopye yon nouvo vèsyon pou fichye sa a',
 
 # MIME search
@@ -847,7 +849,7 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'addedwatchtext'       => 'Paj « <nowiki>$1</nowiki> » an byen ajoute nan [[Special:Watchlist|lis swivi ou an]].
 Pwochen modifikasyon nan paj sa a ke make na lis swivi ou an, paj an ke parèt <b>fonse </b> nan [[Special:RecentChanges|chanjman ki fèk fèt]] pou ou kapab wè yo pli fasilman.',
 'removedwatch'         => 'Retire nan lis swivi',
-'removedwatchtext'     => 'Paj « [[:$1]] » byen retire nan lis swivi ou an.',
+'removedwatchtext'     => 'Paj "[[:$1]]" byen retire nan [[Special:Watchlist|lis swivi ou an]].',
 'watch'                => 'Swiv',
 'watchthispage'        => 'Swiv paj sa a',
 'unwatch'              => 'Pa swiv ankò',
@@ -917,7 +919,7 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 
 # What links here
 'whatlinkshere'       => 'Paj ki lye nan paj sa a',
-'whatlinkshere-title' => 'Paj ki genyen lyen ki ap mennen nan $1',
+'whatlinkshere-title' => 'Paj ki genyen lyen ki ap mennen nan "$1"',
 'linkshere'           => 'Paj yo ki anba ap mene nan <b>[[:$1]]</b> :',
 'nolinkshere'         => 'Pyès paj genyen lyen pou paj sa a <b>[[:$1]]</b>.',
 'isredirect'          => 'Paj redireksyon',
@@ -929,7 +931,7 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 # Block/unblock
 'blockip'       => 'Bloke yon adrès IP oubyen yon itilizatè',
 'ipboptions'    => '2 zè:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'Lis itilizatè yo ki bloke',
+'ipblocklist'   => 'Lis IP itilizatè yo ki bloke',
 'blocklink'     => 'Bloke',
 'unblocklink'   => 'Debloke',
 'contribslink'  => 'Kontribisyon yo',
@@ -941,11 +943,11 @@ Men reglaj pou paj <strong>$1</strong> an kounye a:',
 'movepagetext'     => "Itilize fòmilè a pou renonmen yon paj, li ap deplase tout istorik li nan nouvo non an.
 Tit anvan ke yon paj redireksyon pou ale nan nouvo paj an. Lyen vè tit anvan an pe ke chanje;
 souple, gade byen ke deplasman sa a pa kreye yon redireksyon de fwa.
-Ou dwèt asire ou ke lyen yon korèk, ke yo genyen yon bon destinasyon sou yo.
+Ou dwèt asire ou ke lyen yo korèk, ke yo genyen yon bon destinasyon sou yo nan [[Special:DoubleRedirects|de fwa]] oubyen [[Special:BrokenRedirects|redireksyon ki pa bon]]..
 
 Yon paj pe ke deplase si nouvo paj an egziste deja, eksepte si paj sa vid ou byen ke li menm se yon lèot redireksyon (fo pa li genyen yon istorik na li tou).
 
-'''Atansyon !'''
+'''Pòte Atansyon !'''
 Sa ou ap fè a kapab pwovoke yon gwo chanjman nan òganizasyon lòt paj yo.
 Byen gade ke ou mezire tout konsekans aksyon ke ou ap fè a.",
 'movepagetalktext' => 'Paj diskisyon ki asosye, si li egziste, ke otomatikman renonmen tou, <b>eksepte: </b>
@@ -1026,7 +1028,7 @@ Nan pozisyon sa a, ou ke dwèt renonmen oubyen fizyone ou menm menm paj an si ou
 
 # Browsing diffs
 'previousdiff' => '← Diferans anvan',
-'nextdiff'     => 'Diferans swivan →',
+'nextdiff'     => 'Diferans apre →',
 
 # Media information
 'file-info-size'       => '($1 × $2 piksèl, lajè fichye a : $3, tip MIME li ye : $4)',

@@ -202,7 +202,7 @@ $messages = array(
 'deletethispage'    => 'Borrar esta páxina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|unha edición|$1 edicións}}',
 'protect'           => 'Protexer',
-'protect_change'    => 'mudar a protección',
+'protect_change'    => 'cambiar',
 'protectthispage'   => 'Protexer esta páxina',
 'unprotect'         => 'desprotexer',
 'unprotectthispage' => 'Desprotexer esta páxina',
@@ -1427,6 +1427,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'protectedtitlestext'     => 'Os seguintes títulos están protexidos da creación',
 'protectedtitlesempty'    => 'Actualmente non están protexidos títulos con eses parámetros.',
 'listusers'               => 'Listaxe de usuarios',
+'listusers-editsonly'     => 'Amosar só os usuarios con edicións',
 'newpages'                => 'Páxinas novas',
 'newpages-username'       => 'Nome de usuario:',
 'ancientpages'            => 'Artigos máis antigos',
@@ -1679,6 +1680,15 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-expiring'            => 'remata $1 (UTC)',
 'protect-cascade'             => 'Protexer as páxinas incluídas nesta (protección en serie)',
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten permiso para editala.',
+'protect-othertime'           => 'Outro período:',
+'protect-othertime-op'        => 'outro período',
+'protect-otherreason'         => 'Outro/adicional:',
+'protect-otherreason-op'      => 'outro/adicional',
+'protect-dropdown'            => '*Motivos frecuentes para a protección
+** Vandalismo excesivo
+** Publicidade excesiva
+** Guerra de edicións
+** Páxina moi visitada',
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',

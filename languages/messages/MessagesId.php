@@ -448,7 +448,7 @@ $messages = array(
 'deletethispage'    => 'Hapus halaman ini',
 'undelete_short'    => 'Batal hapus $1 {{PLURAL:$1|suntingan|suntingan}}',
 'protect'           => 'Lindungi',
-'protect_change'    => 'ubah perlindungan',
+'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi halaman ini',
 'unprotect'         => 'Perlindungan',
 'unprotectthispage' => 'Ubah perlindungan halaman ini',
@@ -1594,6 +1594,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'protectedtitlestext'     => 'Judul berikut ini dilindungi dari pembuatan',
 'protectedtitlesempty'    => 'Tidak ada judul yang dilindungi.',
 'listusers'               => 'Daftar pengguna',
+'listusers-editsonly'     => 'Tampilkan hanya pengguna yang memiliki kontribusi',
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Artikel lama',
@@ -1839,6 +1840,15 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun)',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
+'protect-othertime'           => 'Waktu lain:',
+'protect-othertime-op'        => 'waktu lain',
+'protect-otherreason'         => 'Alasan lain/tambahan:',
+'protect-otherreason-op'      => 'alasan lain/tambahan',
+'protect-dropdown'            => '*Alasan umum perlindungan
+** Vandalisme berulang
+** Spam berulang
+** Perang suntingan
+** Halaman dengan lalu-lintas tinggi',
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',
@@ -2541,10 +2551,11 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-lightsource-255' => 'Sumber cahaya lain',
 
 # Flash modes
-'exif-flash-fired-0'  => 'Lampu kilat tidak menyala',
-'exif-flash-fired-1'  => 'Lampu kilat menyala',
-'exif-flash-return-3' => 'lampu strobo balik terdeteksi',
-'exif-flash-mode-3'   => 'mode otomatis',
+'exif-flash-fired-0'    => 'Lampu kilat tidak menyala',
+'exif-flash-fired-1'    => 'Lampu kilat menyala',
+'exif-flash-return-3'   => 'lampu strobo balik terdeteksi',
+'exif-flash-mode-3'     => 'mode otomatis',
+'exif-flash-function-1' => 'Tidak ada fungsi lampu kilat',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
 
