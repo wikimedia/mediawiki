@@ -115,6 +115,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 2889) MediaWiki:Print.css applies to the printable version
 * Category counts (e.g. from {{PAGESINCATEGORY:}}) should be more accurate for
   small categories
+* After logging in, automatically redirect to wherever you logged in from
 
 === Bug fixes in 1.14 ===
 
