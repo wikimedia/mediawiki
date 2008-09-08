@@ -305,6 +305,11 @@ class Linker {
 	}
 
 	private function linkText( $target ) {
+		# We might be passed a non-Title by make*LinkObj().  Fail gracefully.
+		if( !$target instanceof Title ) {
+			return '';
+		}
+
 		# If the target is just a fragment, with no title, we return the frag-
 		# ment text.  Otherwise, we return the title text itself.
 		if( $target->getPrefixedText() === '' and $target->getFragment() !== '' ) {
@@ -426,7 +431,7 @@ class Linker {
 	 *                      the end of the link.
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
-	function makeLinkObj( Title $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
+	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
 		wfProfileIn( __METHOD__ );
 
@@ -458,7 +463,7 @@ class Linker {
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
 	 * @return the a-element
 	 */
-	function makeKnownLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
@@ -490,7 +495,7 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 */
-	function makeBrokenLinkObj( Title $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+	function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfProfileIn( __METHOD__ );
 
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
