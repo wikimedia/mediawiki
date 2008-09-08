@@ -182,7 +182,7 @@ class LoginForm {
 			$wgUser->setCookies();
 			wfRunHooks( 'AddNewAccount', array( $wgUser ) );
 			if( $this->hasSessionCookie() ) {
-				return $this->successfulLogin( 'welcomecreation', $wgUser->getName(), false );
+				return $this->successfulCreation();
 			} else {
 				return $this->cookieRedirectCheck( 'new' );
 			}
@@ -532,7 +532,7 @@ class LoginForm {
 					global $wgLang, $wgRequest;
 					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 					$wgLang = Language::factory( $code );
-					return $this->successfulLogin( 'loginsuccess', $wgUser->getName() );
+					return $this->successfulLogin();
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
 				}
@@ -669,29 +669,53 @@ class LoginForm {
 
 
 	/**
-	 * @param string $msg Message key that will be shown on success
-	 * @param $params String: parameters for the above message
-	 * @param bool $auto Toggle auto-redirect to main page; default true
+	 * Run any hooks registered for logins, then HTTP redirect to
+	 * $this->mReturnTo (or Main Page if that's undefined).  Formerly we had a
+	 * nice message here, but that's really not as useful as just being sent to
+	 * wherever you logged in from.  It should be clear that the action was
+	 * successful, given the lack of error messages plus the appearance of your
+	 * name in the upper right.
+	 *
 	 * @private
 	 */
-	function successfulLogin( $msg, $params, $auto = true ) {
-		global $wgUser;
-		global $wgOut;
+	function successfulLogin() {
+		global $wgUser, $wgOut;
 
-		# Run any hooks; ignore results
+		# Run any hooks; ignore injected HTML since we just redirect
+		$injected_html = '';
+		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
+		$titleObj = Title::newFromText( $this->mReturnTo );
+		if ( !$titleObj instanceof Title ) {
+			$titleObj = Title::newMainPage();
+		}
+
+		$wgOut->redirect( $titleObj->getFullURL() );
+	}
+
+	/**
+	 * Run any hooks registered for logins, then display a message welcoming
+	 * the user.
+	 *
+	 * @private
+	 */
+	function successfulCreation() {
+		global $wgUser, $wgOut;
+
+		# Run any hooks; display injected HTML
 		$injected_html = '';
 		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
-		$wgOut->addWikiMsgArray( $msg, $params );
+		$wgOut->addWikiMsg( 'welcomecreation', $wgUser->getName() );
 		$wgOut->addHtml( $injected_html );
+
 		if ( !empty( $this->mReturnTo ) ) {
-			$wgOut->returnToMain( $auto, $this->mReturnTo );
+			$wgOut->returnToMain( null, $this->mReturnTo );
 		} else {
-			$wgOut->returnToMain( $auto );
+			$wgOut->returnToMain( null );
 		}
 	}
 
@@ -901,7 +925,7 @@ class LoginForm {
 				return $this->mainLoginForm( wfMsg( 'error' ) );
 			}
 		} else {
-			return $this->successfulLogin( 'loginsuccess', $wgUser->getName() );
+			return $this->successfulLogin();
 		}
 	}
 

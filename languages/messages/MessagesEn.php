@@ -928,7 +928,6 @@ You have cookies disabled.
 Please enable them and try again.',
 'noname'                     => 'You have not specified a valid user name.',
 'loginsuccesstitle'          => 'Login successful',
-'loginsuccess'               => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'There is no user by the name "$1".
 Check your spelling, or create a new account.',
 'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".

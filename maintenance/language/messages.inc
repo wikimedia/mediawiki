@@ -405,7 +405,6 @@ $wgMessageStructure = array(
 		'nocookieslogin',
 		'noname',
 		'loginsuccesstitle',
-		'loginsuccess',
 		'nosuchuser',
 		'nosuchusershort',
 		'nouserspecified',
