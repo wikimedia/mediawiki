@@ -618,8 +618,8 @@ function ts_resortTable(lnk) {
 		sortfn = ts_sort_currency;
 	// We allow a trailing percent sign, which we just strip.  This works fine
 	// if percents and regular numbers aren't being mixed.
-	else if (itm.match(/^[+-]?[\d,]+(\.[\d,]*)?([eE][+-]?[\d,]+)?\%?$/) ||
-	itm.match(/^[+-]?\.[\d,]+([eE][+-]?[\d,]+)?\%?$/) ||
+	else if (itm.match(/^[+-]?\d[\d,]*(\.[\d,]*)?([eE][+-]?\d[\d,]*)?\%?$/) ||
+	itm.match(/^[+-]?\.\d[\d,]*([eE][+-]?\d[\d,]*)?\%?$/) ||
 	itm.match(/^0x[\da-f]+$/i))
 		sortfn = ts_sort_numeric;
 
