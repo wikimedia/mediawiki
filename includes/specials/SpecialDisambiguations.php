@@ -87,10 +87,10 @@ class DisambiguationsPage extends PageQueryPage {
 		$title = Title::newFromId( $result->value );
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
-		$from = $skin->makeKnownLinkObj( $title, '' );
-		$edit = $skin->makeKnownLinkObj( $title, "(".wfMsgHtml("qbedit").")" , 'redirect=no&action=edit' );
+		$from = $skin->link( $title );
+		$edit = $skin->link( $title, "(".wfMsgHtml("qbedit").")", array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
 		$arr  = $wgContLang->getArrow();
-		$to   = $skin->makeKnownLinkObj( $dp, '' );
+		$to   = $skin->link( $dp );
 
 		return "$from $edit $arr $to";
 	}
