@@ -212,7 +212,7 @@ class Database {
 	function lastQuery() { return $this->mLastQuery; }
 	
 	/**
-	 * Is the a connection to the database open?
+	 * Is a connection to the database open?
 	 * @return bool
 	 */
 	function isOpen() { return $this->mOpened; }
