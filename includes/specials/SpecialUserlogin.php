@@ -681,16 +681,20 @@ class LoginForm {
 	function successfulLogin() {
 		global $wgUser, $wgOut;
 
-		# Run any hooks; ignore injected HTML since we just redirect
+		# Run any hooks; display injected HTML if any, else redirect
 		$injected_html = '';
 		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
-		$titleObj = Title::newFromText( $this->mReturnTo );
-		if ( !$titleObj instanceof Title ) {
-			$titleObj = Title::newMainPage();
-		}
+		if( $injected_html !== '' ) {
+			$this->displaySuccessfulLogin( 'loginsuccess', $injected_html );
+		} else {
+			$titleObj = Title::newFromText( $this->mReturnTo );
+			if ( !$titleObj instanceof Title ) {
+				$titleObj = Title::newMainPage();
+			}
 
-		$wgOut->redirect( $titleObj->getFullURL() );
+			$wgOut->redirect( $titleObj->getFullURL() );
+		}
 	}
 
 	/**
@@ -706,10 +710,19 @@ class LoginForm {
 		$injected_html = '';
 		wfRunHooks('UserLoginComplete', array(&$wgUser, &$injected_html));
 
+		$this->displaySuccessfulLogin( 'welcomecreation', $injected_html );
+	}
+
+	/**
+	 * Display a "login successful" page.
+	 */
+	private function displaySuccessfulLogin( $msgname, $injected_html ) {
+		global $wgOut;
+
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
-		$wgOut->addWikiMsg( 'welcomecreation', $wgUser->getName() );
+		$wgOut->addWikiMsg( $msgname, $wgUser->getName() );
 		$wgOut->addHtml( $injected_html );
 
 		if ( !empty( $this->mReturnTo ) ) {
