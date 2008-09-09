@@ -237,9 +237,6 @@ $messages = array(
 # Random page
 'randompage' => 'Осраҡлы мәҡәлә',
 
-# Statistics
-'userstatstext' => "Бөтәһе '''$1''' ҡатнашыусы теркәлгән, шуларҙан '''$2''' ($4 %) хәким бурыстарын үтәй.",
-
 # Miscellaneous special pages
 'listusers'         => 'Ҡатнашыусылар исемлеге',
 'newpages-username' => 'Ҡатнашыусы:',

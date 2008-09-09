@@ -1208,20 +1208,9 @@ Isulat (input): contenttype/subtype, alimbawa <tt>image/jpeg</tt>.',
 'randomredirect-nopages' => 'Alang pamanalis direksiun (redirect) king pirinan lagyung (namespace) ini.',
 
 # Statistics
-'statistics'             => 'Deng datos (Statistics)',
-'sitestats'              => 'Datos tungkul king {{SITENAME}}',
-'userstats'              => 'Talagamit statistics',
-'sitestatstext'          => "Maki {{PLURAL:\$1|'''1''' a bulung|'''\$1''' a bulung}} king database. 
-Kayabe la kareti deng bulung \"pamisabi-sabi\", bulung tungkul king {{SITENAME}}, mangalating bulung a \"stub\", at aliwa pang bulung a e maliaring ausan \"content pages\" o bulung a malaman. Liban kareti, mapaliaring ating {{PLURAL:\$2|'''1''' a bulung a|'''\$2''' bulung a}} maliaring ituring a tuneng {{PLURAL:\$2|bulung|bulung}} a malaman o content pages. 
-
-'''\$8''' {{PLURAL:\$8|ya ing simpan a|la ring simpan a}} milulan.
-
-Mekata'''\$3''' {{PLURAL:\$3|de linawe|de linawe}} at mekata'''\$4''' de {{PLURAL:\$4|binayu|binayu}} ing {{SITENAME}} manibat aniang melalang ya iti. 
-King kabilugan, miras ya iti king average a '''\$5''' a pamagbayu o edit balang bulung, at '''\$6''' a pamaglawe balang edit.  
-
-Ing kaba ning [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]  '''\$7''' ya.",
-'userstatstext'          => "Ating {{PLURAL:$1|'''1''' a makarehistrung [[Special:ListUsers|talagamit]]|'''$1''' makarehistrung [[Special:ListUsers|talagamit]]}}, at kareti '''$2''' (o '''$4%''') {{PLURAL:$2|ing|ing}} maki katuliran (rights) a $5.",
-'statistics-mostpopular' => 'Bulung a pekamaralas dang linawe',
+'statistics'              => 'Deng datos (Statistics)',
+'statistics-header-users' => 'Talagamit statistics',
+'statistics-mostpopular'  => 'Bulung a pekamaralas dang linawe',
 
 'disambiguations'      => 'Bulung a pamipalino',
 'disambiguationspage'  => 'Template:pamipalino',

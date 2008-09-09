@@ -690,23 +690,8 @@ fyri at leggja fílur upp.',
 'randomredirect' => 'Tilvildarlig ávísingarsíða',
 
 # Statistics
-'statistics'    => 'Hagtøl',
-'sitestats'     => '{{SITENAME}} síðuhagtøl',
-'userstats'     => 'Brúkarahagtøl',
-'sitestatstext' => "Tilsamans {{PLURAL:$1|'''1''' síða er|'''$1''' síður eru}} í dátugrunninum.
-Hetta umfatar kjaksíður, síður um {{SITENAME}}, heilt stuttar stubbasíður,
-ávísingar og aðrar, sum helst ikki kunnu metast sum innihaldssíður.
-Verða tær tiknar burtur úr, {{PLURAL:$2|er '''1''' síða|eru '''$2''' síður}}, sum kunnu metast sum
-{{PLURAL:$2|innihaldssíða|innihaldssíður}}.
-
-<!--'''$8''' {{PLURAL:$8|file has|files have}} been uploaded.-->
-
-Tilsamans '''$3''' {{PLURAL:$3|síðuskoðan hevur|síðuskoðanir hava}} verið og '''$4''' {{PLURAL:$4|síðubroyting|síðubroytingar}}
-síðani henda wikan varð sett up.
-Tað gevur í miðal '''$5''' broytingar fyri hvørja síðu og '''$6''' skoðanir fyri hvørja broyting.
-
-<!--The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.-->",
-'userstatstext' => "Tilsamans  {{PLURAL:$1|er '''1''' skrásettur [[Special:ListUsers|brúkari]]|eru '''$1''' skrásettir [[Special:ListUsers|brúkarar]]}}. '''$2''' (ella '''$4%''') av hesum {{PLURAL:$2|er umboðsstjóri|eru umboðsstjórar}} (sí $5).",
+'statistics'              => 'Hagtøl',
+'statistics-header-users' => 'Brúkarahagtøl',
 
 'disambiguations'     => 'Síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',

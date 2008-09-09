@@ -226,16 +226,6 @@ $1",
 # Random page
 'randompage' => 'Duilleag thuairmeach',
 
-# Statistics
-'sitestatstext' => "Tha {{PLURAL:\$1|'''1''' duilleag|'''\$1''' duilleagan gu lèir}} anns an stor-dàta, a'cur san àireamh duilleagan-làbhairt, duilleagan mu dheidhinn a'{{SITENAME}} fhèin, duilleagan \"bun\", ath-stiùireidhean, agus feadhainn eile nach eil nan duilleag brìgheil. As aonais sin, tha '''\$2''' duilleagan ann le brìgh.
-
-'''\$8''' {{PLURAL:\$8|fhaidhl|fhaidhle}} a cuir ri.
-
-Tha na duilleagan air an sealladh '''\$3''' {{PLURAL:\$3|uair|uairean}}, agus air an deasaicheadh '''\$4''' {{PLURAL:\$4|uair|uairean}} o'n deach an wiki a shuidheachadh.
-Thig sin ri '''\$5''' deasaicheidhean anns a'mheadhan gach duilleag, agus '''\$6''' seallaidhean gach duilleag.
-
-Tha feadh an [http://www.mediawiki.org/wiki/Manual:Job_queue queue tùrn] na '''\$7'''.",
-
 'doubleredirects' => 'Ath-stiùreidhean dùbailte',
 
 'brokenredirects' => 'Ath-stiùireidhean briste',

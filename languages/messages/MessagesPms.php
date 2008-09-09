@@ -1126,22 +1126,9 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'randomredirect-nopages' => 'A-i é pa gnun-a ridiression ant stë spassi nominal-sì.',
 
 # Statistics
-'statistics'             => 'Statìstiche',
-'sitestats'              => 'Statìstiche dël sit',
-'userstats'              => 'Statìstiche ëd {{SITENAME}}',
-'sitestatstext'          => "A-i é la blëssa ëd {{PLURAL:\$1|na pàgina|'''\$1'''pàgine totaj}} ant la base dat.
-Ës nùmer-sì a ciapa andrinta le pàgine ëd ciaciarada, cole ansima a {{SITENAME}}, artìcoj curt (che ant ël parlé técnich dla wiki as ciamo \"sbòss\"), ardiression, e àutre pàgine ch'a l'é belfé ch'a sio pa dj'artìcoj.
-Gavà coste, a {{PLURAL:\$2|resta na pàgina ch'a l'ha|resto '''\$2''' pàgine ch'a l'han}} tuta l'ària d'esse {{PLURAL:\$2|n'artìcol|dj'artìcoj}} da bon.
-
-'''\$8''' archivi a {{PLURAL:\$8|l'é|son}} stàit carià.
-
-Da che la wiki a l'é duvèrta, i l'oma avù 'n total {{PLURAL:\$3|d'un-a pàgina|ëd '''\$3''' pàgine}} consultà e ëd {{PLURAL:\$4|na modìfica|'''\$4''' modìfiche}} a j'artìcoj.
-Coma valor mojen i l'oma <b>\$5</b> modìfiche për artìcol, e minca artìcol a l'é stait lesù <b>\$6</b> vire për modìfica.
-
-Ant la [http://www.mediawiki.org/wiki/Manual:Job_queue coa] a-i {{PLURAL:\$7|é|son}} '''\$7''' process.",
-'userstatstext'          => "A-i {{PLURAL:$1|é '''1''' |son '''$1'''}} utent registrà, dont
-'''$2''' (visadì ël '''$4%''') a l'{{PLURAL:$2|ha|han}} la qualìfica da $5.",
-'statistics-mostpopular' => "Pàgine ch'a 'ncontro dë pì",
+'statistics'              => 'Statìstiche',
+'statistics-header-users' => 'Statìstiche ëd {{SITENAME}}',
+'statistics-mostpopular'  => "Pàgine ch'a 'ncontro dë pì",
 
 'disambiguations'      => 'Pàgine për la gestion dij sinònim',
 'disambiguationspage'  => 'Template:Gestion dij sinònim',

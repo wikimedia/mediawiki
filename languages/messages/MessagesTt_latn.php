@@ -456,9 +456,8 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'randompage' => 'Berär bit kürü',
 
 # Statistics
-'statistics' => 'Nöfüs',
-'sitestats'  => '{{SITENAME}} nöfüse',
-'userstats'  => 'Qullanuçı nöfüse',
+'statistics'              => 'Nöfüs',
+'statistics-header-users' => 'Qullanuçı nöfüse',
 
 'disambiguations' => 'Saylaqbit tezmäse',
 

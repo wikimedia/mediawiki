@@ -1562,21 +1562,9 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'randomredirect-nopages' => 'Ebben a névtérben nincsenek átirányítások.',
 
 # Statistics
-'statistics'             => 'Statisztikák',
-'sitestats'              => 'Tartalmi statisztikák',
-'userstats'              => 'Szerkesztői statisztikák',
-'sitestatstext'          => "A wikiben jelenleg '''{{PLURAL:$2|egy|$2}}''' szócikk található.
-Ebben nincsenek benne a vitalapok, az átirányítások,
-a közösségi lapok, a csonkok és más olyan lapok, amik nem számítanak igazi szócikkeknek.
-Ezeket is beleszámítva '''{{PLURAL:$1|egy|$1}}''' lapunk van.
-
-Összesen '''{{PLURAL:$8|egy|$8}}''' fájlt töltöttek fel.
-
-Összesen '''{{PLURAL:$3|egy|$3}}''' alkalommal tekintették meg az oldalakat, és '''{{PLURAL:$4|egy|$4}}''' szerkesztés történt a {{SITENAME}} indulása óta, ami oldalanként '''$5''' szerkesztésnek és '''$6''' megtekintésnek számít.
-
-A [http://www.mediawiki.org/wiki/Manual:Job_queue szerver számára sorban álló feladatok] száma '''$7'''.",
-'userstatstext'          => "!Jelenleg '''{{PLURAL:$1|egy|$1}}''' regisztrált szerkesztőnk van; közülük '''{{PLURAL:$6|egy|$6}}''' aktív, valamint '''{{PLURAL:$2|egy|$2}}''' ($4%) $5.",
-'statistics-mostpopular' => 'Legtöbbször megtekintett lapok',
+'statistics'              => 'Statisztikák',
+'statistics-header-users' => 'Szerkesztői statisztikák',
+'statistics-mostpopular'  => 'Legtöbbször megtekintett lapok',
 
 'disambiguations'      => 'Egyértelműsítő lapok',
 'disambiguationspage'  => 'Template:Egyért',

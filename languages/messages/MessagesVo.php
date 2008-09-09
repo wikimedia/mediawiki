@@ -1218,21 +1218,9 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'randomredirect-nopages' => 'Lüodüköms nonik dabinons in nemaspad at.',
 
 # Statistics
-'statistics'             => 'Statits',
-'sitestats'              => 'Statits {{SITENAME}}',
-'userstats'              => 'Gebanastatits',
-'sitestatstext'          => "{{PLURAL:\$1|Dabinon pad '''1'''|Dabinons valodo pads '''\$1'''}} in {{SITENAME}}.
-Atos ninükon i \"bespikapadis\", padis dö Vükiped it, padis go smalikis (\"sidis\"), lüodükömis, e votikis, kels luveratiko no kanons palelogön as pads ninädilabik.
-Atis fakipölo, retons nog {{PLURAL:\$2|pad '''1''', kel luveratiko binon legiko ninädilabik|pads '''\$2''', kels luveratiko binons legiko ninädilabiks}}.
-
-{{PLURAL:\$8|Ragiv '''1''' pelöpükon|Ragivs '''\$8''' pelöpükons}}.
-
-Ejenons valodo {{PLURAL:\$3|padilogam '''1'''|padilogams '''\$3'''}}, e {{PLURAL:\$4|padiredakam '''1'''|padiredakams '''\$4'''}}, sisä vük at pästiton.
-Kludo, zänedo ebinons redakams '''\$5'''  a pad, e logams '''\$6''' a redakam.
-
-Lunot [http://www.mediawiki.org/wiki/Manual:Job_queue vobodapoodkeda] binon '''\$7'''.",
-'userstatstext'          => "Dabinon{{PLURAL:$1| [[Special:ListUsers|geban]] peregistaröl '''1'''|s [[Special:ListUsers|gebans]] peregistaröl '''$1'''}}; '''$2''' (ü '''$4%''') {{PLURAL:$2|binon|binons}} $5.",
-'statistics-mostpopular' => 'Pads suvüno palogöls:',
+'statistics'              => 'Statits',
+'statistics-header-users' => 'Gebanastatits',
+'statistics-mostpopular'  => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
 'disambiguationspage'  => 'Template:Telplänov',

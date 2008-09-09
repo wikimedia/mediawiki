@@ -312,7 +312,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Seidostatistik',
-'sitestats'  => '{{SITENAME}} seidostatistik',
 
 'brokenredirects-edit'   => '(máidjan)',
 'brokenredirects-delete' => '(taíran)',

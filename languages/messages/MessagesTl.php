@@ -423,9 +423,8 @@ upang makapagkarga ng talaksan.',
 'randomredirect' => 'Pagkargang walang-pili',
 
 # Statistics
-'statistics' => 'Mga estadistika',
-'sitestats'  => 'Mga estadistika ng {{SITENAME}}',
-'userstats'  => 'Mga estadistika sa mga manggagamit',
+'statistics'              => 'Mga estadistika',
+'statistics-header-users' => 'Mga estadistika sa mga manggagamit',
 
 'disambiguations' => 'Mga pahina ng paglilinaw',
 

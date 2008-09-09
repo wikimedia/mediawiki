@@ -1392,25 +1392,9 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'randomredirect-nopages' => 'Il non ha redirectiones in iste spatio de nomines.',
 
 # Statistics
-'statistics'             => 'Statisticas',
-'sitestats'              => 'Statisticas de accesso',
-'userstats'              => 'Statisticas de usatores',
-'sitestatstext'          => "Le base de datos contine un total de {{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}.
-Iste numero include paginas de \"discussion\", paginas super {{SITENAME}}, \"peciettas\"
-minimal, redirectiones, e altere paginas que probabilemente non se qualifica como articulos.
-Excludente {{PLURAL:\$1|iste|istes}}, il remane {{PLURAL:\$2|'''1''' pagina|'''\$2''' paginas}} que probabilemente es
-{{PLURAL:\$2|un articulo|articulos}} legitime.
-
-'''\$8''' {{PLURAL:\$8|file|files}} ha essite cargate.
-
-Il habeva un total de '''\$3''' {{PLURAL:\$3|visita a un pagina|visitas a paginas}}, e '''\$4''' {{PLURAL:\$4|modification de un pagina|modificationes de paginas}}
-desde le establimento de {{SITENAME}}.
-Isto representa un media de '''\$5''' modificationes per pagina, e '''\$6''' visitas per modification.
-
-Le longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones] es '''\$7'''.",
-'userstatstext'          => "Il ha {{PLURAL:$1|'''1''' [[Special:ListUsers|usator]]|'''$1''' [[Special:ListUsers|usatores]]}} registrate, del quales '''$2''' (i.e. '''$4%''') ha le derectos de $5.
-Al momento il ha circa '''$6''' {{PLURAL:$6|conto|contos}} de usatores registrate active.",
-'statistics-mostpopular' => 'Le paginas plus visitate',
+'statistics'              => 'Statisticas',
+'statistics-header-users' => 'Statisticas de usatores',
+'statistics-mostpopular'  => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
 'disambiguationspage'  => 'Template:Disambiguation',

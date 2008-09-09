@@ -1333,25 +1333,9 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'randomredirect-nopages' => 'I dette navnerum findes ingen henvisninger.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Statistiske oplysninger om {{SITENAME}}',
-'userstats'              => 'Statistik om brugere på {{SITENAME}}',
-'sitestatstext'          => "Der er {{PLURAL:\$1|'''1''' side|'''\$1''' sider ialt}} i databasen.
-Dette tal indeholder \"diskussion\"-sider, sider om {{SITENAME}}, minimale \"stub\"
-sider, omdirigeringssider og andre sider der sikkert ikke kan kaldes artikler.
-Hvis man udelader disse, så er der {{PLURAL:\$2|'''1''' side|'''\$2''' sider}} som sandsynligvis er virkelige
-indholds{{PLURAL:\$2|side|sider}}. 
-
-'''\$8''' {{PLURAL:\$8|fil|filer}} er blevet uploadet.
-
-Der har været ialt '''\$3''' {{PLURAL:\$3|sidevisning|sidevisninger}}, og '''\$4''' {{PLURAL:\$4|sideændring|sideændringer}}
-siden {{SITENAME}} blev oprettet.
-Det bliver til '''\$5''' gennemsnitlige ændringer pr. side, og '''\$6''' visninger pr. ændring.
-
-[http://meta.wikimedia.org/wiki/Help:Job_queue job queue] længden er '''\$7'''.",
-'userstatstext'          => "Der findes '''$1''' {{PLURAL:$1|registreret|registrerede}} [[Special:ListUsers|brugere]].
-deraf har '''$2''' (=$4%) $5-rettigheder.",
-'statistics-mostpopular' => 'Mest besøgte sider',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Statistik om brugere på {{SITENAME}}',
+'statistics-mostpopular'  => 'Mest besøgte sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
 'disambiguationspage'  => 'Template:Flertydig',

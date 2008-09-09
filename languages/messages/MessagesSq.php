@@ -1189,18 +1189,9 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'randomredirect-nopages' => 'Nuk ka përcjellime në këtë hapësirë.',
 
 # Statistics
-'statistics'             => 'Statistika',
-'sitestats'              => 'Statistikat e faqeve',
-'userstats'              => 'Statistikat e përdoruesve',
-'sitestatstext'          => "{{PLURAL:\$1|Gjëndet '''1''' faqe|Gjënden '''\$1''' faqe}} në totalin e regjistrit. Kjo përfshin faqet e \"diskutimit\", faqe rreth {{SITENAME}}, faqe \"cungje\" të vogla, përcjellime, dhe faqe të tjera që ndoshta nuk kualifikohen si artikuj. Duke mos i përfshirë këto, ka {{PLURAL:\$2| '''1''' faqe që është artikull i ligjshëm|'''\$2''' faqe që janë artikuj të ligjshëm}}.
-
-'''\$8''' {{PLURAL:\$8|skedë është|skeda janë}} ngarkuar.
-
-'''\$3''' {{PLURAL:\$3|Është bërë '''\$3''' shikim faqeje|Janë bërë '''\$3''' shikime faqesh}} dhe '''\$4''' {{PLURAL:\$4|redaktim faqeje|redaktime faqesh}} që nga dita kur {{SITENAME}} u hap. Kjo do të thotë se janë bërë afërsisht '''\$5''' redaktime për faqe, dhe '''\$6''' shikime për çdo redaktim.
-
-Gjatësia e [http://www.mediawiki.org/wiki/Manual:Job_queue radhës së punëve] është '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Gjëndet|Gjënden}} '''$1''' [[Special:ListUsers|përdorues]] {{PLURAL:$1|i|të}} regjistruar. '''$2''' prej tyre (ose '''$4'''%) {{PLURAL:$2|ka|kanë}} privilegjin $5.",
-'statistics-mostpopular' => 'Faqet më të shikuara',
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Statistikat e përdoruesve',
+'statistics-mostpopular'  => 'Faqet më të shikuara',
 
 'disambiguations'      => 'Faqe kthjelluese',
 'disambiguationspage'  => 'Template:Kthjellim',

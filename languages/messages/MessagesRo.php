@@ -1325,21 +1325,9 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'randomredirect-nopages' => 'Nu există redirecţionări în acest spaţiu de nume.',
 
 # Statistics
-'statistics'             => 'Statistici',
-'sitestats'              => 'Statisticile sitului {{SITENAME}}',
-'userstats'              => 'Statistici legate de utilizatori',
-'sitestatstext'          => "Există un număr total de {{PLURAL:\$1|'''1''' pagină|'''\$1''' pagini}} în baza de date.
-Acest număr include paginile de \"discuţii\", paginile despre {{SITENAME}}, pagini minimale (\"cioturi\"), pagini de redirecţionare şi altele care probabil că nu intră de fapt în categoria articolelor reale.
-În afară de acestea, există {{PLURAL:\$2|'''1''' pagină care este|'''\$2''' pagini care sunt}} probabil din categoria articole (numărate automat, în funcţie strict de mărime).<br />
-
-<b>\$8</b> pagini au fost transferate (upload).
-
-În total au fost '''\$3''' {{PLURAL:\$3|vizită (accesare)|vizite (accesări)}} şi {{PLURAL:\$4|modificare|modificări}} de la lansarea acestei wiki.
-În medie, rezultă <b>\$5</b> modificări per pagină şi <b>\$6</b> vizualizări la fiecare modificare.
-
-Mărimea [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] este <b>\$7</b>.",
-'userstatstext'          => "Există {{PLURAL:$1|'''1''' [[Special:ListUsers|utilizator]] înregistrat|un număr de '''$1''' [[Special:ListUsers|utilizatori]] înregistraţi}}. Dintre aceştia '''$2''' (sau '''$4%''') {{PLURAL:$2|are|au}} drepturi de $5.",
-'statistics-mostpopular' => 'Paginile cele mai vizualizate',
+'statistics'              => 'Statistici',
+'statistics-header-users' => 'Statistici legate de utilizatori',
+'statistics-mostpopular'  => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',

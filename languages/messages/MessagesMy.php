@@ -260,7 +260,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'စာရင်းအင်း',
-'sitestats'  => '{{SITENAME}} စာရင်းအင်းများ',
 
 'brokenredirects-edit'   => '(ပြင်​ဆင်​ရန်)',
 'brokenredirects-delete' => '(ဖျက်​ပါ)',

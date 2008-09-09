@@ -629,21 +629,7 @@ go direkt e Gleich uff d Datei z'mache.",
 'randompage' => 'Zuefalls-Artikel',
 
 # Statistics
-'sitestats'     => 'Statistik',
-'userstats'     => 'Benützer-Statistik',
-'sitestatstext' => "Zuer Ziit git's '''$2''' Artikel in {{SITENAME}}.
-
-Insgsamt sin '''$1''' Syte in de Datebank. Selli sin au alli Sytene wo usserhalb vom Hauptnamensruum exischtiere (z.B. Diskussionssyte) odr wo cheini interne Gleicher hen odr wo au numme Weiterleitige sin.
-
-Insgesamt wurden '''$8''' Dateien hochgeladen.
-
-Es isch insgsamt häts '''$3''' {{PLURAL:$3|Seiteabruf|Seiteabruf}} gäh, '''$4''' mol öbbis gänderet worde un drmit jedi Syte im Durchschnitt '''$5''' mol und '''$6''' Seitenabrufe pro Bearbeitung.
-
-Es het '''$8''' uffegladeni Dateie.
-
-Längi vo de [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
-'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:ListUsers|Benutzer]] isch|[[Special:ListUsers|Benutzer]] sy}} regischtriirt. Dodrvo {{PLURAL:$2|hät|händ}} '''$2''' (also '''$4 %''') $5-Recht.
-S git im moment ungefähr $6 {{PLURAL:$6|aktive|aktivi}} Benutzer.",
+'statistics-header-users' => 'Benützer-Statistik',
 
 'disambiguationspage' => 'Template:Begriffsklärig',
 

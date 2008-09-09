@@ -1495,23 +1495,9 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'randomredirect-nopages' => 'Il n’y a aucune page de redirection dans cet espace de nom.',
 
 # Statistics
-'statistics'             => 'Statistiques',
-'sitestats'              => 'Statistiques de {{SITENAME}}',
-'userstats'              => 'Statistiques utilisateur',
-'sitestatstext'          => "La base de données contient actuellement '''$1''' page{{PLURAL:$1||s}}.
-
-Ce chiffre inclut les pages « discussion », les pages relatives à {{SITENAME}}, les pages minimales (« ébauches »), les pages de redirection, ainsi que d’autres pages qui ne sont pas considérées comme des articles. Si l’on exclut ces pages, il reste '''$2''' {{PLURAL:$2|page qui est probablement un véritable article|pages qui sont probablement de véritables articles}}.
-
-'''$8''' {{PLURAL:$8|fichier a été importé|fichiers ont été importés}}.
-
-'''$3''' {{PLURAL:$3|page a été consultée|pages ont été consultées}} et '''$4''' {{PLURAL:$4|page modifiée|pages modifiées}}.
-
-Cela représente une moyenne de '''$5''' modification{{PLURAL:$5||s}} par page et de '''$6''' consultation{{PLURAL:$6||s}} pour une modification.
-
-Il y a '''$7''' article{{PLURAL:$7||s}} dans [http://www.mediawiki.org/wiki/Manual:Job_queue/fr la file des tâches].",
-'userstatstext'          => "Il y a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilisateur enregistré]]|'''$1''' [[Special:ListUsers|utilisateurs enregistrés]]}} dont '''$2''' (ou '''$4%''') {{PLURAL:$2|dispose|disposent}} des droits $5.
-Il y a actuellement environ $6 {{PLURAL:$6|compte utilisateur enregistré|comptes utilisateur enregistrés}}.",
-'statistics-mostpopular' => 'Pages les plus consultées',
+'statistics'              => 'Statistiques',
+'statistics-header-users' => 'Statistiques utilisateur',
+'statistics-mostpopular'  => 'Pages les plus consultées',
 
 'disambiguations'      => 'Pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',

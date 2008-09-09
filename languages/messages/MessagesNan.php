@@ -503,10 +503,8 @@ $messages = array(
 'randomredirect' => 'Sûi-chāi choán-ia̍h',
 
 # Statistics
-'statistics'    => 'Thóng-kè',
-'sitestats'     => '{{SITENAME}} chām ê thóng-kè sò·-ba̍k',
-'userstats'     => 'Iōng-chiá thóng-kè sò·-ba̍k',
-'userstatstext' => "Ū '''$1''' ê iōng-chiá chù-chheh. Kî-tiong '''$2''' ê ($4%) sī $5.",
+'statistics'              => 'Thóng-kè',
+'statistics-header-users' => 'Iōng-chiá thóng-kè sò·-ba̍k',
 
 'disambiguations'     => 'Khu-pia̍t-ia̍h',
 'disambiguationspage' => 'Template:disambig

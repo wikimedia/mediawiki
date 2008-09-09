@@ -1168,22 +1168,9 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'randomredirect-nopages' => 'Daar is geen aansture in die naamspasie.',
 
 # Statistics
-'statistics'             => 'Statistiek',
-'sitestats'              => 'Werfstatistiek',
-'userstats'              => 'Gebruikerstatistiek',
-'sitestatstext'          => "Daar is {{PLURAL:\$1|'''1''' bladsy|'n totaal van '''\$1''' bladsye}} in die databasis.
-Dit sluit \"bespreek\"-bladsye in, bladsye oor {{SITENAME}}, minimale \"verkorte\"
-bladsye, wegwysbladsye, en ander wat waarskynlik nie as artikels kwalifiseer nie.
-Uitsluitend bogenoemde, is daar {{PLURAL:\$2|'''1''' bladsy|'''\$2''' bladsye}} wat waarskynlik {{PLURAL:\$2|bladsy|bladsye}} met ware inhoud is.
-
-'''\$8''' {{PLURAL:\$8|lêer|lêers}} is gelaai.
-
-{{PLURAL:\$3|Bladsy is al '''1''' keer aangevra|Bladsye is al '''\$3''' kere aangevra}}, en '''\$4''' keer verander sedert hierdie wiki opgezet is.
-Dit werk uit op gemiddeld '''\$5''' veranderings per bladsy, en bladsye word '''\$6''' keer per verandering aangevra.
-
-Die ''[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]''-lengte is '''\$7'''.",
-'userstatstext'          => "Daar is {{PLURAL:$1|'''1''' geregistreerde [[Special:ListUsers|gebruiker]]|'''$1''' geregistreerde [[Special:ListUsers|gebruikers]]}}, waarvan '''$2''' (of '''$4%''') $5 regte het.",
-'statistics-mostpopular' => 'Mees bekykte bladsye',
+'statistics'              => 'Statistiek',
+'statistics-header-users' => 'Gebruikerstatistiek',
+'statistics-mostpopular'  => 'Mees bekykte bladsye',
 
 'disambiguations'      => 'Bladsye wat onduidelikhede opklaar',
 'disambiguationspage'  => 'Template:Dubbelsinnig',

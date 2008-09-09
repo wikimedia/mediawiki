@@ -1416,20 +1416,9 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'randomredirect-nopages' => 'Tiada lencongan dalam ruang nama ini.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Statistik {{SITENAME}}',
-'userstats'              => 'Statistik pengguna',
-'sitestatstext'          => "Terdapat sejumlah '''\$1''' laman dalam pangkalan data kami. Jumlah ini termasuklah laman \"perbincangan\", laman mengenai {{SITENAME}}, laman ringkas,
-lencongan, dan lain-lain yang tidak dikira sebagai laman kandungan. Dengan mengecualikan laman-laman ini, terdapat sejumlah '''\$2''' laman yang barangkali dianggap sah.
-
-'''\$8''' buah fail telah dimuat naik.
-
-Terdapat sejumlah '''\$3''' paparan laman dan '''\$4''' penyuntingan dilakukan sejak {{SITENAME}} dibuka. Secara purata, terdapat '''\$5''' suntingan bagi setiap laman, dan '''\$6''' paparan bagi setiap suntingan.
-
-Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak] ialah '''\$7'''.",
-'userstatstext'          => "Terdapat '''$1''' [[Special:ListUsers|pengguna]] berdaftar. '''$2''' (atau '''$4''') daripadanya mempunyai hak $5.
-Terdapat lebih kurang '''$6''' akaun pengguna berdaftar yang aktif.",
-'statistics-mostpopular' => 'Laman dilihat terbanyak',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Statistik pengguna',
+'statistics-mostpopular'  => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
 'disambiguationspage'  => 'Template:disambig',

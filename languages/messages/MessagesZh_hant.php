@@ -1315,23 +1315,9 @@ $2',
 'randomredirect-nopages' => '在這個名字空間中沒有重定向頁面。',
 
 # Statistics
-'statistics'             => '統計',
-'sitestats'              => '{{SITENAME}}統計數據',
-'userstats'              => '用戶統計',
-'sitestatstext'          => "資料庫中共有'''\$1'''頁頁面。
-其中包括對話頁、關於{{SITENAME}}的頁面、最少量的\"stub\"頁、重定向的頁面，
-以及未達到頁面質量的頁面。除此之外還有'''\$2'''頁可能是合乎標準的頁面。
-
-'''\$8'''個檔案已被上傳。
-
-從{{SITENAME}}設定以來，全網站共有頁面瀏覽'''\$3'''次，頁面編輯'''\$4'''次。
-即每頁平均編輯'''\$5'''次，各次編輯後頁面的每個版本平均瀏覽'''\$6'''次。
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]的長度是'''\$7'''。",
-'userstatstext'          => "網站有'''$1'''位註冊[[Special:ListUsers|用戶]]，其中
-'''$2''' (或 '''$4%''') 有$5許可權。
-現時有'''$6'''個活躍的已註冊用戶賬戶。",
-'statistics-mostpopular' => '被查閱次數最多的頁面',
+'statistics'              => '統計',
+'statistics-header-users' => '用戶統計',
+'statistics-mostpopular'  => '被查閱次數最多的頁面',
 
 'disambiguations'      => '消含糊頁',
 'disambiguationspage'  => 'Template:disambig

@@ -1038,19 +1038,9 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'randomredirect-nopages' => "Nisciun rinviu i' lu tipu di pàgina sciubaraddu.",
 
 # Statistics
-'statistics'             => 'Sthatisthigghi',
-'sitestats'              => 'Sthatisthigghi reratibi a {{SITENAME}}',
-'userstats'              => "Sthatisthigghi reratibi a l'utenti",
-'sitestatstext'          => "La bancadati cunteni {{PLURAL:\$1|'''1''' pàgina|'''\$1''' pàgini}}.
-Chisthu nùmaru cumprendi le pàgini di \"dischussioni\", li pàgini i' {{SITENAME}}, li pàgini \"sàgumi\", li rinvii e althri pàgini chi forsi nò so parthi di li cuntinuddi. Eschrudendi chisthi, {{PLURAL:\$2|v'è '''1''' pàgina|vi so '''\$2''' pàgini}} chi forsi {{PLURAL:\$2|è una vera pàgina|so veri pàgini}} di cuntinuddi.
-
-{{PLURAL:\$8|È puru isthaddu carriggaddu|So puru isthaddi carriggaddi}} '''\$8''' file.
-
-Da l'isthallazioni di {{SITENAME}} finz'abà  '''\$3''' {{PLURAL:\$3|pàgina è isthadda visitadda|pàgini so isthaddi visitaddi}}, e '''\$4''' {{PLURAL:\$4|mudìfigga è isthadda arriggadda|mudìfigghi so isthaddi arriggaddi}}, pa una mèdia di '''\$5''' mudìfigghi pa pàgina e '''\$6''' litturi pa mudìfigga.
-
-La [http://www.mediawiki.org/wiki/Manual:Job_queue coda di li pruzzessi] è longa '''\$7'''.",
-'userstatstext'          => "Abà {{PLURAL:$1|è registhraddu '''1''' [[Special:ListUsers|utenti]]|so registhraddi '''$1''' [[Special:ListUsers|utenti]]}}. Lu gruppu $5 è cumposthu da '''$2''' {{PLURAL:$2|utenti|utenti}}, pari a lu '''$4%''' di li registhraddi.",
-'statistics-mostpopular' => 'Pàgini più visitaddi',
+'statistics'              => 'Sthatisthigghi',
+'statistics-header-users' => "Sthatisthigghi reratibi a l'utenti",
+'statistics-mostpopular'  => 'Pàgini più visitaddi',
 
 'disambiguations'      => 'Pàgini cu lu matessi innòmmu',
 'disambiguationspage'  => 'Template:Matessi innòmmu',

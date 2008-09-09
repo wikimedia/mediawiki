@@ -1017,14 +1017,9 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'randomredirect-nopages' => 'Seon nimeruumin olõ-i üttegi ümbresaatmist.',
 
 # Statistics
-'statistics'             => 'Statistiga',
-'sitestats'              => 'Lehekülgi statistiga',
-'userstats'              => 'Pruukjidõ statistiga',
-'sitestatstext'          => "Teedüskogon om kokko <b>$1</b> lehekülge.
-
-Taa numbri seen ommaq ka arotusküleq, abiartikliq, väega lühkeseq leheküleq, ümbresaatmisleheküleq ja muuq leheq, mink pääl arvadaq olõ-i entsüklopeediäartiklit. Ilma naid rehkendämäldä om parhilla '''$2''' {{SITENAME}} lehekülge, midä või pitäq artiklis. Üles om laadit '''$8''' teedüstüt. Lehti om kaet kokko '''$3''' kõrda ja toimõndõt '''$4''' kõrda. Tuu om keskmädselt '''$5''' kaemist lehe kotsilõ ja '''$6''' kaemist toimõndusõ kotsilõ. Hoolõkandõtallituisi om järekõrran '''$7'''.",
-'userstatstext'          => "Kirjäpantuid pruukjit om '''$1'''. Naist '''$2''' ($4%) ommaq kõrraldaja õiguisiga pruukjaq ($5).",
-'statistics-mostpopular' => 'Kõgõ kaetumbaq leheq',
+'statistics'              => 'Statistiga',
+'statistics-header-users' => 'Pruukjidõ statistiga',
+'statistics-mostpopular'  => 'Kõgõ kaetumbaq leheq',
 
 'disambiguations'      => 'Lingiq, miä näütäseq täpsüstüslehekülgi pääle',
 'disambiguationspage'  => 'Template:Linke täpsüstüslehekülile',

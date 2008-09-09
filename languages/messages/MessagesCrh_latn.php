@@ -1026,22 +1026,9 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'randomredirect-nopages' => 'Bu isim fezasında iç bir yollama saifesi yoq.',
 
 # Statistics
-'statistics'             => 'Statistika',
-'sitestats'              => '{{SITENAME}} statistikası',
-'userstats'              => 'Qullanıcı statistikası',
-'sitestatstext'          => "{{SITENAME}} saytında al-azırda '''{{PLURAL:\$2|1 keçerli saife|\$2 keçerli saife}}''' mevcüttir.
-
-Bu cümleden; \"yollama\", \"muzakere\", \"resim\", \"qullanıcı\", \"yardım\", \"{{SITENAME}}\", \"şablon\" isim fezalarındakiler ve içki bağlantısız saifeler kirsetilmedi. Keçerli saife sayısına bu saifelerniñ sayısı eklengende ise toplam '''\$1''' saife mevcüttir.
-
-\$8 dane fayl yüklendi.
-
-Sayt qurulğanından bu künge qadar toplam '''\$4''' saife deñişikligi ve saife başına tahminen '''\$5''' isse qoşuldı.
-
-Toplam saife kösterilme sayısı '''\$3''', deñişiklik başına kösterme sayısı '''\$6''' oldı.
-
-Şimdiki [http://www.mediawiki.org/wiki/Manual:Job_queue iş sırası] sayısı '''\$7'''.",
-'userstatstext'          => "Al-azırda '''{{PLURAL:$1|1|$1}}''' qaydlı qullanıcımız bar. Bulardan '''{{PLURAL:$2|1|$2}}''' (ya da '''$4%''') danesi - $5.",
-'statistics-mostpopular' => 'Eñ sıq baqılğan saifeler',
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Qullanıcı statistikası',
+'statistics-mostpopular'  => 'Eñ sıq baqılğan saifeler',
 
 'disambiguations'      => 'Çoq manalı terminler saifeleri',
 'disambiguationspage'  => '{{ns:template}}:disambig',

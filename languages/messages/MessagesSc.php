@@ -367,16 +367,8 @@ Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
 'randompage' => 'Una pagina a caso',
 
 # Statistics
-'statistics'    => 'Statistiche',
-'sitestats'     => 'Statistiche del sito',
-'userstats'     => 'Statistiche del {{SITENAME}}',
-'sitestatstext' => 'Ci sono ben <b>$1</b> pagine nel database.
-Questa cifra comprende le pagine "talk" (discussione), pagine su {{SITENAME}}, articoli esigui ("stub"), redirects, e altre pagine che probabilmente non andrebbero conteggiate fra gli articoli.
-Escludendo queste, ci sono ben  <b>$2</b> pagine che sono con buona probabilità propriamente degli articoli.<p>
-Ci sono state un totale di <b>$3</b> pagine viste, e <b>$4</b> modifiche agli articoli da quando il software è stato potenziato (Dicembre, 2002).
-Questa media rivela che ci sono state una media di  <b>$5</b> modifiche per ciascun articolo, e che l\'articolo è stato letto <b>$6</b> volte per ciascuna modifica.',
-'userstatstext' => 'Ci sono <b>$1</b> Utenti registrati.
-<b>$2</b> di questi hanno il grado di amministratori (vedi $3).',
+'statistics'              => 'Statistiche',
+'statistics-header-users' => 'Statistiche del {{SITENAME}}',
 
 'disambiguationspage' => '{{ns:project}}:Links_to_disambiguating_pages',
 

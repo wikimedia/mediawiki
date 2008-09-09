@@ -843,19 +843,8 @@ võidakse sinu ligipääs sulgeda.',
 'randomredirect' => 'Juhuslik ümbersuunamine',
 
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => 'Saidi statistika',
-'userstats'     => 'Kasutaja statistika',
-'sitestatstext' => "Andmebaas sisaldab kokku {{PLURAL:$1|'''1''' lehekülje|'''$1''' lehekülge}}.
-See arv hõlmab ka arutelulehekülgi, abilehekülgi, väga lühikesi lehekülgi (nuppe), ümbersuunamislehekülgi ning muid lehekülgi. Ilma neid arvestamata on vikis praegu {{PLURAL:$2|'''1''' lehekülg|'''$2''' lehekülge}}, mida võib pidada artikliteks.
-
-Üles on laetud '''$8''' {{PLURAL:$8|fail|faili}}.
-
-Alates {{SITENAME}} töösse seadmisest on lehekülgede vaatamisi kokku '''$3''' ja redigeerimisi '''$4'''.
-Seega keskmiselt '''$5''' redigeerimist lehekülje kohta ja '''$6''' lehekülje vaatamist ühe redigeerimise kohta.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Töö järjekorra] pikkus on '''$7'''.",
-'userstatstext' => "Registreeritud [[Special:ListUsers|kasutajate]] arv: '''$1''', kelledest '''$2''' (ehk '''$4%''') on $5 õigused.",
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Kasutaja statistika',
 
 'disambiguations' => 'Täpsustusleheküljed',
 

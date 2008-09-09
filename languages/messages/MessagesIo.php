@@ -623,10 +623,9 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'randomredirect' => 'Ridirektilo hazarde',
 
 # Statistics
-'statistics'             => 'Statistiko',
-'sitestats'              => 'Statistiki di {{SITENAME}}',
-'userstats'              => 'Statistiki di uzanto',
-'statistics-mostpopular' => 'Maxim ofte vizitita pagini',
+'statistics'              => 'Statistiko',
+'statistics-header-users' => 'Statistiki di uzanto',
+'statistics-mostpopular'  => 'Maxim ofte vizitita pagini',
 
 'disambiguations' => 'Pagini di desambiguizo',
 

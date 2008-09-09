@@ -318,6 +318,7 @@ $wgOptionalMessages = array(
 	'whatlinkshere-backlink',
 	'recentchangeslinked-backlink',
 	'diff-with-additional',
+	'statistics-footer',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

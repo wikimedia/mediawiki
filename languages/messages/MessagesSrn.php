@@ -751,20 +751,8 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'randomredirect-nopages' => 'Da ben no stirpeprewoysi ini disi nenpreki.',
 
 # Statistics
-'statistics'    => 'Den statistiek',
-'sitestats'     => '{{SITENAME}}-Infrumasi',
-'userstats'     => 'Masyininfrumasi',
-'sitestatstext' => "Ini a databesi {{PLURAL:$1|ben wan papira|ben '''$1''' peprewoysi}}, nanga takipeprewoysi, {{SITENAME}}-peprewoysi, den stub dy si syartu ben, stirpeprewoysi, boskopu nanga trawan peprewoysi dy hosa no infrumasi abi.
-Da {{PLURAL:$2|ben hosa wan peprewoysi|ben hosa '''$2''' peprewoysi}} nanga tru infrumasi.
-
-Da {{PLURAL:$8|ben '''wan''' gefre|ben '''$8''' gefre}} uploti.
-
-Da {{PLURAL:$3|ben '''wan''' papira|ben '''$3''' peprewoysi}} libi si nanga {{PLURAL:$4|wan kenki|'''$4''' kenki}} e meki sins {{SITENAME}} ben e skopu.
-Taki gi wan midi fu '''$5''' kenki ies papira nanga '''$6''' sko peprewoysi ies kenki.
-
-A gran fu a [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] ben '''$7'''.",
-'userstatstext' => "Da {{PLURAL:$1|ben '''wan''' register masyin|ben '''$1''' register masyin}}, pefu da
-'''$2''' (efu '''$4%''') $5-lesi {{PLURAL:$2|abi|abi}}.",
+'statistics'              => 'Den statistiek',
+'statistics-header-users' => 'Masyininfrumasi',
 
 'disambiguations' => 'Seni doro papira',
 

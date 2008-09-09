@@ -595,19 +595,8 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'randomredirect' => 'İxtiyari istiqamətləndirmə',
 
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => '{{SITENAME}} statistika',
-'userstats'     => 'İstifadəçi statistika',
-'sitestatstext' => "{{SITENAME}}-da hal-hazırda məqalələrin sayı: '''$2'''
-
-Verilənlər bazasında yekun '''$1''' səhifə var. Buna müzakirələr, istifadəçi səhifələri, köməklər, wikipedia lahiye səhifələri, xüsusi səhifələr, istiqamətləndirmə səhifələri, boş səhifələr ilə fayllar v əşablonlar daxildir.
-
-There have been a total of '''$3''' page views, and '''$4''' page edits
-since the wiki was setup.
-That comes to '''$5''' average edits per page, and '''$6''' views per edit.
-
-Hal-hazırda [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] sayı: '''$7'''.",
-'userstatstext' => "Hal-hazırda '''$1''' istifadəçi, '''2''' (və ya '''4%''') tanesi idarəçi. (baxınız $3).",
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'İstifadəçi statistika',
 
 'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
 'disambiguationspage'  => 'Şablon:dəqiqləşdirmə',

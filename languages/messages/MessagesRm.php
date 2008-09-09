@@ -394,24 +394,8 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'randompage' => 'Artitgel casual',
 
 # Statistics
-'statistics'    => 'Statisticas',
-'sitestats'     => 'Statisticas da {{SITENAME}}',
-'userstats'     => 'Statisticas davart ils utilisaders',
-'sitestatstext' => "There {{PLURAL:\$1|is '''1''' page|are '''\$1''' total pages}} in the database.
-This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\"
-pages, redirects, and others that probably don't qualify as content pages.
-Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate
-content {{PLURAL:\$2|page|pages}}.
-
-'''\$8''' {{PLURAL:\$8|file|files}} have been uploaded.
-
-There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}}
-since {{SITENAME}} was setup.
-That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
-
-La lunghezza da la [http://www.mediawiki.org/wiki/Manual:Job_queue job queue]: '''\$7'''.",
-'userstatstext' => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which
-'''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
+'statistics'              => 'Statisticas',
+'statistics-header-users' => 'Statisticas davart ils utilisaders',
 
 'disambiguations' => 'pagina per la decleraziun da noziuns',
 

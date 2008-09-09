@@ -1401,21 +1401,9 @@ $1',
 'randomredirect-nopages' => '響呢個空間名度冇一個彈去版。',
 
 # Statistics
-'statistics'             => '統計',
-'sitestats'              => '{{SITENAME}}嘅統計',
-'userstats'              => '用戶統計',
-'sitestatstext'          => "資料庫中而家有'''$1'''頁。
-其中包括咗「討論」頁、關於{{SITENAME}}嘅頁、好短嘅「楔位」版頁、跳轉，以及其他唔計入內容嘅頁。唔計非內容頁在內，則總共有'''$2'''頁可能會計入正規嘅內容。
-
-'''$8''' 個檔案已經上載。
-
-呢個Wiki喺建立以嚟，總共有'''$3'''次瀏覽，同埋'''$4'''次編輯。
-平均每個頁面有'''$5'''次瀏覽，同埋'''$6'''次編輯。
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]嘅長度係'''$7'''。",
-'userstatstext'          => "目前有'''$1'''個註冊[[Special:ListUsers|用戶]]，其中有'''$2'''人（即'''$4%'''）有$5權限。
-現時有'''$6'''個活躍嘅註冊用戶戶口。",
-'statistics-mostpopular' => '最多人睇嘅頁',
+'statistics'              => '統計',
+'statistics-header-users' => '用戶統計',
+'statistics-mostpopular'  => '最多人睇嘅頁',
 
 'disambiguations'      => '搞清楚頁',
 'disambiguationspage'  => 'Template:disambig

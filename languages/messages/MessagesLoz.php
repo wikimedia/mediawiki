@@ -628,9 +628,8 @@ di uplodezi media.',
 'randomredirect' => 'Petulo abezi fona',
 
 # Statistics
-'statistics' => 'Mukoloko di kamukile',
-'sitestats'  => 'Mukoloko di kamukile di {{SITENAME}}',
-'userstats'  => 'Mukoloko di kamukile di sebelu',
+'statistics'              => 'Mukoloko di kamukile',
+'statistics-header-users' => 'Mukoloko di kamukile di sebelu',
 
 'disambiguations' => 'Disamebigasina',
 

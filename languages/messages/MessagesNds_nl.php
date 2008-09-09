@@ -1423,18 +1423,9 @@ Klikken op een kelomkop veraandert de sortering.',
 'randomredirect-nopages' => 'Der staon gien deurverwiezingen in disse naamruumte.',
 
 # Statistics
-'statistics'             => 'Staotestieken',
-'sitestats'              => 'Staotestieken van {{SITENAME}}',
-'userstats'              => 'Gebrukerstaotestieken',
-'sitestatstext'          => "In totaal {{PLURAL:$1|steet der '''1''' pagina|staon der '''$1''' pagina's}} in de databanke van disse {{SITENAME}}. Hier zitten de overlegpagina's, pagina's over Wikipedie, iezelig korte artikels, deurstuurpagina's en een antal aandere pagina's dee neet as artikel mee-eteld wonnen bie in. Zonder disse pagina's {{PLURAL:$2|is der ongeveer '''1''' artikel|bin der ongeveer '''$2''' artikels}}.
-
-Der {{PLURAL:$8|is '''1''' bestand|bin '''$8''' bestanden}} toe-evoeg.
-
-Der {{PLURAL:$3|is '''1''' pagina|bin '''$3''' pagina's}} weer-egeven en '''$4''' {{PLURAL:$4|bewarking|bewarkingen}} edaon sins {{SITENAME}} op-ezet is. Dit geef een gemiddelde van '''$5''' bewarkingen per pagina en '''$6''' weer-egeven pagina's per bewarking.
-
-De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue taakwachrie] is '''$7'''.",
-'userstatstext'          => "Der {{PLURAL:$1|is '''1''' an-emelde gebruker|bin '''$1''' an-emelde gebrukers}}. Daovan  {{PLURAL:$2|hef|hemmen}} der '''$2''' (van '''$4%''') $5rechen.",
-'statistics-mostpopular' => "Meestbekeken pagina's",
+'statistics'              => 'Staotestieken',
+'statistics-header-users' => 'Gebrukerstaotestieken',
+'statistics-mostpopular'  => "Meestbekeken pagina's",
 
 'disambiguations'      => "Deurverwiespagina's",
 'disambiguationspage'  => 'Template:Dv',

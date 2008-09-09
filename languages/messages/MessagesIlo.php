@@ -944,10 +944,9 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'randomredirect-nopages' => 'Awan ti bawbaw-ing iti daytoy a namespace.',
 
 # Statistics
-'statistics'             => 'Estadistika',
-'sitestats'              => 'Statistics ti {{SITENAME}}',
-'userstats'              => 'Estadistika ti agar-aramat',
-'statistics-mostpopular' => 'Kanayon a mabuya a pampanid',
+'statistics'              => 'Estadistika',
+'statistics-header-users' => 'Estadistika ti agar-aramat',
+'statistics-mostpopular'  => 'Kanayon a mabuya a pampanid',
 
 'disambiguations'     => 'Dagiti panid ti panangilawlawag',
 'disambiguationspage' => 'Template:disambig',

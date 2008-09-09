@@ -1143,22 +1143,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'randomredirect-nopages' => 'Ez dago birzuzenketarik izen-tarte honetan.',
 
 # Statistics
-'statistics'             => 'Estatistikak',
-'sitestats'              => '{{SITENAME}}(e)ko estatistikak',
-'userstats'              => 'Erabiltzaile estatistikak',
-'sitestatstext'          => "Datu-basean guztira <b>$1</b> orri daude; eztabaidatzeko, wikipedari buruzko orriak, birzuzenketak eta artikulu laburrak barne hartzen.
-
-Horiek baztertzen, <b>$2</b> artikulu dauzakagu datu-basean.
-
-'''$8''' irudi igo dira.
-
-Guztira '''$3''' bisitaturiko orri, eta <b>$4</b> artikulu aldaketa egon dira software-a berritu zenetik (2002.eko uztailaren 20a).
-
-Emaitza hauekin hurrengo arrazoiak atera daitezke: '''$5''' aldaketa egon dira orrialde bakoitzeko, eta '''$6''' bisita aldaketa bakoitzeko.
-
-Gure [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] '''$7'''-koa da.",
-'userstatstext'          => "'''$1''' erabiltzaile daude izen emanda, horietatik '''$2''' (edo '''$4%''') $5ek eskumenak {{PLURAL:$2|dituelarik|dituztelarik}}.",
-'statistics-mostpopular' => 'Orrialde bisitatuenak',
+'statistics'              => 'Estatistikak',
+'statistics-header-users' => 'Erabiltzaile estatistikak',
+'statistics-mostpopular'  => 'Orrialde bisitatuenak',
 
 'disambiguations'      => 'Argipen orrialdeak',
 'disambiguationspage'  => 'Template:argipen',

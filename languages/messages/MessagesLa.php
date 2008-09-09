@@ -1004,22 +1004,8 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'randomredirect-nopages' => 'Non est ulla redirectio hoc in spatio nominali.',
 
 # Statistics
-'statistics'    => 'Census',
-'sitestats'     => 'Census {{grammar:genitive|{{SITENAME}}}}',
-'userstats'     => 'Census usorum',
-'sitestatstext' => "Basis datorum '''$1''' {{PLURAL:$1|paginam|paginas}} habet.
-Hic numerus paginas disputationum includit, paginas de {{grammar:ablative|{{SITENAME}}}}, stipulas, paginas redirectionum, et paginas alias quae probabiliter non sunt paginae contenta habentes legitimae.
-His exclusis, {{PLURAL:$2|est '''1''' pagina|sunt '''$2''' paginae}} quae contenta recta habere {{PLURAL:$2|putatur|putantur}}.
-
-'''$8''' {{PLURAL:$8|fasciculus impositus est.|fasciculi impositi sunt.}}
-
-{{PLURAL:$3|Pagina '''1''' visa est|Paginae '''$3''' visae sunt}}, et '''$4''' {{PLURAL:$4|recensio paginae facta est|recensiones paginarum factae sunt}}
-ab initio {{grammar:genitive|{{SITENAME}}}}.
-Hoc aequat fere '''$5''' mutationes per paginam, et '''$6''' visae per mutationem.
-
-'''$7''' [http://www.mediawiki.org/wiki/Manual:Job_queue operationes etiam exspectant perfacier].",
-'userstatstext' => "'''$1''' {{PLURAL:$1|[[Special:ListUsers|usor]] relatus est|[[Special:ListUsers|usores]] relati sunt}}, quorum '''$2''' (vel '''$4%''') {{PLURAL:$2|est|sunt}} $5.
-'''$6''' fere {{PLURAL:$6|usor est activus.|usores sunt activi.}}",
+'statistics'              => 'Census',
+'statistics-header-users' => 'Census usorum',
 
 'disambiguations'      => 'Paginae disambiguationis',
 'disambiguationspage'  => 'Template:Discretiva',

@@ -1330,23 +1330,9 @@ PICT # misc.
 'randomredirect-nopages' => 'W toś tom mjenjowem rumje njeeksistěruju žedne dalejpósrědnjenja.',
 
 # Statistics
-'statistics'             => 'Statistika',
-'sitestats'              => 'Statistika {{SITENAME}}',
-'userstats'              => 'Statistika wužywarjow',
-'sitestatstext'          => "W datowej bance {{PLURAL:$1|jo dogromady '''1''' bok|stej dogromady '''$1''' boka|su dogromady '''$1''' boki}}. To wobpśimjejo teke diskusijne boki, boki wó {{SITENAME}}, małe boki, dalejpósrědnjenja a dalšne boki, kótarež njamógu se ewentuelnje ako boki gódnośiś.
-
-Jolic toś te boki se wótlicuju, {{PLURAL:$2|jo '''1''' bok|stej '''$2''' boka|su '''$2''' boki}}, {{PLURAL:$2|kótaryž móžo|kótarejž móžotej|kótarež mógu}} se gódnośiś ako nastawk.
-
-Dogromady jo se uploadowało '''$8''' {{PLURAL:$8|dataja|dataji|dataje}}.
-
-Dogromady {{PLURAL:$3|běšo|běštej|běchu}} '''$3''' {{PLURAL:$3|wótwołanje|wótwołani|wótwołanja}} a '''$4''' {{PLURAL:$4|wobźěłanje|wobźěłani|wobźěłanja}} wót togo casa, až {{SITENAME}} jo se zarědował(o|a).
-
-To wucynjujo '''$5''' {{PLURAL:$5|wobźěłanje|wobźěłani|wobźěłanja}} na bok a '''$6''' {{PLURAL:$6|wótwołanje|wótwołani|wótwołanja}} na wobźěłanje.
-
-Dłujkosć [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "Dajo '''$1''' {{PLURAL:$1|registrěrowany|registrěrowanej|registrěrowane|registrěrowanych}} [[Special:ListUsers|{{PLURAL:$1|wužywaŕ|wužywarja|wužywarje|wužywarjow}}]].
-Wót togo {{PLURAL:$2|jo|stej|su}} '''$2''' (=$4 %) $5. Tuchylu {{PLURAL:$6| jo|stej|su|jo}} něźi '''$6''' {{PLURAL:$6|konto|konśe|konta|kontow}} aktiwnych registrěrowanych wužywarjow.",
-'statistics-mostpopular' => 'Nejwěcej woglědane boki',
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Statistika wužywarjow',
+'statistics-mostpopular'  => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
 'disambiguationspage'  => 'Template:Rozjasnjenje zapśimjeśow',

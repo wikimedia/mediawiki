@@ -214,8 +214,8 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'randomredirect' => 'nakituinnaq qaujisarniq qaningani kamagijaq aasit nakit',
 
 # Statistics
-'statistics' => 'kisitsisillgurlugitpasissitissat',
-'userstats'  => 'qatannguti kisitsisillgurlugitpasissitissat',
+'statistics'              => 'kisitsisillgurlugitpasissitissat',
+'statistics-header-users' => 'qatannguti kisitsisillgurlugitpasissitissat',
 
 'doubleredirects' => 'tapirqilik qaningani kamagijaq aasit nakit',
 

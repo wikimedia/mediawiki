@@ -579,9 +579,8 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'randomredirect' => 'Aa-enmys gyn tort',
 
 # Statistics
-'statistics' => 'Staydraa',
-'sitestats'  => 'Staydraa {{SITENAME}}',
-'userstats'  => 'Staydraa yn ymmydeyr',
+'statistics'              => 'Staydraa',
+'statistics-header-users' => 'Staydraa yn ymmydeyr',
 
 'disambiguations' => 'Duillagyn reddaghyn',
 

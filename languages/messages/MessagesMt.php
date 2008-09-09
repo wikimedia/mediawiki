@@ -1267,19 +1267,9 @@ Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
 'randomredirect-nopages' => "M'hawnx rindirizzi f'dan in-namespace.",
 
 # Statistics
-'statistics'             => 'Statistiċi',
-'sitestats'              => "Statistiċi relativi ta' {{SITENAME}}",
-'userstats'              => 'Statistika tal-utent',
-'sitestatstext'          => "B'kollox hemm '''$1''' paġna fil-bankadati.
-Dan in-numru jinkludi wkoll il-paġni ta' diskussjoni, paġni dwar il-{{SITENAME}}, paġni b'informazzjoni minima (''stubs''), riindirizzamenti u paġni oħrajn li probabilment ma jikkwalifikawx bħala paġni b'kontenut. Jekk tneħħi dawk, b'kollox hemm '''$2''' paġni li probabilment huma paġni b'kontenut leġittimu.
-
-'''$8''' fajl ġew imtella'.
-
-Minn meta ġie installat is-sit s'issa, inżaru '''$3''' paġna u kien hemm '''$4''' modifika. Din hija ekwivalenti għal medja ta' '''$5''' modifiki għal kull paġna, u medja ta' '''$6''' qarrejja għa' kull modifika. 
-
-Il-kju ta' xogħolijiet fih '''$7''' elementi.",
-'userstatstext'          => "F'dan il-mument {{PLURAL:$1|[[Special:ListUsers|utent]] wieħed biss reġistrat|'''$1''' [[Special:ListUsers|utenti]] reġistrati}}. Il-grupp $5  huwa kompost minn '''$2''' {{PLURAL:$2|utent|utenti}}, jew '''$4%''' tar-reġistrati.",
-'statistics-mostpopular' => 'Il-paġni l-aktar miżjura',
+'statistics'              => 'Statistiċi',
+'statistics-header-users' => 'Statistika tal-utent',
+'statistics-mostpopular'  => 'Il-paġni l-aktar miżjura',
 
 'disambiguations'      => "Paġni ta' diżambigwazzjoni",
 'disambiguationspage'  => 'Template:diżambig',

@@ -255,7 +255,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Mitúya',
-'sitestats'  => 'Mitúya mya {{SITENAME}}',
 
 'disambiguations' => 'Bokokani',
 

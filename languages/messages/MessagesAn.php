@@ -1302,23 +1302,9 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'randomredirect-nopages' => 'No bi ha garra reendrezera en iste espazio de nombres.',
 
 # Statistics
-'statistics'             => 'Estadisticas',
-'sitestats'              => 'Estadisticas de {{SITENAME}}',
-'userstats'              => "Estadisticas d'usuario",
-'sitestatstext'          => "Bi ha un total de {{PLURAL:$1|'''1''' pachina|'''$1''' pachinas}} en a base de datos.
-Isto encluye pachinas de descusión, pachinas sobre {{SITENAME}}, borradors menimos, reendrezeras y atras que cal que no puedan estar consideratas pachinas de contenius.
-Sacando ixas pachinas, regular que bi aiga {{PLURAL:$2|1 pachina|'''$2''' pachinas}} de conteniu lechitimo.
-
-Bi ha '''$8''' {{PLURAL:$8|archibo alzato|archibos alzatos}} en o serbidor.
-
-Dende a debantadera d'o wiki bi ha abito un total de '''$3''' {{PLURAL:$3|besitas|besitas}} y '''$4''' {{PLURAL:$4|edizión de pachina|edizions de pachinas}}.
-Isto resulta en una meya de '''$5''' {{PLURAL:$5|edizión|edizions}} por pachina y '''$6''' {{PLURAL:$6|besita|besitas}} por edizión.
-
-A longaria d'a [http://www.mediawiki.org/wiki/Manual:Job_queue coda de quefers] ye de '''$7'''",
-'userstatstext'          => "Bi ha {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rechistrato|'''$1''' [[Special:ListUsers|usuarios]] rechistratos}},
-d'os que '''$2''' (u '''$4%''') {{PLURAL:$2|en tiene|en tienen}} dreitos d'$5.
-Bi ha autualment {{PLURAL:$6||}} {{PLURAL:$6|una cuenta autiba d'usuario rechistrato|bellas '''$6''' cuentas autibas d'usuarios rechistratos}}.",
-'statistics-mostpopular' => 'Pachinas más bistas',
+'statistics'              => 'Estadisticas',
+'statistics-header-users' => "Estadisticas d'usuario",
+'statistics-mostpopular'  => 'Pachinas más bistas',
 
 'disambiguations'      => 'Pachinas de desambigazión',
 'disambiguationspage'  => 'Template:Desambigazión',

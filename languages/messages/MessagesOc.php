@@ -1504,24 +1504,9 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'randomredirect-nopages' => 'I a pas cap de redireccion dins aqueste espaci de nom.',
 
 # Statistics
-'statistics'             => 'Estatisticas',
-'sitestats'              => 'Estatisticas de {{SITENAME}}',
-'userstats'              => "Estatisticas d'utilizaire",
-'sitestatstext'          => "La banca de donadas conten actualament <b>{{PLURAL:\$1|'''1''' pagina|'''\$1''' paginas}}</b>.
-
-Aquesta chifra inclutz las paginas \"discussion\", las paginas relativas a {{SITENAME}}, las paginas minimalas (\"esbòsses\"),  las paginas de redireccion, e mai d'autras paginas que pòdon sens dobte pas èsser consideradas coma d'articles.
-Se s'exclutz aquestes paginas,  <b>{{PLURAL:\$2|'''\$2''' pagina es probablament un article vertadièr|'''\$2''' paginas son probablament d'articles vertadièrs}}.
-
-{{PLURAL:\$8|'''\$8''' fichièr es estat telecargat|'''\$8''' fichièrs son estats telecargats}}.
-
-{{PLURAL:\$3|'''1''' pagina es estada consultada|'''\$3''' paginas son estadas consultadas}} e {{PLURAL:\$4| '''1''' pagina modificada|'''\$4''' paginas modificadas}}.
-
-Aquò representa una mejana de {{PLURAL:\$5|'''\$5''' modificacion|'''\$5''' modificacions}} per pagina e de {{PLURAL:\$6|'''\$6''' consultacion|'''\$6''' consultacions}} per una modificacion.
-
-I a {{PLURAL:\$7|'''\$7''' article|'''\$7''' articles}} dins [http://www.mediawiki.org/wiki/Manual:Job_queue la fila de prètzfaches].",
-'userstatstext'          => "I a {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizaire enregistrat]]|'''$1''' [[Special:ListUsers|utilizaires enregistrats]]}} dont '''$2''' (o '''$4%''') {{PLURAL:$2|dispausa|dispausan}} dels dreches $5.
-I a actualament environ $6 {{PLURAL:$6|compte d'utilizaire enregistrat|comptes d'utilizaire enregistrats}}.",
-'statistics-mostpopular' => 'Paginas mai consultadas',
+'statistics'              => 'Estatisticas',
+'statistics-header-users' => "Estatisticas d'utilizaire",
+'statistics-mostpopular'  => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",
 'disambiguationspage'  => 'Template:Omonimia',

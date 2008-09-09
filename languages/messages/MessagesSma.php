@@ -455,11 +455,8 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'randomredirect' => 'Summal odhasitstivren',
 
 # Statistics
-'statistics'    => 'Statistiike',
-'sitestats'     => '{{SITENAME}} statistiike',
-'userstats'     => 'Nuhtjien statistiike',
-'userstatstext' => "Dïhte {{PLURAL:$1|lea '''1''' registreered [[Special:ListUsers|nuhtjien]]|lea '''$1''' registreered [[Special:ListUsers|nuhtjienh]]}},  jih
-'''$2''' (jallh '''$4%''') {{PLURAL:$2|åtna|åtnah}} $5 reahkta.",
+'statistics'              => 'Statistiike',
+'statistics-header-users' => 'Nuhtjien statistiike',
 
 'disambiguations' => 'Disambirgusjovne bielieh',
 

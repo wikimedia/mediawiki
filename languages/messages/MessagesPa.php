@@ -658,10 +658,9 @@ to upload files.',
 'download'   => 'ਡਾਊਨਲੋਡ',
 
 # Statistics
-'statistics'             => 'ਅੰਕੜੇ',
-'sitestats'              => '{{SITENAME}} ਅੰਕੜੇ',
-'userstats'              => 'ਯੂਜ਼ਰ ਅੰਕੜੇ',
-'statistics-mostpopular' => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਪੇਜ',
+'statistics'              => 'ਅੰਕੜੇ',
+'statistics-header-users' => 'ਯੂਜ਼ਰ ਅੰਕੜੇ',
+'statistics-mostpopular'  => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਪੇਜ',
 
 'brokenredirects-edit'   => '(ਸੋਧ)',
 'brokenredirects-delete' => '(ਹਟਾਓ)',

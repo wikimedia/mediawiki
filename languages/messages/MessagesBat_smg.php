@@ -812,10 +812,9 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'randomredirect-nopages' => 'Šėtuo vardū srėti nier anėjuokiū paradresavėmu.',
 
 # Statistics
-'statistics'             => 'Statėstėka',
-'sitestats'              => 'Tėnklalapė statėstėka',
-'userstats'              => 'Nauduotuoju statėstėka',
-'statistics-mostpopular' => 'Daugiausē ruodītė poslapē',
+'statistics'              => 'Statėstėka',
+'statistics-header-users' => 'Nauduotuoju statėstėka',
+'statistics-mostpopular'  => 'Daugiausē ruodītė poslapē',
 
 'disambiguations' => 'Daugiareikšmiu žuodiu poslapē',
 

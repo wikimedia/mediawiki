@@ -821,22 +821,8 @@ da bi ste slali fajlove.',
 'randompage' => 'Slučajna stranica',
 
 # Statistics
-'statistics'    => 'Statistike',
-'sitestats'     => 'Statistika sajta',
-'userstats'     => 'Statistike korisnika',
-'sitestatstext' => "{{SITENAME}} trenutno ima '''$2''' članaka.
-
-Ovaj broj isključuje preusmjerenja, stranice za razgovor, stranice sa opisom slike, korisničke stranice, šablone, stranice za pomoć, članke bez poveznica, i stranice o projektu {{SITENAME}}.</p>
-
-Totalni broj stranica u bazi:  '''$1'''.
-
-'''$8''' files have been uploaded.
-
-Bilo je '''$3''' pogleda stranica, i '''$4''' izmjena otkad je viki bio instaliran.
-To izađe u prosjeku oko '''$5''' izmjena po stranici, i '''$6''' pogleda po izmjeni.
-
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''$7'''.",
-'userstatstext' => "Postoji {{PLURAL:$1| '''1''' rigistrovan [[Special:ListUsers|korisnik]]| '''$1''' registriranih [[Special:ListUsers|korisnika]]}}, od kojih '''$2''' (ili '''$4%''') {{PLURAL:$2|ima|imaju}} $5 prava.",
+'statistics'              => 'Statistike',
+'statistics-header-users' => 'Statistike korisnika',
 
 'disambiguations'     => 'Stranice za višeznačne odrednice',
 'disambiguationspage' => '{{ns:template}}:Višeznačna odrednica',

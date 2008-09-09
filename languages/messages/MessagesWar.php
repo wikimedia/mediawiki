@@ -219,7 +219,6 @@ $messages = array(
 
 # Statistics
 'statistics' => 'Mga estadistika',
-'sitestats'  => '{{SITENAME}} nga mga estadistika',
 
 # Miscellaneous special pages
 'longpages' => 'Haglaba nga mga pakli',

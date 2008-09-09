@@ -1406,21 +1406,9 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'randomredirect-nopages' => 'Không có trang đổi hướng nào trong không gian này.',
 
 # Statistics
-'statistics'             => 'Thống kê',
-'sitestats'              => 'Thống kê {{SITENAME}}',
-'userstats'              => 'Thống kê thành viên',
-'sitestatstext'          => "Hiện có {{PLURAL:$1|'''1''' trang|tổng cộng '''$1''' trang}} trong cơ sở dữ liệu.
-Trong số đó có các trang “thảo luận”, trang liên quan đến {{SITENAME}}, các trang “sơ khai” ngắn, và những trang khác không tính là trang có nội dung.
-Nếu không tính đến các trang đó, có {{PLURAL:$2|'''1'''|'''$2'''}} trang là những trang có nội dung tốt.
-
-Có '''$8''' tập tin đã được tải lên.
-
-Đã có tổng cộng '''$3''' lần truy cập, và '''$4''' sửa đổi từ khi {{SITENAME}} được khởi tạo. Như vậy trung bình có '''$5''' sửa đổi tại mỗi trang, và '''$6''' lần truy cập trên mỗi sửa đổi.
-
-Độ dài của [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc] là '''$7'''.",
-'userstatstext'          => "Có {{PLURAL:$1|'''$1'''|'''$1'''}} [[Special:ListUsers|thành viên]] đã đăng ký tài khoản, trong số đó có '''$2''' thành viên (chiếm '''$4%''' trên tổng số) {{PLURAL:$2||}} là $5.
-Hiện có khoảng {{PLURAL:$6||}} '''$6''' thành viên tích cực có tài khoản.",
-'statistics-mostpopular' => 'Các trang được xem nhiều nhất',
+'statistics'              => 'Thống kê',
+'statistics-header-users' => 'Thống kê thành viên',
+'statistics-mostpopular'  => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',
 'disambiguationspage'  => 'Template:disambig',

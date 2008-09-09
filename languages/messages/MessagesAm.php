@@ -975,14 +975,9 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'randomredirect-nopages' => 'በዚህ ክፍለ-ዊኪ ምንም መምሪያ መንገድ የለም።',
 
 # Statistics
-'statistics'             => 'የዚሁ ሥራ እቅድ ዝርዝር ቁጥሮች',
-'sitestats'              => 'የዚህ {{SITENAME}} ዝርዝር ቁጥሮች (Statistics)',
-'userstats'              => 'ያባላት ዝርዝር ቁጥሮች',
-'sitestatstext'          => "በጠቅላላው '''$1''' ገጾች በዚህ ሥራ ዕቅድ አሉ። ይኸኛው ድምር ቁጥር የሚጠቅልለው ውይይት ገጾች፣ ልዩ ገጾች፣ አጫጭር ፅሑፎች፣ መምሪያ ገጾች፣ እንዲሁም ሌሎች ይዞታ የሌለባቸው ገጾች ሁሉ ይሆናል። ከነዚህ ውጭ '''$2''' ይዞታ ያላቸው ተገቢ ፅሑፎች ይኖራሉ። 
-
-ይህ ዊኪፔድያ ከተመሰረተ ጀምሮ '''$4''' ለውጦች ተደርገዋል። ስለዚህ ባማካኝ '''$5''' ለውጦች በየገጹ ይሆናል።",
-'userstatstext'          => "እስከ ዛሬ ድረስ '''$1''' አባላት ገብተዋል። ከዚህ ቁጥር መካከል፣ '''$2''' (ማለት '''$4%''') መጋቢዎች ናቸው። There are '''$1''' registered users, of whom '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.",
-'statistics-mostpopular' => 'ከሁሉ የታዩት ገጾች',
+'statistics'              => 'የዚሁ ሥራ እቅድ ዝርዝር ቁጥሮች',
+'statistics-header-users' => 'ያባላት ዝርዝር ቁጥሮች',
+'statistics-mostpopular'  => 'ከሁሉ የታዩት ገጾች',
 
 'disambiguations'      => 'ወደ መንታ መንገድ የሚያያይዝ',
 'disambiguationspage'  => 'Template:መንታ',

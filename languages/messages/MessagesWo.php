@@ -858,7 +858,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'randompage' => 'Aw xët ci mbetteel',
 
 # Statistics
-'userstats' => 'Limbarem jëfëndikookat',
+'statistics-header-users' => 'Limbarem jëfëndikookat',
 
 'brokenredirectstext'    => "Yoonalaat yii dañuy jëmee ci'y xët yu amul :",
 'brokenredirects-edit'   => '(Soppi)',

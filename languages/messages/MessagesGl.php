@@ -1347,22 +1347,9 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 'randomredirect-nopages' => 'Non hai redireccións neste espazo de nomes.',
 
 # Statistics
-'statistics'             => 'Estatísticas',
-'sitestats'              => 'Estatísticas de {{SITENAME}}',
-'userstats'              => 'Estatísticas dos usuarios',
-'sitestatstext'          => "Actualmente hai {{PLURAL:\$1|'''1''' páxina|'''\$1''' páxinas en total}} na base de datos.
-Isto inclúe as páxinas de \"conversa\", as páxinas acerca de {{SITENAME}}, as páxinas de \"contido mínimo\", as redireccións e outras que probabelmente non deberían considerarse como páxinas con contido.
-Excluíndo todo isto, hai {{PLURAL:\$2|'''1''' páxina que é|'''\$2''' páxinas que son}}, probabelmente, {{PLURAL:\$2|páxina|páxinas}} con contido lexítimo.
-
-{{PLURAL:\$8|Foi cargado|Foron cargados}} '''\$8''' {{PLURAL:\$8|ficheiro|ficheiros}}.
-
-Houbo un total de '''\$3''' {{PLURAL:\$3|páxina vista|páxinas vistas}} e '''\$4''' {{PLURAL:\$4|edición|edicións}} desque se creou {{SITENAME}}.
-Isto resulta nunha media de '''\$5''' edicións por páxina e '''\$6''' visionados por edición.
-
-A lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos] é de '''\$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] rexistrado|'''$1''' [[Special:ListUsers|usuarios]] rexistrados}}, dos cales '''$2''' (ou o '''$4%''') {{PLURAL:$2|ten|teñen}} dereitos de $5.
-Actualmente hai ao redor {{PLURAL:$6|dunha conta|de '''$6''' contas}} de usuario {{PLURAL:$6|activa|activas}}.",
-'statistics-mostpopular' => 'Páxinas máis vistas',
+'statistics'              => 'Estatísticas',
+'statistics-header-users' => 'Estatísticas dos usuarios',
+'statistics-mostpopular'  => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',

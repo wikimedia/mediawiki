@@ -1635,21 +1635,9 @@ Kirisi: mağlumat_türi/tür_tarawı, mısalı <tt>image/jpeg</tt>.',
 'randomredirect-nopages' => 'Bul esim ayasında eş aýdağış joq.',
 
 # Statistics
-'statistics'             => 'Sanaq',
-'sitestats'              => '{{SITENAME}} sanağı',
-'userstats'              => 'Qatıswşı sanağı',
-'sitestatstext'          => "Derekqorda {{PLURAL:$1|'''1'''|jalpı '''$1'''}} bet bar.
-Buğan «talqılaw» betteri, {{SITENAME}} jobası twralı better, tım qısqa «biteme» betteri, aýdağıştar, tağı da basqa mağlumat dep tanılmaýtın better kiristirledi.
-Solardı esepten şığarğanda, mında mağlumat {{PLURAL:$2|beti|betteri}} dep sanalatın '''$2''' bet bar dep boljanadı.
-
-'''$8''' faýl qotarıp berildi.
-
-{{SITENAME}} ornatılğannan beri better {{PLURAL:$3|'''1'''|jalpı '''$3'''}} ret qaralğan, jäne better '''$4''' ret öñdelgen.
-Bunıñ nätïjesinde ortaşa eseppen ärbir betke '''$5''' öñdeme keledi, jäne ärbir öñdemege '''$6''' qaraw keledi.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Tapsırımalar kezeginiñ] uzındığı: '''$7'''.",
-'userstatstext'          => "Mında '''$1''' [[{{#special:Listusers}}|tirkelgen qatıswşı]] bar, sonıñ işinde '''$2''' (ne '''$4 %''') qatıswşısında $5 quqıqtarı bar",
-'statistics-mostpopular' => 'Eñ köp qaralğan better',
+'statistics'              => 'Sanaq',
+'statistics-header-users' => 'Qatıswşı sanağı',
+'statistics-mostpopular'  => 'Eñ köp qaralğan better',
 
 'disambiguations'      => 'Aýrıqtı better',
 'disambiguationspage'  => '{{ns:template}}:Aýrıq',

@@ -509,11 +509,8 @@ $messages = array(
 'randompage' => '随便望望',
 
 # Statistics
-'statistics'    => '统计',
-'sitestats'     => '{{SITENAME}}统计',
-'userstats'     => '用户资料',
-'sitestatstext' => "数据库里向亨白浪当有'''{{PLURAL:$1|一|$1}}'''只页面。 个包括'''讲张页'''，'''{{SITENAME}}'''个说明页，顶少个'''stub'''页，重定向页搭仔别个作兴还弗好算合格内容页面个页面。 弗包括该星个说话，有'''{{PLURAL:$2|一|$2}}'''只作兴是合格个内容页。 亨白浪当上载着 '''$8''' 只文件。",
-'userstatstext' => "亨白浪当有 '''{{PLURAL:$1|1|$1}}''' 个登记户头，搿里向 '''$2''' (或 '''$4%''') 个是 $5。",
+'statistics'              => '统计',
+'statistics-header-users' => '用户资料',
 
 'brokenredirects'        => '坏脱个重定向',
 'brokenredirectstext'    => '下底个重定向链到弗存在个页面:',
