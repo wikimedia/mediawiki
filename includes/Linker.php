@@ -1452,7 +1452,7 @@ class Linker {
 		if( !is_null( $tooltip ) ) {
 			$attribs['title'] = wfMsg( 'editsectionhint', $tooltip );
 		}
-		$url = $this->link( $nt, wfMsg('editsection'),
+		$link = $this->link( $nt, wfMsg('editsection'),
 			$attribs,
 			array( 'action' => 'edit', 'section' => $section ),
 			array( 'noclasses', 'known' )
@@ -1466,19 +1466,19 @@ class Linker {
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
-		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $url, &$result ) );
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result ) );
 		if( !is_null( $result ) ) {
 			# For reverse compatibility, add the brackets *after* the hook is
 			# run, and even add them to hook-provided text.  (This is the main
 			# reason that the EditSectionLink hook is deprecated in favor of
 			# DoEditSectionLink: it can't change the brackets or the span.)
-			$result = wfMsgHtml( 'editsection-brackets', $url );
+			$result = wfMsgHtml( 'editsection-brackets', $result );
 			return "<span class=\"editsection\">$result</span>";
 		}
 
 		# Add the brackets and the span, and *then* run the nice new hook, with
 		# clean and non-redundant arguments.
-		$result = wfMsgHtml( 'editsection-brackets', $url );
+		$result = wfMsgHtml( 'editsection-brackets', $link );
 		$result = "<span class=\"editsection\">$result</span>";
 
 		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result ) );
