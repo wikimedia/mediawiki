@@ -48,13 +48,13 @@ if (!defined('MEDIAWIKI')) {
 		$this->run($resultPageSet);
 	}
 
-	protected function prepareQuery($randstr, $limit, $namespace, &$resultPageSet) {
+	protected function prepareQuery($randstr, $limit, $namespace, &$resultPageSet, $redirect) {
 		$this->resetQueryParams();
 		$this->addTables('page');
 		$this->addOption('LIMIT', $limit);
 		$this->addWhereFld('page_namespace', $namespace);
 		$this->addWhereRange('page_random', 'newer', $randstr, null);
-		$this->addWhere(array('page_is_redirect' => 0));
+		$this->addWhereFld('page_is_redirect', $redirect);
 		$this->addOption('USE INDEX', 'page_random');
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
@@ -89,7 +89,8 @@ if (!defined('MEDIAWIKI')) {
 		$result = $this->getResult();
 		$data = array();
 		$this->pageIDs = array();
-		$this->prepareQuery(wfRandom(), $params['limit'], $params['namespace'], $resultPageSet);
+		
+		$this->prepareQuery(wfRandom(), $params['limit'], $params['namespace'], $resultPageSet, $params['redirect']);
 		$count = $this->runQuery($data, $resultPageSet);
 		if($count < $params['limit'])
 		{
@@ -97,7 +98,7 @@ if (!defined('MEDIAWIKI')) {
 			 * for page_random. We'll just take the lowest ones, see
 			 * also the comment in Title::getRandomTitle()
 			 */
-			 $this->prepareQuery(0, $params['limit'] - $count, $params['namespace'], $resultPageSet);
+			 $this->prepareQuery(0, $params['limit'] - $count, $params['namespace'], $resultPageSet, $params['redirect']);
 			 $this->runQuery($data, $resultPageSet);
 		}
 
@@ -129,13 +130,17 @@ if (!defined('MEDIAWIKI')) {
 				ApiBase :: PARAM_MAX => 10,
 				ApiBase :: PARAM_MAX2 => 20
 			),
+			'redirect' => array(
+				ApiBase :: PARAM_TYPE => 'boolean',
+			),
 		);
 	}
 
 	public function getParamDescription() {
 		return array (
 			'namespace' => 'Return pages in these namespaces only',
-			'limit' => 'Limit how many random pages will be returned'
+			'limit' => 'Limit how many random pages will be returned',
+			'redirect' => 'Load a random redirect instead of a random page'
 		);
 	}
 
