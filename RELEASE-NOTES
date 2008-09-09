@@ -226,6 +226,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15486) action=block ignores autoblock parameter
 * (bug 15492) added rcprop=loginfo to list=recentchanges
 * (bug 15527) action=rollback can now revert anonymous editors
+* (bug 15535) prop=info&inprop=protection doesn't list pre-1.10 protections
+  if the page is also protected otherwise (1.10+ style or cascading)
 
 === Languages updated in 1.14 ===
 
