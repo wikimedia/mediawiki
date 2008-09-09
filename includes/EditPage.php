@@ -1221,8 +1221,8 @@ class EditPage {
 			}
 			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', count($cascadeSources) ) );
 		}
-		if( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) != array() ){
-			$wgOut->addWikiMsg( 'titleprotectedwarning' );
+		if( !$this->mTitle->exists() && ( $createRestrictions = $this->mTitle->getRestrictions( 'create' ) ) != array() ){
+			$wgOut->addWikiMsgArray( 'titleprotectedwarning', $createRestrictions );
 		}
 
 		if( $this->kblength === false ) {
