@@ -412,40 +412,38 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			if($fld_protection) {
+				$pageInfo['protection'] = array();
 				if (isset($protections[$pageid])) {
 					$pageInfo['protection'] = $protections[$pageid];
 					$result->setIndexedTagName($pageInfo['protection'], 'pr');
-				} else {
-					# Also check old restrictions
-					if( $pageRestrictions[$pageid] ) {
-						foreach( explode( ':', trim( $pageRestrictions[$pageid] ) ) as $restrict ) {
-							$temp = explode( '=', trim( $restrict ) );
-							if(count($temp) == 1) {
-								// old old format should be treated as edit/move restriction
-								$restriction = trim( $temp[0] );
-								$pageInfo['protection'][] = array(
-									'type' => 'edit',
-									'level' => $restriction,
-									'expiry' => 'infinity',
-								);
-								$pageInfo['protection'][] = array(
-									'type' => 'move',
-									'level' => $restriction,
-									'expiry' => 'infinity',
-								);
-							} else {
-								$restriction = trim( $temp[1] );
-								$pageInfo['protection'][] = array(
-									'type' => $temp[0],
-									'level' => $restriction,
-									'expiry' => 'infinity',
-								);
-							}
+				}
+				# Also check old restrictions
+				if( $pageRestrictions[$pageid] ) {
+					foreach( explode( ':', trim( $pageRestrictions[$pageid] ) ) as $restrict ) {
+						$temp = explode( '=', trim( $restrict ) );
+						if(count($temp) == 1) {
+							// old old format should be treated as edit/move restriction
+							$restriction = trim( $temp[0] );
+							$pageInfo['protection'][] = array(
+								'type' => 'edit',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+							$pageInfo['protection'][] = array(
+								'type' => 'move',
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
+						} else {
+							$restriction = trim( $temp[1] );
+							$pageInfo['protection'][] = array(
+								'type' => $temp[0],
+								'level' => $restriction,
+								'expiry' => 'infinity',
+							);
 						}
-						$result->setIndexedTagName($pageInfo['protection'], 'pr');
-					} else {
-						$pageInfo['protection'] = array();
 					}
+					$result->setIndexedTagName($pageInfo['protection'], 'pr');
 				}
 			}
 			if($fld_talkid && isset($talkids[$title->getNamespace()][$title->getDbKey()]))
