@@ -116,6 +116,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Category counts (e.g. from {{PAGESINCATEGORY:}}) should be more accurate for
   small categories
 * After logging in, automatically redirect to wherever you logged in from
+* (bug 5619) Break messages used in Special:Statistics down further
+* (bug 11029) Add link to Special:Listusers?group=sysop etc at
+  Special:Statistics
 
 === Bug fixes in 1.14 ===
 

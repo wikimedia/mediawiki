@@ -1918,23 +1918,23 @@ Remember to check for other links to the templates before deleting them.',
 'randomredirect-nopages' => 'There are no redirects in this namespace.',
 
 # Statistics
-'statistics'             => 'Statistics',
-'sitestats'              => '{{SITENAME}} statistics',
-'userstats'              => 'User statistics',
-'sitestatstext'          => "There {{PLURAL:\$1|is '''1''' page|are '''\$1''' total pages}} in the database.
-This includes \"talk\" pages, pages about {{SITENAME}}, minimal \"stub\" pages, redirects, and others that probably do not qualify as content pages.
-Excluding those, there {{PLURAL:\$2|is '''1''' page that is a|are '''\$2''' pages that are}} probably legitimate content {{PLURAL:\$2|page|pages}}.
-
-'''\$8''' {{PLURAL:\$8|file has|files have}} been uploaded.
-
-There have been a total of '''\$3''' {{PLURAL:\$3|page view|page views}}, and '''\$4''' {{PLURAL:\$4|page edit|page edits}} since {{SITENAME}} was setup.
-That comes to '''\$5''' average edits per page, and '''\$6''' views per edit.
-
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext'          => "There {{PLURAL:$1|is '''1''' registered [[Special:ListUsers|user]]|are '''$1''' registered [[Special:ListUsers|users]]}}, of which '''$2''' (or '''$4%''') {{PLURAL:$2|has|have}} $5 rights.
-There {{PLURAL:$6|is|are}} currently about '''$6''' active registered user {{PLURAL:$6|account|accounts}}.",
-'statistics-mostpopular' => 'Most viewed pages',
-'statistics-footer'      => '', # do not translate or duplicate this message to other languages
+'statistics'               => 'Statistics',
+'statistics-header-pages'  => 'Page statistics',
+'statistics-header-edits'  => 'Edit statistics',
+'statistics-header-views'  => 'View statistics',
+'statistics-header-users'  => 'User statistics',
+'statistics-articles'      => 'Articles',
+'statistics-pages'         => 'Pages <small>(this includes "talk" pages, pages about {{SITENAME}}, minimal "stub" pages, redirects, and others)</small>',
+'statistics-files'         => 'Uploaded files',
+'statistics-edits'         => 'Page edits since {{SITENAME}} was setup',
+'statistics-edits-average' => 'Average edits per page',
+'statistics-views-total'   => 'Views total',
+'statistics-views-peredit' => 'Views per edit',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] length',
+'statistics-users'         => 'Registered [[Special:ListUsers|users]]',
+'statistics-users-active'  => 'Active users',
+'statistics-mostpopular'   => 'Most viewed pages',
+'statistics-footer'        => '', # do not translate or duplicate this message to other languages
 
 'disambiguations'         => 'Disambiguation pages',
 'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
