@@ -799,7 +799,7 @@ class FormatExif {
 					$fullTag = $tag . '-' . $subTag ;
 					$flashMsgs[] = $this->msg( $fullTag, $subValue );
 				}
-				$tags[$tag] = join( ',', $flashMsgs );
+				$tags[$tag] = implode( wfMsg( 'comma-separator' ), $flashMsgs );
 			break;
 
 			case 'FocalPlaneResolutionUnit':
