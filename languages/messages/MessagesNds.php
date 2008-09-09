@@ -1363,22 +1363,9 @@ Denk dor an, natokieken, wat nich noch annere Sieden na de Vörlagen wiest, ehrd
 'randomredirect-nopages' => 'Gifft kene Redirects in dissen Naamruum.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Sietenstatistik',
-'userstats'              => 'Brukerstatistik',
-'sitestatstext'          => "Dat gifft allens tosamen {{PLURAL:$1|ene Siet|'''$1''' Sieden}} in de Datenbank.
-Dat slött Diskuschoonsieden, Sieden över {{SITENAME}}, bannig korte Sieden, Wiederleiden un annere Sieden in, de nich as richtige Sieden gellen köönt.
-Disse utnahmen, gifft dat {{PLURAL:$2|ene Siet, de as Artikel gellen kann|'''$2''' Sieden, de as Artikels gellen köönt}}.
-
-'''$8''' hoochladene {{PLURAL:$8|Datei|Datein}} gifft dat.
-
-De Lüüd hebbt {{PLURAL:$3|ene Siet|'''$3'''× Sieden}} opropen, un {{PLURAL:$4|ene Siet ännert|'''$4'''× Sieden ännert}}.
-Dat heet, jede Siet is '''$5''' Maal ännert un '''$6''' maal ankeken worrn.
-
-De List, mit de Opgaven, de de Software noch maken mutt, hett {{PLURAL:$7|een Indrag|'''$7''' Indrääg}}.",
-'userstatstext'          => "Dat gifft {{PLURAL:$1|'''een''' anmellt Bruker|'''$1''' anmellt Brukers}}.
-Dorvun {{PLURAL:$2|hett '''een'''|hebbt '''$2'''}} {{PLURAL:$1||($4 %)}} $5-Rechten.",
-'statistics-mostpopular' => 'opmehrst ankekene Sieden',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Brukerstatistik',
+'statistics-mostpopular'  => 'opmehrst ankekene Sieden',
 
 'disambiguations'      => 'Mehrdüdige Begrepen',
 'disambiguationspage'  => 'Template:Mehrdüdig_Begreep',

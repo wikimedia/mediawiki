@@ -1091,22 +1091,9 @@ Bu dosyanın silme kayıtları kolaylık olması için burada sunulmuştur:",
 'randomredirect' => 'Rastgele yönlendirme',
 
 # Statistics
-'statistics'             => 'İstatistikler',
-'sitestats'              => '{{SITENAME}} sitesi istatistikleri',
-'userstats'              => 'Kullanıcı istatistikleri',
-'sitestatstext'          => "{{SITENAME}} sitesinde şu anda '''\$2''' geçerli sayfa mevcuttur.
-
-Bu sayıya; \"yönlendirme\", \"tartışma\", \"resim\", \"kullanıcı\", \"yardım\", \"{{SITENAME}}\", \"şablon\" alanlarındakiler ve iç bağlantı içermeyen maddeler dahil değildir. Geçerli madde sayısına bu sayfaların sayısı eklendiğinde ise toplam '''\$1''' sayfa mevcuttur.
-
-\$8 tane dosya yüklenmiştir.
-
-Site kurulduğundan bu güne kadar toplam '''\$4''' sayfa değişikliği ve sayfa başına ortalama '''\$5''' katkı olmuştur.
-
-Toplam sayfa görüntülenme sayısı '''\$3''', değişiklik başına görüntüleme sayısı '''\$6''' olmuştur.
-
-Şu andaki [http://www.mediawiki.org/wiki/Manual:Job_queue iş kuyruğu] sayısı '''\$7'''.",
-'userstatstext'          => "'''$1''' kayıtlı [[Special:ListUsers|kullanıcı]] var. Bunlardan '''$2''' tanesi (ya da '''$4%''') $5 haklarına sahiptir.",
-'statistics-mostpopular' => 'En popüler maddeler',
+'statistics'              => 'İstatistikler',
+'statistics-header-users' => 'Kullanıcı istatistikleri',
+'statistics-mostpopular'  => 'En popüler maddeler',
 
 'disambiguations'      => 'Anlam ayrım sayfaları',
 'disambiguationspage'  => 'Template:Anlam ayrımı',

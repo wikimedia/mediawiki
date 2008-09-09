@@ -770,22 +770,7 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'randompage' => 'Wale page allevolie',
 
 # Statistics
-'userstats'     => 'Uiser statistics',
-'sitestatstext' => "{{PLURAL:\$1|There is '''1''' page|The'r '''\$1''' total pages}} in the database.
-This includes \"collogue\" pages, pages aboot {{SITENAME}}, meinimal \"stub\"
-pages, reguidals, an ithers that likely disna qualifee as content pages. 
-Excludin thaim, {{PLURAL:\$2|there is '''1''' page that is a|the'r '''\$2''' pages that's}} maist likely
-legeitimate content {{PLURAL:\$2|page|pages}}.
-
-'''\$8''' {{PLURAL:\$8|file has|files have}} been uploaded.
-
-Thare haes been a total o '''\$3''' {{PLURAL:\$3|page view|page views}}, an '''\$4''' {{PLURAL:\$4|page edit|page edits}}
-syne {{SITENAME}} wis set up.
-That comes tae '''\$5''' average edits per page, and '''\$6''' views per edit.
-
-The [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] length is '''\$7'''.",
-'userstatstext' => "{{PLURAL:$1|There is '''1''' registert [[Special:ListUsers|uiser]]|The'r '''$1''' registert [[Special:ListUsers|uisers]]}}.
-'''$2''' (or '''$4%''') o thaim {{PLURAL:$2|has|have}} $5 rights.",
+'statistics-header-users' => 'Uiser statistics',
 
 'doubleredirects'     => 'Dooble reguidals',
 'doubleredirectstext' => 'Ilka raw hauds airtins tae the first an saicont reguidal, as weel as the first line o the saicont reguidal text, for usual giein the "rael" tairget page, that the first reguidal shuid pynt til.',

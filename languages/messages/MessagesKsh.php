@@ -1531,21 +1531,9 @@ wääde, un luur Der die ander Links aan!',
 'randomredirect-nopages' => 'En däm Appachtemang hee sin ja kein Ömleidunge dren.',
 
 # Statistics
-'statistics'             => 'Statistike',
-'sitestats'              => 'Statistike üvver de {{SITENAME}}',
-'userstats'              => 'Statistike üvver de Metmaacher',
-'sitestatstext'          => '* Et jitt en etwa <strong>$2</strong> richtije Atikkele hee.
-* En de Daatebank sinner ävver <strong>$1</strong> Sigge, aan dänne bes jetz zosamme <strong>$4</strong> Mol jet jeändert woode es. Em Schnedd woodte alsu <strong>$5</strong> Änderunge pro Sigg jemaht. <br /><small> (Do sin ävver de Klaafsigge metjezallt, de Sigge üvver de {{SITENAME}}, un usserdäm jede kleine Futz un Stümpchenssigg, Ömleitunge, Schablone, Saachjruppe, un ander Zeuch, wat mer nit jod als ene Atikkel zälle kann)</small>
-
-* <strong>$8</strong> Belder, Tön, un esun ähnlije Daate woodte ald huhjelade.
-
-* Et {{PLURAL:$7|es noch <strong>ein</strong> Opjav|sin noch <strong>$7</strong> Opjave|es <strong>kein</strong> Opjav mieh}} en de Liss.
-{{PLURAL:$3|
-* <strong>Ein</strong> mol wood en Sigg hee avjerofe, dat sin <strong>$6</strong> Avrofe pro Sigg.|
-* <strong>$3</strong> mol wood en Sigg hee avjerofe, dat sin <strong>$6</strong> Avrofe pro Sigg.|<!-- -->}}',
-'userstatstext'          => '* {{PLURAL:$1|<strong>Eine</strong> Metmaacher hät|<strong>$1</strong> Metmaacher han|<strong>Keine</strong> Metmaacher hät}} sich bes jetz aanjemeldt.
-* {{PLURAL:$2|<strong>Eine</strong> dovun es|<strong>$2</strong> dovun sin|<strong>Keine</strong> es}} $5, dat {{PLURAL:$4|es|sinner|sinner}} <strong>$4%</strong>.',
-'statistics-mostpopular' => 'De miets affjeroofe Sigge',
+'statistics'              => 'Statistike',
+'statistics-header-users' => 'Statistike üvver de Metmaacher',
+'statistics-mostpopular'  => 'De miets affjeroofe Sigge',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',

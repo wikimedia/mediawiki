@@ -1203,22 +1203,9 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'randomredirect-nopages' => "N'eus pajenn adkas ebet en esaouenn anv-mañ.",
 
 # Statistics
-'statistics'             => 'Stadegoù',
-'sitestats'              => "Stadegoù al lec'hienn",
-'userstats'              => 'Stadegoù implijer',
-'sitestatstext'          => "En holl ez eus {{PLURAL:\$1|'''1''' pajenn|'''\$1''' pajenn}} er bank roadennoù.
-Er sifr-mañ emañ ar pajennoù \"kaozeal\", ar pajennoù a denn da {{SITENAME}}, an danvez-pennadoù, ar pajennoù adkas ha meur a seurt pajenn all n'haller ket sellet outo evel pennadoù da vat.
-Mar lakaer ar pajennoù-se er-maez e chom {{PLURAL:\$2|'''1''' pajenn|'''\$2''' pajenn}} zo moarvat gwir pennadoù.
-
-Abaoe m'eo bet savet {{SITENAME}} ez eus bet sellet ouzh '''\$3''' {{PLURAL:\$3|pajenn|pajenn}} en holl, ha degaset kemmoù war '''\$4''' {{PLURAL:\$4|pajenn|pajenn}}.
-
-'''\$8''' {{PLURAL:\$8|restr|restr}} zo bet karget.
-
-Sed a ra e-tro '''\$5''' kemm dre bajenn ha '''\$6''' selladenn evit pep kemm.
-
-Hirder al [http://www.mediawiki.org/wiki/Manual:Job_queue lostennad labour] zo par da '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|'''1''' [[Special:ListUsers|implijer]] enrollet|'''$1''' [[Special:ListUsers|implijer]] enrollet}} zo; en o zouez ez eus '''$2''' (pe '''$4%''') {{PLURAL:$2|gant|gant}} gwirioù $5.",
-'statistics-mostpopular' => 'Pajennoù muiañ sellet',
+'statistics'              => 'Stadegoù',
+'statistics-header-users' => 'Stadegoù implijer',
+'statistics-mostpopular'  => 'Pajennoù muiañ sellet',
 
 'disambiguations'      => 'Pajennoù digejañ',
 'disambiguationspage'  => 'Project:Liammoù_ouzh_ar_pajennoù_disheñvelaat',

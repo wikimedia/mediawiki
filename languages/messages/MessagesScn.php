@@ -1198,19 +1198,9 @@ PICT # arcuni
 'randomredirect-nopages' => 'Nuddu rinnirizzamentu ntô namespace silizziunatu.',
 
 # Statistics
-'statistics'             => 'Statìstichi',
-'sitestats'              => 'Li statìstichi di {{SITENAME}}',
-'userstats'              => "Li statìstichi di l'utilizzatura",
-'sitestatstext'          => "C{{PLURAL:\$1|'è na pàggina|i sunnu '''\$1''' pàggini}} ntô databbasi.
-Chisti nclùdunu li pàggini di discussioni, li pàggini supra {{SITENAME}}, li \"stub\" minimali, li redirects, e àutri pàggini chi nun ponnu qualificàrisi comu pàggini di cuntinutu. Escludennu chissi, c{{PLURAL:\$2|'è '''1''' pàggina chi si pò|i sunnu '''\$2''' pàggini chi si ponnu}} qualificari comu pàggini di cuntinutu.
-
-{{PLURAL:\$8|Hà statu puru carricatu|Hannu stati puru carricati}} '''\$8''' file.
-
-Dâ nstallazzioni dô situ nzinu a stu mumentu {{PLURAL:\$3|hà stata visitata '''1''' pàggina|hannu statu visitati '''\$3''' pàggini}} e {{PLURAL:\$4|fattu '''1''' canciamentu|fatti '''\$4''' canciamenti}}, pari a na media di '''\$5''' canciamenti pi pàggina e '''\$6''' richiesti di littura p'ogni canciamentu.
-
-La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elementu|'''\$7''' elementi}}.",
-'userstatstext'          => "C{{PLURAL:$1|'è '''1''' [[Special:ListUsers|utilizzaturi]] riggistratu|i sunnu '''$1''' [[Special:ListUsers|utilizzatura]] riggistrati}}; di chisti '''$2''' (o lu '''$4%''') {{PLURAL:$2|havi|hannu}} li diritti di lu gruppu $5.",
-'statistics-mostpopular' => 'Pàggini cchiù visitati',
+'statistics'              => 'Statìstichi',
+'statistics-header-users' => "Li statìstichi di l'utilizzatura",
+'statistics-mostpopular'  => 'Pàggini cchiù visitati',
 
 'disambiguations'      => 'Pàggini cu liami ambìgui',
 'disambiguationspage'  => 'Template:Disambigua',

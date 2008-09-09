@@ -1650,22 +1650,9 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'randomredirect-nopages' => 'Er zijn geen doorverwijzingen in deze naamruimte.',
 
 # Statistics
-'statistics'             => 'Statistieken',
-'sitestats'              => 'Statistieken van {{SITENAME}}',
-'userstats'              => 'Gebruikerstatistieken',
-'sitestatstext'          => "In de database {{PLURAL:$1|staat 1 pagina|staan '''$1''' pagina's}}, inclusief overlegpagina's, pagina's over {{SITENAME}}, beginnetjes, doorverwijzingen en andere pagina's die waarschijnlijk geen content zijn.
-Er {{PLURAL:$2|is waarschijnlijk 1 pagina|zijn waarschijnlijk '''$2''' pagina's}} met een echte inhoud.
-
-Er {{PLURAL:$8|is '''1''' bestand|zijn '''$8''' bestanden}} toegevoegd.
-
-Er {{PLURAL:$3|is '''1''' pagina|zijn '''$3''' pagina's}} weergegeven en '''$4''' {{PLURAL:$4|bewerking|bewerkingen}} gemaakt sinds {{SITENAME}} is opgezet.
-Dat komt uit op gemiddeld '''$5''' bewerkingen per pagina en '''$6''' weergegeven pagina's per bewerking.
-
-De lengte van de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''$7'''.",
-'userstatstext'          => "Er {{PLURAL:$1|is '''1''' geregistreerde gebruiker|zijn '''$1''' geregistreerde gebruikers}}, waarvan er
-'''$2''' (of '''$4%''') $5rechten {{PLURAL:$2|heeft|hebben}}.
-Er {{PLURAL:$6|is|zijn}} ongeveer '''$6''' actieve geregistreerde {{PLURAL:$6|gebruiker|gebruikers}}.",
-'statistics-mostpopular' => "Meestbekeken pagina's",
+'statistics'              => 'Statistieken',
+'statistics-header-users' => 'Gebruikerstatistieken',
+'statistics-mostpopular'  => "Meestbekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',

@@ -1301,24 +1301,9 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'randomredirect-nopages' => 'In dissen Noomensruum sunt neen Fääreleedengen deer.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Siedenstatistik',
-'userstats'              => 'Benutserstatistik',
-'sitestatstext'          => "Dät rakt mädnunner '''$1''' {{PLURAL:$1|Siede|Sieden}} in ju Doatenboank.
-Dät slut Diskussionssieden, Sieden uur {{SITENAME}}, litje Sieden, Fäärelaitengen un uur Sieden ien,
-do der eventuell nit as Artikkele betrachted wäide konnen.
-
-Disse uutgenuumen rakt et '''$2''' {{PLURAL:$2|Siede|Sieden}}, do der as Artikkel betrachted wäide {{PLURAL:$2|kon|konnen}}.
-
-Mädnunner {{PLURAL:$8|wuude '''1''' Doatäi|wuuden '''$8''' Doatäie}} hoochleeden.
-
-Mädnunner roat et '''$3''' {{PLURAL:$3|Siedenouroup|Siedenouroupe}} un '''$4''' {{PLURAL:$4|Siedenbeoarbaidenge|Siedenbeoarbaidengen}} siet {{SITENAME}} iengjucht wuude.
-Deeruut reeke sik '''$5''' Beoarbaidengen pro Siede un '''$6''' Siedenouroupe pro Beoarbaidenge.
-
-Laangte fon ju [http://www.mediawiki.org/wiki/Manual:Job_queue „Job queue“]: '''$7'''",
-'userstatstext'          => "Dät rakt '''$1''' {{PLURAL:$1|registrierde|registrierde}} [[Special:ListUsers|Benutsere]].
-Deerfon {{PLURAL:$2|häd|hääbe}} '''$2''' {{PLURAL:$2|Benutser|Benutsere}} (=$4 %) $5-Gjuchte.",
-'statistics-mostpopular' => 'Maast besoachte Sieden',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Benutserstatistik',
+'statistics-mostpopular'  => 'Maast besoachte Sieden',
 
 'disambiguations'      => 'Begriepskläärengssieden',
 'disambiguationspage'  => 'Template:Begriepskläärenge',

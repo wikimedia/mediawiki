@@ -1081,19 +1081,9 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'randomredirect-nopages' => 'Nedoy graskaks koe bato yoltxo.',
 
 # Statistics
-'statistics'             => 'Enkopaca yo',
-'sitestats'              => 'Enkopaca yo va xo',
-'userstats'              => 'Enkopaca yo va favesik',
-'sitestatstext'          => "Origak va '''\$1''' bu noelon ruldar.
-Bata ota va se \"prilarabu\" is bu icde {{SITENAME}} is yupbu is graskarabu is aru metelizkorafu bu ruldar. Divlapuson va batu bu se, '''\$2''' lanon telizkorafu bu zavzad.
-
-'''\$8''' iyeltak tid kalvajayan.
-
-'''\$3''' bu zo rupeyed ise '''\$4''' zo betayad. Va mialuk va '''\$5''' betara fuxe bu is '''\$6''' rupera fuxe betara batcoba tadler.
-
-Abrotcuca ke [http://www.mediawiki.org/wiki/Manual:Job_queue \"job queue\"] tir '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Tir '''1''' vertokayan [[Special:ListUsers|favesik]]|Tid '''$1''' vertokayan [[Special:ListUsers|favesik]]}}. Vanmiaeon '''$2''' (ok '''$4%''') va $5 roka {{PLURAL:$2|digir|digid}}.",
-'statistics-mostpopular' => 'Tel lorupen bueem',
+'statistics'              => 'Enkopaca yo',
+'statistics-header-users' => 'Enkopaca yo va favesik',
+'statistics-mostpopular'  => 'Tel lorupen bueem',
 
 'disambiguations'     => 'Bu dem milyoltaca yo',
 'disambiguationspage' => '{{ns:template}}:Milyoltaca',

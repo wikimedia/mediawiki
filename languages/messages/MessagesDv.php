@@ -256,9 +256,8 @@ $messages = array(
 'randompage' => 'ކޮންމެވެސް ޞަފްޙާއެއް',
 
 # Statistics
-'statistics' => 'ތަފާސްހިސާބުތައް',
-'sitestats'  => 'ވިކިޕީޑިއާ ގެ ތަފާސްހިސާބު',
-'userstats'  => 'މެންބަރުގެ ތަފާސްހިސާބު',
+'statistics'              => 'ތަފާސްހިސާބުތައް',
+'statistics-header-users' => 'މެންބަރުގެ ތަފާސްހިސާބު',
 
 'brokenredirects' => 'އޮޅިފައިވާ މިސްރާބުތައް',
 

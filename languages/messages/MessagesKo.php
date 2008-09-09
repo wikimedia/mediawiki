@@ -1278,19 +1278,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'randomredirect-nopages' => '이 네임스페이스에서 해당하는 넘겨주기 문서가 없습니다.',
 
 # Statistics
-'statistics'             => '통계',
-'sitestats'              => '{{SITENAME}} 통계',
-'userstats'              => '사용자 통계',
-'sitestatstext'          => "현재 데이터베이스에는 '''\$1'''개의 문서가 있습니다. 이것은 토론 문서, {{SITENAME}} 문서, \"토막글\" 문서, 넘겨주기 문서 등을 포함하고 있습니다. 이것들을 제외하면 '''\$2'''개의 문서가 있습니다.
-
-'''\$8'''개의 파일이 올라와 있습니다.
-
-위키가 설치된 후 문서는 전체 '''\$3'''번 읽혔고, '''\$4'''번 편집되었습니다. 문서당 평균 편집 횟수는 '''\$5'''번이고, 한번 편집할 때마다 평균 '''\$6'''번 문서를 보았습니다.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]의 길이는 '''\$7'''입니다.",
-'userstatstext'          => "'''$1'''명의 [[Special:ListUsers|사용자]]가 등록되어 있고, 이 중 $5 권한을 가진 사용자 수는 '''$2'''명('''$4%''')입니다.
-현재 등록된 사용자 중 약 '''$6'''명이 활동하고 있습니다.",
-'statistics-mostpopular' => '가장 많이 읽힌 문서',
+'statistics'              => '통계',
+'statistics-header-users' => '사용자 통계',
+'statistics-mostpopular'  => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
 'disambiguationspage'  => 'Template:Disambig',

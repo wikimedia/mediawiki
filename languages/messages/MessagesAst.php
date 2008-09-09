@@ -1323,23 +1323,9 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'randomredirect-nopages' => 'Nun hai redireiciones nesti espaciu de nomes.',
 
 # Statistics
-'statistics'             => 'Estadístiques',
-'sitestats'              => 'Estadístiques de {{SITENAME}}',
-'userstats'              => "Estadístiques d'usuariu",
-'sitestatstext'          => "Hai un total {{PLURAL:\$1|d''''una''' páxina|de '''\$1''' páxines}} na base de datos.
-Inclúi páxines d'\"alderique\" , páxines sobre {{SITENAME}}, \"entamos\" mínimos,
-redireiciones y otres que nun puen cuntar como páxines.  Ensin estes, hai {{PLURAL:\$2|'''una''' páxina|'''\$2''' páxines}} que son artículos llexítimos.
-
-Hai {{PLURAL:\$8|xubida '''una''' imaxe|xubíes '''\$8''' imáxenes}}.
-
-Hebo un total {{PLURAL:\$3|d''''una''' páxina visitada|de '''\$3''' páxines visitaes}}, y {{PLURAL:\$4|'''una''' edición|'''\$4''' ediciones}} dende qu'entamó {{SITENAME}}.
-Esto fai una media de '''\$5''' ediciones per páxina, y '''\$6''' visites per edición.
-
-La [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres] ye de '''\$7'''.",
-'userstatstext'          => "Hai {{PLURAL:$1|'''1''' [[Special:ListUsers|usuariu]] rexistráu, del|'''$1''' [[Special:ListUsers|usuarios]] rexistraos, de los}} que
-'''$2''' (el '''$4%''') {{PLURAL:$2|tien|tienen}} privilexos de $5.
-Hai nestos momentos {{PLURAL:$6|'''$6''' cuenta d'usuariu rexistráu activa|'''$6''' cuentes d'usuariu rexistráu actives}}.",
-'statistics-mostpopular' => 'Páxines más vistes',
+'statistics'              => 'Estadístiques',
+'statistics-header-users' => "Estadístiques d'usuariu",
+'statistics-mostpopular'  => 'Páxines más vistes',
 
 'disambiguations'      => 'Páxines de dixebra',
 'disambiguationspage'  => 'Template:dixebra',

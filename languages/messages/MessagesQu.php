@@ -1284,23 +1284,9 @@ Munaspaykiqa, [[Special:WhatLinksHere/$2|hunt'a sutisuyuta]] qhaway.",
 'randomredirect-nopages' => "Manam kanchu kay suti k'itipi pusapuna p'anqakuna.",
 
 # Statistics
-'statistics'             => 'Ranuy (kanchachani)',
-'sitestats'              => '{{SITENAME}} tiyaymanta ranuy',
-'userstats'              => 'Ruraqmanta ranuy',
-'sitestatstext'          => "Willañiqintinpiqa {{PLURAL:$1|'''1''' p'anqam|'''$1''' p'anqakunam}} kachkan.
-Kaypi ch'aqtasqaqa rimanakuymi, {{SITENAME}}manta p'anqakunam, ch'iñicha tuna qillqakunam, pusapuna p'anqakunam, huk manachá samiqniyuqchu kaq p'anqakunapas.
-Chaykunata mana yupaptinchikqa, {{PLURAL:$2|huklla samiqniyuq qillqa p'anqachá|'''$2''' samiqniyuq qillqa p'anqachá}} kachkan.
-
-Sirwiqpiqa '''$8''' {{PLURAL:$8|churkusqa willañiqim|churkusqa willañiqikunam}} kachkan.
-
-Kay wikip qallarisqanmantaqa '''$3''' kutiñam {{PLURAL:$3|watukusqa|watukusqa}}, '''$4''' kutitaqmi {{PLURAL:$4|p'anqa llamk'apusqa|p'anqakuna llamk'apusqa}} karqan.
-Chaymantaqa yurinmi: kuskanchaku '''$5''' {{PLURAL:$5|llamk'apusqa|llamk'apusqa}} p'anqaman, '''$6''' {{PLURAL:$6|watukusqa|watukusqa}} llamk'apusqaman.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Llamk'ana chupaqa] '''$7''' sunim.",
-'userstatstext'          => "{{PLURAL:$1|'''1''' rakiqunayuq [[Special:ListUsers|ruraqmi]]|'''$1''' rakiqunayuq [[Special:ListUsers|ruraqkunam]]}} kachkan,
-paypurataq '''$2''' ('''$4%'''-nin) $5 {{PLURAL:$2|hayñiyuqmi|hayñiyuqmi}}.
-{{PLURAL:$6|Kunanqa|Kunanqa}} '''$6'''-chá llamk'achkaq {{PLURAL:$6|rakiqunam|rakiqunakunam}}.",
-'statistics-mostpopular' => "Lliwmanta astawan rikusqa p'anqakuna",
+'statistics'              => 'Ranuy (kanchachani)',
+'statistics-header-users' => 'Ruraqmanta ranuy',
+'statistics-mostpopular'  => "Lliwmanta astawan rikusqa p'anqakuna",
 
 'disambiguations'      => "Sut'ichana qillqakuna",
 'disambiguationspage'  => "Plantilla:Sut'ichana qillqa",

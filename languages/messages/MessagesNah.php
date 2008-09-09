@@ -665,19 +665,8 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'randomredirect' => 'Zāzotlacuepaliztli',
 
 # Statistics
-'statistics'    => 'Tlapōhualiztli',
-'sitestats'     => '{{SITENAME}} ītlapōhualiz',
-'userstats'     => 'Tlatequitiltilīlli ītlapōhualiz',
-'sitestatstext' => "{{PLURAL:$1|Cah '''1''' zāzanilli|Cateh '''$1''' zāzaniltin}} nicān.
-Inīn quimpiya tēixnāmiquiliztli zāzanilli, {{SITENAME}} ītechcopa zāzanilli, machiyōtōn, tlacuepaliztli auh occequīntīn hueliz ahmo cualli.
-Ahtle, in {{PLURAL:$2|cah '''1''' cualli zāzanilli|cateh '''$2''' cualli zāzaniltin}}.
-
-{{PLURAL:$8|Nō cah '''$8''' tlahcuilōlli|Nō cateh '''$8''' tlahcuilōlli}} inīn huēychīuhpōhualhuazco.
-
-In īhuīcpa huiqui īpēhualiz {{PLURAL:$3|ōcatca|ōcatcah}} '''$3''' tlahpaloliztli auh '''$4''' tlapatlaliztli.
-Inīn quicētilia huehca '''$5''' tlapatlaliztli cēcem zāzanilli auh '''$6''' tlahpaloliztli cēcem tlapatlaliztli.
-
-Huēiyacaliztli [http://www.mediawiki.org/wiki/Manual:Job_queue tequilcān] cah '''$7'''.",
+'statistics'              => 'Tlapōhualiztli',
+'statistics-header-users' => 'Tlatequitiltilīlli ītlapōhualiz',
 
 'disambiguations' => 'Ōmetōcāitl zāzaniltin',
 

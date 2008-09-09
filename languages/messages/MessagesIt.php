@@ -1406,19 +1406,9 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'randomredirect-nopages' => 'Nessun redirect nel namespace selezionato.',
 
 # Statistics
-'statistics'             => 'Statistiche',
-'sitestats'              => 'Statistiche relative a {{SITENAME}}',
-'userstats'              => 'Statistiche relative agli utenti',
-'sitestatstext'          => "Il database contiene complessivamente '''\$1''' {{PLURAL:\$1|pagina|pagine}}.
-Questa cifra comprende anche le pagine di discussione, quelle di servizio di {{SITENAME}}, le voci più esigue (\"stub\"), i redirect e altre pagine che probabilmente non vanno considerate tra i contenuti del sito. Escludendo le pagine sopra descritte, ve ne {{PLURAL:\$2|è '''1'''|sono '''\$2'''}} di contenuti veri e propri.
-
-{{PLURAL:\$8|È stato inoltre caricato|Sono stati inoltre caricati}} '''\$8''' file.
-
-Dall'installazione del sito sino a questo momento {{PLURAL:\$3|è stata visitata '''1''' pagina|sono state visitate '''\$3''' pagine}} ed {{PLURAL:\$4|eseguita '''1''' modifica|eseguite '''\$4''' modifiche}}, pari a una media di '''\$5''' modifiche per pagina e '''\$6''' richieste di lettura per ciascuna modifica.
-
-La [http://www.mediawiki.org/wiki/Manual:Job_queue coda dei processi] da eseguire in background contiene {{PLURAL:\$7|'''1''' elemento|'''\$7''' elementi}}.",
-'userstatstext'          => "In questo momento {{PLURAL:$1|è registrato '''1''' utente|sono registrati '''$1''' utenti}}. Il gruppo $5 è composto da '''$2''' {{PLURAL:$2|utente|utenti}}, pari al '''$4%''' dei registrati. {{PLURAL:$6|C'è|Ci sono}} al momento circa '''$6''' {{PLURAL:$6|utente registrato attivo|utenti registrati attivi}}.",
-'statistics-mostpopular' => 'Pagine più visitate',
+'statistics'              => 'Statistiche',
+'statistics-header-users' => 'Statistiche relative agli utenti',
+'statistics-mostpopular'  => 'Pagine più visitate',
 
 'disambiguations'      => 'Pagine di disambiguazione',
 'disambiguationspage'  => 'Template:Disambigua',

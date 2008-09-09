@@ -292,9 +292,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'randompage' => 'Pagina à casu',
 
 # Statistics
-'statistics' => 'Statistiche',
-'sitestats'  => "Statistiche nant'à {{SITENAME}} in lingua corsa",
-'userstats'  => "Statistiche nant'à l'utilizatori",
+'statistics'              => 'Statistiche',
+'statistics-header-users' => "Statistiche nant'à l'utilizatori",
 
 'brokenredirects-edit' => '(mudificà)',
 

@@ -851,23 +851,9 @@ ou co po les sons
 'randomredirect' => "Redjiblaedje a l' astcheyance",
 
 # Statistics
-'statistics'             => 'Sitatistikes',
-'sitestats'              => 'Sitatistikes di {{SITENAME}}',
-'userstats'              => 'Sitatistikes des uzeus',
-'sitestatstext'          => "I gn a '''$1''' pådjes å totå el båze di dnêyes.
-Çoula tot contant les pådjes di «Copenes», les pådjes åd fwait di {{SITENAME}}, les pådjes «djermons» (pådjes sins waire di contnou), les redjiblaedjes, eyet co ds ôtes ki n' sont nén vormint des årtikes.
-Si on n' conte nén ces la, i gn a '''$2''' pådjes ki sont
-probåblumint des vraiys årtikes.
-
-'''$8''' fitchîz ont stî eberwetés.
-
-I gn a-st avou å totå '''$3''' riwaitaedjes di pådjes, eyet '''$4''' candjmints do contnou des pådjes dispoy ki ci wiki chal est en alaedje.
-Dj' ô bén k' i gn a ene moyene di '''$5''' candjmints par pådje, eyet '''$6''' riwaitaedjes po on candjmint.
-
-Li longueur del [http://www.mediawiki.org/wiki/Manual:Job_queue cawêye des bouyes] est di '''$7'''.",
-'userstatstext'          => "I gn a '''$1''' uzeus d' eredjîstrés.
-'''$2''' (ou '''$4%''') di zels sont eto des manaedjeus (riloukîz a $3).",
-'statistics-mostpopular' => 'Pådjes les pus veyowes',
+'statistics'              => 'Sitatistikes',
+'statistics-header-users' => 'Sitatistikes des uzeus',
+'statistics-mostpopular'  => 'Pådjes les pus veyowes',
 
 'disambiguations'     => "Pådjes d' omonimeye",
 'disambiguationspage' => 'Template:Omonimeye',

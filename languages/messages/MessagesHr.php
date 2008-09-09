@@ -1487,24 +1487,9 @@ A [[Special:WhatLinksHere/$2|Ovdje se nalazi]] kompletan popis.',
 'randomredirect-nopages' => 'Nema preusmjeravanja u ovom imenskom prostoru.',
 
 # Statistics
-'statistics'             => 'Statistika',
-'sitestats'              => 'Statistika ovog wikija',
-'userstats'              => 'Statistika suradnika',
-'sitestatstext'          => "U bazi podataka ukupno {{PLURAL:$1|je '''$1''' članak|su '''$1''' članka|je '''$1''' članaka}}.
-Ovaj broj uključuje stranice za raspravu, stranice o projektu u prostoru {{SITENAME}}, kratke članke,
-preusmjerene stranice, i sve ostale članke koje najvjerojatnije ne možemo računati kao sadržaj.
-
-Trenutačno je '''$2''' članaka koji predstavljaju valjan sadržaj (nalaze se u glavnom prostoru i sadrže
-barem jednu unutarnju poveznicu).
-
-Snimljeno je '''$8''' datoteka.
-
-Ukupno je '''$3''' pregleda stranica, i '''$4''' uređivanja članaka od pokretanja projekta {{SITENAME}}.
-U prosjeku to iznosi '''$5''' uređivanja po stranici, i '''$6''' pregleda po uređivanju.
-
-Duljina [http://www.mediawiki.org/wiki/Manual:Job_queue zadataka za izvršavanje] je '''$7'''.",
-'userstatstext'          => "Broj prijavljenih [[Special:ListUsers|suradnika]] je '''$1'''. Od toga {{PLURAL:$2|je '''$2''' (ili '''$4%''') administrator|su '''$2''' (ili '''$4%''') administratora|su '''$2''' (ili '''$4%''') administratori}}, tj. imaju $5 prava.",
-'statistics-mostpopular' => 'Najposjećenije stranice',
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Statistika suradnika',
+'statistics-mostpopular'  => 'Najposjećenije stranice',
 
 'disambiguations'      => 'Razdvojbene stranice',
 'disambiguationspage'  => 'Template:Razdvojba',

@@ -217,8 +217,8 @@ $messages = array(
 'randompage' => 'Тушкелди макала',
 
 # Statistics
-'statistics' => 'Статистика',
-'userstats'  => 'Колдонуучулардын статистикасы',
+'statistics'              => 'Статистика',
+'statistics-header-users' => 'Колдонуучулардын статистикасы',
 
 # Miscellaneous special pages
 'unusedcategories' => 'Колдонулбаган категориялар',

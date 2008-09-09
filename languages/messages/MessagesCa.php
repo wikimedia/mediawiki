@@ -1355,24 +1355,9 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'randomredirect-nopages' => "No hi ha cap redirecció a l'espai de noms.",
 
 # Statistics
-'statistics'             => 'Estadístiques',
-'sitestats'              => 'Estadístiques del lloc',
-'userstats'              => "Estadístiques d'usuari",
-'sitestatstext'          => "Hi ha {{PLURAL:$1|una única pàgina|un total de '''$1''' pàgines}} en la base de dades.
-Això inclou pàgines de discussió, pàgines sobre el projecte {{SITENAME}}, pàgines mínimes,
-redireccions, i altres que probablement no es poden classificar com a articles.
-Excloent-les, hi ha {{PLURAL:$2|una única pàgina que es pugui considerar article legítim|'''$2''' pàgines que probablement són articles legítims}}.
-
-S'{{PLURAL:$8|ha penjat un únic fitxer|han penjat '''$8''' fitxers}}.
-
-Hi ha hagut un total d{{PLURAL:$3|'una única visita|e '''$3''' visites}} a pàgines, i {{PLURAL:$4|una edició|'''$4''' edicions}} de pàgina
-des que el programari s'ha configurat.
-Això resulta en una mitjana {{PLURAL:$5|d'una edició|de '''$5''' edicions}} per pàgina,
-i {{PLURAL:$6|'''$6''' visita|'''$6''' visites}} per edició.
-
-La mida de la [http://www.mediawiki.org/wiki/Manual:Job_queue cua de treballs] és '''$7'''.",
-'userstatstext'          => "Hi ha {{PLURAL:$1|'''1''' usuari registrat i, a més,|'''$1''' usuaris registrats, dels quals}} {{PLURAL:$2|un (el '''$4%''') té|'''$2''' (el '''$4%''') tenen}} drets de: $5.",
-'statistics-mostpopular' => 'Pàgines més visualitzades',
+'statistics'              => 'Estadístiques',
+'statistics-header-users' => "Estadístiques d'usuari",
+'statistics-mostpopular'  => 'Pàgines més visualitzades',
 
 'disambiguations'      => 'Pàgines de desambiguació',
 'disambiguationspage'  => 'Template:Desambiguació',

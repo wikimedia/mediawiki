@@ -1193,15 +1193,9 @@ $2',
 'randomredirect-nopages' => '名冊內無渡也。',
 
 # Statistics
-'statistics'             => '彙統',
-'sitestats'              => '{{SITENAME}}彙統',
-'userstats'              => '有簿彙統',
-'sitestatstext'          => "庫藏有頁'''$1'''，除議、釋、芻文、渡與不濟者，有足文$2、獻品'''$8'''。
-自{{SITENAME}}始焉，閱頁'''$3'''，纂文'''$4'''。均之則每頁'''$5'''覽，每文'''$6'''纂。
-[http://www.mediawiki.org/wiki/Manual:Job_queue job queue]長'''$7'''。",
-'userstatstext'          => "有[[Special:ListUsers|簿]]者'''$1'''，內'''$2'''人掌$5權，據百分之'''$4'''。
-活之註簿有'''$6'''。",
-'statistics-mostpopular' => '燴炙',
+'statistics'              => '彙統',
+'statistics-header-users' => '有簿彙統',
+'statistics-mostpopular'  => '燴炙',
 
 'disambiguations'      => '釋義',
 'disambiguations-text' => '頁下引[[MediaWiki:Disambiguationspage]]模，求釋義，宜正題之。',

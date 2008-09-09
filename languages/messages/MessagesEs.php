@@ -1324,24 +1324,9 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 'randomredirect-nopages' => 'No hay redirecciones en este espacio de nombres.',
 
 # Statistics
-'statistics'             => 'Estadísticas',
-'sitestats'              => 'Estadísticas de {{SITENAME}}',
-'userstats'              => 'Estadísticas de usuario',
-'sitestatstext'          => "Hay un total de {{PLURAL:$1|'''1''' página|'''$1''' páginas}} en la base de datos.
-Esto incluye páginas de discusión, páginas sobre {{SITENAME}}, esbozos mínimos, redirecciones y otras que probablemente no puedan ser consideradas páginas de contenidos.
-Excluyéndolas, hay {{PLURAL:$2|1 página que, probablemente sea una página|'''$2''' páginas que, probablemente, sean páginas}} de contenido legítimo.
-
-Hay '''$8''' {{PLURAL:$8|archivo almacenado|archivos almacenados}} en el servidor.
-
-Desde la instalación del wiki ha habido un total de '''$3''' {{PLURAL:$3|visita|visitas}} y '''$4''' {{PLURAL:$4|edición de página|ediciones de páginas}}.
-Esto resulta en un promedio de '''$5''' {{PLURAL:$5|edición|ediciones}} por página y '''$6''' {{PLURAL:$6|visita|visitas}} por edición.
-
-La longitud de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de tareas] es de '''$7'''",
-'userstatstext'          => "Hay {{PLURAL:$1|'''1''' [[Special:ListUsers|usuario]] registrado|'''$1''' [[Special:ListUsers|usuarios]] registrados}},
-de los cuales '''$2''' (el '''$4%''') {{PLURAL:$2|tiene|tienen}} privilegios de $5.
-
-Actualmente hay alrededor de  {{PLURAL:$6|una cuenta de usuario activa|'''$6''' cuentas de usuario activas}}.",
-'statistics-mostpopular' => 'Páginas más vistas',
+'statistics'              => 'Estadísticas',
+'statistics-header-users' => 'Estadísticas de usuario',
+'statistics-mostpopular'  => 'Páginas más vistas',
 
 'disambiguations'      => 'Páginas de desambiguación',
 'disambiguationspage'  => 'Template:Desambiguación',

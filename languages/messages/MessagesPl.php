@@ -1537,23 +1537,9 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'randomredirect-nopages' => 'Brak przekierowań w tej przestrzeni nazw.',
 
 # Statistics
-'statistics'             => 'Statystyki',
-'sitestats'              => 'Statystyka {{GRAMMAR:D.lp|{{SITENAME}}}}',
-'userstats'              => 'Statystyka użytkowników',
-'sitestatstext'          => "W bazie danych {{PLURAL:$1|jest '''1''' strona|są '''$1''' strony|jest '''$1''' stron}}.
-
-Ta liczba uwzględnia strony dyskusji, strony na temat {{GRAMMAR:D.lp|{{SITENAME}}}}, zalążki (stuby), strony przekierowujące, oraz inne, które trudno uznać za artykuły.
-Wyłączając powyższe, {{PLURAL:$2|jest|są|jest}} prawdopodobnie '''$2''' {{PLURAL:$2|strona, którą można uznać za artykuł|strony, które można uznać za artykuły|stron, które można uznać za artykuły}}.
-
-Przesłano $8 {{PLURAL:$8|plik|pliki|plików}}.
-
-Od uruchomienia {{GRAMMAR:D.lp|{{SITENAME}}}} {{PLURAL:$3|'''1''' raz odwiedzono strony|'''$3''' razy odwiedzono strony|było '''$3''' odwiedzin stron}} i wykonano '''$4''' {{PLURAL:$4|edycję|edycje|edycji}}.
-Daje to średnio '''$5''' {{PLURAL:$5|edycję|edycje|edycji}} na stronę i '''$6''' {{PLURAL:$6|odwiedzinę|odwiedziny|odwiedzin}} na edycję.
-
-Długość [http://www.mediawiki.org/wiki/Manual:Job_queue kolejki zadań] wynosi '''$7'''.",
-'userstatstext'          => "Jest {{PLURAL:$1|'''1''' zarejestrowany [[Special:ListUsers|użytkownik]]|'''$1''' zarejestrowanych [[Special:ListUsers|użytkowników]]}}. {{PLURAL:$1|Użytkownik ten|Spośród nich '''$2''' (czyli '''$4%''')}} ma status $5.
-Obecnie jest około '''$6''' {{PLURAL:$6|aktywny użytkownik|aktywnych użytkowników}}.",
-'statistics-mostpopular' => 'Najczęściej odwiedzane strony',
+'statistics'              => 'Statystyki',
+'statistics-header-users' => 'Statystyka użytkowników',
+'statistics-mostpopular'  => 'Najczęściej odwiedzane strony',
 
 'disambiguations'      => 'Strony ujednoznaczniające',
 'disambiguationspage'  => 'Template:disambig',

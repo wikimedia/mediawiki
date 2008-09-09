@@ -388,10 +388,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # Random page
 'randompage' => 'Hlīetlic tramet',
 
-# Statistics
-'userstatstext' => "Þǣr sind '''$1''' genemnode brūcend, þāra þe
-'''$2''' (oþþe '''$4%''') sind bewitend (sēo $3).",
-
 'doubleredirects' => 'Twifealdlice Ymblǣderas',
 
 'brokenredirects'        => 'Gebrocene Ymblǣderas',

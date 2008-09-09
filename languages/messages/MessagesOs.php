@@ -372,8 +372,7 @@ $3',
 'randompage' => 'Æнæбары æвзæрст фарс',
 
 # Statistics
-'userstats'     => 'Архайджыты статистикæ',
-'userstatstext' => "Регистрацигонд {{PLURAL:$1|æрцыд '''иу архайæг'''|æрцыдысты $1 [[Special:ListUsers|архайæджы]]}}, уыдонæй '''$2''' (ома сæ '''$4%''') {{PLURAL:$2|у|сты}} $5.",
+'statistics-header-users' => 'Архайджыты статистикæ',
 
 'brokenredirects-edit'   => '(баив æй)',
 'brokenredirects-delete' => '(аппар)',

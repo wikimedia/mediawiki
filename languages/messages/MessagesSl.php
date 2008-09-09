@@ -783,19 +783,8 @@ ali za neposredno povezavo z datoteko
 'randomredirect' => 'Naključna preusmeritev',
 
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => 'Statistika {{GRAMMAR:rodilnik|{{SITENAME}}}}',
-'userstats'     => 'Uporabniška statistika',
-'sitestatstext' => "V podatkovni zbirki je skupno '''$1''' strani.
-Med te so vštete tudi ''pogovorne'' strani, strani o {{GRAMMAR:mestnik|{{SITENAME}}}}, najmanjše ''škrbinske'' strani, preusmeritve in še druge, ki niso članki. Če izključimo te zadnje, obstaja '''$2''' strani; ki so po vsej verjetnosti prave strani z vsebino.
-
-Naloženih je '''$8''' {{PLURAL:{{NUMBEROFFILES}}|datoteka|datoteki|datoteke|datotek|datotek}}.
-
-Od postavitve wikija je bilo opravljenih '''$3''' pregledov in '''$4''' urejanj strani.
-To da skupaj povprečno '''$5''' urejanj na stran in '''$6''' pogledov na urejanje.
-
-Dolžina [http://www.mediawiki.org/wiki/Manual:Job_queue čakalne vrste delovnih nalog]: '''$7'''.",
-'userstatstext' => "Registriralo se je '''$1''' uporabnikov. Med temi je '''$2''' (oz. '''$4%''') administratorjev (glej $3).",
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Uporabniška statistika',
 
 'disambiguations'     => 'Razločitvene strani',
 'disambiguationspage' => 'Template:Razločitev',

@@ -416,9 +416,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'randomredirect' => 'Elekezo la bahati',
 
 # Statistics
-'statistics' => 'Takwimu',
-'sitestats'  => 'Takwimu za {{SITENAME}}',
-'userstats'  => 'Takwimu za watumiaji',
+'statistics'              => 'Takwimu',
+'statistics-header-users' => 'Takwimu za watumiaji',
 
 'disambiguations' => 'Kurasa za kuainisha maneno',
 

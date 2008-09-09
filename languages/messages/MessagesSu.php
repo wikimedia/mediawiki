@@ -1142,20 +1142,9 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'randomredirect-nopages' => 'Euweuh alihan dina ieu spasi ngaran.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Statistika {{SITENAME}}',
-'userstats'              => 'Statistik pamaké',
-'sitestatstext'          => "Jumlah-jamléh aya {{PLURAL:\$1|'''\$1''' kaca}} dina pangkalan data, kaasup kaca \"obrolan\", kaca-kaca ngeunaan {{SITENAME}}, kaca \"tukung\", alihan, sarta nu séjénna nu meureun teu kaasup artikel.  Lian ti nu éta, aya {{PLURAL:\$2|'''\$2''' kaca }} nu dianggap artikel nu bener.
-
-'''\$8''' {{PLURAL:\$8|koropak|koropak}} koropak geus dimuat.
-
-Jumlah-jamléh geus aya '''\$3''' {{PLURAL:\$3|kaca}} ulasan sarta '''\$4''' {{PLURAL:\$4|éditan}} ti saprak {{SITENAME}} ieu ngadeg. Jadi hartina aya rata-rata '''\$5''' éditan per kaca sarta '''\$6''' ulasan per édit.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Antrian gawé] lobana '''\$7'''.",
-'userstatstext'          => "Aya '''$1''' [[Special:ListUsers|{{PLURAL:$1|pamaké|pamaké}}]] nu kadaptar.
-'''$2''' ($4) di antarana boga hak $5.
-Ayeuna {{PLURAL:$6|aya|aya}} kira-kira '''$6''' {{PLURAL:$6|pamaké|pamaké}} kadaptar anu aktip.",
-'statistics-mostpopular' => 'Kaca nu pangmindengna dibuka',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Statistik pamaké',
+'statistics-mostpopular'  => 'Kaca nu pangmindengna dibuka',
 
 'disambiguations'      => 'Kaca disambiguasi',
 'disambiguationspage'  => 'Project:Tumbu_ka_kaca_disambiguasi',

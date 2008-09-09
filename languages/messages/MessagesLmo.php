@@ -327,8 +327,8 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'randompage' => 'Página a caas',
 
 # Statistics
-'statistics' => 'Statistich',
-'userstats'  => 'Statistich di utent',
+'statistics'              => 'Statistich',
+'statistics-header-users' => 'Statistich di utent',
 
 'disambiguations' => 'Pagin da disambiguazziún',
 

@@ -199,7 +199,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'randompage' => 'Ikhasi elingaphandle kokucabanga',
 
 # Statistics
-'userstats' => 'Ukwaziswa wamsebenzisi',
+'statistics-header-users' => 'Ukwaziswa wamsebenzisi',
 
 # Miscellaneous special pages
 'shortpages'        => 'Amakhasi amafishane',

@@ -1307,21 +1307,9 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'randomredirect-nopages' => 'Nissun redirect nel namespace selezionà.',
 
 # Statistics
-'statistics'             => 'Statistiche',
-'sitestats'              => 'Statistiche de {{SITENAME}}',
-'userstats'              => 'Statistiche dei utenti',
-'sitestatstext'          => "Ghe xe in tuto {{PLURAL:\$1|'''1''' pagina|'''\$1''' pagine}} nel database.
-Sto nùmaro el conprende anca le pagine de discussion, quele de servizio de {{SITENAME}}, le voçi pì picenine (\"stub\"), i redirect e altre pagine che probabilmente no le va mìa considerà tra i contenuti del sito.
-Escludendo tute le pagine sora descrite, ghe ne xè '''\$2''' de contenuti veri e propri.
-
-Xe stà inoltre caricà '''\$8''' file.
-
-Da l'instalazion del sito fin a sto momento, xe stà visità '''\$3''' pagine ed eseguìe '''\$4''' modifeghe, pari a na media de '''\$5''' modifeghe par pàxena e '''\$6''' richieste de letura par ciascuna modifega.
-
-La [http://www.mediawiki.org/wiki/Manual:Job_queue coa] la contien '''\$7''' proçessi.",
-'userstatstext'          => "Ghe xe {{PLURAL:$1|'''1''' [[Special:ListUsers|utente]]|'''$1''' [[Special:ListUsers|utenti]]}} registrà, de cui '''$2''' (pari al '''$4%''') {{PLURAL:$2|el|i}} gà i diriti de $5.
-Ghe xe atualmente sirca '''$6''' {{PLURAL:$6|utente registrà ativo|utenti registrà ativi}}.",
-'statistics-mostpopular' => 'Pagine piassè visità',
+'statistics'              => 'Statistiche',
+'statistics-header-users' => 'Statistiche dei utenti',
+'statistics-mostpopular'  => 'Pagine piassè visità',
 
 'disambiguations'      => 'Pàxene de disanbiguazion',
 'disambiguationspage'  => 'Template:Disambigua',

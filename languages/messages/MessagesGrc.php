@@ -979,10 +979,9 @@ $1',
 'randomredirect' => 'Τυχαία ἀναδιεύθυνσις',
 
 # Statistics
-'statistics'             => 'Τὰ περὶ τῶν δεδομένων',
-'sitestats'              => 'Στατιστικὰ τοῦ {{SITENAME}}',
-'userstats'              => 'Χρωμένου στατιστικά',
-'statistics-mostpopular' => 'Αἱ πλέον θεωρουμέναι δέλτοι',
+'statistics'              => 'Τὰ περὶ τῶν δεδομένων',
+'statistics-header-users' => 'Χρωμένου στατιστικά',
+'statistics-mostpopular'  => 'Αἱ πλέον θεωρουμέναι δέλτοι',
 
 'disambiguations'     => 'Αἱ τινὰ ἱστάναι εἰς τὸ ἀναμφισβήτητον δέλτοι',
 'disambiguationspage' => 'Template:ἐκσαφήνισις',

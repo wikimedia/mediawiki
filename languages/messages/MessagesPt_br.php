@@ -1358,20 +1358,9 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'randomredirect-nopages' => 'Não há redirecionamentos neste espaço nominal.',
 
 # Statistics
-'statistics'             => 'Estatísticas',
-'sitestats'              => 'Estatísticas do site',
-'userstats'              => 'Estatísticas dos usuários',
-'sitestatstext'          => "Há atualmente um total de {{PLURAL:\$1|'''\$1''' página|'''\$1''' páginas}} na base de dados.
-Isto inclui páginas de \"discussão\", páginas sobre o projeto ({{SITENAME}}), páginas de rascunho, redirecionamentos e outras que provavelmente não são qualificadas como páginas de conteúdo.
-Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma página de conteúdo legítima|'''\$2''' páginas que provavelmente são páginas de conteúdo legítimas}}.
-
-'''\$8''' {{PLURAL:\$8|arquivo foi carregado|arquivos foram carregados}}.
-
-Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado, o que resulta em aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
-
-O tamanho atual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
-'userstatstext'          => "Há atualmente {{PLURAL:$1|'''$1''' usuário registrado|'''$1''' usuários registrados}}, dentre os quais '''$2''' (ou '''$4%''') {{PLURAL:$2|é|são}} $5.",
-'statistics-mostpopular' => 'Páginas mais visitadas',
+'statistics'              => 'Estatísticas',
+'statistics-header-users' => 'Estatísticas dos usuários',
+'statistics-mostpopular'  => 'Páginas mais visitadas',
 
 'disambiguations'      => 'Página de desambiguações',
 'disambiguations-text' => 'As páginas a seguir ligam a "páginas de desambiguação" ao invés de aos tópicos adequados.<br />

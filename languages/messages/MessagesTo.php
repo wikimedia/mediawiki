@@ -599,11 +599,9 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'randomredirect' => 'Leʻei noa pē',
 
 # Statistics
-'statistics'             => 'Sitesitesika',
-'sitestats'              => 'Sitesitesika ʻo e {{SITENAME}}',
-'userstats'              => 'Sitesitesika ʻo e ʻetita',
-'userstatstext'          => "ʻOku ʻi ai ha kau ʻetita lēsista ʻe '''$1'''. ʻOku ʻi ai ha $5 ʻe '''$2''' (ʻa ia ko e '''$4%''').",
-'statistics-mostpopular' => 'Ko e ngaahi peesi naʻe vakai ki ai lahi taha',
+'statistics'              => 'Sitesitesika',
+'statistics-header-users' => 'Sitesitesika ʻo e ʻetita',
+'statistics-mostpopular'  => 'Ko e ngaahi peesi naʻe vakai ki ai lahi taha',
 
 'disambiguations'      => 'Peesi fakaʻuhingakehe',
 'disambiguationspage'  => 'Template:Fakaʻuhingakehe',

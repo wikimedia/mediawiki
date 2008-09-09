@@ -822,9 +822,8 @@ Informacion: (curt) = quiíxde vercion currentua,
 'randomredirect-nopages' => 'Zo necoccebj meniitomöx jan ipartuatl iti.',
 
 # Statistics
-'statistics' => 'Statisticám',
-'sitestats'  => '{{SITENAME}} statisticám',
-'userstats'  => 'Caitom statisticám',
+'statistics'              => 'Statisticám',
+'statistics-header-users' => 'Caitom statisticám',
 
 'doubleredirects' => 'Meniitomöx daj ti zon',
 

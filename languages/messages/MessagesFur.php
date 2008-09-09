@@ -772,19 +772,9 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'randomredirect' => 'Un re-indreçament casuâl',
 
 # Statistics
-'statistics'             => 'Statistichis',
-'sitestats'              => 'Statistichis dal sît',
-'userstats'              => 'Statistichis dai utents',
-'sitestatstext'          => "Tu puedis cjatâ in dut '''\$1''' {{PLURAL:\$1|pagjine|pagjinis}} inte base di dâts. Chest numar al inclût pagjinis di \"discussion\", pagjinis su la {{SITENAME}}, pagjinis cun pocjis peraulis, re-indreçaments, e altris che probabilmentri no si puedin considerâ pardabon come pagjinis di contignût.
-Gjavant chestis, o vin '''\$2''' {{PLURAL:\$2|pagjine che e je|pagjinis che a son}} probabilmentri di contignût legjitim.
-
-'''\$8''' {{PLURAL:\$8|file al è stât cjamât|files a son stâts cjamâts}} sù.
-
-O vin vût in dut '''\$3''' {{PLURAL:\$3|viodude|viodudis}} des pagjinis e '''\$4''' {{PLURAL:\$4|cambiament|cambiaments}} aes pagjinis di cuant che la wiki e je stade implantade. Chest al vûl dî une medie di '''\$5''' cambiaments par pagjine, e '''\$6''' viodudis par ogni cambiament.
-
-La code dai [http://www.mediawiki.org/wiki/Manual:Job_queue procès di fâ] e conten {{PLURAL:\$7|'''1''' element|'''\$7''' elements}}.",
-'userstatstext'          => "{{PLURAL:$1|Al è '''1''' [[Special:ListUsers|utent]] regjistrât|A son '''$1''' [[Special:ListUsers|utents]] regjistrâts}}, di chescj  '''$2''' (o il '''$4%''') {{PLURAL:$2|al è|a son}} $5 .",
-'statistics-mostpopular' => 'Pagjinis plui visitadis',
+'statistics'              => 'Statistichis',
+'statistics-header-users' => 'Statistichis dai utents',
+'statistics-mostpopular'  => 'Pagjinis plui visitadis',
 
 'disambiguations' => 'Pagjinis di disambiguazion',
 

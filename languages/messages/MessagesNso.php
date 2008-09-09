@@ -615,9 +615,8 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'randomredirect' => "''redirect'' engwe le engwe",
 
 # Statistics
-'statistics' => 'Dipalopalo',
-'sitestats'  => '{{SITENAME}} dipalopalo',
-'userstats'  => 'Dipalopalo tša mošomiši',
+'statistics'              => 'Dipalopalo',
+'statistics-header-users' => 'Dipalopalo tša mošomiši',
 
 'disambiguations' => "Matlakala a ''Disambiguation''",
 

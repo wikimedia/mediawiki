@@ -210,9 +210,8 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 'unwatchedpages' => 'Páginanan no observá',
 
 # Statistics
-'statistics' => 'Estadístika',
-'sitestats'  => 'Estadístika di {{SITENAME}}',
-'userstats'  => 'Estadístika di uzadónan',
+'statistics'              => 'Estadístika',
+'statistics-header-users' => 'Estadístika di uzadónan',
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|kategoria|kategorianan}}',

@@ -359,10 +359,7 @@ Kana avilyan kathe doshatar, ja palpale.',
 'randompage' => 'Ekh patrin savigodi',
 
 # Statistics
-'statistics'    => 'Beshimata',
-'sitestats'     => 'Site-ske beshimata',
-'userstatstext' => 'Si <b>$1</b> jene rejistrime (lekhavde).
-Mashkar lende <b>$2</b> si administratorurya (dikh $3).',
+'statistics' => 'Beshimata',
 
 # Miscellaneous special pages
 'wantedpages'  => 'Kamle pajine',

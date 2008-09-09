@@ -468,17 +468,7 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'randompage' => 'Kawlowô starna',
 
 # Statistics
-'sitestats'     => 'Statistika artiklów',
-'userstats'     => 'Statistika brëkòwników',
-'sitestatstext' => "W pòdôwkòwi baze je w sëmie '''$1''' starn.
-Na wielëna zamëkô w se starnë ''Diskùsëji'', starnë ò {{SITENAME}}, starnë ôrtë ''stub'' (ùzémk), starnë przeczerowóniô, ë jińszé, chtërné grãdo je klasyfikòwac jakno artikle.
-Bez nëch to prôwdëjuwerno da '''$2''' starn artiklów.
-
-'''$8''' lopków òsta załadowónëch.
-
-Bëło w sëmie '''$3''' òdwiôdënów ë '''$4''' edicëji òd sztótu, czej miôł plac upgrade soft-wôrë. Dôwó to strzédno $5 edicëji na jedną starnã ë $6 òdwiôdënów na jedną edicëjã.
-
-Długòta [http://www.mediawiki.org/wiki/Manual:Job_queue rédżi robòtë] je '''$7'''.",
+'statistics-header-users' => 'Statistika brëkòwników',
 
 'disambiguationspage' => 'Template:Starnë_ùjednoznacznieniô',
 

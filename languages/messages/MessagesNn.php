@@ -1369,19 +1369,9 @@ Sletteloggen for fila finn du her:",
 'randomredirect-nopages' => 'Det er ingen omdirigeringar i dette namnerommet.',
 
 # Statistics
-'statistics'             => 'Statistikk',
-'sitestats'              => '{{SITENAME}}-statistikk',
-'userstats'              => 'Brukarstatistikk',
-'sitestatstext'          => "Det er i alt {{PLURAL:$1|'''éi''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, småsider,
-omdirigeringssider, og andre som truleg ikkje kan kallast innhaldssider. Om ein ser bort frå desse sidene, er det {{PLURAL:$2|'''éi''' side|'''$2''' sider}} som truleg er innhaldssider.
-
-'''$8''' {{PLURAL:$8|fil|filer}} har vorte lasta opp.
-
-Alle sidene er vortne viste {{PLURAL:$3|'''éin''' gong|'''$3''' gonger}} og endra {{PLURAL:$4|'''éin''' gong|'''$4''' gonger}} sidan programvaren vart installert. Det vil seie at kvar side gjennomsnittleg har vorte endra {{PLURAL:$5|'''éin''' gong|'''$5''' gonger}}, og vist {{PLURAL:$6|'''éin''' gong|'''$6''' gonger}} per endring.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøen] er '''$7'''.",
-'userstatstext'          => "{{SITENAME}} har {{PLURAL:$1|'''éin''' registrert brukar|'''$1''' registrerte brukarar}}. '''$2''' (eller '''$4%''') av desse har $5rettar.",
-'statistics-mostpopular' => 'Mest viste sider',
+'statistics'              => 'Statistikk',
+'statistics-header-users' => 'Brukarstatistikk',
+'statistics-mostpopular'  => 'Mest viste sider',
 
 'disambiguations'      => 'Fleirtydingssider',
 'disambiguationspage'  => 'Template:Fleirtyding',

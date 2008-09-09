@@ -1161,22 +1161,9 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'randomredirect-nopages' => 'Ing bilik nama iki ora ana pangalihan.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Statistik situs',
-'userstats'              => 'Statistik panganggo',
-'sitestatstext'          => "{{SITENAME}} saiki iki duwèni '''\$2''' {{PLURAL:\$1|kaca|kaca}} artikel sing absah. 
-
-Saliyané iku saiki gunggungé ana {{PLURAL:\$1|kaca|kaca}} ''database''. Ing iku kalebu kaca-kaca dhiskusi, prakara {{SITENAME}}, artikel \"stub\" (rintisan), kaca pangalihan (''redirect''), karo kaca-kaca sing dudu kaca isi.
-
-Banjur wis ana '''\$8''' berkas sing diunggahaké.
-
-Wis tau ana '''\$3''' kaca dituduhaké karo '''\$4''' kaca tau disunting sawisé wiki iki diadegaké.
-
-Dadi tegesé rata-rata ana '''\$5''' suntingan per kaca karo '''\$6''' tayangan per suntingan.
-
-Dawané [http://www.mediawiki.org/wiki/Manual:Job_queue antrian tugas] ana '''\$7'''.",
-'userstatstext'          => "Ana '''$1''' [[Special:ListUsers|{{PLURAL:$1|panganggo|panganggo}}]] sing wis ndaftar. '''$2''' (utawa '''$4%''') antarané iku {{PLURAL:$2|duwé|duwé}} hak aksès $5.",
-'statistics-mostpopular' => 'Kaca sing paling akèh dituduhaké',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Statistik panganggo',
+'statistics-mostpopular'  => 'Kaca sing paling akèh dituduhaké',
 
 'disambiguations'      => 'Kaca disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',

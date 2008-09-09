@@ -585,9 +585,8 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'randompage' => 'Takelaka kisendra',
 
 # Statistics
-'statistics' => 'Fanao pejy',
-'sitestats'  => "statistikan'ny {{SITENAME}}",
-'userstats'  => "Statistikan'ny mpikambana",
+'statistics'              => 'Fanao pejy',
+'statistics-header-users' => "Statistikan'ny mpikambana",
 
 'brokenredirects'        => 'Tapaka ny redirection',
 'brokenredirectstext'    => "Mirohy any amin'ny pejy tsy misy ireto redirection manaraka ireto",

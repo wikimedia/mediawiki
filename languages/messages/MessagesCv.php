@@ -793,9 +793,8 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'randomredirect' => 'Ăнсăртран илнĕ куçару',
 
 # Statistics
-'sitestats'              => 'Сайт статистики',
-'userstats'              => 'Хутшăнакансен статистики',
-'statistics-mostpopular' => 'Чи нумай пăхакан страницăсем',
+'statistics-header-users' => 'Хутшăнакансен статистики',
+'statistics-mostpopular'  => 'Чи нумай пăхакан страницăсем',
 
 'disambiguations'      => 'Нумай пĕлтерĕшлĕ статьясене кăтартакан страницăсем',
 'disambiguationspage'  => 'Template:Disambig',

@@ -397,20 +397,8 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'randompage' => 'Tasodifiy sahifa',
 
 # Statistics
-'statistics'    => 'Statistika',
-'sitestats'     => '{{SITENAME}} statistikasi',
-'userstats'     => 'Foydalanuvchilar statistikasi',
-'sitestatstext' => "Maʼlumotlar omborida jami {{PLURAL:\$1|'''1''' sahifa|'''\$1''' sahifa}} mavjud.
-Bularga maqola boʻlmagan \"munozara\" sahifalari, {{SITENAME}} haqidagi, ishoratsiz, yoʻnaltiruvchi va hokazo sahifalar kiradi.
-\"Maqola\" deb hisoblanuvchi sahifalar soni esa {{PLURAL:\$2|'''1''' donadir|'''\$2''' donadir}}.
-
-'''\$8''' {{PLURAL:\$8|dona fayl|fayllar}} yuklangan.
-
-{{SITENAME}} ochilganidan beri jami '''\$3''' {{PLURAL:\$3|sahifa|sahifalar}} koʻrilgan va '''\$4''' {{PLURAL:\$4|sahifa|sahifalar}} tahrirlangan.
-Bu bir sahifaga '''\$5''' tahrir va '''\$6''' koʻrish mos kelishini bildiradi.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Navbatdagi vazifalar] soni - '''\$7'''.",
-'userstatstext' => "Hozirda {{PLURAL:$1|'''1''' [[Special:ListUsers|foydalanuvchi]]|'''$1''' [[Special:ListUsers|foydalanuvchi]]}} roʻyxatdan oʻtgan, ulardan '''$2''' nafari (yoki '''$4%''') $5 huquqlariga egadir.",
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Foydalanuvchilar statistikasi',
 
 'disambiguationspage' => '{{ns:template}}:Disambig',
 

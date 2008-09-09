@@ -887,22 +887,9 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'randomredirect' => 'Asemmimeḍ menwala',
 
 # Statistics
-'statistics'             => 'Tisnaddanin',
-'sitestats'              => 'Tisnaddanin n {{SITENAME}}',
-'userstats'              => 'Tisnaddanin n wemseqdac',
-'sitestatstext'          => "{{PLURAL:\$1|Yella '''yiwen''' usebter|Llan '''\$1''' n isebtar}} deg database.
-Azwil-agi yesɛa daɣen akk isebtar \"amyannan\", d isebtar ɣef {{SITENAME}}, d isebtar \"imecṭuḥen\", isebtar ismimḍen, d wiyaḍ.
-Asmi ttwakksen wigini, {{PLURAL:\$2|yella '''yiwen''' usebter|llan '''\$2''' n isebtar}} d {{PLURAL:\$2|amliḥ|imliḥen}} . 
-
-'''\$8''' {{PLURAL:\$8|afaylu|ifayluwen}} ttwaznen.
-
-{{PLURAL:\$3|tella|llant}} '''\$3''' n {{PLURAL:\$3|timeẓriwt|timeẓriwin}}, '''\$4''' n {{PLURAL:\$4|ubeddel|yibeddlen}} n usebtar segmi {{SITENAME}} yettwaxleq.
-Ihi, {{PLURAL:\$5|yella|llan}} '''\$5''' n {{PLURAL:\$5|ubeddel|ibeddlen}} i mkul asebter, d '''\$6''' timeẓriwin i mkul abeddel.
-
-Ṭul n [http://www.mediawiki.org/wiki/Manual:Job_queue umuti n wexdam] '''\$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Yella '''yiwen''' wemseqdac|Llan '''$1''' n yimseqdacen}}, seg-sen
-'''$2''' (neɣ '''$4%''') {{PLURAL:$2|yesɛa|sɛan}} izerfan n $5.",
-'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
+'statistics'              => 'Tisnaddanin',
+'statistics-header-users' => 'Tisnaddanin n wemseqdac',
+'statistics-mostpopular'  => 'isebtar mmeẓren aṭṭas',
 
 'disambiguations'      => 'isebtar n usefham',
 'disambiguationspage'  => 'Template:Asefham',

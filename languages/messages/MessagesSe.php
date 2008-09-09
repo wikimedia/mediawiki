@@ -724,11 +724,9 @@ $1 | $2',
 'randomredirect-nopages' => 'Dán nammagomuvuođas eai leat ođđasitstivremat.',
 
 # Statistics
-'statistics'             => 'Statistihkat',
-'sitestats'              => 'Siidduid statistihkat',
-'userstats'              => 'Geavaheaddjistatistihkat',
-'userstatstext'          => "Registeren geavaheaddjit leat '''$1'''. Dáin '''$2''' ($4%) {{PLURAL:$2|lea bájasdoalli|leat bájasdoallit}} ($5).",
-'statistics-mostpopular' => 'Eanemusta gehčojuvvon siiddut',
+'statistics'              => 'Statistihkat',
+'statistics-header-users' => 'Geavaheaddjistatistihkat',
+'statistics-mostpopular'  => 'Eanemusta gehčojuvvon siiddut',
 
 'disambiguations' => 'Liŋkkat dárkonsiidduide',
 

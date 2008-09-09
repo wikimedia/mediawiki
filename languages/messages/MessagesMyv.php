@@ -872,10 +872,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'randomredirect-nopages' => 'Те лем таркасонть лияв ютавтомат арасть.',
 
 # Statistics
-'statistics'             => 'Статистикат',
-'sitestats'              => '{{SITENAME}} статистика',
-'userstats'              => 'Теицянь статистика',
-'statistics-mostpopular' => 'Весемеде сеедьстэ ванозь лопат',
+'statistics'              => 'Статистикат',
+'statistics-header-users' => 'Теицянь статистика',
+'statistics-mostpopular'  => 'Весемеде сеедьстэ ванозь лопат',
 
 'disambiguations' => 'Лопат, конат сёрмадстовтовить ламосмустев терминтт',
 

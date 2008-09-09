@@ -1196,23 +1196,9 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'randomredirect-nopages' => 'Það eru engar tilvísanir í þessu nafnrými.',
 
 # Statistics
-'statistics'             => 'Tölfræði',
-'sitestats'              => 'Tölfræði fyrir {{SITENAME}}',
-'userstats'              => 'Notandatölfræði',
-'sitestatstext'          => "Það {{PLURAL:$1|er '''1''' síða|eru '''$1''' síður}} í gagnagrunninum.
-Meðtaldar eru „spjallsíður“, síður varðandi {{SITENAME}}, smávægilegir „stubbar“, tilvísanir og aðrar síður sem mundu líklega ekki teljast sem efnislegar síður.
-Fyrir utan þær þá {{PLURAL:$2|er '''1''' síða sem líklega getur|eru '''$2''' síður sem líklega geta}} talist
-{{PLURAL:$2|efnisleg grein|efnislegar greinar}}.
-
-'''$8''' {{PLURAL:$8|skrá|skrám}} hefur verið hlaðið inn.
-
-Það hafa alls '''$3''' {{PLURAL:$3|síða verið skoðuð|síður verið skoðaðar}} og '''$4''' {{PLURAL:$4|síðubreyting|síðubreytingar}}
-síðan {{SITENAME}} hóf göngu sína.
-Sem gerir að meðaltali '''$5''' breytingar á hverja síðu og '''$6''' skoðanir á hverja breytingu.
-
-Lengdin á [http://www.mediawiki.org/wiki/Manual:Job_queue vinnsluröðinni] er '''$7'''.",
-'userstatstext'          => "Hér {{PLURAL:$1|er '''1''' skráður [[Special:ListUsers|notandi]]|eru '''$1''' skráðir [[Special:ListUsers|notendur]]}}, þar af '''$2''' (eða '''$4%''') {{PLURAL:$2|hefur|hafa}} $5 stjórnendaréttindi.",
-'statistics-mostpopular' => 'Mest skoðuðu síður',
+'statistics'              => 'Tölfræði',
+'statistics-header-users' => 'Notandatölfræði',
+'statistics-mostpopular'  => 'Mest skoðuðu síður',
 
 'disambiguations'      => 'Tenglar í aðgreiningarsíður',
 'disambiguationspage'  => 'Template:Aðgreining',

@@ -1366,20 +1366,9 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'randomredirect-nopages' => 'Žane daleposrědkowanja w tutym mjenowym rumje.',
 
 # Statistics
-'statistics'             => 'Statistika',
-'sitestats'              => 'Statistika {{GRAMMAR:genitiw|{{SITENAME}}}}',
-'userstats'              => 'Statistika wužiwarjow',
-'sitestatstext'          => "{{PLURAL:$1|Je|Stej|Su|Je}} dohromady {{PLURAL:$1|'''1''' strona|'''$1''' stronje|'''$1''' strony|'''$1''' stronow}} w datowej bance. To zapřija tež diskusijne strony, strony wo {{GRAMMAR:lokatiw|{{SITENAME}}}}, krótke nastawki, daleposrědkowanja a druhe, kotrež najskerje nastawki njejsu.
-
-{{PLURAL:$2|Zwostanje|Zwostanjetej|Zwostanu|Zwostanje}} {{PLURAL:$2|'''1''' strona|'''$2''' stronje|'''$2''' strony|'''$2''' stronow}}, {{PLURAL:$2|kotraž najskerje je|kotrejž najskerje stej|kotrež najskerje su|kotrež najskerje je}} {{PLURAL:$2|woprawdźity nastawk|woprawdźitej nastawkaj|woprawdźite nastawki|woprawdźitych nastawkow}}.
-
-{{PLURAL:$8|Je so 1 dataja nahrała|Stej so '''$8''' dataji nahrałoj|Su so '''$8''' dataje nahrali|Je so '''$8''' datajow nahrało}}.
-
-Běše dohromady '''$3''' {{PLURAL:$3|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} stronow a '''$4''' {{PLURAL:$4|změna|změnje|změny|změnow}} stronow, wot toho zo bu {{SITENAME}} připrawjeny. Bě to přerěznje '''$5''' {{PLURAL:$5|změna|změnje|změny|změnow}} na stronu a '''$6''' {{PLURAL:$6|wobhladanje|wobhladani|wobhladanja|wobhladanjow}} na změnu.
-
-Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue rynka nadawkow] je '''$7'''.",
-'userstatstext'          => "{{PLURAL:$1|Je '''1''' [[Special:ListUsers|zregistrowany wužiwar]]|Staj '''$1''' [[Special:ListUsers|zregistrowanej wužiwarjej]]|Su '''$1''' [[Special:ListUsers|zregistrowani wužiwarjo]]|Je '''$1''' [[Special:ListUsers|zregistrowanych wužiwarjow]]}}, '''$2''' (abo '''$4%''') z nich {{PLURAL:$2|ma|mataj|maja|ma}} prawa $5. {{PLURAL:$6|Je tuchwilu něhdźe '''$6''' konto aktiwnych wužiwarjow|Stej tuchwilu něhdźe '''$6''' konće aktiwnych wužiwarjow|Su tuchwilu něhdźe '''$6''' konta aktiwnych wužiwarjow|Je tuchwilu něhdźe '''$6''' kontow aktiwnych wužiwarjow}}.",
-'statistics-mostpopular' => 'Najhusćišo wopytowane strony',
+'statistics'              => 'Statistika',
+'statistics-header-users' => 'Statistika wužiwarjow',
+'statistics-mostpopular'  => 'Najhusćišo wopytowane strony',
 
 'disambiguations'      => 'Rozjasnjenja wjacezmyslnosće',
 'disambiguationspage'  => 'Template:Wjacezmyslnosć',

@@ -1415,19 +1415,9 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'randomredirect-nopages' => 'Det er ingen omdirigeringer i dette navnerommet.',
 
 # Statistics
-'statistics'             => 'Statistikk',
-'sitestats'              => '{{SITENAME}}-statistikk',
-'userstats'              => 'Brukerstatistikk',
-'sitestatstext'          => "Det er til sammen {{PLURAL:$1|'''én''' side|'''$1''' sider}} i databasen. Dette inkluderer diskusjonssider, sider om {{SITENAME}}, små stubbsider, omdirigeringer, og annet som antagligvis ikke gjelder som ordentlig innhold. Om man ikke regner med disse, er det {{PLURAL:$2|'''én''' side|'''$2''' sider}} som sannsynligvis er {{PLURAL:$2|en ordentlig innholdsside|ordentlige innholdssider}}.
-
-{{PLURAL:$8|'''Én''' fil|'''$8''' filer}} har blitt lastet opp.
-
-Det har vært totalt {{PLURAL:$3|'''én''' sidevisning|'''$3''' sidevisninger}}, og {{PLURAL:$4|'''én''' redigering|'''$4''' redigeringer}} siden wikien ble satt opp. Det blir i snitt {{PLURAL:$5|'''én''' redigering|'''$5''' redigeringer}} per side, og {{PLURAL:$6|'''én''' visning|'''$6''' visninger}} per redigering.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Arbeidskøen] er på '''$7'''.",
-'userstatstext'          => "Det er {{PLURAL:$1|'''én''' registrert [[Special:ListUsers|bruker]]|'''$1''' registrerte [[Special:ListUsers|brukere]]}}, hvorav '''$2''' (eller '''$4&nbsp;%''') har {{lc:$5rettigheter}}.
-Det er for tiden {{PLURAL:$6|'''én''' aktiv konto|'''$6''' aktive kontoer}}.",
-'statistics-mostpopular' => 'Mest viste sider',
+'statistics'              => 'Statistikk',
+'statistics-header-users' => 'Brukerstatistikk',
+'statistics-mostpopular'  => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
 'disambiguationspage'  => 'Template:Peker',

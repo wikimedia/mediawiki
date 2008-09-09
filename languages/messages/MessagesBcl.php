@@ -1023,23 +1023,9 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'randomredirect-nopages' => 'Mayong paglikay (redirects) didgi sa ngaran-espacio.',
 
 # Statistics
-'statistics'             => 'Mga Estadistiko',
-'sitestats'              => 'Mga estadistiko kan {{SITENAME}}',
-'userstats'              => 'Mga estadistiko nin parágamit',
-'sitestatstext'          => "Igwang {{PLURAL:\$1|nin '''1''' páhina|nin '''\$1''' mga páhina}} sa enterong base nin datos.
-Kabali digdi an mga páhinang \"olay\", mga páhinang manonongod sa {{SITENAME}}, mga \"tamboan\"
-na páhina, mga redirekta, asin mga iba pang dai pigbibilang na mga páhinang may laog.
-Kun dai bibilangon an mga ini, igwang {{PLURAL:\$2|nin '''1''' páhina|nin '''\$2''' na mga páhina}} gayod na talagang {{PLURAL:\$2|páhinang|mga páhinang}} may laog .
-
-'''\$8''' {{PLURAL:\$8|''file''|mga ''file''}} an kinarga.
-
-'''\$3''' {{PLURAL:\$3|na paghiling|mga paghiling}} an mga total na paghiling, asin '''\$4''' {{PLURAL:\$4|na hirá kan páhina|mga hirá kan páhina}}
-despues sa pagbukas kan {{SITENAME}}.
-Maabot sa '''\$5''' na hira kada páhina sa medio, asin '''\$6''' na paghiling kada hirá.
-
-'''\$7''' an labâ kan [http://www.mediawiki.org/wiki/Manual:Job_queue job queue].",
-'userstatstext'          => "{{PLURAL:$1|is '''1''' registered [[Special:mga paragamit|paragamit]]| '''$1''' an nakarehistrong [[Special:ListUsers|users]]}}, '''$2''' (or '''$4%''') kaini {{PLURAL:$2|has|may}} $5 na derechos.",
-'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
+'statistics'              => 'Mga Estadistiko',
+'statistics-header-users' => 'Mga estadistiko nin parágamit',
+'statistics-mostpopular'  => 'mga pinaka pighiling na pahina',
 
 'disambiguations'      => 'Mga pahinang klaripikasyon',
 'disambiguationspage'  => 'Template:clarip',

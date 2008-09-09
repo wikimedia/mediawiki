@@ -1093,19 +1093,8 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'randomredirect' => 'Samar in trochferwizing',
 
 # Statistics
-'statistics'    => 'Statistyk',
-'sitestats'     => 'Side statistyk',
-'userstats'     => 'Meidogger-statistyk',
-'sitestatstext' => "It {{PLURAL:$1|is '''1''' side|binne '''$1''' siden}} yn de databank.
-Oerlissiden, siden oer de {{SITENAME}}, stobben, trochferwizings, en oare bysûndere siden, binne dêrby meiteld. Sûnder dizze siden, it {{PLURAL:$2|is '''1''' side|binne '''$2''' siden}} mei materiaal en ynhâld. 
-
-'''$8''' {{PLURAL:$8|triem wurdt|triemmen wurde}} al oanbied.
-
-Der {{PLURAL:$3|is '''1''' sidelêzing|binne '''$3''' sidelêzings}}, en '''$4''' {{PLURAL:$4|bewurking|bewurkings}} sûnt {{SITENAME}} begûnen. Dat komt yn trochslach del op '''$5''' bewurkings per side, en '''$6''' lêzings per bewurking.  
-
-De lingte fan de [http://www.mediawiki.org/wiki/Manual:Job_queue job queue] is '''$7'''.",
-'userstatstext' => "It tal fan registrearre meidoggers is '''{{PLURAL:$1|1|$1}}'''.
-It tal fan meidoggers dêrfan mei $5rjochten is '''{{PLURAL:$2|1|$2}}''' (of '''{{PLURAL:$4|1|$4}}''').",
+'statistics'              => 'Statistyk',
+'statistics-header-users' => 'Meidogger-statistyk',
 
 'disambiguations'      => 'Betsjuttingssiden',
 'disambiguationspage'  => 'Template:Neibetsjuttings',

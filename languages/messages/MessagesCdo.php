@@ -497,15 +497,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'randomredirect' => 'Muōng káng dṳ̀ng-sĭng dêng-hióng',
 
 # Statistics
-'statistics'    => 'Só-gé̤ṳ',
-'sitestats'     => '{{SITENAME}} só-gé̤ṳ',
-'userstats'     => 'Ê̤ṳng-hô só-gé̤ṳ',
-'sitestatstext' => "Só-gé̤ṳ-kó diē-lié gê̤ṳng-cūng ô '''$1''' piĕng ùng-ciŏng. Bău-guăk tō̤-lâung-hiĕk, gâe̤ng {{SITENAME}} siŏng-guăng gì, muôi siā hō̤ gì, gâe̤ng gì-tă cék-liông mâ̤ gèng gì ùng-ciŏng. Nâ mò̤ sáung hī piĕ ùng-ciŏng, tūng-biáng ô '''$2''' piĕng hù-hăk biĕu-cūng gì ùng-ciŏng.
-
-'''$8''' bĭk ùng-giông ké̤ṳk siông-diòng.
-
-Téng buōng câng kiū siék gáu gĭng-dáng, ĭ ī-gĭng ké̤ṳk nè̤ng siŭ-gāi '''$4''' làu, bìng-gĭng siŏh piĕng ùng-ciŏng ké̤ṳk nè̤ng siŭ-gāi '''$5''' làu.",
-'userstatstext' => "Gê̤ṳng-cūng ô '''{{PLURAL:$1|1|$1}}''' ciáh cé̤ṳ-cháh ê̤ṳng-hô, gì-dṳ̆ng '''{{PLURAL:$1|1|$2}}$2''' ciáh ('''$4%''') sê $5.",
+'statistics'              => 'Só-gé̤ṳ',
+'statistics-header-users' => 'Ê̤ṳng-hô só-gé̤ṳ',
 
 'brokenredirects-edit'   => '(gāi)',
 'brokenredirects-delete' => '(chēng)',

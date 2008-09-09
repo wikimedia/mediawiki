@@ -1564,19 +1564,9 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'randomredirect-nopages' => 'Det finns inte några omdirigeringar i denna namnrymd.',
 
 # Statistics
-'statistics'             => 'Statistik',
-'sitestats'              => 'Statistiksida',
-'userstats'              => 'Användarstatistik',
-'sitestatstext'          => "I databasen finns just nu <b>$1</b> {{PLURAL:$1|sida|sidor}}, inklusive diskussionssidor, sidor om {{SITENAME}}, korta stumpartiklar, omdirigeringssidor, och andra sidor som inte kan räknas som artiklar. Om man tar bort ovanstående, återstår <b>$2</b> {{PLURAL:$2|riktig artikel|riktiga artiklar}}.
-
-'''$8''' {{PLURAL:$8|fil|filer}} har laddats upp.
-
-Sedan denna wiki startades har sidor visats totalt <b>$3</b> {{PLURAL:$3|gång|gånger}}, och <b>$4</b> {{PLURAL:$4|sida|sidor}} har ändrats. Detta är i genomsnitt <b>$5</b> ändringar per sida, och <b>$6</b> sidvisningar per ändring.
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkön]s längd är för tillfället '''$7'''.",
-'userstatstext'          => "Det finns {{PLURAL:$1|'''1''' registrerad|'''$1''' registrerade}} [[Special:ListUsers|användare]], varav '''$2''' (eller '''$4 %''') är {{lc:$5}}.
-Det finns just nu {{PLURAL:$6|'''1''' aktivt registrerat användarkonto|'''$6''' aktiva registrerade användarkonton}}.",
-'statistics-mostpopular' => 'Mest besökta sidor',
+'statistics'              => 'Statistik',
+'statistics-header-users' => 'Användarstatistik',
+'statistics-mostpopular'  => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
 'disambiguationspage'  => 'Template:Förgrening',

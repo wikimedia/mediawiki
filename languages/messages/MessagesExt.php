@@ -1109,23 +1109,9 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'randomredirect-nopages' => 'Nu ai redirecionis nesti "espaciu e nombris".',
 
 # Statistics
-'statistics'             => 'Estaísticas',
-'sitestats'              => 'Estaísticas de {{SITENAME}}',
-'userstats'              => 'Estaísticas d´usuáriu',
-'sitestatstext'          => "Atualmenti desistin {{PLURAL:\$1|'''1''' páhina|'''\$1''' páhinas}} ena basi e datus.
-Estu encrui \"carabas\", páhinas al tentu {{SITENAME}}, artículus nu acabihaus, redirecionis i algotras páhinas que nu chegan a sel artículus.
-Se crei que ai {{PLURAL:\$2|'''1''' páhina|unas '''\$2''' páhinas}} que realmenti {{PLURAL:\$2|es artículu|son artículus}}.
-
-Un total de '''\$8''' {{PLURAL:\$8|archivu á siu empuntau|archivus an siu empuntaus}}.
-
-La güiqui á tiniu '''\$3''' {{PLURAL:\$3|vesita|vesitas}} i '''\$4''' {{PLURAL:\$4|eición|eicionis}} enas sus páhinas
-endi que {{SITENAME}} prencipió a huncional.
-Estu resurta un promeyu e '''\$5''' eicionis pol páhina, i '''\$6''' vesitas pol eición.
-
-El longol de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola e tareas] es de '''\$7'''.",
-'userstatstext'          => "Ai {{PLURAL:$1|un [[Special:ListUsers|usuáriu]] rustriu|'''$1''' [[Special:ListUsers|usuárius]] rustrius}}, de los cualis,
-'''$2''' (un '''$4%''') {{PLURAL:$2|es|son}} $5.",
-'statistics-mostpopular' => 'Páhinas mas visoreás',
+'statistics'              => 'Estaísticas',
+'statistics-header-users' => 'Estaísticas d´usuáriu',
+'statistics-mostpopular'  => 'Páhinas mas visoreás',
 
 'disambiguations'      => 'Páhinas de desambiguáncia',
 'disambiguationspage'  => 'Prantilla:desambiguáncia',

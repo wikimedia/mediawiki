@@ -1451,21 +1451,9 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'randomredirect-nopages' => 'Não há redireccionamentos neste espaço nominal.',
 
 # Statistics
-'statistics'             => 'Estatísticas',
-'sitestats'              => 'Estatísticas do site',
-'userstats'              => 'Estatísticas dos utilizadores',
-'sitestatstext'          => "Há actualmente um total de {{PLURAL:\$1|'''\$1''' página|'''\$1''' páginas}} na base de dados.
-Isto inclui páginas de \"discussão\", páginas sobre o projecto ({{SITENAME}}), páginas de rascunho, redireccionamentos e outras que provavelmente não são qualificadas como páginas de conteúdo.
-Excluindo estas, há {{PLURAL:\$2|'''\$2''' página que provavelmente é uma página de conteúdo legítima|'''\$2''' páginas que provavelmente são páginas de conteúdo legítimas}}.
-
-'''\$8''' {{PLURAL:\$8|ficheiro foi carregado|ficheiros foram carregados}}.
-
-Há um total de '''\$3''' {{PLURAL:\$3|página vista|páginas vistas}} e '''\$4''' {{PLURAL:\$4|edição|edições}} em páginas desde que este wiki foi instalado, o que resulta em aproximadamente '''\$5''' edições por página e '''\$6''' vistas por edição.
-
-O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas] é '''\$7'''.",
-'userstatstext'          => "Há {{PLURAL:$1|'''$1''' [[Special:ListUsers|utilizador]] registado|'''$1''' [[Special:ListUsers|utilizadores]] registados}}, dos quais '''$2''' (ou '''$4%''') {{PLURAL:$2|tem|têm}} privilégios de $5.
-Há actualmente cerca de '''$6''' {{PLURAL:$6|conta|contas}} de utilizador {{PLURAL:$6| registada activa|registadas activas}}.",
-'statistics-mostpopular' => 'Páginas mais vistas',
+'statistics'              => 'Estatísticas',
+'statistics-header-users' => 'Estatísticas dos utilizadores',
+'statistics-mostpopular'  => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',
 'disambiguationspage'  => 'Template:disambig',

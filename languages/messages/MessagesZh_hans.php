@@ -1339,23 +1339,9 @@ $2',
 'randomredirect-nopages' => '在这个名字空间中没有重定向页面。',
 
 # Statistics
-'statistics'             => '统计',
-'sitestats'              => '{{SITENAME}}统计数据',
-'userstats'              => '用户统计',
-'sitestatstext'          => "数据库中共有'''\$1'''页页面。
-其中包括对话页、关于{{SITENAME}}的页面、最少量的\"小作品\"页、重定向的页面，
-以及未达到页面质量的页面。除此之外还有'''\$2'''页可能是合乎标准的页面。
-
-'''\$8'''个文件已被上传。
-
-从{{SITENAME}}设置以来，全站点共有页面浏览'''\$3'''次，页面编辑'''\$4'''次。
-即每页平均编辑'''\$5'''次，各次编辑后页面的每个版本平均浏览'''\$6'''次。
-
-[http://www.mediawiki.org/wiki/Manual:Job_queue 工作排队]的长度是'''\$7'''。",
-'userstatstext'          => "网站有'''$1'''位注册[[Special:ListUsers|用户]]，其中
-'''$2''' (或 '''$4%''') 有$5权限。
-现时有'''$6'''个活跃的已注册用户账户。",
-'statistics-mostpopular' => '浏览最多的页面',
+'statistics'              => '统计',
+'statistics-header-users' => '用户统计',
+'statistics-mostpopular'  => '浏览最多的页面',
 
 'disambiguations'      => '消含糊页',
 'disambiguationspage'  => 'Template:disambig
