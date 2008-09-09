@@ -1102,8 +1102,8 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 Please check if you want to create/edit this page.',
 'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);'''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
-'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.
-It has not yet been saved!'''",
+'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
+'''It has not yet been saved!'''",
 'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.
 It has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
@@ -1923,7 +1923,7 @@ Remember to check for other links to the templates before deleting them.',
 'statistics-header-edits'  => 'Edit statistics',
 'statistics-header-views'  => 'View statistics',
 'statistics-header-users'  => 'User statistics',
-'statistics-articles'      => 'Pages',
+'statistics-articles'      => 'Content pages',
 'statistics-pages'         => 'Pages <small>(this includes "talk" pages, pages about {{SITENAME}}, minimal "stub" pages, redirects, and others)</small>',
 'statistics-files'         => 'Uploaded files',
 'statistics-edits'         => 'Page edits since {{SITENAME}} was setup',
