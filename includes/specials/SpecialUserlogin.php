@@ -717,7 +717,7 @@ class LoginForm {
 	 * Display a "login successful" page.
 	 */
 	private function displaySuccessfulLogin( $msgname, $injected_html ) {
-		global $wgOut;
+		global $wgOut, $wgUser;
 
 		$wgOut->setPageTitle( wfMsg( 'loginsuccesstitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
