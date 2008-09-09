@@ -960,7 +960,7 @@ To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$
 'loginend'                   => '', # do not translate or duplicate this message to other languages
 'signupend'                  => '{{int:loginend}}', # do not translate or duplicate this message to other languages
 'mailerror'                  => 'Error sending mail: $1',
-'acct_creation_throttle_hit' => 'Sorry, you have already created $1 accounts.
+'acct_creation_throttle_hit' => 'Sorry, you have already created {{PLURAL:$1|1 account|$1 accounts}}.
 You cannot make any more.',
 'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.

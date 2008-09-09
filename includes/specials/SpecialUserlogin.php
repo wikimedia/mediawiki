@@ -946,9 +946,7 @@ class LoginForm {
 	 * @private
 	 */
 	function throttleHit( $limit ) {
-		global $wgOut;
-
-		$wgOut->addWikiMsg( 'acct_creation_throttle_hit', $limit );
+		$this->mainLoginForm( wfMsgExt( 'acct_creation_throttle_hit', array( 'parseinline' ), $limit ) );
 	}
 
 	/**
