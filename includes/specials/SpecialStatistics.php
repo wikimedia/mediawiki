@@ -14,7 +14,9 @@
  * @param mixed $par (not used)
  */
 function wfSpecialStatistics( $par = '' ) {
-	global $wgOut, $wgLang, $wgRequest;
+	global $wgOut, $wgLang, $wgRequest, $wgUser, $wgContLang;
+	global $wgDisableCounters, $wgMiserMode, $wgImplicitGroups, $wgGroupPermissions;
+	$sk = $wgUser->getSkin();
 	$dbr = wfGetDB( DB_SLAVE );
 
 	$views = SiteStats::views();
@@ -27,70 +29,140 @@ function wfSpecialStatistics( $par = '' ) {
 	$admins = SiteStats::numberingroup('sysop');
 	$numJobs = SiteStats::jobs();
 
+	# Staticic - views
+	$viewsStats = '';
+	if( !$wgDisableCounters ) {
+		$viewsStats = Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
+				formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
+						$wgLang->formatNum( $views ) ) .
+				formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
+						$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
+	}
+
 	if( $wgRequest->getVal( 'action' ) == 'raw' ) {
+		# Depreciated, kept for backwards compatibility
+		# http://lists.wikimedia.org/pipermail/wikitech-l/2008-August/039202.html
 		$wgOut->disable();
 		header( 'Pragma: nocache' );
 		echo "total=$total;good=$good;views=$views;edits=$edits;users=$users;";
 		echo "activeusers=$activeUsers;admins=$admins;images=$images;jobs=$numJobs\n";
 		return;
 	} else {
-		$text = "__NOTOC__\n";
-		$text .= '==' . wfMsgNoTrans( 'sitestats' ) . "==\n";
-		$text .= wfMsgExt( 'sitestatstext', array( 'parsemag' ),
-			$wgLang->formatNum( $total ),
-			$wgLang->formatNum( $good ),
-			$wgLang->formatNum( $views ),
-			$wgLang->formatNum( $edits ),
-			$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
-			$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
-			$wgLang->formatNum( $numJobs ),
-			$wgLang->formatNum( $images )
-	   	)."\n";
+		$text = Xml::openElement( 'table', array( 'class' => 'mw-statistics-table' ) ) .
+			# Statistic - pages
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
+			formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
+					$wgLang->formatNum( $good ) ) .
+			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
+					$wgLang->formatNum( $total ) ) .
+			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
+					$wgLang->formatNum( $images ) ) .
 
-		$text .= "==" . wfMsgNoTrans( 'userstats' ) . "==\n";
-		$text .= wfMsgExt( 'userstatstext', array ( 'parsemag' ),
-			$wgLang->formatNum( $users ),
-			$wgLang->formatNum( $admins ),
-			'[[' . wfMsgForContent( 'grouppage-sysop' ) . ']]', # TODO somehow remove, kept for backwards compatibility
-			$wgLang->formatNum( @sprintf( '%.2f', $admins / $users * 100 ) ),
-			User::makeGroupLinkWiki( 'sysop' ),
-			$wgLang->formatNum( $activeUsers )
-		)."\n";
+			# Statistic - edits
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
+			formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
+					$wgLang->formatNum( $edits ) ) .
+			formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
+					$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ) ) .
+			formatRow( wfMsgExt( 'statistics-jobqueue', array( 'parseinline' ) ),
+					$wgLang->formatNum( $numJobs ) ) .
 
-		global $wgDisableCounters, $wgMiserMode, $wgUser, $wgLang, $wgContLang;
-		if( !$wgDisableCounters && !$wgMiserMode ) {
-			$res = $dbr->select(
-				'page',
-				array(
-					'page_namespace',
-					'page_title',
-					'page_counter',
-				),
-				array(
-					'page_is_redirect' => 0,
-					'page_counter > 0',
-				),
-				__METHOD__,
-				array(
-					'ORDER BY' => 'page_counter DESC',
-					'LIMIT' => 10,
-				)
-			);
-			if( $res->numRows() > 0 ) {
-				$text .= "==" . wfMsgNoTrans( 'statistics-mostpopular' ) . "==\n";
-				while( $row = $res->fetchObject() ) {
-					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-					if( $title instanceof Title )
-						$text .= '* [[:' . $title->getPrefixedText() . ']] (' . $wgLang->formatNum( $row->page_counter ) . ")\n";
-				}
-				$res->free();
+			# Statistic - users
+			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
+			formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
+					$wgLang->formatNum( $users ) ) .
+			formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
+					$wgLang->formatNum( $activeUsers ) );
+
+		# Statistic - usergroups
+		foreach( $wgGroupPermissions as $group => $permissions ) {
+			# Skip generic * and implicit groups
+			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
+				continue;
 			}
+			$groupname = htmlspecialchars( $group );
+			$msg = wfMsg( 'group-' . $groupname );
+			if ( wfEmptyMsg( 'group-' . $groupname, $msg ) || $msg == '' ) {
+				$groupnameLocalized = $groupname;
+			} else {
+				$groupnameLocalized = $msg;
+			}
+			$msg = wfMsgForContent( 'grouppage-' . $groupname );
+			if ( wfEmptyMsg( 'grouppage-' . $groupname, $msg ) || $msg == '' ) {
+				$grouppageLocalized = MWNamespace::getCanonicalName( NS_PROJECT ) . ':' . $groupname;
+			} else {
+				$grouppageLocalized = $msg;
+			}
+			$grouppage = $sk->makeLink( $grouppageLocalized, $groupnameLocalized );
+			$grouplink = $sk->link( SpecialPage::getTitleFor( 'Listusers' ),
+				wfMsgHtml( 'listgrouprights-members' ),
+				array(),
+				array( 'group' => $group ),
+				'known' );
+			$text .= formatRow( $grouppage . ' ' . $grouplink,
+				$wgLang->formatNum( SiteStats::numberingroup( $groupname ) ) );
 		}
-
-		$footer = wfMsgNoTrans( 'statistics-footer' );
-		if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' )
-			$text .= "\n" . $footer;
-
-		$wgOut->addWikiText( $text );
 	}
+	$text .= $viewsStats;
+
+	# Statistic - popular pages
+	if( !$wgDisableCounters && !$wgMiserMode ) {
+		$res = $dbr->select(
+			'page',
+			array(
+				'page_namespace',
+				'page_title',
+				'page_counter',
+			),
+			array(
+				'page_is_redirect' => 0,
+				'page_counter > 0',
+			),
+			__METHOD__,
+			array(
+				'ORDER BY' => 'page_counter DESC',
+				'LIMIT' => 10,
+			)
+		);
+		if( $res->numRows() > 0 ) {
+			$text .= Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-mostpopular' ) );
+			while( $row = $res->fetchObject() ) {
+				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+				if( $title instanceof Title ) {
+					$text .= formatRow( $sk->link( $title ),
+							$wgLang->formatNum( $row->page_counter ) );
+
+				}
+			}
+			$res->free();
+		}
+	}
+
+	$text .= Xml::closeElement( 'table' );
+
+	# Customizable footer
+	$footer = wfMsgNoTrans( 'statistics-footer' );
+	if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' ) {
+		$text .= "\n" . $footer;
+	}
+
+	$wgOut->addHtml( $text );
+}
+
+/**
+ * Format a row
+ *
+ * @param string $text description of the row
+ * @param float $number a number
+ * @return string table row in HTML format
+ */
+function formatRow( $text, $number ) {
+	return '<tr>
+			<td>' .
+				$text .
+			'</td>
+			<td class="mw-statistics-numbers">' .
+				 $number .
+			'</td>
+		</tr>';
 }

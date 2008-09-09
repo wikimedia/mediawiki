@@ -237,7 +237,13 @@ td.os-suggest-result-hl {
     border: 1px dashed #aaa;
 }
 
-table.mw-listgrouprights-table  {
+/*
+ * Special:ListGroupRights styling
+ * Special:Statistics styling 
+*/
+
+table.mw-listgrouprights-table,
+table.mw-statistics-table {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
 }
@@ -246,9 +252,14 @@ table.mw-listgrouprights-table tr  {
 	vertical-align: top;
 }
 
-table.mw-listgrouprights-table td, table.mw-listgrouprights-table th {
+table.mw-listgrouprights-table td, table.mw-listgrouprights-table th,
+table.mw-statistics-table td, table.mw-statistics-table th {
 	padding: 0.5em 0.2em 0.5em 0.2em;
 	border: 1px solid #ccc;
+}
+
+td.mw-statistics-numbers {
+	text-align: right;
 }
 
 /* Special:SpecialPages styling */
