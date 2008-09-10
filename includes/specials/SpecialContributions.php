@@ -34,17 +34,18 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		list( $index, $userCond ) = $this->getUserCond();
+		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 		$conds = array_merge( array('page_id=rev_page'), $userCond, $this->getNamespaceCond() );
 		$queryInfo = array(
-			'tables' => array( 'page', 'revision' ),
+			'tables' => $tables,
 			'fields' => array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'rev_id', 'rev_page',
 				'rev_text_id', 'rev_timestamp', 'rev_comment', 'rev_minor_edit', 'rev_user',
 				'rev_user_text', 'rev_parent_id', 'rev_deleted'
 			),
 			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array('revision' => $index) )
+			'options' => array( 'USE INDEX' => array('revision' => $index) ),
+			'join_conds' => $join_cond
 		);
 		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
 		return $queryInfo;
@@ -52,16 +53,21 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getUserCond() {
 		$condition = array();
-
+		$join_conds = array();
 		if ( $this->target == 'newbies' ) {
+			$tables = array( 'user_groups', 'page', 'revision' );
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
+			$condition[] = 'ug_group IS NULL';
 			$index = 'user_timestamp';
+			# FIXME: other groups may have 'bot' rights
+			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
 		} else {
+			$tables = array( 'page', 'revision' );
 			$condition['rev_user_text'] = $this->target;
 			$index = 'usertext_timestamp';
 		}
-		return array( $index, $condition );
+		return array( $tables, $index, $condition, $join_conds );
 	}
 
 	function getNamespaceCond() {
