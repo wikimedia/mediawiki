@@ -189,6 +189,11 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns'
 );
 
+$imageFiles = array(
+	'button-bold'     => 'de/button_bold.png',
+	'button-italic'   => 'de/button_italic.png',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreichen:',
