@@ -188,6 +188,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15292) New message notification for unregistred users now works again
 * (bug 14398) mwsuggest.js: Let width of container be configurable
 * (bug 15543) Only include user touched timestamp to generated CSS
+* (bug 15497) Removed encoding attribute from <?xml ?> tag
 
 
 === API changes in 1.14 ===
