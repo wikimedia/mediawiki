@@ -11,6 +11,8 @@
  * @ingroup Database
  */
 class LoadBalancer {
+	const GRACEFUL = 1;
+
 	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;
 	/* private */ var $mFailFunction, $mErrorConnection;
 	/* private */ var $mReadIndex, $mLastIndex, $mAllowLagged;
@@ -171,7 +173,7 @@ class LoadBalancer {
 	 *
 	 * Side effect: opens connections to databases
 	 */
-	function getReaderIndex( $group = false, $wiki = false ) {
+	function getReaderIndex( $group = false, $wiki = false, $attempts = false ) {
 		global $wgReadOnly, $wgDBClusterTimeout, $wgDBAvgStatusPoll, $wgDBtype;
 
 		# FIXME: For now, only go through all this for mysql databases
@@ -248,7 +250,7 @@ class LoadBalancer {
 				}
 
 				wfDebugLog( 'connect', __METHOD__.": Using reader #$i: {$this->mServers[$i]['host']}...\n" );
-				$conn = $this->openConnection( $i, $wiki );
+				$conn = $this->openConnection( $i, $wiki, $attempts );
 
 				if ( !$conn ) {
 					wfDebugLog( 'connect', __METHOD__.": Failed connecting to $i/$wiki\n" );
@@ -399,8 +401,13 @@ class LoadBalancer {
 	/**
 	 * Get a connection by index
 	 * This is the main entry point for this class.
+	 * @param int $i Database
+	 * @param array $groups Query groups
+	 * @param string $wiki Wiki ID
+	 * @param int $attempts Max DB connect attempts
+	 * @param int $flags
 	 */
-	public function &getConnection( $i, $groups = array(), $wiki = false ) {
+	public function &getConnection( $i, $groups = array(), $wiki = false, $attempts = false, $flags = 0 ) {
 		global $wgDBtype;
 		wfProfileIn( __METHOD__ );
 
@@ -432,7 +439,7 @@ class LoadBalancer {
 
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {
-			$i = $this->getReaderIndex( false, $wiki );
+			$i = $this->getReaderIndex( false, $wiki, $attempts );
 		} elseif ( $i == DB_LAST ) {
 			# Just use $this->mLastIndex, which should already be set
 			$i = $this->mLastIndex;
@@ -444,12 +451,15 @@ class LoadBalancer {
 		}
 		# Couldn't find a working server in getReaderIndex()?
 		if ( $i === false ) {
+			if( $flags && self::GRACEFUL ) {
+				return false;
+			}
 			$this->reportConnectionError( $this->mErrorConnection );
 		}
 
 		# Now we have an explicit index into the servers array
-		$conn = $this->openConnection( $i, $wiki );
-		if ( !$conn ) {
+		$conn = $this->openConnection( $i, $wiki, $attempts );
+		if ( !$conn && !($flags & self::GRACEFUL) ) {
 			$this->reportConnectionError( $this->mErrorConnection );
 		}
 
@@ -509,11 +519,12 @@ class LoadBalancer {
 	 *
 	 * @param integer $i Server index
 	 * @param string $wiki Wiki ID to open
+	 * @param int $attempts Maximum connection attempts
 	 * @return Database
 	 *
 	 * @access private
 	 */
-	function openConnection( $i, $wiki = false ) {
+	function openConnection( $i, $wiki = false, $attempts = false ) {
 		wfProfileIn( __METHOD__ );
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
@@ -525,7 +536,7 @@ class LoadBalancer {
 		} else {
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
-			$conn = $this->reallyOpenConnection( $server );
+			$conn = $this->reallyOpenConnection( $server, false, $attempts );
 			if ( $conn->isOpen() ) {
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
@@ -628,7 +639,7 @@ class LoadBalancer {
 	 * Returns a Database object whether or not the connection was successful.
 	 * @access private
 	 */
-	function reallyOpenConnection( $server, $dbNameOverride = false ) {
+	function reallyOpenConnection( $server, $dbNameOverride = false, $attempts = false ) {
 		if( !is_array( $server ) ) {
 			throw new MWException( 'You must update your load-balancing configuration. See DefaultSettings.php entry for $wgDBservers.' );
 		}
@@ -643,7 +654,7 @@ class LoadBalancer {
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
+		$db = new $class( $host, $user, $password, $dbname, 1, $flags, 'get from global', $attempts );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected\n" );
 		} else {

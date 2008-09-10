@@ -34,13 +34,16 @@ class ExternalStoreDB {
 	/** @todo Document.*/
 	function &getSlave( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_SLAVE );
+		// Make only two connection attempts, since we still have the master to try
+		return $lb->getConnection( DB_SLAVE, array(), false, 2 );
 	}
 
 	/** @todo Document.*/
-	function &getMaster( $cluster ) {
+	function &getMaster( $cluster, $retry = true ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_MASTER );
+		// Make only two connection attempts if there are other clusters to try
+		$attempts = $retry ? false : 2;
+		return $lb->getConnection( DB_MASTER, array(), false, $attempts, LoadBalancer::GRACEFUL );
 	}
 
 	/** @todo Document.*/
@@ -56,7 +59,7 @@ class ExternalStoreDB {
 	 * Fetch data from given URL
 	 * @param string $url An url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
 	 */
-	function fetchFromURL($url) {
+	function fetchFromURL( $url ) {
 		$path = explode( '/', $url );
 		$cluster  = $path[2];
 		$id	  = $path[3];
@@ -119,15 +122,17 @@ class ExternalStoreDB {
 	 *
 	 * @param $cluster String: the cluster name
 	 * @param $data String: the data item
+	 * @param $retry bool: allows an extra DB connection retry after 1 second
 	 * @return string URL
 	 */
-	function store( $cluster, $data ) {
-		$fname = 'ExternalStoreDB::store';
-
-		$dbw =& $this->getMaster( $cluster );
-
+	function store( $cluster, $data, $retry = true ) {
+		if( !$dbw = $this->getMaster( $cluster, $retry ) ) {
+			return false; // failed, maybe another cluster is up...
+		}
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
-		$dbw->insert( $this->getTable( $dbw ), array( 'blob_id' => $id, 'blob_text' => $data ), $fname );
+		$dbw->insert( $this->getTable( $dbw ), 
+			array( 'blob_id' => $id, 'blob_text' => $data ), 
+			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( $dbw->getFlag( DBO_TRX ) ) {
 			$dbw->immediateCommit();
