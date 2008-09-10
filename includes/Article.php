@@ -1795,7 +1795,7 @@ class Article {
 			return false;
 		}
 
-		if (!$cascade) {
+		if( !$cascade ) {
 			$cascade = false;
 		}
 
@@ -1824,11 +1824,6 @@ class Article {
 
 				$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
 
-				$expiry_description = '';
-				if ( $encodedExpiry != 'infinity' ) {
-					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry, false, false ) ).')';
-				}
-
 				# Prepare a null revision to be added to the history
 				$modified = $current != '' && $protect;
 				if ( $protect ) {
@@ -1848,19 +1843,8 @@ class Article {
 					}
 				}
 
-				$cascade_description = '';
-				if ($cascade) {
-					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']';
-				}
-
 				if( $reason )
 					$comment .= ": $reason";
-				if( $protect )
-					$comment .= " [$updated]";
-				if ( $expiry_description && $protect )
-					$comment .= "$expiry_description";
-				if ( $cascade )
-					$comment .= "$cascade_description";
 
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
@@ -1897,8 +1881,8 @@ class Article {
 				# Update the protection log
 				$log = new LogPage( 'protect' );
 				if( $protect ) {
-					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle,
-						trim( $reason . " [$updated]$cascade_description$expiry_description" ) );
+					$params = array($updated,$encodedExpiry,$cascade ? 'cascade' : '');
+					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason), $params );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );
 				}
