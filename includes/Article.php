@@ -1824,9 +1824,15 @@ class Article {
 
 				$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
 
+				$expiry_description = '';
+				if( $encodedExpiry != 'infinity' ) {
+					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', 
+						$wgContLang->timeanddate( $expiry, false, false ) ).')'; 	 
+				}
+				
 				# Prepare a null revision to be added to the history
 				$modified = $current != '' && $protect;
-				if ( $protect ) {
+				if( $protect ) {
 					$comment_type = $modified ? 'modifiedarticleprotection' : 'protectedarticle';
 				} else {
 					$comment_type = 'unprotectedarticle';
@@ -1842,10 +1848,22 @@ class Article {
 						break;
 					}
 				}
+				
+				$cascade_description = ''; 	 
+				if( $cascade ) {
+					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']'; 	 
+				}
 
 				if( $reason )
 					$comment .= ": $reason";
 
+				$editComment = $comment;
+				if( $protect )
+					$editComment .= " [$updated]";
+				if( $expiry_description && $protect )
+					$editComment .= "$expiry_description";
+				if( $cascade )
+					$editComment .= "$cascade_description";
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
@@ -1860,7 +1878,7 @@ class Article {
 				}
 
 				# Insert a null revision
-				$nullRevision = Revision::newNullRevision( $dbw, $id, $comment, true );
+				$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
 				$nullRevId = $nullRevision->insertOn( $dbw );
 
 				$latest = $this->getLatest();
