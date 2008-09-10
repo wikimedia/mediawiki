@@ -130,9 +130,7 @@ if (!defined('MEDIAWIKI')) {
 				ApiBase :: PARAM_MAX => 10,
 				ApiBase :: PARAM_MAX2 => 20
 			),
-			'redirect' => array(
-				ApiBase :: PARAM_TYPE => 'boolean',
-			),
+			'redirect' => false,
 		);
 	}
 
