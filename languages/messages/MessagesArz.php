@@ -8,7 +8,6 @@
  * @author Ghaly
  * @author Meno25
  * @author Ramsis II
- * @author Ramsis1978
  */
 
 $fallback = 'ar';
