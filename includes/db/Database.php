@@ -257,9 +257,11 @@ class Database {
 	 * @param failFunction
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
+	 * @param int $max, max connection attempts 
+	 ** After the first retry (second attempt), each retry waits 1 second
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global', $max = false ) {
 
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
@@ -293,7 +295,7 @@ class Database {
 		}
 
 		if ( $server ) {
-			$this->open( $server, $user, $password, $dbName );
+			$this->open( $server, $user, $password, $dbName, $max );
 		}
 	}
 
@@ -311,7 +313,7 @@ class Database {
 	 * Usually aborts on failure
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
-	function open( $server, $user, $password, $dbName ) {
+	function open( $server, $user, $password, $dbName, $max = false ) {
 		global $wguname, $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
 
@@ -343,11 +345,11 @@ class Database {
 
 		wfProfileIn("dbconnect-$server");
 
-		# Try to connect up to three times
+		if( !$max ) { $max = 3; }
+		# Try to connect up to three times (by default)
 		# The kernel's default SYN retransmission period is far too slow for us,
 		# so we use a short timeout plus a manual retry.
 		$this->mConn = false;
-		$max = 3;
 		$this->installErrorHandler();
 		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
 			if ( $i > 1 ) {

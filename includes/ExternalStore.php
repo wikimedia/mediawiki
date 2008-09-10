@@ -14,7 +14,7 @@
  */
 class ExternalStore {
 	/* Fetch data from given URL */
-	static function fetchFromURL($url) {
+	static function fetchFromURL( $url ) {
 		global $wgExternalStores;
 
 		if( !$wgExternalStores )
@@ -44,7 +44,7 @@ class ExternalStore {
 
 		$class = 'ExternalStore' . ucfirst( $proto );
 		/* Any custom modules should be added to $wgAutoLoadClasses for on-demand loading */
-		if( !class_exists( $class ) ){
+		if( !class_exists( $class ) ) {
 			return false;
 		}
 
@@ -65,5 +65,42 @@ class ExternalStore {
 		} else {
 			return $store->store( $params, $data );
 		}
+	}
+	
+	/**
+	 * Like insert() above, but does more of the work for us.
+	 * This function does not need a url param, it builds it by
+	 * itself. It also fails-over to the next possible clusters.
+	 *
+	 * @param string $data
+	 * Returns the URL of the stored data item, or false on error
+	 */
+	public static function randomInsert( $data ) {
+		global $wgDefaultExternalStore;
+		$tryStorages = (array)$wgDefaultExternalStore;
+		// Do not wait and do second retry per master if we
+		// have other active cluster masters to try instead.
+		$retry = count($tryStorages) > 1 ? false : true;
+		while ( count($tryStorages) > 0 ) {
+			$index = mt_rand(0, count( $tryStorages ) - 1);
+			$storeUrl = $tryStorages[$index];
+			list( $proto, $params ) = explode( '://', $storeUrl, 2 );
+			$store = self::getStoreObject( $proto );
+			if ( $store === false ) {
+				throw new MWException( "Invalid external storage protocol - $storeUrl" );
+				return false; 
+			} else {
+				$url = $store->store( $params, $data, $retry ); // Try to save the object
+				if ( $url ) {
+					return $url; // Done!
+				} else {
+					unset( $tryStorages[$index] ); // Don't try this one again!
+					sort( $tryStorages ); // Must have consecutive keys
+					wfDebugLog( 'ExternalStorage', "Unable to store text to external storage $storeUrl" );
+				}
+			}
+		}
+		throw new MWException( "Unable to store text to external storage" );
+		return false; // All cluster masters dead :(
 	}
 }
