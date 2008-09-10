@@ -225,7 +225,7 @@ $messages = array(
 'categorypage'      => 'Ver páxina de categoría',
 'viewtalkpage'      => 'Ver a conversa',
 'otherlanguages'    => 'Outras linguas',
-'redirectedfrom'    => '(Redirixido desde $1)',
+'redirectedfrom'    => '(Redirixido desde "$1")',
 'redirectpagesub'   => 'Páxina de redirección',
 'lastmodifiedat'    => 'A última modificación desta páxina foi o $1 ás $2.', # $1 date, $2 time
 'viewcount'         => 'Esta páxina foi visitada {{PLURAL:$1|unha vez|$1 veces}}.',
@@ -435,7 +435,7 @@ Escolla un nome diferente.',
 Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'email'                      => 'Correo electrónico',
 'prefs-help-realname'        => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
-'loginerror'                 => 'Erro ao entrar ao sistema',
+'loginerror'                 => 'Erro ao acceder ao sistema',
 'prefs-help-email'           => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.
 Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a súa páxina de usuario ou de conversa sen necesidade de revelar a súa identidade.',
 'prefs-help-email-required'  => 'O enderezo de correo electrónico é requirido.',
@@ -449,8 +449,10 @@ Verifique o nome que inseriu ou cree unha nova conta.',
 'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
-'wrongpassword'              => 'O contrasinal escrito é incorrecto. Por favor, insira outro.',
-'wrongpasswordempty'         => 'O contrasinal estaba en branco. Por favor, ténteo de novo.',
+'wrongpassword'              => 'o contrasinal escrito é incorrecto.
+Por favor, insira outro.',
+'wrongpasswordempty'         => 'o campo do contrasinal estaba en branco.
+Por favor, ténteo de novo.',
 'passwordtooshort'           => 'O seu contrasinal é inválido ou demasiado curto.
 Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
@@ -470,7 +472,7 @@ Antes de enviar outro a esta conta terá que seguir as instrucións que aparecen
 'throttled-mailpassword'     => 'Enviouse un aviso co contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para evitar o abuso do sistema só se envía unha mensaxe cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Produciuse un erro ao enviar o correo electrónico: $1',
-'acct_creation_throttle_hit' => 'Xa ten creadas $1 contas.
+'acct_creation_throttle_hit' => 'Sentímolo, xa ten {{PLURAL:$1|creada unha conta|creadas $1 contas}}.
 Non pode crear máis.',
 'emailauthenticated'         => 'O seu enderezo de correo electrónico foi autenticado ($1).',
 'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda <strong>non foi autenticado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
@@ -569,7 +571,7 @@ Teña en conta que non pode empregar "enviarlle un correo electrónico a este us
 
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
-'blockednoreason'                  => 'ningunha razón foi dada',
+'blockednoreason'                  => 'non foi dada ningunha razón',
 'blockedoriginalsource'            => "O código fonte de '''$1''' móstrase a continuación:",
 'blockededitsource'                => "O texto das '''súas edicións''' en '''$1''' móstrase a continuación:",
 'whitelistedittitle'               => 'Cómpre acceder ao sistema para poder editar',
@@ -859,6 +861,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'diff-input'              => "unha '''entrada'''",
 'diff-form'               => "un '''formulario'''",
 'diff-img'                => "unha '''imaxe'''",
+'diff-span'               => "unha '''extensión'''",
 'diff-a'                  => "unha '''ligazón'''",
 'diff-i'                  => "'''cursiva'''",
 'diff-b'                  => "'''negra'''",
@@ -1233,7 +1236,9 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
 'upload-curl-error6-text'  => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',
 'upload-curl-error28'      => 'Rematou o tempo de espera',
-'upload-curl-error28-text' => 'O sitio tardou demasiado en respostar. Comprobe que está activo, agarde un anaco e ténteo de novo. Tamén pode reintentalo cando haxa menos actividade.',
+'upload-curl-error28-text' => 'O sitio tardou demasiado en responder.
+Por favor, comprobe que está activo, agarde un anaco e ténteo de novo.
+Tamén pode reintentalo cando haxa menos actividade.',
 
 'license'            => 'Licenza:',
 'nolicense'          => 'Ningunha (os ficheiros sen licenza teñen que ser eliminados)',
@@ -1312,13 +1317,13 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'filedelete-success-old'      => 'Eliminouse a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" o $2 ás $3.',
 'filedelete-nofile'           => "'''$1''' non existe en {{SITENAME}}.",
 'filedelete-nofile-old'       => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
-'filedelete-otherreason'      => 'Outra/razón adicional:',
+'filedelete-otherreason'      => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outra razón',
 'filedelete-reason-dropdown'  => '
 *Razóns comúns para eliminar:
 ** Violación do Copyright
 ** Arquivo duplicado',
-'filedelete-edit-reasonlist'  => 'Editar os motivos do borrado',
+'filedelete-edit-reasonlist'  => 'Editar os motivos de borrado',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
@@ -1336,7 +1341,7 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 # Unused templates
 'unusedtemplates'     => 'Modelos sen uso',
 'unusedtemplatestext' => 'Esta páxina contén unha listaxe de todas as páxinas no espazo de nomes modelo que non están incluídas en ningunha outra páxina. Lembre verificar outros enlaces cara aos modelos antes de borralos.',
-'unusedtemplateswlh'  => 'outros enlaces',
+'unusedtemplateswlh'  => 'outras ligazóns',
 
 # Random page
 'randompage'         => 'Páxina aleatoria',
@@ -1347,9 +1352,22 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 'randomredirect-nopages' => 'Non hai redireccións neste espazo de nomes.',
 
 # Statistics
-'statistics'              => 'Estatísticas',
-'statistics-header-users' => 'Estatísticas dos usuarios',
-'statistics-mostpopular'  => 'Páxinas máis vistas',
+'statistics'               => 'Estatísticas',
+'statistics-header-pages'  => 'Estatísticas das páxinas',
+'statistics-header-edits'  => 'Estatísticas das edicións',
+'statistics-header-views'  => 'Estatísticas das vistas',
+'statistics-header-users'  => 'Estatísticas dos usuarios',
+'statistics-articles'      => 'Páxinas de contido',
+'statistics-pages'         => 'Páxinas <small>(isto inclúe as páxinas de "conversa", páxinas acerca de {{SITENAME}}, páxinas con "contido mínimo", redireccións e outras)</small>',
+'statistics-files'         => 'Ficheiros cargados',
+'statistics-edits'         => 'Edicións nas páxinas desque se creou {{SITENAME}}',
+'statistics-edits-average' => 'Media de edicións por páxina',
+'statistics-views-total'   => 'Vistas totais',
+'statistics-views-peredit' => 'Vistas por edición',
+'statistics-jobqueue'      => 'Lonxitude da [http://www.mediawiki.org/wiki/Manual:Job_queue cola de traballos]',
+'statistics-users'         => '[[Special:ListUsers|Usuarios]] rexistrados',
+'statistics-users-active'  => 'Usuarios activos',
+'statistics-mostpopular'   => 'Páxinas máis vistas',
 
 'disambiguations'      => 'Páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',
@@ -1496,7 +1514,7 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'emailuser'       => 'Enviar un correo electrónico a este usuario',
 'emailpage'       => 'Enviar un correo electrónico a un usuario',
 'emailpagetext'   => 'Se o usuario introduciu un enderezo de correo electrónico válido nas súas preferencias, este formulario serve para enviarlle unha única mensaxe.
-O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle respostar.',
+O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
 'usermailererror' => 'O obxecto enviado deu unha mensaxe de erro:',
 'defemailsubject' => 'Correo electrónico de {{SITENAME}}',
 'noemailtitle'    => 'Sen enderezo de correo electrónico',
@@ -1613,14 +1631,14 @@ No $2 pode ver unha listaxe dos borrados máis recentes.',
 'deletionlog'                 => 'rexistro de borrados',
 'reverted'                    => 'Devolto a unha versión anterior',
 'deletecomment'               => 'Razón para o borrado:',
-'deleteotherreason'           => 'Outros/máis motivos:',
+'deleteotherreason'           => 'Outro motivo:',
 'deletereasonotherlist'       => 'Outro motivo',
 'deletereason-dropdown'       => '
 *Motivos frecuentes para borrar
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Editar os motivos do borrado',
+'delete-edit-reasonlist'      => 'Editar os motivos de borrado',
 'delete-toobig'               => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
 Limitouse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',
 'delete-warning-toobig'       => 'Esta páxina conta cun historial de edicións longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
@@ -1669,8 +1687,8 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten permiso para editala.',
 'protect-othertime'           => 'Outro período:',
 'protect-othertime-op'        => 'outro período',
-'protect-otherreason'         => 'Outro/adicional:',
-'protect-otherreason-op'      => 'outro/adicional',
+'protect-otherreason'         => 'Outro motivo:',
+'protect-otherreason-op'      => 'outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
 ** Vandalismo excesivo
 ** Publicidade excesiva
@@ -1783,13 +1801,13 @@ $1',
 'whatlinkshere-filters'    => 'Filtros',
 
 # Block/unblock
-'blockip'                         => 'Bloquear usuario',
-'blockip-legend'                  => 'Bloquear usuario',
+'blockip'                         => 'Bloquear un usuario',
+'blockip-legend'                  => 'Bloquear un usuario',
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear a un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
 'ipaddress'                       => 'Enderezo IP:',
-'ipadressorusername'              => 'Enderezo IP ou nome do usuario:',
+'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry'                       => 'Remate:',
 'ipbreason'                       => 'Razón:',
 'ipbreasonotherlist'              => 'Outro motivo',
@@ -1803,14 +1821,14 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 ** Abuso de múltiples contas de usuario
 ** Nome de usuario inaceptábel',
 'ipbanononly'                     => 'Bloquear os usuarios anónimos unicamente',
-'ipbcreateaccount'                => 'Previr a creación dunha conta',
+'ipbcreateaccount'                => 'Previr a creación de contas',
 'ipbemailban'                     => 'Impedir que o usuario envíe correos electrónicos',
 'ipbenableautoblock'              => 'Bloquear automaticamente o último enderezo IP utilizado por este usuario, e calquera outro enderezo desde o que intente editar',
 'ipbsubmit'                       => 'Bloquear este usuario',
 'ipbother'                        => 'Outro período de tempo:',
 'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outra',
-'ipbotherreason'                  => 'Outros motivos adicionais:',
+'ipbotherreason'                  => 'Outro motivo:',
 'ipbhidename'                     => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
 'ipbwatchuser'                    => 'Vixiar a páxina de usuario e a de conversa deste usuario',
 'badipaddress'                    => 'O enderezo IP non é válido',
@@ -1818,11 +1836,11 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
 Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
 'ipb-edit-dropdown'               => 'Editar as razóns do bloqueo',
-'ipb-unblock-addr'                => 'Desbloquear $1',
-'ipb-unblock'                     => 'Desbloquear usuario ou enderezo IP',
-'ipb-blocklist-addr'              => 'Ver bloqueos vixentes para $1',
+'ipb-unblock-addr'                => 'Desbloquear a "$1"',
+'ipb-unblock'                     => 'Desbloquear un usuario ou enderezo IP',
+'ipb-blocklist-addr'              => 'Ver os bloqueos vixentes de "$1"',
 'ipb-blocklist'                   => 'Ver bloqueos vixentes',
-'unblockip'                       => 'Desbloquear usuario',
+'unblockip'                       => 'Desbloquear o usuario',
 'unblockiptext'                   => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
 'ipusubmit'                       => 'Desbloquear este enderezo',
 'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
@@ -1872,7 +1890,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
-'unlockdb'            => 'Desbloquear base de datos',
+'unlockdb'            => 'Desbloquear a base de datos',
 'lockdbtext'          => 'Fechar a base de datos vai quitarlles aos usuarios a posibilidade de editar páxinas,cambiar as súas preferencias, editar as súas listaxes de vixilancia e outras cousas que requiren cambios na base de datos.
 Por favor confirme que é o que realmente quere facer, e que vai quitar o fechamento da base de datos cando o mantemento estea rematado.',
 'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas, cambiar as súas preferencias, editar as súas listaxes de vixilancia e outras accións que requiran cambios na base de datos.
@@ -1880,7 +1898,7 @@ Por favor confirme que isto é o que quere facer.',
 'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
 'unlockconfirm'       => 'Si, realmente quero desbloquear a base de datos',
 'lockbtn'             => 'Fechar base de datos',
-'unlockbtn'           => 'Desbloquear base de datos',
+'unlockbtn'           => 'Desbloquear a base de datos',
 'locknoconfirm'       => 'Vostede non marcou o sinal de confirmación.',
 'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
@@ -2118,7 +2136,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'spamprotectionmatch' => "O seguinte texto foi o que activou o noso filtro de ''spam'': $1",
 'spambot_username'    => "MediaWiki limpeza de ''spam''",
 'spam_reverting'      => 'Revertida á última edición sen ligazóns a $1',
-'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a $1',
+'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a "$1"',
 
 # Info page
 'infosubtitle'   => 'Información da páxina',
@@ -2399,6 +2417,11 @@ Outros agocharanse por omisión.
 # Flash modes
 'exif-flash-fired-0'    => 'Non se disparou o flash',
 'exif-flash-fired-1'    => 'Flash disparado',
+'exif-flash-return-0'   => 'sen a función de detección do retorno da luz',
+'exif-flash-return-2'   => 'non se detectou a función do retorno da luz',
+'exif-flash-return-3'   => 'detectouse a función do retorno da luz',
+'exif-flash-mode-1'     => 'disparo obrigatorio do flash',
+'exif-flash-mode-2'     => 'disparo do flash desactivado',
 'exif-flash-mode-3'     => 'modo automático',
 'exif-flash-function-1' => 'Sen función flash',
 'exif-flash-redeye-1'   => 'modo de redución de ollos vermellos',

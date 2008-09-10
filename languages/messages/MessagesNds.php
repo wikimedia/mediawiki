@@ -335,7 +335,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'deletethispage'    => 'Disse Siet wegsmieten',
 'undelete_short'    => '{{PLURAL:$1|ene Version|$1 Versionen}} wedderhalen',
 'protect'           => 'Schulen',
-'protect_change'    => 'Schuul-Status ännern',
+'protect_change'    => 'ännern',
 'protectthispage'   => 'Siet schulen',
 'unprotect'         => 'Freegeven',
 'unprotectthispage' => 'Schuul opheben',
@@ -455,7 +455,8 @@ MySQL mell den Fehler <tt>$3: $4</tt>.',
 'dberrortextcl'        => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
 De letzte Datenbankaffraag weer: $1 ut de Funktschoon <tt>$2</tt>.
 MySQL mell den Fehler: <tt>$3: $4</tt>.',
-'noconnect'            => 'De Software kunn keen Verbinnen to de Datenbank op $1 opnehmen',
+'noconnect'            => 'Dat Wiki hett Malesch mit de Technik un de Software kunn keen Verbinnen to de Datenbank opnehmen.<br />
+$1',
 'nodb'                 => 'De Software kunn de Datenbank $1 nich utwählen',
 'cachederror'          => "Disse Siet is en Kopie ut'n Cache un is mööglicherwies nich aktuell.",
 'laggedslavemode'      => 'Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.',
@@ -576,7 +577,7 @@ Kiek de Schrievwies na oder mell di as ne’en Bruker an.',
 'wrongpassword'              => 'Dat Passwoort, wat du ingeven hest, is verkehrt. Kannst dat aver noch wedder versöken.',
 'wrongpasswordempty'         => 'Dat Passwoort, wat du ingeven hest, is leddig, versöök dat noch wedder.',
 'passwordtooshort'           => 'Dat Passwoord is to kort. Dat schall woll beter {{PLURAL:$1|een Teken|$1 Teken}} lang oder noch länger wesen.',
-'mailmypassword'             => 'En nieg Password sennen',
+'mailmypassword'             => 'En nee Passwoord tostüren',
 'passwordremindertitle'      => 'Nee Passwoort för {{SITENAME}}',
 'passwordremindertext'       => 'Een (IP-Adress $1) hett för en nee Passwoort to’n Anmellen bi {{SITENAME}} beden ($4).
 Dat Passwoort för Bruker „$2“ is nu „$3“. Bitte mell di nu an un änner dien Passwoort.
@@ -590,7 +591,7 @@ Ehrdat E-Mails vun annere Brukers över de E-Mail-Funkschoon kamen köönt, mutt
 In de E-Mail steiht, wie dat geiht.',
 'throttled-mailpassword'     => 'Binnen de {{PLURAL:$1|letzte Stünn|letzten $1 Stünnen}} is al mal en neet Passwoort toschickt worrn. Dat disse Funkschoon nich missbruukt warrt, kann blot {{PLURAL:$1|jede Stünn|alle $1 Stünnen}} een Maal en neet Passwoort toschickt warrn.',
 'mailerror'                  => 'Fehler bi dat Sennen vun de E-Mail: $1',
-'acct_creation_throttle_hit' => 'Du hest al $1 Brukerkontos anleggt. Du kannst nich noch mehr anleggen.',
+'acct_creation_throttle_hit' => 'Du hest al {{PLURAL:$1|en Brukerkonto|$1 Brukerkontos}} anleggt. Du kannst nich noch mehr anleggen.',
 'emailauthenticated'         => 'Diene E-Mail-Adress is bestätigt worrn: $1.',
 'emailnotauthenticated'      => 'Dien E-Mail-Adress is noch nich bestätigt. Disse E-Mail-Funkschonen kannst du eerst bruken, wenn de Adress bestätigt is.',
 'noemailprefs'               => 'Geev en E-Mail-Adress an, dat du disse Funkschonen bruken kannst.',
@@ -704,7 +705,7 @@ Wenn du en anonymen Bruker büst un meenst, dat disse Kommentaren nich an di ric
 'userpage-userdoesnotexist'        => 'Dat Brukerkonto „$1“ gifft dat noch nich. Överlegg, wat du disse Siet würklich nee opstellen/ännern wullt.',
 'clearyourcache'                   => "'''Denk doran:''' No den Spiekern muttst du dien Browser noch seggen, de niege Version to laden: '''Mozilla/Firefox:''' ''Strg-Shift-R'', '''IE:''' ''Strg-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror:''' ''F5''.",
 'usercssjsyoucanpreview'           => '<strong>Tipp:</strong> Bruuk den Vörschau-Knoop, üm dien nieg CSS/JS vör dat Spiekern to testen.',
-'usercsspreview'                   => "'''Denk doran, dat du blots en Vörschau vun dien CSS ankiekst, dat is noch nich spiekert!'''",
+'usercsspreview'                   => "'''Denk doran, dat du blots en Vörschau vun dien CSS ankickst, dat is noch nich spiekert!'''",
 'userjspreview'                    => "'''Denk doran, dat du blots en Vörschau vun dien JS ankiekst, dat is noch nich spiekert!'''",
 'userinvalidcssjstitle'            => "'''Wohrschau:''' Dat gifft keen Skin „$1“. Denk dor an, dat .css- un .js-Sieden  för Brukers mit en lütten Bookstaven anfangen mööt, to’n Bispeel ''{{ns:user}}:Brukernaam/monobook.css'' un nich ''{{ns:user}}:Brukernaam/Monobook.css''.",
 'updated'                          => '(Ännert)',
@@ -1219,8 +1220,8 @@ Blot dat Ennen vun de Datei is bi dat Groot-/Lütt-Schrieven anners. Kiek na, wa
 'fileexists-thumb'            => "<center>'''Vörhannene Datei'''</center>",
 'fileexists-thumbnail-yes'    => 'De Datei schient en Bild to wesen, dat lütter maakt is <i>(thumbnail)</i>. Kiek di de Datei <strong><tt>$1</tt></strong> an.<br />
 Wenn dat dat Bild in vulle Grött is, denn bruukst du keen extra Vörschaubild hoochladen.',
-'file-thumbnail-no'           => 'De Dateinaam fangt an mit <strong><tt>$1</tt></strong>. Dat düüdt dor op hen, dat dat en lütter maakt Bild <i>(thumbnail)</i> is.
-Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Originalnaam hooch.',
+'file-thumbnail-no'           => 'De Dateinaam fangt an mit <strong><tt>$1</tt></strong>. Dat düüdt dor op hen, dat dat en lütter maakt Bild <i>(thumbnail, Duumnagel-Bild)</i> is.
+Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Originalnaam hooch oder änner den Dateinaam.',
 'fileexists-forbidden'        => 'En Datei mit dissen Naam gifft dat al; gah trüch un laad de Datei ünner en annern Naam hooch. [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dat gifft al en Datei mit dissen Naam. Gah trüch un laad de Datei ünner en annern Naam hooch. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'De Datei is desülve as disse {{PLURAL:$1|Datei|$1 Datein}}:',
@@ -1304,7 +1305,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'shareduploadconflict'           => 'Disse Datei hett densülven Naam as $1 vun’n gemeensam bruukten Datei-Spiekerplatz.',
 'shareduploadconflict-linktext'  => 'disse annere Datei',
 'noimage'                        => 'Ene Datei mit dissen Naam gifft dat nich, du kannst ehr $1.',
-'noimage-linktext'               => 'Hoochladen',
+'noimage-linktext'               => 'hoochladen',
 'uploadnewversion-linktext'      => 'Ne’e Version vun disse Datei hoochladen',
 'imagepage-searchdupe'           => 'Söök na dubbelte Datein',
 
@@ -1457,7 +1458,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'log'                  => 'Logböker',
 'all-logs-page'        => 'All Logböker',
 'alllogstext'          => 'Kombineerte Ansicht vun all Logböker bi {{SITENAME}}.
-Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam oder de Siet angiffst.',
+Du kannst de List körter maken, wenn du den Logbook-Typ, den Brukernaam (grote un lütte Bookstaven maakt en Ünnerscheed) oder de Sied angiffst (ok mit Ünnerscheed vun grote un lütte Bookstaven).',
 'logempty'             => 'In’e Logböker nix funnen, wat passt.',
 'log-title-wildcard'   => 'Titel fangt an mit …',
 
@@ -1505,15 +1506,15 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'mailnologintext' => 'Du musst [[Special:UserLogin|anmellt wesen]] un in diene [[Special:Preferences|Instellungen]] en güllige E-Mail-Adress hebben, dat du annere Brukers E-Mails schicken kannst.',
 'emailuser'       => 'E-Mail an dissen Bruker',
 'emailpage'       => 'E-Mail an Bruker',
-'emailpagetext'   => 'Wenn disse Bruker en güllige E-Mail-Adress angeven hett, kannst du em mit den nerrn stahn Formular en E-Mail sennen. As Afsenner warrt de E-Mail-Adress ut dien Instellen indregen, dormit de Bruker di antern kann.',
+'emailpagetext'   => 'Wenn disse Bruker en güllige E-Mail-Adress angeven hett, kannst du em mit dit Formular en E-Mail tostüren. As Afsenner warrt de E-Mail-Adress ut dien [[Special:Preferences|Instellen]] indragen, dat de Bruker di antern kann.',
 'usermailererror' => 'Dat Mail-Objekt hett en Fehler trüchgeven:',
 'defemailsubject' => '{{SITENAME}} E-Mail',
 'noemailtitle'    => 'Kene E-Mail-Adress',
 'noemailtext'     => 'Disse Bruker hett kene güllige E-Mail-Adress angeven, oder will kene E-Mail vun annere Bruker sennt kriegen.',
-'emailfrom'       => 'Vun',
-'emailto'         => 'An',
-'emailsubject'    => 'Bedrap',
-'emailmessage'    => 'Naricht',
+'emailfrom'       => 'Vun:',
+'emailto'         => 'An:',
+'emailsubject'    => 'Bedrap:',
+'emailmessage'    => 'Naricht:',
 'emailsend'       => 'Sennen',
 'emailccme'       => 'Ik will en Kopie vun mien Naricht an mien egen E-Mail-Adress hebben.',
 'emailccsubject'  => 'Kopie vun diene Naricht an $1: $2',
@@ -1685,12 +1686,12 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'viewdeletedpage'              => 'Wegsmetene Sieden ankieken',
 'undeletepagetext'             => 'Disse Sieden sünd wegsmeten worrn, aver jümmer noch spiekert un köönt wedderhaalt warrn.',
 'undelete-fieldset-title'      => 'Versionen wedderhalen',
-'undeleteextrahelp'            => '* De Sied kumplett mit all Versionen weddertohalen, geev en Grund an un klick op „{{int:Undeletebtn}}“.
-* Wenn du blot welk Versionen wedderhalen wullt, denn wähl de enkelt mit de Ankrüüzfeller ut, geev en Grund an un klick denn op „{{int:Undeletebtn}}“.
+'undeleteextrahelp'            => '* De Sied kumplett mit all Versionen weddertohalen, geev en Grund an, laat all Ankrüüzfeller leddig un klick op „{{int:Undeletebtn}}“.
+* Wenn du blot welk Versionen wedderhalen wullt, denn wähl jem enkelt mit de Ankrüüzfeller ut, geev en Grund an un klick denn op „{{int:Undeletebtn}}“.
 * „{{int:Undeletereset}}“ maakt dat Kommentarfeld un all Ankrüüzfeller bi de Versionen leddig.',
 'undeleterevisions'            => '{{PLURAL:$1|Ene Version|$1 Versionen}} archiveert',
-'undeletehistory'              => 'Wenn du disse Siet weerholst, warrt ok alle olen Versionen weerholt. Wenn siet dat Löschen en nieg Siet mit lieken
-Naam schreven worrn is, warrt de weerholten Versionen as ole Versionen vun disse Siet wiest.',
+'undeletehistory'              => 'Wenn du disse Sied wedderhaalst, warrt ok all ole Versionen wedderhaalt. Wenn siet dat Löschen en nee Sied mit lieken
+Naam schreven worrn is, warrt de wedderhaalten Versionen as ole Versionen vun disse Sied wiest.',
 'undeleterevdel'               => 'Dat Wedderhalen geiht nich, wenn dor de ne’este Version vun de Sied oder Datei mit wegdaan warrt.
 In den Fall mutt de ne’este Version op sichtbor stellt warrn.',
 'undeletehistorynoadmin'       => 'Disse Sied is wegsmeten worrn.
@@ -2082,7 +2083,7 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 
 # Spam protection
 'spamprotectiontitle' => 'Spamschild',
-'spamprotectiontext'  => 'De Siet, de du spiekern wullst, weer vun de Spamschild blockt. Dat kann vun en Link to en externe Siet kamen.',
+'spamprotectiontext'  => 'De Sied, de du spiekern wullst, is vun’n Spamschild blockt worrn. Dat kann vun en Link na en externe Sied kamen.',
 'spamprotectionmatch' => 'Dit Text hett den Spamschild utlöst: $1',
 'spambot_username'    => 'MediaWiki Spam-Oprümen',
 'spam_reverting'      => 'Trüchdreiht na de letzte Version ahn Lenken na $1.',
@@ -2447,7 +2448,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'confirmemail_send'        => 'Bestätigungskood schicken.',
 'confirmemail_sent'        => 'Bestätigungsnettbreef afschickt.',
 'confirmemail_oncreate'    => 'Du hest en Bestätigungs-Kood an dien E-Mail-Adress kregen. Disse Kood is för dat Anmellen nich nödig. He warrt blot bruukt, dat du de E-Mail-Funkschonen in dat Wiki bruken kannst.',
-'confirmemail_sendfailed'  => 'Bestätigungsnettbreef kunn nich sennt warrn. Schasst man nakieken, wat de Adress ok nich verkehrt schreven is.
+'confirmemail_sendfailed'  => '{{SITENAME}} kunn di keen Bestätigungsnettbreef tostüren. Schasst man nakieken, wat de Adress ok nich verkehrt schreven is.
 
 Fehler bi’t Versennen: $1',
 'confirmemail_invalid'     => 'Bestätigungskood weer nich korrekt. De Kood is villicht to oolt.',
@@ -2485,7 +2486,7 @@ $1
 'trackbackdeleteok' => 'Trackback mit Spood wegsmeten.',
 
 # Delete conflict
-'deletedwhileediting' => 'Wohrschau: Disse Siet is wegsmeten worrn, as du se graad ännert hest!',
+'deletedwhileediting' => "'''Wohrschau''': Disse Siet is wegsmeten worrn, wieldes du ehr graad ännert hest!",
 'confirmrecreate'     => "De Bruker [[User:$1|$1]] ([[User talk:$1|talk]]) hett disse Siet wegsmeten, nadem du dat Ännern anfungen hest. He hett as Grund schreven:
 : ''$2''
 Wist du de Siet würklich nee anleggen?",

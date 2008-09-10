@@ -709,7 +709,7 @@ $2',
 علشان منع التخريب، ح نفكرك مرة و احدة بس كل
 {{PLURAL:$1|ساعة|$1 ساعة}}.',
 'mailerror'                  => 'غلط فى بعتان الايميل : $1',
-'acct_creation_throttle_hit' => 'انت عندك $1 حساب.
+'acct_creation_throttle_hit' => 'انت عندك {{PLURAL:$1|1 حساب|$1 حساب}}.
 مش ممكن نفتح واحد تاني.',
 'emailauthenticated'         => 'اتأكدنا من الايميل بتاعك  فى $1.',
 'emailnotauthenticated'      => 'لسة ما اتكدناش من الايميل بتاعك.
@@ -1605,9 +1605,22 @@ PICT # misc.
 'randomredirect-nopages' => 'مافيش تحويلات فى النطاق ده.',
 
 # Statistics
-'statistics'              => 'احصائيات',
-'statistics-header-users' => 'الاحصاءات بتاعة اليوزر',
-'statistics-mostpopular'  => 'اكتر صفحات اتشافت',
+'statistics'               => 'احصائيات',
+'statistics-header-pages'  => 'إحصاءات الصفحات',
+'statistics-header-edits'  => 'إحصاءات التعديلات',
+'statistics-header-views'  => 'إحصاءات المشاهدة',
+'statistics-header-users'  => 'الاحصاءات بتاعة اليوزر',
+'statistics-articles'      => 'صفحات المحتوى',
+'statistics-pages'         => 'الصفحات <small>(هذا يشمل صفحات "النقاش"، الصفحات حول {{SITENAME}}، صفحات "البذور" الصغرى، التحويلات، وأخرى)</small>',
+'statistics-files'         => 'الملفات المرفوعة',
+'statistics-edits'         => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
+'statistics-edits-average' => 'متوسط التعديلات لكل صفحة',
+'statistics-views-total'   => 'إجمالى المشاهدات',
+'statistics-views-peredit' => 'المشاهدات لكل تعديل',
+'statistics-jobqueue'      => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
+'statistics-users'         => '[[Special:ListUsers|مستخدمون]] مسجلون',
+'statistics-users-active'  => 'مستخدمون نشطون',
+'statistics-mostpopular'   => 'اكتر صفحات اتشافت',
 
 'disambiguations'      => 'صفحات التوضيح',
 'disambiguationspage'  => 'Template:توضيح',
@@ -2377,6 +2390,8 @@ $1',
 'chick.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة تشيك */',
 'simple.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة سيمبل */',
 'modern.css'      => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مودرن */',
+'print.css'       => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على ناتج الطباعة */',
+'handheld.css'    => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على الأجهزة المحمولة بالاعتماد على الواجهة المضبوطة فى $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/*  أى جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',

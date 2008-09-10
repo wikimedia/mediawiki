@@ -588,7 +588,7 @@ Predtým ako sa na účet pošle akákoľvek ďalšia pošta, musíte splniť in
 'throttled-mailpassword'     => 'V priebehu {{PLURAL:$1|poslednej $1 hodiny|posledných $1 hodín}} už došlo k vyžiadaniu hesla.
 Aby sa zabránilo zneužitiu, vyžiadanie hesla je možné vykonať iba raz za {{PLURAL:$1|$1 hodinu|$1 hodiny|$1 hodín}}.',
 'mailerror'                  => 'Chyba pri posielaní e-mailu: $1',
-'acct_creation_throttle_hit' => 'Prepáčte, už máte vytvorených $1 účtov.
+'acct_creation_throttle_hit' => 'Prepáčte, už máte {{PLURAL:$1|vytvorený $1 účet|vytvorené $1 účty|vytvorených $1 účtov}}.
 Nemôžete ich vytvoriť viac. Toto je opatrenie proti vandalizmu.',
 'emailauthenticated'         => 'Vaša e-mailová adresa bola overená na $1.',
 'emailnotauthenticated'      => 'Vaša e-mailová adresa ešte nebola overená. Preto nemôžete prijať emaily pre žiadnu z nasledovných funkcií.',
@@ -1463,9 +1463,22 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'randomredirect-nopages' => 'V tomto mennom priestore nie sú žiadne presmerovania.',
 
 # Statistics
-'statistics'              => 'Štatistiky',
-'statistics-header-users' => 'Štatistika používateľov',
-'statistics-mostpopular'  => 'Najčastejšie prezerané stránky',
+'statistics'               => 'Štatistiky',
+'statistics-header-pages'  => 'Štatistika stránok',
+'statistics-header-edits'  => 'Štatistika úprav',
+'statistics-header-views'  => 'Štatistika zobrazení',
+'statistics-header-users'  => 'Štatistika používateľov',
+'statistics-articles'      => 'Stránok s obsahom',
+'statistics-pages'         => 'Stránok <small>(vrátane diskusných stránok, stránok týkajúcich sa {{GRAMMAR:genitív|{{SITENAME}}}}, minimalistických článkov (výhonkov), presmerovaní a iných)</small>',
+'statistics-files'         => 'Nahraných súborov',
+'statistics-edits'         => 'Úprav stránok od založenia {{GRAMMAR:genitív|{{SITENAME}}}}',
+'statistics-edits-average' => 'Priemerný počet úprav na stránku',
+'statistics-views-total'   => 'Celkom zobrazení',
+'statistics-views-peredit' => 'Zobrazení na úpravu',
+'statistics-jobqueue'      => 'Dĺžka [http://www.mediawiki.org/wiki/Manual:Job_queue frontu úloh]',
+'statistics-users'         => 'Registrovaných [[Special:ListUsers|používateľov]]',
+'statistics-users-active'  => 'Aktívnych používateľov',
+'statistics-mostpopular'   => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
 'disambiguationspage'  => 'Template:Rozlišovacia stránka',

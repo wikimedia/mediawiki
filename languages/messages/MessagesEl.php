@@ -1065,6 +1065,7 @@ $1 ώρες.',
 'group-sysop-member'         => 'Διαχειριστής',
 'group-bureaucrat-member'    => 'Γραφειοκράτης',
 
+'grouppage-user'          => '{{ns:project}}:Χρήστες',
 'grouppage-autoconfirmed' => '{{ns:project}}:Αυτοεπιβεβαιωμένοι χρήστες',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Διαχειριστές',

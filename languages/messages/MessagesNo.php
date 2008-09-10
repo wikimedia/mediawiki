@@ -13,6 +13,7 @@
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
+ * @author Laaknor
  * @author Samuelsen
  * @author Stigmj
  * @author Teak
@@ -330,7 +331,7 @@ $messages = array(
 'deletethispage'    => 'Slett denne siden',
 'undelete_short'    => 'Gjenopprett {{PLURAL:$1|én revisjon|$1 revisjoner}}',
 'protect'           => 'Lås',
-'protect_change'    => 'endre beskyttelse',
+'protect_change'    => 'endre',
 'protectthispage'   => 'Lås siden',
 'unprotect'         => 'Åpne',
 'unprotectthispage' => 'Åpne siden',
@@ -442,7 +443,8 @@ $messages = array(
 'databaseerror'        => 'databasefeil',
 'dberrortext'          => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: <blockquote><tt>$1</tt></blockquote> fra funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: «$1» fra funksjonen «$2». MySQL returnerte feilen «$3: $4».',
-'noconnect'            => 'Beklager! Wikien har tekniske problemer, og kan ikke kontakte databasetjeneren.<br />$1',
+'noconnect'            => 'Beklager! Wikien har tekniske problemer, og kan ikke kontakte databasetjeneren.
+<br />$1',
 'nodb'                 => 'Klarte ikke å velge databasen $1',
 'cachederror'          => 'Det følgende er en lagret kopi av den ønskede siden, og er ikke nødvendigvis oppdatert.',
 'laggedslavemode'      => 'Advarsel: Dette kan være en eldre versjon av siden.',
@@ -548,7 +550,8 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',
-'prefs-help-email'           => '* E-post (valgfritt): Gjør at andre kan kontakte deg uten at identiteten din blir avslørt.',
+'prefs-help-email'           => 'Å angi e-postadresse er valgfritt, men lar det motta nytt passord om du glemmer det gamle.
+Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten å røpe identiteten din.',
 'prefs-help-email-required'  => 'E-postadresse er påkrevd.',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
 'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem på og prøv igjen.',
@@ -579,7 +582,8 @@ For å forhindre misbruk kan kun én passordpåminnelse sendes per {{PLURAL:$1|t
 'emailnotauthenticated'      => 'Din e-postadresse er ikke bekreftet. Du vil ikke kunne motta e-post for noen av følgende egenskaper.',
 'noemailprefs'               => 'Oppgi en e-postadresse for at disse funksjonene skal fungere.',
 'emailconfirmlink'           => 'Bekreft e-postadressen din.',
-'invalidemailaddress'        => 'Din e-postadresse kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
+'invalidemailaddress'        => 'Din e-postadresse kan ikke aksepteres, fordi den er ugyldig formatert.
+Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Konto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
 'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
@@ -1254,9 +1258,12 @@ Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sj
 'fileexists-thumb'            => "<center>'''Eksisterende fil'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen <strong><tt>$1</tt></strong>.<br />
 Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
-'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
+'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>.
+Det virker som om det er et bilde av redusert størrelse <i>(miniatyrbilde)</i>.
+Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret; gå tilbake og last opp fila under et nytt navn. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
+Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Opplastingen er gjennomført',
 'uploadwarning'               => 'Opplastingsadvarsel',
@@ -1356,8 +1363,8 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'shareduploadduplicate-linktext' => 'en annen fil',
 'shareduploadconflict'           => 'Denne filen har samme navn som $1 fra det delte lagringsområdet.',
 'shareduploadconflict-linktext'  => 'en annen fil',
-'noimage'                        => 'Ingen fil ved dette navnet finnes, du kan $1.',
-'noimage-linktext'               => 'laste det opp',
+'noimage'                        => 'Ingen fil ved dette navnet finnes, men du kan $1.',
+'noimage-linktext'               => 'laste opp ett',
 'uploadnewversion-linktext'      => 'Last opp en ny versjon av denne fila',
 'imagepage-searchdupe'           => 'Søk etter duplikatfiler',
 
@@ -1415,9 +1422,22 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'randomredirect-nopages' => 'Det er ingen omdirigeringer i dette navnerommet.',
 
 # Statistics
-'statistics'              => 'Statistikk',
-'statistics-header-users' => 'Brukerstatistikk',
-'statistics-mostpopular'  => 'Mest viste sider',
+'statistics'               => 'Statistikk',
+'statistics-header-pages'  => 'Sidestatistikk',
+'statistics-header-edits'  => 'Redigeringsstatistikk',
+'statistics-header-views'  => 'Visningsstatistikk',
+'statistics-header-users'  => 'Brukerstatistikk',
+'statistics-articles'      => 'Innholdssider',
+'statistics-pages'         => 'Sider <small>(dette inneholder diskusjonssider, sider om {{PAGENAME}}, stubber, omdirigeringer og så videre)</small>',
+'statistics-files'         => 'Opplastede filer',
+'statistics-edits'         => 'Redigeringer siden {{PAGENAME}} ble opprettet',
+'statistics-edits-average' => 'Gjennomsnittlig antall redigeringer per side',
+'statistics-views-total'   => 'Totalt antall visninger',
+'statistics-views-peredit' => 'Visninger per redigering',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøens] lengde',
+'statistics-users'         => 'Registrerte [[Special:ListUsers|brukere]]',
+'statistics-users-active'  => 'Aktive brukere',
+'statistics-mostpopular'   => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
 'disambiguationspage'  => 'Template:Peker',
@@ -1482,6 +1502,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'protectedtitlestext'     => 'Følgende titler er beskyttet fra opprettelse',
 'protectedtitlesempty'    => 'Ingen titler beskyttes med disse parameterne for øyeblikket.',
 'listusers'               => 'Brukerliste',
+'listusers-editsonly'     => 'Vis bare brukere med redigeringer',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -1508,7 +1529,8 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Logger',
 'all-logs-page'        => 'Alle logger',
-'alllogstext'          => 'Kombinert visning av alle loggene. Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket.',
+'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
+Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små boktaver).',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
@@ -1551,8 +1573,8 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'listgrouprights-rights'          => 'Rettigheter',
 'listgrouprights-helppage'        => 'Help:Grupperettigheter',
 'listgrouprights-members'         => '(liste over medlemmer)',
-'listgrouprights-addgroup'        => 'Kan legge til {{PLURAL:$1|gruppa|gruppene}}: $1',
-'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$1|gruppa|gruppene}}: $1',
+'listgrouprights-addgroup'        => 'Kan legge til {{PLURAL:$2|gruppa|gruppene}}: $1',
+'listgrouprights-removegroup'     => 'Kan fjerne {{PLURAL:$2|gruppa|gruppene}}: $1',
 'listgrouprights-addgroup-all'    => 'Kan legge til alle grupper',
 'listgrouprights-removegroup-all' => 'Kan fjerne alle grupper',
 
@@ -1561,7 +1583,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'mailnologintext' => 'Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
 'emailuser'       => 'E-post til denne brukeren',
 'emailpage'       => 'E-post til bruker',
-'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig e-postadresse i sine innstillinger, vil dette skjemaet sende en enkelt beskjed.
+'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig e-postadresse i sine innstillinger, vil dette skjemaet sende én beskjed.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
 'defemailsubject' => 'E-post fra {{SITENAME}}',
@@ -1724,6 +1746,15 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-expiring'            => 'utgår $1 (UTC)',
 'protect-cascade'             => 'Dypbeskyttelse – beskytter alle sider som er inkludert på denne siden.',
 'protect-cantedit'            => 'Du kan ikke endre beskyttelsesnivået til denne siden fordi du ikke har tillatelse til å redigere den.',
+'protect-othertime'           => 'Annen tid:',
+'protect-othertime-op'        => 'annen tid',
+'protect-otherreason'         => 'Annen/utdypende grunn:',
+'protect-otherreason-op'      => 'annen/utdypende grunn',
+'protect-dropdown'            => '*Vanlige låsingsårsaker
+** Gjentatt hærverk
+** Gjentatt spam
+** Redigeringskrig
+** Side med mange besøkende',
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse',
@@ -1748,7 +1779,9 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'viewdeletedpage'              => 'Vis slettede sider',
 'undeletepagetext'             => 'Følgende sider er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.',
 'undelete-fieldset-title'      => 'Gjenopprett revisjoner',
-'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''Gjenopprett'''. For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''Gjenopprett'''.",
+'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''''Gjenopprett'''''.
+For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''''Gjenopprett'''''.
+Å klikke '''''Nullstill''''' vil føre til at alle tekstfelt og bokser gjøres blanke.",
 'undeleterevisions'            => '{{PLURAL:$1|Én versjon arkivert|$1 versjoner arkiverte}}',
 'undeletehistory'              => 'Om du gjenoppretter siden vil alle revisjoner gjenopprettes i historikken.
 Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gjenopprettede revisjonene dukke opp før denne i redigeringshistorikken.',
@@ -2163,7 +2196,8 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 
 # Spam protection
 'spamprotectiontitle' => 'Søppelpostfilter',
-'spamprotectiontext'  => 'Siden du ønsket å lagre ble blokkert av spamfilteret. Dette er sannsynligvis forårsaket av en lenke til et eksternt nettsted.',
+'spamprotectiontext'  => 'Siden du ønsket å lagre ble blokkert av spamfilteret.
+Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nettsted.',
 'spamprotectionmatch' => 'Følgende tekst er det som aktiverte spamfilteret: $1',
 'spambot_username'    => 'MediaWikis spamopprydning',
 'spam_reverting'      => 'Tilbakestiller til siste versjon uten lenke til $1',
@@ -2214,8 +2248,8 @@ $1',
 'filedelete-archive-read-only'    => 'Arkivmappa «$1» kan ikke skrives av tjeneren.',
 
 # Browsing diffs
-'previousdiff' => '← Gå til forrige revisjon',
-'nextdiff'     => 'Gå til neste diff →',
+'previousdiff' => '← Eldre redigering',
+'nextdiff'     => 'Nyere redigering →',
 
 # Visual comparison
 'visual-comparison' => 'Visuell sammenligning',
@@ -2551,7 +2585,8 @@ En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opp
 'confirmemail_send'        => 'Send en bekreftelseskode.',
 'confirmemail_sent'        => 'Bekreftelsesmelding sendt.',
 'confirmemail_oncreate'    => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
-'confirmemail_sendfailed'  => 'Klarte ikke å sende bekreftelseskode. Sjekk e-postadressen for ugyldige tegn.
+'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikke å sende bekreftelseskode.
+Sjekk e-postadressen for ugyldige tegn.
 
 E-postsenderen ga følgende melding: $1',
 'confirmemail_invalid'     => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
@@ -2576,8 +2611,8 @@ Denne bekreftelseskoden utgår $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-transkludering er slått av]',
-'scarytranscludefailed'   => '[Malen kunne ikke hentes for $1; beklager]',
-'scarytranscludetoolong'  => '[URL-en er for lang; beklager]',
+'scarytranscludefailed'   => '[Malen kunne ikke hentes for $1]',
+'scarytranscludetoolong'  => '[URL-en er for lang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2589,7 +2624,7 @@ $1
 'trackbackdeleteok' => 'Tilbakesporingen ble slettet.',
 
 # Delete conflict
-'deletedwhileediting' => 'Advarsel: Denne siden har blitt slettet etter at du begynte å redigere den!',
+'deletedwhileediting' => "'''Advarsel:''' Denne siden har blitt slettet etter at du begynte å redigere den!",
 'confirmrecreate'     => '«[[User:$1|$1]]» ([[User talk:$1|diskusjon]]) slettet siden etter at du begynte å redigere den, med begrunnelsen «$2». Vennligst bekreft at du vil gjenopprette siden.',
 'recreate'            => 'Gjenopprett',
 

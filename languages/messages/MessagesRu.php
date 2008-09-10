@@ -671,7 +671,7 @@ $2',
 'throttled-mailpassword'     => 'Функция напоминания пароля уже использовалась в течение {{PLURAL:$1|последнего $1 часа|последних $1 часов|последних $1 часов}} .
 Для предотвращения злоупотреблений, разрешено запрашивать не более одного напоминания за $1 {{PLURAL:$1|час|часа|часов}}.',
 'mailerror'                  => 'Ошибка при отправке почты: $1',
-'acct_creation_throttle_hit' => 'К сожалению, вы уже создали $1 учётных записей.
+'acct_creation_throttle_hit' => 'К сожалению, вы уже создали $1 {{PLURAL:$1|учётную запись|учётных записей|учётных записей}}.
 Вы не можете создать больше ни одной.',
 'emailauthenticated'         => 'Ваш почтовый адрес был подтверждён $1.',
 'emailnotauthenticated'      => 'Ваш адрес электронной почты ещё не был подтверждён, функции вики-движка по работе с эл. почтой отключены.',
@@ -1531,9 +1531,22 @@ PICT # различные
 'randomredirect-nopages' => 'Это пространство имён не содержит перенаправлений.',
 
 # Statistics
-'statistics'              => 'Статистика',
-'statistics-header-users' => 'Статистика участников',
-'statistics-mostpopular'  => 'Наиболее часто просматриваемые страницы',
+'statistics'               => 'Статистика',
+'statistics-header-pages'  => 'Статистика по страницам',
+'statistics-header-edits'  => 'Статистика правок',
+'statistics-header-views'  => 'Статистика просмотров',
+'statistics-header-users'  => 'Статистика по участникам',
+'statistics-articles'      => 'Статей',
+'statistics-pages'         => 'Страниц <small>(включая страницы обсуждения, страницы о {{grammar:genitive|{{SITENAME}}}}, заготовки статей, перенаправления и прочее)</small>',
+'statistics-files'         => 'Загружено файлов',
+'statistics-edits'         => 'Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}',
+'statistics-edits-average' => 'Среднее число правок на страницу',
+'statistics-views-total'   => 'Всего просмотров',
+'statistics-views-peredit' => 'Просмотров на правку',
+'statistics-jobqueue'      => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
+'statistics-users'         => 'Зарегистрированных [[Special:ListUsers|участников]]',
+'statistics-users-active'  => 'Активные участники',
+'statistics-mostpopular'   => 'Наиболее часто просматриваемые страницы',
 
 'disambiguations'      => 'Страницы, описывающие многозначные термины',
 'disambiguationspage'  => 'Template:Неоднозначность',
@@ -1668,7 +1681,7 @@ PICT # различные
 'listgrouprights-group'           => 'Группа',
 'listgrouprights-rights'          => 'Права',
 'listgrouprights-helppage'        => 'Help:Права групп',
-'listgrouprights-members'         => '(список членов)',
+'listgrouprights-members'         => '(список группы)',
 'listgrouprights-addgroup'        => 'может добавлять в {{PLURAL:$2|группу|группы}}: $1',
 'listgrouprights-removegroup'     => 'может исключать из {{PLURAL:$2|группы|групп}}: $1',
 'listgrouprights-addgroup-all'    => 'может добавлять во все группы',

@@ -502,7 +502,7 @@ Conventum aperias et statim tesseram tuam mutes.
 Si non ipse hanc petitionem fecisti, aut si tesseram tuam
 meministi et etiam nolis eam mutare, potes hunc nuntium
 ignorare, et tessera seni uti continuare.',
-'acct_creation_throttle_hit' => 'Iam rationes $1 creavisti.
+'acct_creation_throttle_hit' => 'Iam {{PLURAL:$1|unam rationem|rationes $1}} creavisti.
 Plurimas non tibi licet creare.',
 'emailauthenticated'         => 'Tua inscriptio electronica recognita est $1.',
 'accountcreated'             => 'Ratio creata',
@@ -1004,8 +1004,22 @@ Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Comm
 'randomredirect-nopages' => 'Non est ulla redirectio hoc in spatio nominali.',
 
 # Statistics
-'statistics'              => 'Census',
-'statistics-header-users' => 'Census usorum',
+'statistics'               => 'Census',
+'statistics-header-pages'  => 'Census paginarum',
+'statistics-header-edits'  => 'Census recensionum',
+'statistics-header-views'  => 'Census visuum',
+'statistics-header-users'  => 'Census usorum',
+'statistics-articles'      => 'Paginae in spatio nominali principali',
+'statistics-pages'         => 'Paginae <small>(includunt paginas disputationum, paginas de {{grammar:ablative|{{SITENAME}}}}, stipulas, paginas redirectionum, et paginas alias quae probabiliter non sunt paginae contenta habentes legitimae)</small>',
+'statistics-files'         => 'Fasciculi impositi',
+'statistics-edits'         => 'Recensiones paginarum factae ab initio {{grammar:genitive|{{SITENAME}}}}',
+'statistics-edits-average' => 'Recensiones per paginam',
+'statistics-views-total'   => 'Visus',
+'statistics-views-peredit' => 'Visus per recensionem',
+'statistics-jobqueue'      => 'Numerus [http://www.mediawiki.org/wiki/Manual:Job_queue operationum qui etiam exspectant perfacier]',
+'statistics-users'         => '[[Special:ListUsers|Usores]] relati',
+'statistics-users-active'  => 'Usores activi',
+'statistics-mostpopular'   => 'Paginae plurimum visae',
 
 'disambiguations'      => 'Paginae disambiguationis',
 'disambiguationspage'  => 'Template:Discretiva',

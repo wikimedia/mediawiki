@@ -379,7 +379,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategória|Kategóriák}}',
-'category_header'                => 'A(z) „$1” kategóriába tartozó szócikkek',
+'category_header'                => 'A(z) „$1” kategóriába tartozó lapok',
 'subcategories'                  => 'Alkategóriák',
 'category-media-header'          => 'A(z) „$1” kategóriába tartozó médiafájlok',
 'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
