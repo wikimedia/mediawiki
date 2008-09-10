@@ -242,18 +242,28 @@ class LogPage {
 						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink );
 					}
 				} else {
+					$details = '';
 					array_unshift( $params, $titleLink );
 					if ( $key == 'block/block' || $key == 'suppress/block' ) {
 						if ( $skin ) {
-							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . $wgLang->translateBlockExpiry( $params[1] ) . '</span>';
+							$params[1] = '<span title="' . htmlspecialchars( $params[1] ). '">' . 
+								$wgLang->translateBlockExpiry( $params[1] ) . '</span>';
 						} else {
 							$params[1] = $wgContLang->translateBlockExpiry( $params[1] );
 						}
-						$params[2] = isset( $params[2] )
-										? self::formatBlockFlags( $params[2], is_null( $skin ) )
-										: '';
+						$params[2] = isset( $params[2] ) ? 
+							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
+					} else if ( $type == 'protect' && count($params) == 4 ) {
+						$details .= " [{$params[1]}]"; // the restrictions
+						if( $params[2] != 'infinity' ) {
+							$details .= ' (' . wfMsgForContent( 'protect-expiring', 
+								$wgContLang->timeanddate( $params[2], false, false ) ).')';
+						}
+						if( $params[3] ) {
+							$details .= ' ['.wfMsg('protect-summary-cascade').']';
+						}
 					}
-					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin );
+					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
 				}
 			}
 		} else {
