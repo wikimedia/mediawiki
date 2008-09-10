@@ -45,7 +45,7 @@ class ApiFormatWddx extends ApiFormatBase {
 		if (function_exists('wddx_serialize_value')) {
 			$this->printText(wddx_serialize_value($this->getResultData()));
 		} else {
-			$this->printText('<?xml version="1.0" encoding="utf-8"?>');
+			$this->printText('<?xml version="1.0"?>');
 			$this->printText('<wddxPacket version="1.0"><header/><data>');
 			$this->slowWddxPrinter($this->getResultData());
 			$this->printText('</data></wddxPacket>');

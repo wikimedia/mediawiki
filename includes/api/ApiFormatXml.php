@@ -56,12 +56,12 @@ class ApiFormatXml extends ApiFormatBase {
 		$params = $this->extractRequestParams();
 		$this->mDoubleQuote = $params['xmldoublequote'];
 
-		$this->printText('<?xml version="1.0" encoding="utf-8"?>');
+		$this->printText('<?xml version="1.0"?>');
 		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $this->getIsHtml() ? -2 : null);
 	}
 
 	/**
-	* This method takes an array and converts it into an xml.
+	* This method takes an array and converts it to XML.
 	* There are several noteworthy cases:
 	*
 	*  If array contains a key '_element', then the code assumes that ALL other keys are not important and replaces them with the value['_element'].
