@@ -239,7 +239,18 @@ class LogEventsList {
 				'action=unblock&ip=' . urlencode( $row->log_title ) ) . ')';
 		// Show change protection link
 		} else if( self::typeAction($row,'protect',array('modify','protect','unprotect')) ) {
-			$revert = '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 
+			if( $row->log_type == 'protect' && count($paramArray) == 3 ) {
+				$revert .= " [{$paramArray[0]}]"; // the restrictions
+				if( $paramArray[1] != 'infinity' ) {
+					$revert .= ' (' . wfMsgForContent( 'protect-expiring', 
+						$wgContLang->timeanddate( $paramArray[1], false, false ) ).')';
+				}
+				if( $paramArray[2] ) {
+					$revert .= ' ['.wfMsg('protect-summary-cascade').']';
+				}
+			}
+			$revert = $revert ? "$revert " : "";
+			$revert .= '(' .  $this->skin->makeKnownLinkObj( $title, $this->message['hist'], 
 				'action=history&offset=' . urlencode($row->log_timestamp) ) . ')';
 			if( $wgUser->isAllowed('protect') && $row->log_action != 'unprotect' ) {
 				$revert .= ' (' .  $this->skin->makeKnownLinkObj( $title, $this->message['protect_change'], 
