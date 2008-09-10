@@ -1587,6 +1587,7 @@ $3
 'statistics-edits-average' => 'متوسط ویرایش‌ها بر روی صفحات',
 'statistics-views-total'   => 'مجموع بازدیدها',
 'statistics-views-peredit' => 'متوسط بازدیدها به تعداد صفحات',
+'statistics-jobqueue'      => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue صف کار]',
 'statistics-users'         => '[[ویژه:ListUsers|کاربران]] ثبت‌نام کرده',
 'statistics-users-active'  => 'کاربران فعال',
 'statistics-mostpopular'   => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
