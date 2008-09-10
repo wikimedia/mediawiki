@@ -121,8 +121,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Special:Statistics
 * (bug 15514) Setting $wgRightsText without $wgRightsUrl now produces a 
   plaintext copyright notice. Patch by Juliano F. Ravasi.
-* (bug 12400) Pages transcluded from other wikis ($wgEnableScaryTransclusion)
-  are now wrapped in the "mw-iw-transclusion" class.
 
 === Bug fixes in 1.14 ===
 

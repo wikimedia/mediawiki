@@ -3161,7 +3161,7 @@ class Parser
 
 		if (strlen($url) > 255)
 			return wfMsg('scarytranscludetoolong');
-		return "<div class=\"mw-iw-transclusion\">\n" . $this->fetchScaryTemplateMaybeFromCache($url) . "</div>\n";
+		return $this->fetchScaryTemplateMaybeFromCache($url);
 	}
 
 	function fetchScaryTemplateMaybeFromCache($url) {
