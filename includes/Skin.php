@@ -1306,6 +1306,8 @@ END;
 			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
 		} elseif( $wgRightsUrl ) {
 			$link = $this->makeExternalLink( $wgRightsUrl, $wgRightsText );
+		} elseif( $wgRightsText ) {
+			$link = $wgRightsText;
 		} else {
 			# Give up now
 			return $out;

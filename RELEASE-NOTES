@@ -119,6 +119,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5619) Break messages used in Special:Statistics down further
 * (bug 11029) Add link to Special:Listusers?group=sysop etc at
   Special:Statistics
+* (bug 15514) Setting $wgRightsText without $wgRightsUrl now produces a 
+  plaintext 
 
 === Bug fixes in 1.14 ===
 
