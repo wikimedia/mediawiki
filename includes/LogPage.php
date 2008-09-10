@@ -155,70 +155,20 @@ class LogPage {
 	 * @static
 	 * @return HTML string
 	 */
-	static function actionText( $type, $action, $title = NULL, $skin = NULL, 
-		$params = array(), $filterWikilinks=false ) 
-	{
+	static function actionText( $type, $action, $title=NULL, $skin=NULL, $params=array(), $filterWikilinks=false ) {
 		global $wgLang, $wgContLang, $wgLogActions, $wgMessageCache;
 
 		$wgMessageCache->loadAllMessages();
 		$key = "$type/$action";
-
-		if( $key == 'patrol/patrol' )
+		# Defer patrol log to PatrolLog class
+		if( $key == 'patrol/patrol' ) {
 			return PatrolLog::makeActionText( $title, $params, $skin );
-
+		}
 		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
 				$rv = wfMsg( $wgLogActions[$key] );
 			} else {
-				if( $skin ) {
-					switch( $type ) {
-						case 'move':
-							$titleLink = $skin->makeLinkObj( $title, 
-								htmlspecialchars( $title->getPrefixedText() ), 'redirect=no' );
-							$targetTitle = Title::newFromText( $params[0] );
-							if ( !$targetTitle ) {
-								# Workaround for broken database
-								$params[0] = htmlspecialchars( $params[0] );
-							} else {
-								$params[0] = $skin->makeLinkObj( $targetTitle, htmlspecialchars( $params[0] ) );
-							}
-							break;
-						case 'block':
-							if( substr( $title->getText(), 0, 1 ) == '#' ) {
-								$titleLink = $title->getText();
-							} else {
-								// TODO: Store the user identifier in the parameters
-								// to make this faster for future log entries
-								$id = User::idFromName( $title->getText() );
-								$titleLink = $skin->userLink( $id, $title->getText() )
-									. $skin->userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
-							}
-							break;
-						case 'rights':
-							$text = $wgContLang->ucfirst( $title->getText() );
-							$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
-							break;
-						case 'merge':
-							$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
-							$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
-							$params[1] = $wgLang->timeanddate( $params[1] );
-							break;
-						default:
-							if( $title->getNamespace() == NS_SPECIAL ) {
-								list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBKey() );
-								# Use the language name for log titles, rather than Log/X
-								if( $name == 'Log' ) {
-									$titleLink = '('.$skin->makeLinkObj( $title, LogPage::logName( $par ) ).')';
-								} else {
-									$titleLink = $skin->makeLinkObj( $title );
-								}
-							} else {
-								$titleLink = $skin->makeLinkObj( $title );
-							}
-					}
-				} else {
-					$titleLink = $title->getPrefixedText();
-				}
+				$titleLink = self::getTitleLink( $type, $skin, $title, $params );
 				if( $key == 'rights/rights' ) {
 					if( $skin ) {
 						$rightsnone = wfMsg( 'rightsnone' );
@@ -281,6 +231,59 @@ class LogPage {
 			$rv = str_replace( "]]", "", $rv );
 		}
 		return $rv;
+	}
+	
+	protected static function getTitleLink( $type, $skin, $title, &$params ) {
+		global $wgLang, $wgContLang;
+		if( !$skin ) {
+			return $title->getPrefixedText();
+		}
+		switch( $type ) {
+			case 'move':
+				$titleLink = $skin->makeLinkObj( $title, 
+					htmlspecialchars( $title->getPrefixedText() ), 'redirect=no' );
+				$targetTitle = Title::newFromText( $params[0] );
+				if ( !$targetTitle ) {
+					# Workaround for broken database
+					$params[0] = htmlspecialchars( $params[0] );
+				} else {
+					$params[0] = $skin->makeLinkObj( $targetTitle, htmlspecialchars( $params[0] ) );
+				}
+				break;
+			case 'block':
+				if( substr( $title->getText(), 0, 1 ) == '#' ) {
+					$titleLink = $title->getText();
+				} else {
+					// TODO: Store the user identifier in the parameters
+					// to make this faster for future log entries
+					$id = User::idFromName( $title->getText() );
+					$titleLink = $skin->userLink( $id, $title->getText() )
+						. $skin->userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
+				}
+				break;
+			case 'rights':
+				$text = $wgContLang->ucfirst( $title->getText() );
+				$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
+				break;
+			case 'merge':
+				$titleLink = $skin->makeLinkObj( $title, $title->getPrefixedText(), 'redirect=no' );
+				$params[0] = $skin->makeLinkObj( Title::newFromText( $params[0] ), htmlspecialchars( $params[0] ) );
+				$params[1] = $wgLang->timeanddate( $params[1] );
+				break;
+			default:
+				if( $title->getNamespace() == NS_SPECIAL ) {
+					list( $name, $par ) = SpecialPage::resolveAliasWithSubpage( $title->getDBKey() );
+					# Use the language name for log titles, rather than Log/X
+					if( $name == 'Log' ) {
+						$titleLink = '('.$skin->makeLinkObj( $title, LogPage::logName( $par ) ).')';
+					} else {
+						$titleLink = $skin->makeLinkObj( $title );
+					}
+				} else {
+					$titleLink = $skin->makeLinkObj( $title );
+				}
+		}
+		return $titleLink;
 	}
 
 	/**
