@@ -235,7 +235,7 @@ $messages = array(
 'deletethispage'    => 'Ištrinti šį puslapį',
 'undelete_short'    => 'Atstatyti $1 {{PLURAL:$1:redagavimą|redagavimus|redagavimų}}',
 'protect'           => 'Užrakinti',
-'protect_change'    => 'keisti apsaugą',
+'protect_change'    => 'keisti',
 'protectthispage'   => 'Rakinti šį puslapį',
 'unprotect'         => 'Atrakinti',
 'unprotectthispage' => 'Atrakinti šį puslapį',
@@ -454,7 +454,8 @@ Jūsų paskyra buvo sukurta. Nepamirškite pakeisti savo {{SITENAME}} nustatymų
 'gotaccountlink'             => 'Prisijunkite',
 'createaccountmail'          => 'el. paštu',
 'badretype'                  => 'Įvesti slaptažodžiai nesutampa.',
-'userexists'                 => 'Įvestasis naudotojo vardas jau naudojamas. Prašome pasirinkti kitą vardą.',
+'userexists'                 => 'Įvestasis naudotojo vardas jau naudojamas.
+Prašome pasirinkti kitą vardą.',
 'youremail'                  => 'El. paštas:',
 'username'                   => 'Naudotojo vardas:',
 'uid'                        => 'Naudotojo ID:',
@@ -483,7 +484,7 @@ Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
 'passwordtooshort'           => 'Jūsų slaptažodis yra neleistinas arba per trumpas. Jis turi būti bent $1 {{PLURAL:$1|simbolis|simboliai|simbolių}} ilgio ir skirtis nuo jūsų naudotojo vardo.',
-'mailmypassword'             => 'Atsiųsti slaptažodį paštu',
+'mailmypassword'             => 'Atsiųsti naują slaptažodį el. paštu',
 'passwordremindertitle'      => 'Laikinasis {{SITENAME}} slaptažodis',
 'passwordremindertext'       => 'Kažkas (tikriausiai jūs, IP adresu $1)
 paprašė, kad atsiųstumėte naują slaptažodį projektui {{SITENAME}} ($4).
@@ -503,13 +504,15 @@ Prieš išsiunčiant kitą laišką į jūsų dėžutę, jūs turite vykdyti nur
 'throttled-mailpassword'     => 'Slaptažodžio priminimas jau buvo išsiųstas, per {{PLURAL:$1|pasuktinę valandą|$1 paskutines valandas|$1 paskutinių valandų}}.
 Norint apsisaugoti nuo piktnaudžiavimo, slaptažodžio priminimas gali būti išsiųstas tik kas {{PLURAL:$1|valandą|$1 valandas|$1 valandų}}.',
 'mailerror'                  => 'Klaida siunčiant paštą: $1',
-'acct_creation_throttle_hit' => 'Atleiskite, bet jūs jau sukūrėte $1 paskyras. Daugiau nebegalima.',
+'acct_creation_throttle_hit' => 'Atleiskite, bet jūs jau sukūrėte $1 paskyras.
+Daugiau nebegalima.',
 'emailauthenticated'         => 'Jūsų el. pašto adresas buvo patvirtintas $1.',
 'emailnotauthenticated'      => 'Jūsų el. pašto adresas dar nėra patvirtintas. Jokie laiškai
 nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'noemailprefs'               => 'Nurodykite el. pašto adresą, kad šios funkcijos veiktų.',
 'emailconfirmlink'           => 'Patvirtinkite savo el. pašto adresą',
-'invalidemailaddress'        => 'El. pašto adresas negali būti priimtas, nes atrodo, kad jis nėra teisingo formato. Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.',
+'invalidemailaddress'        => 'El. pašto adresas negali būti priimtas, nes atrodo, kad jis nėra teisingo formato.
+Prašome įvesti gerai suformuotą adresą arba palikite tą laukelį tuščią.',
 'accountcreated'             => 'Paskyra sukurta',
 'accountcreatedtext'         => 'Naudotojo paskyra $1 buvo sukurta.',
 'createaccount-title'        => '{{SITENAME}} paskyros kūrimas',
@@ -801,6 +804,9 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'revdelete-unhid'             => 'atslėpti $1',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijai|versijoms|versijų}}',
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|įvykiui|įvykiams|įvykių}}',
+
+# Suppression log
+'suppressionlog' => 'Trynimo istorija',
 
 # History merging
 'mergehistory'                     => 'Sujungti puslapių istorijas',

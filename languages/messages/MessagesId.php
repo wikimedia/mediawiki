@@ -691,7 +691,7 @@ Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}} 
 'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir. 
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
-'acct_creation_throttle_hit' => 'Anda telah membuat $1 akun.
+'acct_creation_throttle_hit' => 'Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}}.
 Anda tidak dapat membuat akun lagi.',
 'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
 'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
@@ -1519,9 +1519,22 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'randomredirect-nopages' => 'Tak terdapat pengalihan pada ruang nama ini.',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-users' => 'Statistik pengguna',
-'statistics-mostpopular'  => 'Halaman yang paling banyak ditampilkan',
+'statistics'               => 'Statistik',
+'statistics-header-pages'  => 'Statistik halaman',
+'statistics-header-edits'  => 'Statistik penyuntingan',
+'statistics-header-views'  => 'Statistik penampilan',
+'statistics-header-users'  => 'Statistik pengguna',
+'statistics-articles'      => 'Halaman konten',
+'statistics-pages'         => 'Jumlah halaman <small>(termasuk halaman-halaman "pembicaraan", halaman mengenai {{SITENAME}}, artikel rintisan, pengalihan, dan lain-lain)</small>',
+'statistics-files'         => 'Berkas yang dimuatkan',
+'statistics-edits'         => 'Jumlah suntingan sejak {{SITENAME}} dimulai',
+'statistics-edits-average' => 'Rata-rata suntingan per halaman',
+'statistics-views-total'   => 'Jumlah penampilan halaman',
+'statistics-views-peredit' => 'Jumlah penampilan per suntingan',
+'statistics-jobqueue'      => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue antrian pekerjaan]',
+'statistics-users'         => 'Jumlah [[Special:ListUsers|pengguna terdaftar]]',
+'statistics-users-active'  => 'Jumlah pengguna aktif',
+'statistics-mostpopular'   => 'Halaman yang paling banyak ditampilkan',
 
 'disambiguations'      => 'Halaman disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',

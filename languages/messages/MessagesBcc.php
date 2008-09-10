@@ -552,7 +552,7 @@ $2',
 'throttled-mailpassword'     => 'یک کلمه رمز یاد آوری پیش تر دیم دهگ بوتت ته  {{PLURAL:$1|ساعت|$1 ساعت}}  ساعت پیش.
 په جلوگرگ چه سو استفاده فقط یک کلمه رمز یاد آوری هر$1  ساعت دیم دهگ بیت.',
 'mailerror'                  => 'حطا دیم دهگ ایمیل:$1',
-'acct_creation_throttle_hit' => 'شرمنده، شما پیشتر $1  حسابی شر کتت.
+'acct_creation_throttle_hit' => 'شرمنده، شما پیشتر {{PLURAL:$1|1 حساب|$1 حساب}}   شر کتت.
 شما نه تونیت گیشتر شرکنیت.',
 'emailauthenticated'         => 'شمی آدرس ایمیل ته $1  تصدیق بوت.',
 'emailnotauthenticated'      => 'په آدرس ایمیل هنگت تصدیق نه بوتت.
@@ -1441,9 +1441,22 @@ PICT # misc.
 'randomredirect-nopages' => 'هچ غیر مستقیمی ته ای نام فضا نیست.',
 
 # Statistics
-'statistics'              => 'آمار',
-'statistics-header-users' => 'آمار کاربر',
-'statistics-mostpopular'  => 'باز چار تگین صفحات',
+'statistics'               => 'آمار',
+'statistics-header-pages'  => 'صفحه ی آمار',
+'statistics-header-edits'  => 'اصلاح آمار',
+'statistics-header-views'  => 'چارگ آمار',
+'statistics-header-users'  => 'آمار کاربر',
+'statistics-articles'      => 'صفحات محتوا',
+'statistics-pages'         => 'صفحات <small>(شی شامل صفحات "بحث"، صفحات {{SITENAME}} باره، هورترین "زیر" صفحات، غیر مستقیمان و دگر)</small>',
+'statistics-files'         => 'آپلود بیتگین فایلان',
+'statistics-edits'         => 'اصلاح صفحات چه وهدی که {{SITENAME}} شر بوتت',
+'statistics-edits-average' => 'میانگین اصلاحات ته هر صفحه ای',
+'statistics-views-total'   => 'چارگان کل',
+'statistics-views-peredit' => 'چارگ ته هر اصلاح',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue طول کار] ای',
+'statistics-users'         => 'ثبت نامی [[Special:ListUsers|users]]',
+'statistics-users-active'  => 'فعالین کاربر',
+'statistics-mostpopular'   => 'باز چار تگین صفحات',
 
 'disambiguations'      => 'صفحات رفع ابهام',
 'disambiguationspage'  => 'Template:رفع ابهام',

@@ -695,7 +695,7 @@ Innan någon annan e-post kan skickas härifrån till kontot, måste du följa i
 'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
-'acct_creation_throttle_hit' => 'Du har redan skapat $1 användarkonton.
+'acct_creation_throttle_hit' => 'Du har redan skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}}.
 Du får inte skapa fler.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $1.',
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
@@ -1564,9 +1564,22 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'randomredirect-nopages' => 'Det finns inte några omdirigeringar i denna namnrymd.',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-users' => 'Användarstatistik',
-'statistics-mostpopular'  => 'Mest besökta sidor',
+'statistics'               => 'Statistik',
+'statistics-header-pages'  => 'Sidstatistik',
+'statistics-header-edits'  => 'Redigeringsstatistik',
+'statistics-header-views'  => 'Sidvisningsstatistik',
+'statistics-header-users'  => 'Användarstatistik',
+'statistics-articles'      => 'Sidor med innehåll',
+'statistics-pages'         => 'Sidor <small>(inklusive diskussionssidor, sidor om {{SITENAME}}, väldigt korta sidor, omdirigeringar, och annat)</small>',
+'statistics-files'         => 'Uppladdade filer',
+'statistics-edits'         => 'Sidredigeringar sedan {{SITENAME}} startades',
+'statistics-edits-average' => 'Redigeringar per sida i genomsnitt',
+'statistics-views-total'   => 'Totalt antal sidvisningar',
+'statistics-views-peredit' => 'Antal sidvisningar per redigering',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbköns] längd',
+'statistics-users'         => 'Registrerade [[Special:ListUsers|användare]]',
+'statistics-users-active'  => 'Aktiva användare',
+'statistics-mostpopular'   => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
 'disambiguationspage'  => 'Template:Förgrening',

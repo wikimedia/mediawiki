@@ -212,7 +212,7 @@ $messages = array(
 'deletethispage'    => 'Skrap bladsy',
 'undelete_short'    => 'Herstel {{PLURAL:$1|een wysiging|$1 wysigings}}',
 'protect'           => 'Beskerm',
-'protect_change'    => 'wysig beskerming',
+'protect_change'    => 'wysig',
 'protectthispage'   => 'Beskerm hierdie bladsy',
 'unprotect'         => 'Verwyder beskerming',
 'unprotectthispage' => 'Verwyder beskerming',
@@ -332,7 +332,8 @@ Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
 MySQL foutboodskap "<tt>$3: $4</tt>".',
-'noconnect'            => 'Kon nie met databasis op $1 konnekteer nie',
+'noconnect'            => 'Die wiki ondervind tegniese probleme en kon nie na die databasis konnekteer nie.<br />
+$1',
 'nodb'                 => 'Kon nie databasis $1 selekteer nie',
 'cachederror'          => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
 'laggedslavemode'      => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
@@ -427,7 +428,8 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'gotaccountlink'             => 'Teken in',
 'createaccountmail'          => 'deur e-pos',
 'badretype'                  => 'Die ingetikte wagwoorde is nie dieselfde nie.',
-'userexists'                 => "Die gebruikersnaam wat jy gebruik het, is alreeds gebruik. Kies asseblief 'n ander gebruikersnaam.",
+'userexists'                 => "Die gebruikersnaam wat jy gekies het is reeds geneem.
+Kies asseblief 'n ander naam.",
 'youremail'                  => 'E-pos',
 'username'                   => 'Gebruikersnaam:',
 'uid'                        => 'Gebruiker-ID:',
@@ -441,7 +443,8 @@ Dit moet minder as $1 {{PLURAL:$1|karakter|karakters}} wees.',
 'email'                      => 'E-pos',
 'prefs-help-realname'        => 'Regte naam (opsioneel): as u hierdie verskaf, kan dit gebruik word om erkenning vir u werk te gee.',
 'loginerror'                 => 'Intekenfout',
-'prefs-help-email'           => 'E-pos (opsioneel): Maak dit vir ander moontlik om u te kontak deur u gebruikerblad sonder dat u identiteit verraai word.',
+'prefs-help-email'           => 'E-posadres is opsioneel, maar maak dit moontlik om u wagwoord aan u te pos sou u dit vergeet. 
+U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of besprekingsblad wysig sonder om u identiteit te verraai.',
 'prefs-help-email-required'  => 'E-pos adres word benodig.',
 'nocookiesnew'               => 'Die gebruikersrekening is geskep, maar u is nie ingeteken nie.
 {{SITENAME}} gebruik koekies om gebruikers in te teken.
@@ -458,7 +461,7 @@ Stel u rekenaar om dit te aanvaar, dan kan u met u nuwe naam en wagwoord inteken
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
 'passwordtooshort'           => 'U wagwoord is te kort.
 Dit moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} hê en kan nie jou gebruikersnaam insluit nie.',
-'mailmypassword'             => 'E-pos nuwe wagwoord',
+'mailmypassword'             => "E-pos my 'n nuwe wagwoord",
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
 'passwordremindertext'       => 'Iemand (waarskynlik U, van IP-adres $1)
 het gevra dat ons vir U \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
@@ -476,13 +479,13 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'throttled-mailpassword'     => "Daar is reeds 'n wagwoordwenk in die laaste {{PLURAL:$1|uur|$1 ure}} gestuur.
 Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}} gestuur.",
 'mailerror'                  => 'Fout tydens e-pos versending: $1',
-'acct_creation_throttle_hit' => 'Jammer. U het reeds $1 rekeninge geskep. U kan nie nog skep nie.',
+'acct_creation_throttle_hit' => "Jammer, maar u het reeds {PLURAL:$1|'n rekening|$1 rekeninge}} geskep. U kan nie nog skep nie.",
 'emailauthenticated'         => 'U e-posadres is bevestig op $1.',
 'emailnotauthenticated'      => 'U e-poasadres is <strong>nog nie bevestig nie</strong>. Geen e-pos sal gestuur word vir die volgende funksies nie.',
 'noemailprefs'               => "Spesifiseer 'n eposadres vir hierdie funksies om te werk.",
 'emailconfirmlink'           => 'Bevestig u e-posadres',
-'invalidemailaddress'        => "Die e-posadres kan nie aanvaar word nie, aangesien dit 'n ongeldige formaat blyk te hê.
-Voer asseblief 'n korrek geformateerde adres in, of verwyder die inhoud in daardie afdeling.",
+'invalidemailaddress'        => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
+Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 'accountcreated'             => 'Rekening geskep',
 'accountcreatedtext'         => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title'        => 'Rekeningskepping vir {{SITENAME}}',
@@ -596,14 +599,15 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knoppie.",
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'           => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
-'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u gebruiker-CSS, dit is nog nie gestoor nie.'''",
+'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
+'''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
 'updated'                          => '(Gewysig)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
 'previewconflict'                  => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien jy die bladsy stoor.',
 'session_fail_preview'             => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
-Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
+Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.</strong>',
 'session_fail_preview_html'        => "<strong>Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.</strong>
 
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
@@ -771,6 +775,14 @@ Die rede verskaf deur $3 is ''$2''",
 'compareselectedversions' => 'Vergelyk gekose weergawes',
 'editundo'                => 'maak ongedaan',
 'diff-multi'              => '({{PLURAL:$1|Een tussenin wysiging|$1 tussenin wysigings}} word nie gewys nie.)',
+'diff-movedto'            => 'geskuif na $1',
+'diff-added'              => 'bygevoeg',
+'diff-changedto'          => 'verander na',
+'diff-removed'            => 'verwyder',
+'diff-changedfrom'        => 'gewysig van',
+'diff-src'                => 'bron',
+'diff-width'              => 'breedte',
+'diff-height'             => 'hoogte',
 
 # Search results
 'searchresults'             => 'soekresultate',
@@ -1115,8 +1127,8 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'shareduploadduplicate-linktext' => "'n ander lêer",
 'shareduploadconflict'           => 'Die lêer het dieselfde naam as $1 in die gedeelde mediabank.',
 'shareduploadconflict-linktext'  => "'n ander lêer",
-'noimage'                        => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
-'noimage-linktext'               => 'laai dit',
+'noimage'                        => "Daar bestaan nie 'n lêer met so 'n naam nie, maar u kan $1.",
+'noimage-linktext'               => 'een oplaai',
 'uploadnewversion-linktext'      => 'Laai een nuwe weergawe van hierdie lêer',
 'imagepage-searchdupe'           => 'Soek vir duplikaat lêers',
 

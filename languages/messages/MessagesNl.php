@@ -731,7 +731,7 @@ Tot die tijd kunnen er geen e-mails naar het e-mailadres gezonden worden.',
 'throttled-mailpassword'     => 'In {{PLURAL:$1|het laatste uur|de laatste $1 uur}} is er al een wachtwoordherinnering verzonden.
 Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLURAL:$1|uur|$1 uur}} verzonden.',
 'mailerror'                  => 'Fout bij het verzenden van e-mail: $1',
-'acct_creation_throttle_hit' => 'Er zijn al $1 gebruikers geregistreerd vanaf dit IP-adres.
+'acct_creation_throttle_hit' => 'Er {{PLURAL:$1|is al 1 gebruiker|zijn al $1 gebruikers}} geregistreerd vanaf dit IP-adres.
 U kunt geen nieuwe gebruikers meer registreren.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $1.',
 'emailnotauthenticated'      => 'Uw e-mailadres is <strong>niet bevestigd</strong>.
@@ -1505,7 +1505,7 @@ Het verwijderingslogboek van dit bestand kunt u hier zien:",
 'filename-bad-prefix'         => 'De naam van het bestand dat u aan het uploaden bent begint met <strong>"$1"</strong>, wat een niet-beschrijvende naam is die meestal automatisch door een digitale camera wordt gegeven.
 Kies een duidelijke naam voor uw bestand.',
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
-# De syntaxis is as volgt:
+# De syntaxis is als volgt:
 #   * Alle tekst vanaf het karakter "#" tot het einde van de regel wordt gezien als opmerking
 #   * Iedere niet-lege regel is een voorvoegsel voor bestandsnamen die vaak automatisch worden toegekend door digitale camera\'s
 CIMG # Casio
@@ -1650,9 +1650,22 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'randomredirect-nopages' => 'Er zijn geen doorverwijzingen in deze naamruimte.',
 
 # Statistics
-'statistics'              => 'Statistieken',
-'statistics-header-users' => 'Gebruikerstatistieken',
-'statistics-mostpopular'  => "Meestbekeken pagina's",
+'statistics'               => 'Statistieken',
+'statistics-header-pages'  => 'Paginastatistieken',
+'statistics-header-edits'  => 'Bewerkingsstatistieken',
+'statistics-header-views'  => 'Paginaweergavestatistieken',
+'statistics-header-users'  => 'Gebruikerstatistieken',
+'statistics-articles'      => "Inhoudelijke pagina's",
+'statistics-pages'         => "Pagina's <small>(inclusief overlegpagina's, pagina's over {{SITENAME}}, zeer korte pagina's, doorverwijzingen en overige pagina's)</small>",
+'statistics-files'         => 'Bestandsuploads',
+'statistics-edits'         => 'Paginabewerkingen sinds het begin van {{SITENAME}}',
+'statistics-edits-average' => 'Gemiddeld aantal bewerkingen per pagina',
+'statistics-views-total'   => "Totaal aantal weergegeven pagina's",
+'statistics-views-peredit' => "Weergegeven pagina's per bewerking",
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueuelengte]',
+'statistics-users'         => 'Geregistreerde [[Special:ListUsers|gebruikers]]',
+'statistics-users-active'  => 'Actieve gebruikers',
+'statistics-mostpopular'   => "Meest bekeken pagina's",
 
 'disambiguations'      => "Doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',
@@ -2421,18 +2434,20 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 'standard.css'    => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Standard */',
 'nostalgia.css'   => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Nostalgie */',
 'cologneblue.css' => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Keuls blauw */',
-'monobook.css'    => '/* Een CSS die hier wordt geplaatst heeft invloed op alle gebruikers van de skin Monobook */',
+'monobook.css'    => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Monobook */',
 'myskin.css'      => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin MijnSkin */',
 'chick.css'       => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Chick */',
 'simple.css'      => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Eenvoudig */',
 'modern.css'      => '/* CSS die hier wordt geplaatst heeft alleen invloed op de skin Modern */',
+'print.css'       => '/* CSS die hier wordt geplaatst heeft alleen invloed op de printuitvoer */',
+'handheld.css'    => '/* CSS die hier wordt geplaatst heeft alleen invloed op handheldapparaten gebaseerd op de skin die is ingesteld in $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => "/* JavaScript die hier wordt geplaatst heeft invloed op alle pagina's voor alle gebruikers */",
 'standard.js'    => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Standaard gebruiken */',
 'nostalgia.js'   => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Nostalgie gebruiken */',
 'cologneblue.js' => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Keuls blauw gebruiken */',
-'monobook.js'    => '/* JavaScript-code op deze pagina wordt alleen geladen voor gebruikers die de skin Monobook gebruiken */',
+'monobook.js'    => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Monobook gebruiken */',
 'myskin.js'      => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin MijnSkin gebruiken */',
 'chick.js'       => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Chick gebruiken */',
 'simple.js'      => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Eenvoudig gebruiken */',
@@ -2701,7 +2716,7 @@ Andere velden worden verborgen.
 'exif-planarconfiguration-1' => 'chunky gegevensformaat',
 'exif-planarconfiguration-2' => 'planar gegevensformaat',
 
-'exif-colorspace-ffff.h' => 'Niet gecalibreerd',
+'exif-colorspace-ffff.h' => 'Niet gekalibreerd',
 
 'exif-componentsconfiguration-0' => 'bestaat niet',
 

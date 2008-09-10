@@ -506,7 +506,7 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 'eauthentsent'               => 'Un email de confirmare a fost trimis adresei nominalizate. Înainte de a fi trimis orice alt email acestui cont, trebuie să urmaţi intrucţiunile din email, pentru a confirma că acest cont este într-adevăr al dvs.',
 'throttled-mailpassword'     => 'O parolă a fost deja trimisă în {{PLURAL:$1|ultima oră|ultimele $1 ore}}. Pentru a preveni abuzul, se poate trimite doar o parolă la {{PLURAL:$1|o oră|$1 ore}}.',
 'mailerror'                  => 'Eroare la trimitere e-mail: $1',
-'acct_creation_throttle_hit' => 'Ne pare rău, aţi creat deja $1 conturi de utilizator. Nu mai puteţi crea altul.',
+'acct_creation_throttle_hit' => 'Ne pare rău, aţi creat deja {{PLURAL:$1|1 cont|$1 conturi}} de utilizator. Nu mai puteţi crea altul.',
 'emailauthenticated'         => 'Adresa de email a fost autentificată la $1.',
 'emailnotauthenticated'      => 'Adresa de email <strong>nu este autentificată încă</strong>. Nici un email nu va fi trimis pentru nici una din întrebuinţările următoare.',
 'noemailprefs'               => '<strong>Nu a fost specificată o adresă email</strong>, următoarele nu vor funcţiona.',
@@ -719,6 +719,7 @@ Motivul invocat de $3 este ''$2''",
 'revnotfound'         => 'Versiunea nu a fost găsită',
 'revnotfoundtext'     => 'Versiunea mai veche a paginii pe care aţi cerut-o nu a fost găsită. Vă rugăm să verificaţi legătura pe care aţi folosit-o pentru a accesa această pagină.',
 'currentrev'          => 'Versiunea curentă',
+'currentrev-asof'     => 'Versiunea curentă din $1',
 'revisionasof'        => 'Versiunea de la data $1',
 'revision-info'       => 'Revizia pentru $1; $2',
 'previousrevision'    => '←Versiunea anterioară',
@@ -887,7 +888,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchall'                 => 'toate',
 'showingresults'            => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate}} începând cu #<b>$2</b>.",
 'showingresultsnum'         => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate}} cu #<b>$2</b>.",
-'showingresultstotal'       => "Arată {{PLURAL:$3|rezultatul '''$1''' din '''$3'''|rezultatele '''$1 - $2''' din '''$3'''}}",
+'showingresultstotal'       => "Arată {{PLURAL:$4|rezultatul '''$1''' din '''$3'''|rezultatele '''$1 - $2''' din '''$3'''}}",
 'nonefound'                 => "'''Notă''': căutările nereuşite sunt în general datorate căutării unor cuvinte prea comune care nu sunt indexate, sau cautărilor a mai multe cuvinte (numai articolele care conţin ''toate'' cuvintele specificate apar ca rezultate).",
 'powersearch'               => 'Căutare avansată',
 'powersearch-legend'        => 'Căutare avansată',
@@ -1232,6 +1233,9 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'filehist-revert'                => 'revenire',
 'filehist-current'               => 'curentă',
 'filehist-datetime'              => 'Dată/Timp',
+'filehist-thumb'                 => 'Miniatură',
+'filehist-thumbtext'             => 'Miniatură pentru versiunea din $1',
+'filehist-nothumb'               => 'Nicio miniatură',
 'filehist-user'                  => 'Utilizator',
 'filehist-dimensions'            => 'Dimensiuni',
 'filehist-filesize'              => 'Mărimea fişierului',
@@ -1327,6 +1331,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 # Statistics
 'statistics'              => 'Statistici',
 'statistics-header-users' => 'Statistici legate de utilizatori',
+'statistics-users'        => '[[Special:ListUsers|Utilizatori]] înregistraţi',
 'statistics-mostpopular'  => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',
@@ -1417,7 +1422,8 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Rapoarte',
 'all-logs-page'        => 'Toate jurnalele',
-'alllogstext'          => 'Afişare combinată a încărcărilor, ştergerilor, protecţiilor, blocărilor şi a rapoartelor administratorilor. Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
+'alllogstext'          => 'Afişare combinată a tuturor jurnalelor {{SITENAME}}.
+Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
 'logempty'             => 'Nici o înregistrare în raport.',
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',
 
@@ -2058,12 +2064,12 @@ Un dosar temporar lipseşte.',
 'notacceptable'     => 'Serverul wiki nu poate oferi date într-un format pe care clientul tău să-l poată citi.',
 
 # Attribution
-'anonymous'        => 'Utilizator(i) anonimi ai {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Utilizator anonim|Utilizatori anonimi}} ai {{SITENAME}}',
 'siteuser'         => 'Utilizator {{SITENAME}} $1',
 'lastmodifiedatby' => 'Această pagină a fost modificată $2, $1 de către $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Bazat pe munca lui $1.',
 'others'           => 'alţii',
-'siteusers'        => 'Utilizator(i) {{SITENAME}} $1',
+'siteusers'        => '{{PLURAL:$2|Utilizator|Utilozatori}} {{SITENAME}} $1',
 'creditspage'      => 'Credenţiale',
 'nocredits'        => 'Nu există credenţiale disponibile pentru această pagină.',
 
@@ -2468,8 +2474,8 @@ Codul de confirmare va expira la $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
-'scarytranscludefailed'   => '[Şiretlicul formatului a dat greş pentru $1; ne pare rău]',
-'scarytranscludetoolong'  => '[URL-ul este prea lung; ne pare rău]',
+'scarytranscludefailed'   => '[Şiretlicul formatului a dat greş pentru $1]',
+'scarytranscludetoolong'  => '[URL-ul este prea lung]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2481,7 +2487,7 @@ $1
 'trackbackdeleteok' => 'Urmăritorul a fost şters cu succes.',
 
 # Delete conflict
-'deletedwhileediting' => 'Atenţie: Această pagină a fost ştearsă după ce ai început să o modifici!',
+'deletedwhileediting' => "'''Atenţie''': Această pagină a fost ştearsă după ce ai început să o modifici!",
 'confirmrecreate'     => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuţie]]) a şters acest articol după ce aţi început să contribuţi la el din motivul:
 : ''$2''
 Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest articol.",

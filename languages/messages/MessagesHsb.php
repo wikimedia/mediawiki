@@ -534,7 +534,7 @@ Prošu přizjew so znowa, po tym zo sy je přijał.',
 Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w mejlce měć, zo by wobkrućił, zo konto je woprawdźe twoje.',
 'throttled-mailpassword'     => 'Bu hižo nowe hesło za {{PLURAL:$1|poslednju hodźinu|poslednjej $1 hodźinje|poslednje $1 hodźiny|poslednich $1 hodźin}} pósłane. Zo by znjewužiwanju zadźěwało, so jenož jedne hesło na {{PLURAL:$1|hodźinu|$1 hodźinje|$1 hodźiny|$1 hodźinow}} pósćele.',
 'mailerror'                  => 'Zmylk při słanju mejlki: $1',
-'acct_creation_throttle_hit' => 'Sy hižo $1 {{PLURAL:$1|konto|kontaj|konty|kontow}} wutworił. Njemóžeš dalše wutworić.',
+'acct_creation_throttle_hit' => 'Sy hižo {{PLURAL:$1|1 konto|$1 kontaj|$1 konty|$1 kontow}} wutworił. Njemóžeš dalše wutworić.',
 'emailauthenticated'         => 'Twoja e-mejlowa adresa bu $1 wobkrućena.',
 'emailnotauthenticated'      => 'Twoja e-mejlowa adresa hišće wobkrućena <strong>njeje</strong>. Žane mejlki za jednu z sćěhowacych funkcijow pósłane njebudu.',
 'noemailprefs'               => 'Podaj e-mejlowu adresu za tute funkcije, zo bychu fungowali.',
@@ -1366,9 +1366,22 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'randomredirect-nopages' => 'Žane daleposrědkowanja w tutym mjenowym rumje.',
 
 # Statistics
-'statistics'              => 'Statistika',
-'statistics-header-users' => 'Statistika wužiwarjow',
-'statistics-mostpopular'  => 'Najhusćišo wopytowane strony',
+'statistics'               => 'Statistika',
+'statistics-header-pages'  => 'Statistika stronow',
+'statistics-header-edits'  => 'Wobdźěłanska statistika',
+'statistics-header-views'  => 'Statistiku wobhladać',
+'statistics-header-users'  => 'Statistika wužiwarjow',
+'statistics-articles'      => 'Wobsahowe strony',
+'statistics-pages'         => 'Strony <small>(to wopřijima "diskusijne" strony, strony wo {{GRAMMAR:lokatiw|{{SITENAME}}}}, minimalne "zarodki", daleposrědkowanja a druhe)</small>',
+'statistics-files'         => 'Nahrate dataje',
+'statistics-edits'         => 'Změny stronow wot załoženja {{SITENAME}}',
+'statistics-edits-average' => 'Změny na stronu w přerězku',
+'statistics-views-total'   => 'Zwobraznjenja dohromady',
+'statistics-views-peredit' => 'Zwobraznjenja na změnu',
+'statistics-jobqueue'      => 'Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'         => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
+'statistics-users-active'  => 'Aktiwni wužiwarjo',
+'statistics-mostpopular'   => 'Najhusćišo wopytowane strony',
 
 'disambiguations'      => 'Rozjasnjenja wjacezmyslnosće',
 'disambiguationspage'  => 'Template:Wjacezmyslnosć',
@@ -2659,5 +2672,14 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:image}}:\".",
 # Special:BlankPage
 'blankpage'              => 'Prózdna strona',
 'intentionallyblankpage' => 'Tuta strona je z wotpohladom prózdna.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Wostaj tutu linku eksaktnje kaž je<pre>
+#Zapodaj deleka fragmenty regularnych wurazow (jenož tón dźěl mjez //)
+#Tute přirunuja so z URL eksternych wobrazow
+#Přihódne zwobraznja so jako wobrazy, hewak so jenož wotkaz k wobrazej pokaza
+#Z linkami, kotrež so z # započinaja, wobchadźeja kaž komentary
+
+#Zapodaj wšě fragmenty regularnych wurazow nad tutej linku. Wostaj tutu linku eksaktnje kaž je</pre>',
 
 );

@@ -172,6 +172,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats'          => 'Verstoppte Kategorie weisen',
+'tog-noconvertlink'           => 'Ëmwandlung vum Titel desaktivéieren',
 
 'underline-always'  => 'ëmmer',
 'underline-never'   => 'Ni',
@@ -232,7 +233,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategorie|Kategorien}}',
 'category_header'                => 'Säiten an der Kategorie "$1"',
-'subcategories'                  => 'Souskategorien',
+'subcategories'                  => 'Ënnerkategorien',
 'category-media-header'          => 'Medien an der Kategorie "$1"',
 'category-empty'                 => "''Dës Kategorie ass fir den Ament eidel''",
 'hidden-categories'              => '{{PLURAL:$1|Verstoppte Kategorie|Verstoppte Kategorien}}',
@@ -548,7 +549,7 @@ Ier iergend eng E-Mail vun anere Benotzer op dee Kont geschéckt ka ginn, muss d
 'throttled-mailpassword'     => "An {{PLURAL:$1|der läschter Stonn|de läschte(n) $1 Stonnen}} gouf eng Erënenrung un d'Passwuert verschéckt.
 Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURAL:$1|Stonn|$1 Stonnen}} esou eng Erënnerung verschéckt ginn.",
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
-'acct_creation_throttle_hit' => 'Dir hutt scho(nn) $1 Benotzerkonten. 
+'acct_creation_throttle_hit' => 'Dir hutt {{PLURAL:$1|schonn $1 Benotzer kont|scho(nn) $1 Benotzerkonten}}. 
 Dir kënnt keng aner Benotzerkonten opmaachen.',
 'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
 'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >

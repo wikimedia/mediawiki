@@ -621,7 +621,7 @@ Bitte melde dich damit an, sobald du es erhalten hast. Das alte Passwort bleibt 
 Bevor eine E-Mail von anderen Benutzern über die E-Mail-Funktion empfangen werden kann, muss die Adresse und ihre tatsächliche Zugehörigkeit zu diesem Benutzerkonto erst bestätigt werden. Bitte befolge die Hinweise in der Bestätigungs-E-Mail.',
 'throttled-mailpassword'     => 'Es wurde innerhalb der letzten {{PLURAL:$1|Stunde|$1 Stunden}} bereits ein neues Passwort angefordert. Um einen Missbrauch der Funktion zu verhindern, kann nur {{PLURAL:$1|einmal pro Stunde|alle $1 Stunden}} ein neues Passwort angefordert werden.',
 'mailerror'                  => 'Fehler beim Senden der E-Mail: $1',
-'acct_creation_throttle_hit' => 'Du hast schon $1 Benutzerkonten angelegt.
+'acct_creation_throttle_hit' => 'Du hast schon {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonten}} angelegt.
 Weitere Benutzerkonten können nicht angelegt werden.',
 'emailauthenticated'         => 'Deine E-Mail-Adresse wurde bestätigt: $1.',
 'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
@@ -1491,9 +1491,19 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'randomredirect-nopages' => 'In diesem Namensraum sind keine Weiterleitungen vorhanden.',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-users' => 'Benutzerstatistik',
-'statistics-mostpopular'  => 'Meist besuchte Seiten',
+'statistics'               => 'Statistik',
+'statistics-header-pages'  => 'Seitenstatistik',
+'statistics-header-edits'  => 'Bearbeitungsstatistik',
+'statistics-header-users'  => 'Benutzerstatistik',
+'statistics-articles'      => 'Inhaltsseiten',
+'statistics-pages'         => 'Pages <small>(einschließlich Weiterleitungen und Seiten außerhalb des Artikelnamensraums)</small>',
+'statistics-files'         => 'Hochgeladene Dateien',
+'statistics-edits'         => 'Seitenbearbeitungen',
+'statistics-edits-average' => 'Bearbeitungen pro Seite im Durchschnitt',
+'statistics-jobqueue'      => 'Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueue]',
+'statistics-users'         => 'Registrierte [[Special:ListUsers|Benutzer]]',
+'statistics-users-active'  => 'Aktive Benutzer',
+'statistics-mostpopular'   => 'Meist besuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => 'Template:Begriffsklärung',
@@ -1809,11 +1819,12 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-othertime'           => 'Andere Sperrdauer:',
 'protect-othertime-op'        => 'andere Sperrdauer',
 'protect-otherreason'         => 'Anderer/ergänzender Grund:',
-'protect-otherreason-op'      => 'Anderer Grund',
+'protect-otherreason-op'      => 'anderer/ergänzender Grund',
 'protect-dropdown'            => '*Allgemeine Schutzgründe
 ** Weblink-Spam
 ** Editwar
-** Oft eingebundene Vorlage',
+** Oft eingebundene Vorlage
+** Seite mit höher Besucherzahl',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
 'minimum-size'                => 'Mindestgröße',

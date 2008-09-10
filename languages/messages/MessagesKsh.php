@@ -1467,7 +1467,7 @@ Mer ävver han och en [[Special:WhatLinksHere/$2|Komplätte Leß]].',
 'shareduploadconflict'           => 'Di Datei hät dersellve Namen wi „$1“ uss_em jemeinsame Beshtand.',
 'shareduploadconflict-linktext'  => 'di ander Datei',
 'noimage'                        => 'Mer han kein Datei met däm Name, kanns De ävver $1.',
-'noimage-linktext'               => 'Kanns De huhlade!',
+'noimage-linktext'               => 'huhlade!',
 'uploadnewversion-linktext'      => 'Dun en neu Version vun dä Datei huhlade',
 'imagepage-searchdupe'           => 'Sök noh dubelte Dateie',
 
@@ -1531,9 +1531,10 @@ wääde, un luur Der die ander Links aan!',
 'randomredirect-nopages' => 'En däm Appachtemang hee sin ja kein Ömleidunge dren.',
 
 # Statistics
-'statistics'              => 'Statistike',
-'statistics-header-users' => 'Statistike üvver de Metmaacher',
-'statistics-mostpopular'  => 'De miets affjeroofe Sigge',
+'statistics'               => 'Statistike',
+'statistics-header-users'  => 'Statistike üvver de Metmaacher',
+'statistics-edits-average' => 'Aanzahl Änderunge pro Sigg em Dorschschnett',
+'statistics-mostpopular'   => 'De miets affjeroofe Sigge',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
@@ -2306,6 +2307,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'chick.css'       => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Höhnsche" */',
 'simple.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Eijfach" */',
 'modern.css'      => '/* CSS hee aan dä Stell wirrek nur op de Ovverflääsch "Modern" */',
+'print.css'       => '/* CSS hee aan dä Stell wirrek nur op et Sigge Drokke */',
 
 # Scripts
 'common.js'      => '/* Jedes JavaScrit hee küt für jede Metmaacher in jede Sigg erinn */',
@@ -2387,8 +2389,8 @@ $1',
 'filedelete-archive-read-only'    => 'Unsere Webßöver kann udder darf nix en dat Aschif-Verzeichnis „$1“ eren schrieve.',
 
 # Browsing diffs
-'previousdiff' => '← De Ungerscheede dovör zeije',
-'nextdiff'     => 'De Ungerscheede donoh zeije →',
+'previousdiff' => '← De Änderung dovör zeije',
+'nextdiff'     => 'De Änderung donoh zeije →',
 
 # Visual comparison
 'visual-comparison' => 'De Ungerscheede',
@@ -2724,10 +2726,9 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo dat Beld trotz dämm jenehm e�
 'confirmemail_send'        => 'Scheck en E-Mail zem Bestätije',
 'confirmemail_sent'        => 'En E-Mail, för Ding E-Mail Adress ze bestätije, es ungerwähs.',
 'confirmemail_oncreate'    => 'Do häs jetz ene Kood för de Bestätijung med ene E-Mail zojeschek bekumme. För em Wiki jet ze maache, un för et Enlogge, do bruchs De der Kode nit, ävver domet de e-Mail övver et Wiki schecke un krijje kanns, doför moß De en ejmool ens bestätijje, domet secher es, dat Ding E-Mail Adress och rechtich jetipp wohr.',
-'confirmemail_sendfailed'  => "Beim E-Mail Adress Bestätije es jet donevve jejange, dä Sörver hatt e Problem met 
-sing Konfijuration, oder en Dinger E-Mail Adress es e Zeiche verkihrt, oder esu jet.
+'confirmemail_sendfailed'  => "Beim E-Mail Adress Bestätije es jet donevve jejange, künnt sin, en Dinger E-Mail Adress es e Zeiche verkihrt, oder esu jet.
 
-Dä E-Mail-Sörver saat: ''$1''",
+Dä E-Mail-Sörver hät jesaat: ''$1''",
 'confirmemail_invalid'     => 'Et es jet donevve jejange, Ding E-Mail Adress es un bliev nit bestätich. Mööchlech, dä Code wohr verkihrt, hä künnt avjelaufe jewäse sin, oder esu jet. Versöök et noch ens.',
 'confirmemail_needlogin'   => 'Do muss Dich $1, för de E-Mail Adress ze bestätije.',
 'confirmemail_success'     => 'Ding E-Mail Adress es jetz bestätich.
@@ -2789,7 +2790,9 @@ Trackbacks för hee di Sigg:<br />
 'trackbackdeleteok' => 'Trackback es fottjeschmesse.',
 
 # Delete conflict
-'deletedwhileediting' => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.',
+'deletedwhileediting' => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.
+Em <span class="plainlinks">[{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Logboch vum Sigge-Fottschmieße]</span> künnt der Jrund shtonn.
+Wann De de Sigg avspeichere deis, weed se widder aanjelaat.',
 'confirmrecreate'     => 'Dä Metmaacher [[User:$1|$1]] ([[User talk:$1|Klaaf]]) hät die Sigg fottjeschmesse, nohdäm Do do dran et Ändere aanjefange häs. Dä Jrund:
 : „<i>$2</i>“
 Wells Do jetz met en neu Version die Sigg widder neu aanläje?',

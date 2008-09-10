@@ -1069,7 +1069,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 Example: [[:Image:Addon-icn.png]]',
 'filehist-thumbtext' => 'Shown in the file history list of a file description page.
 
-Example: [[:Image:Addon-icn.png]] (where?, I cannot see it)',
+Example: [[wikipedia:Image:Madeleine close2.jpg]]',
 'filehist-nothumb' => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
@@ -1173,8 +1173,21 @@ Example: [[:Image:Addon-icn.png]]',
 'statistics' => 'Name of special page displayed in [[Special:SpecialPages]].
 
 {{Identical|Statistics}}',
-'sitestatstext' => 'Text displayed in [[Special:Statistics]].',
-'userstatstext' => 'Used on [[Special:Statistics]].',
+'statistics-header-pages' => 'Used in [[Special:Statistics]]',
+'statistics-header-edits' => 'Used in [[Special:Statistics]]',
+'statistics-header-views' => 'Used in [[Special:Statistics]]',
+'statistics-header-users' => 'Used in [[Special:Statistics]]',
+'statistics-articles' => 'Used in [[Special:Statistics]]',
+'statistics-pages' => 'Used in [[Special:Statistics]]',
+'statistics-files' => 'Used in [[Special:Statistics]]',
+'statistics-edits' => 'Used in [[Special:Statistics]]',
+'statistics-edits-average' => 'Used in [[Special:Statistics]]',
+'statistics-views-total' => 'Used in [[Special:Statistics]]',
+'statistics-views-peredit' => 'Used in [[Special:Statistics]]',
+'statistics-jobqueue' => 'Used in [[Special:Statistics]]',
+'statistics-users' => 'Used in [[Special:Statistics]]',
+'statistics-users-active' => 'Used in [[Special:Statistics]]',
+'statistics-mostpopular' => 'Used in [[Special:Statistics]]',
 
 'disambiguations' => 'Name of a special page displayed in [[Special:SpecialPages]].',
 'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages that links to disambiguation pages.
@@ -1727,7 +1740,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Stylesheets
 'common.css' => 'CSS applied to all users.',
-'monobook.css' => 'CSS applied to users using Mononbook skin.',
+'monobook.css' => 'CSS applied to users using Monobook skin.',
 
 # Scripts
 'common.js' => 'JS for all users.',

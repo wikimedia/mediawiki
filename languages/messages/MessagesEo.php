@@ -1554,7 +1554,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'email-legend'    => 'Sendi retpoŝton al alia {{SITENAME}}-uzanto',
 'emailfrom'       => 'De:',
 'emailto'         => 'Al:',
-'emailsubject'    => 'Subjekto:',
+'emailsubject'    => 'Temo:',
 'emailmessage'    => 'Mesaĝo:',
 'emailsend'       => 'Sendi',
 'emailccme'       => 'Retpoŝti al mi kopion de mia mesaĝo.',

@@ -502,14 +502,7 @@ Iontráil seoladh dea-fhormáidte le do thoil, nó glan an réimse sin.',
 'accountcreated'             => 'Cúntas cruthaithe',
 'accountcreatedtext'         => 'Cruthaíodh cúntas úsáideora le haghaidh $1.',
 'createaccount-title'        => 'Cuntas cruthú le {{SITENAME}}',
-'createaccount-text'         => 'Chruthaigh duine éigin an cuntas seo le do sheoladh ríomhphoist ar {{SITENAME}} ($4).
-
-  Ainm: "$2"
-  Focal faire: "$3"
-
-Ba cheart duit logáil isteach anois agus d\'fhocal faire a athrú.
-
-Ná tabhair aird don teachtaireacht seo má cruthaíodh an cuntas seo trí earráid.',
+'createaccount-text'         => 'Chruthaigh duine éigin cuntas do do sheoladh ríomhphoist ar {{SITENAME}} ($4) leis an ainm "$2" agus pasfhocal "$3". Ba cheart duit logáil isteach agus do phasfhocal a athrú anois. Is féidir leat neamhaird a thabhairt don teachtaireacht seo má cruthaíodh trí earráid í.',
 'loginlanguagelabel'         => 'Teanga: $1',
 
 # Password reset dialog
@@ -583,10 +576,8 @@ Chun an leathanach a chruthú, tosaigh ag clóscríobh sa bhosca thíos
 Má tháinig tú anseo as dearmad, brúigh an cnaipe '''ar ais''' ar do bhrabhsálaí.",
 'anontalkpagetext'       => "---- ''Leathanach plé é seo a bhaineann le húsáideoir gan ainm nár chruthaigh cuntas fós, nó nach bhfuil ag úsáid an cuntas aige. Dá bhrí sin, caithfimid an seoladh IP a úsáid chun é/í a hionannú. Is féidir le níos mó ná úsáideoir amháin an seoladh IP céanna a úsáid. Má tá tú i d'úsáideoir gan ainm agus má tá sé do thuairim go rinneadh léiriuithe neamhfheidhmeacha fút, [[Special:Userlogin|cruthaigh cuntas]] nó [[Special:UserLogin|logáil isteach]] chun mearbhall le húsáideoirí eile gan ainmneacha a héalú amach anseo.''",
 'noarticletext'          => 'Níl aon téacs ar an leathanach seo faoi láthair.  Is féidir [[Special:Search/{{PAGENAME}}|cuardach a dhéanamh le haghaidh an teidil seo]] i leathanaigh eile nó [{{fullurl:{{FULLPAGENAME}}|action=edit}} an leathanach seo a athrú].',
-'clearyourcache'         => "'''Tabhair faoi deara:''' Tar éis duit ábhar a shábháil, ní mór duit
-taisce do líonléitheora chun na hathruithe a fheiceáil After saving, you have to clear your
-browser cache to see the changes: '''Mozilla / Netscape:''' roghnaigh ''Athlódáil''
-(nó ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache'         => "'''Tugtar faoi deara:''' Tar éis duit an t-inneachar a shábháil, caithfear gabháil thar thaisce an bhrabhsálaí chun na hathruithe a fheiceáil.
+'''Mozilla/Safari/Konqueror:''' cliceáil ar ''Athlódáil'', agus ''Iomlaoid'' á bhrú agat (nó brúigh ''Ctrl-Iomlaoid-R''), '''IE:''' brúigh ''Ctrl-F5'', '''Opera:''' brúigh ''F5''.",
 'usercssjsyoucanpreview' => "<strong>Leid:</strong> Sula sábhálaím tú, úsáid an cnaipe
 'Réamhamharc' chun do CSS/JS nua a tástáil.",
 'usercsspreview'         => "'''Cuimhnigh nach bhfuil seo ach réamhamharc do CSS úsáideora -
@@ -1106,7 +1097,7 @@ Deimhnigh, le do thoil, gur mhian leat é seo a dhéanamh, go dtuigeann tú tort
 'actioncomplete'              => 'Gníomh críochnaithe',
 'deletedtext'                 => 'scriosadh "<nowiki>$1</nowiki>".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
-'deletedarticle'              => 'scriosadh "$1"',
+'deletedarticle'              => 'scriosadh "[[$1]]"',
 'dellogpage'                  => 'Loga scriosta',
 'dellogpagetext'              => 'Seo é liosta de na scriosaidh is déanaí.',
 'deletionlog'                 => 'cuntas scriosaidh',
@@ -1794,29 +1785,19 @@ le tuilleadh eolais.',
 'monthsall'        => 'an t-iomlán',
 
 # E-mail address confirmation
-'confirmemail'            => 'Deimhnigh do sheoladh ríomhphoist',
-'confirmemail_text'       => 'Tá sé de dhíth an an vicí seo do sheoladh ríomhphoist a
-
-bhailíochtú sula úsáideann tú na gnéithe ríomhphoist. Gníomhachtaigh an cnaipe seo thíos
-
-chun teachtaireacht deimhnithe a sheoladh chuig do chuntas ríomhphoist. Beidh nasc ann sa
-
-comhad ina mbeidh cód áirithe; lódáil an nasc i do bhrabhsálaí chun deimhniú go bhfuil do
-
-sheoladh ríomhphoist bailí.',
+'confirmemail'            => 'Deimhnigh do ríomhsheoladh',
+'confirmemail_text'       => 'Tá sé de dhíth an an vicí seo do ríomhsheoladh a bhailíochtú sula n-úsáideann tú na gnéithe ríomhphoist. Brúigh an cnaipe seo thíos chun teachtaireacht deimhnithe a sheoladh chuig do chuntas ríomhphoist. Beidh nasc ann sa chomhad ina mbeidh cód áirithe; lódáil an nasc i do bhrabhsálaí chun deimhniú go bhfuil do ríomhsheoladh bailí.',
 'confirmemail_send'       => 'Seol cód deimhnithe',
-'confirmemail_sent'       => 'Seoladh teachtaireacht deimhnithe.',
+'confirmemail_sent'       => 'Teachtaireacht deimhnithe seolta chugat.',
 'confirmemail_sendfailed' => "Ní féidir an teachtaireacht deimhnithe a sheoladh. 
 Féach an bhfuil carachtair neamh-bhailí ann sa seoladh.
 
 D'fhreagair an clár ríomhphoist: $1",
 'confirmemail_invalid'    => "Cód deimhnithe neamh-bhailí. B'fhéidir gur chuaidh an cód as feidhm.",
-'confirmemail_success'    => 'Deimhníodh do sheoladh ríomhphoist. Is féidir leat logáil
-
-isteach anois agus sult a bhaint as an vicí.',
+'confirmemail_success'    => 'Deimhníodh do ríomhsheoladh. Is féidir leat logáil isteach anois agus sult a bhaint as an vicí!',
 'confirmemail_loggedin'   => 'Deimhníodh do sheoladh ríomhphoist.',
 'confirmemail_error'      => 'Tharlaigh botún éigin le sabháil do dheimhniú.',
-'confirmemail_subject'    => 'Deimhniú seolaidh ríomhphoist as {{SITENAME}}',
+'confirmemail_subject'    => 'Deimhniú do ríomhsheoladh ar an {{SITENAME}}',
 'confirmemail_body'       => 'Chláraigh duine éigin (tusa is dócha) an cuntas "$2" ar {{SITENAME}}
 agus rinneadh é seo ón seoladh IP $1, ag úsáid an ríomhsheolta seo.
 

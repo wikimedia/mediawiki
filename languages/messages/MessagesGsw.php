@@ -300,6 +300,7 @@ Funktion: $1<br />
 Abfrog: $2',
 'viewsource'           => 'Quelltext aaluege',
 'viewsourcefor'        => 'fier $1',
+'viewsourcetext'       => 'Quelltekst vo dere Syte:',
 'protectedinterface'   => 'Die Syte enthält Text fiers Sproch-Interface vun de Software un isch gsperrt, um Missbrouch zue vohindre.',
 'editinginterface'     => "'''Obacht:''' Du bisch e Syten am Verändere wo zum user interface ghört. We du die Syte veränderisch, de änderet sech ds user interface o für di andere Benutzer.",
 'sqlhidden'            => '(SQL-Abfrog voschteckt)',
@@ -422,7 +423,19 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'anoneditwarning'          => "'''Warnig:''' Si sin nit agmolde. Ihri IP-Adrässe wird in de Gschicht vo sellem Artikel gspeicheret.",
 'missingsummary'           => "'''Obacht:''' Du hesch kei Zämefassig ongebe. Wenn du erneijt uf Spacher durcksch, wird d Änderung ohni gspychert.",
 'missingcommenttext'       => 'Bitte gib dinr Kommentar unte ii.',
+'summary-preview'          => 'Vorschou vor Zämefassig',
 'blockedtitle'             => "Benutz'r esch gspertd",
+'blockedtext'              => "<big>'''Dy Benutzernamen oder dyni IP-Adrässen isch gsperrt worde.'''</big>
+
+Du chasch $1 oder en anderen [[{{MediaWiki:Grouppage-sysop}}|Administrator]] kontaktiere, für die Sperrig z diskutiere. Vergis i däm Fall bitte keni vo de folgenden Agabe:
+
+*Administrator, wo het gsperrt: $1
+*Grund für d Sperrig: $2
+*Afang vor Sperrig: $8
+*Ändi vor Sperrig: $6
+*IP-Adrässe: $3
+*Sperrig betrifft: $7
+*ID vor Sperrig: #$5",
 'whitelistedittext'        => 'Sie müssen sich $1, um Artikel bearbeiten zu können.',
 'confirmedittitle'         => 'Zuem Ändere isch e bschtätigti E-Bost-Adräss nötig.',
 'confirmedittext'          => 'Si muen Ihri E-Bost-Adräss erscht bstätige bevor Si Syte go ändere chönne. Bitte setze Si in [[Special:Preferences|Ihre Iistellige]] Ihri E-Bost Adräss ii un löhn Si si pruefe.',
@@ -464,6 +477,7 @@ Si verspräche uns usserdäm, dass Si des alles selber gschriebe oder vo nere Qu
 'protectedpagewarning'     => '<strong>WARNIG: Die Syten isch gsperrt worde, so das se nume Benutzer mit Sysop-Rechten chöi verändere.</strong>',
 'semiprotectedpagewarning' => "'''''Halbsperrung''': Diese Seite kann von angemeldeten Benutzern bearbeitet werden. Für nicht angemeldete oder gerade eben erst angemeldete Benutzer ist der Schreibzugang gesperrt.''",
 'templatesused'            => 'Selli Vorlage wärde in sellem Artikel bruucht:',
+'templatesusedpreview'     => 'Vorlage wo i dere Vorschou vorchöme:',
 'template-protected'       => '(schrybgschützt)',
 'template-semiprotected'   => '(schrybgschützt für unaagmoldeni un neui Benutzer)',
 'edittools'                => '<!-- Selle Text wird untr em "ändere"-Formular un bim "Uffelade"-Formular aagzeigt. -->',
@@ -478,17 +492,23 @@ Hie gesehsch ds Lösch-Logbuech vo dere Syte:",
 'viewpagelogs'        => 'Logbüecher für die Syten azeige',
 'currentrev'          => 'Itzigi Version',
 'revisionasof'        => 'Version vo $1',
+'revision-info'       => 'Alti Bearbeitig vom $1 dür $2',
 'previousrevision'    => '← Vorderi Version',
 'nextrevision'        => 'Nächschti Version →',
 'currentrevisionlink' => 'Itzigi Version',
 'cur'                 => 'Jetz',
 'next'                => 'Nächschti',
 'last'                => 'vorane',
+'page_first'          => 'Afang',
+'page_last'           => 'Ändi',
 'histlegend'          => 'Du chasch zwei Versionen uswähle und verglyche.<br />
 Erklärig: (aktuell) = Underschid zu jetz,
 (vorane) = Underschid zur alte Version, <strong>K</strong> = chlyni Änderig',
 'histfirst'           => 'Eltischti',
 'histlast'            => 'Nöischti',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 um $2', # user at time
 
 # Diffs
 'history-title'           => 'Versionsgschicht vo „$1“',
@@ -496,6 +516,7 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'lineno'                  => 'Zyle $1:',
 'compareselectedversions' => 'Usgwählti Versione verglyche',
 'editundo'                => 'rückgängig',
+'diff-multi'              => '(Der Versioneverglych zeigt ou d Änderige vo {{PLURAL:$1|1 Version|$1 Versione}} derzwüsche.)',
 
 # Search results
 'searchresults'         => 'Suech-Ergäbnis',
@@ -556,10 +577,14 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'userrights-editusergroup' => 'Bearbeite Gruppenzugehörigkeit des Benutzers',
 'saveusergroups'           => 'Speichere Gruppenzugehörigkeit',
 
+'grouppage-sysop' => '{{ns:project}}:Administratore',
+
 # User rights log
+'rightslog'     => 'Benutzerrächt-Logbuech',
 'rightslogtext' => 'Des ischs Logbuech vun de Änderunge on Bnutzerrechte.',
 
 # Recent changes
+'nchanges'                       => '$1 {{PLURAL:$1|Änderig|Änderige}}',
 'recentchanges'                  => 'Letschti Änderige',
 'recentchangestext'              => 'Uff sellere Syte chönne Si die letschte Änderige in sellem Wiki aaluege.',
 'recentchanges-feed-description' => 'Di letschten Änderige vo {{SITENAME}} i däm Feed abonniere.',
@@ -600,24 +625,28 @@ Go e Datei odr en Bild innere Syte iizbaue schriibe Si eifach ane:
 or
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>'''
 go direkt e Gleich uff d Datei z'mache.",
+'uploadlogpage'     => 'Ufegladnigs-Logbuech',
+'uploadedimage'     => 'het „[[$1]]“ ufeglade',
 
 # Special:ImageList
 'imagelist' => 'Lischte vo Bilder',
 
 # Image description page
-'filehist'            => 'Dateiversione',
-'filehist-help'       => "Klick uf'ne Zytpunkt für azzeige, wie's denn het usgseh.",
-'filehist-current'    => 'aktuell',
-'filehist-datetime'   => 'Version vom',
-'filehist-user'       => 'Benutzer',
-'filehist-dimensions' => 'Mäß',
-'filehist-filesize'   => 'Dateigrößi',
-'filehist-comment'    => 'Kommentar',
-'imagelinks'          => 'Bildverweise',
-'linkstoimage'        => 'Di {{PLURAL:$1|folgendi Syte|$1 folgende Sytene}} händ en Link zu dem Bildli:',
-'nolinkstoimage'      => 'Kein Artikel benutzt dieses Bild.',
-'sharedupload'        => 'Selli Datei wird vo verschiedene Projekt bruucht.',
-'noimage-linktext'    => 'Lads uffe!',
+'filehist'                  => 'Dateiversione',
+'filehist-help'             => "Klick uf'ne Zytpunkt für azzeige, wie's denn het usgseh.",
+'filehist-current'          => 'aktuell',
+'filehist-datetime'         => 'Version vom',
+'filehist-user'             => 'Benutzer',
+'filehist-dimensions'       => 'Mäß',
+'filehist-filesize'         => 'Dateigrößi',
+'filehist-comment'          => 'Kommentar',
+'imagelinks'                => 'Bildverweise',
+'linkstoimage'              => 'Di {{PLURAL:$1|folgendi Syte|$1 folgende Sytene}} händ en Link zu dem Bildli:',
+'nolinkstoimage'            => 'Kein Artikel benutzt dieses Bild.',
+'sharedupload'              => 'Selli Datei wird vo verschiedene Projekt bruucht.',
+'noimage'                   => 'Es git kei Datei mit däm Name, aber du chasch se $1.',
+'noimage-linktext'          => 'ufelade',
+'uploadnewversion-linktext' => 'E nöui Version vo dere Datei ufelade',
 
 # Unwatched pages
 'unwatchedpages' => 'Unbeobachteti Sytene',
@@ -629,8 +658,10 @@ go direkt e Gleich uff d Datei z'mache.",
 'randompage' => 'Zuefalls-Artikel',
 
 # Statistics
+'statistics'              => 'Statistik',
 'statistics-header-users' => 'Benützer-Statistik',
 
+'disambiguations'     => 'Begriffsklärigssytene',
 'disambiguationspage' => 'Template:Begriffsklärig',
 
 'doubleredirects' => 'Doppelte Redirects',
@@ -650,12 +681,14 @@ go direkt e Gleich uff d Datei z'mache.",
 'uncategorizedcategories' => 'Nit kategorisierte Kategorie',
 'unusedimages'            => 'Verwaiste Bilder',
 'popularpages'            => 'Beliebti Artikel',
+'wantedcategories'        => '’Bruuchti Kategorië, wo’s no nid git',
 'wantedpages'             => 'Artikel wo fähle',
 'mostlinked'              => 'Meistverlinke Seiten',
 'prefixindex'             => 'Alli Artikle (mit Präfix)',
 'shortpages'              => 'Churzi Artikel',
 'longpages'               => 'Langi Artikel',
 'deadendpages'            => 'Artikel ohni Links («Sackgasse»)',
+'protectedpages'          => 'Gschützti Sytene',
 'listusers'               => 'Lischte vo Benutzer',
 'newpages'                => 'Nöji Artikel',
 'ancientpages'            => 'alti Sytene',
@@ -666,15 +699,19 @@ go direkt e Gleich uff d Datei z'mache.",
 'booksources' => 'ISBN-Suech',
 
 # Special:Log
-'log'         => 'Logbüecher',
-'alllogstext' => "Kombinierti Aasicht vo alle i {{SITENAME}} gführte Protokoll.
+'specialloguserlabel'  => 'Benutzer:',
+'speciallogtitlelabel' => 'Titel:',
+'log'                  => 'Logbüecher',
+'all-logs-page'        => 'Alli Logbüecher',
+'alllogstext'          => "Kombinierti Aasicht vo alle i {{SITENAME}} gführte Protokoll.
 D'Aazeig cha  durch d'Auswahl vo emne Protokoll, emne Benutzername odr emne Sytename iischränkt werde (Gross- u Chlischribig beachte).",
-'logempty'    => 'Kei passendi Yträg gfunde.',
+'logempty'             => 'Kei passendi Yträg gfunde.',
 
 # Special:AllPages
 'allpages'          => 'alli Sytene',
 'alphaindexline'    => 'vo $1 bis $2',
 'nextpage'          => 'Nächscht Syte ($1)',
+'prevpage'          => 'Vorderi Syte ($1)',
 'allpagesfrom'      => 'Syte aazeige vo:',
 'allarticles'       => 'alli Artikel',
 'allinnamespace'    => 'alli Sytene im Namensruum $1',
@@ -707,21 +744,25 @@ Im Absänder steit dyni eigeti e-Mail-Adrässe us dine [[Special:Preferences|Ist
 'emailsenttext'   => 'Dys e-Mail isch verschickt worde.',
 
 # Watchlist
-'watchlist'         => 'Beobachtigslischte',
-'mywatchlist'       => 'Beobachtigslischte',
-'nowatchlist'       => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
-'watchnologintext'  => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
-'addedwatch'        => 'zue de Beobachtigslischte drzue do',
-'addedwatchtext'    => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
+'watchlist'            => 'Beobachtigslischte',
+'mywatchlist'          => 'Beobachtigslischte',
+'watchlistfor'         => "(für '''$1''')",
+'nowatchlist'          => 'Du hesch ke Yträg uf dyre Beobachtigslischte.',
+'watchnologintext'     => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste zu bearbeiten.',
+'addedwatch'           => 'zue de Beobachtigslischte drzue do',
+'addedwatchtext'       => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
-'watch'             => 'beobachte',
-'watchthispage'     => 'Die Syte beobachte',
-'unwatch'           => 'nümm beobachte',
-'watchnochange'     => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
-'watchlist-details' => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
-'wlshowlast'        => 'Zeig di letschte $1 Stunde $2 Tage $3',
+'watch'                => 'beobachte',
+'watchthispage'        => 'Die Syte beobachte',
+'unwatch'              => 'nümm beobachte',
+'watchnochange'        => 'Vo den Artikle, wo du beobachtisch, isch im aazeigte Zytruum kene veränderet worde.',
+'watchlist-details'    => '{{PLURAL:$1|1 Syte wird|$1 Sytene wärde}} beobachtet (Diskussionssyte nid zelt, aber ou beobachtet).',
+'wlshowlast'           => 'Zeig di letschte $1 Stunde $2 Tage $3',
+'watchlist-hide-bots'  => 'Bot-Änderige verstecke',
+'watchlist-hide-own'   => 'Eigeti Änderige verstecke',
+'watchlist-hide-minor' => 'Chlyni Änderige verstecke',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Am beobachte …',
@@ -769,6 +810,7 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'protectlogpage'    => 'Syteschutz-Logbuech',
 'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
 'protectcomment'    => 'Grund der Sperrung',
 
@@ -787,9 +829,13 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 # Contributions
 'contributions' => 'Benutzer-Byträg',
 'mycontris'     => 'mini Biiträg',
+'contribsub2'   => 'Für $1 ($2)',
 'uctop'         => '(aktuell)',
 'month'         => 'u Monet:',
 'year'          => 'bis Jahr:',
+
+'sp-contributions-newbies-sub' => 'Für Nöui',
+'sp-contributions-blocklog'    => 'Sperrlogbuech',
 
 # What links here
 'whatlinkshere'       => 'Was linkt da ane?',
@@ -806,7 +852,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'blockip'         => 'Benutzer bzw. IP blockyre',
 'ipbsubmit'       => 'Adresse blockieren',
 'ipboptions'      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Für immer:infinite', # display1:time1,display2:time2,...
-'ipblocklist'     => 'Lischte vo blockierte IP-Adresse',
+'ipblocklist'     => 'Liste vo blockierten IP-Adrässen u Benutzernäme',
 'blocklistline'   => '$1, $2 het $3 ($4) gschperrt',
 'blocklink'       => 'spärre',
 'contribslink'    => 'Byträg',
@@ -833,7 +879,9 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'movetalk'         => 'Diskussionssyte nach Müglechkeit mitverschiebe',
 '1movedto2'        => '[[$1]] isch uf [[$2]] verschobe worde.',
 '1movedto2_redir'  => '[[$1]] isch uf [[$2]] verschobe worre un het drbii e Wiiterleitig übrschriebe.',
+'movelogpage'      => 'Verschiebigs-Logbuech',
 'movereason'       => 'Grund',
+'revertmove'       => 'zrügg verschiebe',
 'selfmove'         => 'Der nöi Artikelname mues en andere sy als der alt!',
 
 # Export
@@ -857,6 +905,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Special:Import
 'importtext' => 'Bitte speichere Si selli Syte vom Quellwiki met em Special:Export Wärkzüg ab un lade Si denn di Datei denn do uffe.',
+
+# Import log
+'importlogpage' => 'Import-Logbuech',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Myni Benutzersyte',
@@ -949,6 +1000,7 @@ sollte umgehend ein Administrator informiert werden!',
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'file-info-size'       => '($1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Kei höcheri Uflösig verfüegbar.</small>',
+'svg-long-desc'        => '(SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3)',
 'show-big-image'       => 'Originalgrößi',
 'show-big-image-thumb' => '<small>Größi vo dere Vorschou: $1 × $2 Pixel</small>',
 
@@ -1032,6 +1084,17 @@ Fründtlechi Grüess",
 
 ''Ds Lösche vor Zwüschespycherig zwingt der Server, dir di aktuellschti Version vor Syte z gä!''
 </div>",
+
+# Multipage image navigation
+'imgmultipageprev' => '← vorderi Syte',
+
+# Table pager
+'table_pager_prev' => 'Vorderi Syte',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Beobachtigsliste: Änderige',
+'watchlisttools-edit' => 'normal bearbeite',
+'watchlisttools-raw'  => 'imene große Textfäld bearbeite',
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsytene',

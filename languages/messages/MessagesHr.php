@@ -437,7 +437,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'deletethispage'    => 'Izbriši ovu stranicu',
 'undelete_short'    => 'Vrati {{PLURAL:$1|$1 uređivanje|$1 uređivanja}}',
 'protect'           => 'Zaštiti',
-'protect_change'    => 'promijeni stupanj zaštite',
+'protect_change'    => 'promijeni',
 'protectthispage'   => 'Zaštiti ovu stranicu',
 'unprotect'         => 'Ukloni zaštitu',
 'unprotectthispage' => 'Ukloni zaštitu s ove stranice',
@@ -562,7 +562,8 @@ Posljednji pokušaj upita je glasio:
 "$1"
 iz funkcije "<tt>$2</tt>".
 MySQL je vratio pogrešku "<tt>$3: $4</tt>".',
-'noconnect'            => 'Oprostite! Wiki trenutačno ima tehničkih problema i ne može se povezati s bazom podataka. $1',
+'noconnect'            => 'Oprostite! Wiki trenutačno ima tehničkih problema i ne može se povezati s bazom podataka.<br />
+$1',
 'nodb'                 => 'Nije bilo moguće odabrati bazu podataka $1',
 'cachederror'          => 'Ova je verzija stranice iz međuspremnika i možda ne sadrži sve promjene.',
 'laggedslavemode'      => 'Upozorenje: na stranici se možda ne nalaze najnovije promjene.',
@@ -646,14 +647,15 @@ Ne zaboravite prilagoditi [[Special:Preferences|{{SITENAME}} postavke]].',
 'logout'                     => 'Odjavi se',
 'userlogout'                 => 'Odjavi se',
 'notloggedin'                => 'Niste prijavljeni',
-'nologin'                    => 'Nemate suradničko ime? $1.',
+'nologin'                    => 'Nemate suradnički račun? $1.',
 'nologinlink'                => 'Otvorite račun',
 'createaccount'              => 'Otvori novi suradnički račun',
 'gotaccount'                 => 'Već imate suradnički račun? $1.',
 'gotaccountlink'             => 'Prijavite se',
 'createaccountmail'          => 'poštom',
 'badretype'                  => 'Unesene lozinke nisu istovjetne.',
-'userexists'                 => 'Uneseno suradničko ime već je u upotrebi. Unesite neko drugo ime.',
+'userexists'                 => 'Uneseno suradničko ime već je u upotrebi.
+Unesite neko drugo ime.',
 'youremail'                  => 'Vaša elektronska pošta *',
 'username'                   => 'Suradničko ime:',
 'uid'                        => 'Suradnički ID-broj:',
@@ -667,8 +669,8 @@ Ne zaboravite prilagoditi [[Special:Preferences|{{SITENAME}} postavke]].',
 'email'                      => 'Adresa elektroničke pošte *',
 'prefs-help-realname'        => '* Pravo ime (nije obvezno): za pravnu atribuciju vaših doprinosa.',
 'loginerror'                 => 'Pogreška u prijavi',
-'prefs-help-email'           => '* E-mail (nije obvezno): Omogućuje drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.
-Također, ako zaboravite lozinku možemo vam na ovu adresu poslati novu, privremenu.',
+'prefs-help-email'           => 'E-mail adresa nije obvezna: ali omogućuje slanje nove lozinke e-mailom u slučaju da zaboravite svoju.
+Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.',
 'prefs-help-email-required'  => 'Potrebno je navesti adresu e-pošte (e-mail).',
 'nocookiesnew'               => "Suradnički račun je otvoren, ali niste uspješno prijavljeni. Naime, {{SITENAME}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo s vašim novim imenom i lozinkom.",
 'nocookieslogin'             => "{{SITELOGIN}} koristi kolačiće (''cookies'') u procesu prijave. Isključili ste kolačiće. Molim uključite ih i pokušajte ponovo.",
@@ -699,7 +701,7 @@ molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva.',
 'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu lozinke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu lozinke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
 'mailerror'                  => 'Pogreška pri slanju e-maila: $1',
-'acct_creation_throttle_hit' => 'Nažalost, ne možete otvoriti nove suradničke račune. Već ste otvorili $1.',
+'acct_creation_throttle_hit' => 'Nažalost, ne možete otvoriti nove suradničke račune. Već ste otvorili {{PLURAL:$1|1 račun|$1 računa}}.',
 'emailauthenticated'         => 'Vaša e-mail adresa je ovjerena $1.',
 'emailnotauthenticated'      => 'Vaša e-mail adresa još nije ovjerena.
 Ne možemo poslati e-mail ni u jednoj od sljedećih naredbi.',
@@ -818,7 +820,7 @@ Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
 '''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Savjet:</strong> Koristite dugme 'Pokaži kako će izgledati' za testiranje svog CSS/JS prije snimanja.",
-'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS, i da još nije snimljen!'''",
+'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
 'userjspreview'                    => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički JavaScript, i da još nije snimljen!'''",
 'userinvalidcssjstitle'            => "'''Upozorenje:''' Nema sučelja pod imenom \"\$1\". Ne zaboravite da imena stranica s .css and .js kodom počinju malim slovom, npr. {{ns:user}}:Mate/monobook.css, a ne {{ns:user}}:Mate/Monobook.css.",
 'updated'                          => '(Ažurirano)',
@@ -1036,6 +1038,29 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'wikicodecomparison'      => 'Wikitekst usporedba',
 'editundo'                => 'ukloni ovu izmjenu',
 'diff-multi'              => '({{PLURAL:$1|Nije prikazana jedna međuinačica|Nisu prikazane $1 međuinačice|Nije prikazano $1 međuinačica}})',
+'diff-movedto'            => 'dodano: $1',
+'diff-styleadded'         => 'dodano oblikovanje',
+'diff-added'              => 'dodano',
+'diff-movedoutof'         => 'uklonjeno: $1',
+'diff-styleremoved'       => 'uklonjeno oblikovanje',
+'diff-removed'            => 'uklonjeno',
+'diff-withdestination'    => 's ciljem',
+'diff-p'                  => "'''paragraf'''",
+'diff-h1'                 => "'''naslov (razina 1)'''",
+'diff-h2'                 => "'''naslov (razina 2)'''",
+'diff-h3'                 => "'''naslov (razina 3)'''",
+'diff-h4'                 => "'''naslov (razina 4)'''",
+'diff-h5'                 => "'''naslov (razina 5)'''",
+'diff-ul'                 => "'''neuređeni popis'''",
+'diff-ol'                 => "'''uređeni popis'''",
+'diff-li'                 => "'''popis'''",
+'diff-th'                 => "'''naslov'''",
+'diff-a'                  => "'''poveznica'''",
+'diff-big'                => "'''velika slova'''",
+'diff-tt'                 => "'''jednaka širina'''",
+'diff-sub'                => "'''potpis'''",
+'diff-sup'                => "'''natpis'''",
+'diff-strike'             => "'''precrtano'''",
 
 # Search results
 'searchresults'             => 'Rezultati pretrage',
@@ -1335,10 +1360,12 @@ Molimo da izaberete drugo ime.',
 'fileexists-thumbnail-yes'    => 'Datoteka je najvjerojatnije slika u smanjenoj veličini <i>(thumbnail)</i>. Molimo provjerite datoteku <strong><tt>$1</tt></strong>.<br />
 Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u višoj rezoluciji, nije nužno snimanje smanjenje slike<br />
 <i>(thumbnaila)</i>, prikazivanje smanjene slike iz izvornika radi se softverski.',
-'file-thumbnail-no'           => 'Ime datoteke počinje s <strong><tt>$1</tt></strong>. Čini se da je to slika smanjene veličine <i>(thumbnail)</i>.
+'file-thumbnail-no'           => 'Ime datoteke počinje s <strong><tt>$1</tt></strong>.
+Čini se da je to slika smanjene veličine <i>(minijatura)</i>.
 Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.',
 'fileexists-forbidden'        => 'Datoteka s ovim imenom već postoji; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem spremniku datoteka; molim postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Datoteka s ovim imenom već postoji u središnjem poslužitelju datoteka. 
+Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod drugim imenom. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ova datoteka je duplikat {{PLURAL:$1|sljedeće datoteke|sljedećih datoteka}}:',
 'successfulupload'            => 'Postavljanje uspješno.',
 'uploadwarning'               => 'Upozorenje kod postavljanja',
@@ -1487,9 +1514,22 @@ A [[Special:WhatLinksHere/$2|Ovdje se nalazi]] kompletan popis.',
 'randomredirect-nopages' => 'Nema preusmjeravanja u ovom imenskom prostoru.',
 
 # Statistics
-'statistics'              => 'Statistika',
-'statistics-header-users' => 'Statistika suradnika',
-'statistics-mostpopular'  => 'Najposjećenije stranice',
+'statistics'               => 'Statistika',
+'statistics-header-pages'  => 'Statistika stranica',
+'statistics-header-edits'  => 'Statistika uređivanja',
+'statistics-header-views'  => 'Statistika posjećivanja',
+'statistics-header-users'  => 'Statistika suradnika',
+'statistics-articles'      => 'Stranice sa sadržajem',
+'statistics-pages'         => 'Stranice <small>(ovo uključuje stranice za "razgovor", stranice o {{SITENAME}}, stranice mrve, preusmjeravanja, i ostalo)</small>',
+'statistics-files'         => 'Postavljene datoteke',
+'statistics-edits'         => 'Broj uređivanja od nastanka projekta {{SITENAME}}',
+'statistics-edits-average' => 'Prosječan broj uređivanja po stranici',
+'statistics-views-total'   => 'Posjeta ukupno',
+'statistics-views-peredit' => 'Posjeta po uređivanju',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Red poslova]',
+'statistics-users'         => 'Prijavljeni [[Special:ListUsers|suradnici]]',
+'statistics-users-active'  => 'Aktivni suradnici',
+'statistics-mostpopular'   => 'Najposjećenije stranice',
 
 'disambiguations'      => 'Razdvojbene stranice',
 'disambiguationspage'  => 'Template:Razdvojba',
@@ -1556,6 +1596,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'protectedtitlestext'     => 'Sljedeći naslovi su zaštićeni od kreiranja',
 'protectedtitlesempty'    => 'Nijedan naslov nije trenutačno zaštićen s tim parametrima.',
 'listusers'               => 'Popis suradnika',
+'listusers-editsonly'     => 'Pokaži samo suradnike s uređivanjem',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Suradničko ime:',
 'ancientpages'            => 'Najstarije stranice',
@@ -1583,8 +1624,8 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Evidencije',
 'all-logs-page'        => 'Sve evidencije',
-'alllogstext'          => 'Skupni prikaz evidencija postavljenih datoteka, brisanja, zaštite, blokiranja, i administratorskih prava.
-Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u pitanju.',
+'alllogstext'          => 'Skupni prikaz svih dostupnih evidencija za {{SITENAME}}.
+Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u upitu.',
 'logempty'             => 'Nema pronađenih stavki.',
 'log-title-wildcard'   => 'Traži stranice koje počinju s navedenim izrazom',
 
@@ -1638,9 +1679,8 @@ i imati valjanu adresu e-pošte u svojim [[Special:Preferences|postavkama]]
 da bi mogli slati poštu drugim suradnicima.',
 'emailuser'       => 'Pošalji e-poštu ovom suradniku',
 'emailpage'       => 'Pošalji e-poštu suradniku',
-'emailpagetext'   => 'Ako je suradnik unio valjanu e-mail adresu u svojim postavkama,
-bit će mu poslana poruka s tekstom iz donjeg obrasca.
-E-mail adresa iz vaših postavki nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
+'emailpagetext'   => 'Ako je suradnik unio valjanu e-mail adresu u svojim postavkama, bit će mu poslana poruka s tekstom iz donjeg obrasca.
+E-mail adresa iz vaših [[Special:Preferences|postavki]] nalazit će se u "From" polju poruke i primatelj će vam moći odgovoriti.',
 'usermailererror' => 'Sustav pošte javio je pogrešku:',
 'defemailsubject' => '{{SITENAME}} elektronička pošta (e-mail)',
 'noemailtitle'    => 'Nema adrese primaoca',
@@ -1816,6 +1856,15 @@ Slijede trenutačne postavke stranice <strong>$1</strong>:',
 'protect-expiring'            => 'istječe $1 (UTC)',
 'protect-cascade'             => 'Prenosiva zaštita - zaštiti sve stranice koje su uključene u ovu.',
 'protect-cantedit'            => 'Ne možete mijenjati razinu zaštite ove stranice, jer nemate prava uređivati ju.',
+'protect-othertime'           => 'Drugo vrijeme:',
+'protect-othertime-op'        => 'drugo vrijeme',
+'protect-otherreason'         => 'Drugi/dodatni razlog:',
+'protect-otherreason-op'      => 'drugi/dodatni razlog',
+'protect-dropdown'            => '*Najčešći razlozi zaštićivanja
+** Učestalo vandaliziranje
+** Učestalo spamiranje
+** Neproduktivni uređivački rat
+** Zatrpavanje nedavnih promjena',
 'restriction-type'            => 'Dopuštenje:',
 'restriction-level'           => 'Nivo ograničenja:',
 'minimum-size'                => 'Najmanja veličina',
@@ -2247,7 +2296,8 @@ Transwiki uvoz stranica je zabilježen u [[Special:Log/import|evidenciji uvoza s
 
 # Spam protection
 'spamprotectiontitle' => 'Zaštita od spama',
-'spamprotectiontext'  => 'Stranicu koju ste željeli snimiti blokirao je filter spama. Razlog je vjerojatno vanjska poveznica.',
+'spamprotectiontext'  => 'Stranicu koju ste željeli snimiti blokirao je filter spama.
+Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'spamprotectionmatch' => 'Naš filter spama reagirao je na sljedeći tekst: $1',
 'spambot_username'    => 'MediaWiki zaštita od spama',
 'spam_reverting'      => 'Vraćam na zadnju inačicu koja ne sadrži poveznice na $1',
@@ -2298,8 +2348,8 @@ $1',
 'filedelete-archive-read-only'    => 'Web poslužitelj nema pravo pisanja u direktorij "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Usporedba s prethodnom',
-'nextdiff'     => 'Usporedba sa sljedećom →',
+'previousdiff' => '← Starija izmjena',
+'nextdiff'     => 'Novija izmjena →',
 
 # Visual comparison
 'visual-comparison' => 'Vidna usporedba',
@@ -2635,8 +2685,8 @@ Već vam je e-mailom poslan potvrdni kôd; ako ste upravo otvorili suradnički r
 'confirmemail_sent'        => 'Poruka s potvrdom je poslana.',
 'confirmemail_oncreate'    => 'Potvrdni kôd poslan je na vašu elektroničku adresu.
 Ovaj kôd nije potreban za prijavljivanje, no bit će vam potreban kako biste osposobili neke od postavki na Wikipediji koje uključuju elektroničku poštu.',
-'confirmemail_sendfailed'  => 'Poruka s potvrdom se nije mogla poslati. Provjerite pravilnost adrese.
-
+'confirmemail_sendfailed'  => 'Projekt {{SITENAME}} nije uspio poslati vaš potvrdni email.
+Provjerite pravilnost adrese.
 Poruka o pogrešci e-mail poslužitelja: $1',
 'confirmemail_invalid'     => 'Pogrešna potvrda. Kôd je možda istekao.',
 'confirmemail_needlogin'   => 'Trebate se $1, kako bi se potvrdila vaša e-mail adresa.',
@@ -2663,8 +2713,8 @@ Valjanost ovog potvrdnog koda istječe $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki transkluzija isključena]',
-'scarytranscludefailed'   => '[Dobava predloška nije uspjela; $1; ispričavam se]',
-'scarytranscludetoolong'  => '[URL je predug; ispričavam se]',
+'scarytranscludefailed'   => '[Dobava predloška nije uspjela za $1]',
+'scarytranscludetoolong'  => '[URL je predug]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2676,7 +2726,7 @@ $1
 'trackbackdeleteok' => 'Trackback izbrisan.',
 
 # Delete conflict
-'deletedwhileediting' => 'Upozorenje: dok ste uređivali stranicu netko ju je izbrisao!',
+'deletedwhileediting' => "'''Upozorenje''': Ova stranica je obrisana nakon što ste počeli uređivati!",
 'confirmrecreate'     => "Suradnik [[User:$1|$1]] ([[User talk:$1|talk]]) izbrisao je ovaj članak nakon što ste ga počeli uređivati. Razlog brisanja
 : ''$2''
 Potvrdite namjeru vraćanja ovog članka.",
