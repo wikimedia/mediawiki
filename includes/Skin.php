@@ -551,12 +551,6 @@ END;
 			'action' => 'raw',
 			'maxage' => $wgSquidMaxage,
 		);
-		if( $wgUser->isLoggedIn() ) {
-			// Ensure that logged-in users' generated CSS isn't clobbered
-			// by anons' publicly cacheable generated CSS.
-			$siteargs['smaxage'] = '0';
-			$siteargs['ts'] = $wgUser->mTouched;
-		}
 
 		// Add any extension CSS
 		foreach( $out->getExtStyle() as $tag ) {
@@ -573,14 +567,20 @@ END;
 				'smaxage' => $wgSquidMaxage
 			) + $siteargs );
 			# Site settings must override extension css! (bug 15025)
-			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI) );
-			$out->addStyle( self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI), "print" );
+			$out->addStyle( self::makeNSUrl( 'Common.css', $query, NS_MEDIAWIKI ) );
+			$out->addStyle( self::makeNSUrl( 'Print.css', $query, NS_MEDIAWIKI ), 'print' );
 			if( $wgHandheldStyle ) {
-				$out->addStyle( self::makeNSUrl( 'Handheld.css', $query, NS_MEDIAWIKI), "handheld" );
+				$out->addStyle( self::makeNSUrl( 'Handheld.css', $query, NS_MEDIAWIKI ), 'handheld' );
 			}
 			$out->addStyle( self::makeNSUrl( $this->getSkinName() . '.css', $query, NS_MEDIAWIKI ) );
 		}
 
+		if( $wgUser->isLoggedIn() ) {
+			// Ensure that logged-in users' generated CSS isn't clobbered
+			// by anons' publicly cacheable generated CSS.
+			$siteargs['smaxage'] = '0';
+			$siteargs['ts'] = $wgUser->mTouched;
+		}
 		// Per-user styles based on preferences
 		$siteargs['gen'] = 'css';
 		if( ( $us = $wgRequest->getVal( 'useskin', '' ) ) !== '' ) {
@@ -597,8 +597,8 @@ END;
 				// @FIXME: properly escape the cdata!
 				$this->usercss = "/*<![CDATA[*/\n" . $previewCss . "/*]]>*/";
 			} else {
-				$out->addStyle( self::makeUrl($this->userpage .'/'.$this->getSkinName() .'.css',
-					'action=raw&ctype=text/css') );
+				$out->addStyle( self::makeUrl($this->userpage . '/' . $this->getSkinName() .'.css',
+					'action=raw&ctype=text/css' ) );
 			}
 		}
 
