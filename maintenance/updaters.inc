@@ -1484,6 +1484,7 @@ function do_postgres_updates() {
 		array("revision",      "rev_deleted",          "SMALLINT NOT NULL DEFAULT 0"),
 		array("user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ"),
 		array("site_stats",    "ss_active_users",      "INTEGER DEFAULT '-1'"),
+		array("revision",      "rev_parent_id",        "INTEGER DEFAULT NULL"),
 	);
 
 
