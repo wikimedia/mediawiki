@@ -3154,10 +3154,10 @@ class Title {
 	 * @return \type{\string} Trackback URL
 	 */
 	public function trackbackURL() {
-		global $wgTitle, $wgScriptPath, $wgServer;
+		global $wgScriptPath, $wgServer;
 
 		return "$wgServer$wgScriptPath/trackback.php?article="
-			. htmlspecialchars(urlencode($wgTitle->getPrefixedDBkey()));
+			. htmlspecialchars(urlencode($this->getPrefixedDBkey()));
 	}
 
 	/**
