@@ -128,6 +128,7 @@ $wgIgnoredMessages = array(
 	'uncategorizedtemplates-summary',
 	'popularpages-summary',
 	'wantedcategories-summary',
+	'wantedfiles-summary',
 	'wantedpages-summary',
 	'mostlinked-summary',
 	'mostlinkedcategories-summary',
