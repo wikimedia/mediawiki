@@ -30,11 +30,11 @@ class ProtectionForm {
 	var $mPermErrors = array();
 	var $mApplicableTypes = array();
 
-	function __construct( &$article ) {
+	function __construct( Article $article ) {
 		global $wgRequest, $wgUser;
 		global $wgRestrictionTypes, $wgRestrictionLevels;
-		$this->mArticle =& $article;
-		$this->mTitle =& $article->mTitle;
+		$this->mArticle = $article;
+		$this->mTitle = $article->mTitle;
 		$this->mApplicableTypes = $this->mTitle->exists() ? $wgRestrictionTypes : array('create');
 
 		if( $this->mTitle ) {
@@ -95,8 +95,7 @@ class ProtectionForm {
 		global $wgRequest, $wgOut;
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
-				$article = new Article( $this->mTitle );
-				$q = $article->isRedirect() ? 'redirect=no' : '';
+				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
 				$wgOut->redirect( $this->mTitle->getFullUrl( $q ) );
 			}
 		} else {
