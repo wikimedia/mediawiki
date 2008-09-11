@@ -5,12 +5,12 @@
  * @ingroup HTTP
  */
 class Http {
-	static function get( $url, $timeout = 'default' ) {
-		return Http::request( "GET", $url, $timeout );
+	static function get( $url, $timeout = 'default', $opts = array() ) {
+		return Http::request( "GET", $url, $timeout, $opts );
 	}
 
-	static function post( $url, $timeout = 'default' ) {
-		return Http::request( "POST", $url, $timeout );
+	static function post( $url, $timeout = 'default', $opts = array() ) {
+		return Http::request( "POST", $url, $timeout, $opts );
 	}
 
 	/**
@@ -18,7 +18,7 @@ class Http {
 	 *
 	 * if $timeout is 'default', $wgHTTPTimeout is used
 	 */
-	static function request( $method, $url, $timeout = 'default' ) {
+	static function request( $method, $url, $timeout = 'default', $curlOptions = array() ) {
 		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
 
 		wfDebug( __METHOD__ . ": $method $url\n" );
@@ -48,6 +48,12 @@ class Http {
 			# referring page.
 			if ( is_object( $wgTitle ) ) {
 				curl_setopt( $c, CURLOPT_REFERER, $wgTitle->getFullURL() );
+			}
+			
+			if ( is_array( $curlOptions ) ) {
+				foreach( $curlOptions as $option => $value ) {
+					curl_setopt( $c, $option, $value );
+				}
 			}
 
 			ob_start();
