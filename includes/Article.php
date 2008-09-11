@@ -1862,7 +1862,7 @@ class Article {
 				
 				$cascade_description = ''; 	 
 				if( $cascade ) {
-					$cascade_description = ' ['.wfMsg('protect-summary-cascade').']'; 	 
+					$cascade_description = ' ['.wfMsgForContent('protect-summary-cascade').']'; 	 
 				}
 
 				if( $reason )
