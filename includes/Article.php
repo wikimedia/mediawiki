@@ -224,7 +224,18 @@ class Article {
 			} else {
 				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 			}
-
+			$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
+			$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+			if( $pager->getNumRows() > 0 ) {
+				$wgOut->addHtml( '<div id="mw-deleted-notice">' );
+				$wgOut->addWikiMsg( 'deleted-notice' );
+				$wgOut->addHTML(
+					$loglist->beginLogEventsList() .
+					$pager->getBody() .
+					$loglist->endLogEventsList()
+				);
+				$wgOut->addHtml( '</div>' );
+			}
 			return "<div class='noarticletext'>\n$ret\n</div>";
 		} else {
 			$this->loadContent();

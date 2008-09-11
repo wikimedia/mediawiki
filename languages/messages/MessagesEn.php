@@ -1180,6 +1180,7 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
+'deleted-notice' => "This page has been deleted. The deletion log for the page is provided below for reference.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
