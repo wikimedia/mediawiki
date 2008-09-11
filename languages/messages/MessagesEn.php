@@ -380,6 +380,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'UnusedImages' ),
 	'Wantedpages'               => array( 'WantedPages', 'BrokenLinks' ),
 	'Wantedcategories'          => array( 'WantedCategories' ),
+	'Wantedfiles'               => array( 'WantedFiles' ),
 	'Missingfiles'              => array( 'MissingFiles', 'MissingImages' ),
 	'Mostlinked'                => array( 'MostLinked' ),
 	'Mostlinkedcategories'      => array( 'MostLinkedCategories', 'MostUsedCategories' ),
@@ -1990,6 +1991,8 @@ Each row contains links to the first and second redirect, as well as the target 
 'popularpages-summary'            => '', # do not translate or duplicate this message to other languages
 'wantedcategories'                => 'Wanted categories',
 'wantedcategories-summary'        => '', # do not translate or duplicate this message to other languages
+'wantedfiles'                     => 'Wanted files',
+'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
 'wantedpages'                     => 'Wanted pages',
 'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
 'missingfiles'                    => 'Missing files',

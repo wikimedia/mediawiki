@@ -39,6 +39,7 @@ $wgQueryPages = array(
 	array( 'UnusedCategoriesPage',          'Unusedcategories'              ),
 	array( 'UnusedimagesPage',              'Unusedimages'                  ),
 	array( 'WantedCategoriesPage',          'Wantedcategories'              ),
+	array( 'WantedFilesPage',               'Wantedfiles'                   ),
 	array( 'WantedPagesPage',               'Wantedpages'                   ),
 	array( 'UnwatchedPagesPage',            'Unwatchedpages'                ),
 	array( 'UnusedtemplatesPage',           'Unusedtemplates' 				),

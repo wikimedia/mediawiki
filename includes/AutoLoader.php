@@ -489,6 +489,7 @@ $wgAutoloadLocalClasses = array(
 	'UserrightsPage' => 'includes/specials/SpecialUserrights.php',
 	'UsersPager' => 'includes/specials/SpecialListusers.php',
 	'WantedCategoriesPage' => 'includes/specials/SpecialWantedcategories.php',
+	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WhatLinksHerePage' => 'includes/specials/SpecialWhatlinkshere.php',
 	'WikiImporter' => 'includes/specials/SpecialImport.php',
