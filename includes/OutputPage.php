@@ -1252,7 +1252,7 @@ class OutputPage {
 			// Wiki is read only
 			$this->setPageTitle( wfMsg( 'readonly' ) );
 			$reason = wfReadOnlyReason();
-			$this->wrapWikiMsg( '<div class="mw-readonly-error">$1</div>', 'readonlytext' );
+			$this->wrapWikiMsg( '<div class="mw-readonly-error">$1</div>', array( 'readonlytext', $reason ) );
 		}
 
 		// Show source, if supplied
