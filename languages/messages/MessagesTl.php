@@ -9,6 +9,25 @@
  * @author לערי ריינהארט
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Midya',
+	NS_SPECIAL          => 'Natatangi',
+	NS_TALK             => 'Usapan',
+	NS_USER             => 'Tagagamit',
+	NS_USER_TALK        => 'Usapang tagagamit',
+	NS_PROJECT_TALK     => 'Usapang $1',
+	NS_IMAGE            => 'Larawan',
+	NS_IMAGE_TALK       => 'Usapang larawan',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Usapang MediaWiki',
+	NS_TEMPLATE         => 'Suleras',
+	NS_TEMPLATE_TALK    => 'Usapang suleras',
+	NS_HELP             => 'Tulong',
+	NS_HELP_TALK        => 'Usapang tulong',
+	NS_CATEGORY         => 'Kategorya',
+	NS_CATEGORY_TALK    => 'Usapang kategorya',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Salungguhitan ang mga kawing:',

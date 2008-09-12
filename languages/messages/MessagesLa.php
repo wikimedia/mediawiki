@@ -633,6 +633,9 @@ Considera paginam in partes minores frangere.',
 'template-semiprotected'    => '(semi-protecta)',
 'hiddencategories'          => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
 'permissionserrors'         => 'Errores permissionis',
+'recreate-deleted-warn'     => "'''Cave: paginam qui antea iam deleta est creas.'''
+
+Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
 
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
@@ -924,7 +927,8 @@ Vide etiam [[Special:NewImages|pinacothecam fasciculorum recentissimorum imposit
 'watchthisupload'    => 'Custodire hanc paginam',
 'upload-wasdeleted'  => "'''Cave: fasciculum qui antea iam deletus est impones.'''
 
-Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit. Commodule notatio fasciculorum deletorum hic datur:",
+Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit.
+Commodule notatio fasciculorum deletorum hic datur:",
 
 'upload-file-error' => 'Erratum internum',
 

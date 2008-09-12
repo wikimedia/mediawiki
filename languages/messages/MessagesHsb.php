@@ -1390,6 +1390,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'doubleredirects'            => 'Dwójne daleposrědkowanja',
 'doubleredirectstext'        => 'Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž tež k prěnjej lince druheho daleposrědkowanja, kotraž zwjetša woprawdźity cil strony podawa, na kotryž prěnje daleposrědkowanje měło pokazać.',
 'double-redirect-fixed-move' => '[[$1]] bu přesunjeny, je nětko daleposrědkowanje do [[$2]]',
+'double-redirect-fixer'      => 'Porjedźer daleposrědkowanjow',
 
 'brokenredirects'        => 'Skóncowane daleposrědkowanja',
 'brokenredirectstext'    => 'Slědowace daleposrědkowanja wotkazuja na njeeksistowace strony:',

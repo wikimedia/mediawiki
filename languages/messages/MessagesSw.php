@@ -6,13 +6,15 @@
  *
  * @author Malangali
  * @author Marcos
+ * @author Muddyb Blast Producer
  * @author Robert Ullmann
  * @author לערי ריינהארט
  */
 
 $messages = array(
 # User preference toggles
-'tog-hideminor' => 'Ficha mabadilisho madogo ya hivi karibuni',
+'tog-hideminor'    => 'Ficha mabadilisho madogo ya hivi karibuni',
+'tog-ccmeonemails' => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
 
 # Dates
 'sunday'        => 'Jumapili',
@@ -96,6 +98,7 @@ $messages = array(
 'printableversion'  => 'Ukarasa kwa kuchapa',
 'permalink'         => 'Kiungo cha daima',
 'edit'              => 'Hariri',
+'create'            => 'Anzisha kurasa',
 'editthispage'      => 'Hariri ukurasa huu',
 'delete'            => 'Futa',
 'deletethispage'    => 'Futa ukurasa huo',

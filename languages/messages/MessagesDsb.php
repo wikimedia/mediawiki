@@ -573,6 +573,7 @@ Nježli až wótpósćelo se dalšna e-mail na to wužywarske konto, dejš slěd
 'createaccount-text'         => 'Něchten jo konto za twóje e-mailowu adresu na {{GRAMMAR:lokatiw|{{SITENAME}}}} ($4) z mjenim "$2", z pótajmnym słowom "$3", wutwórił. Dejš se pśizjawiś a swóje pótajmne słowo něnt změniś.
 
 Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnje wutwóriło.',
+'login-throttled'            => 'Sy pśecesto wopytał gronidło konta zapódaś. Pócakaj pšosym, nježli až wopytajoš znowego.',
 'loginlanguagelabel'         => 'Rěc: $1',
 
 # Password reset dialog
@@ -1425,6 +1426,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'doubleredirects'            => 'Dwójne dalejpósrědnjenja',
 'doubleredirectstext'        => 'Toś ten bok nalicujo dalejpósrědnjenja, kótarež wótkazuju na druge dalejpósrědnjenja. Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a teke na cyl drugego dalejpósrědnjenja, což jo w normalnem paźe wótmyslony cylowy bok, na kótaryž dejał južo prědne dalejpósrědnjenje wótkazowaś.',
 'double-redirect-fixed-move' => '[[$1]] jo se pśesunuł, jo něnto dalejposrědnjenje do [[$2]]',
+'double-redirect-fixer'      => 'Pórěźaŕ dalejpósrědnjenjow',
 
 'brokenredirects'        => 'Skóńcowane dalejpósrědnjenja',
 'brokenredirectstext'    => 'Slědujuce dalejpósrědnjenja wótkazuju na njeeksistěrujuce boki:',
@@ -2127,6 +2129,9 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-watch'                   => 'Toś ten bok wobglědowańkam dodaś',
 'tooltip-recreate'                => 'Bok nawrośiś, lěcrowno jo był wulašowany',
 'tooltip-upload'                  => 'Z uploadowanim zachopiś',
+'tooltip-rollback'                => '"Roolback" anulěrujo změny slědnego wužywarja na toś tom boku z jadnym kliknjenim.',
+'tooltip-undo'                    => 'Anulěrujo toś tu změnu a wócynijo wobźěłański formular w pśeglědowem modusu.
+W zespominanju dajo se pśicyna pódaś.',
 
 # Stylesheets
 'common.css'   => '/** Na toś tom městnje wustatkujo se CSS na wšykne šaty. */',
@@ -2226,6 +2231,7 @@ $1',
 'newimages'             => 'Nowe dataje',
 'imagelisttext'         => "How jo lisćina '''$1''' {{PLURAL:$1|dataje|datajowu|datajow}}, sortěrowane $2.",
 'newimages-summary'     => 'Toś ten specialny bok pokazujo wobraze a dataje, kótarež ako slědne su se uploadowali.',
+'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Datajowe mě (abo źěl z togo):',
 'showhidebots'          => '(awtomatiske programy (boty) $1)',
 'noimages'              => 'Žedne dataje njejsu se namakali.',
@@ -2434,7 +2440,11 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-lightsource-255' => 'Druge žrědło swětła',
 
 # Flash modes
-'exif-flash-mode-3' => 'awtomatiski modus',
+'exif-flash-fired-0'    => 'Błysk njejo se zapusćił',
+'exif-flash-fired-1'    => 'Błysk jo se zapusćił',
+'exif-flash-mode-3'     => 'awtomatiski modus',
+'exif-flash-function-1' => 'Njejo błyskowa funkcija',
+'exif-flash-redeye-1'   => 'Modus redukcije cerwjenych wócow',
 
 'exif-focalplaneresolutionunit-2' => 'cole',
 
@@ -2712,5 +2722,14 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Prozny bok',
 'intentionallyblankpage' => 'Toś ten bok jo z wótglědom prozny.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Wóstaj toś tu smužku rowno tak jo<pre>
+#Zapódaj fragmenty regularnych wurazow (jano źěl mjazy //) dołojce
+#Toś te budu se pśirunowaś z URL ekseternych wobrazow
+#Te, kótarež makaju se, zwobraznuju se ako wobraze, howac pokažo se jano wótkaz k wobrazoju
+#Ze smužkami, kótarež zachopiju se z #, wobchadaju ako z komentarami
+
+#Staj wše fragmenty regularnych wurazow nad smužku. Wóstaj toś tu smužku rowno tak jo</pre>',
 
 );

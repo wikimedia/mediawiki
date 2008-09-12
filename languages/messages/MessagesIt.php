@@ -1263,10 +1263,10 @@ Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. 
 'upload-maxfilesize'          => 'Dimensione massima del file: $1',
 'watchthisupload'             => 'Aggiungi agli osservati speciali',
 'filewasdeleted'              => 'Un file con questo nome è stato già caricato e cancellato in passato. Verificare il log delle $1 prima di caricarlo di nuovo.',
-'upload-wasdeleted'           => "'''Attenzione: stai caricando un file che in precedenza è stato cancellato.'''
+'upload-wasdeleted'           => "'''Attenzione: si sta per caricare un file già cancellato in passato.'''
 
-Verifica per favore l'opportunità di continuare con il caricamento di questo file.
-Per tua comodità qui c'è la registrazione della cancellazione:",
+Accertarsi che sia davvero opportuno continuare a caricare questo file.
+L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
 'filename-bad-prefix'         => 'Il nome del file che stai caricando inizia con <strong>"$1"</strong>, che è un nome non-descrittivo tipicamente assegnato automaticamente dalle fotocamere digitali. Per favore scegli un nome più descrittivo per il tuo file.',
 'filename-prefix-blacklist'   => ' #<!-- lascia questa riga esattamente com\'è --> <pre>
 # La sintassi è la seguente:
@@ -1464,6 +1464,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'popularpages'            => 'Pagine più visitate',
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pagine più richieste',
+'wantedfiles'             => 'File richiesti',
 'missingfiles'            => 'File inesistente',
 'mostlinked'              => 'Pagine più richiamate',
 'mostlinkedcategories'    => 'Categorie più richiamate',
