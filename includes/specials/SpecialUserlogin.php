@@ -175,8 +175,9 @@ class LoginForm {
 		# Save settings (including confirmation token)
 		$u->saveSettings();
 
-		# If not logged in, assume the new account as the current one and set session cookies
-		# then show a "welcome" message or a "need cookies" message as needed
+		# If not logged in, assume the new account as the current one and set
+		# session cookies then show a "welcome" message or a "need cookies"
+		# message as needed
 		if( $wgUser->isAnon() ) {
 			$wgUser = $u;
 			$wgUser->setCookies();
@@ -216,12 +217,11 @@ class LoginForm {
 			return false;
 		}
 
-		// If we are not allowing users to login locally, we should
-		// be checking to see if the user is actually able to
-		// authenticate to the authentication server before they
-		// create an account (otherwise, they can create a local account
-		// and login as any domain user). We only need to check this for
-		// domains that aren't local.
+		// If we are not allowing users to login locally, we should be checking
+		// to see if the user is actually able to authenticate to the authenti-
+		// cation server before they create an account (otherwise, they can
+		// create a local account and login as any domain user). We only need
+		// to check this for domains that aren't local.
 		if( 'local' != $this->mDomain && '' != $this->mDomain ) {
 			if( !$wgAuth->canCreateAccounts() && ( !$wgAuth->userExists( $this->mName ) || !$wgAuth->authenticate( $this->mName, $this->mPassword ) ) ) {
 				$this->mainLoginForm( wfMsg( 'wrongpassword' ) );
@@ -281,7 +281,8 @@ class LoginForm {
 			}
 		}
 
-		# if you need a confirmed email address to edit, then obviously you need an email address.
+		# if you need a confirmed email address to edit, then obviously you
+		# need an email address.
 		if ( $wgEmailConfirmToEdit && empty( $this->mEmail ) ) {
 			$this->mainLoginForm( wfMsg( 'noemailtitle' ) );
 			return false;
@@ -292,8 +293,8 @@ class LoginForm {
 			return false;
 		}
 
-		# Set some additional data so the AbortNewAccount hook can be
-		# used for more than just username validation
+		# Set some additional data so the AbortNewAccount hook can be used for
+		# more than just username validation
 		$u->setEmail( $this->mEmail );
 		$u->setRealName( $this->mRealName );
 
@@ -391,11 +392,12 @@ class LoginForm {
 			}
 		}
 
-		// Load $wgUser now, and check to see if we're logging in as the same name. 
-		// This is necessary because loading $wgUser (say by calling getName()) calls
-		// the UserLoadFromSession hook, which potentially creates the user in the 
-		// database. Until we load $wgUser, checking for user existence using 
-		// User::newFromName($name)->getId() below will effectively be using stale data.
+		// Load $wgUser now, and check to see if we're logging in as the same
+		// name. This is necessary because loading $wgUser (say by calling
+		// getName()) calls the UserLoadFromSession hook, which potentially
+		// creates the user in the database. Until we load $wgUser, checking
+		// for user existence using User::newFromName($name)->getId() below
+		// will effectively be using stale data.
 		if ( $wgUser->getName() === $this->mName ) {
 			wfDebug( __METHOD__.": already logged in as {$this->mName}\n" );
 			return self::SUCCESS;
@@ -425,34 +427,30 @@ class LoginForm {
 
 		if (!$u->checkPassword( $this->mPassword )) {
 			if( $u->checkTemporaryPassword( $this->mPassword ) ) {
-				// The e-mailed temporary password should not be used
-				// for actual logins; that's a very sloppy habit,
-				// and insecure if an attacker has a few seconds to
-				// click "search" on someone's open mail reader.
+				// The e-mailed temporary password should not be used for actu-
+				// al logins; that's a very sloppy habit, and insecure if an
+				// attacker has a few seconds to click "search" on someone's o-
+				// pen mail reader.
 				//
-				// Allow it to be used only to reset the password
-				// a single time to a new value, which won't be in
-				// the user's e-mail archives.
+				// Allow it to be used only to reset the password a single time
+				// to a new value, which won't be in the user's e-mail ar-
+				// chives.
 				//
-				// For backwards compatibility, we'll still recognize
-				// it at the login form to minimize surprises for
-				// people who have been logging in with a temporary
-				// password for some time.
+				// For backwards compatibility, we'll still recognize it at the
+				// login form to minimize surprises for people who have been
+				// logging in with a temporary password for some time.
 				//
-				// As a side-effect, we can authenticate the user's
-				// e-mail address if it's not already done, since
-				// the temporary password was sent via e-mail.
-				//
+				// As a side-effect, we can authenticate the user's e-mail ad-
+				// dress if it's not already done, since the temporary password
+				// was sent via e-mail.
 				if( !$u->isEmailConfirmed() ) {
 					$u->confirmEmail();
 					$u->saveSettings();
 				}
 
-				// At this point we just return an appropriate code
-				// indicating that the UI should show a password
-				// reset form; bot interfaces etc will probably just
-				// fail cleanly here.
-				//
+				// At this point we just return an appropriate code/ indicating
+				// that the UI should show a password reset form; bot inter-
+				// faces etc will probably just fail cleanly here.
 				$retval = self::RESET_PASS;
 			} else {
 				$retval = '' == $this->mPassword ? self::EMPTY_PASS : self::WRONG_PASS;
@@ -473,16 +471,16 @@ class LoginForm {
 	}
 
 	/**
-	 * Attempt to automatically create a user on login.
-	 * Only succeeds if there is an external authentication method which allows it.
+	 * Attempt to automatically create a user on login. Only succeeds if there
+	 * is an external authentication method which allows it.
 	 * @return integer Status code
 	 */
 	function attemptAutoCreate( $user ) {
 		global $wgAuth, $wgUser;
 		/**
-		 * If the external authentication plugin allows it,
-		 * automatically create a new account for users that
-		 * are externally defined but have not yet logged in.
+		 * If the external authentication plugin allows it, automatically cre-
+		 * ate a new account for users that are externally defined but have not
+		 * yet logged in.
 		 */
 		if ( !$wgAuth->autoCreate() ) {
 			return self::NOT_EXISTS;
@@ -526,8 +524,8 @@ class LoginForm {
 				$wgMemc->delete( $key );
 
 				if( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {
-					/* Replace the language object to provide user interface in correct
-					 * language immediately on this first page load.
+					/* Replace the language object to provide user interface in
+					 * correct language immediately on this first page load.
 					 */
 					global $wgLang, $wgRequest;
 					$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
@@ -620,7 +618,8 @@ class LoginForm {
 		# Check against password throttle
 		if ( $u->isPasswordReminderThrottled() ) {
 			global $wgPasswordReminderResendTime;
-			# Round the time in hours to 3 d.p., in case someone is specifying minutes or seconds.
+			# Round the time in hours to 3 d.p., in case someone is specifying
+			# minutes or seconds.
 			$this->mainLoginForm( wfMsgExt( 'throttled-mailpassword', array( 'parsemag' ),
 				round( $wgPasswordReminderResendTime, 3 ) ) );
 			return;
@@ -741,7 +740,8 @@ class LoginForm {
 		$wgOut->setArticleRelated( false );
 
 		$wgOut->addWikitext( $wgOut->formatPermissionsErrorMessage( $errors, 'createaccount' ) );
-		// Stuff that might want to be added at the end. For example, instructions if blocked.
+		// Stuff that might want to be added at the end. For example, instruc-
+		// tions if blocked.
 		$wgOut->addWikiMsg( 'cantcreateaccount-nonblock-text' );
 
 		$wgOut->returnToMain( false );
@@ -899,9 +899,9 @@ class LoginForm {
 	/**
 	 * Check if a session cookie is present.
 	 *
-	 * This will not pick up a cookie set during _this_ request, but is
-	 * meant to ensure that the client is returning the cookie which was
-	 * set on a previous pass through the system.
+	 * This will not pick up a cookie set during _this_ request, but is meant
+	 * to ensure that the client is returning the cookie which was set on a
+	 * previous pass through the system.
 	 *
 	 * @private
 	 */

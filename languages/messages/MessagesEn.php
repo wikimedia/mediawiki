@@ -1101,7 +1101,11 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
-'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.''' '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload,'' or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);'''Konqueror: '''click ''Reload'' or press ''F5;'' '''Opera:''' clear the cache in ''Tools → Preferences;'' '''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.'''
+'''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);
+'''Konqueror: '''click ''Reload'' or press ''F5'';
+'''Opera:''' clear the cache in ''Tools → Preferences'';
+'''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
 '''It has not yet been saved!'''",
@@ -2160,7 +2164,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'notanarticle'         => 'Not a content page',
 'notvisiblerev'        => 'Revision has been deleted',
 'watchnochange'        => 'None of your watched items were edited in the time period displayed.',
-'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} watched not counting talk pages.',
+'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not counting talk pages.',
 'wlheader-enotif'      => '* E-mail notification is enabled.',
 'wlheader-showupdated' => "* Pages which have been changed since you last visited them are shown in '''bold'''",
 'watchmethod-recent'   => 'checking recent edits for watched pages',
