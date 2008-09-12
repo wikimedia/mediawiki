@@ -328,12 +328,16 @@ class MediaWiki {
 	 */
 	function finalCleanup ( &$deferredUpdates, &$output ) {
 		wfProfileIn( __METHOD__ );
-		$this->doUpdates( $deferredUpdates );
-		$this->doJobs();
 		# Now commit any transactions, so that unreported errors after output() don't roll back the whole thing
 		$factory = wfGetLBFactory();
-		$factory->shutdown();
+		$factory->commitMasterChanges();
+		# Output everything!
 		$output->output();
+		# Do any deferred jobs
+		$this->doUpdates( $deferredUpdates );
+		$this->doJobs();
+		# Commit and close up!
+		$factory->shutdown();
 		wfProfileOut( __METHOD__ );
 	}
 
