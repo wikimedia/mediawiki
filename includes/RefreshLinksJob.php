@@ -47,3 +47,87 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 }
+
+/**
+ * Background job to update links for a given title.
+ * Newer version for high use templates.
+ *
+ * @ingroup JobQueue
+ */
+class RefreshLinksJob2 extends Job {
+
+	function __construct( $title, $params, $id = 0 ) {
+		parent::__construct( 'refreshLinks2', $title, $params, $id );
+	}
+
+	/**
+	 * Run a refreshLinks2 job
+	 * @return boolean success
+	 */
+	function run() {
+		global $wgParser;
+
+		wfProfileIn( __METHOD__ );
+
+		$linkCache = LinkCache::singleton();
+		$linkCache->clear();
+
+		if( is_null( $this->title ) ) {
+			$this->error = "refreshLinks2: Invalid title";
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+		if( !isset($this->params['start']) || !isset($this->params['end']) ) {
+			$this->error = "refreshLinks2: Invalid params";
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+		$start = intval($this->params['start']);
+		$end = intval($this->params['end']);
+		
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'templatelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'page_id=tl_from',
+				"tl_from >= '$start'",
+				"tl_from <= '$end'", 
+				'tl_namespace' => $this->title->getNamespace(),
+				'tl_title' => $this->title->getDBkey()
+			), __METHOD__
+		);
+		
+		# Not suitable for page load triggered job running!
+		# Gracefully switch to refreshLinks jobs if this happens.
+		if( php_sapi_name() != 'cli' ) {
+			$jobs = array();
+			while( $row = $dbr->fetchObject( $res ) ) {
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$jobs[] = new RefreshLinksJob( $title, '' );
+			}
+			Job::batchInsert( $jobs );
+			return true;
+		}
+		# Re-parse each page that transcludes this page and update their tracking links...
+		while( $row = $dbr->fetchObject( $res ) ) {
+			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+			$revision = Revision::newFromTitle( $title );
+			if ( !$revision ) {
+				$this->error = 'refreshLinks: Article not found "' . $title->getPrefixedDBkey() . '"';
+				wfProfileOut( __METHOD__ );
+				return false;
+			}
+			wfProfileIn( __METHOD__.'-parse' );
+			$options = new ParserOptions;
+			$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
+			wfProfileOut( __METHOD__.'-parse' );
+			wfProfileIn( __METHOD__.'-update' );
+			$update = new LinksUpdate( $title, $parserOutput, false );
+			$update->doUpdate();
+			wfProfileOut( __METHOD__.'-update' );
+			wfProfileOut( __METHOD__ );
+		}
+
+		return true;
+	}
+}
