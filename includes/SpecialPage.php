@@ -99,7 +99,7 @@ class SpecialPage
 		'Statistics'                => array( 'SpecialPage', 'Statistics' ),
 		'Randompage'                => 'Randompage',
 		'Lonelypages'               => array( 'SpecialPage', 'Lonelypages' ),
-		'Un7izedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
+		'Uncategorizedpages'        => array( 'SpecialPage', 'Uncategorizedpages' ),
 		'Uncategorizedcategories'   => array( 'SpecialPage', 'Uncategorizedcategories' ),
 		'Uncategorizedimages'       => array( 'SpecialPage', 'Uncategorizedimages' ),
 		'Uncategorizedtemplates'    => array( 'SpecialPage', 'Uncategorizedtemplates' ),
