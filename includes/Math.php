@@ -65,7 +65,7 @@ class MathRenderer {
 
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
-				$cmd = 'sh -c ' . wfwfEscapeShellArg( $cmd );
+				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
 			}
 
 			wfDebug( "TeX: $cmd\n" );
