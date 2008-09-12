@@ -297,7 +297,7 @@
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmen',	# Turkmen
-	'tl' => 'Tagalog',		# Tagalog (Filipino)
+	'tl' => 'Tagalog',		# Tagalog
 	#'tlh' => 'tlhIngan-Hol',	# Klingon - no interlanguage links allowed
 	'tn' => 'Setswana',		# Setswana
 	'to' => 'faka-Tonga',		# Tonga (Tonga Islands)
