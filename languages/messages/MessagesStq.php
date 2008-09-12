@@ -310,7 +310,8 @@ $messages = array(
 'dberrortextcl'        => 'Dät roate n Syntaxfailer in ju Doatenboankoufroage.
 Ju lääste Doatenboankoufroage lutte: „$1“ uut ju Funktion „<tt>$2</tt>“.
 MySQL mäldede dän Failer: „<tt>$3: $4</tt>“.',
-'noconnect'            => 'Spietelk kuude neen Ferbiendenge tou ju Doatenboank apbaud wäide. Die Doatenboankserver häd foulgjende Failere mälded: <i>$1</i>. Fersäik dät jädden noch moal of besäik uus Haudsiede.',
+'noconnect'            => 'In dän Wiki sunt techniske Swierelkhaide aptreeden; der kuude neen Ferbiendenge tou ju Doatenboank apbaud wäide. <br />
+$1',
 'nodb'                 => 'Kuude Doatenboank $1 nit beloangje',
 'cachederror'          => 'Dät Foulgjende is ne Kopie uut de Cache un is fielicht ferallerd.',
 'laggedslavemode'      => 'Woarschauenge: Ju anwiesde Siede kon unner Umstande do jungste Beoarbaidengen noch nit be-ienhoolde.',
@@ -1625,6 +1626,7 @@ Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
 'protect-cantedit'            => 'Du koast ju Speere fon disse Siede nit annerje, deer du neen Begjuchtigenge toun Beoarbaidjen fon ju Siede hääst.',
 'protect-othertime'           => 'Uur Speerduur:',
 'protect-othertime-op'        => 'uur Speerduur',
+'protect-otherreason-op'      => 'uur/bietoukuumenden Gruund',
 'restriction-type'            => 'Schutsstoatus',
 'restriction-level'           => 'Schutshöchte',
 'minimum-size'                => 'Minstgrööte',
@@ -2023,6 +2025,7 @@ Aal Transwiki-Import-Aktione wäide in dät [[Special:Log/import|Import-Logbouk]
 'tooltip-watch'                   => 'Disse Siede beooboachtje',
 'tooltip-recreate'                => 'Wier häärstaale',
 'tooltip-upload'                  => 'Hoochleeden startje',
+'tooltip-rollback'                => 'moaket aal lääste Annerengen fon ju Siede, do der fon dän glieke Benutser moaked sunt, truch aan Klik tounichte.',
 
 # Stylesheets
 'common.css'   => '/** CSS an disse Steede wirket sik ap aal Skins uut */',
@@ -2481,8 +2484,9 @@ $1
 'trackbackdeleteok' => 'Trackback wuude mäd Ärfoulch läsked.',
 
 # Delete conflict
-'deletedwhileediting' => 'Oachtenge: Disse Siede wuude al läsked ätter dät du anfangd hiedest, hier tou beoarbaidjen!
-Wan du disse Siede spiekerst, wäd ju deeruum näi anlaid.',
+'deletedwhileediting' => '<span class="error">Oachtenge: Disse Siede wuude al läsked, ätter dät du anfangd hiedest, hier tou beoarbaidjen!
+Kiekje in dät [{{fullurl:Special:Log|type=delete&page=}}{{FULLPAGENAMEE}} Läsk-Logbouk] ätter,
+wieruum ju Siede läsked wuude. Wan du ju Siede spiekerst, wäd ju näi anlaid.</span>',
 'confirmrecreate'     => "Benutser [[User:$1|$1]] ([[User talk:$1|Diskussion]]) häd disse Siede läsked, ätter dät du ounfangd hääst, ju tou beoarbaidjen. Ju Begruundenge lutte:
 ''$2''.
 Bestäätigje, dät du disse Siede wuddelk näi moakje moatest.",

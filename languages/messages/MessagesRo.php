@@ -1446,8 +1446,8 @@ Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sa
 # Special:Categories
 'categories'                    => 'Categorii',
 'categoriespagetext'            => 'Următoarele categorii conţin pagini sau fişiere.
-[[Special:Categorii neutilizate|Categoriile neutilizate]] nu apar aici.
-Vedeţi şi [[Special:Categorii dorite|categoriile dorite]].',
+[[Special:UnusedCategories|Categoriile neutilizate]] nu apar aici.
+Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'categoriesfrom'                => 'Arată categoriile pornind de la:',
 'special-categories-sort-count' => 'ordonează după număr',
 'special-categories-sort-abc'   => 'sortează alfabetic',

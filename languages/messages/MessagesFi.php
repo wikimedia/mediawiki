@@ -714,7 +714,7 @@ Liitä kaikki ylläolevat tiedot mahdollisiin kyselyihisi.",
 *'''Konqueror''': napsauta päivitä tai paina ''F5''
 *'''Opera:''' saatat joutua tyhjentämään välimuistin kokonaan (''Tools→Preferences'').",
 'usercssjsyoucanpreview'           => 'Voit testata uutta CSS:ää tai JavaScriptiä ennen tallennusta esikatselulla.',
-'usercsspreview'                   => "'''Tämä on vain CSS:n esikatselu. Mitään muutoksia ei ole vielä tallennettu.'''",
+'usercsspreview'                   => "'''Tämä on CSS:n esikatselu. Mitään muutoksia ei ole vielä tallennettu.'''",
 'userjspreview'                    => "'''Tämä on JavaScriptin esikatselu.'''",
 'userinvalidcssjstitle'            => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/monobook.css eikä {{ns:user}}:Matti Meikäläinen/Monobook.css.",
 'updated'                          => '(Päivitetty)',

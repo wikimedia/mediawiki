@@ -1665,6 +1665,7 @@ PICT # misc.
 'popularpages'            => 'صفحات مشهورة',
 'wantedcategories'        => 'تصانيف مطلوبه',
 'wantedpages'             => 'صفحات مطلوبه',
+'wantedfiles'             => 'ملفات مطلوبة',
 'missingfiles'            => 'ملفات ضايعة',
 'mostlinked'              => 'اكتر صفحات موصولة بصفحات تانيه',
 'mostlinkedcategories'    => 'اكتر التصانيف فى عدد الارتباطات',

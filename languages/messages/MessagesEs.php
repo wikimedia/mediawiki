@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aleator
  * @author Alhen
  * @author Alpertron
  * @author Ascánder
@@ -502,7 +503,8 @@ Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las i
 'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
 Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
-'acct_creation_throttle_hit' => 'Lo sentimos, ya ha creado $1 cuentas. No puede crear otra.',
+'acct_creation_throttle_hit' => 'Lo sentimos, ya ha creado {{PLURAL:$1|1 cuenta|$1 cuentas}}.
+No puede crear más.',
 'emailauthenticated'         => 'Su dirección electrónica fue verificada en $1.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',

@@ -1028,6 +1028,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'diff-h3'                 => "'''nagłówek (poziom 3)'''",
 'diff-h4'                 => "'''nagłówek (poziom 4)'''",
 'diff-h5'                 => "'''nagłówek (poziom 5)'''",
+'diff-pre'                => "'''tekst preformatowany'''",
 'diff-ul'                 => "'''lista nieuporządkowana'''",
 'diff-ol'                 => "'''lista uporządkowana'''",
 'diff-li'                 => "'''element listy'''",
@@ -1596,6 +1597,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'popularpages'            => 'Najpopularniejsze strony',
 'wantedcategories'        => 'Brakujące kategorie',
 'wantedpages'             => 'Najpotrzebniejsze strony',
+'wantedfiles'             => 'Potrzebne pliki',
 'missingfiles'            => 'Brak plików',
 'mostlinked'              => 'Najczęściej linkowane strony',
 'mostlinkedcategories'    => 'Kategorie o największej liczbie stron',
@@ -1769,7 +1771,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'created'                      => 'utworzona',
 'enotif_subject'               => 'Strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED przez użytkownika $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zobacz na stronie $1 wszystkie zmiany od Twojej ostatniej wizyty.',
-'enotif_lastdiff'              => 'Zobacz na stronie $1 tą zmianę.',
+'enotif_lastdiff'              => 'Zobacz na stronie $1 tę zmianę.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
 'enotif_body'                  => 'Drogi (droga) $WATCHINGUSERNAME,
 
@@ -2299,6 +2301,9 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-watch'                   => 'Dodaj tę stronę do listy obserwowanych',
 'tooltip-recreate'                => 'Utwórz stronę pomimo jej wcześniejszego usunięcia.',
 'tooltip-upload'                  => 'Rozpoczęcie przesyłania',
+'tooltip-rollback'                => '"cofnij" wycofuje jednym kliknięciem zmianę(-y) tej strony dokonane przez ostatniego edytującego.',
+'tooltip-undo'                    => '„anuluj zmiany” wycofuje tę zmianę i otwiera okno edycji w trybie podglądu.
+Pozwala na wpisanie powodu w opisie zmian.',
 
 # Stylesheets
 'common.css'   => '/* Umieszczony tutaj kod CSS zostanie zastosowany we wszystkich skórkach */',
@@ -2915,5 +2920,14 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 # Special:BlankPage
 'blankpage'              => 'Pusta strona',
 'intentionallyblankpage' => 'Ta strona umyślnie pozostała pusta',
+
+# External image whitelist
+'external_image_whitelist' => ' #Leave this line exactly as it is<pre>
+#Wstaw poniżej fragmenty wyrażeń regularnych (tylko to, co znajduje się między //)
+#Wyrażenia te zostaną dopasowane do URL-i zewnętrznych (bezpośrednio linkowanych) grafik
+#Dopasowane URL-e zostaną wyświetlone jako grafiki, w przeciwnym wypadku będzie pokazany jedynie link do grafiki
+#Linie zaczynające się od # są traktowane jako komentarze
+
+#Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
 );

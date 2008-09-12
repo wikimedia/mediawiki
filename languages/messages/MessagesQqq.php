@@ -1233,6 +1233,7 @@ Don\'t translate the "Template:" part!',
 'popularpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'wantedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'wantedpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
+'wantedfiles' => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
 'mostlinked' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedtemplates' => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1320,7 +1321,7 @@ Don\'t translate the "Template:" part!',
 {{Identical|Group}}",
 'listgrouprights-rights' => "The title of the column in the table, about user rights (like you can ''edit'' this page).",
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
-'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
+'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
 'listgrouprights-addgroup' => 'Used on [[Special:ListGroupRights]]. See also {{msg|listgrouprights-removegroup}}.',
 'listgrouprights-removegroup' => 'Used on [[Special:ListGroupRights]]. See also {{msg|listgrouprights-addgroup}}.',
 'listgrouprights-addgroup-all' => '{{doc-right}}',
@@ -2133,4 +2134,6 @@ $1 is the name of the requested file.',
 # Special:BlankPage
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
 
+# Unknown messages
+'deleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 );

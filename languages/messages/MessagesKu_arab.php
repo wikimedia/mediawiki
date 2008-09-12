@@ -5,6 +5,7 @@
  * @file
  *
  * @author Aras Noori
+ * @author Asoxor
  */
 
 $fallback = 'ku-latn';
@@ -188,7 +189,7 @@ $messages = array(
 'unprotectthispage' => 'ئه‌م په‌ڕه‌یه‌ مه‌پارێزه‌',
 'newpage'           => 'په‌ڕه‌یه‌كی نوێ',
 'talkpage'          => 'گفتوگۆ له‌سه‌ر ئه‌م په‌ڕه‌یه بكه‌',
-'talkpagelinktext'  => 'گفتوگۆ',
+'talkpagelinktext'  => 'وتووێژ',
 'specialpage'       => 'په‌ڕه‌ی تایبه‌ت',
 'personaltools'     => 'ئامرازی تایبه‌تی',
 'postcomment'       => 'لێدوان بنێره‌',
@@ -215,9 +216,10 @@ $messages = array(
 'jumptosearch'      => 'گه‌ڕان',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'دەربارەی {{SITENAME}}',
 'faq'                  => 'پرسیاری هه‌میشه‌ دووباره‌(پهد(',
-'mainpage'             => 'ده‌ستپێك',
-'mainpage-description' => 'ده‌ستپێك',
+'mainpage'             => 'ده‌ستپێک',
+'mainpage-description' => 'ده‌ستپێک',
 
 'versionrequired'     => 'پێویستیت به‌ وه‌شانی $1 ـی‌ ویكیمیدیایه‌',
 'versionrequiredtext' => 'پێویستیت به‌ وه‌شانی $1 ـێ ویكیمیدیا هه‌یه‌ بۆ به‌كاربردنی ئه‌م په‌ڕه‌یه‌
@@ -349,5 +351,8 @@ $messages = array(
 
 # Watchlist editor
 'watchlistedit-noitems' => 'لیستی ته‌ماشاكردنی خۆت به‌تاڵه‌',
+
+# Special:SpecialPages
+'specialpages' => 'لاپەڕە تایبەتەکان',
 
 );

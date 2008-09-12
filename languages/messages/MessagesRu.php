@@ -1544,7 +1544,7 @@ PICT # различные
 'statistics-views-total'   => 'Всего просмотров',
 'statistics-views-peredit' => 'Просмотров на правку',
 'statistics-jobqueue'      => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue очереди заданий]',
-'statistics-users'         => 'Зарегистрированных [[Special:ListUsers|участников]]',
+'statistics-users'         => 'Зарегистрированные [[Special:ListUsers|участники]]',
 'statistics-users-active'  => 'Активные участники',
 'statistics-mostpopular'   => 'Наиболее часто просматриваемые страницы',
 
@@ -1590,6 +1590,7 @@ PICT # различные
 'popularpages'            => 'Популярные страницы',
 'wantedcategories'        => 'Требуемые категории',
 'wantedpages'             => 'Требуемые страницы',
+'wantedfiles'             => 'Требуемые файлы',
 'missingfiles'            => 'Отсутствующие файлы',
 'mostlinked'              => 'Страницы, на которые больше всего ссылок',
 'mostlinkedcategories'    => 'Категории, на которые больше всего ссылок',

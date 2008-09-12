@@ -1793,6 +1793,7 @@ PICT # متنوع
 'popularpages'            => 'صفحات مشهورة',
 'wantedcategories'        => 'تصنيفات مطلوبة',
 'wantedpages'             => 'صفحات مطلوبة',
+'wantedfiles'             => 'ملفات مطلوبة',
 'missingfiles'            => 'ملفات مفقودة',
 'mostlinked'              => 'أكثر الصفحات المرتبطة بصفحات أخرى',
 'mostlinkedcategories'    => 'أكثر التصنيفات ارتباطا',
@@ -3094,7 +3095,7 @@ $1',
 'watchlistedit-raw-titles'     => 'العناوين:',
 'watchlistedit-raw-submit'     => 'تحديث قائمة المراقبة',
 'watchlistedit-raw-done'       => 'قائمة مراقبتك تم تحديثها.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تم إضافتها:',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إضافته:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|عنوان واحد|$1 عنوان}} تمت إزالته:',
 
 # Watchlist editing tools

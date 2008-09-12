@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aleator
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -583,7 +584,8 @@ Inicieu una sessió després que la rebeu.",
 'eauthentsent'               => "S'ha enviat un correu electrònic a la direcció especificada. Abans no s'envïi cap altre correu electrònic a aquesta adreça, cal verificar que és realment vostra. Per tant, cal que seguiu les instruccions presents en el correu electrònic que se us ha enviat.",
 'throttled-mailpassword'     => "Ja se us ha enviat un recordatori de contrasenya en {{PLURAL:$1|l'última hora|les últimes $1 hores}}. Per a prevenir abusos, només s'envia un recordatori de contrasenya cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => "S'ha produït un error en enviar el missatge: $1",
-'acct_creation_throttle_hit' => 'Ho sentim, ja teniu $1 comptes creats i no és permès de tenir-ne més.',
+'acct_creation_throttle_hit' => 'Ho sentim, ja teniu {{PLURAL:$1|1 compte creat|$1 comptes creats}}.
+No és permès de tenir-ne més.',
 'emailauthenticated'         => "S'ha autenticat la vostra adreça electrònica a $1.",
 'emailnotauthenticated'      => 'La vostra adreça de correu electrònic <strong>encara no està autenticada</strong>. No rebrà cap missatge de correu electrònic per a cap de les següents funcionalitats.',
 'noemailprefs'               => 'Especifiqueu una adreça electrònica per a activar aquestes característiques.',

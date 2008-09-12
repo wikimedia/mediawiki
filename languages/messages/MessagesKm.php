@@ -701,7 +701,7 @@ $2',
 
 ដើម្បីបង្ការអំពើបំពាន អ៊ីមែលរំលឹកពាក្យសំងាត់តែមួយគត់នឹងត្រូវបាន​ផ្ញើក្នុងរយៈពេល{{PLURAL:$1|ម៉ោង|$1ម៉ោង}}។',
 'mailerror'                  => 'កំហុសនៃការផ្ញើសារ៖ $1',
-'acct_creation_throttle_hit' => 'សូមអភ័យទោស, អ្នកបានបង្កើតគណនី $1 រួចហើយ ។ អ្នកមិនអាចបង្កើតគណនីដោយប្រើឈ្មោះនេះទៀតបានទេ។',
+'acct_creation_throttle_hit' => 'សូមអភ័យទោស, អ្នកបានបង្កើតគណនី $1 រួចហើយ។ អ្នកមិនអាចបង្កើតគណនីដោយប្រើឈ្មោះនេះទៀតបានទេ។',
 'emailauthenticated'         => 'អាសយដ្ឋានអ៊ីមែលរបស់លោកអ្នកត្រូវបានបញ្ជាក់ថាត្រឹមត្រូវពិតប្រាកដនៅ  $1។',
 'emailnotauthenticated'      => 'អាសយដ្ឋានអ៊ីមែលរបស់លោកអ្នក មិនទាន់ត្រូវបានបញ្ជាក់ថាត្រឹមត្រូវពិតប្រាកដនៅឡើយទេ។ មិនមានអ៊ីមែល ដែលនឹងត្រូវបានផ្ញើ សំរាប់មុខងារពិសេសណាមួយដូចខាងក្រោម។',
 'noemailprefs'               => '<strong>បញ្ជាក់អាសយដ្ឋានអ៊ីមែលសំរាប់លក្ខណៈទាំងនេះដើម្បីធ្វើការ</strong> ។',
@@ -744,7 +744,7 @@ $2',
 'math_tip'        => 'រូបមន្ត​គណិតវិទ្យា(LaTeX)',
 'nowiki_sample'   => 'បញ្ចូល​អត្ថបទគ្មានទំរង់​នៅទីនេះ',
 'nowiki_tip'      => 'មិនគិត​ទំរង់​នៃ​វិគី',
-'image_sample'    => 'រូបភាព.jpg',
+'image_sample'    => 'ឧទាហរណ៍.jpg',
 'image_tip'       => 'រូបភាពបង្កប់',
 'media_sample'    => 'ឧទាហរណ៍.ogg',
 'media_tip'       => 'តំនភ្ជាប់ឯកសារ',
@@ -1290,9 +1290,9 @@ $2',
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>'''ដើម្បីប្រើប្រាស់ទំរង់ពេញលេញនៃឯកសារ
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|ឃ្លាពិពណ៌នា]]</nowiki></tt>''' ដោយប្រើប្រាស់ទំហំ​២០០ភីកសែលក្នុងប្រអប់នៅ​គេមខាងធ្វេង​ជាមួយនឹង​ឃ្លារៀបរាប់អំពីឯកសារនេះ។
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' ដើម្បីតភ្ជាប់​ដោយផ្ទាល់ទៅឯកសារនេះ​ដោយមិនបង្ហាញឯកសារ។",
-'upload-permitted'            => 'ប្រភេទឯកសារដែលត្រូវបានអនុញ្ញាត ៖ $1 ។',
-'upload-preferred'            => 'ប្រភេទឯកសារដែលគួរប្រើប្រាស់ ៖ $1 ។',
-'upload-prohibited'           => 'ប្រភេទឯកសារដែលត្រូវបានហាម ៖ $1 ។',
+'upload-permitted'            => 'ប្រភេទឯកសារដែលត្រូវបានអនុញ្ញាត៖ $1 ។',
+'upload-preferred'            => 'ប្រភេទឯកសារដែលគួរប្រើប្រាស់៖ $1 ។',
+'upload-prohibited'           => 'ប្រភេទឯកសារដែលត្រូវបានហាម៖ $1 ។',
 'uploadlog'                   => 'កំនត់ហេតុនៃការផ្ទុកឡើង',
 'uploadlogpage'               => 'កំនត់ហេតុនៃការផ្ទុកឡើង',
 'uploadlogpagetext'           => 'ខាងក្រោមនេះ​ជាបញ្ជីនៃការផ្ទុកឡើង​ថ្មីបំផុត។
@@ -1462,9 +1462,16 @@ $2',
 'randomredirect-nopages' => 'គ្មានទំព័របញ្ជូនបន្តណាមួយនៅក្នុងលំហឈ្មោះនេះទេ។',
 
 # Statistics
-'statistics'              => 'ស្ថិតិ',
-'statistics-header-users' => 'ស្ថិតិអ្នកប្រើប្រាស់',
-'statistics-mostpopular'  => 'ទំព័រដែលត្រូវបានមើលច្រើនបំផុត',
+'statistics'               => 'ស្ថិតិ',
+'statistics-header-pages'  => 'ស្ថិតិទំព័រ',
+'statistics-header-edits'  => 'កែប្រែស្ថិតិ',
+'statistics-header-views'  => 'មើលស្ថិតិ',
+'statistics-header-users'  => 'ស្ថិតិអ្នកប្រើប្រាស់',
+'statistics-articles'      => 'ទំព័រខ្លឹមសារ',
+'statistics-files'         => 'ឯកសារបានផ្ទុកឡើង',
+'statistics-edits'         => 'ការកែប្រែទំព័រចាប់តាំងពី{{SITENAME}}ត្រូវបានតំឡើង',
+'statistics-edits-average' => 'កំនែប្រែជាមធ្យមក្នុងមួយទំព័រ',
+'statistics-mostpopular'   => 'ទំព័រដែលត្រូវបានមើលច្រើនបំផុត',
 
 'disambiguations' => 'ទំព័រមានន័យច្បាស់លាស់',
 
@@ -1595,7 +1602,7 @@ $2',
 # E-mail user
 'mailnologin'     => 'មិនមានអាសយដ្ឋានផ្ញើទេ',
 'mailnologintext' => 'អ្នកត្រូវតែ [[Special:UserLogin|ឡុកអ៊ីន]] និង មានអាសយដ្ឋានអ៊ីមែលមានសុពលភាពមួយ ក្នុង[[Special:Preferences|ចំនូលចិត្តនានារបស់អ្នក]] ដើម្បីផ្ញើអ៊ីមែលទៅ អ្នកប្រើប្រាស់ដទៃទៀត។',
-'emailuser'       => 'អ៊ីមែលទៅកាន់អ្នកប្រើប្រាស់នេះ',
+'emailuser'       => 'អ៊ីមែល​ទៅកាន់​អ្នក​ប្រើប្រាស់នេះ',
 'emailpage'       => 'ទំព័រផ្ញើអ៊ីមែល',
 'usermailererror' => 'កំហុសឆ្គងក្នុងចំនងជើងអ៊ីមែល៖',
 'defemailsubject' => 'អ៊ីមែលពី {{SITENAME}}',
@@ -1720,7 +1727,9 @@ $NEWPAGE
 ** បំពានសិទ្ធិអ្នកនិពន្ធ
 ** អំពើបំផ្លាញទ្រព្យសម្បត្តិឯកជនឬសាធារណៈ',
 'delete-edit-reasonlist'      => 'ពិនិត្យផ្ទៀងផ្ទាត់ហេតុផលនៃការលុប',
-'rollbacklink'                => 'rollback',
+'rollback'                    => 'ត្រឡប់កំនែប្រែ',
+'rollback_short'              => 'ត្រឡប់',
+'rollbacklink'                => 'ត្រឡប់',
 'cantrollback'                => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
 'editcomment'                 => 'វិចារក្នុងការកែប្រែ៖ "<i>$1</i>"។', # only shown if there is an edit comment
 'revertpage'                  => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
@@ -1751,6 +1760,8 @@ $NEWPAGE
 'protect-expiring'            => 'ផុតកំនត់ $1 (UTC)',
 'protect-cascade'             => 'ការពារគ្រប់ទំព័រដែលឋិតក្នុងទំព័រនេះ (ការពារជាថ្នាក់)',
 'protect-cantedit'            => 'អ្នកមិនអាចផ្លាស់ប្តូរកំរិតការពារនៃទំព័រនេះទេ ព្រោះអ្នកគ្មានការអនុញ្ញាតក្នុងការកែប្រែវា។',
+'protect-otherreason'         => 'មូលហេតុបន្ថែមផ្សេងៗទៀត៖',
+'protect-otherreason-op'      => 'មូលហេតុបន្ថែមផ្សេងៗទៀត',
 'restriction-type'            => 'ការអនុញ្ញាត៖',
 'restriction-level'           => 'កំរិត​នៃ​ការដាក់កំហិត ៖',
 'minimum-size'                => 'ទំហំអប្បបរិមា',
@@ -2001,7 +2012,7 @@ $1',
 'djvu_page_error'          => 'ទំព័រ DjVu ក្រៅដែនកំណត់',
 'djvu_no_xml'              => 'មិនអាចនាំយក XML សំរាប់ឯកសារ DjVu',
 'thumbnail_invalid_params' => 'តួលេខ កូនទំព័រ គ្មានសុពលភាព',
-'thumbnail_dest_directory' => 'មិនអាច បង្កើតថតឯកសារ គោលដៅ',
+'thumbnail_dest_directory' => 'មិនអាចបង្កើតថតឯកសារតាមគោលដៅបានទេ',
 
 # Special:Import
 'import'                     => 'ការនាំចូលទំព័រ',
@@ -2141,7 +2152,7 @@ $1',
 # Image deletion
 'deletedrevision'                 => 'កំនែចាស់ដែលត្រូវបានលុបចេញ $1',
 'filedeleteerror-short'           => 'កំហុសនៃការលុបឯកសារ៖ $1',
-'filedeleteerror-long'            => 'កំហុសពេលលុបចេញឯកសារ ៖
+'filedeleteerror-long'            => 'កំហុសពេលលុបឯកសារចេញ៖
 
 $1',
 'filedelete-missing'              => 'មិនអាចលុប ឯកសារ "$1"  ព្រោះ វាមិនមាន។',
@@ -2167,7 +2178,7 @@ $1',
 # Special:NewImages
 'newimages'             => 'វិចិត្រសាលរូបភាពថ្មីៗ',
 'imagelisttext'         => "ខាងក្រោមនេះជាបញ្ជី'''$1'''{{PLURAL:$1|ឯកសារ|ឯកសារ}}បានរៀបតាមលំដាប់$2។",
-'newimages-summary'     => 'ទំព័រពិសេសនេះបង្ហាញឯកសារដែលទើបផ្ទុកឡើង',
+'newimages-summary'     => 'ទំព័រពិសេសនេះបង្ហាញឯកសារដែលផ្ទុកឡើងចុងក្រោយគេ។',
 'newimages-legend'      => 'តំរងការពារ',
 'newimages-label'       => 'ឈ្មោះរូបភាព៖',
 'showhidebots'          => '($1រូបយន្ត)',
@@ -2220,7 +2231,7 @@ $1',
 'exif-relatedsoundfile'            => 'ឯកសារសំលេង ទាក់ទិន',
 'exif-datetimeoriginal'            => 'ពេលវេលានិងកាលបរិច្ឆេទបង្កើតទិន្នន័យ',
 'exif-datetimedigitized'           => 'ពេលវេលានិងការបរិច្ឆេទធ្វើជាឌីជីថល',
-'exif-exposuretime-format'         => '$1 វិនាទី ($2)',
+'exif-exposuretime-format'         => '$1វិនាទី($2)',
 'exif-lightsource'                 => 'ប្រភពពន្លឺ',
 'exif-focallength'                 => 'ប្រវែង​កំនុំ​ឡង់ទី',
 'exif-filesource'                  => 'ប្រភពឯកសារ',
@@ -2333,6 +2344,7 @@ $3
 $5
 
 កូដដើម្បីទទួលស្គាល់នេះនឹងផុតកំនត់នៅ  $4 ។',
+'invalidateemail'        => 'បោះបង់ចោលការបញ្ជាក់ទទួលស្គាល់អ៊ីមែល',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL វែងជ្រុល]',
@@ -2422,18 +2434,22 @@ $1',
 'watchlisttools-edit' => 'មើលនិងកែប្រែបញ្ជីតាមដាន',
 'watchlisttools-raw'  => 'កែប្រែបញ្ជីតាមដានឆៅ',
 
+# Core parser functions
+'unknown_extension_tag' => 'ប្លាកនៃផ្នែកបន្ថែម "$1" មិនស្គាល់',
+
 # Special:Version
-'version'                   => 'Version', # Not used as normal message but as header for the special page itself
-'version-extensions'        => 'ផ្នែកបន្ថែមដែលបានតំឡើង',
-'version-specialpages'      => 'ទំព័រពិសេសៗ',
-'version-variables'         => 'អថេរ',
-'version-other'             => 'ផ្សេង',
-'version-hook-subscribedby' => 'បានជាវ ជាប្រចាំ ដោយ',
-'version-version'           => 'កំណែ',
-'version-license'           => 'អាជ្ញាបណ្ណ',
-'version-software'          => 'សូហ្វវែរបានតំឡើង',
-'version-software-product'  => 'ផលិតផល',
-'version-software-version'  => 'កំណែ',
+'version'                     => 'Version', # Not used as normal message but as header for the special page itself
+'version-extensions'          => 'ផ្នែកបន្ថែមដែលបានតំឡើង',
+'version-specialpages'        => 'ទំព័រពិសេសៗ',
+'version-variables'           => 'អថេរ',
+'version-other'               => 'ផ្សេង',
+'version-extension-functions' => 'មុខងារផ្នែកបន្ថែម',
+'version-hook-subscribedby'   => 'បានជាវ ជាប្រចាំ ដោយ',
+'version-version'             => 'កំណែ',
+'version-license'             => 'អាជ្ញាបណ្ណ',
+'version-software'            => 'សូហ្វវែរបានតំឡើង',
+'version-software-product'    => 'ផលិតផល',
+'version-software-version'    => 'កំណែ',
 
 # Special:FilePath
 'filepath'         => 'ផ្លូវនៃឯកសារ',

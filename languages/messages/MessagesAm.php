@@ -778,11 +778,10 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ለውጥ|ለውጦች}}',
 'recentchanges'                     => 'በቅርብ ጊዜ የተለወጡ',
+'recentchanges-legend'              => 'የቅርብ ለውጥ አማራጮች፦',
 'recentchangestext'                 => "በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ። <br /> ('''ጥ'''፦ ጥቃቅን ለውጥ፤ '''አ'''፦ አዲስ ገጽ)",
 'recentchanges-feed-description'    => 'በዚህ ዊኪ ላይ በቅርብ ግዜ የተለወጠውን በዚሁ feed መከታተል ይችላሉ',
-'rcnote'                            => 'ከ$3 እ.ኤ.አ. ባለፉት <strong>$2</strong>  ቀኖች የተደረጉት <strong>$1</strong> መጨረሻ ለውጦች እታች ይገኛሉ።
-
-:<big>አ</big>ማራጮች፦',
+'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውት እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom'                        => "ከ'''$2''' ጀምሮ የተቀየሩትን ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
 'rclistfrom'                        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',
 'rcshowhideminor'                   => 'ጥቃቅን ለውጦች $1',

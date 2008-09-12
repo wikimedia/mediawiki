@@ -1181,7 +1181,6 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
-'deleted-notice' => "This page has been deleted. The deletion log for the page is provided below for reference.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
@@ -1991,10 +1990,10 @@ Each row contains links to the first and second redirect, as well as the target 
 'popularpages-summary'            => '', # do not translate or duplicate this message to other languages
 'wantedcategories'                => 'Wanted categories',
 'wantedcategories-summary'        => '', # do not translate or duplicate this message to other languages
-'wantedfiles'                     => 'Wanted files',
-'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
 'wantedpages'                     => 'Wanted pages',
 'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
+'wantedfiles'                     => 'Wanted files',
+'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
 'missingfiles'                    => 'Missing files',
 'missingfiles-summary'            => '', # do not translate or duplicate this message to other languages
 'mostlinked'                      => 'Most linked-to pages',

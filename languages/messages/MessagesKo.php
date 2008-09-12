@@ -1251,7 +1251,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filedelete-reason-dropdown'  => '*일반적인 삭제 이유
 ** 저작권 침해
 ** 중복된 파일',
-'filedelete-edit-reasonlist'  => '지운 이유 고치기',
+'filedelete-edit-reasonlist'  => '삭제 이유 편집',
 
 # MIME search
 'mimesearch' => 'MIME 검색',
@@ -1333,7 +1333,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
 'deadendpages'            => '막다른 문서 목록',
-'deadendpagestext'        => '{{SITENAME}}에서, 다른 문서로 연결하는 링크가 없는 문서의 목록입니다.',
+'deadendpagestext'        => '{{SITENAME}} 내의 다른 문서로 나가는 링크가 없는 문서의 목록입니다.',
 'protectedpages'          => '보호된 문서 목록',
 'protectedpages-indef'    => '오른쪽 조건에 맞는 보호만 보기',
 'protectedpagestext'      => '다음의 문서는 이동/편집이 불가능하도록 보호되어 있습니다.',
@@ -1512,7 +1512,7 @@ $NEWPAGE
 'confirmdeletetext'           => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
 'actioncomplete'              => '명령완료',
 'deletedtext'                 => '‘<nowiki>$1</nowiki>’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
-'deletedarticle'              => '‘[[$1]]’ 삭제됨',
+'deletedarticle'              => '이(가) [[$1]]을(를) 삭제하였습니다.',
 'dellogpage'                  => '삭제 기록',
 'dellogpagetext'              => '아래의 목록은 최근에 삭제된 문서들입니다.',
 'deletionlog'                 => '삭제 기록',
@@ -1524,6 +1524,7 @@ $NEWPAGE
 ** 작성자의 요청
 ** 저작권 침해
 ** 잘못된 문서',
+'delete-edit-reasonlist'      => '삭제 이유 편집',
 'delete-toobig'               => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',
 'delete-warning-toobig'       => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있기 때문에, 주의해 주세요.',
 'rollback'                    => '편집 되돌리기',

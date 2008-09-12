@@ -82,6 +82,7 @@ $messages = array(
 'pagecategories'           => '{{PLURAL:$1|Ronney|Ronnaghyn}}',
 'category_header'          => 'Duillagyn ayns ronney "$1"',
 'subcategories'            => 'Fo-ronnaghyn',
+'category-media-header'    => 'Ym-ysseraght ayns ronney "$1"',
 'hidden-categories'        => '{{PLURAL:$1|Ronney follit|Ronnaghyn follit}}',
 'hidden-category-category' => 'Ronnaghyn follit', # Name of the category where hidden categories will be listed
 'listingcontinuesabbrev'   => 'tooil.',

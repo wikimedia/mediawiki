@@ -554,7 +554,8 @@ Seria necessário que possuísse menos de $1 {{PLURAL:$1|caractere|caracteres}}.
 'email'                      => 'E-mail',
 'prefs-help-realname'        => 'O fornecimento de seu Nome verdadeiro é opcional, mas, caso decida o revelar, este será utilizado para lhe dar crédito pelo seu trabalho.',
 'loginerror'                 => 'Erro de autenticação',
-'prefs-help-email'           => 'O fornecimento de um endereço de e-mail é opcional, mas permite que os utilizadores entrem em contacto consigo sem que tenha de lhes revelar o seu endereço de e-mail.',
+'prefs-help-email'           => 'O endereço de e-mail é opcional, mas permite que uma nova palavra-chave lhe seja enviada em caso de esquecimento da mesma.
+Pode também escolher permitir que outros entrem em contacto consigo através da sua página de utilizador ou discussão sem que tenha de lhes revelar a sua identidade.',
 'prefs-help-email-required'  => 'O endereço de correio electrónico é requerido.',
 'nocookiesnew'               => 'A conta de utilizador foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor, os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.',
 'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.',
@@ -585,7 +586,7 @@ de modo a confirmar que a conta é mesmo sua.',
 'throttled-mailpassword'     => 'Um lembrete de palavra-chave já foi enviado {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para prevenir abusos, apenas um lembrete poderá ser enviado a cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Erro a enviar o email: $1',
-'acct_creation_throttle_hit' => 'Foram criadas $1 contas por si.
+'acct_creation_throttle_hit' => 'Desculpe, você já criou {{PLURAL:$1|1 conta|$1 contas}}.
 Não lhe é possível criar mais nenhuma.',
 'emailauthenticated'         => 'O seu endereço de correio electrónico foi autenticado em $1.',
 'emailnotauthenticated'      => 'O seu endereço de correio electrónico ainda não foi autenticado. Não lhe será enviado nenhum correio sobre nenhuma das seguintes funcionalidades.',
@@ -1452,6 +1453,9 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 
 # Statistics
 'statistics'              => 'Estatísticas',
+'statistics-header-pages' => 'Estatísticas da página',
+'statistics-header-edits' => 'Editar estatísticas',
+'statistics-header-views' => 'Ver estatísticas',
 'statistics-header-users' => 'Estatísticas dos utilizadores',
 'statistics-mostpopular'  => 'Páginas mais vistas',
 
@@ -1771,7 +1775,9 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-cascade'             => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
 'protect-cantedit'            => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
-'protect-otherreason'         => 'Justificativa adicional/Outra:',
+'protect-othertime'           => 'Outra duração:',
+'protect-othertime-op'        => 'outra duração',
+'protect-otherreason'         => 'Outro motivo/motivo adicional:',
 'protect-dropdown'            => '*Motivos comuns para proteção
 ** Vandalismo excessivo
 ** Inserção excessiva de spams
