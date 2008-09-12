@@ -146,7 +146,6 @@ $wgAutoloadLocalClasses = array(
 	'RdfMetaData' => 'includes/Metadata.php',
 	'RecentChange' => 'includes/RecentChange.php',
 	'RefreshLinksJob' => 'includes/RefreshLinksJob.php',
-	'RefreshLinksJob2' => 'includes/RefreshLinksJob.php',
 	'RegexlikeReplacer' => 'includes/StringUtils.php',
 	'ReplacementArray' => 'includes/StringUtils.php',
 	'Replacer' => 'includes/StringUtils.php',
