@@ -370,14 +370,12 @@ class UploadBase {
 			return false;
 		}
 
-		$key = mt_rand( 0, 0x7fffffff );
-		$_SESSION['wsUploadData'][$key] = array(
+		return array(
 			'mTempPath'       => $status->value,
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
 	   	);
-		return $key;
 	}
 	
 	/**
