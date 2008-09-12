@@ -198,6 +198,10 @@ system (LDAP, another PHP program, whatever), you could do:
 Returning false makes less sense for events where the action is complete, and
 will normally be ignored.
 
+Note that none of the examples made use of create_function() as a way to
+attach a function to a hook. This is known to cause problems (notably with 
+Special:Version), and should be avoided when at all possible.
+
 ==Using hooks==
 
 A calling function or method uses the wfRunHooks() function to run the hooks
