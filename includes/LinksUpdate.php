@@ -193,46 +193,34 @@ class LinksUpdate {
 	}
 
 	function queueRecursiveJobs() {
-		global $wgUpdateRowsPerJob;
 		wfProfileIn( __METHOD__ );
 
+		$batchSize = 100;
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'templatelinks',
-			array( 'tl_from' ),
-			array( 
+		$res = $dbr->select( array( 'templatelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'page_id=tl_from',
 				'tl_namespace' => $this->mTitle->getNamespace(),
 				'tl_title' => $this->mTitle->getDBkey()
 			), __METHOD__
 		);
 
-		$numRows = $res->numRows();
-		$numBatches = ceil( $numRows / $wgUpdateRowsPerJob );
-		$realBatchSize = $numRows / $numBatches;
-		$start = false;
-		$jobs = array();
-		do {
-			for( $i = 0; $i <= $realBatchSize - 1; $i++ ) {
-				$row = $res->fetchRow();
-				if( $row ) {
-					$id = $row[0];
-				} else {
-					$id = false;
+		$done = false;
+		while ( !$done ) {
+			$jobs = array();
+			for ( $i = 0; $i < $batchSize; $i++ ) {
+				$row = $dbr->fetchObject( $res );
+				if ( !$row ) {
+					$done = true;
 					break;
 				}
+				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$jobs[] = new RefreshLinksJob( $title, '' );
 			}
-			$params = array(
-				'start' => $start,
-				'end' => ( $id !== false ? $id - 1 : false ),
-			);
-			$jobs[] = new RefreshLinksJob2( $this->mTitle, $params );
-
-			$start = $id;
-		} while ( $start );
-
+			Job::batchInsert( $jobs );
+		}
 		$dbr->freeResult( $res );
-
-		Job::batchInsert( $jobs );
-
 		wfProfileOut( __METHOD__ );
 	}
 
