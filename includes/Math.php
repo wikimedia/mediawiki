@@ -58,14 +58,14 @@ class MathRenderer {
 				return $this->_error( 'math_notexvc' );
 			}
 			$cmd = $wgTexvc . ' ' .
-					escapeshellarg( $wgTmpDirectory ).' '.
-					escapeshellarg( $wgTmpDirectory ).' '.
-					escapeshellarg( $this->tex ).' '.
-					escapeshellarg( $wgInputEncoding );
+					wfEscapeShellArg( $wgTmpDirectory ).' '.
+					wfEscapeShellArg( $wgTmpDirectory ).' '.
+					wfEscapeShellArg( $this->tex ).' '.
+					wfEscapeShellArg( $wgInputEncoding );
 
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
-				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
+				$cmd = 'sh -c ' . wfwfEscapeShellArg( $cmd );
 			}
 
 			wfDebug( "TeX: $cmd\n" );
