@@ -58,8 +58,13 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			}
 		} else {
 			if( $wgUser->isEmailConfirmed() ) {
+				// date and time are separate parameters to facilitate localisation.
+				// $time is kept for backward compat reasons.
+				// 'emailauthenticated' is also used in SpecialPreferences.php
 				$time = $wgLang->timeAndDate( $wgUser->mEmailAuthenticated, true );
-				$wgOut->addWikiMsg( 'emailauthenticated', $time );
+				$d = $wgLang->date( $wgUser->mEmailAuthenticated, true );
+				$t = $wgLang->time( $wgUser->mEmailAuthenticated, true );
+				$wgOut->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 			}
 			if( $wgUser->isEmailConfirmationPending() ) {
 				$wgOut->addWikiMsg( 'confirmemail_pending' );

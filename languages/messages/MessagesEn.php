@@ -963,7 +963,7 @@ To prevent abuse, only one password reminder will be sent per {{PLURAL:$1|hour|$
 'mailerror'                  => 'Error sending mail: $1',
 'acct_creation_throttle_hit' => 'Sorry, you have already created {{PLURAL:$1|1 account|$1 accounts}}.
 You cannot make any more.',
-'emailauthenticated'         => 'Your e-mail address was authenticated on $1.',
+'emailauthenticated'         => 'Your e-mail address was authenticated on $2 at $3.',
 'emailnotauthenticated'      => 'Your e-mail address is not yet authenticated.
 No e-mail will be sent for any of the following features.',
 'noemailprefs'               => 'Specify an e-mail address for these features to work.',
@@ -2364,7 +2364,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletehistorynoadmin'       => 'This page has been deleted.
 The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.
 The actual text of these deleted revisions is only available to administrators.',
-'undelete-revision'            => 'Deleted revision of $1 (as of $2) by $3:',
+'undelete-revision'            => 'Deleted revision of $1 (as of $5 on $4) by $3:',
 'undeleterevision-missing'     => 'Invalid or missing revision.
 You may have a bad link, or the revision may have been restored or removed from the archive.',
 'undelete-nodiff'              => 'No previous revision found.',
