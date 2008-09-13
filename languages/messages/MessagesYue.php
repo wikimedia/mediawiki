@@ -1549,10 +1549,9 @@ Template:搞清楚',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '搵唔到用戶。',
 
-# New user log
+# Special:Log/newusers
 'newuserlogpage'              => '使用者開戶記錄',
 'newuserlogpagetext'          => '呢個係一個使用者開戶嘅日誌',
-'newuserlog-desc'             => '加一個[[Special:Log/newusers|開戶口記錄]]到[[Special:Log]]',
 'newuserlog-byemail'          => '密碼已由電郵寄出',
 'newuserlog-create-entry'     => '新用戶',
 'newuserlog-create2-entry'    => '已經開咗$1嘅戶口',

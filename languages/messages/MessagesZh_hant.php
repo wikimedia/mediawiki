@@ -1468,10 +1468,9 @@ Template:消除歧義',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '找不到用戶。',
 
-# New user log
+# Special:Log/newusers
 'newuserlogpage'              => '新進用戶名冊',
 'newuserlogpagetext'          => '這是一個最近被創建用戶的日誌',
-'newuserlog-desc'             => '加入一個[[Special:Log/newusers|新進用戶名冊]]到[[Special:Log]]',
 'newuserlog-byemail'          => '密碼已由電子郵件寄出',
 'newuserlog-create-entry'     => '新用戶',
 'newuserlog-create2-entry'    => '已創建$1的帳戶',

@@ -153,6 +153,7 @@ $wgIgnoredMessages = array(
 	'missingfiles-summary',
 	'upload-summary',
 	'pagetitle-view-mainpage',
+	'newuserlogentry',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
