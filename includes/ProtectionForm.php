@@ -282,7 +282,7 @@ class ProtectionForm {
 
 			$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), "mwProtectExpiryList-$action" );
 			$mProtectother = Xml::label( wfMsg( 'protect-othertime' ), "mwProtect-$action-expires" );
-			$expiryFormOptions = Xml::option( wfMsg( 'protect-othertime-op' ), "wpProtectExpiryList-$action" );
+			$expiryFormOptions = Xml::option( wfMsg( 'protect-othertime-op' ), "othertime" );
 			foreach( explode(',', $scExpiryOptions) as $option ) {
 				if ( strpos($option, ":") === false ) $option = "$option:$option";
 				list($show, $value) = explode(":", $option);
