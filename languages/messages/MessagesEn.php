@@ -1185,6 +1185,8 @@ You can go back and edit an existing page, or [[Special:UserLogin|log in or crea
 
 You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
+'deleted-notice'                   => 'This page has been deleted.
+The deletion log for the page is provided below for reference.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
@@ -2107,11 +2109,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
 
-# New user log
+# Special:Log/newusers
 'newuserlogpage'              => 'User creation log',
 'newuserlogpagetext'          => 'This is a log of user creations.',
-'newuserlog-desc'             => 'Adds a [[Special:Log/newusers|log of account creations]]',
-'newuserlogentry'             => '', # For compatibility, do not translate this
+'newuserlogentry'             => '', # do not translate or duplicate this message to other languages
 'newuserlog-byemail'          => 'password sent by e-mail',
 'newuserlog-create-entry'     => 'New user',
 'newuserlog-create2-entry'    => 'created account for $1',
@@ -2315,7 +2316,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-level-sysop'         => 'Sysops only',
 'protect-summary-cascade'     => 'cascading',
 'protect-expiring'            => 'expires $1 (UTC)',
-'protect-expiry-indefinite' => 'indefinite',
+'protect-expiry-indefinite'   => 'indefinite',
 'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
 'protect-othertime'           => 'Other time:',

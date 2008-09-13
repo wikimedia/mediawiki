@@ -1327,10 +1327,9 @@ $2',
 'listusers-submit'   => '見',
 'listusers-noresult' => '尋無簿。',
 
-# New user log
+# Special:Log/newusers
 'newuserlogpage'              => '誌簿',
 'newuserlogpagetext'          => '此為誌簿之記也',
-'newuserlog-desc'             => '加一[[Special:Log/newusers|誌簿]]至[[Special:Log]]',
 'newuserlog-byemail'          => '號發自電郵',
 'newuserlog-create-entry'     => '新簿',
 'newuserlog-create2-entry'    => '已註$1之簿',

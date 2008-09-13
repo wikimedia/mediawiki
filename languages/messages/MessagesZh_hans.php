@@ -1493,10 +1493,9 @@ Template:消除歧義',
 'listusers-submit'   => '显示',
 'listusers-noresult' => '找不到用户。',
 
-# New user log
+# Special:Log/newusers
 'newuserlogpage'              => '新进用户名册',
 'newuserlogpagetext'          => '本日志是显示新注册用户的日志',
-'newuserlog-desc'             => '加入一个[[Special:Log/newusers|新进用户名册]]到[[Special:Log]]',
 'newuserlog-byemail'          => '密码已由电子邮件发出',
 'newuserlog-create-entry'     => '新用户',
 'newuserlog-create2-entry'    => '已创建$1的账户',
