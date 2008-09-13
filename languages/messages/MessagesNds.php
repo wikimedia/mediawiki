@@ -1492,6 +1492,14 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'listusers-submit'   => 'Wiesen',
 'listusers-noresult' => 'Keen Bruker funnen.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Ne’e-Bruker-Logbook',
+'newuserlogpagetext'          => 'Dit is dat Logbook för nee opstellte Brukerkonten.',
+'newuserlog-byemail'          => 'Passwoord per E-Mail toschickt',
+'newuserlog-create-entry'     => 'Nee Bruker',
+'newuserlog-create2-entry'    => 'hett Brukerkonto opstellt för $1',
+'newuserlog-autocreate-entry' => 'Brukerkonto automaatsch opstellt',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Brukergruppen-Rechten',
 'listgrouprights-summary'  => 'Dit is en List vun de Brukergruppen, de in dit Wiki defineert sünd, un de Rechten, de dor mit verbunnen sünd.

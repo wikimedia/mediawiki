@@ -1759,6 +1759,12 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 'listusers-submit'   => 'Körset',
 'listusers-noresult' => 'Qatıswşı tabılğan joq.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Tirkelw jwrnalı',
+'newuserlogpagetext'       => 'Bul qatıswşı tirkelgi jasaw jwrnalı',
+'newuserlog-create-entry'  => 'Jaña qatıswşı',
+'newuserlog-create2-entry' => 'jaña tirkelgi jasadı — $1',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Qatıswşı tobı quqıqtarı',
 'listgrouprights-summary'  => 'Kelesi tizimde bul wïkïde tağaýındalğan qatıswşı quqıqtarı (baýlanıstı qatınaw quqıqtarımen birge) körsetiledi.

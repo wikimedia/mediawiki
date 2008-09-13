@@ -1103,6 +1103,12 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 # Special:ListUsers
 'listusersfrom' => 'Prikaži korisnike počevši od:',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'istorija kreiranja korisnika',
+'newuserlogpagetext'       => 'Ovo je istorija skorašnjih kreacija korisnika',
+'newuserlog-create-entry'  => 'Novi korisnik',
+'newuserlog-create2-entry' => 'napravio nalog za $1',
+
 # E-mail user
 'mailnologin'     => 'Nema adrese za slanje',
 'mailnologintext' => 'Morate biti [[Special:UserLogin|prijavljeni]] i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]

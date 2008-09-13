@@ -947,6 +947,7 @@ U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aan
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina.
 Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
+'deleted-notice'                   => 'Deze pagina is verwijderd. Het verwijderingslogboek van deze pagina wordt hieronder weergegeven voor uw informatie.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
@@ -1799,6 +1800,14 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'listusersfrom'      => 'Gebruikers bekijken vanaf:',
 'listusers-submit'   => 'Weergeven',
 'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Logboek nieuwe gebruikers',
+'newuserlogpagetext'          => 'Hieronder staan de nieuw ingeschreven gebruikers',
+'newuserlog-byemail'          => 'wachtwoord is verzonden per e-mail',
+'newuserlog-create-entry'     => 'Nieuwe gebruiker',
+'newuserlog-create2-entry'    => 'heeft gebruiker $1 ingeschreven',
+'newuserlog-autocreate-entry' => 'Gebruiker automatisch aangemaakt',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Rechten van gebruikersgroepen',

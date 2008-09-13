@@ -1313,6 +1313,13 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Enginn notandi fannst.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Skrá yfir nýja notendur',
+'newuserlogpagetext'          => 'Þetta er skrá yfir nýskráða notendur.',
+'newuserlog-create-entry'     => 'Nýr notandi',
+'newuserlog-create2-entry'    => 'bjó til notanda fyrir $1',
+'newuserlog-autocreate-entry' => 'Aðgangur búinn til sjálfkrafa',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Notandahópréttindi',
 'listgrouprights-group'    => 'Hópur',

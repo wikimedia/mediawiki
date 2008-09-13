@@ -1132,6 +1132,13 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'listusers-submit'   => 'Косьтер',
 'listusers-noresult' => 'Ич бир къулланыджы тапылмады.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Янъы къулланыджы журналы',
+'newuserlogpagetext'          => 'Энъ сонъки къайд олгъан къулланыджы журналы.',
+'newuserlog-create-entry'     => 'Янъы къулланыджы',
+'newuserlog-create2-entry'    => '$1 ичюн эсап ачты',
+'newuserlog-autocreate-entry' => 'Эсап автоматик оларакъ яратылды',
+
 # E-mail user
 'mailnologin'     => 'Мектюп ёлланаджакъ адреси ёкътыр',
 'mailnologintext' => 'Дигер къулланыджыларгъа электрон мектюплер ёллап олмакъ ичюн [[Special:UserLogin|отурым ачмалысынъыз]] ве [[Special:Preferences|аярларынъызда]] мевджут олгъан e-mail адресининъ саиби олмалысынъыз.',

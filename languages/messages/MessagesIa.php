@@ -1524,6 +1524,14 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'listusers-submit'   => 'Revelar',
 'listusers-noresult' => 'Nulle usator trovate.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Registro de creation de usatores',
+'newuserlogpagetext'          => 'Isto es un registro de creation de usatores.',
+'newuserlog-byemail'          => 'contrasigno inviate per e-mail',
+'newuserlog-create-entry'     => 'Nove usator',
+'newuserlog-create2-entry'    => 'creava conto pro $1',
+'newuserlog-autocreate-entry' => 'Conto create automaticamente',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Derectos del gruppos de usatores',
 'listgrouprights-summary'         => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.

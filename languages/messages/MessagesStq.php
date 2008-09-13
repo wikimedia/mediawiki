@@ -1440,6 +1440,12 @@ Ju Uutgoawe kon truch ju Uutwoal fon dän Logbouktyp, fon dän Benutser of dän 
 'listusers-submit'   => 'Wies',
 'listusers-noresult' => 'Naan Benutser fuunen.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Näianmäldengs-Logbouk',
+'newuserlogpagetext'       => 'Dit is dät Logbouk fon näi anmäldede Benutsere.',
+'newuserlog-create-entry'  => 'Benutser wuude näi registrierd',
+'newuserlog-create2-entry' => 'moakede Benutserkonto foar $1',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Benutsergruppen-Gjuchte',
 'listgrouprights-summary'         => 'Dit is ne Lieste fon do in dissen Wiki definierde Benutsergruppen un do deermäd ferbuundene Gjuchte.

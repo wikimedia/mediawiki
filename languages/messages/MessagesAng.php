@@ -446,6 +446,10 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # Special:ListUsers
 'listusers-noresult' => 'Nǣnne brūcend gefundenne.',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Brūcend ġesceaft talu',
+'newuserlog-create-entry' => 'Nīwe brūcend',
+
 # E-mail user
 'emailfrom'     => 'Fram',
 'emailto'       => 'Tō:',

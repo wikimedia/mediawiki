@@ -654,11 +654,11 @@ Si busté ye un usuario anonimo y creye que l'han escrito comentarios no releban
 'previewnote'                      => "<strong>Pare cuenta que isto sólo ye que l'ambiesta prebia d'a pachina; os cambeos encara no han estato alzatos!</strong>",
 'previewconflict'                  => "L'ambiesta prebia li amostrará l'aparenzia d'o testo dimpués d'alzar os cambeos.",
 'session_fail_preview'             => "<strong>Ya lo sentimos, pero no emos puesto alzar a suya edizión por una perduga d'os datos de sesion. Por fabor, prebe de fer-lo una atra bez, y si encara no funziona, [[Special:UserLogout|salga d'a sesión]] y torne á identificar-se.</strong>",
-'session_fail_preview_html'        => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han trafegatos.</strong>
+'session_fail_preview_html'        => "<strong>Ya lo sentimos, pero no emos puesto prozesar a suya edizión porque os datos de sesión s'han trafegato.</strong>
 
 ''Como {{SITENAME}} tiene l'HTML puro autibato, s'ha amagato l'ambiesta prebia ta aprebenir ataques en JavaScript.''
 
-<strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe-se de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuebas.</strong>",
+<strong>Si ye mirando d'editar lechitimament, por fabor, prebe una atra bez. Si encara no funzionase alabez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuebas.</strong>",
 'token_suffix_mismatch'            => "<strong>S'ha refusato a suya edizión porque o suyo client ha esbarafundiato os caráuters de puntuazión en o editor. A edizión s'ha refusata ta pribar a corrompizión d'a pachina de testo. Isto gosa escaizer cuan se fa serbir un serbizio de proxy defeutuoso alazetato en a web.</strong>",
 'editing'                          => 'Editando $1',
 'editingsection'                   => 'Editando $1 (sezión)',
@@ -1429,6 +1429,14 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'listusers-submit'   => 'Amostrar',
 'listusers-noresult' => "No s'ha trobato ixe usuario.",
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Rechistro de nuebos usuarios',
+'newuserlogpagetext'          => "Isto ye un rechistro de creyazión d'usuarios.",
+'newuserlog-byemail'          => 'Palabra de paso nimbiata por correu electronico',
+'newuserlog-create-entry'     => 'Nuebo usuario',
+'newuserlog-create2-entry'    => "S'ha creyato una cuenta ta $1",
+'newuserlog-autocreate-entry' => 'Cuenta creyata automaticament',
+
 # Special:ListGroupRights
 'listgrouprights'                 => "Dreitos d'a colla d'usuarios",
 'listgrouprights-summary'         => "Contino bi ye una lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'aczeso asoziatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|informazión adizional]] sobre os dreitos indibiduals.",
@@ -1579,7 +1587,7 @@ Se beiga en $2 un rechistro d\'os borraus rezients.',
 
 A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "S'han esfeitas as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
 'sessionfailure'              => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
@@ -1712,12 +1720,12 @@ $1',
 # Block/unblock
 'blockip'                         => 'Bloqueyar usuario',
 'blockip-legend'                  => 'Bloqueyar usuario',
-'blockiptext'                     => "Replena o siguient formulario ta bloqueyar l'azeso
+'blockiptext'                     => "Replene o siguient formulario ta bloqueyar l'azeso
 d'escritura dende una cuenta d'usuario u una adreza IP espezifica.
 Isto abría de fer-se sólo ta pribar bandalismos, y d'alcuerdo con
 as [[{{MediaWiki:Policy-url}}|politicas]].
 Escriba a razón espezifica ta o bloqueyo (por exemplo, cuaternando
-as pachinas que s'han bandalizatas).",
+as pachinas que s'han bandalizato).",
 'ipaddress'                       => 'Adreza IP',
 'ipadressorusername'              => "Adreza IP u nombre d'usuario",
 'ipbexpiry'                       => 'Zircunduzión:',
@@ -2483,7 +2491,7 @@ Prebe con a prebisualizazión normal.",
 'watchlistedit-normal-legend'  => "Borrar títols d'a lista de seguimiento",
 'watchlistedit-normal-explain' => "As pachinas d'a suya lista de seguimiento s'amuestran contino. Ta sacar-ne una pachina, marque o cuatrón que ye a o canto d'a pachina, y punche con a rateta en ''Borrar pachinas''. Tamién puede [[Special:Watchlist/raw|editar dreitament o testo d'a pachina]].",
 'watchlistedit-normal-submit'  => 'Borrar pachinas',
-'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borratas $1 pachinas}} d'a suya lista de seguimiento:",
+'watchlistedit-normal-done'    => "{{PLURAL:$1|S'ha borrato 1 pachina|s'han borrato $1 pachinas}} d'a suya lista de seguimiento:",
 'watchlistedit-raw-title'      => 'Editar a lista de seguimiento en formato testo',
 'watchlistedit-raw-legend'     => 'Editar a lista de seguimiento en formato testo',
 'watchlistedit-raw-explain'    => "Contino s'amuestran as pachinas d'a suya lista de seguimiento.

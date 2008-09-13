@@ -117,6 +117,10 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 # Special:AllPages
 'allpages' => 'Tôt al pàgin',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Regestér di nōv utèint',
+'newuserlog-create-entry' => 'Un utèint nōv',
+
 # Watchlist
 'watchlist'     => 'Al còsi ca guèrd',
 'watch'         => 'Tîn a drê',

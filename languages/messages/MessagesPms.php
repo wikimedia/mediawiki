@@ -1242,6 +1242,12 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'listusers-submit'   => 'Smon',
 'listusers-noresult' => 'Pa gnun utent parej.',
 
+# Special:Log/newusers
+'newuserlogpage'           => "Registr dla creassion dj'utent",
+'newuserlogpagetext'       => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
+'newuserlog-create-entry'  => 'Neuv utent',
+'newuserlog-create2-entry' => 'Cont doertà për $1',
+
 # E-mail user
 'mailnologin'     => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
 'mailnologintext' => "A dev [[Special:UserLogin|rintré ant ël sistema]]

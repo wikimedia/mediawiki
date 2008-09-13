@@ -1280,6 +1280,13 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'listusers-submit'   => 'Tuduhna',
 'listusers-noresult' => 'Panganggo ora ditemokaké.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Log panganggo anyar',
+'newuserlogpagetext'       => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
+'newuserlog-byemail'       => 'tembung sandhi wis dikirim liwat e-mail',
+'newuserlog-create-entry'  => 'Panganggo anyar',
+'newuserlog-create2-entry' => 'ndaftaraké rékening (akun) kanggo $1',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Hak-hak grup panganggo',
 'listgrouprights-summary'  => 'Ing ngisor iki kapacak daftar grup panganggo sing didéfinisi ing wiki iki, karo hak-hak aksès gandhèngané.

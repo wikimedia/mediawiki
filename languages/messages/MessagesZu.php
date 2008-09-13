@@ -216,6 +216,9 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'allinnamespace' => 'Onke amakhasi ($1 namespace)',
 'allpagessubmit' => 'Hamba',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Umsebenzi omusha',
+
 # E-mail user
 'emailuser'    => 'Thumela umlayezo lo msebenzisi',
 'noemailtitle' => 'Akukho ikheli likaposi',

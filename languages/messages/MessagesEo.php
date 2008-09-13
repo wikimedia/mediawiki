@@ -727,6 +727,7 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1',
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
+'deleted-notice'                   => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
@@ -1451,6 +1452,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'popularpages'            => 'Plej vizitataj paĝoj',
 'wantedcategories'        => 'Dezirataj kategorioj',
 'wantedpages'             => 'Dezirataj paĝoj',
+'wantedfiles'             => 'Dezirataj dosieroj',
 'missingfiles'            => 'Mankantaj dosieroj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
@@ -1539,6 +1541,14 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'listusersfrom'      => 'Montru uzantojn ekde:',
 'listusers-submit'   => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Protokolo de uzanto-kreado',
+'newuserlogpagetext'          => 'Jen protokolo de lastaj kreadoj de uzantoj.',
+'newuserlog-byemail'          => 'pasvorto sendita retpoŝte',
+'newuserlog-create-entry'     => 'Nova uzanto',
+'newuserlog-create2-entry'    => 'kreis konton por $1',
+'newuserlog-autocreate-entry' => 'Konto kreita aŭtomate',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Gruprajtoj de uzantoj',

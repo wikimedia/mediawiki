@@ -1343,6 +1343,13 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'listusers-submit'   => 'Jonolöd',
 'listusers-noresult' => 'Geban nonik petuvon.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Lised gebanijafamas',
+'newuserlogpagetext'       => 'Is palisedons jafams gebanas nulik.',
+'newuserlog-byemail'       => 'letavöd pesedon me pot leäktronik',
+'newuserlog-create-entry'  => 'Geban nulik',
+'newuserlog-create2-entry' => 'ejafon kali gebane: $1',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Gitäts gebanagrupa',
 'listgrouprights-summary'  => 'Is palisedons gebanagrups in vük at dabinöls, sa gitäts tefik onsik.

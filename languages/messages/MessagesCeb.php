@@ -341,6 +341,12 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 'categoriespagetext'          => 'Ang mosunod nga mga kategoriya adunay sulod nga panid o medya.',
 'special-categories-sort-abc' => 'han-aya nga paalpabetikal',
 
+# Special:Log/newusers
+'newuserlogpagetext'       => "Kini mao ang ''log'' sa bag-ong namugnang mga gumagamit.",
+'newuserlog-byemail'       => "ang pasword gipadala na pinaagi sa ''e-mail''",
+'newuserlog-create-entry'  => 'Bag-ong gumagamit',
+'newuserlog-create2-entry' => "naghimo'g akawnt alang kang $1",
+
 # Watchlist
 'mywatchlist' => 'Akong gibantayan',
 'watch'       => 'Bantayi',

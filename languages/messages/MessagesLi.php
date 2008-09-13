@@ -1354,6 +1354,14 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'listusers-submit'   => 'Tuun',
 'listusers-noresult' => 'Gein(e) gebroeker(s) gevonje.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Logbook nuuj gebroekers',
+'newuserlogpagetext'          => 'Hiej ónger saton de nuuj ingesjreve gebroekers.',
+'newuserlog-byemail'          => 'wachwaord is verzönje per e-mail',
+'newuserlog-create-entry'     => "is 'ne nuje gebroeker",
+'newuserlog-create2-entry'    => 'haet de gebroeker [[$1]] aangemaak',
+'newuserlog-autocreate-entry' => 'Gebroeker automatisch aangemaak',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Rechte van gebroekersgróppe',
 'listgrouprights-summary'  => 'Op dees pazjena sjtaon de gebroekersgróppe in deze wiki besjreve, mit zien biebehurende rechte.

@@ -6,6 +6,7 @@
  *
  * @author Helix84
  * @author Klenje
+ * @author MF-Warburg
  * @author לערי ריינהארט
  */
 
@@ -860,6 +861,14 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 # Special:ListUsers
 'listusersfrom'    => 'Mostre i utents scomençant di:',
 'listusers-submit' => 'Mostre',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Regjistri dai gnûfs utents',
+'newuserlogpagetext'          => 'Ca sot tu cjatis un regjistri dai gnûfs utents creâts.',
+'newuserlog-byemail'          => 'peraule clâf mandade par pueste eletroniche',
+'newuserlog-create-entry'     => 'al è rivât il gnûf utent',
+'newuserlog-create2-entry'    => 'creade une identitât par $1',
+'newuserlog-autocreate-entry' => 'Identitât creade in automatic',
 
 # Special:ListGroupRights
 'listgrouprights-group'  => 'Grup',

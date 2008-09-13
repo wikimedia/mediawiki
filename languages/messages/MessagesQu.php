@@ -629,6 +629,7 @@ Hark'aq kamachiqqa kaytam nirqan: $1, kayraykum nispa.",
 
 Hamut'arillay, chayaqillachu manallachu kay p'anqata kamariy.
 Kaymi kay p'anqamanta qulluy hallch'a:",
+'deleted-notice'                   => "Kay p'anqaqa qullusqam. Kay qatiq qulluy hallch'apim qullusqamanta rikunki.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Paqtataq: Kay p'anqaqa nisyu achka qullqipaq t'ikrana rurana qayayniyuqmi.
@@ -1426,6 +1427,14 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'listusersfrom'      => 'Kaywan qallariq ruraqkunata rikuchiy:',
 'listusers-submit'   => 'Rikuchiy',
 'listusers-noresult' => 'Ruraqqa manam tarisqachu.',
+
+# Special:Log/newusers
+'newuserlogpage'              => "Rakiquna kamariy hallch'a",
+'newuserlogpagetext'          => "Kayqa ruraqkunap rakiqunankunata kamariymanta hallch'am.",
+'newuserlog-byemail'          => 'e-chaskiwan kachasqa yaykuna rima',
+'newuserlog-create-entry'     => 'Musuq ruraq',
+'newuserlog-create2-entry'    => 'kamarin $1-paq rakiqunata',
+'newuserlog-autocreate-entry' => 'Kikinmanta kamarisqa rakiquna',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Ruraq huñup hayñinkuna',

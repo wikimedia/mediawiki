@@ -1449,6 +1449,14 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'listusers-submit'   => 'Amosar',
 'listusers-noresult' => "Nun s'atoparon usuarios.",
 
+# Special:Log/newusers
+'newuserlogpage'              => "Rexistru de creación d'usuarios",
+'newuserlogpagetext'          => "Esti ye un rexistru de creación d'usuarios.",
+'newuserlog-byemail'          => 'clave unviada per corréu electrónicu',
+'newuserlog-create-entry'     => 'Usuariu nuevu',
+'newuserlog-create2-entry'    => 'creó una cuenta pa $1',
+'newuserlog-autocreate-entry' => 'Cuenta creada automáticamente',
+
 # Special:ListGroupRights
 'listgrouprights'                 => "Drechos de los grupos d'usuariu",
 'listgrouprights-summary'         => "La siguiente ye una llista de grupos d'usuariu definíos nesta wiki, colos sos drechos d'accesu asociaos.

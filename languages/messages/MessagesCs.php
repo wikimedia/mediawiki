@@ -1728,6 +1728,14 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'listusers-submit'   => 'Ukázat',
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Kniha nových uživatelů',
+'newuserlogpagetext'          => 'Toto je záznam nově zaregistrovaných uživatelů.',
+'newuserlog-byemail'          => 'heslo zasláno e-mailem',
+'newuserlog-create-entry'     => 'Nově založený uživatel',
+'newuserlog-create2-entry'    => 'založil účet pro $1',
+'newuserlog-autocreate-entry' => 'Účet vytvořen automaticky',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Práva skupin uživatelů',
 'listgrouprights-summary'         => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.

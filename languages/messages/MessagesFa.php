@@ -917,6 +917,7 @@ $3
 'permissionserrorstext'            => 'شما اجازهٔ انجام این کار را به {{PLURAL:$1|دلیل|دلایل}} زیر ندارید:',
 'permissionserrorstext-withaction' => 'شما اجازهٔ $2 را به {{PLURAL:$1|دلیل|دلایل}} رو به رو ندارید:',
 'recreate-deleted-warn'            => "'''هشدار: شما در حال ایجاد کردن دوبارهٔ صفحه‌ای هستید که قبلاً حذف شده‌است.''' در نظر داشته باشید که آیا ادامهٔ ویرایش این صفحه کار مناسبی هست یا نه. سیاههٔ حذف مربوط به این صفحه برای راحتی در ادامه آمده‌است:",
+'deleted-notice'                   => 'این صفحه حذف شده‌است. سیاههٔ حذف این صفحه در زیر آمده‌است.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'هشدار: این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌گر است.
@@ -1720,6 +1721,14 @@ $3
 'listusersfrom'      => 'نمایش کاربران با شروع از:',
 'listusers-submit'   => 'نمایش',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'سیاههٔ ایجاد کاربر',
+'newuserlogpagetext'          => 'این سیاهه‌ای از نامهای کاربریِ تازه‌ساخته‌شده است',
+'newuserlog-byemail'          => 'گذرواژه با پست الکترونیکی ارسال شد',
+'newuserlog-create-entry'     => 'کاربر جدید',
+'newuserlog-create2-entry'    => 'برای $1 حساب کاربری ایجاد کرد',
+'newuserlog-autocreate-entry' => 'حساب به طور خودکار ساخته شد',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'اختیارات گروه‌های کاربری',

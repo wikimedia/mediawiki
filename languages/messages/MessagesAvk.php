@@ -1197,6 +1197,9 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'listusers-submit'   => 'Nedira',
 'listusers-noresult' => 'Mek trasiyin favesik.',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Warzaf favesik',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Rokeem ke favesiklospa',
 'listgrouprights-group'    => 'Lospa',

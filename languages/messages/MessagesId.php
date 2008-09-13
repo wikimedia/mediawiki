@@ -872,6 +872,7 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
+'deleted-notice'                   => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1014,15 +1015,15 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'editundo'                => 'batalkan',
 'diff-multi'              => '({{PLURAL:$1|Satu|$1}} revisi antara tak ditampilkan.)',
 'diff-movedto'            => 'dipindahkan ke $1',
-'diff-styleadded'         => 'gaya ditambahkan',
-'diff-added'              => 'ditambahkan',
-'diff-changedto'          => 'diubah ke',
+'diff-styleadded'         => '$1 gaya ditambahkan',
+'diff-added'              => '$1 ditambahkan',
+'diff-changedto'          => 'diubah ke $1',
 'diff-movedoutof'         => 'dipindahkan dari $1',
-'diff-styleremoved'       => 'gaya dihapuskan',
-'diff-removed'            => 'dihapuskan',
-'diff-changedfrom'        => 'diubah dari',
+'diff-styleremoved'       => '$1 gaya dihapuskan',
+'diff-removed'            => '$1 dihapuskan',
+'diff-changedfrom'        => 'diubah dari $1',
 'diff-src'                => 'sumber',
-'diff-withdestination'    => 'dengan tujuan',
+'diff-withdestination'    => 'dengan tujuan $1',
 'diff-with'               => '&#32;dengan $1 $2',
 'diff-with-final'         => '&#32;dan $1 $2',
 'diff-width'              => 'lebar',
@@ -1114,7 +1115,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'mypreferences'            => 'Preferensi saya',
 'prefs-edits'              => 'Jumlah suntingan:',
 'prefsnologin'             => 'Belum masuk log',
-'prefsnologintext'         => 'Anda harus [[Special:UserLogin|masuk log]] untuk menetapkan preferensi Anda.',
+'prefsnologintext'         => 'Anda harus <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
 'prefsreset'               => 'Preferensi telah dikembalikan ke konfigurasi baku.',
 'qbsettings'               => 'Pengaturan bar pintas',
 'qbsettings-none'          => 'Tidak ada',
@@ -1663,6 +1664,14 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'listusers-submit'   => 'Tampilkan',
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Log pengguna baru',
+'newuserlogpagetext'          => 'Di bawah ini adalah log pendaftaran pengguna baru',
+'newuserlog-byemail'          => 'kata sandi dikirim melalui surat-e',
+'newuserlog-create-entry'     => 'mendaftar sebagai pengguna',
+'newuserlog-create2-entry'    => 'mendaftarkan akun untuk $1',
+'newuserlog-autocreate-entry' => 'akun pengguna dibuat secara otomatis',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Hak-hak grup pengguna',
 'listgrouprights-summary'         => 'Berikut adalah daftar kelompok pengguna yang terdapat di wiki ini, dengan daftar hak akses mereka masing-masing. Informasi lebih lanjut mengenai hak masing-masing dapat ditemukan di [[{{MediaWiki:Listgrouprights-helppage}}|halaman bantuan hak pengguna]].',
@@ -1718,7 +1727,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'notanarticle'         => 'Bukan sebuah artikel',
 'notvisiblerev'        => 'Revisi telah dihapus',
 'watchnochange'        => 'Tak ada halaman pantauan Anda yang telah berubah dalam jangka waktu yang dipilih.',
-'watchlist-details'    => '{{PLURAL:$1|$1 halaman|$1 halaman}} dipantau, tidak termasuk halaman pembicaraan.',
+'watchlist-details'    => 'Terdapat {{PLURAL:$1|$1 halaman|$1 halaman}} di daftar pantauan Anda, tidak termasuk halaman pembicaraan.',
 'wlheader-enotif'      => '* Notifikasi surat-e diaktifkan.',
 'wlheader-showupdated' => "* Halaman-halaman yang telah berubah sejak kunjungan terakhir Anda ditampilkan dengan '''huruf tebal'''",
 'watchmethod-recent'   => 'periksa daftar perubahan terbaru terhadap halaman yang dipantau',
@@ -1844,6 +1853,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-level-sysop'         => 'Hanya pengurus',
 'protect-summary-cascade'     => 'runtun',
 'protect-expiring'            => 'kadaluwarsa $1 (UTC)',
+'protect-expiry-indefinite'   => 'selamanya',
 'protect-cascade'             => 'Lindungi semua halaman yang termasuk dalam halaman ini (perlindungan runtun)',
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'protect-othertime'           => 'Waktu lain:',

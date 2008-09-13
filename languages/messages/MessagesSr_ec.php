@@ -1523,6 +1523,14 @@ $2',
 'listusers-submit'   => 'Прикажи',
 'listusers-noresult' => 'Није пронађен корисник.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'историја креирања корисника',
+'newuserlogpagetext'          => 'Ово је историја скорашњих креација корисника',
+'newuserlog-byemail'          => 'лозинка послата имејлом',
+'newuserlog-create-entry'     => 'Нови корисник',
+'newuserlog-create2-entry'    => 'направио налог за $1',
+'newuserlog-autocreate-entry' => 'налог аутоматски направљен',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'права сарадничких група',
 'listgrouprights-group'    => 'Група',

@@ -605,6 +605,13 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Special:Categories
 'categories' => 'Klynger',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Brugeråprettelseslog',
+'newuserlogpagetext'       => "Dett'er en log åver de senest åprettede brugere.",
+'newuserlog-byemail'       => 'kodeort tilsend via e-mail',
+'newuserlog-create-entry'  => 'Ny bruger',
+'newuserlog-create2-entry' => 'åprettede brugerkonto før $1',
+
 # E-mail user
 'emailuser' => 'E-mail til denne bruger',
 

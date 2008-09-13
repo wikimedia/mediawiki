@@ -1411,6 +1411,14 @@ PICT # misc.
 'listusers-submit'   => 'दर्शायें',
 'listusers-noresult' => 'सदस्य मिला नहीं।',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'नये सदस्योंकी सूची',
+'newuserlogpagetext'          => 'यह नये सदस्योंकी सूची हैं।',
+'newuserlog-byemail'          => 'कूटशब्द इ-मेल द्वारा भेजा गया हैं',
+'newuserlog-create-entry'     => 'नवीन सदस्य',
+'newuserlog-create2-entry'    => '$1 के लिये खाता खोला',
+'newuserlog-autocreate-entry' => 'खाता अपनेआप खोल दिया हैं',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'सदस्य ग्रुप अधिकार',
 'listgrouprights-summary'  => 'नीचे विकिपर बनायें गये ग्रुपोंकी सूची उन ग्रुपोंके सदस्योंको प्राप्त अधिकारोंके साथ दर्शायी गई हैं। हर एक के अधिकार के बारे में अधिक जानकारी [[{{MediaWiki:Listgrouprights-helppage}}|यहां]] दी गई हैं।',

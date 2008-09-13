@@ -690,6 +690,12 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'listusersfrom'    => 'ʻAsi mai kau ʻetita mei he:',
 'listusers-submit' => 'ʻAsi mai',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Tohinoa ʻo e fakatupu kau ʻetita',
+'newuserlogpagetext'       => 'Ko e tohinoa ʻeni ʻo e fakatupu kau ʻetita.',
+'newuserlog-create-entry'  => 'ʻEtita foʻou',
+'newuserlog-create2-entry' => 'Naʻe fakatupu ʻa e tohi-kau-ki-ai maʻa $1',
+
 # E-mail user
 'mailnologin'     => 'ʻOku ʻikai ha tuʻasila ke tohila ki ai',
 'emailuser'       => 'Tohila ki he ʻetitá ni',

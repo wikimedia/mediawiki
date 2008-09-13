@@ -447,6 +447,12 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
 
+# Special:Log/newusers
+'newuserlogpage'           => "Lista kria uza-na'in",
+'newuserlogpagetext'       => "Ne'e lista kria uza-na'in.",
+'newuserlog-create-entry'  => "Uza-na'in foun",
+'newuserlog-create2-entry' => "registrar uza-na'in $1",
+
 # Special:ListGroupRights
 'listgrouprights-group'  => 'Lubu',
 'listgrouprights-rights' => 'Priviléjiu',

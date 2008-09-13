@@ -749,6 +749,7 @@ $2',
 
 شما بایدن توجه کنیت که ادامه اصلاح ای صفحه درستنت.
 آمار حذف ای صفحه په شمی حاطرء ادان هستن:",
+'deleted-notice'                   => 'ای صفحه حذف بوتت. په مراجعه جهل گور آمار حذف پی ای صفحه اتکگت.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'هوژاری: ای صفحه شامل بازگین توار عملگر تجریه کنوک سنگیننت.
@@ -1500,6 +1501,7 @@ PICT # misc.
 'popularpages'            => 'مردمی صفحات',
 'wantedcategories'        => 'لوٹتگین دسته جات',
 'wantedpages'             => 'لوٹتگین صفحات',
+'wantedfiles'             => 'لوٹتگین فایلان',
 'missingfiles'            => 'گارین فایلان',
 'mostlinked'              => 'صفحاتی که گیشنر لینک دیگ بیتگنت',
 'mostlinkedcategories'    => 'دسته جاتی که گیشتر لینک دیگ بیتگنت',
@@ -1585,6 +1587,14 @@ PICT # misc.
 'listusersfrom'      => 'پیشدار کابرانی که شروع بنت گون:',
 'listusers-submit'   => 'پیش دار',
 'listusers-noresult' => 'هچ کابری در گیزگ نه بوت.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'ورود شرکتن کاربر',
+'newuserlogpagetext'          => '.شی یک ورودی چه شرکتن کاربر',
+'newuserlog-byemail'          => 'کلمه رمز گون ایمیل دیم دهگ بوت',
+'newuserlog-create-entry'     => 'نوکین کاربر',
+'newuserlog-create2-entry'    => 'حساب شربوت په $1',
+'newuserlog-autocreate-entry' => 'حساب اتوماتیکی شربوت',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'حقوق گروه کاربر',

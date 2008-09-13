@@ -745,6 +745,7 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
+'deleted-notice'                   => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
@@ -1514,7 +1515,7 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'speciallogtitlelabel' => 'Azione effettuata su:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tutti i registri',
-'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}. Puoi restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione (case-sensitive), e/o la pagina interessata (anch'essa case-sensitive).",
+'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}. Puoi restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 'logempty'             => 'Il log non contiene elementi corrispondenti alla ricerca.',
 'log-title-wildcard'   => 'Ricerca dei titoli che iniziano con',
 
@@ -1548,6 +1549,14 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'listusersfrom'      => 'Mostra gli utenti a partire da:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nessun utente risponde ai criteri impostati.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Nuovi utenti',
+'newuserlogpagetext'          => 'Di seguito sono elencate le creazioni di nuovi account.',
+'newuserlog-byemail'          => 'password inviata via mail',
+'newuserlog-create-entry'     => 'si è appena registrato/a',
+'newuserlog-create2-entry'    => 'ha registrato il nome utente $1',
+'newuserlog-autocreate-entry' => 'account creato automaticamente',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Diritti del gruppo utente',

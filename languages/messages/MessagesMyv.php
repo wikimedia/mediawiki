@@ -971,6 +971,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listusers-submit'   => 'Невтемс',
 'listusers-noresult' => 'Совицязо а муеви',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Од совиця',
+
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Куро',
 'listgrouprights-rights'  => 'Видечытне',

@@ -1149,6 +1149,12 @@ ID-то на вашето блокирање е $5.
 'listusers-submit'   => 'Прикажи',
 'listusers-noresult' => 'Не е пронајден корисник.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Листа на нови корисници',
+'newuserlogpagetext'       => 'Ова е листа на скоро регистрирани корисници.',
+'newuserlog-create-entry'  => 'Нов корисник:',
+'newuserlog-create2-entry' => 'направив налог за $1',
+
 # E-mail user
 'mailnologin'     => 'Нема адреса за праќање',
 'mailnologintext' => 'Мора да бидете [[Special:UserLogin|најавени]] и да имате валидна е-поштенска адреса во вашите [[Special:Preferences|прилагодувања]] за да испратите е-пошта до други корисници.',

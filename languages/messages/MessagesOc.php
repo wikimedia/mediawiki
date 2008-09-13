@@ -1648,6 +1648,14 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => "S'es pas trobat de noms d'utilizaires correspondents. Cercatz tanben amb de majusculas e minusculas.",
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Istoric de las creacions de comptes',
+'newuserlogpagetext'          => "Jornal de las creacions de comptes d'utilizaires.",
+'newuserlog-byemail'          => 'senhal mandat per corrièr electronic',
+'newuserlog-create-entry'     => 'Utilizaire novèl',
+'newuserlog-create2-entry'    => 'compte creat per $1',
+'newuserlog-autocreate-entry' => 'Compte creat automaticament',
+
 # Special:ListGroupRights
 'listgrouprights'                 => "Dreches dels gropes d'utilizaires",
 'listgrouprights-summary'         => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.

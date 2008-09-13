@@ -838,6 +838,14 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'special-categories-sort-count' => 'klase pa valè',
 'special-categories-sort-abc'   => 'klase alfabetikalman',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Istorik pou kreyasyon kont itilizatè yo',
+'newuserlogpagetext'          => 'Men jounal, istorik kreyasyon kont itilizatè yo.',
+'newuserlog-byemail'          => 'mopas an voye pa imèl',
+'newuserlog-create-entry'     => 'Nouvo itilizatè',
+'newuserlog-create2-entry'    => 'kont kreye pou $1',
+'newuserlog-autocreate-entry' => 'Kont sa kreye otomatikman',
+
 # E-mail user
 'emailuser' => 'Voye yon mesaj (imèl) pou itilizatè sa a',
 

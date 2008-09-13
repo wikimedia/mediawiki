@@ -1261,6 +1261,13 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'listusers-submit'   => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Erabiltzaile erregistroa',
+'newuserlogpagetext'       => 'Hau azken erabiltzaileen sorreren erregistroa da.',
+'newuserlog-byemail'       => 'pasahitza e-postaz bidali da',
+'newuserlog-create-entry'  => 'Lankide berria',
+'newuserlog-create2-entry' => '$1(r)entzako kontua sortu da',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Erabiltzaile talde eskumenak',
 'listgrouprights-group'    => 'Taldea',

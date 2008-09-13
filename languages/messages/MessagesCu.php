@@ -381,6 +381,11 @@ $messages = array(
 # Special:Categories
 'categories' => 'катигорі́ѩ',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'но́въ мѣ́стъ сътворѥ́ниꙗ їсторі́ꙗ',
+'newuserlog-create-entry'     => 'но́въ по́льꙃєватєл҄ь',
+'newuserlog-autocreate-entry' => 'по́льꙃєватєлꙗ мѣ́сто аѵтомати́чьно сътворєно́ ѥ́стъ',
+
 # E-mail user
 'emailuser' => 'Посъли епїстолѫ',
 

@@ -1463,6 +1463,7 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'popularpages'            => 'Trang nhiều người đọc',
 'wantedcategories'        => 'Thể loại cần thiết',
 'wantedpages'             => 'Trang cần viết',
+'wantedfiles'             => 'Tập tin cần thiết',
 'missingfiles'            => 'Tập tin bị thiếu',
 'mostlinked'              => 'Trang được liên kết đến nhiều nhất',
 'mostlinkedcategories'    => 'Thể loại có nhiều trang nhất',
@@ -1546,6 +1547,14 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
 'listusers-submit'   => 'Liệt kê',
 'listusers-noresult' => 'Không thấy thành viên.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Nhật trình mở tài khoản',
+'newuserlogpagetext'          => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
+'newuserlog-byemail'          => 'gửi mật khẩu qua thư điện tử',
+'newuserlog-create-entry'     => 'Tài khoản mới',
+'newuserlog-create2-entry'    => 'đã tạo tài khoản mới với tên $1',
+'newuserlog-autocreate-entry' => 'Tài khoản được tạo tự động',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Nhóm thành viên',
@@ -2281,7 +2290,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 # Metadata
 'metadata'          => 'Đặc tính hình',
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
-'metadata-expand'   => 'Xem chi tiết cấp cao',
+'metadata-expand'   => 'Hiện chi tiết cấp cao',
 'metadata-collapse' => 'Ẩn chi tiết cấp cao',
 'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính được thu nhỏ.
 Những thông tin khác mặc định sẽ được ẩn đi.
@@ -2668,8 +2677,8 @@ $1',
 'livepreview-error'   => 'Không thể kết nối: $1 “$2”. Hãy dùng thử chế độ xem thử thông thường.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
-'lag-warn-high'   => 'Do độ trễ của máy chủ cơ sở dữ liệu, những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
+'lag-warn-normal' => 'Những thay đổi trong vòng $1 {{PLURAL:||}}giây trở lại đây có thể chưa xuất hiện trong danh sách.',
+'lag-warn-high'   => 'Do độ trễ của máy chủ cơ sở dữ liệu, những thay đổi trong vòng $1 {{PLURAL:$1||}}giây trở lại đây có thể chưa xuất hiện trong danh sách.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|tựa đề|tựa đề}}, không tính các trang thảo luận.',

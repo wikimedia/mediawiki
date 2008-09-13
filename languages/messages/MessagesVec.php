@@ -1435,6 +1435,14 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Registro utenti novi',
+'newuserlogpagetext'          => 'Sto qua el xè el registro dei novi utenti registrai.',
+'newuserlog-byemail'          => 'password spedìa par e-mail',
+'newuserlog-create-entry'     => 'se gà registrà',
+'newuserlog-create2-entry'    => 'ga registrà el nome utente $1',
+'newuserlog-autocreate-entry' => 'Account creà automaticamente',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Diriti dei grupi utenti',
 'listgrouprights-summary'         => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.

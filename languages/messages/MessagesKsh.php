@@ -1683,6 +1683,14 @@ Mer han_er eije Leßte för de
 'listusers-submit'   => 'Zeije',
 'listusers-noresult' => 'Keine Metmaacher jefonge.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Logbooch för nöü Metmaachere',
+'newuserlogpagetext'          => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
+'newuserlog-byemail'          => ' dat Paßwood wood med de e-mail loßjescheck',
+'newuserlog-create-entry'     => 'eß enne nöüje User',
+'newuserlog-create2-entry'    => 'Nöüje Zojang enjerėshdt för „$1“',
+'newuserlog-autocreate-entry' => 'dä Metmaacher wood automattesch aanjemelldt',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Metmaacher-Jruppe-Rääschte',
 'listgrouprights-summary'         => 'Hee kütt de Liss met dä Medmaacher-Jruppe, di dat Wiki hee kennt, un denne ier Rääschte.

@@ -686,7 +686,11 @@ Jika anda tiba di sini secara tak sengaja, hanya klik butang '''back''' pada pel
 'anontalkpagetext'                 => "----''Ini ialah laman perbincangan bagi pengguna tanpa nama yang belum membuka akaun atau tidak log masuk. Kami terpaksa menggunakan alamat IP untuk mengenal pasti pengguna tersebut. Alamat IP ini boleh dikongsi oleh ramai pengguna. Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang tidak kena mengena telah ditujui kepada anda, sila [[Special:UserLogin|buka akaun baru atau log masuk]] untuk mengelakkan sebarang kekeliruan dengan pengguna tanpa nama yang lain.''",
 'noarticletext'                    => 'Tiada teks dalam laman ini pada masa sekarang. Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk bagi laman ini]] dalam laman-laman lain atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting laman ini].',
 'userpage-userdoesnotexist'        => 'Akaun pengguna "$1" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
-'clearyourcache'                   => "'''Nota:''' Selepas menyimpan, anda mungkin perlu mengosongkan fail simpanan (''cache'') pelayar anda terlebih dahulu untuk melihat perubahan. '''Mozilla /Firefox/Safari:''' tahan kekunci ''Shift'' ketika mengklik ''Reload'', atau tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tahan kekunci ''Ctrl'' ketika mengklik ''Refresh'', atau tekan ''Ctrl-F5''; '''Konqueror:''' klik butang ''Reload'', atau tekan ''F5''; pengguna '''Opera''' perlu mengosongkan fail simpanan melalui ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu mengosongkan fail simpanan (''cache'') pelayar anda terlebih dahulu untuk mengenakan perubahan.'''
+'''Mozilla/Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R'' (''Command+R'' dalam komputer Macintosh).
+'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''.
+'''Opera:''' kosongkan fail simpanan melalui menu ''Tools → Preferences''.
+'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''.",
 'usercssjsyoucanpreview'           => "<strong>Petua:</strong> Gunakan butang 'Pratonton' untuk menguji CSS/JS baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pratonton CSS peribadi anda. Laman ini belum lagi disimpan!'''",
 'userjspreview'                    => "'''Ingat bahawa anda hanya menguji/melihat pratonton JavaScript anda, ia belum lagi disimpan!'''",
@@ -759,6 +763,7 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
+'deleted-notice'                   => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.
@@ -1189,7 +1194,7 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
 'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
 'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
-'rclistfrom'                        => 'Tunjukkan perubahan terbaru bermula dari $1',
+'rclistfrom'                        => 'Papar perubahan sejak $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',
 'rcshowhideliu'                     => '$1 pengguna log masuk',
@@ -1473,6 +1478,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'popularpages'            => 'Laman popular',
 'wantedcategories'        => 'Kategori dikehendaki',
 'wantedpages'             => 'Laman dikehendaki',
+'wantedfiles'             => 'Fail dikehendaki',
 'missingfiles'            => 'Fail hilang',
 'mostlinked'              => 'Laman dipaut terbanyak',
 'mostlinkedcategories'    => 'Kategori dipaut terbanyak',
@@ -1558,6 +1564,14 @@ Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'listusersfrom'      => 'Tunjukkan pengguna bermula pada:',
 'listusers-submit'   => 'Tunjuk',
 'listusers-noresult' => 'Tiada pengguna dijumpai.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Log akaun baru',
+'newuserlogpagetext'          => 'Berikut ialah log penciptaan pengguna.',
+'newuserlog-byemail'          => 'kata laluan dihantar melalui e-mel',
+'newuserlog-create-entry'     => 'Pengguna baru',
+'newuserlog-create2-entry'    => 'membuka akaun $1',
+'newuserlog-autocreate-entry' => 'Akaun dibuka secara automatik',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Hak kumpulan pengguna',

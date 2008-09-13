@@ -651,6 +651,9 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 # Special:ListUsers
 'listusers-submit' => 'Taishbyney',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Ymmydeyr noa',
+
 # Special:ListGroupRights
 'listgrouprights-group'    => 'Possan',
 'listgrouprights-rights'   => 'Kiartyn',

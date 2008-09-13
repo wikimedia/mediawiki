@@ -370,6 +370,10 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'देखाउनुहोस्',
 
+# Special:Log/newusers
+'newuserlog-create-entry'  => 'नयाँ प्रयोगकर्ता',
+'newuserlog-create2-entry' => '$1 का लागी खाता खोलियो',
+
 # E-mail user
 'mailnologin'     => 'ईमेल पठाउने ठेगाना नै भएन ।',
 'mailnologintext' => 'तपाईले अरु प्रयोगकर्ताहरुलाई ईमेल पठाउनको लागी आफु पहिले [[Special:UserLogin|प्रवेश(लगइन)गरेको]] हुनुपर्छ र [[Special:Preferences|आफ्नो रोजाइहरुमा]] यौटा वैध ईमेल ठेगाना भएको हुनुपर्छ।',

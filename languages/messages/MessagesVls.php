@@ -69,6 +69,10 @@ $messages = array(
 'newpages'          => 'Nieuwe bloadn',
 'newpages-username' => 'Gebrukersnoame:',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Logboek nieuwe gebrukers',
+'newuserlog-create-entry' => 'Nieuwe gebruker',
+
 # Watchlist
 'mywatchlist' => 'Myn volglyste',
 'watch'       => 'Volgn',

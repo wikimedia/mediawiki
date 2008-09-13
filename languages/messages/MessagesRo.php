@@ -1457,6 +1457,14 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'listusers-submit'   => 'Arată',
 'listusers-noresult' => 'Nici un utilizator găsit.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Jurnal utilizatori noi',
+'newuserlogpagetext'          => 'Acesta este jurnalul creărilor conturilor de utilizator.',
+'newuserlog-byemail'          => 'parola trimisă prin e-mail',
+'newuserlog-create-entry'     => 'Utilizator nou',
+'newuserlog-create2-entry'    => 'a deschis cont pentru $1',
+'newuserlog-autocreate-entry' => 'Cont creat automat',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Permisiunile grupurilor de utilizatori',
 'listgrouprights-summary'         => 'Mai jos este afişată o listă a grupurilor de utilizatori definită în această wiki, împreună cu drepturile de acces asociate.

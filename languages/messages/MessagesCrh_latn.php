@@ -1129,6 +1129,13 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'listusers-submit'   => 'Köster',
 'listusers-noresult' => 'İç bir qullanıcı tapılmadı.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Yañı qullanıcı jurnalı',
+'newuserlogpagetext'          => 'Eñ sоñki qayd оlğan qullanıcı jurnalı.',
+'newuserlog-create-entry'     => 'Yañı qullanıcı',
+'newuserlog-create2-entry'    => '$1 içün esap açtı',
+'newuserlog-autocreate-entry' => 'Esap avtomatik olaraq yaratıldı',
+
 # E-mail user
 'mailnologin'     => 'Mektüp yollanacaq adresi yoqtır',
 'mailnologintext' => 'Diger qullanıcılarğa elektron mektüpler yollap olmaq içün [[Special:UserLogin|oturım açmalısıñız]] ve [[Special:Preferences|ayarlarıñızda]] mevcüt olğan e-mail adresiniñ saibi olmalısıñız.',

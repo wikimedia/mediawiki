@@ -1397,6 +1397,14 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-submit'   => '보이기',
 'listusers-noresult' => '해당 사용자가 없습니다.',
 
+# Special:Log/newusers
+'newuserlogpage'              => '사용자 등록 기록',
+'newuserlogpagetext'          => '사용자 등록 기록입니다.',
+'newuserlog-byemail'          => '이메일로 보낸 암호',
+'newuserlog-create-entry'     => '새 사용자',
+'newuserlog-create2-entry'    => '$1 계정을 새로 만듦',
+'newuserlog-autocreate-entry' => '계정이 자동으로 만들어졌습니다.',
+
 # Special:ListGroupRights
 'listgrouprights'                 => '사용자 권한 목록',
 'listgrouprights-addgroup'        => '$1 권한을 부여',

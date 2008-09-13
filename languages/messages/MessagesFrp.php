@@ -1232,6 +1232,13 @@ PICT # de totes sôrtes
 'listusers-submit'   => 'Montrar',
 'listusers-noresult' => 'Nion utilisator trovâ. Controlâd asse-ben les variantes en grantes lètres / petiôtes lètres.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Historico de les crèacions de comptos',
+'newuserlogpagetext'       => 'Cen est un jornal de les crèacions de comptos utilisators.',
+'newuserlog-byemail'       => 'mot de pâssa emmandâ per mèl',
+'newuserlog-create-entry'  => 'Novél utilisator',
+'newuserlog-create2-entry' => 'compto crèâ por $1',
+
 # E-mail user
 'mailnologin'     => 'Pas d’adrèce',
 'mailnologintext' => 'Vos dête étre [[Special:UserLogin|conèctâ]]

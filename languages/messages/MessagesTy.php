@@ -141,6 +141,9 @@ $messages = array(
 # Special:Categories
 'categories' => 'Te mau huru o te ’api',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Ta’ata fa’a’ohipa ’āpī',
+
 # Watchlist
 'watch' => 'Ha’apa’o',
 

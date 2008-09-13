@@ -783,6 +783,12 @@ $1',
 # Special:Categories
 'categories' => 'শ্রেণী',
 
+# Special:Log/newusers
+'newuserlog-byemail'          => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
+'newuserlog-create-entry'     => 'নতুন সদস্য',
+'newuserlog-create2-entry'    => '$1 ক নতুন সদস্যভুক্তি কৰা হল',
+'newuserlog-autocreate-entry' => 'স্বয়ংক্রীয়ভাবে নতুন সদস্যভুক্তি কৰা হল',
+
 # E-mail user
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পথাওক',
 

@@ -1349,6 +1349,12 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'listusers-submit'   => 'Ցուցադրել',
 'listusers-noresult' => 'Այդպիսի մասնակիցներ չգտնվեցին։',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Մասնակիցների գրանցման տեղեկամատյան',
+'newuserlogpagetext'       => 'Սա նոր մասնակիցների գրանցման տեղեկամատյանն է.',
+'newuserlog-create-entry'  => 'Նոր մասնակից',
+'newuserlog-create2-entry' => 'ստեղծեց նոր հաշիվ $1 մասնակցի համար',
+
 # E-mail user
 'mailnologin'     => 'Ուղարկման հասցե չկա',
 'mailnologintext' => 'Անհրաժեշտ է [[Special:UserLogin|մտնել համակարգ]] և ունենալ գործող էլ-փոստի հասցե ձեր [[Special:Preferences|նախընտրություններում]]՝ ուրիշ մասնակիցներին էլեկտրոնային նամակներ ուղարկելու համար։',

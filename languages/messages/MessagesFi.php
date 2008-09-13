@@ -765,6 +765,7 @@ Lukitsemisen syy: $1',
 'recreate-deleted-warn'            => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
 
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
+'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
@@ -1514,6 +1515,14 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Uudet käyttäjät',
+'newuserlogpagetext'          => 'Tämä on loki luoduista käyttäjätunnuksista.',
+'newuserlog-byemail'          => 'salasana lähetetty sähköpostitse',
+'newuserlog-create-entry'     => 'Uusi käyttäjä',
+'newuserlog-create2-entry'    => 'loi käyttäjätunnuksen tunnukselle $1',
+'newuserlog-autocreate-entry' => 'Automaattisesti luotu käyttäjätunnus',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Käyttäjäryhmien oikeudet',

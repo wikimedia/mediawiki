@@ -878,6 +878,14 @@ $messages = array(
 'listusers-submit'   => 'ښکاره کول',
 'listusers-noresult' => 'هېڅ کوم کارونکی و نه موندل شو.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'د کارن-نوم د جوړېدو يادښت',
+'newuserlogpagetext'          => 'دا د کارن-نوم د جوړېدو يادښت دی',
+'newuserlog-byemail'          => 'پټنوم مو برېښليک ته درولېږه',
+'newuserlog-create-entry'     => 'نوی کارونکی',
+'newuserlog-create2-entry'    => 'د $1 لپاره کارن-حساب جوړ شو',
+'newuserlog-autocreate-entry' => 'کارن-حساب په اتوماتيک ډول جوړ شو',
+
 # Special:ListGroupRights
 'listgrouprights-group'   => 'ډله',
 'listgrouprights-members' => '(د غړو لړليک)',
