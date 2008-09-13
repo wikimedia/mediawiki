@@ -182,7 +182,9 @@ class HTMLCacheUpdate
 }
 
 /**
- * @todo document (e.g. one-sentence top-level class description).
+ * Job wrapper for HTMLCacheUpdate. Gets run whenever a related
+ * job gets called from the queue.
+ * 
  * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {

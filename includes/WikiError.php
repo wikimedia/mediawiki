@@ -79,7 +79,8 @@ class WikiErrorMsg extends WikiError {
 }
 
 /**
- * @todo document
+ * Error class designed to handle errors involved with 
+ * XML parsing
  * @ingroup Exception
  */
 class WikiXmlError extends WikiError {
