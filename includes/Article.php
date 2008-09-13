@@ -1878,16 +1878,18 @@ class Article {
 				}
 					
 				if( $protect_description && $protect )
-					$editComment .= "($protect_description)";
+					$editComment .= " ($protect_description)";
 				if( $cascade )
 					$editComment .= "$cascade_description";
 				# Update restrictions table
 				foreach( $limit as $action => $restrictions ) {
 					if ($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array(array('pr_page', 'pr_type')),
-							array( 'pr_page' => $id, 'pr_type' => $action
-								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade && $action == 'edit' ? 1 : 0
-								, 'pr_expiry' => $encodedExpiry[$action] ), __METHOD__  );
+							array( 'pr_page' => $id, 
+								'pr_type' => $action, 
+								'pr_level' => $restrictions, 
+								'pr_cascade' => ($cascade && $action == 'edit') ? 1 : 0,
+								'pr_expiry' => $encodedExpiry[$action] ), __METHOD__  );
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
