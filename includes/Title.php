@@ -2503,7 +2503,7 @@ class Title {
 
 		if ( $auth ) {
 			global $wgUser;
-			$errors = array_merge($errors, 
+			$errors = wfArrayMerge($errors, 
 					$this->getUserPermissionsErrors('move', $wgUser),
 					$this->getUserPermissionsErrors('edit', $wgUser),
 					$nt->getUserPermissionsErrors('move', $wgUser),
