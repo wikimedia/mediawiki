@@ -1109,8 +1109,8 @@ Please check if you want to create/edit this page.',
 'usercssjsyoucanpreview'           => "<strong>Tip:</strong> Use the 'Show preview' button to test your new CSS/JS before saving.",
 'usercsspreview'                   => "'''Remember that you are only previewing your user CSS.'''
 '''It has not yet been saved!'''",
-'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.
-It has not yet been saved!'''",
+'userjspreview'                    => "'''Remember that you are only testing/previewing your user JavaScript.'''
+'''It has not yet been saved!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' There is no skin \"\$1\".
 Remember that custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/monobook.css as opposed to {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Updated)',
