@@ -203,13 +203,9 @@ class LogPage {
 						}
 						$params[2] = isset( $params[2] ) ? 
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
-					} else if ( $type == 'protect' && count($params) == 4 ) {
-						$details .= " [{$params[1]}]"; // the restrictions
-						if( $params[2] != 'infinity' ) {
-							$details .= ' (' . wfMsgForContent( 'protect-expiring', 
-								$wgContLang->timeanddate( $params[2], false, false ) ).')';
-						}
-						if( $params[3] ) {
+					} else if ( $type == 'protect' && count($params) == 3 ) {
+						$details .= " {$params[1]}"; // restrictions and expiries
+						if( $params[2] ) {
 							$details .= ' ['.wfMsg('protect-summary-cascade').']';
 						}
 					}

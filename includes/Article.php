@@ -1798,7 +1798,7 @@ class Article {
 	 * @param string $reason
 	 * @return bool true on success
 	 */
-	function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = null ) {
+	function updateRestrictions( $limit = array(), $reason = '', $cascade = 0, $expiry = array() ) {
 		global $wgUser, $wgRestrictionTypes, $wgContLang;
 
 		$id = $this->mTitle->getArticleID();
@@ -1816,15 +1816,17 @@ class Article {
 		# FIXME: Same limitations as described in ProtectionForm.php (line 37);
 		# we expect a single selection, but the schema allows otherwise.
 		$current = array();
-		foreach( $wgRestrictionTypes as $action )
+		$updated = Article::flattenRestrictions( $limit );
+		$changed = false;
+		foreach( $wgRestrictionTypes as $action ) {
 			$current[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
+			$changed = ($changed || ($this->mTitle->mRestrictionsExpiry[$action] != $expiry[$action]) );
+		}
 
 		$current = Article::flattenRestrictions( $current );
-		$updated = Article::flattenRestrictions( $limit );
 
-		$changed = ( $current != $updated );
+		$changed = ($changed || ( $current != $updated ) );
 		$changed = $changed || ($updated && $this->mTitle->areRestrictionsCascading() != $cascade);
-		$changed = $changed || ($updated && $this->mTitle->mRestrictionsExpiry != $expiry);
 		$protect = ( $updated != '' );
 
 		# If nothing's changed, do nothing
@@ -1832,14 +1834,6 @@ class Article {
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
 
 				$dbw = wfGetDB( DB_MASTER );
-
-				$encodedExpiry = Block::encodeExpiry($expiry, $dbw );
-
-				$expiry_description = '';
-				if( $encodedExpiry != 'infinity' ) {
-					$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', 
-						$wgContLang->timeanddate( $expiry, false, false ) ).')'; 	 
-				}
 				
 				# Prepare a null revision to be added to the history
 				$modified = $current != '' && $protect;
@@ -1859,7 +1853,6 @@ class Article {
 						break;
 					}
 				}
-				
 				$cascade_description = ''; 	 
 				if( $cascade ) {
 					$cascade_description = ' ['.wfMsgForContent('protect-summary-cascade').']'; 	 
@@ -1869,10 +1862,23 @@ class Article {
 					$comment .= ": $reason";
 
 				$editComment = $comment;
-				if( $protect )
-					$editComment .= " [$updated]";
-				if( $expiry_description && $protect )
-					$editComment .= "$expiry_description";
+				$encodedExpiry = array();
+				$protect_description = '';
+				foreach( $limit as $action => $restrictions  ) {
+					$encodedExpiry[$action] = Block::encodeExpiry($expiry[$action], $dbw );
+					if ($restrictions != '') {
+						$protect_description .= "[$action=$restrictions] (";
+						if( $encodedExpiry[$action] != 'infinity' ) {
+							$protect_description .= wfMsgForContent( 'protect-expiring',  $wgContLang->timeanddate( $expiry[$action], false, false ) ); 	 
+						} else {
+							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
+						}
+						$protect_description .= ') ';
+					}
+				}
+					
+				if( $protect_description && $protect )
+					$editComment .= "($protect_description)";
 				if( $cascade )
 					$editComment .= "$cascade_description";
 				# Update restrictions table
@@ -1880,8 +1886,8 @@ class Article {
 					if ($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array(array('pr_page', 'pr_type')),
 							array( 'pr_page' => $id, 'pr_type' => $action
-								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade ? 1 : 0
-								, 'pr_expiry' => $encodedExpiry ), __METHOD__  );
+								, 'pr_level' => $restrictions, 'pr_cascade' => $cascade && $action == 'edit' ? 1 : 0
+								, 'pr_expiry' => $encodedExpiry[$action] ), __METHOD__  );
 					} else {
 						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
 							'pr_type' => $action ), __METHOD__ );
@@ -1910,7 +1916,7 @@ class Article {
 				# Update the protection log
 				$log = new LogPage( 'protect' );
 				if( $protect ) {
-					$params = array($updated,$encodedExpiry,$cascade ? 'cascade' : '');
+					$params = array($protect_description,$cascade ? 'cascade' : '');
 					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason), $params );
 				} else {
 					$log->addEntry( 'unprotect', $this->mTitle, $reason );

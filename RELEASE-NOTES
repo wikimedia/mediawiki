@@ -124,6 +124,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15551) Deletion log excerpt is now shown whenever a user vists a 
   deleted page, even if they are unable to edit it.
 * Added Wantedfiles special pages, allowing users to find image links with no image.
+* (bug 12650) It is now possible to set different expiration times for different
+  restriction types on the protection form.
 
 === Bug fixes in 1.14 ===
 
