@@ -85,7 +85,7 @@ class ChangesFeed {
 	}
 
 	/**
-	* @todo document
+	* Generate the feed items given a row from the database.
 	* @param $rows Database resource with recentchanges rows
 	* @param $feed Feed object
 	*/
