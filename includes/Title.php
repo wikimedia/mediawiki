@@ -56,7 +56,7 @@ class Title {
 	var $mRestrictions = array();     ///< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
 	var $mCascadeRestriction;	  ///< Cascade restrictions on this page to included templates and images?
-	var $mRestrictionsExpiry;	  ///< When do the restrictions on this page expire?
+	var $mRestrictionsExpiry = array();	  ///< When do the restrictions on this page expire?
 	var $mHasCascadingRestrictions;	  ///< Are cascading restrictions in effect on this page?
 	var $mCascadeSources;  ///< Where are the cascading restrictions coming from on this page?
 	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
@@ -1368,7 +1368,7 @@ class Title {
 		global $wgUser,$wgContLang;
 
 		if ($create_perm == implode(',',$this->getRestrictions('create'))
-			&& $expiry == $this->mRestrictionsExpiry) {
+			&& $expiry == $this->mRestrictionsExpiry['create']) {
 			// No change
 			return true;
 		}
@@ -1383,7 +1383,10 @@ class Title {
 		if ( $encodedExpiry != 'infinity' ) {
 			$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) ).')';
 		}
-
+		else {
+			$expiry_description .= ' (' . wfMsgForContent( 'protect-expiry-indefinite' ).')';
+		}
+	
 		# Update protection table
 		if ($create_perm != '' ) {
 			$dbw->replace( 'protected_titles', array(array('pt_namespace', 'pt_title')),
@@ -1740,7 +1743,6 @@ class Title {
 		} else {
 			$this->mHasCascadingRestrictions = $sources;
 		}
-
 		return array( $sources, $pagerestrictions );
 	}
 
@@ -1762,10 +1764,10 @@ class Title {
 
 		foreach( $wgRestrictionTypes as $type ){
 			$this->mRestrictions[$type] = array();
+			$this->mRestrictionsExpiry[$type] = Block::decodeExpiry('');
 		}
 
 		$this->mCascadeRestriction = false;
-		$this->mRestrictionsExpiry = Block::decodeExpiry('');
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
@@ -1809,7 +1811,7 @@ class Title {
 
 				// Only apply the restrictions if they haven't expired!
 				if ( !$expiry || $expiry > $now ) {
-					$this->mRestrictionsExpiry = $expiry;
+					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 
 					$this->mCascadeRestriction |= $row->pr_cascade;
@@ -1850,13 +1852,13 @@ class Title {
 
 					if (!$expiry || $expiry > $now) {
 						// Apply the restrictions
-						$this->mRestrictionsExpiry = $expiry;
+						$this->mRestrictionsExpiry['create'] = $expiry;
 						$this->mRestrictions['create'] = explode(',', trim($pt_create_perm) );
 					} else { // Get rid of the old restrictions
 						Title::purgeExpiredRestrictions();
 					}
 				} else {
-					$this->mRestrictionsExpiry = Block::decodeExpiry('');
+					$this->mRestrictionsExpiry['create'] = Block::decodeExpiry('');
 				}
 				$this->mRestrictionsLoaded = true;
 			}

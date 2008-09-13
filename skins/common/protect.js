@@ -101,6 +101,40 @@ function protectLevelsUpdate(source) {
 }
 
 /**
+ * When protection levels are locked together, update the 
+ * expiries when one changes
+ *
+ * @param Element source expiry input that changed
+ */
+
+function protectExpiryUpdate(source) {
+	if( !protectUnchained() ) {
+		var expiry = source.value;
+		expiryForInputs(function(set) {
+			set.value = expiry;
+		});
+	}
+}
+
+/**
+ * When protection levels are locked together, update the 
+ * expiry lists when one changes and clear the custom inputs
+ *
+ * @param Element source expiry selector that changed
+ */
+function protectExpiryListUpdate(source) {
+	if( !protectUnchained() ) {
+		var expiry = source.value;
+		expiryListForInputs(function(set) {
+			set.value = expiry;
+		});
+		expiryForInputs(function(set) {
+			set.value = '';
+		});
+	}
+}
+
+/**
  * Update chain status and enable/disable various bits of the UI
  * when the user changes the "unlock move permissions" checkbox
  */
@@ -200,7 +234,64 @@ function protectSelectors() {
 }
 
 /**
- * Enable/disable protection selectors
+ * Apply a callback to each expiry input
+ *
+ * @param callable func Callback function
+ */
+function expiryForInputs(func) {
+	var inputs = expiryInputs();
+	for (var i = 0; i < inputs.length; i++) {
+		func(inputs[i]);
+	}
+}
+
+/**
+ * Get a list of all expiry inputs on the page
+ *
+ * @return Array
+ */
+function expiryInputs() {
+	var all = document.getElementsByTagName("input");
+	var ours = new Array();
+	for (var i = 0; i < all.length; i++) {
+		var set = all[i];
+		if (set.name.match(/^mwProtect-expiry-/)) {
+			ours[ours.length] = set;
+		}
+	}
+	return ours;
+}
+
+/**
+ * Apply a callback to each expiry selector list
+ * @param callable func Callback function
+ */
+function expiryListForInputs(func) {
+	var inputs = expiryListInputs();
+	for (var i = 0; i < inputs.length; i++) {
+		func(inputs[i]);
+	}
+}
+
+/**
+ * Get a list of all expiry selector lists on the page
+ *
+ * @return Array
+ */
+function expiryListInputs() {
+	var all = document.getElementsByTagName("select");
+	var ours = new Array();
+	for (var i = 0; i < all.length; i++) {
+		var set = all[i];
+		if (set.id.match(/^mwProtectExpiryList-/)) {
+			ours[ours.length] = set;
+		}
+	}
+	return ours;
+}
+
+/**
+ * Enable/disable protection selectors and expiry inputs
  *
  * @param boolean val Enable?
  */
@@ -208,6 +299,24 @@ function protectEnable(val) {
 	// fixme
 	var first = true;
 	protectForSelectors(function(set) {
+		if (first) {
+			first = false;
+		} else {
+			set.disabled = !val;
+			set.style.visible = val ? "visible" : "hidden";
+		}
+	});
+	first = true;
+	expiryForInputs(function(set) {
+		if (first) {
+			first = false;
+		} else {
+			set.disabled = !val;
+			set.style.visible = val ? "visible" : "hidden";
+		}
+	});
+	first = true;
+	expiryListForInputs(function(set) {
 		if (first) {
 			first = false;
 		} else {

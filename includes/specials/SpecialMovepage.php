@@ -292,6 +292,10 @@ class MovePageForm {
 
 		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
+			if (isset($error[0][0]) && $error[0][0] = 'cascadeprotected') {
+				$wgOut->showPermissionsErrorPage($error, 'move');
+				return;
+			}
 			# FIXME: showForm() should handle multiple errors
 			call_user_func_array(array($this, 'showForm'), $error[0]);
 			return;
