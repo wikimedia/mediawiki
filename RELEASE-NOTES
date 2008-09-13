@@ -197,6 +197,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15544) Wiki not set up message (NoLocalSettings.php) now works for 
   non-index.php entry pages (e.g. api.php). Patch by Matt Johnston.
 * (bug 12284) Special:Preferences now sets a returnto parameter on the link to Special:Userlogin. Patch by Marooned.
+* Fixed the HTTP accept language string detection length in 
+  LanguageConverter.php, instead of the fixed length language codes.
 
 
 === API changes in 1.14 ===
