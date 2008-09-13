@@ -772,9 +772,9 @@ class TagToString {
 		if ($this->sem == TagToStringFactory::MOVED) {
 			$txt->addHtml( wfMsgExt( 'diff-movedoutof', 'parseinline', $tagDescription ) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleremoved' , 'parseinline' ) );
+			$txt->addHtml( wfMsgExt( 'diff-styleremoved' , 'parseinline', $tagDescription ) );
 		} else {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-removed' , 'parseinline' ) );
+			$txt->addHtml( wfMsgExt( 'diff-removed' , 'parseinline', $tagDescription ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
@@ -788,9 +788,9 @@ class TagToString {
 		if ($this->sem == TagToStringFactory::MOVED) {
 			$txt->addHtml( wfMsgExt( 'diff-movedto' , 'parseinline', $tagDescription) );
 		} else if ($this->sem == TagToStringFactory::STYLE) {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-styleadded', 'parseinline' ) );
+			$txt->addHtml( wfMsgExt( 'diff-styleadded', 'parseinline', $tagDescription ) );
 		} else {
-			$txt->addHtml($tagDescription . ' ' . wfMsgExt( 'diff-added', 'parseinline' ) );
+			$txt->addHtml( wfMsgExt( 'diff-added', 'parseinline', $tagDescription ) );
 		}
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
@@ -844,13 +844,13 @@ class NoContentTagToString extends TagToString {
 		if( wfEmptyMsg( 'diff-' . $this->node->qName, $tagDescription ) ){
 			$tagDescription = "&lt;" . $this->node->qName . "&gt;";
 		}
-		$txt->addHtml( wfMsgExt('diff-changedto', 'parseinline' ) . ' ' . $tagDescription);
+		$txt->addHtml( wfMsgExt('diff-changedto', 'parseinline', $tagDescription ) );
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
 	}
 
 	public function getRemovedDescription(ChangeText $txt) {
-		$txt->addHtml( wfMsgExt('diff-changedfrom', 'parseinline' ) . ' ' . $tagDescription);
+		$txt->addHtml( wfMsgExt('diff-changedfrom', 'parseinline', $tagDescription ) );
 		$this->addAttributes($txt, $this->node->attributes);
 		$txt->addHtml('.');
 	}
@@ -864,7 +864,7 @@ class AnchorToString extends TagToString {
 
 	protected function addAttributes(ChangeText $txt, array $attributes) {
 		if (array_key_exists('href', $attributes)) {
-			$txt->addHtml(' ' . wfMsgExt( 'diff-withdestination', 'parseinline' ) . ' ' . htmlspecialchars($attributes['href']));
+			$txt->addHtml(' ' . wfMsgExt( 'diff-withdestination', 'parseinline', htmlspecialchars($attributes['href']) ) );
 			unset($attributes['href']);
 		}
 		parent::addAttributes($txt, $attributes);
