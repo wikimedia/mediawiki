@@ -104,10 +104,10 @@ class PreferencesForm {
 	}
 
 	function execute() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgTitle;
 
 		if ( $wgUser->isAnon() ) {
-			$wgOut->showErrorPage( 'prefsnologin', 'prefsnologintext' );
+			$wgOut->showErrorPage( 'prefsnologin', 'prefsnologintext', array($wgTitle->getPrefixedDBkey()) );
 			return;
 		}
 		if ( wfReadOnly() ) {
