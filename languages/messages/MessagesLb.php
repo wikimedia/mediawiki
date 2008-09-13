@@ -1496,6 +1496,14 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Logbuch vun den neien Umeldungen',
+'newuserlogpagetext'          => "Dëst ass d'Lescht vun de Benotzernimm déi ugeluecht goufen.",
+'newuserlog-byemail'          => "d'Passwuert gouf per E-Mail geschéckt",
+'newuserlog-create-entry'     => 'Neie Benotzer',
+'newuserlog-create2-entry'    => "Benotzerkonto fir den/d' $1 gemaach",
+'newuserlog-autocreate-entry' => 'Benotzerkont gouf automatesch gemaach',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Rechter vun de Benotzergruppen',
 'listgrouprights-summary'         => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domatt verbonnene Rechter.
@@ -1552,7 +1560,7 @@ Wann dir dës Säit net iwwerwaache wëllt, klickt op \"Net méi iwwerwaachen\" 
 'notanarticle'         => 'Keng Säit',
 'notvisiblerev'        => 'Versioun gouf geläscht',
 'watchnochange'        => 'Keng vun Äre verfollegte Säite gouf während der ugewisener Zäitperiod verännert.',
-'watchlist-details'    => "Dir iwwerwaacht {{PLURAL:$1|1 Säit|$1 Säiten}} (d'Diskussiounssäite net matgezielt).",
+'watchlist-details'    => "{{PLURAL:$1|1 Säit|$1 Säiten}} sinn op ärer Iwwerwaachungsklëscht (d'Diskussiounssäite net matgezielt).",
 'wlheader-enotif'      => '* E-Mail-Bescheed ass aktivéiert.',
 'wlheader-showupdated' => "* Säiten déi zënter ärer leschter Visite geännert goufen, si '''fett''' geschriwwen",
 'watchmethod-recent'   => 'Rezent Ännerunge ginn op iwwerwaacht Säiten iwwerpréift',

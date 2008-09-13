@@ -1159,6 +1159,14 @@ $3-এর দেয়া কারণ হল ''$2''",
 'listusers-submit'   => 'দেখানো হোক',
 'listusers-noresult' => 'কোন ব্যবহারকারী খুঁজে পাওয়া যায়নি।',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'ব্যবহারকারী সৃষ্টি লগ',
+'newuserlogpagetext'          => 'এটি নতুন ব্যবহারকারী সৃষ্টির লগ',
+'newuserlog-byemail'          => 'শব্দচাবি ইমেইলের মাধ্যমে পাঠানো হয়েছে',
+'newuserlog-create-entry'     => 'নতুন ব্যবহারকারী',
+'newuserlog-create2-entry'    => '$1-এর জন্য অ্যাকাউন্ট সৃষ্টি করা হয়েছে',
+'newuserlog-autocreate-entry' => 'সয়ংক্রিয় ভাবে অ্যাকাউন্ট তৈরি হয়েছে',
+
 # E-mail user
 'mailnologin'     => 'প্রাপকের ঠিকানা নেই',
 'mailnologintext' => "অন্য ব্যবহারকারীদেরকে ই-মেইল পাঠাতে হলে আপনাকে অবশ্যই আগে [[Special:UserLogin|লগ-ইন]] করতে হবে এবং ''[[Special:Preferences|আপনার পছন্দ তালিকায়]] আপনার ই-মেইল ঠিকানাটি ঠিকমত দিতে হবে।",

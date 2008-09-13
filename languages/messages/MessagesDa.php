@@ -1455,6 +1455,13 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen bruger fundet.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Brugeroprettelseslog',
+'newuserlogpagetext'       => 'Dette er en log over de senest oprettede brugere.',
+'newuserlog-byemail'       => 'kodeord tilsend pr. e-mail',
+'newuserlog-create-entry'  => 'Ny bruger',
+'newuserlog-create2-entry' => 'oprettede brugerkonto for $1',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Brugergrupperettigheder',
 'listgrouprights-summary'         => 'Denne side vider de brugergrupper der er defineret på denne wiki og de enkelte gruppers rettigheder.

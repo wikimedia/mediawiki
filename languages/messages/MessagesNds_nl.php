@@ -1550,6 +1550,10 @@ Zie oek [[Special:WantedCategories|gewunste kattegerieën]].",
 'listusers-submit'   => 'Teun',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor varianten mit kleine letters of heufletters.',
 
+# Special:Log/newusers
+'newuserlog-byemail'          => 'wachwoord is verzunnen via de liendepos',
+'newuserlog-autocreate-entry' => 'Gebruker autematisch an-emaak',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Rechen van gebrukersgroepen',
 'listgrouprights-group'    => 'Groep',

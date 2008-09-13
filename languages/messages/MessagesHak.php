@@ -931,6 +931,12 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'listusers-submit'   => 'Hién-sṳ',
 'listusers-noresult' => 'Cháu put-to yung-fu.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Sîn-chin yung-fu miàng-chhak',
+'newuserlogpagetext'       => 'Liá-he yit-ke chui-khiun pûn chhóng-kien yung-fu ke ngit-ki.',
+'newuserlog-create-entry'  => 'Sîn yung-fu',
+'newuserlog-create2-entry' => 'Yí-kîn chhong-kien $1 ke chong-fu',
+
 # E-mail user
 'mailnologin'     => 'Mò email thi-tiám',
 'mailnologintext' => 'Ngì pit-sî siên [[Special:UserLogin|tên-ngi̍p]] pin-chhai [[Special:Preferences|chhâm-su sat-chṳ]] chûng yû yit-ke yû-háu ke e-mail thi-tiám chhòi-nèn email khì-thâ yung-fu.',

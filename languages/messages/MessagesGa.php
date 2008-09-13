@@ -992,6 +992,9 @@ leathanach atá i gceist agat.',
 Níl na [[Special:UnusedCategories|catagóiri gan úsáid]] ar fáil anseo.
 Féach freisin ar [[Special:WantedCategories|catagóirí agus iarraidh ag gabháil leis]].',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Úsáideoir nua',
+
 # E-mail user
 'mailnologin'     => 'Níl aon seoladh maith ann',
 'mailnologintext' => 'Ní mór duit bheith  [[Special:UserLogin|logáilte isteach]]

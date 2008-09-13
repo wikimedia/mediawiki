@@ -739,6 +739,7 @@ Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1',
 
 Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow směrnicam.
 Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
+'deleted-notice'                   => 'Toś ten bok jo se wulašował. Protokol wulašowanjow za toś ten bok podawa se dołojce ako referenca.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.
@@ -1539,6 +1540,14 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'listusersfrom'      => 'Pokaž wužywarjow wót:',
 'listusers-submit'   => 'Pokazaś',
 'listusers-noresult' => 'Žeden wužywaŕ njejo se namakał.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Protokol nowych wužywarjow',
+'newuserlogpagetext'          => 'To jo protokol wó nowych wužywarskich kontow.',
+'newuserlog-byemail'          => 'Pótajne słowo bu pśez e-mail pósłane.',
+'newuserlog-create-entry'     => 'Nowy wužywaŕ',
+'newuserlog-create2-entry'    => 'Konto za $1 napórane.',
+'newuserlog-autocreate-entry' => 'Wužywarske konto bu awtomatiski napórane',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Pšawa wužywarskeje kupki',

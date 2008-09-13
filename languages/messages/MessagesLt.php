@@ -1443,6 +1443,14 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'listusers-submit'   => 'Rodyti',
 'listusers-noresult' => 'Nerasta jokių naudotojų.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Naudotojo kūrimo registras',
+'newuserlogpagetext'          => 'Tai yra naudotojų kūrimo registras.',
+'newuserlog-byemail'          => 'slaptažodis nusiųstas elektroniniu paštu',
+'newuserlog-create-entry'     => 'Naujas naudotojas',
+'newuserlog-create2-entry'    => 'sukurta paskyra $1',
+'newuserlog-autocreate-entry' => 'Paskyra sukurta automatiškai',
+
 # Special:ListGroupRights
 'listgrouprights'             => 'Naudotojų grupių teisės',
 'listgrouprights-summary'     => 'Žemiau pateiktas naudotojų grupių, apibrėžtų šioje wiki, ir su jomis susijusių teisių sąrašas.
@@ -1500,7 +1508,7 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'notanarticle'         => 'Ne turinio puslapis',
 'notvisiblerev'        => 'Versija buvo ištrinta',
 'watchnochange'        => 'Pasirinktu laikotarpiu nebuvo redaguotas nei vienas stebimas puslapis.',
-'watchlist-details'    => 'Stebima $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} neskaičiuojant aptarimų puslapių.',
+'watchlist-details'    => 'Stebima {{PLURAL:$1|$1 puslapis|$1 puslapiai|$1 puslapių}} neskaičiuojant aptarimų puslapių.',
 'wlheader-enotif'      => '* El. pašto priminimai yra įjungti.',
 'wlheader-showupdated' => "* Puslapiai pakeisti nuo tada, kai paskutinį kartą apsilankėte juose, yra pažymėti '''pastorintai'''",
 'watchmethod-recent'   => 'tikrinami paskutiniai keitimai stebimiems puslapiams',

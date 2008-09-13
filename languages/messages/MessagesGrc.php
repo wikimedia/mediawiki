@@ -1080,6 +1080,9 @@ $1',
 'listusers-submit'   => 'Ἐμφανίζειν',
 'listusers-noresult' => 'Οὐδεὶς χρώμενος εὑρεθείς.',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Νέος χρώμενος',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Δικαιώματα ὁμάδος χρωμένου',
 'listgrouprights-group'           => 'Ὁμάς',

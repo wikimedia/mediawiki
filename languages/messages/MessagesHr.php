@@ -1659,6 +1659,14 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'listusers-submit'   => 'Prikaži',
 'listusers-noresult' => 'Nema takvih suradnika.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Evidencija novih suradnika',
+'newuserlogpagetext'          => 'Ispod je popis nedavno otvorenih suradničkih imena.',
+'newuserlog-byemail'          => 'lozinka poslana e-poštom',
+'newuserlog-create-entry'     => 'Novi suradnik',
+'newuserlog-create2-entry'    => 'kreiran je novi suradnik $1',
+'newuserlog-autocreate-entry' => 'Automatski stvoren račun',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Prava suradničkih skupina',
 'listgrouprights-summary'         => 'Ovo je popis suradničkih skupina određenih na ovoj wiki, s njihovim pripadajućim pravima.

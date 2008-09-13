@@ -1306,6 +1306,13 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'listusers-submit'   => 'Trego',
 'listusers-noresult' => "Asnjë përdorues s'u gjet.",
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Regjistri i llogarive',
+'newuserlogpagetext'          => 'Ky është një regjistër i llogarive të fundit që janë hapur',
+'newuserlog-create-entry'     => 'Përdorues i ri',
+'newuserlog-create2-entry'    => 'krijoi llogarin për përdouesin $1',
+'newuserlog-autocreate-entry' => 'Llogaria u hap automatikisht',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Grupime përdoruesish me privilegje',
 'listgrouprights-summary'  => 'Më poshtë jepet grupimi i përdoruesve sipas privilegjeve që ju janë dhënë në këtë wiki. Më shumë informacion rreth privilegjeve në veçanti mund të gjendet tek [[{{MediaWiki:Listgrouprights-helppage}}]].',

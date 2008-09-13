@@ -1031,6 +1031,7 @@ $2',
 
 يجب عليك التيقن من أن الاستمرار بتحرير هذه الصفحة ملائم.
 سجل الحذف لهذه الصفحة معروض هنا:",
+'deleted-notice'                   => 'هذه الصفحة تم حذفها. سجل الحذف للصفحة معروض بالأسفل كمرجع.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -1880,6 +1881,14 @@ PICT # متنوع
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'سجل إنشاء المستخدمين',
+'newuserlogpagetext'          => 'هذا سجل بعمليات إنشاء المستخدمين.',
+'newuserlog-byemail'          => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
+'newuserlog-create-entry'     => 'مستخدم جديد',
+'newuserlog-create2-entry'    => 'أنشأ الحساب ل$1',
+'newuserlog-autocreate-entry' => 'الحساب تم إنشاؤه تلقائيا',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary'         => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
@@ -1936,7 +1945,7 @@ PICT # متنوع
 'notanarticle'         => 'ليست صفحة محتوى',
 'notvisiblerev'        => 'المراجعة تم حذفها',
 'watchnochange'        => 'لم يتم تعديل أي صفحة في قائمة مراقبتك خلال الفترة الزمنية المحددة.',
-'watchlist-details'    => '{{PLURAL:$1|$1 صفحة|$1 صفحة}} مراقبة بدون عد صفحات النقاش.',
+'watchlist-details'    => '{{PLURAL:$1|$1 صفحة|$1 صفحة}} في قائمة مراقبتك، بدون عد صفحات النقاش.',
 'wlheader-enotif'      => '* الإخطار بالبريد الإلكتروني مفعل.',
 'wlheader-showupdated' => "* الصفحات التي تم تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''العريض'''",
 'watchmethod-recent'   => 'فحص التعديلات الأخيرة للصفحات المراقبة',

@@ -1695,6 +1695,14 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'listusers-submit'   => 'Megjelenítés',
 'listusers-noresult' => 'Nem található szerkesztő.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Új szerkesztők naplója',
+'newuserlogpagetext'          => 'Ez a napló az újonnan regisztrált szerkesztők listáját tartalmazza.',
+'newuserlog-byemail'          => 'a jelszót kiküldtük a megadott e-mail címre',
+'newuserlog-create-entry'     => 'új szerkesztőként regisztrált',
+'newuserlog-create2-entry'    => 'új felhasználói fiókot hozott létre $1 néven',
+'newuserlog-autocreate-entry' => 'Felhasználói fiók automatikusan létrehozva',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'Szerkesztői csoportok jogai',
 'listgrouprights-summary'         => 'Lenn láthatóak a wikiben létező szerkesztői csoportok, valamint az azokhoz tartozó jogok.
@@ -1984,7 +1992,7 @@ $1',
 'whatlinkshere-page'       => 'Oldal:',
 'linkshere'                => 'Az alábbi lapok hivatkoznak erre: [[:$1]]',
 'nolinkshere'              => '[[:$1]]: erre a lapra semmi nem hivatkozik.',
-'nolinkshere-ns'           => "A kiválasztott nvtartományban egy lap sem hivatkozik a(z) '''[[:$1]]''' szócikkre.",
+'nolinkshere-ns'           => "A kiválasztott névtérben egyetlen oldal sem hivatkozik a(z) '''[[:$1]]''' lapra.",
 'isredirect'               => 'átirányítás',
 'istemplate'               => 'beillesztve',
 'isimage'                  => 'képhivatkozás',
@@ -2003,7 +2011,7 @@ $1',
 'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait. Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó irányelvekre. Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat), és linkeld be a vonatkozó irányelveket, hogy a blokk elszenvedője tudjon tájékozódni.',
 'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
-'ipbexpiry'                       => 'Lejárat',
+'ipbexpiry'                       => 'Lejárat:',
 'ipbreason'                       => 'Indok:',
 'ipbreasonotherlist'              => 'Más ok',
 'ipbreason-dropdown'              => '*Gyakori blokkolási okok

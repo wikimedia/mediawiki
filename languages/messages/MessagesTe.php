@@ -1376,6 +1376,13 @@ $3 చెప్పిన కారణం: ''$2''",
 'listusers-submit'   => 'చూపించు',
 'listusers-noresult' => 'వాడుకరి దొరకలేదు.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'కొత్త వాడుకరుల లాగ్',
+'newuserlogpagetext'       => 'ఇటీవలి కాలంలో నమోదైన వాడుకరుల లాగ్ ఇది',
+'newuserlog-byemail'       => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
+'newuserlog-create-entry'  => 'కొత్త వాడుకరి',
+'newuserlog-create2-entry' => '$1 కోసం ఖాతా సృష్టించాం.',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'వాడుకరి గుంపుల హక్కులు',
 'listgrouprights-summary'  => 'కింది జాబితాలో ఈ వికీలో నిర్వచించిన వాడుకరి గుంపులు, వాటికి సంబంధించిన హక్కులు ఉన్నాయి. 

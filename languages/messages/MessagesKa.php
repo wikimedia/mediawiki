@@ -1109,6 +1109,11 @@ $1 საათში.',
 'listusers-submit'   => 'ჩვენება',
 'listusers-noresult' => 'მომხმარებელი ვერ ვიპოვეთ.',
 
+# Special:Log/newusers
+'newuserlog-byemail'          => 'პაროლი ელ-ფოსტითაა გამოგზავნილი',
+'newuserlog-create-entry'     => 'ახალი მომხმარებელი',
+'newuserlog-autocreate-entry' => 'ავტომატურად შექმნილი ანგარიში',
+
 # Special:ListGroupRights
 'listgrouprights-group'    => 'ჯგუფი',
 'listgrouprights-rights'   => 'უფლებები',

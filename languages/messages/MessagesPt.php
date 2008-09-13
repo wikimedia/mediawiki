@@ -785,6 +785,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
+'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas custosas a funções do analisador "parser".
@@ -1582,6 +1583,14 @@ Veja também as [[Special:WantedCategories|categorias pedidas]].',
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
 'listusers-submit'   => 'Exibir',
 'listusers-noresult' => 'Não foram encontrados utilizadores para a forma pesquisada.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Registo de criação de utilizadores',
+'newuserlogpagetext'          => 'Este é um registo de novas contas de utilizador',
+'newuserlog-byemail'          => 'palavra-chave enviada por correio-electrónico',
+'newuserlog-create-entry'     => 'Novo utilizador',
+'newuserlog-create2-entry'    => 'criou conta para $1',
+'newuserlog-autocreate-entry' => 'Conta criada automaticamente',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Privilégios de grupo de utilizadores',

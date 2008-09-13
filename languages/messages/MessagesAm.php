@@ -1090,6 +1090,13 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'listusers-submit'   => 'ይታይ',
 'listusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'የአባልነት መዝገብ (user log)',
+'newuserlogpagetext'       => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
+'newuserlog-byemail'       => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
+'newuserlog-create-entry'  => 'አዲስ አባል',
+'newuserlog-create2-entry' => 'ለ$1 አባልነት ተፈጥሯል',
+
 # E-mail user
 'mailnologin'     => 'ምንም መነሻ አድራሻ የለም',
 'mailnologintext' => 'ኢ-ሜል ወደ ሌላ አባል ለመላክ [[Special:UserLogin|መግባት]]ና በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ የኢሜል አድራሻዎ መኖር ያስፈልጋል።',

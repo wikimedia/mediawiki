@@ -924,6 +924,11 @@ võidakse sinu ligipääs sulgeda.',
 'categories'         => 'Kategooriad',
 'categoriespagetext' => 'Vikis on järgmised kategooriad.',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Kasutaja loomise logi',
+'newuserlogpagetext'      => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
+'newuserlog-create-entry' => 'Uus kasutaja',
+
 # E-mail user
 'mailnologintext' => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',
 'emailuser'       => 'Saada sellele kasutajale e-kiri',

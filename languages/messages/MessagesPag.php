@@ -230,6 +230,9 @@ $messages = array(
 'allpagessubmit'    => 'Ula',
 'allpagesprefix'    => 'Ipanengneng so saray bolobolong ya walay prefix:',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Balon user',
+
 # E-mail user
 'emailuser'     => 'E-mail so ayan user',
 'emailfrom'     => 'Manlapud',

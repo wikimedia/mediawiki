@@ -560,6 +560,10 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Special:Categories
 'categories' => 'Lôi-biék',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Kŭi dióng-hô̤ nĭk-cé',
+'newuserlog-create-entry' => 'Sĭng ê̤ṳng-hô',
+
 # E-mail user
 'emailuser'       => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'emailpage'       => 'Gié diêng-piĕ ké̤ṳk ĭ',

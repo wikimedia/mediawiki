@@ -155,6 +155,7 @@ $messages = array(
 'gotaccount'                 => 'Wò ŋlɔ ŋkɔ xoxoa? $1.',
 'gotaccountlink'             => 'Ge ɖe eme',
 'yourlanguage'               => 'Gbe:',
+'loginsuccesstitle'          => 'Wò ge ɖe eme azɔ̃.',
 'loginsuccess'               => "'''Wò le {{SITENAME}} me fifia abe \"\$1\" ene.'''",
 'acct_creation_throttle_hit' => 'Taflatse, wòŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} xoxo.
 Wòmageteŋu agbugbɔ aŋlɔe o.',
@@ -187,6 +188,12 @@ Wòmageteŋu agbugbɔ aŋlɔe o.',
 'page_last'           => 'mamlea',
 'histfirst'           => 'Xoxoɔwu',
 'histlast'            => 'Yeyeɛwu',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 le $2', # user at time
+'history-feed-empty'          => 'Axa si dim wòle meli o.
+Dewomahĩ, wotutui le wiki sia dzi alo wotrɔ eƒe ŋkɔ.
+Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 
 # Diffs
 'history-title' => '"$1" ƒe tata xoxoawo',
@@ -274,6 +281,10 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'allinnamespace' => 'Axawo katã ($1 namespace)',
 'allpagessubmit' => 'Yi',
 
+# Special:Log/newusers
+'newuserlog-create-entry'  => 'Nuŋlɔla yeye',
+'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ na $1',
+
 # Watchlist
 'watchlistfor'         => "(na '''$1''')",
 'watch'                => 'Le ŋku ɖe eŋu',
@@ -303,6 +314,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 # Contributions
 'contributions' => 'Ezãla ƒe nuŋɔŋlɔwo',
 'mycontris'     => 'Nyeƒe nuŋɔŋlɔwo',
+'uctop'         => '(tametɔ)',
 'month'         => 'Tso ɣleti (kple do ŋgɔ):',
 'year'          => 'Tso ƒe (kple do ŋgɔ):',
 
@@ -332,6 +344,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'movepage-moved'   => '<big>\'\'\'Wohe "$1" vayi "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Tanya alo ŋkɔ sia nye axa bubu aɖe tɔ xoxo, alo eda se dzi.
 Tia ŋkɔ alo tanya bubu.',
+'movedto'          => 'wohee yi',
 '1movedto2'        => '[[$1]] wohee yi [[$2]]',
 
 # Namespace 8 related

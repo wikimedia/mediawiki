@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author MF-Warburg
  * @author MONARCH79
  * @author Phoebe
  */
@@ -95,6 +96,9 @@ $messages = array(
 
 # Special:AllPages
 'allarticles' => 'Киналго макъалаби',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'ЦIияв гIахьалчи',
 
 # Watchlist
 'watchlist' => 'Дур халгьабиялъул сияхl',

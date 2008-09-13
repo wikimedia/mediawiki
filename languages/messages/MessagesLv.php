@@ -1053,6 +1053,11 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 # Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Jauno lietotāju reģistrs',
+'newuserlogpagetext'      => 'Jauno lietotājvārdu reģistrs.',
+'newuserlog-create-entry' => 'Reģistrēts lietotājvārds',
+
 # Special:ListGroupRights
 'listgrouprights'         => 'Lietotāju grupu tiesības',
 'listgrouprights-summary' => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.

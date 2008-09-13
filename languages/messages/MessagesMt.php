@@ -1391,6 +1391,14 @@ Il-[[Special:UnusedCategories|kategoriji vojta]] u dawk [[Special:WantedCategori
 'listusers-submit'   => 'Uri',
 'listusers-noresult' => 'l-Ebda utent insab għal din il-kriterja.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Utenti ġodda',
+'newuserlogpagetext'          => "Dan hu reġistru tal-kreazzjoni ta' kontijiet ġodda.",
+'newuserlog-byemail'          => "il-password intbagħtet permezz ta' posta elettronika",
+'newuserlog-create-entry'     => 'Utent ġdid',
+'newuserlog-create2-entry'    => 'ħoloq kont għal $1',
+'newuserlog-autocreate-entry' => 'Kont maħluq awtomatikament',
+
 # Special:ListGroupRights
 'listgrouprights'          => "Drittijiet tal-grupp ta' l-utenti",
 'listgrouprights-summary'  => "Il-lista segwenti hija dwar gruppi ta' l-utenti għal din il-wiki, bl-aċċess tad-drittijiet assoċjati.<br />

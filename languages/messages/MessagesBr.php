@@ -1322,6 +1322,14 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'listusers-submit'   => 'Diskouez',
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
 
+# Special:Log/newusers
+'newuserlogpage'              => "Marilh ar c'hontoù krouet",
+'newuserlogpagetext'          => "Marilh krouiñ ar c'hontoù implijer.",
+'newuserlog-byemail'          => 'ger-tremen kaset dre bostel',
+'newuserlog-create-entry'     => 'Implijer nevez',
+'newuserlog-create2-entry'    => 'kont krouet evit $1',
+'newuserlog-autocreate-entry' => 'Kont krouet ent emgefre',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Gwirioù ar strolladoù implijer',
 'listgrouprights-summary'  => 'War ar bajenn-mañ ez eus ur roll eus ar strolladoù implijer termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.',

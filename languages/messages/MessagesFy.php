@@ -1192,6 +1192,11 @@ Jo kinne it oersjoch beheine troch in loch, in meidoggernamme of in side oan te 
 'listusersfrom'    => 'Lit meidoggers sjen fanôf:',
 'listusers-submit' => 'Sjen litte',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Ynskriuwingsloch',
+'newuserlogpagetext'      => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
+'newuserlog-create-entry' => 'Nije meidogger',
+
 # Special:ListGroupRights
 'listgrouprights-group'  => 'Groep',
 'listgrouprights-rights' => 'Rjochten',

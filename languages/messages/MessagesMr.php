@@ -1455,6 +1455,14 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'listusers-submit'   => 'दाखवा',
 'listusers-noresult' => 'एकही सदस्य सापडला नाही.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'नवीन सदस्यांची नोंद',
+'newuserlogpagetext'          => 'ही नवीन सदस्यांची नोंद यादी आहे.',
+'newuserlog-byemail'          => 'परवलीचा शब्द इमेलमार्फत पाठविलेला आहे',
+'newuserlog-create-entry'     => 'नवीन सदस्य',
+'newuserlog-create2-entry'    => '$1 साठी सदस्यत्व घेतले.',
+'newuserlog-autocreate-entry' => 'खाते आपोआप तयार झाले',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'सदस्य गट अधिकार',
 'listgrouprights-summary'  => 'खाली या विकिवर दिलेली सदस्य गटांची यादी त्यांच्या अधिकारांसकट दर्शविलेली आहे. प्रत्येकाच्या अधिकारांची अधिक माहिती [[{{MediaWiki:Listgrouprights-helppage}}|इथे]] दिलेली आहे.',

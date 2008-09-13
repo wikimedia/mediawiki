@@ -1309,6 +1309,14 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'listusers-submit'   => 'Wys',
 'listusers-noresult' => 'Geen gebruiker gevind.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Logboek van nuwe gebruikers',
+'newuserlogpagetext'          => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
+'newuserlog-byemail'          => 'wagwoord is per e-pos versend',
+'newuserlog-create-entry'     => 'Nuwe gebruiker',
+'newuserlog-create2-entry'    => 'rekening geskep vir $1',
+'newuserlog-autocreate-entry' => 'Gebruiker outomaties geskep',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Gebruikersgroepregte',
 'listgrouprights-summary'  => "Hier volg 'n lys van gebruikersgroepe wat op die wiki gedefinieer is met hulle geassosieerde regte. Vir meer inligting oor individuele regte, sien [[{{MediaWiki:Listgrouprights-helppage}}]].",
@@ -1727,9 +1735,10 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'allmessagesmodified'       => 'Wys slegs gewysigdes',
 
 # Thumbnails
-'thumbnail-more'  => 'Vergroot',
-'filemissing'     => 'Lêer is weg',
-'thumbnail_error' => 'Fout met die skep van duimnaelsketse: $1',
+'thumbnail-more'           => 'Vergroot',
+'filemissing'              => 'Lêer is weg',
+'thumbnail_error'          => 'Fout met die skep van duimnaelsketse: $1',
+'thumbnail_invalid_params' => 'Ongeldige parameters vir duimnaelskets',
 
 # Special:Import
 'import'                     => 'Voer bladsye in',
@@ -1871,6 +1880,7 @@ $1',
 
 # Media information
 'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',
 'file-info-size'       => '($1 × $2 pixels, lêergrootte: $3, MIME type: $4)',
@@ -2107,14 +2117,14 @@ Hierde bevestigingkode verval om $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablone is afgeskakel]',
-'scarytranscludefailed'   => '[Sjabloon $1 kon nie gelaai word nie; jammer]',
-'scarytranscludetoolong'  => '[URL is te lank; jammer]',
+'scarytranscludefailed'   => '[Sjabloon $1 kon nie gelaai word nie]',
+'scarytranscludetoolong'  => '[Die URL is te lank]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Skrap])',
 
 # Delete conflict
-'deletedwhileediting' => 'Let op: die bladsy was verwyder terwyl u besig was om dit te wysig!',
+'deletedwhileediting' => "'''Let op''': die bladsy is verwyder terwyl u besig was om dit te wysig!",
 'confirmrecreate'     => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
 Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'recreate'            => 'Herskep',

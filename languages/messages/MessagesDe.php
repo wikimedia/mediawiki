@@ -819,6 +819,7 @@ Grund für die Sperre: $1',
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
+'deleted-notice'                   => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
@@ -1629,6 +1630,14 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'listusersfrom'      => 'Zeige Benutzer ab:',
 'listusers-submit'   => 'Zeige',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Neuanmeldungs-Logbuch',
+'newuserlogpagetext'          => 'Dies ist ein Logbuch für neu erstellte Benutzerkonten.',
+'newuserlog-byemail'          => 'das Passwort wurde per E-Mail versandt',
+'newuserlog-create-entry'     => 'Benutzer wurde neu registriert',
+'newuserlog-create2-entry'    => 'erstellte Benutzerkonto für $1',
+'newuserlog-autocreate-entry' => 'Benutzerkonto wurde automatisch erstellt',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Benutzergruppen-Rechte',

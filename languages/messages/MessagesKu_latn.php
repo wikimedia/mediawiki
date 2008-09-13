@@ -990,6 +990,10 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'listusers-submit'   => 'Pêşêkê',
 'listusers-noresult' => 'Ne bikarhênerek hate dîtin.',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Reşahiya çêkirina hesabên nû',
+'newuserlog-create-entry' => 'Bikarhênerekî nuh',
+
 # E-mail user
 'mailnologin'     => 'Navnîşan neşîne',
 'mailnologintext' => 'Te gireke xwe [[Special:UserLogin|qeydbikê]] û adrêsa e-nameyan di [[Special:Preferences|tercihên xwe]] da nivîsandibe ji bo şandina e-nameyan ji bikarhênerên din ra.',

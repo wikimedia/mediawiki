@@ -1730,6 +1730,14 @@ PICT # שונות
 'listusers-submit'   => 'הצגה',
 'listusers-noresult' => 'לא נמצאו משתמשים.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'יומן רישום משתמשים',
+'newuserlogpagetext'          => 'זהו יומן המכיל הרשמות של משתמשים.',
+'newuserlog-byemail'          => 'הסיסמה נשלחה בדוא"ל',
+'newuserlog-create-entry'     => 'משתמש חדש',
+'newuserlog-create2-entry'    => 'יצר חשבון עבור $1',
+'newuserlog-autocreate-entry' => 'חשבון שנוצר אוטומטית',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'רשימת הרשאות לקבוצה',
 'listgrouprights-summary'         => 'זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל אחת.

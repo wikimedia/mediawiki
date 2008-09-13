@@ -860,6 +860,7 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
+'deleted-notice'                   => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
@@ -1681,6 +1682,14 @@ Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 'listusersfrom'      => 'Pokaż użytkowników zaczynając od',
 'listusers-submit'   => 'Pokaż',
 'listusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Nowi użytkownicy',
+'newuserlogpagetext'          => 'To jest rejestr ostatnio utworzonych kont użytkowników',
+'newuserlog-byemail'          => 'hasło zostało wysłane e-mailem',
+'newuserlog-create-entry'     => '– nowy użytkownik',
+'newuserlog-create2-entry'    => '– utworzył konto $1',
+'newuserlog-autocreate-entry' => '– konto utworzone automatycznie',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Uprawnienia grup użytkowników',

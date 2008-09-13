@@ -757,6 +757,7 @@ Systemadministratoren som låste databasen oppga følgende årsak: $1',
 'recreate-deleted-warn'            => "'''Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
 
 Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
+'deleted-notice'                   => 'Denne siden har blitt slettet. Slettingsloggen vises nedenfor.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
@@ -1481,6 +1482,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'popularpages'            => 'Populære sider',
 'wantedcategories'        => 'Ønskede kategorier',
 'wantedpages'             => 'Etterspurte sider',
+'wantedfiles'             => 'Ønskede filer',
 'missingfiles'            => 'Manglende filer',
 'mostlinked'              => 'Sider med flest lenker til seg',
 'mostlinkedcategories'    => 'Kategorier med flest sider',
@@ -1564,6 +1566,14 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'listusersfrom'      => 'Vis brukere fra og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen bruker funnet.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Brukeropprettelseslogg',
+'newuserlogpagetext'          => 'Dette er en logg over brukeropprettelser.',
+'newuserlog-byemail'          => 'passord sendt på e-post',
+'newuserlog-create-entry'     => 'Ny bruker',
+'newuserlog-create2-entry'    => 'opprettet konto for $1',
+'newuserlog-autocreate-entry' => 'Konto opprettet automatisk',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Rettigheter for brukergrupper',

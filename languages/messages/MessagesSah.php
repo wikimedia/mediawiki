@@ -663,6 +663,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'revnotfound'         => 'Уларытыы булуллубата',
 'revnotfoundtext'     => 'Бу сирэй урукку барыла булуллубата. Ыйынньыгы сыыһата суох суруйбуккун көр.',
 'currentrev'          => 'Билиҥҥи барыл',
+'currentrev-asof'     => 'Билиҥҥи торум манна: $1',
 'revisionasof'        => '$1 барыл',
 'revision-info'       => 'Версия от $1; $2',
 'previousrevision'    => '←Инники барыл',
@@ -812,6 +813,14 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'diff-th'                 => "'''аата'''",
 'diff-br'                 => "'''быстыыта'''",
 'diff-hr'                 => "'''сытыары сурааһын'''",
+'diff-img'                => "'''ойуу'''",
+'diff-span'               => "'''span'''",
+'diff-a'                  => "'''сигэ'''",
+'diff-i'                  => "'''иҥнэри'''",
+'diff-b'                  => "'''модьу'''",
+'diff-font'               => "'''бичик'''",
+'diff-big'                => "'''бөдөҥ'''",
+'diff-del'                => "'''сотулунна'''",
 
 # Search results
 'searchresults'             => 'Булулунна',
@@ -1025,6 +1034,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|уларытыы|уларытыылар}}',
 'recentchanges'                     => 'Кэнники уларытыылар',
+'recentchanges-legend'              => 'Кэлиҥҥи уларытыылар хайдах көстөллөрүн туруоруу',
 'recentchangestext'                 => 'Манна хаһан киирибитинэн сааһыланан {{SITENAME}} кэнники уларыытыылара сурулуннулар.',
 'recentchanges-feed-description'    => 'Бу ботуокка биики бүтэһик уларыйыыларын кэтииргэ.',
 'rcnote'                            => "{{PLURAL:$2|хонук|'''$2''' хонуктар}} иһинэн бүтэһик {{PLURAL:$1|'''1''' уларыйыы|'''$1''' уларыйыылар}}, $5, $4.",
@@ -1195,6 +1205,7 @@ PICT # misc.
 'filehist-revert'                => 'төттөрү',
 'filehist-current'               => 'билиҥҥи',
 'filehist-datetime'              => 'Күнэ-ыйа/Кэмэ',
+'filehist-thumb'                 => 'Ойуучаан',
 'filehist-user'                  => 'Кыттааччы',
 'filehist-dimensions'            => 'Кээмэйдэрэ',
 'filehist-filesize'              => 'Билэ кээмэйэ',
@@ -1273,7 +1284,11 @@ PICT # misc.
 
 # Statistics
 'statistics'              => 'Статистика',
+'statistics-header-pages' => 'Сирэй статистиката',
+'statistics-header-edits' => 'Көннөрүү статистиката',
+'statistics-header-views' => 'Көрөөһүн статистиката',
 'statistics-header-users' => 'Кыттааччы статистиката',
+'statistics-articles'     => 'Ыстатыйа иһинээҕитэ',
 'statistics-mostpopular'  => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
 'disambiguations'      => 'Элбэх суолталаах өйдөбүллэр сирэйдэрэ',
@@ -1397,6 +1412,14 @@ PICT # misc.
 'listusers-submit'   => 'Көрдөр',
 'listusers-noresult' => 'Кыттааччылар булуллубатылар.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Кыттааччылары бэлиэтиир сурунаал',
+'newuserlogpagetext'          => 'Соторутааҕыта бэлиэтэммит кыттааччылар.',
+'newuserlog-byemail'          => 'киирии тыл эл. почтаннан ыытылынна',
+'newuserlog-create-entry'     => 'Саҥа кыттааччы',
+'newuserlog-create2-entry'    => 'саҥа киһи бэлиэтэннэ $1',
+'newuserlog-autocreate-entry' => 'Кыттааччы аата аптамаатынан оҥоһуллубут',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Кыттааччылар бөлөхтөрүн бырааптара',
 'listgrouprights-summary'  => 'Манна бу биикигэ баар бөлөхтөр уонна кинилэр киирэр бырааптара көстөллөр.
@@ -1451,7 +1474,7 @@ PICT # misc.
 'notanarticle'         => 'Бу ыстатыйа буолбатах',
 'notvisiblerev'        => 'Торум сотуллубут',
 'watchnochange'        => 'Кэтиир сирэйдэргиттэн этиллибит кэмҥэ биир да уларыйбатах.',
-'watchlist-details'    => '$1 сирэй, ырытыы сирэйдэрин аахпатахха.',
+'watchlist-details'    => '$1 сирэйи кэтиигин, ырытыы сирэйдэрин аахпатахха.',
 'wlheader-enotif'      => '* эл. почтанан биллэрии холбоммут.',
 'wlheader-showupdated' => "* Бүтэһик киириигит кэннэ уларыйбыт сирэйдэр '''модьу''' бичигинэн бэлиэтэннилэр",
 'watchmethod-recent'   => 'кэтээн көрүү бүтэһик уларыйыыларын көрүү',
@@ -1466,6 +1489,7 @@ PICT # misc.
 'watchlist-hide-own'   => 'Мин уларытыыларбын көрдөрүмэ',
 'watchlist-show-minor' => 'Кыра суолталаах уларытыылары көрдөр',
 'watchlist-hide-minor' => 'Кыра суолталаах уларытыылары көрдөрүмэ',
+'watchlist-options'    => 'Кэтээн көрүү туруоруутун уларытыы',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Кэтээ...',
@@ -1578,6 +1602,10 @@ $NEWPAGE
 'protect-expiring'            => 'болдьоҕо $1 (UTC)',
 'protect-cascade'             => 'Бу сирэйгэ киирэр сирэйдэри уларытыыттан көмүскээ (cascading protection)',
 'protect-cantedit'            => 'Бу сирэй хатааһынын таһымын уларыппаккын: уларытар кыах бэриллибэтэх.',
+'protect-othertime'           => 'Атын кэм:',
+'protect-othertime-op'        => 'атын кэм',
+'protect-otherreason'         => 'Атын/эбии төрүөтэ:',
+'protect-otherreason-op'      => 'атын/эбии төрүөтэ',
 'restriction-type'            => 'Маны оҥорор кыахтааххын:',
 'restriction-level'           => 'Киирии таһыма:',
 'minimum-size'                => 'Оччугуй',

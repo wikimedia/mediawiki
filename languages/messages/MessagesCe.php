@@ -227,6 +227,10 @@ $messages = array(
 # Special:Categories
 'categories' => 'Тобаш',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Керла юзери терахь',
+'newuserlog-create-entry' => 'Керла Юзер',
+
 # E-mail user
 'emailuser'       => 'Кехат Язде Юзеран',
 'defemailsubject' => '{{SITENAME}} и-пошта',

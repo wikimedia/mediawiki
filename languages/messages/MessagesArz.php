@@ -904,6 +904,7 @@ $2',
 'recreate-deleted-warn'            => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
 سجل الحذف للصفحه دى معروض هنا:",
+'deleted-notice'                   => 'الصفحة دى اتحذفت. سجل الحذف للصفحة معروض تحت علشان ترجعله.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
@@ -1751,6 +1752,14 @@ PICT # misc.
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'ما فى ش يوزر',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'سجل اليوزرز الجداد',
+'newuserlogpagetext'          => 'دا سجل لليوزرز الجداد',
+'newuserlog-byemail'          => 'الباسورد اتبعتت بالايميل',
+'newuserlog-create-entry'     => 'يوزر جديد',
+'newuserlog-create2-entry'    => 'افتح حساب لـ $1',
+'newuserlog-autocreate-entry' => 'الحساب اتفتح اوتوماتيكي',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'حقوق مجموعات اليوزرز',
 'listgrouprights-summary'         => 'دى لستة بمجموعات اليوزرز المتعرفة فى الويكى دا، بالحقوق اللى معاهم.
@@ -1809,7 +1818,7 @@ PICT # misc.
 'notanarticle'         => 'دى مش صفحة بتاعة محتوى',
 'notvisiblerev'        => 'النسحة اتمسحت',
 'watchnochange'        => 'مافيش ولا صفحة اتعدلت فى لستة مراقبتك فى الفترة الزمنية اللى حددتها.',
-'watchlist-details'    => '{{PLURAL:$1|$1 صفحه|$1 صفحه}} متراقبه بدون عد صفحات المناقشه.',
+'watchlist-details'    => '{{PLURAL:$1|$1 صفحه|$1 صفحه}} فى قايمه مراقبتك، بدون عد صفحات المناقشه.',
 'wlheader-enotif'      => '*خاصية الاعلام بالايميل متفعلة',
 'wlheader-showupdated' => "* الصفحات اللى اتغيرت  بعد زيارتك ليها اخر مرة معروضة بالخط '''العريض'''",
 'watchmethod-recent'   => 'التشييك على التعديلات الاخيرة للصفحات المتراقبة',

@@ -30,6 +30,7 @@
  * @author Orgullomoore
  * @author Piolinfax
  * @author Platonides
+ * @author Remember the dot
  * @author Sanbec
  * @author Spacebirdy
  * @author Technorum
@@ -243,7 +244,7 @@ $messages = array(
 'deletethispage'    => 'Borrar esta página',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|una edición|$1 ediciones}}',
 'protect'           => 'Proteger',
-'protect_change'    => 'cambiar protección',
+'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger esta página',
 'unprotect'         => 'Desproteger',
 'unprotectthispage' => 'Desproteger esta página',
@@ -333,7 +334,7 @@ $messages = array(
 'red-link-title'          => '$1 (aún no redactado)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artículo',
+'nstab-main'      => 'Página',
 'nstab-user'      => 'Usuario',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Especial',
@@ -458,7 +459,8 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'gotaccountlink'             => 'Autenticarse',
 'createaccountmail'          => 'por correo electrónico',
 'badretype'                  => 'Las contraseñas no coinciden.',
-'userexists'                 => 'El nombre indicado ya está en uso. Por favor, indique un nombre diferente.',
+'userexists'                 => 'El nombre indicado ya está en uso.
+Por favor, indique un nombre diferente.',
 'youremail'                  => 'Su dirección de correo electrónico',
 'username'                   => 'Nombre de usuario:',
 'uid'                        => 'ID de usuario:',
@@ -625,7 +627,8 @@ Tu dirección IP actual es $3, y el identificador del bloqueo es #$5. Por favor 
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
 *'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Refresh,'' o pulsa ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => '<strong>Consejo:</strong> Use el botón «Mostrar previsualización» para probar su nuevo css/js antes de grabarlo.',
-'usercsspreview'                   => "'''¡Recuerde que sólo está previsualizando su css de usuario y aún no se ha grabado!'''",
+'usercsspreview'                   => "'''Recuerde que sólo está previsualizando su CSS de usuario.'''
+'''¡Aún no se ha grabado!'''",
 'userjspreview'                    => "'''¡Recuerde que sólo está previsualizando su javascript de usuario y aún no se ha grabado!'''",
 'userinvalidcssjstitle'            => "'''Aviso:''' No existe la piel \"\$1\". Recuerda que las páginas personalizadas .css y .js tienen un título en minúsculas, p.e. {{ns:user}}:Foo/monobook.css en vez de  {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualizado)',
@@ -1455,6 +1458,14 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'No se encontró al usuario.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Registro de creación de usuarios',
+'newuserlogpagetext'          => 'Este es un registro de creación de usuarios.',
+'newuserlog-byemail'          => 'contraseña enviada por correo electrónico',
+'newuserlog-create-entry'     => 'Usuario nuevo',
+'newuserlog-create2-entry'    => 'creó una cuenta para $1',
+'newuserlog-autocreate-entry' => 'Cuenta creada automáticamente',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Permisos del grupo de usuarios',
@@ -2491,8 +2502,8 @@ El código de confirmación expirará en $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusión interwiki está deshabilitada]',
-'scarytranscludefailed'   => '[Obtención de plantilla falló para $1; lo sentimos]',
-'scarytranscludetoolong'  => '[La URL es demasiado larga; lo sentimos]',
+'scarytranscludefailed'   => '[Obtención de plantilla falló para $1]',
+'scarytranscludetoolong'  => '[El URL es demasiado largo]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2504,7 +2515,7 @@ $1
 'trackbackdeleteok' => 'El trackback se borró correctamente.',
 
 # Delete conflict
-'deletedwhileediting' => 'Aviso: ¡Esta página ha sido borrada después de que iniciase la edición!',
+'deletedwhileediting' => "'''Aviso''': ¡Esta página fue borrada después de que Usted inició a editar!",
 'confirmrecreate'     => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
 'recreate'            => 'Crear de nuevo',
 

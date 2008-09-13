@@ -1485,6 +1485,14 @@ Vegeu també [[Special:WantedCategories|les categories sol·licitades]].",
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 
+# Special:Log/newusers
+'newuserlogpage'              => "Registre de creació de l'usuari",
+'newuserlogpagetext'          => 'Aquest és un registre de creació de nous usuaris.',
+'newuserlog-byemail'          => 'contrasenya enviada per correu electrònic',
+'newuserlog-create-entry'     => 'Nou usuari',
+'newuserlog-create2-entry'    => "s'ha creat un compte per a $1",
+'newuserlog-autocreate-entry' => 'Compte creat automàticament',
+
 # Special:ListGroupRights
 'listgrouprights'          => "Drets dels grups d'usuaris",
 'listgrouprights-summary'  => "A continuació hi ha una llista dels grups d'usuaris definits en aquest wiki, així com dels seus drets d'accés associats.

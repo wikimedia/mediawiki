@@ -1426,6 +1426,14 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'listusers-submit'   => '表示',
 'listusers-noresult' => '利用者が見つかりませんでした。大文字・小文字の区別を確認してください。',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'アカウント作成記録',
+'newuserlogpagetext'          => '以下は最近作成されたアカウントの一覧です。',
+'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
+'newuserlog-create-entry'     => '新規利用者',
+'newuserlog-create2-entry'    => 'アカウント $1 が作成されました',
+'newuserlog-autocreate-entry' => 'アカウントが自動的に作成されました',
+
 # Special:ListGroupRights
 'listgrouprights'                 => '利用者グループの権限',
 'listgrouprights-summary'         => '以下はこのウィキに登録されている利用者グループとそれぞれに割り当てられている権限の一覧です。

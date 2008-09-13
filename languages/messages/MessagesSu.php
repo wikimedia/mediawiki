@@ -1262,6 +1262,14 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'listusers-submit'   => 'Témbongkeun',
 'listusers-noresult' => 'Teu kapendak.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Log pamaké anyar',
+'newuserlogpagetext'          => 'Di handap ieu béréndélan log pamaké anyar.',
+'newuserlog-byemail'          => 'Sandi geus dikirim maké surélék.',
+'newuserlog-create-entry'     => 'Pamaké anyar',
+'newuserlog-create2-entry'    => 'rekening pikeun $1 geus dijieun',
+'newuserlog-autocreate-entry' => 'rekening pamaké dijieun sacara otomatis',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Hak-hak grup pamaké',
 'listgrouprights-summary'  => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana.

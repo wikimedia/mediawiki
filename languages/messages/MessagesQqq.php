@@ -14,6 +14,7 @@
  * @author Erwin85
  * @author EugeneZelenko
  * @author Garas
+ * @author GerardM
  * @author Helix84
  * @author INkubusse
  * @author Jon Harald Søby
@@ -586,6 +587,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-deleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
+'deleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -1192,14 +1194,16 @@ Example: [[:Image:Addon-icn.png]]',
 'disambiguations' => 'Name of a special page displayed in [[Special:SpecialPages]].',
 'disambiguationspage' => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages that links to disambiguation pages.
 
-Don\'t translate the "Template:" part!',
-'disambiguations-text' => "This block of text is shown on [[:Special:Disambiguations]]. Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as diambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of diambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].
+{{doc-important|Don\'t translate the "Template:" part!}}',
+'disambiguations-text' => "This block of text is shown on [[:Special:Disambiguations]].
 
-* '''Note:''' Do not change the link [[MediaWiki:Disambiguationspage]], even because it is listed as problematic. Be sure the \"D\" is in uppercase, so not \"d\".",
+* '''Note:''' Do not change the link [[MediaWiki:Disambiguationspage]], even because it is listed as problematic. Be sure the \"D\" is in uppercase, so not \"d\".
+
+* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as diambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of diambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
 
 'doubleredirects' => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext' => 'Shown on top of [[Special:Doubleredirects]]',
-'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username [[MediaWiki:Double-redirect-fixer]]) update the redirects after a page move. See also [[MediaWiki:Fix-double-redirects]].',
+'double-redirect-fixed-move' => 'This is the message in the log when the software (under the username {{msg|double-redirect-fixer}}) updates the redirects after a page move. See also {{msg|fix-double-redirects}}.',
 'double-redirect-fixer' => "This is the '''username''' of the user who updates the double redirects after a page move. A user is created with this username, so it is perhaps better to not change this message too often. See also {{msg|double-redirect-fixed-move}} and {{msg|fix-double-redirects}}.",
 
 'brokenredirects' => 'Name of [[Special:BrokenRedirects]] displayed in [[Special:SpecialPages]]',
@@ -1212,6 +1216,8 @@ Don\'t translate the "Template:" part!',
 {{Identical|Delete}}',
 
 'withoutinterwiki' => 'The title of the special page [[Special:WithoutInterwiki]].',
+'withoutinterwiki-summary' => 'Summary of [[Special:WithoutInterwiki]].',
+'withoutinterwiki-legend' => 'Used on [[Special:WithoutInterwiki]] as title of fieldset.',
 'withoutinterwiki-submit' => '{{Identical|Show}}',
 
 'fewestrevisions' => 'Name of a special page displayed in [[Special:SpecialPages]].',
@@ -1221,7 +1227,9 @@ Don\'t translate the "Template:" part!',
 'ncategories' => "Used in the special page '[[Special:MostCategories]]' in brackets after each entry on the list signifying how many categories a page is part of. $1 is the number of categories.",
 'nlinks' => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
 'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
+'nrevisions' => 'Number of revisions.',
 'nviews' => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed. Parameter $1 is the number of views.',
+'specialpage-empty' => 'Used on a special page when there is no data. For example on [[Special:Unusedimages]] when all images are used.',
 'lonelypages' => 'Name of [[Special:LonelyPages]] displayed in [[Special:SpecialPages]]',
 'lonelypagestext' => 'Text displayed in [[Special:LonelyPages]]',
 'uncategorizedpages' => 'Name of a special page displayed in [[Special:SpecialPages]].',
@@ -1312,6 +1320,13 @@ Don\'t translate the "Template:" part!',
 
 # Special:ListUsers
 'listusers-submit' => '{{Identical|Show}}',
+
+# Special:Log/newusers
+'newuserlogpage' => 'It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
+'newuserlogpagetext' => 'It is the description you can see on [[Special:Log/newusers]].',
+'newuserlog-create-entry' => 'It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
+'newuserlog-create2-entry' => 'It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1").',
+'newuserlog-autocreate-entry' => 'This message is used in the new user log to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
@@ -2134,6 +2149,4 @@ $1 is the name of the requested file.',
 # Special:BlankPage
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
 
-# Unknown messages
-'deleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 );

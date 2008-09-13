@@ -771,6 +771,10 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Ongin brúkari var funnin.',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Brúkara logg',
+'newuserlog-create-entry' => 'Nýggjur brúkari',
+
 # E-mail user
 'mailnologintext' => 'Tú mást hava [[Special:UserLogin|ritað inn]]
 og hava virkandi teldupostadressu í [[Special:Preferences|innstillingum]] tínum

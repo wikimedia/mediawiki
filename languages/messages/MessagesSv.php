@@ -890,6 +890,7 @@ Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skap
 
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
+'deleted-notice'                   => 'Denna sida har blivit raderad. Som referens visas nedan raderingsloggen för sidan.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -1706,6 +1707,14 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 'listusersfrom'      => 'Visa användare från och med:',
 'listusers-submit'   => 'Visa',
 'listusers-noresult' => 'Ingen användare hittades.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Logg över nya användare',
+'newuserlogpagetext'          => 'Detta är en logg över skapade användarkonton.',
+'newuserlog-byemail'          => 'lösenord skickat med e-post',
+'newuserlog-create-entry'     => 'Ny användare',
+'newuserlog-create2-entry'    => 'skapade användarkonto för $1',
+'newuserlog-autocreate-entry' => 'Konto skapades automatiskt',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Behörigheter för användargrupper',

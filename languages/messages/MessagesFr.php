@@ -20,6 +20,7 @@
  * @author McDutchie
  * @author Meithal
  * @author Omnipaedista
+ * @author Remember the dot
  * @author Seb35
  * @author Sherbrooke
  * @author Urhixidur
@@ -486,7 +487,7 @@ $messages = array(
 'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Article',
+'nstab-main'      => 'Page',
 'nstab-user'      => 'Page utilisateur',
 'nstab-media'     => 'Média',
 'nstab-special'   => 'Spécial',
@@ -1554,6 +1555,7 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'popularpages'            => 'Pages les plus consultées',
 'wantedcategories'        => 'Catégories les plus demandées',
 'wantedpages'             => 'Pages les plus demandées',
+'wantedfiles'             => 'Fichiers désirés',
 'missingfiles'            => 'Fichiers manquants',
 'mostlinked'              => 'Pages les plus liées',
 'mostlinkedcategories'    => 'Catégories les plus utilisées',
@@ -1637,6 +1639,14 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Montrer',
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Historique des créations de comptes',
+'newuserlogpagetext'          => 'Journal des créations de comptes utilisateurs.',
+'newuserlog-byemail'          => 'mot de passe envoyé par courriel',
+'newuserlog-create-entry'     => 'Nouvel utilisateur',
+'newuserlog-create2-entry'    => 'a créé le compte $1',
+'newuserlog-autocreate-entry' => 'Compte créé automatiquement',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Droits des groupes utilisateur',

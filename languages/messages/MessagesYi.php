@@ -1117,6 +1117,12 @@ $2',
 'listusers-submit'   => 'ווײַז',
 'listusers-noresult' => 'קיין באניצער נישט געטראפֿן.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'נייע באַניצערס לאָג-בוך',
+'newuserlogpagetext'       => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
+'newuserlog-create-entry'  => 'נײַער באניצער',
+'newuserlog-create2-entry' => 'געשאפֿן קאנטע פֿאר $1',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'באַניצער גרופע רעכטן',
 'listgrouprights-group'    => 'גרופע',

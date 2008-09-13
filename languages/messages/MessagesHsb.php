@@ -709,6 +709,7 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1',
 
 Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidłam projekta.
 Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
+'deleted-notice'                   => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow za tutu stronu so deleka jako referenca podawa.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow.
@@ -1505,6 +1506,14 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'listusersfrom'      => 'Započinajo z:',
 'listusers-submit'   => 'Pokazać',
 'listusers-noresult' => 'Njemóžno wužiwarjow namakać. Prošu wobkedźbuj, zo so mało- abo wulkopisanje na wotprašowanje wuskutkuje.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Protokol nowych wužiwarjow',
+'newuserlogpagetext'          => 'To je protokol wutworjenja nowych wužiwarskich kontow.',
+'newuserlog-byemail'          => 'Hesło z e-mejlku pósłane',
+'newuserlog-create-entry'     => 'Nowy wužiwar',
+'newuserlog-create2-entry'    => 'Konto za wužiwarja $1 wutworjene',
+'newuserlog-autocreate-entry' => 'Wužiwarske konto bu awtomatisce wutworjene.',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Prawa wužiwarskeje skupiny',

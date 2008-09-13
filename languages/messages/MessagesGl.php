@@ -667,6 +667,7 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 
 Debería considerar se é apropiado continuar a editar esta páxina.
 Velaquí está o rexistro de borrado desta páxina, por se quere consultalo:",
+'deleted-notice'                   => 'Esta páxina foi borrada. Embaixo pódese ver o rexistro de borrados desta páxina, por se o quere consultar.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
@@ -1495,6 +1496,14 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
 'listusers-submit'   => 'Amosar',
 'listusers-noresult' => 'Non se atopou ningún usuario. Comprobe tamén as variantes con maiúsculas e minúsculas.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Rexistro de creación de usuarios',
+'newuserlogpagetext'          => 'Este é un rexistro de creación de contas de usuario.',
+'newuserlog-byemail'          => 'contrasinal enviado por correo electrónico',
+'newuserlog-create-entry'     => 'Novo usuario',
+'newuserlog-create2-entry'    => 'creou unha conta para "$1"',
+'newuserlog-autocreate-entry' => 'Conta de usuario creada automaticamente',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Dereitos dun usuario segundo o seu grupo',

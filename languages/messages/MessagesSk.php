@@ -786,6 +786,7 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
+'deleted-notice'                   => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -1522,6 +1523,7 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 'popularpages'            => 'Populárne stránky',
 'wantedcategories'        => 'Žiadané kategórie',
 'wantedpages'             => 'Žiadané stránky',
+'wantedfiles'             => 'Žiadané súbory',
 'missingfiles'            => 'Chýbajúce súbory',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
 'mostlinkedcategories'    => 'Najčastejšie odkazované kategórie',
@@ -1606,6 +1608,14 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'listusersfrom'      => 'Zobraziť používateľov počnúc:',
 'listusers-submit'   => 'Zobraziť',
 'listusers-noresult' => 'Neboli nájdení používatelia. Prosím, skontrolujte aj varianty s veľkými/malými písmenami.',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Záznam vytvorených používateľov',
+'newuserlogpagetext'          => 'Toto je záznam naposledy vytvorených používateľských účtov.',
+'newuserlog-byemail'          => 'heslo poslané emailom',
+'newuserlog-create-entry'     => 'Nový používateľ',
+'newuserlog-create2-entry'    => 'Bol vytvorený účet pre $1',
+'newuserlog-autocreate-entry' => 'Účet vytvorený automaticky',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Práva skupiny používateľov',

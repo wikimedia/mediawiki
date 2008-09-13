@@ -1268,6 +1268,13 @@ $1',
 'listusers-submit'   => 'Нишон додани',
 'listusers-noresult' => 'Ҳеҷ корбаре ёфт нашуд.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Гузориши эҷоди корбар',
+'newuserlogpagetext'       => 'Ин гузориш аз номҳои корбарии тозасохташуда аст.',
+'newuserlog-byemail'       => 'калимаи убур ба почтаи электронӣ фиристода шуд',
+'newuserlog-create-entry'  => 'Корбари нав',
+'newuserlog-create2-entry' => 'Барои $1 ҳисоби корбарӣ эҷод шуд',
+
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Гурӯҳ',
 'listgrouprights-members' => '(феҳристи аъзоён)',

@@ -931,6 +931,12 @@ Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' 
 'categories'         => 'Categoreyes',
 'categoriespagetext' => 'I gn a les categoreyes shuvantes sol wiki.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Djournå des noveas uzeus',
+'newuserlogpagetext'       => "Chal pa dzo c' est ene djivêye des uzeus novelmint eredjîstrés.",
+'newuserlog-create-entry'  => 'Novea uzeu',
+'newuserlog-create2-entry' => 'conte ahivé po $1',
+
 # E-mail user
 'mailnologin'     => "Nole adresse d' evoyeu",
 'mailnologintext' => "Po-z evoyî èn emile a èn ôte uzeu i vs fåt esse [[Special:UserLogin|elodjî]] eyet aveur ene adresse emile d' evoyeu ki soeye valide dins vos [[Special:Preferences|preferinces]].",

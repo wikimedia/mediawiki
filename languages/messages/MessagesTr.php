@@ -1195,6 +1195,14 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'listusers-submit'   => 'Göster',
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
 
+# Special:Log/newusers
+'newuserlogpage'              => 'Yeni kullanıcı kayıtları',
+'newuserlogpagetext'          => 'En son kaydolan kullanıcı kayıtları.',
+'newuserlog-byemail'          => 'eposta yoluyla şifre gönderilmiştir',
+'newuserlog-create-entry'     => 'Yeni kullanıcı',
+'newuserlog-create2-entry'    => '$1 yeni hesap oluşturdu',
+'newuserlog-autocreate-entry' => 'Otomatik hesap oluşturuldu',
+
 # Special:ListGroupRights
 'listgrouprights-group'   => 'grup',
 'listgrouprights-rights'  => 'Haklar',

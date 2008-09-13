@@ -636,6 +636,7 @@ Considera paginam in partes minores frangere.',
 'recreate-deleted-warn'     => "'''Cave: paginam qui antea iam deleta est creas.'''
 
 Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
+'deleted-notice'            => 'Haec pagina deleta est. Commodule notatio paginarum deletarum subter datur.',
 
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
@@ -1133,6 +1134,14 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 
 # Special:ListUsers
 'listusers-submit' => 'Monstrare',
+
+# Special:Log/newusers
+'newuserlogpage'              => 'Index rationum novarum creatarum',
+'newuserlogpagetext'          => 'Hic est index rationum novarum creatarum.',
+'newuserlog-byemail'          => 'tessera missa litteris electronicis',
+'newuserlog-create-entry'     => 'Usor novus',
+'newuserlog-create2-entry'    => 'creavit rationem pro $1',
+'newuserlog-autocreate-entry' => 'Ratio automatice creata',
 
 # Special:ListGroupRights
 'listgrouprights-addgroup'        => 'Potest usores addere ad {{PLURAL:$2|gregem|greges}}: $1',

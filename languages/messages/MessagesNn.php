@@ -1486,6 +1486,13 @@ Sletteloggen for fila finn du her:",
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
 
+# Special:Log/newusers
+'newuserlogpage'           => 'Brukaropprettingslogg',
+'newuserlogpagetext'       => 'Dette er ein logg over oppretta brukarkontoar.',
+'newuserlog-byemail'       => 'passordet er sendt på e-post',
+'newuserlog-create-entry'  => 'Ny brukar',
+'newuserlog-create2-entry' => 'oppretta konto for $1',
+
 # Special:ListGroupRights
 'listgrouprights'          => 'Tilgangar for brukargrupper',
 'listgrouprights-summary'  => 'Lista nedanfor viser brukargruppene på denne wikien, med dei tilhøyrande tilgangane. Meir informasjon om dei ulike typane tilgang kan ein finne [[{{MediaWiki:Listgrouprights-helppage}}|her]].',

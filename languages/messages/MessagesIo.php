@@ -693,6 +693,9 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 # Special:Categories
 'categories' => 'Kategorii',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Nova uzanto',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
 
