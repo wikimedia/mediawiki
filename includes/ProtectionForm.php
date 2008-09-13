@@ -268,17 +268,18 @@ class ProtectionForm {
 			if( wfEmptyMsg( 'restriction-' . $action, $msg ) ) {
 				$msg = $action;
 			}
-			$label = Xml::element( 'label',
-					array( 'for' => "mwProtect-level-$action" ),
-					$msg );
-			$out .= "<tr><th>$label</th></tr>";
-			$out .= "<tr><td>" .
-			$this->buildSelector( $action, $selected ) .
-				"</td></tr>";
+			$label = Xml::element( 'label', array( 'for' => "mwProtect-level-$action" ), $msg );
+			$out .= "<tr><td><table>" .
+				"<tr><th>$label</th><th></th></tr>" .
+				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td><td>";
+
+			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonList',
+				wfMsgForContent( 'protect-dropdown' ),
+				wfMsgForContent( 'protect-otherreason-op' ), '', 'mwProtect-reason', 4 );
 			$scExpiryOptions = wfMsgForContent( 'ipboptions' ); // FIXME: use its own message
 
 			$showProtectOptions = ($scExpiryOptions !== '-' && !$this->disabled);
-			
+
 			$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), "mwProtectExpiryList-$action" );
 			$mProtectother = Xml::label( wfMsg( 'protect-othertime' ), "mwProtect-$action-expires" );
 			$expiryFormOptions = Xml::option( wfMsg( 'protect-othertime-op' ), "wpProtectExpiryList-$action" );
@@ -292,7 +293,7 @@ class ProtectionForm {
 			# Add expiry dropdown
 			if( $showProtectOptions && !$this->disabled ) {
 				$out .= "
-					<tr>
+					<table><tr>
 						<td class='mw-label'>
 							{$mProtectexpiry}
 						</td>
@@ -305,30 +306,27 @@ class ProtectionForm {
 									'tabindex' => '2' ) + $this->disabledAttrib,
 								$expiryFormOptions ) .
 						"</td>
-					</tr>";
+					</tr></table>";
 			}
 			# Add custom expiry field
 			$attribs = array( 'id' => "mwProtect-$action-expires", 'onkeyup' => 'protectExpiryUpdate(this)' ) + $this->disabledAttrib;
-			$out .= "<tr>
+			$out .= "<table><tr>
 					<td class='mw-label'>" .
 						$mProtectother .
 					'</td>
 					<td class="mw-input">' .
 						Xml::input( "mwProtect-expiry-$action", 60, $this->mExpiry[$action], $attribs ) .
 					'</td>
-				</tr>';
+				</tr></table>';
+			$out .= "</td></tr></table></td></tr>";
 		}
-		$reasonDropDown = Xml::listDropDown( 'wpProtectReasonList',
-			wfMsgForContent( 'protect-dropdown' ),
-			wfMsgForContent( 'protect-otherreason-op' ), '', 'mwProtect-reason', 4 );
+
+		$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 
 		// JavaScript will add another row with a value-chaining checkbox
-		$out .= Xml::closeElement( 'tbody' ) .
-			Xml::closeElement( 'table' ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
-			Xml::openElement( 'tbody' );
-
 		if( $this->mTitle->exists() ) {
+			$out .= Xml::openElement( 'table', array( 'id' => 'mw-protect-table2' ) ) .
+				Xml::openElement( 'tbody' );
 			$out .= '<tr>
 					<td></td>
 					<td class="mw-input">' .
@@ -336,9 +334,13 @@ class ProtectionForm {
 							$this->mCascade, $this->disabledAttrib ) .
 					"</td>
 				</tr>\n";
+			$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 		}
-		# Add manual and custom reason field/selects
+		
+		# Add manual and custom reason field/selects as well as submit
 		if( !$this->disabled ) {
+			$out .=  Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
+				Xml::openElement( 'tbody' );
 			$out .= "
 				<tr>
 					<td class='mw-label'>
@@ -371,11 +373,9 @@ class ProtectionForm {
 						Xml::submitButton( wfMsg( 'confirm' ), array( 'id' => 'mw-Protect-submit' ) ) .
 					"</td>
 				</tr>\n";
+			$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 		}
-
-		$out .= Xml::closeElement( 'tbody' ) .
-			Xml::closeElement( 'table' ) .
-			Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( !$this->disabled ) {
 			$out .= Xml::closeElement( 'form' ) .
@@ -453,7 +453,8 @@ class ProtectionForm {
 			}
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
-		$script .= 'protectInitialize("mwProtectSet","' . Xml::escapeJsString( wfMsg( 'protect-unchain' ) ) . '","' . count($this->mApplicableTypes) . '")';
+		$script .= 'protectInitialize("mw-protect-table2","' . Xml::escapeJsString( wfMsg( 'protect-unchain' ) ) . 
+			'","' . count($this->mApplicableTypes) . '")';
 		return Xml::tags( 'script', array( 'type' => 'text/javascript' ), $script );
 	}
 

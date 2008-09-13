@@ -93,7 +93,7 @@ class MovePageForm {
 			# when the form is first opened.
 			$newTitle = $oldTitle;
 		} else {
-			if( $err == '' ) {
+			if( empty($err) ) {
 				$nt = Title::newFromURL( $this->newTitle );
 				if( $nt ) {
 					# If a title was supplied, probably from the move log revert
@@ -108,7 +108,7 @@ class MovePageForm {
 			$newTitle = $this->newTitle;
 		}
 
-		if ( $err == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
+		if ( !empty($err) && $err[0] == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
 			$wgOut->addWikiMsg( 'delete_and_move_text', $newTitle );
 			$movepagebtn = wfMsg( 'delete_and_move' );
 			$submitVar = 'wpDeleteAndMove';
@@ -144,9 +144,9 @@ class MovePageForm {
 		$titleObj = SpecialPage::getTitleFor( 'Movepage' );
 		$token = htmlspecialchars( $wgUser->editToken() );
 
-		if ( $err != '' ) {
+		if ( !empty($err) ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
-			if( $err == 'hookaborted' ) {
+			if( $err[0] == 'hookaborted' ) {
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
 				$wgOut->addHTML( $errMsg );
 			} else {
@@ -292,12 +292,7 @@ class MovePageForm {
 
 		$error = $ot->moveTo( $nt, true, $this->reason );
 		if ( $error !== true ) {
-			if (isset($error[0][0]) && $error[0][0] = 'cascadeprotected') {
-				$wgOut->showPermissionsErrorPage($error, 'move');
-				return;
-			}
-			# FIXME: showForm() should handle multiple errors
-			call_user_func_array(array($this, 'showForm'), $error[0]);
+			call_user_func_array( array($this, 'showForm'), $error );
 			return;
 		}
 
