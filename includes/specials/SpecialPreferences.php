@@ -558,7 +558,13 @@ class PreferencesForm {
 
 		if ($wgEmailAuthentication && ($this->mUserEmail != '') ) {
 			if( $wgUser->getEmailAuthenticationTimestamp() ) {
-				$emailauthenticated = wfMsg('emailauthenticated',$wgLang->timeanddate($wgUser->getEmailAuthenticationTimestamp(), true ) ).'<br />';
+				// date and time are separate parameters to facilitate localisation.
+				// $time is kept for backward compat reasons.
+				// 'emailauthenticated' is also used in SpecialConfirmemail.php
+				$time = $wgLang->timeAndDate( $wgUser->getEmailAuthenticationTimestamp(), true );
+				$d = $wgLang->date( $wgUser->getEmailAuthenticationTimestamp(), true );
+				$t = $wgLang->time( $wgUser->getEmailAuthenticationTimestamp(), true );
+				$emailauthenticated = wfMsg('emailauthenticated', $time, $d, $t ).'<br />';
 				$disableEmailPrefs = false;
 			} else {
 				$disableEmailPrefs = true;
@@ -618,7 +624,7 @@ class PreferencesForm {
 		$toolLinks = array();
 		$toolLinks[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'ListGroupRights' ), wfMsg( 'listgrouprights' ) );
 		# At the moment one tool link only but be prepared for the future...
-		# FIXME: Add a link to Special:Userrights for users who are allowed to use it. 
+		# FIXME: Add a link to Special:Userrights for users who are allowed to use it.
 		# $wgUser->isAllowed( 'userrights' ) seems to strict in some cases
 
 		$userInformationHtml =
@@ -627,7 +633,7 @@ class PreferencesForm {
 
 			$this->tableRow(
 				wfMsgExt( 'prefs-memberingroups', array( 'parseinline' ), count( $userEffectiveGroupsArray ) ),
-				implode( wfMsg( 'comma-separator' ), $userEffectiveGroupsArray ) . 
+				implode( wfMsg( 'comma-separator' ), $userEffectiveGroupsArray ) .
 				'<br />(' . implode( ' | ', $toolLinks ) . ')'
 			) .
 
@@ -732,7 +738,7 @@ class PreferencesForm {
 					)
 				);
 			}
-			
+
 			if(count($variantArray) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion) {
 				$wgOut->addHtml(
 					Xml::tags( 'tr', null,

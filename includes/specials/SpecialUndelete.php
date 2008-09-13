@@ -748,8 +748,6 @@ class UndeleteForm {
 			SpecialPage::getTitleFor( 'Undelete', $this->mTargetObj->getPrefixedDBkey() ),
 			htmlspecialchars( $this->mTargetObj->getPrefixedText() )
 		);
-		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp, true ) );
-		$user = $skin->revUserTools( $rev );
 
 		if( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
@@ -765,7 +763,14 @@ class UndeleteForm {
 			}
 		}
 
-		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user ) . '</p>' );
+		// date and time are separate parameters to facilitate localisation.
+		// $time is kept for backward compat reasons.
+		$time = htmlspecialchars( $wgLang->timeAndDate( $timestamp, true ) );
+		$d = htmlspecialchars( $wgLang->date( $timestamp, true ) );
+		$t = htmlspecialchars( $wgLang->time( $timestamp, true ) );
+		$user = $skin->revUserTools( $rev );
+
+		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $t, $d ) . '</p>' );
 
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
