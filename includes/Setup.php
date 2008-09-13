@@ -315,6 +315,16 @@ wfRunHooks( 'LogPageLogName', array( &$wgLogNames ) );
 wfRunHooks( 'LogPageLogHeader', array( &$wgLogHeaders ) );
 wfRunHooks( 'LogPageActionText', array( &$wgLogActions ) );
 
+if( !empty($wgNewUserLog) ) {
+	# Add a new log type
+	$wgLogTypes[]                        = 'newusers';
+	$wgLogNames['newusers']              = 'newuserlogpage';
+	$wgLogHeaders['newusers']            = 'newuserlogpagetext';
+	$wgLogActions['newusers/newusers']   = 'newuserlogentry'; // For compatibility with older log entries
+	$wgLogActions['newusers/create']     = 'newuserlog-create-entry';
+	$wgLogActions['newusers/create2']    = 'newuserlog-create2-entry';
+	$wgLogActions['newusers/autocreate'] = 'newuserlog-autocreate-entry';
+}
 
 wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;

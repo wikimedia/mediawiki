@@ -2107,6 +2107,16 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
 
+# New user log
+'newuserlogpage'              => 'User creation log',
+'newuserlogpagetext'          => 'This is a log of user creations.',
+'newuserlog-desc'             => 'Adds a [[Special:Log/newusers|log of account creations]]',
+'newuserlogentry'             => '', # For compatibility, do not translate this
+'newuserlog-byemail'          => 'password sent by e-mail',
+'newuserlog-create-entry'     => 'New user',
+'newuserlog-create2-entry'    => 'created account for $1',
+'newuserlog-autocreate-entry' => 'Account created automatically',
+
 # Special:ListGroupRights
 'listgrouprights'                 => 'User group rights',
 'listgrouprights-summary'         => 'The following is a list of user groups defined on this wiki, with their associated access rights.
