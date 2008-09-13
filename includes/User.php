@@ -3194,4 +3194,41 @@ class User {
 			return self::oldCrypt( $password, $userId ) === $hash;
 		}
 	}
+	
+	/**
+	 * Add a newuser log entry for this user
+	 * @param bool $byEmail, account made by email?
+	 */
+	public function addNewUserLogEntry( $byEmail = false ) {
+		global $wgUser, $wgContLang, $wgNewUserLog;
+		if( empty($wgNewUserLog) ) {
+			return true; // disabled
+		}
+		$talk = $wgContLang->getFormattedNsText( NS_TALK );
+		if( $this->getName() == $wgUser->getName() ) {
+			$action = 'create';
+			$message = '';
+		} else {
+			$action = 'create2';
+			$message = $byEmail ? wfMsgForContent( 'newuserlog-byemail' ) : '';
+		}
+		$log = new LogPage( 'newusers' );
+		$log->addEntry( $action, $this->getUserPage(), $message, array( $this->getId() ) );
+		return true;
+	}
+
+	/**
+	 * Add an autocreate newuser log entry for this user
+	 * Used by things like CentralAuth and perhaps other authplugins.
+	 */
+	public static function addNewUserLogEntryAutoCreate() {
+		global $wgNewUserLog;
+		if( empty($wgNewUserLog) ) {
+			return true; // disabled
+		}
+		$log = new LogPage( 'newusers', false );
+		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ) );
+		return true;
+	}
+
 }

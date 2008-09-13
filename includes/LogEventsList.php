@@ -279,10 +279,22 @@ class LogEventsList {
 				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
 					'target=' . $title->getPrefixedUrl() . $logParams ) . ')';
 			}
+		// Self-created users
+		} else if( self::typeAction($row,'newusers','create2') ) {
+			if( isset( $paramArray[0] ) ) {
+				$revert = $this->skin->userToolLinks( $paramArray[0], $title->getDBkey(), true );
+			} else {
+				# Fall back to a blue contributions link
+				$revert = $this->skin->userToolLinks( 1, $title->getDBkey() );
+			}
+			if( $time < '20080129000000' ) {
+				# Suppress $comment from old entries (before 2008-01-29), not needed and can contain incorrect links
+				$comment = '';
+			}
+		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		} else {
 			wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,
 				&$comment, &$revert, $row->log_timestamp ) );
-			// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		}
 		// Event description
 		if( self::isDeleted($row,LogPage::DELETED_ACTION) ) {

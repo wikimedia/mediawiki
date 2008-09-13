@@ -2748,6 +2748,11 @@ $wgLogActions = array(
 $wgLogActionsHandlers = array();
 
 /**
+ * Maintain a log of newusers at Log/newusers?
+ */
+$wgNewUserLog = true;
+
+/**
  * List of special pages, followed by what subtitle they should go under
  * at Special:SpecialPages
  */

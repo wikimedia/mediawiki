@@ -129,6 +129,7 @@ class LoginForm {
 		$result = $this->mailPasswordInternal( $u, false, 'createaccount-title', 'createaccount-text' );
 
 		wfRunHooks( 'AddNewAccount', array( $u, true ) );
+		$u->addNewUserLogEntry();
 
 		$wgOut->setPageTitle( wfMsg( 'accmailtitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -182,6 +183,7 @@ class LoginForm {
 			$wgUser = $u;
 			$wgUser->setCookies();
 			wfRunHooks( 'AddNewAccount', array( $wgUser ) );
+			$wgUser->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
 				return $this->successfulCreation();
 			} else {
@@ -197,6 +199,7 @@ class LoginForm {
 			$wgOut->addHtml( wfMsgWikiHtml( 'accountcreatedtext', $u->getName() ) );
 			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $u ) );
+			$u->addNewUserLogEntry();
 			return true;
 		}
 	}
