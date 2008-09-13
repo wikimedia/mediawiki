@@ -180,7 +180,8 @@ class LanguageConverter {
 				$header = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 				$zh = strstr($header, $pv.'-');
 				if($zh) {
-					$pv = substr($zh,0,5);
+					$ary = split("[,;]",$zh);
+					$pv = $ary[0];
 				}
 			}
 			// don't try to return bad variant
