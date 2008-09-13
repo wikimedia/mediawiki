@@ -834,6 +834,11 @@ class User {
 		} else if ( isset( $_COOKIE["{$wgCookiePrefix}Token"] ) ) {
 			$passwordCorrect = $this->mToken == $_COOKIE["{$wgCookiePrefix}Token"];
 			$from = 'cookie';
+
+			if ( ( $sName == $this->mName ) && $passwordCorrect ) {
+				# New session from old cookie - spread any applicable autoblocks
+				$this->spreadBlock();
+			}
 		} else {
 			# No session or persistent login cookie
 			$this->loadDefaults();
@@ -1049,9 +1054,6 @@ class User {
 			$this->mBlockedby = $this->mBlock->mBy;
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
-			if ( $this->isLoggedIn() ) {
-				$this->spreadBlock();
-			}
 		} else {
 			$this->mBlock = null;
 			wfDebug( __METHOD__.": No block.\n" );
@@ -2236,6 +2238,9 @@ class User {
 		} else {
 			$cookies['Token'] = false;
 		}
+
+		# Spread any applicable autoblocks
+		$this->spreadBlock();
 		
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 		$_SESSION = $session + $_SESSION;
