@@ -2521,13 +2521,13 @@ border=\"0\" ALT=\"Google\"></A>
 			$cache = new HTMLFileCache( $t );
 			if( $cache->isFileCached() ) {
 				// @todo, FIXME: $msg is not defined on the next line.
-				$msg = '<p style="color: red"><b>'.$msg."<br />\n" .
+				$msg = '<p style="color: red"><b>'.$text."<br />\n" .
 					$cachederror . "</b></p>\n";
 
 				$tag = '<div id="article">';
 				$text = str_replace(
 					$tag,
-					$tag . $msg,
+					$tag . $text,
 					$cache->fetchPageText() );
 			}
 		}
