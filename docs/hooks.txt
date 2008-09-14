@@ -782,7 +782,7 @@ $target: the Title that the link is pointing to
 	fault values, with a value of false meaning to suppress the attribute.
 &$query: the query string to add to the generated URL (the bit after the "?"),
 	in associative array form, with keys and values unescaped.
-&$options: the options.  Can include 'known', 'broken', 'noclasses'.
+&$options: array of options.  Can include 'known', 'broken', 'noclasses'.
 &$ret: the value to return if your hook returns false.
 
 'LinkEnd': Used when generating internal and interwiki links in Linker::link(),
