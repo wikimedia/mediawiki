@@ -201,7 +201,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   LanguageConverter.php, instead of the fixed length language codes.
 * Special:Recentchangeslinked no longer shows outgoing links for nonexistent pages
   even if there are broken link records with source article id 0 in the database
-
+* (bug 15598) Special:Newpages default limit uses user preference for recentchanges
+  limit instead of hardcoded 50.
 
 === API changes in 1.14 ===
 
