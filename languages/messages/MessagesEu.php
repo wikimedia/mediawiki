@@ -1256,6 +1256,14 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'special-categories-sort-count' => 'kontatetzearen arabera ordenatu',
 'special-categories-sort-abc'   => 'alfabetikoki aldatu',
 
+# Special:LinkSearch
+'linksearch'       => 'Web loturak bilatu',
+'linksearch-pat'   => 'Bilaketa katea:',
+'linksearch-ns'    => 'Izen-tartea:',
+'linksearch-ok'    => 'Bilatu',
+'linksearch-line'  => '$1, $2(e)tik lotuta',
+'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Hemendik aurrerako erabiltzaileak bistaratu:',
 'listusers-submit'   => 'Erakutsi',

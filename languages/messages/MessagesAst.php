@@ -1444,6 +1444,15 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Buscar enllaces web',
+'linksearch-pat'   => 'Patrón de busca:',
+'linksearch-ns'    => 'Espaciu de nomes:',
+'linksearch-ok'    => 'Buscar',
+'linksearch-text'  => 'Puen usase comodinos como "*.wikipedia.org".<br />Protocolos almitíos: <tt>$1</tt>',
+'linksearch-line'  => '$1 enllaciáu dende $2',
+'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Amosar usuarios emprimando dende:',
 'listusers-submit'   => 'Amosar',

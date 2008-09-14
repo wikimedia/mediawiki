@@ -1266,6 +1266,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'special-categories-sort-count' => 'எண்ணிக்கையின் படி ஒழுங்குப் படுத்துக',
 'special-categories-sort-abc'   => 'அகரவரிசைப்படி ஒழுங்குப் படுத்துக',
 
+# Special:LinkSearch
+'linksearch-ok' => 'தேடுக',
+
 # Special:ListUsers
 'listusersfrom'      => 'பின்வரும் எழுத்துடன் தொடங்கும் பயனர்களைக் காட்டு:',
 'listusers-submit'   => 'காட்டு',

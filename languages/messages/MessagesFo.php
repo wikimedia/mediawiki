@@ -766,6 +766,9 @@ Tú kanst avmarka sýningina við at velja gerðabókaslag, brúkaranavn ella á
 'categories'         => 'Bólkar',
 'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Navnarúm:',
+
 # Special:ListUsers
 'listusersfrom'      => 'Vís brúkarar ið byrja við:',
 'listusers-submit'   => 'Sýna',

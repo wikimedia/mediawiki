@@ -253,6 +253,9 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 # Special:AllPages
 'alphaindexline' => '$1 tu $2',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Luk foh am',
+
 # Watchlist
 'watchlist'         => 'Mi list foh wach',
 'mywatchlist'       => 'Mi list foh wach',

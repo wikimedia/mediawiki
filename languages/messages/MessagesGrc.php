@@ -1075,6 +1075,9 @@ $1',
 'special-categories-sort-count' => 'ἀπαριθμητικὴ ταξινόμησις',
 'special-categories-sort-abc'   => 'ἀλφαβητικὴ ταξινόμησις',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Ζητεῖν',
+
 # Special:ListUsers
 'listusersfrom'      => 'Δεικνύναι χρωμένους (γραμμαὶ ἐκκινουμέναι ἐκ/ἐξ):',
 'listusers-submit'   => 'Ἐμφανίζειν',

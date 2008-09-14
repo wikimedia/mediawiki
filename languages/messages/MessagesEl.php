@@ -1451,6 +1451,9 @@ $2',
 'special-categories-sort-count' => 'ταξινόμηση κατά απαρίθμηση',
 'special-categories-sort-abc'   => 'αλφαβητική ταξινόμηση',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Αναζήτηση',
+
 # Special:ListUsers
 'listusersfrom'      => 'Προβολή χρηστών ξεκινώντας από:',
 'listusers-submit'   => 'Δείξε',

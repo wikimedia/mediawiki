@@ -1304,6 +1304,16 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'special-categories-sort-count' => 'sorteer volgens getal',
 'special-categories-sort-abc'   => 'sorteer alfabeties',
 
+# Special:LinkSearch
+'linksearch'       => 'Soek webskakels',
+'linksearch-pat'   => 'Soekpatroon:',
+'linksearch-ns'    => 'Naamruimte:',
+'linksearch-ok'    => 'Soek',
+'linksearch-text'  => 'Patrone soos "*.wikipedia.org" of "*.org" kan gebruik word.<br />
+Ondersteunde protokolle: <tt>$1</tt>',
+'linksearch-line'  => '$1 geskakel vanaf $2',
+'linksearch-error' => 'Patrone kan slegs aan die begin van die rekenaarnaam geplaas word.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Wys gebruikers, beginnende by:',
 'listusers-submit'   => 'Wys',

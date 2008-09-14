@@ -1454,6 +1454,16 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'special-categories-sort-count' => 'ordenar por conteo',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Buscar enlaces a páginas web',
+'linksearch-pat'   => 'Patrón de búsqueda:',
+'linksearch-ns'    => 'Nombre de espacio:',
+'linksearch-ok'    => 'Buscar',
+'linksearch-text'  => 'Se pueden usar comodines como  «*.wikipedia.org».<br />
+Protocolos soportados: <tt>$1</tt>',
+'linksearch-line'  => '$1 enlazado desde $2',
+'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',

@@ -1545,6 +1545,15 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'special-categories-sort-count' => 'xếp theo số trang',
 'special-categories-sort-abc'   => 'xếp theo vần',
 
+# Special:LinkSearch
+'linksearch'       => 'Tìm liên kết ngoài',
+'linksearch-pat'   => 'Mẫu liên kết:',
+'linksearch-ns'    => 'Không gian tên:',
+'linksearch-ok'    => 'Tìm kiếm',
+'linksearch-text'  => "Có thể sử dụng ký tự đại diện (''wildcard'') ở đầu tiên, ví dụ “*.wikipedia.org”.<br />Hiện hỗ trợ các giao thức: <tt>$1</tt>",
+'linksearch-line'  => '$1 được liên kết từ $2',
+'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
+
 # Special:ListUsers
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
 'listusers-submit'   => 'Liệt kê',

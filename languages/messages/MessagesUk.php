@@ -1662,6 +1662,15 @@ $3 зазначив наступну причину: ''$2''",
 'special-categories-sort-count' => 'упорядкувати за кількістю',
 'special-categories-sort-abc'   => 'упорядкувати за алфавітом',
 
+# Special:LinkSearch
+'linksearch'       => 'Пошук зовнішніх посилань',
+'linksearch-pat'   => 'Шаблон для пошуку:',
+'linksearch-ns'    => 'Простір назв:',
+'linksearch-ok'    => 'Знайти',
+'linksearch-text'  => 'Можна використовувати підстановочні символи, наприклад, <code>*.wikipedia.org</code>.<br />Підтримувані протоколи: <tt>$1</tt>',
+'linksearch-line'  => 'Посилання на $1 із $2',
+'linksearch-error' => 'Підстановочні знаки можуть використовуватися лише на початку адрес.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Показати користувачів, починаючи з:',
 'listusers-submit'   => 'Показати',

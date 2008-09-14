@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -1487,6 +1487,15 @@ Template:消除歧義',
 'categoriesfrom'                => '显示由此项起之分类:',
 'special-categories-sort-count' => '按数量排列',
 'special-categories-sort-abc'   => '按字母排列',
+
+# Special:LinkSearch
+'linksearch'       => '搜索网页链接',
+'linksearch-pat'   => '搜索网址:',
+'linksearch-ns'    => '名字空间:',
+'linksearch-ok'    => '搜索',
+'linksearch-text'  => '可以使用类似"*.wikipedia.org"的通配符。',
+'linksearch-line'  => '$1 链自 $2',
+'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
 # Special:ListUsers
 'listusersfrom'      => '给定显示用户条件:',

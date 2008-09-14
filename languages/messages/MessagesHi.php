@@ -1406,6 +1406,15 @@ PICT # misc.
 'special-categories-sort-count' => 'संख्यानुसार वर्ग दर्शायें',
 'special-categories-sort-abc'   => 'वर्णानुक्रम के अनुसार दर्शायें',
 
+# Special:LinkSearch
+'linksearch'       => 'वेब कड़ीयाँ खोजें',
+'linksearch-pat'   => 'खोजने के लिये पाठ:',
+'linksearch-ns'    => 'नामस्थान:',
+'linksearch-ok'    => 'खोजें',
+'linksearch-text'  => '"*.wikipedia.org" जैसे वाईल्डकार्ड्स इस्तेमाल करनेकी अनुमति हैं।<br />निम्नलिखित प्रोटोकॉल्समें: <tt>$1</tt>',
+'linksearch-line'  => '$2 में से $1 जुडा हुआ हैं',
+'linksearch-error' => 'वाईल्डकार्ड्स होस्टनामके सिर्फ शुरु में आ सकतें हैं।',
+
 # Special:ListUsers
 'listusersfrom'      => 'इस शब्द से शुरु होनेवाले सदस्य दर्शायें:',
 'listusers-submit'   => 'दर्शायें',

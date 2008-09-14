@@ -1583,6 +1583,13 @@ $2',
 'special-categories-sort-count' => 'តំរៀបតាមចំនួន',
 'special-categories-sort-abc'   => 'តំរៀបតាមអក្ខរក្រម',
 
+# Special:LinkSearch
+'linksearch'      => 'ស្វែងរកតំណភ្ជាប់វិប',
+'linksearch-pat'  => 'ស្វែងរកគំរូ៖',
+'linksearch-ns'   => 'លំហឈ្មោះ៖',
+'linksearch-ok'   => 'ស្វែងរក',
+'linksearch-line' => '$1បានតភ្ជាប់ពី$2',
+
 # Special:ListUsers
 'listusersfrom'      => 'បង្ហាញអ្នកប្រើប្រាស់ចាប់ផ្តើមដោយ៖',
 'listusers-submit'   => 'បង្ហាញ',

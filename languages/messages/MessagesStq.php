@@ -1436,6 +1436,15 @@ Ju Uutgoawe kon truch ju Uutwoal fon dän Logbouktyp, fon dän Benutser of dän 
 'special-categories-sort-count' => 'Sortierenge ätter Antaal',
 'special-categories-sort-abc'   => 'Sortierenge ätter Alphabet',
 
+# Special:LinkSearch
+'linksearch'       => 'Webferbiendenge-Säike',
+'linksearch-pat'   => 'Säikmuster:',
+'linksearch-ns'    => 'Noomensruum:',
+'linksearch-ok'    => 'Säike',
+'linksearch-text'  => 'Disse Spezialsiede moaket ju Säike muugelke ätter Sieden, in do bestimde Webferbiendengen äntheelden sunt. Deerbie konne Wildcards as biespilswiese <tt>*.example.com</tt> benutsed wäide.<br />Unnerstutsede Protokolle: <tt>$1</tt>',
+'linksearch-line'  => '$1 is ferlinked fon $2',
+'linksearch-error' => 'Wildcards konnen bloot an dän Ounfang fon ju URL ferwoand wäide.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Wies Benutsere fon:',
 'listusers-submit'   => 'Wies',

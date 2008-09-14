@@ -926,6 +926,9 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.',
 'categories'         => 'Hong-mien fûn-lui',
 'categoriespagetext' => 'Yî-ha lie̍t-chhut só-yû ke hong-mien fûn-lui.',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Chhìm-cháu',
+
 # Special:ListUsers
 'listusersfrom'      => 'Hién-sṳ yung-fu lie̍t-péu chhiùng:',
 'listusers-submit'   => 'Hién-sṳ',

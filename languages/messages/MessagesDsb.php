@@ -1536,6 +1536,16 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'special-categories-sort-count' => 'pśewuběrowaś pó licbje',
 'special-categories-sort-abc'   => 'pśewuběrowaś pó alfabeśe',
 
+# Special:LinkSearch
+'linksearch'       => 'Webwótkaze pytaś',
+'linksearch-pat'   => 'Pytański muster:',
+'linksearch-ns'    => 'Mjenjowy rum:',
+'linksearch-ok'    => 'Pytaś',
+'linksearch-text'  => 'Jo móžno zastupne znamješka kaž "*.wikipedia.org" wužywaś.<br />
+Pódpěrane protokole: <tt>$1</tt>',
+'linksearch-line'  => '$1 wótkazany z $2',
+'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Pokaž wužywarjow wót:',
 'listusers-submit'   => 'Pokazaś',

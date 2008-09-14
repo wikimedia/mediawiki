@@ -924,6 +924,9 @@ võidakse sinu ligipääs sulgeda.',
 'categories'         => 'Kategooriad',
 'categoriespagetext' => 'Vikis on järgmised kategooriad.',
 
+# Special:LinkSearch
+'linksearch' => 'Otsi välislinke',
+
 # Special:Log/newusers
 'newuserlogpage'          => 'Kasutaja loomise logi',
 'newuserlogpagetext'      => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',

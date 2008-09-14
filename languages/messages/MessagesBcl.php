@@ -1126,6 +1126,10 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 'categories'         => 'Mga Kategorya',
 'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.',
 
+# Special:LinkSearch
+'linksearch-ok'   => 'Hanápon',
+'linksearch-line' => '$1 an nakatakod sa $2',
+
 # Special:ListUsers
 'listusersfrom'      => 'Ipahiling an mga paragamit poon sa:',
 'listusers-submit'   => 'Ipahiling',

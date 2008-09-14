@@ -967,6 +967,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'special-categories-sort-count' => 'аравтомс цётонь коряс',
 'special-categories-sort-abc'   => 'аравтомс альфавитэнь коряс',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Лем потмось:',
+
 # Special:ListUsers
 'listusers-submit'   => 'Невтемс',
 'listusers-noresult' => 'Совицязо а муеви',

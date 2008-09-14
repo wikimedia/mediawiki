@@ -1192,6 +1192,10 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 'special-categories-sort-count' => 'Otafa mubera',
 'special-categories-sort-abc'   => 'Abavafa mubera',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Yoltxo :',
+'linksearch-ok' => 'Aneyara',
+
 # Special:ListUsers
 'listusersfrom'      => 'Fintara va favesikeem male :',
 'listusers-submit'   => 'Nedira',

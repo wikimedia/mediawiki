@@ -1349,6 +1349,15 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'special-categories-sort-count' => 'op aantal sortere',
 'special-categories-sort-abc'   => 'alfabetisch sortere',
 
+# Special:LinkSearch
+'linksearch'       => 'Extern links zeuke',
+'linksearch-pat'   => 'Zeukpatroon:',
+'linksearch-ns'    => 'Naamruumdje:',
+'linksearch-ok'    => 'Zeuk',
+'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.<br />Supported protocols: <tt>$1</tt>',
+'linksearch-line'  => '$1 gelink vanaaf $2',
+'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Tuun gebroekers vanaaf:',
 'listusers-submit'   => 'Tuun',

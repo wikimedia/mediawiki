@@ -1215,6 +1215,9 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'special-categories-sort-count' => 'ordenal pol cuenta',
 'special-categories-sort-abc'   => 'ordenal alfabeticamenti',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Landeal',
+
 # Special:ListUsers
 'listusersfrom'      => "Muestral usuárius qu'esmiencin pol:",
 'listusers-submit'   => 'Muestral',

@@ -986,6 +986,9 @@ Tu dikarê ji xwe ra reşahîyekê bibê, navî bikarhênerekê ya navî rûpele
 'special-categories-sort-count' => 'hatîye rêzkirin li gorî hejmaran',
 'special-categories-sort-abc'   => 'hatîye rêzkirin li gorî alfabeyê',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Lêbigere',
+
 # Special:ListUsers
 'listusers-submit'   => 'Pêşêkê',
 'listusers-noresult' => 'Ne bikarhênerek hate dîtin.',

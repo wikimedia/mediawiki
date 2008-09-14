@@ -1421,6 +1421,15 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'special-categories-sort-count' => '項目数順',
 'special-categories-sort-abc'   => 'アルファベット順',
 
+# Special:LinkSearch
+'linksearch'       => '外部リンクの検索',
+'linksearch-pat'   => '検索パターン:',
+'linksearch-ns'    => '名前空間:',
+'linksearch-ok'    => '検索',
+'linksearch-text'  => '"*.wikipedia.org" のようにワイルドカードを使うことができます。<br />対応プロトコル: <tt>$1</tt>',
+'linksearch-line'  => '$1 が $2 からリンクされています',
+'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
+
 # Special:ListUsers
 'listusersfrom'      => 'この文字から表示:',
 'listusers-submit'   => '表示',

@@ -1438,6 +1438,11 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'special-categories-sort-count' => 'rikiuoti pagal skaičių',
 'special-categories-sort-abc'   => 'rikiuoti pagal abėcėlę',
 
+# Special:LinkSearch
+'linksearch'    => 'Ieškoti interneto nuorodose',
+'linksearch-ns' => 'Vardų sritis:',
+'linksearch-ok' => 'Ieškoti',
+
 # Special:ListUsers
 'listusersfrom'      => 'Rodyti naudotojus pradedant nuo:',
 'listusers-submit'   => 'Rodyti',

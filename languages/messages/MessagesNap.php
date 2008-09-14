@@ -340,6 +340,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'categories'         => 'Categurìe',
 'categoriespagetext' => "Lista cumpleta d\"e categurie presente ncopp' 'o sito.",
 
+# Special:LinkSearch
+'linksearch-ok' => 'Truova',
+
 # Watchlist
 'addedwatch'   => 'Aggiunto ai Osservate Speciale tue',
 'watch'        => 'Secuta',

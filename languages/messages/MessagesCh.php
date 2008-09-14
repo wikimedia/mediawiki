@@ -886,6 +886,9 @@ Fanapunta na fana'an ti gus nuebu i listan-ñiha i guinahan {{SITENAME}}.",
 'special-categories-sort-count' => 'såttea pot tinefong',
 'special-categories-sort-abc'   => 'såttea pot i atfabetu',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Aligao',
+
 # E-mail user
 'emailuser' => "Na'e-mail i muna'sesetbi este",
 

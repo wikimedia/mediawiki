@@ -1754,6 +1754,15 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 'special-categories-sort-count' => 'sanımen surıptaw',
 'special-categories-sort-abc'   => 'älipbïmen surıptaw',
 
+# Special:LinkSearch
+'linksearch'       => 'Sırtqı siltemelerdi izdew',
+'linksearch-pat'   => 'İzdew şartı:',
+'linksearch-ns'    => 'Esim ayası:',
+'linksearch-ok'    => 'İzdew',
+'linksearch-text'  => '«*.wikipedia.org» atawına uqsastı bädel nışandardı qoldanwğa boladı.',
+'linksearch-line'  => '$2 degennen $1 siltegen',
+'linksearch-error' => 'Bädel nışandar tek server jaýı atawınıñ bastawında bolwı mümkin.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Mına qatıswşıdan bastap körsetw:',
 'listusers-submit'   => 'Körset',

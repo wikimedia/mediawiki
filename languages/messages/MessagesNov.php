@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author MF-Warburg
  * @author Malafaya
  * @author nov.wikipedia.org sysops
  */
@@ -295,6 +296,9 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Special:Categories
 'categories'         => 'Kategories',
 'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Sercha',
 
 # Watchlist
 'watchlist'       => 'Men liste de observos',

@@ -1704,6 +1704,16 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
 
+# Special:LinkSearch
+'linksearch'       => 'Sök webblänkar',
+'linksearch-pat'   => 'Sökmönster:',
+'linksearch-ns'    => 'Namnrymd:',
+'linksearch-ok'    => 'Sök',
+'linksearch-text'  => 'Jokertecken (wildcards) som t ex "*.wikipedia.org" kan användas.<br />
+Stödda protokoll: <tt>$1</tt>',
+'linksearch-line'  => '$1 länkas från $2',
+'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Visa användare från och med:',
 'listusers-submit'   => 'Visa',

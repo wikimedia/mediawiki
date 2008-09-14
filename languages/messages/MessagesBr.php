@@ -1317,6 +1317,13 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'special-categories-sort-count' => 'Urzhiañ dre gont',
 'special-categories-sort-abc'   => 'urzh al lizherenneg',
 
+# Special:LinkSearch
+'linksearch'      => 'Klask liammoù Kenrouedad',
+'linksearch-pat'  => 'Klask an droienn :',
+'linksearch-ns'   => 'Esaouenn anv :',
+'linksearch-ok'   => 'Klask',
+'linksearch-line' => '$1 gant ul liamm adal $2',
+
 # Special:ListUsers
 'listusersfrom'      => 'Diskouez anv an implijerien adal :',
 'listusers-submit'   => 'Diskouez',

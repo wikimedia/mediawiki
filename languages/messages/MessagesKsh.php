@@ -1678,6 +1678,19 @@ Mer han_er eije Leßte för de
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
+# Special:LinkSearch
+'linksearch'       => 'Lėngkß op Websigge sööke',
+'linksearch-pat'   => 'Sök noh:',
+'linksearch-ns'    => 'Appachtemang:',
+'linksearch-ok'    => 'Sööke',
+'linksearch-text'  => 'Di Sondersigg hee mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
+
+Beim Söke künnd_Er Shternshe aanjevve för e Shtöckshe fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <tt>http://*.example.com</tt>
+
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
+'linksearch-line'  => '„$2“ hät ene Link op $1',
+'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Zeich de Metmaacher vun:',
 'listusers-submit'   => 'Zeije',

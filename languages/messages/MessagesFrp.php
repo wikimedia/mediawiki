@@ -1227,6 +1227,15 @@ PICT # de totes sôrtes
 'special-categories-sort-count' => 'tri per compto',
 'special-categories-sort-abc'   => 'tri alfabètico',
 
+# Special:LinkSearch
+'linksearch'       => 'Rechèrchiér des lims Malyâjo',
+'linksearch-pat'   => 'Rechèrchiér l’èxprèssion :',
+'linksearch-ns'    => 'Èspâço de nom :',
+'linksearch-ok'    => 'Rechèrchiér',
+'linksearch-text'  => 'Ceta pâge spèciâla pèrmèt de rechèrchiér les pâges dens lesquintes un lim de defôr aparêt.<br />Des caractèros « j·oquèr » pôvont étre utilisâs, per ègzemplo <code>*.wikipedia.org</code>.<br />Protocolos sotegnus : <tt>$1</tt>',
+'linksearch-line'  => '$1 avouéc un lim dês $2',
+'linksearch-error' => 'Los caractèros « j·oquèr » pôvont étre utilisâs ren qu’u comencement du nom de domêno.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Afichiér los utilisators dês :',
 'listusers-submit'   => 'Montrar',

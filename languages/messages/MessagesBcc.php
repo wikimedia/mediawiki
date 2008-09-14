@@ -554,7 +554,7 @@ $2',
 'mailerror'                  => 'حطا دیم دهگ ایمیل:$1',
 'acct_creation_throttle_hit' => 'شرمنده، شما پیشتر {{PLURAL:$1|1 حساب|$1 حساب}}   شر کتت.
 شما نه تونیت گیشتر شرکنیت.',
-'emailauthenticated'         => 'شمی آدرس ایمیل ته $1  تصدیق بوت.',
+'emailauthenticated'         => ' $3 شمی آدرس ایمیل ته $2  تصدیق بوت.',
 'emailnotauthenticated'      => 'په آدرس ایمیل هنگت تصدیق نه بوتت.
 هچ ایمیلی په جهلیگین ویژگی دیم دهگ نه بیت.',
 'noemailprefs'               => 'یک آدرس ایمیل په کار کتن ای ویژگیان مشخص کنیت.',
@@ -1583,6 +1583,16 @@ PICT # misc.
 'special-categories-sort-count' => 'ترتیب په اساس شمار',
 'special-categories-sort-abc'   => 'ترتیب الفبی',
 
+# Special:LinkSearch
+'linksearch'       => 'گردگ لینکان وب',
+'linksearch-pat'   => 'گردگ الگو:',
+'linksearch-ns'    => 'نام فضا:',
+'linksearch-ok'    => 'گردگ',
+'linksearch-text'  => 'تقریبانی په داب "*.wikipedia.org" شاید استفاده بیت.<br />
+داشتگین پروتوکل: <tt>$1</tt>',
+'linksearch-line'  => '$1 لینک بوتت چه $2',
+'linksearch-error' => 'تقریبیان شاید فقط ته اول نام هاست جاه کاینت.',
+
 # Special:ListUsers
 'listusersfrom'      => 'پیشدار کابرانی که شروع بنت گون:',
 'listusers-submit'   => 'پیش دار',
@@ -1837,7 +1847,7 @@ $NEWPAGE
 'undeletehistorynoadmin'       => 'ای صفحه حذف بوتت.
 دلیل حذف ته جهلگی خلاصه پیش دارگ بیت، گون جزییات کابرانی که ایء اصلاحش کتت پیش چه حذف بیگ.
 متن واقعی ای بازبینی آن حذف فقط په مدیران موجود انت.',
-'undelete-revision'            => 'حذفی بازبینی $1 (چه  $2) گون $3:',
+'undelete-revision'            => 'حذفی بازبینی $1 (چه  $4 ته $5) گون $3:',
 'undeleterevision-missing'     => 'نامعتبرین یا گارین بازبینی.
 شما شاید بدین لینکی داشته ایت یا بازبینی حذف یا ترینگ بوتت چه آرشیو.',
 'undelete-nodiff'              => 'هچ پیشگین بازبینی درگیزگ نه بوت.',

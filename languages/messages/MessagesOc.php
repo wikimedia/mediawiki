@@ -1643,6 +1643,15 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'special-categories-sort-count' => 'triada per compte',
 'special-categories-sort-abc'   => 'triada alfabetica',
 
+# Special:LinkSearch
+'linksearch'       => 'Recercar de ligams Internet',
+'linksearch-pat'   => 'Recercar l’expression :',
+'linksearch-ns'    => 'Espacis de noms :',
+'linksearch-ok'    => 'Recercar',
+'linksearch-text'  => 'De caractèrs « joker » pòdon èsser utilizats, per exemple <code>*.wikipedia.org</code>.<br />Protocòls reconeguts : <tt>$1</tt>.',
+'linksearch-line'  => '$1 amb un ligam a partir de $2',
+'linksearch-error' => 'Los caractèrs « joker » pòdon pas èsser utilizats qu’al començament del nom de domeni.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Afichar los utilizaires a partir de :',
 'listusers-submit'   => 'Mostrar',

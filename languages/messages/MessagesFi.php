@@ -1514,6 +1514,17 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'special-categories-sort-count' => 'järjestä koon mukaan',
 'special-categories-sort-abc'   => 'järjestä nimen mukaan',
 
+# Special:LinkSearch
+'linksearch'       => 'Etsi ulkoisia linkkejä',
+'linksearch-pat'   => 'Osoite',
+'linksearch-ns'    => 'Nimiavaruus',
+'linksearch-ok'    => 'Etsi',
+'linksearch-text'  => 'Asteriskia (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
+
+Tuetut protokollat: <tt>$1</tt>.',
+'linksearch-line'  => '$1 on linkitetty sivulta $2',
+'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',

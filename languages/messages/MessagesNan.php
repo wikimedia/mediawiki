@@ -582,6 +582,9 @@ Template:Khu-pia̍t-ia̍h',
 'categories'         => 'Lūi-pia̍t',
 'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
 
+# Special:LinkSearch
+'linksearch' => 'Chhiau-chhoē chām-goā liân-kiat',
+
 # E-mail user
 'mailnologin'     => 'Bô siu-phoe ê chū-chí',
 'mailnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] jī-chhiáⁿ ū 1 ê ū-hāu ê e-mail chū-chí tī lí ê [[Special:Preferences|iōng-chiá siat-tēng]] chiah ē-tàng kià e-mail hō· pa̍t-ūi iōng-chiá.',

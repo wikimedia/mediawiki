@@ -230,6 +230,11 @@ $messages = array(
 'allpagessubmit'    => 'Ula',
 'allpagesprefix'    => 'Ipanengneng so saray bolobolong ya walay prefix:',
 
+# Special:LinkSearch
+'linksearch'     => 'Anapen ramay gawing ed web',
+'linksearch-pat' => 'Anapen so pattern:',
+'linksearch-ok'  => 'Anapen',
+
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Balon user',
 

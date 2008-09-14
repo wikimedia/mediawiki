@@ -346,6 +346,9 @@ $messages = array(
 # Special:Categories
 'categories' => '𐌺𐌿𐌽𐌾𐍉𐍃',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Seidofera:',
+
 # E-mail user
 'emailuser' => 'Sandjan þo niutand bokom',
 

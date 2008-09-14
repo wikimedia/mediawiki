@@ -1257,6 +1257,15 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'categoriesfrom'                => 'Tembongkeun kategori-kategori dimimitian ku:',
 'special-categories-sort-count' => 'ngurut numutkeun jumlah',
 
+# Special:LinkSearch
+'linksearch'       => 'Sungsi tumbu ramat',
+'linksearch-pat'   => 'Pola sungsi:',
+'linksearch-ns'    => 'Spasi ngaran:',
+'linksearch-ok'    => 'Sungsi',
+'linksearch-text'  => "''Wildcard'' sarupaning \"*.wikipedia.org\" bisa dipaké.<br />Protokol nu dirojong: <tt>\$1</tt>",
+'linksearch-line'  => '$1 ditumbu ti $2',
+'linksearch-error' => "''Wildcard'' ngan bisa némbongan dina awal ngaran indung (''host'').",
+
 # Special:ListUsers
 'listusersfrom'      => 'Témbongkeun pamaké nu dimimitian ku',
 'listusers-submit'   => 'Témbongkeun',

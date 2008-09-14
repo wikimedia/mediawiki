@@ -1302,6 +1302,13 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'categories'         => 'Kategori',
 'categoriespagetext' => 'Ndodhen këto kategori:',
 
+# Special:LinkSearch
+'linksearch'       => 'Kërkoni lidhje të jashtme',
+'linksearch-pat'   => 'Motivi kërkimor:',
+'linksearch-ok'    => 'Kërko',
+'linksearch-text'  => 'Ylli zëvëndësues mund të përdoret si p.sh. "*.wikipedia.org".',
+'linksearch-error' => 'Ylli mund të përdoret vetëm në fillim të emrit',
+
 # Special:ListUsers
 'listusersfrom'      => 'Trego përdoruesit duke filluar prej te:',
 'listusers-submit'   => 'Trego',

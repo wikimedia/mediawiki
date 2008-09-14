@@ -1275,6 +1275,15 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'special-categories-sort-count' => 'urutna miturut angka',
 'special-categories-sort-abc'   => 'urutna miturut abjad',
 
+# Special:LinkSearch
+'linksearch'       => 'Golèk pranala jaba',
+'linksearch-pat'   => 'Pola panggolèkan:',
+'linksearch-ns'    => 'Bilik nama:',
+'linksearch-ok'    => 'Golèk',
+'linksearch-text'  => "''Wildcards'' kaya ta \"*.wikipedia.org\" bisa dienggo.<br />Protokol sing disengkuyung: <tt>\$1</tt>",
+'linksearch-line'  => '$1 disambung saka $2',
+'linksearch-error' => "''Wildcards'' namung bisa dienggo ing bagéyan awal saka jeneng host.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Tuduhna panganggo sing diawali karo:',
 'listusers-submit'   => 'Tuduhna',

@@ -1344,6 +1344,9 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'categories'         => 'Կատեգորիաներ',
 'categoriespagetext' => 'Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա։',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Որոնել',
+
 # Special:ListUsers
 'listusersfrom'      => 'Ցուցադրել մասնակիցներին՝ սկսած.',
 'listusers-submit'   => 'Ցուցադրել',

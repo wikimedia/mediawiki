@@ -1667,6 +1667,15 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'special-categories-sort-count' => 'razvrstavanje po broju',
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
 
+# Special:LinkSearch
+'linksearch'       => 'Pretraživanje vanjskih poveznica',
+'linksearch-pat'   => 'Uzorak traženja:',
+'linksearch-ns'    => 'Imenski prostor:',
+'linksearch-ok'    => 'Traži',
+'linksearch-text'  => 'Možete koristiti džoker znakove poput "*.wikipedia.org".<br />Podržani su protokoli: <tt>$1</tt>',
+'linksearch-line'  => '$1 poveznica s članka $2',
+'linksearch-error' => 'Džoker znakovi se mogu rabiti samo na početku imena poslužitelja.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Prikaži suradnike počevši od:',
 'listusers-submit'   => 'Prikaži',

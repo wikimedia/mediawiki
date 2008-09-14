@@ -509,6 +509,9 @@ $messages = array(
 'categories'         => 'શ્રેણીઓ',
 'categoriespagetext' => 'નીચેની શ્રેણીઓમાં પાના કે અન્ય સભ્યો છે.',
 
+# Special:LinkSearch
+'linksearch-ok' => 'શોધ',
+
 # Special:ListUsers
 'listusers-submit' => 'બતાવો',
 

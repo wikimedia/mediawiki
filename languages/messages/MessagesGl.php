@@ -1491,6 +1491,15 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Buscar ligazóns web',
+'linksearch-pat'   => 'Patrón de procura:',
+'linksearch-ns'    => 'Espazo de nomes:',
+'linksearch-ok'    => 'Procurar',
+'linksearch-text'  => 'Extensións como "*.wikipedia.org" poden ser usadas.<br />Protocolos soportados: <tt>$1</tt>',
+'linksearch-line'  => '$1 ligado dende $2',
+'linksearch-error' => 'Os comodíns só poden aparecer ao principio do nome do servidor.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar os usuarios comezando por:',
 'listusers-submit'   => 'Amosar',

@@ -1563,6 +1563,15 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'special-categories-sort-count' => 'soter etter antall',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
+# Special:LinkSearch
+'linksearch'       => 'Søk i eksterne lenker',
+'linksearch-pat'   => 'Søkemønster:',
+'linksearch-ns'    => 'Navnerom:',
+'linksearch-ok'    => 'Søk',
+'linksearch-text'  => 'Jokertegn som «*.wikipedia.org» kan brukes.<br />Støttede protokoller: <tt>$1</tt>',
+'linksearch-line'  => '$1 lenkes fra $2',
+'linksearch-error' => 'Jokertegn kan kun brukes foran tjenernavnet.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Vis brukere fra og med:',
 'listusers-submit'   => 'Vis',

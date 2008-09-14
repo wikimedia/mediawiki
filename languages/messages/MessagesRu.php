@@ -1671,6 +1671,16 @@ PICT # различные
 'special-categories-sort-count' => 'упорядочить по количеству',
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
+# Special:LinkSearch
+'linksearch'       => 'Поиск внешних ссылок',
+'linksearch-pat'   => 'Шаблон для поиска:',
+'linksearch-ns'    => 'Пространство имён:',
+'linksearch-ok'    => 'Найти',
+'linksearch-text'  => 'Можно использовать подстановочные символы, например, <code>*.wikipedia.org</code>.<br />
+Поддерживаемые протоколы: <tt>$1</tt>',
+'linksearch-line'  => 'Ссылка на $1 из $2',
+'linksearch-error' => 'Подстановочные символы могут использоваться только в начале адресов.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Показать участников, начиная с:',
 'listusers-submit'   => 'Показать',

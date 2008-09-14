@@ -1237,6 +1237,15 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'special-categories-sort-count' => 'ordiné për nùmer',
 'special-categories-sort-abc'   => 'òrdiné për alfabétich',
 
+# Special:LinkSearch
+'linksearch'       => "Sërchè antra j'anliure dla Ragnà",
+'linksearch-pat'   => "Schema d'arsërca:",
+'linksearch-ns'    => 'Spassi nominal:',
+'linksearch-ok'    => 'Sërca',
+'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovré: <tt>$1</tt>',
+'linksearch-line'  => "$1 a l'ha n'anliura ch'a-i riva dzora da $2",
+'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël servent.',
+
 # Special:ListUsers
 'listusersfrom'      => "Smon-me j'utent a parte da:",
 'listusers-submit'   => 'Smon',

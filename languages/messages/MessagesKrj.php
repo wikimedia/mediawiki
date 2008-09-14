@@ -247,6 +247,9 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Special:Categories
 'categories' => 'Manga Kategorya',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Sagap',
+
 # Special:ListUsers
 'listusers-submit' => 'Ipakita',
 

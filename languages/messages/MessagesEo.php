@@ -1537,6 +1537,15 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'special-categories-sort-count' => 'oridigi laŭ nombrado',
 'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
 
+# Special:LinkSearch
+'linksearch'       => 'Serĉi retajn ligilojn',
+'linksearch-pat'   => 'Serĉesprimo:',
+'linksearch-ns'    => 'Nomspaco:',
+'linksearch-ok'    => 'Serĉi',
+'linksearch-text'  => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj.<br />Subtenataj protokoloj: <tt>$1</tt>',
+'linksearch-line'  => '$1 ligita de $2',
+'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Montru uzantojn ekde:',
 'listusers-submit'   => 'Montri',

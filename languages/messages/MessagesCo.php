@@ -329,6 +329,10 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # Special:Categories
 'categories' => 'Categurie',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Spaziu:',
+'linksearch-ok' => 'Ricerca',
+
 # Special:ListUsers
 'listusers-submit' => 'Mustrà',
 

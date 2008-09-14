@@ -1487,6 +1487,16 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'special-categories-sort-count' => 'na Tall sorteren',
 'special-categories-sort-abc'   => 'alphabeetsch sorteren',
 
+# Special:LinkSearch
+'linksearch'       => 'Weblenken söken',
+'linksearch-pat'   => 'Söökmunster:',
+'linksearch-ns'    => 'Naamruum:',
+'linksearch-ok'    => 'Söken',
+'linksearch-text'  => 'Wildcards as to’n Bispeel <tt>*.wikipedia.org</tt> köönt bruukt warrn.<br />
+Ünnerstütt Protokollen: <tt>$1</tt>',
+'linksearch-line'  => '$1 hett en Lenk vun $2',
+'linksearch-error' => 'Wildcards dröfft blot an’n Anfang vun de URL stahn.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Wies de Brukers, de anfangt mit:',
 'listusers-submit'   => 'Wiesen',

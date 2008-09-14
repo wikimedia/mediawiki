@@ -605,6 +605,15 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 # Special:Categories
 'categories' => 'Klynger',
 
+# Special:LinkSearch
+'linksearch'       => 'Søĝ i weblinks',
+'linksearch-pat'   => 'Søĝ æfter links til:',
+'linksearch-ns'    => 'Navnerum:',
+'linksearch-ok'    => 'Søĝ',
+'linksearch-text'  => 'Wildkårter søm "*.wikipedia.org" ken benyttes.<br />Understøttede pråtåkoller: <tt>$1</tt>',
+'linksearch-line'  => '$2 linker til $1',
+'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
+
 # Special:Log/newusers
 'newuserlogpage'           => 'Brugeråprettelseslog',
 'newuserlogpagetext'       => "Dett'er en log åver de senest åprettede brugere.",

@@ -1424,6 +1424,16 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'special-categories-sort-count' => 'ordenar por recuento',
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
+# Special:LinkSearch
+'linksearch'       => 'Mirar binclos ta pachinas web',
+'linksearch-pat'   => 'Mirar patrón:',
+'linksearch-ns'    => 'Espazio de nombres:',
+'linksearch-ok'    => 'Mirar',
+'linksearch-text'  => 'Pueden usar-se caráuters comodín como "*.wikipedia.org".<br />
+Protocolos suportados: <tt>$1</tt>',
+'linksearch-line'  => '$1 tiene un binclo dende $2',
+'linksearch-error' => "Os caráuters comodín nomás pueden apareixer en o prenzipio d'o nombre d'o sitio.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Amostrar usuarios que o nombre suyo prenzipie por:',
 'listusers-submit'   => 'Amostrar',

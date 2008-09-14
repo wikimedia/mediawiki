@@ -1507,6 +1507,13 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
+# Special:LinkSearch
+'linksearch'      => 'Weblink-Sich',
+'linksearch-pat'  => 'Sich-Critère:',
+'linksearch-ns'   => 'Nummraum:',
+'linksearch-ok'   => 'Sichen',
+'linksearch-line' => '$1 verlinkt vun $2',
+
 # Special:ListUsers
 'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
 'listusers-submit'   => 'Weis',

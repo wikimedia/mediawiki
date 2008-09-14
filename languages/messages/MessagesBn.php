@@ -1154,6 +1154,13 @@ $3-এর দেয়া কারণ হল ''$2''",
 'categories'         => 'বিষয়শ্রেণীসমূহ',
 'categoriespagetext' => 'এ উইকিতে বর্তমান বিষয়শ্রেণীসমূহ:',
 
+# Special:LinkSearch
+'linksearch'      => 'ওয়েব লিঙ্কসমূহ অনুসন্ধান করো',
+'linksearch-pat'  => 'অনুসন্ধান প্যাটার্ণ:',
+'linksearch-ns'   => 'নামস্থান:',
+'linksearch-ok'   => 'অনুসন্ধান',
+'linksearch-line' => '$2 থেকে $1 তে লিঙ্ক করা হয়েছে',
+
 # Special:ListUsers
 'listusersfrom'      => 'সেই সব ব্যবহারকারী দেখাও যাদের নাম এই অক্ষর দিয়ে শুরু:',
 'listusers-submit'   => 'দেখানো হোক',

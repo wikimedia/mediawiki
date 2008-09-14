@@ -293,6 +293,9 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'allpages'    => 'Matluka hinkwawo',
 'allarticles' => 'Matluka hinkwawo',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Lava',
+
 # Special:Log/newusers
 'newuserlog-create-entry' => 'Mutirhisi muntswa',
 

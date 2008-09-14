@@ -1407,6 +1407,17 @@ PICT # misc.
 'special-categories-sort-count' => 'ахсаанынан бэрээдэктээһин',
 'special-categories-sort-abc'   => 'алпабыытынан бэрээдэктээһин',
 
+# Special:LinkSearch
+'linksearch'       => 'Тас сигэлэри көрдөөһүн',
+'linksearch-pat'   => 'Көрдөөһүн халыыба:',
+'linksearch-ns'    => 'Аат хочото (namespace):',
+'linksearch-ok'    => 'Бул',
+'linksearch-text'  => 'Туруоран биэрэр бэлиэлэри туһаныахха сөп, холобур, "*.wikipedia.org".
+
+Өйүүр боротокуол: <tt>$1</tt>',
+'linksearch-line'  => 'Мантан $2 манна $1 ыйынньык',
+'linksearch-error' => 'Туруоран биэрэр бэлиэлэри аадырыс/hostname саҕаланыытыгар эрэ туттуохха сөп.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Мантан саҕалаан кыттааччылары көрдөр:',
 'listusers-submit'   => 'Көрдөр',

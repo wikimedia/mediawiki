@@ -738,6 +738,9 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'special-categories-sort-count' => 'tlapōhualcopa',
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Tōcātzin:',
+
 # Special:ListUsers
 'listusers-submit' => 'Tiquittāz',
 

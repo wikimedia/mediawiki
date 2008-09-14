@@ -1308,6 +1308,11 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'special-categories-sort-count' => 'raða eftir fjölda',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
+# Special:LinkSearch
+'linksearch'    => 'Leita að vefföngum',
+'linksearch-ns' => 'Nafnrými:',
+'linksearch-ok' => 'Leita',
+
 # Special:ListUsers
 'listusersfrom'      => 'Sýna notendur sem byrja á:',
 'listusers-submit'   => 'Sýna',

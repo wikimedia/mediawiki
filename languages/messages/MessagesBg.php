@@ -1583,6 +1583,15 @@ $2',
 'special-categories-sort-count' => 'сортиране по брой',
 'special-categories-sort-abc'   => 'сортиране по азбучен ред',
 
+# Special:LinkSearch
+'linksearch'       => 'Търсене на външни препратки',
+'linksearch-pat'   => 'Търсене по:',
+'linksearch-ns'    => 'Именно пространство:',
+'linksearch-ok'    => 'Търсене',
+'linksearch-text'  => 'Възможна е употребата на заместващи знаци като: "*.wikipedia.org".<br />Поддържани протоколи: <tt>$1</tt>',
+'linksearch-line'  => '$1 с препратка от $2',
+'linksearch-error' => 'Заместващите знаци могат да стоят само в началото на името на хоста.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Показване на потребителите, започвайки от:',
 'listusers-submit'   => 'Показване',

@@ -1660,6 +1660,15 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'special-categories-sort-count' => 'urutkan menurut jumlah',
 'special-categories-sort-abc'   => 'urutkan menurut abjad',
 
+# Special:LinkSearch
+'linksearch'       => 'Pencarian pranala luar',
+'linksearch-pat'   => 'Pola pencarian:',
+'linksearch-ns'    => 'Ruang nama:',
+'linksearch-ok'    => 'Cari',
+'linksearch-text'  => "Bentuk pencarian ''wildcards'' seperti \"*.wikipedia.org\" dapat digunakan.<br />Protokol yang didukung: <tt>\$1</tt>",
+'linksearch-line'  => '$1 memiliki pranala dari $2',
+'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Tampilkan pengguna diawali dengan:',
 'listusers-submit'   => 'Tampilkan',

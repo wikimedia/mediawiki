@@ -1679,6 +1679,16 @@ Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
+# Special:LinkSearch
+'linksearch'       => 'Wyszukiwarka linków zewnętrznych',
+'linksearch-pat'   => 'Wzorzec wyszukiwania',
+'linksearch-ns'    => 'Przestrzeń nazw',
+'linksearch-ok'    => 'Szukaj',
+'linksearch-text'  => 'Można użyć symbolu wieloznacznego „*”. Dla przykładu „*.wikipedia.org” spowoduje wyszukanie wszystkich linków prowadzących do domeny „wikipedia.org” i jej poddomen.<br />
+Obsługiwane protokoły: <tt>$1</tt>',
+'linksearch-line'  => '$1 link na stronie $2',
+'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Pokaż użytkowników zaczynając od',
 'listusers-submit'   => 'Pokaż',

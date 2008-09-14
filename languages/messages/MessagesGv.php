@@ -648,6 +648,9 @@ Foddee oo [[:\$1|croo yn duillag shoh]].",
 'special-categories-sort-count' => 'sorçhaghey rere coontey',
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Ronsaghey',
+
 # Special:ListUsers
 'listusers-submit' => 'Taishbyney',
 

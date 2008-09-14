@@ -1518,6 +1518,14 @@ $2',
 'special-categories-sort-count' => 'сортирај по броју',
 'special-categories-sort-abc'   => 'сортирај азбучно',
 
+# Special:LinkSearch
+'linksearch'       => 'претрага веб линкова',
+'linksearch-pat'   => 'Образац претраге:',
+'linksearch-ns'    => 'Именски простор:',
+'linksearch-ok'    => 'Претрага',
+'linksearch-line'  => 'страна $1 је повезана са стране $2',
+'linksearch-error' => 'Џокери се могу појавити само на почетку имена хоста.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Прикажи кориснике почевши од:',
 'listusers-submit'   => 'Прикажи',

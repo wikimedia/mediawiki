@@ -441,6 +441,9 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 # Special:Categories
 'categories' => 'Categorias',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Tschertgar',
+
 # E-mail user
 'mailnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] ed avair ina adressa d'email valaivla en tias [[Special:Preferences|preferenzas]] per trametter emails ad auters utilisaders.",
 'emailuser'       => 'Trametter in email a quest utilisader',

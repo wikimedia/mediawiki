@@ -874,6 +874,13 @@ $messages = array(
 'categoriespagetext'          => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
 'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
 
+# Special:LinkSearch
+'linksearch'      => 'د جال تړنې پلټل',
+'linksearch-pat'  => 'د پلټنې مخبېلګه:',
+'linksearch-ns'   => 'نوم-تشيال:',
+'linksearch-ok'   => 'پلټل',
+'linksearch-line' => '$1 د $2 سره تړل شوی',
+
 # Special:ListUsers
 'listusersfrom'      => 'هغه کارونکي ښکاره کړه چې نومونه يې پېلېږي په:',
 'listusers-submit'   => 'ښکاره کول',

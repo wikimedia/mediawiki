@@ -1480,6 +1480,15 @@ Vegeu també [[Special:WantedCategories|les categories sol·licitades]].",
 'special-categories-sort-count' => 'ordena per recompte',
 'special-categories-sort-abc'   => 'ordena alfabèticament',
 
+# Special:LinkSearch
+'linksearch'       => 'Cerca enllaços web',
+'linksearch-pat'   => 'Patró de cerca:',
+'linksearch-ns'    => 'Espai de noms:',
+'linksearch-ok'    => 'Cerca',
+'linksearch-text'  => 'Es poden fer servir caràcters comodí com «*.wikipedia.org».<br />Protocols admesos: <tt>$1</tt>',
+'linksearch-line'  => '$1 enllaçat a $2',
+'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostra usuaris començant per:',
 'listusers-submit'   => 'Mostra',
