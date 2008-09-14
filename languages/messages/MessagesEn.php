@@ -2364,7 +2364,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 'undeletehistorynoadmin'       => 'This page has been deleted.
 The reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.
 The actual text of these deleted revisions is only available to administrators.',
-'undelete-revision'            => 'Deleted revision of $1 (as of $5 on $4) by $3:',
+'undelete-revision'            => 'Deleted revision of $1 (as of $4, at $5) by $3:',
 'undeleterevision-missing'     => 'Invalid or missing revision.
 You may have a bad link, or the revision may have been restored or removed from the archive.',
 'undelete-nodiff'              => 'No previous revision found.',
