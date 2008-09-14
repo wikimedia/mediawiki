@@ -92,14 +92,15 @@ class LanguageRu extends Language {
 	}
 
 	/*
-	 * Russian numeric format is "12 345,67" but "1234,56"
+	 * Four-digit number should be without group commas (spaces)
+	 * See manual of style at http://ru.wikipedia.org/wiki/Википедия:Оформление_статей
+	 * So "1 234 567", "12 345" but "1234"
 	 */
-
 	function commafy($_) {
-		if (!preg_match('/^\d{1,4}$/',$_)) {
-			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
-		} else {
+		if (preg_match('/^-?\d{1,4}(\.\d*)?$/',$_)) {
 			return $_;
+		} else {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
 		}
 	}
 }
