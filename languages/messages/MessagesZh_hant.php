@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1462,6 +1462,17 @@ Template:消除歧義',
 'categoriesfrom'                => '顯示由此項起之分類:',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
+
+# Special:LinkSearch
+'linksearch'       => '搜尋網頁連結',
+'linksearch-pat'   => '搜尋網址:',
+'linksearch-ns'    => '名稱空間:',
+'linksearch-ok'    => '搜尋',
+'linksearch-text'  => '可以使用類似"*.wikipedia.org"的萬用字元。<br/>
+
+已支援：<tt>$1</tt>',
+'linksearch-line'  => '$1 連自 $2',
+'linksearch-error' => '萬用字元僅可在主機名稱的開頭使用。',
 
 # Special:ListUsers
 'listusersfrom'      => '給定顯示用戶條件:',

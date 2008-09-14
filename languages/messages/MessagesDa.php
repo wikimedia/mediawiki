@@ -1450,6 +1450,15 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'special-categories-sort-count' => 'sorter efter antal',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
+# Special:LinkSearch
+'linksearch'       => 'Søg i weblinks',
+'linksearch-pat'   => 'Søg efter links til:',
+'linksearch-ns'    => 'Navnerum:',
+'linksearch-ok'    => 'Søg',
+'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.<br />Understøttede protokoller: <tt>$1</tt>',
+'linksearch-line'  => '$2 linker til $1',
+'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Vis brugere fra:',
 'listusers-submit'   => 'Vis',

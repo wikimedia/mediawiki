@@ -1717,6 +1717,15 @@ $3
 'special-categories-sort-count' => 'مرتب کردن بر اساس تعداد',
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',
 
+# Special:LinkSearch
+'linksearch'       => 'جستجوی پیوندهای وب',
+'linksearch-pat'   => 'جستجوی الگو:',
+'linksearch-ns'    => 'فضای نام:',
+'linksearch-ok'    => 'جستجو',
+'linksearch-text'  => 'نشانه‌هایی مانند "*.wikipedia.org" را می‌توان استفاده کرد.<br />پروتکل‌های پشتیبانی‌شده: <tt>$1</tt>',
+'linksearch-line'  => '$1 از $2 پیوند دارد',
+'linksearch-error' => 'نشانه‌ها فقط در ابتدای نام میزبان اینترنتی می‌توانند استفاده شوند.',
+
 # Special:ListUsers
 'listusersfrom'      => 'نمایش کاربران با شروع از:',
 'listusers-submit'   => 'نمایش',

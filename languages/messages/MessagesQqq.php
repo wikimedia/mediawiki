@@ -1323,6 +1323,10 @@ Example: [[:Image:Addon-icn.png]]',
 'categoriespagetext' => "Text displayed in [[Special:Categories]]. Do not translate or change links. In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
+# Special:LinkSearch
+'linksearch-ns' => '{{Identical|Namespace}}',
+'linksearch-ok' => '{{Identical|Search}}',
+
 # Special:ListUsers
 'listusers-submit' => '{{Identical|Show}}',
 

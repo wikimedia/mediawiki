@@ -1423,6 +1423,15 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'special-categories-sort-count' => 'yupaykama allichay',
 'special-categories-sort-abc'   => 'qallarina sanampakama allichay',
 
+# Special:LinkSearch
+'linksearch'       => "Internet llikapi t'inkikunata maskay",
+'linksearch-pat'   => 'Kay qatinallakama maskay:',
+'linksearch-ns'    => "Suti k'iti:",
+'linksearch-ok'    => 'Maskay',
+'linksearch-text'  => 'Ima rantipas sananchawanpas maskayta saqillasunkim, ahinataq "*.wikipedia.org".<br />Q\'imichisqa tantari qillqa: <tt>$1</tt>',
+'linksearch-line'  => "$1-man $2-manta t'inkimusqa",
+'linksearch-error' => 'Ima rantipas sananchaqa (* ?) tiyaypa qallariyninpim kanman chaylla.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Kaywan qallariq ruraqkunata rikuchiy:',
 'listusers-submit'   => 'Rikuchiy',

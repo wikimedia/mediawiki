@@ -110,6 +110,9 @@ $messages = array(
 # Special:AllPages
 'allpagessubmit' => 'Kúhámba',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Kucálata',
+
 # Special:ListUsers
 'listusers-submit' => 'Kúfúna',
 

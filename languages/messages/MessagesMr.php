@@ -1450,6 +1450,15 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'special-categories-sort-count' => 'क्रमानुसार लावा',
 'special-categories-sort-abc'   => 'अक्षरांप्रमाणे लावा',
 
+# Special:LinkSearch
+'linksearch'       => 'आंतरजाल दुवे शोधा',
+'linksearch-pat'   => 'शोधण्याचा मजकूर:',
+'linksearch-ns'    => 'नामविश्व:',
+'linksearch-ok'    => 'शोध',
+'linksearch-text'  => '"*.wikipedia.org" सारखी वाईल्डकार्ड्स वापरायला परवानगी आहे.<br />पुढील प्रोटोकॉल्समध्ये चालेल: <tt>$1</tt>',
+'linksearch-line'  => '$2 मधून $1 जोडलेले आहे',
+'linksearch-error' => 'वाईल्डकार्ड्स होस्ट नावाच्या फक्त सुरवातीलाच येऊ शकतात.',
+
 # Special:ListUsers
 'listusersfrom'      => 'पुढील शब्दापासुन सुरू होणारे सदस्य दाखवा:',
 'listusers-submit'   => 'दाखवा',

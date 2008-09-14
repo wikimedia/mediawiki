@@ -1690,6 +1690,16 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'special-categories-sort-count' => 'rendezés elemszám szerint',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
 
+# Special:LinkSearch
+'linksearch'       => 'Keresés külső hivatkozások szerint',
+'linksearch-pat'   => 'Keresett minta:',
+'linksearch-ns'    => 'Névtér:',
+'linksearch-ok'    => 'keresés',
+'linksearch-text'  => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org".<br />
+Támogatott protokollok: <tt>$1</tt>',
+'linksearch-line'  => '$1 hivatkozva innen: $2',
+'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Szerkesztők listázása a következő névtől kezdve:',
 'listusers-submit'   => 'Megjelenítés',

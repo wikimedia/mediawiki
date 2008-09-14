@@ -1536,6 +1536,16 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'special-categories-sort-count' => 'ordinar per numero',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Cercar per ligamines web',
+'linksearch-pat'   => 'Patrono a cercar:',
+'linksearch-ns'    => 'Spatio de nomines:',
+'linksearch-ok'    => 'Cercar',
+'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".<br />
+Protocollos supportate: <tt>$1</tt>',
+'linksearch-line'  => '$1 ligate ab $2',
+'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine del hospite.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Monstrar usatores a partir de:',
 'listusers-submit'   => 'Revelar',

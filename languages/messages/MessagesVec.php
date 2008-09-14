@@ -1445,6 +1445,16 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'special-categories-sort-count' => 'ordina par nùmaro',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Çerca colegamenti foresti',
+'linksearch-pat'   => 'Pattern de riçerca:',
+'linksearch-ns'    => 'Namespace:',
+'linksearch-ok'    => 'Çerca',
+'linksearch-text'  => 'Se pol doparar dei metacaràteri, par es. "*.wikipedia.org".<br />
+Protocòli suportè: <tt>$1</tt>',
+'linksearch-line'  => '$1 presente ne la pagina $2',
+'linksearch-error' => "I metacaràteri i pode vegner doparài solo a l'inizio del nome de l'host.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostra i utenti tacando da:',
 'listusers-submit'   => 'Mostra',

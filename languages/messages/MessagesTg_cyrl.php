@@ -1263,6 +1263,15 @@ $1',
 'special-categories-sort-count' => 'муратаб кардан бар асоси теъдод',
 'special-categories-sort-abc'   => 'муратаб кардани алифбоӣ',
 
+# Special:LinkSearch
+'linksearch'       => 'Ҷусутҷӣ пайвандҳои веб',
+'linksearch-pat'   => 'Ҷустуҷӯи нақш:',
+'linksearch-ns'    => 'Фазоином:',
+'linksearch-ok'    => 'Ҷустуҷӯ',
+'linksearch-text'  => 'Нишонаҳои монанди "*.wikipedia.org"-ро метавон истифода кард.<br />Протоколҳои пуштибонишуда: <tt>$1</tt>',
+'linksearch-line'  => '$1 дорои пайванд аз $2 аст',
+'linksearch-error' => 'Нишонаҳо фақат дар ибтидои номи мизбони интернетӣ метавонанд истифода шаванд.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Намоиши корбарон бо шурӯъ аз:',
 'listusers-submit'   => 'Нишон додани',

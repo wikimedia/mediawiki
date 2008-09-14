@@ -461,6 +461,9 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 # Special:Categories
 'categories' => 'Taggayin',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Tarzzut',
+
 # Special:ListUsers
 'listusers-submit' => 'Smmrad',
 

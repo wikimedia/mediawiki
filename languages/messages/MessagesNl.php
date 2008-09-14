@@ -1797,6 +1797,16 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'special-categories-sort-count' => 'op aantal sorteren',
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
+# Special:LinkSearch
+'linksearch'       => 'Externe links zoeken',
+'linksearch-pat'   => 'Zoekpatroon:',
+'linksearch-ns'    => 'Naamruimte:',
+'linksearch-ok'    => 'Zoeken',
+'linksearch-text'  => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.<br />
+Ondersteunde protocollen: <tt>$1</tt>',
+'linksearch-line'  => '$1 gelinkt vanaf $2',
+'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Gebruikers bekijken vanaf:',
 'listusers-submit'   => 'Weergeven',

@@ -1725,6 +1725,16 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
+# Special:LinkSearch
+'linksearch'       => 'Hledání externích odkazů',
+'linksearch-pat'   => 'Vyhledávací vzor:',
+'linksearch-ns'    => 'Jmenný prostor:',
+'linksearch-ok'    => 'Hledat',
+'linksearch-text'  => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.<br />
+Podporované protokoly: <tt>$1</tt>',
+'linksearch-line'  => '$2 odkazuje na $1',
+'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Zobrazit uživatele počínaje od:',
 'listusers-submit'   => 'Ukázat',

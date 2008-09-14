@@ -1749,6 +1749,16 @@ PICT # misc.
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'ترتيب ابجدي',
 
+# Special:LinkSearch
+'linksearch'       => 'دور فى لينكات الويب',
+'linksearch-pat'   => 'نظام التدوير:',
+'linksearch-ns'    => 'النطاق:',
+'linksearch-ok'    => 'تدوير',
+'linksearch-text'  => 'الكروت الخاصة زى "*.wikipedia.org" ممكن تستعمل.<br />
+البروتوكولات المدعومة: <tt>$1</tt>',
+'linksearch-line'  => '$1 موصوله من $2',
+'linksearch-error' => 'الكروت الخاصة ممكن تبان بس  فى بداية اسم المضيف',
+
 # Special:ListUsers
 'listusersfrom'      => 'عرض اليوزرز من أول:',
 'listusers-submit'   => 'عرض',

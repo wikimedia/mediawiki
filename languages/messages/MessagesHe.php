@@ -741,7 +741,8 @@ $2',
 'loginsuccesstitle'          => 'הכניסה הושלמה בהצלחה',
 'loginsuccess'               => "'''נכנסת ל{{grammar:תחילית|{{SITENAME}}}} בשם \"\$1\".'''",
 'nosuchuser'                 => 'אין משתמש בשם "$1".
-אנא ודאו שהאיות נכון, או [[Special:Userlogin/signup|צרו חשבון חדש]].',
+
+אנא ודאו שהאיות נכון, או השתמשו בטופס שלהלן ליצירת חשבון משתמש חדש.',
 'nosuchusershort'            => 'אין משתמש בשם "<nowiki>$1</nowiki>". אנא ודאו שהאיות נכון.',
 'nouserspecified'            => 'עליכם לציין שם משתמש.',
 'wrongpassword'              => 'הסיסמה שהקלדתם שגויה, אנא נסו שנית.',
@@ -1741,6 +1742,15 @@ PICT # שונות
 'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
 'special-categories-sort-count' => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
+
+# Special:LinkSearch
+'linksearch'       => 'חיפוש קישורים חיצוניים',
+'linksearch-pat'   => 'קישור לחיפוש:',
+'linksearch-ns'    => 'מרחב שם:',
+'linksearch-ok'    => 'חיפוש',
+'linksearch-text'  => 'ניתן להשתמש בתווים כללים, לדוגמה "*.wikipedia.org".<br />פרוטוקולים נתמכים: <tt>$1</tt>',
+'linksearch-line'  => '$1 מקושר מהדף $2',
+'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 
 # Special:ListUsers
 'listusersfrom'      => 'הצגת משתמשים החל מ:',

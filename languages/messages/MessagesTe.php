@@ -1389,6 +1389,15 @@ $3 చెప్పిన కారణం: ''$2''",
 'special-categories-sort-count' => 'సంఖ్యల ప్రకారం క్రమపరచు',
 'special-categories-sort-abc'   => 'అకారాది క్రమంలో అమర్చు',
 
+# Special:LinkSearch
+'linksearch'       => 'వెబ్ లింకుల్లో వెతుకు',
+'linksearch-pat'   => 'వెతకాల్సిన నమూనా:',
+'linksearch-ns'    => 'నేమ్ స్పేసు:',
+'linksearch-ok'    => 'వెతుకు',
+'linksearch-text'  => '"*.wikipedia.org" వంటి వైల్డ్ కార్డులు వాడవచ్చు.<br />ఉపయోగించుకోగల ప్రోటోకాళ్లు: <tt>$1</tt>',
+'linksearch-line'  => '$2 నుండి $1కి లింకు ఉంది',
+'linksearch-error' => 'హోస్ట్‌నేముకు ముందు మాత్రమే వైల్డ్ కార్డులు వాడవచ్చు.',
+
 # Special:ListUsers
 'listusersfrom'      => 'ఇక్కడ మొదలుపెట్టి సభ్యులను చూపించు:',
 'listusers-submit'   => 'చూపించు',

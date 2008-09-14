@@ -1593,6 +1593,15 @@ Veja também as [[Special:WantedCategories|categorias pedidas]].',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Procurar por links da web',
+'linksearch-pat'   => 'Padrão de procura:',
+'linksearch-ns'    => 'Espaço nominal:',
+'linksearch-ok'    => 'Pesquisar',
+'linksearch-text'  => 'É possível utilizar "caracteres mágicos" como em "*.wikipedia.org".<br />Protocolos suportados: <tt>$1</tt>',
+'linksearch-line'  => '$1 está lincado em $2',
+'linksearch-error' => '"Caracteres mágicos" (wildcards) podem ser utilizados apenas no início do endereço.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
 'listusers-submit'   => 'Exibir',
@@ -1802,6 +1811,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-othertime'           => 'Outra duração:',
 'protect-othertime-op'        => 'outra duração',
 'protect-otherreason'         => 'Outro motivo/motivo adicional:',
+'protect-otherreason-op'      => 'outro/motivo adicional',
 'protect-dropdown'            => '*Motivos comuns para proteção
 ** Vandalismo excessivo
 ** Inserção excessiva de spams

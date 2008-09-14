@@ -1137,6 +1137,11 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'special-categories-sort-count' => 'ordinare secundum numerum',
 'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
 
+# Special:LinkSearch
+'linksearch'    => 'Quaerere nexus externos',
+'linksearch-ns' => 'Spatium nominale:',
+'linksearch-ok' => 'Quaerere',
+
 # Special:ListUsers
 'listusers-submit' => 'Monstrare',
 

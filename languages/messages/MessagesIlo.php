@@ -1039,6 +1039,9 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'special-categories-sort-count' => 'urnosen babaen ti bilang',
 'special-categories-sort-abc'   => 'urnosen nga alfabetikal',
 
+# Special:LinkSearch
+'linksearch' => 'Biroken dagiti panilpo a web',
+
 # Special:ListUsers
 'listusersfrom'      => 'Iparang dagiti agar-aramat mangrugi iti:',
 'listusers-submit'   => 'Ipakita',

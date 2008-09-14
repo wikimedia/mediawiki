@@ -1452,6 +1452,10 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'special-categories-sort-count' => 'ordonează după număr',
 'special-categories-sort-abc'   => 'sortează alfabetic',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Spaţiu de nume:',
+'linksearch-ok' => 'Caută',
+
 # Special:ListUsers
 'listusersfrom'      => 'Afişează utilizatori începând cu:',
 'listusers-submit'   => 'Arată',

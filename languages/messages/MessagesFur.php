@@ -858,6 +858,10 @@ Tu puedis strenzi la viodude sielzint un gjenar di regjistri, un non utent o la 
 'categoriespagetext' => 'Te wiki a esistin lis categoriis ca sot.',
 'categoriesfrom'     => 'Mostre lis categoriis scomençant di:',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Spazi dai nons:',
+'linksearch-ok' => 'Cîr',
+
 # Special:ListUsers
 'listusersfrom'    => 'Mostre i utents scomençant di:',
 'listusers-submit' => 'Mostre',

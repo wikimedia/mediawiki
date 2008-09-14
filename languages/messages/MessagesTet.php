@@ -444,6 +444,9 @@ $messages = array(
 # Special:Categories
 'categories' => 'Kategoría',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Buka',
+
 # Special:ListUsers
 'listusers-submit' => 'Hatudu',
 

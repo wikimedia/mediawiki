@@ -607,6 +607,9 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'categories'         => 'Categorias',
 'categoriespagetext' => 'Es la categorias seguente en la vici.',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Xerca',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupo',
 

@@ -281,6 +281,9 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'allinnamespace' => 'Axawo katã ($1 namespace)',
 'allpagessubmit' => 'Yi',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Dii',
+
 # Special:Log/newusers
 'newuserlog-create-entry'  => 'Nuŋlɔla yeye',
 'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ na $1',

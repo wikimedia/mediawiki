@@ -1561,6 +1561,16 @@ Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
 
+# Special:LinkSearch
+'linksearch'       => 'Cari pautan web',
+'linksearch-pat'   => 'Corak carian:',
+'linksearch-ns'    => 'Ruang nama:',
+'linksearch-ok'    => 'Cari',
+'linksearch-text'  => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
+Protokol yang disokong: <tt>$1</tt>',
+'linksearch-line'  => '$1 dipaut dari $2',
+'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Tunjukkan pengguna bermula pada:',
 'listusers-submit'   => 'Tunjuk',

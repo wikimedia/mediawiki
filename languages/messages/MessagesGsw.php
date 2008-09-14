@@ -725,6 +725,15 @@ D'Aazeig cha  durch d'Auswahl vo emne Protokoll, emne Benutzername odr emne Syte
 'categories'         => 'Kategorie',
 'categoriespagetext' => 'Selli Kategorie gits in dem Wiki:',
 
+# Special:LinkSearch
+'linksearch'       => 'Suech Webgleicher',
+'linksearch-pat'   => 'Suechmuschter:',
+'linksearch-ns'    => 'Namensruum:',
+'linksearch-ok'    => 'Sueche',
+'linksearch-text'  => 'S\' chönne Platzhalter wie "*.wikipedia.org" benutzt werre.<br />Unterschtützti Protokoll: <tt>$1</tt>',
+'linksearch-line'  => '$1 isch vo $2 verknüpft',
+'linksearch-error' => 'Platzhalter chönne numme am Aafang verwändet werre.',
+
 # E-mail user
 'mailnologin'     => 'Du bisch nid aagmäldet oder hesch keis Mail aaggä',
 'mailnologintext' => 'Du muesch [[Special:UserLogin|aagmäldet sy]] und e bestätigeti e-Mail-Adrässen i dynen [[Special:Preferences|Ystelligen]] aaggä ha, für das du öpper anderem es e-Mail chasch schicke.',

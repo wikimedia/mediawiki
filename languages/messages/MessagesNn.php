@@ -1481,6 +1481,10 @@ Sletteloggen for fila finn du her:",
 'special-categories-sort-count' => 'sorter etter storleik',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
+# Special:LinkSearch
+'linksearch-ns' => 'Namnerom:',
+'linksearch-ok' => 'Søk',
+
 # Special:ListUsers
 'listusersfrom'      => 'Vis brukarnamna frå og med:',
 'listusers-submit'   => 'Vis',

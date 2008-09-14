@@ -1338,6 +1338,11 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'special-categories-sort-count' => 'leodükön ma num',
 'special-categories-sort-abc'   => 'leodükön ma lafab',
 
+# Special:LinkSearch
+'linksearch'    => 'Sukön bevüresodayümis',
+'linksearch-ns' => 'Nemaspad:',
+'linksearch-ok' => 'Suk',
+
 # Special:ListUsers
 'listusersfrom'      => 'Jonolöd gebanis primölo me:',
 'listusers-submit'   => 'Jonolöd',

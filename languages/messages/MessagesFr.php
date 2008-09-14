@@ -1636,6 +1636,15 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
 
+# Special:LinkSearch
+'linksearch'       => 'Rechercher des liens Internet',
+'linksearch-pat'   => 'Rechercher l’expression :',
+'linksearch-ns'    => 'Espace de noms :',
+'linksearch-ok'    => 'Rechercher',
+'linksearch-text'  => 'Des caractères « joker » peuvent être utilisés, par exemple <code>*.wikipedia.org</code>.<br />Protocoles reconnus : <tt>$1</tt>.',
+'linksearch-line'  => '$1 avec un lien à partir de $2',
+'linksearch-error' => 'Les caractères passe-partout ne peuvent être utilisés qu’au début du nom de domaine.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Montrer',

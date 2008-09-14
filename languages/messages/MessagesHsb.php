@@ -1502,6 +1502,15 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'special-categories-sort-count' => 'Po ličbje sortěrować',
 'special-categories-sort-abc'   => 'Alfabetisce sortěrować',
 
+# Special:LinkSearch
+'linksearch'       => 'Pytanje eksternych wotkazow',
+'linksearch-pat'   => 'Pytanski muster:',
+'linksearch-ns'    => 'Mjenowy rum:',
+'linksearch-ok'    => 'OK',
+'linksearch-text'  => 'Zastupniske znamjenja kaž "*.wikipedia.org" smědźa so wužiwać.<br />Podpěrowane protokole: <tt>$1</tt>',
+'linksearch-line'  => '$1 je z $2 wotkazany.',
+'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Započinajo z:',
 'listusers-submit'   => 'Pokazać',

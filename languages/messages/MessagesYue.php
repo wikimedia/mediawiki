@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -1543,6 +1543,15 @@ Template:搞清楚',
 'categoriesfrom'                => '顯示由呢項起嘅類:',
 'special-categories-sort-count' => '跟數量排',
 'special-categories-sort-abc'   => '跟字母排',
+
+# Special:LinkSearch
+'linksearch'       => '搵網頁連結',
+'linksearch-pat'   => '搵嘅形態:',
+'linksearch-ns'    => '空間名',
+'linksearch-ok'    => '搵',
+'linksearch-text'  => '可以用類似"*.wikipedia.org"嘅萬用字元。',
+'linksearch-line'  => '$1 連自 $2',
+'linksearch-error' => '萬用字元只可以響主機名嘅開頭度用。',
 
 # Special:ListUsers
 'listusersfrom'      => '顯示由呢個字開始嘅用戶：',

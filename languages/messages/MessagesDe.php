@@ -1631,6 +1631,15 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
 
+# Special:LinkSearch
+'linksearch'       => 'Weblink-Suche',
+'linksearch-pat'   => 'Suchmuster:',
+'linksearch-ns'    => 'Namensraum:',
+'linksearch-ok'    => 'Suchen',
+'linksearch-text'  => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Wildcards wie beispielsweise <tt>*.example.com</tt> benutzt werden.<br />Unterstützte Protokolle: <tt>$1</tt>',
+'linksearch-line'  => '$1 ist verlinkt von $2',
+'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Zeige Benutzer ab:',
 'listusers-submit'   => 'Zeige',
@@ -2757,8 +2766,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 
 # Size units
 'size-bytes'     => '$1 Bytes',
-'size-megabytes' => '$1&nbsp;MB',
-'size-gigabytes' => '$1&nbsp;GB',
+'size-megabytes' => '$1 MB',
+'size-gigabytes' => '$1 GB',
 
 # Live preview
 'livepreview-loading' => 'Laden …',

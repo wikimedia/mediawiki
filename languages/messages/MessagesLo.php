@@ -593,6 +593,9 @@ $messages = array(
 'categories'         => 'ໝວດ',
 'categoriespagetext' => 'ມີ ບັນດາ ໝວດ ຕໍ່ໄປນີ້ ຢູ່ ວິກີ.',
 
+# Special:LinkSearch
+'linksearch' => 'ຄົ້ນຫາການເຊື່ອມຕໍ່ຫາເວັບ',
+
 # Special:ListUsers
 'listusers-submit' => 'ສະແດງ',
 

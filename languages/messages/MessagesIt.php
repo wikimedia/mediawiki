@@ -1545,6 +1545,16 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'special-categories-sort-count' => 'ordina per numero',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
+# Special:LinkSearch
+'linksearch'       => 'Ricerca collegamenti esterni',
+'linksearch-pat'   => 'Pattern di ricerca:',
+'linksearch-ns'    => 'Namespace:',
+'linksearch-ok'    => 'Cerca',
+'linksearch-text'  => 'È possibile fare uso di metacaratteri, ad es. "*.wikipedia.org".<br />
+Protocolli supportati: <tt>$1</tt>',
+'linksearch-line'  => '$1 presente nella pagina $2',
+'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
+
 # Special:ListUsers
 'listusersfrom'      => 'Mostra gli utenti a partire da:',
 'listusers-submit'   => 'Mostra',

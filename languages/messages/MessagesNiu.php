@@ -164,6 +164,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Book sources
 'booksources-go' => 'Fano',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Kumi',
+
 # Watchlist
 'watchlist'     => 'Ko e haaku lau kitekite',
 'mywatchlist'   => 'Ko e haaku lau kitekite',

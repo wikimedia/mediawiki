@@ -686,6 +686,11 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'categories'         => 'Faʻahinga',
 'categoriespagetext' => 'ʻOku ʻi ai ha ngaahi faʻahinga pehē.',
 
+# Special:LinkSearch
+'linksearch'       => 'Kumi ha ngaahi fehokotaki fakamatamatakupenga',
+'linksearch-line'  => 'Kuo fehokotaki ʻa e $1 mei he $2',
+'linksearch-error' => 'ʻOku ngofua pē ke ʻasi ha ngaahi lauʻifano ʻi he kamataʻanga ʻo e tauhia hono hingoa.',
+
 # Special:ListUsers
 'listusersfrom'    => 'ʻAsi mai kau ʻetita mei he:',
 'listusers-submit' => 'ʻAsi mai',

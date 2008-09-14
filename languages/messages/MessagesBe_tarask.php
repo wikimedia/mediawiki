@@ -1677,6 +1677,10 @@ $2',
 'special-categories-sort-count' => 'сартаваць паводле колькасьці',
 'special-categories-sort-abc'   => 'сартаваць паводле альфабэту',
 
+# Special:LinkSearch
+'linksearch'    => 'Пошук вонкавых спасылак',
+'linksearch-ns' => 'Прастора назваў:',
+
 # Special:ListUsers
 'listusersfrom'      => 'Паказаць удзельнікаў, пачынаючы з:',
 'listusers-submit'   => 'Паказаць',

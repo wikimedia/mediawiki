@@ -1393,6 +1393,12 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
 
+# Special:LinkSearch
+'linksearch'     => '웹 링크 찾기',
+'linksearch-pat' => '검색 패턴:',
+'linksearch-ns'  => '이름공간:',
+'linksearch-ok'  => '검색',
+
 # Special:ListUsers
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
 'listusers-submit'   => '보이기',

@@ -367,6 +367,10 @@ $messages = array(
 # Special:Categories
 'categories' => 'श्रेणीहरू',
 
+# Special:LinkSearch
+'linksearch-ns' => 'नेमस्पेस:',
+'linksearch-ok' => 'खोज्नुहोस्',
+
 # Special:ListUsers
 'listusers-submit' => 'देखाउनुहोस्',
 
