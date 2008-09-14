@@ -126,6 +126,7 @@ $specialPageAliases = array(
 	'Filepath'                => array( 'Pad bäi de Fichier' ),
 	'Invalidateemail'         => array( 'E-Mailadress net confirméieren' ),
 	'Blankpage'               => array( 'Eidel Säit' ),
+	'LinkSearch'                => array( 'Weblink-Sich' ),
 );
 
 $messages = array(

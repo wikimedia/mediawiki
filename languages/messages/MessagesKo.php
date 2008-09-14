@@ -131,6 +131,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( '역사합치기' ),
 	'Filepath'                  => array( '파일경로' ),
 	'Blankpage'                 => array( '빈문서' ),
+	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
 );
 
 $magicWords = array(

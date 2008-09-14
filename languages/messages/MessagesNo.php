@@ -160,6 +160,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Flett_historikk' ),
 	'Filepath'                  => array( 'Filsti' ),
 	'Invalidateemail'           => array( 'Ugyldiggjøre_e-post' ),
+	'LinkSearch'                => array( 'Lenkesøk' ),
 );
 
 $messages = array(

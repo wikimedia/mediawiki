@@ -249,7 +249,8 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Zeuken' ),
 	'Resetpass'                 => array( 'Wachwoord_opniej_instellen' ),
 	'Withoutinterwiki'          => array( 'Gien_interwiki' ),
-	);
+	'LinkSearch'                => array( 'Verwiezingen_zeuken' ),
+);
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 

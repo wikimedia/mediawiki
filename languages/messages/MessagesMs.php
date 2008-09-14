@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Laluan_fail' ),
 	'Invalidateemail'           => array( 'Batalkan_pengesahan_e-mel' ),
 	'Blankpage'                 => array( 'Laman_kosong' ),
+	'LinkSearch'                => array( 'Cari_pautan' ),
 );
 
 $messages = array(

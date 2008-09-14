@@ -176,6 +176,7 @@ $specialPageAliases = array(
 	'Filepath'                => array( 'Tiedostopolku' ),
 	'Invalidateemail'         => array( 'Hylkää sähköpostiosoite' ),
 	'Blankpage'               => array( 'Tyhjä sivu' ),
+	'LinkSearch'              => array( 'Linkkihaku' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
