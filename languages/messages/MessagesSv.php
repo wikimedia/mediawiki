@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Slå_ihop_historik' ),
 	'Filepath'                  => array( 'Filsökväg' ),
 	'Invalidateemail'           => array( 'Ogiltigförklara_epost' ),
+	'LinkSearch'                => array( 'Länksökning' ),
 );
 
 $magicWords = array(

@@ -154,6 +154,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Dateipfad' ),
 	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen' ),
 	'Blankpage'                 => array( 'Leerseite' ),
+	'LinkSearch'                => array( 'Weblink-Suche' ),
 );
 
 $datePreferences = array(

@@ -366,6 +366,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'مسار_ملف' ),
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
+	'LinkSearch'                => array( 'بحث_الوصلات' ),
 );
 
 $imageFiles = array(

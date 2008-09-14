@@ -276,6 +276,7 @@ $specialPageAliases = array(
 	'Search'                    => array( 'Pencarian', 'Cari' ),
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Tanpa_interwiki', 'Tanpainterwiki' ),
+	'LinkSearch'                => array( 'Pencarian pranala' ),
 );
 
 $messages = array(

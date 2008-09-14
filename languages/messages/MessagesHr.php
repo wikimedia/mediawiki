@@ -130,6 +130,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Putanja_datoteke' ),
 	'Invalidateemail'           => array( 'Nevaljana_elektronička_pošta' ),
 	'Blankpage'                 => array( 'Prazna_stranica' ),
+	'LinkSearch'                => array( 'Traži_poveznice', 'Traži_linkove' ),
 );
 
 $magicWords = array(

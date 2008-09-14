@@ -263,6 +263,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'مسار_ملف' ),
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكترونى' ),
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
+	'LinkSearch'                => array( 'بحث_الوصلات' ),
 );
 
 $messages = array(

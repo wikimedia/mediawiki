@@ -142,6 +142,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Historias paginarum confundere' ),
 	'Invalidateemail'           => array( 'Adfimationem inscriptionis electronicae abrogare' ),
 	'Blankpage'                 => array( 'Pagina vacua' ),
+	'LinkSearch'                => array( 'Quaerere nexus externos' ),
 );
 
 $messages = array(

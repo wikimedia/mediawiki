@@ -151,6 +151,7 @@ $specialPageAliases = array(
 	'Filepath'                => array( 'Diretório de ficheiro', 'Diretório de arquivo' ),
 	'Invalidateemail'         => array( 'Invalidar e-mail' ),
 	'Blankpage'               => array( 'Página em branco' ),
+	'LinkSearch'              => array( 'Pesquisar links' ),
 );
 
 $messages = array(

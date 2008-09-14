@@ -282,6 +282,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'נתיב_לקובץ' ),
 	'Invalidateemail'           => array( 'ביטול_דואר' ),
 	'Blankpage'                 => array( 'דף_ריק' ),
+	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 );
 
 $namespaceNames = array(

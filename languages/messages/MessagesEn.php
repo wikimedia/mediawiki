@@ -439,6 +439,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'FilePath' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'Blankpage'                 => array( 'BlankPage' ),
+	'LinkSearch'                => array( 'LinkSearch' ),
 );
 
 /**

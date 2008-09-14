@@ -274,6 +274,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Bestandspad' ),
 	'Invalidateemail'           => array( 'EmailAnnuleren' ),
 	'Blankpage'                 => array( 'LegePagina' ),
+	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

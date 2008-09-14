@@ -17,6 +17,7 @@ $specialPageAliases = array(
 	'Categories'                => array( 'وېشنيزې' ),
 	'Mypage'                    => array( 'زما_پاڼه' ),
 	'Search'                    => array( 'لټون' ),
+	'LinkSearch'                => array( 'د تړنې پلټنه' ),
 );
 
 $skinNames = array(

@@ -112,6 +112,7 @@ $specialPageAliases = array(
 	'Filepath'                => array( 'ផ្លូវនៃឯកសារ' ),
 	'Invalidateemail'         => array( 'អ៊ីមែលមិនត្រឹមត្រូវ' ),
 	'Blankpage'               => array( 'ទំព័រទទេ' ),
+	'LinkSearch'                => array( 'ស្វែងរកតំនភ្ជាប់' ),
 );
 
 $skinNames = array(

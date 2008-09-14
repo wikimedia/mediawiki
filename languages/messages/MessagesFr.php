@@ -223,6 +223,7 @@ $specialPageAliases = array(
 	'MergeHistory'              => array( 'Fusionner_l\'historique', 'Fusionnerlhistorique' ),
 	'Filepath'                  => array( 'Chemin_du_Fichier', 'CheminduFichier', 'CheminFichier' ),
 	'Invalidateemail'           => array( 'Invalider_Courriel', 'InvaliderCourriel' ),
+	'LinkSearch'                => array( 'Recherche de liens' ),
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
