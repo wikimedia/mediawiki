@@ -770,7 +770,7 @@ class UndeleteForm {
 		$t = htmlspecialchars( $wgLang->time( $timestamp, true ) );
 		$user = $skin->revUserTools( $rev );
 
-		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $t, $d ) . '</p>' );
+		$wgOut->addHtml( '<p>' . wfMsgHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</p>' );
 
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
