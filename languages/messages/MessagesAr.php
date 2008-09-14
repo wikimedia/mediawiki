@@ -307,6 +307,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'صور_غير_مستخدمة' ),
 	'Wantedpages'               => array( 'صفحات_مطلوبة', 'وصلات_مكسورة' ),
 	'Wantedcategories'          => array( 'تصنيفات_مطلوبة' ),
+	'Wantedfiles'               => array( 'ملفات_مطلوبة' ),
 	'Missingfiles'              => array( 'ملفات_مفقودة', 'صور_مفقودة' ),
 	'Mostlinked'                => array( 'الأكثر_وصلا' ),
 	'Mostlinkedcategories'      => array( 'أكثر_التصنيفات_وصلا', 'أكثر_التصنيفات_استخداما' ),
