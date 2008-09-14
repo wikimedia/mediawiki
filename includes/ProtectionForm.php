@@ -211,7 +211,7 @@ class ProtectionForm {
 		global $wgGroupPermissions;
 
 		$edit_restriction = $this->mRestrictions['edit'];
-
+		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
 		if ($this->mCascade && ($edit_restriction != 'protect') &&
 			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
 			$this->mCascade = false;
