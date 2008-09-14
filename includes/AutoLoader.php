@@ -8,7 +8,7 @@ ini_set('unserialize_callback_func', '__autoload' );
 # Extension classes are specified with $wgAutoloadClasses
 # This array is a global instead of a static member of AutoLoader to work around a bug in APC
 global $wgAutoloadLocalClasses;
-$wgAutoloadLocalClasses = array( 
+$wgAutoloadLocalClasses = array(
 	# Includes
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
@@ -356,7 +356,7 @@ $wgAutoloadLocalClasses = array(
 	'WhiteSpaceNode' => 'includes/diff/Nodes.php',
 	'WikiDiff3' => 'includes/diff/Diff.php',
 	'WordLevelDiff' => 'includes/diff/DifferenceEngine.php',
-	
+
 	# includes/filerepo
 	'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',
 	'File' => 'includes/filerepo/File.php',
@@ -446,6 +446,7 @@ $wgAutoloadLocalClasses = array(
 	'ImportReporter' => 'includes/specials/SpecialImport.php',
 	'ImportStreamSource' => 'includes/specials/SpecialImport.php',
 	'ImportStringSource' => 'includes/specials/SpecialImport.php',
+	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
 	'ListredirectsPage' => 'includes/specials/SpecialListredirects.php',
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
 	'LonelyPagesPage' => 'includes/specials/SpecialLonelypages.php',
@@ -517,11 +518,11 @@ $wgAutoloadLocalClasses = array(
 class AutoLoader {
 	/**
 	 * autoload - take a class name and attempt to load it
-	 * 
+	 *
 	 * @param string $className Name of class we're looking for.
 	 * @return bool Returning false is important on failure as
 	 * it allows Zend to try and look in other registered autoloaders
-	 * as well. 
+	 * as well.
 	 */
 	static function autoload( $className ) {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses;
@@ -580,4 +581,3 @@ if ( function_exists( 'spl_autoload_register' ) ) {
 		AutoLoader::autoload( $class );
 	}
 }
-

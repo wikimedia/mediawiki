@@ -2828,6 +2828,7 @@ $wgSpecialPageGroups = array(
 	'Mytalk'                    => 'redirects',
 	'Mycontributions'           => 'redirects',
 	'Search'                    => 'redirects',
+	'LinkSearch'                => 'redirects',
 
 	'Movepage'                  => 'pagetools',
 	'MergeHistory'              => 'pagetools',

@@ -126,6 +126,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added Wantedfiles special pages, allowing users to find image links with no image.
 * (bug 12650) It is now possible to set different expiration times for different
   restriction types on the protection form.
+* Special:Log/newusers recording new users.was added (was extension Newuserlog)
+* Special:LinkSearch to search for external links was added (was extension
+  LinkSearch)
 
 === Bug fixes in 1.14 ===
 

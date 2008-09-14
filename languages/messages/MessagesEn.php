@@ -2104,6 +2104,16 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'sort by count',
 'special-categories-sort-abc'   => 'sort alphabetically',
 
+# Special:LinkSearch
+'linksearch'       => 'Search web links',
+'linksearch-pat'   => 'Search pattern:',
+'linksearch-ns'    => 'Namespace:',
+'linksearch-ok'    => 'Search',
+'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.<br />
+Supported protocols: <tt>$1</tt>',
+'linksearch-line'  => '$1 linked from $2',
+'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
+
 # Special:ListUsers
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',

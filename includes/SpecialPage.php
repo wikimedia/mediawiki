@@ -129,6 +129,7 @@ class SpecialPage
 		'Contributions'             => array( 'SpecialPage', 'Contributions' ),
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
 		'Whatlinkshere'             => array( 'SpecialPage', 'Whatlinkshere' ),
+		'LinkSearch'                => array( 'SpecialPage', 'LinkSearch' ),
 		'Recentchangeslinked'       => 'SpecialRecentchangeslinked',
 		'Movepage'                  => array( 'UnlistedSpecialPage', 'Movepage' ),
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),
