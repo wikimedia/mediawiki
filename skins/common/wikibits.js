@@ -638,12 +638,12 @@ function ts_resortTable(lnk) {
 
 	var arrowHTML;
 	if (reverse) {
-			arrowHTML = '<img src="'+ ts_image_path + ts_image_down + '" alt="&darr;"/>';
-			newRows.reverse();
-			span.setAttribute('sortdir','up');
+		arrowHTML = '<img src="'+ ts_image_path + ts_image_down + '" alt="&darr;"/>';
+		newRows.reverse();
+		span.setAttribute('sortdir','up');
 	} else {
-			arrowHTML = '<img src="'+ ts_image_path + ts_image_up + '" alt="&uarr;"/>';
-			span.setAttribute('sortdir','down');
+		arrowHTML = '<img src="'+ ts_image_path + ts_image_up + '" alt="&uarr;"/>';
+		span.setAttribute('sortdir','down');
 	}
 
 	// We appendChild rows that already exist to the tbody, so it moves them rather than creating new ones
