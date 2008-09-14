@@ -204,9 +204,14 @@ class LogPage {
 						$params[2] = isset( $params[2] ) ? 
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
 					} else if ( $type == 'protect' && count($params) == 3 ) {
-						$details .= " {$params[1]}"; // restrictions and expiries
+						$details .= "{$params[1]}"; // restrictions and expiries
 						if( $params[2] ) {
 							$details .= ' ['.wfMsg('protect-summary-cascade').']';
+						}
+						# If this is going to be displayed, make it somewhat consistent with page history
+						# and older log entries where everything is treated as a comment
+						if (!is_null($skin)) {
+							$details = $skin->commentBlock($details);
 						}
 					}
 					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
