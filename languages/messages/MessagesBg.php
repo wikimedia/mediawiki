@@ -1454,7 +1454,7 @@ $2',
 
 # Statistics
 'statistics'              => 'Статистика',
-'statistics-header-edits' => 'Редактиране на статистиките',
+'statistics-header-edits' => 'Статистики за редакциите',
 'statistics-header-views' => 'Преглеждане на статистиките',
 'statistics-header-users' => 'Потребители',
 'statistics-files'        => 'Качени файлове',

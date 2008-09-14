@@ -207,7 +207,7 @@ $messages = array(
 'deletethispage'    => 'Deler iste pagina',
 'undelete_short'    => 'Restaurar {{PLURAL:$1|un modification|$1 modificationes}}',
 'protect'           => 'Proteger',
-'protect_change'    => 'cambiar protection',
+'protect_change'    => 'cambiar',
 'protectthispage'   => 'Proteger iste pagina',
 'unprotect'         => 'Disproteger',
 'unprotectthispage' => 'Disproteger iste pagina',
@@ -485,7 +485,7 @@ Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructione
 'throttled-mailpassword'     => 'Un memento del contrasigno jam esseva inviate durante le ultime {{PLURAL:$1|hora|$1 horas}}.
 Pro impedir le abuso, nos invia solmente un memento de contrasigno per {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error de inviar e-mail: $1',
-'acct_creation_throttle_hit' => 'Tu ha ja create $1 contos.
+'acct_creation_throttle_hit' => 'Pardono, tu ha ja create {{PLURAL:$1|1 conto|$1 contos}}.
 Tu non pote facer plus.',
 'emailauthenticated'         => 'Tu adresse de e-mail se authentificava le $1.',
 'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
@@ -695,6 +695,8 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
+'deleted-notice'                   => 'Iste pagina ha essite delite.
+In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
@@ -850,15 +852,15 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'editundo'                => 'annullar',
 'diff-multi'              => '({{PLURAL:$1|Un revision intermedie|$1 revisiones intermedie}} non se revela.)',
 'diff-movedto'            => 'displaciate verso $1',
-'diff-styleadded'         => 'stilo addite',
-'diff-added'              => 'addite',
-'diff-changedto'          => 'cambiate a',
+'diff-styleadded'         => '$1 stilo addite',
+'diff-added'              => '$1 addite',
+'diff-changedto'          => 'cambiate a $1',
 'diff-movedoutof'         => 'displaciate ex $1',
-'diff-styleremoved'       => 'stilo eliminate',
-'diff-removed'            => 'removite',
-'diff-changedfrom'        => 'cambiate ab',
+'diff-styleremoved'       => '$1 stilo eliminate',
+'diff-removed'            => '$1 removite',
+'diff-changedfrom'        => 'cambiate ab $1',
 'diff-src'                => 'origine',
-'diff-withdestination'    => 'con destination',
+'diff-withdestination'    => 'con destination $1',
 'diff-with'               => '&#32;con $1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-width'              => 'latitude',
@@ -953,7 +955,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences'            => 'Mi preferentias',
 'prefs-edits'              => 'Numero de modificationes:',
 'prefsnologin'             => 'Tu non te ha identificate',
-'prefsnologintext'         => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter configurar tu preferentias.',
+'prefsnologintext'         => 'Tu debe <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
 'prefsreset'               => 'Tu preferentias anterior ha essite restaurate.',
 'qbsettings'               => 'Barra rapide',
 'qbsettings-none'          => 'Necun',
@@ -1392,9 +1394,22 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'randomredirect-nopages' => 'Il non ha redirectiones in iste spatio de nomines.',
 
 # Statistics
-'statistics'              => 'Statisticas',
-'statistics-header-users' => 'Statisticas de usatores',
-'statistics-mostpopular'  => 'Le paginas plus visitate',
+'statistics'               => 'Statisticas',
+'statistics-header-pages'  => 'Statisticas de paginas',
+'statistics-header-edits'  => 'Statisticas de modificationes',
+'statistics-header-views'  => 'Statisticas de visitas',
+'statistics-header-users'  => 'Statisticas de usatores',
+'statistics-articles'      => 'Paginas de contento',
+'statistics-pages'         => 'Paginas <small>(isto comprende paginas de "discussion", paginas a proposito de {{SITENAME}}, paginas de "pecietta" minimal, redirectiones, e alteres)</small>',
+'statistics-files'         => 'Files cargate',
+'statistics-edits'         => 'Modificationes de paginas depost le installation de {{SITENAME}}',
+'statistics-edits-average' => 'Media del modificationes per pagina',
+'statistics-views-total'   => 'Visitas total',
+'statistics-views-peredit' => 'Visitas per modification',
+'statistics-jobqueue'      => 'Longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]',
+'statistics-users'         => '[[Special:ListUsers|Usatores]] registrate',
+'statistics-users-active'  => 'Usatores active',
+'statistics-mostpopular'   => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
 'disambiguationspage'  => 'Template:Disambiguation',
@@ -1439,6 +1454,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'popularpages'            => 'Paginas popular',
 'wantedcategories'        => 'Categorias plus demandate',
 'wantedpages'             => 'Paginas plus demandate',
+'wantedfiles'             => 'Files desirate',
 'missingfiles'            => 'Files mancante',
 'mostlinked'              => 'Paginas le plus ligate',
 'mostlinkedcategories'    => 'Categorias le plus ligate',
@@ -1460,6 +1476,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'protectedtitlestext'     => 'Le sequente titulos es protegite de esser create',
 'protectedtitlesempty'    => 'Nulle titulos es actualmente protegite con iste parametros.',
 'listusers'               => 'Lista de usatores',
+'listusers-editsonly'     => 'Monstrar solmente usatores con modificationes',
 'newpages'                => 'Nove paginas',
 'newpages-username'       => 'Nomine de usator:',
 'ancientpages'            => 'Paginas le plus ancian',
@@ -1594,7 +1611,7 @@ facilitar su identification.",
 'notanarticle'         => 'Non es un articulo',
 'notvisiblerev'        => 'Le revision ha essite delite',
 'watchnochange'        => 'Nulle articulo que tu observa esseva modificate durante le periodo de tempore indicate.',
-'watchlist-details'    => '{{PLURAL:$1|$1 pagina|$1 paginas}} es sub observation, excludente paginas de discussion.',
+'watchlist-details'    => '{{PLURAL:$1|$1 pagina|$1 paginas}} es in tu observatorio, sin contar le paginas de discussion.',
 'wlheader-enotif'      => '* Le notificationes via e-mail es active.',
 'wlheader-showupdated' => "* Le paginas que ha essite modificate post tu ultime visita se monstra in litteras '''grasse'''",
 'watchmethod-recent'   => 'cerca paginas sub observation in modificationes recente',
@@ -1734,8 +1751,18 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 'protect-level-sysop'         => 'Administratores solmente',
 'protect-summary-cascade'     => 'in cascada',
 'protect-expiring'            => 'expira le $1 (UTC)',
+'protect-expiry-indefinite'   => 'infinite',
 'protect-cascade'             => 'Proteger le paginas includite in iste pagina (protection in cascada)',
 'protect-cantedit'            => 'Tu non pote cambiar le nivellos de protection de iste pagina, proque tu non ha le autorisation de modificar le pagina.',
+'protect-othertime'           => 'Altere duration:',
+'protect-othertime-op'        => 'altere duration',
+'protect-otherreason'         => 'Motivo altere/additional:',
+'protect-otherreason-op'      => 'motivo altere/additional',
+'protect-dropdown'            => '*Motivos commun de protection
+** Vandalismo excessive
+** Spam excessive
+** Guerra de modificationes contraproductive
+** Pagina frequentemente visitate',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Nivello de restriction:',
 'minimum-size'                => 'Grandor minime',

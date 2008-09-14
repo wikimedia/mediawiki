@@ -1651,7 +1651,7 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 # Special:ListGroupRights
 'listgrouprights'                 => 'Droits des groupes utilisateur',
 'listgrouprights-summary'         => "Cette page contient une liste des groupes définis sur ce wiki ainsi que les droits d'accès qui y sont associés.
-Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] a propos des droits.",
+Il peut y avoir des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] à propos des droits.",
 'listgrouprights-group'           => 'Groupe',
 'listgrouprights-rights'          => 'Droits associés',
 'listgrouprights-helppage'        => 'Help:Droits des groupes',

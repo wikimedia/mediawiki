@@ -327,9 +327,9 @@ $messages = array(
 'category-empty'                 => "''Actualament, aquesta categoria conten pas cap d'articles, de soscategoria o de fichièr multimèdia.''",
 'hidden-categories'              => '{{PLURAL:$1|Categoria amagada|Categorias amagadas}}',
 'hidden-category-category'       => 'Categorias amagadas', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Aquesta categoria dispausa pas que de la soscategoria seguenta.|Aquesta categoria dispausa de {{PLURAL:$1|soscategoria|$1 soscategorias}}, sus una soma de $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Aquesta categoria dispausa pas que de la soscategoria seguenta.|Aquesta categoria dispausa de {{PLURAL:$1|soscategoria|$1 soscategorias}}, sus un total de $2.}}',
 'category-subcat-count-limited'  => 'Aquesta categoria dispausa {{PLURAL:$1|d’una soscategoria|de $1 soscategorias}}.',
-'category-article-count'         => '{{PLURAL:$2|Aquesta categoria conten unicament la pagina seguenta.|{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins aquesta categoria, sus una soma de $2.}}',
+'category-article-count'         => '{{PLURAL:$2|Aquesta categoria conten unicament la pagina seguenta.|{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins aquesta categoria, sus un total de $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|La pagina seguenta figura|Las $1 paginas seguentas figuran}} dins la presenta categoria.',
 'category-file-count'            => '{{PLURAL:$2|Aquesta categoria conten unicament lo fichièr seguent.|{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins aquesta categoria, sus una soma de $2.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Lo fichièr seguent figura|Los $1 fichièrs seguents figuran}} dins la presenta categoria.',
@@ -653,7 +653,7 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, deuretz seguir las in
 'mailerror'                  => 'Error en mandant lo corrièr electronic : $1',
 'acct_creation_throttle_hit' => "Ja avètz creat {{PLURAL:$1|1 compte|$1 comptes}}.
 Ne podètz pas crear d'autres.",
-'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $1.',
+'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $1 a $3.',
 'emailnotauthenticated'      => 'Vòstra adreça de corrièr electronic es <strong>pas encara autentificada</strong>. Cap corrièr serà pas mandat per caduna de las foncions seguentas.',
 'noemailprefs'               => "<strong>Cap d'adreça electronica es pas estada indicada,</strong> las foncions seguentas seràn pas disponiblas.",
 'emailconfirmlink'           => 'Confirmatz vòstra adreça de corrièr electronic',
@@ -1845,6 +1845,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'protect-level-sysop'         => 'Administrators unicament',
 'protect-summary-cascade'     => 'proteccion en cascada',
 'protect-expiring'            => 'expira lo $1',
+'protect-expiry-indefinite'   => 'indefinit',
 'protect-cascade'             => 'Proteccion en cascada - Protegís totas las paginas inclusas dins aquesta.',
 'protect-cantedit'            => "Podètz pas modificar los nivèls de proteccion d'aquesta pagina perque avètz pas la permission de l'editar.",
 'protect-othertime'           => 'Autra expiracion :',

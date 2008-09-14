@@ -25,6 +25,7 @@
  * @author Malafaya
  * @author McDutchie
  * @author Meno25
+ * @author MichaelFrey
  * @author Mormegil
  * @author Mpradeep
  * @author Nemo bis
@@ -303,7 +304,7 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 'helppage' => 'The link destination used by default in the sidebar, and in {{msg|noarticletext}}. 
 {{doc-important|Do not change <tt>Help:</tt> part.}}',
-'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Example: [[Main Page]].
+'mainpage' => 'Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!
 
 {{Identical|Main page}}',
 'mainpage-description' => 'The same as {{msg|mainpage|pl=yes}}, used as link text on [[MediaWiki:Sidebar]]. This makes it possible to the change the link destination (the message "mainpage") without changing the link text or without disabling translations.',
@@ -497,7 +498,11 @@ $1 is the minimum number of characters in the password.',
 * $4 is a URL. Example: http://wiki.example.com',
 'noemail' => 'Shown as error message when trying to register a user sending password to e-mail adress and no e-mail address has been given. Registering users and sending a password to an e-mail address may require non-standard user rights. ([http://translatewiki.net/w/i.php?title=Special:UserLogin&action=submitlogin&type=signup Register user link])',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].',
-'emailauthenticated' => 'In user preferences.',
+'emailauthenticated' => 'In user preferences. ([[Special:Preferences]])
+
+* $1: obsolet, date and time
+* $2: date
+* $3: time',
 'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text' => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
 
@@ -1322,11 +1327,11 @@ Example: [[:Image:Addon-icn.png]]',
 'listusers-submit' => '{{Identical|Show}}',
 
 # Special:Log/newusers
-'newuserlogpage' => 'It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
-'newuserlogpagetext' => 'It is the description you can see on [[Special:Log/newusers]].',
-'newuserlog-create-entry' => 'It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
-'newuserlog-create2-entry' => 'It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1").',
-'newuserlog-autocreate-entry' => 'This message is used in the new user log to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
+'newuserlogpage' => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
+'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
+'newuserlog-create-entry' => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
+'newuserlog-create2-entry' => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1").',
+'newuserlog-autocreate-entry' => 'This message is used in the [[:mw:Extension:Newuserlog|new user log]] to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
 
 # Special:ListGroupRights
 'listgrouprights' => 'The name of the special page [[Special:ListGroupRights]].',
@@ -1484,10 +1489,14 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undeletepage' => 'Title of special page [[Special:Undelete]]. This special page is only visible to administrators.',
 'viewdeletedpage' => '{{Identical|View deleted pages}}',
 'undeleteextrahelp' => "Help message displayed when restoring history of a page. In your language, ''Restore'' is called ''[[MediaWiki:Undeletebtn/{{SUBPAGENAME}}|{{int:Undeletebtn}}]]'' ({{msg|Undeletebtn}}), ''Reset'' button is called ''[[MediaWiki:Undeletereset/{{SUBPAGENAME}}|{{int:Undeletereset}}]]'' ({{msg|Undeletereset}}).",
-'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]])
+'undelete-revision' => 'Shown in "View and restore deleted pages" ([[Special:Undelete/$1]]).
+
 * $1: deleted page name
-* $2: timestamp of that revision
-* $3: user name (author of revision, not who deleted it)',
+* $3: user name (author of revision, not who deleted it)
+* $4: date of the revision
+* $5: time of the revision
+
+\'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}} on {{CURRENTTIME}}) by [[User:Username|Username]]:',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
 {{Identical|Restore}}',

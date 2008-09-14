@@ -693,7 +693,7 @@ Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan set
 'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
 'acct_creation_throttle_hit' => 'Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}}.
 Anda tidak dapat membuat akun lagi.',
-'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $1.',
+'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $3, $2.',
 'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
 'noemailprefs'               => 'Anda harus memasukkan suatu alamat surat-e untuk dapat menggunakan fitur ini.',
 'emailconfirmlink'           => 'Konfirmasikan alamat surat-e Anda',
@@ -1897,7 +1897,7 @@ Menekan tombol '''''Reset''''' akan mengosongkan isian komentar dan semua kotak 
 Jika sebuah halaman baru dengan nama yang sama telah dibuat sejak penghapusan, revisi-revisi yang dikembalikan tersebut akan ditampilkan dalam daftar versi terdahulu.',
 'undeleterevdel'               => 'Pembatalan penghapusan tidak akan dilakukan jika hal tersebut akan mengakibatkan revisi terkini halaman terhapus sebagian. Pada kondisi tersebut, Anda harus menghilangkan cek atau menghilangkan penyembunyian revisi yang dihapus terakhir. Revisi berkas yang tidak dapat Anda lihat tidak akan dipulihkan.',
 'undeletehistorynoadmin'       => 'Artikel ini telah dihapus. Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut detil pengguna yang telah melakukan penyuntingan pada halaman ini sebelum dihapus. Isi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.',
-'undelete-revision'            => 'Revisi yang telah dihapus dari $1 (sampai $2) oleh $3:',
+'undelete-revision'            => 'Revisi yang telah dihapus dari $1 (pada $5, $4) oleh $3:',
 'undeleterevision-missing'     => 'Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.',
 'undelete-nodiff'              => 'Tidak ada revisi yang lebih lama.',
 'undeletebtn'                  => 'Kembalikan!',

@@ -6,6 +6,7 @@
  *
  * @author Asiri wiki
  * @author Chandana
+ * @author නන්දිමිතුරු
  */
 
 $namespaceNames = array(
@@ -99,6 +100,7 @@ $messages = array(
 'tog-highlightbroken' => ' කැඩුණු සන්ධිය ආකෘතිය <a href="" වර්ගය="අලුත">මේ සමාන ලෙස </a> (විකල්ප: මේ සමාන ලෙස<a href="" වර්ගය="අභ්‍යනතර">?</a>).',
 'tog-justify'         => 'ඡේදය පේළි ගසන්න',
 'tog-hideminor'       => 'අලුත් වෙනසහි සුළු සංස්කරණය හැංගිම',
+'tog-editsection'     => '[සංස්කරණය] බැඳියාවන් මගින් ඡේද සංස්කරණයට ඉඩ සැලසීම',
 
 # Dates
 'sunday'        => 'ඉරිදා',
@@ -206,6 +208,8 @@ $messages = array(
 
 'ok'                  => 'හරි',
 'newmessagesdifflink' => 'අවසාන වෙනස',
+'editsection'         => 'සංස්කරණය',
+'editsectionhint'     => 'ඡේද සංස්කරණය: $1',
 'toc'                 => 'පටුන',
 'showtoc'             => 'පෙන්වන්න',
 'hidetoc'             => 'සඟවන්න',
@@ -269,6 +273,9 @@ $messages = array(
 'preview'           => 'පෙරදසුන',
 'showpreview'       => 'පෙරදසුන පෙන්වන්න',
 'showdiff'          => 'වෙනස්වීම් පෙන්වන්න',
+'newarticletext'    => "බැඳියක් ඔස්සේ පැමිණ ඔබ අවතීර්ණ වී ඇත්තේ දැනට නොපවතින ලිපියකටයි.
+මෙම ලිපිය තැනීමට එනම් නිමැවීමට අවශ්‍ය නම්, පහත ඇති කොටුව තුල අකුරු ලිවීම අරඹන්න (වැඩිමනත් තොරතුරු සඳහා [[{{MediaWiki:Helppage}}|උදවු පිටුව]] බලන්න).
+ඔබ මෙහි අවතීර්ණ වී ඇත්තේ කිසියම් අත්වැරැද්දකින් බව හැ‍‍ඟෙන්නේ නම්, ඔබගේ බ්‍රවුසරයෙහි '''පසුපසට''' බොත්තම ක්ලික් කරන්න.",
 'yourtext'          => 'ඔබගේ පෙළ',
 'copyrightwarning'  => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
@@ -277,8 +284,15 @@ $messages = array(
 එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
 <strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
 
+# History pages
+'cur'  => 'වත්මන්',
+'last' => 'අවසන්',
+
 # Revision deletion
 'rev-delundel' => 'පෙන්වන්න/සඟවන්න',
+
+# Diffs
+'history-title' => '"$1" හි සංශෝධන ඉතිහාසය',
 
 # Search results
 'viewprevnext' => '($1) ($2) ($3) බලන්න',
@@ -289,6 +303,7 @@ $messages = array(
 'changepassword' => 'මුරපදය වෙනස් කරන්න',
 'skin-preview'   => 'පෙරදසුන',
 'datetime'       => 'දිනය සහ වේලාව',
+'prefs-personal' => 'පරිශීලක පැතිකඩ',
 'prefs-rc'       => 'නව වෙනස්වීම්',
 'prefs-misc'     => 'විවිධ',
 'saveprefs'      => 'Save',
@@ -300,8 +315,10 @@ $messages = array(
 'rcshowhideminor' => 'සුළු සංස්කරණ $1',
 'rcshowhideanons' => 'නිර්නාමික පරිශීලකයෝ $1',
 'diff'            => 'වෙනස',
+'hist'            => 'විත්ති',
 'hide'            => 'සඟවන්න',
 'show'            => 'පෙන්වන්න',
+'newpageletter'   => 'නව',
 
 # Recent changes linked
 'recentchangeslinked' => 'සබැඳි වෙනස්වීම්',

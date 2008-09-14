@@ -551,7 +551,7 @@ Fir de Mëssbrauch vun dëser Funktioun ze verhënneren kann nëmmen all {{PLURA
 'mailerror'                  => 'Feeler beim Schécke vun der E-Mail: $1',
 'acct_creation_throttle_hit' => 'Dir hutt {{PLURAL:$1|schonn $1 Benotzer kont|scho(nn) $1 Benotzerkonten}}. 
 Dir kënnt keng aner Benotzerkonten opmaachen.',
-'emailauthenticated'         => 'Är E-Mailadress gouf bestätegt: $1..',
+'emailauthenticated'         => 'Är E-Mailadress gouf den $2 ëm $3 Auer bestätegt.',
 'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
 'noemailprefs'               => 'Gitt eng E-Mailadress un, fir datt déie folgend Funktiounen fonctionéieren.',
@@ -741,6 +741,8 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
+'deleted-notice'                   => 'Dës Seite gouf geläscht.
+Hei ass den Extrait aus der Läschlëscht fir déi Säit.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
@@ -882,13 +884,13 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'editundo'                => 'zréck',
 'diff-multi'              => '({{PLURAL:$1|Eng Tëscheversioun gëtt net|$1 Tëscheversioune ginn net}} gewisen)',
 'diff-movedto'            => 'op $1 geréckelt',
-'diff-styleadded'         => 'Style derbäigesat',
-'diff-added'              => 'derbäigesat',
-'diff-changedto'          => 'geännert op',
+'diff-styleadded'         => '$1 Style derbäigesat',
+'diff-added'              => '$1 derbäigesat',
+'diff-changedto'          => 'geännert op $1',
 'diff-movedoutof'         => 'aus $1 geréckelt',
-'diff-styleremoved'       => 'Style ewechgeholl',
-'diff-removed'            => 'ewechgeholl',
-'diff-changedfrom'        => 'geännert vu(n)',
+'diff-styleremoved'       => '$1 Style ewechgeholl',
+'diff-removed'            => '$1 ewechgeholl',
+'diff-changedfrom'        => 'geännert vu(n) $1',
 'diff-src'                => 'Quell',
 'diff-with'               => '&#32;mat $1 $2',
 'diff-with-final'         => '&#32;a(n) $1 $2',
@@ -972,7 +974,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'mypreferences'            => 'Meng Astellungen',
 'prefs-edits'              => 'Zuel vun den Ännerungen:',
 'prefsnologin'             => 'Net ageloggt',
-'prefsnologintext'         => 'Dir musst [[Special:UserLogin|agelogged]] sinn, fir är Astellungen änneren ze kënnen.',
+'prefsnologintext'         => 'Dir musst <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}}agelogged]</span> sinn, fir är Astellungen änneren ze kënnen.',
 'prefsreset'               => "D'Astellungen goufen zréckgesat esou wéi se ofgespäichert waren.",
 'qbsettings'               => 'Geschirläischt',
 'qbsettings-none'          => 'Keen',
@@ -1366,9 +1368,21 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 'randomredirect-nopages' => 'An dësem Nummraum gëtt et keng Viruleedungen.',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-users' => 'Benotzerstatistik',
-'statistics-mostpopular'  => 'Am meeschte gekuckte Säiten',
+'statistics'               => 'Statistik',
+'statistics-header-pages'  => 'Säitestatistiken',
+'statistics-header-edits'  => 'Statistik vun den Ännerungen',
+'statistics-header-views'  => "Sttistiken iwwert d'Visiten",
+'statistics-header-users'  => 'Benotzerstatistik',
+'statistics-articles'      => 'Säite mat Inhalt',
+'statistics-pages'         => 'Säiten<small>(mat den "Diskussiouns"-Säiten, Säiten iwwer {{SITENAME}}, minimale "Skizz"-Säiten, Viruleedungen an Aneren)</small>',
+'statistics-files'         => 'Eropgeluede Fichieren',
+'statistics-edits'         => 'Säitenännerungen zënter dat et {{SITENAME}} gëtt',
+'statistics-edits-average' => 'Duerchschnëttlech Zuel vun Ännerunge pro Säit',
+'statistics-views-total'   => 'Total vun den Oprif',
+'statistics-views-peredit' => 'Oprif pro Ännerung',
+'statistics-users'         => 'Registréiert [[Special:ListUsers|Benotzer]]',
+'statistics-users-active'  => 'Aktiv Benotzer',
+'statistics-mostpopular'   => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'      => 'Homonymie Säiten',
 'disambiguationspage'  => 'Schabloun:Homonymie',
@@ -1413,6 +1427,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'popularpages'            => 'Populär Säiten',
 'wantedcategories'        => 'Gewënschte Kategorien',
 'wantedpages'             => 'Gewënschte Säiten',
+'wantedfiles'             => 'Gewënschte Fichieren',
 'missingfiles'            => 'Fichieren déi feelen',
 'mostlinked'              => 'Dacks verlinkte Säiten',
 'mostlinkedcategories'    => 'Dacks benotzte Kategorien',
@@ -1485,7 +1500,7 @@ Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm (case-senisiti
 # Special:Categories
 'categories'                    => 'Kategorien',
 'categoriespagetext'            => 'Dës Kategorie huet Säiten oder Medien.
-[[Special:UnusedCategories|Kategorien déi net benotzt ginn]] ginn hei net gewisen.
+[[Special:UnusedCategories|Onbenotze Kategorien]] ginn hei net gewisen.
 Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'categoriesfrom'                => 'Weis Kategorien ugefaang bäi:',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
@@ -1727,7 +1742,7 @@ Klickt op '''''Reset''''' fir d'Kommentarfeld eidel ze maachen an d'Kreep aus al
 'undeletehistory'              => 'Wann Dir dës Säit restauréiert, ginn och all déi al Versioune restauréiert.
 Wann zënter dem Läschen eng nei Säit mat dem selweschte Numm ugeluecht gouf, ginn déi restauréiert Versioune chronologesch an den Historique agedro.',
 'undeletehistorynoadmin'       => "Dës Säit gouf geläscht. De Grond fir d'Läsche gesitt der ënnen, zesumme mat der Iwwersiicht vun den eenzele Versioune vun der Säit an hiren Auteuren. Déi verschidden Textversioune kënnen awer just vun Administrateure gekuckt a restauréiert ginn.",
-'undelete-revision'            => 'Geläschte Versioun vun $1 (Versioun  vum $2) vum $3:',
+'undelete-revision'            => 'Geläschte Versioun vun $1 (Versioun  vum $4 um $5 Auer) vum $3:',
 'undeleterevision-missing'     => "Ongëlteg oder Versioun déi feelt. Entweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder geläscht.",
 'undelete-nodiff'              => 'Et si keng méi al Versiounen do.',
 'undeletebtn'                  => 'Restauréieren',

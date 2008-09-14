@@ -379,7 +379,7 @@ Bevor das wyteri Mails yber d {{SITENAME}}-Mailfunktion a die Adrässe gschickt 
 'mailerror'                  => 'Fähler bim Sende vun de Mail: $1',
 'acct_creation_throttle_hit' => 'Si hand bereits $1 Benutzerkontos agleit.
 Si chönne cheini meh aalege.',
-'emailauthenticated'         => 'Di E-Bost-Adräss isch am $1 bschtätigt worde.',
+'emailauthenticated'         => 'Di E-Bost-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
 'emailnotauthenticated'      => 'Dyni e-Mail-Adrässen isch no nid bestätiget. Drum göh di erwytereten e-Mail-Funktione no nid.
 Für d Bestätigung muesch du em Link folge, wo dir isch gmailet worde. Du chasch ou e nöie söttige Link aafordere:',
 'noemailprefs'               => '<strong>Du hesch kei E-Mail-Adrässen aaggä</strong>, drum sy di folgende Funktione nid müglech.',
@@ -535,7 +535,7 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'preferences'        => 'Iistellige',
 'mypreferences'      => 'Ystellige',
 'prefsnologin'       => 'Nid aagmäldet',
-'prefsnologintext'   => 'Du muesch [[Special:UserLogin|aagmäldet]] sy, für Benutzerystellige chönne z ändere',
+'prefsnologintext'   => 'Du muesch <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
 'prefsreset'         => 'Du hesch itz wider Standardystellige',
 'changepassword'     => 'Passwort ändere',
 'skin-preview'       => 'Vorschou',

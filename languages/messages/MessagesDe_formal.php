@@ -85,7 +85,7 @@ Bitte melden Sie sich damit an, sobald sie es erhalten haben. Das alte Passwort 
 'blocked-mailpassword'       => 'Die von Ihnen verwendete IP-Adresse ist für das Ändern von Seiten gesperrt. Um einen Missbrauch zu verhindern, wurde die Möglichkeit zur Anforderung eines neuen Passwortes ebenfalls gesperrt.',
 'acct_creation_throttle_hit' => 'Sie haben schon {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkonten}} angelegt.
 Weitere Benutzerkonten können nicht angelegt werden.',
-'emailauthenticated'         => 'Ihre E-Mail-Adresse wurde bestätigt: $1.',
+'emailauthenticated'         => 'Ihre E-Mail-Adresse wurde am $2 um $3 Uhr bestätigt.',
 'emailnotauthenticated'      => 'Ihre E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs'               => 'Geben Sie eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
 'invalidemailaddress'        => 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte geben Sie eine Adresse in einem gültigen Format ein oder leeren Sie das Feld.',
@@ -232,7 +232,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'prefsnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um Ihre Einstellungen ändern zu können.',
+'prefsnologintext' => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
 'savedprefs'       => 'Ihre Einstellungen wurden gespeichert.',
 'timezonetext'     => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
