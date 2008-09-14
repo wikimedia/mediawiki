@@ -26,7 +26,7 @@ class SpecialNewpages extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidebots', false );
-		$opts->add( 'limit', 50 );
+		$opts->add( 'limit', (int)$wgUser->getOption( 'rclimit' ) );
 		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
