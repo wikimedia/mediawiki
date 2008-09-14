@@ -170,17 +170,17 @@ class Linker {
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
 		wfProfileIn( __METHOD__ );
+		if( !$target instanceof Title ) {
+			return "<!-- ERROR -->$text";
+		}
+		$options = (array)$options;
+
 		$ret = null;
 		if( !wfRunHooks( 'LinkBegin', array( $this, $target, &$text,
 		&$customAttribs, &$query, &$options, &$ret ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return $ret;
 		}
-
-		if( !$target instanceof Title ) {
-			return "<!-- ERROR -->$text";
-		}
-		$options = (array)$options;
 
 		# Normalize the Title if it's a special page
 		$target = $this->normaliseSpecialPage( $target );
