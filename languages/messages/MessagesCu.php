@@ -345,7 +345,7 @@ $messages = array(
 
 # Statistics
 'statistics'              => 'Статїстїка',
-'statistics-header-users' => 'Польѕевателъ статїстїка',
+'statistics-header-users' => 'по́льꙃєватєлъ статїстїка',
 
 'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
 'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',

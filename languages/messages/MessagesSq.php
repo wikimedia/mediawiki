@@ -6,6 +6,7 @@
  *
  * @author Cradel
  * @author Dori
+ * @author Eagleal
  * @author Ergon
  * @author לערי ריינהארט
  */
@@ -109,7 +110,7 @@ $messages = array(
 'thursday'      => 'E enjte',
 'friday'        => 'E premte',
 'saturday'      => 'E shtunë',
-'sun'           => 'Diel',
+'sun'           => 'Dje',
 'mon'           => 'Hën',
 'tue'           => 'Mar',
 'wed'           => 'Mër',
@@ -939,7 +940,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'grouppage-user'          => '{{ns:project}}:Përdorues',
 'grouppage-autoconfirmed' => '{{ns:project}}:Përdorues të vërtetuar automatikisht',
 'grouppage-bot'           => '{{ns:project}}:Robotë',
-'grouppage-sysop'         => '{{ns:project}}:Administrues',
+'grouppage-sysop'         => '{{ns:project}}:Administruesit',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratë',
 'grouppage-suppress'      => '{{ns:project}}:Kujdestari',
 

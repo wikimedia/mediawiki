@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Malafaya
  * @author Node ue
  */
 
@@ -35,5 +36,9 @@ $messages = array(
 'october'   => 'Onkololeessa',
 'november'  => 'Sadaasa',
 'december'  => 'Muddee',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'mainpage'             => 'Fuula Dura',
+'mainpage-description' => 'Fuula Dura',
 
 );

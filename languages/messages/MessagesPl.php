@@ -8,6 +8,7 @@
  * @author Derbeth
  * @author Equadus
  * @author Herr Kriss
+ * @author Jwitos
  * @author Lajsikonik
  * @author Leinad
  * @author Maikking
@@ -235,7 +236,7 @@ $messages = array(
 'tog-watchdeletion'           => 'Dodaj do obserwowanych strony, które usuwam',
 'tog-minordefault'            => 'Wszystkie zmiany oznaczaj domyślnie jako drobne',
 'tog-previewontop'            => 'Pokazuj podgląd powyżej obszaru edycji',
-'tog-previewonfirst'          => 'Pokaż podgląd artykułu podczas pierwszej edycji',
+'tog-previewonfirst'          => 'Pokaż podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną',
 'tog-enotifwatchlistpages'    => 'Wyślij do mnie e-mail, jeśli strona z listy moich obserwowanych zostanie zmodyfikowana',
 'tog-enotifusertalkpages'     => 'Wyślij do mnie e-mail, jeśli moja strona dyskusji zostanie zmodyfikowana',
@@ -472,7 +473,7 @@ $messages = array(
 'red-link-title'          => '$1 (jeszcze nie utworzona)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'artykuł',
+'nstab-main'      => 'Strona',
 'nstab-user'      => 'strona użytkownika',
 'nstab-media'     => 'pliki',
 'nstab-special'   => 'strona specjalna',
@@ -658,7 +659,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'mailerror'                  => 'W trakcie wysyłania wiadomości e-mail wystąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Założyłeś już {{PLURAL:$1|konto|$1 konta|$1 kont}}.
 Nie możesz założyć kolejnego.',
-'emailauthenticated'         => 'Twój adres e-mail został uwierzytelniony o $1',
+'emailauthenticated'         => 'Twój adres e-mail został uwierzytelniony o $1.',
 'emailnotauthenticated'      => "Twój adres '''e-mail nie został potwierdzony'''.
 Poniższe funkcje poczty nie działają.",
 'noemailprefs'               => 'Musisz podać adres e-mail, by skorzystać z tych funkcji.',
@@ -1014,11 +1015,11 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'editundo'                => 'anuluj zmiany',
 'diff-multi'              => '(Nie pokazano $1 {{PLURAL:$1|wersji|wersji}} pomiędzy niniejszymi.)',
 'diff-movedto'            => 'przeniesiono do $1',
-'diff-styleadded'         => 'dodano metodę formatowania tekstu',
-'diff-added'              => 'dodano',
-'diff-changedto'          => 'zmieniono na',
+'diff-styleadded'         => 'dodano styl: $1',
+'diff-added'              => 'dodano $1',
+'diff-changedto'          => 'zmieniono na $1',
 'diff-movedoutof'         => 'przeniesione z $1',
-'diff-styleremoved'       => 'styl usunięty',
+'diff-styleremoved'       => 'usunięto styl: $1',
 'diff-src'                => 'źródło',
 'diff-width'              => 'szerokość',
 'diff-height'             => 'wysokość',
@@ -1104,7 +1105,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'mypreferences'            => 'preferencje',
 'prefs-edits'              => 'Liczba edycji',
 'prefsnologin'             => 'Nie jesteś zalogowany',
-'prefsnologintext'         => 'Musisz się [[Special:UserLogin|zalogować]] przed zmianą swoich preferencji.',
+'prefsnologintext'         => 'Musisz się <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
 'prefsreset'               => 'Preferencje domyślne zostały odtworzone.',
 'qbsettings'               => 'Pasek szybkiego dostępu',
 'qbsettings-none'          => 'Brak',
@@ -1603,9 +1604,9 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'mostlinked'              => 'Najczęściej linkowane strony',
 'mostlinkedcategories'    => 'Kategorie o największej liczbie stron',
 'mostlinkedtemplates'     => 'Najczęściej linkowane szablony',
-'mostcategories'          => 'Artykuły z największą liczbą kategorii',
+'mostcategories'          => 'Strony z największą liczbą kategorii',
 'mostimages'              => 'Najczęściej linkowane pliki',
-'mostrevisions'           => 'Artykuły o największej liczbie wersji',
+'mostrevisions'           => 'Strony o największej liczbie wersji',
 'prefixindex'             => 'Wszystkie strony według prefiksu',
 'shortpages'              => 'Najkrótsze strony',
 'longpages'               => 'Najdłuższe strony',
@@ -1616,9 +1617,9 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'protectedpages-cascade'  => 'Tylko zabezpieczenia rekursywne',
 'protectedpagestext'      => 'Poniższe strony zostały zabezpieczone przed przenoszeniem lub edytowaniem.',
 'protectedpagesempty'     => 'Żadna strona nie jest obecnie zablokowana z podanymi parametrami.',
-'protectedtitles'         => 'Zablokowane nazwy artykułów',
-'protectedtitlestext'     => 'Utworzenie artykułów o następujących nazwach jest zablokowane',
-'protectedtitlesempty'    => 'Dla tych ustawień dopuszczalne jest utworzenie artykułu o dowolnej nazwie.',
+'protectedtitles'         => 'Zablokowane nazwy stron',
+'protectedtitlestext'     => 'Utworzenie stron o następujących nazwach jest zablokowane',
+'protectedtitlesempty'    => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
 'listusers'               => 'Lista użytkowników',
 'listusers-editsonly'     => 'Pokaż tylko użytkowników z edycjami',
 'newpages'                => 'Nowe strony',
@@ -1627,7 +1628,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'move'                    => 'przenieś',
 'movethispage'            => 'Przenieś tę stronę',
 'unusedimagestext'        => 'Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich adresów URL. Oznacza to, że niektóre z plików mogą się znajdować na tej liście pomimo tego, że są wykorzystywane.',
-'unusedcategoriestext'    => 'Poniższe kategorie istnieją, choć nie korzysta z nich żaden artykuł ani kategoria.',
+'unusedcategoriestext'    => 'Poniższe kategorie istnieją, choć nie korzysta z nich żadna strona ani kategoria.',
 'notargettitle'           => 'Wskazywana strona nie istnieje',
 'notargettext'            => 'Nie podano strony albo użytkownika, dla których ta operacja ma być wykonana.',
 'nopagetitle'             => 'Strona docelowa nie istnieje',
@@ -1734,7 +1735,7 @@ Adres e-mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences
 'nowatchlist'          => 'Lista obserwowanych przez Ciebie stron jest pusta.',
 'watchlistanontext'    => '$1, aby obejrzeć lub edytować elementy listy obserwowanych.',
 'watchnologin'         => 'Nie jesteś zalogowany',
-'watchnologintext'     => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych artykułów.',
+'watchnologintext'     => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych stron.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
 'addedwatchtext'       => "Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
 Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na poniższej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
@@ -1880,6 +1881,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-level-sysop'         => 'tylko administratorzy',
 'protect-summary-cascade'     => 'dziedziczenie',
 'protect-expiring'            => 'wygasa $1 (UTC)',
+'protect-expiry-indefinite'   => 'nieokreślony',
 'protect-cascade'             => 'Dziedziczenie zabezpieczenia – zabezpiecz wszystkie strony zawarte na tej stronie.',
 'protect-cantedit'            => 'Nie możesz zmienić poziomu zabezpieczenia tej strony, ponieważ nie masz uprawnień do jej edycji.',
 'protect-othertime'           => 'Inny okres:',
@@ -2097,9 +2099,9 @@ Nie możesz utworzyć konta',
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',
 'unlockdb'            => 'Odblokuj bazę danych',
-'lockdbtext'          => 'Zablokowanie bazy danych uniemożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych artykułów oraz inne czynności wymagające dostępu do bazy danych. 
+'lockdbtext'          => 'Zablokowanie bazy danych uniemożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych stron oraz inne czynności wymagające dostępu do bazy danych. 
 Potwierdź, że to jest zgodne z Twoimi zamiarami, i że odblokujesz bazę danych, gdy tylko zakończysz zadania administracyjne.',
-'unlockdbtext'        => 'Odblokowanie bazy danych umożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych artykułów oraz inne czynności związane ze zmianami w bazie danych. Potwierdź, że to jest zgodne z Twoimi zamiarami.',
+'unlockdbtext'        => 'Odblokowanie bazy danych umożliwi wszystkim użytkownikom edycję stron, zmianę preferencji, edycję list obserwowanych stron oraz inne czynności związane ze zmianami w bazie danych. Potwierdź, że to jest zgodne z Twoimi zamiarami.',
 'lockconfirm'         => 'Tak, naprawdę chcę zablokować bazę danych.',
 'unlockconfirm'       => 'Tak, naprawdę chcę odblokować bazę danych.',
 'lockbtn'             => 'Zablokuj bazę danych',
@@ -2144,7 +2146,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'articleexists'           => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
 'cantmove-titleprotected' => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
-'talkexists'              => "'''Strona artykułu została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
+'talkexists'              => "'''Strona zawartości została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                 => 'przeniesiono do',
 'movetalk'                => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
 'move-subpages'           => 'Jeśli to możliwe przenieś wszystkie podstrony',
@@ -2282,7 +2284,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 'tooltip-n-randompage'            => 'Pokaż losowo wybraną stronę',
 'tooltip-n-help'                  => 'Tutaj możesz się wielu rzeczy dowiedzieć.',
-'tooltip-t-whatlinkshere'         => 'Pokaż listę wszystkich stron linkujących do tego artykułu',
+'tooltip-t-whatlinkshere'         => 'Pokaż listę wszystkich stron linkujących do tej strony',
 'tooltip-t-recentchangeslinked'   => 'Ostatnie zmiany w stronach, do których ta strona linkuje',
 'tooltip-feed-rss'                => 'Kanał RSS dla tej strony',
 'tooltip-feed-atom'               => 'Kanał Atom dla tej strony',
@@ -2292,7 +2294,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'tooltip-t-specialpages'          => 'Lista wszystkich specjalnych stron',
 'tooltip-t-print'                 => 'Wersja do wydruku',
 'tooltip-t-permalink'             => 'Stały link do tej wersji strony',
-'tooltip-ca-nstab-main'           => 'Zobacz stronę artykułu',
+'tooltip-ca-nstab-main'           => 'Zobacz stronę zawartości',
 'tooltip-ca-nstab-user'           => 'Zobacz stronę osobistą użytkownika',
 'tooltip-ca-nstab-media'          => 'Pokaż stronę pliku',
 'tooltip-ca-nstab-special'        => 'To jest strona specjalna. Nie możesz jej edytować.',
@@ -2348,10 +2350,10 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'infosubtitle'   => 'Informacja o stronie',
-'numedits'       => 'Liczba edycji (artykuł): $1',
+'numedits'       => 'Liczba edycji (strona zawartości): $1',
 'numtalkedits'   => 'Liczba edycji (strona dyskusji): $1',
 'numwatchers'    => 'Liczba obserwujących: $1',
-'numauthors'     => 'Liczba autorów (artykuł): $1',
+'numauthors'     => 'Liczba autorów (strona zawartości): $1',
 'numtalkauthors' => 'Liczba autorów (strona dyskusji): $1',
 
 # Math options
@@ -2364,7 +2366,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Patrolling
 'markaspatrolleddiff'                 => 'oznacz edycję jako „sprawdzoną”',
-'markaspatrolledtext'                 => 'Oznacz ten artykuł jako „sprawdzony”',
+'markaspatrolledtext'                 => 'Oznacz tę stronę jako „sprawdzony”',
 'markedaspatrolled'                   => 'Sprawdzone',
 'markedaspatrolledtext'               => 'Ta wersja została oznaczona jako „sprawdzona”.',
 'rcpatroldisabled'                    => 'Wyłączono funkcjonalność patrolowania na ostatnich zmianach',
@@ -2756,16 +2758,16 @@ Kod zawarty w linku straci ważność $4.',
 'scarytranscludetoolong'  => '[zbyt długi adres URL]',
 
 # Trackbacks
-'trackbackbox'      => '<div id="mw_trackbacks">Komunikaty TrackBack dla tego artykułu:<br />$1</div>',
+'trackbackbox'      => '<div id="mw_trackbacks">Komunikaty TrackBack dla tej strony:<br />$1</div>',
 'trackbackremove'   => ' ([$1 Usuń])',
 'trackbacklink'     => 'TrackBack',
 'trackbackdeleteok' => 'TrackBack został usunięty.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Uwaga!''' Ta strona została usunięta po tym, jak rozpocząłeś jej edycję!",
-'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął ten artykuł po tym jak rozpocząłeś jego edycję, podając jako powód usunięcia:
+'confirmrecreate'     => "Użytkownik [[User:$1|$1]] ([[User talk:$1|dyskusja]]) usunął tę stronę po tym, jak rozpocząłeś jego edycję, podając jako powód usunięcia:
 : ''$2''
-Czy na pewno chcesz go ponownie utworzyć?",
+Czy na pewno chcesz ją ponownie utworzyć?",
 'recreate'            => 'Utwórz ponownie',
 
 # action=purge
@@ -2822,7 +2824,7 @@ Możesz także skorzystać z [[Special:Watchlist/raw|tekstowego edytora listy ob
 'watchlistedit-normal-done'    => 'Z Twojej listy obserwowanych {{PLURAL:$1|została usunięta 1 strona|zostały usunięte $1 strony|zostało usuniętych $1 stron}}:',
 'watchlistedit-raw-title'      => 'Tekstowy edytor listy obserwowanych',
 'watchlistedit-raw-legend'     => 'Tekstowy edytor listy obserwowanych',
-'watchlistedit-raw-explain'    => 'Poniżej znajduje się lista obserwowanych artykułów. W każdej linii znajduje się tytuł jednego artykułu. Listę możesz modyfikować poprzez dodawanie nowych i usuwanie obecnych. Gdy zakończysz, kliknij przycisk „Uaktualnij listę”.
+'watchlistedit-raw-explain'    => 'Poniżej znajduje się lista obserwowanych stron. W każdej linii znajduje się tytuł jednej strony. Listę możesz modyfikować poprzez dodawanie nowych i usuwanie obecnych. Gdy zakończysz, kliknij przycisk „Uaktualnij listę”.
 Możesz również [[Special:Watchlist/edit|użyć standardowego edytora]].',
 'watchlistedit-raw-titles'     => 'Obserwowane strony:',
 'watchlistedit-raw-submit'     => 'Uaktualnij listę',
