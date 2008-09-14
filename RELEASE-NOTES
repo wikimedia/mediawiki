@@ -199,6 +199,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12284) Special:Preferences now sets a returnto parameter on the link to Special:Userlogin. Patch by Marooned.
 * Fixed the HTTP accept language string detection length in 
   LanguageConverter.php, instead of the fixed length language codes.
+* Special:Recentchangeslinked no longer shows outgoing links for nonexistent pages
+  even if there are broken link records with source article id 0 in the database
 
 
 === API changes in 1.14 ===

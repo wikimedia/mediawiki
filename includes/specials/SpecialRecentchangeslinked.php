@@ -96,6 +96,9 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			if( $ns == NS_IMAGE || !$showlinkedto ) $link_tables[] = 'imagelinks';
 		}
 
+		if( $id == 0 && !$showlinkedto )
+			return false; // nonexistent pages can't link to any pages
+
 		// field name prefixes for all the various tables we might want to join with
 		$prefix = array( 'pagelinks' => 'pl', 'templatelinks' => 'tl', 'categorylinks' => 'cl', 'imagelinks' => 'il' );
 
