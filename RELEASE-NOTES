@@ -132,6 +132,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Bug fixes in 1.14 ===
 
+* (bug 332) Clean invalid UTF-8 to ensure output is RFC 3629 compliant
 * (bug 14907) DatabasePostgres::fieldType now defined.
 * (bug 14659) Passing the default limit param to Special:Recentchanges no more
   falls back to the user option
