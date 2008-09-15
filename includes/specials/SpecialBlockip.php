@@ -419,7 +419,11 @@ class IPBlockForm {
 
 	function showLogFragment( $out, $title ) {
 		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
-		LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText() );
+		$count = LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 10 );
+		if($count > 10){
+			$logtitle = Title::newFromText('Special:Log/block');
+			$out->addHtml( Xml::element( 'a', array('href' => $logtitle->getFullURL(array('type' => 'block', 'page' => $title->getPrefixedText()))), wfMsg('blocklog-header') ) );
+		}
 	}
 
 	/**
