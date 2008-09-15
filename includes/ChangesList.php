@@ -342,7 +342,7 @@ class OldChangesList extends ChangesList {
 		$dateheader = ""; // $s now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader($dateheader,$rc_timestamp);
 
-		$s = '<li>';
+		$s = '';
 
 		// Moved pages
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
@@ -394,9 +394,9 @@ class OldChangesList extends ChangesList {
 			$s .= ' ' . wfMsg('number_of_watching_users_RCview',  $wgContLang->formatNum($rc->numberofWatchingusers));
 		}
 
-		$s .= "</li>\n";
-
-		wfRunHooks('OldChangesListRecentChangesLine', array(&$this, &$s, &$rc));
+		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
+		
+		$s .= "<li>$s</li>\n";
 
 		wfProfileOut( $fname.'-rest' );
 
