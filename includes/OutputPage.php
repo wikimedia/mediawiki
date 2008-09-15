@@ -901,8 +901,6 @@ class OutputPage {
 			$this->addScriptFile( 'rightclickedit.js' );
 		}
 
-		$this->mBodytext = StringUtils::cleanForCharset( $this->mBodytext, $wgOutputEncoding );
-
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
