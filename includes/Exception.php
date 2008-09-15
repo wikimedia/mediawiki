@@ -169,7 +169,7 @@ class MWException extends Exception {
 			wfDebugLog( 'exception', $log );
 		}
 		if ( $wgCommandLineMode ) {
-			fwrite( STDERR, $this->getText() );
+			wfPrintError( $this->getText() );
 		} else {
 			$this->reportHTML();
 		}
@@ -268,7 +268,7 @@ function wfReportException( Exception $e ) {
 			 $e2->__toString() . "\n";
 
 			 if ( !empty( $GLOBALS['wgCommandLineMode'] ) ) {
-				 fwrite( STDERR, $message );
+				 wfPrintError( $message );
 			 } else {
 				 echo nl2br( htmlspecialchars( $message ) ). "\n";
 			 }
@@ -276,6 +276,21 @@ function wfReportException( Exception $e ) {
 	 } else {
 		 echo $e->__toString();
 	 }
+}
+
+/**
+ * Print a message, if possible to STDERR.
+ * Use this in command line mode only (see wgCommandLineMode)
+ */
+function wfPrintError( $message ) {
+	#NOTE: STDERR may not be available, especially if php-cgi is used from the command line (bug #15602).
+	#      Try to produce meaningful output anyway. Using echo may corrupt output to STDOUT though.
+	if ( defined( 'STDERR' ) ) {
+		fwrite( STDERR, $message );
+	}
+	else {
+		echo( $message );
+	}
 }
 
 /**
