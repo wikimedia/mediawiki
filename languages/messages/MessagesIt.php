@@ -1466,7 +1466,6 @@ Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre all
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pagine più richieste',
 'wantedfiles'             => 'File richiesti',
-'missingfiles'            => 'File inesistente',
 'mostlinked'              => 'Pagine più richiamate',
 'mostlinkedcategories'    => 'Categorie più richiamate',
 'mostlinkedtemplates'     => 'Template più utilizzati',

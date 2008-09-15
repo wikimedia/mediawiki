@@ -1376,7 +1376,6 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'popularpages'            => 'Páginas populares',
 'wantedcategories'        => 'Categorías requeridas',
 'wantedpages'             => 'Páginas requeridas',
-'missingfiles'            => 'Ficheros que faltan',
 'mostlinked'              => 'Artículos más enlazados',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más enlazadas',

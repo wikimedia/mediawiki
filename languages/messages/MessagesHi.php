@@ -1331,7 +1331,6 @@ PICT # misc.
 'popularpages'            => 'लोकप्रिय पन्ने',
 'wantedcategories'        => 'श्रेणियाँ जो चाहिये',
 'wantedpages'             => 'जो पन्ने चाहिये',
-'missingfiles'            => 'गायब हुई फ़ाइलें',
 'mostlinked'              => 'सबसे ज्यादा जुडे हुए पन्ने',
 'mostlinkedcategories'    => 'सबसे ज्यादा जुडी हुई श्रेणियाँ',
 'mostlinkedtemplates'     => 'सबसे ज्यादा जुडी हुई टेम्प्लेट्स',

@@ -1366,7 +1366,6 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'wantedcategories'        => 'Categorie richieste',
 'wantedpages'             => 'Pàxene pì richieste',
 'wantedfiles'             => 'File domandà',
-'missingfiles'            => 'File mancanti',
 'mostlinked'              => 'Pàxene piassè puntà',
 'mostlinkedcategories'    => 'Categorie piassè riciamae',
 'mostlinkedtemplates'     => 'Template piassè doparà',

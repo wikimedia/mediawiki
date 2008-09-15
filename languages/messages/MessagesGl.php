@@ -1412,7 +1412,6 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'wantedcategories'        => 'Categorías requiridas',
 'wantedpages'             => 'Páxinas requiridas',
 'wantedfiles'             => 'Ficheiros requiridos',
-'missingfiles'            => 'Ficheiros que faltan',
 'mostlinked'              => 'Páxinas máis enlazadas',
 'mostlinkedcategories'    => 'Categorías máis enlazadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',

@@ -1424,7 +1424,6 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'popularpages'            => 'Často wopytowane strony',
 'wantedcategories'        => 'Požadane kategorije',
 'wantedpages'             => 'Požadane strony',
-'missingfiles'            => 'Falowace dataje',
 'mostlinked'              => 'Z najwjace stronami zwjazane strony',
 'mostlinkedcategories'    => 'Z najwjace stronami zwjazane kategorije',
 'mostlinkedtemplates'     => 'Najhusćišo wužiwane předłohi',

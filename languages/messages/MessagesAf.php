@@ -1235,7 +1235,6 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'popularpages'            => 'Gewilde bladsye',
 'wantedcategories'        => 'Gesoekte kategorieë',
 'wantedpages'             => 'Gesogte bladsye',
-'missingfiles'            => 'Lêers wat nie bestaan nie',
 'mostlinked'              => 'Bladsye met meeste skakels daarheen',
 'mostlinkedcategories'    => 'Kategorieë met die meeste skakels daarheen',
 'mostlinkedtemplates'     => 'Sjablone met die meeste skakels daarheen',

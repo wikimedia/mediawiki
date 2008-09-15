@@ -1311,7 +1311,6 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'popularpages'            => 'L-iktar paġni popolari',
 'wantedcategories'        => 'Kategoriji rikjesti',
 'wantedpages'             => 'Paġni rikjesti',
-'missingfiles'            => 'Fajls neqsin',
 'mostlinked'              => "Paġni bl-ikbar numru ta' links li jwasslu għalihom",
 'mostlinkedcategories'    => "Kategoriji bl-ikbar numru ta' links li jwasslu għalihom",
 'mostlinkedtemplates'     => 'L-iktar mudelli wżati',

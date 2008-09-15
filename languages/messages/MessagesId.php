@@ -1581,7 +1581,6 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'wantedcategories'        => 'Kategori yang diinginkan',
 'wantedpages'             => 'Halaman yang diinginkan',
 'wantedfiles'             => 'Berkas yang diinginkan',
-'missingfiles'            => 'File-file hilang',
 'mostlinked'              => 'Halaman yang tersering dituju',
 'mostlinkedcategories'    => 'Kategori yang tersering digunakan',
 'mostlinkedtemplates'     => 'Templat yang tersering digunakan',

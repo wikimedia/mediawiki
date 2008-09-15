@@ -1376,7 +1376,6 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'popularpages'            => 'Pagini populare',
 'wantedcategories'        => 'Categorii dorite',
 'wantedpages'             => 'Pagini dorite',
-'missingfiles'            => 'Fişiere lipsă',
 'mostlinked'              => 'Cele mai căutate articole',
 'mostlinkedcategories'    => 'Cele mai căutate categorii',
 'mostlinkedtemplates'     => 'Cele mai folosite formate',

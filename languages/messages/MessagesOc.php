@@ -1563,7 +1563,6 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'popularpages'            => 'Paginas mai consultadas',
 'wantedcategories'        => 'Categorias mai demandadas',
 'wantedpages'             => 'Paginas mai demandadas',
-'missingfiles'            => 'Fichièrs mancants',
 'mostlinked'              => 'Paginas mai ligadas',
 'mostlinkedcategories'    => 'Categorias mai utilizadas',
 'mostlinkedtemplates'     => 'Modèls mai utilizats',

@@ -1453,7 +1453,6 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'wantedcategories'        => 'Dezirataj kategorioj',
 'wantedpages'             => 'Dezirataj paĝoj',
 'wantedfiles'             => 'Dezirataj dosieroj',
-'missingfiles'            => 'Mankantaj dosieroj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
 'mostlinkedtemplates'     => 'Plej ligitaj ŝablonoj',
