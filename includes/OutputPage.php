@@ -901,8 +901,10 @@ class OutputPage {
 			$this->addScriptFile( 'rightclickedit.js' );
 		}
 
+		$this->mBodytext = StringUtils::cleanForCharset( $this->mBodytext, $wgOutputEncoding );
+
 		# Buffer output; final headers may depend on later processing
-		ob_start( array( 'OutputPage', 'cleanCallback') );
+		ob_start();
 
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
@@ -922,13 +924,6 @@ class OutputPage {
 		$this->sendCacheControl();
 		ob_end_flush();
 		wfProfileOut( __METHOD__ );
-	}
-
-	public static function cleanCallback( $s ) {
-		wfProfileIn( __METHOD__ );
-		$s = StringUtils::cleanForCharset( $s, $wgOutputEncoding );
-		wfProfileOut( __METHOD__ );
-		return $s;
 	}
 
 	/**
