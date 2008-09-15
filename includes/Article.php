@@ -1562,7 +1562,9 @@ class Article {
 				'page'       => $newid,
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text
+				'text'       => $text,
+				'user'       => $user->getId(),
+				'user_text'  => $user->getName(),
 				) );
 			$revisionId = $revision->insertOn( $dbw );
 
