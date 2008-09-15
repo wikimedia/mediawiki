@@ -2605,7 +2605,7 @@ class Parser
 
 	/**
 	 * Preprocess some wikitext and return the document tree.
-	 * This is the ghost of replaceVariables().
+	 * This is the ghost of replace_variables().
 	 *
 	 * @param string $text The text to parse
 	 * @param integer flags Bitwise combination of:
@@ -2625,7 +2625,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	function preprocessToDom( $text, $flags = 0 ) {
+	function preprocessToDom ( $text, $flags = 0 ) {
 		$dom = $this->getPreprocessor()->preprocessToObj( $text, $flags );
 		return $dom;
 	}
