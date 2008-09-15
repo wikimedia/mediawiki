@@ -8,22 +8,23 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser;
+	var $mTitle, $mUser, $id, $ns, $ti;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
-	 * @todo document
-	 * @access private
+	 * @param User $user The user to use for (un)watching
+	 * @param Title $title The title we're going to (un)watch
+	 * @return WatchedItem object
 	 */
-	static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle( $user, $title ) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
 		$wl->id = $user->getId();
-# Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
-# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
-# The change results in talk-pages not automatically included in watchlists, when their parent page is included
-#		$wl->ns = $title->getNamespace() & ~1;
+		# Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
+		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
+		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
+		# $wl->ns = $title->getNamespace() & ~1;
 		$wl->ns = $title->getNamespace();
 
 		$wl->ti = $title->getDBkey();
@@ -32,8 +33,9 @@ class WatchedItem {
 
 	/**
 	 * Is mTitle being watched by mUser?
+	 * @return bool
 	 */
-	function isWatched() {
+	public function isWatched() {
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
 		$fname = 'WatchedItem::isWatched';
@@ -46,9 +48,11 @@ class WatchedItem {
 	}
 
 	/**
-	 * @todo document
+	 * Given a title and user (assumes the object is setup), add the watch to the
+	 * database.
+	 * @return bool (always true)
 	 */
-	function addWatch() {
+	public function addWatch() {
 		$fname = 'WatchedItem::addWatch';
 		wfProfileIn( $fname );
 
@@ -77,7 +81,11 @@ class WatchedItem {
 		return true;
 	}
 
-	function removeWatch() {
+	/**
+	 * Same as addWatch, only the opposite.
+	 * @return bool
+	 */
+	public function removeWatch() {
 		$fname = 'WatchedItem::removeWatch';
 
 		$success = false;
@@ -118,11 +126,14 @@ class WatchedItem {
 	 * @param $ot Title: page title to duplicate entries from, if present
 	 * @param $nt Title: page title to add watches on
 	 */
-	static function duplicateEntries( $ot, $nt ) {
+	public static function duplicateEntries( $ot, $nt ) {
 		WatchedItem::doDuplicateEntries( $ot->getSubjectPage(), $nt->getSubjectPage() );
 		WatchedItem::doDuplicateEntries( $ot->getTalkPage(), $nt->getTalkPage() );
 	}
 
+	/**
+	 * Handle duplicate entries. Backend for duplicateEntries().
+	 */
 	private static function doDuplicateEntries( $ot, $nt ) {
 		$fname = "WatchedItem::duplicateEntries";
 		$oldnamespace = $ot->getNamespace();
