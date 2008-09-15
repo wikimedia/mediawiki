@@ -1600,7 +1600,6 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'wantedcategories'        => 'Brakujące kategorie',
 'wantedpages'             => 'Najpotrzebniejsze strony',
 'wantedfiles'             => 'Potrzebne pliki',
-'missingfiles'            => 'Brak plików',
 'mostlinked'              => 'Najczęściej linkowane strony',
 'mostlinkedcategories'    => 'Kategorie o największej liczbie stron',
 'mostlinkedtemplates'     => 'Najczęściej linkowane szablony',

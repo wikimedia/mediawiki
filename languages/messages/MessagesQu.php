@@ -1344,7 +1344,6 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 'popularpages'            => "Munasqa p'anqakuna",
 'wantedcategories'        => 'Muchusqa katiguriyakuna',
 'wantedpages'             => "Muchusqa p'anqakuna",
-'missingfiles'            => 'Mana kachkaq willañiqikuna',
 'mostlinked'              => "Lliwmanta aswan t'inkimuqniyuq qillqakuna",
 'mostlinkedcategories'    => "Lliwmanta aswan t'inkimuqniyuq katiguriyakuna",
 'mostlinkedtemplates'     => "Lliwmanta aswan t'inkimuqniyuq plantillakuna",

@@ -1525,7 +1525,6 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 'wantedcategories'        => 'Žiadané kategórie',
 'wantedpages'             => 'Žiadané stránky',
 'wantedfiles'             => 'Žiadané súbory',
-'missingfiles'            => 'Chýbajúce súbory',
 'mostlinked'              => 'Najčastejšie odkazované stránky',
 'mostlinkedcategories'    => 'Najčastejšie odkazované kategórie',
 'mostlinkedtemplates'     => 'Najčastejšie odkazované šablóny',

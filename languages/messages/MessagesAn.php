@@ -1348,7 +1348,6 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 'popularpages'            => 'Pachinas populars',
 'wantedcategories'        => 'Categorías requiestas',
 'wantedpages'             => 'Pachinas requiestas',
-'missingfiles'            => 'Archibos que faltan',
 'mostlinked'              => 'Pachinas más enlazadas',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
 'mostlinkedtemplates'     => 'Plantillas más binculatas',

@@ -76,7 +76,6 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( '안쓰는파일', '안쓰는그림' ),
 	'Wantedpages'               => array( '필요한문서' ),
 	'Wantedcategories'          => array( '필요한분류' ),
-	'Missingfiles'              => array( '필요한파일', '필요한그림' ),
 	'Mostlinked'                => array( '많이링크된문서' ),
 	'Mostlinkedcategories'      => array( '많이쓰는분류' ),
 	'Mostlinkedtemplates'       => array( '많이쓰는틀' ),

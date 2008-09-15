@@ -1239,7 +1239,6 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'popularpages'            => 'Vinsælar síður',
 'wantedcategories'        => 'Eftirsóttir flokkar',
 'wantedpages'             => 'Eftirsóttar síður',
-'missingfiles'            => 'Skrá vantar',
 'mostlinked'              => 'Mest ítengdu síður',
 'mostlinkedcategories'    => 'Mest ítengdu flokkar',
 'mostlinkedtemplates'     => 'Mest ítengdu snið',

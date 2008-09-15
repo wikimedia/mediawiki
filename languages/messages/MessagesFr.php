@@ -1557,7 +1557,6 @@ Une page est traitée comme une page d’homonymie si elle utilise un modèle qu
 'wantedcategories'        => 'Catégories les plus demandées',
 'wantedpages'             => 'Pages les plus demandées',
 'wantedfiles'             => 'Fichiers désirés',
-'missingfiles'            => 'Fichiers manquants',
 'mostlinked'              => 'Pages les plus liées',
 'mostlinkedcategories'    => 'Catégories les plus utilisées',
 'mostlinkedtemplates'     => 'Modèles les plus utilisés',

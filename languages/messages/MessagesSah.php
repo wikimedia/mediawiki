@@ -1331,7 +1331,6 @@ PICT # misc.
 'popularpages'            => 'Элбэх киһи көрөр сирэйдэрэ',
 'wantedcategories'        => 'Көрдөнүллэр категориялар',
 'wantedpages'             => 'Көрдөнүллэр сирэйдэр',
-'missingfiles'            => 'Суох билэлэр',
 'mostlinked'              => 'Саамай элбэх сирэй сигэнэр сирэйдэрэ',
 'mostlinkedcategories'    => 'Саамай элбэх сирэй сигэнэр категориялара',
 'mostlinkedtemplates'     => 'Саамай элбэхтик туттуллар халыыптар',

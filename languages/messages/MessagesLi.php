@@ -1276,7 +1276,6 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'popularpages'            => 'Populaire artikels',
 'wantedcategories'        => 'Gewunsjde categorieë',
 'wantedpages'             => "Gewunsjde pazjena's",
-'missingfiles'            => 'Neet-bestaonde bestenj mit verwiezinge',
 'mostlinked'              => "Meis gelinkde pazjena's",
 'mostlinkedcategories'    => 'Meis-gelinkde categorië',
 'mostlinkedtemplates'     => 'Meis-gebroekde sjablone',

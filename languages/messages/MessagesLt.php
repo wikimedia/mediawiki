@@ -1360,7 +1360,6 @@ Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra n
 'popularpages'            => 'Populiarūs puslapiai',
 'wantedcategories'        => 'Geidžiamiausios kategorijos',
 'wantedpages'             => 'Geidžiamiausi puslapiai',
-'missingfiles'            => 'Praleisti failai',
 'mostlinked'              => 'Daugiausiai nurodomi puslapiai',
 'mostlinkedcategories'    => 'Daugiausiai nurodomos kategorijos',
 'mostlinkedtemplates'     => 'Daugiausiai nurodomi šablonai',

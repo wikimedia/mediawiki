@@ -1455,7 +1455,6 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'wantedcategories'        => 'Categorias plus demandate',
 'wantedpages'             => 'Paginas plus demandate',
 'wantedfiles'             => 'Files desirate',
-'missingfiles'            => 'Files mancante',
 'mostlinked'              => 'Paginas le plus ligate',
 'mostlinkedcategories'    => 'Categorias le plus ligate',
 'mostlinkedtemplates'     => 'Patronos le plus utilisate',

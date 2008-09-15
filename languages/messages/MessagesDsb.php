@@ -1460,7 +1460,6 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'popularpages'            => 'Woblubowane boki',
 'wantedcategories'        => 'Póžedane kategorije',
 'wantedpages'             => 'Póžedane boki',
-'missingfiles'            => 'Felujuce dataje',
 'mostlinked'              => 'Nejcesćej zalinkowane boki',
 'mostlinkedcategories'    => 'Nejcesćej wužywane kategorije',
 'mostlinkedtemplates'     => 'Nejcesćej wužywane psedłogi',

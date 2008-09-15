@@ -150,7 +150,6 @@ $wgIgnoredMessages = array(
 	'lonelypages-summary',
 	'unusedtemplates-summary',
 	'fewestrevisions-summary',
-	'missingfiles-summary',
 	'upload-summary',
 	'pagetitle-view-mainpage',
 	'newuserlogentry',
