@@ -3046,7 +3046,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 6701) Kazakh language variants in MessagesEn.php
 * (bug 7335) SVN revision check in Special:Version fails on SVN 1.4 working copy
 * (bug 6518) Replaced 'lastmodified' with 'lastmodifiedat' and 'lastmodifiedby' with 'lastmodifiedatby'
-  with seperated parameters for date and time to allow better localisation. Updated all message files
+  with separated parameters for date and time to allow better localisation. Updated all message files
   to display the old format for compatibility.
 * (bug 7357) Make supposedly static methods of Skin actually static
 * Added info text to Special:Deadendpages and Special:Lonelypages
@@ -5119,7 +5119,7 @@ Various bugfixes, small features, and a few experimental things:
 * Fixed a bug in Special:Contributions that caused the namespace selection to
   be forgotten between submits
 * Special:Watchlist/edit now has namespace subheadings
-* (bug 1714) the "Save page" button now has right margin to seperate it from
+* (bug 1714) the "Save page" button now has right margin to separate it from
   "Show preview" and "Show changes"
 * Special:Statistics now supports action=raw, useful for bots designed to
   harwest e.g. article counts from multiple wikis.
