@@ -381,7 +381,6 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( 'WantedPages', 'BrokenLinks' ),
 	'Wantedcategories'          => array( 'WantedCategories' ),
 	'Wantedfiles'               => array( 'WantedFiles' ),
-	'Missingfiles'              => array( 'MissingFiles', 'MissingImages' ),
 	'Mostlinked'                => array( 'MostLinked' ),
 	'Mostlinkedcategories'      => array( 'MostLinkedCategories', 'MostUsedCategories' ),
 	'Mostlinkedtemplates'       => array( 'MostLinkedTemplates', 'MostUsedTemplates' ),
@@ -2001,8 +2000,6 @@ Each row contains links to the first and second redirect, as well as the target 
 'wantedpages-summary'             => '', # do not translate or duplicate this message to other languages
 'wantedfiles'                     => 'Wanted files',
 'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
-'missingfiles'                    => 'Missing files',
-'missingfiles-summary'            => '', # do not translate or duplicate this message to other languages
 'mostlinked'                      => 'Most linked-to pages',
 'mostlinked-summary'              => '', # do not translate or duplicate this message to other languages
 'mostlinkedcategories'            => 'Most linked-to categories',
@@ -2518,7 +2515,6 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
 The reason given for $1\'s block is: "$2"',
 'blocklogpage'                    => 'Block log',
-'blocklog-header'                 => 'Full block log',
 'blocklogentry'                   => 'blocked [[$1]] with an expiry time of $2 $3',
 'blocklogtext'                    => 'This is a log of user blocking and unblocking actions.
 Automatically blocked IP addresses are not listed.
