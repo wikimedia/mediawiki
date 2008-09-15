@@ -396,7 +396,7 @@ class OldChangesList extends ChangesList {
 
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
 		
-		$s .= "<li>$s</li>\n";
+		$s = "<li>$s</li>\n";
 
 		wfProfileOut( $fname.'-rest' );
 
