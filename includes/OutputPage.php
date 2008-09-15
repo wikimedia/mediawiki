@@ -902,7 +902,7 @@ class OutputPage {
 		}
 
 		# Buffer output; final headers may depend on later processing
-		ob_start();
+		ob_start( array( 'OutputPage', 'cleanCallback') );
 
 		$wgRequest->response()->header( "Content-type: $wgMimeType; charset={$wgOutputEncoding}" );
 		$wgRequest->response()->header( 'Content-language: '.$wgContLanguageCode );
@@ -922,6 +922,13 @@ class OutputPage {
 		$this->sendCacheControl();
 		ob_end_flush();
 		wfProfileOut( __METHOD__ );
+	}
+
+	public static function cleanCallback( $s ) {
+		wfProfileIn( __METHOD__ );
+		$s = StringUtils::cleanForCharset( $s, $wgOutputEncoding );
+		wfProfileOut( __METHOD__ );
+		return $s;
 	}
 
 	/**
