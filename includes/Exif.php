@@ -48,7 +48,7 @@ class Exif {
 	/**
 	 * Exif tags grouped by category, the tagname itself is the key and the type
 	 * is the value, in the case of more than one possible value type they are
-	 * seperated by commas.
+	 * separated by commas.
 	 */
 	var $mExifTags;
 

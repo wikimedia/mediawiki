@@ -84,7 +84,7 @@ $wgIgnoredMessages = array(
 	'markaspatrolledlink',
 	'newarticletextanon',
 	'newsectionheaderdefaultlevel',
-	'newtalkseperator',
+	'newtalkseparator',
 	'noarticletextanon',
 	'number_of_watching_users_RCview',
 	'pagecategorieslink',

@@ -740,7 +740,7 @@ See [[Special:Version|version page]].',
 'newmessageslink'              => 'new messages',
 'newmessagesdifflink'          => 'last change',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
-'newtalkseperator'             => ',_', # do not translate or duplicate this message to other languages
+'newtalkseparator'             => ',_', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
 'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',

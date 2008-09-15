@@ -443,7 +443,7 @@ class SkinMonoBookCBT extends SkinTemplate {
 				$this->mOut->setSquidMaxage(0);
 			}
 		} else if (count($newtalks)) {
-			$sep = str_replace("_", " ", wfMsgHtml("newtalkseperator"));
+			$sep = str_replace("_", " ", wfMsgHtml("newtalkseparator"));
 			$msgs = array();
 			foreach ($newtalks as $newtalk) {
 				$msgs[] = wfElement("a", 
