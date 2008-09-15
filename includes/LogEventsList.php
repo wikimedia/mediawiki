@@ -395,7 +395,6 @@ class LogEventsList {
 		} else {
 			$out->addWikiMsg( 'logempty' );
 		}
-		return $pager->getNumRows();
 	}
 
 	 /**
