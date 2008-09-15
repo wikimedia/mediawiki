@@ -141,7 +141,7 @@ class IP {
 	public static function toOctet( $ip_int ) {
    		// Convert to padded uppercase hex
    		$ip_hex = wfBaseConvert($ip_int, 10, 16, 32, false);
-   		// Seperate into 8 octets
+   		// Separate into 8 octets
    		$ip_oct = substr( $ip_hex, 0, 4 );
    		for ($n=1; $n < 8; $n++) {
    			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);
@@ -159,7 +159,7 @@ class IP {
 	public static function HextoOctet( $ip_hex ) {
    		// Convert to padded uppercase hex
    		$ip_hex = str_pad( strtoupper($ip_hex), 32, '0');
-   		// Seperate into 8 octets
+   		// Separate into 8 octets
    		$ip_oct = substr( $ip_hex, 0, 4 );
    		for ($n=1; $n < 8; $n++) {
    			$ip_oct .= ':' . substr($ip_hex, 4*$n, 4);

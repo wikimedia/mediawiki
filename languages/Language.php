@@ -1824,7 +1824,7 @@ class Language {
 	  * LanguageIs.php for the , => . and . => , implementation.
 	  *
 	  * @todo check if it's viable to use localeconv() for the decimal
-	  *       seperator thing.
+	  *       separator thing.
 	  * @param $number Mixed: the string to be formatted, should be an integer
 	  *        or a floating point number.
 	  * @param $nocommafy Bool: set to true for special numbers like dates
