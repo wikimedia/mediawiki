@@ -441,7 +441,7 @@ class Article {
 			}
 			$revision = Revision::newFromId( $this->mLatest );
 			if( is_null( $revision ) ) {
-				wfDebug( __METHOD__." failed to retrieve current page, rev_id {$data->page_latest}\n" );
+				wfDebug( __METHOD__." failed to retrieve current page, rev_id {$this->mLatest}\n" );
 				return false;
 			}
 		}
