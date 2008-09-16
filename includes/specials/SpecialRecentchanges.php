@@ -264,11 +264,8 @@ class SpecialRecentChanges extends SpecialPage {
 	public function doMainQuery( $conds, $opts ) {
 		global $wgUser;
 
-		$tables = array( 'recentchanges', 'user' );
-		$join_conds = array( 'user' => array('LEFT JOIN','rc_user != 0 AND user_id = rc_user') );
-		$fields = RecentChange::getSelectFields();
-		$fields[] = 'user_editcount';
-		$fields[] = 'user_registration';
+		$tables = array( 'recentchanges' );
+		$join_conds = array();
 
 		$uid = $wgUser->getId();
 		$dbr = wfGetDB( DB_SLAVE );
@@ -279,10 +276,10 @@ class SpecialRecentChanges extends SpecialPage {
 		// JOIN on watchlist for users
 		if( $uid ) {
 			$tables[] = 'watchlist';
-			$join_conds['watchlist'] = array('LEFT JOIN',"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace");
+			$join_conds = array( 'watchlist' => array('LEFT JOIN',"wl_user={$uid} AND wl_title=rc_title AND wl_namespace=rc_namespace") );
 		}
 
-		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$fields ) );
+		wfRunHooks('SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts ) );
 
 		// Is there either one namespace selected or excluded?
 		// Also, if this is "all" or main namespace, just use timestamp index.
@@ -316,7 +313,7 @@ class SpecialRecentChanges extends SpecialPage {
 	}
 
 	/**
-	 * Send output to $wgOut, only called if not using feeds
+	 * Send output to $wgOut, only called if not used feeds
 	 *
 	 * @param $rows array of database rows
 	 * @param $opts FormOptions
