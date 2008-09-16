@@ -745,7 +745,6 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
-'deleted-notice'                   => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.

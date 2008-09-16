@@ -709,7 +709,6 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1',
 
 Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidłam projekta.
 Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
-'deleted-notice'                   => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow za tutu stronu so deleka jako referenca podawa.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow.

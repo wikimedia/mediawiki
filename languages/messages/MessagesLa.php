@@ -639,7 +639,6 @@ Considera paginam in partes minores frangere.',
 'recreate-deleted-warn'     => "'''Cave: paginam qui antea iam deleta est creas.'''
 
 Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
-'deleted-notice'            => 'Haec pagina deleta est. Commodule notatio paginarum deletarum subter datur.',
 
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',

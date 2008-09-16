@@ -667,7 +667,6 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 
 Debería considerar se é apropiado continuar a editar esta páxina.
 Velaquí está o rexistro de borrado desta páxina, por se quere consultalo:",
-'deleted-notice'                   => 'Esta páxina foi borrada. Embaixo pódese ver o rexistro de borrados desta páxina, por se o quere consultar.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.

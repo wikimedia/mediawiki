@@ -890,7 +890,6 @@ Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skap
 
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
-'deleted-notice'                   => 'Denna sida har blivit raderad. Som referens visas nedan raderingsloggen för sidan.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.

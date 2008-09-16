@@ -97,7 +97,6 @@ input.mw-searchInput { width: 106px; }
 
 /* Recreating-deleted-page/reupload file warning and log entries */
 div#mw-upload-deleted-warn,
-div#mw-deleted-notice,
 div#mw-recreate-deleted-warn {
 	padding: 3px;
 	margin-top: 3px;
@@ -105,7 +104,6 @@ div#mw-recreate-deleted-warn {
 	border: 1px solid #6688AA;
 }
 div#mw-upload-deleted-warn ul li,
-div#mw-deleted-notice ul li,
 div#mw-recreate-deleted-warn ul li {
 	font-size: 90%;
 }

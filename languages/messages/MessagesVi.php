@@ -733,8 +733,6 @@ Bạn có thể quay trở lại và sửa đổi các trang đã có, hoặc [[
 
 Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
-'deleted-notice'                   => 'Trang này đã bị xóa.
-Nhật trình xóa trang được ghi dưới đây để tiện theo dõi.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
