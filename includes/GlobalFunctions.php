@@ -1741,7 +1741,7 @@ function swap( &$x, &$y ) {
 }
 
 function wfGetCachedNotice( $name ) {
-	global $wgOut, $parserMemc;
+	global $wgOut, $wgRenderHashAppend, $parserMemc;
 	$fname = 'wfGetCachedNotice';
 	wfProfileIn( $fname );
 
@@ -1763,7 +1763,9 @@ function wfGetCachedNotice( $name ) {
 		}
 	}
 
-	$cachedNotice = $parserMemc->get( wfMemcKey( $name ) );
+	// Use the extra hash appender to let eg SSL variants separately cache.
+	$key = wfMemcKey( $name . $wgRenderHashAppend );
+	$cachedNotice = $parserMemc->get( $key );
 	if( is_array( $cachedNotice ) ) {
 		if( md5( $notice ) == $cachedNotice['hash'] ) {
 			$notice = $cachedNotice['html'];
@@ -1777,7 +1779,7 @@ function wfGetCachedNotice( $name ) {
 	if( $needParse ) {
 		if( is_object( $wgOut ) ) {
 			$parsed = $wgOut->parse( $notice );
-			$parserMemc->set( wfMemcKey( $name ), array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
+			$parserMemc->set( $key, array( 'html' => $parsed, 'hash' => md5( $notice ) ), 600 );
 			$notice = $parsed;
 		} else {
 			wfDebug( 'wfGetCachedNotice called for ' . $name . ' with no $wgOut available' );
