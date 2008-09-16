@@ -1242,44 +1242,48 @@ Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an
 Komentaryo asin iba pang tabang:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Paraon an pahina',
-'confirm'                     => 'Kompermaron',
-'excontent'                   => "Ini an dating laog: '$1'",
-'excontentauthor'             => "ini an dating laog: '$1' (asin an unikong kontribuidor si '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "Ini an dating laog bagô blinankohán: '$1'",
-'exblank'                     => 'mayong laog an páhina',
-'delete-legend'               => 'Paraon',
-'historywarning'              => 'Patanid: An pahinang paparaon mo igwa nin uusipón:',
-'confirmdeletetext'           => 'Paparaon mo sa base nin datos ining pahina kasabay an gabos na mga uusipón kaini.
+# Delete
+'deletepage'            => 'Paraon an pahina',
+'confirm'               => 'Kompermaron',
+'excontent'             => "Ini an dating laog: '$1'",
+'excontentauthor'       => "ini an dating laog: '$1' (asin an unikong kontribuidor si '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'         => "Ini an dating laog bagô blinankohán: '$1'",
+'exblank'               => 'mayong laog an páhina',
+'delete-legend'         => 'Paraon',
+'historywarning'        => 'Patanid: An pahinang paparaon mo igwa nin uusipón:',
+'confirmdeletetext'     => 'Paparaon mo sa base nin datos ining pahina kasabay an gabos na mga uusipón kaini.
 Konpirmaron tabì na talagang boot mong gibohon ini, nasasabotan mo an mga resulta, asin an piggigibo mo ini konporme sa
 [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Nagibo na',
-'deletedtext'                 => 'Pigparà na an "<nowiki>$1</nowiki>" .
+'actioncomplete'        => 'Nagibo na',
+'deletedtext'           => 'Pigparà na an "<nowiki>$1</nowiki>" .
 Hilingón tabì an $2 para mahiling an lista nin mga kaaagi pa sanang pagparà.',
-'deletedarticle'              => 'pigparà an "[[$1]]"',
-'dellogpage'                  => 'Usip nin pagparà',
-'dellogpagetext'              => 'Mahihiling sa babâ an lista kan mga pinakahuring pagparâ.',
-'deletionlog'                 => 'Historial nin pagparâ',
-'reverted'                    => 'Ibinalik sa mas naenot na pagpakarhay',
-'deletecomment'               => 'Rason sa pagparà',
-'deleteotherreason'           => 'Iba/dugang na rason:',
-'deletereasonotherlist'       => 'Ibang rason',
-'rollback'                    => 'Mga paghihira na pabalík',
-'rollback_short'              => 'pabalík',
-'rollbacklink'                => 'pabalikón',
-'rollbackfailed'              => 'Prakaso an pagbalík',
-'cantrollback'                => 'Dai pwedeng bawîon an hirá; an huring kontribuidor iyo an unikong parásurat kan páhina.',
-'alreadyrolled'               => 'Dai pwedeng ibalik an huring hirá kan [[:$1]]
+'deletedarticle'        => 'pigparà an "[[$1]]"',
+'dellogpage'            => 'Usip nin pagparà',
+'dellogpagetext'        => 'Mahihiling sa babâ an lista kan mga pinakahuring pagparâ.',
+'deletionlog'           => 'Historial nin pagparâ',
+'reverted'              => 'Ibinalik sa mas naenot na pagpakarhay',
+'deletecomment'         => 'Rason sa pagparà',
+'deleteotherreason'     => 'Iba/dugang na rason:',
+'deletereasonotherlist' => 'Ibang rason',
+
+# Rollback
+'rollback'         => 'Mga paghihira na pabalík',
+'rollback_short'   => 'pabalík',
+'rollbacklink'     => 'pabalikón',
+'rollbackfailed'   => 'Prakaso an pagbalík',
+'cantrollback'     => 'Dai pwedeng bawîon an hirá; an huring kontribuidor iyo an unikong parásurat kan páhina.',
+'alreadyrolled'    => 'Dai pwedeng ibalik an huring hirá kan [[:$1]]
 ni [[User:$2|$2]] ([[User talk:$2|Olay]]); may ibang parágamit na naghirá na o nagbalik na kaini.
 
 Huring hirá ni [[User:$3|$3]] ([[User talk:$3|Olay]]).',
-'editcomment'                 => 'Ini an nakakaag na komentaryo sa paghirá: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
-'sessionfailure'              => "Garo may problema sa paglaog mo;
+'editcomment'      => 'Ini an nakakaag na komentaryo sa paghirá: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Binawî na mga paghirá kan [[Special:Contributions/$2|$2]] ([[User talk:$2|Magtaram]]); pigbalik sa dating bersyón ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Binawî na mga paghirá ni $1; pigbalik sa dating bersyón ni $2.',
+'sessionfailure'   => "Garo may problema sa paglaog mo;
 kinanselár ining aksyón bilang sarong paglikay kontra sa ''session hijacking''.
 Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, dangan probarán giraray.",
+
+# Protect
 'protectlogpage'              => 'Usip nin proteksyon',
 'protectlogtext'              => 'May lista sa baba nin mga kandado asin panbawi kan kandado kan mga páhina. Hilingon an [[Special:ProtectedPages|lista kan mga pigproprotektarán na mga páhina]] para mahiling an lista kan mga proteksión nin mga páhina sa ngunyan na nakabuká.',
 'protectedarticle'            => 'protektado "[[$1]]"',

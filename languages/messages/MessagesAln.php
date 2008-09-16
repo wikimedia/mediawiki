@@ -500,8 +500,10 @@ Muneni me [[$1|fillu një artikull]] me kët titull.
 'watching'   => 'Tuj mbikqyrë...',
 'unwatching' => 'Tuj çmbikqyrë...',
 
-# Delete/protect/revert
-'deletedarticle'              => 'grisi "$1"',
+# Delete
+'deletedarticle' => 'grisi "$1"',
+
+# Protect
 'protect-legend'              => 'Konfirmoni',
 'protectcomment'              => 'Arsyja:',
 'protectexpiry'               => 'Afáti',

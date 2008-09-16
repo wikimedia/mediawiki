@@ -694,21 +694,25 @@ $messages = array(
 'created'            => 'έντον',
 'enotif_anon_editor' => 'ανόνυμον χρήστες $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Σβήσον τη σελίδαν',
-'exblank'                     => 'σελίδα έτον εύκαιρον',
-'historywarning'              => "Ωρία: Η σελίδαν που θα σβήετε έχ' ιστορικόν:",
-'confirmdeletetext'           => "Είστουν σουμά σο σβήσεμαν είνος σελίδας και ούλ' τ' ιστορίασατς εντάμαν.
+# Delete
+'deletepage'            => 'Σβήσον τη σελίδαν',
+'exblank'               => 'σελίδα έτον εύκαιρον',
+'historywarning'        => "Ωρία: Η σελίδαν που θα σβήετε έχ' ιστορικόν:",
+'confirmdeletetext'     => "Είστουν σουμά σο σβήσεμαν είνος σελίδας και ούλ' τ' ιστορίασατς εντάμαν.
 Παρακαλούμε σας να δίτε το τελικόν τη βεβαίωσην το θέλετε να εφτάτε το σβήσεμαν, τ' εγροικάτε τα συνέπειας τ' ατεινές τη πράξης και τ' εφτάτ' ατεν με βάσην [[{{MediaWiki:Policy-url}}|τη πολιτικήν]].",
-'actioncomplete'              => 'Η ενέργειαν ετελέθεν',
-'deletedtext'                 => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
+'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
+'deletedtext'           => 'Το "<nowiki>$1</nowiki>" εσβήγανατο.
 Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
-'deletedarticle'              => 'νεβζινέθεν η "[[$1]]"',
-'dellogpage'                  => "Κατάλογος με τ' ατά ντ' εσβήγαν",
-'deletecomment'               => 'Λόγον για το σβήσιμο:',
-'deleteotherreason'           => 'Άλλον/αλλομίαν λόγον:',
-'deletereasonotherlist'       => 'Άλλον λόγον',
-'rollbacklink'                => 'φέρον ξαν σην υστερναίαν',
+'deletedarticle'        => 'νεβζινέθεν η "[[$1]]"',
+'dellogpage'            => "Κατάλογος με τ' ατά ντ' εσβήγαν",
+'deletecomment'         => 'Λόγον για το σβήσιμο:',
+'deleteotherreason'     => 'Άλλον/αλλομίαν λόγον:',
+'deletereasonotherlist' => 'Άλλον λόγον',
+
+# Rollback
+'rollbacklink' => 'φέρον ξαν σην υστερναίαν',
+
+# Protect
 'protectlogpage'              => 'Αρχείον ασπαλιγματίων',
 'protectcomment'              => 'Σχόλιον:',
 'protectexpiry'               => 'Τελείται:',

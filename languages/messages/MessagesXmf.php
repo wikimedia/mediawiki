@@ -447,14 +447,18 @@ $messages = array(
 'watching'   => 'კონტროლირაფონი...',
 'unwatching' => 'ვაკონტროლირაფონი...',
 
-# Delete/protect/revert
-'deletepage'                  => 'ხასილაშ შალუა',
-'actioncomplete'              => 'მოქმედალა რსულებულ რე',
-'deletedarticle'              => 'წაშალულ რე "[[$1]]"',
-'dellogpage'                  => 'ლასირეფიშ ერკებულ',
-'deleteotherreason'           => 'შხვა/დამატებით ბაძაძი:',
-'deletereasonotherlist'       => 'შხვა ბაძაძი',
-'rollbacklink'                => 'გაუქვება',
+# Delete
+'deletepage'            => 'ხასილაშ შალუა',
+'actioncomplete'        => 'მოქმედალა რსულებულ რე',
+'deletedarticle'        => 'წაშალულ რე "[[$1]]"',
+'dellogpage'            => 'ლასირეფიშ ერკებულ',
+'deleteotherreason'     => 'შხვა/დამატებით ბაძაძი:',
+'deletereasonotherlist' => 'შხვა ბაძაძი',
+
+# Rollback
+'rollbacklink' => 'გაუქვება',
+
+# Protect
 'protectlogpage'              => 'თხილუაშ ისტორია',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',

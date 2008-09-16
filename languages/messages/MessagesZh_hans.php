@@ -1629,50 +1629,54 @@ $NEWPAGE
 反馈和进一步的帮助:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => '删除页面',
-'confirm'                     => '确认',
-'excontent'                   => '内容为: "$1"',
-'excontentauthor'             => '内容为: "$1" (而且唯一贡献者为"$2")',
-'exbeforeblank'               => '被清空前的内容为: "$1"',
-'exblank'                     => '页面为空',
-'delete-confirm'              => '删除“$1”',
-'delete-legend'               => '删除',
-'historywarning'              => '警告: 您将要删除的页内含有历史',
-'confirmdeletetext'           => '您即将删除一个页面或图像以及其历史。
+# Delete
+'deletepage'             => '删除页面',
+'confirm'                => '确认',
+'excontent'              => '内容为: "$1"',
+'excontentauthor'        => '内容为: "$1" (而且唯一贡献者为"$2")',
+'exbeforeblank'          => '被清空前的内容为: "$1"',
+'exblank'                => '页面为空',
+'delete-confirm'         => '删除“$1”',
+'delete-legend'          => '删除',
+'historywarning'         => '警告: 您将要删除的页内含有历史',
+'confirmdeletetext'      => '您即将删除一个页面或图像以及其历史。
 请确定您要进行此项操作，并且了解其后果，同时您的行为符合[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'              => '操作完成',
-'deletedtext'                 => '"<nowiki>$1</nowiki>"已经被删除。最近删除的纪录请参见$2。',
-'deletedarticle'              => '已删除"[[$1]]"',
-'suppressedarticle'           => '已废止"[[$1]]"',
-'dellogpage'                  => '删除日志',
-'dellogpagetext'              => '以下是最近删除的纪录列列表:',
-'deletionlog'                 => '删除日志',
-'reverted'                    => '恢复到早期版本',
-'deletecomment'               => '删除原因:',
-'deleteotherreason'           => '其它／附加的理由:',
-'deletereasonotherlist'       => '其它理由',
-'deletereason-dropdown'       => '
+'actioncomplete'         => '操作完成',
+'deletedtext'            => '"<nowiki>$1</nowiki>"已经被删除。最近删除的纪录请参见$2。',
+'deletedarticle'         => '已删除"[[$1]]"',
+'suppressedarticle'      => '已废止"[[$1]]"',
+'dellogpage'             => '删除日志',
+'dellogpagetext'         => '以下是最近删除的纪录列列表:',
+'deletionlog'            => '删除日志',
+'reverted'               => '恢复到早期版本',
+'deletecomment'          => '删除原因:',
+'deleteotherreason'      => '其它／附加的理由:',
+'deletereasonotherlist'  => '其它理由',
+'deletereason-dropdown'  => '
 *常用删除理由
 ** 作者请求
 ** 侵犯版权
 ** 破坏',
-'delete-edit-reasonlist'      => '编辑删除理由',
-'delete-toobig'               => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
-'delete-warning-toobig'       => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
-'rollback'                    => '恢复编辑',
-'rollback_short'              => '恢复',
-'rollbacklink'                => '恢复',
-'rollbackfailed'              => '恢复失败',
-'cantrollback'                => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
-'alreadyrolled'               => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]]  | [[Special:Contributions/$2|{{int:contribslink}}]])进行的[[$1]]的最后编辑；
+'delete-edit-reasonlist' => '编辑删除理由',
+'delete-toobig'          => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除此类页面的动作已经被限制，以防止在{{SITENAME}}上的意外扰乱。',
+'delete-warning-toobig'  => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
+
+# Rollback
+'rollback'         => '恢复编辑',
+'rollback_short'   => '恢复',
+'rollbacklink'     => '恢复',
+'rollbackfailed'   => '恢复失败',
+'cantrollback'     => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
+'alreadyrolled'    => '无法恢复由[[User:$2|$2]] ([[User talk:$2|讨论]]  | [[Special:Contributions/$2|{{int:contribslink}}]])进行的[[$1]]的最后编辑；
 其他人已经编辑或是恢复了该页。
 
 最后对页面编辑的编辑者: [[User:$3|$3]] ([[User talk:$3|讨论]] | [[Special:Contributions/$3|{{int:contribslink}}]])。',
-'editcomment'                 => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '恢复由$1的编辑；更改回$2的最后一个版本。',
-'sessionfailure'              => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+'editcomment'      => '编辑说明: "<i>$1</i>"。', # only shown if there is an edit comment
+'revertpage'       => '恢复由[[Special:Contributions/$2|$2]] ([[User talk:$2|对话]])的编辑至[[User:$1|$1]]的最后一个版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '恢复由$1的编辑；更改回$2的最后一个版本。',
+'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+
+# Protect
 'protectlogpage'              => '保护日志',
 'protectlogtext'              => '下面是页面锁定和取消锁定的列表。请参考[[Special:ProtectedPages|保护页面列表]]以查看当前进行的页面保护。',
 'protectedarticle'            => '已保护"[[$1]]"',

@@ -747,35 +747,39 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'changed'            => 'dəyişdi',
 'created'            => 'yaradıldı',
 
-# Delete/protect/revert
-'deletepage'                  => 'Səhifəni sil',
-'confirm'                     => 'Təsdiq et',
-'excontent'                   => "Köhnə məzmun: '$1'",
-'excontentauthor'             => "Köhnə məzmun: '$1' (və tarixçədə fəaliyyəti qeyd edilən yeganə istifadəçi '[[User:$2|$2]]')",
-'exbeforeblank'               => "Silinmədən əvvəlki məzmun: '$1'",
-'exblank'                     => 'səhifə boş',
-'delete-confirm'              => 'Silinən səhifə: "$1"',
-'historywarning'              => 'Xəbərdarlıq: Silinəcək səhifənin tarixçəsində qeyd olunmuş redaktələr var',
-'confirmdeletetext'           => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu nəzərdə tutduğunuzu və bu əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
-'actioncomplete'              => 'Fəaliyyət tamamlandı',
-'deletedarticle'              => 'silindi "[[$1]]"',
-'dellogpage'                  => 'Silmə qeydləri',
-'dellogpagetext'              => 'Ən son silinmiş səhifələrin siyahısı.',
-'deletionlog'                 => 'Silmə jurnal qeydləri',
-'reverted'                    => 'Daha əvvəlki versiya bərpa edildi',
-'deletecomment'               => 'Silmə səbəbi',
-'deleteotherreason'           => 'Digər/əlavə səbəb:',
-'deletereasonotherlist'       => 'Digər səbəb',
-'deletereason-dropdown'       => '*Əsas silmə səbəbi
+# Delete
+'deletepage'             => 'Səhifəni sil',
+'confirm'                => 'Təsdiq et',
+'excontent'              => "Köhnə məzmun: '$1'",
+'excontentauthor'        => "Köhnə məzmun: '$1' (və tarixçədə fəaliyyəti qeyd edilən yeganə istifadəçi '[[User:$2|$2]]')",
+'exbeforeblank'          => "Silinmədən əvvəlki məzmun: '$1'",
+'exblank'                => 'səhifə boş',
+'delete-confirm'         => 'Silinən səhifə: "$1"',
+'historywarning'         => 'Xəbərdarlıq: Silinəcək səhifənin tarixçəsində qeyd olunmuş redaktələr var',
+'confirmdeletetext'      => 'Bu səhifə və ya fayl bütün tarixçəsi ilə birlikdə birdəfəlik silinəcək. Bunu nəzərdə tutduğunuzu və bu əməliyyatın nəticələrini başa düşdüyünüzü təsdiq edin.',
+'actioncomplete'         => 'Fəaliyyət tamamlandı',
+'deletedarticle'         => 'silindi "[[$1]]"',
+'dellogpage'             => 'Silmə qeydləri',
+'dellogpagetext'         => 'Ən son silinmiş səhifələrin siyahısı.',
+'deletionlog'            => 'Silmə jurnal qeydləri',
+'reverted'               => 'Daha əvvəlki versiya bərpa edildi',
+'deletecomment'          => 'Silmə səbəbi',
+'deleteotherreason'      => 'Digər/əlavə səbəb:',
+'deletereasonotherlist'  => 'Digər səbəb',
+'deletereason-dropdown'  => '*Əsas silmə səbəbi
 ** Müəllif istəyi
 ** Müəllif hüququ pozuntusu
 ** Vandalizm',
-'delete-edit-reasonlist'      => 'Silmə səbəblərinin redaktəsi',
-'rollback'                    => 'Əvvəlki versiya',
-'rollbacklink'                => 'əvvəlki halına qaytar',
-'cantrollback'                => 'Redaktə geri qaytarıla bilməz; axırıncı redaktə səhifədə olan yeganə fəaliyyətdir.',
-'revertpage'                  => '[[User:$2|$2]] tərəfindən edilmiş redaktələr geri qaytarılaraq [[User:$1|$1]] tərəfindən yaradılan sonuncu versiya bərpa olundu.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 tərəfindən edilmiş redaktələr geri qaytarıldı; $2 tərəfindən yaradılmış son versiya bərpa olundu.',
+'delete-edit-reasonlist' => 'Silmə səbəblərinin redaktəsi',
+
+# Rollback
+'rollback'         => 'Əvvəlki versiya',
+'rollbacklink'     => 'əvvəlki halına qaytar',
+'cantrollback'     => 'Redaktə geri qaytarıla bilməz; axırıncı redaktə səhifədə olan yeganə fəaliyyətdir.',
+'revertpage'       => '[[User:$2|$2]] tərəfindən edilmiş redaktələr geri qaytarılaraq [[User:$1|$1]] tərəfindən yaradılan sonuncu versiya bərpa olundu.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 tərəfindən edilmiş redaktələr geri qaytarıldı; $2 tərəfindən yaradılmış son versiya bərpa olundu.',
+
+# Protect
 'protectlogpage'              => 'Mühafizə etmə qeydləri',
 'protectedarticle'            => 'mühafizə edildi "[[$1]]"',
 'modifiedarticleprotection'   => '"[[$1]]" səhifəsi üçün qorunma səviyyəsi dəyişildi',

@@ -454,7 +454,7 @@ hō‘ike ‘ia i lalo:",
 
 'changed' => 'ua loli ‘ia',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete'         => 'Ua pau',
 'deletedarticle'         => 'ua kāpae ‘ia "[[$1]]"',
 'dellogpage'             => 'Mo‘olelo kāpae',
@@ -462,7 +462,9 @@ hō‘ike ‘ia i lalo:",
 'deletionlog'            => 'mo‘olelo kāpae',
 'deletecomment'          => 'Ke kumu e kāpae',
 'delete-edit-reasonlist' => 'Ho‘opololei i nā kumu no ke kāpae ‘ana',
-'rollbacklink'           => 'ho‘i',
+
+# Rollback
+'rollbacklink' => 'ho‘i',
 
 # Restrictions (nouns)
 'restriction-edit' => 'E ho‘opololei',

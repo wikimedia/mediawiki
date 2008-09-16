@@ -1283,49 +1283,53 @@ om jo folchlistynstellings te feroarjen.
 Reaksjes en fierdere help:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Wisk side',
-'confirm'                     => 'Befêstigje',
-'excontent'                   => "ynhâld wie: '$1'",
-'excontentauthor'             => "ynhâld wie: '$1' (en de ienige bewurker wie: '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "foar de tekst wiske wie, wie dat: '$1'",
-'exblank'                     => 'side wie leech',
-'delete-confirm'              => '"$1" wiskje',
-'delete-legend'               => 'Wiskje',
-'historywarning'              => "Warskôging: De side dy't jo wiskje wolle hat skiednis:",
-'confirmdeletetext'           => 'Jo binne dwaande mei it foar altyd wiskjen fan in side
+# Delete
+'deletepage'            => 'Wisk side',
+'confirm'               => 'Befêstigje',
+'excontent'             => "ynhâld wie: '$1'",
+'excontentauthor'       => "ynhâld wie: '$1' (en de ienige bewurker wie: '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'         => "foar de tekst wiske wie, wie dat: '$1'",
+'exblank'               => 'side wie leech',
+'delete-confirm'        => '"$1" wiskje',
+'delete-legend'         => 'Wiskje',
+'historywarning'        => "Warskôging: De side dy't jo wiskje wolle hat skiednis:",
+'confirmdeletetext'     => 'Jo binne dwaande mei it foar altyd wiskjen fan in side
 of ôfbyld, tegearre mei alle skiednis, út de databank.
 Befêstigje dat jo dat wier dwaan wolle. Befêstigje dat dat is wat jo witte wat it gefolch
 is en dat jo dit dogge neffens de [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Dien',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" is wiske.
+'actioncomplete'        => 'Dien',
+'deletedtext'           => '"<nowiki>$1</nowiki>" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
-'deletedarticle'              => '"[[$1]]" is wiske',
-'dellogpage'                  => 'Wiskloch',
-'dellogpagetext'              => 'Dit is wat der resint wiske is.
+'deletedarticle'        => '"[[$1]]" is wiske',
+'dellogpage'            => 'Wiskloch',
+'dellogpagetext'        => 'Dit is wat der resint wiske is.
 (Tiden oanjûn as UTC).',
-'deletionlog'                 => 'wiskloch',
-'reverted'                    => 'Weromset nei eardere ferzje',
-'deletecomment'               => 'Reden foar it wiskjen',
-'deleteotherreason'           => 'Oare/eventuele reden:',
-'deletereasonotherlist'       => 'Oare reden',
-'deletereason-dropdown'       => '*Faak-brûkte redenen
+'deletionlog'           => 'wiskloch',
+'reverted'              => 'Weromset nei eardere ferzje',
+'deletecomment'         => 'Reden foar it wiskjen',
+'deleteotherreason'     => 'Oare/eventuele reden:',
+'deletereasonotherlist' => 'Oare reden',
+'deletereason-dropdown' => '*Faak-brûkte redenen
 ** Frege troch de skriuwer
 ** Skeining fan auteursrjocht
 ** Fandalisme',
-'rollback'                    => 'Feroarings werom sette',
-'rollback_short'              => 'Werom sette',
-'rollbacklink'                => 'feroaring werom sette',
-'rollbackfailed'              => 'Feroaring werom sette net slagge',
-'cantrollback'                => "Dizze feroaring kin net werom setten wurde, om't der mar ien skriuwer is.",
-'alreadyrolled'               => 'Kin de feroaring fan [[:$1]]
+
+# Rollback
+'rollback'         => 'Feroarings werom sette',
+'rollback_short'   => 'Werom sette',
+'rollbacklink'     => 'feroaring werom sette',
+'rollbackfailed'   => 'Feroaring werom sette net slagge',
+'cantrollback'     => "Dizze feroaring kin net werom setten wurde, om't der mar ien skriuwer is.",
+'alreadyrolled'    => 'Kin de feroaring fan [[:$1]]
 troch [[User:$2|$2]] ([[User talk:$2|Oerlis]]) net werom sette;
 in oar hat de feroaring werom set, of oars wat oan de side feroare.
 
 De lêste feroaring wie fan [[User:$3|$3]] ([[User talk:$3|Oerlis]]).',
-'editcomment'                 => 'De gearfetting wie: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Feroarings werom set fan $1; werom set nei de lêste ferzje fan $2.',
+'editcomment'      => 'De gearfetting wie: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Bewurkings fan [[Special:Contributions/$2|$2]] ([[User talk:$2|Oerlis]]) werom set ta de ferzje fan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Feroarings werom set fan $1; werom set nei de lêste ferzje fan $2.',
+
+# Protect
 'protectlogpage'              => 'Skoattelloch',
 'protectlogtext'              => 'Hjirûnder wurdt it skoateljen en frijjaan fan siden oanjûn. 
 Sjoch [[Special:ProtectedPages|Skoattele side]] foar mear ynformaasje.',

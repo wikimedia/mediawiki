@@ -677,20 +677,24 @@ Ne zaman neetlendiniz sayfayı bakmaa listasınnan çıkarmaa tuşlayın "sayfay
 'watching'   => 'Bakılêr...',
 'unwatching' => 'Durgundurulêr...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Sayfayı sil',
-'historywarning'              => 'Bak: O sayfa angısını isteersiniz silmää istoriyası var:',
-'confirmdeletetext'           => 'Bu sayfayı yaki faylı silersiniz hepsi istoriyasılan bilä.
+# Delete
+'deletepage'            => 'Sayfayı sil',
+'historywarning'        => 'Bak: O sayfa angısını isteersiniz silmää istoriyası var:',
+'confirmdeletetext'     => 'Bu sayfayı yaki faylı silersiniz hepsi istoriyasılan bilä.
 Lütfen doorulayın ani siz neetlenersiniz bunu yapmaa, annêêrsiniz onun rezultatlarını hem inanêrsiniz ani bu [[{{MediaWiki:Policy-url}}|Silmää kanonnarına]] uyêr.',
-'actioncomplete'              => 'İşlik tamannandı.',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" silindi.
+'actioncomplete'        => 'İşlik tamannandı.',
+'deletedtext'           => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmää deyni: $2.',
-'deletedarticle'              => '"$1" silindi',
-'dellogpage'                  => 'Silmää jurnalı',
-'deletecomment'               => 'Silmää sebep',
-'deleteotherreason'           => 'Başka/ek sebep:',
-'deletereasonotherlist'       => 'Başka sebep',
-'rollbacklink'                => 'eski halinä dön',
+'deletedarticle'        => '"$1" silindi',
+'dellogpage'            => 'Silmää jurnalı',
+'deletecomment'         => 'Silmää sebep',
+'deleteotherreason'     => 'Başka/ek sebep:',
+'deletereasonotherlist' => 'Başka sebep',
+
+# Rollback
+'rollbacklink' => 'eski halinä dön',
+
+# Protect
 'protectlogpage'              => 'Korunmak jurnalı',
 'protect-legend'              => 'Korunmaa doorula',
 'protectcomment'              => 'Korunma altına almaa sebep:',

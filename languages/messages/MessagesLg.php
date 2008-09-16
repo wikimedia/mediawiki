@@ -411,7 +411,7 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'watching'   => 'Kikolebwako...',
 'unwatching' => 'Kikolebwako...',
 
-# Delete/protect/revert
+# Delete
 'confirm'        => 'Kakasa',
 'actioncomplete' => 'Kiwedde',
 'deletedarticle' => 'olupapula olwa "[[$1]]" lugyidwawo',

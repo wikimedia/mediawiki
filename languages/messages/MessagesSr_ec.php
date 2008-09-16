@@ -1648,53 +1648,57 @@ $NEWPAGE
 Фидбек и даља помоћ:
 {{fullurl:Help:Садржај}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Обриши страницу',
-'confirm'                     => 'Потврди',
-'excontent'                   => "садржај је био: '$1'",
-'excontentauthor'             => "садржај је био: '$1' (а једину измену је направио '$2')",
-'exbeforeblank'               => "садржај пре брисања је био: '$1'",
-'exblank'                     => 'страница је била празна',
-'delete-confirm'              => 'Обриши „$1“',
-'delete-legend'               => 'Обриши',
-'historywarning'              => 'Пажња: страница коју желите да обришете има историју:',
-'confirmdeletetext'           => 'На путу сте да трајно обришете страницу
+# Delete
+'deletepage'             => 'Обриши страницу',
+'confirm'                => 'Потврди',
+'excontent'              => "садржај је био: '$1'",
+'excontentauthor'        => "садржај је био: '$1' (а једину измену је направио '$2')",
+'exbeforeblank'          => "садржај пре брисања је био: '$1'",
+'exblank'                => 'страница је била празна',
+'delete-confirm'         => 'Обриши „$1“',
+'delete-legend'          => 'Обриши',
+'historywarning'         => 'Пажња: страница коју желите да обришете има историју:',
+'confirmdeletetext'      => 'На путу сте да трајно обришете страницу
 или слику заједно са њеном историјом из базе података.
 Молимо вас потврдите да намеравате да урадите ово, да разумете
 последице, и да ово радите у складу са
 [[{{MediaWiki:Policy-url}}|правилима]] {{SITENAME}}.',
-'actioncomplete'              => 'Акција завршена',
-'deletedtext'                 => 'Чланак "<nowiki>$1</nowiki>" је обрисан.
+'actioncomplete'         => 'Акција завршена',
+'deletedtext'            => 'Чланак "<nowiki>$1</nowiki>" је обрисан.
 Погледајте $2 за запис о скорашњим брисањима.',
-'deletedarticle'              => 'обрисан "[[$1]]"',
-'suppressedarticle'           => 'сактивено: "[[$1]]"',
-'dellogpage'                  => 'историја брисања',
-'dellogpagetext'              => 'Испод је списак најскоријих брисања.',
-'deletionlog'                 => 'историја брисања',
-'reverted'                    => 'Враћено на ранију ревизију',
-'deletecomment'               => 'Разлог за брисање',
-'deleteotherreason'           => 'Други/додатни разлог:',
-'deletereasonotherlist'       => 'Други разлог',
-'deletereason-dropdown'       => '*Најчешћи разлози брисања
+'deletedarticle'         => 'обрисан "[[$1]]"',
+'suppressedarticle'      => 'сактивено: "[[$1]]"',
+'dellogpage'             => 'историја брисања',
+'dellogpagetext'         => 'Испод је списак најскоријих брисања.',
+'deletionlog'            => 'историја брисања',
+'reverted'               => 'Враћено на ранију ревизију',
+'deletecomment'          => 'Разлог за брисање',
+'deleteotherreason'      => 'Други/додатни разлог:',
+'deletereasonotherlist'  => 'Други разлог',
+'deletereason-dropdown'  => '*Најчешћи разлози брисања
 ** Захтев аутора
 ** Кршење ауторских права
 ** Вандализам',
-'delete-edit-reasonlist'      => 'Уреди разлоге за брисање',
-'rollback'                    => 'Врати измене',
-'rollback_short'              => 'Врати',
-'rollbacklink'                => 'врати',
-'rollbackfailed'              => 'Враћање није успело',
-'cantrollback'                => 'Не могу да вратим измену; последњи аутор је уједно и једини.',
-'alreadyrolled'               => 'Не могу да вратим последњу измену [[$1]]
+'delete-edit-reasonlist' => 'Уреди разлоге за брисање',
+
+# Rollback
+'rollback'         => 'Врати измене',
+'rollback_short'   => 'Врати',
+'rollbacklink'     => 'врати',
+'rollbackfailed'   => 'Враћање није успело',
+'cantrollback'     => 'Не могу да вратим измену; последњи аутор је уједно и једини.',
+'alreadyrolled'    => 'Не могу да вратим последњу измену [[$1]]
 од корисника [[User:$2|$2]] ([[User talk:$2|разговор]]); неко други је већ изменио или вратио чланак.
 
 Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]]).',
-'editcomment'                 => 'Коментар измене је: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Враћене измене од стране $1; на последњу измену од стране $2.',
-'sessionfailure'              => 'Изгледа да постоји проблем са вашом сеансом пријаве;
+'editcomment'      => 'Коментар измене је: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Враћене измене од стране $1; на последњу измену од стране $2.',
+'sessionfailure'   => 'Изгледа да постоји проблем са вашом сеансом пријаве;
 ова акција је прекинута као предострожност против преотимања сеанси.
 Молимо кликните "back" и поново учитајте страну одакле сте дошли, а онда покушајте поново.',
+
+# Protect
 'protectlogpage'              => 'историја закључавања',
 'protectlogtext'              => 'Испод је списак заштићених страница.<br />
 Погледајте [[Special:ProtectedPages|правила о заштити страница]] за више информација.',

@@ -1794,50 +1794,54 @@ Untuk mengubah preferensi daftar pantauan Anda, kunjungi
 Umpan balik dan bantuan lanjutan:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Hapus halaman',
-'confirm'                     => 'Konfirmasikan',
-'excontent'                   => "isi sebelumnya: '$1'",
-'excontentauthor'             => "isinya hanya berupa: '$1' (dan satu-satunya penyumbang adalah '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "isi sebelum dikosongkan: '$1'",
-'exblank'                     => 'halaman kosong',
-'delete-confirm'              => 'Hapus "$1"',
-'delete-legend'               => 'Hapus',
-'historywarning'              => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
-'confirmdeletetext'           => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
-'actioncomplete'              => 'Proses selesai',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
-'deletedarticle'              => 'menghapus "[[$1]]"',
-'suppressedarticle'           => '"[[$1]]" disembunyikan',
-'dellogpage'                  => 'Log penghapusan',
-'dellogpagetext'              => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server (UTC).',
-'deletionlog'                 => 'log penghapusan',
-'reverted'                    => 'Dikembalikan ke revisi sebelumnya',
-'deletecomment'               => 'Alasan penghapusan',
-'deleteotherreason'           => 'Lainnya/alasan tambahan:',
-'deletereasonotherlist'       => 'Alasan lain',
-'deletereason-dropdown'       => '*Alasan penghapusan
+# Delete
+'deletepage'             => 'Hapus halaman',
+'confirm'                => 'Konfirmasikan',
+'excontent'              => "isi sebelumnya: '$1'",
+'excontentauthor'        => "isinya hanya berupa: '$1' (dan satu-satunya penyumbang adalah '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "isi sebelum dikosongkan: '$1'",
+'exblank'                => 'halaman kosong',
+'delete-confirm'         => 'Hapus "$1"',
+'delete-legend'          => 'Hapus',
+'historywarning'         => 'Peringatan: Halaman yang ingin Anda hapus mempunyai sejarah:',
+'confirmdeletetext'      => 'Anda akan menghapus halaman atau berkas ini secara permanen berikut semua sejarahnya dari basis data. Pastikan bahwa Anda memang ingin melakukannya, mengetahui segala akibatnya, dan apa yang Anda lakukan ini adalah sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan {{SITENAME}}]].',
+'actioncomplete'         => 'Proses selesai',
+'deletedtext'            => '"<nowiki>$1</nowiki>" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
+'deletedarticle'         => 'menghapus "[[$1]]"',
+'suppressedarticle'      => '"[[$1]]" disembunyikan',
+'dellogpage'             => 'Log penghapusan',
+'dellogpagetext'         => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server (UTC).',
+'deletionlog'            => 'log penghapusan',
+'reverted'               => 'Dikembalikan ke revisi sebelumnya',
+'deletecomment'          => 'Alasan penghapusan',
+'deleteotherreason'      => 'Lainnya/alasan tambahan:',
+'deletereasonotherlist'  => 'Alasan lain',
+'deletereason-dropdown'  => '*Alasan penghapusan
 ** Permintaan pengguna
 ** Pelanggaran hak cipta
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Sunting alasan penghapusan',
-'delete-toobig'               => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
+'delete-edit-reasonlist' => 'Sunting alasan penghapusan',
+'delete-toobig'          => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
 Penghapusan halaman dengan sejarah penyuntingan yang panjang tidak diperbolehkan untuk mencegah kerusakan di {{SITENAME}}.',
-'delete-warning-toobig'       => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
+'delete-warning-toobig'  => 'Halaman ini memiliki sejarah penyuntingan yang panjang, melebihi {{PLURAL:$1|revisi|revisi}}.
 Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
-'rollback'                    => 'Kembalikan suntingan',
-'rollback_short'              => 'Kembalikan',
-'rollbacklink'                => 'kembalikan',
-'rollbackfailed'              => 'Pengembalian gagal dilakukan',
-'cantrollback'                => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'               => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+
+# Rollback
+'rollback'         => 'Kembalikan suntingan',
+'rollback_short'   => 'Kembalikan',
+'rollbacklink'     => 'kembalikan',
+'rollbackfailed'   => 'Pengembalian gagal dilakukan',
+'cantrollback'     => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
+'alreadyrolled'    => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 pengguna lain telah menyunting atau melakukan pengembalian terhadap revisi tersebut.
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
-'sessionfailure'              => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
+'editcomment'      => 'Komentar penyuntingan adalah: "<em>$1</em>".', # only shown if there is an edit comment
+'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
+'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
+
+# Protect
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Berikut adalah log perlindungan halaman dan pembatalannya.
 Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar terkini.',

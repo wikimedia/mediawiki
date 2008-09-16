@@ -126,7 +126,7 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'watch'         => 'Tîn a drê',
 'watchthispage' => "Tîn a drê a c'la pàgina chè",
 
-# Delete/protect/revert
+# Delete
 'excontent'         => "al cointgnû l'éra: '$1'",
 'excontentauthor'   => "al cointgnû l'éra: '$1' (e l'ónic cuntribudôr l'éra '[[Special:Contributions/$2|$2]]')",
 'confirmdeletetext' => "Stèt per scanzlèr 'na pàgina o n'imàgin, insìmma a tòt la sô crunolugî dal database.

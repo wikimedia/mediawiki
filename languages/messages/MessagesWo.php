@@ -967,7 +967,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 
 'changed' => 'soppi',
 
-# Delete/protect/revert
+# Delete
 'confirm'     => 'Dëggal',
 'deletionlog' => 'Yéenekaay',
 

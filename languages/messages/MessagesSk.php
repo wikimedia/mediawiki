@@ -1743,50 +1743,54 @@ Zmeniť nastavenia vašich sledovaných stránok môžete na
 Návrhy a ďalšia pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Zmazať stránku',
-'confirm'                     => 'Potvrdiť',
-'excontent'                   => 'obsah bol: „$1“',
-'excontentauthor'             => 'obsah bol: „$1“ (a jediný autor bol [[Special:Contributions/$2]])',
-'exbeforeblank'               => "obsah pred vyčistením stránky bol: '$1'",
-'exblank'                     => 'stránka bola prázdna',
-'delete-confirm'              => 'Zmazať „$1“',
-'delete-legend'               => 'Zmazať',
-'historywarning'              => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
-'confirmdeletetext'           => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
-'actioncomplete'              => 'Úloha bola dokončená',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" bol zmazaný.
+# Delete
+'deletepage'             => 'Zmazať stránku',
+'confirm'                => 'Potvrdiť',
+'excontent'              => 'obsah bol: „$1“',
+'excontentauthor'        => 'obsah bol: „$1“ (a jediný autor bol [[Special:Contributions/$2]])',
+'exbeforeblank'          => "obsah pred vyčistením stránky bol: '$1'",
+'exblank'                => 'stránka bola prázdna',
+'delete-confirm'         => 'Zmazať „$1“',
+'delete-legend'          => 'Zmazať',
+'historywarning'         => 'UPOZORNENIE: Stránka, ktorú chcete zmazať má históriu:',
+'confirmdeletetext'      => 'Chystáte sa trvalo zmazať z databázy stránku alebo obrázok spolu so všetkými jeho/jej predošlými verziami. Potvrďte, že máte v úmysle tak urobiť, že ste si vedomý následkov, a že to robíte v súlade so [[{{MediaWiki:Policy-url}}|zásadami a smernicami {{GRAMMAR:genitív|{{SITENAME}}}}]].',
+'actioncomplete'         => 'Úloha bola dokončená',
+'deletedtext'            => '"<nowiki>$1</nowiki>" bol zmazaný.
 Na $2 nájdete zoznam posledných zmazaní.',
-'deletedarticle'              => '„[[$1]]“ zmazaná',
-'suppressedarticle'           => 'potlačil „[[$1]]“',
-'dellogpage'                  => 'Záznam zmazaní',
-'dellogpagetext'              => 'Tu je zoznam posledných zmazaní.',
-'deletionlog'                 => 'záznam zmazaní',
-'reverted'                    => 'Obnovené na skoršiu verziu',
-'deletecomment'               => 'Dôvod na zmazanie',
-'deleteotherreason'           => 'Iný/ďalší dôvod:',
-'deletereasonotherlist'       => 'Iný dôvod',
-'deletereason-dropdown'       => '*Bežné dôvody zmazania
+'deletedarticle'         => '„[[$1]]“ zmazaná',
+'suppressedarticle'      => 'potlačil „[[$1]]“',
+'dellogpage'             => 'Záznam zmazaní',
+'dellogpagetext'         => 'Tu je zoznam posledných zmazaní.',
+'deletionlog'            => 'záznam zmazaní',
+'reverted'               => 'Obnovené na skoršiu verziu',
+'deletecomment'          => 'Dôvod na zmazanie',
+'deleteotherreason'      => 'Iný/ďalší dôvod:',
+'deletereasonotherlist'  => 'Iný dôvod',
+'deletereason-dropdown'  => '*Bežné dôvody zmazania
 ** Na žiadosť autora
 ** Porušenie autorských práv
 ** Vandalizmus',
-'delete-edit-reasonlist'      => 'Upraviť dôvody zmazania',
-'delete-toobig'               => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
-'delete-warning-toobig'       => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
-'rollback'                    => 'Rollback úprav',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
-'rollbackfailed'              => 'Rollback neúspešný',
-'cantrollback'                => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
-'alreadyrolled'               => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]] | [[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
+'delete-edit-reasonlist' => 'Upraviť dôvody zmazania',
+'delete-toobig'          => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Mazanie takýchto stránok bolo obmedzené, aby sa zabránilo náhodnému poškodeniu {{GRAMMAR:genitív|{{SITENAME}}}}.',
+'delete-warning-toobig'  => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
+
+# Rollback
+'rollback'         => 'Rollback úprav',
+'rollback_short'   => 'Rollback',
+'rollbacklink'     => 'rollback',
+'rollbackfailed'   => 'Rollback neúspešný',
+'cantrollback'     => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
+'alreadyrolled'    => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]] | [[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Komentár k úprave bol: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
-'sessionfailure'              => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
+'editcomment'      => 'Komentár k úprave bol: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
+'sessionfailure'   => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
 Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a skúste to znova.',
+
+# Protect
 'protectlogpage'              => 'Záznam zamknutí',
 'protectlogtext'              => 'Nižšie je zoznam zamknutí/odomknutí stránok.
 Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných zamknutí]].',

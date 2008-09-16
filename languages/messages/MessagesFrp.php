@@ -1349,50 +1349,54 @@ Por modifiar los paramètres de voutra lista de siuvu, visitâd
 Retôrn et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Suprimar una pâge',
-'confirm'                     => 'Confirmar',
-'excontent'                   => 'contegnent « $1 »',
-'excontentauthor'             => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[Special:Contributions/$2|$2]] ».',
-'exbeforeblank'               => 'contegnéve devant blanchiment : « $1 »',
-'exblank'                     => 'pâge voueda',
-'delete-confirm'              => 'Suprimar « $1 »',
-'delete-legend'               => 'Suprèssion',
-'historywarning'              => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
-'confirmdeletetext'           => 'Vos éte prèst a suprimar por de bon de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
-'actioncomplete'              => 'Accion fêta',
-'deletedtext'                 => '« <nowiki>$1</nowiki> » at étâ suprimâ.
+# Delete
+'deletepage'             => 'Suprimar una pâge',
+'confirm'                => 'Confirmar',
+'excontent'              => 'contegnent « $1 »',
+'excontentauthor'        => 'lo contegnu ére : « $1 » et lo solèt contributor nen ére « [[Special:Contributions/$2|$2]] ».',
+'exbeforeblank'          => 'contegnéve devant blanchiment : « $1 »',
+'exblank'                => 'pâge voueda',
+'delete-confirm'         => 'Suprimar « $1 »',
+'delete-legend'          => 'Suprèssion',
+'historywarning'         => 'Atencion : la pâge que vos éte prèst a suprimar at un historico :',
+'confirmdeletetext'      => 'Vos éte prèst a suprimar por de bon de la bâsa de balyês una pâge ou una émâge, et pués totes ses vèrsions prècèdentes. Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].',
+'actioncomplete'         => 'Accion fêta',
+'deletedtext'            => '« <nowiki>$1</nowiki> » at étâ suprimâ.
 Vêde l’$2 por una lista de les novèles suprèssions.',
-'deletedarticle'              => 'at èfaciê « [[$1]] »',
-'dellogpage'                  => 'Historico de les suprèssions',
-'dellogpagetext'              => 'Vê-que la lista de les novèles suprèssions.
+'deletedarticle'         => 'at èfaciê « [[$1]] »',
+'dellogpage'             => 'Historico de les suprèssions',
+'dellogpagetext'         => 'Vê-que la lista de les novèles suprèssions.
 L’hora endicâ est cela du sèrvior (UTC).',
-'deletionlog'                 => 'historico des èfacements',
-'reverted'                    => 'Rètablissement de la vèrsion prècèdenta',
-'deletecomment'               => 'Rêson de la suprèssion :',
-'deleteotherreason'           => 'Rêson difèrenta ou suplèmentèra :',
-'deletereasonotherlist'       => 'Ôtra rêson',
-'deletereason-dropdown'       => '*Rêsons de suprèssion les ples corentes
+'deletionlog'            => 'historico des èfacements',
+'reverted'               => 'Rètablissement de la vèrsion prècèdenta',
+'deletecomment'          => 'Rêson de la suprèssion :',
+'deleteotherreason'      => 'Rêson difèrenta ou suplèmentèra :',
+'deletereasonotherlist'  => 'Ôtra rêson',
+'deletereason-dropdown'  => '*Rêsons de suprèssion les ples corentes
 ** Demanda de l’ôtor
 ** Violacion des drêts d’ôtor
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Modifie les rêsons de la suprèssion',
-'delete-toobig'               => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprèssion de tâles pâges at étâ limitâ por èvitar des pèrturbacions emprèvues de {{SITENAME}}.',
-'delete-warning-toobig'       => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprimar pôt troblar lo fonccionement de la bâsa de balyês de {{SITENAME}}. A fâre avouéc prudence.',
-'rollback'                    => 'rèvocar modificacions',
-'rollback_short'              => 'Rèvocar',
-'rollbacklink'                => 'rèvocar',
-'rollbackfailed'              => 'La rèvocacion at pas reussia',
-'cantrollback'                => 'Empossiblo de rèvocar : l’ôtor est la solèta pèrsona a avêr fêt des modificacions sur ceta pâge.',
-'alreadyrolled'               => 'Empossiblo de rèvocar la dèrriére modificacion de l’articllo « [[$1]] » fêta per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quârqu’un d’ôtro at ja modifiâ ou rèvocâ l’articllo.
+'delete-edit-reasonlist' => 'Modifie les rêsons de la suprèssion',
+'delete-toobig'          => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprèssion de tâles pâges at étâ limitâ por èvitar des pèrturbacions emprèvues de {{SITENAME}}.',
+'delete-warning-toobig'  => 'Ceta pâge dispôse d’un historico important, dèpassent $1 vèrsions. La suprimar pôt troblar lo fonccionement de la bâsa de balyês de {{SITENAME}}. A fâre avouéc prudence.',
+
+# Rollback
+'rollback'         => 'rèvocar modificacions',
+'rollback_short'   => 'Rèvocar',
+'rollbacklink'     => 'rèvocar',
+'rollbackfailed'   => 'La rèvocacion at pas reussia',
+'cantrollback'     => 'Empossiblo de rèvocar : l’ôtor est la solèta pèrsona a avêr fêt des modificacions sur ceta pâge.',
+'alreadyrolled'    => 'Empossiblo de rèvocar la dèrriére modificacion de l’articllo « [[$1]] » fêta per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quârqu’un d’ôtro at ja modifiâ ou rèvocâ l’articllo.
 
 La dèrriére modificacion at étâ fêta per [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'                 => 'Lo rèsumâ de la modificacion ére : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
-'sessionfailure'              => 'Voutra sèssion de conèccion semble avêr des problèmos ;
+'editcomment'      => 'Lo rèsumâ de la modificacion ére : <i>« $1 »</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Rèvocacion de les modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) (retôrn a la vèrsion prècèdenta de [[User:$1|$1]])', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Rèvocacion de les modificacions de $1 ; retôrn a la vèrsion de $2.',
+'sessionfailure'   => 'Voutra sèssion de conèccion semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.
 Clicâd dessus « Prècèdent » et rechargiéd la pâge de yô que vos vegnéd, et pués tornâd èprovar.',
+
+# Protect
 'protectlogpage'              => 'Historico de les protèccions',
 'protectlogtext'              => 'Vêde les [[Special:ProtectedPages|dirèctives]] por més d’enformacion.',
 'protectedarticle'            => 'at protègiê « [[$1]] »',

@@ -1797,54 +1797,58 @@ $NEWPAGE
 Зворотний зв\'язок та допомога:
 {{fullurl:{{ns:help}}:Зміст}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Вилучити сторінку',
-'confirm'                     => 'Підтвердження',
-'excontent'                   => 'зміст: «$1»',
-'excontentauthor'             => 'зміст був: «$1» (єдиним автором був [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => 'зміст до очистки: «$1»',
-'exblank'                     => 'стаття була порожньою',
-'delete-confirm'              => 'Вилучення «$1»',
-'delete-legend'               => 'Вилучення',
-'historywarning'              => 'Попередження: сторінка, яку ви збираєтеся вилучити, має історію редагувань:',
-'confirmdeletetext'           => 'Ви збираєтесь вилучити сторінку і всі її журнали редагувань з бази даних.
+# Delete
+'deletepage'             => 'Вилучити сторінку',
+'confirm'                => 'Підтвердження',
+'excontent'              => 'зміст: «$1»',
+'excontentauthor'        => 'зміст був: «$1» (єдиним автором був [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => 'зміст до очистки: «$1»',
+'exblank'                => 'стаття була порожньою',
+'delete-confirm'         => 'Вилучення «$1»',
+'delete-legend'          => 'Вилучення',
+'historywarning'         => 'Попередження: сторінка, яку ви збираєтеся вилучити, має історію редагувань:',
+'confirmdeletetext'      => 'Ви збираєтесь вилучити сторінку і всі її журнали редагувань з бази даних.
 Будь ласка, підтвердіть, що ви бажаєте зробити це, повністю розумієте наслідки і що робите це у відповідності з [[{{MediaWiki:Policy-url}}|правилами]].',
-'actioncomplete'              => 'Дію виконано',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" було вилучено.
+'actioncomplete'         => 'Дію виконано',
+'deletedtext'            => '"<nowiki>$1</nowiki>" було вилучено.
 Див. $2 для перегляду списку останніх вилучень.',
-'deletedarticle'              => 'вилучив «[[$1]]»',
-'suppressedarticle'           => 'прихована «[[$1]]»',
-'dellogpage'                  => 'Журнал вилучень',
-'dellogpagetext'              => 'Нижче наведено список останніх вилучень.',
-'deletionlog'                 => 'журнал вилучень',
-'reverted'                    => 'Відновлено зі старої версії',
-'deletecomment'               => 'Причина вилучення',
-'deleteotherreason'           => 'Інша/додаткова причина:',
-'deletereasonotherlist'       => 'Інша причина',
-'deletereason-dropdown'       => '* Типові причини вилучення
+'deletedarticle'         => 'вилучив «[[$1]]»',
+'suppressedarticle'      => 'прихована «[[$1]]»',
+'dellogpage'             => 'Журнал вилучень',
+'dellogpagetext'         => 'Нижче наведено список останніх вилучень.',
+'deletionlog'            => 'журнал вилучень',
+'reverted'               => 'Відновлено зі старої версії',
+'deletecomment'          => 'Причина вилучення',
+'deleteotherreason'      => 'Інша/додаткова причина:',
+'deletereasonotherlist'  => 'Інша причина',
+'deletereason-dropdown'  => '* Типові причини вилучення
 ** вандалізм
 ** за запитом автора
 ** порушення авторських прав',
-'delete-edit-reasonlist'      => 'Редагувати причини вилучення',
-'delete-toobig'               => 'У цієї сторінки дуже довга історія редагувань, більше $1 {{PLURAL:$1|версії|версій|версій}}.
+'delete-edit-reasonlist' => 'Редагувати причини вилучення',
+'delete-toobig'          => 'У цієї сторінки дуже довга історія редагувань, більше $1 {{PLURAL:$1|версії|версій|версій}}.
 Вилучення таких сторінок було заборонене з метою уникнення порушень у роботі сайту {{SITENAME}}.',
-'delete-warning-toobig'       => 'У цієї сторінки дуже довга історія редагувань, більше $1 {{PLURAL:$1|версії|версій|версій}}.
+'delete-warning-toobig'  => 'У цієї сторінки дуже довга історія редагувань, більше $1 {{PLURAL:$1|версії|версій|версій}}.
 Її вилучення може призвести до порушень у роботі бази даних сайту {{SITENAME}};
 дійте обережно.',
-'rollback'                    => 'Відкинути редагування',
-'rollback_short'              => 'Відкинути',
-'rollbacklink'                => 'відкинути',
-'rollbackfailed'              => 'Відкинути зміни не вдалося',
-'cantrollback'                => 'Неможливо відкинути редагування, останній хто редагував є єдиним автором цієї статті.',
-'alreadyrolled'               => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]] | [[Special:Contributions/$2|{{int:contribslink}}]]); хтось інший уже змінив чи відкинув редагування цієї статті.
+
+# Rollback
+'rollback'         => 'Відкинути редагування',
+'rollback_short'   => 'Відкинути',
+'rollbacklink'     => 'відкинути',
+'rollbackfailed'   => 'Відкинути зміни не вдалося',
+'cantrollback'     => 'Неможливо відкинути редагування, останній хто редагував є єдиним автором цієї статті.',
+'alreadyrolled'    => 'Неможливо відкинути останні редагування [[:$1]], зроблені [[User:$2|$2]] ([[User talk:$2|обговорення]] | [[Special:Contributions/$2|{{int:contribslink}}]]); хтось інший уже змінив чи відкинув редагування цієї статті.
 
 Останні редагування зробив [[User:$3|$3]] ([[User talk:$3|обговорення]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Редагування прокоментовано так: <em>«$1»</em>.', # only shown if there is an edit comment
-'revertpage'                  => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Відкинуті редагування користувача $1; повернення до версії користувача $2.',
-'sessionfailure'              => 'Здається, виникли проблеми з поточним сеансом роботи;
+'editcomment'      => 'Редагування прокоментовано так: <em>«$1»</em>.', # only shown if there is an edit comment
+'revertpage'       => 'Редагування користувача [[Special:Contributions/$2|$2]] ([[User talk:$2|обговорення]]) відкинуті до версії користувача [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Відкинуті редагування користувача $1; повернення до версії користувача $2.',
+'sessionfailure'   => 'Здається, виникли проблеми з поточним сеансом роботи;
 ця дія була скасована з метою попередити «захоплення сеансу».
 Будь ласка, натисніть кнопку «Назад» і перезавантажте сторінку, з якої ви прийшли.',
+
+# Protect
 'protectlogpage'              => 'Журнал захисту',
 'protectlogtext'              => 'Нижче наведено список установлень і знять захисту зі сторінки.
 Ви також можете переглянути [[Special:ProtectedPages|список захищених сторінок]].',

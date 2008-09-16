@@ -1640,48 +1640,52 @@ Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
 Wospjetne prašenja a dalša pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Stronu wušmórnyć',
-'confirm'                     => 'Wobkrućić',
-'excontent'                   => "wobsah běše: '$1'",
-'excontentauthor'             => "wobsah bě: '$1' (a jenički wobdźěłowar bě '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "wobsah do wuprózdnjenja běše: '$1'",
-'exblank'                     => 'strona běše prózdna',
-'delete-confirm'              => '„$1“ wušmórnyć',
-'delete-legend'               => 'Wušmórnyć',
-'historywarning'              => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
-'confirmdeletetext'           => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
+# Delete
+'deletepage'             => 'Stronu wušmórnyć',
+'confirm'                => 'Wobkrućić',
+'excontent'              => "wobsah běše: '$1'",
+'excontentauthor'        => "wobsah bě: '$1' (a jenički wobdźěłowar bě '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "wobsah do wuprózdnjenja běše: '$1'",
+'exblank'                => 'strona běše prózdna',
+'delete-confirm'         => '„$1“ wušmórnyć',
+'delete-legend'          => 'Wušmórnyć',
+'historywarning'         => 'KEDŹBU: Strona, kotruž chceš wušmórnyć, ma stawizny:',
+'confirmdeletetext'      => 'Sy so rozsudźił stronu ze jeje stawiznami wušmórnić.
 Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam tutoho wikija]] činiš.',
-'actioncomplete'              => 'Dokónčene',
-'deletedtext'                 => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
-'deletedarticle'              => 'je stronu [[$1]] wušmórnył.',
-'suppressedarticle'           => '"[[$1]]" potłóčeny',
-'dellogpage'                  => 'Protokol wušmórnjenjow',
-'dellogpagetext'              => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
-'deletionlog'                 => 'Protokol wušmórnjenjow',
-'reverted'                    => 'Na staršu wersiju cofnjene',
-'deletecomment'               => 'Přičina wušmórnjenja:',
-'deleteotherreason'           => 'Druha/přidatna přičina:',
-'deletereasonotherlist'       => 'Druha přičina',
-'deletereason-dropdown'       => '*Zwučene přičiny za wušmórnjenje
+'actioncomplete'         => 'Dokónčene',
+'deletedtext'            => 'Strona „<nowiki>$1</nowiki>” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
+'deletedarticle'         => 'je stronu [[$1]] wušmórnył.',
+'suppressedarticle'      => '"[[$1]]" potłóčeny',
+'dellogpage'             => 'Protokol wušmórnjenjow',
+'dellogpagetext'         => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
+'deletionlog'            => 'Protokol wušmórnjenjow',
+'reverted'               => 'Na staršu wersiju cofnjene',
+'deletecomment'          => 'Přičina wušmórnjenja:',
+'deleteotherreason'      => 'Druha/přidatna přičina:',
+'deletereasonotherlist'  => 'Druha přičina',
+'deletereason-dropdown'  => '*Zwučene přičiny za wušmórnjenje
 ** Požadanje awtora
 ** Zranjenje copyrighta
 ** Wandalizm',
-'delete-edit-reasonlist'      => 'Přičiny za wušmórnjenje wobdźěłać',
-'delete-toobig'               => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje tajkich stronow bu wobmjezowane, zo by připadne přetorhnjenje {{SITENAME}} wobešło.',
-'delete-warning-toobig'       => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje móže operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
-'rollback'                    => 'Změny cofnyć',
-'rollback_short'              => 'Cofnyć',
-'rollbacklink'                => 'Cofnyć',
-'rollbackfailed'              => 'Cofnjenje njeporadźiło',
-'cantrollback'                => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
-'alreadyrolled'               => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
+'delete-edit-reasonlist' => 'Přičiny za wušmórnjenje wobdźěłać',
+'delete-toobig'          => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje tajkich stronow bu wobmjezowane, zo by připadne přetorhnjenje {{SITENAME}} wobešło.',
+'delete-warning-toobig'  => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje móže operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
+
+# Rollback
+'rollback'         => 'Změny cofnyć',
+'rollback_short'   => 'Cofnyć',
+'rollbacklink'     => 'Cofnyć',
+'rollbackfailed'   => 'Cofnjenje njeporadźiło',
+'cantrollback'     => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
+'alreadyrolled'    => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
 
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Komentar wobdźěłanja běše: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
-'sessionfailure'              => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
+'editcomment'      => 'Komentar wobdźěłanja běše: „<i>$1</i>”.', # only shown if there is an edit comment
+'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
+'sessionfailure'   => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
+
+# Protect
 'protectlogpage'              => 'Protokol škita',
 'protectlogtext'              => 'To je protokol škitanych stronow a zběhnjenja škita.
 Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych stron.',

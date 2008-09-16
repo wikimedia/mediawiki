@@ -259,7 +259,7 @@ $messages = array(
 'changed' => 'өзгөртүлдү',
 'created' => 'түзүлдү',
 
-# Delete/protect/revert
+# Delete
 'deletepage'     => 'Баракты өчүрүп кой',
 'confirm'        => 'Ырастоо',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',

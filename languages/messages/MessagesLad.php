@@ -306,7 +306,7 @@ $messages = array(
 'watching'   => 'Vigilando...',
 'unwatching' => 'Dexando de vigilar...',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'Aksion kompleta',
 
 # Namespace form on various pages

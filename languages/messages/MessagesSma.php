@@ -568,18 +568,22 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'enotif_impersonal_salutation' => '{{SITENAME}} nuhtjien',
 'created'                      => 'skaepede',
 
-# Delete/protect/revert
-'deletepage'                  => 'Tjåegkedh bielie',
-'historywarning'              => 'Vaaroehtidh: Bielie datne gïehtele ahte sihkut åtna histovrije:',
-'actioncomplete'              => 'Deahpadimmie voerkes',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
+# Delete
+'deletepage'            => 'Tjåegkedh bielie',
+'historywarning'        => 'Vaaroehtidh: Bielie datne gïehtele ahte sihkut åtna histovrije:',
+'actioncomplete'        => 'Deahpadimmie voerkes',
+'deletedtext'           => '"<nowiki>$1</nowiki>" lea sihkojuvvon.
 Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
-'deletedarticle'              => 'sihkoj "[[$1]]"',
-'dellogpage'                  => 'Sihkkun logge',
-'deletecomment'               => 'Gaavhtan ihke sihkkuma',
-'deleteotherreason'           => 'Jeatjebh/ehkstre gaavhtan:',
-'deletereasonotherlist'       => 'Jeatjebh gaavhtan',
-'rollbacklink'                => 'jurrelde bååstede',
+'deletedarticle'        => 'sihkoj "[[$1]]"',
+'dellogpage'            => 'Sihkkun logge',
+'deletecomment'         => 'Gaavhtan ihke sihkkuma',
+'deleteotherreason'     => 'Jeatjebh/ehkstre gaavhtan:',
+'deletereasonotherlist' => 'Jeatjebh gaavhtan',
+
+# Rollback
+'rollbacklink' => 'jurrelde bååstede',
+
+# Protect
 'protectlogpage'              => 'Vaarjelidh logge',
 'protect-legend'              => 'Skylledh vaarjelidh',
 'protectcomment'              => 'Lahtestimmie:',

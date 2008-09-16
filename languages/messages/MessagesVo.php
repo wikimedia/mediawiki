@@ -1461,49 +1461,53 @@ Ad votükön parametami galädaliseda olik, loglös
 Küpets e yuf pluik:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Moükolöd padi',
-'confirm'                     => 'Fümedolös',
-'excontent'                   => "ninäd äbinon: '$1'",
-'excontentauthor'             => "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "ninäd bü vagükam äbinon: '$1'",
-'exblank'                     => 'pad ävagon',
-'delete-confirm'              => 'Moükön padi: "$1"',
-'delete-legend'               => 'Moükön',
-'historywarning'              => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
-'confirmdeletetext'           => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Peledunon',
-'deletedtext'                 => 'Pad: "<nowiki>$1</nowiki>" pemoükon;
+# Delete
+'deletepage'             => 'Moükolöd padi',
+'confirm'                => 'Fümedolös',
+'excontent'              => "ninäd äbinon: '$1'",
+'excontentauthor'        => "ninäd äbinon: '$1' (e keblünan teik äbinon '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "ninäd bü vagükam äbinon: '$1'",
+'exblank'                => 'pad ävagon',
+'delete-confirm'         => 'Moükön padi: "$1"',
+'delete-legend'          => 'Moükön',
+'historywarning'         => 'Nuned: pad, keli vilol moükön, labon jenotemi:',
+'confirmdeletetext'      => 'Primikol ad moükön laidüpiko padi u magodi sa jenotem valik ona. Fümedolös, das desinol ad dunön atosi, das suemol sekis, e das dunol atosi bai [[{{MediaWiki:Policy-url}}]].',
+'actioncomplete'         => 'Peledunon',
+'deletedtext'            => 'Pad: "<nowiki>$1</nowiki>" pemoükon;
 $2 jonon moükamis nulik.',
-'deletedarticle'              => 'Pad: "[[$1]]" pemoükon',
-'suppressedarticle'           => 'logov pada: „[[$1]]“ pevotükon',
-'dellogpage'                  => 'Jenotalised moükamas',
-'dellogpagetext'              => 'Dono binon lised moükamas nulikün.',
-'deletionlog'                 => 'jenotalised moükamas',
-'reverted'                    => 'Pegeükon ad revid büik',
-'deletecomment'               => 'Kod moükama',
-'deleteotherreason'           => 'Kod votik:',
-'deletereasonotherlist'       => 'Kod votik',
-'deletereason-dropdown'       => '* Kods kösömik moükama
+'deletedarticle'         => 'Pad: "[[$1]]" pemoükon',
+'suppressedarticle'      => 'logov pada: „[[$1]]“ pevotükon',
+'dellogpage'             => 'Jenotalised moükamas',
+'dellogpagetext'         => 'Dono binon lised moükamas nulikün.',
+'deletionlog'            => 'jenotalised moükamas',
+'reverted'               => 'Pegeükon ad revid büik',
+'deletecomment'          => 'Kod moükama',
+'deleteotherreason'      => 'Kod votik:',
+'deletereasonotherlist'  => 'Kod votik',
+'deletereason-dropdown'  => '* Kods kösömik moükama
 ** Beg lautana
 ** Kopiedagitäts
 ** Vandalim',
-'delete-edit-reasonlist'      => 'Redakön kodis moükama',
-'delete-toobig'               => 'Pad at labon redakamajenotemi lunik ({{PLURAL:$1|revid|revids}} plu $1).
+'delete-edit-reasonlist' => 'Redakön kodis moükama',
+'delete-toobig'          => 'Pad at labon redakamajenotemi lunik ({{PLURAL:$1|revid|revids}} plu $1).
 Moükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.',
-'delete-warning-toobig'       => 'Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.
+'delete-warning-toobig'  => 'Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.
 Prudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.',
-'rollback'                    => 'Sädunön redakamis',
-'rollback_short'              => 'Sädunön vali',
-'rollbacklink'                => 'sädunön vali',
-'rollbackfailed'              => 'Sädunam no eplöpon',
-'cantrollback'                => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
-'alreadyrolled'               => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]); ek ya eredakon ud esädunon padi at.
+
+# Rollback
+'rollback'         => 'Sädunön redakamis',
+'rollback_short'   => 'Sädunön vali',
+'rollbacklink'     => 'sädunön vali',
+'rollbackfailed'   => 'Sädunam no eplöpon',
+'cantrollback'     => 'Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.',
+'alreadyrolled'    => 'No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]); ek ya eredakon ud esädunon padi at.
 
 Redakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]).',
-'editcomment'                 => 'Redakamaküpet äbinon: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
+'editcomment'      => 'Redakamaküpet äbinon: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Redakams ela [[Special:Contributions/$2|$2]] ([[User talk:$2|Bespik]]) pegeükons; pad labon nu fomami ma redakam lätik ela [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Redakams gebana: $1 pesädunons; pad pevotükon ad fomam lätik fa geban: $2.',
+
+# Protect
 'protectlogpage'              => 'Jenotalised jelodamas',
 'protectlogtext'              => 'Is palisedons pads pelökofärmüköl e pemaifüköls.
 Logolös [[Special:ProtectedPages|lisedi padas pejelöl]], kö pajonons padijelams anu lonöföls.',

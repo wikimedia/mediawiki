@@ -1679,49 +1679,53 @@ wiki: $PAGEEDITOR_WIKI
 回饋及更多幫助：
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => '刪除頁面',
-'confirm'                     => '確認',
-'excontent'                   => "內容係：'$1'",
-'excontentauthor'             => "內容係：'$1' (而且唯一嘅貢獻者係'[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "喺清空之前嘅內容係：'$1'",
-'exblank'                     => '頁面之前係空嘅',
-'delete-confirm'              => '刪除"$1"',
-'delete-legend'               => '刪除',
-'historywarning'              => '警告：你要刪除嘅頁面有歷史版本：',
-'confirmdeletetext'           => '你準備刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
+# Delete
+'deletepage'             => '刪除頁面',
+'confirm'                => '確認',
+'excontent'              => "內容係：'$1'",
+'excontentauthor'        => "內容係：'$1' (而且唯一嘅貢獻者係'[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "喺清空之前嘅內容係：'$1'",
+'exblank'                => '頁面之前係空嘅',
+'delete-confirm'         => '刪除"$1"',
+'delete-legend'          => '刪除',
+'historywarning'         => '警告：你要刪除嘅頁面有歷史版本：',
+'confirmdeletetext'      => '你準備刪除一個頁面或者圖像，包括佢嘅所有歷史版本。
 請確認你打算噉做，而且你知道後果係點，加上確認你噉做冇違反到[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'              => '操作完成',
-'deletedtext'                 => '"<nowiki>$1</nowiki>"已經刪除。最近嘅刪除記錄請睇$2。',
-'deletedarticle'              => '已經刪除"[[$1]]"',
-'suppressedarticle'           => '已經廢止"[[$1]]"',
-'dellogpage'                  => '刪除日誌',
-'dellogpagetext'              => '以下係最近嘅刪除清單。',
-'deletionlog'                 => '刪除日誌',
-'reverted'                    => '恢復到先前嘅修訂',
-'deletecomment'               => '刪除原因:',
-'deleteotherreason'           => '其它／附加嘅原因:',
-'deletereasonotherlist'       => '其它原因',
-'deletereason-dropdown'       => '
+'actioncomplete'         => '操作完成',
+'deletedtext'            => '"<nowiki>$1</nowiki>"已經刪除。最近嘅刪除記錄請睇$2。',
+'deletedarticle'         => '已經刪除"[[$1]]"',
+'suppressedarticle'      => '已經廢止"[[$1]]"',
+'dellogpage'             => '刪除日誌',
+'dellogpagetext'         => '以下係最近嘅刪除清單。',
+'deletionlog'            => '刪除日誌',
+'reverted'               => '恢復到先前嘅修訂',
+'deletecomment'          => '刪除原因:',
+'deleteotherreason'      => '其它／附加嘅原因:',
+'deletereasonotherlist'  => '其它原因',
+'deletereason-dropdown'  => '
 *常用刪除原因
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
-'delete-edit-reasonlist'      => '編輯刪除原因',
-'delete-toobig'               => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除呢類版嘅動作已經限制咗，以防止響{{SITENAME}}嘅意外擾亂。',
-'delete-warning-toobig'       => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除佢可能會擾亂{{SITENAME}}嘅資料庫操作；響繼續嗰陣請小心。',
-'rollback'                    => '反轉修改',
-'rollback_short'              => '反轉',
-'rollbacklink'                => '反轉',
-'rollbackfailed'              => '反轉唔到',
-'cantrollback'                => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'               => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]] | [[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
+'delete-edit-reasonlist' => '編輯刪除原因',
+'delete-toobig'          => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除呢類版嘅動作已經限制咗，以防止響{{SITENAME}}嘅意外擾亂。',
+'delete-warning-toobig'  => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除佢可能會擾亂{{SITENAME}}嘅資料庫操作；響繼續嗰陣請小心。',
+
+# Rollback
+'rollback'         => '反轉修改',
+'rollback_short'   => '反轉',
+'rollbacklink'     => '反轉',
+'rollbackfailed'   => '反轉唔到',
+'cantrollback'     => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
+'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]] | [[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]] | [[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
-'editcomment'                 => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
-'revertpage'                  => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
-'sessionfailure'              => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+'editcomment'      => "編輯摘要係：\"''\$1''\"。", # only shown if there is an edit comment
+'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後版本。', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後版本。',
+'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+
+# Protect
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面係一個保護同埋解除保護頁面嘅一覽表。睇吓[[Special:ProtectedPages|保護頁面一覽]]去拎現時進行緊嘅頁面保護一覽。',
 'protectedarticle'            => '已經保護 "[[$1]]"',

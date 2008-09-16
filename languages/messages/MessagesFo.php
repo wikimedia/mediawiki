@@ -833,29 +833,33 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'enotif_impersonal_salutation' => '{{SITENAME}}brúkari',
 'created'                      => 'stovnað',
 
-# Delete/protect/revert
-'deletepage'          => 'Strika síðu',
-'confirm'             => 'Vátta',
-'excontent'           => "innihald var: '$1'",
-'excontentauthor'     => "innihaldið var: '$1' (og einasti rithøvundur var '[[Special:Contributions/$2|$2]]')",
-'exblank'             => 'síðan var tóm',
-'historywarning'      => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
-'confirmdeletetext'   => 'Tú ert í gongd við endaliga at strika ein a síðu
+# Delete
+'deletepage'        => 'Strika síðu',
+'confirm'           => 'Vátta',
+'excontent'         => "innihald var: '$1'",
+'excontentauthor'   => "innihaldið var: '$1' (og einasti rithøvundur var '[[Special:Contributions/$2|$2]]')",
+'exblank'           => 'síðan var tóm',
+'historywarning'    => 'Ávaring: Síðan, ið tú ert í gongd við at strika, hevur eina søgu:',
+'confirmdeletetext' => 'Tú ert í gongd við endaliga at strika ein a síðu
 ella mynd saman við allari søgu úr dátugrunninum.
 Vinarliga vátta at tú ætlar at gera hetta, at tú skilur
 avleiðingarnar og at tú gert tað í tráð við
 [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'      => 'Verkið er fullgjørt',
-'deletedtext'         => '"<nowiki>$1</nowiki>" er nú strikað.
+'actioncomplete'    => 'Verkið er fullgjørt',
+'deletedtext'       => '"<nowiki>$1</nowiki>" er nú strikað.
 Sí $2 fyri fulla skráseting av strikingum.',
-'deletedarticle'      => 'strikaði "[[$1]]"',
-'dellogpage'          => 'Striku logg',
-'deletionlog'         => 'striku logg',
-'deletecomment'       => 'Orsøk til striking:',
-'rollback'            => 'Rulla broytingar aftur',
-'rollback_short'      => 'Rulla aftur',
-'rollbacklink'        => 'afturrulling',
-'rollbackfailed'      => 'Afturrulling miseydnað',
+'deletedarticle'    => 'strikaði "[[$1]]"',
+'dellogpage'        => 'Striku logg',
+'deletionlog'       => 'striku logg',
+'deletecomment'     => 'Orsøk til striking:',
+
+# Rollback
+'rollback'       => 'Rulla broytingar aftur',
+'rollback_short' => 'Rulla aftur',
+'rollbacklink'   => 'afturrulling',
+'rollbackfailed' => 'Afturrulling miseydnað',
+
+# Protect
 'protectlogpage'      => 'Friðingarbók',
 'protectedarticle'    => 'friðaði "[[$1]]"',
 'unprotectedarticle'  => 'ófriðaði "[[$1]]"',

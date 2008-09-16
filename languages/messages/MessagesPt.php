@@ -1728,55 +1728,59 @@ Para alterar as suas preferências da lista de vigiados, visite
 Contacto e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Eliminar página',
-'confirm'                     => 'Confirmar',
-'excontent'                   => "o conteúdo era: '$1'",
-'excontentauthor'             => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "o conteúdo antes de esvaziar era: '$1'",
-'exblank'                     => 'página esvaziada',
-'delete-confirm'              => 'Eliminar "$1"',
-'delete-legend'               => 'Eliminar',
-'historywarning'              => 'Aviso: A página que está prestes a eliminar possui um histórico:',
-'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
+# Delete
+'deletepage'             => 'Eliminar página',
+'confirm'                => 'Confirmar',
+'excontent'              => "o conteúdo era: '$1'",
+'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
+'exblank'                => 'página esvaziada',
+'delete-confirm'         => 'Eliminar "$1"',
+'delete-legend'          => 'Eliminar',
+'historywarning'         => 'Aviso: A página que está prestes a eliminar possui um histórico:',
+'confirmdeletetext'      => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que encontra-se a fazer isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
-'actioncomplete'              => 'Acção completada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" foi eliminada.
+'actioncomplete'         => 'Acção completada',
+'deletedtext'            => '"<nowiki>$1</nowiki>" foi eliminada.
 Consulte $2 para um registo de eliminações recentes.',
-'deletedarticle'              => 'eliminou "[[$1]]"',
-'suppressedarticle'           => 'suprimiu "[[$1]]"',
-'dellogpage'                  => 'Registo de eliminação',
-'dellogpagetext'              => 'Abaixo uma lista das eliminações mais recentes.',
-'deletionlog'                 => 'registo de eliminação',
-'reverted'                    => 'Revertido para versão mais nova',
-'deletecomment'               => 'Motivo de eliminação',
-'deleteotherreason'           => 'Justificativa adicional:',
-'deletereasonotherlist'       => 'Outro motivo',
-'deletereason-dropdown'       => '* Motivos de eliminação comuns
+'deletedarticle'         => 'eliminou "[[$1]]"',
+'suppressedarticle'      => 'suprimiu "[[$1]]"',
+'dellogpage'             => 'Registo de eliminação',
+'dellogpagetext'         => 'Abaixo uma lista das eliminações mais recentes.',
+'deletionlog'            => 'registo de eliminação',
+'reverted'               => 'Revertido para versão mais nova',
+'deletecomment'          => 'Motivo de eliminação',
+'deleteotherreason'      => 'Justificativa adicional:',
+'deletereasonotherlist'  => 'Outro motivo',
+'deletereason-dropdown'  => '* Motivos de eliminação comuns
 ** Pedido do autor
 ** Violação de direitos de autor
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Editar motivos de eiliminação',
-'delete-toobig'               => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+'delete-edit-reasonlist' => 'Editar motivos de eiliminação',
+'delete-toobig'          => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 A eliminação de tais páginas foi restrita, a fim de se evitarem problemas acidentais em {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
+'delete-warning-toobig'  => 'Esta página possui um longo histórico de edições, com mais de $1 {{PLURAL:$1|edição|edições}}.
 Eliminá-la poderá causar problemas na base de dados de {{SITENAME}};
 prossiga com cuidado.',
-'rollback'                    => 'Reverter edições',
-'rollback_short'              => 'Voltar',
-'rollbacklink'                => 'voltar',
-'rollbackfailed'              => 'A reversão falhou',
-'cantrollback'                => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
-'alreadyrolled'               => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+
+# Rollback
+'rollback'         => 'Reverter edições',
+'rollback_short'   => 'Voltar',
+'rollbacklink'     => 'voltar',
+'rollbackfailed'   => 'A reversão falhou',
+'cantrollback'     => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
+'alreadyrolled'    => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 alguém editou ou já reverteu a página.
 
 A última edição foi de [[User:$3|$3]] ([[User talk:$3|discussão]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'O sumário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
-'sessionfailure'              => 'Foram detectados problemas com a sua sessão;
+'editcomment'      => 'O sumário de edição era: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Foram revertidas as edições de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc]]) para a última versão por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Foram revertidas as edições de $1, com o conteúdo passando a estar como na última edição de $2.',
+'sessionfailure'   => 'Foram detectados problemas com a sua sessão;
 Esta acção foi cancelada como medida de protecção contra a intercepção de sessões.
 Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente novamente.',
+
+# Protect
 'protectlogpage'              => 'Registo de protecção',
 'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
 Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',

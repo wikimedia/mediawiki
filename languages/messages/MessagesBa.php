@@ -275,7 +275,7 @@ $messages = array(
 'enotif_newpagetext' => 'Был яңы бит.',
 'changed'            => 'үҙгәртелгән',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'Ғәмәл үтәлде',
 
 # Namespace form on various pages

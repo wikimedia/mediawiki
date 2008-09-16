@@ -1310,49 +1310,53 @@ To change your watchlist settings, visit
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Busulara',
-'confirm'                     => 'Gruyé',
-'excontent'                   => 'ruldas va « $1 »',
-'excontentauthor'             => "cek tiyir : '$1' (is tanaf webesik tiyir '$2')",
-'exbeforeblank'               => 'Abdi tuvlardara, batu bu ruldayar va : $1',
-'exblank'                     => 'vlardafu bu',
-'delete-confirm'              => 'Sulara va "$1"',
-'delete-legend'               => 'Sulara',
-'historywarning'              => 'Obral : Telu bu rinon sulatanu va izvot digir :',
-'confirmdeletetext'           => 'Rin va bu is varaf izvot fu sulal.
+# Delete
+'deletepage'             => 'Busulara',
+'confirm'                => 'Gruyé',
+'excontent'              => 'ruldas va « $1 »',
+'excontentauthor'        => "cek tiyir : '$1' (is tanaf webesik tiyir '$2')",
+'exbeforeblank'          => 'Abdi tuvlardara, batu bu ruldayar va : $1',
+'exblank'                => 'vlardafu bu',
+'delete-confirm'         => 'Sulara va "$1"',
+'delete-legend'          => 'Sulara',
+'historywarning'         => 'Obral : Telu bu rinon sulatanu va izvot digir :',
+'confirmdeletetext'      => 'Rin va bu is varaf izvot fu sulal.
 Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:Policy-url}}|xoverteem]] askil !',
-'actioncomplete'              => 'Skuyuna sulara',
-'deletedtext'                 => '« <nowiki>$1</nowiki> » tir sulayan.
+'actioncomplete'         => 'Skuyuna sulara',
+'deletedtext'            => '« <nowiki>$1</nowiki> » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
-'deletedarticle'              => 'al sular va « $1 »',
-'suppressedarticle'           => '"[[$1]]" sulayan',
-'dellogpage'                  => 'Izvot va sulareem',
-'dellogpagetext'              => 'Tir tela vexala dem noeltaf sulareem.
+'deletedarticle'         => 'al sular va « $1 »',
+'suppressedarticle'      => '"[[$1]]" sulayan',
+'dellogpage'             => 'Izvot va sulareem',
+'dellogpagetext'         => 'Tir tela vexala dem noeltaf sulareem.
 Bazen bartiv tir tel ke (UTC) zanisiko.',
-'deletionlog'                 => 'izvot va sulareem',
-'reverted'                    => 'Dimplekura va tel abdif siatos',
-'deletecomment'               => 'Sularadanda',
-'deleteotherreason'           => 'Ara ik loplekufa lazava :',
-'deletereasonotherlist'       => 'Ara lazava',
-'deletereason-dropdown'       => '*Giltafa sularalazava
+'deletionlog'            => 'izvot va sulareem',
+'reverted'               => 'Dimplekura va tel abdif siatos',
+'deletecomment'          => 'Sularadanda',
+'deleteotherreason'      => 'Ara ik loplekufa lazava :',
+'deletereasonotherlist'  => 'Ara lazava',
+'deletereason-dropdown'  => '*Giltafa sularalazava
 ** Erura ke sutesik
 ** Aksara va sutesikroka
 ** Apkara',
-'delete-edit-reasonlist'      => 'Betara va sularalazava',
-'delete-toobig'               => 'Batu bu va izvotap (lo $1 {{PLURAL:$1|betara|betara}}) digir. Ta djira va waltafa empara va {{SITENAME}} sulara va manu bu zo irutar.',
-'delete-warning-toobig'       => 'Batu bu va izvotap (lo $1 {{PLURAL:$1|betara|betara}}) digir. Sulara va manu bu va skura ke origak ke {{SITENAME}} rotempar, acum obrason diotel !',
-'rollback'                    => 'nabildara va betareem',
-'rollback_short'              => 'Nabildara',
-'rollbacklink'                => 'nabildara',
-'rollbackfailed'              => 'Rodjeyesa nabildara',
-'cantrollback'                => 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
-'alreadyrolled'               => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.
+'delete-edit-reasonlist' => 'Betara va sularalazava',
+'delete-toobig'          => 'Batu bu va izvotap (lo $1 {{PLURAL:$1|betara|betara}}) digir. Ta djira va waltafa empara va {{SITENAME}} sulara va manu bu zo irutar.',
+'delete-warning-toobig'  => 'Batu bu va izvotap (lo $1 {{PLURAL:$1|betara|betara}}) digir. Sulara va manu bu va skura ke origak ke {{SITENAME}} rotempar, acum obrason diotel !',
+
+# Rollback
+'rollback'         => 'nabildara va betareem',
+'rollback_short'   => 'Nabildara',
+'rollbacklink'     => 'nabildara',
+'rollbackfailed'   => 'Rodjeyesa nabildara',
+'cantrollback'     => 'Impossible de révoquer : dernier auteur est le seul à avoir modifié cet article',
+'alreadyrolled'    => 'Dimplekura va ironokafa betara va "$1" teliz gan [[User:$2|$2]] ([[User talk:$2|Prilara]]) me zo roskur; artan va teliz ixam al betar oke al dimplekur.
 
 Ironokafa betara gan [[User:$3|$3]] ([[User talk:$3|Prilara]]) zo skuyur.',
-'editcomment'                 => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
+'editcomment'      => 'Vildeks va betara tiyir : <i>« $1 »</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Dimplekuyun betakseem ke [[Special:Contributions/$2|$2]] ([[User talk:$2|Prilara]]); dim ironokaf siatos ke [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Dimplekun betaks yo gan $1; dimpira ko ironokaf siatos ke $2.',
+
+# Protect
 'protectlogpage'              => 'Izvot va nendareem',
 'protectlogtext'              => 'Vleveon tir elekan is dimelekayan bueem. Ta vexala dem noelaf skus nendareem, va [[Special:ProtectedPages|nendan bueem]] wil.',
 'protectedarticle'            => 'va « $1 » al nendar',

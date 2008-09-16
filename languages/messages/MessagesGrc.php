@@ -1155,37 +1155,41 @@ $1',
 'enotif_lastdiff'              => 'Ἴδε $1 διὰ τὸ ὀρᾶν τήνδε τὴν ἀλλαγήν.',
 'enotif_anon_editor'           => 'ἀνώνυμος χρώμενος $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Διαγράφειν τὴν δέλτον',
-'confirm'                     => 'Κυροῦν',
-'excontent'                   => "ἡ ὕλη ἦτο: '$1'",
-'excontentauthor'             => "ἡ ὕλη ἦτο: '$1' (καὶ ὁ μόνος ἐρανίζων ἦτο ὁ '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "τὸ περιεχόμενον πρὸ τῆς ἐκκαθαρίσεως ἦτο: '$1'",
-'exblank'                     => 'δέλτος κενὴ ἦν',
-'delete-confirm'              => 'Διαγράφειν "$1"',
-'delete-legend'               => 'Διαγράφειν',
-'historywarning'              => 'Προσοχή: Ἡ δέλτος ἥντινα βούλεσαι διαγράψειν ἔχει ἱστορίαν:',
-'confirmdeletetext'           => 'Πρόκεισαι διαγράψειν ὁριστικῶς ἐκ τῆς βάσεως δεδομένων δέλτον τίνα (ἢ εἰκόνα τινα) μετὰ τῆς ἐῆς ἱστορίας. Παρακαλοῦμεν ὑμᾶς ἵνα ἐπιβεβαιώσητε τὴν θέλησιν ὑμῶν περὶ τοῦ αὐτὸ πράττειν καὶ περὶ τῆς ἀντιλήψεως τῶν συνεπειῶν, και περὶ τοῦ πράττειν ὑμῶν συμφώνως τῶν [[{{MediaWiki:Policy-url}}|κανόνων]].',
-'actioncomplete'              => 'Τέλειον τὸ ποιούμενον',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" διεγράφηκεν.
+# Delete
+'deletepage'             => 'Διαγράφειν τὴν δέλτον',
+'confirm'                => 'Κυροῦν',
+'excontent'              => "ἡ ὕλη ἦτο: '$1'",
+'excontentauthor'        => "ἡ ὕλη ἦτο: '$1' (καὶ ὁ μόνος ἐρανίζων ἦτο ὁ '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "τὸ περιεχόμενον πρὸ τῆς ἐκκαθαρίσεως ἦτο: '$1'",
+'exblank'                => 'δέλτος κενὴ ἦν',
+'delete-confirm'         => 'Διαγράφειν "$1"',
+'delete-legend'          => 'Διαγράφειν',
+'historywarning'         => 'Προσοχή: Ἡ δέλτος ἥντινα βούλεσαι διαγράψειν ἔχει ἱστορίαν:',
+'confirmdeletetext'      => 'Πρόκεισαι διαγράψειν ὁριστικῶς ἐκ τῆς βάσεως δεδομένων δέλτον τίνα (ἢ εἰκόνα τινα) μετὰ τῆς ἐῆς ἱστορίας. Παρακαλοῦμεν ὑμᾶς ἵνα ἐπιβεβαιώσητε τὴν θέλησιν ὑμῶν περὶ τοῦ αὐτὸ πράττειν καὶ περὶ τῆς ἀντιλήψεως τῶν συνεπειῶν, και περὶ τοῦ πράττειν ὑμῶν συμφώνως τῶν [[{{MediaWiki:Policy-url}}|κανόνων]].',
+'actioncomplete'         => 'Τέλειον τὸ ποιούμενον',
+'deletedtext'            => '"<nowiki>$1</nowiki>" διεγράφηκεν.
 Ἰδὲ $2 διὰ τὸ μητρῷον τῶν προσφάτων διαγραφῶν.',
-'deletedarticle'              => 'Ἐσβέσθη ἡ δέλτος "[[$1]]"',
-'suppressedarticle'           => '"[[$1]]" κατεσταλμένον',
-'dellogpage'                  => 'Τὰ ἐσβεσμένα',
-'deletionlog'                 => 'κατάλογος διαγραφῶν',
-'reverted'                    => 'Ἐπαναφορὰ εἰς προτέραν ἔκδοσιν',
-'deletecomment'               => 'Αἰτία τοῦ σβεννύναι:',
-'deleteotherreason'           => 'Αἰτία ἄλλη/πρὀσθετος:',
-'deletereasonotherlist'       => 'Αἰτία ἄλλη',
-'delete-edit-reasonlist'      => 'Μεταγράφειν τὰς αἰτίας διαγραφῆς',
-'rollback'                    => 'Ἀναστρέφειν μεταγραφάς',
-'rollback_short'              => 'Ἀναστροφή',
-'rollbacklink'                => 'ἀναστροφή',
-'rollbackfailed'              => 'Ἀναστροφὴ μὴ ἐπιτυχής',
-'editcomment'                 => 'Τὸ σχόλιον ἑπὶ τῆς μεταγραφῆς ἦν: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Ἀναστρέφειν μεταγραφὰς ὑπὸ $1;
+'deletedarticle'         => 'Ἐσβέσθη ἡ δέλτος "[[$1]]"',
+'suppressedarticle'      => '"[[$1]]" κατεσταλμένον',
+'dellogpage'             => 'Τὰ ἐσβεσμένα',
+'deletionlog'            => 'κατάλογος διαγραφῶν',
+'reverted'               => 'Ἐπαναφορὰ εἰς προτέραν ἔκδοσιν',
+'deletecomment'          => 'Αἰτία τοῦ σβεννύναι:',
+'deleteotherreason'      => 'Αἰτία ἄλλη/πρὀσθετος:',
+'deletereasonotherlist'  => 'Αἰτία ἄλλη',
+'delete-edit-reasonlist' => 'Μεταγράφειν τὰς αἰτίας διαγραφῆς',
+
+# Rollback
+'rollback'         => 'Ἀναστρέφειν μεταγραφάς',
+'rollback_short'   => 'Ἀναστροφή',
+'rollbacklink'     => 'ἀναστροφή',
+'rollbackfailed'   => 'Ἀναστροφὴ μὴ ἐπιτυχής',
+'editcomment'      => 'Τὸ σχόλιον ἑπὶ τῆς μεταγραφῆς ἦν: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Ἐπαναφέρειν μεταγραφὰς ὑπὸ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) εἰς τὴν ἐσχάτην ἔκδοσιν ὑπὸ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Ἀναστρέφειν μεταγραφὰς ὑπὸ $1;
 ἐπαναφορὰ εἰς τὴν προτέραν ἔκδοσιν ὑπὸ $2.',
+
+# Protect
 'protectlogpage'              => 'Κατάλογος προφυλάξεων',
 'protectedarticle'            => '"[[$1]]" πεφυλαγμένον',
 'unprotectedarticle'          => 'ἀπροφύλακτη "[[$1]]"',

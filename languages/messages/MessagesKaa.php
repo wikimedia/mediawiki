@@ -1078,30 +1078,34 @@ Eger siz bul betti baqlaw dizimin'izden o'shirmekshi bolsan'ız bettin' joqarg'�
 'enotif_lastdiff'              => "Usı o'zgeris ushın $1 degendi ko'rin'iz.",
 'enotif_anon_editor'           => 'anonim paydalanıwshı $1',
 
-# Delete/protect/revert
-'deletepage'                  => "Betti o'shir",
-'confirm'                     => 'Tastıyıqlaw',
-'excontent'                   => "bolg'an mag'lıwmat: '$1'",
-'excontentauthor'             => "bolg'an mag'lıwmat: '$1' (tek '[[Special:Contributions/$2|$2]]' u'lesi)",
-'exblank'                     => 'bet bos edi',
-'historywarning'              => "Esletpe: O'shireyin dep atırg'an betin'izdin' tariyxi bar:",
-'confirmdeletetext'           => "Siz bul betti yamasa su'wretti barliq tariyxı menen mag'lıwmatlar bazasınan o'shirejaqsız.
+# Delete
+'deletepage'            => "Betti o'shir",
+'confirm'               => 'Tastıyıqlaw',
+'excontent'             => "bolg'an mag'lıwmat: '$1'",
+'excontentauthor'       => "bolg'an mag'lıwmat: '$1' (tek '[[Special:Contributions/$2|$2]]' u'lesi)",
+'exblank'               => 'bet bos edi',
+'historywarning'        => "Esletpe: O'shireyin dep atırg'an betin'izdin' tariyxi bar:",
+'confirmdeletetext'     => "Siz bul betti yamasa su'wretti barliq tariyxı menen mag'lıwmatlar bazasınan o'shirejaqsız.
 Bunın' aqıbetin tu'singenin'izdi ha'm [[{{MediaWiki:Policy-url}}]] siyasatına ılayıqlı ekenligin tastıyıqlan'.",
-'actioncomplete'              => "Ha'reket tamamlandı",
-'deletedtext'                 => "\"<nowiki>\$1</nowiki>\" o'shirildi.
+'actioncomplete'        => "Ha'reket tamamlandı",
+'deletedtext'           => "\"<nowiki>\$1</nowiki>\" o'shirildi.
 Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
-'deletedarticle'              => '"[[$1]]" o\'shirildi',
-'dellogpage'                  => "O'shiriw jurnalı",
-'dellogpagetext'              => "To'mende en' aqırg'ı o'shirilgenlerdin' dizimi keltirilgen",
-'deletionlog'                 => "o'shiriw jurnalı",
-'deletecomment'               => "O'shiriwdin' sebebi:",
-'deleteotherreason'           => 'Basqa/qosımsha sebep:',
-'deletereasonotherlist'       => 'Basqa sebep',
-'rollback'                    => "O'zgerislerdi biykar etiw",
-'rollback_short'              => 'Biykar etiw',
-'rollbacklink'                => 'qaytarıw',
-'rollbackfailed'              => "Biykar etiw sa'tsiz tamamlandı",
-'editcomment'                 => 'O\'zgertiwdin\' bolg\'an kommentariyi: "<i>$1</i>".', # only shown if there is an edit comment
+'deletedarticle'        => '"[[$1]]" o\'shirildi',
+'dellogpage'            => "O'shiriw jurnalı",
+'dellogpagetext'        => "To'mende en' aqırg'ı o'shirilgenlerdin' dizimi keltirilgen",
+'deletionlog'           => "o'shiriw jurnalı",
+'deletecomment'         => "O'shiriwdin' sebebi:",
+'deleteotherreason'     => 'Basqa/qosımsha sebep:',
+'deletereasonotherlist' => 'Basqa sebep',
+
+# Rollback
+'rollback'       => "O'zgerislerdi biykar etiw",
+'rollback_short' => 'Biykar etiw',
+'rollbacklink'   => 'qaytarıw',
+'rollbackfailed' => "Biykar etiw sa'tsiz tamamlandı",
+'editcomment'    => 'O\'zgertiwdin\' bolg\'an kommentariyi: "<i>$1</i>".', # only shown if there is an edit comment
+
+# Protect
 'protectlogpage'              => "Qorg'aw jurnalı",
 'protectedarticle'            => '"[[$1]]" qorg\'alg\'an',
 'modifiedarticleprotection'   => '"[[$1]]" betinin\' qorg\'aw da\'rejesi ozgertildi',

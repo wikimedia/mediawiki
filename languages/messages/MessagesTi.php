@@ -146,7 +146,7 @@ $messages = array(
 # Watchlist
 'watchlistfor' => "(ን'''$1''')",
 
-# Delete/protect/revert
+# Protect
 'pagesize' => '(ባይታት)',
 
 # Undelete

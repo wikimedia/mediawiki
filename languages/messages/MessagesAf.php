@@ -1429,44 +1429,48 @@ U kan u dophoulys wysig by:
 Terugvoer en verdere bystand:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Skrap bladsy',
-'confirm'                     => 'Bevestig',
-'excontent'                   => "inhoud was: '$1'",
-'excontentauthor'             => "Inhoud was: '$1' (en '[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
-'exbeforeblank'               => "Inhoud voor uitwissing was: '$1'",
-'exblank'                     => 'bladsy was leeg',
-'delete-confirm'              => 'Skrap "$1"',
-'delete-legend'               => 'Skrap',
-'historywarning'              => "Waarskuwing: Die bladsy het 'n geskiedenis:",
-'confirmdeletetext'           => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
+# Delete
+'deletepage'             => 'Skrap bladsy',
+'confirm'                => 'Bevestig',
+'excontent'              => "inhoud was: '$1'",
+'excontentauthor'        => "Inhoud was: '$1' (en '[[Special:Contributions/$2|$2]]' was die enigste bydraer)",
+'exbeforeblank'          => "Inhoud voor uitwissing was: '$1'",
+'exblank'                => 'bladsy was leeg',
+'delete-confirm'         => 'Skrap "$1"',
+'delete-legend'          => 'Skrap',
+'historywarning'         => "Waarskuwing: Die bladsy het 'n geskiedenis:",
+'confirmdeletetext'      => "Jy staan op die punt om 'n bladsy of prent asook al hulle geskiedenis uit die databasis te skrap.
 Bevestig asseblief dat jy dit wil doen, dat jy die gevolge verstaan en dat jy dit doen in ooreenstemming met die [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Aksie uitgevoer',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" is geskrap.
+'actioncomplete'         => 'Aksie uitgevoer',
+'deletedtext'            => '"<nowiki>$1</nowiki>" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
-'deletedarticle'              => '"$1" geskrap',
-'dellogpage'                  => 'Skraplogboek',
-'dellogpagetext'              => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
-'deletionlog'                 => 'skrappingslogboek',
-'reverted'                    => 'Het terug gegaan na vroeëre weergawe',
-'deletecomment'               => 'Rede vir skrapping',
-'deleteotherreason'           => 'Ander/ekstra rede:',
-'deletereasonotherlist'       => 'Andere rede',
-'deletereason-dropdown'       => '*Algemene redes vir verwydering
+'deletedarticle'         => '"$1" geskrap',
+'dellogpage'             => 'Skraplogboek',
+'dellogpagetext'         => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
+'deletionlog'            => 'skrappingslogboek',
+'reverted'               => 'Het terug gegaan na vroeëre weergawe',
+'deletecomment'          => 'Rede vir skrapping',
+'deleteotherreason'      => 'Ander/ekstra rede:',
+'deletereasonotherlist'  => 'Andere rede',
+'deletereason-dropdown'  => '*Algemene redes vir verwydering
 ** Op aanvraag van outeur
 ** Skending van kopieregte
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Wysig skrap redes',
-'delete-toobig'               => "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.
+'delete-edit-reasonlist' => 'Wysig skrap redes',
+'delete-toobig'          => "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.
 Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te voorkom.",
-'rollback'                    => 'Rol veranderinge terug',
-'rollback_short'              => 'Rol terug',
-'rollbacklink'                => 'Rol terug',
-'rollbackfailed'              => 'Terugrol onsuksesvol',
-'cantrollback'                => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
-'editcomment'                 => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
+
+# Rollback
+'rollback'         => 'Rol veranderinge terug',
+'rollback_short'   => 'Rol terug',
+'rollbacklink'     => 'Rol terug',
+'rollbackfailed'   => 'Terugrol onsuksesvol',
+'cantrollback'     => 'Kan nie na verandering terug keer nie; die laaste bydraer is die enigste outer van hierdie bladsy.',
+'editcomment'      => 'Die wysigopsomming was: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Wysigings deur [[Special:Contributions/$2|$2]] teruggerol na laaste weergawe deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Wysigings deur $1 teruggerol; terugverander na laaste weergawe deur $2.',
+
+# Protect
 'protectlogpage'              => 'Beskermlogboek',
 'protectedarticle'            => 'het [[$1]] beskerm',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',

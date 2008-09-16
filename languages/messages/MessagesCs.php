@@ -1860,49 +1860,53 @@ Pro změnu nastavení navštivte
 Rady a kontakt:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Smazat stránku',
-'confirm'                     => 'Potvrdit',
-'excontent'                   => 'obsah byl: „$1“',
-'excontentauthor'             => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Special:Contributions/$2|$2]]“)',
-'exbeforeblank'               => 'obsah před vyprázdněním byl: „$1“',
-'exblank'                     => 'stránka byla prázdná',
-'delete-confirm'              => 'Smazání stránky „$1“',
-'delete-legend'               => 'Smazat',
-'historywarning'              => 'Varování: Stránka, jíž chcete smazat, má historii:',
-'confirmdeletetext'           => 'Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
-'actioncomplete'              => 'Provedeno',
-'deletedtext'                 => 'Stránka nebo soubor „<nowiki>$1</nowiki>“ byla smazána. $2 zaznamenává poslední smazání.',
-'deletedarticle'              => 'maže „$1“',
-'suppressedarticle'           => 'potlačil „[[$1]]“',
-'dellogpage'                  => 'Kniha smazaných stránek',
-'dellogpagetext'              => 'Zde je seznam posledních smazaných stránek.',
-'deletionlog'                 => 'Kniha smazaných stránek',
-'reverted'                    => 'Obnovení předchozí verze',
-'deletecomment'               => 'Důvod smazání:',
-'deleteotherreason'           => 'Jiný či další důvod:',
-'deletereasonotherlist'       => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
-'deletereason-dropdown'       => '*Obvyklé důvody smazání
+# Delete
+'deletepage'             => 'Smazat stránku',
+'confirm'                => 'Potvrdit',
+'excontent'              => 'obsah byl: „$1“',
+'excontentauthor'        => 'obsah byl: „$1“ (a jediným přispěvatelem byl „[[Special:Contributions/$2|$2]]“)',
+'exbeforeblank'          => 'obsah před vyprázdněním byl: „$1“',
+'exblank'                => 'stránka byla prázdná',
+'delete-confirm'         => 'Smazání stránky „$1“',
+'delete-legend'          => 'Smazat',
+'historywarning'         => 'Varování: Stránka, jíž chcete smazat, má historii:',
+'confirmdeletetext'      => 'Chystáte se smazat stránku s celou její historií. Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].',
+'actioncomplete'         => 'Provedeno',
+'deletedtext'            => 'Stránka nebo soubor „<nowiki>$1</nowiki>“ byla smazána. $2 zaznamenává poslední smazání.',
+'deletedarticle'         => 'maže „$1“',
+'suppressedarticle'      => 'potlačil „[[$1]]“',
+'dellogpage'             => 'Kniha smazaných stránek',
+'dellogpagetext'         => 'Zde je seznam posledních smazaných stránek.',
+'deletionlog'            => 'Kniha smazaných stránek',
+'reverted'               => 'Obnovení předchozí verze',
+'deletecomment'          => 'Důvod smazání:',
+'deleteotherreason'      => 'Jiný či další důvod:',
+'deletereasonotherlist'  => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'deletereason-dropdown'  => '*Obvyklé důvody smazání
 ** Na žádost autora
 ** Porušení autorských práv
 ** Vandalismus',
-'delete-edit-reasonlist'      => 'Editovat důvody smazání',
-'delete-toobig'               => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
-'delete-warning-toobig'       => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
-'rollback'                    => 'Vrátit zpět editace',
-'rollback_short'              => 'Vrátit zpět',
-'rollbacklink'                => 'vrácení zpět',
-'rollbackfailed'              => 'Nešlo vrátit zpět',
-'cantrollback'                => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
-'alreadyrolled'               => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]] | [[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
+'delete-edit-reasonlist' => 'Editovat důvody smazání',
+'delete-toobig'          => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek je omezeno, aby se předešlo nechtěnému narušení {{grammar:2sg|{{SITENAME}}}}.',
+'delete-warning-toobig'  => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
+
+# Rollback
+'rollback'         => 'Vrátit zpět editace',
+'rollback_short'   => 'Vrátit zpět',
+'rollbacklink'     => 'vrácení zpět',
+'rollbackfailed'   => 'Nešlo vrátit zpět',
+'cantrollback'     => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
+'alreadyrolled'    => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]] | [[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
 
 Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Shrnutí editace bylo: <i>„$1“</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
-'sessionfailure'              => 'Zřejmě je nějaký problém s vaším přihlášením;
+'editcomment'      => 'Shrnutí editace bylo: <i>„$1“</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
+'sessionfailure'   => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
 Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a zkuste činnost znovu.',
+
+# Protect
 'protectlogpage'              => 'Kniha zamčení',
 'protectlogtext'              => 'Níže je uveden seznam všech zamčení a odemčení stránek.',
 'protectedarticle'            => 'zamyká „[[$1]]“',

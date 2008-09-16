@@ -547,19 +547,23 @@ $messages = array(
 'enotif_newpagetext' => 'આ નવું પાનું છે.',
 'changed'            => 'બદલાયેલું',
 
-# Delete/protect/revert
-'deletepage'                  => 'પાનું હટાવો',
-'confirm'                     => 'ખાતરી કરો',
-'exblank'                     => 'પાનું ખાલી હતું',
-'actioncomplete'              => 'કામ પૂરું થઈ ગયું',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" દૂર કરવામાં આવ્યું છે.
+# Delete
+'deletepage'            => 'પાનું હટાવો',
+'confirm'               => 'ખાતરી કરો',
+'exblank'               => 'પાનું ખાલી હતું',
+'actioncomplete'        => 'કામ પૂરું થઈ ગયું',
+'deletedtext'           => '"<nowiki>$1</nowiki>" દૂર કરવામાં આવ્યું છે.
 તાજેતરમાં દૂર કરેલા લેખોની વિગત માટે $2 જુઓ.',
-'deletedarticle'              => 'હટાવવામાં આવેલા "[[$1]]"',
-'dellogpage'                  => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
-'deletecomment'               => 'હટાવવા માટેનું કારણ:',
-'deleteotherreason'           => 'અન્ય/વધારાનું કારણ:',
-'deletereasonotherlist'       => 'અન્ય કારણ',
-'rollbacklink'                => 'પાછું વાળો',
+'deletedarticle'        => 'હટાવવામાં આવેલા "[[$1]]"',
+'dellogpage'            => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
+'deletecomment'         => 'હટાવવા માટેનું કારણ:',
+'deleteotherreason'     => 'અન્ય/વધારાનું કારણ:',
+'deletereasonotherlist' => 'અન્ય કારણ',
+
+# Rollback
+'rollbacklink' => 'પાછું વાળો',
+
+# Protect
 'protectlogpage'              => 'સુરક્ષા માહિતિ પત્રક',
 'protectcomment'              => 'ટિપ્પણી:',
 'protectexpiry'               => 'સમાપ્તિ:',

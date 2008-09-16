@@ -1225,41 +1225,45 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'enotif_lastdiff'              => 'Vide $1 ad hanc recensionem inspiciendum.',
 'enotif_anon_editor'           => 'usor ignotus $1',
 
-# Delete/protect/revert
-'deletepage'                => 'Delere paginam',
-'confirm'                   => 'Adfirmare',
-'excontent'                 => "contenta erant: '$1'",
-'excontentauthor'           => "contenta erant: '$1' (et contributor unicus erat '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'             => "contenta priusquam pagina facta vacua erant: '$1'",
-'exblank'                   => 'pagina vacua erat',
-'delete-confirm'            => 'Delere "$1"',
-'delete-legend'             => 'Delere',
-'historywarning'            => 'Monitio: Pagina quam delere vis historiam habet:',
-'confirmdeletetext'         => 'Paginam cum tota historia eius delebis.
+# Delete
+'deletepage'             => 'Delere paginam',
+'confirm'                => 'Adfirmare',
+'excontent'              => "contenta erant: '$1'",
+'excontentauthor'        => "contenta erant: '$1' (et contributor unicus erat '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "contenta priusquam pagina facta vacua erant: '$1'",
+'exblank'                => 'pagina vacua erat',
+'delete-confirm'         => 'Delere "$1"',
+'delete-legend'          => 'Delere',
+'historywarning'         => 'Monitio: Pagina quam delere vis historiam habet:',
+'confirmdeletetext'      => 'Paginam cum tota historia eius delebis.
 Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, et actionem tuam [[{{MediaWiki:Policy-url}}|consilio]] congruere.',
-'actioncomplete'            => 'Actum perfectum',
-'deletedtext'               => '"<nowiki>$1</nowiki>" deletum est. Vide $2 pro indice deletionum recentum.',
-'deletedarticle'            => 'delevit "[[$1]]"',
-'dellogpage'                => 'Index deletionum',
-'dellogpagetext'            => 'Subter est index deletionum recentissimarum.',
-'deletionlog'               => 'index deletionum',
-'reverted'                  => 'Reversum ad emendationem proximam',
-'deletecomment'             => 'Causa deletionis:',
-'deleteotherreason'         => 'Causa alia vel explicatio:',
-'deletereasonotherlist'     => 'Causa alia',
-'delete-edit-reasonlist'    => 'Causas deletionum recensere',
-'rollback'                  => 'Reverti mutationes',
-'rollback_short'            => 'Reverti',
-'rollbacklink'              => 'reverti',
-'rollbackfailed'            => 'Reversum defecit',
-'cantrollback'              => 'Haec non potest reverti; conlator proximus solus auctor huius rei est.',
-'alreadyrolled'             => 'Ad mutationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
+'actioncomplete'         => 'Actum perfectum',
+'deletedtext'            => '"<nowiki>$1</nowiki>" deletum est. Vide $2 pro indice deletionum recentum.',
+'deletedarticle'         => 'delevit "[[$1]]"',
+'dellogpage'             => 'Index deletionum',
+'dellogpagetext'         => 'Subter est index deletionum recentissimarum.',
+'deletionlog'            => 'index deletionum',
+'reverted'               => 'Reversum ad emendationem proximam',
+'deletecomment'          => 'Causa deletionis:',
+'deleteotherreason'      => 'Causa alia vel explicatio:',
+'deletereasonotherlist'  => 'Causa alia',
+'delete-edit-reasonlist' => 'Causas deletionum recensere',
+
+# Rollback
+'rollback'         => 'Reverti mutationes',
+'rollback_short'   => 'Reverti',
+'rollbacklink'     => 'reverti',
+'rollbackfailed'   => 'Reversum defecit',
+'cantrollback'     => 'Haec non potest reverti; conlator proximus solus auctor huius rei est.',
+'alreadyrolled'    => 'Ad mutationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
 
 Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
-'editcomment'               => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'          => 'Reverti recensiones ab usore $1
+'editcomment'      => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Reverti recensiones ab usore $1
 ad emendationem proximam ab $2.',
+
+# Protect
 'protectlogpage'            => 'Index protectionum',
 'protectlogtext'            => 'Subter est index protectionum et deprotectionum paginarum. Vide [[Special:ProtectedPages|indicem paginarum nunc protectarum]].',
 'protectedarticle'          => 'protegit "[[$1]]"',

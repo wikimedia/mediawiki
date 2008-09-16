@@ -1683,48 +1683,52 @@ Per modificare le impostazioni della lista degli osservati speciali, visita
 Per dare il tuo feedback e ricevere ulteriore assistenza:
 {{fullurl:Help:Aiuto}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Cancella pagina',
-'confirm'                     => 'Conferma',
-'excontent'                   => "il contenuto era: '$1'",
-'excontentauthor'             => "il contenuto era: '$1' (e l'unico contributore era '$2')",
-'exbeforeblank'               => "Il contenuto prima dello svuotamento era: '$1'",
-'exblank'                     => 'la pagina era vuota',
-'delete-confirm'              => 'Cancella "$1"',
-'delete-legend'               => 'Cancella',
-'historywarning'              => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
-'confirmdeletetext'           => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Azione completata',
-'deletedtext'                 => 'La pagina "$1" è stata cancellata. 
+# Delete
+'deletepage'             => 'Cancella pagina',
+'confirm'                => 'Conferma',
+'excontent'              => "il contenuto era: '$1'",
+'excontentauthor'        => "il contenuto era: '$1' (e l'unico contributore era '$2')",
+'exbeforeblank'          => "Il contenuto prima dello svuotamento era: '$1'",
+'exblank'                => 'la pagina era vuota',
+'delete-confirm'         => 'Cancella "$1"',
+'delete-legend'          => 'Cancella',
+'historywarning'         => 'Attenzione! La pagina che si sta per cancellare ha una cronologia:',
+'confirmdeletetext'      => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia. Per cortesia, conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].',
+'actioncomplete'         => 'Azione completata',
+'deletedtext'            => 'La pagina "$1" è stata cancellata. 
 Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
-'deletedarticle'              => 'ha cancellato "[[$1]]"',
-'suppressedarticle'           => 'soppresso "[[$1]]"',
-'dellogpage'                  => 'Cancellazioni',
-'dellogpagetext'              => 'Di seguito sono elencate le pagine cancellate di recente.',
-'deletionlog'                 => 'cancellazioni',
-'reverted'                    => 'Ripristinata la versione precedente',
-'deletecomment'               => 'Motivo della cancellazione:',
-'deleteotherreason'           => 'Altra motivazione o motivazione aggiuntiva:',
-'deletereasonotherlist'       => 'Altra motivazione',
-'deletereason-dropdown'       => "*Motivazioni più comuni per la cancellazione
+'deletedarticle'         => 'ha cancellato "[[$1]]"',
+'suppressedarticle'      => 'soppresso "[[$1]]"',
+'dellogpage'             => 'Cancellazioni',
+'dellogpagetext'         => 'Di seguito sono elencate le pagine cancellate di recente.',
+'deletionlog'            => 'cancellazioni',
+'reverted'               => 'Ripristinata la versione precedente',
+'deletecomment'          => 'Motivo della cancellazione:',
+'deleteotherreason'      => 'Altra motivazione o motivazione aggiuntiva:',
+'deletereasonotherlist'  => 'Altra motivazione',
+'deletereason-dropdown'  => "*Motivazioni più comuni per la cancellazione
 ** Richiesta dell'autore
 ** Violazione di copyright
 ** Vandalismo",
-'delete-edit-reasonlist'      => 'Modifica i motivi di cancellazione',
-'delete-toobig'               => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
-'delete-warning-toobig'       => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
-'rollback'                    => 'Annulla le modifiche',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
-'rollbackfailed'              => 'Rollback fallito',
-'cantrollback'                => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
-'alreadyrolled'               => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
+'delete-edit-reasonlist' => 'Modifica i motivi di cancellazione',
+'delete-toobig'          => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione è stata limitata per evitare di creare accidentalmente dei problemi di funzionamento al database di {{SITENAME}}.',
+'delete-warning-toobig'  => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
+
+# Rollback
+'rollback'         => 'Annulla le modifiche',
+'rollback_short'   => 'Rollback',
+'rollbacklink'     => 'rollback',
+'rollbackfailed'   => 'Rollback fallito',
+'cantrollback'     => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
+'alreadyrolled'    => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
 
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]).',
-'editcomment'                 => 'Il commento alla modifica era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
-'sessionfailure'              => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
+'editcomment'      => 'Il commento alla modifica era: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
+'sessionfailure'   => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
+
+# Protect
 'protectlogpage'              => 'Protezioni',
 'protectlogtext'              => 'Di seguito sono elencate le azioni di protezione e sblocco delle pagine.',
 'protectedarticle'            => 'ha protetto "[[$1]]"',

@@ -368,13 +368,17 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'mywatchlist' => 'Tapykueho rysýi',
 'watch'       => 'Ñangareko',
 
-# Delete/protect/revert
+# Delete
 'deletedarticle' => 'oñembogue "[[$1]]"',
 'dellogpage'     => 'Ñemboguepyre ñonagatupy',
 'deletionlog'    => 'ñemboguepyre ñonagatupy',
+
+# Rollback
 'rollback_short' => 'Embojevy',
 'rollbacklink'   => 'Embojevy',
-'protect-text'   => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
+
+# Protect
+'protect-text' => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
 
 # Undelete
 'undeletedrevisions'       => '$1 ediciones restauradas',

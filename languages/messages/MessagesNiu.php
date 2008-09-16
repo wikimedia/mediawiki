@@ -174,7 +174,7 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'watch'         => 'Kitekite',
 'watchthispage' => 'Onoono e lau e',
 
-# Delete/protect/revert
+# Delete
 'delete-legend' => 'Tamate',
 
 # Restrictions (nouns)

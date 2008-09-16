@@ -1085,46 +1085,50 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 "Feedback" û alîkarîyê din:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Rûpelê jê bibe',
-'confirm'                     => 'Pesend bike',
-'excontent'                   => "Naveroka berê: '$1'",
-'excontentauthor'             => "Nawerokê wê rûpelê ew bû: '$1' (û tenya bikarhêner '$2' bû)",
-'exbeforeblank'               => "Nawerok berî betal kirinê ew bû: '$1'",
-'exblank'                     => 'rûpel vala bû',
-'delete-confirm'              => 'Jêbirina "$1"',
-'delete-legend'               => 'Jêbirin',
-'historywarning'              => 'Hîşyar: Ew rûpel ku tu dixwazî jê bibî dîrokek heye:',
-'confirmdeletetext'           => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
-'actioncomplete'              => 'Çalakî temam',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
-'deletedarticle'              => '"$1" hat jêbirin',
-'dellogpage'                  => 'Reşahîya jêbirin',
-'dellogpagetext'              => 'Li jêr lîsteyek ji jêbirinên dawî heye.',
-'deletionlog'                 => 'reşahîya jêbirin',
-'reverted'                    => 'Hate şondabirin berve verzyonekî berê',
-'deletecomment'               => 'Sedema jêbirinê',
-'deleteotherreason'           => 'Sedemekî din:',
-'deletereasonotherlist'       => 'Sedemekî din',
-'deletereason-dropdown'       => "*Sedemên jêbirinê
+# Delete
+'deletepage'             => 'Rûpelê jê bibe',
+'confirm'                => 'Pesend bike',
+'excontent'              => "Naveroka berê: '$1'",
+'excontentauthor'        => "Nawerokê wê rûpelê ew bû: '$1' (û tenya bikarhêner '$2' bû)",
+'exbeforeblank'          => "Nawerok berî betal kirinê ew bû: '$1'",
+'exblank'                => 'rûpel vala bû',
+'delete-confirm'         => 'Jêbirina "$1"',
+'delete-legend'          => 'Jêbirin',
+'historywarning'         => 'Hîşyar: Ew rûpel ku tu dixwazî jê bibî dîrokek heye:',
+'confirmdeletetext'      => 'Tu kê niha rûpelekê bi tev dîroka wê jêbibê. Xêra xwe zanibe tu kê niha çi bikê û zanibe, çi di wîkîyê da yê bibe. Hên jî seke, ku ev jêbirina bi [[{{MediaWiki:Policy-url}}|mafên wîkîyê]] ra dimeşin ya na.',
+'actioncomplete'         => 'Çalakî temam',
+'deletedtext'            => '"<nowiki>$1</nowiki>" hat jêbirin. Ji bo qeyda rûpelên ku di dema nêzîk de hatin jêbirin binêre $2.',
+'deletedarticle'         => '"$1" hat jêbirin',
+'dellogpage'             => 'Reşahîya jêbirin',
+'dellogpagetext'         => 'Li jêr lîsteyek ji jêbirinên dawî heye.',
+'deletionlog'            => 'reşahîya jêbirin',
+'reverted'               => 'Hate şondabirin berve verzyonekî berê',
+'deletecomment'          => 'Sedema jêbirinê',
+'deleteotherreason'      => 'Sedemekî din:',
+'deletereasonotherlist'  => 'Sedemekî din',
+'deletereason-dropdown'  => "*Sedemên jêbirinê
 ** vandalîzm
 ** vala
 ** ne girek e
 ** ne gotarek e
 ** ceribandina IP'yekê",
-'delete-edit-reasonlist'      => 'Sedemên jêbirinê biguherîne',
-'delete-toobig'               => 'Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan hatîye sînorkirin, ji bo pir şaşbûn (error) di {{SITENAME}} da çênebin.',
-'delete-warning-toobig'       => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",
-'rollback_short'              => 'Bizivirîne pêş',
-'rollbacklink'                => 'bizivirîne pêş',
-'cantrollback'                => "Guharto naye vegerandin; bikarhêrê dawî, '''tenya''' nivîskarê wê rûpelê ye.",
-'alreadyrolled'               => 'Guherandina dawiya [[$1]]
+'delete-edit-reasonlist' => 'Sedemên jêbirinê biguherîne',
+'delete-toobig'          => 'Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan hatîye sînorkirin, ji bo pir şaşbûn (error) di {{SITENAME}} da çênebin.',
+'delete-warning-toobig'  => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",
+
+# Rollback
+'rollback_short'   => 'Bizivirîne pêş',
+'rollbacklink'     => 'bizivirîne pêş',
+'cantrollback'     => "Guharto naye vegerandin; bikarhêrê dawî, '''tenya''' nivîskarê wê rûpelê ye.",
+'alreadyrolled'    => 'Guherandina dawiya [[$1]]
 bi [[User:$2|$2]] ([[User talk:$2|guftûgo]]) venizivre; keseke din wê rûpelê zivrandiye an guherandiye.
 
 Guhartoya dawî bi [[User:$3|$3]] ([[User talk:$3|guftûgo]]).',
-'editcomment'                 => 'Kurtenivîsê guherandinê ev bû: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
+'editcomment'      => 'Kurtenivîsê guherandinê ev bû: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Guherandina $2 hat betal kirin, vegerand guhartoya dawî ya $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Guherandina $1 şondakir; dîsa guharte verzyona $2.',
+
+# Protect
 'protectlogpage'              => 'Reşahîya parastîyan',
 'protectedarticle'            => 'parastî [[$1]]',
 'modifiedarticleprotection'   => 'parastina "[[$1]]" guherand',

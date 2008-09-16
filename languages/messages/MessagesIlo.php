@@ -1113,41 +1113,45 @@ Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti
 'enotif_lastdiff'              => 'kitaen ti $1 tapno mabuya daytoy a panangbaliw.',
 'enotif_anon_editor'           => 'di am-ammo nga agar-aramat $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Ikkaten ti panid',
-'confirm'                     => 'pasingkedan',
-'excontent'                   => "ti linaon ket: '$1'",
-'excontentauthor'             => "ti linaonna ket: '$1' (ket ti laeng contributor ket ni '[[Special:Contributions/$1|$2]]')",
-'exblank'                     => 'blanko ti panid',
-'delete-confirm'              => 'Ikkaten ti "$1"',
-'delete-legend'               => 'Ikkaten',
-'historywarning'              => 'Ballaag: Ti panid a kayatmo nga ikkaten ket addaan iti pakasaritaan:',
-'confirmdeletetext'           => 'Ikkatemon ti maysa a panid agraman am-amin a pakasaritaanna.
+# Delete
+'deletepage'             => 'Ikkaten ti panid',
+'confirm'                => 'pasingkedan',
+'excontent'              => "ti linaon ket: '$1'",
+'excontentauthor'        => "ti linaonna ket: '$1' (ket ti laeng contributor ket ni '[[Special:Contributions/$1|$2]]')",
+'exblank'                => 'blanko ti panid',
+'delete-confirm'         => 'Ikkaten ti "$1"',
+'delete-legend'          => 'Ikkaten',
+'historywarning'         => 'Ballaag: Ti panid a kayatmo nga ikkaten ket addaan iti pakasaritaan:',
+'confirmdeletetext'      => 'Ikkatemon ti maysa a panid agraman am-amin a pakasaritaanna.
 Pangngaasim ta pasingkedam a talaga a kayatmo nga aramiden daytoy, a maawatam ti bunga ti panangikkatmo, ken aramidem daytoy kas maiyannugot iti [[{{MediaWiki:Policy-url}}|annuroten]].',
-'actioncomplete'              => 'Nalpasen a naaramid',
-'deletedtext'                 => 'Naikkaten ti "<nowiki>$1</nowiki>".
+'actioncomplete'         => 'Nalpasen a naaramid',
+'deletedtext'            => 'Naikkaten ti "<nowiki>$1</nowiki>".
 Kitaen ti $2 para iti record dagiti naudi a naikkat.',
-'deletedarticle'              => 'naikkaten ti "[[$1]]"',
-'dellogpage'                  => 'Log ti naikkat',
-'dellogpagetext'              => 'Adda iti baba ti listaan dagiti kaudian a panangikkat.',
-'deletionlog'                 => 'log ti panagikkat',
-'reverted'                    => 'Naisubli iti immun-una a panamalbaliw',
-'deletecomment'               => 'Rason no apay nga ikkaten',
-'deleteotherreason'           => 'Sabali/dadduma pay a rason:',
-'deletereasonotherlist'       => 'Sabali a rason',
-'deletereason-dropdown'       => '*Kadawyan a gapgapu ti pannakaikkat
+'deletedarticle'         => 'naikkaten ti "[[$1]]"',
+'dellogpage'             => 'Log ti naikkat',
+'dellogpagetext'         => 'Adda iti baba ti listaan dagiti kaudian a panangikkat.',
+'deletionlog'            => 'log ti panagikkat',
+'reverted'               => 'Naisubli iti immun-una a panamalbaliw',
+'deletecomment'          => 'Rason no apay nga ikkaten',
+'deleteotherreason'      => 'Sabali/dadduma pay a rason:',
+'deletereasonotherlist'  => 'Sabali a rason',
+'deletereason-dropdown'  => '*Kadawyan a gapgapu ti pannakaikkat
 ** Kiddaw ti autor
 ** Panaglabsing iti copyright
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Editen dagiti rason ti panangikkat',
-'rollback'                    => 'Isubli dagiti panangbaliw',
-'rollback_short'              => 'Isubli',
-'rollbacklink'                => 'isubli',
-'rollbackfailed'              => 'Napaay ti panangisubli',
-'editcomment'                 => 'Ti komento ti panangedit ket: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Naibabawi dagiti panagedit ni $1;
+'delete-edit-reasonlist' => 'Editen dagiti rason ti panangikkat',
+
+# Rollback
+'rollback'         => 'Isubli dagiti panangbaliw',
+'rollback_short'   => 'Isubli',
+'rollbacklink'     => 'isubli',
+'rollbackfailed'   => 'Napaay ti panangisubli',
+'editcomment'      => 'Ti komento ti panangedit ket: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Naikkat ti panangbaliw ni [[Special:Contributions/$2|$2]] ([[User talk:$2|Pagtutungtongan]]), naisubli iti kaudian a version ni [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Naibabawi dagiti panagedit ni $1;
 naisubli manen iti naudi a version ni $2.',
+
+# Protect
 'protectlogpage'              => 'Log ti panangsaluad',
 'protectedarticle'            => 'nasaluadanen ti "[[$1]]"',
 'modifiedarticleprotection'   => 'nasukatan ti level ti saluad para iti "[[$1]]"',

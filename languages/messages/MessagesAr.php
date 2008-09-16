@@ -2013,57 +2013,61 @@ $NEWPAGE
 للاقتراحات والحصول على مساعدة إضافية:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'احذف الصفحة',
-'confirm'                     => 'تأكيد',
-'excontent'                   => "المحتوى كان: '$1'",
-'excontentauthor'             => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "المحتوى قبل الإفراغ كان: '$1'",
-'exblank'                     => 'الصفحة كانت فارغة',
-'delete-confirm'              => 'حذف "$1"',
-'delete-legend'               => 'حذف',
-'historywarning'              => 'تحذير: الصفحة التي توشك على حذفها لديها تاريخ:',
-'confirmdeletetext'           => 'أنت على وشك أن تقوم بحذف صفحة بالإضافة إلى كل تاريخها.
+# Delete
+'deletepage'             => 'احذف الصفحة',
+'confirm'                => 'تأكيد',
+'excontent'              => "المحتوى كان: '$1'",
+'excontentauthor'        => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "المحتوى قبل الإفراغ كان: '$1'",
+'exblank'                => 'الصفحة كانت فارغة',
+'delete-confirm'         => 'حذف "$1"',
+'delete-legend'          => 'حذف',
+'historywarning'         => 'تحذير: الصفحة التي توشك على حذفها لديها تاريخ:',
+'confirmdeletetext'      => 'أنت على وشك أن تقوم بحذف صفحة بالإضافة إلى كل تاريخها.
 من فضلك التأكد من عزمك على الحذف، وبأنك مدرك للعواقب، وبأنك تقوم بهذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].',
-'actioncomplete'              => 'انتهاء العملية',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" تم حذفها.
+'actioncomplete'         => 'انتهاء العملية',
+'deletedtext'            => '"<nowiki>$1</nowiki>" تم حذفها.
 انظر في $2 لسجل آخر عمليات الحذف.',
-'deletedarticle'              => 'حذف "[[$1]]"',
-'suppressedarticle'           => 'أخفى "[[$1]]"',
-'dellogpage'                  => 'سجل الحذف',
-'dellogpagetext'              => 'بالأسفل قائمة بأحدث عمليات الحذف.',
-'deletionlog'                 => 'سجل الحذف',
-'reverted'                    => 'استرجع لنسخة أقدم',
-'deletecomment'               => 'سبب الحذف:',
-'deleteotherreason'           => 'سبب آخر/إضافي:',
-'deletereasonotherlist'       => 'سبب آخر',
-'deletereason-dropdown'       => '*أسباب الحذف الشائعة
+'deletedarticle'         => 'حذف "[[$1]]"',
+'suppressedarticle'      => 'أخفى "[[$1]]"',
+'dellogpage'             => 'سجل الحذف',
+'dellogpagetext'         => 'بالأسفل قائمة بأحدث عمليات الحذف.',
+'deletionlog'            => 'سجل الحذف',
+'reverted'               => 'استرجع لنسخة أقدم',
+'deletecomment'          => 'سبب الحذف:',
+'deleteotherreason'      => 'سبب آخر/إضافي:',
+'deletereasonotherlist'  => 'سبب آخر',
+'deletereason-dropdown'  => '*أسباب الحذف الشائعة
 ** طلب المؤلف
 ** خرق لحقوق التأليف والنشر
 ** تخريب',
-'delete-edit-reasonlist'      => 'عدل أسباب الحذف',
-'delete-toobig'               => 'هذه الصفحة لها تاريخ تعديل كبير، أكثر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+'delete-edit-reasonlist' => 'عدل أسباب الحذف',
+'delete-toobig'          => 'هذه الصفحة لها تاريخ تعديل كبير، أكثر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
 حذف مثل هذه الصفحات تم تحديده لمنع الاضطراب العرضي في {{SITENAME}}.',
-'delete-warning-toobig'       => 'هذه الصفحة لها تاريخ تعديل كبير، أكثر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+'delete-warning-toobig'  => 'هذه الصفحة لها تاريخ تعديل كبير، أكثر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
 حذفها ربما يؤدي إلى اضطراب عمليات قاعدة البيانات في {{SITENAME}}؛
 استمر مع الحذر.',
-'rollback'                    => 'استرجاع التعديلات',
-'rollback_short'              => 'استرجاع',
-'rollbacklink'                => 'استرجاع',
-'rollbackfailed'              => 'لم ينجح الاسترجاع',
-'cantrollback'                => 'لم يمكن استرجاع التعديل؛
+
+# Rollback
+'rollback'         => 'استرجاع التعديلات',
+'rollback_short'   => 'استرجاع',
+'rollbacklink'     => 'استرجاع',
+'rollbackfailed'   => 'لم ينجح الاسترجاع',
+'cantrollback'     => 'لم يمكن استرجاع التعديل؛
 آخر مساهم هو المؤلف الوحيد لهذه الصفحة.',
-'alreadyrolled'               => 'لم يمكن استرجاع آخر تعديل ل[[$1]] بواسطة [[User:$2|$2]] ([[User talk:$2|نقاش]] | [[Special:Contributions/$2|{{int:contribslink}}]])؛
+'alreadyrolled'    => 'لم يمكن استرجاع آخر تعديل ل[[$1]] بواسطة [[User:$2|$2]] ([[User talk:$2|نقاش]] | [[Special:Contributions/$2|{{int:contribslink}}]])؛
 شخص آخر عدل أو استرجع الصفحة بالفعل.
 
 آخر تعديل كان بواسطة [[User:$3|$3]] ([[User talk:$3|نقاش]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'استرجع تعديلات $1؛
+'editcomment'      => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|نقاش]]) حتى آخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'استرجع تعديلات $1؛
 استرجع حتى آخر نسخة بواسطة $2.',
-'sessionfailure'              => 'يبدو أنه هناك مشكلة في هذه جلسة الدخول الخاصة بك؛
+'sessionfailure'   => 'يبدو أنه هناك مشكلة في هذه جلسة الدخول الخاصة بك؛
 لذلك فقد ألغيت هذه العملية كإجراء احترازي ضد الاختراق.
 من فضلك اضغط على مفتاح "رجوع" لتحميل الصفحة التي جئت منها، ثم حاول مرة أخرى.',
+
+# Protect
 'protectlogpage'              => 'سجل الحماية',
 'protectlogtext'              => 'بالأسفل قائمة بالصفحات التي تمت حمايتها أو إزالة الحماية عنها.
 انظر [[Special:ProtectedPages|قائمة الصفحات المحمية]] لقائمة بعمليات حماية الصفحات المفعلة حاليا.',

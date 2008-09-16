@@ -351,7 +351,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'enotif_newpagetext' => 'Chesta è na paggena nòva.',
 'changed'            => 'cagnata',
 
-# Delete/protect/revert
+# Delete
 'deletepage'      => 'Scancella paggena',
 'excontent'       => "'o cuntenuto era: '$1'",
 'excontentauthor' => "'o cuntenuto era: '$1' (e ll'unneco cuntribbutore era '[[Special:Contributions/$2|$2]]')",
@@ -363,8 +363,10 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'dellogpage'      => 'Scancellazione',
 'deletionlog'     => 'Log d"e scancellazione',
 'deletecomment'   => 'Mutivo d"a scancellazione',
-'rollback'        => "Ausa na revizione 'e primma",
-'revertpage'      => "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Rollback
+'rollback'   => "Ausa na revizione 'e primma",
+'revertpage' => "Cangiaje 'e cagnamiénte 'e [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), cu â verzione 'e pprimma 'e  [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
 'viewdeletedpage' => "Vìre 'e ppàggine scancellate",

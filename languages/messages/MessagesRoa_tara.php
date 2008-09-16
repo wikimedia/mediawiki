@@ -326,8 +326,10 @@ $messages = array(
 'watching'   => 'Fà vedè...',
 'unwatching' => 'No fà vedè...',
 
-# Delete/protect/revert
-'rollbacklink'        => "annulle 'u cangiaminde",
+# Rollback
+'rollbacklink' => "annulle 'u cangiaminde",
+
+# Protect
 'protect-default'     => '(defolt)',
 'protect-level-sysop' => 'Sulamende pe le Sysops',
 'protect-expiring'    => "more 'u $1 (UTC)",

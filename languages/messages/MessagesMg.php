@@ -734,35 +734,39 @@ Raha hanova ny fandehan\'ny momba ny lisitry ny pejy arahi-maso, jereo
 Hevitrao sy fanampiana:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Fafao ny pejy',
-'confirm'                     => 'Antero',
-'excontent'                   => "votoatiny: '$1'",
-'excontentauthor'             => "votoatiny: '$1' (ary i '[[Special:Contributions/$2|$2]]' irery ihany no nikitika azy)",
-'historywarning'              => 'Fampitandremana: Manana tantara io pejy hofafanao io (izany hoe farafaharatsiny indray mandeha niova):',
-'confirmdeletetext'           => "Handeha hamafa tanteraka ny pejy na sary miaraka amin'ny tantarany rehetra 
+# Delete
+'deletepage'        => 'Fafao ny pejy',
+'confirm'           => 'Antero',
+'excontent'         => "votoatiny: '$1'",
+'excontentauthor'   => "votoatiny: '$1' (ary i '[[Special:Contributions/$2|$2]]' irery ihany no nikitika azy)",
+'historywarning'    => 'Fampitandremana: Manana tantara io pejy hofafanao io (izany hoe farafaharatsiny indray mandeha niova):',
+'confirmdeletetext' => "Handeha hamafa tanteraka ny pejy na sary miaraka amin'ny tantarany rehetra 
 ao anatin'ny toby ianao. Azafady mba hamafiso fa irinao tokoa izany, 
 fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny 
 [[{{MediaWiki:Policy-url}}|fepetra]] izao ataonao izany.",
-'actioncomplete'              => 'Vita ny asa',
-'deletedtext'                 => 'Voafafa i "<nowiki>$1</nowiki>".
+'actioncomplete'    => 'Vita ny asa',
+'deletedtext'       => 'Voafafa i "<nowiki>$1</nowiki>".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
-'deletedarticle'              => 'voafafa "[[$1]]"',
-'dellogpagetext'              => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
-'deletionlog'                 => "famafana tatitr'asa",
-'reverted'                    => "Voaverina amin'ny votoatiny teo aloha",
-'deletecomment'               => 'Antony hamonoana pejy',
-'rollback'                    => 'Foano indray ilay fanovana',
-'rollback_short'              => 'Aza ovaina indray',
-'rollbacklink'                => 'foano',
-'rollbackfailed'              => "Tsy voaverina amin'ny teo aloha",
-'cantrollback'                => "Tsy afaka iverenana ny fanovana; ny mpanova farany ihany no tompon'ny pejy.",
-'alreadyrolled'               => "Tsy mety foanana ny fanovana farany ny pejy [[:$1]]
+'deletedarticle'    => 'voafafa "[[$1]]"',
+'dellogpagetext'    => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
+'deletionlog'       => "famafana tatitr'asa",
+'reverted'          => "Voaverina amin'ny votoatiny teo aloha",
+'deletecomment'     => 'Antony hamonoana pejy',
+
+# Rollback
+'rollback'       => 'Foano indray ilay fanovana',
+'rollback_short' => 'Aza ovaina indray',
+'rollbacklink'   => 'foano',
+'rollbackfailed' => "Tsy voaverina amin'ny teo aloha",
+'cantrollback'   => "Tsy afaka iverenana ny fanovana; ny mpanova farany ihany no tompon'ny pejy.",
+'alreadyrolled'  => "Tsy mety foanana ny fanovana farany ny pejy [[:$1]]
 nataon'i [[User:$2|$2]] ([[User talk:$2|Dinika]]); satria efa nisy nanova ny pejy na nisy nanafoana io fanovana io.
 
 Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
-'editcomment'                 => 'Toy izao no fanamarihana momba io fanovana io: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => 'Toy izao no fanamarihana momba io fanovana io: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => "Voafafa ny fanovana ny [[Special:Contributions/$2|$2]] ([[User talk:$2|Dinika]]); voaverina amin'ny votoatiny teo aloha nataon'i [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogtext'              => 'Eto ambany ny lisitry ny fiarovana/fanalana hidy ny pejy. Fanazavana fanampiny: jereo [[Special:ProtectedPages]].',
 'protectedarticle'            => 'voaaro ny pejy "[[$1]]"',
 'unprotectedarticle'          => 'voaala ny fiarovana an\'i "[[$1]]"',

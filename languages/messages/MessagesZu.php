@@ -235,10 +235,12 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 
 'enotif_newpagetext' => 'Lelikhasi liyasha.',
 
-# Delete/protect/revert
-'deletepage'     => 'Sula ikhasi',
-'confirm'        => 'Qinisekisa',
-'exblank'        => 'ikhasi elize',
+# Delete
+'deletepage' => 'Sula ikhasi',
+'confirm'    => 'Qinisekisa',
+'exblank'    => 'ikhasi elize',
+
+# Protect
 'protectcomment' => 'Isizathu ngenxa yalondoloza',
 
 # Restrictions (nouns)

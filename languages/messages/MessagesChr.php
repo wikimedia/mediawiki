@@ -54,7 +54,7 @@ $messages = array(
 # Random page
 'randompage' => 'ᎤᏍᏆᏂᎪᏗ ᎤᏆᏓᏛ',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'ᎠᏍᏆᏙᏅᎯ',
 
 # What links here

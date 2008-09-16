@@ -480,10 +480,12 @@ upang makapagkarga ng talaksan.',
 'watch'         => 'Bantayan',
 'watchthispage' => 'Bantayan itong pahina',
 
-# Delete/protect/revert
-'deletepage'                  => 'Burahin ang pahina',
-'deletedarticle'              => 'ibinura ang "[[$1]]"',
-'deletecomment'               => 'Dahilan sa pagkabura:',
+# Delete
+'deletepage'     => 'Burahin ang pahina',
+'deletedarticle' => 'ibinura ang "[[$1]]"',
+'deletecomment'  => 'Dahilan sa pagkabura:',
+
+# Protect
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',

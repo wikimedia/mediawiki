@@ -1598,47 +1598,51 @@ For å endre innstillingane for overvakingslista di, gå til
 For hjelp og meir informasjon:
 {{fullurl:Hjelp:Overvaking}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Slett side',
-'confirm'                     => 'Stadfest',
-'excontent'                   => 'innhaldet var: «$1»',
-'excontentauthor'             => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',
-'exbeforeblank'               => 'innhaldet før sida vart tømd var: «$1»',
-'exblank'                     => 'sida var tom',
-'delete-confirm'              => 'Slett «$1»',
-'delete-legend'               => 'Slett',
-'historywarning'              => 'Åtvaring: Sida du held på å slette har ein historikk:',
-'confirmdeletetext'           => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
-'actioncomplete'              => 'Ferdig',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
-'deletedarticle'              => 'sletta «[[$1]]»',
-'suppressedarticle'           => 'gøymde «[[$1]]»',
-'dellogpage'                  => 'Slettelogg',
-'dellogpagetext'              => 'Her er ei liste over dei siste slettingane.',
-'deletionlog'                 => 'slettelogg',
-'reverted'                    => 'Attenderulla til ein tidlegare versjon',
-'deletecomment'               => 'Slettingsårsak:',
-'deleteotherreason'           => 'Anna grunn:',
-'deletereasonotherlist'       => 'Anna grunn',
-'deletereason-dropdown'       => '*Vanlege grunnar for sletting
+# Delete
+'deletepage'             => 'Slett side',
+'confirm'                => 'Stadfest',
+'excontent'              => 'innhaldet var: «$1»',
+'excontentauthor'        => 'innhaldet var: «$1» (og den einaste bidragsytaren var «$2»)',
+'exbeforeblank'          => 'innhaldet før sida vart tømd var: «$1»',
+'exblank'                => 'sida var tom',
+'delete-confirm'         => 'Slett «$1»',
+'delete-legend'          => 'Slett',
+'historywarning'         => 'Åtvaring: Sida du held på å slette har ein historikk:',
+'confirmdeletetext'      => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
+'actioncomplete'         => 'Ferdig',
+'deletedtext'            => '«<nowiki>$1</nowiki>» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
+'deletedarticle'         => 'sletta «[[$1]]»',
+'suppressedarticle'      => 'gøymde «[[$1]]»',
+'dellogpage'             => 'Slettelogg',
+'dellogpagetext'         => 'Her er ei liste over dei siste slettingane.',
+'deletionlog'            => 'slettelogg',
+'reverted'               => 'Attenderulla til ein tidlegare versjon',
+'deletecomment'          => 'Slettingsårsak:',
+'deleteotherreason'      => 'Anna grunn:',
+'deletereasonotherlist'  => 'Anna grunn',
+'deletereason-dropdown'  => '*Vanlege grunnar for sletting
 ** På førespurnad frå forfattren
 ** Brot på opphavsretten
 ** Hærverk',
-'delete-edit-reasonlist'      => 'Endre grunnar til sletting',
-'delete-toobig'               => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Sletting av slike sider er avgrensa for å unngå forstyrring av {{SITENAME}} med uhell.',
-'delete-warning-toobig'       => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
-'rollback'                    => 'Rull attende endringar',
-'rollback_short'              => 'Rull attende',
-'rollbacklink'                => 'rull attende',
-'rollbackfailed'              => 'Kunne ikkje rulle attende',
-'cantrollback'                => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled'               => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
+'delete-edit-reasonlist' => 'Endre grunnar til sletting',
+'delete-toobig'          => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Sletting av slike sider er avgrensa for å unngå forstyrring av {{SITENAME}} med uhell.',
+'delete-warning-toobig'  => 'Denne sida har ein lang endringshistorikk, med meir enn $1 endringar. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.',
+
+# Rollback
+'rollback'         => 'Rull attende endringar',
+'rollback_short'   => 'Rull attende',
+'rollbacklink'     => 'rull attende',
+'rollbackfailed'   => 'Kunne ikkje rulle attende',
+'cantrollback'     => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
+'alreadyrolled'    => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|brukardiskusjon]]) fordi nokon andre allereie har endra sida att eller fjerna endringa.
 
 Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]).',
-'editcomment'                 => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
-'sessionfailure'              => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
+'editcomment'      => 'Samandraget for endringa var: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] til tidlegare versjon endra av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
+'sessionfailure'   => 'Det ser ut til å vera eit problem med innloggingsøkta di. Handlinga er vorten avbroten for å vera føre var mot kidnapping av økta. Bruk attendeknappen i nettlesaren din og prøv om att.',
+
+# Protect
 'protectlogpage'              => 'Vernelogg',
 'protectlogtext'              => 'Dette er ei liste over sider som er vortne verna eller har fått fjerna vern. [[Special:ProtectedPages|Verna side]] for meir info.',
 'protectedarticle'            => 'verna «[[$1]]»',

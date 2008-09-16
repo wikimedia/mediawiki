@@ -1233,34 +1233,38 @@ e-mail: $PAGEEDITOR_EMAIL
 Ярдым ве теклифлер ичюн:
 {{fullurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Саифени ёкъ эт',
-'confirm'                     => 'Тасдыкъла',
-'excontent'                   => "эски метин: '$1'",
-'excontentauthor'             => "эски метин: '$1' ('$2' иссе къошкъан тек бир къулланыджы)",
-'exbeforeblank'               => "Ёкъ этильмеген эвельки метин: '$1'",
-'exblank'                     => 'саифе метини бош',
-'historywarning'              => 'Тенби: Сиз ёкъ этмек узьре олгъан саифенинъ кечмиши бардыр:',
-'confirmdeletetext'           => 'Бир саифени я да ресимни бутюн кечмиши иле бирликте малюмат базасындан къалыджы оларакъ ёкъ этмек узьресинъиз.
+# Delete
+'deletepage'            => 'Саифени ёкъ эт',
+'confirm'               => 'Тасдыкъла',
+'excontent'             => "эски метин: '$1'",
+'excontentauthor'       => "эски метин: '$1' ('$2' иссе къошкъан тек бир къулланыджы)",
+'exbeforeblank'         => "Ёкъ этильмеген эвельки метин: '$1'",
+'exblank'               => 'саифе метини бош',
+'historywarning'        => 'Тенби: Сиз ёкъ этмек узьре олгъан саифенинъ кечмиши бардыр:',
+'confirmdeletetext'     => 'Бир саифени я да ресимни бутюн кечмиши иле бирликте малюмат базасындан къалыджы оларакъ ёкъ этмек узьресинъиз.
 Лютфен, нетиджелерини анълагъанынъызны, [[Special:WhatLinksHere/{{FULLPAGENAME}}|саифеге багълантыларыны]] тешкергенден сонъ ве [[{{MediaWiki:Policy-url}}|ёкъ этюв политикасына]] уйгъунлыгъыны дикъкъаткъа алып, буны япмагъа истегенинъизни тасдыкъланъыз.',
-'actioncomplete'              => 'Ишлем тамамланды.',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ёкъ этильди.
+'actioncomplete'        => 'Ишлем тамамланды.',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ёкъ этильди.
 якъын заманда ёкъ этильгенлерни корьмек ичюн: $2.',
-'deletedarticle'              => '"[[$1]]" ёкъ этильди',
-'dellogpage'                  => 'Ёкъ этюв журналы',
-'dellogpagetext'              => 'Ашагъыдаки джедвель сонъки ёкъ этюв журналыдыр.',
-'deletionlog'                 => 'ёкъ этюв журналы',
-'reverted'                    => 'Эвельки версия кери кетирильди',
-'deletecomment'               => 'Ёкъ этюв себеби',
-'deleteotherreason'           => 'Дигер/илявели себеп:',
-'deletereasonotherlist'       => 'Дигер себеп',
-'rollback'                    => 'денъишикликлерни кери ал',
-'rollback_short'              => 'кери ал',
-'rollbacklink'                => 'эски алына кетир',
-'rollbackfailed'              => 'кери алув ишлеми мувафакъиетсиз',
-'cantrollback'                => 'Денъишикликлер кери алынамай, сонъки денъиштирген киши саифенинъ тек бир муэллифидир',
-'editcomment'                 => 'Денъиштирме изааты: "<i>$1</i>" эди.', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|музакере]]) тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'deletedarticle'        => '"[[$1]]" ёкъ этильди',
+'dellogpage'            => 'Ёкъ этюв журналы',
+'dellogpagetext'        => 'Ашагъыдаки джедвель сонъки ёкъ этюв журналыдыр.',
+'deletionlog'           => 'ёкъ этюв журналы',
+'reverted'              => 'Эвельки версия кери кетирильди',
+'deletecomment'         => 'Ёкъ этюв себеби',
+'deleteotherreason'     => 'Дигер/илявели себеп:',
+'deletereasonotherlist' => 'Дигер себеп',
+
+# Rollback
+'rollback'       => 'денъишикликлерни кери ал',
+'rollback_short' => 'кери ал',
+'rollbacklink'   => 'эски алына кетир',
+'rollbackfailed' => 'кери алув ишлеми мувафакъиетсиз',
+'cantrollback'   => 'Денъишикликлер кери алынамай, сонъки денъиштирген киши саифенинъ тек бир муэллифидир',
+'editcomment'    => 'Денъиштирме изааты: "<i>$1</i>" эди.', # only shown if there is an edit comment
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|музакере]]) тарафындан япылгъан денъишикликлер кери алынып, [[User:$1|$1]] тарафындан денъиштирильген эвельки версия кери кетирильди.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Къорчалав журналы',
 'protectlogtext'              => 'Къорчалавгъа алув/чыкъарув иле багълы денъишикликлер журналыны корьмектесинъиз.
 Къорчалав алтына алынгъан саифелер там джедвели [[Special:ProtectedPages|бу саифеде]] корип оласынъыз.',

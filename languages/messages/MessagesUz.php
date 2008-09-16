@@ -461,7 +461,7 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'watchlist-hide-own'   => 'Tahrirlarimni yashir',
 'watchlist-hide-minor' => 'Kichkina tahrirlarni yashir',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete'        => 'Bajarildi',
 'deletedtext'           => '"<nowiki>$1</nowiki>" yoʻqotildi.
 Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
@@ -470,9 +470,13 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'deletecomment'         => "O'chirish sababi",
 'deleteotherreason'     => 'Boshqa/qoʻshimcha sabab:',
 'deletereasonotherlist' => 'Boshqa sabab',
-'rollbacklink'          => 'eski holiga keltir',
-'protectlogpage'        => 'Himoyalash qaydlari',
-'protect-level-sysop'   => 'Faqat administratorlar uchun',
+
+# Rollback
+'rollbacklink' => 'eski holiga keltir',
+
+# Protect
+'protectlogpage'      => 'Himoyalash qaydlari',
+'protect-level-sysop' => 'Faqat administratorlar uchun',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',

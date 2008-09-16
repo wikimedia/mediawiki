@@ -278,9 +278,11 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 'changed' => 'kambiá',
 'created' => 'trahá',
 
-# Delete/protect/revert
+# Delete
 'confirm'        => 'Konfirmá',
 'actioncomplete' => 'Akshon kompletá',
+
+# Protect
 'protect-legend' => 'Konfirmá protekshon',
 
 # Undelete

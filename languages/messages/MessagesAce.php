@@ -450,18 +450,22 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 'watching'   => 'Kalön...',
 'unwatching' => 'Hana kalön...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Sampôh ôn',
-'historywarning'              => 'Ingat: Ôn nyang hawa neusampôh na riwayat:',
-'confirmdeletetext'           => 'Droëneuh neuk neusampôh ôn atawa beureukah nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].',
-'actioncomplete'              => 'Proses seuleusoë',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
-'deletedarticle'              => 'sampôh "[[$1]]"',
-'dellogpage'                  => 'Log seunampoh',
-'deletecomment'               => 'Choë sampôh',
-'deleteotherreason'           => 'Nyang la’én/choë la’én:',
-'deletereasonotherlist'       => 'Choë la’én',
-'rollbacklink'                => 'pulang',
+# Delete
+'deletepage'            => 'Sampôh ôn',
+'historywarning'        => 'Ingat: Ôn nyang hawa neusampôh na riwayat:',
+'confirmdeletetext'     => 'Droëneuh neuk neusampôh ôn atawa beureukah nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].',
+'actioncomplete'        => 'Proses seuleusoë',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
+'deletedarticle'        => 'sampôh "[[$1]]"',
+'dellogpage'            => 'Log seunampoh',
+'deletecomment'         => 'Choë sampôh',
+'deleteotherreason'     => 'Nyang la’én/choë la’én:',
+'deletereasonotherlist' => 'Choë la’én',
+
+# Rollback
+'rollbacklink' => 'pulang',
+
+# Protect
 'protectlogpage'              => 'Log lindông',
 'protectcomment'              => 'Bri peunapat:',
 'protectexpiry'               => 'Maté tanggay:',

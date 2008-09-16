@@ -132,7 +132,7 @@ Halamang bicara éréngé gabungan halamang bicara pada wettu depan didaftarkan 
 
 Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\" pada kolom ri sedde.",
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'Proses makkapo',
 
 # Namespace form on various pages

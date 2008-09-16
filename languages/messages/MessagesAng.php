@@ -473,22 +473,26 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'enotif_newpagetext' => 'Þēs is nīwe tramet.',
 'created'            => 'gescapen',
 
-# Delete/protect/revert
-'deletepage'         => 'Āfeorsian tramet',
-'excontent'          => "innung wæs: '$1'",
-'excontentauthor'    => "innung wæs: '$1' (and se āna forðiend wæs '[[Special:Contributions/$2|$2]]')",
-'exblank'            => 'tramet wæs ǣmtig',
-'historywarning'     => 'Warnung: Se tramet, þone þu āfeorsian teohhast, hæfþ stǣre:',
-'actioncomplete'     => 'Weorcdǣd geendod',
-'deletedarticle'     => 'āfeorsod "[[$1]]"',
-'dellogpage'         => 'Āfeorsunge_wisbōc',
-'deletionlog'        => 'āfeorsunge wisbōc',
-'deletecomment'      => 'Racu for āfeorsunge',
-'rollback_short'     => 'Edhwierfan',
-'rollbacklink'       => 'Edhwierfan',
-'rollbackfailed'     => 'Edhwierft misfangen',
-'editcomment'        => 'Sēo ādihtungymbsprǣc wæs: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+# Delete
+'deletepage'      => 'Āfeorsian tramet',
+'excontent'       => "innung wæs: '$1'",
+'excontentauthor' => "innung wæs: '$1' (and se āna forðiend wæs '[[Special:Contributions/$2|$2]]')",
+'exblank'         => 'tramet wæs ǣmtig',
+'historywarning'  => 'Warnung: Se tramet, þone þu āfeorsian teohhast, hæfþ stǣre:',
+'actioncomplete'  => 'Weorcdǣd geendod',
+'deletedarticle'  => 'āfeorsod "[[$1]]"',
+'dellogpage'      => 'Āfeorsunge_wisbōc',
+'deletionlog'     => 'āfeorsunge wisbōc',
+'deletecomment'   => 'Racu for āfeorsunge',
+
+# Rollback
+'rollback_short' => 'Edhwierfan',
+'rollbacklink'   => 'Edhwierfan',
+'rollbackfailed' => 'Edhwierft misfangen',
+'editcomment'    => 'Sēo ādihtungymbsprǣc wæs: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Ācierde ādihtunga fram [[Special:Contributions/$2|$2]] ([[User talk:$2|Gesprec]]); wendede on bæc tō ǣrran fadunge fram [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'unprotectedarticle' => 'unweardod "[[$1]]"',
 'protect-title'      => 'Weardiende "$1"',
 'restriction-type'   => 'Gelēafnes:',

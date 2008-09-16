@@ -1582,51 +1582,55 @@ Pentru a modifica preferinţele listei de urmărire, vizitaţi
 Asistenţă şi suport:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Şterge pagina',
-'confirm'                     => 'Confirmă',
-'excontent'                   => "conţinutul era: '$1'",
-'excontentauthor'             => "conţinutul a fost: '$1' (şi unicul contribuitor era '$2')",
-'exbeforeblank'               => "conţinutul înainte de golire era: '$1'",
-'exblank'                     => 'pagina era goală',
-'delete-confirm'              => 'Şterge "$1"',
-'delete-legend'               => 'Şterge',
-'historywarning'              => 'Atenţie! Pagina pe care o ştergi are istorie:',
-'confirmdeletetext'           => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[{{MediaWiki:Policy-url}}|Politica oficială]].',
-'actioncomplete'              => 'Acţiune finalizată',
-'deletedtext'                 => 'Pagina "<nowiki>$1</nowiki>" a fost ştearsă. Vedeţi $2 pentru o listă a elementelor şterse recent.',
-'deletedarticle'              => 'a şters "[[$1]]"',
-'suppressedarticle'           => 'eliminate "[[$1]]"',
-'dellogpage'                  => 'Jurnal pagini şterse',
-'dellogpagetext'              => 'Mai jos se află lista celor mai recente elemente şterse.',
-'deletionlog'                 => 'raportul de ştergeri',
-'reverted'                    => 'Revenire la o versiune mai veche',
-'deletecomment'               => 'Motiv pentru ştergere:',
-'deleteotherreason'           => 'Alt motiv/detalii:',
-'deletereasonotherlist'       => 'Alt motiv',
-'deletereason-dropdown'       => '*Motive uzuale
+# Delete
+'deletepage'             => 'Şterge pagina',
+'confirm'                => 'Confirmă',
+'excontent'              => "conţinutul era: '$1'",
+'excontentauthor'        => "conţinutul a fost: '$1' (şi unicul contribuitor era '$2')",
+'exbeforeblank'          => "conţinutul înainte de golire era: '$1'",
+'exblank'                => 'pagina era goală',
+'delete-confirm'         => 'Şterge "$1"',
+'delete-legend'          => 'Şterge',
+'historywarning'         => 'Atenţie! Pagina pe care o ştergi are istorie:',
+'confirmdeletetext'      => 'Sunteţi pe cale să ştergeţi permanent o pagină sau imagine din baza de date, împreună cu istoria asociată acesteia. Vă rugăm să confirmaţi alegerea făcută de dvs., faptul că înţelegeţi consecinţele acestei acţiuni şi faptul că o faceţi în conformitate cu [[{{MediaWiki:Policy-url}}|Politica oficială]].',
+'actioncomplete'         => 'Acţiune finalizată',
+'deletedtext'            => 'Pagina "<nowiki>$1</nowiki>" a fost ştearsă. Vedeţi $2 pentru o listă a elementelor şterse recent.',
+'deletedarticle'         => 'a şters "[[$1]]"',
+'suppressedarticle'      => 'eliminate "[[$1]]"',
+'dellogpage'             => 'Jurnal pagini şterse',
+'dellogpagetext'         => 'Mai jos se află lista celor mai recente elemente şterse.',
+'deletionlog'            => 'raportul de ştergeri',
+'reverted'               => 'Revenire la o versiune mai veche',
+'deletecomment'          => 'Motiv pentru ştergere:',
+'deleteotherreason'      => 'Alt motiv/detalii:',
+'deletereasonotherlist'  => 'Alt motiv',
+'deletereason-dropdown'  => '*Motive uzuale
 ** Cererea autorului
 ** Violare drepturi de autor
 ** Vandalism',
-'delete-edit-reasonlist'      => 'Modifică motivele ştergerii',
-'delete-toobig'               => 'Această pagină are un istoric al modificărilor mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.
+'delete-edit-reasonlist' => 'Modifică motivele ştergerii',
+'delete-toobig'          => 'Această pagină are un istoric al modificărilor mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.
 Ştergerea unei astfel de pagini a fost restricţionată pentru a preveni apariţia unor erori în {{SITENAME}}.',
-'delete-warning-toobig'       => 'Această pagină are un istoric al modificărilor mult prea mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.
+'delete-warning-toobig'  => 'Această pagină are un istoric al modificărilor mult prea mare, mai mult de $1 {{PLURAL:$1|revizie|revizii}}.
 Ştergere lui poate afecta baza de date a sitului {{SITENAME}};
 continuă cu atenţie.',
-'rollback'                    => 'Editări de revenire',
-'rollback_short'              => 'Revenire',
-'rollbacklink'                => 'revenire',
-'rollbackfailed'              => 'Revenirea nu s-a putut face',
-'cantrollback'                => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
-'alreadyrolled'               => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]] | [[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
+
+# Rollback
+'rollback'         => 'Editări de revenire',
+'rollback_short'   => 'Revenire',
+'rollbacklink'     => 'revenire',
+'rollbackfailed'   => 'Revenirea nu s-a putut face',
+'cantrollback'     => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
+'alreadyrolled'    => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuţie]] | [[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
 
 Ultima editare a fost făcută de către [[User:$3|$3]] ([[User talk:$3|discuţie]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Comentariul de modificare a fost: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Anularea modificărilor făcute de $1;
+'editcomment'      => 'Comentariul de modificare a fost: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Anularea modificărilor efectuate de către [[Special:Contributions/$2|$2]] ([[User talk:$2|discuţie]]) şi revenire la ultima versiune de către [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Anularea modificărilor făcute de $1;
 revenire la ultima versiune de $2.',
-'sessionfailure'              => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
+'sessionfailure'   => 'Se pare că este o problemă cu sesiunea de autentificare; această acţiune a fost oprită ca o precauţie împotriva hijack. Apăsaţi "back" şi reîncărcaţi pagina de unde aţi venit, apoi reîncercaţi.',
+
+# Protect
 'protectlogpage'              => 'Jurnal protecţii',
 'protectlogtext'              => 'Mai jos se află lista de blocări/deblocări a paginilor. Vezi [[Special:ProtectedPages]] pentru mai multe informaţii.',
 'protectedarticle'            => 'a protejat "[[$1]]"',

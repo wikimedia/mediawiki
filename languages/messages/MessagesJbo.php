@@ -139,7 +139,7 @@ $messages = array(
 'watch'         => 'zgana',
 'watchthispage' => 'zgana ti',
 
-# Delete/protect/revert
+# Delete
 'deletedarticle' => "pu daspo la'e lu [[$1]] li'u",
 'dellogpage'     => 'plivei fi loi nu daspo',
 'deletionlog'    => 'plivei fi loi nu daspo',

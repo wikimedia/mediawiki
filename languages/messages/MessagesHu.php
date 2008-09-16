@@ -1826,55 +1826,59 @@ A figyelőlistád beállításainak módosításához keresd fel a
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Lap törlése',
-'confirm'                     => 'Megerősítés',
-'excontent'                   => 'a lap tartalma: „$1”',
-'excontentauthor'             => 'a lap tartalma: „$1” (és csak „$2” szerkesztette)',
-'exbeforeblank'               => 'az eltávolítás előtti tartalom: „$1”',
-'exblank'                     => 'a lap üres volt',
-'delete-confirm'              => '$1 törlése',
-'delete-legend'               => 'Törlés',
-'historywarning'              => 'Figyelem: a lapnak, amit törölni készülsz, több változata van:',
-'confirmdeletetext'           => 'Egy lap vagy kép teljes laptörténetével együtti
+# Delete
+'deletepage'             => 'Lap törlése',
+'confirm'                => 'Megerősítés',
+'excontent'              => 'a lap tartalma: „$1”',
+'excontentauthor'        => 'a lap tartalma: „$1” (és csak „$2” szerkesztette)',
+'exbeforeblank'          => 'az eltávolítás előtti tartalom: „$1”',
+'exblank'                => 'a lap üres volt',
+'delete-confirm'         => '$1 törlése',
+'delete-legend'          => 'Törlés',
+'historywarning'         => 'Figyelem: a lapnak, amit törölni készülsz, több változata van:',
+'confirmdeletetext'      => 'Egy lap vagy kép teljes laptörténetével együtti
 végleges törlésére készülsz.
 Kérjük, erősítsd meg, hogy valóban ezt szándékozod tenni,
 átlátod a következményeit, és a [[{{MediaWiki:Policy-url}}|törlési irányelvekkel]]
 összhangban cselekedsz.',
-'actioncomplete'              => 'Művelet végrehajtva',
-'deletedtext'                 => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
+'actioncomplete'         => 'Művelet végrehajtva',
+'deletedtext'            => 'A(z) „<nowiki>$1</nowiki>” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
-'deletedarticle'              => '„$1” törölve',
-'suppressedarticle'           => 'elrejtette a(z) „[[$1]]” szócikket',
-'dellogpage'                  => 'Törlési_napló',
-'dellogpagetext'              => 'Itt láthatók a legutóbb törölt lapok.',
-'deletionlog'                 => 'törlési napló',
-'reverted'                    => 'Visszaállítva a korábbi változatra',
-'deletecomment'               => 'A törlés oka',
-'deleteotherreason'           => 'További indoklás:',
-'deletereasonotherlist'       => 'Egyéb indok',
-'deletereason-dropdown'       => '*Gyakori törlési okok
+'deletedarticle'         => '„$1” törölve',
+'suppressedarticle'      => 'elrejtette a(z) „[[$1]]” szócikket',
+'dellogpage'             => 'Törlési_napló',
+'dellogpagetext'         => 'Itt láthatók a legutóbb törölt lapok.',
+'deletionlog'            => 'törlési napló',
+'reverted'               => 'Visszaállítva a korábbi változatra',
+'deletecomment'          => 'A törlés oka',
+'deleteotherreason'      => 'További indoklás:',
+'deletereasonotherlist'  => 'Egyéb indok',
+'deletereason-dropdown'  => '*Gyakori törlési okok
 ** Szerző kérésére
 ** Jogsértő
 ** Vandalizmus',
-'delete-edit-reasonlist'      => 'Törlési okok szerkesztése',
-'delete-toobig'               => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. A szervert kímélendő az ilyen lapok törlése nem engedélyezett.',
-'delete-warning-toobig'       => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.',
-'rollback'                    => 'Szerkesztések visszaállítása',
-'rollback_short'              => 'Visszaállítás',
-'rollbacklink'                => 'visszaállítás',
-'rollbackfailed'              => 'A visszaállítás nem sikerült',
-'cantrollback'                => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
-'alreadyrolled'               => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]] | [[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
+'delete-edit-reasonlist' => 'Törlési okok szerkesztése',
+'delete-toobig'          => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. A szervert kímélendő az ilyen lapok törlése nem engedélyezett.',
+'delete-warning-toobig'  => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.',
+
+# Rollback
+'rollback'         => 'Szerkesztések visszaállítása',
+'rollback_short'   => 'Visszaállítás',
+'rollbacklink'     => 'visszaállítás',
+'rollbackfailed'   => 'A visszaállítás nem sikerült',
+'cantrollback'     => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
+'alreadyrolled'    => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]] | [[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
 időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]] | [[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
-'editcomment'                 => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
-'revertpage'                  => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
-'sessionfailure'              => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
+'editcomment'      => 'A változtatás összefoglalója „<i>$1</i>” volt.', # only shown if there is an edit comment
+'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
+'sessionfailure'   => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
+
+# Protect
 'protectlogpage'              => 'Lapvédelmi_napló',
 'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',

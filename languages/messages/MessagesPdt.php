@@ -349,12 +349,16 @@ $1',
 'watching'   => 'Oppausse...',
 'unwatching' => 'Nijch mea oppausse......',
 
-# Delete/protect/revert
+# Delete
 'deleteotherreason'     => 'Aundra Grunt:',
 'deletereasonotherlist' => 'Aundre Grunt',
-'rollbacklink'          => 'trigj rolle',
-'protectexpiry'         => 'Ütgontiet:',
-'restriction-type'      => "Er'laubniss:",
+
+# Rollback
+'rollbacklink' => 'trigj rolle',
+
+# Protect
+'protectexpiry'    => 'Ütgontiet:',
+'restriction-type' => "Er'laubniss:",
 
 # Namespace form on various pages
 'namespace'      => 'Nomerüm:',

@@ -319,7 +319,7 @@ $messages = array(
 
 'created' => 'ekomákí',
 
-# Delete/protect/revert
+# Delete
 'deletedarticle' => 'elímwísí "[[$1]]"',
 'dellogpage'     => 'Zonálɛ ya bolímwisi',
 'deletionlog'    => 'zonálɛ ya bolímwisi',

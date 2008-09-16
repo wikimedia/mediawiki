@@ -50,7 +50,7 @@ $messages = array(
 'changed' => 'cambiao',
 'created' => 'creao',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'Accion completo',
 
 # Block/unblock

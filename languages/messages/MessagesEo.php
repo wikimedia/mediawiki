@@ -1671,51 +1671,55 @@ Por ŝanĝi la elektojn de via atentaro, bv viziti
 Reagoj kaj plia helpo:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Forigi paĝon',
-'confirm'                     => 'Konfirmi',
-'excontent'                   => "enhavis: '$1'",
-'excontentauthor'             => "la enteno estis : '$1' (kaj la sola kontribuinto estis '$2')",
-'exbeforeblank'               => "antaŭ malplenigo enhavis: '$1'",
-'exblank'                     => 'estis malplena',
-'delete-confirm'              => 'Forigi "$1"',
-'delete-legend'               => 'Forigi',
-'historywarning'              => 'Averto: la forigota paĝo havas historion:',
-'confirmdeletetext'           => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
-'actioncomplete'              => 'Ago farita',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" estas forigita.
+# Delete
+'deletepage'             => 'Forigi paĝon',
+'confirm'                => 'Konfirmi',
+'excontent'              => "enhavis: '$1'",
+'excontentauthor'        => "la enteno estis : '$1' (kaj la sola kontribuinto estis '$2')",
+'exbeforeblank'          => "antaŭ malplenigo enhavis: '$1'",
+'exblank'                => 'estis malplena',
+'delete-confirm'         => 'Forigi "$1"',
+'delete-legend'          => 'Forigi',
+'historywarning'         => 'Averto: la forigota paĝo havas historion:',
+'confirmdeletetext'      => 'Vi forigos la artikolon aŭ dosieron kaj forviŝos ĝian tutan historion el la datumaro.<br /> Bonvolu konfirmi, ke vi vere intencas tion, kaj ke vi komprenas la sekvojn, kaj ke vi ja sekvas la [[{{MediaWiki:Policy-url}}|regulojn pri forigado]].',
+'actioncomplete'         => 'Ago farita',
+'deletedtext'            => '"<nowiki>$1</nowiki>" estas forigita.
 Vidu la paĝon $2 por registro de lastatempaj forigoj.',
-'deletedarticle'              => 'forigis "$1"',
-'suppressedarticle'           => '"[[$1]]" estas subigita',
-'dellogpage'                  => 'Protokolo pri forigoj',
-'dellogpagetext'              => 'Jen listo de la plej lastaj forigoj el la datumaro.
+'deletedarticle'         => 'forigis "$1"',
+'suppressedarticle'      => '"[[$1]]" estas subigita',
+'dellogpage'             => 'Protokolo pri forigoj',
+'dellogpagetext'         => 'Jen listo de la plej lastaj forigoj el la datumaro.
 Ĉiuj tempoj sekvas la horzonon UTC.',
-'deletionlog'                 => 'protokolo pri forigoj',
-'reverted'                    => 'Restarigis antaŭan version',
-'deletecomment'               => 'Kialo por forigo:',
-'deleteotherreason'           => 'Alia/plua kialo:',
-'deletereasonotherlist'       => 'Alia kialo',
-'deletereason-dropdown'       => '*Oftaj kialoj por forigo
+'deletionlog'            => 'protokolo pri forigoj',
+'reverted'               => 'Restarigis antaŭan version',
+'deletecomment'          => 'Kialo por forigo:',
+'deleteotherreason'      => 'Alia/plua kialo:',
+'deletereasonotherlist'  => 'Alia kialo',
+'deletereason-dropdown'  => '*Oftaj kialoj por forigo
 ** Peto de aŭtoro
 ** Malobservo de kopirajto
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Redaktu kialojn de forigo',
-'delete-toobig'               => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|revizion|reviziojn}}. Forigo de ĉi tiaj paĝoj estis limigitaj por preventi akcidentan disrompigon de {{SITENAME}}.',
-'delete-warning-toobig'       => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|revizion|reviziojn}}. Forigo de ĝi povas disrompigi operacion de {{SITENAME}}; forigu singarde.',
-'rollback'                    => 'Restarigi antaŭan redakton',
-'rollback_short'              => 'Restarigo',
-'rollbacklink'                => 'restarigi antaŭan',
-'rollbackfailed'              => 'Restarigo malsukcesis',
-'cantrollback'                => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
-'alreadyrolled'               => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'delete-edit-reasonlist' => 'Redaktu kialojn de forigo',
+'delete-toobig'          => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|revizion|reviziojn}}. Forigo de ĉi tiaj paĝoj estis limigitaj por preventi akcidentan disrompigon de {{SITENAME}}.',
+'delete-warning-toobig'  => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|revizion|reviziojn}}. Forigo de ĝi povas disrompigi operacion de {{SITENAME}}; forigu singarde.',
+
+# Rollback
+'rollback'         => 'Restarigi antaŭan redakton',
+'rollback_short'   => 'Restarigo',
+'rollbacklink'     => 'restarigi antaŭan',
+'rollbackfailed'   => 'Restarigo malsukcesis',
+'cantrollback'     => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
+'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
-'revertpage'                  => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
-'sessionfailure'              => 'Ŝajnas ke estas problemo kun via ensalutado;
+'editcomment'      => "La komento estis: '<i>$1</i>'.", # only shown if there is an edit comment
+'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
+'sessionfailure'   => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
+
+# Protect
 'protectlogpage'              => 'Protokolo pri protektoj',
 'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
 Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',

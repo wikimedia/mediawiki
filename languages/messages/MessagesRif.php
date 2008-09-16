@@ -491,21 +491,25 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'watching'   => 'Twaxmim...',
 'unwatching' => 'War-twaxmim...',
 
-# Delete/protect/revert
-'deletepage'                  => 'kkes Tasna',
-'delete-legend'               => 'Sfaḍ',
-'historywarning'              => 'ɣark: Tasna i txisd atekesd ɣars amzruy :',
-'confirmdeletetext'           => 'Ɛlayn ad-tsfded Tasna ag maṛṛa amzruy ines.
+# Delete
+'deletepage'            => 'kkes Tasna',
+'delete-legend'         => 'Sfaḍ',
+'historywarning'        => 'ɣark: Tasna i txisd atekesd ɣars amzruy :',
+'confirmdeletetext'     => 'Ɛlayn ad-tsfded Tasna ag maṛṛa amzruy ines.
 Ma nican txisd ad tekkesd, ma tesned mayn tegged, u tegget am mamec teqqar  [[{{MediaWiki:Policy-url}}|tasretit]].',
-'actioncomplete'              => 'Tiggawt tsala',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" Twakkes.
+'actioncomplete'        => 'Tiggawt tsala',
+'deletedtext'           => '"<nowiki>$1</nowiki>" Twakkes.
 Xemm $2 i tikkas timaynutin.',
-'deletedarticle'              => 'twakkes "[[$1]]"',
-'dellogpage'                  => 'Aɣmis n uṣfaḍ',
-'deletecomment'               => 'Mayemmi ɣa tteksed:',
-'deleteotherreason'           => 'Ca n ssebba nniḍn:',
-'deletereasonotherlist'       => 'Ssebba nniḍn',
-'rollbacklink'                => 'Ar-ad',
+'deletedarticle'        => 'twakkes "[[$1]]"',
+'dellogpage'            => 'Aɣmis n uṣfaḍ',
+'deletecomment'         => 'Mayemmi ɣa tteksed:',
+'deleteotherreason'     => 'Ca n ssebba nniḍn:',
+'deletereasonotherlist' => 'Ssebba nniḍn',
+
+# Rollback
+'rollbacklink' => 'Ar-ad',
+
+# Protect
 'protectlogpage'              => 'Aɣmis n uẓarq',
 'protectcomment'              => 'Tinit:',
 'protectexpiry'               => 'itsala:',

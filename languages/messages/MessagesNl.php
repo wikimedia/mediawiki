@@ -1933,55 +1933,59 @@ U kunt uw volglijstinstellingen wijzigen op:
 Feedback en andere assistentie:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Deze pagina verwijderen',
-'confirm'                     => 'Bevestig',
-'excontent'                   => "De inhoud was: '$1'",
-'excontentauthor'             => 'inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
-'exbeforeblank'               => "De inhoud was: '$1'",
-'exblank'                     => 'pagina was leeg',
-'delete-confirm'              => '"$1" verwijderen',
-'delete-legend'               => 'Verwijderen',
-'historywarning'              => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
-'confirmdeletetext'           => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis.
+# Delete
+'deletepage'             => 'Deze pagina verwijderen',
+'confirm'                => 'Bevestig',
+'excontent'              => "De inhoud was: '$1'",
+'excontentauthor'        => 'inhoud was: "$1" ([[Special:Contributions/$2|$2]] was de enige auteur)',
+'exbeforeblank'          => "De inhoud was: '$1'",
+'exblank'                => 'pagina was leeg',
+'delete-confirm'         => '"$1" verwijderen',
+'delete-legend'          => 'Verwijderen',
+'historywarning'         => 'Waarschuwing: de pagina die u wilt verwijderen heeft meerdere versies:',
+'confirmdeletetext'      => 'U staat op het punt een pagina te verwijderen, inclusief de geschiedenis.
 Bevestig hieronder dat dit inderdaad uw bedoeling is, dat u de gevolgen begrijpt en dat de verwijdering overeenstemt met het [[{{MediaWiki:Policy-url}}|beleid]].',
-'actioncomplete'              => 'Handeling voltooid',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" is verwijderd.
+'actioncomplete'         => 'Handeling voltooid',
+'deletedtext'            => '"<nowiki>$1</nowiki>" is verwijderd.
 Zie het $2 voor een overzicht van recente verwijderingen.',
-'deletedarticle'              => 'verwijderde "[[$1]]"',
-'suppressedarticle'           => 'heeft "[[$1]]" verborgen',
-'dellogpage'                  => 'Verwijderingslogboek',
-'dellogpagetext'              => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
-'deletionlog'                 => 'Verwijderingslogboek',
-'reverted'                    => 'Eerdere versie hersteld',
-'deletecomment'               => 'Reden voor verwijderen:',
-'deleteotherreason'           => 'Andere/eventuele reden:',
-'deletereasonotherlist'       => 'Andere reden',
-'deletereason-dropdown'       => '*Veelvoorkomende verwijderingsredenen
+'deletedarticle'         => 'verwijderde "[[$1]]"',
+'suppressedarticle'      => 'heeft "[[$1]]" verborgen',
+'dellogpage'             => 'Verwijderingslogboek',
+'dellogpagetext'         => "Hieronder is een lijst van recent verwijderde pagina's en bestanden weergegeven.",
+'deletionlog'            => 'Verwijderingslogboek',
+'reverted'               => 'Eerdere versie hersteld',
+'deletecomment'          => 'Reden voor verwijderen:',
+'deleteotherreason'      => 'Andere/eventuele reden:',
+'deletereasonotherlist'  => 'Andere reden',
+'deletereason-dropdown'  => '*Veelvoorkomende verwijderingsredenen
 ** Op aanvraag van auteur
 ** Schending van auteursrechten
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Redenen voor verwijdering bewerken',
-'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
+'delete-edit-reasonlist' => 'Redenen voor verwijdering bewerken',
+'delete-toobig'          => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
-'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
+'delete-warning-toobig'  => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} verstoren.
 Wees voorzichtig.',
-'rollback'                    => 'Wijzigingen ongedaan maken',
-'rollback_short'              => 'Terugdraaien',
-'rollbacklink'                => 'terugdraaien',
-'rollbackfailed'              => 'Ongedaan maken van wijzigingen mislukt.',
-'cantrollback'                => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
-'alreadyrolled'               => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]] | [[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
+
+# Rollback
+'rollback'         => 'Wijzigingen ongedaan maken',
+'rollback_short'   => 'Terugdraaien',
+'rollbacklink'     => 'terugdraaien',
+'rollbackfailed'   => 'Ongedaan maken van wijzigingen mislukt.',
+'cantrollback'     => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
+'alreadyrolled'    => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]] | [[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
 Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]| [[Special:Contributions/$3|bijdragen]]).',
-'editcomment'                 => 'Bewerkingssamenvatting: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
-'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
+'editcomment'      => 'Bewerkingssamenvatting: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
+'sessionfailure'   => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
+
+# Protect
 'protectlogpage'              => 'Beveiligingslogboek',
 'protectlogtext'              => "Hieronder staan pagina's die recentelijk beveiligd zijn, of waarvan de beveiliging is opgeheven.
 Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveiligde pagina's.",

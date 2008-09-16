@@ -553,11 +553,13 @@ $1',
 'enotif_impersonal_salutation' => '{{grammar:genitive|{{SITENAME}}}} ажыглакчызы',
 'enotif_anon_editor'           => 'ат эвес ажыглакчы $1',
 
-# Delete/protect/revert
-'deletepage'          => 'Арынны ап каар',
-'exblank'             => 'Арын куруг турган',
-'actioncomplete'      => 'Ажыл доосту',
-'deletedarticle'      => '"[[$1]]" деп арынны ап каан',
+# Delete
+'deletepage'     => 'Арынны ап каар',
+'exblank'        => 'Арын куруг турган',
+'actioncomplete' => 'Ажыл доосту',
+'deletedarticle' => '"[[$1]]" деп арынны ап каан',
+
+# Protect
 'protectcomment'      => 'Комментарий:',
 'protect-default'     => '(ниити)',
 'protect-level-sysop' => 'Чүгле сисоплар',

@@ -1330,50 +1330,54 @@ Pa hazel chambus ena tu lista e seguimientu, vesita
 Ayua la Güiquipeya:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Esborral páhina',
-'confirm'                     => 'Confirmal',
-'excontent'                   => "el continiu era: '$1'",
-'excontentauthor'             => "el continiu era: '$1' (i el únicu contribuyenti hue '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "el continiu enantis de branquealu era: '$1'",
-'exblank'                     => 'la páhina estaba vacia',
-'delete-confirm'              => 'Esborral "$1"',
-'delete-legend'               => 'Esborral',
-'historywarning'              => 'Avisu: La páhina que vas a esborral tieni un estorial:',
-'confirmdeletetext'           => "Vas a esborral una páhina/imahin i el su estorial de horma permanenti.
+# Delete
+'deletepage'             => 'Esborral páhina',
+'confirm'                => 'Confirmal',
+'excontent'              => "el continiu era: '$1'",
+'excontentauthor'        => "el continiu era: '$1' (i el únicu contribuyenti hue '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "el continiu enantis de branquealu era: '$1'",
+'exblank'                => 'la páhina estaba vacia',
+'delete-confirm'         => 'Esborral "$1"',
+'delete-legend'          => 'Esborral',
+'historywarning'         => 'Avisu: La páhina que vas a esborral tieni un estorial:',
+'confirmdeletetext'      => "Vas a esborral una páhina/imahin i el su estorial de horma permanenti.
 Pol favol, confirma que realmenti quieis hazel esu, qu'entiendis las consecuencias, i que lo hazis dalcuerdu cola
 [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Ación acabihá',
-'deletedtext'                 => 'S\'á esborrau "<nowiki>$1</nowiki>" corretamenti.
+'actioncomplete'         => 'Ación acabihá',
+'deletedtext'            => 'S\'á esborrau "<nowiki>$1</nowiki>" corretamenti.
 Consurta $2 pa vel los úrtimus esborraus.',
-'deletedarticle'              => 'esborrau "[[$1]]"',
-'dellogpage'                  => 'Rustrihu d´esborrau',
-'dellogpagetext'              => 'Embahu se muestra una lista colos úrtimus esborraus.',
-'deletionlog'                 => 'rustrihu d´esborrau',
-'reverted'                    => 'Revertiu a la úrtima revisión',
-'deletecomment'               => 'Razón del esborrau',
-'deleteotherreason'           => 'Otras razonis:',
-'deletereasonotherlist'       => 'Otra razón',
-'deletereason-dropdown'       => "*Motivus mas frecuentis d'esborrau
+'deletedarticle'         => 'esborrau "[[$1]]"',
+'dellogpage'             => 'Rustrihu d´esborrau',
+'dellogpagetext'         => 'Embahu se muestra una lista colos úrtimus esborraus.',
+'deletionlog'            => 'rustrihu d´esborrau',
+'reverted'               => 'Revertiu a la úrtima revisión',
+'deletecomment'          => 'Razón del esborrau',
+'deleteotherreason'      => 'Otras razonis:',
+'deletereasonotherlist'  => 'Otra razón',
+'deletereason-dropdown'  => "*Motivus mas frecuentis d'esborrau
 ** Pol solicitú el autol
 ** Violación el Copyright
 ** Vandalismu",
-'delete-edit-reasonlist'      => 'Eital razonis del esborrau',
-'delete-warning-toobig'       => "Esta páhina tieni un estorial d'eicionis grandi, mas de $1 revisionis. Esborralu puei causal pobremas enas operacionis la basi e datus de {{SITENAME}}; atua con cudiau.",
-'rollback'                    => 'Revertil eicionis',
-'rollback_short'              => 'Revertil',
-'rollbacklink'                => 'revertil',
-'rollbackfailed'              => 'Marru revirtiendu',
-'cantrollback'                => 'Nu se puei eshazel la eición; el úrtimu colabutaol es el únicu autol d´esta páhina.',
-'alreadyrolled'               => 'Nu es posibri revertil la úrtima eición de [[:$1]], hecha pol [[User:$2|$2]] ([[User talk:$2|Caraba]]); alguien ya á eitau u revertiu la páhina.
+'delete-edit-reasonlist' => 'Eital razonis del esborrau',
+'delete-warning-toobig'  => "Esta páhina tieni un estorial d'eicionis grandi, mas de $1 revisionis. Esborralu puei causal pobremas enas operacionis la basi e datus de {{SITENAME}}; atua con cudiau.",
+
+# Rollback
+'rollback'         => 'Revertil eicionis',
+'rollback_short'   => 'Revertil',
+'rollbacklink'     => 'revertil',
+'rollbackfailed'   => 'Marru revirtiendu',
+'cantrollback'     => 'Nu se puei eshazel la eición; el úrtimu colabutaol es el únicu autol d´esta páhina.',
+'alreadyrolled'    => 'Nu es posibri revertil la úrtima eición de [[:$1]], hecha pol [[User:$2|$2]] ([[User talk:$2|Caraba]]); alguien ya á eitau u revertiu la páhina.
 
 La úrtima eición á siu hecha pol [[User:$3|$3]] ([[User talk:$3|Caraba]]).',
-'editcomment'                 => 'La síntesis la eición hue: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Án siu revertias las eicionis de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]]); chambau a la úrtima velsión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Revertias las eicionis de $1; chambau a la úrtima velsión de $2.',
-'sessionfailure'              => "Paci qu'ai un pobrema cola tu sesión; pol precaución
+'editcomment'      => 'La síntesis la eición hue: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Án siu revertias las eicionis de [[Special:Contributions/$2|$2]] ([[User talk:$2|Caraba]]); chambau a la úrtima velsión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Revertias las eicionis de $1; chambau a la úrtima velsión de $2.',
+'sessionfailure'   => "Paci qu'ai un pobrema cola tu sesión; pol precaución
 s'á cancelau l'ación solicitá. Pursa nel botón \"Atrás\" del
 tu escrucaol pa cargal otra vezi la páhina i güervi a ententalu.",
+
+# Protect
 'protectlogpage'              => 'Rustrihu e proteción',
 'protectlogtext'              => 'Embahu se muestra una lista cola proteción i desproteción la páhina. Pa mas enhormación, lei "[[Special:ProtectedPages|Esta páhina está protehia]]".',
 'protectedarticle'            => '"[[$1]]" protehiu',

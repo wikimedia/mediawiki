@@ -559,21 +559,25 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'changed'      => 'zmienioné',
 'created'      => 'zrobionô',
 
-# Delete/protect/revert
-'deletepage'         => 'Rëmôj starnã',
-'confirm'            => 'Pòcwierdzë',
-'excontent'          => 'Zamkłosc starnë "$1"',
-'actioncomplete'     => 'Òperacëjô wëkònónô',
-'dellogpage'         => 'Rëmóné',
-'deletionlog'        => 'register rëmaniów',
-'deletecomment'      => 'Przëczëna rëmaniô',
-'rollback'           => 'Copnij edicëjã',
-'rollbacklink'       => 'copnij',
-'rollbackfailed'     => 'Nie szło copnąc zmianë',
-'alreadyrolled'      => 'Nie jidze copnąc slédnej zmianë starnë [[:$1]], chtërnej ùsôdzcą je [[User:$2|$2]] ([[User talk:$2|Diskùsëjô]]).
+# Delete
+'deletepage'     => 'Rëmôj starnã',
+'confirm'        => 'Pòcwierdzë',
+'excontent'      => 'Zamkłosc starnë "$1"',
+'actioncomplete' => 'Òperacëjô wëkònónô',
+'dellogpage'     => 'Rëmóné',
+'deletionlog'    => 'register rëmaniów',
+'deletecomment'  => 'Przëczëna rëmaniô',
+
+# Rollback
+'rollback'       => 'Copnij edicëjã',
+'rollbacklink'   => 'copnij',
+'rollbackfailed' => 'Nie szło copnąc zmianë',
+'alreadyrolled'  => 'Nie jidze copnąc slédnej zmianë starnë [[:$1]], chtërnej ùsôdzcą je [[User:$2|$2]] ([[User talk:$2|Diskùsëjô]]).
 Chtos jiny ju editowôł starnã abò copnął zmianë.
 
 Ùsôdzcą slédnej zmianë je terô [[User:$3|$3]] ([[User talk:$3|Diskùsëjô]]).',
+
+# Protect
 'protectedarticle'   => 'zazychrowónô [[$1]]',
 'unprotectedarticle' => 'òdzychrowóny [[$1]]',
 'protect-legend'     => 'Pòcwierdzë zazychrowanié',

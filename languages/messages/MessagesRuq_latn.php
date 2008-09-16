@@ -258,9 +258,11 @@ $3',
 'watching'   => 'O klăaere...',
 'unwatching' => 'O deklăaere...',
 
-# Delete/protect/revert
+# Delete
 'deletedarticle' => 'delǎraj "[[$1]]"',
-'rollbacklink'   => 'revenire',
+
+# Rollback
+'rollbacklink' => 'revenire',
 
 # Namespace form on various pages
 'namespace'      => 'lSpaţi:',

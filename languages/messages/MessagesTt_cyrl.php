@@ -822,24 +822,28 @@ $2',
 'changed'                      => 'үзгәртергән',
 'created'                      => 'төзергән',
 
-# Delete/protect/revert
-'deletepage'                  => 'Битне бетерергә',
-'confirm'                     => 'Расларга',
-'excontent'                   => 'эчтәлек: «$1»',
-'exblank'                     => 'бит буш иде',
-'delete-confirm'              => '«$1» бетерүе',
-'delete-legend'               => 'Бетерү',
-'historywarning'              => 'Кисәтү: сез бетерергә теләгән биттә үзгәртү тарихы бар:',
-'actioncomplete'              => 'Гамәл башкарган',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» бетерергән инде.<br />
+# Delete
+'deletepage'            => 'Битне бетерергә',
+'confirm'               => 'Расларга',
+'excontent'             => 'эчтәлек: «$1»',
+'exblank'               => 'бит буш иде',
+'delete-confirm'        => '«$1» бетерүе',
+'delete-legend'         => 'Бетерү',
+'historywarning'        => 'Кисәтү: сез бетерергә теләгән биттә үзгәртү тарихы бар:',
+'actioncomplete'        => 'Гамәл башкарган',
+'deletedtext'           => '«<nowiki>$1</nowiki>» бетерергән инде.<br />
 Соңгы бетерүләр карау өчен, $2 кара.',
-'deletedarticle'              => '«[[$1]]» бетерергән',
-'dellogpage'                  => 'Бетерү исемлеге',
-'deletionlog'                 => 'бетерү журналы',
-'deletecomment'               => 'Бетерү сәбәбе:',
-'deleteotherreason'           => 'Башка/өстәмә сәбәп:',
-'deletereasonotherlist'       => 'Башка сәбәп',
-'rollbacklink'                => 'кире кайтару',
+'deletedarticle'        => '«[[$1]]» бетерергән',
+'dellogpage'            => 'Бетерү исемлеге',
+'deletionlog'           => 'бетерү журналы',
+'deletecomment'         => 'Бетерү сәбәбе:',
+'deleteotherreason'     => 'Башка/өстәмә сәбәп:',
+'deletereasonotherlist' => 'Башка сәбәп',
+
+# Rollback
+'rollbacklink' => 'кире кайтару',
+
+# Protect
 'protectlogpage'              => 'Яклану журналы',
 'protectedarticle'            => '«[[$1]]» якланган',
 'unprotectedarticle'          => '«[[$1]]» инде якланмаган',

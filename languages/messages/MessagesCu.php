@@ -408,15 +408,17 @@ $messages = array(
 
 'created' => 'сътворѥ́нъ ѥ́стъ',
 
-# Delete/protect/revert
-'deletepage'          => 'поничьжє́ниѥ',
-'excontent'           => "вънѫтри бѣ: '$1'",
-'excontentauthor'     => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
-'delete-legend'       => 'поничьжє́ниѥ',
-'actioncomplete'      => 'дѣ́иство сътворєно́ ѥ́стъ',
-'deletedarticle'      => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
-'dellogpage'          => 'поничьжє́ниꙗ їсторі́ꙗ',
-'deletionlog'         => 'поничьжє́ниꙗ їсторі́ꙗ',
+# Delete
+'deletepage'      => 'поничьжє́ниѥ',
+'excontent'       => "вънѫтри бѣ: '$1'",
+'excontentauthor' => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
+'delete-legend'   => 'поничьжє́ниѥ',
+'actioncomplete'  => 'дѣ́иство сътворєно́ ѥ́стъ',
+'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
+'dellogpage'      => 'поничьжє́ниꙗ їсторі́ꙗ',
+'deletionlog'     => 'поничьжє́ниꙗ їсторі́ꙗ',
+
+# Protect
 'protectlogpage'      => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
 'protect-level-sysop' => 'то́лико съмотри́тєлє',
 

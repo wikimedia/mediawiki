@@ -645,20 +645,24 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'watching'   => 'Åvervåge …',
 'unwatching' => 'Ekke åvervåge …',
 
-# Delete/protect/revert
-'deletepage'                  => 'Slet side',
-'historywarning'              => 'Advarsel: Æ side du erst ve at slette har en skigte:',
-'confirmdeletetext'           => "Du erst ve permanent at slette en side
+# Delete
+'deletepage'            => 'Slet side',
+'historywarning'        => 'Advarsel: Æ side du erst ve at slette har en skigte:',
+'confirmdeletetext'     => "Du erst ve permanent at slette en side
 æller et billet sammen ve hæle den tilhørende skigte frå'n database. Bekræft venlegst at du virkelg hvilst gøre dette, at du førstårst konsekvenserne, og at du gør dette i åverensstemmelse ve
 [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Gennemført',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" er slettet. Sæg $2 før en førtegnelse åver de nyeste sletnenger.',
-'deletedarticle'              => 'slettede "[[$1]]"',
-'dellogpage'                  => 'Sletnengslog',
-'deletecomment'               => 'Begrundelse før sletnenge:',
-'deleteotherreason'           => 'Anden/uddybende begrundelse:',
-'deletereasonotherlist'       => 'Anden begrundelse',
-'rollbacklink'                => 'fjern redigærenge',
+'actioncomplete'        => 'Gennemført',
+'deletedtext'           => '"<nowiki>$1</nowiki>" er slettet. Sæg $2 før en førtegnelse åver de nyeste sletnenger.',
+'deletedarticle'        => 'slettede "[[$1]]"',
+'dellogpage'            => 'Sletnengslog',
+'deletecomment'         => 'Begrundelse før sletnenge:',
+'deleteotherreason'     => 'Anden/uddybende begrundelse:',
+'deletereasonotherlist' => 'Anden begrundelse',
+
+# Rollback
+'rollbacklink' => 'fjern redigærenge',
+
+# Protect
 'protectlogpage'              => 'Liste åver beskyttede sider',
 'protectcomment'              => 'Begrundelse før beskyttelse',
 'protectexpiry'               => 'Udløb:',

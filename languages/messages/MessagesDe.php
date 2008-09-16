@@ -1768,50 +1768,54 @@ Es werden solange keine weiteren Benachrichtigungsmails gesendet, bis du die Sei
 --
 Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Special:Watchlist/edit}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Seite löschen',
-'confirm'                     => 'Bestätigen',
-'excontent'                   => "Alter Inhalt: '$1'",
-'excontentauthor'             => 'Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => "Inhalt vor dem Leeren der Seite: '$1'",
-'exblank'                     => 'Seite war leer',
-'delete-confirm'              => 'Löschen von „$1“',
-'delete-legend'               => 'Löschen',
-'historywarning'              => 'Achtung, die Seite, die du löschen möchtest, hat eine Versionsgeschichte:',
-'confirmdeletetext'           => 'Du bist dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätige dazu, dass du dir der Konsequenzen bewusst bist, und dass du in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.',
-'actioncomplete'              => 'Aktion beendet',
-'deletedtext'                 => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 findest du eine Liste der letzten Löschungen.',
-'deletedarticle'              => 'hat „[[$1]]“ gelöscht',
-'suppressedarticle'           => 'veränderte die Sichtbarkeit von „[[$1]]“',
-'dellogpage'                  => 'Lösch-Logbuch',
-'dellogpagetext'              => 'Dies ist das Logbuch der gelöschten Seiten und Dateien.',
-'deletionlog'                 => 'Lösch-Logbuch',
-'reverted'                    => 'Auf eine alte Version zurückgesetzt',
-'deletecomment'               => 'Grund der Löschung:',
-'deleteotherreason'           => 'Anderer/ergänzender Grund:',
-'deletereasonotherlist'       => 'Anderer Grund',
-'deletereason-dropdown'       => '
+# Delete
+'deletepage'             => 'Seite löschen',
+'confirm'                => 'Bestätigen',
+'excontent'              => "Alter Inhalt: '$1'",
+'excontentauthor'        => 'Inhalt war: „$1“ (einziger Bearbeiter: [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => "Inhalt vor dem Leeren der Seite: '$1'",
+'exblank'                => 'Seite war leer',
+'delete-confirm'         => 'Löschen von „$1“',
+'delete-legend'          => 'Löschen',
+'historywarning'         => 'Achtung, die Seite, die du löschen möchtest, hat eine Versionsgeschichte:',
+'confirmdeletetext'      => 'Du bist dabei, eine Seite mit allen zugehörigen älteren Versionen zu löschen. Bitte bestätige dazu, dass du dir der Konsequenzen bewusst bist, und dass du in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.',
+'actioncomplete'         => 'Aktion beendet',
+'deletedtext'            => '„<nowiki>$1</nowiki>“ wurde gelöscht. Im $2 findest du eine Liste der letzten Löschungen.',
+'deletedarticle'         => 'hat „[[$1]]“ gelöscht',
+'suppressedarticle'      => 'veränderte die Sichtbarkeit von „[[$1]]“',
+'dellogpage'             => 'Lösch-Logbuch',
+'dellogpagetext'         => 'Dies ist das Logbuch der gelöschten Seiten und Dateien.',
+'deletionlog'            => 'Lösch-Logbuch',
+'reverted'               => 'Auf eine alte Version zurückgesetzt',
+'deletecomment'          => 'Grund der Löschung:',
+'deleteotherreason'      => 'Anderer/ergänzender Grund:',
+'deletereasonotherlist'  => 'Anderer Grund',
+'deletereason-dropdown'  => '
 * Allgemeine Löschgründe
 ** Wunsch des Autors
 ** Urheberrechtsverletzung
 ** Vandalismus',
-'delete-edit-reasonlist'      => 'Löschgründe bearbeiten',
-'delete-toobig'               => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
-'delete-warning-toobig'       => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
-'rollback'                    => 'Zurücksetzen der Änderungen',
-'rollback_short'              => 'Zurücksetzen',
-'rollbacklink'                => 'Zurücksetzen',
-'rollbackfailed'              => 'Zurücksetzen gescheitert',
-'cantrollback'                => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'               => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer Änderungen an dieser Seite vorgenommen hat.
+'delete-edit-reasonlist' => 'Löschgründe bearbeiten',
+'delete-toobig'          => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen solcher Seiten wurde eingeschränkt, um eine versehentliche Überlastung der Server zu verhindern.',
+'delete-warning-toobig'  => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
+
+# Rollback
+'rollback'         => 'Zurücksetzen der Änderungen',
+'rollback_short'   => 'Zurücksetzen',
+'rollbacklink'     => 'Zurücksetzen',
+'rollbackfailed'   => 'Zurücksetzen gescheitert',
+'cantrollback'     => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
+'alreadyrolled'    => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer Änderungen an dieser Seite vorgenommen hat.
 
 Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
-'editcomment'                 => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
-'sessionfailure'              => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
+'editcomment'      => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
+'sessionfailure'   => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
+
+# Protect
 'protectlogpage'              => 'Seitenschutz-Logbuch',
 'protectlogtext'              => 'Dies ist das Seitenschutz-Logbuch.
 Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle aktuell geschützten Seiten.',

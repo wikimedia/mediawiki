@@ -662,22 +662,26 @@ $messages = array(
 
 'changed' => 'পতেসে',
 
-# Delete/protect/revert
-'deletepage'                  => 'পাতাহান পুস',
-'confirm'                     => 'লেপকরানি',
-'historywarning'              => 'সিঙুইস: তি যে পাতাহান পুসানিত লেপুইসত এহানর ইতিহাস আহান আসে:',
-'confirmdeletetext'           => 'তি যে পাতাহান পুসানি লেপুইসত অহানর লগে ইতিহাসহানউ পুসতই।
+# Delete
+'deletepage'            => 'পাতাহান পুস',
+'confirm'               => 'লেপকরানি',
+'historywarning'        => 'সিঙুইস: তি যে পাতাহান পুসানিত লেপুইসত এহানর ইতিহাস আহান আসে:',
+'confirmdeletetext'     => 'তি যে পাতাহান পুসানি লেপুইসত অহানর লগে ইতিহাসহানউ পুসতই।
 তি লেপকর যে তি এহান করতেই বুলিয়া, বারো তি এহানর পিসহান হারপাসত লগে [[{{MediaWiki:Policy-url}}|পলিসিহান]] ইলয়া তি কামএহান করানিত লেপুইসত।',
-'actioncomplete'              => 'কামহান লমিল।',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" পুসানি অইল।
+'actioncomplete'        => 'কামহান লমিল।',
+'deletedtext'           => '"<nowiki>$1</nowiki>" পুসানি অইল।
 চা $2 এহার বারে আগে আসে পুসানির লাতংগ।',
-'deletedarticle'              => 'পুসানিইল "[[$1]]"',
-'dellogpage'                  => 'পুসিসিতার লাতংগ',
-'deletecomment'               => 'পুসানির কারনহান:',
-'deleteotherreason'           => 'আরাক/উপরি কারন:',
-'deletereasonotherlist'       => 'আর আর কারন',
-'rollbacklink'                => 'রোলবেক',
-'cantrollback'                => 'আগেকার সঙস্করনহাত আলথকে যানা নুৱারলু, লমিলগা সম্পদনাকরেকুরা অগ পাতা অহানর আকখুলা লেখকগ।',
+'deletedarticle'        => 'পুসানিইল "[[$1]]"',
+'dellogpage'            => 'পুসিসিতার লাতংগ',
+'deletecomment'         => 'পুসানির কারনহান:',
+'deleteotherreason'     => 'আরাক/উপরি কারন:',
+'deletereasonotherlist' => 'আর আর কারন',
+
+# Rollback
+'rollbacklink' => 'রোলবেক',
+'cantrollback' => 'আগেকার সঙস্করনহাত আলথকে যানা নুৱারলু, লমিলগা সম্পদনাকরেকুরা অগ পাতা অহানর আকখুলা লেখকগ।',
+
+# Protect
 'protectlogpage'              => 'লুকরানির লগ',
 'protectcomment'              => 'মতহান:',
 'protectexpiry'               => 'মিয়াদহান লালর:',

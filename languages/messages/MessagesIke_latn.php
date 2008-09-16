@@ -257,9 +257,11 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'enotif_impersonal_salutation' => '{{SITENAME}} qatannguti',
 'created'                      => 'mappitaq anivuq',
 
-# Delete/protect/revert
-'dellogpage'          => 'nipaq nipi',
-'deletionlog'         => 'nipaq nipi',
+# Delete
+'dellogpage'  => 'nipaq nipi',
+'deletionlog' => 'nipaq nipi',
+
+# Protect
 'protect-legend'      => 'patimmivaa sapummivaa',
 'protect-level-sysop' => 'sirlak titiraqsimajunik tuqquqtiriji',
 

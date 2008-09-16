@@ -229,7 +229,7 @@ $messages = array(
 'watching'   => 'ताकिमे...',
 'unwatching' => 'छोड़ल ...',
 
-# Delete/protect/revert
+# Protect
 'protectlogpage' => 'सुरक्षा लॉग',
 
 # Namespace form on various pages

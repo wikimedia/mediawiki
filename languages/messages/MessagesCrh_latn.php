@@ -1229,34 +1229,38 @@ Ayarlarnı deñiştirmek içün:
 Yardım ve teklifler içün:
 {{fullurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Saifeni yoq et',
-'confirm'                     => 'Tasdıqla',
-'excontent'                   => "eski metin: '$1'",
-'excontentauthor'             => "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",
-'exbeforeblank'               => "Yoq etilmegen evelki metin: '$1'",
-'exblank'                     => 'saife metini boş',
-'historywarning'              => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
-'confirmdeletetext'           => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
+# Delete
+'deletepage'            => 'Saifeni yoq et',
+'confirm'               => 'Tasdıqla',
+'excontent'             => "eski metin: '$1'",
+'excontentauthor'       => "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",
+'exbeforeblank'         => "Yoq etilmegen evelki metin: '$1'",
+'exblank'               => 'saife metini boş',
+'historywarning'        => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
+'confirmdeletetext'     => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
 Lütfen, neticelerini añlağanıñıznı, [[Special:WhatLinksHere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
-'actioncomplete'              => 'İşlem tamamlandı.',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" yoq etildi.
+'actioncomplete'        => 'İşlem tamamlandı.',
+'deletedtext'           => '"<nowiki>$1</nowiki>" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
-'deletedarticle'              => '"[[$1]]" yoq etildi',
-'dellogpage'                  => 'Yoq etüv jurnalı',
-'dellogpagetext'              => 'Aşağıdaki cedvel soñki yoq etüv jurnalıdır.',
-'deletionlog'                 => 'yoq etüv jurnalı',
-'reverted'                    => 'Evelki versiya keri ketirildi',
-'deletecomment'               => 'Yoq etüv sebebi',
-'deleteotherreason'           => 'Diger/ilâveli sebep:',
-'deletereasonotherlist'       => 'Diger sebep',
-'rollback'                    => 'deñişikliklerni keri al',
-'rollback_short'              => 'keri al',
-'rollbacklink'                => 'eski alına ketir',
-'rollbackfailed'              => 'keri aluv işlemi muvafaqiyetsiz',
-'cantrollback'                => 'Deñişiklikler keri alınamay, soñki deñiştirgen kişi saifeniñ tek bir müellifidir',
-'editcomment'                 => 'Deñiştirme izaatı: "<i>$1</i>" edi.', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'deletedarticle'        => '"[[$1]]" yoq etildi',
+'dellogpage'            => 'Yoq etüv jurnalı',
+'dellogpagetext'        => 'Aşağıdaki cedvel soñki yoq etüv jurnalıdır.',
+'deletionlog'           => 'yoq etüv jurnalı',
+'reverted'              => 'Evelki versiya keri ketirildi',
+'deletecomment'         => 'Yoq etüv sebebi',
+'deleteotherreason'     => 'Diger/ilâveli sebep:',
+'deletereasonotherlist' => 'Diger sebep',
+
+# Rollback
+'rollback'       => 'deñişikliklerni keri al',
+'rollback_short' => 'keri al',
+'rollbacklink'   => 'eski alına ketir',
+'rollbackfailed' => 'keri aluv işlemi muvafaqiyetsiz',
+'cantrollback'   => 'Deñişiklikler keri alınamay, soñki deñiştirgen kişi saifeniñ tek bir müellifidir',
+'editcomment'    => 'Deñiştirme izaatı: "<i>$1</i>" edi.', # only shown if there is an edit comment
+'revertpage'     => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) tarafından yapılğan deñişiklikler keri alınıp, [[User:$1|$1]] tarafından deñiştirilgen evelki versiya keri ketirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Qorçalav jurnalı',
 'protectlogtext'              => 'Qorçalavğa aluv/çıqaruv ile bağlı deñişiklikler jurnalını körmektesiñiz.
 Qorçalav altına alınğan saifeler tam cedveli [[Special:ProtectedPages|bu saifede]] körip olasıñız.',

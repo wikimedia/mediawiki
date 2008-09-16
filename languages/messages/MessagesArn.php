@@ -326,11 +326,13 @@ $messages = array(
 'enotif_impersonal_salutation' => '{{SITENAME}} lludüchi',
 'created'                      => 'Llituy',
 
-# Delete/protect/revert
-'deletepage'              => 'Ñamümün tüfachi pakina',
-'delete-confirm'          => 'Ñamümüngelu "$1"',
-'delete-legend'           => 'Ñamümün',
-'deletedarticle'          => '«[[$1]]» Ñamümün',
+# Delete
+'deletepage'     => 'Ñamümün tüfachi pakina',
+'delete-confirm' => 'Ñamümüngelu "$1"',
+'delete-legend'  => 'Ñamümün',
+'deletedarticle' => '«[[$1]]» Ñamümün',
+
+# Protect
 'protectexpiry'           => 'Afi:',
 'protect-level-sysop'     => 'Pu ngünefe müṯen',
 'protect-summary-cascade' => 'Trayengko',

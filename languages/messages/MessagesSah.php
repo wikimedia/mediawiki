@@ -1537,52 +1537,56 @@ $NEWPAGE
 
 Көмө оҥорор уонна ыйытар сир: {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Сирэйи сот',
-'confirm'                     => 'Бигэргэтии',
-'excontent'                   => "иһинээҕитэ: '$1'",
-'excontentauthor'             => 'иһинээҕитэ: «$1» (соҕотох ааптар [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => "иһинээҕитэ сотуллуон иннинэ: '$1'",
-'exblank'                     => 'сирэй кураанах этэ',
-'delete-confirm'              => 'Маны "$1" соторго',
-'delete-legend'               => 'Сотуу',
-'historywarning'              => 'Сэрэтии: Сотоору турар сирэйиҥ устуоруйалаах:',
-'confirmdeletetext'           => 'Эн сирэйи (ойууну) уонна кини устуоруйатын букатын сотоору гынаҕын.
+# Delete
+'deletepage'             => 'Сирэйи сот',
+'confirm'                => 'Бигэргэтии',
+'excontent'              => "иһинээҕитэ: '$1'",
+'excontentauthor'        => 'иһинээҕитэ: «$1» (соҕотох ааптар [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => "иһинээҕитэ сотуллуон иннинэ: '$1'",
+'exblank'                => 'сирэй кураанах этэ',
+'delete-confirm'         => 'Маны "$1" соторго',
+'delete-legend'          => 'Сотуу',
+'historywarning'         => 'Сэрэтии: Сотоору турар сирэйиҥ устуоруйалаах:',
+'confirmdeletetext'      => 'Эн сирэйи (ойууну) уонна кини устуоруйатын букатын сотоору гынаҕын.
 Бука диэн, кырдьык инньэ гынаары гынаргын,
 бу дьайыы туох содуллаах буоларын толору билэргин
 уонна [[{{MediaWiki:Policy-url}}]] сиэрин кэспэккин бигэргэт.',
-'actioncomplete'              => 'Дьайыы оҥоһулунна',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» сотуллубут.
+'actioncomplete'         => 'Дьайыы оҥоһулунна',
+'deletedtext'            => '«<nowiki>$1</nowiki>» сотуллубут.
 Бүтэһик сотуулар испииһэктэрин манна: $2 көр.',
-'deletedarticle'              => '"[[$1]]" сотуллубут',
-'suppressedarticle'           => '"[[$1]]" кистээбит',
-'dellogpage'                  => 'Сотуу испииһэгэ',
-'dellogpagetext'              => 'Манна кэнники сотуулар испииһэктэрэ көстөр.',
-'deletionlog'                 => 'сотуу испииһэгэ',
-'reverted'                    => 'Урукку торумугар төннөрүлүннэ',
-'deletecomment'               => 'Сотуу төрүөтэ:',
-'deleteotherreason'           => 'Атын/эбии биричиинэлэр:',
-'deletereasonotherlist'       => 'Атын биричиинэ',
-'deletereason-dropdown'       => '*Common сотуу биричиинэтэ
+'deletedarticle'         => '"[[$1]]" сотуллубут',
+'suppressedarticle'      => '"[[$1]]" кистээбит',
+'dellogpage'             => 'Сотуу испииһэгэ',
+'dellogpagetext'         => 'Манна кэнники сотуулар испииһэктэрэ көстөр.',
+'deletionlog'            => 'сотуу испииһэгэ',
+'reverted'               => 'Урукку торумугар төннөрүлүннэ',
+'deletecomment'          => 'Сотуу төрүөтэ:',
+'deleteotherreason'      => 'Атын/эбии биричиинэлэр:',
+'deletereasonotherlist'  => 'Атын биричиинэ',
+'deletereason-dropdown'  => '*Common сотуу биричиинэтэ
 ** ааптар ирдээһинэ
 ** ааптар быраабын күөмчүлээһин
 ** Алдьатыы (Вандализм)',
-'delete-edit-reasonlist'      => 'Сотуу төрүөтүн уларытыы',
-'delete-toobig'               => 'Бу сирэй уларытыыларын историята уһун, хас да ($1) {{PLURAL:$1|хат көрүүлээх|хат көрүүлэрдээх}}. Маннык сирэйдэри сотор хааччахтанар, тоҕо диэххэ алҕас {{SITENAME}} алдьаныан сөп.',
-'delete-warning-toobig'       => 'Бу сирэй уларыылара уһун историялаах, хас да ($1) {{PLURAL:$1|хат көрүүлээх|хат көрүүлэрдээх}}. Маны соттоххуна, {{SITENAME}} билэтин тиһигин алдьатыан сөп; салгыыр буоллаххына сэрэнэн үлэлээ.',
-'rollback'                    => 'Уруккутугар төннөр',
-'rollback_short'              => 'Төннөрүү',
-'rollbacklink'                => 'төннөр',
-'rollbackfailed'              => 'Төннөрөргө моһуок үөскээтэ',
-'cantrollback'                => 'Төннөрөр кыах суох; бүтэһик көннөрүүнү оҥорбут киһи бу сирэй соҕотох ааптара буолар.',
-'alreadyrolled'               => 'Бүтэһик [[User:$2|$2]] ([[User talk:$2|Ырытыы]] | [[Special:Contributions/$2|{{int:contribslink}}]]) оҥорбут [[:$1]] уларытыыларын төннөрөр кыах суох;
+'delete-edit-reasonlist' => 'Сотуу төрүөтүн уларытыы',
+'delete-toobig'          => 'Бу сирэй уларытыыларын историята уһун, хас да ($1) {{PLURAL:$1|хат көрүүлээх|хат көрүүлэрдээх}}. Маннык сирэйдэри сотор хааччахтанар, тоҕо диэххэ алҕас {{SITENAME}} алдьаныан сөп.',
+'delete-warning-toobig'  => 'Бу сирэй уларыылара уһун историялаах, хас да ($1) {{PLURAL:$1|хат көрүүлээх|хат көрүүлэрдээх}}. Маны соттоххуна, {{SITENAME}} билэтин тиһигин алдьатыан сөп; салгыыр буоллаххына сэрэнэн үлэлээ.',
+
+# Rollback
+'rollback'         => 'Уруккутугар төннөр',
+'rollback_short'   => 'Төннөрүү',
+'rollbacklink'     => 'төннөр',
+'rollbackfailed'   => 'Төннөрөргө моһуок үөскээтэ',
+'cantrollback'     => 'Төннөрөр кыах суох; бүтэһик көннөрүүнү оҥорбут киһи бу сирэй соҕотох ааптара буолар.',
+'alreadyrolled'    => 'Бүтэһик [[User:$2|$2]] ([[User talk:$2|Ырытыы]] | [[Special:Contributions/$2|{{int:contribslink}}]]) оҥорбут [[:$1]] уларытыыларын төннөрөр кыах суох;
 ким эрэ атын номнуо бу сирэйи уларыппыт эбэтэр уруккутун төннөрбүт.
 
 Кэнники уларытыыны [[User:$3|$3]] ([[User talk:$3|Ырытыы]] | [[Special:Contributions/$3|{{int:contribslink}}]]) оҥорбут.',
-'editcomment'                 => 'Уларытыыны маннык быһаарбыттар: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',
-'sessionfailure'              => 'Арааһа туох эрэ сатаммата, дьайыыҥ оҥоһуллубата. Браузергар "Төнүн" тимэҕи баттаа уонна бу иннинээҕи сирэйгин иккистээн киллэрэн көр.',
+'editcomment'      => 'Уларытыыны маннык быһаарбыттар: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => '([[User talk:$2|Ырытыы]]) көннөрүүлэрэ: [[Special:Contributions/$2|$2]] бу торумҥа: [[User:$1|$1]] төннөрүлүннүлэр', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 көннөрүүлэр бу торумҥа төннөрүлүннүлэр: $2.',
+'sessionfailure'   => 'Арааһа туох эрэ сатаммата, дьайыыҥ оҥоһуллубата. Браузергар "Төнүн" тимэҕи баттаа уонна бу иннинээҕи сирэйгин иккистээн киллэрэн көр.',
+
+# Protect
 'protectlogpage'              => 'Харысхал сурунаала (көннөрүүттэн көмүскэммит билэлэр испииһэктэрэ)',
 'protectlogtext'              => 'Манна ыстатыйалары уларытыыттан көмүскээһин уонна ол көмүскэли суох оҥоруу устуоруйата суруллубут.
 Эн өссө [[Special:ProtectedPages|билигин уларытыллыбат сирэйдэр]] испииһэктэрин көрүөххүн сөп.',

@@ -1719,39 +1719,43 @@ $NEWPAGE
 ប្រតិកម្ម និង ជំនួយបន្ថែម ៖
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'លុបទំព័រចេញ',
-'confirm'                     => 'បញ្ជាក់ទទួលស្គាល់',
-'excontent'                   => "ខ្លឹមសារគឺ៖ '$1'",
-'excontentauthor'             => "អត្ថន័យគឺ៖ '$1' (ហើយអ្នករួមចំនែកតែម្នាក់គត់គឺ '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "អត្ថន័យមុនពេលលុបចេញ៖ '$1'",
-'exblank'                     => 'ទំព័រទទេ',
-'delete-confirm'              => 'លុប"$1"ចេញ',
-'delete-legend'               => 'លុបចេញ',
-'historywarning'              => 'ប្រយ័ត្ន៖ ទំព័រដែលអ្នកទំនងជានឹងលុបមានប្រវត្តិ៖',
-'confirmdeletetext'           => 'អ្នកប្រុងនឹងលុបចេញទាំងស្រុង នូវទំព័រមួយដោយរួមបញ្ចូលទាំងប្រវត្តិកែប្រែរបស់វាផង។
+# Delete
+'deletepage'             => 'លុបទំព័រចេញ',
+'confirm'                => 'បញ្ជាក់ទទួលស្គាល់',
+'excontent'              => "ខ្លឹមសារគឺ៖ '$1'",
+'excontentauthor'        => "អត្ថន័យគឺ៖ '$1' (ហើយអ្នករួមចំនែកតែម្នាក់គត់គឺ '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "អត្ថន័យមុនពេលលុបចេញ៖ '$1'",
+'exblank'                => 'ទំព័រទទេ',
+'delete-confirm'         => 'លុប"$1"ចេញ',
+'delete-legend'          => 'លុបចេញ',
+'historywarning'         => 'ប្រយ័ត្ន៖ ទំព័រដែលអ្នកទំនងជានឹងលុបមានប្រវត្តិ៖',
+'confirmdeletetext'      => 'អ្នកប្រុងនឹងលុបចេញទាំងស្រុង នូវទំព័រមួយដោយរួមបញ្ចូលទាំងប្រវត្តិកែប្រែរបស់វាផង។
 សូមអ្នកអះអាងថា អ្នកពិតជាមានចេតនាធ្វើបែបហ្នឹង និងថាអ្នកបានយល់ច្បាស់ពីផលវិបាកទាំងឡាយដែលអាចកើតមាន និង​សូមអះអាងថា អ្នកធ្វើស្របតាម [[{{MediaWiki:Policy-url}}|គោលការណ៍]]។',
-'actioncomplete'              => 'សកម្មភាពរួចរាល់ជាស្ថាពរ',
-'deletedtext'                 => '"<nowiki>$1</nowiki>"ត្រូវបានលុបរួចហើយ។ សូមមើល$2ចំពោះបញ្ជីនៃការលុបនាមពេលថ្មីៗ។',
-'deletedarticle'              => 'បានលុប"[[$1]]"',
-'dellogpage'                  => 'កំនត់ហេតុនៃការលុប',
-'dellogpagetext'              => 'ខាងក្រោមជាបញ្ជីនៃការលុបចេញថ្មីៗបំផុត។',
-'deletionlog'                 => 'កំនត់ហេតុនៃការលុប',
-'reverted'                    => 'បានត្រឡប់ ទៅកំណែមុន',
-'deletecomment'               => 'មូលហេតុ៖',
-'deleteotherreason'           => 'មូលហេតុបន្ថែមផ្សេងទៀត៖',
-'deletereasonotherlist'       => 'មូលហេតុផ្សេងទៀត',
-'deletereason-dropdown'       => '*ហេតុផលលុបជាទូទៅ
+'actioncomplete'         => 'សកម្មភាពរួចរាល់ជាស្ថាពរ',
+'deletedtext'            => '"<nowiki>$1</nowiki>"ត្រូវបានលុបរួចហើយ។ សូមមើល$2ចំពោះបញ្ជីនៃការលុបនាមពេលថ្មីៗ។',
+'deletedarticle'         => 'បានលុប"[[$1]]"',
+'dellogpage'             => 'កំនត់ហេតុនៃការលុប',
+'dellogpagetext'         => 'ខាងក្រោមជាបញ្ជីនៃការលុបចេញថ្មីៗបំផុត។',
+'deletionlog'            => 'កំនត់ហេតុនៃការលុប',
+'reverted'               => 'បានត្រឡប់ ទៅកំណែមុន',
+'deletecomment'          => 'មូលហេតុ៖',
+'deleteotherreason'      => 'មូលហេតុបន្ថែមផ្សេងទៀត៖',
+'deletereasonotherlist'  => 'មូលហេតុផ្សេងទៀត',
+'deletereason-dropdown'  => '*ហេតុផលលុបជាទូទៅ
 ** សំណើរបស់អ្នកនិពន្ធ
 ** បំពានសិទ្ធិអ្នកនិពន្ធ
 ** អំពើបំផ្លាញទ្រព្យសម្បត្តិឯកជនឬសាធារណៈ',
-'delete-edit-reasonlist'      => 'ពិនិត្យផ្ទៀងផ្ទាត់ហេតុផលនៃការលុប',
-'rollback'                    => 'ត្រឡប់កំនែប្រែ',
-'rollback_short'              => 'ត្រឡប់',
-'rollbacklink'                => 'ត្រឡប់',
-'cantrollback'                => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
-'editcomment'                 => 'វិចារក្នុងការកែប្រែ៖ "<i>$1</i>"។', # only shown if there is an edit comment
-'revertpage'                  => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'delete-edit-reasonlist' => 'ពិនិត្យផ្ទៀងផ្ទាត់ហេតុផលនៃការលុប',
+
+# Rollback
+'rollback'       => 'ត្រឡប់កំនែប្រែ',
+'rollback_short' => 'ត្រឡប់',
+'rollbacklink'   => 'ត្រឡប់',
+'cantrollback'   => 'មិនអាចត្រឡប់កំណែប្រែ។ អ្នករួមចំណែកចុងក្រោយទើបជាអ្នកនិពន្ធ​របស់ទំព័រនេះ។',
+'editcomment'    => 'វិចារក្នុងការកែប្រែ៖ "<i>$1</i>"។', # only shown if there is an edit comment
+'revertpage'     => 'បានត្រលប់កំនែប្រែដោយ[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ទៅកំនែប្រែចុងក្រោយដោយ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'កំនត់ហេតុនៃការការពារ',
 'protectlogtext'              => 'ខាងក្រោមនេះជាបញ្ជីនៃទំព័រដែលត្រូវបានចាក់សោនិងដោះសោ។
 

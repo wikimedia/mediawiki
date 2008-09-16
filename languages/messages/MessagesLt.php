@@ -1571,52 +1571,56 @@ Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
 Atsiliepimai ir pagalba:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Trinti puslapį',
-'confirm'                     => 'Tvirtinu',
-'excontent'                   => 'buvęs turinys: „$1“',
-'excontentauthor'             => 'buvęs turinys: „$1“ (redagavo tik „[[Special:Contributions/$2|$2]]“)',
-'exbeforeblank'               => 'prieš ištrinant turinys buvo: „$1“',
-'exblank'                     => 'puslapis buvo tuščias',
-'delete-confirm'              => 'Ištrinta "$1"',
-'delete-legend'               => 'Trynimas',
-'historywarning'              => 'Dėmesio: Trinamas puslapis turi istoriją:',
-'confirmdeletetext'           => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
+# Delete
+'deletepage'             => 'Trinti puslapį',
+'confirm'                => 'Tvirtinu',
+'excontent'              => 'buvęs turinys: „$1“',
+'excontentauthor'        => 'buvęs turinys: „$1“ (redagavo tik „[[Special:Contributions/$2|$2]]“)',
+'exbeforeblank'          => 'prieš ištrinant turinys buvo: „$1“',
+'exblank'                => 'puslapis buvo tuščias',
+'delete-confirm'         => 'Ištrinta "$1"',
+'delete-legend'          => 'Trynimas',
+'historywarning'         => 'Dėmesio: Trinamas puslapis turi istoriją:',
+'confirmdeletetext'      => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
 Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
-'actioncomplete'              => 'Veiksmas atliktas',
-'deletedtext'                 => '„<nowiki>$1</nowiki>“ ištrintas.
+'actioncomplete'         => 'Veiksmas atliktas',
+'deletedtext'            => '„<nowiki>$1</nowiki>“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
-'deletedarticle'              => 'ištrynė „[[$1]]“',
-'suppressedarticle'           => 'apribotas „[[$1]]“',
-'dellogpage'                  => 'Šalinimų istorija',
-'dellogpagetext'              => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
-'deletionlog'                 => 'šalinimų istorija',
-'reverted'                    => 'Atkurta į ankstesnę versiją',
-'deletecomment'               => 'Trynimo priežastis',
-'deleteotherreason'           => 'Kita/papildoma priežastis:',
-'deletereasonotherlist'       => 'Kita priežastis',
-'deletereason-dropdown'       => '
+'deletedarticle'         => 'ištrynė „[[$1]]“',
+'suppressedarticle'      => 'apribotas „[[$1]]“',
+'dellogpage'             => 'Šalinimų istorija',
+'dellogpagetext'         => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
+'deletionlog'            => 'šalinimų istorija',
+'reverted'               => 'Atkurta į ankstesnę versiją',
+'deletecomment'          => 'Trynimo priežastis',
+'deleteotherreason'      => 'Kita/papildoma priežastis:',
+'deletereasonotherlist'  => 'Kita priežastis',
+'deletereason-dropdown'  => '
 *Dažnos trynimo priežastys
 ** Autoriaus prašymas
 ** Autorystės teisių pažeidimas
 ** Vandalizmas',
-'delete-edit-reasonlist'      => 'Keisti trynimo priežastis',
-'delete-toobig'               => 'Šis puslapis turi ilgą keitimų istoriją, daugiau nei $1 {{PLURAL:$1|revizija|revizijos|revizijų}}. Tokių puslapių trynimas yra apribotas, kad būtų išvengta atsitiktinio {{SITENAME}} žlugdymo.',
-'delete-warning-toobig'       => 'Šis puslapis turi ilgą keitimų istoriją, daugiau nei $1 {{PLURAL:$1|revizija|revizijos|revizijų}}. Trinant jis gali sutrikdyti {{SITENAME}} duomenų bazės operacijas; būkite atsargūs.',
-'rollback'                    => 'Atmesti keitimus',
-'rollback_short'              => 'Atmesti',
-'rollbacklink'                => 'atmesti',
-'rollbackfailed'              => 'Atmetimas nepavyko',
-'cantrollback'                => 'Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.',
-'alreadyrolled'               => 'Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Aptarimas]] | [[Special:Contributions/$2|{{int:contribslink}}]]) daryto puslapio [[:$1]] keitimo;
+'delete-edit-reasonlist' => 'Keisti trynimo priežastis',
+'delete-toobig'          => 'Šis puslapis turi ilgą keitimų istoriją, daugiau nei $1 {{PLURAL:$1|revizija|revizijos|revizijų}}. Tokių puslapių trynimas yra apribotas, kad būtų išvengta atsitiktinio {{SITENAME}} žlugdymo.',
+'delete-warning-toobig'  => 'Šis puslapis turi ilgą keitimų istoriją, daugiau nei $1 {{PLURAL:$1|revizija|revizijos|revizijų}}. Trinant jis gali sutrikdyti {{SITENAME}} duomenų bazės operacijas; būkite atsargūs.',
+
+# Rollback
+'rollback'         => 'Atmesti keitimus',
+'rollback_short'   => 'Atmesti',
+'rollbacklink'     => 'atmesti',
+'rollbackfailed'   => 'Atmetimas nepavyko',
+'cantrollback'     => 'Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.',
+'alreadyrolled'    => 'Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Aptarimas]] | [[Special:Contributions/$2|{{int:contribslink}}]]) daryto puslapio [[:$1]] keitimo;
 kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Redagavimo komentaras: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Atmesti $1 keitimai; grąžinta į paskutinę $2 versiją.',
-'sessionfailure'              => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
+'editcomment'      => 'Redagavimo komentaras: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Atmesti $1 keitimai; grąžinta į paskutinę $2 versiją.',
+'sessionfailure'   => 'Atrodo yra problemų su jūsų prisijungimo sesija; šis veiksmas buvo atšauktas kaip atsargumo priemonė prieš sesijos vogimą.
 Prašome paspausti „atgal“ ir perkraukite puslapį iš kurio atėjote, ir pamėginkite vėl.',
+
+# Protect
 'protectlogpage'              => 'Rakinimų istorija',
 'protectlogtext'              => 'Žemiau yra puslapių užrakinimų bei atrakinimų istorija.
 Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|apsaugotų puslapių sąraše]].',

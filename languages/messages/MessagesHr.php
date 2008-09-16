@@ -1808,53 +1808,57 @@ Za promjene svog popisa praćenja posjetite
 Za pomoć posjetite:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Izbriši stranicu',
-'confirm'                     => 'Potvrdi',
-'excontent'                   => "sadržaj je bio: '$1'",
-'excontentauthor'             => "sadržaj je bio: '$1' (a jedini urednik '$2')",
-'exbeforeblank'               => "sadržaj prije brisanja je bio: '$1'",
-'exblank'                     => 'stranica je bila prazna',
-'delete-confirm'              => 'Obriši "$1"',
-'delete-legend'               => 'Izbriši',
-'historywarning'              => 'UPOZORENJE: Stranica koju želite obrisati ima prijašnje inačice:',
-'confirmdeletetext'           => 'Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.
+# Delete
+'deletepage'             => 'Izbriši stranicu',
+'confirm'                => 'Potvrdi',
+'excontent'              => "sadržaj je bio: '$1'",
+'excontentauthor'        => "sadržaj je bio: '$1' (a jedini urednik '$2')",
+'exbeforeblank'          => "sadržaj prije brisanja je bio: '$1'",
+'exblank'                => 'stranica je bila prazna',
+'delete-confirm'         => 'Obriši "$1"',
+'delete-legend'          => 'Izbriši',
+'historywarning'         => 'UPOZORENJE: Stranica koju želite obrisati ima prijašnje inačice:',
+'confirmdeletetext'      => 'Zauvijek ćete izbrisati stranicu ili sliku zajedno s prijašnjim inačicama.
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].',
-'actioncomplete'              => 'Zahvat završen',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" je izbrisana.
+'actioncomplete'         => 'Zahvat završen',
+'deletedtext'            => '"<nowiki>$1</nowiki>" je izbrisana.
 Vidi $2 za evidenciju nedavnih brisanja.',
-'deletedarticle'              => 'izbrisano "$1"',
-'suppressedarticle'           => 'sakriven "[[$1]]"',
-'dellogpage'                  => 'Evidencija_brisanja',
-'dellogpagetext'              => 'Dolje je popis nedavnih brisanja.
+'deletedarticle'         => 'izbrisano "$1"',
+'suppressedarticle'      => 'sakriven "[[$1]]"',
+'dellogpage'             => 'Evidencija_brisanja',
+'dellogpagetext'         => 'Dolje je popis nedavnih brisanja.
 Sva vremena su prema poslužiteljevom vremenu (UTC).',
-'deletionlog'                 => 'evidencija brisanja',
-'reverted'                    => 'Vraćeno na prijašnju inačicu',
-'deletecomment'               => 'Razlog za brisanje',
-'deleteotherreason'           => 'Drugi/dodatni razlog:',
-'deletereasonotherlist'       => 'Drugi razlog',
-'deletereason-dropdown'       => '*Razlozi brisanja stranica
+'deletionlog'            => 'evidencija brisanja',
+'reverted'               => 'Vraćeno na prijašnju inačicu',
+'deletecomment'          => 'Razlog za brisanje',
+'deleteotherreason'      => 'Drugi/dodatni razlog:',
+'deletereasonotherlist'  => 'Drugi razlog',
+'deletereason-dropdown'  => '*Razlozi brisanja stranica
 ** Zahtjev autora
 ** Kršenje autorskih prava
 ** Vandalizam',
-'delete-edit-reasonlist'      => 'Uredi razloge brisanja',
-'delete-toobig'               => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje takvih stranica je ograničeno da se onemoguće slučajni problemi u radu {{SITENAME}}.',
-'delete-warning-toobig'       => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje može poremetiti bazu podataka {{SITENAME}}; postupajte s oprezom.',
-'rollback'                    => 'Ukloni posljednju promjenu',
-'rollback_short'              => 'Ukloni',
-'rollbacklink'                => 'ukloni',
-'rollbackfailed'              => 'Uklanjanje neuspješno',
-'cantrollback'                => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
-'alreadyrolled'               => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio suradnik [[User:$2|$2]]
+'delete-edit-reasonlist' => 'Uredi razloge brisanja',
+'delete-toobig'          => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje takvih stranica je ograničeno da se onemoguće slučajni problemi u radu {{SITENAME}}.',
+'delete-warning-toobig'  => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje može poremetiti bazu podataka {{SITENAME}}; postupajte s oprezom.',
+
+# Rollback
+'rollback'         => 'Ukloni posljednju promjenu',
+'rollback_short'   => 'Ukloni',
+'rollbacklink'     => 'ukloni',
+'rollbackfailed'   => 'Uklanjanje neuspješno',
+'cantrollback'     => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
+'alreadyrolled'    => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio suradnik [[User:$2|$2]]
 ([[User talk:$2|Talk]]); netko je već promijenio stranicu ili uklonio promjenu.
 
 Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'                 => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
-'sessionfailure'              => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
+'editcomment'      => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
+'sessionfailure'   => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
 kako bi izbjegla zloupotreba. Molimo vas da u pregledniku pritisnete "Natrag" (Back) i ponovno učitate stranicu
 s koje ste stigli.',
+
+# Protect
 'protectlogpage'              => 'Evidencija zaštićivanja',
 'protectlogtext'              => 'Ispod je evidencija zaštićivanja i uklanjanja zaštite pojedinih stranica.
 Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno zaštićenih stranica.',

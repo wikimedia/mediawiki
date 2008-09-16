@@ -1405,55 +1405,59 @@ Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš poz�
 Pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Wyćep artikel',
-'confirm'                     => 'Potwjyrdź',
-'excontent'                   => 'zawartość zajty „$1”',
-'excontentauthor'             => 'treść: „$1” (jedyny aůtor: [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => 'popředńo zawartość uobecńy pustej zajty: „$1”',
-'exblank'                     => 'Zajta byua pusto',
-'delete-confirm'              => 'Wyćep „$1”',
-'delete-legend'               => 'Wyćep',
-'historywarning'              => 'Pozor! Ta zajta kerům chceš wyćepnůńć mo historjo:',
-'confirmdeletetext'           => 'Chceš wyćepnůńć trwale artikel abo plik s bazy danych s historią. Pokož, aže wjyš co robdza, i to aže to je tak jak godojům [[{{MediaWiki:Policy-url}}|zasady]].',
-'actioncomplete'              => 'Fertig',
-'deletedtext'                 => 'Wyćepano "<nowiki>$1</nowiki>". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
-'deletedarticle'              => 'wyciepnjynto "[[$1]]"',
-'suppressedarticle'           => 'utajńjyu [[$1]]',
-'dellogpage'                  => 'Wyćepane',
-'dellogpagetext'              => 'To je lista uostatńo wykůnanych wyćepań.',
-'deletionlog'                 => 'rejer wyćepań',
-'reverted'                    => 'Přiwrůcůno popředńo wersyja',
-'deletecomment'               => 'Čymu chceš wyćepnůńć:',
-'deleteotherreason'           => 'Inkšy powůd:',
-'deletereasonotherlist'       => 'Inkszy powůd',
-'deletereason-dropdown'       => '* Nojčynstše přičyny wyćepańa
+# Delete
+'deletepage'             => 'Wyćep artikel',
+'confirm'                => 'Potwjyrdź',
+'excontent'              => 'zawartość zajty „$1”',
+'excontentauthor'        => 'treść: „$1” (jedyny aůtor: [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => 'popředńo zawartość uobecńy pustej zajty: „$1”',
+'exblank'                => 'Zajta byua pusto',
+'delete-confirm'         => 'Wyćep „$1”',
+'delete-legend'          => 'Wyćep',
+'historywarning'         => 'Pozor! Ta zajta kerům chceš wyćepnůńć mo historjo:',
+'confirmdeletetext'      => 'Chceš wyćepnůńć trwale artikel abo plik s bazy danych s historią. Pokož, aže wjyš co robdza, i to aže to je tak jak godojům [[{{MediaWiki:Policy-url}}|zasady]].',
+'actioncomplete'         => 'Fertig',
+'deletedtext'            => 'Wyćepano "<nowiki>$1</nowiki>". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
+'deletedarticle'         => 'wyciepnjynto "[[$1]]"',
+'suppressedarticle'      => 'utajńjyu [[$1]]',
+'dellogpage'             => 'Wyćepane',
+'dellogpagetext'         => 'To je lista uostatńo wykůnanych wyćepań.',
+'deletionlog'            => 'rejer wyćepań',
+'reverted'               => 'Přiwrůcůno popředńo wersyja',
+'deletecomment'          => 'Čymu chceš wyćepnůńć:',
+'deleteotherreason'      => 'Inkšy powůd:',
+'deletereasonotherlist'  => 'Inkszy powůd',
+'deletereason-dropdown'  => '* Nojčynstše přičyny wyćepańa
 ** Prośba autora
 ** Narušyńy praw autorskych
 ** Wandalizm',
-'delete-edit-reasonlist'      => 'Sprowjańe listy powodůw wyćepańo zajty',
-'delete-toobig'               => 'Ta zajta mo bardzo dugo historja sprowjyń, wjyncy jak $1 {{PLURAL:$1|pomjeńańe|pomjeńańa|pomjeńań}}.
+'delete-edit-reasonlist' => 'Sprowjańe listy powodůw wyćepańo zajty',
+'delete-toobig'          => 'Ta zajta mo bardzo dugo historja sprowjyń, wjyncy jak $1 {{PLURAL:$1|pomjeńańe|pomjeńańa|pomjeńań}}.
 Jei wyćepańe moguo by spowodować zakuůcyńo w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i bez tůž zostouo uůgrańičůne.',
-'delete-warning-toobig'       => 'Ta zajta mo bardzo dugo historia sprowjyń, wjyncy kej $1 {{PLURAL:$1|pomjyńeńe|pomjyńańo|pomjyńań}}.
+'delete-warning-toobig'  => 'Ta zajta mo bardzo dugo historia sprowjyń, wjyncy kej $1 {{PLURAL:$1|pomjyńeńe|pomjyńańo|pomjyńań}}.
 Dej pozůr, bo jei wyćepańe može spowodować zakuůcyńo w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
-'rollback'                    => 'Wycofej sprowjyńe',
-'rollback_short'              => 'Cofej',
-'rollbacklink'                => 'cofej',
-'rollbackfailed'              => 'Ńy idźe wycofać sprowjyńo',
-'cantrollback'                => 'Ńy idże cofnůńć pomjyńeńo, sam je ino jedna wersyja tyi zajty.',
-'alreadyrolled'               => 'Ńy idźe do zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonau [[User:$2|$2]] ([[User talk:$2|godka]]).
+
+# Rollback
+'rollback'         => 'Wycofej sprowjyńe',
+'rollback_short'   => 'Cofej',
+'rollbacklink'     => 'cofej',
+'rollbackfailed'   => 'Ńy idźe wycofać sprowjyńo',
+'cantrollback'     => 'Ńy idże cofnůńć pomjyńeńo, sam je ino jedna wersyja tyi zajty.',
+'alreadyrolled'    => 'Ńy idźe do zajty [[:$1|$1]] cofnůńć uostatńygo pomjyńeńa, kere wykonau [[User:$2|$2]] ([[User talk:$2|godka]]).
 Kto inkšy zdůnžůu juž to zrobić abo wprowadźiu wuasne poprowki do treśći zajty.
 
 Autorym ostatńygo pomjyńyńo je terozki [[User:$3|$3]] ([[User talk:$3|godka]]).',
-'editcomment'                 => 'Sprowjyńe uopisano: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Wycofano sprowjyńe užytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
+'editcomment'      => 'Sprowjyńe uopisano: „<i>$1</i>”.', # only shown if there is an edit comment
+'revertpage'       => 'Wycofano sprowjyńe užytkowńika [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]]).
 Autor přiwrůcůnej wersyji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wycofano sprowjyńa užytkowńika $1.
+'rollback-success' => 'Wycofano sprowjyńa užytkowńika $1.
 Přiwrůcůno uostatńo wersyja autorstwa  $2.',
-'sessionfailure'              => 'Feler weryfikacyji zalůgowańo.
+'sessionfailure'   => 'Feler weryfikacyji zalůgowańo.
 Polecyńy zostouo anulowane, aby ůńiknůńć přechwycyńo sesyji.
 
 Naćiś „cofej”, přeuaduj zajta, a potym zaś wydej polecyńy',
+
+# Protect
 'protectlogpage'              => 'Zawarte',
 'protectlogtext'              => 'Půńižej znojdowo śe lista zawarć i uodymkńjyńć pojydynčych zajtůw.
 Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Special:ProtectedPages|zawartych zajtůw]].',

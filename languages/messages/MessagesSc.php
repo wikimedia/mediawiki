@@ -429,7 +429,7 @@ Se in seguito vorrai togliere questo articolo dalla tua lista di osservati speci
 'unwatchthispage'  => 'Smetti di seguire',
 'notanarticle'     => 'Non è un articolo',
 
-# Delete/protect/revert
+# Delete
 'deletepage'        => 'Cancella pagina',
 'confirm'           => 'Conferma',
 'confirmdeletetext' => 'Stai per cancellare permanentemente dal database una pagina o una immagine, insieme a tutta la sua cronologia.
@@ -444,9 +444,11 @@ Vedi $2 per un elenco delle pagine cancellate di recente.',
 Tutti i tempi sono in ora del server (UTC).',
 'reverted'          => 'Ripristinata versione precedente',
 'deletecomment'     => 'Motivazione della cancellazione',
-'rollback'          => 'Usa una revisione precdente',
-'cantrollback'      => "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
-'revertpage'        => 'Riportata alla revisione precedente da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Rollback
+'rollback'     => 'Usa una revisione precdente',
+'cantrollback' => "Impossibile tornare ad una versione precedente: l'ultima modifica è stata apportata dall'unico utente che abbia lavorato a questo articolo.",
+'revertpage'   => 'Riportata alla revisione precedente da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Undelete
 'undelete'          => 'Recupera una pagina cancellata',

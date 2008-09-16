@@ -1772,47 +1772,51 @@ Pour modifier les paramètres de votre liste de suivi, visitez
 Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Supprimer la page',
-'confirm'                     => 'Confirmer',
-'excontent'                   => 'contenant « $1 »',
-'excontentauthor'             => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Special:Contributions/$2|$2]] »',
-'exbeforeblank'               => 'Contenait avant blanchiment : $1',
-'exblank'                     => 'page vide',
-'delete-confirm'              => 'Supprimer « $1 »',
-'delete-legend'               => 'Suppression',
-'historywarning'              => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
-'confirmdeletetext'           => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
-'actioncomplete'              => 'Action effectuée',
-'deletedtext'                 => '« <nowiki>$1</nowiki> » a été supprimé.
+# Delete
+'deletepage'             => 'Supprimer la page',
+'confirm'                => 'Confirmer',
+'excontent'              => 'contenant « $1 »',
+'excontentauthor'        => 'Le contenu était : « $1 » et l’unique contributeur en était « [[Special:Contributions/$2|$2]] »',
+'exbeforeblank'          => 'Contenait avant blanchiment : $1',
+'exblank'                => 'page vide',
+'delete-confirm'         => 'Supprimer « $1 »',
+'delete-legend'          => 'Suppression',
+'historywarning'         => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
+'confirmdeletetext'      => 'Vous êtes sur le point de supprimer définitivement de la base de données une page ou une image, ainsi que toutes ses versions antérieures. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites cela en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
+'actioncomplete'         => 'Action effectuée',
+'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimé.
 Voir $2 pour une liste des suppressions récentes.',
-'deletedarticle'              => 'a effacé « [[$1]] »',
-'suppressedarticle'           => 'caché  « [[$1]] »',
-'dellogpage'                  => 'Historique des suppressions',
-'dellogpagetext'              => 'Voici la liste des suppressions récentes.
+'deletedarticle'         => 'a effacé « [[$1]] »',
+'suppressedarticle'      => 'caché  « [[$1]] »',
+'dellogpage'             => 'Historique des suppressions',
+'dellogpagetext'         => 'Voici la liste des suppressions récentes.
 L’heure indiquée est celle du serveur (UTC).',
-'deletionlog'                 => 'historique des suppressions',
-'reverted'                    => 'Rétablissement de la version précédente',
-'deletecomment'               => 'Motif de la suppression',
-'deleteotherreason'           => 'Motifs supplémentaires ou autres :',
-'deletereasonotherlist'       => 'Autre motif',
-'deletereason-dropdown'       => '*Motifs de suppression les plus courants
+'deletionlog'            => 'historique des suppressions',
+'reverted'               => 'Rétablissement de la version précédente',
+'deletecomment'          => 'Motif de la suppression',
+'deleteotherreason'      => 'Motifs supplémentaires ou autres :',
+'deletereasonotherlist'  => 'Autre motif',
+'deletereason-dropdown'  => '*Motifs de suppression les plus courants
 ** Demande de l’auteur
 ** Violation des droits d’auteur
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Modifier les motifs de la suppression',
-'delete-toobig'               => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La suppression de telles pages a été limitée afin d’éviter des perturbations accidentelles de {{SITENAME}}.',
-'delete-warning-toobig'       => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ; à effectuer avec prudence.',
-'rollback'                    => 'révoquer modifications',
-'rollback_short'              => 'Révoquer',
-'rollbacklink'                => 'révoquer',
-'rollbackfailed'              => 'La révocation a échoué',
-'cantrollback'                => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
-'alreadyrolled'               => 'Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
-'editcomment'                 => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Révocation des modifications par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vers la dernière version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Révocation des modifications de $1 ; retour à la version de $2.',
-'sessionfailure'              => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
+'delete-edit-reasonlist' => 'Modifier les motifs de la suppression',
+'delete-toobig'          => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La suppression de telles pages a été limitée afin d’éviter des perturbations accidentelles de {{SITENAME}}.',
+'delete-warning-toobig'  => 'Cette page possède un historique important dépassant $1 {{PLURAL:$1|version|versions}}. La supprimer peut perturber le fonctionnement de la base de données de {{SITENAME}} ; à effectuer avec prudence.',
+
+# Rollback
+'rollback'         => 'révoquer modifications',
+'rollback_short'   => 'Révoquer',
+'rollbacklink'     => 'révoquer',
+'rollbackfailed'   => 'La révocation a échoué',
+'cantrollback'     => 'Impossible de révoquer : l’auteur est la seule personne à avoir effectué des modifications sur cette page.',
+'alreadyrolled'    => 'Impossible de révoquer la dernière modification de l’article « [[$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; quelqu’un d’autre a déjà modifié ou révoqué l’article. La dernière modification a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discussion]]).',
+'editcomment'      => 'Le résumé de la modification était: <i>« $1 »</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Révocation des modifications par [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vers la dernière version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Révocation des modifications de $1 ; retour à la version de $2.',
+'sessionfailure'   => 'Votre session de connexion semble avoir des problèmes ; cette action a été annulée en prévention d’un piratage de session. Cliquez sur « Précédent » et rechargez la page d’où vous venez, puis réessayez.',
+
+# Protect
 'protectlogpage'              => 'Historique des protections',
 'protectlogtext'              => 'Voici une liste des protections et des déprotections.
 Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la liste des protections actuelles.',

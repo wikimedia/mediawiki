@@ -399,7 +399,7 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'enotif_reset'       => 'Thov semno kai patrya so dikhlem',
 'enotif_newpagetext' => 'Kadaya si ek nevi patrin.',
 
-# Delete/protect/revert
+# Delete
 'deletepage'      => 'Khos i patrin',
 'confirm'         => 'Ja',
 'excontent'       => "o ander sas: '$1'",
@@ -410,9 +410,11 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'deletedtext'     => '"<nowiki>$1</nowiki>" sas khosli.
 Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'deletedarticle'  => '"$1" sas khosli.',
-'rollback_short'  => 'Palemavilipen',
-'rollbacklink'    => 'palemavilipen',
-'rollbackfailed'  => 'O palemavilipen nashtisardyas te kerel pes.',
+
+# Rollback
+'rollback_short' => 'Palemavilipen',
+'rollbacklink'   => 'palemavilipen',
+'rollbackfailed' => 'O palemavilipen nashtisardyas te kerel pes.',
 
 # Undelete
 'undelete'      => 'Dikh le khosle patrya',
