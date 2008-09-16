@@ -318,7 +318,8 @@ $messages = array(
 'databaseerror'        => 'Kasalahan database',
 'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database. Kasalah ini mbokmenawa nuduhi anané \'\'bug\'\' ing software. Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jeroning fungsi "<tt>$2</tt>". Kasalahan MySQL "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan database. Panyuwunan database sing pungkasan iku: "$1" saka jeroning fungsi "$2". Kasalahan MySQL "$3: $4".',
-'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />$1',
+'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />
+$1',
 'nodb'                 => 'Ora bisa milih database $1',
 'cachederror'          => 'Ing ngisor iki tuladan <em>cache</em> saka kaca sing disuwun, dadi mbokmenawa ora up-to-date.',
 'laggedslavemode'      => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
@@ -365,6 +366,9 @@ $2',
 'titleprotected'       => "Irah-irahan iki direksa ora olèh digawé déning [[User:$1|$1]].
 Alesané yaiku ''$2''.",
 
+# Virus scanner
+'virus-unknownscanner' => 'Antivirus ora ditepungi:',
+
 # Login and logout pages
 'logouttitle'                => 'Metu log panganggo',
 'logouttext'                 => "Panjenengan wis metu (oncat) saka cathetan sistem. Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
@@ -394,7 +398,8 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'gotaccountlink'             => 'Mlebu',
 'createaccountmail'          => 'liwat layang e-mail',
 'badretype'                  => 'Sandhi panjenengan ora gathuk',
-'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo. Mangga pilih asma liyané.',
+'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo.
+Mangga pilih asma liyané.',
 'youremail'                  => 'Layang élèktronik (E-mail):',
 'username'                   => 'Asma panganggo:',
 'uid'                        => 'ID panganggo:',
@@ -419,7 +424,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'nouserspecified'            => 'Panjenengan kudu milih asma panganggo.',
 'wrongpassword'              => 'Tembung sandhi sing dipilih salah. Mangga coba manèh.',
 'wrongpasswordempty'         => 'Panjenengan ora milih tembung sandhi. Mangga dicoba manèh.',
-'passwordtooshort'           => 'Tembung sandi panjenengan ora sah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
+'passwordtooshort'           => 'Tembung sandi panjenengan ora absah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
 'mailmypassword'             => 'Kirim tembung sandhi anyar',
 'passwordremindertitle'      => 'Pèngetan tembung sandhi saka {{SITENAME}}',
 'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" saiki "$3". Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
@@ -825,6 +830,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'servertime'               => 'Wektu server saiki iku',
 'guesstimezone'            => 'Isinen saka panjlajah wèb',
 'allowemail'               => 'Marengaké panganggo liyané ngirim layang èlèktronik (email).',
+'prefs-searchoptions'      => 'Opsi-opsi panggolèkan',
 'defaultns'                => "Golèk ing bilik jeneng (''namespace'') iki mawa baku:",
 'default'                  => 'baku',
 'files'                    => 'Berkas',
@@ -2403,5 +2409,8 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'specialpages-group-media'       => 'Lapuran média lan pangunggahan',
 'specialpages-group-users'       => 'Panganggo lan hak-haké',
 'specialpages-group-highuse'     => 'Kaca-kaca sing akèh dienggo',
+
+# Special:BlankPage
+'blankpage' => 'Kaca kosong',
 
 );

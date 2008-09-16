@@ -683,7 +683,7 @@ $2',
 'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
 'loginsuccess'               => "'''تم تسجيل دخولك{{SITENAME}} باسم \"\$1\".'''",
 'nosuchuser'                 => 'مافيش يوزر باسم "$1".
-اتاكد من تهجية الاسم، او افتح حساب جديد.',
+اتاكد من تهجية الاسم، او [[Special:Userlogin/signup|افتح حساب جديد]].',
 'nosuchusershort'            => 'مافيش يوزر باسم <nowiki>$1</nowiki>".
 اتاكد من تهجية الاسم.',
 'nouserspecified'            => 'لازم تحدد اسم يوزر.',

@@ -671,8 +671,8 @@ Aktivera dem, och logga sen in med ditt nya användarnamn och lösenord.',
 'noname'                     => 'Du har angett ett ogiltigt användarnamn.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
 'loginsuccess'               => "'''Du är nu inloggad på {{SITENAME}} som \"\$1\".'''",
-'nosuchuser'                 => 'Det finns ingen användare som heter "$1".
-Kontrollera stavningen, eller skapa ett nytt konto.',
+'nosuchuser'                 => 'Det finns ingen användare med namnet "$1".
+Kontrollera stavningen, eller [[Special:Userlogin/signup|skapa ett nytt konto]].',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',

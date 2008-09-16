@@ -1083,6 +1083,7 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 'unusedcategoriestext'    => 'Naaq katõgooriaq ommaq olõman, a naid pruugita-i.',
 'notargettitle'           => 'Otsitut lehte olõ-i',
 'notargettext'            => 'Sa olõ-i andnuq lehte ega pruukjat, minka taad tallitust tetäq.',
+'nopagetext'              => 'Säänest lehte olõ-i olõman.',
 
 # Book sources
 'booksources'               => 'Raamaduq',
@@ -1690,7 +1691,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'filedelete-missing' => 'Teedüstüt "$1" saa-i kistutaq, taad olõ-i olõman.',
 
 # Browsing diffs
-'previousdiff' => '← Mineväne muutminõ',
+'previousdiff' => '← Innembäne muutminõ',
 'nextdiff'     => 'Järgmäne muutminõ →',
 
 # Media information

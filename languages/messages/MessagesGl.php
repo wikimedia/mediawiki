@@ -444,9 +444,9 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'noname'                     => 'Non especificou un nome de usuario válido.',
 'loginsuccesstitle'          => 'Acceso exitoso',
 'loginsuccess'               => "'''Accedeu ao sistema {{SITENAME}} como \"\$1\".'''",
-'nosuchuser'                 => 'Non hai ningún usuario chamado "$1".
-Verifique o nome que inseriu ou cree unha nova conta.',
-'nosuchusershort'            => 'Non hai ningún usuario chamado "<nowiki>$1</nowiki>".
+'nosuchuser'                 => 'non hai ningún usuario chamado "$1".
+Verifique o nome que inseriu ou [[Special:Userlogin/signup|cree unha nova conta]].',
+'nosuchusershort'            => 'non hai ningún usuario chamado "<nowiki>$1</nowiki>".
 Verifique o nome que inseriu.',
 'nouserspecified'            => 'Debe especificar un nome de usuario.',
 'wrongpassword'              => 'o contrasinal escrito é incorrecto.

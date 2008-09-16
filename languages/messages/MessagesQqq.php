@@ -43,6 +43,7 @@
  * @author Singularity
  * @author Slomox
  * @author Sp5uhe
+ * @author UV
  * @author Urhixidur
  * @author Vinhtantran
  * @author Yyy
@@ -1499,7 +1500,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 * $4: date of the revision
 * $5: time of the revision
 
-\'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}} on {{CURRENTTIME}}) by [[User:Username|Username]]:',
+\'\'Example:\'\' Deleted revision of [[Main Page]] (as of {{CURRENTDAY}} {{CURRENTMONTHNAME}} {{CURRENTYEAR}}, at {{CURRENTTIME}}) by [[User:Username|Username]]:',
 'undeletebtn' => 'Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).
 
 {{Identical|Restore}}',

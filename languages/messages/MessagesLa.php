@@ -489,9 +489,10 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'noname'                     => 'Nominem usoris ratum non designavisti.',
 'loginsuccesstitle'          => 'Conventum prospere apertum est',
 'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris ut \"\$1\".'''",
-'nosuchuser'                 => 'Non est nomen usoris "$1".
-Confirma orthographiam, aut crea novam rationem.',
-'nosuchusershort'            => 'Nomen usoris "<nowiki>$1</nowiki>" non est. Orthographiam confirma.',
+'nosuchuser'                 => 'Usor "$1" non est.
+Confirma orthographiam, aut [[Special:Userlogin/signup|crea novam rationem]].',
+'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.
+Confirma orthographiam.',
 'nouserspecified'            => 'Nomen usoris indicare debes.',
 'wrongpassword'              => 'Tessera quam scripsisti non constat. Conare denuo.',
 'wrongpasswordempty'         => 'Tesseram vacuam scripsisti. Conare denuo.',
@@ -1302,7 +1303,7 @@ ad emendationem proximam ab $2.',
 'undeleterevisions'       => '$1 {{PLURAL:$1|emendatio servata|emendationes servatae}}',
 'undeletehistory'         => 'Si paginam restituis, omnes emendationes restituentur ad historiam.
 Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitutae in historia priori apparebunt.',
-'undelete-revision'       => 'Emendatio deleta paginae $1 (ex $4, $5) ab usore $3:',
+'undelete-revision'       => 'Emendatio deleta paginae $1 (ex $5, $4) ab usore $3:',
 'undeletebtn'             => 'Restituere',
 'undeletelink'            => 'restituere',
 'undeletecomment'         => 'Sententia:',

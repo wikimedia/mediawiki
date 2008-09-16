@@ -546,7 +546,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'noname'                     => 'Nama pengguna tidak sah.',
 'loginsuccesstitle'          => 'Berjaya log masuk',
 'loginsuccess'               => "'''Anda telah log masuk ke dalam {{SITENAME}} sebagai \"\$1\".'''",
-'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda atau buka akaun baru.',
+'nosuchuser'                 => 'Pengguna "$1" tidak wujud. Sila semak ejaan anda atau [[Special:Userlogin/signup|buka akaun baru]].',
 'nosuchusershort'            => 'Pengguna "<nowiki>$1</nowiki>" tidak wujud. Sila semak ejaan anda.',
 'nouserspecified'            => 'Sila nyatakan nama pengguna.',
 'wrongpassword'              => 'Kata laluan yang dimasukkan adalah salah. Sila cuba lagi.',
@@ -2626,14 +2626,13 @@ Pelayan mel memulangkan: $1',
 'confirmemail_loggedin'    => 'Alamat e-mel anda telah disahkan.',
 'confirmemail_error'       => 'Sesuatau yang tidak kena berlaku ketika kami menyimpan pengesahan anda.',
 'confirmemail_subject'     => 'Pengesahan alamat e-mel di {{SITENAME}}',
-'confirmemail_body'        => 'Seseorang, barangkali anda, daripada alamat IP $1, telah mendaftarkan akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
+'confirmemail_body'        => 'Seseorang, barangkali anda, dari alamat IP $1, telah mendaftarkan akaun "$2" dengan alamat e-mel ini di {{SITENAME}}.
 
-Untuk mengesahkan bahawa akaun ini milik anda dan mengaktifkan
-ciri e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar anda:
+Untuk mengesahkan bahawa akaun ini milik anda dan untuk mengaktifkan kemudahan e-mel di {{SITENAME}}, sila buka pautan ini dalam pelayar web anda:
 
 $3
 
-Jika ini *bukan* anda, ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
+Jika anda tidak mendaftar di {{SITENAME}} (atau anda telah mendaftar menggunakan alamat e-mel lain), ikuti pautan ini untuk membatalkan pengesahan alamat e-mel:
 
 $5
 
