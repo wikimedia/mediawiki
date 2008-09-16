@@ -105,11 +105,12 @@ class FileDeleteForm {
 		} else {
 			$status = $file->delete( $reason, $suppress );
 			if( $status->ok ) {
+				$id = $title->getArticleID( GAID_FOR_UPDATE );
 				// Need to delete the associated article
 				$article = new Article( $title );
 				if( wfRunHooks('ArticleDelete', array(&$article, &$wgUser, &$reason)) ) {
-					if( $article->doDeleteArticle( $reason, $suppress ) )
-						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason));
+					if( $article->doDeleteArticle( $reason, $suppress, $id ) )
+						wfRunHooks('ArticleDeleteComplete', array(&$article, &$wgUser, $reason, $id));
 				}
 			}
 		}
