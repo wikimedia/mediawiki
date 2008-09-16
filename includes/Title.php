@@ -1895,6 +1895,18 @@ class Title {
 	}
 
 	/**
+	 * Get the expiry time for the restriction against a given action
+	 * @return 14-char timestamp, or 'infinity' if the page is protected forever 
+	 * or not protected at all, or false if the action is not recognised.
+	 */
+	public function getRestrictionExpiry( $action ) {
+		if( !$this->mRestrictionsLoaded ) {
+			$this->loadRestrictions();
+		}
+		return isset( $this->mRestrictionsExpiry[$action] ) ? $this->mRestrictionsExpiry[$action] : false;
+	}
+
+	/**
 	 * Is there a version of this page in the deletion archive?
 	 * @return \type{\int} the number of archived revisions
 	 */

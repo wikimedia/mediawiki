@@ -23,14 +23,35 @@
  * @todo document, briefly.
  */
 class ProtectionForm {
+	/** A map of action to restriction level, from request or default */
 	var $mRestrictions = array();
+
+	/** The custom/additional protection reason */
 	var $mReason = '';
-	var $mReasonList = '';
+
+	/** The reason selected from the list, blank for other/additional */
+	var $mReasonSelection = '';
+
+	/** True if the restrictions are cascading, from request or existing protection */
 	var $mCascade = false;
-	var $mExpiry =array();
-	var $mExpiryList = array();
+
+	/** Map of action to "other" expiry time. Used in preference to mExpirySelection. */
+	var $mExpiry = array();
+
+	/** 
+	 * Map of action to value selected in expiry drop-down list. 
+	 * Will be set to 'othertime' whenever mExpiry is set. 
+	 */
+	var $mExpirySelection = array();
+
+	/** Permissions errors for the protect action */
 	var $mPermErrors = array();
+
+	/** Types (i.e. actions) for which levels can be selected */
 	var $mApplicableTypes = array();
+
+	/** Map of action to the expiry time of the existing protection */
+	var $mExistingExpiry = array();
 
 	function __construct( Article $article ) {
 		global $wgRequest, $wgUser;
@@ -39,43 +60,56 @@ class ProtectionForm {
 		$this->mTitle = $article->mTitle;
 		$this->mApplicableTypes = $this->mTitle->exists() ? $wgRestrictionTypes : array('create');
 
-		if( $this->mTitle ) {
-			$this->mTitle->loadRestrictions();
-
-			foreach( $this->mApplicableTypes as $action ) {
-				// Fixme: this form currently requires individual selections,
-				// but the db allows multiples separated by commas.
-				$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
-				
-				if ( $this->mTitle->mRestrictionsExpiry[$action] == 'infinity' ) {
-					$this->mExpiry[$action] = 'infinite';
-				} else if ( strlen($this->mTitle->mRestrictionsExpiry[$action]) == 0 ) {
-					$this->mExpiry[$action] = '';
-				} else {
-					// FIXME: this format is not user friendly
-					$this->mExpiry[$action] = wfTimestamp( TS_ISO_8601, $this->mTitle->mRestrictionsExpiry[$action] );
-				}
-			}
-			$this->mCascade = $this->mTitle->areRestrictionsCascading();
-		}
+		$this->mCascade = $this->mTitle->areRestrictionsCascading();
 
 		// The form will be available in read-only to show levels.
-		$this->disabled = wfReadOnly() || ($this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser)) != array();
+		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser);
+		$this->disabled = wfReadOnly() || $this->mPermErrors != array();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
 
 		$this->mReason = $wgRequest->getText( 'mwProtect-reason' );
-		$this->mReasonList = $wgRequest->getText( 'wpProtectReasonList' );
+		$this->mReasonSelection = $wgRequest->getText( 'wpProtectReasonSelection' );
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade', $this->mCascade );
-		
+
 		foreach( $this->mApplicableTypes as $action ) {
-			// Let dropdown have 'infinite' for unprotected pages
-			if( !($expiry[$action] = $wgRequest->getText( "mwProtect-expiry-$action" )) && $this->mExpiry[$action] != 'infinite' ) {
-				$expiry[$action] = $this->mExpiry[$action];
+			// Fixme: this form currently requires individual selections,
+			// but the db allows multiples separated by commas.
+			$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
+
+			if ( !$this->mRestrictions[$action] ) {
+				// No existing expiry
+				$existingExpiry = '';
+			} else {
+				$existingExpiry = $this->mTitle->getRestrictionExpiry( $action );
 			}
-			$this->mExpiry[$action] = $expiry[$action];
-			$this->mExpiryList[$action] = $wgRequest->getText( "wpProtectExpiryList-$action", $this->mExpiry[$action] ? '' : 'infinite' );
+			$this->mExistingExpiry[$action] = $existingExpiry;
+
+			$requestExpiry = $wgRequest->getText( "mwProtect-expiry-$action" );
+			$requestExpirySelection = $wgRequest->getVal( "wpProtectExpirySelection-$action" );
+
+			if ( $requestExpiry ) {
+				// Custom expiry takes precedence
+				$this->mExpiry[$action] = $requestExpiry;
+				$this->mExpirySelection[$action] = 'othertime';
+			} elseif ( $requestExpirySelection ) {
+				// Expiry selected from list
+				$this->mExpiry[$action] = '';
+				$this->mExpirySelection[$action] = $requestExpirySelection;
+			} elseif ( $existingExpiry == 'infinite' ) {
+				// Existing expiry is infinite, use "infinite" in drop-down
+				$this->mExpiry[$action] = '';
+				$this->mExpirySelection[$action] = 'infinite';
+			} elseif ( $existingExpiry ) {
+				// Use existing expiry in its own list item
+				$this->mExpiry[$action] = '';
+				$this->mExpirySelection[$action] = $existingExpiry;
+			} else {
+				// Final default: infinite
+				$this->mExpiry[$action] = '';
+				$this->mExpirySelection[$action] = 'infinite';
+			}
 
 			$val = $wgRequest->getVal( "mwProtect-level-$action" );
 			if( isset( $val ) && in_array( $val, $wgRestrictionLevels ) ) {
@@ -91,6 +125,34 @@ class ProtectionForm {
 				$this->mRestrictions[$action] = $val;
 			}
 		}
+	}
+
+	/** 
+	 * Get the expiry time for a given action, by combining the relevant inputs.
+	 * Returns a 14-char timestamp or "infinity", or false if the input was invalid
+	 */
+	function getExpiry( $action ) {
+		if ( $this->mExpirySelection[$action] == 'existing' ) {
+			return $this->mExistingExpiry[$action];
+		} elseif ( $this->mExpirySelection[$action] == 'othertime' ) {
+			$value = $this->mExpiry[$action];
+		} else {
+			$value = $this->mExpirySelection[$action];
+		}
+		if ( $value == 'infinite' || $value == 'indefinite' || $value == 'infinity' ) {
+			$time = Block::infinity();
+		} else {
+			$unix = strtotime( $value );
+
+			if ( !$unix || $unix === -1 ) {
+				return false;
+			}
+
+			// Fixme: non-qualified absolute times are not in users specified timezone
+			// and there isn't notice about it in the ui
+			$time = wfTimestamp( TS_MW, $unix );
+		}
+		return $time;
 	}
 
 	function execute() {
@@ -170,7 +232,7 @@ class ProtectionForm {
 		}
 		
 		# Create reason string. Use list and/or custom string.
-		$reasonstr = $this->mReasonList;
+		$reasonstr = $this->mReasonSelection;
 		if ( $reasonstr != 'other' && $this->mReason != '' ) {
 			// Entry from drop down menu + additional comment
 			$reasonstr .= ': ' . $this->mReason;
@@ -179,33 +241,17 @@ class ProtectionForm {
 		}
 		$expiry = array();
 		foreach( $this->mApplicableTypes as $action ) {
-			# Custom expiry takes precedence
-			if ( strlen( $wgRequest->getText( "mwProtect-expiry-$action" ) ) == 0 ) {
-				$this->mExpiry[$action] = strlen($wgRequest->getText( "wpProtectExpiryList-$action")) ? $wgRequest->getText( "wpProtectExpiryList-$action") : 'infinite';
-			} else {
-				$this->mExpiry[$action] = $wgRequest->getText( "mwProtect-expiry-$action" );
+			$expiry[$action] = $this->getExpiry( $action );
+			if ( !$expiry[$action] ) {
+				$this->show( wfMsg( 'protect_expiry_invalid' ) );
+				return false;
 			}
-			if ( $this->mExpiry[$action] == 'infinite' || $this->mExpiry[$action] == 'indefinite' ) {
-				$expiry[$action] = Block::infinity();
-			} else {
-				# Convert GNU-style date, on error returns -1 for PHP <5.1 and false for PHP >=5.1
-				$expiry[$action] = strtotime( $this->mExpiry[$action] );
-
-				if ( $expiry[$action] < 0 || $expiry[$action] === false ) {
-					$this->show( wfMsg( 'protect_expiry_invalid' ) );
-					return false;
-				}
-
-				// Fixme: non-qualified absolute times are not in users specified timezone
-				// and there isn't notice about it in the ui
-				$expiry[$action] = wfTimestamp( TS_MW, $expiry[$action] );
-
-				if ( $expiry[$action] < wfTimestampNow() ) {
-					$this->show( wfMsg( 'protect_expiry_old' ) );
-					return false;
-				}
+			if ( $expiry[$action] < wfTimestampNow() ) {
+				$this->show( wfMsg( 'protect_expiry_old' ) );
+				return false;
 			}
 		}
+
 		# They shouldn't be able to do this anyway, but just to make sure, ensure that cascading restrictions aren't being applied
 		#  to a semi-protected page.
 		global $wgGroupPermissions;
@@ -231,7 +277,6 @@ class ProtectionForm {
 		} elseif( $this->mTitle->userIsWatching() ) {
 			$this->mArticle->doUnwatch();
 		}
-
 		return $ok;
 	}
 
@@ -241,19 +286,17 @@ class ProtectionForm {
 	 * @return $out string HTML form
 	 */
 	function buildForm() {
-		global $wgUser;
+		global $wgUser, $wgLang;
 
-		$mProtectreasonother = Xml::label( wfMsg( 'protectcomment' ), 'wpProtectReasonList' );
+		$mProtectreasonother = Xml::label( wfMsg( 'protectcomment' ), 'wpProtectReasonSelection' );
 		$mProtectreason = Xml::label( wfMsg( 'protect-otherreason' ), 'mwProtect-reason' );
 
 		$out = '';
 		if( !$this->disabled ) {
 			$out .= $this->buildScript();
-			// The submission needs to reenable the move permission selector
-			// if it's in locked mode, or some browsers won't submit the data.
 			$out .= Xml::openElement( 'form', array( 'method' => 'post', 
 				'action' => $this->mTitle->getLocalUrl( 'action=protect' ), 
-				'id' => 'mw-Protect-Form', 'onsubmit' => 'protectEnable(true)' ) );
+				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
 			$out .= Xml::hidden( 'wpEditToken',$wgUser->editToken() );
 		}
 
@@ -273,22 +316,38 @@ class ProtectionForm {
 				"<tr><th>$label</th><th></th></tr>" .
 				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td><td>";
 
-			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonList',
+			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonSelection',
 				wfMsgForContent( 'protect-dropdown' ),
-				wfMsgForContent( 'protect-otherreason-op' ), '', 'mwProtect-reason', 4 );
+				wfMsgForContent( 'protect-otherreason-op' ), 
+				$this->mReasonSelection,
+				'mwProtect-reason', 4 );
 			$scExpiryOptions = wfMsgForContent( 'ipboptions' ); // FIXME: use its own message
 
 			$showProtectOptions = ($scExpiryOptions !== '-' && !$this->disabled);
 
-			$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), "mwProtectExpiryList-$action" );
+			$mProtectexpiry = Xml::label( wfMsg( 'protectexpiry' ), "mwProtectExpirySelection-$action" );
 			$mProtectother = Xml::label( wfMsg( 'protect-othertime' ), "mwProtect-$action-expires" );
-			$expiryFormOptions = Xml::option( wfMsg( 'protect-othertime-op' ), "othertime" );
+
+			$expiryFormOptions = '';
+			if ( $this->mExistingExpiry[$action] && $this->mExistingExpiry[$action] != 'infinity' ) {
+				$expiryFormOptions .= 
+					Xml::option( 
+						wfMsg( 'protect-existing-expiry', $wgLang->timeanddate( $this->mExistingExpiry[$action] ) ),
+						'existing',
+						$this->mExpirySelection[$action] == 'existing'
+					) . "\n";
+			}
+			
+			$expiryFormOptions .= Xml::option( wfMsg( 'protect-othertime-op' ), "othertime" ) . "\n";
 			foreach( explode(',', $scExpiryOptions) as $option ) {
-				if ( strpos($option, ":") === false ) $option = "$option:$option";
-				list($show, $value) = explode(":", $option);
+				if ( strpos($option, ":") === false ) {
+					$show = $value = $option;
+				} else {
+					list($show, $value) = explode(":", $option);
+				}
 				$show = htmlspecialchars($show);
 				$value = htmlspecialchars($value);
-				$expiryFormOptions .= Xml::option( $show, $value, $this->mExpiryList[$action] === $value ? true : false ) . "\n";
+				$expiryFormOptions .= Xml::option( $show, $value, $this->mExpirySelection[$action] === $value ) . "\n";
 			}
 			# Add expiry dropdown
 			if( $showProtectOptions && !$this->disabled ) {
@@ -300,16 +359,16 @@ class ProtectionForm {
 						<td class='mw-input'>" .
 							Xml::tags( 'select',
 								array(
-									'id' => "mwProtectExpiryList-$action",
-									'name' => "wpProtectExpiryList-$action",
-									'onchange' => "protectExpiryListUpdate(this)",
+									'id' => "mwProtectExpirySelection-$action",
+									'name' => "wpProtectExpirySelection-$action",
+									'onchange' => "ProtectionForm.updateExpiryList(this)",
 									'tabindex' => '2' ) + $this->disabledAttrib,
 								$expiryFormOptions ) .
 						"</td>
 					</tr></table>";
 			}
 			# Add custom expiry field
-			$attribs = array( 'id' => "mwProtect-$action-expires", 'onkeyup' => 'protectExpiryUpdate(this)' ) + $this->disabledAttrib;
+			$attribs = array( 'id' => "mwProtect-$action-expires", 'onkeyup' => 'ProtectionForm.updateExpiry(this)' ) + $this->disabledAttrib;
 			$out .= "<table><tr>
 					<td class='mw-label'>" .
 						$mProtectother .
@@ -407,7 +466,7 @@ class ProtectionForm {
 			'id' => $id,
 			'name' => $id,
 			'size' => count( $levels ),
-			'onchange' => 'protectLevelsUpdate(this)',
+			'onchange' => 'ProtectionForm.updateLevels(this)',
 			) + $this->disabledAttrib;
 
 		$out = Xml::openElement( 'select', $attribs );
@@ -440,7 +499,7 @@ class ProtectionForm {
 		global $wgStylePath, $wgStyleVersion;
 		return Xml::tags( 'script', array(
 			'type' => 'text/javascript',
-			'src' => $wgStylePath . "/common/protect.js?$wgStyleVersion" ), '' );
+			'src' => $wgStylePath . "/common/protect.js?$wgStyleVersion.1" ), '' );
 	}
 
 	function buildCleanupScript() {
@@ -453,8 +512,15 @@ class ProtectionForm {
 			}
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
-		$script .= 'protectInitialize("mw-protect-table2","' . Xml::escapeJsString( wfMsg( 'protect-unchain' ) ) . 
-			'","' . count($this->mApplicableTypes) . '")';
+		$options = (object)array(
+			'tableId' => 'mw-protect-table2',
+			'labelText' => wfMsg( 'protect-unchain' ),
+			'numTypes' => count($this->mApplicableTypes),
+			'existingMatch' => 1 == count( array_unique( $this->mExistingExpiry ) ),
+		);
+		$encOptions = Xml::encodeJsVar( $options );
+
+		$script .= "ProtectionForm.init($encOptions)";
 		return Xml::tags( 'script', array( 'type' => 'text/javascript' ), $script );
 	}
 
