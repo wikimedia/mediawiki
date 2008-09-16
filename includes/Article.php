@@ -2262,12 +2262,12 @@ class Article {
 		global $wgOut, $wgUser;
 		wfDebug( __METHOD__."\n" );
 
-		$id = $this->getId();
+		$id = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 
 		$error = '';
 
-		if (wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason, &$error))) {
-			if ( $this->doDeleteArticle( $reason, $suppress ) ) {
+		if ( wfRunHooks('ArticleDelete', array(&$this, &$wgUser, &$reason, &$error)) ) {
+			if ( $this->doDeleteArticle( $reason, $suppress, $id ) ) {
 				$deleted = $this->mTitle->getPrefixedText();
 
 				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
@@ -2292,7 +2292,7 @@ class Article {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 * Returns success
 	 */
-	function doDeleteArticle( $reason, $suppress = false ) {
+	function doDeleteArticle( $reason, $suppress = false, $id = 0 ) {
 		global $wgUseSquid, $wgDeferredUpdateList;
 		global $wgUseTrackbacks;
 
@@ -2301,7 +2301,7 @@ class Article {
 		$dbw = wfGetDB( DB_MASTER );
 		$ns = $this->mTitle->getNamespace();
 		$t = $this->mTitle->getDBkey();
-		$id = $this->mTitle->getArticleID();
+		$id = $id ? $id : $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 
 		if ( $t == '' || $id == 0 ) {
 			return false;
