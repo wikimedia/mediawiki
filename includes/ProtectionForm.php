@@ -97,7 +97,7 @@ class ProtectionForm {
 				// Expiry selected from list
 				$this->mExpiry[$action] = '';
 				$this->mExpirySelection[$action] = $requestExpirySelection;
-			} elseif ( $existingExpiry == 'infinite' ) {
+			} elseif ( $existingExpiry == 'infinity' ) {
 				// Existing expiry is infinite, use "infinite" in drop-down
 				$this->mExpiry[$action] = '';
 				$this->mExpirySelection[$action] = 'infinite';
