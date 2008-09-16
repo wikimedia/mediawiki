@@ -1580,48 +1580,52 @@ Besøg {{fullurl:Special:Watchlist/edit}} for at ændre indstillingerne for din 
 Tilbagemelding og yderligere hjælp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Slet side',
-'confirm'                     => 'Bekræft',
-'excontent'                   => "indholdet var: '$1'",
-'excontentauthor'             => "indholdet var: '$1' (og den eneste forfatter var '$2')",
-'exbeforeblank'               => "indholdet før siden blev tømt var: '$1'",
-'exblank'                     => 'siden var tom',
-'delete-confirm'              => 'Slet "$1"',
-'delete-legend'               => 'Slet',
-'historywarning'              => 'Advarsel: Siden du er ved at slette har en historie:',
-'confirmdeletetext'           => 'Du er ved permanent at slette en side
+# Delete
+'deletepage'             => 'Slet side',
+'confirm'                => 'Bekræft',
+'excontent'              => "indholdet var: '$1'",
+'excontentauthor'        => "indholdet var: '$1' (og den eneste forfatter var '$2')",
+'exbeforeblank'          => "indholdet før siden blev tømt var: '$1'",
+'exblank'                => 'siden var tom',
+'delete-confirm'         => 'Slet "$1"',
+'delete-legend'          => 'Slet',
+'historywarning'         => 'Advarsel: Siden du er ved at slette har en historie:',
+'confirmdeletetext'      => 'Du er ved permanent at slette en side
 eller et billede sammen med hele den tilhørende historie fra databasen. Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne, og at du gør dette i overensstemmelse med
 [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Gennemført',
-'deletedtext'                 => '"$1" er slettet. Se $2 for en fortegnelse over de nyeste sletninger.',
-'deletedarticle'              => 'slettede "$1"',
-'suppressedarticle'           => 'skjulte "[[$1]]"',
-'dellogpage'                  => 'Sletningslog',
-'dellogpagetext'              => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid (UTC).',
-'deletionlog'                 => 'sletningslog',
-'reverted'                    => 'Gendannet en tidligere version',
-'deletecomment'               => 'Begrundelse for sletning',
-'deleteotherreason'           => 'Anden/uddybende begrundelse:',
-'deletereasonotherlist'       => 'Anden begrundelse',
-'deletereason-dropdown'       => '
+'actioncomplete'         => 'Gennemført',
+'deletedtext'            => '"$1" er slettet. Se $2 for en fortegnelse over de nyeste sletninger.',
+'deletedarticle'         => 'slettede "$1"',
+'suppressedarticle'      => 'skjulte "[[$1]]"',
+'dellogpage'             => 'Sletningslog',
+'dellogpagetext'         => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid (UTC).',
+'deletionlog'            => 'sletningslog',
+'reverted'               => 'Gendannet en tidligere version',
+'deletecomment'          => 'Begrundelse for sletning',
+'deleteotherreason'      => 'Anden/uddybende begrundelse:',
+'deletereasonotherlist'  => 'Anden begrundelse',
+'deletereason-dropdown'  => '
 *Hyppige sletningsårsager
 ** Efter forfatters ønske
 ** Overtrædelse af ophavsret
 ** Hærværk',
-'delete-edit-reasonlist'      => 'Ret sletningsbegrundelser',
-'delete-toobig'               => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
-'delete-warning-toobig'       => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
-'rollback'                    => 'Fjern redigeringer',
-'rollback_short'              => 'Fjern redigering',
-'rollbacklink'                => 'fjern redigering',
-'rollbackfailed'              => 'Kunne ikke fjerne redigeringen',
-'cantrollback'                => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
-'alreadyrolled'               => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
-'editcomment'                 => 'Kommentaren til redigeringen var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "$1's ændringer er fjernet, gendannet til den seneste version af $2.",
-'sessionfailure'              => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
+'delete-edit-reasonlist' => 'Ret sletningsbegrundelser',
+'delete-toobig'          => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
+'delete-warning-toobig'  => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
+
+# Rollback
+'rollback'         => 'Fjern redigeringer',
+'rollback_short'   => 'Fjern redigering',
+'rollbacklink'     => 'fjern redigering',
+'rollbackfailed'   => 'Kunne ikke fjerne redigeringen',
+'cantrollback'     => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
+'alreadyrolled'    => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]); en anden har allerede redigeret siden eller fjernet redigeringen. Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]).',
+'editcomment'      => 'Kommentaren til redigeringen var: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "$1's ændringer er fjernet, gendannet til den seneste version af $2.",
+'sessionfailure'   => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
+
+# Protect
 'protectlogpage'              => 'Liste_over_beskyttede_sider',
 'protectlogtext'              => 'Herunder er en liste med sider der er blevet beskyttet/har fået fjernet beskyttelsen.',
 'protectedarticle'            => '[[$1]] beskyttet',

@@ -1566,48 +1566,52 @@ $NEWPAGE
 助けが必要ですか:
 {{fullurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'ページを削除',
-'confirm'                     => '確認',
-'excontent'                   => "内容: '$1'",
-'excontentauthor'             => "内容: '$1' (投稿者 [[Special:Contributions/$2|$2]] のみ)",
-'exbeforeblank'               => "白紙化前の内容: '$1'",
-'exblank'                     => '白紙ページ',
-'delete-confirm'              => '"$1" の削除',
-'delete-legend'               => '削除',
-'historywarning'              => '警告: 削除しようとしているページには履歴があります:',
-'confirmdeletetext'           => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。
+# Delete
+'deletepage'             => 'ページを削除',
+'confirm'                => '確認',
+'excontent'              => "内容: '$1'",
+'excontentauthor'        => "内容: '$1' (投稿者 [[Special:Contributions/$2|$2]] のみ)",
+'exbeforeblank'          => "白紙化前の内容: '$1'",
+'exblank'                => '白紙ページ',
+'delete-confirm'         => '"$1" の削除',
+'delete-legend'          => '削除',
+'historywarning'         => '警告: 削除しようとしているページには履歴があります:',
+'confirmdeletetext'      => '指定されたページまたは画像は、その変更履歴と共にデータベースから永久に削除されようとしています。
 あなたが削除を望んでおり、それがもたらす帰結を理解しており、かつあなたのしようとしていることが[[{{MediaWiki:Policy-url}}|方針]]に即したものであることを確認してください。',
-'actioncomplete'              => '完了しました',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" は削除されました。最近の削除に関しては $2 を参照してください。',
-'deletedarticle'              => '"$1" を削除しました。',
-'suppressedarticle'           => '"[[$1]]"の秘匿を実施',
-'dellogpage'                  => '削除記録',
-'dellogpagetext'              => '以下は最近の削除と復帰の記録です。',
-'deletionlog'                 => '削除記録',
-'reverted'                    => '以前のバージョンへの差し戻し',
-'deletecomment'               => '削除の理由',
-'deleteotherreason'           => 'その他 / 理由の付記:',
-'deletereasonotherlist'       => 'その他の理由',
-'deletereason-dropdown'       => '*よくある削除理由
+'actioncomplete'         => '完了しました',
+'deletedtext'            => '"<nowiki>$1</nowiki>" は削除されました。最近の削除に関しては $2 を参照してください。',
+'deletedarticle'         => '"$1" を削除しました。',
+'suppressedarticle'      => '"[[$1]]"の秘匿を実施',
+'dellogpage'             => '削除記録',
+'dellogpagetext'         => '以下は最近の削除と復帰の記録です。',
+'deletionlog'            => '削除記録',
+'reverted'               => '以前のバージョンへの差し戻し',
+'deletecomment'          => '削除の理由',
+'deleteotherreason'      => 'その他 / 理由の付記:',
+'deletereasonotherlist'  => 'その他の理由',
+'deletereason-dropdown'  => '*よくある削除理由
 ** 投稿者依頼
 ** 著作権侵害
 ** 荒らし',
-'delete-edit-reasonlist'      => '削除理由を編集する',
-'delete-toobig'               => 'このページには、$1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。処理負荷増大によって{{SITENAME}}に偶発的なトラブルが起こることを防ぐため、このようなページの削除は制限されています。',
-'delete-warning-toobig'       => 'このページには、 $1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
-'rollback'                    => '編集の差し戻し',
-'rollback_short'              => '差し戻し',
-'rollbacklink'                => '差し戻し',
-'rollbackfailed'              => '差し戻しに失敗しました',
-'cantrollback'                => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'               => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
+'delete-edit-reasonlist' => '削除理由を編集する',
+'delete-toobig'          => 'このページには、$1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。処理負荷増大によって{{SITENAME}}に偶発的なトラブルが起こることを防ぐため、このようなページの削除は制限されています。',
+'delete-warning-toobig'  => 'このページには、 $1 {{PLURAL:$1|版|版}}を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
+
+# Rollback
+'rollback'         => '編集の差し戻し',
+'rollback_short'   => '差し戻し',
+'rollbacklink'     => '差し戻し',
+'rollbackfailed'   => '差し戻しに失敗しました',
+'cantrollback'     => '投稿者がただ一人であるため、編集を差し戻せません。',
+'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] ([[User talk:$2|会話]] | [[Special:Contributions/$2|{{int:contribslink}}]])による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
 このページの最後の編集は [[User:$3|$3]] ([[User talk:$3|会話]] | [[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。',
-'editcomment'                 => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
-'sessionfailure'              => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
+'editcomment'      => '編集内容の要約: <i>$1</i>', # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による版へ差し戻し', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 による編集を取り消して $2 による直前の版へ差し戻しました。',
+'sessionfailure'   => 'あなたのログイン・セッションに問題が発生しました。この動作はセッションハイジャックを防ぐために取り消されました。ブラウザの「戻る」を押してからページを再読込し、もう一度送信してください。',
+
+# Protect
 'protectlogpage'              => '保護記録',
 'protectlogtext'              => '以下はページの保護・保護解除の一覧です。',
 'protectedarticle'            => '"[[$1]]" を保護しました。',

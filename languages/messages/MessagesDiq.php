@@ -401,8 +401,10 @@ It must have at least $1 characters and be different from your username.',
 'mywatchlist' => 'lista mına seyr-kerdışi',
 'watch'       => 'bıgê seyr-kerdış',
 
-# Delete/protect/revert
-'deletepage'   => 'Pele bıestere',
+# Delete
+'deletepage' => 'Pele bıestere',
+
+# Rollback
 'rollbacklink' => 'peyser biya',
 
 # Restrictions (nouns)

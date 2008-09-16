@@ -914,20 +914,24 @@ I tinilaika siha mo'na gi tiempo kontodu i påhinan kombetsasion siha para u fan
 'watching'   => 'Mamulan...',
 'unwatching' => 'Pumapara mamulan...',
 
-# Delete/protect/revert
-'deletepage'                  => "Na'suha i påhina",
-'historywarning'              => "Adahi: Guåha historia-ña ni påhina na para un na'suha:",
-'confirmdeletetext'           => "Para un na'suha i påhina kontodu i historia-ña.
+# Delete
+'deletepage'            => "Na'suha i påhina",
+'historywarning'        => "Adahi: Guåha historia-ña ni påhina na para un na'suha:",
+'confirmdeletetext'     => "Para un na'suha i påhina kontodu i historia-ña.
 Konfotme fan na este i malago'-mu, na kumonprende hao hiniyong-ña, yan tumattiyi [[{{MediaWiki:Policy-url}}|i polisia]] ni bidada-mu.",
-'actioncomplete'              => 'Funhayan i aksion',
-'deletedtext'                 => 'Mana\'suha "<nowiki>$1</nowiki>".
+'actioncomplete'        => 'Funhayan i aksion',
+'deletedtext'           => 'Mana\'suha "<nowiki>$1</nowiki>".
 Chek $2 para i historian muna\'suha gi halacha.',
-'deletedarticle'              => 'Mana\'suha "[[$1]]"',
-'dellogpage'                  => "Historian muna'suha",
-'deletecomment'               => "Rason ni muna'suha:",
-'deleteotherreason'           => 'Otru na rason:',
-'deletereasonotherlist'       => 'Otru rason',
-'rollbacklink'                => 'tulaika tatte',
+'deletedarticle'        => 'Mana\'suha "[[$1]]"',
+'dellogpage'            => "Historian muna'suha",
+'deletecomment'         => "Rason ni muna'suha:",
+'deleteotherreason'     => 'Otru na rason:',
+'deletereasonotherlist' => 'Otru rason',
+
+# Rollback
+'rollbacklink' => 'tulaika tatte',
+
+# Protect
 'protectlogpage'              => 'I historian proteksion',
 'protectcomment'              => 'Komentu:',
 'protectexpiry'               => 'Munhåyan:',

@@ -1876,57 +1876,61 @@ $NEWPAGE
 Сын-пікір беру және былайғы жәрдем алу үшін:
 {{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Бетті жою',
-'confirm'                     => 'Құптау',
-'excontent'                   => "болған мағлұматы: '$1'",
-'excontentauthor'             => "болған мағлұматы (тек '[[{{#special:Contributions}}/$2|$2]]' үлесі): '$1'",
-'exbeforeblank'               => "тазарту алдындағы болған мағлұматы: '$1'",
-'exblank'                     => 'бет бос болды',
-'delete-confirm'              => '«$1» дегенді жою',
-'delete-legend'               => 'Жою',
-'historywarning'              => 'Құлақтандыру: Жоюы көзделген бетте тарихы бар:',
-'confirmdeletetext'           => 'Бетті бүкіл тарихымен бірге дерекқордан жойюын коздедіңіз.
+# Delete
+'deletepage'             => 'Бетті жою',
+'confirm'                => 'Құптау',
+'excontent'              => "болған мағлұматы: '$1'",
+'excontentauthor'        => "болған мағлұматы (тек '[[{{#special:Contributions}}/$2|$2]]' үлесі): '$1'",
+'exbeforeblank'          => "тазарту алдындағы болған мағлұматы: '$1'",
+'exblank'                => 'бет бос болды',
+'delete-confirm'         => '«$1» дегенді жою',
+'delete-legend'          => 'Жою',
+'historywarning'         => 'Құлақтандыру: Жоюы көзделген бетте тарихы бар:',
+'confirmdeletetext'      => 'Бетті бүкіл тарихымен бірге дерекқордан жойюын коздедіңіз.
 Осыны істеу ниетіңізді, салдарын байымдауыңызды және [[{{{{ns:mediawiki}}:Policy-url}}]] дегенге лайықты деп істемектенгеңізді құптаңыз.',
-'actioncomplete'              => 'Әрекет бітті',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» жойылды.
+'actioncomplete'         => 'Әрекет бітті',
+'deletedtext'            => '«<nowiki>$1</nowiki>» жойылды.
 Жуықтағы жоюлар туралы жазбаларын $2 дегеннен қараңыз.',
-'deletedarticle'              => '«[[$1]]» дегенді жойды',
-'suppressedarticle'           => '«[[$1]]» дегенді шеттетті',
-'dellogpage'                  => 'Жою_журналы',
-'dellogpagetext'              => 'Төменде жуықтағы жоюлардың тізімі берілген.',
-'deletionlog'                 => 'жою журналы',
-'reverted'                    => 'Ертерек түзетуіне қайтарылған',
-'deletecomment'               => 'Жоюдың себебі:',
-'deleteotherreason'           => 'Басқа/қосымша себеп:',
-'deletereasonotherlist'       => 'Басқа себеп',
-'deletereason-dropdown'       => '* Жоюдың жалпы себептері
+'deletedarticle'         => '«[[$1]]» дегенді жойды',
+'suppressedarticle'      => '«[[$1]]» дегенді шеттетті',
+'dellogpage'             => 'Жою_журналы',
+'dellogpagetext'         => 'Төменде жуықтағы жоюлардың тізімі берілген.',
+'deletionlog'            => 'жою журналы',
+'reverted'               => 'Ертерек түзетуіне қайтарылған',
+'deletecomment'          => 'Жоюдың себебі:',
+'deleteotherreason'      => 'Басқа/қосымша себеп:',
+'deletereasonotherlist'  => 'Басқа себеп',
+'deletereason-dropdown'  => '* Жоюдың жалпы себептері
 ** Аутордың сұранымы бойынша
 ** Ауторлық құқықтарын бұзу
 ** Бұзақылық',
-'delete-edit-reasonlist'      => 'Жою себептерін өңдеу',
-'delete-toobig'               => 'Бұл бетте байтақ түзету тарихы бар, $1 түзетуден астам.
+'delete-edit-reasonlist' => 'Жою себептерін өңдеу',
+'delete-toobig'          => 'Бұл бетте байтақ түзету тарихы бар, $1 түзетуден астам.
 Бұндай беттердің жоюы {{SITENAME}} торабын әлдеқалай үзіп тастауына бөгет салу үшін тиымдалған.',
-'delete-warning-toobig'       => 'Бұл бетте байтақ түзету тарихы бар, $1 түзетуден астам.
+'delete-warning-toobig'  => 'Бұл бетте байтақ түзету тарихы бар, $1 түзетуден астам.
 Бұның жоюы {{SITENAME}} торабындағы дерекқор әрекеттерді үзіп тастауын мүмкін;
 бұны абайлап өткізіңіз.',
-'rollback'                    => 'Өңдемелерді шегіндіру',
-'rollback_short'              => 'Шегіндіру',
-'rollbacklink'                => 'шегіндіру',
-'rollbackfailed'              => 'Шегіндіру сәтсіз бітті',
-'cantrollback'                => 'Өңдеме қайтарылмады;
+
+# Rollback
+'rollback'         => 'Өңдемелерді шегіндіру',
+'rollback_short'   => 'Шегіндіру',
+'rollbacklink'     => 'шегіндіру',
+'rollbackfailed'   => 'Шегіндіру сәтсіз бітті',
+'cantrollback'     => 'Өңдеме қайтарылмады;
 соңғы үлескері тек осы беттің бастаушысы болды.',
-'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) істеген [[:$1]] соңғы өңдемесі шегіндірілмеді;
+'alreadyrolled'    => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) істеген [[:$1]] соңғы өңдемесі шегіндірілмеді;
 басқа біреу бұл бетті алдақашан өңдеген не шегіндірген.
 
 соңғы өңдемесін [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|талқылауы]]) істеген.',
-'editcomment'                 => 'Болған өңдеме мәндемесі: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) өңдемелерінен [[{{ns:user}}:$1|$1]] соңғы нұсқасына қайтарды', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 өңдемелерінен қайтарған;
+'editcomment'      => 'Болған өңдеме мәндемесі: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|талқылауы]]) өңдемелерінен [[{{ns:user}}:$1|$1]] соңғы нұсқасына қайтарды', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 өңдемелерінен қайтарған;
 $2 соңғы нұсқасына өзгертті.',
-'sessionfailure'              => 'Кіру сессиясында шатақ болған сияқты;
+'sessionfailure'   => 'Кіру сессиясында шатақ болған сияқты;
 сессияға шабуылдаудардан қорғану үшін, осы әрекет тоқтатылды.
 «Артқа» дегенді басыңыз, және бетті қайта жүктеңіз де, қайта байқап көріңіз.',
+
+# Protect
 'protectlogpage'              => 'Қорғау журналы',
 'protectlogtext'              => 'Төменде беттердің қорғау/қорғамау тізімі берілген.
 Ағымдағы қорғау әректтер бар беттер үшін [[{{#special:Protectedpages}}|қорғалған бет тізімін]] қараңыз.',

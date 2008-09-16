@@ -303,9 +303,11 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'watchlist-show-liu'   => 'Fia ŋkɔŋlɔlawo ƒe tɔtrɔwo',
 'watchlist-hide-liu'   => 'Ɣla ŋkɔŋlɔlawo ƒe tɔtrɔwo',
 
-# Delete/protect/revert
-'deletepage'                  => 'Tutu axa sia',
-'deletedarticle'              => 'wotutu "[[$1]]"',
+# Delete
+'deletepage'     => 'Tutu axa sia',
+'deletedarticle' => 'wotutu "[[$1]]"',
+
+# Protect
 'protect-level-autoconfirmed' => 'Xemɔ na ŋkɔmaŋlɔlawo',
 'restriction-type'            => 'Mɔɖeɖe:',
 

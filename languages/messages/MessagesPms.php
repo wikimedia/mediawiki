@@ -1356,50 +1356,54 @@ Për cangé ij setagi ëd lòn che as ten sot euj che a vada ansima a
 Për fé dle comunicassion ëd servissi e avej pì d\'agiut:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Scancela pàgina',
-'confirm'                     => 'Conferma',
-'excontent'                   => "Ël contnù a l'era: '$1'",
-'excontentauthor'             => "ël contnù a l'era: '$1' (e l'ùnich contributor a l'era stait '$2')",
-'exbeforeblank'               => "Anans d'esse dësvojdà ël contnù a l'era: '$1'",
-'exblank'                     => "La pàgina a l'era veujda",
-'delete-confirm'              => 'Scancela "$1"',
-'delete-legend'               => 'Scancela',
-'historywarning'              => "Avis: la pàgina che a l'é antramentr che a scancela a l'ha na stòria:",
-'confirmdeletetext'           => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
+# Delete
+'deletepage'             => 'Scancela pàgina',
+'confirm'                => 'Conferma',
+'excontent'              => "Ël contnù a l'era: '$1'",
+'excontentauthor'        => "ël contnù a l'era: '$1' (e l'ùnich contributor a l'era stait '$2')",
+'exbeforeblank'          => "Anans d'esse dësvojdà ël contnù a l'era: '$1'",
+'exblank'                => "La pàgina a l'era veujda",
+'delete-confirm'         => 'Scancela "$1"',
+'delete-legend'          => 'Scancela',
+'historywarning'         => "Avis: la pàgina che a l'é antramentr che a scancela a l'ha na stòria:",
+'confirmdeletetext'      => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
 Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Travaj fait e finì',
-'deletedtext'                 => 'La pàgina "<nowiki>$1</nowiki>" a l\'é staita scancelà.
+'actioncomplete'         => 'Travaj fait e finì',
+'deletedtext'            => 'La pàgina "<nowiki>$1</nowiki>" a l\'é staita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
-'deletedarticle'              => 'Scancelà "$1"',
-'dellogpage'                  => 'Registr djë scancelament',
-'dellogpagetext'              => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
+'deletedarticle'         => 'Scancelà "$1"',
+'dellogpage'             => 'Registr djë scancelament',
+'dellogpagetext'         => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
 Ij temp a son conforma a l'ora dël server (UTC).",
-'deletionlog'                 => 'Registr djë scancelament',
-'reverted'                    => 'Version prima butà torna sù',
-'deletecomment'               => 'Rason dlë scancelament:',
-'deleteotherreason'           => 'Rason àutra/adissional:',
-'deletereasonotherlist'       => 'Àutra rason',
-'deletereason-dropdown'       => "*Rason sòlite ch'as ëscancela la ròba
+'deletionlog'            => 'Registr djë scancelament',
+'reverted'               => 'Version prima butà torna sù',
+'deletecomment'          => 'Rason dlë scancelament:',
+'deleteotherreason'      => 'Rason àutra/adissional:',
+'deletereasonotherlist'  => 'Àutra rason',
+'deletereason-dropdown'  => "*Rason sòlite ch'as ëscancela la ròba
 ** a lo ciama l'àutor
 ** violassion dij drit d'autor
 ** vanadalism",
-'delete-edit-reasonlist'      => 'Modifiché la rason dlë scancelament',
-'delete-toobig'               => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. Lë scancelassion ëd pàgine parej a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
-'delete-warning-toobig'       => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. A scancelela as peul fesse darmagi a j'operassion dla base dat ëd {{SITENAME}}; ch'a fasa euj a lòn ch'a fa.",
-'rollback'                    => 'Dòvra na revision pì veja',
-'rollback_short'              => 'Ripristinè',
-'rollbacklink'                => "ripristiné j'archivi",
-'rollbackfailed'              => "A l'é pa podusse ripristiné",
-'cantrollback'                => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
-'alreadyrolled'               => "As peulo pa anulé j'Ultime modìfiche ëd [[:$1]]
+'delete-edit-reasonlist' => 'Modifiché la rason dlë scancelament',
+'delete-toobig'          => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. Lë scancelassion ëd pàgine parej a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
+'delete-warning-toobig'  => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 revision. A scancelela as peul fesse darmagi a j'operassion dla base dat ëd {{SITENAME}}; ch'a fasa euj a lòn ch'a fa.",
+
+# Rollback
+'rollback'         => 'Dòvra na revision pì veja',
+'rollback_short'   => 'Ripristinè',
+'rollbacklink'     => "ripristiné j'archivi",
+'rollbackfailed'   => "A l'é pa podusse ripristiné",
+'cantrollback'     => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
+'alreadyrolled'    => "As peulo pa anulé j'Ultime modìfiche ëd [[:$1]]
 faite da [[User:$2|$2]] ([[User talk:$2|Talk]]); Cheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
 L'ùltima modìfica a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]).",
-'editcomment'                 => 'Ël coment dla modìfica a l\'era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
-'sessionfailure'              => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
+'editcomment'      => 'Ël coment dla modìfica a l\'era: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "Gavà via le modìfiche dl'utent [[Special:Contributions/$2|$2]] ([[User_talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
+'sessionfailure'   => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
+
+# Protect
 'protectlogpage'              => 'Registr dle protession',
 'protectlogtext'              => "Ambelessì sota a-i é na lista d'event ëd protession e dësprotession ëd pàgine.
 Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-ciairé le protession corente.",

@@ -295,11 +295,13 @@ $messages = array(
 'watch'         => 'စောင့်​ကြည့်​ပါ​',
 'watchthispage' => 'ဤ​စာ​မျက်​နှာ​အား​စောင့်​ကြည့်​ပါ​',
 
-# Delete/protect/revert
-'deletepage'       => 'စာမျက်နှာကိုဖျက်ပါ',
-'confirm'          => 'အတည်ပြု',
-'delete-confirm'   => '"$1"ကို ဖျက်ပါ',
-'delete-legend'    => 'ဖျက်',
+# Delete
+'deletepage'     => 'စာမျက်နှာကိုဖျက်ပါ',
+'confirm'        => 'အတည်ပြု',
+'delete-confirm' => '"$1"ကို ဖျက်ပါ',
+'delete-legend'  => 'ဖျက်',
+
+# Protect
 'restriction-type' => 'အခွင့်:',
 
 # Restrictions (nouns)

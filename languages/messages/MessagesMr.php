@@ -1574,49 +1574,53 @@ $NEWPAGE
 पुढील सहाय्य आणि प्रतिक्रीया:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'पान वगळा',
-'confirm'                     => 'निश्चीत',
-'excontent'                   => "मजकूर होता: '$1'",
-'excontentauthor'             => "मजकूर होता: '$1' (आणि फक्त '[[Special:Contributions/$2|$2]]' यांचे योगदान होते.)",
-'exbeforeblank'               => "वगळण्यापूर्वीचा मजकूर पुढीलप्रमाणे: '$1'",
-'exblank'                     => 'पान रिकामे होते',
-'delete-confirm'              => '"$1" वगळा',
-'delete-legend'               => 'वगळा',
-'historywarning'              => 'सुचना: तुम्ही वगळत असलेल्या पानाला इतिहास आहे:',
-'confirmdeletetext'           => 'तुम्ही एक लेख त्याच्या सर्व इतिहासासोबत वगळण्याच्या तयारीत आहात.
+# Delete
+'deletepage'             => 'पान वगळा',
+'confirm'                => 'निश्चीत',
+'excontent'              => "मजकूर होता: '$1'",
+'excontentauthor'        => "मजकूर होता: '$1' (आणि फक्त '[[Special:Contributions/$2|$2]]' यांचे योगदान होते.)",
+'exbeforeblank'          => "वगळण्यापूर्वीचा मजकूर पुढीलप्रमाणे: '$1'",
+'exblank'                => 'पान रिकामे होते',
+'delete-confirm'         => '"$1" वगळा',
+'delete-legend'          => 'वगळा',
+'historywarning'         => 'सुचना: तुम्ही वगळत असलेल्या पानाला इतिहास आहे:',
+'confirmdeletetext'      => 'तुम्ही एक लेख त्याच्या सर्व इतिहासासोबत वगळण्याच्या तयारीत आहात.
 कृपया तुम्ही करत असलेली कृती ही मीडियाविकीच्या [[{{MediaWiki:Policy-url}}|नीतीनुसार]] आहे ह्याची खात्री करा. तसेच तुम्ही करीत असलेल्या कृतीचे परीणाम कृती करण्यापूर्वी जाणून घ्या.',
-'actioncomplete'              => 'काम पूर्ण',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" हा लेख वगळला. अलीकडे वगळलेले लेख पाहण्यासाठी $2 पहा.',
-'deletedarticle'              => '"[[$1]]" लेख वगळला.',
-'suppressedarticle'           => '"[[$1]]" ला दाबले (सप्रेस)',
-'dellogpage'                  => 'वगळल्याची नोंद',
-'dellogpagetext'              => 'नुकत्याच वगळलेल्या पानांची यादी खाली आहे.',
-'deletionlog'                 => 'वगळल्याची नोंद',
-'reverted'                    => 'जुन्या आवृत्तीकडे पूर्वपदास नेले',
-'deletecomment'               => 'वगळण्याचे कारण',
-'deleteotherreason'           => 'दुसरे/अतिरिक्त कारण:',
-'deletereasonotherlist'       => 'दुसरे कारण',
-'deletereason-dropdown'       => '* वगळण्याची सामान्य कारणे
+'actioncomplete'         => 'काम पूर्ण',
+'deletedtext'            => '"<nowiki>$1</nowiki>" हा लेख वगळला. अलीकडे वगळलेले लेख पाहण्यासाठी $2 पहा.',
+'deletedarticle'         => '"[[$1]]" लेख वगळला.',
+'suppressedarticle'      => '"[[$1]]" ला दाबले (सप्रेस)',
+'dellogpage'             => 'वगळल्याची नोंद',
+'dellogpagetext'         => 'नुकत्याच वगळलेल्या पानांची यादी खाली आहे.',
+'deletionlog'            => 'वगळल्याची नोंद',
+'reverted'               => 'जुन्या आवृत्तीकडे पूर्वपदास नेले',
+'deletecomment'          => 'वगळण्याचे कारण',
+'deleteotherreason'      => 'दुसरे/अतिरिक्त कारण:',
+'deletereasonotherlist'  => 'दुसरे कारण',
+'deletereason-dropdown'  => '* वगळण्याची सामान्य कारणे
 ** लेखकाची(लेखिकेची) विनंती
 ** प्रताधिकार उल्लंघन
 ** उत्पात',
-'delete-edit-reasonlist'      => 'वगळण्याची कारणे संपादीत करा',
-'delete-toobig'               => 'या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे {{SITENAME}} ला धोकादायक ठरू नये म्हणून शक्य केलेले नाही.',
-'delete-warning-toobig'       => '
+'delete-edit-reasonlist' => 'वगळण्याची कारणे संपादीत करा',
+'delete-toobig'          => 'या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे {{SITENAME}} ला धोकादायक ठरू नये म्हणून शक्य केलेले नाही.',
+'delete-warning-toobig'  => '
 या पानाला खूप मोठी इतिहास यादी आहे, तसेच हे पान $1 पेक्षा जास्त वेळा बदलण्यात आलेले आहे. अशी पाने वगळणे हे Betawiki ला धोकादायक ठरू शकते; कृपया काळजीपूर्वक हे पान वगळा.',
-'rollback'                    => 'बदल वेगात माघारी न्या',
-'rollback_short'              => 'द्रूतमाघार',
-'rollbacklink'                => 'द्रूतमाघार',
-'rollbackfailed'              => 'द्रूतमाघार फसली',
-'cantrollback'                => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
-'alreadyrolled'               => 'Cannot rollback last edit of by [[User:$2|$2]] ([[User talk:$2|Talk]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येतनाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
+
+# Rollback
+'rollback'         => 'बदल वेगात माघारी न्या',
+'rollback_short'   => 'द्रूतमाघार',
+'rollbacklink'     => 'द्रूतमाघार',
+'rollbackfailed'   => 'द्रूतमाघार फसली',
+'cantrollback'     => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
+'alreadyrolled'    => 'Cannot rollback last edit of by [[User:$2|$2]] ([[User talk:$2|Talk]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येतनाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
 
 शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]])-चे होते.',
-'editcomment'                 => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
-'sessionfailure'              => 'तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणा पासून काळजी घेण्याच्या दृष्टीने ही कृती रद्द केली गेली आहे.कपया आपल्या विचरकाच्या "back" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि प्रत प्रयत्न करा.',
+'editcomment'      => 'बदलासोबतची नोंद होती : "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
+'sessionfailure'   => 'तुमच्या दाखल सत्रात काही समस्या दिसते;सत्र अपहारणा पासून काळजी घेण्याच्या दृष्टीने ही कृती रद्द केली गेली आहे.कपया आपल्या विचरकाच्या "back" कळीवर टिचकी मारा आणि तुम्ही ज्या पानावरून आला ते पुन्हा चढवा,आणि प्रत प्रयत्न करा.',
+
+# Protect
 'protectlogpage'              => 'सुरक्षा नोंदी',
 'protectlogtext'              => 'पानांना लावलेल्या ताळ्यांची आणि ताळे उघडण्याबद्दलच्या पानाची खाली सूची दिली आहे.सध्याच्या सुरक्षीत पानांबद्दलच्या माहितीकरिता [[Special:ProtectedPages|सुरक्षीत पानांची सूची]] पहा.',
 'protectedarticle'            => '"[[$1]]" सुरक्षित केला',

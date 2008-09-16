@@ -1574,48 +1574,52 @@ Jou Beooboachtengslieste
 Hälpe tou ju Benutsenge rakt
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Siede läskje',
-'confirm'                     => 'Bestäätigje',
-'excontent'                   => "Oolde Inhoold: '$1'",
-'excontentauthor'             => "Inhoold waas: '$1' (eensige Benutser: '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "Inhoold foar dät Loosmoakjen fon de Siede: '$1'",
-'exblank'                     => 'Siede waas loos',
-'delete-confirm'              => 'Läskjen fon „$1“',
-'delete-legend'               => 'Läskje',
-'historywarning'              => 'WOARSCHAUENGE: Ju Siede, ju du läskje moatest, häd ne Versionsgeschichte: &nbsp;',
-'confirmdeletetext'           => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:Policy-url}}]] honnelje.',
-'actioncomplete'              => 'Aktion be-eended',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" wuude läsked.
+# Delete
+'deletepage'             => 'Siede läskje',
+'confirm'                => 'Bestäätigje',
+'excontent'              => "Oolde Inhoold: '$1'",
+'excontentauthor'        => "Inhoold waas: '$1' (eensige Benutser: '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "Inhoold foar dät Loosmoakjen fon de Siede: '$1'",
+'exblank'                => 'Siede waas loos',
+'delete-confirm'         => 'Läskjen fon „$1“',
+'delete-legend'          => 'Läskje',
+'historywarning'         => 'WOARSCHAUENGE: Ju Siede, ju du läskje moatest, häd ne Versionsgeschichte: &nbsp;',
+'confirmdeletetext'      => 'Jie sunt deerbie, n Artikkel of ne Bielde un aal allere Versione foar altied uut dän Doatenboank tou läskjen. Bitte bestäätigje Jie Jou Apsicht, dät tou dwoon, dät Jie Jou do Konsekwänsen bewust sunt, un dät Jie in Uureenstämmenge mäd uus [[{{MediaWiki:Policy-url}}]] honnelje.',
+'actioncomplete'         => 'Aktion be-eended',
+'deletedtext'            => '"<nowiki>$1</nowiki>" wuude läsked.
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
-'deletedarticle'              => '"$1" wuude läsked',
-'suppressedarticle'           => 'feranderde ju Sichtboarhaid fon „[[$1]]“',
-'dellogpage'                  => 'Läsk-Logbouk',
-'dellogpagetext'              => 'Hier is ne Lieste fon do lääste Läskengen.',
-'deletionlog'                 => 'Läsk-Logbouk',
-'reverted'                    => 'Ap ne oolde Version touräächsät',
-'deletecomment'               => 'Gruund foar ju Läskenge:',
-'deleteotherreason'           => 'Uur/additionoalen Gruund:',
-'deletereasonotherlist'       => 'Uur Gruund',
-'deletereason-dropdown'       => '* Algemeene Läskgruunde
+'deletedarticle'         => '"$1" wuude läsked',
+'suppressedarticle'      => 'feranderde ju Sichtboarhaid fon „[[$1]]“',
+'dellogpage'             => 'Läsk-Logbouk',
+'dellogpagetext'         => 'Hier is ne Lieste fon do lääste Läskengen.',
+'deletionlog'            => 'Läsk-Logbouk',
+'reverted'               => 'Ap ne oolde Version touräächsät',
+'deletecomment'          => 'Gruund foar ju Läskenge:',
+'deleteotherreason'      => 'Uur/additionoalen Gruund:',
+'deletereasonotherlist'  => 'Uur Gruund',
+'deletereason-dropdown'  => '* Algemeene Läskgruunde
 ** Wonsk fon dän Autor
 ** Urhebergjuchtsferlätsenge
 ** Vandalismus',
-'delete-edit-reasonlist'      => 'Läskgruunde beoarbaidje',
-'delete-toobig'               => 'Disse Siede häd mäd moor as $1 {{PLURAL:$1|Version|Versionen}} ne gjucht loange Versionsgeschichte. Dät Läskjen fon sukke Sieden wuud ienschränkt, uum ne toufällige Uurlastenge fon {{SITENAME}} tou ferhinnerjen.',
-'delete-warning-toobig'       => 'Disse Siede häd mäd moor as $1 {{PLURAL:$1|Version|Versione}} ne gjucht loange Versionsgeschichte. Dät Läskjen kon tou Stöörengen in {{SITENAME}} fiere.',
-'rollback'                    => 'Touräächsätten fon do Annerengen',
-'rollback_short'              => 'Touräächsätte',
-'rollbacklink'                => 'touräächsätte',
-'rollbackfailed'              => 'Touräächsätten misglukked',
-'cantrollback'                => 'Disse Annerenge kon nit touräächstoald wäide; deer et naan fröieren Autor rakt.',
-'alreadyrolled'               => "Dät Touräächsätten fon do Annerengen fon [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Siede [[:$1]] hied naan Ärfoulch, deer in ju Twiskentied al n uur Benutser Annerengen an disse Siede foarnuumen häd.
+'delete-edit-reasonlist' => 'Läskgruunde beoarbaidje',
+'delete-toobig'          => 'Disse Siede häd mäd moor as $1 {{PLURAL:$1|Version|Versionen}} ne gjucht loange Versionsgeschichte. Dät Läskjen fon sukke Sieden wuud ienschränkt, uum ne toufällige Uurlastenge fon {{SITENAME}} tou ferhinnerjen.',
+'delete-warning-toobig'  => 'Disse Siede häd mäd moor as $1 {{PLURAL:$1|Version|Versione}} ne gjucht loange Versionsgeschichte. Dät Läskjen kon tou Stöörengen in {{SITENAME}} fiere.',
+
+# Rollback
+'rollback'         => 'Touräächsätten fon do Annerengen',
+'rollback_short'   => 'Touräächsätte',
+'rollbacklink'     => 'touräächsätte',
+'rollbackfailed'   => 'Touräächsätten misglukked',
+'cantrollback'     => 'Disse Annerenge kon nit touräächstoald wäide; deer et naan fröieren Autor rakt.',
+'alreadyrolled'    => "Dät Touräächsätten fon do Annerengen fon [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Siede [[:$1]] hied naan Ärfoulch, deer in ju Twiskentied al n uur Benutser Annerengen an disse Siede foarnuumen häd.
 
 Ju lääste Annerenge stamt fon [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
-'editcomment'                 => 'Ju Annerengskommentoar waas: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Tounichte moakede Beoarbaidengen fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tou ju lääste Version fon [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Do Annerengen fon $1 wuuden tourääch annerd un ju lääste Version fon $2 wuude wier moaked.',
-'sessionfailure'              => 'Dät roat n Problem mäd ju Uurdreegenge fon dien Benutserdoaten. Disse Aktion wuude deeruum sicherheidshoolwe oubreeken, uum ne falske Touoardnenge fon dien Annerengen tou n uur Benutser tou ferhinnerjen. Gung jädden tourääch un fersäik dän Foargong fonnäien uuttoufieren.',
+'editcomment'      => 'Ju Annerengskommentoar waas: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Tounichte moakede Beoarbaidengen fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tou ju lääste Version fon [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Do Annerengen fon $1 wuuden tourääch annerd un ju lääste Version fon $2 wuude wier moaked.',
+'sessionfailure'   => 'Dät roat n Problem mäd ju Uurdreegenge fon dien Benutserdoaten. Disse Aktion wuude deeruum sicherheidshoolwe oubreeken, uum ne falske Touoardnenge fon dien Annerengen tou n uur Benutser tou ferhinnerjen. Gung jädden tourääch un fersäik dän Foargong fonnäien uuttoufieren.',
+
+# Protect
 'protectlogpage'              => 'Siedenschuts-Logbouk',
 'protectlogtext'              => 'Dit is ne Lieste fon do blokkierde Sieden.
 Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',

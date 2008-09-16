@@ -1443,54 +1443,58 @@ A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:special}}:W
 Evezhiadennoù ha skoazell pelloc\'h :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Diverkañ ur bajenn',
-'confirm'                     => 'Kadarnaat',
-'excontent'                   => "endalc'had '$1'",
-'excontentauthor'             => "an danvez a oa : '$1' (ha '[[Special:Contributions/$2|$2]]' a oa bet an implijer nemetañ)",
-'exbeforeblank'               => "A-raok diverkañ e oa an endalc'had : '$1'",
-'exblank'                     => "pajenn c'houllo",
-'delete-confirm'              => 'Diverkañ "$1"',
-'delete-legend'               => 'Diverkañ',
-'historywarning'              => "Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc'h :",
-'confirmdeletetext'           => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
+# Delete
+'deletepage'             => 'Diverkañ ur bajenn',
+'confirm'                => 'Kadarnaat',
+'excontent'              => "endalc'had '$1'",
+'excontentauthor'        => "an danvez a oa : '$1' (ha '[[Special:Contributions/$2|$2]]' a oa bet an implijer nemetañ)",
+'exbeforeblank'          => "A-raok diverkañ e oa an endalc'had : '$1'",
+'exblank'                => "pajenn c'houllo",
+'delete-confirm'         => 'Diverkañ "$1"',
+'delete-legend'          => 'Diverkañ',
+'historywarning'         => "Diwallit: War-nes diverkañ ur bajenn ganti un istor emaoc'h :",
+'confirmdeletetext'      => "War-nes diverkañ da viken ur bajenn pe ur skeudenn eus ar bank roadennoù emaoc'h. Diverket e vo ivez an holl stummoù kozh stag outi.
 Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat an heuliadoù, hag e rit se diouzh ar [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Diverkadenn kaset da benn',
-'deletedtext'                 => '"Diverket eo bet <nowiki>$1</nowiki>".
+'actioncomplete'         => 'Diverkadenn kaset da benn',
+'deletedtext'            => '"Diverket eo bet <nowiki>$1</nowiki>".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
-'deletedarticle'              => 'diverket "$1"',
-'suppressedarticle'           => 'diverket "[[$1]]"',
-'dellogpage'                  => 'Roll ar pajennoù diverket',
-'dellogpagetext'              => 'Setu roll ar pajennnoù diwezhañ bet diverket.',
-'deletionlog'                 => 'roll an diverkadennoù',
-'reverted'                    => 'Adlakaat ar stumm kent',
-'deletecomment'               => 'Abeg an diverkadenn',
-'deleteotherreason'           => 'Abegoù/traoù all :',
-'deletereasonotherlist'       => 'Abeg all',
-'deletereason-dropdown'       => "*Abegoù diverkañ boazetañ
+'deletedarticle'         => 'diverket "$1"',
+'suppressedarticle'      => 'diverket "[[$1]]"',
+'dellogpage'             => 'Roll ar pajennoù diverket',
+'dellogpagetext'         => 'Setu roll ar pajennnoù diwezhañ bet diverket.',
+'deletionlog'            => 'roll an diverkadennoù',
+'reverted'               => 'Adlakaat ar stumm kent',
+'deletecomment'          => 'Abeg an diverkadenn',
+'deleteotherreason'      => 'Abegoù/traoù all :',
+'deletereasonotherlist'  => 'Abeg all',
+'deletereason-dropdown'  => "*Abegoù diverkañ boazetañ
 ** Goulenn gant saver ar pennad
 ** Gaou ouzh ar gwirioù perc'hennañ
 ** Vandalerezh",
-'delete-edit-reasonlist'      => 'Kemmañ a ra an abegoù diverkañ',
-'delete-toobig'               => 'Bras eo istor ar bajenn-mañ, ouzhpenn $1 {{PLURAL:$1|stumm|stumm}} zo. Bevennet eo bet an diverkañ pajennoù a-seurt-se kuit da zegas reuz war {{SITENAME}} dre fazi .',
-'delete-warning-toobig'       => "Bras eo istor ar bajenn-mañ, ouzhpenn {{PLURAL:$1|stumm|stumm}} zo. 
+'delete-edit-reasonlist' => 'Kemmañ a ra an abegoù diverkañ',
+'delete-toobig'          => 'Bras eo istor ar bajenn-mañ, ouzhpenn $1 {{PLURAL:$1|stumm|stumm}} zo. Bevennet eo bet an diverkañ pajennoù a-seurt-se kuit da zegas reuz war {{SITENAME}} dre fazi .',
+'delete-warning-toobig'  => "Bras eo istor ar bajenn-mañ, ouzhpenn {{PLURAL:$1|stumm|stumm}} zo. 
 Diverkañ anezhi a c'hallo degas reuz war mont en-dro diaz titouroù {{SITENAME}}; 
 taolit evezh bras.",
-'rollback'                    => "disteuler ar c'hemmoù",
-'rollback_short'              => 'Disteuler',
-'rollbacklink'                => 'disteuler',
-'rollbackfailed'              => "C'hwitet eo bet an distaoladenn",
-'cantrollback'                => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
-'alreadyrolled'               => "Dibosupl eo disteuler ar c'hemm diwezhañ graet e [[:$1]]
+
+# Rollback
+'rollback'         => "disteuler ar c'hemmoù",
+'rollback_short'   => 'Disteuler',
+'rollbacklink'     => 'disteuler',
+'rollbackfailed'   => "C'hwitet eo bet an distaoladenn",
+'cantrollback'     => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
+'alreadyrolled'    => "Dibosupl eo disteuler ar c'hemm diwezhañ graet e [[:$1]]
 gant [[User:$2|$2]] ([[User talk:$2|Talk]]); kemmet pe distaolet eo bet c'hoazh gant unan bennak all.
 
 Ar c'hemm diwezhañ a oa gant [[User:$3|$3]] ([[User talk:$3|Talk]]).",
-'editcomment'                 => 'Diverradenn ar c\'hemm a oa: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
-'sessionfailure'              => 'Evit doare ez eus ur gudenn gant ho talc\'h;
+'editcomment'      => 'Diverradenn ar c\'hemm a oa: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
+'sessionfailure'   => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
+
+# Protect
 'protectlogpage'              => 'Log_gwareziñ',
 'protectlogtext'              => 'Kavit a-is ur roll pajennoù gwarezet ha diwarezet. Sellet ouzh ar [[Special:ProtectedPages|roll ar pajennoù gwarezet]] evit kaout roll ar pajennoù gwarezet bremañ.',
 'protectedarticle'            => 'en/he deus gwarezet [[$1]]',

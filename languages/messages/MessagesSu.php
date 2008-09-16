@@ -1381,47 +1381,51 @@ Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:
 Asupan jeung bantuan salajengna:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Hapus kaca',
-'confirm'                     => 'Konfirmasi',
-'excontent'                   => "eusina nu heubeul: '$1'",
-'excontentauthor'             => "eusina: '$1' (nu ditulis ku '$2' wungkul)",
-'exbeforeblank'               => "eusi méméh dikosongkeun nyéta: '$1'",
-'exblank'                     => 'kaca ieu kosong',
-'delete-confirm'              => 'Hapus "$1"',
-'delete-legend'               => 'Hapus',
-'historywarning'              => 'Perhatosan: Kaca nu rék dihapus mibanda',
-'confirmdeletetext'           => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
-'actioncomplete'              => 'Peta geus réngsé',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
-'deletedarticle'              => 'ngahapus "$1"',
-'dellogpage'                  => 'Log_hapusan',
-'dellogpagetext'              => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server (UTC).',
-'deletionlog'                 => 'log hapusan',
-'reverted'                    => 'Malikkeun ka révisi nu ti heula',
-'deletecomment'               => 'Alesan ngahapus',
-'deleteotherreason'           => 'Alesan séjén/panambih:',
-'deletereasonotherlist'       => 'Alesan séjén',
-'deletereason-dropdown'       => '*Alesan ilahar
+# Delete
+'deletepage'             => 'Hapus kaca',
+'confirm'                => 'Konfirmasi',
+'excontent'              => "eusina nu heubeul: '$1'",
+'excontentauthor'        => "eusina: '$1' (nu ditulis ku '$2' wungkul)",
+'exbeforeblank'          => "eusi méméh dikosongkeun nyéta: '$1'",
+'exblank'                => 'kaca ieu kosong',
+'delete-confirm'         => 'Hapus "$1"',
+'delete-legend'          => 'Hapus',
+'historywarning'         => 'Perhatosan: Kaca nu rék dihapus mibanda',
+'confirmdeletetext'      => 'Anjeun rék ngahapus hiji kaca atawa gambar katut jujutanana tina pangkalan data, mangga yakinkeun yén anjeun mémang niat midamel ieu, yén anjeun ngartos kana sagala konsékuénsina, sarta yén anjeun ngalakukeun ieu saluyu jeung [[{{MediaWiki:Policy-url}}|kawijakan {{SITENAME}}]].',
+'actioncomplete'         => 'Peta geus réngsé',
+'deletedtext'            => '"<nowiki>$1</nowiki>" geus dihapus. Tempo $2 pikeun rékaman hapusan anyaran ieu.',
+'deletedarticle'         => 'ngahapus "$1"',
+'dellogpage'             => 'Log_hapusan',
+'dellogpagetext'         => 'Di handap ieu daptar hapusan nu ahir-ahir, sakabéh wanci dumasar wanci server (UTC).',
+'deletionlog'            => 'log hapusan',
+'reverted'               => 'Malikkeun ka révisi nu ti heula',
+'deletecomment'          => 'Alesan ngahapus',
+'deleteotherreason'      => 'Alesan séjén/panambih:',
+'deletereasonotherlist'  => 'Alesan séjén',
+'deletereason-dropdown'  => '*Alesan ilahar
 ** Paménta pamaké
 ** Ngarumpak hak cipta
 ** Vandalismeu',
-'delete-edit-reasonlist'      => 'Alesan ngahapus éditan',
-'delete-toobig'               => 'Jujutan édit ieu kaca panjang pisan, leuwih ti {{PLURAL:$1|révisi|révisi}}.
+'delete-edit-reasonlist' => 'Alesan ngahapus éditan',
+'delete-toobig'          => 'Jujutan édit ieu kaca panjang pisan, leuwih ti {{PLURAL:$1|révisi|révisi}}.
 Hal ieu teu diwenangkeun pikeun nyegah karuksakan {{SITENAME}} nu teu dihaja.',
-'delete-warning-toobig'       => 'Jujutan ieu kaca panjang pisan, leuwih ti{{PLURAL:$1|révisi|révisi}}. Dihapusna ieu kaca bisa ngaruksak jalanna pangkalan data {{SITENAME}}; sing ati-ati.',
-'rollback'                    => 'Balikkeun éditan',
-'rollback_short'              => 'Balikkeun',
-'rollbacklink'                => 'balikkeun',
-'rollbackfailed'              => 'Gagal malikkeun',
-'cantrollback'                => 'Éditan teu bisa dibalikkeun; kontribusi panungtung ngarupakeun hiji-hijina panulis kaca ieu.',
-'alreadyrolled'               => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana.
+'delete-warning-toobig'  => 'Jujutan ieu kaca panjang pisan, leuwih ti{{PLURAL:$1|révisi|révisi}}. Dihapusna ieu kaca bisa ngaruksak jalanna pangkalan data {{SITENAME}}; sing ati-ati.',
+
+# Rollback
+'rollback'         => 'Balikkeun éditan',
+'rollback_short'   => 'Balikkeun',
+'rollbacklink'     => 'balikkeun',
+'rollbackfailed'   => 'Gagal malikkeun',
+'cantrollback'     => 'Éditan teu bisa dibalikkeun; kontribusi panungtung ngarupakeun hiji-hijina panulis kaca ieu.',
+'alreadyrolled'    => 'Teu bisa mulangkeun édit ahir [[$1]] ku [[User:$2|$2]] ([[User talk:$2|Obrolan]]); geus aya nu ngédit atawa mulangkeun kacana.
 
 Édit ahir ku [[User:$3|$3]] ([[User talk:$3|Obrolan]]).',
-'editcomment'                 => 'Komentar ngéditna: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.',
-'sessionfailure'              => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
+'editcomment'      => 'Komentar ngéditna: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Malikkeun éditan $2, diganti deui ka vérsi ahir ku $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Mulangkeun éditan $1; balik deui ka vérsi panungtung ku $2.',
+'sessionfailure'   => 'Sigana aya masalah jeung termin log anjeun; peta ieu geus dibolaykeun salaku pépéling pikeun ngalawan ayana pangbajak. Mangga pencét "back" jeung muat ulang ti kaca asal anjeun, lajeng cobaan deui.',
+
+# Protect
 'protectlogpage'              => 'Log_koncian',
 'protectlogtext'              => 'Di handap ieu mangrupa daptar koncian kaca. Tempo [[Special:ProtectedPages|kaca nu dikonci]] pikeun iber leuwih lengkep.',
 'protectedarticle'            => 'ngonci $1',

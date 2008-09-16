@@ -488,16 +488,18 @@ $messages = array(
 'changed'                      => 'filak',
 'created'                      => 'kria',
 
-# Delete/protect/revert
-'deletepage'                  => 'Halakon pájina',
-'excontent'                   => "testu iha pájina: '$1'",
-'excontentauthor'             => "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",
-'exblank'                     => 'pájina mamuk',
-'delete-legend'               => 'Halakon',
-'deletedarticle'              => 'halakon "[[$1]]"',
-'dellogpage'                  => 'Lista halakon',
-'deletionlog'                 => 'lista halakon',
-'deletecomment'               => 'Tansá ó halakon:',
+# Delete
+'deletepage'      => 'Halakon pájina',
+'excontent'       => "testu iha pájina: '$1'",
+'excontentauthor' => "testu iha pájina: '$1' (no ema ida de'it ne'ebé kontribui '[[Special:Contributions/$2|$2]]')",
+'exblank'         => 'pájina mamuk',
+'delete-legend'   => 'Halakon',
+'deletedarticle'  => 'halakon "[[$1]]"',
+'dellogpage'      => 'Lista halakon',
+'deletionlog'     => 'lista halakon',
+'deletecomment'   => 'Tansá ó halakon:',
+
+# Protect
 'protectedarticle'            => 'proteje "[[$1]]"',
 'protectcomment'              => 'Komentáriu:',
 'protectexpiry'               => "to'o:",

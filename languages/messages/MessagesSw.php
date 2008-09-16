@@ -513,19 +513,23 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'watching'   => 'Unafuatilia...',
 'unwatching' => 'Umeacha kufuatilia...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Futa ukurasa',
-'historywarning'              => 'Ilani: Ukurasa unaotaka kufuta una historia yake:',
-'confirmdeletetext'           => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
+# Delete
+'deletepage'            => 'Futa ukurasa',
+'historywarning'        => 'Ilani: Ukurasa unaotaka kufuta una historia yake:',
+'confirmdeletetext'     => 'Wewe unategemea kufuta ukurasa pamoja na historia yake yote.
 Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo yake, na kwamba unafuata [[{{MediaWiki:Policy-url}}|sera]].',
-'actioncomplete'              => 'Kitendo kimekwisha',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
-'deletedarticle'              => '"[[$1]]" ilifutwa',
-'dellogpage'                  => 'Kumbukumbu ya ufutaji',
-'deletecomment'               => 'Sababu ya kufuta',
-'deleteotherreason'           => 'Sababu nyingine:',
-'deletereasonotherlist'       => 'Sababu nyingine',
-'rollbacklink'                => 'rejesha',
+'actioncomplete'        => 'Kitendo kimekwisha',
+'deletedtext'           => '"<nowiki>$1</nowiki>" imefutwa. Ona $2 kwa historia ya kurasa zilizofutwa hivi karibuni.',
+'deletedarticle'        => '"[[$1]]" ilifutwa',
+'dellogpage'            => 'Kumbukumbu ya ufutaji',
+'deletecomment'         => 'Sababu ya kufuta',
+'deleteotherreason'     => 'Sababu nyingine:',
+'deletereasonotherlist' => 'Sababu nyingine',
+
+# Rollback
+'rollbacklink' => 'rejesha',
+
+# Protect
 'protectlogpage'              => 'Kumbukumbu ya ulindaji',
 'protect-legend'              => 'Hakikisha ukingo',
 'protectcomment'              => 'Maoni:',

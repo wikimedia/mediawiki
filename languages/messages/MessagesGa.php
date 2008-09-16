@@ -1086,44 +1086,48 @@ Chun socruithe do liosta faire a athrú, tabhair cuairt ar
 Aiseolas agus a thuilleadh cabhrach:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Scrios an leathanach',
-'confirm'                     => 'Cinntigh',
-'excontent'                   => "téacs an lgh: '$1'",
-'excontentauthor'             => "seo a bhí an t-inneachar: '$1' (agus ba é '[[Special:Contributions/$2|$2]]' an t-aon dhréachtóir)",
-'exbeforeblank'               => "is é seo a raibh an ábhar roimh an folmhadh: '$1'",
-'exblank'                     => 'bhí an leathanach folamh',
-'delete-confirm'              => 'Scrios "$1"',
-'historywarning'              => 'Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:',
-'confirmdeletetext'           => 'Tá tú ar tí leathanach, agus a chuid staire, a scriosadh.
+# Delete
+'deletepage'            => 'Scrios an leathanach',
+'confirm'               => 'Cinntigh',
+'excontent'             => "téacs an lgh: '$1'",
+'excontentauthor'       => "seo a bhí an t-inneachar: '$1' (agus ba é '[[Special:Contributions/$2|$2]]' an t-aon dhréachtóir)",
+'exbeforeblank'         => "is é seo a raibh an ábhar roimh an folmhadh: '$1'",
+'exblank'               => 'bhí an leathanach folamh',
+'delete-confirm'        => 'Scrios "$1"',
+'historywarning'        => 'Aire: Ta stair ag an leathanach a bhfuil tú ar tí é a scriosadh:',
+'confirmdeletetext'     => 'Tá tú ar tí leathanach, agus a chuid staire, a scriosadh.
 Deimhnigh, le do thoil, gur mhian leat é seo a dhéanamh, go dtuigeann tú torthaí an ghnímh seo agus go bhfuil tú dá dhéanamh de réir [[{{MediaWiki:Policy-url}}|an pholasaí]].',
-'actioncomplete'              => 'Gníomh críochnaithe',
-'deletedtext'                 => 'scriosadh "<nowiki>$1</nowiki>".
+'actioncomplete'        => 'Gníomh críochnaithe',
+'deletedtext'           => 'scriosadh "<nowiki>$1</nowiki>".
 Féach ar $2 chun cuntas na scriosiadh deireanacha a fháil.',
-'deletedarticle'              => 'scriosadh "[[$1]]"',
-'dellogpage'                  => 'Loga scriosta',
-'dellogpagetext'              => 'Seo é liosta de na scriosaidh is déanaí.',
-'deletionlog'                 => 'cuntas scriosaidh',
-'reverted'                    => 'Tá eagrán níos luaithe in úsáid anois',
-'deletecomment'               => 'Cúis don scriosadh',
-'deleteotherreason'           => 'Fáth eile/breise:',
-'deletereasonotherlist'       => 'Fáth eile',
-'deletereason-dropdown'       => '*Fáthanna coitianta scriosta
+'deletedarticle'        => 'scriosadh "[[$1]]"',
+'dellogpage'            => 'Loga scriosta',
+'dellogpagetext'        => 'Seo é liosta de na scriosaidh is déanaí.',
+'deletionlog'           => 'cuntas scriosaidh',
+'reverted'              => 'Tá eagrán níos luaithe in úsáid anois',
+'deletecomment'         => 'Cúis don scriosadh',
+'deleteotherreason'     => 'Fáth eile/breise:',
+'deletereasonotherlist' => 'Fáth eile',
+'deletereason-dropdown' => '*Fáthanna coitianta scriosta
 ** Iarratas ón údar
 ** Sárú cóipchirt
 ** Loitiméireacht',
-'rollback'                    => 'Athúsáid seanathruithe',
-'rollback_short'              => 'Roll siar',
-'rollbacklink'                => 'athúsáid',
-'rollbackfailed'              => 'Theip an athúsáid',
-'cantrollback'                => 'Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.',
-'alreadyrolled'               => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
+
+# Rollback
+'rollback'       => 'Athúsáid seanathruithe',
+'rollback_short' => 'Roll siar',
+'rollbacklink'   => 'athúsáid',
+'rollbackfailed' => 'Theip an athúsáid',
+'cantrollback'   => 'Ní féidir an athrú a athúsáid; ba é údar an ailt an t-aon duine a rinne athrú dó.',
+'alreadyrolled'  => "Ní féidir eagrán níos luaí an leathanaigh [[:$1]]
 le [[User:$2|$2]] ([[User talk:$2|Plé]]) a athúsáid; d'athraigh duine eile é cheana fein, nó
 d'athúsáid duine eile eagrán níos luaí cheana féin.
 
 [[User:$3|$3]] ([[User talk:$3|Plé]]) an té a rinne an athrú is déanaí.",
-'editcomment'                 => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => 'Seo a raibh an mínithe athraithe: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => "Filleadh eagarthóireachtaí le [[Special:Contributions/$2|$2]] ([[User talk:$2|Plé]]); d'athúsáideadh an athrú seo caite le [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Cuntas_cosanta',
 'protectlogtext'              => 'Seo é liosta de glais a cuireadh ar / baineadh de leathanaigh.
 Féach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eolais a fháil.',

@@ -934,9 +934,11 @@ iitom e-iitomde diijömde caitóm.',
 'created'                      => 'creacöx',
 'enotif_anon_editor'           => 'caitom anoniimom $1',
 
-# Delete/protect/revert
+# Delete
 'deletepage' => 'Delatar páhina',
-'pagesize'   => '(bytenám)',
+
+# Protect
+'pagesize' => '(bytenám)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ticpatlöx',

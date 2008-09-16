@@ -1860,54 +1860,58 @@ $NEWPAGE
 بازخورد و کمک بیشتر:
 {{fullurl:{{ns:help}}:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'حذف صفحه',
-'confirm'                     => 'تأیید',
-'excontent'                   => "محتوای صفحه این بود: '$1'",
-'excontentauthor'             => "محتویات صفحه این بود: '$1' (و تنها مشارکت‌کننده '$2' بود)",
-'exbeforeblank'               => "محتوای صفحه قبل از خالی‌کردن '$1' بود.",
-'exblank'                     => 'صفحه خالی بود',
-'delete-confirm'              => 'حذف «$1»',
-'delete-backlink'             => '→ $1',
-'delete-legend'               => 'حذف',
-'historywarning'              => 'هشدار! صفحه‌ای که دارید حذف می‌کنید، تاریخچه‌ای دارد:',
-'confirmdeletetext'           => 'شما در حال حذف کردن یک صفحه یا تصویر از پایگاه‌ داده همراه با تمام تاریخچهٔ آن هستید. لطفاً این عمل را تأیید کنید و اطمینان حاصل کنید که عواقب این کار را می‌دانید و این عمل را مطابق با [[{{MediaWiki:Policy-url}}|سیاست‌ها]] انجام می‌دهید.',
-'actioncomplete'              => 'عمل انجام شد.',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» حذف شده است.
+# Delete
+'deletepage'             => 'حذف صفحه',
+'confirm'                => 'تأیید',
+'excontent'              => "محتوای صفحه این بود: '$1'",
+'excontentauthor'        => "محتویات صفحه این بود: '$1' (و تنها مشارکت‌کننده '$2' بود)",
+'exbeforeblank'          => "محتوای صفحه قبل از خالی‌کردن '$1' بود.",
+'exblank'                => 'صفحه خالی بود',
+'delete-confirm'         => 'حذف «$1»',
+'delete-backlink'        => '→ $1',
+'delete-legend'          => 'حذف',
+'historywarning'         => 'هشدار! صفحه‌ای که دارید حذف می‌کنید، تاریخچه‌ای دارد:',
+'confirmdeletetext'      => 'شما در حال حذف کردن یک صفحه یا تصویر از پایگاه‌ داده همراه با تمام تاریخچهٔ آن هستید. لطفاً این عمل را تأیید کنید و اطمینان حاصل کنید که عواقب این کار را می‌دانید و این عمل را مطابق با [[{{MediaWiki:Policy-url}}|سیاست‌ها]] انجام می‌دهید.',
+'actioncomplete'         => 'عمل انجام شد.',
+'deletedtext'            => '«<nowiki>$1</nowiki>» حذف شده است.
 برای سابقهٔ حذف‌های اخیر به $2 مراجعه کنید.',
-'deletedarticle'              => '«$1» حذف شد',
-'suppressedarticle'           => '«[[$1]]» را فرونشاند',
-'dellogpage'                  => 'سیاههٔ_حذف',
-'dellogpagetext'              => 'فهرست زیر فهرستی از آخرین حذف‌هاست.
+'deletedarticle'         => '«$1» حذف شد',
+'suppressedarticle'      => '«[[$1]]» را فرونشاند',
+'dellogpage'             => 'سیاههٔ_حذف',
+'dellogpagetext'         => 'فهرست زیر فهرستی از آخرین حذف‌هاست.
 همهٔ زمان‌های نشان‌داده‌شده زمان خادم (وقت گرینویچ) است.',
-'deletionlog'                 => 'سیاههٔ حذف',
-'reverted'                    => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
-'deletecomment'               => 'توضیح حذف:',
-'deleteotherreason'           => 'دلیل دیگر/اضافی:',
-'deletereasonotherlist'       => 'دیگر',
-'deletereason-dropdown'       => '
+'deletionlog'            => 'سیاههٔ حذف',
+'reverted'               => 'به نسخهٔ قدیمی‌تر واگردانده شد.',
+'deletecomment'          => 'توضیح حذف:',
+'deleteotherreason'      => 'دلیل دیگر/اضافی:',
+'deletereasonotherlist'  => 'دیگر',
+'deletereason-dropdown'  => '
 *دلایل متداول حذف
 ** درخواست کاربر
 ** نقض حق تکثیر
 ** خرابکاری',
-'delete-edit-reasonlist'      => 'ویرایش فهرست دلایل',
-'delete-toobig'               => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
+'delete-edit-reasonlist' => 'ویرایش فهرست دلایل',
+'delete-toobig'          => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
 به منظور جلوگیری از خرابکاری احتمالی حذف این گونه صفحه‌ها در {{SITENAME}} محدود شده‌است.',
-'delete-warning-toobig'       => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
+'delete-warning-toobig'  => 'این صفحه تاریخچهٔ ویرایشی بزرگی دارد، که شامل بیش از $1 {{PLURAL:$1|نسخه|نسخه}} است.
 حذف آن ممکن است که عملکرد پایگاه دادهٔ {{SITENAME}} را مختل کند;
 با احتیاط ادامه دهید.',
-'rollback'                    => 'واگردانی ویرایش‌ها',
-'rollback_short'              => 'واگرد',
-'rollbacklink'                => 'واگردانی',
-'rollbackfailed'              => 'واگردانی نشد',
-'cantrollback'                => 'نمی‌توان ویرایش را واگرداند. آخرین مشارکت‌کننده تنها مؤلف این مقاله است.',
-'alreadyrolled'               => 'واگردانی آخرین ویرایش [[$1]] بوسیلهٔ [[User:$2|$2]] ([[User talk:$2|بحث]]) ممکن نیست؛ پیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده است.
+
+# Rollback
+'rollback'         => 'واگردانی ویرایش‌ها',
+'rollback_short'   => 'واگرد',
+'rollbacklink'     => 'واگردانی',
+'rollbackfailed'   => 'واگردانی نشد',
+'cantrollback'     => 'نمی‌توان ویرایش را واگرداند. آخرین مشارکت‌کننده تنها مؤلف این مقاله است.',
+'alreadyrolled'    => 'واگردانی آخرین ویرایش [[$1]] بوسیلهٔ [[User:$2|$2]] ([[User talk:$2|بحث]]) ممکن نیست؛ پیش از این شخص دیگری مقاله را ویرایش یا واگردانی کرده است.
 
 آخرین ویرایش توسط [[User:$3|$3]] ([[User talk:$3|بحث]]).',
-'editcomment'                 => 'توضیح ویرایش این بود: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
-'sessionfailure'              => 'بنظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛ عمل درخواست شده بعنوان اقدام پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد. لطفاً دکمهٔ «بازگشت» را در مرورگر خود بفشارید و صفحه‌ای که از آن به اینجا رسیده‌اید را مجدداً فراخوانی کنید، سپس مجدداً سعی کنید.',
+'editcomment'      => 'توضیح ویرایش این بود: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'       => 'ویرایش $2 واگردانده شد به آخرین تغییری که  $1 انجام داده بود', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'ویرایش‌های $1 واگردانی شد؛ صفحه به ویرایش $2 برگردانده شد.',
+'sessionfailure'   => 'بنظر می‌رسد مشکلی در مورد نشست کاربری شما وجود دارد؛ عمل درخواست شده بعنوان اقدام پیشگیرانه در برابر ربوده‌شدن اطلاعات نشست کاربری، لغو شد. لطفاً دکمهٔ «بازگشت» را در مرورگر خود بفشارید و صفحه‌ای که از آن به اینجا رسیده‌اید را مجدداً فراخوانی کنید، سپس مجدداً سعی کنید.',
+
+# Protect
 'protectlogpage'              => 'سیاههٔ_محافظت',
 'protectlogtext'              => 'در زیر فهرست قفل کردن‌ها/ازقفل‌درآوردن‌های صفحه‌ها آمده است.
 برای اطلاعات بیشتر به [[{{ns:project}}:سیاست حفاظت از صفحه‌ها]] مراجعه کنید.',

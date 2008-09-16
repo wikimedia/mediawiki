@@ -606,20 +606,24 @@ $messages = array(
 'changed'            => '改变哉',
 'created'            => '建立哉',
 
-# Delete/protect/revert
-'deletepage'      => '删脱页面',
-'confirm'         => '确认',
-'historywarning'  => '警告：倷要删脱个该只页面有历史：',
-'actioncomplete'  => '操作完成哉',
-'deletedarticle'  => '"[[$1]]" 已经删脱哉',
-'dellogpage'      => '删除记录',
-'deletionlog'     => '删除记录',
-'deletecomment'   => '删脱俚个理由',
-'rollback'        => '恢复编辑',
-'rollback_short'  => '恢复',
-'rollbacklink'    => '恢复',
-'rollbackfailed'  => '恢复失败',
-'revertpage'      => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+# Delete
+'deletepage'     => '删脱页面',
+'confirm'        => '确认',
+'historywarning' => '警告：倷要删脱个该只页面有历史：',
+'actioncomplete' => '操作完成哉',
+'deletedarticle' => '"[[$1]]" 已经删脱哉',
+'dellogpage'     => '删除记录',
+'deletionlog'    => '删除记录',
+'deletecomment'  => '删脱俚个理由',
+
+# Rollback
+'rollback'       => '恢复编辑',
+'rollback_short' => '恢复',
+'rollbacklink'   => '恢复',
+'rollbackfailed' => '恢复失败',
+'revertpage'     => '恢复[[Special:Contributions/$2|$2]] ([[User talk:$2|讲张]])个改动；恢复到[[User:$1|$1]]个上一版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'  => '保护日志',
 'protectcomment'  => '保护理由:',
 'protect-default' => '(默认)',

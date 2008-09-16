@@ -481,19 +481,23 @@ Midadas futuras vid quai artitgel e la pagina da discussiun appertegnenta vegnan
 'changed' => 'midà',
 'created' => 'creà',
 
-# Delete/protect/revert
-'deletepage'                  => 'Stidar la pagina',
-'confirm'                     => 'Confermar',
-'confirmdeletetext'           => 'Ti es vidlonder da stidar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br /> 
+# Delete
+'deletepage'        => 'Stidar la pagina',
+'confirm'           => 'Confermar',
+'confirmdeletetext' => 'Ti es vidlonder da stidar permanentamain in artitgel u in maletg e tut las versiuns pli veglias ord la datoteca. <br /> 
 Conferma per plaschair che ti ta es conscient da las consequenzas e che ti ageschas tenor las [[{{MediaWiki:Policy-url}}|directivas da {{SITENAME}}]].',
-'actioncomplete'              => "L' acziun è terminada.",
-'deletedtext'                 => '"<nowiki>$1</nowiki>" è vegnì stidà.
+'actioncomplete'    => "L' acziun è terminada.",
+'deletedtext'       => '"<nowiki>$1</nowiki>" è vegnì stidà.
 Sin $2 chattas ti ina glista dals davos artitgels stidads.',
-'deletedarticle'              => '"[[$1]]" è stidà',
-'deletecomment'               => 'Motiv per il stidar',
-'alreadyrolled'               => "I n'è betg pussaivel da reconstruir l'artigel [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussiun]]), perquai che insatgi auter ha midà u reconstruì la pagina.
+'deletedarticle'    => '"[[$1]]" è stidà',
+'deletecomment'     => 'Motiv per il stidar',
+
+# Rollback
+'alreadyrolled' => "I n'è betg pussaivel da reconstruir l'artigel [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussiun]]), perquai che insatgi auter ha midà u reconstruì la pagina.
 
 Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
+
+# Protect
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Bloccar utilisaders na-registrads',

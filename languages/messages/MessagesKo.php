@@ -1513,46 +1513,50 @@ $NEWPAGE
 도움말:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => '문서 삭제하기',
-'confirm'                     => '확인',
-'excontent'                   => '내용: ‘$1’',
-'excontentauthor'             => '내용: ‘$1’ (그리고 편집한 사람은 ‘$2’뿐)',
-'exbeforeblank'               => '비우기 전의 내용: ‘$1’',
-'exblank'                     => '빈 문서',
-'delete-confirm'              => '‘$1’ 삭제',
-'delete-legend'               => '삭제',
-'historywarning'              => '주의: 현재 삭제하려는 문서에는 문서 역사가 있습니다:',
-'confirmdeletetext'           => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
-'actioncomplete'              => '명령완료',
-'deletedtext'                 => '‘<nowiki>$1</nowiki>’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
-'deletedarticle'              => '이(가) [[$1]]을(를) 삭제하였습니다.',
-'dellogpage'                  => '삭제 기록',
-'dellogpagetext'              => '아래의 목록은 최근에 삭제된 문서들입니다.',
-'deletionlog'                 => '삭제 기록',
-'reverted'                    => '이전 버전으로 되돌렸습니다.',
-'deletecomment'               => '삭제 이유:',
-'deleteotherreason'           => '다른 이유/추가적인 이유:',
-'deletereasonotherlist'       => '다른 이유',
-'deletereason-dropdown'       => '*일반적인 삭제 이유
+# Delete
+'deletepage'             => '문서 삭제하기',
+'confirm'                => '확인',
+'excontent'              => '내용: ‘$1’',
+'excontentauthor'        => '내용: ‘$1’ (그리고 편집한 사람은 ‘$2’뿐)',
+'exbeforeblank'          => '비우기 전의 내용: ‘$1’',
+'exblank'                => '빈 문서',
+'delete-confirm'         => '‘$1’ 삭제',
+'delete-legend'          => '삭제',
+'historywarning'         => '주의: 현재 삭제하려는 문서에는 문서 역사가 있습니다:',
+'confirmdeletetext'      => '문서와 문서 역사를 삭제하려고 합니다. 삭제하려는 문서가 맞는지, 이 문서를 삭제하는 것이 [[{{MediaWiki:Policy-url}}|정책]]에 맞는 행동인지를 확인해 주세요.',
+'actioncomplete'         => '명령완료',
+'deletedtext'            => '‘<nowiki>$1</nowiki>’ 문서를 삭제했습니다. 최근 삭제 기록은 $2에 있습니다.',
+'deletedarticle'         => '이(가) [[$1]]을(를) 삭제하였습니다.',
+'dellogpage'             => '삭제 기록',
+'dellogpagetext'         => '아래의 목록은 최근에 삭제된 문서들입니다.',
+'deletionlog'            => '삭제 기록',
+'reverted'               => '이전 버전으로 되돌렸습니다.',
+'deletecomment'          => '삭제 이유:',
+'deleteotherreason'      => '다른 이유/추가적인 이유:',
+'deletereasonotherlist'  => '다른 이유',
+'deletereason-dropdown'  => '*일반적인 삭제 이유
 ** 작성자의 요청
 ** 저작권 침해
 ** 잘못된 문서',
-'delete-edit-reasonlist'      => '삭제 이유 편집',
-'delete-toobig'               => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',
-'delete-warning-toobig'       => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있기 때문에, 주의해 주세요.',
-'rollback'                    => '편집 되돌리기',
-'rollback_short'              => '되돌리기',
-'rollbacklink'                => '되돌리기',
-'rollbackfailed'              => '되돌리기 실패',
-'cantrollback'                => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
-'alreadyrolled'               => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]] | [[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
+'delete-edit-reasonlist' => '삭제 이유 편집',
+'delete-toobig'          => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}}에 큰 혼란을 줄 수 있기 때문에 삭제할 수 없습니다.',
+'delete-warning-toobig'  => '이 문서에는 편집 역사가 $1개 있습니다. 편집 역사가 긴 문서를 삭제하면 {{SITENAME}} 데이터베이스 동작에 큰 영향을 줄 수 있기 때문에, 주의해 주세요.',
+
+# Rollback
+'rollback'         => '편집 되돌리기',
+'rollback_short'   => '되돌리기',
+'rollbacklink'     => '되돌리기',
+'rollbackfailed'   => '되돌리기 실패',
+'cantrollback'     => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
+'alreadyrolled'    => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]] | [[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
 
 마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]] | [[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
-'editcomment'                 => "편집 요약: ''$1''", # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
-'sessionfailure'              => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
+'editcomment'      => "편집 요약: ''$1''", # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
+'sessionfailure'   => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
+
+# Protect
 'protectlogpage'              => '문서 보호 기록',
 'protectlogtext'              => '아래의 목록은 문서 보호와 보호 해제 기록입니다.',
 'protectedarticle'            => '‘[[$1]]’ 문서를 보호함',

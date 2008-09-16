@@ -256,7 +256,7 @@ Lantawa sa [[Special:Version|version kang page]].',
 # E-mail user
 'emailmessage' => 'Mensahe',
 
-# Delete/protect/revert
+# Delete
 'delete-legend' => 'Para',
 
 # Restrictions (nouns)

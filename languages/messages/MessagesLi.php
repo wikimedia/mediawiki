@@ -1476,48 +1476,52 @@ Dao zalle bie volgende verangeringe gein nuuj berichte kómme tenzies te dees pa
 Commentaar en wiejer assistentie:
 {{fullurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Pazjena wisse',
-'confirm'                     => 'Bevèstig',
-'excontent'                   => "inhawd waor: '$1'",
-'excontentauthor'             => "inhawd waor: '$1' (aangemaak door [[Special:Contributions/$2|$2]])",
-'exbeforeblank'               => "inhawd veur 't wisse waor: '$1'",
-'exblank'                     => 'pazjena waor laeg',
-'delete-confirm'              => '"$1" wisse',
-'delete-legend'               => 'Wisse',
-'historywarning'              => 'Waorsjuwing: de pazjena daese wils wisse haet meerdere versies:',
-'confirmdeletetext'           => "De sjteis op 't punt 'n pazjena of e plaetje veur ummer te wisse. Dit haolt allen inhawd en historie oet de database eweg. Bevèstig hieónger dat dit welzeker dien bedoeling is, dats te de gevolge begrieps.",
-'actioncomplete'              => 'Actie voltoeid',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" is gewis. Zuug $2 vuur \'n euverzich van recèntelik gewisde pazjena\'s.',
-'deletedarticle'              => '"$1" is gewis',
-'suppressedarticle'           => 'haet "[[$1]]" verborge',
-'dellogpage'                  => 'Wislogbook',
-'dellogpagetext'              => "Hie volg 'n lies van de meis recèntelik gewisde pazjena's en plaetjes.",
-'deletionlog'                 => 'Wislogbook',
-'reverted'                    => 'Iedere versie hersjtèld',
-'deletecomment'               => 'Rae veur wisactie',
-'deleteotherreason'           => 'Angere/eventuele ree:',
-'deletereasonotherlist'       => 'Angere ree',
-'deletereason-dropdown'       => '*Väölveurkommende wisree
+# Delete
+'deletepage'             => 'Pazjena wisse',
+'confirm'                => 'Bevèstig',
+'excontent'              => "inhawd waor: '$1'",
+'excontentauthor'        => "inhawd waor: '$1' (aangemaak door [[Special:Contributions/$2|$2]])",
+'exbeforeblank'          => "inhawd veur 't wisse waor: '$1'",
+'exblank'                => 'pazjena waor laeg',
+'delete-confirm'         => '"$1" wisse',
+'delete-legend'          => 'Wisse',
+'historywarning'         => 'Waorsjuwing: de pazjena daese wils wisse haet meerdere versies:',
+'confirmdeletetext'      => "De sjteis op 't punt 'n pazjena of e plaetje veur ummer te wisse. Dit haolt allen inhawd en historie oet de database eweg. Bevèstig hieónger dat dit welzeker dien bedoeling is, dats te de gevolge begrieps.",
+'actioncomplete'         => 'Actie voltoeid',
+'deletedtext'            => '"<nowiki>$1</nowiki>" is gewis. Zuug $2 vuur \'n euverzich van recèntelik gewisde pazjena\'s.',
+'deletedarticle'         => '"$1" is gewis',
+'suppressedarticle'      => 'haet "[[$1]]" verborge',
+'dellogpage'             => 'Wislogbook',
+'dellogpagetext'         => "Hie volg 'n lies van de meis recèntelik gewisde pazjena's en plaetjes.",
+'deletionlog'            => 'Wislogbook',
+'reverted'               => 'Iedere versie hersjtèld',
+'deletecomment'          => 'Rae veur wisactie',
+'deleteotherreason'      => 'Angere/eventuele ree:',
+'deletereasonotherlist'  => 'Angere ree',
+'deletereason-dropdown'  => '*Väölveurkommende wisree
 ** Op aanvraog van auteur
 ** Sjending van auteursrech
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Reeje veur verwiedering bewèrke',
-'delete-toobig'               => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dit saort pazjena's is mit rech beperk óm 't próngelök versteure van de werking van {{SITENAME}} te veurkómme.",
-'delete-warning-toobig'       => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dees pazjena kan de werking van de database van {{SITENAME}} versteure. Bön veurzichtig.",
-'rollback'                    => 'Verangering ongedaon gemaak',
-'rollback_short'              => 'Trökdrèjje',
-'rollbacklink'                => 'Trukdrieje',
-'rollbackfailed'              => 'Ongedaon make van wieziginge mislùk.',
-'cantrollback'                => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
-'alreadyrolled'               => "'t Is neet meugelik óm de lèste verangering van [[$1]] door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make.
+'delete-edit-reasonlist' => 'Reeje veur verwiedering bewèrke',
+'delete-toobig'          => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dit saort pazjena's is mit rech beperk óm 't próngelök versteure van de werking van {{SITENAME}} te veurkómme.",
+'delete-warning-toobig'  => "Dees pazjena haet 'ne lange bewerkingsgesjiedenis, mieë es $1 versies. 't Wisse van dees pazjena kan de werking van de database van {{SITENAME}} versteure. Bön veurzichtig.",
+
+# Rollback
+'rollback'         => 'Verangering ongedaon gemaak',
+'rollback_short'   => 'Trökdrèjje',
+'rollbacklink'     => 'Trukdrieje',
+'rollbackfailed'   => 'Ongedaon make van wieziginge mislùk.',
+'cantrollback'     => 'Trökdrejje van verangeringe neet meugelik: Dit artikel haet mer einen auteur.',
+'alreadyrolled'    => "'t Is neet meugelik óm de lèste verangering van [[$1]] door [[User:$2|$2]] ([[User talk:$2|euverlik]]) óngedaon te make.
 Emes angers haet de pazjena al hersjtèld of haet 'n anger bewèrking gedaon.
 
 De lèste bewèrking is gedaon door [[User:$3|$3]] ([[User talk:$3|euverlik]]).",
-'editcomment'                 => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
-'sessionfailure'              => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
+'editcomment'      => '\'t Bewirkingscommentair waor: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Wieziginge door [[Special:Contributions/$2|$2]] ([[User_talk:$2|Euverlik]]) trukgedriejd tot de lètste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Wieziginge door $1 trökgedrèjd; letste versie van $2 hersteld.',
+'sessionfailure'   => "d'r Liek 'n probleem te zeen mit dien aanmelsessie. Diene hanjeling is gestop oet veurzorg taenge 'n beveiligingsrisico (det bestuit oet meugelik \"hijacking\"(euverkape) van deze sessie). Gao 'n pazjena trök, laaj die pazjena opnuuj en probeer 't nog ins.",
+
+# Protect
 'protectlogpage'              => "Logbook besjermde pazjena's",
 'protectlogtext'              => "Hiej onger staon pazjena's die recèntelik beveilig zeen, of wo van de beveiliging is opgeheve.
 Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujige beveiligde pazjena's.",

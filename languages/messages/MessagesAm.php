@@ -1194,45 +1194,49 @@ $NEWPAGE
 በተጨማሪ ለመረዳት፦
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'ገጹ ይጥፋ',
-'confirm'                     => 'ማረጋገጫ',
-'excontent'                   => 'ይዞታ፦ «$1» አለ።',
-'excontentauthor'             => "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
-'exbeforeblank'               => 'ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።',
-'exblank'                     => 'ገጹ ባዶ ነበረ።',
-'delete-confirm'              => '«$1» ለማጥፋት',
-'delete-legend'               => 'ለማጥፋት',
-'historywarning'              => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
-'confirmdeletetext'           => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
-'actioncomplete'              => 'ተፈጽሟል',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» ጠፍቷል።
+# Delete
+'deletepage'             => 'ገጹ ይጥፋ',
+'confirm'                => 'ማረጋገጫ',
+'excontent'              => 'ይዞታ፦ «$1» አለ።',
+'excontentauthor'        => "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
+'exbeforeblank'          => 'ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።',
+'exblank'                => 'ገጹ ባዶ ነበረ።',
+'delete-confirm'         => '«$1» ለማጥፋት',
+'delete-legend'          => 'ለማጥፋት',
+'historywarning'         => 'ማስጠንቀቂያ፦ ለዚሁ ገጽ የዕትም ታሪክ ደግሞ ሊጠፋ ነው! :',
+'confirmdeletetext'      => 'አንድ ገጽ ወይም ስዕል ከነለውጦቹ በሙሉ ከዚሁ {{SITENAME}} ሊጠፋ ነው! ይህን ማድረግዎ ያሠቡበት መሆኑንና ማጥፋቱ በፖሊሲ ተገቢ እንደሆነ እባክዎ ያረጋግጡ፦',
+'actioncomplete'         => 'ተፈጽሟል',
+'deletedtext'            => '«<nowiki>$1</nowiki>» ጠፍቷል።
 
 (የጠፉትን ገጾች ሁሉ ለመመልከት $2 ይዩ።)',
-'deletedarticle'              => '«[[$1]]» አጠፋ',
-'dellogpage'                  => 'የማጥፋት መዝገብ',
-'dellogpagetext'              => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
-'deletionlog'                 => 'የማጥፋት መዝገብ',
-'reverted'                    => 'ወደ ቀድመኛ ዕትም ገለበጠው።',
-'deletecomment'               => 'የማጥፋቱ ምክንያት፦',
-'deleteotherreason'           => 'ሌላ /ተጨማሪ ምክንያት',
-'deletereasonotherlist'       => 'ሌላ ምክንያት',
-'deletereason-dropdown'       => '*ተራ የማጥፋት ምክንያቶች
+'deletedarticle'         => '«[[$1]]» አጠፋ',
+'dellogpage'             => 'የማጥፋት መዝገብ',
+'dellogpagetext'         => 'በቅርቡ የጠፉት ገጾች ከዚህ ታች የዘረዝራሉ።',
+'deletionlog'            => 'የማጥፋት መዝገብ',
+'reverted'               => 'ወደ ቀድመኛ ዕትም ገለበጠው።',
+'deletecomment'          => 'የማጥፋቱ ምክንያት፦',
+'deleteotherreason'      => 'ሌላ /ተጨማሪ ምክንያት',
+'deletereasonotherlist'  => 'ሌላ ምክንያት',
+'deletereason-dropdown'  => '*ተራ የማጥፋት ምክንያቶች
 ** በአቅራቢው ጥያቄ
 ** ማብዛቱ ያልተፈቀደለት ጽሑፍ
 ** ተንኮል',
-'delete-edit-reasonlist'      => "'ተራ የማጥፋት ምክንያቶች' ለማዘጋጀት",
-'rollback'                    => 'ለውጦቹ ይገልበጡ',
-'rollback_short'              => 'ይመለስ',
-'rollbacklink'                => 'ROLLBACK ይመለስ',
-'rollbackfailed'              => 'መገልበጡ አልተከናወነም',
-'cantrollback'                => 'ለውጡን መገልበጥ አይቻልም፦ አቅራቢው ብቻ ስላዘጋጁት ነው።',
-'alreadyrolled'               => 'የ[[:$1]] መጨረሻ ለውጥ በ[[User:$2|$2]] ([[User talk:$2|ውይይት]]) መገልበት አይቻልም፤ ሌላ ሰው አሁን ገጹን መልሶታል።
+'delete-edit-reasonlist' => "'ተራ የማጥፋት ምክንያቶች' ለማዘጋጀት",
+
+# Rollback
+'rollback'         => 'ለውጦቹ ይገልበጡ',
+'rollback_short'   => 'ይመለስ',
+'rollbacklink'     => 'ROLLBACK ይመለስ',
+'rollbackfailed'   => 'መገልበጡ አልተከናወነም',
+'cantrollback'     => 'ለውጡን መገልበጥ አይቻልም፦ አቅራቢው ብቻ ስላዘጋጁት ነው።',
+'alreadyrolled'    => 'የ[[:$1]] መጨረሻ ለውጥ በ[[User:$2|$2]] ([[User talk:$2|ውይይት]]) መገልበት አይቻልም፤ ሌላ ሰው አሁን ገጹን መልሶታል።
 
 መጨረሻው ለውጥ በ[[User:$3|$3]] ([[User talk:$3|ውይይት]]) ነበረ።',
-'editcomment'                 => 'ማጠቃለያው፦ «<i>$1</i>» ነበረ።', # only shown if there is an edit comment
-'revertpage'                  => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
+'editcomment'      => 'ማጠቃለያው፦ «<i>$1</i>» ነበረ።', # only shown if there is an edit comment
+'revertpage'       => 'የ$2ን ለውጦች ወደ $1 እትም መለሰ።', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'የ$1 ለውጦች ተገለበጡ፣ ወደ $2 ዕትም ተመልሷል።',
+
+# Protect
 'protectlogpage'              => 'የማቆለፍ መዝገብ',
 'protectlogtext'              => 'ይህ መዝገብ ገጽ ሲቆለፍ ወይም ሲከፈት ይዘረዝራል። ለአሁኑ የተቆለፈውን ለመመልከት፣ [[Special:ProtectedPages|የቆለፉትን ገጾች]] ደግሞ ያዩ።',
 'protectedarticle'            => 'ገጹን «[[$1]]» ቆለፈው።',

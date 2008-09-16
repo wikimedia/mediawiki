@@ -272,15 +272,19 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'watchlistcontains'  => 'Tha $1 {{PLURAL:$1|duilleag|duilleagan}} air an liosta-faire agaibh.',
 'wlshowlast'         => 'Nochd $1 uairean $2 laithean mu dheireadh $3',
 
-# Delete/protect/revert
-'deletepage'         => 'Dubh às duilleag',
-'confirm'            => 'Daingnich',
-'excontent'          => "stuth a bh'ann: '$1'",
-'exblank'            => 'bha duilleag falamh',
-'actioncomplete'     => 'Gnìomh coileanta',
-'reverted'           => 'Tillte ri lethbhreac as ùire',
-'editcomment'        => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'         => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+# Delete
+'deletepage'     => 'Dubh às duilleag',
+'confirm'        => 'Daingnich',
+'excontent'      => "stuth a bh'ann: '$1'",
+'exblank'        => 'bha duilleag falamh',
+'actioncomplete' => 'Gnìomh coileanta',
+'reverted'       => 'Tillte ri lethbhreac as ùire',
+
+# Rollback
+'editcomment' => 'Bha mìneachadh an deasaicheidh: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'  => 'Tillte deasachadh aig [[Special:Contributions/$2|$2]] ([[User talk:$2|Deasbaireachd]]) ais ri lethbhreac mu dheireadh le [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectedarticle'   => 'dìonta "[[$1]]"',
 'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
 'protect-title'      => 'A\'dìonadh "$1"',

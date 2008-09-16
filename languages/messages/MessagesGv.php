@@ -706,25 +706,29 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'created'                      => 'crooit',
 'enotif_anon_editor'           => 'ymmydeyr $1 neuenmyssit',
 
-# Delete/protect/revert
-'deletepage'                  => 'Scryss y duillag',
-'confirm'                     => 'Feeraghey',
-'excontent'                   => "v'eh ny chummal na: '$1'",
-'exblank'                     => "va'n duillag follym",
-'delete-confirm'              => 'Scryss "$1"',
-'delete-legend'               => 'Scryss',
-'actioncomplete'              => 'Obbraghey creaghnit',
-'deletedarticle'              => '"[[$1]]" scryssit',
-'deletecomment'               => 'Fa son scryssey magh:',
-'deleteotherreason'           => 'Fa elley/tooilley:',
-'deletereasonotherlist'       => 'Fa elley',
-'deletereason-dropdown'       => '*Fa scryssey cadjin
+# Delete
+'deletepage'            => 'Scryss y duillag',
+'confirm'               => 'Feeraghey',
+'excontent'             => "v'eh ny chummal na: '$1'",
+'exblank'               => "va'n duillag follym",
+'delete-confirm'        => 'Scryss "$1"',
+'delete-legend'         => 'Scryss',
+'actioncomplete'        => 'Obbraghey creaghnit',
+'deletedarticle'        => '"[[$1]]" scryssit',
+'deletecomment'         => 'Fa son scryssey magh:',
+'deleteotherreason'     => 'Fa elley/tooilley:',
+'deletereasonotherlist' => 'Fa elley',
+'deletereason-dropdown' => '*Fa scryssey cadjin
 ** Aghin yn ughtar
 ** Brishey choip-chiart
 ** Cragheydys',
-'rollback_short'              => 'Aaymmyd',
-'rollbacklink'                => 'aaymmyd',
-'editcomment'                 => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
+
+# Rollback
+'rollback_short' => 'Aaymmyd',
+'rollbacklink'   => 'aaymmyd',
+'editcomment'    => 'Va "<i>$1</i>" ny chohaggloo yn reaghey.', # only shown if there is an edit comment
+
+# Protect
 'protectedarticle'            => '"[[$1]]" glast',
 'protectcomment'              => 'Cohaggloo:',
 'protectexpiry'               => 'Jerrey:',

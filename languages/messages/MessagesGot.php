@@ -368,7 +368,7 @@ $messages = array(
 
 'created' => 'gaskapjan',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Taíra seido',
 'delete-legend'         => 'Taíran',
 'actioncomplete'        => 'Wasuh Ita Gaustiuhan',
@@ -376,12 +376,16 @@ $messages = array(
 'dellogpage'            => 'Taíra áirwboka',
 'deleteotherreason'     => 'Anþar/máis mitons:',
 'deletereasonotherlist' => 'Anþar mitons',
-'rollbacklink'          => 'afwalwjan',
-'protectlogpage'        => 'Log af Baírgjan',
-'protect-unchain'       => 'Ungalukan sa skiubanfreihals',
-'protect-level-sysop'   => 'Seidofaþs áinaha',
-'protect-expiring'      => 'bláuþiþ $1 (UTC)',
-'restriction-type'      => 'Freihals:',
+
+# Rollback
+'rollbacklink' => 'afwalwjan',
+
+# Protect
+'protectlogpage'      => 'Log af Baírgjan',
+'protect-unchain'     => 'Ungalukan sa skiubanfreihals',
+'protect-level-sysop' => 'Seidofaþs áinaha',
+'protect-expiring'    => 'bláuþiþ $1 (UTC)',
+'restriction-type'    => 'Freihals:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Máidjan',

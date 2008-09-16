@@ -1171,46 +1171,50 @@ $NEWPAGE
 
 回饋同到別嗰説明: {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => '刪卟頁面',
-'confirm'                     => '確認',
-'excontent'                   => "內容係: '$1'",
-'excontentauthor'             => '內容係: \'$1\' (唯一嗰貢獻者係"$2")',
-'exbeforeblank'               => "拕清空之前嗰內容係: '$1'",
-'exblank'                     => '頁面冇內容',
-'delete-confirm'              => '刪卟"$1"去',
-'delete-legend'               => '刪卟去',
-'historywarning'              => '警告: 倷要刪卟嗰頁面含到歷史版',
-'confirmdeletetext'           => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，哈要曉得佢嗰後果，更加伓能違反[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'              => '扤正嘞',
-'deletedtext'                 => '"<nowiki>$1</nowiki>"刪卟嘞。最晏嗰刪除記錄請望$2。',
-'deletedarticle'              => '"[[$1]]"刪卟嘞',
-'dellogpage'                  => '刪除日誌',
-'dellogpagetext'              => '下底係最晏刪除嗰記錄列表:',
-'deletionlog'                 => '刪除日誌',
-'reverted'                    => '恢復到早先嗰版本',
-'deletecomment'               => '刪除嗰緣故:',
-'deleteotherreason'           => '別嗰/附加理由:',
-'deletereasonotherlist'       => '別嗰理由',
-'deletereason-dropdown'       => '*常用刪除嗰理由
+# Delete
+'deletepage'            => '刪卟頁面',
+'confirm'               => '確認',
+'excontent'             => "內容係: '$1'",
+'excontentauthor'       => '內容係: \'$1\' (唯一嗰貢獻者係"$2")',
+'exbeforeblank'         => "拕清空之前嗰內容係: '$1'",
+'exblank'               => '頁面冇內容',
+'delete-confirm'        => '刪卟"$1"去',
+'delete-legend'         => '刪卟去',
+'historywarning'        => '警告: 倷要刪卟嗰頁面含到歷史版',
+'confirmdeletetext'     => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，哈要曉得佢嗰後果，更加伓能違反[[{{MediaWiki:Policy-url}}]]。',
+'actioncomplete'        => '扤正嘞',
+'deletedtext'           => '"<nowiki>$1</nowiki>"刪卟嘞。最晏嗰刪除記錄請望$2。',
+'deletedarticle'        => '"[[$1]]"刪卟嘞',
+'dellogpage'            => '刪除日誌',
+'dellogpagetext'        => '下底係最晏刪除嗰記錄列表:',
+'deletionlog'           => '刪除日誌',
+'reverted'              => '恢復到早先嗰版本',
+'deletecomment'         => '刪除嗰緣故:',
+'deleteotherreason'     => '別嗰/附加理由:',
+'deletereasonotherlist' => '別嗰理由',
+'deletereason-dropdown' => '*常用刪除嗰理由
 ** 寫嗰人自家嗰要求
 ** 侵犯版權
 ** 特試破壞',
-'rollback'                    => '還原修改',
-'rollback_short'              => '還原',
-'rollbacklink'                => '還原',
-'rollbackfailed'              => '還原失敗',
-'cantrollback'                => '還原伓正；最末嗰貢獻人係文章嗰唯一作者。',
-'alreadyrolled'               => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；
+
+# Rollback
+'rollback'         => '還原修改',
+'rollback_short'   => '還原',
+'rollbacklink'     => '還原',
+'rollbackfailed'   => '還原失敗',
+'cantrollback'     => '還原伓正；最末嗰貢獻人係文章嗰唯一作者。',
+'alreadyrolled'    => '還原伓正由[[User:$2|$2]] ([[User talk:$2|討論]])做嗰[[$1]]嗰最晏編寫；
 別嗰人編輯過或係恢復嘞箇頁。
 
 最晏編輯人: [[User:$3|$3]] ([[User talk:$3|討論]])。',
-'editcomment'                 => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
-'sessionfailure'              => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
+'editcomment'      => '編輯介紹: "<i>$1</i>"。', # only shown if there is an edit comment
+'revertpage'       => '返回由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])嗰編輯；恢復到[[User:$1|$1]]嗰最末一隻版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '返回由$1嗰編輯；恢復到$2嗰最末一隻版本。',
+'sessionfailure'   => '倷嗰登入好像有嚸問題，為到防範未然，箇隻動作拕取消嘞。
 
 請按吖“後退”再試過囉！',
+
+# Protect
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下底係頁面鎖定同到解除鎖定嗰列表。請望下[[Special:ProtectedPages|保護頁面列表]]來監察目前嗰頁面保護情況。',
 'protectedarticle'            => '保護正嘞“[[$1]] ”',

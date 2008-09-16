@@ -653,16 +653,20 @@ $messages = array(
 'created'            => 'ສ້າງແລ້ວ',
 'enotif_lastvisited' => 'ເບິ່ງ $1 ເພື່ອ ທຸກໆການປ່ຽນແປງ ຕັ້ງແຕ່ເທື່ອສຸດທ້າຍ ທີ່ ທ່ານເຂົ້າຫາ.',
 
-# Delete/protect/revert
-'confirm'                     => 'ຢືນຢັນ',
-'actioncomplete'              => 'ສຳເລັດ',
-'deletedarticle'              => 'ໄດ້ລຶບ "[[$1]]"',
-'dellogpage'                  => 'ບັນທຶກ ການລຶບ',
-'dellogpagetext'              => 'ຂ້າງລຸ່ມ ແມ່ນ ລາຍການ ການລຶບຫຼ້າສຸດ.',
-'deletionlog'                 => 'ບັນທຶກ ການລຶບ',
-'deletecomment'               => 'ເຫດຜົນໃນການລຶບ',
-'rollbacklink'                => 'ກັບຄືນ',
-'cantrollback'                => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
+# Delete
+'confirm'        => 'ຢືນຢັນ',
+'actioncomplete' => 'ສຳເລັດ',
+'deletedarticle' => 'ໄດ້ລຶບ "[[$1]]"',
+'dellogpage'     => 'ບັນທຶກ ການລຶບ',
+'dellogpagetext' => 'ຂ້າງລຸ່ມ ແມ່ນ ລາຍການ ການລຶບຫຼ້າສຸດ.',
+'deletionlog'    => 'ບັນທຶກ ການລຶບ',
+'deletecomment'  => 'ເຫດຜົນໃນການລຶບ',
+
+# Rollback
+'rollbacklink' => 'ກັບຄືນ',
+'cantrollback' => 'ບໍ່ສາມາດ ປ່ຽນການດັດແກ້ກັບຄືນໄດ້; ຜູ້ປະກອບສ່ວນຫຼ້າສຸດ ແມ່ນ ຜູ້ຂຽນພຽງຜູ້ດຽວ ຂອງ ໜ້ານີ້.',
+
+# Protect
 'protectlogpage'              => 'ບັນທຶກການປົກປ້ອງ',
 'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
 'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',

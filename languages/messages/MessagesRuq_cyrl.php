@@ -258,9 +258,11 @@ $3',
 'watching'   => 'О клајаере...',
 'unwatching' => 'О деклајаере...',
 
-# Delete/protect/revert
+# Delete
 'deletedarticle' => 'делајрај "[[$1]]"',
-'rollbacklink'   => 'ревенире',
+
+# Rollback
+'rollbacklink' => 'ревенире',
 
 # Namespace form on various pages
 'namespace'      => 'лСпаћи:',

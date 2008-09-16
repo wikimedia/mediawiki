@@ -1227,42 +1227,46 @@ $NEWPAGE
 פידבעק און מער הילף:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'מעק אויס בלאט',
-'confirm'                     => 'באשטעטיג',
-'excontent'                   => 'אינהאלט געווען: "$1"',
-'excontentauthor'             => "אינהאלט געווען: '$1' (און דער איינציגסטער בארבייטער איז געווען '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => 'אינהאלט בעפארן אויסליידיגען איז געווען: "$1"',
-'exblank'                     => 'בלאט איז געווען ליידיג',
-'delete-confirm'              => 'אויסמעקן $1',
-'delete-legend'               => 'אויסמעקן',
-'historywarning'              => 'אכטונג – איר גייט אויסמעקן א בלאט מיט א היסטאריע פֿון פֿריערדיגע ווערסיעס:',
-'confirmdeletetext'           => 'איר גייט איצט אויסמעקן א בלאט אדער א בילד, צוזאמן מיט איר גאנצע היסטאריע, פון די דאטעבאזע.
+# Delete
+'deletepage'            => 'מעק אויס בלאט',
+'confirm'               => 'באשטעטיג',
+'excontent'             => 'אינהאלט געווען: "$1"',
+'excontentauthor'       => "אינהאלט געווען: '$1' (און דער איינציגסטער בארבייטער איז געווען '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'         => 'אינהאלט בעפארן אויסליידיגען איז געווען: "$1"',
+'exblank'               => 'בלאט איז געווען ליידיג',
+'delete-confirm'        => 'אויסמעקן $1',
+'delete-legend'         => 'אויסמעקן',
+'historywarning'        => 'אכטונג – איר גייט אויסמעקן א בלאט מיט א היסטאריע פֿון פֿריערדיגע ווערסיעס:',
+'confirmdeletetext'     => 'איר גייט איצט אויסמעקן א בלאט אדער א בילד, צוזאמן מיט איר גאנצע היסטאריע, פון די דאטעבאזע.
 
 ביטע באשטעטיגט אז דאס איז טאקע אייער כוונה, אז איר פארשטייט פולערהייט די קאנסקווענסן פון אזא הארבע אקט, און אז דאס איז אין איינקלאנג מיטן פאליסי פון דעם סייט.',
-'actioncomplete'              => 'די אַקציע אָט זיך דורכגעפֿירט',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" אויסגעמעקט. זעה $2 פאר רעקארד פון לעצטיגע אויסמעקונגען.',
-'deletedarticle'              => 'אויסגעמעקט "[[$1]]"',
-'dellogpage'                  => 'אויסמעקונג לאג',
-'dellogpagetext'              => 'ווייטער איז א ליסטע פון די מערסט לעצטיגע אויסמעקונגען.',
-'deletionlog'                 => 'אויסמעקונג לאג',
-'deletecomment'               => 'סיבה פארן אויסמעקן:',
-'deleteotherreason'           => 'אנדער/נאך או אורזאך:',
-'deletereasonotherlist'       => 'אנדער אורזאך',
-'deletereason-dropdown'       => '* געוויינטלעכע אויסמעקן אורזאכן
+'actioncomplete'        => 'די אַקציע אָט זיך דורכגעפֿירט',
+'deletedtext'           => '"<nowiki>$1</nowiki>" אויסגעמעקט. זעה $2 פאר רעקארד פון לעצטיגע אויסמעקונגען.',
+'deletedarticle'        => 'אויסגעמעקט "[[$1]]"',
+'dellogpage'            => 'אויסמעקונג לאג',
+'dellogpagetext'        => 'ווייטער איז א ליסטע פון די מערסט לעצטיגע אויסמעקונגען.',
+'deletionlog'           => 'אויסמעקונג לאג',
+'deletecomment'         => 'סיבה פארן אויסמעקן:',
+'deleteotherreason'     => 'אנדער/נאך או אורזאך:',
+'deletereasonotherlist' => 'אנדער אורזאך',
+'deletereason-dropdown' => '* געוויינטלעכע אויסמעקן אורזאכן
 ** פֿארלאנג פֿון שרייבער
 ** קאפירעכט ברעכונג
 ** וואנדאליזם',
-'rollback_short'              => 'אויפֿריכטן',
-'rollbacklink'                => 'צוריקדרייען',
-'cantrollback'                => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
-'alreadyrolled'               => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] דורך
+
+# Rollback
+'rollback_short' => 'אויפֿריכטן',
+'rollbacklink'   => 'צוריקדרייען',
+'cantrollback'   => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
+'alreadyrolled'  => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] דורך
 [[User:$2|$2]] ([[User talk:$2|רעדן]]| [[Special:Contributions/$2|{{int:contribslink}}]]); 
 אן אנדערער האט שוין געענדערט אדער צוריקגעדרייט דעם בלאט.
 
 די לעצטע ענדערונג איז געווען פון [[User:$3|$3]] ([[User talk:$3|רעדן]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'                  => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'    => "קורץ ווארט איז געווען: \"'''\$1'''\".", # only shown if there is an edit comment
+'revertpage'     => 'אויפֿגעריכט פון באַנוצער $2 צוריק צום לעצטע ווערסיע פון באַנוצער $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'שיצן לאָג',
 'protectcomment'              => 'הערה:',
 'protectexpiry'               => 'גייט אויס:',

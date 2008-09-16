@@ -974,32 +974,36 @@ Da promjenite podešavanja vezana za spisak praćenenih članaka posjetite
 Fidbek i dalja pomoć:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Obrišite stranicu',
-'confirm'                     => 'Potvrdite',
-'excontent'                   => "sadržaj je bio: '$1'",
-'exbeforeblank'               => "sadržaj prije brisanja je bio: '$1'",
-'exblank'                     => 'stranica je bila prazna',
-'historywarning'              => 'Upozorenje:  Stranica koju želite da obrišete ima historiju:',
-'confirmdeletetext'           => 'Brisanjem ćete obrisati stranicu ili sliku zajedno sa historijom iz baze podataka, ali će se iste moći vratiti kasnije. 
+# Delete
+'deletepage'        => 'Obrišite stranicu',
+'confirm'           => 'Potvrdite',
+'excontent'         => "sadržaj je bio: '$1'",
+'exbeforeblank'     => "sadržaj prije brisanja je bio: '$1'",
+'exblank'           => 'stranica je bila prazna',
+'historywarning'    => 'Upozorenje:  Stranica koju želite da obrišete ima historiju:',
+'confirmdeletetext' => 'Brisanjem ćete obrisati stranicu ili sliku zajedno sa historijom iz baze podataka, ali će se iste moći vratiti kasnije. 
 Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu sa [[{{MediaWiki:Policy-url}}|pravilima]].',
-'actioncomplete'              => 'Akcija završena',
-'deletedtext'                 => 'Članak "<nowiki>$1</nowiki>" je obrisan.
+'actioncomplete'    => 'Akcija završena',
+'deletedtext'       => 'Članak "<nowiki>$1</nowiki>" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
-'deletedarticle'              => 'obrisan "[[$1]]"',
-'dellogpage'                  => 'Protokol brisanja',
-'dellogpagetext'              => 'Ispod je spisak najskorijih brisanja.',
-'deletionlog'                 => 'istorija brisanja',
-'reverted'                    => 'Vraćeno na prijašnju reviziju',
-'deletecomment'               => 'Razlog za brisanje',
-'rollback'                    => 'Vrati izmjene',
-'rollback_short'              => 'Vrati',
-'rollbacklink'                => 'vrati',
-'rollbackfailed'              => 'Vraćanje nije uspjelo',
-'cantrollback'                => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
-'alreadyrolled'               => 'Ne može se vratiti poslednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]); neko drugi je već izmjenio ili vratio članak.  Poslednja izmjena od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]).',
-'editcomment'                 => 'Komentar izmjene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'deletedarticle'    => 'obrisan "[[$1]]"',
+'dellogpage'        => 'Protokol brisanja',
+'dellogpagetext'    => 'Ispod je spisak najskorijih brisanja.',
+'deletionlog'       => 'istorija brisanja',
+'reverted'          => 'Vraćeno na prijašnju reviziju',
+'deletecomment'     => 'Razlog za brisanje',
+
+# Rollback
+'rollback'       => 'Vrati izmjene',
+'rollback_short' => 'Vrati',
+'rollbacklink'   => 'vrati',
+'rollbackfailed' => 'Vraćanje nije uspjelo',
+'cantrollback'   => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
+'alreadyrolled'  => 'Ne može se vratiti poslednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]); neko drugi je već izmjenio ili vratio članak.  Poslednja izmjena od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]).',
+'editcomment'    => 'Komentar izmjene je: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Vraćene izmjene $2 na poslednju izmjenu korisnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Protokol zaključavanja',
 'protectlogtext'              => 'Ispod je spisak zaštićenja stranice.',
 'protectedarticle'            => 'stranica "[[$1]]" je zaštićena',

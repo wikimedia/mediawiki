@@ -166,11 +166,15 @@ $messages = array(
 'watch'         => 'Гелкъуьн',
 'watchthispage' => 'Гелкъуьн и хъувун',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Къакъудун хъувун',
 'deletereasonotherlist' => 'Маса фагьум',
-'rollbacklink'          => 'авахьун далу',
-'restriction-type'      => 'Ихтияр:',
+
+# Rollback
+'rollbacklink' => 'авахьун далу',
+
+# Protect
+'restriction-type' => 'Ихтияр:',
 
 # Namespace form on various pages
 'blanknamespace' => '(Асул)',

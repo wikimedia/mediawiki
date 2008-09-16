@@ -1583,55 +1583,59 @@ Pa camudar la configuración de la to llista de vixilancia, visita
 Más aida y sofitu:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Borrar páxina',
-'confirm'                     => 'Confirmar',
-'excontent'                   => "el conteníu yera: '$1'",
-'excontentauthor'             => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "el conteníu enantes de dexar en blanco yera: '$1'",
-'exblank'                     => 'la páxina taba vacia',
-'delete-confirm'              => 'Borrar "$1"',
-'delete-legend'               => 'Borrar',
-'historywarning'              => 'Avisu: La páxina que vas borrar tien historial:',
-'confirmdeletetext'           => "Tas a piques de borrar una páxina xunto con tol so historial.
+# Delete
+'deletepage'             => 'Borrar páxina',
+'confirm'                => 'Confirmar',
+'excontent'              => "el conteníu yera: '$1'",
+'excontentauthor'        => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "el conteníu enantes de dexar en blanco yera: '$1'",
+'exblank'                => 'la páxina taba vacia',
+'delete-confirm'         => 'Borrar "$1"',
+'delete-legend'          => 'Borrar',
+'historywarning'         => 'Avisu: La páxina que vas borrar tien historial:',
+'confirmdeletetext'      => "Tas a piques de borrar una páxina xunto con tol so historial.
 Por favor confirma que ye lo que quies facer, qu'entiendes les consecuencies, y que lo tas faciendo acordies coles [[{{MediaWiki:Policy-url}}|polítiques]].",
-'actioncomplete'              => 'Aición completada',
-'deletedtext'                 => 'Borróse "<nowiki>$1</nowiki>".
+'actioncomplete'         => 'Aición completada',
+'deletedtext'            => 'Borróse "<nowiki>$1</nowiki>".
 Mira en $2 la llista de les últimes páxines borraes.',
-'deletedarticle'              => 'borró "[[$1]]"',
-'suppressedarticle'           => 'suprimió "[[$1]]"',
-'dellogpage'                  => 'Rexistru de borraos',
-'dellogpagetext'              => 'Abaxo tán los artículos borraos más recién.',
-'deletionlog'                 => 'rexistru de borraos',
-'reverted'                    => 'Revertida a una revisión anterior',
-'deletecomment'               => 'Motivu del borráu:',
-'deleteotherreason'           => 'Otru motivu/motivu adicional:',
-'deletereasonotherlist'       => 'Otru motivu',
-'deletereason-dropdown'       => '*Motivos comunes de borráu
+'deletedarticle'         => 'borró "[[$1]]"',
+'suppressedarticle'      => 'suprimió "[[$1]]"',
+'dellogpage'             => 'Rexistru de borraos',
+'dellogpagetext'         => 'Abaxo tán los artículos borraos más recién.',
+'deletionlog'            => 'rexistru de borraos',
+'reverted'               => 'Revertida a una revisión anterior',
+'deletecomment'          => 'Motivu del borráu:',
+'deleteotherreason'      => 'Otru motivu/motivu adicional:',
+'deletereasonotherlist'  => 'Otru motivu',
+'deletereason-dropdown'  => '*Motivos comunes de borráu
 ** A pidimientu del autor
 ** Violación de Copyright
 ** Vandalismu',
-'delete-edit-reasonlist'      => 'Editar los motivos de borráu',
-'delete-toobig'               => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
+'delete-edit-reasonlist' => 'Editar los motivos de borráu',
+'delete-toobig'          => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
 Restrinxóse'l borráu d'estes páxines pa evitar perturbaciones accidentales de {{SITENAME}}.",
-'delete-warning-toobig'       => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
+'delete-warning-toobig'  => "Esta páxina tien un historial d'ediciones grande, más de $1 {{PLURAL:$1|revisión|revisiones}}.
 Borralu pue perturbar les operaciones de la base de datos de {{SITENAME}};
 obra con precaución.",
-'rollback'                    => 'Revertir ediciones',
-'rollback_short'              => 'Revertir',
-'rollbacklink'                => 'revertir',
-'rollbackfailed'              => 'Falló la reversión',
-'cantrollback'                => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
-'alreadyrolled'               => 'Nun se pue revertir la postrer edición de [[:$1]] fecha por [[User:$2|$2]] ([[User talk:$2|alderique]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+
+# Rollback
+'rollback'         => 'Revertir ediciones',
+'rollback_short'   => 'Revertir',
+'rollbacklink'     => 'revertir',
+'rollbackfailed'   => 'Falló la reversión',
+'cantrollback'     => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
+'alreadyrolled'    => 'Nun se pue revertir la postrer edición de [[:$1]] fecha por [[User:$2|$2]] ([[User talk:$2|alderique]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 daquién más yá editó o revirtió la páxina.
 
 La postrer edición foi fecha por [[User:$3|$3]] ([[User talk:$3|alderique]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
-'sessionfailure'              => 'Paez qu\'hai un problema cola to sesión; por precaución
+'editcomment'      => 'El comentariu de la edición yera: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Revertíes les ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]]) hasta la cabera versión de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Revertíes les ediciones de $1; camudáu a la última versión de $2.',
+'sessionfailure'   => 'Paez qu\'hai un problema cola to sesión; por precaución
 cancelóse l\'aición que pidisti. Da-y al botón "Atrás" del
 navegador pa cargar otra vuelta la páxina y vuelve a intentalo.',
+
+# Protect
 'protectlogpage'              => 'Rexistru de proteiciones',
 'protectlogtext'              => 'Esti ye un rexistru de les páxines protexíes y desprotexíes. Consulta la [[Special:ProtectedPages|llista de páxines protexíes]] pa ver les proteiciones actives nestos momentos.',
 'protectedarticle'            => 'protexó $1',

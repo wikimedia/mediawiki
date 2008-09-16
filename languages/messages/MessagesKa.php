@@ -1211,42 +1211,46 @@ $NEWPAGE
 შემდგომი დახმარება:
 {{SERVER}}{{localurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'გვერდის წაშლა',
-'confirm'                     => 'დადასტურება',
-'excontent'                   => "შინაარსი იყო: '$1'",
-'excontentauthor'             => "შინაარსი იყო: '$1' (და ერთადერთი ავტორი იყო '$2')",
-'exbeforeblank'               => "გვერდის შინაარსი წაშლამდე იყო შემდეგი: '$1'",
-'exblank'                     => 'გვერდი ცარიელი იყო',
-'delete-confirm'              => '"$1"-ის წაშლა',
-'delete-legend'               => 'წაშლა',
-'historywarning'              => 'ყურადღება: გვერდს, რომლის წაშლასაც აპირებთ, აქვს ისტორია:',
-'confirmdeletetext'           => 'თქვენ აპირებთ გვერდის ან გამოსახულების მისი ისტორიით მონაცემთა ბაზიდან სამუდამოდ წაშლას. გთხოვთ დაადასტუროთ რომ გესმით ამის შედეგები და აკეთებთ ამას [[{{ns:project}}:წესები]] თანახმად.',
-'actioncomplete'              => 'მოქმედება შესრულებულია',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" წაშლილია. ბოლო წაშლილი გვერდების სია იხილეთ $2-ში.',
-'deletedarticle'              => 'წაშლილია "[[$1]]"',
-'dellogpage'                  => 'წაშლილთა_სია',
-'dellogpagetext'              => 'ქვემოთ იხილეთ ახლად წაშლილთა სია.',
-'deletionlog'                 => 'წაშლილთა სია',
-'reverted'                    => 'დაბრუნდა წინა ვერსიაზე',
-'deletecomment'               => 'წაშლის მიზეზი',
-'deleteotherreason'           => 'სხვა/დამატებითი მიზეზი:',
-'deletereasonotherlist'       => 'სხვა მიზეზი',
-'deletereason-dropdown'       => '* წაშლის ხშირი მიზეზები
+# Delete
+'deletepage'             => 'გვერდის წაშლა',
+'confirm'                => 'დადასტურება',
+'excontent'              => "შინაარსი იყო: '$1'",
+'excontentauthor'        => "შინაარსი იყო: '$1' (და ერთადერთი ავტორი იყო '$2')",
+'exbeforeblank'          => "გვერდის შინაარსი წაშლამდე იყო შემდეგი: '$1'",
+'exblank'                => 'გვერდი ცარიელი იყო',
+'delete-confirm'         => '"$1"-ის წაშლა',
+'delete-legend'          => 'წაშლა',
+'historywarning'         => 'ყურადღება: გვერდს, რომლის წაშლასაც აპირებთ, აქვს ისტორია:',
+'confirmdeletetext'      => 'თქვენ აპირებთ გვერდის ან გამოსახულების მისი ისტორიით მონაცემთა ბაზიდან სამუდამოდ წაშლას. გთხოვთ დაადასტუროთ რომ გესმით ამის შედეგები და აკეთებთ ამას [[{{ns:project}}:წესები]] თანახმად.',
+'actioncomplete'         => 'მოქმედება შესრულებულია',
+'deletedtext'            => '"<nowiki>$1</nowiki>" წაშლილია. ბოლო წაშლილი გვერდების სია იხილეთ $2-ში.',
+'deletedarticle'         => 'წაშლილია "[[$1]]"',
+'dellogpage'             => 'წაშლილთა_სია',
+'dellogpagetext'         => 'ქვემოთ იხილეთ ახლად წაშლილთა სია.',
+'deletionlog'            => 'წაშლილთა სია',
+'reverted'               => 'დაბრუნდა წინა ვერსიაზე',
+'deletecomment'          => 'წაშლის მიზეზი',
+'deleteotherreason'      => 'სხვა/დამატებითი მიზეზი:',
+'deletereasonotherlist'  => 'სხვა მიზეზი',
+'deletereason-dropdown'  => '* წაშლის ხშირი მიზეზები
 ** ავტორის თხოვნით
 ** საავტორო უფლების დარღვევა
 ** ვანდალიზმი',
-'delete-edit-reasonlist'      => 'წაშლის მიზეზების რედაქტირება',
-'rollback'                    => 'რედაქტირების გაუქმება',
-'rollback_short'              => 'გაუქმება',
-'rollbacklink'                => 'გაუქმება',
-'cantrollback'                => 'შეუძლებელია უწინდელი რედაქციის აღდგენა; ის, ვინც უკანასკნელი ცვლილებები შეიტანა, ამ სტატიის ერთადერთი ავტორია.',
-'alreadyrolled'               => '[[:$1]]-ს უკანასკნელი რედაქტირების უკუქცევა შეუძლებელია [[User:$2|$2]] ([[User talk:$2|Talk]]); ვიღაცამ უკვე დაარედაქტირა ან უკუაქცია გვერდი. უკანასკნელი რედაქტორი [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'                 => 'რედაქტირება განმარტებული იყო შემდეგნაირად: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'sessionfailure'              => 'ჩანს, რომ პრობლემაა თქვენი რეგისტრაციის სესიისათვის;
+'delete-edit-reasonlist' => 'წაშლის მიზეზების რედაქტირება',
+
+# Rollback
+'rollback'       => 'რედაქტირების გაუქმება',
+'rollback_short' => 'გაუქმება',
+'rollbacklink'   => 'გაუქმება',
+'cantrollback'   => 'შეუძლებელია უწინდელი რედაქციის აღდგენა; ის, ვინც უკანასკნელი ცვლილებები შეიტანა, ამ სტატიის ერთადერთი ავტორია.',
+'alreadyrolled'  => '[[:$1]]-ს უკანასკნელი რედაქტირების უკუქცევა შეუძლებელია [[User:$2|$2]] ([[User talk:$2|Talk]]); ვიღაცამ უკვე დაარედაქტირა ან უკუაქცია გვერდი. უკანასკნელი რედაქტორი [[User:$3|$3]] ([[User talk:$3|Talk]]).',
+'editcomment'    => 'რედაქტირება განმარტებული იყო შემდეგნაირად: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => '[[Special:Contributions/$2|$2]]-ის რედაქტირება გაუქმდა; აღდგა ბოლოს [[User:$1|$1]]-ის მიერ რედაქტირებული ვერსია', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'sessionfailure' => 'ჩანს, რომ პრობლემაა თქვენი რეგისტრაციის სესიისათვის;
 ეს მოქმედება შეჩერდა თქვენი სესიაში შემოჭრის თავიდან ასაცილებლად.
 გთხოვთ, დააწკაპუნოთ ღილაკს "უკან" და თავიდან ჩართოთ გვერდი, რომლიდანაც შემოხვედით და სცადოთ განმეორებით.',
+
+# Protect
 'protectlogpage'              => 'დაცვის ისტორია',
 'protectedarticle'            => 'დაცულია "[[$1]]"',
 'unprotectedarticle'          => 'დაცვა მოხსნილია "[[$1]]"',

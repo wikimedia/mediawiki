@@ -1840,49 +1840,53 @@ För att ändra inställningarna i din bevakningslista, besök
 Feedback och hjälp:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Ta bort sida',
-'confirm'                     => 'Bekräfta',
-'excontent'                   => "Före radering: '$1'",
-'excontentauthor'             => "sidan innehöll '$1' (den enda som skrivit var '$2')",
-'exbeforeblank'               => "Före tömning: '$1'",
-'exblank'                     => 'sidan var tom',
-'delete-confirm'              => 'Radera "$1"',
-'delete-legend'               => 'Radera',
-'historywarning'              => 'Varning: Sidan du håller på att radera har en historik:',
-'confirmdeletetext'           => 'Du håller på att ta bort en sida med hela dess historik.
+# Delete
+'deletepage'             => 'Ta bort sida',
+'confirm'                => 'Bekräfta',
+'excontent'              => "Före radering: '$1'",
+'excontentauthor'        => "sidan innehöll '$1' (den enda som skrivit var '$2')",
+'exbeforeblank'          => "Före tömning: '$1'",
+'exblank'                => 'sidan var tom',
+'delete-confirm'         => 'Radera "$1"',
+'delete-legend'          => 'Radera',
+'historywarning'         => 'Varning: Sidan du håller på att radera har en historik:',
+'confirmdeletetext'      => 'Du håller på att ta bort en sida med hela dess historik.
 Bekräfta att du förstår vad du håller på med och vilka konsekvenser detta leder till, och att du följer [[{{MediaWiki:Policy-url}}|riktlinjerna]].',
-'actioncomplete'              => 'Genomfört',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" har tagits bort.
+'actioncomplete'         => 'Genomfört',
+'deletedtext'            => '"<nowiki>$1</nowiki>" har tagits bort.
 Se $2 för noteringar om de senaste raderingarna.',
-'deletedarticle'              => 'raderade "[[$1]]"',
-'suppressedarticle'           => 'upphävde "[[$1]]"',
-'dellogpage'                  => 'Raderingslogg',
-'dellogpagetext'              => 'Nedan listas de senaste raderingarna och återställningarna.',
-'deletionlog'                 => 'raderingsloggen',
-'reverted'                    => 'Återgått till tidigare version',
-'deletecomment'               => 'Anledning till borttagning:',
-'deleteotherreason'           => 'Annan/ytterligare anledning:',
-'deletereasonotherlist'       => 'Annan anledning',
-'deletereason-dropdown'       => '*Vanliga anledningar till radering
+'deletedarticle'         => 'raderade "[[$1]]"',
+'suppressedarticle'      => 'upphävde "[[$1]]"',
+'dellogpage'             => 'Raderingslogg',
+'dellogpagetext'         => 'Nedan listas de senaste raderingarna och återställningarna.',
+'deletionlog'            => 'raderingsloggen',
+'reverted'               => 'Återgått till tidigare version',
+'deletecomment'          => 'Anledning till borttagning:',
+'deleteotherreason'      => 'Annan/ytterligare anledning:',
+'deletereasonotherlist'  => 'Annan anledning',
+'deletereason-dropdown'  => '*Vanliga anledningar till radering
 ** Författarens begäran
 ** Upphovsrättsbrott
 ** Vandalism',
-'delete-edit-reasonlist'      => 'Redigera anledningar för radering',
-'delete-toobig'               => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Borttagning av sådana sidor har begränsats för att förhindra oavsiktliga driftstörningar på {{SITENAME}}.',
-'delete-warning-toobig'       => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',
-'rollback'                    => 'Rulla tillbaka ändringar',
-'rollback_short'              => 'Återställning',
-'rollbacklink'                => 'rulla tillbaka',
-'rollbackfailed'              => 'Tillbakarullning misslyckades',
-'cantrollback'                => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'               => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'delete-edit-reasonlist' => 'Redigera anledningar för radering',
+'delete-toobig'          => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Borttagning av sådana sidor har begränsats för att förhindra oavsiktliga driftstörningar på {{SITENAME}}.',
+'delete-warning-toobig'  => 'Denna sida har en lång redigeringshistorik med mer än $1 {{PLURAL:$1|sidversion|sidversioner}}. Att radera sidan kan skapa problem med hanteringen av databasen på {{SITENAME}}; var försiktig.',
+
+# Rollback
+'rollback'         => 'Rulla tillbaka ändringar',
+'rollback_short'   => 'Återställning',
+'rollbacklink'     => 'rulla tillbaka',
+'rollbackfailed'   => 'Tillbakarullning misslyckades',
+'cantrollback'     => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
+'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'                 => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Återställde ändringar av $1 till senaste versionen av $2.',
-'sessionfailure'              => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
+'editcomment'      => 'Redigeringskommentaren var: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Återställde redigeringar av  [[Special:Contributions/$2|$2]] ([[User talk:$2|användardiskussion]]) till senaste versionen av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Återställde ändringar av $1 till senaste versionen av $2.',
+'sessionfailure'   => 'Något med din session som inloggad är på tok. Din begärda åtgärd har avbrutits, för att förhindra att någon kapar din session. Klicka på "Tillbaka" i din webbläsare och ladda om den sida du kom ifrån. Försök sedan igen.',
+
+# Protect
 'protectlogpage'              => 'Skrivskyddslogg',
 'protectlogtext'              => 'Detta är en lista över applicerande och borttagande av skrivskydd.',
 'protectedarticle'            => 'skyddade [[$1]]',

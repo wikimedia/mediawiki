@@ -1719,57 +1719,61 @@ $NEWPAGE
 نظرات و گیشترین کمک:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'حذف صفحه',
-'confirm'                     => 'تایید',
-'excontent'                   => "محتوا هستنت:  '$1'",
-'excontentauthor'             => "محتوا ات: '$1' (و  فقط شرکت کنندگان انت '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "محتوا پیش چه صاف بیگ بوتت : '$1'",
-'exblank'                     => 'صفحه هالیک انت',
-'delete-confirm'              => 'حذف "$1"',
-'delete-legend'               => 'حذف',
-'historywarning'              => 'هوژاری: صفحه ای که شما لوٹتیت آیآ حذف کنیت یک تاریحی داریت:',
-'confirmdeletetext'           => 'شما لوٹیت یک صفحه ای گون کل تاریحانی حذف کنیت.
+# Delete
+'deletepage'             => 'حذف صفحه',
+'confirm'                => 'تایید',
+'excontent'              => "محتوا هستنت:  '$1'",
+'excontentauthor'        => "محتوا ات: '$1' (و  فقط شرکت کنندگان انت '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "محتوا پیش چه صاف بیگ بوتت : '$1'",
+'exblank'                => 'صفحه هالیک انت',
+'delete-confirm'         => 'حذف "$1"',
+'delete-legend'          => 'حذف',
+'historywarning'         => 'هوژاری: صفحه ای که شما لوٹتیت آیآ حذف کنیت یک تاریحی داریت:',
+'confirmdeletetext'      => 'شما لوٹیت یک صفحه ای گون کل تاریحانی حذف کنیت.
 لطفا تایید کنیت که شما چوش کنیت که شما زانیت آی ء عاقبتانآ و شی که شما ای کارآ گون [[{{MediaWiki:Policy-url}}|سیاست]] انجام دهیت',
-'actioncomplete'              => 'کار انجام بیت',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" حذف بیت.
+'actioncomplete'         => 'کار انجام بیت',
+'deletedtext'            => '"<nowiki>$1</nowiki>" حذف بیت.
 بگندیت $2 په ثبتی که نوکین حذفیات',
-'deletedarticle'              => 'حذف بوت "[[$1]]"',
-'suppressedarticle'           => 'متوقف بوت "[[$1]]"',
-'dellogpage'                  => 'حذف ورودان',
-'dellogpagetext'              => 'جهلء یک لیستی چه نوکترین حذفیات هست.',
-'deletionlog'                 => 'آمار حذف',
-'reverted'                    => 'ترینگ بوت په پیشترین بازبینی',
-'deletecomment'               => 'دلیل حذف:',
-'deleteotherreason'           => 'دگه/گیشترین دلیل:',
-'deletereasonotherlist'       => 'دگه دلیل',
-'deletereason-dropdown'       => '*متداولین دلایل حذف
+'deletedarticle'         => 'حذف بوت "[[$1]]"',
+'suppressedarticle'      => 'متوقف بوت "[[$1]]"',
+'dellogpage'             => 'حذف ورودان',
+'dellogpagetext'         => 'جهلء یک لیستی چه نوکترین حذفیات هست.',
+'deletionlog'            => 'آمار حذف',
+'reverted'               => 'ترینگ بوت په پیشترین بازبینی',
+'deletecomment'          => 'دلیل حذف:',
+'deleteotherreason'      => 'دگه/گیشترین دلیل:',
+'deletereasonotherlist'  => 'دگه دلیل',
+'deletereason-dropdown'  => '*متداولین دلایل حذف
 ** درخواست نویسوک
 ** نقض حق کپی
 ** حرابکاری',
-'delete-edit-reasonlist'      => 'اصلاح کن دلایل حذفء',
-'delete-toobig'               => 'صفحهء یک مزنین تاریح اصلاحی هست گیشتر چه $1 {{PLURAL:$1|بازبینی|بازبینی}}.
+'delete-edit-reasonlist' => 'اصلاح کن دلایل حذفء',
+'delete-toobig'          => 'صفحهء یک مزنین تاریح اصلاحی هست گیشتر چه $1 {{PLURAL:$1|بازبینی|بازبینی}}.
 حذف چوشین صفحات په خاظر جلو گر چه ناگهانی اتفاق ته سایت {{SITENAME}} ممنوع بوتت.',
-'delete-warning-toobig'       => 'ای صفحه  مزنین تاریح اصلاح هست، گیش چه  $1 {{PLURAL:$1|بازبینی|بازبینی}}.
+'delete-warning-toobig'  => 'ای صفحه  مزنین تاریح اصلاح هست، گیش چه  $1 {{PLURAL:$1|بازبینی|بازبینی}}.
 حذف آی شاید کار دیتابیس  {{SITENAME}} قطع کنت؛
 گون اخطار پیش روت.',
-'rollback'                    => 'پشت ترگ اصلاحات',
-'rollback_short'              => 'پشتررگ',
-'rollbacklink'                => 'عقب ترگ',
-'rollbackfailed'              => 'پشتررگ پروشت',
-'cantrollback'                => 'نه تونیت اصلاح برگردینیت؛
+
+# Rollback
+'rollback'         => 'پشت ترگ اصلاحات',
+'rollback_short'   => 'پشتررگ',
+'rollbacklink'     => 'عقب ترگ',
+'rollbackfailed'   => 'پشتررگ پروشت',
+'cantrollback'     => 'نه تونیت اصلاح برگردینیت؛
 آهری شرکت کننده فقط نویسوک ای صفحه انت.',
-'alreadyrolled'               => 'نه تونیت ترینیت اهری اصلاح چه  [[:$1]] گون  [[User:$2|$2]] ([[User talk:$2|گپ]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'نه تونیت ترینیت اهری اصلاح چه  [[:$1]] گون  [[User:$2|$2]] ([[User talk:$2|گپ]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 یکی دگه پیش تر صفحهء اصلاح کتت یا بری گردینت.
 
 آهری اصلاح توسط [[User:$3|$3]] ([[User talk:$3|گپ کن]]).',
-'editcomment'                 => 'نظر اصلاح ات:"<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'اصلاحات ترینگ بوتت گون $1;
+'editcomment'      => 'نظر اصلاح ات:"<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'ترینت اصلاحات توسط  [[Special:Contributions/$2|$2]] ([[User talk:$2|گپ کن]])په آهری بازبینی گون [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'اصلاحات ترینگ بوتت گون $1;
 په آهری نسخه ترینگ بوتنت گون $2.',
-'sessionfailure'              => 'چوش جاه کیت که گون شمی نند  وارد بییگ مشکلی هست;
+'sessionfailure'   => 'چوش جاه کیت که گون شمی نند  وارد بییگ مشکلی هست;
 ای کار په خاطر سوء استفاده چه نندگ کنسل بوت.
 لطفا بجنیت "back" و صفحه ای که چه آیء اتکگیت دگه بار کنیت او راندء دگه تلاش کنیت.',
+
+# Protect
 'protectlogpage'              => 'ورودان حفاظت',
 'protectlogtext'              => 'جهلء یک لیستی چه هست چه صفحه پچ و بند کبلان.
 بچار [[Special:ProtectedPages|لیست صفحات محافظتی]]  په لیستی محافظتات اجرای هنوکین صفحه',

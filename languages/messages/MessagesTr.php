@@ -1307,48 +1307,52 @@ Ayarları değiştirmek için:
 Yardım ve öneriler için:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Sayfayı sil',
-'confirm'                     => 'Onayla',
-'excontent'                   => "eski içerik: '$1'",
-'excontentauthor'             => "eski içerik: '$1' ('[[Special:Contributions/$2|$2]]' katkıda bulunmuş olan tek kullanıcı)",
-'exbeforeblank'               => "Silinmeden önceki içerik: '$1'",
-'exblank'                     => 'sayfa içeriği boş',
-'delete-confirm'              => '"$1" sil',
-'delete-legend'               => 'Sil',
-'historywarning'              => 'Uyarı: Silmek üzere olduğunuz sayfanın geçmişi vardır:',
-'confirmdeletetext'           => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
+# Delete
+'deletepage'             => 'Sayfayı sil',
+'confirm'                => 'Onayla',
+'excontent'              => "eski içerik: '$1'",
+'excontentauthor'        => "eski içerik: '$1' ('[[Special:Contributions/$2|$2]]' katkıda bulunmuş olan tek kullanıcı)",
+'exbeforeblank'          => "Silinmeden önceki içerik: '$1'",
+'exblank'                => 'sayfa içeriği boş',
+'delete-confirm'         => '"$1" sil',
+'delete-legend'          => 'Sil',
+'historywarning'         => 'Uyarı: Silmek üzere olduğunuz sayfanın geçmişi vardır:',
+'confirmdeletetext'      => 'Bu sayfayı veya dosyayı tüm geçmişi ile birlikte veritabanından kalıcı olarak silmek üzeresiniz.
 Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[{{MediaWiki:Policy-url}}|Silme kurallarına]] uygun olduğuna eminseniz, işlemi onaylayın.',
-'actioncomplete'              => 'İşlem tamamlandı.',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" silindi.
+'actioncomplete'         => 'İşlem tamamlandı.',
+'deletedtext'            => '"<nowiki>$1</nowiki>" silindi.
 Yakın zamanda silinenleri görmek için: $2.',
-'deletedarticle'              => '"$1" silindi',
-'dellogpage'                  => 'Silme kayıtları',
-'dellogpagetext'              => 'Aşağıdaki liste son silme kayıtlarıdır.',
-'deletionlog'                 => 'silme kayıtları',
-'reverted'                    => 'Önceki sürüm geri getirildi',
-'deletecomment'               => 'Silme nedeni',
-'deleteotherreason'           => 'Diğer/ilave neden:',
-'deletereasonotherlist'       => 'Diğer nedenler',
-'deletereason-dropdown'       => '*Genel silme gerekçeleri
+'deletedarticle'         => '"$1" silindi',
+'dellogpage'             => 'Silme kayıtları',
+'dellogpagetext'         => 'Aşağıdaki liste son silme kayıtlarıdır.',
+'deletionlog'            => 'silme kayıtları',
+'reverted'               => 'Önceki sürüm geri getirildi',
+'deletecomment'          => 'Silme nedeni',
+'deleteotherreason'      => 'Diğer/ilave neden:',
+'deletereasonotherlist'  => 'Diğer nedenler',
+'deletereason-dropdown'  => '*Genel silme gerekçeleri
 ** Yazarın talebi
 ** Telif hakları ihlali
 ** Vandalizm',
-'delete-edit-reasonlist'      => 'Silme nedenlerini değiştir',
-'delete-toobig'               => 'Bu sayfa, $1 {{PLURAL:$1|tane değişiklik|tane değişiklik}} ile çok uzun bir geçmişe sahiptir.
+'delete-edit-reasonlist' => 'Silme nedenlerini değiştir',
+'delete-toobig'          => 'Bu sayfa, $1 {{PLURAL:$1|tane değişiklik|tane değişiklik}} ile çok uzun bir geçmişe sahiptir.
 Böyle sayfaların silinmesi, {{SITENAME}} sitesini bozmamak için sınırlanmaktadır.',
-'rollback'                    => 'değişiklikleri geri al',
-'rollback_short'              => 'geri al',
-'rollbacklink'                => 'eski haline getir',
-'rollbackfailed'              => 'geri alma işlemi başarısız',
-'cantrollback'                => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
-'alreadyrolled'               => '[[User:$2|$2]] ([[User talk:$2|Talk]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor çünkü bu esnada başka biri sayfada değişiklik yaptı ya da başka biri sayfayı geriye aldı.
+
+# Rollback
+'rollback'         => 'değişiklikleri geri al',
+'rollback_short'   => 'geri al',
+'rollbacklink'     => 'eski haline getir',
+'rollbackfailed'   => 'geri alma işlemi başarısız',
+'cantrollback'     => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
+'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor çünkü bu esnada başka biri sayfada değişiklik yaptı ya da başka biri sayfayı geriye aldı.
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'                 => 'Değiştirme notu: "<i>$1</i>" idi.', # only shown if there is an edit comment
-'revertpage'                  => '[[User:$2|$2]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 tarafından yapılan değişiklikler geri alınarak;
+'editcomment'      => 'Değiştirme notu: "<i>$1</i>" idi.', # only shown if there is an edit comment
+'revertpage'       => '[[User:$2|$2]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
+
+# Protect
 'protectlogpage'              => 'Koruma kayıtları',
 'protectlogtext'              => 'Korumaya alma/kaldırma ile ilgili değişiklikleri görmektesiniz.
 Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına bakabilirsiniz.',

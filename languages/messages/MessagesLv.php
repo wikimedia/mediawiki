@@ -1120,50 +1120,54 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'watching'   => 'Uzrauga...',
 'unwatching' => 'Neuzrauga...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Dzēst lapu',
-'confirm'                     => 'Apstiprināt',
-'excontent'                   => "lapas saturs bija: '$1'",
-'excontentauthor'             => 'saturs bija: "$1" (vienīgais autors: [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => "lapas saturs pirms satura dzēšanas bija šāds: '$1'",
-'exblank'                     => 'lapa bija tukša',
-'delete-confirm'              => 'Dzēst "$1"',
-'delete-legend'               => 'Dzēšana',
-'historywarning'              => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
-'confirmdeletetext'           => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
-'actioncomplete'              => 'Darbība pabeigta',
-'deletedtext'                 => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
+# Delete
+'deletepage'             => 'Dzēst lapu',
+'confirm'                => 'Apstiprināt',
+'excontent'              => "lapas saturs bija: '$1'",
+'excontentauthor'        => 'saturs bija: "$1" (vienīgais autors: [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => "lapas saturs pirms satura dzēšanas bija šāds: '$1'",
+'exblank'                => 'lapa bija tukša',
+'delete-confirm'         => 'Dzēst "$1"',
+'delete-legend'          => 'Dzēšana',
+'historywarning'         => 'Brīdinājums: Tu dzēsīsi lapu, kurai ir saglabātas iepriekšējas versijas.',
+'confirmdeletetext'      => 'Tu tūlīt no datubāzes dzēsīsi lapu vai attēlu, kā arī to iepriekšējās versijas. Lūdzu, apstiprini, ka tu tiešām to vēlies darīt, ka tu apzinies sekas un ka tu to dari saskaņā ar [[Project:Vadlīnijas|vadlīnijām]].',
+'actioncomplete'         => 'Darbība pabeigta',
+'deletedtext'            => 'Lapa "<nowiki>$1</nowiki>" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
-'deletedarticle'              => 'izdzēsu "$1"',
-'dellogpage'                  => 'Dzēšanas reģistrs',
-'dellogpagetext'              => 'Šajā lapā ir pēdējo dzēsto lapu saraksts.',
-'deletionlog'                 => 'dzēšanas reģistrs',
-'reverted'                    => 'Atjaunots uz iepriekšējo versiju',
-'deletecomment'               => 'Dzēšanas iemesls',
-'deleteotherreason'           => 'Cits/papildu iemesls:',
-'deletereasonotherlist'       => 'Cits iemesls',
-'deletereason-dropdown'       => '*Izplatīti dzēšanas iemesli
+'deletedarticle'         => 'izdzēsu "$1"',
+'dellogpage'             => 'Dzēšanas reģistrs',
+'dellogpagetext'         => 'Šajā lapā ir pēdējo dzēsto lapu saraksts.',
+'deletionlog'            => 'dzēšanas reģistrs',
+'reverted'               => 'Atjaunots uz iepriekšējo versiju',
+'deletecomment'          => 'Dzēšanas iemesls',
+'deleteotherreason'      => 'Cits/papildu iemesls:',
+'deletereasonotherlist'  => 'Cits iemesls',
+'deletereason-dropdown'  => '*Izplatīti dzēšanas iemesli
 ** Autora pieprsījums
 ** Autortiesību pārkāpums
 ** Vandālisms',
-'delete-edit-reasonlist'      => 'Izmainīt dzēšanas iemeslus',
-'delete-toobig'               => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
+'delete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
+'delete-toobig'          => 'Šai lapai ir liela izmaiņu hronoloģija, vairāk nekā $1 {{PLURAL:$1|versija|versijas}}.
 Šādu lapu dzēšana ir atslēgta, lai novērstu nejaušus traucējumus {{grammar:lokatīvs|{{SITENAME}}}}.',
-'rollback'                    => 'Novērst labojumus',
-'rollback_short'              => 'Novērst',
-'rollbacklink'                => 'novērst',
-'rollbackfailed'              => 'Novēršana neizdevās',
-'cantrollback'                => 'Nav iespējams novērst labojumu; iepriekšējais labotājs ir vienīgais lapas autors.',
-'alreadyrolled'               => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
+
+# Rollback
+'rollback'         => 'Novērst labojumus',
+'rollback_short'   => 'Novērst',
+'rollbacklink'     => 'novērst',
+'rollbackfailed'   => 'Novēršana neizdevās',
+'cantrollback'     => 'Nav iespējams novērst labojumu; iepriekšējais labotājs ir vienīgais lapas autors.',
+'alreadyrolled'    => 'Nav iespējams novērst pēdējās izmaiņas, ko lapā [[:$1]] saglabāja [[User:$2|$2]] ([[User talk:$2|Diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]). Kāds cits jau ir rediģējis šo lapu vai novērsis izmaiņas.
 
 Pēdējās izmaiņas saglabāja [[User:$3|$3]] ([[User talk:$3|diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Attiecīgās izmaiņas kopsavilkums bija: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Tika novērstas $1 izdarītās izmaiņas;
+'editcomment'      => 'Attiecīgās izmaiņas kopsavilkums bija: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Novērsu izmaiņas, ko izdarīja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]), atjaunoju versiju, ko saglabāja [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Tika novērstas $1 izdarītās izmaiņas;
 un tika atjaunota iepriekšējā versija, kuru bija izveidojis $2.',
-'sessionfailure'              => "Ir radusies problēma ar sesijas autentifikāciju;
+'sessionfailure'   => "Ir radusies problēma ar sesijas autentifikāciju;
 šī darbība ir atcelta, lai novērstu lietotājvārda iespējami ļaunprātīgu izmantošanu.
 Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlreiz.",
+
+# Protect
 'protectlogpage'              => 'Aizsargāšanas reģistrs',
 'protectedarticle'            => 'aizsargāja $1',
 'unprotectedarticle'          => 'atcēla aizsardzību: $1',

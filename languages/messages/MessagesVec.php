@@ -1583,49 +1583,53 @@ Par canbiar łe inpostassion de i to osservati speciałi, visita
 Par riscontri e ulteriore assistensa:
 {{fullurl:Help:Ciacołe}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Scanceła pàxena',
-'confirm'                     => 'Conferma',
-'excontent'                   => "el contenuto xera: '$1'",
-'excontentauthor'             => "el contenuto l'era: '$1' (e l'unico contribudor l'era '$2')",
-'exbeforeblank'               => "El contenuto prima de lo svodamento xera: '$1'",
-'exblank'                     => "ła pàxena l'era voda",
-'delete-confirm'              => 'Scancela "$1"',
-'delete-legend'               => 'Scancela',
-'historywarning'              => 'Ocio: La pàxena che te stè par scancełar la gà na cronołogia:',
-'confirmdeletetext'           => "Te stè par scancełar permanentemente da el database na pàxena o na imagine, insieme a tuta la so cronołogia.
+# Delete
+'deletepage'             => 'Scanceła pàxena',
+'confirm'                => 'Conferma',
+'excontent'              => "el contenuto xera: '$1'",
+'excontentauthor'        => "el contenuto l'era: '$1' (e l'unico contribudor l'era '$2')",
+'exbeforeblank'          => "El contenuto prima de lo svodamento xera: '$1'",
+'exblank'                => "ła pàxena l'era voda",
+'delete-confirm'         => 'Scancela "$1"',
+'delete-legend'          => 'Scancela',
+'historywarning'         => 'Ocio: La pàxena che te stè par scancełar la gà na cronołogia:',
+'confirmdeletetext'      => "Te stè par scancełar permanentemente da el database na pàxena o na imagine, insieme a tuta la so cronołogia.
 Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, conferma che te ghè piena consapevołeza de łe conseguense de la to azion, e conferma che la to azion l'è pienamente otenperante a łe regołe stabilíe in
 [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Azión conpletà',
-'deletedtext'                 => 'La pàxena "<nowiki>$1</nowiki>" l\'è stà scancełà. Varda $2 par un ełenco de łe pàxene scancełae de reçente.',
-'deletedarticle'              => 'Scancełà "$1"',
-'suppressedarticle'           => 'sconto "[[$1]]"',
-'dellogpage'                  => 'Registro de scancełassión',
-'dellogpagetext'              => 'Qui de seguito ghe xe un ełenco de łe pàxene scancełae de reçente.',
-'deletionlog'                 => 'Registro de scancełasión',
-'reverted'                    => 'Ripristinà la version preçedente',
-'deletecomment'               => 'Motivo de ła scancełazion:',
-'deleteotherreason'           => 'Altra motivazion o motivazion agiuntiva:',
-'deletereasonotherlist'       => 'Altra motivazion',
-'deletereason-dropdown'       => "*Motivazion piassè comuni par la scancelazion
+'actioncomplete'         => 'Azión conpletà',
+'deletedtext'            => 'La pàxena "<nowiki>$1</nowiki>" l\'è stà scancełà. Varda $2 par un ełenco de łe pàxene scancełae de reçente.',
+'deletedarticle'         => 'Scancełà "$1"',
+'suppressedarticle'      => 'sconto "[[$1]]"',
+'dellogpage'             => 'Registro de scancełassión',
+'dellogpagetext'         => 'Qui de seguito ghe xe un ełenco de łe pàxene scancełae de reçente.',
+'deletionlog'            => 'Registro de scancełasión',
+'reverted'               => 'Ripristinà la version preçedente',
+'deletecomment'          => 'Motivo de ła scancełazion:',
+'deleteotherreason'      => 'Altra motivazion o motivazion agiuntiva:',
+'deletereasonotherlist'  => 'Altra motivazion',
+'deletereason-dropdown'  => "*Motivazion piassè comuni par la scancelazion
 ** Richiesta de l'autor
 ** Violazion de copyright
 ** Vandalismo",
-'delete-edit-reasonlist'      => 'Modifica le motivazion par la scancelazion',
-'delete-toobig'               => 'La cronologia de sta pagina la xe longa assè (oltre $1 {{PLURAL:$1|revision|revisioni}}). La so scancelazion la xe stà limità par evitar de crear acidentalmente dei problemi de funzionamento al database de {{SITENAME}}.',
-'delete-warning-toobig'       => 'La cronologia de sta pagina le xe longa assè (oltre $1 {{PLURAL:$1|revision|revisioni}}). La so scancelazion la pode crear dei problemi de funzionamento al database de {{SITENAME}}; procedi con cautela.',
-'rollback'                    => 'Anula le modifiche',
-'rollback_short'              => 'Tira indrìo',
-'rollbacklink'                => 'tira indrìo',
-'rollbackfailed'              => 'Ripristino mìa riussìo',
-'cantrollback'                => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
-'alreadyrolled'               => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
+'delete-edit-reasonlist' => 'Modifica le motivazion par la scancelazion',
+'delete-toobig'          => 'La cronologia de sta pagina la xe longa assè (oltre $1 {{PLURAL:$1|revision|revisioni}}). La so scancelazion la xe stà limità par evitar de crear acidentalmente dei problemi de funzionamento al database de {{SITENAME}}.',
+'delete-warning-toobig'  => 'La cronologia de sta pagina le xe longa assè (oltre $1 {{PLURAL:$1|revision|revisioni}}). La so scancelazion la pode crear dei problemi de funzionamento al database de {{SITENAME}}; procedi con cautela.',
+
+# Rollback
+'rollback'         => 'Anula le modifiche',
+'rollback_short'   => 'Tira indrìo',
+'rollbacklink'     => 'tira indrìo',
+'rollbackfailed'   => 'Ripristino mìa riussìo',
+'cantrollback'     => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
+'alreadyrolled'    => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
 
 L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'                 => 'El comento a la modifica el xera: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
-'sessionfailure'              => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
+'editcomment'      => 'El comento a la modifica el xera: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
+'sessionfailure'   => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
+
+# Protect
 'protectlogpage'              => 'Registro de protezión',
 'protectlogtext'              => 'De seguito xe elencàe le azion de protezion e sbloco de le pagine.',
 'protectedarticle'            => 'gà proteto "[[$1]]"',

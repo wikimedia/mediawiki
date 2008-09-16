@@ -760,33 +760,37 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'changed'            => 'ʻosi liliu',
 'created'            => 'kuo fakatupu',
 
-# Delete/protect/revert
-'deletepage'          => 'Tāmateʻi peesi',
-'confirm'             => 'Fakamoʻoniʻi',
-'excontent'           => "ko e kakano naʻe: '$1'",
-'excontentauthor'     => "ko e kakano naʻe: '$1', mei he ʻetita ʻe taha pē: '[[Special:Contributions/$2|$2]]'",
-'exbeforeblank'       => "ko e kakano ʻi muʻa ʻene fakaʻatā naʻe: '$1'",
-'exblank'             => 'Naʻe maha ʻa e peesi',
-'historywarning'      => 'Tokanga: ko e peesi te ke fietāmateʻi, ʻoku ʻi ai haʻane histolia.',
-'confirmdeletetext'   => 'Te ke tāmateʻi, ʻikai ala fūlihi, ʻa e peesi pe faitā mo hono hisitōlia kātoa mei he tānekingaʻilo. Kātaki fakamoʻoniʻi ʻoku sai ia, ʻoku ke ʻilo ʻa e fua, pea ʻoku ke fai pehē ototaha ia mo e [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'      => 'ʻOsi ngāue',
-'deletedtext'         => 'Kuo tāmateʻi "<nowiki>$1</nowiki>"
+# Delete
+'deletepage'        => 'Tāmateʻi peesi',
+'confirm'           => 'Fakamoʻoniʻi',
+'excontent'         => "ko e kakano naʻe: '$1'",
+'excontentauthor'   => "ko e kakano naʻe: '$1', mei he ʻetita ʻe taha pē: '[[Special:Contributions/$2|$2]]'",
+'exbeforeblank'     => "ko e kakano ʻi muʻa ʻene fakaʻatā naʻe: '$1'",
+'exblank'           => 'Naʻe maha ʻa e peesi',
+'historywarning'    => 'Tokanga: ko e peesi te ke fietāmateʻi, ʻoku ʻi ai haʻane histolia.',
+'confirmdeletetext' => 'Te ke tāmateʻi, ʻikai ala fūlihi, ʻa e peesi pe faitā mo hono hisitōlia kātoa mei he tānekingaʻilo. Kātaki fakamoʻoniʻi ʻoku sai ia, ʻoku ke ʻilo ʻa e fua, pea ʻoku ke fai pehē ototaha ia mo e [[{{MediaWiki:Policy-url}}]].',
+'actioncomplete'    => 'ʻOsi ngāue',
+'deletedtext'       => 'Kuo tāmateʻi "<nowiki>$1</nowiki>"
 Vakai ki he $2 maʻa e fakamatala ʻo e ngaahi toki tāmateʻi.',
-'deletedarticle'      => 'ʻosi tamateʻi "[[$1]]"',
-'dellogpage'          => 'Tohinoa ʻo e tāmateʻi',
-'dellogpagetext'      => 'ʻOku ʻasi ʻi lalo ha hokohoko ʻo e ngaahi tāmateʻi fakamuimui taha.',
-'deletionlog'         => 'tohinoa ʻo e tāmateʻi',
-'reverted'            => 'Kuo foki ki he paaki mui',
-'deletecomment'       => 'Ko e ʻuhinga ʻo e tāmateʻi',
-'rollback'            => 'Ngaahi fatu he teka hifo',
-'rollback_short'      => 'Teka hifo',
-'rollbacklink'        => 'teka hifo',
-'rollbackfailed'      => 'Halaʻi teka hifo',
-'cantrollback'        => 'Naʻe ʻikai lava fakafoki ʻa e fatu; ko e ʻetita fakamuimui ko e ʻetita ʻe taha pē ʻo e pēsí ni.',
-'alreadyrolled'       => 'ʻOku ʻikai lava teka hifo ʻa e fatu fakamuimui ʻo e [[:$1]] ʻe [[User:$2|$2]] ([[User talk:$2|Alea]]); ko e tokotaha ʻe taha naʻe fatu pe fatu teka hifo ʻa e peesi.
+'deletedarticle'    => 'ʻosi tamateʻi "[[$1]]"',
+'dellogpage'        => 'Tohinoa ʻo e tāmateʻi',
+'dellogpagetext'    => 'ʻOku ʻasi ʻi lalo ha hokohoko ʻo e ngaahi tāmateʻi fakamuimui taha.',
+'deletionlog'       => 'tohinoa ʻo e tāmateʻi',
+'reverted'          => 'Kuo foki ki he paaki mui',
+'deletecomment'     => 'Ko e ʻuhinga ʻo e tāmateʻi',
+
+# Rollback
+'rollback'       => 'Ngaahi fatu he teka hifo',
+'rollback_short' => 'Teka hifo',
+'rollbacklink'   => 'teka hifo',
+'rollbackfailed' => 'Halaʻi teka hifo',
+'cantrollback'   => 'Naʻe ʻikai lava fakafoki ʻa e fatu; ko e ʻetita fakamuimui ko e ʻetita ʻe taha pē ʻo e pēsí ni.',
+'alreadyrolled'  => 'ʻOku ʻikai lava teka hifo ʻa e fatu fakamuimui ʻo e [[:$1]] ʻe [[User:$2|$2]] ([[User talk:$2|Alea]]); ko e tokotaha ʻe taha naʻe fatu pe fatu teka hifo ʻa e peesi.
 
 Ko e fatu fakamuimui naʻe fatu ʻe [[User:$3|$3]] ([[User talk:$3|Alea]]).',
-'editcomment'         => 'Ko e fakamatala fatu naʻe "<i>$1</i>" ia.', # only shown if there is an edit comment
+'editcomment'    => 'Ko e fakamatala fatu naʻe "<i>$1</i>" ia.', # only shown if there is an edit comment
+
+# Protect
 'protectlogpage'      => 'Tohinoa ʻo e maluʻi',
 'protectlogtext'      => 'ʻOku ʻasi ʻi lalo ha hokohoko ʻo e ngaahi loka mo e taʻeloka fakapeesi.',
 'protectedarticle'    => 'maluʻi: "[[$1]]"',

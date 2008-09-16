@@ -105,7 +105,7 @@ $messages = array(
 'emailsubject' => 'विषयः',
 'emailmessage' => 'सन्देशः',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'कार्य समापनम्',
 
 # Block/unblock

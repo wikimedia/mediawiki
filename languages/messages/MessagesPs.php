@@ -952,26 +952,30 @@ $messages = array(
 'enotif_lastdiff'              => 'د همدغه بدلون د کتلو لپاره $1 وګورۍ.',
 'enotif_anon_editor'           => 'ورکنومی کارونکی $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'پاڼه ړنګول',
-'confirm'                     => 'تاييد',
-'exblank'                     => 'دا مخ تش وه',
-'delete-confirm'              => '"$1" ړنګوول',
-'delete-legend'               => 'ړنګول',
-'historywarning'              => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
-'confirmdeletetext'           => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
-'actioncomplete'              => 'بشپړه کړنه',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ړنګ شوی.
+# Delete
+'deletepage'            => 'پاڼه ړنګول',
+'confirm'               => 'تاييد',
+'exblank'               => 'دا مخ تش وه',
+'delete-confirm'        => '"$1" ړنګوول',
+'delete-legend'         => 'ړنګول',
+'historywarning'        => 'پاملرنه: کومه پاڼه چې تاسو يې د ړنګولو هڅه کوی يو پېښليک لري:',
+'confirmdeletetext'     => 'تاسو د تل لپار يو مخ يا انځور د هغه ټول پېښليک سره سره د دغه ډېټابېز نه ړنګوۍ. که چېرته تاسو ددغې کړنې په پايلې پوه ياست او د دغې پاڼې د [[پروژې:تګلارې]] سره سمون خوري نو لطفاً ددغې کړنې تاييد وکړی .',
+'actioncomplete'        => 'بشپړه کړنه',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ړنګ شوی.
 د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
-'deletedarticle'              => 'ړنګ شو "[[$1]]"',
-'dellogpage'                  => 'د ړنګولو يادښت',
-'dellogpagetext'              => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
-'deletionlog'                 => 'د ړنګولو يادښت',
-'deletecomment'               => 'د ړنګولو سبب',
-'deleteotherreason'           => 'بل/اضافه سبب:',
-'deletereasonotherlist'       => 'بل سبب',
-'rollback_short'              => 'په شابېول',
-'rollbacklink'                => 'په شابېول',
+'deletedarticle'        => 'ړنګ شو "[[$1]]"',
+'dellogpage'            => 'د ړنګولو يادښت',
+'dellogpagetext'        => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
+'deletionlog'           => 'د ړنګولو يادښت',
+'deletecomment'         => 'د ړنګولو سبب',
+'deleteotherreason'     => 'بل/اضافه سبب:',
+'deletereasonotherlist' => 'بل سبب',
+
+# Rollback
+'rollback_short' => 'په شابېول',
+'rollbacklink'   => 'په شابېول',
+
+# Protect
 'protectlogpage'              => 'د ژغورنې يادښت',
 'protectedarticle'            => '"[[$1]]" وژغورلی شو',
 'protect-legend'              => 'د ژغورلو پخلی کول',

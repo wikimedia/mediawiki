@@ -1886,55 +1886,59 @@ $NEWPAGE
 للاقتراحات والحصول على مساعدة إضافية:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'امسح الصفحه',
-'confirm'                     => 'أكد',
-'excontent'                   => "المحتوى كان: '$1'",
-'excontentauthor'             => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "المحتوى قبل التفضيه كان: '$1'",
-'exblank'                     => 'الصفحه كانت فاضيه',
-'delete-confirm'              => 'مسح"$1"',
-'delete-legend'               => 'مسح',
-'historywarning'              => 'تحذير: الصفحه اللى ها  تمسحها ليها تاريخ:',
-'confirmdeletetext'           => 'انت على وشك انك تمسح صفحه أو صوره و كل تاريخها.
+# Delete
+'deletepage'             => 'امسح الصفحه',
+'confirm'                => 'أكد',
+'excontent'              => "المحتوى كان: '$1'",
+'excontentauthor'        => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "المحتوى قبل التفضيه كان: '$1'",
+'exblank'                => 'الصفحه كانت فاضيه',
+'delete-confirm'         => 'مسح"$1"',
+'delete-legend'          => 'مسح',
+'historywarning'         => 'تحذير: الصفحه اللى ها  تمسحها ليها تاريخ:',
+'confirmdeletetext'      => 'انت على وشك انك تمسح صفحه أو صوره و كل تاريخها.
 من فضلك  اتأكد انك عايز المسح وبأنك فاهم نتايج  العمليه  دى. عمليات الحذف لازم تتم بناء على [[{{MediaWiki:Policy-url}}|القواعد المتفق عليها]].',
-'actioncomplete'              => 'العمليه خلصت',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" اتمسحت.
+'actioncomplete'         => 'العمليه خلصت',
+'deletedtext'            => '"<nowiki>$1</nowiki>" اتمسحت.
 بص على $2 لسجل آخر عمليات المسح.',
-'deletedarticle'              => 'اتمسحت "[[$1]]"',
-'suppressedarticle'           => 'خببى "[[$1]]"',
-'dellogpage'                  => 'سجل المسح',
-'dellogpagetext'              => 'لسته بأحدث عمليات المسح.',
-'deletionlog'                 => 'سجل المسح',
-'reverted'                    => 'استرجع لنسخة أقدم',
-'deletecomment'               => 'سبب المسح:',
-'deleteotherreason'           => 'سبب تانى/اضافي:',
-'deletereasonotherlist'       => 'سبب تانى',
-'deletereason-dropdown'       => '*أسباب المسح المشهورة
+'deletedarticle'         => 'اتمسحت "[[$1]]"',
+'suppressedarticle'      => 'خببى "[[$1]]"',
+'dellogpage'             => 'سجل المسح',
+'dellogpagetext'         => 'لسته بأحدث عمليات المسح.',
+'deletionlog'            => 'سجل المسح',
+'reverted'               => 'استرجع لنسخة أقدم',
+'deletecomment'          => 'سبب المسح:',
+'deleteotherreason'      => 'سبب تانى/اضافي:',
+'deletereasonotherlist'  => 'سبب تانى',
+'deletereason-dropdown'  => '*أسباب المسح المشهورة
 ** طلب المؤلف
 ** التعدى على حقوق النشر
 ** التخريب',
-'delete-edit-reasonlist'      => 'عدل اسباب المسح',
-'delete-toobig'               => 'الصفحه دى  ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+'delete-edit-reasonlist' => 'عدل اسباب المسح',
+'delete-toobig'          => 'الصفحه دى  ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
 مسح الصفحات اللى زى دى تم تحديده لمنع الاضطراب العرضى فى {{SITENAME}}.',
-'delete-warning-toobig'       => 'الصفحة دى ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
+'delete-warning-toobig'  => 'الصفحة دى ليها تاريخ تعديل كبير، أكتر من $1 {{PLURAL:$1|مراجعة|مراجعة}}.
 ممكن مسحها يعمل اضطراب  فى عمليات قاعدة البيانات فى {{SITENAME}}؛
 استمر بس خد بالك.',
-'rollback'                    => 'إرجع فى التعديلات',
-'rollback_short'              => 'إرجع لـ ورا',
-'rollbacklink'                => 'استعاده',
-'rollbackfailed'              => 'الترجيع ما نفعش',
-'cantrollback'                => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
-'alreadyrolled'               => 'ماقدرناش نرجع آخر تعديل للصفحة [[$1]] [[User:$2|$2]] ([[User talk:$2|نقاش]]) لأن فى واحد عمل تعديل او ترجيع للصفحة دى قبل كده.
+
+# Rollback
+'rollback'         => 'إرجع فى التعديلات',
+'rollback_short'   => 'إرجع لـ ورا',
+'rollbacklink'     => 'استعاده',
+'rollbackfailed'   => 'الترجيع ما نفعش',
+'cantrollback'     => 'ماقدرناش نرجع فى التعديل؛ آخر مساهم هوه الوحيد اللى ساهم فى الصفحة دي.',
+'alreadyrolled'    => 'ماقدرناش نرجع آخر تعديل للصفحة [[$1]] [[User:$2|$2]] ([[User talk:$2|نقاش]]) لأن فى واحد عمل تعديل او ترجيع للصفحة دى قبل كده.
 
 آخر واحد  عدل الصفحة دى هوه [[User:$3|$3]] ([[User talk:$3|نقاش]]).',
-'editcomment'                 => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'استرجع تعديلات $1؛
+'editcomment'      => 'تعليق التعديل كان: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'استرجع التعديلات بواسطة [[Special:Contributions/$2|$2]] ([[User talk:$2|مناقشة]]) لآخر نسخة بواسطة [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'استرجع تعديلات $1؛
 استرجع لآخر نسخة بواسطة $2.',
-'sessionfailure'              => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
+'sessionfailure'   => 'الظاهر انه فى مشكلة فى جلسة دخولك دى ؛
 وعلشان كدا العملية دى اتلغت كإجراء احترازى ضد الاختراق.
 لو سمحت دوس على زرار"رجوع" علشان تحمل الصفحة اللى جيت منها مرة تانية، و بعدين حاول تاني.',
+
+# Protect
 'protectlogpage'              => 'سجل الحمايه',
 'protectlogtext'              => 'تحت فى لستة بالصفحات اللى اعملها حماية او اتشالت منها الحماية.
 شوف [[Special:ProtectedPages|لستة الصفحات المحمية]] لستة بعمليات حماية الصفحات الشغالة دلوقتي.',

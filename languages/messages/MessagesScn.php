@@ -1422,49 +1422,53 @@ Pi mudificari li mpustazzioni dâ lista di l\'ossirvati spiciali, vìsita
 Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Elìmina la pàggina',
-'confirm'                     => 'Cunferma',
-'excontent'                   => "Lu cuntinutu era: '$1'",
-'excontentauthor'             => "Lu cuntinutu era: '$1' (e lu sulu cuntribbuturi era '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "Lu cuntinutu prima dû svacantamentu era: '$1'",
-'exblank'                     => 'la pàggina era vacanti',
-'delete-confirm'              => 'Cancella "$1"',
-'delete-legend'               => 'Cancella',
-'historywarning'              => 'Accura: La pàggina ca stai pi cancillari havi na cronoluggìa:',
-'confirmdeletetext'           => "Stai cancillannu dû databbasi na pàggina o na mmàggini cu tutta la sò storia di manera pirmanenti. Pi fauri, cunferma ca tu ntenni fari sta cosa, ca tu hai caputu li cunziquenzi, e chi lu fai secunnu li linìi guida stabbiliti 'n [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Azzioni cumpritata',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha statu cancillatu.
+# Delete
+'deletepage'             => 'Elìmina la pàggina',
+'confirm'                => 'Cunferma',
+'excontent'              => "Lu cuntinutu era: '$1'",
+'excontentauthor'        => "Lu cuntinutu era: '$1' (e lu sulu cuntribbuturi era '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "Lu cuntinutu prima dû svacantamentu era: '$1'",
+'exblank'                => 'la pàggina era vacanti',
+'delete-confirm'         => 'Cancella "$1"',
+'delete-legend'          => 'Cancella',
+'historywarning'         => 'Accura: La pàggina ca stai pi cancillari havi na cronoluggìa:',
+'confirmdeletetext'      => "Stai cancillannu dû databbasi na pàggina o na mmàggini cu tutta la sò storia di manera pirmanenti. Pi fauri, cunferma ca tu ntenni fari sta cosa, ca tu hai caputu li cunziquenzi, e chi lu fai secunnu li linìi guida stabbiliti 'n [[{{MediaWiki:Policy-url}}]].",
+'actioncomplete'         => 'Azzioni cumpritata',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ha statu cancillatu.
 Talìa $2 pi na lista di cancillazzioni ricenti.',
-'deletedarticle'              => 'Hà cancillatu "[[$1]]"',
-'suppressedarticle'           => 'suppressu "[[$1]]"',
-'dellogpage'                  => 'Cancillazzioni',
-'dellogpagetext'              => 'Di sèquitu sunnu alincati li pàggini cancillati di ricenti.',
-'deletionlog'                 => 'Log dî cancillazzioni',
-'reverted'                    => 'Ripristinata la virsioni pricidenti',
-'deletecomment'               => 'Mutivazzioni pi cancillari',
-'deleteotherreason'           => 'Autra mutivazioni o mutivazioni in più:',
-'deletereasonotherlist'       => 'Autra mutivazioni',
-'deletereason-dropdown'       => "*Mutivazzioni cchiù cumuni pi la cancillazzioni
+'deletedarticle'         => 'Hà cancillatu "[[$1]]"',
+'suppressedarticle'      => 'suppressu "[[$1]]"',
+'dellogpage'             => 'Cancillazzioni',
+'dellogpagetext'         => 'Di sèquitu sunnu alincati li pàggini cancillati di ricenti.',
+'deletionlog'            => 'Log dî cancillazzioni',
+'reverted'               => 'Ripristinata la virsioni pricidenti',
+'deletecomment'          => 'Mutivazzioni pi cancillari',
+'deleteotherreason'      => 'Autra mutivazioni o mutivazioni in più:',
+'deletereasonotherlist'  => 'Autra mutivazioni',
+'deletereason-dropdown'  => "*Mutivazzioni cchiù cumuni pi la cancillazzioni
 ** Dumanna di l'auturi
 ** Viulazzioni di copyright
 ** Vannalismu",
-'delete-edit-reasonlist'      => 'Cancia li mutivazzioni pi la cancillazioni',
-'delete-warning-toobig'       => 'La storia di sta pàggina è assai longa (ortri $1 {{PLURAL:$1|rivisioni|rivisioni}}). La sò cancillazzioni pò causari prubbremi di funziunamentu ô database di {{SITENAME}}; prucèdiri attentamenti.',
-'rollback'                    => 'Annulla li canciamenti',
-'rollback_short'              => "Canciu n'arreri",
-'rollbacklink'                => "canciu n'arreri",
-'rollbackfailed'              => "Canciu 'n arreri fallitu",
-'cantrollback'                => "Mpussìbbili annullari li canciamenti; l'utenti ca l'effittuau è l'ùnicu a aviri cuntribbuiutu â pàggina.",
-'alreadyrolled'               => "Nun è pussìbbili annullari li canciamenti appurtati â pàggina [[:$1]] di parti di [[User:$2|$2]] ([[User talk:$2|Discussioni]] | [[Special:Contributions/$2|{{int:contribslink}}]]); n'àutru utenti hà già canciatu la pàggina oppuru hà effittuatu lu rollback.
+'delete-edit-reasonlist' => 'Cancia li mutivazzioni pi la cancillazioni',
+'delete-warning-toobig'  => 'La storia di sta pàggina è assai longa (ortri $1 {{PLURAL:$1|rivisioni|rivisioni}}). La sò cancillazzioni pò causari prubbremi di funziunamentu ô database di {{SITENAME}}; prucèdiri attentamenti.',
+
+# Rollback
+'rollback'         => 'Annulla li canciamenti',
+'rollback_short'   => "Canciu n'arreri",
+'rollbacklink'     => "canciu n'arreri",
+'rollbackfailed'   => "Canciu 'n arreri fallitu",
+'cantrollback'     => "Mpussìbbili annullari li canciamenti; l'utenti ca l'effittuau è l'ùnicu a aviri cuntribbuiutu â pàggina.",
+'alreadyrolled'    => "Nun è pussìbbili annullari li canciamenti appurtati â pàggina [[:$1]] di parti di [[User:$2|$2]] ([[User talk:$2|Discussioni]] | [[Special:Contributions/$2|{{int:contribslink}}]]); n'àutru utenti hà già canciatu la pàggina oppuru hà effittuatu lu rollback.
 
 Lu canciamentu cchiù ricenti â pàggina fu appurtata di [[User:$3|$3]] ([[User talk:$3|discussioni]]).",
-'editcomment'                 => 'Lu cummentu â mudìfica era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
-'sessionfailure'              => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
+'editcomment'      => 'Lu cummentu â mudìfica era: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "Canciu narrè di [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussioni]]) cu l'ùrtima virsioni di [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Annullati li canciamenti di $1; ritornata â virsioni pricidenti di $2.',
+'sessionfailure'   => 'S\'hà virificatu un prubbrema cu la tò sissioni di login;
 lu sistema nun hà esiquitu lu cumannu mpartitu pi pricauzzioni.
 Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina e riprova di novu.',
+
+# Protect
 'protectlogpage'              => 'Pàggini prutetti',
 'protectlogtext'              => 'Lista di prutezzioni/sprutezzioni dî pàggini. Vidi macari la [[Special:ProtectedPages|lista dî pàggini prutetti]].',
 'protectedarticle'            => 'hà prutettu [[$1]]',

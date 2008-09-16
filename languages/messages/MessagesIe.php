@@ -302,14 +302,16 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'watchlist-hide-own'   => 'Celar mi modificationes',
 'watchlist-hide-minor' => 'Celar modificationes minori',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Deleter págine',
 'actioncomplete'        => 'Supression efectuat',
 'deletecomment'         => 'Motive de deletion:',
 'deleteotherreason'     => 'Altri/suplementari motive:',
 'deletereasonotherlist' => 'Altri motive',
-'protectcomment'        => 'Comenta:',
-'restriction-type'      => 'Permission:',
+
+# Protect
+'protectcomment'   => 'Comenta:',
+'restriction-type' => 'Permission:',
 
 # Namespace form on various pages
 'blanknamespace' => '(Principal)',

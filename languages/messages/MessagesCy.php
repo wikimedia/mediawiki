@@ -1475,49 +1475,53 @@ I newid eich gosodiadau gwylio, ymwelwch â
 Am fwy o gymorth ac adborth:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Dilëer y dudalen',
-'confirm'                     => 'Cadarnhau',
-'excontent'                   => "y cynnwys oedd: '$1'",
-'excontentauthor'             => "y cynnwys oedd: '$1' (a'r unig gyfrannwr oedd '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "y cynnwys cyn blancio oedd: '$1'",
-'exblank'                     => 'roedd y dudalen yn wag',
-'delete-confirm'              => 'Dileu "$1"',
-'delete-legend'               => 'Dileu',
-'historywarning'              => "Rhybudd: mae hanes i'r dudalen rydych ar fin ei dileu.",
-'confirmdeletetext'           => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
+# Delete
+'deletepage'             => 'Dilëer y dudalen',
+'confirm'                => 'Cadarnhau',
+'excontent'              => "y cynnwys oedd: '$1'",
+'excontentauthor'        => "y cynnwys oedd: '$1' (a'r unig gyfrannwr oedd '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "y cynnwys cyn blancio oedd: '$1'",
+'exblank'                => 'roedd y dudalen yn wag',
+'delete-confirm'         => 'Dileu "$1"',
+'delete-legend'          => 'Dileu',
+'historywarning'         => "Rhybudd: mae hanes i'r dudalen rydych ar fin ei dileu.",
+'confirmdeletetext'      => "Rydych chi ar fin dileu tudalen neu ddelwedd, ynghŷd â'i hanes, o'r data-bas, a hynny'n barhaol.
 Os gwelwch yn dda, cadarnhewch eich bod chi wir yn bwriadu gwneud hyn, eich bod yn deall y canlyniadau, ac yn ei wneud yn ôl [[{{MediaWiki:Policy-url}}|polisïau {{SITENAME}}]].",
-'actioncomplete'              => "Wedi cwblhau'r weithred",
-'deletedtext'                 => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu.
+'actioncomplete'         => "Wedi cwblhau'r weithred",
+'deletedtext'            => 'Mae "<nowiki>$1</nowiki>" wedi\'i ddileu.
 Gwelwch y $2 am gofnod o\'r dileuon diweddar.',
-'deletedarticle'              => 'wedi dileu "[[$1]]"',
-'suppressedarticle'           => 'cuddiwyd "[[$1]]"',
-'dellogpage'                  => 'Log dileuon',
-'dellogpagetext'              => "Ceir rhestr isod o'r dileadau diweddaraf.",
-'deletionlog'                 => 'log dileuon',
-'reverted'                    => "Wedi gwrthdroi i'r golygiad cynt",
-'deletecomment'               => 'Esboniad am y dileu:',
-'deleteotherreason'           => 'Rheswm arall:',
-'deletereasonotherlist'       => 'Rheswm arall',
-'deletereason-dropdown'       => "*Rhesymau arferol dros ddileu
+'deletedarticle'         => 'wedi dileu "[[$1]]"',
+'suppressedarticle'      => 'cuddiwyd "[[$1]]"',
+'dellogpage'             => 'Log dileuon',
+'dellogpagetext'         => "Ceir rhestr isod o'r dileadau diweddaraf.",
+'deletionlog'            => 'log dileuon',
+'reverted'               => "Wedi gwrthdroi i'r golygiad cynt",
+'deletecomment'          => 'Esboniad am y dileu:',
+'deleteotherreason'      => 'Rheswm arall:',
+'deletereasonotherlist'  => 'Rheswm arall',
+'deletereason-dropdown'  => "*Rhesymau arferol dros ddileu
 ** Ar gais yr awdur
 ** Torri'r hawlfraint
 ** Fandaliaeth",
-'delete-edit-reasonlist'      => 'Golygu rhesymau dileu',
-'rollback'                    => 'Gwrthdroi golygiadau',
-'rollback_short'              => 'Gwrthdroi',
-'rollbacklink'                => 'gwrthdroi',
-'rollbackfailed'              => 'Methodd y gwrthdroi',
-'cantrollback'                => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
-'alreadyrolled'               => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'delete-edit-reasonlist' => 'Golygu rhesymau dileu',
+
+# Rollback
+'rollback'         => 'Gwrthdroi golygiadau',
+'rollback_short'   => 'Gwrthdroi',
+'rollbacklink'     => 'gwrthdroi',
+'rollbackfailed'   => 'Methodd y gwrthdroi',
+'cantrollback'     => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
+'alreadyrolled'    => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 mae rhywun arall eisoes wedi dadwneud y golygiad neu wedi golygu'r dudalen.
 
 [[User:$3|$3]] ([[User talk:$3|Sgwrs]] | [[Special:Contributions/$3|{{int:contribslink}}]]) a wnaeth y golygiad diwethaf.",
-'editcomment'                 => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Gwrthdrowyd y golygiadau gan $1; 
+'editcomment'      => 'Crynodeb y golygiad oedd: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Wedi gwrthdroi golygiadau gan [[Special:Contributions/$2|$2]] ([[User talk:$2|Sgwrs]]); wedi adfer y golygiad diweddaraf gan [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Gwrthdrowyd y golygiadau gan $1; 
 wedi gwrthdroi i'r golygiad olaf gan $2.",
-'sessionfailure'              => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
+'sessionfailure'   => "Mae'n debyg fod yna broblem gyda'ch sesiwn mewngofnodi; diddymwyd y weithred er mwyn diogelu'r sustem rhag ddefnyddwyr maleisus. Gwasgwch botwm 'nôl' eich porwr ac ail-lwythwch y dudalen honno, yna ceisiwch eto.",
+
+# Protect
 'protectlogpage'              => 'Lòg diogelu',
 'protectlogtext'              => 'Isod mae rhestr o bob gweithred diogelu (a dad-ddiogelu) tudalen.',
 'protectedarticle'            => "wedi diogelu '[[$1]]'",

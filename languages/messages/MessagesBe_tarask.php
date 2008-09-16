@@ -1810,54 +1810,58 @@ $NEWPAGE
 Зваротная сувязь і дапамога:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Выдаліць старонку',
-'confirm'                     => 'Пацьверджаньне',
-'excontent'                   => 'колішні зьмест: «$1»',
-'excontentauthor'             => "зьмест быў: «$1» (і адзіным аўтарам быў '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => 'зьмест да ачысткі: «$1»',
-'exblank'                     => 'старонка была пустая',
-'delete-confirm'              => 'Выдаліць «$1»',
-'delete-legend'               => 'Выдаліць',
-'historywarning'              => 'Папярэджаньне: у старонкі, якую Вы зьбіраецеся выдаліць, ёсьць гісторыя:',
-'confirmdeletetext'           => 'Зараз Вы выдаліце старонку разам з усёй гісторыяй зьменаў.
+# Delete
+'deletepage'             => 'Выдаліць старонку',
+'confirm'                => 'Пацьверджаньне',
+'excontent'              => 'колішні зьмест: «$1»',
+'excontentauthor'        => "зьмест быў: «$1» (і адзіным аўтарам быў '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => 'зьмест да ачысткі: «$1»',
+'exblank'                => 'старонка была пустая',
+'delete-confirm'         => 'Выдаліць «$1»',
+'delete-legend'          => 'Выдаліць',
+'historywarning'         => 'Папярэджаньне: у старонкі, якую Вы зьбіраецеся выдаліць, ёсьць гісторыя:',
+'confirmdeletetext'      => 'Зараз Вы выдаліце старонку разам з усёй гісторыяй зьменаў.
 Калі ласка, пацьвердзіце, што Вы зьбіраецеся гэта зрабіць і што Вы разумееце ўсе наступствы, а таксама робіце гэта ў адпаведнасьці з [[{{MediaWiki:Policy-url}}|правіламі]].',
-'actioncomplete'              => 'Дзеяньне завершанае',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» была выдаленая.
+'actioncomplete'         => 'Дзеяньне завершанае',
+'deletedtext'            => '«<nowiki>$1</nowiki>» была выдаленая.
 Глядзіце журнал выдаленьняў у $2.',
-'deletedarticle'              => 'выдаленая «[[$1]]»',
-'suppressedarticle'           => 'схаваў «[[$1]]»',
-'dellogpage'                  => 'Журнал выдаленьняў',
-'dellogpagetext'              => 'Сьпіс апошніх выдаленьняў.',
-'deletionlog'                 => 'журнал выдаленьняў',
-'reverted'                    => 'Вернутая да папярэдняй вэрсіі',
-'deletecomment'               => 'Прычына выдаленьня:',
-'deleteotherreason'           => 'Іншая/дадатковая прычына:',
-'deletereasonotherlist'       => 'Іншая прычына',
-'deletereason-dropdown'       => '* Агульныя прычыны выдаленьня
+'deletedarticle'         => 'выдаленая «[[$1]]»',
+'suppressedarticle'      => 'схаваў «[[$1]]»',
+'dellogpage'             => 'Журнал выдаленьняў',
+'dellogpagetext'         => 'Сьпіс апошніх выдаленьняў.',
+'deletionlog'            => 'журнал выдаленьняў',
+'reverted'               => 'Вернутая да папярэдняй вэрсіі',
+'deletecomment'          => 'Прычына выдаленьня:',
+'deleteotherreason'      => 'Іншая/дадатковая прычына:',
+'deletereasonotherlist'  => 'Іншая прычына',
+'deletereason-dropdown'  => '* Агульныя прычыны выдаленьня
 ** Запыт аўтара/аўтаркі
 ** Парушэньне аўтарскіх правоў
 ** Вандалізм',
-'delete-edit-reasonlist'      => 'Рэдагаваць прычыны выдаленьня',
-'delete-toobig'               => 'Гэтая старонка мае доўгую гісторыю рэдагаваньняў, болей за $1 {{PLURAL:$1|вэрсію|вэрсіі|вэрсій}}.
+'delete-edit-reasonlist' => 'Рэдагаваць прычыны выдаленьня',
+'delete-toobig'          => 'Гэтая старонка мае доўгую гісторыю рэдагаваньняў, болей за $1 {{PLURAL:$1|вэрсію|вэрсіі|вэрсій}}.
 Выдаленьне такіх старонак было забароненае, каб пазьбегнуць праблемаў у працы {{GRAMMAR:родны|{{SITENAME}}}}.',
-'delete-warning-toobig'       => 'Гэтая старонка мае доўгую гісторыю рэдагаваньняў, больш за $1 {{PLURAL:$1|вэрсію|вэрсіі|вэрсій}}.
+'delete-warning-toobig'  => 'Гэтая старонка мае доўгую гісторыю рэдагаваньняў, больш за $1 {{PLURAL:$1|вэрсію|вэрсіі|вэрсій}}.
 Яе выдаленьне можа выклікаць праблемы ў працы базы зьвестак {{GRAMMAR:родны|{{SITENAME}}}}; будзьце асьцярожны.',
-'rollback'                    => 'Адмяніць рэдагаваньні',
-'rollback_short'              => 'Адкат',
-'rollbacklink'                => 'адкат',
-'rollbackfailed'              => 'Памылка адкату',
-'cantrollback'                => 'Немагчыма скасаваць зьмену; апошні рэдактар — адзіны аўтар гэтай старонкі.',
-'alreadyrolled'               => 'Немагчыма скасаваць апошнюю зьмену [[:$1]], якую зрабіў [[User:$2|$2]] ([[User talk:$2|гутаркі]]); нехта іншы ўжо зьмяніў артыкул ці скасаваў зьмены.
+
+# Rollback
+'rollback'         => 'Адмяніць рэдагаваньні',
+'rollback_short'   => 'Адкат',
+'rollbacklink'     => 'адкат',
+'rollbackfailed'   => 'Памылка адкату',
+'cantrollback'     => 'Немагчыма скасаваць зьмену; апошні рэдактар — адзіны аўтар гэтай старонкі.',
+'alreadyrolled'    => 'Немагчыма скасаваць апошнюю зьмену [[:$1]], якую зрабіў [[User:$2|$2]] ([[User talk:$2|гутаркі]]); нехта іншы ўжо зьмяніў артыкул ці скасаваў зьмены.
 
 Апошнія зьмены зробленыя [[User:$3|$3]] ([[User talk:$3|гутаркі]]).',
-'editcomment'                 => 'Камэнтар рэдагаваньня быў: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => 'Адмененыя рэдагаваньні [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) да папярэдняй вэрсіі [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Адмененыя рэдагаваньні $1;
+'editcomment'      => 'Камэнтар рэдагаваньня быў: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'       => 'Адмененыя рэдагаваньні [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) да папярэдняй вэрсіі [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Адмененыя рэдагаваньні $1;
 вернутая папярэдняя вэрсія $2.',
-'sessionfailure'              => 'Магчыма ўзьніклі праблемы ў Вашым цяперашнім сэансе працы;
+'sessionfailure'   => 'Магчыма ўзьніклі праблемы ў Вашым цяперашнім сэансе працы;
 гэта дзеяньне было скасавана для прадухіленьня перахвату сэанса.
 Калі ласка, націсьніце «назад» і перазагрузіце старонку зь якой Вы прыйшлі і паспрабуйце ізноў.',
+
+# Protect
 'protectlogpage'              => 'Журнал абаронаў',
 'protectlogtext'              => 'Ніжэй знаходзіцца сьпіс абаронаў і зьняцьцяў абаронаў.
 Глядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].',

@@ -1197,42 +1197,46 @@ Da promenite podešavanja vezana za spisak nadgledanja posetite
 Fidbek i dalja pomoć:
 {{fullurl:{{ns:help}}:Sadržaj}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Obriši stranicu',
-'confirm'                     => 'Potvrdi',
-'excontent'                   => "sadržaj je bio: '$1'",
-'excontentauthor'             => "sadržaj je bio: '$1' (a jedinu izmenu je napravio '$2')",
-'exbeforeblank'               => "sadržaj pre brisanja je bio: '$1'",
-'exblank'                     => 'stranica je bila prazna',
-'historywarning'              => 'Pažnja: stranica koju želite da obrišete ima istoriju:',
-'confirmdeletetext'           => 'Na putu ste da trajno obrišete stranicu
+# Delete
+'deletepage'        => 'Obriši stranicu',
+'confirm'           => 'Potvrdi',
+'excontent'         => "sadržaj je bio: '$1'",
+'excontentauthor'   => "sadržaj je bio: '$1' (a jedinu izmenu je napravio '$2')",
+'exbeforeblank'     => "sadržaj pre brisanja je bio: '$1'",
+'exblank'           => 'stranica je bila prazna',
+'historywarning'    => 'Pažnja: stranica koju želite da obrišete ima istoriju:',
+'confirmdeletetext' => 'Na putu ste da trajno obrišete stranicu
 ili sliku zajedno sa njenom istorijom iz baze podataka.
 Molimo vas potvrdite da nameravate da uradite ovo, da razumete
 posledice, i da ovo radite u skladu sa
 [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Akcija završena',
-'deletedtext'                 => 'Članak "<nowiki>$1</nowiki>" je obrisan.
+'actioncomplete'    => 'Akcija završena',
+'deletedtext'       => 'Članak "<nowiki>$1</nowiki>" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
-'deletedarticle'              => 'obrisan "[[$1]]"',
-'dellogpage'                  => 'istorija brisanja',
-'dellogpagetext'              => 'Ispod je spisak najskorijih brisanja.',
-'deletionlog'                 => 'istorija brisanja',
-'reverted'                    => 'Vraćeno na raniju reviziju',
-'deletecomment'               => 'Razlog za brisanje',
-'rollback'                    => 'Vrati izmene',
-'rollback_short'              => 'Vrati',
-'rollbacklink'                => 'vrati',
-'rollbackfailed'              => 'Vraćanje nije uspelo',
-'cantrollback'                => 'Ne mogu da vratim izmenu; poslednji autor je ujedno i jedini.',
-'alreadyrolled'               => 'Ne mogu da vratim poslednju izmenu [[:$1]]
+'deletedarticle'    => 'obrisan "[[$1]]"',
+'dellogpage'        => 'istorija brisanja',
+'dellogpagetext'    => 'Ispod je spisak najskorijih brisanja.',
+'deletionlog'       => 'istorija brisanja',
+'reverted'          => 'Vraćeno na raniju reviziju',
+'deletecomment'     => 'Razlog za brisanje',
+
+# Rollback
+'rollback'       => 'Vrati izmene',
+'rollback_short' => 'Vrati',
+'rollbacklink'   => 'vrati',
+'rollbackfailed' => 'Vraćanje nije uspelo',
+'cantrollback'   => 'Ne mogu da vratim izmenu; poslednji autor je ujedno i jedini.',
+'alreadyrolled'  => 'Ne mogu da vratim poslednju izmenu [[:$1]]
 od korisnika [[User:$2|$2]] ([[User_talk:$2|razgovor]]); neko drugi je već izmenio ili vratio članak.
 
 Poslednju izmenu je napravio korisnik [[User:$3|$3]] ([[User_talk:$3|razgovor]]).',
-'editcomment'                 => 'Komentar izmene je: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'sessionfailure'              => 'Izgleda da postoji problem sa vašom seansom prijave;
+'editcomment'    => 'Komentar izmene je: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Vraćene izmene od [[{{ns:special}}:Contributions/$2|$2]] ([[User_talk:$2|razgovor]]) na poslednju izmenu od korisnika [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'sessionfailure' => 'Izgleda da postoji problem sa vašom seansom prijave;
 ova akcija je prekinuta kao predostrožnost protiv preotimanja seansi.
 Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda pokušajte ponovo.',
+
+# Protect
 'protectlogpage'              => 'istorija zaključavanja',
 'protectlogtext'              => 'Ispod je spisak zaključavanja i otključavanja stranica.',
 'protectedarticle'            => 'zaštitio $1',

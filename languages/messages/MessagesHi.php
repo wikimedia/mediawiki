@@ -1533,54 +1533,58 @@ $NEWPAGE
 प्रतिपुष्टि एवं सहायता के लिए:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'पन्ना हटायें',
-'confirm'                     => 'सुनिश्चित करें',
-'excontent'                   => "पाठ था: '$1'",
-'excontentauthor'             => "पाठ था: '$1' (और सिर्फ '[[Special:Contributions/$2|$2]]' का योगदान था।)",
-'exbeforeblank'               => "हटाने के पहलेका पाठ था: '$1'",
-'exblank'                     => 'पन्ना पाठ रहित था',
-'delete-confirm'              => '"$1" को हटायें',
-'delete-legend'               => 'हटायें',
-'historywarning'              => 'चेतावनी: आप जिस पन्ने को हटाने जा रहे हैं उसका इतिहास खाली नहीं है ।',
-'confirmdeletetext'           => 'आप एक लेख उसके सभी अवतरणोंके साथ हटाना चाहते हैं ।
+# Delete
+'deletepage'             => 'पन्ना हटायें',
+'confirm'                => 'सुनिश्चित करें',
+'excontent'              => "पाठ था: '$1'",
+'excontentauthor'        => "पाठ था: '$1' (और सिर्फ '[[Special:Contributions/$2|$2]]' का योगदान था।)",
+'exbeforeblank'          => "हटाने के पहलेका पाठ था: '$1'",
+'exblank'                => 'पन्ना पाठ रहित था',
+'delete-confirm'         => '"$1" को हटायें',
+'delete-legend'          => 'हटायें',
+'historywarning'         => 'चेतावनी: आप जिस पन्ने को हटाने जा रहे हैं उसका इतिहास खाली नहीं है ।',
+'confirmdeletetext'      => 'आप एक लेख उसके सभी अवतरणोंके साथ हटाना चाहते हैं ।
 आपसे अनुरोध है कि आप जो कर रहे है वह मीडियाविकिके [[{{MediaWiki:Policy-url}}|नीतिनुसार]] है इस बात की पुष्टि किजीये । तथा क्रिया करने से पहले आपकी क्रिया के परिणाम जान लें ।',
-'actioncomplete'              => 'कार्य पूर्ण',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" को हटाया गया है ।
+'actioncomplete'         => 'कार्य पूर्ण',
+'deletedtext'            => '"<nowiki>$1</nowiki>" को हटाया गया है ।
 हाल में हटाये गये लेखोंकी सूची के लिये $2 देखें ।',
-'deletedarticle'              => '"$1" को हटाया गया है।',
-'suppressedarticle'           => '"[[$1]]" को सप्रेस किया',
-'dellogpage'                  => 'हटाने की सूची',
-'dellogpagetext'              => 'नीचे हाल में हटायें गये पन्नोंकी सूची हैं।',
-'deletionlog'                 => 'हटाने की सूची',
-'reverted'                    => 'पुराने अवतरणको पूर्ववत किया',
-'deletecomment'               => 'हटाने का कारण',
-'deleteotherreason'           => 'दुसरा/अतिरिक्त कारण:',
-'deletereasonotherlist'       => 'दुसरा कारण',
-'deletereason-dropdown'       => '*हटाने के सामान्य कारण
+'deletedarticle'         => '"$1" को हटाया गया है।',
+'suppressedarticle'      => '"[[$1]]" को सप्रेस किया',
+'dellogpage'             => 'हटाने की सूची',
+'dellogpagetext'         => 'नीचे हाल में हटायें गये पन्नोंकी सूची हैं।',
+'deletionlog'            => 'हटाने की सूची',
+'reverted'               => 'पुराने अवतरणको पूर्ववत किया',
+'deletecomment'          => 'हटाने का कारण',
+'deleteotherreason'      => 'दुसरा/अतिरिक्त कारण:',
+'deletereasonotherlist'  => 'दुसरा कारण',
+'deletereason-dropdown'  => '*हटाने के सामान्य कारण
 ** लेखक कि बिनती
 ** कॉपीराईट
 ** वॅन्डॅलिजम',
-'delete-edit-reasonlist'      => 'हटाने के कारण संपादित करें',
-'delete-toobig'               => 'इस लेख को $1 से ज्यादा बार बदला गया हैं।
+'delete-edit-reasonlist' => 'हटाने के कारण संपादित करें',
+'delete-toobig'          => 'इस लेख को $1 से ज्यादा बार बदला गया हैं।
 {{SITENAME}} के अनपेक्षित बंद होने से रोकने के लिये ऐसे पन्नोंको हटाने की अनुमति नहीं हैं।',
-'delete-warning-toobig'       => 'इस लेख को $1 से ज्यादाबार बदला गया हैं।
+'delete-warning-toobig'  => 'इस लेख को $1 से ज्यादाबार बदला गया हैं।
 इसे हटानेसे {{SITENAME}} पर खलबली मच सकती हैं;
 कृपया ध्यानपूर्वक आगे बढें।',
-'rollback'                    => 'संपादन पीछे ले जायें',
-'rollback_short'              => 'पूर्ववत करें',
-'rollbacklink'                => 'रोलबॅक',
-'rollbackfailed'              => 'पूर्ववत नहीं कर सकें',
-'cantrollback'                => 'पुराने अवतरणको पूर्ववत नहीं कर सकते हैं;
+
+# Rollback
+'rollback'         => 'संपादन पीछे ले जायें',
+'rollback_short'   => 'पूर्ववत करें',
+'rollbacklink'     => 'रोलबॅक',
+'rollbackfailed'   => 'पूर्ववत नहीं कर सकें',
+'cantrollback'     => 'पुराने अवतरणको पूर्ववत नहीं कर सकते हैं;
 इस पन्ने का आखिरी योगदानकर्ता इस लेख का एकमात्र लेखक हैं।',
-'alreadyrolled'               => '[[$1]] का [[User:$2|$2]] ([[User talk:$2|वार्ता]]) द्वारा किया गया पिछला बदलाव रोलबेक नहीं किया जा सकता; किसी और ने पहले ही इसे रोलबेक किया अथवा बदल दिया है । पिछला बदलाव [[User:$3|$3]] ([[User talk:$3|वार्ता]]) द्वारा किया गया है ।',
-'editcomment'                 => 'संपादन टिप्पणी: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाकर [[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 के संपादन हटायें;
+'alreadyrolled'    => '[[$1]] का [[User:$2|$2]] ([[User talk:$2|वार्ता]]) द्वारा किया गया पिछला बदलाव रोलबेक नहीं किया जा सकता; किसी और ने पहले ही इसे रोलबेक किया अथवा बदल दिया है । पिछला बदलाव [[User:$3|$3]] ([[User talk:$3|वार्ता]]) द्वारा किया गया है ।',
+'editcomment'      => 'संपादन टिप्पणी: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) के संपादनोंको हटाकर [[User:$1|$1]] के आखिरी अवतरण को पूर्ववत किया', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 के संपादन हटायें;
 $2 द्वारा संपादित आखिरी अवतरण को पुनर्स्थापित किया।',
-'sessionfailure'              => 'ऐसा प्रतीत होता है की आपके लोगिन सत्र के साथ कोई समस्या है।
+'sessionfailure'   => 'ऐसा प्रतीत होता है की आपके लोगिन सत्र के साथ कोई समस्या है।
 सत्र अपहरण से बचाने के लिए सावधानी के तौर पर आपका यह क्रियाकलाप रद्द कर दिया गया है।
 कृपया "back" पर वार करें और पृष्ठ को दुबारा से लोड करें, तब दुबारा कोशिश करें।',
+
+# Protect
 'protectlogpage'              => 'सुरक्षा सूची',
 'protectlogtext'              => 'नीचे उन पृष्ठों की सारणी है, जिनमें ताला लगा हुआ है और ताला खोल दिया गया है।
 वर्त्तमान में क्रियाशील सुरक्षित पृष्ठों की सूची के लिए [[Special:ProtectedPages|सुरक्षित पृष्ठों की सूची]] देखें।',

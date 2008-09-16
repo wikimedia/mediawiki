@@ -1396,46 +1396,50 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_lastdiff'              => 'Sjá $1 til að skoða þessa breytingu.',
 'enotif_anon_editor'           => 'ónefndur notandi $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Eyða',
-'confirm'                     => 'Staðfesta',
-'excontent'                   => 'innihaldið var: „$1“',
-'excontentauthor'             => "innihaldið var: '$1' (og öll framlög voru frá '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "innihald fyrir tæmingu var: '$1'",
-'exblank'                     => 'síðan var tóm',
-'delete-confirm'              => 'Eyða „$1“',
-'delete-legend'               => 'Eyða',
-'historywarning'              => 'Athugið: Síðan sem þú ert um það bil að eyða á sér',
-'confirmdeletetext'           => 'Þú ert um það bil að eyða síðu ásamt breytingaskrá hennar.
+# Delete
+'deletepage'             => 'Eyða',
+'confirm'                => 'Staðfesta',
+'excontent'              => 'innihaldið var: „$1“',
+'excontentauthor'        => "innihaldið var: '$1' (og öll framlög voru frá '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "innihald fyrir tæmingu var: '$1'",
+'exblank'                => 'síðan var tóm',
+'delete-confirm'         => 'Eyða „$1“',
+'delete-legend'          => 'Eyða',
+'historywarning'         => 'Athugið: Síðan sem þú ert um það bil að eyða á sér',
+'confirmdeletetext'      => 'Þú ert um það bil að eyða síðu ásamt breytingaskrá hennar.
 Vinsamlegast staðfestu það að þú ætlir að gera svo, það að þú skiljir afleiðingarnar, og að þú sért að gera þetta í samræmi við [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Aðgerð lokið',
-'deletedtext'                 => '„<nowiki>$1</nowiki>“ hefur verið eytt.
+'actioncomplete'         => 'Aðgerð lokið',
+'deletedtext'            => '„<nowiki>$1</nowiki>“ hefur verið eytt.
 Sjá lista yfir nýlegar eyðingar í $2.',
-'deletedarticle'              => 'eyddi „[[$1]]“',
-'dellogpage'                  => 'Eyðingaskrá',
-'dellogpagetext'              => 'Að neðan gefur að líta lista yfir síður sem nýlega hefur verið eytt.',
-'deletionlog'                 => 'eyðingaskrá',
-'reverted'                    => 'Breytt aftur til fyrri útgáfu',
-'deletecomment'               => 'Ástæða fyrir eyðingu:',
-'deleteotherreason'           => 'Aðrar/fleiri ástæður:',
-'deletereasonotherlist'       => 'Önnur ástæða',
-'deletereason-dropdown'       => '* Algengar ástæður
+'deletedarticle'         => 'eyddi „[[$1]]“',
+'dellogpage'             => 'Eyðingaskrá',
+'dellogpagetext'         => 'Að neðan gefur að líta lista yfir síður sem nýlega hefur verið eytt.',
+'deletionlog'            => 'eyðingaskrá',
+'reverted'               => 'Breytt aftur til fyrri útgáfu',
+'deletecomment'          => 'Ástæða fyrir eyðingu:',
+'deleteotherreason'      => 'Aðrar/fleiri ástæður:',
+'deletereasonotherlist'  => 'Önnur ástæða',
+'deletereason-dropdown'  => '* Algengar ástæður
 ** Að beiðni höfundar
 ** Höfundaréttarbrot
 ** Skemmdarverk',
-'delete-edit-reasonlist'      => 'Breyta eyðingarástæðum',
-'rollback'                    => 'Taka aftur breytingar',
-'rollback_short'              => 'Taka aftur',
-'rollbacklink'                => 'taka aftur',
-'rollbackfailed'              => 'Mistókst að taka aftur',
-'cantrollback'                => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
-'alreadyrolled'               => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User talk:$2|spjall]]) til baka;
+'delete-edit-reasonlist' => 'Breyta eyðingarástæðum',
+
+# Rollback
+'rollback'         => 'Taka aftur breytingar',
+'rollback_short'   => 'Taka aftur',
+'rollbacklink'     => 'taka aftur',
+'rollbackfailed'   => 'Mistókst að taka aftur',
+'cantrollback'     => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
+'alreadyrolled'    => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User talk:$2|spjall]]) til baka;
 eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
 
 Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
-'editcomment'                 => 'Beytingarágripið var: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Tók til baka breytingar eftir $1; núverandi $2.',
+'editcomment'      => 'Beytingarágripið var: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Tók til baka breytingar eftir $1; núverandi $2.',
+
+# Protect
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
 Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',

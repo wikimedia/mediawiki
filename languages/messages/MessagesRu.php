@@ -1807,56 +1807,60 @@ $NEWPAGE
 Обратная связь и помощь:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Удалить страницу',
-'confirm'                     => 'Подтвердить',
-'excontent'                   => 'содержимое: «$1»',
-'excontentauthor'             => 'содержимое: «$1» (единственным автором был [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => 'содержимое до очистки: «$1»',
-'exblank'                     => 'страница была пуста',
-'delete-confirm'              => '$1 — удаление',
-'delete-legend'               => 'Удаление',
-'historywarning'              => 'Предупреждение: у страницы, которую вы собираетесь удалить, есть история изменений:',
-'confirmdeletetext'           => 'Вы запросили полное удаление страницы (или изображения) и всей её истории изменений из базы данных.
+# Delete
+'deletepage'             => 'Удалить страницу',
+'confirm'                => 'Подтвердить',
+'excontent'              => 'содержимое: «$1»',
+'excontentauthor'        => 'содержимое: «$1» (единственным автором был [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => 'содержимое до очистки: «$1»',
+'exblank'                => 'страница была пуста',
+'delete-confirm'         => '$1 — удаление',
+'delete-legend'          => 'Удаление',
+'historywarning'         => 'Предупреждение: у страницы, которую вы собираетесь удалить, есть история изменений:',
+'confirmdeletetext'      => 'Вы запросили полное удаление страницы (или изображения) и всей её истории изменений из базы данных.
 Пожалуйста, подтвердите, что вы действительно желаете это сделать, понимаете последствия своих действий,
 и делаете это в соответствии с правилами, изложенными в разделе [[{{MediaWiki:Policy-url}}]].',
-'actioncomplete'              => 'Действие выполнено',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» была удалена.
+'actioncomplete'         => 'Действие выполнено',
+'deletedtext'            => '«<nowiki>$1</nowiki>» была удалена.
 См. $2 для просмотра списка последних удалений.',
-'deletedarticle'              => 'удалил «[[$1]]»',
-'suppressedarticle'           => 'скрыл «[[$1]]»',
-'dellogpage'                  => 'Журнал удалений',
-'dellogpagetext'              => 'Ниже приведён журнал последних удалений.',
-'deletionlog'                 => 'журнал удалений',
-'reverted'                    => 'Откачено к ранней версии',
-'deletecomment'               => 'Причина удаления:',
-'deleteotherreason'           => 'Другая причина:',
-'deletereasonotherlist'       => 'Другая причина',
-'deletereason-dropdown'       => '* Типовые причины удаления
+'deletedarticle'         => 'удалил «[[$1]]»',
+'suppressedarticle'      => 'скрыл «[[$1]]»',
+'dellogpage'             => 'Журнал удалений',
+'dellogpagetext'         => 'Ниже приведён журнал последних удалений.',
+'deletionlog'            => 'журнал удалений',
+'reverted'               => 'Откачено к ранней версии',
+'deletecomment'          => 'Причина удаления:',
+'deleteotherreason'      => 'Другая причина:',
+'deletereasonotherlist'  => 'Другая причина',
+'deletereason-dropdown'  => '* Типовые причины удаления
 ** вандализм
 ** по запросу автора
 ** нарушение авторских прав',
-'delete-edit-reasonlist'      => 'Править список причин',
-'delete-toobig'               => 'У этой страницы очень длинная история изменений, более $1 {{PLURAL:$1|версии|версий|версий}}.
+'delete-edit-reasonlist' => 'Править список причин',
+'delete-toobig'          => 'У этой страницы очень длинная история изменений, более $1 {{PLURAL:$1|версии|версий|версий}}.
 Удаление таких страниц было запрещено во избежание нарушений в работе сайта {{SITENAME}}.',
-'delete-warning-toobig'       => 'У этой страницы очень длинная история изменений, более $1 {{PLURAL:$1|версии|версий|версий}}.
+'delete-warning-toobig'  => 'У этой страницы очень длинная история изменений, более $1 {{PLURAL:$1|версии|версий|версий}}.
 Её удаление может привести к нарушению нормальной работы базы данных сайта {{SITENAME}};
 действуйте с осторожностью.',
-'rollback'                    => 'Откатить изменения',
-'rollback_short'              => 'Откат',
-'rollbacklink'                => 'откатить',
-'rollbackfailed'              => 'Ошибка при совершении отката',
-'cantrollback'                => 'Невозможно откатить изменения; последний, кто вносил изменения, является единственным автором этой статьи.',
-'alreadyrolled'               => 'Невозможно откатить последние изменения [[:$1]], сделанные [[User:$2|$2]] ([[User talk:$2|Обсуждение]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+
+# Rollback
+'rollback'         => 'Откатить изменения',
+'rollback_short'   => 'Откат',
+'rollbacklink'     => 'откатить',
+'rollbackfailed'   => 'Ошибка при совершении отката',
+'cantrollback'     => 'Невозможно откатить изменения; последний, кто вносил изменения, является единственным автором этой статьи.',
+'alreadyrolled'    => 'Невозможно откатить последние изменения [[:$1]], сделанные [[User:$2|$2]] ([[User talk:$2|Обсуждение]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 кто-то другой уже отредактировал или откатил эту страницу.
 
 Последние изменения внёс [[User:$3|$3]] ([[User talk:$3|Обсуждение]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Изменение было пояснено так: <i>«$1»</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Откачены правки $1; возврат к версии $2.',
-'sessionfailure'              => 'Похоже, возникли проблемы с текущим сеансом работы;
+'editcomment'      => 'Изменение было пояснено так: <i>«$1»</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Правки [[Special:Contributions/$2|$2]] ([[User talk:$2|обсуждение]]) откачены к версии [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Откачены правки $1; возврат к версии $2.',
+'sessionfailure'   => 'Похоже, возникли проблемы с текущим сеансом работы;
 это действие было отменено в целях предотвращения «захвата сеанса».
 Пожалуйста, нажмите кнопку «Назад» и перезагрузите страницу, с которой вы пришли.',
+
+# Protect
 'protectlogpage'              => 'Журнал защиты',
 'protectlogtext'              => 'Ниже приведён журнал установок и снятий защиты со статей. Вы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].',
 'protectedarticle'            => 'защищена страница «[[$1]]»',

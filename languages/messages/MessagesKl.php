@@ -150,7 +150,7 @@ $messages = array(
 Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taava quppernerup sinaatungaani \"Nakkutilliinermi allattorsimaffik peeruk\" tooruk.",
 'watch'          => 'Piggassineq',
 
-# Delete/protect/revert
+# Delete
 'actioncomplete' => 'Naammassineqareersimavoq',
 
 # Contributions

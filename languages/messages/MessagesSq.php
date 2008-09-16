@@ -1423,43 +1423,47 @@ Për të ndryshuar parapëlqimet e mbikqyrjes shikoni {{fullurl:Special:Watchlis
 Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 {{fullurl:Help:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Grise faqen',
-'confirm'                     => 'Konfirmoni',
-'excontent'                   => "përmbajtja ishte: '$1'",
-'excontentauthor'             => "përmbajtja ishte: '$1' (dhe i vetmi redaktor ishte '$2')",
-'exbeforeblank'               => "përmbajtja përpara boshatisjes ishte: '$1'",
-'exblank'                     => 'faqja është bosh',
-'historywarning'              => 'Kujdes: Faqja që jeni bërë gati për të grisur ka histori:',
-'confirmdeletetext'           => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Veprim i mbaruar',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
-'deletedarticle'              => 'grisi "$1"',
-'dellogpage'                  => 'Regjistri i grisjeve',
-'dellogpagetext'              => 'Më poshtë është një listë e grisjeve më të fundit.
+# Delete
+'deletepage'            => 'Grise faqen',
+'confirm'               => 'Konfirmoni',
+'excontent'             => "përmbajtja ishte: '$1'",
+'excontentauthor'       => "përmbajtja ishte: '$1' (dhe i vetmi redaktor ishte '$2')",
+'exbeforeblank'         => "përmbajtja përpara boshatisjes ishte: '$1'",
+'exblank'               => 'faqja është bosh',
+'historywarning'        => 'Kujdes: Faqja që jeni bërë gati për të grisur ka histori:',
+'confirmdeletetext'     => "Jeni duke grisur '''përfundimisht''' një faqe ose një skedë me tër historinë e saj nga regjistri. Ju lutem konfirmoni që keni ndër mënd ta bëni këtë gjë, që i kuptoni se cilat janë pasojat, dhe që po veproni në përputhje me [[{{MediaWiki:Policy-url}}]].",
+'actioncomplete'        => 'Veprim i mbaruar',
+'deletedtext'           => '"<nowiki>$1</nowiki>" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
+'deletedarticle'        => 'grisi "$1"',
+'dellogpage'            => 'Regjistri i grisjeve',
+'dellogpagetext'        => 'Më poshtë është një listë e grisjeve më të fundit.
 Të gjitha kohët janë sipas orës së shërbyesit (UTC).',
-'deletionlog'                 => 'regjistrin e grisjeve',
-'reverted'                    => 'Kthehu tek një version i vjetër',
-'deletecomment'               => 'Arsyeja',
-'deleteotherreason'           => 'Arsye tjetër:',
-'deletereasonotherlist'       => 'Arsyeja tjetër',
-'deletereason-dropdown'       => '*Arsye për grisje:
+'deletionlog'           => 'regjistrin e grisjeve',
+'reverted'              => 'Kthehu tek një version i vjetër',
+'deletecomment'         => 'Arsyeja',
+'deleteotherreason'     => 'Arsye tjetër:',
+'deletereasonotherlist' => 'Arsyeja tjetër',
+'deletereason-dropdown' => '*Arsye për grisje:
 ** Vandalizëm
 ** Përmbajtje jo-enciklopedike
 ** Pa të drejtë autori
 ** Kërkesë nga autori',
-'rollback'                    => 'Riktheji mbrapsh redaktimet',
-'rollback_short'              => 'Riktheje',
-'rollbacklink'                => 'riktheje',
-'rollbackfailed'              => 'Rikthimi dështoi',
-'cantrollback'                => 'Nuk munda ta kthejë redaktimin; redaktori i fundit është i vetmi autor i këtij artikulli.',
-'alreadyrolled'               => 'Nuk munda ta rikthej redaktimin e fundit e [[:$1]] nga [[User:$2|$2]] ([[User talk:$2|Diskutim]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe.
+
+# Rollback
+'rollback'         => 'Riktheji mbrapsh redaktimet',
+'rollback_short'   => 'Riktheje',
+'rollbacklink'     => 'riktheje',
+'rollbackfailed'   => 'Rikthimi dështoi',
+'cantrollback'     => 'Nuk munda ta kthejë redaktimin; redaktori i fundit është i vetmi autor i këtij artikulli.',
+'alreadyrolled'    => 'Nuk munda ta rikthej redaktimin e fundit e [[:$1]] nga [[User:$2|$2]] ([[User talk:$2|Diskutim]]); dikush tjetër e ka redaktuar ose rikthyer këtë faqe.
 
 Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|Diskutim]]).',
-'editcomment'                 => 'Komenti i redaktimit ishte: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ndryshimet e [[Special:Contributions/$2|$2]] ([[User talk:$2|diskutimet]]) u kthyen mbrapsht, artikulli tani ndodhet në versionin e fundit nga [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Ndryshimet e $1 u kthyen mbrapsh; artikulli ndodhet tek verzioni i $2.',
-'sessionfailure'              => 'Më duket se ka një problem me seancën tuaj të hyrjes. Veprimi juaj nuk është kryer për tu mbrojtur nga ndonjë veprim dashakeq kundrejt shfletimit tuaj. Ju lutem kthehuni mbrapsh, rifreskoni faqen prej nga erdhët dhe provojeni përsëri veprimin.',
+'editcomment'      => 'Komenti i redaktimit ishte: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Ndryshimet e [[Special:Contributions/$2|$2]] ([[User talk:$2|diskutimet]]) u kthyen mbrapsht, artikulli tani ndodhet në versionin e fundit nga [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Ndryshimet e $1 u kthyen mbrapsh; artikulli ndodhet tek verzioni i $2.',
+'sessionfailure'   => 'Më duket se ka një problem me seancën tuaj të hyrjes. Veprimi juaj nuk është kryer për tu mbrojtur nga ndonjë veprim dashakeq kundrejt shfletimit tuaj. Ju lutem kthehuni mbrapsh, rifreskoni faqen prej nga erdhët dhe provojeni përsëri veprimin.',
+
+# Protect
 'protectlogpage'              => 'Regjistri i mbrojtjeve',
 'protectlogtext'              => 'Më poshtë është një listë e "mbrojtjeve/lirimeve" të faqeve.
 Shikoni Faqe e mbrojtur për më shumë informacion.',

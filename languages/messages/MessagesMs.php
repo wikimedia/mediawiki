@@ -1703,54 +1703,58 @@ Untuk mengubah tetapan senarai pantau anda, sila kunjungi
 Maklum balas dan bantuan:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Hapus laman',
-'confirm'                     => 'Sahkan',
-'excontent'                   => "kandungan: '$1'",
-'excontentauthor'             => "Kandungan: '$1' (dan satu-satunya penyumbang ialah '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "kandungan sebelum pengosongan ialah: '$1'",
-'exblank'                     => 'laman tersebut kosong',
-'delete-confirm'              => 'Hapus "$1"',
-'delete-legend'               => 'Hapus',
-'historywarning'              => '<b>Amaran</b>: Laman yang ingin anda hapuskan mengandungi sejarah:',
-'confirmdeletetext'           => 'Anda sudah hendak menghapuskan sebuah laman berserta semua sejarahnya.
+# Delete
+'deletepage'             => 'Hapus laman',
+'confirm'                => 'Sahkan',
+'excontent'              => "kandungan: '$1'",
+'excontentauthor'        => "Kandungan: '$1' (dan satu-satunya penyumbang ialah '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "kandungan sebelum pengosongan ialah: '$1'",
+'exblank'                => 'laman tersebut kosong',
+'delete-confirm'         => 'Hapus "$1"',
+'delete-legend'          => 'Hapus',
+'historywarning'         => '<b>Amaran</b>: Laman yang ingin anda hapuskan mengandungi sejarah:',
+'confirmdeletetext'      => 'Anda sudah hendak menghapuskan sebuah laman berserta semua sejarahnya.
 Sila sahkan bahawa anda memang hendak berbuat demikian, anda faham akan
 akibatnya, dan perbuatan anda mematuhi [[{{MediaWiki:Policy-url}}|dasar kami]].',
-'actioncomplete'              => 'Tindakan berjaya',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" telah dihapuskan.
+'actioncomplete'         => 'Tindakan berjaya',
+'deletedtext'            => '"<nowiki>$1</nowiki>" telah dihapuskan.
 Sila lihat $2 untuk rekod penghapusan terkini.',
-'deletedarticle'              => 'menghapuskan "[[$1]]"',
-'suppressedarticle'           => 'menahan "[[$1]]"',
-'dellogpage'                  => 'Log penghapusan',
-'dellogpagetext'              => 'Berikut ialah senarai penghapusan terkini.',
-'deletionlog'                 => 'log penghapusan',
-'reverted'                    => 'Dibalikkan kepada semakan sebelumnya',
-'deletecomment'               => 'Sebab penghapusan:',
-'deleteotherreason'           => 'Sebab lain/tambahan:',
-'deletereasonotherlist'       => 'Sebab lain',
-'deletereason-dropdown'       => '
+'deletedarticle'         => 'menghapuskan "[[$1]]"',
+'suppressedarticle'      => 'menahan "[[$1]]"',
+'dellogpage'             => 'Log penghapusan',
+'dellogpagetext'         => 'Berikut ialah senarai penghapusan terkini.',
+'deletionlog'            => 'log penghapusan',
+'reverted'               => 'Dibalikkan kepada semakan sebelumnya',
+'deletecomment'          => 'Sebab penghapusan:',
+'deleteotherreason'      => 'Sebab lain/tambahan:',
+'deletereasonotherlist'  => 'Sebab lain',
+'deletereason-dropdown'  => '
 * Sebab-sebab lazim
 ** Permintaan pengarang
 ** Melanggar hak cipta
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Ubah sebab-sebab hapus',
-'delete-toobig'               => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Oleh itu, laman ini dilindungi daripada dihapuskan untuk mengelak kerosakan di {{SITENAME}} yang tidak disengajakan.',
-'delete-warning-toobig'       => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Menghapuskannya boleh mengganggu perjalanan pangkalan data {{SITENAME}}. Sila berhati-hati.',
-'rollback'                    => 'Undurkan suntingan.',
-'rollback_short'              => 'Undur',
-'rollbacklink'                => 'undur',
-'rollbackfailed'              => 'Pengunduran gagal',
-'cantrollback'                => 'Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.',
-'alreadyrolled'               => 'Tidak dapat membalikkan suntingan terakhir bagi [[:$1]]
+'delete-edit-reasonlist' => 'Ubah sebab-sebab hapus',
+'delete-toobig'          => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Oleh itu, laman ini dilindungi daripada dihapuskan untuk mengelak kerosakan di {{SITENAME}} yang tidak disengajakan.',
+'delete-warning-toobig'  => 'Laman ini mempunyai sejarah yang besar, iaitu melebihi $1 jumlah semakan. Menghapuskannya boleh mengganggu perjalanan pangkalan data {{SITENAME}}. Sila berhati-hati.',
+
+# Rollback
+'rollback'         => 'Undurkan suntingan.',
+'rollback_short'   => 'Undur',
+'rollbacklink'     => 'undur',
+'rollbackfailed'   => 'Pengunduran gagal',
+'cantrollback'     => 'Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.',
+'alreadyrolled'    => 'Tidak dapat membalikkan suntingan terakhir bagi [[:$1]]
 oleh [[User:$2|$2]] ([[User talk:$2|Perbincangan]]); terdapat pengguna yang telah berbuat demikian.
 
 Suntingan terakhir telah dibuat oleh [[User:$3|$3]] ([[User talk:$3|Perbincangan]]).',
-'editcomment'                 => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
-'sessionfailure'              => 'Terdapat sedikit masalah pada sesi log masuk anda.
+'editcomment'      => 'Komen suntingan: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Membalikkan suntingan oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Perbincangan]]) kepada versi terakhir oleh [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Membalikkan suntingan oleh $1 kepada versi terakhir oleh $2.',
+'sessionfailure'   => 'Terdapat sedikit masalah pada sesi log masuk anda.
 Tindakan ini telah dibatalkan untuk mencegah perampasan sesi.
 Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebelum ini, kemudian cuba lagi.',
+
+# Protect
 'protectlogpage'              => 'Log perlindungan',
 'protectlogtext'              => 'Berikut ialah senarai bagi tindakan penguncian/pembukaan laman. Sila lihat [[Special:ProtectedPages|senarai laman dilindungi]] untuk rujukan lanjut.',
 'protectedarticle'            => 'melindungi "[[$1]]"',

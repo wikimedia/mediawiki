@@ -1626,54 +1626,58 @@ Para cambiar a súa lista de vixilancia, visite
 Axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Borrar a páxina',
-'confirm'                     => 'Confirmar',
-'excontent'                   => 'o contido era: "$1"',
-'excontentauthor'             => 'o contido era: "$1" (e o único editor foi "[[Special:Contributions/$2|$2]]")',
-'exbeforeblank'               => 'o contido antes do baleiramento era: "$1"',
-'exblank'                     => 'a páxina estaba baleira',
-'delete-confirm'              => 'Borrar "$1"',
-'delete-legend'               => 'Borrar',
-'historywarning'              => 'Atención: a páxina que vai borrar ten un historial:',
-'confirmdeletetext'           => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
+# Delete
+'deletepage'             => 'Borrar a páxina',
+'confirm'                => 'Confirmar',
+'excontent'              => 'o contido era: "$1"',
+'excontentauthor'        => 'o contido era: "$1" (e o único editor foi "[[Special:Contributions/$2|$2]]")',
+'exbeforeblank'          => 'o contido antes do baleiramento era: "$1"',
+'exblank'                => 'a páxina estaba baleira',
+'delete-confirm'         => 'Borrar "$1"',
+'delete-legend'          => 'Borrar',
+'historywarning'         => 'Atención: a páxina que vai borrar ten un historial:',
+'confirmdeletetext'      => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
-'actioncomplete'              => 'A acción foi completada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" foi borrado.
+'actioncomplete'         => 'A acción foi completada',
+'deletedtext'            => '"<nowiki>$1</nowiki>" foi borrado.
 No $2 pode ver unha listaxe dos borrados máis recentes.',
-'deletedarticle'              => 'borrou "[[$1]]"',
-'suppressedarticle'           => 'suprimiu "[[$1]]"',
-'dellogpage'                  => 'Rexistro de borrados',
-'dellogpagetext'              => 'Abaixo está a listaxe dos borrados máis recentes.',
-'deletionlog'                 => 'rexistro de borrados',
-'reverted'                    => 'Devolto a unha versión anterior',
-'deletecomment'               => 'Razón para o borrado:',
-'deleteotherreason'           => 'Outro motivo:',
-'deletereasonotherlist'       => 'Outro motivo',
-'deletereason-dropdown'       => '
+'deletedarticle'         => 'borrou "[[$1]]"',
+'suppressedarticle'      => 'suprimiu "[[$1]]"',
+'dellogpage'             => 'Rexistro de borrados',
+'dellogpagetext'         => 'Abaixo está a listaxe dos borrados máis recentes.',
+'deletionlog'            => 'rexistro de borrados',
+'reverted'               => 'Devolto a unha versión anterior',
+'deletecomment'          => 'Razón para o borrado:',
+'deleteotherreason'      => 'Outro motivo:',
+'deletereasonotherlist'  => 'Outro motivo',
+'deletereason-dropdown'  => '
 *Motivos frecuentes para borrar
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Editar os motivos de borrado',
-'delete-toobig'               => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
+'delete-edit-reasonlist' => 'Editar os motivos de borrado',
+'delete-toobig'          => 'Esta páxina conta cun historial longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
 Limitouse a eliminación destas páxinas para previr problemas de funcionamento accidentais en {{SITENAME}}.',
-'delete-warning-toobig'       => 'Esta páxina conta cun historial de edicións longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
+'delete-warning-toobig'  => 'Esta páxina conta cun historial de edicións longo, de máis {{PLURAL:$1|dunha revisión|de $1 revisións}}.
 Ao eliminala pódense provocar problemas de funcionamento nas operacións da base de datos de {{SITENAME}};
 proceda con coidado.',
-'rollback'                    => 'Reverter as edicións',
-'rollback_short'              => 'Reverter',
-'rollbacklink'                => 'reverter',
-'rollbackfailed'              => 'Houbo un fallo ao reverter as edicións',
-'cantrollback'                => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
-'alreadyrolled'               => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
+
+# Rollback
+'rollback'         => 'Reverter as edicións',
+'rollback_short'   => 'Reverter',
+'rollbacklink'     => 'reverter',
+'rollbackfailed'   => 'Houbo un fallo ao reverter as edicións',
+'cantrollback'     => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
+'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]] | [[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'                 => 'O comentario da edición era: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Desfixéronse as edicións de $1;
+'editcomment'      => 'O comentario da edición era: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
-'sessionfailure'              => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
+'sessionfailure'   => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
+
+# Protect
 'protectlogpage'              => 'Rexistro de proteccións',
 'protectlogtext'              => 'Embaixo móstrase unha lista dos bloqueos e desbloqueos de páxinas.
 Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a lista coas proteccións de páxinas vixentes.',

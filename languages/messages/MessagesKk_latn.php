@@ -1877,57 +1877,61 @@ Baqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:
 Sın-pikir berw jäne bılaýğı järdem alw üşin:
 {{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Betti joyw',
-'confirm'                     => 'Quptaw',
-'excontent'                   => "bolğan mağlumatı: '$1'",
-'excontentauthor'             => "bolğan mağlumatı (tek '[[{{#special:Contributions}}/$2|$2]]' ülesi): '$1'",
-'exbeforeblank'               => "tazartw aldındağı bolğan mağlumatı: '$1'",
-'exblank'                     => 'bet bos boldı',
-'delete-confirm'              => '«$1» degendi joyw',
-'delete-legend'               => 'Joyw',
-'historywarning'              => 'Qulaqtandırw: Joywı közdelgen bette tarïxı bar:',
-'confirmdeletetext'           => 'Betti bükil tarïxımen birge derekqordan joýywın kozdediñiz.
+# Delete
+'deletepage'             => 'Betti joyw',
+'confirm'                => 'Quptaw',
+'excontent'              => "bolğan mağlumatı: '$1'",
+'excontentauthor'        => "bolğan mağlumatı (tek '[[{{#special:Contributions}}/$2|$2]]' ülesi): '$1'",
+'exbeforeblank'          => "tazartw aldındağı bolğan mağlumatı: '$1'",
+'exblank'                => 'bet bos boldı',
+'delete-confirm'         => '«$1» degendi joyw',
+'delete-legend'          => 'Joyw',
+'historywarning'         => 'Qulaqtandırw: Joywı közdelgen bette tarïxı bar:',
+'confirmdeletetext'      => 'Betti bükil tarïxımen birge derekqordan joýywın kozdediñiz.
 Osını istew nïetiñizdi, saldarın baýımdawıñızdı jäne [[{{{{ns:mediawiki}}:Policy-url}}]] degenge laýıqtı dep istemektengeñizdi quptañız.',
-'actioncomplete'              => 'Äreket bitti',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» joýıldı.
+'actioncomplete'         => 'Äreket bitti',
+'deletedtext'            => '«<nowiki>$1</nowiki>» joýıldı.
 Jwıqtağı joywlar twralı jazbaların $2 degennen qarañız.',
-'deletedarticle'              => '«[[$1]]» degendi joýdı',
-'suppressedarticle'           => '«[[$1]]» degendi şettetti',
-'dellogpage'                  => 'Joyw_jwrnalı',
-'dellogpagetext'              => 'Tömende jwıqtağı joywlardıñ tizimi berilgen.',
-'deletionlog'                 => 'joyw jwrnalı',
-'reverted'                    => 'Erterek tüzetwine qaýtarılğan',
-'deletecomment'               => 'Joywdıñ sebebi:',
-'deleteotherreason'           => 'Basqa/qosımşa sebep:',
-'deletereasonotherlist'       => 'Basqa sebep',
-'deletereason-dropdown'       => '* Joywdıñ jalpı sebepteri
+'deletedarticle'         => '«[[$1]]» degendi joýdı',
+'suppressedarticle'      => '«[[$1]]» degendi şettetti',
+'dellogpage'             => 'Joyw_jwrnalı',
+'dellogpagetext'         => 'Tömende jwıqtağı joywlardıñ tizimi berilgen.',
+'deletionlog'            => 'joyw jwrnalı',
+'reverted'               => 'Erterek tüzetwine qaýtarılğan',
+'deletecomment'          => 'Joywdıñ sebebi:',
+'deleteotherreason'      => 'Basqa/qosımşa sebep:',
+'deletereasonotherlist'  => 'Basqa sebep',
+'deletereason-dropdown'  => '* Joywdıñ jalpı sebepteri
 ** Awtordıñ suranımı boýınşa
 ** Awtorlıq quqıqtarın buzw
 ** Buzaqılıq',
-'delete-edit-reasonlist'      => 'Joyw sebepterin öñdew',
-'delete-toobig'               => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
+'delete-edit-reasonlist' => 'Joyw sebepterin öñdew',
+'delete-toobig'          => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
 Bundaý betterdiñ joywı {{SITENAME}} torabın äldeqalaý üzip tastawına böget salw üşin tïımdalğan.',
-'delete-warning-toobig'       => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
+'delete-warning-toobig'  => 'Bul bette baýtaq tüzetw tarïxı bar, $1 tüzetwden astam.
 Bunıñ joywı {{SITENAME}} torabındağı derekqor äreketterdi üzip tastawın mümkin;
 bunı abaýlap ötkiziñiz.',
-'rollback'                    => 'Öñdemelerdi şegindirw',
-'rollback_short'              => 'Şegindirw',
-'rollbacklink'                => 'şegindirw',
-'rollbackfailed'              => 'Şegindirw sätsiz bitti',
-'cantrollback'                => 'Öñdeme qaýtarılmadı;
+
+# Rollback
+'rollback'         => 'Öñdemelerdi şegindirw',
+'rollback_short'   => 'Şegindirw',
+'rollbacklink'     => 'şegindirw',
+'rollbackfailed'   => 'Şegindirw sätsiz bitti',
+'cantrollback'     => 'Öñdeme qaýtarılmadı;
 soñğı üleskeri tek osı bettiñ bastawşısı boldı.',
-'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen [[:$1]] soñğı öñdemesi şegindirilmedi;
+'alreadyrolled'    => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) istegen [[:$1]] soñğı öñdemesi şegindirilmedi;
 basqa birew bul betti aldaqaşan öñdegen ne şegindirgen.
 
 soñğı öñdemesin [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|talqılawı]]) istegen.',
-'editcomment'                 => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 öñdemelerinen qaýtarğan;
+'editcomment'      => 'Bolğan öñdeme mändemesi: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|talqılawı]]) öñdemelerinen [[{{ns:user}}:$1|$1]] soñğı nusqasına qaýtardı', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 öñdemelerinen qaýtarğan;
 $2 soñğı nusqasına özgertti.',
-'sessionfailure'              => 'Kirw sessïyasında şataq bolğan sïyaqtı;
+'sessionfailure'   => 'Kirw sessïyasında şataq bolğan sïyaqtı;
 sessïyağa şabwıldawdardan qorğanw üşin, osı äreket toqtatıldı.
 «Artqa» degendi basıñız, jäne betti qaýta jükteñiz de, qaýta baýqap köriñiz.',
+
+# Protect
 'protectlogpage'              => 'Qorğaw jwrnalı',
 'protectlogtext'              => 'Tömende betterdiñ qorğaw/qorğamaw tizimi berilgen.
 Ağımdağı qorğaw ärektter bar better üşin [[{{#special:Protectedpages}}|qorğalğan bet tizimin]] qarañız.',

@@ -1521,50 +1521,54 @@ $NEWPAGE
 ถ้าต้องการความช่วยเหลือเพิ่มเติม ให้เข้าที่:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'ลบหน้า',
-'confirm'                     => 'ยืนยัน',
-'excontent'                   => "เนื้อหาเดิม: '$1'",
-'excontentauthor'             => "เนื้อหาเดิม: '$1' (และมีผู้เขียนคนเดียว คือ '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "เนื้อหาเดิมก่อนหน้าถูกทำให้ว่าง: '$1'",
-'exblank'                     => 'หน้าว่าง',
-'delete-confirm'              => 'ลบ "$1"',
-'delete-legend'               => 'ลบ',
-'historywarning'              => 'คำเตือน: ดูประวัติก่อนหน้า:',
-'confirmdeletetext'           => 'คุณกำลังจะลบหน้าหรือภาพนี้ รวมไปถึงประวัติหน้าออกจากระบบ
+# Delete
+'deletepage'             => 'ลบหน้า',
+'confirm'                => 'ยืนยัน',
+'excontent'              => "เนื้อหาเดิม: '$1'",
+'excontentauthor'        => "เนื้อหาเดิม: '$1' (และมีผู้เขียนคนเดียว คือ '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "เนื้อหาเดิมก่อนหน้าถูกทำให้ว่าง: '$1'",
+'exblank'                => 'หน้าว่าง',
+'delete-confirm'         => 'ลบ "$1"',
+'delete-legend'          => 'ลบ',
+'historywarning'         => 'คำเตือน: ดูประวัติก่อนหน้า:',
+'confirmdeletetext'      => 'คุณกำลังจะลบหน้าหรือภาพนี้ รวมไปถึงประวัติหน้าออกจากระบบ
 กรุณายืนยันว่าต้องการดำเนินการต่อและแน่ใจว่าได้เข้าใจและการลบครั้งนี้สอดคล้องกับ[[{{MediaWiki:Policy-url}}]]',
-'actioncomplete'              => 'จัดการสำเร็จ',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ถูกลบ
+'actioncomplete'         => 'จัดการสำเร็จ',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ถูกลบ
 ดู $2 สำหรับบันทึกการลบล่าสุด',
-'deletedarticle'              => '"[[$1]]" ถูกลบ',
-'suppressedarticle'           => '"[[$1]]" ระงับแล้ว',
-'dellogpage'                  => 'บันทึกการลบ',
-'dellogpagetext'              => 'ด้านล่างเป็นรายการของการลบล่าสุด',
-'deletionlog'                 => 'บันทึกการลบ',
-'reverted'                    => 'ย้อนไปรุ่นก่อนหน้า',
-'deletecomment'               => 'สาเหตุในการลบ',
-'deleteotherreason'           => 'เหตุผลอื่นเพิ่มเติม:',
-'deletereasonotherlist'       => 'เหตุผลอื่น',
-'deletereason-dropdown'       => '* เหตุผลทั่วไปของการลบ
+'deletedarticle'         => '"[[$1]]" ถูกลบ',
+'suppressedarticle'      => '"[[$1]]" ระงับแล้ว',
+'dellogpage'             => 'บันทึกการลบ',
+'dellogpagetext'         => 'ด้านล่างเป็นรายการของการลบล่าสุด',
+'deletionlog'            => 'บันทึกการลบ',
+'reverted'               => 'ย้อนไปรุ่นก่อนหน้า',
+'deletecomment'          => 'สาเหตุในการลบ',
+'deleteotherreason'      => 'เหตุผลอื่นเพิ่มเติม:',
+'deletereasonotherlist'  => 'เหตุผลอื่น',
+'deletereason-dropdown'  => '* เหตุผลทั่วไปของการลบ
 ** รับแจ้งจากผู้เขียน
 ** ละเมิดลิขสิทธิ์
 ** ก่อกวน',
-'delete-edit-reasonlist'      => 'แก้ไขรายชื่อเหตุผลในการลบ',
-'delete-toobig'               => 'หน้านี้มีประวัติการแก้ไขมากเกินกว่า $1 {{PLURAL:$1|รุ่น|รุ่น}} ซึ่งถือว่าเยอะมาก เพื่อป้องกันไม่ให้ {{SITENAME}} ได้รับความเสียหายอย่างที่ไม่เคยคาดคิดมาก่อน จึงไม่อนุญาตให้ลบหน้านี้',
-'delete-warning-toobig'       => 'หน้านี้มีประวัติการแก้ไขมากเกินกว่า $1 {{PLURAL:$1|รุ่น|รุ่น}} ซึ่งถือว่าเยอะมาก การลบหน้านี้อาจทำให้ {{SITENAME}} ได้รับความเสียหายอย่างที่ไม่เคยคาดคิดมาก่อน จึงได้เตือนไว้ ก่อนที่จะกระทำสิ่งนี้',
-'rollback'                    => 'ย้อนการแก้ไข',
-'rollback_short'              => 'ย้อน',
-'rollbacklink'                => 'ย้อน',
-'rollbackfailed'              => 'ย้อนไม่สำเร็จ',
-'cantrollback'                => 'ไม่สามารถย้อนการแก้ไขได้ ก่อนหน้านี้ไม่มีผู้แก้ไขรายอื่น',
-'alreadyrolled'               => 'ไม่สามารถย้อนการแก้ไข [[:$1]]
+'delete-edit-reasonlist' => 'แก้ไขรายชื่อเหตุผลในการลบ',
+'delete-toobig'          => 'หน้านี้มีประวัติการแก้ไขมากเกินกว่า $1 {{PLURAL:$1|รุ่น|รุ่น}} ซึ่งถือว่าเยอะมาก เพื่อป้องกันไม่ให้ {{SITENAME}} ได้รับความเสียหายอย่างที่ไม่เคยคาดคิดมาก่อน จึงไม่อนุญาตให้ลบหน้านี้',
+'delete-warning-toobig'  => 'หน้านี้มีประวัติการแก้ไขมากเกินกว่า $1 {{PLURAL:$1|รุ่น|รุ่น}} ซึ่งถือว่าเยอะมาก การลบหน้านี้อาจทำให้ {{SITENAME}} ได้รับความเสียหายอย่างที่ไม่เคยคาดคิดมาก่อน จึงได้เตือนไว้ ก่อนที่จะกระทำสิ่งนี้',
+
+# Rollback
+'rollback'         => 'ย้อนการแก้ไข',
+'rollback_short'   => 'ย้อน',
+'rollbacklink'     => 'ย้อน',
+'rollbackfailed'   => 'ย้อนไม่สำเร็จ',
+'cantrollback'     => 'ไม่สามารถย้อนการแก้ไขได้ ก่อนหน้านี้ไม่มีผู้แก้ไขรายอื่น',
+'alreadyrolled'    => 'ไม่สามารถย้อนการแก้ไข [[:$1]]
 แก้โดย [[User:$2|$2]] ([[User talk:$2|พูดคุย]]) มีใครบางคนได้แก้ไขหรือย้อนไปก่อนหน้า
 
 การแก้ไขล่าสุดจัดทำโดย [[User:$3|$3]] ([[User talk:$3|พูดคุย]])',
-'editcomment'                 => 'ความเห็นโดย: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'ย้อนการแก้ไขของ $1 ไปยังรุ่นของ $2',
-'sessionfailure'              => 'ท่าทางจะมีปัญหาเกี่ยวการล็อกอินในช่วงเวลานี้ เกิดจากทางระบบป้องกันการลักลอบการขโมยล็อกอิน กรุณาย้อนกลับไปหน้าก่อนหน้า และลองโหลดใหม่อีกครั้ง',
+'editcomment'      => 'ความเห็นโดย: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'ย้อนการแก้ไขของ [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) ไปยังรุ่นของ [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'ย้อนการแก้ไขของ $1 ไปยังรุ่นของ $2',
+'sessionfailure'   => 'ท่าทางจะมีปัญหาเกี่ยวการล็อกอินในช่วงเวลานี้ เกิดจากทางระบบป้องกันการลักลอบการขโมยล็อกอิน กรุณาย้อนกลับไปหน้าก่อนหน้า และลองโหลดใหม่อีกครั้ง',
+
+# Protect
 'protectlogpage'              => 'บันทึกการล็อก',
 'protectlogtext'              => 'รายการด้านล่างแสดงการล็อกหน้าและการปลดล็อก สำหรับหน้าที่โดนล็อกในปัจจุบันดูที่ [[Special:ProtectedPages|รายการหน้าที่ถูกล็อก]]',
 'protectedarticle'            => '"[[$1]]" ถูกล็อก',

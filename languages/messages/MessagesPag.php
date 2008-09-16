@@ -264,15 +264,17 @@ No labay mon ekalen may bolong diad listaan na babantayan, tapik mo labat so \"e
 'changed'            => 'asalatan',
 'created'            => 'agawa',
 
-# Delete/protect/revert
-'deletepage'          => 'Buralen so bolong',
-'confirm'             => 'Paletan',
-'exblank'             => 'Anggapoy laman na bolong',
-'actioncomplete'      => 'Asumpal lan agawa',
-'deletedtext'         => 'Abural lay "<nowiki>$1</nowiki>".
+# Delete
+'deletepage'     => 'Buralen so bolong',
+'confirm'        => 'Paletan',
+'exblank'        => 'Anggapoy laman na bolong',
+'actioncomplete' => 'Asumpal lan agawa',
+'deletedtext'    => 'Abural lay "<nowiki>$1</nowiki>".
 Pinengneng so $2 para ed listaan na saray abural ran balo.',
-'deletedarticle'      => 'binural so "[[$1]]"',
-'deletecomment'       => 'Aken buralen',
+'deletedarticle' => 'binural so "[[$1]]"',
+'deletecomment'  => 'Aken buralen',
+
+# Protect
 'protect-legend'      => 'Palitaen so pangiyagel',
 'protect-level-sysop' => 'Sysops labat',
 

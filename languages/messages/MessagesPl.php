@@ -1816,55 +1816,59 @@ W celu zmiany ustawień swojej listy obserwowanych odwiedź
 Pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Usuń stronę',
-'confirm'                     => 'Potwierdź',
-'excontent'                   => 'treść: „$1”',
-'excontentauthor'             => 'treść: „$1” (jedyny autor: [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => 'poprzednia zawartość, obecnie pustej strony: „$1”',
-'exblank'                     => 'Strona była pusta',
-'delete-confirm'              => 'Usuń „$1”',
-'delete-legend'               => 'Usuń',
-'historywarning'              => 'Uwaga! Strona, którą chcesz usunąć, ma starsze wersje:',
-'confirmdeletetext'           => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
+# Delete
+'deletepage'             => 'Usuń stronę',
+'confirm'                => 'Potwierdź',
+'excontent'              => 'treść: „$1”',
+'excontentauthor'        => 'treść: „$1” (jedyny autor: [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => 'poprzednia zawartość, obecnie pustej strony: „$1”',
+'exblank'                => 'Strona była pusta',
+'delete-confirm'         => 'Usuń „$1”',
+'delete-legend'          => 'Usuń',
+'historywarning'         => 'Uwaga! Strona, którą chcesz usunąć, ma starsze wersje:',
+'confirmdeletetext'      => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
-'actioncomplete'              => 'Operacja wykonana',
-'deletedtext'                 => 'Usunięto „<nowiki>$1</nowiki>”.
+'actioncomplete'         => 'Operacja wykonana',
+'deletedtext'            => 'Usunięto „<nowiki>$1</nowiki>”.
 Zobacz na stronie $2 rejestr ostatnio wykonanych usunięć.',
-'deletedarticle'              => 'usunął [[$1]]',
-'suppressedarticle'           => 'utajnił [[$1]]',
-'dellogpage'                  => 'Usunięte',
-'dellogpagetext'              => 'Poniżej znajduje się lista ostatnio wykonanych usunięć.',
-'deletionlog'                 => 'rejestr usunięć',
-'reverted'                    => 'Przywrócono poprzednią wersję',
-'deletecomment'               => 'Powód usunięcia:',
-'deleteotherreason'           => 'Inny/dodatkowy powód:',
-'deletereasonotherlist'       => 'Inny powód',
-'deletereason-dropdown'       => '* Najczęstsze powody usunięcia
+'deletedarticle'         => 'usunął [[$1]]',
+'suppressedarticle'      => 'utajnił [[$1]]',
+'dellogpage'             => 'Usunięte',
+'dellogpagetext'         => 'Poniżej znajduje się lista ostatnio wykonanych usunięć.',
+'deletionlog'            => 'rejestr usunięć',
+'reverted'               => 'Przywrócono poprzednią wersję',
+'deletecomment'          => 'Powód usunięcia:',
+'deleteotherreason'      => 'Inny/dodatkowy powód:',
+'deletereasonotherlist'  => 'Inny powód',
+'deletereason-dropdown'  => '* Najczęstsze powody usunięcia
 ** Prośba autora
 ** Naruszenie praw autorskich
 ** Wandalizm',
-'delete-edit-reasonlist'      => 'Edycja listy powodów usunięcia strony',
-'delete-toobig'               => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
+'delete-edit-reasonlist' => 'Edycja listy powodów usunięcia strony',
+'delete-toobig'          => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
 Usunięcie jej mogłoby spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}} i dlatego zostało ograniczone.',
-'delete-warning-toobig'       => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
+'delete-warning-toobig'  => 'Ta strona ma bardzo długą historię edycji, ponad $1 {{PLURAL:$1|zmianę|zmiany|zmian}}.
 Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
-'rollback'                    => 'Cofnij edycję',
-'rollback_short'              => 'Cofnij',
-'rollbacklink'                => 'cofnij',
-'rollbackfailed'              => 'Nie udało się cofnąć zmiany',
-'cantrollback'                => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
-'alreadyrolled'               => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]] | [[Special:Contributions/$2|{{int:contribslink}}]]).
+
+# Rollback
+'rollback'         => 'Cofnij edycję',
+'rollback_short'   => 'Cofnij',
+'rollbacklink'     => 'cofnij',
+'rollbackfailed'   => 'Nie udało się cofnąć zmiany',
+'cantrollback'     => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
+'alreadyrolled'    => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]] | [[Special:Contributions/$2|{{int:contribslink}}]]).
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Edycję opisano: „<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wycofano edycje użytkownika $1.
+'editcomment'      => 'Edycję opisano: „<i>$1</i>”.', # only shown if there is an edit comment
+'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
-'sessionfailure'              => 'Wystąpił problem z weryfikacją zalogowania.
+'sessionfailure'   => 'Wystąpił problem z weryfikacją zalogowania.
 Polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wydaj polecenie.',
+
+# Protect
 'protectlogpage'              => 'Zabezpieczone',
 'protectlogtext'              => 'Poniżej znajduje się lista blokad założonych i zdjętych z pojedynczych stron.
 Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę wykazu [[Special:ProtectedPages|zabezpieczonych stron]].',

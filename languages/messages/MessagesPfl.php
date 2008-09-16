@@ -126,7 +126,7 @@ $messages = array(
 
 'enotif_reset' => 'Alle Seide als bsuchd margiere',
 
-# Delete/protect/revert
+# Delete
 'deletepage' => 'Seid lesche',
 'confirm'    => 'Bestädiche',
 

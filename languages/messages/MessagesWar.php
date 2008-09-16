@@ -243,7 +243,7 @@ $messages = array(
 'watch'         => 'Bantayi',
 'watchthispage' => 'Bantayi ini nga pakli',
 
-# Delete/protect/revert
+# Delete
 'deletedtext' => 'Ginpara an "<nowiki>$1</nowiki>".
 Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 

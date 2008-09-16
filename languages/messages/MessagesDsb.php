@@ -1671,50 +1671,54 @@ Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej wo
 --
 Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Bok wulašowaś',
-'confirm'                     => 'Wobkšuśiś',
-'excontent'                   => "wopśimjeśe jo było: '$1'",
-'excontentauthor'             => "wopśimjeśe jo było: '$1' (a jadnučki wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "Wopśimjeśe do wuprozdnjenja jo było: '$1'",
-'exblank'                     => 'bok jo był prozny',
-'delete-confirm'              => '„$1“ lašowaś',
-'delete-legend'               => 'Lašowaś',
-'historywarning'              => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
-'confirmdeletetext'           => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
-'actioncomplete'              => 'Akcija jo se wugbała.',
-'deletedtext'                 => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
-'deletedarticle'              => 'wulašowane "[[$1]]"',
-'suppressedarticle'           => '"[[$1]]" pódtłocony',
-'dellogpage'                  => 'log-lisćina wulašowanjow',
-'dellogpagetext'              => 'How jo log-lisćina wulašowanych bokow a datajow.',
-'deletionlog'                 => 'log-lisćina wulašowanjow',
-'reverted'                    => 'Nawrośone na staršu wersiju',
-'deletecomment'               => 'Pśicyna wulašowanja:',
-'deleteotherreason'           => 'Druga/pśidatna pśicyna:',
-'deletereasonotherlist'       => 'Druga pśicyna',
-'deletereason-dropdown'       => '* Powšykne pśicyny za lašowanja
+# Delete
+'deletepage'             => 'Bok wulašowaś',
+'confirm'                => 'Wobkšuśiś',
+'excontent'              => "wopśimjeśe jo było: '$1'",
+'excontentauthor'        => "wopśimjeśe jo było: '$1' (a jadnučki wobźěłaŕ jo był '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "Wopśimjeśe do wuprozdnjenja jo było: '$1'",
+'exblank'                => 'bok jo był prozny',
+'delete-confirm'         => '„$1“ lašowaś',
+'delete-legend'          => 'Lašowaś',
+'historywarning'         => 'Glědaj! Bok, kótaryž coš wulašowaś, ma stawizny:',
+'confirmdeletetext'      => 'Coš bok abo dataju ze wšyknymi pśisłušnymi wersijami na pśecej wulašowaś. Pšosym wobkšuś, až sy se wědobny, kake konsekwency móžo to měś, a až jadnaš pó [[{{MediaWiki:Policy-url}}|směrnicach]].',
+'actioncomplete'         => 'Akcija jo se wugbała.',
+'deletedtext'            => '„<nowiki>$1</nowiki>“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
+'deletedarticle'         => 'wulašowane "[[$1]]"',
+'suppressedarticle'      => '"[[$1]]" pódtłocony',
+'dellogpage'             => 'log-lisćina wulašowanjow',
+'dellogpagetext'         => 'How jo log-lisćina wulašowanych bokow a datajow.',
+'deletionlog'            => 'log-lisćina wulašowanjow',
+'reverted'               => 'Nawrośone na staršu wersiju',
+'deletecomment'          => 'Pśicyna wulašowanja:',
+'deleteotherreason'      => 'Druga/pśidatna pśicyna:',
+'deletereasonotherlist'  => 'Druga pśicyna',
+'deletereason-dropdown'  => '* Powšykne pśicyny za lašowanja
 ** Žycenje awtora
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Wandalizm',
-'delete-edit-reasonlist'      => 'Pśicyny za lašowanje wobźěłaś',
-'delete-toobig'               => 'Toś ten bok ma z wěcej nježli $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujku historiju. Lašowanje takich bokow bu wobgranicowane, aby wobškoźenju {{GRAMMAR:genitiw|{{SITENAME}}}} z pśigódy zajźowało.',
-'delete-warning-toobig'       => 'Toś ten bok ma z wěcej ako $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujke stawizny. Jich wulašowanje móžo źěło datoweje banki na {{SITENAME}} kazyś;
+'delete-edit-reasonlist' => 'Pśicyny za lašowanje wobźěłaś',
+'delete-toobig'          => 'Toś ten bok ma z wěcej nježli $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujku historiju. Lašowanje takich bokow bu wobgranicowane, aby wobškoźenju {{GRAMMAR:genitiw|{{SITENAME}}}} z pśigódy zajźowało.',
+'delete-warning-toobig'  => 'Toś ten bok ma z wěcej ako $1 {{PLURAL:$1|wersiju|wersijomaj|wersijami|wersijami}} dłujke stawizny. Jich wulašowanje móžo źěło datoweje banki na {{SITENAME}} kazyś;
 póstupujśo z glědanim.',
-'rollback'                    => 'Wobźěłanja slědk wześ',
-'rollback_short'              => 'anulěrowaś',
-'rollbacklink'                => 'anulěrowaś',
-'rollbackfailed'              => 'Slědkwześe njejo se raźiło.',
-'cantrollback'                => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
-'alreadyrolled'               => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .
+
+# Rollback
+'rollback'         => 'Wobźěłanja slědk wześ',
+'rollback_short'   => 'anulěrowaś',
+'rollbacklink'     => 'anulěrowaś',
+'rollbackfailed'   => 'Slědkwześe njejo se raźiło.',
+'cantrollback'     => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
+'alreadyrolled'    => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]] | [[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .
 
 Slědnu změnu k bokoju jo pśewjadł [[User:$3|$3]] ([[User talk:$3|diskusija]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Změny wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wót [[User:$1|$1]] k slědnej wersiji nawrośili.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
-'sessionfailure'              => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
+'editcomment'      => 'Komentar ku slědnej změnje jo był: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Změny wót [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wót [[User:$1|$1]] k slědnej wersiji nawrośili.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
+'sessionfailure'   => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
 Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowanjoju twójeje změny drugemu wužywarjeju.
 Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.',
+
+# Protect
 'protectlogpage'              => 'Log-lisćina šćitanych bokow.',
 'protectlogtext'              => 'To jo log-lisćina šćitanych bokow. Glědaj do [[Special:ProtectedPages|lisćiny šćitanych bokow]], aby wiźeł wšykne aktualnje šćitane boki.',
 'protectedarticle'            => 'Bok „[[$1]]“ jo se šćitał.',

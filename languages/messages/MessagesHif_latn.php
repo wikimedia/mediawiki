@@ -1065,19 +1065,23 @@ Future changes to this page and its associated talk page will be listed there, a
 'watching'   => 'Dekhtaa...',
 'unwatching' => 'Nai dekhtaa...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Pana ke delete karo',
-'historywarning'              => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
-'confirmdeletetext'           => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
+# Delete
+'deletepage'            => 'Pana ke delete karo',
+'historywarning'        => 'Sawadhan: Jon page aap delete kare waala hai ke itihaas hai:',
+'confirmdeletetext'     => 'Aap ek panna ke uske itihaas ke saathe delete kare waala hai.
 Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke policy ke niche delete karta hai.',
-'actioncomplete'              => 'Action puura hoe gais hai',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
-'deletedarticle'              => '"[[$1]]" ke hatae dewa gis hai',
-'dellogpage'                  => 'Hatane ke suchi',
-'deletecomment'               => 'Delete kare ke kaaran:',
-'deleteotherreason'           => 'Aur/duusra kaaran:',
-'deletereasonotherlist'       => 'Duusra kaaran',
-'rollbacklink'                => 'pahile jaise karo',
+'actioncomplete'        => 'Action puura hoe gais hai',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
+'deletedarticle'        => '"[[$1]]" ke hatae dewa gis hai',
+'dellogpage'            => 'Hatane ke suchi',
+'deletecomment'         => 'Delete kare ke kaaran:',
+'deleteotherreason'     => 'Aur/duusra kaaran:',
+'deletereasonotherlist' => 'Duusra kaaran',
+
+# Rollback
+'rollbacklink' => 'pahile jaise karo',
+
+# Protect
 'protectlogpage'              => 'Surakchha suchi',
 'protectcomment'              => 'Tiprri:',
 'protectexpiry'               => 'Khalas hoe hai:',

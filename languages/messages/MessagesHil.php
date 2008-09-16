@@ -226,7 +226,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'watch'         => 'Bantayan',
 'watchthispage' => 'Bantayan ining panid',
 
-# Delete/protect/revert
+# Delete
 'delete-legend' => 'Panason',
 
 # Restrictions (nouns)

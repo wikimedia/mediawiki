@@ -983,45 +983,49 @@ Jė bikumet ožsėnuorietomiet liautėis stebietė straipsnė, spostelkat \"Nebs
 'enotif_newpagetext' => 'Tas īr naus poslapis.',
 'created'            => 'sokūrė',
 
-# Delete/protect/revert
-'deletepage'                  => 'Trintė poslapi',
-'confirm'                     => 'Ožtvėrtinu',
-'excontent'                   => 'boves torinīs: „$1“',
-'excontentauthor'             => 'boves torinīs: „$1“ (redagava tėktās „[[Special:Contributions/$2|$2]]“)',
-'exbeforeblank'               => 'priš ėštrinant torinīs bova: „$1“',
-'exblank'                     => 'poslapis bova tuščes',
-'delete-confirm'              => 'Eštrėnta "$1"',
-'historywarning'              => 'Diemesė: Trėnams poslapis tor istuorėjė:',
-'confirmdeletetext'           => 'Tamsta pasėrėnkuot ėštrėntė poslapi a abruozdieli draugum so vėsa anuo istuorėjė.
+# Delete
+'deletepage'            => 'Trintė poslapi',
+'confirm'               => 'Ožtvėrtinu',
+'excontent'             => 'boves torinīs: „$1“',
+'excontentauthor'       => 'boves torinīs: „$1“ (redagava tėktās „[[Special:Contributions/$2|$2]]“)',
+'exbeforeblank'         => 'priš ėštrinant torinīs bova: „$1“',
+'exblank'               => 'poslapis bova tuščes',
+'delete-confirm'        => 'Eštrėnta "$1"',
+'historywarning'        => 'Diemesė: Trėnams poslapis tor istuorėjė:',
+'confirmdeletetext'     => 'Tamsta pasėrėnkuot ėštrėntė poslapi a abruozdieli draugum so vėsa anuo istuorėjė.
 Prašuom patvėrtėntė, kū Tamsta tėkrā nuorėt šėtu padarītė, žėnuot aple galėmus padarėnius, ė kū Tamsta šėtā daruot atsėžvelgdamė i [[{{MediaWiki:Policy-url}}|puolitėka]].',
-'actioncomplete'              => 'Vēksmos atlėkts īr',
-'deletedtext'                 => '„$1“ ėštrints.
+'actioncomplete'        => 'Vēksmos atlėkts īr',
+'deletedtext'           => '„$1“ ėštrints.
 Paskotiniu pašalinėmu istuorėjė - $2.',
-'deletedarticle'              => 'ėštrīnė „[[$1]]“',
-'dellogpage'                  => 'Pašalinėmu istuorėjė',
-'dellogpagetext'              => 'Žemiau īr pateikiams paskotiniu ėštrīnimu sārašos.',
-'deletionlog'                 => 'pašalinėmu istuorėjė',
-'reverted'                    => 'Atkorta i onkstesne versėje',
-'deletecomment'               => 'Trīnima prižastis',
-'deleteotherreason'           => 'Kėta/papėlduoma prižastis:',
-'deletereasonotherlist'       => 'Kėta prižastis',
-'deletereason-dropdown'       => '*Dažnas trīnėma prižastīs
+'deletedarticle'        => 'ėštrīnė „[[$1]]“',
+'dellogpage'            => 'Pašalinėmu istuorėjė',
+'dellogpagetext'        => 'Žemiau īr pateikiams paskotiniu ėštrīnimu sārašos.',
+'deletionlog'           => 'pašalinėmu istuorėjė',
+'reverted'              => 'Atkorta i onkstesne versėje',
+'deletecomment'         => 'Trīnima prižastis',
+'deleteotherreason'     => 'Kėta/papėlduoma prižastis:',
+'deletereasonotherlist' => 'Kėta prižastis',
+'deletereason-dropdown' => '*Dažnas trīnėma prižastīs
 ** Autorė prašīms
 ** Autorėniu teisiu pažeidėms
 ** Vandalėzmos',
-'rollback'                    => 'Atmestė pakeitėmos',
-'rollback_short'              => 'Atmestė',
-'rollbacklink'                => 'atmestė',
-'rollbackfailed'              => 'Atmetims napavīka',
-'alreadyrolled'               => 'Nepavīka atmestė paskotėnė [[User:$2|$2]] ([[User talk:$2|Aptarėms]]) darīta straipsnė [[$1]] keitėma;
+
+# Rollback
+'rollback'         => 'Atmestė pakeitėmos',
+'rollback_short'   => 'Atmestė',
+'rollbacklink'     => 'atmestė',
+'rollbackfailed'   => 'Atmetims napavīka',
+'alreadyrolled'    => 'Nepavīka atmestė paskotėnė [[User:$2|$2]] ([[User talk:$2|Aptarėms]]) darīta straipsnė [[$1]] keitėma;
 kažkas jau pakeitė straipsnė arba sospiejė pėrmiesnis atmestė keitėma.
 
 Galėnis keitėms dėrbts nauduotuojė [[User:$3|$3]] ([[User talk:$3|Aptarėms]]).',
-'editcomment'                 => 'Redagavėma kuomentars: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarėms]]) pakeitėms; sogrōžėnta nauduotoja [[User:$1|$1]] versėjė', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Atmestė $1 keitėmā; grōžėnta i paskotėne $2 versėje.',
-'sessionfailure'              => 'Atruod kū īr biedū so Tamstas prėsėjongėma sesėjė; šėts veiksmos bova atšaukts kāp atsargoma prėimonė priš sesėjės vuogėma.
+'editcomment'      => 'Redagavėma kuomentars: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Atmests [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarėms]]) pakeitėms; sogrōžėnta nauduotoja [[User:$1|$1]] versėjė', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Atmestė $1 keitėmā; grōžėnta i paskotėne $2 versėje.',
+'sessionfailure'   => 'Atruod kū īr biedū so Tamstas prėsėjongėma sesėjė; šėts veiksmos bova atšaukts kāp atsargoma prėimonė priš sesėjės vuogėma.
 Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė pamieginkėt vielē.',
+
+# Protect
 'protectlogpage'              => 'Rakinėmu istuorėjė',
 'protectlogtext'              => 'Žemiau īr poslapė ožrakinėmu teipuogi atrakinėmu istuorėjė. Daba veikiantiu poslapiu apsaugū sōraša sorasit [[Special:ProtectedPages|apsauguotu poslapiu sōrašuo]].',
 'protectedarticle'            => 'ožrakina „[[$1]]“',

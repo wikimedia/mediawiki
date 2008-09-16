@@ -1824,50 +1824,54 @@ Do kanns hee Ding Oppassliss ändere:
 Do kanns hee noh Hölp luure:
 {{FULLURL:int:MediaWiki:Helppage}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Schmieß die Sigg jetz fott',
-'confirm'                     => 'Dä Schotz för die Sigg ändere',
-'excontent'                   => 'drop stundt: „$1“',
-'excontentauthor'             => 'drop stundt: „$1“ un dä einzije Schriever woh: „$2“',
-'exbeforeblank'               => 'drop stundt vörher: „$1“',
-'exblank'                     => 'drop stundt nix',
-'delete-confirm'              => '„$1“ fottschmieße',
-'delete-legend'               => 'Fottschmieße',
-'historywarning'              => '<strong>Opjepass:</strong> Die Sigg hät ene janze Püngel Versione',
-'confirmdeletetext'           => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss hee jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
+# Delete
+'deletepage'             => 'Schmieß die Sigg jetz fott',
+'confirm'                => 'Dä Schotz för die Sigg ändere',
+'excontent'              => 'drop stundt: „$1“',
+'excontentauthor'        => 'drop stundt: „$1“ un dä einzije Schriever woh: „$2“',
+'exbeforeblank'          => 'drop stundt vörher: „$1“',
+'exblank'                => 'drop stundt nix',
+'delete-confirm'         => '„$1“ fottschmieße',
+'delete-legend'          => 'Fottschmieße',
+'historywarning'         => '<strong>Opjepass:</strong> Die Sigg hät ene janze Püngel Versione',
+'confirmdeletetext'      => 'Do bes koot dovör, en Sigg för iwich fottzeschmieße. Dobei verschwind och de janze Verjangenheit vun dä Sigg us de Daatebank, met all ehr Änderunge un Metmaacher Name, un all dä Opwand, dä do dren stich. Do muss hee jetz bestätije, dat de versteihs, wat dat bedügg, un dat De weiß, wat Do do mähs.
 <strong>Dun et nor, wann dat met de [[{{MediaWiki:Policy-url}}|Rejelle]] wirklich zosamme jeiht!</strong>',
-'actioncomplete'              => 'Erledich',
-'deletedtext'                 => 'De Sigg „<nowiki>$1</nowiki>“ es jetz fottjeschmesse woode. Luur Der „$2“ aan, do häs De en Liss met de Neuste fottjeschmesse Sigge.',
-'deletedarticle'              => 'hät fottjeschmesse: „[[$1]]“',
-'suppressedarticle'           => 'han „[[$1]]“ verstoche',
-'dellogpage'                  => 'Logboch met de fottjeschmesse Sigge',
-'dellogpagetext'              => 'Hee sin de Sigge oppjeliss, die et neus fottjeschmesse woodte.',
-'deletionlog'                 => 'Dat Logboch fum Sigge-Fottschmieße',
-'reverted'                    => 'Han de ählere Version vun dä Sigg zoröck jehollt',
-'deletecomment'               => 'Aanlass för et Fottschmieße',
-'deleteotherreason'           => 'Ander Jrund oder Zosätzlich:',
-'deletereasonotherlist'       => 'Ander Jrund',
-'deletereason-dropdown'       => '* Alljemein Jrönde
+'actioncomplete'         => 'Erledich',
+'deletedtext'            => 'De Sigg „<nowiki>$1</nowiki>“ es jetz fottjeschmesse woode. Luur Der „$2“ aan, do häs De en Liss met de Neuste fottjeschmesse Sigge.',
+'deletedarticle'         => 'hät fottjeschmesse: „[[$1]]“',
+'suppressedarticle'      => 'han „[[$1]]“ verstoche',
+'dellogpage'             => 'Logboch met de fottjeschmesse Sigge',
+'dellogpagetext'         => 'Hee sin de Sigge oppjeliss, die et neus fottjeschmesse woodte.',
+'deletionlog'            => 'Dat Logboch fum Sigge-Fottschmieße',
+'reverted'               => 'Han de ählere Version vun dä Sigg zoröck jehollt',
+'deletecomment'          => 'Aanlass för et Fottschmieße',
+'deleteotherreason'      => 'Ander Jrund oder Zosätzlich:',
+'deletereasonotherlist'  => 'Ander Jrund',
+'deletereason-dropdown'  => '* Alljemein Jrönde
 ** dä Schriever wollt et esu
 ** wohr jäje et Urhävverrääsch
 ** et wohd jet kapott jemaat
 ** et wohr bloß Keu
 ** mem Name verdonn bemm Aanläje',
-'delete-edit-reasonlist'      => 'De Jrönde för et Fottschmieße beärbeide',
-'delete-toobig'               => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Domet unsere ßööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
-'delete-warning-toobig'       => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
-'rollback'                    => 'Em Letzte sing Änderunge zeröcknemme',
-'rollback_short'              => 'Zeröcknemme',
-'rollbacklink'                => 'Zeröcknemme',
-'rollbackfailed'              => 'Dat Zeröcknemme jingk scheiv',
-'cantrollback'                => 'De letzte Änderung zeröckzenemme es nit müjjelich. Dä letzte Schriever es dä einzije, dä aan dä Sigg hee jet jedon hät!',
-'alreadyrolled'               => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]] | [[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
+'delete-edit-reasonlist' => 'De Jrönde för et Fottschmieße beärbeide',
+'delete-toobig'          => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Domet unsere ßööver do nit draan en de Kneen jeit, dom_mer esu en Sigg nit fottschmieße.',
+'delete-warning-toobig'  => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
+
+# Rollback
+'rollback'         => 'Em Letzte sing Änderunge zeröcknemme',
+'rollback_short'   => 'Zeröcknemme',
+'rollbacklink'     => 'Zeröcknemme',
+'rollbackfailed'   => 'Dat Zeröcknemme jingk scheiv',
+'cantrollback'     => 'De letzte Änderung zeröckzenemme es nit müjjelich. Dä letzte Schriever es dä einzije, dä aan dä Sigg hee jet jedon hät!',
+'alreadyrolled'    => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]] | [[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
 
 De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Bei dä Änderung stundt: „<i>$1</i>“.', # only shown if there is an edit comment
-'revertpage'                  => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
-'sessionfailure'              => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
+'editcomment'      => 'Bei dä Änderung stundt: „<i>$1</i>“.', # only shown if there is an edit comment
+'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
+'sessionfailure'   => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
+
+# Protect
 'protectlogpage'              => 'Logboch vum Sigge Schötze',
 'protectlogtext'              => 'Hee es de Liss vun de Sigge, die jeschötz oder frei jejovve woode sin.',
 'protectedarticle'            => 'hät de Sigg „[[$1]]“ jeschötz',

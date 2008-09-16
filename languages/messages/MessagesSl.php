@@ -934,37 +934,41 @@ Za spremembo nastavitev spiska nadzorov obiščite
 Povratna sporočila in pomoč:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Briši stran',
-'confirm'                     => 'Potrdi',
-'excontent'                   => "vsebina: '$1'",
-'excontentauthor'             => "vsebina: '$1' (edini urejevalec pa '$2')",
-'exbeforeblank'               => "vsebina pred brisanjem: '$1'",
-'exblank'                     => 'prazna stran',
-'historywarning'              => 'OPOZORILO: stran, ki jo želite izbrisati, ima zgodovino:',
-'confirmdeletetext'           => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
+# Delete
+'deletepage'        => 'Briši stran',
+'confirm'           => 'Potrdi',
+'excontent'         => "vsebina: '$1'",
+'excontentauthor'   => "vsebina: '$1' (edini urejevalec pa '$2')",
+'exbeforeblank'     => "vsebina pred brisanjem: '$1'",
+'exblank'           => 'prazna stran',
+'historywarning'    => 'OPOZORILO: stran, ki jo želite izbrisati, ima zgodovino:',
+'confirmdeletetext' => "Iz zbirke podatkov boste izbrisali stran ali sliko skupaj z vso njeno zgodovino. 
 Prosimo, '''potrdite''', da to resnično želite, da razumete posledice dejanja in da se ravnate po [[{{MediaWiki:Policy-url}}|pravilih]].",
-'actioncomplete'              => 'Poseg je končan',
-'deletedtext'                 => "»'''<nowiki>$1</nowiki>'''« je bila izbrisana. 
+'actioncomplete'    => 'Poseg je končan',
+'deletedtext'       => "»'''<nowiki>$1</nowiki>'''« je bila izbrisana. 
 Za zapise nedavnih brisanj glej $2.",
-'deletedarticle'              => 'je izbrisal(-a) »$1«',
-'dellogpage'                  => 'Dnevnik brisanja',
-'dellogpagetext'              => 'Prikazan je seznam nedavnih brisanj z navedenim strežniškim časom (UTC). Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
-'deletionlog'                 => 'dnevnik brisanja',
-'reverted'                    => 'Obnova prejšnje redakcije',
-'deletecomment'               => 'Razlog za brisanje',
-'rollback'                    => 'Vrni spremembe',
-'rollback_short'              => 'Vrni',
-'rollbacklink'                => 'vrni',
-'rollbackfailed'              => 'Vrnitev ni uspela.',
-'cantrollback'                => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
-'alreadyrolled'               => 'Ne morem vrniti zadnje spremembe [[:$1]]
+'deletedarticle'    => 'je izbrisal(-a) »$1«',
+'dellogpage'        => 'Dnevnik brisanja',
+'dellogpagetext'    => 'Prikazan je seznam nedavnih brisanj z navedenim strežniškim časom (UTC). Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
+'deletionlog'       => 'dnevnik brisanja',
+'reverted'          => 'Obnova prejšnje redakcije',
+'deletecomment'     => 'Razlog za brisanje',
+
+# Rollback
+'rollback'       => 'Vrni spremembe',
+'rollback_short' => 'Vrni',
+'rollbacklink'   => 'vrni',
+'rollbackfailed' => 'Vrnitev ni uspela.',
+'cantrollback'   => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
+'alreadyrolled'  => 'Ne morem vrniti zadnje spremembe [[:$1]]
 od uporabnika [[User:$2|$2]] ([[User talk:$2|Pogovor]]); nekdo drug je že spremenil ali vrnil članek.
 
 Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
-'editcomment'                 => "Pripomba k spremembi: »''$1''«.", # only shown if there is an edit comment
-'revertpage'                  => 'vrnitev sprememb uporabnika »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika »$1«', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'sessionfailure'              => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
+'editcomment'    => "Pripomba k spremembi: »''$1''«.", # only shown if there is an edit comment
+'revertpage'     => 'vrnitev sprememb uporabnika »[[Special:Contributions/$2|$2]]« ([[User talk:$2|pogovor]]) na zadnje urejanje uporabnika »$1«', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'sessionfailure' => 'Vaša prijava ni uspela; da bi preprečili ugrabitev seje, je bilo dejanje preklicano. Prosimo, izberite »Nazaj« in ponovno naložite stran, s katere prihajate, nato poskusite znova.',
+
+# Protect
 'protectlogpage'              => 'Dnevnik zaščit strani',
 'protectlogtext'              => 'Prikazan je seznam zaščit in odstranitev zaščit strani. Za več podatkov glejte [[Project:Zaščitena stran]] in [[Project:Pravila zaščite]]. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
 'protectedarticle'            => 'Zaščita strani "[[$1]]"',

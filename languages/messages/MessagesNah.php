@@ -773,7 +773,7 @@ Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.
 'changed'                      => 'ōmotlacuep',
 'created'                      => 'ōmochīuh',
 
-# Delete/protect/revert
+# Delete
 'deletepage'             => 'Ticpolōz inīn zāzanilli',
 'excontent'              => "Tlapiyaliztli ōcatca: '$1'",
 'excontentauthor'        => "Tlapiyaliztli ōcatca: '$1' (auh zancē ōquipatlac ōcatca '[[Special:Contributions/$2|$2]]')",
@@ -790,9 +790,13 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 'deleteotherreason'      => 'Occē īxtlamatiliztli:',
 'deletereasonotherlist'  => 'Occē īxtlamatiliztli',
 'delete-edit-reasonlist' => 'Tiquimpatlāz īxtlamatiliztli tlapoloaliztechcopa',
-'rollback_short'         => 'Tlacuepāz',
-'rollbacklink'           => 'tlacuepāz',
-'rollback-success'       => 'Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.',
+
+# Rollback
+'rollback_short'   => 'Tlacuepāz',
+'rollbacklink'     => 'tlacuepāz',
+'rollback-success' => 'Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.',
+
+# Protect
 'protectedarticle'       => 'ōmoquīxti "[[$1]]"',
 'unprotectedarticle'     => 'ōahmoquīxti "[[$1]]"',
 'protectexpiry'          => 'Tlamiliztli:',

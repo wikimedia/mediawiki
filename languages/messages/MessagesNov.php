@@ -318,18 +318,22 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 'changed'            => 'chanjati',
 'enotif_lastvisited' => 'Regarda $1 por vida omni chanjes depos vun lasti visite.',
 
-# Delete/protect/revert
-'confirm'             => 'Konfirma',
-'excontent'           => "kontenaje esed: '$1'",
-'excontentauthor'     => "kontenaje esed: '$1' (e li soli kontribuere esed '[[Special:Contributions/$2|$2]]')",
-'exblank'             => 'pagine esed vakui',
-'actioncomplete'      => 'Akto kompleti',
-'deletedarticle'      => 'ekartad "[[$1]]"',
-'dellogpage'          => 'Loge de ekartos',
-'dellogpagetext'      => 'Subu es liste del maxim resenti ekartos.',
-'deletionlog'         => 'registre de ekartos',
-'deletecomment'       => 'Resone de ekarto',
-'revertpage'          => 'Riverted modifikos da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); restaurad lasti versione da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+# Delete
+'confirm'         => 'Konfirma',
+'excontent'       => "kontenaje esed: '$1'",
+'excontentauthor' => "kontenaje esed: '$1' (e li soli kontribuere esed '[[Special:Contributions/$2|$2]]')",
+'exblank'         => 'pagine esed vakui',
+'actioncomplete'  => 'Akto kompleti',
+'deletedarticle'  => 'ekartad "[[$1]]"',
+'dellogpage'      => 'Loge de ekartos',
+'dellogpagetext'  => 'Subu es liste del maxim resenti ekartos.',
+'deletionlog'     => 'registre de ekartos',
+'deletecomment'   => 'Resone de ekarto',
+
+# Rollback
+'revertpage' => 'Riverted modifikos da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); restaurad lasti versione da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protect-legend'      => 'Konfirma protektione',
 'protect-level-sysop' => 'Sisopes nur',
 

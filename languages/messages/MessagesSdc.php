@@ -1247,42 +1247,46 @@ Pa mudìfiggà l\'impusthazioni di la listha di l\'abbaidaddi ippiziari, visita
 Pa dì cosa ni pensi e dumandà assisthènzia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Canzella pàgina',
-'confirm'                     => 'Cunfèimma',
-'excontent'                   => "lu cuntinuddu era : '$1'",
-'excontentauthor'             => "lu cuntinuddu era: '$1' (e lu soru cuntributori era '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "Lu cuntinuddu primma di l'ibbiuddamentu era: '$1'",
-'exblank'                     => 'la pàgina era biodda',
-'delete-confirm'              => 'Canzella "$1"',
-'delete-legend'               => 'Canzella',
-'historywarning'              => 'Attinzioni: La pàgina chi sei canzellendi à una cronologia:',
-'confirmdeletetext'           => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
+# Delete
+'deletepage'             => 'Canzella pàgina',
+'confirm'                => 'Cunfèimma',
+'excontent'              => "lu cuntinuddu era : '$1'",
+'excontentauthor'        => "lu cuntinuddu era: '$1' (e lu soru cuntributori era '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "Lu cuntinuddu primma di l'ibbiuddamentu era: '$1'",
+'exblank'                => 'la pàgina era biodda',
+'delete-confirm'         => 'Canzella "$1"',
+'delete-legend'          => 'Canzella',
+'historywarning'         => 'Attinzioni: La pàgina chi sei canzellendi à una cronologia:',
+'confirmdeletetext'      => "Sei canzillendi pa sempri da la bancati una pàgina o un'immàgina, umpari a la cronologia d'edda.
 Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguènzi di l'azioni tóia e ch'edda è cunfòimmi a li [[{{MediaWiki:Policy-url}}|lìni ghia]].",
-'actioncomplete'              => 'Azioni cumpritadda',
-'deletedtext'                 => 'La pàgina "<nowiki>$1</nowiki>" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
-'deletedarticle'              => 'ha canzilladdu "[[$1]]"',
-'suppressedarticle'           => 'eliminaddu "[[$1]]"',
-'dellogpage'                  => 'Canzilladduri',
-'dellogpagetext'              => 'Inogghi so erencaddi li pàgini canzilladdi da poggu tempu.',
-'deletionlog'                 => 'Rigisthru di li canzilladduri',
-'reverted'                    => 'Turra a la versioni prizzidenti',
-'deletecomment'               => 'Mutibu di la canzilladdura:',
-'deleteotherreason'           => 'Althra mutibazioni o mutibazioni aggiuntiba:',
-'deletereasonotherlist'       => 'Althra mutibazioni',
-'deletereason-dropdown'       => "*Mutibazioni più cumuni pa la canzilladdura
+'actioncomplete'         => 'Azioni cumpritadda',
+'deletedtext'            => 'La pàgina "<nowiki>$1</nowiki>" è isthadda canzilladda. Cunsultha lu $2 pa un\'erencu di li pàgini canzilladdi da poggu tempu.',
+'deletedarticle'         => 'ha canzilladdu "[[$1]]"',
+'suppressedarticle'      => 'eliminaddu "[[$1]]"',
+'dellogpage'             => 'Canzilladduri',
+'dellogpagetext'         => 'Inogghi so erencaddi li pàgini canzilladdi da poggu tempu.',
+'deletionlog'            => 'Rigisthru di li canzilladduri',
+'reverted'               => 'Turra a la versioni prizzidenti',
+'deletecomment'          => 'Mutibu di la canzilladdura:',
+'deleteotherreason'      => 'Althra mutibazioni o mutibazioni aggiuntiba:',
+'deletereasonotherlist'  => 'Althra mutibazioni',
+'deletereason-dropdown'  => "*Mutibazioni più cumuni pa la canzilladdura
 ** Prigonta de l'autori
 ** Viorazioni di lu dirittu d'autori
 ** Vandarismu",
-'delete-edit-reasonlist'      => 'Mudìfigga li mutibazioni pa la canzilladdura',
-'rollback'                    => 'Annulla li mudìfigghi',
-'rollback_short'              => 'Turra che primma',
-'rollbacklink'                => 'turra che primma',
-'rollbackfailed'              => 'Nò è ridisciddu a turrà che primma',
-'cantrollback'                => "Impussìbiri annullà li mudìfigghi; l'utenti chi n'è l'autori è l'unicu cuntribudori di la pàgina.",
-'editcomment'                 => 'Lu cummentu a la mudìfigga era: "<i>$1</i>".', # only shown if there is an edit comment
-'rollback-success'            => 'Annulladdi li mudìfigghi di $1; turradda a la versioni prizzidenti di $2.',
-'sessionfailure'              => "S'è verifigaddu un probrema i' la sissioni ch'identifigga l'intradda; lu sistham nò à eseguiddu lu cumandu imparthiddu pa precauzioni. Turrà a la pàgina prizzidenti cu' lu buttoni \"Indareddu\" di lu proprio nabigaddori, turrà a carriggà la pàgina e riprubà.",
+'delete-edit-reasonlist' => 'Mudìfigga li mutibazioni pa la canzilladdura',
+
+# Rollback
+'rollback'         => 'Annulla li mudìfigghi',
+'rollback_short'   => 'Turra che primma',
+'rollbacklink'     => 'turra che primma',
+'rollbackfailed'   => 'Nò è ridisciddu a turrà che primma',
+'cantrollback'     => "Impussìbiri annullà li mudìfigghi; l'utenti chi n'è l'autori è l'unicu cuntribudori di la pàgina.",
+'editcomment'      => 'Lu cummentu a la mudìfigga era: "<i>$1</i>".', # only shown if there is an edit comment
+'rollback-success' => 'Annulladdi li mudìfigghi di $1; turradda a la versioni prizzidenti di $2.',
+'sessionfailure'   => "S'è verifigaddu un probrema i' la sissioni ch'identifigga l'intradda; lu sistham nò à eseguiddu lu cumandu imparthiddu pa precauzioni. Turrà a la pàgina prizzidenti cu' lu buttoni \"Indareddu\" di lu proprio nabigaddori, turrà a carriggà la pàgina e riprubà.",
+
+# Protect
 'protectlogpage'              => 'Prutizioni',
 'protectlogtext'              => "Inogghi v'è la listha di li pàgini broccaddi e ibbruccaddi. Védi la [[Special:ProtectedPages|listha di li pàgini prutiggiddi]] pa chiddi chi so attuarmenti prutiggiddi.",
 'protectedarticle'            => 'à prutiggiddu "[[$1]]"',

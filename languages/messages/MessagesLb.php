@@ -1642,54 +1642,58 @@ Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht 
 --
 Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{fullurl:Special:Watchlist/edit}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Säit läschen',
-'confirm'                     => 'Konfirméieren',
-'excontent'                   => "Inhalt war: '$1'",
-'excontentauthor'             => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[Special:Contributions/$2|$2]]').",
-'exbeforeblank'               => "Den Inhalt virum Läsche war: '$1'",
-'exblank'                     => "D'Säit war eidel",
-'delete-confirm'              => 'Läsche vu(n) "$1"',
-'delete-legend'               => 'Läschen',
-'historywarning'              => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
-'confirmdeletetext'           => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
+# Delete
+'deletepage'             => 'Säit läschen',
+'confirm'                => 'Konfirméieren',
+'excontent'              => "Inhalt war: '$1'",
+'excontentauthor'        => "Op der Säit stong: '$1' (An als eenzegen dru geschriwwen hat de '[[Special:Contributions/$2|$2]]').",
+'exbeforeblank'          => "Den Inhalt virum Läsche war: '$1'",
+'exblank'                => "D'Säit war eidel",
+'delete-confirm'         => 'Läsche vu(n) "$1"',
+'delete-legend'          => 'Läschen',
+'historywarning'         => 'Opgepasst: Déi Säit déi dir läsche wëllt huet en Historique.',
+'confirmdeletetext'      => "Dir sidd am Gaang, eng Säit mat hirem kompletten Historique vollstänneg aus der Datebank ze läschen.
 W.e.g. konfirméiert, datt Dir dëst wierklech wëllt, datt Dir d'Konsequenze verstitt, an datt dat Ganzt en accordance mat de [[{{MediaWiki:Policy-url}}|Richtlinien]] geschitt.",
-'actioncomplete'              => 'Aktioun ofgeschloss',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
-'deletedarticle'              => '"$1" gouf geläscht',
-'suppressedarticle'           => 'geläscht "$1"',
-'dellogpage'                  => 'Läschungslog',
-'dellogpagetext'              => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
-'deletionlog'                 => 'Läschungslog',
-'reverted'                    => 'Op déi Versioun virdrun zréckgesat',
-'deletecomment'               => "Grond fir d'Läschen:",
-'deleteotherreason'           => 'Aneren/ergänzende Grond:',
-'deletereasonotherlist'       => 'Anere Grond',
-'deletereason-dropdown'       => '* Heefegst Grënn fir eng Säit ze läschen
+'actioncomplete'         => 'Aktioun ofgeschloss',
+'deletedtext'            => '"<nowiki>$1</nowiki>" gouf geläscht. Kuckt $2 fir eng Lëscht vun de Säiten déi viru Kuerzem geläscht goufen.',
+'deletedarticle'         => '"$1" gouf geläscht',
+'suppressedarticle'      => 'geläscht "$1"',
+'dellogpage'             => 'Läschungslog',
+'dellogpagetext'         => 'Hei fannt dir eng Lëscht mat rezent geläschte Säiten. All Auerzäiten sinn déi vum Server (UTC).',
+'deletionlog'            => 'Läschungslog',
+'reverted'               => 'Op déi Versioun virdrun zréckgesat',
+'deletecomment'          => "Grond fir d'Läschen:",
+'deleteotherreason'      => 'Aneren/ergänzende Grond:',
+'deletereasonotherlist'  => 'Anere Grond',
+'deletereason-dropdown'  => '* Heefegst Grënn fir eng Säit ze läschen
 ** Wonsch vum Auteur
 ** Verletzung vun engem Copyright
 ** Vandalismus',
-'delete-edit-reasonlist'      => 'Läschgrënn änneren',
-'delete-toobig'               => "Dës Säit huet e laangen Historique, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
+'delete-edit-reasonlist' => 'Läschgrënn änneren',
+'delete-toobig'          => "Dës Säit huet e laangen Historique, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läsche vun esou Säite gouf limitéiert fir ongewollte Stéierungen op {{SITENAME}} ze verhënneren.",
-'delete-warning-toobig'       => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
+'delete-warning-toobig'  => "Dës Säit huet eng laang Versiounsgeschicht, méi wéi $1 {{PLURAL:$1|Versioun|Versiounen}}.
 D'Läschen dovun kann zu Stéierungen am Funktionnement vun {{SITENAME}} féieren;
 dës Aktioun soll mat Vierssiicht gemaach ginn.",
-'rollback'                    => 'Ännerungen zrécksetzen',
-'rollback_short'              => 'Zrécksetzen',
-'rollbacklink'                => 'Zrécksetzen',
-'rollbackfailed'              => 'Zrécksetzen huet net geklappt',
-'cantrollback'                => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'               => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
+
+# Rollback
+'rollback'         => 'Ännerungen zrécksetzen',
+'rollback_short'   => 'Zrécksetzen',
+'rollbacklink'     => 'Zrécksetzen',
+'rollbackfailed'   => 'Zrécksetzen huet net geklappt',
+'cantrollback'     => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
+'alreadyrolled'    => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]] | [[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
 een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Ännerunge vum [[Special:Contributions/$2|Kontributioune]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
-'sessionfailure'              => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
+'editcomment'      => 'Ännerungskommentar: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|Kontributioune]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
+'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn afgebrach, fir ze verhënneren datt är Séance eine piratéiert ka ginn.
 KLickt w.e.g. op "Zréck" a lued déi Sàit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
+
+# Protect
 'protectlogpage'              => 'Protectiouns-Logbuch',
 'protectlogtext'              => "Dëst ass d'Lëscht vun de Säitespären.
 Kuckt d'[[Special:ProtectedPages|Lëscht vun de protegéierte Säite]] fir eng L!escht vun den aktuelle Säite-Protectiounen.",

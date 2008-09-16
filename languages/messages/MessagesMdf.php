@@ -1449,49 +1449,53 @@ $NEWPAGE
 Азома мекпяли ди лезкс:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Нардамс лопать',
-'confirm'                     => 'Кемокстамс',
-'excontent'                   => "потмосоль: '$1'",
-'excontentauthor'             => "потмоц ульсь: '$1' (аньцек фкя путысь ульсь'[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "шамдомада инголе потмоц ульсь: '$1'",
-'exblank'                     => 'лопась шаволь',
-'delete-confirm'              => 'Нардамс "$1"',
-'delete-legend'               => 'Нардамс',
-'historywarning'              => 'Инголе мярьгома: Тон ёрат нардамс лопать, конань ульсь историец:',
-'confirmdeletetext'           => 'Тон сърхкать нардамс лопать сембе сонь историянц мархта.
+# Delete
+'deletepage'             => 'Нардамс лопать',
+'confirm'                => 'Кемокстамс',
+'excontent'              => "потмосоль: '$1'",
+'excontentauthor'        => "потмоц ульсь: '$1' (аньцек фкя путысь ульсь'[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "шамдомада инголе потмоц ульсь: '$1'",
+'exblank'                => 'лопась шаволь',
+'delete-confirm'         => 'Нардамс "$1"',
+'delete-legend'          => 'Нардамс',
+'historywarning'         => 'Инголе мярьгома: Тон ёрат нардамс лопать, конань ульсь историец:',
+'confirmdeletetext'      => 'Тон сърхкать нардамс лопать сембе сонь историянц мархта.
 Эняльттяма, кемокстак тон афкукс ёрат тянь тиемс, эди тон шарьхкодьсак мезе лиси тяда меле, ди тон сембе тянь тисак [[{{MediaWiki:Policy-url}}|политик]] коряс.',
-'actioncomplete'              => 'Тевонь тиемась анок',
-'deletedtext'                 => 'Лопась "<nowiki>$1</nowiki>" нардафоль. Ванк $2 мекольце нардаматнень няфтеманкса.',
-'deletedarticle'              => 'нардаф "[[$1]]"',
-'suppressedarticle'           => 'кяшф "[[$1]]"',
-'dellogpage'                  => 'Нардамань лувома',
-'dellogpagetext'              => 'Улхкомбань нардаматнень лувомась ала.',
-'deletionlog'                 => 'нардамань лувома',
-'reverted'                    => 'Мърдаф сядынголень верзиес',
-'deletecomment'               => 'Нардамань туфтал:',
-'deleteotherreason'           => 'Лия/поладомань туфтал:',
-'deletereasonotherlist'       => 'Иля туфтал',
-'deletereason-dropdown'       => '*Марстонь нардама туфталхт
+'actioncomplete'         => 'Тевонь тиемась анок',
+'deletedtext'            => 'Лопась "<nowiki>$1</nowiki>" нардафоль. Ванк $2 мекольце нардаматнень няфтеманкса.',
+'deletedarticle'         => 'нардаф "[[$1]]"',
+'suppressedarticle'      => 'кяшф "[[$1]]"',
+'dellogpage'             => 'Нардамань лувома',
+'dellogpagetext'         => 'Улхкомбань нардаматнень лувомась ала.',
+'deletionlog'            => 'нардамань лувома',
+'reverted'               => 'Мърдаф сядынголень верзиес',
+'deletecomment'          => 'Нардамань туфтал:',
+'deleteotherreason'      => 'Лия/поладомань туфтал:',
+'deletereasonotherlist'  => 'Иля туфтал',
+'deletereason-dropdown'  => '*Марстонь нардама туфталхт
 ** Тиить вешфкссь
 ** Копияма видексть сърафтома
 ** Колендемась',
-'delete-edit-reasonlist'      => 'Петнемс нардамань туфталхне',
-'delete-toobig'               => 'Тя лопать кувака петнемань историясь, $1 {{PLURAL:$1|верзиеда|верзиеда}} лама. Тяфтама лопатнень нардамась кардаф {{SITENAME}}-нь уф учсеви колавомада араламать туфталонкса.',
-'delete-warning-toobig'       => 'Тя лопать кувака петнемань историясь, $1 {{PLURAL:$1|верзиеда|верзиеда}} лама. Сонь нардамаста, улема, лиси {{SITENAME}}-нь датабаза якаманц колавомась; тик тянь инголе арьсезь.',
-'rollback'                    => 'Кевордамс петнематнень меки',
-'rollback_short'              => 'Меки кевордама',
-'rollbacklink'                => 'кевордамс меки',
-'rollbackfailed'              => 'Меки кевордамась изь лисе',
-'cantrollback'                => 'Аш кода петнемать мърдафтомс; мекольце путысь ульсь тя лопать анцек фкя тиикс.',
-'alreadyrolled'               => 'Аш кода меки кевордамс [[:$1]]нь мекольце петнемать, конань тись [[User:$2|$2]] ([[User talk:$2|Корхнема]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'delete-edit-reasonlist' => 'Петнемс нардамань туфталхне',
+'delete-toobig'          => 'Тя лопать кувака петнемань историясь, $1 {{PLURAL:$1|верзиеда|верзиеда}} лама. Тяфтама лопатнень нардамась кардаф {{SITENAME}}-нь уф учсеви колавомада араламать туфталонкса.',
+'delete-warning-toobig'  => 'Тя лопать кувака петнемань историясь, $1 {{PLURAL:$1|верзиеда|верзиеда}} лама. Сонь нардамаста, улема, лиси {{SITENAME}}-нь датабаза якаманц колавомась; тик тянь инголе арьсезь.',
+
+# Rollback
+'rollback'         => 'Кевордамс петнематнень меки',
+'rollback_short'   => 'Меки кевордама',
+'rollbacklink'     => 'кевордамс меки',
+'rollbackfailed'   => 'Меки кевордамась изь лисе',
+'cantrollback'     => 'Аш кода петнемать мърдафтомс; мекольце путысь ульсь тя лопать анцек фкя тиикс.',
+'alreadyrolled'    => 'Аш кода меки кевордамс [[:$1]]нь мекольце петнемать, конань тись [[User:$2|$2]] ([[User talk:$2|Корхнема]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 иля тиись сонь петезе эли кевордазе ни.
 
 Мекольце петнема  тизе [[User:$3|$3]] ([[User talk:$3|Корхнема]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Петнема мяльполаткс ульсь: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Петнематнень мърдафтозе $1; сядынгольдень верзиес мърдафтозе $2.',
-'sessionfailure'              => 'Улема, лиссь прябала тонь сувама пингста; програмонь якамась лотказевсь сувамать върьгятемада аралама туфталонкса. Эняльттяма, люпштак "меки" ди одонзафтт лопать, конаста тон сать, меле тик сембе одукс.',
+'editcomment'      => 'Петнема мяльполаткс ульсь: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Петнематнень мърдафтозь [[Special:Contributions/$2|$2]] ([[User talk:$2|Корхнема]]) сядынгольдень верзиес мърдафтозе [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Петнематнень мърдафтозе $1; сядынгольдень верзиес мърдафтозе $2.',
+'sessionfailure'   => 'Улема, лиссь прябала тонь сувама пингста; програмонь якамась лотказевсь сувамать върьгятемада аралама туфталонкса. Эняльттяма, люпштак "меки" ди одонзафтт лопать, конаста тон сать, меле тик сембе одукс.',
+
+# Protect
 'protectlogpage'              => 'Аралама лувома',
 'protectlogtext'              => 'Ала лопань пякстама-панжема лувомась. Ванк [[Special:ProtectedPages|аралаф лопатнень лувомась]] тя пингонь системонь лопать араламанкса.',
 'protectedarticle'            => 'аралаф "[[$1]]"',

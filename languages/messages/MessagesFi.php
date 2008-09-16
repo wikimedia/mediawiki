@@ -1648,48 +1648,52 @@ Tarkkailulistan asetuksia voit muuttaa osoitteessa:
 Palaute ja lisäapu osoitteessa:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Poista sivu',
-'confirm'                     => 'Toteuta',
-'excontent'                   => 'sisälsi: ”$1”',
-'excontentauthor'             => 'sisälsi: ”$1” (ainoa muokkaaja oli $2)',
-'exbeforeblank'               => 'ennen tyhjentämistä sisälsi: ”$1”',
-'exblank'                     => 'oli tyhjä',
-'delete-confirm'              => 'Sivun ”$1” poistaminen',
-'delete-legend'               => 'Sivun poisto',
-'historywarning'              => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
-'confirmdeletetext'           => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
-'actioncomplete'              => 'Toiminto suoritettu',
-'deletedtext'                 => '”<nowiki>$1</nowiki>” on poistettu.
+# Delete
+'deletepage'             => 'Poista sivu',
+'confirm'                => 'Toteuta',
+'excontent'              => 'sisälsi: ”$1”',
+'excontentauthor'        => 'sisälsi: ”$1” (ainoa muokkaaja oli $2)',
+'exbeforeblank'          => 'ennen tyhjentämistä sisälsi: ”$1”',
+'exblank'                => 'oli tyhjä',
+'delete-confirm'         => 'Sivun ”$1” poistaminen',
+'delete-legend'          => 'Sivun poisto',
+'historywarning'         => 'Sivua, jonka aiot poistaa on muokattu useammin kuin kerran:',
+'confirmdeletetext'      => 'Olet poistamassa sivun tai tiedoston ja kaiken sen historian. Ymmärrä teon seuraukset ja tee poisto {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.',
+'actioncomplete'         => 'Toiminto suoritettu',
+'deletedtext'            => '”<nowiki>$1</nowiki>” on poistettu.
 Sivulla $2 on lista viimeaikaisista poistoista.',
-'deletedarticle'              => 'poisti sivun $1',
-'suppressedarticle'           => 'häivytti sivun [[$1]]',
-'dellogpage'                  => 'Poistoloki',
-'dellogpagetext'              => 'Alla on loki viimeisimmistä poistoista.',
-'deletionlog'                 => 'poistoloki',
-'reverted'                    => 'Palautettu aikaisempaan versioon',
-'deletecomment'               => 'Poistamisen syy',
-'deleteotherreason'           => 'Muu syy tai tarkennus',
-'deletereasonotherlist'       => 'Muu syy',
-'deletereason-dropdown'       => '*Yleiset poistosyyt
+'deletedarticle'         => 'poisti sivun $1',
+'suppressedarticle'      => 'häivytti sivun [[$1]]',
+'dellogpage'             => 'Poistoloki',
+'dellogpagetext'         => 'Alla on loki viimeisimmistä poistoista.',
+'deletionlog'            => 'poistoloki',
+'reverted'               => 'Palautettu aikaisempaan versioon',
+'deletecomment'          => 'Poistamisen syy',
+'deleteotherreason'      => 'Muu syy tai tarkennus',
+'deletereasonotherlist'  => 'Muu syy',
+'deletereason-dropdown'  => '*Yleiset poistosyyt
 ** Lisääjän poistopyyntö
 ** Tekijänoikeusrikkomus
 ** Roskaa',
-'delete-edit-reasonlist'      => 'Muokkaa poistosyitä',
-'delete-toobig'               => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
-'delete-warning-toobig'       => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
-'rollback'                    => 'palauta aiempaan versioon',
-'rollback_short'              => 'Palautus',
-'rollbacklink'                => 'palauta',
-'rollbackfailed'              => 'Palautus epäonnistui',
-'cantrollback'                => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
-'alreadyrolled'               => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
+'delete-edit-reasonlist' => 'Muokkaa poistosyitä',
+'delete-toobig'          => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistamista on rajoitettu suorituskykysyistä.',
+'delete-warning-toobig'  => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
+
+# Rollback
+'rollback'         => 'palauta aiempaan versioon',
+'rollback_short'   => 'Palautus',
+'rollbacklink'     => 'palauta',
+'rollbackfailed'   => 'Palautus epäonnistui',
+'cantrollback'     => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
+'alreadyrolled'    => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
 
 Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Muokkauksen yhteenveto oli: <i>$1</i>.', # only shown if there is an edit comment
-'revertpage'                  => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
-'sessionfailure'              => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
+'editcomment'      => 'Muokkauksen yhteenveto oli: <i>$1</i>.', # only shown if there is an edit comment
+'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
+'sessionfailure'   => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
+
+# Protect
 'protectlogpage'              => 'Suojausloki',
 'protectlogtext'              => 'Alla on loki sivujen suojauksista ja suojauksien poistoista. Luettelo tällä hetkellä suojatuista sivuista löytyy [[Special:ProtectedPages|suojattuen sivujen luettelosta]].',
 'protectedarticle'            => 'suojasi sivun $1',

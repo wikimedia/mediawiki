@@ -359,12 +359,14 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'changed'            => 'cambiatu',
 'created'            => 'creatu',
 
-# Delete/protect/revert
-'deletepage'                  => 'Supprimà a pagina',
-'excontent'                   => "u cuntenutu era: '$1'",
-'excontentauthor'             => "u cuntenutu era: '$1' (è u solu cuntributore era '[[Special:Contributions/$2|$2]]')",
-'exblank'                     => 'a pagina era biota',
-'actioncomplete'              => 'Azzione compia',
+# Delete
+'deletepage'      => 'Supprimà a pagina',
+'excontent'       => "u cuntenutu era: '$1'",
+'excontentauthor' => "u cuntenutu era: '$1' (è u solu cuntributore era '[[Special:Contributions/$2|$2]]')",
+'exblank'         => 'a pagina era biota',
+'actioncomplete'  => 'Azzione compia',
+
+# Protect
 'protectedarticle'            => 'prutettu "[[$1]]"',
 'protect-legend'              => 'Cunfirmà a prutezzione',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',

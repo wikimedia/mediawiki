@@ -1628,45 +1628,49 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Vortdoon',
-'confirm'                     => 'Bevestigen',
-'excontent'                   => "De tekse was: '$1'",
-'excontentauthor'             => "De tekse was: '$1' (pagina an-emaak deur: [[Special:Contributions/$2|$2]])",
-'exbeforeblank'               => "veurdat disse pagina leeg-emaak wönnen stung hier: '$1'",
-'exblank'                     => 'Pagina was leeg',
-'delete-confirm'              => '"$1" vortdoon',
-'delete-legend'               => 'Vortdoon',
-'historywarning'              => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
-'confirmdeletetext'           => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
-'actioncomplete'              => 'Uut-evoerd',
-'deletedtext'                 => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
-'deletedarticle'              => '"$1" vort-edaon',
-'dellogpage'                  => "Vort-edaone pagina's",
-'dellogpagetext'              => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
-'deletionlog'                 => "Vort-edaone pagina's",
-'deletecomment'               => 'Rejen',
-'deleteotherreason'           => 'Aandere/extra rejen:',
-'deletereasonotherlist'       => 'Aandere rejen',
-'deletereason-dropdown'       => '*Veulveurkoemende rejens
+# Delete
+'deletepage'            => 'Vortdoon',
+'confirm'               => 'Bevestigen',
+'excontent'             => "De tekse was: '$1'",
+'excontentauthor'       => "De tekse was: '$1' (pagina an-emaak deur: [[Special:Contributions/$2|$2]])",
+'exbeforeblank'         => "veurdat disse pagina leeg-emaak wönnen stung hier: '$1'",
+'exblank'               => 'Pagina was leeg',
+'delete-confirm'        => '"$1" vortdoon',
+'delete-legend'         => 'Vortdoon',
+'historywarning'        => 'Waorschuwing: disse pagina hef een veurgeschiedenisse. Kiek effen nao of je neet een ouwere versie van disse pagina herstellen kunnen.',
+'confirmdeletetext'     => 'Disse actie wis alle inhoud en geschiedenisse uut de databanke. Bevestig hieronder dat dit de bedoeling is en da-j de gevolgen dervan begriepen.',
+'actioncomplete'        => 'Uut-evoerd',
+'deletedtext'           => '\'t Artikel "$1" is vort-edaon. Zie de "$2" veur een lieste van pagina\'s dee as les vort-edaon bin.',
+'deletedarticle'        => '"$1" vort-edaon',
+'dellogpage'            => "Vort-edaone pagina's",
+'dellogpagetext'        => "Hieronder een lieste van pagina's en ofbeeldingen dee 't les vort-edaon bin.",
+'deletionlog'           => "Vort-edaone pagina's",
+'deletecomment'         => 'Rejen',
+'deleteotherreason'     => 'Aandere/extra rejen:',
+'deletereasonotherlist' => 'Aandere rejen',
+'deletereason-dropdown' => '*Veulveurkoemende rejens
 ** Op anvrage van de auteur
 ** Schending van de auteursrechen
 ** Vandelisme',
-'rollback'                    => 'Wiezigingen herstellen',
-'rollback_short'              => 'Weerummedreien',
-'rollbacklink'                => 'Weerummedreien',
-'rollbackfailed'              => 'Wieziging herstellen is mislok',
-'cantrollback'                => 'De wiezigingen konnen neet hersteld wonnen; der is mar 1 auteur.',
-'alreadyrolled'               => "'t Is neet meugelijk um de wieziging van de pagina [[$1]]
+
+# Rollback
+'rollback'         => 'Wiezigingen herstellen',
+'rollback_short'   => 'Weerummedreien',
+'rollbacklink'     => 'Weerummedreien',
+'rollbackfailed'   => 'Wieziging herstellen is mislok',
+'cantrollback'     => 'De wiezigingen konnen neet hersteld wonnen; der is mar 1 auteur.',
+'alreadyrolled'    => "'t Is neet meugelijk um de wieziging van de pagina [[$1]]
 deur [[User:$2|$2]] ([[User talk:$2|Overleeg]]) te herstellen.
 
 Een aander hef disse wieziging al hersteld tot een veurige versie van disse pagina of hef een aandere bewarking edaon.
 
 De leste bewarking is edaon deur [[User:$3|$3]] ([[User talk:$3|Overleeg]]).",
-'editcomment'                 => 'De samenvatting was: <i>$1</i>', # only shown if there is an edit comment
-'revertpage'                  => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
-'sessionfailure'              => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao een pagina weerumme, laot disse pagina opniej en prebeer \'t nog es.',
+'editcomment'      => 'De samenvatting was: <i>$1</i>', # only shown if there is an edit comment
+'revertpage'       => 'Wiezigingen deur [[Special:Contributions/$2|$2]] hersteld tot de versie nao de leste wieziging deur $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Wiezigingen van $1; weerummedreid naor de leste versie van $2.',
+'sessionfailure'   => 'Der is een prebleem mit joew anmeldsessie. De actie is stop-ezet uut veurzörg tegen een beveiligingsrisico (dat besteet uut \'t meugelijke "kraken" van disse sessie). Gao een pagina weerumme, laot disse pagina opniej en prebeer \'t nog es.',
+
+# Protect
 'protectlogpage'              => 'Beveiligingslogboek',
 'protectlogtext'              => "Hieronder steet een lieste mit pagina's dee beveilig bin.",
 'protectedarticle'            => '[[$1]] is beveilig',

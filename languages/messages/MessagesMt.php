@@ -1504,51 +1504,55 @@ Biex tagħmel modifiki fil-lista t\'osservazzjoni tiegħek:
 Biex tagħti l-kumment tiegħek u għal aktar għajnuna:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Ħassar il-paġna',
-'confirm'                     => 'Ikkonferma',
-'excontent'                   => "kontenut kien: '$1'",
-'excontentauthor'             => "kontenut kien: '$1' (u l-unika kontributur kien '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "kontenut qabel ma ġie żvojtjat kien: '$1'",
-'exblank'                     => 'paġna kienet vojta',
-'delete-confirm'              => 'Ħassar "$1"',
-'delete-legend'               => 'Ħassar',
-'historywarning'              => 'Twissija: Il-paġna li se tħassar għanda kronoloġija:',
-'confirmdeletetext'           => "Int se tħassar permanentament mid-database paġna jew stampa, flimkien mal-kronoloġija kollha tagħha. Jekk jogħġbok, konferma li hija x-xewqa tiegħek li tkompli bit-tħassir ta' din il-paġna, u tifhem il-konsegwenzi ta' li qiegħed tagħmel, u li qiegħed tagħmilhom skond il- [[{{MediaWiki:Policy-url}}|politika]] stabilita.",
-'actioncomplete'              => 'Azzjoni mwettqa',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ġiet imħassra.
+# Delete
+'deletepage'             => 'Ħassar il-paġna',
+'confirm'                => 'Ikkonferma',
+'excontent'              => "kontenut kien: '$1'",
+'excontentauthor'        => "kontenut kien: '$1' (u l-unika kontributur kien '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "kontenut qabel ma ġie żvojtjat kien: '$1'",
+'exblank'                => 'paġna kienet vojta',
+'delete-confirm'         => 'Ħassar "$1"',
+'delete-legend'          => 'Ħassar',
+'historywarning'         => 'Twissija: Il-paġna li se tħassar għanda kronoloġija:',
+'confirmdeletetext'      => "Int se tħassar permanentament mid-database paġna jew stampa, flimkien mal-kronoloġija kollha tagħha. Jekk jogħġbok, konferma li hija x-xewqa tiegħek li tkompli bit-tħassir ta' din il-paġna, u tifhem il-konsegwenzi ta' li qiegħed tagħmel, u li qiegħed tagħmilhom skond il- [[{{MediaWiki:Policy-url}}|politika]] stabilita.",
+'actioncomplete'         => 'Azzjoni mwettqa',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ġiet imħassra.
 Ara $2 biex tara paġni mħassra riċentament.',
-'deletedarticle'              => 'ħassar "[[$1]]"',
-'suppressedarticle'           => 'Neħħi "[[$1]]"',
-'dellogpage'                  => 'Tħassir',
-'dellogpagetext'              => "Hawn taħt hawn lista ta' l-aktar tħassir riċenti.",
-'deletionlog'                 => "Log ta' tħassir",
-'reverted'                    => 'Mort lura għal verżjoni preċedenti',
-'deletecomment'               => 'Raġuni dwar it-tħassir:',
-'deleteotherreason'           => 'Raġuni oħrajn:',
-'deletereasonotherlist'       => 'Raġuni oħra',
-'deletereason-dropdown'       => "*Raġunijiet ta' tħassir komuni
+'deletedarticle'         => 'ħassar "[[$1]]"',
+'suppressedarticle'      => 'Neħħi "[[$1]]"',
+'dellogpage'             => 'Tħassir',
+'dellogpagetext'         => "Hawn taħt hawn lista ta' l-aktar tħassir riċenti.",
+'deletionlog'            => "Log ta' tħassir",
+'reverted'               => 'Mort lura għal verżjoni preċedenti',
+'deletecomment'          => 'Raġuni dwar it-tħassir:',
+'deleteotherreason'      => 'Raġuni oħrajn:',
+'deletereasonotherlist'  => 'Raġuni oħra',
+'deletereason-dropdown'  => "*Raġunijiet ta' tħassir komuni
 ** Rikjesta tal-awtur
 ** Vjolazzjoni tal-copyright
 ** Vandaliżmu",
-'delete-edit-reasonlist'      => "Modifika raġunijiet ta' tħassir",
-'delete-toobig'               => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
+'delete-edit-reasonlist' => "Modifika raġunijiet ta' tħassir",
+'delete-toobig'          => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
 Tħassir ta' dawn il-paġni huwa limitat sabiex tnaqqas il-ħolqien aċċidentalment ta' problemi fil-funżjoni tad-database ta' {{SITENAME}}.",
-'delete-warning-toobig'       => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
+'delete-warning-toobig'  => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
 Tħassara tista' toħloq problema ta' funżjoni fid-database ta' {{SITENAME}}; moħħok hemm.",
-'rollback'                    => 'Ħassar il-modifiki',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
-'rollbackfailed'              => 'Rollback ma ħadmitx',
-'cantrollback'                => 'Impossibli tħassar il-modifiki; l-utent li wettaqhom huwa l-unika li għamel kontributi lil din il-paġna.',
-'alreadyrolled'               => "Mhux possibbli li tneħħi l-modifiki ta' [[User:$2|$2]] ([[User talk:$2|diskussjoni]]) fil-paġna [[:$1]]; utent ieħor diġà immodifika din il-paġna jew inkella reġġa' lura.
+
+# Rollback
+'rollback'         => 'Ħassar il-modifiki',
+'rollback_short'   => 'Rollback',
+'rollbacklink'     => 'rollback',
+'rollbackfailed'   => 'Rollback ma ħadmitx',
+'cantrollback'     => 'Impossibli tħassar il-modifiki; l-utent li wettaqhom huwa l-unika li għamel kontributi lil din il-paġna.',
+'alreadyrolled'    => "Mhux possibbli li tneħħi l-modifiki ta' [[User:$2|$2]] ([[User talk:$2|diskussjoni]]) fil-paġna [[:$1]]; utent ieħor diġà immodifika din il-paġna jew inkella reġġa' lura.
 
 L-iktar modifika riċenti fuq dil-paġna saret minn [[User:$3|$3]] ([[User talk:$3|diskussjoni]]).",
-'editcomment'                 => 'Il-Kumment tal-modifika kienet: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Modifiki mneħħa ta' $1;
+'editcomment'      => 'Il-Kumment tal-modifika kienet: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "Modifiki mneħħa minn [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) għall-aħħar verżjoni ta' [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Modifiki mneħħa ta' $1;
 Modifikata lura għall-aħħar verżjoni ta' $2.",
-'sessionfailure'              => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",
+'sessionfailure'   => "Ġie verifikat problema fis-sessjoni tal-aċċess; din l-azzjoni ġiet imħassra bħalha prekawzjoni. Mur lura fil-paġna preċedenti bl-użu tal-buttuna 'Lura' tal-browser, niżżel il-paġna mill-ġdid u erġa' prova.",
+
+# Protect
 'protectlogpage'              => 'Protezzjoni',
 'protectlogtext'              => "Hawn taħt hawn lista ta' l-azzjonijiet tal-protezzjoni u żblokki tal-paġna.
 Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġni bħalissa protetti.",

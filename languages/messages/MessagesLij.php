@@ -694,27 +694,31 @@ Ti te peu strinza a vista se ti te çerni un tipo de registro, un nomme de un ut
 'changed'            => 'cangiâ',
 'enotif_anon_editor' => 'ûtente anònnimo $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Scassa a paggina',
-'exblank'                     => "a paggina a l'ea vêua",
-'delete-confirm'              => 'Scassa "$1"',
-'delete-legend'               => 'Scassa',
-'historywarning'              => "Attension: A paggina c'a se sta pe scassâ a g'ha 'na cronologîa:",
-'confirmdeletetext'           => "Ti stæ pe scassâ pe sempre da-o database 'na paggina ò 'n'immaggine, assemme a tûtta a sêu cronologîa. Pe cortexia, conferma che davvei ti vêu andâ avanti con quella cancellassion, che ti capisci perfettamente e conseguense de 'st'assion e che a s'adatta a-e linnie guidda stabilîe in [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'              => 'Açion finïa',
-'deletedtext'                 => 'A paggina "<nowiki>$1</nowiki>" a l\'è stæta scassâa. Consûltâ o $2 pe \'na lista de-e paggine scassæ de reçente.',
-'deletedarticle'              => 'O s\'ha scassòu "[[$1]]"',
-'dellogpage'                  => 'Registro de-e cose scassæ',
-'deletecomment'               => 'Raxon pe scassâ',
-'deleteotherreason'           => 'Ûn âtro motivo',
-'deletereasonotherlist'       => "Ûnn'âtra raxon",
-'rollbacklink'                => 'rollback',
-'cantrollback'                => "O no se pêu tornâ inderê; l'ûtente ch'à fæto quelle modiffiche o l'è stæto l'ûnico contribûente.",
-'alreadyrolled'               => "O no se peû tornâ inderê a-i ûrtimi cangiamenti da pagina [[:$1]]
+# Delete
+'deletepage'            => 'Scassa a paggina',
+'exblank'               => "a paggina a l'ea vêua",
+'delete-confirm'        => 'Scassa "$1"',
+'delete-legend'         => 'Scassa',
+'historywarning'        => "Attension: A paggina c'a se sta pe scassâ a g'ha 'na cronologîa:",
+'confirmdeletetext'     => "Ti stæ pe scassâ pe sempre da-o database 'na paggina ò 'n'immaggine, assemme a tûtta a sêu cronologîa. Pe cortexia, conferma che davvei ti vêu andâ avanti con quella cancellassion, che ti capisci perfettamente e conseguense de 'st'assion e che a s'adatta a-e linnie guidda stabilîe in [[{{MediaWiki:Policy-url}}]].",
+'actioncomplete'        => 'Açion finïa',
+'deletedtext'           => 'A paggina "<nowiki>$1</nowiki>" a l\'è stæta scassâa. Consûltâ o $2 pe \'na lista de-e paggine scassæ de reçente.',
+'deletedarticle'        => 'O s\'ha scassòu "[[$1]]"',
+'dellogpage'            => 'Registro de-e cose scassæ',
+'deletecomment'         => 'Raxon pe scassâ',
+'deleteotherreason'     => 'Ûn âtro motivo',
+'deletereasonotherlist' => "Ûnn'âtra raxon",
+
+# Rollback
+'rollbacklink'  => 'rollback',
+'cantrollback'  => "O no se pêu tornâ inderê; l'ûtente ch'à fæto quelle modiffiche o l'è stæto l'ûnico contribûente.",
+'alreadyrolled' => "O no se peû tornâ inderê a-i ûrtimi cangiamenti da pagina [[:$1]]
 da [[User:$2|$2]] ([[User talk:$2|Ciæti]]); quarche âtro 
 o l'à cangiâ ò o l'è zà tornòu inderê.
 L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).",
-'revertpage'                  => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'    => 'E modificaçioin de [[Special:Contributions/$2|$2]] ([[User talk:$2|Ciæti]]) son stæte eliminæ; riportæ a verscion de primma de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Protessioîn',
 'protectedarticle'            => 'o s\'ha protezûo "[[$1]]"',
 'protect-legend'              => 'Confermâ protession',

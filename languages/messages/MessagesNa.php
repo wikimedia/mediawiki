@@ -101,7 +101,7 @@ $messages = array(
 'watch'   => 'Aea',
 'unwatch' => 'Eab krak',
 
-# Delete/protect/revert
+# Delete
 'confirm'        => 'Oebwigaga',
 'deletedarticle' => 'iyababa "[[$1]]"',
 

@@ -1682,55 +1682,59 @@ Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo tr
 Phản hồi và cần sự hỗ trợ:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Xóa trang',
-'confirm'                     => 'Xác nhận',
-'excontent'                   => 'nội dung cũ: “$1”',
-'excontentauthor'             => 'nội dung cũ: “$1” (người viết duy nhất “[[Special:Contributions/$2|$2]]”)',
-'exbeforeblank'               => 'nội dung trước khi tẩy trống: “$1”',
-'exblank'                     => 'trang trắng',
-'delete-confirm'              => '
+# Delete
+'deletepage'             => 'Xóa trang',
+'confirm'                => 'Xác nhận',
+'excontent'              => 'nội dung cũ: “$1”',
+'excontentauthor'        => 'nội dung cũ: “$1” (người viết duy nhất “[[Special:Contributions/$2|$2]]”)',
+'exbeforeblank'          => 'nội dung trước khi tẩy trống: “$1”',
+'exblank'                => 'trang trắng',
+'delete-confirm'         => '
 
 Xóa “$1”',
-'delete-legend'               => 'Xóa',
-'historywarning'              => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
-'confirmdeletetext'           => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.
+'delete-legend'          => 'Xóa',
+'historywarning'         => 'Cảnh báo: Trang bạn sắp xóa đã có lịch sử:',
+'confirmdeletetext'      => 'Bạn sắp xóa hẳn một trang cùng với tất cả lịch sử của nó.
 Xin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].',
-'actioncomplete'              => 'Đã thực hiện xong',
-'deletedtext'                 => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
-'deletedarticle'              => 'đã xóa “$1”',
-'suppressedarticle'           => 'đã giấu "[[$1]]"',
-'dellogpage'                  => 'Nhật trình xóa',
-'dellogpagetext'              => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
-'deletionlog'                 => 'nhật trình xóa',
-'reverted'                    => 'Đã hồi phục một phiên bản cũ',
-'deletecomment'               => 'Lý do',
-'deleteotherreason'           => 'Lý do khác/bổ sung:',
-'deletereasonotherlist'       => 'Lý do khác',
-'deletereason-dropdown'       => '*Các lý do xóa phổ biến
+'actioncomplete'         => 'Đã thực hiện xong',
+'deletedtext'            => 'Đã xóa “<nowiki>$1</nowiki>”. Xem danh sách các xóa bỏ gần nhất tại $2.',
+'deletedarticle'         => 'đã xóa “$1”',
+'suppressedarticle'      => 'đã giấu "[[$1]]"',
+'dellogpage'             => 'Nhật trình xóa',
+'dellogpagetext'         => 'Dưới đây là danh sách các trang bị xóa gần đây nhất.',
+'deletionlog'            => 'nhật trình xóa',
+'reverted'               => 'Đã hồi phục một phiên bản cũ',
+'deletecomment'          => 'Lý do',
+'deleteotherreason'      => 'Lý do khác/bổ sung:',
+'deletereasonotherlist'  => 'Lý do khác',
+'deletereason-dropdown'  => '*Các lý do xóa phổ biến
 ** Tác giả yêu cầu
 ** Vi phạm bản quyền
 ** Phá hoại',
-'delete-edit-reasonlist'      => 'Sửa lý do xóa',
-'delete-toobig'               => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
+'delete-edit-reasonlist' => 'Sửa lý do xóa',
+'delete-toobig'          => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang như vậy bị hạn chế để ngăn ngừa phá hoại do vô ý cho {{SITENAME}}.',
-'delete-warning-toobig'       => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
+'delete-warning-toobig'  => 'Trang này có lịch sử sửa đổi lớn, đến hơn {{PLURAL:$1|lần|lần}} sửa đổi.
 Việc xóa các trang có thể làm tổn hại đến hoạt động của cơ sở dữ liệu {{SITENAME}};
 hãy cẩn trọng khi thực hiện.',
-'rollback'                    => 'Lùi tất cả sửa đổi',
-'rollback_short'              => 'Lùi tất cả',
-'rollbacklink'                => 'lùi tất cả',
-'rollbackfailed'              => 'Lùi sửa đổi không thành công',
-'cantrollback'                => 'Không lùi sửa đổi được;
+
+# Rollback
+'rollback'         => 'Lùi tất cả sửa đổi',
+'rollback_short'   => 'Lùi tất cả',
+'rollbacklink'     => 'lùi tất cả',
+'rollbackfailed'   => 'Lùi sửa đổi không thành công',
+'cantrollback'     => 'Không lùi sửa đổi được;
 người viết trang cuối cùng cũng là tác giả duy nhất của trang này.',
-'alreadyrolled'               => 'Không thể lùi tất cả sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|thảo luận]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tại [[:$1]]; ai đó đã thực hiện sửa đổi hoặc thực hiện lùi tất cả rồi.
+'alreadyrolled'    => 'Không thể lùi tất cả sửa đổi cuối của [[User:$2|$2]] ([[User talk:$2|thảo luận]] | [[Special:Contributions/$2|{{int:contribslink}}]]) tại [[:$1]]; ai đó đã thực hiện sửa đổi hoặc thực hiện lùi tất cả rồi.
 
 Sửa đổi cuối cùng tại trang do [[User:$3|$3]] ([[User talk:$3|thảo luận]] | [[Special:Contributions/$3|{{int:contribslink}}]]) thực hiện.',
-'editcomment'                 => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
-'revertpage'                  => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Đã hủy sửa đổi của $1;
+'editcomment'      => 'Tóm lược sửa đổi: “<i>$1</i>”.', # only shown if there is an edit comment
+'revertpage'       => 'Đã hủy sửa đổi của [[Special:Contributions/$2|$2]] ([[User talk:$2|Thảo luận]]) quay về phiên bản của [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Đã hủy sửa đổi của $1;
 quay về phiên bản cuối của $2.',
-'sessionfailure'              => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
+'sessionfailure'   => 'Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.',
+
+# Protect
 'protectlogpage'              => 'Nhật trình khóa',
 'protectlogtext'              => 'Dưới đây là danh sách các thao tác khóa và mở khóa trang. Xem [[Special:ProtectedPages|danh sách các trang bị khóa]] để xem danh sách các trang hiện thời đang bị khóa.',
 'protectedarticle'            => 'đã khóa “[[$1]]”',

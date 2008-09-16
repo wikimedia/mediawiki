@@ -647,20 +647,24 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'enotif_newpagetext' => 'Esta es un paje nova',
 'created'            => 'Creada',
 
-# Delete/protect/revert
-'deletepage'                  => 'Sutrae la paje',
-'confirm'                     => 'Aproba',
-'historywarning'              => 'Avisa! La paje ce tu intende sutrae, el ave un istoria:',
-'confirmdeletetext'           => 'Tu va pronto sutrae un paje con tota se istoria. Per favore, afirma ce tu intende esta, ce tu comprende la resultas, e ce tu fa esta en acorda con [[{{MediaWiki:Policy-url}}|la prometes]].',
-'actioncomplete'              => 'Ata completada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ia es sutraeda.
+# Delete
+'deletepage'            => 'Sutrae la paje',
+'confirm'               => 'Aproba',
+'historywarning'        => 'Avisa! La paje ce tu intende sutrae, el ave un istoria:',
+'confirmdeletetext'     => 'Tu va pronto sutrae un paje con tota se istoria. Per favore, afirma ce tu intende esta, ce tu comprende la resultas, e ce tu fa esta en acorda con [[{{MediaWiki:Policy-url}}|la prometes]].',
+'actioncomplete'        => 'Ata completada',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ia es sutraeda.
 Vide $2 per un catalogo de sutraes resente.',
-'deletedarticle'              => 'sutraeda "[[$1]]"',
-'dellogpage'                  => 'catalogo de sutraes',
-'deletecomment'               => 'Razona per esta sutrae:',
-'deleteotherreason'           => 'Otra/plu razona:',
-'deletereasonotherlist'       => 'Otra razona',
-'rollbacklink'                => 'retro',
+'deletedarticle'        => 'sutraeda "[[$1]]"',
+'dellogpage'            => 'catalogo de sutraes',
+'deletecomment'         => 'Razona per esta sutrae:',
+'deleteotherreason'     => 'Otra/plu razona:',
+'deletereasonotherlist' => 'Otra razona',
+
+# Rollback
+'rollbacklink' => 'retro',
+
+# Protect
 'protectlogpage'              => 'Catalogo de protejes',
 'protectedarticle'            => '"[[$1]]" protejeda',
 'unprotectedarticle'          => "''[[$1]]'' desprotejeda",

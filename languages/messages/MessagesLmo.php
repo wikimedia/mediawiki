@@ -437,7 +437,7 @@ al butún \"tegn piü d'öcc\".",
 'enotif_newpagetext' => "Chesta-chí l'è una pàgina növa.",
 'changed'            => 'cambiaa',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Scancela la pagina',
 'historywarning'        => "Atenziún: La pagina che a sii dré a scancelá la gh'a una stòria:",
 'actioncomplete'        => 'Aziun cumpletada',
@@ -449,15 +449,19 @@ al butún \"tegn piü d'öcc\".",
 ** Richiesta de l'aütur
 ** Viulaziun del copyright
 ** Vandalism",
-'rollback'              => 'Rollback',
-'rollbacklink'          => 'Rollback',
-'rollbackfailed'        => 'L è mia staa pussibil purtá indré',
-'alreadyrolled'         => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
+
+# Rollback
+'rollback'       => 'Rollback',
+'rollbacklink'   => 'Rollback',
+'rollbackfailed' => 'L è mia staa pussibil purtá indré',
+'alreadyrolled'  => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
 L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]]).",
-'unprotectedarticle'    => 'l\'ha sblucaa "[[$1]]"',
-'protect-title'         => 'Prutezziún da "$1"',
-'protect-legend'        => 'Cunferma de blocch',
-'protectcomment'        => 'Spiega parchè ti vörat blucá la pagina',
+
+# Protect
+'unprotectedarticle' => 'l\'ha sblucaa "[[$1]]"',
+'protect-title'      => 'Prutezziún da "$1"',
+'protect-legend'     => 'Cunferma de blocch',
+'protectcomment'     => 'Spiega parchè ti vörat blucá la pagina',
 
 # Undelete
 'undelete'           => 'Varda i pagin scancelaa',

@@ -286,9 +286,11 @@ $messages = array(
 'enotif_impersonal_salutation' => '{{SITENAME}} ᖃᑕᙳᑎ',
 'created'                      => 'ᒪᑉᐱᑕᖅ ᐊᓂᕗᖅ',
 
-# Delete/protect/revert
-'dellogpage'          => 'ᓂᐸᖅ ᓂᐱ',
-'deletionlog'         => 'ᓂᐸᖅ ᓂᐱ',
+# Delete
+'dellogpage'  => 'ᓂᐸᖅ ᓂᐱ',
+'deletionlog' => 'ᓂᐸᖅ ᓂᐱ',
+
+# Protect
 'protect-legend'      => 'ᐸᑎᒻᒥᕚ ᓴᐳᒻᒥᕚ',
 'protect-level-sysop' => 'ᓯᕐᓚᒃ ᑎᑎᕋᖅᓯᒪᔪᓂᒃ ᑐᖅᑯᖅᑎᕆᔨ',
 

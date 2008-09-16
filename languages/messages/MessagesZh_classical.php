@@ -1440,45 +1440,49 @@ $NEWPAGE
 欲更哨令，惠訪{{fullurl:{{ns:special}}:Watchlist/edit}}
 饋助之，惠訪{{fullurl:{{ns:help}}:Contents}}',
 
-# Delete/protect/revert
-'deletepage'                  => '刪頁',
-'confirm'                     => '准',
-'excontent'                   => "文乃'$1'",
-'excontentauthor'             => "文乃'$1'，乃[[Special:Contributions/$2|$2]]獨作。",
-'exblank'                     => '缺頁',
-'delete-confirm'              => '刪"$1"',
-'delete-legend'               => '刪',
-'historywarning'              => '警示，此頁有誌：',
-'confirmdeletetext'           => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
-'actioncomplete'              => '成矣',
-'deletedtext'                 => '"<nowiki>$1</nowiki>"刪矣，見誌刪於$2。',
-'deletedarticle'              => '刪焉「[[$1]]」',
-'suppressedarticle'           => '廢焉「[[$1]]」',
-'dellogpage'                  => '誌刪',
-'dellogpagetext'              => '近刪如下：',
-'deletionlog'                 => '誌刪',
-'reverted'                    => '已還前審',
-'deletecomment'               => '刪因：',
-'deleteotherreason'           => '另／附之因：',
-'deletereasonotherlist'       => '另因',
-'deletereason-dropdown'       => '
+# Delete
+'deletepage'             => '刪頁',
+'confirm'                => '准',
+'excontent'              => "文乃'$1'",
+'excontentauthor'        => "文乃'$1'，乃[[Special:Contributions/$2|$2]]獨作。",
+'exblank'                => '缺頁',
+'delete-confirm'         => '刪"$1"',
+'delete-legend'          => '刪',
+'historywarning'         => '警示，此頁有誌：',
+'confirmdeletetext'      => '欲刪此物與誌，知後果、合[[{{MediaWiki:Policy-url}}]]後再為之。',
+'actioncomplete'         => '成矣',
+'deletedtext'            => '"<nowiki>$1</nowiki>"刪矣，見誌刪於$2。',
+'deletedarticle'         => '刪焉「[[$1]]」',
+'suppressedarticle'      => '廢焉「[[$1]]」',
+'dellogpage'             => '誌刪',
+'dellogpagetext'         => '近刪如下：',
+'deletionlog'            => '誌刪',
+'reverted'               => '已還前審',
+'deletecomment'          => '刪因：',
+'deleteotherreason'      => '另／附之因：',
+'deletereasonotherlist'  => '另因',
+'deletereason-dropdown'  => '
 *常刪之因
 ** 作者之求
 ** 侵版權
 ** 破壞',
-'delete-edit-reasonlist'      => '纂刪因',
-'delete-toobig'               => '此頁含大誌，過$1修。刪頁限矣，防於{{SITENAME}}之亂也。',
-'delete-warning-toobig'       => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
-'rollback'                    => '退修',
-'rollback_short'              => '退',
-'rollbacklink'                => '退',
-'rollbackfailed'              => '退未成',
-'cantrollback'                => '退修不成，作者獨也。',
-'alreadyrolled'               => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
-'editcomment'                 => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
-'revertpage'                  => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '去$1之作，復為$2之本耳。',
-'sessionfailure'              => '登簿有變。為防盜簿，返前重取再為之。',
+'delete-edit-reasonlist' => '纂刪因',
+'delete-toobig'          => '此頁含大誌，過$1修。刪頁限矣，防於{{SITENAME}}之亂也。',
+'delete-warning-toobig'  => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
+
+# Rollback
+'rollback'         => '退修',
+'rollback_short'   => '退',
+'rollbacklink'     => '退',
+'rollbackfailed'   => '退未成',
+'cantrollback'     => '退修不成，作者獨也。',
+'alreadyrolled'    => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
+'editcomment'      => '贊曰"<i>$1</i>"', # only shown if there is an edit comment
+'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '去$1之作，復為$2之本耳。',
+'sessionfailure'   => '登簿有變。為防盜簿，返前重取再為之。',
+
+# Protect
 'protectlogpage'              => '誌緘',
 'protectlogtext'              => '誌緘如下；近緘見[[Special:ProtectedPages|此]] 。',
 'protectedarticle'            => '緘焉"[[$1]]"',

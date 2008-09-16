@@ -412,11 +412,13 @@ $messages = array(
 'enotif_newpagetext' => 'यो नयाँ पृष्ठ हो।',
 'changed'            => 'परिवर्तन भइसकेको',
 
-# Delete/protect/revert
-'excontent'                   => "लेख थियो: '$1'",
-'historywarning'              => 'खबरदारी: तपाईंले मेटाउन लाग्नुभएको पृष्ठको इतिहास छ:',
-'actioncomplete'              => 'काम सकियो',
-'reverted'                    => 'अघिल्लो संशोधनको स्थितिमा फर्काइयो',
+# Delete
+'excontent'      => "लेख थियो: '$1'",
+'historywarning' => 'खबरदारी: तपाईंले मेटाउन लाग्नुभएको पृष्ठको इतिहास छ:',
+'actioncomplete' => 'काम सकियो',
+'reverted'       => 'अघिल्लो संशोधनको स्थितिमा फर्काइयो',
+
+# Protect
 'protectlogpage'              => 'सुरक्षण लग',
 'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
 'protectcomment'              => 'बचाउको कारण',

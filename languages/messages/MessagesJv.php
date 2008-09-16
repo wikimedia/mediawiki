@@ -1404,51 +1404,55 @@ Kanggo ngowahi préferènsi ing daftar pangawasan panjenengan, mangga mirsani
 Umpan balik lan pitulung sabanjuré:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Busak kaca',
-'confirm'                     => 'Dhedhes (konfirmasi)',
-'excontent'                   => "isi sadurungé: '$1'",
-'excontentauthor'             => "isiné mung arupa: '$1' (lan siji-sijiné sing nyumbang yaiku '$2')",
-'exbeforeblank'               => "isi sadurungé dikosongaké: '$1'",
-'exblank'                     => 'kaca kosong',
-'delete-confirm'              => 'Busak "$1"',
-'delete-legend'               => 'Busak',
-'historywarning'              => 'Pènget: Kaca sing bakal panjenengan busak ana sajarahé:',
-'confirmdeletetext'           => 'Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
-'actioncomplete'              => 'Proses tuntas',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
-'deletedarticle'              => 'mbusak "[[$1]]"',
-'suppressedarticle'           => 'ndelikaké "[[$1]]"',
-'dellogpage'                  => 'Cathetan pambusakan',
-'dellogpagetext'              => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
-'deletionlog'                 => 'Cathetan sing dibusak',
-'reverted'                    => 'Dibalèkaké ing revisi sadurungé',
-'deletecomment'               => 'Alesan dibusak:',
-'deleteotherreason'           => 'Alesan liya utawa tambahan:',
-'deletereasonotherlist'       => 'Alesan liya',
-'deletereason-dropdown'       => '*Alesan pambusakan
+# Delete
+'deletepage'             => 'Busak kaca',
+'confirm'                => 'Dhedhes (konfirmasi)',
+'excontent'              => "isi sadurungé: '$1'",
+'excontentauthor'        => "isiné mung arupa: '$1' (lan siji-sijiné sing nyumbang yaiku '$2')",
+'exbeforeblank'          => "isi sadurungé dikosongaké: '$1'",
+'exblank'                => 'kaca kosong',
+'delete-confirm'         => 'Busak "$1"',
+'delete-legend'          => 'Busak',
+'historywarning'         => 'Pènget: Kaca sing bakal panjenengan busak ana sajarahé:',
+'confirmdeletetext'      => 'Panjenengan bakal mbusak kaca utawa berkas iki minangka permanèn karo kabèh sajarahé saka basis data. Pastèkna dhisik menawa panjenengan pancèn nggayuh iki, ngerti kabèh akibat lan konsekwènsiné, lan apa sing bakal panjenengan tumindak iku cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
+'actioncomplete'         => 'Proses tuntas',
+'deletedtext'            => '"<nowiki>$1</nowiki>" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
+'deletedarticle'         => 'mbusak "[[$1]]"',
+'suppressedarticle'      => 'ndelikaké "[[$1]]"',
+'dellogpage'             => 'Cathetan pambusakan',
+'dellogpagetext'         => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
+'deletionlog'            => 'Cathetan sing dibusak',
+'reverted'               => 'Dibalèkaké ing revisi sadurungé',
+'deletecomment'          => 'Alesan dibusak:',
+'deleteotherreason'      => 'Alesan liya utawa tambahan:',
+'deletereasonotherlist'  => 'Alesan liya',
+'deletereason-dropdown'  => '*Alesan pambusakan
 ** Disuwun sing nulis
 ** Nglanggar hak cipta
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Sunting alesan pambusakan',
-'delete-toobig'               => 'Kaca iki ndarbèni sajarah panyuntingan sing dawa, yaiku ngluwihi $1 révisi. Pambusakan kaca mawa sajarah panyuntingan sing dawa ora diparengaké kanggo menggak anané karusakan ing {{SITENAME}}.',
-'delete-warning-toobig'       => 'Kaca iki duwé sajarang panyuntingan sing dawa, luwih saka $1 révisi.
+'delete-edit-reasonlist' => 'Sunting alesan pambusakan',
+'delete-toobig'          => 'Kaca iki ndarbèni sajarah panyuntingan sing dawa, yaiku ngluwihi $1 révisi. Pambusakan kaca mawa sajarah panyuntingan sing dawa ora diparengaké kanggo menggak anané karusakan ing {{SITENAME}}.',
+'delete-warning-toobig'  => 'Kaca iki duwé sajarang panyuntingan sing dawa, luwih saka $1 révisi.
 Mbusak kaca iki bisa nyebabaké masalah operasional basis data {{SITENAME}};
 mangga digalih manèh kersa nerusaké ora.',
-'rollback'                    => 'Mangsulaken suntingan',
-'rollback_short'              => 'Balèkna',
-'rollbacklink'                => 'balèaké',
-'rollbackfailed'              => 'Pambalèkan gagal dilakoni',
-'cantrollback'                => 'Ora bisa mbalèkaké suntingan; panganggo pungkasan iku siji-sijiné penulis artikel iki.',
-'alreadyrolled'               => 'Ora bisa mbalèkaké menyang suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]]); 
+
+# Rollback
+'rollback'         => 'Mangsulaken suntingan',
+'rollback_short'   => 'Balèkna',
+'rollbacklink'     => 'balèaké',
+'rollbackfailed'   => 'Pambalèkan gagal dilakoni',
+'cantrollback'     => 'Ora bisa mbalèkaké suntingan; panganggo pungkasan iku siji-sijiné penulis artikel iki.',
+'alreadyrolled'    => 'Ora bisa mbalèkaké menyang suntingan pungkasan [[:$1]] déning [[User:$2|$2]] ([[User talk:$2|Wicara]]); 
 wong liya wis nyunting utawa mbalèkaké kaca artikel iku. 
 
 Suntingan pungkasan dilakoni déning [[User:$3|$3]] ([[User talk:$3|Wicara]]).',
-'editcomment'                 => 'Komentar panyuntingané yaiku: "<em>$1</em>".', # only shown if there is an edit comment
-'revertpage'                  => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Suntingan dibalèkaké déning $1;
+'editcomment'      => 'Komentar panyuntingané yaiku: "<em>$1</em>".', # only shown if there is an edit comment
+'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dipunwangsulaken dhateng ing vèrsi pungkasan déning [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Suntingan dibalèkaké déning $1;
 diowahi bali menyang vèrsi pungkasan déning $2.',
-'sessionfailure'              => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
+'sessionfailure'   => 'Katoné ana masalah karo sèsi log panjenengan; log panjenengan wis dibatalaké kanggo nyegah pambajakan. Mangga mencèt tombol "back" lan unggahaké manèh kaca sadurungé mlebu log, lan coba manèh.',
+
+# Protect
 'protectlogpage'              => 'Log pangreksan',
 'protectlogtext'              => 'Ing ngisor iki kapacak log pangreksan lan panjabelan reksa kaca.
 Mangga mirsani [[Special:ProtectedPages|daftar kaca sing direksa]] kanggo daftar pangreksan kaca pungkasan.',

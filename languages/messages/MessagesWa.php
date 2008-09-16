@@ -1025,35 +1025,39 @@ Po candjî l\' apontiaedje di vosse djivêye a shuve, loukîz
 Po pus d\' aidance:
 {{fullurl:{{ns:help}}:Aidance}}',
 
-# Delete/protect/revert
-'deletepage'                  => "Disfacer l' pådje",
-'confirm'                     => 'Acertiner',
-'excontent'                   => 'li contnou esteut: «$1»',
-'excontentauthor'             => "li contnou esteut: «$1» (eyet l' seu contribouweu esteut «$2»)",
-'exbeforeblank'               => "li contnou dvant l' disfaçaedje esteut: «$1»",
-'exblank'                     => 'li pådje esteut vude',
-'historywarning'              => 'Asteme: Li pådje ki vos alez disfacer a-st ene istwere:',
-'confirmdeletetext'           => "Vos alez disfacer po tofer del båze di dnêyes ene
+# Delete
+'deletepage'        => "Disfacer l' pådje",
+'confirm'           => 'Acertiner',
+'excontent'         => 'li contnou esteut: «$1»',
+'excontentauthor'   => "li contnou esteut: «$1» (eyet l' seu contribouweu esteut «$2»)",
+'exbeforeblank'     => "li contnou dvant l' disfaçaedje esteut: «$1»",
+'exblank'           => 'li pådje esteut vude',
+'historywarning'    => 'Asteme: Li pådje ki vos alez disfacer a-st ene istwere:',
+'confirmdeletetext' => "Vos alez disfacer po tofer del båze di dnêyes ene
 pådje ou ene imådje, avou tote si istwere.
 Acertinez s' i vs plait ki c' est bén çoula ki vos vloz fé,
 ki vos comprindoz les consecwinces, et ki vos fjhoz çoula
 tot [[{{MediaWiki:Policy-url}}|shuvant les rîles]].",
-'actioncomplete'              => 'Fwait',
-'deletedtext'                 => 'Li pådje «<nowiki>$1</nowiki>» a stî disfacêye. Loukîz li $2 po ene
+'actioncomplete'    => 'Fwait',
+'deletedtext'       => 'Li pådje «<nowiki>$1</nowiki>» a stî disfacêye. Loukîz li $2 po ene
 djivêye des dierins disfaçaedjes.',
-'deletedarticle'              => 'pådje «$1» disfacêye',
-'dellogpage'                  => 'Djournå des disfaçaedjes',
-'dellogpagetext'              => "Chal pa dzo c' est l' djivêye des dierins disfaçaedjes.",
-'deletionlog'                 => 'djournå des disfaçaedjes',
-'reverted'                    => 'Rimetou ene modêye di dvant',
-'deletecomment'               => 'Råjhon do disfaçaedje',
-'cantrollback'                => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
-'alreadyrolled'               => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
+'deletedarticle'    => 'pådje «$1» disfacêye',
+'dellogpage'        => 'Djournå des disfaçaedjes',
+'dellogpagetext'    => "Chal pa dzo c' est l' djivêye des dierins disfaçaedjes.",
+'deletionlog'       => 'djournå des disfaçaedjes',
+'reverted'          => 'Rimetou ene modêye di dvant',
+'deletecomment'     => 'Råjhon do disfaçaedje',
+
+# Rollback
+'cantrollback'  => "Dji n' sai disfé les candjmints; li dierin contribouweu est li seu oteur po cist årtike ci.",
+'alreadyrolled' => "Dji n' sai disfé li dierin candjmint di [[$1]] fwait pa [[User:$2|$2]] ([[User talk:$2|Copene]]); 
 ene sakî d' ôte a ddja candjî l' årtike ou ddja rmetou l' modêye di dvant.
 
 Li dierin candjmint a stî fwait pa [[User:$3|$3]] ([[User talk:$3|Copene]]).",
-'editcomment'                 => 'Li comintaire do candjmint esteut: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => 'Disfwait li candjmint da [[Special:Contributions/$2|$2]] ([[User talk:$2|copene]]); li dierin candjmint est asteure da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'editcomment'   => 'Li comintaire do candjmint esteut: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'    => 'Disfwait li candjmint da [[Special:Contributions/$2|$2]] ([[User talk:$2|copene]]); li dierin candjmint est asteure da [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogpage'              => 'Djournå des protedjaedjes',
 'protectlogtext'              => "Chal pa dzo c' est ene djivêye des protedjaedjes et disprotedjaedjes des pådjes.",
 'protectedarticle'            => '«[[$1]]» protedjî',

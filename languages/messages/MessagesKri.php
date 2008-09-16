@@ -274,7 +274,7 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 'watching'   => 'Ah de wach...',
 'unwatching' => 'Ah de lehf foh wach...',
 
-# Delete/protect/revert
+# Delete
 'deletepage'    => 'Ires dis pej-ya',
 'confirm'       => 'Kohnfam',
 'excontent'     => "Nah dis i bin geht/ de tohk boht: '$1'",

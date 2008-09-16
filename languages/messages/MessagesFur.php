@@ -936,28 +936,32 @@ e la pagjine e sarà '''gruessute''' te [[Special:RecentChanges|liste dai ultins
 'created'                      => 'creade',
 'enotif_anon_editor'           => 'utent anonim $1',
 
-# Delete/protect/revert
-'deletepage'                  => 'Elimine pagjine',
-'confirm'                     => 'Conferme',
-'excontent'                   => "il contignût al jere: '$1'",
-'excontentauthor'             => "il contignût al jere: '$1' (e al veve contribuît dome '$2')",
-'exbeforeblank'               => "il contignût prime di disvuedâ al jere: '$1'",
-'exblank'                     => 'pagjine vueide',
-'delete-confirm'              => 'Elimine "$1"',
-'delete-legend'               => 'Elimine',
-'historywarning'              => 'Atenzion: la pagjine che tu stâs eliminant e à un storic.',
-'confirmdeletetext'           => 'Tu stâs par eliminâ par simpri une pagjine insieme cun dut il so storic.
+# Delete
+'deletepage'            => 'Elimine pagjine',
+'confirm'               => 'Conferme',
+'excontent'             => "il contignût al jere: '$1'",
+'excontentauthor'       => "il contignût al jere: '$1' (e al veve contribuît dome '$2')",
+'exbeforeblank'         => "il contignût prime di disvuedâ al jere: '$1'",
+'exblank'               => 'pagjine vueide',
+'delete-confirm'        => 'Elimine "$1"',
+'delete-legend'         => 'Elimine',
+'historywarning'        => 'Atenzion: la pagjine che tu stâs eliminant e à un storic.',
+'confirmdeletetext'     => 'Tu stâs par eliminâ par simpri une pagjine insieme cun dut il so storic.
 Par plasê, da la conferme che tu vuelis fâlu, che tu capissis lis conseguencis e che tu lu stâs fasint tal rispiet de [[{{MediaWiki:Policy-url}}|politiche dal progjet]].',
-'actioncomplete'              => 'Azion completade',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" al è stât eliminât.
+'actioncomplete'        => 'Azion completade',
+'deletedtext'           => '"<nowiki>$1</nowiki>" al è stât eliminât.
 Cjale $2 par une liste des ultimis eliminazions.',
-'deletedarticle'              => 'eliminât "$1"',
-'dellogpage'                  => 'Regjistri des eliminazions',
-'deletionlog'                 => 'regjistri eliminazions',
-'deletecomment'               => 'Reson pe eliminazion',
-'deleteotherreason'           => 'Altri motîf o motîf in plui:',
-'deletereasonotherlist'       => 'Altri motîf',
-'rollbacklink'                => 'revoche',
+'deletedarticle'        => 'eliminât "$1"',
+'dellogpage'            => 'Regjistri des eliminazions',
+'deletionlog'           => 'regjistri eliminazions',
+'deletecomment'         => 'Reson pe eliminazion',
+'deleteotherreason'     => 'Altri motîf o motîf in plui:',
+'deletereasonotherlist' => 'Altri motîf',
+
+# Rollback
+'rollbacklink' => 'revoche',
+
+# Protect
 'protectlogpage'              => 'Regjistri des protezions',
 'protectedarticle'            => '$1 protezût',
 'protect-title'               => 'Protezint "$1"',

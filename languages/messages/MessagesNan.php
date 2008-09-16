@@ -630,7 +630,7 @@ Template:Khu-pia̍t-ia̍h',
 'watchlist-show-minor' => 'Hián-sī sió siu-kái',
 'watchlist-hide-minor' => 'Am-khàm sió siu-kái',
 
-# Delete/protect/revert
+# Delete
 'deletepage'        => 'Thâi ia̍h',
 'confirm'           => 'Khak-tēng',
 'excontent'         => "lōe-iông sī: '$1'",
@@ -644,18 +644,22 @@ Template:Khu-pia̍t-ia̍h',
 'deletedarticle'    => 'Thâi tiāu "[[$1]]"',
 'dellogpagetext'    => 'Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.',
 'deletecomment'     => 'Thâi ê lí-iû',
-'rollback'          => 'Kā siu-kái ká tńg khì',
-'rollback_short'    => 'Ká tńg khì',
-'rollbacklink'      => 'ká tńg khì',
-'rollbackfailed'    => 'Ká bē tńg khì',
-'cantrollback'      => 'Bô-hoat-tō· kā siu-kái ká-tńg--khì; téng ūi kòng-hiàn-chiá sī chit ia̍h î-it ê chok-chiá.',
-'alreadyrolled'     => 'Bô-hoat-tō· kā [[User:$2|$2]] ([[User talk:$2|Thó-lūn]]) tùi [[:$1]] ê siu-kái ká-tńg-khì; í-keng ū lâng siu-kái a̍h-sī ká-tńg chit ia̍h. Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|Thó-lūn]]).',
-'editcomment'       => 'Siu-kái phêng-lūn sī: "<i>$1</i>".', # only shown if there is an edit comment
-'protectedarticle'  => 'pó-hō͘ "[[$1]]"',
-'protect-title'     => 'Pó-hō· "$1"',
-'protect-legend'    => 'Khak-tēng beh pó-hō·',
-'protectcomment'    => 'Pó-hō· ê lí-iû:',
-'protect-cascade'   => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
+
+# Rollback
+'rollback'       => 'Kā siu-kái ká tńg khì',
+'rollback_short' => 'Ká tńg khì',
+'rollbacklink'   => 'ká tńg khì',
+'rollbackfailed' => 'Ká bē tńg khì',
+'cantrollback'   => 'Bô-hoat-tō· kā siu-kái ká-tńg--khì; téng ūi kòng-hiàn-chiá sī chit ia̍h î-it ê chok-chiá.',
+'alreadyrolled'  => 'Bô-hoat-tō· kā [[User:$2|$2]] ([[User talk:$2|Thó-lūn]]) tùi [[:$1]] ê siu-kái ká-tńg-khì; í-keng ū lâng siu-kái a̍h-sī ká-tńg chit ia̍h. Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|Thó-lūn]]).',
+'editcomment'    => 'Siu-kái phêng-lūn sī: "<i>$1</i>".', # only shown if there is an edit comment
+
+# Protect
+'protectedarticle' => 'pó-hō͘ "[[$1]]"',
+'protect-title'    => 'Pó-hō· "$1"',
+'protect-legend'   => 'Khak-tēng beh pó-hō·',
+'protectcomment'   => 'Pó-hō· ê lí-iû:',
+'protect-cascade'  => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Siu-kái',

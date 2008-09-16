@@ -865,29 +865,33 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'enotif_subject'     => '{{SITENAME}} page $PAGETITLE haes been $CHANGEDORCREATED bi $PAGEEDITOR',
 'enotif_lastvisited' => 'Hae a leuk at $1 for aa chynges sin yer last visit.',
 
-# Delete/protect/revert
-'excontent'           => "content wis: '$1'",
-'excontentauthor'     => "content wis: '$1' (an the ae contreibutor wis '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'       => "content afore blankin wis: '$1'",
-'exblank'             => 'page wis tuim',
-'historywarning'      => "Warnin: The page ye're aboot tae delete haes a history:",
-'confirmdeletetext'   => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database.
+# Delete
+'excontent'         => "content wis: '$1'",
+'excontentauthor'   => "content wis: '$1' (an the ae contreibutor wis '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'     => "content afore blankin wis: '$1'",
+'exblank'           => 'page wis tuim',
+'historywarning'    => "Warnin: The page ye're aboot tae delete haes a history:",
+'confirmdeletetext' => "Ye'r aboot tae permanently delete a page or eimage alang wi aa its history frae the database.
 Please confirm that ye intend tae dae this, that ye unnerstaun the consequences,
 an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
-'actioncomplete'      => 'Action duin',
-'deletedtext'         => '"<nowiki>$1</nowiki>" haes been delete. See $2 for a record o recent deletions.',
-'deletedarticle'      => 'deletit "[[$1]]"',
-'dellogpagetext'      => 'Ablo is a leet o the maist recent deletions.',
-'reverted'            => 'Revertit tae aulder reveision',
-'deletecomment'       => 'Raeson for deletion',
-'rollback'            => 'Row back edits',
-'rollback_short'      => 'Rowback',
-'rollbacklink'        => 'rowback',
-'rollbackfailed'      => 'Rowback failed',
-'cantrollback'        => 'Canna revert edit; last contreibutor is the ae author o this page.',
-'alreadyrolled'       => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'         => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'          => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'actioncomplete'    => 'Action duin',
+'deletedtext'       => '"<nowiki>$1</nowiki>" haes been delete. See $2 for a record o recent deletions.',
+'deletedarticle'    => 'deletit "[[$1]]"',
+'dellogpagetext'    => 'Ablo is a leet o the maist recent deletions.',
+'reverted'          => 'Revertit tae aulder reveision',
+'deletecomment'     => 'Raeson for deletion',
+
+# Rollback
+'rollback'       => 'Row back edits',
+'rollback_short' => 'Rowback',
+'rollbacklink'   => 'rowback',
+'rollbackfailed' => 'Rowback failed',
+'cantrollback'   => 'Canna revert edit; last contreibutor is the ae author o this page.',
+'alreadyrolled'  => 'Canna rowback last edit o [[$1]] bi [[User:$2|$2]] ([[User talk:$2|Talk]]); some ither bodie haes editit or rowed back the page aareadies. Last edit wis bi [[User:$3|$3]] ([[User talk:$3|Talk]]).',
+'editcomment'    => 'The edit comment wis: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
 'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
 'protectedarticle'    => 'protectit "[[$1]]"',
 'unprotectedarticle'  => 'unprotectit "[[$1]]"',

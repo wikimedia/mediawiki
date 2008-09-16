@@ -487,12 +487,14 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'watchlistcontains' => 'Liiskaaga waardiyeynta waxaa ku jiro $1 {{PLURAL:$1|bog|boggag}}.',
 'wlshowlast'        => 'Fiiri $1 saacadood ama $2 maalmood $3 ee ugu dambeeyay',
 
-# Delete/protect/revert
-'confirm'                => 'Xaqiiji',
-'excontent'              => "qoraalka wuxuu ahaa: '$1'",
-'exblank'                => 'Bogga waxba kuma jirin',
-'historywarning'         => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
-'actioncomplete'         => "Amarka waa la'dhamaystiray",
+# Delete
+'confirm'        => 'Xaqiiji',
+'excontent'      => "qoraalka wuxuu ahaa: '$1'",
+'exblank'        => 'Bogga waxba kuma jirin',
+'historywarning' => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
+'actioncomplete' => "Amarka waa la'dhamaystiray",
+
+# Protect
 'protectedarticle'       => 'la\'difaacay "[[$1]]"',
 'protect-title'          => 'la\'difaacaa "$1"',
 'protect-legend'         => 'Xaqiiji difaacida',

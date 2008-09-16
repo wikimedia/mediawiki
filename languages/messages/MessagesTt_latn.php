@@ -534,7 +534,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'watchthispage'    => 'Bitne küzätep torası',
 'notanarticle'     => 'Eçtälek belän bit tügel',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Beter bitne',
 'confirm'               => 'Raslaw',
 'excontentauthor'       => "soñğı içteligi: '$1' ('[[Special:Contributions/$2|$2]]' ğına qatnaşqan)",
@@ -556,14 +556,18 @@ Soñğı beterülär $2 bitendä terkälenä.',
 ** Yazğanı soradı
 ** Qelemxaqq bozılışı
 ** Bozıp yöriwçi işi',
-'editcomment'           => 'Bu üzgärtü taswírı: "<i>$1</i>".', # only shown if there is an edit comment
-'protectlogpage'        => 'Yaqlaw_köndälege',
-'protectedarticle'      => '[[$1]] yaqlandı',
-'unprotectedarticle'    => '[[$1]] ireklände',
-'protect-title'         => '«$1» yaqlaw',
-'protect-legend'        => 'Yaqlawnı raslaw',
-'protectcomment'        => 'Yaqlaw säbäbe',
-'protectexpiry'         => 'Eski bolaçaq:',
+
+# Rollback
+'editcomment' => 'Bu üzgärtü taswírı: "<i>$1</i>".', # only shown if there is an edit comment
+
+# Protect
+'protectlogpage'     => 'Yaqlaw_köndälege',
+'protectedarticle'   => '[[$1]] yaqlandı',
+'unprotectedarticle' => '[[$1]] ireklände',
+'protect-title'      => '«$1» yaqlaw',
+'protect-legend'     => 'Yaqlawnı raslaw',
+'protectcomment'     => 'Yaqlaw säbäbe',
+'protectexpiry'      => 'Eski bolaçaq:',
 
 # Undelete
 'undelete'         => 'Beterelgän bit torğızu',

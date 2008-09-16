@@ -243,7 +243,7 @@ $messages = array(
 'watch'        => 'зен',
 'wlshowlast'   => 'Гайт тІаьххара $1 сахьташ $2 денош $3',
 
-# Delete/protect/revert
+# Delete
 'confirm'     => 'Бакъдар',
 'dellogpage'  => 'ДІадайан таптараш',
 'deletionlog' => 'дІадайан таптараш',

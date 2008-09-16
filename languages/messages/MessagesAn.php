@@ -1556,51 +1556,55 @@ Ta cambiar as opzions d\'a suya lista de seguimiento en:
 Ta obtenir más informazión y aduya:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Borrar ista pachina',
-'confirm'                     => 'Confirmar',
-'excontent'                   => "O conteniu yera: '$1'",
-'excontentauthor'             => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
-'exbeforeblank'               => "O conteniu antis de blanquiar yera: '$1'",
-'exblank'                     => 'a pachina yera bueda',
-'delete-confirm'              => 'Borrar "$1"',
-'delete-legend'               => 'Borrar',
-'historywarning'              => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
-'confirmdeletetext'           => "Ye amanato á borrar d'a base de datos una pachina con tot o suyo istorial.
+# Delete
+'deletepage'             => 'Borrar ista pachina',
+'confirm'                => 'Confirmar',
+'excontent'              => "O conteniu yera: '$1'",
+'excontentauthor'        => "O conteniu yera: '$1' (y o suyo unico autor '$2')",
+'exbeforeblank'          => "O conteniu antis de blanquiar yera: '$1'",
+'exblank'                => 'a pachina yera bueda',
+'delete-confirm'         => 'Borrar "$1"',
+'delete-legend'          => 'Borrar',
+'historywarning'         => 'Pare cuenta: A pachina que ba a borrar tiene un istorial de cambeos:',
+'confirmdeletetext'      => "Ye amanato á borrar d'a base de datos una pachina con tot o suyo istorial.
 Por fabor, confirme que reyalment ye mirando de fer ixo, que entiende as consecuenzias, y que lo fa d'alcuerdo con as [[{{MediaWiki:Policy-url}}|politicas]] d'o wiki.",
-'actioncomplete'              => 'Aizión rematada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estato borrato.
+'actioncomplete'         => 'Aizión rematada',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ha estato borrato.
 Se beiga en $2 un rechistro d\'os borraus rezients.',
-'deletedarticle'              => 'borrato "$1"',
-'suppressedarticle'           => 's\'ha supreso "[[$1]]"',
-'dellogpage'                  => 'Rechistro de borraus',
-'dellogpagetext'              => "Contino se i amuestra una lista d'os borraus más rezients.",
-'deletionlog'                 => 'rechistro de borraus',
-'reverted'                    => 'Tornato ta una bersión anterior',
-'deletecomment'               => 'Razón ta borrar:',
-'deleteotherreason'           => 'Otras/Más razons:',
-'deletereasonotherlist'       => 'Otra razón',
-'deletereason-dropdown'       => "*Razons comuns de borrau
+'deletedarticle'         => 'borrato "$1"',
+'suppressedarticle'      => 's\'ha supreso "[[$1]]"',
+'dellogpage'             => 'Rechistro de borraus',
+'dellogpagetext'         => "Contino se i amuestra una lista d'os borraus más rezients.",
+'deletionlog'            => 'rechistro de borraus',
+'reverted'               => 'Tornato ta una bersión anterior',
+'deletecomment'          => 'Razón ta borrar:',
+'deleteotherreason'      => 'Otras/Más razons:',
+'deletereasonotherlist'  => 'Otra razón',
+'deletereason-dropdown'  => "*Razons comuns de borrau
 ** Á demanda d'o mesmo autor
 ** trencadura de copyright
 ** Bandalismo",
-'delete-edit-reasonlist'      => "Editar as razons d'o borrau",
-'delete-toobig'               => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
-'delete-warning-toobig'       => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
-'rollback'                    => 'Esfer edizions',
-'rollback_short'              => 'Esfer',
-'rollbacklink'                => 'Esfer',
-'rollbackfailed'              => "No s'ha puesto esfer",
-'cantrollback'                => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
-'alreadyrolled'               => 'No se puede esfer a zaguer edizión de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
+'delete-edit-reasonlist' => "Editar as razons d'o borrau",
+'delete-toobig'          => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. S'ha restrinchito o borrau d'ista mena de pachinas ta aprebenir d'a corrompizión azidental de {{SITENAME}}.",
+'delete-warning-toobig'  => "Ista pachina tiene un istorial d'edizión prou largo, con más de $1 {{PLURAL:$1|bersión|bersions}}. Si la borra puede corromper as operazions d'a base de datos de {{SITENAME}}; contine con ficazio.",
+
+# Rollback
+'rollback'         => 'Esfer edizions',
+'rollback_short'   => 'Esfer',
+'rollbacklink'     => 'Esfer',
+'rollbackfailed'   => "No s'ha puesto esfer",
+'cantrollback'     => "No se pueden esfer as edizions; o zaguer colaborador ye o unico autor d'iste articlo.",
+'alreadyrolled'    => 'No se puede esfer a zaguer edizión de [[:$1]] feita por [[User:$2|$2]] ([[User talk:$2|descusión]]|[[Special:Contributions/$2|{{int:contribslink}}]]); belatro usuario ya ha editato u esfeito una edizión en ixa pachina. 
 
 A zaguer edizión la fazió [[User:$3|$3]] ([[User talk:$3|descusión]]|[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
-'sessionfailure'              => 'Pareix que bi ha un problema con a suya sesión;
+'editcomment'      => 'O comentario d\'a edizión ye: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "S'han esfeito as edizions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Descusión]]); retornando t'a zaguera bersión editada por [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Esfeitas as edizions de $1; s'ha retornato á la zaguer bersión de $2.",
+'sessionfailure'   => 'Pareix que bi ha un problema con a suya sesión;
 s\'ha anulato ista aizión como mida de precura contra secuestros de sesión.
 Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á prebar alabez.',
+
+# Protect
 'protectlogpage'              => 'Protezions de pachinas',
 'protectlogtext'              => 'Contino se i amuestra una lista de protezions y esprotezions de pachinas. Se beiga [[Special:ProtectedPages|lista de pachinas protechitas]] ta más informazión.',
 'protectedarticle'            => "s'ha protechito [[$1]]",

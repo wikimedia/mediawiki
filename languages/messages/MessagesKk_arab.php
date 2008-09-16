@@ -1896,57 +1896,61 @@ $NEWPAGE
 سىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:
 {{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'بەتتى جويۋ',
-'confirm'                     => 'قۇپتاۋ',
-'excontent'                   => "بولعان ماعلۇماتى: '$1'",
-'excontentauthor'             => "بولعان ماعلۇماتى (تەك '[[{{#special:Contributions}}/$2|$2]]' ۇلەسى): '$1'",
-'exbeforeblank'               => "تازارتۋ الدىنداعى بولعان ماعلۇماتى: '$1'",
-'exblank'                     => 'بەت بوس بولدى',
-'delete-confirm'              => '«$1» دەگەندى جويۋ',
-'delete-legend'               => 'جويۋ',
-'historywarning'              => 'قۇلاقتاندىرۋ: جويۋى كوزدەلگەن بەتتە تارىيحى بار:',
-'confirmdeletetext'           => 'بەتتى بۇكىل تارىيحىمەن بىرگە دەرەكقوردان جوييۋىن كوزدەدىڭىز.
+# Delete
+'deletepage'             => 'بەتتى جويۋ',
+'confirm'                => 'قۇپتاۋ',
+'excontent'              => "بولعان ماعلۇماتى: '$1'",
+'excontentauthor'        => "بولعان ماعلۇماتى (تەك '[[{{#special:Contributions}}/$2|$2]]' ۇلەسى): '$1'",
+'exbeforeblank'          => "تازارتۋ الدىنداعى بولعان ماعلۇماتى: '$1'",
+'exblank'                => 'بەت بوس بولدى',
+'delete-confirm'         => '«$1» دەگەندى جويۋ',
+'delete-legend'          => 'جويۋ',
+'historywarning'         => 'قۇلاقتاندىرۋ: جويۋى كوزدەلگەن بەتتە تارىيحى بار:',
+'confirmdeletetext'      => 'بەتتى بۇكىل تارىيحىمەن بىرگە دەرەكقوردان جوييۋىن كوزدەدىڭىز.
 وسىنى ىستەۋ نىييەتىڭىزدى, سالدارىن بايىمداۋىڭىزدى جانە [[{{{{ns:mediawiki}}:Policy-url}}]] دەگەنگە لايىقتى دەپ ىستەمەكتەنگەڭىزدى قۇپتاڭىز.',
-'actioncomplete'              => 'ارەكەت ٴبىتتى',
-'deletedtext'                 => '«$1» جويىلدى.
+'actioncomplete'         => 'ارەكەت ٴبىتتى',
+'deletedtext'            => '«$1» جويىلدى.
 جۋىقتاعى جويۋلار تۋرالى جازبالارىن $2 دەگەننەن قاراڭىز.',
-'deletedarticle'              => '«[[$1]]» دەگەندى جويدى',
-'suppressedarticle'           => '«[[$1]]» دەگەندى شەتتەتتى',
-'dellogpage'                  => 'جويۋ_جۋرنالى',
-'dellogpagetext'              => 'تومەندە جۋىقتاعى جويۋلاردىڭ ٴتىزىمى بەرىلگەن.',
-'deletionlog'                 => 'جويۋ جۋرنالى',
-'reverted'                    => 'ەرتەرەك تۇزەتۋىنە قايتارىلعان',
-'deletecomment'               => 'جويۋدىڭ سەبەبى:',
-'deleteotherreason'           => 'باسقا/قوسىمشا سەبەپ:',
-'deletereasonotherlist'       => 'باسقا سەبەپ',
-'deletereason-dropdown'       => '* جويۋدىڭ جالپى سەبەپتەرى
+'deletedarticle'         => '«[[$1]]» دەگەندى جويدى',
+'suppressedarticle'      => '«[[$1]]» دەگەندى شەتتەتتى',
+'dellogpage'             => 'جويۋ_جۋرنالى',
+'dellogpagetext'         => 'تومەندە جۋىقتاعى جويۋلاردىڭ ٴتىزىمى بەرىلگەن.',
+'deletionlog'            => 'جويۋ جۋرنالى',
+'reverted'               => 'ەرتەرەك تۇزەتۋىنە قايتارىلعان',
+'deletecomment'          => 'جويۋدىڭ سەبەبى:',
+'deleteotherreason'      => 'باسقا/قوسىمشا سەبەپ:',
+'deletereasonotherlist'  => 'باسقا سەبەپ',
+'deletereason-dropdown'  => '* جويۋدىڭ جالپى سەبەپتەرى
 ** اۋتوردىڭ سۇرانىمى بويىنشا
 ** اۋتورلىق قۇقىقتارىن بۇزۋ
 ** بۇزاقىلىق',
-'delete-edit-reasonlist'      => 'جويۋ سەبەپتەرىن وڭدەۋ',
-'delete-toobig'               => 'بۇل بەتتە بايتاق تۇزەتۋ تارىيحى بار, $1 تۇزەتۋدەن استام.
+'delete-edit-reasonlist' => 'جويۋ سەبەپتەرىن وڭدەۋ',
+'delete-toobig'          => 'بۇل بەتتە بايتاق تۇزەتۋ تارىيحى بار, $1 تۇزەتۋدەن استام.
 بۇنداي بەتتەردىڭ جويۋى {{SITENAME}} تورابىن الدەقالاي ٴۇزىپ تاستاۋىنا بوگەت سالۋ ٴۇشىن تىيىمدالعان.',
-'delete-warning-toobig'       => 'بۇل بەتتە بايتاق تۇزەتۋ تارىيحى بار, $1 تۇزەتۋدەن استام.
+'delete-warning-toobig'  => 'بۇل بەتتە بايتاق تۇزەتۋ تارىيحى بار, $1 تۇزەتۋدەن استام.
 بۇنىڭ جويۋى {{SITENAME}} تورابىنداعى دەرەكقور ارەكەتتەردى ٴۇزىپ تاستاۋىن مۇمكىن;
 بۇنى ابايلاپ وتكىزىڭىز.',
-'rollback'                    => 'وڭدەمەلەردى شەگىندىرۋ',
-'rollback_short'              => 'شەگىندىرۋ',
-'rollbacklink'                => 'شەگىندىرۋ',
-'rollbackfailed'              => 'شەگىندىرۋ ٴساتسىز ٴبىتتى',
-'cantrollback'                => 'وڭدەمە قايتارىلمادى;
+
+# Rollback
+'rollback'         => 'وڭدەمەلەردى شەگىندىرۋ',
+'rollback_short'   => 'شەگىندىرۋ',
+'rollbacklink'     => 'شەگىندىرۋ',
+'rollbackfailed'   => 'شەگىندىرۋ ٴساتسىز ٴبىتتى',
+'cantrollback'     => 'وڭدەمە قايتارىلمادى;
 سوڭعى ۇلەسكەرى تەك وسى بەتتىڭ باستاۋشىسى بولدى.',
-'alreadyrolled'               => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) ىستەگەن [[:$1]] سوڭعى وڭدەمەسى شەگىندىرىلمەدى;
+'alreadyrolled'    => '[[{{ns:user}}:$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) ىستەگەن [[:$1]] سوڭعى وڭدەمەسى شەگىندىرىلمەدى;
 باسقا بىرەۋ بۇل بەتتى الداقاشان وڭدەگەن نە شەگىندىرگەن.
 
 سوڭعى وڭدەمەسىن [[{{ns:user}}:$3|$3]] ([[{{ns:user_talk}}:$3|تالقىلاۋى]]) ىستەگەن.',
-'editcomment'                 => 'بولعان وڭدەمە ماندەمەسى: «<i>$1</i>».', # only shown if there is an edit comment
-'revertpage'                  => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) وڭدەمەلەرىنەن [[{{ns:user}}:$1|$1]] سوڭعى نۇسقاسىنا قايتاردى', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1 وڭدەمەلەرىنەن قايتارعان;
+'editcomment'      => 'بولعان وڭدەمە ماندەمەسى: «<i>$1</i>».', # only shown if there is an edit comment
+'revertpage'       => '[[{{#special:Contributions}}/$2|$2]] ([[{{ns:user_talk}}:$2|تالقىلاۋى]]) وڭدەمەلەرىنەن [[{{ns:user}}:$1|$1]] سوڭعى نۇسقاسىنا قايتاردى', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1 وڭدەمەلەرىنەن قايتارعان;
 $2 سوڭعى نۇسقاسىنا وزگەرتتى.',
-'sessionfailure'              => 'كىرۋ سەسسىيياسىندا شاتاق بولعان سىيياقتى;
+'sessionfailure'   => 'كىرۋ سەسسىيياسىندا شاتاق بولعان سىيياقتى;
 سەسسىيياعا شابۋىلداۋداردان قورعانۋ ٴۇشىن, وسى ارەكەت توقتاتىلدى.
 «ارتقا» دەگەندى باسىڭىز, جانە بەتتى قايتا جۇكتەڭىز دە, قايتا بايقاپ كورىڭىز.',
+
+# Protect
 'protectlogpage'              => 'قورعاۋ جۋرنالى',
 'protectlogtext'              => 'تومەندە بەتتەردىڭ قورعاۋ/قورعاماۋ ٴتىزىمى بەرىلگەن.
 اعىمداعى قورعاۋ ارەكتتەر بار بەتتەر ٴۇشىن [[{{#special:Protectedpages}}|قورعالعان بەت ٴتىزىمىن]] قاراڭىز.',

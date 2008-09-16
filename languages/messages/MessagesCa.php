@@ -1657,54 +1657,58 @@ Per a canviar les opcions de la vostra llista de seguiment aneu a:
 Suggeriments i ajuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Elimina la pàgina',
-'confirm'                     => 'Confirma',
-'excontent'                   => 'el contingut era: «$1»',
-'excontentauthor'             => "el contingut era: «$1» (i l'única persona qui hi ha editat ha estat «[[Special:Contributions/$2|$2]]»)",
-'exbeforeblank'               => "el contingut abans d'estar en blanc era: '$1'",
-'exblank'                     => 'la pàgina estava en blanc',
-'delete-confirm'              => 'Elimina «$1»',
-'delete-legend'               => 'Elimina',
-'historywarning'              => 'Avís: La pàgina que eliminareu té un historial:',
-'confirmdeletetext'           => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
+# Delete
+'deletepage'             => 'Elimina la pàgina',
+'confirm'                => 'Confirma',
+'excontent'              => 'el contingut era: «$1»',
+'excontentauthor'        => "el contingut era: «$1» (i l'única persona qui hi ha editat ha estat «[[Special:Contributions/$2|$2]]»)",
+'exbeforeblank'          => "el contingut abans d'estar en blanc era: '$1'",
+'exblank'                => 'la pàgina estava en blanc',
+'delete-confirm'         => 'Elimina «$1»',
+'delete-legend'          => 'Elimina',
+'historywarning'         => 'Avís: La pàgina que eliminareu té un historial:',
+'confirmdeletetext'      => "Esteu a punt d'esborrar de forma permanent una pàgina o imatge i tot el seu historial de la base de dades.
 Confirmeu que realment ho voleu fer, que enteneu les
 conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Policy-url}}|política]] del projecte.",
-'actioncomplete'              => "S'ha realitzat l'acció de manera satisfactòria.",
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha estat esborrat.
+'actioncomplete'         => "S'ha realitzat l'acció de manera satisfactòria.",
+'deletedtext'            => '"<nowiki>$1</nowiki>" ha estat esborrat.
 Mostra $2 per a un registre dels esborrats més recents.',
-'deletedarticle'              => 'eliminat "[[$1]]"',
-'suppressedarticle'           => "s'ha suprimit «[[$1]]»",
-'dellogpage'                  => "Registre d'eliminació",
-'dellogpagetext'              => 'Davall hi ha una llista dels esborraments més recents.',
-'deletionlog'                 => "Registre d'esborrats",
-'reverted'                    => 'Invertit amb una revisió anterior',
-'deletecomment'               => 'Motiu per a ser esborrat:',
-'deleteotherreason'           => 'Motius diferents o addicionals:',
-'deletereasonotherlist'       => 'Altres motius',
-'deletereason-dropdown'       => "*Motius freqüents d'esborrat
+'deletedarticle'         => 'eliminat "[[$1]]"',
+'suppressedarticle'      => "s'ha suprimit «[[$1]]»",
+'dellogpage'             => "Registre d'eliminació",
+'dellogpagetext'         => 'Davall hi ha una llista dels esborraments més recents.',
+'deletionlog'            => "Registre d'esborrats",
+'reverted'               => 'Invertit amb una revisió anterior',
+'deletecomment'          => 'Motiu per a ser esborrat:',
+'deleteotherreason'      => 'Motius diferents o addicionals:',
+'deletereasonotherlist'  => 'Altres motius',
+'deletereason-dropdown'  => "*Motius freqüents d'esborrat
 ** Demanada per l'autor
 ** Violació del copyright
 ** Vandalisme
 ** Proves
 ** Error en el nom
 ** Fer lloc a un trasllat",
-'delete-edit-reasonlist'      => "Edita els motius d'eliminació",
-'delete-toobig'               => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
-'delete-warning-toobig'       => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
-'rollback'                    => 'Reverteix edicions',
-'rollback_short'              => 'Revoca',
-'rollbacklink'                => 'Reverteix',
-'rollbackfailed'              => "No s'ha pogut revocar",
-'cantrollback'                => "No s'ha pogut revertir les edicions; el darrer col·laborador és l'únic autor de la pàgina.",
-'alreadyrolled'               => "No es pot revertir a la darrera edició de [[:$1]]
+'delete-edit-reasonlist' => "Edita els motius d'eliminació",
+'delete-toobig'          => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. L'eliminació d'aquestes pàgines està restringida per a prevenir que hi pugui haver un desajustament seriós de la base de dades de tot el projecte {{SITENAME}} per accident.",
+'delete-warning-toobig'  => "Aquesta pàgina té un historial d'edicions molt gran, amb més de $1 {{PLURAL:$1|canvi|canvis}}. Eliminar-la podria suposar un seriós desajustament de la base de dades de tot el projecte {{SITENAME}}; aneu en compte abans dur a terme l'acció.",
+
+# Rollback
+'rollback'         => 'Reverteix edicions',
+'rollback_short'   => 'Revoca',
+'rollbacklink'     => 'Reverteix',
+'rollbackfailed'   => "No s'ha pogut revocar",
+'cantrollback'     => "No s'ha pogut revertir les edicions; el darrer col·laborador és l'únic autor de la pàgina.",
+'alreadyrolled'    => "No es pot revertir a la darrera edició de [[:$1]]
 per l'usuari [[User:$2|$2]] ([[User talk:$2|Discussió]]); algú altre ha editat o revertit la pàgina.
 
 La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Discussió]] | [[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'                 => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
-'sessionfailure'              => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
+'editcomment'      => 'El comentari d\'edició ha estat: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => "Revertides les edicions de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussió]]). S'ha recuperat la darrera versió de l'usuari [[User:$1|$1]]", # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "Edicions revertides de $1; s'ha canviat a la darrera versió de $2.",
+'sessionfailure'   => 'Sembla que hi ha problema amb la vostra sessió; aquesta acció ha estat anulada en prevenció de pirateig de sessió. Si us plau, pitgueu "Torna", i recarregueu la pàgina des d\'on veniu, aleshores intenteu-lo de nou.',
+
+# Protect
 'protectlogpage'              => 'Registre de protecció',
 'protectlogtext'              => 'Aquest és el registre de proteccions i desproteccions. Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
 'protectedarticle'            => 'protegit «[[$1]]»',

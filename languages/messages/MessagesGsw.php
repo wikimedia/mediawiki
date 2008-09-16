@@ -799,7 +799,7 @@ Es wird chei wiiteri Benochrichtigungsbost gschickt bis Si selli Syte wiedr bsue
 Ihri Beobachtigslischte {{fullurl:Special:Watchlist/edit}}
 Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
+# Delete
 'deletepage'        => 'Syte lösche',
 'confirm'           => 'Bestätige',
 'excontentauthor'   => "einzigen Inhalt: '$1' (bearbeitet worde nume dür '$2')",
@@ -813,15 +813,19 @@ Im $2 het’s e Lischte vo de letschte Löschige.',
 'dellogpage'        => 'Lösch-Logbuech',
 'deletionlog'       => 'Lösch-Logbuech',
 'deletecomment'     => 'Löschigsgrund',
-'rollback_short'    => 'Zrüggsetze',
-'rollbacklink'      => 'Zrüggsetze',
-'alreadyrolled'     => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
+
+# Rollback
+'rollback_short' => 'Zrüggsetze',
+'rollbacklink'   => 'Zrüggsetze',
+'alreadyrolled'  => 'Cha d Änderig uf [[:$1]] wo [[User:$2|$2]] ([[User talk:$2|Talk]]) gmacht het nit zruckneh will des öbber anderscht scho gmacht het.
 
 Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
-'revertpage'        => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectlogpage'    => 'Syteschutz-Logbuech',
-'protectlogtext'    => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
-'protectcomment'    => 'Grund der Sperrung',
+'revertpage'     => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
+'protectlogpage' => 'Syteschutz-Logbuech',
+'protectlogtext' => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
+'protectcomment' => 'Grund der Sperrung',
 
 # Undelete
 'undeletehistorynoadmin' => 'Dieser Artikel wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,

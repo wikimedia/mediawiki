@@ -1680,58 +1680,62 @@ Pro cambiar le configuration de tu observatorio, visita
 Reactiones e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Deler pagina',
-'confirm'                     => 'Confirmar',
-'excontent'                   => "contento esseva: '$1'",
-'excontentauthor'             => "contento esseva: '$1' (e le sol contributor esseva '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "contento ante radimento esseva: '$1'",
-'exblank'                     => 'pagina esseva vacue',
-'delete-confirm'              => 'Deler "$1"',
-'delete-legend'               => 'Deler',
-'historywarning'              => 'Attention: Le pagina que tu va deler ha un historia:',
-'confirmdeletetext'           => 'Tu va deler un pagina con tote su historia.
+# Delete
+'deletepage'             => 'Deler pagina',
+'confirm'                => 'Confirmar',
+'excontent'              => "contento esseva: '$1'",
+'excontentauthor'        => "contento esseva: '$1' (e le sol contributor esseva '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "contento ante radimento esseva: '$1'",
+'exblank'                => 'pagina esseva vacue',
+'delete-confirm'         => 'Deler "$1"',
+'delete-legend'          => 'Deler',
+'historywarning'         => 'Attention: Le pagina que tu va deler ha un historia:',
+'confirmdeletetext'      => 'Tu va deler un pagina con tote su historia.
 Per favor confirma que tu intende facer isto, que tu comprende le consequentias, e que tu face isto in accordo con [[{{MediaWiki:Policy-url}}|le politicas]].',
-'actioncomplete'              => 'Action complete',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ha essite delite.
+'actioncomplete'         => 'Action complete',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ha essite delite.
 Vide $2 pro un registro de deletiones recente.',
-'deletedarticle'              => 'deleva "[[$1]]"',
-'suppressedarticle'           => 'supprimeva "[[$1]]"',
-'dellogpage'                  => 'Registro de deletiones',
-'dellogpagetext'              => 'Infra es un lista del plus recente deletiones.
+'deletedarticle'         => 'deleva "[[$1]]"',
+'suppressedarticle'      => 'supprimeva "[[$1]]"',
+'dellogpage'             => 'Registro de deletiones',
+'dellogpagetext'         => 'Infra es un lista del plus recente deletiones.
 Tote le horas es in le fuso horari del servitor (UTC).',
-'deletionlog'                 => 'registro de deletiones',
-'reverted'                    => 'Revertite a revision anterior',
-'deletecomment'               => 'Motivo pro deletion:',
-'deleteotherreason'           => 'Motivo altere/additional:',
-'deletereasonotherlist'       => 'Altere motivo',
-'deletereason-dropdown'       => '*Motivos habitual pro deler paginas
+'deletionlog'            => 'registro de deletiones',
+'reverted'               => 'Revertite a revision anterior',
+'deletecomment'          => 'Motivo pro deletion:',
+'deleteotherreason'      => 'Motivo altere/additional:',
+'deletereasonotherlist'  => 'Altere motivo',
+'deletereason-dropdown'  => '*Motivos habitual pro deler paginas
 ** Requesta del autor
 ** Violation de copyright
 ** Vandalismo',
-'delete-edit-reasonlist'      => 'Modificar motivos pro deletion',
-'delete-toobig'               => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
+'delete-edit-reasonlist' => 'Modificar motivos pro deletion',
+'delete-toobig'          => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
 Le deletion de tal paginas ha essite restringite pro impedir le disruption accidental de {{SITENAME}}.',
-'delete-warning-toobig'       => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
+'delete-warning-toobig'  => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
 Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAME}};
 procede con caution.',
-'rollback'                    => 'Revocar modificationes',
-'rollback_short'              => 'Revocar',
-'rollbacklink'                => 'revocar',
-'rollbackfailed'              => 'Revocation fallite',
-'cantrollback'                => 'Impossibile revocar le modification;
+
+# Rollback
+'rollback'         => 'Revocar modificationes',
+'rollback_short'   => 'Revocar',
+'rollbacklink'     => 'revocar',
+'rollbackfailed'   => 'Revocation fallite',
+'cantrollback'     => 'Impossibile revocar le modification;
 le ultime contributor es le sol autor de iste pagina.',
-'alreadyrolled'               => 'Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 un altere persona ha ja modificate o revocate le pagina.
 
 Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'Le commento del modification esseva: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Revocava modificationes per $1;
+'editcomment'      => 'Le commento del modification esseva: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Revocava modificationes per $1;
 retornava al version per $2.',
-'sessionfailure'              => 'Il pare haber un problema con tu session de conto;
+'sessionfailure'   => 'Il pare haber un problema con tu session de conto;
 iste action ha essite cancellate como precaution contra le sequestramento de sessiones.
 Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.',
+
+# Protect
 'protectlogpage'              => 'Registro de protectiones',
 'protectlogtext'              => 'Infra es un lista de protection e disprotection de paginas.
 Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de protectiones de paginas actualmente in operation.',

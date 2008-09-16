@@ -1610,50 +1610,54 @@ Du kriggst solang keen Bescheedgeev-E-Mails mehr, bet dat du de Siet wedder bes�
 --
 De Instellungen vun dien Oppasslist to ännern, gah na: {{fullurl:Special:Watchlist/edit}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Siet wegsmieten',
-'confirm'                     => 'Bestätigen',
-'excontent'                   => 'Olen Inholt: ‚$1‘',
-'excontentauthor'             => 'Inholt weer: ‚$1‘ (un de eenzige Autor weer ‚[[Special:Contributions/$2|$2]]‘)',
-'exbeforeblank'               => 'Inholt vör dat Leddigmaken vun de Siet: ‚$1‘',
-'exblank'                     => 'Siet weer leddig',
-'delete-confirm'              => '„$1“ wegsmieten',
-'delete-legend'               => 'Wegsmieten',
-'historywarning'              => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
-'confirmdeletetext'           => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
+# Delete
+'deletepage'             => 'Siet wegsmieten',
+'confirm'                => 'Bestätigen',
+'excontent'              => 'Olen Inholt: ‚$1‘',
+'excontentauthor'        => 'Inholt weer: ‚$1‘ (un de eenzige Autor weer ‚[[Special:Contributions/$2|$2]]‘)',
+'exbeforeblank'          => 'Inholt vör dat Leddigmaken vun de Siet: ‚$1‘',
+'exblank'                => 'Siet weer leddig',
+'delete-confirm'         => '„$1“ wegsmieten',
+'delete-legend'          => 'Wegsmieten',
+'historywarning'         => 'Wohrschau: De Siet, de du bi büst to löschen, hett en Versionshistorie:',
+'confirmdeletetext'      => 'Du büst dorbi, en Siet oder en Bild un alle ölleren Versionen duersam ut de Datenbank to löschen.
 Segg to, dat du över de Folgen Bescheed weetst un dat du in Övereenstimmen mit uns [[{{MediaWiki:Policy-url}}|Leidlienen]] hannelst.',
-'actioncomplete'              => 'Akschoon trech',
-'deletedtext'                 => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
-'deletedarticle'              => '„$1“ wegsmeten',
-'suppressedarticle'           => 'hett „[[$1]]“ versteken',
-'dellogpage'                  => 'Lösch-Logbook',
-'dellogpagetext'              => 'Hier is en List vun de letzten Löschen (UTC).',
-'deletionlog'                 => 'Lösch-Logbook',
-'reverted'                    => 'Op en ole Version trüchsett',
-'deletecomment'               => 'Grund för dat Wegsmieten:',
-'deleteotherreason'           => 'Annere/tosätzliche Grünn:',
-'deletereasonotherlist'       => 'Annern Grund',
-'deletereason-dropdown'       => '* Grünn för dat Wegsmieten
+'actioncomplete'         => 'Akschoon trech',
+'deletedtext'            => 'De Artikel „<nowiki>$1</nowiki>“ is nu wegsmeten. Op $2 gifft dat en Logbook vun de letzten Löschakschonen.',
+'deletedarticle'         => '„$1“ wegsmeten',
+'suppressedarticle'      => 'hett „[[$1]]“ versteken',
+'dellogpage'             => 'Lösch-Logbook',
+'dellogpagetext'         => 'Hier is en List vun de letzten Löschen (UTC).',
+'deletionlog'            => 'Lösch-Logbook',
+'reverted'               => 'Op en ole Version trüchsett',
+'deletecomment'          => 'Grund för dat Wegsmieten:',
+'deleteotherreason'      => 'Annere/tosätzliche Grünn:',
+'deletereasonotherlist'  => 'Annern Grund',
+'deletereason-dropdown'  => '* Grünn för dat Wegsmieten
 ** op Wunsch vun’n Schriever
 ** gegen dat Oorheverrecht
 ** Vandalismus',
-'delete-edit-reasonlist'      => 'Grünn för’t Wegsmieten ännern',
-'delete-toobig'               => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.',
-'delete-warning-toobig'       => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.',
-'rollback'                    => 'Trüchnahm vun de Ännern',
-'rollback_short'              => 'Trüchnehmen',
-'rollbacklink'                => 'Trüchnehmen',
-'rollbackfailed'              => 'Trüchnahm hett kenen Spood',
-'cantrollback'                => 'De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.',
-'alreadyrolled'               => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]] | [[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
+'delete-edit-reasonlist' => 'Grünn för’t Wegsmieten ännern',
+'delete-toobig'          => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.',
+'delete-warning-toobig'  => 'Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.',
+
+# Rollback
+'rollback'         => 'Trüchnahm vun de Ännern',
+'rollback_short'   => 'Trüchnehmen',
+'rollbacklink'     => 'Trüchnehmen',
+'rollbackfailed'   => 'Trüchnahm hett kenen Spood',
+'cantrollback'     => 'De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.',
+'alreadyrolled'    => 'Dat Trüchnehmen vun de Ännern an de Siet [[:$1]] vun [[User:$2|$2]] ([[User talk:$2|Diskuschoonssiet]] | [[Special:Contributions/$2|Bidrääg]]) is nich mööglich, vun wegen dat dor en annere Ännern oder Trüchnahm wesen is.
 
 De letzte Ännern is vun [[User:$3|$3]] ([[User talk:$3|Diskuschoon]] | [[Special:Contributions/$3|Bidrääg]]).',
-'editcomment'                 => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
-'revertpage'                  => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
-'sessionfailure'              => 'Dor weer en Problem mit diene Brukersitzung.
+'editcomment'      => "De Ännerkommentar weer: ''$1''.", # only shown if there is an edit comment
+'revertpage'       => 'Ännern vun [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskuschoon]]) rut un de Version vun [[User:$1]] wedderhaalt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Ännern vun $1 trüchsett op letzte Version vun $2.',
+'sessionfailure'   => 'Dor weer en Problem mit diene Brukersitzung.
 Disse Akschoon is nu ut Sekerheitsgrünn afbraken, dat de Ännern nich verkehrt en annern Bruker toornt warrt.
 Gah een Sied trüch un versöök dat noch wedder.',
+
+# Protect
 'protectlogpage'              => 'Sietenschuul-Logbook',
 'protectlogtext'              => 'Dit is en List vun de blockten Sieten. Kiek [[Special:ProtectedPages|Schulte Sieten]] för mehr Informatschonen.',
 'protectedarticle'            => 'Siet $1 schuult',

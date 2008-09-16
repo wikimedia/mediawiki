@@ -814,20 +814,24 @@ $1',
 'watching'   => 'অনুসৰণভুক্ত কৰা হৈ আছে.....',
 'unwatching' => 'অনুসৰণমুক্ত কৰা হৈ আছে.....',
 
-# Delete/protect/revert
-'deletepage'                  => 'পৃষ্ঠা বিলোপ কৰক',
-'historywarning'              => 'সাবধান: আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাটোৰ ইতিহাস খালী নহয়।',
-'confirmdeletetext'           => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
+# Delete
+'deletepage'            => 'পৃষ্ঠা বিলোপ কৰক',
+'historywarning'        => 'সাবধান: আপুনি বিলোপ কৰিব বিছৰা পৃষ্ঠাটোৰ ইতিহাস খালী নহয়।',
+'confirmdeletetext'     => 'আপুনি পৃষ্ঠা এটা তাৰ ইতিহাসৰ সৈতে বিলোপ কৰিব ওলাইছে।
 অনুগ্রহ কৰি নিশ্বিত কৰক যে এয়া [[{{MediaWiki:Policy-url}}|নীতিসম্মত]] । লগতে আপুনি ইয়াৰ পৰিণাম জানে আৰু আপুনি এয়া কৰিব বিছাৰিছে।',
-'actioncomplete'              => 'কার্য্য সম্পূর্ণ',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ক বিলোপন কৰা হৈছে।
+'actioncomplete'        => 'কার্য্য সম্পূর্ণ',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ক বিলোপন কৰা হৈছে।
 সাম্প্রতিক বিলোপনসমুহৰ তালিকা চাবলৈ $2 চাঁওক।',
-'deletedarticle'              => '"$1" ক বাতিল কৰা হৈছে|',
-'dellogpage'                  => 'বাতিল কৰা সুচী',
-'deletecomment'               => 'বিলোপনৰ কাৰণ।',
-'deleteotherreason'           => 'আন/অতিৰিক্ত কাৰণ:',
-'deletereasonotherlist'       => 'আন কাৰণ:',
-'rollbacklink'                => 'পূৰ্ববৎ কৰিবলৈ',
+'deletedarticle'        => '"$1" ক বাতিল কৰা হৈছে|',
+'dellogpage'            => 'বাতিল কৰা সুচী',
+'deletecomment'         => 'বিলোপনৰ কাৰণ।',
+'deleteotherreason'     => 'আন/অতিৰিক্ত কাৰণ:',
+'deletereasonotherlist' => 'আন কাৰণ:',
+
+# Rollback
+'rollbacklink' => 'পূৰ্ববৎ কৰিবলৈ',
+
+# Protect
 'protectlogpage'              => 'সুৰক্ষা সুচী',
 'protectcomment'              => 'মন্তব্য:',
 'protectexpiry'               => 'সময় শেষ:',

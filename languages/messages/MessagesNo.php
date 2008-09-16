@@ -1699,47 +1699,51 @@ For å endre innstillingene i overvåkningslisten din, besøk {{fullurl:Special:
 Tilbakemeldinger og videre assistanse:
 {{fullurl:Project:Hjelp}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Slett side',
-'confirm'                     => 'Bekreft',
-'excontent'                   => 'Innholdet var: «$1»',
-'excontentauthor'             => 'innholdet var «$1» (og eneste bidragsyter var [[Special:Contributions/$2|$2]])',
-'exbeforeblank'               => 'innholdet før siden ble tømt var: «$1»',
-'exblank'                     => 'siden var tom',
-'delete-confirm'              => 'Slett «$1»',
-'delete-legend'               => 'Slett',
-'historywarning'              => 'Advarsel: Siden du er i ferd med å slette har en historikk:',
-'confirmdeletetext'           => 'Du holder på å slette en side eller et bilde sammen med historikken. Bilder som slettes kan ikke gjenopprettes, men alle andre sider som slettes på denne måten kan gjenopprettes. Bekreft at du virkelig vil slette denne siden, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
-'actioncomplete'              => 'Gjennomført',
-'deletedtext'                 => '«<nowiki>$1</nowiki>» er slettet. Se $2 for en oversikt over de siste slettingene.',
-'deletedarticle'              => 'slettet «[[$1]]»',
-'suppressedarticle'           => 'fjernet «[[$1]]»',
-'dellogpage'                  => 'Slettingslogg',
-'dellogpagetext'              => 'Under er ei liste over nylige slettinger.',
-'deletionlog'                 => 'slettingslogg',
-'reverted'                    => 'Gjenopprettet en tidligere versjon',
-'deletecomment'               => 'Slettingsårsak:',
-'deleteotherreason'           => 'Annen/utdypende grunn:',
-'deletereasonotherlist'       => 'Annen grunn',
-'deletereason-dropdown'       => '* Vanlige grunner for sletting
+# Delete
+'deletepage'             => 'Slett side',
+'confirm'                => 'Bekreft',
+'excontent'              => 'Innholdet var: «$1»',
+'excontentauthor'        => 'innholdet var «$1» (og eneste bidragsyter var [[Special:Contributions/$2|$2]])',
+'exbeforeblank'          => 'innholdet før siden ble tømt var: «$1»',
+'exblank'                => 'siden var tom',
+'delete-confirm'         => 'Slett «$1»',
+'delete-legend'          => 'Slett',
+'historywarning'         => 'Advarsel: Siden du er i ferd med å slette har en historikk:',
+'confirmdeletetext'      => 'Du holder på å slette en side eller et bilde sammen med historikken. Bilder som slettes kan ikke gjenopprettes, men alle andre sider som slettes på denne måten kan gjenopprettes. Bekreft at du virkelig vil slette denne siden, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
+'actioncomplete'         => 'Gjennomført',
+'deletedtext'            => '«<nowiki>$1</nowiki>» er slettet. Se $2 for en oversikt over de siste slettingene.',
+'deletedarticle'         => 'slettet «[[$1]]»',
+'suppressedarticle'      => 'fjernet «[[$1]]»',
+'dellogpage'             => 'Slettingslogg',
+'dellogpagetext'         => 'Under er ei liste over nylige slettinger.',
+'deletionlog'            => 'slettingslogg',
+'reverted'               => 'Gjenopprettet en tidligere versjon',
+'deletecomment'          => 'Slettingsårsak:',
+'deleteotherreason'      => 'Annen/utdypende grunn:',
+'deletereasonotherlist'  => 'Annen grunn',
+'deletereason-dropdown'  => '* Vanlige grunner for sletting
 ** På forfatters forespørsel
 ** Opphavsrettsbrudd
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Rediger begrunnelser for sletting',
-'delete-toobig'               => 'Denne siden har en stor redigeringshistorikk, med over {{PLURAL:$1|$1&nbsp;revisjon|$1&nbsp;revisjoner}}. Muligheten til å slette slike sider er begrenset for å unngå utilsiktet forstyrring av {{SITENAME}}.',
-'delete-warning-toobig'       => 'Denne siden har en stor redigeringshistorikk, med over {{PLURAL:$1|$1&nbsp;revisjon|$1&nbsp;revisjoner}}. Sletting av denne siden kan forstyrre databasen til {{SITENAME}}; vær varsom.',
-'rollback'                    => 'Fjern redigeringer',
-'rollback_short'              => 'Tilbakestill',
-'rollbacklink'                => 'tilbakestill',
-'rollbackfailed'              => 'Kunne ikke tilbakestille',
-'cantrollback'                => 'Kan ikke fjerne redigering; den siste brukeren er den eneste forfatteren.',
-'alreadyrolled'               => 'Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]]); en annen har allerede redigert siden eller fjernet redigeringen.
+'delete-edit-reasonlist' => 'Rediger begrunnelser for sletting',
+'delete-toobig'          => 'Denne siden har en stor redigeringshistorikk, med over {{PLURAL:$1|$1&nbsp;revisjon|$1&nbsp;revisjoner}}. Muligheten til å slette slike sider er begrenset for å unngå utilsiktet forstyrring av {{SITENAME}}.',
+'delete-warning-toobig'  => 'Denne siden har en stor redigeringshistorikk, med over {{PLURAL:$1|$1&nbsp;revisjon|$1&nbsp;revisjoner}}. Sletting av denne siden kan forstyrre databasen til {{SITENAME}}; vær varsom.',
+
+# Rollback
+'rollback'         => 'Fjern redigeringer',
+'rollback_short'   => 'Tilbakestill',
+'rollbacklink'     => 'tilbakestill',
+'rollbackfailed'   => 'Kunne ikke tilbakestille',
+'cantrollback'     => 'Kan ikke fjerne redigering; den siste brukeren er den eneste forfatteren.',
+'alreadyrolled'    => 'Kan ikke fjerne den siste redigeringen på [[$1]] av [[User:$2|$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]]); en annen har allerede redigert siden eller fjernet redigeringen.
 
 Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => "Redigeringskommentaren var: «''$1''»", # only shown if there is an edit comment
-'revertpage'                  => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
-'sessionfailure'              => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
+'editcomment'      => "Redigeringskommentaren var: «''$1''»", # only shown if there is an edit comment
+'revertpage'       => 'Tilbakestilte endring av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjon av [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Tilbakestilte endringer av $1; endret til siste versjon av $2.',
+'sessionfailure'   => "Det ser ut til å være et problem med innloggingen din, og den ble avbrutt av sikkerhetshensyn. Trykk ''Tilbake'' i nettleseren din, oppdater siden og prøv igjen.",
+
+# Protect
 'protectlogpage'              => 'Låsingslogg',
 'protectlogtext'              => 'Her er en liste over sider som er blitt beskyttet eller har fått fjernet beskyttelsen. Se [[Special:ProtectedPages|listen over låste sider]] for en liste over nåværende låste sider.',
 'protectedarticle'            => 'låste [[$1]]',

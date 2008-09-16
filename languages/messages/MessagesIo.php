@@ -747,7 +747,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'enotif_newpagetext' => 'Ico esas nula pagino.',
 'enotif_anon_editor' => 'anonima uzanto $1',
 
-# Delete/protect/revert
+# Delete
 'deletepage'            => 'Efacar pagino',
 'confirm'               => 'Konfirmar',
 'excontent'             => "La kontenajo esis: '$1'",
@@ -766,22 +766,26 @@ Videz $2 por obtenar registro di recenta efaci.',
 'deletecomment'         => 'Motivo por la efaco',
 'deleteotherreason'     => 'Altra/adjuntita motivo:',
 'deletereasonotherlist' => 'Altra motivo',
-'rollback'              => 'Desfacar redakto',
-'rollback_short'        => 'Desfacar',
-'rollbacklink'          => 'desfacar',
-'rollbackfailed'        => 'Desfaco ne sucesis',
-'cantrollback'          => 'Ne esas posibla desfacar la edito. La lasta kontributanto esas la nura autoro di ica pagino.',
-'alreadyrolled'         => 'Onu ne povas desfacar la lasta chanjo di [[$1]]
+
+# Rollback
+'rollback'       => 'Desfacar redakto',
+'rollback_short' => 'Desfacar',
+'rollbacklink'   => 'desfacar',
+'rollbackfailed' => 'Desfaco ne sucesis',
+'cantrollback'   => 'Ne esas posibla desfacar la edito. La lasta kontributanto esas la nura autoro di ica pagino.',
+'alreadyrolled'  => 'Onu ne povas desfacar la lasta chanjo di [[$1]]
 da [[User:$2|$2]] ([[User talk:$2|Talk]]); ulu pluse ja editis o desfacis ica pagino.
 
 Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
-'editcomment'           => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'            => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'protectedarticle'      => 'protektita "[[$1]]"',
-'unprotectedarticle'    => 'desprotektita [[$1]]',
-'protect-title'         => 'Protektante "$1"',
-'protect-legend'        => 'Konfirmar protekto',
-'protectcomment'        => 'Motivo por la protekto',
+'editcomment'    => 'La rezumo di la edito esis: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+
+# Protect
+'protectedarticle'   => 'protektita "[[$1]]"',
+'unprotectedarticle' => 'desprotektita [[$1]]',
+'protect-title'      => 'Protektante "$1"',
+'protect-legend'     => 'Konfirmar protekto',
+'protectcomment'     => 'Motivo por la protekto',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',

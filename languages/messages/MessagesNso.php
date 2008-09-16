@@ -741,23 +741,27 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 'enotif_lastvisited'           => 'Lebelela  $1 go bona diphetogo ka moka gotloga ge go tsena la mafelelo.',
 'enotif_lastdiff'              => 'Bona $1 go nyakorela phetogo ye.',
 
-# Delete/protect/revert
-'deletepage'                  => 'Phumula letlakala',
-'excontent'                   => "mateng ebe e le: '$1'",
-'delete-legend'               => 'Phumula',
-'historywarning'              => 'Temošo: Letlakala leo o lekago go lephumula le nale histori:',
-'confirmdeletetext'           => 'O phumula letlakala le histori ka moka ya lona.
+# Delete
+'deletepage'            => 'Phumula letlakala',
+'excontent'             => "mateng ebe e le: '$1'",
+'delete-legend'         => 'Phumula',
+'historywarning'        => 'Temošo: Letlakala leo o lekago go lephumula le nale histori:',
+'confirmdeletetext'     => 'O phumula letlakala le histori ka moka ya lona.
 Ka kgopela sitlediša gore ke se o nyakago  go sedira, le gore o kwešiša ditla morago tša se, le gore seo o se dirago se latela melawana le ditaelo go ya ka [[{{MediaWiki:Policy-url}}|polisi]].',
-'actioncomplete'              => 'Kgopelo e phetilwe ka katlego',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" e phumutšwe.
+'actioncomplete'        => 'Kgopelo e phetilwe ka katlego',
+'deletedtext'           => '"<nowiki>$1</nowiki>" e phumutšwe.
 Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
-'deletedarticle'              => 'E phumutšwe "[[$1]]"',
-'dellogpage'                  => "''Log'' yago phumula",
-'deletecomment'               => 'Lebaka la go phumula:',
-'deleteotherreason'           => 'Mabaka a mangwe:',
-'deletereasonotherlist'       => 'Mabaka a mangwe',
-'rollbacklink'                => 'bošetša morago',
-'editcomment'                 => 'Ahlaahlo ya phetogo ke : "<i>$1</i>".', # only shown if there is an edit comment
+'deletedarticle'        => 'E phumutšwe "[[$1]]"',
+'dellogpage'            => "''Log'' yago phumula",
+'deletecomment'         => 'Lebaka la go phumula:',
+'deleteotherreason'     => 'Mabaka a mangwe:',
+'deletereasonotherlist' => 'Mabaka a mangwe',
+
+# Rollback
+'rollbacklink' => 'bošetša morago',
+'editcomment'  => 'Ahlaahlo ya phetogo ke : "<i>$1</i>".', # only shown if there is an edit comment
+
+# Protect
 'protectlogpage'              => "''Log'' yago lota",
 'protectedarticle'            => 'lotilwe "[[$1]]"',
 'protect-legend'              => 'Tiišetša go lota',

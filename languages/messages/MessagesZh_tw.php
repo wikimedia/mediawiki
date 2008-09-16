@@ -1216,46 +1216,50 @@ $NEWPAGE
 回饋和進一步的說明:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => '刪除頁面',
-'confirm'                     => '確認',
-'excontent'                   => '內容為: "$1"',
-'excontentauthor'             => '內容為: "$1" (而且唯一貢獻者為"$2")',
-'exbeforeblank'               => '被清空前的內容為: "$1"',
-'exblank'                     => '頁面為空',
-'historywarning'              => '警告: 您將要刪除的頁內含有歷史',
-'confirmdeletetext'           => '您即將從資料庫中永遠刪除一個頁面或圖片以及其歷史。
+# Delete
+'deletepage'            => '刪除頁面',
+'confirm'               => '確認',
+'excontent'             => '內容為: "$1"',
+'excontentauthor'       => '內容為: "$1" (而且唯一貢獻者為"$2")',
+'exbeforeblank'         => '被清空前的內容為: "$1"',
+'exblank'               => '頁面為空',
+'historywarning'        => '警告: 您將要刪除的頁內含有歷史',
+'confirmdeletetext'     => '您即將從資料庫中永遠刪除一個頁面或圖片以及其歷史。
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'              => '操作完成',
-'deletedtext'                 => '「<nowiki>$1</nowiki>」已經被刪除。
+'actioncomplete'        => '操作完成',
+'deletedtext'           => '「<nowiki>$1</nowiki>」已經被刪除。
 最近刪除的紀錄請參見$2。',
-'deletedarticle'              => '已刪除「$1」',
-'dellogpage'                  => '刪除紀錄',
-'dellogpagetext'              => '以下是最近刪除的紀錄列表。
+'deletedarticle'        => '已刪除「$1」',
+'dellogpage'            => '刪除紀錄',
+'dellogpagetext'        => '以下是最近刪除的紀錄列表。
 所有的時間都是使用伺服器時間。',
-'deletionlog'                 => '刪除紀錄',
-'reverted'                    => '復原到早期版本',
-'deletecomment'               => '刪除理由',
-'deleteotherreason'           => '其它／附加的理由:',
-'deletereasonotherlist'       => '其它理由',
-'deletereason-dropdown'       => '
+'deletionlog'           => '刪除紀錄',
+'reverted'              => '復原到早期版本',
+'deletecomment'         => '刪除理由',
+'deleteotherreason'     => '其它／附加的理由:',
+'deletereasonotherlist' => '其它理由',
+'deletereason-dropdown' => '
 *常用刪除理由
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
-'rollback'                    => '復原',
-'rollback_short'              => '復原',
-'rollbacklink'                => '復原',
-'rollbackfailed'              => '無法復原',
-'cantrollback'                => '無法復原編輯；最後的貢獻者是本文的唯一作者。',
-'alreadyrolled'               => '無法復原由[[User:$2|$2]] ([[User talk:$2|討論]])進行的[[$1]]的最後編輯；
+
+# Rollback
+'rollback'         => '復原',
+'rollback_short'   => '復原',
+'rollbacklink'     => '復原',
+'rollbackfailed'   => '無法復原',
+'cantrollback'     => '無法復原編輯；最後的貢獻者是本文的唯一作者。',
+'alreadyrolled'    => '無法復原由[[User:$2|$2]] ([[User talk:$2|討論]])進行的[[$1]]的最後編輯；
 其他人已經編輯或是復原了該頁。
 
 最後編輯者: [[User:$3|$3]] ([[User talk:$3|討論]])。',
-'editcomment'                 => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
-'revertpage'                  => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '復原由$1的編輯；更改回$2的最後一個版本。',
-'sessionfailure'              => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+'editcomment'      => '編輯說明: "<i>$1</i>"。', # only shown if there is an edit comment
+'revertpage'       => '復原由[[Special:Contributions/$2|$2]] ([[User talk:$2|對話]])的編輯；更改回[[User:$1|$1]]的最後一個版本', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '復原由$1的編輯；更改回$2的最後一個版本。',
+'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+
+# Protect
 'protectlogpage'              => '保護日誌',
 'protectlogtext'              => '下面是頁面鎖定和取消鎖定的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視當前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',

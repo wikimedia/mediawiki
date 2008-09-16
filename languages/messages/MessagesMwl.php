@@ -457,19 +457,23 @@ Legenda: (actu) = diferenças da versão actual,
 'watching'   => 'Vigiando...',
 'unwatching' => 'Deixando de vigiar...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Apagar página',
-'confirmdeletetext'           => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
+# Delete
+'deletepage'            => 'Apagar página',
+'confirmdeletetext'     => 'Encontra-se prestes a eliminar permanentemente uma página ou uma imagem e todo o seu histórico.
 Por favor, confirme que possui a intenção de fazer isto, que compreende as consequências e que faz isto de acordo com as [[{{MediaWiki:Policy-url}}|políticas]] do projecto.',
-'actioncomplete'              => 'Acção terminada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" fue elhiminada.
+'actioncomplete'        => 'Acção terminada',
+'deletedtext'           => '"<nowiki>$1</nowiki>" fue elhiminada.
 Consulte $2 para um registo de eliminações recentes.',
-'deletedarticle'              => 'apagado "[[$1]]"',
-'dellogpage'                  => 'Registo de eliminação',
-'deletecomment'               => 'Razon de eliminaçon',
-'deleteotherreason'           => 'Razon adicional:',
-'deletereasonotherlist'       => 'Outro motivo',
-'rollbacklink'                => 'voltar',
+'deletedarticle'        => 'apagado "[[$1]]"',
+'dellogpage'            => 'Registo de eliminação',
+'deletecomment'         => 'Razon de eliminaçon',
+'deleteotherreason'     => 'Razon adicional:',
+'deletereasonotherlist' => 'Outro motivo',
+
+# Rollback
+'rollbacklink' => 'voltar',
+
+# Protect
 'protectlogpage'              => 'Registo de protecção',
 'protect-legend'              => 'Confirmar protecçon',
 'protectcomment'              => 'Razon de protecçon',

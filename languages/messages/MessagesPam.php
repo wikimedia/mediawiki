@@ -1434,57 +1434,61 @@ Ba mong ayalilan deng pakatuldu king kekang tala ring babanten (watchlist settin
 Keni ka magparalang puna/komentu at maniad karagdagang saup:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Buran ya ing bulung',
-'confirm'                     => 'Patutuan/kumpirman',
-'excontent'                   => "ini ing laman na: '$1'",
-'excontentauthor'             => "ini ing makabili: '$1' (at bukud mung i '[[Special:Contributions/$2|$2]]' ing sinulat)",
-'exbeforeblank'               => "ing laman bayu ya meblangku yapin iti: '$1'",
-'exblank'                     => 'ala yang laman ing bulung',
-'delete-confirm'              => 'Buran ya ing "$1"',
-'delete-legend'               => 'Buran',
-'historywarning'              => 'Babala: Maki amlat (history) ya ing bulung a kekang buburan:',
-'confirmdeletetext'           => 'Buburan mu ne ing metung a bulung, kayabe na ing mabilug nang amlat/kasalesayan.
+# Delete
+'deletepage'             => 'Buran ya ing bulung',
+'confirm'                => 'Patutuan/kumpirman',
+'excontent'              => "ini ing laman na: '$1'",
+'excontentauthor'        => "ini ing makabili: '$1' (at bukud mung i '[[Special:Contributions/$2|$2]]' ing sinulat)",
+'exbeforeblank'          => "ing laman bayu ya meblangku yapin iti: '$1'",
+'exblank'                => 'ala yang laman ing bulung',
+'delete-confirm'         => 'Buran ya ing "$1"',
+'delete-legend'          => 'Buran',
+'historywarning'         => 'Babala: Maki amlat (history) ya ing bulung a kekang buburan:',
+'confirmdeletetext'      => 'Buburan mu ne ing metung a bulung, kayabe na ing mabilug nang amlat/kasalesayan.
 Pakikumpirma nung ini pin ing buri mung gawan, nung aintindian mu ing eganaganang kabaldugan na niti, at nung daraptan mu iti agpang king [[{{MediaWiki:Policy-url}}|patakaran]].',
-'actioncomplete'              => 'Ing dapat mebuu ne.',
-'deletedtext'                 => 'Mebura ya ing "<nowiki>$1</nowiki>".
+'actioncomplete'         => 'Ing dapat mebuu ne.',
+'deletedtext'            => 'Mebura ya ing "<nowiki>$1</nowiki>".
 Makasulat la king $2 deng pekabayung mebura.',
-'deletedarticle'              => 'mebura ne ing "[[$1]]"',
-'suppressedarticle'           => 'mesabat ya ing "[[$1]]"',
-'dellogpage'                  => 'Tala da reng mebura',
-'dellogpagetext'              => 'Makabili la king lalam deng pekabayung mebura.',
-'deletionlog'                 => 'tala da ring mebura',
-'reverted'                    => 'Misubli ya king minunang bersion',
-'deletecomment'               => 'Sangkan ning pangabura',
-'deleteotherreason'           => 'Aliwa/karagdagang sangkan:',
-'deletereasonotherlist'       => 'Aliwang sangkan',
-'deletereason-dropdown'       => '*Karaniwang sangkan king pamamura
+'deletedarticle'         => 'mebura ne ing "[[$1]]"',
+'suppressedarticle'      => 'mesabat ya ing "[[$1]]"',
+'dellogpage'             => 'Tala da reng mebura',
+'dellogpagetext'         => 'Makabili la king lalam deng pekabayung mebura.',
+'deletionlog'            => 'tala da ring mebura',
+'reverted'               => 'Misubli ya king minunang bersion',
+'deletecomment'          => 'Sangkan ning pangabura',
+'deleteotherreason'      => 'Aliwa/karagdagang sangkan:',
+'deletereasonotherlist'  => 'Aliwang sangkan',
+'deletereason-dropdown'  => '*Karaniwang sangkan king pamamura
 ** Pekisabi ning sinulat 
 ** Pamaglabang king katulirang mangopia (copyright violation)
 ** Pamanyira (vandalism)',
-'delete-edit-reasonlist'      => 'I-edit la reng sangkan king pamamura',
-'delete-toobig'               => 'Maki maragul yang amlat ning pamag-edit ing bulung a ini, nung nu maigit lang $1 deng miyalilan.
+'delete-edit-reasonlist' => 'I-edit la reng sangkan king pamamura',
+'delete-toobig'          => 'Maki maragul yang amlat ning pamag-edit ing bulung a ini, nung nu maigit lang $1 deng miyalilan.
 Me-limita ing pamamura kareng bulung a anti kaniti, bang e maliliari ing e sasarian a kaguluan o pamag-distorbu king {{SITENAME}}.',
-'delete-warning-toobig'       => 'Makaba ya ing amlat ding mibayu/me-edit ning bulung a ini, maigit la king $1 ding pamagbayu. 
+'delete-warning-toobig'  => 'Makaba ya ing amlat ding mibayu/me-edit ning bulung a ini, maigit la king $1 ding pamagbayu. 
 Posibling miyapektuan ing palakad ning database ning {{SITENAME}};
 pakakalale ka.',
-'rollback'                    => 'Iurung la retang me-edit',
-'rollback_short'              => 'Iurung',
-'rollbacklink'                => 'i-urung',
-'rollbackfailed'              => 'E melaus ing pamanurung',
-'cantrollback'                => 'E malyaring ibalik itang miyalilan; bukud mung ing tawling minambag yang sinulat king bulung a ini.',
-'alreadyrolled'               => 'E malyaring isubli king sadya ing tawling pamanalili ning [[:$1]]
+
+# Rollback
+'rollback'         => 'Iurung la retang me-edit',
+'rollback_short'   => 'Iurung',
+'rollbacklink'     => 'i-urung',
+'rollbackfailed'   => 'E melaus ing pamanurung',
+'cantrollback'     => 'E malyaring ibalik itang miyalilan; bukud mung ing tawling minambag yang sinulat king bulung a ini.',
+'alreadyrolled'    => 'E malyaring isubli king sadya ing tawling pamanalili ning [[:$1]]
 a gewa nang [[User:$2|$2]] ([[User talk:$2|Talk]]); atin nang aliwang menalili o minyubli ketang bulung.
 
 I [[User:$3|$3]] ([[User talk:$3|Talk]]) ing tawling menalili.',
-'editcomment'                 => 'Ini ing komentu king edit: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Miurung la reng in-edit nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Pamisabi-sabi]]);
+'editcomment'      => 'Ini ing komentu king edit: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Miurung la reng in-edit nang [[Special:Contributions/$2|$2]] ([[User talk:$2|Pamisabi-sabi]]);
 binalik neng [[User:$1|$1]] king tauling bersion', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Deng edit nang $1 a miurung;
+'rollback-success' => 'Deng edit nang $1 a miurung;
 binalik nong $2 king sadiang bersion.',
-'sessionfailure'              => 'Balamu ating prublema king kekang login session;
+'sessionfailure'   => 'Balamu ating prublema king kekang login session;
 mituknang ya ing kimut (action) a ini bang milisia king session hijacking (pamaniamsam session).
 Pakitimid me ing "mibalik" ("back") at luban meng pasibayu ing bulung a penibatan mu, potang kai subukan mung pasibayu.',
+
+# Protect
 'protectlogpage'              => 'Tala da reng babanten',
 'protectlogtext'              => 'Maki tala da reng pamaniara ampong pamamusning bulung (page locks and unlocks) king lalam.
 Lon me ing [[Special:ProtectedPages|tala ring bulung a protektadu/makakambil]] para king tala ring proteksiung bulung a gagana king salukuyan.',

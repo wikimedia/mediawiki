@@ -876,18 +876,22 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 'watching'   => 'A wiki e poti a papira disi ini yu Tan Luku...',
 'unwatching' => 'A wiki e puru a papira disi fu yu Tan Luku...',
 
-# Delete/protect/revert
-'deletepage'                  => 'Disi papira trowe',
-'historywarning'              => 'Warskow: a papira di yu wani puru abi wan historia:',
-'confirmdeletetext'           => 'Yu wanaefru ben trowen wan papira, nanga si stori. Gi klari a dyaso-ondro ini a box taki disi we fuli yu miki ben, taki yu den folo luku nanga taki a trowe gu ben nanga a [[{{MediaWiki:Policy-url}}|polisi]].',
-'actioncomplete'              => 'Aksi e du',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ben e trowe. Si a $2 fu wan sibuku fu bakaseywan trowe.',
-'deletedarticle'              => 'puru "[[$1]]"',
-'dellogpage'                  => 'Log buku fu puru',
-'deletecomment'               => 'Yesikrari fu trowe:',
-'deleteotherreason'           => 'Trawan/okwan yesikrari:',
-'deletereasonotherlist'       => 'Trawan yesikrari',
-'rollbacklink'                => 'drai baka',
+# Delete
+'deletepage'            => 'Disi papira trowe',
+'historywarning'        => 'Warskow: a papira di yu wani puru abi wan historia:',
+'confirmdeletetext'     => 'Yu wanaefru ben trowen wan papira, nanga si stori. Gi klari a dyaso-ondro ini a box taki disi we fuli yu miki ben, taki yu den folo luku nanga taki a trowe gu ben nanga a [[{{MediaWiki:Policy-url}}|polisi]].',
+'actioncomplete'        => 'Aksi e du',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ben e trowe. Si a $2 fu wan sibuku fu bakaseywan trowe.',
+'deletedarticle'        => 'puru "[[$1]]"',
+'dellogpage'            => 'Log buku fu puru',
+'deletecomment'         => 'Yesikrari fu trowe:',
+'deleteotherreason'     => 'Trawan/okwan yesikrari:',
+'deletereasonotherlist' => 'Trawan yesikrari',
+
+# Rollback
+'rollbacklink' => 'drai baka',
+
+# Protect
 'protectlogpage'              => 'Log buku fu den sroto',
 'protect-legend'              => 'Gi tapu klari',
 'protectcomment'              => 'Opotaki:',

@@ -434,7 +434,7 @@ $3',
 'watchlist-show-minor' => 'Чысыл ивддзинæдтæ равдис',
 'watchlist-hide-minor' => 'Чысыл ивддзинæдтæ бамбæхс',
 
-# Delete/protect/revert
+# Delete
 'exblank' => 'фарс афтид уыдис',
 
 # Restrictions (nouns)

@@ -1557,51 +1557,55 @@ Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhawa
 Yanapasunaykipaq:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => "Kay p'anqata qulluy",
-'confirm'                     => 'Takyachiy',
-'excontent'                   => "Samiqnin karqan kay hinam: '$1'",
-'excontentauthor'             => "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",
-'exbeforeblank'               => "manaraq qullusqa kaptin, samiqnin kay hinam karqan: '$1'",
-'exblank'                     => "p'anqaqa ch'usaqmi karqan",
-'delete-confirm'              => '"$1"-ta qulluy',
-'delete-legend'               => 'Qulluy',
-'historywarning'              => "Paqtataq: Kay qulluna p'anqaqa wiñay kawsasqayuqmi:",
-'confirmdeletetext'           => "Qullunayachkanki p'anqatam icha rikchatam, wiñay kawsasqantapas.
+# Delete
+'deletepage'             => "Kay p'anqata qulluy",
+'confirm'                => 'Takyachiy',
+'excontent'              => "Samiqnin karqan kay hinam: '$1'",
+'excontentauthor'        => "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",
+'exbeforeblank'          => "manaraq qullusqa kaptin, samiqnin kay hinam karqan: '$1'",
+'exblank'                => "p'anqaqa ch'usaqmi karqan",
+'delete-confirm'         => '"$1"-ta qulluy',
+'delete-legend'          => 'Qulluy',
+'historywarning'         => "Paqtataq: Kay qulluna p'anqaqa wiñay kawsasqayuqmi:",
+'confirmdeletetext'      => "Qullunayachkanki p'anqatam icha rikchatam, wiñay kawsasqantapas.
 Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaWiki:Policy-url}}|kawpaykama]] rurayniykitapas.",
-'actioncomplete'              => 'Rurasqañam',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" qullusqañam.
+'actioncomplete'         => 'Rurasqañam',
+'deletedtext'            => '"<nowiki>$1</nowiki>" qullusqañam.
 $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
-'deletedarticle'              => 'qullusqa "$1"',
-'suppressedarticle'           => 'ñit\'ipasqa "[[$1]]"',
-'dellogpage'                  => 'Qullusqakuna',
-'dellogpagetext'              => 'Kay qatiqpiqa lliwmanta aswan ñaqha qullusqakunatam rikunki. Rikuchisqa pachankunaqa sirwiqpa pachanpim (UTC).',
-'deletionlog'                 => 'qullusqakuna',
-'reverted'                    => 'Ñawpaq hukchasqata kutichiy',
-'deletecomment'               => 'Imarayku qullusqa',
-'deleteotherreason'           => 'Huk rayku:',
-'deletereasonotherlist'       => 'Huk rayku',
-'deletereason-dropdown'       => "*Qulluypaq sapsi raykukuna
+'deletedarticle'         => 'qullusqa "$1"',
+'suppressedarticle'      => 'ñit\'ipasqa "[[$1]]"',
+'dellogpage'             => 'Qullusqakuna',
+'dellogpagetext'         => 'Kay qatiqpiqa lliwmanta aswan ñaqha qullusqakunatam rikunki. Rikuchisqa pachankunaqa sirwiqpa pachanpim (UTC).',
+'deletionlog'            => 'qullusqakuna',
+'reverted'               => 'Ñawpaq hukchasqata kutichiy',
+'deletecomment'          => 'Imarayku qullusqa',
+'deleteotherreason'      => 'Huk rayku:',
+'deletereasonotherlist'  => 'Huk rayku',
+'deletereason-dropdown'  => "*Qulluypaq sapsi raykukuna
 ** Kikin kamariqpa mañakusqan
 ** Ruraqpa hayñinta k'irisqa
 ** Wandaluchasqa",
-'delete-edit-reasonlist'      => "Qullusqapaq raykukunata llamk'apuy",
-'delete-toobig'               => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan {{PLURAL:$1|musuqchasqayuq|musuqchasqayuq}}. Kay hina p'anqakunata qulluyqa saywachasqam, {{SITENAME}}ta mana waqllinapaq.",
-'delete-warning-toobig'       => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan {{PLURAL:$1|musuqchasqayuq|musuqchasqayuq}}. Kay hina p'anqata qulluspaykiqa, {{SITENAME}}ta waqllinkimanchá. Kay ruraymanta anchata yuyaychakuspa hamut'ay.",
-'rollback'                    => 'Hukchasqakunata kutichiy',
-'rollback_short'              => 'Kutichiy',
-'rollbacklink'                => 'Kutichiy',
-'rollbackfailed'              => 'Manam kutichiyta atinchu',
-'cantrollback'                => "Manam atinichu llamk'apusqata kutichiyta; qhipaq kaq llamk'apuqqa kay p'anqap hukllam ruraqnin.",
-'alreadyrolled'               => "Manam atinichu [[User:$2|$2]]-pa ([[User talk:$2|rimanakuy]]) [[$1]] nisqa qhipaq llamk'apusqanta kutichiyta; pipas kay p'anqataqa llamk'apurqunñam icha kutichirqunñam.
+'delete-edit-reasonlist' => "Qullusqapaq raykukunata llamk'apuy",
+'delete-toobig'          => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan {{PLURAL:$1|musuqchasqayuq|musuqchasqayuq}}. Kay hina p'anqakunata qulluyqa saywachasqam, {{SITENAME}}ta mana waqllinapaq.",
+'delete-warning-toobig'  => "Kay p'anqaqa ancha wiñay kawsaysapa, $1-manta aswan {{PLURAL:$1|musuqchasqayuq|musuqchasqayuq}}. Kay hina p'anqata qulluspaykiqa, {{SITENAME}}ta waqllinkimanchá. Kay ruraymanta anchata yuyaychakuspa hamut'ay.",
+
+# Rollback
+'rollback'         => 'Hukchasqakunata kutichiy',
+'rollback_short'   => 'Kutichiy',
+'rollbacklink'     => 'Kutichiy',
+'rollbackfailed'   => 'Manam kutichiyta atinchu',
+'cantrollback'     => "Manam atinichu llamk'apusqata kutichiyta; qhipaq kaq llamk'apuqqa kay p'anqap hukllam ruraqnin.",
+'alreadyrolled'    => "Manam atinichu [[User:$2|$2]]-pa ([[User talk:$2|rimanakuy]]) [[$1]] nisqa qhipaq llamk'apusqanta kutichiyta; pipas kay p'anqataqa llamk'apurqunñam icha kutichirqunñam.
 
 Qhipaq kaq llamk'apusqaqa [[User:$3|$3]]-pa ([[User talk:$3|rimanakuy]] | [[Special:Contributions/$3|{{int:contribslink}}]]) rurasqanmi.",
-'editcomment'                 => 'Llamk\'apusqamantaqa kaymi willasqa: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => "$1-pa hukchasqankunaqa kutichisqañam $2-pa ñawpaq llamk'apusqanta paqarichispa.",
-'sessionfailure'              => "Lamk'apuy tiyayniykiwanqa sasachakuymi rikch'akun;
+'editcomment'      => 'Llamk\'apusqamantaqa kaymi willasqa: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|rimachina]]) sutiyuq ruraqpa hukchasqankunaqa kutichisqam [[User:$1|$1]]-pa ñawpaq hukchasqanman', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => "$1-pa hukchasqankunaqa kutichisqañam $2-pa ñawpaq llamk'apusqanta paqarichispa.",
+'sessionfailure'   => "Lamk'apuy tiyayniykiwanqa sasachakuymi rikch'akun;
 kay rurayqa t'ipisqam karqan millay runap llullaspa yaykunanta hark'anapaq.
 Ama hina kaspa, llika wamp'unaykipi \"Ñawpaqman\" (\"Back\") ñit'ispa ñawpaq p'anqata musuqmanta chaqnamuspa huk kutita yaykuykachay.",
+
+# Protect
 'protectlogpage'              => "P'anqa amachasqakuna",
 'protectlogtext'              => "Kay qatiqpiqa p'anqata amachasqakunatam paskasqakunatapas rikunki. [[Special:ProtectedPages|Amachasqa p'anqakunata]] qhaway astawan willasunaykipaq.",
 'protectedarticle'            => 'amachan [[$1]]-ta',

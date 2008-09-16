@@ -1376,45 +1376,49 @@ Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
 Laguntza:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Orrialdea ezabatu',
-'confirm'                     => 'Baieztatu',
-'excontent'                   => "edukia honakoa zen: '$1'",
-'excontentauthor'             => "edukia honakoa zen: '$1' (parte hartu duen lankide bakarra: '$2')",
-'exbeforeblank'               => "hustu aurreko edukiera: '$1'",
-'exblank'                     => 'orrialdea hutsik zegoen',
-'delete-confirm'              => '"$1" ezabatu',
-'delete-legend'               => 'Ezabatu',
-'historywarning'              => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
-'confirmdeletetext'           => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
-'actioncomplete'              => 'Ekintza burutu da',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.',
-'deletedarticle'              => '"[[$1]]" ezabatu da',
-'suppressedarticle'           => '"[[$1]]" kendua',
-'dellogpage'                  => 'Ezabaketa erregistroa',
-'dellogpagetext'              => 'Behean ikus daiteke azken ezabaketen zerrenda.',
-'deletionlog'                 => 'ezabaketa erregistroa',
-'reverted'                    => 'Lehenagoko berrikuspen batera itzuli da',
-'deletecomment'               => 'Ezabatzeko arrazoia',
-'deleteotherreason'           => 'Arrazoi gehigarria:',
-'deletereasonotherlist'       => 'Beste arrazoi bat',
-'deletereason-dropdown'       => '*Ezabatzeko ohiko arrazoiak
+# Delete
+'deletepage'             => 'Orrialdea ezabatu',
+'confirm'                => 'Baieztatu',
+'excontent'              => "edukia honakoa zen: '$1'",
+'excontentauthor'        => "edukia honakoa zen: '$1' (parte hartu duen lankide bakarra: '$2')",
+'exbeforeblank'          => "hustu aurreko edukiera: '$1'",
+'exblank'                => 'orrialdea hutsik zegoen',
+'delete-confirm'         => '"$1" ezabatu',
+'delete-legend'          => 'Ezabatu',
+'historywarning'         => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
+'confirmdeletetext'      => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
+'actioncomplete'         => 'Ekintza burutu da',
+'deletedtext'            => '"<nowiki>$1</nowiki>" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.',
+'deletedarticle'         => '"[[$1]]" ezabatu da',
+'suppressedarticle'      => '"[[$1]]" kendua',
+'dellogpage'             => 'Ezabaketa erregistroa',
+'dellogpagetext'         => 'Behean ikus daiteke azken ezabaketen zerrenda.',
+'deletionlog'            => 'ezabaketa erregistroa',
+'reverted'               => 'Lehenagoko berrikuspen batera itzuli da',
+'deletecomment'          => 'Ezabatzeko arrazoia',
+'deleteotherreason'      => 'Arrazoi gehigarria:',
+'deletereasonotherlist'  => 'Beste arrazoi bat',
+'deletereason-dropdown'  => '*Ezabatzeko ohiko arrazoiak
 ** Egileak eskatuta
 ** Egile eskubideak urratzea
 ** Bandalismoa',
-'delete-edit-reasonlist'      => 'Ezabaketa arrazoiak aldatu',
-'delete-toobig'               => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Orrialde horien ezabaketa mugatua dago {{SITENAME}}n ezbeharrak saihesteko.',
-'delete-warning-toobig'       => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Ezabatzeak ezbeharrak eragin ditzake {{SITENAME}}ren datu-basean; kontu izan.',
-'rollback'                    => 'Aldaketak desegin',
-'rollback_short'              => 'Desegin',
-'rollbacklink'                => 'desegin',
-'rollbackfailed'              => 'Desegiteak huts egin dud',
-'cantrollback'                => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
-'alreadyrolled'               => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.',
-'editcomment'                 => 'Aldaketaren iruzkina: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',
-'sessionfailure'              => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
+'delete-edit-reasonlist' => 'Ezabaketa arrazoiak aldatu',
+'delete-toobig'          => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Orrialde horien ezabaketa mugatua dago {{SITENAME}}n ezbeharrak saihesteko.',
+'delete-warning-toobig'  => 'Orrialde honek aldaketa historia luzea du, $1 berrikuspenetik gorakoa. Ezabatzeak ezbeharrak eragin ditzake {{SITENAME}}ren datu-basean; kontu izan.',
+
+# Rollback
+'rollback'         => 'Aldaketak desegin',
+'rollback_short'   => 'Desegin',
+'rollbacklink'     => 'desegin',
+'rollbackfailed'   => 'Desegiteak huts egin dud',
+'cantrollback'     => 'Ezin da aldaketa desegin; erabiltzaile bakarrak hartu du parte.',
+'alreadyrolled'    => 'Ezin da [[User:$2|$2]](e)k ([[User talk:$2|Eztabaida]]) [[$1]](e)n egindako azken aldaketa desegin; beste norbaitek editatu du edo jada desegin du. Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]) egin du.',
+'editcomment'      => 'Aldaketaren iruzkina: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',
+'sessionfailure'   => 'Badirudi saioarekin arazoren bat dagoela; bandalismoak saihesteko ekintza hau ezeztatu egin da. Mesedez, nabigatzaileko "atzera" botoian klik egin, hona ekarri zaituen orrialde hori berriz kargatu, eta saiatu berriz.',
+
+# Protect
 'protectlogpage'              => 'Babes erregistroa',
 'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.',
 'protectedarticle'            => '"[[$1]]" babestu da"',

@@ -1217,41 +1217,45 @@ Perräkaemisnimekirä säädmiisi saat muutaq lehe pääl: {{fullurl:Special:Wat
 
 As\'a kotsilõ mano kaiaq ja küssü saat lehe päält: {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Kistudaq lehekülg ärq',
-'confirm'                     => 'Kinnüdäq',
-'excontent'                   => "sisu oll': '$1'",
-'excontentauthor'             => "sisu oll': '$1' (ja ainugõnõ toimõndaja oll' '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "inne tühästegemist oll': '$1'",
-'exblank'                     => "leht oll' tühi",
-'historywarning'              => 'Hoiatus: Lehel, midä tahat ärq kistutaq, om olõman aolugu:',
-'confirmdeletetext'           => 'Sa kistutat teedüskogost periselt ärq lehe vai pildi üten kõgõ timä aoluuga.
+# Delete
+'deletepage'            => 'Kistudaq lehekülg ärq',
+'confirm'               => 'Kinnüdäq',
+'excontent'             => "sisu oll': '$1'",
+'excontentauthor'       => "sisu oll': '$1' (ja ainugõnõ toimõndaja oll' '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'         => "inne tühästegemist oll': '$1'",
+'exblank'               => "leht oll' tühi",
+'historywarning'        => 'Hoiatus: Lehel, midä tahat ärq kistutaq, om olõman aolugu:',
+'confirmdeletetext'     => 'Sa kistutat teedüskogost periselt ärq lehe vai pildi üten kõgõ timä aoluuga.
 Kinnüdäq, et sa tahat tuud tõtõstõ tetäq, et sa saat arvo, miä tuust tullaq või ja et tuu, miä sa tiit, klapis [[{{MediaWiki:Policy-url}}|sisekõrraga]].',
-'actioncomplete'              => 'Tallitus valmis',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" om ärq kistutõt.
+'actioncomplete'        => 'Tallitus valmis',
+'deletedtext'           => '"<nowiki>$1</nowiki>" om ärq kistutõt.
 Perämäidsi kistutuisi nimekirjä näet siist: $2.',
-'deletedarticle'              => '"$1" kistutõt',
-'dellogpage'                  => 'Kistutõduq leheküleq',
-'dellogpagetext'              => 'Naaq ommaq perämädseq kistutamisõq.
+'deletedarticle'        => '"$1" kistutõt',
+'dellogpage'            => 'Kistutõduq leheküleq',
+'dellogpagetext'        => 'Naaq ommaq perämädseq kistutamisõq.
 Kelläaoq ummaq serveriao perrä (UTC).',
-'deletionlog'                 => 'Kistutõduq leheküleq',
-'reverted'                    => 'Minti tagasi vana kujo pääle',
-'deletecomment'               => 'Kistutamisõ põhjus',
-'deleteotherreason'           => 'Muu põhjus vai täpsüstüs:',
-'deletereasonotherlist'       => 'Muu põhjus',
-'deletereason-dropdown'       => "*Hariliguq kistutamisõ põhjusõq
+'deletionlog'           => 'Kistutõduq leheküleq',
+'reverted'              => 'Minti tagasi vana kujo pääle',
+'deletecomment'         => 'Kistutamisõ põhjus',
+'deleteotherreason'     => 'Muu põhjus vai täpsüstüs:',
+'deletereasonotherlist' => 'Muu põhjus',
+'deletereason-dropdown' => "*Hariliguq kistutamisõ põhjusõq
 ** Kirotaja hindä palvõl
 ** Tegijäõigusõ rikminõ
 ** Lehe ts'urkminõ",
-'rollback'                    => 'Mineq tagasi vana kujo pääle',
-'rollback_short'              => 'Võtaq tagasi',
-'rollbacklink'                => 'võtaq tagasi vana kujo',
-'rollbackfailed'              => 'Muutmiisi tagasivõtminõ lää-s kõrda',
-'cantrollback'                => 'Saa-i muutmiisi tagasi pöördäq; viimäne muutja om lehe ainugõnõ toimõndaja.',
-'alreadyrolled'               => 'Pruukja [[User:$2|$2]] ([[User talk:$2|arotus]]) tettüid lehe [[:$1]] muutmiisi saa-i tagasi võttaq, selle et pruukja [[User:$3|$3]] ([[User talk:$3|arotus]]) om tennüq vahtsõmbit muutmiisi.',
-'editcomment'                 => 'Toimõndamiskokkovõtõq oll\': "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'sessionfailure'              => 'Paistus ollõv määnegi hädä su toimõndamiskõrraga, tuuperäst om viimäne muutminõ egäs johtumisõs jätet tegemäldä. Vaodaq võrgokaeja "tagasi"-nuppi, laadiq üle lehekülg, kost sa tullit ja prooviq vahtsõst.',
+
+# Rollback
+'rollback'       => 'Mineq tagasi vana kujo pääle',
+'rollback_short' => 'Võtaq tagasi',
+'rollbacklink'   => 'võtaq tagasi vana kujo',
+'rollbackfailed' => 'Muutmiisi tagasivõtminõ lää-s kõrda',
+'cantrollback'   => 'Saa-i muutmiisi tagasi pöördäq; viimäne muutja om lehe ainugõnõ toimõndaja.',
+'alreadyrolled'  => 'Pruukja [[User:$2|$2]] ([[User talk:$2|arotus]]) tettüid lehe [[:$1]] muutmiisi saa-i tagasi võttaq, selle et pruukja [[User:$3|$3]] ([[User talk:$3|arotus]]) om tennüq vahtsõmbit muutmiisi.',
+'editcomment'    => 'Toimõndamiskokkovõtõq oll\': "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Pruukja [[Special:Contributions/$2|$2]] ([[User_talk:$2|arotus]]) toimõndusõq pöörediq tagasi ja leht panti tagasi pruukja [[User:$1|$1]] tettü kujo pääle.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'sessionfailure' => 'Paistus ollõv määnegi hädä su toimõndamiskõrraga, tuuperäst om viimäne muutminõ egäs johtumisõs jätet tegemäldä. Vaodaq võrgokaeja "tagasi"-nuppi, laadiq üle lehekülg, kost sa tullit ja prooviq vahtsõst.',
+
+# Protect
 'protectlogpage'              => 'Lehti kaitsmiisi nimekiri',
 'protectlogtext'              => 'Tan om nimekiri lehti kaitsmiisist ja kaitsmisõ maahavõtmiisist. Parhilla kaitsõ all olõvidõ lehti nimekirä lövvät [[Special:ProtectedPages|tast]].',
 'protectedarticle'            => 'pand\' lehe "[[$1]]" kaitsõ ala',

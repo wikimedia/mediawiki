@@ -125,8 +125,10 @@ $messages = array(
 # Special:AllPages
 'allarticles' => 'Став гижӧдъяс',
 
-# Delete/protect/revert
-'deletepage'          => 'Лист бокӧс бырӧдны',
+# Delete
+'deletepage' => 'Лист бокӧс бырӧдны',
+
+# Protect
 'protect-level-sysop' => 'Администраторъяс сӧмын',
 
 # Contributions

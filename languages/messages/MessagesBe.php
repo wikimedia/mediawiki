@@ -1564,50 +1564,54 @@ $NEWPAGE
 Зваротная сувязь і далейшая дапамога:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Сцерці старонку',
-'confirm'                     => 'Пацвердзіць',
-'excontent'                   => "тэкст быў: '$1'",
-'excontentauthor'             => "тэкст быў: '$1' (і адзіны аўтар: '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "змесціва перад ачысткаю было: '$1'",
-'exblank'                     => 'старонка была пустой',
-'delete-confirm'              => 'Сцерці "$1"',
-'delete-legend'               => 'Сцерці',
-'historywarning'              => 'Увага: Старонка, якую вы хочаце сцерці, мае гісторыю:',
-'confirmdeletetext'           => 'Вы збіраецеся сцерці старонку разам з цэлай яе гісторыяй правак.
+# Delete
+'deletepage'             => 'Сцерці старонку',
+'confirm'                => 'Пацвердзіць',
+'excontent'              => "тэкст быў: '$1'",
+'excontentauthor'        => "тэкст быў: '$1' (і адзіны аўтар: '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "змесціва перад ачысткаю было: '$1'",
+'exblank'                => 'старонка была пустой',
+'delete-confirm'         => 'Сцерці "$1"',
+'delete-legend'          => 'Сцерці',
+'historywarning'         => 'Увага: Старонка, якую вы хочаце сцерці, мае гісторыю:',
+'confirmdeletetext'      => 'Вы збіраецеся сцерці старонку разам з цэлай яе гісторыяй правак.
 Пацвердзіце свой намер зрабіць гэта, сваё разуменне наступстваў, і што вы робіце гэта ў адпаведнасці з [[{{MediaWiki:Policy-url}}|палітыкай (асноўнымі правіламі)]].',
-'actioncomplete'              => 'Завершана аперацыя',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" было выдалена.
+'actioncomplete'         => 'Завершана аперацыя',
+'deletedtext'            => '"<nowiki>$1</nowiki>" было выдалена.
 Бач $2 па журнал нядаўніх выдаленняў.',
-'deletedarticle'              => 'сцёрты "[[$1]]"',
-'suppressedarticle'           => 'падаўлены "[[$1]]"',
-'dellogpage'                  => 'Журнал сціранняў',
-'dellogpagetext'              => 'Ніжэй паказаны спіс самых нядаўніх сціранняў.',
-'deletionlog'                 => 'журнал сціранняў',
-'reverted'                    => 'Адкочана да ранейшай версіі',
-'deletecomment'               => 'Прычына сцірання',
-'deleteotherreason'           => 'Іншы/дадатковы повад:',
-'deletereasonotherlist'       => 'Іншы повад',
-'deletereason-dropdown'       => '*Звычайныя прычыны сцірання
+'deletedarticle'         => 'сцёрты "[[$1]]"',
+'suppressedarticle'      => 'падаўлены "[[$1]]"',
+'dellogpage'             => 'Журнал сціранняў',
+'dellogpagetext'         => 'Ніжэй паказаны спіс самых нядаўніх сціранняў.',
+'deletionlog'            => 'журнал сціранняў',
+'reverted'               => 'Адкочана да ранейшай версіі',
+'deletecomment'          => 'Прычына сцірання',
+'deleteotherreason'      => 'Іншы/дадатковы повад:',
+'deletereasonotherlist'  => 'Іншы повад',
+'deletereason-dropdown'  => '*Звычайныя прычыны сцірання
 ** Жаданне аўтара тэксту
 ** Парушэнне аўтарскага права
 ** Вандалізм',
-'delete-edit-reasonlist'      => 'Правіць прычыны сцірання',
-'delete-toobig'               => 'Старонка мае вялікую гісторыю правак, больш за $1 {{PLURAL:$1|версію|версій}}. Сціранне такіх старонак было абмежавана, каб пазбегчы ўтварэння выпадковых перашкод працы {{SITENAME}}.',
-'delete-warning-toobig'       => 'Старонка мае вялікую гісторыю правак, больш за $1 {{PLURAL:$1|версію|версій}}. Сціранне такіх старонак можа перашкодзіць працы базы даных {{SITENAME}}; будзьце асцярожнымі.',
-'rollback'                    => 'Адкаціць праўкі',
-'rollback_short'              => 'Адкат',
-'rollbacklink'                => 'адкат',
-'rollbackfailed'              => 'Не ўдалося адкаціць',
-'cantrollback'                => 'Немагчыма адкаціць праўку; апошні аўтар гэта адзіны аўтар на гэтай старонцы.',
-'alreadyrolled'               => 'Немагчыма адкаціць апошнюю праўку ў [[$1]]
+'delete-edit-reasonlist' => 'Правіць прычыны сцірання',
+'delete-toobig'          => 'Старонка мае вялікую гісторыю правак, больш за $1 {{PLURAL:$1|версію|версій}}. Сціранне такіх старонак было абмежавана, каб пазбегчы ўтварэння выпадковых перашкод працы {{SITENAME}}.',
+'delete-warning-toobig'  => 'Старонка мае вялікую гісторыю правак, больш за $1 {{PLURAL:$1|версію|версій}}. Сціранне такіх старонак можа перашкодзіць працы базы даных {{SITENAME}}; будзьце асцярожнымі.',
+
+# Rollback
+'rollback'         => 'Адкаціць праўкі',
+'rollback_short'   => 'Адкат',
+'rollbacklink'     => 'адкат',
+'rollbackfailed'   => 'Не ўдалося адкаціць',
+'cantrollback'     => 'Немагчыма адкаціць праўку; апошні аўтар гэта адзіны аўтар на гэтай старонцы.',
+'alreadyrolled'    => 'Немагчыма адкаціць апошнюю праўку ў [[$1]]
 аўтарства [[User:$2|$2]] ([[User talk:$2|Размова]]); за гэты час нехта іншы ўжо правіў або адкатваў старонку.
 
 Аўтарства апошняй праўкі: [[User:$3|$3]] ([[User talk:$3|Размова]]).',
-'editcomment'                 => 'Тлумачэнне праўкі: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Адкочаны праўкі $1; вернута апошняя версія $2.',
-'sessionfailure'              => 'Магчыма, ёсць праблемы з вашым сеансам працы ў сістэме. Таму вам было адмоўлена ў выкананні дзеяння, каб засцерагчыся ад захопу сеанса. Націсніце "Назад", і перачытайце старонку, з якой вы сюды прыйшлі, тады паспрабуйце нанова.',
+'editcomment'      => 'Тлумачэнне праўкі: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Праўкі аўтарства [[Special:Contributions/$2|$2]] ([[User talk:$2|размова]]) адкочаныя; вернута апошняя версія аўтарства [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Адкочаны праўкі $1; вернута апошняя версія $2.',
+'sessionfailure'   => 'Магчыма, ёсць праблемы з вашым сеансам працы ў сістэме. Таму вам было адмоўлена ў выкананні дзеяння, каб засцерагчыся ад захопу сеанса. Націсніце "Назад", і перачытайце старонку, з якой вы сюды прыйшлі, тады паспрабуйце нанова.',
+
+# Protect
 'protectlogpage'              => 'Журнал аховы',
 'protectlogtext'              => 'Ніжэй паказаная хроніка пастаноўкі старонак пад ахову і здымання з іх аховы. Гл. [[Special:ProtectedPages|пералік старонак пад аховай]], каб бачыць актуальную ахову старонак.',
 'protectedarticle'            => 'пад аховай «[[$1]]»',

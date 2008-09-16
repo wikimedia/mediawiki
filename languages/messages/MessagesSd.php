@@ -570,20 +570,24 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'changed'            => 'تبديل ٿي ويو',
 'created'            => 'ٺهي چڪو',
 
-# Delete/protect/revert
-'deletepage'                  => 'صفحو ڊاهيو',
-'confirm'                     => 'پڪ ڪريو',
-'historywarning'              => 'خبردار: جيڪو صفحو توهان ڊاهڻ وارا آهيو، تنهن جي هڪ سوانح آهي:',
-'confirmdeletetext'           => 'توهان هڪ صفحي کي ان جي سموري سوانح سميت ڊاهڻ وارا آهيو. مهرباني ڪري پڪ ڪندا ته توهان اهو ئي ڪرڻ گھرو ٿا، ۽ اهو ته توهان ان جي نتيجن کان واقف آهيو، ۽ اهو پڻ ته توهان اهو ڪم [[{{MediaWiki:Policy-url}}|پاليسي]]ءَ مطابق ڪري رهيا آهيو.',
-'actioncomplete'              => 'ڪم پُورو',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" ڊهي چڪو آهي.
+# Delete
+'deletepage'            => 'صفحو ڊاهيو',
+'confirm'               => 'پڪ ڪريو',
+'historywarning'        => 'خبردار: جيڪو صفحو توهان ڊاهڻ وارا آهيو، تنهن جي هڪ سوانح آهي:',
+'confirmdeletetext'     => 'توهان هڪ صفحي کي ان جي سموري سوانح سميت ڊاهڻ وارا آهيو. مهرباني ڪري پڪ ڪندا ته توهان اهو ئي ڪرڻ گھرو ٿا، ۽ اهو ته توهان ان جي نتيجن کان واقف آهيو، ۽ اهو پڻ ته توهان اهو ڪم [[{{MediaWiki:Policy-url}}|پاليسي]]ءَ مطابق ڪري رهيا آهيو.',
+'actioncomplete'        => 'ڪم پُورو',
+'deletedtext'           => '"<nowiki>$1</nowiki>" ڊهي چڪو آهي.
 تازو ڊاٺل صفحن جي فهرست لاءِ $2 ڏسندا.',
-'deletedarticle'              => '"[[$1]]" ڊهي چڪو',
-'dellogpage'                  => 'ڊاٺ لاگ',
-'deletecomment'               => 'ڊاهڻ جو سبب:',
-'deleteotherreason'           => 'اڃا ڪو ٻيو سبب:',
-'deletereasonotherlist'       => 'ٻيو سبب',
-'rollbacklink'                => 'واپس ورايو',
+'deletedarticle'        => '"[[$1]]" ڊهي چڪو',
+'dellogpage'            => 'ڊاٺ لاگ',
+'deletecomment'         => 'ڊاهڻ جو سبب:',
+'deleteotherreason'     => 'اڃا ڪو ٻيو سبب:',
+'deletereasonotherlist' => 'ٻيو سبب',
+
+# Rollback
+'rollbacklink' => 'واپس ورايو',
+
+# Protect
 'protectlogpage'              => 'تحفظ لاگ',
 'protect-legend'              => 'تحفظڻ جي پڪ ڪريو',
 'protectcomment'              => 'تاثرات:',

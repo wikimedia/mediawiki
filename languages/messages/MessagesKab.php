@@ -1088,29 +1088,33 @@ Akken ad tbeddleḍ n wumuɣ n uɛessi inek settings, ruḥ ɣer
 Tadhelt:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'              => 'Mḥu asebter',
-'confirm'                 => 'Sentem',
-'excontent'               => "Ayen yella: '$1'",
-'excontentauthor'         => "Ayen yella: '$1' ('[[Special:Contributions/$2|$2]]' kan i yekken deg-s)",
-'exbeforeblank'           => "Ayen yella uqbal ma yettumḥa: '$1'",
-'exblank'                 => 'asebter yella d ilem',
-'historywarning'          => 'Aɣtal: Asebter i ara temḥuḍ yesɛa amezruy:',
-'actioncomplete'          => 'Axdam yekfa',
-'deletedtext'             => '"<nowiki>$1</nowiki>" yettumḥa.
+# Delete
+'deletepage'      => 'Mḥu asebter',
+'confirm'         => 'Sentem',
+'excontent'       => "Ayen yella: '$1'",
+'excontentauthor' => "Ayen yella: '$1' ('[[Special:Contributions/$2|$2]]' kan i yekken deg-s)",
+'exbeforeblank'   => "Ayen yella uqbal ma yettumḥa: '$1'",
+'exblank'         => 'asebter yella d ilem',
+'historywarning'  => 'Aɣtal: Asebter i ara temḥuḍ yesɛa amezruy:',
+'actioncomplete'  => 'Axdam yekfa',
+'deletedtext'     => '"<nowiki>$1</nowiki>" yettumḥa.
 Ẓer $2 i aɣmis n yimḥayin imaynuten.',
-'deletedarticle'          => '"[[$1]]" yettumḥa',
-'dellogpage'              => 'Aɣmis n umḥay',
-'dellogpagetext'          => 'Deg ukessar, yella wumuɣ n yimḥayin imaynuten.',
-'deletionlog'             => 'Aɣmis n umḥay',
-'reverted'                => 'Asuɣal i tasiwel taqdimt',
-'deletecomment'           => 'Ayɣer tebɣiḍ ad temḥuḍ',
-'cantrollback'            => 'Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.',
-'editcomment'             => 'Agzul n ubeddel yella: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'              => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'sessionfailure'          => 'Yella ugul akk d takmect inek;
+'deletedarticle'  => '"[[$1]]" yettumḥa',
+'dellogpage'      => 'Aɣmis n umḥay',
+'dellogpagetext'  => 'Deg ukessar, yella wumuɣ n yimḥayin imaynuten.',
+'deletionlog'     => 'Aɣmis n umḥay',
+'reverted'        => 'Asuɣal i tasiwel taqdimt',
+'deletecomment'   => 'Ayɣer tebɣiḍ ad temḥuḍ',
+
+# Rollback
+'cantrollback'   => 'Ur yezmir ara ad yessuɣal; yella yiwen kan amseqdac iwumi ibeddel/yexleq asebter-agi.',
+'editcomment'    => 'Agzul n ubeddel yella: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'     => 'Yessuɣal ibeddlen n [[Special:Contributions/$2|$2]] ([[User talk:$2|Meslay]]); yettubeddel ɣer tasiwelt taneggarut n [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'sessionfailure' => 'Yella ugul akk d takmect inek;
 Axdam-agi yebṭel axaṭer waqila yella wemdan nniḍen i yeddem isem n wemseqdac inek.
 G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, umbeɛd wekki ɣef "Actualiser/reload" akk ad tɛerḍeḍ tikelt nniḍen.',
+
+# Protect
 'protectlogpage'          => 'Aɣmis n wemḥay',
 'protectedarticle'        => '"[[$1]]" yettwaḥrez',
 'protect-title'           => 'Ad yeḥrez "$1"',

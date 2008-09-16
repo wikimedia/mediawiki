@@ -1781,55 +1781,59 @@ Per modificar los paramètres de vòstra lista de seguit, visitatz
 Retorn e assisténcia :
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Suprimir la pagina',
-'confirm'                     => 'Confirmar',
-'excontent'                   => "contenent '$1'",
-'excontentauthor'             => "lo contengut èra : « $1 » (e l'unic contributor èra « [[Special:Contributions/$2|$2]] »)",
-'exbeforeblank'               => "lo contengut abans blanquiment èra :'$1'",
-'exblank'                     => 'pagina voida',
-'delete-confirm'              => 'Escafar «$1»',
-'delete-legend'               => 'Escafar',
-'historywarning'              => 'Atencion : La pagina que sètz a mand de suprimir a un istoric :',
-'confirmdeletetext'           => "Sètz a mand de suprimir definitivament de la banca de donadas una pagina
+# Delete
+'deletepage'             => 'Suprimir la pagina',
+'confirm'                => 'Confirmar',
+'excontent'              => "contenent '$1'",
+'excontentauthor'        => "lo contengut èra : « $1 » (e l'unic contributor èra « [[Special:Contributions/$2|$2]] »)",
+'exbeforeblank'          => "lo contengut abans blanquiment èra :'$1'",
+'exblank'                => 'pagina voida',
+'delete-confirm'         => 'Escafar «$1»',
+'delete-legend'          => 'Escafar',
+'historywarning'         => 'Atencion : La pagina que sètz a mand de suprimir a un istoric :',
+'confirmdeletetext'      => "Sètz a mand de suprimir definitivament de la banca de donadas una pagina
 o un imatge, e mai totas sas versions anterioras.
 Confirmatz qu'es plan çò que volètz far, que ne comprenètz las consequéncias e que fasètz aquò en acòrdi amb las [[{{MediaWiki:Policy-url|règlas intèrnas}}]].",
-'actioncomplete'              => 'Accion efectuada',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" es estat suprimit.
+'actioncomplete'         => 'Accion efectuada',
+'deletedtext'            => '"<nowiki>$1</nowiki>" es estat suprimit.
 Vejatz $2 per una lista de las supressions recentas.',
-'deletedarticle'              => 'a escafat «[[$1]]»',
-'suppressedarticle'           => 'amagat  « [[$1]] »',
-'dellogpage'                  => 'Istoric dels escafaments',
-'dellogpagetext'              => 'Vaquí çaijós la lista de las supressions recentas.',
-'deletionlog'                 => 'istoric dels escafaments',
-'reverted'                    => 'Restabliment de la version precedenta',
-'deletecomment'               => 'Motiu de la supression :',
-'deleteotherreason'           => 'Motius suplementaris o autres :',
-'deletereasonotherlist'       => 'Autre motiu',
-'deletereason-dropdown'       => "*Motius de supression mai corrents
+'deletedarticle'         => 'a escafat «[[$1]]»',
+'suppressedarticle'      => 'amagat  « [[$1]] »',
+'dellogpage'             => 'Istoric dels escafaments',
+'dellogpagetext'         => 'Vaquí çaijós la lista de las supressions recentas.',
+'deletionlog'            => 'istoric dels escafaments',
+'reverted'               => 'Restabliment de la version precedenta',
+'deletecomment'          => 'Motiu de la supression :',
+'deleteotherreason'      => 'Motius suplementaris o autres :',
+'deletereasonotherlist'  => 'Autre motiu',
+'deletereason-dropdown'  => "*Motius de supression mai corrents
 ** Demanda de l'autor
 ** Violacion dels dreches d'autor
 ** Vandalisme",
-'delete-edit-reasonlist'      => 'Modifica los motius de la supression',
-'delete-toobig'               => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
+'delete-edit-reasonlist' => 'Modifica los motius de la supression',
+'delete-toobig'          => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
 La supression de talas paginas es estada limitada per evitar de perturbacions accidentalas de {{SITENAME}}.",
-'delete-warning-toobig'       => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
+'delete-warning-toobig'  => "Aquesta pagina dispausa d'un istoric important, depassant {{PLURAL:$1|revision|revisions}}.
 La suprimir pòt perturbar lo foncionament de la banca de donada de {{SITENAME}}.
 D'efectuar amb prudéncia.",
-'rollback'                    => 'Anullar las modificacions',
-'rollback_short'              => 'Anullar',
-'rollbacklink'                => 'anullar',
-'rollbackfailed'              => "L'anullacion a pas capitat",
-'cantrollback'                => "Impossible d'anullar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
-'alreadyrolled'               => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; qualqu'un d'autre ja a modificat o revocat l'article.
+
+# Rollback
+'rollback'         => 'Anullar las modificacions',
+'rollback_short'   => 'Anullar',
+'rollbacklink'     => 'anullar',
+'rollbackfailed'   => "L'anullacion a pas capitat",
+'cantrollback'     => "Impossible d'anullar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
+'alreadyrolled'    => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discussion]]) ; qualqu'un d'autre ja a modificat o revocat l'article.
 
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discussion]]).",
-'editcomment'                 => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vèrs la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
-'sessionfailure'              => 'Vòstra sesilha de connexion sembla aver de problèmas ;
+'editcomment'      => 'Lo resumit de la modificacion èra: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Anullacion de las modificacions de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) vèrs la darrièra version de [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
+'sessionfailure'   => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
+
+# Protect
 'protectlogpage'              => 'Istoric de las proteccions',
 'protectlogtext'              => 'Vejatz las [[Special:ProtectedPages|directivas]] per mai d’informacion.',
 'protectedarticle'            => 'a protegit « [[$1]] »',

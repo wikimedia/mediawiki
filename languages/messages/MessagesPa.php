@@ -741,16 +741,20 @@ to upload files.',
 'created'                      => 'ਬਣਾਇਆ',
 'enotif_anon_editor'           => 'ਅਗਿਆਤ ਯੂਜ਼ਰ $1',
 
-# Delete/protect/revert
-'deletepage'       => 'ਪੇਜ ਹਟਾਓ',
-'confirm'          => 'ਪੁਸ਼ਟੀ',
-'excontent'        => "ਸਮੱਗਰੀ ਸੀ: '$1'",
-'exblank'          => 'ਪੇਜ ਖਾਲੀ ਹੈ',
-'actioncomplete'   => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
-'deletedarticle'   => '"[[$1]]" ਹਟਾਇਆ',
-'rollback_short'   => 'ਰੋਲਬੈਕ',
-'rollbacklink'     => 'ਰੋਲਬੈਕ',
-'rollbackfailed'   => 'ਰੋਲਬੈਕ ਫੇਲ੍ਹ',
+# Delete
+'deletepage'     => 'ਪੇਜ ਹਟਾਓ',
+'confirm'        => 'ਪੁਸ਼ਟੀ',
+'excontent'      => "ਸਮੱਗਰੀ ਸੀ: '$1'",
+'exblank'        => 'ਪੇਜ ਖਾਲੀ ਹੈ',
+'actioncomplete' => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
+'deletedarticle' => '"[[$1]]" ਹਟਾਇਆ',
+
+# Rollback
+'rollback_short' => 'ਰੋਲਬੈਕ',
+'rollbacklink'   => 'ਰੋਲਬੈਕ',
+'rollbackfailed' => 'ਰੋਲਬੈਕ ਫੇਲ੍ਹ',
+
+# Protect
 'protectlogpage'   => 'ਸੁਰੱਖਿਆ ਲਾਗ',
 'protect-legend'   => 'ਸੁਰੱਖਿਆ ਕਨਫਰਮ',
 'protectcomment'   => 'ਟਿੱਪਣੀ:',
