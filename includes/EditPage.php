@@ -231,93 +231,87 @@ class EditPage {
 	 *  and set $wgMetadataWhitelist to the *full* title of the template whitelist
 	 */
 	function extractMetaDataFromArticle () {
-		global $wgUseMetadataEdit , $wgMetadataWhitelist , $wgLang ;
-		$this->mMetaData = '' ;
-		if ( !$wgUseMetadataEdit ) return ;
-		if ( $wgMetadataWhitelist == '' ) return ;
-		$s = '' ;
+		global $wgUseMetadataEdit, $wgMetadataWhitelist, $wgContLang;
+		$this->mMetaData = '';
+		if ( !$wgUseMetadataEdit ) return;
+		if ( $wgMetadataWhitelist == '' ) return;
+		$s = '';
 		$t = $this->getContent();
 
 		# MISSING : <nowiki> filtering
 
 		# Categories and language links
-		$t = explode ( "\n" , $t ) ;
-		$catlow = strtolower ( $wgLang->getNsText ( NS_CATEGORY ) ) ;
-		$cat = $ll = array() ;
-		foreach ( $t AS $key => $x )
-		{
-			$y = trim ( strtolower ( $x ) ) ;
-			while ( substr ( $y , 0 , 2 ) == '[[' )
-			{
-				$y = explode ( ']]' , trim ( $x ) ) ;
-				$first = array_shift ( $y ) ;
-				$first = explode ( ':' , $first ) ;
-				$ns = array_shift ( $first ) ;
-				$ns = trim ( str_replace ( '[' , '' , $ns ) ) ;
-				if ( strlen ( $ns ) == 2 OR strtolower ( $ns ) == $catlow )
-				{
-					$add = '[[' . $ns . ':' . implode ( ':' , $first ) . ']]' ;
-					if ( strtolower ( $ns ) == $catlow ) $cat[] = $add ;
-					else $ll[] = $add ;
-					$x = implode ( ']]' , $y ) ;
-					$t[$key] = $x ;
-					$y = trim ( strtolower ( $x ) ) ;
+		$t = explode ( "\n" , $t );
+		$catlow = strtolower ( $wgContLang->getNsText( NS_CATEGORY ) );
+		$cat = $ll = array();
+		foreach ( $t AS $key => $x ) {
+			$y = trim ( strtolower ( $x ) );
+			while ( substr ( $y , 0 , 2 ) == '[[' ) {
+				$y = explode ( ']]' , trim ( $x ) );
+				$first = array_shift ( $y );
+				$first = explode ( ':' , $first );
+				$ns = array_shift ( $first );
+				$ns = trim ( str_replace ( '[' , '' , $ns ) );
+				if ( $wgContLang->getLanguageName( $ns ) || strtolower ( $ns ) == $catlow ) {
+					$add = '[[' . $ns . ':' . implode ( ':' , $first ) . ']]';
+					if ( strtolower ( $ns ) == $catlow ) $cat[] = $add;
+					else $ll[] = $add;
+					$x = implode ( ']]' , $y );
+					$t[$key] = $x;
+					$y = trim ( strtolower ( $x ) );
+				} else {
+					$x = implode ( ']]' , $y );
+					$y = trim ( strtolower ( $x ) );
 				}
 			}
 		}
-		if ( count ( $cat ) ) $s .= implode ( ' ' , $cat ) . "\n" ;
-		if ( count ( $ll ) ) $s .= implode ( ' ' , $ll ) . "\n" ;
-		$t = implode ( "\n" , $t ) ;
+		if ( count ( $cat ) ) $s .= implode ( ' ' , $cat ) . "\n";
+		if ( count ( $ll ) ) $s .= implode ( ' ' , $ll ) . "\n";
+		$t = implode ( "\n" , $t );
 
 		# Load whitelist
 		$sat = array () ; # stand-alone-templates; must be lowercase
-		$wl_title = Title::newFromText ( $wgMetadataWhitelist ) ;
-		$wl_article = new Article ( $wl_title ) ;
-		$wl = explode ( "\n" , $wl_article->getContent() ) ;
-		foreach ( $wl AS $x )
-		{
-			$isentry = false ;
-			$x = trim ( $x ) ;
-			while ( substr ( $x , 0 , 1 ) == '*' )
-			{
-				$isentry = true ;
-				$x = trim ( substr ( $x , 1 ) ) ;
+		$wl_title = Title::newFromText ( $wgMetadataWhitelist );
+		$wl_article = new Article ( $wl_title );
+		$wl = explode ( "\n" , $wl_article->getContent() );
+		foreach ( $wl AS $x ) {
+			$isentry = false;
+			$x = trim ( $x );
+			while ( substr ( $x , 0 , 1 ) == '*' ) {
+				$isentry = true;
+				$x = trim ( substr ( $x , 1 ) );
 			}
-			if ( $isentry )
-			{
-				$sat[] = strtolower ( $x ) ;
+			if ( $isentry ) {
+				$sat[] = strtolower ( $x );
 			}
 
 		}
 
 		# Templates, but only some
-		$t = explode ( '{{' , $t ) ;
+		$t = explode ( '{{' , $t );
 		$tl = array () ;
-		foreach ( $t AS $key => $x )
-		{
-			$y = explode ( '}}' , $x , 2 ) ;
-			if ( count ( $y ) == 2 )
-			{
-				$z = $y[0] ;
-				$z = explode ( '|' , $z ) ;
-				$tn = array_shift ( $z ) ;
-				if ( in_array ( strtolower ( $tn ) , $sat ) )
-				{
-					$tl[] = '{{' . $y[0] . '}}' ;
-					$t[$key] = $y[1] ;
-					$y = explode ( '}}' , $y[1] , 2 ) ;
+		foreach ( $t AS $key => $x ) {
+			$y = explode ( '}}' , $x , 2 );
+			if ( count ( $y ) == 2 ) {
+				$z = $y[0];
+				$z = explode ( '|' , $z );
+				$tn = array_shift ( $z );
+				if ( in_array ( strtolower ( $tn ) , $sat ) ) {
+					$tl[] = '{{' . $y[0] . '}}';
+					$t[$key] = $y[1];
+					$y = explode ( '}}' , $y[1] , 2 );
 				}
-				else $t[$key] = '{{' . $x ;
+				else $t[$key] = '{{' . $x;
 			}
-			else if ( $key != 0 ) $t[$key] = '{{' . $x ;
-			else $t[$key] = $x ;
+			else if ( $key != 0 ) $t[$key] = '{{' . $x;
+			else $t[$key] = $x;
 		}
-		if ( count ( $tl ) ) $s .= implode ( ' ' , $tl ) ;
-		$t = implode ( '' , $t ) ;
+		if ( count ( $tl ) ) $s .= implode ( ' ' , $tl );
+		$t = implode ( '' , $t );
 
-		$t = str_replace ( "\n\n\n" , "\n" , $t ) ;
-		$this->mArticle->mContent = $t ;
-		$this->mMetaData = $s ;
+		$t = str_replace ( "\n\n\n" , "\n" , $t );
+		$this->mArticle->mContent = $t;
+		$this->mMetaData = $s;
 	}
 
 	/* 
@@ -952,7 +946,7 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
-		if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp($oldtext, $text) && 
+		if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp($oldtext, $text) &&
 			!is_object( Title::newFromRedirect( $text ) ) # check if it's not a redirect
 		) {
 			if ( md5( $this->summary ) == $this->autoSumm ) {
@@ -1346,6 +1340,7 @@ class EditPage {
 			$ew = $wgUser->getOption( 'editwidth' );
 			if ( $ew ) $ew = " style=\"width:100%\"";
 			else $ew = '';
+			$cols = $wgUser->getIntOption( 'cols' );
 			/* /ToDo */
 			$metadata = $top . "<textarea name='metadata' rows='3' cols='{$cols}'{$ew}>{$metadata}</textarea>" ;
 		}
