@@ -2358,15 +2358,6 @@ class Article {
 		# Delete restrictions for it
 		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
 
-		# Fix category table counts
-		$cats = array();
-		$res = $dbw->select( 'categorylinks', 'cl_to',
-			array( 'cl_from' => $id ), __METHOD__ );
-		foreach( $res as $row ) {
-			$cats []= $row->cl_to;
-		}
-		$this->updateCategoryCounts( array(), $cats );
-
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__);
 		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
@@ -2391,13 +2382,20 @@ class Article {
 			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
 		}
+		
+		# Fix category table counts
+		$cats = array();
+		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
+		foreach( $res as $row ) {
+			$cats []= $row->cl_to;
+		}
+		$this->updateCategoryCounts( array(), $cats );
 
 		# If using cleanup triggers, we can skip some manual deletes
 		if ( !$dbw->cleanupTriggers() ) {
-
 			# Clean up recentchanges entries...
 			$dbw->delete( 'recentchanges',
-				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG ),
+				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
 		$dbw->commit();
