@@ -252,21 +252,21 @@ class TextNodeDiffer {
 			$result = $acthis->getResult($acother);
 			unset($acthis, $acother);
 
-			if ($result->changed) {
+			if ( $result ) {
 				$mod = new Modification(Modification::CHANGED);
 
 				if (!$this->changedIDUsed) {
 					$mod->firstOfID = true;
-				} else if (!is_null($result->changes) && $result->changes !== $this->changes) {
+				} else if (!is_null( $result ) && $result !== $this->changes) {
 					++$this->changedID;
 					$mod->firstOfID = true;
 				}
 
-				$mod->changes = $result->changes;
+				$mod->changes = $result;
 				$mod->id = $this->changedID;
 
 				$this->textNodes[$i]->modification = $mod;
-				$this->changes = $result->changes;
+				$this->changes = $result;
 				$this->changedIDUsed = true;
 			} else if ($this->changedIDUsed) {
 				++$this->changedID;
@@ -588,13 +588,6 @@ class TextOnlyComparator {
 	}
 }
 
-class AncestorComparatorResult {
-
-	public $changed = false;
-
-	public $changes = "";
-}
-
 /**
  * A comparator used when calculating the difference in ancestry of two Nodes.
  */
@@ -611,20 +604,16 @@ class AncestorComparator {
 	public $compareTxt = "";
 
 	public function getResult(AncestorComparator $other) {
-		$result = new AncestorComparatorResult();
 
 		$diffengine = new WikiDiff3(10000, 1.35);
 		$differences = $diffengine->diff_range($other->ancestorsText,$this->ancestorsText);
 
 		if (count($differences) == 0){
-			return $result;
+			return null;
 		}
 		$changeTxt = new ChangeTextGenerator($this, $other);
 
-		$result->changed = true;
-		$result->changes = $changeTxt->getChanged($differences)->toString();
-
-		return $result;
+		return $changeTxt->getChanged($differences)->toString();;
 	}
 }
 
@@ -988,26 +977,6 @@ class HTMLOutput{
 		$this->handler->startElement('img', $attrs);
 		$this->handler->endElement('img');
 	}
-}
-
-class EchoingContentHandler {
-
-	function startElement($qname, /*array*/ $arguments) {
-		echo Xml::openElement($qname, $arguments);
-	}
-
-	function endElement($qname){
-		echo Xml::closeElement($qname);
-	}
-
-	function characters($chars){
-		echo htmlspecialchars($chars);
-	}
-
-	function html($html){
-		echo $html;
-	}
-
 }
 
 class DelegatingContentHandler {
