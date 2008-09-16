@@ -91,7 +91,7 @@ function wfSpecialWatchlist( $par ) {
 	}
 
 	$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
-	list($page,$watchlist,$recentchanges,$user) = $dbr->tableNamesN('page','watchlist','recentchanges','user');
+	list( $page, $watchlist, $recentchanges ) = $dbr->tableNamesN( 'page', 'watchlist', 'recentchanges' );
 
 	$watchlistCount = $dbr->selectField( 'watchlist', 'COUNT(*)',
 		array( 'wl_user' => $uid ), __METHOD__ );
@@ -198,10 +198,9 @@ function wfSpecialWatchlist( $par ) {
 	} else {
 		$wltsfield = '';
 	}
-	$sql = "SELECT ${recentchanges}.* ${wltsfield}, {$user}.user_editcount, {$user}.user_registration
+	$sql = "SELECT ${recentchanges}.* ${wltsfield}
 	  FROM $watchlist,$recentchanges
 	  LEFT JOIN $page ON rc_cur_id=page_id
-	  LEFT JOIN $user ON (rc_user !='0' AND rc_user = user_id)
 	  WHERE wl_user=$uid
 	  AND wl_namespace=rc_namespace
 	  AND wl_title=rc_title

@@ -1231,7 +1231,6 @@ $opts: FormOptions for this request
 &$tables: array of tables to be queried
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
-&$fields: select fields
 
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the target doesn't exist
 $title: title object generated from the text entred by the user
