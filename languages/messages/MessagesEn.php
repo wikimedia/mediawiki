@@ -2241,58 +2241,62 @@ To change your watchlist settings, visit
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'Delete page',
-'confirm'                     => 'Confirm',
-'excontent'                   => "content was: '$1'",
-'excontentauthor'             => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
-'exbeforeblank'               => "content before blanking was: '$1'",
-'exblank'                     => 'page was empty',
-'delete-confirm'              => 'Delete "$1"',
-'delete-backlink'             => '← $1', # only translate this message to other languages if you have to change it
-'delete-legend'               => 'Delete',
-'historywarning'              => 'Warning: The page you are about to delete has a history:',
-'confirmdeletetext'           => 'You are about to delete a page along with all of its history.
+# Delete
+'deletepage'             => 'Delete page',
+'confirm'                => 'Confirm',
+'excontent'              => "content was: '$1'",
+'excontentauthor'        => "content was: '$1' (and the only contributor was '[[Special:Contributions/$2|$2]]')",
+'exbeforeblank'          => "content before blanking was: '$1'",
+'exblank'                => 'page was empty',
+'delete-confirm'         => 'Delete "$1"',
+'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
+'delete-legend'          => 'Delete',
+'historywarning'         => 'Warning: The page you are about to delete has a history:',
+'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].',
-'actioncomplete'              => 'Action complete',
-'deletedtext'                 => '"<nowiki>$1</nowiki>" has been deleted.
+'actioncomplete'         => 'Action complete',
+'deletedtext'            => '"<nowiki>$1</nowiki>" has been deleted.
 See $2 for a record of recent deletions.',
-'deletedarticle'              => 'deleted "[[$1]]"',
-'suppressedarticle'           => 'suppressed "[[$1]]"',
-'dellogpage'                  => 'Deletion log',
-'dellogpagetext'              => 'Below is a list of the most recent deletions.',
-'deletionlog'                 => 'deletion log',
-'reverted'                    => 'Reverted to earlier revision',
-'deletecomment'               => 'Reason for deletion:',
-'deleteotherreason'           => 'Other/additional reason:',
-'deletereasonotherlist'       => 'Other reason',
-'deletereason-dropdown'       => '*Common delete reasons
+'deletedarticle'         => 'deleted "[[$1]]"',
+'suppressedarticle'      => 'suppressed "[[$1]]"',
+'dellogpage'             => 'Deletion log',
+'dellogpagetext'         => 'Below is a list of the most recent deletions.',
+'deletionlog'            => 'deletion log',
+'reverted'               => 'Reverted to earlier revision',
+'deletecomment'          => 'Reason for deletion:',
+'deleteotherreason'      => 'Other/additional reason:',
+'deletereasonotherlist'  => 'Other reason',
+'deletereason-dropdown'  => '*Common delete reasons
 ** Author request
 ** Copyright violation
 ** Vandalism',
-'delete-edit-reasonlist'      => 'Edit delete reasons',
-'delete-toobig'               => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
+'delete-edit-reasonlist' => 'Edit delete reasons',
+'delete-toobig'          => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deletion of such pages has been restricted to prevent accidental disruption of {{SITENAME}}.',
-'delete-warning-toobig'       => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
+'delete-warning-toobig'  => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
 Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
-'rollback'                    => 'Roll back edits',
-'rollback_short'              => 'Rollback',
-'rollbacklink'                => 'rollback',
-'rollbackfailed'              => 'Rollback failed',
-'cantrollback'                => 'Cannot revert edit;
+
+# Rollback
+'rollback'         => 'Roll back edits',
+'rollback_short'   => 'Rollback',
+'rollbacklink'     => 'rollback',
+'rollbackfailed'   => 'Rollback failed',
+'cantrollback'     => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'               => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]] | [[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
-'revertpage'                  => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Reverted edits by $1;
+'editcomment'      => 'The edit comment was: "<i>$1</i>".', # only shown if there is an edit comment
+'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last version by [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'Reverted edits by $1;
 changed back to last version by $2.',
-'sessionfailure'              => 'There seems to be a problem with your login session;
+'sessionfailure'   => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
+
+# Protect
 'protectlogpage'              => 'Protection log',
 'protectlogtext'              => 'Below is a list of page locks and unlocks.
 See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',

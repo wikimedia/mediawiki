@@ -1875,51 +1875,55 @@ $NEWPAGE
 למשוב ולעזרה נוספת:
 {{fullurl:Project:עזרה}}',
 
-# Delete/protect/revert
-'deletepage'                  => 'מחיקה',
-'confirm'                     => 'אישור',
-'excontent'                   => 'תוכן היה: "$1"',
-'excontentauthor'             => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
-'exbeforeblank'               => 'תוכן לפני שרוקן היה: "$1"',
-'exblank'                     => 'הדף היה ריק',
-'delete-confirm'              => 'מחיקת $1',
-'delete-backlink'             => '→ $1',
-'delete-legend'               => 'מחיקה',
-'historywarning'              => 'אזהרה – לדף שאתם עומדים למחוק יש היסטוריית שינויים:',
-'confirmdeletetext'           => 'אתם עומדים למחוק דף או תמונה יחד עם כל ההיסטוריה שלהם.
+# Delete
+'deletepage'             => 'מחיקה',
+'confirm'                => 'אישור',
+'excontent'              => 'תוכן היה: "$1"',
+'excontentauthor'        => "תוכן היה: '$1' והתורם היחיד היה [[Special:Contributions/$2|$2]]",
+'exbeforeblank'          => 'תוכן לפני שרוקן היה: "$1"',
+'exblank'                => 'הדף היה ריק',
+'delete-confirm'         => 'מחיקת $1',
+'delete-backlink'        => '→ $1',
+'delete-legend'          => 'מחיקה',
+'historywarning'         => 'אזהרה – לדף שאתם עומדים למחוק יש היסטוריית שינויים:',
+'confirmdeletetext'      => 'אתם עומדים למחוק דף או תמונה יחד עם כל ההיסטוריה שלהם.
 
 אנא אשרו שזה אכן מה שאתם מתכוונים לעשות, שאתם מבינים את התוצאות של מעשה כזה, ושהמעשה מבוצע בהתאם לנהלי האתר.',
-'actioncomplete'              => 'הפעולה בוצעה',
-'deletedtext'                 => '<strong><nowiki>$1</nowiki></strong> נמחק. ראו $2 לרשימת המחיקות האחרונות.',
-'deletedarticle'              => 'מחק את [[$1]]',
-'suppressedarticle'           => 'הסתיר את [[$1]]',
-'dellogpage'                  => 'יומן מחיקות',
-'dellogpagetext'              => 'להלן רשימה של המחיקות האחרונות שבוצעו.',
-'deletionlog'                 => 'יומן מחיקות',
-'reverted'                    => 'שוחזר לגרסה קודמת',
-'deletecomment'               => 'סיבת המחיקה:',
-'deleteotherreason'           => 'סיבה נוספת/אחרת:',
-'deletereasonotherlist'       => 'סיבה אחרת',
-'deletereason-dropdown'       => '
+'actioncomplete'         => 'הפעולה בוצעה',
+'deletedtext'            => '<strong><nowiki>$1</nowiki></strong> נמחק. ראו $2 לרשימת המחיקות האחרונות.',
+'deletedarticle'         => 'מחק את [[$1]]',
+'suppressedarticle'      => 'הסתיר את [[$1]]',
+'dellogpage'             => 'יומן מחיקות',
+'dellogpagetext'         => 'להלן רשימה של המחיקות האחרונות שבוצעו.',
+'deletionlog'            => 'יומן מחיקות',
+'reverted'               => 'שוחזר לגרסה קודמת',
+'deletecomment'          => 'סיבת המחיקה:',
+'deleteotherreason'      => 'סיבה נוספת/אחרת:',
+'deletereasonotherlist'  => 'סיבה אחרת',
+'deletereason-dropdown'  => '
 * סיבות מחיקה נפוצות
 ** לבקשת הכותב
 ** הפרת זכויות יוצרים
 ** השחתה',
-'delete-edit-reasonlist'      => 'עריכת סיבות המחיקה',
-'delete-toobig'               => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקת דפים כאלה הוגבלה כדי למנוע פגיעה בביצועי האתר.',
-'delete-warning-toobig'       => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקה שלו עלולה להפריע לפעולות בבסיס הנתונים; אנא שיקלו שנית את המחיקה.',
-'rollback'                    => 'שחזור עריכות',
-'rollback_short'              => 'שחזור',
-'rollbacklink'                => 'שחזור',
-'rollbackfailed'              => 'השחזור נכשל',
-'cantrollback'                => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
-'alreadyrolled'               => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]] | [[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
+'delete-edit-reasonlist' => 'עריכת סיבות המחיקה',
+'delete-toobig'          => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקת דפים כאלה הוגבלה כדי למנוע פגיעה בביצועי האתר.',
+'delete-warning-toobig'  => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקה שלו עלולה להפריע לפעולות בבסיס הנתונים; אנא שיקלו שנית את המחיקה.',
+
+# Rollback
+'rollback'         => 'שחזור עריכות',
+'rollback_short'   => 'שחזור',
+'rollbacklink'     => 'שחזור',
+'rollbackfailed'   => 'השחזור נכשל',
+'cantrollback'     => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
+'alreadyrolled'    => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]] | [[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
 
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'                 => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
-'revertpage'                  => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
-'sessionfailure'              => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
+'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".", # only shown if there is an edit comment
+'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
+'sessionfailure'   => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
+
+# Protect
 'protectlogpage'              => 'יומן הגנות',
 'protectlogtext'              => 'להלן רשימה של הפעלות וביטולי הגנות על דפים. ראו גם את [[Special:ProtectedPages|רשימת הדפים המוגנים]] הנוכחית.',
 'protectedarticle'            => 'הפעיל הגנה על [[$1]]',

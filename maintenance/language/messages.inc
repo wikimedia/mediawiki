@@ -1490,7 +1490,7 @@ $wgMessageStructure = array(
 		'enotif_anon_editor',
 		'enotif_body',
 	),
-	'deleteprotectrev' => array(
+	'delete' => array(
 		'deletepage',
 		'confirm',
 		'excontent',
@@ -1517,6 +1517,8 @@ $wgMessageStructure = array(
 		'delete-edit-reasonlist',
 		'delete-toobig',
 		'delete-warning-toobig',
+	),
+	'rollback' => array(
 		'rollback',
 		'rollback_short',
 		'rollbacklink',
@@ -1527,6 +1529,8 @@ $wgMessageStructure = array(
 		'revertpage',
 		'rollback-success',
 		'sessionfailure',
+	),
+	'protect' => array(
 		'protectlogpage',
 		'protectlogtext',
 		'protectedarticle',
@@ -2821,7 +2825,9 @@ XHTML id names.",
 	'watchlist'           => 'Watchlist',
 	'watching'            => 'Displayed when you click the "watch" button and it is in the process of watching',
 	'enotif'              => '',
-	'deleteprotectrev'    => 'Delete/protect/revert',
+	'delete'              => 'Delete',
+	'rollback'            => 'Rollback',
+	'protect'             => 'Protect',
 	'restrictions'        => 'Restrictions (nouns)',
 	'restriction-levels'  => 'Restriction levels',
 	'undelete'            => 'Undelete',
