@@ -1557,6 +1557,7 @@ $wgMessageStructure = array(
 		'protect-cantedit',
 		'protect-othertime',
 		'protect-othertime-op',
+		'protect-existing-expiry',
 		'protect-otherreason',
 		'protect-otherreason-op',
 		'protect-dropdown',
