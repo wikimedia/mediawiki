@@ -2027,10 +2027,22 @@ $wgRC2UDPPort = false;
 $wgRC2UDPPrefix = '';
 $wgRC2UDPOmitBots = false;
 
-# Enable user search in Special:Newpages
-# This is really a temporary hack around an index install bug on some Wikipedias.
-# Kill it once fixed.
+/**
+ * Enable user search in Special:Newpages
+ * This is really a temporary hack around an index install bug on some Wikipedias.
+ * Kill it once fixed.
+ */
 $wgEnableNewpagesUserFilter = true;
+
+/**
+ * Whether to use metadata edition
+ * This will put categories, language links and allowed templates in a separate text box
+ * while editing pages
+ * EXPERIMENTAL
+ */
+$wgUseMetadataEdit = false;
+/** Full name (including namespace) of the page containing templates names that will be allowed as metadata */
+$wgMetadataWhitelist = '';
 
 #
 # Copyright and credits settings
