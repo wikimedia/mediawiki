@@ -186,6 +186,7 @@ $messages = array(
 'protect'          => 'සුරකින්න',
 'protectthispage'  => 'මෙම පිටුව සුරකින්න',
 'newpage'          => 'නව පිටුව',
+'talkpagelinktext' => 'සාකච්ඡාව',
 'specialpage'      => 'විශේෂ පිටුව',
 'personaltools'    => 'පුද්ගලික මෙවලම්',
 'talk'             => 'සාකච්ඡා පිටුව',
@@ -205,43 +206,103 @@ $messages = array(
 'mainpage-description' => 'මුල් පිටුව',
 'portal'               => 'ප්‍රජා ද්වාරය',
 'portal-url'           => 'Project:ප්‍රජා ද්වාරය',
+'privacy'              => 'පෞද්ගලිකත්ව ප්‍රතිපත්තිය',
+'privacypage'          => 'Project:පෞද්ගලිකත්ව ප්‍රතිපත්තිය',
 
-'ok'                  => 'හරි',
-'newmessagesdifflink' => 'අවසාන වෙනස',
-'editsection'         => 'සංස්කරණය',
-'editsectionhint'     => 'ඡේද සංස්කරණය: $1',
-'toc'                 => 'පටුන',
-'showtoc'             => 'පෙන්වන්න',
-'hidetoc'             => 'සඟවන්න',
+'badaccess'        => 'අවසර දෝෂය',
+'badaccess-group0' => 'ඔබ විසින් අයැදුම් කර සිටි කාර්යය ක්‍රියාත්මක කිරීමට ඔබ හට ඉඩ ලබා දෙනු නොලැබේ.',
+'badaccess-groups' => 'ඔබ අයැදුම් කර සිටි කාර්යය, {{PLURAL:$2|ඉදිරි කාණ්ඩයට|ඉදිරි කාණ්ඩ සමූහය අතුරින් එකකට}}: $1,  අයත් පරිශීලකයන්ගේ පරිහරණයට සීමා කර ඇත.',
+
+'versionrequired'     => 'මාධ්‍යවිකි $1 අනුවාදය අවශ්‍ය වේ',
+'versionrequiredtext' => 'මෙම පිටුව භාවිතා කිරීමට, මාධ්‍යවිකි හි $1 අනුවාදය අවශ්‍ය වේ.
+[[Special:Version|අනුවාද පිටුව]] බලන්න.',
+
+'ok'                      => 'හරි',
+'retrievedfrom'           => '"$1" වෙතින් නැවත ලබාගන්නා ලදි',
+'youhavenewmessages'      => 'ඔබ හට $1 ($2) ඇත.',
+'newmessageslink'         => 'නව පණිවුඩ',
+'newmessagesdifflink'     => 'අවසාන වෙනස',
+'youhavenewmessagesmulti' => 'ඔබ හට $1 හි නව පණිවුඩ ඇත',
+'editsection'             => 'සංස්කරණය',
+'editold'                 => 'සංස්කරණය',
+'viewsourceold'           => 'මූලාශ්‍රය නරඹන්න',
+'editsectionhint'         => 'ඡේද සංස්කරණය: $1',
+'toc'                     => 'පටුන',
+'showtoc'                 => 'පෙන්වන්න',
+'hidetoc'                 => 'සඟවන්න',
+'thisisdeleted'           => 'අවශ්‍යතාවය $1 නැරඹීමද නැතහොත් ප්‍රතිෂ්ඨාපනයද?',
+'viewdeleted'             => '$1 නැරඹීම අවශ්‍යයද?',
+'restorelink'             => '{{PLURAL:$1|මකා දමනු ලැබූ එක් සංස්කරණයක්|$1 මකා දමනු ලැබූ සංස්කරණ ගණනක්}}',
+'red-link-title'          => '$1 (තවමත් ලියා නොමැත)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ලිපිය',
 'nstab-user'      => 'පරිශීලක පිටුව',
+'nstab-media'     => 'මාධ්‍ය පිටුව',
 'nstab-special'   => 'විශේෂ',
 'nstab-project'   => 'ව්‍යාපෘති පිටුව',
 'nstab-image'     => 'ගොනුව',
-'nstab-mediawiki' => 'Message',
-'nstab-help'      => 'උදව් පිටුව',
+'nstab-mediawiki' => 'පණිවුඩය',
+'nstab-template'  => 'සැකිල්ල',
+'nstab-help'      => 'උදවු පිටුව',
 'nstab-category'  => 'ප්‍රවර්ගය',
 
+# Main script and global functions
+'nosuchaction'      => 'මෙම නමැති කාර්යයක් නොමැත',
+'nosuchspecialpage' => 'මෙම නමැති විශේෂ පිටුවක් නොමැත',
+'nospecialpagetext' => "<big>'''ඔබ අයැද ඇත්තේ අවලංගු විශේෂ පිටුවකි.'''</big>
+
+වලංගු විශේෂ පිටු දැක්වෙන ලැයිස්තුවක් [[Special:SpecialPages|{{int:specialpages}}]]හිදී ඔබහට සම්භ වනු ඇත.",
+
 # General errors
-'badtitle' => 'නුසුදුසු මාතෘකාවක්',
+'error'                => 'දෝෂය',
+'databaseerror'        => 'පරිගණක දත්ත-ගබඩා දෝෂය',
+'nodb'                 => 'පරිගණක දත්ත-ගබඩාව $1 තෝරාගත නොහැකි විය',
+'laggedslavemode'      => 'අවවාදයයි: මෙම පිටුව මෑත යාවත්නාල කිරීම් නොසහිත විය හැක.',
+'missingarticle-rev'   => '(පරිශෝධනය#: $1)',
+'missingarticle-diff'  => '(වෙනස: $1, $2)',
+'internalerror'        => 'අභයන්තර දෝෂය',
+'internalerror_info'   => 'අභ්‍යන්තර දෝෂය: $1',
+'filecopyerror'        => '"$1" ගොනුව "$2" වෙත පිටපත් කිරීමට නොහැකි විය.',
+'filerenameerror'      => '"$1" ගොනුව "$2" බවට යළි-නම්-කිරීම සිදු කල නොහැකි විය.',
+'filedeleteerror'      => '"$1" ගොනුව මකා-දැමිය නොහැකි විය.',
+'filenotfound'         => '"$1" ගොනුව සොයා ගත නොහැකි විය.',
+'unexpected'           => 'අනපේක්‍ෂිත අගය: "$1"="$2".',
+'badarticleerror'      => 'මෙම පිටුව විෂයයෙහි මෙම කාර්යය ඉටු නල නොහැකි විය.',
+'cannotdelete'         => 'නිරූපිත පිටුව හෝ ගොනුව හෝ මකා දැමිය නොහැකි විය.
+අනෙකෙකු විසින් දැනටමත් ‍මකා දැමීම සිදු කර ඇතිවා විය හැක.',
+'badtitle'             => 'නුසුදුසු මාතෘකාවක්',
+'viewsource'           => 'මූලාශ්‍රය නරඹන්න',
+'viewsourcetext'       => 'මෙම පිටුවෙහි මූලාශ්‍රය නැරඹීමට හා පිටපත් කිරීමට ඔබ හට හැකිය:',
+'namespaceprotected'   => "'''$1''' නාමඅවකාශයෙහි පිටු සංස්කරණය කිරීමට ඔබහට අවසර නොමැත.",
+'customcssjsprotected' => 'තවත් පරිශීලකයෙකුගේ පෞද්ගලික පරිස්ථිතිය අඩංගු වන බැවින්, මෙම පිටුව සංස්කරණය කිරීමට ඔබ හට අවසර නොමැත.',
+'ns-specialprotected'  => 'විශේෂ පිටු සංස්කරණය කිරීම සිදු නල නොහැක.',
 
 # Login and logout pages
-'welcomecreation'            => "== ආයුබෝවන්, $1! ==
+'welcomecreation'            => '== ආයුබෝවන්, $1! ==
 
-<!--Your account has been created. Don't forget to change your {{SITENAME}} preferences.-->
-ඔබ‍ගේ ගිණුම තැනී ඇත.ඔබ‍ගේ {{SITENAME}} අභිරුචි වෙනස් කර ගන්න අමතක කරන්න එපා.",
+ඔබ‍ගේ ගිණුම තැනී ඇත.
+ඔබ‍ගේ [[Special:Preferences|{{SITENAME}} අභිරුචි ]] වෙනස් කර ගන්න අමතක කරන්න එපා.',
+'loginpagetitle'             => 'පරිශීලක ප්‍රවිශ්ඨය',
 'yourname'                   => 'පරිශීලක නාමය:',
 'yourpassword'               => 'මුරපදය:',
 'yourpasswordagain'          => 'මුරපදය නැවත ලියන්න:',
+'remembermypassword'         => '
+මාගේ ප්‍රවිශ්ඨය පිළිබඳ විස්තර මෙම පරිගණකයෙහි මතකයෙහි රඳවා තබා ගන්න',
 'yourdomainname'             => 'ඔබගේ වසම:',
-'userlogin'                  => 'Log in / ගිණුමක් තනන්න',
+'loginproblem'               => '<b>ඔබගේ ප්‍රවිශ්ඨය පිළිබඳ ගැටළුවක් පැන නැගී ඇත.</b><br />නැවත උත්සාහ කරන්න!',
+'login'                      => 'ප්‍රවිශ්ඨය',
+'nav-login-createaccount'    => 'ප්‍රවිශ්ඨ වන්න / ගිණුමක් තනන්න',
+'userlogin'                  => 'ප්‍රවිශ්ඨ වන්න / ගිණුමක් තනන්න',
 'logout'                     => 'පිටවන්න',
+'notloggedin'                => 'ප්‍රවිශ්ඨ වී නොමැත',
+'nologin'                    => 'ඔබ හට ගිණුමක් නොමැතිද? $1.',
 'nologinlink'                => 'ගිණුමක් තනන්න',
 'createaccount'              => 'ගිණුමක් තනන්න',
 'gotaccount'                 => 'දැනටමත් ගිණුමක් තිබේද?$1.',
+'gotaccountlink'             => 'ප්‍රවිශ්ඨ වන්න',
 'createaccountmail'          => 'විද්‍යුත් තැපෑල මගින්',
+'badretype'                  => 'ඔබ ඇතුළු කල මුරපද නොගැලපෙයි.',
 'youremail'                  => 'විද්‍යුත් තැපෑල:',
 'username'                   => 'පරිශීලක නාමය:',
 'yourrealname'               => 'සැබෑ නාමය:',
@@ -273,9 +334,13 @@ $messages = array(
 'preview'           => 'පෙරදසුන',
 'showpreview'       => 'පෙරදසුන පෙන්වන්න',
 'showdiff'          => 'වෙනස්වීම් පෙන්වන්න',
+'anoneditwarning'   => "'''අවවාදයයි:''' ඔබ පරිශීලකයෙකු වශයෙන් පද්ධතියට ප්‍රවිශ්ඨ වී නොමැත.
+එමනිසා ඔබගේ අන්තර්ජාල ලිපිනය මෙම පිටුවෙහි සංස්කරණ ඉතිහාසයෙහි සටහන් කරනු ඇත.",
 'newarticletext'    => "බැඳියක් ඔස්සේ පැමිණ ඔබ අවතීර්ණ වී ඇත්තේ දැනට නොපවතින ලිපියකටයි.
 මෙම ලිපිය තැනීමට එනම් නිමැවීමට අවශ්‍ය නම්, පහත ඇති කොටුව තුල අකුරු ලිවීම අරඹන්න (වැඩිමනත් තොරතුරු සඳහා [[{{MediaWiki:Helppage}}|උදවු පිටුව]] බලන්න).
 ඔබ මෙහි අවතීර්ණ වී ඇත්තේ කිසියම් අත්වැරැද්දකින් බව හැ‍‍ඟෙන්නේ නම්, ඔබගේ බ්‍රවුසරයෙහි '''පසුපසට''' බොත්තම ක්ලික් කරන්න.",
+'previewnote'       => '<strong>මෙය පෙරදසුනක් පමණකි;
+වෙනස්කම් සුරැකීම තවමත් සිදුකොට නොමැත!</strong>',
 'yourtext'          => 'ඔබගේ පෙළ',
 'copyrightwarning'  => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
@@ -285,8 +350,12 @@ $messages = array(
 <strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
 
 # History pages
-'cur'  => 'වත්මන්',
-'last' => 'අවසන්',
+'cur'          => 'වත්මන්',
+'last'         => 'අවසන්',
+'historyempty' => '(හිස්)',
+
+# Revision feed
+'history-feed-title' => 'සංශෝධන ඉතිහාසය',
 
 # Revision deletion
 'rev-delundel' => 'පෙන්වන්න/සඟවන්න',
@@ -335,8 +404,10 @@ $messages = array(
 'randompage' => 'අහඹු පිටුව',
 
 # Miscellaneous special pages
-'newpages' => 'අලුත් පිටු',
-'move'     => 'ගෙනයන්න',
+'nbytes'      => '$1 {{PLURAL:$1|බයිටය|බයිට්}}',
+'ncategories' => '$1 {{PLURAL:$1|ප්‍රවර්ගය|ප්‍රවර්ගයන්}}',
+'newpages'    => 'අලුත් පිටු',
+'move'        => 'ගෙනයන්න',
 
 # Book sources
 'booksources-go' => 'යන්න',
@@ -362,7 +433,8 @@ $messages = array(
 'undelete-search-submit' => 'සොයන්න',
 
 # Namespace form on various pages
-'namespace' => 'නාමඅවකාශය:',
+'namespace'      => 'නාමඅවකාශය:',
+'blanknamespace' => '(ප්‍රධාන)',
 
 # Contributions
 'contributions' => 'මේ පරිශීලකයාගේ දායකත්වය',

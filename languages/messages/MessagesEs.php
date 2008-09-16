@@ -482,14 +482,14 @@ Debe ser de menos de $1 {{PLURAL:$1|carácter|caracteres}}.',
 'noname'                     => 'No ha especificado un nombre de usuario válido.',
 'loginsuccesstitle'          => 'Inicio de sesión exitoso',
 'loginsuccess'               => 'Ha iniciado su sesión en {{SITENAME}} como "$1".',
-'nosuchuser'                 => 'No existe usuario alguno llamado "$1".
-Compruebe que lo ha escrito correctamente, o use el formulario de abajo para crear una nueva cuenta de usuario.',
+'nosuchuser'                 => 'No existe ningún usuario llamado «$1».
+Verifique su deletreo, o [[Especial:UserLogin/signup|cree una nueva cuenta]].',
 'nosuchusershort'            => 'No hay un usuario con el nombre "<nowiki>$1</nowiki>". Compruebe que lo ha escrito correctamente.',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No ha escrito una contraseña, inténtelo de nuevo.',
 'passwordtooshort'           => 'Tu contraseña no es válida o es muy corta. Debe tener al menos {{PLURAL:$1|un carácter|$1 caracteres}} y ser diferente de tu nombre de usuario.',
-'mailmypassword'             => 'Envíame una nueva contraseña por correo electrónico',
+'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4).
 La contraseña para el usuario "$2" es ahora "$3".
@@ -507,12 +507,13 @@ Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLUR
 'mailerror'                  => 'Error al enviar correo: $1',
 'acct_creation_throttle_hit' => 'Lo sentimos, ya ha creado {{PLURAL:$1|1 cuenta|$1 cuentas}}.
 No puede crear más.',
-'emailauthenticated'         => 'Su dirección electrónica fue verificada en $1.',
+'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
 Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'noemailprefs'               => '<strong>Especifique una dirección electrónica para habilitar estas características.</strong>',
 'emailconfirmlink'           => 'Confirme su dirección de correo electrónico',
-'invalidemailaddress'        => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido. Por favor, escribe una dirección bien formada, o vacía el campo.',
+'invalidemailaddress'        => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido.
+Por favor, entre una dirección bien formada, o vacíe ese campo.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => 'La cuenta de usuario para $1 ha sido creada.',
 'createaccount-title'        => 'Creación de cuenta para {{SITENAME}}',
@@ -844,15 +845,15 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'editundo'                => 'deshacer',
 'diff-multi'              => '({{PLURAL:$1|Una edición intermedia no se muestra|$1 ediciones intermedias no se muestran}}.)',
 'diff-movedto'            => 'movido a $1',
-'diff-styleadded'         => 'estilo añadido',
-'diff-added'              => 'añadido',
-'diff-changedto'          => 'modificado a',
+'diff-styleadded'         => 'estilo $1 añadido',
+'diff-added'              => 'añadido $1',
+'diff-changedto'          => 'modificado a $1',
 'diff-movedoutof'         => 'retirado de $1',
-'diff-styleremoved'       => 'estilo suprimido',
-'diff-removed'            => 'suprimido',
-'diff-changedfrom'        => 'modificado a partir de',
+'diff-styleremoved'       => 'estilo $1 suprimido',
+'diff-removed'            => 'suprimido $1',
+'diff-changedfrom'        => 'modificado a partir de $1',
 'diff-src'                => 'código fuente',
-'diff-withdestination'    => 'con destino',
+'diff-withdestination'    => 'con destino $1',
 'diff-with'               => '&#32;con $1 $2',
 'diff-with-final'         => '&#32;y $1 $2',
 'diff-width'              => 'ancho',
@@ -863,12 +864,16 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'diff-table'              => "una '''tabla'''",
 'diff-tr'                 => "una '''fila'''",
 'diff-td'                 => "una '''celda'''",
+'diff-th'                 => "una '''cabecera'''",
 'diff-form'               => "un '''formulario'''",
 'diff-img'                => "una '''imagen'''",
 'diff-a'                  => "un '''enlace'''",
 'diff-i'                  => "'''cursivas'''",
 'diff-big'                => "'''grande'''",
+'diff-del'                => "'''borrado'''",
 'diff-tt'                 => "'''anchura fija'''",
+'diff-sub'                => "'''subíndice'''",
+'diff-sup'                => "'''superíndice'''",
 
 # Search results
 'searchresults'             => 'Resultados de la búsqueda',
@@ -920,7 +925,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'mypreferences'            => 'Mis preferencias',
 'prefs-edits'              => 'Cantidad de ediciones:',
 'prefsnologin'             => 'No está identificado',
-'prefsnologintext'         => 'Debes [[Special:UserLogin|entrar]] para cambiar las preferencias de usuario.',
+'prefsnologintext'         => 'Debe estar <span class="plainlinks">[{{fullurl:Especial:UserLogin|returnto=$1}} autenticado]</span> para cambiar las preferencias de usuario.',
 'prefsreset'               => 'Las preferencias han sido restauradas a los valores por defecto.',
 'qbsettings'               => 'Preferencias de "Quickbar"',
 'qbsettings-none'          => 'Ninguna',
@@ -1175,10 +1180,12 @@ Por favor, elige un nombre diferente.',
 'fileexists-thumb'            => "<center>'''Imagen existente'''</center>",
 'fileexists-thumbnail-yes'    => 'El archivo parece ser una imagen de tamaño reducido <i>(thumbnail)</i>. Por favor comprueba el archivo <strong><tt>$1</tt></strong>.<br />
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.',
-'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>. Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
-Si tienes esta imagen a toda resolución súbela, si no, por favor cambia el nombre del archivo.',
+'file-thumbnail-no'           => 'El nombre del archivo comienza con <strong><tt>$1</tt></strong>.
+Parece ser una imagen de tamaño reducido <i>(thumbnail)</i>.
+Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.',
 'fileexists-forbidden'        => 'Ya existe un archivo con este nombre. Por favor, cambie el nombre del archivo y vuelva a subirlo. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido; por favor, regresa a la página anterior y sube tu archivo con otro nombre. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ya existe un archivo con este nombre en el repositorio compartido.
+Si todavía quiere subir su archivo, por favor, regrese a la página anterior y use otro nombre. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Este archivo es un duplicado {{PLURAL:$1|del siguiente|de los siguientes}}:',
 'successfulupload'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
@@ -1269,8 +1276,8 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 'shareduploadduplicate-linktext' => 'otro fichero',
 'shareduploadconflict'           => 'Este archivo tiene el mismo nombre que $1 del depósito compartido.',
 'shareduploadconflict-linktext'  => 'otro fichero',
-'noimage'                        => 'No existe un archivo con ese nombre, puede $1.',
-'noimage-linktext'               => 'subirlo',
+'noimage'                        => 'No existe un archivo con este nombre, pero puede $1.',
+'noimage-linktext'               => 'subir uno',
 'uploadnewversion-linktext'      => 'Subir una nueva versión de este archivo',
 'imagepage-searchdupe'           => 'Buscar archivos duplicados',
 
@@ -1423,7 +1430,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos los registros',
 'alllogstext'          => 'Vista combinada de todos los registros de {{SITENAME}}.
-Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario o la página afectada.',
+Puede filtrar la vista por seleccionar un tipo de registro, el nombre del usuario (sensitivo a caso), o la página afectada (también sensitiva a caso).',
 'logempty'             => 'No hay elementos en el registro con esas condiciones.',
 'log-title-wildcard'   => 'Buscar títulos que empiecen con este texto',
 
@@ -1531,7 +1538,7 @@ La dirección electrónica que indicó en sus preferencias de usuario aparecerá
 'notanarticle'         => 'No es un artículo',
 'notvisiblerev'        => 'La revisión ha sido borrada',
 'watchnochange'        => 'Ninguno de los artículos de tu lista de seguimiento fue editado en el periodo de tiempo mostrado.',
-'watchlist-details'    => '{{PLURAL:$1|$1 página|$1 páginas}} vigiladas, sin contar las de discusión.',
+'watchlist-details'    => '{{PLURAL:$1|$1 página|$1 páginas}} en su lista de seguimiento, sin contar las de discusión.',
 'wlheader-enotif'      => '* La notificación por correo electrónico está habilitada',
 'wlheader-showupdated' => "* Las páginas modificadas desde su última visita aparecen en '''negrita'''",
 'watchmethod-recent'   => 'Revisando cambios recientes en busca de páginas vigiladas',
@@ -1695,7 +1702,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 Si una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.',
 'undeleterevdel'               => 'No se deshará el borrado si éste resulta en el borrado parcial de la última revisión de la página. En tal caso, desmarque o muestre las revisiones borradas más recientes. Las revisiones de archivos que no tiene permitido ver no se restaurarán.',
 'undeletehistorynoadmin'       => 'El artículo ha sido borrado. La razón de su eliminación se indica abajo en el resumen, así como los detalles de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de administrador.',
-'undelete-revision'            => 'Edición borrada de $1 (fechada $2)  por $3',
+'undelete-revision'            => 'Edición borrada de $1 (fechada $4, a $5) por $3:',
 'undeleterevision-missing'     => 'Revisión no válida o perdida. Puede deberse a un enlace incorrecto,
 o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undelete-nodiff'              => 'No existe una revisión previa.',
@@ -2100,7 +2107,8 @@ No hay un directorio temporal.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección contra spam',
-'spamprotectiontext'  => 'La página que intentas guardar ha sido bloqueada por el filtro de spam. Esto se debe probablemente a alguno de los un enlaces externos incluidos en ella.',
+'spamprotectiontext'  => 'La página que quería guardar fue bloqueada por el filtro de spam.
+Esto podría estar causado por un enlace a un sitio externo incluido en la lista negra.',
 'spamprotectionmatch' => "El siguiente texto es el que activó nuestro filtro ''anti-spam'' (contra la publicidad no solicitada): $1",
 'spambot_username'    => 'Limpieza de spam de MediaWiki',
 'spam_reverting'      => 'Revirtiendo a la última versión que no contenga enlaces a $1',
@@ -2151,8 +2159,8 @@ $1',
 'filedelete-archive-read-only'    => 'El servidor web no logra escribir en el directorio archivo "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Ir a diferencias anteriores',
-'nextdiff'     => 'Ir a las siguientes diferencias →',
+'previousdiff' => '← Edición más antigua',
+'nextdiff'     => 'Edición más nueva →',
 
 # Visual comparison
 'visual-comparison' => 'Comparación visual',
@@ -2524,7 +2532,7 @@ $1
 'trackbackdeleteok' => 'El trackback se borró correctamente.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Aviso''': ¡Esta página fue borrada después de que Usted inició a editar!",
+'deletedwhileediting' => "'''Aviso''': ¡Esta página fue borrada después de que usted empezara a editar!",
 'confirmrecreate'     => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
 'recreate'            => 'Crear de nuevo',
 

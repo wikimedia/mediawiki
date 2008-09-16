@@ -830,6 +830,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'difference'              => '(Gwahaniaethau rhwng diwygiadau)',
 'lineno'                  => 'Llinell $1:',
 'compareselectedversions' => 'Cymharer y fersiynau dewisedig',
+'visualcomparison'        => "Cymharu â'r llygad",
+'wikicodecomparison'      => "Cymharu'r testun wici",
 'editundo'                => 'dadwneud',
 'diff-multi'              => '(Ni ddangosir {{PLURAL:$1|yr $1 diwygiad|yr $1 diwygiad|y $1 ddiwygiad|y $1 diwygiad|y $1 diwygiad|y $1 diwygiad}} rhyngol.)',
 'diff-width'              => 'lled',
@@ -851,6 +853,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 
 # Search results
 'searchresults'             => "Canlyniadau'r chwiliad",
+'searchresults-title'       => 'Canlyniadau chwilio am $1',
 'searchresulttext'          => 'Am fwy o wybodaeth am chwilio {{SITENAME}}, gwelwch [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Chwiliwyd am \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pob tudalen yn dechrau gyda "$1"]] | [[Special:WhatLinksHere/$1|pob tudalen sy\'n cysylltu â "$1"]])',
 'searchsubtitleinvalid'     => "Chwiliwyd am '''$1'''",
@@ -1330,7 +1333,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 'all-logs-page'        => 'Pob lòg',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
 Gallwch weld chwiliad mwy penodol trwy ddewis y math o lòg, enw'r defnyddiwr, neu'r dudalen benodedig.
-Sylwer bod prif lythrennau o bwys i'r chwiliad.",
+Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'logempty'             => 'Does dim eitemau yn cyfateb yn y lòg.',
 'log-title-wildcard'   => "Chwilio am deitlau'n dechrau gyda'r geiriau hyn",
 
@@ -1340,6 +1343,7 @@ Sylwer bod prif lythrennau o bwys i'r chwiliad.",
 'nextpage'          => 'Y bloc nesaf gan ddechrau gyda ($1)',
 'prevpage'          => 'Y bloc cynt gan ddechrau gyda ($1)',
 'allpagesfrom'      => 'Dangos pob tudalen gan ddechrau o:',
+'allpagesto'        => 'Dangos pob tudalen hyd at:',
 'allarticles'       => 'Pob erthygl',
 'allinnamespace'    => 'Pob tudalen (parth $1)',
 'allnotinnamespace' => 'Pob tudalen (heblaw am y parth $1)',

@@ -563,7 +563,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
-Verifique o nome que introduziu, ou crie uma nova conta de utilizador.',
+Verifique o nome que introduziu, ou [[Special:Userlogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
@@ -1583,9 +1583,9 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'As categorias a seguir contém páginas ou multimédia.
+'categoriespagetext'            => 'As seguintes categorias contêm páginas ou multimédia.
 As [[Special:UnusedCategories|categorias não utilizadas]] não são exibidas nesta listagem.
-Veja também as [[Special:WantedCategories|categorias pedidas]].',
+Veja também as [[Special:WantedCategories|categorias em falta]].',
 'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',

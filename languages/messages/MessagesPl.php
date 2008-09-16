@@ -632,7 +632,7 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
-Sprawdź pisownię lub użyj poniższego formularza, by utworzyć nowe konto.',
+Sprawdź pisownię lub [[Special:Userlogin/signup|użyj formularza, by utworzyć nowe konto]].',
 'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
@@ -659,7 +659,7 @@ W celu powstrzymania nadużyć możliwość wysyłania przypomnień została ogr
 'mailerror'                  => 'W trakcie wysyłania wiadomości e-mail wystąpił błąd: $1',
 'acct_creation_throttle_hit' => 'Założyłeś już {{PLURAL:$1|konto|$1 konta|$1 kont}}.
 Nie możesz założyć kolejnego.',
-'emailauthenticated'         => 'Twój adres e-mail został uwierzytelniony o $1.',
+'emailauthenticated'         => 'Twój adres e-mail został uwierzytelniony $2 o $3.',
 'emailnotauthenticated'      => "Twój adres '''e-mail nie został potwierdzony'''.
 Poniższe funkcje poczty nie działają.",
 'noemailprefs'               => 'Musisz podać adres e-mail, by skorzystać z tych funkcji.',
@@ -1874,7 +1874,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'powód zabezpieczenia',
 'protectexpiry'               => 'Czas wygaśnięcia',
-'protect_expiry_invalid'      => 'Podany czas automatycznego odblokowania jest nieprawidłowy.',
+'protect_expiry_invalid'      => 'Podany czas automatycznego odbezpieczenia jest nieprawidłowy.',
 'protect_expiry_old'          => 'Podany czas automatycznego odblokowania znajduje się w przeszłości.',
 'protect-unchain'             => 'Odblokowanie możliwości przenoszenia strony',
 'protect-text'                => 'Możesz tu sprawdzić i zmienić poziom zabezpieczenia strony <strong><nowiki>$1</nowiki></strong>.',
@@ -1937,7 +1937,7 @@ W takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszej us
 'undeletehistorynoadmin'       => 'Ta strona została usunięta.
 Przyczyna usunięcia podana jest w podsumowaniu poniżej, razem z danymi użytkownika, który edytował stronę przed usunięciem.
 Sama treść usuniętych wersji jest dostępna jedynie dla administratorów.',
-'undelete-revision'            => 'Usunięto wersję $1 z $2 autorstwa $3:',
+'undelete-revision'            => 'Usunięto wersję $1 (z $5 $4) autorstwa $3:',
 'undeleterevision-missing'     => 'Nieprawidłowa lub brakująca wersja.
 Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.',
 'undelete-nodiff'              => 'Nie znaleziono poprzednich wersji.',

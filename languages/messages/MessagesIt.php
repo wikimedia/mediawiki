@@ -544,7 +544,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'noname'                     => 'Il nome utente indicato non è valido, non è possibile creare un accesso a questo nome.',
 'loginsuccesstitle'          => 'Accesso effettuato',
 'loginsuccess'               => "'''Sei stato connesso al server di {{SITENAME}} con il nome utente di \"\$1\".'''",
-'nosuchuser'                 => 'Non è registrato alcun utente di nome "$1". Verificare il nome inserito o creare un nuovo accesso.',
+'nosuchuser'                 => 'Non è registrato alcun utente di nome "$1". Verificare il nome inserito o [[Special:Userlogin/signup|creare un nuovo accesso]].',
 'nosuchusershort'            => 'Non è registrato alcun utente di nome "<nowiki>$1</nowiki>". Verificare il nome inserito.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
@@ -1419,7 +1419,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'statistics-views-total'   => 'Visualizzazioni totali',
 'statistics-views-peredit' => 'Visualizzazioni per modifica',
 'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Coda dei processi] da eseguire in background',
-'statistics-users'         => '[[Special:ListUsers|Users]] registrati',
+'statistics-users'         => '[[Special:ListUsers|Utenti]] registrati',
 'statistics-users-active'  => 'Utenti attivi',
 'statistics-mostpopular'   => 'Pagine più visitate',
 

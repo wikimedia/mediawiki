@@ -513,8 +513,8 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'noname'                     => 'Vi ne tajpis validan salutnomon.',
 'loginsuccesstitle'          => 'Ensalutado sukcesis',
 'loginsuccess'               => 'Vi ensalutis ĉe {{SITENAME}} kiel uzanto "$1".',
-'nosuchuser'                 => 'Neniu uzanto nomiĝas "$1".
-Bonvolu kontroli vian literumadon, aŭ uzu la malsupran formularon por krei novan konton.',
+'nosuchuser'                 => 'Neniu uzanto havas nomon "$1".
+Kontrolu vian literumadon, aŭ [[Special:Userlogin/signup|kreu novan konton]].',
 'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
 'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',

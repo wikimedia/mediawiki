@@ -390,7 +390,7 @@ $messages = array(
 'hidden-category-category'       => 'Verborgen categorieën', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Deze categorie heeft de volgende ondercategorie.|Deze categorie heeft de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}, van een totaal van $2.}}',
 'category-subcat-count-limited'  => 'Deze categorie heeft de volgende {{PLURAL:$1|ondercategorie|$1 ondercategorieën}}.',
-'category-article-count'         => "{{PLURAL:$2|Deze categorie bevat de volgende pagina.|Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}, van in totaal $2.}}",
+'category-article-count'         => '{{PLURAL:$2|Deze categorie bevat de volgende pagina.|Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina’s}}, van in totaal $2.}}',
 'category-article-count-limited' => "Deze categorie bevat de volgende {{PLURAL:$1|pagina|$1 pagina's}}.",
 'category-file-count'            => '{{PLURAL:$2|Deze categorie bevat het volgende bestand.|Deze categorie bevat {{PLURAL:$1|het volgende bestand|de volgende $1 bestanden}}, van in totaal $2.}}',
 'category-file-count-limited'    => 'Deze categorie bevat {{PLURAL:$1|het volgende bestand|de volgende $1 bestanden}}.',
@@ -704,7 +704,7 @@ Schakel deze optie aan en probeer het opnieuw.',
 'loginsuccesstitle'          => 'Aanmelden geslaagd',
 'loginsuccess'               => "'''U bent nu aangemeld bij {{SITENAME}} als \"\$1\".'''",
 'nosuchuser'                 => 'De gebruiker "$1" bestaat niet.
-Controleer de schrijfwijze of maak een nieuwe gebruiker aan.',
+Controleer de schrijfwijze of [[Special:Userlogin/signup|maak een nieuwe gebruiker aan]].',
 'nosuchusershort'            => 'De gebruiker "<nowiki>$1</nowiki>" bestaat niet.
 Controleer de schrijfwijze.',
 'nouserspecified'            => 'U dient een gebruikersnaam op te geven.',
@@ -1795,13 +1795,13 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
 # Special:LinkSearch
-'linksearch'       => 'Externe links zoeken',
+'linksearch'       => 'Externe verwijzingen zoeken',
 'linksearch-pat'   => 'Zoekpatroon:',
 'linksearch-ns'    => 'Naamruimte:',
 'linksearch-ok'    => 'Zoeken',
 'linksearch-text'  => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.<br />
 Ondersteunde protocollen: <tt>$1</tt>',
-'linksearch-line'  => '$1 gelinkt vanaf $2',
+'linksearch-line'  => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
 # Special:ListUsers

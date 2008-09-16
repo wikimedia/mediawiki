@@ -558,7 +558,8 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'noname'                     => 'Du har ikke oppgitt et gyldig brukernavn.',
 'loginsuccesstitle'          => 'Du er nå logget inn',
 'loginsuccess'               => 'Du er nå logget inn på {{SITENAME}} som «$1».',
-'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1». Sjekk stavemåten eller opprett en ny konto.',
+'nosuchuser'                 => '!Det eksisterer ingen bruker ved navn «$1».
+Sjekk stavemåten eller [[Special:Userlogin/signup|opprett en ny konto]].',
 'nosuchusershort'            => 'Det finnes ingen bruker ved navn «<nowiki>$1</nowiki>». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
