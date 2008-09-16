@@ -2328,7 +2328,6 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-othertime'           => 'Other time:',
 'protect-othertime-op'        => 'other time',
 'protect-existing-expiry'     => 'Existing expiry time: $1',
-
 'protect-otherreason'         => 'Other/additional reason:',
 'protect-otherreason-op'      => 'other/additional reason',
 'protect-dropdown'            => '*Common protection reasons
