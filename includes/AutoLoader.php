@@ -316,7 +316,6 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/diff
 	'AncestorComparator' => 'includes/diff/HTMLDiff.php',
-	'AncestorComparatorResult' => 'includes/diff/HTMLDiff.php',
 	'AnchorToString' => 'includes/diff/HTMLDiff.php',
 	'ArrayDiffFormatter' => 'includes/diff/DifferenceEngine.php',
 	'BodyNode' => 'includes/diff/Nodes.php',
@@ -334,7 +333,6 @@ $wgAutoloadLocalClasses = array(
 	'_DiffOp' => 'includes/diff/DifferenceEngine.php',
 	'DomTreeBuilder' => 'includes/diff/HTMLDiff.php',
 	'DummyNode' => 'includes/diff/Nodes.php',
-	'EchoingContentHandler' => 'includes/diff/HTMLDiff.php',
 	'HTMLDiffer' => 'includes/diff/HTMLDiff.php',
 	'HTMLOutput' => 'includes/diff/HTMLDiff.php',
 	'_HWLDF_WordAccumulator' => 'includes/diff/DifferenceEngine.php',
