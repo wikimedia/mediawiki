@@ -873,7 +873,6 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
-'deleted-notice'                   => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.

@@ -763,7 +763,6 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
-'deleted-notice'                   => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.

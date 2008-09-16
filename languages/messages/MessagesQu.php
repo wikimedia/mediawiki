@@ -629,7 +629,6 @@ Hark'aq kamachiqqa kaytam nirqan: $1, kayraykum nispa.",
 
 Hamut'arillay, chayaqillachu manallachu kay p'anqata kamariy.
 Kaymi kay p'anqamanta qulluy hallch'a:",
-'deleted-notice'                   => "Kay p'anqaqa qullusqam. Kay qatiq qulluy hallch'apim qullusqamanta rikunki.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Paqtataq: Kay p'anqaqa nisyu achka qullqipaq t'ikrana rurana qayayniyuqmi.
