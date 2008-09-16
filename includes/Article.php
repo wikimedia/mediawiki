@@ -1636,8 +1636,7 @@ class Article {
 		# If we haven't been given an rc_id value, we can't do anything
 		$rcid = (int) $wgRequest->getVal('rcid');
 		$rc = RecentChange::newFromId($rcid);
-		if (is_null($rc))
-		{
+		if ( is_null($rc) ) {
 			$wgOut->showErrorPage( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 			return;
 		}
@@ -1647,25 +1646,24 @@ class Article {
 		$return = Title::makeTitle( NS_SPECIAL, $returnto );
 
 		$errors = $rc->doMarkPatrolled();
-		if (in_array(array('rcpatroldisabled'), $errors)) {
+		if ( in_array(array('rcpatroldisabled'), $errors) ) {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
 		
-		if (in_array(array('hookaborted'), $errors)) {
+		if ( in_array(array('hookaborted'), $errors) ) {
 			// The hook itself has handled any output
 			return;
 		}
 		
-		if (in_array(array('markedaspatrollederror-noautopatrol'), $errors)) {
+		if ( in_array(array('markedaspatrollederror-noautopatrol'), $errors) ) {
 			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
 			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$wgOut->returnToMain( false, $return );
 			return;
 		}
 
-		if (!empty($errors))
-		{
+		if ( !empty($errors) ) {
 			$wgOut->showPermissionsErrorPage( $errors );
 			return;
 		}
