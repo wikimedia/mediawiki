@@ -412,7 +412,7 @@ class PageArchive {
 			# we'll update the latest revision field in the record.
 			$newid             = 0;
 			$pageId            = $page->page_id;
-			$previousRevId     = $page->page_latest;
+			$previousRevId    = $page->page_latest;
 			# Get the time span of this page
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
 				array( 'rev_id' => $previousRevId ),
@@ -481,6 +481,7 @@ class PageArchive {
 			$ret->seek( 0 );
 		}
 
+		$dbw->begin();
 		if( $makepage ) {
 			$newid  = $article->insertOn( $dbw );
 			$pageId = $newid;
@@ -502,6 +503,12 @@ class PageArchive {
 				// a new text table entry will be created for it.
 				$revText = Revision::getRevisionText( $row, 'ar_' );
 			}
+			// Check for key dupes due to shitty archive integrity.
+			if( $row->ar_rev_id ) {
+				$exists = $dbw->selectField( 'revision', '1', array('rev_id' => $row->ar_rev_id), __METHOD__ );
+				if( $exists ) continue; // don't throw DB errors
+			}
+			
 			$revision = new Revision( array(
 				'page'       => $pageId,
 				'id'         => $row->ar_rev_id,
@@ -520,8 +527,16 @@ class PageArchive {
 
 			wfRunHooks( 'ArticleRevisionUndeleted', array( &$this->title, $revision, $row->ar_page_id ) );
 		}
+		# Now that it's safely stored, take it out of the archive
+		$dbw->delete( 'archive',
+			/* WHERE */ array(
+				'ar_namespace' => $this->title->getNamespace(),
+				'ar_title' => $this->title->getDBkey(),
+				$oldones ),
+			__METHOD__ );
+		
 		// Was anything restored at all?
-		if($restored == 0)
+		if( $restored == 0 )
 			return 0;
 
 		if( $revision ) {
@@ -550,14 +565,7 @@ class PageArchive {
 			return self::UNDELETE_UNKNOWNERR;
 		}
 
-		# Now that it's safely stored, take it out of the archive
-		$dbw->delete( 'archive',
-			/* WHERE */ array(
-				'ar_namespace' => $this->title->getNamespace(),
-				'ar_title' => $this->title->getDBkey(),
-				$oldones ),
-			__METHOD__ );
-
+		$dbw->commit();
 		return $restored;
 	}
 
