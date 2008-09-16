@@ -820,6 +820,7 @@ Grund für die Sperre: $1',
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
+'deleted-notice'                   => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.

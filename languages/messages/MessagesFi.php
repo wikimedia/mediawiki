@@ -765,6 +765,7 @@ Lukitsemisen syy: $1',
 'recreate-deleted-warn'            => "'''Olet luomassa sivua, joka on aikaisemmin poistettu.'''
 
 Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistoria:",
+'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.

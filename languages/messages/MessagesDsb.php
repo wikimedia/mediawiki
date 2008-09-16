@@ -739,6 +739,7 @@ Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1',
 
 Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow směrnicam.
 Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
+'deleted-notice'                   => 'Toś ten bok jo se wulašował. Protokol wulašowanjow za toś ten bok podawa se dołojce ako referenca.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.

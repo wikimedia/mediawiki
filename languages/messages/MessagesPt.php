@@ -785,6 +785,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
+'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas custosas a funções do analisador "parser".

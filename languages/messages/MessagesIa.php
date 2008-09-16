@@ -695,6 +695,8 @@ Tu pote retornar e modificar un pagina existente, o [[Special:UserLogin|identifi
 
 Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
+'deleted-notice'                   => 'Iste pagina ha essite delite.
+In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.

@@ -651,6 +651,7 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 
 Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pagina.
 L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
+'deleted-notice'                   => "Sta pàxena la xe stà scancelà. L'elenco de le relative scancelassion el vien riportà de sèvito par informassion.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.

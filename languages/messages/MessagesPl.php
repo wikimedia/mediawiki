@@ -861,6 +861,7 @@ Możesz edytować istniejące strony bądź też [[Special:UserLogin|zalogować 
 
 Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
+'deleted-notice'                   => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.

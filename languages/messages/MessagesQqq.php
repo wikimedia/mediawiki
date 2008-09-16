@@ -593,6 +593,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-deleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
+'deleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.

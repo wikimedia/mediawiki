@@ -787,6 +787,7 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
+'deleted-notice'                   => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
