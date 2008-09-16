@@ -113,8 +113,8 @@ class FileDeleteForm {
 				}
 			}
 		}
-		if( $status->isGood() ) wfRunHooks('FileDeleteComplete', array(
-			&$file, &$oldimage, &$article, &$wgUser, &$reason));
+		if( $status->isGood() ) 
+			wfRunHooks('FileDeleteComplete', array( &$file, &$oldimage, &$article, &$wgUser, &$reason));
 
 		return $status;
 	}
