@@ -177,9 +177,11 @@ class RepoGroup {
 	}
 
 	/**
-	 * Run a function across all foreign repos.
-	 * @param $callback string Name of method to call
-	 * @param $params array Optional params to pass to the function
+	 * Call a function for each foreign repo, with the repo object as the 
+	 * first parameter.
+	 *
+	 * @param $callback callback The function to call
+	 * @param $params array Optional additional parameters to pass to the function
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
 		foreach( $this->foreignRepos as $repo ) {
@@ -192,11 +194,11 @@ class RepoGroup {
 	}
 
 	/**
-	 * Does the installation have foreign repos set up?
+	 * Does the installation have any foreign repos set up?
 	 * @return bool
 	 */
 	function hasForeignRepos() {
-		return !empty( $this->foreignRepos );
+		return (bool)$this->foreignRepos;
 	}
 
 	/**
