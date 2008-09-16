@@ -883,6 +883,8 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 
 Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima.
 Za vašu informaciju slijedi evidencija brisanja s obrazloženjem za prethodno brisanje:",
+'deleted-notice'                   => 'Ova stranice je bila izbrisana.
+Evidencija brisanja za ovu stranicu je pokazana niže.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozorenje: Ova stranica sadrži previše opterećujućih poziva parserskih funkcija

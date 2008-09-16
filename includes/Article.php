@@ -809,6 +809,21 @@ class Article {
 		}
 		# Fetch content and check for errors
 		if ( !$outputDone ) {
+			# If the article does not exist and was deleted, show the log
+			if ($this->getID() == 0) {
+				$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
+				$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
+				if( $pager->getNumRows() > 0 ) {
+					$wgOut->addHtml( '<div id="mw-deleted-notice">' );
+					$wgOut->addWikiMsg( 'deleted-notice' );
+					$wgOut->addHTML(
+						$loglist->beginLogEventsList() .
+						$pager->getBody() .
+						$loglist->endLogEventsList()
+					);
+					$wgOut->addHtml( '</div>' );
+				}
+			}
 			$text = $this->getContent();
 			if ( $text === false ) {
 				# Failed to load, replace text with error message

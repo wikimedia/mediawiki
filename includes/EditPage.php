@@ -704,7 +704,7 @@ class EditPage {
 			}
 		}
 		# Give a notice if the user is editing a deleted page...
-		if ( $this->mTitle->exists() ) {
+		if ( !$this->mTitle->exists() ) {
 			$this->showDeletionLog( $wgOut );
 		}
 	}

@@ -922,6 +922,8 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLo
 
 Ujistěte se, že je vhodné pokračovat v editaci stránky.
 Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
+'deleted-notice'                   => 'Tato stránka byla smazána.
+Podrobnosti lze zjistit z níže uvedeného výpisu knihy smazaných stránek.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.

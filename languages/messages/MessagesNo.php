@@ -758,6 +758,7 @@ Systemadministratoren som låste databasen oppga følgende årsak: $1',
 'recreate-deleted-warn'            => "'''Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
 
 Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
+'deleted-notice'                   => 'Denne siden har blitt slettet. Slettingsloggen vises nedenfor.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.

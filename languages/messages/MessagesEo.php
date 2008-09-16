@@ -727,6 +727,7 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1',
 
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
+'deleted-notice'                   => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.

@@ -742,6 +742,8 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 
 Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
+'deleted-notice'                   => 'Dës Seite gouf geläscht.
+Hei ass den Extrait aus der Läschlëscht fir déi Säit.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
