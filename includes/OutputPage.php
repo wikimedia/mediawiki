@@ -1533,7 +1533,7 @@ class OutputPage {
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
 			
-			global $wgOverrideSiteFeed, $wgSitename;
+			global $wgOverrideSiteFeed, $wgSitename, $wgFeedClasses;
 			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
 			
 			if ( $wgOverrideSiteFeed ) {
@@ -1545,14 +1545,12 @@ class OutputPage {
 				}
 			}
 			else if ( $wgTitle->getPrefixedText() != $rctitle->getPrefixedText() ) {
-				$tags[] = $this->feedLink(
-					'rss',
-					$rctitle->getFullURL( 'feed=rss' ),
-					wfMsg( 'site-rss-feed', $wgSitename ) );
-				$tags[] = $this->feedLink(
-					'atom',
-					$rctitle->getFullURL( 'feed=atom' ),
-					wfMsg( 'site-atom-feed', $wgSitename ) );
+				foreach( $wgFeedClasses as $format => $class ) {
+					$tags[] = $this->feedLink(
+						$format,
+						$rctitle->getFullURL( "feed={$format}" ),
+						wfMsg( "site-{$format}-feed", $wgSitename ) ); # For grep: 'site-rss-feed', 'site-atom-feed'.
+				}
 			}
 		}
 
