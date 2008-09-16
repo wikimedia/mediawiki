@@ -517,7 +517,7 @@ abstract class File {
 		if ( $height != -1 ) {
 			$params['height'] = $height;
 		}
-		return $this->transform( $params, $flags );
+		return $this->transform( $params, 0 );
 	}
 
 	/**
