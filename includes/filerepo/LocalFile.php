@@ -1365,7 +1365,7 @@ class LocalFileDeleteBatch {
 			$dbw->delete( 'oldimage',
 				array(
 					'oi_name' => $this->file->getName(),
-					'oi_archive_name IN (' . $dbw->makeList( array_keys( $oldRels ) ) . ')'
+					'oi_archive_name' => array_keys( $oldRels )
 				), __METHOD__ );
 		}
 		if ( $deleteCurrent ) {
