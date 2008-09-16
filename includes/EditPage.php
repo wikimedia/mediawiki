@@ -622,10 +622,12 @@ class EditPage {
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
 
 			# Don't force edit summaries when a user is editing their own user or talk page
-			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) && $this->mTitle->getText() == $wgUser->getName() ) {
+			if ( ( $this->mTitle->mNamespace == NS_USER || $this->mTitle->mNamespace == NS_USER_TALK ) && 
+				$this->mTitle->getText() == $wgUser->getName() ) 
+			{
 				$this->allowBlankSummary = true;
 			} else {
-				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' );
+				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' ) || !$wgUser->getOption( 'forceeditsummary');
 			}
 
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
@@ -950,11 +952,9 @@ class EditPage {
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
-		if ( $this->section != 'new' && !$this->allowBlankSummary &&  $wgUser->getOption( 'forceeditsummary') && 
-			0 != strcmp($oldtext, $text) && 
+		if ( $this->section != 'new' && !$this->allowBlankSummary && 0 != strcmp($oldtext, $text) && 
 			!is_object( Title::newFromRedirect( $text ) ) # check if it's not a redirect
 		) {
-
 			if ( md5( $this->summary ) == $this->autoSumm ) {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
@@ -963,7 +963,7 @@ class EditPage {
 		}
 
 		# And a similar thing for new sections
-		if ( $this->section == 'new' && !$this->allowBlankSummary && $wgUser->getOption( 'forceeditsummary' ) ) {
+		if ( $this->section == 'new' && !$this->allowBlankSummary ) {
 			if (trim($this->summary) == '') {
 				$this->missingSummary = true;
 				wfProfileOut( $fname );
