@@ -2442,7 +2442,7 @@ class User {
 	 * @return \type{\string} Page rendering hash
 	 */
 	function getPageRenderingHash() {
-		global $wgContLang, $wgUseDynamicDates, $wgLang;
+		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
@@ -2461,6 +2461,8 @@ class User {
 		// add in language specific options, if any
 		$extra = $wgContLang->getExtraHashOptions();
 		$confstr .= $extra;
+
+		$confstr .= $wgRenderHashAppend;
 
 		// Give a chance for extensions to modify the hash, if they have
 		// extra options or other effects on the parser cache.
