@@ -253,6 +253,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15535) prop=info&inprop=protection doesn't list pre-1.10 protections
   if the page is also protected otherwise (1.10+ style or cascading)
 * list=random now has rnredirect parameter, to get random redirects.
+* Added APIAfterExecute, APIQueryAfterExecute and APIQueryGeneratorAfterExecute
+  hooks which allow for extending core modules in a cleaner way
 
 === Languages updated in 1.14 ===
 

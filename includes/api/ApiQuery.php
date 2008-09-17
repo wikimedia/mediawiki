@@ -209,6 +209,7 @@ class ApiQuery extends ApiBase {
 		foreach ($modules as $module) {
 			$module->profileIn();
 			$module->execute();
+			wfRunHooks('APIQueryAfterExecute', array(&$module));
 			$module->profileOut();
 		}
 	}
@@ -381,6 +382,7 @@ class ApiQuery extends ApiBase {
 		// populate resultPageSet with the generator output
 		$generator->profileIn();
 		$generator->executeGenerator($resultPageSet);
+		wfRunHooks('APIQueryGeneratorAfterExecute', array(&$generator, &$resultPageSet));
 		$resultPageSet->finishPageSetGeneration();
 		$generator->profileOut();
 
