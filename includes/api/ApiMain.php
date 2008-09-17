@@ -415,6 +415,7 @@ class ApiMain extends ApiBase {
 		// Execute
 		$module->profileIn();
 		$module->execute();
+		wfRunHooks('APIAfterExecute', array(&$module));
 		$module->profileOut();
 
 		if (!$this->mInternalMode) {

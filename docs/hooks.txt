@@ -269,6 +269,10 @@ before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage : the EditPage object
 
+'APIAfterExecute': after calling the execute() method of an API module.
+Use this to extend core API modules.
+&$module: Module object
+
 'APIEditBeforeSave': before saving a page with api.php?action=edit,
 after processing request parameters. Return false to let the request
 fail, returning an error message or an <edit result="Failure"> tag
@@ -285,6 +289,15 @@ $resultArr : data in this array will be added to the API result
 descriptions.
 &$module: Module object
 &$desc: Array of parameter descriptions
+
+'APIQueryAfterExecute': after calling the execute() method of an
+action=query submodule. Use this to extend core API modules.
+&$module: Module object
+
+'APIQueryGeneratorAfterExecute': after calling the executeGenerator()
+method of an action=query submodule. Use this to extend core API modules.
+&$module: Module object
+&$resultPageSet: ApiPageSet object
 
 'APIQueryInfoTokens': use this hook to add custom tokens to prop=info.
 Every token has an action, which will be used in the intoken parameter
