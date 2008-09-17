@@ -79,9 +79,10 @@ class SkinCologneBlue extends Skin {
 		}
 		$s .= "<td class='bottom' align='center' valign='top'>";
 
+		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->makeKnownLinkObj( Title::newMainPage() ) . " | "
-		  . $this->aboutLink() . " | "
+		$s .= "\n<br />" . $this->makeKnownLinkObj( Title::newMainPage() ) . $separator
+		  . $this->aboutLink() . $separator
 		  . $this->searchForm( wfMsg( "qbfind" ) );
 
 		$s .= "\n<br />" . $this->pageStats();
@@ -132,22 +133,19 @@ class SkinCologneBlue extends Skin {
 			$q = "returnto={$rt}";
 		}
 
+		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
 		$s = "" .
-		  $this->mainPageLink()
-		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) )
-		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "helppage" ), wfMsg( "help" ) )
-		  . " | " .
-		  $this->makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") )
-		  . " | " .
+		  $this->mainPageLink(). $separator .
+		  $this->makeKnownLink( wfMsgForContent( "aboutpage" ), wfMsg( "about" ) ) . $separator .
+		  $this->makeKnownLink( wfMsgForContent( "helppage" ), wfMsg( "help" ) ) . $separator .
+		  $this->makeKnownLink( wfMsgForContent( "faqpage" ), wfMsg("faq") ) . $separator .
 		  $this->specialLink( "specialpages" );
 
 		/* show links to different language variants */
 		$s .= $this->variantLinks();
 		$s .= $this->extensionTabLinks();
 		
-		$s .= " | ";
+		$s .= $separator;
 		if ( $wgUser->isLoggedIn() ) {
 			$s .=  $this->makeKnownLink( $lo, wfMsg( "logout" ), $q );
 		} else {

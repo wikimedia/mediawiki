@@ -328,6 +328,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 			}
 		}
 
+		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+
 		if ( $this->including() ) {
 			$out2 = '';
 		} else {
@@ -382,7 +384,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					. ( $namespace ? '&namespace=' . $namespace : '' );
 				$prevLink = $sk->makeKnownLinkObj( $self,
 					wfMsgHTML( 'prevpage', htmlspecialchars( $pt ) ), $q );
-				$out2 .= ' | ' . $prevLink;
+				$out2 .= $separator . $prevLink;
 			}
 
 			if( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
@@ -392,7 +394,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					. ( $namespace ? '&namespace=' . $namespace : '' );
 				$nextLink = $sk->makeKnownLinkObj( $self,
 					wfMsgHtml( 'nextpage', htmlspecialchars( $t->getText() ) ), $q );
-				$out2 .= ' | ' . $nextLink;
+				$out2 .= $separator . $nextLink;
 			}
 			$out2 .= "</td></tr></table><hr />";
 		}
@@ -404,7 +406,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				$wgOut->addHTML( $prevLink );
 			}
 			if( isset( $prevLink ) && isset( $nextLink ) ) {
-				$wgOut->addHTML( ' | ' );
+				$wgOut->addHTML( $separator );
 			}
 			if( isset( $nextLink ) ) {
 				$wgOut->addHTML( $nextLink );

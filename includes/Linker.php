@@ -1062,7 +1062,7 @@ class Linker {
 		}
 
 		if( $items ) {
-			return ' (' . implode( ' | ', $items ) . ')';
+			return ' (' . implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $items ) . ')';
 		} else {
 			return '';
 		}

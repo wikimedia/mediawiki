@@ -970,7 +970,7 @@ class LoginForm {
 					$links[] = $this->makeLanguageSelectorLink( $parts[0], $parts[1] );
 				}
 			}
-			return count( $links ) > 0 ? wfMsgHtml( 'loginlanguagelabel', implode( ' | ', $links ) ) : '';
+			return count( $links ) > 0 ? wfMsgHtml( 'loginlanguagelabel', implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $links ) ) : '';
 		} else {
 			return '';
 		}
