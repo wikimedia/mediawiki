@@ -9,17 +9,17 @@ class WebResponse {
 	/** 
 	 * Output a HTTP header, wrapper for PHP's
 	 * header()
-	 * @param string $string Header to output
-	 * @param bool $replace Replace current similar header
+	 * @param $string String: header to output
+	 * @param $replace Bool: replace current similar header
 	 */
 	public function header($string, $replace=true) {
 		header($string,$replace);
 	}
 
 	/** Set the browser cookie
-	 * @param string $name Name of cookie
-	 * @param string $value Value to give cookie
-	 * @param int $expire Number of seconds til cookie expires
+	 * @param $name String: name of cookie
+	 * @param $value String: value to give cookie
+	 * @param $expire Int: number of seconds til cookie expires
 	 */
 	public function setcookie( $name, $value, $expire = 0 ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;

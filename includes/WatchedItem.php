@@ -12,8 +12,8 @@ class WatchedItem {
 
 	/**
 	 * Create a WatchedItem object with the given user and title
-	 * @param User $user The user to use for (un)watching
-	 * @param Title $title The title we're going to (un)watch
+	 * @param $user User: the user to use for (un)watching
+	 * @param $title Title: the title we're going to (un)watch
 	 * @return WatchedItem object
 	 */
 	public static function fromUserTitle( $user, $title ) {
