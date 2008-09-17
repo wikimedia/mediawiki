@@ -338,7 +338,7 @@ function contributionsSub( $nt, $id ) {
 
 		wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
-		$links = implode( ' | ', $tools );
+		$links = implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $tools );
 	}
 
 	// Old message 'contribsub' had one parameter, but that doesn't work for

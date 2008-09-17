@@ -513,7 +513,8 @@ abstract class AlphabeticPager extends IndexPager {
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = implode( ' | ', $limitLinks );
+		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+		$limits = implode( $separator, $limitLinks );
 
 		$this->mNavigationBar =
 			"({$pagingLinks['first']} | {$pagingLinks['last']}) " .
@@ -532,7 +533,7 @@ abstract class AlphabeticPager extends IndexPager {
 			if( $first ) {
 				$first = false;
 			} else {
-				$extra .= ' | ';
+				$extra .= $separator;
 			}
 
 			if( $order == $this->mOrderType ) {
@@ -591,11 +592,12 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			'last' => wfMsgHtml( 'histfirst' )
 		);
 
+		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = implode( ' | ', $limitLinks );
+		$limits = implode( $separator, $limitLinks );
 
-		$this->mNavigationBar = "({$pagingLinks['first']} | {$pagingLinks['last']}) " .
+		$this->mNavigationBar = "({$pagingLinks['first']}" . $separator . "{$pagingLinks['last']}) " .
 			wfMsgHtml("viewprevnext", $pagingLinks['prev'], $pagingLinks['next'], $limits);
 		return $this->mNavigationBar;
 	}

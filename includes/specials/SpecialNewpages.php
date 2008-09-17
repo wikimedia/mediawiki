@@ -148,7 +148,7 @@ class SpecialNewpages extends SpecialPage {
 			$links[$key] = wfMsgHtml( $msg, $link );
 		}
 
-		return implode( ' | ', $links );
+		return implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $links );
 	}
 
 	protected function form() {

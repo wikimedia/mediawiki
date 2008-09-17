@@ -45,7 +45,8 @@ function wfSpecialAllmessages() {
 	$wgOut->addScriptFile( 'allmessages.js' );
 	if ( $ot == 'php' ) {
 		$navText .= wfAllMessagesMakePhp( $messages );
-		$wgOut->addHTML( 'PHP | <a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a> | ' .
+		$wgOut->addHTML( 'PHP | <a href="' . $wgTitle->escapeLocalUrl( 'ot=html' ) . '">HTML</a>' .
+			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
 			'<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' .
 			'<pre>' . htmlspecialchars( $navText ) . '</pre>' );
 	} else if ( $ot == 'xml' ) {
@@ -53,8 +54,9 @@ function wfSpecialAllmessages() {
 		header( 'Content-type: text/xml' );
 		echo wfAllMessagesMakeXml( $messages );
 	} else {
-		$wgOut->addHTML( '<a href="' . $wgTitle->escapeLocalUrl( 'ot=php' ) . '">PHP</a> | ' .
-			'HTML |  <a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' );
+		$wgOut->addHTML( '<a href="' . $wgTitle->escapeLocalUrl( 'ot=php' ) . '">PHP</a>' .
+			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
+			'HTML' . wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . '<a href="' . $wgTitle->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' );
 		$wgOut->addWikiText( $navText );
 		$wgOut->addHTML( wfAllMessagesMakeHTMLText( $messages ) );
 	}
