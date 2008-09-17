@@ -2007,7 +2007,11 @@ class User {
 			// In the spirit of DWIM
 			return true;
 
-		return in_array( $action, $this->getRights() );
+		// PHP is fucking stupid.
+		// > $f = array( 'foo', 'bar', 'baz', 0, 'anne' );
+		// > print in_array( 'blah', $f );
+		// 1
+		return in_array( $action, $this->getRights(), true );
 	}
 
 	/**
