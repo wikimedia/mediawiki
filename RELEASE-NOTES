@@ -46,7 +46,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgAllowExternalImagesFrom may now be an array of multiple strings.
 * Introduced $wgEnableImageWhitelist to toggle the on-wiki external image
   whitelist on or off.
-  
+* Added $wgRenderHashAppend to append some string to the parser cache and the
+  sitenotice cache keys.
+
 === New features in 1.14 ===
 
 * New URL syntaxes for Special:ListUsers - 'Special:ListUsers/USER' and
