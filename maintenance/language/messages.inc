@@ -1720,6 +1720,7 @@ $wgMessageStructure = array(
 		'contribslink',
 		'autoblocker',
 		'blocklogpage',
+		'blocklog-fulllog',
 		'blocklogentry',
 		'blocklogtext',
 		'unblocklogentry',
