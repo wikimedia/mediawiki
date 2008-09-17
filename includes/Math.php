@@ -57,16 +57,15 @@ class MathRenderer {
 			if( function_exists( 'is_executable' ) && !is_executable( $wgTexvc ) ) {
 				return $this->_error( 'math_notexvc' );
 			}
-			$delim = wfIsWindows() ? "' '" : ' ';
-			$cmd = wfEscapeShellArg( $wgTexvc ) . $delim .
-					wfEscapeShellArg( $wgTmpDirectory ) . $delim .
-					wfEscapeShellArg( $wgTmpDirectory ) . $delim .
-					wfEscapeShellArg( $this->tex ) . $delim .
-					wfEscapeShellArg( $wgInputEncoding );
+			$cmd = $wgTexvc . ' ' .
+					escapeshellarg( $wgTmpDirectory ).' '.
+					escapeshellarg( $wgTmpDirectory ).' '.
+					escapeshellarg( $this->tex ).' '.
+					escapeshellarg( $wgInputEncoding );
 
 			if ( wfIsWindows() ) {
 				# Invoke it within cygwin sh, because texvc expects sh features in its default shell
-				$cmd = "sh -c $cmd";
+				$cmd = 'sh -c ' . wfEscapeShellArg( $cmd );
 			}
 
 			wfDebug( "TeX: $cmd\n" );
