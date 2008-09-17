@@ -418,8 +418,12 @@ class IPBlockForm {
 	}
 
 	function showLogFragment( $out, $title ) {
+		global $wgUser;
 		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
-		LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText() );
+		$count = LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 10 );
+		if($count > 10){
+			$out->addHtml( $wgUser->getSkin()->link(Title::newFromText('Special:Log/block'), wfMsg('blocklog-fulllog'), array(), array('type' => 'block', 'page' => $title->getPrefixedText()), array('known') ) );
+		}
 	}
 
 	/**
