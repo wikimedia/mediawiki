@@ -1037,6 +1037,12 @@ $wgUseCategoryBrowser   = false;
 $wgEnableParserCache = true;
 
 /**
+ * Append a configured value to the parser cache and the sitenotice key so
+ * that they can be kept separate for some class of activity.
+ */
+$wgRenderHashAppend = '';
+
+/**
  * If on, the sidebar navigation links are cached for users with the
  * current language set. This can save a touch of load on a busy site
  * by shaving off extra message lookups.
