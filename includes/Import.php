@@ -247,7 +247,7 @@ class WikiRevision {
 			array( 'log_type' => $this->getType(),
 				'log_action'    => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
-				'log_user_text' => $this->user_text,
+				#'log_user_text' => $this->user_text,
 				'log_params'    => $this->params ),
 			__METHOD__
 		);
@@ -264,7 +264,7 @@ class WikiRevision {
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 			'log_user' => User::idFromName( $this->user_text ),
-			'log_user_text' => $this->user_text,
+			#'log_user_text' => $this->user_text,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_comment' => $this->getComment(),
