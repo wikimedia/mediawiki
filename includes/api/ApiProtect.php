@@ -37,7 +37,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		global $wgUser, $wgRestrictionTypes, $wgRestrictionLevels;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
@@ -75,6 +75,7 @@ class ApiProtect extends ApiBase {
 		}
 
 		$protections = array();
+		$expiryarray = array();
 		foreach($params['protections'] as $prot)
 		{
 			$p = explode('=', $prot);
@@ -83,11 +84,16 @@ class ApiProtect extends ApiBase {
 				$this->dieUsageMsg(array('create-titleexists'));
 			if(!$titleObj->exists() && $p[0] != 'create')
 				$this->dieUsageMsg(array('missingtitles-createonly'));
+			if(!in_array($p[0], $wgRestrictionTypes) && $p[0] != 'create')
+				$this->dieUsageMsg(array('protect-invalidaction', $p[0]));
+			if(!in_array($p[1], $wgRestrictionLevels) && $p[1] != 'all')
+				$this->dieUsageMsg(array('protect-invalidlevel', $p[1]));
+			$expiryarray[$p[0]] = $expiry;
 		}
 
 		if($titleObj->exists()) {
 			$articleObj = new Article($titleObj);
-			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiry);
+			$ok = $articleObj->updateRestrictions($protections, $params['reason'], $params['cascade'], $expiryarray);
 		} else
 			$ok = $titleObj->updateTitleProtection($protections['create'], $params['reason'], $expiry);
 		if(!$ok)

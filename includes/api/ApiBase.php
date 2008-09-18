@@ -702,6 +702,8 @@ abstract class ApiBase {
 		'nocreate-missing' => array('code' => 'missingtitle', 'info' => "The article you tried to edit doesn't exist"),
 		'nosuchrcid' => array('code' => 'nosuchrcid', 'info' => "There is no change with rcid ``\$1''"),
 		'cantpurge' => array('code' => 'cantpurge', 'info' => "Only users with the 'purge' right can purge pages via the API"),
+		'protect-invalidaction' => array('code' => 'protect-invalidaction', 'info' => "Invalid protection type ``\$1''"),
+		'protect-invalidlevel' => array('code' => 'protect-invalidlevel', 'info' => "Invalid protection level ``\$1''"),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),
