@@ -142,10 +142,6 @@ class UserMailer {
 			$headers['MIME-Version'] = '1.0';
 			$headers['Content-type'] = (is_null($contentType) ?
 					'text/plain; charset='.$wgOutputEncoding : $contentType);
-			if(is_null($contentType))
-				$headers['Content-type'] = 'text/plain; charset='.$wgOutputEncoding;
-			else
-				$headers['Content-type'] = $contentType;
 			$headers['Content-transfer-encoding'] = '8bit';
 			$headers['Message-ID'] = "<$msgid@" . $wgSMTP['IDHost'] . '>'; // FIXME
 			$headers['X-Mailer'] = 'MediaWiki mailer';
