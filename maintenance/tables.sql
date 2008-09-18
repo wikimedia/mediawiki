@@ -1076,7 +1076,9 @@ CREATE TABLE /*$wgDBprefix*/logging (
   log_timestamp binary(14) NOT NULL default '19700101000000',
   
   -- The user who performed this action; key to user_id
-  log_user int unsigned NOT NULL default 0,
+  log_user int unsigned NOT NULL default 0, 
+  -- Text username or IP address of the editor.
+  log_user_text varchar(255) binary NOT NULL default '',
   
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
