@@ -853,7 +853,7 @@ class SkinTemplate extends Skin {
 
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
-		if( $wgEnableUploads ) {
+		if( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 			if ($wgUploadNavigationUrl) {
 				$nav_urls['upload'] = array( 'href' => $wgUploadNavigationUrl );
 			} else {
