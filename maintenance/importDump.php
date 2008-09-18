@@ -101,7 +101,11 @@ class BackupReader {
 				$rate = '-';
 				$revrate = '-';
 			}
-			$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
+			# Logs dumps don't have page tallies
+			if( $this->pageCount )
+				$this->progress( "$this->pageCount ($rate pages/sec $revrate revs/sec)" );
+			else
+				$this->progress( "$this->revCount ($revrate revs/sec)" );
 		}
 		wfWaitForSlaves(5);
 	}
