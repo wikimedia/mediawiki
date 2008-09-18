@@ -534,7 +534,7 @@ class XmlDumpWriter {
 			$out .= "      " . wfElement( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
-			$out .= "      " . wfElementClean( 'title', null, $title->getPrefixedText() ) . "\n";
+			$out .= "      " . wfElementClean( 'logtitle', null, $title->getPrefixedText() ) . "\n";
 			$out .= "      " . wfElementClean( 'params',
 				array( 'xml:space' => 'preserve' ),
 				strval( $row->log_params ) ) . "\n";
