@@ -247,6 +247,9 @@ class WikiRevision {
 			array( 'log_type' => $this->getType(),
 				'log_action'    => $this->getAction(),
 				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+				'log_namespace' => $this->getTitle()->getNamespace(),
+				'log_title'     => $this->getTitle()->getDBkey(),
+				'log_comment'   => $this->getComment(),
 				#'log_user_text' => $this->user_text,
 				'log_params'    => $this->params ),
 			__METHOD__
