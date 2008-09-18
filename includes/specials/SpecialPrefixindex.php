@@ -175,7 +175,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 						wfMsg ( 'allpages' ) );
 			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$namespaceparam = $namespace ? "&namespace=$namespace" : "";
-				$out2 .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . $sk->makeKnownLinkObj(
+				$out2 .= " | " . $sk->makeKnownLinkObj(
 					$self,
 					wfMsgHtml( 'nextpage', htmlspecialchars( $s->page_title ) ),
 					"from=" . wfUrlEncode( $s->page_title ) .
