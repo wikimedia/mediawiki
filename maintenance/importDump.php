@@ -48,13 +48,10 @@ class BackupReader {
 
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
-		if (!$title) {
+		if( !$title ) {
 			$this->progress( "Got bogus revision with null title!" );
 			return;
 		}
-		#$timestamp = $rev->getTimestamp();
-		#$display = $title->getPrefixedText();
-		#echo "$display $timestamp\n";
 
 		$this->revCount++;
 		$this->report();
@@ -76,6 +73,15 @@ class BackupReader {
 				$dbw = wfGetDB( DB_MASTER );
 				return $dbw->deadlockLoop( array( $revision, 'importUpload' ) );
 			}
+		}
+	}
+
+	function handleLogItem( $rev ) {
+		$this->revCount++;
+		$this->report();
+
+		if( !$this->dryRun ) {
+			call_user_func( $this->logItemCallback, $rev );
 		}
 	}
 
@@ -129,6 +135,8 @@ class BackupReader {
 			array( &$this, 'handleRevision' ) );
 		$this->uploadCallback = $importer->setUploadCallback(
 			array( &$this, 'handleUpload' ) );
+		$this->logItemCallback = $importer->setLogItemCallback(
+			array( &$this, 'handleLogItem' ) );
 
 		return $importer->doImport();
 	}
