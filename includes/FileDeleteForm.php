@@ -135,7 +135,7 @@ class FileDeleteForm {
 			$suppress = '';
 		}
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction() ) ) .
+		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(), 'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null, wfMsg( 'filedelete-legend' ) ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken( $this->oldimage ) ) .
