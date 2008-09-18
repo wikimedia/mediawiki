@@ -441,9 +441,9 @@ $wgAutoloadLocalClasses = array(
 	'IPBlockForm' => 'includes/specials/SpecialBlockip.php',
 	'IPBlocklistPager' => 'includes/specials/SpecialIpblocklist.php',
 	'IPUnblockForm' => 'includes/specials/SpecialIpblocklist.php',
-	'ImportReporter' => 'includes/specials/SpecialImport.php',
-	'ImportStreamSource' => 'includes/specials/SpecialImport.php',
-	'ImportStringSource' => 'includes/specials/SpecialImport.php',
+	'ImportReporter' => 'includes/Import.php',
+	'ImportStreamSource' => 'includes/Import.php',
+	'ImportStringSource' => 'includes/Import.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
 	'ListredirectsPage' => 'includes/specials/SpecialListredirects.php',
 	'LoginForm' => 'includes/specials/SpecialUserlogin.php',
@@ -492,8 +492,8 @@ $wgAutoloadLocalClasses = array(
 	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WhatLinksHerePage' => 'includes/specials/SpecialWhatlinkshere.php',
-	'WikiImporter' => 'includes/specials/SpecialImport.php',
-	'WikiRevision' => 'includes/specials/SpecialImport.php',
+	'WikiImporter' => 'includes/Import.php',
+	'WikiRevision' => 'includes/Import.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
 
 	# includes/templates

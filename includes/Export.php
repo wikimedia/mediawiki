@@ -72,16 +72,16 @@ class WikiExporter {
 	 *
 	 * @param $sink mixed
 	 */
-	function setOutputSink( &$sink ) {
+	public function setOutputSink( &$sink ) {
 		$this->sink =& $sink;
 	}
 
-	function openStream() {
+	public function openStream() {
 		$output = $this->writer->openStream();
 		$this->sink->writeOpenStream( $output );
 	}
 
-	function closeStream() {
+	public function closeStream() {
 		$output = $this->writer->closeStream();
 		$this->sink->writeCloseStream( $output );
 	}
@@ -91,7 +91,7 @@ class WikiExporter {
 	 * in the database, either including complete history or only
 	 * the most recent version.
 	 */
-	function allPages() {
+	public function allPages() {
 		return $this->dumpFrom( '' );
 	}
 
@@ -102,22 +102,10 @@ class WikiExporter {
 	 * @param $end   Int: Exclusive upper limit (this id is not included)
 	 *                   If 0, no upper limit.
 	 */
-	function pagesByRange( $start, $end ) {
+	public function pagesByRange( $start, $end ) {
 		$condition = 'page_id >= ' . intval( $start );
 		if( $end ) {
 			$condition .= ' AND page_id < ' . intval( $end );
-		}
-		return $this->dumpFrom( $condition );
-	}
-	
-	function allLogs() {
-		return $this->dumpFrom( '' );
-	}
-	
-	function logsByRange( $start, $end ) {
-		$condition = 'log_id >= ' . intval( $start );
-		if( $end ) {
-			$condition .= ' AND log_id < ' . intval( $end );
 		}
 		return $this->dumpFrom( $condition );
 	}
@@ -125,13 +113,13 @@ class WikiExporter {
 	/**
 	 * @param $title Title
 	 */
-	function pageByTitle( $title ) {
+	public function pageByTitle( $title ) {
 		return $this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
 	}
 
-	function pageByName( $name ) {
+	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if( is_null( $title ) ) {
 			return new WikiError( "Can't export invalid title" );
@@ -140,26 +128,36 @@ class WikiExporter {
 		}
 	}
 
-	function pagesByName( $names ) {
+	public function pagesByName( $names ) {
 		foreach( $names as $name ) {
 			$this->pageByName( $name );
 		}
 	}
 
+	public function allLogs() {
+		return $this->dumpFrom( '' );
+	}
 
-	// -------------------- private implementation below --------------------
+	public function logsByRange( $start, $end ) {
+		$condition = 'log_id >= ' . intval( $start );
+		if( $end ) {
+			$condition .= ' AND log_id < ' . intval( $end );
+		}
+		return $this->dumpFrom( $condition );
+	}
 
 	# Generates the distinct list of authors of an article
 	# Not called by default (depends on $this->list_authors)
 	# Can be set by Special:Export when not exporting whole history
-	function do_list_authors ( $page , $revision , $cond ) {
+	protected function do_list_authors( $page , $revision , $cond ) {
 		$fname = "do_list_authors" ;
 		wfProfileIn( $fname );
 		$this->author_list = "<contributors>";
 		//rev_deleted
 		$nothidden = '(rev_deleted & '.Revision::DELETED_USER.') = 0';
 
-		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} WHERE page_id=rev_page AND $nothidden AND " . $cond ;
+		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} 
+		WHERE page_id=rev_page AND $nothidden AND " . $cond ;
 		$result = $this->db->query( $sql, $fname );
 		$resultset = $this->db->resultObject( $result );
 		while( $row = $resultset->fetchObject() ) {
@@ -176,7 +174,7 @@ class WikiExporter {
 		$this->author_list .= "</contributors>";
 	}
 
-	function dumpFrom( $cond = '' ) {
+	protected function dumpFrom( $cond = '' ) {
 		$fname = 'WikiExporter::dumpFrom';
 		wfProfileIn( $fname );
 		
@@ -190,91 +188,87 @@ class WikiExporter {
 				'*',
 				$where,
 				$fname,
-				array( 'ORDER BY' => 'log_id')
+				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array('logging' => 'PRIMARY') )
 			);
 			$wrapper = $this->db->resultObject( $result );
 			$this->outputLogStream( $wrapper );
-			wfProfileOut( $fname );
-			return;
-		}
 		# For page dumps...
-		$page     = $this->db->tableName( 'page' );
-		$revision = $this->db->tableName( 'revision' );
-		$text     = $this->db->tableName( 'text' );
+		} else {
+			list($page,$revision,$text) = $this->db->tableNamesN('page','revision','text');
 
-		$order = 'ORDER BY page_id';
-		$limit = '';
+			$order = 'ORDER BY page_id';
+			$limit = '';
 
-		if( $this->history == WikiExporter::FULL ) {
-			$join = 'page_id=rev_page';
-		} elseif( $this->history == WikiExporter::CURRENT ) {
-			if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
-				$this->do_list_authors ( $page , $revision , $cond );
-			}
-			$join = 'page_id=rev_page AND page_latest=rev_id';
-		} elseif ( is_array( $this->history ) ) {
-			$join = 'page_id=rev_page';
-			if ( $this->history['dir'] == 'asc' ) {
-				$op = '>';
-				$order .= ', rev_timestamp';
-			} else {
-				$op = '<';
-				$order .= ', rev_timestamp DESC';
-			}
-			if ( !empty( $this->history['offset'] ) ) {
-				$join .= " AND rev_timestamp $op " . $this->db->addQuotes(
-					$this->db->timestamp( $this->history['offset'] ) );
-			}
-			if ( !empty( $this->history['limit'] ) ) {
-				$limitNum = intval( $this->history['limit'] );
-				if ( $limitNum > 0 ) {
-					$limit = "LIMIT $limitNum";
+			if( $this->history == WikiExporter::FULL ) {
+				$join = 'page_id=rev_page';
+			} elseif( $this->history == WikiExporter::CURRENT ) {
+				if ( $this->list_authors && $cond != '' )  { // List authors, if so desired
+					$this->do_list_authors ( $page , $revision , $cond );
 				}
+				$join = 'page_id=rev_page AND page_latest=rev_id';
+			} elseif ( is_array( $this->history ) ) {
+				$join = 'page_id=rev_page';
+				if ( $this->history['dir'] == 'asc' ) {
+					$op = '>';
+					$order .= ', rev_timestamp';
+				} else {
+					$op = '<';
+					$order .= ', rev_timestamp DESC';
+				}
+				if ( !empty( $this->history['offset'] ) ) {
+					$join .= " AND rev_timestamp $op " . $this->db->addQuotes(
+						$this->db->timestamp( $this->history['offset'] ) );
+				}
+				if ( !empty( $this->history['limit'] ) ) {
+					$limitNum = intval( $this->history['limit'] );
+					if ( $limitNum > 0 ) {
+						$limit = "LIMIT $limitNum";
+					}
+				}
+			} else {
+				wfProfileOut( $fname );
+				return new WikiError( "$fname given invalid history dump type." );
 			}
-		} else {
-			wfProfileOut( $fname );
-			return new WikiError( "$fname given invalid history dump type." );
-		}
-		$where = ( $cond == '' ) ? '' : "$cond AND";
+			$where = ( $cond == '' ) ? '' : "$cond AND";
 
-		if( $this->buffer == WikiExporter::STREAM ) {
-			$prev = $this->db->bufferResults( false );
-		}
-		if( $cond == '' ) {
-			// Optimization hack for full-database dump
-			$revindex = $pageindex = $this->db->useIndexClause("PRIMARY");
-			$straight = ' /*! STRAIGHT_JOIN */ ';
-		} else {
-			$pageindex = '';
-			$revindex = '';
-			$straight = '';
-		}
-		if( $this->text == WikiExporter::STUB ) {
-			$sql = "SELECT $straight * FROM
+			if( $this->buffer == WikiExporter::STREAM ) {
+				$prev = $this->db->bufferResults( false );
+			}
+			if( $cond == '' ) {
+				// Optimization hack for full-database dump
+				$revindex = $pageindex = $this->db->useIndexClause("PRIMARY");
+				$straight = ' /*! STRAIGHT_JOIN */ ';
+			} else {
+				$pageindex = '';
+				$revindex = '';
+				$straight = '';
+			}
+			if( $this->text == WikiExporter::STUB ) {
+				$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex
 					WHERE $where $join
 					$order $limit";
-		} else {
-			$sql = "SELECT $straight * FROM
+			} else {
+				$sql = "SELECT $straight * FROM
 					$page $pageindex,
 					$revision $revindex,
 					$text
 					WHERE $where $join AND rev_text_id=old_id
 					$order $limit";
-		}
-		$result = $this->db->query( $sql, $fname );
-		$wrapper = $this->db->resultObject( $result );
-		$this->outputPageStream( $wrapper );
-
-		if ( $this->list_authors ) {
+			}
+			$result = $this->db->query( $sql, $fname );
+			$wrapper = $this->db->resultObject( $result );
 			$this->outputPageStream( $wrapper );
-		}
 
-		if( $this->buffer == WikiExporter::STREAM ) {
-			$this->db->bufferResults( $prev );
-		}
+			if ( $this->list_authors ) {
+				$this->outputPageStream( $wrapper );
+			}
 
+			if( $this->buffer == WikiExporter::STREAM ) {
+				$this->db->bufferResults( $prev );
+			}
+		}
 		wfProfileOut( $fname );
 	}
 
@@ -289,9 +283,8 @@ class WikiExporter {
 	 * blob storage types will make queries to pull source data.
 	 *
 	 * @param $resultset ResultWrapper
-	 * @access private
 	 */
-	function outputPageStream( $resultset ) {
+	protected function outputPageStream( $resultset ) {
 		$last = null;
 		while( $row = $resultset->fetchObject() ) {
 			if( is_null( $last ) ||
@@ -324,7 +317,7 @@ class WikiExporter {
 		$resultset->free();
 	}
 	
-	function outputLogStream( $resultset ) {
+	protected function outputLogStream( $resultset ) {
 		while( $row = $resultset->fetchObject() ) {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
