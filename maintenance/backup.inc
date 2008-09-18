@@ -175,7 +175,7 @@ class BackupDumper {
 		// extension point for subclasses to add options
 	}
 
-	function dump( $history, $text = MW_EXPORT_TEXT ) {
+	function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
 		if( ini_get( 'display_errors' ) )
@@ -192,13 +192,21 @@ class BackupDumper {
 
 		if( !$this->skipHeader )
 			$exporter->openStream();
-
-		if( is_null( $this->pages ) ) {
+		# Log item dumps: all or by range
+		if( $history & WikiExporter::LOGS ) {
+			if( $this->startId || $this->endId ) {
+				$exporter->logsByRange( $this->startId, $this->endId );
+			} else {
+				$exporter->allLogs();
+			}
+		# Page dumps: all or by page ID range
+		} else if( is_null( $this->pages ) ) {
 			if( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId );
 			} else {
 				$exporter->allPages();
 			}
+		# Dump of specific pages
 		} else {
 			$exporter->pagesByName( $this->pages );
 		}

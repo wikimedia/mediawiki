@@ -32,6 +32,7 @@ class WikiExporter {
 
 	const FULL = 0;
 	const CURRENT = 1;
+	const LOGS = 2;
 
 	const BUFFER = 0;
 	const STREAM = 1;
@@ -108,6 +109,18 @@ class WikiExporter {
 		}
 		return $this->dumpFrom( $condition );
 	}
+	
+	function allLogs() {
+		return $this->dumpFrom( '' );
+	}
+	
+	function logsByRange( $start, $end ) {
+		$condition = 'log_id >= ' . intval( $start );
+		if( $end ) {
+			$condition .= ' AND log_id < ' . intval( $end );
+		}
+		return $this->dumpFrom( $condition );
+	}
 
 	/**
 	 * @param $title Title
@@ -166,7 +179,25 @@ class WikiExporter {
 	function dumpFrom( $cond = '' ) {
 		$fname = 'WikiExporter::dumpFrom';
 		wfProfileIn( $fname );
-
+		
+		# For logs dumps...
+		if( $this->history & self::LOGS ) {
+			$where = array( 'user_id = log_user' );
+			# Hide private logs
+			$where[] = LogEventsList::getExcludeClause( $this->db );
+			if( $cond ) $where[] = $cond;
+			$result = $this->db->select( array('logging','user'), 
+				'*',
+				$where,
+				$fname,
+				array( 'ORDER BY' => 'log_id')
+			);
+			$wrapper = $this->db->resultObject( $result );
+			$this->outputLogStream( $wrapper );
+			wfProfileOut( $fname );
+			return;
+		}
+		# For page dumps...
 		$page     = $this->db->tableName( 'page' );
 		$revision = $this->db->tableName( 'revision' );
 		$text     = $this->db->tableName( 'text' );
@@ -234,10 +265,10 @@ class WikiExporter {
 		}
 		$result = $this->db->query( $sql, $fname );
 		$wrapper = $this->db->resultObject( $result );
-		$this->outputStream( $wrapper );
+		$this->outputPageStream( $wrapper );
 
 		if ( $this->list_authors ) {
-			$this->outputStream( $wrapper );
+			$this->outputPageStream( $wrapper );
 		}
 
 		if( $this->buffer == WikiExporter::STREAM ) {
@@ -260,7 +291,7 @@ class WikiExporter {
 	 * @param $resultset ResultWrapper
 	 * @access private
 	 */
-	function outputStream( $resultset ) {
+	function outputPageStream( $resultset ) {
 		$last = null;
 		while( $row = $resultset->fetchObject() ) {
 			if( is_null( $last ) ||
@@ -289,6 +320,14 @@ class WikiExporter {
 			$output .= $this->author_list;
 			$output .= $this->writer->closePage();
 			$this->sink->writeClosePage( $output );
+		}
+		$resultset->free();
+	}
+	
+	function outputLogStream( $resultset ) {
+		while( $row = $resultset->fetchObject() ) {
+			$output = $this->writer->writeLogItem( $row );
+			$this->sink->writeLogItem( $row, $output );
 		}
 		$resultset->free();
 	}
@@ -465,6 +504,54 @@ class XmlDumpWriter {
 		wfProfileOut( $fname );
 		return $out;
 	}
+	
+	/**
+	 * Dumps a <logitem> section on the output stream, with
+	 * data filled in from the given database row.
+	 *
+	 * @param $row object
+	 * @return string
+	 * @access private
+	 */
+	function writeLogItem( $row ) {
+		$fname = 'WikiExporter::writeLogItem';
+		wfProfileIn( $fname );
+
+		$out  = "    <logitem>\n";
+		$out .= "      " . wfElement( 'id', null, strval( $row->log_id ) ) . "\n";
+
+		$out .= $this->writeTimestamp( $row->log_timestamp );
+
+		if( $row->log_deleted & LogPage::DELETED_USER ) {
+			$out .= "      " . wfElement( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
+		} else {
+			$out .= $this->writeContributor( $row->log_user, $row->user_name );
+		}
+
+		if( $row->log_deleted & LogPage::DELETED_COMMENT ) {
+			$out .= "      " . wfElement( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
+		} elseif( $row->log_comment != '' ) {
+			$out .= "      " . wfElementClean( 'comment', null, strval( $row->log_comment ) ) . "\n";
+		}
+		
+		$out .= "      " . wfElement( 'type', null, strval( $row->log_type ) ) . "\n";
+		$out .= "      " . wfElement( 'action', null, strval( $row->log_action ) ) . "\n";
+
+		if( $row->log_deleted & LogPage::DELETED_ACTION ) {
+			$out .= "      " . wfElement( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
+		} else {
+			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
+			$out .= "      " . wfElementClean( 'title', null, $title->getPrefixedText() ) . "\n";
+			$out .= "      " . wfElementClean( 'params',
+				array( 'xml:space' => 'preserve' ),
+				strval( $row->log_params ) ) . "\n";
+		}
+
+		$out .= "    </logitem>\n";
+
+		wfProfileOut( $fname );
+		return $out;
+	}
 
 	function writeTimestamp( $timestamp ) {
 		$ts = wfTimestamp( TS_ISO_8601, $timestamp );
@@ -537,6 +624,10 @@ class DumpOutput {
 	}
 
 	function writeRevision( $rev, $string ) {
+		$this->write( $string );
+	}
+	
+	function writeLogItem( $rev, $string ) {
 		$this->write( $string );
 	}
 
@@ -654,6 +745,10 @@ class DumpFilter {
 			$this->sink->writeRevision( $rev, $string );
 		}
 	}
+	
+	function writeLogItem( $rev, $string ) {
+		$this->sink->writeRevision( $rev, $string );
+	}	
 
 	/**
 	 * Override for page-based filter types.

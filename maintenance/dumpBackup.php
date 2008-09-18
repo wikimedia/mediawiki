@@ -63,6 +63,8 @@ if( isset( $options['full'] ) ) {
 	$dumper->dump( WikiExporter::FULL, $textMode );
 } elseif( isset( $options['current'] ) ) {
 	$dumper->dump( WikiExporter::CURRENT, $textMode );
+} elseif( isset( $options['logs'] ) ) {
+	$dumper->dump( WikiExporter::LOGS );
 } else {
 	$dumper->progress( <<<ENDS
 This script dumps the wiki page database into an XML interchange wrapper
@@ -74,6 +76,7 @@ Usage: php dumpBackup.php <action> [<options>]
 Actions:
   --full      Dump complete history of every page.
   --current   Includes only the latest revision of each page.
+  --logs      Dump action logs for every page.
 
 Options:
   --quiet     Don't dump status reports to stderr.
