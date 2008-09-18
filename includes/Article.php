@@ -2397,14 +2397,6 @@ class Article {
 			$dbw->delete( 'langlinks', array( 'll_from' => $id ) );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ) );
 		}
-		
-		# Fix category table counts
-		$cats = array();
-		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
-		foreach( $res as $row ) {
-			$cats []= $row->cl_to;
-		}
-		$this->updateCategoryCounts( array(), $cats );
 
 		# If using cleanup triggers, we can skip some manual deletes
 		if ( !$dbw->cleanupTriggers() ) {
@@ -2413,10 +2405,17 @@ class Article {
 				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
-		$dbw->commit();
 
 		# Clear caches
 		Article::onArticleDelete( $this->mTitle );
+		
+		# Fix category table counts
+		$cats = array();
+		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
+		foreach( $res as $row ) {
+			$cats []= $row->cl_to;
+		}
+		$this->updateCategoryCounts( array(), $cats );
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
@@ -2428,6 +2427,8 @@ class Article {
 
 		# Make sure logging got through
 		$log->addEntry( 'delete', $this->mTitle, $reason, array() );
+		
+		$dbw->commit();
 
 		return true;
 	}
