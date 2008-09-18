@@ -422,7 +422,13 @@ class IPBlockForm {
 		$out->addHtml( Xml::element( 'h2', NULL, LogPage::logName( 'block' ) ) );
 		$count = LogEventsList::showLogExtract( $out, 'block', $title->getPrefixedText(), '', 10 );
 		if($count > 10){
-			$out->addHtml( $wgUser->getSkin()->link(Title::newFromText('Special:Log/block'), wfMsg('blocklog-fulllog'), array(), array('type' => 'block', 'page' => $title->getPrefixedText()), array('known') ) );
+			$out->addHtml( $wgUser->getSkin()->link(
+				SpecialPage::getTitleFor( 'Log' ),
+				wfMsgHtml( 'blocklog-fulllog' ),
+				array(),
+				array(
+					'type' => 'block',
+					'page' => $title->getPrefixedText() ) ) );
 		}
 	}
 
