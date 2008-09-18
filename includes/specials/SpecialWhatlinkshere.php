@@ -340,7 +340,7 @@ class WhatLinksHerePage {
 			$limitLinks[] = $this->makeSelfLink( $prettyLimit, wfArrayToCGI( $overrides, $changed ) );
 		}
 
-		$nums = implode ( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $limitLinks );
+		$nums = implode ( ' | ', $limitLinks );
 
 		return wfMsgHtml( 'viewprevnext', $prev, $next, $nums );
 	}
@@ -403,6 +403,6 @@ class WhatLinksHerePage {
 			$overrides = array( $type => !$chosen );
 			$links[] = $this->makeSelfLink( $msg, wfArrayToCGI( $overrides, $changed ) );
 		}
-		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $links ) );
+		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), implode( '&nbsp;|&nbsp;', $links ) );
 	}
 }

@@ -913,15 +913,14 @@ END;
 		$diff = $wgRequest->getVal( 'diff' );
 		$action = $wgRequest->getText( 'action' );
 
-		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
 		$s = $this->printableLink();
 		$disclaimer = $this->disclaimerLink(); # may be empty
 		if( $disclaimer ) {
-			$s .= $separator . $disclaimer;
+			$s .= ' | ' . $disclaimer;
 		}
 		$privacy = $this->privacyLink(); # may be empty too
 		if( $privacy ) {
-			$s .= $separator . $privacy;
+			$s .= ' | ' . $privacy;
 		}
 
 		if ( $wgOut->isArticleRelated() ) {
@@ -931,12 +930,12 @@ END;
 				if( $image ) {
 					$link = htmlspecialchars( $image->getURL() );
 					$style = $this->getInternalLinkAttributes( $link, $name );
-					$s .= $separator . "<a href=\"{$link}\"{$style}>{$name}</a>";
+					$s .= " | <a href=\"{$link}\"{$style}>{$name}</a>";
 				}
 			}
 		}
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s .= $separator . $this->makeKnownLinkObj( $wgTitle,
+			$s .= ' | ' . $this->makeKnownLinkObj( $wgTitle,
 					wfMsg( 'currentrev' ) );
 		}
 
@@ -946,7 +945,7 @@ END;
 			if( !$wgTitle->equals( $wgUser->getTalkPage() ) ) {
 				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ), 'redirect=no' );
 				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ), 'diff=cur' );
-				$s.= $separator . '<strong>'. wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
+				$s.= ' | <strong>'. wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage(0);
 				$wgOut->enableClientCache(false);
@@ -955,7 +954,7 @@ END;
 
 		$undelete = $this->getUndeleteLink();
 		if( !empty( $undelete ) ) {
-			$s .= $separator . $undelete;
+			$s .= ' | '.$undelete;
 		}
 		return $s;
 	}
@@ -988,7 +987,7 @@ END;
 		if( $wgOut->isSyndicated() ) {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
-				$s .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . "<a href=\"$feedurl\">{$format}</a>";
+				$s .= " | <a href=\"$feedurl\">{$format}</a>";
 			}
 		}
 		return $s;
@@ -1036,7 +1035,7 @@ END;
 						$getlink = $this->makeKnownLinkObj( $linkObj, htmlspecialchars( $display ) );
 						$c++;
 						if ($c>1) {
-							$subpages .= wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+							$subpages .= ' | ';
 						} else  {
 							$subpages .= '&lt; ';
 						}
@@ -1103,9 +1102,9 @@ END;
 				SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
 				array(), array( 'returnto' => $returnTo )
 			);
-			$ret .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . $this->specialLink( 'preferences' );
+			$ret .= ' | ' . $this->specialLink( 'preferences' );
 		}
-		$ret .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . $this->link(
+		$ret .= ' | ' . $this->link(
 			Title::newFromText( wfMsgForContent( 'helppage' ) ),
 			wfMsg( 'help' )
 		);
@@ -1171,7 +1170,7 @@ END;
 		$s = '';
 		wfRunHooks( 'SkinTemplateTabs', array( $this, &$tabs ) );
 		foreach( $tabs as $tab ) {
-			$s .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . Xml::element( 'a',
+			$s .= ' | ' . Xml::element( 'a',
 				array( 'href' => $tab['href'] ),
 				$tab['text'] );
 		}
@@ -1192,7 +1191,7 @@ END;
 				$varname = $wgContLang->getVariantname( $code );
 				if( $varname == 'disable' )
 					continue;
-				$s .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ) . '<a href="' . $wgTitle->escapeLocalUrl( 'variant=' . $code ) . '">' . htmlspecialchars( $varname ) . '</a>';
+				$s .= ' | <a href="' . $wgTitle->escapeLocalUrl( 'variant=' . $code ) . '">' . htmlspecialchars( $varname ) . '</a>';
 			}
 		}
 		return $s;
@@ -1623,7 +1622,7 @@ END;
 		$first = true;
 		if($wgContLang->isRTL()) $s .= '<span dir="LTR">';
 		foreach( $a as $l ) {
-			if ( ! $first ) { $s .= wfMsgExt( 'pipe-separator' , 'escapenoentities' ); }
+			if ( ! $first ) { $s .= ' | '; }
 			$first = false;
 
 			$nt = Title::newFromText( $l );

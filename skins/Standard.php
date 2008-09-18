@@ -107,13 +107,11 @@ class SkinStandard extends Skin {
 		$l = $wgContLang->isRTL() ? 'right' : 'left';
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
-		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
-
 		$s .= $this->bottomLinks();
 		$s .= "\n<br />" . $this->mainPageLink()
-		  . $separator . $this->aboutLink()
-		  . $separator . $this->specialLink( 'recentchanges' )
-		  . $separator . $this->searchForm()
+		  . ' | ' . $this->aboutLink()
+		  . ' | ' . $this->specialLink( 'recentchanges' )
+		  . ' | ' . $this->searchForm()
 		  . '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
 		$s .= "</td>";

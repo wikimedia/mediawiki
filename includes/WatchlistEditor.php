@@ -391,7 +391,7 @@ class WatchlistEditor {
 		}
 		return '<li>'
 			. Xml::check( 'titles[]', false, array( 'value' => $title->getPrefixedText() ) )
-			. $link . ' (' . implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $tools ) . ')' . '</li>';
+			. $link . ' (' . implode( ' | ', $tools ) . ')' . '</li>';
 		}
 
 	/**
@@ -457,6 +457,6 @@ class WatchlistEditor {
 		foreach( $modes as $mode => $subpage ) {
 			$tools[] = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Watchlist', $subpage ), wfMsgHtml( "watchlisttools-{$mode}" ) );
 		}
-		return implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $tools );
+		return implode( ' | ', $tools );
 	}
 }

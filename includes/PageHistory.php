@@ -379,7 +379,7 @@ class PageHistory {
 		}
 
 		if( $tools ) {
-			$s .= ' (' . implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $tools ) . ')';
+			$s .= ' (' . implode( ' | ', $tools ) . ')';
 		}
 
 		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s ) );

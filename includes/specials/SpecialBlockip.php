@@ -463,7 +463,7 @@ class IPBlockForm {
 		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
-		return '<p class="mw-ipb-conveniencelinks">' . implode( wfMsgExt( 'pipe-separator' , 'escapenoentities' ), $links ) . '</p>';
+		return '<p class="mw-ipb-conveniencelinks">' . implode( ' | ', $links ) . '</p>';
 	}
 
 	/**
