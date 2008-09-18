@@ -168,3 +168,75 @@ function wfSpecialImport( $page = '' ) {
 		);
 	}
 }
+
+/**
+ * Reporting callback
+ * @ingroup SpecialPage
+ */
+class ImportReporter {
+	function __construct( $importer, $upload, $interwiki ) {
+		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
+		$this->mPageCount = 0;
+		$this->mIsUpload = $upload;
+		$this->mInterwiki = $interwiki;
+	}
+
+	function open() {
+		global $wgOut;
+		$wgOut->addHtml( "<ul>\n" );
+	}
+
+	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
+		global $wgOut, $wgUser, $wgLang, $wgContLang;
+
+		$skin = $wgUser->getSkin();
+
+		$this->mPageCount++;
+
+		$localCount = $wgLang->formatNum( $successCount );
+		$contentCount = $wgContLang->formatNum( $successCount );
+
+		if( $successCount > 0 ) {
+			$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . " " .
+				wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
+				"</li>\n"
+			);
+
+			$log = new LogPage( 'import' );
+			if( $this->mIsUpload ) {
+				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
+					$contentCount );
+				$log->addEntry( 'upload', $title, $detail );
+			} else {
+				$interwiki = '[[:' . $this->mInterwiki . ':' .
+					$origTitle->getPrefixedText() . ']]';
+				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
+					$contentCount, $interwiki );
+				$log->addEntry( 'interwiki', $title, $detail );
+			}
+
+			$comment = $detail; // quick
+			$dbw = wfGetDB( DB_MASTER );
+			$latest = $title->getLatestRevID();
+			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleId(), $comment, true );
+			$nullRevision->insertOn( $dbw );
+			$article = new Article( $title );
+			# Update page record
+			$article->updateRevisionOn( $dbw, $nullRevision );
+			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
+		} else {
+			$wgOut->addHtml( '<li>' . wfMsgHtml( 'import-nonewrevisions' ) . '</li>' );
+		}
+	}
+
+	function close() {
+		global $wgOut;
+		if( $this->mPageCount == 0 ) {
+			$wgOut->addHtml( "</ul>\n" );
+			return new WikiErrorMsg( "importnopages" );
+		}
+		$wgOut->addHtml( "</ul>\n" );
+
+		return $this->mPageCount;
+	}
+}

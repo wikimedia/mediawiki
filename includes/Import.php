@@ -22,78 +22,6 @@
  * @file
  * @ingroup SpecialPage
  */
- 
-/**
- * Reporting callback
- * @ingroup SpecialPage
- */
-class ImportReporter {
-	function __construct( $importer, $upload, $interwiki ) {
-		$importer->setPageOutCallback( array( $this, 'reportPage' ) );
-		$this->mPageCount = 0;
-		$this->mIsUpload = $upload;
-		$this->mInterwiki = $interwiki;
-	}
-
-	function open() {
-		global $wgOut;
-		$wgOut->addHtml( "<ul>\n" );
-	}
-
-	function reportPage( $title, $origTitle, $revisionCount, $successCount ) {
-		global $wgOut, $wgUser, $wgLang, $wgContLang;
-
-		$skin = $wgUser->getSkin();
-
-		$this->mPageCount++;
-
-		$localCount = $wgLang->formatNum( $successCount );
-		$contentCount = $wgContLang->formatNum( $successCount );
-
-		if( $successCount > 0 ) {
-			$wgOut->addHtml( "<li>" . $skin->makeKnownLinkObj( $title ) . " " .
-				wfMsgExt( 'import-revision-count', array( 'parsemag', 'escape' ), $localCount ) .
-				"</li>\n"
-			);
-
-			$log = new LogPage( 'import' );
-			if( $this->mIsUpload ) {
-				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
-					$contentCount );
-				$log->addEntry( 'upload', $title, $detail );
-			} else {
-				$interwiki = '[[:' . $this->mInterwiki . ':' .
-					$origTitle->getPrefixedText() . ']]';
-				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
-					$contentCount, $interwiki );
-				$log->addEntry( 'interwiki', $title, $detail );
-			}
-
-			$comment = $detail; // quick
-			$dbw = wfGetDB( DB_MASTER );
-			$latest = $title->getLatestRevID();
-			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleId(), $comment, true );
-			$nullRevision->insertOn( $dbw );
-			$article = new Article( $title );
-			# Update page record
-			$article->updateRevisionOn( $dbw, $nullRevision );
-			wfRunHooks( 'NewRevisionFromEditComplete', array($article, $nullRevision, $latest) );
-		} else {
-			$wgOut->addHtml( '<li>' . wfMsgHtml( 'import-nonewrevisions' ) . '</li>' );
-		}
-	}
-
-	function close() {
-		global $wgOut;
-		if( $this->mPageCount == 0 ) {
-			$wgOut->addHtml( "</ul>\n" );
-			return new WikiErrorMsg( "importnopages" );
-		}
-		$wgOut->addHtml( "</ul>\n" );
-
-		return $this->mPageCount;
-	}
-}
 
 /**
  *
@@ -108,6 +36,9 @@ class WikiRevision {
 	var $text = "";
 	var $comment = "";
 	var $minor = false;
+	var $type = "";
+	var $action = "";
+	var $params = "";
 
 	function setTitle( $title ) {
 		if( is_object( $title ) ) {
@@ -159,6 +90,18 @@ class WikiRevision {
 	function setSize( $size ) {
 		$this->size = intval( $size );
 	}
+	
+	function setType( $type ) {
+		$this->type = $type;
+	}
+	
+	function setAction( $action ) {
+		$this->action = $action;
+	}
+	
+	function setParams( $params ) {
+		$this->params = $params;
+	}
 
 	function getTitle() {
 		return $this->title;
@@ -199,6 +142,18 @@ class WikiRevision {
 	function getSize() {
 		return $this->size;
 	}
+	
+	function getType() {
+		return $this->type;
+	}
+	
+	function getAction() {
+		return $this->action;
+	}
+	
+	function getParams() {
+		return $this->params;
+	}
 
 	function importOldRevision() {
 		$dbw = wfGetDB( DB_MASTER );
@@ -226,23 +181,22 @@ class WikiRevision {
 		} else {
 			$created = false;
 
-			$prior = Revision::loadFromTimestamp( $dbw, $this->title, $this->timestamp );
-			if( !is_null( $prior ) ) {
+			$prior = $dbw->selectField( 'revision', '1',
+				array( 'rev_page' => $pageId,
+					'rev_timestamp' => $dbw->timestamp( $this->timestamp ),
+					'rev_user_text' => $userText,
+					'rev_comment'   => $this->getComment() ),
+				__METHOD__
+			);
+			if( $prior ) {
 				// FIXME: this could fail slightly for multiple matches :P
 				wfDebug( __METHOD__ . ": skipping existing revision for [[" .
-					$this->title->getPrefixedText() . "]], timestamp " .
-					$this->timestamp . "\n" );
+					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
 		}
 
-		# FIXME: Use original rev_id optionally
-		# FIXME: blah blah blah
-
-		#if( $numrows > 0 ) {
-		#	return wfMsg( "importhistoryconflict" );
-		#}
-
+		# FIXME: Use original rev_id optionally (better for backups)
 		# Insert the row
 		$revision = new Revision( array(
 			'page'       => $pageId,
@@ -277,6 +231,46 @@ class WikiRevision {
 		}
 
 		return true;
+	}
+	
+	function importLogItem() {
+		$dbw = wfGetDB( DB_MASTER );
+		# FIXME: this will not record autoblocks
+		if( !$this->getTitle() ) {
+			wfDebug( __METHOD__ . ": skipping invalid {$this->type}/{$this->action} log time, timestamp " . 
+				$this->timestamp . "\n" );
+			return;
+		}
+		# Check if it exists already
+		// FIXME: use original log ID (better for backups)
+		$prior = $dbw->selectField( 'logging', '1',
+			array( 'log_type' => $this->getType(),
+				'log_action'    => $this->getAction(),
+				'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+				'log_user_text' => $this->user_text,
+				'log_params'    => $this->params ),
+			__METHOD__
+		);
+		// FIXME: this could fail slightly for multiple matches :P
+		if( $prior ) {
+			wfDebug( __METHOD__ . ": skipping existing item for Log:{$this->type}/{$this->action}, timestamp " . 
+				$this->timestamp . "\n" );
+			return false;
+		}
+		$log_id = $dbw->nextSequenceValue( 'log_log_id_seq' );
+		$data = array(
+			'log_id' => $log_id,
+			'log_type' => $this->type,
+			'log_action' => $this->action,
+			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+			'log_user' => User::idFromName( $this->user_text ),
+			'log_user_text' => $this->user_text,
+			'log_namespace' => $this->getTitle()->getNamespace(),
+			'log_title' => $this->getTitle()->getDBkey(),
+			'log_comment' => $this->getComment(),
+			'log_params' => $this->params
+		);
+		$dbw->insert( 'logging', $data, __METHOD__ );
 	}
 
 	function importUpload() {
@@ -378,6 +372,7 @@ class WikiImporter {
 	var $mPageCallback = null;
 	var $mPageOutCallback = null;
 	var $mRevisionCallback = null;
+	var $mLogItemCallback = null;
 	var $mUploadCallback = null;
 	var $mTargetNamespace = null;
 	var $lastfield;
@@ -386,6 +381,7 @@ class WikiImporter {
 	function __construct( $source ) {
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
 		$this->setUploadCallback( array( $this, "importUpload" ) );
+		$this->setLogItemCallback( array( $this, "importLogItem" ) );
 		$this->mSource = $source;
 	}
 
@@ -493,6 +489,17 @@ class WikiImporter {
 		$this->mUploadCallback = $callback;
 		return $previous;
 	}
+	
+	/**
+	 * Sets the action to perform as each log item reached.
+	 * @param $callback callback
+	 * @return callback
+	 */
+	function setLogItemCallback( $callback ) {
+		$previous = $this->mLogItemCallback;
+		$this->mLogItemCallback = $callback;
+		return $previous;
+	}
 
 	/**
 	 * Set a target namespace to override the defaults
@@ -517,6 +524,16 @@ class WikiImporter {
 	function importRevision( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
 		return $dbw->deadlockLoop( array( $revision, 'importOldRevision' ) );
+	}
+	
+	/**
+	 * Default per-revision callback, performs the import.
+	 * @param $revision WikiRevision
+	 * @private
+	 */
+	function importLogItem( $rev ) {
+		$dbw = wfGetDB( DB_MASTER );
+		return $dbw->deadlockLoop( array( $rev, 'importLogItem' ) );
 	}
 
 	/**
@@ -572,7 +589,6 @@ class WikiImporter {
 		}
 	}
 
-
 	# XML parser callbacks from here out -- beware!
 	function donothing( $parser, $x, $y="" ) {
 		#$this->debug( "donothing" );
@@ -597,6 +613,10 @@ class WikiImporter {
 			$this->uploadCount = 0;
 			$this->uploadSuccessCount = 0;
 			xml_set_element_handler( $parser, "in_page", "out_page" );
+		} elseif( $name == 'logitem' ) {
+			$this->push( $name );
+			$this->workRevision = new WikiRevision;
+			xml_set_element_handler( $parser, "in_logitem", "out_logitem" );
 		} else {
 			return $this->throwXMLerror( "Expected <page>, got <$name>" );
 		}
@@ -696,10 +716,12 @@ class WikiImporter {
 		$this->debug( "in_nothing $name" );
 		return $this->throwXMLerror( "No child elements allowed here; got <$name>" );
 	}
+
 	function char_append( $parser, $data ) {
 		$this->debug( "char_append '$data'" );
 		$this->appenddata .= $data;
 	}
+
 	function out_append( $parser, $name ) {
 		$this->debug( "out_append $name" );
 		if( $name != $this->appendfield ) {
@@ -724,7 +746,7 @@ class WikiImporter {
 			}
 			break;
 		case "id":
-			if ( $this->parentTag() == 'revision' ) {
+			if ( $this->parentTag() == 'revision' || $this->parentTag() == 'logitem' ) {
 				if( $this->workRevision )
 					$this->workRevision->setID( $this->appenddata );
 			}
@@ -748,6 +770,22 @@ class WikiImporter {
 		case "comment":
 			if( $this->workRevision )
 				$this->workRevision->setComment( $this->appenddata );
+			break;
+		case "type":
+			if( $this->workRevision )
+				$this->workRevision->setType( $this->appenddata );
+			break;
+		case "action":
+			if( $this->workRevision )
+				$this->workRevision->setAction( $this->appenddata );
+			break;
+		case "logtitle":
+			if( $this->workRevision )
+				$this->workRevision->setTitle( Title::newFromText( $this->appenddata ) );
+			break;
+		case "params":
+			if( $this->workRevision )
+				$this->workRevision->setParams( $this->appenddata );
 			break;
 		case "minor":
 			if( $this->workRevision )
@@ -807,6 +845,46 @@ class WikiImporter {
 
 		if( $this->workRevision ) {
 			$ok = call_user_func_array( $this->mRevisionCallback,
+				array( $this->workRevision, $this ) );
+			if( $ok ) {
+				$this->workSuccessCount++;
+			}
+		}
+	}
+	
+	function in_logitem( $parser, $name, $attribs ) {
+		$this->debug( "in_logitem $name" );
+		switch( $name ) {
+		case "id":
+		case "timestamp":
+		case "comment":
+		case "type":
+		case "action":
+		case "logtitle":
+		case "params":
+			$this->appendfield = $name;
+			xml_set_element_handler( $parser, "in_nothing", "out_append" );
+			xml_set_character_data_handler( $parser, "char_append" );
+			break;
+		case "contributor":
+			$this->push( "contributor" );
+			xml_set_element_handler( $parser, "in_contributor", "out_contributor" );
+			break;
+		default:
+			return $this->throwXMLerror( "Element <$name> not allowed in a <revision>." );
+		}
+	}
+
+	function out_logitem( $parser, $name ) {
+		$this->debug( "out_logitem $name" );
+		$this->pop();
+		if( $name != "logitem" ) {
+			return $this->throwXMLerror( "Expected </logitem>, got </$name>" );
+		}
+		xml_set_element_handler( $parser, "in_mediawiki", "out_mediawiki" );
+
+		if( $this->workRevision ) {
+			$ok = call_user_func_array( $this->mLogItemCallback,
 				array( $this->workRevision, $this ) );
 			if( $ok ) {
 				$this->workSuccessCount++;
