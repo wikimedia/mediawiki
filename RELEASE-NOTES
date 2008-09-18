@@ -285,6 +285,9 @@ At this time we still recommend 4.0, but 4.1/5.0 will work fine in most cases.
 
 == Upgrading ==
 
+1.14 has several database changes since 1.13, and will not work without schema
+updates.
+
 If upgrading from before 1.11, and you are using a wiki as a commons repository,
 make sure that it is updated as well. Otherwise, errors may arise due to
 database schema changes.
