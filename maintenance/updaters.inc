@@ -145,8 +145,9 @@ $wgMysqlUpdates = array(
 	array( 'update_password_format' ),
 	
 	// 1.14
-	array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
-	array( 'do_active_users_init' )
+	array( 'add_field', 'site_stats',    'ss_active_users',  'patch-ss_active_users.sql' ),
+	array( 'do_active_users_init' ),
+	array( 'add_field', 'logging',       'log_user_text',    'patch-log_user_text.sql' ),
 );
 
 
