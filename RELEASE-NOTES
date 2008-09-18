@@ -256,6 +256,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * list=random now has rnredirect parameter, to get random redirects.
 * Added APIAfterExecute, APIQueryAfterExecute and APIQueryGeneratorAfterExecute
   hooks which allow for extending core modules in a cleaner way
+* action=protect checks for invalid protection types and levels
 
 === Languages updated in 1.14 ===
 
