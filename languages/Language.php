@@ -1907,7 +1907,7 @@ class Language {
 	function commaList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'comma-separator', 'escape-noentities' ) );
+			wfMsgExt( 'comma-separator', 'escapenoentities' ) );
 	}
 
 	/**
