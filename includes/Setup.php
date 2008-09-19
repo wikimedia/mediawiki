@@ -174,43 +174,6 @@ if($wgMetaNamespace === FALSE) {
 $wgContLanguageCode = $wgLanguageCode;
 
 wfProfileOut( $fname.'-misc1' );
-wfProfileIn( $fname.'-memcached' );
-
-$wgMemc =& wfGetMainCache();
-$messageMemc =& wfGetMessageCacheStorage();
-$parserMemc =& wfGetParserCacheStorage();
-
-wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
-       "\nMessage cache: " . get_class( $messageMemc ) .
-	   "\nParser cache: " . get_class( $parserMemc ) . "\n" );
-
-wfProfileOut( $fname.'-memcached' );
-wfProfileIn( $fname.'-SetupSession' );
-
-if ( $wgDBprefix ) {
-	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
-} elseif ( $wgSharedDB ) {
-	$wgCookiePrefix = $wgSharedDB;
-} else {
-	$wgCookiePrefix = $wgDBname;
-}
-$wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
-
-# If session.auto_start is there, we can't touch session name
-#
-if( !wfIniGetBool( 'session.auto_start' ) )
-	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-
-if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
-	wfIncrStats( 'request_with_session' );
-	wfSetupSession();
-	$wgSessionStarted = true;
-} else {
-	wfIncrStats( 'request_without_session' );
-	$wgSessionStarted = false;
-}
-
-wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-globals' );
 
 if ( !$wgDBservers ) {
@@ -237,10 +200,48 @@ $wgLang = new StubUserLang;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
-$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache', 
-	array( $parserMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
+wfProfileIn( $fname.'-memcached' );
 
+$wgMemc =& wfGetMainCache();
+$messageMemc =& wfGetMessageCacheStorage();
+$parserMemc =& wfGetParserCacheStorage();
+
+wfDebug( 'Main cache: ' . get_class( $wgMemc ) .
+       "\nMessage cache: " . get_class( $messageMemc ) .
+	   "\nParser cache: " . get_class( $parserMemc ) . "\n" );
+
+wfProfileOut( $fname.'-memcached' );
+
+$wgMessageCache = new StubObject( 'wgMessageCache', 'MessageCache', 
+	array( $messageMemc, $wgUseDatabaseMessages, $wgMsgCacheExpiry, wfWikiID() ) );
+	
 wfProfileOut( $fname.'-globals' );
+wfProfileIn( $fname.'-SetupSession' );
+
+if ( $wgDBprefix ) {
+	$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
+} elseif ( $wgSharedDB ) {
+	$wgCookiePrefix = $wgSharedDB;
+} else {
+	$wgCookiePrefix = $wgDBname;
+}
+$wgCookiePrefix = strtr($wgCookiePrefix, "=,; +.\"'\\[", "__________");
+
+# If session.auto_start is there, we can't touch session name
+#
+if( !wfIniGetBool( 'session.auto_start' ) )
+	session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
+
+if( !$wgCommandLineMode && ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix.'Token'] ) ) ) {
+	wfIncrStats( 'request_with_session' );
+	wfSetupSession();
+	$wgSessionStarted = true;
+} else {
+	wfIncrStats( 'request_without_session' );
+	$wgSessionStarted = false;
+}
+
+wfProfileOut( $fname.'-SetupSession' );
 wfProfileIn( $fname.'-User' );
 
 # Skin setup functions
@@ -257,7 +258,6 @@ if( !is_object( $wgAuth ) ) {
 }
 
 wfProfileOut( $fname.'-User' );
-
 wfProfileIn( $fname.'-misc2' );
 
 $wgDeferredUpdateList = array();
@@ -300,5 +300,6 @@ wfDebug( "Fully initialised\n" );
 $wgFullyInitialised = true;
 wfProfileOut( $fname.'-extensions' );
 wfProfileOut( $fname );
+
 
 
