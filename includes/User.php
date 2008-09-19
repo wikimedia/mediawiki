@@ -1105,19 +1105,15 @@ class User {
 
 		$found = false;
 		$host = '';
-		// FIXME: IPv6 ???
-		$m = array();
-		if ( preg_match( '/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/', $ip, $m ) ) {
+		// FIXME: IPv6 ???  (http://bugs.php.net/bug.php?id=33170)
+		if( IP::isIPv4($ip) ) {
 			# Make hostname
-			for ( $i=4; $i>=1; $i-- ) {
-				$host .= $m[$i] . '.';
-			}
-			$host .= $base;
+			$host = "$ip.$base";
 
 			# Send query
 			$ipList = gethostbynamel( $host );
 
-			if ( $ipList ) {
+			if( $ipList ) {
 				wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 				$found = true;
 			} else {
