@@ -9,7 +9,12 @@
 /** */
 require_once( "commandLine.inc" );
 
-/** @todo document */
+/** 
+ * Run a bunch of URLs through SquidUpdate::purge()
+ * to benchmark Squid response times.
+ * @param $urls array A bunch of URLs to purge
+ * @param $trials int How many times to run the test?
+ */
 function benchSquid( $urls, $trials = 1 ) {
 	$start = wfTime();
 	for( $i = 0; $i < $trials; $i++) {
@@ -22,7 +27,10 @@ function benchSquid( $urls, $trials = 1 ) {
 		count( $urls ), $pertrial * 1000.0, $pertitle * 1000.0 );
 }
 
-/** @todo document */
+/** 
+ * Get an array of randomUrl()'s.
+ * @param $length int How many urls to add to the array
+ */
 function randomUrlList( $length ) {
 	$list = array();
 	for( $i = 0; $i < $length; $i++ ) {
@@ -31,13 +39,19 @@ function randomUrlList( $length ) {
 	return $list;
 }
 
-/** @todo document */
+/** 
+ * Return a random URL of the wiki. Not necessarily an actual title in the
+ * database, but at least a URL that looks like one. 
+ */
 function randomUrl() {
 	global $wgServer, $wgArticlePath;
 	return $wgServer . str_replace( '$1', randomTitle(), $wgArticlePath );
 }
 
-/** @todo document */
+/** 
+ * Create a random title string (not necessarily a Title object). 
+ * For use with randomUrl().
+ */
 function randomTitle() {
 	$str = '';
 	$length = mt_rand( 1, 20 );
