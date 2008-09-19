@@ -460,8 +460,8 @@ class MimeMagic {
 		$xml = new XmlTypeCheck( $file );
 		if( $xml->wellFormed ) {
 			global $wgXMLMimeTypes;
-			if( isset( $wgXMLMimeTypes[$xml->rootElement] ) ) {
-				return $wgXMLMimeTypes[$xml->rootElement];
+			if( isset( $wgXMLMimeTypes[$xml->getRootElement()] ) ) {
+				return $wgXMLMimeTypes[$xml->getRootElement()];
 			} else {
 				return 'application/xml';
 			}
