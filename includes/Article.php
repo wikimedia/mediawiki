@@ -1873,11 +1873,12 @@ class Article {
 					if ($restrictions != '') {
 						$protect_description .= "[$action=$restrictions] (";
 						if( $encodedExpiry[$action] != 'infinity' ) {
-							$protect_description .= wfMsgForContent( 'protect-expiring',  $wgContLang->timeanddate( $expiry[$action], false, false ) ); 	 
+							$protect_description .= wfMsgForContent( 'protect-expiring', 
+								$wgContLang->timeanddate( $expiry[$action], false, false ) ); 	 
 						} else {
 							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
 						}
-						$protect_description .= ') ';
+						$protect_description .= ')';
 					}
 				}
 					
