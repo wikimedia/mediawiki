@@ -678,14 +678,6 @@ $wgDBClusterTimeout = 10;
  */
 $wgDBAvgStatusPoll = 2000;
 
-/**
- * wgDBminWordLen :
- * MySQL 3.x : used to discard words that MySQL will not return any results for
- * shorter values configure mysql directly.
- * MySQL 4.x : ignore it and configure mySQL
- * See: http://dev.mysql.com/doc/mysql/en/Fulltext_Fine-tuning.html
- */
-$wgDBminWordLen     = 4;
 /** Set to true if using InnoDB tables */
 $wgDBtransactions	= false;
 /** Set to true for compatibility with extensions that might be checking.
