@@ -633,7 +633,7 @@ class PreferencesForm {
 
 			$this->tableRow(
 				wfMsgExt( 'prefs-memberingroups', array( 'parseinline' ), count( $userEffectiveGroupsArray ) ),
-				implode( wfMsg( 'comma-separator' ), $userEffectiveGroupsArray ) .
+				$wgLang->commaList( $userEffectiveGroupsArray ) .
 				'<br />(' . implode( ' | ', $toolLinks ) . ')'
 			) .
 

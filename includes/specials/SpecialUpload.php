@@ -328,10 +328,7 @@ class UploadForm {
 					wfMsgExt( 'filetype-banned-type',
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
-						implode(
-							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
-							$wgFileExtensions
-						),
+						$wgLang->commaList( $wgFileExtensions ),
 						$wgLang->formatNum( count($wgFileExtensions) )
 					)
 				);
@@ -520,10 +517,7 @@ class UploadForm {
 					wfMsgExt( 'filetype-unwanted-type',
 						array( 'parseinline' ),
 						htmlspecialchars( $finalExt ),
-						implode(
-							wfMsgExt( 'comma-separator', array( 'escapenoentities' ) ),
-							$wgFileExtensions
-						),
+						$wgLang->commaList( $wgFileExtensions ),
 						$wgLang->formatNum( count($wgFileExtensions) )
 					) . '</li>';
 				}
@@ -1005,21 +999,20 @@ wgUploadAutoFill = {$autofill};
 
 		$allowedExtensions = '';
 		if( $wgCheckFileExtensions ) {
-			$delim = wfMsgExt( 'comma-separator', array( 'escapenoentities' ) );
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					wfMsgWikiHtml( 'upload-permitted', implode( $wgFileExtensions, $delim ) ) .
+					wfMsgWikiHtml( 'upload-permitted', $wgLang->commaList( $wgFileExtensions ) ) .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-					wfMsgWikiHtml( 'upload-preferred', implode( $wgFileExtensions, $delim ) ) .
+					wfMsgWikiHtml( 'upload-preferred', $wgLang->commaList( $wgFileExtensions ) ) .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-					wfMsgWikiHtml( 'upload-prohibited', implode( $wgFileBlacklist, $delim ) ) .
+					wfMsgWikiHtml( 'upload-prohibited', $wgLang->commaList( $wgFileBlacklist ) ) .
 					"</div>\n";
 			}
 		} else {

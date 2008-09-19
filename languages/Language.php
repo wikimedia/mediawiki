@@ -1898,6 +1898,17 @@ class Language {
 		}
 		return $s;
 	}
+	
+	/**
+	 * Take a list of strings and build a locale-friendly comma-separated
+	 * list, using the local comma-separator message.
+	 * @fixme Fix this so it can work for $wgContLang too
+	 */
+	function commaList( $list ) {
+		return implode(
+			$list,
+			wfMsgExt( 'comma-separator', 'escape-noentities' ) );
+	}
 
 	/**
 	 * Truncate a string to a specified length in bytes, appending an optional
