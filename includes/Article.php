@@ -1512,14 +1512,13 @@ class Article {
 
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
-						$rcid = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
+						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
 							$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId );
 
 						# Mark as patrolled if the user can do so
 						if( $GLOBALS['wgUseRCPatrol'] && $user->isAllowed( 'autopatrol' ) ) {
-							RecentChange::markPatrolled( $rcid );
-							PatrolLog::record( $rcid, true );
+							RecentChange::markPatrolled( $rc, true );
 						}
 					}
 					$user->incEditCount();
@@ -1580,12 +1579,11 @@ class Article {
 			wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
 			if( !( $flags & EDIT_SUPPRESS_RC ) ) {
-				$rcid = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
+				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
 				  '', strlen( $text ), $revisionId );
 				# Mark as patrolled if the user can
 				if( ($GLOBALS['wgUseRCPatrol'] || $GLOBALS['wgUseNPPatrol']) && $user->isAllowed( 'autopatrol' ) ) {
-					RecentChange::markPatrolled( $rcid );
-					PatrolLog::record( $rcid, true );
+					RecentChange::markPatrolled( $rc, true );
 				}
 			}
 			$user->incEditCount();
@@ -1660,7 +1658,11 @@ class Article {
 		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = Title::makeTitle( NS_SPECIAL, $returnto );
 
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin();
 		$errors = $rc->doMarkPatrolled();
+		$dbw->commit();
+
 		if ( in_array(array('rcpatroldisabled'), $errors) ) {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
