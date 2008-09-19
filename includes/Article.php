@@ -1870,7 +1870,7 @@ class Article {
 				$protect_description = '';
 				foreach( $limit as $action => $restrictions  ) {
 					$encodedExpiry[$action] = Block::encodeExpiry($expiry[$action], $dbw );
-					if ($restrictions != '') {
+					if( $restrictions != '' ) {
 						$protect_description .= "[$action=$restrictions] (";
 						if( $encodedExpiry[$action] != 'infinity' ) {
 							$protect_description .= wfMsgForContent( 'protect-expiring', 
@@ -1878,9 +1878,10 @@ class Article {
 						} else {
 							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
 						}
-						$protect_description .= ')';
+						$protect_description .= ') ';
 					}
 				}
+				$protect_description = trim($protect_description);
 					
 				if( $protect_description && $protect )
 					$editComment .= " ($protect_description)";
