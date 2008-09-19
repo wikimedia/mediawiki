@@ -27,6 +27,10 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * API interface for page purging
+ * @ingroup API
+ */
 class ApiPurge extends ApiBase {
 
 	public function __construct($main, $action) {

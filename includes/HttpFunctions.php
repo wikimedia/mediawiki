@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * @defgroup HTTP HTTP
+ * 
  * Various HTTP related functions
  * @ingroup HTTP
  */

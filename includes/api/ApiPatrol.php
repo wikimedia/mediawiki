@@ -27,6 +27,10 @@ if (!defined('MEDIAWIKI')) {
 	require_once ('ApiBase.php');
 }
 
+/**
+ * Allows user to patrol pages
+ * @ingroup API
+ */
 class ApiPatrol extends ApiBase {
 
 	public function __construct($main, $action) {
