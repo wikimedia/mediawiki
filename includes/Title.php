@@ -2679,7 +2679,6 @@ class Title {
 		$latest = $this->getLatestRevID();
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
@@ -2759,7 +2758,6 @@ class Title {
 				}
 			}
 		}
-		$dbw->commit();
 
 		# Log the move
 		$log = new LogPage( 'move' );
@@ -2796,7 +2794,6 @@ class Title {
 		$latest = $this->getLatestRevId();
 		
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$now = $dbw->timestamp();
 
 		# Save a null revision in the page's history notifying of the move
@@ -2856,7 +2853,6 @@ class Title {
 				}
 			}
 		}
-		$dbw->commit();
 
 		# Log the move
 		$log = new LogPage( 'move' );

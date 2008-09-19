@@ -481,7 +481,6 @@ class PageArchive {
 			$ret->seek( 0 );
 		}
 
-		$dbw->begin();
 		if( $makepage ) {
 			$newid  = $article->insertOn( $dbw );
 			$pageId = $newid;
@@ -565,7 +564,6 @@ class PageArchive {
 			return self::UNDELETE_UNKNOWNERR;
 		}
 
-		$dbw->commit();
 		return $restored;
 	}
 

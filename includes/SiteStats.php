@@ -227,12 +227,12 @@ class SiteStatsUpdate {
 				$dbr = wfGetDB( DB_SLAVE, array( 'SpecialStatistics', 'vslow') );
 				list( $page, $user ) = $dbr->tableNamesN( 'page', 'user' );
 
-				$sql = "SELECT COUNT(page_namespace) AS total FROM $page";
+				$sql = "SELECT COUNT(*) AS total FROM $page";
 				$res = $dbr->query( $sql, $fname );
 				$pageRow = $dbr->fetchObject( $res );
 				$pages = $pageRow->total + $this->mPages;
 
-				$sql = "SELECT COUNT(user_id) AS total FROM $user";
+				$sql = "SELECT COUNT(*) AS total FROM $user";
 				$res = $dbr->query( $sql, $fname );
 				$userRow = $dbr->fetchObject( $res );
 				$users = $userRow->total + $this->mUsers;
@@ -249,9 +249,7 @@ class SiteStatsUpdate {
 		if ( $updates ) {
 			$site_stats = $dbw->tableName( 'site_stats' );
 			$sql = $dbw->limitResultForUpdate("UPDATE $site_stats SET $updates", 1);
-			$dbw->begin();
 			$dbw->query( $sql, $fname );
-			$dbw->commit();
 		}
 	}
 	
@@ -262,11 +260,9 @@ class SiteStatsUpdate {
 		$activeUsers = $dbr->selectField( 'recentchanges', 'COUNT( DISTINCT rc_user_text )',
 			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ),
 			__METHOD__ );
-		$dbw->begin();
 		$dbw->update( 'site_stats', 
 			array( 'ss_active_users' => intval($activeUsers) ),
 			array( 'ss_row_id' => 1 ), __METHOD__, array( 'LIMIT' => 1 )
 		);
-		$dbw->commit();
 	}
 }

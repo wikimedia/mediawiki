@@ -1659,9 +1659,7 @@ class Article {
 		$return = Title::makeTitle( NS_SPECIAL, $returnto );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$errors = $rc->doMarkPatrolled();
-		$dbw->commit();
 
 		if ( in_array(array('rcpatroldisabled'), $errors) ) {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
@@ -3015,7 +3013,6 @@ class Article {
 		wfProfileIn( __METHOD__ );
 
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
 		$revision = new Revision( array(
 			'page'       => $this->getId(),
 			'text'       => $text,
@@ -3024,7 +3021,6 @@ class Article {
 			) );
 		$revision->insertOn( $dbw );
 		$this->updateRevisionOn( $dbw, $revision );
-		$dbw->commit();
 
 		wfRunHooks( 'NewRevisionFromEditComplete', array($this, $revision, false) );
 
@@ -3453,13 +3449,7 @@ class Article {
 			if ( count( $templates_diff ) > 0 ) {
 				# Whee, link updates time.
 				$u = new LinksUpdate( $this->mTitle, $parserOutput );
-
-				$dbw = wfGetDb( DB_MASTER );
-				$dbw->begin();
-
 				$u->doUpdate();
-
-				$dbw->commit();
 			}
 		}
 
