@@ -741,13 +741,12 @@ class SearchHighlighter {
 		
 		// prepare regexps
 		foreach( $terms as $index => $term ) {
-			$terms[$index] = preg_quote( $term, '/' );			
 			// manually do upper/lowercase stuff for utf-8 since PHP won't do it
 			if(preg_match('/[\x80-\xff]/', $term) ){
 				$terms[$index] = preg_replace_callback('/./us',array($this,'caseCallback'),$terms[$index]);
+			} else {
+				$terms[$index] = $term;
 			}
-			
-			
 		}
 		$anyterm = implode( '|', $terms );
 		$phrase = implode("$wgSearchHighlightBoundaries+", $terms );
@@ -1077,11 +1076,10 @@ class SearchHighlighter {
     public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
         global $wgLang, $wgContLang;
         $fname = __METHOD__;
-    
+
         $lines = explode( "\n", $text );
         
         $terms = implode( '|', $terms );
-        $terms = str_replace( '/', "\\/", $terms);
         $max = intval( $contextchars ) + 1;
         $pat1 = "/(.*)($terms)(.{0,$max})/i";
 
