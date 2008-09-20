@@ -460,7 +460,7 @@ $2',
 'noname'                     => '缺簿名，或不格也。',
 'loginsuccesstitle'          => '登簿成矣',
 'loginsuccess'               => "'''$1'''登{{SITENAME}}矣",
-'nosuchuser'                 => '查無"$1"，惠增簿或核之。',
+'nosuchuser'                 => '查無"$1"，惠[[Special:Userlogin/signup|增簿]]或核之。',
 'nosuchusershort'            => '查無"<nowiki>$1</nowiki>"，惠核之。',
 'nouserspecified'            => '簿名須也',
 'wrongpassword'              => '符節不合，惠核之。',
@@ -479,7 +479,7 @@ $2',
 防濫，單一密記短至$1時寄之。',
 'mailerror'                  => '信失遣如下：$1',
 'acct_creation_throttle_hit' => '歉哉，$1簿增矣，不可復增也。',
-'emailauthenticated'         => '$1郵驛證矣',
+'emailauthenticated'         => '$2 $3郵驛證矣',
 'emailnotauthenticated'      => '郵驛<strong>未證</strong>，下不遺書。',
 'noemailprefs'               => '郵驛須然如下：',
 'emailconfirmlink'           => '惠考郵驛',
@@ -611,6 +611,8 @@ $2',
 'permissionserrorstext-withaction' => '子權未逮，有{{PLURAL:$1|因|因}}如$2：',
 'recreate-deleted-warn'            => "'''留意：刪文復造，惠慎纂。'''
 誌刪如下：",
+'deleted-notice'                   => '此頁刪矣。
+此頁之誌參留之。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警：頁有多貴功呼。
@@ -1321,6 +1323,16 @@ $2',
 'special-categories-sort-count' => '排數',
 'special-categories-sort-abc'   => '排字',
 
+# Special:LinkSearch
+'linksearch'       => '尋網連',
+'linksearch-pat'   => '尋址：',
+'linksearch-ns'    => '名集：',
+'linksearch-ok'    => '尋',
+'linksearch-text'  => '用似"*.wikipedia.org"之萬字。<br />
+援之議：<tt>$1</tt>',
+'linksearch-line'  => '$1連$2',
+'linksearch-error' => '萬字僅用於機之始也。',
+
 # Special:ListUsers
 'listusersfrom'      => '始簿：',
 'listusers-submit'   => '見',
@@ -1511,6 +1523,7 @@ $NEWPAGE
 'protect-cantedit'            => '汝無動頁之護也，因汝無權纂之矣。',
 'protect-othertime'           => '它時：',
 'protect-othertime-op'        => '它時',
+'protect-existing-expiry'     => '現屆時：$1',
 'protect-otherreason'         => '它／附之理：',
 'protect-otherreason-op'      => '它／附之理',
 'protect-dropdown'            => '*通錮之理
@@ -1547,7 +1560,7 @@ $NEWPAGE
 'undeletehistory'              => '如還題，審亦隨焉；若存同題，還如誌，不以代焉。',
 'undeleterevdel'               => '新審不牽，難還也；銷、見之以篤還。',
 'undeletehistorynoadmin'       => '文刪矣，何由如下；並示末纂者。詳文藏，惟有迭可閱。',
-'undelete-revision'            => '自$2，$3纂之$1審刪如下：',
+'undelete-revision'            => '自$4$5，$3纂之$1審刪如下：',
 'undeleterevision-missing'     => '審謬失；棄、還或鏈亡。',
 'undeletebtn'                  => '還',
 'undeletelink'                 => '還',
@@ -1674,6 +1687,7 @@ $NEWPAGE
 'contribslink'                    => '勛',
 'autoblocker'                     => '近日$1"$2"；同子IP址，故禁焉。',
 'blocklogpage'                    => '誌禁',
+'blocklog-fulllog'                => '整誌禁',
 'blocklogentry'                   => '禁[[$1]]屆$2$3',
 'blocklogtext'                    => '此誌禁赦；自禁不示。見[[Special:IPBlockList|此]]列今禁者。',
 'unblocklogentry'                 => '$1赦焉',

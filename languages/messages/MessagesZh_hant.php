@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -467,7 +467,7 @@ $2',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => '你現在以 "$1"的身份登入{{SITENAME}}。',
 'nosuchuser'                 => '找不到用戶 "$1"。
-檢查您的拼寫，或者用下面的表格建立一個新帳號。',
+檢查您的拼寫，或者用下面的表格[[Special:Userlogin/signup|建立一個新帳號]]。',
 'nosuchusershort'            => '沒有一個名為「<nowiki>$1</nowiki>」的用戶。請檢查您輸入的文字是否有錯誤。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
@@ -484,7 +484,7 @@ $2',
 'throttled-mailpassword'     => '密碼提醒已經在前$1小時內發送。為防止濫用，限定在$1小時內僅發送一次密碼提醒。',
 'mailerror'                  => '發送郵件錯誤: $1',
 'acct_creation_throttle_hit' => '抱歉！您已經註冊了$1帳號。你不能再註冊了。',
-'emailauthenticated'         => '您的電子郵件地址已經於$1確認有效。',
+'emailauthenticated'         => '您的電子郵件地址已經於$2 $3確認有效。',
 'emailnotauthenticated'      => '您的郵箱位址<strong>還沒被認証</strong>。以下功能將不會發送任何郵件。',
 'noemailprefs'               => '<strong>指定一個電子郵件地址以使用此功能</strong>',
 'emailconfirmlink'           => '確認您的郵箱地址',
@@ -665,6 +665,8 @@ $2',
 
 你應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
+'deleted-notice'                   => '這個頁面已經刪除。
+這個頁面的刪除日誌已在下面提供以便參考。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 這個頁面有太多耗費的語法功能呼叫。
@@ -1467,8 +1469,7 @@ Template:消除歧義',
 'linksearch-pat'   => '搜尋網址:',
 'linksearch-ns'    => '名稱空間:',
 'linksearch-ok'    => '搜尋',
-'linksearch-text'  => '可以使用類似"*.wikipedia.org"的萬用字元。<br/>
-
+'linksearch-text'  => '可以使用類似"*.wikipedia.org"的萬用字元。<br />
 已支援：<tt>$1</tt>',
 'linksearch-line'  => '$1 連自 $2',
 'linksearch-error' => '萬用字元僅可在主機名稱的開頭使用。',
@@ -1686,6 +1687,7 @@ $NEWPAGE
 'protect-cantedit'            => '您無法更改這個頁面的保護等級，因為您沒有權限去編輯它。',
 'protect-othertime'           => '其它時間:',
 'protect-othertime-op'        => '其它時間',
+'protect-existing-expiry'     => '現時到期之時間: $1',
 'protect-otherreason'         => '其它／附加的理由:',
 'protect-otherreason-op'      => '其它／附加的理由',
 'protect-dropdown'            => '*通用保護理由
@@ -1724,7 +1726,7 @@ $NEWPAGE
 如果本頁刪除後有一個同名的新頁面建立，被恢復的版本將會稱為較新的歷史。',
 'undeleterevdel'               => '如果把最新修訂部份刪除，反刪除便無法進行。如果遇到這種情況，您必須反選或反隱藏最新已刪除的修訂。',
 'undeletehistorynoadmin'       => '這個頁面已經被刪除，刪除原因顯示在下方編輯摘要中。被刪除前的所有修訂版本，連同刪除前貢獻用戶等等細節只有管理員可以看見。',
-'undelete-revision'            => '刪除$1時由$3（在$2）所編寫的修訂版本:',
+'undelete-revision'            => '刪除$1時由$3（在$4 $5）所編寫的修訂版本:',
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被恢復。',
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
@@ -1856,6 +1858,7 @@ $1',
 'contribslink'                    => '貢獻',
 'autoblocker'                     => '你的IP和被封了的 "$1" 是一樣的。封鎖原因： "$2".',
 'blocklogpage'                    => '封鎖記錄',
+'blocklog-fulllog'                => '完整封鎖記錄',
 'blocklogentry'                   => '[[$1]]已被查封 $3 ，終止時間為$2',
 'blocklogtext'                    => '這是關於用戶封禁和解除封禁操作的記錄。被自動封禁的IP地址沒有被列出。請參閱[[Special:IPBlockList|被查封的IP地址和用戶列表]]。',
 'unblocklogentry'                 => '[[$1]]已被解封',
