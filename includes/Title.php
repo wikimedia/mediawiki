@@ -1403,7 +1403,8 @@ class Title {
 		$log = new LogPage( 'protect' );
 
 		if( $create_perm ) {
-			$log->addEntry( $this->mRestrictions['create'] ? 'modify' : 'protect', $this, trim( $reason . " [create=$create_perm] $expiry_description" ) );
+			$params = array("[create=$create_perm] $expiry_description",'');
+			$log->addEntry( $this->mRestrictions['create'] ? 'modify' : 'protect', $this, trim( $reason ), $params );
 		} else {
 			$log->addEntry( 'unprotect', $this, $reason );
 		}
