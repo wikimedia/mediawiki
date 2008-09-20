@@ -2,7 +2,11 @@
 
 /**
  * @defgroup HTTP HTTP
- * 
+ * @file
+ */
+ 
+ 
+/**
  * Various HTTP related functions
  * @ingroup HTTP
  */
