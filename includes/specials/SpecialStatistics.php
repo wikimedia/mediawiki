@@ -100,7 +100,8 @@ function wfSpecialStatistics( $par = '' ) {
 				array( 'group' => $group ),
 				'known' );
 			$text .= formatRow( $grouppage . ' ' . $grouplink,
-				$wgLang->formatNum( SiteStats::numberingroup( $groupname ) ) );
+				$wgLang->formatNum( SiteStats::numberingroup( $groupname ) ),
+				' class="statistics-group-' . Sanitizer::escapeClass( $group ) . '"' );
 		}
 	}
 	$text .= $viewsStats;
@@ -156,9 +157,9 @@ function wfSpecialStatistics( $par = '' ) {
  * @param float $number a number
  * @return string table row in HTML format
  */
-function formatRow( $text, $number ) {
-	return '<tr>
-			<td>' .
+function formatRow( $text, $number, $trExtraParams = '' ) {
+	return "<tr{$trExtraParams}>
+			<td>" .
 				$text .
 			'</td>
 			<td class="mw-statistics-numbers">' .
