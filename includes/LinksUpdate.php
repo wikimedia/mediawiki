@@ -20,7 +20,8 @@ class LinksUpdate {
 		$mProperties,    //!< Map of arbitrary name to value
 		$mDb,            //!< Database connection reference
 		$mOptions,       //!< SELECT options to be used (array)
-		$mRecursive;     //!< Whether to queue jobs for recursive updates
+		$mRecursive,     //!< Whether to queue jobs for recursive updates
+		$mTouchTmplLinks; //!< Whether to queue HTMLCacheUpdate jobs IF recursive
 	/**@}}*/
 
 	/**
@@ -67,14 +68,24 @@ class LinksUpdate {
 		}
 
 		$this->mRecursive = $recursive;
+		$this->mTouchTmplLinks = false;
 
 		wfRunHooks( 'LinksUpdateConstructed', array( &$this ) );
+	}
+	
+	/**
+	 * Invalidate HTML cache of pages that include this page?
+	 */
+	public function setRecursiveTouch( $val ) {
+		$this->mTouchTmplLinks = (bool)$val;
+		if( $val ) // Cannot invalidate without queueRecursiveJobs()
+			$this->mRecursive = true;
 	}
 
 	/**
 	 * Update link tables with outgoing links from an updated article
 	 */
-	function doUpdate() {
+	public function doUpdate() {
 		global $wgUseDumbLinkUpdate;
 
 		wfRunHooks( 'LinksUpdate', array( &$this ) );
@@ -229,7 +240,11 @@ class LinksUpdate {
 				'end' => ( $id !== false ? $id - 1 : false ),
 			);
 			$jobs[] = new RefreshLinksJob2( $this->mTitle, $params );
-
+			# Hit page caches while we're at it if set to do so...
+			if( $this->mTouchTmplLinks ) {
+				$params['table'] = 'templatelinks';
+				$jobs[] = new HTMLCacheUpdateJob( $this->mTitle, $params );
+			}
 			$start = $id;
 		} while ( $start );
 
