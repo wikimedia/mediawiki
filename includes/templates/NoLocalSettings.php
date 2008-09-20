@@ -17,10 +17,6 @@ $path = '';
 if( isset( $_SERVER['SCRIPT_NAME'] )) {
 	$path = htmlspecialchars( preg_replace('/index.php5?/', '', $_SERVER['SCRIPT_NAME']) );
 }
-#Remove filename in path, prevents going to corrupt URLs (e.g. http://server/path/api.phpconfig/index.php)
-if(substr($path, strlen($path)-1) != "/"){
-	$path = substr($path, 0, strrpos($path, "/")+1);
-}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
