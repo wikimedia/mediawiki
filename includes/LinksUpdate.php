@@ -207,6 +207,7 @@ class LinksUpdate {
 
 		$numRows = $res->numRows();
 		if( !$numRows ) {
+			wfProfileOut( __METHOD__ );
 			return; // nothing to do
 		}
 		$numBatches = ceil( $numRows / $wgUpdateRowsPerJob );
