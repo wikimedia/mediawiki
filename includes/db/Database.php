@@ -367,6 +367,13 @@ class Database {
 			}
 		}
 		$phpError = $this->restoreErrorHandler();
+		if ( !$this->mConn ) {
+			$error = $this->lastError();
+			if ( !$error ) {
+				$error = $phpError;
+			}
+			wfLogDBError( "Connection error: $error\n" );
+		}
 		
 		wfProfileOut("dbconnect-$server");
 
@@ -464,7 +471,6 @@ class Database {
 			}
 		} else {
 			# New method
-			wfLogDBError( "Connection error: $error\n" );
 			throw new DBConnectionError( $this, $error );
 		}
 	}
@@ -2500,7 +2506,6 @@ border=\"0\" ALT=\"Google\"></A>
 		}
 
 		$text = str_replace( '$1', $this->error, $noconnect );
-		$text .= wfGetSiteNotice();
 
 		if($wgUseFileCache) {
 			if($wgTitle) {
