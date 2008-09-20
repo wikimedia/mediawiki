@@ -212,6 +212,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14638) Special:Blockip now provides a link to the block log if the user
   has been blocked more than 10 times. Patch by Matt Johnston.
 * (bug 12678) Skins don't show Upload link if the user isn't allowed to upload.
+* Fixed incorrect usage of DB_LAST in Special:Export. Deprecated DB_LAST.
 
 === API changes in 1.14 ===
 

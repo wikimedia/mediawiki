@@ -372,7 +372,7 @@ class Database {
 			if ( !$error ) {
 				$error = $phpError;
 			}
-			wfLogDBError( "Connection error: $error\n" );
+			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
 		}
 		
 		wfProfileOut("dbconnect-$server");
