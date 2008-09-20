@@ -2003,10 +2003,8 @@ class User {
 			// In the spirit of DWIM
 			return true;
 
-		// PHP is fucking stupid.
-		// > $f = array( 'foo', 'bar', 'baz', 0, 'anne' );
-		// > print in_array( 'blah', $f );
-		// 1
+		# Use strict parameter to avoid matching numeric 0 accidentally inserted 
+		# by misconfiguration: 0 == 'foo'
 		return in_array( $action, $this->getRights(), true );
 	}
 
