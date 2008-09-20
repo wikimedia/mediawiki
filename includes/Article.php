@@ -2404,7 +2404,7 @@ class Article {
 		if ( !$dbw->cleanupTriggers() ) {
 			# Clean up recentchanges entries...
 			$dbw->delete( 'recentchanges',
-				array( 'rc_namespace' => $ns, 'rc_title' => $t, 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),
+				array( 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
 
@@ -3104,7 +3104,7 @@ class Article {
 	 * @param $title_obj a title object
 	 */
 
-	static function onArticleCreate($title) {
+	public static function onArticleCreate($title) {
 		# The talk page isn't in the regular link tables, so we need to update manually:
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -3119,7 +3119,7 @@ class Article {
 		$title->deleteTitleProtection();
 	}
 
-	static function onArticleDelete( $title ) {
+	public static function onArticleDelete( $title ) {
 		global $wgUseFileCache, $wgMessageCache;
 
 		// Update existence markers on article/talk tabs...
@@ -3171,7 +3171,7 @@ class Article {
 		# Purge squid for this page only
 		$title->purgeSquid();
 
-		# Clear file cache
+		# Clear file cache for this page only
 		if ( $wgUseFileCache ) {
 			$cm = new HTMLFileCache( $title );
 			@unlink( $cm->fileCacheName() );
@@ -3292,7 +3292,7 @@ class Article {
 	 *
 	 * @return array Array of Title objects
 	 */
-	function getUsedTemplates() {
+	public function getUsedTemplates() {
 		$result = array();
 		$id = $this->mTitle->getArticleID();
 		if( $id == 0 ) {
@@ -3319,7 +3319,7 @@ class Article {
 	 *
 	 * @return array Array of Title objects
 	 */
-	function getHiddenCategories() {
+	public function getHiddenCategories() {
 		$result = array();
 		$id = $this->mTitle->getArticleID();
 		if( $id == 0 ) {
