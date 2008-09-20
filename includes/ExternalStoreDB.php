@@ -41,9 +41,7 @@ class ExternalStoreDB {
 	/** @todo Document.*/
 	function &getMaster( $cluster, $retry = true ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		// Make only two connection attempts if there are other clusters to try
-		$attempts = $retry ? false : 2;
-		return $lb->getConnection( DB_MASTER, array(), false, $attempts, LoadBalancer::GRACEFUL );
+		return $lb->getConnection( DB_MASTER, array(), false, false, LoadBalancer::GRACEFUL );
 	}
 
 	/** @todo Document.*/
