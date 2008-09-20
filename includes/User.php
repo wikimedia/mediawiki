@@ -3221,7 +3221,7 @@ class User {
 	 * Add an autocreate newuser log entry for this user
 	 * Used by things like CentralAuth and perhaps other authplugins.
 	 */
-	public static function addNewUserLogEntryAutoCreate() {
+	public function addNewUserLogEntryAutoCreate() {
 		global $wgNewUserLog;
 		if( empty($wgNewUserLog) ) {
 			return true; // disabled
