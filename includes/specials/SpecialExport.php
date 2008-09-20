@@ -230,7 +230,7 @@ function wfSpecialExport( $page = '' ) {
 		} else {
 			// Use an unbuffered query; histories may be very long!
 			$lb = wfGetLBFactory()->newMainLB();
-			$db = $lb->getConnection( DB_LAST );
+			$db = $lb->getConnection( DB_SLAVE );
 			$buffer = WikiExporter::STREAM;
 			
 			// This might take a while... :D

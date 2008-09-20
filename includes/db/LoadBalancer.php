@@ -15,7 +15,7 @@ class LoadBalancer {
 
 	/* private */ var $mServers, $mConns, $mLoads, $mGroupLoads;
 	/* private */ var $mFailFunction, $mErrorConnection;
-	/* private */ var $mReadIndex, $mLastIndex, $mAllowLagged;
+	/* private */ var $mReadIndex, $mAllowLagged;
 	/* private */ var $mWaitForPos, $mWaitTimeout;
 	/* private */ var $mLaggedSlaveMode, $mLastError = 'Unknown error';
 	/* private */ var $mParentInfo, $mLagTimes;
@@ -52,7 +52,6 @@ class LoadBalancer {
 			'local' => array(),
 			'foreignUsed' => array(),
 			'foreignFree' => array() );
-		$this->mLastIndex = -1;
 		$this->mLoads = array();
 		$this->mWaitForPos = false;
 		$this->mLaggedSlaveMode = false;
@@ -441,13 +440,7 @@ class LoadBalancer {
 		if ( $i == DB_SLAVE ) {
 			$i = $this->getReaderIndex( false, $wiki, $attempts );
 		} elseif ( $i == DB_LAST ) {
-			# Just use $this->mLastIndex, which should already be set
-			$i = $this->mLastIndex;
-			if ( $i === -1 ) {
-				# Oh dear, not set, best to use the writer for safety
-				wfDebug( "Warning: DB_LAST used when there was no previous index\n" );
-				$i = $this->getWriterIndex();
-			}
+			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with deprecated server index DB_LAST' );
 		}
 		# Couldn't find a working server in getReaderIndex()?
 		if ( $i === false ) {
@@ -545,7 +538,6 @@ class LoadBalancer {
 				$conn = false;
 			}
 		}
-		$this->mLastIndex = $i;
 		wfProfileOut( __METHOD__ );
 		return $conn;
 	}

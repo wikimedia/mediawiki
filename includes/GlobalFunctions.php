@@ -2644,7 +2644,7 @@ function wfSplitWikiID( $wiki ) {
  * will always return the same object, unless the underlying connection or load
  * balancer is manually destroyed.
  */
-function &wfGetDB( $db = DB_LAST, $groups = array(), $wiki = false ) {
+function &wfGetDB( $db, $groups = array(), $wiki = false ) {
 	return wfGetLB( $wiki )->getConnection( $db, $groups, $wiki );
 }
 
