@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -545,7 +545,7 @@ $1',
 'noname'                     => '你未指定一個有效嘅用戶名。',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => "'''你已經成功咁喺{{SITENAME}}登入做「$1」。'''",
-'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法，或者建立一個新嘅戶口。',
+'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法，或者[[Special:Userlogin/signup|建立一個新嘅戶口]]。',
 'nosuchusershort'            => '呢度冇叫做 "<nowiki>$1</nowiki>"嘅用戶。 請檢查你個名嘅輸入方法。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
@@ -566,7 +566,7 @@ $1',
 'throttled-mailpassword'     => '一個密碼提醒已經響$1個鐘頭之前發送咗。為咗防止濫用，響$1個鐘頭之內只可以發送一個密碼提醒。',
 'mailerror'                  => '傳送電郵錯誤： $1',
 'acct_creation_throttle_hit' => '對唔住！你已經開咗 $1 個戶口，唔可以再開多個戶口。',
-'emailauthenticated'         => '你嘅電郵地址已經喺 $1 確認。',
+'emailauthenticated'         => '你嘅電郵地址已經喺 $2 $3 確認。',
 'emailnotauthenticated'      => '你嘅電郵地址重未確認。 任何傳送電郵嘅功能都唔會運作。',
 'noemailprefs'               => '設置一個電郵地址令到呢啲功能開始運作。',
 'emailconfirmlink'           => '確認你嘅電郵地址',
@@ -749,6 +749,8 @@ $1',
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
 為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
+'deleted-notice'                   => '呢一版已經刪除咗。
+呢版嘅刪除日誌響下面提供咗以便參考。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 呢一版有太多耗費嘅語法功能呼叫。
@@ -1548,7 +1550,8 @@ Template:搞清楚',
 'linksearch-pat'   => '搵嘅形態:',
 'linksearch-ns'    => '空間名',
 'linksearch-ok'    => '搵',
-'linksearch-text'  => '可以用類似"*.wikipedia.org"嘅萬用字元。',
+'linksearch-text'  => '可以用類似"*.wikipedia.org"嘅萬用字元。<br />
+支援嘅協議: <tt>$1</tt>',
 'linksearch-line'  => '$1 連自 $2',
 'linksearch-error' => '萬用字元只可以響主機名嘅開頭度用。',
 
@@ -1757,6 +1760,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect-cantedit'            => '你唔可以改呢版嘅保護等級，因為你無權限去編輯佢。',
 'protect-othertime'           => '其它時間:',
 'protect-othertime-op'        => '其它時間',
+'protect-existing-expiry'     => '現時到期嘅時間: $1',
 'protect-otherreason'         => '其它／附加嘅原因:',
 'protect-otherreason-op'      => '其它／附加嘅原因',
 'protect-dropdown'            => '*通用保護原因
@@ -1793,7 +1797,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeletehistory'              => '如果你恢復呢個頁面，佢嘅所有修改歷史都會恢復返到嗰篇頁面嘅歷史度。如果喺佢刪除之後又新開咗同名嘅頁面，你恢復嘅修改歷史會顯示喺先前歷史度。',
 'undeleterevdel'               => '如果響最新修訂度部份刪除，噉反刪除就唔能夠進行。如果遇到呢種情況，你一定要反選或者反隱藏最新刪除咗嘅修訂。',
 'undeletehistorynoadmin'       => '呢一版已經刪咗。刪除嘅原因喺下面嘅摘要度，連同重有刪除之前編輯過呢個頁面嘅用戶嘅詳細資料。所刪除嘅版本嘅實際內容得管理員可以睇到。',
-'undelete-revision'            => '已經刪除咗$1嗰陣（響$2）由$3所寫嘅修訂:',
+'undelete-revision'            => '已經刪除咗$1嗰陣（響$4 $5）由$3所寫嘅修訂:',
 'undeleterevision-missing'     => '唔正確或者遺失咗修訂。你可能有一個壞連結，或者嗰個修訂已經響存檔度恢復咗或者刪除咗。',
 'undelete-nodiff'              => '搵唔到之前嘅修訂。',
 'undeletebtn'                  => '恢復',
@@ -1927,6 +1931,7 @@ $1',
 'contribslink'                    => '貢獻',
 'autoblocker'                     => '已經自動封鎖，因為你嘅IP地址冇幾耐之前"[[User:$1|$1]]"使用過。$1\\嘅封鎖原因係: 「$2」',
 'blocklogpage'                    => '封鎖日誌',
+'blocklog-fulllog'                => '成個封鎖日誌',
 'blocklogentry'                   => '已封鎖[[$1]]，到期時間為$2 $3',
 'blocklogtext'                    => '呢個係封鎖同埋解封動作嘅日誌。自動封鎖IP地址嘅動作冇列出嚟。去[[Special:IPBlockList|IP封鎖名單]]睇現時生效嘅封鎖名單',
 'unblocklogentry'                 => '已經解封$1',

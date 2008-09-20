@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -490,7 +490,7 @@ $2',
 'noname'                     => '你没有输入有效的用户名。',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => '你现在以"$1"的身份登录{{SITENAME}}。',
-'nosuchuser'                 => '找不到用户"$1"。检查您的拼写，或者建立一个新账户。',
+'nosuchuser'                 => '找不到用户"$1"。检查您的拼写，或者[[Special:Userlogin/signup|建立一个新账户]]。',
 'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified'            => '你需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
@@ -507,7 +507,7 @@ $2',
 'throttled-mailpassword'     => '密码提醒已在最近$1小时内发送。为了安全起见，在每$1小时内只能发送一个密码提醒。',
 'mailerror'                  => '发送邮件错误: $1',
 'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
-'emailauthenticated'         => '您的电子邮箱地址已经于$1确认有效。',
+'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
 'noemailprefs'               => '<strong>指定一个电子邮箱地址以使用此功能</strong>',
 'emailconfirmlink'           => '确认您的邮箱地址',
@@ -690,6 +690,8 @@ $2',
 
 你应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
+'deleted-notice'                   => '这个页面已经删除。
+这个页面的删除日志已在下面提供以便参考。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 这个页面有太多耗费的语法功能呼叫。
@@ -1492,7 +1494,8 @@ Template:消除歧義',
 'linksearch-pat'   => '搜索网址:',
 'linksearch-ns'    => '名字空间:',
 'linksearch-ok'    => '搜索',
-'linksearch-text'  => '可以使用类似"*.wikipedia.org"的通配符。',
+'linksearch-text'  => '可以使用类似"*.wikipedia.org"的通配符。<br />
+已支持：<tt>$1</tt>',
 'linksearch-line'  => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
@@ -1708,6 +1711,7 @@ $NEWPAGE
 'protect-cantedit'            => '您无法更改这个页面的保护等级，因为您没有权限去编辑它。',
 'protect-othertime'           => '其它时间:',
 'protect-othertime-op'        => '其它时间',
+'protect-existing-expiry'     => '现时到期之时间: $1',
 'protect-otherreason'         => '其它／附加的理由:',
 'protect-otherreason-op'      => '其它／附加的理由',
 'protect-dropdown'            => '*通用保护理由
@@ -1746,7 +1750,7 @@ $NEWPAGE
 如果本页删除后有一个同名的新页面建立，被恢复的版本将会称为较新的历史。',
 'undeleterevdel'               => '如果把最新修订部份删除，反删除便无法进行。如果遇到这种情况，您必须反选或反隐藏最新已删除的修订。',
 'undeletehistorynoadmin'       => '这个页面已被删除。删除原因显示在下方编辑摘要中，被删除前的所有修订文本连同删除前贡献用户的细节信息只对管理员可见。',
-'undelete-revision'            => '删除$1时由$3（在$2）所编写的修订版本:',
+'undelete-revision'            => '删除$1时由$3（在$4 $5）所编写的修订版本:',
 'undeleterevision-missing'     => '无效或丢失的修订版本。您可能使用了错误的链接，或者此修订版本已经被从存档中恢复或移除。',
 'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
@@ -1880,6 +1884,7 @@ $1',
 'contribslink'                    => '贡献',
 'autoblocker'                     => '因为您与"[[$1]]"共享一个IP地址而被自动查封。$1被封的理由是"$2"。',
 'blocklogpage'                    => '查封日志',
+'blocklog-fulllog'                => '完整查封日志',
 'blocklogentry'                   => '[[$1]]已被查封 $3 ，终止时间为$2',
 'blocklogtext'                    => '这是关于用户查封和解封操作的日志。
 被自动查封的IP地址没有被列出。请参看[[Special:IPBlockList|被封IP地址列表]]。',
