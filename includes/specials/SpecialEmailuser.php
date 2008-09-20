@@ -5,7 +5,7 @@
  */
 
 /**
- * @todo document
+ * 	Constructor for Special:Emailuser.
  */
 function wfSpecialEmailuser( $par ) {
 	global $wgRequest, $wgUser, $wgOut;
