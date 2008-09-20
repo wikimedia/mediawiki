@@ -256,8 +256,9 @@ class RecentChange
 		$change = $change instanceof RecentChange
 			? $change
 			: RecentChange::newFromId($change);
-		if(!$change instanceof RecentChange)
+		if( !$change instanceof RecentChange ) {
 			return null;
+		}
 		return $change->doMarkPatrolled( $auto );
 	}
 	
@@ -273,22 +274,34 @@ class RecentChange
 		$errors = array();
 		// If recentchanges patrol is disabled, only new pages
 		// can be patrolled
-		if(!$wgUseRCPatrol && (!$wgUseNPPatrol || $this->getAttribute('rc_type') != RC_NEW))
+		if ( !$wgUseRCPatrol 
+			&& ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) 
+		{
 			$errors[] = array('rcpatroldisabled');
-		$errors = array_merge($errors, $this->getTitle()->getUserPermissionsErrors('patrol', $wgUser));
+		}
+
+		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
+		$right = $auto ? 'autopatrol' : 'patrol';
+		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $wgUser ) );
 		if( !wfRunHooks('MarkPatrolled', array($this->getAttribute('rc_id'), &$wgUser, false)) )
-			$errors[] = array('hookaborted');		
+			$errors[] = array('hookaborted');
+
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
 		if( $wgUser->getName() == $this->getAttribute('rc_user_text') && !$wgUser->isAllowed('autopatrol') )
 			$errors[] = array('markedaspatrollederror-noautopatrol');
-		if( !empty($errors) )
+
+		if( $errors ) {
 			return $errors;
+		}
+
 		// If the change was patrolled already, do nothing
 		if( $this->getAttribute('rc_patrolled') )
 			return array();
+
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
+
 		// Log this patrol event
 		PatrolLog::record( $this, $auto );
 		wfRunHooks( 'MarkPatrolledComplete', array($this->getAttribute('rc_id'), &$wgUser, false) );
@@ -415,7 +428,7 @@ class RecentChange
 			'newSize' => $size
 		);
 		$rc->save();
-		return( $rc->mAttribs['rc_id'] );
+		return $rc;	
 	}
 
 	# Makes an entry in the database corresponding to a rename
