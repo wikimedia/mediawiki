@@ -154,6 +154,7 @@ function wfFieldName( $res, $n, $dbi = DB_LAST )
 
 /**
  * @todo document function
+ * @see Database::insertId()
  */
 function wfInsertId( $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -166,6 +167,7 @@ function wfInsertId( $dbi = DB_LAST ) {
 
 /**
  * @todo document function
+ * @see Database::dataSeek()
  */
 function wfDataSeek( $res, $row, $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -177,7 +179,8 @@ function wfDataSeek( $res, $row, $dbi = DB_LAST ) {
 }
 
 /**
- * @todo document function
+ * Get the last error number
+ * @see Database::lastErrno()
  */
 function wfLastErrno( $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -189,7 +192,8 @@ function wfLastErrno( $dbi = DB_LAST ) {
 }
 
 /**
- * @todo document function
+ * Get the last error
+ * @see Database::lastError()
  */
 function wfLastError( $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -201,7 +205,8 @@ function wfLastError( $dbi = DB_LAST ) {
 }
 
 /**
- * @todo document function
+ * Get the number of affected rows
+ * @see Database::affectedRows()
  */
 function wfAffectedRows( $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -213,7 +218,8 @@ function wfAffectedRows( $dbi = DB_LAST ) {
 }
 
 /**
- * @todo document function
+ * Get the last query ran
+ * @see Database::lastQuery
  */
 function wfLastDBquery( $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -245,8 +251,8 @@ function wfSetSQL( $table, $var, $value, $cond, $dbi = DB_MASTER )
 
 
 /**
+ * Simple select wrapper, return one field
  * @see Database::selectField()
- * @todo document function
  * @param $table
  * @param $var
  * @param $cond Default ''
@@ -263,8 +269,8 @@ function wfGetSQL( $table, $var, $cond='', $dbi = DB_LAST )
 }
 
 /**
+ * Does a given field exist on the specified table?
  * @see Database::fieldExists()
- * @todo document function
  * @param $table
  * @param $field
  * @param $dbi Default DB_LAST
@@ -280,8 +286,8 @@ function wfFieldExists( $table, $field, $dbi = DB_LAST ) {
 }
 
 /**
+ * Does the requested index exist on the specified table?
  * @see Database::indexExists()
- * @todo document function
  * @param $table String
  * @param $index
  * @param $dbi Default DB_LAST
@@ -354,7 +360,8 @@ function wfUpdateArray( $table, $values, $conds, $fname = 'wfUpdateArray', $dbi 
 }
 
 /**
- * @todo document function
+ * Get fully usable table name
+ * @see Database::tableName()
  */
 function wfTableName( $name, $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -367,6 +374,7 @@ function wfTableName( $name, $dbi = DB_LAST ) {
 
 /**
  * @todo document function
+ * @see Database::strencode()
  */
 function wfStrencode( $s, $dbi = DB_LAST ) {
 	$db = wfGetDB( $dbi );
@@ -379,6 +387,7 @@ function wfStrencode( $s, $dbi = DB_LAST ) {
 
 /**
  * @todo document function
+ * @see Database::nextSequenceValue()
  */
 function wfNextSequenceValue( $seqName, $dbi = DB_MASTER ) {
 	$db = wfGetDB( $dbi );
@@ -391,6 +400,7 @@ function wfNextSequenceValue( $seqName, $dbi = DB_MASTER ) {
 
 /**
  * @todo document function
+ * @see Database::useIndexClause()
  */
 function wfUseIndexClause( $index, $dbi = DB_SLAVE ) {
 	$db = wfGetDB( $dbi );
