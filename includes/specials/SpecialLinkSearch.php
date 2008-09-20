@@ -64,17 +64,20 @@ function wfSpecialLinkSearch( $par ) {
 	$wgOut->addHtml( $s );
 
 	if( $target != '' ) {
-		$searcher = new LinkSearchPage( $target2, $namespace, $protocol );
+		$searcher = new LinkSearchPage;
+		$searcher->setParams( array( 
+			'query' => $target2, 
+			'namespace' => $namespace, 
+			'protocol' => $protocol ) );
 		$searcher->doQuery( $offset, $limit );
 	}
 }
 
 class LinkSearchPage extends QueryPage {
-
-	function __construct( $query, $ns, $prot ) {
-		$this->mQuery = $query;
-		$this->mNs = $ns;
-		$this->mProt = $prot;
+	function setParams( $params ) {
+		$this->mQuery = $params['query'];
+		$this->mNs = $params['namespace'];
+		$this->mProt = $params['protocol'];
 	}
 
 	function getName() {
