@@ -1539,8 +1539,7 @@ class Article {
 			if ( $good ) {
 				# Invalidate cache of this article and all pages using this article
 				# as a template. Partly deferred.
-				Article::onArticleEdit( $this->mTitle );
-
+				Article::onArticleEdit( $this->mTitle, false ); // leave templatelinks for editUpdates()
 				# Update links tables, site stats, etc.
 				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 				$dbw->commit();
@@ -1593,7 +1592,7 @@ class Article {
 			Article::onArticleCreate( $this->mTitle );
 
 			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $text, $summary,
-			 $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
 		if ( $good && !( $flags & EDIT_DEFER_UPDATES ) ) {
@@ -2701,6 +2700,7 @@ class Article {
 	/**
 	 * Do standard deferred updates after page edit.
 	 * Update links tables, site stats, search index and message cache.
+	 * Purges pages that include this page if the text was changed here.
 	 * Every 100th edit, prune the recent changes table.
 	 *
 	 * @private
@@ -2733,7 +2733,8 @@ class Article {
 		}
 
 		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
+		$u = new LinksUpdate( $this->mTitle, $editInfo->output, false );
+		$u->setRecursiveTouch( $changed ); // refresh/invalidate including pages too
 		$u->doUpdate();
 
 		if( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
@@ -2879,7 +2880,8 @@ class Article {
 
 		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsg( $infomsg, $td, $userlinks ) . "</div>\n" .
 
-		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsg( 'revision-nav', $prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
+		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsg( 'revision-nav', $prevdiff, 
+				$prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}
 
@@ -3101,8 +3103,8 @@ class Article {
 	 * @param $title_obj a title object
 	 */
 
-	public static function onArticleCreate($title) {
-		# The talk page isn't in the regular link tables, so we need to update manually:
+	public static function onArticleCreate( $title ) {
+		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
 		} else {
@@ -3118,8 +3120,7 @@ class Article {
 
 	public static function onArticleDelete( $title ) {
 		global $wgUseFileCache, $wgMessageCache;
-
-		// Update existence markers on article/talk tabs...
+		# Update existence markers on article/talk tabs...
 		if( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
 		} else {
@@ -3156,11 +3157,12 @@ class Article {
 	/**
 	 * Purge caches on page update etc
 	 */
-	static function onArticleEdit( $title ) {
+	public static function onArticleEdit( $title, $touchTemplates = true ) {
 		global $wgDeferredUpdateList, $wgUseFileCache;
 
 		// Invalidate caches of articles which include this page
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
+		if( $touchTemplates )
+			$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
 		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );
