@@ -1554,8 +1554,6 @@ class Article {
 			$this->mGoodAdjustment = (int)$this->isCountable( $text );
 			$this->mTotalAdjustment = 1;
 
-			$dbw->begin();
-
 			# Add the page record; stake our claim on this title!
 			# This will fail with a database query exception if the article already exists
 			$newid = $this->insertOn( $dbw );
@@ -1587,7 +1585,6 @@ class Article {
 				}
 			}
 			$user->incEditCount();
-			$dbw->commit();
 
 			# Update links, etc.
 			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, true );
