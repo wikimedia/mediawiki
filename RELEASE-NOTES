@@ -201,15 +201,18 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 15497) Removed encoding attribute from <?xml ?> tag
 * (bug 15544) Wiki not set up message (NoLocalSettings.php) now works for 
   non-index.php entry pages (e.g. api.php). Patch by Matt Johnston.
-* (bug 12284) Special:Preferences now sets a returnto parameter on the link to Special:Userlogin. Patch by Marooned.
+* (bug 12284) Special:Preferences now sets a returnto parameter on the link to
+  Special:Userlogin. Patch by Marooned.
 * Fixed the HTTP accept language string detection length in 
   LanguageConverter.php, instead of the fixed length language codes.
 * Special:Recentchangeslinked no longer shows outgoing links for nonexistent pages
   even if there are broken link records with source article id 0 in the database
 * (bug 15598) Special:Newpages default limit uses user preference for recentchanges
   limit instead of hardcoded 50.
-* (bug 15617) $wgFeedClassesOutputPage::getHeadLinks() respects $wgFeedClasses, instead of hardcoding rss and atom. Patch by Juliano F. Ravasi. 
-* (bug 14638) Special:Blockip now provides a link to the block log if the user has been blocked more than 10 times. Patch by Matt Johnston.
+* (bug 15617) $wgFeedClassesOutputPage::getHeadLinks() respects $wgFeedClasses,
+  instead of hardcoding rss and atom. Patch by Juliano F. Ravasi. 
+* (bug 14638) Special:Blockip now provides a link to the block log if the user
+  has been blocked more than 10 times. Patch by Matt Johnston.
 * (bug 12678) Skins don't show Upload link if the user isn't allowed to upload.
 
 === API changes in 1.14 ===
