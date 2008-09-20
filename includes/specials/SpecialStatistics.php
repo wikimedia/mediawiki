@@ -141,7 +141,7 @@ function wfSpecialStatistics( $par = '' ) {
 	$text .= Xml::closeElement( 'table' );
 
 	# Customizable footer
-	$footer = wfMsgNoTrans( 'statistics-footer' );
+	$footer = wfMsgExt( 'statistics-footer', array('parseinline') );
 	if( !wfEmptyMsg( 'statistics-footer', $footer ) && $footer != '' ) {
 		$text .= "\n" . $footer;
 	}
