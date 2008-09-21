@@ -1186,6 +1186,7 @@ You should consider whether it is appropriate to continue editing this page.
 The deletion log for this page is provided here for convenience:",
 'deleted-notice'                   => 'This page has been deleted.
 The deletion log for the page is provided below for reference.',
+'deletelog-fulllog'                => 'View full log',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
