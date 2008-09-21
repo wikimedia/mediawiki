@@ -213,6 +213,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   has been blocked more than 10 times. Patch by Matt Johnston.
 * (bug 12678) Skins don't show Upload link if the user isn't allowed to upload.
 * Fixed incorrect usage of DB_LAST in Special:Export. Deprecated DB_LAST.
+* 11119 {{grammar}} broken in noarticletext(anon) when ui lang != content lang
 
 === API changes in 1.14 ===
 
