@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -1323,22 +1323,24 @@ $2',
 'randomredirect-nopages' => '在這個名字空間中沒有重定向頁面。',
 
 # Statistics
-'statistics'               => '統計',
-'statistics-header-pages'  => '頁面統計',
-'statistics-header-edits'  => '編輯統計',
-'statistics-header-views'  => '查看統計',
-'statistics-header-users'  => '用戶統計',
-'statistics-articles'      => '內容頁面',
-'statistics-pages'         => '頁面',
-'statistics-files'         => '已經上載的檔案',
-'statistics-edits'         => '自從{{SITENAME}}設定的頁面編輯數',
-'statistics-edits-average' => '每一頁面的平均編輯數',
-'statistics-views-total'   => '查看總數',
-'statistics-views-peredit' => '每次編輯查看數',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]長度',
-'statistics-users'         => '已註冊[[Special:ListUsers|用戶]]',
-'statistics-users-active'  => '活躍用戶',
-'statistics-mostpopular'   => '被查閱次數最多的頁面',
+'statistics'                      => '統計',
+'statistics-header-pages'         => '頁面統計',
+'statistics-header-edits'         => '編輯統計',
+'statistics-header-views'         => '查看統計',
+'statistics-header-users'         => '用戶統計',
+'statistics-articles'             => '內容頁面',
+'statistics-pages'                => '頁面',
+'statistics-pages-tooltip'        => '在wiki上的所有頁面，包括對話頁面、重新定向等',
+'statistics-files'                => '已經上載的檔案',
+'statistics-edits'                => '自從{{SITENAME}}設定的頁面編輯數',
+'statistics-edits-average'        => '每一頁面的平均編輯數',
+'statistics-views-total'          => '查看總數',
+'statistics-views-peredit'        => '每次編輯查看數',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]長度',
+'statistics-users'                => '已註冊[[Special:ListUsers|用戶]]',
+'statistics-users-active'         => '活躍用戶',
+'statistics-users-active-tooltip' => '在前一個月中操作過的用戶',
+'statistics-mostpopular'          => '被查閱次數最多的頁面',
 
 'disambiguations'      => '消含糊頁',
 'disambiguationspage'  => 'Template:disambig
@@ -1881,6 +1883,7 @@ $1',
 'proxyblocksuccess'               => '完成。\\n',
 'sorbsreason'                     => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason'     => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
+'cant-block-while-blocked'        => '當您被封鎖時不可以封鎖其他用戶。',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',
