@@ -164,7 +164,7 @@ function wfSpecialStatistics( $par = '' ) {
  */
 function formatRow( $text, $number, $trExtraParams = '', $tooltip = '' ) {
 	if( $tooltip ) {
-		$text = '<div title="' . wfMsg( $tooltip ) . '">' . $text . '</div>';
+		$text = '<div title="' . wfMsg( $tooltip ) . '">' . $text . '<sup>*</sup></div>';
 	}
 
 	return "<tr{$trExtraParams}>
