@@ -376,24 +376,21 @@ class Database {
 				$error = $phpError;
 			}
 			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
+			wfDebug( "DB connection error\n" );
+			wfDebug( "Server: $server, User: $user, Password: " .
+				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
+			$success = false;
 		}
 		
 		wfProfileOut("dbconnect-$server");
 
-		if ( $dbName != '' ) {
-			if ( $this->mConn !== false ) {
-				$success = @/**/mysql_select_db( $dbName, $this->mConn );
-				if ( !$success ) {
-					$error = "Error selecting database $dbName on server {$this->mServer} " .
-						"from client host {$wguname['nodename']}\n";
-					wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
-					wfDebug( $error );
-				}
-			} else {
-				wfDebug( "DB connection error\n" );
-				wfDebug( "Server: $server, User: $user, Password: " .
-					substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
-				$success = false;
+		if ( $dbName != '' && $this->mConn !== false ) {
+			$success = @/**/mysql_select_db( $dbName, $this->mConn );
+			if ( !$success ) {
+				$error = "Error selecting database $dbName on server {$this->mServer} " .
+					"from client host {$wguname['nodename']}\n";
+				wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
+				wfDebug( $error );
 			}
 		} else {
 			# Delay USE query
