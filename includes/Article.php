@@ -2137,7 +2137,7 @@ class Article {
 	 * @return int approximate revision count
 	 */
 	function estimateRevisionCount() {
-		$dbr = wfGetDB();
+		$dbr = wfGetDB( DB_SLAVE );
 		// For an exact count...
 		//return $dbr->selectField( 'revision', 'COUNT(*)',
 		//	array( 'rev_page' => $this->getId() ), __METHOD__ );
