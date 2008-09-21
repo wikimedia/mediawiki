@@ -1475,9 +1475,8 @@ class Article {
 			$lastRevision = 0;
 			$revisionId = 0;
 
-			$dbw->begin();
-
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
+
 			if ( $changed ) {
 				$this->mGoodAdjustment = (int)$this->isCountable( $text )
 				  - (int)$this->isCountable( $oldtext );
@@ -1503,6 +1502,7 @@ class Article {
 					'user_text'  => $user->getName(),
 					) );
 
+				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
 
 				# Update page
@@ -1527,6 +1527,7 @@ class Article {
 						}
 					}
 					$user->incEditCount();
+					$dbw->commit();
 				}
 			} else {
 				$revision = null;
@@ -1547,7 +1548,6 @@ class Article {
 				Article::onArticleEdit( $this->mTitle, false ); // leave templatelinks for editUpdates()
 				# Update links tables, site stats, etc.
 				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
-				$dbw->commit();
 			}
 		} else {
 			# Create new article
