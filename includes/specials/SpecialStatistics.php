@@ -58,7 +58,7 @@ function wfSpecialStatistics( $par = '' ) {
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
 			formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
 					$wgLang->formatNum( $good ) ) .
-			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) . '</div>' ),
+			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
 					$wgLang->formatNum( $total ), NULL, 'statistics-pages-tooltip' ) .
 			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
 					$wgLang->formatNum( $images ) ) .
