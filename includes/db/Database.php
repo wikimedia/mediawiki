@@ -257,11 +257,9 @@ class Database {
 	 * @param failFunction
 	 * @param $flags
 	 * @param $tablePrefix String: database table prefixes. By default use the prefix gave in LocalSettings.php
-	 * @param int $max, max connection attempts 
-	 ** After the first retry (second attempt), each retry waits 1 second
 	 */
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
-		$failFunction = false, $flags = 0, $tablePrefix = 'get from global', $max = false ) {
+		$failFunction = false, $flags = 0, $tablePrefix = 'get from global' ) {
 
 		global $wgOut, $wgDBprefix, $wgCommandLineMode;
 		# Can't get a reference if it hasn't been set yet
@@ -295,7 +293,7 @@ class Database {
 		}
 
 		if ( $server ) {
-			$this->open( $server, $user, $password, $dbName, $max );
+			$this->open( $server, $user, $password, $dbName );
 		}
 	}
 
@@ -313,7 +311,7 @@ class Database {
 	 * Usually aborts on failure
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
-	function open( $server, $user, $password, $dbName, $max = false ) {
+	function open( $server, $user, $password, $dbName ) {
 		global $wguname, $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
 
@@ -345,13 +343,17 @@ class Database {
 
 		wfProfileIn("dbconnect-$server");
 
-		if( !$max ) { $max = 3; }
-		# Try to connect up to three times (by default)
 		# The kernel's default SYN retransmission period is far too slow for us,
-		# so we use a short timeout plus a manual retry.
+		# so we use a short timeout plus a manual retry. Retrying means that a small
+		# but finite rate of SYN packet loss won't cause user-visible errors.
 		$this->mConn = false;
+		if ( ini_get( 'mysql.connect_timeout' ) <= 3 ) {
+			$numAttempts = 2;
+		} else {
+			$numAttempts = 1;
+		}
 		$this->installErrorHandler();
-		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
+		for ( $i = 0; $i < $numAttempts && !$this->mConn; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
@@ -367,6 +369,7 @@ class Database {
 			}
 		}
 		$phpError = $this->restoreErrorHandler();
+		# Always log connection errors
 		if ( !$this->mConn ) {
 			$error = $this->lastError();
 			if ( !$error ) {
@@ -2506,6 +2509,13 @@ border=\"0\" ALT=\"Google\"></A>
 		}
 
 		$text = str_replace( '$1', $this->error, $noconnect );
+
+		global $wgShowExceptionDetails;
+		if ( $GLOBALS['wgShowExceptionDetails'] ) {
+			$text .= '</p><p>Backtrace:</p><p>' . 
+				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . 
+				"</p>\n";
+		}
 
 		if($wgUseFileCache) {
 			if($wgTitle) {

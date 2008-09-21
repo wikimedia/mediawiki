@@ -77,30 +77,36 @@ class ExternalStore {
 	 */
 	public static function randomInsert( $data ) {
 		global $wgDefaultExternalStore;
-		$tryStorages = (array)$wgDefaultExternalStore;
-		// Do not wait and do second retry per master if we
-		// have other active cluster masters to try instead.
-		$retry = count($tryStorages) > 1 ? false : true;
-		while ( count($tryStorages) > 0 ) {
-			$index = mt_rand(0, count( $tryStorages ) - 1);
-			$storeUrl = $tryStorages[$index];
+		$tryStores = (array)$wgDefaultExternalStore;
+		$error = false;
+		while ( count( $tryStores ) > 0 ) {
+			$index = mt_rand(0, count( $tryStores ) - 1);
+			$storeUrl = $tryStores[$index];
+			wfDebug( __METHOD__.": trying $storeUrl\n" );
 			list( $proto, $params ) = explode( '://', $storeUrl, 2 );
 			$store = self::getStoreObject( $proto );
 			if ( $store === false ) {
 				throw new MWException( "Invalid external storage protocol - $storeUrl" );
-				return false; 
+			}
+			try {
+				$url = $store->store( $params, $data ); // Try to save the object
+			} catch ( DBConnectionError $error ) {
+				$url = false;
+				unset( $tryStores[$index] ); // Don't try this one again!
+				$tryStores = array_values( $tryStores ); // Must have consecutive keys
+			}
+			if ( $url ) {
+				return $url; // Done!
 			} else {
-				$url = $store->store( $params, $data, $retry ); // Try to save the object
-				if ( $url ) {
-					return $url; // Done!
-				} else {
-					unset( $tryStorages[$index] ); // Don't try this one again!
-					sort( $tryStorages ); // Must have consecutive keys
-					wfDebugLog( 'ExternalStorage', "Unable to store text to external storage $storeUrl" );
-				}
+				wfDebugLog( 'ExternalStorage', "Unable to store text to external storage $storeUrl" );
 			}
 		}
-		throw new MWException( "Unable to store text to external storage" );
-		return false; // All cluster masters dead :(
+		// All stores failed
+		if ( $error ) {
+			// Rethrow the last connection error
+			throw $error;
+		} else {
+			throw new MWException( "Unable to store text to external storage" );
+		}
 	}
 }
