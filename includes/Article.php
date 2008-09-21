@@ -1415,11 +1415,16 @@ class Article {
 	function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
-		if ($user == null) {
-			$user = $wgUser;
+		# Low-level sanity check
+		if( $this->mTitle->getText() == '' ) {
+			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
 
 		wfProfileIn( __METHOD__ );
+
+		if ($user == null) {
+			$user = $wgUser;
+		}
 		$good = true;
 
 		if ( !($flags & EDIT_NEW) && !($flags & EDIT_UPDATE) ) {
