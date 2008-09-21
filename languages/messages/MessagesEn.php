@@ -10,7 +10,6 @@
  * and edit the MediaWiki:* pages listed there.
  */
 
-
 /**
  * Fallback language, used for all unspecified messages and behaviour. This
  * is English by default, for all files other than this one.
@@ -2550,7 +2549,7 @@ Please contact your Internet service provider or tech support and inform them of
 'sorbsreason'                     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
 You cannot create an account',
-'cant-block-while-blocked'        => 'Error: You cannot block other users while you are blocked.',
+'cant-block-while-blocked'        => 'You cannot block other users while you are blocked.',
 
 # Developer tools
 'lockdb'              => 'Lock database',
