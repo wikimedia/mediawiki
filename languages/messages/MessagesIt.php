@@ -1413,7 +1413,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'statistics-header-views'  => 'Statistiche relative alle visualizzazioni',
 'statistics-header-users'  => 'Statistiche relative agli utenti',
 'statistics-articles'      => 'Pagine di contenuti',
-'statistics-pages'         => 'Pagine <small>(comprende le pagine di discussione, quelle di servizio di {{SITENAME}}, le pagine più esigue, i redirect e altre pagine)</small>',
+'statistics-pages'         => 'Pagine',
 'statistics-files'         => 'File caricati',
 'statistics-edits'         => "Modifiche a partire dall'installazione di {{SITENAME}}",
 'statistics-edits-average' => 'Media delle modifiche per pagina',

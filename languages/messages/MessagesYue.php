@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -1415,7 +1415,7 @@ $1',
 'statistics-header-views'  => '參看統計',
 'statistics-header-users'  => '用戶統計',
 'statistics-articles'      => '內容頁',
-'statistics-pages'         => '頁<small>（包埋「討論」頁、同{{SITENAME}}有關嘅頁、小份量嘅「楔」頁、跳轉同其它）</small>',
+'statistics-pages'         => '頁',
 'statistics-files'         => '已經上載咗嘅檔案',
 'statistics-edits'         => '自從{{SITENAME}}設定後嘅頁編輯數',
 'statistics-edits-average' => '每一版平均編輯數',

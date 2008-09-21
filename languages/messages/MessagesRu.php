@@ -1538,7 +1538,7 @@ PICT # различные
 'statistics-header-views'  => 'Статистика просмотров',
 'statistics-header-users'  => 'Статистика по участникам',
 'statistics-articles'      => 'Статей',
-'statistics-pages'         => 'Страниц <small>(включая страницы обсуждения, страницы о {{grammar:genitive|{{SITENAME}}}}, заготовки статей, перенаправления и прочее)</small>',
+'statistics-pages'         => 'Страниц',
 'statistics-files'         => 'Загружено файлов',
 'statistics-edits'         => 'Число правок с момента установки {{grammar:genitive|{{SITENAME}}}}',
 'statistics-edits-average' => 'Среднее число правок на страницу',

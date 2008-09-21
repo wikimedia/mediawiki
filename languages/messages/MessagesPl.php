@@ -18,6 +18,7 @@
  * @author Sp5uhe
  * @author Stv
  * @author Szczepan1990
+ * @author Timpul
  * @author ToSter
  * @author Wpedzich
  * @author Ymar
@@ -1051,6 +1052,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'diff-i'                  => "'''kursywa'''",
 'diff-b'                  => "'''pogrubienie'''",
 'diff-font'               => "'''czcionka'''",
+'diff-big'                => "'''grus'''",
 'diff-sub'                => "'''indeks dolny'''",
 'diff-sup'                => "'''indeks górny'''",
 'diff-strike'             => "'''przekreślenie'''",
@@ -1547,7 +1549,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 'statistics-header-views'  => 'Statystyka odwiedzin',
 'statistics-header-users'  => 'Statystyka użytkowników',
 'statistics-articles'      => 'Strony',
-'statistics-pages'         => 'Strony <small>(w tym także dyskusje stron, strony w przestrzeni {{SITENAME}}, zalążki stron, przekierowania i inne)</small>',
+'statistics-pages'         => 'Strony',
 'statistics-files'         => 'Przesłane pliki',
 'statistics-edits'         => 'Edycje wykonane od powstania {{grammar:D.lp|{{SITENAME}}}}',
 'statistics-edits-average' => 'Średnia liczba edycji na stronę',

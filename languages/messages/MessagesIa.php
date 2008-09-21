@@ -1400,7 +1400,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-header-views'  => 'Statisticas de visitas',
 'statistics-header-users'  => 'Statisticas de usatores',
 'statistics-articles'      => 'Paginas de contento',
-'statistics-pages'         => 'Paginas <small>(isto comprende paginas de "discussion", paginas a proposito de {{SITENAME}}, paginas de "pecietta" minimal, redirectiones, e alteres)</small>',
+'statistics-pages'         => 'Paginas',
 'statistics-files'         => 'Files cargate',
 'statistics-edits'         => 'Modificationes de paginas depost le installation de {{SITENAME}}',
 'statistics-edits-average' => 'Media del modificationes per pagina',
@@ -1983,6 +1983,7 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 'sorbsreason'                     => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',
+'cant-block-while-blocked'        => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
 
 # Developer tools
 'lockdb'              => 'Blocar base de datos',

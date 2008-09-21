@@ -1078,7 +1078,7 @@ $1',
 'statistics-views-peredit' => 'Ἐπιθεωρήσεις ἀνὰ μεταγραφή',
 'statistics-jobqueue'      => 'Μάκρος [http://www.mediawiki.org/wiki/Manual:Job_queue καταλόγου ἀναμένοντων]',
 'statistics-users'         => 'Ἐγγεγραμμένοι [[Special:ListUsers|χρώμενοι]]',
-'statistics-users-active'  => 'Ἐνεργοὶ χρώμενοι',
+'statistics-users-active'  => 'Ἐνεργοὶ χρώμενοι <small>(χρώμενοι οἳ have edited or performed an action διάφορον τῆς ποιήσεως λογισμοῦ ἐν τῷ παρελθόντι μηνί)</small>',
 'statistics-mostpopular'   => 'Αἱ πλέον θεωρουμέναι δέλτοι',
 
 'disambiguations'     => 'Αἱ τινὰ ἱστάναι εἰς τὸ ἀναμφισβήτητον δέλτοι',
@@ -1524,7 +1524,7 @@ $1',
 'lockdbsuccesssub'    => 'Ἡ φραγὴ βάσεως δεδομένων ἐπετεύχθη',
 'unlockdbsuccesssub'  => 'Ἡ φραγὴ βάσεως δεδομένων ᾐρέθη',
 'unlockdbsuccesstext' => 'Ἡ βάσις δεδομένων ἐξεφράχθη.',
-'databasenotlocked'   => 'Ἡ βάσις δεδομένων οὔκ ἐστιν κεκλῃσμένη.',
+'databasenotlocked'   => 'Ἡ βάσις δεδομένων οὐκ ἐστὶ κεκλῃσμένη.',
 
 # Move page
 'move-page'               => 'Κινεῖν $1',

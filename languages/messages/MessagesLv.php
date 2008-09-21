@@ -1122,6 +1122,10 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'watching'   => 'Uzrauga...',
 'unwatching' => 'Neuzrauga...',
 
+'changed'        => 'izmainīja',
+'created'        => 'izveidoja',
+'enotif_subject' => '{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED lietotājs $PAGEEDITOR',
+
 # Delete
 'deletepage'             => 'Dzēst lapu',
 'confirm'                => 'Apstiprināt',

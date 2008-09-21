@@ -1583,7 +1583,7 @@ $3
 'statistics-header-views'  => 'آمار بازدیدها',
 'statistics-header-users'  => 'آمار کاربران',
 'statistics-articles'      => 'صفحه محتویات',
-'statistics-pages'         => 'صفحات<small>(شامل صفحات بحث،صفحات درباره  {{SITENAME}} ،صفحات بسیار کوچک ،تغییرمسیرها،و صفحات دیگر است)</small>',
+'statistics-pages'         => 'صفحات',
 'statistics-files'         => 'پرونده‌های بارگذاری شده',
 'statistics-edits'         => 'از زمانی که نرم‌افزار ارتقا یافته‌است تعداد ویرایشات بر روی {{SITENAME}} این تعداد بوده است:',
 'statistics-edits-average' => 'متوسط ویرایش‌ها بر روی صفحات',

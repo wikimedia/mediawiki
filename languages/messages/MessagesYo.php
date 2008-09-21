@@ -36,6 +36,16 @@ $messages = array(
 'thursday'  => 'Ọjọ́bọ̀',
 'friday'    => 'Ọjọ́ẹtì',
 'saturday'  => 'Ọjọ́àbámẹ́ta',
+'sun'       => 'Àìkú',
+'mon'       => 'Ajé',
+'tue'       => 'Ìṣẹ́gun',
+'wed'       => 'Rú',
+'thu'       => 'Bọ̀',
+'fri'       => 'Ẹtì',
+'sat'       => 'Àbámẹ́ta',
+
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Ẹ̀ka|Àwọn ẹ̀ka}}',
 
 'about'          => 'Nípa',
 'newwindow'      => '(yíò sí nínú fèrèsè)',
@@ -48,16 +58,20 @@ $messages = array(
 'moredotdotdot'  => 'Ẹ̀kúnrẹ́rẹ́...',
 'mypage'         => 'Ojúewé mi',
 'mytalk'         => 'Ọ̀rọ̀ mi',
+'anontalk'       => 'Ọ̀rọ̀ fún IP yí',
 'navigation'     => 'Atọ́ka',
 'and'            => 'àti',
 
 'errorpagetitle'   => 'Àsìse',
+'returnto'         => 'Padà sí $1.',
 'tagline'          => "Lát'ọwọ́ {{SITENAME}}",
 'help'             => 'Ìrànlọ́wọ́',
 'search'           => 'Ṣe àwáàrí',
 'searchbutton'     => 'Ṣe àwáàrí',
 'go'               => 'Ó yá',
 'searcharticle'    => 'Ó yá',
+'printableversion' => 'Títẹ̀ sí ìwé',
+'print'            => 'Tẹ̀síìwé',
 'edit'             => 'Àtúnṣe',
 'create'           => "Ṣè'dá",
 'editthispage'     => "S'àtúnṣe ojúewé yi",
@@ -71,11 +85,14 @@ $messages = array(
 'talkpagelinktext' => 'Kábárawasọ̀rọ̀',
 'specialpage'      => 'Ojúewé Pàtàkì',
 'talk'             => 'Ìfọ̀rọ̀wérọ̀',
+'views'            => 'Àwọn ìwò',
 'toolbox'          => 'Àpótí irinṣẹ',
 'otherlanguages'   => 'Àwọn èdè míràn',
 'lastmodifiedat'   => 'Ọjọ́ tí a ṣe àtunṣe ojúewé yi gbẹ̀yìn ni $2, $1.', # $1 date, $2 time
 'viewcount'        => 'A ti wo ojúewé yi ni {{PLURAL:$1|ẹ̀kan péré|iye ìgbà $1}}.',
 'jumptonavigation' => 'atọ́ka',
+'jumptosearch'     => "
+ṣ'àwáàrí",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Nípa {{SITENAME}}',
@@ -99,6 +116,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Ẹ ní ìfọ̀rọ̀ránsẹ́ tuntun ni $1',
 'editsection'             => "s'àtúnṣe",
 'editold'                 => "s'àtúnṣe",
+'editsectionhint'         => 'Abala àtúnṣe: $1',
 'showtoc'                 => 'fihàn',
 'hidetoc'                 => 'bòmọ́lẹ̀',
 
@@ -191,10 +209,13 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 
 # Recent changes
 'recentchanges'   => 'Àwọn àtúnṣe tuntun',
-'rcnote'          => "Lábẹ́ yìí ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1'''}} sẹ́yìn ní ọjọ́ '''$2''' sẹ́yìn, títí di $5, $4.",
+'rcnote'          => "Lábẹ́ yìí ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1'''}} tó kẹ̀yìn ní ọjọ́ '''$2''' sẹ́yìn, ní ago $5, ọjọ́ $4.",
 'rcshowhideminor' => '$1 àwọn àtúnṣe kékéèké',
 'diff'            => 'ìyàtọ̀',
 'hide'            => 'Ìpamọ́',
+
+# Recent changes linked
+'recentchangeslinked' => 'Àtúnṣe tó báramu',
 
 # Special:ImageList
 'imagelist_name' => 'Orúkọ',
@@ -223,6 +244,9 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',
 'allnotinnamespace' => 'Gbogbo ojúewé (tí kòsí ní $1 namespace)',
 
+# Special:Categories
+'categories' => 'Àwọn ẹ̀ka',
+
 # Watchlist
 'watchlist'       => 'Ìmójútó mi',
 'mywatchlist'     => 'Ìmójútó mi',
@@ -239,8 +263,9 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'mycontris'     => 'Àwọn àfikún mi',
 
 # What links here
-'whatlinkshere'      => 'Ìjápọ̀ mọ́ ojúewé yí',
-'whatlinkshere-page' => 'Ojúewé:',
+'whatlinkshere'       => 'Ìjápọ̀ mọ́ ojúewé yí',
+'whatlinkshere-page'  => 'Ojúewé:',
+'whatlinkshere-links' => '← àwọn ìjápọ̀',
 
 # Block/unblock
 'blocklink'    => 'dínà',
@@ -250,14 +275,21 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'allmessagesname' => 'Orúkọ',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'    => 'Ojúewé mi',
-'tooltip-pt-mytalk'      => 'Ojúewé ọ̀rọ̀ mi',
-'tooltip-pt-preferences' => 'Àwọn ìfẹ́ràn mi',
-'tooltip-pt-watchlist'   => 'Àkójọ àwọn ojúewé tí ẹ̀ ún mójútó bóyá wọ́nyí padà',
-'tooltip-pt-mycontris'   => 'Àkójọ àwọn àfikún mi',
-'tooltip-pt-logout'      => 'Ìbọ́sódé',
-'tooltip-p-logo'         => 'Ojúewé Àkọ́kọ́',
-'tooltip-n-mainpage'     => 'Ẹ ṣe àbẹ̀wò sí Ojúewé Àkọ́kọ́',
+'tooltip-pt-userpage'     => 'Ojúewé mi',
+'tooltip-pt-mytalk'       => 'Ojúewé ọ̀rọ̀ mi',
+'tooltip-pt-preferences'  => 'Àwọn ìfẹ́ràn mi',
+'tooltip-pt-watchlist'    => 'Àkójọ àwọn ojúewé tí ẹ̀ ún mójútó bóyá wọ́nyí padà',
+'tooltip-pt-mycontris'    => 'Àkójọ àwọn àfikún mi',
+'tooltip-pt-login'        => 'A gbà yín níyànjú kí ẹwọlé, bótilẹ̀jẹ́pẹ́ kò pọndandan.',
+'tooltip-pt-logout'       => 'Ìbọ́sódé',
+'tooltip-ca-edit'         => 'Ẹ le ṣe àtúnṣe sí ojúewé yìí.
+Ẹ jọ̀wọ́ ẹ lo bọtini àyẹ̀wò kí ẹ tó fipamọ́.',
+'tooltip-search'          => "Ṣ'àwáàrí nínú {{SITENAME}}",
+'tooltip-p-logo'          => 'Ojúewé Àkọ́kọ́',
+'tooltip-n-mainpage'      => 'Ẹ ṣe àbẹ̀wò sí Ojúewé Àkọ́kọ́',
+'tooltip-n-recentchanges' => 'Àkójọ àwọn àtúnṣe tuntun nínú wiki.',
+'tooltip-t-upload'        => 'Ìrùsókè àwọn faili',
+'tooltip-t-specialpages'  => 'Àkójọ gbogbo àwọn ojúewé pàtàkì',
 
 # Attribution
 'lastmodifiedatby' => 'Igba ti a se atunse si ojuewe yi gbeyin ni $2, $1 by $3.', # $1 date, $2 time, $3 user

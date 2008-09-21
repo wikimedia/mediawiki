@@ -1447,7 +1447,7 @@ PICT # misc.
 'statistics-header-views'  => 'چارگ آمار',
 'statistics-header-users'  => 'آمار کاربر',
 'statistics-articles'      => 'صفحات محتوا',
-'statistics-pages'         => 'صفحات <small>(شی شامل صفحات "بحث"، صفحات {{SITENAME}} باره، هورترین "زیر" صفحات، غیر مستقیمان و دگر)</small>',
+'statistics-pages'         => 'صفحات',
 'statistics-files'         => 'آپلود بیتگین فایلان',
 'statistics-edits'         => 'اصلاح صفحات چه وهدی که {{SITENAME}} شر بوتت',
 'statistics-edits-average' => 'میانگین اصلاحات ته هر صفحه ای',
