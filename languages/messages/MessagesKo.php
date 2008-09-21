@@ -241,7 +241,6 @@ $bookstoreList = array(
 	'inherit' => true,
 );
 
-$datePreferences = false;
 $defaultDateFormat = 'ko';
 $dateFormats = array(
 	'ko time' => 'H:i',
