@@ -678,6 +678,7 @@ $wgMessageStructure = array(
 		'mergehistory-invalid-destination',
 		'mergehistory-autocomment',
 		'mergehistory-comment',
+		'mergehistory-same-destination',
 	),
 	'mergelog' => array(
 		'mergelog',

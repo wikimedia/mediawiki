@@ -96,8 +96,10 @@ class MergehistoryForm {
 				wfEscapeWikiText( $this->mDestObj->getPrefixedText() )
 			);
 		}
-
-		// TODO: warn about target = dest?
+		
+		if ( $this->mTargetObj->equals( $this->mDestObj ) ) {
+			$errors[] = wfMsgExt( 'mergehistory-same-destination', array( 'parse' ) );
+		}
 
 		if ( count( $errors ) ) {
 			$this->showMergeForm();
