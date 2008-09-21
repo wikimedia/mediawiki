@@ -2510,12 +2510,12 @@ border=\"0\" ALT=\"Google\"></A>
 
 		$text = str_replace( '$1', $this->error, $noconnect );
 
-		global $wgShowExceptionDetails;
+		/*
 		if ( $GLOBALS['wgShowExceptionDetails'] ) {
 			$text .= '</p><p>Backtrace:</p><p>' . 
 				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . 
 				"</p>\n";
-		}
+		}*/
 
 		if($wgUseFileCache) {
 			if($wgTitle) {
