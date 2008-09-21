@@ -942,12 +942,14 @@ Please try again.',
 It must have at least {{PLURAL:$1|1 character|$1 characters}} and be different from your username.',
 'mailmypassword'             => 'E-mail new password',
 'passwordremindertitle'      => 'New temporary password for {{SITENAME}}',
-'passwordremindertext'       => 'Someone (probably you, from IP address $1)
-requested that we send you a new password for {{SITENAME}} ($4).
-The password for user "$2" is now "$3".
-You should log in and change your password now.
+'passwordremindertext'       => 'Someone (probably you, from IP address $1) requested a new
+password for {{SITENAME}} ($4). A temporary password for user
+"$2" has been created and was set to "$3". If this was your
+intent, you will need to log in and choose a new password now.
 
-If someone else made this request or if you have remembered your password and you no longer wish to change it, you may ignore this message and continue using your old password.',
+If someone else made this request, or if you have remembered your password,
+and you no longer wish to change it, you may ignore this message and
+continue using your old password.',
 'noemail'                    => 'There is no e-mail address recorded for user "$1".',
 'passwordsent'               => 'A new password has been sent to the e-mail address registered for "$1".
 Please log in again after you receive it.',
