@@ -34,14 +34,13 @@ class ExternalStoreDB {
 	/** @todo Document.*/
 	function &getSlave( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		// Make only two connection attempts, since we still have the master to try
-		return $lb->getConnection( DB_SLAVE, array(), false, 2 );
+		return $lb->getConnection( DB_SLAVE );
 	}
 
 	/** @todo Document.*/
-	function &getMaster( $cluster, $retry = true ) {
+	function &getMaster( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_MASTER, array(), false, false, LoadBalancer::GRACEFUL );
+		return $lb->getConnection( DB_MASTER, array() );
 	}
 
 	/** @todo Document.*/
@@ -120,13 +119,11 @@ class ExternalStoreDB {
 	 *
 	 * @param $cluster String: the cluster name
 	 * @param $data String: the data item
-	 * @param $retry bool: allows an extra DB connection retry after 1 second
 	 * @return string URL
 	 */
-	function store( $cluster, $data, $retry = true ) {
-		if( !$dbw = $this->getMaster( $cluster, $retry ) ) {
-			return false; // failed, maybe another cluster is up...
-		}
+	function store( $cluster, $data ) {
+		$dbw = $this->getMaster( $cluster );
+
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ), 
 			array( 'blob_id' => $id, 'blob_text' => $data ), 
