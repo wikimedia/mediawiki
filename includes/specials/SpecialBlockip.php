@@ -314,6 +314,9 @@ class IPBlockForm {
 				# Username block
 				if ( $wgSysopUserBans ) {
 					$user = User::newFromName( $this->BlockAddress );
+					if ( $wgUser->isBlocked() && ( $wgUser->getId !== $user->getId() ) ) {
+						return array( 'cant-block-while-blocked' );
+					}
 					if( !is_null( $user ) && $user->getId() ) {
 						# Use canonical name
 						$userId = $user->getId();
