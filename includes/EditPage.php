@@ -841,7 +841,6 @@ class EditPage {
 		# If article is new, insert it.
 		$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
 		if ( 0 == $aid ) {
-
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create' ) ) {
 				wfDebug( "$fname: no create permission\n" );
@@ -851,8 +850,8 @@ class EditPage {
 
 			# Don't save a new article if it's blank.
 			if ( '' == $this->textbox1 ) {
-					wfProfileOut( $fname );
-					return self::AS_BLANK_ARTICLE;
+				wfProfileOut( $fname );
+				return self::AS_BLANK_ARTICLE;
 			}
 
 			// Run post-section-merge edit filter
