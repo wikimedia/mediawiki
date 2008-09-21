@@ -257,6 +257,11 @@ class ApiMain extends ApiBase {
 		try {
 			$this->executeAction();
 		} catch (Exception $e) {
+			// Log it
+			if ( $e instanceof MWException ) {
+				wfDebugLog( 'exception', $e->getLogMessage() );
+			}
+
 			//
 			// Handle any kind of exception by outputing properly formatted error message.
 			// If this fails, an unhandled exception should be thrown so that global error
