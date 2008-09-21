@@ -406,6 +406,12 @@ class LoadBalancer {
 		global $wgDBtype;
 		wfProfileIn( __METHOD__ );
 
+		if ( $i == DB_LAST ) {
+			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with deprecated server index DB_LAST' );
+		} elseif ( $i === null || $i === false ) {
+			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with invalid server index' );
+		}
+
 		if ( $wiki === wfWikiID() ) {
 			$wiki = false;
 		}
@@ -435,12 +441,12 @@ class LoadBalancer {
 		# Operation-based index
 		if ( $i == DB_SLAVE ) {
 			$i = $this->getReaderIndex( false, $wiki );
-		} elseif ( $i == DB_LAST ) {
-			throw new MWException( 'Attempt to call ' . __METHOD__ . ' with deprecated server index DB_LAST' );
-		}
-		# Couldn't find a working server in getReaderIndex()?
-		if ( $i === false ) {
-			$this->reportConnectionError( $this->mErrorConnection );
+			# Couldn't find a working server in getReaderIndex()?
+			if ( $i === false ) {
+				$this->mLastError = 'No working slave server: ' . $this->mLastError;
+				$this->reportConnectionError( $this->mErrorConnection );
+				return false;
+			}
 		}
 
 		# Now we have an explicit index into the servers array
