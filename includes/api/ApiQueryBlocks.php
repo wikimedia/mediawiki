@@ -127,10 +127,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 			Block::purgeExpired();
 
 		$res = $this->select(__METHOD__);
-		$db = wfGetDB();
 
 		$count = 0;
-		while($row = $db->fetchObject($res))
+		while($row = $res->fetchObject())
 		{
 			if($count++ == $params['limit'])
 			{
