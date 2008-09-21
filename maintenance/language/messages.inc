@@ -1206,6 +1206,7 @@ $wgMessageStructure = array(
 		'statistics-header-users',
 		'statistics-articles',
 		'statistics-pages',
+		'statistics-pages-tooltip',
 		'statistics-files',
 		'statistics-edits',
 		'statistics-edits-average',
@@ -1214,6 +1215,7 @@ $wgMessageStructure = array(
 		'statistics-jobqueue',
 		'statistics-users',
 		'statistics-users-active',
+		'statistics-users-active-tooltip',
 		'statistics-mostpopular',
 		'statistics-footer',
 	),
@@ -1744,6 +1746,7 @@ $wgMessageStructure = array(
 		'sorbs',
 		'sorbsreason',
 		'sorbs_create_account_reason',
+		'cant-block-while-blocked',
 	),
 	'developertools' => array(
 		'lockdb',
