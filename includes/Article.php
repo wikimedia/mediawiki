@@ -1957,24 +1957,22 @@ class Article {
 	 * Auto-generates a deletion reason
 	 * @param bool &$hasHistory Whether the page has a history
 	 */
-	public function generateReason(&$hasHistory)
-	{
+	public function generateReason( &$hasHistory ) {
 		global $wgContLang;
-		$dbw = wfGetDB(DB_MASTER);
+		$dbw = wfGetDB( DB_MASTER );
 		// Get the last revision
-		$rev = Revision::newFromTitle($this->mTitle);
-		if(is_null($rev))
+		$rev = Revision::newFromTitle( $this->mTitle );
+		if( is_null( $rev ) )
 			return false;
+
 		// Get the article's contents
 		$contents = $rev->getText();
 		$blank = false;
 		// If the page is blank, use the text from the previous revision,
 		// which can only be blank if there's a move/import/protect dummy revision involved
-		if($contents == '')
-		{
+		if( $contents == '' ) {
 			$prev = $rev->getPrevious();
-			if($prev)
-			{
+			if( $prev )	{
 				$contents = $prev->getText();
 				$blank = true;
 			}
@@ -1983,44 +1981,46 @@ class Article {
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
 		$limit = 20;
-		$res = $dbw->select('revision', 'rev_user_text', array('rev_page' => $this->getID()), __METHOD__,
-				array('LIMIT' => $limit));
-		if($res === false)
+		$res = $dbw->select( 'revision', 'rev_user_text',
+			array( 'rev_page' => $this->getID() ), __METHOD__,
+			array( 'LIMIT' => $limit )
+		);
+		if( $res === false )
 			// This page has no revisions, which is very weird
 			return false;
-		if($res->numRows() > 1)
+		if( $res->numRows() > 1 )
 				$hasHistory = true;
 		else
 				$hasHistory = false;
-		$row = $dbw->fetchObject($res);
+		$row = $dbw->fetchObject( $res );
 		$onlyAuthor = $row->rev_user_text;
 		// Try to find a second contributor
 		foreach( $res as $row ) {
-			if($row->rev_user_text != $onlyAuthor) {
+			if( $row->rev_user_text != $onlyAuthor ) {
 				$onlyAuthor = false;
 				break;
 			}
 		}
-		$dbw->freeResult($res);
+		$dbw->freeResult( $res );
 
 		// Generate the summary with a '$1' placeholder
-		if($blank) {
+		if( $blank ) {
 			// The current revision is blank and the one before is also
 			// blank. It's just not our lucky day
-			$reason = wfMsgForContent('exbeforeblank', '$1');
+			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
 		} else {
-			if($onlyAuthor)
-				$reason = wfMsgForContent('excontentauthor', '$1', $onlyAuthor);
+			if( $onlyAuthor )
+				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
 			else
-				$reason = wfMsgForContent('excontent', '$1');
+				$reason = wfMsgForContent( 'excontent', '$1' );
 		}
 
 		// Replace newlines with spaces to prevent uglyness
-		$contents = preg_replace("/[\n\r]/", ' ', $contents);
+		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
 		// Calculate the maximum amount of chars to get
 		// Max content length = max comment length - length of the comment (excl. $1) - '...'
-		$maxLength = 255 - (strlen($reason) - 2) - 3;
-		$contents = $wgContLang->truncate($contents, $maxLength, '...');
+		$maxLength = 255 - (strlen( $reason ) - 2) - 3;
+		$contents = $wgContLang->truncate( $contents, $maxLength, '...' );
 		// Remove possible unfinished links
 		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
 		// Now replace the '$1' placeholder
