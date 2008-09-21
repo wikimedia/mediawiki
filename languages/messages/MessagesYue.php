@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * @ingroup Language
  * @file
@@ -1409,22 +1409,24 @@ $1',
 'randomredirect-nopages' => '響呢個空間名度冇一個彈去版。',
 
 # Statistics
-'statistics'               => '統計',
-'statistics-header-pages'  => '頁統計',
-'statistics-header-edits'  => '編輯統計',
-'statistics-header-views'  => '參看統計',
-'statistics-header-users'  => '用戶統計',
-'statistics-articles'      => '內容頁',
-'statistics-pages'         => '頁',
-'statistics-files'         => '已經上載咗嘅檔案',
-'statistics-edits'         => '自從{{SITENAME}}設定後嘅頁編輯數',
-'statistics-edits-average' => '每一版平均編輯數',
-'statistics-views-total'   => '查看總數',
-'statistics-views-peredit' => '每次編輯查看數',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]長度',
-'statistics-users'         => '註冊咗嘅[[Special:ListUsers|用戶]]',
-'statistics-users-active'  => '活躍用戶',
-'statistics-mostpopular'   => '最多人睇嘅頁',
+'statistics'                      => '統計',
+'statistics-header-pages'         => '頁統計',
+'statistics-header-edits'         => '編輯統計',
+'statistics-header-views'         => '參看統計',
+'statistics-header-users'         => '用戶統計',
+'statistics-articles'             => '內容頁',
+'statistics-pages'                => '頁',
+'statistics-pages-tooltip'        => '響wiki上嘅全部頁，包埋討論頁、跳轉等',
+'statistics-files'                => '已經上載咗嘅檔案',
+'statistics-edits'                => '自從{{SITENAME}}設定後嘅頁編輯數',
+'statistics-edits-average'        => '每一版平均編輯數',
+'statistics-views-total'          => '查看總數',
+'statistics-views-peredit'        => '每次編輯查看數',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作隊列]長度',
+'statistics-users'                => '註冊咗嘅[[Special:ListUsers|用戶]]',
+'statistics-users-active'         => '活躍用戶',
+'statistics-users-active-tooltip' => '響上個月做過動作嘅用戶',
+'statistics-mostpopular'          => '最多人睇嘅頁',
 
 'disambiguations'      => '搞清楚頁',
 'disambiguationspage'  => 'Template:disambig
@@ -1954,6 +1956,7 @@ $1',
 'proxyblocksuccess'               => '完成。',
 'sorbsreason'                     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason'     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
+'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',

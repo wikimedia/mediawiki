@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -1347,22 +1347,24 @@ $2',
 'randomredirect-nopages' => '在这个名字空间中没有重定向页面。',
 
 # Statistics
-'statistics'               => '统计',
-'statistics-header-pages'  => '页面统计',
-'statistics-header-edits'  => '编辑统计',
-'statistics-header-views'  => '查看统计',
-'statistics-header-users'  => '用户统计',
-'statistics-articles'      => '内容页面',
-'statistics-pages'         => '页面',
-'statistics-files'         => '已经上载的文件',
-'statistics-edits'         => '自从{{SITENAME}}设置的页面编辑数',
-'statistics-edits-average' => '每一页面的平均编辑数',
-'statistics-views-total'   => '查看总数',
-'statistics-views-peredit' => '每次编辑查看数',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作队列]长度',
-'statistics-users'         => '已注册[[Special:ListUsers|用户]]',
-'statistics-users-active'  => '活跃用户',
-'statistics-mostpopular'   => '浏览最多的页面',
+'statistics'                      => '统计',
+'statistics-header-pages'         => '页面统计',
+'statistics-header-edits'         => '编辑统计',
+'statistics-header-views'         => '查看统计',
+'statistics-header-users'         => '用户统计',
+'statistics-articles'             => '内容页面',
+'statistics-pages'                => '页面',
+'statistics-pages-tooltip'        => '在wiki上的所有页面，包括对话页面、重新定向等',
+'statistics-files'                => '已经上载的文件',
+'statistics-edits'                => '自从{{SITENAME}}设置的页面编辑数',
+'statistics-edits-average'        => '每一页面的平均编辑数',
+'statistics-views-total'          => '查看总数',
+'statistics-views-peredit'        => '每次编辑查看数',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue 工作队列]长度',
+'statistics-users'                => '已注册[[Special:ListUsers|用户]]',
+'statistics-users-active'         => '活跃用户',
+'statistics-users-active-tooltip' => '在前一个月中操作过的用户',
+'statistics-mostpopular'          => '浏览最多的页面',
 
 'disambiguations'      => '消含糊页',
 'disambiguationspage'  => 'Template:disambig
@@ -1908,6 +1910,7 @@ $1',
 'proxyblocksuccess'               => '完成。\\n',
 'sorbsreason'                     => '您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器。',
 'sorbs_create_account_reason'     => '由于您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
+'cant-block-while-blocked'        => '当您被封锁时不可以封锁其他用户。',
 
 # Developer tools
 'lockdb'              => '锁定数据库',
