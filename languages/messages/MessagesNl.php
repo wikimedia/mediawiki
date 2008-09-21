@@ -909,10 +909,10 @@ Hiermee wordt door de MediaWiki-software rekening gehouden zodat u toch zonder p
 U bewerkt een oude versie van deze pagina.
 Als u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gemaakt zijn verloren.</strong>',
 'yourdiff'                         => 'Wijzigingen',
-'copyrightwarning'                 => "Opgelet: alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
-Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor 'Pagina opslaan'.<br />
+'copyrightwarning'                 => 'Opgelet: alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de $2 (zie $1 voor details).
+Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor ‘Pagina opslaan’.<br />
 Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven, of overgenomen uit een vrije, openbare bron.<br />
-<strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAARVOOR TOESTEMMING HEBT!</strong>",
+<strong>GEBRUIK GEEN MATERIAAL DAT BESCHERMD WORDT DOOR AUTEURSRECHT, TENZIJ U DAAR TOESTEMMING VOOR HEBT!</strong>',
 'copyrightwarning2'                => 'Al uw bijdragen aan {{SITENAME}} kunnen bewerkt, gewijzigd of verwijderd worden door andere gebruikers.
 Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze hier dan niet.<br />
 U belooft ook u dat u de oorspronkelijke auteur bent van dit materiaal, of dat u het hebt gekopieerd uit een bron in het publieke domein, of een soortgelijke vrije bron (zie $1 voor details).
@@ -2019,6 +2019,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-cantedit'            => 'U kunt het beveiligingsniveau van deze pagina niet wijzigen, omdat u geen rechten hebt om het te bewerken.',
 'protect-othertime'           => 'Andere duur:',
 'protect-othertime-op'        => 'andere duur',
+'protect-existing-expiry'     => 'Bestaande verloopdatum: $1',
 'protect-otherreason'         => 'Overige/additionele reden:',
 'protect-otherreason-op'      => 'overige/additionele reden',
 'protect-dropdown'            => '*Veelvoorkomende redenen voor beveiliging
@@ -2197,6 +2198,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'contribslink'                    => 'bijdragen',
 'autoblocker'                     => "Automatisch geblokkeerd omdat het IP-adres overeenkomt met dat van [[User:\$1|\$1]], die geblokkeerd is om de volgende reden: \"'''\$2'''\"",
 'blocklogpage'                    => 'Blokkeerlogboek',
+'blocklog-fulllog'                => 'Volledige blokkeerlogboek',
 'blocklogentry'                   => 'blokkeerde "[[$1]]" voor de duur van $2 $3',
 'blocklogtext'                    => 'Hier ziet u een lijst van de recente blokkeringen en deblokkeringen.
 Automatische blokkeringen en deblokkeringen komen niet in het logboek.

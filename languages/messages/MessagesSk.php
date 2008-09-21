@@ -8,6 +8,7 @@
  * @author Liso
  * @author Maros
  * @author Michawiki
+ * @author Mormegil
  * @author Palica
  * @author Sp5uhe
  * @author Valasek
@@ -1823,6 +1824,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 'protect-cantedit'            => 'Nemôžete zmeniť úrovne ochrany tejto stránky, pretože nemáte oprávnenie ju upravovať.',
 'protect-othertime'           => 'Iný čas:',
 'protect-othertime-op'        => 'iný čas',
+'protect-existing-expiry'     => 'Súčasný čas ukončenia: $1',
 'protect-otherreason'         => 'Iný/ďalší dôvod:',
 'protect-otherreason-op'      => 'iný/ďalší dôvod',
 'protect-dropdown'            => '* Bežné dôvody zamknutia
@@ -1997,6 +1999,7 @@ z/od momentálne zablokovanej IP adresy/používateľa.',
 'contribslink'                    => 'príspevky',
 'autoblocker'                     => 'Ste zablokovaný, pretože zdieľate IP adresu s „$1“. Dôvod „$2“.',
 'blocklogpage'                    => 'Záznam_blokovaní',
+'blocklog-fulllog'                => 'Úplný záznam blokovaní',
 'blocklogentry'                   => 'zablokoval/a "[[$1]]" s časom ukončenia $2 $3',
 'blocklogtext'                    => 'Toto je zoznam blokovaní a odblokovaní používateľov. Automaticky
 blokované IP adresy nie sú zahrnuté. Pozri zoznam
@@ -2440,7 +2443,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-meteringmode'                => 'Merací režim',
 'exif-lightsource'                 => 'Svetelný zdroj',
 'exif-flash'                       => 'Blesk',
-'exif-focallength'                 => 'Ohnisková vzdialenosť šošoviek',
+'exif-focallength'                 => 'Ohnisková vzdialenosť objektívu',
 'exif-subjectarea'                 => 'Oblasť subjektu',
 'exif-flashenergy'                 => 'Energia blesku',
 'exif-spatialfrequencyresponse'    => 'Priestorová frekvenčná odozva',

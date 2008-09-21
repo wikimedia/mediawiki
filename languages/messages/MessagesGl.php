@@ -408,7 +408,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'loginproblem'               => '<b>Houbo algún problema co seu acceso.</b><br />Ténteo de novo!',
 'login'                      => 'Acceder ao sistema',
 'nav-login-createaccount'    => 'Rexistro',
-'loginprompt'                => "Debe ter as ''cookies'' permitidas para acceder a {{SITENAME}}.",
+'loginprompt'                => "Debe habilitar as ''cookies'' para acceder a {{SITENAME}}.",
 'userlogin'                  => 'Rexistro',
 'logout'                     => 'Saír do sistema',
 'userlogout'                 => 'Saír ao anonimato',
@@ -617,7 +617,7 @@ empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.</strong>",
 'editingsection'                   => 'Editando unha sección de "$1"',
 'editingcomment'                   => 'Deixando un comentario en "$1"',
 'editconflict'                     => 'Conflito de edición: "$1"',
-'explainconflict'                  => "Alguén cambiou esta páxina desque comezou a editala.
+'explainconflict'                  => "Alguén cambiou esta páxina desde que comezou a editala.
 A área de texto superior contén o texto da páxina tal e como existe na actualidade.
 Os seus cambios móstranse na área inferior.
 Pode mesturar os seus cambios co texto existente.
@@ -1311,13 +1311,13 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'filedelete'                  => 'Eliminar "$1"',
 'filedelete-legend'           => 'Eliminar un ficheiro',
 'filedelete-intro'            => "Vai eliminar \"'''[[Media:\$1|\$1]]'''\".",
-'filedelete-intro-old'        => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" de [$4 de $2, ás $3].',
+'filedelete-intro-old'        => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do [$4 $2, ás $3].',
 'filedelete-comment'          => 'Comentario:',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "Eliminouse '''$1'''.",
-'filedelete-success-old'      => 'Eliminouse a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" o $2 ás $3.',
+'filedelete-success-old'      => 'Eliminouse a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do $2 ás $3.',
 'filedelete-nofile'           => "'''$1''' non existe en {{SITENAME}}.",
-'filedelete-nofile-old'       => "Non existe unha versión arquivada de '''$1''' cos atributos especificados.",
+'filedelete-nofile-old'       => "Non existe unha versión arquivada de \"'''\$1'''\" cos atributos especificados.",
 'filedelete-otherreason'      => 'Outro motivo:',
 'filedelete-reason-otherlist' => 'Outra razón',
 'filedelete-reason-dropdown'  => '*Motivos frecuentes para borrar
@@ -1360,7 +1360,7 @@ Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
 'statistics-articles'      => 'Páxinas de contido',
 'statistics-pages'         => 'Páxinas <small>(isto inclúe as páxinas de "conversa", páxinas acerca de {{SITENAME}}, páxinas con "contido mínimo", redireccións e outras)</small>',
 'statistics-files'         => 'Ficheiros cargados',
-'statistics-edits'         => 'Edicións nas páxinas desque se creou {{SITENAME}}',
+'statistics-edits'         => 'Edicións nas páxinas desde que se creou {{SITENAME}}',
 'statistics-edits-average' => 'Media de edicións por páxina',
 'statistics-views-total'   => 'Vistas totais',
 'statistics-views-peredit' => 'Vistas por edición',
@@ -1709,6 +1709,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 'protect-cantedit'            => 'Non pode modificar os niveis de protección desta páxina porque non ten permiso para editala.',
 'protect-othertime'           => 'Outro período:',
 'protect-othertime-op'        => 'outro período',
+'protect-existing-expiry'     => 'Período de caducidade existente: $1',
 'protect-otherreason'         => 'Outro motivo:',
 'protect-otherreason-op'      => 'outro motivo',
 'protect-dropdown'            => '*Motivos frecuentes para a protección
@@ -1885,6 +1886,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'contribslink'                    => 'contribucións',
 'autoblocker'                     => 'Autobloqueado porque "[[User:$1|$1]]" usou recentemente este enderezo IP. O motivo do bloqueo de $1 é: "$2".',
 'blocklogpage'                    => 'Rexistro de bloqueos',
+'blocklog-fulllog'                => 'Rexistro de bloqueos totais',
 'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
@@ -2615,7 +2617,7 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => 'O contido da páxina foi eliminado',
 'autosumm-replace' => 'O contido da páxina foi substituído por "$1"',
-'autoredircomment' => 'Redirixindo cara a "[[$1]]"',
+'autoredircomment' => 'Redirixida cara a "[[$1]]"',
 'autosumm-new'     => 'Nova páxina: $1',
 
 # Live preview

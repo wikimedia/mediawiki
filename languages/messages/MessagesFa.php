@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Behdarvandyani
  * @author Huji
  * @author Huji <huji.huji at gmail.com>
  * @author Ladsgroup
@@ -1943,6 +1944,7 @@ $NEWPAGE
 'protect-cantedit'            => 'شما نمی‌تواند وضعیت حفاظت این صفحه را تغییر دهید، چون اجازه ویرایش آن را ندارید.',
 'protect-othertime'           => 'زمانی دیگر:',
 'protect-othertime-op'        => 'زمانی دیگر',
+'protect-existing-expiry'     => 'پایان زمان موجود: $1',
 'protect-otherreason'         => 'دلیل دیگر/اضافی:',
 'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
 'protect-dropdown'            => '*دلایل متداول محافظت
@@ -2116,6 +2118,7 @@ $1',
 'contribslink'                    => 'مشارکت‌ها',
 'autoblocker'                     => 'به طور خودکار بسته شد چون IP شما و «$1» یکی است. دلیل «$2».',
 'blocklogpage'                    => 'سیاههٔ_بسته‌شدن‌ها',
+'blocklog-fulllog'                => 'سیاه بستن کامل',
 'blocklogentry'                   => '«$1»  $2 بسته شد. $3',
 'blocklogtext'                    => 'این سیاهه‌ای از اعمال بستن و باز کردن کاربرها است. نشانی‌های IPی که به طور
 خودکار بسته شده‌اند فهرست نشده‌اند. برای فهرست محرومیت‌ها و بسته‌شدن‌های عملیاتی در لحظهٔ حاضر،

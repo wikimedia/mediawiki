@@ -1759,6 +1759,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 'protect-cantedit'            => 'Non è possibile modificare i livelli di protezione per la pagina in quanto non si dispone dei permessi necessari per modificare la pagina stessa.',
 'protect-othertime'           => 'Durata non in elenco:',
 'protect-othertime-op'        => 'durata non in elenco',
+'protect-existing-expiry'     => 'Scadenza attuale: $1',
 'protect-otherreason'         => 'Altri motivi/dettagli:',
 'protect-otherreason-op'      => 'altri motivi/dettagli',
 'protect-dropdown'            => '*Motivi comuni di protezione
@@ -1880,7 +1881,7 @@ Indica il motivo specifico per il quale procedi al blocco dell'indirizzo IP o de
 'ipaddress'                       => 'Indirizzo IP:',
 'ipadressorusername'              => 'Indirizzo IP o nome utente:',
 'ipbexpiry'                       => 'Scadenza del blocco:',
-'ipbreason'                       => 'Motivo del blocco:',
+'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Altra motivazione',
 'ipbreason-dropdown'              => '*Motivazioni più comuni per i blocchi
 ** Inserimento di informazioni false
@@ -1934,6 +1935,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'autoblocker'                     => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
 Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklogpage'                    => 'Blocchi',
+'blocklog-fulllog'                => 'Registro completo dei blocchi',
 'blocklogentry'                   => 'ha bloccato [[$1]] per un periodo di $2 $3',
 'blocklogtext'                    => "Di seguito sono elencate le azioni di blocco e sblocco utenti. Gli indirizzi IP bloccati automaticamente non sono elencati. Consultare l'[[Special:IPBlockList|elenco IP bloccati]] per l'elenco degli indirizzi e nomi utente il cui blocco è operativo.",
 'unblocklogentry'                 => 'ha sbloccato $1',

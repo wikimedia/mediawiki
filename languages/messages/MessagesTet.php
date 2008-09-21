@@ -611,8 +611,8 @@ $messages = array(
 'tooltip-watch'            => "Tau tan pájina ne'e ba ó-nia lista hateke",
 
 # Browsing diffs
-'previousdiff' => '←Diferensa molok',
-'nextdiff'     => 'Diferensa oinmai→',
+'previousdiff' => '←Versaun molok',
+'nextdiff'     => 'Versaun oinmai→',
 
 # Special:NewImages
 'showhidebots' => '($1 bot sira)',

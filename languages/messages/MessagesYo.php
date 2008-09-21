@@ -38,6 +38,7 @@ $messages = array(
 'saturday'  => 'Ọjọ́àbámẹ́ta',
 
 'about'          => 'Nípa',
+'newwindow'      => '(yíò sí nínú fèrèsè)',
 'cancel'         => "Fa'gilé",
 'qbfind'         => 'Wá rí',
 'qbedit'         => 'Àtúnṣe',
@@ -165,8 +166,15 @@ If you do not want your writing to be edited mercilessly and redistributed at wi
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
 <strong>Ẹ mọ́ fi iṣẹ́ ẹlòmíràn sílẹ̀ láì gbàṣẹ!</strong>',
 
+# History pages
+'cur'  => 'lọ́wọ́',
+'last' => 'tẹ́lẹ̀',
+
 # Revision deletion
 'rev-delundel' => 'fihàn/fipamọ́',
+
+# Diffs
+'editundo' => 'dápadà',
 
 # Search results
 'searchresults'       => 'Àwọn èsì àwáàrí',
@@ -182,7 +190,11 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'savedprefs'       => 'Àwọn ìfẹ́ràn yín ti wà nípamọ́.',
 
 # Recent changes
-'recentchanges' => 'Àwọn àtúnṣe tuntun',
+'recentchanges'   => 'Àwọn àtúnṣe tuntun',
+'rcnote'          => "Lábẹ́ yìí ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1'''}} sẹ́yìn ní ọjọ́ '''$2''' sẹ́yìn, títí di $5, $4.",
+'rcshowhideminor' => '$1 àwọn àtúnṣe kékéèké',
+'diff'            => 'ìyàtọ̀',
+'hide'            => 'Ìpamọ́',
 
 # Special:ImageList
 'imagelist_name' => 'Orúkọ',
@@ -206,6 +218,7 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 
 # Special:AllPages
 'allpages'          => 'Gbogbo ojúewé',
+'alphaindexline'    => '$1 dé $2',
 'allarticles'       => 'Gbogbo ojúewé',
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',
 'allnotinnamespace' => 'Gbogbo ojúewé (tí kòsí ní $1 namespace)',
@@ -229,12 +242,22 @@ You are also promising us that you wrote this yourself, or copied it from a publ
 'whatlinkshere'      => 'Ìjápọ̀ mọ́ ojúewé yí',
 'whatlinkshere-page' => 'Ojúewé:',
 
+# Block/unblock
+'blocklink'    => 'dínà',
+'contribslink' => 'àfikún',
+
 # Namespace 8 related
 'allmessagesname' => 'Orúkọ',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage' => 'Ojúewé mi',
-'tooltip-p-logo'      => 'Ojúewé Àkọ́kọ́',
+'tooltip-pt-userpage'    => 'Ojúewé mi',
+'tooltip-pt-mytalk'      => 'Ojúewé ọ̀rọ̀ mi',
+'tooltip-pt-preferences' => 'Àwọn ìfẹ́ràn mi',
+'tooltip-pt-watchlist'   => 'Àkójọ àwọn ojúewé tí ẹ̀ ún mójútó bóyá wọ́nyí padà',
+'tooltip-pt-mycontris'   => 'Àkójọ àwọn àfikún mi',
+'tooltip-pt-logout'      => 'Ìbọ́sódé',
+'tooltip-p-logo'         => 'Ojúewé Àkọ́kọ́',
+'tooltip-n-mainpage'     => 'Ẹ ṣe àbẹ̀wò sí Ojúewé Àkọ́kọ́',
 
 # Attribution
 'lastmodifiedatby' => 'Igba ti a se atunse si ojuewe yi gbeyin ni $2, $1 by $3.', # $1 date, $2 time, $3 user

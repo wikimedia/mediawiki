@@ -1786,6 +1786,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 'protect-cantedit'            => 'Anda tidak dibenarkan menukar peringkat perlindungan bagi laman ini.',
 'protect-othertime'           => 'Waktu lain:',
 'protect-othertime-op'        => 'waktu lain',
+'protect-existing-expiry'     => 'Waktu tamat yang telah ditetapkan: $1',
 'protect-otherreason'         => 'Sebab lain/tambahan:',
 'protect-otherreason-op'      => 'sebab lain/tambahan',
 'protect-dropdown'            => '*Sebab lazim
@@ -1965,6 +1966,7 @@ dirosakkan).',
 'contribslink'                    => 'sumb.',
 'autoblocker'                     => 'Disekat secara automatik kerana baru-baru ini alamat IP anda digunakan oleh "[[User:$1|$1]]". Sebab sekatan $1 ialah: "$2"',
 'blocklogpage'                    => 'Log sekatan',
+'blocklog-fulllog'                => 'Log sekatan penuh',
 'blocklogentry'                   => 'menyekat [[$1]] sehingga $2 $3',
 'blocklogtext'                    => 'Ini adalah log bagi sekatan dan penyahsekatan.
 Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat

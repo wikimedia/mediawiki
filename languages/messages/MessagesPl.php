@@ -14,6 +14,7 @@
  * @author Maikking
  * @author Masti
  * @author Matma Rex
+ * @author Remember the dot
  * @author Sp5uhe
  * @author Stv
  * @author Szczepan1990
@@ -474,15 +475,15 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Strona',
-'nstab-user'      => 'strona użytkownika',
-'nstab-media'     => 'pliki',
-'nstab-special'   => 'strona specjalna',
-'nstab-project'   => 'strona projektu',
-'nstab-image'     => 'plik',
-'nstab-mediawiki' => 'komunikat',
-'nstab-template'  => 'szablon',
-'nstab-help'      => 'pomoc',
-'nstab-category'  => 'kategoria',
+'nstab-user'      => 'Strona użytkownika',
+'nstab-media'     => 'Pliki',
+'nstab-special'   => 'Strona specjalna',
+'nstab-project'   => 'Strona projektu',
+'nstab-image'     => 'Plik',
+'nstab-mediawiki' => 'Komunikat',
+'nstab-template'  => 'Szablon',
+'nstab-help'      => 'Pomoc',
+'nstab-category'  => 'Kategoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Brak takiej operacji',
@@ -1899,6 +1900,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 'protect-cantedit'            => 'Nie możesz zmienić poziomu zabezpieczenia tej strony, ponieważ nie masz uprawnień do jej edycji.',
 'protect-othertime'           => 'Inny okres:',
 'protect-othertime-op'        => 'inny okres',
+'protect-existing-expiry'     => 'Obecny czas wygaśnięcia: $1',
 'protect-otherreason'         => 'Inny/dodatkowy powód:',
 'protect-otherreason-op'      => 'inny/dodatkowy powód',
 'protect-dropdown'            => '*Najczęstsze powody zabezpieczenia
@@ -2081,6 +2083,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'autoblocker'                     => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
 Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                    => 'Historia blokad',
+'blocklog-fulllog'                => 'Pełny rejestr blokad',
 'blocklogentry'                   => 'zablokował [[$1]], czas blokady: $2 $3',
 'blocklogtext'                    => 'Poniżej znajduje się lista blokad założonych i zdjętych z poszczególnych adresów IP.
 Na liście nie znajdą się adresy IP, które zablokowano w sposób automatyczny.

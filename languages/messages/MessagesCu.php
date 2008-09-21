@@ -146,6 +146,7 @@ $messages = array(
 'navigation'     => 'пла́ваниѥ',
 'and'            => 'и',
 
+'errorpagetitle'   => 'блаꙁна',
 'help'             => 'по́мощь',
 'search'           => 'иска́ниѥ',
 'searchbutton'     => 'ищи́',
@@ -247,6 +248,7 @@ $messages = array(
 'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
 'note'               => '<strong>НАРОЧИ́ТО:</strong>',
 'editing'            => 'исправлѥ́ниѥ: $1',
+'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
 'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
 'template-protected' => '(ꙁабранєно ѥ́стъ)',
 
@@ -330,6 +332,7 @@ $messages = array(
 
 # Image description page
 'filehist-deleteone' => 'поничьжє́ниѥ',
+'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
 'imagelinks'         => 'съвѧ́ꙁи',
 
@@ -414,6 +417,8 @@ $messages = array(
 'excontentauthor' => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
 'delete-legend'   => 'поничьжє́ниѥ',
 'actioncomplete'  => 'дѣ́иство сътворєно́ ѥ́стъ',
+'deletedtext'     => 'страни́ца ⁖ <nowiki>$1</nowiki> ⁖ поничьжєна ѥ́стъ ⁙ 
+виждь ⁖ $2 ⁖ послѣ́дьнъ поничьжє́ниѩ дѣлꙗ́',
 'deletedarticle'  => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
 'dellogpage'      => 'поничьжє́ниꙗ їсторі́ꙗ',
 'deletionlog'     => 'поничьжє́ниꙗ їсторі́ꙗ',
@@ -436,6 +441,7 @@ $messages = array(
 # Contributions
 'contributions' => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
 'mycontris'     => 'моꙗ́ добродѣꙗ́ниꙗ',
+'contribsub2'   => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
 'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
 
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
@@ -491,6 +497,7 @@ $messages = array(
 # Media information
 'file-info-size' => '($1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3 · MIME тѵ́пъ : $4)',
 'svg-long-desc'  => '(дѣ́ло SVG · обꙑ́чьнъ о́браꙁъ : $1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3)',
+'show-big-image' => 'пль́нъ ви́да о́браꙁъ',
 
 # Special:NewImages
 'ilsubmit' => 'ищи́',

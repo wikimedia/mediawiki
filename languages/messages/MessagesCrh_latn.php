@@ -273,7 +273,7 @@ $messages = array(
 'deletethispage'    => 'Saifeni yoq et',
 'undelete_short'    => '{{PLURAL:$1|1|$1}} deñişiklikni keri ketir',
 'protect'           => 'Qorçalavğa al',
-'protect_change'    => 'qorçalav derecesini deñiştir',
+'protect_change'    => 'deñiştir',
 'protectthispage'   => 'Saifeni qorçalav altına al',
 'unprotect'         => 'Qorçalavnı çıqar',
 'unprotectthispage' => 'Saife qorçalavını çıqar',
@@ -332,7 +332,7 @@ $messages = array(
 
 'badaccess'        => 'İzin hatası',
 'badaccess-group0' => 'Yapacaq olğan areketiñizni yapmağa aqqıñız yoq.',
-'badaccess-groups' => 'Yapacaq olğan areketiñizni tek $1 gruppalarınıñ qullanıcıları yapıp olalar.',
+'badaccess-groups' => 'Yapacaq olğan areketiñizni tek aşağıdaki $2 gruppağa aza оlğan qullanıcıları yapıp olalar: $1.',
 
 'versionrequired'     => 'MediaWikiniñ $1 versiyası kerek',
 'versionrequiredtext' => 'Bu saifeni qullanmaq içün MediaWikiniñ $1 versiyası kerek. [[Special:Version|Versiya]] saifesine baq.',
@@ -395,7 +395,7 @@ Malümat bazasına soñki muracaat:
 "$1"
 "$2" funktsiyasından asıl oldı.
 MySQL "$3: $4" hatasını bildirdi.',
-'noconnect'            => 'Bağışlañız! Tehnikiy problemalar sebebinden şimdi malümat bazasınıñ serverinen bağlınmaq çare yoq. <br /> $1',
+'noconnect'            => 'Bağışlañız! Tehnikiy problemalar sebebinden wiki malümat bazasınıñ serverinen bağlınıp olamay. <br /> $1',
 'nodb'                 => '$1 malümat bazasını saylamağa çare yoq',
 'cachederror'          => 'Aşağıda siz istegen saifeniñ keşirlengen kopiyasıdır. Bunıñ içün o eskirgen ola bile.',
 'laggedslavemode'      => 'Diqqat! Bu saifede soñki yañaruv olmay bile.',
@@ -447,11 +447,12 @@ Sebep: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Oturımnı qapat',
-'logouttext'                 => '<strong>Oturımnı qapattıñız.</strong><br />
-Şimdi anonim olaraq {{SITENAME}} saytını qullanmağa devam etip olasıñız, ya da yañıdan oturım açıp olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.',
+'logouttext'                 => '<strong>Oturımnı qapattıñız.</strong>
+
+Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan [[Special:UserLogin|oturım açıp]] olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.',
 'welcomecreation'            => '== Hoş keldiñiz, $1! ==
 Esabıñız açıldı.
-Bu saytnıñ ayarlarını şahsıñızğa köre deñiştirmege unutmañız.',
+Bu saytnıñ [[Special:Preferences|ayarlarını]] şahsıñızğa köre deñiştirmege unutmañız.',
 'loginpagetitle'             => 'Oturım aç',
 'yourname'                   => 'Qullanıcı adıñız',
 'yourpassword'               => 'Paroliñiz',
@@ -494,7 +495,7 @@ Bu saytnıñ ayarlarını şahsıñızğa köre deñiştirmege unutmañız.',
 'noname'                     => 'Qullanıcı adını belgilemediñiz.',
 'loginsuccesstitle'          => 'Kiriş yapıldı',
 'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışıp olasıñız.'''",
-'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da yañı qullanıcı esabını açmaq içün aşağıdaki formanı qullanıñız.',
+'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da [[Special:Userlogin/signup|yañı qullanıcı esabını açıñız]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
@@ -512,8 +513,8 @@ Eger de yañı parol talap etmegen olsañız ya da eski paroliñizni bilseñiz b
 'eauthentsent'               => 'Keçici parol e-mail yolunen yañı qullanıcınıñ $1 adresine yiberildi. e-mail’ni tasdıqlamaq içün yapılacaqlar yiberilgen mektüpte añlatıla.',
 'throttled-mailpassword'     => 'Parol hatırlatuv funktsiyası endi soñki $1 saat devamında işletilgen edi. $1 saat içinde tek bir hatırlatuv işletmek mümkün.',
 'mailerror'                  => 'Poçta yiberilgende bir hata meydanğa keldi: $1',
-'acct_creation_throttle_hit' => '$1 dane qullanıcı esapnı açtırğan aldasıñız. Daa ziyade açtıramazsıñız.',
-'emailauthenticated'         => 'E-mail adresiñiz $1-nen teñeştirildi.',
+'acct_creation_throttle_hit' => 'Siz endi $1 dane qullanıcı esabını açtıñız. Daa ziyade açtıramazsıñız.',
+'emailauthenticated'         => 'E-mail adresiñiz $2 $3 tarihında tasdıqlandı.',
 'emailnotauthenticated'      => 'E-mail adresiñiz tasdıqlanmadı, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaq.',
 'noemailprefs'               => 'E-mail adresiñizni belgilemegeniñiz içün, vikiniñ e-mail ile bağlı funktsiyaları çalışmaycaq.',
 'emailconfirmlink'           => 'E-mail adresiñizni tasdıqlañız',
@@ -623,7 +624,7 @@ Siziñ blok identifikatorıñız — #$5. Lütfen, administratorlarğa mektüple
 'userpage-userdoesnotexist' => '"$1" adlı qullanıcı yoqtır. Tamam bu saifeni deñiştirmege istegeniñizni teşkeriñiz.',
 'clearyourcache'            => "'''İhtar:''' Ayarlarıñıznı saqlağandan soñ, brauzeriñizniñ keşini de temizlemek kereksiñiz: '''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-Shift-R'' yapıp (Apple Mac içün ''Cmd-Shift-R'');, '''Internet Explorer:''' ''Ctrl-F5'', '''Konqueror:''' Tek saifeni yañıdan yükle dögmesine basıp.",
 'usercssjsyoucanpreview'    => "<strong>Tevsiye:</strong> Saifeni saqlamazdan evel '''ög baquvnı köster''' dögmesine basıp yapqan yañı saifeñizni közden keçiriñiz.",
-'usercsspreview'            => "'''Tek test etesiñiz ya da ög baquv köresiñiz - qullanıcı CSS faylı şimdilik saqlanmadı.'''",
+'usercsspreview'            => "'''Siz şimdi tek ög baquv köresiñiz - qullanıcı CSS faylıñız alâ daa saqlanmadı!'''",
 'userjspreview'             => "'''Tek test etesiñiz ya da ög baquv köresiñiz - qullanıcı JavaScript'i şimdilik saqlanmadı.'''",
 'userinvalidcssjstitle'     => "''İhtar:''' \"\$1\" adınen bir tema yoqtır. tema-adı.css ve .js fayllarınıñ adları kiçik afir ile yazmaq kerek, yani {{ns:user}}:Temel/'''M'''onobook.css degil, {{ns:user}}:Temel/'''m'''onobook.css.",
 'updated'                   => '(Yañardı)',
@@ -684,7 +685,7 @@ Bu saifeni kerçekten de yañıdan yaratmağa isteysiñizmi? Aşağıda yoq etil
 # "Undo" feature
 'undo-success' => 'Deñişiklik lâğu etile bile. Lütfen, aynı bu deñişiklikler meni meraqlandıra dep emin olmaq içün versiyalar teñeştirilüvini közden keçirip deñişikliklerni tamamen yapmaq içün "Saifeni saqla" dögmesine basıñız.',
 'undo-failure' => 'Aradaki deñişiklikler biri-birine kelişikli olmağanı içün deñişiklik lâğu etilip olamay.',
-'undo-summary' => '[[Special:Contributions/$2|$2]] qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv, ([[User talk:$2|muzakere]])',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|muzakere]]) qullanıcısınıñ $1 nomeralı deñişikligini lâğu etüv.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Esap yaratmaqnıñ iç çaresi yoq.',

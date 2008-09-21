@@ -1937,6 +1937,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
 'protect-othertime'           => 'Jiný čas vypršení:',
 'protect-othertime-op'        => 'jiný čas',
+'protect-existing-expiry'     => 'Současný čas vypršení: $1',
 'protect-otherreason'         => 'Jiný nebo další důvod:',
 'protect-otherreason-op'      => 'jiný/další důvod',
 'protect-dropdown'            => '*Obvyklé důvody zamčení
@@ -2106,6 +2107,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'contribslink'                    => 'příspěvky',
 'autoblocker'                     => 'Automaticky zablokováno, protože sdílíte IP adresu s „$1“. Důvod zablokování tohoto uživatele: „$2“.',
 'blocklogpage'                    => 'Kniha zablokování',
+'blocklog-fulllog'                => 'Celá kniha zablokování',
 'blocklogentry'                   => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:IPBlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
 'unblocklogentry'                 => 'odblokovává „$1“',
@@ -2972,5 +2974,14 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Prázdná stránka',
 'intentionallyblankpage' => 'Tato stránka je úmyslně prázdná. Používá se na měření výkonnosti atd.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Tuto řádku ponechte beze změny.<pre>
+#Níže uveďte fragmenty regulárních výrazů (pouze část mezi //).
+#Tyto výrazy se aplikují na URL vkládaných externích obrázků.
+#Ty, které vyhoví, se zobrazí jako obrázek; ostatní pouze jako externí odkaz.
+#Řádky začínající znakem # se považují za komentáře.
+
+#Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
 
 );

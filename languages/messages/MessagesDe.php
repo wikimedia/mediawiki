@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Church of emacs
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Li-sung
  * @author Meno25
@@ -628,14 +629,14 @@ Weitere Benutzerkonten können nicht angelegt werden.',
 'emailnotauthenticated'      => 'Deine E-Mail-Adresse ist noch nicht bestätigt. Die folgenden E-Mail-Funktionen stehen erst nach erfolgreicher Bestätigung zur Verfügung.',
 'noemailprefs'               => 'Gib eine E-Mail-Adresse an, damit die nachfolgenden Funktionen zur Verfügung stehen.',
 'emailconfirmlink'           => 'E-Mail-Adresse bestätigen (authentifizieren).',
-'invalidemailaddress'        => 'Die E-Mail-Adresse wurde nicht akzeptiert, da sie ein ungültiges Format aufzuweisen scheint. Bitte gib eine Adresse in einem gültigen Format ein oder leere das Feld.',
+'invalidemailaddress'        => 'Die E-Mail-Adresse wird nicht akzeptiert, weil sie ein ungültiges Format (eventuell ungültige Zeichen) zu haben scheint. Bitte gib eine korrekte Adresse ein oder leere das Feld.',
 'accountcreated'             => 'Benutzerkonto erstellt',
 'accountcreatedtext'         => 'Das Benutzerkonto $1 wurde eingerichtet.',
 'createaccount-title'        => 'Erstellung eines Benutzerkontos für {{SITENAME}}',
 'createaccount-text'         => 'Es wurde für dich ein Benutzerkonto "$2" auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für "$2" ist "$3". Du solltest dich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
-'login-throttled'            => 'Du hast mehrmals ein falsches Passwort eingegeben. Bitte warte, bevor du es erneut versuchst.',
+'login-throttled'            => 'Du hast zu oft vergeblich versucht, dich unter diesem Benutzernamen anzumelden. Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 
 # Password reset dialog
@@ -1505,7 +1506,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'statistics-edits-average' => 'Bearbeitungen pro Seite im Durchschnitt',
 'statistics-views-total'   => 'Seitenaufrufe gesamt',
 'statistics-views-peredit' => 'Seitenaufrufe pro Bearbeitung',
-'statistics-jobqueue'      => 'Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Jobqueue]',
+'statistics-jobqueue'      => 'Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
 'statistics-users'         => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active'  => 'Aktive Benutzer',
 'statistics-mostpopular'   => 'Meist besuchte Seiten',
@@ -1686,7 +1687,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'emailccsubject'  => 'Kopie deiner Nachricht an $1: $2',
 'emailsent'       => 'E-Mail verschickt',
 'emailsenttext'   => 'Deine E-Mail wurde verschickt.',
-'emailuserfooter' => 'Diese E-Mail wurde von dem {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
+'emailuserfooter' => 'Diese E-Mail wurde von {{SITENAME}}-Benutzer „$1“ an „$2“ gesendet.',
 
 # Watchlist
 'watchlist'            => 'Beobachtungsliste',
@@ -1805,9 +1806,9 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollbacklink'     => 'Zurücksetzen',
 'rollbackfailed'   => 'Zurücksetzen gescheitert',
 'cantrollback'     => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'    => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Seite [[:$1]] war nicht erfolgreich, da in der Zwischenzeit bereits ein anderer Benutzer Änderungen an dieser Seite vorgenommen hat.
+'alreadyrolled'    => "Das Zurücksetzen der Änderungen von [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
 
-Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
+Die letzte Änderung stammt von [[User:$3|$3]] <span style='font-size: smaller'>([[Special:Contributions/$3|{{int:contribslink}}]])</span>.",
 'editcomment'      => 'Der Änderungskommentar lautet: „<i>$1</i>“.', # only shown if there is an edit comment
 'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
@@ -1845,6 +1846,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',
 'protect-othertime'           => 'Andere Sperrdauer:',
 'protect-othertime-op'        => 'andere Sperrdauer',
+'protect-existing-expiry'     => 'Aktuelles Seitenschutzende: $1',
 'protect-otherreason'         => 'Anderer/ergänzender Grund:',
 'protect-otherreason-op'      => 'anderer/ergänzender Grund',
 'protect-dropdown'            => '*Allgemeine Schutzgründe
@@ -2023,6 +2025,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'contribslink'                    => 'Beiträge',
 'autoblocker'                     => 'Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|Benutzer:$1]] benutzt. Grund: „$2“.',
 'blocklogpage'                    => 'Benutzersperr-Logbuch',
+'blocklog-fulllog'                => 'Vollständiges Benutzersperr-Logbuch',
 'blocklogentry'                   => 'sperrte „[[$1]]“ für den Zeitraum: $2 $3',
 'blocklogtext'                    => 'Dies ist das Logbuch über Sperrungen und Entsperrungen von Benutzern und IP-Adressen.
 Automatisch gesperrte IP-Adressen werden nicht erfasst.
@@ -2590,7 +2593,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-flash-return-0'   => 'Blitz sendet keine Daten',
 'exif-flash-return-2'   => 'keine Reflexion des Blitz festgestellt',
 'exif-flash-return-3'   => 'Reflexion des Blitz festgestellt',
-'exif-flash-mode-1'     => 'erzwungenes blitzen',
+'exif-flash-mode-1'     => 'erzwungenes Blitzen',
 'exif-flash-mode-2'     => 'Blitz abgeschaltet',
 'exif-flash-mode-3'     => 'Automatik',
 'exif-flash-function-1' => 'Keine Blitzfunktion',

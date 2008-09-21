@@ -356,7 +356,7 @@ Im Fall dass Si mol Ihr Basswort vergässe hen cha Ihne au e ziitwiiligs Eimol-B
 'loginsuccess'               => "'''Du bisch jetz als \"\$1\" bi {{SITENAME}} aagmäldet.'''",
 'nosuchuser'                 => 'Dr Benutzername "$1" exischtiert nit.
 
-Yberprüf d Schribwis, odr meld dich als neijer Benutzer ô.',
+Yberprüf d Schribwis, odr meld dich als [[Special:Userlogin/signup|neijer Benutzer ô]].',
 'nosuchusershort'            => 'S gibt kei Benutzername „<nowiki>$1</nowiki>“. Bitte yberprüf mol d Schribwis.',
 'nouserspecified'            => 'Bitte gib ä Benutzername ii.',
 'wrongpassword'              => "Sell Basswort isch falsch (odr fählt). Bitte versuech's nomol.",

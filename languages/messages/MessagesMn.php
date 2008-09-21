@@ -1153,9 +1153,22 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'randomredirect-nopages' => 'Энэ нэрний зайд шууд холбогч байхгүй байна.',
 
 # Statistics
-'statistics'              => 'Статистик мэдээлэл',
-'statistics-header-users' => 'Хэрэглэгчийн статистик',
-'statistics-mostpopular'  => 'Хамгийн олон удаа үзсэн хуудсууд',
+'statistics'               => 'Статистик мэдээлэл',
+'statistics-header-pages'  => 'Хуудасны статистик',
+'statistics-header-edits'  => 'Засварын статистик',
+'statistics-header-views'  => 'Статистикийг үзэх',
+'statistics-header-users'  => 'Хэрэглэгчийн статистик',
+'statistics-articles'      => 'Агуулгын хуудас',
+'statistics-pages'         => 'Нийт хуудас <small>(энэ нь "хэлэлцүүлгийн" хуудас, {{SITENAME}}-н талаарх хуудас, жижиг хэмжээний "түүхий" хуудас, чиглүүлэгч болон бусад хуудсуудыг оролцуулсан)</small>',
+'statistics-files'         => 'Оруулсан файл',
+'statistics-edits'         => '{{SITENAME}} ашиглаланд орсоноос хойших хуудасны засварын тоо',
+'statistics-edits-average' => 'Хуудас тутмын дундаж засварын тоо',
+'statistics-views-total'   => 'Нийт үзсэн тоо',
+'statistics-views-peredit' => 'Засвар тутмыг үзсэн тоо',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Ажлын цувааны] урт',
+'statistics-users'         => 'Бүртгэгдсэн [[Special:ListUsers|хэрэглэгч]]',
+'statistics-users-active'  => 'Байнгын оролцоотой хэрэглэгч',
+'statistics-mostpopular'   => 'Хамгийн олон удаа үзсэн хуудсууд',
 
 'disambiguations'      => 'Салаа утгатай үгнүүд',
 'disambiguationspage'  => 'Template:Салаа утгатай',
@@ -1163,9 +1176,13 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 Тэдгээр нь зөв сэдэв руу холбогдох ёстой.<br />
 [[MediaWiki:Disambiguationspage]]-с холбогдсон загвар хэрэглэж байвал хуудас нь салаа утгатай үгнүүдийн хуудас гэж тооцогдоно.",
 
-'doubleredirects' => 'Давхар шууд холбогчууд',
+'doubleredirects'            => 'Давхар чиглүүлэгчүүд',
+'doubleredirectstext'        => 'Энэ хуудас нь өөр чиглүүлэгч хуудас руу чиглүүлдэг хуудсуудыг жагсаана.
+Мөр тус бүр нь эхний ба хоёр дахь чиглүүлэгч рүүх холбоосыг болон эхний чиглүүлэгчийн чиглэх ёстой, хоёр дахь чиглүүлэгчийн чиглэх "жинхэнэ" чиглэх ёстой хуудсыг заана.',
+'double-redirect-fixed-move' => '[[$1]] зөөгдөж, [[$2]] руух чиглүүлэгч боллоо',
+'double-redirect-fixer'      => 'Чиглүүлэгчийг засварлагч',
 
-'brokenredirects'        => 'Эвдэрхий шууд холбогчууд',
+'brokenredirects'        => 'Эвдэрхий чиглүүлэгчүүд',
 'brokenredirectstext'    => 'Дараах автомат холбогч нь одоо байхгүй хуудас руу холбож байна:',
 'brokenredirects-edit'   => '(засварлах)',
 'brokenredirects-delete' => '(устгах)',

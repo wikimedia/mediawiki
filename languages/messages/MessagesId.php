@@ -1871,6 +1871,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-cantedit'            => 'Anda tidak dapat mengubah tingkatan perlindungan halaman ini karena Anda tidak memiliki hak untuk itu.',
 'protect-othertime'           => 'Waktu lain:',
 'protect-othertime-op'        => 'waktu lain',
+'protect-existing-expiry'     => 'Waktu kadaluwarsa saat ini: $1',
 'protect-otherreason'         => 'Alasan lain/tambahan:',
 'protect-otherreason-op'      => 'alasan lain/tambahan',
 'protect-dropdown'            => '*Alasan umum perlindungan
@@ -2044,6 +2045,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'contribslink'                    => 'kontrib',
 'autoblocker'                     => 'Diblokir secara otomatis karena Anda berbagi alamat IP dengan "$1". Alasan "$2".',
 'blocklogpage'                    => 'Log pemblokiran',
+'blocklog-fulllog'                => 'Log pemblokiran penuh',
 'blocklogentry'                   => 'memblokir [[$1]] dengan waktu kadaluwarsa $2 $3',
 'blocklogtext'                    => 'Di bawah ini adalah log pemblokiran dan pembukaan blokir terhadap pengguna.
 Alamat IP yang diblokir secara otomatis tidak terdapat di dalam daftar ini.

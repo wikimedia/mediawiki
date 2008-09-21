@@ -1772,6 +1772,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'protect-cantedit'            => 'Du kan ikke endre beskyttelsesnivået til denne siden fordi du ikke har tillatelse til å redigere den.',
 'protect-othertime'           => 'Annen tid:',
 'protect-othertime-op'        => 'annen tid',
+'protect-existing-expiry'     => 'Gjeldende utløpstid: $1',
 'protect-otherreason'         => 'Annen/utdypende grunn:',
 'protect-otherreason-op'      => 'annen/utdypende grunn',
 'protect-dropdown'            => '*Vanlige låsingsårsaker
@@ -1941,6 +1942,7 @@ $1',
 'contribslink'                    => 'bidrag',
 'autoblocker'                     => 'Du ble automatisk blokkert fordi du deler IP-adresse med «[[User:$1|$1]]». Grunnen som ble gitt til at «$1» ble blokkert var: «$2».',
 'blocklogpage'                    => 'Blokkeringslogg',
+'blocklog-fulllog'                => 'Fullstendig blokkeringslogg',
 'blocklogentry'                   => 'blokkerte «[[$1]]» med en varighet på $2 $3',
 'blocklogtext'                    => 'Dette er en logg som viser hvilke brukere som har blitt blokkert og avblokkert. Automatisk blokkerte IP-adresser vises ikke. Se [[Special:IPBlockList|blokkeringslisten]] for en liste over IP-adresser som er blokkert akkurat nå.',
 'unblocklogentry'                 => 'opphevet blokkeringen av $1',
@@ -2601,7 +2603,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # E-mail address confirmation
 'confirmemail'             => 'Bekreft e-postadresse',
-'confirmemail_noemail'     => 'Du har ikke oppgitt en gydlig e-postadresse i [[Special:Preferences|innstillingene dine]].',
+'confirmemail_noemail'     => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
 'confirmemail_text'        => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
 'confirmemail_pending'     => '<div class="error">
 En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.

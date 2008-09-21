@@ -164,7 +164,7 @@ $messages = array(
 'deletethispage'    => 'Sutrae esta paje',
 'undelete_short'    => 'Desutrae {{PLURAL:$1|edita|editas}}',
 'protect'           => 'Proteje',
-'protect_change'    => 'cambia la proteje',
+'protect_change'    => 'cambia',
 'protectthispage'   => 'Proteje esta paje',
 'unprotect'         => 'desproteje',
 'unprotectthispage' => 'Desproteje esta paje',
@@ -268,7 +268,7 @@ $messages = array(
 'userlogin'               => 'Sinia per entra',
 'logout'                  => 'Sinia per retira',
 'userlogout'              => 'Sinia per retira',
-'nologin'                 => 'Tu no ave un sinia per entra? $1.',
+'nologin'                 => 'Tu no ave un conta? $1.',
 'nologinlink'             => 'Crea  un conta',
 'createaccount'           => 'Crea un conta',
 'gotaccount'              => 'Tu ave ja un conta? $1.',
@@ -517,7 +517,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'nolinkstoimage'            => 'Es no pajes ce lia a esta fix.',
 'sharedupload'              => 'Esta fix es parti es pote es usada par otra projetas.',
 'noimage'                   => 'Es no fix con esta nom; tu pote $1.',
-'noimage-linktext'          => 'envia el',
+'noimage-linktext'          => 'envia un',
 'uploadnewversion-linktext' => 'Envia un varia nova de esta fix',
 
 # MIME search

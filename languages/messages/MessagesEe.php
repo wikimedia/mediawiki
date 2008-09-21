@@ -116,6 +116,7 @@ $messages = array(
 'copyrightpage'     => '{{ns:project}}:Mɔɖeɖewo',
 'currentevents'     => 'Nusiwo le dzɔdzɔm',
 'currentevents-url' => 'Project:Nusiwo le dzɔdzɔm',
+'disclaimers'       => 'Nuxlɔ̃amenyawo',
 'edithelp'          => 'Kpekpeɖeŋu na etɔtrɔ',
 'portal'            => 'Takpekpewɔƒe',
 'portal-url'        => 'Project:Takpekpewɔƒe',
@@ -143,7 +144,7 @@ $messages = array(
 'error'         => 'Vodada',
 'badtitle'      => 'Tanya gbegblẽ',
 'viewsource'    => 'Kpɔ alesi wowɔe',
-'viewsourcefor' => 'na $1',
+'viewsourcefor' => '$1 tɔwo',
 
 # Login and logout pages
 'login'                      => 'Ge ɖe eme',

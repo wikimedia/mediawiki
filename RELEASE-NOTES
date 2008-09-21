@@ -265,15 +265,16 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 MediaWiki supports over 300 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed.
 
-* Fiji Hindi (Devanagari script) (hif-deva)
-* Krio (kri)
-* Lezghian (lez)
-* Laz (lzz)
-* Niuean (niu)
-* Oromo (om)
-* Plautdietsch (pdt)
-* Tarantino (roa-tara)
-* Serbo-Croatian (sh)
+* Fiji Hindi (Devanagari script) (hif-deva) (new)
+* Krio (kri) (new)
+* Lezghian (lez) (new)
+* Laz (lzz) (new)
+* Niuean (niu) (new)
+* Oromo (om) (new)
+* Plautdietsch (pdt) (new)
+* Tarantino (roa-tara) (new)
+* Serbo-Croatian (sh) (new)
+* Tulu (tcy) (new)
 
 == Compatibility ==
 

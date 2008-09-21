@@ -578,7 +578,7 @@ Käyttäjätunnuksesi on luotu.
 'noname'                     => 'Et ole määritellyt kelvollista käyttäjänimeä.',
 'loginsuccesstitle'          => 'Sisäänkirjautuminen onnistui',
 'loginsuccess'               => 'Olet kirjautunut käyttäjänä $1.',
-'nosuchuser'                 => 'Käyttäjää ”$1” ei ole olemassa. Tarkista kirjoititko nimen oikein, tai käytä alla olevaa lomaketta uuden käyttäjätunnuksen luomiseksi.',
+'nosuchuser'                 => 'Käyttäjää ”$1” ei ole olemassa. Tarkista kirjoititko nimen oikein, tai [[Special:Userlogin/signup|luo uusi käyttäjätunnus]].',
 'nosuchusershort'            => 'Käyttäjää nimeltä ”<nowiki>$1</nowiki>” ei ole. Kirjoititko nimen oikein?',
 'nouserspecified'            => 'Käyttäjätunnusta ei ole määritelty.',
 'wrongpassword'              => 'Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.',
@@ -1722,8 +1722,14 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-cantedit'            => 'Et voi muuttaa sivun suojaustasoa, koska sinulla ei ole oikeutta muokata sivua.',
 'protect-othertime'           => 'Muu kesto',
 'protect-othertime-op'        => 'muu kesto',
+'protect-existing-expiry'     => 'Nykyinen vanhenemisaika: $1',
 'protect-otherreason'         => 'Muu tai lisäsyy',
-'protect-otherreason-op'      => 'muu tai lisäsyy',
+'protect-otherreason-op'      => 'Muu syy',
+'protect-dropdown'            => '*Yleiset suojaussyyt
+** Jatkuva vandalismi
+** Jatkuva mainoslinkkien lisääminen
+** Muokkaussota
+** Suuri näkyvyys',
 'restriction-type'            => 'Rajoitus',
 'restriction-level'           => 'Suojaus',
 'minimum-size'                => 'Vähimmäiskoko',
@@ -1884,6 +1890,7 @@ $1',
 'contribslink'                    => 'muokkaukset',
 'autoblocker'                     => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän $1 kanssa. Eston syy: $2.',
 'blocklogpage'                    => 'Estoloki',
+'blocklog-fulllog'                => 'Koko estoloki',
 'blocklogentry'                   => 'esti käyttäjän tai IP-osoitteen $1. Eston kesto $2 $3',
 'blocklogtext'                    => 'Tämä on loki muokkausestoista ja niiden purkamisista. Automaattisesti estettyjä IP-osoitteita ei kirjata. Tutustu [[Special:IPBlockList|estolistaan]] nähdäksesi listan tällä hetkellä voimassa olevista estoista.',
 'unblocklogentry'                 => 'poisti käyttäjältä $1 muokkauseston',
