@@ -1373,7 +1373,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'statistics-header-views'  => 'Statistiku wobhladać',
 'statistics-header-users'  => 'Statistika wužiwarjow',
 'statistics-articles'      => 'Wobsahowe strony',
-'statistics-pages'         => 'Strony <small>(to wopřijima "diskusijne" strony, strony wo {{GRAMMAR:lokatiw|{{SITENAME}}}}, minimalne "zarodki", daleposrědkowanja a druhe)</small>',
+'statistics-pages'         => 'Strony',
 'statistics-files'         => 'Nahrate dataje',
 'statistics-edits'         => 'Změny stronow wot załoženja {{SITENAME}}',
 'statistics-edits-average' => 'Změny na stronu w přerězku',

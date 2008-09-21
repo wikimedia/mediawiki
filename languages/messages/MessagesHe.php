@@ -1608,7 +1608,7 @@ PICT # שונות
 'statistics-header-views'  => 'סטטיסטיקות צפייה',
 'statistics-header-users'  => 'סטטיסטיקות משתמשים',
 'statistics-articles'      => 'דפי תוכן',
-'statistics-pages'         => 'דפים <small>(כולל דפי שיחה, דפים אודות {{SITENAME}}, קצרמרים, דפי תוכן ללא קישורים פנימיים, הפניות, וכיוצא בזה)</small>',
+'statistics-pages'         => 'דפים',
 'statistics-files'         => 'קבצים שהועלו',
 'statistics-edits'         => 'העריכות מאז תחילת הפעולה של {{SITENAME}}',
 'statistics-edits-average' => 'מספר העריכות הממוצע לדף',

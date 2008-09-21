@@ -8,7 +8,9 @@
  * @author Aotake
  * @author Broad-Sky
  * @author Emk
+ * @author Fievarsty
  * @author Hatukanezumi
+ * @author Hisagi
  * @author Iwai.masaharu
  * @author JtFuruhata
  * @author Kahusi
@@ -1302,9 +1304,19 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'randomredirect-nopages' => 'この名前空間にはリダイレクトはありません。',
 
 # Statistics
-'statistics'              => 'サイトの統計',
-'statistics-header-users' => '利用者登録統計',
-'statistics-mostpopular'  => '最も閲覧されているページ',
+'statistics'               => 'サイトの統計',
+'statistics-header-pages'  => '項目数統計',
+'statistics-header-edits'  => '編集回数統計',
+'statistics-header-users'  => '利用者登録統計',
+'statistics-articles'      => '記事数',
+'statistics-pages'         => '総項目数',
+'statistics-files'         => 'アップロードされたファイル数',
+'statistics-edits'         => '編集回数の総計',
+'statistics-edits-average' => '1項目あたりの編集回数',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue ジョブ・キュー]の長さ',
+'statistics-users'         => '[[Special:ListUsers|登録利用者]]',
+'statistics-users-active'  => '活動中の利用者',
+'statistics-mostpopular'   => '最も閲覧されているページ',
 
 'disambiguations'      => '曖昧さ回避ページ',
 'disambiguationspage'  => 'Template:Aimai',
@@ -2099,7 +2111,7 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page'   => 'パトロール記録',
-'patrol-log-header' => 'パトロールされた版のログです。',
+'patrol-log-header' => '以下はパトロールされた版のログです。',
 'patrol-log-line'   => '$2 の $1 をパトロール済みにマーク$3',
 'patrol-log-auto'   => '（自動）',
 'patrol-log-diff'   => '第$1版',

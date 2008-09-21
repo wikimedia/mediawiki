@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1329,7 +1329,7 @@ $2',
 'statistics-header-views'  => '查看統計',
 'statistics-header-users'  => '用戶統計',
 'statistics-articles'      => '內容頁面',
-'statistics-pages'         => '頁面<small>（包含「討論」頁面、跟{{SITENAME}}有關的頁面、小份量的「小作品」頁面、重新定向以及其它）</small>',
+'statistics-pages'         => '頁面',
 'statistics-files'         => '已經上載的檔案',
 'statistics-edits'         => '自從{{SITENAME}}設定的頁面編輯數',
 'statistics-edits-average' => '每一頁面的平均編輯數',

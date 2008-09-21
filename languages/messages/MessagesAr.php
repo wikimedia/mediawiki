@@ -1741,7 +1741,7 @@ PICT # متنوع
 'statistics-header-views'  => 'إحصاءات المشاهدة',
 'statistics-header-users'  => 'إحصاءات المستخدمين',
 'statistics-articles'      => 'صفحات المحتوى',
-'statistics-pages'         => 'الصفحات <small>(هذا يشمل صفحات "النقاش"، الصفحات حول {{SITENAME}}، صفحات "البذور" الصغرى، التحويلات، وأخرى)</small>',
+'statistics-pages'         => 'الصفحات',
 'statistics-files'         => 'الملفات المرفوعة',
 'statistics-edits'         => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
 'statistics-edits-average' => 'متوسط التعديلات لكل صفحة',

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * @ingroup Language
  * @file
@@ -1353,7 +1353,7 @@ $2',
 'statistics-header-views'  => '查看统计',
 'statistics-header-users'  => '用户统计',
 'statistics-articles'      => '内容页面',
-'statistics-pages'         => '页面<small>（包含“讨论”页面、跟{{SITENAME}}有关的页面、小份量的“小作品”页面、重新定向以及其它）</small>',
+'statistics-pages'         => '页面',
 'statistics-files'         => '已经上载的文件',
 'statistics-edits'         => '自从{{SITENAME}}设置的页面编辑数',
 'statistics-edits-average' => '每一页面的平均编辑数',

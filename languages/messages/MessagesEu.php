@@ -9,6 +9,7 @@
  * @author Kaustubh
  * @author Malafaya
  * @author Theklan
+ * @author Unai Fdz. de Betoño
  * @author לערי ריינהארט
  */
 
@@ -45,7 +46,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Lotura hautsiak <a href="" class="new">horrela</a> erakutsi (bestela, honela<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafoak justifikatu',
 'tog-hideminor'               => 'Azken aldaketetan aldaketa txikiak ezkutatu',
-'tog-extendwatchlist'         => 'Jarraipen zerrenda zabaldu aldaketa guztiak ikusteko',
+'tog-extendwatchlist'         => 'Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko',
 'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript)',
 'tog-numberheadings'          => 'Goiburukoak automatikoki zenbakitu',
 'tog-showtoolbar'             => 'Aldaketen tresna-barra erakutsi (JavaScript)',
@@ -727,6 +728,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'compareselectedversions' => 'Hautatutako bertsioak alderatu',
 'editundo'                => 'desegin',
 'diff-multi'              => '({{PLURAL:$1|Ez da tarteko berrikuspen 1|Ez dira tarteko $1 berrikuspen}} erakusten.)',
+'diff-movedto'            => '$1ra mugitua',
 'diff-width'              => 'zabalera',
 'diff-height'             => 'garaiera',
 'diff-p'                  => "'''paragrafo''' bat",
@@ -1180,7 +1182,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'statistics-header-views'  => 'Ikustaldien estatistikak',
 'statistics-header-users'  => 'Erabiltzaile estatistikak',
 'statistics-articles'      => 'Edukiak dituzten orrialdeak',
-'statistics-pages'         => 'Orrialdeak <small>(honen barruan eztabaida orrialdeak, {{SITENAME}}ri buruzko orraildeak, oso txikiak diren zirriborro orrialdeak, birzuzenketak eta bestelakoak sartzen dira)</small>',
+'statistics-pages'         => 'Orrialdeak',
 'statistics-files'         => 'Igotako fitxategiak',
 'statistics-edits'         => '{{SITENAME}} sortu zenetik eginiko aldaketa kopurua',
 'statistics-edits-average' => 'Bataz-besteko aldaketak orrialdeko',

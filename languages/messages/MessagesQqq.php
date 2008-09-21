@@ -503,7 +503,7 @@ $1 is the minimum number of characters in the password.',
 'acct_creation_throttle_hit' => 'Errormessage at [[Special:CreateAccount]].',
 'emailauthenticated' => 'In user preferences. ([[Special:Preferences]])
 
-* $1: obsolet, date and time
+* $1: obsolete, date and time
 * $2: date
 * $3: time',
 'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',

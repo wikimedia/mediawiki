@@ -1407,7 +1407,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-header-views'  => 'Statistiku zwobrazniś',
 'statistics-header-users'  => 'Statistika wužywarjow',
 'statistics-articles'      => 'Wopśimjeśowe boki',
-'statistics-pages'         => 'Boki <small>(to wopśimujo "diskusijne" boki, boki wót {{GRAMMAR:lokatiw|{{SITENAME}}}}, minimalne "zarodki", dalejpósrědnjenja a druge)</small>',
+'statistics-pages'         => 'Boki',
 'statistics-files'         => 'Nagrate dataje',
 'statistics-edits'         => 'Změny bokow wót załoženja {{SITENAME}}',
 'statistics-edits-average' => 'Změny na bok w pśerězku',
