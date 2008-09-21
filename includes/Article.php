@@ -210,7 +210,7 @@ class Article {
 	 * @return Return the text of this revision
 	*/
 	function getContent() {
-		global $wgOut, $wgMessageCache;
+		global $wgUser, $wgOut, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -220,30 +220,17 @@ class Article {
 
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 				$wgMessageCache->loadAllMessages();
-				$ret = wfMsgWeirdKey( $this->mTitle->getText() );
-				return "<div class='noarticletext'>\n$ret\n</div>";
+				$ret = wfMsgWeirdKey ( $this->mTitle->getText() ) ;
 			} else {
-				return $this->getNoSuchPageText();
+				$ret = wfMsg( $wgUser->isLoggedIn() ? 'noarticletext' : 'noarticletextanon' );
 			}
+
+			return "<div class='noarticletext'>\n$ret\n</div>";
 		} else {
 			$this->loadContent();
 			wfProfileOut( __METHOD__ );
 			return $this->mContent;
 		}
-	}
-
-	/*
-	 * HACK HACK! We pre-parse them with parsemag to get GRAMMAR working right.
-	 * It should be safe to do this and then do the full parse.
-	 */
-	function getNoSuchPageText() {
-		global $wgUser;
-		if ( $wgUser->isLoggedIn() ) {
-			$text = wfMsgExt( 'noarticletext', 'parsemag' );
-		} else {
-			$text = wfMsgExt( 'noarticletextanon', 'parsemag' );
-		}
-		return "<div class='noarticletext'>\n$text\n</div>";
 	}
 
 	/**
