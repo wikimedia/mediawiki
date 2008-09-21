@@ -405,25 +405,7 @@ class Block
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
 		$dbw = wfGetDB( DB_MASTER );
 
-		# Unset ipb_anon_only for user blocks, makes no sense
-		if ( $this->mUser ) {
-			$this->mAnonOnly = 0;
-		}
-
-		# Unset ipb_enable_autoblock for IP blocks, makes no sense
-		if ( !$this->mUser ) {
-			$this->mEnableAutoblock = 0;
-			$this->mBlockEmail = 0; //Same goes for email...
-		}
-
-		if( !$this->mByName ) {
-			if( $this->mBy ) {
-				$this->mByName = User::whoIs( $this->mBy );
-			} else {
-				global $wgUser;
-				$this->mByName = $wgUser->getName();
-			}
-		}
+		$this->validateBlockParams();
 
 		# Don't collide with expired blocks
 		Block::purgeExpired();
@@ -457,6 +439,64 @@ class Block
 		return $affected;
 	}
 
+	/**
+	 * Update block with new parameters.
+	 */
+	public function update() {
+		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
+		$dbw = wfGetDB( DB_MASTER );
+
+		$this->validateBlockParams();
+
+		$dbw->update( 'ipblocks',
+			array(
+				'ipb_user' => $this->mUser,
+				'ipb_by' => $this->mBy,
+				'ipb_by_text' => $this->mByName,
+				'ipb_reason' => $this->mReason,
+				'ipb_timestamp' => $dbw->timestamp($this->mTimestamp),
+				'ipb_auto' => $this->mAuto,
+				'ipb_anon_only' => $this->mAnonOnly,
+				'ipb_create_account' => $this->mCreateAccount,
+				'ipb_enable_autoblock' => $this->mEnableAutoblock,
+				'ipb_expiry' => self::encodeExpiry( $this->mExpiry, $dbw ),
+				'ipb_range_start' => $this->mRangeStart,
+				'ipb_range_end' => $this->mRangeEnd,
+				'ipb_deleted'	=> $this->mHideName,
+				'ipb_block_email' => $this->mBlockEmail ),
+			array( 'ipb_id' => $this->mId ),
+			'Block::update' );
+
+		return $dbw->affectedRows();
+	}
+	
+	/**
+	 * Make sure all the proper members are set to sane values
+	 * before adding/updating a block
+	 */
+	private function validateBlockParams() {
+		# Unset ipb_anon_only for user blocks, makes no sense
+		if ( $this->mUser ) {
+			$this->mAnonOnly = 0;
+		}
+
+		# Unset ipb_enable_autoblock for IP blocks, makes no sense
+		if ( !$this->mUser ) {
+			$this->mEnableAutoblock = 0;
+			$this->mBlockEmail = 0; //Same goes for email...
+		}
+
+		if( !$this->mByName ) {
+			if( $this->mBy ) {
+				$this->mByName = User::whoIs( $this->mBy );
+			} else {
+				global $wgUser;
+				$this->mByName = $wgUser->getName();
+			}
+		}
+	}
+	
+	
 	/**
 	* Retroactively autoblocks the last IP used by the user (if it is a user)
 	* blocked by this Block.
@@ -806,11 +846,8 @@ class Block
 	
 	/**
 	 * Convert a DB-encoded expiry into a real string that humans can read.
-	 * @param 
+	 * @param $encoded_expiry string Database encoded expiry time
 	 * @return string
-	 * @todo @fixme This is nasty. Forces a msg on the expiry, which isn't what
-	 * we want. Probably want to abstract out the number formatting so it can
-	 * be used elsewhere (some bug I forgot and can't find at the moment)
 	 */
 	static function formatExpiry( $encoded_expiry ) {
 	
