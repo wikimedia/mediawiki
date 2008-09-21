@@ -58,8 +58,8 @@ function wfSpecialStatistics( $par = '' ) {
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
 			formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
 					$wgLang->formatNum( $good ) ) .
-			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
-					$wgLang->formatNum( $total ) ) .
+			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) . '</div>' ),
+					$wgLang->formatNum( $total ), NULL, 'statistics-pages-tooltip' ) .
 			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
 					$wgLang->formatNum( $images ) ) .
 
@@ -77,7 +77,7 @@ function wfSpecialStatistics( $par = '' ) {
 			formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
 					$wgLang->formatNum( $users ) ) .
 			formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
-					$wgLang->formatNum( $activeUsers ) );
+					$wgLang->formatNum( $activeUsers ), NULL, 'statistics-users-active-tooltip' );
 
 		# Statistic - usergroups
 		foreach( $wgGroupPermissions as $group => $permissions ) {
@@ -162,7 +162,11 @@ function wfSpecialStatistics( $par = '' ) {
  * @param float $number a number
  * @return string table row in HTML format
  */
-function formatRow( $text, $number, $trExtraParams = '' ) {
+function formatRow( $text, $number, $trExtraParams = '', $tooltip = '' ) {
+	if( $tooltip ) {
+		$text = '<div title="' . wfMsg( $tooltip ) . '">' . $text . '</div>';
+	}
+
 	return "<tr{$trExtraParams}>
 			<td>" .
 				$text .
