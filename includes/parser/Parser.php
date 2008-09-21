@@ -2859,7 +2859,7 @@ class Parser
 
 					# Workaround for PHP bug 35229 and similar
 					if ( !is_callable( $callback ) ) {
-						throw new MWException( "Tag hook for $name is not callable\n" );
+						throw new MWException( "Tag hook for $function is not callable\n" );
 					}
 					$result = call_user_func_array( $callback, $allArgs );
 					$found = true;
