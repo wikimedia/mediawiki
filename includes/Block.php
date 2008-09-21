@@ -511,6 +511,7 @@ class Block
 		$lines = $wgMemc->get( $key );
 		if ( !$lines ) {
 			$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
+			$wgMemc->set( $key, $lines, 3600 * 24 );
 		}
 
 		wfDebug("Checking the autoblock whitelist..\n");
