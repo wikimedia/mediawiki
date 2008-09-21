@@ -2340,7 +2340,9 @@ END
 		global $wgUser;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
-		if ( $pager->getNumRows() > 0 ) {
+		$count = $pager->getNumRows();
+		if ( $count > 0 ) {
+			$pager->mLimit = 10;
 			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
 			$out->addWikiMsg( 'recreate-deleted-warn' );
 			$out->addHTML(
@@ -2348,9 +2350,19 @@ END
 				$pager->getBody() .
 				$loglist->endLogEventsList()
 			);
+			if($count > 10){
+				$out->addHtml( $wgUser->getSkin()->link(
+					SpecialPage::getTitleFor( 'Log' ),
+					wfMsgHtml( 'deletelog-fulllog' ),
+					array(),
+					array(
+						'type' => 'delete',
+						'page' => $this->mTitle->getPrefixedText() ) ) );
+			}
 			$out->addHtml( '</div>' );
 			return true;
 		}
+		
 		return false;
 	}
 

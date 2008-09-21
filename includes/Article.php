@@ -813,7 +813,9 @@ class Article {
 			if ($this->getID() == 0) {
 				$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
 				$pager = new LogPager( $loglist, 'delete', false, $this->mTitle->getPrefixedText() );
-				if( $pager->getNumRows() > 0 ) {
+				$count = $pager->getNumRows();
+				if( $count > 0 ) {
+					$pager->mLimit = 10;
 					$wgOut->addHtml( '<div id="mw-deleted-notice">' );
 					$wgOut->addWikiMsg( 'deleted-notice' );
 					$wgOut->addHTML(
@@ -821,6 +823,15 @@ class Article {
 						$pager->getBody() .
 						$loglist->endLogEventsList()
 					);
+					if($count > 10){
+						$wgOut->addHtml( $wgUser->getSkin()->link(
+							SpecialPage::getTitleFor( 'Log' ),
+							wfMsgHtml( 'deletelog-fulllog' ),
+							array(),
+							array(
+								'type' => 'delete',
+								'page' => $this->mTitle->getPrefixedText() ) ) );
+					}
 					$wgOut->addHtml( '</div>' );
 				}
 			}
