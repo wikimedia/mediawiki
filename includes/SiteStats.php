@@ -258,7 +258,7 @@ class SiteStatsUpdate {
 		# Get non-bot users than did some recent action other than making accounts.
 		# If account creation is included, the number gets inflated ~20+ fold on enwiki.
 		$activeUsers = $dbr->selectField( 'recentchanges', 'COUNT( DISTINCT rc_user_text )',
-			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ),
+			array( 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers' OR rc_log_type IS NULL" ),
 			__METHOD__ );
 		$dbw->update( 'site_stats', 
 			array( 'ss_active_users' => intval($activeUsers) ),
