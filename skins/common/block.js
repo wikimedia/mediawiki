@@ -1,3 +1,5 @@
+addOnloadHook(considerChangingExpiryFocus);
+
 function considerChangingExpiryFocus() {
 	if (!document.getElementById) {
 		return;
