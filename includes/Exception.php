@@ -129,7 +129,16 @@ class MWException extends Exception {
 		$file = $this->getFile();
 		$line = $this->getLine();
 		$message = $this->getMessage();
-		return $wgRequest->getRequestURL() . " Exception from line $line of $file: $message";
+		if ( isset( $wgRequest ) ) {
+			$url = $wgRequest->getRequestURL();
+			if ( !$url ) {
+				$url = '[no URL]';
+			}
+		} else {
+			$url = '[no req]';
+		}
+
+		return "$url   Exception from line $line of $file: $message";
 	}
 
 	/** Output the exception report using HTML */
