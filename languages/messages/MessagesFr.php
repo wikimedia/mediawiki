@@ -837,6 +837,8 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 'recreate-deleted-warn'            => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
 Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
+'deleted-notice'                   => "Cette page a été supprimée.
+L'historique des suppressions est affiché ci-dessous pour référence.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention : Cette page contient trop d’appels dispendieux de fonctions du parseur.
@@ -1505,7 +1507,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'statistics-articles'      => 'Pages de contenu',
 'statistics-pages'         => "Pages <small>(ceci comprend les pages « de discussion », les pages concernant {{SITENAME}}, les pages « d'ébauche » primitives, les redirections et autres)</small>",
 'statistics-files'         => 'Fichiers importés',
-'statistics-edits'         => 'Modifications de pages depuis que {{SITENAME}} a été installé',
+'statistics-edits'         => 'Modification de pages depuis que {{SITENAME}} a été installé',
 'statistics-edits-average' => 'Modifications moyennes par page',
 'statistics-views-total'   => 'Visites totales',
 'statistics-views-peredit' => 'Visites par modification',
@@ -1849,6 +1851,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 'protect-cantedit'            => 'Vous ne pouvez pas changer les niveaux de protection de cette page car vous n’avez pas la permission de la modifier.',
 'protect-othertime'           => 'Autre expiration :',
 'protect-othertime-op'        => 'Autre expiration',
+'protect-existing-expiry'     => 'Durée d’expiration existante : $1',
 'protect-otherreason'         => 'Motif supplémentaire ou autre :',
 'protect-otherreason-op'      => 'Motif supplémentaire ou autre',
 'protect-dropdown'            => "*Motifs de protection les plus courants
@@ -2026,6 +2029,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'contribslink'                    => 'Contributions',
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « $1 ». La raison fournie pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Historique des blocages',
+'blocklog-fulllog'                => 'Journal complet des blocages',
 'blocklogentry'                   => 'a bloqué « [[$1]] » - durée : $2 $3',
 'blocklogtext'                    => 'Ceci est la trace des blocages et déblocages des utilisateurs. Les adresses IP automatiquement bloquées ne sont pas listées. Consultez la [[Special:IPBlockList|liste des utilisateurs bloqués]] pour voir qui est actuellement effectivement bloqué.',
 'unblocklogentry'                 => 'a débloqué « $1 »',

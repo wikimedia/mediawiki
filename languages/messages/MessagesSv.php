@@ -14,6 +14,7 @@
  * @author Lokal Profil
  * @author M.M.S.
  * @author Micke
+ * @author Najami
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
@@ -678,7 +679,7 @@ Kontrollera stavningen, eller [[Special:Userlogin/signup|skapa ett nytt konto]].
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort'           => 'Ditt lösenord är ogiltigt eller för kort.
-Det måste innehålla minst $1 tecken och det får inte vara ditt användarnamn.',
+Det måste innehålla minst {{PLURAL:$1|$1 tecken}} och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)
@@ -1919,6 +1920,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 'protect-cantedit'            => 'Du kan inte ändra skyddsnivån för den här sidan, eftersom du inte har behörighet att redigera den.',
 'protect-othertime'           => 'Annan tidsperiod:',
 'protect-othertime-op'        => 'annan tidsperiod',
+'protect-existing-expiry'     => 'Gällande varaktighet: $1',
 'protect-otherreason'         => 'Annan/ytterligare anledning:',
 'protect-otherreason-op'      => 'Annan anledning',
 'protect-dropdown'            => '*Vanliga anledningar för skrivskydd
@@ -2092,6 +2094,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'contribslink'                    => 'bidrag',
 'autoblocker'                     => 'Automatisk blockering eftersom du har samma IP-adress som "$1". Motivering till blockeringen: "$2".',
 'blocklogpage'                    => 'Blockeringslogg',
+'blocklog-fulllog'                => 'Fullständig blockeringslogg',
 'blocklogentry'                   => 'blockerade [[$1]] med blockeringstid på $2 $3',
 'blocklogtext'                    => 'Detta är en logg över blockeringar och avblockeringar.
 Automatiskt blockerade IP-adresser listas ej.

@@ -13,6 +13,7 @@
  * @author JtFuruhata
  * @author Kahusi
  * @author Kkkdc
+ * @author Lovekhmer
  * @author Marine-Blue
  * @author Muttley
  * @author Mzm5zbC3
@@ -1638,8 +1639,10 @@ $NEWPAGE
 'protect-level-sysop'         => '{{int:group-sysop}}のみ',
 'protect-summary-cascade'     => 'カスケード',
 'protect-expiring'            => '$1 に解除',
+'protect-expiry-indefinite'   => 'គ្មានកំនត់',
 'protect-cascade'             => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
 'protect-cantedit'            => 'あなたにはこのページの編集権限がないため保護レベルを変更できません。',
+'protect-othertime'           => 'ពេលផុតកំនត់ផ្សេងទៀត៖',
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',

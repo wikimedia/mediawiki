@@ -5,8 +5,10 @@
  * @file
  *
  * @author Ahonc
+ * @author Aleator
  * @author Ans
  * @author Bangin
+ * @author Brest
  * @author BrokenArrow
  * @author Codex Sinaiticus
  * @author Darth Kule
@@ -606,6 +608,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 # History pages
 'viewpagelogs' => 'Link displayed in history of pages',
 'currentrev' => '{{Identical|Current revision}}',
+'currentrev-asof' => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
 'revisionasof' => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\".",
 'revision-info' => 'Appears just below the page title when an old version of the page is being viewed.
 
@@ -1409,7 +1412,12 @@ Example: [[:Image:Addon-icn.png]]',
 'watching' => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 
-# Delete/protect/revert
+'changed' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'created' => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'enotif_body' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+
+# Delete
 'confirm' => 'Submit button text for protection confirmation
 
 {{Identical|Confirm}}',
@@ -1438,9 +1446,13 @@ $1 = the name of the page',
 'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]].
 
 {{Identical|Edit delete reasons}}',
+
+# Rollback
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}',
 'rollback-success' => 'This message shows up on screen after successful revert (generally visible only to admins). $1 describes user whose changes have been reverted, $2 describes user which produced version, which replaces reverted version.',
+
+# Protect
 'protectlogpage' => 'Title of [[Special:Log/protect]].',
 'protectlogtext' => 'Text in [[Special:Log/protect]].',
 'protect-title' => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
@@ -1463,6 +1475,9 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 {{Identical|Other time}}',
 'protect-othertime-op' => 'Used on the page protection form in the drop down menu
 {{Identical|Other time}}',
+'protect-existing-expiry' => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
+
+* $1: date and time of the existing expiry time',
 'protect-otherreason' => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
 'protect-otherreason-op' => 'Shown on the page protection form in the drop down menu
@@ -1610,6 +1625,7 @@ See also [[MediaWiki:Blocklogentry]].',
 'blocklink' => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
 'contribslink' => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
 'blocklogpage' => '{{Identical|Block log}}',
+'blocklog-fulllog' => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
 'blocklogentry' => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
 *$1 is the blocked user or IP (with link to contributions and talk)
 *$2 is the duration of the block (hours, days etc.) or the specified expiry date
@@ -2032,7 +2048,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 
 # Iranian month names
 'iranian-calendar-m1' => 'Name of month in Iranian calender.',
-'iranian-calendar-m2' => 'Name of month in Iranian calender.',
+'iranian-calendar-m2' => 'Име на месец во Иранскиот календар.',
 'iranian-calendar-m3' => 'Name of month in Iranian calender.',
 'iranian-calendar-m4' => 'Name of month in Iranian calender.',
 'iranian-calendar-m5' => 'Name of month in Iranian calender.',

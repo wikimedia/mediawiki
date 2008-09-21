@@ -459,7 +459,7 @@ Per favor activa lo e reprova.",
 'loginsuccesstitle'          => 'Session aperite con successo',
 'loginsuccess'               => "'''Tu es ora identificate in {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non existe un usator con le nomine "$1".
-Verifica le orthographia, o crea un nove conto.',
+Verifica le orthographia, o [[Special:Userlogin/signup|crea un nove conto]].',
 'nosuchusershort'            => 'Non existe un usator con le nomine "<nowiki>$1</nowiki>".
 Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
@@ -487,7 +487,7 @@ Pro impedir le abuso, nos invia solmente un memento de contrasigno per {{PLURAL:
 'mailerror'                  => 'Error de inviar e-mail: $1',
 'acct_creation_throttle_hit' => 'Pardono, tu ha ja create {{PLURAL:$1|1 conto|$1 contos}}.
 Tu non pote facer plus.',
-'emailauthenticated'         => 'Tu adresse de e-mail se authentificava le $1.',
+'emailauthenticated'         => 'Tu adresse de e-mail se authentificava le $2 a $3.',
 'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
 Nos non inviara e-mail pro alcun del sequente functiones.',
 'noemailprefs'               => 'Specifica un adresse de e-mail pro poter executar iste functiones.',
@@ -1769,6 +1769,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 'protect-cantedit'            => 'Tu non pote cambiar le nivellos de protection de iste pagina, proque tu non ha le autorisation de modificar le pagina.',
 'protect-othertime'           => 'Altere duration:',
 'protect-othertime-op'        => 'altere duration',
+'protect-existing-expiry'     => 'Tempore de expiration existente: $1',
 'protect-otherreason'         => 'Motivo altere/additional:',
 'protect-otherreason-op'      => 'motivo altere/additional',
 'protect-dropdown'            => '*Motivos commun de protection
@@ -1813,7 +1814,7 @@ In tal casos, tu debe dismarcar o revelar le revision delite le plus recente.',
 'undeletehistorynoadmin'       => 'Iste pagina ha essite delite.
 Le motivo del deletion se monstra in le summario infra, con le detalios del usatores que habeva modificate iste pagina ante le deletion.
 Le texto complete de iste revisiones delite es solmente disponibile al administratores.',
-'undelete-revision'            => 'Revision delite del pagina $1 (facite le $2) per $3:',
+'undelete-revision'            => 'Version delite de $1 (facite le $4 a $5) per $3:',
 'undeleterevision-missing'     => 'Revision invalide o mancante.
 Es possibile que le adresse URL es invalide, o que le revision ha essite restaurate o eliminate del archivo.',
 'undelete-nodiff'              => 'Nulle revision precedente trovate.',
@@ -1954,6 +1955,7 @@ a un adresse IP blocate previemente.',
 'autoblocker'                     => 'Autoblocate proque tu adresse IP ha recentemente essite usate per "[[User:$1|$1]]".
 Le ration date pro le blocada de $1 es: "$2"',
 'blocklogpage'                    => 'Registro de blocadas',
+'blocklog-fulllog'                => 'Registro complete de blocadas',
 'blocklogentry'                   => 'blocava [[$1]] con un tempore de expiration de $2 $3',
 'blocklogtext'                    => 'Isto es un registro de blocadas e disblocadas de usatores.
 Le adresses IP automaticamente blocate non es includite.

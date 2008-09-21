@@ -636,6 +636,7 @@ Considera paginam in partes minores frangere.',
 'template-protected'        => '(protecta)',
 'template-semiprotected'    => '(semi-protecta)',
 'hiddencategories'          => 'Haec pagina ad {{PLURAL:$1|unam categoriam celatam|$1 categorias celatas}} pertinet:',
+'nocreate-loggedin'         => 'Apud {{grammar:accusative|{{SITENAME}}}}, tibi non licet paginas novas creare.',
 'permissionserrors'         => 'Errores permissionis',
 'recreate-deleted-warn'     => "'''Cave: paginam qui antea iam deleta est creas.'''
 
@@ -972,6 +973,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'uploadnewversion-linktext' => 'Emendationem novam huius fasciculi imponere',
 
 # File reversion
+'filerevert'                => 'Revertere $1',
 'filerevert-legend'         => 'Reverti fasciculum',
 'filerevert-intro'          => "Reverteris '''[[Media:$1|$1]]''' ad [emendationem $4 ex $3, $2].",
 'filerevert-comment'        => 'Sententia:',
@@ -1153,6 +1155,9 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'newuserlog-autocreate-entry' => 'Ratio automatice creata',
 
 # Special:ListGroupRights
+'listgrouprights-group'           => 'Grex',
+'listgrouprights-rights'          => 'Iura',
+'listgrouprights-members'         => '(index rationum)',
 'listgrouprights-addgroup'        => 'Potest usores addere ad {{PLURAL:$2|gregem|greges}}: $1',
 'listgrouprights-removegroup'     => 'Potest usores removere ex {{PLURAL:$2|grege|gregibus}}: $1',
 'listgrouprights-addgroup-all'    => 'Potest usores addere ad omnes greges',
@@ -1162,7 +1167,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'emailuser'       => 'Litteras electronicas usori mittere',
 'emailpage'       => 'Mittere litteras electronicas huic usori',
 'emailpagetext'   => 'Si hic usor inscriptionem electronicam ratum in praeferentias usorum eius dedit, forma subter nuntium mittet.
-Inscriptio electronica quae in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
+Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
 'defemailsubject' => '{{SITENAME}} - Litterae electronicae',
 'noemailtitle'    => 'Nulla inscriptio electronica',
 'noemailtext'     => 'Hic usor inscriptionem electronicam ratam non dedit, aut nuntia ab aliis usoribus non vult.',
@@ -1231,7 +1236,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'excontent'              => "contenta erant: '$1'",
 'excontentauthor'        => "contenta erant: '$1' (et contributor unicus erat '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "contenta priusquam pagina facta vacua erant: '$1'",
-'exblank'                => 'pagina vacua erat',
+'exblank'                => 'pagina erat vacua',
 'delete-confirm'         => 'Delere "$1"',
 'delete-legend'          => 'Delere',
 'historywarning'         => 'Monitio: Pagina quam delere vis historiam habet:',
@@ -1255,9 +1260,9 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'rollbacklink'     => 'reverti',
 'rollbackfailed'   => 'Reversum defecit',
 'cantrollback'     => 'Haec non potest reverti; conlator proximus solus auctor huius rei est.',
-'alreadyrolled'    => 'Ad mutationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
+'alreadyrolled'    => 'Ad emendationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]] | [[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.
 
-Mutatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
+Emendatio proxima ab usore [[User:$3|$3]] ([[User talk:$3|Disputatio]] | [[Special:Contributions/$3|{{int:contribslink}}]]) effecta est.',
 'editcomment'      => 'Dictum recensiti erat: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Reverti recensiones ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]]) ad emendationem proximam ab [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Reverti recensiones ab usore $1
@@ -1283,6 +1288,7 @@ ad emendationem proximam ab $2.',
 'protect-cascade'           => 'Formulas aliasque paginas hac in pagina adhibitas protegere (protectio defluens quasi cataracta)',
 'protect-othertime'         => 'Exitus alius:',
 'protect-othertime-op'      => 'exitus alius',
+'protect-existing-expiry'   => 'Exitus: $1',
 'protect-otherreason'       => 'Causa alia vel explicatio:',
 'protect-otherreason-op'    => 'causa alia',
 'restriction-type'          => 'Permissus:',
@@ -1402,6 +1408,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'contribslink'             => 'conlationes',
 'autoblocker'              => 'Obstructus es automatice quia "[[User:$1|$1]]" nuper tuum locum IP adhibuit. Ratio data ob obstructionem usoris $1 est: "$2"',
 'blocklogpage'             => 'Index obstructionum',
+'blocklog-fulllog'         => 'Index plenissimus obstructionum',
 'blocklogentry'            => 'obstruxit [[$1]], exire $2 $3',
 'blocklogtext'             => 'Hic est index actorum obstructionis deobstructionisque. Loci IP qui automatice obstructi sunt non enumerantur. Vide [[Special:IPBlockList|indicem usorum locorumque IP obstructorum]] pro indice toto.',
 'unblocklogentry'          => 'deobstruxit $1',
@@ -1447,6 +1454,7 @@ adfirma te consequentias intellegere antequam procedis.",
 
 Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
 'movearticle'             => 'Paginam movere:',
+'movenotallowed'          => 'Apud {{grammar:accusative|{{SITENAME}}}}, tibi non licet paginas movere.',
 'newtitle'                => 'Ad titulum novum:',
 'move-watch'              => 'Hanc paginam custodire',
 'movepagebtn'             => 'Paginam movere',
