@@ -1062,6 +1062,7 @@ $2',
 'mergehistory-invalid-destination' => 'דף היעד חייב להיות בעל כותרת תקינה.',
 'mergehistory-autocomment'         => 'מיזג את [[:$1]] לתוך [[:$2]]',
 'mergehistory-comment'             => 'מיזג את [[:$1]] לתוך [[:$2]]: $3',
+'mergehistory-same-destination'    => 'דפי המקור והיעד זהים',
 
 # Merge log
 'mergelog'           => 'יומן מיזוגים',
