@@ -289,7 +289,7 @@
 	'sw' => 'Kiswahili',	# Swahili
 	'szl' => 'Ślůnski',	# Silesian
 	'ta' => 'தமிழ்',	# Tamil
-	'tcy' => 'ತುಳು' # Tulu
+	'tcy' => 'ತುಳು', # Tulu
 	'te' => 'తెలుగు',	# Telugu
 	'tet' => 'Tetun',	# Tetun
 	'tg' => 'Тоҷикӣ',	# Tajiki (falls back to tg-cyrl)
