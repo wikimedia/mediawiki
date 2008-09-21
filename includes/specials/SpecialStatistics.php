@@ -38,6 +38,11 @@ function wfSpecialStatistics( $par = '' ) {
 				formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
 						$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
 	}
+	# Set active user count
+	if( !$wgMiserMode ) {
+		$dbw = wfGetDB( DB_MASTER );
+		SiteStatsUpdate::cacheUpdate( $dbw );
+	}
 
 	if( $wgRequest->getVal( 'action' ) == 'raw' ) {
 		# Depreciated, kept for backwards compatibility
