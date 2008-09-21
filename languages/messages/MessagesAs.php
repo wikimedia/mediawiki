@@ -11,6 +11,25 @@
 
 $fallback='hi';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'মাধ্যম',
+	NS_SPECIAL          => 'বিশেষ',
+	NS_TALK             => 'বার্তা',
+	NS_USER             => 'সদস্য',
+	NS_USER_TALK        => 'সদস্য বার্তা',
+	NS_PROJECT_TALK     => '$1 বার্তা',
+	NS_IMAGE            => 'চিত্র',
+	NS_IMAGE_TALK       => 'চিত্র বার্তা',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki বার্তা',
+	NS_TEMPLATE         => 'সাঁচ',
+	NS_TEMPLATE_TALK    => 'সাঁচ বার্তা',
+	NS_HELP             => 'সহায়',
+	NS_HELP_TALK        => 'সহায় বার্তা',
+	NS_CATEGORY         => 'শ্রেণী',
+	NS_CATEGORY_TALK    => 'শ্রেণী বার্তা',
+);
+
 $digitTransformTable = array(
 	'0' => '০', # &#x09e6;
 	'1' => '১', # &#x09e7;
