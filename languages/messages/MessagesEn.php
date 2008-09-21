@@ -1939,7 +1939,7 @@ Remember to check for other links to the templates before deleting them.',
 'statistics-views-peredit' => 'Views per edit',
 'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] length',
 'statistics-users'         => 'Registered [[Special:ListUsers|users]]',
-'statistics-users-active'  => 'Active users',
+'statistics-users-active'  => 'Active users <small>(users who have edited or performed an action other than account creation in the past month)</small>',
 'statistics-mostpopular'   => 'Most viewed pages',
 'statistics-footer'        => '', # do not translate or duplicate this message to other languages
 
