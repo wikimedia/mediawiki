@@ -547,7 +547,7 @@ class Block
 		
 		// Try to get the autoblock_whitelist from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
-		$key = wfMemc( 'ipb', 'autoblock', 'whitelist' );
+		$key = wfMemcKey( 'ipb', 'autoblock', 'whitelist' );
 		$lines = $wgMemc->get( $key );
 		if ( !$lines ) {
 			$lines = explode( "\n", wfMsgForContentNoTrans( 'autoblock_whitelist' ) );
