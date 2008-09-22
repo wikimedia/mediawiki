@@ -326,12 +326,13 @@ function contributionsSub( $nt, $id ) {
 	if( $talk ) {
 		# Talk page link
 		$tools[] = $sk->makeLinkObj( $talk, wfMsgHtml( 'talkpagelinktext' ) );
-		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && User::isIP( $nt->getText() ) ) ) {
+		if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 			# Block link
 			if( $wgUser->isAllowed( 'block' ) )
 				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
 			# Block log link
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
+			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), 
+				wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
 		# Other logs link
 		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
