@@ -558,6 +558,7 @@ $wgMessageStructure = array(
 		'permissionserrorstext-withaction',
 		'recreate-deleted-warn',
 		'deleted-notice',
+		'deletelog-fulllog',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
