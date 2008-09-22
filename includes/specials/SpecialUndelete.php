@@ -787,7 +787,7 @@ class UndeleteForm {
 			$popts = $wgOut->parserOptions();
 			$popts->setEditSection( false );
 			$wgOut->parserOptions( $popts );
-			$wgOut->addWikiTextTitleTidy( $rev->revText(), $this->mTargetObj, true );
+			$wgOut->addWikiTextTitleTidy( $rev->getText( false ), $this->mTargetObj, true );
 		}
 
 		$wgOut->addHtml(
@@ -795,7 +795,7 @@ class UndeleteForm {
 					'readonly' => 'readonly',
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
 					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
-				$rev->revText() . "\n" ) .
+				$rev->getText( false ) . "\n" ) .
 			wfOpenElement( 'div' ) .
 			wfOpenElement( 'form', array(
 				'method' => 'post',
