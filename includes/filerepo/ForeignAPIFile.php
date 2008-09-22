@@ -31,7 +31,7 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
-		if ( $this->repo->canCacheThumbs() ) {
+		if ( $this->repo->apiThumbCacheExpiry > 0 && $this->repo->apiThumbCacheDir ) {
 			$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
 				isset( $params['width'] ) ? $params['width'] : -1,
@@ -110,7 +110,7 @@ class ForeignAPIFile extends File {
 	 */
 	function getThumbPath( $suffix = '' ) {
 		$ret = null;
-		if ( $this->repo->canCacheThumbs() ) {
+		if ( $this->repo->apiThumbCacheExpiry > 0 && $this->repo->apiThumbCacheDir ) {
 			global $wgUploadDirectory;
 			$path = $wgUploadDirectory . '/' . $this->repo->apiThumbCacheDir . '/' . $this->repo->name . '/';
 			if ( $suffix ) {
