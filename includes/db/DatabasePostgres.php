@@ -1038,7 +1038,7 @@ class DatabasePostgres extends Database {
 	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */
-		function getSoftwareLink() {
+	function getSoftwareLink() {
 		return "[http://www.postgresql.org/ PostgreSQL]";
 	}
 
@@ -1051,6 +1051,7 @@ class DatabasePostgres extends Database {
 		if (!preg_match('/PostgreSQL (\d+\.\d+)(\S+)/', $version, $thisver)) {
 			die("Could not determine the numeric version from $version!");
 		}
+		$version = $thisver[1].$thisver[2];
 		$this->numeric_version = $thisver[1];
 		return $version;
 	}
