@@ -214,6 +214,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 12678) Skins don't show Upload link if the user isn't allowed to upload.
 * Fixed incorrect usage of DB_LAST in Special:Export. Deprecated DB_LAST.
 * (bug 15642) Blocked sysops can no longer block other users
+* Http::request() now respects $wgHTTPtimeout when not using cURL
 
 === API changes in 1.14 ===
 
