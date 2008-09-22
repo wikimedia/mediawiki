@@ -108,7 +108,7 @@ class IPBlockForm {
 
 		$reasonDropDown = Xml::listDropDown( 'wpBlockReasonList',
 			wfMsgForContent( 'ipbreason-dropdown' ),
-			wfMsgForContent( 'ipbreasonotherlist' ), '', 'wpBlockDropDown', 4 );
+			wfMsgForContent( 'ipbreasonotherlist' ), $this->BlockReasonList, 'wpBlockDropDown', 4 );
 
 		global $wgStylePath, $wgStyleVersion;
 		$wgOut->addHTML(
