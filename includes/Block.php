@@ -79,7 +79,7 @@ class Block {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->resultObject( $dbr->select( 'ipblocks', '*',
 			array( 'ipb_id' => $id ), __METHOD__ ) );
-		$block = new Block;
+		$block = new Block();
 		if ( $block->loadFromResult( $res ) ) {
 			return $block;
 		} else {
@@ -161,7 +161,9 @@ class Block {
 				if ( $user && $this->mAnonOnly ) {
 					# Block is marked anon-only
 					# Whitelist this IP address against autoblocks and range blocks
-					$this->clear();
+					if( !$this->mCreateAccount ) {
+						$this->clear(); // bug 13611 - keep this data
+					}
 					return false;
 				} else {
 					return true;
@@ -172,7 +174,9 @@ class Block {
 		# Try range block
 		if ( $this->loadRange( $address, $killExpired, $user ) ) {
 			if ( $user && $this->mAnonOnly ) {
-				$this->clear();
+				if( !$this->mCreateAccount ) {
+					$this->clear(); // bug 13611 - keep this data
+				}
 				return false;
 			} else {
 				return true;
