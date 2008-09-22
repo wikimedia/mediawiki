@@ -1113,7 +1113,7 @@ class Linker {
 		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
-			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() );
+			$link = $this->userLink( $rev->getUser(false), $rev->getUserText(false) );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
@@ -1133,8 +1133,8 @@ class Linker {
 		if( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		} else if( $rev->userCan( Revision::DELETED_USER ) ) {
-			$link = $this->userLink( $rev->getRawUser(), $rev->getRawUserText() ) .
-			' ' . $this->userToolLinks( $rev->getRawUser(), $rev->getRawUserText() );
+			$link = $this->userLink( $rev->getUser(false), $rev->getUserText(false) ) .
+			' ' . $this->userToolLinks( $rev->getUser(false), $rev->getUserText(false) );
 		} else {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		}
@@ -1340,7 +1340,7 @@ class Linker {
 		if( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		} else if( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = $this->commentBlock( $rev->getRawComment(), $rev->getTitle(), $local );
+			$block = $this->commentBlock( $rev->getComment(false), $rev->getTitle(), $local );
 		} else {
 			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
 		}
