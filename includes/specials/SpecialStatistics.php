@@ -14,8 +14,9 @@
  * @param mixed $par (not used)
  */
 function wfSpecialStatistics( $par = '' ) {
-	global $wgOut, $wgLang, $wgRequest, $wgUser, $wgContLang;
+	global $wgOut, $wgLang, $wgRequest, $wgUser, $wgContLang, $wgMessageCache;
 	global $wgDisableCounters, $wgMiserMode, $wgImplicitGroups, $wgGroupPermissions;
+	$wgMessageCache->loadAllMessages();
 	$sk = $wgUser->getSkin();
 	$dbr = wfGetDB( DB_SLAVE );
 
@@ -34,9 +35,11 @@ function wfSpecialStatistics( $par = '' ) {
 	if( !$wgDisableCounters ) {
 		$viewsStats = Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-views' ) ) .
 				formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
-						$wgLang->formatNum( $views ) ) .
+						$wgLang->formatNum( $views ),
+						' class="mw-statistics-views-total"' ) .
 				formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
-						$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ) );
+						$wgLang->formatNum( sprintf( '%.2f', $edits ? $views / $edits : 0 ) ),
+						' class="mw-statistics-views-peredit"' );
 	}
 	# Set active user count
 	if( !$wgMiserMode ) {
@@ -57,27 +60,37 @@ function wfSpecialStatistics( $par = '' ) {
 			# Statistic - pages
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-pages' ) ) .
 			formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
-					$wgLang->formatNum( $good ) ) .
+					$wgLang->formatNum( $good ),
+					' class="mw-statistics-articles"' ) .
 			formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
-					$wgLang->formatNum( $total ), NULL, 'statistics-pages-tooltip' ) .
+					$wgLang->formatNum( $total ),
+					' class="mw-statistics-pages"',
+					'statistics-pages-tooltip' ) .
 			formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
-					$wgLang->formatNum( $images ) ) .
+					$wgLang->formatNum( $images ),
+					' class="mw-statistics-files"' ) .
 
 			# Statistic - edits
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-edits' ) ) .
 			formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
-					$wgLang->formatNum( $edits ) ) .
+					$wgLang->formatNum( $edits ),
+					' class="mw-statistics-edits"' ) .
 			formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
-					$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ) ) .
+					$wgLang->formatNum( sprintf( '%.2f', $total ? $edits / $total : 0 ) ),
+					' class="mw-statistics-edits-average"' ) .
 			formatRow( wfMsgExt( 'statistics-jobqueue', array( 'parseinline' ) ),
-					$wgLang->formatNum( $numJobs ) ) .
+					$wgLang->formatNum( $numJobs ),
+					' class="mw-statistics-jobqueue"' ) .
 
 			# Statistic - users
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsg( 'statistics-header-users' ) ) .
 			formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
-					$wgLang->formatNum( $users ) ) .
+					$wgLang->formatNum( $users ),
+					' class="mw-statistics-users"' ) .
 			formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ),
-					$wgLang->formatNum( $activeUsers ), NULL, 'statistics-users-active-tooltip' );
+					$wgLang->formatNum( $activeUsers ),
+					' class="mw-statistics-users-active"',
+					'statistics-users-active-tooltip' );
 
 		# Statistic - usergroups
 		foreach( $wgGroupPermissions as $group => $permissions ) {
