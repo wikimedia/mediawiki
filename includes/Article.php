@@ -448,7 +448,7 @@ class Article {
 
 		// FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContent   = $revision->revText(); // Loads if user is allowed
+		$this->mContent   = $revision->getText( false ); // Loads if user is allowed
 
 		$this->mUser      = $revision->getUser();
 		$this->mUserText  = $revision->getUserText();

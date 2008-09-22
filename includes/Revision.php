@@ -505,8 +505,10 @@ class Revision {
 	 * Fetch revision text if it's available to all users
 	 * @return string
 	 */
-	public function getText() {
-		if( $this->isDeleted( self::DELETED_TEXT ) ) {
+	public function getText( $isPublic = true ) {
+		if( $isPublic && $this->isDeleted( self::DELETED_TEXT ) ) {
+			return "";
+		} else if( !$this->userCan( self::DELETED_TEXT ) ) {
 			return "";
 		} else {
 			return $this->getRawText();
@@ -523,18 +525,6 @@ class Revision {
 			$this->mText = $this->loadText();
 		}
 		return $this->mText;
-	}
-
-	/**
-	 * Fetch revision text if it's available to THIS user
-	 * @return string
-	 */
-	public function revText() {
-		if( !$this->userCan( self::DELETED_TEXT ) ) {
-			return "";
-		} else {
-			return $this->getRawText();
-		}
 	}
 
 	/**

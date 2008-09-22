@@ -847,13 +847,13 @@ CONTROL;
 			return false;
 		}
 		if ( $this->mOldRev ) {
-			$this->mOldtext = $this->mOldRev->revText();
+			$this->mOldtext = $this->mOldRev->getText( false );
 			if ( $this->mOldtext === false ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
-			$this->mNewtext = $this->mNewRev->revText();
+			$this->mNewtext = $this->mNewRev->getText( false );
 			if ( $this->mNewtext === false ) {
 				return false;
 			}
