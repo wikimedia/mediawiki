@@ -1053,8 +1053,10 @@ class User {
 				$this->spreadBlock();
 			}
 		} else {
-			$this->mBlock = null;
-			wfDebug( __METHOD__.": No block.\n" );
+			// Bug 13611, apply account creation blocks to users.
+			// Note that the existence of $this->mBlock is not used
+			// to check for edit blocks, $this->mBlockedby is instead.
+			# $this->mBlock = null;
 		}
 
 		# Proxy blocking
