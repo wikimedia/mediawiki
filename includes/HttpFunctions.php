@@ -27,6 +27,11 @@ class Http {
 	static function request( $method, $url, $timeout = 'default', $curlOptions = array() ) {
 		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
 
+		// Go ahead and set the timeout if not otherwise specified
+		if ( $timeout == 'default' ) {
+			$timeout = $wgHTTPTimeout;
+		}
+
 		wfDebug( __METHOD__ . ": $method $url\n" );
 		# Use curl if available
 		if ( function_exists( 'curl_init' ) ) {
@@ -37,9 +42,6 @@ class Http {
 				curl_setopt($c, CURLOPT_PROXY, $wgHTTPProxy);
 			}
 
-			if ( $timeout == 'default' ) {
-				$timeout = $wgHTTPTimeout;
-			}
 			curl_setopt( $c, CURLOPT_TIMEOUT, $timeout );
 			curl_setopt( $c, CURLOPT_USERAGENT, "MediaWiki/$wgVersion" );
 			if ( $method == 'POST' )
@@ -78,7 +80,7 @@ class Http {
 			curl_close( $c );
 		} else {
 			# Otherwise use file_get_contents...
-			# This may take 3 minutes to time out, and doesn't have local fetch capabilities
+			# This doesn't have local fetch capabilities...
 
 			global $wgVersion;
 			$headers = array( "User-Agent: MediaWiki/$wgVersion" );
@@ -89,7 +91,8 @@ class Http {
 			$opts = array(
 				'http' => array(
 					'method' => $method,
-					'header' => implode( "\r\n", $headers ) ) );
+					'header' => implode( "\r\n", $headers ),
+					'timeout' => $timeout ) );
 			$ctx = stream_context_create($opts);
 
 			$url_fopen = ini_set( 'allow_url_fopen', 1 );
