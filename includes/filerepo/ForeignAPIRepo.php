@@ -112,7 +112,6 @@ class ForeignAPIRepo extends FileRepo {
 	
 	function getThumbUrlFromCache( $name, $width, $height ) {
 		global $wgMemc, $wgUploadPath, $wgServer, $wgUploadDirectory;
-;
 		
 		$key = wfMemcKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
 		if ( $thumbUrl = $wgMemc->get($key) ) {
@@ -134,5 +133,13 @@ class ForeignAPIRepo extends FileRepo {
 			wfDebug( __METHOD__ . " got local thumb $localUrl, saving to cache \n" );
 			return $localUrl;
 		}
+	}
+	
+	/**
+	 * Are we locally caching the thumbnails?
+	 * @return bool
+	 */
+	public function canCacheThumbs() {
+		return ( $this->repo->apiThumbCacheExpiry > 0 && $this->repo->apiThumbCacheDir );
 	}
 }
