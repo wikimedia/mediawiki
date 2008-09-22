@@ -128,6 +128,7 @@ class Block {
 	 * @param $address string The IP address of the user, or blank to skip IP blocks
 	 * @param $user int The user ID, or zero for anonymous users
 	 * @param $killExpired bool Whether to delete expired rows while loading
+	 * @return bool The user is blocked from editing
 	 *
 	 */
 	function load( $address = '', $user = 0, $killExpired = true ) {
