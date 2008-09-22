@@ -2346,6 +2346,7 @@ You can change this page's protection level, but it will not affect the cascadin
 ** Excessive spamming
 ** Counter-productive edit warring
 ** High traffic page',
+'protect-edit-reasonlist'     => 'Edit protection reasons',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
