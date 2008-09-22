@@ -3822,7 +3822,7 @@ class Parser
 	 * @return mixed An expanded string, or false if invalid.
 	 */
 	function validateSig( $text ) {
-		return( wfIsWellFormedXmlFragment( $text ) ? $text : false );
+		return( Xml::isWellFormedXmlFragment( $text ) ? $text : false );
 	}
 
 	/**
