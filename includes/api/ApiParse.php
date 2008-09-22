@@ -63,7 +63,7 @@ class ApiParse extends ApiBase {
 					$this->dieUsage("There is no revision ID $oldid", 'missingrev');
 				if(!$rev->userCan(Revision::DELETED_TEXT))
 					$this->dieUsage("You don't have permission to view deleted revisions", 'permissiondenied');
-				$text = $rev->getRawText();
+				$text = $rev->getText(false);
 				$titleObj = $rev->getTitle();
 				$p_result = $wgParser->parse($text, $titleObj, $popts);
 			}

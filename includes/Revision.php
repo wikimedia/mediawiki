@@ -430,8 +430,10 @@ class Revision {
 	 * Fetch revision's user id if it's available to all users
 	 * @return int
 	 */
-	public function getUser() {
-		if( $this->isDeleted( self::DELETED_USER ) ) {
+	public function getUser( $isPublic = true ) {
+		if( $isPublic && $this->isDeleted( self::DELETED_USER ) ) {
+			return 0;
+		} else if( !$this->userCan( self::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->mUser;
@@ -450,8 +452,10 @@ class Revision {
 	 * Fetch revision's username if it's available to all users
 	 * @return string
 	 */
-	public function getUserText() {
-		if( $this->isDeleted( self::DELETED_USER ) ) {
+	public function getUserText( $isPublic = true ) {
+		if( $isPublic && $this->isDeleted( self::DELETED_USER ) ) {
+			return "";
+		} else if( !$this->userCan( self::DELETED_USER ) ) {
 			return "";
 		} else {
 			return $this->mUserText;
@@ -470,8 +474,10 @@ class Revision {
 	 * Fetch revision comment if it's available to all users
 	 * @return string
 	 */
-	function getComment() {
-		if( $this->isDeleted( self::DELETED_COMMENT ) ) {
+	function getComment( $isPublic = true ) {
+		if( $isPublic && $this->isDeleted( self::DELETED_COMMENT ) ) {
+			return "";
+		} else if( !$this->userCan( self::DELETED_COMMENT ) ) {
 			return "";
 		} else {
 			return $this->mComment;

@@ -176,7 +176,7 @@ CONTROL;
 				$change = RecentChange::newFromConds(
 				array(
 				// Add redundant user,timestamp condition so we can use the existing index
-						'rc_user_text'  => $this->mNewRev->getRawUserText(),
+						'rc_user_text'  => $this->mNewRev->getUserText(false),
 						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
 						'rc_this_oldid' => $this->mNewid,
 						'rc_last_oldid' => $this->mOldid,
