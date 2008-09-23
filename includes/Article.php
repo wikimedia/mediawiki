@@ -1421,7 +1421,7 @@ class Article {
 	 * to MediaWiki's performance-optimised locking strategy.
 	 * @param $baseRevId, the revision ID this edit was based off, if any
 	 *
-	 * @return bool success
+	 * @return int Current revision ID after this edit
 	 */
 	function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
@@ -1522,6 +1522,7 @@ class Article {
 				if( !$ok ) {
 					/* Belated edit conflict! Run away!! */
 					$good = false;
+					$revisionId = 0;
 					$dbw->rollback();
 				} else {
 					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId ) );
@@ -1621,7 +1622,7 @@ class Article {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $good;
+		return $revisionId;
 	}
 
 	/**
@@ -2474,7 +2475,7 @@ class Article {
 
 		# Check permissions
 		$errors = array_merge( $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser ),
-						$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser ) );
+			$this->mTitle->getUserPermissionsErrors( 'rollback', $wgUser ) );
 		if( !$wgUser->matchEditToken( $token, array( $this->mTitle->getPrefixedText(), $fromP ) ) )
 			$errors[] = array( 'sessionfailure' );
 
@@ -2578,12 +2579,13 @@ class Article {
 		# Save
 		$flags = EDIT_UPDATE;
 
-		if ($wgUser->isAllowed('minoredit'))
+		if( $wgUser->isAllowed('minoredit') )
 			$flags |= EDIT_MINOR;
 
 		if( $bot && ($wgUser->isAllowed('markbotedits') || $wgUser->isAllowed('bot')) )
 			$flags |= EDIT_FORCE_BOT;
-		$this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
+		# Actually store the edit
+		$revId = $this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
 
 		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
 
@@ -2591,6 +2593,7 @@ class Article {
 			'summary' => $summary,
 			'current' => $current,
 			'target' => $target,
+			'newid' => $revId
 		);
 		return array();
 	}
@@ -2618,7 +2621,7 @@ class Article {
 			$wgOut->rateLimited();
 			return;
 		}
-		if( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ){
+		if( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ) {
 			$wgOut->setPageTitle( wfMsg( 'rollbackfailed' ) );
 			$errArray = $result[0];
 			$errMsg = array_shift( $errArray );
@@ -2626,7 +2629,8 @@ class Article {
 			if( isset( $details['current'] ) ){
 				$current = $details['current'];
 				if( $current->getComment() != '' ) {
-					$wgOut->addWikiMsgArray( 'editcomment', array( $wgUser->getSkin()->formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
+					$wgOut->addWikiMsgArray( 'editcomment', array( 
+						$wgUser->getSkin()->formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
 				}
 			}
 			return;
@@ -2653,6 +2657,7 @@ class Article {
 
 		$current = $details['current'];
 		$target = $details['target'];
+		$newId = $details['newid'];
 		$wgOut->setPageTitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$old = $wgUser->getSkin()->userLink( $current->getUser(), $current->getUserText() )
@@ -2663,7 +2668,7 @@ class Article {
 		$wgOut->returnToMain( false, $this->mTitle );
 
 		if( !$wgRequest->getBool( 'hidediff', false ) ) {
-			$de = new DifferenceEngine( $this->mTitle, $current->getId(), 'next', false, true );
+			$de = new DifferenceEngine( $this->mTitle, $current->getId(), $newId, false, true );
 			$de->showDiff( '', '' );
 		}
 	}
