@@ -498,12 +498,12 @@ Confirma orthographiam.',
 'wrongpasswordempty'         => 'Tesseram vacuam scripsisti. Conare denuo.',
 'mailmypassword'             => 'Tesseram novam per litteras electronicas petere',
 'passwordremindertitle'      => 'Nova tessera apud {{grammar:accusative|{{SITENAME}}}}',
-'passwordremindertext'       => 'Aliquis (tu probabiliter, cum loco de IP $1)
+'passwordremindertext'       => 'Aliquis (tu probabiliter, ex loco IP $1)
 tesseram novam petivit pro {{grammar:ablative|{{SITENAME}}}} ($4).
-Tessera usoris "$2" nunc est "$3".
-Conventum aperias et statim tesseram tuam mutes.
+Tessera temporaria usoris "$2" creata est: "$3".
+Si vis, conventum aperias et statim tesseram tuam mutes.
 
-Si non ipse hanc petitionem fecisti, aut si tesseram tuam
+Si non ipse hanc petitionem fecisti, aut si tesserae tuae
 meministi et etiam nolis eam mutare, potes hunc nuntium
 ignorare, et tessera seni uti continuare.',
 'acct_creation_throttle_hit' => 'Iam {{PLURAL:$1|unam rationem|rationes $1}} creavisti.
@@ -642,6 +642,7 @@ Considera paginam in partes minores frangere.',
 
 Tibi oportet meditari utrum hanc paginam creare tamen convenit. Commodule notatio paginarum deletarum hic datur:",
 'deleted-notice'            => 'Haec pagina deleta est. Commodule notatio paginarum deletarum subter datur.',
+'deletelog-fulllog'         => 'Inspicere acta plenissima',
 
 # "Undo" feature
 'undo-norev'   => 'Recensio abrogari non potuit quia non est aut deleta est.',
@@ -1015,22 +1016,24 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'randomredirect-nopages' => 'Non est ulla redirectio hoc in spatio nominali.',
 
 # Statistics
-'statistics'               => 'Census',
-'statistics-header-pages'  => 'Census paginarum',
-'statistics-header-edits'  => 'Census recensionum',
-'statistics-header-views'  => 'Census visuum',
-'statistics-header-users'  => 'Census usorum',
-'statistics-articles'      => 'Paginae in spatio nominali principali',
-'statistics-pages'         => 'Paginae',
-'statistics-files'         => 'Fasciculi impositi',
-'statistics-edits'         => 'Recensiones paginarum factae ab initio {{grammar:genitive|{{SITENAME}}}}',
-'statistics-edits-average' => 'Recensiones per paginam',
-'statistics-views-total'   => 'Visus',
-'statistics-views-peredit' => 'Visus per recensionem',
-'statistics-jobqueue'      => 'Numerus [http://www.mediawiki.org/wiki/Manual:Job_queue operationum qui etiam exspectant perfacier]',
-'statistics-users'         => '[[Special:ListUsers|Usores]] relati',
-'statistics-users-active'  => 'Usores activi',
-'statistics-mostpopular'   => 'Paginae plurimum visae',
+'statistics'                      => 'Census',
+'statistics-header-pages'         => 'Census paginarum',
+'statistics-header-edits'         => 'Census recensionum',
+'statistics-header-views'         => 'Census visuum',
+'statistics-header-users'         => 'Census usorum',
+'statistics-articles'             => 'Paginae in spatio nominali principali',
+'statistics-pages'                => 'Paginae',
+'statistics-pages-tooltip'        => 'Omnes paginas. Hic numerus includit paginas disputationum, redirectiones, etc.',
+'statistics-files'                => 'Fasciculi impositi',
+'statistics-edits'                => 'Recensiones paginarum factae ab initio {{grammar:genitive|{{SITENAME}}}}',
+'statistics-edits-average'        => 'Recensiones per paginam',
+'statistics-views-total'          => 'Visus',
+'statistics-views-peredit'        => 'Visus per recensionem',
+'statistics-jobqueue'             => 'Numerus [http://www.mediawiki.org/wiki/Manual:Job_queue operationum qui etiam exspectant perfacier]',
+'statistics-users'                => '[[Special:ListUsers|Usores]] relati',
+'statistics-users-active'         => 'Usores activi',
+'statistics-users-active-tooltip' => 'Usores qui proxima mense actionem perfecerunt',
+'statistics-mostpopular'          => 'Paginae plurimum visae',
 
 'disambiguations'      => 'Paginae disambiguationis',
 'disambiguationspage'  => 'Template:Discretiva',
@@ -1291,6 +1294,7 @@ ad emendationem proximam ab $2.',
 'protect-existing-expiry'   => 'Exitus: $1',
 'protect-otherreason'       => 'Causa alia vel explicatio:',
 'protect-otherreason-op'    => 'causa alia',
+'protect-edit-reasonlist'   => 'Causas protectionum recensere',
 'restriction-type'          => 'Permissus:',
 'restriction-level'         => 'Gradus cohibitionis:',
 'pagesize'                  => '(octeti)',
@@ -1417,6 +1421,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipb_expiry_invalid'       => 'Tempus exeundo invalidum fuit.',
 'ipb_already_blocked'      => '"$1" iam obstructus est',
 'proxyblocksuccess'        => 'Factum.',
+'cant-block-while-blocked' => 'Dum obstructus es, non potes usores alios obstruere.',
 
 # Developer tools
 'lockdb'              => 'Basem datorum obstruere',

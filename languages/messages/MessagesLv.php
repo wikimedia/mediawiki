@@ -1122,9 +1122,37 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'watching'   => 'Uzrauga...',
 'unwatching' => 'Neuzrauga...',
 
-'changed'        => 'izmainīja',
-'created'        => 'izveidoja',
-'enotif_subject' => '{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED lietotājs $PAGEEDITOR',
+'enotif_reset'       => 'Atzīmēt visas lapas kā apskatītas',
+'enotif_newpagetext' => 'Šī ir jauna lapa.',
+'changed'            => 'izmainīja',
+'created'            => 'izveidoja',
+'enotif_subject'     => '{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED lietotājs $PAGEEDITOR',
+'enotif_lastvisited' => '$1 lai apskatītos visas izmaiņas kopš tava pēdējā apmeklējuma.',
+'enotif_lastdiff'    => '$1 lai apskatītos šo izmaiņu.',
+'enotif_body'        => '$WATCHINGUSERNAME,
+
+
+{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED $PAGEEDITOR, $PAGEEDITDATE, pašreizējā versja ir $PAGETITLE_URL.
+
+$NEWPAGE
+
+Izmaiņu kopsavilkums bija: $PAGESUMMARY $PAGEMINOREDIT
+
+Sazināties ar attiecīgo lietotāju:
+e-pasts: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Ja šo uzraugāmo lapu izmainīs vēl, turpmāku paziņojumu par to nebūs, kamēr tu to neatvērsi.
+Tu arī vari noresetot visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.
+
+             {{grammar:ģenitīvs|{{SITENAME}}}} paziņojumu sistēma
+
+--
+Lai izmainītu uzraugāmo lapu saraksta uzstādījumus:
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Papildus informācija:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Dzēst lapu',

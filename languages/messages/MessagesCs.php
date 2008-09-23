@@ -624,7 +624,7 @@ Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz na rozd�
 Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme, ohlaste to [[Special:ListUsers/sysop|správcům]] spolu s URL této stránky.',
 'missingarticle-rev'   => '(číslo revize: $1)',
 'missingarticle-diff'  => '(Rozdíl: $1, $2)',
-'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových servery proti hlavnímu',
+'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových serverů oproti hlavnímu',
 'internalerror'        => 'Vnitřní chyba',
 'internalerror_info'   => 'Vnitřní chyba: $1',
 'filecopyerror'        => 'Nebylo možné zkopírovat soubor  „$1“ na „$2“.',
@@ -727,11 +727,14 @@ Zkuste to znovu!',
 Musí obsahovat nejméně $1 {{plural:$1|znak|znaky|znaků}} a nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
-'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) žádal, abychom Vám poslali nové heslo pro přihlášení do {{SITENAME}} ($4).
+'passwordremindertext'       => 'Někdo (patrně Vy, z IP adresy $1) žádal, abychom Vám poslali nové heslo
+pro přihlášení do {{grammar:2sg|{{SITENAME}}}} ($4). Uživateli „$2“ bylo
+proto nastaveno dočasné heslo „$3“. Pokud jste to byl(a) vy, můžete se
+nyní přihlásit a zvolit si nové heslo.
 
- Heslo pro uživatele "$2" je nyní "$3". Doporučujeme přihlásit se nyní a změnit heslo.
-Pokud jste o změnu hesla nežádali nebo jste si na původní heslo již vzpomněli a už ho změnit
-nechcete, můžete tuto zprávu ignorovat a používat staré heslo.',
+Pokud jste o změnu hesla nežádal(a) nebo jste si na původní heslo již
+vzpomněl(a) a už ho změnit nechcete, můžete tuto zprávu ignorovat
+a používat staré heslo.',
 'noemail'                    => 'Uživatel „$1“ nemá zaregistrovanou e-mailovou adresu.',
 'passwordsent'               => 'Dočasné heslo bylo zasláno na e-mailovou adresu registrovanou pro „$1“. Přihlaste se, prosím, znovu, jakmile ho obdržíte.',
 'blocked-mailpassword'       => 'Vaší IP adrese byla zablokována možnost editace, a současně s tím je zablokována funkce pro zaslání nového hesla.',
@@ -924,6 +927,7 @@ Ujistěte se, že je vhodné pokračovat v editaci stránky.
 Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 'deleted-notice'                   => 'Tato stránka byla smazána.
 Podrobnosti lze zjistit z níže uvedeného výpisu knihy smazaných stránek.',
+'deletelog-fulllog'                => 'Celá kniha smazaných stránek',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -1042,7 +1046,7 @@ pokud to provozovatel serveru nezakázal.',
 'mergehistory-header'              => 'Tato stránka Vám umožní sloučit historii verzí jedné zdrojové stránky s novější stránkou.
 Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii.',
 'mergehistory-box'                 => 'Sloučení verzí dvou stránek:',
-'mergehistory-from'                => 'Původní stránka:',
+'mergehistory-from'                => 'Zdrojová stránka:',
 'mergehistory-into'                => 'Cílová stránka:',
 'mergehistory-list'                => 'Historie slučitelných editací',
 'mergehistory-merge'               => 'Následující verze stránky [[:$1|$1]] lze sloučit do stránky [[:$2|$2]]. Přepínačem vyberete verzi, která určí, že pouze tato a starší editace budou sloučeny. Použitím navigačních odkazů se tento výběr zruší.',
@@ -1057,6 +1061,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'mergehistory-invalid-destination' => 'Cílová stránka musí mít platný název.',
 'mergehistory-autocomment'         => 'Sloučena stránka [[:$1]] do stránky [[:$2]]',
 'mergehistory-comment'             => 'Sloučena stránka [[:$1]] do stránky [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Zdrojová a cílová stránka se nemůžou shodovat',
 
 # Merge log
 'mergelog'           => 'Kniha slučování',
@@ -1588,22 +1593,24 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'randomredirect-nopages' => 'V tomto jmenném prostoru není žádné přesměrování.',
 
 # Statistics
-'statistics'               => 'Statistika',
-'statistics-header-pages'  => 'Statistika stránek',
-'statistics-header-edits'  => 'Statistika editací',
-'statistics-header-views'  => 'Statistika zobrazení',
-'statistics-header-users'  => 'O uživatelích',
-'statistics-articles'      => 'Obsahových stránek',
-'statistics-pages'         => 'Stránky',
-'statistics-files'         => 'Nahrané soubory',
-'statistics-edits'         => 'Počet editací od založení wiki',
-'statistics-edits-average' => 'Průměrný počet editací na stránku',
-'statistics-views-total'   => 'Celkový počet zobrazení',
-'statistics-views-peredit' => 'Počet zobrazení na editaci',
-'statistics-jobqueue'      => 'Délka [http://www.mediawiki.org/wiki/Manual:Job_queue fronty údržby]',
-'statistics-users'         => 'Registrovaní [[Special:ListUsers|uživatelé]]',
-'statistics-users-active'  => 'Aktivní uživatelé',
-'statistics-mostpopular'   => 'Nejčtenější stránky',
+'statistics'                      => 'Statistika',
+'statistics-header-pages'         => 'Statistika stránek',
+'statistics-header-edits'         => 'Statistika editací',
+'statistics-header-views'         => 'Statistika zobrazení',
+'statistics-header-users'         => 'O uživatelích',
+'statistics-articles'             => 'Obsahových stránek',
+'statistics-pages'                => 'Stránky',
+'statistics-pages-tooltip'        => 'Všechny stránky na wiki včetně diskusí, přesměrování apod.',
+'statistics-files'                => 'Nahrané soubory',
+'statistics-edits'                => 'Počet editací od založení wiki',
+'statistics-edits-average'        => 'Průměrný počet editací na stránku',
+'statistics-views-total'          => 'Celkový počet zobrazení',
+'statistics-views-peredit'        => 'Počet zobrazení na editaci',
+'statistics-jobqueue'             => 'Délka [http://www.mediawiki.org/wiki/Manual:Job_queue fronty údržby]',
+'statistics-users'                => 'Registrovaní [[Special:ListUsers|uživatelé]]',
+'statistics-users-active'         => 'Aktivní uživatelé',
+'statistics-users-active-tooltip' => 'Uživatelé, kteří v posledním měsíci provedli nějakou operaci',
+'statistics-mostpopular'          => 'Nejčtenější stránky',
 
 'disambiguations'      => 'Stránky odkazující na rozcestníky',
 'disambiguationspage'  => 'Template:Rozcestník',
@@ -2130,6 +2137,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'proxyblocksuccess'               => 'Hotovo.',
 'sorbsreason'                     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
 'sorbs_create_account_reason'     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
+'cant-block-while-blocked'        => 'Nemůžete blokovat jiné uživatele, když jste zablokován(a).',
 
 # Developer tools
 'lockdb'              => 'Zamknout databázi',

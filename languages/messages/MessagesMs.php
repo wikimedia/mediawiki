@@ -554,7 +554,9 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah keutamaan {{SITENAME}} anda.
 'passwordtooshort'           => 'Kata laluan anda tidak sah atau terlalu pendek. Panjangnya mestilah sekurang-kurangnya $1 aksara dan berbeza daripada nama pengguna anda.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
-'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan untuk pengguna "$2" ialah "$3". Anda disarankan untuk log masuk dan tukar kata laluan segera.',
+'passwordremindertext'       => 'Seseorang (mungkin anda, dari alamat IP $1) meminta kami menghantar kata laluan baru untuk {{SITENAME}} ($4). Kata laluan sementara baru untuk pengguna "$2" ialah "$3". Untuk menamatkan prosedur ini, anda perlu log masuk dan tetapkan kata laluan yang baru dengan segera.
+
+Jika anda tidak membuat permintaan ini, atau anda telah pun mengingati semula kata laluan anda dan tidak mahu menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan yang sedia ada.',
 'noemail'                    => 'Tiada alamat e-mel direkodkan bagi pengguna "$1".',
 'passwordsent'               => 'Kata laluan baru telah dikirim kepada alamat
 e-mel yang didaftarkan oleh "$1".
@@ -764,6 +766,7 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
 'deleted-notice'                   => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
+'deletelog-fulllog'                => 'Lihat log penuh',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.
@@ -903,6 +906,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'mergehistory-invalid-destination' => 'Laman destinasi mestilah merupakan tajuk yang sah.',
 'mergehistory-autocomment'         => 'Menggabungkan [[:$1]] dengan [[:$2]]',
 'mergehistory-comment'             => 'Menggabungkan [[:$1]] dengan [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Laman sasaran tidak boleh sama dengan laman sumber',
 
 # Merge log
 'mergelog'           => 'Log penggabungan',
@@ -1421,22 +1425,24 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'randomredirect-nopages' => 'Tiada lencongan dalam ruang nama ini.',
 
 # Statistics
-'statistics'               => 'Statistik',
-'statistics-header-pages'  => 'Statistik laman',
-'statistics-header-edits'  => 'Statistik suntingan',
-'statistics-header-views'  => 'Statistics pandangan',
-'statistics-header-users'  => 'Statistik pengguna',
-'statistics-articles'      => 'Laman kandungan',
-'statistics-pages'         => 'Laman',
-'statistics-files'         => 'Fail dimuat naik',
-'statistics-edits'         => 'Suntingan laman sejak {{SITENAME}} dibuka',
-'statistics-edits-average' => 'Purata suntingan bagi setiap laman',
-'statistics-views-total'   => 'Jumlah pandangan',
-'statistics-views-peredit' => 'Pandangan setiap suntingan',
-'statistics-jobqueue'      => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak]',
-'statistics-users'         => '[[Special:ListUsers|Pengguna]] berdaftar',
-'statistics-users-active'  => 'Pengguna aktif',
-'statistics-mostpopular'   => 'Laman dilihat terbanyak',
+'statistics'                      => 'Statistik',
+'statistics-header-pages'         => 'Statistik laman',
+'statistics-header-edits'         => 'Statistik suntingan',
+'statistics-header-views'         => 'Statistics pandangan',
+'statistics-header-users'         => 'Statistik pengguna',
+'statistics-articles'             => 'Laman kandungan',
+'statistics-pages'                => 'Laman',
+'statistics-pages-tooltip'        => 'Semua laman di wiki ini, termasuk laman perbincangan, lencongan, dan lain-lain.',
+'statistics-files'                => 'Fail dimuat naik',
+'statistics-edits'                => 'Suntingan laman sejak {{SITENAME}} dibuka',
+'statistics-edits-average'        => 'Purata suntingan bagi setiap laman',
+'statistics-views-total'          => 'Jumlah pandangan',
+'statistics-views-peredit'        => 'Pandangan setiap suntingan',
+'statistics-jobqueue'             => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue tugas yang tertunggak]',
+'statistics-users'                => '[[Special:ListUsers|Pengguna]] berdaftar',
+'statistics-users-active'         => 'Pengguna aktif',
+'statistics-users-active-tooltip' => 'Pengguna yang aktif sejak sebulan lalu',
+'statistics-mostpopular'          => 'Laman dilihat terbanyak',
 
 'disambiguations'      => 'Laman penyahtaksaan',
 'disambiguationspage'  => 'Template:disambig',
@@ -1794,6 +1800,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 ** Spam
 ** Perang sunting
 ** Laman popular',
+'protect-edit-reasonlist'     => 'Ubah sebab-sebab perlindungan',
 'restriction-type'            => 'Keizinan:',
 'restriction-level'           => 'Peringkat pembatasan:',
 'minimum-size'                => 'Saiz minimum',
@@ -1991,6 +1998,7 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'proxyblocksuccess'               => 'Berjaya.',
 'sorbsreason'                     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
+'cant-block-while-blocked'        => 'Anda tidak boleh menyekat orang lain sedangkan anda disekat.',
 
 # Developer tools
 'lockdb'              => 'Kunci pangkalan data',

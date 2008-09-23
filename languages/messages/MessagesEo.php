@@ -523,10 +523,14 @@ Kontrolu vian literumadon, aŭ [[Special:Userlogin/signup|kreu novan konton]].',
 Ĝi entenu minimume $1 {{PLURAL:$1|1 signon|$1 signojn}} kaj nepre malsamas vian salutnomon.',
 'mailmypassword'             => 'Retpoŝti novan pasvorton',
 'passwordremindertitle'      => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
-'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1)
-petis, ke ni sendu al vi novan pasvorton por ensaluti {{SITENAME}}n ($4).
-La pasvorto por uzanto "$2" nun estas "$3".
-Ni rekomendas, ke vi nun ensalutu kaj ŝanĝu vian pasvorton.',
+'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1) petis novan
+pasvorton por {{SITENAME}} ($4). Provizora pasvorto por uzanto
+"$2" estis kreita kaj estis farita al "$3". Se ĉi tiu estis via
+intencio, vi devos ensaluti kaj elekti novan pasvorton nun.
+
+Se iu alia faris ĉi tiun peton, aŭ se vi estas rememorita vian pasvorton,
+kaj ne plu volas ŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj 
+kontinui uzante vian malnovan pasvorton.',
 'noemail'                    => 'Retpoŝtadreso ne estas registrita por uzanto "$1".',
 'passwordsent'               => 'Oni sendis novan pasvorton al la retpoŝtadreso
 registrita por "$1".
@@ -728,6 +732,7 @@ La administranto kiu ŝlosis ĝin donis ĉi tiun eksplikaĵon: $1',
 Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
 Jen la protokolo de forigoj por via oportuno:",
 'deleted-notice'                   => 'Ĉi tiu paĝo estis forigita. La linio el la protokolo pri forigado estas montrata sube por via referenco.',
+'deletelog-fulllog'                => 'Vidi plenan protokolon',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
@@ -863,6 +868,7 @@ Certigu ke ĉi ŝanĝo tenos kontinueco de la historia paĝo.',
 'mergehistory-invalid-destination' => 'Celpaĝo devas esti valida titolo.',
 'mergehistory-autocomment'         => 'Kunigita [[:$1]] en [[:$2]]',
 'mergehistory-comment'             => 'Kunigita [[:$1]] en [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Fontaj kaj destinaj paĝoj ne povas esti la samon',
 
 # Merge log
 'mergelog'           => 'Protokolo de kunigoj',
@@ -1392,22 +1398,24 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'randomredirect-nopages' => 'Estas neniuj alidirektiloj en ĉi nomspaco.',
 
 # Statistics
-'statistics'               => 'Statistiko',
-'statistics-header-pages'  => 'Paĝaj statistikoj',
-'statistics-header-edits'  => 'Redakti statistikojn',
-'statistics-header-views'  => 'Vidi statistikojn',
-'statistics-header-users'  => 'Pri la uzantaro',
-'statistics-articles'      => 'Enhavaj paĝoj',
-'statistics-pages'         => 'Paĝoj',
-'statistics-files'         => 'Alŝutitaj dosieroj',
-'statistics-edits'         => 'Paĝaj redaktoj ekde {{SITENAME}} estis starigita',
-'statistics-edits-average' => 'Averaĝaj redaktoj po paĝo',
-'statistics-views-total'   => 'Vidoj entutaj',
-'statistics-views-peredit' => 'Vidoj po redakto',
-'statistics-jobqueue'      => 'Longeco de [http://www.mediawiki.org/wiki/Manual:Job_queue vico de prokrastita reenkategoriado]',
-'statistics-users'         => 'Registritaj [[Special:ListUsers|uzantoj]]',
-'statistics-users-active'  => 'Aktivaj uzantoj',
-'statistics-mostpopular'   => 'Plej ofte montrataj paĝoj',
+'statistics'                      => 'Statistiko',
+'statistics-header-pages'         => 'Paĝaj statistikoj',
+'statistics-header-edits'         => 'Redakti statistikojn',
+'statistics-header-views'         => 'Vidi statistikojn',
+'statistics-header-users'         => 'Pri la uzantaro',
+'statistics-articles'             => 'Enhavaj paĝoj',
+'statistics-pages'                => 'Paĝoj',
+'statistics-pages-tooltip'        => 'Ĉiuj paĝoj en la vikio, inkluzivante diskuto-paĝojn, alidirektilojn, ktp.',
+'statistics-files'                => 'Alŝutitaj dosieroj',
+'statistics-edits'                => 'Paĝaj redaktoj ekde {{SITENAME}} estis starigita',
+'statistics-edits-average'        => 'Averaĝaj redaktoj po paĝo',
+'statistics-views-total'          => 'Vidoj entutaj',
+'statistics-views-peredit'        => 'Vidoj po redakto',
+'statistics-jobqueue'             => 'Longeco de [http://www.mediawiki.org/wiki/Manual:Job_queue vico de prokrastita reenkategoriado]',
+'statistics-users'                => 'Registritaj [[Special:ListUsers|uzantoj]]',
+'statistics-users-active'         => 'Aktivaj uzantoj',
+'statistics-users-active-tooltip' => 'Uzantoj kiuj faris agon en la lasta monato',
+'statistics-mostpopular'          => 'Plej ofte montrataj paĝoj',
 
 'disambiguations'      => 'Misligitaj apartigiloj',
 'disambiguationspage'  => 'Template:Apartigilo',
@@ -1947,6 +1955,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'proxyblocksuccess'               => 'Farita.',
 'sorbsreason'                     => 'Via IP-adreso estas listigita kiel malferma prokurilo en la DNSBL uzata de {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Via IP-adreso estas listigita kiel malferma prokurilo en la DNSBL uzata de {{SITENAME}}. Vi ne rajtas krei konton.',
+'cant-block-while-blocked'        => 'Vi ne povas forbari aliajn uzantojn dum vi estas forbarita.',
 
 # Developer tools
 'lockdb'              => 'Ŝlosi datumbazon',

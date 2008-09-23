@@ -297,6 +297,7 @@ $messages = array(
 'noconnect'            => 'ವಿಕಿ ಡ್ ಕೆಲವು ತಾ೦ತ್ರಿಕ ದೋಶೊಲು ತೋಜೊ೦ದು೦ಡು ಬುಕ ಡಾಟಾಬೇಸ್ ಸರ್ವರ್ ನ್ ಸ೦ಪರ್ಕ ಮಲ್ಪೆರ್ ಆವೊ೦ದಿಜ್ಜಿ.<br />
 $1',
 'nodb'                 => 'ಡಾಟಾಬೇಸ್ $1 ನ್ ಆಯ್ಕೆ ಮಲ್ತೊನೆರೆ ಆಯಿಜಿ',
+'readonly'             => 'ಡಾಟಾಬೇಸ್ ಲಾಕ್ ಆತ್೦ಡ್',
 'internalerror'        => 'ಆ೦ತರಿಕ ದೋಷ',
 'internalerror_info'   => 'ಆಂತರಿಕ ದೋಷ: $1',
 'filecopyerror'        => 'ಫೈಲ್ "$1" ನ್ "$2" ಗ್ ನಕಲ್ ಮಲ್ಪೆರೆ ಆಯಿಜಿ',
@@ -438,6 +439,9 @@ $1',
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ವೀಕ್ಷಣಾಪಟ್ಟಿಗ್ ಸೇರ್ಪಾವೊಂದುಂಡು...',
 'unwatching' => 'ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆತ್ತೊಂದುಂಡು...',
+
+# Delete
+'deletedarticle' => '"$1" ನೆನ್ನ್ ದೆತ್ತ್ ದಾ೦ಡ್',
 
 # Namespace form on various pages
 'namespace'      => 'ನೇಮ್-ಸ್ಪೇಸ್:',

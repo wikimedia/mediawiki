@@ -361,29 +361,80 @@ $messages = array(
 'media_tip'     => 'ගොනු සබැඳිය',
 
 # Edit pages
-'summary'           => 'සාරාංශය',
-'minoredit'         => 'මෙය සුළු සංස්කරණයකි',
-'savearticle'       => 'පිටුව සුරකින්න',
-'preview'           => 'පෙරදසුන',
-'showpreview'       => 'පෙරදසුන පෙන්වන්න',
-'showdiff'          => 'වෙනස්වීම් පෙන්වන්න',
-'anoneditwarning'   => "'''අවවාදයයි:''' ඔබ පරිශීලකයෙකු වශයෙන් පද්ධතියට ප්‍රවිෂ්ට වී නොමැත.
+'summary'                => 'සාරාංශය',
+'minoredit'              => 'මෙය සුළු සංස්කරණයකි',
+'savearticle'            => 'පිටුව සුරකින්න',
+'preview'                => 'පෙරදසුන',
+'showpreview'            => 'පෙරදසුන පෙන්වන්න',
+'showdiff'               => 'වෙනස්වීම් පෙන්වන්න',
+'anoneditwarning'        => "'''අවවාදයයි:''' ඔබ පරිශීලකයෙකු වශයෙන් පද්ධතියට ප්‍රවිෂ්ට වී නොමැත.
 එමනිසා මෙම පිටුවෙහි සංස්කරණ ඉතිහාසයෙහි, ඔබගේ අන්තර්ජාල ලිපිනය සටහන් කරගැනීමට සිදුවනු ඇත.",
-'newarticletext'    => "බැඳියක් ඔස්සේ පැමිණ ඔබ අවතීර්ණ වී ඇත්තේ දැනට නොපවතින ලිපියකටයි.
+'newarticletext'         => "බැඳියක් ඔස්සේ පැමිණ ඔබ අවතීර්ණ වී ඇත්තේ දැනට නොපවතින ලිපියකටයි.
 මෙම ලිපිය තැනීමට එනම් නිමැවීමට අවශ්‍ය නම්, පහත ඇති කොටුව තුල අකුරු ලිවීම අරඹන්න (වැඩිමනත් තොරතුරු සඳහා [[{{MediaWiki:Helppage}}|උදවු පිටුව]] බලන්න).
 ඔබ මෙහි අවතීර්ණ වී ඇත්තේ කිසියම් අත්වැරැද්දකින් බව හැ‍‍ඟෙන්නේ නම්, ඔබගේ සැරිසරයෙහි (බ්‍රවුසරයෙහි) '''පසුපසට''' බොත්තම ක්ලික් කරන්න.",
-'previewnote'       => '<strong>මෙය පෙරදසුනක් පමණකි;
+'previewnote'            => '<strong>මෙය පෙරදසුනක් පමණකි;
 වෙනස්කම් සුරැකීම තවමත් සිදුකොට නොමැත!</strong>',
-'editing'           => '$1 සංස්කරණය කරමින් පවතියි',
-'editingsection'    => '$1 (ඡේදය) සංස්කරණය කරමින් පවතියි',
-'editingcomment'    => '$1 (පරිකථනය) සංස්කරණය කරමින් පවතියි',
-'yourtext'          => 'ඔබගේ පෙළ',
-'copyrightwarning'  => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
+'editing'                => '$1 සංස්කරණය කරමින් පවතියි',
+'editingsection'         => '$1 (ඡේදය) සංස්කරණය කරමින් පවතියි',
+'editingcomment'         => '$1 (පරිකථනය) සංස්කරණය කරමින් පවතියි',
+'yourtext'               => 'ඔබගේ පෙළ',
+'copyrightwarning'       => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
 එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
 <strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
-'copyrightwarning2' => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
+'copyrightwarning2'      => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors. If you don't want your writing to be edited mercilessly, then don't submit it here.<br />
 එසේ ම මෙය ඔබ විසින් ම ලියූ බවට හෝ පොදු විෂයපථයකින්, ඊ‍ට ස‍මාන නිදහස් මූලාශ්‍රයකින් උපුටා ගත් බව‍ට හෝ අපහ‍‍ට සහතික විය යුතු ය. (තොරතුරු සඳහා $1 බලන්න).
 <strong>හිමිකම් ඇවුරුණු දේ අනවසරයෙන් ප්‍රකාෂ කිරිමෙන් වලකින්න!</strong>",
+'template-protected'     => '(රක්ෂිත)',
+'template-semiprotected' => '(අර්ධ-රක්ෂිත)',
+'hiddencategories'       => 'මෙම පිටුව, {{PLURAL:$1| එක් සැඟවුණු ප්‍රවර්ගයක| සැඟවුණු ප්‍රවර්ගයන් $1 ගණනක}} අවයවයක් වේ:',
+'edittools'              => '<!-- Text here will be shown below edit and upload forms. -->
+<div class="plainlinks" style="margin-top:1px;border-width:1px;border-style:solid;border-color:#aaaaaa;padding:2px;">
+<div id="specialchars" class="plainlinks" style="margin-top:1px; border-width:1px; border-style:solid; border-color:#aaaaaa; border-left-width:0; border-right-width:0; padding:2px;">
+<p class="specialbasic" id="සිංහල">
+<charinsert>ං ඃ</charinsert> ·
+<charinsert>අ ආ ඇ ඈ ඉ ඊ උ ඌ ඍ ඎ ඏ ඐ  </charinsert> ·
+<charinsert>එ ඒ ඓ ඔ ඕ ඖ ක ඛ ග ඝ </charinsert> ·
+<charinsert>ඞ ඟ ච ඡ ජ ඣ ඤ ඥ ඦ </charinsert> ·
+<charinsert>ට ඨ ඩ ඪ ණ ඬ ත ථ ද ධ </charinsert> ·
+<charinsert>න ඳ ප ඵ බ භ ම ඹ ය ර </charinsert> ·
+<charinsert>ල ව ශ ෂ ස හ ළ ෆ</charinsert> ·
+<charinsert>්්  ා  ැ  ෑ    ි   ී  ු    ූ  ෘ </charinsert> ·
+<charinsert>ෙ ේ  ෛ  ො  ෝ  ෞ  ෟ  ෲ ෳ </charinsert> ·
+<charinsert>෴ </charinsert> ·
+<charinsert> ‌ </charinsert> (ZWNJ) ·
+<charinsert> ‍ </charinsert> (ZWJ) ·
+
+</p>
+<p class="specialbasic" id="Wiki">
+<charinsert> {{}} {{{}}}   |   []   [[]] <nowiki><div class=text></nowiki>+<nowiki></div></nowiki>  [[]]   &nbsp; <nowiki><poem></nowiki>+<nowiki></poem></nowiki> [[ද්වාරය:+]] [[ප්‍රවර්ගය:+]] [[රූපය:+]] #REDIRECT  <ref>+</ref> <nowiki><references /></nowiki> </charinsert> ·
+<charinsert>  <nowiki><s>+</s></nowiki>   <nowiki><sup>+</sup></nowiki>   <nowiki><sub>+</sub></nowiki>   <nowiki><code></code></nowiki>  <nowiki><blockquote>+</blockquote></nowiki> {{DEFAULTSORT:}} </charinsert> ·
+<charinsert> <nowiki><math></nowiki>+<nowiki></math></nowiki> <nowiki><nowiki></nowiki>+<nowiki></nowiki></nowiki> <nowiki><noinclude></nowiki>+<nowiki></noinclude></nowiki> <nowiki><includeonly></nowiki>+<nowiki></includeonly></nowiki> <!-- -->  <span class="plainlinks"></span> </charinsert> ·
+<charinsert> ~~~ ~~~~ </charinsert>
+</p>
+</div>
+</div>
+<div id="edittoolsinfo"></div>',
+'nocreatetitle'          => 'පිටු තැනීම සීමා කර ඇත',
+'nocreatetext'           => 'නව පිටු තැනීමේ හැකියාව {{SITENAME}} විසින් සීමාකර ඇත.
+ඔබ හට පෙරළා ගොස්,  දැනට පවතින පිටුවක් සංස්කරණය කිරීම හෝ,  [[Special:UserLogin|ගිණුමකට ප්‍රවිෂ්ට වීම හෝ  නව ගිණුමක් තැනීම හෝ]] සිදුකල හැක.',
+'nocreate-loggedin'      => '{{SITENAME}} හි නව පිටු තැනීමට අවසරයක් ඔබ හට ප්‍රදානය කොට නොමැත.',
+'permissionserrors'      => 'අවසරයන් පිළිබඳ දෝෂයන් පවතී',
+'permissionserrorstext'  => 'පහත දැක්වෙන {{PLURAL:$1|හේතුව|හේතූන්}} නිසා, ඔබ හට එය සිදුකිරීමට අවසර ලබා දීමට නොහැක:',
+'recreate-deleted-warn'  => "'''අවවාදයයි: පෙරදී මකා දැමූ ගොනුවක් ඔබ විසින් යලි-තනමින් පවතියි.'''
+
+මෙම පිටුව සංස්කරණය කිරීම තවදුරටත් සිදුකරගෙන යාම සුදුසුද යන වග ඔබ විසින් සලකා බැලිය යුතුය.
+මෙම පිටුවට අදාල මකා දැමීම් පිළිබඳ විස්තර දැක්වෙන මකා-දැමීම්-ලඝු-සටහන ඔබගේ පහසුව තකා මෙහි දක්වා ඇත:",
+'deleted-notice'         => 'මෙම පිටුව මකා දමා ඇත.
+මෙම පිටුවට අදාල වන මකා දැමීම් සටහන් කර ඇති  මකා-දැමීම්-ලඝු-සටහන, ඔබගේ සැඳහුම සඳහා, මෙහි පහත දක්වා ඇත.',
+'deletelog-fulllog'      => 'සම්පූර්ණ ලඝු-සටහන නරඹන්න',
+
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => 'අවවාදයයි: සැකිලි අඩංගු කිරීමේ ප්‍රමාණය අවසර ලබා දී ඇති පමණට වඩා විශාලයි.
+සමහරක් සැකිලි අඩංගු නොකරනු ඇත.',
+'post-expand-template-inclusion-category' => 'මෙම පිටු තුල, සැකිලි අඩංගු කිරීමේ පුමාණය, අවසර දී ඇති සීමා ඉක්මවා ගොස් ඇත',
+'post-expand-template-argument-warning'   => 'අවවාදයයි: ව්‍යාප්ති ප්‍රමාණය ඇවැසි තරමට වඩා විශාල ලෙස දක්වා ඇති සැකිලි විචල්‍යයන් අඩුම වශයෙන් එකක් හෝ  මෙම පිටුව තුල අන්තර්ගතය.
+එම විචල්‍යයන් නොසලකා හැර ඇත.',
+'post-expand-template-argument-category'  => 'මෙම පිටුවල, සැකිලි විචල්‍යයන් හරියාකාර දැක්වීම පැහැර හැරීම පිළිබඳ ගැටළු පවතී',
 
 # History pages
 'cur'          => 'වත්මන්',

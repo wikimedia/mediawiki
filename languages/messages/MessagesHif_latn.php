@@ -5,6 +5,7 @@
  * @file
  *
  * @author Girmitya
+ * @author Thakurji
  */
 
 $messages = array(
@@ -218,7 +219,7 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Chhaape ke adhikaar',
 'currentevents'        => 'Abhi ke ghatna',
 'currentevents-url'    => 'Project:Abhi ke ghatna',
-'disclaimers'          => 'Adhikaar tyaagna',
+'disclaimers'          => 'Adhikaar ke ghosna',
 'disclaimerpage'       => 'Project:Saadharan adhikaar tyaagna',
 'edithelp'             => 'Badlao pe madat',
 'edithelppage'         => 'Help:Badle me',
@@ -426,7 +427,8 @@ Cookies ke enable kar ke fir se kosis karo.',
 'noname'                     => 'Aap achchha user name ke nai specify karaa hai.',
 'loginsuccesstitle'          => 'Login safal bhais',
 'loginsuccess'               => "'''Aap \"\$1\" ke naam pe {{SITENAME}} me logged in hai.'''",
-'nosuchuser'                 => '"$1" naam ke koi sadasya nai hai. Aapan spelling check karo nai to nawaa account banao.',
+'nosuchuser'                 => '"$1" naam ke koi sadasya nai hai. 
+Aapan spelling check karo nai to [[Special:Userlogin/signup|nawaa account banao]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" naam ke koi sadasya nai hai. 
 Aapan spelling check karo.',
 'nouserspecified'            => 'Aap ke aapan username de ke parri.',
@@ -436,9 +438,9 @@ Aapan spelling check karo.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi ( hoe sake aap, IP address $1 se)
-{{SITENAME}} ($4) khatir nawaa password mangis hai.
-Sadasya "$2" ke password ab "$3" hai.
-Aap ke abhi login kar ke password badle ke chaahi.
+{{SITENAME}} ($4) ke khatir nawaa password mangis hai.
+"$2" ke banae ke "$3" se set kar dewa gais hai. Agar aap ii chij mangta rahaa,
+tab aap ke abhi login kar ke password badle ke chaahi.
 
 Agar jo aur koi ii request karis hai nai to aap aapan password yaad kar liya hai aur nai badle mangta hai, tab ii sandes ke ignore kar do aur aapan purana password use karte raho.',
 'noemail'                    => 'Sadasya "$1" ke koi e-mail address recorded nai hai.',
@@ -450,7 +452,7 @@ Abuse ke roke ke khatir, khali ek password reminer har {{PLURAL:$1|hour|$1 hours
 'mailerror'                  => 'Mail bheje me galti hoe gais hai: $1',
 'acct_creation_throttle_hit' => 'Maaf karna, aap {{PLURAL:$1|1 account|$1 accounts}} banae liya hai.
 Aap ke aur account banae ke ijajat nai hai.',
-'emailauthenticated'         => 'Aap ke e-mail address ke $1 pe authenticate karaa gais rahaa.',
+'emailauthenticated'         => 'Aap ke e-mail address ke $2 ke roj aur $3 baje authenticate karaa gais rahaa.',
 'emailnotauthenticated'      => 'Aap ke e-mail address ke abi tak authenticate nai gais hai.
 Ii sab feature khatir koi e-mail nai bheja jaai.',
 'noemailprefs'               => 'Ii sab feature ke kaam kare khatir e-mail specify karo.',
@@ -652,6 +654,9 @@ Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to  [[Special
 
 Aap soco ki ii pann ake sampadan aap ke karte rahe ke chaahi ki nai.
 Aap ke aaram khatir hatae waala suchi hian pe dewa jae hai:",
+'deleted-notice'                   => 'Ii panna ke mitae dewa gais hai.
+Ii panna ke mitae waala log aap ke dekhe khatir niche dewa gais hai.',
+'deletelog-fulllog'                => 'Puura log ke dekho.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: Ii panna me bahut jaada expensive parser function calls hai.
@@ -788,6 +793,7 @@ Note that using the navigation links will reset this column.',
 'mergehistory-invalid-destination' => 'Destination panna must be a valid title.',
 'mergehistory-autocomment'         => '[[:$1]] [[:$2]] me jorr dewa gais hai',
 'mergehistory-comment'             => '[[:$1]] [[:$2]] me jorr dewa gais hai: $3',
+'mergehistory-same-destination'    => 'Suruu aur khatam kare waala panna ek nai hoe sake hai.',
 
 # Merge log
 'mergelog'           => 'Log ke jorro',
@@ -805,15 +811,15 @@ Note that using the navigation links will reset this column.',
 'editundo'                => 'badlao ke pahile jaise kar do',
 'diff-multi'              => '({{PLURAL:$1|Ek biich waala badlao|$1 biich waala badlao}} nai dekhawa jae hai.)',
 'diff-movedto'            => 'badal ke $1 dewa gais hai',
-'diff-styleadded'         => 'style ke jorr dewa gais hai',
-'diff-added'              => 'jorr dia',
-'diff-changedto'          => 'badal ke',
+'diff-styleadded'         => '$1 style ke jorr dewa gais hai',
+'diff-added'              => '$1 jorr dewa gais hai',
+'diff-changedto'          => 'Badal ke $1 kar dewa gais hai',
 'diff-movedoutof'         => '$1 se nikal diya',
-'diff-styleremoved'       => 'style ke hatae diya',
-'diff-removed'            => 'hatae diya',
-'diff-changedfrom'        => 'se badla',
+'diff-styleremoved'       => '$1 style ke hatae dewa gais hai',
+'diff-removed'            => '$1 ke hatae dewa gais hai',
+'diff-changedfrom'        => '$1 se badla gais hai',
 'diff-src'                => 'suruu',
-'diff-withdestination'    => 'manjil ke saathe',
+'diff-withdestination'    => '$1 manjil ke saathe',
 'diff-with'               => '&#32;$1 $2 ke saathe',
 'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;aur $1 $2',
@@ -890,14 +896,48 @@ Note that using the navigation links will reset this column.',
 'searchrelated'             => 'sambhand rakkhe hai',
 'searchall'                 => 'sab',
 'showingresults'            => "Niche dekhae hai {{PLURAL:$1|'''1''' result|'''$1''' results}} #'''$2''' se suruu hoe ke.",
+'showingresultsnum'         => "Niche dekhawa jae hai {{PLURAL:$3|'''1''' result|'''$3''' results}}, #'''$2''' se suruu hoe ke.",
+'showingresultstotal'       => "Niche dekhawa jae hai  {{PLURAL:$4|result '''$1''' of '''$3'''|results '''$1 - $2''' of '''$3'''}}",
+'nonefound'                 => "'''Yaad rakhna''': apne se khaali thora namespaces me khoja jaae hai.
+Aapan query ke ''all:'' se suruu kar ke visay suchi me khojo (including talk pages, templates, etc), nai to jon namespace aap mangtaa hai usse query suruu karo.",
 'powersearch'               => 'Visesh khoj',
+'powersearch-legend'        => 'Gahira khoj',
+'powersearch-ns'            => 'Namespaces me khojo:',
+'powersearch-redir'         => 'Redirects ke list karo',
 'powersearch-field'         => 'Iske khojo',
+'search-external'           => 'Bahaari khoj',
+'searchdisabled'            => '{{SITENAME}} me abhi khoje ke anumati nai hai.
+Aap tab tak Google se khoje sakta hai.
+Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 
 # Preferences page
-'preferences'   => 'Pasand',
-'mypreferences' => 'Hamaar preferences',
-'skin-preview'  => 'Jhalak',
-'retypenew'     => 'Password fir se type karo:',
+'preferences'              => 'Pasand',
+'mypreferences'            => 'Hamaar preferences',
+'prefs-edits'              => 'Badlao ke number:',
+'prefsnologin'             => 'Aap abhi logged in nai hai',
+'prefsnologintext'         => 'Aaap ke <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} logged in]</span> chaahi rahe ke user preferences ke badle ke khatir.',
+'prefsreset'               => 'Preferences ke godaam se reset kar dewa gais hai.',
+'qbsettings'               => 'Quickbar',
+'qbsettings-none'          => 'Koi nai',
+'qbsettings-fixedleft'     => 'Left me fixed hai',
+'qbsettings-fixedright'    => 'Right me fixed hai',
+'qbsettings-floatingleft'  => 'Floating left',
+'qbsettings-floatingright' => 'Floating right',
+'changepassword'           => 'Pasword ke badlo',
+'skin'                     => 'Skin',
+'skin-preview'             => 'Jhalak',
+'dateformat'               => 'Date ke format',
+'datetime'                 => 'Tarik aur time',
+'math_failure'             => 'Parse nai kare sakaa',
+'prefs-rc'                 => 'Nawaa badlao',
+'prefs-watchlist'          => 'Dhyan suchi',
+'oldpassword'              => 'Purana password:',
+'newpassword'              => 'Nawaa password:',
+'retypenew'                => 'Password fir se type karo:',
+'searchresultshead'        => 'Khojo',
+'resultsperpage'           => 'Panna ke ketna dafe dekha gais hai:',
+'timezonelegend'           => 'Time ke zone',
+'servertime'               => 'Server ke time',
 
 'grouppage-sysop' => '{{ns:project}}:Administrators',
 

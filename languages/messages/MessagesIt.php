@@ -554,7 +554,7 @@ Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa d
 'mailmypassword'             => 'Invia una nuova password al mio indirizzo e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).
-La password per l\'utente "$2" è stata impostata a "$3".
+Una password temporanea per l\'utente "$2" è stata impostata a "$3".
 È opportuno eseguire un accesso quanto prima e cambiare la password immediatamente.
 
 Se non sei stato tu a fare la richiesta, oppure hai ritrovato la password e non desideri più cambiarla, puoi ignorare questo messaggio e continuare a usare la vecchia password.',
@@ -746,6 +746,7 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
 'deleted-notice'                   => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
+'deletelog-fulllog'                => 'Visualizza registro completo',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
@@ -878,6 +879,7 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'mergehistory-invalid-destination' => 'La pagina di destinazione deve avere un titolo corretto.',
 'mergehistory-autocomment'         => 'Unione di [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Unione di [[:$1]] in [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Le pagine di origine e di destinazione non possono essere la stessa',
 
 # Merge log
 'mergelog'           => 'Unioni',
@@ -1407,22 +1409,24 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'randomredirect-nopages' => 'Nessun redirect nel namespace selezionato.',
 
 # Statistics
-'statistics'               => 'Statistiche',
-'statistics-header-pages'  => 'Statistiche relative alle pagine',
-'statistics-header-edits'  => 'Statistiche relative alle modifiche',
-'statistics-header-views'  => 'Statistiche relative alle visualizzazioni',
-'statistics-header-users'  => 'Statistiche relative agli utenti',
-'statistics-articles'      => 'Pagine di contenuti',
-'statistics-pages'         => 'Pagine',
-'statistics-files'         => 'File caricati',
-'statistics-edits'         => "Modifiche a partire dall'installazione di {{SITENAME}}",
-'statistics-edits-average' => 'Media delle modifiche per pagina',
-'statistics-views-total'   => 'Visualizzazioni totali',
-'statistics-views-peredit' => 'Visualizzazioni per modifica',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Coda dei processi] da eseguire in background',
-'statistics-users'         => '[[Special:ListUsers|Utenti]] registrati',
-'statistics-users-active'  => 'Utenti attivi',
-'statistics-mostpopular'   => 'Pagine più visitate',
+'statistics'                      => 'Statistiche',
+'statistics-header-pages'         => 'Statistiche relative alle pagine',
+'statistics-header-edits'         => 'Statistiche relative alle modifiche',
+'statistics-header-views'         => 'Statistiche relative alle visualizzazioni',
+'statistics-header-users'         => 'Statistiche relative agli utenti',
+'statistics-articles'             => 'Pagine di contenuti',
+'statistics-pages'                => 'Pagine',
+'statistics-pages-tooltip'        => 'Tutte le pagina della wiki, comprese le pagina di discussione, i redirect, ecc.',
+'statistics-files'                => 'File caricati',
+'statistics-edits'                => "Modifiche a partire dall'installazione di {{SITENAME}}",
+'statistics-edits-average'        => 'Media delle modifiche per pagina',
+'statistics-views-total'          => 'Visualizzazioni totali',
+'statistics-views-peredit'        => 'Visualizzazioni per modifica',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Coda dei processi] da eseguire in background',
+'statistics-users'                => '[[Special:ListUsers|Utenti]] registrati',
+'statistics-users-active'         => 'Utenti attivi',
+'statistics-users-active-tooltip' => "Utenti che hanno effettuato un'azione nel mese scorso",
+'statistics-mostpopular'          => 'Pagine più visitate',
 
 'disambiguations'      => 'Pagine di disambiguazione',
 'disambiguationspage'  => 'Template:Disambigua',
@@ -1768,6 +1772,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 ** Edit war
 ** Pagina molto usata
 ** Pagina archiviata',
+'protect-edit-reasonlist'     => 'Modifica i motivi per la protezione',
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
 'minimum-size'                => 'Dimensione minima',
@@ -1958,6 +1963,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'proxyblocksuccess'               => 'Blocco eseguito.',
 'sorbsreason'                     => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL.',
 'sorbs_create_account_reason'     => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL.',
+'cant-block-while-blocked'        => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',

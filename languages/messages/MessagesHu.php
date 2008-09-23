@@ -444,7 +444,7 @@ $messages = array(
 'deletethispage'    => 'Lap törlése',
 'undelete_short'    => '{{PLURAL:$1|Egy|$1}} szerkesztés helyreállítása',
 'protect'           => 'Lapvédelem',
-'protect_change'    => 'módosít',
+'protect_change'    => 'módosítás',
 'protectthispage'   => 'Lap védelme',
 'unprotect'         => 'Védelem ki',
 'unprotectthispage' => 'Lapvédelem megszüntetése',
@@ -710,7 +710,7 @@ Lépj be a levélben található adatokkal.',
 'throttled-mailpassword'     => 'Már elküldtünk egy jelszóemlékeztetőt az utóbbi {{PLURAL:$1|egy|$1}} órában.
 A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy jelszó-emlékeztetőt küldünk.',
 'mailerror'                  => 'Hiba történt az e-mail küldése közben: $1',
-'acct_creation_throttle_hit' => 'Már létrehoztál $1 felhasználói fiókot.
+'acct_creation_throttle_hit' => 'Már létrehoztál {{PLURAL:$1|egy|$1}} felhasználói fiókot.
 Sajnáljuk, de többet nem hozhatsz létre.',
 'emailauthenticated'         => '$2, $3-kor megerősítetted az e-mail címedet.',
 'emailnotauthenticated'      => 'Az e-mail címed még <strong>nincs megerősítve</strong>. E-mailek küldése és fogadása nem engedélyezett.',
@@ -902,7 +902,7 @@ Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogi
 
 Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellenőrizd,
 hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
-'deleted-notice'                   => 'Az oldalt törölték.
+'deleted-notice'                   => 'Az oldal korábban törölve lett.
 A lap törlési naplója alább olvasható.',
 
 # Parser/template warnings
@@ -1146,7 +1146,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'mypreferences'            => 'beállításaim',
 'prefs-edits'              => 'Szerkesztéseid száma:',
 'prefsnologin'             => 'Nem jelentkeztél be',
-'prefsnologintext'         => 'Ahhoz, hogy a beállításaidat rögzíthesd, <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} be kell jelentkezned.] </span>',
+'prefsnologintext'         => 'Saját beállításaid elmentéséhez <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} be kell jelentkezned.] </span>',
 'prefsreset'               => 'A beállítások visszaállításra kerültek a tárolóból.',
 'qbsettings'               => 'Gyorsmenü',
 'qbsettings-none'          => 'Nincs',
@@ -1570,11 +1570,11 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'statistics-header-users'  => 'Szerkesztői statisztikák',
 'statistics-pages'         => 'Lapok száma',
 'statistics-files'         => 'Feltöltött fájlok',
-'statistics-edits'         => 'Szerkesztések száma a(z) {{SITENAME}} létrehozása óta',
+'statistics-edits'         => 'Szerkesztések száma a(z) {{SITENAME}} indulása óta',
 'statistics-edits-average' => 'Szerkesztések átlagos száma laponként',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Végrehajtásra váró feladatok] száma',
-'statistics-users'         => 'Regisztrált [[Speciális:Szerkesztők listája|felhasználók]]',
-'statistics-users-active'  => 'Aktív felhasználók',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver számára végrehajtandó feladatok] száma',
+'statistics-users'         => 'Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]',
+'statistics-users-active'  => 'Aktív szerkesztők',
 'statistics-mostpopular'   => 'Legtöbbször megtekintett lapok',
 
 'disambiguations'      => 'Egyértelműsítő lapok',

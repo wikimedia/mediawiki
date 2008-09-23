@@ -1654,7 +1654,16 @@ $NEWPAGE
 'protect-expiry-indefinite'   => 'គ្មានកំនត់',
 'protect-cascade'             => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
 'protect-cantedit'            => 'あなたにはこのページの編集権限がないため保護レベルを変更できません。',
-'protect-othertime'           => 'ពេលផុតកំនត់ផ្សេងទៀត៖',
+'protect-othertime'           => '期間（その他のとき）:',
+'protect-othertime-op'        => '期間（その他のとき）',
+'protect-existing-expiry'     => '保護継続の期限: $1',
+'protect-otherreason'         => '理由（その他/追加）:',
+'protect-otherreason-op'      => 'その他/理由の追加',
+'protect-dropdown'            => '*よくある保護理由
+** 度重なる荒らし
+** 度重なるスパム投稿
+** 編集合戦
+** 高負荷ページ',
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',

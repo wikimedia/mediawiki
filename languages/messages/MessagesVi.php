@@ -538,9 +538,9 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:Userlogin/signup|mở tài k
 Nó phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}} và phải khác với tên người dùng của bạn.',
 'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
-'passwordremindertext'       => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi một mật khẩu mới của {{SITENAME}} ($4). Mật khẩu mới của "$2" giờ là "$3". Bạn nên đăng nhập và thay đổi mật khẩu ngay bây giờ.
+'passwordremindertext'       => 'Người nào đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi cho bạn mật khẩu mới của {{SITENAME}} ($4). Mật khẩu tạm cho thành viên “$2” đã được khởi tạo là “$3”. Nếu đây đúng là thứ bạn muốn, bạn sẽ cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ.
 
-Nếu một người nào khác yêu cầu điều này hoặc nếu bạn đã nhớ ra mật khẩu và không còn muốn đổi nó nữa, bạn có thể bỏ qua tin nhắn này và tiếp tục sử dụng mật khẩu cũ của bạn.',
+Nếu một người nào khác yêu cầu điều này, hoặc nếu bạn đã nhớ ra mật khẩu, và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
 'noemail'                    => 'Thành viên “$1” không đăng ký thư điện tử.',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword'       => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh lạm dụng.',
@@ -736,6 +736,7 @@ Bạn nên cân nhắc trong việc tiếp tục soạn thảo trang này.
 Nhật trình xóa của trang được đưa ra dưới đây để tiện theo dõi:",
 'deleted-notice'                   => 'Trang này đã bị xóa.
 Nhật trình xóa trang được ghi dưới đây để tiện theo dõi.',
+'deletelog-fulllog'                => 'Xem nhật trình đầy đủ',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
@@ -871,6 +872,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mergehistory-invalid-destination' => 'Trang đích phải có tiêu đề hợp lệ.',
 'mergehistory-autocomment'         => 'Đã trộn [[:$1]] vào [[:$2]]',
 'mergehistory-comment'             => 'Đã trộn [[:$1]] vào [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Trang nguồn và trang đích không được trùng tên',
 
 # Merge log
 'mergelog'           => 'Nhật trình trộn',
@@ -1409,22 +1411,24 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'randomredirect-nopages' => 'Không có trang đổi hướng nào trong không gian này.',
 
 # Statistics
-'statistics'               => 'Thống kê',
-'statistics-header-pages'  => 'Thống kê trang',
-'statistics-header-edits'  => 'Thống kê sửa đổi',
-'statistics-header-views'  => 'Xem thống kê',
-'statistics-header-users'  => 'Thống kê thành viên',
-'statistics-articles'      => 'Trang có nội dung',
-'statistics-pages'         => 'Trang',
-'statistics-files'         => 'Tập tin đã tải lên',
-'statistics-edits'         => 'Số sửa đổi trang từ khi {{SITENAME}} được thành lập',
-'statistics-edits-average' => 'Số sửa đổi trung bình trên một trang',
-'statistics-views-total'   => 'Số lần xem tổng cộng',
-'statistics-views-peredit' => 'Số lần xem trên một sửa đổi',
-'statistics-jobqueue'      => 'Chiều dài [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc]',
-'statistics-users'         => 'Số [[Special:ListUsers|thành viên]] đã đăng ký',
-'statistics-users-active'  => 'Số thành viên tích cực',
-'statistics-mostpopular'   => 'Các trang được xem nhiều nhất',
+'statistics'                      => 'Thống kê',
+'statistics-header-pages'         => 'Thống kê trang',
+'statistics-header-edits'         => 'Thống kê sửa đổi',
+'statistics-header-views'         => 'Xem thống kê',
+'statistics-header-users'         => 'Thống kê thành viên',
+'statistics-articles'             => 'Trang có nội dung',
+'statistics-pages'                => 'Số trang',
+'statistics-pages-tooltip'        => 'Tất cả các trang tại wiki, bao gồm trang thảo luận, trang đổi hướng, v.v.',
+'statistics-files'                => 'Tập tin đã tải lên',
+'statistics-edits'                => 'Số sửa đổi trang từ khi {{SITENAME}} được thành lập',
+'statistics-edits-average'        => 'Số sửa đổi trung bình trên một trang',
+'statistics-views-total'          => 'Số lần xem tổng cộng',
+'statistics-views-peredit'        => 'Số lần xem trên một sửa đổi',
+'statistics-jobqueue'             => 'Chiều dài [http://www.mediawiki.org/wiki/Manual:Job_queue hàng đợi việc]',
+'statistics-users'                => 'Số [[Special:ListUsers|thành viên]] đã đăng ký',
+'statistics-users-active'         => 'Số thành viên tích cực',
+'statistics-users-active-tooltip' => 'Những thành viên đã hoạt động trong tháng qua',
+'statistics-mostpopular'          => 'Các trang được xem nhiều nhất',
 
 'disambiguations'      => 'Trang định hướng',
 'disambiguationspage'  => 'Template:disambig',
@@ -1775,6 +1779,7 @@ hiện tại của trang <strong>$1</strong>:',
 ** Bị spam quá mức
 ** Bút chiến thiếu tính xây dựng
 ** Trang nhiều người xem',
+'protect-edit-reasonlist'     => 'Sửa lý do khóa trang',
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
 'minimum-size'                => 'Kích thước tối thiểu',
@@ -1971,6 +1976,7 @@ $1',
 'proxyblocksuccess'               => 'Xong.',
 'sorbsreason'                     => 'Địa chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng.',
 'sorbs_create_account_reason'     => 'Địa chỉ chỉ IP của bạn bị liệt kê là một proxy mở trong DNSBL mà {{SITENAME}} đang sử dụng. Bạn không thể mở tài khoản.',
+'cant-block-while-blocked'        => 'Bạn không thể cấm thành viên khác trong khi bạn đang bị cấm.',
 
 # Developer tools
 'lockdb'              => 'Khóa cơ sở dữ liệu',

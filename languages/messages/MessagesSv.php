@@ -682,12 +682,11 @@ Kontrollera stavningen, eller [[Special:Userlogin/signup|skapa ett nytt konto]].
 Det måste innehålla minst {{PLURAL:$1|$1 tecken}} och det får inte vara ditt användarnamn.',
 'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1)
-har bett oss sända dig ett nytt lösenord till {{SITENAME}} ($4). 
-Lösenordet för användaren "$2" är nu "$3".
-Du bör nu logga in och byta ditt lösenord.
+'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord.
 
-Om denna begäran gjordes av någon annan eller om du har kommit på ditt lösenord och inte längre önskar ändra det, så kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
+Om denna begäran gjordes av någon annan, eller om du har kommit på ditt lösenord,
+och inte längre önskar ändra det, så kan du ignorera detta meddelande och 
+fortsätta använda ditt gamla lösenord.',
 'noemail'                    => 'Användaren "$1" har inte registrerat någon e-postadress.',
 'passwordsent'               => 'Ett nytt lösenord har skickats till den e-postadress som användaren "$1" har registrerat. När du får meddelandet, var god logga in igen.',
 'blocked-mailpassword'       => 'Din IP-adress är blockerad, därför kan den inte användas för att få ett nytt lösenord.',
@@ -892,6 +891,7 @@ Du kan redigera existerande sidor, eller [[Special:UserLogin|logga in eller skap
 Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
 'deleted-notice'                   => 'Denna sida har blivit raderad. Som referens visas nedan raderingsloggen för sidan.',
+'deletelog-fulllog'                => 'Visa fullständig logg',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -1024,6 +1024,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'mergehistory-invalid-destination' => 'Målsidan måste vara en giltig sidtitel.',
 'mergehistory-autocomment'         => 'Infogade [[:$1]] i [[:$2]]',
 'mergehistory-comment'             => 'Infogade [[:$1]] i [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Käll- och målsidor kan inte vara samma',
 
 # Merge log
 'mergelog'           => 'Sammanfogningslogg',
@@ -1930,6 +1931,7 @@ Du kan ändra skyddet av den här sidan, men det påverkar inte det kaskaderande
 ** Upprepad spam
 ** Redigeringskrig
 ** Sida med många besökare',
+'protect-edit-reasonlist'     => 'Redigera skyddsanledningar',
 'restriction-type'            => 'Typ av skydd:',
 'restriction-level'           => 'Skyddsnivå:',
 'minimum-size'                => 'Minsta storlek',

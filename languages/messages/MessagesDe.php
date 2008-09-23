@@ -822,6 +822,7 @@ Grund für die Sperre: $1',
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'deleted-notice'                   => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
+'deletelog-fulllog'                => 'Vollständiges Lösch-Logbuch',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
@@ -948,6 +949,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'mergehistory-invalid-destination' => 'Zielseite muss ein gültiger Seitenname sein.',
 'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
+'mergehistory-same-destination'    => 'Ausgangs- und Zieldateiname dürfen nicht identisch sein',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -1494,22 +1496,24 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'randomredirect-nopages' => 'In diesem Namensraum sind keine Weiterleitungen vorhanden.',
 
 # Statistics
-'statistics'               => 'Statistik',
-'statistics-header-pages'  => 'Seitenstatistik',
-'statistics-header-edits'  => 'Bearbeitungsstatistik',
-'statistics-header-views'  => 'Seitenaufrufstatistik',
-'statistics-header-users'  => 'Benutzerstatistik',
-'statistics-articles'      => 'Inhaltsseiten',
-'statistics-pages'         => 'Seiten',
-'statistics-files'         => 'Hochgeladene Dateien',
-'statistics-edits'         => 'Seitenbearbeitungen',
-'statistics-edits-average' => 'Bearbeitungen pro Seite im Durchschnitt',
-'statistics-views-total'   => 'Seitenaufrufe gesamt',
-'statistics-views-peredit' => 'Seitenaufrufe pro Bearbeitung',
-'statistics-jobqueue'      => 'Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
-'statistics-users'         => 'Registrierte [[Special:ListUsers|Benutzer]]',
-'statistics-users-active'  => 'Aktive Benutzer',
-'statistics-mostpopular'   => 'Meist besuchte Seiten',
+'statistics'                      => 'Statistik',
+'statistics-header-pages'         => 'Seitenstatistik',
+'statistics-header-edits'         => 'Bearbeitungsstatistik',
+'statistics-header-views'         => 'Seitenaufrufstatistik',
+'statistics-header-users'         => 'Benutzerstatistik',
+'statistics-articles'             => 'Inhaltsseiten',
+'statistics-pages'                => 'Seiten',
+'statistics-pages-tooltip'        => 'Alle Seiten in diesem Wiki, inklusive Diskussionsseiten, Weiterleitungen usw.',
+'statistics-files'                => 'Hochgeladene Dateien',
+'statistics-edits'                => 'Seitenbearbeitungen',
+'statistics-edits-average'        => 'Bearbeitungen pro Seite im Durchschnitt',
+'statistics-views-total'          => 'Seitenaufrufe gesamt',
+'statistics-views-peredit'        => 'Seitenaufrufe pro Bearbeitung',
+'statistics-jobqueue'             => 'Länge der [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'                => 'Registrierte [[Special:ListUsers|Benutzer]]',
+'statistics-users-active'         => 'Aktive Benutzer',
+'statistics-users-active-tooltip' => 'Benutzer mit Bearbeitungen in den vergangenen 30 Tagen',
+'statistics-mostpopular'          => 'Meist besuchte Seiten',
 
 'disambiguations'      => 'Begriffsklärungsseiten',
 'disambiguationspage'  => 'Template:Begriffsklärung',
@@ -1854,6 +1858,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 ** Editwar
 ** Oft eingebundene Vorlage
 ** Seite mit höher Besucherzahl',
+'protect-edit-reasonlist'     => 'Schutzgründe bearbeiten',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
 'minimum-size'                => 'Mindestgröße',
@@ -2050,6 +2055,7 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'proxyblocksuccess'               => 'Fertig.',
 'sorbsreason'                     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
 'sorbs_create_account_reason'     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
+'cant-block-while-blocked'        => 'Du darfst keine andere Benutzer sperren, während du selber gesperrt bist.',
 
 # Developer tools
 'lockdb'              => 'Datenbank sperren',

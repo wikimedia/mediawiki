@@ -749,6 +749,7 @@ $2',
 شما بایدن توجه کنیت که ادامه اصلاح ای صفحه درستنت.
 آمار حذف ای صفحه په شمی حاطرء ادان هستن:",
 'deleted-notice'                   => 'ای صفحه حذف بوتت. په مراجعه جهل گور آمار حذف پی ای صفحه اتکگت.',
+'deletelog-fulllog'                => 'چارگ آمار کامل',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'هوژاری: ای صفحه شامل بازگین توار عملگر تجریه کنوک سنگیننت.
@@ -884,6 +885,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'mergehistory-invalid-destination' => 'صفحه مقصد باید یک معتبرین عنوانی بیت.',
 'mergehistory-autocomment'         => 'چن و بند بوت  [[:$1]] په [[:$2]]',
 'mergehistory-comment'             => 'چن و بند بوت [[:$1]] په[[:$2]]: $3',
+'mergehistory-same-destination'    => 'صفحه مبدا و مقصد یکی نه بنت',
 
 # Merge log
 'mergelog'           => 'آمار چن وبند',
@@ -1441,22 +1443,24 @@ PICT # misc.
 'randomredirect-nopages' => 'هچ غیر مستقیمی ته ای نام فضا نیست.',
 
 # Statistics
-'statistics'               => 'آمار',
-'statistics-header-pages'  => 'صفحه ی آمار',
-'statistics-header-edits'  => 'اصلاح آمار',
-'statistics-header-views'  => 'چارگ آمار',
-'statistics-header-users'  => 'آمار کاربر',
-'statistics-articles'      => 'صفحات محتوا',
-'statistics-pages'         => 'صفحات',
-'statistics-files'         => 'آپلود بیتگین فایلان',
-'statistics-edits'         => 'اصلاح صفحات چه وهدی که {{SITENAME}} شر بوتت',
-'statistics-edits-average' => 'میانگین اصلاحات ته هر صفحه ای',
-'statistics-views-total'   => 'چارگان کل',
-'statistics-views-peredit' => 'چارگ ته هر اصلاح',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue طول کار] ای',
-'statistics-users'         => 'ثبت نامی [[Special:ListUsers|users]]',
-'statistics-users-active'  => 'فعالین کاربر',
-'statistics-mostpopular'   => 'باز چار تگین صفحات',
+'statistics'                      => 'آمار',
+'statistics-header-pages'         => 'صفحه ی آمار',
+'statistics-header-edits'         => 'اصلاح آمار',
+'statistics-header-views'         => 'چارگ آمار',
+'statistics-header-users'         => 'آمار کاربر',
+'statistics-articles'             => 'صفحات محتوا',
+'statistics-pages'                => 'صفحات',
+'statistics-pages-tooltip'        => 'کل صفحات ته ویکی په داب صفحات بحث ،غیر مستقیمان و دگه چیز.',
+'statistics-files'                => 'آپلود بیتگین فایلان',
+'statistics-edits'                => 'اصلاح صفحات چه وهدی که {{SITENAME}} شر بوتت',
+'statistics-edits-average'        => 'میانگین اصلاحات ته هر صفحه ای',
+'statistics-views-total'          => 'چارگان کل',
+'statistics-views-peredit'        => 'چارگ ته هر اصلاح',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue طول کار] ای',
+'statistics-users'                => 'ثبت نامی [[Special:ListUsers|users]]',
+'statistics-users-active'         => 'فعالین کاربر',
+'statistics-users-active-tooltip' => 'کاربرانی که ته پیشگین ماه کاری اش کتت',
+'statistics-mostpopular'          => 'باز چار تگین صفحات',
 
 'disambiguations'      => 'صفحات رفع ابهام',
 'disambiguationspage'  => 'Template:رفع ابهام',
@@ -1815,6 +1819,7 @@ $NEWPAGE
 ** بازگین اسپم
 ** اخطار هرابین اصلاح
 ** مزنین ترافیکی صفحه',
+'protect-edit-reasonlist'     => 'اصلاح دلایل حفاظت',
 'restriction-type'            => 'اجازت',
 'restriction-level'           => 'سطح محدود',
 'minimum-size'                => 'هوردی اندازه',
@@ -2016,6 +2021,7 @@ $1',
 'sorbsreason'                     => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  DNSBL که استفاده بیت گون {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'شمی آدرس آی پی لیست بوتت په داب پچین پروکسی ته  دی ان ای بی ال که استفاده بیت گون {{SITENAME}}.
 شما نه تونیت حسابی شرکنیت',
+'cant-block-while-blocked'        => 'شما نه تونیت دگه کاربرانء بند کنیت وهدی که شما وت بند هستیت',
 
 # Developer tools
 'lockdb'              => 'دیتابیس کبل کن',

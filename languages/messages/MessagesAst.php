@@ -463,10 +463,10 @@ Comprueba la ortografía, o [[Special:Userlogin/signup|crea una cuenta d\'usuari
 Ha tener a lo menos {{PLURAL:$1|1 caráuter|$1 carauteres}} y ser distinta del to nome d'usuariu.",
 'mailmypassword'             => 'Unviar la clave nueva',
 'passwordremindertitle'      => 'Nueva clave provisional pa {{SITENAME}}',
-'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1)
-solicitó que se t\'unviara una clave nueva pa {{SITENAME}} ($4).
-La clave pal usuariu "$2" ye agora "$3".
-Habríes identificate y camudar la to clave agora.
+'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1) solicitó una nueva
+clave pa {{SITENAME}} ($4). Creóse una clave temporal pal usuariu
+"$2" que ye "$3". Si fuisti tu, necesite identificate y escoyer una
+clave nueva agora.
 
 Si daquién más fexo esta solicitú o si recuerdes la to clave y
 nun quies volver a camudala, pues inorar esti mensaxe y siguir
@@ -671,6 +671,7 @@ Habríes considerar si ye afechisco siguir editando esta páxina.
 Equí tienes el rexistru de borraos d'esta páxina:",
 'deleted-notice'                   => "Esta páxina foi eliminada.
 Como referencia, embaxo amuésase'l rexistru de borráu de la páxina.",
+'deletelog-fulllog'                => 'Ver el rexistru completu',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Avisu: Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
@@ -808,6 +809,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mergehistory-invalid-destination' => 'La páxina de destín ha tener un títulu válidu.',
 'mergehistory-autocomment'         => '[[:$1]] fusionada con [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionada con [[:$2]]: $3',
+'mergehistory-same-destination'    => "Les páxines d'orixe y destín nun puen ser la mesma",
 
 # Merge log
 'mergelog'           => 'Rexistru de fusiones',
@@ -1331,22 +1333,24 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'randomredirect-nopages' => 'Nun hai redireiciones nesti espaciu de nomes.',
 
 # Statistics
-'statistics'               => 'Estadístiques',
-'statistics-header-pages'  => 'Estadístiques de páxines',
-'statistics-header-edits'  => "Estadístiques d'ediciones",
-'statistics-header-views'  => 'Estadístiques de visites',
-'statistics-header-users'  => "Estadístiques d'usuariu",
-'statistics-articles'      => 'Páxines de conteníu',
-'statistics-pages'         => 'Páxines',
-'statistics-files'         => 'Archivos xubíos',
-'statistics-edits'         => "Ediciones de páxines dende qu'entamó {{SITENAME}}",
-'statistics-edits-average' => "Media d'ediciones per páxina",
-'statistics-views-total'   => 'Visites totales',
-'statistics-views-peredit' => 'Visites por edición',
-'statistics-jobqueue'      => 'Llonxitú de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres]',
-'statistics-users'         => '[[Special:ListUsers|Usuarios]] rexistraos',
-'statistics-users-active'  => 'Usuarios activos',
-'statistics-mostpopular'   => 'Páxines más vistes',
+'statistics'                      => 'Estadístiques',
+'statistics-header-pages'         => 'Estadístiques de páxines',
+'statistics-header-edits'         => "Estadístiques d'ediciones",
+'statistics-header-views'         => 'Estadístiques de visites',
+'statistics-header-users'         => "Estadístiques d'usuariu",
+'statistics-articles'             => 'Páxines de conteníu',
+'statistics-pages'                => 'Páxines',
+'statistics-pages-tooltip'        => "Toles páxines de la wiki, incluyendo páxines d'alderique, redireiciones, etc.",
+'statistics-files'                => 'Archivos xubíos',
+'statistics-edits'                => "Ediciones de páxines dende qu'entamó {{SITENAME}}",
+'statistics-edits-average'        => "Media d'ediciones per páxina",
+'statistics-views-total'          => 'Visites totales',
+'statistics-views-peredit'        => 'Visites por edición',
+'statistics-jobqueue'             => 'Llonxitú de la [http://www.mediawiki.org/wiki/Manual:Job_queue cola de xeres]',
+'statistics-users'                => '[[Special:ListUsers|Usuarios]] rexistraos',
+'statistics-users-active'         => 'Usuarios activos',
+'statistics-users-active-tooltip' => 'Usuarios que realizaron una aición nel caberu mes',
+'statistics-mostpopular'          => 'Páxines más vistes',
 
 'disambiguations'      => 'Páxines de dixebra',
 'disambiguationspage'  => 'Template:dixebra',
@@ -1700,6 +1704,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 ** Spamming escesivu
 ** Guerra d'ediciones contraproducente
 ** Páxina de tráficu altu",
+'protect-edit-reasonlist'     => 'Editar los motivos de proteición',
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',
@@ -1894,6 +1899,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:IPBlockList|llista d'I
 'proxyblocksuccess'               => 'Fecho.',
 'sorbsreason'                     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}. Nun pues crear una cuenta',
+'cant-block-while-blocked'        => 'Nun pues bloquiar a otros usuarios mentes tu teas bloquiáu.',
 
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
