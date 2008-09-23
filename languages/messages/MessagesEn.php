@@ -438,6 +438,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
 	'Blankpage'                 => array( 'BlankPage' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
+	'DeletedContributions'      => array( 'DeletedContributions' ),
 );
 
 /**
@@ -2106,6 +2107,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Display categories starting at:',
 'special-categories-sort-count' => 'sort by count',
 'special-categories-sort-abc'   => 'sort alphabetically',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Deleted user contributions',
 
 # Special:LinkSearch
 'linksearch'       => 'Search web links',

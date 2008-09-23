@@ -1379,6 +1379,9 @@ $wgMessageStructure = array(
 		'special-categories-sort-count',
 		'special-categories-sort-abc',
 	),
+	'deletedcontribs' => array(
+		'deletedcontributions',
+	),
 	'linksearch' => array(
 		'linksearch',
 		'linksearch-pat',
@@ -2824,6 +2827,7 @@ XHTML id names.",
 	'logpages'            => 'Special:Log',
 	'allpages'            => 'Special:AllPages',
 	'categories'          => 'Special:Categories',
+	'deletedcontribs'     => 'Special:DeletedContributions',
 	'linksearch'          => 'Special:LinkSearch',
 	'listusers'           => 'Special:ListUsers',
 	'newuserlog'          => 'Special:Log/newusers',
