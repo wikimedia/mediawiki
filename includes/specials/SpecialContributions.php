@@ -335,7 +335,12 @@ function contributionsSub( $nt, $id ) {
 				wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
 		}
 		# Other logs link
-		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl() );
+		$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsgHtml( 'log' ), 'user=' . $nt->getPartialUrl()	);
+
+		# Add link to deleted user contributions for priviledged users
+		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
+			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions' ), wfMsgHtml( 'deletedcontributions' ) );
+		}
 
 		wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 

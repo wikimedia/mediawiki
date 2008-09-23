@@ -2812,6 +2812,7 @@ $wgSpecialPageGroups = array(
 	'Blockip'                   => 'users',
 	'Preferences'               => 'users',
 	'Resetpass'                 => 'users',
+	'DeletedContributions'      => 'users',
 
 	'Mostlinked'                => 'highuse',
 	'Mostlinkedcategories'      => 'highuse',
