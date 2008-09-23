@@ -339,7 +339,7 @@ function contributionsSub( $nt, $id ) {
 
 		# Add link to deleted user contributions for priviledged users
 		if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions' ), wfMsgHtml( 'deletedcontributions' ) );
+			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions', $nt->getDBkey() ), wfMsgHtml( 'deletedcontributions' ) );
 		}
 
 		wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );

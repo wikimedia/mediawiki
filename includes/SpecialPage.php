@@ -96,7 +96,7 @@ class SpecialPage
 		'Newimages'                 => array( 'IncludableSpecialPage', 'Newimages' ),
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
 		'Listgrouprights'           => 'SpecialListGroupRights',
-		'Deletedcontributions'      => 'DeletedContributionsPage',
+		'DeletedContributions'      => 'DeletedContributionsPage',
 		'Statistics'                => array( 'SpecialPage', 'Statistics' ),
 		'Randompage'                => 'Randompage',
 		'Lonelypages'               => array( 'SpecialPage', 'Lonelypages' ),
