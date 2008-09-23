@@ -1708,6 +1708,9 @@ $2',
 'special-categories-sort-count' => 'مرتب کردن بر اساس تعداد',
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'مشارکت‌های حذف شده',
+
 # Special:LinkSearch
 'linksearch'       => 'جستجوی پیوندهای وب',
 'linksearch-pat'   => 'جستجوی الگو:',

@@ -1452,6 +1452,9 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'special-categories-sort-count' => 'ordonează după număr',
 'special-categories-sort-abc'   => 'sortează alfabetic',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribuţii şterse',
+
 # Special:LinkSearch
 'linksearch-ns' => 'Spaţiu de nume:',
 'linksearch-ok' => 'Caută',

@@ -282,6 +282,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'ביטול_דואר' ),
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
+	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
 );
 
 $namespaceNames = array(
@@ -1748,6 +1749,9 @@ PICT # שונות
 'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
 'special-categories-sort-count' => 'סידור לפי מספר חברים',
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'תרומות משתמש מחוקות',
 
 # Special:LinkSearch
 'linksearch'       => 'חיפוש קישורים חיצוניים',

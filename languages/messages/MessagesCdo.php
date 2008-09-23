@@ -560,6 +560,9 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Special:Categories
 'categories' => 'Lôi-biék',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Ké̤ṳk chēng lâi gì ê̤ṳng-hô góng-hióng',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Sìng-tō̤',
 

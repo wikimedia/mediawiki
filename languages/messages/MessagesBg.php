@@ -1582,6 +1582,9 @@ $2',
 'special-categories-sort-count' => 'сортиране по брой',
 'special-categories-sort-abc'   => 'сортиране по азбучен ред',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Изтрити приноси на потребител',
+
 # Special:LinkSearch
 'linksearch'       => 'Търсене на външни препратки',
 'linksearch-pat'   => 'Търсене по:',

@@ -176,6 +176,7 @@ $specialPageAliases = array(
 	'Invalidateemail'         => array( 'Hylkää sähköpostiosoite' ),
 	'Blankpage'               => array( 'Tyhjä sivu' ),
 	'LinkSearch'              => array( 'Linkkihaku' ),
+	'DeletedContributions'    => array( 'Poistetut muokkaukset' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
@@ -1515,6 +1516,9 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'categoriesfrom'                => 'Näytä alkaen luokasta',
 'special-categories-sort-count' => 'järjestä koon mukaan',
 'special-categories-sort-abc'   => 'järjestä nimen mukaan',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Poistetut muokkaukset',
 
 # Special:LinkSearch
 'linksearch'       => 'Etsi ulkoisia linkkejä',

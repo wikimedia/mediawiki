@@ -160,6 +160,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Filsti' ),
 	'Invalidateemail'           => array( 'Ugyldiggjøre_e-post' ),
 	'LinkSearch'                => array( 'Lenkesøk' ),
+	'DeletedContributions'      => array( 'Slettede bidrag' ),
 );
 
 $messages = array(
@@ -1570,6 +1571,9 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'categoriesfrom'                => 'Vis kategorier fra og med:',
 'special-categories-sort-count' => 'soter etter antall',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Slettede brukerbidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Søk i eksterne lenker',

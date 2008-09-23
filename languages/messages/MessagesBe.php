@@ -1443,6 +1443,9 @@ $2',
 'special-categories-sort-count' => 'пд. колькасці',
 'special-categories-sort-abc'   => 'пд. алфавіту',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Выдалены ўклад удзельніка',
+
 # Special:ListUsers
 'listusersfrom'      => 'Паказаць удзельнікаў, пачаўшы з:',
 'listusers-submit'   => 'Паказаць',

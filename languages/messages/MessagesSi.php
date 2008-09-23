@@ -436,7 +436,17 @@ $messages = array(
 එම විචල්‍යයන් නොසලකා හැර ඇත.',
 'post-expand-template-argument-category'  => 'මෙම පිටුවල, සැකිලි විචල්‍යයන් හරියාකාර දැක්වීම පැහැර හැරීම පිළිබඳ ගැටළු පවතී',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'ගිණුම තැනිය නොහැක',
+'cantcreateaccount-text' => "මෙම අන්තර්ජාල ලිපිනය ('''$1''') මගින් ගිණුම් තැනීම [[User:$3|$3]] විසින් වාරණය කොට ඇත.
+
+$3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
+
 # History pages
+'viewpagelogs' => 'මෙම පිටුව සඳහා ලඝු-සටහන් නරඹන්න',
+'nohistory'    => 'මෙම පිටුව සඳහා සංස්කරණ ඉතිහාසයක් නොමැත.',
+'revnotfound'  => 'සංශෝධනය සොයා ගත නොහැකි විය',
+'currentrev'   => 'වත්මන් සංශෝධනය',
 'cur'          => 'වත්මන්',
 'last'         => 'අවසන්',
 'historyempty' => '(හිස්)',

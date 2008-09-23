@@ -1423,6 +1423,9 @@ Se beigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'special-categories-sort-count' => 'ordenar por recuento',
 'special-categories-sort-abc'   => 'ordenar alfabeticament',
 
+# Special:DeletedContributions
+'deletedcontributions' => "Contrebuzions d'usuario borratas",
+
 # Special:LinkSearch
 'linksearch'       => 'Mirar binclos ta pachinas web',
 'linksearch-pat'   => 'Mirar patrón:',

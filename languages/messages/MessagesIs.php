@@ -1307,6 +1307,9 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'special-categories-sort-count' => 'raða eftir fjölda',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Eyddar breytingar notenda',
+
 # Special:LinkSearch
 'linksearch'    => 'Leita að vefföngum',
 'linksearch-ns' => 'Nafnrými:',

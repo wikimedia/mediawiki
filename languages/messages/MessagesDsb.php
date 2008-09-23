@@ -1536,6 +1536,9 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'special-categories-sort-count' => 'pśewuběrowaś pó licbje',
 'special-categories-sort-abc'   => 'pśewuběrowaś pó alfabeśe',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Wulašowane wužywarske pśinoski',
+
 # Special:LinkSearch
 'linksearch'       => 'Webwótkaze pytaś',
 'linksearch-pat'   => 'Pytański muster:',

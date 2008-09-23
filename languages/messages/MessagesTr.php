@@ -1206,6 +1206,9 @@ Kayıt tipini, kullanıcı ismini, sayfa ismini girerek listeyi daraltabilirsini
 'special-categories-sort-count' => 'sayılarına göre sırala',
 'special-categories-sort-abc'   => 'alfabetik olarak sırala',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Silinen kullanıcı katkıları',
+
 # Special:LinkSearch
 'linksearch-ns' => 'İsimalanı:',
 'linksearch-ok' => 'Ara',

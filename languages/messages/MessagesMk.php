@@ -1313,6 +1313,9 @@ PICT # misc.
 'categories'         => 'Категории',
 'categoriespagetext' => 'Следниве категории содржат страници или медија.',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Избришани кориснички придонеси',
+
 # Special:ListUsers
 'listusersfrom'      => 'Прикажни корисници почнувајќи од:',
 'listusers-submit'   => 'Прикажи',

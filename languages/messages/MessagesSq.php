@@ -1302,6 +1302,9 @@ Një faqe trajtohet si faqe kthjelluese nëse përdor stampat e lidhura nga [[Me
 'categories'         => 'Kategori',
 'categoriespagetext' => 'Ndodhen këto kategori:',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Kontribute të grisura',
+
 # Special:LinkSearch
 'linksearch'       => 'Kërkoni lidhje të jashtme',
 'linksearch-pat'   => 'Motivi kërkimor:',

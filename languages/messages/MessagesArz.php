@@ -263,6 +263,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكترونى' ),
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
+	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 );
 
 $messages = array(
@@ -1750,6 +1751,9 @@ PICT # misc.
 'categoriesfrom'                => 'اعرض التصانيف من أول:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'ترتيب ابجدي',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'مساهمات اليوزر الممسوحة',
 
 # Special:LinkSearch
 'linksearch'       => 'دور فى لينكات الويب',

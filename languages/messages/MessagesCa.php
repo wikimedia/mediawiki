@@ -1545,6 +1545,9 @@ Vegeu també [[Special:WantedCategories|les categories sol·licitades]].",
 'special-categories-sort-count' => 'ordena per recompte',
 'special-categories-sort-abc'   => 'ordena alfabèticament',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribucions esborrades',
+
 # Special:LinkSearch
 'linksearch'       => 'Cerca enllaços web',
 'linksearch-pat'   => 'Patró de cerca:',

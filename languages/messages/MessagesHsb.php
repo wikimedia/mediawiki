@@ -1502,6 +1502,9 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'special-categories-sort-count' => 'Po ličbje sortěrować',
 'special-categories-sort-abc'   => 'Alfabetisce sortěrować',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'wušmórnjene přinoški',
+
 # Special:LinkSearch
 'linksearch'       => 'Pytanje eksternych wotkazow',
 'linksearch-pat'   => 'Pytanski muster:',

@@ -410,6 +410,9 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # Special:Categories
 'categories' => 'Categurii',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Cuntribüziun scancelaa',
+
 # E-mail user
 'emailuser' => 'Manda un email al duvrátt',
 

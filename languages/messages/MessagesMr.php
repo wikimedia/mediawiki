@@ -1449,6 +1449,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'special-categories-sort-count' => 'क्रमानुसार लावा',
 'special-categories-sort-abc'   => 'अक्षरांप्रमाणे लावा',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'वगळलेली सदस्य संपादने',
+
 # Special:LinkSearch
 'linksearch'       => 'आंतरजाल दुवे शोधा',
 'linksearch-pat'   => 'शोधण्याचा मजकूर:',

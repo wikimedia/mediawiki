@@ -1437,6 +1437,9 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'special-categories-sort-count' => 'rikiuoti pagal skaičių',
 'special-categories-sort-abc'   => 'rikiuoti pagal abėcėlę',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Ištrintas naudotojo indėlis',
+
 # Special:LinkSearch
 'linksearch'    => 'Ieškoti interneto nuorodose',
 'linksearch-ns' => 'Vardų sritis:',

@@ -1706,6 +1706,9 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 'special-categories-sort-count' => 'sortera efter storlek',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Raderade användarbidrag',
+
 # Special:LinkSearch
 'linksearch'       => 'Sök webblänkar',
 'linksearch-pat'   => 'Sökmönster:',

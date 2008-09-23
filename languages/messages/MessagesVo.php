@@ -1338,6 +1338,9 @@ Ad brefükam lisedi, kanoy välön lisedasoti, gebananemi, u padi tefik.',
 'special-categories-sort-count' => 'leodükön ma num',
 'special-categories-sort-abc'   => 'leodükön ma lafab',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Gebanakeblünots pemoüköl',
+
 # Special:LinkSearch
 'linksearch'    => 'Sukön bevüresodayümis',
 'linksearch-ns' => 'Nemaspad:',

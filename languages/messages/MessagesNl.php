@@ -274,6 +274,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'EmailAnnuleren' ),
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
+	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
@@ -1802,6 +1803,9 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'categoriesfrom'                => 'Categorieën weergeven vanaf:',
 'special-categories-sort-count' => 'op aantal sorteren',
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Verwijderde gebruikersbijdragen',
 
 # Special:LinkSearch
 'linksearch'       => 'Externe verwijzingen zoeken',

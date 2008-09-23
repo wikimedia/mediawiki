@@ -1052,6 +1052,9 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Izdzēstais lietotāju devums',
+
 # Special:ListUsers
 'listusersfrom' => 'Parādīt lietotājus sākot ar:',
 

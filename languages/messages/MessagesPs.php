@@ -874,6 +874,9 @@ $messages = array(
 'categoriespagetext'          => 'په دغه ويکي (wiki) کې همدا لاندينۍ وېشنيزې دي.',
 'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'د کارونکي ونډې ړنګې شوې',
+
 # Special:LinkSearch
 'linksearch'      => 'د جال تړنې پلټل',
 'linksearch-pat'  => 'د پلټنې مخبېلګه:',

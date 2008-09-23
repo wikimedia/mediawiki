@@ -224,6 +224,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Chemin_du_Fichier', 'CheminduFichier', 'CheminFichier' ),
 	'Invalidateemail'           => array( 'Invalider_Courriel', 'InvaliderCourriel' ),
 	'LinkSearch'                => array( 'Recherche de liens' ),
+	'DeletedContributions'      => array( 'ContributionsSupprimées', 'ContributionSupprimees' ),
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
@@ -1644,6 +1645,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]] .',
 'categoriesfrom'                => 'Afficher les catégories commençant à :',
 'special-categories-sort-count' => 'tri par compte',
 'special-categories-sort-abc'   => 'tri alphabétique',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Contributions supprimées',
 
 # Special:LinkSearch
 'linksearch'       => 'Rechercher des liens Internet',

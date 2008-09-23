@@ -1330,6 +1330,9 @@ Example: [[:Image:Addon-icn.png]]',
 'categoriespagetext' => "Text displayed in [[Special:Categories]]. Do not translate or change links. In order to translate ''Unused categories'' and ''wanted categories'' see {{msg|unusedcategories}} and {{msg|wantedcategories}}.",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Title of [[Special:DeletedContributions]], a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
+
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',
 'linksearch-ok' => '{{Identical|Search}}',

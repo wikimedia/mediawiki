@@ -433,6 +433,9 @@ hō‘ike ‘ia i lalo:",
 # Special:Categories
 'categories' => 'Nā mahele',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Nā ha‘awina o ka inoa mea ho‘ohana i kāpae ‘ia ai',
+
 # Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 

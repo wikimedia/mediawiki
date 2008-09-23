@@ -127,6 +127,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'E-Mailadress net confirméieren' ),
 	'Blankpage'                 => array( 'Eidel Säit' ),
 	'LinkSearch'                => array( 'Weblink-Sich' ),
+	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
 );
 
 $messages = array(
@@ -1512,6 +1513,9 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'categoriesfrom'                => 'Weis Kategorien ugefaang bäi:',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Geläschte Kontributiounen',
 
 # Special:LinkSearch
 'linksearch'      => 'Weblink-Sich',

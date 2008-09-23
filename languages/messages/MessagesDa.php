@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Filsti' ),
 	'Invalidateemail'           => array( 'Afkræft_e-mail' ),
 	'Blankpage'                 => array( 'BlankPage' ),
+	'DeletedContributions'      => array( 'Slettede bidrag' ),
 );
 
 $dateFormats = array(
@@ -1448,6 +1449,9 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'categoriesfrom'                => 'Vis kategorier startende med:',
 'special-categories-sort-count' => 'sorter efter antal',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Slettede brugerbidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Søg i weblinks',

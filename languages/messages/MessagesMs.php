@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'Batalkan_pengesahan_e-mel' ),
 	'Blankpage'                 => array( 'Laman_kosong' ),
 	'LinkSearch'                => array( 'Cari_pautan' ),
+	'DeletedContributions'      => array( 'Sumbangan_dihapuskan' ),
 );
 
 $messages = array(
@@ -1564,6 +1565,9 @@ Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
 'categoriesfrom'                => 'Paparkan kategori bermula daripada:',
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Sumbangan dihapuskan',
 
 # Special:LinkSearch
 'linksearch'       => 'Cari pautan web',

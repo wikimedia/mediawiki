@@ -1323,6 +1323,9 @@ Malyari meng kitiran ing panimanman o akakit, kapamilatan ning pamamili ning nun
 'special-categories-sort-count' => 'surian tukituki agpang keng bilang',
 'special-categories-sort-abc'   => 'surian lang tukituki agpang keng kulitan',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Deng ambag da reng talagamit a mebura',
+
 # Special:ListUsers
 'listusersfrom'      => 'Ipakit la reng talagamit magumpisa king:',
 'listusers-submit'   => 'Pakit',

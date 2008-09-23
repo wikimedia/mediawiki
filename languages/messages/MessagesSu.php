@@ -1257,6 +1257,9 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'categoriesfrom'                => 'Tembongkeun kategori-kategori dimimitian ku:',
 'special-categories-sort-count' => 'ngurut numutkeun jumlah',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Kontribusi nu dihapus',
+
 # Special:LinkSearch
 'linksearch'       => 'Sungsi tumbu ramat',
 'linksearch-pat'   => 'Pola sungsi:',

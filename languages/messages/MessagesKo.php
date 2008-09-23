@@ -131,6 +131,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( '파일경로' ),
 	'Blankpage'                 => array( '빈문서' ),
 	'LinkSearch'                => array( '외부링크찾기', '외부링크검색' ),
+	'DeletedContributions'      => array( '삭제된기여' ),
 );
 
 $magicWords = array(
@@ -1408,6 +1409,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'categoriespagetext' => '문서나 자료를 담고 있는 분류 목록입니다.
 [[Special:UnusedCategories|사용되지 않는 분류]]는 여기에 보이지 않습니다.
 [[Special:WantedCategories|필요한 분류]]도 참고하세요.',
+
+# Special:DeletedContributions
+'deletedcontributions' => '삭제된 기여',
 
 # Special:LinkSearch
 'linksearch'     => '웹 링크 찾기',

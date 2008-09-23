@@ -1685,6 +1685,9 @@ Zobacz też [[Special:WantedCategories|nieistniejące kategorie]].',
 'special-categories-sort-count' => 'sortowanie według liczby',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Usunięty wkład użytkownika',
+
 # Special:LinkSearch
 'linksearch'       => 'Wyszukiwarka linków zewnętrznych',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',

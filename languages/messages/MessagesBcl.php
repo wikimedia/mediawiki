@@ -1126,6 +1126,9 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 'categories'         => 'Mga Kategorya',
 'categoriespagetext' => 'Igwa nin laog ang mga minasunod na kategorya.',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Parâon an mga kontribusyon kan parágamit',
+
 # Special:LinkSearch
 'linksearch-ok'   => 'Hanápon',
 'linksearch-line' => '$1 an nakatakod sa $2',

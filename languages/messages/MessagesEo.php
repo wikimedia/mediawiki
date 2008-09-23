@@ -1544,6 +1544,9 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'special-categories-sort-count' => 'oridigi laŭ nombrado',
 'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Forigitaj kontribuoj de uzantoj',
+
 # Special:LinkSearch
 'linksearch'       => 'Serĉi retajn ligilojn',
 'linksearch-pat'   => 'Serĉesprimo:',

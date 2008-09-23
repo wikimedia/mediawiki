@@ -1486,6 +1486,9 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'special-categories-sort-count' => 'na Tall sorteren',
 'special-categories-sort-abc'   => 'alphabeetsch sorteren',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Wegsmetene Bidrääg vun’n Bruker',
+
 # Special:LinkSearch
 'linksearch'       => 'Weblenken söken',
 'linksearch-pat'   => 'Söökmunster:',

@@ -1348,6 +1348,9 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 'special-categories-sort-count' => 'op aantal sortere',
 'special-categories-sort-abc'   => 'alfabetisch sortere',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Gewisdje gebroekersbiedraag',
+
 # Special:LinkSearch
 'linksearch'       => 'Extern links zeuke',
 'linksearch-pat'   => 'Zeukpatroon:',
