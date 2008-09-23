@@ -622,9 +622,6 @@ $3 kirjäpant põhjus: ''$2''",
 # History pages
 'viewpagelogs'        => 'Kaeq seo lehe muutmisnimekirjä.',
 'nohistory'           => 'Seo leheküle pääl ei olõq vanõmbit kujjõ.',
-'revnotfound'         => 'Es lövväq kujjo',
-'revnotfoundtext'     => 'Es lövväq su otsitut vanna kujjo.
-Kaeq üle aadrõs, kost sa taad löüdäq proovõq.',
 'currentrev'          => 'Viimäne kujo',
 'revisionasof'        => 'Kujo $1',
 'revision-info'       => 'Kujo aost $1 - tennüq $2',

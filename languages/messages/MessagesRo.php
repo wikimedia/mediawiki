@@ -717,8 +717,6 @@ Motivul invocat de $3 este ''$2''",
 # History pages
 'viewpagelogs'        => 'Vezi rapoartele pentru această pagină',
 'nohistory'           => 'Nu există istoric pentru această pagină.',
-'revnotfound'         => 'Versiunea nu a fost găsită',
-'revnotfoundtext'     => 'Versiunea mai veche a paginii pe care aţi cerut-o nu a fost găsită. Vă rugăm să verificaţi legătura pe care aţi folosit-o pentru a accesa această pagină.',
 'currentrev'          => 'Versiunea curentă',
 'currentrev-asof'     => 'Versiunea curentă din $1',
 'revisionasof'        => 'Versiunea de la data $1',

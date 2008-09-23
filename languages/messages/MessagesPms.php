@@ -636,9 +636,6 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 # History pages
 'viewpagelogs'        => 'Smon ij registr dë sta pàgina-sì',
 'nohistory'           => "La stòria dle version dë sta pàgina-sì a l'é pa trovasse.",
-'revnotfound'         => 'Version nen trovà',
-'revnotfoundtext'     => "La version prima dl'artìcol che a l'ha ciamà a l'é pa staita trovà.
-Che as controla për piasì l'adrëssa (URL) che a l'ha dovrà për rivé a sta pàgina-sì.",
 'currentrev'          => "Versione dël dì d'ancheuj",
 'revisionasof'        => 'Revision $1',
 'revision-info'       => 'Revision al $1; $2',

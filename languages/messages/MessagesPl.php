@@ -893,8 +893,6 @@ Podany przez $3 powód to ''$2''",
 # History pages
 'viewpagelogs'        => 'Zobacz rejestry operacji dla tej strony',
 'nohistory'           => 'Ta strona nie ma swojej historii edycji.',
-'revnotfound'         => 'Wersja nie została odnaleziona',
-'revnotfoundtext'     => 'Żądana, starsza wersja strony nie została odnaleziona. Sprawdź użyty adres URL.',
 'currentrev'          => 'Aktualna wersja',
 'currentrev-asof'     => 'Aktualna wersja na dzień $1',
 'revisionasof'        => 'Wersja z dnia $1',

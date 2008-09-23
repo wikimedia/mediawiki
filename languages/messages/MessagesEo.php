@@ -761,9 +761,6 @@ La kialo donata de $3 estas ''$2''.",
 # History pages
 'viewpagelogs'        => 'Rigardi la protokolojn por tiu ĉi paĝo',
 'nohistory'           => 'Ne ekzistas historio de redaktoj por ĉi tiu paĝo.',
-'revnotfound'         => 'Ne ekzistas malnova versio de la artikolo',
-'revnotfoundtext'     => 'Ne eblis trovi malnovan version de la artikolo kiun vi petis.
-Bonvolu kontroli la retadreson (URL) kiun vi uzis por atingi la paĝon.\\b',
 'currentrev'          => 'Aktuala versio',
 'currentrev-asof'     => 'Nuna revizio ekde $1',
 'revisionasof'        => 'Kiel registrite je $1',

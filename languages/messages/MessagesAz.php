@@ -365,9 +365,6 @@ Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # History pages
-'revnotfound'         => 'Versiya tapıla bilmir',
-'revnotfoundtext'     => 'Səhifənin istədiyiniz köhnə versiyası tapıla bilmir.
-Xahiş edirik, URL ünvanını yoxlayasınız.',
 'currentrev'          => 'Hal-hazırkı versiya',
 'revisionasof'        => '$1 versiyası',
 'previousrevision'    => '←Əvvəlki versiya',

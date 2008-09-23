@@ -803,9 +803,6 @@ El motiu donat per $3 és ''$2''",
 # History pages
 'viewpagelogs'        => "Visualitza els registres d'aquesta pàgina",
 'nohistory'           => 'No hi ha un historial de revisions per a aquesta pàgina.',
-'revnotfound'         => 'Revisió no trobada',
-'revnotfoundtext'     => "No s'ha pogut trobar la revisió antiga de la pàgina que demanàveu.
-Reviseu l'URL que heu emprat per a accedir-hi.",
 'currentrev'          => 'Revisió actual',
 'currentrev-asof'     => 'Revisió de $1',
 'revisionasof'        => 'Revisió de $1',

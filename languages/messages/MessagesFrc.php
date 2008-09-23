@@ -546,8 +546,6 @@ Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 # History pages
 'viewpagelogs'        => 'Voir les notes pour cette page',
 'nohistory'           => 'Y a pas de changements pour cette page.',
-'revnotfound'         => 'Changement pas trouvé',
-'revnotfoundtext'     => "Le vieux changement de la page que vous avez demandé pouvait pas être trouvé.  Regardez donc l'adresse URL que vous avez usée.",
 'currentrev'          => 'Version courante',
 'revisionasof'        => 'Version depuis le $1',
 'revision-info'       => 'Version depuis le $1 par $2',

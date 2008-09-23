@@ -722,9 +722,6 @@ El motivo dado por $3 es ''$2''",
 # History pages
 'viewpagelogs'        => 'Ver los registros de esta página',
 'nohistory'           => 'No hay un historial de ediciones para esta página.',
-'revnotfound'         => 'Revisión no encontrada',
-'revnotfoundtext'     => 'No se pudo encontrar la revisión antigua de la página que ha solicitado.
-Por favor, revise la dirección que usó para acceder a esta página.',
 'currentrev'          => 'Revisión actual',
 'currentrev-asof'     => 'última version al $1',
 'revisionasof'        => 'Revisión de $1',

@@ -680,9 +680,6 @@ La motivazion del bloco fornìa da $3 la xe sta qua: ''$2''",
 # History pages
 'viewpagelogs'        => 'Varda i registri relativi a sta pagina qua.',
 'nohistory'           => 'La cronołogia de łe version de sta pàxena no la xè reperibiłe.',
-'revnotfound'         => 'Version mìa catà',
-'revnotfoundtext'     => "La version richiesta de ła pàxena no la xè mìa stà catà.
-Verifica l'URL che te doparà par açedere a sta pàxena.",
 'currentrev'          => 'Version atuałe',
 'currentrev-asof'     => 'Version corrente del $1',
 'revisionasof'        => 'Revixion $1',

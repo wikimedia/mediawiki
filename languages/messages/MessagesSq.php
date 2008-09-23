@@ -673,8 +673,6 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 # History pages
 'viewpagelogs'        => 'Shiko regjistrat për këtë faqe',
 'nohistory'           => 'Nuk ka histori redaktimesh për këtë faqe.',
-'revnotfound'         => 'Versioni nuk u gjet',
-'revnotfoundtext'     => 'Versioni i vjetër i faqes së kërkuar nuk mund të gjehej.Ju lutem kontrolloni URL-in që përdorët për të ardhur tek kjo faqe.',
 'currentrev'          => 'Versioni i tanishëm',
 'revisionasof'        => 'Versioni i $1',
 'revision-info'       => 'Versioni më $1 nga $2',

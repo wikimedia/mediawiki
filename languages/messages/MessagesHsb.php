@@ -736,8 +736,6 @@ Přičina za blokowanje, podata wot $3, je: ''$2''",
 # History pages
 'viewpagelogs'        => 'protokole tuteje strony pokazać',
 'nohistory'           => 'Njeje žanych staršich wersijow strony.',
-'revnotfound'         => 'Njebě móžno, požadanu wersiju namakać',
-'revnotfoundtext'     => 'Stara wersija strony, kotruž sy žadał, njeda so namakać. Prošu pruwuj URL, kiž sy wužiwał.',
 'currentrev'          => 'Aktualna wersija',
 'currentrev-asof'     => 'Aktualna wersija wot $1',
 'revisionasof'        => 'Wersija z $1',

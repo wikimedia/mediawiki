@@ -613,8 +613,6 @@ La razón dá pol $3 es ''$2''",
 # History pages
 'viewpagelogs'        => 'Vel los rustrihus d´esta páhina',
 'nohistory'           => 'Nu ai dengún estorial d´eicionis pa esta páhina.',
-'revnotfound'         => 'Revisión nu alcuentrá',
-'revnotfoundtext'     => 'La revisión antigua qu´estás landeandu nu se puei alcuentral. Pol favol, compreba la URL que gastasti pa dil a esta páhina.',
 'currentrev'          => 'Revisión atual',
 'revisionasof'        => 'Revisión de $1',
 'revision-info'       => 'Revisión de $1 hecha pol $2',

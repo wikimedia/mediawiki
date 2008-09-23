@@ -905,8 +905,6 @@ Alasan yang diberikan oleh $3 adalah ''$2''",
 # History pages
 'viewpagelogs'        => 'Lihat log halaman ini',
 'nohistory'           => 'Tidak ada sejarah penyuntingan untuk halaman ini',
-'revnotfound'         => 'Revisi tidak ditemukan',
-'revnotfoundtext'     => 'Revisi lama halaman yang Anda minta tidak dapat ditemukan. Silakan periksa URL yang digunakan untuk mengakses halaman ini.',
 'currentrev'          => 'Revisi terkini',
 'currentrev-asof'     => 'Revisi terkini pada $1',
 'revisionasof'        => 'Revisi per $1',

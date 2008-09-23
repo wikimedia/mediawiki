@@ -606,8 +606,6 @@ La rasgioni frunidda da $3 è ''$2''",
 # History pages
 'viewpagelogs'        => 'Visuarizza li rigisthri reratibi a chistha pàgina.',
 'nohistory'           => 'Cronologia di li versioni di chistha pàgina nò riperìbiri.',
-'revnotfound'         => 'Versioni nò acciappadda',
-'revnotfoundtext'     => "La versioni dumandadda di la pàgina nò è isthadda acciappadda. Verifiggà l'indirizzu usaddu pa intrà a chistha pàgina.",
 'currentrev'          => 'Versioni currenti',
 'revisionasof'        => 'Versioni di lu $1',
 'revision-info'       => 'Versioni di lu $1, autori: $2',

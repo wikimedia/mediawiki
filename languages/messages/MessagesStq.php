@@ -675,8 +675,6 @@ Gruund fon ju Speere: ''$2''",
 # History pages
 'viewpagelogs'        => 'Logbouke foar disse Siede anwiese',
 'nohistory'           => 'Dät rakt neen fröiere Versione fon dissen Artikkel.',
-'revnotfound'         => 'Disse Version wuude nit fuunen.',
-'revnotfoundtext'     => 'Ju soachte Version fon dissen Artikkel kuude nit fuunen wäide. Uurpröiwe jädden ju URL fon disse Siede.',
 'currentrev'          => 'Aktuälle Version',
 'currentrev-asof'     => 'Aktuelle Version fon $1',
 'revisionasof'        => 'Version fon $1',

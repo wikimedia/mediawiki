@@ -709,8 +709,6 @@ Lu mutivu è ''$2''",
 # History pages
 'viewpagelogs'        => 'Vidi li log rilativi a sta pàggina',
 'nohistory'           => 'Cronoluggìa dî virsioni di sta pàggina nun ripirìbbili.',
-'revnotfound'         => 'Virsioni nun attruvata',
-'revnotfoundtext'     => "La virsioni pricidenti di st'artìculu c'hai addumannatu nun hà statu attruvata. Cuntrolla pi favuri la URL c'hai usatu p'accèdiri a sta pàggina.",
 'currentrev'          => 'Virsioni currenti',
 'revisionasof'        => 'Virsioni dû $1',
 'revision-info'       => 'Virsioni dû $1 di $2',

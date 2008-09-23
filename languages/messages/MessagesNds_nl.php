@@ -882,8 +882,6 @@ De deur $3 op-egeven rejen is ''$2''",
 # History pages
 'viewpagelogs'        => 'Bekiek logboeken veur disse pagina',
 'nohistory'           => 'Der bin gien eerdere versies van disse pagina.',
-'revnotfound'         => 'Wieziging neet evunnen',
-'revnotfoundtext'     => 'De op-evreugen ouwe versie van disse pagina is onvientbaor. Kiek de URL dee-j gebruken nao um naor disse pagina te gaon.',
 'currentrev'          => 'Leste versie',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 van $2',

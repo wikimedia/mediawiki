@@ -612,8 +612,6 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 # History pages
 'viewpagelogs'        => 'Xool yéenekaayu xët wii',
 'nohistory'           => 'Xët wii amulub jaar-jaar.',
-'revnotfound'         => 'Sumb mi gisuñ ko',
-'revnotfoundtext'     => 'Sumbum xët wi ngay laaj gisuñ ko. Saytul URL bi nga jëfandikoo ngir jot xët wii.',
 'currentrev'          => 'Sumb mi teew',
 'currentrev-asof'     => 'Sumb mi teew mu $1',
 'revisionasof'        => 'Sumb mu $1',

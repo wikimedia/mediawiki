@@ -704,8 +704,6 @@ $3 mına böyle bir sebep belgiledi: ''$2''",
 # History pages
 'viewpagelogs'        => 'Bu saifeniñ jurnallarını köster',
 'nohistory'           => 'Bu saifeniñ keçmiş versiyası yoq.',
-'revnotfound'         => 'Versiya tapılmadı',
-'revnotfoundtext'     => 'Saifeniñ eski versiyası tapılmadı. Lütfen, bu saifege kirmek içün qullanğan bağlantıñıznıñ doğrulığını teşkeriñiz.',
 'currentrev'          => 'Al-azırki versiya',
 'revisionasof'        => 'Saifeniñ $1 tarihındaki alı',
 'revision-info'       => 'Saifeniñ $2 tarafından oluştırılğan $1 tarihındaki alı',

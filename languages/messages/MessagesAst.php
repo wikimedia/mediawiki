@@ -700,8 +700,6 @@ El motivu dau por $3 ye ''$2''",
 # History pages
 'viewpagelogs'        => "Ver rexistros d'esta páxina",
 'nohistory'           => "Nun hay historial d'ediciones pa esta páxina.",
-'revnotfound'         => 'Revisión non atopada',
-'revnotfoundtext'     => "La revisión antigua de la páxina que solicitasti nun se pudo atopar. Por favor comprueba l'URL qu'usasti p'acceder a esta páxina.",
 'currentrev'          => 'Revisión actual',
 'currentrev-asof'     => 'Revisión actual a fecha de $1',
 'revisionasof'        => 'Revisión a fecha de $1',

@@ -400,9 +400,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 
 # History pages
 'nohistory'           => 'Ne esas redakto-historio por ica pagino.',
-'revnotfound'         => 'Versiono ne trovita',
-'revnotfoundtext'     => "L' anciena versiono di la pagino, quan vu demandis, ne povis trovesar.
-Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'currentrev'          => 'Aktuala versiono',
 'revisionasof'        => 'Versiono ye $1',
 'revision-info'       => 'Versiono en $1 per $2',

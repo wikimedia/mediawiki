@@ -633,9 +633,6 @@ Alesanana $3 cenah ''$2''.",
 # History pages
 'viewpagelogs'        => 'Tempo log kaca ieu',
 'nohistory'           => 'Teu aya jujutan édit pikeun kaca ieu.',
-'revnotfound'         => 'Révisi teu kapanggih',
-'revnotfoundtext'     => 'Révisi heubeul kaca nu dipénta ku anjeun teu bisa kapanggih.
-Please check the URL you used to access this page.',
 'currentrev'          => 'Révisi kiwari',
 'revisionasof'        => 'Révisi nurutkeun $1',
 'revision-info'       => 'Révisi per $1; $2',

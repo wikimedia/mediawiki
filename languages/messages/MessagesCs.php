@@ -956,8 +956,6 @@ $3 uvádí toto zdůvodnění: ''$2''",
 # History pages
 'viewpagelogs'        => 'Zobrazit protokolovací záznamy k této stránce',
 'nohistory'           => 'O této stránce neexistuje historie editací.',
-'revnotfound'         => 'Verze nenalezena',
-'revnotfoundtext'     => 'Nelze najít starou verzi, kterou žádáte. Zkuste prosím zkontrolovat URL hledané stránky.',
 'currentrev'          => 'Aktuální verze',
 'currentrev-asof'     => 'Aktuální verze z $1',
 'revisionasof'        => 'Verze z $1',

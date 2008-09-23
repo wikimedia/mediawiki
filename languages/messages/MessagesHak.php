@@ -502,8 +502,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 # History pages
 'viewpagelogs'        => 'Chhà-khon liá-ke vùn-chông ke ngit-ki.',
 'nohistory'           => 'Mò-yû pún-chông ke siû-thin ki-liu̍k.',
-'revnotfound'         => 'Mò-yû chhìm-cháu to siû-thin ki-liu̍k',
-'revnotfoundtext'     => 'Chhiáng-khiù ke kien-chó pán-pún ke siû-thin ki-liu̍k mò-yû cháu-to. Chhiáng kiám-chhà chhiáng-khiù pún-chông yung ke URL he-féu chṳn-khok.',
 'currentrev'          => 'Tông-chhièn siû-thin pán-pún',
 'revisionasof'        => 'Chhai $1 só-cho ke siû-thin pán-pún',
 'revision-info'       => 'Chhai $1 yù $2 só-cho ke siû-thin pán-pún',

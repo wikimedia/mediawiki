@@ -774,9 +774,6 @@ La motivazione del blocco fornita da $3 è la seguente: ''$2''",
 # History pages
 'viewpagelogs'        => 'Visualizza i log relativi a questa pagina.',
 'nohistory'           => 'Cronologia delle versioni di questa pagina non reperibile.',
-'revnotfound'         => 'Versione non trovata',
-'revnotfoundtext'     => 'La versione richiesta della pagina non è stata trovata.
-Verificare la URL usata per accedere a questa pagina.',
 'currentrev'          => 'Versione corrente',
 'currentrev-asof'     => 'Versione corrente del $1',
 'revisionasof'        => 'Versione del $1',

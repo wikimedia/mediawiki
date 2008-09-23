@@ -796,8 +796,6 @@ Sebab yang diberikan oleh $3 ialah ''$2''",
 # History pages
 'viewpagelogs'        => 'Lihat log bagi laman ini',
 'nohistory'           => 'Tiada sejarah suntingan bagi laman ini.',
-'revnotfound'         => 'Semakan tidak dijumpai.',
-'revnotfoundtext'     => 'Semakan lama untuk laman yang anda minta tidak dapat dijumpai. Sila semak URL yang anda gunakan untuk mencapai laman ini.',
 'currentrev'          => 'Semakan semasa',
 'currentrev-asof'     => 'Semakan semasa pada $1',
 'revisionasof'        => 'Semakan pada $1',

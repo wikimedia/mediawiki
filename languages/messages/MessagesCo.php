@@ -197,7 +197,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'cantcreateaccounttitle' => 'Registramentu micca pussibile',
 
 # History pages
-'revnotfound' => 'Revisione micca truvata',
 'currentrev'  => 'Ultima revisione',
 'page_first'  => 'prima',
 'deletedrev'  => '[supprimatu]',

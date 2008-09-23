@@ -623,8 +623,6 @@ Alesané miturut $3 yaiku ''$2''",
 # History pages
 'viewpagelogs'        => 'Mirsani log kaca iki',
 'nohistory'           => 'Ora ana sajarah panyuntingan kanggo kaca iki',
-'revnotfound'         => 'Revisi ora ditemokaké',
-'revnotfoundtext'     => 'Revisi lawas kaca sing panjenengan suwun ora bisa ditemokaké. Mangga priksanen URL sing digunakaké kanggo ngaksès kaca iki.',
 'currentrev'          => 'Revisi saiki',
 'revisionasof'        => 'Revisi per $1',
 'revision-info'       => 'Revisi per $1; $2',

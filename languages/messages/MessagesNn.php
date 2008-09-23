@@ -877,8 +877,6 @@ Grunnen som vart gjeven av $3 er ''$2''",
 # History pages
 'viewpagelogs'        => 'Vis loggane for denne sida',
 'nohistory'           => 'Det finst ikkje nokon historikk for denne sida.',
-'revnotfound'         => 'Fann ikkje versjonen',
-'revnotfoundtext'     => 'Den gamle versjonen av sida du spurde etter finst ikkje. Sjekk nettadressa du brukte for å komma deg åt denne sida.',
 'currentrev'          => 'Noverande versjon',
 'currentrev-asof'     => 'Noverande versjon frå $1',
 'revisionasof'        => 'Versjonen frå $1',

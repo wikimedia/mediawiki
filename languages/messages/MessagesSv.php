@@ -920,8 +920,6 @@ Anledningen till blockeringen var "$2".',
 # History pages
 'viewpagelogs'        => 'Visa loggar för denna sida',
 'nohistory'           => 'Den här sidan har ingen versionshistorik.',
-'revnotfound'         => 'Versionen hittades inte',
-'revnotfoundtext'     => 'Den gamla versionen av den sida du frågade efter kan inte hittas. Kontrollera den URL du använde för att nå den här sidan.',
 'currentrev'          => 'Nuvarande version',
 'currentrev-asof'     => 'Nuvarande version från $1',
 'revisionasof'        => 'Versionen från $1',

@@ -983,9 +983,6 @@ De door $3 opgegeven reden is ''$2''",
 # History pages
 'viewpagelogs'        => 'Logboek voor deze pagina bekijken',
 'nohistory'           => 'Deze pagina is niet bewerkt.',
-'revnotfound'         => 'Bewerking niet gevonden',
-'revnotfoundtext'     => 'De opgevraagde oude versie van deze pagina is onvindbaar.
-Controleer de URL die u gebruikte om naar deze pagina te gaan.',
 'currentrev'          => 'Huidige versie',
 'currentrev-asof'     => 'Huidige versie per $1',
 'revisionasof'        => 'Versie op $1',

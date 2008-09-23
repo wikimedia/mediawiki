@@ -671,8 +671,6 @@ De door $3 opgegaeve reje is ''$2''",
 # History pages
 'viewpagelogs'        => 'Logbeuk veur dees pazjena tune',
 'nohistory'           => 'Dees pazjena is nog neet bewirk.',
-'revnotfound'         => 'Wieziging neet gevonge',
-'revnotfoundtext'     => 'De opgevraogde aw versie van dees pazjena is verzjwónde. Kontroleer estebleef de URL dieste gebroek höbs óm nao dees pazjena te gaon.',
 'currentrev'          => 'Hujige versie',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 door $2',

@@ -779,9 +779,6 @@ $1',
 # History pages
 'viewpagelogs'        => '睇呢頁嘅日誌',
 'nohistory'           => '呢版冇歷史。',
-'revnotfound'         => '搵唔到歷史',
-'revnotfoundtext'     => '呢版無你要搵嗰個版本喎。
-唔該睇下條網址啱唔啱。',
 'currentrev'          => '家下嘅修訂',
 'currentrev-asof'     => '響 $1 嘅家下修訂',
 'revisionasof'        => '喺$1嘅修訂',

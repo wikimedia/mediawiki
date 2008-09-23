@@ -1050,8 +1050,6 @@ $3 keltirilgen sebebi: ''$2''",
 # History pages
 'viewpagelogs'        => 'Bul bet üşin jwrnal oqïğaların qaraw',
 'nohistory'           => 'Mında bul bettiniñ tüzetw tarïxı joq.',
-'revnotfound'         => 'Tüzetw tabılmadı',
-'revnotfoundtext'     => 'Bul bettiñ suralğan eski tüzetwi tabılğan joq. Osı bet qatınawına paýdalanğan URL tekserip şığıñız.',
 'currentrev'          => 'Ağımdıq tüzetw',
 'revisionasof'        => '$1 kezindegi tüzetw',
 'revision-info'       => '$1 kezindegi $2 istegen tüzetw',

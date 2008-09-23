@@ -697,9 +697,6 @@ A razón dada por $3 foi ''$2''",
 # History pages
 'viewpagelogs'        => 'Ver os rexistros desta páxina',
 'nohistory'           => 'Esta páxina non posúe ningún historial de edicións.',
-'revnotfound'         => 'A revisión non foi atopada',
-'revnotfoundtext'     => 'A revisión vella que pediu non se deu atopado.
-Por favor verifique o URL que utilizou para acceder a esta páxina.',
 'currentrev'          => 'Revisión actual',
 'currentrev-asof'     => 'Revisión actual ás $1',
 'revisionasof'        => 'Revisión como estaba ás $1',

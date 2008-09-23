@@ -548,7 +548,6 @@ Ti inted a rason ni $3 ket ''$2''",
 # History pages
 'viewpagelogs'        => 'Kitaen dagiti logs para iti daytoy a panid',
 'nohistory'           => 'Awan ti pakasaritaan ti panangbaliw iti daytoy a panid.',
-'revnotfound'         => 'Di masarakan ti panangbalbaliw',
 'currentrev'          => 'Agdama a revision',
 'revisionasof'        => 'Panangbalbaliw sipud $1',
 'revision-info'       => 'Panangbaliw ni $2 sipud idi $1',

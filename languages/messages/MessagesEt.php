@@ -561,9 +561,6 @@ Lehe eelnevad kustutamised:",
 # History pages
 'viewpagelogs'        => 'Vaata selle lehe logisid',
 'nohistory'           => 'Sellel leheküljel ei ole eelmisi redaktsioone.',
-'revnotfound'         => 'Redaktsiooni ei leitud',
-'revnotfoundtext'     => 'Teie poolt päritud vana redaktsiooni ei leitud.
-Palun kontrollige aadressi, millel Te seda lehekülge leida püüdsite.',
 'currentrev'          => 'Viimane redaktsioon',
 'revisionasof'        => 'Redaktsioon: $1',
 'previousrevision'    => '←Vanem redaktsioon',

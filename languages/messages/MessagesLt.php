@@ -725,8 +725,6 @@ $3 nurodyta priežastis yra ''$2''",
 # History pages
 'viewpagelogs'        => 'Rodyti šio puslapio specialiuosius veiksmus',
 'nohistory'           => 'Šis puslapis neturi keitimų istorijos.',
-'revnotfound'         => 'Versija nerasta',
-'revnotfoundtext'     => 'Norima puslapio versija nerasta. Patikrinkite URL, kuriuo patekote į šį puslapį.',
 'currentrev'          => 'Dabartinė versija',
 'currentrev-asof'     => 'Dabartinė $1 versija',
 'revisionasof'        => '$1 versija',

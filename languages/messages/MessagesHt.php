@@ -621,7 +621,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 # History pages
 'viewpagelogs'        => 'gade jounal paj sa a',
 'nohistory'           => 'Istorik pou paj sa pa egziste ditou.',
-'revnotfound'         => 'Vèsyon nou pa kapab twouve ditou',
 'currentrev'          => 'Vèsyon kounye a',
 'revisionasof'        => 'Vèsyon jou $1',
 'revision-info'       => 'Vèsyon pou $1 pa $2',

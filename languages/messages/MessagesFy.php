@@ -705,9 +705,6 @@ De fan $3 opjûne reden is ''$2''",
 # History pages
 'viewpagelogs'        => 'Lochboek foar dizze side sjen litte',
 'nohistory'           => 'Dit is de earste ferzje fan de side.',
-'revnotfound'         => 'Ferzje net fûn',
-'revnotfoundtext'     => "De âlde ferzje fan dizze side dêr't jo om frege hawwe, is der net.
-Gean nei of de keppeling dy jo brûkt hawwe wol goed is.",
 'currentrev'          => 'Aktuele ferzje',
 'currentrev-asof'     => 'Hjoeddeiske ferzje sûnt $1',
 'revisionasof'        => 'Ferzje op $1',

@@ -766,8 +766,6 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 # History pages
 'viewpagelogs'        => 'Logbicher fir dës Säit weisen',
 'nohistory'           => 'Et gëtt keng al Versioune vun dëser Säit.',
-'revnotfound'         => 'Dës Versioun gouf net fonnt.',
-'revnotfoundtext'     => "Déi Versioun vun der Säit déi Dir gefrot hutt konnt net fonnt ginn. Kuckt d'URL no, déi Dir benotzt hutt fir op dës Säit ze kommen.",
 'currentrev'          => 'Aktuell Versioun',
 'currentrev-asof'     => 'Aktuell Versioun vum $1',
 'revisionasof'        => 'Versioun vum $1',

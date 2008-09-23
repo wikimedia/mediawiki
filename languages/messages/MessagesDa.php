@@ -770,9 +770,6 @@ Der bør være færre end $2, lige nu er der $1.',
 # History pages
 'viewpagelogs'        => 'Vis loglister for denne side',
 'nohistory'           => 'Der er ingen versionshistorik for denne side.',
-'revnotfound'         => 'Versionen er ikke fundet',
-'revnotfoundtext'     => 'Den gamle version af den side du spurgte efter kan
-ikke findes. Kontrollér den URL du brugte til at få adgang til denne side.',
 'currentrev'          => 'Nuværende version',
 'revisionasof'        => 'Versionen fra $1',
 'revision-info'       => 'Version fra $1 til $2',

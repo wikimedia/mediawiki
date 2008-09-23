@@ -766,8 +766,6 @@ Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 # History pages
 'viewpagelogs'        => 'Protokole boka pokazaś',
 'nohistory'           => 'Stawizny wobźěłanja za toś ten bok njeeksistěruju.',
-'revnotfound'         => 'Wersija njejo se namakała.',
-'revnotfoundtext'     => 'Njejo móžno było, wersiju togo boka namakaś, za kótaremž sy pytał. Pšosym kontrolěruj zapódanu URL.',
 'currentrev'          => 'Aktualna wersija',
 'currentrev-asof'     => 'Aktualna wersija wót $1',
 'revisionasof'        => 'Wersija wót $1',

@@ -634,9 +634,6 @@ Razmotrite je li nastavljanje uređivanja ove stranice u skladu s pravilima. Za 
 # History pages
 'viewpagelogs'     => 'Pogledaj protokol ove stranice',
 'nohistory'        => 'Ne postoji istorija izmjena za ovu stranicu.',
-'revnotfound'      => 'Revizija nije pronađena',
-'revnotfoundtext'  => 'Starija revizija ove stranice koju ste zatražili nije nađena.
-Molimo Vas da provjerite URL pomoću kojeg ste pristupili ovoj stranici.',
 'currentrev'       => 'Trenutna revizija',
 'revisionasof'     => 'Revizija od $1',
 'previousrevision' => '←Starije izmjene',

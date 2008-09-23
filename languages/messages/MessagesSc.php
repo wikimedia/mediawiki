@@ -233,9 +233,6 @@ Se la salvi così, tutti i cambiamenti apportati dopo questa revisione verranno 
 
 # History pages
 'nohistory'       => 'Cronologia delle versioni di questa pagina non reperibile.',
-'revnotfound'     => 'Versione non trovata',
-'revnotfoundtext' => 'La versione precedente di questo articolo che hai richiesto, non è stata trovata.
-Controlla per favore la URL che hai usato per accedere a questa pagina.',
 'currentrev'      => 'Versione attuale',
 'revisionasof'    => 'Revisione $1',
 'cur'             => 'corr',

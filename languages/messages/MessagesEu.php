@@ -659,8 +659,6 @@ $3(e)k emandako arrazoia: ''$2''",
 # History pages
 'viewpagelogs'        => 'Orrialde honen erregistroak ikusi',
 'nohistory'           => 'Orrialde honek ez dauka aldaketa historiarik.',
-'revnotfound'         => 'Ezin izan da berrikuspena aurkitu',
-'revnotfoundtext'     => 'Ezin izan da eskatzen ari zaren orrialdearen berrikuspen zaharra aurkitu. Mesedez, egiaztatu orrialde honetara iristeko erabili duzun URLa.',
 'currentrev'          => 'Oraingo berrikuspena',
 'revisionasof'        => '$1(e)ko berrikuspena',
 'revision-info'       => '$2(r)en berrikusketa, ordua: $1',

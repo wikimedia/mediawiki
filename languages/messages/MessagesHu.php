@@ -932,8 +932,6 @@ Néhány sablon nem fog megjelenni.',
 # History pages
 'viewpagelogs'        => 'A lap a rendszernaplókban',
 'nohistory'           => 'A lap nem rendelkezik laptörténettel.',
-'revnotfound'         => 'A változat nem található',
-'revnotfoundtext'     => 'A lap általad kért régi változatát nem találom. Kérlek, ellenőrizd az URL-t, amivel erre a lapra jutottál.',
 'currentrev'          => 'Aktuális változat',
 'currentrev-asof'     => 'A lap jelenlegi, $1-kori változata',
 'revisionasof'        => 'A lap $1-kori változata',

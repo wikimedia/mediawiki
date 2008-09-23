@@ -871,8 +871,6 @@ La raison donnée par $3 était ''$2''.",
 # History pages
 'viewpagelogs'        => 'Voir les opérations sur cette page',
 'nohistory'           => 'Il n’existe pas d’historique pour cette page.',
-'revnotfound'         => 'Version introuvable',
-'revnotfoundtext'     => 'La version précédente de cette page n’a pas pu être retrouvée. Veuillez vérifier l’URL que vous avez utilisée pour accéder à cette page.',
 'currentrev'          => 'Version actuelle',
 'currentrev-asof'     => 'Version actuelle en date du $1',
 'revisionasof'        => 'Version du $1',

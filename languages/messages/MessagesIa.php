@@ -726,9 +726,6 @@ Le motivo que $3 dava es ''$2''",
 # History pages
 'viewpagelogs'        => 'Vider le registro de iste pagina',
 'nohistory'           => 'Non existe un historia de modificationes pro iste pagina.',
-'revnotfound'         => 'Revision non trovate',
-'revnotfoundtext'     => 'Impossibile trovar le version anterior del pagina que tu ha demandate.
-Verifica le adresse URL que tu ha usate pro acceder a iste pagina.',
 'currentrev'          => 'Revision actual',
 'currentrev-asof'     => 'Version actual in data del $1',
 'revisionasof'        => 'Revision del $1',

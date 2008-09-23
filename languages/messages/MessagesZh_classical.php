@@ -639,8 +639,6 @@ $2',
 # History pages
 'viewpagelogs'        => '覽誌',
 'nohistory'           => '此題無誌',
-'revnotfound'         => '查無審',
-'revnotfoundtext'     => '查無舊審，惠核網址。',
 'currentrev'          => '今審',
 'currentrev-asof'     => '$1之今審',
 'revisionasof'        => '$1審',
