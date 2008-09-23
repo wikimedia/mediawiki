@@ -664,9 +664,6 @@ De deur $3 opeheven reeën is ''$2''",
 # History pages
 'viewpagelogs'        => 'Bekiek de logboeken vò deêze bladzie',
 'nohistory'           => 'Deêze pagina is nie bewerkt.',
-'revnotfound'         => "Bewerkieng nie evon'n",
-'revnotfoundtext'     => 'De opevrogen ouwe versie van deêze pagina is onvindbaer.
-Controleer asjeblieft de URL die  a je hebruken om ni deêze pagina te haene.',
 'currentrev'          => 'Udihe versie',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 van $2',

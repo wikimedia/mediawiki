@@ -794,8 +794,6 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 # History pages
 'viewpagelogs'        => 'Vis logger for denne siden',
 'nohistory'           => 'Denne siden har ingen historikk.',
-'revnotfound'         => 'Versjonen er ikke funnet',
-'revnotfoundtext'     => 'Den gamle versjon av siden du etterspurte finnes ikke. Kontroller adressen du brukte for å få adgang til denne siden.',
 'currentrev'          => 'Nåværende versjon',
 'currentrev-asof'     => 'Nåværende revisjon fra $1',
 'revisionasof'        => 'Versjonen fra $1',

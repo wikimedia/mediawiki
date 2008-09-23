@@ -729,8 +729,6 @@ Y rheswm a roddwyd dros y bloc gan $3 yw ''$2''.",
 # History pages
 'viewpagelogs'        => "Dangos logiau'r dudalen hon",
 'nohistory'           => "Does dim hanes golygu i'r dudalen hon.",
-'revnotfound'         => "Ni ddaethpwyd o hyd i'r diwygiad",
-'revnotfoundtext'     => "Ni ddaethpwyd o hyd i'r hen ddiwygiad o'r dudalen y gofynnwyd amdano. Gwnewch yn siwr fod yr URL yn gywir os gwelwch yn dda.",
 'currentrev'          => 'Diwygiad cyfoes',
 'revisionasof'        => 'Diwygiad $1',
 'revision-info'       => 'Y fersiwn a roddwyd ar gadw am $1 gan $2',

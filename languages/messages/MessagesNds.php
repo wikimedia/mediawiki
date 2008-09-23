@@ -800,8 +800,6 @@ De Grund weer: ''$2''",
 # History pages
 'viewpagelogs'        => 'Logbook för disse Siet',
 'nohistory'           => 'Disse Siet hett keen Vörgeschicht.',
-'revnotfound'         => 'Kene fröheren Versionen funnen',
-'revnotfoundtext'     => 'De Version vun disse Siet, no de du söökst, kunn nich funnen warrn. Prööv de URL vun disse Siet.',
 'currentrev'          => 'Aktuelle Version',
 'revisionasof'        => 'Version vun’n $1',
 'revision-info'       => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">

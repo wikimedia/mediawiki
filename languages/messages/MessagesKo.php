@@ -838,8 +838,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 # History pages
 'viewpagelogs'        => '이 문서의 기록 보기',
 'nohistory'           => '이 문서는 편집 역사가 없습니다.',
-'revnotfound'         => '버전 없음',
-'revnotfoundtext'     => '문서의 해당 버전을 찾지 못했습니다. 접속 URL을 확인해 주세요.',
 'currentrev'          => '현재 판',
 'currentrev-asof'     => '$1 현재 판',
 'revisionasof'        => '$1 판',

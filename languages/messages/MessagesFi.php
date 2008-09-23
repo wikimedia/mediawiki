@@ -795,8 +795,6 @@ Käyttäjän $3 antama syy on ''$2''",
 # History pages
 'viewpagelogs'        => 'Näytä tämän sivun lokit',
 'nohistory'           => 'Tällä sivulla ei ole muutoshistoriaa.',
-'revnotfound'         => 'Versiota ei löydy',
-'revnotfoundtext'     => 'Pyytämääsi versiota ei löydy. Tarkista URL-osoite, jolla hait tätä sivua.',
 'currentrev'          => 'Nykyinen versio',
 'currentrev-asof'     => 'Nykyinen versio $1',
 'revisionasof'        => 'Versio $1',

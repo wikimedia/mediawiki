@@ -691,8 +691,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 # History pages
 'viewpagelogs'        => 'このページに関するログを見る',
 'nohistory'           => 'このページには変更履歴がありません。',
-'revnotfound'         => '要求された版が見つかりません。',
-'revnotfoundtext'     => '要求されたこのページの旧版は見つかりませんでした。このページにアクセスしたURLをもう一度確認してください。',
 'currentrev'          => '最新版',
 'currentrev-asof'     => '$1 時点における最新版',
 'revisionasof'        => '$1の版',

@@ -532,8 +532,6 @@ Tomsta torėt nosprēst, a pritėnk tuoliau redagoutė šėta poslapi.
 # History pages
 'viewpagelogs'        => 'Ruodītė šėtuo poslapė specēliōsios vaiksmos',
 'nohistory'           => 'Šėts poslapis netor keitėmu istuorėjės.',
-'revnotfound'         => 'Versėjė narasta',
-'revnotfoundtext'     => 'Nuorima poslapė versėjė narasta. Patėkrėnkėt URL, katro patekuot i šėta poslapi.',
 'currentrev'          => 'Dabartėnė versėjė',
 'currentrev-asof'     => 'Dabartėnė $1 versėjė',
 'revisionasof'        => '$1 versėjė',

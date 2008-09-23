@@ -685,9 +685,6 @@ Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
 # History pages
 'viewpagelogs'        => 'Ii panna ke suchi dekho',
 'nohistory'           => 'Ii panna ke khatir koi badlao ke itihaas nai hai.',
-'revnotfound'         => 'Badlao nai mila',
-'revnotfoundtext'     => 'Jon panna ke aap mangta rahaa, uske purana badlao nai mila.
-Aap jon URL ke use kar ke ii panna ke acess karaa hai, uske check karo.',
 'currentrev'          => 'Abhi ke sansodhan',
 'currentrev-asof'     => 'Abhi ke badlao ii tarik tak $1',
 'revisionasof'        => '$1 ke badlao',

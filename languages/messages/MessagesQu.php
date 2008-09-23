@@ -658,9 +658,6 @@ $3-qa nirqan kayraykum: ''$2''",
 # History pages
 'viewpagelogs'        => "Kay p'anqamanta hallch'akunata qhaway",
 'nohistory'           => "Kay p'anqamantaqa manam llamk'apuy wiñay kawsay kanchu.",
-'revnotfound'         => "Llamk'apusqaqa manam tarisqachu",
-'revnotfoundtext'     => "Mañakusqayki llamk'apusqaqa manam tarisqachu.
-Ama hina kaspa, kay p'anqap URL nisqa tiyayninta k'uskiriy.",
 'currentrev'          => 'Kunan hukchasqa',
 'currentrev-asof'     => 'Kunan musuqchasqa, $1 pacha',
 'revisionasof'        => "$1-pa llamk'apusqan",

@@ -698,8 +698,6 @@ Kod blokama fa el $3 pegivöl binon ''$2''",
 # History pages
 'viewpagelogs'        => 'Jonön jenotalisedis pada at',
 'nohistory'           => 'Pad at no labon redakamajenotemi.',
-'revnotfound'         => 'Fomam no petuvon',
-'revnotfoundtext'     => 'Padafomam büik fa ol peflagöl no petuvon. Kontrololös, begö! ladeti-URL, keli egebol ad logön padi at.',
 'currentrev'          => 'Fomam anuik',
 'revisionasof'        => 'Fomam dätü $1',
 'revision-info'       => 'Fomam timü $1 fa el $2',

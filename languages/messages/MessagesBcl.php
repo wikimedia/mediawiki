@@ -630,8 +630,6 @@ An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong komben
 # History pages
 'viewpagelogs'        => 'Hilingón an mga usip para sa pahinang ini',
 'nohistory'           => 'Mayong paghirá nin uusipón sa pahinang ini.',
-'revnotfound'         => 'Dai nahanap an pagpakaraháy',
-'revnotfoundtext'     => 'Dai nahanap an lumang pagpakaraháy kan pahina na hinagad mo. Sosogon tabì an URL na ginamit mo sa pagabót sa pahinang ini.',
 'currentrev'          => 'Sa ngonyan na pagpakarháy',
 'revisionasof'        => 'Pagpakarháy sa $1',
 'revision-info'       => 'An pagpakarháy sa $1 ni $2',

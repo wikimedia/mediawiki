@@ -582,8 +582,6 @@ $wgMessageStructure = array(
 	'history' => array(
 		'viewpagelogs',
 		'nohistory',
-		'revnotfound',
-		'revnotfoundtext',
 		'currentrev',
 		'currentrev-asof',
 		'revisionasof',

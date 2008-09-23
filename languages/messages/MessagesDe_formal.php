@@ -208,9 +208,6 @@ Grund für die Sperre: $1',
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 
-# History pages
-'revnotfoundtext' => 'Die Version dieser Seite, nach der Sie suchen, konnte nicht gefunden werden. Bitte überprüfen Sie die URL dieser Seite.',
-
 # Revision deletion
 'rev-deleted-text-view'  => '<div class="mw-warning plainlinks">Diese Version wurde gelöscht und ist nicht mehr öffentlich einsehbar.
 Als Administrator auf {{SITENAME}} können Sie sie weiterhin einsehen.

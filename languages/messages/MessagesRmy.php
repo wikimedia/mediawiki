@@ -241,7 +241,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'yourdiff'           => 'Ververimata',
 
 # History pages
-'revnotfoundtext'  => 'I puraneder versiya la patrinyaki so tu manglyan na arakhel pes. Mangas tuke te palemdikhes o phandipen so labyardyan kana avilyan kathe.',
 'previousrevision' => '← Purano paruvipen',
 'nextrevision'     => 'Nevi paruvipen →',
 'cur'              => 'akanutni',

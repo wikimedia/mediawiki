@@ -418,7 +418,6 @@ Sedi ya phumulo ya letlakala e re:",
 
 # History pages
 'viewpagelogs'        => "Nyakoretša di-''log'' tša letlakala le",
-'revnotfound'         => 'Poeletšo ga e humanege',
 'currentrev'          => 'Poeletšo tša bjale',
 'revisionasof'        => 'Thumeletšo go tloga ka $1',
 'revision-info'       => 'Poeletšo go tloga $1 ka $2',

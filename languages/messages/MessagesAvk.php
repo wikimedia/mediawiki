@@ -568,8 +568,6 @@ Bazeyena lazava ke $3 tir ''$2''.",
 # History pages
 'viewpagelogs'        => 'Wira va "logs" ke batu bu',
 'nohistory'           => 'Nedoy izvot va batu bu.',
-'revnotfound'         => 'Merotrasin siatos',
-'revnotfoundtext'     => 'Abdif siatos ke batu bu me zo rodimtrasir. Ta vansara va batu bu va faveyene URL mane ageltal.',
 'currentrev'          => 'Noelaf siatos',
 'revisionasof'        => 'Siatos ba $1',
 'revision-info'       => 'Dimplekura va $1 gan $2',

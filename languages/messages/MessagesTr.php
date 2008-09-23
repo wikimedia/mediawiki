@@ -653,8 +653,6 @@ $3 tarafından verilen sebep ''$2''",
 # History pages
 'viewpagelogs'        => 'Bu sayfa ile ilgili kayıtları göster',
 'nohistory'           => 'Bu sayfanın geçmiş sürümü yok.',
-'revnotfound'         => 'Sürüm bulunmadı',
-'revnotfoundtext'     => "İstemiş olduğunuz sayfanın eski versiyonu bulunamadı. Lütfen bu sayfaya erişmekte kullandığınız URL'yi kontrol edin.",
 'currentrev'          => 'Güncel sürüm',
 'currentrev-asof'     => '$1 itibariyle sayfanın şu anki hâli.',
 'revisionasof'        => 'Sayfanın $1 tarihindeki hali',

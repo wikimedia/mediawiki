@@ -863,10 +863,6 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 # History pages
 'viewpagelogs'        => 'De Logböcher för hee die Sigg beloore',
 'nohistory'           => 'Et jitt kei fottjeschmesse, zeröckhollba Versione vun dä Sigg.',
-'revnotfound'         => "Die Version ha'mer nit jefunge.",
-'revnotfoundtext'     => '<b>Dä.</b> Die ählere Version vun dä Sigg, wo De noh frochs, es nit do. Schad. Luur ens 
-op die URL, die Dich herjebraht hät, die weed verkihrt sin, oder se es villeich üvverhollt, weil einer die Sigg 
-fottjeschmesse hät?',
 'currentrev'          => 'Neuste Version',
 'currentrev-asof'     => 'De neuste Version fum $1',
 'revisionasof'        => 'Version vum $1',

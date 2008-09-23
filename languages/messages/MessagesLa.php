@@ -658,9 +658,6 @@ Ille hanc causam dedit: ''$2''",
 # History pages
 'viewpagelogs'        => 'Vide acta huius paginae',
 'nohistory'           => 'Huic paginae non est historia.',
-'revnotfound'         => 'Emendatio non inventa',
-'revnotfoundtext'     => 'Emendatio quem rogavisti non inventa est.
-Confirma URL paginae.',
 'currentrev'          => 'Emendatio recentissima',
 'currentrev-asof'     => 'Emendatio recentissima ex $1',
 'revisionasof'        => 'Emendatio ex $1',

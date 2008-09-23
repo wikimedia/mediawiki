@@ -434,7 +434,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 
 # History pages
 'viewpagelogs'        => 'ਇਸ ਪੇਜ ਦੇ ਲਈ ਲਾਗ ਵੇਖੋ',
-'revnotfound'         => 'ਰੀਵਿਜ਼ਨ ਨਹੀਂ ਲੱਭਿਆ',
 'currentrev'          => 'ਮੌਜੂਦਾ ਰੀਵਿਜ਼ਨ',
 'revisionasof'        => '$1 ਦੇ ਰੀਵਿਜ਼ਨ ਵਾਂਗ',
 'previousrevision'    => '←ਪੁਰਾਣਾ ਰੀਵਿਜ਼ਨ',

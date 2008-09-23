@@ -636,9 +636,6 @@ An fáth a thabhairt an riarthóir a ghlasadh nach: '''$1'''",
 # History pages
 'viewpagelogs'        => 'Féach ar logaí faoin leathanach seo',
 'nohistory'           => 'Níl aon stáir athraithe ag an leathanach seo.',
-'revnotfound'         => 'Ní bhfuarthas an athrú',
-'revnotfoundtext'     => "Ní bhfuarthas seaneagrán an leathanaigh a d'iarr tú ar.
-Cinntigh an URL a d'úsáid tú chun an leathanach seo a rochtain.",
 'currentrev'          => 'Leagan reatha',
 'revisionasof'        => 'Leagan ó $1',
 'revision-info'       => 'Leagan mar $1 le $2',

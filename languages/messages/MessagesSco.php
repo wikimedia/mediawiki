@@ -588,8 +588,6 @@ The grund for this, given by $3 is ''$2''",
 # History pages
 'viewpagelogs'        => 'Leuk at logs for this page',
 'nohistory'           => "The'r nae edit history for this page.",
-'revnotfound'         => 'Reveision nae funnd',
-'revnotfoundtext'     => 'The auld reveision o the page ye socht cuidna be funnd. Please check the URL ye uised til access this page.',
 'currentrev'          => 'Current reveision',
 'revisionasof'        => 'Reveision as o $1',
 'revision-info'       => 'Revision as o $1 by $2',

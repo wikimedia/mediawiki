@@ -720,9 +720,6 @@ $2',
 # History pages
 'viewpagelogs'        => '查看此页面的日志',
 'nohistory'           => '此页没有修订记录。',
-'revnotfound'         => '没有找到修订记录',
-'revnotfoundtext'     => '您请求的更早版本的修订记录没有找到。
-请检查您请求本页面用的 URL 是否正确。',
 'currentrev'          => '当前修订版本',
 'currentrev-asof'     => '在$1的当前修订版本',
 'revisionasof'        => '在$1所做的修订版本',

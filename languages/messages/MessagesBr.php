@@ -669,8 +669,6 @@ An abeg roet gant $3 zo ''$2''",
 # History pages
 'viewpagelogs'        => 'Gwelet ar marilhoù evit ar bajenn-mañ',
 'nohistory'           => "Ar bajenn-mañ n'he deus tamm istor ebet.",
-'revnotfound'         => "N'eo ket bet kavet ar stumm-mañ",
-'revnotfoundtext'     => "N'eo ket bet kavet stumm kent ar bajenn-mañ. Gwiriit an URL lakaet ganeoc'h evit mont d'ar bajenn-mañ.",
 'currentrev'          => 'Stumm a-vremañ pe stumm red',
 'revisionasof'        => 'Stumm eus an $1',
 'revision-info'       => 'Stumm eus an $1 gant $2',

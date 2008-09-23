@@ -551,9 +551,6 @@ Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:UserLog
 # History pages
 'viewpagelogs'        => 'Ẓer aɣmis n usebter-agi',
 'nohistory'           => 'Ulac amezruy n yibeddlen i usebter-agi.',
-'revnotfound'         => 'Ur yezmir ara ad yaf tasiwelt',
-'revnotfoundtext'     => 'Tasiwelt taqdimt n usebter-agi i testeqsiḍ ulac-it.
-Ssenqed URL i tesseqdac.',
 'currentrev'          => 'Tasiwelt n tura',
 'revisionasof'        => 'Tasiwelt n wass $1',
 'revision-info'       => 'Tasiwelt n wass $1 sɣur $2',

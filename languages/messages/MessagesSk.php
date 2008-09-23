@@ -818,9 +818,6 @@ Dôvod, ktorý $3 uviedol, je ''$2''",
 # History pages
 'viewpagelogs'        => 'Zobraziť záznamy pre túto stránku',
 'nohistory'           => 'Pre túto stránku neexistuje história.',
-'revnotfound'         => 'Predošlá verzia nebola nájdená',
-'revnotfoundtext'     => 'Požadovaná staršia verzia stránky nebola nájdená.
-Prosím skontrolujte URL adresu, ktorú ste použili na prístup k tejto stránke.',
 'currentrev'          => 'Aktuálna verzia',
 'currentrev-asof'     => 'Aktuálna revízia z $1',
 'revisionasof'        => 'Verzia zo dňa a času $1',

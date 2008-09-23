@@ -401,7 +401,6 @@ Xiquimpiya motlahtōl.',
 # History pages
 'viewpagelogs'        => 'Tiquinttāz tlahcuilōlloh inīn zāzaniltechcopa',
 'nohistory'           => 'Ahmo cah tlapatlaliztechcopa tlahcuilōlloh inīn zāzaniltechcopa.',
-'revnotfound'         => 'Ahmo ōmonēxti tlachiyaliztli',
 'currentrev'          => 'Āxcān tlapatlaliztli',
 'revisionasof'        => 'Tlachiyaliztli īpan $1',
 'revision-info'       => 'Tlachiyaliztli īpan $1; $2',

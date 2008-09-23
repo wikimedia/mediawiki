@@ -850,8 +850,6 @@ Grund der Sperre: ''$2''",
 # History pages
 'viewpagelogs'        => 'Logbücher für diese Seite anzeigen',
 'nohistory'           => 'Es gibt keine Versionsgeschichte für diese Seite.',
-'revnotfound'         => 'Diese Version wurde nicht gefunden.',
-'revnotfoundtext'     => 'Die Version dieser Seite, nach der du suchst, konnte nicht gefunden werden. Bitte überprüfe die URL dieser Seite.',
 'currentrev'          => 'Aktuelle Version',
 'currentrev-asof'     => 'Aktuelle Version vom $1',
 'revisionasof'        => 'Version vom $1',

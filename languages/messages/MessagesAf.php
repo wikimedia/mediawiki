@@ -685,8 +685,6 @@ Die rede verskaf deur $3 is ''$2''",
 # History pages
 'viewpagelogs'        => 'Bekyk logboeke vir hierdie bladsy',
 'nohistory'           => 'Daar is geen wysigingsgeskiedenis vir hierdie bladsy nie.',
-'revnotfound'         => 'Weergawe nie gevind nie',
-'revnotfoundtext'     => 'Die ou weergawe wat jy aangevra het kon nie gevind word nie. Gaan asseblief die URL na wat jy gebruik het.',
 'currentrev'          => 'Huidige wysiging',
 'currentrev-asof'     => 'Huidige wysiging per $1',
 'revisionasof'        => 'Wysiging soos op $1',

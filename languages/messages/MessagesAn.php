@@ -732,9 +732,6 @@ A razón endicata por $3 ye ''$2''",
 # History pages
 'viewpagelogs'        => "Beyer os rechistros d'ista pachina",
 'nohistory'           => "Ista pachina no tiene un istorial d'edizions.",
-'revnotfound'         => 'Bersión no trobata',
-'revnotfoundtext'     => "No se pudo trobar a bersión antiga d'a pachina demandata.
-Por fabor, rebise l'adreza que fazió serbir t'aczeder á ista pachina.",
 'currentrev'          => 'Bersión autual',
 'revisionasof'        => "Bersión d'o $1",
 'revision-info'       => "Bersión d'o $1 feita por $2",

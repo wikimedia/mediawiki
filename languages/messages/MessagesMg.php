@@ -403,10 +403,6 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.</strong>',
 
 # History pages
 'nohistory'        => 'Tsy manana tantaram-panovana io pejy io.',
-'revnotfound'      => 'Tsy hita io fanovana io',
-'revnotfoundtext'  => "
-Tsy hita ny votoatin'ny pejy taloha nangatahinao.
-Hamarino azafady ny URL nampiasainao hahatongavana eto amin'ity pejy ity.",
 'previousrevision' => '←Votoatiny antitra kokoa',
 'nextrevision'     => 'Fanovana vao haingana→',
 'cur'              => 'ank',

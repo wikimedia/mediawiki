@@ -417,8 +417,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 # History pages
 'viewpagelogs'        => 'Čájet dán siiddu loggaid',
 'nohistory'           => 'Dán siiddus ii leat rievdadanhistorjá.',
-'revnotfound'         => 'Veršuvdna ii dihtto',
-'revnotfoundtext'     => 'Veršuvdna, man ohcet, ii dihtto. Dárkkis URL-čujuhusa, mainna ohcet dán siiddu.',
 'currentrev'          => 'Dálá veršuvdna',
 'revisionasof'        => 'Veršuvdna $1',
 'revision-info'       => 'Dálá veršuvdna $1 – ráhkadan $2',

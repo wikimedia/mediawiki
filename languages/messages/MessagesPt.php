@@ -817,9 +817,6 @@ A justificativa apresentada por $3 foi ''$2''",
 # History pages
 'viewpagelogs'        => 'Ver registos para esta página',
 'nohistory'           => 'Não há histórico de edições para esta página.',
-'revnotfound'         => 'Edição não encontrada',
-'revnotfoundtext'     => 'A edição antiga desta página que foi requisitada não pôde ser encontrada.
-Verifique o URL que utilizou para aceder esta página.',
 'currentrev'          => 'Revisão actual',
 'currentrev-asof'     => 'Edição actual tal como $1',
 'revisionasof'        => 'Edição tal como às $1',

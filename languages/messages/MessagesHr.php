@@ -913,9 +913,6 @@ Razlog koji je dao/la $3 je ''$2''",
 # History pages
 'viewpagelogs'        => 'Vidi evidencije za ovu stranicu',
 'nohistory'           => 'Ova stranica nema starijih izmjena.',
-'revnotfound'         => 'Stara izmjena nije nađena.',
-'revnotfoundtext'     => 'Ne mogu pronaći staru izmjenu stranice koju ste zatražili.
-Molimo provjerite URL koji vas je doveo ovamo.',
 'currentrev'          => 'Trenutačna inačica',
 'currentrev-asof'     => 'Trenutačna izmjena od $1',
 'revisionasof'        => 'Inačica od $1',

@@ -340,7 +340,6 @@ $messages = array(
 # History pages
 'viewpagelogs'        => 'Khoàⁿ chit ia̍h ê logs',
 'nohistory'           => 'Chit ia̍h bô pian-chi̍p-sú.',
-'revnotfound'         => 'Chhōe bô siu-tēng-pún',
 'currentrev'          => 'Hiān-chú-sî ê siu-tēng-pún',
 'revisionasof'        => '$1 ê siu-tēng-pún',
 'previousrevision'    => '←Khah kū ê siu-tēng-pún',

@@ -765,8 +765,6 @@ Lý do được $3 đưa ra là ''$2''",
 # History pages
 'viewpagelogs'        => 'Xem nhật trình của trang này',
 'nohistory'           => 'Trang này chưa có lịch sử.',
-'revnotfound'         => 'Không thấy',
-'revnotfoundtext'     => 'Không thấy phiên bản trước của trang này. Xin kiểm tra lại.',
 'currentrev'          => 'Bản hiện tại',
 'currentrev-asof'     => 'Bản hiện tại lúc $1',
 'revisionasof'        => 'Phiên bản lúc $1',

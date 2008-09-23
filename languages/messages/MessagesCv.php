@@ -550,7 +550,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # History pages
 'viewpagelogs'        => 'Ку страницăн журналĕсене пăхасси',
 'nohistory'           => 'Ку страницăн улшăнусен журналĕ çук.',
-'revnotfound'         => 'Верси тупăнмарĕ',
 'currentrev'          => 'Хальхи верси',
 'revisionasof'        => '$1 верси',
 'revision-info'       => '$1 версийĕ; $2',

@@ -864,8 +864,6 @@ La rason balhada per $3 èra ''$2''.",
 # History pages
 'viewpagelogs'        => 'Vejatz las operacions per aquesta pagina',
 'nohistory'           => "Existís pas d'istoric per aquesta pagina.",
-'revnotfound'         => 'Version introbabla',
-'revnotfoundtext'     => "La version precedenta d'aquesta pagina a pas pogut èsser retrobada. Verificatz l'URL qu'avètz utilizada per accedir a aquesta pagina.",
 'currentrev'          => 'Version actuala',
 'currentrev-asof'     => 'Version actuala en data del $1',
 'revisionasof'        => 'Version del $1',

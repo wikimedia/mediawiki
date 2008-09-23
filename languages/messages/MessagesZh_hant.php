@@ -695,9 +695,6 @@ $2',
 # History pages
 'viewpagelogs'        => '查詢這個頁面的日誌',
 'nohistory'           => '沒有本頁的修訂記錄。',
-'revnotfound'         => '沒有找到修訂記錄',
-'revnotfoundtext'     => '您請求的更早版本的修訂記錄沒有找到。
-請檢查您請求本頁面用的URL是否正確。',
 'currentrev'          => '當前修訂版本',
 'currentrev-asof'     => '在$1的當前修訂版本',
 'revisionasof'        => '在$1所做的修訂版本',

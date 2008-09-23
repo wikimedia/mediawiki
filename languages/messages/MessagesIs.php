@@ -815,7 +815,6 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 # History pages
 'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
 'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
-'revnotfound'         => 'Breyting ekki fundin',
 'currentrev'          => 'Núverandi útgáfa',
 'revisionasof'        => 'Útgáfa síðunnar $1',
 'revision-info'       => 'Útgáfa frá $1 eftir $2',

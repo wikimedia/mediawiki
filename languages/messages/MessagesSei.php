@@ -558,8 +558,6 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 # History pages
 'viewpagelogs'        => 'Cohuatlöx logámde jan páhina',
 'nohistory'           => 'Jan páhina necoccebj históriade ticpatlöx.',
-'revnotfound'         => 'Revicion neyahöx',
-'revnotfoundtext'     => 'Janrevicion zode páhina zo me yahöx necoccebj yahöxom. Controlar URL zo me usadadde accesom jan páhina.',
 'currentrev'          => 'Revicion cmaa',
 'revisionasof'        => 'Revicionde $1',
 'revision-info'       => "Revicionde $1 'de $2",

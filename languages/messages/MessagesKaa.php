@@ -640,7 +640,6 @@ $3 keltirilgen sebebi: ''$2''",
 # History pages
 'viewpagelogs'        => "Usı bettin' jurnalın ko'riw",
 'nohistory'           => "Bul bettin' o'zgertiw tariyxı joq.",
-'revnotfound'         => 'Nusqa tabılmadı',
 'currentrev'          => "Ha'zirgi nusqa",
 'revisionasof'        => '$1 waqtındagı nusqası',
 'revision-info'       => "$1 waqtındag'ı $2 istegen nusqası",

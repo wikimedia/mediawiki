@@ -572,8 +572,6 @@ $3 norādītais iemesls ir ''$2''",
 # History pages
 'viewpagelogs'        => 'Apskatīties ar šo lapu saistītos reģistru ierakstus',
 'nohistory'           => 'Šai lapai nav pieejama versiju hronoloģija.',
-'revnotfound'         => 'Versija nav atrasta',
-'revnotfoundtext'     => 'Meklētā vecā lapas versija netika atrasta. Lūdzu pārbaudi lietoto URL.',
 'currentrev'          => 'Pašreizējā versija',
 'currentrev-asof'     => 'Pašreizējā versija, $1',
 'revisionasof'        => 'Versija, kas saglabāta $1',

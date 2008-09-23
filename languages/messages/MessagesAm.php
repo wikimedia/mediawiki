@@ -583,8 +583,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 # History pages
 'viewpagelogs'        => 'መዝገቦች ለዚሁ ገጽ',
 'nohistory'           => 'ለዚሁ ገጽ የዕትሞች ታሪክ የለም።',
-'revnotfound'         => 'እትም አልተገኘም',
-'revnotfoundtext'     => 'ለዚህ ገጽ የጠየቁት የቆየው ዕትም ሊገኝ አልቻለም። እባክዎ ይህን ገጽ ለማግኘት የተጠቀመው URL ይመልከቱ።',
 'currentrev'          => 'የአሁኑ እትም',
 'revisionasof'        => 'እትም በ$1',
 'revision-info'       => 'የ$1 ዕትም (ከ$2 ተዘጋጅቶ)',

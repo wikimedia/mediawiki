@@ -674,8 +674,6 @@ Ir-raġuni li ġiet mogħtija mingħand $3 kienet ''$2''",
 # History pages
 'viewpagelogs'        => "Ara r-reġistri ta' din il-paġna",
 'nohistory'           => "M'hemm l-ebda kronoloġija ta' modifika f'din il-paġna.",
-'revnotfound'         => 'Ir-reviżjoni ma nstabitx',
-'revnotfoundtext'     => "Ir-reviżjoni l-antika tal-paġna li staqsejt dwar ma setgħatx tiġi minsuba. Jekk jogħġbok verifika l-URL li użajt sabiex tidħol f'din il-paġna.",
 'currentrev'          => 'Reviżjoni kurrenti',
 'revisionasof'        => "Reviżjoni ta' $1",
 'revision-info'       => "Reviżjoni ta' $1 minn $2",

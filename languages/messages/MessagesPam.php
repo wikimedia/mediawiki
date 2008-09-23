@@ -643,8 +643,6 @@ Ini ing sangkan a binie nang $3: ''$2''",
 # History pages
 'viewpagelogs'        => 'Lon la reng log para king bulung a ini',
 'nohistory'           => 'Alang amlat ning pamag-edit (edit history) para king bulung a ini.',
-'revnotfound'         => 'E meyakit itang miyalilan',
-'revnotfoundtext'     => 'Ing matuang meyaliling bulung a pakiduang mu eya mayakit. Paki lawe me ing URL a ginamit mu para apuntalan me ing bulung.',
 'currentrev'          => 'Kasalungsungan a pangayalili',
 'revisionasof'        => 'Ing mibayu aniang $1',
 'revision-info'       => 'Deng miyalilan aniang $1 ibat kang $2',

@@ -509,8 +509,6 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 
 # History pages
 'nohistory'           => 'Stran nima zgodovine urejanja.',
-'revnotfound'         => 'Redakcije ne najdem',
-'revnotfoundtext'     => 'Redakcije strani, ki ste jo poskušali pridobiti, ni mogoče najti. Prosimo, preverite spletni naslov, ki ste ga uporabili za dostop do strani.',
 'currentrev'          => 'Trenutna redakcija',
 'revisionasof'        => 'Redakcija: $1',
 'previousrevision'    => '← Starejša redakcija',

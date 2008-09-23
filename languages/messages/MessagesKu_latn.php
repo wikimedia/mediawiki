@@ -598,7 +598,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 # History pages
 'viewpagelogs'        => 'Reşahîyên vê rûpelê bibîne',
 'nohistory'           => 'Ew rûpel dîroka guherandinê tune.',
-'revnotfound'         => 'Revîzyon nehat dîtin',
 'currentrev'          => 'Revîzyona niha',
 'revisionasof'        => 'Revîzyon a $1',
 'previousrevision'    => '←Rêvîzyona kevintir',

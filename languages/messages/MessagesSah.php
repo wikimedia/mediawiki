@@ -660,8 +660,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 # History pages
 'viewpagelogs'        => 'Бу сирэй историятын көрдөр',
 'nohistory'           => 'Бу сирэй историята суох эбит.',
-'revnotfound'         => 'Уларытыы булуллубата',
-'revnotfoundtext'     => 'Бу сирэй урукку барыла булуллубата. Ыйынньыгы сыыһата суох суруйбуккун көр.',
 'currentrev'          => 'Билиҥҥи барыл',
 'currentrev-asof'     => 'Билиҥҥи торум манна: $1',
 'revisionasof'        => '$1 барыл',

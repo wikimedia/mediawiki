@@ -526,8 +526,6 @@ Nina'i i rasion ''$2'' as $3",
 # History pages
 'viewpagelogs'        => 'Atan i historian påhina',
 'nohistory'           => "Tåya' historian tinilaika este na påhina.",
-'revnotfound'         => "Timasodda' i ribision",
-'revnotfoundtext'     => "Ti siña masodda' i tinilaika i påhina ni finaisen-mu. Pot fabot chek i URL ni un usa para i finatto-mu gi påhina.",
 'currentrev'          => 'Tinilaika modetnu',
 'revisionasof'        => 'Maribisa ginen $1',
 'revision-info'       => 'Tinilaika ginen $1 as $2',

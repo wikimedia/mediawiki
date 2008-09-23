@@ -573,8 +573,6 @@ $2',
 # History pages
 'viewpagelogs'        => '眵吖箇頁嗰日誌',
 'nohistory'           => '箇頁冇修改歷史。',
-'revnotfound'         => '冇尋到修改歷史',
-'revnotfoundtext'     => '倷請求嗰更早版本嗰修改歷史冇尋到。請檢查倷嗰URL係否正確。',
 'currentrev'          => '眼前嗰修改版本',
 'revisionasof'        => '$1嗰修改版本',
 'revision-info'       => '$2到$1扤嗰修訂版本',

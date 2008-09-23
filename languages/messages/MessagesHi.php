@@ -695,8 +695,6 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 # History pages
 'viewpagelogs'        => 'इस पन्नेका लॉग देखियें',
 'nohistory'           => 'इस पन्ने का कोई इतिहास नहीं',
-'revnotfound'         => 'अवतरण मिला नहीं',
-'revnotfoundtext'     => 'आपसे पूछा गया इस लेख का पुराना अवतरण नहीं मिल पाया। कॄपया आपने इस्तेमाल किये URL की जाँच करें।',
 'currentrev'          => 'सद्य अवतरण',
 'revisionasof'        => '$1 का आवर्तन',
 'revision-info'       => '$2ने किया हुवा $1का अवतरण',

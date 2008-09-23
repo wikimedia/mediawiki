@@ -661,9 +661,6 @@ La rêson balyê per $3 ére ''$2''.",
 # History pages
 'viewpagelogs'        => 'Vêde lo jornal de ceta pâge',
 'nohistory'           => 'Ègziste pas d’historico por ceta pâge.',
-'revnotfound'         => 'Vèrsion entrovâbla',
-'revnotfoundtext'     => 'La vèrsion prècèdenta de cela pâge at pas possu étre retrovâ.
-Volyéd controlar l’URL que vos éd utilisâ por arrevar a ceta pâge.',
 'currentrev'          => 'Vèrsion d’ora',
 'revisionasof'        => 'Vèrsion du $1',
 'revision-info'       => 'Vèrsion du $1 per $2',

@@ -626,8 +626,6 @@ Skuli: ''$2''",
 # History pages
 'viewpagelogs'        => 'Uoboč rejery uoperacyji lo tyj zajty',
 'nohistory'           => 'Ta zajta ńy mo swojij historyje sprowjyń.',
-'revnotfound'         => 'Wersyjo ńy zostoua znejdźůno',
-'revnotfoundtext'     => 'Ńy idźe znejść staršyj wersyji zajty. Sprawdź, proša, URL kery žeś užůu coby uzyskać dostymp do tyj zajty.',
 'currentrev'          => 'Aktualno wersyjo',
 'revisionasof'        => 'Wersyjo s dńa $1',
 'revision-info'       => 'Wersyjo s dńa $1; $2',
