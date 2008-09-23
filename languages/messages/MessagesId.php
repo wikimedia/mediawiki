@@ -684,7 +684,9 @@ Silakan periksa kembali ejaan Anda.',
 Kata sandi paling tidak harus terdiri dari {{PLURAL:$1|1 karakter|$1 karakter}} dan harus berbeda dengan nama pengguna Anda.',
 'mailmypassword'             => 'Surat-e kata sandi baru',
 'passwordremindertitle'      => 'Peringatan kata sandi dari {{SITENAME}}',
-'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kami mengirimkan kata sandi yang baru untuk {{SITENAME}} ($4). Kata sandi untuk pengguna "$2" sekarang adalah "$3". Anda disarankan segera masuk log dan mengganti kata sandi.',
+'passwordremindertext'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta kami mengirimkan kata sandi yang baru untuk {{SITENAME}} ($4). Kata sandi sementara untuk pengguna "$2" telah dibuatkan dan diset menjadi "$3". Jika memang Anda yang mengajukan permintaan ini, silakan masuk log dan segera mengganti dengan kata sandi yang baru.
+
+Jika bukan Anda yang melakukan permintaan kata sandi baru, atau Anda telah mengingat kata sandi Anda dan akan tetap menggunakan kata sandi tersebut, silakan abaikan pesan ini dan tetap gunakan kata sandi lama Anda.',
 'noemail'                    => 'Tidak ada alamat surat-e yang tercatat untuk pengguna "$1".',
 'passwordsent'               => 'Kata sandi baru telah dikirimkan ke surat-e yang didaftarkan untuk "$1". Silakan masuk log kembali setelah menerima surat-e tersebut.',
 'blocked-mailpassword'       => 'Alamat IP Anda diblokir dari penyuntingan dan karenanya tidak diizinkan menggunakan fungsi pengingat kata sandi untuk mencegah penyalahgunaan.',
@@ -874,6 +876,7 @@ Anda dapat kembali dan menyunting halaman yang telah ada, atau silakan [[Special
 Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
 'deleted-notice'                   => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
+'deletelog-fulllog'                => 'Menampilkan seluruh log',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -999,6 +1002,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'mergehistory-invalid-destination' => 'Judul halaman tujuan haruslah judul yang valid.',
 'mergehistory-autocomment'         => '[[:$1]] telah digabungkan ke [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] telah digabungkan ke [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Nama halaman sumber dan tujuan tidak boleh sama',
 
 # Merge log
 'mergelog'           => 'Gabung log',
@@ -1521,22 +1525,24 @@ Juga tersedia [[Special:WhatLinksHere/$2|daftar selengkapnya]].',
 'randomredirect-nopages' => 'Tak terdapat pengalihan pada ruang nama ini.',
 
 # Statistics
-'statistics'               => 'Statistik',
-'statistics-header-pages'  => 'Statistik halaman',
-'statistics-header-edits'  => 'Statistik penyuntingan',
-'statistics-header-views'  => 'Statistik penampilan',
-'statistics-header-users'  => 'Statistik pengguna',
-'statistics-articles'      => 'Halaman konten',
-'statistics-pages'         => 'Jumlah halaman',
-'statistics-files'         => 'Berkas yang dimuatkan',
-'statistics-edits'         => 'Jumlah suntingan sejak {{SITENAME}} dimulai',
-'statistics-edits-average' => 'Rata-rata suntingan per halaman',
-'statistics-views-total'   => 'Jumlah penampilan halaman',
-'statistics-views-peredit' => 'Jumlah penampilan per suntingan',
-'statistics-jobqueue'      => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue antrian pekerjaan]',
-'statistics-users'         => 'Jumlah [[Special:ListUsers|pengguna terdaftar]]',
-'statistics-users-active'  => 'Jumlah pengguna aktif',
-'statistics-mostpopular'   => 'Halaman yang paling banyak ditampilkan',
+'statistics'                      => 'Statistik',
+'statistics-header-pages'         => 'Statistik halaman',
+'statistics-header-edits'         => 'Statistik penyuntingan',
+'statistics-header-views'         => 'Statistik penampilan',
+'statistics-header-users'         => 'Statistik pengguna',
+'statistics-articles'             => 'Halaman konten',
+'statistics-pages'                => 'Jumlah halaman',
+'statistics-pages-tooltip'        => 'Semua halaman di wiki ini, termasuk halaman pembicaraan, pengalihan, dan lain-lain.',
+'statistics-files'                => 'Berkas yang dimuatkan',
+'statistics-edits'                => 'Jumlah suntingan sejak {{SITENAME}} dimulai',
+'statistics-edits-average'        => 'Rata-rata suntingan per halaman',
+'statistics-views-total'          => 'Jumlah penampilan halaman',
+'statistics-views-peredit'        => 'Jumlah penampilan per suntingan',
+'statistics-jobqueue'             => 'Jumlah [http://www.mediawiki.org/wiki/Manual:Job_queue antrian pekerjaan]',
+'statistics-users'                => 'Jumlah [[Special:ListUsers|pengguna terdaftar]]',
+'statistics-users-active'         => 'Jumlah pengguna aktif',
+'statistics-users-active-tooltip' => 'Pengguna yang memiliki kontribusi dalam satu bulan terakhir',
+'statistics-mostpopular'          => 'Halaman yang paling banyak ditampilkan',
 
 'disambiguations'      => 'Halaman disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',
@@ -2070,6 +2076,7 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'proxyblocksuccess'               => 'Selesai.',
 'sorbsreason'                     => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
 'sorbs_create_account_reason'     => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
+'cant-block-while-blocked'        => 'Anda tidak dapat memblokir pengguna lain ketika Anda sendiri sedang diblokir.',
 
 # Developer tools
 'lockdb'              => 'Kunci basis data',

@@ -267,7 +267,7 @@ $messages = array(
 
 'badaccess'        => 'Baimen errorea',
 'badaccess-group0' => 'Ez daukazu ekintza hori burutzeko baimenik.',
-'badaccess-groups' => 'Ekintza hori $1 taldeetako batetako erabiltzaileei mugatuta dago.',
+'badaccess-groups' => 'Eskatu duzun ekintza honako {{PLURAL:$2|taldeko|taldeetako}} lankideei mugatuta dago: $1.',
 
 'versionrequired'     => 'MediaWikiren $1 bertsioa beharrezkoa da',
 'versionrequiredtext' => 'MediaWikiren $1 bertsioa beharrezkoa da orrialde hau erabiltzeko. Ikus [[Special:Version]]',
@@ -473,7 +473,9 @@ Ezin duzu gehiago sortu.',
 'emailnotauthenticated'      => 'Zure posta helbidea egiaztatu gabe dago. Ez da mezurik bidaliko hurrengo ezaugarrientzako.',
 'noemailprefs'               => 'Zehaztu e-posta helbide bat ezaugarri hauek erabili ahal izateko.',
 'emailconfirmlink'           => 'Egiaztatu zure e-posta helbidea',
-'invalidemailaddress'        => 'Ezin da e-posta helbide hori ontzat eman baliogabeko formatua duela dirudielako. Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
+'invalidemailaddress'        => 'Ezin da e-posta helbide hori ontzat eman baliogabeko formatua duela dirudielako. 
+
+Mesedez, formatu egokia duen helbide bat zehaztu, edo hutsik utzi.',
 'accountcreated'             => 'Kontua sortuta',
 'accountcreatedtext'         => '$1 erabiltzaile kontua sortu egin da.',
 'createaccount-title'        => '{{SITENAME}}-rako kontua sortu',
@@ -528,7 +530,33 @@ Ezin duzu gehiago sortu.',
 'summary-preview'                  => 'Laburpenaren aurreikuspena',
 'subject-preview'                  => 'Gaia/Izenburuaren aurreikuspena',
 'blockedtitle'                     => 'Erabiltzailea blokeatuta dago',
-'blockedtext'                      => 'Zure erabiltzaile izena edo IP helbidea $1(e)k blokeatu du. Emandako arrazoia honako hau da: \'\'$2\'\' $1 edo Wikipediako beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin harremanetan jarri beharko zinateke zure blokeoa eztabaidatzeko. Kontuan izan ezingo duzula "Erabiltzaile honi e-posta bidali" aukera erabili zure [[Special:Preferences|Hobespenetan]] baliozko e-posta helbide bat definitu ezean. Zure IP helbidea $3 da. Mesedez, edozein kontsulta egiterakoan, helbide hori aipatu.',
+'blockedtext'                      => "<big>'''Zure lankide izena edo IP helbidea blokeaturik dago'''</big>
+Blokeoa $1(e)k egin zuen.
+Emandako arrazoia ''$2'' da.
+
+* Blokeoaren hasiera: $8
+* Blokeoaren bukaera: $6
+* Blokeoaren intentzioa: $7
+
+$1 edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin kontakta dezakezu blokeaoren inguruan eztabaidatzeko. 
+Ezin duzu 'lanki honi e-posta bidali' tresna bidali ez baduzu zuren [[Special:Preferences|hobespenetan]] baliozko e-mail helbide bat jarri edo tresna erabiltzea ere ukatu badizute.
+
+Orain duzun IP helbidea $3 da eta zure blokeo zenbakia #$5 da.
+Mesedez, datu guzti hauek idatzi egiten duzun edozein galderarako.",
+'autoblockedtext'                  => 'Zure IP helbidea automatikoki blokeaturik dago, $1(e)k blokeatu zuen beste erabiltzaile batek erabili zuelako. Emandako arrazoia honakoa da:
+
+:\'\'$2\'\'
+
+* Blokeoaren hasiera: $8
+* Blokeoaren bukaera: $6
+* Blokeo saiakera: $7
+
+$1 edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] bat kontakta dezakezu blokeoaren inguruan hitz egiteko.
+
+Ohar zaitez ezin duzula "lankide honi e-mail bat bidali" tresna erabili ez baduzu zuren [[Special:Preferences|hobespenetan]] baliagarria den e-mail helbide bat eman eta gainera tresna hau erabiltzeko aukera ez badizute murriztu.
+
+Orain duzun IP helbidea $3 da, eta blokeoaren zenbakia #$5 da.
+Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko garaian.',
 'blockednoreason'                  => 'ez da arrazoirik zehaztu',
 'blockedoriginalsource'            => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
 'blockededitsource'                => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
@@ -550,7 +578,8 @@ Ezin duzu gehiago sortu.',
 'userpage-userdoesnotexist'        => '"$1" lankidea ez dago erregistatuta. Mesedez, konprobatu orri hau editatu/sortu nahi duzun.',
 'clearyourcache'                   => "'''Oharra - Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.''' '''Mozilla / Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Apple Mac baten); '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu; '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez; '''Opera''' erabiltzaileek ''Tresnak-Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu.",
 'usercssjsyoucanpreview'           => "<strong>Laguntza:</strong> Zure CSS/JS berria gorde aurretik probatzeko 'Aurrebista erakutsi' botoia erabili.",
-'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala, oraindik ez dela gorde!'''",
+'usercsspreview'                   => "'''Ez ahaztu zure CSS kodea aurreikusten zabiltzala.'''
+'''Oraindik gorde gabe dago!'''",
 'userjspreview'                    => "'''Gogoratu zure JavaScript kodea probatu/aurreikusten zabiltzala, oraindik ez da gorde!'''",
 'userinvalidcssjstitle'            => "'''Oharra:''' Ez da \"\$1\" itxura existitzen. Kontuan izan .css eta .js fitxategi pertsonalizatuen izenak letra xehez idatzi behar direla; adibidez, {{ns:user}}:Adibide/monobook.css, eta ez {{ns:user}}:Adibide/Monobook.css.",
 'updated'                          => '(Eguneratua)',
@@ -581,7 +610,9 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 <strong>EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!</strong>',
 'longpagewarning'                  => '<strong>OHARRA: Orrialde honek $1 kilobyteko tamaina du; nabigatzaile batzuek arazoak izan litzakete 32kb-tik gorako testuekin. Mesedez, saiatu orrialdea atal txikiagoetan banatzen.</strong>',
 'longpageerror'                    => '<strong>ERROREA: Bidali duzun testuak $1 kilobyteko luzera du, eta $2 kilobyteko maximoa baino luzeagoa da. Ezin da gorde.</strong>',
-'readonlywarning'                  => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.</strong>',
+'readonlywarning'                  => '<strong>OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.
+
+Blokeatu zuen administratzaileak honako azalpena eman zuen: $1</strong>',
 'protectedpagewarning'             => '<strong>OHARRA:  Orri hau blokeaturik dago, administratzaileek soilik eraldatu dezakete.</strong>',
 'semiprotectedpagewarning'         => '<big><strong>Oharra: Orrialde hau erregistratutako erabiltzaileek bakarrik aldatzeko babestuta dago.</strong></big>',
 'titleprotectedwarning'            => '<strong>OHARRA:  Orrialde hau blokeatuta dago eta bakkarrik lankide batzuk aldatu edo sortu dezakete.</strong>',
@@ -590,6 +621,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'templatesusedsection'             => 'Atal honetan erabiltzen diren txantiloiak:',
 'template-protected'               => '(babestua)',
 'template-semiprotected'           => '(erdi-babestua)',
+'hiddencategories'                 => 'Orrialde hau {{PLURAL:$1|kategoria izkutu bateko|$1 kategoria izkutuko}} kide da:',
 'edittools'                        => '<!-- Hemen jarritako testua aldaketa eta igoera formularioen azpian agertuko da. -->',
 'nocreatetitle'                    => 'Orrialdeak sortzea mugatuta',
 'nocreatetext'                     => 'Gune honek orrialde berriak sortzeko gaitasuna mugatu du. Atzera egin dezakezu existitzen den orrialde bat aldatzeko, edo [[Special:UserLogin|saio hasi edo kontua sortu]].',
@@ -601,6 +633,7 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 
 Pentsatu ea orrialde hau editatzen jarraitzeak zentzurik baduen.
 Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
+'deletelog-fulllog'                => 'Log osoa ikusi',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Adi: Orrialde honek parser funtzio deialdi oso garesti gehiegi ditu.
@@ -670,6 +703,7 @@ Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratz
 'revdelete-nooldid-title'     => 'Helburu berrikuspenik ez',
 'revdelete-nooldid-text'      => 'Ez d(it)uzu eragiketa hau burutzeko helburu berrikuspena(k) zehaztu.',
 'revdelete-selected'          => '{{PLURAL:$2|[[:$1]](r)en hautatutako berrikuspena:|[[:$1]](r)en hautatutako berrikuspenak}}',
+'logdelete-selected'          => '{{PLURAL:$1|Aukeratutako log gertakaria|Aukeratutako log gertakariak}}:',
 'revdelete-text'              => 'Ezabatutako berrikuspenek orrialdearen historian agertzen jarraituko dute, baina bere edukiak ez dira publikoki eskuratu ahal izango.
 
 Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango dute, eta baita leheneratzeko ere, gunearen arduradunek beste mugapenen bat ezartzen ez badute behintzat.',
@@ -679,6 +713,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-hide-comment'      => 'Aldaketaren iruzkina ezkutatu',
 'revdelete-hide-user'         => 'Egilearen erabiltzaile izena/IPa ezkutatu',
 'revdelete-hide-restricted'   => 'Mugapen hauek administratzaileei zein besteei aplikatu',
+'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
 'revdelete-hide-image'        => 'Fitxategiaren edukia ezkutatu',
 'revdelete-log'               => 'Erregistroaren iruzkina:',
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
@@ -694,6 +729,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'revdelete-hid'               => '$1 aldatu',
 'revdelete-unhid'             => '$1 azalarazi',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|berrikusketara 1erako|$2 berrikuspenerako}}',
+'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
 
 # Suppression log
 'suppressionlog' => 'Ezabatze loga',
@@ -717,18 +753,33 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'mergehistory-comment'             => '[[:$1]] [[:$2]]rekin batu da: $3',
 
 # Merge log
-'mergelog'         => 'Bateratze erregistroa',
-'revertmerge'      => 'Bereiztu',
-'mergelogpagetext' => 'Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.',
+'mergelog'           => 'Bateratze erregistroa',
+'pagemerge-logentry' => '[[$1]] [[$2]](r)ekin batu da ($3(e)raino berrikuspenak)',
+'revertmerge'        => 'Bereiztu',
+'mergelogpagetext'   => 'Jarraian dagoen zerrendak orrialde baten historiatik beste batera egindako azken bateratzeak erakusten ditu.',
 
 # Diffs
 'history-title'           => '"$1" orrialdearen historia laburpena',
 'difference'              => '(Bertsioen arteko ezberdintasunak)',
 'lineno'                  => '$1. lerroa:',
 'compareselectedversions' => 'Hautatutako bertsioak alderatu',
+'visualcomparison'        => 'Alderaketa bisuala',
+'wikicodecomparison'      => 'Wikitext alderaketa',
 'editundo'                => 'desegin',
 'diff-multi'              => '({{PLURAL:$1|Ez da tarteko berrikuspen 1|Ez dira tarteko $1 berrikuspen}} erakusten.)',
-'diff-movedto'            => '$1ra mugitua',
+'diff-movedto'            => '$1(e)ra mugituta',
+'diff-styleadded'         => '$1 estiloa gehitu da',
+'diff-added'              => '$1 gehitu da',
+'diff-changedto'          => '$1(e)ra aldatuta',
+'diff-movedoutof'         => '$1(e)tik mugituta',
+'diff-styleremoved'       => '$1 estiloa ezabatuta',
+'diff-removed'            => '$1 ezabatua',
+'diff-changedfrom'        => '$1(e)tik aldatuta',
+'diff-src'                => 'jatorria',
+'diff-withdestination'    => '$1 helburuarekin',
+'diff-with'               => '&#32; $1 $2(r)ekin',
+'diff-with-additional'    => '$1 $2',
+'diff-with-final'         => '&#32;eta $1 $2',
 'diff-width'              => 'zabalera',
 'diff-height'             => 'garaiera',
 'diff-p'                  => "'''paragrafo''' bat",
@@ -800,7 +851,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'mwsuggest-disable'         => 'AJAX gomendioak ezgaitu',
 'searchrelated'             => 'harremana',
 'searchall'                 => 'guztia',
-'showingresults'            => "Jarraian '''$1''' emaitz ikus daitezke, '''$2'''.etik hasita.",
+'showingresults'            => "Jarraian {{PLURAL:$1|emaitza '''1''' ikus daiteke|'''$1''' emaitza ikus daitezke}}, #'''$2'''.etik hasita.",
 'showingresultsnum'         => "Hasieran #'''$2''' duten '''$3''' emaitza erakusten dira jarraian.",
 'nonefound'                 => "'''Oharra''': Arrakastarik gabeko bilaketen arrazoi nagusietako bat \"dute\" eta \"da\" bezalako hitz arruntak bilatzea izan ohi da, edo baita bilaketan hitz gehiegi zehazteagatik ere (emaitzetan hitz guztiak dituzten emaitzak baino ez dira azalduko).",
 'powersearch'               => 'Bilatu',
@@ -885,6 +936,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'userrights-groupsmember'     => 'Partaide da hemen:',
 'userrights-reason'           => 'Aldatzeko arrazoia:',
 'userrights-no-interwiki'     => 'Ez duzu beste wikietan lankide eskumenak aldatzeko baimenik.',
+'userrights-nodatabase'       => '$1 datubasea ez da existitzen edo ez dago lokalki.',
 'userrights-notallowed'       => 'Zure kontuak ez du baimenik lankide eskumenak emateko.',
 'userrights-changeable-col'   => 'Alda ditzakezun taldeak',
 'userrights-unchangeable-col' => 'Aldatu ezin ditzakezun taldeak',
@@ -930,8 +982,9 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 'right-upload_by_url'        => 'URL helbide batetik fitxategi bat igo',
 'right-autoconfirmed'        => 'Semi-babestuak dauden orriak aldatu',
 'right-bot'                  => 'Prozesu automatikoki gisa jokatu',
+'right-apihighlimits'        => 'API eskaeretan goreneko mugak erabili',
 'right-writeapi'             => 'API idaztekoa erabili',
-'right-delete'               => 'Orri ezabatuak',
+'right-delete'               => 'Orrialdeak ezabatu',
 'right-bigdelete'            => 'Historia luzea duten orrialdeak ezabatu',
 'right-deleterevision'       => 'Orrialdeen berrikuspen espezifikoak ezabatu eta leheneratu',
 'right-deletedhistory'       => 'Ezabatutako sarreren historia ikusi, euren atxikitutako testurik gabe',
@@ -966,6 +1019,7 @@ Wiki honetako beste administratzaileek ezkutuko eduki hau ikusteko aukera izango
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|aldaketa 1|$1 aldaketa}}',
 'recentchanges'                     => 'Aldaketa berriak',
+'recentchanges-legend'              => 'Azken aldaketen aukerak',
 'recentchangestext'                 => 'Orrialde honetan wiki honetan egindako azken aldaketak erakusten dira.',
 'rcnote'                            => 'Jarraian azken <strong>$2</strong> egunetako azken <strong>$1</strong> aldaketak erakusten dira, $3 eguneratuta.',
 'rcnotefrom'                        => 'Jarraian azaltzen diren aldaketak data honetatik aurrerakoak dira: <b>$2</b> (gehienez <b>$1</b> erakusten dira).',
@@ -1183,6 +1237,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'statistics-header-users'  => 'Erabiltzaile estatistikak',
 'statistics-articles'      => 'Edukiak dituzten orrialdeak',
 'statistics-pages'         => 'Orrialdeak',
+'statistics-pages-tooltip' => 'Wikian dauden orrialde guztiak, eztabaida orrialdeak, birzuzenketa, etab. barne.',
 'statistics-files'         => 'Igotako fitxategiak',
 'statistics-edits'         => '{{SITENAME}} sortu zenetik eginiko aldaketa kopurua',
 'statistics-edits-average' => 'Bataz-besteko aldaketak orrialdeko',
@@ -1387,6 +1442,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'watchlist-hide-own'   => 'Nire aldaketak ezkutatu',
 'watchlist-show-minor' => 'Aldaketa txikiak erakutsi',
 'watchlist-hide-minor' => 'Aldaketa txikiak ezkutatu',
+'watchlist-show-anons' => 'Erakutsi edizio anonimoak',
 'watchlist-hide-anons' => 'Aldaketa anonimoak ezkutatu',
 'watchlist-show-liu'   => 'Izena emana duten lankideen aldaketak ikusi',
 'watchlist-hide-liu'   => 'Izena emana duten lankideen aldaketak ezkutatu',
@@ -1494,6 +1550,16 @@ Hemen daude <strong>$1</strong> orrialderako oraingo ezarpenak:',
 'protect-summary-cascade'     => 'jauzian',
 'protect-expiring'            => 'iraungipen-data: $1 (UTC)',
 'protect-cascade'             => 'Babes masiboa - orrialde honen barneko orrialde guztiak blokeatu.',
+'protect-othertime'           => 'Beste denbora:',
+'protect-othertime-op'        => 'beste denbora',
+'protect-existing-expiry'     => 'Iraungitze ordua: $1',
+'protect-otherreason'         => 'Bestelako arrazoiak (edo gehigarriak):',
+'protect-otherreason-op'      => 'bestelako arrazoiak (edo gehigarriak)',
+'protect-dropdown'            => '*Babesteko arrazoi ohikoenak
+** Gehiegizko bandalismoa
+** Gehiegizko spama
+** Produkzioaren aurkakoa den edizio gerra
+** Trafiko handiko orrialdea',
 'restriction-type'            => 'Baimena:',
 'restriction-level'           => 'Murrizketa maila:',
 'minimum-size'                => 'Tamaina minimoa',
@@ -1514,11 +1580,16 @@ Hemen daude <strong>$1</strong> orrialderako oraingo ezarpenak:',
 # Undelete
 'undelete'                 => 'Ezabatutako orrialdeak ikusi',
 'undeletepage'             => 'Ezabatutako orrialdeak ikusi eta leheneratu',
+'undeletepagetitle'        => "'''Hurrengoa [[:$1|$1]](r)en ezabatutako aldaketak dira'''.",
 'viewdeletedpage'          => 'Ezabatutako orrialdeak ikusi',
 'undeletepagetext'         => 'Jarraian zerrendatzen diren orrialdeak ezabatu egin dira baina oraindik artxiboa gordeta daude eta leheneratu egin daitezke. Artxiboa noizean behin hustu egin liteke.',
-'undeleteextrahelp'        => "Orrialde osoa leheneratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''Leheneratu'''''n klik egin. Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen koadrotxoak markatu eta '''''Leheneratu''''' klik egin. '''''Hasieratu'''''n klik eginez gero koadrotxo guztiak eta iruzkin koadroa hustu egingo dira.",
+'undelete-fieldset-title'  => 'Berrikuspenak berrezarri',
+'undeleteextrahelp'        => "Orrialde osoa leheneratzeko, koadrotxo guztiak hautatu gabe utzi eta '''''Leheneratu'''''n klik egin. 
+Aukeratutako leheneratze bat burutzeko, leheneratu nahi dituzun berrikuspenen koadrotxoak markatu eta '''''Leheneratu''''' klik egin. 
+'''''Hasiera'''''n klik eginez gero koadrotxo guztiak eta iruzkin koadroa hustu egingo dira.",
 'undeleterevisions'        => '$1 berrikuspen gordeta',
-'undeletehistory'          => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian. Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian, eta oraingo berrikuspena ez da automatikoki ordezkatuko.',
+'undeletehistory'          => 'Orrialdea leheneratzen baduzu, berrikuspena guztiak leheneratuko dira historian. 
+Ezabatu ondoren izen berdina duen orrialde berri bat sortzen bada leheneratutako berrikuspenak azalduko dira historian.',
 'undeletehistorynoadmin'   => 'Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.',
 'undeleterevision-missing' => 'Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.',
 'undelete-nodiff'          => 'Ez da aurkitu aurreko berrikuspenik.',
@@ -1551,13 +1622,14 @@ $1',
 'blanknamespace' => '(Nagusia)',
 
 # Contributions
-'contributions' => 'Lankidearen ekarpenak',
-'mycontris'     => 'Nire ekarpenak',
-'contribsub2'   => '$1 ($2)',
-'nocontribs'    => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
-'uctop'         => ' (Azken aldaketa)',
-'month'         => 'Hilabetea (eta lehenagokoak):',
-'year'          => 'Urtea (eta lehenagokoak):',
+'contributions'       => 'Lankidearen ekarpenak',
+'contributions-title' => '$1(r)entzat lankidearen ekarpenak',
+'mycontris'           => 'Nire ekarpenak',
+'contribsub2'         => '$1 ($2)',
+'nocontribs'          => 'Ez da ezaugarri horiekin bat datorren aldaketarik aurkitu.',
+'uctop'               => ' (Azken aldaketa)',
+'month'               => 'Hilabetea (eta lehenagokoak):',
+'year'                => 'Urtea (eta lehenagokoak):',
 
 'sp-contributions-newbies'     => 'Soilik kontu berrien ekarpenak erakutsi',
 'sp-contributions-newbies-sub' => 'Hasiberrientzako',
@@ -1586,15 +1658,15 @@ $1',
 'whatlinkshere-filters'    => 'Iragazleak',
 
 # Block/unblock
-'blockip'                     => 'Erabiltzailea blokeatu',
-'blockip-legend'              => 'Erabiltzailea blokeatu',
-'blockiptext'                 => 'IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).',
-'ipaddress'                   => 'IP Helbidea',
-'ipadressorusername'          => 'IP Helbidea edo erabiltzaile izena',
-'ipbexpiry'                   => 'Iraungipena',
-'ipbreason'                   => 'Arrazoia',
-'ipbreasonotherlist'          => 'Beste arrazoiak',
-'ipbreason-dropdown'          => '*Blokeaketa arrazoi arruntak
+'blockip'                         => 'Erabiltzailea blokeatu',
+'blockip-legend'                  => 'Erabiltzailea blokeatu',
+'blockiptext'                     => 'IP helbide edo erabiltzaile izen bati idazketa baimenak kentzeko beheko formularioa erabil dezakezu. Ekintza hau bandalismoa saihesteko baino ez da burutu behar, eta beti ere [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz. Blokeoaren arrazoi bat ere zehaztu ezazu (adibidez, orrialde batzuk zehaztuz).',
+'ipaddress'                       => 'IP Helbidea',
+'ipadressorusername'              => 'IP Helbidea edo erabiltzaile izena',
+'ipbexpiry'                       => 'Iraungipena',
+'ipbreason'                       => 'Arrazoia',
+'ipbreasonotherlist'              => 'Beste arrazoiak',
+'ipbreason-dropdown'              => '*Blokeaketa arrazoi arruntak
 ** Benetakoa ez den informazioa ezartzea
 ** Orrialdetatik edukia ezabatzea
 ** Spam-a edota kanpoko loturak ezarri
@@ -1602,67 +1674,70 @@ $1',
 ** Beste lankideei mehatxatzea
 ** Kontu ugari erabiltzea
 ** Lankide izen desegokia',
-'ipbanononly'                 => 'Erabiltzaile anonimoak bakarrik blokeatu',
-'ipbcreateaccount'            => 'Kontua sortzea debekatu',
-'ipbemailban'                 => 'Erabiltzaileak e-mailak bidal ditzan ekidin',
-'ipbenableautoblock'          => 'Erabiltzaile honek erabilitako azken IP helbidea automatikoki blokeatu, eta baita erabili dezakeen beste edozein IP ere',
-'ipbsubmit'                   => 'Erabiltzaile hau blokeatu',
-'ipbother'                    => 'Beste denbora-tarte bat',
-'ipboptions'                  => '15 minutu:15 minutes,30 minutu:30 minutes,ordu 1:1 hour,2 ordu:2 hours,egun bat:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,betirako:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'              => 'beste bat',
-'ipbotherreason'              => 'Arrazoi gehigarria:',
-'ipbwatchuser'                => 'Erabiltzaile honen erabiltzaile eta eztabaida orrialdeak jarraitu',
-'badipaddress'                => 'Baliogabeko IP helbidea',
-'blockipsuccesssub'           => 'Blokeoa burutu da',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
+'ipbanononly'                     => 'Erabiltzaile anonimoak bakarrik blokeatu',
+'ipbcreateaccount'                => 'Kontua sortzea debekatu',
+'ipbemailban'                     => 'Erabiltzaileak e-mailak bidal ditzan ekidin',
+'ipbenableautoblock'              => 'Erabiltzaile honek erabilitako azken IP helbidea automatikoki blokeatu, eta baita erabili dezakeen beste edozein IP ere',
+'ipbsubmit'                       => 'Erabiltzaile hau blokeatu',
+'ipbother'                        => 'Beste denbora-tarte bat',
+'ipboptions'                      => '15 minutu:15 minutes,30 minutu:30 minutes,ordu 1:1 hour,2 ordu:2 hours,egun bat:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,betirako:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'                  => 'beste bat',
+'ipbotherreason'                  => 'Arrazoi gehigarria:',
+'ipbwatchuser'                    => 'Erabiltzaile honen erabiltzaile eta eztabaida orrialdeak jarraitu',
+'badipaddress'                    => 'Baliogabeko IP helbidea',
+'blockipsuccesssub'               => 'Blokeoa burutu da',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
 Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
-'ipb-edit-dropdown'           => 'Lankide bat blokeatzeko arrazoiak',
-'ipb-unblock-addr'            => '$1 lankide edo IP helbideari blokeoa baliogabetu',
-'ipb-unblock'                 => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
-'ipb-blocklist-addr'          => '$1-(r)entzat dauden edo egon diren blokeoak ikusi',
-'ipb-blocklist'               => 'Blokeaketak ikusi',
-'unblockip'                   => 'Erabiltzailea desblokeatu',
-'unblockiptext'               => 'Erabili beheko formularioa lehenago blokeatutako IP helbide edo erabiltzaile baten idazketa baimenak leheneratzeko.',
-'ipusubmit'                   => 'Helbide hau desblokeatu',
-'unblocked'                   => '[[User:$1|$1]] desblokeatu egin da',
-'unblocked-id'                => '$1 blokeaketa ezabatu da',
-'ipblocklist'                 => 'Blokeatutako IP helbide eta erabiltzaileen zerrenda',
-'ipblocklist-legend'          => 'Blokeatutako erabiltzaile bat bilatu',
-'ipblocklist-username'        => 'Lankide izena edo IP helbidea:',
-'ipblocklist-submit'          => 'Bilatu',
-'blocklistline'               => '$1, $2(e)k $3 blokeatu du (iraungipena: $4)',
-'infiniteblock'               => 'infinitu',
-'expiringblock'               => 'iraungipen data: $1',
-'anononlyblock'               => 'anon. soilik',
-'noautoblockblock'            => 'autoblokeoa ezgaituta',
-'createaccountblock'          => 'kontua sortzea blokeatuta',
-'emailblock'                  => 'e-posta blokeatuta',
-'ipblocklist-empty'           => 'Blokeaketa zerrenda hutsik dago.',
-'ipblocklist-no-results'      => 'Zehaztutako IP helbide edo erabiltzaile izena ez dago blokeatuta.',
-'blocklink'                   => 'blokeatu',
-'unblocklink'                 => 'blokeoa kendu',
-'contribslink'                => 'ekarpenak',
-'autoblocker'                 => '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
-'blocklogpage'                => 'Blokeo erregistroa',
-'blocklogentry'               => '"[[$1]]" $2(e)ko iraungipenarekin blokeatu da. $3',
-'blocklogtext'                => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
-'unblocklogentry'             => '$1 desblokeatu da',
-'block-log-flags-anononly'    => 'erabiltzaile anonimoak bakarrik',
-'block-log-flags-nocreate'    => 'kontuak sortzea ezgaituta',
-'block-log-flags-noautoblock' => 'auto-blokeaketa ezgaitu da',
-'block-log-flags-noemail'     => 'e-posta blokeatuta',
-'range_block_disabled'        => 'Administratzaileak IP eremuak blokeatzeko gaitasuna ezgaituta dago.',
-'ipb_expiry_invalid'          => 'Baliogabeko iraungipen denbora',
-'ipb_already_blocked'         => '"$1" badago blokeatuta',
-'ipb_cant_unblock'            => 'Errorea: Ez da $1 IDa duen blokeoa aurkitu. Baliteke blokeoa jada kenduta egotea.',
-'ip_range_invalid'            => 'Baliogabeko IP eremua.',
-'blockme'                     => 'Blokea nazazu',
-'proxyblocker'                => 'Proxy blokeatzailea',
-'proxyblocker-disabled'       => 'Funtzio hau ez-gaitua dago.',
-'proxyblockreason'            => 'Zure IP helbidea blokeatu egin da proxy ireki baten zaudelako. Mesedez, zure Interneteko Zerbitzu Hornitzailearekin harremanetan jar zaitez segurtasun arazo honetaz ohartarazteko.',
-'proxyblocksuccess'           => 'Egina.',
-'sorbsreason'                 => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
-'sorbs_create_account_reason' => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
+'ipb-edit-dropdown'               => 'Lankide bat blokeatzeko arrazoiak',
+'ipb-unblock-addr'                => '$1 lankide edo IP helbideari blokeoa baliogabetu',
+'ipb-unblock'                     => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
+'ipb-blocklist-addr'              => '$1-(r)entzat dauden edo egon diren blokeoak ikusi',
+'ipb-blocklist'                   => 'Blokeaketak ikusi',
+'unblockip'                       => 'Erabiltzailea desblokeatu',
+'unblockiptext'                   => 'Erabili beheko formularioa lehenago blokeatutako IP helbide edo erabiltzaile baten idazketa baimenak leheneratzeko.',
+'ipusubmit'                       => 'Helbide hau desblokeatu',
+'unblocked'                       => '[[User:$1|$1]] desblokeatu egin da',
+'unblocked-id'                    => '$1 blokeaketa ezabatu da',
+'ipblocklist'                     => 'Blokeatutako IP helbide eta erabiltzaileak',
+'ipblocklist-legend'              => 'Blokeatutako erabiltzaile bat bilatu',
+'ipblocklist-username'            => 'Lankide izena edo IP helbidea:',
+'ipblocklist-submit'              => 'Bilatu',
+'blocklistline'                   => '$1, $2(e)k $3 blokeatu du (iraungipena: $4)',
+'infiniteblock'                   => 'infinitu',
+'expiringblock'                   => 'iraungipen data: $1',
+'anononlyblock'                   => 'anon. soilik',
+'noautoblockblock'                => 'autoblokeoa ezgaituta',
+'createaccountblock'              => 'kontua sortzea blokeatuta',
+'emailblock'                      => 'e-posta blokeatuta',
+'ipblocklist-empty'               => 'Blokeaketa zerrenda hutsik dago.',
+'ipblocklist-no-results'          => 'Zehaztutako IP helbide edo erabiltzaile izena ez dago blokeatuta.',
+'blocklink'                       => 'blokeatu',
+'unblocklink'                     => 'blokeoa kendu',
+'contribslink'                    => 'ekarpenak',
+'autoblocker'                     => '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
+'blocklogpage'                    => 'Blokeo erregistroa',
+'blocklog-fulllog'                => 'Blokeoen log osoa',
+'blocklogentry'                   => '"[[$1]]" $2(e)ko iraungipenarekin blokeatu da. $3',
+'blocklogtext'                    => 'Erabiltzaileen blokeoen ezarpen eta ezabaketen erregistroa da hau. Ez dira automatikoki blokeatutako IP helbideak zerrendatzen. Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] aktibo dauden blokeoak aztertzeko.',
+'unblocklogentry'                 => '$1 desblokeatu da',
+'block-log-flags-anononly'        => 'erabiltzaile anonimoak bakarrik',
+'block-log-flags-nocreate'        => 'kontuak sortzea ezgaituta',
+'block-log-flags-noautoblock'     => 'auto-blokeaketa ezgaitu da',
+'block-log-flags-noemail'         => 'e-posta blokeatuta',
+'block-log-flags-angry-autoblock' => 'hobetutako autoblokeoa gaituta',
+'range_block_disabled'            => 'Administratzaileak IP eremuak blokeatzeko gaitasuna ezgaituta dago.',
+'ipb_expiry_invalid'              => 'Baliogabeko iraungipen denbora',
+'ipb_expiry_temp'                 => 'Izkutuan dauden lankide izenen blokeoa betierekikoa izan behar du.',
+'ipb_already_blocked'             => '"$1" badago blokeatuta',
+'ipb_cant_unblock'                => 'Errorea: Ez da $1 IDa duen blokeoa aurkitu. Baliteke blokeoa jada kenduta egotea.',
+'ip_range_invalid'                => 'Baliogabeko IP eremua.',
+'blockme'                         => 'Blokea nazazu',
+'proxyblocker'                    => 'Proxy blokeatzailea',
+'proxyblocker-disabled'           => 'Funtzio hau ez-gaitua dago.',
+'proxyblockreason'                => 'Zure IP helbidea blokeatu egin da proxy ireki baten zaudelako. Mesedez, zure Interneteko Zerbitzu Hornitzailearekin harremanetan jar zaitez segurtasun arazo honetaz ohartarazteko.',
+'proxyblocksuccess'               => 'Egina.',
+'sorbsreason'                     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
+'sorbs_create_account_reason'     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
 
 # Developer tools
 'lockdb'              => 'Datu-basea blokeatu',
@@ -1872,18 +1947,19 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{ns:special}}:Expor
 'notacceptable'     => 'Wiki zerbitzariak ezin ditu datuak zure bezeroak irakur ditzakeen formatu batean eskaini.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}}(e)ko lankide anonimoak',
+'anonymous'        => '{{SITENAME}}(e)ko lankide {{PLURAL:$1|anonimoa|anonimoak}}',
 'siteuser'         => '{{SITENAME}}(e)ko $1 erabiltzailea',
 'lastmodifiedatby' => 'Orrialdearen azken aldaketa: $2, $1. Nork: $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1(r)en lanean oinarrituta.',
 'others'           => 'besteak',
-'siteusers'        => '{{SITENAME}}(e)ko $1 erabiltzailea(k)',
+'siteusers'        => '{{SITENAME}}(e)ko $1 {{PLURAL:$2|erabiltzailea|erabiltzaileak}}',
 'creditspage'      => 'Orrialdearen kredituak',
 'nocredits'        => 'Ez dago krediturik eskuragarri orrialde honentzako.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam-arengandik babesteko iragazkia',
-'spamprotectiontext'  => 'Gorde nahi duzun orrialdea spam iragazkiak blokeatu du. Baliteke kanpo lotura batek sortzea arazo hori.',
+'spamprotectiontext'  => 'Gorde nahi duzun orrialdea spam iragazkiak blokeatu zuen.
+Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 'spamprotectionmatch' => 'Gure spam iragazkiak testu hau antzeman du: $1',
 'spambot_username'    => 'MediaWikiren spam garbiketa',
 'spam_reverting'      => '$1(e)rako loturarik ez daukan azken bertsiora itzultzen',
@@ -1933,8 +2009,11 @@ $1',
 'filedelete-archive-read-only'    => 'Web zerbitzariak ezin du "$1" karpetan idatzi.',
 
 # Browsing diffs
-'previousdiff' => '← Aurreko ezberdintasuna',
-'nextdiff'     => 'Hurrengo ezberdintasuna →',
+'previousdiff' => '← Aldaketa zaharragoa',
+'nextdiff'     => 'Aldaketa berriagoa →',
+
+# Visual comparison
+'visual-comparison' => 'Alderaketa bisuala',
 
 # Media information
 'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake; zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
@@ -1951,14 +2030,20 @@ $1',
 # Special:NewImages
 'newimages'             => 'Fitxategi berrien galeria',
 'imagelisttext'         => "Jarraian duzu $2(e)z ordenatutako {{PLURAL:$1|fitxategi baten|'''$1''' fitxategiren}} zerrenda.",
+'newimages-summary'     => 'Orrialde berezi honek igotako azkeneko fitxategiak erakusten ditu.',
+'newimages-legend'      => 'Iragazkia',
+'newimages-label'       => 'Fitxategia (edo bere zati bat):',
 'showhidebots'          => '($1 bot-ak)',
 'noimages'              => 'Ez dago ezer ikusteko.',
 'ilsubmit'              => 'Bilatu',
 'bydate'                => 'dataren arabera',
-'sp-newimages-showfrom' => 'Irudi berriak erakutsi $2, $1 datatik hasita.',
+'sp-newimages-showfrom' => 'Irudi berriak erakutsi $1(e)ko $2tik hasita',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'o',
+'video-dims'     => '$1, $2×$3',
+'seconds-abbrev' => 's',
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'o',
 
 # Bad image list
 'bad_image_list' => 'Formatua hurrengoa da:

@@ -575,8 +575,8 @@ Musí mať dĺžku aspoň {{PLURAL:$1|$1 znak|$1 znaky|$1 znakov}} a líšiť sa
 'passwordremindertitle'      => 'Nové dočasné heslo pre {{GRAMMAR:akuzatív|{{SITENAME}}}}',
 'passwordremindertext'       => 'Niekto (pravdepodobne vy, z IP adresy $1)
 požiadal, aby sme vám zaslali nové prihlasovacie heslo do {{GRAMMAR:genitív|{{SITENAME}}}} ($4).
-Heslo pre používateľa „$2“ je teraz „$3“.
-Teraz by ste sa mali prihlásiť a zmeniť vaše heslo.
+Pre používateľa „$2“ bolo vytvorené nové heslo „$3“.
+Ak to bolo vaším zámerom, teraz by ste sa mali prihlásiť a zmeniť svoje heslo.
 
 Ak túto požiadavku poslal niekto iný alebo ste si spomenuli svoje heslo a neželáte
 si ho zmeniť, môžete túto správu ignorovať a naďalej používať svoje staré heslo.',
@@ -789,6 +789,7 @@ Teraz sa môžete vrátiť späť a upravovať existujúcu stránku alebo [[Spec
 Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
 'deleted-notice'                   => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
+'deletelog-fulllog'                => 'Zobraziť úplný záznam',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -927,6 +928,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'mergehistory-invalid-destination' => 'Cieľová stránka musí byť platný názov.',
 'mergehistory-autocomment'         => '[[:$1]] bola zlúčená do [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] bola zlúčená do [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Zdrojová a cieľová stránka sa nemôžu zhodovať',
 
 # Merge log
 'mergelog'           => 'Záznam zlúčení',
@@ -1466,22 +1468,24 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'randomredirect-nopages' => 'V tomto mennom priestore nie sú žiadne presmerovania.',
 
 # Statistics
-'statistics'               => 'Štatistiky',
-'statistics-header-pages'  => 'Štatistika stránok',
-'statistics-header-edits'  => 'Štatistika úprav',
-'statistics-header-views'  => 'Štatistika zobrazení',
-'statistics-header-users'  => 'Štatistika používateľov',
-'statistics-articles'      => 'Stránok s obsahom',
-'statistics-pages'         => 'Stránok',
-'statistics-files'         => 'Nahraných súborov',
-'statistics-edits'         => 'Úprav stránok od založenia {{GRAMMAR:genitív|{{SITENAME}}}}',
-'statistics-edits-average' => 'Priemerný počet úprav na stránku',
-'statistics-views-total'   => 'Celkom zobrazení',
-'statistics-views-peredit' => 'Zobrazení na úpravu',
-'statistics-jobqueue'      => 'Dĺžka [http://www.mediawiki.org/wiki/Manual:Job_queue frontu úloh]',
-'statistics-users'         => 'Registrovaných [[Special:ListUsers|používateľov]]',
-'statistics-users-active'  => 'Aktívnych používateľov',
-'statistics-mostpopular'   => 'Najčastejšie prezerané stránky',
+'statistics'                      => 'Štatistiky',
+'statistics-header-pages'         => 'Štatistika stránok',
+'statistics-header-edits'         => 'Štatistika úprav',
+'statistics-header-views'         => 'Štatistika zobrazení',
+'statistics-header-users'         => 'Štatistika používateľov',
+'statistics-articles'             => 'Stránok s obsahom',
+'statistics-pages'                => 'Stránok',
+'statistics-pages-tooltip'        => 'Všetky stránky na wiki vrátane diskusných stránok, presmerovaní atď.',
+'statistics-files'                => 'Nahraných súborov',
+'statistics-edits'                => 'Úprav stránok od založenia {{GRAMMAR:genitív|{{SITENAME}}}}',
+'statistics-edits-average'        => 'Priemerný počet úprav na stránku',
+'statistics-views-total'          => 'Celkom zobrazení',
+'statistics-views-peredit'        => 'Zobrazení na úpravu',
+'statistics-jobqueue'             => 'Dĺžka [http://www.mediawiki.org/wiki/Manual:Job_queue frontu úloh]',
+'statistics-users'                => 'Registrovaných [[Special:ListUsers|používateľov]]',
+'statistics-users-active'         => 'Aktívnych používateľov',
+'statistics-users-active-tooltip' => 'Používatelia, ktorí za posledný mesiac vykonali nejakú operáciu',
+'statistics-mostpopular'          => 'Najčastejšie prezerané stránky',
 
 'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
 'disambiguationspage'  => 'Template:Rozlišovacia stránka',
@@ -1832,6 +1836,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 ** Nadmerný spam
 ** Neproduktívne upravovacie vojny
 ** Veľmi často naštevovaná stránka',
+'protect-edit-reasonlist'     => 'Upraviť dôvody zamknutia',
 'restriction-type'            => 'Povolenie:',
 'restriction-level'           => 'Úroveň obmedzenia:',
 'minimum-size'                => 'Minimálna veľkosť',
@@ -2024,6 +2029,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'proxyblocksuccess'               => 'Hotovo.',
 'sorbsreason'                     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
 'sorbs_create_account_reason'     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
+'cant-block-while-blocked'        => 'Nemôžete blokovať iných používateľov, kým ste zablokovaný.',
 
 # Developer tools
 'lockdb'              => 'Zamknúť databázu',

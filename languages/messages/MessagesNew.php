@@ -156,13 +156,16 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|थ्व पुचले थ्व जक्क फाइल दु।|सकल $2य् क्वे बियातःगु {{PLURAL:$1|फाइल|$1 फाइलत}} थ्व पुचले दु।}}',
 
 'about'         => 'विषयक',
+'article'       => 'कण्टेण्ट पौ',
 'qbfind'        => 'मालादिसँ',
+'qbedit'        => 'सम्पादन',
 'moredotdotdot' => 'अप्व॰॰॰',
 'mypage'        => 'जिगु पौ',
 'mytalk'        => 'जिगु खं',
 'navigation'    => 'परिवहन',
 'and'           => 'व',
 
+'help'             => 'ग्वहालि',
 'search'           => 'मालादिसं',
 'searchbutton'     => 'मालादिसँ',
 'go'               => 'झासँ',
@@ -171,6 +174,7 @@ $messages = array(
 'history_short'    => 'इतिहास',
 'info_short'       => 'जानकारी',
 'printableversion' => 'ध्वायेज्युगु संस्करण',
+'permalink'        => 'स्थायी लिङ्क',
 'print'            => 'ध्वानादिसँ',
 'edit'             => 'सम्पादन',
 'editthispage'     => 'थ्व पौ सम्पादन यानादिसं',
@@ -228,8 +232,19 @@ $messages = array(
 'showtoc'                 => 'क्यनादिसँ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main'      => 'पौ',
+'nstab-user'      => 'छ्य्‌लामि पौ',
+'nstab-media'     => 'मिडिया पौ',
+'nstab-special'   => 'विशेष',
+'nstab-project'   => 'ज्याझ्वः पौ',
+'nstab-image'     => 'फाइल',
 'nstab-mediawiki' => 'सन्देश',
+'nstab-template'  => 'टेम्प्लेट',
+'nstab-help'      => 'ग्वहालि पौ',
 'nstab-category'  => 'पुचः',
+
+# Main script and global functions
+'nosuchaction' => 'थन्यागु ज्या मदु',
 
 # General errors
 'laggedslavemode' => 'चेतावनी: पतिइ न्हुगु अपदेत मदेफु ।',
@@ -238,23 +253,33 @@ $messages = array(
 'viewsource'      => 'स्रोत स्वयादिसँ',
 
 # Login and logout pages
-'loginpagetitle'    => 'छ्य्‌लामि दुहां झासँ',
-'yourname'          => 'छ्य्‌लामि नां:',
-'yourpassword'      => 'दुथखँग्वः (पासवर्द):',
-'yourpasswordagain' => 'दुथखँग्वः हानं तियादिसँ:',
-'yourdomainname'    => 'छिगु दोमेन:',
-'login'             => 'दुहां वनेगु',
-'logout'            => 'पिने झासँ',
-'userlogout'        => 'पिने झासँ',
-'nologinlink'       => 'खाता न्ह्यथनादिसँ',
-'createaccount'     => 'खाता चायेकादिसँ',
-'youremail'         => 'इ-मेल:',
-'username'          => 'छ्य्‌लामि नां:',
-'yourrealname'      => 'वास्तविक नां:',
-'yourlanguage'      => 'भाषा:',
-'accountcreated'    => 'खाता न्ह्येथन',
+'welcomecreation'         => '== लसकुस, $1! ==
+छिगु खाता चायेके धुंकल।
+छिगु [[Special:Preferences|{{SITENAME}} प्राथमिकता]] हिलिगु लुमंकादिसँ।',
+'loginpagetitle'          => 'छ्य्‌लामि दुहां झासँ',
+'yourname'                => 'छ्य्‌लामि नां:',
+'yourpassword'            => 'दुथखँग्वः (पासवर्द):',
+'yourpasswordagain'       => 'दुथखँग्वः हानं तियादिसँ:',
+'yourdomainname'          => 'छिगु दोमेन:',
+'login'                   => 'दुहां वनेगु',
+'nav-login-createaccount' => 'दुहां वनेगु / खाता चायेकिगु',
+'userlogin'               => 'दुहां वनेगु / खाता चायेकिगु',
+'logout'                  => 'पिने झासँ',
+'userlogout'              => 'पिने झासँ',
+'nologinlink'             => 'खाता न्ह्यथनादिसँ',
+'createaccount'           => 'खाता चायेकादिसँ',
+'gotaccountlink'          => 'दुहां झासँ',
+'youremail'               => 'इ-मेल:',
+'username'                => 'छ्य्‌लामि नां:',
+'yourrealname'            => 'वास्तविक नां:',
+'yourlanguage'            => 'भाषा:',
+'email'                   => 'इ-मेल',
+'loginsuccesstitle'       => 'लग इन सफल जुल',
+'accountcreated'          => 'खाता न्ह्येथन',
+'loginlanguagelabel'      => 'भाषा: $1',
 
 # Edit pages
+'summary'       => 'सारांश',
 'savearticle'   => 'पौ मुंकादिसं',
 'preview'       => 'स्वयादिसं',
 'newarticle'    => '(न्हु)',
@@ -269,8 +294,15 @@ $messages = array(
 'revisionasof'     => '$1 तक्कया संस्करण',
 'previousrevision' => '←पुलांगु संस्करण',
 
+# Diffs
+'diff-i'      => "'''ब्यक्वःगु'''",
+'diff-b'      => "'''गाढा'''",
+'diff-strong' => "'''कडा'''",
+
 # Search results
-'powersearch' => 'मालादिसँ',
+'searchrelated' => 'स्वापू दुःगु',
+'searchall'     => 'सकल',
+'powersearch'   => 'मालादिसँ',
 
 # Preferences page
 'mypreferences'  => 'जिगु प्राथमिकता',
@@ -278,13 +310,15 @@ $messages = array(
 'math'           => 'गणित',
 'datetime'       => 'दिं व ई',
 'prefs-personal' => 'छ्य्‌लामि प्रोफाइल',
+'prefs-rc'       => 'न्हुगु हिलेज्या',
 'saveprefs'      => 'स्वथनादिसँ',
 
 # User rights
 'userrights-user-editname' => 'छपू छ्य्‌लामि नां तयादिसँ:',
 
 # Groups
-'group-bot' => 'बोत',
+'group-user' => 'छ्य्‌लामित',
+'group-bot'  => 'बोत',
 
 # Recent changes
 'recentchanges' => 'न्हुगु हिलेज्या',
@@ -292,6 +326,9 @@ $messages = array(
 
 # Upload
 'upload' => 'फाइल अपलोड',
+
+# Image description page
+'filehist-user' => 'छ्य्‌लामि',
 
 # Random page
 'randompage' => 'छगु च्वसुइ येंकादिसं',
@@ -305,9 +342,10 @@ $messages = array(
 'newpages-username' => 'छ्येलेमि नां:',
 
 # Special:AllPages
-'allpages'    => 'सकल पौत',
-'nextpage'    => 'मेगु पौ ($1)',
-'allarticles' => 'सकल च्वसुत',
+'allpages'       => 'सकल पौत',
+'nextpage'       => 'मेगु पौ ($1)',
+'allarticles'    => 'सकल च्वसुत',
+'allpagessubmit' => 'झासँ',
 
 # Special:Categories
 'categories' => 'पुचःत',
@@ -327,6 +365,61 @@ $messages = array(
 
 # What links here
 'whatlinkshere' => 'थन छु स्वाई',
+
+# Move page
+'movereason' => 'कारण:',
+
+# Tooltip help for the actions
+'tooltip-n-mainpage'              => 'मू पौ भ्रमण यानादिसँ',
+'tooltip-n-portal'                => 'ज्याझ्वःया बारेय्, छिं छु यायेछिं, गन खँ सीकिगु',
+'tooltip-n-currentevents'         => 'जुयाच्वँगु घटनाया लिधँसा तथ्य मालादिसँ',
+'tooltip-n-recentchanges'         => 'थ्व विकिया न्हुगु हिलेज्याया धलः।',
+'tooltip-n-randompage'            => 'न्ह्याःगु छगू पौ क्यनादिसँ',
+'tooltip-n-help'                  => 'खँ सीकिगु थाय्।',
+'tooltip-t-whatlinkshere'         => 'थन स्वाइगु सकल विकिपौया धलः',
+'tooltip-t-recentchangeslinked'   => 'थ्व पौ नाप स्वाःगु पौतेगु न्हुगु हिलेज्या',
+'tooltip-feed-rss'                => 'थ्व पौया RSS फीड',
+'tooltip-feed-atom'               => 'थ्व पौया Atom फीड',
+'tooltip-t-contributions'         => 'थ्व छ्य्‌लामिया योगदानया धलः क्यनादिसँ',
+'tooltip-t-emailuser'             => 'थ्व छ्य्‌लामियात इ-मेल छ्वयादिसँ',
+'tooltip-t-upload'                => 'फाइल अपलोड',
+'tooltip-t-specialpages'          => 'सकल विशेष पौस धलः',
+'tooltip-t-print'                 => 'थ्व पौस ध्वायेज्युगु संस्करण',
+'tooltip-t-permalink'             => 'थ्व पौस थ्व संस्करणया पर्मानेन्ट लिङ्क',
+'tooltip-ca-nstab-main'           => 'कन्टेन्ट पौ स्वयादिसँ',
+'tooltip-ca-nstab-user'           => 'छ्य्‌लामिपौ स्वयादिसँ',
+'tooltip-ca-nstab-media'          => 'मिडिया पौ स्वयादिसँ',
+'tooltip-ca-nstab-special'        => 'थ्व छगू विशेष पौ ख ; थ्व पौयात छिं सम्पादन याये मछिं।',
+'tooltip-ca-nstab-project'        => 'ज्याझ्वः पौ स्वयादिसँ',
+'tooltip-ca-nstab-image'          => 'फाइल पौ स्वयादिसँ',
+'tooltip-ca-nstab-mediawiki'      => 'व्यवस्थापन सन्देश स्वयादिसँ',
+'tooltip-ca-nstab-template'       => 'टेम्प्लेट स्वयादिसँ',
+'tooltip-ca-nstab-help'           => 'ग्वहालि पौ स्वयादिसँ',
+'tooltip-ca-nstab-category'       => 'पुचः पौ स्वयादिसँ',
+'tooltip-minoredit'               => 'थ्व छगू चिधंगु सम्पादन ख',
+'tooltip-save'                    => 'छिगु परिवर्तन स्वथनादिसँ',
+'tooltip-preview'                 => 'छिगु परिवर्तन पुर्वालोकन यानादिसँ, कृपया स्वथने न्ह्यः थ्व छ्य्‌लादिसँ!',
+'tooltip-diff'                    => 'छिं पतीइ यानादिगु हिलेज्या क्यनादिसँ।',
+'tooltip-compareselectedversions' => 'निगु ल्ययातःगु संस्करणया दथुइ भिन्नता स्वयादिसँ।',
+'tooltip-watch'                   => 'थ्व पौयात छिगु वाचलिस्टय् तनादिसँ',
+'tooltip-recreate'                => 'थ्व पौ हुयाछ्वेधुंकुगु जुसां पुनर्निर्माण यानादिसँ',
+'tooltip-upload'                  => 'अपलोड न्ह्यथनादिसँ',
+'tooltip-rollback'                => '"रोलब्याकं" छगू क्लिकय् थ्व पौयात न्हापाया छ्य्‌लामिं याःगु परिवर्तनय् हिलाछ्वइ।',
+'tooltip-undo'                    => '"Undo" नं थ्व सम्पादनयात खारेज याना सम्पादन फर्म यात प्रिभ्यु मोडय् चायेकी।
+थुकिलिं सारांशय् कारण तनेछिंकी।',
+
+# Stylesheets
+'common.css'      => '/* थन तःगु CSS सकल स्किनय् छ्य्‌लिगु जुइ */',
+'standard.css'    => '/* थन तःगु CSS नं स्ट्याण्डर्ड स्किनया छ्य्‌लामितेत प्रभावित याइ */',
+'nostalgia.css'   => '/* थन तःगु CSS नं नोस्ट्याल्जिया स्किनया छ्य्‌लामितेत असर याइ */',
+'cologneblue.css' => '/* थन तःगु CSS नं कोलोन ब्लु स्किनया छ्य्‌लामितेत असर याइ */',
+'monobook.css'    => '/* थन तःगु CSS नं मोनोबुक स्किनया छ्य्‌लामितेत असर याइ */',
+'myskin.css'      => '/* थन तःगु CSS नं माइस्किन स्किनया छ्य्‌लामितेत असर याइ */',
+'chick.css'       => '/* थन तःगु CSS नं चिक स्किनया छ्य्‌लामितेत असर याइ */',
+'simple.css'      => '/* थन तःगु CSS नं सिम्पल स्किनया छ्य्‌लामितेत असर याइ */',
+'modern.css'      => '/* थन तःगु CSS नं मोडर्न स्किनया छ्य्‌लामितेत असर याइ */',
+'print.css'       => '/* थन तःगु CSS नं प्रिन्ट आउटपुटयात असर याइ */',
+'handheld.css'    => '/* थन तःगु CSS नं $wgHandheldStyle आधारित ह्याण्डहेल्ड यन्त्रयात असर याइ */',
 
 # Attribution
 'others' => 'मेमेगु',

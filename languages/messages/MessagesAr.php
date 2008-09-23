@@ -812,11 +812,11 @@ $2',
 يجب ألا يقل طول الكلمة عن {{PLURAL:$1|1 حرف|$1 حرف}} حرف وأن تكون مختلفة عن اسم المستخدم الخاص بك.',
 'mailmypassword'             => 'أرسل لي كلمة سر جديدة',
 'passwordremindertitle'      => 'كلمة سر مؤقتة جديدة ل {{SITENAME}}',
-'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الأيبي $1) أن نرسل لك كلمة سر جديدة ل{{SITENAME}} ($4).
-كلمة السر للمستخدم "$2" الآن هي "$3".
-عليك أن تقوم بالدخول إلى الموقع وتغيير كلمة السر خاصتك الآن.
+'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الأيبي $1) كلمة سر جديدة ل{{SITENAME}} ($4).
+كلمة سر مؤقتة للمستخدم "$2" تم إنشاؤها وضبطها إلى "$3".
+لو أن هذا هو ما تقصد، فعليك أن تقوم بتسجيل الدخول واختيار كلمة سر جديدة الآن.
 
-إذا لم تكن أنت من قام بطلب كلمة السر أو أنك تذكرت كلمة السر السابقة ولا ترغب بتغييرها فبإمكانك أن تتجاهل هذه الرسالة وأن تستمر في استخدام كلمة السر السابقة خاصتك.',
+لو أن شخص آخر قام بهذا الطلب، أو أنك تذكرت كلمة السر الخاصة بك، ولا ترغب  في تغييرها، فبإمكانك أن تتجاهل هذه الرسالة وأن تستمر في استخدام كلمة السر القديمة الخاصة بك.',
 'noemail'                    => 'لا يوجد عنوان بريد إلكتروني مسجل للمستخدم "$1".',
 'passwordsent'               => 'تم إرسال كلمة سر جديدة إلى عنوان البريد الإلكتروني المسجل للمستخدم "$1".
 من فضلك حاول تسجيل الدخول مرة ثانية بعد استلامها.',
@@ -1033,6 +1033,7 @@ $2',
 يجب عليك التيقن من أن الاستمرار بتحرير هذه الصفحة ملائم.
 سجل الحذف لهذه الصفحة معروض هنا:",
 'deleted-notice'                   => 'هذه الصفحة تم حذفها. سجل الحذف للصفحة معروض بالأسفل كمرجع.',
+'deletelog-fulllog'                => 'عرض السجل الكامل',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -1173,6 +1174,7 @@ $2',
 'mergehistory-invalid-destination' => 'الصفحة الهدف يجب أن تكون عنوانا صحيحا.',
 'mergehistory-autocomment'         => 'دمج [[:$1]] في [[:$2]]',
 'mergehistory-comment'             => 'دمج [[:$1]] في [[:$2]]: $3',
+'mergehistory-same-destination'    => 'صفحتا المصدر والهدف لا يمكن أن تكونا نفس الشيء',
 
 # Merge log
 'mergelog'           => 'سجل الدمج',
@@ -1735,22 +1737,24 @@ PICT # متنوع
 'randomredirect-nopages' => 'لا توجد تحويلات في هذا النطاق.',
 
 # Statistics
-'statistics'               => 'إحصاءات',
-'statistics-header-pages'  => 'إحصاءات الصفحات',
-'statistics-header-edits'  => 'إحصاءات التعديلات',
-'statistics-header-views'  => 'إحصاءات المشاهدة',
-'statistics-header-users'  => 'إحصاءات المستخدمين',
-'statistics-articles'      => 'صفحات المحتوى',
-'statistics-pages'         => 'الصفحات',
-'statistics-files'         => 'الملفات المرفوعة',
-'statistics-edits'         => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
-'statistics-edits-average' => 'متوسط التعديلات لكل صفحة',
-'statistics-views-total'   => 'إجمالي المشاهدات',
-'statistics-views-peredit' => 'المشاهدات لكل تعديل',
-'statistics-jobqueue'      => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
-'statistics-users'         => '[[Special:ListUsers|مستخدمون]] مسجلون',
-'statistics-users-active'  => 'مستخدمون نشطون',
-'statistics-mostpopular'   => 'أكثر الصفحات مشاهدة',
+'statistics'                      => 'إحصاءات',
+'statistics-header-pages'         => 'إحصاءات الصفحات',
+'statistics-header-edits'         => 'إحصاءات التعديلات',
+'statistics-header-views'         => 'إحصاءات المشاهدة',
+'statistics-header-users'         => 'إحصاءات المستخدمين',
+'statistics-articles'             => 'صفحات المحتوى',
+'statistics-pages'                => 'الصفحات',
+'statistics-pages-tooltip'        => 'كل الصفحات في الويكي، بما في ذلك صفحات النقاش، التحويلات، إلى آخره.',
+'statistics-files'                => 'الملفات المرفوعة',
+'statistics-edits'                => 'تعديلات الصفحات منذ تنصيب {{SITENAME}}',
+'statistics-edits-average'        => 'متوسط التعديلات لكل صفحة',
+'statistics-views-total'          => 'إجمالي المشاهدات',
+'statistics-views-peredit'        => 'المشاهدات لكل تعديل',
+'statistics-jobqueue'             => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue طابور الشغل]',
+'statistics-users'                => '[[Special:ListUsers|مستخدمون]] مسجلون',
+'statistics-users-active'         => 'مستخدمون نشطون',
+'statistics-users-active-tooltip' => 'المستخدمون الذين قاموا بفعل في الشهر الماضي',
+'statistics-mostpopular'          => 'أكثر الصفحات مشاهدة',
 
 'disambiguations'      => 'صفحات التوضيح',
 'disambiguationspage'  => 'Template:توضيح',
@@ -2109,6 +2113,7 @@ $NEWPAGE
 ** سبام شديد
 ** حرب تحرير معرقلة للعمل المنتج
 ** صفحة زوارها كثيرون',
+'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',
@@ -2313,6 +2318,7 @@ $1',
 'sorbsreason'                     => 'عنوان الأيبي الخاص بك موجود كبروكسي مفتوح في DNSBL المستخدم بواسطة {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'عنوان الأيبي الخاص بك موجود كبروكسي مفتوح في DNSBL المستخدم بواسطة {{SITENAME}}. 
 لا يمكنك إنشاء حساب.',
+'cant-block-while-blocked'        => 'أنت لا يمكنك منع المستخدمين الآخرين بينما أنت ممنوع.',
 
 # Developer tools
 'lockdb'              => 'قفل قاعدة البيانات',

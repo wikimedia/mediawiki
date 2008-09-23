@@ -694,24 +694,10 @@ $2',
 گذرواژه باید دست‌کم {{PLURAL:$1|$1 حرف|$1 حرف}} داشته باشد.',
 'mailmypassword'             => 'گذرواژهٔ جدید فرستاده شود',
 'passwordremindertitle'      => 'یادآور گذرواژهٔ {{SITENAME}}',
-'passwordremindertext'       => 'Someone (probably you, from IP address $1)
-requested that we send you a new password for {{SITENAME}} ($4).
-The password for user "$2" is now "$3".
-You should log in and change your password now.
+'passwordremindertext'       => 'یک نفر (احتمالاً خود شما) با نشانی آی‌پی $1 درخواست کرده‌است که ما گذرواژهٔ جدیدی برای  حساب کاربری‌ شما در {{SITENAME}} بفرستیم ($4).
+یک گذرواژهٔ موقت برای کاربر «$2» ساخته شده و برابر با «$3» قرار داده شده‌است. اگر هدف شما همین بوده‌است، شما باید به سیستم وارد شوید و گذرواژهٔ جدیدی برگزینید.
 
-If someone else made this request or if you have remembered your password and
-you no longer wish to change it, you may ignore this message and continue using
-your old password.
-
-------------------------------
-
-یک نفر (احتمالاً خود شما) با نشانی آی‌پی $1 درخواست کرده‌است که ما گذرواژهٔ جدیدی برای  حساب کاربری‌ {{SITENAME}}ی شما در {{SERVERNAME}} بفرستیم ($4).
-گذرواژهٔ کاربر «$2» هم‌اکنون اين است:
-
-$3
-
-حالا باید وارد سامانه شده و گذرواژهٔ خود را تغییر دهید. 
-اگر کس دیگری این درخواست را کرده‌است یا اینکه شما گذرواژهٔ پیشین خود را به یاد آورده‌اید و دیگر تمایل به تغییر آن ندارید، به این پیغام اهمیت مدهید و همان گذرواژهٔ پیشین را به کار برید.',
+اگر کس دیگری این درخواست را کرده‌است یا اینکه شما گذرواژهٔ پیشین خود را به یاد آورده‌اید و دیگر تمایل به تغییر آن ندارید، می‌توانید این پیغام را نادیده بگیرید و همان گذرواژهٔ پیشین را به کار برید.',
 'noemail'                    => 'هیچ نشانی پست الکترونیکی‌ای برای کاربر «$1» ثبت نشده است.',
 'passwordsent'               => 'یک گذرواژهٔ جدید به نشانی الکترونیکی ثبت شده برای کاربر «$1» فرستاده شد.
 لطفاً پس از دریافت آن دوباره به سامانه وارد شوید.',
@@ -919,6 +905,7 @@ $3
 'permissionserrorstext-withaction' => 'شما اجازهٔ $2 را به {{PLURAL:$1|دلیل|دلایل}} رو به رو ندارید:',
 'recreate-deleted-warn'            => "'''هشدار: شما در حال ایجاد کردن دوبارهٔ صفحه‌ای هستید که قبلاً حذف شده‌است.''' در نظر داشته باشید که آیا ادامهٔ ویرایش این صفحه کار مناسبی هست یا نه. سیاههٔ حذف مربوط به این صفحه برای راحتی در ادامه آمده‌است:",
 'deleted-notice'                   => 'این صفحه حذف شده‌است. سیاههٔ حذف این صفحه در زیر آمده‌است.',
+'deletelog-fulllog'                => 'مشاهدهٔ سیاههٔ کامل',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'هشدار: این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌گر است.
@@ -1049,6 +1036,7 @@ $3
 'mergehistory-invalid-destination' => 'صفحهٔ مقصد باید عنوان قابل قبولی داشته باشد.',
 'mergehistory-autocomment'         => '[[:$1]] را در [[:$2]] ادغام کرد',
 'mergehistory-comment'             => '[[:$1]] را در [[:$2]] ادغام کرد: $3',
+'mergehistory-same-destination'    => 'صفحهٔ مبدا و مقصد نمی‌تواند یکی باشد',
 
 # Merge log
 'mergelog'           => 'سیاهه ادغام',
@@ -1577,22 +1565,24 @@ $3
 'randomredirect-nopages' => 'هیج صفحهٔ تغییر مسیری در این فضای نام موجود نیست.',
 
 # Statistics
-'statistics'               => 'آمار',
-'statistics-header-pages'  => 'آمار صفحات',
-'statistics-header-edits'  => 'آمار ویرایشات',
-'statistics-header-views'  => 'آمار بازدیدها',
-'statistics-header-users'  => 'آمار کاربران',
-'statistics-articles'      => 'صفحه محتویات',
-'statistics-pages'         => 'صفحات',
-'statistics-files'         => 'پرونده‌های بارگذاری شده',
-'statistics-edits'         => 'از زمانی که نرم‌افزار ارتقا یافته‌است تعداد ویرایشات بر روی {{SITENAME}} این تعداد بوده است:',
-'statistics-edits-average' => 'متوسط ویرایش‌ها بر روی صفحات',
-'statistics-views-total'   => 'مجموع بازدیدها',
-'statistics-views-peredit' => 'متوسط بازدیدها به تعداد صفحات',
-'statistics-jobqueue'      => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue صف کار]',
-'statistics-users'         => '[[ویژه:ListUsers|کاربران]] ثبت‌نام کرده',
-'statistics-users-active'  => 'کاربران فعال',
-'statistics-mostpopular'   => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
+'statistics'                      => 'آمار',
+'statistics-header-pages'         => 'آمار صفحه‌ها',
+'statistics-header-edits'         => 'آمار ویرایشات',
+'statistics-header-views'         => 'آمار بازدیدها',
+'statistics-header-users'         => 'آمار کاربران',
+'statistics-articles'             => 'صفحه محتویات',
+'statistics-pages'                => 'صفحه‌ها',
+'statistics-pages-tooltip'        => 'تمام صفحه‌های این ویکی، از جمله صفحه‌های بحث، تغییر مسیر و غیره',
+'statistics-files'                => 'پرونده‌های بارگذاری شده',
+'statistics-edits'                => 'از زمانی که نرم‌افزار ارتقا یافته‌است تعداد ویرایشات بر روی {{SITENAME}} این تعداد بوده است:',
+'statistics-edits-average'        => 'متوسط ویرایش‌ها بر روی صفحات',
+'statistics-views-total'          => 'مجموع بازدیدها',
+'statistics-views-peredit'        => 'تعداد بازدید به ازای هر ویرایش',
+'statistics-jobqueue'             => 'طول [http://www.mediawiki.org/wiki/Manual:Job_queue صف کار]',
+'statistics-users'                => '[[ویژه:ListUsers|کاربران]] ثبت‌نام کرده',
+'statistics-users-active'         => 'کاربران فعال',
+'statistics-users-active-tooltip' => 'کاربرانی که در یک ماه قبل فعالیتی داشته‌اند',
+'statistics-mostpopular'          => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
 
 'disambiguations'      => 'صفحه‌های ابهام‌زدایی',
 'disambiguationspage'  => 'Template:ابهام‌زدایی',
@@ -1952,6 +1942,7 @@ $NEWPAGE
 ** هرزنگاری گسترده
 ** جنگ ویرایشی غیر سازنده
 ** صفحهٔ پر بازدید',
+'protect-edit-reasonlist'     => 'ویرایش دلایل محافظت',
 'restriction-type'            => 'دسترسی',
 'restriction-level'           => 'سطح محدودیت',
 'minimum-size'                => 'حداقل اندازه',
@@ -2143,6 +2134,7 @@ $1',
 'proxyblocksuccess'               => 'انجام شد.',
 'sorbsreason'                     => 'نشانی اینترنتی (IP) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است.',
 'sorbs_create_account_reason'     => 'نشانی اینترنتی (IP) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است. شما اجازهٔ ساختن حساب کاربری ندارید.',
+'cant-block-while-blocked'        => 'در مدتی که دسترسی شما بسته است نمی‌توانید دسترسی کاربران دیگر را قطع کنید.',
 
 # Developer tools
 'lockdb'              => 'قفل کردن پایگاه داده',

@@ -197,6 +197,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros utilizadores',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats'          => 'Exibir categorias ocultas',
+'tog-noconvertlink'           => 'Desabilitar conversão de títulos de ligações',
 
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Nunca',
@@ -573,9 +574,9 @@ Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
 'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova palavra-chave para {{SITENAME}} ($4).
-A palavra-chave para o utilizador "$2" é a partir de agora "$3". Você pode entrar na sua conta e alterar a palavra-chave.
+A palavra-chave temporária para o utilizador "$2" é, a partir de agora, "$3". Caso essa tenha sido a sua intenção, entre na sua conta e defina uma nova palavra-chave.
 
-Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave não deseja a alterar, pode ignorar esta mensagem e continuar a utilizar a palavra-chave antiga.',
+Caso tenha sido outra pessoa a fazer este pedido, ou caso você já se tenha lembrado da sua palavra-chave e não deseja alterará-la, ignore esta mensagem e continue a utilizar a palavra-chave antiga.',
 'noemail'                    => 'Não há um endereço de correio electrónico associado ao utilizador "$1".',
 'passwordsent'               => 'Uma nova palavra-chave encontra-se a ser enviada para o endereço de correio electrónico associado ao utilizador "$1".
 Por favor, volte a efectuar a autenticação ao recebê-la.',
@@ -628,7 +629,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'math_sample'     => 'Inserir fórmula aqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
-'nowiki_tip'      => 'Ignorar formato wiki',
+'nowiki_tip'      => 'Ignorar formatação wiki',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Ficheiro embutido',
 'media_sample'    => 'Exemplo.ogg',
@@ -786,6 +787,7 @@ Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|au
 Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
+'deletelog-fulllog'                => 'Ver registo completo',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas custosas a funções do analisador "parser".
@@ -814,11 +816,12 @@ A justificativa apresentada por $3 foi ''$2''",
 # History pages
 'viewpagelogs'        => 'Ver registos para esta página',
 'nohistory'           => 'Não há histórico de edições para esta página.',
-'revnotfound'         => 'Revisão não encontrada',
-'revnotfoundtext'     => 'A antiga revisão desta página que requesitou não pode ser encontrada. Por favor verifique o URL que utilizou para aceder esta página.',
+'revnotfound'         => 'Edição não encontrada',
+'revnotfoundtext'     => 'A edição antiga desta página que foi requisitada não pôde ser encontrada.
+Verifique o URL que utilizou para aceder esta página.',
 'currentrev'          => 'Revisão actual',
 'currentrev-asof'     => 'Edição actual tal como $1',
-'revisionasof'        => 'Revisão de $1',
+'revisionasof'        => 'Edição tal como às $1',
 'revision-info'       => 'Revisão de $1; $2',
 'previousrevision'    => '← Versão anterior',
 'nextrevision'        => 'Versão posterior →',
@@ -852,12 +855,11 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks">
 Esta edição desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].
-</div>',
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].</div>',
 'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">
 Esta edição desta página foi removida dos arquivos públicos.
-Sendo um administrador desta wiki, pode a ver;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registo de eliminação].</div>',
+Por ser um administrador desta wiki, poderá vê-la;
+mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].</div>',
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'     => 'Edição de destino inválida',
@@ -871,7 +873,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-hide-text'         => 'Ocultar texto da edição',
 'revdelete-hide-name'         => 'Ocultar acção e alvo',
 'revdelete-hide-comment'      => 'Esconder comentário de edição',
-'revdelete-hide-user'         => 'Esconder nome de utilizador/IP do editor',
+'revdelete-hide-user'         => 'Ocultar nome de utilizador/IP',
 'revdelete-hide-restricted'   => 'Aplicar estas restrições a administradores e trancar esta interface',
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'        => 'Ocultar conteúdos do ficheiro',
@@ -890,8 +892,8 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-uname'             => 'nome de utilizador',
 'revdelete-restricted'        => 'restrições a administradores aplicadas',
 'revdelete-unrestricted'      => 'restrições a administradores removidas',
-'revdelete-hid'               => 'ocultado $1',
-'revdelete-unhid'             => 'desocultado $1',
+'revdelete-hid'               => 'ocultou $1',
+'revdelete-unhid'             => 'desocultou $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|edição|edições}}',
 'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
 
@@ -920,6 +922,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'mergehistory-invalid-destination' => 'A página de destino precisa ser um título válido.',
 'mergehistory-autocomment'         => '[[:$1]] fundido em [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fundido em [[:$2]]: $3',
+'mergehistory-same-destination'    => 'As páginas de origem e de destino não podem ser as mesmas',
 
 # Merge log
 'mergelog'           => 'Registo de fusão de históricos',
@@ -995,9 +998,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'noexactmatch-nocreate'     => "'''Não há uma página intitulada como \"\$1\".'''",
 'toomanymatches'            => 'Foram retornados demasiados resultados. Por favor, tente um filtro de pesquisa diferente',
 'titlematches'              => 'Resultados nos títulos das páginas',
-'notitlematches'            => 'Nenhum título de página coincide',
+'notitlematches'            => 'Nenhum título de página coincide com o termo pesquisado',
 'textmatches'               => 'Resultados dos textos das páginas',
-'notextmatches'             => 'Nenhum texto nas páginas coincide',
+'notextmatches'             => 'Não foi possível localizar o termo pesquisado no conteúdo das páginas',
 'prevn'                     => 'anteriores $1',
 'nextn'                     => 'próximos $1',
 'viewprevnext'              => 'Ver ($1) ($2) ($3).',
@@ -1025,7 +1028,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'powersearch-redir'         => 'Listar redireccionamentos',
 'powersearch-field'         => 'Pesquisar',
 'search-external'           => 'Pesquisa externa',
-'searchdisabled'            => 'O motor de pesquisa na {{SITENAME}} foi desactivado por motivos de desempenho. Enquanto isso pode fazer a sua pesquisa através do Google ou do Yahoo!.<br />
+'searchdisabled'            => 'A pesquisa da {{SITENAME}} se encontra desabilitada.
+Utilize nesse meio tempo mecanismos externos, tal como o do Google.
 Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desactualizados.',
 
 # Preferences page
@@ -1454,22 +1458,24 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'randomredirect-nopages' => 'Não há redireccionamentos neste espaço nominal.',
 
 # Statistics
-'statistics'               => 'Estatísticas',
-'statistics-header-pages'  => 'Estatísticas da página',
-'statistics-header-edits'  => 'Editar estatísticas',
-'statistics-header-views'  => 'Ver estatísticas',
-'statistics-header-users'  => 'Estatísticas dos utilizadores',
-'statistics-articles'      => 'Páginas de conteúdo',
-'statistics-pages'         => 'Páginas',
-'statistics-files'         => 'Ficheiros carregados',
-'statistics-edits'         => 'Edições de página desde que {{SITENAME}} foi instalado',
-'statistics-edits-average' => 'Média de edições por página',
-'statistics-views-total'   => 'Total de visualizações',
-'statistics-views-peredit' => 'Visualizações por edição',
-'statistics-jobqueue'      => 'Tamanho da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas]',
-'statistics-users'         => '[[Special:ListUsers|Utilizadores]] registados',
-'statistics-users-active'  => 'Utilizadores activos',
-'statistics-mostpopular'   => 'Páginas mais vistas',
+'statistics'                      => 'Estatísticas',
+'statistics-header-pages'         => 'Estatísticas de páginas',
+'statistics-header-edits'         => 'Estatísticas de edições',
+'statistics-header-views'         => 'Ver estatísticas',
+'statistics-header-users'         => 'Estatísticas de utilizadores',
+'statistics-articles'             => 'Páginas de conteúdo',
+'statistics-pages'                => 'Páginas',
+'statistics-pages-tooltip'        => 'Todas as páginas do wiki, incluindo páginas de discussão, redireccionamentos etc',
+'statistics-files'                => 'Ficheiros carregados',
+'statistics-edits'                => 'Edições de página desde que {{SITENAME}} foi instalado',
+'statistics-edits-average'        => 'Média de edições por página',
+'statistics-views-total'          => 'Total de visualizações',
+'statistics-views-peredit'        => 'Visualizações por edição',
+'statistics-jobqueue'             => 'Tamanho da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tarefas]',
+'statistics-users'                => '[[Special:ListUsers|Utilizadores]] registados',
+'statistics-users-active'         => 'Utilizadores activos',
+'statistics-users-active-tooltip' => 'Utilizadores que efectuaram uma acção no mês passado',
+'statistics-mostpopular'          => 'Páginas mais vistas',
 
 'disambiguations'      => 'Página de desambiguações',
 'disambiguationspage'  => 'Template:disambig',
@@ -1579,7 +1585,8 @@ Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador
 'allpagesnext'      => 'Próximo',
 'allpagessubmit'    => 'Ir',
 'allpagesprefix'    => 'Exibir páginas com o prefixo:',
-'allpagesbadtitle'  => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Ele poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
+'allpagesbadtitle'  => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki.
+Ele talvez contenha um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} não possui o espaço nominal "$1".',
 
 # Special:Categories
@@ -1808,7 +1815,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 'protect-summary-cascade'     => 'p. progressiva',
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-expiry-indefinite'   => 'infinito',
-'protect-cascade'             => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
+'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (proteção progressiva)',
 'protect-cantedit'            => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
 'protect-othertime'           => 'Outra duração:',
 'protect-othertime-op'        => 'outra duração',
@@ -1820,6 +1827,7 @@ Esta é a configuração atual para a página <strong>$1</strong>:',
 ** Inserção excessiva de spams
 ** Guerra de edições improdutiva
 ** Página bastante acessada',
+'protect-edit-reasonlist'     => 'Editar motivos de proteções',
 'restriction-type'            => 'Permissão:',
 'restriction-level'           => 'Nível de restrição:',
 'minimum-size'                => 'Tam. mínimo',
@@ -1853,7 +1861,7 @@ Se uma nova página foi criada com o mesmo nome desde a eliminação, as ediçõ
 'undeleterevdel'               => 'O restauro não será executado se resultar na remoção parcial da versão mais recente da página ou ficheiro.
 Em tais casos, deverá desseleccionar ou reverter a ocultação da versão apagada mais recente.',
 'undeletehistorynoadmin'       => 'Esta página foi eliminada. O motivo de eliminação é apresentado no súmario abaixo, junto dos detalhes do utilizador que editou esta página antes de eliminar. O texto actual destas edições eliminadas encontra-se agora apenas disponível para administradores.',
-'undelete-revision'            => 'Edição eliminada da página $1 (das $4 de $5), por $3:',
+'undelete-revision'            => 'Edição eliminada da página $1 (das $5 de $4), por $3:',
 'undeleterevision-missing'     => 'Edição inválida ou não encontrada. Talvez você esteja com um link incorrecto ou talvez a edição foi restaurada ou removida dos arquivos.',
 'undelete-nodiff'              => 'Não foram encontradas edições anteriores.',
 'undeletebtn'                  => 'Restaurar',
@@ -2010,6 +2018,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'proxyblocksuccess'               => 'Concluído.',
 'sorbsreason'                     => 'O seu endereço IP encontra-se listado como proxy aberto pela DNSBL utilizada por {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'O seu endereço de IP encontra-se listado como proxy aberto na DNSBL utilizada por {{SITENAME}}. Você não pode criar uma conta',
+'cant-block-while-blocked'        => 'Você não pode bloquear outros utilizadores enquanto estiver bloqueado.',
 
 # Developer tools
 'lockdb'              => 'Trancar base de dados',

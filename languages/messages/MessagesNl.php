@@ -487,7 +487,7 @@ $messages = array(
 'bugreports'           => 'Foutrapporten',
 'bugreportspage'       => 'Project:Foutrapporten',
 'copyright'            => 'De inhoud is beschikbaar onder de $1.',
-'copyrightpagename'    => '{{SITENAME}} auteursrechten',
+'copyrightpagename'    => 'Auteursrechten {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Auteursrechten',
 'currentevents'        => 'In het nieuws',
 'currentevents-url'    => 'Project:In het nieuws',
@@ -716,11 +716,15 @@ Probeer het opnieuw.',
 Het moet minstens uit {{PLURAL:$1|1 teken|$1 tekens}} bestaan.',
 'mailmypassword'             => 'Nieuw wachtwoord e-mailen',
 'passwordremindertitle'      => 'Nieuw tijdelijk wachtwoord voor {{SITENAME}}',
-'passwordremindertext'       => 'Iemand, waarschijnlijk u, heeft vanaf IP-adres $1 een verzoek gedaan tot het toezenden van het wachtwoord voor {{SITENAME}} ($4).
-Het wachtwoord voor gebruiker "$2" is "$3".
-Meld u nu aan en wijzig dan uw wachtwoord.
+'passwordremindertext'       => 'Iemand, waarschijnlijk u, heeft vanaf IP-adres $1 een verzoek
+gedaan tot het toezenden van een nieuw wachtwoord voor {{SITENAME}}
+($4). Er is een tijdelijk wachtwoord aangemaakt voor gebruiker "$2":
+"$3". Als dat uw bedoeling was, meld u dan nu aan en kies een nieuw
+wachtwoord.
 
-Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het wachtwoord herinnert en het niet langer wilt wijzigen, negeer dit bericht dan en blijf uw bestaande wachtwoord gebruiken.',
+Als iemand anders dan u dit verzoek heeft gedaan of als u zich inmiddels het
+wachtwoord herinnert en het niet langer wilt wijzigen, negeer dit bericht
+dan en blijf uw bestaande wachtwoord gebruiken.',
 'noemail'                    => 'Er is geen e-mailadres bekend voor gebruiker "$1".',
 'passwordsent'               => 'Het wachtwoord is verzonden naar het e-mailadres voor "$1".
 Meld u aan nadat u het hebt ontvangen.',
@@ -779,7 +783,7 @@ U hebt uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.
 'headline_sample' => 'Deelonderwerp',
 'headline_tip'    => 'Tussenkopje (hoogste niveau)',
 'math_sample'     => 'Voer de formule in',
-'math_tip'        => 'Wiskundige formule (LaTeX)',
+'math_tip'        => 'Wiskundige formule (in LaTeX)',
 'nowiki_sample'   => 'Voer hier de niet op te maken tekst in',
 'nowiki_tip'      => 'Wiki-opmaak negeren',
 'image_sample'    => 'Voorbeeld.png',
@@ -846,8 +850,8 @@ Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 'confirmedittext'                  => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
 Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',
 'nosuchsectiontitle'               => 'Deze subkop bestaat niet',
-'nosuchsectiontext'                => 'U probeerde een subkop te bewerken dat niet bestaat.
-Omdat subkop $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
+'nosuchsectiontext'                => 'U probeerde een subkopje te bewerken dat niet bestaat.
+Omdat subkopje $1 niet bestaat, kan uw bewerking ook niet worden opgeslagen.',
 'loginreqtitle'                    => 'Aanmelden verplicht',
 'loginreqlink'                     => 'Aanmelden',
 'loginreqpagetext'                 => "$1 is verplicht om andere pagina's te kunnen zien.",
@@ -948,6 +952,7 @@ U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aan
 Overweeg of het terecht is dat u verder werkt aan deze pagina.
 Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
 'deleted-notice'                   => 'Deze pagina is verwijderd. Het verwijderingslogboek van deze pagina wordt hieronder weergegeven voor uw informatie.',
+'deletelog-fulllog'                => 'Volledige logboek bekijken',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
@@ -1084,6 +1089,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'mergehistory-invalid-destination' => 'De bestemmingspagina moet een geldige titel zijn.',
 'mergehistory-autocomment'         => '[[:$1]] samengevoegd naar [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] samengevoegd naar [[:$2]]: $3',
+'mergehistory-same-destination'    => 'De bronpagina en doelpagina kunnen niet hetzelfde zijn',
 
 # Merge log
 'mergelog'           => 'Samenvoegingslogboek',
@@ -1160,7 +1166,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'searchresulttext'          => 'Voor meer informatie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'U zocht naar \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|pagina\'s die beginnen met "$1"]] | [[Special:WhatLinksHere/$1|pagina\'s die verwijzen naar "$1"]])',
 'searchsubtitleinvalid'     => 'Voor zoekopdracht "$1"',
-'noexactmatch'              => "'''Er bestaat geen pagina genaamd \"\$1\".''' U kunt deze [[:\$1|aanmaken]].",
+'noexactmatch'              => "'''Er bestaat geen pagina met de naam \"\$1\".''' U kunt deze [[:\$1|aanmaken]].",
 'noexactmatch-nocreate'     => "'''Er bestaat geen pagina genaamd \"\$1\".'''",
 'toomanymatches'            => 'Er waren te veel resultaten.
 Probeer een andere zoekopdracht.',
@@ -1437,7 +1443,7 @@ De laatste verwijzing is bedoeld voor mediabestanden die geen afbeelding zijn.",
 'uploadlogpagetext'           => 'Hieronder staan de nieuwste bestanden.
 Zie de [[Special:NewImages|galerij met nieuwe bestanden]] voor een visueler overzicht.',
 'filename'                    => 'Bestandsnaam',
-'filedesc'                    => 'Samenvatting',
+'filedesc'                    => 'Beschrijving',
 'fileuploadsummary'           => 'Samenvatting:',
 'filestatus'                  => 'Auteursrechtensituatie:',
 'filesource'                  => 'Bron:',
@@ -1810,7 +1816,7 @@ Ondersteunde protocollen: <tt>$1</tt>',
 # Special:ListUsers
 'listusersfrom'      => 'Gebruikers bekijken vanaf:',
 'listusers-submit'   => 'Weergeven',
-'listusers-noresult' => 'Geen gebruiker(s) gevonden.',
+'listusers-noresult' => 'Geen gebruiker gevonden.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieuwe gebruikers',
@@ -2029,6 +2035,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 ** Spam
 ** Bewerkingsoorlog
 ** Preventieve beveiliging veelbezochte pagina',
+'protect-edit-reasonlist'     => 'Redenen voor beveiliging bewerken',
 'restriction-type'            => 'Rechten:',
 'restriction-level'           => 'Beperkingsniveau:',
 'minimum-size'                => 'Min. grootte',
@@ -2484,8 +2491,8 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 'modern.js'      => '/* JavaScript die hier wordt geplaatst heeft alleen invloed op gebruikers die de skin Modern gebruiken */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadata is uitgeschakeld op deze server.',
-'nocreativecommons' => 'Creative Commons RDF metadata is uitgeschakeld op deze server.',
+'nodublincore'      => 'Dublin Core RDF-metadata is uitgeschakeld op deze server.',
+'nocreativecommons' => 'Creative Commons RDF-metadata is uitgeschakeld op deze server.',
 'notacceptable'     => 'De wikiserver kan de gegevens niet leveren in een vorm die uw browser kan lezen.',
 
 # Attribution
@@ -2613,7 +2620,7 @@ Andere velden worden verborgen.
 'exif-imagewidth'                  => 'Breedte',
 'exif-imagelength'                 => 'Hoogte',
 'exif-bitspersample'               => 'Bits per component',
-'exif-compression'                 => 'Compressieschema',
+'exif-compression'                 => 'Compressiemethode',
 'exif-photometricinterpretation'   => 'Pixelcompositie',
 'exif-orientation'                 => 'Oriëntatie',
 'exif-samplesperpixel'             => 'Aantal componenten',
@@ -2647,7 +2654,7 @@ Andere velden worden verborgen.
 'exif-compressedbitsperpixel'      => 'Beeldcompressiemethode',
 'exif-pixelydimension'             => 'Bruikbare afbeeldingsbreedte',
 'exif-pixelxdimension'             => 'Bruikbare afbeeldingshoogte',
-'exif-makernote'                   => 'Opmerkingen maker',
+'exif-makernote'                   => 'Opmerkingen fabrikant',
 'exif-usercomment'                 => 'Opmerkingen',
 'exif-relatedsoundfile'            => 'Bijbehorend audiobestand',
 'exif-datetimeoriginal'            => 'Tijdstip gegevensaanmaak',
@@ -2680,7 +2687,7 @@ Andere velden worden verborgen.
 'exif-focalplaneresolutionunit'    => 'Eenheid CCD-resolutie',
 'exif-subjectlocation'             => 'Objectlocatie',
 'exif-exposureindex'               => 'Belichtingsindex',
-'exif-sensingmethod'               => 'Opvangmethode',
+'exif-sensingmethod'               => 'Meetmethode',
 'exif-filesource'                  => 'Bestandsbron',
 'exif-scenetype'                   => 'Soort scene',
 'exif-cfapattern'                  => 'CFA-patroon',
@@ -2697,7 +2704,7 @@ Andere velden worden verborgen.
 'exif-devicesettingdescription'    => 'Omschrijving apparaatinstellingen',
 'exif-subjectdistancerange'        => 'Bereik objectafstand',
 'exif-imageuniqueid'               => 'Uniek ID afbeelding',
-'exif-gpsversionid'                => 'GPS versienummer',
+'exif-gpsversionid'                => 'GPS-versienummer',
 'exif-gpslatituderef'              => 'Noorder- of zuiderbreedte',
 'exif-gpslatitude'                 => 'Breedtegraad',
 'exif-gpslongituderef'             => 'Ooster- of westerlengte',
@@ -2755,7 +2762,7 @@ Andere velden worden verborgen.
 'exif-exposureprogram-2' => 'Normaal programma',
 'exif-exposureprogram-3' => 'Diafragmaprioriteit',
 'exif-exposureprogram-4' => 'Sluiterprioriteit',
-'exif-exposureprogram-5' => 'Creatief (voorkeur voor hoge scherpte/diepte)',
+'exif-exposureprogram-5' => 'Creatief (voorkeur voor hoge scherptediepte)',
 'exif-exposureprogram-6' => 'Actie (voorkeur voor hoge sluitersnelheid)',
 'exif-exposureprogram-7' => 'Portret (detailopname met onscherpe achtergrond)',
 'exif-exposureprogram-8' => 'Landschap (scherpe achtergrond)',

@@ -272,6 +272,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
 'tog-showhiddencats'          => 'Afficher les catégories cachées',
+'tog-noconvertlink'           => 'Désactiver la conversion des titres',
 
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
@@ -642,11 +643,14 @@ Vérifiez que vous avez bien orthographié le nom, ou [[Special:Userlogin/signup
 'passwordtooshort'           => 'Votre mot de passe est trop court. Il doit contenir au moins $1 caractère{{PLURAL:$1||s}} et être différent de votre nom d’utilisateur.',
 'mailmypassword'             => 'Envoyer un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire sur {{SITENAME}}',
-'passwordremindertext'       => 'Quelqu’un (probablement vous) ayant l’adresse IP $1 a demandé à ce qu’un nouveau mot de passe vous soit envoyé pour {{SITENAME}} ($4).
-Le mot de passe de l’utilisateur « $2 » est à présent « $3 ».
-Nous vous conseillons de vous connecter et de modifier ce mot de passe dès que possible.
+'passwordremindertext'       => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
+passe pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour
+l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
+vous connecter et choisir un nouveau mot de passe.
 
-Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
+Si vous n’êtes pas l’auteur de cette demande, ou si vous vous souvenez à présent
+de votre ancien mot de passe et que vous ne souhaitez plus en changer, vous
+pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
 'noemail'                    => 'Aucune adresse de courriel n’a été enregistrée pour l’utilisateur « $1 ».',
 'passwordsent'               => 'Un nouveau mot de passe a été envoyé à l’adresse de courriel de l’utilisateur « $1 ». Veuillez vous reconnecter après l’avoir reçu.',
 'blocked-mailpassword'       => 'Votre adresse IP est bloquée en édition, la fonction de rappel du mot de passe est donc désactivée pour éviter les abus.',
@@ -839,6 +843,7 @@ Seuls les utilisateurs ayant le statut d’administrateur peuvent la modifier.''
 Demandez-vous s’il est réellement approprié de la recréer en vous référant à l’historique des suppressions affiché ci-dessous :",
 'deleted-notice'                   => "Cette page a été supprimée.
 L'historique des suppressions est affiché ci-dessous pour référence.",
+'deletelog-fulllog'                => "Voir l'historique complet",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention : Cette page contient trop d’appels dispendieux de fonctions du parseur.
@@ -962,6 +967,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'mergehistory-invalid-destination' => 'La page de destination doit avoir un titre valide.',
 'mergehistory-autocomment'         => '[[:$1]] fusionné avec [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionné avec [[:$2]] : $3',
+'mergehistory-same-destination'    => 'La source et la destination pages ne peuvent pas être la même page',
 
 # Merge log
 'mergelog'           => 'Historique des fusions',
@@ -1499,22 +1505,24 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'randomredirect-nopages' => 'Il n’y a aucune page de redirection dans cet espace de nom.',
 
 # Statistics
-'statistics'               => 'Statistiques',
-'statistics-header-pages'  => 'Statistiques des pages',
-'statistics-header-edits'  => 'Statistiques sur les éditions',
-'statistics-header-views'  => 'Statistiques sur les visites',
-'statistics-header-users'  => 'Statistiques utilisateur',
-'statistics-articles'      => 'Pages de contenu',
-'statistics-pages'         => 'Pages',
-'statistics-files'         => 'Fichiers importés',
-'statistics-edits'         => 'Modification de pages depuis que {{SITENAME}} a été installé',
-'statistics-edits-average' => 'Modifications moyennes par page',
-'statistics-views-total'   => 'Visites totales',
-'statistics-views-peredit' => 'Visites par modification',
-'statistics-jobqueue'      => 'Longueur de la [http://www.mediawiki.org/wiki/Manual:Job_queue liste d’attente de traitement]',
-'statistics-users'         => '[[Special:ListUsers|Utilisateurs]] enregistrés',
-'statistics-users-active'  => 'Utilisateurs actifs',
-'statistics-mostpopular'   => 'Pages les plus consultées',
+'statistics'                      => 'Statistiques',
+'statistics-header-pages'         => 'Statistiques des pages',
+'statistics-header-edits'         => 'Statistiques sur les éditions',
+'statistics-header-views'         => 'Statistiques sur les visites',
+'statistics-header-users'         => 'Statistiques utilisateur',
+'statistics-articles'             => 'Pages de contenu',
+'statistics-pages'                => 'Pages',
+'statistics-pages-tooltip'        => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, ...',
+'statistics-files'                => 'Fichiers importés',
+'statistics-edits'                => 'Modification de pages depuis que {{SITENAME}} a été installé',
+'statistics-edits-average'        => 'Modifications moyennes par page',
+'statistics-views-total'          => 'Visites totales',
+'statistics-views-peredit'        => 'Visites par modification',
+'statistics-jobqueue'             => 'Longueur de la [http://www.mediawiki.org/wiki/Manual:Job_queue liste d’attente de traitement]',
+'statistics-users'                => '[[Special:ListUsers|Utilisateurs]] enregistrés',
+'statistics-users-active'         => 'Utilisateurs actifs',
+'statistics-users-active-tooltip' => "Nombre d'utilisateurs ayant fait au moins une action durant le dernier mois",
+'statistics-mostpopular'          => 'Pages les plus consultées',
 
 'disambiguations'      => 'Pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',
@@ -1828,7 +1836,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect-title'               => 'Protéger « $1 »',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
-'protectexpiry'               => 'Expiration (n’expire pas par défaut)',
+'protectexpiry'               => 'Expiration :',
 'protect_expiry_invalid'      => 'Le temps d’expiration est invalide.',
 'protect_expiry_old'          => 'Le temps d’expiration est déjà passé.',
 'protect-unchain'             => 'Débloquer les permissions de renommage',
@@ -2052,6 +2060,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'proxyblocksuccess'               => 'Terminé.',
 'sorbsreason'                     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL.',
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL. Vous ne pouvez créer un compte',
+'cant-block-while-blocked'        => "Vous ne pouvez pas bloquer d'autres utilisateur pendant que vous êtes bloqué.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base',
@@ -2281,10 +2290,19 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'chick.css'       => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
 'simple.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
 'modern.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
+'print.css'       => '/* Le CSS placé ici affectera les impressions. */',
+'handheld.css'    => '/* Le CSS placé ici affectera les appareils mobiles en fonction de l\'habillage configuré $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
-'monobook.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
+'common.js'      => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
+'standard.js'    => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Standard uniquement. */',
+'nostalgia.js'   => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Nostalgie uniquement. */',
+'cologneblue.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Bleu de cologne uniquement. */',
+'monobook.js'    => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
+'myskin.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Mon habillage uniquement. */',
+'chick.js'       => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement. */',
+'simple.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement. */',
+'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement. */',
 
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',

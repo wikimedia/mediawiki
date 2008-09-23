@@ -535,13 +535,9 @@ Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:Userlogin/signup|meld
 'passwordtooshort'           => 'Ärt Passwuert ass ongülteg oder ze kuerz: Et muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn an et däerf net matt dem Benotzernumm identesch sinn.',
 'mailmypassword'             => 'Neit Passwuert per E-Mail kréien',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkonto',
-'passwordremindertext'       => "Iergend een matt der IP-Adress $1, waarscheinlech Dir selwer, huet een neit Passwuert fir d'Umeldung op {{SITENAME}} ($4) gefrot.
+'passwordremindertext'       => 'Iergend een (waarscheinlech Dir selwer, matt der IP-Adress $1) huet een neit Passwuert fir {{SITENAME}} ($4) gefrot. Een temporärt Passwuert fir de Benotzer $2 gouf ugeluecht an et ass: $3. Wann et dëst ass wat Dir wollt, da sollt Dir iech elo aloggen an en neit Passwuert eraussichen.
 
-Dat automatesch generéiert Passwuert fir  de Benotzer $2 ass elo: $3
-
-Dir sollt iech elo umellen an d'Passwuert änneren.
-
-Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir ärt Passwuert net ännere wëllt da kënnt dir weider ärt aalt Passwuert benotzen.",
+Wann een aneren dës Ufro sollt gemaach hunn oder wann Dir iech an der Zwëschenzäit nees un ärt Passwuert erënnere kënnt an Dir ärt Passwuert net ännere wëllt da kënnt dir weider ärt aalt Passwuert benotzen.',
 'noemail'                    => 'De Benotzer "$1" huet keng E-Mailadress uginn.',
 'passwordsent'               => 'Een neit Passwuert gouf un déi fir de Benotzer "$1" gespäichert E-Mailadress geschéckt.
 Melt iech w.e.g. domatt un, soubal Dir et kritt hutt.',
@@ -745,6 +741,7 @@ Frot iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'deleted-notice'                   => 'Dës Seite gouf geläscht.
 Hei ass den Extrait aus der Läschlëscht fir déi Säit.',
+'deletelog-fulllog'                => 'Déi ganz Lëscht weisen',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
@@ -1301,6 +1298,9 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filehist-comment'               => 'Bemierkung',
 'imagelinks'                     => 'Biller Linken',
 'linkstoimage'                   => 'Dës {{PLURAL:$1|Säit benotzt|Säite benotzen}} dëse Fichier:',
+'linkstoimage-more'              => 'Méi wéi {{PLURAL:$1|eng Säit ass|$1 Säite si}} d¨sem Fichier verlinkt.
+Dës Lëscht weist nëmmen {{PLURAL:$1|den éischte Link|déi éischt $1 Linken}} op dëse Fichier.
+Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'nolinkstoimage'                 => 'Keng Säit benotzt dëse Fichier.',
 'morelinkstoimage'               => 'Weis [[Special:WhatLinksHere/$1|méi Linken]] op dëse Fichier.',
 'redirectstofile'                => '{{PLURAL:$1|De Fichier leed|Dës Fichiere leede}} virun op de Fichier:',
@@ -1373,21 +1373,24 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 'randomredirect-nopages' => 'An dësem Nummraum gëtt et keng Viruleedungen.',
 
 # Statistics
-'statistics'               => 'Statistik',
-'statistics-header-pages'  => 'Säitestatistiken',
-'statistics-header-edits'  => 'Statistik vun den Ännerungen',
-'statistics-header-views'  => "Sttistiken iwwert d'Visiten",
-'statistics-header-users'  => 'Benotzerstatistik',
-'statistics-articles'      => 'Säite mat Inhalt',
-'statistics-pages'         => 'Säiten',
-'statistics-files'         => 'Eropgeluede Fichieren',
-'statistics-edits'         => 'Säitenännerungen zënter dat et {{SITENAME}} gëtt',
-'statistics-edits-average' => 'Duerchschnëttlech Zuel vun Ännerunge pro Säit',
-'statistics-views-total'   => 'Total vun den Oprif',
-'statistics-views-peredit' => 'Oprif pro Ännerung',
-'statistics-users'         => 'Registréiert [[Special:ListUsers|Benotzer]]',
-'statistics-users-active'  => 'Aktiv Benotzer',
-'statistics-mostpopular'   => 'Am meeschte gekuckte Säiten',
+'statistics'                      => 'Statistik',
+'statistics-header-pages'         => 'Säitestatistiken',
+'statistics-header-edits'         => 'Statistik vun den Ännerungen',
+'statistics-header-views'         => "Sttistiken iwwert d'Visiten",
+'statistics-header-users'         => 'Benotzerstatistik',
+'statistics-articles'             => 'Säite mat Inhalt',
+'statistics-pages'                => 'Säiten',
+'statistics-pages-tooltip'        => 'All Säiten an der Wiki, inklusiv Diskussiounssäiten, Viruleedungen, asw.',
+'statistics-files'                => 'Eropgeluede Fichieren',
+'statistics-edits'                => 'Säitenännerungen zënter datt et {{SITENAME}} gëtt',
+'statistics-edits-average'        => 'Duerchschnëttlech Zuel vun Ännerunge pro Säit',
+'statistics-views-total'          => 'Total vun den Oprif',
+'statistics-views-peredit'        => 'Oprif pro Ännerung',
+'statistics-jobqueue'             => 'Längt vun der [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'                => 'Registréiert [[Special:ListUsers|Benotzer]]',
+'statistics-users-active'         => 'Aktiv Benotzer',
+'statistics-users-active-tooltip' => 'Benotzer déi während dem leschte Mount eppes gemaach hunn',
+'statistics-mostpopular'          => 'Am meeschte gekuckte Säiten',
 
 'disambiguations'      => 'Homonymie Säiten',
 'disambiguationspage'  => 'Schabloun:Homonymie',
@@ -1890,6 +1893,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'contribslink'                    => 'Kontributiounen',
 'autoblocker'                     => 'Dir sidd automatesch gespaart well dir eng IP Adress mam "$1" deelt. Grond "$2".',
 'blocklogpage'                    => 'Spärlëscht',
+'blocklog-fulllog'                => 'Komplett Lëscht vun de Spären',
 'blocklogentry'                   => '"[[$1]]" gespaart, gülteg bis $2 $3',
 'blocklogtext'                    => "Dëst ass eng Lëscht vu Spären an den Annulatioune vun de Spären. Automatesch gespaarten IP Adresse sinn hei net opgelëscht. Kuckt d'[[Special:IPBlockList|IP Spärlëschtt]] fir déi aktuell Spären.",
 'unblocklogentry'                 => "huet d'Spär vum [[$1]] annulléiert",

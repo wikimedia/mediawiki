@@ -568,9 +568,14 @@ Sjekk stavemåten eller [[Special:Userlogin/signup|opprett en ny konto]].',
 Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}} og kan ikke være det samme som brukernavnet ditt.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt midlertidig passord fra {{SITENAME}}',
-'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt passord til {{SITENAME}} ($4). Passordet for kontoen «$2» er nå «$3». Du burde logge inn og endre pasordet nå.
+'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt
+passord til {{SITENAME}} ($4). Et midlertidig passord for «$2» har
+blitt laget og sendt til «$3». Om det var det du ville, må du logge inn
+og velge et nytt passord nå.
 
-Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden og fortsette å bruke det gamle passordet.',
+Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet
+og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden
+og fortsette å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikke registrert noen e-postadresse for brukeren «$1».',
 'passwordsent'               => 'Et nytt passord har blitt sendt til e-postadressen registrert på bruker «$1». Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword'       => 'IP-adressen din er blokkert fra å redigere, og for å forhindre misbruk kan du heller ikke bruke funksjonen som gir deg nytt passord.',
@@ -759,6 +764,7 @@ Systemadministratoren som låste databasen oppga følgende årsak: $1',
 
 Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. Slettingsloggen for denne siden gjengis her:",
 'deleted-notice'                   => 'Denne siden har blitt slettet. Slettingsloggen vises nedenfor.',
+'deletelog-fulllog'                => 'Vis full logg',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
@@ -887,6 +893,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'mergehistory-invalid-destination' => 'Målsiden må ha en gyldig tittel.',
 'mergehistory-autocomment'         => 'Flettet [[:$1]] inn i [[:$2]]',
 'mergehistory-comment'             => 'Flettet [[:$1]] inn i [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Kilde- og målside kan ikke være den samme.',
 
 # Merge log
 'mergelog'           => 'Flettingslogg',
@@ -1424,22 +1431,24 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'randomredirect-nopages' => 'Det er ingen omdirigeringer i dette navnerommet.',
 
 # Statistics
-'statistics'               => 'Statistikk',
-'statistics-header-pages'  => 'Sidestatistikk',
-'statistics-header-edits'  => 'Redigeringsstatistikk',
-'statistics-header-views'  => 'Visningsstatistikk',
-'statistics-header-users'  => 'Brukerstatistikk',
-'statistics-articles'      => 'Innholdssider',
-'statistics-pages'         => 'Sider',
-'statistics-files'         => 'Opplastede filer',
-'statistics-edits'         => 'Redigeringer siden {{PAGENAME}} ble opprettet',
-'statistics-edits-average' => 'Gjennomsnittlig antall redigeringer per side',
-'statistics-views-total'   => 'Totalt antall visninger',
-'statistics-views-peredit' => 'Visninger per redigering',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøens] lengde',
-'statistics-users'         => 'Registrerte [[Special:ListUsers|brukere]]',
-'statistics-users-active'  => 'Aktive brukere',
-'statistics-mostpopular'   => 'Mest viste sider',
+'statistics'                      => 'Statistikk',
+'statistics-header-pages'         => 'Sidestatistikk',
+'statistics-header-edits'         => 'Redigeringsstatistikk',
+'statistics-header-views'         => 'Visningsstatistikk',
+'statistics-header-users'         => 'Brukerstatistikk',
+'statistics-articles'             => 'Innholdssider',
+'statistics-pages'                => 'Sider',
+'statistics-pages-tooltip'        => 'Alle sider på wikien, inkludert diskusjonssider, omdirigeringer o.l.',
+'statistics-files'                => 'Opplastede filer',
+'statistics-edits'                => 'Redigeringer siden {{SITENAME}} ble opprettet',
+'statistics-edits-average'        => 'Gjennomsnittlig antall redigeringer per side',
+'statistics-views-total'          => 'Totalt antall visninger',
+'statistics-views-peredit'        => 'Visninger per redigering',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Jobbkøens] lengde',
+'statistics-users'                => 'Registrerte [[Special:ListUsers|brukere]]',
+'statistics-users-active'         => 'Aktive brukere',
+'statistics-users-active-tooltip' => 'Brukere som har utført handlinger den siste måneden',
+'statistics-mostpopular'          => 'Mest viste sider',
 
 'disambiguations'      => 'Artikler med flertydige titler',
 'disambiguationspage'  => 'Template:Peker',
@@ -1780,6 +1789,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 ** Gjentatt spam
 ** Redigeringskrig
 ** Side med mange besøkende',
+'protect-edit-reasonlist'     => 'Rediger låsingsgrunner',
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse',
@@ -1965,6 +1975,7 @@ $1',
 'proxyblocksuccess'               => 'Utført.',
 'sorbsreason'                     => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto',
+'cant-block-while-blocked'        => 'Du kan ikke blokkere andre mens du selv er blokkert.',
 
 # Developer tools
 'lockdb'              => 'Lås database',

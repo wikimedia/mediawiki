@@ -709,6 +709,7 @@ Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content
 *Parameter $1 is the name of the redirect page which is created
 *Parameter $2 is the target of the redirect
 *Parameter $3 is a log comment for the merge',
+'mergehistory-same-destination' => 'Error message shown on [[Special:MergeHistory]] when the user entered the same page title to both source and destination',
 
 # Merge log
 'mergelog' => 'This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
@@ -1190,6 +1191,7 @@ Example: [[:Image:Addon-icn.png]]',
 'statistics-header-users' => 'Used in [[Special:Statistics]]',
 'statistics-articles' => 'Used in [[Special:Statistics]]',
 'statistics-pages' => 'Used in [[Special:Statistics]]',
+'statistics-pages-tooltip' => "Tooltip shown over ''Pages*'' in [[Special:Statistics]]",
 'statistics-files' => 'Used in [[Special:Statistics]]',
 'statistics-edits' => 'Used in [[Special:Statistics]]',
 'statistics-edits-average' => 'Used in [[Special:Statistics]]',
@@ -1198,6 +1200,7 @@ Example: [[:Image:Addon-icn.png]]',
 'statistics-jobqueue' => 'Used in [[Special:Statistics]]',
 'statistics-users' => 'Used in [[Special:Statistics]]',
 'statistics-users-active' => 'Used in [[Special:Statistics]]',
+'statistics-users-active-tooltip' => "Tooltip shown over ''Active users*'' in [[Special:Statistics]]",
 'statistics-mostpopular' => 'Used in [[Special:Statistics]]',
 
 'disambiguations' => 'Name of a special page displayed in [[Special:SpecialPages]].',
@@ -1443,7 +1446,7 @@ $1 = the name of the page',
 'deleteotherreason' => '{{Identical|Other/additional reason}}',
 'deletereasonotherlist' => '{{Identical|Other reason}}',
 'deletereason-dropdown' => 'Default reasons for deletion.',
-'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]].
+'delete-edit-reasonlist' => 'Shown beneath the page deletion form on the right side. It is a link to [[MediaWiki:Deletereason-dropdown]]. See also {{msg|Ipb-edit-dropdown}} and {{msg|Protect-edit-reasonlist}}.
 
 {{Identical|Edit delete reasons}}',
 
@@ -1486,6 +1489,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
+'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
 'restriction-type' => 'Used on [[Special:ProtectedPages]].',
 'restriction-level' => 'Used on [[Special:ProtectedPages]].',
 
@@ -1611,6 +1615,7 @@ Example line:
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
 'ipbwatchuser' => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipblocklist-submit' => '{{Identical|Search}}',
 'blocklistline' => 'This is the text of an entry in the Special:IPBlockList.
 *$1 is the hour and date of the block. 
@@ -2048,7 +2053,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 
 # Iranian month names
 'iranian-calendar-m1' => 'Name of month in Iranian calender.',
-'iranian-calendar-m2' => 'Име на месец во Иранскиот календар.',
+'iranian-calendar-m2' => 'Name of month in Iranian calender.',
 'iranian-calendar-m3' => 'Name of month in Iranian calender.',
 'iranian-calendar-m4' => 'Name of month in Iranian calender.',
 'iranian-calendar-m5' => 'Name of month in Iranian calender.',

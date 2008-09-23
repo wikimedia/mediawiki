@@ -836,6 +836,7 @@ Bes förseschtesch un övverlääsch Der, of dat en joode Idee es, di Sigg widde
 Domet De Bescheid weiß, hee dä Endraach em Logboch vum Sigge-Fottschmieße mem Jrond,
 woröm di Sigg dohmohls fottjeschmesse woode es:",
 'deleted-notice'                   => 'Di Sigg es fottjeschmeße. He kütt e Shtöck uß däm Logbooch fum Sigge-Fotschmieße, för hee di Sigg.',
+'deletelog-fulllog'                => 'Et kompläte Logboch aanloore',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg hee määt zovill Opwand met Paaser-Funkßjohne.
@@ -971,6 +972,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'mergehistory-invalid-destination' => 'De Zielsigg ier Name moß och ene reschtijje Siggetittel sin.',
 'mergehistory-autocomment'         => '„[[:$1]]“ es jetz zosamme jelaat met „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ zosamme jelaat met „[[:$2]]“ — $3',
+'mergehistory-same-destination'    => 'De Quell-Sigg un de Ziel-Sigg dörve nit deselve Sigg sinn.',
 
 # Merge log
 'mergelog'           => 'Logboch fum Sigge zesamme Läje',
@@ -1545,22 +1547,25 @@ wääde, un luur Der die ander Links aan!',
 'randomredirect-nopages' => 'En däm Appachtemang hee sin ja kein Ömleidunge dren.',
 
 # Statistics
-'statistics'               => 'Statistike',
-'statistics-header-pages'  => 'Zahle övver Sigge',
-'statistics-header-edits'  => 'Zahle övver Änderunge',
-'statistics-header-views'  => 'Zahle övver afjeroofe Sigge',
-'statistics-header-users'  => 'Statistike üvver de Metmaacher',
-'statistics-articles'      => 'Atikelle',
-'statistics-pages'         => 'Sigge jesamp',
-'statistics-files'         => 'Huhjelade Dateie',
-'statistics-edits'         => 'Änderunge aan Sigge',
-'statistics-edits-average' => 'Aanzahl Änderunge pro Sigg em Dorschschnett',
-'statistics-views-total'   => 'Sigge affjeroofe, ėnßjesamp',
-'statistics-views-peredit' => 'Sigge affjeroofe, pro Änderung',
-'statistics-jobqueue'      => 'Endrääch en de [http://www.mediawiki.org/wiki/Manual:Job_queue Opjaveleß]',
-'statistics-users'         => '[[Special:ListUsers|Metmaacher]] aajemelldt',
-'statistics-users-active'  => 'Aktive Metmaacher',
-'statistics-mostpopular'   => 'De miets affjeroofe Sigge',
+'statistics'                      => 'Statistike',
+'statistics-header-pages'         => 'Zahle övver Sigge',
+'statistics-header-edits'         => 'Zahle övver Änderunge',
+'statistics-header-views'         => 'Zahle övver afjeroofe Sigge',
+'statistics-header-users'         => 'Statistike üvver de Metmaacher',
+'statistics-articles'             => 'Atikelle',
+'statistics-pages'                => 'Sigge jesamp',
+'statistics-pages-tooltip'        => 'All pages in the wiki, including talk pages, redirects, etc.
+All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
+'statistics-files'                => 'Huhjelade Dateie',
+'statistics-edits'                => 'Änderunge aan Sigge',
+'statistics-edits-average'        => 'Aanzahl Änderunge pro Sigg em Dorschschnett',
+'statistics-views-total'          => 'Sigge affjeroofe, ėnßjesamp',
+'statistics-views-peredit'        => 'Sigge affjeroofe, pro Änderung',
+'statistics-jobqueue'             => 'Endrääch en de [http://www.mediawiki.org/wiki/Manual:Job_queue Opjaveleß]',
+'statistics-users'                => '[[Special:ListUsers|Metmaacher]] aajemelldt',
+'statistics-users-active'         => 'Aktive Metmaacher',
+'statistics-users-active-tooltip' => 'Metmaacher, die em läzte Mohnd jät jemaat han.',
+'statistics-mostpopular'          => 'De miets affjeroofe Sigge',
 
 'disambiguations'      => '„(Wat es dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
@@ -2139,6 +2144,7 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'proxyblocksuccess'               => 'Jedonn.',
 'sorbsreason'                     => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
 'sorbs_create_account_reason'     => 'Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich hee em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!',
+'cant-block-while-blocked'        => 'Do kanns ander Metmaacher nit sperre, esu lang wi De sellver jesperrt bes.',
 
 # Developer tools
 'lockdb'              => 'Daatebank sperre',

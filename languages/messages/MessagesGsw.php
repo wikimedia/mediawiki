@@ -377,7 +377,7 @@ Bitte meld dich domit ô, wenns bekumme hesch.',
 
 Bevor das wyteri Mails yber d {{SITENAME}}-Mailfunktion a die Adrässe gschickt wärde, muesch du d Instruktionen i däm Mail befolge, für z bestätige, das es würklech dys isch.',
 'mailerror'                  => 'Fähler bim Sende vun de Mail: $1',
-'acct_creation_throttle_hit' => 'Si hand bereits $1 Benutzerkontos agleit.
+'acct_creation_throttle_hit' => 'Si hand bereits {{PLURAL:$1|1 Benutzerkonto|$1 Benutzerkontos}} agleit.
 Si chönne cheini meh aalege.',
 'emailauthenticated'         => 'Di E-Bost-Adräss isch am $2 um $3 Uhr bschtätigt worde.',
 'emailnotauthenticated'      => 'Dyni e-Mail-Adrässen isch no nid bestätiget. Drum göh di erwytereten e-Mail-Funktione no nid.
