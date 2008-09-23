@@ -67,6 +67,11 @@ with $wgEnableUploads in later versions. When upgrading, consult the release
 notes to check for configuration changes which would alter the expected
 behaviour of MediaWiki.
 
+=== Check installed extensions ===
+In MediaWiki 1.14 some extensions are migrated into the core. Please see the
+RELEASE-NOTES section "Migrated extensions" and disable these extensions in your
+localSettings.php
+
 === Test ===
 
 It makes sense to test your wiki immediately following any kind of maintenance
