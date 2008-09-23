@@ -1405,6 +1405,9 @@ PICT # misc.
 'special-categories-sort-count' => 'संख्यानुसार वर्ग दर्शायें',
 'special-categories-sort-abc'   => 'वर्णानुक्रम के अनुसार दर्शायें',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'हटाये गये सदस्य योगदान',
+
 # Special:LinkSearch
 'linksearch'       => 'वेब कड़ीयाँ खोजें',
 'linksearch-pat'   => 'खोजने के लिये पाठ:',

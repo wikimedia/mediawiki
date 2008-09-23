@@ -1394,6 +1394,9 @@ $3 చెప్పిన కారణం: ''$2''",
 'special-categories-sort-count' => 'సంఖ్యల ప్రకారం క్రమపరచు',
 'special-categories-sort-abc'   => 'అకారాది క్రమంలో అమర్చు',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'తొలగించబడిన సభ్యుని రచనలు',
+
 # Special:LinkSearch
 'linksearch'       => 'వెబ్ లింకుల్లో వెతుకు',
 'linksearch-pat'   => 'వెతకాల్సిన నమూనా:',

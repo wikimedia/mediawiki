@@ -1281,6 +1281,9 @@ Panjenengan bisa ngwatesi panuduhan mawa milih jenis log, jeneng panganggo, utaw
 'special-categories-sort-count' => 'urutna miturut angka',
 'special-categories-sort-abc'   => 'urutna miturut abjad',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Kontribusi panganggo sing dibusak',
+
 # Special:LinkSearch
 'linksearch'       => 'Golèk pranala jaba',
 'linksearch-pat'   => 'Pola panggolèkan:',

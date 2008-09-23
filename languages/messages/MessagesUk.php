@@ -1663,6 +1663,9 @@ $3 зазначив наступну причину: ''$2''",
 'special-categories-sort-count' => 'упорядкувати за кількістю',
 'special-categories-sort-abc'   => 'упорядкувати за алфавітом',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Вилучений внесок користувача',
+
 # Special:LinkSearch
 'linksearch'       => 'Пошук зовнішніх посилань',
 'linksearch-pat'   => 'Шаблон для пошуку:',

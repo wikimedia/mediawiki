@@ -1535,6 +1535,9 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'special-categories-sort-count' => 'ordinar per numero',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contributiones delite de usatores',
+
 # Special:LinkSearch
 'linksearch'       => 'Cercar per ligamines web',
 'linksearch-pat'   => 'Patrono a cercar:',

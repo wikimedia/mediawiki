@@ -1548,6 +1548,9 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'special-categories-sort-count' => 'ordina per numero',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contributi utente cancellati',
+
 # Special:LinkSearch
 'linksearch'       => 'Ricerca collegamenti esterni',
 'linksearch-pat'   => 'Pattern di ricerca:',

@@ -1423,6 +1423,9 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'special-categories-sort-count' => 'yupaykama allichay',
 'special-categories-sort-abc'   => 'qallarina sanampakama allichay',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Qullusqa ruraqpa hukchasqankuna',
+
 # Special:LinkSearch
 'linksearch'       => "Internet llikapi t'inkikunata maskay",
 'linksearch-pat'   => 'Kay qatinallakama maskay:',

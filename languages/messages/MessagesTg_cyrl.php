@@ -1263,6 +1263,9 @@ $1',
 'special-categories-sort-count' => 'муратаб кардан бар асоси теъдод',
 'special-categories-sort-abc'   => 'муратаб кардани алифбоӣ',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Ҳиссагузориҳои ҳазфшудаи корбар',
+
 # Special:LinkSearch
 'linksearch'       => 'Ҷусутҷӣ пайвандҳои веб',
 'linksearch-pat'   => 'Ҷустуҷӯи нақш:',

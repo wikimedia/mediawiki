@@ -1444,6 +1444,9 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'special-categories-sort-count' => 'ordina par nùmaro',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contributi utente scancelà',
+
 # Special:LinkSearch
 'linksearch'       => 'Çerca colegamenti foresti',
 'linksearch-pat'   => 'Pattern de riçerca:',

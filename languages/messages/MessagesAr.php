@@ -366,6 +366,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'تعطيل_البريد_الإلكتروني' ),
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
+	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 );
 
 $imageFiles = array(
@@ -1879,6 +1880,9 @@ PICT # متنوع
 'categoriesfrom'                => 'أظهر التصنيفات بدءا من:',
 'special-categories-sort-count' => 'رتب بالعدد',
 'special-categories-sort-abc'   => 'رتب هجائيا',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'مساهمات المستخدم المحذوفة',
 
 # Special:LinkSearch
 'linksearch'       => 'بحث وصلات الويب',

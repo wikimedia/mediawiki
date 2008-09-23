@@ -1644,6 +1644,9 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'special-categories-sort-count' => 'triada per compte',
 'special-categories-sort-abc'   => 'triada alfabetica',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribucions suprimidas d’un utilizaire',
+
 # Special:LinkSearch
 'linksearch'       => 'Recercar de ligams Internet',
 'linksearch-pat'   => 'Recercar l’expression :',

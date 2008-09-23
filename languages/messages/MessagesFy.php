@@ -1372,6 +1372,9 @@ Jo kinne it oersjoch beheine troch in loch, in meidoggernamme of in side oan te 
 'categories'         => 'Kategoryen',
 'categoriespagetext' => 'Dizze wiki hat de neikommende kategoryen:',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Wiske meidogger bydragen',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Sykje',
 

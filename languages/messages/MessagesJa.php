@@ -1379,6 +1379,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
+'listusers-editsonly'     => 'បង្ហាញអ្នកប្រើប្រាស់ដែលបានកែប្រែប៉ុណ្ណោះ',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
@@ -1432,6 +1433,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'categoriesfrom'                => '表示開始カテゴリ:',
 'special-categories-sort-count' => '項目数順',
 'special-categories-sort-abc'   => 'アルファベット順',
+
+# Special:DeletedContributions
+'deletedcontributions' => '利用者の削除された投稿履歴',
 
 # Special:LinkSearch
 'linksearch'       => '外部リンクの検索',

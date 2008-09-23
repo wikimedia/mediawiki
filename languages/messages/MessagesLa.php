@@ -142,6 +142,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'Adfimationem inscriptionis electronicae abrogare' ),
 	'Blankpage'                 => array( 'Pagina vacua' ),
 	'LinkSearch'                => array( 'Quaerere nexus externos' ),
+	'DeletedContributions'      => array( 'Conlationes deletae', 'Conlationes usoris deletae' ),
 );
 
 $messages = array(
@@ -1140,6 +1141,9 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras ma
 Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'special-categories-sort-count' => 'ordinare secundum numerum',
 'special-categories-sort-abc'   => 'ordinare secundum abecedarium',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Conlationes usoris deletae',
 
 # Special:LinkSearch
 'linksearch'    => 'Quaerere nexus externos',

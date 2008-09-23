@@ -1154,6 +1154,9 @@ $3-এর দেয়া কারণ হল ''$2''",
 'categories'         => 'বিষয়শ্রেণীসমূহ',
 'categoriespagetext' => 'এ উইকিতে বর্তমান বিষয়শ্রেণীসমূহ:',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'মুছে ফেলা ব্যবহারকারী অবদান',
+
 # Special:LinkSearch
 'linksearch'      => 'ওয়েব লিঙ্কসমূহ অনুসন্ধান করো',
 'linksearch-pat'  => 'অনুসন্ধান প্যাটার্ণ:',

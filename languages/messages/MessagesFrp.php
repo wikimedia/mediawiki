@@ -1227,6 +1227,9 @@ PICT # de totes sôrtes
 'special-categories-sort-count' => 'tri per compto',
 'special-categories-sort-abc'   => 'tri alfabètico',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribucions suprimâs d’un utilisator',
+
 # Special:LinkSearch
 'linksearch'       => 'Rechèrchiér des lims Malyâjo',
 'linksearch-pat'   => 'Rechèrchiér l’èxprèssion :',

@@ -582,6 +582,9 @@ Template:Khu-pia̍t-ia̍h',
 'categories'         => 'Lūi-pia̍t',
 'categoriespagetext' => 'Chit ê wiki ū ē-kha chia ê lūi-pia̍t.',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Hō͘ lâng thâi tiāu ê kòng-hiàn',
+
 # Special:LinkSearch
 'linksearch' => 'Chhiau-chhoē chām-goā liân-kiat',
 

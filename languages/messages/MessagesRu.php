@@ -1675,6 +1675,9 @@ PICT # различные
 'special-categories-sort-count' => 'упорядочить по количеству',
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Удалённый вклад',
+
 # Special:LinkSearch
 'linksearch'       => 'Поиск внешних ссылок',
 'linksearch-pat'   => 'Шаблон для поиска:',

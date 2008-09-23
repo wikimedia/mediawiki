@@ -1363,6 +1363,9 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'special-categories-sort-count' => 'trefnu yn ôl nifer',
 'special-categories-sort-abc'   => 'trefnu yn ôl yr wyddor',
 
+# Special:DeletedContributions
+'deletedcontributions' => "Cyfraniadau'r defnyddiwr a ddilëwyd",
+
 # Special:ListUsers
 'listusersfrom'      => 'Dangos y defnyddwyr gan ddechrau â:',
 'listusers-submit'   => 'Dangos',

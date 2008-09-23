@@ -1751,6 +1751,9 @@ URL дұрыс екендігін және торап істеп тұрғаны�
 'special-categories-sort-count' => 'санымен сұрыптау',
 'special-categories-sort-abc'   => 'әліпбимен сұрыптау',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Қатысушының жойылған үлесі',
+
 # Special:LinkSearch
 'linksearch'       => 'Сыртқы сілтемелерді іздеу',
 'linksearch-pat'   => 'Іздеу шарты:',

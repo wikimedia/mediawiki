@@ -1215,6 +1215,9 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'special-categories-sort-count' => 'ordenal pol cuenta',
 'special-categories-sort-abc'   => 'ordenal alfabeticamenti',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribucionis el usuáriu esborrás',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Landeal',
 

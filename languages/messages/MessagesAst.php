@@ -1471,6 +1471,9 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'special-categories-sort-count' => 'ordenar por tamañu',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => "Contribuciones d'usuariu borraes",
+
 # Special:LinkSearch
 'linksearch'       => 'Buscar enllaces web',
 'linksearch-pat'   => 'Patrón de busca:',

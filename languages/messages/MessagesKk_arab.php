@@ -1771,6 +1771,9 @@ URL دۇرىس ەكەندىگىن جانە توراپ ىستەپ تۇرعانى�
 'special-categories-sort-count' => 'سانىمەن سۇرىپتاۋ',
 'special-categories-sort-abc'   => 'الىپبىيمەن سۇرىپتاۋ',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'قاتىسۋشىنىڭ جويىلعان ۇلەسى',
+
 # Special:LinkSearch
 'linksearch'       => 'سىرتقى سٸلتەمەلەردٸ ٸزدەۋ',
 'linksearch-pat'   => 'ٸزدەۋ شارتى:',

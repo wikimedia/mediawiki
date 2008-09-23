@@ -1547,6 +1547,9 @@ Template:搞清楚',
 'special-categories-sort-count' => '跟數量排',
 'special-categories-sort-abc'   => '跟字母排',
 
+# Special:DeletedContributions
+'deletedcontributions' => '已經刪除咗嘅用戶貢獻',
+
 # Special:LinkSearch
 'linksearch'       => '搵網頁連結',
 'linksearch-pat'   => '搵嘅形態:',

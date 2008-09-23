@@ -142,6 +142,7 @@ $specialPageAliases = array(
 	'Filepath'                => array( 'Fájl elérési útja' ),
 	'Invalidateemail'         => array( 'E-mail cím érvénytelenítése' ),
 	'Blankpage'               => array( 'Üres lap' ),
+	'DeletedContributions'    => array( 'Törölt szerkesztések' ),
 );
 
 $datePreferences = array(
@@ -1698,6 +1699,9 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'categoriesfrom'                => 'Kategóriák listázása a következő névtől kezdve:',
 'special-categories-sort-count' => 'rendezés elemszám szerint',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Törölt szerkesztések',
 
 # Special:LinkSearch
 'linksearch'       => 'Keresés külső hivatkozások szerint',

@@ -1555,6 +1555,9 @@ $2',
 'special-categories-sort-count' => 'сортирај по броју',
 'special-categories-sort-abc'   => 'сортирај азбучно',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Обрисане измене',
+
 # Special:LinkSearch
 'linksearch'       => 'претрага веб линкова',
 'linksearch-pat'   => 'Образац претраге:',

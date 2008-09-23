@@ -686,6 +686,9 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 # Special:Categories
 'categories' => 'Dihlopha',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Diabe tša mošomiši tšeo di phumutšwego',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Fetleka',
 

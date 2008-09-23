@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1465,6 +1465,9 @@ Template:消除歧義',
 'categoriesfrom'                => '顯示由此項起之分類:',
 'special-categories-sort-count' => '按數量排列',
 'special-categories-sort-abc'   => '按字母排列',
+
+# Special:DeletedContributions
+'deletedcontributions' => '已刪除的用戶貢獻',
 
 # Special:LinkSearch
 'linksearch'       => '搜尋網頁連結',

@@ -1731,6 +1731,9 @@ Možná Vás budou zajímat [[Special:WantedCategories|žádané kategorie]].',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Smazané editace uživatele',
+
 # Special:LinkSearch
 'linksearch'       => 'Hledání externích odkazů',
 'linksearch-pat'   => 'Vyhledávací vzor:',
@@ -1952,6 +1955,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 ** Vkládání reklamních externích odkazů
 ** Editační válka
 ** Velice často používaná stránka',
+'protect-edit-reasonlist'     => 'Editace seznamu důvodů zamčení',
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',

@@ -155,6 +155,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'E-Mail_nicht_bestaetigen' ),
 	'Blankpage'                 => array( 'Leerseite' ),
 	'LinkSearch'                => array( 'Weblink-Suche' ),
+	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
 );
 
 $datePreferences = array(
@@ -949,7 +950,7 @@ Stelle sicher, dass die Versionsgeschichte eines Artikels historisch korrekt ist
 'mergehistory-invalid-destination' => 'Zielseite muss ein gültiger Seitenname sein.',
 'mergehistory-autocomment'         => '„[[:$1]]“ vereinigt nach „[[:$2]]“',
 'mergehistory-comment'             => '„[[:$1]]“ vereinigt nach „[[:$2]]“: $3',
-'mergehistory-same-destination'    => 'Ausgangs- und Zieldateiname dürfen nicht identisch sein',
+'mergehistory-same-destination'    => 'Ausgangs- und Zielseite dürfen nicht identisch sein',
 
 # Merge log
 'mergelog'           => 'Vereinigungs-Logbuch',
@@ -1634,6 +1635,9 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'categoriesfrom'                => 'Zeige Kategorien ab:',
 'special-categories-sort-count' => 'Sortierung nach Anzahl',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Gelöschte Beiträge',
 
 # Special:LinkSearch
 'linksearch'       => 'Weblink-Suche',

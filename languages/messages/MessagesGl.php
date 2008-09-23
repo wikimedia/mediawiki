@@ -1492,6 +1492,9 @@ Véxanse tamén as [[Special:WantedCategories|categorías requiridas]].',
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribucións eliminadas do usuario',
+
 # Special:LinkSearch
 'linksearch'       => 'Buscar ligazóns web',
 'linksearch-pat'   => 'Patrón de procura:',

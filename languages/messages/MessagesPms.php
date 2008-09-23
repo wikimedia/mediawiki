@@ -1237,6 +1237,9 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'special-categories-sort-count' => 'ordiné për nùmer',
 'special-categories-sort-abc'   => 'òrdiné për alfabétich',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Modìfiche faite da utent scancelà',
+
 # Special:LinkSearch
 'linksearch'       => "Sërchè antra j'anliure dla Ragnà",
 'linksearch-pat'   => "Schema d'arsërca:",

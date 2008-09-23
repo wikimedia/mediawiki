@@ -151,6 +151,7 @@ $specialPageAliases = array(
 	'Invalidateemail'         => array( 'Invalidar e-mail' ),
 	'Blankpage'               => array( 'Página em branco' ),
 	'LinkSearch'              => array( 'Pesquisar links' ),
+	'DeletedContributions'    => array( 'Contribuições eliminadas', 'Edições eliminadas' ),
 );
 
 $messages = array(
@@ -1597,6 +1598,9 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Edições eliminadas',
 
 # Special:LinkSearch
 'linksearch'       => 'Procurar por links da web',

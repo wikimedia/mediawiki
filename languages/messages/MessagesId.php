@@ -277,6 +277,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Resetpass' ),
 	'Withoutinterwiki'          => array( 'Tanpa_interwiki', 'Tanpainterwiki' ),
 	'LinkSearch'                => array( 'Pencarian pranala' ),
+	'DeletedContributions'      => array( 'Kontribusi yang dihapus' ),
 );
 
 $messages = array(
@@ -1664,6 +1665,9 @@ Lihat pula [[Special:WantedCategories|daftar kategori yang dibutuhkan]].',
 'categoriesfrom'                => 'Tampilkan kategori-kategori dimulai dengan:',
 'special-categories-sort-count' => 'urutkan menurut jumlah',
 'special-categories-sort-abc'   => 'urutkan menurut abjad',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Kontribusi yang dihapus',
 
 # Special:LinkSearch
 'linksearch'       => 'Pencarian pranala luar',

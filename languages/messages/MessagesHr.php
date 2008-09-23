@@ -130,6 +130,7 @@ $specialPageAliases = array(
 	'Invalidateemail'           => array( 'Nevaljana_elektronička_pošta' ),
 	'Blankpage'                 => array( 'Prazna_stranica' ),
 	'LinkSearch'                => array( 'Traži_poveznice', 'Traži_linkove' ),
+	'DeletedContributions'      => array( 'Obrisani_doprinosi' ),
 );
 
 $magicWords = array(
@@ -1664,6 +1665,9 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'categoriesfrom'                => 'Prikaži kategorije počevši od:',
 'special-categories-sort-count' => 'razvrstavanje po broju',
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Obrisani suradnički doprinosi',
 
 # Special:LinkSearch
 'linksearch'       => 'Pretraživanje vanjskih poveznica',

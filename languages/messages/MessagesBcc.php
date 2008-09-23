@@ -1585,6 +1585,9 @@ PICT # misc.
 'special-categories-sort-count' => 'ترتیب په اساس شمار',
 'special-categories-sort-abc'   => 'ترتیب الفبی',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'مشارکتان کابر حذف بوتء',
+
 # Special:LinkSearch
 'linksearch'       => 'گردگ لینکان وب',
 'linksearch-pat'   => 'گردگ الگو:',

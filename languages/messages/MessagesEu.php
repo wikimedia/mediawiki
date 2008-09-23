@@ -1356,6 +1356,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.',
 'special-categories-sort-count' => 'kontatetzearen arabera ordenatu',
 'special-categories-sort-abc'   => 'alfabetikoki aldatu',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Ezabatutako ekarpenak',
+
 # Special:LinkSearch
 'linksearch'       => 'Web loturak bilatu',
 'linksearch-pat'   => 'Bilaketa katea:',

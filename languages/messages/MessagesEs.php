@@ -1505,6 +1505,9 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'special-categories-sort-count' => 'ordenar por conteo',
 'special-categories-sort-abc'   => 'ordenar alfabéticamente',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Contribuciones de usuario borradas',
+
 # Special:LinkSearch
 'linksearch'       => 'Buscar enlaces a páginas web',
 'linksearch-pat'   => 'Patrón de búsqueda:',

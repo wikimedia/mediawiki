@@ -1711,6 +1711,9 @@ Mer han_er eije Leßte för de
 'special-categories-sort-count' => 'Zoteere noh de Aanzahl',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Fottjeschmesse Versione',
+
 # Special:LinkSearch
 'linksearch'       => 'Lėngkß op Websigge sööke',
 'linksearch-pat'   => 'Sök noh:',

@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'Invalidateemail'         => array( 'Invalidar e-mail' ),
 	'Blankpage'               => array( 'Página em branco' ),
 	'LinkSearch'              => array( 'Pesquisar links' ),
+	'DeletedContributions'    => array( 'Contribuições eliminadas', 'Edições eliminadas' ),
 );
 
 $messages = array(

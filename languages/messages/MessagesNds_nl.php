@@ -250,6 +250,7 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Wachwoord_opniej_instellen' ),
 	'Withoutinterwiki'          => array( 'Gien_interwiki' ),
 	'LinkSearch'                => array( 'Verwiezingen_zeuken' ),
+	'DeletedContributions'      => array( 'Vort-ehaolen gebrukersbiedragen' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

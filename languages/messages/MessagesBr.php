@@ -1317,6 +1317,9 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'special-categories-sort-count' => 'Urzhiañ dre gont',
 'special-categories-sort-abc'   => 'urzh al lizherenneg',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Degasadennoù diverket un implijer',
+
 # Special:LinkSearch
 'linksearch'      => 'Klask liammoù Kenrouedad',
 'linksearch-pat'  => 'Klask an droienn :',

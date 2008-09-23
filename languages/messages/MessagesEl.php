@@ -1473,6 +1473,9 @@ $2',
 'special-categories-sort-count' => 'ταξινόμηση κατά απαρίθμηση',
 'special-categories-sort-abc'   => 'αλφαβητική ταξινόμηση',
 
+# Special:DeletedContributions
+'deletedcontributions' => 'Διαγραμμένες συνεισφορές χρήστη',
+
 # Special:LinkSearch
 'linksearch-ok' => 'Αναζήτηση',
 
