@@ -92,12 +92,12 @@ class ExternalStore {
 				$url = $store->store( $params, $data ); // Try to save the object
 			} catch ( DBConnectionError $error ) {
 				$url = false;
-				unset( $tryStores[$index] ); // Don't try this one again!
-				$tryStores = array_values( $tryStores ); // Must have consecutive keys
 			}
 			if ( $url ) {
 				return $url; // Done!
 			} else {
+				unset( $tryStores[$index] ); // Don't try this one again!
+				$tryStores = array_values( $tryStores ); // Must have consecutive keys
 				wfDebugLog( 'ExternalStorage', "Unable to store text to external storage $storeUrl" );
 			}
 		}
