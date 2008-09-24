@@ -174,40 +174,6 @@ class RecentChange
 		# Set the ID
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
-		# Update old rows, if necessary
-		if ( $this->mAttribs['rc_type'] == RC_EDIT ) {
-			$lastTime = $this->mExtra['lastTimestamp'];
-			#$now = $this->mAttribs['rc_timestamp'];
-			#$curId = $this->mAttribs['rc_cur_id'];
-
-			# Don't bother looking for entries that have probably
-			# been purged, it just locks up the indexes needlessly.
-			global $wgRCMaxAge;
-			$age = time() - wfTimestamp( TS_UNIX, $lastTime );
-			if( $age < $wgRCMaxAge ) {
-				# live hack, will commit once tested - kate
-				# Update rc_this_oldid for the entries which were current
-				#
-				#$oldid = $this->mAttribs['rc_last_oldid'];
-				#$ns = $this->mAttribs['rc_namespace'];
-				#$title = $this->mAttribs['rc_title'];
-				#
-				#$dbw->update( 'recentchanges',
-				#	array( /* SET */
-				#		'rc_this_oldid' => $oldid
-				#	), array( /* WHERE */
-				#		'rc_namespace' => $ns,
-				#		'rc_title' => $title,
-				#		'rc_timestamp' => $dbw->timestamp( $lastTime )
-				#	), $fname
-				#);
-			}
-
-			# Update rc_cur_time
-			#$dbw->update( 'recentchanges', array( 'rc_cur_time' => $now ),
-			#	array( 'rc_cur_id' => $curId ), $fname );
-		}
-
 		# Notify external application via UDP
 		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
 			self::sendToUDP( $this->getIRCLine() );
