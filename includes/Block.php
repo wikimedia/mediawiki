@@ -60,7 +60,7 @@ class Block {
 	 * @param $killExpired bool Delete expired blocks on load
 	 */
 	static function newFromDB( $address, $user = 0, $killExpired = true ) {
-		$block = new Block();
+		$block = new Block;
 		$block->load( $address, $user, $killExpired );
 		if ( $block->isValid() ) {
 			return $block;
@@ -79,7 +79,7 @@ class Block {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->resultObject( $dbr->select( 'ipblocks', '*',
 			array( 'ipb_id' => $id ), __METHOD__ ) );
-		$block = new Block();
+		$block = new Block;
 		if ( $block->loadFromResult( $res ) ) {
 			return $block;
 		} else {
@@ -162,8 +162,9 @@ class Block {
 				if ( $user && $this->mAnonOnly ) {
 					# Block is marked anon-only
 					# Whitelist this IP address against autoblocks and range blocks
+					# (but not account creation blocks -- bug 13611)
 					if( !$this->mCreateAccount ) {
-						$this->clear(); // bug 13611 - keep this data
+						$this->clear();
 					}
 					return false;
 				} else {
@@ -175,8 +176,9 @@ class Block {
 		# Try range block
 		if ( $this->loadRange( $address, $killExpired, $user ) ) {
 			if ( $user && $this->mAnonOnly ) {
+				# Respect account creation blocks on logged-in users -- bug 13611
 				if( !$this->mCreateAccount ) {
-					$this->clear(); // bug 13611 - keep this data
+					$this->clear();
 				}
 				return false;
 			} else {
@@ -336,7 +338,7 @@ class Block {
 	/*static*/ function enumBlocks( $callback, $tag, $flags = 0 ) {
 		global $wgAntiLockFlags;
 
-		$block = new Block();
+		$block = new Block;
 		if ( $flags & Block::EB_FOR_UPDATE ) {
 			$db = wfGetDB( DB_MASTER );
 			if ( $wgAntiLockFlags & ALF_NO_BLOCK_LOCK ) {
