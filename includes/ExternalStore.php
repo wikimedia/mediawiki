@@ -75,7 +75,7 @@ class ExternalStore {
 	 * @param string $data
 	 * Returns the URL of the stored data item, or false on error
 	 */
-	public static function randomInsert( $data ) {
+	public static function insertToDefault( $data ) {
 		global $wgDefaultExternalStore;
 		$tryStores = (array)$wgDefaultExternalStore;
 		$error = false;
