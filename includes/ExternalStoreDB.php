@@ -40,7 +40,7 @@ class ExternalStoreDB {
 	/** @todo Document.*/
 	function &getMaster( $cluster ) {
 		$lb =& $this->getLoadBalancer( $cluster );
-		return $lb->getConnection( DB_MASTER, array() );
+		return $lb->getConnection( DB_MASTER );
 	}
 
 	/** @todo Document.*/
@@ -56,7 +56,7 @@ class ExternalStoreDB {
 	 * Fetch data from given URL
 	 * @param string $url An url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
 	 */
-	function fetchFromURL( $url ) {
+	function fetchFromURL($url) {
 		$path = explode( '/', $url );
 		$cluster  = $path[2];
 		$id	  = $path[3];
@@ -122,14 +122,12 @@ class ExternalStoreDB {
 	 * @return string URL
 	 */
 	function store( $cluster, $data ) {
-		$dbw = $this->getMaster( $cluster );
-		if( !$dbw ) {
-			return false;
-		}
+		$fname = 'ExternalStoreDB::store';
+
+		$dbw =& $this->getMaster( $cluster );
+
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
-		$dbw->insert( $this->getTable( $dbw ), 
-			array( 'blob_id' => $id, 'blob_text' => $data ), 
-			__METHOD__ );
+		$dbw->insert( $this->getTable( $dbw ), array( 'blob_id' => $id, 'blob_text' => $data ), $fname );
 		$id = $dbw->insertId();
 		if ( $dbw->getFlag( DBO_TRX ) ) {
 			$dbw->immediateCommit();
