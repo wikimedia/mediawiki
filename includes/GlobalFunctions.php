@@ -285,16 +285,46 @@ function wfLogDBError( $text ) {
 }
 
 /**
- * Log to a file without getting "file size exceeded" signals
+ * Log to a file without getting "file size exceeded" signals.
+ * 
+ * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will 
+ * send lines to the specified port, prefixed by the specified prefix and a space.
  */
 function wfErrorLog( $text, $file ) {
-	wfSuppressWarnings();
-	$exists = file_exists( $file );
-	$size = $exists ? filesize( $file ) : false;
-	if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
-		error_log( $text, 3, $file );
+	if ( substr( $file, 0, 4 ) == 'udp:' ) {
+		if ( preg_match( '!^(tcp|udp):(?://)?\[([0-9a-fA-F:]+)\]:(\d+)(?:/(.*))?$!', $file, $m ) ) {
+			// IPv6 bracketed host
+			$protocol = $m[1];
+			$host = $m[2];
+			$port = $m[3];
+			$prefix = isset( $m[4] ) ? $m[4] : '';
+		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
+			$protocol = $m[1];
+			$host = $m[2];
+			$port = $m[3];
+			$prefix = isset( $m[4] ) ? $m[4] : '';
+		} else {
+			throw new MWException( __METHOD__.": Invalid UDP specification" );
+		}
+		$prefix = strval( $prefix );
+		if ( $prefix != '' ) {
+			$prefix .= ' ';
+		}
+		$sock = fsockopen( "$protocol://$host", $port );
+		if ( !$sock ) {
+			return;
+		}
+		fwrite( $sock, $prefix . $text );
+		fclose( $sock );
+	} else {
+		wfSuppressWarnings();
+		$exists = file_exists( $file );
+		$size = $exists ? filesize( $file ) : false;
+		if ( !$exists || ( $size !== false && $size + strlen( $text ) < 0x7fffffff ) ) {
+			error_log( $text, 3, $file );
+		}
+		wfRestoreWarnings();
 	}
-	wfRestoreWarnings();
 }
 
 /**
