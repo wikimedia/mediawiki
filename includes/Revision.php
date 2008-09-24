@@ -762,18 +762,8 @@ class Revision {
 
 		# Write to external storage if required
 		if ( $wgDefaultExternalStore ) {
-			if ( is_array( $wgDefaultExternalStore ) ) {
-				// Distribute storage across multiple clusters
-				$store = $wgDefaultExternalStore[mt_rand(0, count( $wgDefaultExternalStore ) - 1)];
-			} else {
-				$store = $wgDefaultExternalStore;
-			}
 			// Store and get the URL
-			$data = ExternalStore::insert( $store, $data );
-			if ( !$data ) {
-				# This should only happen in the case of a configuration error, where the external store is not valid
-				throw new MWException( "Unable to store text to external storage $store" );
-			}
+			$data = ExternalStore::insertToDefault( $data );
 			if ( $flags ) {
 				$flags .= ',';
 			}
