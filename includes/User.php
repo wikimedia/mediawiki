@@ -1053,10 +1053,9 @@ class User {
 				$this->spreadBlock();
 			}
 		} else {
-			// Bug 13611, apply account creation blocks to users.
-			// Note that the existence of $this->mBlock is not used
-			// to check for edit blocks, $this->mBlockedby is instead.
-			# $this->mBlock = null;
+			// Bug 13611: don't remove mBlock here, to allow account creation blocks to 
+			// apply to users. Note that the existence of $this->mBlock is not used to 
+			// check for edit blocks, $this->mBlockedby is instead.
 		}
 
 		# Proxy blocking
