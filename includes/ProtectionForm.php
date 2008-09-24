@@ -374,7 +374,7 @@ class ProtectionForm {
 						$mProtectother .
 					'</td>
 					<td class="mw-input">' .
-						Xml::input( "mwProtect-expiry-$action", 60, $this->mExpiry[$action], $attribs ) .
+						Xml::input( "mwProtect-expiry-$action", 50, $this->mExpiry[$action], $attribs ) .
 					'</td>
 				</tr></table>';
 			$out .= "</td></tr></table></td></tr>";
