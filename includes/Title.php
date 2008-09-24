@@ -2572,6 +2572,7 @@ class Title {
 		}
 
 		$pageid = $this->getArticleID();
+		$protected = $this->isProtected();
 		if( $nt->exists() ) {
 			$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
 			$pageCountChange = ($createRedirect ? 0 : -1);
@@ -2606,8 +2607,28 @@ class Title {
 				'cl_sortkey' => $this->getPrefixedText() ),
 			__METHOD__ );
 
-		# Update watchlists
+		if( $protected ) {
+			# Protect the redirect title as the title used to be...
+			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
+				array( 
+					'pr_page'    => $redirid,
+					'pr_type'    => 'pr_type',
+					'pr_level'   => 'pr_level',
+					'pr_cascade' => 'pr_cascade',
+					'pr_user'    => 'pr_user',
+					'pr_expiry'  => 'pr_expiry'
+				),
+				array( 'pr_page' => $pageid ),
+				__METHOD__,
+				array( 'IGNORE' )
+			);
+			# Update the protection log
+			$log = new LogPage( 'protect' );
+			$comment = wfMsgForContent('1movedto2',$this->getPrefixedText(), $nt->getPrefixedText() );
+			$log->addEntry( 'protect', $nt, $comment, array() ); // FIXME: $params?
+		}
 
+		# Update watchlists
 		$oldnamespace = $this->getNamespace() & ~1;
 		$newnamespace = $nt->getNamespace() & ~1;
 		$oldtitle = $this->getDBkey();
