@@ -210,7 +210,7 @@ class RecentChange
 
 		# Notify external application via UDP
 		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			wfRecentChange2UDP( $this->getIRCLine() );
+			self::sendToUDP( $this->getIRCLine() );
 		}
 
 		# E-mail notifications
@@ -237,6 +237,23 @@ class RecentChange
 
 		# Notify extensions
 		wfRunHooks( 'RecentChange_save', array( &$this ) );
+	}
+
+	/**
+	 * Send some text to UDP
+	 * @param string $line
+	 */
+	static function sendToUDP( $line ) {
+		global $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
+		# Notify external application via UDP
+		if( $wgRC2UDPAddress ) {
+			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+			if( $conn ) {
+				$line = $wgRC2UDPPrefix . $line;
+				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
+				socket_close( $conn );
+			}
+		}
 	}
 
 	/**

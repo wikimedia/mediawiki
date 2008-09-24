@@ -2907,20 +2907,3 @@ function wfStripIllegalFilenameChars( $name ) {
 	$name = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $name );
 	return $name;
 }
-
-/**
- * Send some text to
- * @param string $line
- */
-function wfRecentChange2UDP( $line ) {
-	global $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
-	# Notify external application via UDP
-	if( $wgRC2UDPAddress ) {
-		$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-		if( $conn ) {
-			$line = $wgRC2UDPPrefix . $line;
-			socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
-			socket_close( $conn );
-		}
-	}
-}
