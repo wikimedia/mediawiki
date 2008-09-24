@@ -13,6 +13,11 @@ class Revision {
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
 
+	// Audience options for Revision::getText()
+	const FOR_PUBLIC = 1;
+	const FOR_THIS_USER = 2;
+	const RAW = 3;
+
 	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
@@ -427,13 +432,22 @@ class Revision {
 	}
 
 	/**
-	 * Fetch revision's user id if it's available to all users
+	 * Fetch revision's user id if it's available to the specified audience.
+	 * If the specified audience does not have access to it, zero will be 
+	 * returned.
+	 *
+	 * @param integer $audience One of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the ID regardless of permissions
+	 *
+	 *
 	 * @return int
 	 */
-	public function getUser( $isPublic = true ) {
-		if( $isPublic && $this->isDeleted( self::DELETED_USER ) ) {
+	public function getUser( $audience = self::FOR_PUBLIC ) {
+		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
 			return 0;
-		} else if( !$this->userCan( self::DELETED_USER ) ) {
+		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->mUser;
@@ -449,13 +463,21 @@ class Revision {
 	}
 
 	/**
-	 * Fetch revision's username if it's available to all users
+	 * Fetch revision's username if it's available to the specified audience.
+	 * If the specified audience does not have access to the username, an 
+	 * empty string will be returned.
+	 *
+	 * @param integer $audience One of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 *
 	 * @return string
 	 */
-	public function getUserText( $isPublic = true ) {
-		if( $isPublic && $this->isDeleted( self::DELETED_USER ) ) {
+	public function getUserText( $audience = self::FOR_PUBLIC ) {
+		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
 			return "";
-		} else if( !$this->userCan( self::DELETED_USER ) ) {
+		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER ) ) {
 			return "";
 		} else {
 			return $this->mUserText;
@@ -471,13 +493,21 @@ class Revision {
 	}
 
 	/**
-	 * Fetch revision comment if it's available to all users
+	 * Fetch revision comment if it's available to the specified audience.
+	 * If the specified audience does not have access to the comment, an 
+	 * empty string will be returned.
+	 *
+	 * @param integer $audience One of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 *
 	 * @return string
 	 */
-	function getComment( $isPublic = true ) {
-		if( $isPublic && $this->isDeleted( self::DELETED_COMMENT ) ) {
+	function getComment( $audience = self::FOR_PUBLIC ) {
+		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return "";
-		} else if( !$this->userCan( self::DELETED_COMMENT ) ) {
+		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_COMMENT ) ) {
 			return "";
 		} else {
 			return $this->mComment;
@@ -508,17 +538,33 @@ class Revision {
 	}
 
 	/**
-	 * Fetch revision text if it's available to all users
+	 * Fetch revision text if it's available to the specified audience.
+	 * If the specified audience does not have the ability to view this 
+	 * revision, an empty string will be returned.
+	 *
+	 * @param integer $audience One of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 *
+	 *
 	 * @return string
 	 */
-	public function getText( $isPublic = true ) {
-		if( $isPublic && $this->isDeleted( self::DELETED_TEXT ) ) {
+	public function getText( $audience = self::FOR_PUBLIC ) {
+		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
 			return "";
-		} else if( !$this->userCan( self::DELETED_TEXT ) ) {
+		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT ) ) {
 			return "";
 		} else {
 			return $this->getRawText();
 		}
+	}
+
+	/**
+	 * Alias for getText(Revision::FOR_THIS_USER)
+	 */
+	public function revText() {
+		return $this->getText( self::FOR_THIS_USER );
 	}
 
 	/**

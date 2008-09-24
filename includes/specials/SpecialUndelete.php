@@ -787,7 +787,7 @@ class UndeleteForm {
 			$popts = $wgOut->parserOptions();
 			$popts->setEditSection( false );
 			$wgOut->parserOptions( $popts );
-			$wgOut->addWikiTextTitleTidy( $rev->getText( false ), $this->mTargetObj, true );
+			$wgOut->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER ), $this->mTargetObj, true );
 		}
 
 		$wgOut->addHtml(
@@ -795,7 +795,7 @@ class UndeleteForm {
 					'readonly' => 'readonly',
 					'cols' => intval( $wgUser->getOption( 'cols' ) ),
 					'rows' => intval( $wgUser->getOption( 'rows' ) ) ),
-				$rev->getText( false ) . "\n" ) .
+				$rev->getText( Revision::FOR_THIS_USER ) . "\n" ) .
 			wfOpenElement( 'div' ) .
 			wfOpenElement( 'form', array(
 				'method' => 'post',
@@ -1223,8 +1223,8 @@ class UndeleteForm {
 		if( !$file->userCan(File::DELETED_USER) ) {
 			return '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$link = $sk->userLink( $file->getUser(false), $file->getUserText(false) ) .
-				$sk->userToolLinks( $file->getUser(false), $file->getUserText(false) );
+			$link = $sk->userLink( $file->getUser(), $file->getUserText() ) .
+				$sk->userToolLinks( $file->getUser(), $file->getUserText() );
 			if( $file->isDeleted(File::DELETED_USER) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
