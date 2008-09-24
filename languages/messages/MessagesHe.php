@@ -1977,6 +1977,7 @@ $NEWPAGE
 ** ספאם רב
 ** מלחמת עריכה בלתי מועילה
 ** דף בשימוש רב',
+'protect-edit-reasonlist'     => 'עריכת סיבות ההגנה',
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',
