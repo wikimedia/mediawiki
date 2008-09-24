@@ -297,24 +297,28 @@ function wfErrorLog( $text, $file ) {
 			$protocol = $m[1];
 			$host = $m[2];
 			$port = $m[3];
-			$prefix = isset( $m[4] ) ? $m[4] : '';
+			$prefix = isset( $m[4] ) ? $m[4] : false;
 		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
 			$protocol = $m[1];
 			$host = $m[2];
 			$port = $m[3];
-			$prefix = isset( $m[4] ) ? $m[4] : '';
+			$prefix = isset( $m[4] ) ? $m[4] : false;
 		} else {
 			throw new MWException( __METHOD__.": Invalid UDP specification" );
 		}
-		$prefix = strval( $prefix );
-		if ( $prefix != '' ) {
-			$prefix .= ' ';
+		// Clean it up for the multiplexer
+		if ( strval( $prefix ) !== '' ) {
+			$text = preg_replace( '/^/m', $prefix . ' ', $text );
+			if ( substr( $text, -1 ) != "\n" ) {
+				$text .= "\n";
+			}
 		}
+
 		$sock = fsockopen( "$protocol://$host", $port );
 		if ( !$sock ) {
 			return;
 		}
-		fwrite( $sock, $prefix . $text );
+		fwrite( $sock, $text );
 		fclose( $sock );
 	} else {
 		wfSuppressWarnings();
