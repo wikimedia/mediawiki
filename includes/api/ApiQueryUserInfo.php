@@ -82,7 +82,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if (isset($this->prop['options'])) {
 			$vals['options'] = (is_null($wgUser->mOptions) ? User::getDefaultOptions() : $wgUser->mOptions);
 		}
-		if (isset($this->prop['preferencestoken'])) {
+		if (isset($this->prop['preferencestoken']) && is_null($this->getMain()->getRequest()->getVal('callback'))) {
 			$vals['preferencestoken'] = $wgUser->editToken();
 		}
 		if (isset($this->prop['editcount'])) {
