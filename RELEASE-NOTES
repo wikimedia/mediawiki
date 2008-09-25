@@ -273,6 +273,7 @@ The following extensions are migrated into MediaWiki 1.14:
   WDDX formatter to resemble PHP's more
 * (bug 15706) Empty values for apprtype and apprlevel are now silently ignored
   rather than causing an exception
+* Added uiprop=preferencestoken to meta=userinfo
 
 === Languages updated in 1.14 ===
 

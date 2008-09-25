@@ -82,6 +82,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if (isset($this->prop['options'])) {
 			$vals['options'] = (is_null($wgUser->mOptions) ? User::getDefaultOptions() : $wgUser->mOptions);
 		}
+		if (isset($this->prop['preferencestoken'])) {
+			$vals['preferencestoken'] = $wgUser->editToken();
+		}
 		if (isset($this->prop['editcount'])) {
 			$vals['editcount'] = $wgUser->getEditCount();
 		}
@@ -134,6 +137,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'groups',
 					'rights',
 					'options',
+					'preferencestoken',
 					'editcount',
 					'ratelimits'
 				)
