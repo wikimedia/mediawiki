@@ -1190,6 +1190,11 @@ The deletion log for this page is provided here for convenience:",
 'deleted-notice'                   => 'This page has been deleted.
 The deletion log for the page is provided below for reference.',
 'deletelog-fulllog'                => 'View full log',
+'edit-hook-aborted'                => 'Edit aborted by hook, it gave no explanation.',
+'edit-gone-missing'                => 'Couldn\'t update the article, it appears to have been deleted.',
+'edit-conflict'                    => 'Edit conflict.',
+'edit-no-change'                   => 'Your edit was ignored, because no change was made to the text.',
+'edit-already-exists'              => 'Couldn\'t create a new article, it already exists.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
