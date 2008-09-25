@@ -678,6 +678,9 @@ CREATE TABLE /*$wgDBprefix*/ipblocks (
   -- Block prevents user from accessing Special:Emailuser
   ipb_block_email bool NOT NULL default 0,
   
+  -- Block allows user to edit their own talk page
+  ipb_allow_usertalk bool NOT NULL default 0,
+  
   PRIMARY KEY ipb_id (ipb_id),
 
   -- Unique index to support "user already blocked" messages

@@ -1034,6 +1034,7 @@ class User {
 		
 		$this->mBlockedby = 0;
 		$this->mHideName = 0;
+		$this->mAllowUsertalk = 0;
 		$ip = wfGetIP();
 
 		if ($this->isAllowed( 'ipblock-exempt' ) ) {
@@ -1049,6 +1050,7 @@ class User {
 			$this->mBlockedby = $this->mBlock->mBy;
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
+			$this->mAllowUsertalk = $this->mBlock->mAllowUsertalk;
 			if ( $this->isLoggedIn() ) {
 				$this->spreadBlock();
 			}
@@ -1264,7 +1266,7 @@ class User {
 		wfDebug( __METHOD__.": asking isBlocked()\n" );
 		$blocked = $this->isBlocked( $bFromSlave );
 		# If a user's name is suppressed, they cannot make edits anywhere
-		if ( !$this->mHideName && $wgBlockAllowsUTEdit && $title->getText() === $this->getName() &&
+		if ( !$this->mHideName && $this->mAllowUsertalk && $title->getText() === $this->getName() &&
 		  $title->getNamespace() == NS_USER_TALK ) {
 			$blocked = false;
 			wfDebug( __METHOD__.": self-talk page, ignoring any blocks\n" );

@@ -1069,7 +1069,7 @@ $wgHitcounterUpdateFreq = 1;
 $wgSysopUserBans        = true; # Allow sysops to ban logged-in users
 $wgSysopRangeBans       = true; # Allow sysops to ban IP ranges
 $wgAutoblockExpiry      = 86400; # Number of seconds before autoblock entries expire
-$wgBlockAllowsUTEdit    = false; # Blocks allow users to edit their own user talk page
+$wgBlockAllowsUTEdit    = false; # Default setting for option on block form to allow self talkpage editing whilst blocked
 $wgSysopEmailBans       = true; # Allow sysops to ban users from accessing Emailuser
 
 # Pages anonymous user may see as an array, e.g.:
