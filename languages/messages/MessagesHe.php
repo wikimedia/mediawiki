@@ -939,6 +939,14 @@ $2',
 'deleted-notice'                   => 'דף זה נמחק.
 יומן המחיקות של הדף מוצג להלן.',
 'deletelog-fulllog'                => 'צפייה ביומן המלא',
+'edit-hook-aborted'                => 'העריכה בוטלה על־ידי Hook.
+לא ניתן הסבר לביטול.',
+'edit-gone-missing'                => 'לא ניתן לעדכן את הדף.
+נראה שהוא נמחק.',
+'edit-conflict'                    => 'התנגשות עריכה.',
+'edit-no-change'                   => 'המערכת התעלמה מעריכתכם, כיוון שלא נעשה שינוי בטקסט.',
+'edit-already-exists'              => 'לא ניתן ליצור דף חדש.
+הוא כבר קיים.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'אזהרה: דף זה כולל יותר מדי קריאות למשתנים הגוזלים משאבים.
@@ -2115,6 +2123,7 @@ $1',
 'ipbotherreason'                  => 'סיבה אחרת/נוספת:',
 'ipbhidename'                     => 'הסתרת שם המשתמש מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
 'ipbwatchuser'                    => 'מעקב אחרי דפי המשתמש והשיחה של משתמש זה',
+'ipballowusertalk'                => 'מתן אפשרות למשתמש לערוך את דף השיחה של עצמו בעת החסימה',
 'badipaddress'                    => 'משתמש או כתובת IP שגויים.',
 'blockipsuccesssub'               => 'החסימה הושלמה בהצלחה',
 'blockipsuccesstext'              => 'המשתמש [[Special:Contributions/$1|$1]] נחסם.
@@ -2158,6 +2167,7 @@ $1',
 'block-log-flags-nocreate'        => 'יצירת חשבונות נחסמה',
 'block-log-flags-noautoblock'     => 'חסימה אוטומטית מבוטלת',
 'block-log-flags-noemail'         => 'שליחת דוא"ל נחסמה',
+'block-log-flags-nousertalk'      => 'עריכת דף השיחה האישי נחסמה',
 'block-log-flags-angry-autoblock' => 'חסימה אוטומטית משוכללת מופעלת',
 'range_block_disabled'            => 'היכולת לחסום טווח כתובות איננה פעילה.',
 'ipb_expiry_invalid'              => 'זמן פקיעת חסימה בלתי חוקי',
