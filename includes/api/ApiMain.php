@@ -164,9 +164,9 @@ class ApiMain extends ApiBase {
 		if($wgEnableWriteAPI)
 			$this->mModules += self::$WriteModules;
 
-		$this->mModuleNames = array_keys($this->mModules); // todo: optimize
+		$this->mModuleNames = array_keys($this->mModules);
 		$this->mFormats = self :: $Formats;
-		$this->mFormatNames = array_keys($this->mFormats); // todo: optimize
+		$this->mFormatNames = array_keys($this->mFormats);
 
 		$this->mResult = new ApiResult($this);
 		$this->mShowVersions = false;
