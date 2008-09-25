@@ -93,10 +93,10 @@ class ApiQuery extends ApiBase {
 		parent :: __construct($main, $action);
 
 		// Allow custom modules to be added in LocalSettings.php
-		global $wgApiPropModules, $wgApiListModules, $wgApiMetaModules;
-		self :: appendUserModules($this->mQueryPropModules, $wgApiPropModules);
-		self :: appendUserModules($this->mQueryListModules, $wgApiListModules);
-		self :: appendUserModules($this->mQueryMetaModules, $wgApiMetaModules);
+		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules;
+		self :: appendUserModules($this->mQueryPropModules, $wgAPIPropModules);
+		self :: appendUserModules($this->mQueryListModules, $wgAPIListModules);
+		self :: appendUserModules($this->mQueryMetaModules, $wgAPIMetaModules);
 
 		$this->mPropModuleNames = array_keys($this->mQueryPropModules);
 		$this->mListModuleNames = array_keys($this->mQueryListModules);
