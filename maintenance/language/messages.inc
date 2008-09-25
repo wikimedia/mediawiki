@@ -559,6 +559,11 @@ $wgMessageStructure = array(
 		'recreate-deleted-warn',
 		'deleted-notice',
 		'deletelog-fulllog',
+		'edit-hook-aborted',
+		'edit-gone-missing',
+		'edit-conflict',
+		'edit-no-change',
+		'edit-already-exists',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
