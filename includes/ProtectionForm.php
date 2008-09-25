@@ -311,10 +311,11 @@ class ProtectionForm {
 			if( wfEmptyMsg( 'restriction-' . $action, $msg ) ) {
 				$msg = $action;
 			}
-			$label = Xml::element( 'label', array( 'for' => "mwProtect-level-$action" ), $msg );
-			$out .= "<tr><td><table>" .
-				"<tr><th>$label</th><th></th></tr>" .
-				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td><td>";
+			$out .= "<tr><td>".
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, $msg ) .
+			Xml::openElement( 'table', array( 'id' => "mw-protect-table-$action" ) ) .
+				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td></tr><tr><td>";
 
 			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonSelection',
 				wfMsgForContent( 'protect-dropdown' ),
@@ -377,7 +378,10 @@ class ProtectionForm {
 						Xml::input( "mwProtect-expiry-$action", 50, $this->mExpiry[$action], $attribs ) .
 					'</td>
 				</tr></table>';
-			$out .= "</td></tr></table></td></tr>";
+			$out .= "</td></tr>" .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			"</td></tr>";
 		}
 
 		$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
@@ -519,7 +523,7 @@ class ProtectionForm {
 		}
 		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
 		$options = (object)array(
-			'tableId' => 'mw-protect-table2',
+			'tableId' => 'mw-protect-table-move',
 			'labelText' => wfMsg( 'protect-unchain' ),
 			'numTypes' => count($this->mApplicableTypes),
 			'existingMatch' => 1 == count( array_unique( $this->mExistingExpiry ) ),
