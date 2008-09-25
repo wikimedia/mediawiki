@@ -269,6 +269,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added APIAfterExecute, APIQueryAfterExecute and APIQueryGeneratorAfterExecute
   hooks which allow for extending core modules in a cleaner way
 * action=protect checks for invalid protection types and levels
+* (bug 15673) Added indentation to format=wddxfm output and improved built-in 
+  WDDX formatter to resemble PHP's more
 
 === Languages updated in 1.14 ===
 
