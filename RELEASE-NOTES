@@ -139,6 +139,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 12650) It is now possible to set different expiration times for different
   restriction types on the protection form.
 * (bug 8440) Allow preventing blocked users from editing their talk pages
+* Improved upload file type detection for OpenDocument formats
+
 
 === Bug fixes in 1.14 ===
 
