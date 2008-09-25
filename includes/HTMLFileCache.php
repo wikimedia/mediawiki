@@ -119,8 +119,12 @@ class HTMLFileCache {
 	}
 
 	function saveToFileCache( $origtext ) {
+		global $wgUseFileCache;
+		if( !$wgUseFileCache ) {
+			return $origtext; // return to output
+		}
 		$text = $origtext;
-		if(strcmp($text,'') == 0) return '';
+		if( strcmp($text,'') == 0 ) return '';
 
 		wfDebug(" saveToFileCache()\n", false);
 

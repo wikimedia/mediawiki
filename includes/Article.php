@@ -2985,13 +2985,13 @@ class Article {
 		static $called = false;
 		if( $called ) {
 			wfDebug( "Article::tryFileCache(): called twice!?\n" );
-			return;
+			return false;
 		}
 		$called = true;
-		if($this->isFileCacheable()) {
+		if( $this->isFileCacheable() ) {
 			$touched = $this->mTouched;
 			$cache = new HTMLFileCache( $this->mTitle );
-			if($cache->isFileCacheGood( $touched )) {
+			if( $cache->isFileCacheGood( $touched ) ) {
 				wfDebug( "Article::tryFileCache(): about to load file\n" );
 				$cache->loadFromFileCache();
 				return true;
@@ -3002,6 +3002,7 @@ class Article {
 		} else {
 			wfDebug( "Article::tryFileCache(): not cacheable\n" );
 		}
+		return false;
 	}
 
 	/**
@@ -3010,40 +3011,31 @@ class Article {
 	 */
 	function isFileCacheable() {
 		global $wgUser, $wgUseFileCache, $wgShowIPinHeader, $wgRequest, $wgLang, $wgContLang;
-		$action    = $wgRequest->getVal( 'action'    );
-		$oldid     = $wgRequest->getVal( 'oldid'     );
-		$diff      = $wgRequest->getVal( 'diff'      );
-		$redirect  = $wgRequest->getVal( 'redirect'  );
-		$printable = $wgRequest->getVal( 'printable' );
-		$page      = $wgRequest->getVal( 'page' );
-		$useskin   = $wgRequest->getVal( 'useskin' );
-
-		//check for non-standard user language; this covers uselang,
-		//and extensions for auto-detecting user language.
-		$ulang     = $wgLang->getCode();
-		$clang     = $wgContLang->getCode();
+		// Get all query values
+		$queryVals = $wgRequest->getValues();
+		foreach( $queryVals as $query => $val ) {
+			if( $query == 'title' || ($query == 'action' && $val == 'view') ) {
+				// Normal page view in query form
+			} else {
+				return false;
+			}
+		}
+		// Check for non-standard user language; this covers uselang,
+		// and extensions for auto-detecting user language.
+		$ulang = $wgLang->getCode();
+		$clang = $wgContLang->getCode();
 
 		$cacheable = $wgUseFileCache
 			&& (!$wgShowIPinHeader)
-			&& ($this->getID() != 0)
+			&& ($this->getID() > 0)
 			&& ($wgUser->isAnon())
 			&& (!$wgUser->getNewtalk())
-			&& ($this->mTitle->getNamespace() != NS_SPECIAL )
-			&& (!isset($useskin))
-			&& (empty( $action ) || $action == 'view')
-			&& (!isset($oldid))
-			&& (!isset($diff))
-			&& (!isset($redirect))
-			&& (!isset($printable))
-			&& !isset($page)
 			&& (!$this->mRedirectedFrom)
 			&& ($ulang === $clang);
-
-		if ( $cacheable ) {
-			//extension may have reason to disable file caching on some pages.
+		// Extension may have reason to disable file caching on some pages.
+		if( $cacheable ) {
 			$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
 		}
-
 		return $cacheable;
 	}
 
@@ -3473,7 +3465,7 @@ class Article {
 	 * @param bool    $cache
 	 */
 	public function outputWikiText( $text, $cache = true ) {
-		global $wgParser, $wgUser, $wgOut, $wgEnableParserCache;
+		global $wgParser, $wgUser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
 
 		$popts = $wgOut->parserOptions();
 		$popts->setTidy(true);
@@ -3485,6 +3477,10 @@ class Article {
 		if ( $wgEnableParserCache && $cache && $this && $parserOutput->getCacheTime() != -1 ) {
 			$parserCache = ParserCache::singleton();
 			$parserCache->save( $parserOutput, $this, $wgUser );
+		}
+		// Make sure file cache is not used on uncacheable content.
+		if( $wgUseFileCache && $parserOutput->getCacheTime() == -1 ) {
+			$wgUseFileCache = false;
 		}
 
 		if ( !wfReadOnly() && $this->mTitle->areRestrictionsCascading() ) {
