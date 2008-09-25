@@ -179,6 +179,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$fld_protection = isset($prop['protection']);
 			$fld_talkid = isset($prop['talkid']);
 			$fld_subjectid = isset($prop['subjectid']);
+			$fld_url = isset($prop['url']);
+			$fld_readable = isset($prop['readable']);
 		}
 
 		$pageSet = $this->getPageSet();
@@ -450,6 +452,13 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
 			if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
 				$pageInfo['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
+			if($fld_url) {
+				$pageInfo['fullurl'] = $title->getFullURL();
+				$pageInfo['editurl'] = $title->getFullURL('action=edit');
+			}
+			if($fld_readable)
+				if($title->userCanRead())
+					$pageInfo['readable'] = '';
 
 			$result->addValue(array (
 				'query',
@@ -457,9 +466,9 @@ class ApiQueryInfo extends ApiQueryBase {
 			), $pageid, $pageInfo);
 		}
 
-		// Get edit/protect tokens and protection data for missing titles if requested
-		// Delete and move tokens are N/A for missing titles anyway
-		if(!is_null($params['token']) || $fld_protection || $fld_talkid || $fld_subjectid)
+		// Get properties for missing titles if requested
+		if(!is_null($params['token']) || $fld_protection || $fld_talkid || $fld_subjectid ||
+		  					$fld_url || $fld_readable)
 		{
 			$res = &$result->getData();
 			foreach($missing as $pageid => $title) {
@@ -487,6 +496,13 @@ class ApiQueryInfo extends ApiQueryBase {
 					$res['query']['pages'][$pageid]['talkid'] = $talkids[$title->getNamespace()][$title->getDbKey()];
 				if($fld_subjectid && isset($subjectids[$title->getNamespace()][$title->getDbKey()]))
 					$res['query']['pages'][$pageid]['subjectid'] = $subjectids[$title->getNamespace()][$title->getDbKey()];
+				if($fld_url) {
+					$res['query']['pages'][$pageid]['fullurl'] = $title->getFullURL();
+					$res['query']['pages'][$pageid]['editurl'] = $title->getFullURL('action=edit');
+				}
+				if($fld_readable)
+					if($title->userCanRead())
+						$res['query']['pages'][$pageid]['readable'] = '';
 			}
 		}
 	}
@@ -499,7 +515,9 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase :: PARAM_TYPE => array (
 					'protection',
 					'talkid',
-					'subjectid'
+					'subjectid',
+					'url',
+					'readable',
 				)),
 			'token' => array (
 				ApiBase :: PARAM_DFLT => NULL,
