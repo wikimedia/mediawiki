@@ -47,7 +47,7 @@ class IPBlockForm {
 #	var $BlockEmail;
 
 	function IPBlockForm( $par ) {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
@@ -66,6 +66,11 @@ class IPBlockForm {
 		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
 		# Re-check user's rights to hide names, very serious, defaults to 0
 		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
+		if($wgRequest->wasPosted()){
+			$this->BlockAllowUsertalk = $wgRequest->getBool( 'wpAllowUsertalk', false );
+		}else{
+			$this->BlockAllowUsertalk = $wgBlockAllowsUTEdit;
+		}
 	}
 
 	function showForm( $err ) {
@@ -238,6 +243,14 @@ class IPBlockForm {
 						'wpWatchUser', 'wpWatchUser', $this->BlockWatchUser,
 						array( 'tabindex' => '11' ) ) . "
 				</td>
+			</tr>
+			<tr id='wpAllowUsertalkRow'>
+				<td>&nbsp;</td>
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'ipballowusertalk' ),
+						'wpAllowUsertalk', 'wpAllowUsertalk', $this->BlockAllowUsertalk,
+						array( 'tabindex' => '12' ) ) . "
+				</td>
 			</tr>"
 		);
 
@@ -246,7 +259,7 @@ class IPBlockForm {
 				<td style='padding-top: 1em'>&nbsp;</td>
 				<td  class='mw-submit' style='padding-top: 1em'>" .
 					Xml::submitButton( wfMsg( 'ipbsubmit' ),
-						array( 'name' => 'wpBlock', 'tabindex' => '12', 'accesskey' => 's' ) ) . "
+						array( 'name' => 'wpBlock', 'tabindex' => '13', 'accesskey' => 's' ) ) . "
 				</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
@@ -361,7 +374,7 @@ class IPBlockForm {
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail );
+			$this->BlockEmail, $this->BlockAllowUsertalk );
 
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
@@ -452,6 +465,8 @@ class IPBlockForm {
 			$flags[] = 'noautoblock';
 		if ( $this->BlockEmail )
 			$flags[] = 'noemail';
+		if ( !$this->BlockAllowUsertalk )
+			$flags[] = 'nousertalk';
 		return implode( ',', $flags );
 	}
 
