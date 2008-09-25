@@ -79,14 +79,15 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		}
 
 		// Page protection filtering
-		if (isset ($params['prtype'])) {
+		if (!empty ($params['prtype'])) {
 			$this->addTables('page_restrictions');
 			$this->addWhere('page_id=pr_page');
 			$this->addWhere('pr_expiry>' . $db->addQuotes($db->timestamp()));
 			$this->addWhereFld('pr_type', $params['prtype']);
 
-			$prlevel = $params['prlevel'];
-			if (!is_null($prlevel) && $prlevel != '' && $prlevel != '*')
+			// Remove the empty string and '*' from the prlevel array
+			$prlevel = array_diff($params['prlevel'], array('', '*'));
+			if (!empty($prlevel))
 				$this->addWhereFld('pr_level', $prlevel);
 
 			$this->addOption('DISTINCT');

@@ -271,6 +271,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * action=protect checks for invalid protection types and levels
 * (bug 15673) Added indentation to format=wddxfm output and improved built-in 
   WDDX formatter to resemble PHP's more
+* (bug 15706) Empty values for apprtype and apprlevel are now silently ignored
+  rather than causing an exception
 
 === Languages updated in 1.14 ===
 
