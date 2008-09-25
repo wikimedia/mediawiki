@@ -42,38 +42,62 @@ class ApiFormatWddx extends ApiFormatBase {
 	}
 
 	public function execute() {
-		if (function_exists('wddx_serialize_value')) {
+		if (function_exists('wddx_serialize_value') && !$this->getIsHtml()) {
 			$this->printText(wddx_serialize_value($this->getResultData()));
 		} else {
-			$this->printText('<?xml version="1.0"?>');
-			$this->printText('<wddxPacket version="1.0"><header/><data>');
-			$this->slowWddxPrinter($this->getResultData());
-			$this->printText('</data></wddxPacket>');
+			// Don't do newlines and indentation if we weren't asked
+			// for pretty output
+			$nl = ($this->getIsHtml() ? "" : "\n");
+			$indstr = " ";
+			$this->printText("<?xml version=\"1.0\"?>$nl");
+			$this->printText("<wddxPacket version=\"1.0\">$nl");
+			$this->printText("$indstr<header/>$nl");
+			$this->printText("$indstr<data>$nl");
+			$this->slowWddxPrinter($this->getResultData(), 4);
+			$this->printText("$indstr</data>$nl");
+			$this->printText("</wddxPacket>$nl");
 		}
 	}
 
 	/**
 	* Recursivelly go through the object and output its data in WDDX format.
 	*/
-	function slowWddxPrinter($elemValue) {
+	function slowWddxPrinter($elemValue, $indent = 0) {
+		$indstr = ($this->getIsHtml() ? "" : str_repeat(' ', $indent));
+		$indstr2 = ($this->getIsHtml() ? "" : str_repeat(' ', $indent + 2));
+		$nl = ($this->getIsHtml() ? "" : "\n");
 		switch (gettype($elemValue)) {
 			case 'array' :
-				$this->printText('<struct>');
-				foreach ($elemValue as $subElemName => $subElemValue) {
-					$this->printText(wfElement('var', array (
-						'name' => $subElemName
-					), null));
-					$this->slowWddxPrinter($subElemValue);
-					$this->printText('</var>');
+				// Check whether we've got an associative array (<struct>)
+				// or a regular array (<array>)
+				$cnt = count($elemValue);
+				if($cnt == 0 || array_keys($elemValue) === range(0, $cnt - 1)) {
+					// Regular array
+					$this->printText($indstr . wfElement('array', array(
+						'length' => $cnt
+					), null) . $nl);
+					foreach($elemValue as $subElemValue)
+						$this->slowWddxPrinter($subElemValue, $indent + 2);
+					$this->printText("$indstr</array>$nl");
+				} else {
+					// Associative array (<struct>)
+					$this->printText("$indstr<struct>$nl");
+					foreach($elemValue as $subElemName => $subElemValue) {
+						$this->printText($indstr2 . wfElement('var', array(
+							'name' => $subElemName
+						), null) . $nl);
+						$this->slowWddxPrinter($subElemValue, $indent + 4);
+						$this->printText("$indstr2</var>$nl");
+					}
+					$this->printText("$indstr</struct>$nl");
 				}
-				$this->printText('</struct>');
 				break;
 			case 'integer' :
 			case 'double' :
-				$this->printText(wfElement('number', null, $elemValue));
+				$this->printText($indstr . wfElement('number', null, $elemValue) . $nl);
 				break;
 			case 'string' :
-				$this->printText(wfElement('string', null, $elemValue));
+				$this->printText($indstr . wfElement('string', null, $elemValue) . $nl);
 				break;
 			default :
 				ApiBase :: dieDebug(__METHOD__, 'Unknown type ' . gettype($elemValue));
