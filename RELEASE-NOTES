@@ -277,6 +277,8 @@ The following extensions are migrated into MediaWiki 1.14:
   rather than causing an exception
 * Added uiprop=preferencestoken to meta=userinfo
 * (bug 15609) Add inprop=url and inprop=readable to prop=info
+* Add ApiDisabled and ApiQueryDisabled classes so individual modules can
+  be disabled in LocalSettings.php
 
 === Languages updated in 1.14 ===
 
