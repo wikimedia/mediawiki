@@ -66,27 +66,10 @@ class ApiMove extends ApiBase {
 			$this->dieUsageMsg(array('invalidtitle', $params['to']));
 		$toTalk = $toTitle->getTalkPage();
 
-		// Run getUserPermissionsErrors() here so we get message arguments too,
-		// rather than just a message key. The latter is troublesome for messages
-		// that use arguments.
-		// FIXME: moveTo() should really return an array, requires some
-		//	  refactoring of other code, though (mainly SpecialMovepage.php)
-		$errors = array_merge($fromTitle->getUserPermissionsErrors('move', $wgUser),
-					$fromTitle->getUserPermissionsErrors('edit', $wgUser),
-					$toTitle->getUserPermissionsErrors('move', $wgUser),
-					$toTitle->getUserPermissionsErrors('edit', $wgUser));
-		if(!empty($errors))
-			// We don't care about multiple errors, just report one of them
-			$this->dieUsageMsg(current($errors));
-
 		$hookErr = null;
-
 		$retval = $fromTitle->moveTo($toTitle, true, $params['reason'], !$params['noredirect']);
 		if($retval !== true)
-		{
-			# FIXME: Title::moveTo() sometimes returns a string
 			$this->dieUsageMsg(reset($retval));
-		}
 
 		$r = array('from' => $fromTitle->getPrefixedText(), 'to' => $toTitle->getPrefixedText(), 'reason' => $params['reason']);
 		if(!$params['noredirect'] || !$wgUser->isAllowed('suppressredirect'))
@@ -105,8 +88,8 @@ class ApiMove extends ApiBase {
 			// We're not gonna dieUsage() on failure, since we already changed something
 			else
 			{
-				$r['talkmove-error-code'] = ApiBase::$messageMap[$retval]['code'];
-				$r['talkmove-error-info'] = ApiBase::$messageMap[$retval]['info'];
+				$r['talkmove-error-code'] = ApiBase::$messageMap[current($retval)]['code'];
+				$r['talkmove-error-info'] = ApiBase::$messageMap[current($retval)]['info'];
 			}
 		}
 

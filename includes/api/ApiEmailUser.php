@@ -94,7 +94,6 @@ class ApiEmailUser extends ApiBase {
 			'target' => 'User to send email to',
 			'subject' => 'Subject header',
 			'text' => 'Mail body',
-			// FIXME: How to properly get a token?
 			'token' => 'A token previously acquired via prop=info',
 			'ccme' => 'Send a copy of this mail to me',
 		);
