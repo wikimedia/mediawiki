@@ -11,6 +11,22 @@
 define('MM_WELL_KNOWN_MIME_TYPES',<<<END_STRING
 application/ogg ogg ogm ogv
 application/pdf pdf
+application/vnd.oasis.opendocument.chart odc
+application/vnd.oasis.opendocument.chart-template otc
+application/vnd.oasis.opendocument.formula odf
+application/vnd.oasis.opendocument.formula-template otf
+application/vnd.oasis.opendocument.graphics odg
+application/vnd.oasis.opendocument.graphics-template otg
+application/vnd.oasis.opendocument.image odi
+application/vnd.oasis.opendocument.image-template oti
+application/vnd.oasis.opendocument.presentation odp
+application/vnd.oasis.opendocument.presentation-template otp
+application/vnd.oasis.opendocument.spreadsheet ods
+application/vnd.oasis.opendocument.spreadsheet-template ots
+application/vnd.oasis.opendocument.text odt
+application/vnd.oasis.opendocument.text-template ott
+application/vnd.oasis.opendocument.text-master otm
+application/vnd.oasis.opendocument.text-web oth
 application/x-javascript js
 application/x-shockwave-flash swf
 audio/midi mid midi kar
@@ -41,6 +57,22 @@ END_STRING
  */
 define('MM_WELL_KNOWN_MIME_INFO', <<<END_STRING
 application/pdf [OFFICE]
+application/vnd.oasis.opendocument.chart [OFFICE]
+application/vnd.oasis.opendocument.chart-template [OFFICE]
+application/vnd.oasis.opendocument.formula [OFFICE]
+application/vnd.oasis.opendocument.formula-template [OFFICE]
+application/vnd.oasis.opendocument.graphics [OFFICE]
+application/vnd.oasis.opendocument.graphics-template [OFFICE]
+application/vnd.oasis.opendocument.image [OFFICE]
+application/vnd.oasis.opendocument.image-template [OFFICE]
+application/vnd.oasis.opendocument.presentation [OFFICE]
+application/vnd.oasis.opendocument.presentation-template [OFFICE]
+application/vnd.oasis.opendocument.spreadsheet [OFFICE]
+application/vnd.oasis.opendocument.spreadsheet-template [OFFICE]
+application/vnd.oasis.opendocument.text [OFFICE]
+application/vnd.oasis.opendocument.text-template [OFFICE]
+application/vnd.oasis.opendocument.text-master [OFFICE]
+application/vnd.oasis.opendocument.text-web [OFFICE]
 text/javascript application/x-javascript [EXECUTABLE]
 application/x-shockwave-flash [MULTIMEDIA]
 audio/midi [AUDIO]
@@ -510,7 +542,7 @@ class MimeMagic {
 		// Check for ZIP (before getimagesize)
 		if ( strpos( $tail, "PK\x05\x06" ) !== false ) {
 			wfDebug( __METHOD__.": ZIP header present at end of $file\n" );
-			return 'application/zip';
+			return $this->detectZipType( $head );
 		}
 
 		wfSuppressWarnings();
@@ -531,6 +563,48 @@ class MimeMagic {
 		}
 
 		return false;
+	}
+	
+	/**
+	 * Detect application-specific file type of a given ZIP file from its
+	 * header data.  Currently works for OpenDocument types...
+	 * If can't tell, returns 'application/zip'.
+	 *
+	 * @param string $header Some reasonably-sized chunk of file header
+	 * @return string
+	 */
+	function detectZipType( $header ) {
+		$opendocTypes = array(
+			'chart',
+			'chart-template',
+			'formula',
+			'formula-template',
+			'graphics',
+			'graphics-template',
+			'image',
+			'image-template',
+			'presentation',
+			'presentation-template',
+			'spreadsheet',
+			'spreadsheet-template',
+			'text',
+			'text-template',
+			'text-master',
+			'text-web' );
+
+		// http://lists.oasis-open.org/archives/office/200505/msg00006.html
+		$types = '(?:' . implode( '|', $opendocTypes ) . ')';
+		$opendocRegex = "/^mimetype(application\/vnd\.oasis\.opendocument\.$types)/";
+		wfDebug( __METHOD__.": $opendocRegex\n" );
+		
+		if( preg_match( $opendocRegex, substr( $header, 30 ), $matches ) ) {
+			$mime = $matches[1];
+			wfDebug( __METHOD__.": detected $mime from ZIP archive\n" );
+			return $mime;
+		} else {
+			wfDebug( __METHOD__.": unable to identify type of ZIP archive\n" );
+			return 'application/zip';
+		}
 	}
 
 	/** Internal mime type detection, please use guessMimeType() for application code instead.
