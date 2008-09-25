@@ -19,14 +19,13 @@ var ProtectionForm = {
 		var box = document.getElementById( opts.tableId );
 		if( !box )
 			return false;
-
-		var tbody = box.getElementsByTagName( 'tbody' )[0];
+		
+		var boxbody = box.getElementsByTagName('tbody')[0]
 		var row = document.createElement( 'tr' );
-		tbody.appendChild( row );
+		boxbody.insertBefore( row, boxbody.firstChild );
 
 		this.existingMatch = opts.existingMatch;
 
-		row.appendChild( document.createElement( 'td' ) );
 		var cell = document.createElement( 'td' );
 		row.appendChild( cell );
 		// If there is only one protection type, there is nothing to chain
