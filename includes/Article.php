@@ -1125,7 +1125,7 @@ class Article {
 	 * Best if all done inside a transaction.
 	 *
 	 * @param Database $dbw
-	 * @return int     The newly created page_id key
+	 * @return int     The newly created page_id key, or false if the title already existed
 	 * @private
 	 */
 	function insertOn( $dbw ) {
@@ -1144,13 +1144,15 @@ class Article {
 			'page_touched'      => $dbw->timestamp(),
 			'page_latest'       => 0, # Fill this in shortly...
 			'page_len'          => 0, # Fill this in shortly...
-		), __METHOD__ );
-		$newid = $dbw->insertId();
+		), __METHOD__, 'IGNORE' );
 
-		$this->mTitle->resetArticleId( $newid );
-
+		$affected = $dbw->affectedRows();
+		if ( $affected ) {
+			$newid = $dbw->insertId();
+			$this->mTitle->resetArticleId( $newid );
+		}
 		wfProfileOut( __METHOD__ );
-		return $newid;
+		return $affected ? $newid : false;
 	}
 
 	/**
@@ -1363,29 +1365,31 @@ class Article {
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $forceBot ? EDIT_FORCE_BOT : 0 );
 
-		$good = $this->doEdit( $text, $summary, $flags );
-		if ( $good ) {
-			$dbw = wfGetDB( DB_MASTER );
-			if ($watchthis) {
-				if (!$this->mTitle->userIsWatching()) {
-					$dbw->begin();
-					$this->doWatch();
-					$dbw->commit();
-				}
-			} else {
-				if ( $this->mTitle->userIsWatching() ) {
-					$dbw->begin();
-					$this->doUnwatch();
-					$dbw->commit();
-				}
-			}
-
-			$extraQuery = ''; // Give extensions a chance to modify URL query on update
-			wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraQuery ) );
-
-			$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraQuery );
+		$status = $this->doEdit( $text, $summary, $flags );
+		if ( !$status->isOK() ) {
+			return false;
 		}
-		return $good;
+
+		$dbw = wfGetDB( DB_MASTER );
+		if ($watchthis) {
+			if (!$this->mTitle->userIsWatching()) {
+				$dbw->begin();
+				$this->doWatch();
+				$dbw->commit();
+			}
+		} else {
+			if ( $this->mTitle->userIsWatching() ) {
+				$dbw->begin();
+				$this->doUnwatch();
+				$dbw->commit();
+			}
+		}
+
+		$extraQuery = ''; // Give extensions a chance to modify URL query on update
+		wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this, &$sectionanchor, &$extraQuery ) );
+
+		$this->doRedirect( $this->isRedirect( $text ), $sectionanchor, $extraQuery );
+		return true;
 	}
 
 	/**
@@ -1415,13 +1419,27 @@ class Article {
 	 *          Fill in blank summaries with generated text where possible
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
-	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return false. If
-	 * EDIT_NEW is specified and the article does exist, a duplicate key error will cause an exception
-	 * to be thrown from the Database. These two conditions are also possible with auto-detection due
-	 * to MediaWiki's performance-optimised locking strategy.
+	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will an 
+	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an 
+	 * edit-already-exists error will be returned. These two conditions are also possible with 
+	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
+	 *
 	 * @param $baseRevId, the revision ID this edit was based off, if any
 	 *
-	 * @return int Current revision ID after this edit
+	 * @return Status object. Possible errors:
+	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
+	 *     edit-gone-missing:       In update mode, but the article didn't exist
+	 *     edit-conflict:           In update mode, the article changed unexpectedly
+	 *     edit-no-change:          Warning that the text was the same as before
+	 *     edit-already-exists:     In creation mode, but the article already exists
+	 *
+	 *  Extensions may define additional errors.
+	 *
+	 *  $return->value will contain an associative array with members as follows:
+	 *     new:                     Boolean indicating if the function attempted to create a new article
+	 *     revision:                The revision object for the inserted revision, or null
+	 *
+	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
 	 */
 	function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
@@ -1436,10 +1454,13 @@ class Article {
 		if ($user == null) {
 			$user = $wgUser;
 		}
-		$good = true;
+		$status = Status::newGood( array() );
+
+		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
+		$this->loadPageData(); 
 
 		if ( !($flags & EDIT_NEW) && !($flags & EDIT_UPDATE) ) {
-			$aid = $this->mTitle->getArticleID( GAID_FOR_UPDATE );
+			$aid = $this->mTitle->getArticleID();
 			if ( $aid ) {
 				$flags |= EDIT_UPDATE;
 			} else {
@@ -1449,11 +1470,14 @@ class Article {
 
 		if( !wfRunHooks( 'ArticleSave', array( &$this, &$user, &$text,
 			&$summary, $flags & EDIT_MINOR,
-			null, null, &$flags ) ) )
+			null, null, &$flags, &$status ) ) )
 		{
 			wfDebug( __METHOD__ . ": ArticleSave hook aborted save!\n" );
 			wfProfileOut( __METHOD__ );
-			return false;
+			if ( $status->isOK() ) {
+				$status->fatal( 'edit-hook-aborted');
+			}
+			return $status;
 		}
 
 		# Silently ignore EDIT_MINOR if not allowed
@@ -1477,13 +1501,13 @@ class Article {
 
 		if ( $flags & EDIT_UPDATE ) {
 			# Update article, but only if changed.
+			$status->value['new'] = false;
 
 			# Make sure the revision is either completely inserted or not inserted at all
 			if( !$wgDBtransactions ) {
 				$userAbort = ignore_user_abort( true );
 			}
 
-			$lastRevision = 0;
 			$revisionId = 0;
 
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
@@ -1493,14 +1517,12 @@ class Article {
 				  - (int)$this->isCountable( $oldtext );
 				$this->mTotalAdjustment = 0;
 
-				$lastRevision = $dbw->selectField(
-					'page', 'page_latest', array( 'page_id' => $this->getId() ) );
-
-				if ( !$lastRevision ) {
+				if ( !$this->mLatest ) {
 					# Article gone missing
 					wfDebug( __METHOD__.": EDIT_UPDATE specified but article doesn't exist\n" );
+					$status->fatal( 'edit-gone-missing' );
 					wfProfileOut( __METHOD__ );
-					return false;
+					return $status;
 				}
 
 				$revision = new Revision( array(
@@ -1508,7 +1530,7 @@ class Article {
 					'comment'    => $summary,
 					'minor_edit' => $isminor,
 					'text'       => $text,
-					'parent_id'  => $lastRevision,
+					'parent_id'  => $this->mLatest,
 					'user'       => $user->getId(),
 					'user_text'  => $user->getName(),
 					) );
@@ -1517,11 +1539,21 @@ class Article {
 				$revisionId = $revision->insertOn( $dbw );
 
 				# Update page
-				$ok = $this->updateRevisionOn( $dbw, $revision, $lastRevision );
+				#
+				# Note that we use $this->mLatest instead of fetching a value from the master DB 
+				# during the course of this function. This makes sure that EditPage can detect 
+				# edit conflicts reliably, either by $ok here, or by $article->getTimestamp() 
+				# before this function is called. A previous function used a separate query, this
+				# creates a window where concurrent edits can cause an ignored edit conflict.
+				$ok = $this->updateRevisionOn( $dbw, $revision, $this->mLatest );
 
 				if( !$ok ) {
 					/* Belated edit conflict! Run away!! */
-					$good = false;
+					$status->fatal( 'edit-conflict' );
+					# Delete the invalid revision if the DB is not transactional
+					if ( !$wgDBtransactions ) {
+						$dbw->delete( 'revision', array( 'rev_id' => $revisionId ), __METHOD__ );
+					}
 					$revisionId = 0;
 					$dbw->rollback();
 				} else {
@@ -1530,7 +1562,7 @@ class Article {
 					# Update recentchanges
 					if( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
-							$lastRevision, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+							$this->mLatest, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId );
 
 						# Mark as patrolled if the user can do so
@@ -1542,6 +1574,7 @@ class Article {
 					$dbw->commit();
 				}
 			} else {
+				$status->warning( 'edit-no-change' );
 				$revision = null;
 				// Keep the same revision ID, but do some updates on it
 				$revisionId = $this->getRevIdFetched();
@@ -1553,16 +1586,20 @@ class Article {
 			if( !$wgDBtransactions ) {
 				ignore_user_abort( $userAbort );
 			}
-
-			if ( $good ) {
-				# Invalidate cache of this article and all pages using this article
-				# as a template. Partly deferred.
-				Article::onArticleEdit( $this->mTitle, false ); // leave templatelinks for editUpdates()
-				# Update links tables, site stats, etc.
-				$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
+			// Now that ignore_user_abort is restored, we can respond to fatal errors
+			if ( !$status->isOK() ) {
+				wfProfileOut( __METHOD__ );
+				return $status;
 			}
+
+			# Invalidate cache of this article and all pages using this article
+			# as a template. Partly deferred.
+			Article::onArticleEdit( $this->mTitle, false ); // leave templatelinks for editUpdates()
+			# Update links tables, site stats, etc.
+			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 		} else {
 			# Create new article
+			$status->value['new'] = true;
 
 			# Set statistics members
 			# We work out if it's countable after PST to avoid counter drift
@@ -1571,9 +1608,17 @@ class Article {
 			$this->mTotalAdjustment = 1;
 
 			$dbw->begin();
+
 			# Add the page record; stake our claim on this title!
-			# This will fail with a database query exception if the article already exists
+			# This will return false if the article already exists
 			$newid = $this->insertOn( $dbw );
+
+			if ( $newid === false ) {
+				$dbw->rollback();
+				$status->fatal( 'edit-already-exists' );
+				wfProfileOut( __METHOD__ );
+				return $status;
+			}
 
 			# Save the revision text...
 			$revision = new Revision( array(
@@ -1614,17 +1659,19 @@ class Article {
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
-		if ( $good && !( $flags & EDIT_DEFER_UPDATES ) ) {
+		# Do updates right now unless deferral was requested
+		if ( !( $flags & EDIT_DEFER_UPDATES ) ) {
 			wfDoUpdates();
 		}
 
-		if ( $good ) {
-			wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
-				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
-		}
+		// Return the new revision (or null) to the caller
+		$status->value['revision'] = $revision;
+
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status ) );
 
 		wfProfileOut( __METHOD__ );
-		return $revisionId;
+		return $status;
 	}
 
 	/**
@@ -2590,7 +2637,12 @@ class Article {
 		if( $bot && ($wgUser->isAllowed('markbotedits') || $wgUser->isAllowed('bot')) )
 			$flags |= EDIT_FORCE_BOT;
 		# Actually store the edit
-		$revId = $this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
+		$status = $this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
+		if ( !empty( $status->value['revision'] ) ) {
+			$revId = $status->value['revision']->getId();
+		} else {
+			$revId = false;
+		}
 
 		wfRunHooks( 'ArticleRollbackComplete', array( $this, $wgUser, $target ) );
 

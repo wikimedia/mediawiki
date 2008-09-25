@@ -58,15 +58,20 @@ $text = file_get_contents( 'php://stdin' );
 
 # Do the edit
 print "Saving... ";
-$success = $wgArticle->doEdit( $text, $summary, 
+$status = $wgArticle->doEdit( $text, $summary, 
 	( $minor ? EDIT_MINOR : 0 ) |
 	( $bot ? EDIT_FORCE_BOT : 0 ) | 
 	( $autoSummary ? EDIT_AUTOSUMMARY : 0 ) |
 	( $noRC ? EDIT_SUPPRESS_RC : 0 ) );
-if ( $success ) {
+if ( $status->isOK() ) {
 	print "done\n";
+	$exit = 0;
 } else {
 	print "failed\n";
-	exit( 1 );
+	$exit = 1;
 }
+if ( !$status->isGood() ) {
+	print $status->getWikiText() . "\n";
+}
+exit( $exit );
 
