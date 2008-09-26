@@ -42,16 +42,24 @@ class Revision {
 	 * @return Revision
 	 */
 	public static function newFromTitle( $title, $id = 0 ) {
-		if( $id ) {
-			$matchId = intval( $id );
+		$conds = array( 
+			'page_namespace' => $title->getNamespace(), 
+			'page_title' => $title->getDBkey()
+		);
+		if ( $id ) {
+			// Use the specified ID
+			$conds['rev_id'] = $id;
+		} elseif ( wfGetLB()->getServerCount() > 1 ) {
+			// Get the latest revision ID from the master
+			$dbw = wfGetDB( DB_MASTER );
+			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
+			$conds['rev_id'] = $latest;
 		} else {
-			$matchId = 'page_latest';
+			// Use a join to get the latest revision
+			$conds[] = 'rev_id=page_latest';
 		}
-		return Revision::newFromConds(
-			array( "rev_id=$matchId",
-			       'page_id=rev_page',
-			       'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDBkey() ) );
+		$conds[] = 'page_id=rev_page';
+		return Revision::newFromConds( $conds );
 	}
 
 	/**
@@ -149,7 +157,7 @@ class Revision {
 	private static function newFromConds( $conditions ) {
 		$db = wfGetDB( DB_SLAVE );
 		$row = Revision::loadFromConds( $db, $conditions );
-		if( is_null( $row ) ) {
+		if( is_null( $row ) && wfGetLB()->getServerCount() > 1 ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$row = Revision::loadFromConds( $dbw, $conditions );
 		}
@@ -237,7 +245,7 @@ class Revision {
 			array( 'page', 'revision' ),
 			$fields,
 			$conditions,
-			'Revision::fetchRow',
+			__METHOD__,
 			array( 'LIMIT' => 1 ) );
 		$ret = $db->resultObject( $res );
 		return $ret;
@@ -848,7 +856,7 @@ class Revision {
 				__METHOD__ );
 		}
 
-		if( !$row ) {
+		if( !$row && wfGetLB()->getServerCount() > 1 ) {
 			// Possible slave lag!
 			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
@@ -945,7 +953,7 @@ class Revision {
 			$conds['rev_page'] = $pageId;
 		}
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
-		if ( $timestamp === false ) {
+		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
 			# Not in slave, try master
 			$dbw = wfGetDB( DB_MASTER );
 			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
