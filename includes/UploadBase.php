@@ -24,7 +24,7 @@ class UploadBase {
 	
 	const SESSION_VERSION = 2;
 	
-	/*
+	/**
 	 * Returns true if uploads are enabled.
 	 * Can be overriden by subclasses.
 	 */
@@ -32,7 +32,7 @@ class UploadBase {
 		global $wgEnableUploads;
 		return $wgEnableUploads;
 	}
-	/*
+	/**
 	 * Returns true if the user can use this upload module or else a string 
 	 * identifying the missing permission.
 	 * Can be overriden by subclasses.
@@ -43,7 +43,11 @@ class UploadBase {
 		return true;
 	}
 	
+	// Upload handlers. Should probably just be a global
 	static $uploadHandlers = array( 'Stash', 'Upload', 'Url' );
+	/**
+	 * Create a form of UploadBase depending on wpSourceType and initializes it
+	 */
 	static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType' );
 		if( !$type ) 
@@ -62,12 +66,18 @@ class UploadBase {
 		return $handler;
 	}
 	
+	/**
+	 * Check whether a request if valid for this handler
+	 */
 	static function isValidRequest( $request ) {
 		return false;
 	}
 	
 	function __construct() {}
 	
+	/**
+	 * Do the real variable initialization
+	 */
 	function initialize( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
 		$this->mTempPath = $tempPath;
@@ -82,6 +92,10 @@ class UploadBase {
 		return self::OK;
 	}
 
+	/**
+	 * Verify whether the upload is sane. 
+	 * Returns self::OK or else an array with error information
+	 */
 	function verifyUpload() {
 		global $wgUser;
 		
@@ -183,6 +197,9 @@ class UploadBase {
 		return true;
 	}
 	
+	/**
+	 * Check whether the user can edit, upload and create the image
+	 */
 	function verifyPermissions( $user ) {
 		/**
 		 * If the image is protected, non-sysop users won't be able
@@ -202,6 +219,9 @@ class UploadBase {
 		return true;
 	}	
 	
+	/**
+	 * Check for non fatal problems with the file
+	 */
 	function checkWarnings() {
 		$warning = array();
 
@@ -209,10 +229,11 @@ class UploadBase {
 		$n = strrpos( $filename, '.' );		
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 
-		global $wgCapitalLinks;
+		// Check whether the resulting filename is different from the desired one
 		if( $this->mDesiredDestName != $filename )
 			$warning['badfilename'] = $filename;
 
+		// Check whether the file extension is on the unwanted list
 		global $wgCheckFileExtensions, $wgFileExtensions;
 		if ( $wgCheckFileExtensions ) {
 			if ( !$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) )
@@ -230,7 +251,7 @@ class UploadBase {
 		if( $exists !== false )
 			$warning['exists'] = $exists;
 		
-		
+		// Check whether this may be a thumbnail
 		if( $exists !== false && $exists[0] != 'thumb' 
 				&& self::isThumbName( $this->mLocalFile->getName() ) )
 			$warning['file-thumbnail-no'] = substr( $filename , 0, 
@@ -257,6 +278,9 @@ class UploadBase {
 		return $warning;
 	}
 
+	/**
+	 * Really perform the upload.
+	 */
 	function performUpload( $comment, $pageText, $watch, $user ) {
 		$status = $this->mLocalFile->upload( $this->mTempPath, $comment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps, false, $user );

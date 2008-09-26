@@ -43,13 +43,13 @@ class UploadFromStash extends UploadBase {
 		return $this->initialize( $desiredDestName, $sessionData[$sessionKey] );
 	}
 	
-	/*
+	/**
 	 * File has been previously verified so no need to do so again.
 	 */
 	protected function verifyFile( $tmpfile ) {
 		return true;
 	}
-	/*
+	/**
 	 * We're here from "ignore warnings anyway" so return just OK
 	 */
 	function checkWarnings() {
