@@ -20,7 +20,10 @@ class UploadFromUrl extends UploadBase {
 		$this->mUrl = trim( $url );
 	}
 	
-	function verifyUpload() {
+	/**
+	 * Do the real fetching stuff
+	 */
+	function fetchFile() {
 		if( stripos($this->mUrl, 'http://') !== 0 && stripos($this->mUrl, 'ftp://') !== 0 ) {
 			return array(
 				'status' => self::BEFORE_PROCESSING,
@@ -34,10 +37,10 @@ class UploadFromUrl extends UploadBase {
 				'error' => $res,
 			);
 		}
-		return parent::verifyUpload();
+		return self::OK;
 	}
 	
-		/**
+	/**
 	 * Safe copy from URL
 	 * Returns true if there was an error, false otherwise
 	 */
