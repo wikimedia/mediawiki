@@ -259,14 +259,9 @@ class UserMailer {
  *
  */
 class EmailNotification {
-	/**@{{
-	 * @private
-	 */
-	var $to, $subject, $body, $replyto, $from;
-	var $user, $title, $timestamp, $summary, $minorEdit, $oldid, $composed_common, $editor;
-	var $mailTargets = array();
-
-	/**@}}*/
+	private $to, $subject, $body, $replyto, $from;
+	private $user, $title, $timestamp, $summary, $minorEdit, $oldid, $composed_common, $editor;
+	private $mailTargets = array();
 
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
