@@ -74,7 +74,7 @@ want to write code destined for Wikipedia.
 It's often the case that the best algorithm to use for a given task
 depends on whether or not replication is in use. Due to our unabashed
 Wikipedia-centrism, we often just use the replication-friendly version,
-but if you like, you can use $wgLoadBalancer->getServerCount() > 1 to
+but if you like, you can use wfGetLB()->getServerCount() > 1 to
 check to see if replication is in use.
 
 === Lag ===
@@ -110,7 +110,7 @@ in the session, and then at the start of each request, waiting for the
 slave to catch up to that position before doing any reads from it. If
 this wait times out, reads are allowed anyway, but the request is
 considered to be in "lagged slave mode". Lagged slave mode can be
-checked by calling $wgLoadBalancer->getLaggedSlaveMode(). The only
+checked by calling wfGetLB()->getLaggedSlaveMode(). The only
 practical consequence at present is a warning displayed in the page
 footer.
 
