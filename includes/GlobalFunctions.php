@@ -666,16 +666,19 @@ function wfMsgWikiHtml( $key ) {
 /**
  * Returns message in the requested format
  * @param string $key Key of the message
- * @param array $options Processing rules:
- *  <i>parse</i>: parses wikitext to html
- *  <i>parseinline</i>: parses wikitext to html and removes the surrounding p's added by parser or tidy
- *  <i>escape</i>: filters message through htmlspecialchars
- *  <i>escapenoentities</i>: same, but allows entity references like &nbsp; through
- *  <i>replaceafter</i>: parameters are substituted after parsing or escaping
- *  <i>parsemag</i>: transform the message using magic phrases
- *  <i>content</i>: fetch message for content language instead of interface
- *  <i>language</i>: language code to fetch message for (overriden by <i>content</i>), its behaviour
- *                   with parser, parseinline and parsemag is undefined.
+ * @param array $options Processing rules.  Can take the following options:
+ *   <i>parse</i>: parses wikitext to html
+ *   <i>parseinline</i>: parses wikitext to html and removes the surrounding
+ *       p's added by parser or tidy
+ *   <i>escape</i>: filters message through htmlspecialchars
+ *   <i>escapenoentities</i>: same, but allows entity references like &nbsp; through
+ *   <i>replaceafter</i>: parameters are substituted after parsing or escaping
+ *   <i>parsemag</i>: transform the message using magic phrases
+ *   <i>content</i>: fetch message for content language instead of interface
+ * Also can accept a single associative argument, of the form 'language' => 'xx':
+ *   <i>language</i>: language code to fetch message for (overriden by
+ *       <i>content</i>), its behaviour with parser, parseinline and parsemag
+ *       is undefined.
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
@@ -689,12 +692,15 @@ function wfMsgExt( $key, $options ) {
 		$options = array($options);
 	}
 
-	foreach( $options as $option ) {
-		if( !in_array( $option, array( 'parse', 'parseinline', 'escape',
-		'escapenoentities', 'replaceafter', 'parsemag', 'content',
-		'language' ) ) ) {
-			trigger_error( "wfMsgExt called with incorrect parameter $option",
-				E_USER_WARNING );
+	foreach( $options as $arrayKey => $option ) {
+		if( !preg_match( '/^[0-9]+|language$/', $arrayKey ) ) {
+			# An unknown index, neither numeric nor "language"
+			trigger_error( "wfMsgExt called with incorrect parameter key $arrayKey", E_USER_WARNING );
+		} elseif( preg_match( '/^[0-9]+$/', $arrayKey ) && !in_array( $option,
+		array( 'parse', 'parseinline', 'escape', 'escapenoentities',
+		'replaceafter', 'parsemag', 'content' ) ) ) {
+			# A numeric index with unknown value
+			trigger_error( "wfMsgExt called with incorrect parameter $option", E_USER_WARNING );
 		}
 	}
 
