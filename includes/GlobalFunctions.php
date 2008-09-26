@@ -687,10 +687,7 @@ function wfMsgExt( $key, $options ) {
 	$args = func_get_args();
 	array_shift( $args );
 	array_shift( $args );
-
-	if( !is_array($options) ) {
-		$options = array($options);
-	}
+	$options = array($options);
 
 	foreach( $options as $arrayKey => $option ) {
 		if( !preg_match( '/^[0-9]+|language$/', $arrayKey ) ) {
