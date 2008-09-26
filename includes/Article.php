@@ -3479,7 +3479,9 @@ class Article {
 			$parserCache->save( $parserOutput, $this, $wgUser );
 		}
 		// Make sure file cache is not used on uncacheable content.
-		if( $wgUseFileCache && $parserOutput->getCacheTime() == -1 ) {
+		// Output that has magic words in it can still use the parser cache
+		// (if enabled), though it will generally expire sooner.
+		if( $parserOutput->getCacheTime() == -1 || $parserOutput->containsOldMagic() ) {
 			$wgUseFileCache = false;
 		}
 
