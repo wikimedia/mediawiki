@@ -66,11 +66,7 @@ class IPBlockForm {
 		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
 		# Re-check user's rights to hide names, very serious, defaults to 0
 		$this->BlockHideName = ( $wgRequest->getBool( 'wpHideName', 0 ) && $wgUser->isAllowed( 'hideuser' ) ) ? 1 : 0;
-		if($wgRequest->wasPosted()){
-			$this->BlockAllowUsertalk = $wgRequest->getBool( 'wpAllowUsertalk', false );
-		}else{
-			$this->BlockAllowUsertalk = $wgBlockAllowsUTEdit;
-		}
+		$this->BlockAllowUsertalk = ( $wgRequest->getBool( 'wpAllowUsertalk', $byDefault ) && $wgBlockAllowsUTEdit );
 	}
 
 	function showForm( $err ) {
@@ -206,7 +202,7 @@ class IPBlockForm {
 			</tr>"
 		);
 
-		global $wgSysopEmailBans;
+		global $wgSysopEmailBans, $wgBlockAllowsUTEdit;
 		if ( $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
 			$wgOut->addHTML("
 				<tr id='wpEnableEmailBan'>
@@ -243,16 +239,20 @@ class IPBlockForm {
 						'wpWatchUser', 'wpWatchUser', $this->BlockWatchUser,
 						array( 'tabindex' => '11' ) ) . "
 				</td>
-			</tr>
-			<tr id='wpAllowUsertalkRow'>
-				<td>&nbsp;</td>
-				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'ipballowusertalk' ),
-						'wpAllowUsertalk', 'wpAllowUsertalk', $this->BlockAllowUsertalk,
-						array( 'tabindex' => '12' ) ) . "
-				</td>
 			</tr>"
 		);
+		if( $wgBlockAllowsUTEdit ){
+			$wgOut->addHTML("
+				<tr id='wpAllowUsertalkRow'>
+					<td>&nbsp;</td>
+					<td class='mw-input'>" .
+						Xml::checkLabel( wfMsg( 'ipballowusertalk' ),
+							'wpAllowUsertalk', 'wpAllowUsertalk', $this->BlockAllowUsertalk,
+							array( 'tabindex' => '12' ) ) . "
+					</td>
+				</tr>"
+			);
+		}
 
 		$wgOut->addHTML("
 			<tr>
@@ -455,6 +455,7 @@ class IPBlockForm {
 	 * @return array
 	 */
 	private function blockLogFlags() {
+		global $wgBlockAllowsUTEdit;
 		$flags = array();
 		if( $this->BlockAnonOnly && IP::isIPAddress( $this->BlockAddress ) )
 					// when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
@@ -465,7 +466,7 @@ class IPBlockForm {
 			$flags[] = 'noautoblock';
 		if ( $this->BlockEmail )
 			$flags[] = 'noemail';
-		if ( !$this->BlockAllowUsertalk )
+		if ( !$this->BlockAllowUsertalk && $wgBlockAllowsUTEdit )
 			$flags[] = 'nousertalk';
 		return implode( ',', $flags );
 	}
