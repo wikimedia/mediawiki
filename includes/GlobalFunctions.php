@@ -689,6 +689,15 @@ function wfMsgExt( $key, $options ) {
 		$options = array($options);
 	}
 
+	foreach( $options as $option ) {
+		if( !in_array( $option, array( 'parse', 'parseinline', 'escape',
+		'escapenoentities', 'replaceafter', 'parsemag', 'content',
+		'language' ) ) ) {
+			trigger_error( "wfMsgExt called with incorrect parameter $option",
+				E_USER_WARNING );
+		}
+	}
+
 	if( in_array('content', $options) ) {
 		$forContent = true;
 		$langCode = true;
