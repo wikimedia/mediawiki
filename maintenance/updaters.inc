@@ -1020,13 +1020,16 @@ function do_stats_init() {
 	$row = $wgDatabase->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
 	if( $row === false ) {
 		echo "data is missing! rebuilding...\n";
-		
-		global $IP;
-		require_once "$IP/maintenance/initStats.inc";
-		wfInitStats();
+	} elseif ( isset( $row->site_stats ) && $row->ss_total_pages == -1 ) {
+		echo "missing ss_total_pages, rebuilding...\n";
 	} else {
 		echo "ok.\n";
+		return;
 	}
+
+	global $IP;
+	require_once "$IP/maintenance/initStats.inc";
+	wfInitStats();
 }
 
 function do_active_users_init() {
