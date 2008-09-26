@@ -75,6 +75,13 @@ class UploadBase {
 		$this->mRemoveTempFile = $removeTempFile;
 	}
 
+	/**
+	 * Fetch the file. Usually a no-op
+	 */
+	function fetchFile() {
+		return self::OK;
+	}
+
 	function verifyUpload() {
 		global $wgUser;
 		
