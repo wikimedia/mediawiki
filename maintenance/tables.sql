@@ -1050,7 +1050,7 @@ CREATE TABLE /*$wgDBprefix*/objectcache (
   keyname varbinary(255) NOT NULL default '',
   value mediumblob,
   exptime datetime,
-  UNIQUE KEY (keyname),
+  PRIMARY KEY (keyname),
   KEY (exptime)
 
 ) /*$wgDBTableOptions*/;
