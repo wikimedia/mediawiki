@@ -219,7 +219,7 @@ $messages = array(
 'userpage'          => 'Ver páxina de usuario',
 'projectpage'       => 'Ver páxina do proxecto',
 'imagepage'         => 'Ver a páxina de multimedia',
-'mediawikipage'     => 'Ver a páxina de mensaxes',
+'mediawikipage'     => 'Ver a páxina da mensaxe',
 'templatepage'      => 'Ver a páxina do modelo',
 'viewhelppage'      => 'Ver a páxina de axuda',
 'categorypage'      => 'Ver páxina de categoría',
@@ -355,10 +355,9 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'formerror'            => 'Erro: non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
 'cannotdelete'         => 'Non se pode borrar a páxina ou imaxe especificada.
-Se cadra xa foi borrada por alguén.',
+Se cadra, xa foi borrada por alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta. Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
-'perfdisabled'         => 'Sentímolo! Esta funcionalidade foi deshabilitada temporalmente porque fai moi lenta a base de datos até o punto no que non se pode usar o wiki.',
 'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $1.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
@@ -457,12 +456,14 @@ Por favor, ténteo de novo.',
 Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
-'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1)
-pediu que lle enviásemos un novo contrasinal para entrar en {{SITENAME}} ($4).
-O contrasinal do usuario "$2" é agora "$3".
-Pode entrar no sistema e cambiar o seu contrasinal agora.
+'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) pediu un novo
+contrasinal para entrar en {{SITENAME}} ($4). Un contrasinal temporal do usuario
+"$2" foi creado e fixado como "$3". Se esa foi a súa
+intención, necesitará entrar no sistema e escoller un novo contrasinal agora.
 
-Se foi alguén diferente quen o pediu ou se xa lembra o seu contrasinal e non o quere modificar, pode ignorar esta mensaxe e continuar a utilizar o seu contrasinal vello.',
+Se foi alguén diferente o que fixo esta solicitude ou se xa se lembra do seu contrasinal
+e non o quere modificar, pode ignorar esta mensaxe e
+continuar a utilizar o seu contrasinal vello.',
 'noemail'                    => 'O usuario "$1" non posúe ningún enderezo de correo electrónico rexistrado.',
 'passwordsent'               => 'Envióuselle un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
@@ -581,7 +582,7 @@ Por favor, inclúa eses datos nas consultas que faga.',
 'nosuchsectiontitle'               => 'Non existe tal sección',
 'nosuchsectiontext'                => 'Tentou editar unha sección inexistente. Dado que non existe a sección $1, non hai onde gardar a súa edición.',
 'loginreqtitle'                    => 'Cómpre acceder ao sistema',
-'loginreqlink'                     => 'entrar',
+'loginreqlink'                     => 'acceder ao sistema',
 'loginreqpagetext'                 => 'Debe $1 para ver outras páxinas.',
 'accmailtitle'                     => 'O contrasinal foi enviado.',
 'accmailtext'                      => 'O contrasinal para "$1" foi enviado a $2.',
@@ -668,6 +669,15 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 Debería considerar se é apropiado continuar a editar esta páxina.
 Velaquí está o rexistro de borrado desta páxina, por se quere consultalo:",
 'deleted-notice'                   => 'Esta páxina foi borrada. Embaixo pódese ver o rexistro de borrados desta páxina, por se o quere consultar.',
+'deletelog-fulllog'                => 'Ver o rexistro completo',
+'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
+Este non deu ningunha explicación.",
+'edit-gone-missing'                => 'Non se pode actualizar a páxina.
+Semella que foi borrada.',
+'edit-conflict'                    => 'Conflito de edición.',
+'edit-no-change'                   => 'A súa edición foi ignorada dado que non fixo ningún cambio no texto.',
+'edit-already-exists'              => 'Non se pode crear a nova páxina.
+Esta xa existe.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
@@ -803,6 +813,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-invalid-destination' => 'A páxina de destino ten que ter un título válido.',
 'mergehistory-autocomment'         => '[[:$1]] fusionouse en [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionouse en [[:$2]]: $3',
+'mergehistory-same-destination'    => 'A orixe das páxinas e o seu destino non poden ser os mesmos',
 
 # Merge log
 'mergelog'           => 'Rexistro de fusións',
@@ -1385,7 +1396,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'brokenredirects-delete' => '(borrar)',
 
 'withoutinterwiki'         => 'Páxinas sen ligazóns interwiki',
-'withoutinterwiki-summary' => 'Estas páxinas non enlazan coas versións noutras linguas:',
+'withoutinterwiki-summary' => 'As seguintes páxinas non ligan con ningunha versión noutra lingua.',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Amosar',
 
@@ -1448,8 +1459,8 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'suppress'                => 'Supervisor',
 
 # Book sources
-'booksources'               => 'Fontes dos libros',
-'booksources-search-legend' => 'Procurar fontes dos libros',
+'booksources'               => 'Fontes bibliográficas',
+'booksources-search-legend' => 'Procurar fontes bibliográficas',
 'booksources-go'            => 'Ir',
 'booksources-text'          => 'A continuación aparece unha listaxe de ligazóns cara a outros sitios web que venden libros novos e usados, neles tamén pode obter máis información sobre as obras que está a buscar:',
 
@@ -1719,6 +1730,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 ** Publicidade excesiva
 ** Guerra de edicións
 ** Páxina moi visitada',
+'protect-edit-reasonlist'     => 'Editar os motivos de protección',
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',
@@ -1856,11 +1868,12 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbotherreason'                  => 'Outro motivo:',
 'ipbhidename'                     => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
 'ipbwatchuser'                    => 'Vixiar a páxina de usuario e a de conversa deste usuario',
+'ipballowusertalk'                => 'Permitir que este usuario poida editar a súa páxina de conversa mentres estea bloqueado',
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo con éxito',
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
 Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
-'ipb-edit-dropdown'               => 'Editar as razóns do bloqueo',
+'ipb-edit-dropdown'               => 'Editar os motivos de bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear a "$1"',
 'ipb-unblock'                     => 'Desbloquear un usuario ou enderezo IP',
 'ipb-blocklist-addr'              => 'Ver os bloqueos vixentes de "$1"',
@@ -1898,6 +1911,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'block-log-flags-nocreate'        => 'desactivada a creación de contas de usuario',
 'block-log-flags-noautoblock'     => 'bloqueo automático deshabilitado',
 'block-log-flags-noemail'         => 'correo electrónico bloqueado',
+'block-log-flags-nousertalk'      => 'desactivada a edición da súa conversa',
 'block-log-flags-angry-autoblock' => 'realzou o autobloqueo permitido',
 'range_block_disabled'            => 'A funcionalidade de administrador de crear rangos de bloqueos está deshabilitada.',
 'ipb_expiry_invalid'              => 'Tempo de duración non válido.',

@@ -105,7 +105,6 @@ $1",
 'readonly'        => 'Stor-dàta glaiste',
 'badarticleerror' => 'Cha ghabh an gnìomh seo a dhèanamh air an duilleig seo.',
 'badtitle'        => 'Droch thiotal',
-'perfdisabled'    => "Tha sinn duilich! Tha an goireas seo air a chur bho fheum gu sealadach o chionns gum bi e a'slaodadh an stòr-dàta gus nach urrain do neach sam bith an wiki a chleachdadh.",
 
 # Login and logout pages
 'yourname'                   => 'An t-ainm-cleachdair agaibh',

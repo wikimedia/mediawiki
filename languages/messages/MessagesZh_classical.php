@@ -388,7 +388,6 @@ $1',
 'cannotdelete'         => '此頁或刪矣，不復為之。',
 'badtitle'             => '無此題',
 'badtitletext'         => '或別、或缺、或違、或他山謬鏈，此題不存也。',
-'perfdisabled'         => '歉哉，此舉累及他人，故謝之。',
 'perfcached'           => '下為謄本，恐不新也。',
 'perfcachedts'         => '下為謄本，$1新之。',
 'wrong_wfQuery_params' => 'wfQuery()參數謬然<br />

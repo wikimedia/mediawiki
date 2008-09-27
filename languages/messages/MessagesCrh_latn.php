@@ -423,7 +423,6 @@ Malümat bazasını kilitlegen administratornıñ açıqlaması: $1',
 'cannotdelete'         => 'Belgilengen saife ya da körüniş yoq etilip olamadı. (başqa bir qullanıcı tarafından yoq etilgen ola bilir).',
 'badtitle'             => 'Keçersiz serleva',
 'badtitletext'         => 'İstenilgen saife adı doğru degil, boş yahut interviki ya da tillerara adı doğru belgilenmegen. İhtimalı bar ki, saife adında yasaqlanğan simvollar qullanıladır.',
-'perfdisabled'         => 'Afu etiñiz! Bu hususiyet, malümat bazasını qullanılamaycaq derecede yavaşlatqanı içün, muvaqqat qullanımdan çıqarıldı.',
 'perfcached'           => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
 'perfcachedts'         => 'Aşağıda keşte saqlanğan malümat buluna, soñki yañaruv zamanı: $1.',
 'querypage-no-updates' => 'Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaq.',
@@ -764,6 +763,8 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'prevn'                 => 'evelki $1',
 'nextn'                 => 'soñraki $1',
 'viewprevnext'          => '($1) ($2) ($3).',
+'searchrelated'         => 'bağlı',
+'searchall'             => 'episi',
 'showingresults'        => "Aşağıda №&nbsp;<strong>$2</strong>den başlap {{PLURAL:$1|'''1''' netice|'''$1''' netice}} buluna.",
 'showingresultsnum'     => "Aşağıda №&nbsp;'''$2'''den başlap {{PLURAL:$3|'''1''' netice|'''$3''' netice}} buluna.",
 'nonefound'             => "'''Tenbi''': Muvafaqiyetsiz qıdıruvnıñ sebebi indeksirlenip olamağan \"bu\" ve \"da\" kibi sözlerni qıdıruv ya da birden ziyade qıdırılğan sözni qullanuv ola bile (tek qıdıruv içün kirsetilgen bütün sözleri olğan saifeler kösterile).",
@@ -1252,7 +1253,7 @@ Yardım ve teklifler içün:
 'exblank'               => 'saife metini boş',
 'historywarning'        => 'Tenbi: Siz yoq etmek üzre olğan saifeniñ keçmişi bardır:',
 'confirmdeletetext'     => 'Bir saifeni ya da resimni bütün keçmişi ile birlikte malümat bazasından qalıcı olaraq yoq etmek üzresiñiz.
-Lütfen, neticelerini añlağanıñıznı, [[Special:WhatLinksHere/{{FULLPAGENAME}}|saifege bağlantılarını]] teşkergenden soñ ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
+Lütfen, neticelerini añlağanıñıznı ve [[{{MediaWiki:Policy-url}}|yoq etüv politikasına]] uyğunlığını diqqatqa alıp, bunı yapmağa istegeniñizni tasdıqlañız.',
 'actioncomplete'        => 'İşlem tamamlandı.',
 'deletedtext'           => '"<nowiki>$1</nowiki>" yoq etildi.
 yaqın zamanda yoq etilgenlerni körmek içün: $2.',
@@ -1374,7 +1375,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 <br />[[Special:IPBlockList|IP adresi ban etilgenler]] cedveline baqıñız .',
 'unblockip'               => 'Qullanıcınıñ ban etüvini çıqar',
 'ipusubmit'               => 'Bu adresniñ ban etüvini çıqar',
-'ipblocklist'             => 'Blok etilgen qullanıcılar ve IP adresleri cedveli',
+'ipblocklist'             => 'Blok etilgen qullanıcılar ve IP adresleri',
 'blocklistline'           => '$1, $2 blok etti: $3 ($4)',
 'infiniteblock'           => 'müddetsiz',
 'expiringblock'           => '$1 tarihında bitecek',
@@ -1397,17 +1398,13 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 
 # Move page
 'move-page-legend'        => 'Ad deñişikligi',
-'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirirsiñiz.
-Bunıñnen beraber deñişiklik jurnalını da yañı adğa avuştırırsıñız.
-Eski ad yañı adğa yollama olur.
-Eski adğa doğru olğan bağlantılar olğanı kibi qalır (lütfen, çift ve keçersiz yollamalar mevcüt olğanını teşkeriñiz).
-Bağlantılar endiden berli eskisi kibi çalışmasından emin olmalısıñız.
+'movepagetext'            => "Aşağıdaki formanı qullanıp saifeniñ adını deñiştirilir. Bunıñnen beraber deñişiklik jurnalı da yañı adğa avuştırılır.
+Eski ad yañı adğa yollama olur. Eski serlevağa yollama saifelerni avtomatik olaraq yañartıp olasıñız. Bu işlemi avtomatik yapmağa istemeseñiz, bütün [[Special:DoubleRedirects|çift]] ve [[Special:BrokenRedirects|keçersiz]] yollama saifelerini özüñiz tüzetmege mecbur olursıñız. Bağlantılar endiden berli doğru çalışmasından emin olmalısıñız.
 
-Yañı adda bir isim zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq.
-Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
+Yañı adda bir ad zaten mevcüt olsa, ad deñişikligi '''yapılmaycaq''', ancaq mevcüt olğan saife yollama ya da boş olsa ad deñişikligi mümkün olacaq. Bu demek ki, saife adını yañlıştan deñiştirgen olsañız deminki adını keri qaytarıp olasıñız, amma mevcüt olğan saifeni tesadüfen yoq etalmaysıñız.
 
 '''TENBİ!'''
-Ad deñiştirüv ''populâr'' saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",
+Ad deñiştirüv populâr saifeler içün büyük deñişmelerge sebep ola bilir. Lütfen, deñişiklikni yapmadan evel ola bileceklerni köz ögüne alıñız.",
 'movepagetalktext'        => "Qoşulğan muzakere saifesiniñ de (mevcüt olsa)
 adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
@@ -1421,6 +1418,7 @@ Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege m
 'move-watch'              => 'Bu saifeni közet',
 'movepagebtn'             => 'Adını deñiştir',
 'pagemovedsub'            => 'Ad deñişikligi tamamlandı',
+'movepage-moved'          => '<big>\'\'\'"$1" saifesiniñ adı "$2" olaraq deñiştirildi\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Bu adda bir saife endi mevcüt ya da siz yazğan ad yasaqlı.
 Lütfen, başqa bir ad saylap yazıñız.',
 'cantmove-titleprotected' => 'Siz yazğan yañı ad yasaqlıdır, bunıñ içün saife adını deñiştirmekniñ çaresi yoq.',
@@ -1535,18 +1533,18 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'notacceptable'     => 'Viki-server brauzeriñiz oqup olacaq formatında malümat beralmay.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} saytınıñ adsız (anonim) qullanıcıları',
+'anonymous'        => '{{SITENAME}} saytınıñ $1 adsız (anonim) qullanıcıları',
 'siteuser'         => '{{SITENAME}} qullanıcı $1',
 'lastmodifiedatby' => 'Saife eñ soñki $3 tarafından $2, $1 tarihında deñiştirildi.', # $1 date, $2 time, $3 user
 'othercontribs'    => '$1 menbasına binaen.',
 'others'           => 'digerleri',
-'siteusers'        => '{{SITENAME}} qullanıcılar $1',
+'siteusers'        => '{{SITENAME}} saytınıñ $2 qullanıcısı $1',
 'creditspage'      => 'Teşekkürler',
 'nocredits'        => 'Bu saife içün qullanıcılar cedveli yoq.',
 
 # Spam protection
 'spamprotectiontitle' => 'Spam qarşı qorçalav filtri',
-'spamprotectiontext'  => 'Saqlamağa istegen saifeñiz spam filtri tarafından blok etildi. Büyük ihtimallı ki, bir tış bağlantıdan menbalana.',
+'spamprotectiontext'  => 'Saqlamağa istegen saifeñiz spam filtri tarafından blok etildi. Büyük ihtimallı ki, saifede qara cedveldeki bir tış saytqa bağlantı bar.',
 'spamprotectionmatch' => 'Spam-filtrden işbu beyanat keldi: $1',
 'spambot_username'    => 'Spamdan temizlev',
 'spam_reverting'      => '$1 saytına bağlantısı olmağan soñki versiyağa keri ketirüv',
@@ -1576,8 +1574,8 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 'filedelete-current-unregistered' => 'Malümat bazasında saylanğan "$1" adlı fayl yoq.',
 
 # Browsing diffs
-'previousdiff' => '← Evelki versiyanen aradaki farq',
-'nextdiff'     => 'Soñraki versiyanen aradaki farq →',
+'previousdiff' => '← Evelki deñişiklik',
+'nextdiff'     => 'Soñraki deñişiklik →',
 
 # Media information
 'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım bulunıp ola ve operatsion sistemañızğa zarar ketirip olur.
@@ -1703,7 +1701,9 @@ Eger esabıñıznı keçenleri açsa ediñiz, belki de yañnı kodnı bir daa so
 'confirmemail_sent'        => 'Tasdıq e-mail mektübini yollandı.',
 'confirmemail_oncreate'    => 'Belgilegen e-mail adresiñizge tasdıq kodunen mektüp yollandı.
 İşbu kod oturım açmaq içün lâzim degil, amma bu proyektte elektron poçtasınıñ çarelerini qullanmaq içün ruhset berilmezden evel onı belgilemelisiñiz.',
-'confirmemail_sendfailed'  => 'Tasdıq kodu yollanmadı. Adreste keçersiz arif ya da işaret olmağanından eminsiñizmi? Mektüp qaytıldı: $1',
+'confirmemail_sendfailed'  => '{{SITENAME}} tasdıq kodunı yollap olamay. Lütfen, adreste keçersiz arif ya da işaret olmağanını teşkeriñiz. 
+
+Serverniñ cevabı: $1',
 'confirmemail_invalid'     => 'Keçersiz tasdıq kodu. Tasdıq kodunıñ soñki qullanma tarihı keçken ola bilir.',
 'confirmemail_needlogin'   => '$1 yapmaq içün başta e-mail adresiñizni tasdıqlamalısıñız.',
 'confirmemail_success'     => 'E-mail adresiñiz tasdıqlandı.',
@@ -1730,8 +1730,8 @@ Bu tasdıq kodu $4 tarihına qadar keçerli olacaq.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '["Interwiki transcluding" işlemey]',
-'scarytranscludefailed'   => '[Yazıq ki, $1 şablonına irişilip olamadı]',
-'scarytranscludetoolong'  => '[Yazıq ki, URL adresi çoq uzun]',
+'scarytranscludefailed'   => '[$1 şablonına irişilip olamadı]',
+'scarytranscludetoolong'  => '[URL adresi çoq uzun]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -1743,7 +1743,7 @@ $1
 'trackbackdeleteok' => 'Trackback muvafaqiyetnen yoq etildi.',
 
 # Delete conflict
-'deletedwhileediting' => 'Tenbi: Bu saife siz deñişiklik yapmağa başlağandan soñ yoq etildi!',
+'deletedwhileediting' => "'''Tenbi''': Bu saife siz deñişiklik yapmağa başlağandan soñ yoq etildi!",
 'confirmrecreate'     => "Siz bu saifeni deñiştirgen vaqıtta [[User:$1|$1]] ([[User talk:$1|muzakere]]) qullanıcısı onı yoq etkendir, sebebi:
 :''$2''
 Saifeni yañıdan yaratmağa isteseñiz, lütfen, bunı tasdıqlañız.",
@@ -1814,5 +1814,8 @@ $1',
 
 # Special:SpecialPages
 'specialpages' => 'Mahsus saifeler',
+
+# Special:BlankPage
+'blankpage' => 'Bоş saife',
 
 );

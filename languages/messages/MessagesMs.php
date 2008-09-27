@@ -469,7 +469,6 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'cannotdelete'         => 'Laman atau imej yang dinyatakan tidak dapat dihapuskan. (Ia mungkin telah pun dihapuskan oleh orang yang lain.)',
 'badtitle'             => 'Tajuk tidak sah',
 'badtitletext'         => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
-'perfdisabled'         => 'Harap maaf! Ciri ini telah dipadamkan buat sementara kerana ia melambatkan pangkalan data sehingga wiki ini tidak dapat digunakan.',
 'perfcached'           => 'Data berikut diambil daripada simpanan sementara dan mungkin bukan yang terkini.',
 'perfcachedts'         => 'Data berikut berada dalam simpanan sementara dan dikemaskinikan buat kali terakhir pada $1.',
 'querypage-no-updates' => 'Pengkemaskinian bagi laman ini dimatikan. Data yang ditunjukkan di sini tidak disegarkan semula.',
@@ -768,17 +767,22 @@ Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
 'deleted-notice'                   => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'deletelog-fulllog'                => 'Lihat log penuh',
+'edit-hook-aborted'                => 'Suntingan anda telah dibatalkan oleh penyangkuk. Tiada sebab diberikan.',
+'edit-gone-missing'                => 'Laman tersebut telah dihapuskan dan tidak dapat dikemaskinikan.',
+'edit-conflict'                    => 'Percanggahan penyuntingan.',
+'edit-no-change'                   => 'Suntingan anda diabaikan kerana tiada perubahan dibuat pada teks tersebut.',
+'edit-already-exists'              => 'Tidak dapat mencipta laman baru kerana ianya telah wujud.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.
 
-Had panggilan ialah $2, sedangkan yang digunakan berjumlah $1.',
+Had panggilan ialah $2, sekarang terdapat $1 panggilan.',
 'expensive-parserfunction-category'       => 'Laman yang mengandungi terlalu banyak panggilan fungsi penghurai yang intensif',
-'post-expand-template-inclusion-warning'  => 'Amaran: saiz kemasukan templat terlalu besar.
+'post-expand-template-inclusion-warning'  => 'Amaran: Saiz kemasukan templat terlalu besar.
 Sesetengah templat tidak akan dimasukkan.',
-'post-expand-template-inclusion-category' => 'Laman yang melebihi had kemasukan templat',
+'post-expand-template-inclusion-category' => 'Laman-laman yang melebihi had saiz kemasukan templat',
 'post-expand-template-argument-warning'   => 'Amaran: Laman ini mengandungi sekurang-kurangnya satu argumen templat yang mempunyai saiz pengembangan yang terlalu besar.
-Argumen-argumen ini telah dibiarkan.',
+Argumen-argumen ini telah ditinggalkan.',
 'post-expand-template-argument-category'  => 'Laman yang mengandungi templat dengan argumen yang tidak lengkap',
 
 # "Undo" feature
@@ -1869,7 +1873,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Ruang nama:',
-'invert'         => 'Terbalikkan pilihan',
+'invert'         => 'Kecualikan pilihan',
 'blanknamespace' => '(Utama)',
 
 # Contributions
@@ -1943,6 +1947,7 @@ dirosakkan).',
 'ipbotherreason'                  => 'Sebab tambahan/lain:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna/alamat IP daripada log sekatan, senarai sekatan aktif, dan senarai pengguna',
 'ipbwatchuser'                    => 'Pantau laman pengguna dan laman perbincangan bagi pengguna ini',
+'ipballowusertalk'                => 'Benarkan pengguna ini menyunting laman perbincangannya sendiri ketika disekat',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah disekat.
@@ -1985,6 +1990,7 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'block-log-flags-nocreate'        => 'pembukaan akaun dimatikan',
 'block-log-flags-noautoblock'     => 'sekatan automatik dimatikan',
 'block-log-flags-noemail'         => 'e-mail disekat',
+'block-log-flags-nousertalk'      => 'tidak boleh menyunting laman perbincangan sendiri',
 'block-log-flags-angry-autoblock' => 'sekatan automatik tambahan diaktifkan',
 'range_block_disabled'            => 'Kebolehan penyelia untuk membuat sekatan julat dimatikan.',
 'ipb_expiry_invalid'              => 'Waktu tamat tidak sah.',

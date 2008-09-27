@@ -20,6 +20,7 @@
  * @author Nick1915
  * @author Pietrodn
  * @author Ramac
+ * @author Remember the dot
  * @author S.Örvarr.S
  * @author SabineCretella
  * @author Tonyfroio
@@ -404,7 +405,7 @@ I seguenti collegamenti sono in lingua inglese:
 'nstab-media'     => 'File multimediale',
 'nstab-special'   => 'Speciale',
 'nstab-project'   => 'pagina di servizio',
-'nstab-image'     => 'Immagine',
+'nstab-image'     => 'File',
 'nstab-mediawiki' => 'Messaggio',
 'nstab-template'  => 'Template',
 'nstab-help'      => 'Aiuto',
@@ -462,7 +463,6 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'cannotdelete'         => 'Impossibile cancellare la pagina o il file richiesto (potrebbe essere stato già cancellato).',
 'badtitle'             => 'Titolo non corretto',
 'badtitletext'         => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
-'perfdisabled'         => 'Siamo spiacenti, questa funzionalità è temporaneamente disabilitata perché il suo uso rallenta il database fino a rendere il sito inutilizzabile per tutti gli utenti.',
 'perfcached'           => "I dati che seguono sono estratti da una copia ''cache'' del database, non aggiornati in tempo reale.",
 'perfcachedts'         => "I dati che seguono sono estratti da una copia ''cache'' del database. Ultimo aggiornamento: $1.",
 'querypage-no-updates' => 'Gli aggiornamenti della pagina sono temporaneamente sospesi. I dati in essa contenuti non verranno aggiornati.',
@@ -747,6 +747,12 @@ Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
 L'elenco delle relative cancellazioni viene riportato di seguito per comodità:",
 'deleted-notice'                   => "Questa pagina è stata cancellata. L'elenco delle relative cancellazioni viene riportato di seguito per informazione.",
 'deletelog-fulllog'                => 'Visualizza registro completo',
+'edit-gone-missing'                => 'Impossibile aggiornare la pagina.
+Sembra che sia stata cancellata.',
+'edit-conflict'                    => 'Conflitto di edizione.',
+'edit-no-change'                   => 'La modifica è stata ignorata poiché non sono stati apportati cambiamenti al testo.',
+'edit-already-exists'              => 'Impossibile creare una nuova pagina.
+Esiste già.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attenzione: Questa pagina contiene troppe chiamate alle parser functions.
@@ -1907,6 +1913,7 @@ Indica il motivo specifico per il quale procedi al blocco dell'indirizzo IP o de
 'ipbotherreason'                  => 'Altri motivi/dettagli:',
 'ipbhidename'                     => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
 'ipbwatchuser'                    => 'Segui le pagine e le discussioni utente di questo utente',
+'ipballowusertalk'                => "Permetti all'utente di modificare la propria pagina di discussione mentre è bloccato",
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
@@ -1948,6 +1955,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'block-log-flags-nocreate'        => 'creazione account bloccata',
 'block-log-flags-noautoblock'     => 'blocco automatico disattivato',
 'block-log-flags-noemail'         => 'e-mail bloccate',
+'block-log-flags-nousertalk'      => 'non può modificare la propria pagina di discussione',
 'block-log-flags-angry-autoblock' => 'blocco automatico avanzato attivo',
 'range_block_disabled'            => 'La possibilità di bloccare intervalli di indirizzi IP non è attiva al momento.',
 'ipb_expiry_invalid'              => 'Durata o scadenza del blocco non valida. Controlla il [http://www.gnu.org/software/shishi/manual/html_node/Relative-items-in-date-strings.html manuale di tar] per la sintassi esatta.',

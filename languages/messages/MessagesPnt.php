@@ -47,7 +47,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-shownumberswatching' => "Δείξον τη χρήστς π' δεαβάζνε",
+'tog-shownumberswatching' => "Δείξον τοι χρήστς π' δεαβάζνε",
 'tog-showhiddencats'      => 'Δείξον κρυμμένα κατηγορίας',
 
 'underline-always' => 'Πάντα',
@@ -59,9 +59,9 @@ $messages = array(
 'tuesday'       => 'Τριτ',
 'wednesday'     => 'Τετάρτ',
 'thursday'      => 'Πεφτ',
-'friday'        => 'Παρασκευήν',
+'friday'        => 'Παρέσα',
 'saturday'      => 'Σάββαν',
-'sun'           => 'Κυρ',
+'sun'           => 'Κερ',
 'mon'           => 'Δευ',
 'tue'           => 'Τρι',
 'wed'           => 'Τετ',
@@ -451,6 +451,9 @@ $messages = array(
 Ίσως εν καλλίον να μην εφτάτε τη σελίδαν.
 Τερέστεν για βοήθειαν και σ' αρχείον την αιτίαν για το σβήσιμον:",
 
+# Account creation failure
+'cantcreateaccounttitle' => "Το ποίσιμον τη λογαρίας 'κ έντον",
+
 # History pages
 'viewpagelogs'        => "Τέρεν πρωτόκολλα γι' αβούτεν τη σελίδαν",
 'currentrev'          => 'Ατωριζνόν μορφήν',
@@ -478,6 +481,7 @@ $messages = array(
 # Revision deletion
 'rev-delundel'    => 'δείξον/κρύψον',
 'pagehist'        => 'Ιστορίαν σελίδας',
+'deletedhist'     => 'Σβηγμένον ιστορίαν',
 'revdelete-uname' => "όνεμαν χρήστ'",
 
 # Diffs
@@ -487,6 +491,7 @@ $messages = array(
 'compareselectedversions' => 'Γαρσουλαεύτε...',
 'editundo'                => 'αναίρεση',
 'diff-multi'              => "({{PLURAL:$1|Μίαν αλλαγήν|$1 αλλαγάς}} 'κ δεκνίζκουνταν.)",
+'diff-with-final'         => '&#32;και $1 $2',
 
 # Search results
 'noexactmatch'             => "'''Η Βικιπαίδειαν 'κ εχ' σελίδαν με τ' όνεμαν \"\$1\".'''
@@ -505,6 +510,7 @@ $messages = array(
 'preferences'       => 'Προτιμήσαι',
 'mypreferences'     => "Τ' εμά τα προτιμήσαι",
 'skin-preview'      => 'Πρώτον τέρεμαν',
+'prefs-misc'        => 'Διαφ',
 'saveprefs'         => 'Αποθήκεμαν',
 'oldpassword'       => 'Παλαιόν σημάδιν:',
 'newpassword'       => 'Καινούρεον σημάδιν:',
@@ -526,6 +532,7 @@ $messages = array(
 'right-bigdelete'     => 'Σβήσον σελίδας με τρανά ιστορίας',
 'right-browsearchive' => 'Αράεμαν σα σβημένα σελίδας',
 'right-import'        => "Έμπαζμαν σελιδίων ασ' άλλα βίκι",
+'right-siteadmin'     => 'Ασπάλισον κι άνοιξον τη βάση δογμενίων',
 
 # User rights log
 'rightslog' => 'Αρχείον δικαιωματίων',

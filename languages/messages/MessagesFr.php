@@ -553,7 +553,6 @@ Veuillez en faire part à un [[Special:ListUsers/sysop|administrateur]] et lui n
 'cannotdelete'         => 'Impossible de supprimer la page ou le fichier indiqué. (La suppression a peut-être déjà été effectuée par quelqu’un d’autre.)',
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
-'perfdisabled'         => 'Désolé ! Cette fonctionnalité est temporairement désactivée car elle ralentit la base de données à tel point que plus personne ne peut utiliser le wiki.',
 'perfcached'           => 'Ceci est une version en cache et n’est peut-être pas à jour.',
 'perfcachedts'         => 'Les données suivantes sont en cache, elles ne sont donc pas obligatoirement à jour. La dernière actualisation date du $1.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
@@ -845,6 +844,14 @@ Demandez-vous s’il est réellement approprié de la recréer en vous référan
 'deleted-notice'                   => "Cette page a été supprimée.
 L'historique des suppressions est affiché ci-dessous pour référence.",
 'deletelog-fulllog'                => "Voir l'historique complet",
+'edit-hook-aborted'                => 'Modification échouée par crochet.
+Aucune explication donnée.',
+'edit-gone-missing'                => 'N’a pas pu mettre à jour la page.
+Il semble qu’elle ait été supprimée.',
+'edit-conflict'                    => 'Modifier le conflit.',
+'edit-no-change'                   => 'Votre modification a été ignorée car aucun changement n’a été fait au texte.',
+'edit-already-exists'              => 'N’a pas pu créer une nouvelle page.
+Elle existe déjà.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention : Cette page contient trop d’appels dispendieux de fonctions du parseur.
@@ -925,8 +932,8 @@ D’autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
 'revdelete-log'               => 'Commentaire pour l’historique :',
 'revdelete-submit'            => 'Appliquer à la version sélectionnée',
-'revdelete-logentry'          => 'La visibilité de la version a été modifiée pour [[$1]]',
-'logdelete-logentry'          => 'La visibilité de l’événement a été modifiée pour [[$1]]',
+'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
+'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
 'revdelete-success'           => 'Visibilité des versions changées avec succès.',
 'logdelete-success'           => "'''Journal des visibilités paramétré avec succès.'''",
 'revdel-restore'              => 'Modifier la visibilité',
@@ -966,7 +973,7 @@ Assurez-vous que ce changement conserve la continuité de l’historique.',
 'mergehistory-invalid-destination' => 'La page de destination doit avoir un titre valide.',
 'mergehistory-autocomment'         => '[[:$1]] fusionné avec [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionné avec [[:$2]] : $3',
-'mergehistory-same-destination'    => 'La source et la destination pages ne peuvent pas être la même page',
+'mergehistory-same-destination'    => "Les pages d'origine et de destination ne peuvent pas être la même",
 
 # Merge log
 'mergelog'           => 'Historique des fusions',
@@ -1802,7 +1809,7 @@ Voir $2 pour une liste des suppressions récentes.',
 'suppressedarticle'      => 'caché  « [[$1]] »',
 'dellogpage'             => 'Historique des suppressions',
 'dellogpagetext'         => 'Voici la liste des suppressions récentes.
-L’heure indiquée est celle du serveur (UTC).',
+L’heure indiquée est celle du serveur.',
 'deletionlog'            => 'historique des suppressions',
 'reverted'               => 'Rétablissement de la version précédente',
 'deletecomment'          => 'Motif de la suppression',
@@ -1869,6 +1876,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 ** Spam excessif
 ** Guerre d'édition
 ** Page à fort trafic",
+'protect-edit-reasonlist'     => 'Modifier les raisons de protection',
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Niveau de restriction :',
 'minimum-size'                => 'Taille minimum',
@@ -2007,6 +2015,7 @@ Donnez ci-dessous une raison précise (par exemple en indiquant les pages qui on
 'ipbotherreason'                  => 'Motif différent ou supplémentaire',
 'ipbhidename'                     => 'Masquer le nom d’utilisateur de l’historique des blocages, de la liste des blocages actifs et de la liste des utilisateurs',
 'ipbwatchuser'                    => 'Suivre les pages utilisateur et de discussion de cet utilisateur',
+'ipballowusertalk'                => 'Permet à cet utilisateur de modifier sa propre page de discussion durant sa période de blocage',
 'badipaddress'                    => 'L’adresse IP n’est pas correcte.',
 'blockipsuccesssub'               => 'Blocage réussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a été bloqué.<br />
@@ -2047,6 +2056,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'block-log-flags-nocreate'        => 'création de compte interdite',
 'block-log-flags-noautoblock'     => 'autoblocage des IP désactivé',
 'block-log-flags-noemail'         => 'envoi de courriel interdit',
+'block-log-flags-nousertalk'      => 'ne peut modifier sa propre page de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocage amélioré en service',
 'range_block_disabled'            => 'Le blocage de plages d’IP a été désactivé',
 'ipb_expiry_invalid'              => 'temps d’expiration invalide.',
@@ -2062,7 +2072,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'proxyblocksuccess'               => 'Terminé.',
 'sorbsreason'                     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL.',
 'sorbs_create_account_reason'     => 'Votre adresse IP est listée en tant que mandataire ouvert DNSBL. Vous ne pouvez créer un compte',
-'cant-block-while-blocked'        => "Vous ne pouvez pas bloquer d'autres utilisateur pendant que vous êtes bloqué.",
+'cant-block-while-blocked'        => "Vous ne pouvez pas bloquer d'autres utilisateurs pendant que vous êtes bloqué.",
 
 # Developer tools
 'lockdb'              => 'Verrouiller la base',
@@ -2292,19 +2302,19 @@ Toutes les actions d’importation interwiki sont consignées dans l’[[Special
 'chick.css'       => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Chick. */',
 'simple.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Simple. */',
 'modern.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
-'print.css'       => '/* Le CSS placé ici affectera les impressions. */',
+'print.css'       => '/* Le CSS placé ici affectera les impressions */',
 'handheld.css'    => '/* Le CSS placé ici affectera les appareils mobiles en fonction de l\'habillage configuré $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
-'standard.js'    => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Standard uniquement. */',
-'nostalgia.js'   => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Nostalgie uniquement. */',
-'cologneblue.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Bleu de cologne uniquement. */',
+'standard.js'    => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Standard uniquement */',
+'nostalgia.js'   => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Nostalgie uniquement */',
+'cologneblue.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Bleu de cologne uniquement */',
 'monobook.js'    => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage MonoBook uniquement. */',
-'myskin.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Mon habillage uniquement. */',
-'chick.js'       => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement. */',
-'simple.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement. */',
-'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement. */',
+'myskin.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Mon habillage uniquement */',
+'chick.js'       => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement */',
+'simple.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
+'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 
 # Metadata
 'nodublincore'      => 'Les métadonnées « Dublin Core RDF » sont désactivées sur ce serveur.',

@@ -586,7 +586,6 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
-'perfdisabled'         => 'Denna funktion har stängts av tillfälligt, eftersom den gör databasen så långsam att ingen kan använda wikin.',
 'perfcached'           => 'Sidan är hämtad ur ett cacheminne; det är inte säkert att det är den senaste versionen.',
 'perfcachedts'         => 'Sidan är hämtad ur ett cacheminne och uppdaterades senast $1.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
@@ -892,6 +891,14 @@ Du bör överväga om det är lämpligt att fortsätta redigera sidan.
 Raderingsloggen för sidan innehåller följande:",
 'deleted-notice'                   => 'Denna sida har blivit raderad. Som referens visas nedan raderingsloggen för sidan.',
 'deletelog-fulllog'                => 'Visa fullständig logg',
+'edit-hook-aborted'                => 'Redigering avbruten av hook.
+Den gav ingen förklaring.',
+'edit-gone-missing'                => 'Kunde inte uppdatera sidan.
+Det verkar som att den har raderats.',
+'edit-conflict'                    => 'Redigeringskonflikt.',
+'edit-no-change'                   => 'Din redigering ignorerades, eftersom ingen ändring gjordes i texten.',
+'edit-already-exists'              => 'Sidan kunde inte skapas.
+Den finns redan.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -2067,6 +2074,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbotherreason'                  => 'Annan/ytterligare anledning:',
 'ipbhidename'                     => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
 'ipbwatchuser'                    => 'Bevaka användarens användarsida och diskussionssida',
+'ipballowusertalk'                => 'Låt användaren redigera sin egen diskussionssida under blockeringen',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
@@ -2109,6 +2117,7 @@ I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och använda
 'block-log-flags-nocreate'        => 'hindrar kontoregistrering',
 'block-log-flags-noautoblock'     => 'utan automatblockering',
 'block-log-flags-noemail'         => 'e-post blockerad',
+'block-log-flags-nousertalk'      => 'kan inte redigera sin diskussionssida',
 'block-log-flags-angry-autoblock' => 'utökad automatblockering aktiverad',
 'range_block_disabled'            => 'Möjligheten för administratörer att blockera intervall av IP-adresser har stängts av.',
 'ipb_expiry_invalid'              => 'Ogiltig varaktighetstid.',

@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chaipau
  * @author Priyankoo
  * @author Psneog
  * @author Rajuonline
@@ -337,7 +338,6 @@ $1',
 'badarticleerror'      => 'এই পৃষ্ঠাটোত এই কামটো কৰিব নোৱাৰি ।',
 'badtitle'             => 'অনভিপ্রেত শিৰোণামা',
 'badtitletext'         => 'আপুনি বিচৰা পৃষ্ঠাটোৰ শিৰোণামা অযোগ্য, খালী বা ভুলকে জৰিত আন্তর্ভাষিক বা আন্তর্ৱিকি শিৰোণামা। ইয়াত এক বা ততোধিক বর্ণ থাকিব পাৰে যাক শিৰোণামাত ব্যৱহাৰ কৰিব নোৱাৰি।',
-'perfdisabled'         => 'ক্ষমা কৰিব! এই সুবিধাতো সাময়িক ভাবে বন্ধ কৰা হৈছে, কাৰণ ই তথ্যকোষ ইমানেই লেহেম কৰি দিয়ে যে কোনেও ৱিকি ব্যৱহাৰ কৰিব নোৱাৰে।',
 'perfcached'           => 'তলত দিয়া তথ্য খিনি আগতে জমা কৰি থোৱা (cached) আৰু সাম্প্রতিক নহব পাৰে।',
 'perfcachedts'         => 'তলত দিয়া তথ্য খিনি আগতে জমা কৰি থোৱা (cached) আৰু শেষবাৰৰ কাৰণে $1 ত নৱীকৰণ কৰা হৈছিল।',
 'querypage-no-updates' => 'এই পৃষ্ঠাটো নৱীকৰণ কৰা ৰোধ কৰা হৈছে। ইয়াৰ তথ্য এতিয়া সতেজ কৰিব নোৱাৰি।',
@@ -349,6 +349,7 @@ $1',
 অনুগ্রহ কৰি কিছু সময় পাছত চেষ্টা কৰক।',
 'protectedpagetext'    => 'এই পৃষ্ঠাটোৰ সম্পাদনা ৰোধ কৰিবলৈ সুৰক্ষিত কৰা হৈছে।',
 'viewsourcetext'       => 'আপুনি এই পৃষ্ঠাটোৰ উত্‍স চাব আৰু নকল কৰিব পাৰে',
+'sqlhidden'            => '(নিহিত SQL query)',
 'namespaceprotected'   => "আপোনাৰ '''$1''' নামস্থানৰ পৃষ্ঠাহমুহ সম্পাদনা কৰাৰ অধিকাৰ নাই।",
 'customcssjsprotected' => 'এই পৃষ্ঠা সম্পাদনা কৰাৰ আধিকাৰ আপোনাৰ নাই, কাৰণ ইয়াত আন সদস্যৰ ব্যক্তিগত চেটিংচ আছে।',
 'ns-specialprotected'  => 'বিশেষ পৃষ্ঠা সম্পাদিত কৰিব নোৱাৰি।',
@@ -450,6 +451,7 @@ $1',
 'createaccount-text'         => 'আপোনাৰ ই-মেইল ঠিকণাৰ কাৰণে {{SITENAME}} ($4) ত "$2" নামৰ কোনোবাই, "$3" গুপ্তশব্দ দি সদস্যভুক্তি কৰিছে। আনুগ্রহ কৰি আপুনি প্রৱেশ কৰক আৰু গুপ্তশব্দটো সলনি কৰক।
 
 যদি এ্য়া ভুলতে হৈছে, তেনেহলে আপুনি এই বার্তাটো অবজ্ঞা কৰিব পাৰে ।',
+'loginlanguagelabel'         => 'ভাষা: $1',
 
 # Password reset dialog
 'resetpass'               => 'গুপ্তশব্দ পূণর্স্থাপন কৰক',
@@ -631,6 +633,7 @@ $1',
 'prevn'                 => 'পুর্ববর্তি $1',
 'nextn'                 => 'পৰৱর্তি $1',
 'viewprevnext'          => 'চাওক ($1) ($2) ($3)',
+'search-interwiki-more' => '(আৰু)',
 'showingresults'        => "তলত #'''$2'''ৰ পৰা {{PLURAL:$1|'''1''' ফলাফল|'''$1''' ফলাফল}} দেখুওৱা হৈছে।",
 'powersearch'           => 'অতিসন্ধান',
 'powersearch-legend'    => 'শক্তিশালী সন্ধান',
@@ -736,6 +739,7 @@ $1',
 'minoreditletter'                => 'ন:',
 'newpageletter'                  => 'ন:',
 'boteditletter'                  => 'য:',
+'rc_categories_any'              => 'যিকোনো',
 
 # Recent changes linked
 'recentchangeslinked'          => 'প্রাসংগিক সম্পাদনানমূহ',
@@ -778,6 +782,8 @@ $1',
 'statistics' => 'পৰিসংখ্যা',
 
 'doubleredirects' => 'দ্বি-পূণঃনির্দেশিত',
+
+'brokenredirects-edit' => '(সম্পাদনা কৰক)',
 
 # Miscellaneous special pages
 'nbytes'         => '$1 {{PLURAL:$1|বাইট|বাইট}}',
@@ -914,13 +920,15 @@ $1',
 'whatlinkshere-links' => '← সূত্রসমূহ',
 
 # Block/unblock
-'blockip'       => 'সদস্য বাৰণ কৰক',
-'ipboptions'    => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
-'ipblocklist'   => 'বাৰণ কৰা সদস্য আৰু IP ঠিকনাৰ তালিকা',
-'blocklink'     => 'সদস্যভুক্তি ৰদ',
-'contribslink'  => 'অবদান',
-'blocklogpage'  => 'বাৰণ কৰা সুচী',
-'blocklogentry' => '"[[$1]]" ক $2 $3 লৈ সাল-সলনি কৰাৰ পৰা বাৰণ কৰা হৈছে।',
+'blockip'            => 'সদস্য বাৰণ কৰক',
+'ipbreason'          => 'কাৰণ',
+'ipbreasonotherlist' => 'অন্য কাৰণ',
+'ipboptions'         => '২ ঘ্ণ্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাহ:1 month,৩ মাহ:3 months,৬ মাহ:6 months,১ বছৰ:1 year,অনির্দিস্ট কাল:infinite', # display1:time1,display2:time2,...
+'ipblocklist'        => 'বাৰণ কৰা সদস্য আৰু IP ঠিকনাৰ তালিকা',
+'blocklink'          => 'সদস্যভুক্তি ৰদ',
+'contribslink'       => 'অবদান',
+'blocklogpage'       => 'বাৰণ কৰা সুচী',
+'blocklogentry'      => '"[[$1]]" ক $2 $3 লৈ সাল-সলনি কৰাৰ পৰা বাৰণ কৰা হৈছে।',
 
 # Move page
 'movepagetext'   => "ইয়াৰ সহায়েৰে পৃষ্ঠাৰ শিৰোণামা সলনি কৰিব পাৰি, পৃষ্ঠাৰ সকলো বস্তু নতুন শিৰোণামাৰ অধিনত আহিব। পুৰণি শিৰোণামাটোৱে নতুন পৃষ্ঠাটোলৈ টোৱাব।
@@ -1040,12 +1048,21 @@ $1',
 'namespacesall' => 'সকলোবোৰ',
 'monthsall'     => 'সকলো',
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'শীৰ্ষক:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওক',
 'watchlisttools-edit' => 'লক্ষ্য-তালিকা চাওক আৰু সম্পাদনা কৰক',
 'watchlisttools-raw'  => 'কেঁচা লক্ষ্য-তালিকা সম্পাদনা কৰক',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'সন্ধান কৰক',
+
 # Special:SpecialPages
 'specialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
+
+# Special:BlankPage
+'blankpage' => 'খালী পৃষ্ঠা',
 
 );

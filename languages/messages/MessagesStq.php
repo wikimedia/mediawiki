@@ -38,7 +38,7 @@ $messages = array(
 'tog-justify'                 => 'Text as Bloksats',
 'tog-hideminor'               => 'Litje Annerengen uutbländje',
 'tog-extendwatchlist'         => 'Uutdiende Beooboachtengslieste',
-'tog-usenewrc'                => 'Fermoorde Deerstaalenge (bruukt Javascript)',
+'tog-usenewrc'                => 'Fermeerde Deerstaalenge (bruukt Javascript)',
 'tog-numberheadings'          => 'Uurschrifte automatisk nuumerierje',
 'tog-showtoolbar'             => 'Beoarbaidengs-Reewen anwiese',
 'tog-editondblclick'          => 'Sieden mäd Dubbeldklik beoarbaidje (JavaScript)',
@@ -343,7 +343,6 @@ Mäld dit n [[Special:ListUsers/sysop|Administrator]] unner Naamenge fon ju URL.
 'cannotdelete'         => 'Kon spezifizierde Siede of Artikkel nit läskje. Fielicht is ju al läsked wuuden.',
 'badtitle'             => 'Uungultige Tittel.',
 'badtitletext'         => 'Die anfräigede Tittel waas uungultich, loos, of n uungultigen Sproaklink fon n uur Wiki.',
-'perfdisabled'         => 'Disse Funtion wuude weegen Uurbeläästenge fon dän Server foaruurgungend deaktivierd.',
 'perfcached'           => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl:',
 'perfcachedts'         => 'Disse Doaten stamme uut dän Cache, lääste Update: $1',
 'querypage-no-updates' => "'''Ju Aktualisierengsfunktion foar disse Siede is apstuuns deaktivierd. Do Doaten wäide toueerst nit fernäierd.'''",
@@ -440,7 +439,7 @@ Dät automatisk generierde Paaswoud foar Benutser $2 lut nu: $3
 
 Du schääst die nu anmäldje un dät Paaswoud annerje: {{fullurl:{{ns:special}}}}:Userlogin
 
-Ignorier disse E-Mail, in dän Fal du disse nit sälwen anfoarderd hääst. Dät oolde Paaswoud blift dan wieders gultich.',
+Ignorier disse E-Mail, in dän Fal du ju nit sälwen anfoarderd hääst of wan du dien oold Paaswoud wier betoanke kuust. Dät oolde Paaswoud blift dan wieders gultich.',
 'noemail'                    => 'Benutser "$1" häd neen Email-Adrässe anroat of häd ju E-Mail-Funktion deaktivierd.',
 'passwordsent'               => 'N näi temporär Paaswoud wuude an ju Email-Adrässe fon Benutser "$1" soand. Mäldje die jädden deermäd, soo gau as du dät kriegen hääst. Dät oolde Paaswoud blift uk ätters gultich.',
 'blocked-mailpassword'       => 'Ju fon die ferwoande IP-Adresse is foar dät Annerjen fon Sieden speerd. Uum n Misbruuk tou ferhinnerjen, wuude ju Muugelkhaid tou ju Anfoarderenge fon n näi Paaswoud ieuwenfals speerd.',
@@ -649,6 +648,7 @@ Gruund foar ju Speere: $1',
 Pröif mäd Suurge, of dät näi Moakjen fon ju Siede do Gjuchtlienjen äntspräkt.
 Tou Dien Information foulget dät Läsk-Logbouk mäd ju Begründenge foar ju fröiere Läskenge:",
 'deleted-notice'                   => 'Disse Siede wuud läsked. Der foulget n Uutsuch uut dät Läsk-Logbouk foar disse Siede.',
+'deletelog-fulllog'                => 'Fulständich Läsk-Logbouk',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Woarschauenge: Disse Siede änthaalt tou fuul Aproupe fon stuure Parserfunktione.
@@ -773,6 +773,7 @@ Staal deertruch sicher, dät ju Versionsgeschichte fon n Artikkel historisk akro
 'mergehistory-invalid-destination' => 'Sielsiede mout n gultigen Siedennoome weese.',
 'mergehistory-autocomment'         => '„[[:$1]]“ fereeniged ätter „[[:$2]]“',
 'mergehistory-comment'             => '[[:$1]] fereeniged ätter [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Uutgongs- un Sielsiede duuren nit identisk weese',
 
 # Merge log
 'mergelog'           => 'Fereenigengs-Logbouk',
@@ -1674,6 +1675,7 @@ Sjuch [[Special:ProtectedPages|Schutsede Siede]] foar moor Informatione.',
 ** Editwar
 ** Oafte ienbuundene Foarloage
 ** Siede mäd hooge Besäikertaal',
+'protect-edit-reasonlist'     => 'Schutsgruunde beoarbaidje',
 'restriction-type'            => 'Schutsstoatus',
 'restriction-level'           => 'Schutshöchte',
 'minimum-size'                => 'Minstgrööte',

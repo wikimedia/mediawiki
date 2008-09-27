@@ -305,7 +305,6 @@ Sysop zo locköx zo xuniim jan rae': $1",
 'badtitle'             => 'Ahisharliit',
 'badtitletext'         => 'Zo páhina coccebj ahisharliit zo.
 Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlenám iti.',
-'perfdisabled'         => 'Sorry! Jan part coccebj disablenöxde temp. Zo minöxde cáipyde database ponit zo iti nectám pos-usadad wiki zo.',
 'perfcached'           => 'Jan data coccebj cache ö necoccebj updatenom.',
 'perfcachedts'         => "Jan data coccebj cache ö coccebjöx updatenom $1 'de.",
 'querypage-no-updates' => 'Updatenámde jan páhina coccebj disablenöx cmaa. Jan data necanj cmaa.',

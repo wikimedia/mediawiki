@@ -425,7 +425,6 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alenc
 'cannotdelete'         => 'Mpussìbbili cancillari la pàggina o lu file addumannatu. (Putissi aviri statu già cancillatu.)',
 'badtitle'             => 'Tìtulu nun currettu',
 'badtitletext'         => "Lu tìtulu dâ pàggina addumannata è vacanti, erratu o cu caràttiri nun ammessi oppuru diriva di n'erruri ntê culligamenti tra siti wiki diversi o virsioni n lingui diversi dû stissu situ.",
-'perfdisabled'         => "Semu spiacenti, sta funziunalitati è timpuraniamenti disabbilitata pirchì lu sò usu rallenta lu database finu a rìnniri lu situ nutilizzàbbili pi tutti l'utenti.",
 'perfcached'           => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali.",
 'perfcachedts'         => 'Li dati ccà sutta foru attruvati e sunnu aggiurnati ô $1.',
 'querypage-no-updates' => "L'aggiurnamenti dâ pàggina sunnu timpuraniamenti suspisi. Li dati 'n chidda cuntinuti nun vèninu aggiurnati.",

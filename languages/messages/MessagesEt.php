@@ -365,7 +365,6 @@ Administraator, kes selle kaitse alla võttis, andis järgmise selgituse:
 'badtitle'             => 'Vigane pealkiri',
 'badtitletext'         => 'Küsitud artiklipealkiri oli kas vigane, tühi või siis
 valesti viidatud keelte- või wikidevaheline pealkiri.',
-'perfdisabled'         => 'Vabandage! See funktsioon ajutiselt ei tööta, sest ta aeglustab andmebaasi kasutamist võimatuseni. Sellepärast täiustatakse vastavat programmi lähitulevikus. Võib-olla teete seda Teie!',
 'perfcached'           => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad:',
 'perfcachedts'         => 'Järgmised andmed on vahemälus. Viimase uuendamise daatum on $1.',
 'wrong_wfQuery_params' => 'Valed parameeterid funktsioonile wfQuery()<br />
@@ -1000,7 +999,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'deletedarticle'         => '"$1" kustutatud',
 'dellogpage'             => 'Kustutatud_leheküljed',
 'dellogpagetext'         => 'Allpool on esitatud nimekiri viimastest kustutamistest.
-Kõik toodud kellaajad järgivad serveriaega (UTC).',
+Kõik toodud kellaajad järgivad serveriaega.',
 'deletionlog'            => 'Kustutatud leheküljed',
 'reverted'               => 'Pöörduti tagasi varasemale versioonile',
 'deletecomment'          => 'Kustutamise põhjus',

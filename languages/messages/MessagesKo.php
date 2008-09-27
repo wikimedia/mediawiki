@@ -350,7 +350,7 @@ $messages = array(
 'dec'           => '12',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|분류|분류}}',
+'pagecategories'                 => '분류',
 'category_header'                => '‘$1’ 분류에 속하는 문서',
 'subcategories'                  => '하위 분류',
 'category-media-header'          => '‘$1’ 분류에 속하는 자료',
@@ -556,7 +556,6 @@ $messages = array(
 'cannotdelete'         => '문서나 파일을 삭제할 수 없습니다. 이미 삭제되었을 수도 있습니다.',
 'badtitle'             => '잘못된 제목',
 'badtitletext'         => '문서 제목이 잘못되었거나 비어있습니다.',
-'perfdisabled'         => '이 기능은 위키가 사용 불가능할 정도로 데이터베이스를 느리게 만들기 때문에 임시적으로 사용이 중지되었습니다.',
 'perfcached'           => '다음 자료는 캐시된 것이므로 현재 상황을 반영하지 않을 수 있습니다.',
 'perfcachedts'         => '다음 자료는 캐시된 것으로, $1에 마지막으로 갱신되었습니다.',
 'querypage-no-updates' => '이 문서의 갱신이 현재 비활성화되어 있습니다. 자료가 잠시 갱신되지 않을 것입니다.',
@@ -570,7 +569,7 @@ $messages = array(
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
 'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko 베타위키(Betawiki)]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
-'cascadeprotected'     => '{{PLURAL:$1|}}이 문서는 "연쇄적 보호"된 문서에 포함되어 있어 보호됩니다. 연쇄적 보호된 문서: $2',
+'cascadeprotected'     => '이 문서는 "연쇄적 보호"된 문서에 포함되어 있어 보호됩니다. 연쇄적 보호된 문서: $2',
 'namespaceprotected'   => "'''$1''' 네임스페이스를 편집할 수 있는 권한이 없습니다.",
 'customcssjsprotected' => '이 문서는 다른 사용자의 개인 설정을 담고 있기 때문에, 편집할 권한이 없습니다.',
 'ns-specialprotected'  => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
@@ -613,7 +612,7 @@ $messages = array(
 'youremail'                  => '이메일:',
 'username'                   => '계정 이름:',
 'uid'                        => '사용자 ID:',
-'prefs-memberingroups'       => '{{PLURAL:$1}}가지고 있는 권한 목록:',
+'prefs-memberingroups'       => '가지고 있는 권한 목록:',
 'yourrealname'               => '실명:',
 'yourlanguage'               => '언어:',
 'yournick'                   => '서명:',
@@ -639,7 +638,7 @@ $messages = array(
 암호 길이는 적어도 $1자보다 길고 사용자 이름과 달라야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
-'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}}의 새 암호를 보내달라는 요청이 왔습니다. ($4)
+'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}}($4)의 새 암호를 보내달라는 요청이 왔습니다.
 사용자 ‘$2’의 암호는 이제 ‘$3’입니다. 로그인한 다음 암호를 변경해 주세요.
 
 만약 이 암호 요청을 다른 사람이 보낸 것이거나, 또는 예전에 사용하던 암호를 기억해냈다면 이 메시지를 무시하고 예전 암호를 계속 사용할 수 있습니다.',
@@ -803,7 +802,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 잠근 관리자가 남긴 설명은 다음과 같습니다: $1',
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''주의''': 이 문서는 등록된 사용자만이 편집할 수 있도록 잠겨 있습니다.",
-'cascadeprotectedwarning'          => "{{PLURAL:$1|}}'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
+'cascadeprotectedwarning'          => "'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
 'titleprotectedwarning'            => '<strong>주의: 이 문서는 잠겨 있어, 일부 사용자만이 생성할 수 있습니다.</strong>',
 'templatesused'                    => '이 문서에서 사용한 틀:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 틀:',
@@ -816,12 +815,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
 'nocreate-loggedin'                => '{{SITENAME}}에서 새 문서를 만들 권한이 없습니다.',
 'permissionserrors'                => '권한 오류',
-'permissionserrorstext'            => '{{PLURAL:$1|}}해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
-'permissionserrorstext-withaction' => '{{PLURAL:$1|}}$2 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'permissionserrorstext'            => '해당 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
+'permissionserrorstext-withaction' => '$2 명령을 수행할 권한이 없습니다. 다음의 이유를 확인해보세요:',
 'recreate-deleted-warn'            => "'''주의: 과거에 삭제된 문서를 다시 만들고 있습니다.'''
 
 이 문서를 계속 편집하는 것이 적합한 것인지 확인해주세요.
 과거 삭제 기록은 다음과 같습니다:",
+'deleted-notice'                   => '이 문서는 삭제되어 있습니다.
+이 문서의 삭제 기록은 다음과 같습니다.',
 
 # "Undo" feature
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
@@ -850,7 +851,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'last'                => '이전',
 'page_first'          => '처음',
 'page_last'           => '마지막',
-'histlegend'          => '비교하려는 버전들을 선택한 다음 버튼을 누르세요.<br />설명: (현재) = 현재 버전과의 차이, (이전) = 바로 이전 버전과의 차이, 잔글 = 사소한 편집',
+'histlegend'          => '비교하려는 판들을 선택한 아래 버튼을 누르세요.<br />설명: (현재) = 현재 판과의 차이, (이전) = 바로 이전 판과의 차이, 잔글 = 사소한 편집',
 'history-search'      => '문서의 변경 내력 찾기',
 'deletedrev'          => '[삭제됨]',
 'histfirst'           => '처음',
@@ -911,6 +912,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'powersearch'              => '찾기',
 'powersearch-legend'       => '고급 검색',
 'powersearch-ns'           => '다음의 이름공간에서 찾기:',
+'powersearch-redir'        => '넘겨주기 목록',
 'powersearch-field'        => '검색',
 'searchdisabled'           => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
@@ -1062,7 +1064,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'recentchanges-legend'              => '최근 바뀜 설정',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
-'rcnote'                            => "다음은 $4 $5 까지의 {{PLURAL:$2|하룻동안|'''$2'''일동안}} 바뀐 {{PLURAL:$1|'''1'''개의|'''$1'''개의}} 문서입니다.",
+'rcnote'                            => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 '''$1'''개의 문서입니다.",
 'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
 'rcshowhideminor'                   => '사소한 편집을 $1',
@@ -1128,7 +1130,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'illegalfilename'             => '파일명 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',
 'badfilename'                 => '파일 이름이 ‘$1’(으)로 바뀌었습니다.',
 'filetype-badmime'            => '‘$1’ MIME을 가진 파일은 올릴 수 없습니다.',
-'filetype-unwanted-type'      => "'''\".\$1\"''' 확장자는 추천하지 않습니다. 추천하는 파일 확장자는 \$2입니다.{{PLURAL:\$3||}}",
+'filetype-unwanted-type'      => "'''\".\$1\"''' 확장자는 추천하지 않습니다. 추천하는 파일 확장자는 \$2입니다.",
 'filetype-banned-type'        => "'''\".\$1\"''' 확장자로 파일을 올릴 수 없습니다. 가능한 확장자는 \$2입니다.",
 'filetype-missing'            => '파일에 확장자(‘.jpg’ 등)가 없습니다.',
 'large-file'                  => '파일 크기는 $1을 넘지 않는 것을 추천합니다. 이 파일의 크기는 $2입니다.',
@@ -1338,6 +1340,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'popularpages'            => '인기있는 문서 목록',
 'wantedcategories'        => '필요한 분류 목록',
 'wantedpages'             => '필요한 문서 목록',
+'wantedfiles'             => '필요한 파일 목록',
 'mostlinked'              => '가장 많이 연결된 문서 목록',
 'mostlinkedcategories'    => '가장 많이 연결된 분류 목록',
 'mostlinkedtemplates'     => '가장 많이 사용된 틀 목록',
@@ -1583,7 +1586,7 @@ $NEWPAGE
 'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
 'protect-title'               => '"$1" 보호하기',
 'protect-legend'              => '보호 확인',
-'protectcomment'              => '보호 이유',
+'protectcomment'              => '보호 이유:',
 'protectexpiry'               => '보호 기간:',
 'protect_expiry_invalid'      => '보호 기간이 잘못되었습니다.',
 'protect_expiry_old'          => '만료되는 시간을 과거로 입력했습니다.',
@@ -1667,7 +1670,7 @@ $1',
 
 # Contributions
 'contributions'       => '사용자 기여',
-'contributions-title' => '사용자 $1 의 기여 목록',
+'contributions-title' => '사용자 $1의 기여 목록',
 'mycontris'           => '내 기여 목록',
 'contribsub2'         => '$1($2)의 기여',
 'nocontribs'          => '이 사용자는 어디에도 기여하지 않았습니다.',

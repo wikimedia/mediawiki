@@ -397,7 +397,6 @@ $1',
 'badtitle'             => 'Teideal neamhbhailí',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
-'perfdisabled'         => 'Tá brón orainn! Díchumasaíodh an gné seo ar feadh tamaill chun luas an bhunachair sonraí a chosaint.',
 'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
 'wrong_wfQuery_params' => 'Paraiméadair míchearta don wfQuery()<br />
 Feidhm: $1<br />
@@ -820,7 +819,7 @@ Chun comhad a úsáid ar leathanach, cuir isteach nasc mar seo:
 'uploadlog'         => 'Stair uaslódála',
 'uploadlogpage'     => 'Stair_uaslódála',
 'uploadlogpagetext' => 'Is liosta é seo a leanas de na uaslódáil comhad is deanaí.
-Is am an freastalaí (UTC) iad na hamanna atá anseo thíos.',
+Is am an freastalaí iad na hamanna atá anseo thíos.',
 'filename'          => 'Comhadainm',
 'filedesc'          => 'Achoimriú',
 'fileuploadsummary' => 'Achoimre:',

@@ -7,6 +7,7 @@
  * @author Aleator
  * @author Alhen
  * @author Alpertron
+ * @author Alvaro qc
  * @author Ascánder
  * @author Baiji
  * @author Bengoa
@@ -339,7 +340,7 @@ $messages = array(
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Especial',
 'nstab-project'   => 'Página del proyecto',
-'nstab-image'     => 'Imagen',
+'nstab-image'     => 'Archivo',
 'nstab-mediawiki' => 'Mensaje',
 'nstab-template'  => 'Plantilla',
 'nstab-help'      => 'Ayuda',
@@ -398,7 +399,6 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 Alguien puede haberla borrado antes.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada esta vacío, no es válido, o es un enlace interlenguaje o interwiki incorrecto.',
-'perfdisabled'         => 'Lo sentimos, esta función está temporalmente desactivada porque enlentece la base de datos a tal punto que nadie puede usar el wiki.',
 'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
 'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
 'querypage-no-updates' => 'Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.',
@@ -493,8 +493,8 @@ Verifique su deletreo, o [[Special:Userlogin/signup|cree una nueva cuenta]].',
 'passwordtooshort'           => 'Tu contraseña no es válida o es muy corta. Debe tener al menos {{PLURAL:$1|un carácter|$1 caracteres}} y ser diferente de tu nombre de usuario.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
-'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para su cuenta en {{SITENAME}} ($4).
-La contraseña para el usuario "$2" es ahora "$3".
+'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
+Se ha creado la siguiente contraseña temporal para el usuario «$2»: «$3»
 Ahora deberías iniciar sesión y cambiar tu contraseña.
 
 Si fue otro quien solicitó este mensaje o has recordado tu contraseña y ya no deseas cambiarla, puedes ignorar este mensaje y seguir usando tu contraseña original.',
@@ -694,6 +694,13 @@ Debería considerar si es apropiado continuar editando esta página.
 Consulte a continuación el registro de borrados:",
 'deleted-notice'                   => 'Esta página ha sido borrada.
 A continuación se muestra el registro de su borrado como referencia.',
+'deletelog-fulllog'                => 'Ver el registro completo',
+'edit-gone-missing'                => 'No se pudo actualizar la página.
+Aparece que ha sido borrada.',
+'edit-conflict'                    => 'Conflicto de edición.',
+'edit-no-change'                   => 'Se ignoró su revisión, porque no se hizo ningún cambio al texto.',
+'edit-already-exists'              => 'No se pudo crear una página nueva.
+Ya existe.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)
@@ -1663,7 +1670,7 @@ Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'         => '«[[$1]]» borrado',
 'suppressedarticle'      => 'se ha suprimido «[[$1]]»',
 'dellogpage'             => 'Registro de borrados',
-'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor (UTC).',
+'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor.',
 'deletionlog'            => 'registro de borrados',
 'reverted'               => 'Recuperar una revisión anterior',
 'deletecomment'          => 'Motivo del borrado',
@@ -1732,6 +1739,7 @@ A continuación se muestran las opciones actuales de la página <strong>$1</stro
 **Spam excesivo
 **Guerra de ediciones
 **Página muy visitada',
+'protect-edit-reasonlist'     => 'Editar las razones de protección',
 'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamaño mínimo',
@@ -1869,9 +1877,10 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipbotherreason'                  => 'Otra razón:',
 'ipbhidename'                     => 'Ocultar usuario/IP en el registro de bloqueos, la lista de bloqueos activos y la lista de usuarios',
 'ipbwatchuser'                    => 'Vigilar las páginas de usuario y de discusión de este usuario',
+'ipballowusertalk'                => 'Permitir a este usuario editar su propia página de discusión mientras está bloqueado',
 'badipaddress'                    => 'La dirección IP no tiene el formato correcto.',
 'blockipsuccesssub'               => 'Bloqueo realizado con éxito',
-'blockipsuccesstext'              => 'La dirección IP "$1" ha sido bloqueada. <br />Ver [[Special:IPBlockList|lista de IP bloqueadas]] para revisar bloqueos.',
+'blockipsuccesstext'              => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado. <br />Puede revisar la [[Special:IPBlockList|lista de bloqueos]].',
 'ipb-edit-dropdown'               => 'Editar motivo del bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear un usuario o una IP',
@@ -1908,6 +1917,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'block-log-flags-nocreate'        => 'desactivada la creación de cuentas',
 'block-log-flags-noautoblock'     => 'bloqueo automático desactivado',
 'block-log-flags-noemail'         => 'correo electrónico deshabilitado',
+'block-log-flags-nousertalk'      => 'no puede editar su propia página de discusión',
 'block-log-flags-angry-autoblock' => 'activado el autobloqueo avanzado',
 'range_block_disabled'            => 'La facultad de administrador de crear bloqueos por rangos está deshabilitada.',
 'ipb_expiry_invalid'              => 'El tiempo de caducidad no es válido.',

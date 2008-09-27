@@ -329,9 +329,6 @@ $1",
 'cannotdelete'         => "Dji n' sai disfacer l' pådje ou l' imådje dimandêye (ça s' pôreut k' ene ôte sakî l' a ddja disfacé).",
 'badtitle'             => 'Måva tite',
 'badtitletext'         => "Li tite del pådje dimandêye n' esteut nén valide, il estet vude, oudonbén c' esteut on cron loyén eterlingaedje ou eterwiki. Ça s' pout k' il åye onk ou sacwants caracteres ki n' polèt nén esse eployîs dins les tites.",
-'perfdisabled'         => "Mande escuzes! mins cisse fonccionålité ci a stî essoctêye pol moumint
-pask' ele est trop pezante pol båze di dnêyes, ki dvént si télmint
-londjinne k' on s' endè pout pus siervi a môde di djin.",
 'perfcached'           => "Les dnêyes ki shuvèt c' est ene copeye e muchete, et ça s' pout ki ça n' soeye nén ttafwaitmint a djoû.",
 'perfcachedts'         => "Les dnêyes ki shuvèt c' est ene copeye e muchete, ey elle ont stî metowes a djoû pol dierin côp li $1.",
 'wrong_wfQuery_params' => 'Parametes incoreks po wfQuery()<br />

@@ -716,7 +716,6 @@ Bunı basqa birew aldaqaşan joýğan mümkin.',
 'badtitle'             => 'Jaramsız taqırıp atı',
 'badtitletext'         => 'Suralğan bet taqırıbınıñ atı jaramsız, bos, tilaralıq siltemesi ne wïkï-aralıq taqırıp atı burıs engizilgen.
 Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
-'perfdisabled'         => 'Ğafw etiñiz! Bul mümkindik, derekqordıñ jıldamılığına äser etip, eşkimge wïkïdi paýdalanwğa bermegesin, waqıtşa öşirilgen.',
 'perfcached'           => 'Kelesi derek bürkemelengen, sondıqtan tolıqtaý jañalanmağan bolwı mümkin.',
 'perfcachedts'         => 'Kelesi derek bürkemelengen, soñğı jañalanlğan kezi: $1.',
 'querypage-no-updates' => 'Bul bettiñ jañartılwı ağımda öşirilgen. Derekteri qazir özgertilmeýdi.',

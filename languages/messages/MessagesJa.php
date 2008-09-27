@@ -11,6 +11,7 @@
  * @author Fievarsty
  * @author Hatukanezumi
  * @author Hisagi
+ * @author Hosiryuhosi
  * @author Iwai.masaharu
  * @author JtFuruhata
  * @author Kahusi
@@ -390,7 +391,6 @@ $1',
 'cannotdelete'         => '指定されたページ、または画像の削除に失敗しました。',
 'badtitle'             => 'ページタイトルの間違い',
 'badtitletext'         => '要求されたページは無効か、何もないか、他言語または他ウィキ内のタイトルを誤って指定しています。タイトルに利用できない文字が一つ以上含まれている場合もあります。',
-'perfdisabled'         => 'この機能はデータベースの負荷を軽くするために現在使えなくなっています。',
 'perfcached'           => '以下のデータはキャッシュであり、しばらく更新されていません。',
 'perfcachedts'         => '以下のデータは $1 に最終更新されたキャッシュです。',
 'querypage-no-updates' => 'ページの更新は無効になっています。以下のデータの更新は現在行われていません。',
@@ -1154,7 +1154,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'fileexists-thumb'            => "<center>'''既存のファイル'''</center>",
 'fileexists-thumbnail-yes'    => 'このファイルはサムネイル（縮小版画像）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
 確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
-'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小う版画像）である可能性が高いです。
+'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
@@ -1666,6 +1666,7 @@ $NEWPAGE
 ** 度重なるスパム投稿
 ** 編集合戦
 ** 高負荷ページ',
+'protect-edit-reasonlist'     => '保護理由を編集する',
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',

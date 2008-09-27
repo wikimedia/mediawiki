@@ -151,7 +151,7 @@ $linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Podčiarkovať odkazy',
+'tog-underline'               => 'Podčiarkovať odkazy:',
 'tog-highlightbroken'         => 'Neexistujúce odkazy formátovať <a href="" class="new">takto</a> (alternatívne: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnávať okraje odstavcov',
 'tog-hideminor'               => 'V posledných úpravách nezobrazovať drobné úpravy',
@@ -475,9 +475,6 @@ Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
 'cannotdelete'         => 'Nebolo možné zmazať danú stránku alebo súbor. (Možno už bol zmazaný niekým iným.)',
 'badtitle'             => 'Neplatný nadpis',
 'badtitletext'         => 'Požadovaný nadpis bol neplatný, nezadaný, alebo nesprávne odkazovaný z inej jazykovej verzie {{GRAMMAR:genitív|{{SITENAME}}}}. Mohol tiež obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v nadpisoch.',
-'perfdisabled'         => 'Prepáčte! Táto funkcia bola dočasne vypnutá,
-pretože tak spomaľuje databázu, že nikto nemôže používať
-wiki.',
 'perfcached'           => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a nemusia byť úplne aktuálne.',
 'perfcachedts'         => 'Nasledujúce údaje pochádzajú z vyrovnávacej pamäte a naposledy boli aktualizované $1.',
 'querypage-no-updates' => 'Aktualizácie tejto stránky sú momentálne vypnuté. Tieto dáta sa v súčasnosti nebudú obnovovať.',
@@ -678,7 +675,7 @@ Udaný dôvod zablokovania:
 
 * Blokovanie začalo: $8
 * Blokovanie vyprší: $6
-* Blokovanie sa týka: $6
+* Blokovanie sa týka: $7
 
 Ak potrebujete informácie o blokovaní, môžete kontaktovať $1 alebo niektorého iného
 [[{{MediaWiki:Grouppage-sysop}}|správcu]].
@@ -790,6 +787,14 @@ Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Odkaz na záznam zmazaní:",
 'deleted-notice'                   => 'Táto stránka bola zmazaná. Dolu je uvedený záznam zmazaní.',
 'deletelog-fulllog'                => 'Zobraziť úplný záznam',
+'edit-hook-aborted'                => 'Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
+Neudala vysvetlenie.',
+'edit-gone-missing'                => 'Nebolo možné aktualizovať stránku.
+Zdá sa, že bola zmazaná.',
+'edit-conflict'                    => 'Konflikt pri upravovaní.',
+'edit-no-change'                   => 'Vaša úprava bola ignorovaná, pretože ste v texte nič nezmenili.',
+'edit-already-exists'              => 'Nebolo možné vytvoriť novú stránku.
+Už existuje.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -1971,6 +1976,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbotherreason'                  => 'Iný/ďalší dôvod',
 'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
 'ipbwatchuser'                    => 'Sledovať používateľskú a diskusnú stránku tohto používateľa',
+'ipballowusertalk'                => 'Umožniť tomuto používateľovi upravovať vlastnú diskusnú stránku aj keď je zablokovaný.',
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'              => '„$1“ bol/a zablokovaný/á.<br />
@@ -2014,6 +2020,7 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'block-log-flags-nocreate'        => 'možnosť vytvoriť si účet bola vypnutá',
 'block-log-flags-noautoblock'     => 'autoblokovanie vypnuté',
 'block-log-flags-noemail'         => 'email blokovaný',
+'block-log-flags-nousertalk'      => 'nemôže upravovať vlastnú diskusnú stránku',
 'block-log-flags-angry-autoblock' => 'rozšírené automatické blokovanie zapnuté',
 'range_block_disabled'            => 'Možnosť správcov vytvárať rozsah zablokovaní je vypnutá.',
 'ipb_expiry_invalid'              => 'Neplatný čas ukončenia.',

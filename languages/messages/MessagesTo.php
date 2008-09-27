@@ -222,7 +222,6 @@ Ko e pule, naʻe lokaʻi ia, ʻoku pehē: $1',
 'cannotdelete'         => 'Naʻe ʻikai lava tāmateʻi ʻa e peesi pe faile naʻe tala. Mahalo pē kuo tāmateʻi ʻuluaki ia ʻe he ʻetita kehe.',
 'badtitle'             => 'Hingoa ʻikai sai',
 'badtitletext'         => "Naʻe taʻeʻaonga ʻa e hingoa ʻo e peesi naʻa ke fili, pe naʻe ʻi ai ha fehokotaki māhehei fakalea kehe pe fehokotaki māhehei faka''wiki'' kehe. Mahalo pe ʻoku ʻi loto ha ʻū mataʻitohi ʻoku ʻikai lava ngāueʻaki ʻi ha hingoa.",
-'perfdisabled'         => 'Fakamolemole! Naʻe fakataʻeʻaongaʻi fakataimi ʻa e fōtungá ni, koeʻuhi ʻoku fakatumotuma ʻa e tānekingaʻilo ʻe ʻikai lava ngāueʻakiʻi ʻa e wiki.',
 'perfcached'           => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, pea mahalo pē ʻoku ʻikai fakafoʻoua.',
 'perfcachedts'         => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, naʻe fakaonopooni fakamuimui ia $1.',
 'wrong_wfQuery_params' => "Ngaahi mahuʻinga ʻikai totonu ki he ''wfQuery()''<br />

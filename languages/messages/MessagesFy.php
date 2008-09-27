@@ -389,8 +389,6 @@ Meitsje dêr melding fan by in [[Special:ListUsers/sysop|systeembehearder]] fan 
 'cannotdelete'         => 'Koe de oantsjutte side of it oantsjutte ôfbyld net wiskje. (Faaks hat in oar dat al dien.)',
 'badtitle'             => 'Misse titel',
 'badtitletext'         => 'De opfrege sidetitel wie ûnjildich, leech, of in miskeppele yntertaal of ynterwiki titel.',
-'perfdisabled'         => "Sorry! Dit ûnderdiel is tydlik út set om't it de databank sa starich makket
-dat gjinien de wiki brûke kin.",
 'perfcached'           => "Dit is bewarre ynformaasje dy't mooglik ferâldere is.",
 'perfcachedts'         => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1.',
 'querypage-no-updates' => 'Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.',
@@ -1048,6 +1046,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'right-upload'               => 'Triemmen oanbieden',
 'right-reupload'             => 'In besteande triem oerskriuwen',
 'right-reupload-own'         => 'Sels heechladene triemmen oerskriuwe',
+'right-reupload-shared'      => "Media út 'e dielde mediadatabank lokaal oerskriuwe",
 'right-upload_by_url'        => 'Triemen oanbieden fia in URL',
 'right-purge'                => 'De cache foar in side leegje sûnder befêstiging',
 'right-autoconfirmed'        => 'Behannele wurde as in registrearre brûker',
@@ -1096,6 +1095,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewurking|bewurkings}}',
 'recentchanges'                     => 'Koartlyn feroare',
+'recentchanges-legend'              => 'Opsjes foar resinte feroarings',
 'recentchangestext'                 => 'De lêste feroarings fan de {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Mei dizze feed kinne jo de nijste feroarings yn dizze wiki besjen.',
 'rcnote'                            => "Dit {{PLURAL:$1|is de lêste feroaring|binne de lêste '''$1''' feroarings}} yn de lêste {{PLURAL:$2|dei|'''$2''' dagen}}, fan $4 $5.",
@@ -1126,6 +1126,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
 'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't keppele wurde fan in spesifisearre side ôf (of fan in spesifisearre Kategory ôf). Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",
 'recentchangeslinked-page'     => 'Sidenamme:',
+'recentchangeslinked-to'       => 'Feroarings oan siden mei ferwizings nei dizze side besjen',
 
 # Upload
 'upload'                      => 'Bied triem oan',
@@ -1134,6 +1135,7 @@ Gean nei oft latex, dvips, en gs goed ynstallearre binne en set om',
 'reuploaddesc'                => 'Werom nei oanbied-side.',
 'uploadnologin'               => 'Net oanmelde',
 'uploadnologintext'           => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in triem oanbiede te kinnen.',
+'upload_directory_missing'    => 'De heechlaadmap ($1) is der net en koe net oanmakke wurde troch de webserver.',
 'upload_directory_read_only'  => 'De webserver kin net skriuwe yn de oanbiedpad ($1).',
 'uploaderror'                 => 'Oanbiedfout',
 'uploadtext'                  => "Om in nije triemmen oan te bieden, brûke jo de ûndersteande formulier. Earder oanbeane triemmen, kinne jo fine op de [[Special:ImageList|list fan oanbeane ôfbylden]].
@@ -1143,7 +1145,9 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 *'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_foto.jpg]]</nowiki></tt>''', foar grutte ferzje,
 *'''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></tt>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki></tt>''', foar direkt keppeling nei de triem (sûnder byld).",
-'upload-prohibited'           => 'Ferbouden triemtypes: $1.',
+'upload-permitted'            => 'Talitten triemtypen: $1.',
+'upload-preferred'            => 'Oanwiisde triemtypen: $1.',
+'upload-prohibited'           => 'Ferbeane triemtypen: $1.',
 'uploadlog'                   => 'oanbiedloch',
 'uploadlogpage'               => 'Oanbiedloch',
 'uploadlogpagetext'           => 'List fan de lêst oanbeane triemmen. (Tiid oanjûn as UTC).',
@@ -1156,6 +1160,8 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'ignorewarning'               => 'Negearje de warskôging en lis triem dochs fêst.',
 'ignorewarnings'              => 'Negearje warskôgings',
 'minlength1'                  => 'Triemnammen moatte minstens út ien teken bestean.',
+'illegalfilename'             => 'De triemnamme "$1" befettet ûnjildige tekens.
+Jou de triem in oare namme en besykje him dan op\'e nij heech te laden.',
 'badfilename'                 => 'De ôfbyldnamme is feroare nei "$1".',
 'filetype-badmime'            => 'Triemmen fan it MIME type "$1" meie net heechladen wurde.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' is in net winske triem-type.
@@ -1163,6 +1169,7 @@ Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
 'filetype-banned-type'        => "'''\".\$1\"''' is gjin talitten triem-type.
 {{PLURAL:\$3|Talitten triem-type is|Talittene triem-typen binne}} \$2.",
 'filetype-missing'            => 'De triem hat gjin taheaksel (lykas ".jpg").',
+'large-file'                  => 'Oanbefelling: meitsje triemmen net grutter as $1; dizze triem is $2.',
 'largefileserver'             => 'De triem is grutter as dat de ynstelling fan de server talit.',
 'emptyfile'                   => "De triem dy jo heechladen hawwe liket leech te wêzen.
 Dat soe komme kinne fan in typflater yn 'e triemnamme.
@@ -1177,31 +1184,88 @@ Namme fan 'e heechladene triem: <strong><tt>$1</tt></strong><br />
 Namme fan 'e besteande triem: <strong><tt>$2</tt></strong><br />
 Kies in oare namme.",
 'fileexists-thumb'            => "<center>'''Besteande ôfbylding'''</center>",
+'fileexists-thumbnail-yes'    => 'De triem liket in ferlytse ferzje te wêzen <i>(miniatuerôfbylding)</i>.
+Kontrolearje de triem <strong><tt>$1</tt></strong>.<br />
+As de kontrolearre triem deselde ôfbylding fan deselde grutte is, dan hoecht net in ekstra miniatuerôfbylding oanbean te wurden.',
+'file-thumbnail-no'           => 'De triemnamme begjint mei <strong><tt>$1</tt></strong>.
+It liket in ferlytse ôfbylding te wêzen <i>(miniatuerôfbylding)</i>.
+As jo dy ôfbylding yn folsleine resolúsje hawwe, bied him dan oan.
+Feroarje oars de triemnamme.',
 'fileexists-forbidden'        => 'Der bestiet al in triem mei dizze namme.
-Upload jo triem ûnder in oare namme.
+Bied jo triem ûnder in oare namme oan.
 [[Image:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Der bestiet al in triem mei dizze namme by de dielde triemmen.
-As jo de triem dochs noch uploade wolle, gean dan werom en kies in oare namme.
+As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
 [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dizze triem is idintyk oan {{PLURAL:$1|de folgjende triem|de folgjende triemmen}}:',
 'successfulupload'            => 'Oanbieden slagge.',
-'uploadwarning'               => 'Oanbied warskôging',
+'uploadwarning'               => 'Oanbied-warskôging',
 'savefile'                    => 'Lis triem fêst',
 'uploadedimage'               => ' "[[$1]]" oanbean',
 'overwroteimage'              => 'hat in nije ferzje fan "[[$1]]" tafoege',
 'uploaddisabled'              => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
-'uploaddisabledtext'          => 'It heechladen fan triemmen is útskeakele op {{SITENAME}}.',
+'uploaddisabledtext'          => 'It oanbieden fan triemmen is útskeakele op {{SITENAME}}.',
+'uploadscripted'              => "Dizze triem befettet HTML- of scriptkoade dy't ferkeard troch jo browser werjûn wurde kin.",
+'uploadcorrupt'               => 'De triem is net ynoarder of hat de ferkearde útgong.  
+Kontrolearje de triem en bied dy wer oan.',
+'uploadvirus'                 => 'De triem befettet in firus! Details: $1',
 'sourcefilename'              => 'Triemnamme boarne:',
 'destfilename'                => 'Triemnamme om op te slaan:',
+'upload-maxfilesize'          => 'Maksimale triemgrutte: $1',
 'watchthisupload'             => 'Folgje dizze side',
-'filename-bad-prefix'         => 'De namme fan de triem dy\'t jo oanbied begjint mei <strong>"$1"</strong>, dit wiist op in namme dy\'t automatysk troch in digitale kamera oanmakke wurdt. Feroarje de namme as jo wolle yn ien dy\'t in omskriuwing jout fan de triem.',
+'filewasdeleted'              => "Der is earder in triem mei dizze namme fuorthelle.
+Rieplachtsje it $1 foar't jo him op'e nij tafoegje.",
+'upload-wasdeleted'           => "'''Warskôging: jo binne in triem oan it oanbieden, dy't earder fuorthelle wie.'''
 
-'upload-file-error' => 'Ynterne fout',
+Kontrolearje oft it wier jo bedoeling is de triem oan te bieden.
+It fuorthellogboek fan dizze triem kinne jo hjir sjen:",
+'filename-bad-prefix'         => 'De namme fan de triem dy\'t jo oanbiede begjint mei <strong>"$1"</strong>, dit wiist op in namme dy\'t automatysk troch in digitale kamera oanmakke wurdt. Feroarje de namme as jo wolle yn ien dy\'t in omskriuwing jout fan de triem.',
+'filename-prefix-blacklist'   => " #<!-- lit dizze line exakt sa't er is --> <pre>
+# Syntax is as folget:
+#   * Alles fan in \"#\"-teken oan't de ein fan de line is in kommintaar
+#   * Elke net blanke line is a foarheaksel foar triemnammen sa't dy automatysk jûn wurde troch digitale kamera's
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # guon mobile tillefoanen
+IMG # algemien
+JD # Jenoptik
+MGP # Pentax
+PICT # ferskaat
+ #</pre> <!-- lit dizze line exakt sa't er is -->",
 
-'license'   => 'Lisinsje:',
-'nolicense' => 'Neat keazen',
+'upload-proto-error'      => 'Ferkeard protokol',
+'upload-proto-error-text' => "Oanbieden mei dizze metoade freget URL's dy't begjinne mei <code>http://</code> of <code>ftp://</code>.",
+'upload-file-error'       => 'Ynterne fout',
+'upload-file-error-text'  => "Der wie in ynterne fout doe't in tydlike triem op'e server oanmakke waard.
+Nim kontakt op mei in [[Special:ListUsers/sysop|systeembehearder]].",
+'upload-misc-error'       => 'Unbekende oanbiedfout',
+'upload-misc-error-text'  => 'Der is by it oanbieden in ûnbekende fout optreden.
+Kontrolearje of de URL krekt en beskikber is en besykje it nochris.
+As it probleem oanhâldt, nim dan kontakt op mei in
+[[Special:ListUsers/sysop|systeembehearder]].',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'Koe de URL net berikke',
+'upload-curl-error6-text'  => 'De opjûne URL is net berikber.
+Kontrolearje oft de URL krekt is en oft de webside beskikber is.',
+'upload-curl-error28'      => 'Oanbiedtiid foarby',
+'upload-curl-error28-text' => "It duorre te lang foar't it webstee andere.
+Kontrolearje oft it webstee beskikber is, wachtsje efkes en besykje it dan wer.
+Jo kinne it faaks besykje as it wat minder drok is.",
+
+'license'            => 'Lisinsje:',
+'nolicense'          => 'Neat keazen',
+'license-nopreview'  => '(Foarfertoaning net beskikber)',
+'upload_source_url'  => ' (in jildige, publyk tagonklike URL)',
+'upload_source_file' => ' (in triem op jo kompjûter)',
 
 # Special:ImageList
+'imagelist-summary'     => 'Op dizze spesjale side binne alle tafoege triemmen te besjen.
+Standert wurde de lêst tafoege triemmen boppe oan de list werjûn.
+Klikken op in kolomkop feroaret de sortearring.',
+'imagelist_search_for'  => 'Sykje nei triem:',
 'imgfile'               => 'triem',
 'imagelist'             => 'Ofbyld list',
 'imagelist_date'        => 'Datum',
@@ -1218,14 +1282,26 @@ As jo de triem dochs noch uploade wolle, gean dan werom en kies in oare namme.
 'filehist-revert'                => 'werom sette',
 'filehist-current'               => 'lêste',
 'filehist-datetime'              => 'Tiid',
+'filehist-thumb'                 => 'Miniatuerôfbylding',
+'filehist-thumbtext'             => 'Miniatuerôfbylding foar ferzje fan $1 ôf',
+'filehist-nothumb'               => 'Gjin miniatuerôfbylding',
 'filehist-user'                  => 'Meidogger',
 'filehist-dimensions'            => 'Ofmjittings',
 'filehist-filesize'              => 'Triem grutte',
 'filehist-comment'               => 'Opmerkings',
 'imagelinks'                     => 'Ofbyldkeppelings',
 'linkstoimage'                   => 'Dizze {{PLURAL:$1|side is|$1 siden binne}} keppele oan it ôfbyld:',
+'linkstoimage-more'              => 'Der {{PLURAL:$2|is|binne}} mear as $1 {{PLURAL:$1|ferwizing|ferwizings}} nei dizze triem.
+De folgjende list jout allinne de earste {{PLURAL:$1|ferwizing|$1 ferwizings}} nei dizze triem wer.
+Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'nolinkstoimage'                 => 'Der binne gjin siden oan dit ôfbyld keppele.',
-'sharedupload'                   => 'Dizze triem is in dielde oplading en kin ek troch oare projektren brûkt wurde.',
+'morelinkstoimage'               => '[[Special:WhatLinksHere/$1|Mear ferwizings]] nei dizze triem besjen.',
+'redirectstofile'                => '{{PLURAL:$1|De folgjende triem ferwiist|De folgjende $1 triemmen ferwize}} troch nei dizze triem:',
+'duplicatesoffile'               => '{{PLURAL:$1|De folgjende triem is|De folgjende $1 triemmen binne}} idintyk oan dizze triem:',
+'sharedupload'                   => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde.',
+'shareduploadwiki'               => 'Sjoch de $1 foar fierdere ynformaasje.',
+'shareduploadwiki-desc'          => "De $1 yn 'e dielde triemmebank wurdt hjirûnder werjûn.",
+'shareduploadwiki-linktext'      => 'triembeskriuwing',
 'shareduploadduplicate-linktext' => 'in oare triem',
 'shareduploadconflict-linktext'  => 'in oare triem',
 'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',

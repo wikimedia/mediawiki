@@ -547,7 +547,6 @@ $1",
 'badtitle'             => 'Неприпустима назва',
 'badtitletext'         => 'Запитана назва сторінки неправильна, порожня, або неправильно зазначена міжмовна чи міжвікі назва.
 Можливо, в назві використовуються недопустимі символи.',
-'perfdisabled'         => 'На жаль, ця можливість тимчасово недоступна через завантаженість сервера.',
 'perfcached'           => 'Наступні дані взяті з кешу і можуть бути застарілими:',
 'perfcachedts'         => 'Наступні дані взяті з кешу, востаннє він оновлювався о $1.',
 'querypage-no-updates' => 'Зміни цієї сторінки зараз заборонені. Дані тут не можуть бути оновлені зараз.',
@@ -856,6 +855,7 @@ $1",
 Перевірте, чи справді вам потрібно знову створювати цю сторінку.
 Нижче наведений журнал вилучень:",
 'deleted-notice'                   => 'Ця сторінка була вилучена. Для довідки нижче наведені відповідні записи з журналу вилучень.',
+'deletelog-fulllog'                => 'Переглянути повний журнал',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Увага: Ця сторінка містить дуже багато викликів ресурсомістких функцій.
@@ -990,6 +990,7 @@ $3 зазначив наступну причину: ''$2''",
 'mergehistory-invalid-destination' => 'Цільова сторінка повинна мати правильний заголовок.',
 'mergehistory-autocomment'         => 'Редагування з [[:$1]] перенесені до [[:$2]]',
 'mergehistory-comment'             => 'Редагування [[:$1]] перенесені до [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Початкова і цільова сторінки повинні відрізнятися',
 
 # Merge log
 'mergelog'           => "Журнал об'єднань",
@@ -1523,22 +1524,24 @@ $3 зазначив наступну причину: ''$2''",
 'randomredirect-nopages' => 'Цей простір назв не містить перенаправлень.',
 
 # Statistics
-'statistics'               => 'Статистика',
-'statistics-header-pages'  => 'Статистика сторінок',
-'statistics-header-edits'  => 'Статистика редагувань',
-'statistics-header-views'  => 'Статистика переглядів',
-'statistics-header-users'  => 'Статистика користувачів',
-'statistics-articles'      => 'Статей',
-'statistics-pages'         => 'Сторінок',
-'statistics-files'         => 'Завантажено файлів',
-'statistics-edits'         => 'Кількість редагувань з моменту установки {{grammar:genitive|{{SITENAME}}}}',
-'statistics-edits-average' => 'Середня кількість редагувань на сторінку',
-'statistics-views-total'   => 'Усього переглядів',
-'statistics-views-peredit' => 'Переглядів на редагування',
-'statistics-jobqueue'      => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue черги завдань]',
-'statistics-users'         => 'Зареєстрованих [[Special:ListUsers|користувачів]]',
-'statistics-users-active'  => 'Активні користувачі',
-'statistics-mostpopular'   => 'Сторінки, які найчастіше переглядають',
+'statistics'                      => 'Статистика',
+'statistics-header-pages'         => 'Статистика сторінок',
+'statistics-header-edits'         => 'Статистика редагувань',
+'statistics-header-views'         => 'Статистика переглядів',
+'statistics-header-users'         => 'Статистика користувачів',
+'statistics-articles'             => 'Статей',
+'statistics-pages'                => 'Сторінок',
+'statistics-pages-tooltip'        => 'Усі сторінки у вікі, включаючи сторінки обговорень, перенаправлення тощо.',
+'statistics-files'                => 'Завантажено файлів',
+'statistics-edits'                => 'Кількість редагувань з моменту установки {{grammar:genitive|{{SITENAME}}}}',
+'statistics-edits-average'        => 'Середня кількість редагувань на сторінку',
+'statistics-views-total'          => 'Усього переглядів',
+'statistics-views-peredit'        => 'Переглядів на редагування',
+'statistics-jobqueue'             => 'Величина [http://www.mediawiki.org/wiki/Manual:Job_queue черги завдань]',
+'statistics-users'                => 'Зареєстрованих [[Special:ListUsers|користувачів]]',
+'statistics-users-active'         => 'Активні користувачі',
+'statistics-users-active-tooltip' => 'Користувачі, що зробили хоча б одну дію протягом минулого місяця',
+'statistics-mostpopular'          => 'Сторінки, які найчастіше переглядають',
 
 'disambiguations'      => 'Багатозначні статті',
 'disambiguationspage'  => 'Template:disambig',
@@ -1891,6 +1894,7 @@ $NEWPAGE
 ** надмірний спам
 ** непродуктивна війна редагувань
 ** популярна сторінка',
+'protect-edit-reasonlist'     => 'Причини захисту від редагувань',
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Рівень доступу:',
 'minimum-size'                => 'Мінімальний розмір',
@@ -2080,6 +2084,7 @@ IP-адреси, що блокуються автоматично тут не в
 'proxyblocksuccess'               => 'Виконано.',
 'sorbsreason'                     => 'Ваша IP-адреса числиться як відкритий проксі в DNSBL.',
 'sorbs_create_account_reason'     => 'Ваша IP-адреса числиться як відкритий проксі в DNSBL. Ви не можете створити обліковий запис.',
+'cant-block-while-blocked'        => 'Ви не можете блокувати інших користувачів, поки ви самі заблоковані.',
 
 # Developer tools
 'lockdb'              => 'Заблокувати базу даних (режим "тільки для читання")',
