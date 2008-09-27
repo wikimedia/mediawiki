@@ -48,23 +48,21 @@ function &wfGetCache( $inputType ) {
 	}
 
 	if ( $type == CACHE_MEMCACHED ) {
-		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ){
+		if ( !array_key_exists( CACHE_MEMCACHED, $wgCaches ) ) {
 			require_once( 'memcached-client.php' );
-
-			if (!class_exists("MemcachedClientforWiki")) {
+			if ( !class_exists("MemcachedClientforWiki") ) {
 				class MemCachedClientforWiki extends memcached {
 					function _debugprint( $text ) {
 						wfDebug( "memcached: $text" );
 					}
 				}
 			}
-
-			$wgCaches[CACHE_DB] = new MemCachedClientforWiki(
+			$wgCaches[CACHE_MEMCACHED] = new MemCachedClientforWiki(
 				array('persistant' => $wgMemCachedPersistent, 'compress_threshold' => 1500 ) );
-			$cache =& $wgCaches[CACHE_DB];
-			$cache->set_servers( $wgMemCachedServers );
-			$cache->set_debug( $wgMemCachedDebug );
+			$wgCaches[CACHE_MEMCACHED]->set_servers( $wgMemCachedServers );
+			$wgCaches[CACHE_MEMCACHED]->set_debug( $wgMemCachedDebug );
 		}
+		$cache =& $wgCaches[CACHE_MEMCACHED];
 	} elseif ( $type == CACHE_ACCEL ) {
 		if ( !array_key_exists( CACHE_ACCEL, $wgCaches ) ) {
 			if ( function_exists( 'eaccelerator_get' ) ) {
