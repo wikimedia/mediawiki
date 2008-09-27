@@ -795,11 +795,6 @@ class memcached
       $realkey = is_array($key) ? $key[1] : $key;
       for ($tries = 0; $tries<20; $tries++)
       {
-	     // temp logging for strange bug
-		 if( !isset($this->_buckets[$hv % $this->_bucketcount]) ) {
-		    wfDebugLog( "memcached", "Invalid bucket hash '$hv' from key '$realkey' given!" );
-		    continue;
-		 }
          $host = $this->_buckets[$hv % $this->_bucketcount];
          $sock = $this->sock_to_host($host);
          if (is_resource($sock)) {
@@ -807,6 +802,7 @@ class memcached
             return $sock;
          }
          $hv += $this->_hashfunc($tries . $realkey);
+		 $hv = $hv & 0x7fffffff; // don't let this pass the limit and go negative (bug 12342)
       }
 
       return false;
