@@ -259,6 +259,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryContributions' => 'includes/api/ApiQueryUserContributions.php',
 	'ApiQueryDeletedrevs' => 'includes/api/ApiQueryDeletedrevs.php',
 	'ApiQueryDisabled' => 'includes/api/ApiQueryDisabled.php',
+	'ApiQueryDuplicateFiles' => 'includes/api/ApiQueryDuplicateFiles.php',
 	'ApiQueryExtLinksUsage' => 'includes/api/ApiQueryExtLinksUsage.php',
 	'ApiQueryExternalLinks' => 'includes/api/ApiQueryExternalLinks.php',
 	'ApiQueryGeneratorBase' => 'includes/api/ApiQueryBase.php',
