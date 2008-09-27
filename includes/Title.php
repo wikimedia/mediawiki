@@ -809,7 +809,7 @@ class Title {
 	 */
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-		global $wgVariantArticlePath, $wgContLang, $wgUser;
+		global $wgVariantArticlePath, $wgContLang, $wgUser, $wgArticlePathForCurid;
 
 		if( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
@@ -833,7 +833,7 @@ class Title {
 			}
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
-			if ( $query == '' ) {
+			if ( $query == '' || ($wgArticlePathForCurid && substr_count( $query, '&' ) == 0 && strpos( $query, 'curid=' ) === 0 ) ) {
 				if( $variant != false && $wgContLang->hasVariants() ) {
 					if( $wgVariantArticlePath == false ) {
 						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
@@ -844,6 +844,13 @@ class Title {
 					$url = str_replace( '$1', $dbkey, $url  );
 				} else {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
+				}
+				if( $query ){
+					if( strpos( $url, '&' ) ){
+						$url .= '&' . $query;
+					}else{
+						$url .= '?' . $query;
+					}
 				}
 			} else {
 				global $wgActionPaths;
