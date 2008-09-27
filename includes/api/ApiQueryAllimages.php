@@ -109,10 +109,10 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 			if (is_null($resultPageSet)) {
 				$file = $repo->newFileFromRow( $row );
-
-				$data[] = ApiQueryImageInfo::getInfo( $file, $prop, $result );
+				$data[] = array_merge(array('name' => $row->img_name),
+					ApiQueryImageInfo::getInfo($file, $prop, $result));
 			} else {
-				$data[] = Title::makeTitle( NS_IMAGE, $row->img_name );
+				$data[] = Title::makeTitle(NS_IMAGE, $row->img_name);
 			}
 		}
 		$db->freeResult($res);
