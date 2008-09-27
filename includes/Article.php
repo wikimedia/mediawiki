@@ -2814,6 +2814,8 @@ class Article {
 		$u = new LinksUpdate( $this->mTitle, $editInfo->output, false );
 		$u->setRecursiveTouch( $changed ); // refresh/invalidate including pages too
 		$u->doUpdate();
+		
+		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $changed ) );
 
 		if( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
 			if ( 0 == mt_rand( 0, 99 ) ) {

@@ -352,6 +352,11 @@ $id: id of the article that was deleted
 'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page was changed
 $article: article (object) of the user talk page
 
+'ArticleEditUpdates': when edit updates (mainly link tracking) are made when an article has been changed
+$article: the article (object)
+$editInfo: data holder that includes the parser output ($editInfo->output) for that page after the change
+$changed: bool for if the page was changed
+
 'ArticleEditUpdatesDeleteFromRecentchanges': before deleting old entries from recentchanges table, return false to not delete old entries
 $article: article (object) being modified
 
