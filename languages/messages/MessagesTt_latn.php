@@ -237,7 +237,6 @@ $messages = array(
 'filenotfound'    => 'Bu «$1» biremen tabalmím.',
 'formerror'       => 'Xata: formını künderä almím',
 'badtitle'        => 'Yaraqsız başlıq',
-'perfdisabled'    => 'Kiçer! Biremlekneñ äkren buluına säbäple, bu mömkinlek waqıtlıça sünderelgän ide.',
 'perfcached'      => 'Astağı belem alxäterdän alındı wä anıñ xäzerge xäl belän turı kilmäwe bar:',
 'perfcachedts'    => '$1 çağında bolğan torış asılında yasalğan tizme bo.',
 'viewsource'      => 'Mäqälä çığanağı',

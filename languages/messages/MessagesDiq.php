@@ -256,7 +256,6 @@ Seba /qandê lista pelanê xasanê vêrdeyan kerem ke: [[Special:SpecialPages|{{
 # General errors
 'error'               => 'Ğelet',
 'badtitle'            => 'Sernameya xırabe',
-'perfdisabled'        => 'Qusır de seyrmeke! This feature has been temporarily disabled because it slows the database down to the point that no one can use the wiki.',
 'viewsource'          => 'Çımey bıvêne',
 'viewsourcefor'       => 'Seba / qandê $1',
 'viewsourcetext'      => 'To şikinay çımey na pele bıvêne u kopya kerê:',

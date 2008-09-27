@@ -317,7 +317,6 @@ Mirëmbajtësi i cili e ka bllokue dha këtë arsye: $1",
 'cannotdelete'         => 'Nuk mujta me gris këtë faqe ose figurë të dhënë. (Munet qi asht e grisur nga dikush tjeter.)',
 'badtitle'             => 'Titull i gabuem',
 'badtitletext'         => 'Titulli i faqes qi kërkuet nuk ishte i saktë, ishte bosh, ose ishte një lidhje gabim me një titull wiki internacional.',
-'perfdisabled'         => "Ju kërkoj të falme! Ky veprim asht bllokue përkohsisht se e ngadalëson regjistrin aq shumë sa s'munet me përdor kërrkush tjetër.",
 'perfcached'           => 'Informacioni i mëposhtëm asht kopje e ruajtme dhe munet mos me kán e freskët:',
 'perfcachedts'         => 'Informacioni i mëposhtëm asht një kopje e rifreskueme me $1.',
 'wrong_wfQuery_params' => 'Parametra gabim te wfQuery()<br />

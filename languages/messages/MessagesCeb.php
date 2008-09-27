@@ -236,7 +236,6 @@ $1",
 'badtitle'            => 'Bati nga titulo',
 'badtitletext'        => 'Ang gihangyong titulo sa panid mahimong inbalido, walay sulod, o nasayop og sumpay nga inter-pinulongan o inter-wiki nga titulo.
 Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
-'perfdisabled'        => "Pasayloa, ang kini nga  ''feature'' temporaryong gihunong tungod kay gipahinay niini ang ''database'' sa punto nga dili na magamit ang wiki.",
 'viewsource'          => 'Tan-awa ang ginikanan',
 'ns-specialprotected' => 'Ang mga espesyal nga panid dili mausban.',
 

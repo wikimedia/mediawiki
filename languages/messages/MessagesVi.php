@@ -445,7 +445,6 @@ Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], tron
 'cannotdelete'         => 'Không thể xóa trang hay tập tin được chỉ định. (Có thể nó đã bị ai đó xóa rồi).',
 'badtitle'             => 'Tựa trang sai',
 'badtitletext'         => 'Tựa trang yêu cầu không đúng, rỗng, hoặc là một liên kết ngôn ngữ hoặc liên kết wiki sai. Nó có thể chứa một hoặc nhiều ký tự mà tựa trang không thể sử dụng.',
-'perfdisabled'         => 'Xin lỗi! Tính năng này đã bị tắt tạm thời do nó làm chậm cơ sở dữ liệu đến mức không ai có thể dùng được wiki.',
 'perfcached'           => 'Dữ liệu sau được lấy từ bộ nhớ đệm và có thể đã lỗi thời.',
 'perfcachedts'         => 'Dữ liệu dưới đây được đưa vào vùng nhớ đệm và được cập nhật lần cuối lúc $1.',
 'querypage-no-updates' => 'Việc cập nhật trang này hiện đã bị tắt. Dữ liệu ở đây có thể bị lỗi thời.',

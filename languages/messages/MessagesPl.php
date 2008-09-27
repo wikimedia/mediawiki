@@ -542,7 +542,6 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 Możliwe, że zostały już usunięte przez kogoś innego.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
-'perfdisabled'         => 'Uwaga! Możliwość użycia tej funkcjonalności została czasowo zablokowana, ponieważ obniża ona wydajność systemu bazy danych do poziomu uniemożliwiającego komukolwiek skorzystanie z tej wiki.',
 'perfcached'           => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne.',
 'perfcachedts'         => 'Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się $1.',
 'querypage-no-updates' => 'Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.',
@@ -646,10 +645,10 @@ Musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}} i być inne, niż Two
 'passwordremindertitle'      => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'passwordremindertext'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1)
 poprosił o przesłanie nowego hasła do {{GRAMMAR:D.lp|{{SITENAME}}}} ($4).
-Nowym hasłem użytkownika „$2” jest „$3”.
-Najlepiej będzie, gdy zalogujesz się teraz i od razu zmienisz hasło.
+Dla użytkownika „$2” zostało wygenerowane tymczasowe hasło i jest nim „$3”.
+Jeśli było to zamierzone działanie, to po zalogowaniu się, musisz podać nowe hasło.
 
-Jeśli to nie Ty prosisz o przesłanie hasła lub nie chcesz zmienić poprzedniego hasła, wystarczy, że zignorujesz tę wiadomość i dalej będziesz się posługiwać swoim dotychczasowym hasłem.',
+Jeśli to nie Ty prosiłeś o przesłanie hasła lub przypomniałeś sobie hasło i nie chcesz go zmieniać, wystarczy, że zignorujesz tę wiadomość i dalej będziesz się posługiwać swoim dotychczasowym hasłem.',
 'noemail'                    => 'Brak zdefiniowanego adresu e-mail dla użytkownika „$1”.',
 'passwordsent'               => 'Nowe hasło zostało wysłane na adres e-mail użytkownika „$1”.
 Po otrzymaniu go zaloguj się ponownie.',
@@ -865,6 +864,12 @@ Upewnij się, czy ponowne utworzenie tej strony jest uzasadnione.
 Poniżej znajduje się rejestr usunięć tej strony:",
 'deleted-notice'                   => 'Ta strona została usunięta. Rejestr usunięć tej strony jest pokazany poniżej.',
 'deletelog-fulllog'                => 'Zobacz cały rejestr',
+'edit-gone-missing'                => 'Nie udało się zaktualizować strony.
+Zdaje się, że została skasowana.',
+'edit-conflict'                    => 'Konflikt edycji.',
+'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie zmieniono nic w tekście.',
+'edit-already-exists'              => 'Nie udało się stworzyć nowej strony.
+Strona już istnieje.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
@@ -1915,6 +1920,7 @@ Obecne ustawienia dla strony <strong>$1</strong> to:',
 ** Częste spamowanie
 ** Wojna edycyjna
 ** Wygłupy',
+'protect-edit-reasonlist'     => 'Edytuj przyczynę zabezpieczenia',
 'restriction-type'            => 'Ograniczenia',
 'restriction-level'           => 'Poziom',
 'minimum-size'                => 'Minimalny rozmiar',
@@ -2057,6 +2063,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbotherreason'                  => 'Inne/dodatkowe uzasadnienie:',
 'ipbhidename'                     => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
 'ipbwatchuser'                    => 'Obserwuj stronę osobistą i stronę dyskusji tego użytkownika',
+'ipballowusertalk'                => 'Pozwól temu użytkownikowi edytować własną stronę dyskusji, kiedy jest zablokowany',
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
 'blockipsuccesstext'              => 'Użytkownik [[Special:Contributions/$1|$1]] został zablokowany.<br />
@@ -2100,6 +2107,7 @@ By przejrzeć listę obecnie aktywnych blokad, przejdź na stronę [[Special:IPB
 'block-log-flags-nocreate'        => 'blokada tworzenia konta',
 'block-log-flags-noautoblock'     => 'automatyczne blokowanie wyłączone',
 'block-log-flags-noemail'         => 'e-mail zablokowany',
+'block-log-flags-nousertalk'      => 'nie może edytować własnej strony dyskusji',
 'block-log-flags-angry-autoblock' => 'rozszerzone automatyczne blokowanie włączone',
 'range_block_disabled'            => 'Możliwość blokowania zakresu adresów IP została wyłączona.',
 'ipb_expiry_invalid'              => 'Błędny czas wygaśnięcia blokady.',
@@ -2649,6 +2657,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-lightsource-19'  => 'standardowe C',
 'exif-lightsource-24'  => 'żarowe studyjne ISO',
 'exif-lightsource-255' => 'Inne źródło światła',
+
+# Flash modes
+'exif-flash-redeye-1' => 'tryb redukcji efektu czerwonych oczu',
 
 'exif-focalplaneresolutionunit-2' => 'cale',
 

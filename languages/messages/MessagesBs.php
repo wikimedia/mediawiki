@@ -417,7 +417,6 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'cannotdelete'         => 'Ne može se obrisati navedena stranica ili slika.  (Moguće je da ju je neko drugi već obrisao.)',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
-'perfdisabled'         => 'Žao nam je!  Ova mogućnost je privremeno onemogućena jer usporava bazu do te mjere da više niko ne može da koristi viki.',
 'perfcached'           => 'Sledeći podaci su keširani i možda neće biti u potpunosti ažurirani:',
 'perfcachedts'         => 'Sljedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.

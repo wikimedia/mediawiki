@@ -1331,7 +1331,7 @@ Example: [[:Image:Addon-icn.png]]',
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
-'deletedcontributions' => 'Title of [[Special:DeletedContributions]], a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
+'deletedcontributions' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops. The message is also shown as a link on [[Special:Contributions]] to the DeletedContributions special page.',
 
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',
@@ -1618,6 +1618,7 @@ Example line:
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
 'ipbwatchuser' => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipballowusertalk' => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
 'ipb-edit-dropdown' => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
 'ipblocklist-submit' => '{{Identical|Search}}',
 'blocklistline' => 'This is the text of an entry in the Special:IPBlockList.
@@ -1643,6 +1644,7 @@ See also [[MediaWiki:Blocklistline]].',
 'block-log-flags-noemail' => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
 {{Identical|E-mail blocked}}",
+'block-log-flags-nousertalk' => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged.',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',

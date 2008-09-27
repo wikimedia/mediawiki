@@ -406,7 +406,6 @@ Te rog anunţă acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'cannotdelete'         => 'Comanda de ştergere nu s-a putut executa! Probabil că ştergerea a fost operată între timp.',
 'badtitle'             => 'Titlu invalid',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.',
-'perfdisabled'         => 'Ne pare rău! Această opţiune a fost dezactivată temporar în timpul orelor de vârf din motive de performanţă. Te rugăm să revii la altă oră şi să încerci din nou.',
 'perfcached'           => 'Datele următoare au fost păstrate în cache şi s-ar putea să nu fie la zi.',
 'perfcachedts'         => "Informaţiile de mai jos provin din ''cache''; ultima actualizare s-a efectuat la $1.",
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informaţiile de aici nu sunt împrospătate.',

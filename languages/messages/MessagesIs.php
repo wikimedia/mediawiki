@@ -228,33 +228,33 @@ $messages = array(
 'tog-underline'               => 'Undirstrika tengla:',
 'tog-highlightbroken'         => 'Sýna brotna tengla <a href="" class="new">svona</a> (annars: svona<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Jafna málsgreinar',
-'tog-hideminor'               => 'Fela minniháttar breytingar',
-'tog-extendwatchlist'         => 'Útvíkka vaktlistann þannig að hann sýni allar viðkomandi breytingar',
-'tog-usenewrc'                => 'Endurbætt nýjar tengingar (JavaScript)',
+'tog-hideminor'               => 'Fela minniháttar breytingar í nýlegum breytingum',
+'tog-extendwatchlist'         => 'Útvíkka vaktlistann svo hann sýni allar viðeigandi breytingar',
+'tog-usenewrc'                => 'Endurbættar nýlegar breytingar (JavaScript)',
 'tog-numberheadings'          => 'Númera fyrirsagnir sjálfkrafa',
-'tog-showtoolbar'             => 'Sýna verkfærastiku fyrir breytingar (JavaScript)',
-'tog-editondblclick'          => 'Breyta síðu ef tvísmellt er á tengilinn (JavaScript)',
-'tog-editsection'             => 'Leyfa breytingar á hluta síðna með [breyta] tenglinum',
-'tog-editsectiononrightclick' => 'Leyfa breytingar á hluta síðna með því að  hægrismella á fyrirsagnir (JavaScript)',
+'tog-showtoolbar'             => 'Sýna breytingarverkfærastiku (JavaScript)',
+'tog-editondblclick'          => 'Breyta síðum þegar tvísmellt er (JavaScript)',
+'tog-editsection'             => 'Virkja hlutabreytingu með [breyta] tenglum',
+'tog-editsectiononrightclick' => 'Virkja hlutabreytingu með því að hægrismella á hlutafyrirsagnir (JavaScript)',
 'tog-showtoc'                 => 'Sýna efnisyfirlit (fyrir síður með meira en 3 fyrirsagnir)',
 'tog-rememberpassword'        => 'Munda innskráninguna mína á þessari tölvu',
-'tog-editwidth'               => 'Innsláttarsvæði hefur fulla breidd',
+'tog-editwidth'               => 'Breytingarkassi hefur fulla breidd',
 'tog-watchcreations'          => 'Bæta síðum sem ég bý til á vaktlistann minn',
 'tog-watchdefault'            => 'Bæta síðum sem ég breyti á vaktlistann minn',
 'tog-watchmoves'              => 'Bæta síðum sem ég færi á vaktlistann minn',
 'tog-watchdeletion'           => 'Bæta síðum sem ég eyði á vaktlistann minn',
-'tog-minordefault'            => 'Láta breytingar vera sjálfgefnar sem minniháttar',
+'tog-minordefault'            => 'Merkja allar breytingar sem minniháttar sjálfgefið',
 'tog-previewontop'            => 'Sýna forskoðun á undan breytingarkassanum',
 'tog-previewonfirst'          => 'Sýna forskoðun með fyrstu breytingu',
-'tog-nocache'                 => 'Slökkva á flýtivistun síðna',
+'tog-nocache'                 => 'Óvirkja flýtiminni síðna',
 'tog-enotifwatchlistpages'    => 'Senda mér tölvupóst þegar síðu á vaktlistanum mínu er breytt',
 'tog-enotifusertalkpages'     => 'Senda mér tölvupóst þegar notandaspjallinu mínu er breytt',
-'tog-enotifminoredits'        => 'Senda mér tölvupóst vegna minniháttar breytinga á síðum',
-'tog-enotifrevealaddr'        => 'Sýna netfang mitt í tilkynningarpóstum',
-'tog-shownumberswatching'     => 'Sýna fjölda notenda sem vakta',
-'tog-fancysig'                => 'Nota hráa undirskrift (án sjálfkrafa tengils)',
-'tog-externaleditor'          => 'Nota utanaðkomandi ritil að staðaldri (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
-'tog-externaldiff'            => 'Nota utanaðkomandi breytingar að staðaldri (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
+'tog-enotifminoredits'        => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum',
+'tog-enotifrevealaddr'        => 'Gefa upp netfang mitt í tilkynningarpóstum',
+'tog-shownumberswatching'     => 'Sýna fjölda vaktandi notenda',
+'tog-fancysig'                => 'Hráar undirskriftir (án sjálfkrafa tengils)',
+'tog-externaleditor'          => 'Nota utanaðkomandi ritil sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
+'tog-externaldiff'            => 'Nota utanaðkomandi breytingar sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
 'tog-showjumplinks'           => 'Leyfa „stökkva á“ aðgengitengla',
 'tog-forceeditsummary'        => 'Birta áminningu ef útskýring er ekki gefin fyrir breytingu þegar síða er vistuð.',
 'tog-watchlisthideown'        => 'Ekki sýna mínar breytingar á vaktlistanum',
@@ -543,7 +543,6 @@ Vinsamlegast tilkynntu þá atvikið stjórnanda og gerðu grein fyrir vefslóð
 'cannotdelete'         => 'Ekki var hægt að eyða síðunni eða myndinni sem valin var. (Líklegt er að einhver annar hafi gert það.)',
 'badtitle'             => 'Ógildur titill',
 'badtitletext'         => 'Umbeðin síðutitill er ógildur.',
-'perfdisabled'         => 'Þessi síða hefur verið gerð óvirk þar sem notkun hennar veldur of miklu álagi á gagnagrunninum.',
 'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
 'perfcachedts'         => 'Eftirfarandi gögn eru úr flýtiminni og voru síðast uppfærð $1.',
 'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
@@ -588,7 +587,7 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'logout'                     => 'Útskráning',
 'userlogout'                 => 'Útskrá',
 'notloggedin'                => 'Ekki innskráð(ur)',
-'nologin'                    => 'Ekki með notandanafn? $1.',
+'nologin'                    => 'Ekki með aðgang? $1.',
 'nologinlink'                => 'Stofnaðu til aðgangs',
 'createaccount'              => 'Nýskrá',
 'gotaccount'                 => 'Nú þegar með notandanafn? $1.',
@@ -620,7 +619,8 @@ Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni
 'noname'                     => 'Ógilt notandanafn.',
 'loginsuccesstitle'          => 'Innskráning tókst',
 'loginsuccess'               => "'''Þú ert nú innskráð(ur) á {{SITENAME}} sem „$1“.'''",
-'nosuchuser'                 => 'Enginn notandi er til undir nafninu „$1“.',
+'nosuchuser'                 => 'Það er enginn notandi með nafnið „$1“.
+Athugaðu stafsetning, eða [[Special:Userlogin/signup|búðu til aðgang]].',
 'nosuchusershort'            => 'Það er enginn notandi með nafnið „<nowiki>$1</nowiki>“. Athugaðu hvort nafnið sé ritað rétt.',
 'nouserspecified'            => 'Þú verður að taka fram notandanafn.',
 'wrongpassword'              => 'Uppgefið lykilorð er rangt. Vinsamlegast reyndu aftur.',
@@ -629,22 +629,23 @@ Gjörðu svo vel og opnaðu fyrir þær, skráðu þig svo inn með notandanafni
 Það verður að hafa að minnsta kosti {{PLURAL:$1|1 rittákn|$1 rittákn}} og einnig frábrugðið notandanafninu þínu.',
 'mailmypassword'             => 'Senda nýtt lykilorð með tölvupósti',
 'passwordremindertitle'      => 'Nýtt tímabundið aðgangsorð fyrir {{SITENAME}}',
-'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1)
-bað um að fá sent nýtt lykilorð fyrir {{SITENAME}} ($4).
-Lykilorðið fyrir notandan „$2“ er núna „$3“.
-Þú ættir að skrá þig inn núna og breyta lykilorðinu.
+'passwordremindertext'       => 'Einhver (líklegast þú, á vistfanginu $1) hefur beðið um að fá nýtt
+lykilorð fyrir {{SITENAME}} ($4). Tímabundið lykilorð fyrir notandan „$2“
+hefur verið búið til og er núna „$3“. Ef þetta var vilji þinn, þarfu að skrá
+þig inn og velja nýtt lykilorð.
 
-Ef einhver annar hefur sent inn þessa beðni eða þér tókst að muna lykilorðið og
-þú hefur ekki áhuga á að fá nýtt þá getur þú hundsað þessi skilaboð og haldið áfram
-að nota gamla lykilorðið.',
+Ef einhver annar fór fram á þessa beiðni, eða ef þú mannst lykilorðið þitt,
+og vilt ekki lengur breyta því, skaltu hunsa þetta skilaboð og
+halda áfram að nota gamla lykilorðið.',
 'noemail'                    => 'Það er ekkert póstfang skráð fyrir notanda "$1".',
 'passwordsent'               => 'Nýtt lykilorð var sent á netfangið sem er skráð á „$1“.
 Vinsamlegast skráðu þig inn á ný þegar þú hefur móttekið það.',
 'blocked-mailpassword'       => 'Þér er ekki heimilt að gera breytingar frá þessu netfangi og  því getur þú ekki fengið nýtt lykilorð í pósti.  Þetta er gert til þess að koma í veg fyrir skemmdarverk.',
 'eauthentsent'               => 'Staðfestingarpóstur hefur verið sendur á uppgefið netfang. Þú verður að fylgja leiðbeiningunum í póstinum til þess að virkja netfangið og staðfesta að það sé örugglega þitt.',
 'mailerror'                  => 'Upp kom villa við sendingu tölvupósts: $1',
-'acct_creation_throttle_hit' => 'Þú hefur nú þegar búið til $1 notendur. Þú getur ekki búið til fleiri.',
-'emailauthenticated'         => 'Netfang þitt var staðfest þann $1.',
+'acct_creation_throttle_hit' => 'Því miður, þú hefur nú þegar búið til {{PLURAL:$1|1 aðgang|$1 aðganga}}.
+Þú getur ekki búið til fleiri.',
+'emailauthenticated'         => 'Netfang þitt var staðfest þann $2 klukkan $3.',
 'emailnotauthenticated'      => 'Veffang þitt hefur ekki enn verið sannreynt. Enginn póstur verður sendur af neinum af eftirfarandi eiginleikum.',
 'noemailprefs'               => 'Gefðu upp netfang svo þessar aðgerðir virki.',
 'emailconfirmlink'           => 'Staðfesta netfang þitt',
@@ -917,7 +918,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'mypreferences'           => 'Stillingar',
 'prefs-edits'             => 'Fjöldi breytinga:',
 'prefsnologin'            => 'Ekki innskráður',
-'prefsnologintext'        => 'Þú þarft að vera [[Special:UserLogin|innskráð(ur)]] til að breyta notandastillingum.',
+'prefsnologintext'        => 'Þú verður að vera <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} skráð(ur) inn]</span> til að breyta notandastillingum.',
 'prefsreset'              => 'Stillingum hefur verið breytt yfir í þær stillingar sem eru í minni.',
 'qbsettings'              => 'Valblað',
 'qbsettings-none'         => 'Sleppa',
@@ -1147,8 +1148,8 @@ Til að tengja í skrána frá síðu, notaðu eftirfarandi aðferðir
 'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
 'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar.',
-'noimage'                   => 'Engin skrá með þessu nafni er til. Þú getur $1.',
-'noimage-linktext'          => 'hlaðið henni inn',
+'noimage'                   => 'Engin skrá með þessu nafni er til, en þú getur $1.',
+'noimage-linktext'          => 'hlaða einni inn',
 'uploadnewversion-linktext' => 'Hlaða inn nýrri útgáfu af þessari skrá',
 
 # File reversion
@@ -1370,7 +1371,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'unwatchthispage'      => 'Hætta vöktun',
 'notanarticle'         => 'Ekki efnisleg síða',
 'watchnochange'        => 'Engri síðu á vaktlistanum þínum hefur verið breytt á tilgreindu tímabili.',
-'watchlist-details'    => 'Fyrir utan spjallsíður {{PLURAL:$1|er $1 síða|eru $1 síður}} á vaktlistanum þínum.',
+'watchlist-details'    => '{{PLURAL:$1|$1 síða|$1 síður}} á vaktlistanum þínum, fyrir utan spjallsíður.',
 'wlheader-enotif'      => '* Tilkynning með tölvupósti er virk.',
 'wlheader-showupdated' => "* Síðum sem hefur verið breytt síðan þú skoðaðir þær síðast eru '''feitletraðar'''",
 'watchmethod-recent'   => 'kanna hvort nýlegar breytingar innihalda vaktaðar síður',
@@ -1814,7 +1815,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'common.js' => '/* Allt JavaScript sem sett er hér mun virka í hvert skipti sem að síða hleðst. */',
 
 # Attribution
-'anonymous'        => 'Ónefndir notendur {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Óþekktur notandi|Óþekktir notendur}} á {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} notandi $1',
 'lastmodifiedatby' => 'Þessari síðu var síðast breytt $2, $1 af $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Byggt á verkum $1.',
@@ -1861,8 +1862,8 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'filedelete-missing'    => 'Skránni „$1“ er ekki hægt að eyða vegna þess að hún er ekki til.',
 
 # Browsing diffs
-'previousdiff' => '← Fyrri breyting',
-'nextdiff'     => 'Næsta breyting →',
+'previousdiff' => '← Eldri breyting',
+'nextdiff'     => 'Nýrri breyting →',
 
 # Media information
 'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.<hr />",

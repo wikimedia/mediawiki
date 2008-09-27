@@ -394,7 +394,6 @@ Prašome apie tai pranešti [[Special:ListUsers/sysop|administratoriui]], nepami
 Galbūt jį jau kažkas kitas ištrynė.',
 'badtitle'             => 'Blogas pavadinimas',
 'badtitletext'         => 'Nurodytas puslapio pavadinimas buvo neleistinas, tuščias arba neteisingai sujungtas tarpkalbinis arba tarpprojektinis pavadinimas. Jame gali būti vienas ar daugiau simbolių, neleistinų pavadinimuose',
-'perfdisabled'         => 'Atsiprašome, bet ši funkcija yra laikinai išjungta, nes tai ypač sulėtina duomenų bazę taip, kad daugiau niekas negali naudotis projektu.',
 'perfcached'           => 'Rodoma išsaugota duomenų kopija, todėl duomenys gali būti ne patys naujausi.',
 'perfcachedts'         => 'Rodoma išsaugota duomenų kopija, kuri buvo atnaujinta $1.',
 'querypage-no-updates' => 'Atnaujinimai šiam puslapiui dabar yra išjungti. Duomenys čia dabar nebus atnaujinti.',
@@ -471,14 +470,14 @@ Jį turi sudaryti ne daugiau kaip $1 {{PLURAL:$1|simbolis|simboliai|simbolių}}.
 'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas.
 Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
 'loginerror'                 => 'Prisijungimo klaida',
-'prefs-help-email'           => 'El. pašto adresas yra neprivalomas, bet jis leidžia kitiems pasiekti jus per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
+'prefs-help-email'           => 'El. pašto adresas yra neprivalomas, bet jis leidžia jums gauti naują slaptažodį, jei jūs užmiršote koks jis buvo, o taip pat jūs galite leisti kitiems pasiekti jus per jūsų naudotojo ar naudotojo aptarimo puslapį neatskleidžiant jūsų tapatybės.',
 'prefs-help-email-required'  => 'El. pašto adresas yra būtinas.',
 'nocookiesnew'               => 'Naudotojo paskyra buvo sukurta, bet jūs nesate prisijungęs. {{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos, tada prisijunkite su savo naujuoju naudotojo vardu ir slaptažodžiu.',
 'nocookieslogin'             => '{{SITENAME}} naudoja slapukus, kad prijungtų naudotojus. Jūs esate išjungę slapukus. Prašome įjungti juos ir pamėginkite vėl.',
 'noname'                     => 'Jūs nesate nurodęs teisingo naudotojo vardo.',
 'loginsuccesstitle'          => 'Sėkmingai prisijungėte',
 'loginsuccess'               => "'''Dabar jūs prisijungęs prie {{SITENAME}} kaip „$1“.'''",
-'nosuchuser'                 => 'Nėra jokio naudotojo pavadinto „$1“. Patikrinkite rašybą, arba sukurkite naują paskyrą.',
+'nosuchuser'                 => 'Nėra jokio naudotojo turinčio vardą „$1“. Patikrinkite rašybą, arba [[Special:Userlogin/signup|sukurkite naują paskyrą]].',
 'nosuchusershort'            => 'Nėra jokio naudotojo, pavadinto „<nowiki>$1</nowiki>“. Patikrinkite rašybą.',
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
@@ -492,7 +491,7 @@ Naudotojo „$2“ slaptažodis dabar yra „$3“.
 Jūs turėtumėte prisijungti ir dabar pakeisti savo slaptažodį.
 
 Jei kažkas kitas atliko šį prašymą arba jūs prisiminėte savo slaptažodį ir
-nebenorite jo pakeisti, jūs galite tiesiog nekreipti dėmėsio į šį laišką ir toliau
+nebenorite jo pakeisti, jūs galite tiesiog nekreipti dėmesio į šį laišką ir toliau
 naudotis savo senuoju slaptažodžiu.',
 'noemail'                    => 'Nėra jokio el. pašto adreso įvesto naudotojui „$1“.',
 'passwordsent'               => 'Naujas slaptažodis buvo nusiųstas į el. pašto adresą,
@@ -504,9 +503,9 @@ Prieš išsiunčiant kitą laišką į jūsų dėžutę, jūs turite vykdyti nur
 'throttled-mailpassword'     => 'Slaptažodžio priminimas jau buvo išsiųstas, per {{PLURAL:$1|pasuktinę valandą|$1 paskutines valandas|$1 paskutinių valandų}}.
 Norint apsisaugoti nuo piktnaudžiavimo, slaptažodžio priminimas gali būti išsiųstas tik kas {{PLURAL:$1|valandą|$1 valandas|$1 valandų}}.',
 'mailerror'                  => 'Klaida siunčiant paštą: $1',
-'acct_creation_throttle_hit' => 'Atleiskite, bet jūs jau sukūrėte $1 paskyras.
+'acct_creation_throttle_hit' => 'Atleiskite, bet jūs jau sukūrėte {{PLURAL:$1|$1 paskyrą|$1 paskyras|$1 paskyrų}}.
 Daugiau nebegalima.',
-'emailauthenticated'         => 'Jūsų el. pašto adresas buvo patvirtintas $1.',
+'emailauthenticated'         => 'Jūsų el. pašto adresas buvo patvirtintas $2 d. $3.',
 'emailnotauthenticated'      => 'Jūsų el. pašto adresas dar nėra patvirtintas. Jokie laiškai
 nebus siunčiami nei vienai žemiau išvardintai paslaugai.',
 'noemailprefs'               => 'Nurodykite el. pašto adresą, kad šios funkcijos veiktų.',
@@ -697,6 +696,9 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 
 Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 Šio puslapio šalinimų istorija yra pateikta čia dėl patogumo:",
+'deleted-notice'                   => 'Šis puslapis buvo panaikintas.
+Panaikinto puslapio versijų sąrašas pateiktas žemiau peržiūrėjimui.',
+'deletelog-fulllog'                => 'Peržiūrėti visą protokolą',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Įspėjimas: Šiame puslapyje yra per daug brangių kodo analizuoklio funkcijų šaukinių.
@@ -844,7 +846,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'editundo'                => 'atšaukti',
 'diff-multi'              => '($1 {{PLURAL:$1|tarpinis keitimas nėra rodomas|tarpiniai keitimai nėra rodomi|tarpinių keitimų nėra rodoma}}.)',
 'diff-movedto'            => 'perkelta į $1',
-'diff-styleadded'         => 'stilius pridėtas',
+'diff-styleadded'         => '$1 stilius pridėtas',
 'diff-added'              => 'pridėta',
 'diff-changedto'          => 'pakeista į',
 'diff-movedoutof'         => 'iškelta iš $1',
@@ -925,7 +927,7 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'mypreferences'            => 'Mano nustatymai',
 'prefs-edits'              => 'Keitimų skaičius:',
 'prefsnologin'             => 'Neprisijungęs',
-'prefsnologintext'         => 'Jums reikia būti [[Special:UserLogin|prisijungusiam]], kad galėtumėte keisti savo nustatymus.',
+'prefsnologintext'         => 'Jums reikia būti <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
 'prefsreset'               => 'Nustatymai buvo atstatyti iš saugyklos.',
 'qbsettings'               => 'Greitasis pasirinkimas',
 'qbsettings-none'          => 'Nerodyti',
@@ -1312,9 +1314,24 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'randomredirect-nopages' => 'Šioje vardų srityje nėra jokių peradresavimų.',
 
 # Statistics
-'statistics'              => 'Statistika',
-'statistics-header-users' => 'Naudotojų statistika',
-'statistics-mostpopular'  => 'Daugiausiai rodyti puslapiai',
+'statistics'                      => 'Statistika',
+'statistics-header-pages'         => 'Puslapių statistika',
+'statistics-header-edits'         => 'Redagavimų statistika',
+'statistics-header-views'         => 'Peržiūrų statistika',
+'statistics-header-users'         => 'Naudotojų statistika',
+'statistics-articles'             => 'Turinio puslapiai',
+'statistics-pages'                => 'Puslapiai',
+'statistics-pages-tooltip'        => 'Visi puslapiai, tarp jų aptarimo, nukreipimų, ir kiti puslapiai.',
+'statistics-files'                => 'Įkelti failai',
+'statistics-edits'                => 'Puslapių redagavimų skaičius nuo {{SITENAME}} sukūrimo',
+'statistics-edits-average'        => 'Vidutinis redakcijų kiekis puslapiui',
+'statistics-views-total'          => 'Iš viso peržiūrų',
+'statistics-views-peredit'        => 'Peržiūrų skaičius redakcijai',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Užduočių eilės] ilgis',
+'statistics-users'                => 'Registruotų [[Special:ListUsers|naudotojų]]',
+'statistics-users-active'         => 'Aktyvių naudotojų',
+'statistics-users-active-tooltip' => 'Naudotojai kurie paskutinį mėnesį įdėjo savo indėlį',
+'statistics-mostpopular'          => 'Daugiausiai rodyti puslapiai',
 
 'disambiguations'      => 'Daugiaprasmių žodžių puslapiai',
 'disambiguationspage'  => 'Template:Daugiareikšmis',
@@ -1490,7 +1507,7 @@ kaip laiško adresas „Nuo“, kad gavėjas galėtų jums atsakyti.',
 'emailccsubject'  => 'Laiško kopija naudotojui $1: $2',
 'emailsent'       => 'El. laiškas išsiųstas',
 'emailsenttext'   => 'Jūsų el. pašto žinutė išsiųsta.',
-'emailuserfooter' => 'Šis elektrninis laiškas buvo išsiųstas naudotojo $1 naudotojui $2 naudojant „Rašyti elektroninį laišką“ funkciją projekte {{SITENAME}}.',
+'emailuserfooter' => 'Šis elektroninis laiškas buvo išsiųstas naudotojo $1 naudotojui $2 naudojant „Rašyti elektroninį laišką“ funkciją projekte {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Stebimi puslapiai',
@@ -1685,7 +1702,7 @@ Jei po ištrynimo buvo sukurtas puslapis tokiu pačiu pavadinimu, atstatytos ver
 'undeleterevdel'               => 'Atkūrimas nebus įvykdytas, jei tai nulems paskutinės puslapio ar failo versijos dalinį ištrynimą.
 Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą versiją.',
 'undeletehistorynoadmin'       => 'Šis puslapis buvo ištrintas. Žemiau rodoma trynimo priežastis bei kas redagavo puslapį iki ištrynimo. Ištrintų puslapių tekstas yra galimas tik administratoriams.',
-'undelete-revision'            => 'Ištrinta $1 versija, kurią $2 sukūrė $3:',
+'undelete-revision'            => 'Ištrinta $1 versija, kurią $4 d. $5 sukūrė $3:',
 'undeleterevision-missing'     => 'Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.',
 'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
@@ -2090,13 +2107,13 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Paremta $1 darbu.',
 'others'           => 'kiti',
-'siteusers'        => '{{SITENAME}} naudotojas(-ai) $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|naudotojas|naudotojai}} $1',
 'creditspage'      => 'Puslapio kūrėjai',
 'nocredits'        => 'Kūrėjų informacija negalima šiam puslapiui.',
 
 # Spam protection
 'spamprotectiontitle' => 'Priešreklaminis filtras',
-'spamprotectiontext'  => 'Puslapis, kurį norėjote išsaugoti buvo užblokuotas priešreklaminio filtro. Tai turbūt sukėlė nuoroda į kitą svetainę.',
+'spamprotectiontext'  => 'Puslapis, kurį norėjote išsaugoti buvo užblokuotas priešreklaminio filtro. Tai turbūt sukėlė nuoroda į juodajame sąraše esančią svetainę.',
 'spamprotectionmatch' => 'Šis tekstas buvo atpažintas priešreklaminio filtro: $1',
 'spambot_username'    => 'MediaWiki reklamų šalinimas',
 'spam_reverting'      => 'Atkuriama į ankstesnę versiją, neturinčios nuorodų į $1',
@@ -2475,7 +2492,7 @@ Patvirtinimo kodas jau nusiųstas jums; jei neseniai sukūrėte savo paskyrą, j
 'confirmemail_sent'        => 'Patvirtinimo laiškas išsiųstas.',
 'confirmemail_oncreate'    => 'Patvirtinimo kodas buvo išsiųstas jūsų el. pašto adresu.
 Šis kodas nėra būtinas, kad prisijungtumėte, bet jums reikės jį duoti prieš įjungiant el. pašto paslaugas projekte.',
-'confirmemail_sendfailed'  => 'Nepavyko išsiųsti patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
+'confirmemail_sendfailed'  => '{{SITENAME}) neišsiuntė patvirtinamojo laiško. Patikrinkite, ar adrese nėra klaidingų simbolių.
 
 Pašto tarnyba atsakė: $1',
 'confirmemail_invalid'     => 'Neteisingas patvirtinimo kodas. Kodo galiojimas gali būti jau pasibaigęs.',
@@ -2503,8 +2520,8 @@ Patvirtinimo kodas baigs galioti $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Tarpprojektinis įterpimas yra išjungtas]',
-'scarytranscludefailed'   => '[Šablono gavimas iš $1 nepavyko; atsiprašome]',
-'scarytranscludetoolong'  => '[URL per ilgas; atsiprašome]',
+'scarytranscludefailed'   => '[Šablono gavimas iš $1 nepavyko]',
+'scarytranscludetoolong'  => '[URL per ilgas]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">Šio puslapio „Trackback“ nuorodos:<br />

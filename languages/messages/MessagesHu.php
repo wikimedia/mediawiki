@@ -602,7 +602,6 @@ Jelezd ezt egy [[Special:ListUsers/sysop|adminiszttrátornak]] az URL megadásá
 'cannotdelete'         => 'A megadott lapot vagy fájlt nem lehet törölni. (Talán már valaki más törölte.)',
 'badtitle'             => 'Hibás cím',
 'badtitletext'         => 'A kért oldal címe érvénytelen, üres, vagy rosszul hivatkozott nyelvközi vagy interwiki cím volt. Olyan karaktereket is tartalmazhatott, melyek a címekben nem használhatóak.',
-'perfdisabled'         => 'Elnézést, de ez a lehetőség átmenetileg nem elérhető, mert annyira lelassítja az adatbázist, hogy senki nem tudja a wikit használni.',
 'perfcached'           => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják:",
 'perfcachedts'         => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1.",
 'querypage-no-updates' => 'Az oldal frissítése jelenleg le van tiltva. Az itt szereplő adatok nem frissülnek azonnal.',
@@ -905,6 +904,7 @@ Mielőtt létrehoznád, nézd meg, miért került korábban törlésre és ellen
 hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az alábbi bejegyzések szerepelnek:",
 'deleted-notice'                   => 'Az oldal korábban törölve lett.
 A lap törlési naplója alább olvasható.',
+'deletelog-fulllog'                => 'Teljes napló megtekintése',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforásigényes értelmes sablon-hívás található.
@@ -1035,6 +1035,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'mergehistory-invalid-destination' => 'A céllapnak érvényes címet kell megadni.',
 'mergehistory-autocomment'         => 'Egyesítette a(z) [[:$1]] lapot a(z) [[:$2]] lappal',
 'mergehistory-comment'             => 'Egyesítette a(z) [[:$1]] lapot a(z) [[:$2]] lappal: $3',
+'mergehistory-same-destination'    => 'A forrás- és a céllap nem egyezhet meg',
 
 # Merge log
 'mergelog'           => 'Egyesítési napló',
@@ -1563,18 +1564,22 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'randomredirect-nopages' => 'Ebben a névtérben nincsenek átirányítások.',
 
 # Statistics
-'statistics'               => 'Statisztikák',
-'statistics-header-pages'  => 'Lapstatisztikák',
-'statistics-header-edits'  => 'Szerkesztési statisztikák',
-'statistics-header-users'  => 'Szerkesztői statisztikák',
-'statistics-pages'         => 'Lapok száma',
-'statistics-files'         => 'Feltöltött fájlok',
-'statistics-edits'         => 'Szerkesztések száma a(z) {{SITENAME}} indulása óta',
-'statistics-edits-average' => 'Szerkesztések átlagos száma laponként',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver számára végrehajtandó feladatok] száma',
-'statistics-users'         => 'Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]',
-'statistics-users-active'  => 'Aktív szerkesztők',
-'statistics-mostpopular'   => 'Legtöbbször megtekintett lapok',
+'statistics'                      => 'Statisztikák',
+'statistics-header-pages'         => 'Lapstatisztikák',
+'statistics-header-edits'         => 'Szerkesztési statisztikák',
+'statistics-header-views'         => 'Látogatási statisztikák',
+'statistics-header-users'         => 'Szerkesztői statisztikák',
+'statistics-articles'             => 'Tartalommal rendelkező lapok',
+'statistics-pages'                => 'Lapok száma',
+'statistics-pages-tooltip'        => 'A wikiben található összes lap, beleértve a vitalapokat és az átirányításokat is',
+'statistics-files'                => 'Feltöltött fájlok',
+'statistics-edits'                => 'Szerkesztések száma a(z) {{SITENAME}} indulása óta',
+'statistics-edits-average'        => 'Szerkesztések átlagos száma laponként',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver számára végrehajtandó feladatok] száma',
+'statistics-users'                => 'Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]',
+'statistics-users-active'         => 'Aktív szerkesztők',
+'statistics-users-active-tooltip' => 'Szerkesztők, akik csináltak valamit az előző hónapban',
+'statistics-mostpopular'          => 'Legtöbbször megtekintett lapok',
 
 'disambiguations'      => 'Egyértelműsítő lapok',
 'disambiguationspage'  => 'Template:Egyért',
@@ -1618,6 +1623,7 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'popularpages'            => 'Népszerű lapok',
 'wantedcategories'        => 'Keresett kategóriák',
 'wantedpages'             => 'Keresett lapok',
+'wantedfiles'             => 'Keresett fájlok',
 'mostlinked'              => 'Legtöbbet hivatkozott lapok',
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
 'mostlinkedtemplates'     => 'Legtöbbet hivatkozott sablonok',
@@ -1638,6 +1644,7 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'protectedtitlestext'     => 'A következő lapok védve vannak a létrehozás ellen',
 'protectedtitlesempty'    => 'Jelenleg nincsenek ilyen típusú védett lapok.',
 'listusers'               => 'Szerkesztők',
+'listusers-editsonly'     => 'Csak a szerkesztéssel rendelkező szerkesztők mutatása',
 'newpages'                => 'Új lapok',
 'newpages-username'       => 'Felhasználói név:',
 'ancientpages'            => 'Régóta nem változott szócikkek',
@@ -1667,8 +1674,8 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 'speciallogtitlelabel' => 'Cím:',
 'log'                  => 'Rendszernaplók',
 'all-logs-page'        => 'Rendszernaplók',
-'alllogstext'          => 'Az átnevezési, feltöltési, törlési, lapvédelmi, blokkolási, bürokrata és szerkesztőátnevezési naplók közös listája.
-Szűkítheted a listát a naplótípus, a műveletet végző szerkesztő, vagy az érintett oldal megadásával.',
+'alllogstext'          => 'A(z) {{SITENAME}} naplóinak összesített listája.
+A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vagy az érintett lap kiválasztásával (ez is kis- és nagybetűérzékeny) szűkítheted a találatok listáját.',
 'logempty'             => 'Nincs illeszkedő naplóbejegyzés.',
 'log-title-wildcard'   => 'Így kezdődő címek keresése',
 
@@ -1923,6 +1930,8 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'protect-expiry-indefinite'   => 'határozatlan',
 'protect-cascade'             => 'Kaszkád védelem – védjen le minden lapot, amit ez a lap tartalmaz.',
 'protect-cantedit'            => 'Nem változtathatod meg a lap védelmi szintjét, mert nincs jogod a szerkesztéséhez.',
+'protect-othertime'           => 'Más időtartam:',
+'protect-othertime-op'        => 'más időtartam',
 'protect-otherreason'         => 'További okok:',
 'protect-otherreason-op'      => 'további okok',
 'restriction-type'            => 'Engedély:',
@@ -1950,18 +1959,20 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'undeletepagetext'             => 'Az alábbi lapokat törölték, de még helyreállíthatók az archívumból
 (az archívumot időről időre üríthetik!).',
 'undelete-fieldset-title'      => 'Változatok helyreállítása',
-'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak nyomj a '''''Helyreállítás''''' gombra. A lap részleges helyreállításához jelöld be a kívánt szerkesztések melletti jelölőnégyzeteket, és nyomj a '''''Helyreállítás''''' gombra. Ha megnyomod a '''''Vissza''''' gombot, az törli a jelölőnégyzetek és az összefoglaló jelenlegi tartalmát.",
+'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak kattints a '''''Helyreállítás''''' gombra.
+A lap részleges helyreállításához jelöld be a kívánt változatok melletti jelölőnégyzeteket, és kattints a '''''Helyreállítás''''' gombra.
+Ha megnyomod a '''''Vissza''''' gombot, az törli a jelölőnégyzetek és az összefoglaló jelenlegi tartalmát.",
 'undeleterevisions'            => '$1 változat archiválva',
 'undeletehistory'              => 'Ha helyreállítasz egy lapot, azzal visszahozod laptörténet összes változatát.
 Ha lap törlése óta azonos néven már létrehoztak egy újabb lapot, a helyreállított
-változatok a laptörténet elejére kerülnek be, a jelenlegi lapváltozat módosítása nélkül.',
+változatok a laptörténet végére kerülnek be, a jelenlegi lapváltozat módosítása nélkül.',
 'undeleterevdel'               => 'A visszavonás nem hajtható végre, ha a legfrissebb lapváltozat részben
 törlését eredmémyezi. Ilyen esetekben törölnöd kell a legújabb törölt változatok kijelölését, vagy megszüntetni az elrejtésüket. Azon fájlváltozatok,
 melyek megtekintése a számodra nem engedélyezett, nem kerülnek visszaállításra.',
 'undeletehistorynoadmin'       => 'Ezt a szócikket törölték. A törlés okát alább az összegzésben
 láthatod, az oldalt a törlés előtt szerkesztő felhasználók részleteivel együtt. Ezeknek
 a törölt változatoknak a tényleges szövege csak az adminisztrátorok számára hozzáférhető.',
-'undelete-revision'            => '$1 változatának törlése kész ($2), $3:',
+'undelete-revision'            => '$1 $4, $5-kori $3 által törölt változata.',
 'undeleterevision-missing'     => 'Érvénytelen vagy hiányzó változat. Lehet, hogy rossz hivatkozásod van, ill. a
 változatot visszaállították vagy eltávolították az archívumból.',
 'undelete-nodiff'              => 'Nem található korábbi változat.',
@@ -2055,7 +2066,7 @@ $1',
 'ipbemailban'                     => 'E-mailt se tudjon küldeni',
 'ipbenableautoblock'              => 'A szerkesztő által használt IP-címek automatikus blokkolása',
 'ipbsubmit'                       => 'Blokkolás',
-'ipbother'                        => 'Más időtartam',
+'ipbother'                        => 'Más időtartam:',
 'ipboptions'                      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Más időtartam',
 'ipbotherreason'                  => 'Más/további ok:',
@@ -2116,6 +2127,7 @@ $1',
 'proxyblocksuccess'               => 'Kész.',
 'sorbsreason'                     => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán.',
 'sorbs_create_account_reason'     => 'Az IP-címed nyitott proxyként szerepel e webhely által használt DNSBL listán. Nem hozhatsz létre fiókot.',
+'cant-block-while-blocked'        => 'Nem blokkolhatsz más szerkesztőket, miközben te magad blokkolva vagy.',
 
 # Developer tools
 'lockdb'              => 'Adatbázis zárolása',
@@ -2367,7 +2379,8 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 
 # Spam protection
 'spamprotectiontitle' => 'Spamszűrő',
-'spamprotectiontext'  => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn. A hivatkozást lehet, hogy te helyezted el a cikkben, de lehet, hogy már korábban is ott volt. Csak úgy tudod a lapot elmenteni, ha eltávolítod belőle a problémás külső hivatkozást. Ehhez és a szerkesztéshez a böngésző „vissza” gombjával tudsz visszatérni.',
+'spamprotectiontext'  => 'Az általad elmenteni kívánt lap egyik külső hivatkozása fennakadt a spamszűrőn.
+Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalra hivatkozik.',
 'spamprotectionmatch' => 'A spamszűrőn az alábbi szöveg fennakadt: $1',
 'spambot_username'    => 'MediaWiki spam kitakarítása',
 'spam_reverting'      => 'Visszatérés a $1 lapra mutató hivatkozásokat nem tartalmazó utolsó változathoz',
@@ -2744,7 +2757,10 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'confirmemail_oncreate'    => 'A megerősítő kódot elküldtük az e-mail címedre.
 Ez a kód nem szükséges a belépéshez, de meg kell adnod,
 mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
-'confirmemail_sendfailed'  => 'Nem tudjuk elküldeni a megerősítéshez szükséges e-mailt. Kérjük, ellenőrizd a címet. $1',
+'confirmemail_sendfailed'  => 'Nem sikerült elküldeni a megerősítő e-mailt.
+Ellenőrízd, hogy nem írtál-e érvénytelen karaktert a címbe.
+
+A levelező üzenete: $1',
 'confirmemail_invalid'     => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',
 'confirmemail_needlogin'   => 'Meg kell $1 erősíteni az e-mail címedet.',
 'confirmemail_success'     => 'Az e-mail címed megerősítve. Most már beléphetsz a wikibe.',
@@ -2770,8 +2786,8 @@ A megerősítésre szánt kód felhasználhatósági idejének lejárata: $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki beillesztése le van tiltva]',
-'scarytranscludefailed'   => '[$1 sablonjának visszakeresése nem sikerült; sajnáljuk]',
-'scarytranscludetoolong'  => '[Túl hosszú az URL; sajnáljuk]',
+'scarytranscludefailed'   => '[$1 sablon letöltése sikertelen]',
+'scarytranscludetoolong'  => '[Az URL túl hosszú]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2783,7 +2799,7 @@ $1
 'trackbackdeleteok' => 'A visszakövetés törlése sikerült.',
 
 # Delete conflict
-'deletedwhileediting' => 'Figyelmeztetés: Ezt a lapot a szerkesztés megkezdése után törölték!',
+'deletedwhileediting' => "'''Figyelmeztetés:''' A lapot a szerkesztés megkezdése után törölték!",
 'confirmrecreate'     => "Miután elkezdted szerkeszteni, [[User:$1|$1]] ([[User talk:$1|vita]]) törölte ezt a lapot a következő indokkal:
 : ''$2''
 Kérlek erősítsd meg, hogy tényleg újra akarod-e írni a lapot.",

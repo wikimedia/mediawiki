@@ -639,7 +639,6 @@ Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme
 'cannotdelete'         => 'Nebylo možné smazat zvolenou stránku ani soubor. (Možná už byla smazána někým jiným.)',
 'badtitle'             => 'Neplatný název',
 'badtitletext'         => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
-'perfdisabled'         => 'Omlouváme se. Tato služba byla dočasně znepřístupněna, protože zpomalovala databázi natolik, že nikdo nemohl používat wiki.',
 'perfcached'           => 'Následující data jsou z cache a nemusí být plně aktuální:',
 'perfcachedts'         => 'Následující data jsou z cache, která byla naposledy aktualizována $1.',
 'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data nyní nebudou obnovována.',
@@ -928,6 +927,12 @@ Níže vidíte výpis z knihy smazaných stránek pro tuto stránku:",
 'deleted-notice'                   => 'Tato stránka byla smazána.
 Podrobnosti lze zjistit z níže uvedeného výpisu knihy smazaných stránek.',
 'deletelog-fulllog'                => 'Celá kniha smazaných stránek',
+'edit-hook-aborted'                => 'Editace byla zrušena přípojným bodem bez bližšího vysvětlení.',
+'edit-gone-missing'                => 'Stránku se nepodařilo aktualizovat.
+Zřejmě byla smazána.',
+'edit-conflict'                    => 'Editační konflikt.',
+'edit-no-change'                   => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
+'edit-already-exists'              => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -1599,7 +1604,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'statistics-articles'             => 'Obsahových stránek',
 'statistics-pages'                => 'Stránky',
 'statistics-pages-tooltip'        => 'Všechny stránky na wiki včetně diskusí, přesměrování apod.',
-'statistics-files'                => 'Nahrané soubory',
+'statistics-files'                => 'Načtené soubory',
 'statistics-edits'                => 'Počet editací od založení wiki',
 'statistics-edits-average'        => 'Průměrný počet editací na stránku',
 'statistics-views-total'          => 'Celkový počet zobrazení',
@@ -2084,6 +2089,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno v&nbsp;knize zablokování, seznamu probíhajících bloků a&nbsp;seznamu uživatelů',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
+'ipballowusertalk'                => 'Umožnit tomuto uživateli i při zablokování editovat svou diskusní stránku',
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
@@ -2124,6 +2130,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'block-log-flags-nocreate'        => 'vytváření účtů zablokováno',
 'block-log-flags-noautoblock'     => 'automatické blokování vypnuto',
 'block-log-flags-noemail'         => 'e-maily zablokovány',
+'block-log-flags-nousertalk'      => 'nemůže editovat svou diskusní stránku',
 'block-log-flags-angry-autoblock' => 'rozšířené automatické blokování zapnuto',
 'range_block_disabled'            => 'Blokování rozsahů IP adres je zakázáno.',
 'ipb_expiry_invalid'              => 'Neplatný čas vypršení.',
@@ -2350,6 +2357,8 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'chick.css'       => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kuře“ */',
 'simple.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Jednoduchý“ */',
 'modern.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
+'print.css'       => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
+'handheld.css'    => '/* Zde uvedené CSS bude ovlivňovat přenosná zařízení vycházející ze stylu nastaveného v proměnné $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/* Zde uvedený JavaScript bude použit pro všechny uživatele při načtení každé stránky.  */',

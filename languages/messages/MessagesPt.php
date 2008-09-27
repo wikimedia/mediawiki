@@ -480,7 +480,6 @@ Por favor, reporte este facto a um [[Special:ListUsers/sysop|administrador]], to
 'cannotdelete'         => 'Não foi possível eliminar a página ou ficheiro especificado (provavelmente por já ter sido eliminada por outra pessoa.)',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página requisitado é inválido, vazio, ou uma ligação incorrecta de inter-linguagem ou título inter-wiki. Pode ser que ele contenha um ou mais caracteres que não podem ser utilizados em títulos.',
-'perfdisabled'         => 'Desculpe-nos! Esta opção foi temporariamente desabilitada devido a tornar a base de dados lenta demais, a ponto de impossibilitar o funcionamento da wiki.',
 'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar actualizados.',
 'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram actualizados pela última vez a $1.',
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
@@ -789,6 +788,12 @@ Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
 'deletelog-fulllog'                => 'Ver registo completo',
+'edit-gone-missing'                => 'Não foi possível atualizar a página.
+Ela foi, aparentemente, eliminada.',
+'edit-conflict'                    => 'Conflito de edição.',
+'edit-no-change'                   => 'A sua edição foi ignorada, uma vez que o texto não sofreu alterações.',
+'edit-already-exists'              => 'Não foi possível criar uma nova página.
+Ela já existia.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Aviso: Esta página contém demasiadas chamadas custosas a funções do analisador "parser".
@@ -1962,6 +1967,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
 'ipbhidename'                     => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
 'ipbwatchuser'                    => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
+'ipballowusertalk'                => 'Permitir que este utilizador edite sua própria página de discussão mesmo estando bloqueado',
 'badipaddress'                    => 'Endereço de IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
@@ -2004,6 +2010,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'block-log-flags-nocreate'        => 'criação de contas desabilitada',
 'block-log-flags-noautoblock'     => 'bloqueio automático desabilitado',
 'block-log-flags-noemail'         => 'impedido de enviar e-mail',
+'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado activado',
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',

@@ -333,7 +333,6 @@ Jekk din mhix ir-raġuni, inti wisq probabli sibt problema fis-software. Jekk jo
 Jista' jkun li diġà tħassru minn xi ħaddieħor.",
 'badtitle'             => 'Titlu ħażin',
 'badtitletext'         => "It-Titlu tal-paġna rikjesta huwa invalidu, vojt, jew linjat ma' inter-lingwi jew titlu ta' inter-wiki żballjat.",
-'perfdisabled'         => "Skuzana! Din il-faċċilitá ġiet imneħija temporalment minħabba li qegħda jġiegħel id-database jmur aktar bil-mod sal-punt fejn ħadd ma jista' juża l-wiki.",
 'perfcached'           => "L-informazzjoni li jmiss huwa kopja ''cache'' u jista' ma jkunx aġġornat.",
 'perfcachedts'         => "Id-dati segwenti huma estratt ta' kopja cache tad-database. L-aħħar aġġornament: $1.",
 'querypage-no-updates' => 'Aġġornamenti għal din il-paġna huma temporalment sospesi. L-Informazzjoni hawnhekk preżentament mhux qiegħed jiġi aġġornat.',

@@ -518,7 +518,6 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'cannotdelete'         => 'Die gewählte Seite kann nicht gelöscht werden. Möglicherweise wurde sie bereits gelöscht.',
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
-'perfdisabled'         => "'''Entschuldigung!''' Diese Funktion wurde wegen Überlastung des Servers vorübergehend deaktiviert.",
 'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
 'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letztes Update: $1',
 'querypage-no-updates' => "'''Die Aktualisierungsfunktion für diese Seite ist zur Zeit deaktiviert. Die Daten werden bis auf weiteres nicht erneuert.'''",
@@ -610,7 +609,7 @@ Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt 
 'passwordremindertitle'      => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
-Das automatisch generierte Passwort für Benutzer $2 lautet nun: $3
+Das automatisch generierte Passwort für Benutzer "$2" lautet nun: $3
 
 Du solltest dich jetzt anmelden und das Passwort ändern: {{fullurl:{{ns:special}}}}:Userlogin
 
@@ -824,6 +823,12 @@ Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspr
 Zu deiner Information folgt das Lösch-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'deleted-notice'                   => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch-Logbuch für diese Seite.',
 'deletelog-fulllog'                => 'Vollständiges Lösch-Logbuch',
+'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
+'edit-gone-missing'                => 'Die Seite konnt nicht aktualisiert werden.
+Sie wurde anscheinend gelöscht.',
+'edit-conflict'                    => 'Bearbeitungskonflikt.',
+'edit-no-change'                   => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
+'edit-already-exists'              => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
@@ -1858,8 +1863,8 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-dropdown'            => '*Allgemeine Schutzgründe
 ** Weblink-Spam
 ** Editwar
-** Oft eingebundene Vorlage
-** Seite mit höher Besucherzahl',
+** Häufig eingebundene Vorlage
+** Seite mit hoher Besucherzahl',
 'protect-edit-reasonlist'     => 'Schutzgründe bearbeiten',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhöhe',
@@ -2000,6 +2005,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
 'ipbhidename'                     => 'Benutzername im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
+'ipballowusertalk'                => 'Benutzer darf eigene Diskussionsseiten während seiner Sperre bearbeiten',
 'badipaddress'                    => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'               => 'Sperre erfolgreich',
 'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
@@ -2042,6 +2048,7 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'block-log-flags-nocreate'        => 'Erstellung von Benutzerkonten gesperrt',
 'block-log-flags-noautoblock'     => 'Autoblock deaktiviert',
 'block-log-flags-noemail'         => 'E-Mail-Versand gesperrt',
+'block-log-flags-nousertalk'      => 'darf eigene Diskussionsseite nicht bearbeiten',
 'block-log-flags-angry-autoblock' => 'erweiterter Autoblock aktiviert',
 'range_block_disabled'            => 'Die Möglichkeit, ganze Adressräume zu sperren, ist nicht aktiviert.',
 'ipb_expiry_invalid'              => 'Die eingegebene Dauer ist ungültig.',
@@ -2440,6 +2447,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-jpeginterchangeformatlength' => 'Größe der JPEG-Daten in Bytes',
 'exif-transferfunction'            => 'Übertragungsfunktion',
 'exif-whitepoint'                  => 'Manuell mit Messung',
+'exif-primarychromaticities'       => 'Primäre Farbart',
 'exif-ycbcrcoefficients'           => 'YCbCr-Koeffizienten',
 'exif-referenceblackwhite'         => 'Schwarz/Weiß-Referenzpunkte',
 'exif-datetime'                    => 'Speicherzeitpunkt',
@@ -2483,6 +2491,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-focallength'                 => 'Brennweite',
 'exif-subjectarea'                 => 'Bereich',
 'exif-flashenergy'                 => 'Blitzstärke',
+'exif-spatialfrequencyresponse'    => 'Spatial-Frequenz',
 'exif-focalplanexresolution'       => 'Sensorauflösung horizontal',
 'exif-focalplaneyresolution'       => 'Sensorauflösung vertikal',
 'exif-focalplaneresolutionunit'    => 'Einheit der Sensorauflösung',

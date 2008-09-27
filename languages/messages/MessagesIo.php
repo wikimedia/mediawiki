@@ -264,7 +264,6 @@ evaluo pri kande eventos la desblokuso',
 'badtitle'            => 'Nekorekta titulo',
 'badtitletext'        => 'La solicitita pagino esas nevalida, vakua od esas
 nekorekta interlinguale od interwikale ligilo.',
-'perfdisabled'        => 'Pardonez! Ica traito desaktivigesis temporale pro olu lentigas la datumaro til facar {{SITENAME}} neuzebla.',
 'perfcached'          => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe.',
 'viewsource'          => 'Vidar *font-kodo',
 'viewsourcefor'       => 'de $1',

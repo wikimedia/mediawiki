@@ -461,7 +461,6 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'cannotdelete'         => 'Njejo móžno wuzwólony bok abo dataju wulašowaś. Snaź jo to južo něchten drugi cynił.',
 'badtitle'             => 'Njepłaśecy nadpis',
 'badtitletext'         => 'Nadpis pominanego boka jo był njepłaśecy, prozny abo njekorektny nadpis, póchadajucy z mjazyrěcnego abo interwikijowego wótkaza. Snaź wopśimjejo jadno abo wěcej znamuškow, kótarež njejsu w nadpisach dowólone.',
-'perfdisabled'         => "'''Wódaj!''' Toś ta funkcija jo wochylu znjemóžnjona, dokulaž su serwery datoweje banki pśeliš wobśěžowane.",
 'perfcached'           => 'Toś te daty póchadaju z pufrowaka a mógu toś njeaktualne byś.',
 'perfcachedts'         => 'Toś te daty póchadaju z pufrowaka, slědna aktualizacija: $1',
 'querypage-no-updates' => 'Aktualizěrowanje toś togo boka jo se znjemóžniło. Daty how se nejžpjerwjej raz njeaktualizěruju.',
@@ -547,11 +546,10 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'passwordtooshort'           => 'Twójo gronidło jo njepłaśiwe abo pśeliš krotke. Wóno dej nanejmjenjej {{PLURAL:$|1 pismik|$1 pismika|$1 pismiki|$1 pismikow}} měś a njesmějo se z wužywarskim mjenim makaś.',
 'mailmypassword'             => 'Nowe gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
-'passwordremindertext'       => 'Něchten (nejskerjej ty z adresy $1) jo se wupšosył, aby jomu se pśipósłało nowe šćitne gronidło za bok{{SITENAME}} ($4).
-Šćitne gronidło za wužywarja "$2" jo něnto "$3".
-Ty móžoš se něnto pśizjawiś a swójo šćitne gronidło pśeměniś.
+'passwordremindertext'       => 'Něchten z adresu $1 (nejskerjej ty) jo se wupšosył nowe gronidło za {{SITENAME}} ($4).
+Nachylne gronidło za wužywarja "$2" jo se napórało a jo něnto "$3". Jolic jo to twój wótglěd było, musyš se něnto pśijawiś a wubraś nowe gronidło.
 
-Jolic jo něchten drugi wó nowe šćitne gronidło pšosył, abo sy se zasej domarkował a njocoš jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
+Jolic jo něchten drugi wó nowe šćitne gronidło pšosył abo ty sy se zasej na swójo gronidło dopomnjeł  a njocoš wěcej jo změniś, móžoš toś tu powěsć ignorěrowaś a swójo stare gronidło dalej wužywaś.',
 'noemail'                    => 'Wužywaŕ „$1“ njejo e-mailowu adresu zapódał.',
 'passwordsent'               => 'Nowe šćitne gronidło jo se wótpósłało na e-mailowu adresu wužywarja „$1“.
 Pšosym pśizjaw se zasej, gaž jo dostanjoš.',
@@ -740,6 +738,15 @@ Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1',
 Pšosym pśespytuj kradosćiwje, lic wótpowědujo dalšne wótnowjenje bokow směrnicam.
 Aby se mógał informěrowaś, slědujo how wulašowanski log-zapis, w kótaremž namakajoš teke pśicyny wulašowanja.",
 'deleted-notice'                   => 'Toś ten bok jo se wulašował. Protokol wulašowanjow za toś ten bok podawa se dołojce ako referenca.',
+'deletelog-fulllog'                => 'Dopołny protokol se wobglědaś',
+'edit-hook-aborted'                => 'Wobźěłanje pśez kokulu pśetergnjony.
+Njejo žedne wujasnjenje.',
+'edit-gone-missing'                => 'Njejo móžno było bok aktualizěrowaś.
+Zda sem až jo wulašowany.',
+'edit-conflict'                    => 'Wobźěłański konflikt.',
+'edit-no-change'                   => 'Wašo wobźěłanje jo se ignorěrowało, dokulaž tekst njejo se změnił.',
+'edit-already-exists'              => 'Njejo móžno było nowy bok napóraś.
+Eksistujo južo.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.
@@ -865,6 +872,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergehistory-invalid-destination' => 'Celowy bok musy měś dobre nadpismo.',
 'mergehistory-autocomment'         => '„[[:$1]]“ do „[[:$2]]“ zjadnośeny',
 'mergehistory-comment'             => '„[[:$1]]“ do „[[:$2]]“ zjadnośeny: $3',
+'mergehistory-same-destination'    => 'Žrědłowy bok a celowy bok njesmějotej identiskej byś',
 
 # Merge log
 'mergelog'           => 'Protokol zjadnośenja',
@@ -1399,22 +1407,24 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'randomredirect-nopages' => 'W toś tom mjenjowem rumje njeeksistěruju žedne dalejpósrědnjenja.',
 
 # Statistics
-'statistics'               => 'Statistika',
-'statistics-header-pages'  => 'Statistika bokow',
-'statistics-header-edits'  => 'Statistika změnow',
-'statistics-header-views'  => 'Statistiku zwobrazniś',
-'statistics-header-users'  => 'Statistika wužywarjow',
-'statistics-articles'      => 'Wopśimjeśowe boki',
-'statistics-pages'         => 'Boki',
-'statistics-files'         => 'Nagrate dataje',
-'statistics-edits'         => 'Změny bokow wót załoženja {{SITENAME}}',
-'statistics-edits-average' => 'Změny na bok w pśerězku',
-'statistics-views-total'   => 'Zwobraznjenja dogromady',
-'statistics-views-peredit' => 'Zwobraznjenja na změnu',
-'statistics-jobqueue'      => 'Dłujkosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
-'statistics-users'         => 'Zregistrěrowane [[Special:ListUsers|wužywarje]]',
-'statistics-users-active'  => 'Aktiwne wužywarje',
-'statistics-mostpopular'   => 'Nejwěcej woglědane boki',
+'statistics'                      => 'Statistika',
+'statistics-header-pages'         => 'Statistika bokow',
+'statistics-header-edits'         => 'Statistika změnow',
+'statistics-header-views'         => 'Statistiku zwobrazniś',
+'statistics-header-users'         => 'Statistika wužywarjow',
+'statistics-articles'             => 'Wopśimjeśowe boki',
+'statistics-pages'                => 'Boki',
+'statistics-pages-tooltip'        => 'Wše boki w toś tom wikiju, inkluziwnje diskusijne boki, dalejpósrědnjenja atd.',
+'statistics-files'                => 'Nagrate dataje',
+'statistics-edits'                => 'Změny bokow wót załoženja {{SITENAME}}',
+'statistics-edits-average'        => 'Změny na bok w pśerězku',
+'statistics-views-total'          => 'Zwobraznjenja dogromady',
+'statistics-views-peredit'        => 'Zwobraznjenja na změnu',
+'statistics-jobqueue'             => 'Dłujkosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'                => 'Zregistrěrowane [[Special:ListUsers|wužywarje]]',
+'statistics-users-active'         => 'Aktiwne wužywarje',
+'statistics-users-active-tooltip' => 'Wužywarje, kótarež su w zachadnym mjasecu aktiwne byli',
+'statistics-mostpopular'          => 'Nejwěcej woglědane boki',
 
 'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
 'disambiguationspage'  => 'Template:Rozjasnjenje zapśimjeśow',
@@ -1757,6 +1767,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 ** Ekscesiwne spamowanje
 ** Wobźěłańska wójna
 ** Bok z wusokim datowym wobchadom',
+'protect-edit-reasonlist'     => 'Šćitne pśicyny wobźěłaś',
 'restriction-type'            => 'Status šćita',
 'restriction-level'           => 'Rownina šćita:',
 'minimum-size'                => 'Minimalna wjelikosć',
@@ -1889,6 +1900,7 @@ $1',
 'ipbotherreason'                  => 'Hynakša/dalšna pśicyna:',
 'ipbhidename'                     => 'Wužywarske mě z protokola blokěrowanjow, lisćiny aktiwnych blokěrowanjow a lisćiny wužywarjow schowaś',
 'ipbwatchuser'                    => 'Wužywarski a diskusijny bok toś togo wužywarja wobglědowaś',
+'ipballowusertalk'                => 'Toś tomu wužywarjeju dowóliś swój diskusijny bok wobźěłaś, mjazytm až jo blokěrowany.',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
 'blockipsuccesstext'              => 'Wužywaŕ/IP-adresa [[Special:Contributions/$1|$1]] jo se blokěrował(a).<br />
@@ -1931,6 +1943,7 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'block-log-flags-nocreate'        => 'stwórjenje konta jo se znjemóžniło',
 'block-log-flags-noautoblock'     => 'awtomatiske blokěrowanje jo deaktiwěrowane',
 'block-log-flags-noemail'         => 'e-mailowanje jo blokěrowane',
+'block-log-flags-nousertalk'      => 'njejo móžno swójski diskusijny bok wobźěłaś',
 'block-log-flags-angry-autoblock' => 'pólěpšone awtomatsike blokěrowanje zmóžnjone',
 'range_block_disabled'            => 'Móžnosć administratora, blokěrowaś cełe adresowe rumy, njejo aktiwěrowana.',
 'ipb_expiry_invalid'              => 'Pódany cas jo njepłaśecy.',
@@ -1946,6 +1959,7 @@ Na boce [[Special:IPBlockList|Lisćina blokěrowanych IP-adresow a wužywarskich
 'proxyblocksuccess'               => 'Gótowe.',
 'sorbsreason'                     => 'Twója IP-adresa jo w DNSBL we {{GRAMMAR:lokatiw|{{SITENAME}}}} zapisana ako wócynjony proxy.',
 'sorbs_create_account_reason'     => 'Twója IP-adresa jo w DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} ako wócynjony proxy zapisana. Njejo móžno, nowe wužywarske konta załožowaś.',
+'cant-block-while-blocked'        => 'Njesmějoš žednych drugich wužywarjow blokěrowaś, mjaztym až ty sy blokěrowany.',
 
 # Developer tools
 'lockdb'              => 'Datowu banku zamknuś',

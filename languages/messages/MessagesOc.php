@@ -544,7 +544,6 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'cannotdelete'         => 'Impossible de suprimir la pagina o lo fichièr indicat. (Benlèu la supression ja es estada efectuada per qualqu’un d’autre.)',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
-'perfdisabled'         => 'O planhèm ! Aquesta foncionalitat es temporàriament desactivada perque alentís la banca de donadas a un punt tal que degun pòt pas mai utilizar lo wiki.',
 'perfcached'           => 'Aquò es una version en amagatal e benlèu es pas a jorn.',
 'perfcachedts'         => 'Las donadas seguentas son en amagatal, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
@@ -637,12 +636,13 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:Userlogin/signup|creat
 Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòtre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
-'passwordremindertext'       => 'Qualqu\'un (probablament vos) que son adreça IP es $1 a demandat qu\'un senhal novèl vos siá mandat per vòstre accès a {{SITENAME}} ($4).
-Lo senhal de l\'utilizaire "$2" es a present "$3".
+'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl per {{SITENAME}} ($4).
+Un senhal temporari es estat creat per
+l’utilizaire « $2 » e es « $3 ». S'aquò èra vòstra intencion, vos caldrà
+vos connectar e causir un senhal novèl.
 
-Vos conselham de vos connectar e de modificar aqueste senhal tre que possible.
-
-Se sètz pas l’autor d\'aquesta demanda, o se vos remembratz a present de vòstre senhal ancian e que desiratz pas pus ne cambiar, podètz ignorar aqueste messatge e contunhar d\'utilizar vòstre senhal ancian.',
+Se sètz pas l’autor d'aquesta demanda, o se vos remembratz ara
+de vòstre senhal ancian e que desiratz pas mai ne cambiar, podètz ignorar aqueste messatge e contunhar d'utilizar vòstre senhal ancian.",
 'noemail'                    => "Cap d'adreça electronica es pas estada enregistrada per l'utilizaire « $1 ».",
 'passwordsent'               => "Un senhal novèl es estat mandat a l'adreça electronica de l'utilizaire « $1 ».
 Identificatz-vos tre que l'aurètz recebut.",
@@ -671,7 +671,7 @@ Ignoratz aqueste messatge se aqueste compte es estat creat per error.",
 # Password reset dialog
 'resetpass'               => 'Remesa a zèro del senhal',
 'resetpass_announce'      => 'Vos sètz enregistrat amb un senhal temporari mandat per corrièr electronic. Per acabar l’enregistrament, vos cal picar un senhal novèl aicí :',
-'resetpass_text'          => '<!-- Apondís de tèxt aicí -->',
+'resetpass_text'          => '<!-- Apondètz lo tèxt aicí -->',
 'resetpass_header'        => 'Remesa a zèro del senhal',
 'resetpass_submit'        => 'Cambiar lo senhal e s’enregistrar',
 'resetpass_success'       => 'Vòstre senhal es estat cambiat amb succès ! Enregistrament en cors...',
@@ -837,6 +837,7 @@ Podètz tonar en rèire e modificar una pagina existenta, [[Special:UserLogin|vo
 Demandatz-vos se es vertadièrament apropriat de la tornar crear en vos referissent al jornal de las supressions afichat çaijós :",
 'deleted-notice'                   => "Aquesta pagina es estat suprimida.
 L'istoric de las supressions es afichat çaijós coma referéncia.",
+'deletelog-fulllog'                => "Veire l'istoric complet",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Atencion : Aquesta pagina conten tròp d’apèls dispendioses de foncions del parser.
@@ -963,6 +964,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'mergehistory-invalid-destination' => 'La pagina de destinacion deu aver un títol valid.',
 'mergehistory-autocomment'         => '[[:$1]] fusionat amb [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] fusionat amb [[:$2]] : $3',
+'mergehistory-same-destination'    => "Las paginas d'origina e de destinacion pòdon pas èsser la meteissa",
 
 # Merge log
 'mergelog'           => 'Istoric de las fusions',
@@ -1503,22 +1505,24 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'randomredirect-nopages' => 'I a pas cap de redireccion dins aqueste espaci de nom.',
 
 # Statistics
-'statistics'               => 'Estatisticas',
-'statistics-header-pages'  => 'Estatisticas de las paginas',
-'statistics-header-edits'  => 'Estatisticas sus las edicions',
-'statistics-header-views'  => 'Estatisticas sus las visitas',
-'statistics-header-users'  => "Estatisticas d'utilizaire",
-'statistics-articles'      => 'Paginas de contengut',
-'statistics-pages'         => 'Paginas',
-'statistics-files'         => 'Fichièrs importats',
-'statistics-edits'         => 'Modificacions de paginas dempuèi que {{SITENAME}} foguèt installat',
-'statistics-edits-average' => 'Modificacions mejanas per pagina',
-'statistics-views-total'   => 'Visitas totalas',
-'statistics-views-peredit' => 'Visitas per modificacions',
-'statistics-jobqueue'      => 'Longor de la [http://www.mediawiki.org/wiki/Manual:Job_queue lista d’espèra de tractament]',
-'statistics-users'         => '[[Special:ListUsers|Utilizaires]] enregistrats',
-'statistics-users-active'  => 'Utilizaires actius',
-'statistics-mostpopular'   => 'Paginas mai consultadas',
+'statistics'                      => 'Estatisticas',
+'statistics-header-pages'         => 'Estatisticas de las paginas',
+'statistics-header-edits'         => 'Estatisticas sus las edicions',
+'statistics-header-views'         => 'Estatisticas sus las visitas',
+'statistics-header-users'         => "Estatisticas d'utilizaire",
+'statistics-articles'             => 'Paginas de contengut',
+'statistics-pages'                => 'Paginas',
+'statistics-pages-tooltip'        => 'Totas las paginas del wiki, inclusas las paginas de discussion, las redireccions, ...',
+'statistics-files'                => 'Fichièrs importats',
+'statistics-edits'                => 'Modificacions de paginas dempuèi que {{SITENAME}} foguèt installat',
+'statistics-edits-average'        => 'Modificacions mejanas per pagina',
+'statistics-views-total'          => 'Visitas totalas',
+'statistics-views-peredit'        => 'Visitas per modificacions',
+'statistics-jobqueue'             => 'Longor de la [http://www.mediawiki.org/wiki/Manual:Job_queue lista d’espèra de tractament]',
+'statistics-users'                => '[[Special:ListUsers|Utilizaires]] enregistrats',
+'statistics-users-active'         => 'Utilizaires actius',
+'statistics-users-active-tooltip' => "Nombre d'utilizaires qu'an fach al mens una accion durant lo darrièr mes",
+'statistics-mostpopular'          => 'Paginas mai consultadas',
 
 'disambiguations'      => "Paginas d'omonimia",
 'disambiguationspage'  => 'Template:Omonimia',
@@ -1873,6 +1877,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 ** Spam excessiu
 ** Guèrra d'edicion
 ** Pagina de trafic fòrt",
+'protect-edit-reasonlist'     => 'Modificar las rasons de proteccion',
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Nivèl de restriccion :',
 'minimum-size'                => 'Talha minimoma',
@@ -2067,6 +2072,7 @@ La rason balhada per $1 es : « $2 ».',
 'sorbsreason'                     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',
+'cant-block-while-blocked'        => "Podètz pas blocar d'autres utilizaires pendent que sètz blocat(ada).",
 
 # Developer tools
 'lockdb'              => 'Varrolhar la banca',
@@ -2137,7 +2143,7 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'delete_and_move_confirm' => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
 'delete_and_move_reason'  => 'Pagina suprimida per permetre un cambiament de nom',
 'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
-'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas vèrs aqueste espaci de noms.',
+'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas cap a aqueste espaci de noms.',
 'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge vèrs un espaci de nomenatge que siá pas un imatge.',
 'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
 'imageinvalidfilename'    => 'Lo nom del fichièr cibla es incorrècte',
@@ -2195,7 +2201,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'importfailed'               => 'Fracàs de l’impòrt : $1',
 'importunknownsource'        => 'Tipe de la font d’impòrt desconegut',
 'importcantopen'             => "Impossible de dobrir lo fichièr d'importar",
-'importbadinterwiki'         => 'Marrit ligam interwiki',
+'importbadinterwiki'         => 'Ligam interwiki marrit',
 'importnotext'               => 'Void o sens tèxt',
 'importsuccess'              => "L'impòrt a capitat !",
 'importhistoryconflict'      => "I a un conflicte dins l'istoric de las versions (aquesta pagina a pogut èsser importada de per abans).",

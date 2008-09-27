@@ -324,7 +324,6 @@ Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan
 'cannotdelete'         => 'Farug xët walla dencukaay bi nga joxoñ antuwul. (xayna far gi am na keneen ku ko def ba noppi.)',
 'badtitle'             => 'Koj bu baaxul',
 'badtitletext'         => 'Kojug xët wi nga laaj baaxul, amul dara walla  day di kojjug diggantelàkk walla diggantesémb yu seen lonkoo baaxul. Xayna it dafa am benn walla ay araf yu ñu manuta jëfandikoo cib koj.',
-'perfdisabled'         => 'Jéggalu! bii jëfukaay dañ kaa doxadilandi ndaxte day yeexal lool dattub njoxe bi, ba tax kenn manatul a jëfandikoo bi wiki.',
 'perfcached'           => 'Lii ab duppitu ndencitu sumb mi la, kon xéj-na beesul.',
 'perfcachedts'         => 'Njoxe yii di toftal ab duppitu ndencitu dattub njoxe bi la, te yeesalam gu mujj mi ngi am ci: $1',
 'querypage-no-updates' => 'Yeesal yu xët wii dañ leen a doxadil fi mu ne nii. Xibaar yi ne fii ci suuf beesuñu.',

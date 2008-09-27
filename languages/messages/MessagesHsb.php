@@ -431,7 +431,6 @@ Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpow�
 'cannotdelete'         => 'Njeje móžno podatu stronu abo dataju wušmórnyć. (Po zdaću je to hižo něchtó druhi činił.)',
 'badtitle'             => 'Wopačny titul',
 'badtitletext'         => 'Požadane mjeno strony běše njepłaćiwy, prózdny abo njekorektny titul z mjezyrěcneho abo interwikijoweho wotkaza. Snano wobsahuje jedne znamješko abo wjacore znamješka, kotrež w titulach dowolene njejsu.',
-'perfdisabled'         => 'Wodaj! Tuta funkcija bu nachwilnje znjemóžnjena, dokelž datowu banku tak spomaluje, zo hižo nichtó wiki wužiwać njemóže.',
 'perfcached'           => 'Sćěhowace daty z pufrowaka pochadźeja a snano cyle aktualne njejsu.',
 'perfcachedts'         => 'Sćěhowace daty su z pufrowaka a buchu $1 posledni raz zaktualizowane.',
 'querypage-no-updates' => "'''Aktualizacija za tutu stronu je tuchwilu znjemóžnjena. Daty so hač na dalše njewobnowjeja.'''",
@@ -522,10 +521,9 @@ Prošu spytaj hišće raz!',
 'passwordtooshort'           => 'Hesło je překrótke. Dyrbi znajmjeńša $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} měć.',
 'mailmypassword'             => 'Nowe hesło e-mejlować',
 'passwordremindertitle'      => 'Skedźbnjenje na hesło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
-'passwordremindertext'       => 'Něchtó (najskerje ty, z IP-adresu $1) je wo nowe hesło za přizjewjenje pola {{GRAMMAR:genitiw|{{SITENAME}}}} ($4) prosył. Hesło za wužiwarja „$2” je nětko $3.
-Ty měł so nětko přizjewić a swoje hesło změnić.
+'passwordremindertext'       => 'Něchtó z IP-adresu $1 (najskerje ty) je wo nowe hesło za přizjewjenje za {{GRAMMAR:Akuzatiw|{{SITENAME}}}} ($4) prosył. Nachwilne hesło za wužiwarja "$2" je so wutworiło a je nětko "$3". Jeli je to twój wotpohlad było dyrbiš so nětko přizjewić a now hesło wubrać.
 
-Jeli něchto druhi hač ty wo nowe hesło prosył, abo sy so zaso na njo dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
+Jeli něchtó druhi wo nowe hesło prosył abo ty sy so zaso na swoje hesło dopomnił a hižo nochceš je změnić, móžeš tutu powěsć ignorować a swoje stare hesło dale wužiwać.',
 'noemail'                    => 'Za wužiwarja $1 žana e-mejlowa adresa podata njeje.',
 'passwordsent'               => 'Nowe hesło bu na e-mejlowu adresu zregistrowanu za wužiwarja „$1” pósłane.
 Prošu přizjew so znowa, po tym zo sy je přijał.',
@@ -710,6 +708,15 @@ Administrator, kiž je ju zawrjena, je tutu přičinu podał: $1',
 Prošu přepruwuj, hač je znowawutworjenje woprawnjena a wotpowěduje prawidłam projekta.
 Tu slěduje wujimk z protokola wušmórnjenjow z přičinu za předawše wušmórnjenje:",
 'deleted-notice'                   => 'Tuta strona bu wušmórnjena. Protokol wušmórnjenjow za tutu stronu so deleka jako referenca podawa.',
+'deletelog-fulllog'                => 'Dospołny protokol wobhladać',
+'edit-hook-aborted'                => 'Wobdźěłanje přez hoku přetorhnjene.
+Njeje žane wujasnjenje podała.',
+'edit-gone-missing'                => 'Strona njeje so aktualizować dała.
+Zda so, zo je hîžo wušmórnjena.',
+'edit-conflict'                    => 'Wobdźěłanski konflikt.',
+'edit-no-change'                   => 'Waše wobdźěłanje bu ignorowane, dokelž tekst njebu zm,ěnjeny.',
+'edit-already-exists'              => 'Njebě móžno nowu stronu wutworić.
+Eksistuje hižo.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow.
@@ -831,6 +838,7 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 'mergehistory-invalid-destination' => 'Cilowa strona dyrbi płaćiwy titul być.',
 'mergehistory-autocomment'         => '[[:$1]] z [[:$2]] zjednoćeny',
 'mergehistory-comment'             => '[[:$1]] z [[:$2]] zjednoćeny: $3',
+'mergehistory-same-destination'    => 'Žórłowa a cilowa strona njesmějetej identiskej być',
 
 # Merge log
 'mergelog'           => 'Protokol zjednoćenja',
@@ -1365,22 +1373,24 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'randomredirect-nopages' => 'Žane daleposrědkowanja w tutym mjenowym rumje.',
 
 # Statistics
-'statistics'               => 'Statistika',
-'statistics-header-pages'  => 'Statistika stronow',
-'statistics-header-edits'  => 'Wobdźěłanska statistika',
-'statistics-header-views'  => 'Statistiku wobhladać',
-'statistics-header-users'  => 'Statistika wužiwarjow',
-'statistics-articles'      => 'Wobsahowe strony',
-'statistics-pages'         => 'Strony',
-'statistics-files'         => 'Nahrate dataje',
-'statistics-edits'         => 'Změny stronow wot załoženja {{SITENAME}}',
-'statistics-edits-average' => 'Změny na stronu w přerězku',
-'statistics-views-total'   => 'Zwobraznjenja dohromady',
-'statistics-views-peredit' => 'Zwobraznjenja na změnu',
-'statistics-jobqueue'      => 'Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
-'statistics-users'         => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
-'statistics-users-active'  => 'Aktiwni wužiwarjo',
-'statistics-mostpopular'   => 'Najhusćišo wopytowane strony',
+'statistics'                      => 'Statistika',
+'statistics-header-pages'         => 'Statistika stronow',
+'statistics-header-edits'         => 'Wobdźěłanska statistika',
+'statistics-header-views'         => 'Statistiku wobhladać',
+'statistics-header-users'         => 'Statistika wužiwarjow',
+'statistics-articles'             => 'Wobsahowe strony',
+'statistics-pages'                => 'Strony',
+'statistics-pages-tooltip'        => 'Wšě strony we wikiju, inkluziwnje diskusijnych stronow, daleposrědkowanja atd.',
+'statistics-files'                => 'Nahrate dataje',
+'statistics-edits'                => 'Změny stronow wot załoženja {{SITENAME}}',
+'statistics-edits-average'        => 'Změny na stronu w přerězku',
+'statistics-views-total'          => 'Zwobraznjenja dohromady',
+'statistics-views-peredit'        => 'Zwobraznjenja na změnu',
+'statistics-jobqueue'             => 'Dołhosć [http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]',
+'statistics-users'                => 'Zregistrowani [[Special:ListUsers|wužiwarjo]]',
+'statistics-users-active'         => 'Aktiwni wužiwarjo',
+'statistics-users-active-tooltip' => 'Wužiwarjo, kotřiž su w zańdźenym měsaću aktiwni byli',
+'statistics-mostpopular'          => 'Najhusćišo wopytowane strony',
 
 'disambiguations'      => 'Rozjasnjenja wjacezmyslnosće',
 'disambiguationspage'  => 'Template:Wjacezmyslnosć',
@@ -1725,6 +1735,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 ** Ekscesiwne spamowanje
 ** Wobdźěłanska wójna
 ** Strona z jara wjele změnami',
+'protect-edit-reasonlist'     => 'Škitowe přičiny wobdźěłać',
 'restriction-type'            => 'Škitowy status',
 'restriction-level'           => 'Runina škita:',
 'minimum-size'                => 'Minimalna wulkosć:',
@@ -1856,6 +1867,7 @@ $1',
 'ipbotherreason'                  => 'Druha/přidatna přičina:',
 'ipbhidename'                     => 'Wužiwarske mjeno/IP-adresu w protokolu zablokowanjow, w lisćinje aktiwnych zablokowanjow a w zapisu wužiwarjow schować.',
 'ipbwatchuser'                    => 'Wužiwarsku a diskusijnu stronu tutoho wužiwarja wobkedźbować',
+'ipballowusertalk'                => 'Tutomu wužiwarjej dowolić swójsku diskusijnu stronu wobdźěłać, mjeztym zo je blokowany',
 'badipaddress'                    => 'Njepłaćiwa IP-adresa',
 'blockipsuccesssub'               => 'Zablokowanje wuspěšne',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu zablokowany.
@@ -1896,6 +1908,7 @@ $1',
 'block-log-flags-nocreate'        => 'wutworjenje wužiwarskich kontow znjemóžnjene',
 'block-log-flags-noautoblock'     => 'awtomatiske zablokowanje znjemóžnjene',
 'block-log-flags-noemail'         => 'wotpósłanje mejlkow bu znjemóžnjene',
+'block-log-flags-nousertalk'      => 'njeje móžno swójsku diskusijnu stronu wobdźěłać',
 'block-log-flags-angry-autoblock' => 'polěpšene awtomatiske blokowanje zmóžnjene',
 'range_block_disabled'            => 'Kmanosć administratorow, cyłe wobłuki IP-adresow blokować, je znjemóžnjena.',
 'ipb_expiry_invalid'              => 'Čas spadnjenja je njepłaćiwy.',
@@ -1912,6 +1925,7 @@ $1',
 'sorbs'                           => 'SORBS DNSbl',
 'sorbsreason'                     => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana.',
 'sorbs_create_account_reason'     => 'Twoja IP-adresa je jako wotewrjeny proksy na DNSBL {{GRAMMAR:genitiw|{{SITENAME}}}} zapisana. Njemóžeš konto wutworić.',
+'cant-block-while-blocked'        => 'Njemóžeš druhich wužiwarjow blokować, mjeztym zo ty sy zablokowany.',
 
 # Developer tools
 'lockdb'              => 'Datowu banku zamknyć',

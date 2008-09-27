@@ -8,6 +8,7 @@
  * @author Irwangatot
  * @author IvanLanin
  * @author Meursault2004
+ * @author Remember the dot
  * @author Rex
  * @author לערי ריינהארט
  */
@@ -540,7 +541,7 @@ $messages = array(
 'red-link-title'          => '$1 (belum dibuat)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artikel',
+'nstab-main'      => 'Halaman',
 'nstab-user'      => 'Pengguna',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Istimewa',
@@ -595,7 +596,6 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'cannotdelete'         => 'Tidak dapat menghapus halaman atau berkas yang diminta.',
 'badtitle'             => 'Judul tidak sah',
 'badtitletext'         => 'Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.',
-'perfdisabled'         => 'Maaf! Fitur ini dimatikan sementara karena memperlambat basis data hingga tidak ada yang dapat menggunakan wiki ini.',
 'perfcached'           => 'Data berikut ini diambil dari <em>cache</em> dan mungkin bukan data mutakhir:',
 'perfcachedts'         => 'Data berikut ini diambil dari <em>cache</em>, dan terakhir diperbarui pada $1.',
 'querypage-no-updates' => 'Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.',
@@ -878,6 +878,14 @@ Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dari halaman ini:",
 'deleted-notice'                   => 'Halaman ini telah dihapus. Sebagai referensi, berikut adalah log penghapusan halaman ini.',
 'deletelog-fulllog'                => 'Menampilkan seluruh log',
+'edit-hook-aborted'                => 'Suntingan dibatalkan oleh kait parser
+tanpa ada keterangan.',
+'edit-gone-missing'                => 'Tidak dapat memperbaharui halaman.
+Halaman kemungkinan telah dihapus.',
+'edit-conflict'                    => 'Konflik penyuntingan.',
+'edit-no-change'                   => 'Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.',
+'edit-already-exists'              => 'Tidak dapat membuat halaman baru
+karena telah ada.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1341,7 +1349,7 @@ Untuk menampilkan atau menyertakan berkas/gambar pada suatu halaman, gunakan pra
 'upload-prohibited'           => 'Jenis berkas yang dilarang: $1.',
 'uploadlog'                   => 'log pemuatan',
 'uploadlogpage'               => 'Log pemuatan',
-'uploadlogpagetext'           => 'Di bawah ini adalah log pemuatan berkas. Semua waktu yang ditunjukkan adalah waktu server (UTC).',
+'uploadlogpagetext'           => 'Di bawah ini adalah log pemuatan berkas. Semua waktu yang ditunjukkan adalah waktu server.',
 'filename'                    => 'Nama berkas',
 'filedesc'                    => 'Ringkasan',
 'fileuploadsummary'           => 'Ringkasan:',
@@ -1818,7 +1826,7 @@ Umpan balik dan bantuan lanjutan:
 'deletedarticle'         => 'menghapus "[[$1]]"',
 'suppressedarticle'      => '"[[$1]]" disembunyikan',
 'dellogpage'             => 'Log penghapusan',
-'dellogpagetext'         => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server (UTC).',
+'dellogpagetext'         => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server.',
 'deletionlog'            => 'log penghapusan',
 'reverted'               => 'Dikembalikan ke revisi sebelumnya',
 'deletecomment'          => 'Alasan penghapusan',
@@ -1887,6 +1895,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 ** Spam berulang
 ** Perang suntingan
 ** Halaman dengan lalu-lintas tinggi',
+'protect-edit-reasonlist'     => 'Sunting alasan perlindungan',
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',
@@ -2021,6 +2030,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbotherreason'                  => 'Alasan lain/tambahan:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'ipbwatchuser'                    => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
+'ipballowusertalk'                => 'Mengizinkan pengguna ini untuk menyunting halaman pembicaraan sendiri ketika diblokir',
 'badipaddress'                    => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'               => 'Pemblokiran sukses',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah diblokir.<br />
@@ -2063,6 +2073,7 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'block-log-flags-nocreate'        => 'pembuatan akun dimatikan',
 'block-log-flags-noautoblock'     => 'blokir otomatis dimatikan',
 'block-log-flags-noemail'         => 'surat-e diblokir',
+'block-log-flags-nousertalk'      => 'tidak dapat menyunting halaman pembicaraan sendiri',
 'block-log-flags-angry-autoblock' => 'peningkatan sistem pemblokiran otomatis telah diaktifkan',
 'range_block_disabled'            => 'Kemampuan pengurus dalam membuat blokir blok IP dimatikan.',
 'ipb_expiry_invalid'              => 'Waktu kadaluwarsa tidak sah.',

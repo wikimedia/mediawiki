@@ -72,11 +72,11 @@ $messages = array(
 'saturday'      => 'Somschdi',
 'sun'           => 'Sun',
 'mon'           => 'Män',
-'tue'           => 'Zischdig',
-'wed'           => 'Mittwuch',
-'thu'           => 'Dunnschdig',
-'fri'           => 'Friddig',
-'sat'           => 'Samschdig',
+'tue'           => 'Zys',
+'wed'           => 'Mid',
+'thu'           => 'Don',
+'fri'           => 'Fry',
+'sat'           => 'Sam',
 'january'       => 'Jänner',
 'february'      => 'Februar',
 'march'         => 'März',
@@ -89,8 +89,8 @@ $messages = array(
 'october'       => "Oktow'r",
 'november'      => 'Novämber',
 'december'      => 'Dezämber',
-'january-gen'   => "Jan'r",
-'february-gen'  => 'Hornung',
+'january-gen'   => 'Januar',
+'february-gen'  => 'Februar',
 'march-gen'     => 'März',
 'april-gen'     => 'Avrel',
 'may-gen'       => 'Mai',
@@ -102,9 +102,9 @@ $messages = array(
 'november-gen'  => "Nowamb'r",
 'december-gen'  => "Dezamb'r",
 'jan'           => 'Jan.',
-'feb'           => 'Hor.',
+'feb'           => 'Feb.',
 'mar'           => 'Mär.',
-'apr'           => "Aw'.",
+'apr'           => 'Apr.',
 'may'           => 'Mei',
 'jun'           => 'Jün.',
 'jul'           => 'Jül.',
@@ -155,7 +155,7 @@ $messages = array(
 'search'            => 'Suech',
 'searchbutton'      => 'Suech',
 'go'                => 'Suara',
-'searcharticle'     => 'Suara',
+'searcharticle'     => 'Suacha',
 'history'           => 'Versione',
 'history_short'     => 'Versione/Autore',
 'updatedmarker'     => "(geändert) sid'r minra ledscht wisit",
@@ -182,7 +182,7 @@ $messages = array(
 'personaltools'     => 'Persönlichi Wärkzüg',
 'postcomment'       => 'Kommentar abgeh',
 'articlepage'       => 'Syte',
-'talk'              => "Hand'la",
+'talk'              => 'Diskussion',
 'views'             => 'Asecht',
 'toolbox'           => 'Wärkzügkäschtli',
 'userpage'          => 'Benutzersyte',
@@ -236,7 +236,7 @@ $messages = array(
 'editold'                 => 'Andara',
 'viewsourceold'           => 'Qualltext àzaïga',
 'editsectionhint'         => 'Abschnitt ändere: $1',
-'toc'                     => 'Inhaltsferzeichnis',
+'toc'                     => 'Inhaltsverzeichnis',
 'showtoc'                 => 'ufklappe',
 'hidetoc'                 => 'zueklappe',
 'thisisdeleted'           => 'Onluege oder widrherstelle vun $1?',
@@ -291,7 +291,6 @@ Grund vun de Sperrung: $1',
 'cannotdelete'         => 'Konn d spezifiziert Syte odr Artikel nit lösche. (Isch möglicherwis schu vun ebr ondrem glöscht worre.)',
 'badtitle'             => 'Ugültiger Titel',
 'badtitletext'         => 'Dr Titel vun de ongfordert Syte isch ugültig gsi, leer, odr ä ugültiger Sprochlink vun nm ondre Wiki.',
-'perfdisabled'         => "Leider isch die Funktion momentan usgschalte, wil's d Datebank eso starch würd belaschte, dass mer s Wiki nümm chönnti benütze.",
 'perfcached'           => 'Selli Informatione chömme usem Zwüschespeicher un sin derwiil viilliecht nid aktuell.
 ----',
 'perfcachedts'         => 'D folgendi Date stomme usm Cache un sin om $1 s letzscht mol aktualisiert worre.',
@@ -361,6 +360,8 @@ Yberprüf d Schribwis, odr meld dich als [[Special:Userlogin/signup|neijer Benut
 'nouserspecified'            => 'Bitte gib ä Benutzername ii.',
 'wrongpassword'              => "Sell Basswort isch falsch (odr fählt). Bitte versuech's nomol.",
 'wrongpasswordempty'         => 'Du hesch vagässe diin Basswort iizgeh. Bitte probiers nomol.',
+'passwordtooshort'           => 'Dys Passwort isch ungültig oder z churz.
+Es mues mindischtens {{PLURAL:$1|1 Zeiche|$1 Zeiche}} ha u sech vom Benutzernamen underscheide.',
 'mailmypassword'             => 'Es nöis Passwort schicke',
 'passwordremindertitle'      => 'Neijs Password fier {{SITENAME}}',
 'passwordremindertext'       => 'Ebber mit dr IP-Adress $1 het ä neijs Passwort fier d Anmeldung bi {{SITENAME}} ($4) ongfordert.
@@ -369,7 +370,7 @@ S automatisch generiert Passwort fier de Benutzer $2 lutet jetzert: $3
 
 Du sottsch dich jetzt onmelde un s Passwort ändere: {{fullurl:Special:UserLogin}}
 
-Bitte ignorier diä E-Mail, wenn du s nit selber ongfordert hesch. S alt Passwort blibt witerhin gültig.',
+Bitte ignorier die E-Mail, wenn du s nit selber ongfordert hesch. S alt Passwort blibt witerhin gültig.',
 'noemail'                    => 'Dr Benutzer "$1" het kei E-Mail-Adress ongebe.',
 'passwordsent'               => 'Ä zytwilligs Passwort isch on d E-Mail-Adress vum Benutzer "$1" gschickt worre.
 Bitte meld dich domit ô, wenns bekumme hesch.',
@@ -407,7 +408,7 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'image_sample'    => 'Byschpil.jpg',
 'image_tip'       => 'Bildvoweis',
 'media_sample'    => 'Byschpil.mp3',
-'media_tip'       => 'Mediedateivoweis',
+'media_tip'       => 'Dateie-Link',
 'sig_tip'         => 'Dyni Signatur mit Zytagab',
 'hr_tip'          => 'Horizontal Linie (sparsom vowende)',
 
@@ -648,14 +649,23 @@ go direkt e Gleich uff d Datei z'mache.",
 'noimage-linktext'          => 'ufelade',
 'uploadnewversion-linktext' => 'E nöui Version vo dere Datei ufelade',
 
+# MIME search
+'mimesearch' => 'MIME-Suechi',
+
 # Unwatched pages
 'unwatchedpages' => 'Unbeobachteti Sytene',
 
 # List redirects
 'listredirects' => 'Lischte vo Wyterleitige (Redirects)',
 
+# Unused templates
+'unusedtemplates' => 'Nid ’bruuchti Vorlage',
+
 # Random page
 'randompage' => 'Zuefalls-Artikel',
+
+# Random redirect
+'randomredirect' => 'Zuefälligi Wyterleitig',
 
 # Statistics
 'statistics'              => 'Statistik',
@@ -669,8 +679,12 @@ go direkt e Gleich uff d Datei z'mache.",
 'brokenredirects'     => 'Kaputti Wyterleitige',
 'brokenredirectstext' => "Di folgende Wyterleitige füered zu Artikel wo's gar nid git.",
 
+'withoutinterwiki' => 'Sytenen ohni Links zu andere Sprache',
+
+'fewestrevisions' => 'Syte mit de wenigschte Bearbeitige',
+
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'nbytes'                  => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'             => '$1 {{PLURAL:$1|Kategori|Kategorie}}',
 'nlinks'                  => '$1 {{PLURAL:$1|Gleich|Gleicher}}',
 'nmembers'                => '$1 {{PLURAL:$1|Syte|Sytene}}',
@@ -679,11 +693,19 @@ go direkt e Gleich uff d Datei z'mache.",
 'lonelypages'             => 'Verwaisti Sytene',
 'uncategorizedpages'      => 'Nit kategorisierte Sytene',
 'uncategorizedcategories' => 'Nit kategorisierte Kategorie',
+'uncategorizedimages'     => 'Nid kategorisierti Dateie',
+'uncategorizedtemplates'  => 'Nid kategorisierti Vorlage',
+'unusedcategories'        => 'Nid ’bruuchti Kategorië',
 'unusedimages'            => 'Verwaiste Bilder',
 'popularpages'            => 'Beliebti Artikel',
 'wantedcategories'        => '’Bruuchti Kategorië, wo’s no nid git',
 'wantedpages'             => 'Artikel wo fähle',
 'mostlinked'              => 'Meistverlinke Seiten',
+'mostlinkedcategories'    => 'Am meischte verlinkti Kategorië',
+'mostlinkedtemplates'     => 'Am meischten y’bouti Vorlage',
+'mostcategories'          => 'Sytene mit de meischte Kategorië',
+'mostimages'              => 'Am meischte verlinkti Dateie',
+'mostrevisions'           => 'Syte mit de meischte Bearbeitige',
 'prefixindex'             => 'Alli Artikle (mit Präfix)',
 'shortpages'              => 'Churzi Artikel',
 'longpages'               => 'Langi Artikel',
@@ -763,6 +785,8 @@ Im Absänder steit dyni eigeti e-Mail-Adrässe us dine [[Special:Preferences|Ist
 Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
 
 Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
+'removedwatch'         => 'Us der Beobachtigsliste glösche',
+'removedwatchtext'     => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
 'watch'                => 'beobachte',
 'watchthispage'        => 'Die Syte beobachte',
 'unwatch'              => 'nümm beobachte',
@@ -800,19 +824,21 @@ Ihri Beobachtigslischte {{fullurl:Special:Watchlist/edit}}
 Hilf zue de Benutzig gits uff {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'        => 'Syte lösche',
-'confirm'           => 'Bestätige',
-'excontentauthor'   => "einzigen Inhalt: '$1' (bearbeitet worde nume dür '$2')",
-'historywarning'    => '<span style="color:#ff0000">WARNUNG:</span> Die Seite die Sie zu löschen gedenken hat eine Versionsgeschichte:',
-'confirmdeletetext' => 'Du bisch drann, en Artikel oder es Bild mitsamt Versionsgschicht permanänt us der Datebank z lösche.
+'deletepage'            => 'Syte lösche',
+'confirm'               => 'Bestätige',
+'excontentauthor'       => "einzigen Inhalt: '$1' (bearbeitet worde nume dür '$2')",
+'historywarning'        => '<span style="color:#ff0000">WARNUNG:</span> Die Seite die Sie zu löschen gedenken hat eine Versionsgeschichte:',
+'confirmdeletetext'     => 'Du bisch drann, en Artikel oder es Bild mitsamt Versionsgschicht permanänt us der Datebank z lösche.
 Bitte bis dir über d Konsequänze bewusst, u bis sicher, das du di a üsi [[{{MediaWiki:Policy-url}}|Leitlinien]] haltisch.',
-'actioncomplete'    => 'Uftrag usgfuehrt.',
-'deletedtext'       => '«<nowiki>$1</nowiki>» isch glösche worde.
+'actioncomplete'        => 'Uftrag usgfuehrt.',
+'deletedtext'           => '«<nowiki>$1</nowiki>» isch glösche worde.
 Im $2 het’s e Lischte vo de letschte Löschige.',
-'deletedarticle'    => '„[[$1]]“ glösche',
-'dellogpage'        => 'Lösch-Logbuech',
-'deletionlog'       => 'Lösch-Logbuech',
-'deletecomment'     => 'Löschigsgrund',
+'deletedarticle'        => '„[[$1]]“ glösche',
+'dellogpage'            => 'Lösch-Logbuech',
+'deletionlog'           => 'Lösch-Logbuech',
+'deletecomment'         => 'Löschigsgrund',
+'deleteotherreason'     => 'Andere/zuesätzleche Grund:',
+'deletereasonotherlist' => 'Andere Grund',
 
 # Rollback
 'rollback_short' => 'Zrüggsetze',
@@ -823,9 +849,28 @@ Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 'revertpage'     => 'Rückgängig gmacht zuer letschte Änderig vo [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) mit de letzte version vo [[User:$1|$1]] wiederhergstellt', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
-'protectlogpage' => 'Syteschutz-Logbuech',
-'protectlogtext' => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
-'protectcomment' => 'Grund der Sperrung',
+'protectlogpage'              => 'Syteschutz-Logbuech',
+'protectlogtext'              => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
+'protectcomment'              => 'Grund der Sperrung',
+'protectexpiry'               => 'Gsperrt bis:',
+'protect_expiry_invalid'      => 'Di gwählti Duur isch nid gültig.',
+'protect_expiry_old'          => 'Di gwählti Duur isch scho vergange.',
+'protect-unchain'             => 'Verschiebschutz ändere',
+'protect-text'                => 'Hie chasch der Schutzstatus vor Syte <strong><nowiki>$1</nowiki></strong> azeigen und ändere.',
+'protect-locked-access'       => 'Dys Konto het nid di nötige Rächt, für der Schutzstatus z ändere.
+Hie sy di aktuelle Schutzystellige vor Syte <strong>$1</strong>:',
+'protect-cascadeon'           => 'Die Syten isch gschützt, wil si {{PLURAL:$1|zur folgende Syte|zu de folgende Syte}} ghört, wo derfür e Kaskadesperrig gilt.
+Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d Kaskadesperrig.',
+'protect-default'             => 'Alli (Standard)',
+'protect-fallback'            => '«$1»-Berächtigung nötig',
+'protect-level-autoconfirmed' => 'Nid regischtrierti Benutzer sperre',
+'protect-level-sysop'         => 'Nur Adminischtratore',
+'protect-summary-cascade'     => 'Kaskade',
+'protect-expiring'            => 'bis $1 (UTC)',
+'protect-cascade'             => 'Kaskadesperrig – alli y’bundnige Vorlage sy mitgsperrt.',
+'protect-cantedit'            => 'Du chasch der Schutzstatus vo dere Syte nid ändere, wil du kener Berächtigunge hesch, für se z bearbeite.',
+'restriction-type'            => 'Schutzstatus',
+'restriction-level'           => 'Schutzhöchi:',
 
 # Undelete
 'undeletehistorynoadmin' => 'Dieser Artikel wurde gelöscht. Der Grund für die Löschung ist in der Zusammenfassung angegeben,
@@ -868,6 +913,7 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 'ipblocklist'     => 'Liste vo blockierten IP-Adrässen u Benutzernäme',
 'blocklistline'   => '$1, $2 het $3 ($4) gschperrt',
 'blocklink'       => 'spärre',
+'unblocklink'     => 'freigä',
 'contribslink'    => 'Byträg',
 'blocklogpage'    => 'Sperrigs-Protokoll',
 'blocklogentry'   => 'sperrt [[$1]] für d Ziit vo: $2 $3',
@@ -885,9 +931,12 @@ Der aktuelle Text des gelöschten Artikels ist nur Administratoren zugänglich.'
 I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde.",
 'movearticle'      => 'Artikel verschiebe',
 'newtitle'         => 'Zum nöie Titel',
+'move-watch'       => 'Die Syte beobachte',
 'movepagebtn'      => 'Artikel verschiebe',
 'pagemovedsub'     => 'Verschiebig erfolgrych',
+'movepage-moved'   => "<big>'''«$1» isch verschobe worde nach «$2»'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'A Syte mit sellem Name gits scho odr de Name isch ungültigt. Bitte nimm en andere.',
+'talkexists'       => 'D Syte sälber isch erfolgrych verschobe worde, nid aber d Diskussionssyte, wil’s under em nöue Titel scho eini het ’gä. Bitte setz se vo Hand zäme.',
 'movedto'          => 'verschoben uf',
 'movetalk'         => 'Diskussionssyte nach Müglechkeit mitverschiebe',
 '1movedto2'        => '[[$1]] isch uf [[$2]] verschobe worde.',
@@ -941,7 +990,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-move'                 => 'Dür ds Verschiebe gits e nöie Name.',
 'tooltip-ca-watch'                => 'Tue die Syten uf dyni Beobachtigslischte.',
 'tooltip-ca-unwatch'              => 'Nim die Syte us dyre Beobachtungslischte furt.',
-'tooltip-search'                  => 'Dürchsuech das Wiki',
+'tooltip-search'                  => 'Dürchsuech {{SITENAME}}',
 'tooltip-p-logo'                  => 'Houptsyte',
 'tooltip-n-mainpage'              => 'Gang uf d Houptsyte',
 'tooltip-n-portal'                => 'Über ds Projekt, was du chasch mache, wo du was findsch',
@@ -1108,6 +1157,9 @@ Fründtlechi Grüess",
 'watchlisttools-view' => 'Beobachtigsliste: Änderige',
 'watchlisttools-edit' => 'normal bearbeite',
 'watchlisttools-raw'  => 'imene große Textfäld bearbeite',
+
+# Special:Version
+'version' => 'Version', # Not used as normal message but as header for the special page itself
 
 # Special:SpecialPages
 'specialpages' => 'Spezialsytene',

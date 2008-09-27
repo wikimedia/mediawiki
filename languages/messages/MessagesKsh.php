@@ -437,7 +437,6 @@ wat en Üvverschrefte nit erlaub es.
 Et künnt ussinn, wie ene InterWikiLink,
 dat jeiht ävver nit.
 Muss De repareere.',
-'perfdisabled'         => "<strong>'''Opjepass:'''</strong> Dat maache mer jetz nit - dä Sörver hät jrad zovill Lass - do si'mer jet vürsichtich.",
 'perfcached'           => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un künnte nit mieh janz de allerneuste sin.',
 'perfcachedts'         => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un woodte $1 opjenumme. Se künnte nit janz de allerneuste sin.',
 'querypage-no-updates' => "'''Hee die Sigg weed nit mieh op ene neue Stand jebraat.'''",
@@ -837,6 +836,12 @@ Domet De Bescheid weiß, hee dä Endraach em Logboch vum Sigge-Fottschmieße mem
 woröm di Sigg dohmohls fottjeschmesse woode es:",
 'deleted-notice'                   => 'Di Sigg es fottjeschmeße. He kütt e Shtöck uß däm Logbooch fum Sigge-Fotschmieße, för hee di Sigg.',
 'deletelog-fulllog'                => 'Et kompläte Logboch aanloore',
+'edit-hook-aborted'                => 'Et Ändere wood affjebroche övver ene sujenannte „Hoke“ en de ßoffwäer.
+Ene Jrond weße mer nit.',
+'edit-gone-missing'                => 'Kunnt di Sigg nit änndere. Se schingk verschwunde un weed fottjeschemeße woode sin.',
+'edit-conflict'                    => 'Dubbelt beärbeit.',
+'edit-no-change'                   => 'Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.',
+'edit-already-exists'              => 'Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg hee määt zovill Opwand met Paaser-Funkßjohne.
@@ -1732,7 +1737,7 @@ De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
 'newuserlogpage'              => 'Logbooch för nöü Metmaachere',
 'newuserlogpagetext'          => 'He sin de Metmaacher opjelėßß, di sesh nöü aanjemäldt han.',
 'newuserlog-byemail'          => ' dat Paßwood wood med de e-mail loßjescheck',
-'newuserlog-create-entry'     => 'eß enne nöüje User',
+'newuserlog-create-entry'     => 'eß enne nöüje Metmaacher',
 'newuserlog-create2-entry'    => 'Nöüje Zojang enjerėshdt för „$1“',
 'newuserlog-autocreate-entry' => 'dä Metmaacher wood automattesch aanjemelldt',
 
@@ -1743,7 +1748,7 @@ Mieh övver de einzel Rääschte fenkt Er op de [[{{MediaWiki:Listgrouprights-he
 'listgrouprights-group'           => 'Jrupp',
 'listgrouprights-rights'          => 'Räächte',
 'listgrouprights-helppage'        => 'Help:Jrupperäächte',
-'listgrouprights-members'         => '(Metjlederliss)',
+'listgrouprights-members'         => '(opliste)',
 'listgrouprights-addgroup'        => 'Kann Metmaacher en {{PLURAL:$2|di Metmaacher-Jrupp|di Metmaacher-Jruppe hee|kein Metmaacher-Jrupp}} erin dunn: $1',
 'listgrouprights-removegroup'     => 'Kann Metmaacher us {{PLURAL:$2|dä Metmaacher-Jrupp|de Metmaacher-Jruppe hee|jaa kei Metmaacher-Jrupp}} eruß nämme: $1',
 'listgrouprights-addgroup-all'    => 'Kann Metmaacher en alle Metmaacher-Jruppe erin donn',
@@ -1943,6 +1948,7 @@ Di Sigg <strong>„$1“:</strong> es jetz jrad:',
 ** ußerjewöhnlesch fill SPAMlinks op ander Sigge wäde neu enjedraare
 ** Hen- un her-Änderei, woh mer süht, dat nix mieh joods erus kumme weed
 ** janz weschtejje Sigg, met ußerjewöhnlesch fill Afroofe',
+'protect-edit-reasonlist'     => 'Don de Grönd för t Schöze beärrbeide',
 'restriction-type'            => 'jespecht es:',
 'restriction-level'           => 'ändere darf:',
 'minimum-size'                => 'met mieh wie',
@@ -2083,6 +2089,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'ipbotherreason'                  => 'Ander Jrund oder Zosätzlich:',
 'ipbhidename'                     => 'Don däm Metmaacher singe Name versteiche: Em [[Special:Log/block|{{int:blocklogpage}}]], en de [[Special:IPBlockList|{{int:ipblocklist}}]], un en de [[Special:ListUsers|{{int:listusers}}]].',
 'ipbwatchuser'                    => 'Op däm Metmaacher sing Metmaachersigg un Klaafsigg oppasse',
+'ipballowusertalk'                => 'Lohß dä Metmaacher an sing eije Klaafsigg ändere, och su lang, wi sing Sperr dooht',
 'badipaddress'                    => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
 'blockipsuccesssub'               => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
@@ -2125,6 +2132,7 @@ Automatich jesperrte IP-Adresse sin nit hee, ävver en de [[Special:IPBlockList|
 'block-log-flags-nocreate'        => 'neu Metmaacher aanlääje es verbeede',
 'block-log-flags-noautoblock'     => 'nit automatesch all däm sing IP-Adresse sperre',
 'block-log-flags-noemail'         => 'och et E-Mail Verschecke sperre',
+'block-log-flags-nousertalk'      => 'kann de eije Klaafsigg nit ändere',
 'block-log-flags-angry-autoblock' => 'automatesch all däm sing IP-Adresse sperre, un noch mieh',
 'range_block_disabled'            => 'Adresse Jebeede ze sperre, es nit erlaub.',
 'ipb_expiry_invalid'              => 'De Duur es Dress. Jevv se richtich aan.',

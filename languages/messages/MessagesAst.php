@@ -371,7 +371,6 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'cannotdelete'         => 'Nun se pudo borrar la páxina o imaxe seleicionada (seique daquién yá la borrara).',
 'badtitle'             => 'Títulu incorreutu',
 'badtitletext'         => 'El títulu de páxina solicitáu nun ye válidu, ta vaciu o tien enllaces inter-llingua o inter-wiki incorreutos. Pue que contenga ún o más carauteres que nun puen ser usaos nos títulos.',
-'perfdisabled'         => '¡Sentímoslo muncho! Esta funcionalidá foi deshabilitada temporalmente porque allancia tanto la base de datos que naide pue usar la wiki.',
 'perfcached'           => 'Los siguientes datos tán na caché y pue que nun tean completamente actualizaos.',
 'perfcachedts'         => "Los siguientes datos tán na caché y actualizáronse la última vegada'l $1.",
 'querypage-no-updates' => "Les actualizaciones d'esta páxina tán actualmente deshabilitaes. Los datos qu'hai equí nun sedrán refrescaos nestos momentos.",
@@ -672,6 +671,14 @@ Equí tienes el rexistru de borraos d'esta páxina:",
 'deleted-notice'                   => "Esta páxina foi eliminada.
 Como referencia, embaxo amuésase'l rexistru de borráu de la páxina.",
 'deletelog-fulllog'                => 'Ver el rexistru completu',
+'edit-hook-aborted'                => 'Edición albortada pol hook.
+Nun conseñó esplicación.',
+'edit-gone-missing'                => 'Nun se pudo actualizar la páxina.
+Paez que foi eliminada.',
+'edit-conflict'                    => "Conflictu d'edición.",
+'edit-no-change'                   => 'Inoróse la to edición porque nun produxo nengún cambéu nel testu.',
+'edit-already-exists'              => 'Nun se pudo crear una páxina nueva.
+Yá esiste.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Avisu: Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
@@ -1843,6 +1850,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'ipbotherreason'                  => 'Otru motivu/motivu adicional:',
 'ipbhidename'                     => "Ocultar el nome d'usuariu del rexistru de bloqueos, de la llista de bloqueos activos y de la llista d'usuarios",
 'ipbwatchuser'                    => "Vixilar les páxines d'usuariu y d'alderique d'esti usuariu",
+'ipballowusertalk'                => "Permite a esti usuariu editar la páxina d'alderique propia mentes ta bloquiáu",
 'badipaddress'                    => 'IP non válida',
 'blockipsuccesssub'               => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'              => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
@@ -1885,6 +1893,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:IPBlockList|llista d'I
 'block-log-flags-nocreate'        => 'creación de cuentes deshabilitada',
 'block-log-flags-noautoblock'     => 'bloquéu automáticu deshabilitáu',
 'block-log-flags-noemail'         => 'corréu electrónicu bloquiáu',
+'block-log-flags-nousertalk'      => "nun pue editar la páxina d'alderique propia",
 'block-log-flags-angry-autoblock' => 'autobloquéu ameyoráu activáu',
 'range_block_disabled'            => "La capacidá d'alministrador pa crear bloqueos d'intervalos ta desactivada.",
 'ipb_expiry_invalid'              => 'Tiempu incorrectu.',

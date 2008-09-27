@@ -75,7 +75,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Excluder mi proprie modificationes del observatorio',
 'tog-watchlisthidebots'       => 'Excluder le modificationes per bots del observatorio',
 'tog-watchlisthideminor'      => 'Excluder le modificationes minor del observatorio',
-'tog-watchlisthideliu'        => 'Celar modificationes per usatores authenticate del observatorio',
+'tog-watchlisthideliu'        => 'Celar modificationes per usatores identificate del observatorio',
 'tog-watchlisthideanons'      => 'Celar modificationes per usatores anonyme del observatorio',
 'tog-nolangconversion'        => 'Disactivar conversion de variantes',
 'tog-ccmeonemails'            => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
@@ -366,7 +366,6 @@ Es possibile que un altere persona ha ja delite lo.',
 'badtitle'             => 'Titulo incorrecte',
 'badtitletext'         => 'Le titulo de pagina demandate esseva invalide, vacue, o constitueva un ligamine interlingual o interwiki incorrecte.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
-'perfdisabled'         => 'Pardono! Iste functionalitate ha essite temporarimente disactivate proque illo rende le operation del base de datos tanto lente que necuno pote usar le wiki.',
 'perfcached'           => 'Le sequente datos se recuperava del cache e possibilemente non es actual.',
 'perfcachedts'         => 'Le sequente datos se recuperava del cache. Ultime actualisation: le $1.',
 'querypage-no-updates' => 'Le actualisationes pro iste pagina es disactivate. Pro le momento, le datos hic non se cambiara.',
@@ -469,12 +468,14 @@ Verifica le orthographia.',
 Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}} e debe differer de tu nomine de usator.',
 'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
-'passwordremindertext'       => 'Alcuno (probabilemente tu, con le adresse IP $1)
-demandava que nos te invia un nove contrasigno pro {{SITENAME}} ($4).
-Le contrasigno pro le usator "$2" es ora "$3".
-Tu deberea initiar un session e cambiar tu contrasigno le plus tosto possibile.
+'passwordremindertext'       => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove
+contrasigno pro {{SITENAME}} ($4). Un contrasigno temporari pro le usator
+"$2" ha essite create, le qual es "$3". Si isto esseva tu
+intention, tu debe ora aperir un session e seliger un nove contrasigno.
 
-Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno e tu non vole plus cambiar lo, tu pote ignorar iste message e continuar a usar tu contrasigno original.',
+Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno,
+e tu non vole plus cambiar lo, tu pote ignorar iste message e
+continuar a usar tu contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
 registrate pro "$1".
@@ -509,7 +510,7 @@ Tu pote ignorar iste message si iste conto se creava in error.',
 'resetpass_announce'      => 'Tu ha aperite un session con un codice temporari que tu recipeva in e-mail.
 Pro completar le session, tu debe definir un nove contrasigno hic:',
 'resetpass_text'          => '<!-- Adde texto hic -->',
-'resetpass_header'        => 'Redefinir contrasigno',
+'resetpass_header'        => 'Reinitiar contrasigno',
 'resetpass_submit'        => 'Definir contrasigno e aperir un session',
 'resetpass_success'       => 'Tu contrasigno ha essite cambiate! Ora se aperi tu session...',
 'resetpass_bad_temporary' => 'Contrasigno temporari invalide.
@@ -697,6 +698,15 @@ Tu deberea considerar si il es appropriate crear iste pagina de novo.
 Le registro de deletiones pro iste pagina se trova infra pro major commoditate:",
 'deleted-notice'                   => 'Iste pagina ha essite delite.
 In basso se revela le registro de deletiones del pagina pro ulterior informationes.',
+'deletelog-fulllog'                => 'Vider registro complete',
+'edit-hook-aborted'                => 'Modification abortate per uncino.
+Illo non dava un explication.',
+'edit-gone-missing'                => 'Impossibile actualisar le pagina.
+Pare que illo ha essite delite.',
+'edit-conflict'                    => 'Conflicto inter modificationes.',
+'edit-no-change'                   => 'Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.',
+'edit-already-exists'              => 'Non poteva crear un nove pagina.
+Illo existe ja.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
@@ -832,6 +842,7 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'mergehistory-invalid-destination' => 'Le pagina de destination debe esser un titulo valide.',
 'mergehistory-autocomment'         => 'Fusionava [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Fusionava [[:$1]] in [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Le paginas de origine e de destination non pote esser le mesme',
 
 # Merge log
 'mergelog'           => 'Registro de fusiones',
@@ -914,8 +925,8 @@ Tu pote [[:\$1|crear iste pagina]].",
 'toomanymatches'            => 'Se retornava troppo de resultatos. Per favor prova un altere consulta.',
 'titlematches'              => 'Correspondentias in le titulos de paginas',
 'notitlematches'            => 'Nulle correspondentias in le titulos de paginas',
-'textmatches'               => 'Correspondentias in le texto de paginas',
-'notextmatches'             => 'Nulle correspondentias in le texto de paginas',
+'textmatches'               => 'Resultatos in le texto de paginas',
+'notextmatches'             => 'Nulle resultato in le texto de paginas',
 'prevn'                     => '$1 {{PLURAL:$1|precedente|precedentes}}',
 'nextn'                     => '$1 {{PLURAL:$1|sequente|sequentes}}',
 'viewprevnext'              => 'Vider ($1) ($2) ($3).',
@@ -1391,22 +1402,24 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'randomredirect-nopages' => 'Il non ha redirectiones in iste spatio de nomines.',
 
 # Statistics
-'statistics'               => 'Statisticas',
-'statistics-header-pages'  => 'Statisticas de paginas',
-'statistics-header-edits'  => 'Statisticas de modificationes',
-'statistics-header-views'  => 'Statisticas de visitas',
-'statistics-header-users'  => 'Statisticas de usatores',
-'statistics-articles'      => 'Paginas de contento',
-'statistics-pages'         => 'Paginas',
-'statistics-files'         => 'Files cargate',
-'statistics-edits'         => 'Modificationes de paginas depost le installation de {{SITENAME}}',
-'statistics-edits-average' => 'Media del modificationes per pagina',
-'statistics-views-total'   => 'Visitas total',
-'statistics-views-peredit' => 'Visitas per modification',
-'statistics-jobqueue'      => 'Longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]',
-'statistics-users'         => '[[Special:ListUsers|Usatores]] registrate',
-'statistics-users-active'  => 'Usatores active',
-'statistics-mostpopular'   => 'Le paginas plus visitate',
+'statistics'                      => 'Statisticas',
+'statistics-header-pages'         => 'Statisticas de paginas',
+'statistics-header-edits'         => 'Statisticas de modificationes',
+'statistics-header-views'         => 'Statisticas de visitas',
+'statistics-header-users'         => 'Statisticas de usatores',
+'statistics-articles'             => 'Paginas de contento',
+'statistics-pages'                => 'Paginas',
+'statistics-pages-tooltip'        => 'Tote le paginas del wiki, includente paginas de discussion, redirectiones, etc.',
+'statistics-files'                => 'Files cargate',
+'statistics-edits'                => 'Modificationes de paginas depost le installation de {{SITENAME}}',
+'statistics-edits-average'        => 'Media del modificationes per pagina',
+'statistics-views-total'          => 'Visitas total',
+'statistics-views-peredit'        => 'Visitas per modification',
+'statistics-jobqueue'             => 'Longor del [http://www.mediawiki.org/wiki/Manual:Job_queue cauda de actiones]',
+'statistics-users'                => '[[Special:ListUsers|Usatores]] registrate',
+'statistics-users-active'         => 'Usatores active',
+'statistics-users-active-tooltip' => 'Usatores qui ha facite un action durante le mense passate',
+'statistics-mostpopular'          => 'Le paginas plus visitate',
 
 'disambiguations'      => 'Paginas de disambiguation',
 'disambiguationspage'  => 'Template:Disambiguation',
@@ -1637,8 +1650,8 @@ facilitar su identification.",
 'watchlist-hide-minor' => 'Celar modificationes minor',
 'watchlist-show-anons' => 'Monstrar modificationes anonyme',
 'watchlist-hide-anons' => 'Celar modificationes anonyme',
-'watchlist-show-liu'   => 'Monstrar modificationes per usatores authenticate',
-'watchlist-hide-liu'   => 'Celar modificationes per usatores authenticate',
+'watchlist-show-liu'   => 'Monstrar modificationes per usatores identificate',
+'watchlist-hide-liu'   => 'Celar modificationes per usatores identificate',
 'watchlist-options'    => 'Optiones del observatorio',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1699,7 +1712,7 @@ Vide $2 pro un registro de deletiones recente.',
 'suppressedarticle'      => 'supprimeva "[[$1]]"',
 'dellogpage'             => 'Registro de deletiones',
 'dellogpagetext'         => 'Infra es un lista del plus recente deletiones.
-Tote le horas es in le fuso horari del servitor (UTC).',
+Tote le horas es in le fuso horari del servitor.',
 'deletionlog'            => 'registro de deletiones',
 'reverted'               => 'Revertite a revision anterior',
 'deletecomment'          => 'Motivo pro deletion:',
@@ -1709,7 +1722,7 @@ Tote le horas es in le fuso horari del servitor (UTC).',
 ** Requesta del autor
 ** Violation de copyright
 ** Vandalismo',
-'delete-edit-reasonlist' => 'Modificar motivos pro deletion',
+'delete-edit-reasonlist' => 'Modificar le motivos pro deletion',
 'delete-toobig'          => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
 Le deletion de tal paginas ha essite restringite pro impedir le disruption accidental de {{SITENAME}}.',
 'delete-warning-toobig'  => 'Iste pagina ha un grande historia de modificationes con plus de $1 {{PLURAL:$1|revision|revisiones}}.
@@ -1777,6 +1790,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 ** Spam excessive
 ** Guerra de modificationes contraproductive
 ** Pagina frequentemente visitate',
+'protect-edit-reasonlist'     => 'Modificar le motivos pro protection',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Nivello de restriction:',
 'minimum-size'                => 'Grandor minime',
@@ -1925,7 +1939,7 @@ specific que ha essite vandalisate).',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => 'Le adresse IP "$1" ha essite blocate.
 <br />Vide [[Special:IPBlockList|Lista de IPs blocate]] pro revider le blocadas.',
-'ipb-edit-dropdown'               => 'Modificar motivos del blocada',
+'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
 'ipb-unblock-addr'                => 'Disblocar $1',
 'ipb-unblock'                     => 'Disblocar un nomine de usator o un adresse IP',
 'ipb-blocklist-addr'              => 'Vider blocadas existente pro $1',
@@ -2051,8 +2065,8 @@ Per favor fusiona los manualmente.'''",
 'movepage-page-moved'     => 'Le pagina $1 ha essite renominate a $2.',
 'movepage-page-unmoved'   => 'Le pagina $1 non poteva esser renominate a $2.',
 'movepage-max-pages'      => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
-'1movedto2'               => '[[$1]] renominate a [[$2]]',
-'1movedto2_redir'         => '[[$1]] renominate a [[$2]] trans redirection',
+'1movedto2'               => 'renominava [[$1]] verso [[$2]]',
+'1movedto2_redir'         => 'renominava [[$1]] verso [[$2]] trans redirection',
 'movelogpage'             => 'Registro de renominationes',
 'movelogpagetext'         => 'Infra es un lista de paginas renominate.',
 'movereason'              => 'Motivo:',

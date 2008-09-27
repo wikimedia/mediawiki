@@ -287,7 +287,6 @@ $messages = array(
 'cannotdelete'         => 'Mò-fap chhù-thet sién-thin ke vùn-chông fe̍t-he thù-chhiong (Kí khó-nèn yí-kîn pûn khì-thâ-ngìn chhù-hi liáu).',
 'badtitle'             => 'Chho-ngu ke phêu-thì',
 'badtitletext'         => 'Só chhiáng-khiù hong-mien ke phêu-thì he mò-háu ke, mò-chhùn-chhai, khiam-ko ngî-ngièn fe̍t-chá khiam-ko wiki lièn-kiet ke phêu-thì chho-ngu.',
-'perfdisabled'         => 'Tui-put-hí! Yîn-vi chhâu-chok yû khó-nèn chho-sṳ̀n chṳ̂-liau-lhu thân-fûng, muk-chhièn chhiam-sṳ̀ mò-fap sṳ́-yung.',
 'perfcached'           => 'Yî-ha chṳ̂-liau lòi-chhṳ khoai-chhí, khó-nèn yû chho-ngu.',
 'perfcachedts'         => 'Yî-ha he khoai-chhí chṳ̂-liau, chui-heu kiên-sîn sṳ̀-kiên he $1.',
 'querypage-no-updates' => 'Tông-chhièn  kim-chṳ́ tui chhṳ́-chông chin-hàng kiên-sîn. Chhṳ́-chhu ke chṳ̂-liau chiông put-nèn pûn chhùng-sîn chṳ́n-lî.',

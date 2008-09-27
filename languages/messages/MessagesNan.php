@@ -216,7 +216,6 @@ $messages = array(
 'cannotdelete'       => 'Bô-hoat-tō· kā hit ê ia̍h a̍h-sī iáⁿ-siōng thâi tiāu. (Khó-lêng pa̍t-lâng í-keng kā thâi tiāu ah.)',
 'badtitle'           => 'M̄-chiâⁿ piau-tê',
 'badtitletext'       => 'Iau-kiû ê piau-tê sī bô-hāu ê, khang ê, a̍h-sī liân-kiat chhò-gō· ê inter-language/inter-wiki piau-tê.',
-'perfdisabled'       => 'Pháiⁿ-sè! Chit ê kong-lêng chiām-sî bô khui in-ūi ē chō-sêng chu-liāu-khò· siuⁿ kòe-thâu bān, tì-sú wiki bē iōng tit.',
 'perfcached'         => 'Ē-kha ê chu-liāu tùi lâi--ê, só·-í bī-pit oân-choân hoán-èng siōng sin ê chōng-hóng.',
 'perfcachedts'       => 'Ē-kha ê chu-liāu tùi lâi--ê, tī $1 keng-sin--koè.',
 'viewsource'         => 'Khoàⁿ goân-sú lōe-iông',

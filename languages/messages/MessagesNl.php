@@ -610,7 +610,6 @@ Mogelijk is deze al door iemand anders verwijderd.',
 'badtitle'             => 'Ongeldige paginanaam',
 'badtitletext'         => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane karakters.',
-'perfdisabled'         => 'Deze functionaliteit is tijdelijk uitgeschakeld, omdat deze de database zo langzaam maakt dat niemand de wiki kan gebruiken.',
 'perfcached'           => 'De gegevens komen uit een cache en zijn mogelijk niet actueel.',
 'perfcachedts'         => 'De gegevens komen uit een cache en zijn voor het laatst bijgewerkt op $1.',
 'querypage-no-updates' => 'Deze pagina kan niet bijgewerkt worden.
@@ -952,8 +951,17 @@ U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aan
 
 Overweeg of het terecht is dat u verder werkt aan deze pagina.
 Voor uw gemak staat hieronder het verwijderingslogboek voor deze pagina:",
-'deleted-notice'                   => 'Deze pagina is verwijderd. Het verwijderingslogboek van deze pagina wordt hieronder weergegeven voor uw informatie.',
+'deleted-notice'                   => 'Deze pagina is verwijderd.
+Ter informatie wordt het verwijderingslogboek van deze pagina hieronder weergegeven.',
 'deletelog-fulllog'                => 'Volledige logboek bekijken',
+'edit-hook-aborted'                => 'De bewerking is afgebroken door een hook.
+Er is geen toelichting beschikbaar.',
+'edit-gone-missing'                => 'De pagina is niet bijgewerkt.
+Deze lijkt verwijderd te zijn.',
+'edit-conflict'                    => 'Bewerkingsconflict.',
+'edit-no-change'                   => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
+'edit-already-exists'              => 'De pagina is niet aangemaakt.
+Deze bestaat al.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
@@ -2176,6 +2184,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbotherreason'                  => 'Andere/eventuele reden:',
 'ipbhidename'                     => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
 'ipbwatchuser'                    => 'Gebruikerspagina en overlegpagina op volglijst plaatsen',
+'ipballowusertalk'                => 'Deze gebruiker toestaan tijdens de blokkade de eigen overlegpagina te bewerken',
 'badipaddress'                    => 'Geen geldig IP-adres',
 'blockipsuccesssub'               => 'Blokkering geslaagd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
@@ -2218,6 +2227,7 @@ Zie de [[Special:IPBlockList|Ipblocklist]] voor geblokkeerde adressen.',
 'block-log-flags-nocreate'        => 'registreren gebruikers geblokkeerd',
 'block-log-flags-noautoblock'     => 'autoblokkeren is uitgeschakeld',
 'block-log-flags-noemail'         => 'e-mail geblokkeerd',
+'block-log-flags-nousertalk'      => 'kan eigen overlegpagina niet bewerken',
 'block-log-flags-angry-autoblock' => 'uitgebreide automatische blokkade ingeschakeld',
 'range_block_disabled'            => 'De mogelijkheid voor beheerders om een groep IP-addressen te blokkeren is uitgeschakeld.',
 'ipb_expiry_invalid'              => 'Ongeldige duur.',

@@ -322,7 +322,6 @@ Ini ing sangkan a binie ning talapanibalang minyara: $1',
 'cannotdelete'         => "E mebura ing bulung o file a pinili mu.  (Mapalyaring ati'nang aliwang memura kaniti.)",
 'badtitle'             => 'Matsurang pamansag',
 'badtitletext'         => 'E ya matatanggap o ala yang laman, o bansag yang inter-language o inter-wiki a e ustu pamisuglung, ing bansag ning bulung a paintunan mu. Mapalyaring atin yang metung o maygit pang letra o kulit (character) a e malyaring gamitan kareng bansag/pamagat.',
-'perfdisabled'         => 'Pasensia na ka! Pansamantala yang makapatda ing gamit (feature) a iti uling papabagalan ne ing database, anggang e ne bisang gumana ing wiki.',
 'perfcached'           => 'Makasimpan (cached) ya iting makatuking data, at mapalyaring e ne makapanaun.',
 'perfcachedts'         => 'Makasimpan (cached) ya ing makatuking data, at tauli yang mibayu kanitang $1.',
 'querypage-no-updates' => 'Updates for this page are currently disabled. Data here will not presently be refreshed.

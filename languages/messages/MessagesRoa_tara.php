@@ -104,6 +104,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Tuerne a $1.',
+'tagline'          => 'Da {{SITENAME}}',
 'help'             => 'Ajute',
 'search'           => 'Cirche',
 'searchbutton'     => 'Cirche',
@@ -151,26 +152,35 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sus a {{SITENAME}}',
+'copyrightpagename'    => '{{SITENAME}} copyright',
+'currentevents'        => 'Fatte de osce a die',
 'disclaimers'          => 'No ne sacce ninde',
 'faq'                  => 'FAQ',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
+'portal'               => "Purtale d'a communitate",
 
-'ok'                 => 'OK',
-'youhavenewmessages' => 'Tu tine $1 ($2).',
-'newmessageslink'    => 'messàgge nuève',
-'editsection'        => 'cange',
-'editold'            => 'cange',
-'viewsourceold'      => 'vide sorgende',
-'editsectionhint'    => "Cange 'a sezione: $1",
-'toc'                => 'Condenute',
-'showtoc'            => 'fà vedè',
-'hidetoc'            => 'scunne',
-'site-rss-feed'      => '$1 RSS Feed',
-'site-atom-feed'     => '$1 Atom Feed',
-'page-rss-feed'      => '"$1" RSS Feed',
-'page-atom-feed'     => '"$1" Atom Feed',
-'red-link-title'     => '$1 (addà essere scritte)',
+'ok'                   => 'OK',
+'pagetitle'            => '$1 - {{SITENAME}}',
+'retrievedfrom'        => 'Pigghjete da "$1"',
+'youhavenewmessages'   => 'Tu tine $1 ($2).',
+'newmessageslink'      => 'messàgge nuève',
+'newmessagesdifflink'  => 'urteme cangiaminde',
+'editsection'          => 'cange',
+'editsection-brackets' => '[$1]',
+'editold'              => 'cange',
+'viewsourceold'        => 'vide sorgende',
+'editsectionhint'      => "Cange 'a sezione: $1",
+'toc'                  => 'Condenute',
+'showtoc'              => 'fà vedè',
+'hidetoc'              => 'scunne',
+'site-rss-feed'        => '$1 RSS Feed',
+'site-atom-feed'       => '$1 Atom Feed',
+'page-rss-feed'        => '"$1" RSS Feed',
+'page-atom-feed'       => '"$1" Atom Feed',
+'feed-atom'            => 'Atom',
+'feed-rss'             => 'RSS',
+'red-link-title'       => '$1 (addà essere scritte)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pàgene',
@@ -187,7 +197,9 @@ $messages = array(
 'error'                => 'Errore',
 'databaseerror'        => "Errore de l'archivije",
 'nodb'                 => "Non ge pozze scacchià l'archivie $1",
+'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
+'missingarticle-diff'  => '(Diff: $1, $2)',
 'internalerror'        => 'Errore inderne',
 'internalerror_info'   => 'Errore inderne: $1',
 'filecopyerror'        => 'Non ge pozze cupià \'u fail "$1" jndr\'à "$2".',
@@ -197,6 +209,7 @@ $messages = array(
 'filenotfound'         => 'Non ge stoche a iacchje \'u fail "$1".',
 'viewsource'           => "Vide 'u sorgende",
 'viewsourcefor'        => 'pe $1',
+'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Login and logout pages
 'yourname'                => 'Nome utende:',
@@ -208,25 +221,39 @@ $messages = array(
 'logout'                  => 'Isse',
 'userlogout'              => 'Isse',
 'gotaccountlink'          => 'Tràse',
+'createaccountmail'       => 'pe e-mail',
 'youremail'               => 'Poste:',
 'uid'                     => 'ID Utende:',
 'yourlanguage'            => 'Lènga:',
 'email'                   => 'Poste',
 'nouserspecified'         => "A scrivere pe forze 'u nome de l'utende.",
+'wrongpassword'           => "E mise 'na passuor sbagliete.
+Prueve n'otra vote.",
+'mailmypassword'          => 'Passuord nova pe e-mail',
 'loginlanguagelabel'      => 'Lénga: $1',
 
 # Password reset dialog
+'resetpass_text'      => "<!-- Mitte 'u teste aqquà -->",
 'resetpass_header'    => "Azzere 'a passuord",
 'resetpass_forbidden' => "Le Passuord non ge ponne cangià sus 'a {{SITENAME}}",
 
 # Edit page toolbar
-'sig_tip' => "'A firma toje cu l'orarie e 'a sciurnete",
+'italic_tip'     => 'Scritte in corsivo',
+'extlink_sample' => "http://www.esembie.it Nome d'u collegamende",
+'math_tip'       => 'Formula matemateche (LaTeX)',
+'image_sample'   => 'Esembie.jpg',
+'media_sample'   => 'Esembie.ogg',
+'media_tip'      => 'Fail de collegamende',
+'sig_tip'        => "'A firma toje cu l'orarie e 'a sciurnete",
 
 # Edit pages
 'summary'            => 'Riepileghe',
+'minoredit'          => 'Cangiaminde stuèdeche',
+'watchthis'          => 'Condrolle sta pàgene',
 'savearticle'        => "Registre 'a vôsce",
 'preview'            => 'Andeprime',
 'showpreview'        => "Vide l'andeprime",
+'showdiff'           => 'Fa vedè le cangiaminde',
 'loginreqlink'       => 'trase',
 'accmailtitle'       => 'Passuord mannete.',
 'newarticle'         => '(Nuève)',
@@ -237,17 +264,48 @@ $messages = array(
 'template-protected' => '(prutette)',
 
 # History pages
-'cur'        => 'cur',
-'last'       => 'urteme',
-'page_first' => 'prime',
-'page_last'  => 'urteme',
-'deletedrev' => '[scangellete]',
+'currentrev'          => 'Versione de osce a die',
+'previousrevision'    => '← Versione Vecchje',
+'nextrevision'        => 'Versione cchiù nova →',
+'currentrevisionlink' => 'Versione de mò',
+'cur'                 => 'cur',
+'last'                => 'urteme',
+'page_first'          => 'prime',
+'page_last'           => 'urteme',
+'deletedrev'          => '[scangellete]',
+
+# Revision feed
+'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Diffs
-'lineno'   => 'Linea $1:',
-'editundo' => 'annulle',
+'difference'              => "(Differenze 'mbrà versiune)",
+'lineno'                  => 'Linea $1:',
+'compareselectedversions' => 'Combornde le versiune selezionete',
+'editundo'                => 'annulle',
+'diff-with-additional'    => '$1 $2',
+'diff-with-final'         => '&#32;e $1 $2',
+'diff-p'                  => "'nu '''paragrafe'''",
+'diff-blockquote'         => "'na '''citazione'''",
+'diff-h1'                 => "'na '''testete (levèlle 1)'''",
+'diff-h2'                 => "'na '''testete (levèlle 2)'''",
+'diff-h3'                 => "'na '''testete (levèlle 3)'''",
+'diff-h4'                 => "'na '''testete (levèlle 4)'''",
+'diff-h5'                 => "'na '''testete (levèlle 5)'''",
+'diff-pre'                => "'nu '''blocche pre-formattete'''",
+'diff-div'                => "'na '''divisione'''",
+'diff-ul'                 => "'na '''liste non arrengàte'''",
+'diff-ol'                 => "'na '''liste arrengàte'''",
+'diff-li'                 => "'n''''elemende d'a liste'''",
+'diff-table'              => "'na '''tagelle'''",
+'diff-tbody'              => "'na '''tagelle de condenute'''",
+'diff-tr'                 => "'na '''riga'''",
+'diff-td'                 => "'na '''celle'''",
+'diff-th'                 => "'na '''testete'''",
+'diff-br'                 => "'n''''inderruzione'''",
 
 # Search results
+'noexactmatch' => "'''Non g'esiste 'na pàgene ca se chiama \"\$1\".'''
+Tu puè [[:\$1|ccrejà sta pàgene]].",
 'prevn'        => 'rrede $1',
 'nextn'        => 'nnande $1',
 'viewprevnext' => 'Vide ($1) ($2) ($3)',
@@ -259,12 +317,18 @@ $messages = array(
 'oldpassword'   => 'Vécchie passuord:',
 'newpassword'   => 'Nova passuord:',
 
+# User rights
+'userrights-irreversible-marker' => '$1*',
+
 # Groups
 'group-all' => '(tutte)',
 
 # Recent changes
 'recentchanges'   => 'Cangiaminde recende',
 'rcshowhideminor' => '$1 cangiaminde stuèdeche',
+'rcshowhidebots'  => '$1 bot',
+'rcshowhideliu'   => '$1 utende reggistrete',
+'rcshowhidemine'  => '$1 cangiaminde mie',
 'diff'            => 'diff',
 'hist'            => 'cunde',
 'hide'            => 'Scunne',
@@ -272,13 +336,21 @@ $messages = array(
 'minoreditletter' => 'm',
 'newpageletter'   => 'N',
 'boteditletter'   => 'b',
+'sectionlink'     => '→',
+'rc-change-size'  => '$1',
+
+# Recent changes linked
+'recentchangeslinked-backlink' => '← $1',
 
 # Upload
 'upload'        => "Careche 'u fail",
+'uploadbtn'     => "Careche 'nu fail",
 'uploadlogpage' => 'Archivije de le carecaminde',
+'uploadedimage' => 'carechete "[[$1]]"',
 
 # Special:ImageList
 'imgfile'        => 'file',
+'imagelist'      => 'Liste de le fail',
 'imagelist_name' => 'Nome',
 
 # Image description page
@@ -289,20 +361,35 @@ $messages = array(
 'filehist-comment'  => 'Commende',
 'imagelinks'        => 'Collegaminde',
 
+# File reversion
+'filerevert-backlink' => '← $1',
+
 # File deletion
-'filedelete'        => 'Scangille $1',
-'filedelete-legend' => "Scangille 'u file",
-'filedelete-submit' => 'Scangille',
+'filedelete'          => 'Scangille $1',
+'filedelete-backlink' => '← $1',
+'filedelete-legend'   => "Scangille 'u file",
+'filedelete-submit'   => 'Scangille',
 
 # MIME search
-'download' => 'scareche',
+'mimesearch' => "Ricerca jndr'à 'u MIME",
+'download'   => 'scareche',
 
 # Statistics
 'statistics' => 'Statisteche',
 
 # Miscellaneous special pages
-'listusers' => "Liste de l'utende",
-'move'      => 'Spuèste',
+'nlinks'        => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
+'nmembers'      => '$1 {{PLURAL:$1|membre|membre}}',
+'mostrevisions' => 'Pàggene cchiù cangete',
+'shortpages'    => 'Pàggene corte',
+'longpages'     => 'Pàggene longhe',
+'listusers'     => "Liste de l'utende",
+'ancientpages'  => 'Pàggene vìcchje',
+'move'          => 'Spuèste',
+'movethispage'  => 'Spueste sta pàgene',
+
+# Book sources
+'booksources-isbn' => 'ISBN:',
 
 # Special:Log
 'specialloguserlabel' => 'Utende:',
@@ -315,7 +402,11 @@ $messages = array(
 'allarticles'    => 'Tutte le pàggene',
 'allpagessubmit' => 'Veje',
 
+# Special:ListGroupRights
+'listgrouprights-right-display' => '$1 ($2)',
+
 # Watchlist
+'watchlistfor'         => "(pe '''$1''')",
 'watchlist-show-bots'  => 'Fà vedè le cangiaminde de le bot',
 'watchlist-hide-bots'  => 'Scunne le cangiaminde de le bot',
 'watchlist-show-own'   => 'Fà vedè le cangiaminde mie',
@@ -326,14 +417,24 @@ $messages = array(
 'watching'   => 'Fà vedè...',
 'unwatching' => 'No fà vedè...',
 
+# Delete
+'deletepage'      => "Scangille 'a pàgene",
+'delete-backlink' => '← $1',
+'deletedarticle'  => 'scangillete "[[$1]]"',
+'dellogpage'      => 'Archivie de le scangellaminde',
+
 # Rollback
 'rollbacklink' => "annulle 'u cangiaminde",
 
 # Protect
-'protect-default'     => '(defolt)',
-'protect-level-sysop' => 'Sulamende pe le Sysops',
-'protect-expiring'    => "more 'u $1 (UTC)",
-'restriction-type'    => 'Permesse:',
+'protectlogpage'         => 'Archibie de le prutezziune',
+'protect-backlink'       => '← $1',
+'protect_expiry_invalid' => 'Orarie de scadenze jè invalide.',
+'protect-default'        => '(defolt)',
+'protect-level-sysop'    => 'Sulamende pe le Sysops',
+'protect-expiring'       => "more 'u $1 (UTC)",
+'protect-cantedit'       => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
+'restriction-type'       => 'Permesse:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Cange',
@@ -347,47 +448,80 @@ $messages = array(
 'blanknamespace' => '(Prengepàle)',
 
 # Contributions
-'uctop' => '(sus)',
+'contributions' => "Condrebbute de l'utende",
+'mycontris'     => 'Condrebbute mie',
+'uctop'         => '(sus)',
 
 'sp-contributions-blocklog' => 'Archivije de le Bloccaminde',
 
 # What links here
-'whatlinkshere-title' => 'Pàggene ca appondene a "$1"',
+'whatlinkshere-title'    => 'Pàggene ca appondene a "$1"',
+'whatlinkshere-backlink' => '← $1',
+'nolinkshere'            => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
+'whatlinkshere-links'    => '← collegaminde',
 
 # Block/unblock
+'blockip'      => "Blocche l'utende",
+'ipboptions'   => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'blocche',
+'unblocklink'  => 'sblocche',
 'contribslink' => 'condrebbute',
 'blocklogpage' => 'Archivije de le Bloccaminde',
+'sorbs'        => 'DNSBL',
 
 # Move page
-'movearticle' => 'Spuèste:',
-'movedto'     => 'spustete a',
-'movelogpage' => 'Archivije de le spustaminde',
-'movereason'  => 'Raggione:',
+'move-page-backlink' => '← $1',
+'movearticle'        => 'Spuèste:',
+'movepagebtn'        => "Spueste 'a pàgene",
+'pagemovedsub'       => 'Spustaminde eseguite',
+'movedto'            => 'spustete a',
+'1movedto2'          => "[[$1]] spustete jndr'à [[$2]]",
+'movelogpage'        => 'Archivije de le spustaminde',
+'movereason'         => 'Raggione:',
+
+# Export
+'export' => 'Pàggene esportete',
 
 # Thumbnails
 'thumbnail-more' => 'Allarije',
 
+# Import log
+'importlogpage' => "Archivie de le 'mbortaziune",
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'       => "'A pàgene meje",
+'tooltip-pt-mytalk'         => "'Ngazzaminde mie",
+'tooltip-pt-mycontris'      => 'Liste de le condrebbute mie',
 'tooltip-pt-logout'         => 'Isse',
+'tooltip-ca-edit'           => "Tu puè cangià sta pàgene.
+Pe piacere ause 'u buttone de l'andeprime apprime de salvà.",
 'tooltip-ca-viewsource'     => "Sta pàgene jè prutette.
 Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-protect'        => 'Prutegge sta pàgene',
+'tooltip-ca-delete'         => 'Scangille sta pàgene',
 'tooltip-ca-move'           => 'Spuèste sta pàgene',
+'tooltip-search'            => 'Cirche {{SITENAME}}',
 'tooltip-n-mainpage'        => "Vè vide 'a pàgene prengepàle",
 'tooltip-n-randompage'      => "Careche 'na pàgene a uecchje",
 'tooltip-t-upload'          => 'Careche le fail',
+'tooltip-t-specialpages'    => 'Liste de tutte le pàggene speciale',
+'tooltip-ca-nstab-project'  => "Vide 'a pàgene d'u proggette",
 'tooltip-ca-nstab-template' => "Fà vedè 'u template",
 
 # Browsing diffs
 'previousdiff' => '← Cangiaminde vecchije',
+'nextdiff'     => 'Cangiaminde cchiù nuève →',
+
+# Media information
+'file-nohires' => "<small>Manghe 'a risoluzione ierta.</small>",
 
 # Special:NewImages
 'ilsubmit' => 'Cirche',
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata'          => 'Metadata',
+'metadata-expand'   => 'Fa vedè le dettaglie estese',
+'metadata-collapse' => 'Scunne le dettaglie estese',
 
 # EXIF tags
 'exif-software' => 'Softuer ausete',
@@ -401,6 +535,7 @@ Puè vedè sulamende 'u sorgende.",
 'monthsall'        => 'tutte',
 
 # Special:Version
+'version'       => 'Versione', # Not used as normal message but as header for the special page itself
 'version-other' => 'Otre',
 
 # Special:FileDuplicateSearch

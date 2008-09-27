@@ -13,8 +13,21 @@
 
 $messages = array(
 # User preference toggles
-'tog-hideminor'    => 'Ficha mabadilisho madogo ya hivi karibuni',
-'tog-ccmeonemails' => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
+'tog-hideminor'            => 'Ficha mabadilisho madogo ya hivi karibuni',
+'tog-rememberpassword'     => 'Kumbuka kuingia kwangu katika kompyuta',
+'tog-editwidth'            => 'Hariri sanduku lenye upana mzima',
+'tog-watchcreations'       => 'Weka kurasa nilizoumba katika maangalizi yangu',
+'tog-watchdefault'         => 'Weka kurasa zote nilizohariri katika maangalizi yangu',
+'tog-watchmoves'           => 'Weka kurasa zote nilizohamisha katika maangalizi yangu',
+'tog-watchdeletion'        => 'Weka kurasa zote nilizofuta katika maangalizi yangu',
+'tog-minordefault'         => 'Weka alama mabadiliko madogo kama matumizi mbadala',
+'tog-previewontop'         => 'Onyesha mandhari kabla ya sanduku la kuhariria',
+'tog-previewonfirst'       => 'Onyesha mandhari mwanzoni mwa sanduku la kuhariria',
+'tog-nocache'              => 'Lemaza mabaki ya kurasa',
+'tog-enotifwatchlistpages' => 'Nitumie barua pepe pale kurasa zilizopo katika maangalizi zikibadilishwa',
+'tog-enotifusertalkpages'  => 'Nitumie barua pepe pale ukurasa wangu wa majadiliano ukiwa na mabadiliko',
+'tog-enotifminoredits'     => 'Pia nitumie barua pale kurasa za mabadiliko madogo zikiwa zimebadilishwa',
+'tog-ccmeonemails'         => 'Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine',
 
 # Dates
 'sunday'        => 'Jumapili',
@@ -103,6 +116,7 @@ $messages = array(
 'delete'            => 'Futa',
 'deletethispage'    => 'Futa ukurasa huo',
 'protect'           => 'Linda',
+'unprotect'         => 'Usilinde',
 'unprotectthispage' => 'Ondoa tunzo la ukarasa',
 'newpage'           => 'Ukurasa mpya',
 'talkpage'          => 'Jadilia ukarasa huu',
@@ -117,6 +131,7 @@ $messages = array(
 'redirectedfrom'    => '(Elekezwa kutoka $1)',
 'redirectpagesub'   => 'Elekeza ukurasa',
 'lastmodifiedat'    => 'Ukarasa huu umebadilisha mara iliyopita tarehe $1, saa $2.', # $1 date, $2 time
+'protectedpage'     => 'Kurasa iliyolindwa',
 'jumpto'            => 'Rukia:',
 'jumptonavigation'  => 'urambazaji',
 'jumptosearch'      => 'tafuta',
@@ -143,6 +158,8 @@ $messages = array(
 'privacy'              => 'Sera ya faragha',
 'privacypage'          => 'Project:Sera ya faragha',
 
+'badaccess' => 'Kuna hitilafu ya ruhusa',
+
 'retrievedfrom'       => 'Rudishwa kutoka "$1"',
 'youhavenewmessages'  => 'Una $1 ($2).',
 'newmessageslink'     => 'ujumbe mpya',
@@ -156,6 +173,7 @@ $messages = array(
 'site-rss-feed'       => '$1 tawanyiko la RSS',
 'site-atom-feed'      => '$1 tawanyiko la Atom',
 'page-rss-feed'       => '"$1" tawanyiko la RSS',
+'red-link-title'      => '$1 (bado haujaandikwa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Makala',
@@ -188,7 +206,7 @@ $messages = array(
 'logout'                  => 'Toka',
 'userlogout'              => 'Toka',
 'notloggedin'             => 'Hujajiandikisha',
-'nologin'                 => 'Huna akaunti kuingia? $1',
+'nologin'                 => 'Huna akaunti ya kuingilia? $1',
 'nologinlink'             => 'Sajili akaunti',
 'createaccount'           => 'Sajili akaunti',
 'gotaccount'              => 'Unayo akaunti tayari? $1',
@@ -594,17 +612,17 @@ Hivi ni vipimo kwa ukurasa <strong>$1</strong>:',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
-'movepagetext'     => "Fomu hapo chini itabadilisha jina la ukurasa, na itasogeza historia yake yote katika jina jipya lile lile.
-Jina la awali litakuwa elekezo hadi jina jipya.
+'movepagetext'     => "Tumia fomu hapo chini itabadilisha jina la ukurasa, na itahamisha historia yake yote katika jina jipya lile lile.
+Jina la awali litahamishwa na kuelekezwa katika mahali pa jina jipya.
 Viungo vilivyounganishwa na ukurasa wa awali havitabadilishwa;
 tafadhali tafutia maelekezo yenye hitilafu na maelekezo mawilimawili.
 Wewe una madaraka kuhakikisha kwamba viungo viendelee kuelekea vinapolengwa.
 
-Uwe mwangalifu kwamba ukurasa '''hautasogezwa''' kama tayari kuna ukurasa wenye jina jipya, ila ni tupu au ni maelekezo na hauna historia ya kuhaririwa.
+Uwe mwangalifu kwamba ukurasa '''hautahamishwa''' kama tayari kuna ukurasa wenye jina jipya, ila ni tupu au ni maelekezo na hauna historia ya kuhaririwa.
 Yaani unaweza kurudisha ukurasa kwenye jina la awali ukikosa, na haiwezekani kufuta ukurasa mwingine kwa nasibu.
 
 '''ILANI!'''
-Kusogeza ukurasa wenye wasomaji wengi kunaweza kuathirika watumiaji wetu.
+Kuhamisha ukurasa wenye wasomaji wengi kunaweza kuathirika watumiaji wetu.
 Tafadhali hakikisha kwamba unaelewa matokeo ya kitendo hiki kabla ya kuendelea.",
 'movepagetalktext' => "Ukurasa wa majadiliano wa ukurasa huu utasogezwa pamoja yake
 '''ila:'''

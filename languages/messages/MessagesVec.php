@@ -359,7 +359,6 @@ Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] sp
 'cannotdelete'         => "No se pol mìa scancełar la pàxena o l'imagine richiesta.",
 'badtitle'             => "El titoło no'l xè mia giusto",
 'badtitletext'         => 'La pàxena richiesta no la xè disponibiłe, ła podaìia èssar mìa vałida, voda, o podarìa tratarse de un eror in un cołegamento interlenguistico o fra diverse version de {{SITENAME}}.',
-'perfdisabled'         => 'Ne dispiase, ma sta funzionalità la xe stà tenporaneamente disabilità parché la ralenta el database fin al punto che nissun utente riesse pi a doparar sto sito.',
 'perfcached'           => "Sta qua la xè na copia ''cache'' e quindi la podarìa no èssar conpletamente agiornà.",
 'perfcachedts'         => "I dati che segue i xe tirà fora da na copia ''cache'' del database. Ultimo agiornamento: $1.",
 'querypage-no-updates' => 'I agiornamenti de la pagina i xe tenporaneamente sospesi. I dati contegnù ne la pagina no i vegnarà mìa agiornà.',
@@ -453,9 +452,9 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 La gà da contegner almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}} e la gà da essar difarente dal to nome utente.',
 'mailmypassword'             => 'Màndeme na password nova par posta eletronica',
 'passwordremindertitle'      => 'Servizio Password Reminder de {{SITENAME}}',
-'passwordremindertext'       => 'Qualcheduni (probabilmente ti, con indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
-La password par l\'utente "$2" la xe stà inpostà a "$3".
-Xe oportuno che te esegui l\'acesso \'pena che te pol e te canbi la password subito.
+'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
+Na password tenporànea par l\'utente "$2" la xe stà creà e inpostà a "$3".
+Se xe questo che te voléi far, desso te podi entrar co\' sta password tenporanea e inpostar na password nova.
 
 Se no te sì mìa stà ti a far la domanda, opure t\'è vegnù in mente la password e no te vol più canbiarla, te pol ignorar sto mesagio e continuar a doparar la vecia password.',
 'noemail'                    => 'Nissuna casela e-mail la risulta registrà par l\'Utente "$1".',
@@ -652,6 +651,13 @@ L'aministrador che gà blocà el database el gà dato la seguente spiegassion: $
 Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pagina.
 L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
 'deleted-notice'                   => "Sta pàxena la xe stà scancelà. L'elenco de le relative scancelassion el vien riportà de sèvito par informassion.",
+'deletelog-fulllog'                => 'Varda el registro conpleto',
+'edit-gone-missing'                => 'No se riesse a agiornar la pàxena.
+Pararìa che la sìpia stà scancelà.',
+'edit-conflict'                    => 'Conflito de modifica.',
+'edit-no-change'                   => 'La to modifica la xe stà ignorà, parché no ti gà canbià gnente nel testo.',
+'edit-already-exists'              => 'No se pol crear na pàxena nova.
+La esiste de zà.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Ocio: Sta pagina la contien dele chiamate de funzion al parser massa onerose.
@@ -781,6 +787,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'mergehistory-invalid-destination' => 'La pagina de destinazion la gà da verghe un titolo coreto.',
 'mergehistory-autocomment'         => 'Union de [[:$1]] in [[:$2]]',
 'mergehistory-comment'             => 'Union d [[:$1]] in [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Le pàxene de origine e de destinasion no le pode èssar la stessa',
 
 # Merge log
 'mergelog'           => 'Registro de le unioni',
@@ -1304,22 +1311,24 @@ Se pode védar un [[Special:WhatLinksHere/$2|elenco par intiero]].',
 'randomredirect-nopages' => 'Nissun redirect nel namespace selezionà.',
 
 # Statistics
-'statistics'               => 'Statistiche',
-'statistics-header-pages'  => 'Statìsteghe relative a le pàxene',
-'statistics-header-edits'  => 'Statìsteghe relative a i canbiamenti',
-'statistics-header-views'  => 'Statìsteghe relative a le visualizassion',
-'statistics-header-users'  => 'Statistiche dei utenti',
-'statistics-articles'      => 'Pàxene de contenuti',
-'statistics-pages'         => 'Pàxene',
-'statistics-files'         => 'File cargà',
-'statistics-edits'         => "Modifiche a scuminsiar da l'istalassion de {{SITENAME}}",
-'statistics-edits-average' => 'Canbiamenti in media par pàxena',
-'statistics-views-total'   => 'Visualizasion totali',
-'statistics-views-peredit' => 'Visualizassion par modifica',
-'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Cóa dei processi] da far girar in background',
-'statistics-users'         => '[[Special:ListUsers|Utenti]] registrà',
-'statistics-users-active'  => 'Utenti atìvi',
-'statistics-mostpopular'   => 'Pagine piassè visità',
+'statistics'                      => 'Statistiche',
+'statistics-header-pages'         => 'Statìsteghe relative a le pàxene',
+'statistics-header-edits'         => 'Statìsteghe relative a i canbiamenti',
+'statistics-header-views'         => 'Statìsteghe relative a le visualizassion',
+'statistics-header-users'         => 'Statistiche dei utenti',
+'statistics-articles'             => 'Pàxene de contenuti',
+'statistics-pages'                => 'Pàxene',
+'statistics-pages-tooltip'        => 'Tute quante le pàxene de la wiki, conprese le pàxene de discussion, i rimandi, ecc.',
+'statistics-files'                => 'File cargà',
+'statistics-edits'                => "Modifiche a scuminsiar da l'istalassion de {{SITENAME}}",
+'statistics-edits-average'        => 'Canbiamenti in media par pàxena',
+'statistics-views-total'          => 'Visualizasion totali',
+'statistics-views-peredit'        => 'Visualizassion par modifica',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Cóa dei processi] da far girar in background',
+'statistics-users'                => '[[Special:ListUsers|Utenti]] registrà',
+'statistics-users-active'         => 'Utenti atìvi',
+'statistics-users-active-tooltip' => "Utenti che gà fato un'azion nel mese pasà",
+'statistics-mostpopular'          => 'Pagine piassè visità',
 
 'disambiguations'      => 'Pàxene de disanbiguazion',
 'disambiguationspage'  => 'Template:Disambigua',
@@ -1669,6 +1678,7 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 ** Pàxena archivià
 ** Pàxena doparà assè
 ** Vandalismi ripetùi',
+'protect-edit-reasonlist'     => 'Cànbia i motivi de la protesion',
 'restriction-type'            => 'Parmesso:',
 'restriction-level'           => 'Livel de restrizion',
 'minimum-size'                => 'Dimension minima',
@@ -1799,6 +1809,7 @@ $1',
 'ipbotherreason'                  => 'Altri motivi/detagli:',
 'ipbhidename'                     => "Scondi el nome utente dal registro dei blochi, da l'elenco dei blochi ativi e da l'elenco utenti.",
 'ipbwatchuser'                    => "Tien d'ocio la pagina utente e la pagina de discussion de sto utente",
+'ipballowusertalk'                => 'Parmétighe a sto utente de scrìvar su la so pàxena de discussion finché el xe blocà',
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
 'blockipsuccesstext'              => 'L\'indirizzo IP "$1" l\'è sta bloccà.
@@ -1839,6 +1850,7 @@ $1',
 'block-log-flags-nocreate'        => 'creazion account blocà',
 'block-log-flags-noautoblock'     => 'bloco automatico disativà',
 'block-log-flags-noemail'         => 'e-mail blocàe',
+'block-log-flags-nousertalk'      => "no'l pode scrìvar su la so pàxena de discussion",
 'block-log-flags-angry-autoblock' => 'bloco automatico avansado ativo',
 'range_block_disabled'            => 'La possibilità de blocar intervali de indirizzi IP no la xe ativa al momento.',
 'ipb_expiry_invalid'              => 'Tenpo de scadensa mìa valido. Controla el [http://www.gnu.org/software/tar/manual/html_chapter/tar_7.html manual de tar] par la sintassi esatta.',
@@ -1854,6 +1866,7 @@ $1',
 'proxyblocksuccess'               => 'Fatto.',
 'sorbsreason'                     => 'Sto indirizo IP el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'No se pol crear acessi novi da sto indirizo IP parché el xe elencà come proxy verto ne la lista nera DNSBL doparà da {{SITENAME}}.',
+'cant-block-while-blocked'        => 'No se pode blocar altri utenti finché se xe blocài.',
 
 # Developer tools
 'lockdb'              => 'Blocca el database',

@@ -568,7 +568,6 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'cannotdelete'         => 'Kunne ikkje slette fila. (Ho kan vera sletta av andre.)',
 'badtitle'             => 'Feil i tittelen',
 'badtitletext'         => 'Den ønska tittelen var ulovleg, tom eller feil lenka frå ei anna wiki.',
-'perfdisabled'         => 'Beklagar! Denne funksjonen er mellombels deaktivert for å spara tenarkapasitet.',
 'perfcached'           => 'Det følgjande er frå mellomlageret åt tenaren og er ikkje nødvendigvis oppdatert.',
 'perfcachedts'         => 'Desse data er mellomlagra, og vart sist oppdaterte $1.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',

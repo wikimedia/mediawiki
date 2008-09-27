@@ -369,7 +369,6 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'badtitle'             => 'Ongeldige titel',
 'badtitletext'         => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
-'perfdisabled'         => 'Jammer, hierdie funksie is tydelik afgeskakel omdat dit die databasis soveel verstadig dat dit onbruikbaar vir andere raak.',
 'perfcached'           => "Die volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie.",
 'perfcachedts'         => 'Die volgende data is gekas. Laaste opdatering: $1',
 'querypage-no-updates' => 'Opdatering van hierdie bladsy is huidiglik afgeskakel. Inligting hier sal nie tans verfris word nie.',

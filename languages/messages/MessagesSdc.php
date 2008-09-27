@@ -317,7 +317,6 @@ L'amministhradori di sisthema chi l'à broccadda à lassaddu chistha giusthifigg
 'cannotdelete'         => 'Impussìbiri canzillà la pàgina o lu file dumandaddu. (Pudia assé isthaddu già canzilladdu.)',
 'badtitle'             => 'Tìturu no currettu',
 'badtitletext'         => "Lu tìturu di la pàgina dumandadda è bioddu, ibbagliaddu o cun caràtteri no ammessi oppuru deriba da un errori i' li cullegamenti tra siti wiki dibessi o versioni in linghi dibessi di lu matessi situ.",
-'perfdisabled'         => "Semmu dipiazuddi, chistha funzionariddai è timpuraniamenti disàbiritadda parchí lu so'usu rallinta la bancadati finz'a rindì lu situ inutirizabiri pa tutti l'utenti.",
 'perfcached'           => "Li dati chi seghini so cabaddi da una còpia i' la mimória cache di la bancadati, no aggiornaddi in tempu riari.",
 'perfcachedts'         => "Li dati chi seghini so cabaddi da una còpia i' la mimória cache di la bancadati. Ulthimu aggiornamentu: $1.",
 'querypage-no-updates' => "L'aggiornamenti di la pàgina so timpuraniamenti suippesi. Li dati in edda cuntinuddi no sarani aggiornaddi.",
