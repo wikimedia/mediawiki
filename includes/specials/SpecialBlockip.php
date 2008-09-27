@@ -286,8 +286,7 @@ class IPBlockForm {
 	 * $userID and $expiry will be filled accordingly
 	 * @return array(message key, arguments) on failure, empty array on success
 	 */
-	function doBlock(&$userId = null, &$expiry = null)
-	{
+	function doBlock( &$userId = null, &$expiry = null ) {
 		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
 
 		$userId = 0;
@@ -327,9 +326,6 @@ class IPBlockForm {
 				# Username block
 				if ( $wgSysopUserBans ) {
 					$user = User::newFromName( $this->BlockAddress );
-					if ( $wgUser->isBlocked() && ( $wgUser->getId !== $user->getId() ) ) {
-						return array( 'cant-block-while-blocked' );
-					}
 					if( !is_null( $user ) && $user->getId() ) {
 						# Use canonical name
 						$userId = $user->getId();
@@ -343,8 +339,12 @@ class IPBlockForm {
 			}
 		}
 
+		if ( $wgUser->isBlocked() && ( $wgUser->getId() !== $userId ) ) {
+			return array( 'cant-block-while-blocked' );
+		}
+
 		$reasonstr = $this->BlockReasonList;
-		if ( $reasonstr != 'other' && $this->BlockReason != '') {
+		if ( $reasonstr != 'other' && $this->BlockReason != '' ) {
 			// Entry from drop down menu + additional comment
 			$reasonstr .= ': ' . $this->BlockReason;
 		} elseif ( $reasonstr == 'other' ) {
@@ -355,7 +355,7 @@ class IPBlockForm {
 		if( $expirestr == 'other' )
 			$expirestr = $this->BlockOther;
 
-		if ((strlen($expirestr) == 0) || (strlen($expirestr) > 50)) {
+		if ( ( strlen( $expirestr ) == 0) || ( strlen( $expirestr ) > 50) ) {
 			return array('ipb_expiry_invalid');
 		}
 		
