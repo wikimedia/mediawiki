@@ -454,7 +454,7 @@ class memcached
       if (!$this->_active)
          return false;
 
-      $this->stats['get_multi']++;
+      @$this->stats['get_multi']++;
       $sock_keys = array();
 
       foreach ($keys as $key)
