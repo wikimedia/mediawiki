@@ -173,7 +173,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		global $wgUser;
 
 		$params = $this->extractRequestParams();
-		$fld_protection = $fld_talkid = $fld_subjectid = false;
+		$fld_protection = $fld_talkid = $fld_subjectid = $fld_url = $fld_readable = false;
 		if(!is_null($params['prop'])) {
 			$prop = array_flip($params['prop']);
 			$fld_protection = isset($prop['protection']);
