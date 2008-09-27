@@ -1121,7 +1121,8 @@ class Title {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		if ( $user->isBlockedFrom( $this ) && $action != 'createaccount' ) {
+		// Edit blocks should not affect reading. Account creation blocks handled at userlogin.
+		if ( $user->isBlockedFrom( $this ) && $action != 'read' && $action != 'createaccount' ) {
 			$block = $user->mBlock;
 
 			// This is from OutputPage::blockedPage
