@@ -281,6 +281,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15609) Add inprop=url and inprop=readable to prop=info
 * Add ApiDisabled and ApiQueryDisabled classes so individual modules can
   be disabled in LocalSettings.php
+* (bug 15653) Add prop=duplicatefiles
 
 === Languages updated in 1.14 ===
 

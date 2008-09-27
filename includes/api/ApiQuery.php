@@ -56,6 +56,7 @@ class ApiQuery extends ApiBase {
 		'categories' => 'ApiQueryCategories',
 		'extlinks' => 'ApiQueryExternalLinks',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
+		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 	);
 
 	private $mQueryListModules = array (
