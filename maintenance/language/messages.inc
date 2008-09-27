@@ -334,7 +334,6 @@ $wgMessageStructure = array(
 		'cannotdelete',
 		'badtitle',
 		'badtitletext',
-		'perfdisabled',
 		'perfcached',
 		'perfcachedts',
 		'querypage-no-updates',
