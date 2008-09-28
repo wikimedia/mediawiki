@@ -229,6 +229,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Fixed incorrect usage of DB_LAST in Special:Export. Deprecated DB_LAST.
 * (bug 15642) Blocked sysops can no longer block other users
 * Http::request() now respects $wgHTTPtimeout when not using cURL
+* (bug 15158) Userinvalidcssjstitle not shown on preview
 
 === API changes in 1.14 ===
 
