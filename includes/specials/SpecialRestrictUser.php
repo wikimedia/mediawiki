@@ -12,10 +12,7 @@ function wfSpecialRestrictUser( $par = null ) {
 		return;
 	}
 	$isIP = User::isIP( $userOrig );
-	if( $isIP )
-		$user = $userOrig;
-	else
-		$user = User::getCanonicalName( $userOrig );
+	$user = $isIP ? $userOrig : User::getCanonicalName( $userOrig );
 	$uid = User::idFromName( $user );
 	if( !$uid && !$isIP ) {
 		$err = '<strong class="error">' . wfMsgHtml( 'restrictuser-notfound' ) . '</strong>';
@@ -30,7 +27,8 @@ function wfSpecialRestrictUser( $par = null ) {
 	RestrictUserForm::pageRestrictionForm( $uid, $user, $old );
 	RestrictUserForm::namespaceRestrictionForm( $uid, $user, $old );
 
-	$old = UserRestriction::fetchForUser( $user, true );	// Renew it after possible changes in previous two functions
+	// Renew it after possible changes in previous two functions
+	$old = UserRestriction::fetchForUser( $user, true );
 	if( $old ) {
 		$wgOut->addHTML( RestrictUserForm::existingRestrictions( $old ) );
 	}
@@ -39,8 +37,7 @@ function wfSpecialRestrictUser( $par = null ) {
 class RestrictUserForm {
 	public static function selectUserForm( $val = null, $error = null ) {
 		global $wgScript, $wgTitle;
-		$legend = wfMsgHtml( 'restrictuser-userselect' );
-		$s  = Xml::fieldset( $legend ) . "<form action=\"{$wgScript}\">";
+		$s  = Xml::fieldset( wfMsg( 'restrictuser-userselect' ) ) . "<form action=\"{$wgScript}\">";
 		if( $error )
 			$s .= '<p>' . $error . '</p>';
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
@@ -51,9 +48,9 @@ class RestrictUserForm {
 	}
 
 	public static function existingRestrictions( $restrictions ) {
+		//TODO: autoload?
 		require_once( dirname( __FILE__ ) . '/SpecialListUserRestrictions.php' );
-		$legend = wfMsgHtml( 'restrictuser-existing' );
-		$s  = Xml::fieldset( $legend ) . '<ul>';
+		$s  = Xml::fieldset( wfMsg( 'restrictuser-existing' ) ) . '<ul>';
 		foreach( $restrictions as $r )
 			$s .= UserRestrictionsPager::formatRestriction( $r );
 		$s .= "</ul></fieldset>";
@@ -66,28 +63,28 @@ class RestrictUserForm {
 		$success = false;
 		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::PAGE &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'edittoken' ) ) ) {
-				$title = Title::newFromText( $wgRequest->getVal( 'page' ) );
-				if( !$title )
-					$error = wfMsgExt( 'restrictuser-badtitle', 'parseinline', $wgRequest->getVal( 'page' ) );
-				elseif( UserRestriction::convertExpiry( $wgRequest->getVal( 'expiry' ) ) === false )
-					$error = wfMsgExt( 'restrictuser-badexpiry', 'parseinline', $wgRequest->getVal( 'expiry' ) );
-				else 
-					foreach( $oldRestrictions as $r )
-						if( $r->isPage() && $r->getPage()->equals( $title ) )
-							$error = wfMsgExt( 'restrictuser-duptitle', 'parse' );
-				if( !$error ) {
-					self::doPageRestriction( $uid, $user );
-					$success = true;
+
+			$title = Title::newFromText( $wgRequest->getVal( 'page' ) );
+			if( !$title ) {
+				$error = array( 'restrictuser-badtitle', $wgRequest->getVal( 'page' ) );
+			} elseif( UserRestriction::convertExpiry( $wgRequest->getVal( 'expiry' ) ) === false ) {
+				$error = array( 'restrictuser-badexpiry', $wgRequest->getVal( 'expiry' ) );
+			} else {
+				foreach( $oldRestrictions as $r ) {
+					if( $r->isPage() && $r->getPage()->equals( $title ) )
+						$error = array( 'restrictuser-duptitle' );
 				}
+			}
+			if( !$error ) {
+				self::doPageRestriction( $uid, $user );
+				$success = array('restrictuser-success', $user);
+			}
 		}
 		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::PAGE;
-		$legend = wfMsgHtml( 'restrictuser-legend-page' );
-		$wgOut->addHTML( Xml::fieldset( $legend ) );
-		if( $error )
-			$wgOut->addHTML( '<strong class="error">' . $error . '</strong>' );
-		if( $success )
-			$wgOut->addHTML( '<strong class="success">' . wfMsgExt( 'restrictuser-success',
-				'parseinline', $user ) . '</strong>' );
+		$wgOut->addHTML( Xml::fieldset( wfMsg( 'restrictuser-legend-page' ) ) );
+
+		self::printSuccessError( $success, $error );
+
 		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $wgTitle->getLocalUrl(),
 			'method' => 'post' ) ) );
 		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::PAGE ) );
@@ -102,6 +99,14 @@ class RestrictUserForm {
 			$useRequestValues ? $wgRequest->getVal( 'reason' ) : false );
 		$wgOut->addHTML( Xml::buildForm( $form, 'restrictuser-sumbit' ) );
 		$wgOut->addHTML( "</form></fieldset>" );
+	}
+
+	public static function printSuccessError( $success, $error ) {
+		global $wgOut;
+		if ( $error )
+			$wgOut->wrapWikiMsg( '<strong class="error">$1</strong>', $error );
+		if ( $success )
+			$wgOut->wrapWikiMsg( '<strong class="success">$1/strong>', $success );
 	}
 
 	public static function doPageRestriction( $uid, $user ) {
@@ -140,17 +145,14 @@ class RestrictUserForm {
 							$error = wfMsgExt( 'restrictuser-dupnamespace', 'parse' );
 				if( !$error ) {
 					self::doNamespaceRestriction( $uid, $user );
-					$success = true;
+					$success = array('restrictuser-success', $user);
 				}
 		}
 		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE;
-		$legend = wfMsgHtml( 'restrictuser-legend-namespace' );
-		$wgOut->addHTML( Xml::fieldset( $legend ) );
-		if( $error )
-			$wgOut->addHTML( '<strong class="error">' . $error . '</strong>' );
-		if( $success )
-			$wgOut->addHTML( '<strong class="success">' . wfMsgExt( 'restrictuser-success',
-				'parseinline', $user ) . '</strong>' );
+		$wgOut->addHTML( Xml::fieldset( wfMsg( 'restrictuser-legend-namespace' ) ) );
+
+		self::printSuccessError( $success, $error );
+
 		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => $wgTitle->getLocalUrl(),
 			'method' => 'post' ) ) );
 		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::NAMESPACE ) );
