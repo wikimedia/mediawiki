@@ -54,12 +54,13 @@ function wfSpecialMovepage( $par = null ) {
  * @ingroup SpecialPage
  */
 class MovePageForm {
-	var $oldTitle, $newTitle, $reason; # Text input
-	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects;
+	var $oldTitle, $newTitle; # Objects
+	var $reason; # Text input
+	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects; # Checks
 
 	private $watch = false;
 
-	function MovePageForm( $oldTitle, $newTitle ) {
+	function __construct( $oldTitle, $newTitle ) {
 		global $wgRequest;
 		$target = isset($par) ? $par : $wgRequest->getVal( 'target' );
 		$this->oldTitle = $oldTitle;
@@ -83,16 +84,19 @@ class MovePageForm {
 		$skin = $wgUser->getSkin();
 
 		$oldTitleLink = $skin->makeLinkObj( $this->oldTitle );
-		$oldTitle = $this->oldTitle->getPrefixedText();
 
-		$wgOut->setPagetitle( wfMsg( 'move-page', $oldTitle ) );
+		$wgOut->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'move-page-backlink', $oldTitleLink ) );
 
-		if( $this->newTitle == '' ) {
+		$newTitle = $this->newTitle;
+
+		if( !$newTitle ) {
 			# Show the current title as a default
 			# when the form is first opened.
-			$newTitle = $oldTitle;
-		} else {
+			$newTitle = $this->oldTitle;
+		}
+		// WTF is this doing, passing title *object* to newFromUrl()??
+		/*else {
 			if( empty($err) ) {
 				$nt = Title::newFromURL( $this->newTitle );
 				if( $nt ) {
@@ -105,11 +109,10 @@ class MovePageForm {
 					}
 				}
 			}
-			$newTitle = $this->newTitle;
-		}
+		}*/
 
 		if ( !empty($err) && $err[0] == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
-			$wgOut->addWikiMsg( 'delete_and_move_text', $newTitle );
+			$wgOut->addWikiMsg( 'delete_and_move_text', $newTitle->getPrefixedText() );
 			$movepagebtn = wfMsg( 'delete_and_move' );
 			$submitVar = 'wpDeleteAndMove';
 			$confirm = "
@@ -172,8 +175,8 @@ class MovePageForm {
 					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpNewTitle', 40, $newTitle, array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
-					Xml::hidden( 'wpOldTitle', $oldTitle ) .
+					Xml::input( 'wpNewTitle', 40, $newTitle->getPrefixedText(), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
+					Xml::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				"</td>
 			</tr>
 			<tr>
@@ -215,7 +218,7 @@ class MovePageForm {
 				<tr>
 					<td></td>
 					<td class=\"mw-input\">" .
-				Xml::checkLabel( wfMsgHtml(
+				Xml::checkLabel( wfMsg(
 						$this->oldTitle->hasSubpages()
 						? 'move-subpages'
 						: 'move-talk-subpages'
