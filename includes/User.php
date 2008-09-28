@@ -14,7 +14,7 @@ define( 'USER_TOKEN_LENGTH', 32 );
  * \type{\int} Serialized record version.
  * @ingroup Constants
  */
-define( 'MW_USER_VERSION', 6 );
+define( 'MW_USER_VERSION', 7 );
 
 /**
  * \type{\string} Some punctuation to prevent editing from broken text-mangling proxies.
@@ -3245,7 +3245,7 @@ class User {
 	// Restrictions-related block
 
 	public function loadRestrictions() {
-		if( !$this->mRestrictions )
+		if( is_null( $this->mRestrictions ) )
 			$this->mRestrictions = UserRestriction::fetchForUser( $this->isLoggedIn() ? 
 				intval( $this->getId() ) : $this->getName()  );
 	}
