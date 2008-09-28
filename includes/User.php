@@ -646,7 +646,9 @@ class User {
 			return false;
 
 		# Clean up name according to title rules
-		$t = Title::newFromText( $name );
+		$t = ($validate === 'valid') ? 
+			Title::newFromText( $name ) : Title::makeTitle( NS_USER, $name );
+		# Check for invalid titles
 		if( is_null( $t ) ) {
 			return false;
 		}
