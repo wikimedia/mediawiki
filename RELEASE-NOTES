@@ -231,6 +231,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Http::request() now respects $wgHTTPtimeout when not using cURL
 * (bug 15158) Userinvalidcssjstitle not shown on preview
 * (bug 15196) Free external links should be numbered in a localised manner
+* (bug 15388) Title of Special:PrefixIndex
 
 === API changes in 1.14 ===
 
