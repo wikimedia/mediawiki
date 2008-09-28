@@ -1327,17 +1327,22 @@ class Title {
 			if( !$r )
 				$r = $user->getRestrictionForNamespace( $this->getNamespace() );
 			if( $r ) {
-				$start = $wgLang->timeanddate( $r->getTimestamp() );
-				$end = $r->getExpiry() == 'infinity' ?
-					wfMsg( 'ipbinfinite' ) :
-					$wgLang->timeanddate( $r->getExpiry() );
+				$error = array(); 
+				$start = array( $wgLang->date( $r->getTimestamp() ), $wgLang->time( $r->getTimestamp() ) );
 				if( $r->isPage() )
-					$errors[] = array( 'userrestricted-page', $this->getFullText(),
-						$r->getBlockerText(), $r->getReason(), $start, $end );
-				elseif( $r->isNamespace() ) {
-					$errors[] = array( 'userrestricted-namespace', $wgLang->getDisplayNsText( $this->getNamespace() ),
-						$r->getBlockerText(), $r->getReason(), $start, $end );
+					$error = array( 'userrestricted-page', $this->getFullText(),
+						$r->getBlockerText(), $r->getReason(), $start[0], $start[1] );
+				elseif( $r->isNamespace() )
+					$error = array( 'userrestricted-namespace', $wgLang->getDisplayNsText( $this->getNamespace() ),
+						$r->getBlockerText(), $r->getReason(), $start[0], $start[1] );
+
+				if( $r->getExpiry() == 'infinity' ) {
+					$error[0] .= '-indef';
+				} else {
+					$error[] = $wgLang->date( $r->getExpiry() );
+					$error[] = $wgLang->time( $r->getExpiry() );
 				}
+				$errors[] = $error;
 			}
 		}
 

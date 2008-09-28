@@ -1205,7 +1205,7 @@ It already exists.',
 The restriction was put by [[User:$2|$2]].
 The reason given is \'\'$3\'\'.
 
-Restriction was put at $4 and expires at $5.
+Restriction was put on $4 at $5 and expires on $6 at $7.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
 'userrestricted-namespace'         => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
@@ -1213,7 +1213,23 @@ You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|admini
 The restriction was put by [[User:$2|$2]].
 The reason given is ''$3''.
 
-Restriction was put at $4 and expires at $5.
+Restriction was put on $4 at $5 and expires on $6 at $7.
+
+You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
+'userrestricted-page-indef'        => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
+
+The restriction was put by [[User:$2|$2]].
+The reason given is \'\'$3\'\'.
+
+Restriction was put at $4 and will not expire.
+
+You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
+'userrestricted-namespace-indef'    => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
+
+The restriction was put by [[User:$2|$2]].
+The reason given is ''$3''.
+
+Restriction was put at $4 and will not expire.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
 
@@ -2596,7 +2612,7 @@ You cannot create an account',
 [[Special:Ipblocklist|Blocks]] are not listed here.',
 'listuserrestrictions-row-ns'     => 'restricted $1 from editing $2 namespace ($3)',
 'listuserrestrictions-row-page'   => 'restricted $1 from editing $2 ($3)',
-'listuserrestrictions-row-expiry' => 'expires at $1',
+'listuserrestrictions-row-expiry' => 'expires on $1 at $2',
 'listuserrestrictions-legend'     => 'Find a restriction',
 'listuserrestrictions-type'       => 'Type:',
 'listuserrestrictions-user'       => 'User:',
