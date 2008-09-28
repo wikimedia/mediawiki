@@ -2593,7 +2593,7 @@ You cannot create an account',
 # Special:ListUserRestrictions
 'listuserrestrictions'            => 'List of user restrictions',
 'listuserrestrictions-intro'      => 'This list contains all restrictions from editing certain pages and namespaces put on users.
-Note that blocks are listed [[Special:Ipblocklist|there]] and are not listed here.',
+[[Special:Ipblocklist|Blocks]] are not listed here.',
 'listuserrestrictions-row-ns'     => 'restricted $1 from editing $2 namespace ($3)',
 'listuserrestrictions-row-page'   => 'restricted $1 from editing $2 ($3)',
 'listuserrestrictions-row-expiry' => 'expires at $1',
