@@ -106,7 +106,7 @@ class RestrictUserForm {
 		if ( $error )
 			$wgOut->wrapWikiMsg( '<strong class="error">$1</strong>', $error );
 		if ( $success )
-			$wgOut->wrapWikiMsg( '<strong class="success">$1/strong>', $success );
+			$wgOut->wrapWikiMsg( '<strong class="success">$1</strong>', $success );
 	}
 
 	public static function doPageRestriction( $uid, $user ) {
@@ -126,6 +126,7 @@ class RestrictUserForm {
 		$l = new LogPage( 'restrict' );
 		$l->addEntry( 'restrict', Title::makeTitle( NS_USER, $user ), $r->getReason(),
 			array( $r->getType(), $r->getPage()->getFullText(), $logExpiry) );
+		self::invalidateCache( $user );
 	}
 
 	public static function namespaceRestrictionForm( $uid, $user, $oldRestrictions ) {
@@ -136,13 +137,13 @@ class RestrictUserForm {
 			$wgUser->matchEditToken( $wgRequest->getVal( 'edittoken' ) ) ) {
 				$ns = $wgRequest->getVal( 'namespace' );
 				if( $wgContLang->getNsText( $ns ) === false )
-					$error = wfMsgExt( 'restrictuser-badnamespace', 'parseinline' );
+					$error = array( 'restrictuser-badnamespace' );
 				elseif( UserRestriction::convertExpiry( $wgRequest->getVal( 'expiry' ) ) === false )
-					$error = wfMsgExt( 'restrictuser-badexpiry', 'parseinline', $wgRequest->getVal( 'expiry' ) );
+					$error = array( 'restrictuser-badexpiry', $wgRequest->getVal( 'expiry' ) );
 				else 
 					foreach( $oldRestrictions as $r )
 						if( $r->isNamespace() && $r->getNamespace() == $ns )
-							$error = wfMsgExt( 'restrictuser-dupnamespace', 'parse' );
+							$error = array( 'restrictuser-dupnamespace' );
 				if( !$error ) {
 					self::doNamespaceRestriction( $uid, $user );
 					$success = array('restrictuser-success', $user);
@@ -185,5 +186,11 @@ class RestrictUserForm {
 		$l = new LogPage( 'restrict' );
 		$l->addEntry( 'restrict', Title::makeTitle( NS_USER, $user ), $r->getReason(),
 			array( $r->getType(), $r->getNamespace(), $logExpiry ) );
+		self::invalidateCache( $user );
+	}
+
+	private static function invalidateCache( $user ) {
+		$userObj = User::newFromName( $user, false );
+		$userObj->invalidateCache();
 	}
 }
