@@ -106,6 +106,8 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function formatRow( $row ) {
+		global $wgLang;
+
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 
@@ -121,7 +123,8 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$item = wfSpecialList( $name, $groups );
-		$edits = wfMsgExt('usereditcount',array('parsemag'),$row->edits);
+		$editCount = $wgLang->formatNum( $row->edits );
+		$edits = wfMsgExt( 'usereditcount', 'parsemag', $editCount );
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
 		return "<li>{$item} [$edits]</li>";
 	}
