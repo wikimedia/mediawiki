@@ -2767,7 +2767,7 @@ class Parser
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgContLang, $wgLang, $wgAllowDisplayTitle, $wgNonincludableNamespaces;
+		global $wgContLang, $wgAllowDisplayTitle, $wgNonincludableNamespaces;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3148,8 +3148,8 @@ class Parser
 			if( $rev ) {
 				$text = $rev->getText();
 			} elseif( $title->getNamespace() == NS_MEDIAWIKI ) {
-				global $wgLang;
-				$message = $wgLang->lcfirst( $title->getText() );
+				global $wgContLang;
+				$message = $wgContLang->lcfirst( $title->getText() );
 				$text = wfMsgForContentNoTrans( $message );
 				if( wfEmptyMsg( $message, $text ) ) {
 					$text = false;
