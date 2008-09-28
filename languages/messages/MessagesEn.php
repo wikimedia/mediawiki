@@ -2614,7 +2614,8 @@ Note that blocks are listed [[Special:Ipblocklist|there]] and are not listed her
 'removerestrictions'           => 'Remove restriction from a user',
 'removerestrictions-intro'     => 'Use the form below to remove a restriction from a certain user.',
 'removerestrictions-noid'      => 'No restriction ID was specified.',
-'removerestrictions-wrongid'   => 'Restriction with that ID not found. Most probably someone has removed it or it expired.',
+'removerestrictions-wrongid'   => 'Restriction with that ID not found.
+Most probably someone has removed it or it expired.',
 'removerestrictions-legend'    => 'Remove a restriction',
 'removerestrictions-user'      => 'Restricted user:',
 'removerestrictions-type'      => 'Restriction type:',
