@@ -134,7 +134,7 @@ class UserRestrictionsPager extends ReverseChronologicalPager {
 		$subjlink = $sk->userLink( $r->getSubjectId(), $r->getSubjectText() ) .
 			$sk->userToolLinks( $r->getSubjectId(), $r->getSubjectText() );
 		$expiry = is_numeric( $r->getExpiry() ) ?
-			wfMsg( 'listuserrestrictions-row-expiry', $wgLang->timeanddate( $r->getExpiry() ) ) :
+			wfMsg( 'listuserrestrictions-row-expiry', $wgLang->date( $r->getExpiry() ), $wgLang->time( $r->getExpiry() ) ) :
 			wfMsg( 'ipbinfinite' );
 		$msg = '';
 		if( $r->isNamespace() ) {
