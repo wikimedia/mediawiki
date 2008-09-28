@@ -17,8 +17,6 @@ function wfSpecialRemoveRestrictions() {
 		return;
 	}
 
-	$legend = wfMsgHtml( 'removerestrictions-legend' );
-
 	$form = array();
 	$form['removerestrictions-user'] = $sk->userLink( $r->getSubjectId(), $r->getSubjectText() ) .
 		$sk->userToolLinks( $r->getSubjectId(), $r->getSubjectText() );
@@ -34,7 +32,7 @@ function wfSpecialRemoveRestrictions() {
 		$result = wfSpecialRemoveRestrictionsProcess( $r );
 
 	$wgOut->addWikiMsg( 'removerestrictions-intro' );
-	$wgOut->addHTML( "<fieldset><legend>{$legend}</legend>" );
+	$wgOut->addHTML( Xml::fieldset( wfMsgHtml( 'removerestrictions-legend' ) ) );
 	if( $result )
 		$wgOut->addHTML( '<strong class="success">' . wfMsgExt( 'removerestrictions-success',
 			'parseinline', $r->getSubjectText() ) . '</strong>' );

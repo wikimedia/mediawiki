@@ -40,7 +40,7 @@ class RestrictUserForm {
 	public static function selectUserForm( $val = null, $error = null ) {
 		global $wgScript, $wgTitle;
 		$legend = wfMsgHtml( 'restrictuser-userselect' );
-		$s  = "<fieldset><legend>{$legend}</legend><form action=\"{$wgScript}\">";
+		$s  = Xml::fieldset( $legend ) . "<form action=\"{$wgScript}\">";
 		if( $error )
 			$s .= '<p>' . $error . '</p>';
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
@@ -53,7 +53,7 @@ class RestrictUserForm {
 	public static function existingRestrictions( $restrictions ) {
 		require_once( dirname( __FILE__ ) . '/SpecialListUserRestrictions.php' );
 		$legend = wfMsgHtml( 'restrictuser-existing' );
-		$s  = "<fieldset><legend>{$legend}</legend><ul>";
+		$s  = Xml::fieldset( $legend ) . '<ul>';
 		foreach( $restrictions as $r )
 			$s .= UserRestrictionsPager::formatRestriction( $r );
 		$s .= "</ul></fieldset>";
@@ -82,7 +82,7 @@ class RestrictUserForm {
 		}
 		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::PAGE;
 		$legend = wfMsgHtml( 'restrictuser-legend-page' );
-		$wgOut->addHTML( "<fieldset><legend>{$legend}</legend>" );
+		$wgOut->addHTML( Xml::fieldset( $legend ) );
 		if( $error )
 			$wgOut->addHTML( '<strong class="error">' . $error . '</strong>' );
 		if( $success )
@@ -145,7 +145,7 @@ class RestrictUserForm {
 		}
 		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE;
 		$legend = wfMsgHtml( 'restrictuser-legend-namespace' );
-		$wgOut->addHTML( "<fieldset><legend>{$legend}</legend>" );
+		$wgOut->addHTML( Xml::fieldset( $legend ) );
 		if( $error )
 			$wgOut->addHTML( '<strong class="error">' . $error . '</strong>' );
 		if( $success )

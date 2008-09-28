@@ -25,8 +25,7 @@ class SpecialListUserRestrictionsForm {
 	public function getHTML() {
 		global $wgRequest, $wgScript, $wgTitle;
 		$s = '';
-		$legend = wfMsgHtml( 'listuserrestrictions-legend' );
-		$s .= "<fieldset><legend>{$legend}</legend>";
+		$s .= Xml::fieldset( wfMsg( 'listuserrestrictions-legend' ) );
 		$s .= "<form action=\"{$wgScript}\">";
 		$s .= Xml::hidden( 'title', $wgTitle->getPrefixedDbKey() );
 		$s .= Xml::label( wfMsgHtml( 'listuserrestrictions-type' ), 'type' ) . '&nbsp;' .
@@ -40,7 +39,7 @@ class SpecialListUserRestrictionsForm {
 		$s .= '&nbsp;';
 		$s .= Xml::inputLabel( wfMsgHtml( 'listuserrestrictions-page' ), 'page', 'page',
 			false, $wgRequest->getVal( 'page' ) );
-		$s .= Xml::submitButton( wfMsgHtml( 'listuserrestrictions-submit' ) );
+		$s .= Xml::submitButton( wfMsg( 'listuserrestrictions-submit' ) );
 		$s .= "</p></form></fieldset>";
 		return $s;
 	}
