@@ -123,9 +123,6 @@ class ExternalStoreDB {
 	 */
 	function store( $cluster, $data ) {
 		$dbw = $this->getMaster( $cluster );
-		if( !$dbw ) {
-			return false;
-		}
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
 		$dbw->insert( $this->getTable( $dbw ), 
 			array( 'blob_id' => $id, 'blob_text' => $data ), 
