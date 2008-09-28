@@ -153,6 +153,7 @@ $wgIgnoredMessages = array(
 	'upload-summary',
 	'pagetitle-view-mainpage',
 	'newuserlogentry',
+	'restrictlogpage',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -320,7 +321,6 @@ $wgOptionalMessages = array(
 	'recentchangeslinked-backlink',
 	'diff-with-additional',
 	'statistics-footer',
-	'restrictlogpage',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
