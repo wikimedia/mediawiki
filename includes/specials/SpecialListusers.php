@@ -94,6 +94,7 @@ class UsersPager extends AlphabeticPager {
 				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 ",
 			'fields' => array('user_name',
 				'MAX(user_id) AS user_id',
+				'MAX(user_editcount) AS edits',
 				'COUNT(ug_group) AS numgroups',
 				'MAX(ug_group) AS singlegroup'),
 			'options' => array('GROUP BY' => 'user_name'),
@@ -120,8 +121,9 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$item = wfSpecialList( $name, $groups );
+		$edits = wfMsgExt('usereditcount',array('parsemag'),$row->edits);
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}</li>";
+		return "<li>{$item} [$edits]</li>";
 	}
 
 	function getBody() {

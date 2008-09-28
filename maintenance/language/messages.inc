@@ -1317,6 +1317,7 @@ $wgMessageStructure = array(
 		'listusers',
 		'listusers-summary',
 		'listusers-editsonly',
+		'usereditcount',
 		'newpages',
 		'newpages-summary',
 		'newpages-username',
