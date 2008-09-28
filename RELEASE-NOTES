@@ -142,6 +142,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Improved upload file type detection for OpenDocument formats
 * (bug 15739) Add $wgArticlePathForCurid to make links with only curid=# as the
   query string use the article path, rather than the script path
+* Added the ability to set the target attribute on external links with 
+  $wgExternalLinkTarget
 
 
 === Bug fixes in 1.14 ===

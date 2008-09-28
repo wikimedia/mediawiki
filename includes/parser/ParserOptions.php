@@ -30,6 +30,7 @@ class ParserOptions
 	var $mTemplateCallback;          # Callback for template fetching
 	var $mEnableLimitReport;         # Enable limit report in an HTML comment on output
 	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
+	var $mExternalLinkTarget;        # Target attribute for external links
 
 	var $mUser;                      # Stored user object, just used to initialise the skin
 
@@ -52,6 +53,7 @@ class ParserOptions
 	function getTemplateCallback()              { return $this->mTemplateCallback; }
 	function getEnableLimitReport()             { return $this->mEnableLimitReport; }
 	function getCleanSignatures()               { return $this->mCleanSignatures; }
+	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
@@ -96,6 +98,7 @@ class ParserOptions
 	function enableLimitReport( $x = true )     { return wfSetVar( $this->mEnableLimitReport, $x ); }
 	function setTimestamp( $x )                 { return wfSetVar( $this->mTimestamp, $x ); }
 	function setCleanSignatures( $x )           { return wfSetVar( $this->mCleanSignatures, $x ); }
+	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
@@ -114,6 +117,7 @@ class ParserOptions
 		global $wgUseTeX, $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
 		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
 		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
+		global $wgExternalLinkTarget;
 		$fname = 'ParserOptions::initialiseFromUser';
 		wfProfileIn( $fname );
 		if ( !$userInput ) {
@@ -151,6 +155,7 @@ class ParserOptions
 		$this->mTemplateCallback = array( 'Parser', 'statelessFetchTemplate' );
 		$this->mEnableLimitReport = false;
 		$this->mCleanSignatures = $wgCleanSignatures;
+		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 		wfProfileOut( $fname );
 	}
 }
