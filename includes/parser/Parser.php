@@ -4186,7 +4186,7 @@ class Parser
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border' ),
+					'upright', 'border', 'alt' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -4222,16 +4222,17 @@ class Parser
 	function makeImage( $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
-		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
-		#  * left		no resizing, just left align. label is used for alt= only
-		#  * right		same, but right aligned
-		#  * none		same, but not aligned
-		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
-		#  * center		center the image
-		#  * framed		Keep original image size, no magnify-button.
-		#  * frameless		like 'thumb' but without a frame. Keeps user preferences for width
-		#  * upright		reduce width for upright images, rounded to full __0 px
-		#  * border		draw a 1px border around the image
+		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
+		#  * left       no resizing, just left align. label is used for alt= only
+		#  * right      same, but right aligned
+		#  * none       same, but not aligned
+		#  * ___px      scale to ___ pixels width, no aligning. e.g. use in taxobox
+		#  * center     center the image
+		#  * framed     Keep original image size, no magnify-button.
+		#  * frameless  like 'thumb' but without a frame. Keeps user preferences for width
+		#  * upright    reduce width for upright images, rounded to full __0 px
+		#  * border     draw a 1px border around the image
+		#  * alt        Text for HTML alt attribute (defaults to empty)
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -4300,7 +4301,8 @@ class Parser
 					} else {
 						# Validate internal parameters
 						switch( $paramName ) {
-						case "manualthumb":
+						case 'manualthumb':
+						case 'alt':
 							/// @fixme - possibly check validity here?
 							/// downstream behavior seems odd with missing manual thumbs.
 							$validated = true;
@@ -4329,22 +4331,6 @@ class Parser
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
 
-		# Strip bad stuff out of the alt text
-		# We can't just use replaceLinkHoldersText() here, because if this function
-		# is called from replaceInternalLinks2(), mLinkHolders won't be up to date.
-		if ( $holders ) {
-			$alt = $holders->replaceText( $caption );
-		} else {
-			$alt = $this->replaceLinkHoldersText( $caption );
-		}
-
-		# make sure there are no placeholders in thumbnail attributes
-		# that are later expanded to html- so expand them now and
-		# remove the tags
-		$alt = $this->mStripState->unstripBoth( $alt );
-		$alt = Sanitizer::stripAllTags( $alt );
-
-		$params['frame']['alt'] = $alt;
 		$params['frame']['caption'] = $caption;
 
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
