@@ -343,13 +343,17 @@ class Database {
 
 		wfProfileIn("dbconnect-$server");
 
-		# Try to connect up to three times
 		# The kernel's default SYN retransmission period is far too slow for us,
-		# so we use a short timeout plus a manual retry.
+		# so we use a short timeout plus a manual retry. Retrying means that a small
+		# but finite rate of SYN packet loss won't cause user-visible errors.
 		$this->mConn = false;
-		$max = 3;
+		if ( ini_get( 'mysql.connect_timeout' ) <= 3 ) {
+			$numAttempts = 2;
+		} else {
+			$numAttempts = 1;
+		}
 		$this->installErrorHandler();
-		for ( $i = 0; $i < $max && !$this->mConn; $i++ ) {
+		for ( $i = 0; $i < $numAttempts && !$this->mConn; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
 			}
@@ -365,30 +369,28 @@ class Database {
 			}
 		}
 		$phpError = $this->restoreErrorHandler();
+		# Always log connection errors
 		if ( !$this->mConn ) {
 			$error = $this->lastError();
 			if ( !$error ) {
 				$error = $phpError;
 			}
 			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
+			wfDebug( "DB connection error\n" );
+			wfDebug( "Server: $server, User: $user, Password: " .
+				substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
+			$success = false;
 		}
 		
 		wfProfileOut("dbconnect-$server");
 
-		if ( $dbName != '' ) {
-			if ( $this->mConn !== false ) {
-				$success = @/**/mysql_select_db( $dbName, $this->mConn );
-				if ( !$success ) {
-					$error = "Error selecting database $dbName on server {$this->mServer} " .
-						"from client host {$wguname['nodename']}\n";
-					wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
-					wfDebug( $error );
-				}
-			} else {
-				wfDebug( "DB connection error\n" );
-				wfDebug( "Server: $server, User: $user, Password: " .
-					substr( $password, 0, 3 ) . "..., error: " . mysql_error() . "\n" );
-				$success = false;
+		if ( $dbName != '' && $this->mConn !== false ) {
+			$success = @/**/mysql_select_db( $dbName, $this->mConn );
+			if ( !$success ) {
+				$error = "Error selecting database $dbName on server {$this->mServer} " .
+					"from client host {$wguname['nodename']}\n";
+				wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
+				wfDebug( $error );
 			}
 		} else {
 			# Delay USE query
@@ -2504,6 +2506,13 @@ border=\"0\" ALT=\"Google\"></A>
 		}
 
 		$text = str_replace( '$1', $this->error, $noconnect );
+
+		/*
+		if ( $GLOBALS['wgShowExceptionDetails'] ) {
+			$text .= '</p><p>Backtrace:</p><p>' . 
+				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . 
+				"</p>\n";
+		}*/
 
 		if($wgUseFileCache) {
 			if($wgTitle) {

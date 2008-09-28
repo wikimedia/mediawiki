@@ -769,10 +769,13 @@ class Revision {
 		$flags = Revision::compressRevisionText( $data );
 
 		# Write to external storage if required
-		if ( $wgDefaultExternalStore ) {
+		if( $wgDefaultExternalStore ) {
 			// Store and get the URL
 			$data = ExternalStore::insertToDefault( $data );
-			if ( $flags ) {
+			if( !$data ) {
+				throw new MWException( "Unable to store text to external storage" );
+			}
+			if( $flags ) {
 				$flags .= ',';
 			}
 			$flags .= 'external';
