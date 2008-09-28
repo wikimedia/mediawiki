@@ -1175,7 +1175,7 @@ class EditPage {
 		} elseif ( $wgUser->isAnon() && $this->formtype != 'preview' ) {
 			$wgOut->wrapWikiMsg( '<div id="mw-anon-edit-warning">$1</div>', 'anoneditwarning' );
 		} else {
-			if ( $this->isCssJsSubpage && $this->formtype != 'preview' ) {
+			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
 				if ( $this->isValidCssJsSubpage ) {
 					$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
