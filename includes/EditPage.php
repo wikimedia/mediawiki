@@ -1178,7 +1178,9 @@ class EditPage {
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
 				if ( $this->isValidCssJsSubpage ) {
-					$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
+					if ( $this->formtype !== 'preview' ) {
+						$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
+					}
 				} else {
 					$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );
 				}
@@ -1645,9 +1647,8 @@ END
 				$previewtext = wfMsg('userjspreview');
 			}
 			$parserOptions->setTidy(true);
-			$parserOutput = $wgParser->parse( $previewtext , $this->mTitle, $parserOptions );
-			//$wgOut->addHTML( $parserOutput->mText );
-			$previewHTML = '';
+			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
+			$previewHTML = $parserOutput->mText;
 		} elseif ( $rt = Title::newFromRedirect( $this->textbox1 ) ) {
 			$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 		} else {
