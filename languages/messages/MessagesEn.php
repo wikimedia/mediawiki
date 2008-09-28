@@ -2044,6 +2044,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # do not translate or duplicate this message to other languages
 'listusers-editsonly'             => 'Show users with edits only',
+'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # do not translate or duplicate this message to other languages
 'newpages-username'               => 'Username:',
