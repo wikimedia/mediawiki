@@ -144,7 +144,8 @@ The following extensions are migrated into MediaWiki 1.14:
   query string use the article path, rather than the script path
 * Added the ability to set the target attribute on external links with 
   $wgExternalLinkTarget
-
+* (bug 674) Allow admins to block users from editing specific articles and
+  namespaces
 
 === Bug fixes in 1.14 ===
 

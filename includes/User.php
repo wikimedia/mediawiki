@@ -118,6 +118,8 @@ class User {
 		'mEditCount',
 		// user_group table
 		'mGroups',
+		// user_restrictions table
+		'mRestrictions',
 	);
 
 	/**
@@ -156,6 +158,7 @@ class User {
 		'proxyunbannable',
 		'purge',
 		'read',
+		'restrict',
 		'reupload',
 		'reupload-shared',
 		'rollback',
@@ -177,7 +180,8 @@ class User {
 	//@{
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mOptions, $mTouched, $mToken, $mEmailAuthenticated,
-		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups;
+		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups,
+		$mRestrictions;
 	//@}
 
 	/**
@@ -297,6 +301,7 @@ class User {
 	function saveToCache() {
 		$this->load();
 		$this->loadGroups();
+		$this->loadRestrictions();
 		if ( $this->isAnon() ) {
 			// Anonymous users are uncached
 			return;
@@ -878,6 +883,7 @@ class User {
 			# Initialise user table data
 			$this->loadFromRow( $s );
 			$this->mGroups = null; // deferred
+			$this->mRestrictions = null;
 			$this->getEditCount(); // revalidation for nulls
 			return true;
 		} else {
@@ -3236,4 +3242,50 @@ class User {
 		return true;
 	}
 
+	// Restrictions-related block
+
+	public function loadRestrictions() {
+		if( !$this->mRestrictions )
+			$this->mRestrictions = UserRestriction::fetchForUser( $this->isLoggedIn() ? 
+				intval( $this->getId() ) : $this->getName()  );
+	}
+
+	public function getRestrictions() {
+		$this->loadRestrictions();
+
+		// Check for expired restrictions. Recache if found expired ones
+		static $checked = false;
+		if( !$checked ) {
+			$expired = false;
+			$old = $this->mRestrictions;
+			$this->mRestrictions = array();
+			foreach( $old as $restriction ) {
+				if( $restriction->deleteIfExpired() )
+					$expired = true;
+				else
+					$this->mRestrictions[] = $restriction;
+			}
+			if( $expired )
+				$this->saveToCache();
+			$checked = true;
+		}
+
+		return $this->mRestrictions;
+	}
+
+	public function getRestrictionForPage( Title $page ) {
+		foreach( $this->getRestrictions() as $r ) {
+			if( $r->isPage() && $page->equals( $r->getPage() ) )
+				return $r;
+		}
+		return null;
+	}
+
+	public function getRestrictionForNamespace( $nsid ) {
+		foreach( $this->getRestrictions() as $r ) {
+			if( $r->isNamespace() && $r->getNamespace() == $nsid )
+				return $r;
+		}
+		return null;
+	}
 }

@@ -1107,9 +1107,7 @@ class Title {
 		}
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
 
-		global $wgContLang;
-		global $wgLang;
-		global $wgEmailConfirmToEdit;
+		global $wgContLang, $wgLang, $wgEmailConfirmToEdit;
 
 		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() && $action != 'createaccount' ) {
 			$errors[] = array( 'confirmedittext' );
@@ -1141,20 +1139,7 @@ class Title {
 			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
 
 			if ( $blockExpiry == 'infinity' ) {
-				// Entry in database (table ipblocks) is 'infinity' but 'ipboptions' uses 'infinite' or 'indefinite'
-				$scBlockExpiryOptions = wfMsg( 'ipboptions' );
-
-				foreach ( explode( ',', $scBlockExpiryOptions ) as $option ) {
-					if ( strpos( $option, ':' ) == false )
-						continue;
-
-					list ($show, $value) = explode( ":", $option );
-
-					if ( $value == 'infinite' || $value == 'indefinite' ) {
-						$blockExpiry = $show;
-						break;
-					}
-				}
+				$blockExpiry = wfMsg( 'ipbinfinite' );
 			} else {
 				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
 			}
@@ -1164,9 +1149,9 @@ class Title {
 			$errors[] = array( ($block->mAuto ? 'autoblockedtext' : 'blockedtext'), $link, $reason, $ip, $name, 
 				$blockid, $blockExpiry, $intended, $blockTimestamp );
 		}
-		
+
 		// Remove the errors being ignored.
-		
+
 		foreach( $errors as $index => $error ) {
 			$error_key = is_array($error) ? $error[0] : $error;
 			
@@ -1189,6 +1174,8 @@ class Title {
 	 * @return \type{\array} Array of arrays of the arguments to wfMsg to explain permissions problems.
 	 */
 	private function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true ) {
+		global $wgLang;
+
 		wfProfileIn( __METHOD__ );
 
 		$errors = array();
@@ -1332,6 +1319,26 @@ class Title {
 				$return = array( "badaccess-group0" );
 			}
 			$errors[] = $return;
+		}
+
+		// Check per-user restrictions
+		if( $action != 'read' ) {
+			$r = $user->getRestrictionForPage( $this );
+			if( !$r )
+				$r = $user->getRestrictionForNamespace( $this->getNamespace() );
+			if( $r ) {
+				$start = $wgLang->timeanddate( $r->getTimestamp() );
+				$end = $r->getExpiry() == 'infinity' ?
+					wfMsg( 'ipbinfinite' ) :
+					$wgLang->timeanddate( $r->getExpiry() );
+				if( $r->isPage() )
+					$errors[] = array( 'userrestricted-page', $this->getFullText(),
+						$r->getBlockerText(), $r->getReason(), $start, $end );
+				elseif( $r->isNamespace() ) {
+					$errors[] = array( 'userrestricted-namespace', $wgLang->getDisplayNsText( $this->getNamespace() ),
+						$r->getBlockerText(), $r->getReason(), $start, $end );
+				}
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
