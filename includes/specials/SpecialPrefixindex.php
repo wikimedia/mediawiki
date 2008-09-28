@@ -11,7 +11,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 	protected $nsfromMsg = 'allpagesprefix';
 	
 	function __construct(){
-		parent::__construct( 'Prefixindex' );	
+		parent::__construct( 'Prefixindex' );
 	}
 	
 	/**
@@ -32,7 +32,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 		$wgOut->setPagetitle( ( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
 			? wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
-			: wfMsg( 'allarticles' )
+			: wfMsg( 'prefixindex' )
 		);
 
 		if( isset( $par ) ){
