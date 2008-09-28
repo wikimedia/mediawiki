@@ -320,6 +320,7 @@ $wgOptionalMessages = array(
 	'recentchangeslinked-backlink',
 	'diff-with-additional',
 	'statistics-footer',
+	'restrictlogpage',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * @ingroup Language
  * @file
@@ -497,7 +497,12 @@ $2',
 'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
-'passwordremindertext'       => '有人(可能是您，来自IP地址$1)要求我们将新的{{SITENAME}} ($4) 的登录密码寄给您。用户"$2"的密码现在是"$3"。请立即登录并更改密码。如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。',
+'passwordremindertext'       => '有人(可能是您，来自IP地址$1)已请求{{SITENAME}}的新密码 ($4)。
+用户"$2"的一个新临时密码现在已被设置好为"$3"。
+如果这个动作是您所指示的，您便需要立即登入并选择一个新的密码。
+
+如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
+您可以忽略此消息并继续使用您的旧密码。',
 'noemail'                    => '用户"$1"没有登记电子邮件地址。',
 'passwordsent'               => '用户"$1"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。',
@@ -691,6 +696,31 @@ $2',
 为方便起见，这一个页面的删除记录已经在下面提供:",
 'deleted-notice'                   => '这个页面已经删除。
 这个页面的删除日志已在下面提供以便参考。',
+'deletelog-fulllog'                => '查看整个日志',
+'edit-hook-aborted'                => '编辑被钩取消。
+它并无给出解释。',
+'edit-gone-missing'                => '不能更新页面。
+它可能刚刚被删除。',
+'edit-conflict'                    => '编辑冲突。',
+'edit-no-change'                   => '您的编辑已经略过，因为文字无任何改动。',
+'edit-already-exists'              => '不可以建立一个新页面。
+它已经存在。',
+'userrestricted-page'              => "<big>'''您的用户名称或IP已经被限制编辑页面“$1”。'''</big>
+
+限制是由[[User:$2|$2]]所定的。
+当中的理由是''$3''。
+
+限制由$4生效直至到$5到期。
+
+您可以联络[[User:$2|$2]]或者其他?[[{{MediaWiki:Grouppage-sysop}}|管理员]]去讨论这个限制。",
+'userrestricted-namespace'         => "<big>'''您的用户名称或IP已经被限制编辑$1名字空间。'''</big>
+
+限制是由[[User:$2|$2]]所定的。
+当中的理由是''$3''。
+
+限制由$4生效直至到$5到期。
+
+您可以联络[[User:$2|$2]]或者其他?[[{{MediaWiki:Grouppage-sysop}}|管理员]]去讨论这个限制。",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 这个页面有太多耗费的语法功能呼叫。
@@ -820,6 +850,7 @@ $2',
 'mergehistory-invalid-destination' => '目的页面必须是一个有效的标题。',
 'mergehistory-autocomment'         => '已经合并[[:$1]]去到[[:$2]]',
 'mergehistory-comment'             => '已经合并[[:$1]]去到[[:$2]]: $3',
+'mergehistory-same-destination'    => '来源页面与目的页面不可以相同',
 
 # Merge log
 'mergelog'           => '合并日志',
@@ -1093,6 +1124,7 @@ $2',
 'right-userrights'           => '编辑所有用户的权限',
 'right-userrights-interwiki' => '编辑在其它wiki上的用户权限',
 'right-siteadmin'            => '锁定和解除锁定数据库',
+'right-restrict'             => '限制用户去编辑某些名字空间和页面',
 
 # User rights log
 'rightslog'      => '用户权限日志',
@@ -1430,6 +1462,7 @@ Template:消除歧義',
 'protectedtitlesempty'    => '在这些参数之下并无标题正在保护。',
 'listusers'               => '用户列表',
 'listusers-editsonly'     => '只显示有编辑的用户',
+'usereditcount'           => '$1次编辑',
 'newpages'                => '最新页面',
 'newpages-username'       => '用户名:',
 'ancientpages'            => '最早页面',
@@ -1720,6 +1753,7 @@ $NEWPAGE
 ** 过量的灌水
 ** 反生产性编辑战
 ** 高流量页面',
+'protect-edit-reasonlist'     => '编辑保护理由',
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',
@@ -1849,10 +1883,12 @@ $1',
 'ipbsubmit'                       => '查封该地址',
 'ipbother'                        => '其它时间:',
 'ipboptions'                      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => '无期',
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附带原因:',
 'ipbhidename'                     => '在查封日志、活跃查封列表以及用户列表中隐藏用户名',
 'ipbwatchuser'                    => '監視這位用戶的用戶頁面以及其對話頁面',
+'ipballowusertalk'                => '当被封锁时容许这位用户去编辑自己的讨论页面',
 'badipaddress'                    => 'IP地址不正确。',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已经被查封。
@@ -1894,6 +1930,7 @@ $1',
 'block-log-flags-nocreate'        => '禁止此IP/用户建立新帐户',
 'block-log-flags-noautoblock'     => '禁用自动封禁',
 'block-log-flags-noemail'         => '禁止电子邮件',
+'block-log-flags-nousertalk'      => '不可编辑自己的讨论页面',
 'block-log-flags-angry-autoblock' => '加强自动封锁已启用',
 'range_block_disabled'            => '只有管理员才能创建禁止查封的范围。',
 'ipb_expiry_invalid'              => '无效的终止时间。',
@@ -1910,6 +1947,68 @@ $1',
 'sorbsreason'                     => '您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器。',
 'sorbs_create_account_reason'     => '由于您的IP地址在{{SITENAME}}中被 DNSBL 列为属于开放代理服务器，所以您不能创建新账户。',
 'cant-block-while-blocked'        => '当您被封锁时不可以封锁其他用户。',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => '用户限制名单',
+'listuserrestrictions-intro'      => '这个名单列出所有对于用户编辑页面和名字空间的限制。
+留意在[[Special:Ipblocklist|那边]]列示的封锁并不会在这里列示。',
+'listuserrestrictions-row-ns'     => '已限制$1去编辑$2名字空间 ($3)',
+'listuserrestrictions-row-page'   => '已限制$1去编辑$2 ($3)',
+'listuserrestrictions-row-expiry' => '于$1到期',
+'listuserrestrictions-legend'     => '搜寻一个限制',
+'listuserrestrictions-type'       => '类型:',
+'listuserrestrictions-user'       => '用户:',
+'listuserrestrictions-namespace'  => '名字空间:',
+'listuserrestrictions-page'       => '页面:',
+'listuserrestrictions-submit'     => '去',
+'listuserrestrictions-notfound'   => '无限制跟您所搜自导引条件配合。',
+'listuserrestrictions-empty'      => '这个名单为空。',
+'listuserrestrictions-remove'     => '移除',
+'userrestrictiontype-none'        => '(无)',
+'userrestrictiontype-namespace'   => '名字空间',
+'userrestrictiontype-page'        => '页面',
+
+# Special:RemoveRestrictions
+'removerestrictions'              => '在用户中移除一个限制',
+'removerestrictions-intro'        => '用下面的表格去拎移除对于一位用户的一个限制。',
+'removerestrictions-noid'         => '未指定限制ID。',
+'removerestrictions-wrongid'      => '找不到跟该ID有关之限制。最有可能的是有其他人移除或已过期。',
+'removerestrictions-legend'       => '移除一个限制',
+'removerestrictions-user'         => '已限制的用户:',
+'removerestrictions-type'         => '限制类型:',
+'removerestrictions-page'         => '页面:',
+'removerestrictions-namespace'    => '名字空间:',
+'removerestrictions-reason'       => '理由:',
+'removerestrictions-submit'       => '移除该限制',
+'removerestrictions-success'      => '已经成功地由[[User:$1|$1]]中移除该限制。',
+
+# Special:RestrictUser
+'restrictuser'                  => '限制用户',
+'restrictuser-userselect'       => '选择一位用户',
+'restrictuser-user'             => '用户:',
+'restrictuser-go'               => '限制用户',
+'restrictuser-notfound'         => '找不到用户',
+'restrictuser-existing'         => '现有的限制',
+'restrictuser-legend-page'      => '限制去编辑某页面',
+'restrictuser-legend-namespace' => '限制去编辑某名字空间',
+'restrictuser-title'            => '限制的页面:',
+'restrictuser-namespace'        => '名字空间:',
+'restrictuser-expiry'           => '到期:',
+'restrictuser-reason'           => '理由:',
+'restrictuser-sumbit'           => '限制用户',
+'restrictuser-badtitle'         => '无效的标题已指定: $1。',
+'restrictuser-badnamespace'     => '无效的名字空间已指定。',
+'restrictuser-badexpiry'        => '无效的到期时限已指定: $1。',
+'restrictuser-duptitle'         => '用户已经限制去编辑这个标题。',
+'restrictuser-dupnamespace'     => '用户已经限制去编辑这个名字空间。',
+'restrictuser-success'          => '已经成功地限制用户$1。',
+
+# Special:Log/restrict
+'restrictionlog'       => '用户限制日志',
+'restrictionlogtext'   => '这个日志有由管理员对用户限制的所有纪录。',
+'restrictentry'        => '已限制$1去编辑$2 (在$3到期)',
+'restrictremoveentry'  => '已移除$1对于$2的编辑限制',
+'restrictlognamespace' => '$1名字空间',
 
 # Developer tools
 'lockdb'              => '锁定数据库',

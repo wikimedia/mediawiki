@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * @ingroup Language
  * @file
@@ -474,7 +474,12 @@ $2',
 'passwordtooshort'           => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
-'passwordremindertext'       => '有人(可能是您，來自IP位址$1)要求我們將新的{{SITENAME}} ($4) 的登入密碼寄給您。用戶"$2"的密碼現在是"$3"。請立即登入並更改密碼。如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，您可以忽略此消息並繼續使用您的舊密碼。',
+'passwordremindertext'       => '有人(可能是您，來自IP位址$1)已請求{{SITENAME}}的新密碼 ($4)。
+用戶"$2"的一個新臨時密碼現在已被設定好為"$3"。
+如果這個動作是您所指示的，您便需要立即登入並選擇一個新的密碼。
+
+如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，
+您可以忽略此消息並繼續使用您的舊密碼。',
 'noemail'                    => '用戶"$1"沒有登記電子郵件地址。',
 'passwordsent'               => '用戶"$1"的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
@@ -666,6 +671,31 @@ $2',
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
 'deleted-notice'                   => '這個頁面已經刪除。
 這個頁面的刪除日誌已在下面提供以便參考。',
+'deletelog-fulllog'                => '查看整個日誌',
+'edit-hook-aborted'                => '編輯被鈎取消。
+它並無給出解釋。',
+'edit-gone-missing'                => '不能更新頁面。
+它可能剛剛被刪除。',
+'edit-conflict'                    => '編輯衝突。',
+'edit-no-change'                   => '您的編輯已經略過，因為文字無任何改動。',
+'edit-already-exists'              => '不可以建立一個新頁面。
+它已經存在。',
+'userrestricted-page'              => "<big>'''您的用戶名稱或IP已經被限制編輯頁面「$1」。'''</big>
+
+限制是由[[User:$2|$2]]所定的。
+當中的理由是''$3''。
+
+限制由$4生效直至到$5到期。
+
+您可以聯絡[[User:$2|$2]]或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]去討論這個限制。",
+'userrestricted-namespace'         => "<big>'''您的用戶名稱或IP已經被限制編輯$1名字空間。'''</big>
+
+限制是由[[User:$2|$2]]所定的。
+當中的理由是''$3''。
+
+限制由$4生效直至到$5到期。
+
+您可以聯絡[[User:$2|$2]]或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]去討論這個限制。",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 這個頁面有太多耗費的語法功能呼叫。
@@ -795,6 +825,7 @@ $2',
 'mergehistory-invalid-destination' => '目的頁面必須是一個有效的標題。',
 'mergehistory-autocomment'         => '已經合併[[:$1]]去到[[:$2]]',
 'mergehistory-comment'             => '已經合併[[:$1]]去到[[:$2]]: $3',
+'mergehistory-same-destination'    => '來源頁面與目的頁面不可以相同',
 
 # Merge log
 'mergelog'           => '合併日誌',
@@ -1068,6 +1099,7 @@ $2',
 'right-userrights'           => '編輯所有用戶的權限',
 'right-userrights-interwiki' => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'            => '鎖定和解除鎖定資料庫',
+'right-restrict'             => '限制用戶去編輯某些名字空間和頁面',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1406,6 +1438,7 @@ Template:消除歧義',
 'protectedtitlesempty'    => '在這些參數之下並無標題正在保護。',
 'listusers'               => '用戶列表',
 'listusers-editsonly'     => '只顯示有編輯的用戶',
+'usereditcount'           => '$1次編輯',
 'newpages'                => '最新頁面',
 'newpages-username'       => '用戶名:',
 'ancientpages'            => '最舊頁面',
@@ -1696,6 +1729,7 @@ $NEWPAGE
 ** 過量的灌水
 ** 反生產性編輯戰
 ** 高流量頁面',
+'protect-edit-reasonlist'     => '編輯保護理由',
 'restriction-type'            => '權限:',
 'restriction-level'           => '限制級別:',
 'minimum-size'                => '最小大小',
@@ -1823,10 +1857,12 @@ $1',
 'ipbsubmit'                       => '查封該地址',
 'ipbother'                        => '其它時間:',
 'ipboptions'                      => '2小時:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1個月:1 month,3個月:3 months,6個月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => '無期',
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附帶原因:',
 'ipbhidename'                     => '在查封日誌、活躍查封列表以及用戶列表中隱藏用戶名',
 'ipbwatchuser'                    => '監視這位用戶的用戶頁面以及其對話頁面',
+'ipballowusertalk'                => '當被封鎖時容許這位用戶去編輯自己的討論頁面',
 'badipaddress'                    => 'IP地址不正確。',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
@@ -1867,6 +1903,7 @@ $1',
 'block-log-flags-nocreate'        => '禁止此IP/用戶建立新帳戶',
 'block-log-flags-noautoblock'     => '停用自動封禁',
 'block-log-flags-noemail'         => '禁止電子郵件',
+'block-log-flags-nousertalk'      => '不可編輯自己的討論頁面',
 'block-log-flags-angry-autoblock' => '加強自動封鎖已啟用',
 'range_block_disabled'            => '只有管理員才能創建禁止查封的範圍。',
 'ipb_expiry_invalid'              => '無效的終止時間。',
@@ -1883,6 +1920,68 @@ $1',
 'sorbsreason'                     => '您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器。',
 'sorbs_create_account_reason'     => '由於您的IP位址在{{SITENAME}}中被 DNSBL列為屬於開放代理服務器，所以您無法建立帳號。',
 'cant-block-while-blocked'        => '當您被封鎖時不可以封鎖其他用戶。',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => '用戶限制名單',
+'listuserrestrictions-intro'      => '這個名單列出所有對於用戶編輯頁面和名字空間的限制。
+留意在[[Special:Ipblocklist|那邊]]列示的封鎖並不會在這裏列示。',
+'listuserrestrictions-row-ns'     => '已限制$1去編輯$2名字空間 ($3)',
+'listuserrestrictions-row-page'   => '已限制$1去編輯$2 ($3)',
+'listuserrestrictions-row-expiry' => '於$1到期',
+'listuserrestrictions-legend'     => '搜尋一個限制',
+'listuserrestrictions-type'       => '類型:',
+'listuserrestrictions-user'       => '用戶:',
+'listuserrestrictions-namespace'  => '名字空間:',
+'listuserrestrictions-page'       => '頁面:',
+'listuserrestrictions-submit'     => '去',
+'listuserrestrictions-notfound'   => '無限制跟您所搜尋的條件配合。',
+'listuserrestrictions-empty'      => '這個名單為空。',
+'listuserrestrictions-remove'     => '移除',
+'userrestrictiontype-none'        => '(無)',
+'userrestrictiontype-namespace'   => '名字空間',
+'userrestrictiontype-page'        => '頁面',
+
+# Special:RemoveRestrictions
+'removerestrictions'              => '在用戶中移除一個限制',
+'removerestrictions-intro'        => '用下面的表格去拎移除對於一位用戶的一個限制。',
+'removerestrictions-noid'         => '未指定限制ID。',
+'removerestrictions-wrongid'      => '找不到跟該ID有關之限制。最有可能的是有其他人移除或已過期。',
+'removerestrictions-legend'       => '移除一個限制',
+'removerestrictions-user'         => '已限制的用戶:',
+'removerestrictions-type'         => '限制類型:',
+'removerestrictions-page'         => '頁面:',
+'removerestrictions-namespace'    => '名字空間:',
+'removerestrictions-reason'       => '理由:',
+'removerestrictions-submit'       => '移除該限制',
+'removerestrictions-success'      => '已經成功地由[[User:$1|$1]]中移除該限制。',
+
+# Special:RestrictUser
+'restrictuser'                  => '限制用戶',
+'restrictuser-userselect'       => '選擇一位用戶',
+'restrictuser-user'             => '用戶:',
+'restrictuser-go'               => '限制用戶',
+'restrictuser-notfound'         => '找不到用戶',
+'restrictuser-existing'         => '現有的限制',
+'restrictuser-legend-page'      => '限制去編輯某頁面',
+'restrictuser-legend-namespace' => '限制去編輯某名字空間',
+'restrictuser-title'            => '限制的頁面:',
+'restrictuser-namespace'        => '名字空間:',
+'restrictuser-expiry'           => '到期:',
+'restrictuser-reason'           => '理由:',
+'restrictuser-sumbit'           => '限制用戶',
+'restrictuser-badtitle'         => '無效的標題已指定: $1。',
+'restrictuser-badnamespace'     => '無效的名字空間已指定。',
+'restrictuser-badexpiry'        => '無效的到期時限已指定: $1。',
+'restrictuser-duptitle'         => '用戶已經限制去編輯這個標題。',
+'restrictuser-dupnamespace'     => '用戶已經限制去編輯這個名字空間。',
+'restrictuser-success'          => '已經成功地限制用戶$1。',
+
+# Special:Log/restrict
+'restrictionlog'       => '用戶限制日誌',
+'restrictionlogtext'   => '這個日誌有由管理員對用戶限制的所有紀錄。',
+'restrictentry'        => '已限制$1去編輯$2 (在$3到期)',
+'restrictremoveentry'  => '已移除$1對於$2的編輯限制',
+'restrictlognamespace' => '$1名字空間',
 
 # Developer tools
 'lockdb'              => '禁止更改資料庫',

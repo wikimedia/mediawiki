@@ -2651,7 +2651,7 @@ Note that blocks are listed [[Special:Ipblocklist|there]] and are not listed her
 'restrictentry'        => 'restricted $1 from editing $2 (expiry set to $3)',
 'restrictremoveentry'  => 'removed restriction from $1 for editing $2',
 'restrictlognamespace' => '$1 namespace',
-'restrictlogpage'      => '[[$1]]',
+'restrictlogpage'      => '[[$1]]', # only translate this message to other languages if you have to change it
 
 # Developer tools
 'lockdb'              => 'Lock database',
