@@ -193,6 +193,19 @@ class LogPage {
 					} else {
 						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink );
 					}
+				} elseif( $type == 'restrict' ) {
+					if( $params[0] == UserRestriction::PAGE )
+						$subj = wfMsgExt( 'restrictlogpage', 'parseinline', $params[1] );
+					if( $params[0] == UserRestriction::NAMESPACE )
+						$subj = wfMsgExt( 'restrictlognamespace', 'parseinline', $wgLang->getDisplayNsText( $params[1] ) );
+					$expiry = '';
+					if( $key == 'restrict/restrict' )
+						$expiry = $wgLang->translateBlockExpiry( $params[2] );
+					if ( $skin ) {
+						$rv = wfMsg( $wgLogActions[$key], $titleLink, $subj, $expiry );
+					} else {
+						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink, $subj, $expiry );
+					}
 				} else {
 					$details = '';
 					array_unshift( $params, $titleLink );
@@ -260,6 +273,7 @@ class LogPage {
 				}
 				break;
 			case 'rights':
+			case 'restrict':
 				$text = $wgContLang->ucfirst( $title->getText() );
 				$titleLink = $skin->makeLinkObj( Title::makeTitle( NS_USER, $text ) );
 				break;
