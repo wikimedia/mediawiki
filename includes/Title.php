@@ -845,13 +845,7 @@ class Title {
 				} else {
 					$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				}
-				if( $query ){
-					if( strpos( $url, '&' ) ){
-						$url .= '&' . $query;
-					}else{
-						$url .= '?' . $query;
-					}
-				}
+				$url = wfAppendQuery( $url, $query );
 			} else {
 				global $wgActionPaths;
 				$url = false;
