@@ -123,7 +123,7 @@ class Interwiki {
 		global $wgMemc;
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$mc = $wgMemc->get( $key );
-		if( $mc ){
+		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
 			if( $this->loadFromArray( $mc ) ){
 				wfDebug("Succeeded\n");
 				return true;
