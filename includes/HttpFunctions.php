@@ -94,7 +94,6 @@ class Http {
 			# Otherwise use file_get_contents...
 			# This doesn't have local fetch capabilities...
 
-			global $wgVersion;
 			$headers = array( "User-Agent: MediaWiki/$wgVersion" );
 			if( strcasecmp( $method, 'post' ) == 0 ) {
 				// Required for HTTP 1.0 POSTs
@@ -107,9 +106,7 @@ class Http {
 					'timeout' => $timeout ) );
 			$ctx = stream_context_create($opts);
 
-			$url_fopen = ini_set( 'allow_url_fopen', 1 );
 			$text = file_get_contents( $url, false, $ctx );
-			ini_set( 'allow_url_fopen', $url_fopen );
 		}
 		return $text;
 	}
