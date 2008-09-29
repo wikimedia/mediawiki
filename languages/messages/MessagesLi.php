@@ -1529,6 +1529,7 @@ Zuug de [[Special:ProtectedPages|lies mit beveiligde pazjena's]] veur alle hujig
 'modifiedarticleprotection'   => 'verangerde beveiligingsniveau van "[[$1]]"',
 'unprotectedarticle'          => 'besjerming van $1 opgeheve',
 'protect-title'               => 'Besjerme van "$1"',
+'prot_1movedto2'              => '[[$1]] verplaats nao [[$2]]',
 'protect-legend'              => 'Bevèstig besjerme',
 'protectcomment'              => 'Rede veur besjerming',
 'protectexpiry'               => 'Verlöp:',

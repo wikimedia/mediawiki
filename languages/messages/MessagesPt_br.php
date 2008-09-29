@@ -1639,6 +1639,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'modifiedarticleprotection'   => 'foi alterado o nível de proteção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
+'prot_1movedto2'              => '[[$1]] foi movido para [[$2]]',
 'protect-legend'              => 'Confirmar proteção',
 'protectcomment'              => 'Motivo de proteção',
 'protectexpiry'               => 'Expiração',

@@ -382,6 +382,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'      => 'Log af Baírgjan',
+'prot_1movedto2'      => '[[$1]] skiubiþ du [[$2]]',
 'protect-unchain'     => 'Ungalukan sa skiubanfreihals',
 'protect-level-sysop' => 'Seidofaþs áinaha',
 'protect-expiring'    => 'bláuþiþ $1 (UTC)',

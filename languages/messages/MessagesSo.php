@@ -497,6 +497,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 # Protect
 'protectedarticle'       => 'la\'difaacay "[[$1]]"',
 'protect-title'          => 'la\'difaacaa "$1"',
+'prot_1movedto2'         => '[[$1]] waxaa loo wareejiyey [[$2]]',
 'protect-legend'         => 'Xaqiiji difaacida',
 'protectcomment'         => 'Sababta loo difaacaayo',
 'protect_expiry_invalid' => "Wakhtiga dhicitaanka sax ma'aha.",

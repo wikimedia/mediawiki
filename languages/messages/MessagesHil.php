@@ -229,6 +229,9 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Delete
 'delete-legend' => 'Panason',
 
+# Protect
+'prot_1movedto2' => '[[$1]] gin saylo na sa [[$2]]',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Ilisan',
 'restriction-move' => 'Saylohon',

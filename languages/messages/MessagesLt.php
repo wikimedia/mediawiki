@@ -1646,6 +1646,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'modifiedarticleprotection'   => 'pakeistas „[[$1]]“ apsaugos lygis',
 'unprotectedarticle'          => 'atrakino „[[$1]]“',
 'protect-title'               => 'Nustatomas apsaugos lygis puslapiui „$1“',
+'prot_1movedto2'              => '[[$1]] pervadintas į [[$2]]',
 'protect-legend'              => 'Užrakinimo patvirtinimas',
 'protectcomment'              => 'Komentaras:',
 'protectexpiry'               => 'Baigia galioti:',

@@ -551,6 +551,7 @@ $messages = array(
 'protectlogpage'      => 'نوشتۂ محفوظ شدگی',
 'protectedarticle'    => '"[[$1]]" کومحفوظ کردیا',
 'unprotectedarticle'  => '"[[$1]]" کوغیر محفوظ کیا',
+'prot_1movedto2'      => '[[$1]] بجانب [[$2]] منتقل',
 'protectcomment'      => 'محفوظ کرنے کی وجہ',
 'protect-default'     => '(طے شدہ)',
 'protect-level-sysop' => 'صرف منتظمین',

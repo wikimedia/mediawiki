@@ -1636,6 +1636,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '"[[$1]]" の保護レベルを変更しました。',
 'unprotectedarticle'          => '"[[$1]]" の保護を解除しました。',
 'protect-title'               => '"$1" の保護',
+'prot_1movedto2'              => 'ページ [[$1]] を [[$2]] へ移動',
 'protect-legend'              => '保護の確認',
 'protectcomment'              => '保護・保護解除の理由',
 'protectexpiry'               => '期間',

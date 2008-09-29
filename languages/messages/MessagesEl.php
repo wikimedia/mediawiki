@@ -1650,6 +1650,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'modifiedarticleprotection'   => 'αλλαγή επιπέδου προστασίας για "[[$1]]"',
 'unprotectedarticle'          => 'έχει αρθεί η προστασία του $1',
 'protect-title'               => 'Κλειδώνεται η "$1"',
+'prot_1movedto2'              => 'Η [[$1]] μετακινήθηκε στη θέση [[$2]]',
 'protect-legend'              => 'Επιβεβαίωση κλειδώματος',
 'protectcomment'              => 'Αιτιολογία προστασίας',
 'protectexpiry'               => 'Λήξη',

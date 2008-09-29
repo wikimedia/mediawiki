@@ -1793,6 +1793,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'عوض بوت سطح حفاظت په "[[$1]]"',
 'unprotectedarticle'          => 'بی حمایت  "[[$1]]"',
 'protect-title'               => 'عوض کن سطح حفاظت په  "$1"',
+'prot_1movedto2'              => '[[$1]] چاه په چاه بوت په [[$2]]',
 'protect-legend'              => 'حفاظت تایید کن',
 'protectcomment'              => 'نظر:',
 'protectexpiry'               => 'منقضی بیت:',

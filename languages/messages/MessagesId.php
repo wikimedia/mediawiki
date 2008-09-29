@@ -1899,6 +1899,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'modifiedarticleprotection'   => 'mengubah tingkat perlindungan "[[$1]]"',
 'unprotectedarticle'          => 'menghilangkan perlindungan "[[$1]]"',
 'protect-title'               => 'Melindungi "$1"',
+'prot_1movedto2'              => 'memindahkan [[$1]] ke [[$2]]',
 'protect-legend'              => 'Konfirmasi perlindungan',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'Kadaluwarsa:',

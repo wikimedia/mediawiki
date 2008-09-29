@@ -111,6 +111,9 @@ $messages = array(
 'watch'         => 'Demq',
 'watchthispage' => 'Demq mae-nej',
 
+# Protect
+'prot_1movedto2' => '[[$1]] caen bei [[$2]]',
+
 # Restrictions (nouns)
 'restriction-move' => 'Caen',
 

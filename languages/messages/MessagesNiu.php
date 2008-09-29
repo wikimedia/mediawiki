@@ -177,6 +177,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Delete
 'delete-legend' => 'Tamate',
 
+# Protect
+'prot_1movedto2' => '[[$1]] kua une ke he [[$2]]',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Fakahakohako',
 'restriction-move' => 'Une',

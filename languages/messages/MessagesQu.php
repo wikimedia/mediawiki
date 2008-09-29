@@ -1612,6 +1612,7 @@ Ama hina kaspa, llika wamp'unaykipi \"Ñawpaqman\" (\"Back\") ñit'ispa ñawpaq 
 'modifiedarticleprotection'   => 'hukchan kay p\'anqap amachasqa kachkayninta: "[[$1]]"',
 'unprotectedarticle'          => 'paskan amachasqa [[$1]]-ta',
 'protect-title'               => '"$1"-ta amachaspa',
+'prot_1movedto2'              => '«[[$1]]» «[[$2]]»-man astasqa',
 'protect-legend'              => 'Amachayta takyachiy',
 'protectcomment'              => 'Imarayku amachasqa',
 'protectexpiry'               => 'Amachaypa puchukaynin',

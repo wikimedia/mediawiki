@@ -1381,6 +1381,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'modifiedarticleprotection'   => '"[[$1]]" için koruma düzeyi değiştirildi',
 'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
+'prot_1movedto2'              => '[[$1]] sayfasının yeni adı: [[$2]]',
 'protect-legend'              => 'Korumayı onayla',
 'protectcomment'              => 'Koruma altına alma nedeni',
 'protectexpiry'               => 'Bitiş tarihi:',

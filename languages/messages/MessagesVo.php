@@ -1515,6 +1515,7 @@ Logolös [[Special:ProtectedPages|lisedi padas pejelöl]], kö pajonons padijela
 'modifiedarticleprotection'   => 'evotükon jelanivodi pada: "[[$1]]"',
 'unprotectedarticle'          => 'Pad: "[[$1]]" pesäjelon.',
 'protect-title'               => 'lonon jelanivodi pada: "$1"',
+'prot_1movedto2'              => '[[$1]] petopätükon lü [[$2]]',
 'protect-legend'              => 'Fümedolös jeli',
 'protectcomment'              => 'Küpet:',
 'protectexpiry'               => 'Dul:',

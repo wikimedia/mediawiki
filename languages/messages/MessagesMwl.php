@@ -475,6 +475,7 @@ Consulte $2 para um registo de eliminações recentes.',
 
 # Protect
 'protectlogpage'              => 'Registo de protecção',
+'prot_1movedto2'              => '[[$1]] foi movido para [[$2]]',
 'protect-legend'              => 'Confirmar protecçon',
 'protectcomment'              => 'Razon de protecçon',
 'protectexpiry'               => 'Expiraçon',

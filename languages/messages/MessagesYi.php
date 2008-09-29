@@ -1267,6 +1267,7 @@ $NEWPAGE
 
 # Protect
 'protectlogpage'              => 'שיצן לאָג',
+'prot_1movedto2'              => '[[$1]] אריבערגעפירט צו [[$2]]',
 'protectcomment'              => 'הערה:',
 'protectexpiry'               => 'גייט אויס:',
 'protect_expiry_invalid'      => 'אויסגיין צײַט אומגילטיג.',

@@ -1218,6 +1218,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '改變嘞“[[$1]] ” 嗰保護等級',
 'unprotectedarticle'          => '撤銷保護“[[$1]] ”',
 'protect-title'               => '保護“$1”中',
+'prot_1movedto2'              => '[[$1]]移到[[$2]]',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '注解:',
 'protectexpiry'               => '期限:',

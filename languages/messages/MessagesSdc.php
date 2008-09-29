@@ -1290,6 +1290,7 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'modifiedarticleprotection'   => 'ha mudìfiggaddu lu libellu di prutizioni di "[[$1]]"',
 'unprotectedarticle'          => 'à ibbruccaddu "[[$1]]"',
 'protect-title'               => 'Prutizioni di "$1"',
+'prot_1movedto2'              => 'ha ippusthaddu [[$1]] a [[$2]]',
 'protect-legend'              => 'Cunfèimma la prutizioni',
 'protectcomment'              => 'Mutibu di la prutizioni:',
 'protectexpiry'               => 'Ischadènzia:',

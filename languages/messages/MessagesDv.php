@@ -313,6 +313,7 @@ $messages = array(
 
 # Protect
 'unprotectedarticle' => '"[[$1]]" ދިފާއުކުރުން ހުއްޓާލެވިއްޖެ',
+'prot_1movedto2'     => '[[$1]] އަށް ނަގުލުކުރެވިފައި [[$2]]',
 
 # Restrictions (nouns)
 'restriction-edit' => 'އުނިއިތުރު ގެންނަވާ',

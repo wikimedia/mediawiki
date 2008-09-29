@@ -486,6 +486,7 @@ upang makapagkarga ng talaksan.',
 'deletecomment'  => 'Dahilan sa pagkabura:',
 
 # Protect
+'prot_1movedto2'              => 'Ang [[$1]] ay inilipat sa [[$2]]',
 'protect-default'             => '(tinakda)',
 'protect-level-autoconfirmed' => "Harangin ang mga 'di-rehistradong manggagamit",
 'protect-summary-cascade'     => 'kaskada',

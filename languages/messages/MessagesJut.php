@@ -667,6 +667,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Protect
 'protectlogpage'              => 'Liste åver beskyttede sider',
+'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
 'protectcomment'              => 'Begrundelse før beskyttelse',
 'protectexpiry'               => 'Udløb:',
 'protect_expiry_invalid'      => 'Æ udløbstiid er ugyldeg.',

@@ -1766,6 +1766,7 @@ wiki: $PAGEEDITOR_WIKI
 'modifiedarticleprotection'   => '已經改咗 "[[$1]]" 嘅保護等級',
 'unprotectedarticle'          => '已經唔再保護 "[[$1]]"',
 'protect-title'               => '改緊「$1」嘅保護等級',
+'prot_1movedto2'              => '[[$1]]搬到去[[$2]]',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',

@@ -310,6 +310,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'deletereasonotherlist' => 'Altri motive',
 
 # Protect
+'prot_1movedto2'   => '[[$1]] moet a [[$2]]',
 'protectcomment'   => 'Comenta:',
 'restriction-type' => 'Permission:',
 

@@ -1499,6 +1499,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '"[[$1]]"-нь араламань виенц полафтсь',
 'unprotectedarticle'          => '"[[$1]]" аф аралаф',
 'protect-title'               => '"$1"-нь араламань виец арафнема',
+'prot_1movedto2'              => '[[$1]] ётафтфоль [[$2]]с',
 'protect-legend'              => 'Араламать кемокстак',
 'protectcomment'              => 'Мяльполаткс:',
 'protectexpiry'               => 'Шумордави:',

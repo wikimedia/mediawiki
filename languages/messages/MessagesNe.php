@@ -420,6 +420,7 @@ $messages = array(
 # Protect
 'protectlogpage'              => 'सुरक्षण लग',
 'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
+'prot_1movedto2'              => '[[$1]] लाई [[$2]]मा सारियो',
 'protectcomment'              => 'बचाउको कारण',
 'protect-default'             => '(स्वतह)',
 'protect-level-autoconfirmed' => 'दर्ता नभएका प्रयोगकर्ताहरूलाई रोक',

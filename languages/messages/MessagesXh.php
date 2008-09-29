@@ -125,6 +125,9 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'watch'         => 'Bukela',
 'watchthispage' => 'Bukela le Page',
 
+# Protect
+'prot_1movedto2' => '[[$1]] lidluliselwe [[$2]]',
+
 # Contributions
 'contributions' => 'Imisebenzi ye lungu',
 'mycontris'     => 'Inkxaso yam',

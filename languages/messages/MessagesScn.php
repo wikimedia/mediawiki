@@ -1472,6 +1472,7 @@ Pi favuri utilizza lu tastu "\'n arreri" dû tò browser, ricàrrica la pàggina
 'modifiedarticleprotection'   => 'canciàu lu liveddu di prutizzioni di "[[$1]]"',
 'unprotectedarticle'          => 'hà sprutettu [[$1]]',
 'protect-title'               => 'Prutezzioni di "$1"',
+'prot_1movedto2'              => '[[$1]] spustatu a [[$2]]',
 'protect-legend'              => 'Cunferma la prutezzioni',
 'protectcomment'              => 'Mutivu dâ prutezzioni',
 'protectexpiry'               => 'Scadenza',

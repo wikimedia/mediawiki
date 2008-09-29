@@ -1117,6 +1117,9 @@ Ab [[Special:WhatLinksHere/$2|lim bu mat]] jàppandi na.',
 'confirm'     => 'Dëggal',
 'deletionlog' => 'Yéenekaay',
 
+# Protect
+'prot_1movedto2' => 'tuddewaat ko [[$1]] en [[$2]]',
+
 # Undelete
 'viewdeletedpage'            => 'Jaar-jaaru xët wi ñu dindi',
 'undeletebtn'                => 'Loppanti',

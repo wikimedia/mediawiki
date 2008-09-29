@@ -589,6 +589,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 
 # Protect
 'protectlogpage'              => 'تحفظ لاگ',
+'prot_1movedto2'              => '[[$1]] کي چوري [[$2]] تي رکيو ويو',
 'protect-legend'              => 'تحفظڻ جي پڪ ڪريو',
 'protectcomment'              => 'تاثرات:',
 'protectexpiry'               => 'اختتام:',

@@ -1890,6 +1890,7 @@ Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno 
 'modifiedarticleprotection'   => 'promijenjen stupanj zaštite za "[[$1]]"',
 'unprotectedarticle'          => 'uklonjena zaštita članka "[[$1]]"',
 'protect-title'               => 'Zaštićujem "$1"',
+'prot_1movedto2'              => '$1 premješteno na $2',
 'protect-legend'              => 'Potvrda zaštite',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'Trajanje zaštite:',

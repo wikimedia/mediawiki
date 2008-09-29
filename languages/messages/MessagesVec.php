@@ -1645,6 +1645,7 @@ L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]] 
 'modifiedarticleprotection'   => 'gà modificà el livel de protezion de "[[$1]]"',
 'unprotectedarticle'          => 'gà sblocà "[[$1]]"',
 'protect-title'               => 'Canbia el livèl de protezion par "$1"',
+'prot_1movedto2'              => '[[$1]] spostà a [[$2]]',
 'protect-legend'              => 'Conferma la protezion',
 'protectcomment'              => 'Motivo de ła protezion',
 'protectexpiry'               => 'Scadenza:',

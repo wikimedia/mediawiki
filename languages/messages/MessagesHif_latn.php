@@ -1129,6 +1129,7 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 
 # Protect
 'protectlogpage'              => 'Surakchha suchi',
+'prot_1movedto2'              => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
 'protectcomment'              => 'Tiprri:',
 'protectexpiry'               => 'Khalas hoe hai:',
 'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',

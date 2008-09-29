@@ -415,6 +415,9 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'rollbacklink'   => 'palemavilipen',
 'rollbackfailed' => 'O palemavilipen nashtisardyas te kerel pes.',
 
+# Protect
+'prot_1movedto2' => '[[$1]] bichhaldo kai [[$2]]',
+
 # Undelete
 'undelete'      => 'Dikh le khosle patrya',
 'undeletebtn'   => 'Le palpale',

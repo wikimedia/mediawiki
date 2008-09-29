@@ -1843,6 +1843,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'modifiedarticleprotection'   => 'a modifié le niveau de protection de « [[$1]] »',
 'unprotectedarticle'          => 'a déprotégé « [[$1]] »',
 'protect-title'               => 'Protéger « $1 »',
+'prot_1movedto2'              => 'a renommé [[$1]] en [[$2]]',
 'protect-legend'              => 'Confirmer la protection',
 'protectcomment'              => 'Raison de la protection',
 'protectexpiry'               => 'Expiration :',

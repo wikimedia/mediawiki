@@ -1410,6 +1410,7 @@ Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për ës-c
 'modifiedarticleprotection'   => 'A l\'é cambia-ie ël livel ëd protession për "[[$1]]"',
 'unprotectedarticle'          => 'Dësprotegiù "[[$1]]"',
 'protect-title'               => 'I soma antramentr che i protegioma "$1"',
+'prot_1movedto2'              => '[[$1]] Tramudà a [[$2]]',
 'protect-legend'              => 'Che an conferma la protession',
 'protectcomment'              => 'Motiv dla protession',
 'protectexpiry'               => 'Scadensa:',

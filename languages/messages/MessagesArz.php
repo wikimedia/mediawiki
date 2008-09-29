@@ -1991,6 +1991,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
 'unprotectedarticle'          => 'شال حماية [[$1]]',
 'protect-title'               => 'غير مستوى الحماية ل"$1"',
+'prot_1movedto2'              => '[[$1]] اتنقلت ل [[$2]]',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهى فى:',

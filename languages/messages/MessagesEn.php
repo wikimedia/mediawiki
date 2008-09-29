@@ -2357,8 +2357,8 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
 'movedarticleprotection'      => 'moved protection settings from "[[$2]]" to "[[$1]]"',
-'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
 'protect-title'               => 'Change protection level for "$1"',
+'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
 'protectcomment'              => 'Comment:',
@@ -2395,7 +2395,7 @@ You can change this page's protection level, but it will not affect the cascadin
 ** Counter-productive edit warring
 ** High traffic page',
 'protect-edit-reasonlist'     => 'Edit protection reasons',
-'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
+'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',

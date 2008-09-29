@@ -981,6 +981,7 @@ $messages = array(
 # Protect
 'protectlogpage'              => 'د ژغورنې يادښت',
 'protectedarticle'            => '"[[$1]]" وژغورلی شو',
+'prot_1movedto2'              => '[[$1]]، [[$2]] ته ولېږدېده',
 'protect-legend'              => 'د ژغورلو پخلی کول',
 'protectcomment'              => 'تبصره:',
 'protectexpiry'               => 'د پای نېټه:',

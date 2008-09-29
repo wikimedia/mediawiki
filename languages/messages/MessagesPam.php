@@ -1496,6 +1496,7 @@ Lon me ing [[Special:ProtectedPages|tala ring bulung a protektadu/makakambil]] p
 'modifiedarticleprotection'   => 'miyalilan ing sikan ning proteksiun/pamangambil para king "[[$1]]"',
 'unprotectedarticle'          => 'e protektadu "[[$1]]"',
 'protect-title'               => 'Alilan ing sikan ning proteksiun pamangambil para "$1"',
+'prot_1movedto2'              => 'Ing [[$1]] miyalis ya king [[$2]]',
 'protect-legend'              => 'Kumpirman ing pamangambil/proteksiun',
 'protectcomment'              => 'Komentu/puna:',
 'protectexpiry'               => 'Mayari ya keng:',

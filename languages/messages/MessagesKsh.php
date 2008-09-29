@@ -1924,6 +1924,7 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'modifiedarticleprotection'   => 'hät dä Schoz för die Sigg „[[$1]]“ jeändert',
 'unprotectedarticle'          => 'hät der Schotz för die Sigg „[[$1]]“ opjehovve',
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
+'prot_1movedto2'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
 'protect-legend'              => 'Sigg schötze',
 'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze',
 'protectexpiry'               => 'Duur, wi lang:',

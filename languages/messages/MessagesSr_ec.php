@@ -1742,6 +1742,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'промењен ниво заштите за „[[$1]]“',
 'unprotectedarticle'          => 'скинуо заштиту са $1',
 'protect-title'               => 'стављање заштите "$1"',
+'prot_1movedto2'              => 'је променио име чланку [[$1]] у [[$2]]',
 'protect-legend'              => 'Потврдите заштиту',
 'protectcomment'              => 'Коментар:',
 'protectexpiry'               => 'Истиче:',

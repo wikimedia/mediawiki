@@ -887,6 +887,7 @@ Gade $2 pou wè yon lis efasman resan.',
 
 # Protect
 'protectlogpage'              => 'Istorik pwoteksyon yo',
+'prot_1movedto2'              => '[[$1]] renonmen, li kounye a [[$2]]',
 'protect-legend'              => 'Konfime pwoteksyon an',
 'protectcomment'              => 'Poukisa ou pwoteje li:',
 'protectexpiry'               => 'Ekspirasyon(Paj an pe ke ekspire si ou pa mete anyen)',

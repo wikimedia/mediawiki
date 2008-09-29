@@ -231,6 +231,7 @@ $messages = array(
 
 # Protect
 'protectlogpage' => 'सुरक्षा लॉग',
+'prot_1movedto2' => '[[$1]] गेल एतय [[$2]]',
 
 # Namespace form on various pages
 'blanknamespace' => '(मुख्य)',

@@ -1709,6 +1709,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'modifiedarticleprotection'   => 'muutti sivun [[$1]] suojaustasoa',
 'unprotectedarticle'          => 'poisti suojauksen sivulta $1',
 'protect-title'               => 'Sivun $1 suojaus',
+'prot_1movedto2'              => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
 'protect-legend'              => 'Suojaukset',
 'protectcomment'              => 'Perustelu',
 'protectexpiry'               => 'Vanhenee',

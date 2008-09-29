@@ -730,6 +730,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 
 # Protect
 'protectedarticle'            => '"[[$1]]" glast',
+'prot_1movedto2'              => '[[$1]] aa-enmyssit myr [[$2]]',
 'protectcomment'              => 'Cohaggloo:',
 'protectexpiry'               => 'Jerrey:',
 'protect-text'                => 'Foddee oo jeeagh er as arraghey yn rea choadee ayns shoh son y duillag <strong><nowiki>$1</nowiki></strong>.',

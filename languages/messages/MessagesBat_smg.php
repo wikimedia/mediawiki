@@ -1028,6 +1028,7 @@ Prašoum paspaustė „atgal“ ėr parkrautė poslapi ėš katruo atiejot, ė p
 'protectedarticle'            => 'ožrakina „[[$1]]“',
 'modifiedarticleprotection'   => 'pakeists „[[$1]]“ apsauguos līgis',
 'unprotectedarticle'          => 'atrakėna „[[$1]]“',
+'prot_1movedto2'              => 'Straipsnis [[$1]] parvadints i [[$2]]',
 'protectcomment'              => 'Kuomentars:',
 'protectexpiry'               => 'Beng galiuotė:',
 'protect_expiry_invalid'      => 'Galiuojėma čiesos īr nateisėngs.',

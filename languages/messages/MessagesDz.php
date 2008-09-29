@@ -500,6 +500,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'ཉེན་སྐྱོབ་ལོག།',
+'prot_1movedto2'              => '[[$1]] འདི་ [[$2]] ལུ་སྤོ་བཤུད་འབད་ཡོདཔ།',
 'protectcomment'              => 'བསམ་བཀོད:',
 'protectexpiry'               => 'དུས་ཡོལ:',
 'protect_expiry_invalid'      => 'དུས་ཡོལ་དུས་ཚོད་འདི་ ནུས་མེད་ཨིན་པས།',

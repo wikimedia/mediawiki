@@ -565,6 +565,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'સુરક્ષા માહિતિ પત્રક',
+'prot_1movedto2'              => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
 'protectcomment'              => 'ટિપ્પણી:',
 'protectexpiry'               => 'સમાપ્તિ:',
 'protect_expiry_invalid'      => 'સમાપ્તિનો સમય માન્ય નથી.',

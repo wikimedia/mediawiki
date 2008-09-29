@@ -1069,6 +1069,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 
 # Protect
 'protectlogpage' => 'Beschermlogboek',
+'prot_1movedto2' => '[[$1]] is verschove nae [[$2]]',
 
 # Undelete
 'cannotundelete' => 'Can de bladzie nie erstelle; mischien eit iemand aors de bladzie a vrommegezet.',

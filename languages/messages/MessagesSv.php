@@ -1939,6 +1939,7 @@ Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]] | [[Specia
 'modifiedarticleprotection'   => 'ändrade skyddsnivån för "[[$1]]"',
 'unprotectedarticle'          => 'tog bort skydd av $1',
 'protect-title'               => 'Skyddsinställningar för "$1"',
+'prot_1movedto2'              => 'flyttade [[$1]] till [[$2]]',
 'protect-legend'              => 'Bekräfta skrivskydd av sida',
 'protectcomment'              => 'Anledning:',
 'protectexpiry'               => 'Varaktighet:',

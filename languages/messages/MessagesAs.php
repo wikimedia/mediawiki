@@ -872,6 +872,7 @@ $1',
 
 # Protect
 'protectlogpage'              => 'সুৰক্ষা সুচী',
+'prot_1movedto2'              => '$1 ক $2 লৈ স্থানান্তৰিত কৰা হল',
 'protectcomment'              => 'মন্তব্য:',
 'protectexpiry'               => 'সময় শেষ:',
 'protect_expiry_invalid'      => 'শেষ সময় ভুল ।',

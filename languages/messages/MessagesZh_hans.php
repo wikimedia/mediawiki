@@ -1720,6 +1720,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '已经更改 "[[$1]]" 的保护等级',
 'unprotectedarticle'          => '已取消保护"[[$1]]"',
 'protect-title'               => '正在更改"$1"的保护等级',
+'prot_1movedto2'              => '[[$1]]移动到[[$2]]',
 'protect-legend'              => '确认保护',
 'protectcomment'              => '注解:',
 'protectexpiry'               => '到期:',

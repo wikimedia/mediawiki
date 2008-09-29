@@ -1778,6 +1778,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកំរិតការពារនៃ"[[$1]]"',
 'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[$1]]"',
 'protect-title'               => 'ការពារ "$1"',
+'prot_1movedto2'              => 'បានប្តូរទីតាំង [[$1]] ទៅ [[$2]]',
 'protect-legend'              => 'បញ្ជាក់ទទួលស្គាល់ការការពារ',
 'protectcomment'              => 'យោបល់៖',
 'protectexpiry'               => 'ផុតកំនត់៖',

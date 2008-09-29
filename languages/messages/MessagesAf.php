@@ -1476,6 +1476,7 @@ Verwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te vo
 'protectedarticle'            => 'het [[$1]] beskerm',
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'protect-title'               => 'Beskerm "$1"',
+'prot_1movedto2'              => '[[$1]] geskuif na [[$2]]',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede vir beskerming:',
 'protectexpiry'               => 'Verval:',

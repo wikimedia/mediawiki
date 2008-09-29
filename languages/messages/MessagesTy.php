@@ -147,6 +147,9 @@ $messages = array(
 # Watchlist
 'watch' => 'Ha’apa’o',
 
+# Protect
+'prot_1movedto2' => '’Ua tāhitihia te ’api [[$1]] e ana i te ’api ’āpī [[$2]]',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Fa’ahuru ’ē',
 'restriction-move' => 'Tāhiti',

@@ -1882,6 +1882,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'зьменены ўзровень абароны старонкі «[[$1]]»',
 'unprotectedarticle'          => 'зьнятая абарона са старонкі «[[$1]]»',
 'protect-title'               => 'Абарона «$1»',
+'prot_1movedto2'              => '[[$1]] перанесеная ў [[$2]]',
 'protect-legend'              => 'Пацьверджаньне абароны',
 'protectcomment'              => 'Камэнтар:',
 'protectexpiry'               => 'Сканчаецца:',

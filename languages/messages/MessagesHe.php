@@ -1988,6 +1988,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[$1]]',
 'unprotectedarticle'          => 'ביטל את ההגנה על [[$1]]',
 'protect-title'               => 'שינוי רמת ההגנה של "$1"',
+'prot_1movedto2'              => '[[$1]] הועבר ל[[$2]]',
 'protect-backlink'            => '→ $1',
 'protect-legend'              => 'אישור הפעלת ההגנה',
 'protectcomment'              => 'הערה:',
@@ -2023,7 +2024,7 @@ $NEWPAGE
 ** מלחמת עריכה בלתי מועילה
 ** דף בשימוש רב',
 'protect-edit-reasonlist'     => 'עריכת סיבות ההגנה',
-'protect-expiry-options'      => 'שעה:1 hour,יום:1 day,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite',
+'protect-expiry-options'      => 'שעה:1 hour,יום:1 day,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',

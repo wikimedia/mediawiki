@@ -671,6 +671,7 @@ $messages = array(
 'protectedarticle'            => 'ໄດ້ປົກປ້ອງ "[[$1]]"',
 'unprotectedarticle'          => 'ໄດ້ເຊົາປົກປ້ອງ "[[$1]]"',
 'protect-title'               => 'ກຳລັງປົກປ້ອງໜ້າ "$1"',
+'prot_1movedto2'              => '[[$1]] ຍ້າຍໄປ [[$2]]',
 'protect-legend'              => 'ຢືນຢັນ ການປົກປ້ອງ',
 'protectexpiry'               => 'ໝົດກຳນົດ:',
 'protect-text'                => 'ທ່ານສາມາດເບິ່ງ ແລະ ປ່ຽນແປງ ລະດັບການປົກປ້ອງ ສຳຫຼັບ ໜ້າ  <strong><nowiki>$1</nowiki> ຢູ່ນີ້</strong>.',

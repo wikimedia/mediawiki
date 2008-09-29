@@ -467,6 +467,7 @@ Nyoë pat nakeuh log seunampôh nibak ôn nyoë:",
 
 # Protect
 'protectlogpage'              => 'Log lindông',
+'prot_1movedto2'              => 'peupinah [[$1]] u [[$2]]',
 'protectcomment'              => 'Bri peunapat:',
 'protectexpiry'               => 'Maté tanggay:',
 'protect_expiry_invalid'      => 'Watèë maté tanggay hana sah.',

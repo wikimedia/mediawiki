@@ -658,6 +658,7 @@ Template:Khu-pia̍t-ia̍h',
 # Protect
 'protectedarticle' => 'pó-hō͘ "[[$1]]"',
 'protect-title'    => 'Pó-hō· "$1"',
+'prot_1movedto2'   => '[[$1]] sóa khì tī [[$2]]',
 'protect-legend'   => 'Khak-tēng beh pó-hō·',
 'protectcomment'   => 'Pó-hō· ê lí-iû:',
 'protect-cascade'  => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',

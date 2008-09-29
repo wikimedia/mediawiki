@@ -2121,6 +2121,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
 'unprotectedarticle'          => 'أزال حماية [[$1]]',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
+'prot_1movedto2'              => '[[$1]] تم نقلها إلى [[$2]]',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'تعليق:',
 'protectexpiry'               => 'تنتهي في:',

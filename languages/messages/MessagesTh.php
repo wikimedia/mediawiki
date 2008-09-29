@@ -1575,6 +1575,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'เปลี่ยนระดับการล็อกสำหรับ "[[$1]]"',
 'unprotectedarticle'          => '"[[$1]]" ถูกปลดล็อก',
 'protect-title'               => 'กำลังล็อกหน้า "$1"',
+'prot_1movedto2'              => '[[$1]] ถูกเปลี่ยนชื่อเป็น [[$2]]',
 'protect-legend'              => 'ยืนยันการล็อก',
 'protectcomment'              => 'ความเห็น:',
 'protectexpiry'               => 'หมดอายุ:',

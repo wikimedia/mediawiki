@@ -1612,6 +1612,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '"[[$1]]" సరక్షణ స్థాయిని మార్చాం',
 'unprotectedarticle'          => '"[[$1]]" ను సంరక్షణ నుండి తీసేసాం',
 'protect-title'               => '"$1" కు సంరక్షణ స్థాయిని సెట్ చేస్తున్నాం',
+'prot_1movedto2'              => '$1, $2కు తరలించబడింది',
 'protect-legend'              => 'సంరక్షణను నిర్ధారించు',
 'protectcomment'              => 'సంరక్షించడానికి కారణం',
 'protectexpiry'               => 'గడువు:',

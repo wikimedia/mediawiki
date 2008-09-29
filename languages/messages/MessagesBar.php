@@ -85,6 +85,9 @@ $messages = array(
 'watchthispage'     => 'Seitn beobachtn',
 'unwatch'           => 'nimma beobachten',
 
+# Protect
+'prot_1movedto2' => 'håt [[$1]] nåch [[$2]] verschom',
+
 # Contributions
 'contributions' => 'Benutzerbeiträg',
 'mycontris'     => 'Eigene Beiträg',

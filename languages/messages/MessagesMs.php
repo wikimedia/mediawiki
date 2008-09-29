@@ -1773,6 +1773,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'modifiedarticleprotection'   => 'menukar peringkat perlindungan bagi "[[$1]]"',
 'unprotectedarticle'          => 'menyahlindung "[[$1]]"',
 'protect-title'               => 'Menetapkan peringkat perlindungan bagi "$1"',
+'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
 'protect-legend'              => 'Sahkan perlindungan',
 'protectcomment'              => 'Komen:',
 'protectexpiry'               => 'Tamat pada:',

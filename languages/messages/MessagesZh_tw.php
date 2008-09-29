@@ -1261,6 +1261,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'protect-title'               => '正在保護"$1"',
+'prot_1movedto2'              => '[[$1]]移動到[[$2]]',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '輸入的終止時間無效。',

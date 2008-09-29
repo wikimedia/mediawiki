@@ -1696,6 +1696,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '已經更改 "[[$1]]" 的保護等級',
 'unprotectedarticle'          => '已解除保護"[[$1]]"',
 'protect-title'               => '正在更改"$1"的保護等級',
+'prot_1movedto2'              => '[[$1]]移動到[[$2]]',
 'protect-legend'              => '確認保護',
 'protectcomment'              => '註解:',
 'protectexpiry'               => '到期:',

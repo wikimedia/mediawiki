@@ -851,6 +851,7 @@ Di letschti Änderig het [[User:$3|$3]] ([[User talk:$3|Talk]]) gmacht.',
 # Protect
 'protectlogpage'              => 'Syteschutz-Logbuech',
 'protectlogtext'              => 'Dies ist eine Liste der blockierten Seiten. Siehe [[Special:ProtectedPages|Geschützte Seiten]] für mehr Informationen.',
+'prot_1movedto2'              => '[[$1]] isch uf [[$2]] verschobe worde.',
 'protectcomment'              => 'Grund der Sperrung',
 'protectexpiry'               => 'Gsperrt bis:',
 'protect_expiry_invalid'      => 'Di gwählti Duur isch nid gültig.',

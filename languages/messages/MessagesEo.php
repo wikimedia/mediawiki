@@ -1745,6 +1745,7 @@ Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj
 'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
 'unprotectedarticle'          => 'malprotektita [[$1]]',
 'protect-title'               => 'Protektante "$1"',
+'prot_1movedto2'              => '[[$1]] movita al [[$2]]',
 'protect-legend'              => 'Konfirmu protektadon',
 'protectcomment'              => 'Kialo por protekti:',
 'protectexpiry'               => 'Eksvalidiĝas:',

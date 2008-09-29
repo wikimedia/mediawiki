@@ -495,6 +495,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 # Protect
 'unprotectedarticle'     => 'unweardod "[[$1]]"',
 'protect-title'          => 'Weardiende "$1"',
+'prot_1movedto2'         => '[[$1]] gefered tō [[$2]]',
 'protect-expiry-options' => '1 stund:1 hour, 2 stunda:2 hours,1 dæg:1 day,3 dagas:3 days,1 wucu:1 week,2 wuca:2 weeks,1 mōnaþ:1 month,3 mōnþas:3 months,6 mōnþas:6 months,1 gēar:1 year,unendiendlic:infinite', # display1:time1,display2:time2,...
 'restriction-type'       => 'Gelēafnes:',
 

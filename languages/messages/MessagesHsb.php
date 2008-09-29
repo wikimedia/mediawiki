@@ -1705,6 +1705,7 @@ Hlej [[Special:ProtectedPages|tutu specialnu stronu]] za lisćinu škitanych str
 'modifiedarticleprotection'   => 'je škit strony [[$1]] změnił',
 'unprotectedarticle'          => 'je škit strony [[$1]] zběhnył',
 'protect-title'               => 'Stronu „$1” škitać',
+'prot_1movedto2'              => 'je [[$1]] pod hesło [[$2]] přesunył',
 'protect-legend'              => 'Škit wobkrućić',
 'protectcomment'              => 'Přičina za škitanje:',
 'protectexpiry'               => 'Čas škita:',

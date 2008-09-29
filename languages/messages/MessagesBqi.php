@@ -594,6 +594,7 @@ $2',
 
 # Protect
 'protectlogpage'              => 'نمایه حفاظت وحمایت',
+'prot_1movedto2'              => '[[$1]] جابجا وابید به[[$2]]',
 'protectcomment'              => 'توضیح:',
 'protectexpiry'               => 'سپری وابیده ها:',
 'protect_expiry_invalid'      => 'با سپری وابیدن وقت غیر معتبره.',

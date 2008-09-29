@@ -1847,6 +1847,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'modifiedarticleprotection'   => 'a modificat lo nivèl de proteccion de « [[$1]] »',
 'unprotectedarticle'          => 'a desprotegit « [[$1]] »',
 'protect-title'               => 'Cambiar lo nivèl de proteccion de « $1 »',
+'prot_1movedto2'              => 'a renomenat [[$1]] en [[$2]]',
 'protect-legend'              => 'Confirmar la proteccion',
 'protectcomment'              => 'Motiu de la proteccion :',
 'protectexpiry'               => 'Expiracion (expira pas per defaut)',

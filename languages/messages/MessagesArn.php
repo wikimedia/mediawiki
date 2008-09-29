@@ -333,6 +333,7 @@ $messages = array(
 'deletedarticle' => '«[[$1]]» Ñamümün',
 
 # Protect
+'prot_1movedto2'          => '[[$1]] wiñamngey [[$2]] püle',
 'protectexpiry'           => 'Afi:',
 'protect-level-sysop'     => 'Pu ngünefe müṯen',
 'protect-summary-cascade' => 'Trayengko',
