@@ -3,26 +3,38 @@
 /**
  * @defgroup HTTP HTTP
  * @file
+ * @ingroup HTTP
  */
- 
- 
+
 /**
  * Various HTTP related functions
  * @ingroup HTTP
  */
 class Http {
+
+	/**
+	 * Simple wrapper for Http::request( 'GET' )
+	 * @see Http::request()
+	 */
 	static function get( $url, $timeout = 'default', $opts = array() ) {
 		return Http::request( "GET", $url, $timeout, $opts );
 	}
 
+	/**
+	 * Simple wrapper for Http::request( 'POST' )
+	 * @see Http::request()
+	 */
 	static function post( $url, $timeout = 'default', $opts = array() ) {
 		return Http::request( "POST", $url, $timeout, $opts );
 	}
 
 	/**
 	 * Get the contents of a file by HTTP
-	 *
-	 * if $timeout is 'default', $wgHTTPTimeout is used
+	 * @param $method string HTTP method. Usually GET/POST
+	 * @param $url string Full URL to act on
+	 * @param $timeout int Seconds to timeout. 'default' falls to $wgHTTPTimeout
+	 * @param $curlOptions array Optional array of extra params to pass 
+	 * to curl_setopt()
 	 */
 	static function request( $method, $url, $timeout = 'default', $curlOptions = array() ) {
 		global $wgHTTPTimeout, $wgHTTPProxy, $wgVersion, $wgTitle;
@@ -104,6 +116,8 @@ class Http {
 
 	/**
 	 * Check if the URL can be served by localhost
+	 * @param $url string Full url to check
+	 * @return bool
 	 */
 	static function isLocalURL( $url ) {
 		global $wgCommandLineMode, $wgConf;
