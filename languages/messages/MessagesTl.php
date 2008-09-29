@@ -33,7 +33,6 @@ $namespaceAliases = array(
 	'Usapang kategorya' => NS_CATEGORY_TALK,
 );
 
-
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Salungguhitan ang mga kawing:',

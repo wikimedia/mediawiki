@@ -1452,6 +1452,7 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 'protectedtitlesempty'    => 'Actualmente no existen entradas protegidas con esos parámetros.',
 'listusers'               => 'Lista de usuarios',
 'listusers-editsonly'     => 'Muestra sólo usuarios con ediciones',
+'usereditcount'           => '$1 {{PLURAL:$1|edición|ediciones}}',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -1670,7 +1671,7 @@ Véase $2 para un registro de los borrados recientes.',
 'deletedarticle'         => '«[[$1]]» borrado',
 'suppressedarticle'      => 'se ha suprimido «[[$1]]»',
 'dellogpage'             => 'Registro de borrados',
-'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes. Todos los tiempos se muestran en hora del servidor.',
+'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes.',
 'deletionlog'            => 'registro de borrados',
 'reverted'               => 'Recuperar una revisión anterior',
 'deletecomment'          => 'Motivo del borrado',
@@ -1707,7 +1708,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'modifiedarticleprotection'   => 'cambiado el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'protect-title'               => 'Cambiando el nivel de protección de «$1»',
-'prot_1movedto2'              => '[[$1]] trasladada a [[$2]]',
+'prot_1movedto2'              => 'heredando la protección al trasladar [[$1]] a [[$2]]',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo de la protección',
 'protectexpiry'               => 'Caducidad:',
@@ -1796,8 +1797,8 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'undelete-filename-mismatch'   => 'No se puede restaurar la versión con marca de tiempo $1: No concuerda el nombre de fichero',
 'undelete-bad-store-key'       => 'No se puede restaurar la versión con marca de tiempo $1: el fichero fue omitido antes del borrado.',
 'undelete-cleanup-error'       => 'Error al borrar el archivo no utilizado "$1".',
-'undelete-missing-filearchive' => 'No se ha podido restaurar el archivo de ID $1 debido que no está en la base de datos.
-Puede que ya fue desborrado.',
+'undelete-missing-filearchive' => 'No se ha podido restaurar el archivo de ID $1 debido a que no está en la base de datos.
+Puede que ya haya sido restaurado.',
 'undelete-error-short'         => 'Error restaurando archivo: $1',
 'undelete-error-long'          => 'Se encontraron errores mientras se restauraba el archivo:
 

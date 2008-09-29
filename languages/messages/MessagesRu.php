@@ -6,6 +6,7 @@
  *
  * @author Ahonc
  * @author Aleksandrit
+ * @author Alessandro
  * @author AlexSm
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author EugeneZelenko
@@ -875,7 +876,7 @@ $2',
 
 Ограничение было наложено $4 в $5 и истекает $6 в $7.
 
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы оспорить данное ограничение.",
+Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
 'userrestricted-namespace'         => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать пространство имён «$1».'''</big>
 
 Это ограничение было наложено участником [[User:$2|$2]].
@@ -883,23 +884,23 @@ $2',
 
 Ограничение было наложено $4 в $5 и истекает $6 в $7.
 
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы оспорить данное ограничение.",
+Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
 'userrestricted-page-indef'        => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать страницу «$1».'''</big>
 
 Это ограничение было наложено участником [[User:$2|$2]].
 Была указана следующая причина: ''$3''.
 
-Ограничение было наложено $4 в $5 и не имеет срока действия.
+Ограничение было наложено $4 в $5, окончание срока действия не определено.
 
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы оспорить данное ограничение.",
+Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
 'userrestricted-namespace-indef'   => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать пространство имён «$1».'''</big>
 
 Это ограничение было наложено участником [[User:$2|$2]].
 Была указана следующая причина: ''$3''.
 
-Ограничение было наложено $4 в $5 и не имеет срока действия.
+Ограничение было наложено $4 в $5, окончание срока действия не определено.
 
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы оспорить данное ограничение.",
+Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Внимание. Эта страница содержит слишком много вызовов ресурсоёмких функций.
@@ -1287,7 +1288,7 @@ $3 указал следующую причину: ''$2''",
 'right-suppressrevision'     => 'просмотр и восстановление скрытых от администраторов версий страниц',
 'right-suppressionlog'       => 'просмотр частных журналов',
 'right-block'                => 'установка запрета на редактирование другим участникам',
-'right-restrict'             => 'Запрещать пользователям править определённые страницы и пространства имён',
+'right-restrict'             => 'запрещать участникам править определённые страницы и пространства имён',
 'right-blockemail'           => 'установка запрета на отправку электронной почты',
 'right-hideuser'             => 'запрет имени участника и его сокрытие',
 'right-ipblock-exempt'       => 'обход блокировок по IP, автоблокировок и блокировок диапазонов',
@@ -1913,6 +1914,7 @@ $NEWPAGE
 'protectedarticle'            => 'защищена страница «[[$1]]»',
 'modifiedarticleprotection'   => 'изменён уровень защиты страницы «[[$1]]»',
 'unprotectedarticle'          => 'снята защита со страницы «[[$1]]»',
+'movedarticleprotection'      => 'перенёс настройки защиты с «[[$2]]» на «[[$1]]»',
 'protect-title'               => 'Установка уровня защиты для «$1»',
 'prot_1movedto2'              => '«[[$1]]» переименована в «[[$2]]»',
 'protect-legend'              => 'Подтвердите установку защиты страницы',
@@ -2148,10 +2150,67 @@ IP-адреса.',
 'cant-block-while-blocked'        => 'Вы не можете блокировать других участников, пока вы сами заблокированы.',
 
 # Special:ListUserRestrictions
-'listuserrestrictions'        => 'Список ограничений пользователей',
-'listuserrestrictions-intro'  => 'Данный список содержит все ограничения пользователей на правку определённых страниц и пространств имён.
+'listuserrestrictions'            => 'Список ограничений участников',
+'listuserrestrictions-intro'      => 'Данный список содержит все ограничения пользователей на правку определённых страниц и пространств имён.
 [[Special:Ipblocklist|Блокировки]] здесь не перечислены.',
-'listuserrestrictions-row-ns' => 'запретил $1 редактирование пространства имён «$2» ($3)',
+'listuserrestrictions-row-ns'     => 'запретил $1 редактирование пространства имён «$2» ($3)',
+'listuserrestrictions-row-page'   => 'ограничил права $1 в правке $2 ($3)',
+'listuserrestrictions-row-expiry' => 'истекает $1 в $2',
+'listuserrestrictions-legend'     => 'Найти ограничение',
+'listuserrestrictions-type'       => 'Тип:',
+'listuserrestrictions-user'       => 'Участник:',
+'listuserrestrictions-namespace'  => 'Пространство имён:',
+'listuserrestrictions-page'       => 'Страница:',
+'listuserrestrictions-submit'     => 'Найти',
+'listuserrestrictions-notfound'   => 'Нет ограничений, соответствующих указанным условиям.',
+'listuserrestrictions-empty'      => 'Этот список пуст.',
+'listuserrestrictions-remove'     => 'снять',
+'userrestrictiontype-none'        => '(нет)',
+'userrestrictiontype-namespace'   => 'Пространство имён',
+'userrestrictiontype-page'        => 'Страница',
+
+# Special:RemoveRestrictions
+'removerestrictions'           => 'Снятие ограничения с участника',
+'removerestrictions-intro'     => 'Вы можете использовать эту форму, чтобы снять ограничение с конкретного участника.',
+'removerestrictions-noid'      => 'Не был указан ID ограничения.',
+'removerestrictions-wrongid'   => 'Ограничения с таким ID не найдено.
+Вероятно, кто-то уже снял его, или ограничение истекло.',
+'removerestrictions-legend'    => 'Снятие ограничения',
+'removerestrictions-user'      => 'Ограниченный участник:',
+'removerestrictions-type'      => 'Тип ограничения:',
+'removerestrictions-page'      => 'Страница:',
+'removerestrictions-namespace' => 'Пространство имён:',
+'removerestrictions-reason'    => 'Причина:',
+'removerestrictions-submit'    => 'Снять ограничение',
+'removerestrictions-success'   => 'Ограничение с участника [[User:$1|$1]] успешно удалено.',
+
+# Special:RestrictUser
+'restrictuser'                  => 'Ограничить участника',
+'restrictuser-userselect'       => 'Выбор участника',
+'restrictuser-user'             => 'Участник:',
+'restrictuser-go'               => 'Ограниченный участник',
+'restrictuser-notfound'         => 'Участник не найден',
+'restrictuser-existing'         => 'Существующие ограничений',
+'restrictuser-legend-page'      => 'Ограничения на редактирование конкретной страницы',
+'restrictuser-legend-namespace' => 'Ограничение на редактирование в конкретном пространстве имён',
+'restrictuser-title'            => 'Страница для ограничения:',
+'restrictuser-namespace'        => 'Пространство имён:',
+'restrictuser-expiry'           => 'Истекает:',
+'restrictuser-reason'           => 'Причина:',
+'restrictuser-sumbit'           => 'Ограниченный участник',
+'restrictuser-badtitle'         => 'Указано ошибочное название: $1.',
+'restrictuser-badnamespace'     => 'Указано неверное пространство имён.',
+'restrictuser-badexpiry'        => 'Указан неверный срок истечения: $1.',
+'restrictuser-duptitle'         => 'У участника уже есть ограничение на редактирование страницы с таким названием.',
+'restrictuser-dupnamespace'     => 'У участника уже есть ограничение на редактирование этого пространства имён.',
+'restrictuser-success'          => 'На участника $1 успешно наложено ограничение.',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Журнал ограничений участников',
+'restrictionlogtext'   => 'Этот журнал содержит записи обо всех ограничениях, наложенных на участников администраторами.',
+'restrictentry'        => 'ограничил права $1 на редактирование $2 (срок истечения $3)',
+'restrictremoveentry'  => 'снял ограничение с $1 на правку $2',
+'restrictlognamespace' => 'пространство имён $1',
 
 # Developer tools
 'lockdb'              => 'Сделать базу данных доступной только для чтения',

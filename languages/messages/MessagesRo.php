@@ -692,6 +692,8 @@ Puteţi edita o pagină deja existentă sau puteţi să vă [[Special:UserLogin|
 'recreate-deleted-warn'            => "'''Atenție: Recreaţi o pagină care a fost ştearsă anterior.'''
 
 Pentru a verifica dacă recrearea paginii este într-adevăr oportună iată aici jurnalul ştergerilor:",
+'edit-already-exists'              => 'Pagina nouă nu a putut fi creată.
+Ea există deja.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Atenţie: Această pagină conţine prea multe apelări costisitoare ale funcţiilor parser.
@@ -839,7 +841,11 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'editundo'                => 'anulează',
 'diff-multi'              => '({{PLURAL:$1|O revizie intermediară neafişată|$1 revizii intermediare neafişate}})',
 'diff-movedto'            => 'mutat la $1',
+'diff-movedoutof'         => 'mutat din $1',
+'diff-changedfrom'        => 'schimbat din $1',
 'diff-src'                => 'sursă',
+'diff-with'               => '&#32;cu $1 $2',
+'diff-with-final'         => '&#32;şi $1 $2',
 'diff-width'              => 'lăţime',
 'diff-height'             => 'înălţime',
 'diff-p'                  => "un '''paragraf'''",
@@ -1861,6 +1867,34 @@ Face parte din area de blocare $2, care nu poate fi deblocată.',
 'proxyblocksuccess'               => 'Realizat.',
 'sorbsreason'                     => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
 'sorbs_create_account_reason'     => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS. Nu vă puteţi crea un cont',
+
+# Special:ListUserRestrictions
+'listuserrestrictions-row-expiry' => 'expiră la $1 $2',
+'listuserrestrictions-type'       => 'Tip:',
+'listuserrestrictions-user'       => 'Utilizator:',
+'listuserrestrictions-namespace'  => 'Spaţiu de nume:',
+'listuserrestrictions-page'       => 'Pagină:',
+'listuserrestrictions-empty'      => 'Această listă este goală.',
+'userrestrictiontype-namespace'   => 'Spaţiu de nume',
+'userrestrictiontype-page'        => 'Pagină',
+
+# Special:RemoveRestrictions
+'removerestrictions-page'      => 'Pagină:',
+'removerestrictions-namespace' => 'Spaţiu de nume:',
+'removerestrictions-reason'    => 'Motiv:',
+
+# Special:RestrictUser
+'restrictuser'              => 'Restricţionează utilizator',
+'restrictuser-user'         => 'Utilizator:',
+'restrictuser-go'           => 'Restricţionează utilizator',
+'restrictuser-existing'     => 'Restricţii existente',
+'restrictuser-title'        => 'Pagina de restricţionat:',
+'restrictuser-namespace'    => 'Spaţiu de nume:',
+'restrictuser-expiry'       => 'Expiră:',
+'restrictuser-reason'       => 'Motiv:',
+'restrictuser-sumbit'       => 'Restricţionează utilizator',
+'restrictuser-badtitle'     => 'Titlu specificat incorect: $1.',
+'restrictuser-badnamespace' => 'Spaţiu de nume specificat incorect.',
 
 # Developer tools
 'lockdb'              => 'Blochează baza de date',

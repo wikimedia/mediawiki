@@ -127,6 +127,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Peida pisiparandused jälgimisloendist',
 'tog-watchlisthideliu'        => 'Peida sisselogitud kasutajate muudatused jälgimisloendist',
 'tog-watchlisthideanons'      => 'Peida anonüümsete kasutajate muudatused jälgimisloendist',
+'tog-ccmeonemails'            => 'Saada mulle koopiad e-mailidest, mida ma teistele kasutajatele saadan',
 'tog-showhiddencats'          => 'Näita peidetud kategooriaid',
 
 'underline-always'  => 'Alati',
@@ -410,6 +411,7 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 'youremail'                  => 'Teie e-posti aadress*',
 'username'                   => 'Kasutajanimi:',
 'uid'                        => 'Kasutaja ID:',
+'prefs-memberingroups'       => 'Kuulub {{PLURAL:$1|gruppi|gruppidesse}}:',
 'yourrealname'               => 'Teie tegelik nimi*',
 'yourlanguage'               => 'Keel:',
 'yournick'                   => 'Teie hüüdnimi (allakirjutamiseks)',
@@ -495,6 +497,7 @@ Küsimuse arutamiseks võite pöörduda $1 või mõne teise [[{{MediaWiki:Groupp
 Pange tähele, et Te ei saa sellele kasutajale teadet saata, kui Te pole registreerinud oma [[Special:Preferences|eelistuste lehel]] kehtivat e-posti aadressi.
 
 Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage need andmed kõigile järelpärimistele, mida kavatsete teha.",
+'blockednoreason'          => 'põhjendust ei ole kirja pandud',
 'whitelistedittitle'       => 'Redigeerimiseks tuleb sisse logida',
 'whitelistedittext'        => 'Lehekülgede toimetamiseks peate $1.',
 'loginreqtitle'            => 'Vajalik on sisselogimine',
@@ -614,6 +617,7 @@ mitme otsingusõna kasutamine (tulemusena ilmuvad ainult leheküljed, mis sisald
 # Preferences page
 'preferences'             => 'Eelistused',
 'mypreferences'           => 'eelistused',
+'prefs-edits'             => 'Redigeerimiste arv:',
 'prefsnologin'            => 'Te ei ole sisse loginud',
 'prefsnologintext'        => 'Et oma eelistusi seada, [[Special:UserLogin|tuleb Teil]]
 sisse logida.',
@@ -1123,42 +1127,50 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'whatlinkshere-hideredirs' => '$1 ümbersuunamised',
 
 # Block/unblock
-'blockip'            => 'Blokeeri IP-aadress',
-'blockiptext'        => "See vorm on kirjutamisõiguste blokeerimiseks konkreetselt IP-aadressilt.
+'blockip'                    => 'Blokeeri IP-aadress',
+'blockip-legend'             => 'Blokeeri kasutaja',
+'blockiptext'                => "See vorm on kirjutamisõiguste blokeerimiseks konkreetselt IP-aadressilt.
 '''Seda tohib teha ainult vandalismi vältimiseks ning kooskõlas [[{{MediaWiki:Policy-url}}|{{SITENAME}} sisekorraga]]'''.
 Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited konkreetsetele lehekülgedele, mida rikuti.",
-'ipaddress'          => 'IP-aadress',
-'ipadressorusername' => 'IP-aadress või kasutajanimi',
-'ipbexpiry'          => 'Kehtivus',
-'ipbreason'          => 'Põhjus',
-'ipbreasonotherlist' => 'Muul põhjusel',
-'ipbsubmit'          => 'Blokeeri see aadress',
-'ipbother'           => 'Muu tähtaeg',
-'ipboptions'         => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite', # display1:time1,display2:time2,...
-'ipbotheroption'     => 'muu tähtaeg',
-'ipbotherreason'     => 'Muu/täiendav põhjus:',
-'badipaddress'       => 'The IP address is badly formed.',
-'blockipsuccesssub'  => 'Blokeerimine õnnestus',
-'blockipsuccesstext' => 'IP-aadress "$1" on blokeeritud.
+'ipaddress'                  => 'IP-aadress',
+'ipadressorusername'         => 'IP-aadress või kasutajanimi',
+'ipbexpiry'                  => 'Kehtivus',
+'ipbreason'                  => 'Põhjus',
+'ipbreasonotherlist'         => 'Muul põhjusel',
+'ipbanononly'                => 'Blokeeri ainult anonüümsed kasutajad',
+'ipbcreateaccount'           => 'Takista konto loomist',
+'ipbemailban'                => 'Takista kasutaja poolt e-maili saatmist',
+'ipbsubmit'                  => 'Blokeeri see aadress',
+'ipbother'                   => 'Muu tähtaeg',
+'ipboptions'                 => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite', # display1:time1,display2:time2,...
+'ipbotheroption'             => 'muu tähtaeg',
+'ipbotherreason'             => 'Muu/täiendav põhjus:',
+'ipbwatchuser'               => 'Jälgi selle kasutaja lehekülge ja arutelu',
+'badipaddress'               => 'The IP address is badly formed.',
+'blockipsuccesssub'          => 'Blokeerimine õnnestus',
+'blockipsuccesstext'         => 'IP-aadress "$1" on blokeeritud.
 <br />Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute nimekirjast]].',
-'unblockip'          => 'Lõpeta IP aadressi blokeerimine',
-'unblockiptext'      => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
-'unblocked'          => '[[User:$1|$1]] blokeering võeti maha.',
-'unblocked-id'       => 'Blokeerimine $1 on lõpetatud',
-'ipblocklist'        => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
-'blocklistline'      => '$1, $2 blokeeris $3 ($4)',
-'expiringblock'      => 'aegub $1',
-'ipblocklist-empty'  => 'Blokeerimiste loend on tühi.',
-'blocklink'          => 'blokeeri',
-'unblocklink'        => 'lõpeta blokeerimine',
-'contribslink'       => 'kaastöö',
-'autoblocker'        => 'Autoblokeeritud kuna teie IP aadress on hiljut kasutatud "[[User:$1|$1]]" poolt. $1-le antud bloki põhjus on "\'\'\'$2\'\'\'"',
-'blocklogpage'       => 'Blokeerimise logi',
-'blocklogentry'      => 'blokeeris "[[$1]]". Blokeeringu aegumistähtaeg on $2 $3',
-'blocklogtext'       => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:IPBlockList|IP blokeeringute nimekirja]] leheküljelt.',
-'unblocklogentry'    => '"$1" blokeerimine lõpetatud',
-'proxyblockreason'   => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
-'proxyblocksuccess'  => 'Tehtud.',
+'unblockip'                  => 'Lõpeta IP aadressi blokeerimine',
+'unblockiptext'              => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
+'unblocked'                  => '[[User:$1|$1]] blokeering võeti maha.',
+'unblocked-id'               => 'Blokeerimine $1 on lõpetatud',
+'ipblocklist'                => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
+'blocklistline'              => '$1, $2 blokeeris $3 ($4)',
+'expiringblock'              => 'aegub $1',
+'ipblocklist-empty'          => 'Blokeerimiste loend on tühi.',
+'blocklink'                  => 'blokeeri',
+'unblocklink'                => 'lõpeta blokeerimine',
+'contribslink'               => 'kaastöö',
+'autoblocker'                => 'Autoblokeeritud kuna teie IP aadress on hiljut kasutatud "[[User:$1|$1]]" poolt. $1-le antud bloki põhjus on "\'\'\'$2\'\'\'"',
+'blocklogpage'               => 'Blokeerimise logi',
+'blocklogentry'              => 'blokeeris "[[$1]]". Blokeeringu aegumistähtaeg on $2 $3',
+'blocklogtext'               => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:IPBlockList|IP blokeeringute nimekirja]] leheküljelt.',
+'unblocklogentry'            => '"$1" blokeerimine lõpetatud',
+'block-log-flags-noemail'    => 'e-mail blokeeritud',
+'block-log-flags-nousertalk' => 'ei saa muuta enda arutelulehte',
+'proxyblockreason'           => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
+'proxyblocksuccess'          => 'Tehtud.',
+'cant-block-while-blocked'   => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
 
 # Developer tools
 'lockdb'              => 'Lukusta andmebaas',
@@ -1200,6 +1212,7 @@ Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta 
 'pagemovedsub'            => 'Artikkel on teisaldatud',
 'movepage-moved'          => '<big>\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
+'cantmove-titleprotected' => 'Lehte ei saa sinna teisaldada, sest uus pealkiri on artikli loomise eest kaitstud',
 'talkexists'              => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
 'movedto'                 => 'Teisaldatud pealkirja alla:',
 'movetalk'                => 'Teisalda ka "arutelu", kui saab.',
@@ -1422,5 +1435,8 @@ Kinnituskood aegub $4.',
 'specialpages-group-users'       => 'Kasutajad ja õigused',
 'specialpages-group-highuse'     => 'Tihti kasutatud leheküljed',
 'specialpages-group-wiki'        => 'Wiki andmed ja tööriistad',
+
+# Special:BlankPage
+'blankpage' => 'Tühi leht',
 
 );

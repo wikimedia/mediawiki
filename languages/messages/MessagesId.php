@@ -907,17 +907,17 @@ Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengur
 Pembatasan ini diberikan oleh [[User:$2|$2]].
 Alasan pembatasan adalah ''$3''.
 
-Pembatasan ini diberlakukan pada $4 dan akan berlaku untuk selamanya.
+Pembatasan ini diberlakukan pada $5, $4 dan akan berlaku untuk selamanya.
 
-Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
+Anda dapat menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
 'userrestricted-namespace-indef'   => "<big>'''Akun pengguna atau alamat IP Anda telah dibatasi untuk menyunting ruang nama $1.'''</big>
 
 Pembatasan ini diberikan oleh [[User:$2|$2]].
 Alasan pembatasan adalah ''$3''.
 
-Pembatasan ini diberlakukan pada $4 dan akan berlaku untuk selamanya.
+Pembatasan ini diberlakukan pada $5, $4 dan akan berlaku untuk selamanya.
 
-Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
+Anda dapat menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1931,7 +1931,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 ** Perang suntingan
 ** Halaman dengan lalu-lintas tinggi',
 'protect-edit-reasonlist'     => 'Sunting alasan perlindungan',
-'protect-expiry-options'      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hour:1 jam,1 day:1 hari,1 week:1 minggu,2 weeks:2 minggu,1 month:1 bulan,3 months:3 bulan,6 months:6 bulan,1 year:1 tahun,infinite:selamanya', # display1:time1,display2:time2,...
 'restriction-type'            => 'Perlindungan:',
 'restriction-level'           => 'Tingkatan:',
 'minimum-size'                => 'Ukuran minimum',

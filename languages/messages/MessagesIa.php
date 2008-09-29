@@ -707,6 +707,38 @@ Pare que illo ha essite delite.',
 'edit-no-change'                   => 'Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.',
 'edit-already-exists'              => 'Non poteva crear un nove pagina.
 Illo existe ja.',
+'userrestricted-page'              => '<big>\'\'\'Tu nomine de usator o adresse IP ha essite restringite de modificar le pagina "$1".\'\'\'</big>
+
+Iste restriction esseva imponite per [[User:$2|$2]].
+Le motivo indicate es \'\'$3\'\'.
+
+Le restriction esseva imponite le $4 a $5 e expirara le $6 a $7.
+
+Tu pote contactar [[User:$2|$2]] o un altere [[{{MediaWiki:Grouppage-sysop}}|administrator]] pro discuter le restriction.',
+'userrestricted-namespace'         => '<big>\'\'\'Tu nomine de usator o adresse IP ha essite restringite de facer modificationes in le spatio de nomines "$1".\'\'\'</big>
+
+Iste restriction esseva imponite per [[User:$2|$2]].
+Le motivo indicate es \'\'$3\'\'.
+
+Le restriction esseva imponite le $4 a $5 e expirara le $6 a $7.
+
+Tu pote contactar [[User:$2|$2]] o un altere [[{{MediaWiki:Grouppage-sysop}}|administrator]] pro discuter le restriction.',
+'userrestricted-page-indef'        => '<big>\'\'\'Tu nomine de usator o adresse IP ha essite restringite de modificar le pagina "$1".\'\'\'</big>
+
+Iste restriction esseva imponite per [[User:$2|$2]].
+Le motivo indicate es \'\'$3\'\'.
+
+Le restriction esseva imponite le $4 a $5 e non expirara.
+
+Tu pote contactar [[User:$2|$2]] o un altere [[{{MediaWiki:Grouppage-sysop}}|administrator]] pro discuter le restriction.',
+'userrestricted-namespace-indef'   => '<big>\'\'\'Tu nomine de usator o adresse IP ha essite restringite de facer modificationes in le spatio de nomines "$1".\'\'\'</big>
+
+Iste restriction esseva imponite per [[User:$2|$2]].
+Le motivo indicate es \'\'$3\'\'.
+
+Le restriction esseva imponite le $4 a $5 e non expirara.
+
+Tu pote contactar [[User:$2|$2]] o un altere [[{{MediaWiki:Grouppage-sysop}}|administrator]] pro discuter le restriction.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
@@ -1099,6 +1131,7 @@ per favor vide math/README pro configurar lo.",
 'right-suppressrevision'     => 'Revider e restaurar revisiones celate ab administratores',
 'right-suppressionlog'       => 'Vider registros private',
 'right-block'                => 'Blocar altere usatores de facer modificationes',
+'right-restrict'             => 'Restringer usatores de facer modificationes in certe spatios de nomines e paginas',
 'right-blockemail'           => 'Blocar un usator de inviar e-mail',
 'right-hideuser'             => 'Blocar un nomine de usator, celante lo del publico',
 'right-ipblock-exempt'       => 'Contornar le blocadas de adresses IP, blocadas automatic e blocadas de intervallos IP',
@@ -1486,6 +1519,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'protectedtitlesempty'    => 'Nulle titulos es actualmente protegite con iste parametros.',
 'listusers'               => 'Lista de usatores',
 'listusers-editsonly'     => 'Monstrar solmente usatores con modificationes',
+'usereditcount'           => '$1 {{PLURAL:$1|modification|modificationes}}',
 'newpages'                => 'Nove paginas',
 'newpages-username'       => 'Nomine de usator:',
 'ancientpages'            => 'Paginas le plus ancian',
@@ -1755,8 +1789,9 @@ Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de pr
 'protectedarticle'            => 'protegeva "[[$1]]"',
 'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
 'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
+'movedarticleprotection'      => 'displaciava le configurationes de protection ab "[[$2]]" verso "[[$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
-'prot_1movedto2'              => 'renominava [[$1]] verso [[$2]]',
+'prot_1movedto2'              => 'displaciava [[$1]] verso [[$2]]',
 'protect-legend'              => 'Confirmar protection',
 'protectcomment'              => 'Commento:',
 'protectexpiry'               => 'Expira:',
@@ -1933,10 +1968,12 @@ specific que ha essite vandalisate).',
 'ipbsubmit'                       => 'Blocar iste adresse',
 'ipbother'                        => 'Altere tempore:',
 'ipboptions'                      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'infinite',
 'ipbotheroption'                  => 'altere',
 'ipbotherreason'                  => 'Motivo altere/additional:',
 'ipbhidename'                     => 'Celar le nomine del usator del registro de blodadas, del lista de blocadas active e del lista de usatores',
 'ipbwatchuser'                    => 'Observar le paginas de usator e de discussion de iste usator',
+'ipballowusertalk'                => 'Permitter que iste usator modifica su proprie pagina de discussion in despecto de esser blocate',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => 'Le adresse IP "$1" ha essite blocate.
@@ -1981,6 +2018,7 @@ Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos
 'block-log-flags-nocreate'        => 'creation de contos disactivate',
 'block-log-flags-noautoblock'     => 'autoblocadas disactivate',
 'block-log-flags-noemail'         => 'e-mail blocate',
+'block-log-flags-nousertalk'      => 'non pote modificar su proprie pagina de discussion',
 'block-log-flags-angry-autoblock' => 'autoblocadas avantiate activate',
 'range_block_disabled'            => 'Le capacitate del administratores a blocar intervallos de adresses IP es disactivate.',
 'ipb_expiry_invalid'              => 'Tempore de expiration invalide.',
@@ -2000,6 +2038,69 @@ Per favor contacta tu providitor de servicio internet o supporto technic e infor
 'sorbs_create_account_reason'     => 'Tu adresse IP es listate como proxy aperte in le DNSBL usate per {{SITENAME}}.
 Tu non pote crear un conto',
 'cant-block-while-blocked'        => 'Tu non pote blocar altere usatores durante que tu mesme es blocate.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => 'Lista de restrictiones imponite a usatores',
+'listuserrestrictions-intro'      => 'In iste lista se detalia tote le restrictiones imponite al usatores concernente le modification de certe paginas e spatios de nomines.
+Le [[Special:Ipblocklist|blocadas]] non es listate hic.',
+'listuserrestrictions-row-ns'     => 'restringeva $1 de facer modificationes in le spatio de nomines $2 ($3)',
+'listuserrestrictions-row-page'   => 'restringeva $1 de modificar $2 ($3)',
+'listuserrestrictions-row-expiry' => 'expira le $1 a $2',
+'listuserrestrictions-legend'     => 'Cercar un restriction',
+'listuserrestrictions-type'       => 'Typo:',
+'listuserrestrictions-user'       => 'Usator:',
+'listuserrestrictions-namespace'  => 'Spatio de nomines:',
+'listuserrestrictions-page'       => 'Pagina:',
+'listuserrestrictions-submit'     => 'Ir',
+'listuserrestrictions-notfound'   => 'Non existe un restriction correspondente al criterios specificate.',
+'listuserrestrictions-empty'      => 'Iste lista es vacue.',
+'listuserrestrictions-remove'     => 'remover',
+'userrestrictiontype-none'        => '(nulle)',
+'userrestrictiontype-namespace'   => 'Spatio de nomines',
+'userrestrictiontype-page'        => 'Pagina',
+
+# Special:RemoveRestrictions
+'removerestrictions'           => 'Remover un restriction de un usator',
+'removerestrictions-intro'     => 'Usa le formulario infra pro remover un restriction de un certe usator.',
+'removerestrictions-noid'      => 'Nulle ID de restriction esseva specificate.',
+'removerestrictions-wrongid'   => 'Le restriction con iste ID non ha essite trovate.
+Multo probabilemente alcuno lo ha removite o illo ha expirate.',
+'removerestrictions-legend'    => 'Remover un restriction',
+'removerestrictions-user'      => 'Usator restringite:',
+'removerestrictions-type'      => 'Typo de restriction:',
+'removerestrictions-page'      => 'Pagina:',
+'removerestrictions-namespace' => 'Spatio de nomines:',
+'removerestrictions-reason'    => 'Motivo:',
+'removerestrictions-submit'    => 'Remover le restriction',
+'removerestrictions-success'   => 'Le restriction del usator [[User:$1|$1]] ha essite removite con successo.',
+
+# Special:RestrictUser
+'restrictuser'                  => 'Restringer usator',
+'restrictuser-userselect'       => 'Selige un usator',
+'restrictuser-user'             => 'Usator:',
+'restrictuser-go'               => 'Restringer usator',
+'restrictuser-notfound'         => 'Usator non trovate',
+'restrictuser-existing'         => 'Restrictiones existente',
+'restrictuser-legend-page'      => 'Restringer de modificar un certe pagina',
+'restrictuser-legend-namespace' => 'Restringer de facer modificationes in un certe spatio de nomines',
+'restrictuser-title'            => 'Pagina a restringer:',
+'restrictuser-namespace'        => 'Spatio de nomines:',
+'restrictuser-expiry'           => 'Expira le:',
+'restrictuser-reason'           => 'Motivo:',
+'restrictuser-sumbit'           => 'Restringer usator',
+'restrictuser-badtitle'         => 'Titulo specificate non valide: $1.',
+'restrictuser-badnamespace'     => 'Le spatio de nomines specificate non es valide.',
+'restrictuser-badexpiry'        => 'Le data de expiration specificate non es valide: $1.',
+'restrictuser-duptitle'         => 'Iste usator es ja restringite de modificar iste titulo.',
+'restrictuser-dupnamespace'     => 'Iste usator es ja restringite de facer modificationes in iste spatio de nomines.',
+'restrictuser-success'          => 'Le usator $1 ha essite restringite con successo.',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Registro de restrictiones de usatores',
+'restrictionlogtext'   => 'Iste registro detalia tote le restrictiones imponite a usatores per administratores.',
+'restrictentry'        => 'restringeva $1 de modificar $2 (expiration: $3)',
+'restrictremoveentry'  => 'removeva le restriction de $1 de modificar $2',
+'restrictlognamespace' => 'spatio de nomines $1',
 
 # Developer tools
 'lockdb'              => 'Blocar base de datos',
@@ -2195,7 +2296,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-n-portal'                => 'A proposito del projecto, que tu pote facer, ubi trovar cosas',
 'tooltip-n-currentevents'         => 'Cerca informationes de fundo relative al actualitate',
 'tooltip-n-recentchanges'         => 'Le lista de modificationes recente in le wiki.',
-'tooltip-n-randompage'            => 'Visita un pagina qualcunque',
+'tooltip-n-randompage'            => 'Visitar un pagina qualcunque',
 'tooltip-n-help'                  => 'Le solutiones de vostre problemas.',
 'tooltip-t-whatlinkshere'         => 'Lista de tote le paginas wiki con ligamines a iste pagina',
 'tooltip-t-recentchangeslinked'   => 'Modificationes recente in le paginas al quales iste pagina ha ligamines',
@@ -2203,7 +2304,7 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-feed-atom'               => 'Syndication Atom pro iste pagina',
 'tooltip-t-contributions'         => 'Vider le lista de contributiones de iste usator',
 'tooltip-t-emailuser'             => 'Inviar un e-mail a iste usator',
-'tooltip-t-upload'                => 'Carga files',
+'tooltip-t-upload'                => 'Cargar files',
 'tooltip-t-specialpages'          => 'Lista de tote le paginas special',
 'tooltip-t-print'                 => 'Version imprimibile de iste pagina',
 'tooltip-t-permalink'             => 'Ligamine permanente a iste version del pagina',

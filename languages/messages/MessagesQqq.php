@@ -11,6 +11,7 @@
  * @author Brest
  * @author BrokenArrow
  * @author Codex Sinaiticus
+ * @author Dalibor Bosits
  * @author Darth Kule
  * @author Dsvyas
  * @author Erwin85
@@ -931,6 +932,8 @@ See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
+'right-restrict'         => '{{doc-right}}
+Restrict user from editing certain namespaces and pages',
 'right-hideuser'         => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
@@ -1496,6 +1499,9 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
 'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
+'protect-expiry-options'  => "* Description: Options for the duration of the block. 
+* <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
+* Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.", # display1:time1,display2:time2,...
 'restriction-type'        => 'Used on [[Special:ProtectedPages]].',
 'restriction-level'       => 'Used on [[Special:ProtectedPages]].',
 
@@ -1616,7 +1622,7 @@ Example line:
 'ipbother'                    => '{{Identical|Other time}}',
 'ipboptions'                  => "* Description: Options for the duration of the block. 
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
-* Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
+* Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.", # display1:time1,display2:time2,...
 'ipbotheroption'              => '{{Identical|Other}}',
 'ipbotherreason'              => '{{Identical|Other/additional reason}}',
 'ipbhidename'                 => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
@@ -1653,13 +1659,29 @@ See also [[MediaWiki:Blocklistline]].',
 'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 
 # Special:ListUserRestrictions
-'listuserrestrictions-user'     => '{{identical|User}}',
-'userrestrictiontype-namespace' => '{{identical|Namespace}}',
-'userrestrictiontype-page'      => '{{identical|Page}}',
+'listuserrestrictions-type'      => '{{Identical|Type}}',
+'listuserrestrictions-user'      => '{{identical|User}}',
+'listuserrestrictions-namespace' => '{{Identical|Namespace}}',
+'listuserrestrictions-page'      => '{{Identical|Page}}',
+'listuserrestrictions-submit'    => '{{Identical|Go}}',
+'listuserrestrictions-remove'    => 'Name of link in [[Special:RestrictUser]], in "Existing restrictions" box, that allows to remove a previous restriction.
+{{Identical|Remove}}',
+'userrestrictiontype-none'       => '{{Identical|None}}',
+'userrestrictiontype-namespace'  => '{{identical|Namespace}}',
+'userrestrictiontype-page'       => '{{identical|Page}}',
 
 # Special:RemoveRestrictions
-'removerestrictions-page'   => '{{identical|Page}}',
-'removerestrictions-reason' => '{{identical|Reason}}',
+'removerestrictions-page'      => '{{identical|Page}}',
+'removerestrictions-namespace' => '{{identical|Namespace}}',
+'removerestrictions-reason'    => '{{identical|Reason}}',
+
+# Special:RestrictUser
+'restrictuser-user'      => '{{Identical|User}}',
+'restrictuser-namespace' => '{{identical|Namespace}}',
+'restrictuser-expiry'    => '{{Identical|Expires}}',
+'restrictuser-reason'    => '{{identical|Reason}}',
+'restrictuser-badtitle'  => 'Error message shown you type an invalid title in [[Special:RestrictUser|restriction form]] (for example a title with invalid characters)',
+'restrictuser-badexpiry' => 'Error message shown you type an invalid expiring time in [[Special:RestrictUser|restriction form]].',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
