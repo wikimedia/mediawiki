@@ -842,14 +842,30 @@ Ene Jrond weße mer nit.',
 'edit-conflict'                    => 'Dubbelt beärbeit.',
 'edit-no-change'                   => 'Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.',
 'edit-already-exists'              => 'Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.',
-'userrestricted-page'              => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
+'userrestricted-page'              => "<big>'''Ding Metmaacher-Name udder Ding IP-Addresss ier Müjjeleschkeite zem Sigge Ändere is beschrängk woode. Dröm darrfs De de Sigg „$1“ nit ändere.'''</big>
 
 De Beschrängkung wood fum [[User:$2|$2]] jemaat.
-Alß Aanlaß es: „\'\'$3\'\'“ aanjejovve.
+Alß Aanlaß es: „''$3''“ aanjejovve.
 
-Se feng aan aam $4 öm $5 Uhr un leuf bes am $6 öm $7 Uhr.
+Se feng aan aam $4 öm $5 Uhr un se leuf bes am $6 öm $7 Uhr.
 
-Do kanns dä [[User:$2|$2]] odder ene anndere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] öm drövver ze kalle.',
+Do kanns Der dä [[User:$2|$2]] odder ene anndere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] jriife, öm drövver ze kalle.",
+'userrestricted-namespace'         => "<big>'''Ding Metmaacher-Name udder Ding IP-Addresss ier Müjjeleschkeite zem Sigge Ändere is beschrängk woode. Dröm darrfs De de Sigge em Appachtemang „$1“ nit ändere.'''</big>
+
+De Beschrängkung wood fum [[User:$2|$2]] jemaat.
+Alß Aanlaß es: „''$3''“ aanjejovve.
+
+Se feng aan aam $4 öm $5 Uhr un se leuf bes am $6 öm $7 Uhr.
+
+Do kanns Der dä [[User:$2|$2]] odder ene anndere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] jriife, öm drövver ze kalle.",
+'userrestricted-page-indef'        => "<big>'''Ding Metmaacher-Name udder Ding IP-Addresss ier Müjjeleschkeite zem Sigge Ändere is beschrängk woode. Dröm darrfs De de Sigg „$1“ nit ändere.'''</big>
+
+De Beschrängkung wood fum [[User:$2|$2]] jemaat.
+Alß Aanlaß es: „''$3''“ aanjejovve.
+
+Se feng aan aam $4 öm $5 Uhr un se leuf för iewisch.
+
+Do kanns Der dä [[User:$2|$2]] odder ene anndere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] jriife, öm drövver ze kalle.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg hee määt zovill Opwand met Paaser-Funkßjohne.

@@ -232,6 +232,7 @@ $messages = array(
 'yourlanguage'            => 'ѩꙁꙑ́къ :',
 'yournick'                => 'аѵто́графъ :',
 'loginerror'              => 'Въхода блазна',
+'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
 
 # Edit page toolbar
@@ -313,15 +314,17 @@ $messages = array(
 'boteditletter'   => 'а҃ѵ',
 
 # Recent changes linked
-'recentchangeslinked' => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked'      => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked-page' => 'страни́цѧ и́мѧ :',
 
 # Upload
-'upload'          => 'положє́ниѥ дѣ́ла',
-'uploadbtn'       => 'положє́ниѥ дѣ́ла',
-'uploadlog'       => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadlogpage'   => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadedimage'   => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload' => 'си страни́цѧ блюдє́ниѥ',
+'upload'           => 'положє́ниѥ дѣ́ла',
+'uploadbtn'        => 'положє́ниѥ дѣ́ла',
+'uploadlog'        => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'uploadlogpage'    => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'successfulupload' => 'дѣ́ло положєно ѥ́стъ',
+'uploadedimage'    => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
+'watchthisupload'  => 'си страни́цѧ блюдє́ниѥ',
 
 # Special:ImageList
 'imgfile'        => 'дѣ́ло',
@@ -349,6 +352,10 @@ $messages = array(
 # Statistics
 'statistics'              => 'Статїстїка',
 'statistics-header-users' => 'по́льꙃєватєлъ статїстїка',
+'statistics-articles'     => 'истиньнꙑ члѣ́ни',
+'statistics-pages'        => 'страни́цѧ',
+'statistics-files'        => 'положєнꙑ дѣла́',
+'statistics-jobqueue'     => '[http://www.mediawiki.org/wiki/Manual:Job_queue Дѣ́иствъ чрѣ́дꙑ] дльгота',
 
 'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
 'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',

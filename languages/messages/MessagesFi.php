@@ -770,6 +770,22 @@ Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistori
 'deletelog-fulllog'                => 'Näytä loki kokonaan',
 'edit-conflict'                    => 'Päällekkäinen muokkaus.',
 'edit-no-change'                   => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
+'userrestricted-page'              => "<big>'''Käyttäjätunnuksesi tai IP-osoitteesi on rajoitettu muokkaamasta sivua ”$1”.'''</big>
+
+Rajoituksen on asettanut [[User:$2|$2]].
+Syy: ''$3''.
+
+Rajoitus on alkanut $4 kello $5 ja loppuu $6 kello $7.
+
+Voit keskustella ylläpitäjän [[User:$2|$2]] tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa rajoituksesta.",
+'userrestricted-namespace'         => "<big>'''Käyttäjätunnuksesi tai IP-osoitteesi on rajoitettu muokkaamasta nimiavaruutta $1.'''</big>
+
+Rajoituksen on asettanut [[User:$2|$2]].
+Syy: ''$3''.
+
+Rajoitus on alkanut $4 kello $5 ja loppuu $6 kello $7.
+
+Voit keskustella ylläpitäjän [[User:$2|$2]] tai toisen [[{{MediaWiki:Grouppage-sysop}}|ylläpitäjän]] kanssa rajoituksesta.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
@@ -1460,6 +1476,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'protectedtitlesempty'    => 'Ei suojattuja sivunimiä näillä hakuehdoilla.',
 'listusers'               => 'Käyttäjälista',
 'listusers-editsonly'     => 'Näytä vain käyttäjät, joilla on muokkauksia',
+'usereditcount'           => '$1 {{PLURAL:$1|muokkaus|muokkausta}}',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
@@ -1867,6 +1884,7 @@ $1',
 'ipbsubmit'                       => 'Estä',
 'ipbother'                        => 'Vapaamuotoinen kesto',
 'ipboptions'                      => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'ikuinen',
 'ipbotheroption'                  => 'Muu kesto',
 'ipbotherreason'                  => 'Muu syy tai tarkennus',
 'ipbhidename'                     => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
@@ -1928,6 +1946,10 @@ $1',
 'sorbsreason'                     => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla.',
 'sorbs_create_account_reason'     => 'IP-osoitteesi on listattu avoimena välityspalvelimena DNSBLin mustalla listalla. Et voi luoda käyttäjätunnusta.',
 'cant-block-while-blocked'        => 'Et voi estää muita käyttäjiä ollessasi estetty.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions-empty'  => 'Tämä lista on tyhjä.',
+'listuserrestrictions-remove' => 'poista',
 
 # Developer tools
 'lockdb'              => 'Lukitse tietokanta',

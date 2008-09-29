@@ -1067,6 +1067,7 @@ Se quere, pode [[:\$1|creala]].",
 'right-suppressrevision'     => 'Revisar e restaurar as revisións agochadas dos administradores',
 'right-suppressionlog'       => 'Ver rexistros privados',
 'right-block'                => 'Bloquear outros usuarios fronte á edición',
+'right-restrict'             => 'Restrinxirlle a un usuario a edición de certos espazos de nomes e páxinas',
 'right-blockemail'           => 'Bloquear un usuario fronte ao envío dun correo electrónico',
 'right-hideuser'             => 'Bloquear un usuario, agochándollo ao público',
 'right-ipblock-exempt'       => 'Evitar bloqueos de IPs, autobloqueos e bloqueos de rango',
@@ -1443,6 +1444,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'protectedtitlesempty'    => 'Actualmente non están protexidos títulos con eses parámetros.',
 'listusers'               => 'Listaxe de usuarios',
 'listusers-editsonly'     => 'Amosar só os usuarios con edicións',
+'usereditcount'           => '$1 {{PLURAL:$1|edición|edicións}}',
 'newpages'                => 'Páxinas novas',
 'newpages-username'       => 'Nome de usuario:',
 'ancientpages'            => 'Artigos máis antigos',
@@ -1732,7 +1734,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 ** Guerra de edicións
 ** Páxina moi visitada',
 'protect-edit-reasonlist'     => 'Editar os motivos de protección',
-'protect-expiry-options'      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',
@@ -1866,6 +1868,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbsubmit'                       => 'Bloquear este usuario',
 'ipbother'                        => 'Outro período de tempo:',
 'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'infinito',
 'ipbotheroption'                  => 'outra',
 'ipbotherreason'                  => 'Outro motivo:',
 'ipbhidename'                     => 'Agochar nome de usuario no rexistro de bloqueos, na listaxe de bloqueos activos e na listaxe de usuarios',
@@ -1930,6 +1933,37 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] se qu
 'sorbsreason'                     => 'O seu enderezo IP está rexistrado na listaxe DNSBL usada por {{SITENAME}}.',
 'sorbs_create_account_reason'     => "O seu enderezo IP está rexistrado como un ''proxy'' aberto na listaxe DNSBL usada por {{SITENAME}}. Polo tanto non pode crear unha conta de acceso",
 'cant-block-while-blocked'        => 'Non pode bloquear outros usuarios mentres vostede estea bloqueado.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'           => 'Lista de restricións de usuario',
+'listuserrestrictions-intro'     => 'Esta lista contén todas as restricións de edición de certas páxinas e espazos de nomes impostas a usuarios.
+Os [[Special:Ipblocklist|bloqueos]] non están listados aquí.',
+'listuserrestrictions-legend'    => 'Atopar unha restrición',
+'listuserrestrictions-type'      => 'Tipo:',
+'listuserrestrictions-user'      => 'Usuario:',
+'listuserrestrictions-namespace' => 'Espazo de nomes:',
+'listuserrestrictions-page'      => 'Páxina:',
+'listuserrestrictions-submit'    => 'Amosar',
+'listuserrestrictions-empty'     => 'Esta lista está baleira.',
+'listuserrestrictions-remove'    => 'retirar',
+'userrestrictiontype-none'       => '(ningún)',
+'userrestrictiontype-namespace'  => 'Espazo de nomes',
+'userrestrictiontype-page'       => 'Páxina',
+
+# Special:RemoveRestrictions
+'removerestrictions-page'      => 'Páxina:',
+'removerestrictions-namespace' => 'Espazo de nomes:',
+'removerestrictions-reason'    => 'Motivo:',
+
+# Special:RestrictUser
+'restrictuser-user'      => 'Usuario:',
+'restrictuser-namespace' => 'Espazo de nomes:',
+'restrictuser-expiry'    => 'Caducidade:',
+'restrictuser-reason'    => 'Motivo:',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Rexistro de restricións de usuario',
+'restrictlognamespace' => 'o espazo de nomes "$1"',
 
 # Developer tools
 'lockdb'              => 'Fechar base de datos',

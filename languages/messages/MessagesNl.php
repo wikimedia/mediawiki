@@ -978,7 +978,7 @@ U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{Med
 De bewerkingsbeperking werd ingesteld door [[User:$2|$2]].
 De opgegeven reden is ''$3''.
 
-De beperking werd ingesteld op $4 en verloopt op $5.
+De beperking werd ingesteld op $4 om $5 en verloopt op $6 om $7.
 
 U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].",
 'userrestricted-page-indef'        => '<big>\'\'\'Uw gebruiker of IP-adres heeft een bewerkingsbeperking op de pagina "$1".\'\'\'</big>
@@ -2046,6 +2046,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'protectedarticle'            => 'beveiligde "[[$1]]"',
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
 'unprotectedarticle'          => 'heeft de beveiliging van "[[$1]]" opgeheven',
+'movedarticleprotection'      => 'heeft beveiligingsinstellingen verplaatst van "[[$2]]" naar "[[$1]]"',
 'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
 'prot_1movedto2'              => '[[$1]] hernoemd naar [[$2]]',
 'protect-legend'              => 'Beveiliging bevestigen',

@@ -956,7 +956,7 @@ Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jin�
 Omezení provedl [[User:$2|$2]].
 Udaným důvodem bylo ''$3''.
 
-* Začátek omezení: $4
+* Začátek omezení: $4 v $5 
 * Omezení trvá do odvolání
 
 Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
@@ -965,7 +965,7 @@ Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jin�
 Omezení provedl [[User:$2|$2]].
 Udaným důvodem bylo ''$3''.
 
-* Začátek omezení: $4
+* Začátek omezení: $4 v $5 
 * Omezení trvá do odvolání
 
 Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
@@ -1998,7 +1998,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 ** Editační válka
 ** Velice často používaná stránka',
 'protect-edit-reasonlist'     => 'Editace seznamu důvodů zamčení',
-'protect-expiry-options'      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hodina:1 hour,1 den:1 day,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',

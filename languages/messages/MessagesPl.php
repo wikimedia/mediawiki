@@ -875,7 +875,7 @@ Strona już istnieje.',
 Blokada została nałożona przez [[User:$2|$2]].
 Podany powód to ''$3''.
 
-Blokada została nałożona $4 i wygasa $5.
+Blokada została nałożona $4 o $5 i wygasa $6 o $7.
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
 'userrestricted-namespace'         => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji w przestrzeni nazw „$1”.'''</big>
@@ -883,7 +883,23 @@ W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$
 Blokada została nałożona przez [[User:$2|$2]].
 Podany powód to ''$3''.
 
-Blokada została nałożona $4 i wygasa $5.
+Blokada została nałożona $4 o $5 i wygasa $6 o $7.
+
+W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
+'userrestricted-page-indef'        => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji strony „$1”.'''</big>
+
+Blokada została nałożona przez [[User:$2|$2]].
+Podany powód to ''$3''.
+
+Blokada została nałożona $4 o $5 i nie wygaśnie.
+
+W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
+'userrestricted-namespace-indef'   => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji w przestrzeni nazw „$1”.'''</big>
+
+Blokada została nałożona przez [[User:$2|$2]].
+Podany powód to ''$3''.
+
+Blokada została nałożona $4 o $5 i nie wygaśnie.
 
 W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
 
@@ -1648,6 +1664,7 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'protectedtitlesempty'    => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
 'listusers'               => 'Lista użytkowników',
 'listusers-editsonly'     => 'Pokaż tylko użytkowników z edycjami',
+'usereditcount'           => '$1 {{PLURAL:$1|edycja|edycje|edycji}}',
 'newpages'                => 'Nowe strony',
 'newpages-username'       => 'Nazwa użytkownika',
 'ancientpages'            => 'Najstarsze strony',
@@ -1905,6 +1922,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'protectedarticle'            => 'zabezpieczył [[$1]]',
 'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
 'unprotectedarticle'          => 'odbezpieczył [[$1]]',
+'movedarticleprotection'      => 'przeniesiono ustawienia zabezpieczenia z „[[$2]]” do „[[$1]]”',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
 'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
@@ -2154,9 +2172,9 @@ Nie możesz utworzyć konta',
 Lista nie zawiera [[Special:Ipblocklist|całościowych blokad]].',
 'listuserrestrictions-row-ns'     => 'zablokował $1 możliwość edycji w przestrzeni nazw $2 ($3)',
 'listuserrestrictions-row-page'   => 'zablokował $1 możliwość edycji $2 ($3)',
-'listuserrestrictions-row-expiry' => 'wygasa $1',
+'listuserrestrictions-row-expiry' => 'wygasa $1 o $2',
 'listuserrestrictions-legend'     => 'Szukaj selektywnych blokad',
-'listuserrestrictions-type'       => 'Typ:',
+'listuserrestrictions-type'       => 'Typ blokady:',
 'listuserrestrictions-user'       => 'Użytkownik:',
 'listuserrestrictions-namespace'  => 'Przestrzeń nazw:',
 'listuserrestrictions-page'       => 'Strona:',
@@ -2165,6 +2183,12 @@ Lista nie zawiera [[Special:Ipblocklist|całościowych blokad]].',
 'listuserrestrictions-empty'      => 'Lista jest pusta.',
 'listuserrestrictions-remove'     => 'odblokuj',
 'userrestrictiontype-none'        => '(brak)',
+'userrestrictiontype-namespace'   => 'Przestrzeni nazw',
+'userrestrictiontype-page'        => 'Strony',
+
+# Special:RemoveRestrictions
+'removerestrictions'       => 'Zdejmij selektywną blokadę',
+'removerestrictions-intro' => 'Użyj poniższego formularza, by zdjąć selektywną blokadę z użytkownika.',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',
