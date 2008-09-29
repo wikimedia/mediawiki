@@ -496,10 +496,14 @@ Verifică dacă ai scris corect sau [[Special:Userlogin/signup|creează un nou c
 Trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}} şi să fie diferită de numele de utilizator.',
 'mailmypassword'             => 'Trimite-mi parola pe e-mail!',
 'passwordremindertitle'      => 'Noua parolă temporară la {{SITENAME}}',
-'passwordremindertext'       => 'Cineva (probabil tu, de la adresa $1)
-a cerut să ţi se trimită o nouă parolă pentru {{SITENAME}} ($4).
+'passwordremindertext'       => 'Cineva (probabil dumneavoastră, de la adresa $1)
+a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
 Parola pentru utilizatorul "$2" este acum "$3".
-Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai curând.',
+Este recomandat să intraţi pe {{SITENAME}} şi să vă schimbi parola cât mai curând.
+
+Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit 
+parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
+să folosiţi vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul "$1".',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
 'blocked-mailpassword'       => 'Această adresă IP este blocată la editare, şi deci nu este permisă utilizarea funcţiei de recuperare a parolei pentru a preveni abuzul.',
@@ -507,7 +511,7 @@ Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai cu
 'throttled-mailpassword'     => 'O parolă a fost deja trimisă în {{PLURAL:$1|ultima oră|ultimele $1 ore}}. Pentru a preveni abuzul, se poate trimite doar o parolă la {{PLURAL:$1|o oră|$1 ore}}.',
 'mailerror'                  => 'Eroare la trimitere e-mail: $1',
 'acct_creation_throttle_hit' => 'Ne pare rău, aţi creat deja {{PLURAL:$1|1 cont|$1 conturi}} de utilizator. Nu mai puteţi crea altul.',
-'emailauthenticated'         => 'Adresa de email a fost autentificată la $1.',
+'emailauthenticated'         => 'Adresa de e-mail a fost autentificată pe $2, la $3.',
 'emailnotauthenticated'      => 'Adresa de email <strong>nu este autentificată încă</strong>. Nici un email nu va fi trimis pentru nici una din întrebuinţările următoare.',
 'noemailprefs'               => '<strong>Nu a fost specificată o adresă email</strong>, următoarele nu vor funcţiona.',
 'emailconfirmlink'           => 'Confirmaţi adresa dvs. de email',
@@ -901,7 +905,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mypreferences'            => 'preferinţe',
 'prefs-edits'              => 'Număr de modificări:',
 'prefsnologin'             => 'Neautentificat',
-'prefsnologintext'         => 'Trebuie să fii [[Special:UserLogin|autentificat]] pentru a-ţi putea salva preferinţele.',
+'prefsnologintext'         => 'Trebuie să fiţi <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} autentificat]</span> pentru a vă putea salva preferinţele.',
 'prefsreset'               => 'Preferinţele au fost resetate.',
 'qbsettings'               => 'Setări pentru bara rapidă',
 'qbsettings-none'          => 'Fără',
@@ -1327,10 +1331,15 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'randomredirect-nopages' => 'Nu există redirecţionări în acest spaţiu de nume.',
 
 # Statistics
-'statistics'              => 'Statistici',
-'statistics-header-users' => 'Statistici legate de utilizatori',
-'statistics-users'        => '[[Special:ListUsers|Utilizatori]] înregistraţi',
-'statistics-mostpopular'  => 'Paginile cele mai vizualizate',
+'statistics'               => 'Statistici',
+'statistics-header-users'  => 'Statistici legate de utilizatori',
+'statistics-articles'      => 'Articole',
+'statistics-pages'         => 'Pagini',
+'statistics-pages-tooltip' => 'Toate paginile din wiki, inclusiv pagini de discuţie, redirectări etc.',
+'statistics-files'         => 'Fişiere încărcate',
+'statistics-users'         => '[[Special:ListUsers|Utilizatori]] înregistraţi',
+'statistics-users-active'  => 'Utilizatori activi',
+'statistics-mostpopular'   => 'Paginile cele mai vizualizate',
 
 'disambiguations'      => 'Pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',
@@ -1691,7 +1700,7 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'undeleterevdel'               => 'Restaurarea unui revizii nu va fi efectuată dacă ea va apărea în capul listei de revizii parţial şterse.
 În acest caz, trebuie să debifezi sau să arăţi (unhide) cea mai recentă versiune ştearsă.',
 'undeletehistorynoadmin'       => 'Acest articol a fost şters. Motivul ştergerii apare mai jos, alături de detaliile utilzatorilor care au editat această pagină înainte de ştergere. Textul prorpiu-zis al reviziilor şterse este disponibil doar administratorilor.',
-'undelete-revision'            => 'Ştergere revizia $1 (din $2) de către $3:',
+'undelete-revision'            => 'Ştergere revizia $1 (din $4 $5) de către $3:',
 'undeleterevision-missing'     => 'Revizie lipsă sau invalidă.
 S-ar putea ca această legătură să fie greşită, sau revizia a fost restaurată ori ştearsă din arhivă.',
 'undelete-nodiff'              => 'Nu s-a găsit vreo revizie anterioară.',

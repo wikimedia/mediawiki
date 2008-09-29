@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -1160,6 +1160,7 @@ $1',
 'right-suppressrevision'     => '睇同恢復由操作員隱藏嘅修訂',
 'right-suppressionlog'       => '去睇私人嘅日誌',
 'right-block'                => '封鎖其他用戶唔畀編輯',
+'right-restrict'             => '限制用戶去編輯某啲空間名同頁',
 'right-blockemail'           => '封鎖用戶唔畀寄電郵',
 'right-hideuser'             => '封鎖用戶名，對公眾隱藏',
 'right-ipblock-exempt'       => '繞過IP封鎖、自動封鎖同埋範圍封鎖',
@@ -1182,7 +1183,6 @@ $1',
 'right-userrights'           => '編輯全部用戶嘅權限',
 'right-userrights-interwiki' => '編輯響其它wiki嘅用戶權限',
 'right-siteadmin'            => '鎖同解鎖資料庫',
-'right-restrict'             => '限制用戶去編輯某啲空間名同頁',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -2012,18 +2012,18 @@ $1',
 'userrestrictiontype-page'        => '頁',
 
 # Special:RemoveRestrictions
-'removerestrictions'              => '響用戶度拎走一個限制',
-'removerestrictions-intro'        => '用下面嘅表格去拎走對於一位用戶嘅一個限制。',
-'removerestrictions-noid'         => '未指定限制ID。',
-'removerestrictions-wrongid'      => '搵唔到同嗰個ID有關嘅限制。最有可能就係有其他人拎走咗或者過咗期。',
-'removerestrictions-legend'       => '拎走一個限制',
-'removerestrictions-user'         => '限制咗嘅用戶:',
-'removerestrictions-type'         => '限制類型:',
-'removerestrictions-page'         => '頁:',
-'removerestrictions-namespace'    => '空間名:',
-'removerestrictions-reason'       => '原因:',
-'removerestrictions-submit'       => '拎走個限制',
-'removerestrictions-success'      => '已經成功噉由[[User:$1|$1]]度拎走個限制。',
+'removerestrictions'           => '響用戶度拎走一個限制',
+'removerestrictions-intro'     => '用下面嘅表格去拎走對於一位用戶嘅一個限制。',
+'removerestrictions-noid'      => '未指定限制ID。',
+'removerestrictions-wrongid'   => '搵唔到同嗰個ID有關嘅限制。最有可能就係有其他人拎走咗或者過咗期。',
+'removerestrictions-legend'    => '拎走一個限制',
+'removerestrictions-user'      => '限制咗嘅用戶:',
+'removerestrictions-type'      => '限制類型:',
+'removerestrictions-page'      => '頁:',
+'removerestrictions-namespace' => '空間名:',
+'removerestrictions-reason'    => '原因:',
+'removerestrictions-submit'    => '拎走個限制',
+'removerestrictions-success'   => '已經成功噉由[[User:$1|$1]]度拎走個限制。',
 
 # Special:RestrictUser
 'restrictuser'                  => '限制用戶',

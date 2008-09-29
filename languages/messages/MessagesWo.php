@@ -410,7 +410,7 @@ Di la digal rekk nga dugg te soppi baatujàll bi ci ni mu gën a gaawee.
 
 Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te nammatoo koo soppi, man ngaa tankamlu bii bataaxal te wéy di jëfandikoo baatujàll bu yàgg ba.',
 'noemail'                    => 'Bii jëfandikukat « $1 » amufi benn màkkaanub m-bataaxal.',
-'passwordsent'               => 'Ab baatujàll bu bees yónnee nañ ko ci màkkaanub m-bataaxal bu jëfandikukat bii di « $1 ». Jéemal a duggaat soo ko jotee.',
+'passwordsent'               => 'Ab baatujàll bu bees yónne nañ ko ci màkkaanub m-bataaxal bu jëfandikukat bii di « $1 ». Jéemal a duggaat soo ko jotee.',
 'blocked-mailpassword'       => 'Ngir faggandiku ci yaq gi, ku ñu téye sa màkkaanu IP ba doo man a soppi dara, doo man a yónneelu baatujàll bu bees.',
 'eauthentsent'               => 'Yónnee nañ la ab m-bataaxalub dëggal ci màkkaanub m-bataaxal bi nga joxe. Balaa ñuy yónnee beneen m-bataaxal ci bii màkkaan, fawwu nga topp tektal yiñ la jox ngir dëggal ni yaa moom bii màkkaan.',
 'throttled-mailpassword'     => 'Ab m-bataaxal bu lay fattali sa baatujàll yónnee nañ la ko, am na $1 waxtu. Ngir moytu ay say-sayee, benn m-bataaxalu fattali rek lañ lay yónnee ci diiru $1 waxtu.',
@@ -420,12 +420,12 @@ Soo doonul ki biral bii laaj, walla fattaliku nga sa baatujàll bu njëkk ba, te
 'emailnotauthenticated'      => 'Dëggalagoo sa m-bataaxal. Duñ la man a yónne benn m-bataaxal bu aju ci yii ci suuf.',
 'noemailprefs'               => 'Joxeel ab m-bataaxal ngir doxal yii solo',
 'emailconfirmlink'           => 'Dëggalal sa m-bataaxal',
-'invalidemailaddress'        => 'Daytalub m-bataaxal bi baaxul. Duggalal beneen walla nga bàyyi tool bi ne këmm',
+'invalidemailaddress'        => 'Dayoob m-bataaxal bi baaxul. Duggalal beneen walla nga bàyyi tool bi ne këmm',
 'accountcreated'             => 'léegi bindu nga.',
 'accountcreatedtext'         => 'Mbindug jëfandikukat bii di $1 jàll na',
 'createaccount-title'        => 'Sosum sàq ci {{SITENAME}}',
-'createaccount-text'         => 'Kenn ku sos am sàq ci {{SITENAME}} te tuddu $2 ($4).
-Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga duggu ci teel te soppi baatujàll bi.
+'createaccount-text'         => 'Kenn ku sos am sàq ci {{SITENAME}} te tudd $2 ($4).
+Baatujàll bu « $2 » mooy « $3 ». Li gën mooy nga dugg ci teel te soppi baatujàll bi.
 
 Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 'login-throttled'            => 'Jéem ngaa dugg yoon yu bari ak bii baatujàll bu mii sàq. Xaaral tuuti laataa ngay jéemaat.',
@@ -433,9 +433,10 @@ Jéelaleel bataaxal bii su fekkee ci njuumte nga sosee mii sàq.',
 
 # Password reset dialog
 'resetpass'               => 'Neenal baatujàll bi',
-'resetpass_announce'      => 'Da nga duggu ak ab baatujàll bu saxul-dakk, buñ la yónne cib bataaxal. Ngir jeexal mbindu mi, faaw nga roof ab baatujàll bu bees fii:',
+'resetpass_announce'      => 'Da nga dugg ak ab baatujàll bu saxul-dakk, buñ la yónne cib bataaxal. Ngir jeexal mbindu mi, faaw nga roof ab baatujàll bu bees fii:',
+'resetpass_text'          => '<!-- Bindal fii -->',
 'resetpass_header'        => 'Neenalug baatujàll',
-'resetpass_submit'        => 'Soppil baatujàll bi te duggu',
+'resetpass_submit'        => 'Soppil baatujàll bi te dugg',
 'resetpass_success'       => 'Coppiteeg baatujàll bi antu na : Yaa ngi duggu...',
 'resetpass_bad_temporary' => 'Baatujàll bu diiru bi baaxul. Xéj-na ni nga soppee sa baatujàll bi moo baax, walla nga laaj baatujàll bu bees.',
 'resetpass_forbidden'     => 'Baatujàll bi manoo kaa soppi ci {{SITENAME}}',

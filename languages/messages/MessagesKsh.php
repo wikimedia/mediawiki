@@ -842,6 +842,14 @@ Ene Jrond weße mer nit.',
 'edit-conflict'                    => 'Dubbelt beärbeit.',
 'edit-no-change'                   => 'Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.',
 'edit-already-exists'              => 'Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.',
+'userrestricted-page'              => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
+
+De Beschrängkung wood fum [[User:$2|$2]] jemaat.
+Alß Aanlaß es: „\'\'$3\'\'“ aanjejovve.
+
+Se feng aan aam $4 öm $5 Uhr un leuf bes am $6 öm $7 Uhr.
+
+Do kanns dä [[User:$2|$2]] odder ene anndere [[{{MediaWiki:Grouppage-sysop}}|Wiki-Köbes]] öm drövver ze kalle.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg hee määt zovill Opwand met Paaser-Funkßjohne.

@@ -45,6 +45,7 @@
  * @author Singularity
  * @author Slomox
  * @author Sp5uhe
+ * @author Srhat
  * @author UV
  * @author Urhixidur
  * @author Vinhtantran
@@ -506,6 +507,7 @@ $1 is the minimum number of characters in the password.',
 * $1: obsolete, date and time
 * $2: date
 * $3: time',
+'invalidemailaddress' => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'createaccount-title' => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text' => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
 
@@ -1273,6 +1275,7 @@ Example: [[:Image:Addon-icn.png]]',
 'protectedtitlestext' => 'Shown on top of [[Special:Protectedtitles]]',
 'listusers' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'listusers-editsonly' => 'Option in [[Special:ListUsers]].',
+'usereditcount' => 'Shown behind every username on [[Special:ListUsers]].',
 'newpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
 'newpages-username' => '{{Identical|Username}}',
 'ancientpages' => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1648,6 +1651,15 @@ See also [[MediaWiki:Blocklistline]].',
 'ipb_expiry_temp' => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked' => '{{Identical|$1 is already blocked}}',
 'blockme' => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions-user' => '{{identical|User}}',
+'userrestrictiontype-namespace' => '{{identical|Namespace}}',
+'userrestrictiontype-page' => '{{identical|Page}}',
+
+# Special:RemoveRestrictions
+'removerestrictions-page' => '{{identical|Page}}',
+'removerestrictions-reason' => '{{identical|Reason}}',
 
 # Developer tools
 'lockdb' => 'The title of the special page [[Special:LockDB]].

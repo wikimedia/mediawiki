@@ -870,6 +870,22 @@ Zdaje się, że została skasowana.',
 'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie zmieniono nic w tekście.',
 'edit-already-exists'              => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
+'userrestricted-page'              => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji strony „$1”.'''</big>
+
+Blokada została nałożona przez [[User:$2|$2]].
+Podany powód to ''$3''.
+
+Blokada została nałożona $4 i wygasa $5.
+
+W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
+'userrestricted-namespace'         => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji w przestrzeni nazw „$1”.'''</big>
+
+Blokada została nałożona przez [[User:$2|$2]].
+Podany powód to ''$3''.
+
+Blokada została nałożona $4 i wygasa $5.
+
+W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
@@ -1205,12 +1221,12 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'group-suppress'      => 'Rewizorzy',
 'group-all'           => '(wszyscy)',
 
-'group-user-member'          => 'Użytkownik',
-'group-autoconfirmed-member' => 'Automatycznie zatwierdzony użytkownik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Biurokrata',
-'group-suppress-member'      => 'Rewizor',
+'group-user-member'          => 'użytkownik',
+'group-autoconfirmed-member' => 'automatycznie zatwierdzony użytkownik',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'biurokrata',
+'group-suppress-member'      => 'rewizor',
 
 'grouppage-user'          => '{{ns:project}}:Użytkownicy',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
@@ -1227,19 +1243,19 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-createaccount'        => 'Tworzenie kont użytkowników',
 'right-minoredit'            => 'Oznaczanie edycji jako drobnych',
 'right-move'                 => 'Przenoszenie stron',
-'right-move-subpages'        => 'Przenieś strony razem z ich podstronami',
+'right-move-subpages'        => 'Przenoszenie stron razem z ich podstronami',
 'right-suppressredirect'     => 'Przenoszenie stron bez tworzenia przekierowania w miejscu starej nazwy',
 'right-upload'               => 'Przesyłanie plików na serwer',
-'right-reupload'             => 'Nadpisanie istniejącego pliku',
-'right-reupload-own'         => 'Nadpisanie istniejącego pliku przesyłanego przez tego samego użytkownika',
-'right-reupload-shared'      => 'Nadpisanie lokalne pliku istniejącego we współdzielonych zasobach',
-'right-upload_by_url'        => 'Przesłanie pliku z adresu URL',
+'right-reupload'             => 'Nadpisywanie istniejącego pliku',
+'right-reupload-own'         => 'Nadpisywanie istniejącego, wcześniej przesłanego pliku',
+'right-reupload-shared'      => 'Lokalne nadpisywanie pliku istniejącego we współdzielonych zasobach',
+'right-upload_by_url'        => 'Przesyłanie plików z adresu URL',
 'right-purge'                => 'Czyszczenie pamięci podręcznej stron bez pytania o potwierdzenie',
 'right-autoconfirmed'        => 'Edycja stron częściowo zabezpieczonych',
-'right-bot'                  => 'Traktuj edycje jako wykonane automatycznie',
+'right-bot'                  => 'Oznaczanie edycji jako automatycznie',
 'right-nominornewtalk'       => 'Drobne zmiany na stronach dyskusji użytkowników nie włączają powiadomienia o nowej wiadomości',
 'right-apihighlimits'        => 'Zwiększony limit w zapytaniach, wykonywanych poprzez interfejs API',
-'right-writeapi'             => 'Możliwość zapisu poprzez interfejs API',
+'right-writeapi'             => 'Zapisu poprzez interfejs API',
 'right-delete'               => 'Usuwanie stron',
 'right-bigdelete'            => 'Usuwanie stron z długą historią edycji',
 'right-deleterevision'       => 'Usuwanie i odtwarzanie określonej wersji strony',
@@ -1249,6 +1265,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-suppressrevision'     => 'Podgląd i odtwarzanie wersji ukrytych przed Administratorami',
 'right-suppressionlog'       => 'Podgląd rejestru ukrywania',
 'right-block'                => 'Blokowanie użytkownikom możliwości edycji',
+'right-restrict'             => 'Blokować użytkownikom możliwość edycji konkretnych przestrzeni nazw i stron',
 'right-blockemail'           => 'Blokowanie wysyłania wiadomości przez użytkownika',
 'right-hideuser'             => 'Blokowanie użytkownika, niewidoczne publicznie',
 'right-ipblock-exempt'       => 'Obejście blokad, automatycznych blokad i blokad zakresów, adresów IP',
@@ -1258,7 +1275,7 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'right-editinterface'        => 'Edycja interfejsu użytkownika',
 'right-editusercssjs'        => 'Edycja plików CSS i JS innych użytkowników',
 'right-rollback'             => 'Szybkie cofnięcie edycji użytkownika, który jako ostatni edytował jakąś stronę',
-'right-markbotedits'         => 'Oznacz cofnięcie wersji jako edycję bota',
+'right-markbotedits'         => 'Oznaczanie rewertu jako edycji bota',
 'right-noratelimit'          => 'Brak ograniczeń przepustowości',
 'right-import'               => 'Import stron z innych wiki',
 'right-importupload'         => 'Import stron poprzez przesłanie pliku',
@@ -1625,8 +1642,8 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera ona szablon linkowa
 'protectedpages-indef'    => 'Tylko strony zabezpieczone na zawsze',
 'protectedpages-cascade'  => 'Tylko strony zabezpieczone rekursywnie',
 'protectedpagestext'      => 'Poniższe strony zostały zabezpieczone przed przenoszeniem lub edytowaniem.',
-'protectedpagesempty'     => 'Żadna strona nie jest obecnie zablokowana z podanymi parametrami.',
-'protectedtitles'         => 'Zablokowane nazwy stron',
+'protectedpagesempty'     => 'Żadna strona nie jest obecnie zabezpieczona z podanymi parametrami.',
+'protectedtitles'         => 'Zabezpieczone nazwy stron',
 'protectedtitlestext'     => 'Utworzenie stron o następujących nazwach jest zablokowane',
 'protectedtitlesempty'    => 'Dla tych ustawień dopuszczalne jest utworzenie stron o dowolnej nazwie.',
 'listusers'               => 'Lista użytkowników',
@@ -2059,6 +2076,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbsubmit'                       => 'Zablokuj użytkownika',
 'ipbother'                        => 'Inny okres:',
 'ipboptions'                      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,nieskończony:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'na zawsze',
 'ipbotheroption'                  => 'inny',
 'ipbotherreason'                  => 'Inne/dodatkowe uzasadnienie:',
 'ipbhidename'                     => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
@@ -2127,6 +2145,24 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 'sorbs_create_account_reason'     => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
 'cant-block-while-blocked'        => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => 'Lista użytkowników z selektywną blokadą',
+'listuserrestrictions-intro'      => 'Lista zawiera wszystkich użytkowników z zablokowaną możliwością edycji konkretnych stron i przestrzeni nazw.
+Lista nie zawiera [[Special:Ipblocklist|całościowych blokad]].',
+'listuserrestrictions-row-ns'     => 'zablokował $1 możliwość edycji w przestrzeni nazw $2 ($3)',
+'listuserrestrictions-row-page'   => 'zablokował $1 możliwość edycji $2 ($3)',
+'listuserrestrictions-row-expiry' => 'wygasa $1',
+'listuserrestrictions-legend'     => 'Szukaj selektywnych blokad',
+'listuserrestrictions-type'       => 'Typ:',
+'listuserrestrictions-user'       => 'Użytkownik:',
+'listuserrestrictions-namespace'  => 'Przestrzeń nazw:',
+'listuserrestrictions-page'       => 'Strona:',
+'listuserrestrictions-submit'     => 'Szukaj',
+'listuserrestrictions-notfound'   => 'Brak selektywnych blokad spełniających podane kryteria.',
+'listuserrestrictions-empty'      => 'Lista jest pusta.',
+'listuserrestrictions-remove'     => 'odblokuj',
+'userrestrictiontype-none'        => '(brak)',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',

@@ -933,6 +933,42 @@ Zřejmě byla smazána.',
 'edit-conflict'                    => 'Editační konflikt.',
 'edit-no-change'                   => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
 'edit-already-exists'              => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
+'userrestricted-page'              => "<big>'''Vašemu uživatelskému jménu nebo IP adrese bylo omezeno právo editovat stránku „$1“.'''</big>
+
+Omezení provedl [[User:$2|$2]].
+Udaným důvodem bylo ''$3''.
+
+* Začátek omezení: $4 v $5
+* Omezení vyprší: $6 v $7
+
+Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
+'userrestricted-namespace'         => "<big>'''Vašemu uživatelskému jménu nebo IP adrese bylo omezeno právo editovat jmenný prostor „$1“.'''</big>
+
+Omezení provedl [[User:$2|$2]].
+Udaným důvodem bylo ''$3''.
+
+* Začátek omezení: $4 v $5
+* Omezení vyprší: $6 v $7
+
+Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
+'userrestricted-page-indef'        => "<big>'''Vašemu uživatelskému jménu nebo IP adrese bylo omezeno právo editovat stránku „$1“.'''</big>
+
+Omezení provedl [[User:$2|$2]].
+Udaným důvodem bylo ''$3''.
+
+* Začátek omezení: $4
+* Omezení trvá do odvolání
+
+Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
+'userrestricted-namespace-indef'   => "<big>'''Vašemu uživatelskému jménu nebo IP adrese bylo omezeno právo editovat jmenný prostor „$1“.'''</big>
+
+Omezení provedl [[User:$2|$2]].
+Udaným důvodem bylo ''$3''.
+
+* Začátek omezení: $4
+* Omezení trvá do odvolání
+
+Pokud chcete omezení prodiskutovat, můžete kontaktovat uživatele $2 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -1316,6 +1352,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
 'right-suppressionlog'       => 'Zobrazování skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
+'right-restrict'             => 'Omezování uživatelů editovat určitou stránku nebo jmenný prostor',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',
 'right-hideuser'             => 'Blokování uživatelského jména a jeho skrytí',
 'right-ipblock-exempt'       => 'Obcházení blokování IP adres, jejich rozsahů a autobloků',
@@ -1677,6 +1714,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'protectedtitlesempty'    => 'S těmito parametry nejsou zamčeny žádné názvy.',
 'listusers'               => 'Uživatelé',
 'listusers-editsonly'     => 'Zobrazit pouze uživatele s editacemi',
+'usereditcount'           => '$1 {{PLURAL:$1|editace|editace|editací}}',
 'newpages'                => 'Nejnovější stránky',
 'newpages-username'       => 'Uživatelské jméno:',
 'ancientpages'            => 'Nejdéle needitované stránky',
@@ -2085,6 +2123,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbsubmit'                       => 'Zablokovat',
 'ipbother'                        => 'Jiný čas vypršení:',
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'do odvolání',
 'ipbotheroption'                  => 'jiný',
 'ipbotherreason'                  => 'Jiný nebo další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno v&nbsp;knize zablokování, seznamu probíhajících bloků a&nbsp;seznamu uživatelů',
@@ -2147,6 +2186,69 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'sorbsreason'                     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server.',
 'sorbs_create_account_reason'     => 'Vaše IP adresa je uvedena na seznamu DNSBL jako otevřený proxy server. Z této adresy si nemůžete založit účet',
 'cant-block-while-blocked'        => 'Nemůžete blokovat jiné uživatele, když jste zablokován(a).',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => 'Seznam omezení uživatelů',
+'listuserrestrictions-intro'      => 'Tento seznam obsahuje všechna omezení uživatelů editovat určitou stránku nebo jmenný prostor. 
+[[Special:Ipblocklist|Blokování]] zde nejsou uvedena.',
+'listuserrestrictions-row-ns'     => 'omezuje uživateli $1 právo editovat jmenný prostor $2 ($3)',
+'listuserrestrictions-row-page'   => 'omezuje uživateli $1 právo editovat stránku $2 ($3)',
+'listuserrestrictions-row-expiry' => 'do $2 dne $1',
+'listuserrestrictions-legend'     => 'Hledat omezení',
+'listuserrestrictions-type'       => 'Rozsah:',
+'listuserrestrictions-user'       => 'Uživatel:',
+'listuserrestrictions-namespace'  => 'Jmenný prostor:',
+'listuserrestrictions-page'       => 'Stránka:',
+'listuserrestrictions-submit'     => 'Hledat',
+'listuserrestrictions-notfound'   => 'Požadavku neodpovídá žádné omezení.',
+'listuserrestrictions-empty'      => 'Tento seznam je prázdný.',
+'listuserrestrictions-remove'     => 'zrušit',
+'userrestrictiontype-none'        => '(žádný)',
+'userrestrictiontype-namespace'   => 'Jmenný prostor',
+'userrestrictiontype-page'        => 'Stránka',
+
+# Special:RemoveRestrictions
+'removerestrictions'           => 'Zrušit omezení uživatele',
+'removerestrictions-intro'     => 'Tímto formulářem zrušíte omezení uvalená na daného uživatele.',
+'removerestrictions-noid'      => 'Nebylo zadáno žádné ID omezení.',
+'removerestrictions-wrongid'   => 'Omezení s tímto ID nebylo nalezeno.
+Pravděpodobně již vypršelo nebo ho někdo zrušil.',
+'removerestrictions-legend'    => 'Odstranit omezení',
+'removerestrictions-user'      => 'Omezený uživatel:',
+'removerestrictions-type'      => 'Rozsah omezení:',
+'removerestrictions-page'      => 'Stránka:',
+'removerestrictions-namespace' => 'Jmenný prostor:',
+'removerestrictions-reason'    => 'Důvod:',
+'removerestrictions-submit'    => 'Zrušit omezení',
+'removerestrictions-success'   => 'Omezení uživatele [[User:$1|$1]] bylo úspěšně odstraněno.',
+
+# Special:RestrictUser
+'restrictuser'                  => 'Omezení uživatele',
+'restrictuser-userselect'       => 'Vybrat uživatele',
+'restrictuser-user'             => 'Uživatel:',
+'restrictuser-go'               => 'Omezit uživatele',
+'restrictuser-notfound'         => 'Uživatel nebyl nalezen',
+'restrictuser-existing'         => 'Probíhající omezení',
+'restrictuser-legend-page'      => 'Omezit právo editovat určitou stránku',
+'restrictuser-legend-namespace' => 'Omezit právo editovat určitý jmenný prostor',
+'restrictuser-title'            => 'Stránka:',
+'restrictuser-namespace'        => 'Jmenný prostor:',
+'restrictuser-expiry'           => 'Čas vypršení:',
+'restrictuser-reason'           => 'Důvod:',
+'restrictuser-sumbit'           => 'Omezit uživatele',
+'restrictuser-badtitle'         => 'Zadán neplatný název: $1.',
+'restrictuser-badnamespace'     => 'Zadán neplatný jmenný prostor.',
+'restrictuser-badexpiry'        => 'Zadán neplatný čas vypršení: $1.',
+'restrictuser-duptitle'         => 'Uživatel již má omezeno právo editovat stránku s tímto názvem.',
+'restrictuser-dupnamespace'     => 'Uživatel již má omezeno právo editovat v tomto jmenném prostoru.',
+'restrictuser-success'          => 'Omezení uživatele $1 bylo úspěně provedeno.',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Kniha omezení uživatelů',
+'restrictionlogtext'   => 'Tato kniha obsahuje všechna omezení uživatelů uvalená správci.',
+'restrictentry'        => 'omezuje uživatele $1 v právu editovat $2 (s časem vypršení $3)',
+'restrictremoveentry'  => 'odstraňuje omezení uživatele  $1 v právu editovat $2',
+'restrictlognamespace' => 'jmenný prostor $1',
 
 # Developer tools
 'lockdb'              => 'Zamknout databázi',

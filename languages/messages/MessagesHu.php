@@ -1575,7 +1575,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'statistics-files'                => 'Feltöltött fájlok',
 'statistics-edits'                => 'Szerkesztések száma a(z) {{SITENAME}} indulása óta',
 'statistics-edits-average'        => 'Szerkesztések átlagos száma laponként',
-'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver számára végrehajtandó feladatok] száma',
+'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver által végrehajtandó feladatok] száma',
 'statistics-users'                => 'Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]',
 'statistics-users-active'         => 'Aktív szerkesztők',
 'statistics-users-active-tooltip' => 'Szerkesztők, akik csináltak valamit az előző hónapban',
@@ -1645,6 +1645,7 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'protectedtitlesempty'    => 'Jelenleg nincsenek ilyen típusú védett lapok.',
 'listusers'               => 'Szerkesztők',
 'listusers-editsonly'     => 'Csak a szerkesztéssel rendelkező szerkesztők mutatása',
+'usereditcount'           => '{{PLURAL:$1|egy|$1}} szerkesztés',
 'newpages'                => 'Új lapok',
 'newpages-username'       => 'Felhasználói név:',
 'ancientpages'            => 'Régóta nem változott szócikkek',
@@ -2758,7 +2759,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 Ez a kód nem szükséges a belépéshez, de meg kell adnod,
 mielőtt a wiki e-mail alapú szolgáltatásait igénybe veheted.',
 'confirmemail_sendfailed'  => 'Nem sikerült elküldeni a megerősítő e-mailt.
-Ellenőrízd, hogy nem írtál-e érvénytelen karaktert a címbe.
+Ellenőrizd, hogy nem írtál-e érvénytelen karaktert a címbe.
 
 A levelező üzenete: $1',
 'confirmemail_invalid'     => 'Nem megfelelő kód. A kódnak lehet, hogy lejárt a felhasználhatósági ideje.',

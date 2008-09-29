@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * @ingroup Language
  * @file
@@ -1077,6 +1077,7 @@ $2',
 'right-suppressrevision'     => '查看及恢復由操作員隱藏之修訂',
 'right-suppressionlog'       => '查看私人的日誌',
 'right-block'                => '封鎖其他用戶防止編輯',
+'right-restrict'             => '限制用戶去編輯某些名字空間和頁面',
 'right-blockemail'           => '封鎖用戶不可發電郵',
 'right-hideuser'             => '封鎖用戶名，對公眾隱藏',
 'right-ipblock-exempt'       => '繞過IP封鎖、自動封鎖以及範圍封鎖',
@@ -1099,7 +1100,6 @@ $2',
 'right-userrights'           => '編輯所有用戶的權限',
 'right-userrights-interwiki' => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'            => '鎖定和解除鎖定資料庫',
-'right-restrict'             => '限制用戶去編輯某些名字空間和頁面',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',
@@ -1942,18 +1942,18 @@ $1',
 'userrestrictiontype-page'        => '頁面',
 
 # Special:RemoveRestrictions
-'removerestrictions'              => '在用戶中移除一個限制',
-'removerestrictions-intro'        => '用下面的表格去拎移除對於一位用戶的一個限制。',
-'removerestrictions-noid'         => '未指定限制ID。',
-'removerestrictions-wrongid'      => '找不到跟該ID有關之限制。最有可能的是有其他人移除或已過期。',
-'removerestrictions-legend'       => '移除一個限制',
-'removerestrictions-user'         => '已限制的用戶:',
-'removerestrictions-type'         => '限制類型:',
-'removerestrictions-page'         => '頁面:',
-'removerestrictions-namespace'    => '名字空間:',
-'removerestrictions-reason'       => '理由:',
-'removerestrictions-submit'       => '移除該限制',
-'removerestrictions-success'      => '已經成功地由[[User:$1|$1]]中移除該限制。',
+'removerestrictions'           => '在用戶中移除一個限制',
+'removerestrictions-intro'     => '用下面的表格去拎移除對於一位用戶的一個限制。',
+'removerestrictions-noid'      => '未指定限制ID。',
+'removerestrictions-wrongid'   => '找不到跟該ID有關之限制。最有可能的是有其他人移除或已過期。',
+'removerestrictions-legend'    => '移除一個限制',
+'removerestrictions-user'      => '已限制的用戶:',
+'removerestrictions-type'      => '限制類型:',
+'removerestrictions-page'      => '頁面:',
+'removerestrictions-namespace' => '名字空間:',
+'removerestrictions-reason'    => '理由:',
+'removerestrictions-submit'    => '移除該限制',
+'removerestrictions-success'   => '已經成功地由[[User:$1|$1]]中移除該限制。',
 
 # Special:RestrictUser
 'restrictuser'                  => '限制用戶',

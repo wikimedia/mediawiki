@@ -284,7 +284,7 @@ $messages = array(
 
 'versionrequired'     => 'මාධ්‍යවිකි $1 අනුවාදය අවශ්‍ය වේ',
 'versionrequiredtext' => 'මෙම පිටුව භාවිතා කිරීමට, මාධ්‍යවිකි හි $1 අනුවාදය අවශ්‍ය වේ.
-[[Special:අනුවාදය|අනුවාද පිටුව]] බලන්න.',
+[[Special:Version|අනුවාද පිටුව]] බලන්න.',
 
 'ok'                      => 'හරි',
 'pagetitle'               => '$1 - {{SITENAME}}',

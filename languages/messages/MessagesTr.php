@@ -347,7 +347,7 @@ Veritabanını kilitleyen operatörün açıklaması: $1',
 Bu durum sayfanın, silinmiş bir sayfanın geçmiş sürümü olmasından kaynaklanabilir.
 
 Eğer neden bu değilse, yazılımda bir hata ile karşılaşmış olabilirsiniz
-Lütfen bunu bir yöneticiye, URL\'yi not ederek iletin',
+Lütfen bunu bir [[Özel:Listusers/sysop|yöneticiye]], URL\'yi not ederek iletin',
 'missingarticle-rev'   => '(revizyon#: $1)',
 'missingarticle-diff'  => '(Fark: $1, $2)',
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
@@ -390,6 +390,7 @@ $2',
 Verilen sebep: ''$2''.",
 
 # Virus scanner
+'virus-badscanner'     => 'Yanlış ayarlama: bilinmeyen virüs tarayıcı: <i>$1</i>',
 'virus-scanfailed'     => 'tarama başarısız (kod $1)',
 'virus-unknownscanner' => 'bilinmeyen antivürüs:',
 
@@ -438,7 +439,8 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'email'                      => 'E-posta',
 'prefs-help-realname'        => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'loginerror'                 => 'Oturum açma hatası.',
-'prefs-help-email'           => '* E-posta (isteğe bağlı): Diğer kullanıcıların kullanıcı sayfanız aracılığıyla <strong>adresinizi bilmeksizin</strong> sizle iletişim kurmasını sağlar.',
+'prefs-help-email'           => 'E-posta adresi isteğe bağlıdır; ancak eğer parolanızı unutursanız e-posta adresinize yeni parola gönderilmesine olanak sağlar.
+Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalarınız üzerinden kimliğinizi bilmeksizin sizinle iletişim kurmalarına da olanak sağlar.',
 'prefs-help-email-required'  => 'E-posta adresi gerekmektedir.',
 'nocookiesnew'               => 'Kullanıcı hesabı yaratıldı ama oturum açamadınız.
 Oturum açmak için {{SITENAME}} çerezleri kullanır.
@@ -456,11 +458,9 @@ Lütfen çerez kullanımını açınız ve yeni kullanıcı adınız ve şifreni
 'passwordtooshort'           => 'Parolanız çok kısa. En az $1 harf ve/veya rakam içermeli.',
 'mailmypassword'             => 'Bana e-posta ile yeni parola gönder',
 'passwordremindertitle'      => '{{SITENAME}} için yeni geçici şifre',
-'passwordremindertext'       => '$1 IP adresinden (muhtemelen siz) {{SERVERNAME}} için yeni bir {{SITENAME}} ($4) parolası gönderilmesi istendi.
-"$2" rumuzlu kullanıcının yeni parolası: "$3"
-Oturum açıp parolanızı değiştirmelisiniz.
+'passwordremindertext'       => '$1 IP adresinden birisi (muhtemelen siz) {{SITENAME}} ($4) için yeni bir parola gönderilmesi istedi. "$2" kullanıcısına geçici olarak "$3" parolası oluşturuldu. Eğer bu sizin isteğiniz ise, oturum açıp yeni bir parola oluşturmanız gerkemektedir.
 
-Parola değişimini siz istemediyseniz, ya da parolanızı hatırlayıp değiştirmekten vazgeçtiyseniz bu iletiyi görmezden gelip eski parolanızı kullanmaya devam edebilirsiniz.',
+Parola değişimini siz istemediyseniz veya parolanızı hatırladıysanız ve artık parolanızı değiştirmek istemiyorsanız; bu mesajı önemsemeyerek eski parolanızı kullanmaya devam edebilirsiniz.',
 'noemail'                    => '"$1" adlı kullanıcıya kayıtlı bir e-posta adresi yok.',
 'passwordsent'               => '"$1" adına kayıtlı e-posta adresine yeni bir parola gönderildi. Oturumu, lütfen, iletiyi aldıktan sonra açın.',
 'blocked-mailpassword'       => 'Siteye erişiminiz engellenmiş olduğundan, yeni şifre gönderilme işlemi yapılamamaktadır.',
@@ -475,7 +475,8 @@ Hizmeti kötüye kullanmayı önlemek için, her {{PLURAL:$1|bir saatte|$1 saatt
 Aşağıdaki işlevlerin hiçbiri için e-posta gönderilmeyecektir.',
 'noemailprefs'               => 'Bu özelliklerin çalışması için bir e-posta adresi belirtiniz.',
 'emailconfirmlink'           => 'E-posta adresinizi doğrulayın',
-'invalidemailaddress'        => 'E-posta adresi geçersizdir. Lütfen geçerli bir adres yazın ya da metin kutusunun içeriğini silin.',
+'invalidemailaddress'        => 'Geçersiz bir formatta yazıldığından dolayı bu e-posta adresi kabul edilemez.
+Lütfen geçerli bir formatta e-posta adresi yazın veya bu bölümü boş bırakın.',
 'accountcreated'             => 'Hesap yaratıldı',
 'accountcreatedtext'         => '$1 için kullanıcı hesabı yaratıldı.',
 'createaccount-title'        => '{{SITENAME}} için yeni kullanıcı hesabı oluşturulması',
@@ -561,7 +562,7 @@ Engelleme hakkında tartışmak için $1 ile veya diğer [[{{MediaWiki:Grouppage
 
 Not, [[Special:Preferences|kullanıcı tercihlerinize]] geçerli bir e-posta adresi kaydetmediyseniz  "kullanıcıya e-posta gönder" özelliğinden faydalanamayabilirsiniz ve bu özelliği kullanmaktan engellenmediniz. 
 
-Engellenme ID\'niz $5. 
+Şu anki IP nurmaranız $3 ve engellenme ID\'niz #$5. 
 Lütfen yapacağınız herhangi bir sorguda bu ID bulunsun.',
 'blockednoreason'                  => 'sebep verilmedi',
 'blockedoriginalsource'            => "'''$1''' sayfasının kaynak metni aşağıdır:",
@@ -653,8 +654,8 @@ $3 tarafından verilen sebep ''$2''",
 'viewpagelogs'        => 'Bu sayfa ile ilgili kayıtları göster',
 'nohistory'           => 'Bu sayfanın geçmiş sürümü yok.',
 'currentrev'          => 'Güncel sürüm',
-'currentrev-asof'     => '$1 itibariyle sayfanın şu anki hâli.',
-'revisionasof'        => 'Sayfanın $1 tarihindeki hali',
+'currentrev-asof'     => '$1 itibarı ile sayfanın şu anki hâli.',
+'revisionasof'        => 'Sayfanın $1 tarihindeki hâli',
 'revision-info'       => '$2 tarafından oluşturulmuş $1 tarihli sürüm',
 'previousrevision'    => '← Önceki hali',
 'nextrevision'        => 'Sonraki hali →',

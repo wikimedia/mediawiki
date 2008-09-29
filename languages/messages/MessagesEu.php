@@ -643,6 +643,7 @@ Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
 'deletelog-fulllog'                => 'Log osoa ikusi',
 'edit-gone-missing'                => 'Ezin da orria eguneratu. Ezabatu omen dute.',
 'edit-conflict'                    => 'Aldaketa gatazka.',
+'edit-no-change'                   => 'Zure edizioa baztertu da testua aldatu ez duzulako.',
 'edit-already-exists'              => 'Ezin izan da orri berria sortu.
 Jada existitzen da.',
 
@@ -1768,6 +1769,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'proxyblocksuccess'               => 'Egina.',
 'sorbsreason'                     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan.',
 'sorbs_create_account_reason'     => 'Zure IP helbidea proxy ireki bezala zerrendatuta dago DNSBLan. Ezin duzu kontua sortu.',
+'cant-block-while-blocked'        => 'Blokeatuta zauden bitartean ezin dituzu beste lankideak blokeatu.',
 
 # Developer tools
 'lockdb'              => 'Datu-basea blokeatu',

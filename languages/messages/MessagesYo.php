@@ -54,32 +54,56 @@ $messages = array(
 'underline-always' => 'Nígbà gbogbo',
 
 # Dates
-'sunday'    => 'Ọjọ́àìkú',
-'monday'    => 'Ọjọ́ajé',
-'tuesday'   => 'Ọjọ́ìsẹ́gun',
-'wednesday' => 'Ọjọ́rú',
-'thursday'  => 'Ọjọ́bọ̀',
-'friday'    => 'Ọjọ́ẹtì',
-'saturday'  => 'Ọjọ́àbámẹ́ta',
-'sun'       => 'Àìkú',
-'mon'       => 'Ajé',
-'tue'       => 'Ìṣẹ́gun',
-'wed'       => 'Rú',
-'thu'       => 'Bọ̀',
-'fri'       => 'Ẹtì',
-'sat'       => 'Àbámẹ́ta',
-'january'   => 'January',
-'february'  => 'February',
-'march'     => 'March',
-'april'     => 'April',
-'may_long'  => 'May',
-'june'      => 'June',
-'july'      => 'July',
-'august'    => 'August',
-'september' => 'September',
-'october'   => 'October',
-'november'  => 'November',
-'december'  => 'December',
+'sunday'        => 'Ọjọ́àìkú',
+'monday'        => 'Ọjọ́ajé',
+'tuesday'       => 'Ọjọ́ìsẹ́gun',
+'wednesday'     => 'Ọjọ́rú',
+'thursday'      => 'Ọjọ́bọ̀',
+'friday'        => 'Ọjọ́ẹtì',
+'saturday'      => 'Ọjọ́àbámẹ́ta',
+'sun'           => 'Àìkú',
+'mon'           => 'Ajé',
+'tue'           => 'Ìṣẹ́gun',
+'wed'           => 'Rú',
+'thu'           => 'Bọ̀',
+'fri'           => 'Ẹtì',
+'sat'           => 'Àbámẹ́ta',
+'january'       => 'January',
+'february'      => 'February',
+'march'         => 'March',
+'april'         => 'April',
+'may_long'      => 'May',
+'june'          => 'June',
+'july'          => 'July',
+'august'        => 'August',
+'september'     => 'September',
+'october'       => 'October',
+'november'      => 'November',
+'december'      => 'December',
+'january-gen'   => 'January',
+'february-gen'  => 'February',
+'march-gen'     => 'March',
+'april-gen'     => 'April',
+'may-gen'       => 'May',
+'june-gen'      => 'June',
+'july-gen'      => 'July',
+'august-gen'    => 'August',
+'september-gen' => 'September',
+'october-gen'   => 'October',
+'november-gen'  => 'November',
+'december-gen'  => 'December',
+'jan'           => 'Jan',
+'feb'           => 'Feb',
+'mar'           => 'Mar',
+'apr'           => 'Apr',
+'may'           => 'May',
+'jun'           => 'Jun',
+'jul'           => 'Jul',
+'aug'           => 'Aug',
+'sep'           => 'Sep',
+'oct'           => 'Oct',
+'nov'           => 'Nov',
+'dec'           => 'Dec',
 
 # Categories related messages
 'pagecategories'           => '{{PLURAL:$1|Ẹ̀ka|Àwọn ẹ̀ka}}',
@@ -259,6 +283,7 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'youremail'                 => 'E-mail:',
 'username'                  => 'Orúkọ oníṣe:',
 'uid'                       => 'Nọmba ìdámọ̀ fún ẹnitínṣe:',
+'yourrealname'              => 'Orúkọ ganangan:',
 'yourlanguage'              => 'Èdè:',
 'yournick'                  => 'Ìtọwọ́bọ̀:',
 'badsiglength'              => 'Ìtọwọ́bọ̀ yín ti gùnjù.
@@ -428,6 +453,10 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'recentchanges'     => 'Àwọn àtúnṣe tuntun',
 'rcnote'            => "Lábẹ́ yìí ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1'''}} tó kẹ̀yìn ní ọjọ́ '''$2''' sẹ́yìn, ní ago $5, ọjọ́ $4.",
 'rcshowhideminor'   => '$1 àwọn àtúnṣe kékéèké',
+'rcshowhidebots'    => '$1 àwọn bot',
+'rcshowhideliu'     => '$1 àwọn oníṣe tótiwọlé',
+'rcshowhideanons'   => '$1 àwọn oníṣe aláìlórúkọ',
+'rcshowhidemine'    => '$1 àwọn àtúnṣe mi',
 'rclinks'           => "Ṣ'àfihàn àtúnṣe $1 tó kẹ̀yìn ní ọjọ́ $2 sẹ́yìn<br />$3",
 'diff'              => 'ìyàtọ̀',
 'hist'              => 'ìtàn',
@@ -504,6 +533,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Special:AllPages
 'allpages'          => 'Gbogbo ojúewé',
 'alphaindexline'    => '$1 dé $2',
+'prevpage'          => 'Ojúewé sẹ́yìn ($1)',
 'allarticles'       => 'Gbogbo ojúewé',
 'allinnamespace'    => 'Gbogbo ojúewé ($1 namespace)',
 'allnotinnamespace' => 'Gbogbo ojúewé (tí kòsí ní $1 namespace)',
@@ -519,12 +549,14 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'emailsend'    => 'Firánṣẹ́',
 
 # Watchlist
-'watchlist'       => 'Ìmójútó mi',
-'mywatchlist'     => 'Ìmójútó mi',
-'watch'           => "M'ójútó",
-'watchthispage'   => "M'ójútó ojúewé yi",
-'unwatch'         => "Já'wọ́ ìmójútó",
-'unwatchthispage' => "Já'wọ́ ìmójútó ojúewé yi",
+'watchlist'            => 'Ìmójútó mi',
+'mywatchlist'          => 'Ìmójútó mi',
+'watchlistfor'         => "(fún '''$1''')",
+'watch'                => "M'ójútó",
+'watchthispage'        => "M'ójútó ojúewé yi",
+'unwatch'              => "Já'wọ́ ìmójútó",
+'unwatchthispage'      => "Já'wọ́ ìmójútó ojúewé yi",
+'watchlist-hide-minor' => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kékéèké',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Ún mójútó...',
@@ -544,6 +576,10 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Contributions
 'contributions' => 'Àwọn àfikún ẹnitínṣe',
 'mycontris'     => 'Àwọn àfikún mi',
+'contribsub2'   => 'Fún $1 ($2)',
+'uctop'         => '(lókè)',
+'month'         => 'Láti osù (àti sẹ́yìn):',
+'year'          => 'Láti ọdún (àti sẹ́yìn):',
 
 # What links here
 'whatlinkshere'       => 'Ìjápọ̀ mọ́ ojúewé yí',
@@ -554,7 +590,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 
 # Block/unblock
 'ipbsubmit'    => 'Dènà oníṣe yìí',
-'ipboptions'   => 'wákàtí 2:wákàtí 2,ọjọ́ 1:ọjọ́ 1,ọjọ́ 3:ọjọ́ 3,ọ̀ṣẹ̀ 1:ọ̀ṣẹ̀ 1,ọ̀ṣẹ̀ 2:ọ̀ṣẹ̀ 2,osù 1:osù 1,osù 3:osù 3,osù 6:osù 6,ọdún 1:ọdún 1,láìlópin:láìlópin', # display1:time1,display2:time2,...
+'ipboptions'   => 'wákàtí 2:2 hours,ọjọ́ 1:1 day,ọjọ́ 3:3 days,ọ̀ṣẹ̀ 1:1 week,ọ̀ṣẹ̀ 2:2 weeks,osù 1:1 month,osù 3:3 months,osù 6:6 months,ọdún 1:1 year,láìlópin:infinite', # display1:time1,display2:time2,...
 'blocklink'    => 'dínà',
 'contribslink' => 'àfikún',
 
@@ -568,8 +604,11 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'pagemovedsub'     => 'Ìyípò ti já sí rere',
 'movepage-moved'   => '<big>\'\'\'"$1" ti yípò sí "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'          => 'tiyípò sí',
+'movereason'       => 'Ìdíẹ̀:',
+'revertmove'       => 'dápadà',
 
 # Namespace 8 related
+'allmessages'     => 'Àwọn ìránṣẹ́ sistẹmu',
 'allmessagesname' => 'Orúkọ',
 
 # Tooltip help for the actions
@@ -602,8 +641,13 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'siteuser'         => '$1 oníṣe lórí {{SITENAME}}',
 'lastmodifiedatby' => 'Igba ti a se atunse si ojuewe yi gbeyin ni $2, $1 by $3.', # $1 date, $2 time, $3 user
 
+# Metadata
+'metadata' => 'Metadata',
+
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'gbogbo',
 'namespacesall' => 'gbogbo',
+'monthsall'     => 'gbogbo',
 
 # E-mail address confirmation
 'confirmemail'          => "Ṣè'múdájú ojúọ̀nà e-mail",
