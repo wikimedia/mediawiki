@@ -24,8 +24,8 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Usapang suleras',
 	NS_HELP             => 'Tulong',
 	NS_HELP_TALK        => 'Usapang tulong',
-	NS_CATEGORY         => 'Kategorya',
-	NS_CATEGORY_TALK    => 'Usapang kategorya',
+	NS_CATEGORY         => 'Kaurian',
+	NS_CATEGORY_TALK    => 'Usapang kaurian',
 );
 
 $messages = array(
