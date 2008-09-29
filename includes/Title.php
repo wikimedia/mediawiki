@@ -404,100 +404,10 @@ class Title {
 	 * @return \type{\string} the associated URL, containing "$1", 
 	 * 	which should be replaced by an article title
 	 * @static (arguably)
+	 * @deprecated See Interwiki class
 	 */
 	public function getInterwikiLink( $key )  {
-		global $wgMemc, $wgInterwikiExpiry;
-		global $wgInterwikiCache, $wgContLang;
-		$fname = 'Title::getInterwikiLink';
-
-		if ( count( Title::$interwikiCache ) >= self::CACHE_MAX ) {
-			// Don't use infinite memory
-			reset( Title::$interwikiCache );
-			unset( Title::$interwikiCache[ key( Title::$interwikiCache ) ] );
-		}
-
-		$key = $wgContLang->lc( $key );
-
-		$k = wfMemcKey( 'interwiki', $key );
-		if( array_key_exists( $k, Title::$interwikiCache ) ) {
-			return Title::$interwikiCache[$k]->iw_url;
-		}
-
-		if ($wgInterwikiCache) {
-			return Title::getInterwikiCached( $key );
-		}
-
-		$s = $wgMemc->get( $k );
-		# Ignore old keys with no iw_local
-		if( $s && isset( $s->iw_local ) && isset($s->iw_trans)) {
-			Title::$interwikiCache[$k] = $s;
-			return $s->iw_url;
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'interwiki',
-			array( 'iw_url', 'iw_local', 'iw_trans' ),
-			array( 'iw_prefix' => $key ), $fname );
-		if( !$res ) {
-			return '';
-		}
-
-		$s = $dbr->fetchObject( $res );
-		if( !$s ) {
-			# Cache non-existence: create a blank object and save it to memcached
-			$s = (object)false;
-			$s->iw_url = '';
-			$s->iw_local = 0;
-			$s->iw_trans = 0;
-		}
-		$wgMemc->set( $k, $s, $wgInterwikiExpiry );
-		Title::$interwikiCache[$k] = $s;
-
-		return $s->iw_url;
-	}
-
-	/**
-	 * Fetch interwiki prefix data from local cache in constant database.
-	 *
-	 * @note More logic is explained in DefaultSettings.
-	 *
-	 * @param $key \type{\string} Database key
-	 * @return \type{\string} URL of interwiki site
-	 */
-	public static function getInterwikiCached( $key ) {
-		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
-
-		if (!$db)
-			$db=dba_open($wgInterwikiCache,'r','cdb');
-		/* Resolve site name */
-		if ($wgInterwikiScopes>=3 and !$site) {
-			$site = dba_fetch('__sites:' . wfWikiID(), $db);
-			if ($site=="")
-				$site = $wgInterwikiFallbackSite;
-		}
-		$value = dba_fetch( wfMemcKey( $key ), $db);
-		if ($value=='' and $wgInterwikiScopes>=3) {
-			/* try site-level */
-			$value = dba_fetch("_{$site}:{$key}", $db);
-		}
-		if ($value=='' and $wgInterwikiScopes>=2) {
-			/* try globals */
-			$value = dba_fetch("__global:{$key}", $db);
-		}
-		if ($value=='undef')
-			$value='';
-		$s = (object)false;
-		$s->iw_url = '';
-		$s->iw_local = 0;
-		$s->iw_trans = 0;
-		if ($value!='') {
-			list($local,$url)=explode(' ',$value,2);
-			$s->iw_url=$url;
-			$s->iw_local=(int)$local;
-		}
-		Title::$interwikiCache[wfMemcKey( 'interwiki', $key )] = $s;
-		return $s->iw_url;
+		return Interwiki::fetch( $key )->getURL( );
 	}
 
 	/**
@@ -509,10 +419,7 @@ class Title {
 	 */
 	public function isLocal() {
 		if ( $this->mInterwiki != '' ) {
-			# Make sure key is loaded into cache
-			$this->getInterwikiLink( $this->mInterwiki );
-			$k = wfMemcKey( 'interwiki', $this->mInterwiki );
-			return (bool)(Title::$interwikiCache[$k]->iw_local);
+			return Interwiki::fetch( $this->mInterwiki )->isLocal();
 		} else {
 			return true;
 		}
@@ -527,10 +434,8 @@ class Title {
 	public function isTrans() {
 		if ($this->mInterwiki == '')
 			return false;
-		# Make sure key is loaded into cache
-		$this->getInterwikiLink( $this->mInterwiki );
-		$k = wfMemcKey( 'interwiki', $this->mInterwiki );
-		return (bool)(Title::$interwikiCache[$k]->iw_trans);
+		
+		return Interwiki::fetch( $this->mInterwiki )->isTranscludable();
 	}
 
 	/**
@@ -778,7 +683,7 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		} else {
-			$baseUrl = $this->getInterwikiLink( $this->mInterwiki );
+			$baseUrl = Interwiki::fetch( $this->mInterwiki )->getURL( );
 
 			$namespace = wfUrlencode( $this->getNsText() );
 			if ( '' != $namespace ) {
@@ -2162,7 +2067,7 @@ class Title {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$this->mNamespace = $ns;
-				} elseif( $this->getInterwikiLink( $p ) ) {
+				} elseif( new Interwiki( $p ) ) {
 					if( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
 						# That's just crazy!
