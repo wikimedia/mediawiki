@@ -1762,7 +1762,7 @@ class LocalFileMoveBatch {
 				continue;
 			}
 			$this->olds[] = array(
-				"{$archiveBase}/{$this->oldHash}{$oldname}",
+				"{$archiveBase}/{$this->oldHash}{$oldName}",
 				"{$archiveBase}/{$this->newHash}{$timestamp}!{$this->newName}"
 			);
 		}
