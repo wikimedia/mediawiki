@@ -114,7 +114,7 @@ class ForeignAPIRepo extends FileRepo {
 		global $wgMemc, $wgUploadPath, $wgServer, $wgUploadDirectory;
 		
 		if ( !$this->canCacheThumbs() ) {
-			return $this->getThumbUrl();
+			return $this->getThumbUrl( $name, $width, $height );
 		}
 		
 		$key = wfMemcKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
