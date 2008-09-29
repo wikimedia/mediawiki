@@ -1953,9 +1953,10 @@ function getShellLocale( $wikiLanguage ) {
 	if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) ) {
 		return false;
 	}
-	
-	if ( php_uname( 's' ) != 'Linux' ) {
-		# TODO: need testing for other POSIX platforms
+
+	$os = php_uname( 's' );
+	$supported = array( 'Linux', 'SunOS', 'HP-UX' ); # Tested these
+	if ( !in_array( $os, $supported ) ) {
 		return false;
 	}
 
@@ -1977,7 +1978,7 @@ function getShellLocale( $wikiLanguage ) {
 			continue;
 		}
 		list( $all, $lang, $territory, $charset, $modifier ) = $m;
-		$candidatesByLocale["$lang$territory.UTF-8$modifier"] = $m;
+		$candidatesByLocale[$m[0]] = $m;
 		$candidatesByLang[$lang][] = $m;
 	}
 
@@ -1987,7 +1988,7 @@ function getShellLocale( $wikiLanguage ) {
 	}
 
 	# Try the most common ones
-	$commonLocales = array( 'en_US.UTF-8', 'de_DE.UTF-8' );
+	$commonLocales = array( 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' );
 	foreach ( $commonLocales as $commonLocale ) {
 		if ( isset( $candidatesByLocale[$commonLocale] ) ) {
 			return $commonLocale;
