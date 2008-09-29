@@ -322,7 +322,7 @@ class ProtectionForm {
 				wfMsgForContent( 'protect-otherreason-op' ), 
 				$this->mReasonSelection,
 				'mwProtect-reason', 4 );
-			$scExpiryOptions = wfMsgForContent( 'ipboptions' ); // FIXME: use its own message
+			$scExpiryOptions = wfMsgForContent( 'protect-expiry-options' );
 
 			$showProtectOptions = ($scExpiryOptions !== '-' && !$this->disabled);
 
