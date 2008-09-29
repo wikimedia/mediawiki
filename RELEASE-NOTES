@@ -140,8 +140,6 @@ The following extensions are migrated into MediaWiki 1.14:
   restriction types on the protection form.
 * (bug 8440) Allow preventing blocked users from editing their talk pages
 * Improved upload file type detection for OpenDocument formats
-* (bug 15739) Add $wgArticlePathForCurid to make links with only curid=# as the
-  query string use the article path, rather than the script path
 * Added the ability to set the target attribute on external links with 
   $wgExternalLinkTarget
 * (bug 674) Allow admins to block users from editing specific articles and
