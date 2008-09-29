@@ -3043,6 +3043,7 @@ $wgMessageComments = array(
 	'exif-orientation-8'          => '0th row: left; 0th column: bottom',
 	'movepage-moved'              => 'The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.',
 	'ipboptions'                  => 'display1:time1,display2:time2,...',
+	'protect-expiry-options'      => 'display1:time1,display2:time2,...',
 	'metadata-fields'             => 'Do not translate list items',
 	'version'                     => 'Not used as normal message but as header for the special page itself',
 	'userrights'                  => 'Not used as normal message but as header for the special page itself',
