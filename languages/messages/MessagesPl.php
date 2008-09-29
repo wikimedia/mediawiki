@@ -1906,6 +1906,7 @@ Aby przejrzeć listę obecnie działających zabezpieczeń, przejdź na stronę 
 'modifiedarticleprotection'   => 'zmienił poziom zabezpieczenia [[$1]]',
 'unprotectedarticle'          => 'odbezpieczył [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
+'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'powód zabezpieczenia',
 'protectexpiry'               => 'Czas wygaśnięcia',

@@ -643,6 +643,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 # Protect
 'protectlogpage'              => 'Bō̤-hô nĭk-cé',
 'protect-title'               => 'Bō̤-hô "$1"',
+'prot_1movedto2'              => '[[$1]] iè gáu [[$2]]',
 'protect-legend'              => 'Káuk-nêng bō̤-hô',
 'protectcomment'              => 'Bō̤-hô gì nguòng-ĭng',
 'protect-level-autoconfirmed' => 'Hŭng-sō̤ mò̤ cé̤ṳ-cháh ê̤ṳng-hô̤',

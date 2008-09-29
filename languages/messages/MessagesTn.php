@@ -141,6 +141,9 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'watch'         => 'Lebelela',
 'watchthispage' => 'Lebelela tsebe e',
 
+# Protect
+'prot_1movedto2' => '[[$1]] o sutisediwa kwa go [[$2]]',
+
 # Undelete
 'undelete-search-submit' => 'Senka',
 

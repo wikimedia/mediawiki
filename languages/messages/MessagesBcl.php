@@ -1290,6 +1290,7 @@ Pindotón tabî an \"back\" asin ikarga giraray an páhinang ginikanan mo, danga
 'modifiedarticleprotection'   => 'binago an nibel nin proteksión para sa "[[$1]]"',
 'unprotectedarticle'          => 'Warang proteksión an "[[$1]]"',
 'protect-title'               => 'Pigpupuesta an nibel nin proteksión sa "$1"',
+'prot_1movedto2'              => '[[$1]] piglipat sa [[$2]]',
 'protect-legend'              => 'Kompermaron an proteksyon',
 'protectcomment'              => 'Komento:',
 'protectexpiry'               => 'Mápasó:',

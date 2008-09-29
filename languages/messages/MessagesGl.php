@@ -1698,6 +1698,7 @@ Vexa a [[Special:ProtectedPages|lista de páxinas protexidas]] se quere obter a 
 'modifiedarticleprotection'   => 'modificou o nivel de protección de "[[$1]]"',
 'unprotectedarticle'          => 'desprotexeu "[[$1]]"',
 'protect-title'               => 'Cambiar o nivel de protección de "$1"',
+'prot_1movedto2'              => 'moveu "[[$1]]" a "[[$2]]"',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Caducidade:',

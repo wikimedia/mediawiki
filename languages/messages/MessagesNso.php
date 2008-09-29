@@ -766,6 +766,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 # Protect
 'protectlogpage'              => "''Log'' yago lota",
 'protectedarticle'            => 'lotilwe "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] e hudugile goya go [[$2]]',
 'protect-legend'              => 'Tiišetša go lota',
 'protectcomment'              => 'Ahlaahla:',
 'protectexpiry'               => 'Fetatšatši:',

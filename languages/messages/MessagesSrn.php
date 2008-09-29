@@ -896,6 +896,7 @@ Iksi yu wan papira no langar wana si, go na a papira nanga du opo \"No si\" ini 
 
 # Protect
 'protectlogpage'              => 'Log buku fu den sroto',
+'prot_1movedto2'              => '[[$1]] froisi go na [[$2]]',
 'protect-legend'              => 'Gi tapu klari',
 'protectcomment'              => 'Opotaki:',
 'protectexpiry'               => 'Lasi:',

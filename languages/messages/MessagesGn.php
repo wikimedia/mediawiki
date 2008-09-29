@@ -378,7 +378,8 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'rollbacklink'   => 'Embojevy',
 
 # Protect
-'protect-text' => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
+'prot_1movedto2' => '[[$1]] oñembohasa [[$2]]-pe',
+'protect-text'   => 'Puedes ver y modificar el nivel de protección de la página <strong>$1</strong>.',
 
 # Undelete
 'undeletedrevisions'       => '$1 ediciones restauradas',

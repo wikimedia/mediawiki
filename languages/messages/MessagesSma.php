@@ -585,6 +585,7 @@ Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
 
 # Protect
 'protectlogpage'              => 'Vaarjelidh logge',
+'prot_1movedto2'              => '[[$1]] jåhta gåajkoe [[$2]]',
 'protect-legend'              => 'Skylledh vaarjelidh',
 'protectcomment'              => 'Lahtestimmie:',
 'protectexpiry'               => 'Boarasnuvve:',

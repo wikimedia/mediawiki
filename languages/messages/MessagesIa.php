@@ -1756,6 +1756,7 @@ Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de pr
 'modifiedarticleprotection'   => 'cambiava nivello de protection de "[[$1]]"',
 'unprotectedarticle'          => 'disprotegeva "[[$1]]"',
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
+'prot_1movedto2'              => 'renominava [[$1]] verso [[$2]]',
 'protect-legend'              => 'Confirmar protection',
 'protectcomment'              => 'Commento:',
 'protectexpiry'               => 'Expira:',

@@ -1906,6 +1906,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[$1]]"',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
 'protect-title'               => '„$1” levédése',
+'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
 'protect-legend'              => 'Levédés megerősítése',
 'protectcomment'              => 'A védelem oka',
 'protectexpiry'               => 'Időtartam',

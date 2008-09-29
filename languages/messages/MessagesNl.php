@@ -2047,6 +2047,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'modifiedarticleprotection'   => 'wijzigde beveiligingsniveau voor "[[$1]]"',
 'unprotectedarticle'          => 'heeft de beveiliging van "[[$1]]" opgeheven',
 'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
+'prot_1movedto2'              => '[[$1]] hernoemd naar [[$2]]',
 'protect-legend'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Opmerkingen:',
 'protectexpiry'               => 'Duur:',

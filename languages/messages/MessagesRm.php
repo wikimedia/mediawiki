@@ -498,6 +498,7 @@ Sin $2 chattas ti ina glista dals davos artitgels stidads.',
 Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 
 # Protect
+'prot_1movedto2'              => 'Spustà [[$1]] tar [[$2]]',
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protect-default'             => '(standard)',
 'protect-level-autoconfirmed' => 'Bloccar utilisaders na-registrads',

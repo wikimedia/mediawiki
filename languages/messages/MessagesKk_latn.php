@@ -1939,6 +1939,7 @@ Ağımdağı qorğaw ärektter bar better üşin [[{{#special:Protectedpages}}|q
 'modifiedarticleprotection'   => '«[[$1]]» qorğalw deñgeýi özgerdi',
 'unprotectedarticle'          => '«[[$1]]» qorğalwı öşirildi',
 'protect-title'               => '«$1» qorğaw deñgeýin özgertw',
+'prot_1movedto2'              => '[[$1]] degendi [[$2]] degenge jıljıttı',
 'protect-legend'              => 'Qorğawdı quptaw',
 'protectcomment'              => 'Mändemesi:',
 'protectexpiry'               => 'Merzimi bitpek:',

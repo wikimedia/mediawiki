@@ -1610,6 +1610,7 @@ Por fabor, prete "Entazaga", recargue a pachina d\'a que benió, y torne á preb
 'modifiedarticleprotection'   => 's\'ha cambiato o libel de protezión de "[[$1]]"',
 'unprotectedarticle'          => "s'ha esprotechito [[$1]]",
 'protect-title'               => 'Protechendo "$1"',
+'prot_1movedto2'              => '[[$1]] tresladada á [[$2]]',
 'protect-legend'              => 'Confirmar protezión',
 'protectcomment'              => 'Razón:',
 'protectexpiry'               => 'Calendata de caduzidat:',

@@ -501,6 +501,7 @@ $messages = array(
 
 # Protect
 'protectedarticle'            => 'proteje "[[$1]]"',
+'prot_1movedto2'              => 'book tiha [[$1]] ba [[$2]]',
 'protectcomment'              => 'Komentáriu:',
 'protectexpiry'               => "to'o:",
 'protect-fallback'            => 'Presiza kuana "$1"',

@@ -153,6 +153,9 @@ Qupperneq nakkutilliinermi allattorsimaffik kingusinnerusukkut piissagukku, taav
 # Delete
 'actioncomplete' => 'Naammassineqareersimavoq',
 
+# Protect
+'prot_1movedto2' => '[[$1]]-i nuunneqarsimavoq [[$2]]-mut',
+
 # Contributions
 'uctop' => '(kaarfa)',
 

@@ -248,6 +248,9 @@ $messages = array(
 'dellogpage'  => 'ДІадайан таптараш',
 'deletionlog' => 'дІадайан таптараш',
 
+# Protect
+'prot_1movedto2' => '«[[$1]]» хийцина - «[[$2]]»',
+
 # Namespace form on various pages
 'blanknamespace' => '(Коьртаниг)',
 

@@ -580,6 +580,7 @@ Chtos jiny ju editowôł starnã abò copnął zmianë.
 # Protect
 'protectedarticle'   => 'zazychrowónô [[$1]]',
 'unprotectedarticle' => 'òdzychrowóny [[$1]]',
+'prot_1movedto2'     => '$1 przeniesłé do $2',
 'protect-legend'     => 'Pòcwierdzë zazychrowanié',
 'protectcomment'     => 'Przëczëna zazychrowóniô',
 

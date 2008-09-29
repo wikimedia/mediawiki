@@ -463,6 +463,7 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 # Protect
 'unprotectedarticle' => 'l\'ha sblucaa "[[$1]]"',
 'protect-title'      => 'Prutezziún da "$1"',
+'prot_1movedto2'     => '[[$1]] spustaa in [[$2]]',
 'protect-legend'     => 'Cunferma de blocch',
 'protectcomment'     => 'Spiega parchè ti vörat blucá la pagina',
 

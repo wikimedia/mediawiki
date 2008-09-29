@@ -1617,6 +1617,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'зменены ўзровень аховы "[[$1]]"',
 'unprotectedarticle'          => 'знятая ахова з "[[$1]]"',
 'protect-title'               => 'Ахова «$1»',
+'prot_1movedto2'              => '[[$1]] перанесена ў [[$2]]',
 'protect-legend'              => 'Пацверджанне пачатку аховы',
 'protectcomment'              => 'Прычына пастаноўкі пад ахову',
 'protectexpiry'               => 'Канчаецца:',

@@ -141,6 +141,9 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'watch'         => 'Rinda',
 'watchthispage' => 'Ringa peji rino',
 
+# Protect
+'prot_1movedto2' => '[[$1]] rachichinurwa ku [[$2]]',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Chinja',
 'restriction-move' => 'Chichinura',

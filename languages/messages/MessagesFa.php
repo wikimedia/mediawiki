@@ -1916,6 +1916,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'وضعیت محافظت «[[$1]]» را تغییر داد',
 'unprotectedarticle'          => '[[$1]] را از محافظت به در آورد',
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
+'prot_1movedto2'              => '$1 به $2 منتقل شد',
 'protect-legend'              => 'تأیید حفاظت',
 'protectcomment'              => 'دلیل محافظت',
 'protectexpiry'               => 'زمان سرآمدن:',

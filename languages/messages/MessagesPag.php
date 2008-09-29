@@ -275,6 +275,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'deletecomment'  => 'Aken buralen',
 
 # Protect
+'prot_1movedto2'      => 'say [[$1]] enyales paula ed [[$2]]',
 'protect-legend'      => 'Palitaen so pangiyagel',
 'protect-level-sysop' => 'Sysops labat',
 

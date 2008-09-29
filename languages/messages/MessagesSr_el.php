@@ -1241,6 +1241,7 @@ Molimo kliknite "back" i ponovo učitajte stranu odakle ste došli, a onda poku�
 'protectedarticle'            => 'zaštitio $1',
 'unprotectedarticle'          => 'skinuo zaštitu sa $1',
 'protect-title'               => 'stavljanje zaštite "$1"',
+'prot_1movedto2'              => 'je promenio ime članku [[$1]] u [[$2]]',
 'protect-legend'              => 'Potvrdite zaštitu',
 'protectcomment'              => 'Razlog zaštite',
 'protect-unchain'             => 'Otključaj dozvole premeštanja',

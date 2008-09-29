@@ -1133,6 +1133,7 @@ Féach ar [[Special:ProtectedPages|Leathanach glasáilte]] chun a thuilleadh eol
 'protectedarticle'            => 'glasáladh "[[$1]]"',
 'unprotectedarticle'          => 'díghlasáladh "[[$1]]"',
 'protect-title'               => 'Ag glasáil "$1"',
+'prot_1movedto2'              => 'Athainmníodh $1 mar $2',
 'protect-legend'              => 'Cinntigh an glasáil',
 'protectcomment'              => 'Cúis don glasáil',
 'protectexpiry'               => 'As feidhm:',

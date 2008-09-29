@@ -764,6 +764,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'Αρχείον ασπαλιγματίων',
+'prot_1movedto2'              => '[[$1]] ετερχλαεύτεν σο [[$2]]',
 'protectcomment'              => 'Σχόλιον:',
 'protectexpiry'               => 'Τελείται:',
 'protect_expiry_invalid'      => "Ο χρόνος τελεματί 'κ εν σωστόν.",

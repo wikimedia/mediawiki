@@ -625,6 +625,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'  => '保护日志',
+'prot_1movedto2'  => '[[$1]]捅到[[$2]]',
 'protectcomment'  => '保护理由:',
 'protect-default' => '(默认)',
 

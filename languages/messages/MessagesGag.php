@@ -696,6 +696,7 @@ Yakın zamanda silinenleri görmää deyni: $2.',
 
 # Protect
 'protectlogpage'              => 'Korunmak jurnalı',
+'prot_1movedto2'              => '[[$1]] sayfasın eni adı: [[$2]]',
 'protect-legend'              => 'Korunmaa doorula',
 'protectcomment'              => 'Korunma altına almaa sebep:',
 'protectexpiry'               => 'Bitmää datası:',

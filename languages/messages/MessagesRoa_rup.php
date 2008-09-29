@@ -162,6 +162,9 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'watchthispage' => 'Mutrits-u frãndzã aistã',
 'unwatch'       => 'Azãptãsits videare',
 
+# Protect
+'prot_1movedto2' => '[[$1]] s-trãdzi tu [[$2]]',
+
 # Restrictions (nouns)
 'restriction-edit' => 'Alãxiri',
 'restriction-move' => 'Tradzets',

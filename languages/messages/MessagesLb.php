@@ -1706,6 +1706,7 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de protegéierte Säite]] fir eng L
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
 'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
 'protect-title'               => 'Ännerung vun der Protectioun vu(n) „$1“',
+'prot_1movedto2'              => '[[$1]] gouf op [[$2]] geréckelt',
 'protect-legend'              => "Konfirméiert d'Protectioun",
 'protectcomment'              => 'Grond:',
 'protectexpiry'               => 'Dauer vun der Spär:',

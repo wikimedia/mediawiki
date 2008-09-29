@@ -1240,6 +1240,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'የመቆለፍ ደረጃ ለ«[[$1]]» ቀየረ።',
 'unprotectedarticle'          => 'ገጹን «[[$1]]» ፈታ።',
 'protect-title'               => 'ለ«$1» የመቆለፍ ደረጃ ለማስተካከል',
+'prot_1movedto2'              => '«$1» ወደ «[[$2]]» አዛወረ',
 'protect-legend'              => 'የመቆለፍ ማረጋገጫ',
 'protectcomment'              => 'ማጠቃለያ፦',
 'protectexpiry'               => 'የሚያልቅበት ግዜ፦',

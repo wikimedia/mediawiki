@@ -1438,6 +1438,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'сатҳи муҳофизати саҳифаи "[[$1]]" тағйир дода шуд',
 'unprotectedarticle'          => 'аз муҳофизат озод шуда "[[$1]]"',
 'protect-title'               => 'Дар ҳоли гузоштани сатҳи муҳофизат барои "$1"',
+'prot_1movedto2'              => '[[$1]] ба [[$2]] кӯчонида шудааст',
 'protect-legend'              => 'Тасдиқи муҳофизат',
 'protectcomment'              => 'Далели муҳофизат:',
 'protectexpiry'               => 'Замони саромадан:',

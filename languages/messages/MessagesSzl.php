@@ -1462,6 +1462,7 @@ Coby přejřeć lista uobecńy zawartych zajtůw, přeńdź na zajta wykazu [[Sp
 'modifiedarticleprotection'   => 'pomjyńiu poziům zawarćo [[$1]]',
 'unprotectedarticle'          => 'uodymknyu [[$1]]',
 'protect-title'               => 'Pomjyńeńe poźomu zawarćo „$1”',
+'prot_1movedto2'              => '[[$1]] přećepano do [[$2]]',
 'protect-legend'              => 'Potwjyrdź zawarće',
 'protectcomment'              => 'Kůmyntoř:',
 'protectexpiry'               => 'Wygaso:',

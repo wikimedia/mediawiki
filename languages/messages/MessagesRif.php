@@ -511,6 +511,7 @@ Xemm $2 i tikkas timaynutin.',
 
 # Protect
 'protectlogpage'              => 'Aɣmis n uẓarq',
+'prot_1movedto2'              => '[[$1]] twaneql ɣa [[$2]]',
 'protectcomment'              => 'Tinit:',
 'protectexpiry'               => 'itsala:',
 'protect_expiry_invalid'      => 'Akud n usali war icni ca.',

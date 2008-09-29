@@ -1559,6 +1559,7 @@ Laguntza:
 'modifiedarticleprotection'   => '"[[$1]]"(r)en babes maila aldatu da',
 'unprotectedarticle'          => '"[[$1]]"(r)i babesa kendu zaio',
 'protect-title'               => '"$1" babesten',
+'prot_1movedto2'              => '$1 izenburua $2(r)engatik aldatu da',
 'protect-legend'              => 'Babesa baieztatu',
 'protectcomment'              => 'Babesteko arrazoia',
 'protectexpiry'               => 'Iraungipena:',

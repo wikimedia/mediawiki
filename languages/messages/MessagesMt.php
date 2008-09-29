@@ -1557,6 +1557,7 @@ Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġn
 'modifiedarticleprotection'   => 'modifikajt il-livell ta\' protezzjoni għal "[[$1]]"',
 'unprotectedarticle'          => 'żblokkjajt "[[$1]]"',
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
+'prot_1movedto2'              => '[[$1]] tmexxa lejn [[$2]]',
 'protect-legend'              => 'Ikkonferma l-protezzjoni',
 'protectcomment'              => 'Kumment:',
 'protectexpiry'               => 'Jiskadi:',

@@ -683,6 +683,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'লুকরানির লগ',
+'prot_1movedto2'              => '[[$1]]-রে [[$2]]-ত গুসানি ইল',
 'protectcomment'              => 'মতহান:',
 'protectexpiry'               => 'মিয়াদহান লালর:',
 'protect_expiry_invalid'      => 'খেন্তাম লিতনাহান লালুইসে।',

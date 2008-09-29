@@ -1812,6 +1812,7 @@ Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'modifiedarticleprotection'   => 'endra nivået på vernet av «[[$1]]»',
 'unprotectedarticle'          => 'fjerna vern av «[[$1]]»',
 'protect-title'               => 'Vernar «$1»',
+'prot_1movedto2'              => '«[[$1]]» flytt til «[[$2]]»',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunn til verning',
 'protectexpiry'               => 'Utgår:',

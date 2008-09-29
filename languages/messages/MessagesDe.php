@@ -1837,6 +1837,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'modifiedarticleprotection'   => 'änderte den Schutz von „[[$1]]“',
 'unprotectedarticle'          => 'hob den Schutz von „[[$1]]“ auf',
 'protect-title'               => 'Schutz ändern von „$1“',
+'prot_1movedto2'              => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
 'protect-legend'              => 'Seitenschutzstatus ändern',
 'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdauer:',

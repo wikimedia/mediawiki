@@ -1626,6 +1626,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '"[[$1]]"करिता सुरक्षापातळी बदलली',
 'unprotectedarticle'          => '"[[$1]]" असुरक्षित केला.',
 'protect-title'               => '"$1" सुरक्षित करत आहे',
+'prot_1movedto2'              => '"[[$1]]" हे पान "[[$2]]" मथळ्याखाली स्थानांतरित केले.',
 'protect-legend'              => 'सुरक्षापातळीतील बदल निर्धारित करा',
 'protectcomment'              => 'सुरक्षित करण्यामागचे कारण',
 'protectexpiry'               => 'संपण्याचा कालावधी:',

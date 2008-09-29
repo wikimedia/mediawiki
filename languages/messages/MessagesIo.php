@@ -780,6 +780,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'protectedarticle'       => 'protektita "[[$1]]"',
 'unprotectedarticle'     => 'desprotektita [[$1]]',
 'protect-title'          => 'Protektante "$1"',
+'prot_1movedto2'         => '[[$1]] movita a [[$2]]',
 'protect-legend'         => 'Konfirmar protekto',
 'protectcomment'         => 'Motivo por la protekto',
 'protect-expiry-options' => '2 horo:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...

@@ -935,7 +935,8 @@ iitom e-iitomde diijömde caitóm.',
 'deletepage' => 'Delatar páhina',
 
 # Protect
-'pagesize' => '(bytenám)',
+'prot_1movedto2' => '[[$1]] yacomöxde [[$2]]',
+'pagesize'       => '(bytenám)',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ticpatlöx',

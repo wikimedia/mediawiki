@@ -283,6 +283,7 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 'actioncomplete' => 'Akshon kompletá',
 
 # Protect
+'prot_1movedto2' => '[[$1]] mové pa [[$2]]',
 'protect-legend' => 'Konfirmá protekshon',
 
 # Undelete

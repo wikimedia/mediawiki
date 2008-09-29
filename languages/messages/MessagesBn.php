@@ -1321,6 +1321,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '"[[$1]]"-এর জন্য সুরক্ষার স্তর পরিবর্তন করা হয়েছে',
 'unprotectedarticle'          => '"[[$1]]"-এর সুরক্ষা সরিয়ে নেওয়া হয়েছে',
 'protect-title'               => '"$1" সুরক্ষিত করা হচ্ছে',
+'prot_1movedto2'              => '[[$1]]-কে [[$2]]-এ সরিয়ে নেওয়া হয়েছে',
 'protect-legend'              => 'সুরক্ষা নিশ্চিত করুন',
 'protectcomment'              => 'সুরক্ষার কারণ',
 'protectexpiry'               => 'মেয়াদোত্তীর্ণ হবে:',

@@ -1503,6 +1503,7 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
 'unprotectedarticle'          => 'afverndaði „[[$1]]“',
 'protect-title'               => 'Vernda „$1“',
+'prot_1movedto2'              => '[[$1]] færð á [[$2]]',
 'protect-legend'              => 'Verndunarstaðfesting',
 'protectcomment'              => 'Ástæða',
 'protectexpiry'               => 'Rennur út:',

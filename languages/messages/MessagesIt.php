@@ -1745,6 +1745,7 @@ La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[Use
 'modifiedarticleprotection'   => 'ha modificato il livello di protezione di "[[$1]]"',
 'unprotectedarticle'          => 'ha sprotetto [[$1]]',
 'protect-title'               => 'Protezione di "$1"',
+'prot_1movedto2'              => 'ha spostato [[$1]] a [[$2]]',
 'protect-legend'              => 'Conferma la protezione',
 'protectcomment'              => 'Motivo della protezione:',
 'protectexpiry'               => 'Scadenza:',

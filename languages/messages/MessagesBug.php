@@ -135,6 +135,9 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 # Delete
 'actioncomplete' => 'Proses makkapo',
 
+# Protect
+'prot_1movedto2' => '[[$1]] ésuk ri [[$2]]',
+
 # Namespace form on various pages
 'blanknamespace' => '(Utama)',
 

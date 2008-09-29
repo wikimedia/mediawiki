@@ -1783,6 +1783,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'смяна на нивото на защита на „[[$1]]“',
 'unprotectedarticle'          => 'сваляне на защитата на „[[$1]]“',
 'protect-title'               => 'Защитаване на „$1“',
+'prot_1movedto2'              => '„[[$1]]“ преместена като „[[$2]]“',
 'protect-legend'              => 'Потвърждение на защитата',
 'protectcomment'              => 'Коментар:',
 'protectexpiry'               => 'Изтичане:',

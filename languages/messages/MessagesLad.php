@@ -309,6 +309,9 @@ $messages = array(
 # Delete
 'actioncomplete' => 'Aksion kompleta',
 
+# Protect
+'prot_1movedto2' => '[[$1]] trasladado a [[$2]]',
+
 # Namespace form on various pages
 'blanknamespace' => '(Principal)',
 

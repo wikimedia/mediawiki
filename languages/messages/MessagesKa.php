@@ -1252,6 +1252,7 @@ $NEWPAGE
 'protectlogpage'              => 'დაცვის ისტორია',
 'protectedarticle'            => 'დაცულია "[[$1]]"',
 'unprotectedarticle'          => 'დაცვა მოხსნილია "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] გადატანილია გვერდზე [[$2]]',
 'protect-legend'              => 'დაცვის დადასტურება',
 'protectcomment'              => 'კომენტარი:',
 'protectexpiry'               => 'ვადა',

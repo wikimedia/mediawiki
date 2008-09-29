@@ -1767,6 +1767,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'modifiedarticleprotection'   => 'endret beskyttelsesnivå for «[[$1]]»',
 'unprotectedarticle'          => 'åpnet [[$1]]',
 'protect-title'               => 'Låser «$1»',
+'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
 'protect-legend'              => 'Bekreft låsing',
 'protectcomment'              => 'Kommentar:',
 'protectexpiry'               => 'Utgår:',

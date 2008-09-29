@@ -1496,6 +1496,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'փոխվեց պաշտպանման մակարդակը «[[$1]]» էջի համար',
 'unprotectedarticle'          => 'պաշտպանումը հանված է «[[$1]]» էջից',
 'protect-title'               => '«$1» էջի պաշտպանման մակարդակի հաստատում',
+'prot_1movedto2'              => '«[[$1]]» վերանվանված է «[[$2]]»',
 'protect-legend'              => 'Հաստատել պաշտպանումը',
 'protectcomment'              => 'Պաշտպանման պատճառը.',
 'protectexpiry'               => 'Մարում.',

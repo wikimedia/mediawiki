@@ -1737,6 +1737,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'modifiedarticleprotection'   => 'Šćitanska rownina za „[[$1]]“ jo se změniła.',
 'unprotectedarticle'          => 'Šćit za „[[$1]]“ jo se wótpórał.',
 'protect-title'               => 'Šćit boka „$1“ změniś',
+'prot_1movedto2'              => '„[[$1]]“ pśesunjone na „[[$2]]“',
 'protect-legend'              => 'Šćitanje wobkšuśiś',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'cas wótběžy:',

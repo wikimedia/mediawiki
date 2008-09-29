@@ -549,6 +549,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 
 # Protect
 'protectlogpage'              => 'Kumbukumbu ya ulindaji',
+'prot_1movedto2'              => '[[$1]] umesogezwa hapa [[$2]]',
 'protect-legend'              => 'Hakikisha ukingo',
 'protectcomment'              => 'Maoni:',
 'protectexpiry'               => 'Itakwisha:',

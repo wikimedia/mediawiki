@@ -1566,6 +1566,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => 'сменето ниво на заштита за „[[$1]]“',
 'unprotectedarticle'          => 'отстранета заштита на "[[$1]]"',
 'protect-title'               => 'Заштитување "$1"',
+'prot_1movedto2'              => '[[$1]] преместена како [[$2]]',
 'protect-legend'              => 'Потврдете ја заштитата',
 'protectcomment'              => 'Причина за заштитување',
 'protectexpiry'               => 'Истекува:',

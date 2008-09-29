@@ -367,6 +367,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Protect
 'protectedarticle'            => 'prutettu "[[$1]]"',
+'prot_1movedto2'              => 'hà mossu [[$1]] à [[$2]]',
 'protect-legend'              => 'Cunfirmà a prutezzione',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',
 

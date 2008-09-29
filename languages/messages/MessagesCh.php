@@ -931,6 +931,7 @@ Chek $2 para i historian muna\'suha gi halacha.',
 
 # Protect
 'protectlogpage'              => 'I historian proteksion',
+'prot_1movedto2'              => 'Makånya [[$1]] påra [[$2]]',
 'protectcomment'              => 'Komentu:',
 'protectexpiry'               => 'Munhåyan:',
 'protect_expiry_invalid'      => 'Lachi i oran funhåyan.',

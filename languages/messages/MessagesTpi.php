@@ -199,6 +199,9 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 
 'enotif_reset' => 'Makim olgeta pes olsem mi lukim pinis',
 
+# Protect
+'prot_1movedto2' => '[[$1]] i surik i go long [[$2]] pinis',
+
 # Contributions
 'contributions' => 'Ol senis yusa i wokim',
 'mycontris'     => 'Ol senis mi wokim',

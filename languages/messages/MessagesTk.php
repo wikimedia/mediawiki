@@ -147,6 +147,9 @@ $messages = array(
 # Watchlist
 'mywatchlist' => 'Synlama tablisam',
 
+# Protect
+'prot_1movedto2' => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
+
 # Namespace form on various pages
 'blanknamespace' => '(Baş)',
 

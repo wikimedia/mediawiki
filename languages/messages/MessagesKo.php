@@ -1585,6 +1585,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
 'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
 'protect-title'               => '"$1" 보호하기',
+'prot_1movedto2'              => '[[$1]]을(를) [[$2]](으)로 옮김',
 'protect-legend'              => '보호 확인',
 'protectcomment'              => '보호 이유:',
 'protectexpiry'               => '보호 기간:',

@@ -721,6 +721,7 @@ L'ûrtimo cangiamento o ghe l'à fæto [[User:$3|$3]] ([[User talk:$3|Ciæti]]).
 # Protect
 'protectlogpage'              => 'Protessioîn',
 'protectedarticle'            => 'o s\'ha protezûo "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] mesciòu a [[$2]]',
 'protect-legend'              => 'Confermâ protession',
 'protectcomment'              => 'Motivo da protession:',
 'protectexpiry'               => 'Scadensa:',

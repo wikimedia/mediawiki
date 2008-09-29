@@ -1460,6 +1460,7 @@ Mangga mirsani [[Special:ProtectedPages|daftar kaca sing direksa]] kanggo daftar
 'modifiedarticleprotection'   => 'ngowahi tingkat pangreksan "[[$1]]"',
 'unprotectedarticle'          => 'ngilangi pangreksan "[[$1]]"',
 'protect-title'               => 'Ngowahi tingkatan pangreksan kanggo "$1"',
+'prot_1movedto2'              => '$1 dialihaké menyang $2',
 'protect-legend'              => 'Konfirmasi pangreksan',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'Kadaluwarsa:',

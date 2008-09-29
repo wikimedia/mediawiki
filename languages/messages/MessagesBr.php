@@ -1501,6 +1501,7 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 'modifiedarticleprotection'   => 'Kemmañ live gwareziñ "[[$1]]"',
 'unprotectedarticle'          => 'en/he deus diwarezet [[$1]]',
 'protect-title'               => 'Stankañ "$1"',
+'prot_1movedto2'              => '[[$1]] adkaset war-du [[$2]]',
 'protect-legend'              => 'Kadarnaat ar stankañ',
 'protectcomment'              => 'Abeg ar stankañ',
 'protectexpiry'               => 'Termen',

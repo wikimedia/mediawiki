@@ -1632,6 +1632,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'modifiedarticleprotection'   => 'ændrede beskyttelsen af "[[$1]]"',
 'unprotectedarticle'          => 'fjernet beskyttelse af [[$1]]',
 'protect-title'               => 'Ændre beskyttelse af "$1"',
+'prot_1movedto2'              => '$1 flyttet til $2',
 'protect-legend'              => 'Bekræft beskyttelse',
 'protectcomment'              => 'Begrundelse for beskyttelse',
 'protectexpiry'               => 'Udløb',

@@ -1707,6 +1707,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'modifiedarticleprotection'   => 'cambiado el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'protect-title'               => 'Cambiando el nivel de protección de «$1»',
+'prot_1movedto2'              => '[[$1]] trasladada a [[$2]]',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo de la protección',
 'protectexpiry'               => 'Caducidad:',

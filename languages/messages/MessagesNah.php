@@ -800,6 +800,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 # Protect
 'protectedarticle'       => 'ōmoquīxti "[[$1]]"',
 'unprotectedarticle'     => 'ōahmoquīxti "[[$1]]"',
+'prot_1movedto2'         => '[[$1]] ōmozacac īhuīc [[$2]]',
 'protectexpiry'          => 'Tlamiliztli:',
 'protect_expiry_invalid' => 'Ahcualli tlamiliztli cāhuitl.',
 'protect-default'        => '(ic default)',

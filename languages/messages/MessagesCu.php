@@ -428,6 +428,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'      => 'ꙁабранѥ́ниꙗ їсторі́ꙗ',
+'prot_1movedto2'      => '⁖ [[$1]] ⁖ нарєчє́нъ ⁖ [[$2]] ⁖ ѥ́стъ',
 'protect-level-sysop' => 'то́лико съмотри́тєлє',
 
 # Restrictions (nouns)

@@ -262,6 +262,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'deletionlog' => 'nipaq nipi',
 
 # Protect
+'prot_1movedto2'      => '[[$1]] surramajuq [[$2]]',
 'protect-legend'      => 'patimmivaa sapummivaa',
 'protect-level-sysop' => 'sirlak titiraqsimajunik tuqquqtiriji',
 

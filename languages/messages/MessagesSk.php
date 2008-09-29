@@ -1808,6 +1808,7 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[$1]]“',
 'unprotectedarticle'          => 'odomyká „[[$1]]“',
 'protect-title'               => 'Zamykám „$1“',
+'prot_1movedto2'              => '[[$1]] premiestnená na [[$2]]',
 'protect-legend'              => 'Potvrďte zamknutie',
 'protectcomment'              => 'Komentár:',
 'protectexpiry'               => 'Zamknuté do:',

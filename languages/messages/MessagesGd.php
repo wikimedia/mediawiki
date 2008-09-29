@@ -287,6 +287,7 @@ Ma bu toil leibh a dhubh a'dhuilleag as ur faire agaibh nas fadalache, cnap air 
 'protectedarticle'   => 'dìonta "[[$1]]"',
 'unprotectedarticle' => '"[[$1]]" neo-dhìonta',
 'protect-title'      => 'A\'dìonadh "$1"',
+'prot_1movedto2'     => '[[$1]] gluaiste ri [[$2]]',
 'protect-legend'     => 'Daingnich dìonadh',
 'protectcomment'     => 'Aobhar airson dìonaidh',
 

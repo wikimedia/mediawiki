@@ -1531,6 +1531,7 @@ $NEWPAGE
 'modifiedarticleprotection'   => '令"$1"',
 'unprotectedarticle'          => '啟焉"[[$1]]"',
 'protect-title'               => '更"$1"之緘',
+'prot_1movedto2'              => '[[$1]]遷至[[$2]]',
 'protect-legend'              => '准緘',
 'protectcomment'              => '贊曰',
 'protectexpiry'               => '屆期',

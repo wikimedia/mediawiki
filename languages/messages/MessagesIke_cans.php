@@ -291,6 +291,7 @@ $messages = array(
 'deletionlog' => 'ᓂᐸᖅ ᓂᐱ',
 
 # Protect
+'prot_1movedto2'      => '[[$1]] ᓱᕐᕋᒪᔪᖅ [[$2]]',
 'protect-legend'      => 'ᐸᑎᒻᒥᕚ ᓴᐳᒻᒥᕚ',
 'protect-level-sysop' => 'ᓯᕐᓚᒃ ᑎᑎᕋᖅᓯᒪᔪᓂᒃ ᑐᖅᑯᖅᑎᕆᔨ',
 

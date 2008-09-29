@@ -782,6 +782,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'modifiedarticleprotection'   => '"[[$1]]" səhifəsi üçün qorunma səviyyəsi dəyişildi',
 'unprotectedarticle'          => 'mühafizə kənarlaşdırdı "[[$1]]"',
 'protect-title'               => '"$1" üçün mühafizə səviyyəsinin dəyişdirilməsi',
+'prot_1movedto2'              => '[[$1]] adı dəyişildi. Yeni adı: [[$2]]',
 'protect-legend'              => 'Qorumayı təsdiq et',
 'protectcomment'              => 'Şərh:',
 'protectexpiry'               => 'Vaxtı bitib',

@@ -460,6 +460,7 @@ $messages = array(
 
 # Protect
 'protectlogpage'              => 'თხილუაშ ისტორია',
+'prot_1movedto2'              => '[[$1]] გინოღალირიე ხასილაშა [[$2]]',
 'protectcomment'              => 'კომენტარ:',
 'protectexpiry'               => 'ვადა',
 'protect-unchain'             => 'გინოღალას ალობას ბლოკიშ მონწყუმა',
