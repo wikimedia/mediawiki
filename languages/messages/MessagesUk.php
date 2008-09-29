@@ -1895,6 +1895,7 @@ $NEWPAGE
 ** непродуктивна війна редагувань
 ** популярна сторінка',
 'protect-edit-reasonlist'     => 'Причини захисту від редагувань',
+'protect-expiry-options'      => '15 хвилин:15 minutes,2 години:2 hours,1 день:1 day,3 дні:3 days,1 тиждень:1 week,2 тижні:2 weeks,1 місяць:1 month,3 місяці:3 months,6 місяців:6 months,1 рік:1 year,назавжди:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Рівень доступу:',
 'minimum-size'                => 'Мінімальний розмір',

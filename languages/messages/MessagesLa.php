@@ -1304,6 +1304,7 @@ ad emendationem proximam ab $2.',
 'protect-otherreason'       => 'Causa alia vel explicatio:',
 'protect-otherreason-op'    => 'causa alia',
 'protect-edit-reasonlist'   => 'Causas protectionum recensere',
+'protect-expiry-options'    => '2 horas:2 hours,1 diem:1 day,3 dies:3 days,1 hebdomadem:1 week,2 hebdomades:2 weeks,1 mensem:1 month,3 menses:3 months,6 menses:6 months,1 annum:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'          => 'Permissus:',
 'restriction-level'         => 'Gradus cohibitionis:',
 'pagesize'                  => '(octeti)',

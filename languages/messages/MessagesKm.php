@@ -1809,6 +1809,7 @@ $NEWPAGE
 ** សង្រ្គាមនៃការកែប្រែដែលនាំឲខូចប្រយោជន៍
 ** ទំព័រដែលមានចរាចរកំរិតខ្ពស់',
 'protect-edit-reasonlist'     => 'មូលហេតុដែលគេការពារមិនអោយមានការកែប្រែ',
+'protect-expiry-options'      => '២ម៉ោង:2 hours,១ថ្ងៃ:1 day,៣ថ្ងៃ:3 days,១សប្តាហ៍:1 week,២សប្តាហ៍:2 weeks,១ខែ:1 month,៣ខែ:3 months,៦ខែ:6 months,១ឆ្នាំ:1 year,គ្មានកំណត់:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'ការអនុញ្ញាត៖',
 'restriction-level'           => 'កំរិត​នៃ​ការដាក់កំហិត ៖',
 'minimum-size'                => 'ទំហំអប្បបរិមា',

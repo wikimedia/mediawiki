@@ -1077,6 +1077,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'protect-expiring'            => 'прядови $1 (UTC)',
 'protect-cascade'             => 'Ванстомс лопатьнень, конат совавтозь те лопаньте(каскадонь ванстома)',
 'protect-cantedit'            => 'Тынь алиякставсынк ванстомань уровнянть те лопанть, тынк арасть видечинк сонзэ лиякстоманьте.',
+'protect-expiry-options'      => '2 част:2 hours,1 чи:1 day,3 чить:3 days,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Нолдамо:',
 'restriction-level'           => 'Нолдавксонь покшизэ:',
 'minimum-size'                => 'Минимум кувалмозо',

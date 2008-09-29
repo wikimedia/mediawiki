@@ -302,7 +302,8 @@ $messages = array(
 'delete-legend'  => 'ဖျက်',
 
 # Protect
-'restriction-type' => 'အခွင့်:',
+'protect-expiry-options' => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite', # display1:time1,display2:time2,...
+'restriction-type'       => 'အခွင့်:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ပြင်​ဆင်​ရန်​',

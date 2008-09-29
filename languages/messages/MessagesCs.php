@@ -1997,6 +1997,7 @@ Současné nastavení pro tuto stránku je: <strong>$1</strong>:',
 ** Editační válka
 ** Velice často používaná stránka',
 'protect-edit-reasonlist'     => 'Editace seznamu důvodů zamčení',
+'protect-expiry-options'      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Omezení:',
 'restriction-level'           => 'Úroveň omezení:',
 'minimum-size'                => 'Min. velikost',

@@ -1683,6 +1683,7 @@ Gah een Sied trüch un versöök dat noch wedder.',
 'protect-expiring'            => 'bet $1 (UTC)',
 'protect-cascade'             => 'Kaskadensparr – in disse Siet inbunnene Vörlagen warrt ok schuult.',
 'protect-cantedit'            => 'Du kannst de Sparr vun disse Siet nich ännern, du hest dor nich de nödigen Rechten för.',
+'protect-expiry-options'      => '1 Stünn:1 hour,2 Stünnen:2 hours,6 Stünnen:6 hours,1 Dag:1 day,3 Daag:3 days,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,1 Johr:1 year,ahn Enn:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Schuulstatus',
 'restriction-level'           => 'Schuulhööchd',
 'minimum-size'                => 'Minimumgrött',

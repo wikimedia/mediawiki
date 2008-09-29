@@ -1440,6 +1440,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'protect-expiring'            => 'Дуусах хугацаа: $1 (UTC)',
 'protect-cascade'             => 'Энэ хуудсанд орсон хуудсуудыг хамгаалах (давхар хамгаалалт)',
 'protect-cantedit'            => 'Таньд энэ хуудсыг засварлах эрх байхгүй тул хамгаалалтын түвшинг өөрчилж болохгүй.',
+'protect-expiry-options'      => '15 минут:15 minutes,30 минут:30 minutes,2 цаг:2 hours,1 өдөр:1 өдөр,3 days:3 өдөр,1 долоо хоног:1 week,2 долоо хоног:2 weeks,1 сар:1 month,3 сар:3 months,6 сар:6 months,1 жил:1 year,хугацаагүй:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Зөвшөөрөл:',
 'restriction-level'           => 'Хамгаалалтын түвшин:',
 'minimum-size'                => 'Доод хэмжээ',

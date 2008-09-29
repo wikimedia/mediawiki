@@ -1947,6 +1947,7 @@ $NEWPAGE
 ** непродуктивная война правок
 ** популярная страница',
 'protect-edit-reasonlist'     => 'Править список причин',
+'protect-expiry-options'      => '15 минут:15 minutes,2 часа:2 hours,6 часов:6 hours,12 часов:12 hours,1 день:1 day,3 дня:3 days,1 неделю:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Права:',
 'restriction-level'           => 'Уровень доступа:',
 'minimum-size'                => 'Минимальный размер',

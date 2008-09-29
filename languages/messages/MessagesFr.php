@@ -1877,6 +1877,7 @@ Voici les réglages actuels de la page <strong>$1</strong> :',
 ** Guerre d'édition
 ** Page à fort trafic",
 'protect-edit-reasonlist'     => 'Modifier les raisons de protection',
+'protect-expiry-options'      => '2 heures:2 hours,1 jour:1 day,3 jours:3 days,1 semaine:1 week,2 semaines:2 weeks,1 mois:1 month,3 mois:3 months,6 mois:6 months,1 an:1 year,indéfiniment:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission :',
 'restriction-level'           => 'Niveau de restriction :',
 'minimum-size'                => 'Taille minimum',

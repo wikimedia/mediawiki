@@ -518,6 +518,7 @@ $messages = array(
 'protect-expiring'            => '$1 (UTC) དུས་ཡོལཝ་ཨིན།',
 'protect-cascade'             => 'ཤོག་ལེབ་(ཀེསི་ཀེ་ཌིང་ཉེན་སྐྱོབ་) ཀྱི་གྲངས་སུ་ཚུད་མི་ཉེན་སྐྱོབ་ཤོག་ལེབ།',
 'protect-cantedit'            => 'ཁྱོད་ལུ་ ཞུན་དག་གི་གནང་བ་མེདཔ་ལས་ ཤོག་ལེབ་འདི་གི་ཉེན་སྐྱོབ་གནས་རིམ་བསྒྱུར་མི་ཚུགས།',
+'protect-expiry-options'      => 'ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'གནང་བ:',
 'restriction-level'           => 'མི་ཆོག་པའི་གནས་རིམ:',
 

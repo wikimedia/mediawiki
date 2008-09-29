@@ -374,8 +374,9 @@ Bitte nemm eenen aundren.',
 'rollbacklink' => 'trigj rolle',
 
 # Protect
-'protectexpiry'    => 'Ütgontiet:',
-'restriction-type' => "Er'laubniss:",
+'protectexpiry'          => 'Ütgontiet:',
+'protect-expiry-options' => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite', # display1:time1,display2:time2,...
+'restriction-type'       => "Er'laubniss:",
 
 # Namespace form on various pages
 'namespace'      => 'Nomerüm:',

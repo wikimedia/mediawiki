@@ -1535,6 +1535,7 @@ Ekö! parametem anuik pada: <strong>$1</strong>:',
 'protect-expiring'            => 'dul jü $1 (UTC)',
 'protect-cascade'             => 'Jelön padis in pad at pekeninükölis (jänajelam)',
 'protect-cantedit'            => 'No kanol votükön jelanivodi pada at bi no labol däli ad redakön oni.',
+'protect-expiry-options'      => 'düps 2:2 hours,del 1:1 day,dels 3:3 days,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Däl:',
 'restriction-level'           => 'Miedükamanivod:',
 'minimum-size'                => 'Gretot smalikün',

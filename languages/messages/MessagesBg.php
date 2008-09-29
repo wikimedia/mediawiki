@@ -1814,6 +1814,7 @@ $NEWPAGE
 ** Редакторска война
 ** Страница, изискваща много сървърни ресурси',
 'protect-edit-reasonlist'     => 'Редактиране на причините за защита',
+'protect-expiry-options'      => 'два часа:2 hours,един ден:1 day,три дни:3 days,една седмица:1 week,две седмици:2 weeks,един месец:1 month,три месеца:3 months,шест месеца:6 months,една година:1 year,безсрочно:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Състояние на защитата:',
 'restriction-level'           => 'Ниво на защитата:',
 'minimum-size'                => 'Минимален размер',

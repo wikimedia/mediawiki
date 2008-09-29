@@ -1494,6 +1494,7 @@ Hier is die huidige verstellings vir bladsy <strong>$1</strong>:",
 'protect-expiring'            => 'verval $1 (UTC)',
 'protect-cascade'             => 'Beveilig bladsye insluitend die bladsy (kaskade effek)',
 'protect-cantedit'            => 'U kan nie die veiligheidsvlak van die blad verander nie, want u het nie regte om dit te wysig nie.',
+'protect-expiry-options'      => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Regte:',
 'restriction-level'           => 'Beperkingsvlak:',
 'minimum-size'                => 'Minimum grootte',

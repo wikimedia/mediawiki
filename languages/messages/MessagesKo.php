@@ -1615,6 +1615,7 @@ $NEWPAGE
 ** 빈번한 광고 행위
 ** 비생산적인 편집 분쟁
 ** 방문이 많은 문서',
+'protect-expiry-options'      => '2시간:2 hours,1일:1 day,3일:3 days,1주일:1 week,2주일:2 weeks,1개월:1 month,3개월:3 months,6개월:6 months,1년:1 year,무기한:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '권한:',
 'restriction-level'           => '보호 수준:',
 'minimum-size'                => '최소 크기',

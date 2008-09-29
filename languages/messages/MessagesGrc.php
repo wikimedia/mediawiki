@@ -1401,6 +1401,7 @@ $1',
 ** Ὑπεράριθμαι ἀνεπιθύμηται ἀγγελίαι
 ** Ἀντιπαραγωγικοὶ πόλεμοι μεταγραφῶν
 ** Δἐλτος ὑψηλῆς κυκλοφορίας',
+'protect-expiry-options'      => '2 ὥραι:2 hours,1 ἡμέρα:1 day,3 ἡμέραι:3 days,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ἐξουσία:',
 'restriction-level'           => 'Κλῖμαξ περιορισμοῦ:',
 'minimum-size'                => 'Ἐλάχιστον μέγεθος',

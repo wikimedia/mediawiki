@@ -417,6 +417,9 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'deletedarticle' => 'olupapula olwa "[[$1]]" lugyidwawo',
 'dellogpage'     => 'Ebigyidwawo',
 
+# Protect
+'protect-expiry-options' => 'saawa 2:2 hours,lunaku 1:1 day,nnaku 3:3 days,sande 1:1 week,sande 2:2 weeks,mwezi 1:1 month,myezi 3:3 months,myezi 6:6 months,mwaka 1:1 year,okutali kkomo:infinite', # display1:time1,display2:time2,...
+
 # Restrictions (nouns)
 'restriction-edit' => 'Kyuusa',
 

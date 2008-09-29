@@ -777,11 +777,12 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 'revertpage'     => 'Rekuperita redakti da [[Special:Contributions/$2|$2]] ([[User talk:$2|Debato]]); rekuperita la lasta redakto di [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
-'protectedarticle'   => 'protektita "[[$1]]"',
-'unprotectedarticle' => 'desprotektita [[$1]]',
-'protect-title'      => 'Protektante "$1"',
-'protect-legend'     => 'Konfirmar protekto',
-'protectcomment'     => 'Motivo por la protekto',
+'protectedarticle'       => 'protektita "[[$1]]"',
+'unprotectedarticle'     => 'desprotektita [[$1]]',
+'protect-title'          => 'Protektante "$1"',
+'protect-legend'         => 'Konfirmar protekto',
+'protectcomment'         => 'Motivo por la protekto',
+'protect-expiry-options' => '2 horo:2 hours,1 dio:1 day,3 dii:3 days,1 semano:1 week,2 semani:2 weeks,1 monato:1 month,3 monati:3 months,6 monati:6 months,1 yaro:1 year,infinita:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit' => 'Redaktar',

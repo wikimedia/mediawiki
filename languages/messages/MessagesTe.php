@@ -1642,6 +1642,7 @@ $NEWPAGE
 ** అత్యధిక స్పామింగు
 ** నిర్మాణాత్మకంగా లేని మార్పుల యుద్ధం
 ** అధిక రద్దీగల పేజీ',
+'protect-expiry-options'      => '2 గంటలు:2 hours,1 రోజు:1 day,3 రోజులు:3 days,1 వారం:1 week,2 వారాలు:2 weeks,1 నెల:1 month,3 నెలలు:3 months,6 నెలలు:6 months,1 సంవత్సరం:1 year,ఎప్పటికీ:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'అనుమతి:',
 'restriction-level'           => 'నిరోధ స్థాయి:',
 'minimum-size'                => 'కనీస పరిమాణం',

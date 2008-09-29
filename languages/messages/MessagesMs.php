@@ -1807,6 +1807,7 @@ Ini adalah tetapan semasa bagi laman <strong>$1</strong>:',
 ** Perang sunting
 ** Laman popular',
 'protect-edit-reasonlist'     => 'Ubah sebab-sebab perlindungan',
+'protect-expiry-options'      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Keizinan:',
 'restriction-level'           => 'Peringkat pembatasan:',
 'minimum-size'                => 'Saiz minimum',

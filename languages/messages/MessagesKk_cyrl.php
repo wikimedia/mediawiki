@@ -1961,6 +1961,7 @@ $2 соңғы нұсқасына өзгертті.',
 'protect-expiring'            => 'мерзімі бітпек: $1 (UTC)',
 'protect-cascade'             => 'Бұл беттің кірікбеттерін қорғау (баулы қорғау).',
 'protect-cantedit'            => 'Бұл беттің қорғау деңгейін өзгерте алмайсыз, себебі бұны өңдеуге рұқстаңыз жоқ.',
+'protect-expiry-options'      => '2 сағат:2 hours,1 күн:1 day,3 күн:3 days,1 апта:1 week,2 апта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мәнгі:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Рұқсаты:',
 'restriction-level'           => 'Тиымдық деңгейі:',
 'minimum-size'                => 'Ең аз мөлшері',

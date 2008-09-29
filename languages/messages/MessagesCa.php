@@ -1813,6 +1813,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 ** Guerra d'edicions improductiva
 ** Pàgina amb alt trànsit",
 'protect-edit-reasonlist'     => 'Edita motius de protecció',
+'protect-expiry-options'      => '2 hores:2 hours,1 dia:1 day,3 dies:3 days,1 setmana:1 week,2 setmanes:2 weeks,1 mes:1 month,3 mesos:3 months,6 mesos:6 months,1 any:1 year,infinit:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permís:',
 'restriction-level'           => 'Nivell de restricció:',
 'minimum-size'                => 'Mida mínima',

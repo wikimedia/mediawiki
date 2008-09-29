@@ -1791,6 +1791,7 @@ Tu pote cambiar le nivello de protection de iste pagina, sed isto non cambiara l
 ** Guerra de modificationes contraproductive
 ** Pagina frequentemente visitate',
 'protect-edit-reasonlist'     => 'Modificar le motivos pro protection',
+'protect-expiry-options'      => '2 horas:2 hours,1 die:1 day,3 dies:3 days,1 septimana:1 week,2 septimanas:2 weeks,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Nivello de restriction:',
 'minimum-size'                => 'Grandor minime',

@@ -1521,6 +1521,7 @@ $NEWPAGE
 'protect-cascade'             => 'Араламс лопатнень, конатнень сувафтозь тя лувомас (каскад араламать алу)',
 'protect-cantedit'            => 'Тондейть аш кода лопать аралама виензон полафтомс, сяс мес тонь
 аш петнемань мярьговомась.',
+'protect-expiry-options'      => '2 ойхть (част):2 hours,1 ши:1 day,3 шит:3 days,1 тарга (недля):1 week,2 таргат (недлят):2 weeks,1 ков:1 month,3 кофт:3 months,6 кофт:6 months,1 киза:1 year,пефтома:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Мярьговома:',
 'restriction-level'           => 'Пякстама вийсь:',
 'minimum-size'                => 'Минимум кувалмоц',

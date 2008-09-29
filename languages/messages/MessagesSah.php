@@ -1620,6 +1620,7 @@ $NEWPAGE
 'protect-othertime-op'        => 'атын кэм',
 'protect-otherreason'         => 'Атын/эбии төрүөтэ:',
 'protect-otherreason-op'      => 'атын/эбии төрүөтэ',
+'protect-expiry-options'      => '2 чаас:2 hours,1 күн:1 day,3 күн:3 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 week,1 ый:1 month,3 ый:3 month,6 ый:6 month,1 сыл:1 month,больдьоҕо суох:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Маны оҥорор кыахтааххын:',
 'restriction-level'           => 'Киирии таһыма:',
 'minimum-size'                => 'Оччугуй',

@@ -739,6 +739,7 @@ Queste son e impostassioîn correnti pe 'sta paggina (<strong>$1</strong>):",
 'protect-expiring'            => 'scadensa: $1 (UTC)',
 'protect-cascade'             => 'Protession recorsciva (estende a protession a tûtte e paggine inclûse in questa chì).',
 'protect-cantedit'            => "Ti no ti pêu modificâ i livelli de protession pe-a paggina se no ti g'hæ i permissi pe modificâ a paggina mæxima.",
+'protect-expiry-options'      => '2 ôe:2 hours,1 giorno:1 day,3 giorni:3 days,1 settemann-a:1 week,2 settemann-e:2 weeks,1 meise:1 month,3 meixi:3 months,6 meixi:6 months,1 anno:1 year,infinîo:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisso',
 'restriction-level'           => 'Livello de restrission',
 

@@ -1522,6 +1522,7 @@ Núverandi staða síðunnar er <strong>$1</strong>:',
 'protect-expiring'            => 'rennur út $1 (UTC)',
 'protect-cascade'             => 'Vernda innifaldar síður í þessari síðu (keðjuvörn)',
 'protect-cantedit'            => 'Þú getur ekki breytt verndunarstigi þessarar síðu, vegna þess að þú hefur ekki réttindin til að breyta því.',
+'protect-expiry-options'      => '2 tíma:2 hours,1 dag:1 day,3 daga:3 days,1 viku:1 week,2 vikur:2 weeks,1 mánuð:1 month,3 mánuði:3 months,6 mánuði:6 months,1 ár:1 year,aldrei:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Réttindi:',
 'restriction-level'           => 'Takmarkaði við:',
 'minimum-size'                => 'Lágmarksstærð',

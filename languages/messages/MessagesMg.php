@@ -772,6 +772,7 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 'protect-text'                => 'Afaka jerenao na ovainao eto ny politikam-piarovana ny pejy <strong><nowiki>$1</nowiki></strong>.',
 'protect-level-autoconfirmed' => 'Sakano ny mpikambana tsy misoratra anarana',
 'protect-level-sysop'         => 'Sysops ihany',
+'protect-expiry-options'      => '2 ora:2 hours,1 andro:1 day,3 andro:3 days,1 herinandro:1 week,2 herinandro:2 weeks,1 volana:1 month,3 volana:3 months,6 volana:6 months,1 taona:1 year,mandrakizay:infinite', # display1:time1,display2:time2,...
 
 # Undelete
 'undelete'               => 'Jereo ny pejy voafafa',
