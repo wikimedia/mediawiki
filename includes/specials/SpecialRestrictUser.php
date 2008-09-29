@@ -97,7 +97,7 @@ class RestrictUserForm {
 			$useRequestValues ? $wgRequest->getVal( 'expiry' ) : false );
 		$form['restrictuser-reason'] = Xml::input( 'reason', false,
 			$useRequestValues ? $wgRequest->getVal( 'reason' ) : false );
-		$wgOut->addHTML( Xml::buildForm( $form, 'restrictuser-sumbit' ) );
+		$wgOut->addHTML( Xml::buildForm( $form, 'restrictuser-submit' ) );
 		$wgOut->addHTML( "</form></fieldset>" );
 	}
 
@@ -165,7 +165,7 @@ class RestrictUserForm {
 			$useRequestValues ? $wgRequest->getVal( 'expiry' ) : false );
 		$form['restrictuser-reason'] = Xml::input( 'reason', false,
 			$useRequestValues ? $wgRequest->getVal( 'reason' ) : false );
-		$wgOut->addHTML( Xml::buildForm( $form, 'restrictuser-sumbit' ) );
+		$wgOut->addHTML( Xml::buildForm( $form, 'restrictuser-submit' ) );
 		$wgOut->addHTML( "</form></fieldset>" );
 	}
 
