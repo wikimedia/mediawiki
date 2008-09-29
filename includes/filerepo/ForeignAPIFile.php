@@ -31,17 +31,10 @@ class ForeignAPIFile extends File {
 	}
 
 	function transform( $params, $flags = 0 ) {
-		if ( $this->repo->canCacheThumbs() ) {
-			$thumbUrl = $this->repo->getThumbUrlFromCache(
+		$thumbUrl = $this->repo->getThumbUrlFromCache(
 				$this->getName(),
 				isset( $params['width'] ) ? $params['width'] : -1,
 				isset( $params['height'] ) ? $params['height'] : -1 );
-		} else {
-			$thumbUrl = $this->repo->getThumbUrl(
-				$this->getName(),
-				isset( $params['width'] ) ? $params['width'] : -1,
-				isset( $params['height'] ) ? $params['height'] : -1 );
-		}
 		if( $thumbUrl ) {
 			return $this->handler->getTransform( $this, 'bogus', $thumbUrl, $params );;
 		}
