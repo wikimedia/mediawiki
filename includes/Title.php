@@ -2543,8 +2543,9 @@ class Title {
 			);
 			# Update the protection log
 			$log = new LogPage( 'protect' );
-			$comment = wfMsgForContent('1movedto2',$this->getPrefixedText(), $nt->getPrefixedText() );
-			$log->addEntry( 'protect', $nt, $comment, array() ); // FIXME: $params?
+			$comment = wfMsgForContent('prot_1movedto2',$this->getPrefixedText(), $nt->getPrefixedText() );
+			if( $reason ) $comment .= ': ' . $reason;
+			$log->addEntry( 'move_prot', $nt, $comment, array($this->getPrefixedText()) ); // FIXME: $params?
 		}
 
 		# Update watchlists
