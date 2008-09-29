@@ -310,6 +310,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 
 # Protect
 'protect-level-autoconfirmed' => 'Xemɔ na ŋkɔmaŋlɔlawo',
+'protect-expiry-options'      => 'gaƒoƒo 2:2 hours,ŋkeke 1:1 day,ŋkeke 3:3 days,kɔsiɖa 1:1 week,kɔsiɖa 2:2 weeks,ɣleti 1:1 month,ɣleti 3:3 months,ɣleti 6:6 months,ƒe 1:1 year,tegbe:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Mɔɖeɖe:',
 
 # Undelete

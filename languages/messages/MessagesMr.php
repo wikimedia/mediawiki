@@ -1646,6 +1646,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) ला संपेल',
 'protect-cascade'             => 'या पानात असलेली पाने सुरक्षित करा (सुरक्षा शिडी)',
 'protect-cantedit'            => 'तुम्ही या पानाची सुरक्षा पातळी बदलू शकत नाही कारण तुम्हाला तसे करण्याची परवानगी नाही.',
+'protect-expiry-options'      => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'परवानगी:',
 'restriction-level'           => 'सुरक्षापातळी:',
 'minimum-size'                => 'किमान आकार',

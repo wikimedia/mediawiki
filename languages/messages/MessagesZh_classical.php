@@ -1562,6 +1562,7 @@ $NEWPAGE
 ** 反產之戰纂
 ** 高量之頁',
 'protect-edit-reasonlist'     => '纂護之理',
+'protect-expiry-options'      => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '准',
 'restriction-level'           => '緘捆',
 'minimum-size'                => '幅越',

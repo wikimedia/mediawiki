@@ -1912,6 +1912,7 @@ $NEWPAGE
 'protect-otherreason'         => 'Іншая/дадатковая прычына:',
 'protect-otherreason-op'      => 'іншая/дадатковая прычына',
 'protect-edit-reasonlist'     => 'Рэдагаваць прычыны абароны',
+'protect-expiry-options'      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Дазвол:',
 'restriction-level'           => 'Узровень абмежаваньня:',
 'minimum-size'                => 'Мінімальны памер',

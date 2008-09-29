@@ -1842,6 +1842,7 @@ Tu sú aktuálne nastavenia stránky <strong>$1</strong>:',
 ** Neproduktívne upravovacie vojny
 ** Veľmi často naštevovaná stránka',
 'protect-edit-reasonlist'     => 'Upraviť dôvody zamknutia',
+'protect-expiry-options'      => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Povolenie:',
 'restriction-level'           => 'Úroveň obmedzenia:',
 'minimum-size'                => 'Minimálna veľkosť',

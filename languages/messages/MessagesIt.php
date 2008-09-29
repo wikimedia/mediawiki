@@ -1779,6 +1779,7 @@ Le impostazioni correnti per la pagina sono <strong>$1</strong>:',
 ** Pagina molto usata
 ** Pagina archiviata',
 'protect-edit-reasonlist'     => 'Modifica i motivi per la protezione',
+'protect-expiry-options'      => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permesso',
 'restriction-level'           => 'Livello di restrizione',
 'minimum-size'                => 'Dimensione minima',

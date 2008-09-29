@@ -1713,6 +1713,7 @@ Esta ye la configuración actual pa la páxina <strong>$1</strong>:',
 ** Guerra d'ediciones contraproducente
 ** Páxina de tráficu altu",
 'protect-edit-reasonlist'     => 'Editar los motivos de proteición',
+'protect-expiry-options'      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',

@@ -687,6 +687,7 @@ Asi es la ajustas presente per la paje <strong>$1</strong>:',
 'protect-expiring'            => 'fini $1 (UTC)',
 'protect-cascade'             => 'Proteje pajes ce es incluida en esta paje (proteje cascadente)',
 'protect-cantedit'            => 'Tu no pote cambia la nivel de proteje de esta paje, per ce tu no ave la permite per edita el.',
+'protect-expiry-options'      => '2 oras:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mensa:1 month,3 mensas:3 months,6 mensas:6 months,1 anio:1 year,nonlimitada:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permete:',
 'restriction-level'           => 'Nivel de restrinje:',
 

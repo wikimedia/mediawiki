@@ -1763,6 +1763,7 @@ $NEWPAGE
 'protect-cascade'             => 'Заштићене странице укључене у ову страницу (преносива заштита)
 Protect pages included in this page (cascading protection)',
 'protect-cantedit'            => 'Не можете мењати нивое заштите за ову страницу, због тога што немате овлашћења да је уређујете.',
+'protect-expiry-options'      => '2 сата:2 hours,1 дан:1 day,3 дана:3 days,1 недеља:1 week,2 недеље:2 weeks,1 месец:1 month,3 месеца:3 months,6 месеци:6 months,1 година:1 year,бесконачно:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Овлашћење:',
 'restriction-level'           => 'Ниво заштите:',
 'minimum-size'                => 'Мин величина',

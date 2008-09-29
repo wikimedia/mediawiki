@@ -1522,6 +1522,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ <strong>$1</strong>:",
 'protect-expiring'            => "a zeu d'e dermen d'an $1",
 'protect-cascade'             => 'Gwareziñ dre skalierad - gwareziñ a ra an holl bajennoù zo er bajenn-mañ. ARABAT IMPLIJOUT.',
 'protect-cantedit'            => "N'oc'h ket evit cheñch live gwareziñ ar bajenn-mañ rak n'oc'h ket aotreet da zegas kemmoù enni.",
+'protect-expiry-options'      => '2 eurvezh:2 hours,1 devezh:1 day,3 devezh:3 days,1 sizhunvezh:1 week,2 sizhunvezh:2 weeks,1 mizvezh:1 month,3 mizvezh:3 months,6 mizvezh:6 months,1 bloaz:1 year,da viken:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Aotre',
 'restriction-level'           => 'Live strishaat :',
 'minimum-size'                => 'Ment vihanañ',

@@ -2156,6 +2156,7 @@ $NEWPAGE
 ** حرب تحرير معرقلة للعمل المنتج
 ** صفحة زوارها كثيرون',
 'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
+'protect-expiry-options'      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى الضوابط:',
 'minimum-size'                => 'الحجم الأدنى',

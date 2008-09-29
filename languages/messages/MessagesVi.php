@@ -1780,6 +1780,7 @@ hiện tại của trang <strong>$1</strong>:',
 ** Bút chiến thiếu tính xây dựng
 ** Trang nhiều người xem',
 'protect-edit-reasonlist'     => 'Sửa lý do khóa trang',
+'protect-expiry-options'      => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
 'minimum-size'                => 'Kích thước tối thiểu',

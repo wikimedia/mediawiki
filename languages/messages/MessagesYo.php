@@ -569,6 +569,9 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Delete
 'deletedarticle' => 'A ti pa "[[$1]]" rẹ́',
 
+# Protect
+'protect-expiry-options' => 'wákàtí 2:2 hours,ọjọ́ 1:1 day,ọjọ́ 3:3 days,ọ̀ṣẹ̀ 1:1 week,ọ̀ṣẹ̀ 2:2 weeks,osù 1:1 month,osù 3:3 months,osù 6:6 months,ọdún 1:1 year,láìlópin:infinite', # display1:time1,display2:time2,...
+
 # Namespace form on various pages
 'namespace'      => 'Orúkọàyè:',
 'blanknamespace' => '(Gbangba)',

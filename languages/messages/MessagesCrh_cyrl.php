@@ -1325,6 +1325,7 @@ e-mail: $PAGEEDITOR_EMAIL
 'protect-expiring'            => 'бите: $1 (UTC)',
 'protect-cascade'             => 'Бу саифеде къулланылгъан бутюн саифелерни къорчалавгъа ал (каскадлы къорчалав)',
 'protect-cantedit'            => 'Бу саифенинъ къорчалав севиесини денъиштирип оламазсынъыз, чюнки буны япмагъа еткинъиз ёкъ.',
+'protect-expiry-options'      => '2 саат:2 hours,1 кунь:1 day,3 кунь:3 days,1 афта:1 week,2 афта:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 йыл:1 year,муддетсиз:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Рухсети:',
 'restriction-level'           => 'Рухсет севиеси:',
 'minimum-size'                => 'Минималь буюклик',

@@ -1981,6 +1981,7 @@ $2 سوڭعى نۇسقاسىنا وزگەرتتى.',
 'protect-expiring'            => 'مەرزىمى بىتپەك: $1 (UTC)',
 'protect-cascade'             => 'بۇل بەتتىڭ كىرىكبەتتەرىن قورعاۋ (باۋلى قورعاۋ).',
 'protect-cantedit'            => 'بۇل بەتتىڭ قورعاۋ دەڭگەيىن وزگەرتە المايسىز, سەبەبى بۇنى وڭدەۋگە رۇقستاڭىز جوق.',
+'protect-expiry-options'      => '2 ساعات:2 hours,1 كۇن:1 day,3 كۇن:3 days,1 اپتا:1 week,2 اپتا:2 weeks,1 اي:1 month,3 اي:3 months,6 اي:6 months,1 جىل:1 year,مانگى:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'رۇقساتى:',
 'restriction-level'           => 'تىيىمدىق دەڭگەيى:',
 'minimum-size'                => 'ەڭ از مولشەرى',

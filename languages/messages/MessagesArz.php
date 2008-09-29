@@ -2026,6 +2026,7 @@ $NEWPAGE
 ** حرب تحرير معرقلة للعمل المنتج
 ** صفحة زوارها كثيرون',
 'protect-edit-reasonlist'     => 'عدل أسباب الحماية',
+'protect-expiry-options'      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'سماح:',
 'restriction-level'           => 'مستوى القيود :',
 'minimum-size'                => 'أقل حجم',

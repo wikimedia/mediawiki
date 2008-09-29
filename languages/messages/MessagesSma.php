@@ -602,6 +602,7 @@ Daaletje tjaeleste-vaarjelidh sïjsestäälninge ihke bielie <strong>$1</strong>
 'protect-expiring'            => 'boarasnuvve $1 (UTC)',
 'protect-cascade'             => 'Vaarjelidh bielieh guosket sïjse dïhte bielie (viidit suodjaluse)',
 'protect-cantedit'            => 'Datne dorje ijje värrhtoedimmie vaarjelidhdaltese ihke dïhte bielie, ihke datne ijja åtna luhpie ahte värrhtoedimmie dïhte.',
+'protect-expiry-options'      => '2 täjmoe:2 hours,1 biejjie:1 day,3 biejjie:3 days,1 våhkoe:1 week,2 våhkoe:2 weeks,1 aske:1 month,3 aske:3 months,6 aske:6 months,1 jaepie:1 year,gietjieloeves:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisjovne:',
 'restriction-level'           => 'Restriksjovne daltese:',
 

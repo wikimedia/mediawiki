@@ -1459,6 +1459,7 @@ $NEWPAGE
 'protect-expiring'            => 'замони саромадан $1 (UTC)',
 'protect-cascade'             => 'Муҳофизати обшорӣ - Аз ҳама саҳифаҳое, ки дар ин саҳифа омадаанд муҳофизат мешаванд',
 'protect-cantedit'            => 'Шумо вазъияти ҳифзи ин саҳифаро тағйир дода наметавонед, чун иҷозати вироиши онро надоред.',
+'protect-expiry-options'      => '2 соат:2 hours,1 рӯз:1 day,3 рӯз:3 days,1 ҳафта:1 week,2 ҳафта:2 weeks,1 моҳ:1 month,3 моҳ:3 months,6 моҳ:6 months,1 сол:1 year,беохир:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Дастраси:',
 'restriction-level'           => 'Сатҳи маҳдудият:',
 'minimum-size'                => 'Ҳадди ақали андоза',

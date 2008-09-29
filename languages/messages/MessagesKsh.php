@@ -1957,6 +1957,7 @@ Di Sigg <strong>„$1“:</strong> es jetz jrad:',
 ** Hen- un her-Änderei, woh mer süht, dat nix mieh joods erus kumme weed
 ** janz weschtejje Sigg, met ußerjewöhnlesch fill Afroofe',
 'protect-edit-reasonlist'     => 'Don de Grönd för t Schöze beärrbeide',
+'protect-expiry-options'      => '1 Stund:1 hour,2 Stund:2 hours,3 Stund:3 hours,6 Stund:6 hours,12 Stund:12 hours,1 Dach:1 day,3 Däch:3 days,1 Woch:1 week,2 Woche:2 weeks,3 Woche:3 weeks,1 Mond:1 month,3 Mond:3 months,6 Mond:6 months,9 Mond:9 months,1 Johr:1 year,2 Johre:2 years,3 Johre:3 years,Unbejrenz:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'jespecht es:',
 'restriction-level'           => 'ändere darf:',
 'minimum-size'                => 'met mieh wie',

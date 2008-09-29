@@ -1670,6 +1670,7 @@ $NEWPAGE
 ** 編集合戦
 ** 高負荷ページ',
 'protect-edit-reasonlist'     => '保護理由を編集する',
+'protect-expiry-options'      => '15分:15 minutes,30分:30 minutes,2時間:2 hours,1日:1 day,3日:3 days,1週間:1 week,2週間:2 weeks,1ヶ月:1 month,3ヶ月:3 months,6ヶ月:6 months,1年:1 year,無期限:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '制限:',
 'restriction-level'           => '保護レベル:',
 'minimum-size'                => '最小サイズ',

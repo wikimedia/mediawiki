@@ -1446,6 +1446,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) மணிக்கு காலாவதியாகிறது',
 'protect-cascade'             => 'இப்பக்கத்தில் இணைக்கப்பட்ட பக்கங்களைக் காப்புச் செய் (படிநிலைக் காப்பு)',
 'protect-cantedit'            => 'இப்பக்கத்தின் காப்பு நிலையை நீங்கள் மாற்ற முடியாது. உங்களுக்கு காப்பு நிலையை தொகுப்பதற்கான அனுமதி கிடையாது.',
+'protect-expiry-options'      => '2 மணித்தியாலங்கள்:2 hours,1 நாள்:1 day,3 நாட்கள்:3 days,1 வாரம்:1 week,2 வாரங்கள்:2 weeks,1 மாதம்:1 month,3 மாதங்கள்:3 months,6 மாதங்கள்:6 months,1 ஆண்டு:1 year,முடிவிலி:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'அனுமதி:',
 'restriction-level'           => 'தடை அளவு:',
 'minimum-size'                => 'குறைந்த அளவு',

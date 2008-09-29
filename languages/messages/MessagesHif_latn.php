@@ -1149,6 +1149,7 @@ Aap ii panna ke ijaajat level badle sakta hai, lekin ii cascading protection nai
 'protect-expiring'            => '$1 khalaas hoe hai (UTC)',
 'protect-cascade'             => 'Ii panna me ke panna ke bachao (cascading protection)',
 'protect-cantedit'            => 'Aap ii panna ke protection level badle nai sakta hai, kahe ki aap ke badle ke ijaajat nai hai.',
+'protect-expiry-options'      => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Ijaajat:',
 'restriction-level'           => 'Roke ke niyam:',
 

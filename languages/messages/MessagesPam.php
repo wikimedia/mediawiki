@@ -1517,6 +1517,7 @@ Deni reng kasalungsungan a setting para king bulung <strong>$1</strong>:',
 'protect-expiring'            => 'mayari ya keng $1 (UTC)',
 'protect-cascade'             => 'Protektan/kambilan la reng bulung a kayabe kening bulung a ini (tuki-tuking proteksiun o cascading protection)',
 'protect-cantedit'            => 'E mo malyaring alilan deng sikan ning proteksiun (protection levels) king bulung a ini, uling ala kang paintulut a i-edit ya.',
+'protect-expiry-options'      => '2 oras:2 hours,metung a yaldo:1 day,3ng aldo:3 days,paruminggu:1 week,2ng duminggu:2 weeks,pabulan:1 month,3ng bulan:3 months,6 a bulan:6 months,pabanua:1 year,alang kapupusan:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Paintulut:',
 'restriction-level'           => 'Lebel ning pamag-limita:',
 'minimum-size'                => 'Pekamalati',

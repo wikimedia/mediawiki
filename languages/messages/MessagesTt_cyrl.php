@@ -857,6 +857,7 @@ $2',
 'protect-expiring'            => '$1 үтә (UTC)',
 'protect-cascade'             => 'Бу биткә кергән битләрне якларга (каскадлы яклау)',
 'protect-cantedit'            => 'Сез бу битнең яклау дәрәҗәсене үзгәрә алмыйсыз, чөнки сездә аны үзгәртергә рөхсәтегез юк.',
+'protect-expiry-options'      => '15 минут:15 minutes,2 сәгать:2 hours,6 сәгать:6 hours,12 сәгать:12 hours,1 көн:1 day,3 көн:3 days,1 атна:1 week,2 атна:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 ел:1 year,вакытсыз:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Рөхсәт:',
 'restriction-level'           => 'Мөмкинлек дәрәҗәсе:',
 'minimum-size'                => 'Иң кечкенә зурлык',

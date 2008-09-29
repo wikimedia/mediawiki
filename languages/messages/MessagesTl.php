@@ -491,6 +491,7 @@ upang makapagkarga ng talaksan.',
 'protect-summary-cascade'     => 'kaskada',
 'protect-expiring'            => 'magwawalang-bisa sa $1 (UTC)',
 'protect-cascade'             => 'Ipagsanggalang ang mga pahinang kasama sa pahinang ito (kaskadang pagsanggalang)',
+'protect-expiry-options'      => '2 oras:2 hours,1 araw:1 day,3 araw:3 days,1 linggo:1 week,2 linggo:2 weeks,1 buwan:1 month,3 buwan:3 months,6 buwan:6 months,1 taon:1 year,walang hanggan:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Pahintulot:',
 'restriction-level'           => 'Antas ng kabawalan:',
 

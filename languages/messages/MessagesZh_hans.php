@@ -1754,6 +1754,7 @@ $NEWPAGE
 ** 反生产性编辑战
 ** 高流量页面',
 'protect-edit-reasonlist'     => '编辑保护理由',
+'protect-expiry-options'      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => '权限:',
 'restriction-level'           => '限制级别:',
 'minimum-size'                => '最小大小',

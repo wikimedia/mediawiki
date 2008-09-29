@@ -1271,6 +1271,7 @@ $NEWPAGE
 'protect-expiring'            => 'ვადა გასდის: $1 (UTC)',
 'protect-cascade'             => 'ამ გვერდში ჩართული გვერდების დაცვა (იერარქიული დაცვა)',
 'protect-cantedit'            => 'თქვენ არ შეგიძლიათ ამ გვერდის დაცვის დონის შეცვლა, ვინაიდან არ გაქვთ მისი რედაქტირების ნებართვა.',
+'protect-expiry-options'      => '2 საათი:2 hours,1 დღე:1 day,3 დღე:3 days,1 კვირა:1 week,2 კვირა:2 weeks,1 თვე:1 month,3 თვე:3 months,6 თვე:6 months,1 წელი:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'უფლება',
 'restriction-level'           => 'შეზღუდვის დონე:',
 'minimum-size'                => 'მინ ზომა',

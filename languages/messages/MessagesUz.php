@@ -475,8 +475,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'rollbacklink' => 'eski holiga keltir',
 
 # Protect
-'protectlogpage'      => 'Himoyalash qaydlari',
-'protect-level-sysop' => 'Faqat administratorlar uchun',
+'protectlogpage'         => 'Himoyalash qaydlari',
+'protect-level-sysop'    => 'Faqat administratorlar uchun',
+'protect-expiry-options' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite', # display1:time1,display2:time2,...
 
 # Restrictions (nouns)
 'restriction-edit' => 'Tahrirlash',

@@ -914,6 +914,7 @@ Disi ben a tapunivo fu a papira <strong>[[$1]]</strong> now:",
 'protect-expiring'            => 'lasi opo $1',
 'protect-cascade'             => 'Kaskadetapu - tapu ala peprewoysi nanga ankra dy ini disi papira teki ben (atessi; disi kan gran folo abi).',
 'protect-cantedit'            => 'Yu kan a tapunivo fu disi papira no kenki, sins yu no lesi abi tu kenki a.',
+'protect-expiry-options'      => '15 min:15 min,1 yuru:1 hour,2 yuru:2 hours,6 yuru:6 hours,12 yuru:12 hours,1 dey:1 day,3 dey:3 days,1 wiki:1 week,2 wiki:2 weeks,1 mun:1 month,3 mun:3 months,6 mun:6 months,1 yari:1 year,fu têgo:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Den leti:',
 'restriction-level'           => 'Pelkinivo:',
 

@@ -783,6 +783,7 @@ Seemo sa go lota ga letlakala <strong>$1</strong>:',
 'protect-expiring'            => 'fetatšatši ke $1 (UTC)',
 'protect-cascade'             => 'Lota matlakala, akaretša le letlakala le (go lota ka kakaretšo)',
 'protect-cantedit'            => 'Ga o kgone go fetola tekano ya bolotego letlakaleng le, ka ge o sena tumello yago bofetola.',
+'protect-expiry-options'      => '2 diiri:2 hours,1 letšatši:1 day,3 matšatši:3 days,1 beke:1 week,2 dibeke:2 weeks,1 kgwedi:1 month,3 digkwedi:3 months,6 dikgwedi:6 months,1 ngwaga:1 year,ga efele:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Tumello:',
 'restriction-level'           => 'Seemo sago Lota:',
 

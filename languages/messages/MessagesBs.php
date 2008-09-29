@@ -1016,6 +1016,7 @@ Pogledajte $2 za zapis o skorašnjim brisanjima.',
 'protect-default'             => '(standardno)',
 'protect-level-autoconfirmed' => 'Blokiraj neregistrovane korisnike',
 'protect-level-sysop'         => 'Samo administratori',
+'protect-expiry-options'      => '15 minuta:15 min,1 sat:1 hour,2 sata:2 hours,6 sati:6 hours,12 sati:12 hours,1 dan:1 day,3 dana:3 days,1 sedmica:1 week,2 sedmice:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,zauvijek:infinite', # display1:time1,display2:time2,...
 
 # Undelete
 'undelete'               => 'Pogledaj izbrisane stranice',

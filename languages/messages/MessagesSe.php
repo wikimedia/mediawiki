@@ -934,6 +934,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'protect-summary-cascade'     => 'viididuvvon',
 'protect-expiring'            => 'boarásnuvvá $1',
 'protect-cascade'             => 'Viidit suodjálusa guoskat buot siidduit, mat gullet dán siidui',
+'protect-expiry-options'      => '2 diimma:2 hours,1 beaivi:1 day,3 beaivve:3 days,1 vahkku:1 week,2 vahkku:2 weeks,1 mánotbádji:1 month,3 mánotbaji:3 months,6 mánotbaji:6 months,1 jahki:1 year,bissovaš:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Rádjehus',
 'restriction-level'           => 'Suodjálus',
 'minimum-size'                => 'Min. sturrodat',

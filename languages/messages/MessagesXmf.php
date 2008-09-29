@@ -468,6 +468,7 @@ $messages = array(
 'protect-level-autoconfirmed' => 'ვარეგისტრირებულ მახვარებელეფიშ დაბლოკვა',
 'protect-level-sysop'         => 'ხვალე ადმინისტრატორეფ',
 'protect-summary-cascade'     => 'იერარქიულ',
+'protect-expiry-options'      => '2 საათი:2 hours,1 დღა:1 დღა,3 დღა:3 დღალეფ,1 მარა:1 week,2 მარა:2 weeks,1 თუთა:1 month,3 თუთა:3 months,6 თუთა:6 months,1 წანა:1 year,განუსაზღვრელი ვადით:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'ულაფა',
 
 # Undelete

@@ -1670,6 +1670,7 @@ Puteţi schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-expiring'            => 'expiră $1 (UTC)',
 'protect-cascade'             => 'Protejare în cascadă - toate paginile incluse în această pagină vor fi protejate.',
 'protect-cantedit'            => 'Nu puteţi schimba nivelul de protecţie a acestei pagini, deoarece nu aveţi permisiunea de a o modifica.',
+'protect-expiry-options'      => '15 minute:15 minutes,1 oră:1 hour,3 ore:3 hours,24 ore:24 hours,48 ore:48 hours,1 săptămână:1 week,1 lună:1 month,nelimitat:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permisiune:',
 'restriction-level'           => 'Nivel de restricţie:',
 'minimum-size'                => 'Mărime minimă',

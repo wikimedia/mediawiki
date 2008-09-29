@@ -889,13 +889,14 @@ an that ye'r daein this in accord wi [[{{MediaWiki:Policy-url}}]].",
 'revertpage'     => 'Revertit edit o [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]), chynged back tae last version bi [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 
 # Protect
-'protectlogtext'      => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'    => 'protectit "[[$1]]"',
-'unprotectedarticle'  => 'unprotectit "[[$1]]"',
-'protect-title'       => 'Protectin "$1"',
-'protectcomment'      => 'Raeson for protectin',
-'protect-text'        => 'Ye can see an chynge the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
-'protect-level-sysop' => 'Juist administrators',
+'protectlogtext'         => 'Ablo is a leet o page locks/unlocks. See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
+'protectedarticle'       => 'protectit "[[$1]]"',
+'unprotectedarticle'     => 'unprotectit "[[$1]]"',
+'protect-title'          => 'Protectin "$1"',
+'protectcomment'         => 'Raeson for protectin',
+'protect-text'           => 'Ye can see an chynge the protection level here for the page <strong><nowiki>$1</nowiki></strong>.',
+'protect-level-sysop'    => 'Juist administrators',
+'protect-expiry-options' => '2 oor:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
 
 # Undelete
 'undelete'               => 'Restore delete page',

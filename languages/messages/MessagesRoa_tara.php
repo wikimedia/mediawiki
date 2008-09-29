@@ -434,6 +434,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'protect-level-sysop'    => 'Sulamende pe le Sysops',
 'protect-expiring'       => "more 'u $1 (UTC)",
 'protect-cantedit'       => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
+'protect-expiry-options' => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'       => 'Permesse:',
 
 # Restrictions (nouns)

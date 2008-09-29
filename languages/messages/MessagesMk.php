@@ -1601,6 +1601,7 @@ $NEWPAGE
 ** Бескорисна уредувачка војна
 ** Страница со зачестена посета',
 'protect-edit-reasonlist'     => 'Уреди причини за заштита',
+'protect-expiry-options'      => '2 часа:2 hours,1 ден:1 day,3 дена:3 days,1 недела:1 week,2 недели:2 weeks,1 месец:1 month,3 месеци:3 months,6 месеци:6 months,1 година:1 year,бесконечно:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Пермисии:',
 'restriction-level'           => 'Ниво на заштита:',
 'minimum-size'                => 'Минимална големина',

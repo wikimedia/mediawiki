@@ -1493,6 +1493,7 @@ Li mpostazzioni correnti pâ pàggina sugnu <strong>$1</strong>:',
 'protect-expiring'            => 'scadi a li $1 (UTC)',
 'protect-cascade'             => 'Prutezzioni ricursiva (pruteggi tutti li pàggini nclusi nta chista).',
 'protect-cantedit'            => 'Nun è possibili canciari li livelli di prutizzioni pi la pàggina n quantu nun si disponi dî pirmessi necissari pi canciari la pàggina stissa.',
+'protect-expiry-options'      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Pirmissu',
 'restriction-level'           => 'Liveddu di ristrizzioni:',
 'minimum-size'                => 'Dimensioni minima',

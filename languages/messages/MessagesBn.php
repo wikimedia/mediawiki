@@ -1342,6 +1342,7 @@ $NEWPAGE
 'protect-expiring'            => '$1 (UTC) সময়ে মেয়াদোত্তীর্ণ',
 'protect-cascade'             => 'এই পাতায় অন্তর্ভুক্ত পাতাগুলিও সুরক্ষিত করা হোক (প্রপাতাকার সুরক্ষা)',
 'protect-cantedit'            => 'আপনি এই পাতার সুরক্ষার স্তর পরিবর্তন করতে পারবেন না, কারণ আপনার তা সম্পাদনা করার অনুমতি নেই।',
+'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,১ সপ্তাহ:1 week,২ সপ্তাহ:2 weeks,১ মাস:1 month,৩ মাস:3 months,৬ মাস:6 months,১ বছর:1 year,অসীম:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'অনুমতি:',
 'restriction-level'           => 'বাধার স্তর:',
 'minimum-size'                => 'ন্যূনতম আকার',

@@ -700,6 +700,7 @@ $messages = array(
 'protect-expiring'            => '$1 (আমাস) খেন্তামে মিয়াদহান লালুইতই',
 'protect-cascade'             => 'এরে পাতাত মিহিসে পাতাহানি তালাবি করানি অক (আগপাতাকরেকুরা তালাবি)',
 'protect-cantedit'            => 'লুকরিসি পাতাহানরে তি সিলকরে নারবে, কিদিয়া বুল্লে তরতা পতানির য়্যাথাঙ নেই।',
+'protect-expiry-options'      => '২ ঘন্টা:2 hours,১ দিন:1 day,৩ দিন:3 days,হাপ্তা আহান:1 week,হাপ্তা দুহান:2 weeks,মাহা আহান:1 month,৩ মাহা:3 months,৬ মাহা:6 months,বসর আহান:1 year,লম নেই সময়:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'য়্যাথাঙ:',
 'restriction-level'           => 'লুকরানির থাক:',
 

@@ -1731,6 +1731,7 @@ Velaquí a configuración actual da páxina <strong>$1</strong>:',
 ** Guerra de edicións
 ** Páxina moi visitada',
 'protect-edit-reasonlist'     => 'Editar os motivos de protección',
+'protect-expiry-options'      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,para sempre:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permiso',
 'restriction-level'           => 'Nivel de protección:',
 'minimum-size'                => 'Tamaño mínimo',

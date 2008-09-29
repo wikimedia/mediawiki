@@ -1672,6 +1672,7 @@ Tο σύστημα ειδοποίησης του {{SITENAME}}
 'protect-expiring'            => 'λήγει στις $1 (UTC)',
 'protect-cascade'             => 'Διαδοχική προστασία - προστάτευσε όποιες σελίδες περιλαμβάνονται σε αυτή τη σελίδα.',
 'protect-cantedit'            => 'Δεν μπορείτε να αλλάξετε τα επίπεδα προστασίας αυτής της σελίδας, διότι δεν έχετε την άδεια να την επεξεργαστείτε.',
+'protect-expiry-options'      => '2 ώρες:2 hours,1 ημέρα:1 day,3 ημέρες:3 days,1 εβδομάδα:1 week,2 εβδομάδες:2 weeks,1 μήνα:1 month,3 μήνες:3 months,6 μήνες:6 months,1 χρόνο:1 year,αόριστα:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Δικαίωμα:',
 'restriction-level'           => 'Επίπεδο περιορισμού:',
 'minimum-size'                => 'Ελάχιστο μέγεθος',

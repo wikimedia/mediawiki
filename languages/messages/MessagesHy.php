@@ -1515,6 +1515,7 @@ $NEWPAGE
 'protect-summary-cascade'     => 'կասկադային',
 'protect-expiring'            => 'մարում՝ $1 (UTC)',
 'protect-cascade'             => 'Պաշտպանել այս էջում ընդգրկված էջերը (կասկադային պաշտպանում)',
+'protect-expiry-options'      => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,առհավետ:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Իրավունքներ.',
 'restriction-level'           => 'Սահմանափակման մակարդակ.',
 'minimum-size'                => 'Նվազագույն չափ',

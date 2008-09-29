@@ -1843,6 +1843,7 @@ Her er dei noverande innstillingane for sida <strong>$1</strong>:',
 ** Gjenteke spam
 ** Endringskrig
 ** Side med mange vitjande',
+'protect-expiry-options'      => '2 timar:2 hours,1 dag:1 day,3 dagar:3 days,1 veke:1 week,2 veker:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,endelaus:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Tilgang:',
 'restriction-level'           => 'Avgrensingsnivå:',
 'minimum-size'                => 'Minimumstorleik',

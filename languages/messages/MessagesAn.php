@@ -1630,6 +1630,7 @@ Contino se i amuestran as opzions autuals d'a pachina <strong>$1</strong>:",
 'protect-expiring'            => 'caduca o $1 (UTC)',
 'protect-cascade'             => 'Protezión en cascada - protecher totas as pachinas encluyidas en ista.',
 'protect-cantedit'            => "No puede cambiar os libels de protezión d'ista pachina, porque no tiene premiso ta editar-la.",
+'protect-expiry-options'      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',
