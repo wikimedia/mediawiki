@@ -1987,6 +1987,7 @@ $NEWPAGE
 'protectedarticle'            => 'הפעיל הגנה על [[$1]]',
 'modifiedarticleprotection'   => 'שינה את רמת ההגנה של [[$1]]',
 'unprotectedarticle'          => 'ביטל את ההגנה על [[$1]]',
+'movedarticleprotection'      => 'העביר את הגדרות ההגנה מ"[[$2]]" ל"[[$1]]"',
 'protect-title'               => 'שינוי רמת ההגנה של "$1"',
 'prot_1movedto2'              => '[[$1]] הועבר ל[[$2]]',
 'protect-backlink'            => '→ $1',
