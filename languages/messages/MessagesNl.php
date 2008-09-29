@@ -275,6 +275,9 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'LegePagina' ),
 	'LinkSearch'                => array( 'VerwijzingenZoeken', 'LinksZoeken' ),
 	'DeletedContributions'      => array( 'VerwijderdeBijdragen' ),
+	'ListUserRestrictions'      => array( 'Gebruikersbeperkingen' ),
+	'RemoveRestrictions'        => array( 'BeperkingenVerwijderen' ),
+	'RestrictUser'              => array( 'GebruikerBeperken' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
@@ -962,6 +965,38 @@ Deze lijkt verwijderd te zijn.',
 'edit-no-change'                   => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
 'edit-already-exists'              => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
+'userrestricted-page'              => '<big>\'\'\'Uw gebruiker of IP-adres heeft een bewerkingsbeperking op de pagina "$1".\'\'\'</big>
+
+De bewerkingsbeperking is ingesteld door [[User:$2|$2]].
+De opgegeven reden is \'\'$3\'\'.
+
+De beperking is ingesteld op $4 om $5 en verloopt op $6 om $7.
+
+U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].',
+'userrestricted-namespace'         => "<big>'''Uw gebruiker of IP-adres heeft een bewerkingsbeperking op de naamruimte $1.'''</big>
+
+De bewerkingsbeperking werd ingesteld door [[User:$2|$2]].
+De opgegeven reden is ''$3''.
+
+De beperking werd ingesteld op $4 en verloopt op $5.
+
+U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].",
+'userrestricted-page-indef'        => '<big>\'\'\'Uw gebruiker of IP-adres heeft een bewerkingsbeperking op de pagina "$1".\'\'\'</big>
+
+De bewerkingsbeperking is ingesteld door [[User:$2|$2]].
+De opgegeven reden is \'\'$3\'\'.
+
+De beperking is ingesteld op $4 om $5 en verloopt niet.
+
+U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].',
+'userrestricted-namespace-indef'   => '<big>\'\'\'Uw gebruiker of IP-adres heeft een bewerkingsbeperking op de pagina "$1".\'\'\'</big>
+
+De bewerkingsbeperking is ingesteld door [[User:$2|$2]].
+De opgegeven reden is \'\'$3\'\'.
+
+De beperking is ingesteld op $4 om $5 en verloopt niet.
+
+U kunt de bewerkingsbeperking bespreken met [[User:$2|$2]] of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]].',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.
@@ -1353,6 +1388,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-suppressrevision'     => 'Verborgen versies bekijken en terugplaatsen',
 'right-suppressionlog'       => 'Niet-publieke logboeken bekijken',
 'right-block'                => 'Andere gebruikers de mogelijkheid te bewerken ontnemen',
+'right-restrict'             => "Bewerkingsbeperking op naamruimten en pagina's instellen voor een gebruiker",
 'right-blockemail'           => 'Een gebruiker het recht ontnemen om e-mail te versturen',
 'right-hideuser'             => 'Een gebruiker voor de overige gebruikers verbergen',
 'right-ipblock-exempt'       => 'IP-blokkades omzeilen',
@@ -1749,6 +1785,7 @@ Meestal is de laatste pagina het eigenlijke doel.",
 'protectedtitlesempty'    => 'Er zijn momenteel geen paginannamen beveiligd die aan deze voorwaarden voldoen.',
 'listusers'               => 'Gebruikerslijst',
 'listusers-editsonly'     => 'Alleen gebruikers met bewerkingen weergeven',
+'usereditcount'           => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',
 'newpages'                => "Nieuwe pagina's",
 'newpages-username'       => 'Gebruikersnaam:',
 'ancientpages'            => "Oudste pagina's",
@@ -2180,6 +2217,7 @@ Geef hieronder een reden op (bijvoorbeeld welke pagina's gevandaliseerd zijn).",
 'ipbsubmit'                       => 'Deze gebruiker blokkeren',
 'ipbother'                        => 'Andere duur:',
 'ipboptions'                      => '15 minuten:15 min,1 uur:1 hour,2 uur:2 hours,6 uur:6 hours,12 uur:12 hours,1 dag:1 day,3 dagen:3 days,1 week:1 week,2 weken:2 weeks,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year,onbeperkt:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'onbeperkt',
 'ipbotheroption'                  => 'ander verloop',
 'ipbotherreason'                  => 'Andere/eventuele reden:',
 'ipbhidename'                     => 'Gebruiker in het blokkeerlogboek, de actieve blokkeerlijst en de gebruikerslijst verbergen',
@@ -2248,6 +2286,69 @@ Neem contact op met uw Internet-provider of uw helpdesk en stel die op de hoogte
 'sorbs_create_account_reason'     => 'Uw IP-adres staat bekend als open proxyserver in de DNS-blacklist die {{SITENAME}} gebruikt.
 U kunt geen gebruiker registreren.',
 'cant-block-while-blocked'        => 'U kunt andere gebruikers niet blokkeren terwijl u zelf geblokkeerd bent.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => 'Lijst met gebruikersbeperkingen',
+'listuserrestrictions-intro'      => "Deze lijst bevat alle bewerkingsbeperkingen voor pagina's en naamruimten die aan gebruikers zijn opgelegd.
+[[Special:Ipblocklist|Blokkades]] worden hier niet weergegeven.",
+'listuserrestrictions-row-ns'     => 'heeft $1 een bewerkingsbeperking opgelegd voor de naamruimte $2 ($3)',
+'listuserrestrictions-row-page'   => 'heeft $1 een bewerkingsbeperking opgelegd voor $2 ($3)',
+'listuserrestrictions-row-expiry' => 'verloopt op $1 om $2',
+'listuserrestrictions-legend'     => 'Beperking zoeken',
+'listuserrestrictions-type'       => 'Type:',
+'listuserrestrictions-user'       => 'Gebruiker:',
+'listuserrestrictions-namespace'  => 'Naamruimte:',
+'listuserrestrictions-page'       => 'Pagina:',
+'listuserrestrictions-submit'     => 'OK',
+'listuserrestrictions-notfound'   => 'Er is geen bewerkingsbeperking die aan de opgegeven criteria voldoet.',
+'listuserrestrictions-empty'      => 'Deze lijst is leeg.',
+'listuserrestrictions-remove'     => 'verwijderen',
+'userrestrictiontype-none'        => '(geen)',
+'userrestrictiontype-namespace'   => 'Naamruimte',
+'userrestrictiontype-page'        => 'Pagina',
+
+# Special:RemoveRestrictions
+'removerestrictions'           => 'Bewerkingsbeperking voor een gebruiker opheffen',
+'removerestrictions-intro'     => 'Gebruik het onderstaande formulier om een beperking voor een gebruiker op te heffen.',
+'removerestrictions-noid'      => 'Er is geen beperkingsnummer opgegeven.',
+'removerestrictions-wrongid'   => 'De beperking met dat nummer bestaat niet.
+Waarschijnlijk is deze verwijderd of verlopen.',
+'removerestrictions-legend'    => 'Beperking verwijderd',
+'removerestrictions-user'      => 'Beperkte gebruiker:',
+'removerestrictions-type'      => 'Beperkingstype:',
+'removerestrictions-page'      => 'Pagina:',
+'removerestrictions-namespace' => 'Naamruimte:',
+'removerestrictions-reason'    => 'Reden:',
+'removerestrictions-submit'    => 'Beperking verwijderen',
+'removerestrictions-success'   => 'De beperking is voor [[User:$1|$1]] is verwijderd.',
+
+# Special:RestrictUser
+'restrictuser'                  => 'Gebruiker beperken',
+'restrictuser-userselect'       => 'Selecteer een gebruiker',
+'restrictuser-user'             => 'Gebruiker:',
+'restrictuser-go'               => 'Gebruiker beperken',
+'restrictuser-notfound'         => 'Gebruiker bestaat niet',
+'restrictuser-existing'         => 'Bestaande beperkingen',
+'restrictuser-legend-page'      => 'Bewerkingsbeperking opleggen voor een pagina',
+'restrictuser-legend-namespace' => 'Bewerkingsbeperking opleggen voor een naamruimte',
+'restrictuser-title'            => 'Te beperken pagina:',
+'restrictuser-namespace'        => 'Naamruimte:',
+'restrictuser-expiry'           => 'Verloopdatum:',
+'restrictuser-reason'           => 'Reden:',
+'restrictuser-sumbit'           => 'Gebruiker beperken',
+'restrictuser-badtitle'         => 'Ongeldige paginanaam opgegeven: $1.',
+'restrictuser-badnamespace'     => 'Ongeldige naamruimte opgegeven.',
+'restrictuser-badexpiry'        => 'Ongeldige verlooptijd aangegeven: $1.',
+'restrictuser-duptitle'         => 'Deze gebruiker kan deze pagina al niet bewerken.',
+'restrictuser-dupnamespace'     => 'Deze gebruiker kan deze naamruimte al niet bewerken.',
+'restrictuser-success'          => 'Beperking ingesteld voor gebruiker $1.',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Gebruikersbeperkingenlogboek',
+'restrictionlogtext'   => 'Dit logboek bevat alle beperkingen voor gebruikers die door beheerders zijn ingesteld.',
+'restrictentry'        => 'heeft een bewerkingsbeperking ingesteld voor $1 op $2 (verloopt over $3)',
+'restrictremoveentry'  => 'verwijderde de beperking voor $1 op het bewerken van $2',
+'restrictlognamespace' => 'naamruimte $1',
 
 # Developer tools
 'lockdb'              => 'Database blokkeren',

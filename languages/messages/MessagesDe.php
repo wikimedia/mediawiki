@@ -98,6 +98,7 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Unbenutzte_Dateien' ),
 	'Wantedpages'               => array( 'Gewünschte_Seiten' ),
 	'Wantedcategories'          => array( 'Gewünschte_Kategorien' ),
+	'Wantedfiles'               => array( 'Fehlende_Dateien' ),
 	'Mostlinked'                => array( 'Meistverlinkte_Seiten' ),
 	'Mostlinkedcategories'      => array( 'Meistbenutzte_Kategorien' ),
 	'Mostlinkedtemplates'       => array( 'Meistbenutzte_Vorlagen' ),
@@ -1582,6 +1583,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'protectedtitlesempty'    => 'Zur Zeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'               => 'Benutzerverzeichnis',
 'listusers-editsonly'     => 'Zeige nur Benutzer mit Beiträgen',
+'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}}',
 'newpages'                => 'Neue Seiten',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'Seit längerem unbearbeitete Seiten',
@@ -2001,6 +2003,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbsubmit'                       => 'IP-Adresse/Benutzer sperren',
 'ipbother'                        => 'Andere Dauer (englisch):',
 'ipboptions'                      => '1 Stunde:1 hour,2 Stunden:2 hours,6 Stunden:6 hours,1 Tag:1 day,3 Tage:3 days,1 Woche:1 week,2 Wochen:2 weeks,1 Monat:1 month,3 Monate:3 months,1 Jahr:1 year,Unbeschränkt:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'unbeschränkt',
 'ipbotheroption'                  => 'Andere Dauer',
 'ipbotherreason'                  => 'Andere/ergänzende Begründung:',
 'ipbhidename'                     => 'Benutzername im Sperr-Logbuch, der Liste aktiver Sperren und dem Benutzerverzeichnis verstecken.',
@@ -2065,6 +2068,26 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'sorbsreason'                     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
 'sorbs_create_account_reason'     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
 'cant-block-while-blocked'        => 'Du darfst keine andere Benutzer sperren, während du selber gesperrt bist.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions-type'      => 'Typ:',
+'listuserrestrictions-user'      => 'Benutzer:',
+'listuserrestrictions-namespace' => 'Namensraum:',
+'listuserrestrictions-page'      => 'Seite:',
+'listuserrestrictions-submit'    => 'OK',
+'listuserrestrictions-empty'     => 'Die Liste ist leer.',
+'listuserrestrictions-remove'    => 'entfernen',
+'userrestrictiontype-none'       => '(keine)',
+'userrestrictiontype-namespace'  => 'Namensraum',
+'userrestrictiontype-page'       => 'Seite',
+
+# Special:RemoveRestrictions
+'removerestrictions-page'      => 'Seite:',
+'removerestrictions-namespace' => 'Namensraum:',
+'removerestrictions-reason'    => 'Grund:',
+
+# Special:RestrictUser
+'restrictuser-user' => 'Benutzer:',
 
 # Developer tools
 'lockdb'              => 'Datenbank sperren',

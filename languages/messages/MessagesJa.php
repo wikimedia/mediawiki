@@ -18,6 +18,7 @@
  * @author Kkkdc
  * @author Lovekhmer
  * @author Marine-Blue
+ * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
  * @author Suisui
@@ -665,6 +666,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'recreate-deleted-warn'            => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
 
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
+'deleted-notice'                   => 'このページは削除されています。
+参考のため、このページの削除ログが以下に表示されています。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告：このページは条件文関数の呼び出し負荷が高過ぎます。
@@ -1377,7 +1380,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
-'listusers-editsonly'     => 'បង្ហាញអ្នកប្រើប្រាស់ដែលបានកែប្រែប៉ុណ្ណោះ',
+'listusers-editsonly'     => '投稿記録のある利用者',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',

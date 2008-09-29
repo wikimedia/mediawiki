@@ -886,6 +886,38 @@ Halaman kemungkinan telah dihapus.',
 'edit-no-change'                   => 'Suntingan diabaikan, karena Anda tidak melakukan perubahan atas teks.',
 'edit-already-exists'              => 'Tidak dapat membuat halaman baru
 karena telah ada.',
+'userrestricted-page'              => '<big>\'\'\'Akun pengguna atau alamat IP Anda telah dibatasi untuk menyunting halaman "$1".\'\'\'</big>
+
+Pembatasan ini diberikan oleh [[User:$2|$2]].
+Alasan pembatasan adalah \'\'$3\'\'.
+
+Pembatasan ini diberlakukan pada $5, $4 dan kadaluwarsa pada $7, $6.
+
+Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.',
+'userrestricted-namespace'         => "<big>'''Akun pengguna atau alamat IP Anda telah dibatasi untuk menyunting ruang nama $1.'''</big>
+
+Pembatasan ini diberikan oleh [[User:$2|$2]].
+Alasan pembatasan adalah ''$3''.
+
+Pembatasan ini diberlakukan pada $5, $4 dan kadaluwarsa pada $7, $6.
+
+Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
+'userrestricted-page-indef'        => "<big>'''Akun pengguna atau alamat IP Anda telah dibatasi untuk menyunting ruang nama $1.'''</big>
+
+Pembatasan ini diberikan oleh [[User:$2|$2]].
+Alasan pembatasan adalah ''$3''.
+
+Pembatasan ini diberlakukan pada $4 dan akan berlaku untuk selamanya.
+
+Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
+'userrestricted-namespace-indef'   => "<big>'''Akun pengguna atau alamat IP Anda telah dibatasi untuk menyunting ruang nama $1.'''</big>
+
+Pembatasan ini diberikan oleh [[User:$2|$2]].
+Alasan pembatasan adalah ''$3''.
+
+Pembatasan ini diberlakukan pada $4 dan akan berlaku untuk selamanya.
+
+Anda dapat menghubungi [[User:$2|$2]] atau [{{MediaWiki:Grouppage-sysop}}|pengurus]] lainnya untuk mendiskusikan pembatasan ini.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Peringatan: Halaman ini mengandung terlalu banyak panggilan fungsi parser.
@@ -1261,6 +1293,7 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'right-suppressrevision'     => 'Memeriksa dan mengembalikan revisi-revisi yang disembunyikan dari Opsis',
 'right-suppressionlog'       => 'Melihat log privat',
 'right-block'                => 'Memblokir penyuntingan oleh pengguna lain',
+'right-restrict'             => 'Membatasi pengguna dari menyunting suatu ruang nama atau halaman',
 'right-blockemail'           => 'Memblokir pengiriman surat-e oleh pengguna',
 'right-hideuser'             => 'Memblokir nama pengguna dan menyembunyikannya dari publik',
 'right-ipblock-exempt'       => 'Abaikan pemblokiran IP, pemblokiran otomatis, dan rentang pemblokiran',
@@ -1615,6 +1648,7 @@ Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut men
 'protectedtitlesempty'    => 'Tidak ada judul yang dilindungi.',
 'listusers'               => 'Daftar pengguna',
 'listusers-editsonly'     => 'Tampilkan hanya pengguna yang memiliki kontribusi',
+'usereditcount'           => '$1 {{PLURAL:$1|suntingan|suntingan}}',
 'newpages'                => 'Halaman baru',
 'newpages-username'       => 'Nama pengguna:',
 'ancientpages'            => 'Artikel lama',
@@ -2026,6 +2060,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbsubmit'                       => 'Kirimkan',
 'ipbother'                        => 'Waktu lain:',
 'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selamanya:infinite', # display1:time1,display2:time2,...
+'ipbinfinite'                     => 'selamanya',
 'ipbotheroption'                  => 'lainnya',
 'ipbotherreason'                  => 'Alasan lain/tambahan:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
@@ -2090,6 +2125,69 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'sorbsreason'                     => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL.',
 'sorbs_create_account_reason'     => 'Alamat IP anda terdaftar sebagai proxy terbuka di DNSBL. Anda tidak dapat membuat akun.',
 'cant-block-while-blocked'        => 'Anda tidak dapat memblokir pengguna lain ketika Anda sendiri sedang diblokir.',
+
+# Special:ListUserRestrictions
+'listuserrestrictions'            => 'Daftar pembatasan pengguna',
+'listuserrestrictions-intro'      => 'Daftar ini berisikan semua pembatasan yang diberlakukan atas pengguna-pengguna dari menyunting suatu halaman dan ruang nama.
+[[Special:Ipblocklist|Pemblokiran]] tidak didaftarkan di sini.',
+'listuserrestrictions-row-ns'     => 'membatasi $1 untuk menyunting ruang nama $2 ($3)',
+'listuserrestrictions-row-page'   => 'membatasi $1 untuk menyunting $2 ($3)',
+'listuserrestrictions-row-expiry' => 'kadaluwarsa pada $2, $1',
+'listuserrestrictions-legend'     => 'Mencari pembatasan',
+'listuserrestrictions-type'       => 'Jenis:',
+'listuserrestrictions-user'       => 'Pengguna:',
+'listuserrestrictions-namespace'  => 'Ruang nama:',
+'listuserrestrictions-page'       => 'Halaman:',
+'listuserrestrictions-submit'     => 'Kirim',
+'listuserrestrictions-notfound'   => 'Tidak ditemukan entri log pembatasan yang sesuai.',
+'listuserrestrictions-empty'      => 'Daftar ini kosong.',
+'listuserrestrictions-remove'     => 'batalkan',
+'userrestrictiontype-none'        => '(tidak ada)',
+'userrestrictiontype-namespace'   => 'Ruang nama',
+'userrestrictiontype-page'        => 'Halaman',
+
+# Special:RemoveRestrictions
+'removerestrictions'           => 'Membatalkan pembatasan atas pengguna',
+'removerestrictions-intro'     => 'Gunakan formulir berikut untuk membatalkan pembatasan atas pengguna.',
+'removerestrictions-noid'      => 'Tidak ditemukan ID pembatasan yang sesuai.',
+'removerestrictions-wrongid'   => 'Pembatasan dengan ID tersebut tidak ditemukan.
+Mungkin ID pembatasan ini telah dibatalkan atau telah kadaluwarsa.',
+'removerestrictions-legend'    => 'Membatalkan suatu pembatasan',
+'removerestrictions-user'      => 'Pengguna yang dibatasi:',
+'removerestrictions-type'      => 'Jenis pembatasan:',
+'removerestrictions-page'      => 'Halaman:',
+'removerestrictions-namespace' => 'Ruang nama:',
+'removerestrictions-reason'    => 'Alasan:',
+'removerestrictions-submit'    => 'Membatalkan pembatasan',
+'removerestrictions-success'   => 'Berhasil membatalkan pembatasan atas [[User:$1|$1]].',
+
+# Special:RestrictUser
+'restrictuser'                  => 'Batasi pengguna',
+'restrictuser-userselect'       => 'Pilih pengguna',
+'restrictuser-user'             => 'Pengguna:',
+'restrictuser-go'               => 'Batasi pengguna',
+'restrictuser-notfound'         => 'Pengguna tidak ditemukan',
+'restrictuser-existing'         => 'Pembatasan saat ini',
+'restrictuser-legend-page'      => 'Batasi dari penyuntingan halaman tertentu',
+'restrictuser-legend-namespace' => 'Batasi dari penyuntingan ruang nama tertentu',
+'restrictuser-title'            => 'Halaman yang akan dibatasi:',
+'restrictuser-namespace'        => 'Ruang nama:',
+'restrictuser-expiry'           => 'Kadaluwarsa:',
+'restrictuser-reason'           => 'Alasan:',
+'restrictuser-sumbit'           => 'Batasi pengguna',
+'restrictuser-badtitle'         => 'Judul tidak sah: $1.',
+'restrictuser-badnamespace'     => 'Ruang nama tidak sah.',
+'restrictuser-badexpiry'        => 'Waktu kadaluwarsa tidak sah: $1.',
+'restrictuser-duptitle'         => 'Pengguna ini telah dibatasi untuk menyunting judul ini.',
+'restrictuser-dupnamespace'     => 'Pengguna ini telah dibatasi untuk menyunting ruang nama ini.',
+'restrictuser-success'          => 'Berhasil membatasi pengguna $1.',
+
+# Special:Log/restrict
+'restrictionlog'       => 'Log pembatasan pengguna',
+'restrictionlogtext'   => 'Log ini berisikan semua pembatasan yang diberlakukan atas pengguna oleh pengurus.',
+'restrictentry'        => 'membatasi $1 untuk menyunting $2 (kadaluwarsa $3)',
+'restrictremoveentry'  => 'membatalkan pembatasan $1 untuk menyunting $2',
+'restrictlognamespace' => 'Ruang nama $1',
 
 # Developer tools
 'lockdb'              => 'Kunci basis data',

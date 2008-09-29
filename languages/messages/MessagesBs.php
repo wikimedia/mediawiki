@@ -911,6 +911,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 # Watchlist
 'watchlist'            => 'Praćeni članci',
 'mywatchlist'          => 'Praćeni članci',
+'watchlistfor'         => "(korisnika '''$1''')",
 'nowatchlist'          => 'Nemate ništa na svom spisku praćenih članaka.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
@@ -935,6 +936,9 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'iteminvalidname'      => "Problem sa '$1', neispravno ime...",
 'wlnote'               => 'Ispod je najskorijih $1 izmjena, načinjenih u posljednjih <b>$2</b> sati.',
 'wlshowlast'           => 'Prikaži poslednjih $1 sati $2 dana $3',
+'watchlist-hide-bots'  => 'Sakrij botove',
+'watchlist-hide-own'   => 'Sakrij moje izmjene',
+'watchlist-hide-minor' => 'Sakrij male izmjene',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Pratim...',
@@ -1260,8 +1264,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{ns:special}}:Export/{{Media
 'markedaspatrollederrortext' => 'Morate naglasiti reviziju koju treba označiti kao patroliranu.',
 
 # Browsing diffs
-'previousdiff' => '← Prethodna izmjena',
-'nextdiff'     => 'Slijedeća razlika →',
+'previousdiff' => '← Starija izmjena',
+'nextdiff'     => 'Novija izmjena →',
 
 # Media information
 'mediawarning'         => "'''Upozorenje''': Ovaj fajl sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.
@@ -1305,6 +1309,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'sve',
+'watchlistall2'    => 'sve',
 'namespacesall'    => 'sve',
 'monthsall'        => 'sve',
 

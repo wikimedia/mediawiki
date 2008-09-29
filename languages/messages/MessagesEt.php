@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jaan513
  * @author Võrok
  * @author WikedKentaur
  * @author לערי ריינהארט
@@ -124,6 +125,8 @@ $messages = array(
 'tog-watchlisthideown'        => 'Peida minu redaktsioonid jälgimisloendist',
 'tog-watchlisthidebots'       => 'Peida robotid jälgimisloendist',
 'tog-watchlisthideminor'      => 'Peida pisiparandused jälgimisloendist',
+'tog-watchlisthideliu'        => 'Peida sisselogitud kasutajate muudatused jälgimisloendist',
+'tog-watchlisthideanons'      => 'Peida anonüümsete kasutajate muudatused jälgimisloendist',
 'tog-showhiddencats'          => 'Näita peidetud kategooriaid',
 
 'underline-always'  => 'Alati',
@@ -547,6 +550,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 'templatesused'            => 'Sellel lehel on kasutusel järgnevad mallid:',
 'templatesusedpreview'     => 'Selles eelvaates kasutatakse järgmisi malle:',
 'template-protected'       => '(kaitstud)',
+'template-semiprotected'   => '(osaliselt kaitstud)',
 'hiddencategories'         => 'See lehekülg kuulub {{PLURAL:$1|1 peidetud kategooriasse|$1 peidetud kategooriasse}}:',
 'recreate-deleted-warn'    => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
@@ -580,6 +584,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'historyempty'        => '(tühi)',
 
 # Diffs
+'history-title'           => '"$1" muudatuste ajalugu',
 'difference'              => '(Erinevused redaktsioonide vahel)',
 'lineno'                  => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',
@@ -671,6 +676,7 @@ sisse logida.',
 'userrights-editusergroup' => 'Kasutajagrupi valik',
 'saveusergroups'           => 'Salvesta grupi muudatused',
 'userrights-groupsmember'  => 'Kuulub gruppi:',
+'userrights-no-interwiki'  => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
 
 # Groups
 'group'            => 'Grupp:',
@@ -750,6 +756,8 @@ võivad teised sinu poolt laetud faile saidi huvides
 muuta või kustutada ning juhul kui sa süsteemi kuritarvitad
 võidakse sinu ligipääs sulgeda.',
 'upload-permitted'     => 'Lubatud failitüübid: $1.',
+'upload-preferred'     => 'Eelistatud failitüübid: $1.',
+'upload-prohibited'    => 'Keelatud failitüübid: $1.',
 'uploadlog'            => 'üleslaadimise logi',
 'uploadlogpage'        => 'Üleslaadimise logi',
 'uploadlogpagetext'    => 'Allpool on loend viimastest failide üleslaadimistest. Kõik ajad näidatakse serveri aja järgi.',
@@ -777,6 +785,7 @@ võidakse sinu ligipääs sulgeda.',
 'uploadvirus'          => 'Fail sisaldab viirust! Täpsemalt: $1',
 'sourcefilename'       => 'Lähtefail:',
 'destfilename'         => 'Failinimi vikis:',
+'upload-maxfilesize'   => 'Maksimaalne failisuurus: $1',
 'watchthisupload'      => 'Jälgi seda lehekülge',
 
 'upload-misc-error' => 'Tundmatu viga üleslaadimisel',
@@ -788,6 +797,7 @@ võidakse sinu ligipääs sulgeda.',
 'imagelist' => 'Piltide loend',
 
 # Image description page
+'filehist'                  => 'Faili ajalugu',
 'filehist-deleteall'        => 'kustuta kõik',
 'filehist-deleteone'        => 'kustuta see',
 'filehist-current'          => 'viimane',
@@ -852,6 +862,8 @@ võidakse sinu ligipääs sulgeda.',
 'brokenredirects-edit'   => '(redigeeri)',
 'brokenredirects-delete' => '(kustuta)',
 
+'withoutinterwiki' => 'Keelelinkideta leheküljed',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|bait|baiti}}',
 'ncategories'             => '$1 {{PLURAL:$1|kategooria|kategooriat}}',
@@ -870,6 +882,7 @@ võidakse sinu ligipääs sulgeda.',
 'popularpages'            => 'Loetumad artiklid',
 'wantedcategories'        => 'Kõige oodatumad kategooriad',
 'wantedpages'             => 'Kõige oodatumad artiklid',
+'wantedfiles'             => 'Kõige oodatumad failid',
 'mostlinked'              => 'Kõige viidatumad leheküljed',
 'mostlinkedcategories'    => 'Kõige viidatumad kategooriad',
 'mostlinkedtemplates'     => 'Kõige viidatumad mallid',
@@ -975,6 +988,11 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'watchlist-hide-own'   => 'Peida minu parandused',
 'watchlist-show-minor' => 'Näita pisiparandusi',
 'watchlist-hide-minor' => 'Peida pisiparandused',
+'watchlist-show-anons' => 'Näita anonüümseid muudatusi',
+'watchlist-hide-anons' => 'Peida anonüümsed muudatused',
+'watchlist-show-liu'   => 'Näita sisseloginud kasutajate muudatusi',
+'watchlist-hide-liu'   => 'Peida sisseloginud kasutajate muudatused',
+'watchlist-options'    => 'Jälgimisloendi võimalused',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'jälgin...',
@@ -1086,11 +1104,13 @@ versioonid varasema ajaloona. Kehtivat versiooni automaatselt välja ei vahetata
 'month'         => 'Alates kuust (ja varasemad):',
 'year'          => 'Alates aastast (ja varasemad):',
 
+'sp-contributions-blocklog' => 'Blokeerimise logi',
 'sp-contributions-search'   => 'Otsi kaastöid',
 'sp-contributions-username' => 'IP aadress või kasutajanimi:',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',
+'whatlinkshere-title'      => 'Leheküljed, mis viitavad lehele "$1"',
 'linkshere'                => "Lehele '''[[:$1]]''' viitavad järgmised leheküljed:",
 'nolinkshere'              => "Lehele '''[[:$1]]''' ei viita ükski lehekülg.",
 'isredirect'               => 'ümbersuunamislehekülg',
@@ -1121,6 +1141,8 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 <br />Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute nimekirjast]].',
 'unblockip'          => 'Lõpeta IP aadressi blokeerimine',
 'unblockiptext'      => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
+'unblocked'          => '[[User:$1|$1]] blokeering võeti maha.',
+'unblocked-id'       => 'Blokeerimine $1 on lõpetatud',
 'ipblocklist'        => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
 'blocklistline'      => '$1, $2 blokeeris $3 ($4)',
 'expiringblock'      => 'aegub $1',
@@ -1140,6 +1162,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'lockdb'              => 'Lukusta andmebaas',
 'unlockdb'            => 'Tee andmebaas lukust lahti',
 'lockconfirm'         => 'Jah, ma soovin andmebaasi lukustada.',
+'unlockconfirm'       => 'Jah, ma tõesti soovin andmebaasi lukust avada.',
 'lockbtn'             => 'Võta andmebaas kirjutuskaitse alla',
 'unlockbtn'           => 'Taasta andmebaasi kirjutuspääs',
 'lockdbsuccesssub'    => 'Andmebaas kirjutuskaitse all',
@@ -1173,6 +1196,7 @@ Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta 
 'move-watch'              => 'Jälgi seda lehekülge',
 'movepagebtn'             => 'Teisalda artikkel',
 'pagemovedsub'            => 'Artikkel on teisaldatud',
+'movepage-moved'          => '<big>\'\'\'"$1" teisaldatud pealkirja "$2" alla\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'           => 'Selle nimega artikkel on juba olemas või pole valitud nimi lubatav. Palun valige uus nimi.',
 'talkexists'              => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
 'movedto'                 => 'Teisaldatud pealkirja alla:',
@@ -1301,6 +1325,10 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'bydate'                => 'kuupäeva järgi',
 'sp-newimages-showfrom' => 'Näita uusi faile alates $2 $1',
 
+# Metadata
+'metadata-expand'   => 'Näita täpsemaid detaile',
+'metadata-collapse' => 'Peida täpsemad detailid',
+
 # EXIF tags
 'exif-software'        => 'Kasutatud tarkvara',
 'exif-artist'          => 'Autor',
@@ -1358,6 +1386,7 @@ Kinnituskood aegub $4.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Teie jälgimisloendis on {{PLURAL:$1|1 leht|$1 lehte}}, ilma arutelulehtedeta.',
+'watchlistedit-noitems'        => 'Teie jälgimisloend ei sisalda ühtegi lehekülge.',
 'watchlistedit-normal-title'   => 'Jälgimisloendi redigeerimine',
 'watchlistedit-normal-legend'  => 'Jälgimisloendist lehtede eemaldamine',
 'watchlistedit-normal-explain' => "Siin on lehed, mis on teie jälgimisloendis.Et lehti eemaldada, tehke vastavatesse kastidesse linnukesed ja vajutage nuppu '''Eemalda valitud lehed'''. Te võite ka [[Special:Watchlist/raw|redigeerida lähtefaili]].",
@@ -1365,6 +1394,7 @@ Kinnituskood aegub $4.',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 leht|Järgmised $1 lehte}} on Teie jälgimisloendist eemaldatud:',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 lehekülg|$1 lehekülge}} lisatud:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Näita vastavaid muudatusi',

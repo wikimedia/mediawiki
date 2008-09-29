@@ -555,8 +555,11 @@ $2',
 'mywatchlist'          => 'لیست پیگیریهای مو',
 'watchlistfor'         => "(سی '''$1''')",
 'addedwatch'           => 'اضاف وابید به لیست پیگیری',
-'addedwatchtext'       => "آن صفحه\"[[:\$1]]\" اضاف وابیده به پیگیریهای ایسا[[Special:Watchlist|watchlist]].
-Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
+'addedwatchtext'       => "صفحه «<nowiki>$1</nowiki>» به [[Special:Watchlist|لیست پی‌گیری‌های ]] ایسا   
+اضاف وابید.
+تغییرات این صفحه و صفحه صحبت مر بوطه اش در آینده ایچو لیست ابوه. به‌علاوه، ای صفحه، سی واضح‌تر دیده وابیدن در [[Special:RecentChanges|فهرست تغییرات اخیر]] به شکل <b>سیاه</b> ایا.
+
+ایر بعدا خواستین ای  صفحه زه لیست پی‌گیریهاتو ورداشته بوه، رو «'''عدم پی‌گیری'''» در بالای صفحه کلیک کنین.",
 'removedwatch'         => 'زه لیست پیگیری حذف وابید',
 'removedwatchtext'     => 'آن صفحه"[[:$1]]" جابجا وابیده زه[[Special:لیست پیگیری|لیست پیگیری ایسا]].',
 'watch'                => 'پی‌گیری',
@@ -599,8 +602,10 @@ Future changes to this page and its associated talk page will be listed there, a
 'protect-text'                => 'ایسا ممکنه بوینین وتغییر بدین سطح حمایت زه ای صفحه<strong><nowiki>$1</nowiki></strong>.',
 'protect-locked-access'       => 'حساب کاربری ایسا اجازه تغییر سطح حمایت ای صفحه را نداره.
 ای چونه تنظیمات جاری سی آن صفحه <strong>$1</strong>:',
-'protect-cascadeon'           => "ای صفحه بطور صحیح حمایت وحفاظت وابیده چون دربرگیرنه چیزهای زیره {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
-You can change this page's protection level, but it will not affect the cascading protection.",
+'protect-cascadeon'           => 'ای صفحه  در حال حاضر حفاظت وحمایت وابیده چون که در {{PLURAL:$1|صفحه|صفحات}}
+زیر که گزینه حفاظت وحمایت موجی {{PLURAL:$1|آن|آن‌ها}} فعال هده ،
+ایسا ترین سطح حفاظت ای صفحه را تغییر بدین اما ای کارنتره تاثیری رو 
+حفاظت وحمایت موجی صفحه داشته بوه.',
 'protect-default'             => '(پیش فرض)',
 'protect-fallback'            => 'درخواست"$1" اجازه',
 'protect-level-autoconfirmed' => 'بستن کاربران ثبت نام نوابیده',
@@ -653,21 +658,29 @@ You can change this page's protection level, but it will not affect the cascadin
 'blocklogentry' => 'بسته وابید [[$1]] با سپری وابیدن وقت زه $2 $3',
 
 # Move page
-'movepagetext'     => "استفاده زه شرح زیر سی حذف یه صفحه, جابجا کنین همه گزارش تاریخ اش را به نام جدید صفحه.آن عنوان قبلی یه صفحه تغییر مسیر سی عنوان تازه وابیده.ایسا ترین به طور اتوماتیک آپ دیت کنین تغییر مسیرهایی که ملحق به عنوان اصلیه ایر مطمئن نوابیدین سی اطمینان برین به [[Special:DoubleRedirects|double]] یا [[Special:BrokenRedirects|broken redirects]].
+'movepagetext'     => "با استفاده زه فرم زیر نام صفحه تغییر اکنه و همه گزارش تاریخی هو به نام تازه جابجا ابوه.
+عنوان کهنه تبدیل به یک صفحه تغییر مسیر به عنوان جدید ابوه.
+ایسا ترین بطور اتوماتیک تغییر مسیر های مربوط به عنوان اصلی رو به روز رسانی کنین. ایر ایسا مطمئن نهدین با دیدن یونو مطمئن بوین:
+[[Special:تغییر مسیر دوبل|دوبل ]] یا[[Special:تغییرمسیر خروا یا اشکسته|تغییرمسیرهای خراو یا اشکسته]].
 
-You are responsible for making sure that links continue to point where they are supposed to go.
+لینکهایی که به عنوان صفحه قدیمی هدن تغییر نه کنن حتماً تغییر مسیرهای دوبل یا اشکسته و خراو را بررسی کنین.
+'''ایسا''' مسئول اطمینان زه یو هدین که لینکها هنی به همان‌جایی که قرار هده برن.
 
-Note that the page will '''not''' be moved if there is already a page at the new title, unless it is empty or a redirect and has no past edit history.
-This means that you can rename a page back to where it was renamed from if you make a mistake, and you cannot overwrite an existing page.
+توجه کنین که ایر زه قبل صفحه‌ای در عنوان تازه وجود داشته بوه صفحه منتقل '''نه بوه'''،
+میر یو که آن صفحه خالی یا تغییر مسیر بوه و گزارش تاریخی اصلاح نداشته بوه.
+ یعنی ایر اشتباه کردین ترین صفحه را به همان جایی که زه هو جابجا وابیدین برگردانین، و  نترین رو صفحات موجود بنویسین
 
-'''WARNING!'''
-This can be a drastic and unexpected change for a popular page;
-please be sure you understand the consequences of this before proceeding.",
-'movepagetalktext' => "صفحه صحبت ملحق شده به آن صفحه بطور اتوماتیک همراه با آن جابجا ابوهit '''unless:'''
-*یه صفحه صحبت غیر خالی تقریبا تحت نام جدید موجود ابوه, or
-*ایسا چک نه کنین کادر زیر را.
+'''هشدار!'''
+جابجایی صفحات به نام تازه ممکنه  تغییر کلی و غیرمنتظره‌ای سی
+ صفحات دوست داشتنی داشته بوه ؛
+لطفاً مطمئن بوین که قبل زه جابجا کردن صفحه، عواقب ای کار را درک اکنین.",
+'movepagetalktext' => "صفحه صحبت مربوط، ایر وجود داشته بوه، بطور اتوماتیک همراه با صفحه اصلی
+ جابجا ابوه '''میر یو که''' :
+* در حال جابجایی صفحه زه ای فضای نام به فضای نام دیگری بوین،
+* یه صفحه صحبت غیرخالی تحت ای نام تازه وجود داشته بوه، یا
+* کادر زیر را تیک نزده بوین.
 
-In those cases, you will have to move or merge the page manually if desired.",
+در ای موارد، وا صفحه را بطور دستی جابجا کرده و یا محتویات دو صفحه را با اصلاح ادغام کنین.",
 'movearticle'      => 'جابجایی صفحه:',
 'newtitle'         => 'به عنوان تازه:',
 'move-watch'       => 'پیگیری ای صفحه',

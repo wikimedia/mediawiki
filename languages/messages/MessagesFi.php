@@ -474,7 +474,8 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'databaseerror'        => 'Tietokantavirhe',
 'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. MySQL palautti virheen ”<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. MySQL palautti virheen ”$3: $4”.',
-'noconnect'            => 'Tietokantaongelma.<br />$1',
+'noconnect'            => 'Sivustolla on teknisiä ongelmia. Tietokantaan ei saada yhteyttä.<br />
+$1',
 'nodb'                 => 'Tietokantaa $1 ei voitu valita',
 'cachederror'          => 'Pyydetystä sivusta näytettiin välimuistissa oleva kopio, ja se saattaa olla vanhentunut.',
 'laggedslavemode'      => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
@@ -571,7 +572,7 @@ Käyttäjätunnuksesi on luotu.
 'email'                      => 'Sähköpostitoiminnot',
 'prefs-help-realname'        => 'Vapaaehtoinen. Nimesi näytetään käyttäjätunnuksesi sijasta sivun tekijäluettelossa.',
 'loginerror'                 => 'Sisäänkirjautumisvirhe',
-'prefs-help-email'           => 'Vapaaehtoinen. Muut käyttäjät voivat ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
+'prefs-help-email'           => 'Vapaaehtoinen. Mahdollistaa uuden salasanan pyytämisen, jos unohdat salasanasi. Voit myös sallia muiden käyttäjien ottaa sinuun yhteyttä sähköpostilla ilman, että osoitteesi paljastuu.',
 'prefs-help-email-required'  => 'Sähköpostiosoite on pakollinen.',
 'nocookiesnew'               => 'Käyttäjä luotiin, mutta et ole kirjautunut sisään. {{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeistä. Kytke ne päälle, ja sitten kirjaudu sisään juuri luomallasi käyttäjänimellä ja salasanalla.',
 'nocookieslogin'             => '{{SITENAME}} käyttää evästeitä sisäänkirjautumisen yhteydessä. Selaimesi ei salli evästeitä. Ota ne käyttöön, ja yritä uudelleen.',
@@ -768,10 +769,11 @@ Harkitse, kannattaako sivua luoda uudelleen. Alla on tämän sivun poistohistori
 'deleted-notice'                   => 'Tämä sivu on poistettu. Alla on tämän sivun poistohistoria.',
 'deletelog-fulllog'                => 'Näytä loki kokonaan',
 'edit-conflict'                    => 'Päällekkäinen muokkaus.',
+'edit-no-change'                   => 'Muokkauksesi sivuutettiin, koska tekstiin ei tehty mitään muutoksia.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
-Kutsuja pitäisi olla vähemmän kuin $2, mutta nyt niitä on $1.',
+Kutsuja pitäisi olla alle $2 {{PLURAL:$2|kappale|kappaletta}}, mutta nyt niitä on $1 {{PLURAL:$1|kappale|kappaletta}}.',
 'expensive-parserfunction-category'       => 'Liiaksi hitaita jäsentimen laajennusfunktioita käyttävät sivut',
 'post-expand-template-inclusion-warning'  => 'Varoitus: Sisällytettyjen mallineiden koko on liian suuri.
 Joitakin mallineita ei ole sisällytetty.',
@@ -1297,9 +1299,9 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'filehist-revert'                => 'palauta',
 'filehist-current'               => 'nykyinen',
 'filehist-datetime'              => 'Päiväys',
-'filehist-thumb'                 => 'Esikatselukuva',
-'filehist-thumbtext'             => 'Esikatselukuva $1 tallennetusta versiosta',
-'filehist-nothumb'               => 'Ei esikatselukuvaa',
+'filehist-thumb'                 => 'Pienoiskuva',
+'filehist-thumbtext'             => 'Pienoiskuva $1 tallennetusta versiosta',
+'filehist-nothumb'               => 'Ei pienoiskuvaa',
 'filehist-user'                  => 'Käyttäjä',
 'filehist-dimensions'            => 'Koko',
 'filehist-filesize'              => 'Tiedostokoko',
@@ -1485,7 +1487,8 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'speciallogtitlelabel' => 'Kohde',
 'log'                  => 'Lokit',
 'all-logs-page'        => 'Kaikki lokit',
-'alllogstext'          => 'Yhdistetty lokien näyttö. Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut.',
+'alllogstext'          => 'Tämä on yhdistetty lokien näyttö.
+Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.',
 'logempty'             => 'Ei tapahtumia lokissa.',
 'log-title-wildcard'   => 'Kohde alkaa merkkijonolla',
 

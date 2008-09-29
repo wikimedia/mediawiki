@@ -236,9 +236,10 @@ $2',
 'ns-specialprotected' => '‘A‘ole hiki ke ho‘opololei i nā ‘ao‘ao kūikawā',
 
 # Login and logout pages
+'logouttitle'             => 'E haʻalele ka mea hoʻohana',
 'welcomecreation'         => '== E komo mai, $1! ==
-
-He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
+Hoʻokumu ʻia i kou waihona.
+Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'yourname'                => "Inoa mea ho'ohana",
 'yourpassword'            => "Hua'ōlelo huna",
 'yourpasswordagain'       => "Hua'ōlelo huna hou",
@@ -252,6 +253,7 @@ He mea ho‘ohana ‘oe. Mai poina e loli kāu makemake ma {{SITENAME}}.',
 'nologin'                 => 'ʻAʻohe āu waihona? $1.',
 'nologinlink'             => "Lilo i mea ho'ohana",
 'createaccount'           => 'E hana',
+'gotaccount'              => 'He waihona kou ʻē? $1.',
 'gotaccountlink'          => 'E komo',
 'createaccountmail'       => 'no ka leka uila',
 'userexists'              => 'Lilo ka inoa mea ho‘ohana.
@@ -316,6 +318,7 @@ hō‘ike ‘ia i lalo:",
 
 # History pages
 'currentrev'          => 'Kāmua hou',
+'revisionasof'        => 'Ka loli ʻana ma $1',
 'currentrevisionlink' => 'Kāmua hou',
 'cur'                 => 'hou',
 'last'                => 'hope',

@@ -255,7 +255,7 @@ Cur streean er dty lettraghey.',
 Aascreeu, my sailliu.",
 'mailmypassword'             => "Cur dou m'ockle arrey er post-L",
 'passwordremindertitle'      => 'Fockle arrey noa shallidagh gys {{SITENAME}}',
-'acct_creation_throttle_hit' => 'Gow my leshtal, ta $1 coontysyn crooit ayd.
+'acct_creation_throttle_hit' => 'Gow my leshtal, ta {{PLURAL:$1|1 coontys|$1 coontysyn}} crooit ayd.
 Cha nod oo ny smoo y chroo.',
 'accountcreated'             => 'Coontys crooit',
 'accountcreatedtext'         => 'Ta coontys ymmydeyr da $1 crooit.',
