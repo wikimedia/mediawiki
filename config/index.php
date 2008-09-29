@@ -1702,7 +1702,7 @@ if ( \$wgCommandLineMode ) {
 ## you can enable inline LaTeX equations:
 \$wgUseTeX           = false;
 
-\$wgLocalInterwiki   = \$wgSitename;
+\$wgLocalInterwiki   = strtolower( \$wgSitename );
 
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
 

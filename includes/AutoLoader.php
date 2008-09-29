@@ -91,6 +91,7 @@ $wgAutoloadLocalClasses = array(
 	'ImageQueryPage' => 'includes/ImageQueryPage.php',
 	'IncludableSpecialPage' => 'includes/SpecialPage.php',
 	'IndexPager' => 'includes/Pager.php',
+	'Interwiki' => 'includes/Interwiki.php',
 	'IP' => 'includes/IP.php',
 	'Job' => 'includes/JobQueue.php',
 	'License' => 'includes/Licenses.php',
