@@ -565,6 +565,8 @@ $wgMessageStructure = array(
 		'edit-already-exists',
 		'userrestricted-page',
 		'userrestricted-namespace',
+		'userrestricted-page-indef',
+		'userrestricted-namespace-indef',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
