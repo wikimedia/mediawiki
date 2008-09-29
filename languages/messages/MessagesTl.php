@@ -28,6 +28,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Usapang kaurian',
 );
 
+$namespaceAliases = array(
+	'Kategorya'         => NS_CATEGORY,
+	'Usapang kategorya' => NS_CATEGORY_TALK,
+);
+
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Salungguhitan ang mga kawing:',
