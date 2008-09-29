@@ -3455,10 +3455,3 @@ $wgUseAutomaticEditSummaries = true;
  * Requires memcached.
  */
 $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
-
-/**
- * Allow using articlepath for links where the only querystring is a curid (e.g. use /wiki/Main_Page?curid=1)
- * WARNING: This will not work for all hosts or configuration setup, so BE CAREFUL.
- * Only use this setting if you have to, as it is not recommended.
- */
-$wgArticlePathForCurid = false;
