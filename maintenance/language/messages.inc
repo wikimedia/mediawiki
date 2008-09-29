@@ -1552,6 +1552,7 @@ $wgMessageStructure = array(
 		'modifiedarticleprotection',
 		'unprotectedarticle',
 		'protect-title',
+		'prot_1movedto2',
 		'protect-backlink',
 		'protect-legend',
 		'confirmprotect',
