@@ -1579,6 +1579,7 @@ $wgMessageStructure = array(
 		'protect-otherreason-op',
 		'protect-dropdown',
 		'protect-edit-reasonlist',
+		'protect-expiry-options',
 		'restriction-type',
 		'restriction-level',
 		'minimum-size',

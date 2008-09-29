@@ -2393,6 +2393,7 @@ You can change this page's protection level, but it will not affect the cascadin
 ** Counter-productive edit warring
 ** High traffic page',
 'protect-edit-reasonlist'     => 'Edit protection reasons',
+'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'restriction-type'            => 'Permission:',
 'restriction-level'           => 'Restriction level:',
 'minimum-size'                => 'Min size',
