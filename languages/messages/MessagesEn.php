@@ -2356,6 +2356,8 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'protectedarticle'            => 'protected "[[$1]]"',
 'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
 'unprotectedarticle'          => 'unprotected "[[$1]]"',
+'movedarticleprotection'      => 'moved protection settings from "[[$2]]" to "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
 'protect-title'               => 'Change protection level for "$1"',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
