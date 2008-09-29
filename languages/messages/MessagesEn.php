@@ -1222,7 +1222,7 @@ You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|admini
 The restriction was put by [[User:$2|$2]].
 The reason given is \'\'$3\'\'.
 
-Restriction was put at $4 and will not expire.
+Restriction was put on $4 at $5 and will not expire.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
 'userrestricted-namespace-indef'    => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
@@ -1230,7 +1230,7 @@ You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|admini
 The restriction was put by [[User:$2|$2]].
 The reason given is ''$3''.
 
-Restriction was put at $4 and will not expire.
+Restriction was put on $4 at $5 and will not expire.
 
 You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
 
