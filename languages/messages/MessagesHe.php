@@ -139,6 +139,7 @@ $magicWords = array(
 	'img_middle'            => array( 1,    'באמצע',                                'middle'                 ),
 	'img_bottom'            => array( 1,    'למטה',                                 'bottom'                 ),
 	'img_text_bottom'       => array( 1,    'בתחתית הטקסט',                         'text-bottom'            ),
+	'img_alt'               => array( 1,    'חלופי=$1', 'חלופי $1',                   'alt=$1', 'alt $1'       ),
 	'int'                   => array( 0,    'הודעה:',                               'INT:'                   ),
 	'sitename'              => array( 1,    'שם האתר',                              'SITENAME'               ),
 	'ns'                    => array( 0,    'מרחב שם:',                             'NS:'                    ),
@@ -949,20 +950,36 @@ $2',
 'edit-no-change'                   => 'המערכת התעלמה מעריכתכם, כיוון שלא נעשה שינוי בטקסט.',
 'edit-already-exists'              => 'לא ניתן ליצור דף חדש.
 הוא כבר קיים.',
-'userrestricted-page'              => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת הדף \"\$1\".'''</big>
+'userrestricted-page'              => '<big>\'\'\'שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת הדף "$1".\'\'\'</big>
 
-ההגבלה הוטלה על ידי [[User:\$2|\$2]].
-הסיבה שניתנה היא '''\$3'''.
+ההגבלה הוטלה על ידי [[User:$2|$2]].
+הסיבה שניתנה היא \'\'\'$3\'\'\'.
 
-ההגבלה הוטלה ב־\$4 ותפקע ב־\$5.
+ההגבלה הוטלה ב־$5, $4 ותפקע ב־$7, $6.
 
-באפשרותכם ליצור קשר עם [[User:\$2|\$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
+באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.',
 'userrestricted-namespace'         => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת מרחב השם $1.'''</big>
 
 ההגבלה הוטלה על ידי [[User:$2|$2]].
 הסיבה שניתנה היא '''$3'''.
 
-ההגבלה הוטלה ב־$4 ותפקע ב־$5.
+ההגבלה הוטלה ב־$5, $4 ותפקע ב־$7, $6.
+
+באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
+'userrestricted-page-indef'        => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת הדף \"\$1\".'''</big>
+
+ההגבלה הוטלה על ידי [[User:\$2|\$2]].
+הסיבה שניתנה היא '''\$3'''.
+
+ההגבלה הוטלה ב־\$5, \$4 ולא תפקע.
+
+באפשרותכם ליצור קשר עם [[User:\$2|\$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
+'userrestricted-namespace-indef'   => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת מרחב השם $1.'''</big>
+
+ההגבלה הוטלה על ידי [[User:$2|$2]].
+הסיבה שניתנה היא '''$3'''.
+
+ההגבלה הוטלה ב־$5, $4 ולא תפקע.
 
 באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
 
@@ -2006,6 +2023,7 @@ $NEWPAGE
 ** מלחמת עריכה בלתי מועילה
 ** דף בשימוש רב',
 'protect-edit-reasonlist'     => 'עריכת סיבות ההגנה',
+'protect-expiry-options'      => 'שעה:1 hour,יום:1 day,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite',
 'restriction-type'            => 'הרשאה:',
 'restriction-level'           => 'רמת ההגבלה:',
 'minimum-size'                => 'גודל מינימלי',
@@ -2138,7 +2156,7 @@ $1',
 'ipbenableautoblock'              => 'חסימה גם של כתובת ה־IP שלו וכל כתובת IP אחרת שישתמש בה',
 'ipbsubmit'                       => 'חסימה',
 'ipbother'                        => 'זמן אחר:',
-'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,חצי שנה:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
 'ipbinfinite'                     => 'לצמיתות',
 'ipbotheroption'                  => 'אחר',
 'ipbotherreason'                  => 'סיבה אחרת/נוספת:',
@@ -2209,10 +2227,10 @@ $1',
 # Special:ListUserRestrictions
 'listuserrestrictions'            => 'רשימת הגבלות של משתמשים',
 'listuserrestrictions-intro'      => 'רשימה זו כוללת את כל ההגבלות של משתמשים מעריכה של דפים ומרחבי שם מסוימים.
-שימו לב שחסימות רשימות [[Special:Ipblocklist|ברשימת המשתמשים החסומים]] ולא כאן.',
+[[Special:Ipblocklist|חסימות]] אינן מופיעות כאן.',
 'listuserrestrictions-row-ns'     => 'הגביל את $1 מעריכת מרחב השם $2 ($3)',
 'listuserrestrictions-row-page'   => 'הגביל את $1 מעריכת $2 ($3)',
-'listuserrestrictions-row-expiry' => 'זמן פקיעה $1',
+'listuserrestrictions-row-expiry' => 'זמן פקיעה $2, $1',
 'listuserrestrictions-legend'     => 'מציאת הגבלה',
 'listuserrestrictions-type'       => 'סוג:',
 'listuserrestrictions-user'       => 'משתמש:',
@@ -2230,7 +2248,8 @@ $1',
 'removerestrictions'           => 'הסרת הגבלה מעל משתמש',
 'removerestrictions-intro'     => 'השתמשו בטופס שלהלן כדי להסיר הגבלה ממשתמש מסוים.',
 'removerestrictions-noid'      => 'לא צוין מזהה ההגבלה.',
-'removerestrictions-wrongid'   => 'לא נמצאה הגבלה עם מזהה זה. כנראה שהיא כבר הוסרה או פקעה.',
+'removerestrictions-wrongid'   => 'לא נמצאה הגבלה עם מזהה זה.
+כנראה שהיא כבר הוסרה או פקעה.',
 'removerestrictions-legend'    => 'הסרת הגבלה',
 'removerestrictions-user'      => 'המשתמש המוגבל:',
 'removerestrictions-type'      => 'סוג ההגבלה:',
