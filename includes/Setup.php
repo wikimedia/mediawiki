@@ -122,14 +122,6 @@ if ( $wgUseSharedUploads ) {
 		);
 	}
 }
-
-/**
- * Workaround for http://bugs.php.net/bug.php?id=45132
- * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
- */
-putenv( 'LC_CTYPE=en_US.UTF-8' );
-setlocale( LC_CTYPE, 'en_US.UTF-8' );
-
 if ( !class_exists( 'AutoLoader' ) ) {
 	require_once( "$IP/includes/AutoLoader.php" );
 }
