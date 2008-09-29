@@ -598,7 +598,6 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
-
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
 	$conf->setSchema( 
@@ -617,6 +616,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	// We need a second field so it doesn't overwrite the MySQL one
 	$conf->DBprefix2 = importPost( "DBprefix2" );
 
+	$conf->ShellLocale = getShellLocale( $conf->LanguageCode );
 
 /* Check for validity */
 $errs = array();
@@ -1521,6 +1521,13 @@ function writeLocalSettings( $conf ) {
 	$rights = ($conf->RightsUrl) ? "" : "# ";
 	$hashedUploads = $conf->safeMode ? '' : '# ';
 
+	if ( $conf->ShellLocale ) {
+		$locale = '';
+	} else {
+		$locale = '# ';
+		$conf->ShellLocale = 'en_US.UTF-8';
+	}
+
 	switch ( $conf->Shm ) {
 		case 'memcached':
 			$cacheType = 'CACHE_MEMCACHED';
@@ -1691,6 +1698,11 @@ if ( \$wgCommandLineMode ) {
 \$wgEnableUploads       = false;
 {$magic}\$wgUseImageMagick = true;
 {$magic}\$wgImageMagickConvertCommand = \"{$convert}\";
+
+## If you use ImageMagick (or any other shell command) on a
+## Linux server, this will need to be set to the name of an
+## available UTF-8 locale
+{$locale}\$wgShellLocale = \"{$slconf['ShellLocale']}\";
 
 ## If you want to use image uploads under safe mode,
 ## create the directories images/archive, images/thumb and
@@ -1932,6 +1944,70 @@ function database_switcher($db) {
 
 function printListItem( $item ) {
 	print "<li>$item</li>";
+}
+
+# Determine a suitable value for $wgShellLocale
+function getShellLocale( $wikiLanguage ) {
+	# Give up now if we're in safe mode or open_basedir
+	# It's theoretically possible but tricky to work with
+	if ( wfIniGetBool( "safe_mode" ) || ini_get( 'open_basedir' ) ) {
+		return false;
+	}
+	
+	if ( php_uname( 's' ) != 'Linux' ) {
+		# TODO: need testing for other POSIX platforms
+		return false;
+	}
+
+	# Get a list of available locales
+	$lines = $ret = false;
+	exec( '/usr/bin/locale -a', $lines, $ret );
+	if ( $ret ) {
+		return false;
+	}
+
+	$lines = array_map( 'trim', $lines );
+	$candidatesByLocale = array();
+	$candidatesByLang = array();
+	foreach ( $lines as $line ) {
+		if ( $line === '' ) {
+			continue;
+		}
+		if ( !preg_match( '/^([a-zA-Z]+)(_[a-zA-Z]+|)\.(utf8|UTF-8)(@[a-zA-Z_]*|)$/i', $line, $m ) ) {
+			continue;
+		}
+		list( $all, $lang, $territory, $charset, $modifier ) = $m;
+		$candidatesByLocale["$lang$territory.UTF-8$modifier"] = $m;
+		$candidatesByLang[$lang][] = $m;
+	}
+
+	# Try the current value of LANG
+	if ( isset( $candidatesByLocale[ getenv( 'LANG' ) ] ) ) {
+		return getenv( 'LANG' );
+	}
+
+	# Try the most common ones
+	$commonLocales = array( 'en_US.UTF-8', 'de_DE.UTF-8' );
+	foreach ( $commonLocales as $commonLocale ) {
+		if ( isset( $candidatesByLocale[$commonLocale] ) ) {
+			return $commonLocale;
+		}
+	}
+
+	# Is there an available locale in the Wiki's language?
+	if ( isset( $candidatesByLang[$wikiLang] ) ) {
+		$m = reset( $candidatesByLang[$wikiLang] );
+		return $m[0];
+	}
+
+	# Are there any at all?
+	if ( count( $candidatesByLocale ) ) {
+		$m = reset( $candidatesByLocale );
+		return $m[0];
+	}
+
+	# Give up
+	return false;
 }
 
 ?>

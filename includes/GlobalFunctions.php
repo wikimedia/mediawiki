@@ -1217,9 +1217,14 @@ function wfPurgeSquidServers ($urlArr) {
 /**
  * Windows-compatible version of escapeshellarg()
  * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
- * function puts single quotes in regardless of OS
+ * function puts single quotes in regardless of OS.
+ *
+ * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to 
+ * earlier distro releases of PHP)
  */
 function wfEscapeShellArg( ) {
+	wfInitShellLocale();
+
 	$args = func_get_args();
 	$first = true;
 	$retVal = '';
@@ -2146,6 +2151,7 @@ function wfShellExec( $cmd, &$retval=null ) {
 		$retval = 1;
 		return "Unable to run external programs in safe mode.";
 	}
+	wfInitShellLocale();
 
 	if ( php_uname( 's' ) == 'Linux' ) {
 		$time = intval( ini_get( 'max_execution_time' ) );
@@ -2175,7 +2181,21 @@ function wfShellExec( $cmd, &$retval=null ) {
 		wfDebugLog( 'exec', "Possibly missing executable file: $cmd\n" );
 	}
 	return $output;
+}
 
+/**
+ * Workaround for http://bugs.php.net/bug.php?id=45132
+ * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
+ */
+function wfInitShellLocale() {
+	static $done = false;
+	if ( $done ) return;
+	$done = true;
+	global $wgShellLocale;
+	if ( !wfIniGetBool( 'safe_mode' ) ) {
+		putenv( "LC_CTYPE=$wgShellLocale" );
+		setlocale( LC_CTYPE, $wgShellLocale );
+	}
 }
 
 /**

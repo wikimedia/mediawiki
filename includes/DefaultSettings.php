@@ -770,6 +770,13 @@ $wgOutputEncoding = 'UTF-8';
 $wgEditEncoding   = '';
 
 /**
+ * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132
+ * For Unix-like operating systems, set this to to a locale that has a UTF-8 
+ * character set. Only the character set is relevant.
+ */
+$wgShellLocale = 'en_US.utf8';
+
+/**
  * Set this to eg 'ISO-8859-1' to perform character set
  * conversion when loading old revisions not marked with
  * "utf-8" flag. Use this when converting wiki to UTF-8
