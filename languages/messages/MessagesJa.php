@@ -1118,7 +1118,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからないためウェブサーバによって作成できませんでした',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -1127,9 +1127,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
 'upload-prohibited'           => '禁止されているファイル形式： $1',
-'uploadlog'                   => 'アップロードログ',
+'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
-'uploadlogpagetext'           => '以下は最近のファイルのアップロードのログです。',
+'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewImages|新規画像ギャラリー]]をご覧ください。',
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
@@ -1180,7 +1180,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
 'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
 
-このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除ログを表示しています:",
+このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
@@ -1305,9 +1305,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Statistics
 'statistics'               => 'サイトの統計',
-'statistics-header-pages'  => '項目数統計',
-'statistics-header-edits'  => '編集回数統計',
-'statistics-header-users'  => '利用者登録統計',
+'statistics-header-pages'  => '項目数に関する統計',
+'statistics-header-edits'  => '編集に関する統計',
+'statistics-header-users'  => '登録利用者に関する統計',
 'statistics-articles'      => '記事数',
 'statistics-pages'         => '総項目数',
 'statistics-files'         => 'アップロードされたファイル数',
@@ -1406,7 +1406,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
 'log'                  => 'ログ',
-'all-logs-page'        => '全てのログ',
+'all-logs-page'        => '全ての記録',
 'alllogstext'          => '{{SITENAME}}の取得可能なログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'             => '条件にマッチする記録はありません。',
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
@@ -2128,7 +2128,7 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page'   => 'パトロール記録',
-'patrol-log-header' => '以下はパトロールされた版のログです。',
+'patrol-log-header' => '以下はパトロールされた版の記録です。',
 'patrol-log-line'   => '$2 の $1 をパトロール済みにマーク$3',
 'patrol-log-auto'   => '（自動）',
 'patrol-log-diff'   => '第$1版',

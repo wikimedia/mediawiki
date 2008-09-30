@@ -485,7 +485,7 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'youremail'                  => 'E-mail adresiñiz:',
 'username'                   => 'Qullanıcı adı:',
 'uid'                        => 'Qayd nomeri:',
-'prefs-memberingroups'       => 'Azası olğan {{PLURAL:$1|gruppañız|gruppalarıñız}}:',
+'prefs-memberingroups'       => 'Azası olğan {{PLURAL:$1|gruppa|gruppalar}}:',
 'yourrealname'               => 'Kerçek adıñız:',
 'yourlanguage'               => 'İnterfeys tili:',
 'yourvariant'                => 'Til saylavı:',

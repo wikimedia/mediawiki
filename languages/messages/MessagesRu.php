@@ -1845,7 +1845,7 @@ $NEWPAGE
 'deletionlog'            => 'журнал удалений',
 'reverted'               => 'Откачено к ранней версии',
 'deletecomment'          => 'Причина удаления:',
-'deleteotherreason'      => 'Другая причина:',
+'deleteotherreason'      => 'Другая причина/дополнение:',
 'deletereasonotherlist'  => 'Другая причина',
 'deletereason-dropdown'  => '* Типовые причины удаления
 ** вандализм
@@ -1909,7 +1909,7 @@ $NEWPAGE
 'protect-othertime'           => 'Другое время:',
 'protect-othertime-op'        => 'другое время',
 'protect-existing-expiry'     => 'Текущее время окончания: $1',
-'protect-otherreason'         => 'Другая причина:',
+'protect-otherreason'         => 'Другая причина/дополнение:',
 'protect-otherreason-op'      => 'другая причина',
 'protect-dropdown'            => '* Типовые причины защиты
 ** заядлый вандализм
@@ -2050,7 +2050,7 @@ $1',
 'ipbother'                        => 'Другое время:',
 'ipboptions'                      => '15 минут:15 minutes,2 часа:2 hours,6 часов:6 hours,12 часов:12 hours,1 день:1 day,3 дня:3 days,1 неделю:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'другое',
-'ipbotherreason'                  => 'Другая причина:',
+'ipbotherreason'                  => 'Другая причина/дополнение:',
 'ipbhidename'                     => 'Скрыть имя участника или IP-адрес из журнала блокировок, списка заблокированных и общего списка участников.',
 'ipbwatchuser'                    => 'Добавить в список наблюдения личную страницу участника и его страницу обсуждения',
 'ipballowusertalk'                => 'Позволить участнику править свою страницу обсуждения во время блокировки.',

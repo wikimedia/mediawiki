@@ -14,6 +14,7 @@
  * @author Paulo Juntas
  * @author Rei-artur
  * @author Rodrigo Calanca Nishino
+ * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
  * @author Villate
  * @author Waldir
@@ -787,6 +788,8 @@ Certifique-se de que seja adequado prosseguir editando esta página.
 O registo de eliminação desta página é exibido a seguir, para sua comodidade:",
 'deleted-notice'                   => 'Esta página foi eliminada. Disponibiliza-se abaixo o registo de eliminações para esta página, para referência.',
 'deletelog-fulllog'                => 'Ver registo completo',
+'edit-hook-aborted'                => 'Edição abortada por hook.
+Ele não deu nenhuma explicação.',
 'edit-gone-missing'                => 'Não foi possível atualizar a página.
 Ela foi, aparentemente, eliminada.',
 'edit-conflict'                    => 'Conflito de edição.',
@@ -883,7 +886,7 @@ Outros administradores nesta wiki continuarão a poder aceder ao conteúdo escon
 'revdelete-log'               => 'Comentário de registo:',
 'revdelete-submit'            => 'Aplicar à edição seleccionada',
 'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
-'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
+'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
 'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
 'revdel-restore'              => 'Alterar visibilidade',
@@ -976,10 +979,12 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'diff-hr'                 => "uma '''linha horizontal'''",
 'diff-code'               => "um '''bloco de código computacional'''",
 'diff-dl'                 => "uma '''lista de definições'''",
+'diff-dt'                 => "uma '''definição do termo'''",
 'diff-dd'                 => "uma '''definição'''",
 'diff-input'              => "uma '''entrada de dados'''",
 'diff-form'               => "um '''formulário'''",
 'diff-img'                => "uma '''imagem'''",
+'diff-span'               => "um '''span'''",
 'diff-a'                  => "uma '''ligação'''",
 'diff-i'                  => "'''itálico'''",
 'diff-b'                  => "'''negrito'''",
@@ -989,6 +994,9 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'diff-big'                => "'''grande'''",
 'diff-del'                => "'''apagado'''",
 'diff-tt'                 => "'''largura fixa'''",
+'diff-sub'                => "'''sub script'''",
+'diff-sup'                => "'''super script'''",
+'diff-strike'             => "'''paralizado através de'''",
 
 # Search results
 'searchresults'             => 'Resultados de pesquisa',
@@ -1173,6 +1181,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-suppressrevision'     => 'Rever e restaurar edições ocultadas dos Sysops',
 'right-suppressionlog'       => 'Ver registos privados',
 'right-block'                => 'Impedir outros utilizadores de editarem',
+'right-restrict'             => 'Restringir utilizadores a editarem determinados espaços nominais e páginas',
 'right-blockemail'           => 'Impedir um utilizador de enviar email',
 'right-hideuser'             => 'Bloquear um nome de utilizador, escondendo-o do público',
 'right-ipblock-exempt'       => 'Contornar bloqueios de IP, automáticos e de intervalo',
@@ -1542,6 +1551,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'protectedtitlesempty'    => 'Não há títulos protegidos com os parâmetros fornecidos.',
 'listusers'               => 'Lista de utilizadores',
 'listusers-editsonly'     => 'Mostrar apenas utilizadores com edições',
+'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
 'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de utilizador:',
 'ancientpages'            => 'Páginas mais antigas',
@@ -1633,10 +1643,10 @@ Se encontram disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'listgrouprights-rights'          => 'Privilégios',
 'listgrouprights-helppage'        => 'Help:Privilégios de grupo',
 'listgrouprights-members'         => '(lista de membros)',
-'listgrouprights-addgroup'        => 'É possível adicionar {{PLURAL:$2|um grupo|os grupos}}: $1',
-'listgrouprights-removegroup'     => 'É possível remover {{PLURAL:$2|o grupo|os grupos}}: $1',
-'listgrouprights-addgroup-all'    => 'É possível adicionar todos os grupos',
-'listgrouprights-removegroup-all' => 'É possível remover todos os grupos',
+'listgrouprights-addgroup'        => 'Podem conceder acesso {{PLURAL:$2|ao grupo|aos grupos}}: $1',
+'listgrouprights-removegroup'     => 'Podem remover acesso {{PLURAL:$2|do grupo|dos grupos}}: $1',
+'listgrouprights-addgroup-all'    => 'Podem conceder acesso a todos os grupos',
+'listgrouprights-removegroup-all' => 'Podem remover acesso a todos os grupos',
 
 # E-mail user
 'mailnologin'     => 'Nenhum endereço de envio',
@@ -1797,8 +1807,9 @@ Experimente usar o botão "Voltar" e refrescar a página de onde veio e tente no
 'protectlogtext'              => 'Abaixo encontra-se o registo de protecção e desprotecção de páginas.
 Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem das páginas que se encontram protegidas no momento.',
 'protectedarticle'            => 'protegeu "[[$1]]"',
-'modifiedarticleprotection'   => 'foi alterado o nível de protecção para "[[$1]]"',
+'modifiedarticleprotection'   => 'alterou o nível de protecção para "[[$1]]"',
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
+'movedarticleprotection'      => 'moveu as configurações de proteção de "[[$2]]" para "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
 'prot_1movedto2'              => 'moveu [[$1]] para [[$2]]',
 'protect-legend'              => 'Confirmar protecção',
@@ -2043,8 +2054,8 @@ Por favor, confirme que realmente pretende fazer isso.',
 'locknoconfirm'       => 'Você não seleccionou a caixa de confirmação.',
 'lockdbsuccesssub'    => 'Bloqueio bem sucedido',
 'unlockdbsuccesssub'  => 'Desbloqueio bem sucedido',
-'lockdbsuccesstext'   => 'A base de dados da {{SITENAME}} foi bloqueada.
-<br />Lembre-se de remover o bloqueio após a manutenção.',
+'lockdbsuccesstext'   => 'A base de dados da {{SITENAME}} foi bloqueada.<br />
+Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 'unlockdbsuccesstext' => 'A base de dados foi desbloqueada.',
 'lockfilenotwritable' => 'O ficheiro de bloqueio da base de dados não pode ser escrito. Para bloquear ou desbloquear a base de dados, este precisa de poder ser escrito pelo servidor Web.',
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
@@ -2552,6 +2563,9 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 # Flash modes
 'exif-flash-fired-0'    => 'Flash não disparou',
 'exif-flash-fired-1'    => 'Flash disparado',
+'exif-flash-return-0'   => 'strobe não encontrou ou detectou nenhuma função',
+'exif-flash-return-2'   => 'strobe não retornou a função detectada',
+'exif-flash-return-3'   => 'strobe retornou a função detectada',
 'exif-flash-mode-1'     => 'disparo de flash forçado',
 'exif-flash-mode-2'     => 'disparo de flash suprimido',
 'exif-flash-mode-3'     => 'modo auto',
@@ -2708,6 +2722,9 @@ Por favor, confirme que realmente deseja recriar esta página.",
 $1',
 'confirm_purge_button' => 'OK',
 
+# Separators for various lists, etc.
+'pipe-separator' => '&#32;&bull;&#32;',
+
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
 'imgmultipagenext' => 'próxima página →',
@@ -2833,5 +2850,13 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage'              => 'Página em branco',
 'intentionallyblankpage' => 'Esta página foi intencionalmente deixada em branco',
+
+# External image whitelist
+'external_image_whitelist' => '# Deixe esta linha exatamente como ela é <pre> 
+# Coloque uma expressão regular (apenas a parte que vai entre o //) a seguir
+# Estes serão compensados com as URLs de imagens (hotlinked) externas
+# Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas um link para a imagem será mostrada
+# As linhas que começam com # são tratadas como comentários
+# Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
 
 );

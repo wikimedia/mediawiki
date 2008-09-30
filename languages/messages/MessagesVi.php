@@ -735,6 +735,14 @@ Nhật trình xóa của trang được đưa ra dưới đây để tiện theo
 'deleted-notice'                   => 'Trang này đã bị xóa.
 Nhật trình xóa trang được ghi dưới đây để tiện theo dõi.',
 'deletelog-fulllog'                => 'Xem nhật trình đầy đủ',
+'edit-hook-aborted'                => 'Một phần bổ trợ phần mềm đã bỏ qua sửa đổi này.
+Không có lý do nào được đưa ra.',
+'edit-gone-missing'                => 'Không thể cập nhật trang.
+Dường như trang này đã bị xóa.',
+'edit-conflict'                    => 'Sửa đổi mâu thuẫn.',
+'edit-no-change'                   => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
+'edit-already-exists'              => 'Không thể tạo trang mới.
+Nó đã tồn tại.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
@@ -1120,6 +1128,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'right-suppressrevision'     => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
 'right-suppressionlog'       => 'Xem nhật trình riêng tư',
 'right-block'                => 'Cấm thành viên khác sửa đổi',
+'right-restrict'             => 'Hạn chế không cho phép người dùng sửa đổi một số trang và không gian tên cụ thể',
 'right-blockemail'           => 'Cấm thành viên gửi thư',
 'right-hideuser'             => 'Cấm thành viên, rồi ẩn nó đi',
 'right-ipblock-exempt'       => 'Bỏ qua cấm IP, tự động cấm và cấm dải IP',
@@ -1488,6 +1497,7 @@ Có [[Special:WhatLinksHere/$2|danh sách đầy đủ ở đây]].',
 'protectedtitlesempty'    => 'Không có tựa trang nào bị khóa với các thông số như vậy.',
 'listusers'               => 'Danh sách thành viên',
 'listusers-editsonly'     => 'Chỉ hiện thành viên có sửa đổi',
+'usereditcount'           => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}}',
 'newpages'                => 'Các trang mới nhất',
 'newpages-username'       => 'Tên người dùng:',
 'ancientpages'            => 'Các trang cũ nhất',
@@ -1744,6 +1754,7 @@ quay về phiên bản cuối của $2.',
 'protectedarticle'            => 'đã khóa “[[$1]]”',
 'modifiedarticleprotection'   => 'đã đổi mức khóa cho “[[$1]]”',
 'unprotectedarticle'          => 'đã mở khóa cho “[[$1]]”',
+'movedarticleprotection'      => 'đã di chuyển thiết lập khóa trang từ “[[$2]]” đến “[[$1]]”',
 'protect-title'               => 'Thiết lập mức khóa cho “$1”',
 'prot_1movedto2'              => '[[$1]] đổi thành [[$2]]',
 'protect-legend'              => 'Xác nhận khóa',
@@ -1780,7 +1791,7 @@ hiện tại của trang <strong>$1</strong>:',
 ** Bút chiến thiếu tính xây dựng
 ** Trang nhiều người xem',
 'protect-edit-reasonlist'     => 'Sửa lý do khóa trang',
-'protect-expiry-options'      => '2 giờ:2 hours,1 ngày:1 day,3 ngày:3 days,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 giờ:1 hour,1 ngày:1 day,1 tuần:1 week,2 tuần:2 weeks,1 tháng:1 month,3 tháng:3 months,6 tháng:6 months,1 năm:1 year,vô hạn:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
 'minimum-size'                => 'Kích thước tối thiểu',
@@ -1922,6 +1933,7 @@ $1',
 'ipbotherreason'                  => 'Lý do khác',
 'ipbhidename'                     => 'Ẩn tên người dùng khỏi nhật trình cấm, danh sách cấm và danh sách thành viên hiện tại',
 'ipbwatchuser'                    => 'Theo dõi trang thành viên và thảo luận thành viên của thành viên này',
+'ipballowusertalk'                => 'Cho phép người dùng sửa trang thảo luận của chính họ trong khi bị khóa',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.
@@ -1962,6 +1974,7 @@ $1',
 'block-log-flags-nocreate'        => 'cấm mở tài khoản',
 'block-log-flags-noautoblock'     => 'tắt tự động cấm',
 'block-log-flags-noemail'         => 'cấm thư điện tử',
+'block-log-flags-nousertalk'      => 'không được sửa trang thảo luận của mình',
 'block-log-flags-angry-autoblock' => 'bật tự động cấm nâng cao',
 'range_block_disabled'            => 'Đã tắt khả năng cấm hàng loạt của quản lý.',
 'ipb_expiry_invalid'              => 'Thời điểm hết hạn không hợp lệ.',
