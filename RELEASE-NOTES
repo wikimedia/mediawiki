@@ -142,10 +142,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * Improved upload file type detection for OpenDocument formats
 * Added the ability to set the target attribute on external links with 
   $wgExternalLinkTarget
-* (bug 674) Allow admins to block users from editing specific articles and
-  namespaces
 * (bug 368) Don't use caption for alt attribute; allow manual specification
   using new "alt=" parameter for images
+
 
 === Bug fixes in 1.14 ===
 
