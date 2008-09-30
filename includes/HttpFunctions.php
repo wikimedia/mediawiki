@@ -82,11 +82,16 @@ class Http {
 			ob_end_clean();
 
 			# Don't return the text of error messages, return false on error
-			if ( curl_getinfo( $c, CURLINFO_HTTP_CODE ) != 200 ) {
+			$retcode = curl_getinfo( $c, CURLINFO_HTTP_CODE );
+			if ( $retcode != 200 ) {
+				wfDebug( __METHOD__ . ": HTTP return code $retcode\n" );
 				$text = false;
 			}
 			# Don't return truncated output
-			if ( curl_errno( $c ) != CURLE_OK ) {
+			$errno = curl_errno( $c );
+			if ( $errno != CURLE_OK ) {
+				$errstr = curl_error( $c );
+				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
 				$text = false;
 			}
 			curl_close( $c );
