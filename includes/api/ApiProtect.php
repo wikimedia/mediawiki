@@ -129,7 +129,7 @@ class ApiProtect extends ApiBase {
 
 	public function getParamDescription() {
 		return array (
-			'title' => 'Title of the page you want to restore.',
+			'title' => 'Title of the page you want to (un)protect.',
 			'token' => 'A protect token previously retrieved through prop=info',
 			'protections' => 'Pipe-separated list of protection levels, formatted action=group (e.g. edit=sysop)',
 			'expiry' => 'Expiry timestamp. If set to \'infinite\', \'indefinite\' or \'never\', the protection will never expire.',
