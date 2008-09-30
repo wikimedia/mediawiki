@@ -491,7 +491,7 @@ class RecentChange
 			'rc_comment'	=> $logComment,
 			'rc_this_oldid'	=> 0,
 			'rc_last_oldid'	=> 0,
-			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' ) : 0,
+			'rc_bot'	=> $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', false ) : 0,
 			'rc_moved_to_ns'	=> 0,
 			'rc_moved_to_title'	=> '',
 			'rc_ip'	=> $ip,
