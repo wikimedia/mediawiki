@@ -256,6 +256,18 @@ class WebRequest {
 			return (string)$val;
 		}
 	}
+	
+	/**
+	 * Set an aribtrary value into our get/post data.
+	 * @param $key string Key name to use
+	 * @param $value mixed Value to set
+	 * @return mixed old value if one was present, null otherwise
+	 */
+	function setVal( $key, $value ) {
+		$ret = isset( $this->data[$key] ) ? $this->data[$key] : null;
+		$this->data[$key] = $value;
+		return $ret;
+	}
 
 	/**
 	 * Fetch an array from the input or return $default if it's not set.
