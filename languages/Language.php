@@ -1903,33 +1903,23 @@ class Language {
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
 	 * @param $list array of strings to put in a comma list
-	 * @param $forContent bool Use $wgContentLang instead of the UI lang
 	 * @return string
 	 */
 	function commaList( $list, $forContent = false ) {
-		$params = array( 'escapenoentities' );
-		if ( $forContent === true ) {
-			$params[] = 'content';
-		}
 		return implode(
 			$list,
-			wfMsgExt( 'comma-separator', $params ) );
+			wfMsgExt( 'comma-separator', array( 'escapenoentities', 'language' => $this ) ) );
 	}
 	
 	/**
 	 * Same as commaList, but separate it with the pipe instead.
 	 * @param $list array of strings to put in a pipe list
-	 * @param $forContent bool Use $wgContentLang instead of the UI lang
 	 * @return string
 	 */
-	function pipeList( $list, $forContent = false ) {
-		$params = array( 'escapenoentities' );
-		if ( $forContent === true ) {
-			$params[] = 'content';
-		}
+	function pipeList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'pipe-separator', $params ) );
+			wfMsgExt( 'pipe-separator', array( 'escapenoentities', 'language' => $this ) ) );
 	}
 
 	/**
