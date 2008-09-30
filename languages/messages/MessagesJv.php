@@ -382,7 +382,6 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'remembermypassword'         => 'Éling tembung sandhi',
 'yourdomainname'             => 'Dhomain panjenengan',
 'externaldberror'            => 'Ana kasalahan otèntikasi basis dhata èksternal utawa panjenengan ora pareng nglakoni pemutakhiran marang akun èksternal panjenengan.',
-'loginproblem'               => '<strong>Ana masalah ing prosès mlebu log panjenengan.</strong><br />Sumangga nyoba manèh!',
 'login'                      => 'Mlebu log',
 'nav-login-createaccount'    => 'Log mlebu / nggawé rékening (akun)',
 'loginprompt'                => "Panjenengan kudu ngaktifaké ''cookies'' supaya bisa mlebu (log in) ing {{SITENAME}}.",

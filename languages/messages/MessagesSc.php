@@ -170,7 +170,6 @@ Ora puoi continuare ad usare {{SITENAME}} come utente anonimo (ma il tuo indiriz
 'yourpassword'            => 'La tua  password',
 'yourpasswordagain'       => 'Ripeti la password',
 'remembermypassword'      => 'Ricorda la mia password per più sessioni (richiede uso dei cookies).',
-'loginproblem'            => '<b>Si è verificato un errore durante il tuo tentativo di login.</b><br />Riprova, sarai più fortunato!',
 'nav-login-createaccount' => 'Log in',
 'userlogin'               => 'Log in',
 'createaccount'           => 'Crea nuovo account',

@@ -247,7 +247,6 @@ Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga prepere
 'loginpagetitle'          => 'Pagdayon sa tiggamit',
 'yourname'                => 'Ngalan sa tiggamit:',
 'remembermypassword'      => 'Hinumdomi ako niini nga kompyuter',
-'loginproblem'            => "<b>Naay kakulian sa imong pagpaila.</b><br />Sulayi'g usab!",
 'login'                   => 'Sulod',
 'nav-login-createaccount' => 'Rehistro / Dayon',
 'userlogin'               => 'Rehistro / Dayon',

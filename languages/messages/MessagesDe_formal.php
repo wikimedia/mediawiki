@@ -56,7 +56,6 @@ Sie können {{SITENAME}} jetzt anonym weiter benutzen, oder sich erneut unter de
 Ihr Benutzerkonto wurde eingerichtet. Vergessen Sie nicht, Ihre Einstellungen anzupassen.',
 'yourdomainname'             => 'Ihre Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder Sie dürfen Ihr externes Benutzerkonto nicht aktualisieren.',
-'loginproblem'               => "'''Es gab ein Problem mit Ihrer Anmeldung.'''<br />Bitte versuchen Sie es noch einmal!",
 'nologin'                    => 'Sie haben kein Benutzerkonto? $1.',
 'gotaccount'                 => 'Haben Sie bereits ein Benutzerkonto? $1.',
 'userexists'                 => 'Dieser Benutzername ist schon vergeben. Bitte wählen Sie einen anderen.',

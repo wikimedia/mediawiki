@@ -273,7 +273,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 'yourpasswordagain'          => 'Čále suollemassáni ođđasit:',
 'remembermypassword'         => 'Muite mu',
 'yourdomainname'             => 'Fierbmenamma',
-'loginproblem'               => '<b>Sisačállin ii lihkosmuvvan.</b><br />Iska ođđasit!',
 'login'                      => 'Čálligoađe sisa',
 'nav-login-createaccount'    => 'Daga ođđa geavaheaddjidovddaldaga dahje čálligoađe sisa',
 'loginprompt'                => 'Sisačállimii darbbašuvvo geavssat (cookies).',

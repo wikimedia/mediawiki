@@ -502,7 +502,6 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'remembermypassword'         => 'Šćitne gronidło na toś tom computerje składowaś',
 'yourdomainname'             => 'Twója domejna',
 'externaldberror'            => 'Abo jo wustupiła eksterna zmólka awtentifikacije datoweje banki, abo njesmějoš swójo eksterne wužywarske konto aktualizěrowaś.',
-'loginproblem'               => "'''Problem z pśizjawjenim.'''<br />Pšosym hyšći raz wopytaś !",
 'login'                      => 'Pśizjawiś se',
 'nav-login-createaccount'    => 'Pśizjawiś se',
 'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse se cookije dopušćiś.',

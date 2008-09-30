@@ -340,7 +340,6 @@ Nilikha na ang iyong kuwenta. Huwag kalimutang baguhin ang iyong mga kagustuhan 
 'yourpasswordagain'         => 'Iyong hudyat muli:',
 'remembermypassword'        => 'Tandaan ang hudyat sa kompyuter na ito',
 'yourdomainname'            => 'Iyong dominyo:',
-'loginproblem'              => '<b>Nagkaroon ng problema sa iyong paglagda.</b><br />Subukan po muli!',
 'login'                     => 'Lumagda',
 'loginprompt'               => 'Dapat pinapahintulot ang mga kuki upang makapaglagda sa {{SITENAME}}.',
 'userlogin'                 => 'Lumagda / lumikha ng kuwenta',

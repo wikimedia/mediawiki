@@ -210,7 +210,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'O cunto è stato criato currettamente.  Nun scurdà 'e perzonalizzà 'e ppreferenze 'e {{SITENAME}}.",
 'remembermypassword'         => 'Allicuordate d"a password',
 'yourdomainname'             => "Spiecà 'o dumminio",
-'loginproblem'               => "<b>È capetato nu sbaglio a ll'acciesso.</b><br />Pruvate n'ata vota.",
 'login'                      => 'Tràse',
 'userlogin'                  => "Tràse o cria n'acciesso nuovo",
 'logout'                     => 'Jèsce',

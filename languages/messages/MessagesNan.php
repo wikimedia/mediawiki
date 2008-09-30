@@ -233,7 +233,6 @@ $messages = array(
 'yourpassword'               => 'Lí ê bi̍t-bé:',
 'yourpasswordagain'          => 'Têng phah bi̍t-bé:',
 'remembermypassword'         => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng).',
-'loginproblem'               => '<b>Teng-ji̍p tú tio̍h būn-tê.</b><br />Chhiáⁿ têng chhì!',
 'login'                      => 'Teng-ji̍p',
 'loginprompt'                => 'Thiⁿ ē-kha ê chu-liāu thang khui sin hō·-thâu a̍h-sī teng-ji̍p {{SITENAME}}.',
 'userlogin'                  => 'Teng-ji̍p / khui sin kháu-chō',

@@ -356,7 +356,6 @@ Vosse conte a stî ahivé.
 'yourpasswordagain'          => 'Ritapez vosse sicret',
 'remembermypassword'         => "Rimimbrer m' sicret inte les sessions.",
 'yourdomainname'             => 'Vosse dominne',
-'loginproblem'               => "<b>Åk n' a nén stî tot vs elodjant.</b><br />Rissayîz s' i vs plait!",
 'login'                      => "S' elodjî",
 'loginprompt'                => 'Vos dvoz permete les coûkes po vs elodjî so {{SITENAME}}.',
 'userlogin'                  => "S' elodjî",

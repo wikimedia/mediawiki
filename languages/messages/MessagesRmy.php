@@ -173,7 +173,6 @@ Akana si tuke ekh akont. Te na bistares te paruves, kana trebul tuke, tire kamim
 'yourpassword'               => 'O nakhavipnasko lav',
 'yourpasswordagain'          => 'O nakhavipnasko lav de nevo',
 'externaldberror'            => 'Sas ekh dosh kai datengi baza le avrutne prinjaripnyange vai nai tuke drom te akanutnisares o avrutno akonto.',
-'loginproblem'               => '<b>Sas ek problem kai tiro prinjaripen</b><br />Ker les de nevo!',
 'login'                      => 'Prinjaripen',
 'loginprompt'                => "Trebul te das drom le phandimatenge ''cookie'' te das andre kai {{SITENAME}}.",
 'userlogin'                  => 'Prinjaripen / Ker ek akount',

@@ -364,7 +364,6 @@ Melalang ne ing kekang account. E mo kakalingwan alilan deng kekang piniling {{S
 'remembermypassword'         => 'Tandanan me ing login ku king computer a ini',
 'yourdomainname'             => 'Ing kekang karinan (domain):',
 'externaldberror'            => 'Mapalyaring mika pamagkamali king external authentication (pamagpatutung panlual) ning database, o ala kang paintulut a i-update ya ing kekang account a panlual (external account).',
-'loginproblem'               => '<b>Mika prublema king kekang pamag-login.</b><br />Subukan mung pasibayu!',
 'login'                      => 'Mag log in',
 'nav-login-createaccount'    => 'Mag-login / maglalang account',
 'loginprompt'                => 'Kailangan mo reng cookie a makasalangi (enabled) ba kang makapag log in king {{SITENAME}}.',

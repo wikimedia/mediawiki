@@ -475,9 +475,6 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'remembermypassword'         => 'Hesło na tutym ličaku sej spomjatkować',
 'yourdomainname'             => 'Twoja domejna',
 'externaldberror'            => 'Běše pak eksterny zmylk awtentifikacije datoweje banki, pak njesměš swoje eksterne konto aktualizować.',
-'loginproblem'               => '<b>Běše problem z přizjewjenjom.</b><br />
-
-Prošu spytaj hišće raz!',
 'login'                      => 'Přizjewić',
 'nav-login-createaccount'    => 'Konto wutworić abo so přizjewić',
 'loginprompt'                => 'Zo by so pola {{GRAMMAR:genitiw|{{SITENAME}}}} přizjewić móhł, dyrbja so placki (cookies) zmóžnić.',

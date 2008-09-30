@@ -392,7 +392,6 @@ Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana
 'yourpasswordagain'          => 'Sisestage parool uuesti',
 'remembermypassword'         => 'Parooli meeldejätmine tulevasteks seanssideks.',
 'yourdomainname'             => 'Teie domeen:',
-'loginproblem'               => '<b>Sisselogimine ei õnnestunud.</b><br />Proovige uuesti!',
 'login'                      => 'Logi sisse',
 'nav-login-createaccount'    => 'Logi sisse / registreeru kasutajaks',
 'loginprompt'                => 'Teie brauser peab nõustuma küpsistega, et saaksite {{SITENAME}} lehele sisse logida.',

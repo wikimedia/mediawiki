@@ -409,7 +409,6 @@ Na zisoñjit ket personelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndib
 'remembermypassword'         => "Derc'hel soñj eus ma ger-tremen (toupin)",
 'yourdomainname'             => 'Ho tomani',
 'externaldberror'            => "Pe ez eus bet ur fazi gwiriekaat diavaez er bank titouroù pe n'oc'h ket aotreet da nevesaat ho kont diavaez.",
-'loginproblem'               => '<b>Kudenn zisklêriañ.</b><br />Klaskit en-dro !',
 'login'                      => 'Disklêriañ',
 'nav-login-createaccount'    => 'Krouiñ ur gont pe en em lugañ',
 'loginprompt'                => "Ret eo deoc'h bezañ gweredekaet an toupinoù evit bezañ luget ouzh {{SITENAME}}.",

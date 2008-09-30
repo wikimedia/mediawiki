@@ -543,7 +543,6 @@ Käyttäjätunnuksesi on luotu.
 'remembermypassword'         => 'Muista minut',
 'yourdomainname'             => 'Verkkonimi',
 'externaldberror'            => 'Tapahtui virhe ulkoisen autentikointitietokannan käytössä tai sinulla ei ole lupaa päivittää tunnustasi.',
-'loginproblem'               => '<b>Sisäänkirjautuminen ei onnistunut.</b><br />Yritä uudelleen!',
 'login'                      => 'Kirjaudu sisään',
 'nav-login-createaccount'    => 'Kirjaudu sisään tai luo tunnus',
 'loginprompt'                => 'Kirjautumiseen tarvitaan evästeitä.',

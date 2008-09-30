@@ -393,8 +393,6 @@ Jen account is anemikt. Vergeet nie je vòkeuren voe {{SITENAME}} an te passen.'
 'remembermypassword'         => 'Anmeldhehevens ontouwen',
 'yourdomainname'             => 'Je domein:',
 'externaldberror'            => "Der is een fout opetreeën bie 't anmelden bie de database of je ei hin toestemmieng jen externe gebruker bie te werken.",
-'loginproblem'               => "<b>Der was een probleem bie 't anmelden.</b><br />
-Probeer 't asjeblieft nog een keêr.",
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden / Inschrieven',
 'loginprompt'                => "Je mò cookies ineschaokeld ène om je te kunn'n anmelden bie {{SITENAME}}.",

@@ -198,7 +198,6 @@ $messages = array(
 'yourpassword'            => 'Nywila',
 'yourpasswordagain'       => 'Andika tena neno la siri',
 'remembermypassword'      => 'Nikumbuke katika tarakilishi hii',
-'loginproblem'            => '<b>Tatizo limetokea wakati ulipojaribu kuingia.</b><br />Jaribu tena!',
 'login'                   => 'Ingia',
 'nav-login-createaccount' => 'Ingia/ sajili akaunti',
 'loginprompt'             => 'Lazima kompyuta yako ipokee kuki ili uweze kuingia kwenye {{SITENAME}}.',

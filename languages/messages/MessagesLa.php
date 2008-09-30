@@ -451,7 +451,6 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'yourpasswordagain'          => 'Tesseram tuam adfirmare:',
 'remembermypassword'         => 'Tesseram meam inter conventa memento',
 'yourdomainname'             => 'Regnum tuum:',
-'loginproblem'               => '<b>Problema erat aperiens conventum tuum.</b><br />Conare denuo!',
 'login'                      => 'Conventum aperire',
 'nav-login-createaccount'    => 'Conventum aperire / conventum creare',
 'loginprompt'                => 'Cookies potestatem facere debes ut conventum aperire.',
