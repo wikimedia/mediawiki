@@ -35,7 +35,7 @@ class SpecialListUserRestrictionsForm {
 			false, $wgRequest->getVal( 'user' ) );
 		$s .= '<p>';
 		$s .= Xml::label( wfMsgHtml( 'listuserrestrictions-namespace' ), 'namespace' ) . '&nbsp;' .
-			Xml::namespaceSelector( $wgRequest->getVal( 'namespace' ), '', false, 'namespace' );
+			Xml::namespaceSelector( $wgRequest->getVal( 'namespace' ), '', 'namespace' );
 		$s .= '&nbsp;';
 		$s .= Xml::inputLabel( wfMsgHtml( 'listuserrestrictions-page' ), 'page', 'page',
 			false, $wgRequest->getVal( 'page' ) );
