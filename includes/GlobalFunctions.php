@@ -676,9 +676,9 @@ function wfMsgWikiHtml( $key ) {
  *   <i>parsemag</i>: transform the message using magic phrases
  *   <i>content</i>: fetch message for content language instead of interface
  * Also can accept a single associative argument, of the form 'language' => 'xx':
- *   <i>language</i>: language code to fetch message for (overriden by
- *       <i>content</i>), its behaviour with parser, parseinline and parsemag
- *       is undefined.
+ *   <i>language</i>: Language object or language code to fetch message for
+ *       (overriden by <i>content</i>), its behaviour with parser, parseinline
+ *       and parsemag is undefined.
  * Behavior for conflicting options (e.g., parse+parseinline) is undefined.
  */
 function wfMsgExt( $key, $options ) {
@@ -706,12 +706,7 @@ function wfMsgExt( $key, $options ) {
 		$langCode = true;
 	} elseif( array_key_exists('language', $options) ) {
 		$forContent = false;
-		$langCode = $options['language'];
-		$validCodes = array_keys( Language::getLanguageNames() );
-		if( !in_array($options['language'], $validCodes) ) {
-			# Fallback to en, instead of whatever interface language we might have
-			$langCode = 'en';
-		}
+		$langCode = wfGetLangObj( $options['language'] );
 	} else {
 		$forContent = false;
 		$langCode = false;
