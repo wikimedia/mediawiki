@@ -380,8 +380,6 @@ A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul rintr
 'remembermypassword'         => "Vis-te mia ciav për vàire session (për podej felo a fa da manca che un a l'abia ij ''cookies'' abilità).",
 'yourdomainname'             => 'Sò domini',
 'externaldberror'            => "Ò che a l'é rivaje n'eror d'autenticassion esterna, ò pura a l'é chiel (chila) che a l'é nen autorisà a agiornesse sò cont estern.",
-'loginproblem'               => "<b>A l'é staje n'eror dëmentré che as provava a rintré ant ël sistema.</b><br />
-Che a preuva n'àutra vira, miraco che sta vira a andèissa mai bin!",
 'login'                      => 'Rintré ant ël sistema',
 'nav-login-createaccount'    => 'rintré ant ël sistema',
 'loginprompt'                => 'Che a varda mach che a venta avej ij cookies abilità për podej rintré an {{SITENAME}}.',

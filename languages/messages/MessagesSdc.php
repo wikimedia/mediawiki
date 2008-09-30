@@ -356,7 +356,6 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'remembermypassword'         => "Ammenta la paràura d'órdhini",
 'yourdomainname'             => 'Ippizzificà lu dumìniu',
 'externaldberror'            => "S'è verifiggaddu un errori cu l'elaburaddori sivvidori di autentificazioni esthernu, oppuru nò si diponi di l'autorizazioni nezzessàri pa aggiornà la propria registhrazioni estherna.",
-'loginproblem'               => "<b>S'è verifiggaddu un errori duranti l'intradda.</b><br />Riprubà.",
 'login'                      => 'Intra',
 'nav-login-createaccount'    => 'Intra / registhrazioni',
 'loginprompt'                => 'Pa intrà a {{SITENAME}} è nezzessàriu abirità li cookie.',

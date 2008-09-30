@@ -429,7 +429,6 @@ Akkauntın'ız jaratıldı. {{SITENAME}} sazlawların'ızdı o'zgertiwdi umıtpa
 'yourpasswordagain'          => "Paroldi qayta kiritin':",
 'remembermypassword'         => "Menin' kirgenimdi usı kompyuterde saqlap qal",
 'yourdomainname'             => "Sizin' domen:",
-'loginproblem'               => "<b>Kiriw waqtında mashaqatlar sa'dir boldı.</b><br />Qaytadan kirip ko'rin'.",
 'login'                      => 'Kiriw',
 'nav-login-createaccount'    => 'Kiriw / akkaunt jaratıw',
 'loginprompt'                => "{{SITENAME}} saytına kiriw ushın kukiler qosılg'an bolıwı kerek.",

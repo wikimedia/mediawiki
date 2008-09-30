@@ -404,7 +404,6 @@ No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de 
 'remembermypassword'         => 'Ricorda la me password par più sessioni (ghe vol i cookies).',
 'yourdomainname'             => 'Specifica el dominio:',
 'externaldberror'            => 'Se gà verificà un erór con el server de autenticassion esterno, oppure no se dispone de łe autorixassion necessarie par agiornar el proprio açesso esterno.',
-'loginproblem'               => '<b>Si gà verificà un erore durante el to tentativo de login.</b><br />Ripróa da novo!',
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra o crea un novo acesso',
 'loginprompt'                => 'Par acédere a {{SITENAME}} ti gà da abiłitare i cookie.',

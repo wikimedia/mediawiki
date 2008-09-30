@@ -414,7 +414,6 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'remembermypassword'         => 'Recordar la mio identificación nesti ordenador',
 'yourdomainname'             => 'El to dominiu:',
 'externaldberror'            => "O hebo un error de l'autenticación esterna de la base de datos o nun tienes permisu p'actualizar la to cuenta esterna.",
-'loginproblem'               => '<b>Hebo un problema cola to identificación.</b><br />¡Inténtalo otra vuelta!',
 'login'                      => 'Entrar',
 'nav-login-createaccount'    => 'Entrar / Crear cuenta',
 'loginprompt'                => "Has tener les ''cookies'' activaes pa entrar en {{SITENAME}}.",

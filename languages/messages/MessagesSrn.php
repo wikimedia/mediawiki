@@ -330,8 +330,6 @@ No fergiti fu kenki den seti fu yu gi {{SITENAME}}.',
 'yourpasswordagain'         => 'Psa wortu ete wan leysi:',
 'remembermypassword'        => 'Tan memre mi kebroikiman nen nanga psa wortu.',
 'yourdomainname'            => 'Yu domein:',
-'loginproblem'              => '<b>Wan problema ben de di yu e psa kon.</b><br />
-Pruberi baka!',
 'login'                     => 'Psa kon',
 'nav-login-createaccount'   => 'Psa kon / meki wan account',
 'loginprompt'               => 'Yu musu man kisi cookies fu man psa kon na {{SITENAME}}.',

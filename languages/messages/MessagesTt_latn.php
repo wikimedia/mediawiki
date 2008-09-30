@@ -251,7 +251,6 @@ Sineñ xísabıñ yasaldı. {{SITENAME}}'dağı köyläwläreñne dä üzgärter
 'yourpassword'          => 'Sersüzeñ',
 'yourpasswordagain'     => 'Sersüz qabat',
 'remembermypassword'    => 'Tanı mine kergändä.',
-'loginproblem'          => '<b>Kerüeñ waqıtında nindider qíınlıq bulıp çıqtı.</b><br />Qabat kerep qara!',
 'login'                 => 'İreşü',
 'userlogin'             => 'Xísap yasaw yä ki kerü',
 'logout'                => 'Çığış',

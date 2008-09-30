@@ -389,7 +389,6 @@ Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõ
 'remembermypassword'         => 'Salasõna miildejätmine järgmäidsis kõrros',
 'yourdomainname'             => 'Võrgonimi',
 'externaldberror'            => 'Välitsen kimmästegemisteedüskogon om viga vai olõ-i sul lubat umma pruukjanimme muutaq.',
-'loginproblem'               => '<b>Es saaq sisse.</b><br />Prooviq vahtsõst!',
 'login'                      => 'Nimega sisseminek',
 'nav-login-createaccount'    => 'Mineq nimega sisse',
 'loginprompt'                => '{{SITENAME}} lask nimega sisse õnnõ sis, ku lubatas valmistuisi.',

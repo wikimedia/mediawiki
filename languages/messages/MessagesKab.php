@@ -341,7 +341,6 @@ Isem n wemseqdac inek yettwaxleq. Ur tettuḍ ara ad tbeddleḍ Isemyifiyen n {{
 'remembermypassword'         => 'Cfu ɣef wawal n tbaḍnit inu di uselkim-agi.',
 'yourdomainname'             => 'Taɣult inek',
 'externaldberror'            => 'Yella ugul aberrani n database neɣ ur tettalaseḍ ara ad tbeddleḍ isem an wemseqdac aberrani inek.',
-'loginproblem'               => '<b>Yella ugur akk d ukcam inek.</b><br />Ɛreḍ daɣen!',
 'login'                      => 'Kcem',
 'nav-login-createaccount'    => 'Kcem / Xleq isem n wemseqdac',
 'loginprompt'                => 'Yessefk ad teǧǧiḍ ikukiyen (cookies) iwakken ad tkecmeḍ ar {{SITENAME}}.',

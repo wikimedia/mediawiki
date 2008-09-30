@@ -247,7 +247,6 @@ Voaforona ny kaontinao. Aza adinoina ny manova ny mombamomba anao ao amin'ny {{S
 'remembermypassword'         => 'Tadidio ny tenimiafiko',
 'yourdomainname'             => 'faritra (domaine) misy anao',
 'externaldberror'            => "Nisy tsy fetezana angamba teo amin'ny fanamarinana anao tamin'ny sehatra ivelan'ity wiki ity, na tsy manana alalana hanova ny kaontinao ivelany ianao.",
-'loginproblem'               => "<b>Nisy olana tamin'ny fidiranao.</b><br />Andramo indray hoe!",
 'login'                      => 'Midira',
 'nav-login-createaccount'    => 'Ampidiro ny solonanarana',
 'loginprompt'                => "

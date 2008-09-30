@@ -298,7 +298,6 @@ Your account has been created. Don't forget to change your {{SITENAME}} preferen
 'yourpasswordagain'          => 'ਪਾਸਵਰਡ ਮੁੜ-ਲਿਖੋ:',
 'remembermypassword'         => 'ਇਹ ਕੰਪਿਊਟਰ ਲਈ ਆਪਣਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ',
 'yourdomainname'             => 'ਤੁਹਾਡੀ ਡੋਮੇਨ:',
-'loginproblem'               => '<b>ਤੁਹਾਡੇ ਲਾਗਇਨ ਨਾਲ ਇੱਕ ਸਮੱਸਿਆ ਹੈ।</b><br />ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ!',
 'login'                      => 'ਲਾਗ ਇਨ',
 'nav-login-createaccount'    => 'ਲਾਗ ਇਨ / ਅਕਾਊਂਟ ਬਣਾਓ',
 'loginprompt'                => 'ਤੁਹਾਨੂੰ {{SITENAME}} ਉੱਤੇ ਲਾਗਇਨ ਕਰਨ ਲਈ ਕੂਕੀਜ਼ ਯੋਗ ਕਰਨੇ ਜ਼ਰੂਰੀ ਹਨ।',

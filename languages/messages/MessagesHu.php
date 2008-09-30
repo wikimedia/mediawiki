@@ -645,7 +645,6 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'remembermypassword'         => 'Ne léptessen ki a böngésző bezárásakor.',
 'yourdomainname'             => 'A domainneved:',
 'externaldberror'            => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',
-'loginproblem'               => '<b>Hiba történt a bejelentkezésed során.</b><br />Kérlek, próbálkozz újra!',
 'login'                      => 'Bejelentkezés',
 'nav-login-createaccount'    => 'Bejelentkezés / fiók létrehozása',
 'loginprompt'                => 'Engedélyezned kell a cookie-kat, hogy bejelentkezhess a {{grammar:be|{{SITENAME}}}}.',

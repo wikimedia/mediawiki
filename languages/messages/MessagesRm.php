@@ -189,7 +189,6 @@ Tes conto è vegni creà. Betg emblida da midar tias preferenzas da {{SITENAME}}
 'yourpasswordagain'          => 'repeter pled-clav',
 'remembermypassword'         => 'Arcunar il pled-clav',
 'yourdomainname'             => 'Vossa domain',
-'loginproblem'               => '<b>I ha dà in problem cun voss log-in.</b><br />Empruvai per plaschair danovamain!',
 'login'                      => 'Log-in',
 'loginprompt'                => "Vus stuais avair '''activà cookies''' per pudair s'annunziar tar {{SITENAME}}.",
 'userlogin'                  => "s'annunziar / crear in nov conto d'utilisader",

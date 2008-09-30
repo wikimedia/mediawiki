@@ -321,7 +321,6 @@ $messages = array(
 'yourpasswordagain'          => 'Омбоцеде сёрмадык кирдицянь леметь:',
 'remembermypassword'         => 'Ледстемс монь совамо валонть те арсемашинасонть',
 'yourdomainname'             => 'Эсеть доменэть:',
-'loginproblem'               => '<b>Совамсто мезе-бути аволь истя лиссь.</b><br />Варчика одов!',
 'login'                      => 'Совамо',
 'nav-login-createaccount'    => 'Совамо / тейть совамотарка',
 'loginprompt'                => '{{SITENAME}} сайтэнтень совамга эряви нолдамс тевс cookies.',

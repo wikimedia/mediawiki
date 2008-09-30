@@ -266,7 +266,6 @@ A ti fi orúkọ yín s'ílẹ̀. Ẹ mọ́ gbàgbé l'áti s'àtúnṣe àwọ
 'yourpassword'              => 'Ọ̀rọ̀ìpamọ́:',
 'yourpasswordagain'         => 'Tẹkíkọ ọ̀rọ̀ìpamọ́ lẹ́ẹ̀kansí:',
 'remembermypassword'        => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi (cookies)",
-'loginproblem'              => '<b>Ẹ ní ìṣòro láti wọlé.</b><br />Ẹ gbìyànjú lẹ́kan sí!',
 'login'                     => 'Ìwọlé',
 'nav-login-createaccount'   => 'Ìwọlé / Ìforúkọ sílẹ̀',
 'userlogin'                 => 'Ìwọlé / ìforúkọ sílẹ̀',

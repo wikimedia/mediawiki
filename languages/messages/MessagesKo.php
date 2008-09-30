@@ -592,7 +592,6 @@ $messages = array(
 'remembermypassword'         => '로그인 상태를 저장하기',
 'yourdomainname'             => '도메인 이름',
 'externaldberror'            => '외부 인증 데이터베이스에 오류가 있거나, 외부 계정을 갱신할 권한이 없습니다.',
-'loginproblem'               => "'''로그인에 문제가 발생했습니다.'''<br />다시 시도해 보세요.",
 'login'                      => '로그인',
 'nav-login-createaccount'    => '로그인 / 계정 만들기',
 'loginprompt'                => '{{SITENAME}}에 로그인하려면 쿠키를 사용할 수 있어야 합니다.',

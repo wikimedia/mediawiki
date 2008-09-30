@@ -522,7 +522,6 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'remembermypassword'         => 'Recorda la contrasenya entre sessions',
 'yourdomainname'             => 'El vostre domini',
 'externaldberror'            => "Hi ha hagut una fallida en el servidor d'autenticació externa de la base de dades i no teniu permís per a actualitzar el vostre compte d'accès extern.",
-'loginproblem'               => "<strong>S'ha produït un problema en iniciar la sessió.</strong><br />Proveu-ho de nou!",
 'login'                      => 'Inici de sessió',
 'nav-login-createaccount'    => 'Inicia una sessió / crea un compte',
 'loginprompt'                => 'Heu de tenir les galetes habilitades per a poder iniciar una sessió a {{SITENAME}}.',

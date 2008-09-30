@@ -361,7 +361,6 @@ Ya está criá la tu cuenta. Alcuerdati de chambal las tus preferéncias al tent
 'remembermypassword'         => 'Recordal la mi cuenta nesti ordinaol',
 'yourdomainname'             => 'El tu domiñu:',
 'externaldberror'            => "Marru d'autentificación esterna e la basi e datus, u bien nu t'alcuentras autorizau p'atualizal la tu cuenta esterna.",
-'loginproblem'               => '<b>Marru al abril la tu cuenta.</b><br />Preba otra vezi!',
 'login'                      => 'Entral',
 'nav-login-createaccount'    => 'Entral/Crial cuenta',
 'loginprompt'                => 'Ebis atival las cookies pa entral en {{SITENAME}}.',

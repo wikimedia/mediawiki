@@ -629,7 +629,6 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'remembermypassword'         => 'Automatisk inloggning i framtiden.',
 'yourdomainname'             => 'Din domän',
 'externaldberror'            => 'Antingen inträffade autentiseringsproblem med en extern databas, eller så får du inte uppdatera ditt externa konto.',
-'loginproblem'               => '<b>Det uppstod problem vid inloggningen.</b><br />Pröva igen!',
 'login'                      => 'Logga in',
 'nav-login-createaccount'    => 'Logga in/skapa konto',
 'loginprompt'                => 'Du måste tillåta cookies för att logga in på {{SITENAME}}.',

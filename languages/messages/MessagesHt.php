@@ -398,7 +398,6 @@ Kont ou an kreye. Pa bliye pèsonalize l nan  [[Special:Preferences|preferans ou
 'remembermypassword'         => 'Anrejistre mopas mwen an nan òdinatè mwen an',
 'yourdomainname'             => 'Domèn ou an',
 'externaldberror'            => 'Li sanble ke yon erè pwodui ak bazdone a pou idantifikasyon ki pa nan sistèm an, oubyen ou pa otorize pou mete a jou kont ou genyen nan lòt sistèm yo.',
-'loginproblem'               => '<b>Pwoblèm idantifikasyon nan sistèm an.</b><br />Tanpri, eseye ankò !',
 'login'                      => 'Idantifikasyon',
 'nav-login-createaccount'    => 'Kreye yon kont oubyen konekte ou',
 'loginprompt'                => 'Ou dwèt aksepte (aktive) koukiz (cookies) yopou ou kapab [[Special:UserLogin|konekte nan {{SITENAME}}]].',

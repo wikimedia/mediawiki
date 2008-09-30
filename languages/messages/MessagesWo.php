@@ -361,7 +361,6 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'remembermypassword'         => 'Fattaliku sama baatujàll ci bii nosukaay',
 'yourdomainname'             => 'Sa barab',
 'externaldberror'            => 'Njuumte juddu na ci dattub njoxe bi, walla day ni rekk amuloo sañ-sañu yeesal sa sàqum biti.',
-'loginproblem'               => '<b>Jafe-jafey xammeeku.</b><br />Jéemaatal!',
 'login'                      => 'xammeeku',
 'nav-login-createaccount'    => 'Bindu/Duggu',
 'loginprompt'                => 'Faaw nga doxal cookie yi ngir man a duggu ci {{SITENAME}}.',

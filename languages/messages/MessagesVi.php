@@ -488,7 +488,6 @@ Tài khoản của bạn đã mở.
 'remembermypassword'         => 'Nhớ thông tin đăng nhập của tôi trên máy tính này',
 'yourdomainname'             => 'Tên miền của bạn:',
 'externaldberror'            => 'Có lỗi khi xác nhận cơ sở dữ liệu bên ngoài hoặc bạn không được phép cập nhật tài khoản bên ngoài.',
-'loginproblem'               => '<b>Có trục trặc khi đăng nhập.</b><br />Mời thử lại!',
 'login'                      => 'Đăng nhập',
 'nav-login-createaccount'    => 'Đăng nhập / Mở tài khoản',
 'loginprompt'                => 'Bạn cần bật cookie để đăng nhập vào {{SITENAME}}.',

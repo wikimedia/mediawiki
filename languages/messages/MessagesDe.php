@@ -562,7 +562,6 @@ Dein Benutzerkonto wurde eingerichtet. Vergiss nicht, deine Einstellungen anzupa
 'remembermypassword'         => 'auf diesem Computer dauerhaft anmelden',
 'yourdomainname'             => 'Deine Domain:',
 'externaldberror'            => 'Entweder es liegt ein Fehler bei der externen Authentifizierung vor, oder du darfst dein externes Benutzerkonto nicht aktualisieren.',
-'loginproblem'               => "'''Es gab ein Problem mit deiner Anmeldung.'''<br />Bitte versuche es nochmal!",
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Zur Anmeldung müssen Cookies aktiviert sein.',

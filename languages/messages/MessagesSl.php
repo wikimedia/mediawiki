@@ -336,7 +336,6 @@ Ustvarili ste račun.
 'remembermypassword'         => 'Zapomni si me (samodejna prijava)',
 'yourdomainname'             => 'Domena',
 'externaldberror'            => 'Pri potrjevanju istovetnosti je prišlo do notranje napake ali pa za osveževanje zunanjega računa nimate dovoljenja.',
-'loginproblem'               => '<b>Prijava ni uspela.</b><br />Prosimo, poskusite znova!',
 'login'                      => 'Prijava',
 'loginprompt'                => '<!--Za prijavo v {{GRAMMAR:tožilnik|{{SITENAME}}}} omogočite piškotke.-->',
 'userlogin'                  => 'Prijavite se / registrirajte se',

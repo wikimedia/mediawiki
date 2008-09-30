@@ -594,7 +594,6 @@ Ekki gleyma að breyta [[Special:Preferences|{{SITENAME}}-stillingunum]] þínum
 'yourpasswordagain'          => 'Endurrita lykilorð:',
 'remembermypassword'         => 'Muna innskráningu mína á þessari tölvu',
 'yourdomainname'             => 'Þitt lén:',
-'loginproblem'               => '<b>Það kom upp villa í innskráningunni.</b><br />Reyndu aftur!',
 'login'                      => 'Innskrá',
 'nav-login-createaccount'    => 'Innskrá / Búa til aðgang',
 'loginprompt'                => 'Þú verður að leyfa vefkökur til þess að geta [[Special:UserLogin|skráð þig inn á {{SITENAME}}]].',

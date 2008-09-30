@@ -299,7 +299,6 @@ Esapınız açıldı. Unutmayın {{SITENAME}} seçimnerin diiştirmää.',
 'yourpasswordagain'          => 'Parolu enidän yaz',
 'remembermypassword'         => 'Parolu hatırla.',
 'yourdomainname'             => 'Domen adınız',
-'loginproblem'               => '<b>Registrat olur känä bir problema oldu.</b><br />Bir taa deneyin!',
 'login'                      => 'Gir',
 'nav-login-createaccount'    => 'Gir / esap yarat',
 'loginprompt'                => "Bak: {{SITENAME}} saytında sessiya açmaa için tarayıcınızda läazım cookies aktivat olsun. <br />

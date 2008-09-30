@@ -509,7 +509,6 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine {{SITENAME}}-inds
 'remembermypassword'         => 'Husk min adgangskode til næste gang.',
 'yourdomainname'             => 'Dit domænenavn',
 'externaldberror'            => 'Der er opstået en fejl i en ekstern adgangsdatabase, eller du har ikke rettigheder til at opdatere denne.',
-'loginproblem'               => '<b>Der har været et problem med at få dig logget på.</b><br />Prøv igen!',
 'login'                      => 'Log på',
 'nav-login-createaccount'    => 'Opret en konto eller log på',
 'loginprompt'                => 'Du skal have cookies slået til for at kunne logge på {{SITENAME}}.',

@@ -413,7 +413,6 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'remembermypassword'         => 'Memorar mi contrasigno in iste computator',
 'yourdomainname'             => 'Tu dominio:',
 'externaldberror'            => 'O il occureva un error in le base de datos de authentification externe, o tu non ha le autorisation de actualisar tu conto externe.',
-'loginproblem'               => '<b>Un problema occureva con tu session.</b><br />Per favor reprova!',
 'login'                      => 'Aperir session',
 'nav-login-createaccount'    => 'Aperir session / crear conto',
 'loginprompt'                => 'Tu debe haber activate le cookies pro poter identificar te a {{SITENAME}}.',

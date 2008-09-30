@@ -384,7 +384,6 @@ La tô identitât e je stade creade. No stâ dismenteâti di gambiâ lis prefere
 'yourpasswordagain'         => 'Torne a scrivile',
 'remembermypassword'        => 'Visiti di me',
 'yourdomainname'            => 'Il to domini',
-'loginproblem'              => '<b>Al è stât un erôr te jentrade.</b><br />Torne a provâ!',
 'login'                     => 'Jentre',
 'nav-login-createaccount'   => 'Regjistriti o jentre',
 'loginprompt'               => 'Tu âs di vê abilitâts i cookies par jentrâ in {{SITENAME}}.',

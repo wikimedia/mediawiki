@@ -387,7 +387,6 @@ Nagibo na an ''account'' mo. Giromdomon tabi na ribayán an saimong mga kabôtan
 'remembermypassword'         => 'Giromdomon an paglaog ko sa kompyuter na ini',
 'yourdomainname'             => "An saimong ''domain'':",
 'externaldberror'            => "Igwang nin salang panluwas pantunay kan base nin datos o dai ka pigtotogotan na bâgohon an saimong panluwas na ''account''.",
-'loginproblem'               => '<b>May problema sa paglaog mo.</b><br />Probaran giraray!',
 'login'                      => 'Maglaog',
 'nav-login-createaccount'    => 'Maglaog / maggibo nin account',
 'loginprompt'                => 'Kaipuhan may cookies ka para makalaog sa {{SITENAME}}.',

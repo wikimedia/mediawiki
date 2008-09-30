@@ -198,7 +198,6 @@ $messages = array(
 'yourpassword'               => 'Þīn gelēafnesword',
 'yourpasswordagain'          => 'Edwrītan gelēafnesword',
 'yourdomainname'             => 'Þīn geweald',
-'loginproblem'               => '<b>Þīn inmeldung wearþ gescremed.</b><br />Eftrōmie!',
 'login'                      => 'Inmeldian',
 'nav-login-createaccount'    => 'Settan nīwne hordcleofan oþþe inmeldian',
 'userlogin'                  => 'Settan nīwne hordcleofan oþþe inmeldian',

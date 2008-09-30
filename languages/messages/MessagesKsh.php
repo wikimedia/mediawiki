@@ -483,7 +483,6 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'remembermypassword'         => 'Op Duur Aanmelde',
 'yourdomainname'             => 'Ding Domain',
 'externaldberror'            => 'Do wor ene Fähler en de externe Daatebank, oder Do darfs Ding extern Daate nit ändere. Dat Aanmelde jingk jedenfalls donevve.',
-'loginproblem'               => '<strong>Met däm Enlogge es jet scheiv jelaufe.</strong><br />Bes esu jod, un dun et noch ens versöke!',
 'login'                      => 'Enlogge',
 'nav-login-createaccount'    => 'Enlogge, Aanmälde',
 'loginprompt'                => 'Öm op de {{SITENAME}} enlogge ze künne, muss De de Cookies en Dingem Brauser enjeschalt han.',

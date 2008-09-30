@@ -504,9 +504,6 @@ $1',
 'remembermypassword'         => '響呢部電腦度記住我嘅密碼',
 'yourdomainname'             => '你嘅網域:',
 'externaldberror'            => '外部驗證資料庫出錯，或者唔允許你更新你嘅外部帳戶。',
-'loginproblem'               => "'''你嘅登入手續出咗問題。'''
-
-唔該再試吓登入。",
 'login'                      => '登入',
 'nav-login-createaccount'    => '登入／開新戶口',
 'loginprompt'                => '你一定要開咗 cookies 先登入到{{SITENAME}}。',

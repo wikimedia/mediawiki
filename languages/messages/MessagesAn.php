@@ -472,7 +472,6 @@ No xublide presonalizar [[Special:Preferences|as suyas preferenzias en {{SITENAM
 'remembermypassword'         => "Remerar datos d'usuario entre sesions.",
 'yourdomainname'             => 'Dominio:',
 'externaldberror'            => "Bi abió una error d'autenticazión esterna d'a base de datos u bien no tiene premisos ta esbiellar a suya cuenta esterna.",
-'loginproblem'               => '<b>Escaizió un problema con a suya autenticazión.</b><br />¡Prebe unatra begada!',
 'login'                      => 'Enzetar sesión',
 'nav-login-createaccount'    => 'Enzetar una sesión / creyar cuenta',
 'loginprompt'                => "Ta rechistrar-se en {{SITENAME}} ha d'autibar as cookies en o nabegador.",

@@ -524,7 +524,6 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'remembermypassword'         => 'Lembrar a minha palavra-chave entre sessões.',
 'yourdomainname'             => 'Seu domínio',
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
-'loginproblem'               => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
 'login'                      => 'Entrar',
 'nav-login-createaccount'    => 'Entrar / criar conta',
 'loginprompt'                => 'Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.',

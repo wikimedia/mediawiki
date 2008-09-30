@@ -221,7 +221,6 @@ Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-g�
 'yourpassword'               => 'Mĭk-mā',
 'yourpasswordagain'          => 'Dṳ̀ng-sĭng páh diē mĭk-mā',
 'remembermypassword'         => 'Giéu cī gá diêng-nō̤ gé diâng nguāi gì dióng-hô̤ gâe̤ng mĭk-mā.',
-'loginproblem'               => '<b>Nṳ̄ láuk-diē chók ông-dà̤ lāu.</b><br />Gái ché siŏh â!',
 'login'                      => 'Láuk-diē',
 'loginprompt'                => 'Páh kŭi cookies ciáh â̤ diē {{SITENAME}}.',
 'userlogin'                  => 'Láuk-diē / kŭi dióng-hô̤',

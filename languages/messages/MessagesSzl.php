@@ -376,7 +376,6 @@ Uotwarli my sam lo Ćebje kůnto.
 'remembermypassword'         => 'Zapamjyntej moje hasuo na tym kůmputře',
 'yourdomainname'             => 'Twoja domyna',
 'externaldberror'            => 'Je jaki feler we zewnyntřnyj baźe autentyfikacyjnyj, abo ńy moš uprawńyń potřebnych do aktualizacyji zewnyntřnego kůnta.',
-'loginproblem'               => '<b>Zdořiu śe problym při průbje zalůgowańo.</b><br />Sprůbuj zaś!',
 'login'                      => 'Zalůguj śe',
 'nav-login-createaccount'    => 'Lůgowańy / Twořyńy kůnta',
 'loginprompt'                => 'Muśiš mjeć zouůnčůne cookies coby můc śe sam zalůgować.',

@@ -596,7 +596,6 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'remembermypassword'         => "Se souvenir de mon mot de passe (témoin (''cookie''))",
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Soit une erreur s’est produite avec la base de données d’authentification externe, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.',
-'loginproblem'               => '<b>Problème d’identification.</b><br />Essayez à nouveau !',
 'login'                      => 'Identification',
 'nav-login-createaccount'    => 'Créer un compte ou se connecter',
 'loginprompt'                => "Vous devez activer les témoins (''cookies'') pour vous connecter à {{SITENAME}}.",

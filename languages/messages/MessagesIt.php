@@ -508,7 +508,6 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le pr
 'remembermypassword'         => 'Ricorda la password su questo computer',
 'yourdomainname'             => 'Specificare il dominio',
 'externaldberror'            => 'Si è verificato un errore con il server di autenticazione esterno, oppure non si dispone delle autorizzazioni necessarie per aggiornare il proprio accesso esterno.',
-'loginproblem'               => "<b>Si è verificato un errore durante l'accesso.</b><br />Riprovare.",
 'login'                      => 'Entra',
 'nav-login-createaccount'    => 'Entra / Registrati',
 'loginprompt'                => 'Per accedere a {{SITENAME}} è necessario abilitare i cookie.',
