@@ -651,7 +651,7 @@ class Block {
 		$ipblock->mCreateAccount = $this->mCreateAccount;
 		# Continue suppressing the name if needed
 		$ipblock->mHideName = $this->mHideName;
-
+		$ipblock->mAllowUsertalk = $this->mAllowUsertalk;
 		# If the user is already blocked with an expiry date, we don't
 		# want to pile on top of that!
 		if($this->mExpiry) {
