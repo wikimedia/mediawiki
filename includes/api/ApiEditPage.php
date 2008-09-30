@@ -136,9 +136,9 @@ class ApiEditPage extends ApiBase {
 		# Handle CAPTCHA parameters
 		global $wgRequest;
 		if(isset($params['captchaid']))
-			$wgRequest->setVal( 'wpCaptchaId' ) = $params['captchaid'];
+			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
 		if(isset($params['captchaword']))
-			$wgRequest->setVal( 'wpCaptchaWord' ) = $params['captchaword'];
+			$wgRequest->setVal( 'wpCaptchaWord', $params['captchaword'] );
 		$r = array();
 		if(!wfRunHooks('APIEditBeforeSave', array(&$ep, $ep->textbox1, &$r)))
 		{
