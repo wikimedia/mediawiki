@@ -2891,6 +2891,11 @@ $wgDisableInternalSearch = false;
 $wgSearchForwardUrl = null;
 
 /**
+ * Set a default target for external links, e.g. _blank to pop up a new window
+ */
+$wgExternalLinkTarget = false;
+
+/**
  * If true, external URL links in wiki text will be given the
  * rel="nofollow" attribute as a hint to search engines that
  * they should not be followed for ranking purposes as they

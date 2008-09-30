@@ -140,6 +140,8 @@ The following extensions are migrated into MediaWiki 1.14:
   restriction types on the protection form.
 * (bug 8440) Allow preventing blocked users from editing their talk pages
 * Improved upload file type detection for OpenDocument formats
+* Added the ability to set the target attribute on external links with 
+  $wgExternalLinkTarget
 
 
 === Bug fixes in 1.14 ===

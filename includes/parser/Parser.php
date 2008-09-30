@@ -1118,7 +1118,8 @@ class Parser
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', $this->mTitle->getNamespace() );
+			$text = $sk->makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free', 
+				$this->getExternalLinkAttribs() );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
 			$pasteurized = self::replaceUnusualEscapes( $url );
@@ -1394,11 +1395,18 @@ class Parser
 
 			$url = Sanitizer::cleanUrl( $url );
 
+			if ( $this->mOptions->mExternalLinkTarget ) {
+				$attribs = array( 'target' => $this->mOptions->mExternalLinkTarget );
+			} else {
+				$attribs = array();
+			}
+
 			# Use the encoded URL
 			# This means that users can paste URLs directly into the text
 			# Funny characters like &ouml; aren't valid in URLs anyway
 			# This was changed in August 2004
-			$s .= $sk->makeExternalLink( $url, $text, false, $linktype, $this->mTitle->getNamespace() ) . $dtrail . $trail;
+			$s .= $sk->makeExternalLink( $url, $text, false, $linktype, $this->getExternalLinkAttribs() ) 
+				. $dtrail . $trail;
 
 			# Register link in the output object.
 			# Replace unnecessary URL escape codes with the referenced character
@@ -1410,6 +1418,20 @@ class Parser
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
+
+	function getExternalLinkAttribs() {
+		$attribs = array();
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions;
+		$ns = $this->mTitle->getNamespace();
+		if( $wgNoFollowLinks && !in_array($ns, $wgNoFollowNsExceptions) ) {
+			$attribs['rel'] = 'nofollow';
+		}
+		if ( $this->mOptions->getExternalLinkTarget() ) {
+			$attribs['target'] = $this->mOptions->getExternalLinkTarget();
+		}
+		return $attribs;
+	}
+
 
 	/**
 	 * Replace unusual URL escape codes with their equivalent characters
