@@ -990,10 +990,11 @@ class Linker {
 	}
 
 	/** @todo document */
-	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
-		$attribsText = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
-		if ( $attribs ) {
-			$attribsText .= ' ' . Xml::expandAttributes( $attribs );
+	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $ns = null ) {
+		$style = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
+		global $wgNoFollowLinks, $wgNoFollowNsExceptions;
+		if( $wgNoFollowLinks && !(isset($ns) && in_array($ns, $wgNoFollowNsExceptions)) ) {
+			$style .= ' rel="nofollow"';
 		}
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
@@ -1005,7 +1006,7 @@ class Linker {
 			wfDebug("Hook LinkerMakeExternalLink changed the output of link with url {$url} and text {$text} to {$link}", true);
 			return $link;
 		}
-		return '<a href="'.$url.'"'.$attribsText.'>'.$text.'</a>';
+		return '<a href="'.$url.'"'.$style.'>'.$text.'</a>';
 	}
 
 	/**
