@@ -2566,6 +2566,7 @@ $wgMessageStructure = array(
 		'comma-separator',
 		'colon-separator',
 		'autocomment-prefix',
+		'pipe-separator',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

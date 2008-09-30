@@ -1902,12 +1902,34 @@ class Language {
 	/**
 	 * Take a list of strings and build a locale-friendly comma-separated
 	 * list, using the local comma-separator message.
-	 * @fixme Fix this so it can work for $wgContLang too
+	 * @param $list array of strings to put in a comma list
+	 * @param $forContent bool Use $wgContentLang instead of the UI lang
+	 * @return string
 	 */
-	function commaList( $list ) {
+	function commaList( $list, $forContent = false ) {
+		$params = array( 'escapenoentities' );
+		if ( $forContent === true ) {
+			$params[] = 'content';
+		}
 		return implode(
 			$list,
-			wfMsgExt( 'comma-separator', 'escapenoentities' ) );
+			wfMsgExt( 'comma-separator', $params ) );
+	}
+	
+	/**
+	 * Same as commaList, but separate it with the pipe instead.
+	 * @param $list array of strings to put in a pipe list
+	 * @param $forContent bool Use $wgContentLang instead of the UI lang
+	 * @return string
+	 */
+	function pipeList( $list, $forContent = false ) {
+		$params = array( 'escapenoentities' );
+		if ( $forContent === true ) {
+			$params[] = 'content';
+		}
+		return implode(
+			$list,
+			wfMsgExt( 'pipe-separator', $params ) );
 	}
 
 	/**

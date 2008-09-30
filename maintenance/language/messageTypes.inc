@@ -315,6 +315,7 @@ $wgOptionalMessages = array(
 	'comma-separator',
 	'colon-separator',
 	'autocomment-prefix',
+	'pipe-separator',
 	'listgrouprights-right-display',
 	'timezone-utc',
 	'whatlinkshere-backlink',
