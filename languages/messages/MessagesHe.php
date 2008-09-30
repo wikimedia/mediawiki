@@ -284,9 +284,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
-	'ListUserRestrictions'      => array( 'רשימת_הגבלות_משתמשים' ),
-	'RemoveRestrictions'        => array( 'הסרת_הגבלות' ),
-	'RestrictUser'              => array( 'הגבלת_משתמש' ),
 );
 
 $namespaceNames = array(
@@ -950,38 +947,6 @@ $2',
 'edit-no-change'                   => 'המערכת התעלמה מעריכתכם, כיוון שלא נעשה שינוי בטקסט.',
 'edit-already-exists'              => 'לא ניתן ליצור דף חדש.
 הוא כבר קיים.',
-'userrestricted-page'              => '<big>\'\'\'שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת הדף "$1".\'\'\'</big>
-
-ההגבלה הוטלה על ידי [[User:$2|$2]].
-הסיבה שניתנה היא \'\'\'$3\'\'\'.
-
-ההגבלה הוטלה ב־$5, $4 ותפקע ב־$7, $6.
-
-באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.',
-'userrestricted-namespace'         => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת מרחב השם $1.'''</big>
-
-ההגבלה הוטלה על ידי [[User:$2|$2]].
-הסיבה שניתנה היא '''$3'''.
-
-ההגבלה הוטלה ב־$5, $4 ותפקע ב־$7, $6.
-
-באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
-'userrestricted-page-indef'        => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת הדף \"\$1\".'''</big>
-
-ההגבלה הוטלה על ידי [[User:\$2|\$2]].
-הסיבה שניתנה היא '''\$3'''.
-
-ההגבלה הוטלה ב־\$5, \$4 ולא תפקע.
-
-באפשרותכם ליצור קשר עם [[User:\$2|\$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
-'userrestricted-namespace-indef'   => "<big>'''שם המשתמש או כתובת ה־IP שלכם הוגבלו מעריכת מרחב השם $1.'''</big>
-
-ההגבלה הוטלה על ידי [[User:$2|$2]].
-הסיבה שניתנה היא '''$3'''.
-
-ההגבלה הוטלה ב־$5, $4 ולא תפקע.
-
-באפשרותכם ליצור קשר עם [[User:$2|$2]] או אם אחד מ[[{{MediaWiki:Grouppage-sysop}}|מפעילי המערכת]] האחרים כדי לדון בהגבלה.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'אזהרה: דף זה כולל יותר מדי קריאות למשתנים הגוזלים משאבים.
@@ -2159,7 +2124,6 @@ $1',
 'ipbsubmit'                       => 'חסימה',
 'ipbother'                        => 'זמן אחר:',
 'ipboptions'                      => 'שעתיים:2 hours,יום:1 day,שלושה ימים:3 days,שבוע:1 week,שבועיים:2 weeks,חודש:1 month,שלושה חודשים:3 months,שישה חודשים:6 months,שנה:1 year,לצמיתות:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'לצמיתות',
 'ipbotheroption'                  => 'אחר',
 'ipbotherreason'                  => 'סיבה אחרת/נוספת:',
 'ipbhidename'                     => 'הסתרת שם המשתמש מיומן החסימות, רשימת המשתמשים החסומים ורשימת המשתמשים',
@@ -2225,69 +2189,6 @@ $1',
 'sorbsreason'                     => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב־DNSBL שאתר זה משתמש בו.',
 'sorbs_create_account_reason'     => 'כתובת ה־IP שלכם רשומה ככתובת פרוקסי פתוחה ב־DNSBL שאתר זה משתמש בו. אינכם יכולים ליצור חשבון.',
 'cant-block-while-blocked'        => 'אינכם יכולים לחסום משתמשים אחרים כשאתם חסומים.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'רשימת הגבלות של משתמשים',
-'listuserrestrictions-intro'      => 'רשימה זו כוללת את כל ההגבלות של משתמשים מעריכה של דפים ומרחבי שם מסוימים.
-[[Special:Ipblocklist|חסימות]] אינן מופיעות כאן.',
-'listuserrestrictions-row-ns'     => 'הגביל את $1 מעריכת מרחב השם $2 ($3)',
-'listuserrestrictions-row-page'   => 'הגביל את $1 מעריכת $2 ($3)',
-'listuserrestrictions-row-expiry' => 'זמן פקיעה $2, $1',
-'listuserrestrictions-legend'     => 'מציאת הגבלה',
-'listuserrestrictions-type'       => 'סוג:',
-'listuserrestrictions-user'       => 'משתמש:',
-'listuserrestrictions-namespace'  => 'מרחב שם:',
-'listuserrestrictions-page'       => 'דף:',
-'listuserrestrictions-submit'     => 'הצגה',
-'listuserrestrictions-notfound'   => 'אין הגבלות המתאימות לקריטריונים אלו.',
-'listuserrestrictions-empty'      => 'הרשימה ריקה.',
-'listuserrestrictions-remove'     => 'הסרה',
-'userrestrictiontype-none'        => '(הכל)',
-'userrestrictiontype-namespace'   => 'מרחב שם',
-'userrestrictiontype-page'        => 'דף',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'הסרת הגבלה מעל משתמש',
-'removerestrictions-intro'     => 'השתמשו בטופס שלהלן כדי להסיר הגבלה ממשתמש מסוים.',
-'removerestrictions-noid'      => 'לא צוין מזהה ההגבלה.',
-'removerestrictions-wrongid'   => 'לא נמצאה הגבלה עם מזהה זה.
-כנראה שהיא כבר הוסרה או פקעה.',
-'removerestrictions-legend'    => 'הסרת הגבלה',
-'removerestrictions-user'      => 'המשתמש המוגבל:',
-'removerestrictions-type'      => 'סוג ההגבלה:',
-'removerestrictions-page'      => 'דף:',
-'removerestrictions-namespace' => 'מרחב שם:',
-'removerestrictions-reason'    => 'סיבה:',
-'removerestrictions-submit'    => 'הסרת ההגבלה',
-'removerestrictions-success'   => 'ההגבלה על [[User:$1|$1]] הוסרה בהצלחה.',
-
-# Special:RestrictUser
-'restrictuser'                  => 'הגבלת משתמש',
-'restrictuser-userselect'       => 'בחירת משתמש',
-'restrictuser-user'             => 'משתמש:',
-'restrictuser-go'               => 'הגבלת המשתמש',
-'restrictuser-notfound'         => 'המשתמש לא נמצא',
-'restrictuser-existing'         => 'הגבלות קיימות',
-'restrictuser-legend-page'      => 'הגבלה מעריכת דף מסוים',
-'restrictuser-legend-namespace' => 'הגבלה מעריכת מרחב שם מסוים',
-'restrictuser-title'            => 'דף להגבלה:',
-'restrictuser-namespace'        => 'מרחב שם:',
-'restrictuser-expiry'           => 'זמן פקיעה:',
-'restrictuser-reason'           => 'סיבה:',
-'restrictuser-sumbit'           => 'הגבלת המשתמש',
-'restrictuser-badtitle'         => 'הכותרת שצוינה אינה תקינה: $1.',
-'restrictuser-badnamespace'     => 'מרחב השם שצוין אינו תקין.',
-'restrictuser-badexpiry'        => 'זמן הפקיעה שצוין אינו תקין: $1.',
-'restrictuser-duptitle'         => 'המשתמש כבר מוגבל מעריכת כותרת זו.',
-'restrictuser-dupnamespace'     => 'המשתמש כבר מוגבל מעריכת מרחב שם זה.',
-'restrictuser-success'          => 'ההגבלה על $1 הושלמה בהצלחה.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'יומן הגבלת משתמשים',
-'restrictionlogtext'   => 'יומן זה כולל את כל ההגבלות שהפעילו מפעילי מערכת על משתמשים.',
-'restrictentry'        => 'הגביל את $1 מעריכת $2 (זמן פקיעה $3)',
-'restrictremoveentry'  => 'הסיר את ההגבלה על $1 מעריכת $2',
-'restrictlognamespace' => 'מרחב השם $1',
 
 # Developer tools
 'lockdb'              => 'נעילת בסיס נתונים',
