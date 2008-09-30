@@ -265,20 +265,6 @@ class Language {
 	}
 
 	/**
-	 * A convenience function that returns the same thing as
-	 * getFormattedNsText() except with '(Main)' for zero namespace.
-	 *
-	 * @return array
-	 */
-	function getDisplayNsText( $index ) {
-		if( $index == 0 ) {
-			return wfMsg( 'blanknamespace' );
-		} else {
-			return $this->getFormattedNsText( $index );
-		}
-	}
-
-	/**
 	 * Get a namespace key by value, case insensitive.
 	 * Only matches namespace names for the current language, not the
 	 * canonical ones defined in Namespace.php.

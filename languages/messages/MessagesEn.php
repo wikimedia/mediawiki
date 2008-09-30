@@ -440,9 +440,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'BlankPage' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
-	'ListUserRestrictions'      => array( 'ListUserRestrictions' ),
-	'RemoveRestrictions'        => array( 'RemoveRestrictions' ),
-	'RestrictUser'              => array( 'RestrictUser' ),
 );
 
 /**
@@ -1201,38 +1198,6 @@ It appears to have been deleted.',
 'edit-no-change'                   => 'Your edit was ignored, because no change was made to the text.',
 'edit-already-exists'              => 'Could not create a new page.
 It already exists.',
-'userrestricted-page'              => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
-
-The restriction was put by [[User:$2|$2]].
-The reason given is \'\'$3\'\'.
-
-Restriction was put on $4 at $5 and expires on $6 at $7.
-
-You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
-'userrestricted-namespace'         => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
-
-The restriction was put by [[User:$2|$2]].
-The reason given is ''$3''.
-
-Restriction was put on $4 at $5 and expires on $6 at $7.
-
-You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
-'userrestricted-page-indef'        => '<big>\'\'\'Your user name or IP address has been restricted from editing page "$1".\'\'\'</big>
-
-The restriction was put by [[User:$2|$2]].
-The reason given is \'\'$3\'\'.
-
-Restriction was put on $4 at $5 and will not expire.
-
-You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.',
-'userrestricted-namespace-indef'   => "<big>'''Your user name or IP address has been restricted from editing $1 namespace.'''</big>
-
-The restriction was put by [[User:$2|$2]].
-The reason given is ''$3''.
-
-Restriction was put on $4 at $5 and will not expire.
-
-You can contact [[User:$2|$2]] or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the restriction.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warning: This page contains too many expensive parser function calls.
@@ -2537,7 +2502,6 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
 'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'infinite',
 'ipbotheroption'                  => 'other',
 'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from the block log, active block list and user list',
@@ -2609,70 +2573,6 @@ Please contact your Internet service provider or tech support and inform them of
 'sorbs_create_account_reason'     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.
 You cannot create an account',
 'cant-block-while-blocked'        => 'You cannot block other users while you are blocked.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'List of user restrictions',
-'listuserrestrictions-intro'      => 'This list contains all restrictions from editing certain pages and namespaces put on users.
-[[Special:Ipblocklist|Blocks]] are not listed here.',
-'listuserrestrictions-row-ns'     => 'restricted $1 from editing $2 namespace ($3)',
-'listuserrestrictions-row-page'   => 'restricted $1 from editing $2 ($3)',
-'listuserrestrictions-row-expiry' => 'expires on $1 at $2',
-'listuserrestrictions-legend'     => 'Find a restriction',
-'listuserrestrictions-type'       => 'Type:',
-'listuserrestrictions-user'       => 'User:',
-'listuserrestrictions-namespace'  => 'Namespace:',
-'listuserrestrictions-page'       => 'Page:',
-'listuserrestrictions-submit'     => 'Go',
-'listuserrestrictions-notfound'   => 'There is no restriction that matches specified criteria.',
-'listuserrestrictions-empty'      => 'This list is empty.',
-'listuserrestrictions-remove'     => 'remove',
-'userrestrictiontype-none'        => '(none)',
-'userrestrictiontype-namespace'   => 'Namespace',
-'userrestrictiontype-page'        => 'Page',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Remove restriction from a user',
-'removerestrictions-intro'     => 'Use the form below to remove a restriction from a certain user.',
-'removerestrictions-noid'      => 'No restriction ID was specified.',
-'removerestrictions-wrongid'   => 'Restriction with that ID not found.
-Most probably someone has removed it or it expired.',
-'removerestrictions-legend'    => 'Remove a restriction',
-'removerestrictions-user'      => 'Restricted user:',
-'removerestrictions-type'      => 'Restriction type:',
-'removerestrictions-page'      => 'Page:',
-'removerestrictions-namespace' => 'Namespace:',
-'removerestrictions-reason'    => 'Reason:',
-'removerestrictions-submit'    => 'Remove the restriction',
-'removerestrictions-success'   => 'Successfully removed the restriction from [[User:$1|$1]].',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Restrict user',
-'restrictuser-userselect'       => 'Select a user',
-'restrictuser-user'             => 'User:',
-'restrictuser-go'               => 'Restrict user',
-'restrictuser-notfound'         => 'User not found',
-'restrictuser-existing'         => 'Existing restrictions',
-'restrictuser-legend-page'      => 'Restrict from editing certain page',
-'restrictuser-legend-namespace' => 'Restrict from editing certain namespace',
-'restrictuser-title'            => 'Page to restrict:',
-'restrictuser-namespace'        => 'Namespace:',
-'restrictuser-expiry'           => 'Expires:',
-'restrictuser-reason'           => 'Reason:',
-'restrictuser-submit'           => 'Restrict user',
-'restrictuser-badtitle'         => 'Invalid title specified: $1.',
-'restrictuser-badnamespace'     => 'Invalid namespace specified.',
-'restrictuser-badexpiry'        => 'Invalid expiry specified: $1.',
-'restrictuser-duptitle'         => 'User is already restricted from editing this title.',
-'restrictuser-dupnamespace'     => 'User is already restricted from editing this namespace.',
-'restrictuser-success'          => 'Successfully restricted user $1.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'User restriction log',
-'restrictionlogtext'   => 'This log contains all restrictions put on users by administrators.',
-'restrictentry'        => 'restricted $1 from editing $2 (expiry set to $3)',
-'restrictremoveentry'  => 'removed restriction from $1 for editing $2',
-'restrictlognamespace' => '$1 namespace',
-'restrictlogpage'      => '[[$1]]', # do not translate or duplicate this message to other languages
 
 # Developer tools
 'lockdb'              => 'Lock database',

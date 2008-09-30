@@ -123,13 +123,10 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$item = wfSpecialList( $name, $groups );
-		$edits = '';
-		if ( $row->edits ) {
-			$editCount = $wgLang->formatNum( $row->edits );
-			$edits = ' [' . wfMsgExt( 'usereditcount', 'parsemag', $editCount ) . ']';
-		}
+		$editCount = $wgLang->formatNum( $row->edits );
+		$edits = wfMsgExt( 'usereditcount', 'parsemag', $editCount );
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}</li>";
+		return "<li>{$item} [$edits]</li>";
 	}
 
 	function getBody() {
