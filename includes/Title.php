@@ -2054,7 +2054,7 @@ class Title {
 					# Ordinary namespace
 					$dbkey = $m[2];
 					$this->mNamespace = $ns;
-				} elseif( new Interwiki( $p ) ) {
+				} elseif( Interwiki::fetch( $p ) ) {
 					if( !$firstPass ) {
 						# Can't make a local interwiki link to an interwiki link.
 						# That's just crazy!

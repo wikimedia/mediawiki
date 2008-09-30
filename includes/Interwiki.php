@@ -40,7 +40,9 @@ class Interwiki {
 			return Interwiki::getInterwikiCached( $key );
 		}
 		$iw = new Interwiki;
-		$iw->load( $prefix );
+		if(! $iw->load( $prefix ) ){
+			return false;
+		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
 			array_shift( self::$smCache );
 		}
@@ -84,22 +86,14 @@ class Interwiki {
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
 			$s->mLocal = (int)$local;
+		}else{
+			return false;
 		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
 			array_shift( self::$smCache );
 		}
 		self::$smCache[$prefix] = &$s;
 		return $s;
-	}
-
-	/**
-	 * Clear all member variables in the current object. Does not clear
-	 * the block from the DB.
-	 */
-	function clear() {
-		$this->mURL = '';
-		$this->mLocal = $this->mTrans = 0;
-		$this->mPrefix = null;
 	}
 
 	/**
@@ -123,25 +117,19 @@ class Interwiki {
 		global $wgMemc;
 		$key = wfMemcKey( 'interwiki', $prefix );
 		$mc = $wgMemc->get( $key );
-		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
-			if( $this->loadFromArray( $mc ) ){
-				wfDebug("Succeeded\n");
-				return true;
-			}
-		}else{
-			$db =& $this->getDB();
-			
-			$res = $db->resultObject( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
-				__METHOD__ ) );
-			if ( $this->loadFromResult( $res ) ) {
-				$mc = array( 'url' => $this->mURL, 'local' => $this->mLocal, 'trans' => $this->mTrans );
-				$wgMemc->add( $key, $mc );
-				return true;
-			}
+		if( $mc && is_array( $mc ) && $this->loadFromArray( $mc ) ){ // is_array is hack for old keys
+			wfDebug("Succeeded\n");
+			return true;
 		}
 		
-		# Give up
-		$this->clear();
+		$db =& $this->getDB();
+		$res = $db->resultObject( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
+			__METHOD__ ) );
+		if ( $this->loadFromResult( $res ) ) {
+			$mc = array( 'url' => $this->mURL, 'local' => $this->mLocal, 'trans' => $this->mTrans );
+			$wgMemc->add( $key, $mc );
+			return true;
+		}
 		return false;
 	}
 
