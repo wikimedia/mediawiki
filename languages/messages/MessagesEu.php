@@ -639,6 +639,8 @@ Blokeatu zuen administratzaileak honako azalpena eman zuen: $1</strong>',
 
 Pentsatu ea orrialde hau editatzen jarraitzeak zentzurik baduen.
 Hemen duzu orrialde honen ezabaketa erregistroa badaezpada ere:",
+'deleted-notice'                   => 'Orrialde hau ezabatu da.
+Orrialdearen ezabatze loga behean agertzen da erreferentzia gisa.',
 'deletelog-fulllog'                => 'Log osoa ikusi',
 'edit-gone-missing'                => 'Ezin da orria eguneratu. Ezabatu omen dute.',
 'edit-conflict'                    => 'Aldaketa gatazka.',

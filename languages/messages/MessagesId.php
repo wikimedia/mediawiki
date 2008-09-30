@@ -2610,7 +2610,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-flash-return-0'   => 'tidak ada fungsi pendeteksian strobo balik',
 'exif-flash-return-2'   => 'lampu strobo balik tidak terdeteksi',
 'exif-flash-return-3'   => 'lampu strobo balik terdeteksi',
-'exif-flash-mode-3'     => 'mode otomatis',
+'exif-flash-mode-3'     => 'modus otomatis',
 'exif-flash-function-1' => 'Tidak ada fungsi lampu kilat',
 
 'exif-focalplaneresolutionunit-2' => 'inci',

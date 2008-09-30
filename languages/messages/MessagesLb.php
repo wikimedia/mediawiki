@@ -739,6 +739,11 @@ Fir iech z'informéieren fannt Dir hei d'Läschlescht mat dem Grond:",
 'deleted-notice'                   => 'Dës Seite gouf geläscht.
 Hei ass den Extrait aus der Läschlëscht fir déi Säit.',
 'deletelog-fulllog'                => 'Déi ganz Lëscht weisen',
+'edit-gone-missing'                => "D'Säit konnt net aktualiséiert ginn.
+Si gouf anscheinend geläscht.",
+'edit-conflict'                    => 'Ännerungskonflikt.',
+'edit-no-change'                   => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
+'edit-already-exists'              => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
@@ -1101,6 +1106,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-suppressrevision'     => 'Virun den Administrateure verstoppte Versiounen nokucken a restauréieren',
 'right-suppressionlog'       => 'Privat Lëschte kucken',
 'right-block'                => 'Aner Benotzer fir Ännerunge spären',
+'right-restrict'             => "Limitéiert Benotzer fir Verschidden Nummraim a Säiten z'änneren",
 'right-blockemail'           => 'E Benotzer spären esou datt hie keng Maile verschécke kann',
 'right-hideuser'             => 'E Benotzernumm spären, an deem e virun der Ëffentlechkeet verstoppt gëtt',
 'right-ipblock-exempt'       => 'Ausname vun IP-Spären, automatesche Spären a vu Späre vu Plage vun IPen',
@@ -1451,6 +1457,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 'protectedtitlesempty'    => 'Zur Zäit si mat de Parameteren déi Dir uginn huet keng Säite gespaart esou datt si net ugeluecht kënne ginn.',
 'listusers'               => 'Benotzerlëscht',
 'listusers-editsonly'     => 'Nëmme Benotzer mat Ännerunge weisen',
+'usereditcount'           => '$1 {{PLURAL:$1|Ännerung|Ännerungen}}',
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
 'ancientpages'            => 'Al Säiten',
@@ -1729,7 +1736,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-othertime-op'        => 'aner Zäit',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
 'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
-'protect-expiry-options'      => '1 Stonn:1 hour,2 Stonen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 Stonn:1 hour,2 Stonnen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Berechtigung:',
 'restriction-level'           => 'NIveau vun de Limitatiounen:',
 'minimum-size'                => 'Mindestgréisst',
@@ -1860,6 +1867,7 @@ $1',
 'ipbotherreason'                  => 'Aneren oder zousätzleche Grond:',
 'ipbhidename'                     => 'Benotzernumm an der Spärlëscht, der Lëscht vun den aktive Spären an der Lëscht vun de Benotzer verstoppen',
 'ipbwatchuser'                    => 'Dësem Benotzer seng Benotzer- an Diskussiouns-Säit iwwerwaachen',
+'ipballowusertalk'                => 'Benotzer däerf seng Diskussiounssäiten änneren esouguer wann e gespaart ass',
 'badipaddress'                    => "D'IP-Adress huet dat falscht Format.",
 'blockipsuccesssub'               => 'Gouf gespaart',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
@@ -1901,6 +1909,7 @@ Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'block-log-flags-nocreate'        => 'Schafe vu Benotzerkonte gespaart',
 'block-log-flags-noautoblock'     => 'Autoblock deaktivéiert',
 'block-log-flags-noemail'         => 'E-Mail gespaart',
+'block-log-flags-nousertalk'      => 'däerf seng Diskussiounssäite net änneren',
 'block-log-flags-angry-autoblock' => 'erweidert automatesch Spär aktivéiert',
 'range_block_disabled'            => 'Dem Administrateur seng Fähegkeet fir ganz Adressberäicher ze spären ass ausser Kraaft.',
 'ipb_expiry_invalid'              => "D'Dauer déi Dir uginn hutt ass ongülteg.",
@@ -1917,6 +1926,7 @@ Si ass awer als Deel vun der Rei $2 gespaart, an dës Spär kann opgehuewe ginn.
 'proxyblocksuccess'               => 'Gemaach.',
 'sorbsreason'                     => 'Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.',
 'sorbs_create_account_reason'     => 'Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.',
+'cant-block-while-blocked'        => 'Dir däerft keng aner Benotzer spären, esou lang wéi dir selwer gespaart sidd.',
 
 # Developer tools
 'lockdb'              => 'Datebank spären',
@@ -2340,6 +2350,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsprocessingmethod'         => 'Numm vun der GPS-Prozedur-Method',
 'exif-gpsareainformation'          => 'Numm vun der GPS-Géigend',
 'exif-gpsdatestamp'                => 'GPS-Datum',
+'exif-gpsdifferential'             => 'GPS-Differentialverbesserung',
 
 # EXIF attributes
 'exif-compression-1' => 'Onkompriméiert',

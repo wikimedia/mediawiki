@@ -1289,6 +1289,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watchlist-show-anons' => 'Anonim değişiklikleri göster',
 'watchlist-hide-anons' => 'Anonim değişiklikleri gizle',
 'watchlist-show-liu'   => 'Kayıtlı kullanıcıların değişikliklerini göster',
+'watchlist-hide-liu'   => 'Kayıtlı kullanıcıların değişikliklerini gizle',
 'watchlist-options'    => 'İzleme listesi seçenekleri',
 
 # Displayed when you click the "watch" button and it is in the process of watching

@@ -1690,9 +1690,9 @@ PICT # متنوع
 'filerevert-legend'         => 'استرجع الملف',
 'filerevert-intro'          => "أنت تسترجع '''[[Media:$1|$1]]''' [$4 لنسخة بتاريخ $2، $3].",
 'filerevert-comment'        => 'تعليق:',
-'filerevert-defaultcomment' => 'استرجع للنسخة بتاريخ $1، $2',
-'filerevert-submit'         => 'استرجع',
-'filerevert-success'        => "'''[[Media:$1|$1]]''' تم استرجاعها [$4 لنسخة بتاريخ $2، $3].",
+'filerevert-defaultcomment' => 'استرجع للنسخة بتاريخ $2، $1',
+'filerevert-submit'         => 'استرجاع',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' تم استرجاعها [$4 للنسخة بتاريخ $3، $2].",
 'filerevert-badversion'     => 'لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.',
 
 # File deletion
@@ -2027,7 +2027,7 @@ $NEWPAGE
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'احذف الصفحة',
+'deletepage'             => 'حذف الصفحة',
 'confirm'                => 'تأكيد',
 'excontent'              => "المحتوى كان: '$1'",
 'excontentauthor'        => "المحتوى كان: '$1' (والمساهم الوحيد كان '[[Special:Contributions/$2|$2]]')",
@@ -2087,6 +2087,7 @@ $NEWPAGE
 'protectedarticle'            => 'حمى "[[$1]]"',
 'modifiedarticleprotection'   => 'غير مستوى الحماية ل"[[$1]]"',
 'unprotectedarticle'          => 'أزال حماية [[$1]]',
+'movedarticleprotection'      => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
 'prot_1movedto2'              => '[[$1]] تم نقلها إلى [[$2]]',
 'protect-legend'              => 'تأكيد الحماية',

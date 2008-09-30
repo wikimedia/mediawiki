@@ -4,6 +4,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Avjoska
  * @author Jaan513
  * @author Võrok
  * @author WikedKentaur
@@ -271,6 +272,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'lastmodifiedat'    => 'Viimane muutmine: $2, $1', # $1 date, $2 time
 'viewcount'         => 'Seda lehekülge on külastatud {{PLURAL:$1|üks kord|$1 korda}}.',
 'protectedpage'     => 'Kaitstud lehekülg',
+'jumpto'            => 'Mine:',
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',
 
@@ -299,7 +301,9 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'privacy'              => 'Privaatsus',
 'privacypage'          => 'Project:Privaatsus',
 
-'badaccess' => 'Õigus puudub',
+'badaccess'        => 'Õigus puudub',
+'badaccess-group0' => 'Sul ei ole õigust läbi viia toimingut, mida üritasid.',
+'badaccess-groups' => 'Tegevus, mida üritasid, on piiratud kasutajatele {{PLURAL:$2|grupis|ühes neist gruppidest}}: $1.',
 
 'retrievedfrom'       => 'Välja otsitud andmebaasist "$1"',
 'youhavenewmessages'  => 'Teile on $1 ($2).',
@@ -935,6 +939,7 @@ võidakse sinu ligipääs sulgeda.',
 # Special:Categories
 'categories'         => 'Kategooriad',
 'categoriespagetext' => 'Vikis on järgmised kategooriad.',
+'categoriesfrom'     => 'Näita kategooriaid alates:',
 
 # Special:LinkSearch
 'linksearch' => 'Otsi välislinke',

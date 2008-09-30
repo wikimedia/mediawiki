@@ -1925,6 +1925,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'protectedarticle'            => 'zamyká „[[$1]]“',
 'modifiedarticleprotection'   => 'mění zámek stránky "[[$1]]"',
 'unprotectedarticle'          => 'odemyká „[[$1]]“',
+'movedarticleprotection'      => 'nastavení zámků přesunuto z „[[$2]]“ na „[[$1]]“',
 'protect-title'               => 'Zamyká se „$1“',
 'prot_1movedto2'              => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 'protect-legend'              => 'Potvrdit zamčení',

@@ -366,6 +366,7 @@ $2',
 Alesané yaiku ''$2''.",
 
 # Virus scanner
+'virus-scanfailed'     => "''Pemindaian'' utawa ''scan'' gagal (kode $1)",
 'virus-unknownscanner' => 'Antivirus ora ditepungi:',
 
 # Login and logout pages
@@ -406,7 +407,7 @@ Mangga pilih asma liyané.',
 'yourvariant'                => 'Varian basa',
 'yournick'                   => 'Asma sesinglon/samaran (kagem tapak asta):',
 'badsig'                     => 'Tapak astanipun klentu; cèk rambu HTML.',
-'badsiglength'               => 'Jeneng sesingloné kedawan; kudu sangisoré $1 karakter.',
+'badsiglength'               => 'Tapak tangané kedawan; kudu sangisoré $1 {{PLURAL:$1|karakter|karakter}}.',
 'email'                      => 'Layang élèktronik (E-mail)',
 'prefs-help-realname'        => '* <strong>Asma asli</strong> (ora wajib): menawa panjenengan maringi, asma asli panjenengan bakal digunakaké kanggo mènèhi akrédhitasi kanggo kasil karya tulis panjenengan.',
 'loginerror'                 => 'Kasalahan mlebu log',
@@ -425,7 +426,12 @@ Mangga pilih asma liyané.',
 'passwordtooshort'           => 'Tembung sandi panjenengan ora absah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
 'mailmypassword'             => 'Kirim tembung sandhi anyar',
 'passwordremindertitle'      => 'Pèngetan tembung sandhi saka {{SITENAME}}',
-'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" saiki "$3". Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
+'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" wis digawé lan saiki "$3". Yèn panjenengan pancèn nggayuh iki, mangga sigra mlebu lan ngganti tembung sandhi.
+
+Yèn wong liya sing nglakoni panyuwunan iki, utawa panjenengan éling tembung sandhiné, lan ora nggayuh ngowahi, panjenengan ora usah nggubris pesen iki lan bisa tetep nganggo tembung sandhi sing lawas.
+
+
+Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
 'noemail'                    => 'Ora ana alamat layang e-mail sing kacathet kanggo panganggo "$1".',
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim menyang alamat layang e-mail panjenengan sing wis didaftar kanggo "$1". Mangga mlebu log manèh sawisé nampa e-mail iku.',
 'blocked-mailpassword'       => "Alamat IP panjenengan diblokir saka panyuntingan, mulané panjenengan ora olèh nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
@@ -599,6 +605,9 @@ Panjenengan uga janji menawa apa-apa sing katulis ing kéné, iku karyané panje
 
 Mangga digagas manèh apa suntingan panjenengan iki layak ora.
 Ing ngisor iki kapacak log pambusakan saka kaca iki:",
+'edit-conflict'             => 'Konflik panyuntingan.',
+'edit-already-exists'       => 'Ora bisa nggawé kaca anyar.
+Amerga wis ana.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'  => "Pènget: Kaca iki ngandhut kakèhan panggunan fungsi ''parser'' sing larang.
@@ -1935,8 +1944,8 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 'filedelete-archive-read-only'    => 'Dirèktori arsip "$1" ora bisa ditulis déning server wèb.',
 
 # Browsing diffs
-'previousdiff' => '←Prabédan sadurungé',
-'nextdiff'     => 'Prabédan sawisé→',
+'previousdiff' => '← Panyuntingan sadurungé',
+'nextdiff'     => 'Panyuntingan sing luwih anyar →',
 
 # Media information
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.<hr />",
@@ -1954,6 +1963,7 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 'newimages'             => 'Galeri berkas anyar',
 'imagelisttext'         => "Ing ngisor iki kapacak daftar '''$1''' {{PLURAL:$1|berkas|berkas}} sing diurutaké $2.",
 'newimages-summary'     => 'Kaca astaméwa utawa kusus iki nuduhaké daftar berkas anyar dhéwé sing diunggahaké.',
+'newimages-legend'      => 'Filter',
 'showhidebots'          => '($1 bot)',
 'noimages'              => 'Ora ana sing dideleng.',
 'ilsubmit'              => 'Golek',
@@ -2155,6 +2165,9 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 'exif-lightsource-19'  => 'Cahya standar C',
 'exif-lightsource-24'  => 'ISO studio tungsten',
 'exif-lightsource-255' => 'Sumber cahya liya',
+
+# Flash modes
+'exif-flash-mode-3' => 'modus otomatis',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
 
