@@ -140,8 +140,6 @@ The following extensions are migrated into MediaWiki 1.14:
   restriction types on the protection form.
 * (bug 8440) Allow preventing blocked users from editing their talk pages
 * Improved upload file type detection for OpenDocument formats
-* (bug 368) Don't use caption for alt attribute; allow manual specification
-  using new "alt=" parameter for images
 
 
 === Bug fixes in 1.14 ===
