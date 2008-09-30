@@ -761,22 +761,6 @@ $1',
 'edit-no-change'                   => '你嘅編輯已經略過，因為文字無改過。',
 'edit-already-exists'              => '唔可以開一新版。
 佢已經存在。',
-'userrestricted-page'              => "<big>'''你嘅用戶名或IP已經限制咗去編輯呢版「$1」。'''</big>
-
-個限制係由[[User:$2|$2]]所定嘅。
-當中嘅原因係''$3''。
-
-限制響$4生效直至到$5到期。
-
-你可以聯絡[[User:$2|$2]]或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]去討論呢個限制。",
-'userrestricted-namespace'         => "<big>'''你嘅用戶名或IP已經限制咗去編輯$1空間名。'''</big>
-
-個限制係由[[User:$2|$2]]所定嘅。
-當中嘅原因係''$3''。
-
-限制響$4生效直至到$5到期。
-
-你可以聯絡[[User:$2|$2]]或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]去討論呢個限制。",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告: 呢一版有太多耗費嘅語法功能呼叫。
@@ -1929,7 +1913,6 @@ $1',
 'ipbsubmit'                       => '封鎖呢位用戶',
 'ipbother'                        => '其它時間:',
 'ipboptions'                      => '兩個鐘頭:2 hours,一日:1 day,三日:3 days,一個禮拜:1 week,兩個禮拜:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,終身:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => '無期',
 'ipbotheroption'                  => '其它',
 'ipbotherreason'                  => '其它／附加嘅原因:',
 'ipbhidename'                     => '響個封鎖日誌、現時嘅封鎖名單以用戶名單度隱藏用戶名',
@@ -1992,68 +1975,6 @@ $1',
 'sorbsreason'                     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。',
 'sorbs_create_account_reason'     => '你嘅IP地址已經畀響{{SITENAME}}度用嘅DNSBL列咗做公開代理。你唔可以開新戶口。',
 'cant-block-while-blocked'        => '當你被封鎖嗰陣唔可以封鎖其他用戶。',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => '用戶限制一覽',
-'listuserrestrictions-intro'      => '呢個表列出咗全部對於用戶編輯版同空間名嘅限制。
-留意響[[Special:Ipblocklist|嗰度]]列示咗嘅封鎖唔會響呢度列示。',
-'listuserrestrictions-row-ns'     => '限制咗$1去編輯$2空間名 ($3)',
-'listuserrestrictions-row-page'   => '限制咗$1去編輯$2 ($3)',
-'listuserrestrictions-row-expiry' => '響$1到期',
-'listuserrestrictions-legend'     => '搵一個限制',
-'listuserrestrictions-type'       => '類型:',
-'listuserrestrictions-user'       => '用戶:',
-'listuserrestrictions-namespace'  => '空間名:',
-'listuserrestrictions-page'       => '頁:',
-'listuserrestrictions-submit'     => '去',
-'listuserrestrictions-notfound'   => '無限制同你所搵嘅條件配合。',
-'listuserrestrictions-empty'      => '呢個表係空嘅。',
-'listuserrestrictions-remove'     => '拎走',
-'userrestrictiontype-none'        => '(無)',
-'userrestrictiontype-namespace'   => '空間名',
-'userrestrictiontype-page'        => '頁',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => '響用戶度拎走一個限制',
-'removerestrictions-intro'     => '用下面嘅表格去拎走對於一位用戶嘅一個限制。',
-'removerestrictions-noid'      => '未指定限制ID。',
-'removerestrictions-wrongid'   => '搵唔到同嗰個ID有關嘅限制。最有可能就係有其他人拎走咗或者過咗期。',
-'removerestrictions-legend'    => '拎走一個限制',
-'removerestrictions-user'      => '限制咗嘅用戶:',
-'removerestrictions-type'      => '限制類型:',
-'removerestrictions-page'      => '頁:',
-'removerestrictions-namespace' => '空間名:',
-'removerestrictions-reason'    => '原因:',
-'removerestrictions-submit'    => '拎走個限制',
-'removerestrictions-success'   => '已經成功噉由[[User:$1|$1]]度拎走個限制。',
-
-# Special:RestrictUser
-'restrictuser'                  => '限制用戶',
-'restrictuser-userselect'       => '揀一位用戶',
-'restrictuser-user'             => '用戶:',
-'restrictuser-go'               => '限制用戶',
-'restrictuser-notfound'         => '搵唔到用戶',
-'restrictuser-existing'         => '現有嘅限制',
-'restrictuser-legend-page'      => '限制去編輯某啲頁',
-'restrictuser-legend-namespace' => '限制去編輯某啲空間名',
-'restrictuser-title'            => '限制嘅頁:',
-'restrictuser-namespace'        => '空間名:',
-'restrictuser-expiry'           => '到期:',
-'restrictuser-reason'           => '原因:',
-'restrictuser-sumbit'           => '限制用戶',
-'restrictuser-badtitle'         => '無效嘅標題已指定: $1。',
-'restrictuser-badnamespace'     => '無效嘅空間名已指定。',
-'restrictuser-badexpiry'        => '無效嘅到期時已指定: $1。',
-'restrictuser-duptitle'         => '用戶已經限制咗去編輯呢個標題。',
-'restrictuser-dupnamespace'     => '用戶已經限制咗去編輯呢個空間名。',
-'restrictuser-success'          => '已經成功噉限制用戶$1。',
-
-# Special:Log/restrict
-'restrictionlog'       => '用戶限制日誌',
-'restrictionlogtext'   => '呢個日誌有由管理員對用戶限制嘅全部紀錄。',
-'restrictentry'        => '限制咗$1去編輯$2 (響$3到期)',
-'restrictremoveentry'  => '拎走咗$1對於$2嘅編輯限制',
-'restrictlognamespace' => '$1空間名',
 
 # Developer tools
 'lockdb'              => '鎖定資料庫',

@@ -1858,34 +1858,6 @@ $NEWPAGE
 'sorbsreason'                     => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
 'sorbs_create_account_reason'     => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
 
-# Special:RestrictUser
-'restrictuser'                  => '利用者を制限',
-'restrictuser-userselect'       => '利用者を選択',
-'restrictuser-user'             => '利用者:',
-'restrictuser-go'               => '利用者を制限',
-'restrictuser-notfound'         => '利用者がみつかりません',
-'restrictuser-existing'         => '現在設定されている制限',
-'restrictuser-legend-page'      => '一部のページの編集を制限する',
-'restrictuser-legend-namespace' => '一部の名前空間における編集を制限する',
-'restrictuser-title'            => '制限対象ページ:',
-'restrictuser-namespace'        => '名前空間:',
-'restrictuser-expiry'           => '有効期限:',
-'restrictuser-reason'           => '理由:',
-'restrictuser-sumbit'           => '利用者を制限',
-'restrictuser-badtitle'         => '指定ページ名が無効です: $1。',
-'restrictuser-badnamespace'     => '指定した名前空間が無効です。',
-'restrictuser-badexpiry'        => '指定した有効期限が無効です: $1。',
-'restrictuser-duptitle'         => 'この利用者は指定したページの編集をすでに制限されています。',
-'restrictuser-dupnamespace'     => 'この利用者は指定した名前空間の編集をすでに制限されています。',
-'restrictuser-success'          => '利用者$1の活動を制限しました。',
-
-# Special:Log/restrict
-'restrictionlog'       => '利用者制限ログ',
-'restrictionlogtext'   => 'このログには管理者が利用者に対して行った制限がすべて表示されています。',
-'restrictentry'        => '$1 の $2 での編集を制限 (有効期限 $3)',
-'restrictremoveentry'  => '$1の$2での編集制限を解除',
-'restrictlognamespace' => '$1 名前空間',
-
 # Developer tools
 'lockdb'              => 'データベースのロック',
 'unlockdb'            => 'データベースのロック解除',

@@ -870,38 +870,6 @@ Zdaje się, że została skasowana.',
 'edit-no-change'                   => 'Twoja edycja została zignorowana, ponieważ nie zmieniono nic w tekście.',
 'edit-already-exists'              => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
-'userrestricted-page'              => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji strony „$1”.'''</big>
-
-Blokada została nałożona przez [[User:$2|$2]].
-Podany powód to ''$3''.
-
-Blokada została nałożona $4 o $5 i wygasa $6 o $7.
-
-W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
-'userrestricted-namespace'         => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji w przestrzeni nazw „$1”.'''</big>
-
-Blokada została nałożona przez [[User:$2|$2]].
-Podany powód to ''$3''.
-
-Blokada została nałożona $4 o $5 i wygasa $6 o $7.
-
-W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
-'userrestricted-page-indef'        => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji strony „$1”.'''</big>
-
-Blokada została nałożona przez [[User:$2|$2]].
-Podany powód to ''$3''.
-
-Blokada została nałożona $4 o $5 i nie wygaśnie.
-
-W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
-'userrestricted-namespace-indef'   => "<big>'''Twojej nazwie użytkownika lub adresowi IP została zablokowana możliwość edycji w przestrzeni nazw „$1”.'''</big>
-
-Blokada została nałożona przez [[User:$2|$2]].
-Podany powód to ''$3''.
-
-Blokada została nałożona $4 o $5 i nie wygaśnie.
-
-W celu wyjaśnienia przyczyny zablokowania możesz się skontaktować z [[User:$2|$2]] lub innym [[{{MediaWiki:Grouppage-sysop}}|administratorem]].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
@@ -2096,7 +2064,6 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'ipbsubmit'                       => 'Zablokuj użytkownika',
 'ipbother'                        => 'Inny okres:',
 'ipboptions'                      => '2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,nieskończony:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'na zawsze',
 'ipbotheroption'                  => 'inny',
 'ipbotherreason'                  => 'Inne/dodatkowe uzasadnienie:',
 'ipbhidename'                     => 'Ukryj nazwę użytkownika/adres IP w rejestrze blokad, na liście aktywnych blokad i liście użytkowników',
@@ -2165,30 +2132,6 @@ O tym poważnym problemie dotyczącym bezpieczeństwa należy poinformować dost
 'sorbs_create_account_reason'     => 'Twój adres IP znajduje się na liście serwerów open proxy w DNSBL, używanej przez {{GRAMMAR:B.lp|{{SITENAME}}}}.
 Nie możesz utworzyć konta',
 'cant-block-while-blocked'        => 'Nie możesz zablokować innych użytkowników, kiedy sam jesteś zablokowany.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Lista użytkowników z selektywną blokadą',
-'listuserrestrictions-intro'      => 'Lista zawiera wszystkich użytkowników z zablokowaną możliwością edycji konkretnych stron i przestrzeni nazw.
-Lista nie zawiera [[Special:Ipblocklist|całościowych blokad]].',
-'listuserrestrictions-row-ns'     => 'zablokował $1 możliwość edycji w przestrzeni nazw $2 ($3)',
-'listuserrestrictions-row-page'   => 'zablokował $1 możliwość edycji $2 ($3)',
-'listuserrestrictions-row-expiry' => 'wygasa $1 o $2',
-'listuserrestrictions-legend'     => 'Szukaj selektywnych blokad',
-'listuserrestrictions-type'       => 'Typ blokady:',
-'listuserrestrictions-user'       => 'Użytkownik:',
-'listuserrestrictions-namespace'  => 'Przestrzeń nazw:',
-'listuserrestrictions-page'       => 'Strona:',
-'listuserrestrictions-submit'     => 'Szukaj',
-'listuserrestrictions-notfound'   => 'Brak selektywnych blokad spełniających podane kryteria.',
-'listuserrestrictions-empty'      => 'Lista jest pusta.',
-'listuserrestrictions-remove'     => 'odblokuj',
-'userrestrictiontype-none'        => '(brak)',
-'userrestrictiontype-namespace'   => 'Przestrzeni nazw',
-'userrestrictiontype-page'        => 'Strony',
-
-# Special:RemoveRestrictions
-'removerestrictions'       => 'Zdejmij selektywną blokadę',
-'removerestrictions-intro' => 'Użyj poniższego formularza, by zdjąć selektywną blokadę z użytkownika.',
 
 # Developer tools
 'lockdb'              => 'Zablokuj bazę danych',

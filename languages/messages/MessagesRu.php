@@ -869,38 +869,6 @@ $2',
 'edit-no-change'                   => 'Ваша правка была отклонена, так как в тексте не было сделано изменений.',
 'edit-already-exists'              => 'Невозможно создать новую страницу.
 Она уже существует.',
-'userrestricted-page'              => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать страницу «$1».'''</big>
-
-Это ограничение было наложено участником [[User:$2|$2]].
-Была указана следующая причина: ''$3''.
-
-Ограничение было наложено $4 в $5 и истекает $6 в $7.
-
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
-'userrestricted-namespace'         => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать пространство имён «$1».'''</big>
-
-Это ограничение было наложено участником [[User:$2|$2]].
-Была указана следующая причина: ''$3''.
-
-Ограничение было наложено $4 в $5 и истекает $6 в $7.
-
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
-'userrestricted-page-indef'        => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать страницу «$1».'''</big>
-
-Это ограничение было наложено участником [[User:$2|$2]].
-Была указана следующая причина: ''$3''.
-
-Ограничение было наложено $4 в $5, окончание срока действия не определено.
-
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
-'userrestricted-namespace-indef'   => "<big>'''Вашему IP-адресу или учётной записи запрещено редактировать пространство имён «$1».'''</big>
-
-Это ограничение было наложено участником [[User:$2|$2]].
-Была указана следующая причина: ''$3''.
-
-Ограничение было наложено $4 в $5, окончание срока действия не определено.
-
-Вы можете связаться с [[User:$2|$2]] или любым другим [[{{MediaWiki:Grouppage-sysop}}|администратором]] чтобы обсудить данное ограничение.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Внимание. Эта страница содержит слишком много вызовов ресурсоёмких функций.
@@ -2082,7 +2050,6 @@ $1',
 'ipbsubmit'                       => 'Заблокировать этот адрес/участника',
 'ipbother'                        => 'Другое время:',
 'ipboptions'                      => '15 минут:15 minutes,2 часа:2 hours,6 часов:6 hours,12 часов:12 hours,1 день:1 day,3 дня:3 days,1 неделю:1 week,2 недели:2 weeks,1 месяц:1 month,3 месяца:3 months,6 месяцев:6 months,1 год:1 year,бессрочно:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'бессрочно',
 'ipbotheroption'                  => 'другое',
 'ipbotherreason'                  => 'Другая причина:',
 'ipbhidename'                     => 'Скрыть имя участника или IP-адрес из журнала блокировок, списка заблокированных и общего списка участников.',
@@ -2148,69 +2115,6 @@ IP-адреса.',
 'sorbsreason'                     => 'Ваш IP-адрес числится как открытый прокси в DNSBL.',
 'sorbs_create_account_reason'     => 'Ваш IP-адрес числится как открытый прокси в DNSBL. Вы не можете создать учётную запись.',
 'cant-block-while-blocked'        => 'Вы не можете блокировать других участников, пока вы сами заблокированы.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Список ограничений участников',
-'listuserrestrictions-intro'      => 'Данный список содержит все ограничения пользователей на правку определённых страниц и пространств имён.
-[[Special:Ipblocklist|Блокировки]] здесь не перечислены.',
-'listuserrestrictions-row-ns'     => 'запретил $1 редактирование пространства имён «$2» ($3)',
-'listuserrestrictions-row-page'   => 'ограничил права $1 в правке $2 ($3)',
-'listuserrestrictions-row-expiry' => 'истекает $1 в $2',
-'listuserrestrictions-legend'     => 'Найти ограничение',
-'listuserrestrictions-type'       => 'Тип:',
-'listuserrestrictions-user'       => 'Участник:',
-'listuserrestrictions-namespace'  => 'Пространство имён:',
-'listuserrestrictions-page'       => 'Страница:',
-'listuserrestrictions-submit'     => 'Найти',
-'listuserrestrictions-notfound'   => 'Нет ограничений, соответствующих указанным условиям.',
-'listuserrestrictions-empty'      => 'Этот список пуст.',
-'listuserrestrictions-remove'     => 'снять',
-'userrestrictiontype-none'        => '(нет)',
-'userrestrictiontype-namespace'   => 'Пространство имён',
-'userrestrictiontype-page'        => 'Страница',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Снятие ограничения с участника',
-'removerestrictions-intro'     => 'Вы можете использовать эту форму, чтобы снять ограничение с конкретного участника.',
-'removerestrictions-noid'      => 'Не был указан ID ограничения.',
-'removerestrictions-wrongid'   => 'Ограничения с таким ID не найдено.
-Вероятно, кто-то уже снял его, или ограничение истекло.',
-'removerestrictions-legend'    => 'Снятие ограничения',
-'removerestrictions-user'      => 'Ограниченный участник:',
-'removerestrictions-type'      => 'Тип ограничения:',
-'removerestrictions-page'      => 'Страница:',
-'removerestrictions-namespace' => 'Пространство имён:',
-'removerestrictions-reason'    => 'Причина:',
-'removerestrictions-submit'    => 'Снять ограничение',
-'removerestrictions-success'   => 'Ограничение с участника [[User:$1|$1]] успешно удалено.',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Ограничить участника',
-'restrictuser-userselect'       => 'Выбор участника',
-'restrictuser-user'             => 'Участник:',
-'restrictuser-go'               => 'Ограниченный участник',
-'restrictuser-notfound'         => 'Участник не найден',
-'restrictuser-existing'         => 'Существующие ограничений',
-'restrictuser-legend-page'      => 'Ограничения на редактирование конкретной страницы',
-'restrictuser-legend-namespace' => 'Ограничение на редактирование в конкретном пространстве имён',
-'restrictuser-title'            => 'Страница для ограничения:',
-'restrictuser-namespace'        => 'Пространство имён:',
-'restrictuser-expiry'           => 'Истекает:',
-'restrictuser-reason'           => 'Причина:',
-'restrictuser-sumbit'           => 'Ограниченный участник',
-'restrictuser-badtitle'         => 'Указано ошибочное название: $1.',
-'restrictuser-badnamespace'     => 'Указано неверное пространство имён.',
-'restrictuser-badexpiry'        => 'Указан неверный срок истечения: $1.',
-'restrictuser-duptitle'         => 'У участника уже есть ограничение на редактирование страницы с таким названием.',
-'restrictuser-dupnamespace'     => 'У участника уже есть ограничение на редактирование этого пространства имён.',
-'restrictuser-success'          => 'На участника $1 успешно наложено ограничение.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Журнал ограничений участников',
-'restrictionlogtext'   => 'Этот журнал содержит записи обо всех ограничениях, наложенных на участников администраторами.',
-'restrictentry'        => 'ограничил права $1 на редактирование $2 (срок истечения $3)',
-'restrictremoveentry'  => 'снял ограничение с $1 на правку $2',
-'restrictlognamespace' => 'пространство имён $1',
 
 # Developer tools
 'lockdb'              => 'Сделать базу данных доступной только для чтения',

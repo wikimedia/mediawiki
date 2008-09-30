@@ -899,38 +899,6 @@ Det verkar som att den har raderats.',
 'edit-no-change'                   => 'Din redigering ignorerades, eftersom ingen ändring gjordes i texten.',
 'edit-already-exists'              => 'Sidan kunde inte skapas.
 Den finns redan.',
-'userrestricted-page'              => '<big>\'\'\'Din användare eller IP-adress har begränsats från att redigera sidan "$1".\'\'\'</big>
-
-Restriktionen lades av [[User:$2|$2]].
-Anledningen som uppgavs var \'\'$3\'\'.
-
-Restriktionen lades $4 kl $5 och avslutas $6 kl $7.
-
-Du kan kontakta [[User:$2|$2]] eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administratör]] för att diskutera restriktionen.',
-'userrestricted-namespace'         => "<big>'''Din användare eller IP-adress har begränsats från att redigera namnrymden $1.'''</big>
-
-Restriktionen lades av [[User:$2|$2]].
-Anledningen som uppgavs var ''$3''.
-
-Restriktionen lades $4 kl $5 och avslutas $6 kl $7.
-
-Du kan kontakta [[User:$2|$2]] eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administratör]] för att diskutera restriktionen.",
-'userrestricted-page-indef'        => '<big>\'\'\'Din användare eller IP-adress har begränsats från att redigera sidan "$1".\'\'\'</big>
-
-Restriktionen lades av [[User:$2|$2]].
-Anledningen som uppgavs var \'\'$3\'\'.
-
-Restriktionen lades $4 kl $5 och är inte tidsbegränsad.
-
-Du kan kontakta [[User:$2|$2]] eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administratör]] för att diskutera restriktionen.',
-'userrestricted-namespace-indef'   => "<big>'''Din användare eller IP-adress har begränsats från att redigera redigera namnrymden $1.'''</big>
-
-Restriktionen lades av [[User:$2|$2]].
-Anledningen som uppgavs var ''$3''.
-
-Restriktionen lades $4 kl $5 och är inte tidsbegränsad.
-
-Du kan kontakta [[User:$2|$2]] eller någon annan [[{{MediaWiki:Grouppage-sysop}}|administratör]] för att diskutera restriktionen.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -2107,7 +2075,6 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipbsubmit'                       => 'Blockera användaren',
 'ipbother'                        => 'Annan tidsperiod:',
 'ipboptions'                      => '2 timmar:2 hours,1 dag:1 day,3 dagar:3 days,1 vecka:1 week,2 veckor:2 weeks,1 månad:1 month,3 månader:3 months,6 månader:6 months,1 år:1 year,oändlig:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'oändlig',
 'ipbotheroption'                  => 'annan tidsperiod',
 'ipbotherreason'                  => 'Annan/ytterligare anledning:',
 'ipbhidename'                     => 'Dölj användarnamnet från blockeringsloggen, blockeringslistan och användarlistan',
@@ -2172,69 +2139,6 @@ I [[Special:IPBlockList|blockeringslistan]] listas alla IP-adresser och använda
 'sorbsreason'                     => 'Din IP-adress finns med på DNSBL:s lista över öppna proxies.',
 'sorbs_create_account_reason'     => 'Din IP-adress finns med på listan över öppna proxyn, DNSBL, som används av {{SITENAME}}. Du kan därför inte skapa något användarkonto.',
 'cant-block-while-blocked'        => 'Du kan inte blockera andra användare medan du är blockerad.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Lista över användarrestriktioner',
-'listuserrestrictions-intro'      => 'Den här listan innehåller alla restriktioner som lagts på en användare från att redigera vissa sidor och namnrymder.
-[[Special:Ipblocklist|Blockeringar]] listas inte här.',
-'listuserrestrictions-row-ns'     => 'begränsade $1 från att redigera namnrymden $2 ($3)',
-'listuserrestrictions-row-page'   => 'begränsade $1 från att redigera $2 ($3)',
-'listuserrestrictions-row-expiry' => 'går ut $1 kl $2',
-'listuserrestrictions-legend'     => 'Hitta en restriktion',
-'listuserrestrictions-type'       => 'Typ:',
-'listuserrestrictions-user'       => 'Användare:',
-'listuserrestrictions-namespace'  => 'Namnrymd:',
-'listuserrestrictions-page'       => 'Sida:',
-'listuserrestrictions-submit'     => 'Utför',
-'listuserrestrictions-notfound'   => 'Det finns ingen restriktion som matchar valda kriterier.',
-'listuserrestrictions-empty'      => 'Denna lista är tom.',
-'listuserrestrictions-remove'     => 'ta bort',
-'userrestrictiontype-none'        => '(ingen)',
-'userrestrictiontype-namespace'   => 'Namnrymd',
-'userrestrictiontype-page'        => 'Sida',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Ta bort restriktion från en användare',
-'removerestrictions-intro'     => 'Använd formuläret nedan för att ta bort en restriktion från en viss användare.',
-'removerestrictions-noid'      => 'Inget restriktions-ID specificerades.',
-'removerestrictions-wrongid'   => 'Hittade inte restriktion med det ID-numret.
-Förmodligen har någon tagit bort den, eller har den gått ut.',
-'removerestrictions-legend'    => 'Ta bort en restriktion',
-'removerestrictions-user'      => 'Begränsad användare:',
-'removerestrictions-type'      => 'Typ av restriktion:',
-'removerestrictions-page'      => 'Sida:',
-'removerestrictions-namespace' => 'Namnrymd:',
-'removerestrictions-reason'    => 'Anledning:',
-'removerestrictions-submit'    => 'Ta bort restriktionen',
-'removerestrictions-success'   => 'Lyckades ta bort restriktionen från [[User:$1|$1]].',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Begränsa användare',
-'restrictuser-userselect'       => 'Välj en användare',
-'restrictuser-user'             => 'Användare:',
-'restrictuser-go'               => 'Begränsa användare',
-'restrictuser-notfound'         => 'Användare inte funnen',
-'restrictuser-existing'         => 'Nuvarande restriktioner',
-'restrictuser-legend-page'      => 'Begränsa från att redigera viss sida',
-'restrictuser-legend-namespace' => 'Begränsa från att redigera viss namnrymd',
-'restrictuser-title'            => 'Sida att begränsa:',
-'restrictuser-namespace'        => 'Namnrymd:',
-'restrictuser-expiry'           => 'Varaktighet:',
-'restrictuser-reason'           => 'Anledning:',
-'restrictuser-sumbit'           => 'Begränsa användare',
-'restrictuser-badtitle'         => 'Ogiltig titel specificerad: $1.',
-'restrictuser-badnamespace'     => 'Ogiltig namnrymd specificerad.',
-'restrictuser-badexpiry'        => 'Ogiltig varaktighet specificerad: $1.',
-'restrictuser-duptitle'         => 'Användaren är redan begränsad från att redigera denna sida.',
-'restrictuser-dupnamespace'     => 'Användaren är redan begränsad från att redigera denna namnrymd.',
-'restrictuser-success'          => 'Lyckades begränsa användare $1.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Logg för användarrestriktioner',
-'restrictionlogtext'   => 'Denna logg innehåller alla restriktioner lagda på användare av administratörer.',
-'restrictentry'        => 'begränsade $1 från att redigera $2 (varaktighet satt till $3)',
-'restrictremoveentry'  => 'tog bort restriktion för $1 från att redigera $2',
-'restrictlognamespace' => 'namnrymden $1',
 
 # Developer tools
 'lockdb'              => 'Lås databas',

@@ -621,22 +621,6 @@ $2',
 'edit-no-change'                   => '爾之纂已略，由字無改也。',
 'edit-already-exists'              => '不建新頁。
 已存也。',
-'userrestricted-page'              => "<big>'''爾之簿或IP被限，無纂「$1」也。'''</big>
-
-限由[[User:$2|$2]]發之。
-事由為''$3''。
-
-限由$4始，至$5終。
-
-發信至[[User:$2|$2]]或者其之[[{{MediaWiki:Grouppage-sysop}}|有秩]]論其之。",
-'userrestricted-namespace'         => "<big>'''爾之簿或IP被限，無纂$1名集。'''</big>
-
-限由[[User:$2|$2]]發之。
-事由為''$3''。
-
-限由$4始，至$5終。
-
-發信至[[User:$2|$2]]或者其之[[{{MediaWiki:Grouppage-sysop}}|有秩]]論其之。",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警：頁有多貴功呼。
@@ -1685,7 +1669,6 @@ $NEWPAGE
 'ipbsubmit'                       => '禁簿',
 'ipbother'                        => '別期',
 'ipboptions'                      => '二時:2 hours,一日:1 day,三日:3 days,一週:1 week,二週:2 weeks,一月:1 month,三月:3 months,六月:6 months,一年:1 year,永如:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => '無期',
 'ipbotheroption'                  => '它',
 'ipbotherreason'                  => '補證、加證曰',
 'ipbhidename'                     => '簿名隱乎誌禁、表禁、點簿。',
@@ -1743,68 +1726,6 @@ $NEWPAGE
 'proxyblocker'                    => '禁Proxy',
 'proxyblocksuccess'               => '成矣。',
 'cant-block-while-blocked'        => '爾然被禁，勿施於人。',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => '點限',
-'listuserrestrictions-intro'      => '此點列簿之頁與名集之限也。
-註[[Special:Ipblocklist|該處]]之禁無示也',
-'listuserrestrictions-row-ns'     => '限$1對$2名集之纂（$3）',
-'listuserrestrictions-row-page'   => '限$1對$2之纂（$3）',
-'listuserrestrictions-row-expiry' => '至$1',
-'listuserrestrictions-legend'     => '尋限',
-'listuserrestrictions-type'       => '類：',
-'listuserrestrictions-user'       => '簿：',
-'listuserrestrictions-namespace'  => '名集：',
-'listuserrestrictions-page'       => '頁：',
-'listuserrestrictions-submit'     => '往',
-'listuserrestrictions-notfound'   => '無限可尋。',
-'listuserrestrictions-empty'      => '此點為空。',
-'listuserrestrictions-remove'     => '除',
-'userrestrictiontype-none'        => '（無）',
-'userrestrictiontype-namespace'   => '名集',
-'userrestrictiontype-page'        => '頁',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => '從簿除限',
-'removerestrictions-intro'     => '用下表除簿之限。',
-'removerestrictions-noid'      => '未定限ID。',
-'removerestrictions-wrongid'   => '無ID有關限之尋。能之其人除或限屆也。',
-'removerestrictions-legend'    => '除限',
-'removerestrictions-user'      => '限簿：',
-'removerestrictions-type'      => '限類：',
-'removerestrictions-page'      => '頁：',
-'removerestrictions-namespace' => '名集：',
-'removerestrictions-reason'    => '因：',
-'removerestrictions-submit'    => '除限',
-'removerestrictions-success'   => '[[User:$1|$1]]之限已除之。',
-
-# Special:RestrictUser
-'restrictuser'                  => '限簿',
-'restrictuser-userselect'       => '選簿',
-'restrictuser-user'             => '簿：',
-'restrictuser-go'               => '限簿',
-'restrictuser-notfound'         => '無尋簿',
-'restrictuser-existing'         => '現之限',
-'restrictuser-legend-page'      => '限纂頁',
-'restrictuser-legend-namespace' => '限纂名集',
-'restrictuser-title'            => '限之頁：',
-'restrictuser-namespace'        => '名集：',
-'restrictuser-expiry'           => '期至：',
-'restrictuser-reason'           => '因：',
-'restrictuser-sumbit'           => '限簿',
-'restrictuser-badtitle'         => '無效之標題指之：$1。',
-'restrictuser-badnamespace'     => '無效之名集指之。',
-'restrictuser-badexpiry'        => '無效之時限已之：$1。',
-'restrictuser-duptitle'         => '限簿纂其題。',
-'restrictuser-dupnamespace'     => '限簿纂其名集。',
-'restrictuser-success'          => '已限其簿$1。',
-
-# Special:Log/restrict
-'restrictionlog'       => '誌限',
-'restrictionlogtext'   => '此誌含有秩對簿之全限之錄。',
-'restrictentry'        => '已限$1對$2之纂（最期為$3）',
-'restrictremoveentry'  => '已除$1對$2之限纂',
-'restrictlognamespace' => '$1名集',
 
 # Developer tools
 'lockdb'              => '閉庫',

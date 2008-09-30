@@ -772,38 +772,6 @@ Untuk rujukan, berikut ialah log penghapusan bagi laman ini:",
 'edit-conflict'                    => 'Percanggahan penyuntingan.',
 'edit-no-change'                   => 'Suntingan anda diabaikan kerana tiada perubahan dibuat pada teks tersebut.',
 'edit-already-exists'              => 'Tidak dapat mencipta laman baru kerana ia telah wujud.',
-'userrestricted-page'              => '<big>\'\'\'Nama pengguna atau alamat IP anda telah dihadkan daripada menyunting laman "$1".\'\'\'</big>
-
-Had ini telah dikenakan oleh [[User:$2|$2]].
-Sebab yang dinyatakan ialah \'\'$3\'\'.
-
-Had ini dikenakan pada $4, $5 dan tamat pada $6, $7.
-
-Anda boleh menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membuat rundingan mengenai had ini.',
-'userrestricted-namespace'         => "<big>'''Nama pengguna atau alamat IP anda telah dihadkan daripada menyunting ruang nama $1.'''</big>
-
-Had ini telah dikenakan oleh [[User:$2|$2]].
-Sebab yang dinyatakan ialah ''$3''.
-
-Had ini dikenakan pada $4, $5 dan tamat pada $6, $7.
-
-Anda boleh menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membuat rundingan mengenai had ini.",
-'userrestricted-page-indef'        => '<big>\'\'\'Nama pengguna atau alamat IP anda telah dihadkan daripada menyunting laman "$1".\'\'\'</big>
-
-Had ini telah dikenakan oleh [[User:$2|$2]].
-Sebab yang dinyatakan ialah \'\'$3\'\'.
-
-Had ini dikenakan pada $4, $5 dan tidak akan tamat.
-
-Anda boleh menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membuat rundingan mengenai had ini.',
-'userrestricted-namespace-indef'   => '<big>\'\'\'Nama pengguna atau alamat IP anda telah dihadkan daripada menyunting ruang nama "$1".\'\'\'</big>
-
-Had ini telah dikenakan oleh [[User:$2|$2]].
-Sebab yang dinyatakan ialah \'\'$3\'\'.
-
-Had ini dikenakan pada $4, $5 dan tidak akan tamat.
-
-Anda boleh menghubungi [[User:$2|$2]] atau [[{{MediaWiki:Grouppage-sysop}}|pentadbir]] lain untuk membuat rundingan mengenai had ini.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.
@@ -1980,7 +1948,6 @@ dirosakkan).',
 'ipbsubmit'                       => 'Sekat pengguna ini',
 'ipbother'                        => 'Waktu lain:',
 'ipboptions'                      => '2 jam:2 hours,1 hari:1 day,3 hari:3 days,1 minggu:1 week,2 minggu:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tahun:1 year,selama-lamanya:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'tidak terhad',
 'ipbotheroption'                  => 'lain',
 'ipbotherreason'                  => 'Sebab tambahan/lain:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna/alamat IP daripada log sekatan, senarai sekatan aktif, dan senarai pengguna',
@@ -2045,67 +2012,6 @@ Alamat IP yang disekat secara automatik tidak disenaraikan di sini. Sila lihat
 'sorbsreason'                     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Alamat IP anda telah disenaraikan sebagai proksi terbuka dalam DNSBL yang digunakan oleh {{SITENAME}}. Oleh itu, anda tidak dibenarkan membuka akaun baru.',
 'cant-block-while-blocked'        => 'Anda tidak boleh menyekat orang lain sedangkan anda disekat.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Senarai had pengguna',
-'listuserrestrictions-intro'      => 'Berikut ialah senarai had penyuntingan laman dan ruang nama tertentu yang dikenakan pada pengguna. Walau bagaimanapun, [[Special:Ipblocklist|sekatan pengguna]] tidak disenaraikan di sini.',
-'listuserrestrictions-row-ns'     => 'mengehadkan $1 daripada menyunting ruang nama $2 ($3)',
-'listuserrestrictions-row-page'   => 'mengehadkan $1 daripada menyunting $2 ($3)',
-'listuserrestrictions-row-expiry' => 'tamat pada $1, $2',
-'listuserrestrictions-legend'     => 'Cari had',
-'listuserrestrictions-type'       => 'Jenis:',
-'listuserrestrictions-user'       => 'Pengguna:',
-'listuserrestrictions-namespace'  => 'Ruang nama:',
-'listuserrestrictions-page'       => 'Laman:',
-'listuserrestrictions-submit'     => 'Pergi',
-'listuserrestrictions-notfound'   => 'Tiada had yang sepadan dengan kriteria yang diberikan.',
-'listuserrestrictions-empty'      => 'Senarai ini kosong.',
-'listuserrestrictions-remove'     => 'buang',
-'userrestrictiontype-none'        => '(tiada)',
-'userrestrictiontype-namespace'   => 'Ruang nama',
-'userrestrictiontype-page'        => 'Laman',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Buang had daripada pengguna',
-'removerestrictions-intro'     => 'Gunakan borang berikut untuk membuang had daripada pengguna tertentu.',
-'removerestrictions-noid'      => 'ID had tidak dinyatakan.',
-'removerestrictions-wrongid'   => 'Had dengan ID itu tidak dijumpai. Mungkin orang lain telah membuangnya atau had itu telah tamat.',
-'removerestrictions-legend'    => 'Buang had',
-'removerestrictions-user'      => 'Pengguna berhad:',
-'removerestrictions-type'      => 'Jenis had:',
-'removerestrictions-page'      => 'Laman:',
-'removerestrictions-namespace' => 'Ruang nama:',
-'removerestrictions-reason'    => 'Sebab:',
-'removerestrictions-submit'    => 'Buang had',
-'removerestrictions-success'   => 'Had [[User:$1|$1]] berjaya dibuang.',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Hadkan pengguna',
-'restrictuser-userselect'       => 'Pilih pengguna',
-'restrictuser-user'             => 'Pengguna:',
-'restrictuser-go'               => 'Hadkan pengguna',
-'restrictuser-notfound'         => 'Pengguna tidak wujud',
-'restrictuser-existing'         => 'Had sedia ada',
-'restrictuser-legend-page'      => 'Had penyuntingan laman tertentu',
-'restrictuser-legend-namespace' => 'Had penyuntingan ruang nama tertentu',
-'restrictuser-title'            => 'Laman:',
-'restrictuser-namespace'        => 'Ruang nama:',
-'restrictuser-expiry'           => 'Sehingga:',
-'restrictuser-reason'           => 'Sebab:',
-'restrictuser-sumbit'           => 'Hadkan pengguna',
-'restrictuser-badtitle'         => 'Tajuk tidak sah dinyatakan: $1.',
-'restrictuser-badnamespace'     => 'Ruang nama yang dinyatakan tidak sah.',
-'restrictuser-badexpiry'        => 'Tempoh had yang dinyatakan tidak sah: $1.',
-'restrictuser-duptitle'         => 'Pengguna tersebut telah pun dihadkan daripada menyunting laman dengan tajuk ini.',
-'restrictuser-dupnamespace'     => 'Pengguna tersebut telah pun dihadkan daripada menyunting ruang nama ini.',
-'restrictuser-success'          => 'Pengguna $1 berjaya dihadkan.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Log pengehadan pengguna',
-'restrictionlogtext'   => 'Berikut ialah log had yang dikenakan pada pengguna oleh pentadbir.',
-'restrictentry'        => 'mengehadkan $1 daripada menyunting $2 (sehingga $3)',
-'restrictremoveentry'  => 'membuang had $1 menyunting $2',
-'restrictlognamespace' => 'ruang nama $1',
 
 # Developer tools
 'lockdb'              => 'Kunci pangkalan data',

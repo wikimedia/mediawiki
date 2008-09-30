@@ -2047,7 +2047,6 @@ $1',
 'ipbsubmit'                       => 'Заблякаваць удзельніка',
 'ipbother'                        => 'Іншы тэрмін:',
 'ipboptions'                      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'назаўсёды',
 'ipbotheroption'                  => 'іншы',
 'ipbotherreason'                  => 'Іншая/дадатковая прычына:',
 'ipbhidename'                     => 'Схаваць імя ўдзельніка ў журнале блякаваньняў, сьпісе заблякаваных і сьпісе ўдзельнікаў',
@@ -2109,23 +2108,6 @@ $1',
 'sorbsreason'                     => 'Ваш IP-адрас знаходзіцца ў сьпісе адкрытых проксі ў DNSBL, якім карыстаецца {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Ваш IP-адрас знаходзіцца ў сьпісе адкрытых проксі ў DNSBL, якім карыстаецца {{SITENAME}}.
 Вы ня зможаце стварыць рахунак',
-
-# Special:ListUserRestrictions
-'listuserrestrictions-type'      => 'Тып:',
-'listuserrestrictions-user'      => 'Удзельнік:',
-'listuserrestrictions-namespace' => 'Прастора назваў:',
-'listuserrestrictions-page'      => 'Старонка:',
-'userrestrictiontype-none'       => '(няма)',
-'userrestrictiontype-namespace'  => 'Прастора назваў',
-
-# Special:RemoveRestrictions
-'removerestrictions-page'      => 'Старонка:',
-'removerestrictions-namespace' => 'Прастора назваў:',
-'removerestrictions-reason'    => 'Прычына:',
-
-# Special:RestrictUser
-'restrictuser-namespace' => 'Прастора назваў:',
-'restrictuser-reason'    => 'Прычына:',
 
 # Developer tools
 'lockdb'              => 'Заблякаваць базу зьвестак',

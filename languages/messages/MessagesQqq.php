@@ -1658,31 +1658,6 @@ See also [[MediaWiki:Blocklistline]].',
 'ipb_already_blocked'         => '{{Identical|$1 is already blocked}}',
 'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 
-# Special:ListUserRestrictions
-'listuserrestrictions-type'      => '{{Identical|Type}}',
-'listuserrestrictions-user'      => '{{identical|User}}',
-'listuserrestrictions-namespace' => '{{Identical|Namespace}}',
-'listuserrestrictions-page'      => '{{Identical|Page}}',
-'listuserrestrictions-submit'    => '{{Identical|Go}}',
-'listuserrestrictions-remove'    => 'Name of link in [[Special:RestrictUser]], in "Existing restrictions" box, that allows to remove a previous restriction.
-{{Identical|Remove}}',
-'userrestrictiontype-none'       => '{{Identical|None}}',
-'userrestrictiontype-namespace'  => '{{identical|Namespace}}',
-'userrestrictiontype-page'       => '{{identical|Page}}',
-
-# Special:RemoveRestrictions
-'removerestrictions-page'      => '{{identical|Page}}',
-'removerestrictions-namespace' => '{{identical|Namespace}}',
-'removerestrictions-reason'    => '{{identical|Reason}}',
-
-# Special:RestrictUser
-'restrictuser-user'      => '{{Identical|User}}',
-'restrictuser-namespace' => '{{identical|Namespace}}',
-'restrictuser-expiry'    => '{{Identical|Expires}}',
-'restrictuser-reason'    => '{{identical|Reason}}',
-'restrictuser-badtitle'  => 'Error message shown you type an invalid title in [[Special:RestrictUser|restriction form]] (for example a title with invalid characters)',
-'restrictuser-badexpiry' => 'Error message shown you type an invalid expiring time in [[Special:RestrictUser|restriction form]].',
-
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
 
