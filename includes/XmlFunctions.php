@@ -15,8 +15,8 @@ function wfOpenElement( $element, $attribs = null ) {
 function wfCloseElement( $element ) {
 	return "</$element>";
 }
-function HTMLnamespaceselector($selected = '', $allnamespaces = null, $includehidden=false) {
-	return Xml::namespaceSelector( $selected, $allnamespaces, $includehidden );
+function HTMLnamespaceselector($selected = '', $allnamespaces = null ) {
+	return Xml::namespaceSelector( $selected, $allnamespaces );
 }
 function wfSpan( $text, $class, $attribs=array() ) {
 	return Xml::span( $text, $class, $attribs );

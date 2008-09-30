@@ -112,11 +112,11 @@ class Xml {
 	 *
 	 * @param $selected Mixed: Namespace which should be pre-selected
 	 * @param $all Mixed: Value of an item denoting all namespaces, or null to omit
-	 * @param $hidden Mixed: Include hidden namespaces? [WTF? --RC]
 	 * @param $element_name String: value of the "name" attribute of the select tag
+	 * @param $label String: optional label to add to the field
 	 * @return string
 	 */
-	public static function namespaceSelector( $selected = '', $all = null, $hidden = false, $element_name = 'namespace' ) {
+	public static function namespaceSelector( $selected = '', $all = null, $element_name = 'namespace', $label = null ) {
 		global $wgContLang;
 		$namespaces = $wgContLang->getFormattedNamespaces();
 		$options = array();
@@ -139,12 +139,16 @@ class Xml {
 			$options[] = self::option( $name, $index, $index === $selected );
 		}
 
-		return Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => $element_name,
+		$ret = Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => $element_name,
 			'class' => 'namespaceselector' ) )
 			. "\n"
 			. implode( "\n", $options )
 			. "\n"
 			. Xml::closeElement( 'select' );
+		if ( !is_null( $label ) ) {
+			$ret = Xml::label( $label, $element_name ) . '&nbsp;' . $ret;
+		}
+		return $ret;
 	}
 
 	/**
