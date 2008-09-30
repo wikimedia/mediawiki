@@ -795,38 +795,6 @@ Zdá sa, že bola zmazaná.',
 'edit-no-change'                   => 'Vaša úprava bola ignorovaná, pretože ste v texte nič nezmenili.',
 'edit-already-exists'              => 'Nebolo možné vytvoriť novú stránku.
 Už existuje.',
-'userrestricted-page'              => "<big>'''Vášmu používateľskému menu alebo IP adrese bolo zakázané upravovať stránku „$1”.'''</big>
-
-Obmedzenie vytvoril [[User:$2|$2]].
-Ako dôvod udal ''$3''.
-
-Obmedzenie bolo vytvorené $4 o $5 a vyprší $6 o $7.
-
-Ak chcete o obmedzení diskutovať, môžete kontaktovať [[User:$2|$2]] alebo iného zo [[{{MediaWiki:Grouppage-sysop}}|správcov]].",
-'userrestricted-namespace'         => "<big>'''Vášmu používateľskému menu alebo IP adrese bolo zakázané upravovať menný priestor „$1”.'''</big>
-
-Obmedzenie vytvoril [[User:$2|$2]].
-Ako dôvod udal ''$3''.
-
-Obmedzenie bolo vytvorené $4 o $5 a vyprší $6 o $7.
-
-Ak chcete o obmedzení diskutovať, môžete kontaktovať [[User:$2|$2]] alebo iného zo [[{{MediaWiki:Grouppage-sysop}}|správcov]].",
-'userrestricted-page-indef'        => "<big>'''Vášmu používateľskému menu alebo IP adrese bolo zakázané upravovať stránku „$1”.'''</big>
-
-Obmedzenie vytvoril [[User:$2|$2]].
-Ako dôvod udal ''$3''.
-
-Obmedzenie bolo vytvorené $4 o $5 a nikdy nevyprší.
-
-Ak chcete o obmedzení diskutovať, môžete kontaktovať [[User:$2|$2]] alebo iného zo [[{{MediaWiki:Grouppage-sysop}}|správcov]].",
-'userrestricted-namespace-indef'   => "<big>'''Vášmu používateľskému menu alebo IP adrese bolo zakázané upravovať menný priestor „$1”.'''</big>
-
-Obmedzenie vytvoril [[User:$2|$2]].
-Ako dôvod udal ''$3''.
-
-Obmedzenie bolo vytvorené $4 o $5 a nikdy nevyprší.
-
-Ak chcete o obmedzení diskutovať, môžete kontaktovať [[User:$2|$2]] alebo iného zo [[{{MediaWiki:Grouppage-sysop}}|správcov]].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -2009,7 +1977,6 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'ipbsubmit'                       => 'Zablokovať tohto používateľa',
 'ipbother'                        => 'Iný čas',
 'ipboptions'                      => '2 hodiny:2 hours,1 deň:1 day,3 dni:3 days,1 týždeň:1 week,2 týždne:2 weeks,1 mesiac:1 month,3 mesiace:3 months,6 mesiacov:6 months,1 rok:1 year,na neurčito:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'na neurčito',
 'ipbotheroption'                  => 'iný čas',
 'ipbotherreason'                  => 'Iný/ďalší dôvod',
 'ipbhidename'                     => 'Skryť používateľa zo záznamu blokovaní, aktívneho zoznamu blokovaní a zoznamu používateľov',
@@ -2075,69 +2042,6 @@ blokované IP adresy nie sú zahrnuté. Pozri zoznam
 'sorbsreason'                     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v DNSBL.',
 'sorbs_create_account_reason'     => 'Vaša IP adresa je vedená ako nezabezpečený proxy server v databáze DNSBL, ktorú používa {{SITENAME}}. Nemôžete si vytvoriť účet.',
 'cant-block-while-blocked'        => 'Nemôžete blokovať iných používateľov, kým ste zablokovaný.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Zoznam obmedzení používateľov',
-'listuserrestrictions-intro'      => 'Tento zoznam obsahuje všetky obmedzenia používateľov upravovať určené stránky a menné priestory.
-Nie sú tu uvedené [[Special:Ipblocklist|blokovania]].',
-'listuserrestrictions-row-ns'     => 'zakázal používateľovi $1 upravovať menný priestor $2 ($3)',
-'listuserrestrictions-row-page'   => 'zakázal používateľovi $1 upravovať $2 ($3)',
-'listuserrestrictions-row-expiry' => 'vyprší $1 o $2',
-'listuserrestrictions-legend'     => 'Nájsť obmedzenie',
-'listuserrestrictions-type'       => 'Typ:',
-'listuserrestrictions-user'       => 'Používateľ:',
-'listuserrestrictions-namespace'  => 'Menný priestor:',
-'listuserrestrictions-page'       => 'Stránka:',
-'listuserrestrictions-submit'     => 'Vykonať',
-'listuserrestrictions-notfound'   => 'Žiadne obmedzenie nezodpovedá požadovaným kritériám.',
-'listuserrestrictions-empty'      => 'Zoznam je prázdny.',
-'listuserrestrictions-remove'     => 'odstrániť',
-'userrestrictiontype-none'        => '(žiadne)',
-'userrestrictiontype-namespace'   => 'Menný priestor',
-'userrestrictiontype-page'        => 'Stránka',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Odstrániť obmedzenie používateľa',
-'removerestrictions-intro'     => 'Týmto formulárom môžete odstrániť obmedzenie určeného používateľa.',
-'removerestrictions-noid'      => 'Nebol zadaný ID obmedzenia.',
-'removerestrictions-wrongid'   => 'Obmedzenie so zadaným ID nebolo nájdené.
-Pravdepodobne ho niekto odstránil alebo jeho platnosť vypršala.',
-'removerestrictions-legend'    => 'Odstrániť obmedzenie',
-'removerestrictions-user'      => 'Obmedzený používateľ:',
-'removerestrictions-type'      => 'Typ obmedzenia:',
-'removerestrictions-page'      => 'Stránka:',
-'removerestrictions-namespace' => 'Menný priestor:',
-'removerestrictions-reason'    => 'Dôvod:',
-'removerestrictions-submit'    => 'Odstrániť obmedzenie',
-'removerestrictions-success'   => 'Obmedzenie používateľa [[User:$1|$1]] bolo úspešne odstránené.',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Obmedziť úpravy používateľa',
-'restrictuser-userselect'       => 'Vybrať používateľa',
-'restrictuser-user'             => 'Používateľ:',
-'restrictuser-go'               => 'Obmedziť používateľa',
-'restrictuser-notfound'         => 'Používateľ nebol nájdený',
-'restrictuser-existing'         => 'Existujúce obmedzenia',
-'restrictuser-legend-page'      => 'Obmedziť úpravy určenej stránky',
-'restrictuser-legend-namespace' => 'Obmedziť úpravy určeného menného priestoru',
-'restrictuser-title'            => 'Obmedziť úpravy stránky:',
-'restrictuser-namespace'        => 'Menný priestor:',
-'restrictuser-expiry'           => 'Vyprší:',
-'restrictuser-reason'           => 'Dôvod:',
-'restrictuser-sumbit'           => 'Obmedziť používateľa',
-'restrictuser-badtitle'         => 'Zadaný neplatný názov: $1.',
-'restrictuser-badnamespace'     => 'Zadaný neplatný menný priestor.',
-'restrictuser-badexpiry'        => 'Zadaná neplatná doba vypršania: $1.',
-'restrictuser-duptitle'         => 'Používateľ už má zamedzené úpravy stránky s týmto názvom.',
-'restrictuser-dupnamespace'     => 'Používateľ už má zamedzené úpravy tohto menného priestoru.',
-'restrictuser-success'          => 'Používateľovi $1 boli úspešne obmedzené úpravy.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Záznam obmedzení používateľov',
-'restrictionlogtext'   => 'Tento záznam obsahuje všetky obmedzenia úprav používateľov, ktoré správcovia vykonali.',
-'restrictentry'        => 'zakázal používateľovi $1 upravovať $2 (platnosť vyprší $3)',
-'restrictremoveentry'  => 'odstránil zákaz používateľovi $1 upravovať $2',
-'restrictlognamespace' => 'menný priestor $1',
 
 # Developer tools
 'lockdb'              => 'Zamknúť databázu',

@@ -1912,7 +1912,6 @@ Indica il motivo specifico per il quale procedi al blocco dell'indirizzo IP o de
 'ipbsubmit'                       => "Blocca l'utente",
 'ipbother'                        => 'Durata non in elenco:',
 'ipboptions'                      => '2 ore:2 hours,1 giorno:1 day,3 giorni:3 days,1 settimana:1 week,2 settimane:2 weeks,1 mese:1 month,3 mesi:3 months,6 mesi:6 months,1 anno:1 year,infinito:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'infinito',
 'ipbotheroption'                  => 'altro',
 'ipbotherreason'                  => 'Altri motivi/dettagli:',
 'ipbhidename'                     => "Nascondi il nome utente dal log dei blocchi, dall'elenco dei blocchi attivi e dall'elenco utenti.",
@@ -1976,37 +1975,6 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'sorbsreason'                     => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL.',
 'sorbs_create_account_reason'     => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL.',
 'cant-block-while-blocked'        => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions-row-expiry' => 'scade il $1 alle $2',
-'listuserrestrictions-legend'     => 'Trova una restrizione',
-'listuserrestrictions-type'       => 'Tipo:',
-'listuserrestrictions-user'       => 'Utente:',
-'listuserrestrictions-namespace'  => 'Namespace:',
-'listuserrestrictions-page'       => 'Pagina:',
-'listuserrestrictions-submit'     => 'Vai',
-'listuserrestrictions-empty'      => 'Questo elenco è vuoto.',
-'listuserrestrictions-remove'     => 'rimuovi',
-'userrestrictiontype-none'        => '(nessuno)',
-'userrestrictiontype-namespace'   => 'Namespace',
-'userrestrictiontype-page'        => 'Pagina',
-
-# Special:RemoveRestrictions
-'removerestrictions-page'      => 'Pagina:',
-'removerestrictions-namespace' => 'Namespace:',
-'removerestrictions-reason'    => 'Motivo:',
-
-# Special:RestrictUser
-'restrictuser-user'         => 'Utente:',
-'restrictuser-namespace'    => 'Namespace:',
-'restrictuser-expiry'       => 'Scadenza:',
-'restrictuser-reason'       => 'Motivo:',
-'restrictuser-badtitle'     => 'Titolo specificato non valido: $1.',
-'restrictuser-badnamespace' => 'Namespace specificato non valido.',
-'restrictuser-badexpiry'    => 'Scadenza specificata non valida: $1.',
-
-# Special:Log/restrict
-'restrictionlog' => 'Limitazioni utente',
 
 # Developer tools
 'lockdb'              => 'Blocca il database',

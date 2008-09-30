@@ -1514,7 +1514,6 @@ $1',
 'ipbsubmit'                       => 'Φράττειν τόνδε τὸν χρώμενον',
 'ipbother'                        => 'Ἄλλη ὥρα:',
 'ipboptions'                      => '2 ὥραι:2 hours,1 ἡμέρα:1 day,3 ἡμέραι:3 days,1 ἑβδομάς:1 week,2 ἑβδομάδες:2 weeks,1 μήν:1 month,3 μῆνες:3 months,6 μῆνες:6 months,1 ἔτος:1 year,ἐπἄπειρον:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'ἄπειρος',
 'ipbotheroption'                  => 'ἄλλη',
 'ipbotherreason'                  => 'Πρόσθετος/ἄλλη αἰτία:',
 'ipbwatchuser'                    => 'Ἐφορᾶν τοῦδε τοῦ χρωμένου τὰς δέλτους χρωμένου καὶ διαλέξεως',
@@ -1565,46 +1564,6 @@ $1',
 'proxyblocker'                    => 'Ἐργαλεῖον φραγῆς διακομιστῶν',
 'proxyblocker-disabled'           => 'Ἥδε ἡ ἐνέργεια κατεσταλμένη εστίν.',
 'proxyblocksuccess'               => 'Γενομένη.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions-row-ns'    => 'περιορίσαι τὸν $1 μεταγράφειν τὸ $2 ὀνοματεῖον ($3)',
-'listuserrestrictions-row-page'  => 'περιορίσαι τὸν $1 μεταγράφειν τὴν $2 ($3)',
-'listuserrestrictions-legend'    => 'Εὑρίσκειν περιορισμόν τινα',
-'listuserrestrictions-type'      => 'Τύπος:',
-'listuserrestrictions-user'      => 'Χρώμενος:',
-'listuserrestrictions-namespace' => 'Ὀνοματεῖον:',
-'listuserrestrictions-page'      => 'Δέλτος:',
-'listuserrestrictions-submit'    => 'Ἱέναι',
-'listuserrestrictions-remove'    => 'ἀφαιρεῖν',
-'userrestrictiontype-none'       => '(οὐδεμία)',
-'userrestrictiontype-namespace'  => 'Ὀνοματεῖον',
-'userrestrictiontype-page'       => 'Δέλτος',
-
-# Special:RemoveRestrictions
-'removerestrictions-legend'    => 'Ἀφαιρεῖν περιορισμόν τινα',
-'removerestrictions-user'      => 'Περιωρισμένος χρώμενος:',
-'removerestrictions-type'      => 'Τύπος περιορισμοῦ:',
-'removerestrictions-page'      => 'Δέλτος:',
-'removerestrictions-namespace' => 'Ὀνοματεῖον:',
-'removerestrictions-reason'    => 'Αἰτία:',
-'removerestrictions-submit'    => 'Ἀφαιρεῖν τὸν περιορισμόν',
-
-# Special:RestrictUser
-'restrictuser'            => 'Περιορίζειν τὸν χρώμενον',
-'restrictuser-userselect' => 'Ἐπιλέγειν χρώμενόν τινα',
-'restrictuser-user'       => 'Χρώμενος:',
-'restrictuser-go'         => 'Περιορίζειν τὸν χρώμενον',
-'restrictuser-notfound'   => 'Χρώμενος μὴ εὑρεθεῖς',
-'restrictuser-existing'   => 'Ὑπάρχοντες περιορισμοί',
-'restrictuser-title'      => 'Περιοριστέα δέλτος:',
-'restrictuser-namespace'  => 'Ὀνοματεῖον:',
-'restrictuser-expiry'     => 'Λήγει:',
-'restrictuser-reason'     => 'Αἰτία:',
-'restrictuser-sumbit'     => 'Περιορίζειν τὸν χρώμενον',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Κατάλογος περιορισμῶν τοῦ χρωμένου',
-'restrictlognamespace' => '$1 ὀνοματεῖον',
 
 # Developer tools
 'lockdb'              => 'Φράττειν βάσιν δεδομένων',

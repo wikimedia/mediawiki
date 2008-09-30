@@ -894,38 +894,6 @@ Razlog nije ponuđen.',
 'edit-no-change'                   => 'Vaše uređivanje je zanemareno, jer nikakva promjena sadržaja nije napravljena.',
 'edit-already-exists'              => 'Neuspješno stvaranje nove stranice.
 Stranica već postoji.',
-'userrestricted-page'              => '<big>\'\'\'Vaš suradnički račun ili IP adresa su ograničeni u uređivanju stranice "$1".\'\'\'</big>
-
-Ograničenje je postavio [[User:$2|$2]].
-S razlogom: \'\'$3\'\'.
-
-Ograničenje je postavljeno $4 u $5 i istječe $6 u $7.
-
-Možete kontaktirati [[User:$2|$2]] ili drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] za razgovor o ograničenju.',
-'userrestricted-namespace'         => "<big>'''Vaš suradnički račun ili IP adresa su ograničeni u uređivanju imenskog prostora $1.'''</big>
-
-Ograničenje je postavio [[User:$2|$2]].
-S razlogom: ''$3''.
-
-Ograničenje je postavljeno $4 u $5 i istječe $6 u $7.
-
-Možete kontaktirati [[User:$2|$2]] ili drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] za razgovor o ograničenju.",
-'userrestricted-page-indef'        => '<big>\'\'\'Vaš suradnički račun ili IP adresa su ograničeni u uređivanju stranice "$1".\'\'\'</big>
-
-Ograničenje je postavio [[User:$2|$2]].
-S razlogom: \'\'$3\'\'.
-
-Ograničenje je postavljeno $4 u $5 na neograničeno vrijeme
-
-Možete kontaktirati [[User:$2|$2]] ili drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] za razgovor o ograničenju.',
-'userrestricted-namespace-indef'   => "<big>'''Vaš suradnički račun ili IP adresa su ograničeni u uređivanju imenskog prostora $1.'''</big>
-
-Ograničenje je postavio [[User:$2|$2]].
-S razlogom: ''$3''.
-
-Ograničenje je postavljeno $4 u $5 na neograničeno vrijeme
-
-Možete kontaktirati [[User:$2|$2]] ili drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] za razgovor o ograničenju.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Upozorenje: Ova stranica sadrži previše opterećujućih poziva parserskih funkcija
@@ -2093,7 +2061,6 @@ vandalizirane).',
 'ipbsubmit'                       => 'Blokiraj ovog suradnika',
 'ipbother'                        => 'Neki drugi rok (na engleskom, npr. 6 days):',
 'ipboptions'                      => '2 sata:2 hours,6 sati:6 hours,1 dan:1 day,3 dana:3 days,1 tjedan:1 week,2 tjedna:2 weeks,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godine:1 year,neograničeno:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'neograničeno',
 'ipbotheroption'                  => 'drugo',
 'ipbotherreason'                  => 'Drugi/dodatni razlog:',
 'ipbhidename'                     => 'Sakrij suradničko ime iz evidencije blokiranja, popisa blokiranja i popisa suradnika',
@@ -2156,68 +2123,6 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'sorbsreason'                     => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL.',
 'sorbs_create_account_reason'     => 'Vaša IP adresa je na popisu otvorenih posrednika na poslužitelju DNSBL. Ne možete otvoriti račun.',
 'cant-block-while-blocked'        => 'Ne možete blokirati druge suradnike dok ste vi blokirani.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Popis suradničkih ograničenja',
-'listuserrestrictions-intro'      => 'Popis sadrži sva ograničenja suradnika u uređivanju pojedine stranice ili imenskog prostora. Ovaj popis ne sadrži [[Special:Ipblocklist|blokiranja]].',
-'listuserrestrictions-row-ns'     => 'ograničio $1 u uređivanju imenskog prostora $2 ($3)',
-'listuserrestrictions-row-page'   => 'ograničio $1 u uređivanju stranice $2 ($3)',
-'listuserrestrictions-row-expiry' => 'istječe $1 u $2',
-'listuserrestrictions-legend'     => 'Traži ograničenje',
-'listuserrestrictions-type'       => 'Način:',
-'listuserrestrictions-user'       => 'Suradnik:',
-'listuserrestrictions-namespace'  => 'Imenski prostor:',
-'listuserrestrictions-page'       => 'Stranica:',
-'listuserrestrictions-submit'     => 'Kreni',
-'listuserrestrictions-notfound'   => 'Ne postoje ograničenja koja se poklapaju s odabranim kriterijima.',
-'listuserrestrictions-empty'      => 'Popis je prazan.',
-'listuserrestrictions-remove'     => 'ukloni',
-'userrestrictiontype-none'        => '(ništa)',
-'userrestrictiontype-namespace'   => 'Imenski prostor',
-'userrestrictiontype-page'        => 'Stranica',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Ukloni ograničenje suradniku',
-'removerestrictions-intro'     => 'Koristite ovaj obrazac za uklanjanje ograničenja određenog suradnika.',
-'removerestrictions-noid'      => 'Nije određen ID ograničenja.',
-'removerestrictions-wrongid'   => 'Ograničenje s ovim ID brojem nije pronađeno.
-Vjerojatno je netko već uklonio ograničenje ili je isteklo.',
-'removerestrictions-legend'    => 'Ukloni ograničenje',
-'removerestrictions-user'      => 'Suradnik s ograničenjem:',
-'removerestrictions-type'      => 'Način ograničenja:',
-'removerestrictions-page'      => 'Stranica:',
-'removerestrictions-namespace' => 'Imenski prostor:',
-'removerestrictions-reason'    => 'Razlog:',
-'removerestrictions-submit'    => 'Ukloni ograničenje',
-'removerestrictions-success'   => 'Uspješno uklonjeno ograničenje za suradnika [[User:$1|$1]].',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Ograniči suradnika',
-'restrictuser-userselect'       => 'Odaberi suradnika',
-'restrictuser-user'             => 'Suradnik:',
-'restrictuser-go'               => 'Ograniči suradnika',
-'restrictuser-notfound'         => 'Suradnik nije pronađen',
-'restrictuser-existing'         => 'Postojeća ograničenja',
-'restrictuser-legend-page'      => 'Ograniči u uređivanju određene stranice',
-'restrictuser-legend-namespace' => 'Ograniči u uređivanju određenog imenskog prostora',
-'restrictuser-title'            => 'Ograničenje za stranicu:',
-'restrictuser-namespace'        => 'Imenski prostor:',
-'restrictuser-expiry'           => 'Istječe:',
-'restrictuser-reason'           => 'Razlog:',
-'restrictuser-sumbit'           => 'Ograniči suradnika',
-'restrictuser-badtitle'         => 'Određen je nevaljan naslov: $1.',
-'restrictuser-badnamespace'     => 'Određen je nevaljan imenski prostor.',
-'restrictuser-badexpiry'        => 'Određen je nevaljan rok: $1.',
-'restrictuser-duptitle'         => 'Suradnik već je ograničen u uređivanju ovog naslova.',
-'restrictuser-dupnamespace'     => 'Suradnik već je ograničen u uređivanju ovog imenskog prostora.',
-'restrictuser-success'          => 'Uspješno ograničen suradnik $1.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Evidencija ograničenja suradnika',
-'restrictionlogtext'   => 'Ova evidencija sadrži sva ograničenja suradnika stavljena od strane administratora.',
-'restrictentry'        => 'ograničio $1 u uređivanju $2 (na rok od $3)',
-'restrictremoveentry'  => 'uklonio ograničenje za $1 u uređivanju $2',
-'restrictlognamespace' => 'imenskog prostora $1',
 
 # Developer tools
 'lockdb'              => 'Zaključaj bazu podataka',

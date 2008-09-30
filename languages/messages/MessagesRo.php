@@ -1868,34 +1868,6 @@ Face parte din area de blocare $2, care nu poate fi deblocată.',
 'sorbsreason'                     => 'Adresa dumneavoastră IP este listată ca un proxy deschis în DNSBL.',
 'sorbs_create_account_reason'     => 'Adresa dvs. IP este listată la un proxy deschis în lista neagră DNS. Nu vă puteţi crea un cont',
 
-# Special:ListUserRestrictions
-'listuserrestrictions-row-expiry' => 'expiră la $1 $2',
-'listuserrestrictions-type'       => 'Tip:',
-'listuserrestrictions-user'       => 'Utilizator:',
-'listuserrestrictions-namespace'  => 'Spaţiu de nume:',
-'listuserrestrictions-page'       => 'Pagină:',
-'listuserrestrictions-empty'      => 'Această listă este goală.',
-'userrestrictiontype-namespace'   => 'Spaţiu de nume',
-'userrestrictiontype-page'        => 'Pagină',
-
-# Special:RemoveRestrictions
-'removerestrictions-page'      => 'Pagină:',
-'removerestrictions-namespace' => 'Spaţiu de nume:',
-'removerestrictions-reason'    => 'Motiv:',
-
-# Special:RestrictUser
-'restrictuser'              => 'Restricţionează utilizator',
-'restrictuser-user'         => 'Utilizator:',
-'restrictuser-go'           => 'Restricţionează utilizator',
-'restrictuser-existing'     => 'Restricţii existente',
-'restrictuser-title'        => 'Pagina de restricţionat:',
-'restrictuser-namespace'    => 'Spaţiu de nume:',
-'restrictuser-expiry'       => 'Expiră:',
-'restrictuser-reason'       => 'Motiv:',
-'restrictuser-sumbit'       => 'Restricţionează utilizator',
-'restrictuser-badtitle'     => 'Titlu specificat incorect: $1.',
-'restrictuser-badnamespace' => 'Spaţiu de nume specificat incorect.',
-
 # Developer tools
 'lockdb'              => 'Blochează baza de date',
 'unlockdb'            => 'Deblochează baza de date',

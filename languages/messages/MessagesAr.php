@@ -1042,38 +1042,6 @@ $2',
 'edit-no-change'                   => 'تعديلك تم تجاهله، لأنه لم يحدث أي تعديل للنص.',
 'edit-already-exists'              => 'لم يمكن إنشاء صفحة جديدة.
 هي موجودة بالفعل.',
-'userrestricted-page'              => '<big>\'\'\'اسم المستخدم أو عنوان الأيبي الخاص بك تم تقييده من تعديل الصفحة "$1".\'\'\'</big>
-
-التقييد تم وضعه بواسطة [[User:$2|$2]].
-السبب المعطى هو \'\'$3\'\'.
-
-التقييد تم وضعه يوم $4 في $5 وينتهي يوم $6 في $7.
-
-يمكنك الاتصال ب[[User:$2|$2]] أو [[{{MediaWiki:Grouppage-sysop}}|إداري]] آخر لمناقشة التقييد.',
-'userrestricted-namespace'         => "<big>'''اسم المستخدم أو عنوان الأيبي الخاص بك تم تقييده من تعديل نطاق $1.'''</big>
-
-التقييد تم وضعه بواسطة [[User:$2|$2]].
-السبب المعطى هو ''$3''.
-
-التقييد تم وضعه في $4 وينتهي في $5.
-
-يمكنك الاتصال ب[[User:$2|$2]] أو [[{{MediaWiki:Grouppage-sysop}}|إداري]] آخر لمناقشة التقييد.",
-'userrestricted-page-indef'        => '<big>\'\'\'اسم المستخدم أو عنوان الأيبي الخاص بك تم تقييده من تعديل الصفحة "$1".\'\'\'</big>
-
-التقييد تم وضعه بواسطة [[User:$2|$2]].
-السبب المعطى هو \'\'$3\'\'.
-
-التقييد تم وضعه يوم $4 في $5 ولن ينتهي.
-
-يمكنك الاتصال ب[[User:$2|$2]] أو [[{{MediaWiki:Grouppage-sysop}}|إداري]] آخر لمناقشة التقييد.',
-'userrestricted-namespace-indef'   => "<big>'''اسم المستخدم أو عنوان الأيبي الخاص بك تم تقييده من تعديل نطاق $1.'''</big>
-
-التقييد تم وضعه بواسطة [[User:$2|$2]].
-السبب المعطى هو ''$3''.
-
-التقييد تم وضعه يوم $4 في $5 ولن ينتهي.
-
-يمكنك الاتصال ب[[User:$2|$2]] أو [[{{MediaWiki:Grouppage-sysop}}|إداري]] آخر لمناقشة التقييد.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'تحذير: هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -2295,7 +2263,6 @@ $1',
 'ipbsubmit'                       => 'منع هذا المستخدم',
 'ipbother'                        => 'وقت آخر:',
 'ipboptions'                      => '2 ساعة:2 hours,1 يوم:1 day,3 يوم:3 days,1 أسبوع:1 week,2 أسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنة:1 year,لا نهائي:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'لا نهائي',
 'ipbotheroption'                  => 'غير ذلك',
 'ipbotherreason'                  => 'سبب إضافي/آخر:',
 'ipbhidename'                     => 'أخف اسم المستخدم من سجل المنع، قائمة المنع النشطة وقائمة المستخدمين',
@@ -2366,69 +2333,6 @@ $1',
 'sorbs_create_account_reason'     => 'عنوان الأيبي الخاص بك موجود كبروكسي مفتوح في DNSBL المستخدم بواسطة {{SITENAME}}. 
 لا يمكنك إنشاء حساب.',
 'cant-block-while-blocked'        => 'أنت لا يمكنك منع المستخدمين الآخرين بينما أنت ممنوع.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'قائمة تقييدات المستخدم',
-'listuserrestrictions-intro'      => 'هذه القائمة تحتوي على كل عمليات التقييد من تعديل صفحات ونطاقات معينة الموضوعة على المستخدمين.
-[[Special:Ipblocklist|عمليات المنع]] ليست معروضة هنا.',
-'listuserrestrictions-row-ns'     => 'قيد $1 من تعديل $2 النطاق ($3)',
-'listuserrestrictions-row-page'   => 'قيد $1 من تعديل $2 ($3)',
-'listuserrestrictions-row-expiry' => 'ينتهي يوم $1 في $2',
-'listuserrestrictions-legend'     => 'إيجاد تقييد',
-'listuserrestrictions-type'       => 'النوع:',
-'listuserrestrictions-user'       => 'المستخدم:',
-'listuserrestrictions-namespace'  => 'النطاق:',
-'listuserrestrictions-page'       => 'الصفحة:',
-'listuserrestrictions-submit'     => 'اذهب',
-'listuserrestrictions-notfound'   => 'لا يوجد تقييد يطابق المعايير المحددة.',
-'listuserrestrictions-empty'      => 'هذه القائمة فارغة.',
-'listuserrestrictions-remove'     => 'إزالة',
-'userrestrictiontype-none'        => '(لا شيء)',
-'userrestrictiontype-namespace'   => 'نطاق',
-'userrestrictiontype-page'        => 'صفحة',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'إزالة التقييد من مستخدم',
-'removerestrictions-intro'     => 'استخدم الاستمارة بالأسفل لإزالة تقييد من مستخدم معين.',
-'removerestrictions-noid'      => 'لا رقم تقييد تم تحديده.',
-'removerestrictions-wrongid'   => 'التقييد بهذا الرقم لم يتم العثور عليه.
-على الأرجح شخص ما أزاله أو أنه انتهى.',
-'removerestrictions-legend'    => 'إزالة تقييد',
-'removerestrictions-user'      => 'المستخدم المقيد:',
-'removerestrictions-type'      => 'نوع التقييد:',
-'removerestrictions-page'      => 'الصفحة:',
-'removerestrictions-namespace' => 'النطاق:',
-'removerestrictions-reason'    => 'السبب:',
-'removerestrictions-submit'    => 'إزالة التقييد',
-'removerestrictions-success'   => 'تمت إزالة بنجاح تقييد [[User:$1|$1]].',
-
-# Special:RestrictUser
-'restrictuser'                  => 'تقييد مستخدم',
-'restrictuser-userselect'       => 'اختيار مستخدم',
-'restrictuser-user'             => 'المستخدم:',
-'restrictuser-go'               => 'تقييد المستخدم',
-'restrictuser-notfound'         => 'المستخدم لم يتم العثور عليه',
-'restrictuser-existing'         => 'التقييدات الموجودة',
-'restrictuser-legend-page'      => 'تقييد من تعديل صفحة معينة',
-'restrictuser-legend-namespace' => 'تقييد من تعديل نطاق معين',
-'restrictuser-title'            => 'الصفحة للتقييد:',
-'restrictuser-namespace'        => 'النطاق:',
-'restrictuser-expiry'           => 'ينتهي في:',
-'restrictuser-reason'           => 'السبب:',
-'restrictuser-sumbit'           => 'تقييد المستخدم',
-'restrictuser-badtitle'         => 'عنوان غير صحيح تم تحديده: $1.',
-'restrictuser-badnamespace'     => 'نطاق غير صحيح تم تحديده.',
-'restrictuser-badexpiry'        => 'تاريخ انتهاء غير صحيح تم تحديده: $1.',
-'restrictuser-duptitle'         => 'المستخدم تم تقييده بالفعل من تعديل هذا العنوان.',
-'restrictuser-dupnamespace'     => 'المستخدم مقيد بالفعل من تعديل هذا النطاق.',
-'restrictuser-success'          => 'تم تقييد بنجاح المستخدم $1.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'سجل تقييد المستخدمين',
-'restrictionlogtext'   => 'هذا السجل يحتوي على كل عمليات التقييد الموضوعة على المستخدمين بواسطة الإداريين.',
-'restrictentry'        => 'قيد $1 من تعديل $2 (تاريخ الانتهاء محدد في $3)',
-'restrictremoveentry'  => 'أزال التقييد من $1 لتعديل $2',
-'restrictlognamespace' => '$1 نطاق',
 
 # Developer tools
 'lockdb'              => 'قفل قاعدة البيانات',

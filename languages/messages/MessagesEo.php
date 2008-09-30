@@ -1909,7 +1909,6 @@ $1',
 'ipbsubmit'                       => 'Forbari ĉi tiun uzanton',
 'ipbother'                        => 'Alia daŭro:',
 'ipboptions'                      => '2 horoj:2 hours,1 tago:1 day,3 tagoj:3 days,1 semajno:1 week,2 semajnoj:2 weeks,1 monato:1 month,3 monatoj:3 months,6 monatoj:6 months,1 jaro:1 year,porĉiam:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'nefinite',
 'ipbotheroption'                  => 'alia',
 'ipbotherreason'                  => 'Alia/aldona kaŭzo:',
 'ipbhidename'                     => 'Kaŝu la uzantonomon de la forbara protokolo, de la aktuala forbarlisto kaj de la uzantolisto.',
@@ -1972,30 +1971,6 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'sorbsreason'                     => 'Via IP-adreso estas listigita kiel malferma prokurilo en la DNSBL uzata de {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Via IP-adreso estas listigita kiel malferma prokurilo en la DNSBL uzata de {{SITENAME}}. Vi ne rajtas krei konton.',
 'cant-block-while-blocked'        => 'Vi ne povas forbari aliajn uzantojn dum vi estas forbarita.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions-user'      => 'Uzanto:',
-'listuserrestrictions-namespace' => 'Nomspaco:',
-'listuserrestrictions-page'      => 'Paĝo:',
-'listuserrestrictions-submit'    => 'Ek',
-'listuserrestrictions-remove'    => 'forigi',
-'userrestrictiontype-none'       => '(neniu)',
-'userrestrictiontype-namespace'  => 'Nomspaco',
-'userrestrictiontype-page'       => 'Paĝo',
-
-# Special:RemoveRestrictions
-'removerestrictions-page'      => 'Paĝo:',
-'removerestrictions-namespace' => 'Nomspaco:',
-'removerestrictions-reason'    => 'Kialo:',
-
-# Special:RestrictUser
-'restrictuser-userselect' => 'Selektu uzanto',
-'restrictuser-user'       => 'Uzanto:',
-'restrictuser-namespace'  => 'Nomspaco:',
-'restrictuser-reason'     => 'Kialo:',
-
-# Special:Log/restrict
-'restrictlognamespace' => 'nomspaco $1',
 
 # Developer tools
 'lockdb'              => 'Ŝlosi datumbazon',

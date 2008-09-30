@@ -772,38 +772,6 @@ Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden. 
 'edit-conflict'                    => 'Redigeringskonflikt.',
 'edit-no-change'                   => 'Redigeringen din ble ignorert fordi det ikke var noen endringer.',
 'edit-already-exists'              => 'Kunne ikke opprette ny side fordi den finnes fra før.',
-'userrestricted-page'              => '<big>\'\'\'Ditt brukernavn eller din IP-adresse er blitt blokkert fra å redigere siden "$1".\'\'\'</big>
-
-Blokkeringen ble utført av [[User:$2|$2]].
-Oppgitt begrunnelse er \'\'$3\'\'.
-
-Blokkeringen trådte i kraft den $4 klokken $5 og utløper den $6 klokken $7.
-
-Du kan kontakte [[User:$2|$2]] eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.',
-'userrestricted-namespace'         => '<big>\'\'\'Ditt brukernavn eller din IP-adresse er blitt blokkert fra å redigere sider i navnerommet "$1".\'\'\'</big>
-
-Blokkeringen ble utført av [[User:$2|$2]].
-Oppgitt begrunnelse er \'\'$3\'\'.
-
-Blokkeringen trådte i kraft den $4 klokken $5 og utløper den $6 klokken $7.
-
-Du kan kontakte [[User:$2|$2]] eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.',
-'userrestricted-page-indef'        => '<big>\'\'\'Ditt brukernavn eller din IP-adresse er blitt blokkert fra å redigere siden "$1".\'\'\'</big>
-
-Blokkeringen ble utført av [[User:$2|$2]].
-Oppgitt begrunnelse er \'\'$3\'\'.
-
-Blokkeringen trådte i kraft den $4 klokken $5 vil ikke utløpe.
-
-Du kan kontakte [[User:$2|$2]] eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.',
-'userrestricted-namespace-indef'   => '<big>\'\'\'Ditt brukernavn eller din IP-adresse er blitt blokkert fra å redigere sider i navnerommet "$1".\'\'\'</big>
-
-Blokkeringen ble utført av [[User:$2|$2]].
-Oppgitt begrunnelse er \'\'$3\'\'.
-
-Blokkeringen trådte i kraft den $4 klokken $5 vil ikke utløpe.
-
-Du kan kontakte [[User:$2|$2]] eller en annen [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringen.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
@@ -1961,7 +1929,6 @@ $1',
 'ipbsubmit'                       => 'Blokker denne brukeren',
 'ipbother'                        => 'Annen tid',
 'ipboptions'                      => '2 timer:2 hours,1 dag:1 day,3 dager:3 days,1 uke:1 week,2 uker:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,uendelig:infinite', # display1:time1,display2:time2,...
-'ipbinfinite'                     => 'ubestemt',
 'ipbotheroption'                  => 'annet',
 'ipbotherreason'                  => 'Annen/utdypende grunn:',
 'ipbhidename'                     => 'Skjul brukernavn i blokkeringsloggen, blokkeringslisten og brukerlisten',
@@ -2023,69 +1990,6 @@ $1',
 'sorbsreason'                     => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Din IP-adresse angis som en åpen proxy i DNSBL-en brukt av {{SITENAME}}. Du kan ikke opprette en konto',
 'cant-block-while-blocked'        => 'Du kan ikke blokkere andre mens du selv er blokkert.',
-
-# Special:ListUserRestrictions
-'listuserrestrictions'            => 'Liste over brukerrestriksjoner',
-'listuserrestrictions-intro'      => 'Denne listen inneholder alle restriksjoner fra å redigere enkelte sider og navnerom.
-[[Special:Ipblocklist|Vanlige blokkeringer]] er ikke listet her.',
-'listuserrestrictions-row-ns'     => 'begrenset $1 fra å redigere navnerommet $2 ($3)',
-'listuserrestrictions-row-page'   => 'blokkerte $1 fra å redigere $2 ($3)',
-'listuserrestrictions-row-expiry' => 'utløper den $1 klokken $2',
-'listuserrestrictions-legend'     => 'Finn en restriksjon',
-'listuserrestrictions-type'       => 'Type:',
-'listuserrestrictions-user'       => 'Bruker:',
-'listuserrestrictions-namespace'  => 'Navnerom:',
-'listuserrestrictions-page'       => 'Side:',
-'listuserrestrictions-submit'     => 'Gå',
-'listuserrestrictions-notfound'   => 'Det finnes ingen restriksjon som samsvarer med valgte kriterier.',
-'listuserrestrictions-empty'      => 'Listen er tom.',
-'listuserrestrictions-remove'     => 'opphev',
-'userrestrictiontype-none'        => '(ingen)',
-'userrestrictiontype-namespace'   => 'Navnerom',
-'userrestrictiontype-page'        => 'Side',
-
-# Special:RemoveRestrictions
-'removerestrictions'           => 'Opphev en brukerrestriksjon',
-'removerestrictions-intro'     => 'Bruk det nedenstående skjema til å oppheve en restriksjon fra en viss bruker.',
-'removerestrictions-noid'      => 'Ingen blokkerings-ID var spesifisert.',
-'removerestrictions-wrongid'   => 'Blokkering med den ID-en var ikke funnet.
-Mest sannsynlig har den blitt opphevet ellet utløpt.',
-'removerestrictions-legend'    => 'Opphev en restriksjon',
-'removerestrictions-user'      => 'Blokkert bruker:',
-'removerestrictions-type'      => 'Restriksjonstype:',
-'removerestrictions-page'      => 'Side:',
-'removerestrictions-namespace' => 'Navnerom:',
-'removerestrictions-reason'    => 'Grunn:',
-'removerestrictions-submit'    => 'Opphev restriksjonen',
-'removerestrictions-success'   => 'Opphevelse av restriksjonen for [[User:$1|$1]] er fullført.',
-
-# Special:RestrictUser
-'restrictuser'                  => 'Begrens bruker',
-'restrictuser-userselect'       => 'Velg en bruker',
-'restrictuser-user'             => 'Bruker:',
-'restrictuser-go'               => 'Begrens bruker',
-'restrictuser-notfound'         => 'Bruker ikke funnet',
-'restrictuser-existing'         => 'Pågående restriksjoner',
-'restrictuser-legend-page'      => 'Begrens fra å redigere en viss side',
-'restrictuser-legend-namespace' => 'Begrens fra å redigere et visst navnerom',
-'restrictuser-title'            => 'Side for begrensning:',
-'restrictuser-namespace'        => 'Navnerom:',
-'restrictuser-expiry'           => 'Utløper:',
-'restrictuser-reason'           => 'Grunn:',
-'restrictuser-sumbit'           => 'Begrens bruker',
-'restrictuser-badtitle'         => 'Ugyldig tittel spesifisert: $1.',
-'restrictuser-badnamespace'     => 'Ugyldig navnerom spesifisert.',
-'restrictuser-badexpiry'        => 'Ugyldig utløpstid spesifisert: $1.',
-'restrictuser-duptitle'         => 'Brukeren er allerede begrenset fra å redigere denne siden.',
-'restrictuser-dupnamespace'     => 'Brukeren er allerede begrenset fra å redigere dette navnerommet.',
-'restrictuser-success'          => 'Restriksjon av brukeren $1 er fullført.',
-
-# Special:Log/restrict
-'restrictionlog'       => 'Brukerrestriksjonslogg',
-'restrictionlogtext'   => 'Denne loggen inneholder alle restriksjoner utført på brukere av administratorer.',
-'restrictentry'        => 'begrenset $1 fra å redigere $2 (utløpstid satt til $3)',
-'restrictremoveentry'  => 'opphevet begrensning fra $1 for å redigere $2',
-'restrictlognamespace' => 'navnerommet $1',
 
 # Developer tools
 'lockdb'              => 'Lås database',
