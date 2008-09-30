@@ -298,7 +298,7 @@ function wfErrorLog( $text, $file ) {
 			$host = $m[2];
 			$port = $m[3];
 			$prefix = isset( $m[4] ) ? $m[4] : false;
-		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
+		} elseif ( preg_match( '!^(tcp|udp):(?://)?([a-zA-Z0-9.-]+):(\d+)(?:/(.*))?$!', $file, $m ) ) {
 			$protocol = $m[1];
 			$host = $m[2];
 			$port = $m[3];
