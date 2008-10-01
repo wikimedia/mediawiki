@@ -1126,6 +1126,7 @@ $wgGroupPermissions['*'    ]['writeapi']         = true;
 // Implicit group for all logged-in accounts
 $wgGroupPermissions['user' ]['move']             = true;
 $wgGroupPermissions['user' ]['move-subpages']    = true;
+$wgGroupPermissions['user' ]['move-rootuserpages'] = true; // can move root userpages
 $wgGroupPermissions['user' ]['read']             = true;
 $wgGroupPermissions['user' ]['edit']             = true;
 $wgGroupPermissions['user' ]['createpage']       = true;
@@ -1164,6 +1165,7 @@ $wgGroupPermissions['sysop']['import']           = true;
 $wgGroupPermissions['sysop']['importupload']     = true;
 $wgGroupPermissions['sysop']['move']             = true;
 $wgGroupPermissions['sysop']['move-subpages']    = true;
+$wgGroupPermissions['sysop']['move-rootuserpages'] = true;
 $wgGroupPermissions['sysop']['patrol']           = true;
 $wgGroupPermissions['sysop']['autopatrol']       = true;
 $wgGroupPermissions['sysop']['protect']          = true;

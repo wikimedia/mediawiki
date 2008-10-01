@@ -2379,6 +2379,8 @@ class Title {
 	 * @return \type{\mixed} True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
+		global $wgUser;
+
 		$errors = array();	
 		if( !$nt ) {
 			// Normally we'd add this to $errors, but we'll get
@@ -2421,12 +2423,16 @@ class Title {
 		}
 
 		if ( $auth ) {
-			global $wgUser;
 			$errors = wfArrayMerge($errors, 
 					$this->getUserPermissionsErrors('move', $wgUser),
 					$this->getUserPermissionsErrors('edit', $wgUser),
 					$nt->getUserPermissionsErrors('move', $wgUser),
 					$nt->getUserPermissionsErrors('edit', $wgUser));
+
+			# Root userpage ?
+			if ( $nt->getNamespace() == NS_USER && !$nt->isSubpage() && !$wgUser->isAllowed('move-rootuserpages') ) {
+					$errors[] = array('moverootuserpagesnotallowed');
+			}
 		}
 
 		$match = EditPage::matchSpamRegex( $reason );
@@ -2435,7 +2441,6 @@ class Title {
 			$errors[] = array('spamprotectiontext');
 		}
 		
-		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err, $reason ) ) ) {
 			$errors[] = array('hookaborted', $err);
