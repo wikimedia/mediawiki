@@ -317,7 +317,7 @@ $messages = array(
 'restorelink'             => '$1 wiske {{PLURAL:$1|ferzje|ferzjes}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Feedtype wurdt net stipe.',
-'feed-unavailable'        => 'Syndikaasjefeeds binne net beskikber op {{SITENAME}}',
+'feed-unavailable'        => 'Syndikaasjefeeds binne net beskikber',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom-Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -513,7 +513,7 @@ Jo moatte efkes wachtsje foar't jo it op'e nij besykje kinne.",
 'resetpass_submit'        => 'Wachtwurd ynstelle en oanmelde',
 'resetpass_success'       => 'Jo wachtwurd is feroare. Dwaande mei oanmelden ...',
 'resetpass_bad_temporary' => 'Unjildich tydlik wachtwurd. Jo hawwe jo wachtwurd al feroare of in nij tydlik wachtwurd oanfrege.',
-'resetpass_forbidden'     => 'Wachtwurden kinne op {{SITENAME}} net feroare wurde',
+'resetpass_forbidden'     => 'Wachtwurden kinne net feroare wurde',
 'resetpass_missing'       => 'Jo hawwe gjin wachtwurd ynjûn.',
 
 # Edit page toolbar
@@ -665,7 +665,7 @@ In  behearder hat de database blokkearre om de folgjende reden: $1',
 'nocreatetitle'                    => 'It oanmeitsjen fan siden is beheind',
 'nocreatetext'                     => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
 Jo kinne al besteande siden feroarje of jo kinne [[Special:UserLogin|jo oanmelde of in brûker oanmeitsje]].',
-'nocreate-loggedin'                => 'Jo kinne gjin nije siden meitsje op {{SITENAME}}.',
+'nocreate-loggedin'                => 'Jo meie gjin nije siden meitsje',
 'permissionserrors'                => 'Flaters yn rjochten',
 'permissionserrorstext'            => 'Jo hawwe gjin rjochtem dit te dwaan om de folgjende {{PLURAL:$1|reden|redenen}}:',
 'permissionserrorstext-withaction' => 'Jo hawwe gjin rjocht ta $2 om de folgjende {{PLURAL:$1|reden|redenen}}:',
@@ -674,6 +674,14 @@ Jo kinne al besteande siden feroarje of jo kinne [[Special:UserLogin|jo oanmelde
 Betink oft it gaadlik is dat jo dizze side fierder bewurkje. Foar jo geriif stiet hjirûnder it lochboek oer it weidwaan fan dizze side:",
 'deleted-notice'                   => 'Dizze side is fuorthelle. It fuorthel-logboek fan dizze side wurdt hjirûnder werjûn foar jo ynformaasje.',
 'deletelog-fulllog'                => 'Folslein logboek besjen',
+'edit-hook-aborted'                => 'De bewurking is ôfbrutsen troch in hook.
+Der is gjin taljochting beskikber.',
+'edit-gone-missing'                => 'De side kin net bywurke wurde.
+Hy liket fuorthelle te wezen.',
+'edit-conflict'                    => 'Bewurkingskonflikt.',
+'edit-no-change'                   => "Dyn bewurking is is net trochfierd, om 't der gjin feroaring yn 'e tekst oanbrocht is.",
+'edit-already-exists'              => 'De side is net oanmakke.
+Hy bestie al.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Warskôging: Dizze side brûkt tefolle kostbere parserfunksjes.
@@ -1203,7 +1211,7 @@ As jo de triem dochs noch oanbiede wolle, gean dan werom en kies in oare namme.
 'uploadedimage'               => ' "[[$1]]" oanbean',
 'overwroteimage'              => 'hat in nije ferzje fan "[[$1]]" tafoege',
 'uploaddisabled'              => 'Sorry, op dizze tsjinner kin net oanbean wurde.',
-'uploaddisabledtext'          => 'It oanbieden fan triemmen is útskeakele op {{SITENAME}}.',
+'uploaddisabledtext'          => 'It oanbieden fan triemmen is útskeakele.',
 'uploadscripted'              => "Dizze triem befettet HTML- of scriptkoade dy't ferkeard troch jo browser werjûn wurde kin.",
 'uploadcorrupt'               => 'De triem is net ynoarder of hat de ferkearde útgong.  
 Kontrolearje de triem en bied dy wer oan.',
@@ -1301,7 +1309,9 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'shareduploadwiki'               => 'Sjoch de $1 foar fierdere ynformaasje.',
 'shareduploadwiki-desc'          => "De $1 yn 'e dielde triemmebank wurdt hjirûnder werjûn.",
 'shareduploadwiki-linktext'      => 'triembeskriuwing',
+'shareduploadduplicate'          => "Dizze triem is idintyk oan $1 yn 'e dielde mediabank.",
 'shareduploadduplicate-linktext' => 'in oare triem',
+'shareduploadconflict'           => "Dizze triem hat deselde namme as $1 yn 'e dielde databank.",
 'shareduploadconflict-linktext'  => 'in oare triem',
 'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
 'noimage-linktext'               => 'bied triem oan',
@@ -1321,6 +1331,7 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'filedelete-comment'          => 'Reden foar it wiskjen:',
 'filedelete-submit'           => 'Wiskje',
 'filedelete-success'          => "'''$1''' is wiske.",
+'filedelete-nofile'           => "'''$1''' bestiet net.",
 'filedelete-otherreason'      => 'Oare/eventuele reden:',
 'filedelete-reason-otherlist' => 'Oare reden',
 
@@ -1349,6 +1360,8 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 # Statistics
 'statistics'              => 'Statistyk',
 'statistics-header-users' => 'Meidogger-statistyk',
+'statistics-pages'        => 'Siden',
+'statistics-mostpopular'  => 'Meast besjoene siden',
 
 'disambiguations'      => 'Betsjuttingssiden',
 'disambiguationspage'  => 'Template:Neibetsjuttings',

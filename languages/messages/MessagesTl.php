@@ -436,7 +436,7 @@ upang makapagkarga ng talaksan.',
 'filedelete-comment' => 'Dahilan sa pagkabura:',
 'filedelete-submit'  => 'Burahin',
 'filedelete-success' => "Binura na ang '''$1'''.",
-'filedelete-nofile'  => "Hindi umiiral ang '''$1''' sa {{SITENAME}}.",
+'filedelete-nofile'  => "Hindi umiiral ang '''$1'''.",
 
 # Random page
 'randompage'         => 'Pahinang walang-pili',
@@ -562,7 +562,7 @@ $1',
 
 # Move page
 'movearticle'             => 'Ilipat ang pahina:',
-'movenotallowed'          => 'Wala kang permisong maglipat ng pahina sa {{SITENAME}}.',
+'movenotallowed'          => 'Wala kang permisong maglipat ng pahina.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',
 'movepagebtn'             => 'Ilipat ang pahina',

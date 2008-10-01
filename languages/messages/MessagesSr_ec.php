@@ -1394,7 +1394,7 @@ $2',
 'filedelete-submit'           => 'Обриши',
 'filedelete-success'          => "'''$1''' је обрисан.",
 'filedelete-success-old'      => "Верзија фајла '''[[Media:$1|$1]]''' од $3, $2 је обрисана.",
-'filedelete-nofile'           => "'''$1''' не постоји на {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' не постоји.",
 'filedelete-nofile-old'       => "Не постоји складиштена верзија фајла '''$1''' са датим особинама.",
 'filedelete-otherreason'      => 'Други/додатни разлог:',
 'filedelete-reason-otherlist' => 'Други разлог',
@@ -1723,9 +1723,9 @@ $NEWPAGE
 'rollbacklink'     => 'врати',
 'rollbackfailed'   => 'Враћање није успело',
 'cantrollback'     => 'Не могу да вратим измену; последњи аутор је уједно и једини.',
-'alreadyrolled'    => 'Не могу да вратим последњу измену [[:$1]] од корисника [[User:$2|$2]] ([[User talk:$2|разговор]]) | [[Special:Contributions/$2|{{int:contribslink}}]]); неко други је већ изменио или вратио чланак.
+'alreadyrolled'    => 'Не могу да вратим последњу измену [[:$1]] од корисника [[User:$2|$2]] ([[User talk:$2|разговор]] | [[Special:Contributions/$2|{{int:contribslink}}]]); неко други је већ изменио или вратио чланак.
 
-Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]]) | [[Special:Contributions/$3|{{int:contribslink}}]]).',
+Последња измена од корисника [[User:$3|$3]] ([[User talk:$3|разговор]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Коментар измене је: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Враћене измене корисника [[Special:Contributions/$2|$2]] ([[User talk:$2|Разговор]]) на последњу измену корисника [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Враћене измене од стране $1; на последњу измену од стране $2.',
@@ -1998,7 +1998,7 @@ $1',
 
 У тим случајевима, мораћете ручно да преместите или спојите страницу уколико то желите.",
 'movearticle'             => 'Премести страницу',
-'movenotallowed'          => 'Немате облашћења за премештање страница на {{SITENAME}}.',
+'movenotallowed'          => 'Немате облашћења за премештање страница.',
 'newtitle'                => 'Нови наслов',
 'move-watch'              => 'Надгледај ову страницу',
 'movepagebtn'             => 'премести страницу',

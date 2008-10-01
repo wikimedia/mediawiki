@@ -1958,7 +1958,7 @@ por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes d
 
 Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movearticle'             => 'Treslladar la páxina:',
-'movenotallowed'          => 'Nun tienes permisu pa mover páxines en {{SITENAME}}.',
+'movenotallowed'          => 'Nun tienes permisu pa mover páxines.',
 'newtitle'                => 'Al títulu nuevu:',
 'move-watch'              => 'Vixilar esta páxina',
 'movepagebtn'             => 'Treslladar la páxina',

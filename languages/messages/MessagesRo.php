@@ -1916,7 +1916,7 @@ automat odată cu aceasta '''afară de cazul că''':
 În oricare din cazurile de mai sus va trebui să muţi sau să unifici
 manual paginile de discuţii, dacă doreşti acest lucru.",
 'movearticle'             => 'Mută pagina',
-'movenotallowed'          => 'Nu ai permisiunea să muţi pagini în {{SITENAME}}.',
+'movenotallowed'          => 'Nu ai permisiunea să muţi pagini.',
 'newtitle'                => 'Titlul nou',
 'move-watch'              => 'Urmăreşte această pagină',
 'movepagebtn'             => 'Mută pagina',

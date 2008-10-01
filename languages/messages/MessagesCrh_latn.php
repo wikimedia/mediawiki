@@ -357,7 +357,7 @@ $messages = array(
 'restorelink'             => 'yoq etilgen {{PLURAL:$1|1|$1}} deñişikligi',
 'feedlinks'               => 'Bu şekilde:',
 'feed-invalid'            => 'Abune kanalınıñ çeşiti yañlıştır.',
-'feed-unavailable'        => 'Sindikatsiya lentaları {{SITENAME}} üzerinde keçerli degil.',
+'feed-unavailable'        => 'Sindikatsiya lentaları qullanılıp оlamay.',
 'site-rss-feed'           => '$1 RSS lentası',
 'site-atom-feed'          => '$1 Atom lentası',
 'page-rss-feed'           => '"$1" - RSS lentası',
@@ -545,7 +545,7 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'resetpass_submit'        => 'Parol qoyıp kir',
 'resetpass_success'       => 'Paroliñiz muvafaqiyetnen deñiştirildi! Oturımıñız açılmaqta...',
 'resetpass_bad_temporary' => 'Muvaqqat paroliñiz yañlıştır. Ola bilir ki, siz endi paroliñizni muvafaqiyetnen deñiştirgen ya da e-mail-ge yañı bir parol yollamağa rica etkendirsiñiz.',
-'resetpass_forbidden'     => '{{SITENAME}} saytında parol deñiştirmek yasaq',
+'resetpass_forbidden'     => 'Parol deñiştirmek yasaq',
 'resetpass_missing'       => 'Forma boştır.',
 
 # Edit page toolbar
@@ -690,7 +690,7 @@ Malümat bazasını kilitlegen administratоr öz areketini böyle añlattı: $1
 'nocreatetitle'                    => 'Saife yaratuv sıñırlıdır',
 'nocreatetext'                     => '{{SITENAME}} saytında yañı saife yaratuv sıñırlıdır.
 Keri qaytıp mevcüt olğan saifeni deñiştire, [[Special:UserLogin|oturım aça ya da yañı bir esap yaratıp olasıñız]].',
-'nocreate-loggedin'                => '{{SITENAME}} saytında yañı saifeler yaratmağa iziniñiz yoqtır.',
+'nocreate-loggedin'                => 'Yañı saifeler yaratmağa iziniñiz yoqtır.',
 'permissionserrors'                => 'İrişim aqlarınıñ hataları',
 'permissionserrorstext'            => 'Bunı yapmağa iziniñiz yoqtır. {{PLURAL:$1|Sebep|Sebepler}}:',
 'permissionserrorstext-withaction' => 'Aşağıdaki {{PLURAL:$1|sebepten|sebeplerden}} $2 işlemini yapmağa yetkiñiz yoq:',
@@ -969,7 +969,7 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'uploadedimage'               => 'Yüklengen: "[[$1]]"',
 'overwroteimage'              => '"[[$1]]" yañı versiyası yüklendi',
 'uploaddisabled'              => 'Yükleme yasaqlıdır.',
-'uploaddisabledtext'          => 'Bu viki saytında fayl yükleme yasaqlıdır.',
+'uploaddisabledtext'          => 'Fayl yükleme yasaqlıdır.',
 'uploadscripted'              => 'Bu faylda brauzer tarafından yañlışnen işlenip olur HTML kodu ya da skript mevcüt.',
 'uploadcorrupt'               => 'Bu fayl ya zararlandı, ya da yañlış uzantılı. Lütfen, faylnı teşkerip yañıdan yüklep baqıñız.',
 'uploadvirus'                 => 'Bu fayl viruslıdır! $1 baqıñız',
@@ -1450,7 +1450,7 @@ adı avtomatik tarzda deñiştirilecek. '''Müstesnalar:'''
 
 Böyle allarda, kerek olsa, saifelerni qolnen taşımağa ya da birleştirmege mecbur olursıñız.",
 'movearticle'             => 'Eski ad',
-'movenotallowed'          => '{{SITENAME}} saytında saifeler adlarını deñiştirmege iziniñiz yoq.',
+'movenotallowed'          => 'Saifeler adlarını deñiştirmege iziniñiz yoq.',
 'newtitle'                => 'Yañı ad',
 'move-watch'              => 'Bu saifeni közet',
 'movepagebtn'             => 'Adını deñiştir',

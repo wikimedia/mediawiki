@@ -1979,7 +1979,7 @@ por favor, asegúrate de entender las consecuencias del procedimiento antes de s
 
 En estos casos, deberá trasladar manualmente el contenido de la página de discusión.",
 'movearticle'             => 'Renombrar página',
-'movenotallowed'          => 'No tienes permiso para trasladar páginas en {{SITENAME}}.',
+'movenotallowed'          => 'No tienes permiso para trasladar páginas.',
 'newtitle'                => 'A título nuevo',
 'move-watch'              => 'Vigilar este artículo',
 'movepagebtn'             => 'Renombrar página',
