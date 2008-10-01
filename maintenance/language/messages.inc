@@ -1787,6 +1787,7 @@ $wgMessageStructure = array(
 		'movepagetalktext',
 		'movearticle',
 		'movenotallowed',
+		'moverootuserpagesnotallowed',
 		'newtitle',
 		'move-watch',
 		'movepagebtn',

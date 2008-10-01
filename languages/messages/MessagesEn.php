@@ -2594,10 +2594,10 @@ To lock or unlock the database, this needs to be writable by the web server.',
 'databasenotlocked'   => 'The database is not locked.',
 
 # Move page
-'move-page'               => 'Move $1',
-'move-page-backlink'      => '← $1', # only translate this message to other languages if you have to change it
-'move-page-legend'        => 'Move page',
-'movepagetext'            => "Using the form below will rename a page, moving all of its history to the new name.
+'move-page'                   => 'Move $1',
+'move-page-backlink'          => '← $1', # only translate this message to other languages if you have to change it
+'move-page-legend'            => 'Move page',
+'movepagetext'                => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
 You can update redirects that point to the original title automatically.
 If you choose not to, be sure to check for [[Special:DoubleRedirects|double]] or [[Special:BrokenRedirects|broken redirects]].
@@ -2609,52 +2609,52 @@ This means that you can rename a page back to where it was renamed from if you m
 '''WARNING!'''
 This can be a drastic and unexpected change for a popular page;
 please be sure you understand the consequences of this before proceeding.",
-'movepagetalktext'        => "The associated talk page will be automatically moved along with it '''unless:'''
+'movepagetalktext'            => "The associated talk page will be automatically moved along with it '''unless:'''
 *A non-empty talk page already exists under the new name, or
 *You uncheck the box below.
 
 In those cases, you will have to move or merge the page manually if desired.",
-'movearticle'             => 'Move page:',
-'movenotallowed'          => 'You do not have permission to move pages on {{SITENAME}}.',
+'movearticle'                 => 'Move page:',
+'movenotallowed'              => 'You do not have permission to move pages on {{SITENAME}}.',
 'moverootuserpagesnotallowed' => 'You do not have permission to move root user pages on {{SITENAME}}.',
-'newtitle'                => 'To new title:',
-'move-watch'              => 'Watch this page',
-'movepagebtn'             => 'Move page',
-'pagemovedsub'            => 'Move succeeded',
-'movepage-moved'          => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'A page of that name already exists, or the name you have chosen is not valid.
+'newtitle'                    => 'To new title:',
+'move-watch'                  => 'Watch this page',
+'movepagebtn'                 => 'Move page',
+'pagemovedsub'                => 'Move succeeded',
+'movepage-moved'              => '<big>\'\'\'"$1" has been moved to "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'A page of that name already exists, or the name you have chosen is not valid.
 Please choose another name.',
-'cantmove-titleprotected' => 'You cannot move a page to this location, because the new title has been protected from creation',
-'talkexists'              => "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title.
+'cantmove-titleprotected'     => 'You cannot move a page to this location, because the new title has been protected from creation',
+'talkexists'                  => "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title.
 Please merge them manually.'''",
-'movedto'                 => 'moved to',
-'movetalk'                => 'Move associated talk page',
-'move-subpages'           => 'Move all subpages, if applicable',
-'move-talk-subpages'      => 'Move all subpages of talk page, if applicable',
-'movepage-page-exists'    => 'The page $1 already exists and cannot be automatically overwritten.',
-'movepage-page-moved'     => 'The page $1 has been moved to $2.',
-'movepage-page-unmoved'   => 'The page $1 could not be moved to $2.',
-'movepage-max-pages'      => 'The maximum of $1 {{PLURAL:$1|page|pages}} has been moved and no more will be moved automatically.',
-'1movedto2'               => '[[$1]] moved to [[$2]]',
-'1movedto2_redir'         => '[[$1]] moved to [[$2]] over redirect',
-'movelogpage'             => 'Move log',
-'movelogpagetext'         => 'Below is a list of pages moved.',
-'movereason'              => 'Reason:',
-'revertmove'              => 'revert',
-'delete_and_move'         => 'Delete and move',
-'delete_and_move_text'    => '==Deletion required==
+'movedto'                     => 'moved to',
+'movetalk'                    => 'Move associated talk page',
+'move-subpages'               => 'Move all subpages, if applicable',
+'move-talk-subpages'          => 'Move all subpages of talk page, if applicable',
+'movepage-page-exists'        => 'The page $1 already exists and cannot be automatically overwritten.',
+'movepage-page-moved'         => 'The page $1 has been moved to $2.',
+'movepage-page-unmoved'       => 'The page $1 could not be moved to $2.',
+'movepage-max-pages'          => 'The maximum of $1 {{PLURAL:$1|page|pages}} has been moved and no more will be moved automatically.',
+'1movedto2'                   => '[[$1]] moved to [[$2]]',
+'1movedto2_redir'             => '[[$1]] moved to [[$2]] over redirect',
+'movelogpage'                 => 'Move log',
+'movelogpagetext'             => 'Below is a list of pages moved.',
+'movereason'                  => 'Reason:',
+'revertmove'                  => 'revert',
+'delete_and_move'             => 'Delete and move',
+'delete_and_move_text'        => '==Deletion required==
 The destination page "[[:$1]]" already exists.
 Do you want to delete it to make way for the move?',
-'delete_and_move_confirm' => 'Yes, delete the page',
-'delete_and_move_reason'  => 'Deleted to make way for move',
-'selfmove'                => 'Source and destination titles are the same;
+'delete_and_move_confirm'     => 'Yes, delete the page',
+'delete_and_move_reason'      => 'Deleted to make way for move',
+'selfmove'                    => 'Source and destination titles are the same;
 cannot move a page over itself.',
-'immobile_namespace'      => 'Source or destination title is of a special type;
+'immobile_namespace'          => 'Source or destination title is of a special type;
 cannot move pages from and into that namespace.',
-'imagenocrossnamespace'   => 'Cannot move file to non-file namespace',
-'imagetypemismatch'       => 'The new file extension does not match its type',
-'imageinvalidfilename'    => 'The target file name is invalid',
-'fix-double-redirects'    => 'Update any redirects that point to the original title',
+'imagenocrossnamespace'       => 'Cannot move file to non-file namespace',
+'imagetypemismatch'           => 'The new file extension does not match its type',
+'imageinvalidfilename'        => 'The target file name is invalid',
+'fix-double-redirects'        => 'Update any redirects that point to the original title',
 
 # Export
 'export'            => 'Export pages',
