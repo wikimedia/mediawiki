@@ -1657,7 +1657,7 @@ $NEWPAGE
 'protect-level-sysop'         => '{{int:group-sysop}}のみ',
 'protect-summary-cascade'     => 'カスケード',
 'protect-expiring'            => '$1 に解除',
-'protect-expiry-indefinite'   => 'គ្មានកំនត់',
+'protect-expiry-indefinite'   => '無期限',
 'protect-cascade'             => 'カスケード保護 - このページで取り込んでいる全ての他ページも保護されます。',
 'protect-cantedit'            => 'あなたにはこのページの編集権限がないため保護レベルを変更できません。',
 'protect-othertime'           => '期間（その他のとき）:',

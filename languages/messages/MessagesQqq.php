@@ -943,8 +943,6 @@ See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-restrict'         => '{{doc-right}}
-Restrict user from editing certain namespaces and pages',
 'right-hideuser'         => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 

@@ -1857,7 +1857,7 @@ por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión anti
 
 En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
 'movearticle'             => 'Tresladar pachina:',
-'movenotallowed'          => 'No tiene premisos ta tresladar pachinas en {{SITENAME}}.',
+'movenotallowed'          => 'No tiene premisos ta tresladar pachinas.',
 'newtitle'                => 'Ta o nuebo títol',
 'move-watch'              => 'Cosirar iste articlo',
 'movepagebtn'             => 'Tresladar pachina',

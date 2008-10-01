@@ -1691,7 +1691,7 @@ maak asseblief seker dat jy die gevolge van hierdie aksie verstaan voordat jy vo
 
 Indien wel sal u self die blad moet skuif of versmelt (indien nodig).",
 'movearticle'             => 'Skuif bladsy',
-'movenotallowed'          => 'U het nie regte om bladsye op {{SITENAME}} te skuif nie.',
+'movenotallowed'          => 'U het nie regte om bladsye te skuif nie.',
 'newtitle'                => 'Na nuwe titel',
 'move-watch'              => 'Hou hierdie bladsy dop',
 'movepagebtn'             => 'Skuif bladsy',

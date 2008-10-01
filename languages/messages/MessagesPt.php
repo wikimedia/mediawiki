@@ -408,7 +408,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Tipo de subscrição feed inválido.',
-'feed-unavailable'        => '"Feeds" de publicação múltipla não estão disponíveis em {{SITENAME}}',
+'feed-unavailable'        => 'Os "feeds" não se encontram disponíveis',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
@@ -612,7 +612,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass_submit'        => 'Definir palavra-chave e entrar',
 'resetpass_success'       => 'Sua palavra-chave foi alterada com sucesso! Autenticando-se...',
 'resetpass_bad_temporary' => 'Palavra-chave temporária incorrecta. Pode ser que você já tenha conseguido alterar a sua palavra-chave ou pedido que uma nova temporária fosse gerada.',
-'resetpass_forbidden'     => 'Não é possível alterar palavras-chave neste wiki',
+'resetpass_forbidden'     => 'Não é possível alterar palavras-chave',
 'resetpass_missing'       => 'Sem dados no formulário.',
 
 # Edit page toolbar
@@ -778,7 +778,7 @@ Quem bloqueou a base de dados forneceu a seguinte justificativa: $1',
 'nocreatetitle'                    => 'A criação de páginas encontra-se limitada',
 'nocreatetext'                     => '{{SITENAME}} tem restringida a habilidade de criar novas páginas.
 Pode voltar atrás e editar uma página já existente, ou [[Special:UserLogin|autenticar-se ou criar uma conta]].',
-'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas neste wiki.',
+'nocreate-loggedin'                => 'Você não possui permissões de criar novas páginas.',
 'permissionserrors'                => 'Erros de permissões',
 'permissionserrorstext'            => 'Você não possui permissão de fazer isso, {{PLURAL:$1|pelo seguinte motivo|pelos seguintes motivos}}:',
 'permissionserrorstext-withaction' => 'Você não possui permissão para $2 {{PLURAL:$1|pelo seguinte motivo|pelos motivos a seguir}}:',
@@ -1313,7 +1313,7 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'uploadedimage'               => 'carregou "[[$1]]"',
 'overwroteimage'              => 'foi enviada uma nova versão de "[[$1]]"',
 'uploaddisabled'              => 'Carregamentos desactivados',
-'uploaddisabledtext'          => 'O carregamento de ficheiros encontra-se desactivado nesta wiki.',
+'uploaddisabledtext'          => 'O carregamento de ficheiros encontra-se desactivado.',
 'uploadscripted'              => 'Este ficheiro contém HTML ou código que pode ser erradamente interpretado por um navegador web.',
 'uploadcorrupt'               => 'O ficheiro encontra-se corrompido ou tem uma extensão incorreta. Por gentileza, verifique o ocorrido e tente novamente.',
 'uploadvirus'                 => 'O ficheiro contém vírus! Detalhes: $1',
@@ -1433,7 +1433,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' foi eliminado.",
 'filedelete-success-old'      => "A versão de '''[[Media:$1|$1]]''' tal como $3, $2 foi eliminada.",
-'filedelete-nofile'           => "'''$1''' não existe em {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' não existe.",
 'filedelete-nofile-old'       => "Não há uma versão de '''$1''' em arquivo com os parâmetros especificados.",
 'filedelete-otherreason'      => 'Outro/motivo adicional:',
 'filedelete-reason-otherlist' => 'Outro motivo',
@@ -2060,9 +2060,9 @@ Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
 
 # Move page
-'move-page'               => 'Mover $1',
-'move-page-legend'        => 'Mover página',
-'movepagetext'            => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico de edições para o novo título.
+'move-page'                   => 'Mover $1',
+'move-page-legend'            => 'Mover página',
+'movepagetext'                => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico de edições para o novo título.
 É possível corrigir de forma automática redirecionamentos que apontem para o título original.
 Caso escolha para que isso não seja feito, certifique-se de verificar redirecionamentos [[Special:DoubleRedirects|duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É de sua responsabilidade ter certeza de que os links continuem apontando para onde se é suposto apontar.
@@ -2073,47 +2073,48 @@ Isto significa que pode renomear uma página de volta para o nome que tinha ante
 '''CUIDADO!'''
 Isto pode ser uma mudança drástica e inesperada para uma página popular;
 por favor, tenha certeza de que compreende as conseqüências da mudança antes de prosseguir.",
-'movepagetalktext'        => "A página de \"discussão\" associada, se existir, será automaticamente movida, '''a não ser que:'''
+'movepagetalktext'            => "A página de \"discussão\" associada, se existir, será automaticamente movida, '''a não ser que:'''
 *Uma página de discussão com conteúdo já exista sob o novo título, ou
 *Você não marque a caixa abaixo.
 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
-'movearticle'             => 'Mover página',
-'movenotallowed'          => 'Você não possui permissão de mover páginas neste wiki.',
-'newtitle'                => 'Para novo título',
-'move-watch'              => 'Vigiar esta página',
-'movepagebtn'             => 'Mover página',
-'pagemovedsub'            => 'Página movida com sucesso',
-'movepage-moved'          => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Uma página com este título já existe, ou o título que escolheu é inválido.
+'movearticle'                 => 'Mover página',
+'movenotallowed'              => 'Você não possui permissão de mover páginas.',
+'moverootuserpagesnotallowed' => 'Você não possui permissão de mover páginas principais de usuários.',
+'newtitle'                    => 'Para novo título',
+'move-watch'                  => 'Vigiar esta página',
+'movepagebtn'                 => 'Mover página',
+'pagemovedsub'                => 'Página movida com sucesso',
+'movepage-moved'              => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
-'cantmove-titleprotected' => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
-'talkexists'              => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
-'movedto'                 => 'movido para',
-'movetalk'                => 'Mover também a página de discussão associada.',
-'move-subpages'           => 'Mover todas as sub-páginas, se aplicável',
-'move-talk-subpages'      => 'Mover todas as sub-páginas da página de discussão, se aplicável',
-'movepage-page-exists'    => 'A página $1 já existe e não pode ser substituída.',
-'movepage-page-moved'     => 'A página $1 foi movida para $2',
-'movepage-page-unmoved'   => 'A página $1 não pôde ser movida para $2.',
-'movepage-max-pages'      => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
-'1movedto2'               => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'         => 'moveu [[$1]] para [[$2]] sob redireccionamento',
-'movelogpage'             => 'Registo de movimento',
-'movelogpagetext'         => 'Abaixo encontra-se uma lista de páginas movidas.',
-'movereason'              => 'Motivo:',
-'revertmove'              => 'reverter',
-'delete_and_move'         => 'Eliminar e mover',
-'delete_and_move_text'    => '==Eliminação necessária==
+'cantmove-titleprotected'     => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
+'talkexists'                  => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
+'movedto'                     => 'movido para',
+'movetalk'                    => 'Mover também a página de discussão associada.',
+'move-subpages'               => 'Mover todas as sub-páginas, se aplicável',
+'move-talk-subpages'          => 'Mover todas as sub-páginas da página de discussão, se aplicável',
+'movepage-page-exists'        => 'A página $1 já existe e não pode ser substituída.',
+'movepage-page-moved'         => 'A página $1 foi movida para $2',
+'movepage-page-unmoved'       => 'A página $1 não pôde ser movida para $2.',
+'movepage-max-pages'          => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
+'1movedto2'                   => 'moveu [[$1]] para [[$2]]',
+'1movedto2_redir'             => 'moveu [[$1]] para [[$2]] sob redireccionamento',
+'movelogpage'                 => 'Registo de movimento',
+'movelogpagetext'             => 'Abaixo encontra-se uma lista de páginas movidas.',
+'movereason'                  => 'Motivo:',
+'revertmove'                  => 'reverter',
+'delete_and_move'             => 'Eliminar e mover',
+'delete_and_move_text'        => '==Eliminação necessária==
 A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder mover?',
-'delete_and_move_confirm' => 'Sim, eliminar a página',
-'delete_and_move_reason'  => 'Eliminada para poder mover outra página para este título',
-'selfmove'                => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
-'immobile_namespace'      => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
-'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
-'imagetypemismatch'       => 'A extensão do novo ficheiro não corresponde ao seu tipo',
-'imageinvalidfilename'    => 'O nome do ficheiro alvo é inválido',
-'fix-double-redirects'    => 'Atualizar todos os redirecionamentos que apontem para o título original',
+'delete_and_move_confirm'     => 'Sim, eliminar a página',
+'delete_and_move_reason'      => 'Eliminada para poder mover outra página para este título',
+'selfmove'                    => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
+'immobile_namespace'          => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
+'imagenocrossnamespace'       => 'Não é possível mover imagem para espaço nominal que não de imagens',
+'imagetypemismatch'           => 'A extensão do novo ficheiro não corresponde ao seu tipo',
+'imageinvalidfilename'        => 'O nome do ficheiro alvo é inválido',
+'fix-double-redirects'        => 'Atualizar todos os redirecionamentos que apontem para o título original',
 
 # Export
 'export'            => 'Exportação de páginas',

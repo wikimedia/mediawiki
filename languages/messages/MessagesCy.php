@@ -1772,7 +1772,7 @@ gnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 
 Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
 'movearticle'             => 'Symud y dudalen:',
-'movenotallowed'          => 'Nid oes caniatâd gennych i symud tudalennau ar {{SITENAME}}.',
+'movenotallowed'          => 'Nid oes caniatâd gennych i symud tudalennau.',
 'newtitle'                => "I'r teitl newydd:",
 'move-watch'              => 'Gwylier y dudalen hon',
 'movepagebtn'             => 'Symud tudalen',

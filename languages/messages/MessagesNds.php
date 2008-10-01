@@ -417,7 +417,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'restorelink'             => '{{PLURAL:$1|ene löschte Version|$1 löschte Versionen}}',
 'feedlinks'               => 'Feed:',
 'feed-invalid'            => 'Ungülligen Abo-Typ.',
-'feed-unavailable'        => 'För {{SITENAME}} gifft dat kene Feeds.',
+'feed-unavailable'        => 'Dat gifft kene Feeds',
 'site-rss-feed'           => 'RSS-Feed för $1',
 'site-atom-feed'          => 'Atom-Feed för $1',
 'page-rss-feed'           => 'RSS-Feed för „$1“',
@@ -577,10 +577,10 @@ Kiek de Schrievwies na oder [[Special:Userlogin/signup|mell di as ne’en Bruker
 'passwordtooshort'           => 'Dat Passwoord is to kort. Dat schall woll beter {{PLURAL:$1|een Teken|$1 Teken}} lang oder noch länger wesen.',
 'mailmypassword'             => 'En nee Passwoord tostüren',
 'passwordremindertitle'      => 'Nee Passwoort för {{SITENAME}}',
-'passwordremindertext'       => 'Een (IP-Adress $1) hett för en nee Passwoort to’n Anmellen bi {{SITENAME}} beden ($4).
-Dat Passwoort för Bruker „$2“ is nu „$3“. Bitte mell di nu an un änner dien Passwoort.
+'passwordremindertext'       => 'Een (IP-Adress $1) hett för en nee Passwoord to’n Anmellen bi {{SITENAME}} beden ($4).
+Dat Passwoord för Bruker „$2“ is nu „$3“. Mell di nu an un änner dien Passwoord.
 
-Wenn du nich sülvst för en nee Passwoort beden hest, denn bruukst di wegen disse Naricht nich to kümmern un kannst dien oolt Passwoort wiederbruken.',
+Wenn du nich sülvst för en nee Passwoord beden hest, denn bruukst di wegen disse Naricht nich to kümmern un kannst dien oold Passwoord wiederbruken.',
 'noemail'                    => 'Bruker „$1“ hett kene E-Mail-Adress angeven.',
 'passwordsent'               => 'En nee Passwoort is an de E-Mail-Adress vun Bruker „$1“ schickt worrn. Mell di an, wenn du dat Passwoort kregen hest.',
 'blocked-mailpassword'       => 'Dien IP-Adress is sperrt. Missbruuk to verhinnern, is dat Toschicken vun en nee Passwoord ok sperrt.',
@@ -610,7 +610,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'resetpass_submit'        => 'Passwoort instellen un inloggen',
 'resetpass_success'       => 'Dien Passwoort is mit Spood ännert worrn. Warrst nu anmellt …',
 'resetpass_bad_temporary' => 'Passwoort op Tiet gellt nich mehr. Du hest al mit Spood dien Passwoort ännert oder en neet Passwoort op Tiet kregen.',
-'resetpass_forbidden'     => 'Dat Passwoort bi {{SITENAME}} kann nich ännert warrn.',
+'resetpass_forbidden'     => 'Passwöör köönt nich ännert warrn.',
 'resetpass_missing'       => 'Formular leddig',
 
 # Edit page toolbar
@@ -764,7 +764,7 @@ Bruker mit Sysop-Rechten doran arbeiden könnt.</strong>',
 'edittools'                        => '<!-- Disse Text warrt ünner de Finstern för dat Ännern un Hoochladen wiest. -->',
 'nocreatetitle'                    => 'Opstellen vun ne’e Sieden is inschränkt.',
 'nocreatetext'                     => '{{SITENAME}} verlööft di dat Opstellen vun ne’e Sieden nich. Du kannst blot Sieden ännern, de al dor sünd, oder du musst di [[Special:UserLogin|anmellen]].',
-'nocreate-loggedin'                => 'Du hest keen Verlööf, op {{SITENAME}} ne’e Sieden antoleggen.',
+'nocreate-loggedin'                => 'Du hest keen Verlööf, ne’e Sieden antoleggen.',
 'permissionserrors'                => 'Fehlers mit de Rechten',
 'permissionserrorstext'            => 'Du hest keen Verlööf, dat to doon. De {{PLURAL:$1|Grund is|Grünn sünd}}:',
 'permissionserrorstext-withaction' => 'Du hest nich de Rechten üm $2. Dat hett {{PLURAL:$1|dissen Grund|disse Grünn}}:',
@@ -967,7 +967,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'mypreferences'            => 'För mi Instellen',
 'prefs-edits'              => 'Wo faken du in dit Wiki Sieden ännert hest:',
 'prefsnologin'             => 'Nich anmellt',
-'prefsnologintext'         => 'Du musst [[Special:UserLogin|anmellt]] wesen, üm dien Instellen to ännern.',
+'prefsnologintext'         => 'Du musst <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} anmellt]</span> wesen, dat du dien Instellen ännern kannst.',
 'prefsreset'               => 'Instellen sünd op Standard trüchsett.',
 'qbsettings'               => 'Siedenliest',
 'qbsettings-none'          => 'Keen',
@@ -1227,7 +1227,7 @@ Kiek na, wat du dat Bild nich ok in vulle Grött hest un laad dat ünner’n Ori
 'uploadedimage'               => '„$1“ hoochladen',
 'overwroteimage'              => 'Ne’e Version vun „[[$1]]“ hoochlaadt',
 'uploaddisabled'              => 'Dat Hoochladen is deaktiveert.',
-'uploaddisabledtext'          => 'Op {{SITENAME}} is dat Hoochladen vun Datein utschalt.',
+'uploaddisabledtext'          => 'Dat Hoochladen vun Datein is utschalt.',
 'uploadscripted'              => 'In disse Datei steiht HTML- oder Skriptkood in, de vun welk Browsers verkehrt dorstellt oder utföhrt warrn kann.',
 'uploadcorrupt'               => 'De Datei is korrupt oder hett en falsch Ennen. Datei pröven un nieg hoochladen.',
 'uploadvirus'                 => 'In de Datei stickt en Virus! Mehr: $1',
@@ -1324,7 +1324,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filedelete-submit'           => 'Wegsmieten',
 'filedelete-success'          => "'''$1''' wegsmeten.",
 'filedelete-success-old'      => "De Version vun de Datei '''„[[Media:$1|$1]]“''' vun $2, $3 is wegsmeten worrn.",
-'filedelete-nofile'           => "'''$1''' gifft dat nich op {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' gifft dat nich.",
 'filedelete-nofile-old'       => "Gifft keen Version vun '''„$1“''' in’t Archiv mit disse Egenschoppen.",
 'filedelete-otherreason'      => 'Annern/tosätzlichen Grund:',
 'filedelete-reason-otherlist' => 'Annern Grund',
@@ -1895,9 +1895,9 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'databasenotlocked'   => 'De Datenbank is nich sparrt.',
 
 # Move page
-'move-page'               => 'Schuuv „$1“',
-'move-page-legend'        => 'Siet schuven',
-'movepagetext'            => "Mit dit Formular kannst du en Siet en ne’en Naam geven, tohoop mit all Versionen.
+'move-page'                   => 'Schuuv „$1“',
+'move-page-legend'            => 'Siet schuven',
+'movepagetext'                => "Mit dit Formular kannst du en Siet en ne’en Naam geven, tohoop mit all Versionen.
 De ole Titel wiest denn achterna na den ne’en.
 Verwiesen op den olen Titel köönt automaatsch ännert warrn.
 Wenn du dat automaatsche Utbetern vun de Redirects nich utwählst, denn kiek na, wat dor kene [[Special:DoubleRedirects|dubbelten]] un [[Special:BrokenRedirects|kaputten Redirects]] nablifft.
@@ -1908,50 +1908,51 @@ Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven
 
 '''WOHRSCHAU!'''
 Dit kann sik temlich dull utwarken bi veel bruukte Sieden. Stell seker, dat du weetst, wie sik dat utwarkt, ehrdat du wiedermaakst.",
-'movepagetalktext'        => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
+'movepagetalktext'            => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
 * Du schuffst de Siet in en annern Naamruum oder
 * dat gifft al en Diskuschoonssiet mit dissen Naam, oder
 * du wählst de nerrn stahn Opschoon af
 
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
-'movearticle'             => 'Siet schuven',
-'movenotallowed'          => 'Du hest nich de Rechten, op {{SITENAME}} Sieden to schuven.',
-'newtitle'                => 'To ne’en Titel',
-'move-watch'              => 'Op disse Siet oppassen',
-'movepagebtn'             => 'Siet schuven',
-'pagemovedsub'            => 'Schuven hett Spood',
-'movepage-moved'          => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Ünner dissen Naam gifft dat al ene Siet.
+'movearticle'                 => 'Siet schuven',
+'movenotallowed'              => 'Du hest nich de Rechten, Sieden to schuven.',
+'moverootuserpagesnotallowed' => 'Du hest nich de Rechten, Brukersieden to schuven.',
+'newtitle'                    => 'To ne’en Titel',
+'move-watch'                  => 'Op disse Siet oppassen',
+'movepagebtn'                 => 'Siet schuven',
+'pagemovedsub'                => 'Schuven hett Spood',
+'movepage-moved'              => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
-'cantmove-titleprotected' => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
-'talkexists'              => 'Dat Schuven vun de Siet sülvst hett Spood, aver dat Schuven vun de
+'cantmove-titleprotected'     => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
+'talkexists'                  => 'Dat Schuven vun de Siet sülvst hett Spood, aver dat Schuven vun de
 Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft. De Inholt mutt vun Hand anpasst warrn.',
-'movedto'                 => 'schaven na',
-'movetalk'                => 'De Diskuschoonssiet ok schuven, wenn mööglich.',
-'move-subpages'           => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
-'move-talk-subpages'      => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
-'movepage-page-exists'    => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
-'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
-'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
-'movepage-max-pages'      => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
-'1movedto2'               => '[[$1]] is nu na [[$2]] verschaven.',
-'1movedto2_redir'         => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
-'movelogpage'             => 'Schuuv-Logbook',
-'movelogpagetext'         => 'Dit is ene List vun all schavene Sieden.',
-'movereason'              => 'Grund',
-'revertmove'              => 'trüchschuven',
-'delete_and_move'         => 'Wegsmieten un Schuven',
-'delete_and_move_text'    => '== Siet gifft dat al, wegsmieten? ==
+'movedto'                     => 'schaven na',
+'movetalk'                    => 'De Diskuschoonssiet ok schuven, wenn mööglich.',
+'move-subpages'               => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
+'move-talk-subpages'          => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
+'movepage-page-exists'        => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
+'movepage-page-moved'         => 'De Siet „$1“ is nu schaven na „$2“.',
+'movepage-page-unmoved'       => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
+'movepage-max-pages'          => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
+'1movedto2'                   => '[[$1]] is nu na [[$2]] verschaven.',
+'1movedto2_redir'             => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
+'movelogpage'                 => 'Schuuv-Logbook',
+'movelogpagetext'             => 'Dit is ene List vun all schavene Sieden.',
+'movereason'                  => 'Grund',
+'revertmove'                  => 'trüchschuven',
+'delete_and_move'             => 'Wegsmieten un Schuven',
+'delete_and_move_text'        => '== Siet gifft dat al, wegsmieten? ==
 
 De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schaven warrn kann?',
-'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
-'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
-'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
-'immobile_namespace'      => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
-'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
-'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
-'imageinvalidfilename'    => 'De ne’e Dateinaam is ungüllig',
-'fix-double-redirects'    => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
+'delete_and_move_confirm'     => 'Jo, de Siet wegsmieten',
+'delete_and_move_reason'      => 'wegsmeten, Platz to maken för Schuven',
+'selfmove'                    => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
+'immobile_namespace'          => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
+'imagenocrossnamespace'       => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
+'imagetypemismatch'           => 'De ne’e Dateiennen passt nich to de ole',
+'imageinvalidfilename'        => 'De ne’e Dateinaam is ungüllig',
+'fix-double-redirects'        => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
 
 # Export
 'export'            => 'Sieden exporteren',

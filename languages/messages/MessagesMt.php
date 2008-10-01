@@ -1808,7 +1808,7 @@ Din tista' tkun bidla drastika u mhux mistenniha għal paġna popolari; jekk jog
 
 F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan huwa mixtieq.",
 'movearticle'             => 'Ċaqlaq il-paġna:',
-'movenotallowed'          => "Inti m'għandhekx il-permessi meħtieġa sabiex iċaqlaq il-paġni fuq {{SITENAME}}.",
+'movenotallowed'          => "Inti m'għandhekx il-permessi meħtieġa sabiex iċaqlaq il-paġni.",
 'newtitle'                => 'Titlu ġdid:',
 'move-watch'              => 'Segwi din il-paġna',
 'movepagebtn'             => 'Ċaqlaq il-paġna',

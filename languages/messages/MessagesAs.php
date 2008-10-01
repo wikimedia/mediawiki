@@ -192,7 +192,7 @@ $messages = array(
 'tagline'           => '{{SITENAME}} -ৰ পৰা',
 'help'              => 'সহায়',
 'search'            => 'সন্ধান',
-'searchbutton'      => 'বিচৰা হওক',
+'searchbutton'      => 'সন্ধান কৰক',
 'go'                => 'গমন',
 'searcharticle'     => 'গমন',
 'history'           => 'খতিয়ান',
@@ -394,7 +394,7 @@ $1',
 'yourlanguage'               => 'ভাষা:',
 'yournick'                   => 'আপোনাৰ স্বাক্ষ্যৰ:',
 'badsig'                     => 'অনুপোযোগী স্বাক্ষ্যৰ, HTML টেগ পৰীক্ষা কৰি লওক।',
-'badsiglength'               => 'অত্যাধিক দীঘলিয়া স্বাক্ষৰ; $1 তাতকৈ কম আখৰৰ হব লাগে',
+'badsiglength'               => 'অত্যাধিক দীঘলিয়া স্বাক্ষৰ; {{PLURAL:$1|তাতকৈ|তাতকৈ}} কম আখৰৰ হব লাগে',
 'email'                      => 'ই-মেইল',
 'prefs-help-realname'        => 'আপোনাৰ আচল নাম দিয়াতো জৰুৰি নহয়, কিন্তু দিলে আপোনাৰ কামবোৰ আপোনাৰ নামত দেখুওৱা হব।',
 'loginerror'                 => 'প্রৱেশ সমস্যা',
@@ -418,7 +418,7 @@ $1',
 'wrongpassword'              => 'আপুনি ভুল গুপ্তশব্দ দিছে। অনুগ্রহ কৰি আকৌ এবাৰ চেষ্টা কৰক।',
 'wrongpasswordempty'         => 'দিয়া গুপ্তশব্দতো খালী; অনুগ্রহ কৰি আকৌ এবাৰ চেষ্টা কৰক। ।',
 'passwordtooshort'           => 'আপোনাৰ গুপ্তশব্দ অযোগ্য বা একেবাৰ চুটি ।
-ইয়াত কমেও $1 তা আখৰ থাকিব লাগিব আৰু আপোনাৰ সদস্যনামৰ লগত একে হব নোৱাৰিব।',
+ইয়াত কমেও {{PLURAL:$1|তা|তা}} আখৰ থাকিব লাগিব আৰু আপোনাৰ সদস্যনামৰ লগত একে হব নোৱাৰিব।',
 'mailmypassword'             => 'ই-মেইলত গুপ্তশব্দ পঠাওক',
 'passwordremindertitle'      => '{{SITENAME}} ৰ কাৰণে নতুন অস্থায়ী গুপ্তশব্দ',
 'passwordremindertext'       => 'কোনোবাই (হয়তো আপুনি, $1 IP ঠিকনাৰ পৰা)
@@ -891,7 +891,8 @@ $1',
 'restriction-level'           => 'সুৰক্ষা-স্তৰ:',
 
 # Undelete
-'undeletebtn' => 'পূণঃসংস্থাপন কৰক',
+'undeletebtn'            => 'পূণঃসংস্থাপন কৰক',
+'undelete-search-submit' => 'সন্ধান',
 
 # Namespace form on various pages
 'namespace'      => 'নামস্থান:',
@@ -908,6 +909,7 @@ $1',
 
 'sp-contributions-newbies-sub' => 'নতুন সভ্যৰ কাৰণে',
 'sp-contributions-blocklog'    => 'বাৰণ সুচী',
+'sp-contributions-submit'      => 'সন্ধান কৰক',
 
 # What links here
 'whatlinkshere'       => 'এই পৃষ্ঠা ব্যৱ্হাৰ কৰিছে...',
@@ -1024,6 +1026,7 @@ $1',
 
 # Special:NewImages
 'newimages' => 'নতুন ফাইলৰ বিথীকা',
+'ilsubmit'  => 'সন্ধান কৰক',
 
 # Metadata
 'metadata'          => 'মেটাডাটা',

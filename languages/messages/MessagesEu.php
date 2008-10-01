@@ -292,7 +292,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|ezabatutako aldaketa bat|ezabatutako $1 aldaketa}}',
 'feedlinks'               => 'Jarioa:',
 'feed-invalid'            => 'Baliogabeko harpidetza jario mota.',
-'feed-unavailable'        => 'Sindikaizoa ez dago eskuragarri {{SITENAME}}n',
+'feed-unavailable'        => 'Jarioak ez daude eskuragarri.',
 'site-rss-feed'           => '$1 RSS Jarioa',
 'site-atom-feed'          => '$1 Atom Jarioa',
 'page-rss-feed'           => '"$1" RSS Jarioa',
@@ -1717,6 +1717,7 @@ $1',
 'ipbotheroption'                  => 'beste bat',
 'ipbotherreason'                  => 'Arrazoi gehigarria:',
 'ipbwatchuser'                    => 'Erabiltzaile honen erabiltzaile eta eztabaida orrialdeak jarraitu',
+'ipballowusertalk'                => 'Blokeatuta izanagatik ere, lankide honek bere eztabaida-orria aldatzea baimendu',
 'badipaddress'                    => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'               => 'Blokeoa burutu da',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
@@ -2300,8 +2301,16 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-lightsource-255' => 'Beste argi iturburu bat',
 
 # Flash modes
-'exif-flash-fired-0' => 'Flashik gabe',
-'exif-flash-fired-1' => 'Flasharekin',
+'exif-flash-fired-0'    => 'Flashik gabe',
+'exif-flash-fired-1'    => 'Flasharekin',
+'exif-flash-return-0'   => 'ez dauka estrobo itzulera detekzio funtziorik',
+'exif-flash-return-2'   => 'estrobo itzulera argirik ez da detektatu',
+'exif-flash-return-3'   => 'estrobo itzulera argia detektatu da',
+'exif-flash-mode-1'     => 'flashak derrigorrez bota du argia',
+'exif-flash-mode-2'     => 'flasha derrigorrez kendu da',
+'exif-flash-mode-3'     => 'auto modua',
+'exif-flash-function-1' => 'Ez dauka flash funtziorik',
+'exif-flash-redeye-1'   => 'begi-gorriak kentzeko modua',
 
 'exif-focalplaneresolutionunit-2' => 'hazbete',
 
@@ -2322,10 +2331,21 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 
 'exif-exposuremode-0' => 'Esposizio automatikoa',
 'exif-exposuremode-1' => 'Eskuzko esposizioa',
+'exif-exposuremode-2' => 'Bracket automatikoa',
 
+'exif-whitebalance-0' => 'Zurien balantze automatikoa',
+'exif-whitebalance-1' => 'Zurien eskuzko balantzea',
+
+'exif-scenecapturetype-0' => 'Arrunta',
+'exif-scenecapturetype-1' => 'Paisaia',
 'exif-scenecapturetype-2' => 'Erretratua',
+'exif-scenecapturetype-3' => 'Gau eskena',
 
 'exif-gaincontrol-0' => 'Ezer',
+'exif-gaincontrol-1' => 'Gain igotze baxua',
+'exif-gaincontrol-2' => 'Gain igotze altua',
+'exif-gaincontrol-3' => 'Gain beheragotze baxua',
+'exif-gaincontrol-4' => 'Gain beheratze altua',
 
 'exif-contrast-0' => 'Arrunta',
 'exif-contrast-1' => 'Leuna',
@@ -2459,14 +2479,22 @@ $1',
 'livepreview-error'   => 'Ezin izan da konektatu: $1 "$2". Saiatu aurreikuspen normala erabiltzen.',
 
 # Watchlist editor
-'watchlistedit-noitems'       => 'Zure jarraitze-zerrendak ez du izenbururik.',
-'watchlistedit-normal-title'  => 'Jarraitze zerrenda aldatu',
-'watchlistedit-normal-submit' => 'Izneburuak kendu',
-'watchlistedit-raw-title'     => 'Jarraitze zerrenda gordina aldatu',
-'watchlistedit-raw-legend'    => 'Jarraitze zerrenda gordina aldatu',
-'watchlistedit-raw-titles'    => 'Izenburuak:',
-'watchlistedit-raw-submit'    => 'Jarraitze-zerrenda eguneratu',
-'watchlistedit-raw-removed'   => '{{PLURAL:$1|Izenburu 1|$1 izenburu}} ezabatu dira:',
+'watchlistedit-numitems'       => 'Zure jarraipen zerrendak {{PLURAL:$1|titulu bat du|$1 titulu ditu}}, eztabaida orrialdeak kenduta.',
+'watchlistedit-noitems'        => 'Zure jarraitze-zerrendak ez du izenbururik.',
+'watchlistedit-normal-title'   => 'Jarraitze zerrenda aldatu',
+'watchlistedit-normal-legend'  => 'Jarraipen-zerrendatik izenburuak kendu',
+'watchlistedit-normal-explain' => 'Zure jarraipen-zerrendako izenburuak azpian daude.
+Titulu bat kentzeko ondoan dagoen kutxa marka ezazu eta Kendu Izenburuaken gainean klik egin.
+Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
+'watchlistedit-normal-submit'  => 'Izenburuak kendu',
+'watchlistedit-normal-done'    => 'Zure jarraipen-zerrendatik {{PLURAL:$1|izenburu bat kendu da|$1 izenburu kendu dira}}.',
+'watchlistedit-raw-title'      => 'Jarraitze zerrenda gordina aldatu',
+'watchlistedit-raw-legend'     => 'Jarraitze zerrenda gordina aldatu',
+'watchlistedit-raw-titles'     => 'Izenburuak:',
+'watchlistedit-raw-submit'     => 'Jarraitze-zerrenda eguneratu',
+'watchlistedit-raw-done'       => 'Zure jarraipen zerrenda berritu da.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Titulu 1 gehitu da|$1 gehitu dira}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Izenburu 1|$1 izenburu}} ezabatu dira:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Aldaketa garrantzitsuak ikusi',
@@ -2495,6 +2523,7 @@ $1',
 'fileduplicatesearch-filename' => 'Fitxategi izena:',
 'fileduplicatesearch-submit'   => 'Bilaketa',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fitxategiaren tamaina: $3<br />MIME mota: $4',
+'fileduplicatesearch-result-1' => '"$1" fitxategiak ez du duplikazio zehazki berdinik.',
 
 # Special:SpecialPages
 'specialpages'                 => 'Aparteko orrialdeak',

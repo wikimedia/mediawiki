@@ -199,7 +199,7 @@ Sichern Sie den Text bitte lokal auf Ihrem Computer und versuchen Sie zu einem s
 
 Grund für die Sperre: $1',
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:UserLogin|anmelden]].',
-'nocreate-loggedin'                => 'Sie haben keine Berechtigung, neue Seiten in {{SITENAME}} anzulegen.',
+'nocreate-loggedin'                => 'Sie haben keine Berechtigung, neue Seiten zu erstellen.',
 'permissionserrorstext'            => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'            => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
@@ -415,7 +415,7 @@ Bitte geben Sie den Grund für die Sperre an.',
 'lockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte geben Sie die Datenbank [[Special:UnlockDB|wieder frei]], sobald die Wartung abgeschlossen ist.',
 
 # Move page
-'movepagetext'         => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen).
+'movepagetext'                => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen).
 Der alte Titel wird zum neuen weiterleiten.
 Sie können Weiterleitungen, die auf den Originaltitel verlinken, automatisch korrigieren lassen.
 Falls Sie dies nicht tun, prüfen Sie auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
@@ -426,17 +426,18 @@ Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben 
 '''Warnung'''
 Die Verschiebung kann weitreichende und unerwartete Folgen für beliebte Seiten haben.
 Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
-'movepagetalktext'     => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
+'movepagetalktext'            => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *Sie wählen die unten stehende Option ab.
 
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
-'movenotallowed'       => 'Sie haben in diesem Wiki keine Berechtigung, Seiten zu verschieben.',
-'articleexists'        => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',
-'talkexists'           => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
-'delete_and_move_text' => '==Zielseite vorhanden, löschen?==
+'movenotallowed'              => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
+'moverootuserpagesnotallowed' => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',
+'articleexists'               => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',
+'talkexists'                  => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
+'delete_and_move_text'        => '==Zielseite vorhanden, löschen?==
 
 Die Seite „[[:$1]]“ existiert bereits. Möchten Sie diese löschen, um die Seite verschieben zu können?',
 

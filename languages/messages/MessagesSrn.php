@@ -726,7 +726,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'filedelete-submit'      => 'Trowe',
 'filedelete-success'     => "'''$1''' ben e trowe.",
 'filedelete-success-old' => '<span class="plainlinks">A si fu \'\'\'[[Media:$1|$1]]\'\'\' fu $3, $2 ben e trowen.</span>',
-'filedelete-nofile'      => "'''$1''' ben no da ini {{SITENAME}}.",
+'filedelete-nofile'      => "'''$1''' ben no da.",
 
 # MIME search
 'mimesearch' => 'Suku MIME-type',

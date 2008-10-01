@@ -1139,7 +1139,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'filedelete-submit'           => 'Wyćep',
 'filedelete-success'          => "Wyćepano plik '''$1'''.",
 'filedelete-success-old'      => '<span class="plainlinks">Wyćepano plik \'\'\'[[Media:$1|$1]]\'\'\' we wersyje ze $3, $2.</span>',
-'filedelete-nofile'           => "Plika '''$1''' ńy ma we {{GRAMMAR:MS.pl|{{SITENAME}}}}.",
+'filedelete-nofile'           => "Plika '''$1''' ńy ma.",
 'filedelete-nofile-old'       => "Ńy ma sam zarchiwizowanyj wersje '''$1''' o atrybutach jake žeś podou.",
 'filedelete-otherreason'      => 'Inkšy powůd:',
 'filedelete-reason-otherlist' => 'Inkszy powůd',
@@ -1718,7 +1718,7 @@ To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako p
 *ńy ma sam zajty godki o takiym mjańe
 W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z tym co juž sam jest, rynčńe. Abo možeš sie namyślić i nie přećepywać wcale ("checkbox" půnižyi).',
 'movearticle'             => 'Přećiś artikel:',
-'movenotallowed'          => 'Ńy moš uprownień do přećepywańo zajtůw na {{GRAMMAR:MS.lp|{{SITENAME}}}}.',
+'movenotallowed'          => 'Ńy moš uprownień do přećepywańo zajtůw.',
 'newtitle'                => 'Nowy titel:',
 'move-watch'              => 'Dej pozor',
 'movepagebtn'             => 'Přećiś artikel',
@@ -1745,7 +1745,7 @@ Zajta docelowo „[[:$1]]” juž sam jest.
 'delete_and_move_reason'  => 'Wyćepano coby zrobić plac do přećepywanyj zajty',
 'selfmove'                => 'Mjana zajtůw zdřůdowyj i docelowyj sům take same.
 Zajty ńy idźe přećepać na ńa samo.',
-'immobile_namespace'      => 'Zajta zdřůduowo abo zajta docelowo to extra zajta.
+'immobile_namespace'      => 'Zajta zdřůduowo abo zajta docelowo to ekstra zajta.
 Ńy idźe přećepać ze abo do tyi přestřyńi mjan',
 'imagenocrossnamespace'   => 'Ńy idźe přećepać grafiki do přestřyni mjan ńy přeznočonyj do grafik',
 'imagetypemismatch'       => 'Nowe rozšeřyńe mjana plika je inkšego typu kej jygo zawartość',
@@ -1865,13 +1865,13 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-t-contributions'         => 'Pokož lista sprowjyń tygo užytkowńika',
 'tooltip-t-emailuser'             => 'Wyślij e-brif do tygo užytkowńika',
 'tooltip-t-upload'                => 'Wćepńij plik na serwer',
-'tooltip-t-specialpages'          => 'Lista wšyskich extra zajtów',
+'tooltip-t-specialpages'          => 'Lista wšyskich ekstra zajtów',
 'tooltip-t-print'                 => 'Wersyja do wydruku',
 'tooltip-t-permalink'             => 'Stouy link do tyi wersyji zajty',
 'tooltip-ca-nstab-main'           => 'Uobejřij zajta artikla',
 'tooltip-ca-nstab-user'           => 'Pokož uosobisto zajta užytkowńika',
 'tooltip-ca-nstab-media'          => 'Uobejřij zajta artikla',
-'tooltip-ca-nstab-special'        => 'To je extra zajta. Ńy možeš jei sprowjać.',
+'tooltip-ca-nstab-special'        => 'To je ekstra zajta. Ńy možeš jei sprowjać.',
 'tooltip-ca-nstab-project'        => 'Uobejřij zajta projektu',
 'tooltip-ca-nstab-image'          => 'Pokož zajta grafiki',
 'tooltip-ca-nstab-mediawiki'      => 'Zoboč komunikat systymowy',
@@ -1989,7 +1989,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 
 # Metadata
 'metadata'          => 'Metadane',
-'metadata-help'     => 'Tyn plik zawjyro extra dane, kere dodou aparat cyfrowy abo skaner. Jak coś we pliku bůuo půmjyńane, te extra dane můgům być ńyakuratne.',
+'metadata-help'     => 'Tyn plik zawjyro ekstra dane, kere dodou aparat cyfrowy abo skaner. Jak coś we pliku bůuo půmjyńane, te ekstra dane můgům być ńyakuratne.',
 'metadata-expand'   => 'Pokož ščygůuy',
 'metadata-collapse' => 'Schowej ščygůuy',
 'metadata-fields'   => 'Pola kere wymjyńůno pońižy pola EXIF bydům wymjyńůne na zajcie grafiki. Inkše pola bydům důmyślńy schowane.
@@ -2413,7 +2413,7 @@ Možeš tyž [[Special:Watchlist/edit|užyć standardowygo edytora]].',
 'filepath'         => 'Śćežka do plika',
 'filepath-page'    => 'Plik:',
 'filepath-submit'  => 'Śćežka',
-'filepath-summary' => 'Ta extra zajta zwraco peuno śćyžka do plika.
+'filepath-summary' => 'Ta ekstra zajta zwraco peuno śćyžka do plika.
 Grafiki sům pokazywane w peunyj rozdźelčośći, inkše typy plikůw sům uodmykane we skojařůnym ś ńimi průgramje.
 
 Naškryflej sam mjano plika bez prefiksu „{{ns:image}}:”.',
@@ -2431,9 +2431,9 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'fileduplicatesearch-result-n' => 'We {{GRAMMAR:MS.lp|{{SITENAME}}}} {{PLURAL:$2|je dodatkowo kopia|sům $2 dodatkowe kopje|je $2 dodatkowych kopii}} plika „$1”.',
 
 # Special:SpecialPages
-'specialpages'                   => 'Extra zajty',
+'specialpages'                   => 'Ekstra zajty',
 'specialpages-group-maintenance' => 'Raporty kůnserwacyjne',
-'specialpages-group-other'       => 'Inkše extra zajty',
+'specialpages-group-other'       => 'Inkše ekstra zajty',
 'specialpages-group-login'       => 'Lůgowańy / rejerowańy',
 'specialpages-group-changes'     => 'Pomjyńane na uostatku a rejery',
 'specialpages-group-media'       => 'Pliki',
@@ -2443,5 +2443,8 @@ Wklepej mjano plika s půmińjyńćym prefiksu „{{ns:image}}:”.',
 'specialpages-group-pagetools'   => 'Nořyńdźa zajtůw',
 'specialpages-group-wiki'        => 'Informacyje a nořyńdźa wiki',
 'specialpages-group-spam'        => 'Nořyńdźa do wyćepywanio spamu',
+
+# Special:BlankPage
+'blankpage' => 'Pusto zajta',
 
 );

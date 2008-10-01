@@ -2000,7 +2000,7 @@ pšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 
 W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
 'movearticle'             => 'Bok pśesunuś',
-'movenotallowed'          => 'Njamaš pšawo pśesuwaś boki we {{GRAMMAR:lokatiw|{{SITENAME}}}}.',
+'movenotallowed'          => 'Njamaš pšawo pśesuwaś boki.',
 'newtitle'                => 'nowy nadpis:',
 'move-watch'              => 'Toś ten bok wobglědowaś',
 'movepagebtn'             => 'Bok pśesunuś',
