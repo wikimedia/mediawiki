@@ -2098,9 +2098,9 @@ N’oubliez pas de la déverrouiller lorsque vous aurez terminé votre opératio
 'databasenotlocked'   => 'La base de données n’est pas verrouillée.',
 
 # Move page
-'move-page'               => 'Renommer $1',
-'move-page-legend'        => 'Renommer une page',
-'movepagetext'            => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
+'move-page'                   => 'Renommer $1',
+'move-page-legend'            => 'Renommer une page',
+'movepagetext'                => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
 L’ancien titre deviendra une page de redirection vers le nouveau titre.
 Les liens vers le titre de l’ancienne page ne seront pas changés ;
 veuillez vérifier que ce déplacement n’a pas créé de [[Special:DoubleRedirects|double redirection]] ou de [[Special:BrokenRedirects|redirection cassée]].
@@ -2112,49 +2112,49 @@ Ce qui veut dire que vous pouvez renommer une page vers sa position d’origine 
 '''ATTENTION !'''
 Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée.
 Assurez-vous d’en avoir compris les conséquences avant de continuer.",
-'movepagetalktext'        => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
+'movepagetalktext'            => 'La page de discussion associée, si présente, sera automatiquement renommée <b>sauf si :</b>
 *Vous renommez une page vers un autre espace,
 *Une page de discussion existe déjà avec le nouveau nom, ou
 *Vous avez désélectionné le bouton ci-dessous.
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.',
-'movearticle'             => 'Renommer l’article',
-'movenotallowed'          => 'Vous n’avez pas la permission de renommer des pages sur ce wiki.',
+'movearticle'                 => 'Renommer l’article',
+'movenotallowed'              => 'Vous n’avez pas la permission de renommer des pages sur ce wiki.',
 'moverootuserpagesnotallowed' => 'Vous n’avez pas la permission de renommer des pages utilisateurs racines sur ce wiki.',
-'newtitle'                => 'Nouveau titre',
-'move-watch'              => 'Suivre cette page',
-'movepagebtn'             => 'Renommer l’article',
-'pagemovedsub'            => 'Renommage réussi',
-'movepage-moved'          => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
-'cantmove-titleprotected' => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
-'talkexists'              => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
-'movedto'                 => 'renommé en',
-'movetalk'                => 'Renommer aussi la page de discussion associée',
-'move-subpages'           => 'Renommer, le cas échéant, toutes les sous-pages',
-'move-talk-subpages'      => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
-'movepage-page-exists'    => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
-'movepage-page-moved'     => 'La page $1 a été renommée en $2.',
-'movepage-page-unmoved'   => 'La page $1 ne peut être renommée en $2.',
-'movepage-max-pages'      => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
-'1movedto2'               => 'a renommé [[$1]] en [[$2]]',
-'1movedto2_redir'         => 'a redirigé [[$1]] vers [[$2]]',
-'movelogpage'             => 'Historique des renommages',
-'movelogpagetext'         => 'Voici la liste des dernières pages renommées.',
-'movereason'              => 'Raison du renommage',
-'revertmove'              => 'annuler',
-'delete_and_move'         => 'Supprimer et renommer',
-'delete_and_move_text'    => '==Suppression requise==
+'newtitle'                    => 'Nouveau titre',
+'move-watch'                  => 'Suivre cette page',
+'movepagebtn'                 => 'Renommer l’article',
+'pagemovedsub'                => 'Renommage réussi',
+'movepage-moved'              => "<big>'''« $1 »''' a été déplacé vers '''« $2 »'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'Il existe déjà un article portant ce titre, ou le titre que vous avez choisi n’est pas valide. Veuillez en choisir un autre.',
+'cantmove-titleprotected'     => 'Vous ne pouvez pas déplacer une page vers cet emplacement car le nouveau titre a été protégé à la création.',
+'talkexists'                  => 'La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.',
+'movedto'                     => 'renommé en',
+'movetalk'                    => 'Renommer aussi la page de discussion associée',
+'move-subpages'               => 'Renommer, le cas échéant, toutes les sous-pages',
+'move-talk-subpages'          => 'Renommer, le cas échéant, toutes les sous-pages des pages de discussion',
+'movepage-page-exists'        => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement;',
+'movepage-page-moved'         => 'La page $1 a été renommée en $2.',
+'movepage-page-unmoved'       => 'La page $1 ne peut être renommée en $2.',
+'movepage-max-pages'          => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne pourra être renommée automatiquement.',
+'1movedto2'                   => 'a renommé [[$1]] en [[$2]]',
+'1movedto2_redir'             => 'a redirigé [[$1]] vers [[$2]]',
+'movelogpage'                 => 'Historique des renommages',
+'movelogpagetext'             => 'Voici la liste des dernières pages renommées.',
+'movereason'                  => 'Raison du renommage',
+'revertmove'                  => 'annuler',
+'delete_and_move'             => 'Supprimer et renommer',
+'delete_and_move_text'        => '==Suppression requise==
 
 L’article de destination « [[:$1]] » existe déjà. Voulez-vous le supprimer pour permettre le renommage ?',
-'delete_and_move_confirm' => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
-'delete_and_move_reason'  => 'Page supprimée automatiquement pour permettre un renommage',
-'selfmove'                => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
-'immobile_namespace'      => 'Le titre de destination est d’un type spécial ; il est impossible de renommer des pages vers cet espace de noms.',
-'imagenocrossnamespace'   => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
-'imagetypemismatch'       => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
-'imageinvalidfilename'    => 'Le nom du fichier cible est incorrect',
-'fix-double-redirects'    => 'Mettre à jour les redirections pointant vers l’ancien titre',
+'delete_and_move_confirm'     => 'Oui, j’accepte de supprimer la page de destination pour permettre le renommage.',
+'delete_and_move_reason'      => 'Page supprimée automatiquement pour permettre un renommage',
+'selfmove'                    => 'Les titres d’origine et de destination sont les mêmes : impossible de renommer une page sur elle-même.',
+'immobile_namespace'          => 'Le titre de destination est d’un type spécial ; il est impossible de renommer des pages vers cet espace de noms.',
+'imagenocrossnamespace'       => 'Ne peut déplacer une image vers un espace de nommage qui ne soit pas une image.',
+'imagetypemismatch'           => 'La nouvelle extension de ce fichier ne reconnaît pas ce format.',
+'imageinvalidfilename'        => 'Le nom du fichier cible est incorrect',
+'fix-double-redirects'        => 'Mettre à jour les redirections pointant vers l’ancien titre',
 
 # Export
 'export'            => 'Exporter des pages',
