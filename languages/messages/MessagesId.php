@@ -1260,7 +1260,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'right-suppressrevision'     => 'Memeriksa dan mengembalikan revisi-revisi yang disembunyikan dari Opsis',
 'right-suppressionlog'       => 'Melihat log privat',
 'right-block'                => 'Memblokir penyuntingan oleh pengguna lain',
-'right-restrict'             => 'Membatasi pengguna dari menyunting suatu ruang nama atau halaman',
 'right-blockemail'           => 'Memblokir pengiriman surat-e oleh pengguna',
 'right-hideuser'             => 'Memblokir nama pengguna dan menyembunyikannya dari publik',
 'right-ipblock-exempt'       => 'Abaikan pemblokiran IP, pemblokiran otomatis, dan rentang pemblokiran',

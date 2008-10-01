@@ -1314,7 +1314,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'right-suppressrevision'     => 'Prohlížení a obnovování revizí skrytých před správci',
 'right-suppressionlog'       => 'Zobrazování skrytých protokolovacích záznamů',
 'right-block'                => 'Blokování možnosti editace ostatním uživatelům',
-'right-restrict'             => 'Omezování uživatelů editovat určitou stránku nebo jmenný prostor',
 'right-blockemail'           => 'Blokování možnosti poslat e-mail',
 'right-hideuser'             => 'Blokování uživatelského jména a jeho skrytí',
 'right-ipblock-exempt'       => 'Obcházení blokování IP adres, jejich rozsahů a autobloků',
