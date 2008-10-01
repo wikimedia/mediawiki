@@ -142,6 +142,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Improved upload file type detection for OpenDocument formats
 * Added the ability to set the target attribute on external links with 
   $wgExternalLinkTarget
+* api.php now sends "Retry-After" and "X-Database-Lag" HTTP headers if the maxlag
+  check fails, just like index.php does
 
 
 === Bug fixes in 1.14 ===
