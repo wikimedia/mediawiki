@@ -230,6 +230,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15158) Userinvalidcssjstitle not shown on preview
 * (bug 15196) Free external links should be numbered in a localised manner
 * (bug 15388) Title of Special:PrefixIndex
+* Links with no title but a curid parameter now use the curid to pick a page
 
 === API changes in 1.14 ===
 
