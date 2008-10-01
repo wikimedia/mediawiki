@@ -392,6 +392,9 @@ class ApiMain extends ApiBase {
 			$maxLag = $params['maxlag'];
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
+				header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+				header( 'X-Database-Lag: ' . intval( $lag ) );
+				// XXX: should we return a 503 HTTP error code like wfMaxlagError() does?
 				if( $wgShowHostnames ) {
 					ApiBase :: dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				} else {
