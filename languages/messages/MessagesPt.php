@@ -1181,7 +1181,6 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'right-suppressrevision'     => 'Rever e restaurar edições ocultadas dos Sysops',
 'right-suppressionlog'       => 'Ver registos privados',
 'right-block'                => 'Impedir outros utilizadores de editarem',
-'right-restrict'             => 'Restringir utilizadores a editarem determinados espaços nominais e páginas',
 'right-blockemail'           => 'Impedir um utilizador de enviar email',
 'right-hideuser'             => 'Bloquear um nome de utilizador, escondendo-o do público',
 'right-ipblock-exempt'       => 'Contornar bloqueios de IP, automáticos e de intervalo',

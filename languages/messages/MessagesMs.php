@@ -1163,7 +1163,6 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'right-suppressrevision'     => 'Memeriksa dan memulihkan semakan yang terselindung daripada penyelia',
 'right-suppressionlog'       => 'Melihat log rahsia',
 'right-block'                => 'Menyekat pengguna lain daripada menyunting',
-'right-restrict'             => 'Mengehadkan pengguna daripada menyunting ruang nama dan laman tertentu',
 'right-blockemail'           => 'Menyekat pengguna lain daripada mengirim e-mel',
 'right-hideuser'             => 'Menyekat sesebuah nama pengguna, menyembunyikannya daripada orang ramai',
 'right-ipblock-exempt'       => 'Melangkau sekatan IP, sekatan automatik dan sekatan julat',

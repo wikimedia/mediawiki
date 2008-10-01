@@ -1236,7 +1236,6 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'right-suppressrevision'     => 'Versione vun Sigge beloore un zeröck holle, di sujaa för de Wiki-Köbesse verstoche sin',
 'right-suppressionlog'       => 'De private Logböcher aanloore',
 'right-block'                => 'Medmaacher Sperre, un domet am Schrive hindere',
-'right-restrict'             => 'Donn enem Metmaacher sing Rääsch beschränke, för bestimmte Sigge un Appachtemangs ze ändere.',
 'right-blockemail'           => 'Metmaacher för et E-Mail Verschecke sperre',
 'right-hideuser'             => 'Ene Metmaacher sperre un em singe Name versteiche',
 'right-ipblock-exempt'       => 'Es ußjenomme vun automatesche Sperre, vun Sperre fun IP-Adresse, un vun Sperre vun Bereiche vun IP-Adresse',

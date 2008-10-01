@@ -1205,7 +1205,6 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'right-suppressrevision'     => 'Ansehen und wiederherstellen von Versionen, die auch vor Administratoren verborgen sind',
 'right-suppressionlog'       => 'Ansehen privater Logbücher',
 'right-block'                => 'Benutzer sperren (Schreibrecht)',
-'right-restrict'             => 'Beschränken der Bearbeitungsmöglichkeit von Benutzern für bestimmte Namensräume und Seiten',
 'right-blockemail'           => 'Benutzer am Versenden von E-Mails hindern',
 'right-hideuser'             => 'Sperre und verberge einen Benutzernamen',
 'right-ipblock-exempt'       => 'Ausnahme von IP-Sperren, Autoblocks und Rangesperren',
