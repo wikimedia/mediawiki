@@ -940,7 +940,6 @@ $wgMessageStructure = array(
 		'right-suppressrevision',
 		'right-suppressionlog',
 		'right-block',
-		'right-restrict',
 		'right-blockemail',
 		'right-hideuser',
 		'right-ipblock-exempt',
