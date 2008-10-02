@@ -49,7 +49,7 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		global $wgUser;
+		global $wgUser, $wgBlockAllowsUTEdit;
 		$this->getMain()->requestWriteMode();
 		$params = $this->extractRequestParams();
 
@@ -84,6 +84,7 @@ class ApiBlock extends ApiBase {
 		$form->BlockEnableAutoblock = $params['autoblock'];
 		$form->BlockEmail = $params['noemail'];
 		$form->BlockHideName = $params['hidename'];
+		$form->BlockAllowUsertalk = $params['allowusertalk'] && $wgBlockAllowsUTEdit;
 
 		$userID = $expiry = null;
 		$retval = $form->doBlock($userID, $expiry);
@@ -105,6 +106,8 @@ class ApiBlock extends ApiBase {
 			$res['noemail'] = '';
 		if($params['hidename'])
 			$res['hidename'] = '';
+		if($params['allowusertalk'])
+			$res['allowusertalk'] = '';
 
 		$this->getResult()->addValue(null, $this->getModuleName(), $res);
 	}
@@ -112,6 +115,7 @@ class ApiBlock extends ApiBase {
 	public function mustBePosted() { return true; }
 
 	public function getAllowedParams() {
+		global $wgBlockAllowsUTEdit;
 		return array (
 			'user' => null,
 			'token' => null,
@@ -123,6 +127,7 @@ class ApiBlock extends ApiBase {
 			'autoblock' => false,
 			'noemail' => false,
 			'hidename' => false,
+			'allowusertalk' => $wgBlockAllowsUTEdit,
 		);
 	}
 
@@ -137,7 +142,8 @@ class ApiBlock extends ApiBase {
 			'nocreate' => 'Prevent account creation',
 			'autoblock' => 'Automatically block the last used IP address, and any subsequent IP addresses they try to login from',
 			'noemail' => 'Prevent user from sending e-mail through the wiki. (Requires the "blockemail" right.)',
-			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)'
+			'hidename' => 'Hide the username from the block log. (Requires the "hideuser" right.)',
+			'allowusertalk' => 'Whether to allow the user to edit their own talk page (Dependent on $wgBlockAllowsUTEdit)'
 		);
 	}
 
