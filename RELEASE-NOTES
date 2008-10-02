@@ -57,6 +57,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Special:Log/newusers recording new users (was extension Newuserlog)
 * Special:LinkSearch to search for external links (was extension LinkSearch)
 * RenderHash
+* NoMoveUserPages
 
 === New features in 1.14 ===
 
