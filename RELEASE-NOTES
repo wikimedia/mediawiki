@@ -4,10 +4,24 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.12.1 ==
-* Security: Work around misconfiguration by requiring strict comparisons for
-  in_array in User::isAllowed().
 
-Changes since 1.12.0:
+October 2, 2008
+
+This is a security and bugfix release of the quarterly branch of MediaWiki 
+for Winter 2008.
+
+MediaWiki is now using a "continuous integration" development model with
+quarterly snapshot releases. The latest development code is always kept
+"ready to run", and in fact runs our own sites on Wikipedia.
+
+Release branches will continue to receive security updates for about a year
+from first release, but nonessential bugfixes and feature developments
+will be made on the development trunk and appear in the next quarterly release.
+
+Those wishing to use the latest code instead of a branch release can obtain
+it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+=== Changes since 1.12.0 ===
 
 * (bug 13522) Fix fatal error in Parser::extractTagsAndParams
 * (bug 12077) Fix HTML nesting for TOC
@@ -25,46 +39,14 @@ Changes since 1.12.0:
 * API: Fixing main page display in meta=siteinfo
 * (bug 11719) API: Remove trailing blanks in YAML output.
 * (bug 13718) API: Return the proper continue parameter for cmsort=timestamp
+* Security: Work around misconfiguration by requiring strict comparisons for
+  in_array in User::isAllowed().
+* Security: Fixed XSS vulnerability in useskin parameter.
  
-== MediaWiki 1.12.0 ==
-
-This is the quarterly branch release of MediaWiki for Winter 2008.
-
-
-MediaWiki is now using a "continuous integration" development model with
-quarterly snapshot releases. The latest development code is always kept
-"ready to run", and in fact runs our own sites on Wikipedia.
-
-Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature developments
-will be made on the development trunk and appear in the next quarterly release.
-
-Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
-
-
-Changes since 1.12.0rc1:
+=== Changes since 1.12.0rc1 ===
 
 * (bug 13359) Double-escaping in Special:Allpages
 * Localization updates.
-
-
-== MediaWiki 1.12.0rc1 ==
-
-This is a release candidate of the Winter 2008 quarterly snapshot release
-of MediaWiki.
-
-
-MediaWiki is now using a "continuous integration" development model with
-quarterly snapshot releases. The latest development code is always kept
-"ready to run", and in fact runs our own sites on Wikipedia.
-
-Release branches will continue to receive security updates for about a year
-from first release, but nonessential bugfixes and feature developments
-will be made on the development trunk and appear in the next quarterly release.
-
-Those wishing to use the latest code instead of a branch release can obtain
-it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.12 ===
 * Marking edits as bot edits with Special:Contributions?bot=1 now requires the
