@@ -7,7 +7,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 October 2, 2008
 
-This is a bugfix release of the Summer 2008 snapshot release of MediaWiki.
+This is a security and bugfix release of the Summer 2008 snapshot release of 
+MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -24,8 +25,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 * Security: Work around misconfiguration by requiring strict comparisons for
   in_array in User::isAllowed().
-* (bug 14944) Detection of an appropriate locale to use for LC_CTYPE during 
-  shell invocation. For servers that don't have en_US.UTF-8. 
+* (bug 14944) Added $wgShellLocale for configuration of an appropriate locale 
+  to use for LC_CTYPE during shell invocation. For servers that don't have 
+  en_US.utf8. Also added locale detection during install.
+* Localisation updates
+* Security: Fixed XSS vulnerability in useskin parameter.
 
 == Changes since 1.13.0
 
