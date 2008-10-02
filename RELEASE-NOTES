@@ -4,12 +4,8 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.13.2 ==
-* Security: Work around misconfiguration by requiring strict comparisons for
-  in_array in User::isAllowed().
 
-== MediaWiki 1.13.1 ==
-
-September 6, 2008
+October 2, 2008
 
 This is a bugfix release of the Summer 2008 snapshot release of MediaWiki.
 
@@ -23,6 +19,13 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+== Changes since 1.13.1 ==
+
+* Security: Work around misconfiguration by requiring strict comparisons for
+  in_array in User::isAllowed().
+* (bug 14944) Detection of an appropriate locale to use for LC_CTYPE during 
+  shell invocation. For servers that don't have en_US.UTF-8. 
 
 == Changes since 1.13.0
 
