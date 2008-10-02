@@ -26,12 +26,41 @@ class Interwiki {
 	}
 
 	/**
+	 * Check whether an interwiki prefix exists
+	 * 
+	 * @return bool Whether it exists
+	 * @param $prefix string Interwiki prefix to use
+	 */
+	static public function isValidInterwiki( $prefix ){
+		global $wgContLang;
+		$prefix = $wgContLang->lc( $prefix );
+		if( isset( self::$smCache[$prefix] ) ){
+			return true;
+		}
+		global $wgInterwikiCache;
+		if ($wgInterwikiCache) {
+			return Interwiki::isValidInterwikiCached( $key );
+		}
+		$iw = new Interwiki;
+		if( !$iw->load( $prefix ) ){
+			return false;
+		}
+		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
+			array_shift( self::$smCache );
+		}
+		self::$smCache[$prefix] = &$iw;
+		return true;
+	}
+
+	/**
 	 * Fetch an Interwiki object
 	 * 
 	 * @return Interwiki Object, or null if not valid
 	 * @param $prefix string Interwiki prefix to use
 	 */
 	static public function fetch( $prefix ) {
+		global $wgContLang;
+		$prefix = $wgContLang->lc( $prefix );
 		if( isset( self::$smCache[$prefix] ) ){
 			return self::$smCache[$prefix];
 		}
@@ -40,7 +69,9 @@ class Interwiki {
 			return Interwiki::getInterwikiCached( $key );
 		}
 		$iw = new Interwiki;
-		$iw->load( $prefix );
+		if( !$iw->load( $prefix ) ){
+			return false;
+		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
 			array_shift( self::$smCache );
 		}
@@ -54,7 +85,7 @@ class Interwiki {
 	 * @note More logic is explained in DefaultSettings.
 	 *
 	 * @param $key \type{\string} Database key
-	 * @return \type{\string} URL of interwiki site
+	 * @return \type{\Interwiki} An interwiki object
 	 */
 	protected static function getInterwikiCached( $key ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
@@ -90,6 +121,44 @@ class Interwiki {
 		}
 		self::$smCache[$prefix] = &$s;
 		return $s;
+	}
+	
+	/**
+	 * Check whether an interwiki is in the cache
+	 *
+	 * @note More logic is explained in DefaultSettings.
+	 *
+	 * @param $key \type{\string} Database key
+	 * @return \type{\bool} Whether it exists
+	 */
+	protected static function isValidInterwikiCached( $key ) {
+		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		static $db, $site;
+
+		if (!$db)
+			$db=dba_open($wgInterwikiCache,'r','cdb');
+		/* Resolve site name */
+		if ($wgInterwikiScopes>=3 and !$site) {
+			$site = dba_fetch('__sites:' . wfWikiID(), $db);
+			if ($site=="")
+				$site = $wgInterwikiFallbackSite;
+		}
+		$value = dba_fetch( wfMemcKey( $key ), $db);
+		if ($value=='' and $wgInterwikiScopes>=3) {
+			/* try site-level */
+			$value = dba_fetch("_{$site}:{$key}", $db);
+		}
+		if ($value=='' and $wgInterwikiScopes>=2) {
+			/* try globals */
+			$value = dba_fetch("__global:{$key}", $db);
+		}
+		if ($value=='undef')
+			$value='';
+		if ( $value != '' ) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**
