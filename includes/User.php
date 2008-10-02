@@ -183,7 +183,7 @@ class User {
 	/**
 	 * \type{\bool} Whether the cache variables have been loaded.
 	 */
-	var $mDataLoaded;
+	var $mDataLoaded, $mAuthLoaded;
 
 	/**
 	 * \type{\string} Initialization data source if mDataLoaded==false. May be one of:
@@ -199,7 +199,8 @@ class User {
 	/** @name Lazy-initialized variables, invalidated with clearInstanceCache */
 	//@{
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mSkin, $mRights,
-		$mBlockreason, $mBlock, $mEffectiveGroups;
+		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally, 
+		$mLocked, $mHideName;
 	//@}
 
 	/**
@@ -251,6 +252,23 @@ class User {
 				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
 		}
 		wfProfileOut( __METHOD__ );
+	}
+	
+	protected function callAuthPlugin( $fname /* $args */ ) {
+		$args = func_get_args();
+		array_shift( $args );
+		// Load auth plugin conterpart functions for User functions
+		if( !$this->mAuthLoaded ) {
+			global $wgAuth;
+			$this->mAuthCallbacks = array();
+			$wgAuth->setUserCallbacks( $this, $this->mAuthCallbacks );
+			$this->mAuthLoaded = true;
+		}
+		// Try to call the auth plugin version of this function
+		if( isset($this->mAuthCallbacks[$fname]) && is_callable($this->mAuthCallbacks[$fname]) ) {
+			return call_user_func_array( $this->mAuthCallbacks[$fname], $args );
+		}
+		return NULL;
 	}
 
 	/**
@@ -1294,6 +1312,59 @@ class User {
 	function blockedFor() {
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
+	}
+	
+	/**
+	 * Check if user is blocked on all wikis.
+	 * Do not use for actual edit permission checks!
+	 * This is intented for quick UI checks.
+	 * 
+	 * @param $ip \type{\string} IP address, uses current client if none given
+	 * @return \type{\bool} True if blocked, false otherwise
+	 */
+	function isBlockedGlobally( $ip = '' ) {
+		if( $this->mBlockedGlobally !== null ) {
+			return $this->mBlockedGlobally;
+		}
+		// User is already an IP?
+		if( IP::isIPAddress( $this->getName() ) ) {
+			$ip = $this->getName();
+		} else if( !$ip ) {
+			$ip = wfGetIP();
+		}
+		$blocked = false;
+		wfRunHooks( 'UserIsBlockedGlobally', array( &$this, $ip, &$blocked ) );
+		$this->mBlockedGlobally = (bool)$blocked;
+		return $this->mBlockedGlobally;
+	}
+	
+	/**
+	 * Check if user account is locked
+	 * 
+	 * @return \type{\bool} True if locked, false otherwise
+	 */
+	function isLocked() {
+		if( $this->mLocked !== null ) {
+			return $this->mLocked;
+		}
+		$this->mLocked = (bool)$this->callAuthPlugin( __FUNCTION__ );
+		return $this->mLocked;
+	}
+	
+	/**
+	 * Check if user account is hidden
+	 * 
+	 * @return \type{\bool} True if hidden, false otherwise
+	 */
+	function isHidden() {
+		if( $this->mHideName !== null ) {
+			return $this->mHideName;
+		}
+		$this->getBlockedStatus();
+		if( !$this->mHideName ) {
+			$this->mHideName = (bool)$this->callAuthPlugin( __FUNCTION__ );
+		}
+		return $this->mHideName;
 	}
 
 	/**
