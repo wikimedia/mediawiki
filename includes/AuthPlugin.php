@@ -241,4 +241,11 @@ class AuthPlugin {
 	function getCanonicalName( $username ) {
 		return $username;
 	}
+	
+	/**
+	 * Adds any functionality to a User object in context of the auth system
+	 */
+	function setUserCallbacks( $user, &$callbacks ) {
+		return true;
+	}
 }
