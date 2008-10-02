@@ -303,7 +303,7 @@ class IPUnblockForm {
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink',
-				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'nousertalk' );
+				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'blocklist-nousertalk' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
@@ -343,7 +343,7 @@ class IPUnblockForm {
 		}
 		
 		if ( !$block->mAllowUsertalk && $wgBlockAllowsUTEdit ) {
-			$properties[] = $msg['nousertalk'];
+			$properties[] = $msg['blocklist-nousertalk'];
 		}
 
 		$properties = implode( ', ', $properties );
