@@ -204,8 +204,18 @@ class Linker {
 		}
 		wfProfileOut( __METHOD__ . '-checkPageExistence' );
 
+		$oldquery = array();
+		if( in_array( "forcearticlepath", $options ) && $query ){
+			$oldquery = $query;
+			$query = array();
+		}
+
 		# Note: we want the href attribute first, for prettiness.
 		$attribs = array( 'href' => $this->linkUrl( $target, $query, $options ) );
+		if( in_array( 'forcearticlepath', $options ) && $oldquery ){
+			$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+		}
+
 		$attribs = array_merge(
 			$attribs,
 			$this->linkAttribs( $target, $customAttribs, $options )
