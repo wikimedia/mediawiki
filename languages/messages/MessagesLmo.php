@@ -14,6 +14,7 @@
  * @author Remulazz
  * @author SabineCretella
  * @author Snowdog
+ * @author Sprüngli
  */
 
 $fallback = 'it';
@@ -43,32 +44,44 @@ süi titul dai sezziún (JavaScript)',
 'underline-never'  => 'Mai',
 
 # Dates
-'sunday'    => 'dumeniga',
-'monday'    => 'lündesdí',
-'wednesday' => 'mercurdí',
-'thursday'  => 'gjöbia',
-'friday'    => 'vendredí',
-'saturday'  => 'sábat',
-'january'   => 'ginee',
-'february'  => 'febraar',
-'march'     => 'maarz',
-'april'     => 'avriil',
-'may_long'  => 'macc',
-'june'      => 'gjügn',
-'july'      => 'lüi',
-'august'    => 'avóst',
-'september' => 'setembər',
-'october'   => 'utubər',
-'november'  => 'nuvembər',
-'december'  => 'dicember',
-'mar'       => 'mrz',
-'apr'       => 'avr',
-'may'       => 'mac',
-'jun'       => 'gjü',
-'jul'       => 'lüi',
-'aug'       => 'avo',
-'oct'       => 'utu',
-'nov'       => 'nuv',
+'sunday'        => 'dumeniga',
+'monday'        => 'lündesdí',
+'wednesday'     => 'mercurdí',
+'thursday'      => 'gjöbia',
+'friday'        => 'vendredí',
+'saturday'      => 'sábat',
+'january'       => 'ginee',
+'february'      => 'febraar',
+'march'         => 'maarz',
+'april'         => 'avriil',
+'may_long'      => 'macc',
+'june'          => 'gjügn',
+'july'          => 'lüi',
+'august'        => 'avóst',
+'september'     => 'setembər',
+'october'       => 'utubər',
+'november'      => 'nuvembər',
+'december'      => 'dicember',
+'january-gen'   => 'Giner',
+'february-gen'  => 'Fevrer',
+'march-gen'     => 'Marz',
+'april-gen'     => 'Avril',
+'may-gen'       => 'Mag',
+'june-gen'      => 'Giugn',
+'july-gen'      => 'Luj',
+'august-gen'    => 'Aoust',
+'september-gen' => 'Setember',
+'october-gen'   => 'Otober',
+'november-gen'  => 'November',
+'december-gen'  => 'Dizember',
+'mar'           => 'mrz',
+'apr'           => 'avr',
+'may'           => 'mac',
+'jun'           => 'gjü',
+'jul'           => 'lüi',
+'aug'           => 'avo',
+'oct'           => 'utu',
+'nov'           => 'nuv',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Categuria|Categurij}}',
@@ -101,6 +114,7 @@ süi titul dai sezziún (JavaScript)',
 'protect'          => 'Bloca',
 'unprotect'        => 'sbloca',
 'newpage'          => 'Pagina növa',
+'talkpagelinktext' => 'ciciarada',
 'specialpage'      => 'Pagina speciala',
 'talk'             => 'Discüssiun',
 'toolbox'          => 'Strüment',
@@ -117,6 +131,7 @@ süi titul dai sezziún (JavaScript)',
 'currentevents-url'    => 'Project:Avenimeent Receent',
 'disclaimers'          => 'Esclüsiun da respunsabilitaa',
 'edithelp'             => 'Jütt',
+'faq'                  => 'FAQ - Fera Ai Question',
 'helppage'             => 'Help:Contegnüü',
 'mainpage'             => 'Pagina prinçipala',
 'mainpage-description' => 'Pagina prinçipala',
@@ -130,6 +145,7 @@ süi titul dai sezziún (JavaScript)',
 'newmessagesdifflink'     => 'diferenza par rapòort a la versiun da prima',
 'youhavenewmessagesmulti' => "Te gh'è di messagg növ ins'el $1",
 'editsection'             => 'Mudifica',
+'editold'                 => 'edita',
 'toc'                     => 'Cuntegnüü',
 'showtoc'                 => 'varda',
 'hidetoc'                 => 'scuunt',
@@ -154,11 +170,11 @@ süi titul dai sezziún (JavaScript)',
 'editinginterface'  => "'''Attenzion''': el testo de quella pagina chì el fà part de l'interfacia utent del sitt. Tutt i modifigh che te fet se vedaran subit su i messagg visualizzaa per tutt i utent.",
 
 # Login and logout pages
-'logouttext'              => '<strong>Adess a sii descuness.</strong><br />
-A pudii ná innaanz a druvá la {{SITENAME}} in manera anònima, a pudii
-cunètas ancamò cul istéss u cunt un altar nomm. Tegnii cüünt che di
-pagin a pudarian véss visüalizaat cuma se vüü füdéssuf ancamò cuness, finn a che
-vüü a scancelii mía la memòria cava dal voost bigatt.',
+'logouttext'              => "<strong>Adess a seis descunetacc.</strong><br />
+A podé tirar innanz a dovrar la {{SITENAME}} in manera anònima, a podé
+sa cunèta amò cont l'istess o un olt nomm. Tegné cunt che di
+pagini i podressa vess fadi vider compagn che a saressov amò conetacc, fin coura che
+a scancelé mia la memòria cava dal vost bigat.",
 'welcomecreation'         => "== Benvegnüü, $1! ==
 Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz dala {{SITENAME}}.",
 'yourname'                => 'Nomm ütent',
@@ -180,13 +196,14 @@ Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz 
 'yourlanguage'            => 'Lengua:',
 'yournick'                => 'Suranomm:',
 'email'                   => 'Indirizz de pòsta elettrònica.',
-'prefs-help-email'        => 'E-mail (mia ubligatòri): ga permètt ai óltar üteent da cuntatátt senza da büsögn che i sapia la tóa identitaa.',
+'prefs-help-email'        => 'Courriel (e-mail) al é mia obligatòri, però al permet da va mandar una nœuva ciav se cas che va la desmenteghé. A podé apó scernir da lassar i olt dovracc entrar en contat con violt senza da busogn da svelar la vosta identitaa.',
 'noname'                  => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
 'loginsuccesstitle'       => "La cunessiun l'è scumenzada cun sücess.",
 'loginsuccess'            => 'Te set cuness a {{SITENAME}} cume "$1".',
 'mailmypassword'          => "Desmentegaa la parola d'urdin?",
 'emailauthenticated'      => 'Ul tò adrèss e-mail l è staa verificaa: $1.',
 'emailnotauthenticated'   => 'Ul tò adrèss da pòsta letronica l è mia staa gnamò verificaa. Nissün mesacc al saraa mandaa par i servizzi che segütan.',
+'accountcreated'          => 'Cunt bell-e-cread',
 
 # Edit pages
 'summary'              => 'Argument de la mudifica',
@@ -205,6 +222,7 @@ Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz 
 'editing'              => 'Mudifica de $1',
 'editingcomment'       => 'Redataant $1 (cumentari)',
 'yourtext'             => 'El tò test',
+'yourdiff'             => 'Diferenzi',
 'protectedpagewarning' => '<strong>ATENZIÚN: chésta pagina l è staja blucava in manéra che dumá i üteent cunt i privilegi də sysop a pòdan mudificala.</strong>',
 'templatesused'        => 'Buete duvrade in chesta pàgina - Buett duvraat in chesta pàgina:',
 
@@ -277,6 +295,17 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
 'userrights-notallowed'    => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
 
+# Groups
+'group-user' => 'Dovracc',
+
+'group-user-member' => 'Dovratt',
+
+'grouppage-user' => '{{ns:project}}:Dovracc',
+
+# Rights
+'right-edit'          => 'Edita pàgini',
+'right-createaccount' => 'Crea di nouvel cunt de dovratt',
+
 # Recent changes
 'recentchanges'     => 'Cambiameent reçeent',
 'recentchangestext' => 'In chesta pagina a inn evidenziaa i cambiameent püssee receent al wiki lumbaart.',
@@ -306,10 +335,15 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'destfilename'      => "Nomm da l'archivi da destinazziun:",
 
 # Special:ImageList
-'imagelist' => 'Listá i imàgin',
+'imgfile'        => 'archivi',
+'imagelist'      => 'Listá i imàgin',
+'imagelist_date' => 'Dada',
+'imagelist_name' => 'Nomm',
+'imagelist_user' => 'Dovratt',
 
 # Image description page
-'imagelinks' => 'Ligámm',
+'filehist-revert' => "Butar torna 'me ch'al era",
+'imagelinks'      => 'Ligámm',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -485,9 +519,19 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'import' => 'Impurtá di pagin',
 
 # Tooltip help for the actions
-'tooltip-ca-addsection'  => 'Taca un cument a questa discüssiun',
-'tooltip-ca-delete'      => 'Scancela questa pagina',
-'tooltip-t-specialpages' => 'Lista de tütt i pagin speciaal',
+'tooltip-ca-addsection'           => 'Taca un cument a questa discüssiun',
+'tooltip-ca-delete'               => 'Scancela questa pagina',
+'tooltip-n-mainpage'              => 'Visité la pàgina principala',
+'tooltip-n-portal'                => "Descripzion del proget, cossa ch'a podé far, dond trovar vergòt",
+'tooltip-n-currentevents'         => "Informazion ansima a vergòt ch'al riva.",
+'tooltip-n-recentchanges'         => 'Lista de canviamenc recenc del wiki',
+'tooltip-n-randompage'            => "Càrrega una pàgina a l'azard",
+'tooltip-n-help'                  => "Pàgini d'aida",
+'tooltip-t-whatlinkshere'         => "Lista de tuti li pàgini wiki ch'i liga scià",
+'tooltip-t-recentchangeslinked'   => 'Canviamenc recenc en li pàgini ligadi a chesta',
+'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
+'tooltip-t-specialpages'          => 'Lista de tütt i pagin speciaal',
+'tooltip-compareselectedversions' => 'Far vider li diferenzi entra li doi version selezionadi da chesta pàgina',
 
 # Attribution
 'siteuser' => '{{SITENAME}} ütent $1',

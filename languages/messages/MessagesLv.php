@@ -202,7 +202,7 @@ $messages = array(
 'deletethispage'    => 'Dzēst šo lapu',
 'undelete_short'    => 'Atjaunot $1 {{PLURAL:$1|versiju|versijas}}',
 'protect'           => 'Aizsargāt',
-'protect_change'    => 'izmainīt aizsardzību',
+'protect_change'    => 'izmainīt',
 'protectthispage'   => 'Aizsargāt šo lapu',
 'unprotect'         => 'Neaizsargāt',
 'unprotectthispage' => 'Neaizsargāt šo lapu',
@@ -297,7 +297,7 @@ $messages = array(
 # General errors
 'error'                => 'Kļūda',
 'databaseerror'        => 'Datu bāzes kļūda',
-'noconnect'            => 'Atvainojiet, šajā wiki ir radušās tehniskas grūtības un nav iespējams savienoties ar datubāžu serveri. <br />
+'noconnect'            => 'Šajā wiki ir radušās tehniskas grūtības un nav iespējams savienoties ar datubāžu serveri. <br />
 $1',
 'cachederror'          => 'Šī ir lapas saglabātā versija, iespējams, ka tā nav atjaunināta.',
 'laggedslavemode'      => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
@@ -360,7 +360,7 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'gotaccountlink'             => 'Dodies iekšā',
 'createaccountmail'          => 'pa e-pastu',
 'badretype'                  => 'Tevis ievadītās paroles nesakrīt.',
-'userexists'                 => 'Šāds lietotāja vārds jau eksistē. Lūdzu izvēlies citu vārdu.',
+'userexists'                 => 'Šāds lietotāja vārds jau eksistē. Izvēlies citu vārdu.',
 'youremail'                  => 'Tava e-pasta adrese*',
 'username'                   => 'Lietotājvārds:',
 'uid'                        => 'Lietotāja ID:',
@@ -374,14 +374,14 @@ Tam ir jābūt īsākam par  $1 {{PLURAL:$1|simbolu|simboliem}}.',
 'prefs-help-realname'        => 'Īstais vārds nav obligāts.
 Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldījumu {{grammar:lokatīvs|{{SITENAME}}}}).',
 'loginerror'                 => 'Neveiksmīga ieiešana',
-'prefs-help-email'           => '* E-pasts (nav obligāti jānorāda): Ļauj citiem sazināties ar tevi, izmantojot tavu lietotāja lapu vai lietotāja diskusiju lapu, tev nekur neatklājot savu identitāti.',
+'prefs-help-email'           => '* E-pasts nav obligāti jānorāda, taču nodrošina iespēju atsūtīt paroli, ja tu to esi aizmirsis. Šī iespēja arī ļauj citiem sazināties ar tevi, izmantojot tavu lietotāja lapu vai lietotāja diskusiju lapu, tev nekur neatklājot savu identitāti.',
 'prefs-help-email-required'  => 'E-pasta adrese ir obligāta.',
 'nocookiesnew'               => 'Lietotājvārds tika izveidots, bet tu neesi iegājis iekšā. {{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu tajā ieiet. Tavs pārlūks nepieņem tās. Lūdzu, atļauj to pieņemšanu un tad nāc iekšā ar savu lietotājvārdu un paroli.',
 'nocookieslogin'             => '{{SITENAME}} izmanto sīkdatnes (<i>cookies</i>), lai lietotāji varētu ieiet tajā. Diemžēl tavs pārlūks tos nepieņem. Lūdzu, atļauj to pieņemšanu un mēģini vēlreiz.',
 'noname'                     => 'Tu neesi norādījis derīgu lietotāja vārdu.',
 'loginsuccesstitle'          => 'Ieiešana veiksmīga',
 'loginsuccess'               => 'Tu esi ienācis {{grammar:lokatīvs|{{SITENAME}}}} kā "$1".',
-'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī izveido jaunu kontu.',
+'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:Userlogin/signup|izveido jaunu kontu]].',
 'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi, vai nav drukas kļūda.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
@@ -502,10 +502,10 @@ Lūdzu, pārliecinies vai vēlies izveidot/izmainīt šo lapu.',
 'updated'                   => '(Atjaunots)',
 'note'                      => '<strong>Piezīme: </strong>',
 'previewnote'               => '<strong>Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!</strong>',
-'session_fail_preview'      => '<strong>Atvainojiet, neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
+'session_fail_preview'      => '<strong>Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
 Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.</strong>',
-'session_fail_preview_html' => "<strong>Atvainojiet, neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.</strong>
+'session_fail_preview_html' => "<strong>Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.</strong>
 
 ''Tā, kā {{grammar:ģenitīvs|{{SITENAME}}}} darbojas neapstrādāts HTML, pirmskats ir paslēpts, lai aizsargātos no JavaScripta  uzbrukumiem.''
 
@@ -643,7 +643,7 @@ m = maznozīmīgs labojums.',
 'mypreferences'         => 'manas izvēles',
 'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
-'prefsnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai mainītu lietotāja izvēles.',
+'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
 'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
 'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
@@ -906,7 +906,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
 'sharedupload'              => 'Šis fails ir no *** [[literal]] translation',
-'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, tu vari [$1].',
+'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
 'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
 'imagepage-searchdupe'      => 'Meklēt šī faila kopijas',
@@ -1038,8 +1038,8 @@ Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir sa
 'speciallogtitlelabel' => 'Virsraksts:',
 'log'                  => 'Reģistri',
 'all-logs-page'        => 'Visi reģistri',
-'alllogstext'          => 'Augšupielādes, dzēšanas, aizsargāšanas, bloķēšanas un adminu reģistru apvienotais reģistrs.
-Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu.',
+'alllogstext'          => 'Visi pieejamie {{grammar:akuzatīvs{{SITENAME}}}} reģistri.
+Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu. Visi teksta lauki izšķir lielos un mazos burtus.',
 'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',
 
 # Special:AllPages
@@ -1118,6 +1118,38 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Uzrauga...',
 'unwatching' => 'Neuzrauga...',
+
+'enotif_reset'       => 'Atzīmēt visas lapas kā apskatītas',
+'enotif_newpagetext' => 'Šī ir jauna lapa.',
+'changed'            => 'izmainīja',
+'created'            => 'izveidoja',
+'enotif_subject'     => '{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED lietotājs $PAGEEDITOR',
+'enotif_lastvisited' => '$1 lai apskatītos visas izmaiņas kopš tava pēdējā apmeklējuma.',
+'enotif_lastdiff'    => '$1 lai apskatītos šo izmaiņu.',
+'enotif_body'        => '$WATCHINGUSERNAME,
+
+
+{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED $PAGEEDITOR, $PAGEEDITDATE, pašreizējā versja ir $PAGETITLE_URL.
+
+$NEWPAGE
+
+Izmaiņu kopsavilkums bija: $PAGESUMMARY $PAGEMINOREDIT
+
+Sazināties ar attiecīgo lietotāju:
+e-pasts: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
+
+Ja šo uzraugāmo lapu izmainīs vēl, turpmāku paziņojumu par to nebūs, kamēr tu to neatvērsi.
+Tu arī vari noresetot visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu sarakstā.
+
+             {{grammar:ģenitīvs|{{SITENAME}}}} paziņojumu sistēma
+
+--
+Lai izmainītu uzraugāmo lapu saraksta uzstādījumus:
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Papildus informācija:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete/protect/revert
 'deletepage'                  => 'Dzēst lapu',
@@ -1476,7 +1508,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{ns:special}}:Expor
 # Spam protection
 'spamprotectiontitle' => 'Spama filtrs',
 'spamprotectiontext'  => 'Lapu, kuru tu gribēji saglabāt, nobloķēja spama filtrs.
-To visticamāk izraisīja ārēja saite.',
+To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta vietni.',
 'spamprotectionmatch' => 'Spama filtram radās iebildumi pret šo tekstu: $1',
 'spam_reverting'      => 'Atjauno iepriekšējo versiju, kas nesatur saiti uz $1',
 
@@ -1494,8 +1526,8 @@ To visticamāk izraisīja ārēja saite.',
 'mw_math_mathml' => 'MathML, ja iespējams (eksperimentāla iespēja)',
 
 # Browsing diffs
-'previousdiff' => '← Salīdzināt ar iepriekšējo versiju',
-'nextdiff'     => 'Salīdzināt ar nākamo versiju →',
+'previousdiff' => '← Vecāka versija',
+'nextdiff'     => 'Jaunāka versija →',
 
 # Media information
 'mediawarning'         => "'''Brīdinājums''': Šis fails var saturēt kaitīgu kodu, kuru izpildot tavā datorā var salīst vīrusi (un citas nejaucības).<hr />",
@@ -1596,7 +1628,7 @@ ja tu nupat izveidoji savu kontu, varētu drusku pagaidīt, kamēr tas kods pien
 'confirmemail_sent'        => 'Apstiprināšanas e-pasts nosūtīts.',
 'confirmemail_oncreate'    => 'Apstiprinājuma kods tika nosūtīts uz tavu e-pasta adresi.
 Šīs kods nav nepieciešams, lai varētu ielogoties, bet tas būs vajadzīgs lai pieslēgtu visas e-pasta bāzētās funkcijas šajā wiki.',
-'confirmemail_sendfailed'  => 'Nevarējām nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
+'confirmemail_sendfailed'  => '{{SITENAME}} nevarēja nosūtīt apstiprināšanas e-pastu. Pārbaudi, vai adresē nav kāds nepareizs simbols.
 
 Nosūtīšanas programma atmeta atpakaļ: $1',
 'confirmemail_invalid'     => 'Nederīgs apstiprināšanas kods. Iespējams, beidzies tā termiņš.',
@@ -1621,11 +1653,11 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Starpviki saišu iekļaušana ir atspējota.]',
-'scarytranscludefailed'   => '[Atvaino, neizdevās ienest veidni $1.]',
-'scarytranscludetoolong'  => '[Atvaino, URL adrese ir pārāk gara.]',
+'scarytranscludefailed'   => '[Neizdevās ienest veidni $1.]',
+'scarytranscludetoolong'  => '[URL adrese ir pārāk gara.]',
 
 # Delete conflict
-'deletedwhileediting' => 'Brīdinājums: Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!',
+'deletedwhileediting' => "'''Brīdinājums:''' Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!",
 'confirmrecreate'     => "Lietotājs [[User:$1|$1]] ([[User talk:$1|diskusija]]) izdzēssaa šo lapu, pēc tam, kad tu to biji sācis rediģēt, ar iemeslu:
 : ''$2''
 Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",

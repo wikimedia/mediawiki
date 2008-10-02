@@ -214,7 +214,7 @@ $messages = array(
 'deletethispage'    => 'Skrap bladsy',
 'undelete_short'    => 'Herstel {{PLURAL:$1|een wysiging|$1 wysigings}}',
 'protect'           => 'Beskerm',
-'protect_change'    => 'wysig beskerming',
+'protect_change'    => 'wysig',
 'protectthispage'   => 'Beskerm hierdie bladsy',
 'unprotect'         => 'Verwyder beskerming',
 'unprotectthispage' => 'Verwyder beskerming',
@@ -336,7 +336,8 @@ Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
 MySQL foutboodskap "<tt>$3: $4</tt>".',
-'noconnect'            => 'Kon nie met databasis op $1 konnekteer nie',
+'noconnect'            => 'Die wiki ondervind tegniese probleme en kon nie na die databasis konnekteer nie.<br />
+$1',
 'nodb'                 => 'Kon nie databasis $1 selekteer nie',
 'cachederror'          => "Die volgende is 'n gekaste kopie van die aangevraagde blad, en is dalk nie op datum nie.",
 'laggedslavemode'      => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
@@ -431,7 +432,8 @@ moenie vergeet om jou persoonlike voorkeure te stel nie.',
 'gotaccountlink'             => 'Teken in',
 'createaccountmail'          => 'deur e-pos',
 'badretype'                  => 'Die ingetikte wagwoorde is nie dieselfde nie.',
-'userexists'                 => "Die gebruikersnaam wat jy gebruik het, is alreeds gebruik. Kies asseblief 'n ander gebruikersnaam.",
+'userexists'                 => "Die gebruikersnaam wat jy gekies het is reeds geneem.
+Kies asseblief 'n ander naam.",
 'youremail'                  => 'E-pos',
 'username'                   => 'Gebruikersnaam:',
 'uid'                        => 'Gebruiker-ID:',
@@ -445,7 +447,8 @@ Dit moet minder as $1 {{PLURAL:$1|karakter|karakters}} wees.',
 'email'                      => 'E-pos',
 'prefs-help-realname'        => 'Regte naam (opsioneel): as u hierdie verskaf, kan dit gebruik word om erkenning vir u werk te gee.',
 'loginerror'                 => 'Intekenfout',
-'prefs-help-email'           => 'E-pos (opsioneel): Maak dit vir ander moontlik om u te kontak deur u gebruikerblad sonder dat u identiteit verraai word.',
+'prefs-help-email'           => 'E-posadres is opsioneel, maar maak dit moontlik om u wagwoord aan u te pos sou u dit vergeet. 
+U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of besprekingsblad wysig sonder om u identiteit te verraai.',
 'prefs-help-email-required'  => 'E-pos adres word benodig.',
 'nocookiesnew'               => 'Die gebruikersrekening is geskep, maar u is nie ingeteken nie.
 {{SITENAME}} gebruik koekies om gebruikers in te teken.
@@ -455,21 +458,19 @@ Stel u rekenaar om dit te aanvaar, dan kan u met u nuwe naam en wagwoord inteken
 'noname'                     => 'Ongeldige gebruikersnaam.',
 'loginsuccesstitle'          => 'Suksesvolle intekening',
 'loginsuccess'               => 'U is ingeteken by {{SITENAME}} as "$1".',
-'nosuchuser'                 => 'Daar is geen gebruikersnaam "$1" nie. Maak seker dit is reg gespel, of gebruik die vorm hier onder om \'n nuwe rekening te skep.',
+'nosuchuser'                 => 'Die gebruiker "$1" bestaan nie. 
+Maak seker dit is reg gespel of [[Special:Userlogin/signup|skep \'n nuwe rekening]].',
 'nosuchusershort'            => 'Daar is geen gebruikersnaam "<nowiki>$1</nowiki>" nie. Maak seker dit is reg gespel.',
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
 'passwordtooshort'           => 'U wagwoord is te kort.
 Dit moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} hê en kan nie jou gebruikersnaam insluit nie.',
-'mailmypassword'             => 'E-pos nuwe wagwoord',
+'mailmypassword'             => "E-pos my 'n nuwe wagwoord",
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
-'passwordremindertext'       => 'Iemand (waarskynlik U, van IP-adres $1)
-het gevra dat ons vir U \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
-Die wagwoord vir gebruiker "$2" is nou "$3".
-Teken asseblief in en verander U wagwoord.
+'passwordremindertext'       => 'Iemand (waarskynlik u vanaf IP-adres $1) het \'n nuwe wagwoord vir {{SITENAME}} ($4) gevra. \'n Tydelike wagwoord is vir gebruiker "$2" geskep. Die nuwe wagwoord is "$3". U kan met die tydelike wagwoord aanteken en \'n nuwe wagwoord stel.
 
-Indien iemand anders hierdie navraag gerig het of as U die wagwoord onthou en U nie meer die wagwoord wil wysig nie, kan U hierdie boodskap ignoreer en voortgaan om U ou wagwoord te gebruik.',
+Indien iemand anders hierdie navraag gerig het, of u het die wagwoord intussen onthou en wil nie meer die wagwoord wysig nie, kan u die boodskap ignoreer en voortgaan om die ou wagwoord te gebruik.',
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
 'passwordsent'               => 'Nuwe wagwoord gestuur na e-posadres vir "$1".
 Teken asseblief in na jy dit ontvang het.',
@@ -485,8 +486,8 @@ Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}}
 'emailnotauthenticated'      => 'U e-poasadres is <strong>nog nie bevestig nie</strong>. Geen e-pos sal gestuur word vir die volgende funksies nie.',
 'noemailprefs'               => "Spesifiseer 'n eposadres vir hierdie funksies om te werk.",
 'emailconfirmlink'           => 'Bevestig u e-posadres',
-'invalidemailaddress'        => "Die e-posadres kan nie aanvaar word nie, aangesien dit 'n ongeldige formaat blyk te hê.
-Voer asseblief 'n korrek geformateerde adres in, of verwyder die inhoud in daardie afdeling.",
+'invalidemailaddress'        => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
+Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 'accountcreated'             => 'Rekening geskep',
 'accountcreatedtext'         => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title'        => 'Rekeningskepping vir {{SITENAME}}',
@@ -600,14 +601,15 @@ Indien jy per ongeluk hier is, gebruik jou blaaier se '''terug''' knoppie.",
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssjsyoucanpreview'           => '<strong>Wenk:</strong> Gebruik die "Wys voorskou"-knoppie om u nuwe CSS/JS te toets voor u stoor.',
-'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u gebruiker-CSS, dit is nog nie gestoor nie.'''",
+'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
+'''Dit is nog nie gestoor nie!'''",
 'userjspreview'                    => "'''Onthou hierdie is slegs 'n toets/voorskou van u gebruiker-JavaScript, dit is nog nie gestoor nie.'''",
 'updated'                          => '(Gewysig)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => "<strong>Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!</strong>",
 'previewconflict'                  => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien jy die bladsy stoor.',
 'session_fail_preview'             => '<strong>Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
-Probeer asseblief weer. As dit steeds nie werk nie, probeer om af en weer aan te teken.</strong>',
+Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.</strong>',
 'session_fail_preview_html'        => "<strong>Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.</strong>
 
 ''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''
@@ -820,8 +822,7 @@ bevat, word gewys).",
 'mypreferences'            => 'My voorkeure',
 'prefs-edits'              => 'Aantal wysigings:',
 'prefsnologin'             => 'Nie ingeteken nie',
-'prefsnologintext'         => 'Jy moet [[Special:UserLogin|ingeteken wees]]
-om voorkeure te spesifiseer.',
+'prefsnologintext'         => 'Jy moet <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aanteken] om voorkeure te kan verander.',
 'prefsreset'               => 'Voorkeure is herstel.',
 'qbsettings'               => 'Snelbalkvoorkeure',
 'qbsettings-none'          => 'Geen',
@@ -1114,8 +1115,8 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'shareduploadduplicate-linktext' => "'n ander lêer",
 'shareduploadconflict'           => 'Die lêer het dieselfde naam as $1 in die gedeelde mediabank.',
 'shareduploadconflict-linktext'  => "'n ander lêer",
-'noimage'                        => "Geen lêer met so 'n naam bestaan nie; $1 gerus.",
-'noimage-linktext'               => 'laai dit',
+'noimage'                        => "Daar bestaan nie 'n lêer met so 'n naam nie, maar u kan $1.",
+'noimage-linktext'               => 'een oplaai',
 'uploadnewversion-linktext'      => 'Laai een nuwe weergawe van hierdie lêer',
 'imagepage-searchdupe'           => 'Soek vir duplikaat lêers',
 
@@ -1352,7 +1353,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek "verwyder van dophouly
 'notanarticle'         => "Nie 'n artikel",
 'notvisiblerev'        => 'Weergawe is verwyder',
 'watchnochange'        => 'Geen item op die dophoulys is geredigeer in die gekose periode nie.',
-'watchlist-details'    => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in dophoulys, besprekingsbladsye uitgesluit.',
+'watchlist-details'    => '{{PLURAL:$1|$1 bladsy|$1 bladsye}} in jou dophoulys, besprekingsbladsye uitgesluit.',
 'wlheader-enotif'      => '* E-pos notifikasie is aangeskakel.',
 'wlheader-showupdated' => "* Bladsye wat verander is sedert u hulle laas besoek het word in '''vetdruk''' uitgewys",
 'watchmethod-recent'   => 'Kontroleer onlangse wysigings aan bladsye op dophoulys',
@@ -1659,7 +1660,7 @@ maak asseblief seker dat jy die gevolge van hierdie aksie verstaan voordat jy vo
 
 Indien wel sal u self die blad moet skuif of versmelt (indien nodig).",
 'movearticle'             => 'Skuif bladsy',
-'movenotallowed'          => 'U het nie regte om bladsye op {{SITENAME}} te skuif nie.',
+'movenotallowed'          => 'U het nie regte om bladsye te skuif nie.',
 'newtitle'                => 'Na nuwe titel',
 'move-watch'              => 'Hou hierdie bladsy dop',
 'movepagebtn'             => 'Skuif bladsy',
@@ -1718,9 +1719,10 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{ns:special
 'allmessagesmodified'       => 'Wys slegs gewysigdes',
 
 # Thumbnails
-'thumbnail-more'  => 'Vergroot',
-'filemissing'     => 'Lêer is weg',
-'thumbnail_error' => 'Fout met die skep van duimnaelsketse: $1',
+'thumbnail-more'           => 'Vergroot',
+'filemissing'              => 'Lêer is weg',
+'thumbnail_error'          => 'Fout met die skep van duimnaelsketse: $1',
+'thumbnail_invalid_params' => 'Ongeldige parameters vir duimnaelskets',
 
 # Special:Import
 'import'                     => 'Voer bladsye in',
@@ -1862,6 +1864,7 @@ $1',
 
 # Media information
 'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',
 'file-info-size'       => '($1 × $2 pixels, lêergrootte: $3, MIME type: $4)',
@@ -1921,6 +1924,7 @@ Ander velde sal versteek wees.
 'exif-colorspace'          => 'Kleurruimte',
 'exif-makernote'           => 'Notas van vervaardiger',
 'exif-usercomment'         => 'Opmerkings',
+'exif-datetimeoriginal'    => 'Gegewens opgestel op',
 'exif-exposuretime'        => 'Beligtingstyd',
 'exif-exposuretime-format' => '$1 sek ($2)',
 'exif-fnumber'             => 'F-getal',
@@ -1929,6 +1933,7 @@ Ander velde sal versteek wees.
 'exif-brightnessvalue'     => 'Helderheid',
 'exif-lightsource'         => 'Ligbron',
 'exif-flash'               => 'Flits',
+'exif-focallength'         => 'Brandpuntsafstand',
 'exif-flashenergy'         => 'Flitssterkte',
 'exif-exposureindex'       => 'Beligtingsindeks',
 'exif-filesource'          => 'Lêerbron',
@@ -2096,14 +2101,14 @@ Hierde bevestigingkode verval om $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablone is afgeskakel]',
-'scarytranscludefailed'   => '[Sjabloon $1 kon nie gelaai word nie; jammer]',
-'scarytranscludetoolong'  => '[URL is te lank; jammer]',
+'scarytranscludefailed'   => '[Sjabloon $1 kon nie gelaai word nie]',
+'scarytranscludetoolong'  => '[Die URL is te lank]',
 
 # Trackbacks
 'trackbackremove' => ' ([$1 Skrap])',
 
 # Delete conflict
-'deletedwhileediting' => 'Let op: die bladsy was verwyder terwyl u besig was om dit te wysig!',
+'deletedwhileediting' => "'''Let op''': die bladsy is verwyder terwyl u besig was om dit te wysig!",
 'confirmrecreate'     => "Gebruiker [[User:$1|$1]] ([[User talk:$1|bespreek]]) het hierdie blad uitgevee ná u begin redigeer het met rede: : ''$2''
 Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'recreate'            => 'Herskep',

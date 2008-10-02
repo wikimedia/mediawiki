@@ -273,7 +273,7 @@ $messages = array(
 'hidden-category-category'       => 'Skjulte kategorier', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Denne kategorien har kun den følgende underkategorien.|Denne kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}, av totalt $2.}}',
 'category-subcat-count-limited'  => 'Kategorien har følgende {{PLURAL:$1|underkategori|$1 underkategorier}}.',
-'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende siden.|Følgende {{PLURAL:$1side|$1 sider}} er i denne kategorien, av totalt $2.}}',
+'category-article-count'         => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende siden.|Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien, av totalt $2.}}',
 'category-article-count-limited' => 'Følgende {{PLURAL:$1|side|$1 sider}} er i denne kategorien.',
 'category-file-count'            => '{{PLURAL:$2|Denne kategorien inneholder kun den følgende filen.|Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien, av totalt $2.}}',
 'category-file-count-limited'    => 'Følgende {{PLURAL:$1|fil|$1 filer}} er i denne kategorien.',
@@ -298,7 +298,7 @@ $messages = array(
 'qbpageinfo'     => 'Sideinformasjon',
 'qbmyoptions'    => 'Egne innstillinger',
 'qbspecialpages' => 'Spesialsider',
-'moredotdotdot'  => 'Mer&nbsp;…',
+'moredotdotdot'  => 'Mer …',
 'mypage'         => 'Min side',
 'mytalk'         => 'Min diskusjonsside',
 'anontalk'       => 'Brukerdiskusjon for denne IP-adressen',
@@ -331,7 +331,7 @@ $messages = array(
 'deletethispage'    => 'Slett denne siden',
 'undelete_short'    => 'Gjenopprett {{PLURAL:$1|én revisjon|$1 revisjoner}}',
 'protect'           => 'Lås',
-'protect_change'    => 'endre beskyttelse',
+'protect_change'    => 'endre',
 'protectthispage'   => 'Lås siden',
 'unprotect'         => 'Åpne',
 'unprotectthispage' => 'Åpne siden',
@@ -445,7 +445,8 @@ $messages = array(
 'databaseerror'        => 'databasefeil',
 'dberrortext'          => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: <blockquote><tt>$1</tt></blockquote> fra funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: «$1» fra funksjonen «$2». MySQL returnerte feilen «$3: $4».',
-'noconnect'            => 'Beklager! Wikien har tekniske problemer, og kan ikke kontakte databasetjeneren.<br />$1',
+'noconnect'            => 'Beklager! Wikien har tekniske problemer, og kan ikke kontakte databasetjeneren.
+<br />$1',
 'nodb'                 => 'Klarte ikke å velge databasen $1',
 'cachederror'          => 'Det følgende er en lagret kopi av den ønskede siden, og er ikke nødvendigvis oppdatert.',
 'laggedslavemode'      => 'Advarsel: Dette kan være en eldre versjon av siden.',
@@ -551,14 +552,16 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'email'                      => 'E-post',
 'prefs-help-realname'        => '* Virkelig navn (valgfritt): dersom du velger å oppgi navnet, vil det bli brukt til å kreditere deg for ditt arbeid.',
 'loginerror'                 => 'Innloggingsfeil',
-'prefs-help-email'           => '* E-post (valgfritt): Gjør at andre kan kontakte deg uten at identiteten din blir avslørt.',
+'prefs-help-email'           => 'Å angi e-postadresse er valgfritt, men lar det motta nytt passord om du glemmer det gamle.
+Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten å røpe identiteten din.',
 'prefs-help-email-required'  => 'E-postadresse er påkrevd.',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
 'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem på og prøv igjen.',
 'noname'                     => 'Du har ikke oppgitt et gyldig brukernavn.',
 'loginsuccesstitle'          => 'Du er nå logget inn',
 'loginsuccess'               => 'Du er nå logget inn på {{SITENAME}} som «$1».',
-'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1». Sjekk stavemåten eller opprett en ny konto.',
+'nosuchuser'                 => '!Det eksisterer ingen bruker ved navn «$1».
+Sjekk stavemåten eller [[Special:Userlogin/signup|opprett en ny konto]].',
 'nosuchusershort'            => 'Det finnes ingen bruker ved navn «<nowiki>$1</nowiki>». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
@@ -567,9 +570,14 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}} og kan ikke være det samme som brukernavnet ditt.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt midlertidig passord fra {{SITENAME}}',
-'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt passord til {{SITENAME}} ($4). Passordet for kontoen «$2» er nå «$3». Du burde logge inn og endre pasordet nå.
+'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt
+passord til {{SITENAME}} ($4). Et midlertidig passord for «$2» har
+blitt laget og sendt til «$3». Om det var det du ville, må du logge inn
+og velge et nytt passord nå.
 
-Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden og fortsette å bruke det gamle passordet.',
+Dersom denne forespørselen ble utført av noen andre, eller om du kom på passordet
+og ikke lenger ønsker å endre det, kan du ignorere denne beskjeden
+og fortsette å bruke det gamle passordet.',
 'noemail'                    => 'Det er ikke registrert noen e-postadresse for brukeren «$1».',
 'passwordsent'               => 'Et nytt passord har blitt sendt til e-postadressen registrert på bruker «$1». Logg inn når du har mottatt det nye passordet.',
 'blocked-mailpassword'       => 'IP-adressen din er blokkert fra å redigere, og for å forhindre misbruk kan du heller ikke bruke funksjonen som gir deg nytt passord.',
@@ -582,7 +590,8 @@ For å forhindre misbruk kan kun én passordpåminnelse sendes per {{PLURAL:$1|t
 'emailnotauthenticated'      => 'Din e-postadresse er ikke bekreftet. Du vil ikke kunne motta e-post for noen av følgende egenskaper.',
 'noemailprefs'               => 'Oppgi en e-postadresse for at disse funksjonene skal fungere.',
 'emailconfirmlink'           => 'Bekreft e-postadressen din.',
-'invalidemailaddress'        => 'Din e-postadresse kan ikke aksepteres, fordi den er ugyldig formatert. Skriv inn en fungerende e-postadresse eller tøm feltet.',
+'invalidemailaddress'        => 'Din e-postadresse kan ikke aksepteres, fordi den er ugyldig formatert.
+Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'accountcreated'             => 'Konto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
 'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
@@ -940,7 +949,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'mypreferences'            => 'Innstillinger',
 'prefs-edits'              => 'Antall redigeringer:',
 'prefsnologin'             => 'Ikke logget inn',
-'prefsnologintext'         => 'Du må være [[Special:UserLogin|logget inn]] for å endre brukerinnstillingene.',
+'prefsnologintext'         => 'Du må være <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
 'prefsreset'               => 'Brukerinnstillingene er tilbakestilt.',
 'qbsettings'               => 'Brukerinnstillinger for hurtigmeny.',
 'qbsettings-none'          => 'Ingen',
@@ -1194,9 +1203,12 @@ Den eneste forskjellen ligger i store/små bokstaver i filendelsen. Vennligst sj
 'fileexists-thumb'            => "<center>'''Eksisterende fil'''</center>",
 'fileexists-thumbnail-yes'    => 'Filen ser ut til å være et bilde av redusert størrelse. Vennligst sjekk filen <strong><tt>$1</tt></strong>.<br />
 Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
-'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>. Det virker som om det er et bilde av redusert størrelse. Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
+'file-thumbnail-no'           => 'Filnavnet begynner med <strong><tt>$1</tt></strong>.
+Det virker som om det er et bilde av redusert størrelse <i>(miniatyrbilde)</i>.
+Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.',
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før; gå tilbake og last opp filen under et nytt navn. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret; gå tilbake og last opp fila under et nytt navn. [[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
+Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'successfulupload'            => 'Opplastingen er gjennomført',
 'uploadwarning'               => 'Opplastingsadvarsel',
@@ -1290,8 +1302,8 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'shareduploadduplicate-linktext' => 'en annen fil',
 'shareduploadconflict'           => 'Denne filen har samme navn som $1 fra det delte lagringsområdet.',
 'shareduploadconflict-linktext'  => 'en annen fil',
-'noimage'                        => 'Ingen fil ved dette navnet finnes, du kan $1.',
-'noimage-linktext'               => 'laste det opp',
+'noimage'                        => 'Ingen fil ved dette navnet finnes, men du kan $1.',
+'noimage-linktext'               => 'laste opp ett',
 'uploadnewversion-linktext'      => 'Last opp en ny versjon av denne fila',
 'imagepage-searchdupe'           => 'Søk etter duplikatfiler',
 
@@ -1314,7 +1326,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'filedelete-submit'           => 'Slett',
 'filedelete-success'          => "'''$1''' ble slettet.",
 'filedelete-success-old'      => "Versjonen av '''[[Media:$1|$1]]''' à $3, $2 ble slettet.",
-'filedelete-nofile'           => "'''$1''' finnes ikke på {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' finnes ikke.",
 'filedelete-nofile-old'       => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
 'filedelete-iscurrent'        => 'Du forsøker å slette den nyeste versjonen av denne filen. Vennligst tilbakestill til en eldre versjon først.',
 'filedelete-otherreason'      => 'Annen/utdypende grunn:',
@@ -1453,7 +1465,8 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'all-logs-page'        => 'Alle logger',
 'log-search-legend'    => 'Søk i loggene.',
 'log-search-submit'    => 'Gå',
-'alllogstext'          => 'Kombinert visning av alle loggene. Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket.',
+'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
+Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små boktaver).',
 'logempty'             => 'Ingen elementer i loggen.',
 'log-title-wildcard'   => 'Søk i titler som starter med denne teksten',
 
@@ -1501,7 +1514,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'mailnologintext' => 'Du må være [[Special:UserLogin|logget inn]] og ha en gyldig e-postadresse satt i [[Special:Preferences|brukerinnstillingene]] for å sende e-post til andre brukere.',
 'emailuser'       => 'E-post til denne brukeren',
 'emailpage'       => 'E-post til bruker',
-'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig e-postadresse i sine innstillinger, vil dette skjemaet sende en enkelt beskjed.
+'emailpagetext'   => 'Hvis denne brukeren har oppgitt en gyldig e-postadresse i sine innstillinger, vil dette skjemaet sende én beskjed.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
 'defemailsubject' => 'E-post fra {{SITENAME}}',
@@ -1682,7 +1695,9 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 'viewdeletedpage'              => 'Vis slettede sider',
 'undeletepagetext'             => 'Følgende sider er slettet, men finnes fortsatt i arkivet og kan gjenopprettes. Arkivet blir periodevis slettet.',
 'undelete-fieldset-title'      => 'Gjenopprett revisjoner',
-'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''Gjenopprett'''. For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''Gjenopprett'''.",
+'undeleteextrahelp'            => "For å gjenopprette hele siden, la alle boksene være som de er, og klikk '''''Gjenopprett'''''.
+For å gjenopprette kun deler, kryss av revisjonenes bokser, og klikk '''''Gjenopprett'''''.
+Å klikke '''''Nullstill''''' vil føre til at alle tekstfelt og bokser gjøres blanke.",
 'undeleterevisions'            => '{{PLURAL:$1|Én versjon arkivert|$1 versjoner arkiverte}}',
 'undeletehistory'              => 'Om du gjenoppretter siden vil alle revisjoner gjenopprettes i historikken.
 Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gjenopprettede revisjonene dukke opp før denne i redigeringshistorikken.',
@@ -1885,7 +1900,7 @@ vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 
 I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt.",
 'movearticle'             => 'Flytt side:',
-'movenotallowed'          => 'Du har ikke tillatelse til å flytte sider på {{SITENAME}}.',
+'movenotallowed'          => 'Du har ikke tillatelse til å flytte sider.',
 'newtitle'                => 'Ny tittel',
 'move-watch'              => 'Overvåk denne siden',
 'movepagebtn'             => 'Flytt side',
@@ -2094,7 +2109,8 @@ Besøk [http://translatewiki.net Betawiki] om du ønsker å bidra med oversettel
 
 # Spam protection
 'spamprotectiontitle' => 'Søppelpostfilter',
-'spamprotectiontext'  => 'Siden du ønsket å lagre ble blokkert av spamfilteret. Dette er sannsynligvis forårsaket av en lenke til et eksternt nettsted.',
+'spamprotectiontext'  => 'Siden du ønsket å lagre ble blokkert av spamfilteret.
+Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nettsted.',
 'spamprotectionmatch' => 'Følgende tekst er det som aktiverte spamfilteret: $1',
 'spambot_username'    => 'MediaWikis spamopprydning',
 'spam_reverting'      => 'Tilbakestiller til siste versjon uten lenke til $1',
@@ -2145,8 +2161,8 @@ $1',
 'filedelete-archive-read-only'    => 'Arkivmappa «$1» kan ikke skrives av tjeneren.',
 
 # Browsing diffs
-'previousdiff' => '← Gå til forrige revisjon',
-'nextdiff'     => 'Gå til neste diff →',
+'previousdiff' => '← Eldre redigering',
+'nextdiff'     => 'Nyere redigering →',
 
 # Media information
 'mediawarning'         => "'''Advarsel''': Denne fila kan inneholde farlig kode; ved å åpne den kan systemet ditt kompromitteres.<hr />",
@@ -2457,7 +2473,7 @@ Rotert 90° mot klokka og vridd vertikalt', # 0th row: left; 0th column: top
 
 # E-mail address confirmation
 'confirmemail'             => 'Bekreft e-postadresse',
-'confirmemail_noemail'     => 'Du har ikke oppgitt en gydlig e-postadresse i [[Special:Preferences|innstillingene dine]].',
+'confirmemail_noemail'     => 'Du har ikke oppgitt en gyldig e-postadresse i [[Special:Preferences|innstillingene dine]].',
 'confirmemail_text'        => 'Du må bekrefte e-postadressen din før du kan benytte deg av e-posttjenester på {{SITENAME}}. Trykk på knappen under for å sende en bekreftelsesmelding til e-postadressen din. Meldingen vil inneholde en lenke med en kode; følg lenken for å bekrefte at e-postadressen er gyldig.',
 'confirmemail_pending'     => '<div class="error">
 En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opprettet kontoen din, kan du ønske å vente noen minutter før du spør om ny kode.
@@ -2465,7 +2481,8 @@ En bekreftelseskode har allerede blitt sendt til deg på e-post; om du nylig opp
 'confirmemail_send'        => 'Send en bekreftelseskode.',
 'confirmemail_sent'        => 'Bekreftelsesmelding sendt.',
 'confirmemail_oncreate'    => 'En bekreftelseskode ble sendt til din e-postadresse. Denne koden er ikke nødvendig for å logge inn, men er nødvendig for å slå på e-postbaserte tjenester i denne wikien.',
-'confirmemail_sendfailed'  => 'Klarte ikke å sende bekreftelseskode. Sjekk e-postadressen for ugyldige tegn.
+'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikke å sende bekreftelseskode.
+Sjekk e-postadressen for ugyldige tegn.
 
 E-postsenderen ga følgende melding: $1',
 'confirmemail_invalid'     => 'Ugyldig bekreftelseskode. Koden kan ha utløpt.',
@@ -2490,8 +2507,8 @@ Denne bekreftelseskoden utgår $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-transkludering er slått av]',
-'scarytranscludefailed'   => '[Malen kunne ikke hentes for $1; beklager]',
-'scarytranscludetoolong'  => '[URL-en er for lang; beklager]',
+'scarytranscludefailed'   => '[Malen kunne ikke hentes for $1]',
+'scarytranscludetoolong'  => '[URL-en er for lang]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2503,7 +2520,7 @@ $1
 'trackbackdeleteok' => 'Tilbakesporingen ble slettet.',
 
 # Delete conflict
-'deletedwhileediting' => 'Advarsel: Denne siden har blitt slettet etter at du begynte å redigere den!',
+'deletedwhileediting' => "'''Advarsel:''' Denne siden har blitt slettet etter at du begynte å redigere den!",
 'confirmrecreate'     => '«[[User:$1|$1]]» ([[User talk:$1|diskusjon]]) slettet siden etter at du begynte å redigere den, med begrunnelsen «$2». Vennligst bekreft at du vil gjenopprette siden.',
 'recreate'            => 'Gjenopprett',
 

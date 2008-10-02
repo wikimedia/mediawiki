@@ -204,7 +204,7 @@ I seguenti colegamenti i xe in lengua inglese:
 'deletethispage'    => 'Scanceła pàxena',
 'undelete_short'    => 'Recupera {{PLURAL:$1|una revision|$1 revision}}',
 'protect'           => 'Protègi',
-'protect_change'    => 'modifica protezion',
+'protect_change'    => 'cànbia',
 'protectthispage'   => 'Protegi sta pàxena',
 'unprotect'         => 'sbloca',
 'unprotectthispage' => 'Cava protession',
@@ -328,7 +328,8 @@ L\'ultima richiesta al database l\'è stà:
 "$1"
 da la funsion "$2".
 MySQL gà restituìo l\'eror "$3: $4".',
-'noconnect'            => 'Conession al database falìa su $1',
+'noconnect'            => 'Ghe xe qualche problema tènico su sta wiki, e no se riesse a conétarse al database.<br />
+$1',
 'nodb'                 => 'Selezion del database $1 mìa riussìa',
 'cachederror'          => 'La seguente la xè na copia de riserva de la pagina richiesta, e la podarìa no èssar mìa agiornà.',
 'laggedslavemode'      => 'Ocio: la pàxena la podarìa no contegner mìa i ultimi agiornamenti.',
@@ -422,7 +423,7 @@ No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de 
 'createaccountmail'          => 'par e-mail',
 'badretype'                  => 'Le password che te ghè immesso no le coincide, le xè diverse fra de lore.',
 'userexists'                 => "El nome utente che ti gà inserìo el xe zà doparà da n'altro utente.
-Par piaser siegli un nome difarente.",
+Inserissi un nome difarente.",
 'youremail'                  => 'La to e-mail',
 'username'                   => 'Nome utente',
 'uid'                        => 'ID utente:',
@@ -437,14 +438,15 @@ La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
 'email'                      => 'Indirizo e-mail',
 'prefs-help-realname'        => 'Indicar el proprio nome vero no xe obligatorio; se te siegli de inserirlo, el vegnarà doparà par atribuir la paternità dei contenuti invià.',
 'loginerror'                 => "Eror ne l'acesso",
-'prefs-help-email'           => "L'inserimento del proprio indirizo e-mail no'l xe obligatorio. Se te siegli de inserirlo, el te consente de èssar contatà atraverso la to pagina utente o la relativa pagina de discussion, senza verghe da rivelar la to identità.",
+'prefs-help-email'           => "L'inserimento del proprio indirizo e-mail no'l xe obligatorio, ma el te consente de farte spedir la password se te te la desménteghi.
+In più te pol anca farte contatar da altri tramite la to pagina personale o la pagina de discussion, sensa bisogno de rivelarghe la to identità.",
 'prefs-help-email-required'  => "Xe richiesto l'indirizo e-mail.",
 'nocookiesnew'               => "El nome utente par l'acesso el xe stà creà, ma no s'à mìa podesto accédar a {{SITENAME}} parché i cookie i xe disativài. Ripróa a entrar col nome utente e la password 'pena creà dopo ver ativà i cookie sul to browser.",
 'nocookieslogin'             => "Par far l'acesso a {{SITENAME}} a ghe vole i cookie, che i risulta èssar disativài. Ripróa a entrar dopo ver ativà i cookie nel to browser.",
 'noname'                     => "El nome utente indicà no'l xe mìa valido, no se pol crear un account co sto nome.",
 'loginsuccesstitle'          => 'Login efetuà con sucesso!',
 'loginsuccess'               => "'''El cołegamento al server de {{SITENAME}} con el nome utente \"\$1\" el xè ativo.'''",
-'nosuchuser'                 => 'No xe stà registrà nissun utente de nome "$1". Verifica che el nome inserìo el sia giusto o crea un acesso novo.',
+'nosuchuser'                 => 'No xe stà registrà nissun utente de nome "$1". Verifica che el nome inserìo el sia giusto o [[Special:Userlogin/signup|crea un acesso novo]].',
 'nosuchusershort'            => 'No xè registrà nissun utente de nome "<nowiki>$1</nowiki>". Verifica el nome inserìo.',
 'nouserspecified'            => 'Bisogna specificar un nome utente.',
 'wrongpassword'              => "La password che te ghe messo no l'è mia giusta.<br /><br />Riproa, par piaser.",
@@ -453,9 +455,9 @@ La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
 La gà da contegner almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}} e la gà da essar difarente dal to nome utente.',
 'mailmypassword'             => 'Màndeme na password nova par posta eletronica',
 'passwordremindertitle'      => 'Servizio Password Reminder de {{SITENAME}}',
-'passwordremindertext'       => 'Qualcheduni (probabilmente ti, con indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
-La password par l\'utente "$2" la xe stà inpostà a "$3".
-Xe oportuno che te esegui l\'acesso \'pena che te pol e te canbi la password subito.
+'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
+Na password tenporànea par l\'utente "$2" la xe stà creà e inpostà a "$3".
+Se xe questo che te voléi far, desso te podi entrar co\' sta password tenporanea e inpostar na password nova.
 
 Se no te sì mìa stà ti a far la domanda, opure t\'è vegnù in mente la password e no te vol più canbiarla, te pol ignorar sto mesagio e continuar a doparar la vecia password.',
 'noemail'                    => 'Nissuna casela e-mail la risulta registrà par l\'Utente "$1".',
@@ -470,7 +472,8 @@ Par piaser, fà subito un login \'pena che la te riva.',
 'emailnotauthenticated'      => "El to indirizo email <strong>no'l xè gnancora stà autenticà</strong>. Nissuna email la vegnarà invià tramite le funsioni che segue.",
 'noemailprefs'               => 'Indica un indirizo e-mail par ativar ste funzioni.',
 'emailconfirmlink'           => 'Conferma el to indirizo de e-mail',
-'invalidemailaddress'        => "L'indirisso email no'l pode èssar acetà parché el gà un formato mìa valido. Par piaser inserissi un indirisso valido o svoda la caseła.",
+'invalidemailaddress'        => "L'indirisso email no'l pode èssar acetà parché el gà un formato mìa valido.
+Inserissi un indirisso valido o svoda la casèła.",
 'accountcreated'             => 'Acesso creà',
 'accountcreatedtext'         => "Xè stà creà un acesso par l'utente $1.",
 'createaccount-title'        => 'Creazion de un acesso a {{SITENAME}}',
@@ -582,16 +585,18 @@ Se te sì un utente anonimo e te ghè riçevù dei messagi che te secondo ti i x
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
 'usercssjsyoucanpreview'           => "<strong>Sugerimento:</strong> se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
-'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal; le modifiche no le xe gnancora stà salvà!'''",
+'usercsspreview'                   => "'''Sta qua la xe solo n'anteprima del proprio CSS personal.
+Le modifiche no le xe gnancora stà salvà!'''",
 'userjspreview'                    => "'''Sta qua la xe solo n'anteprima par proar el proprio JavaScript personal; le modifiche no le xe gnancora stà salvà!'''",
 'userinvalidcssjstitle'            => "'''Ocio:'''  No ghe xe nissuna skin con nome \"\$1\". Nota che le pagine par i .css e .js personalizà le gà l'iniziale del titolo minuscola, par esenpio {{ns:user}}:Esenpio/monobook.css e no {{ns:user}}:Esenpio/Monobook.css.",
 'updated'                          => '(Agiornà)',
 'note'                             => '<strong>Nota:</strong>',
 'previewnote'                      => "<strong>Tegni presente che sta qua xè solo n'anteprima, e che la to version NO la xè stà gnancora salvà!</strong>",
 'previewconflict'                  => 'Sta anteprima la corisponde al testo ne la casèla de edizion de sora, e la fa védar come vegnarà fora la pagina se te machi "Salva la pagina" in sto momento.',
-'session_fail_preview'             => '<strong>Ne dispiase, ma purtropo no xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi. Par piaser, riproa da novo.
+'session_fail_preview'             => 'No xè stà possibiłe salvar le to modifiche parché i dati de la session i xè andai persi. 
+Par piaser, riproa da novo.
 Se no funsiona gnancora, proa a [[Special:UserLogout|scołegarte]] e a cołegarte de novo.</strong>',
-'session_fail_preview_html'        => "!<strong>Semo spiacenti, ma no xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
+'session_fail_preview_html'        => "<strong>No xe mìa stà possibile elaborar la modifica parché xe 'ndà persi i dati relativi a la session.</strong>
 
 ''Dato che su {{SITENAME}} xe abilità l'uso de HTML senza limitazion, l'anteprima no la vien visualizà; se tratta de na misura de sicureza contro i atachi JavaScript.''
 
@@ -834,8 +839,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'mypreferences'            => 'le me preferenze',
 'prefs-edits'              => 'Nùmaro de modifiche:',
 'prefsnologin'             => 'No te ghè eseguìo el login',
-'prefsnologintext'         => 'Te ghè da aver eseguìo el [[Special:UserLogin|login]]
-par poder personalixare le to preferense.',
+'prefsnologintext'         => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} login] par poder personalixare le to preferense.',
 'prefsreset'               => 'Le to Preferense le xè stà ripescae da la memoria de sistema del server de {{SITENAME}}.',
 'qbsettings'               => 'Settaggio barra menu',
 'qbsettings-none'          => 'Nessun',
@@ -1085,10 +1089,12 @@ Par piaser siegli un nome difarente.',
 'fileexists-thumb'            => "<center>'''File zà esistente'''</center>",
 'fileexists-thumbnail-yes'    => "El file cargà el pararìa èssar el risultato de n'anteprima <i>(thumbnail)</i>. Verifica, par confronto, el file <strong><tt>$1</tt></strong>.<br />
 Se se trata de la stessa imagine, ne le dimension originali, no xe necessario caricarghene altre anteprime.",
-'file-thumbnail-no'           => "El nome del file el scuminsia con <strong><tt>$1</tt></strong>; pararìà quindi che el fusse el risultato de n'anteprima <i>(thumbnail)</i>.
+'file-thumbnail-no'           => "El nome del file el scuminsia con <strong><tt>$1</tt></strong>.
+Pararìà quindi che el fusse el risultato de n'anteprima <i>(thumbnail)</i>.
 Se se dispone de l'imagine ne la risoluzion originale, se prega di cargarla. In caso contrario, se prega de canbiar el nome del file.",
 'fileexists-forbidden'        => 'Un file con sto nome el esiste xà; per favore torna indrio e cambia el nome che te voi dare al file. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe. Par piaser torna indrio e canbia el nome che te voi darghe al file. [[Image:$1|thumb|center|$1]]",
+'fileexists-shared-forbidden' => "Un file con sto nome l'esiste de xà ne l'archivio de risorse multimediałi condivixe.
+Se te vol cargar el file istesso, par piaser torna indrio e canbia el nome che te vol darghe al file. [[Image:$1|thumb|center|$1]]",
 'file-exists-duplicate'       => 'Sto file el xe un duplicato {{PLURAL:$1|del seguente file|dei seguenti file}}:',
 'successfulupload'            => 'Caricamento conpletà',
 'uploadwarning'               => 'Avixo de caricamento',
@@ -1172,8 +1178,8 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'shareduploadduplicate-linktext' => "n'altro file",
 'shareduploadconflict'           => 'Sto file el ga el stesso nome del file $1 che se cata in tel deposito condiviso.',
 'shareduploadconflict-linktext'  => "n'altro file",
-'noimage'                        => "Un file con sto nome no l'esiste mìa; $1?",
-'noimage-linktext'               => 'caricarlo desso',
+'noimage'                        => "Un file con sto nome no l'esiste mìa, ma te pol $1.",
+'noimage-linktext'               => 'cargarne uno desso',
 'uploadnewversion-linktext'      => 'Carica na version nova de sto file',
 'imagepage-searchdupe'           => 'Riçerca dei file duplicà',
 
@@ -1196,7 +1202,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'filedelete-submit'           => 'Scancela',
 'filedelete-success'          => "El file '''$1''' el xe stà scancelà.",
 'filedelete-success-old'      => "La version del $3, $2 del file '''[[Media:$1|$1]]''' la xe stà scancelà.",
-'filedelete-nofile'           => 'Su {{SITENAME}} no esiste un file $1',
+'filedelete-nofile'           => 'No esiste un file $1.',
 'filedelete-nofile-old'       => "In archivio no ghe xe version de '''$1''' con le carateristiche indicà",
 'filedelete-iscurrent'        => 'Te stè proando a scancelar la version piassè recente de sto file. Par piaser, prima ripòrtelo a na version precedente.',
 'filedelete-otherreason'      => 'Altra motivazion o motivazion agiuntiva:',
@@ -1336,7 +1342,8 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'all-logs-page'        => 'Tuti i registri',
 'log-search-legend'    => 'Riçerca nei registri',
 'log-search-submit'    => 'Và',
-'alllogstext'          => 'Vixualixazion unificà de i registri de caricamento, scancełazion, protezion, blochi e aministrazion del sito. Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, nome utente, o la pàxena interessà.',
+'alllogstext'          => 'Vixualixazion unificà de tuti i registri disponibili de {{SITENAME}}. 
+Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el nome utente, o la pàxena interessà (ocio che sti ultimi du i distingue tra majuscolo e minuscolo).',
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",
 'log-title-wildcard'   => 'Riçerca dei titoli che scuminsia con',
 
@@ -1384,8 +1391,8 @@ Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|inform
 'mailnologintext' => 'Par inviare messagi e-mail ad altri utenti xè neçessario [[Special:UserLogin|açedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].',
 'emailuser'       => "Scrivi a l'utente",
 'emailpage'       => "Scrivi na e-mail a l'utente",
-'emailpagetext'   => 'Se sto Utente el gà registrà na casela e-mail valida, el modulo qua soto el te consentirà de scriverghe un singolo messagio.
-La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte.',
+'emailpagetext'   => 'Se sto utente el gà registrà na casela e-mail valida su le so preferense, el modulo qua soto el te consentirà de scriverghe un singolo messagio.
+La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la vegnarà fora nel canpo "Da" de la mail, così che el destinatario el possa rispóndarte a ti diretamente.',
 'usermailererror' => "L'ogeto mail el gà restituìo l'eror:",
 'defemailsubject' => 'Messagio da {{SITENAME}}',
 'noemailtitle'    => 'Nissun indirisso e-mail',
@@ -1570,7 +1577,8 @@ Le impostazion atuali par la pagina le xe <strong>$1</strong>:',
 'viewdeletedpage'              => 'Varda łe pàxene scancełàe',
 'undeletepagetext'             => "Le pagine qua de sèvito le xe stà sancelè, ma le ghe xe 'ncora in archivio e pertanto se pole 'ncora recuperarle. L'archivio el vien svodà periodicamente.",
 'undelete-fieldset-title'      => 'Recupera version',
-'undeleteextrahelp'            => "Par recuperar la pàxena par intiero, lassa tute łe casełe desełezionàe e struca '''''Ripristina'''''. Par efetuar un ripristino sełetivo, seleziona łe casełe corispondenti a łe revixion da ripristinar e struca '''''Ripristina'''''. Strucando '''''Reset''''' vegnarà deselezionàe tute łe casełe e svodà el posto par el comento.",
+'undeleteextrahelp'            => "Par recuperar la storia de la pàxena par intiero, lassa tute łe casełe desełezionàe e struca '''''Ripristina'''''. 
+Par efetuar un ripristino sełetivo, seleziona łe casełe corispondenti a łe revixion da ripristinar e struca '''''Ripristina'''''. Strucando '''''Reset''''' vegnarà deselezionàe tute łe casełe e svodà el posto par el comento.",
 'undeleterevisions'            => '{{PLURAL:$1|Una revision|$1 revision}} in archivio',
 'undeletehistory'              => 'Recuperando sta pàxena, tute łe so revixion le vegnarà inserìe da novo ne ła rełativa cronołogia.
 Se dopo ła scancełazion xè stà creà na nova pàxena col stesso titoło, łe revixion recuperà le sarà inserìe ne ła cronołogia preçedente.',
@@ -1769,7 +1777,7 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 * In corispondenza del novo titoło ghe xe xà na pàxena de discussion (mìa voda)
 * La caseła chi soto la xè stà desełezionà.",
 'movearticle'             => 'Rinomina voçe',
-'movenotallowed'          => 'No te ghè i parmessi necessari al spostamento de le pagine su {{SITENAME}}.',
+'movenotallowed'          => 'No te ghè i parmessi necessari al spostamento de le pagine.',
 'newtitle'                => 'Al novo titoło de:',
 'move-watch'              => "Tien d'ocio",
 'movepagebtn'             => 'Sposta sta pàxena',
@@ -1955,7 +1963,8 @@ Salvalo sul to computer e càrghelo qua.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro anti-spam',
-'spamprotectiontext'  => 'La pagina che te voléi salvar la xe stà blocà dal filtro anti-spam. Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto blocà.',
+'spamprotectiontext'  => 'La pagina che te voléi salvar la xe stà blocà dal filtro anti-spam. 
+Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto che el se cata su la lista nera.',
 'spamprotectionmatch' => 'El filtro anti-spam el xe stà ativà dal seguente testo: $1',
 'spambot_username'    => 'MediaWiki - sistema de rimozion del spam',
 'spam_reverting'      => "Ripristinà l'ultima version priva de colegamenti a $1",
@@ -2006,8 +2015,8 @@ $1',
 'filedelete-archive-read-only'    => 'El server Web no l\'è bon de scrìvar ne la directory de archivio "$1".',
 
 # Browsing diffs
-'previousdiff' => '← Difarenza precedente',
-'nextdiff'     => 'Prossima difarenza →',
+'previousdiff' => '← Difarensa pi vècia',
+'nextdiff'     => 'Difarensa pi nova →',
 
 # Media information
 'mediawarning'         => "'''Ocio''': Sto file qua el podarìa contegner codice maligno; la so esecuzion la podarìa danegiar el proprio sistema informatico.<hr />",
@@ -2336,7 +2345,7 @@ creà de reçente, par piaser speta par qualche minuto che riva el codice prima 
 'confirmemail_oncreate'    => "Un codice de conferma el xe stà spedìo a l'indirizo
 de posta eletronica indicà. El codice no'l xe necessario par entrar nel sito,
 ma bisogna fornirlo par poder abilitar tute le funzion del sito che dòpara la posta eletronica.",
-'confirmemail_sendfailed'  => "No se riesse a inviar el messagio e-mail de conferma. 
+'confirmemail_sendfailed'  => "{{SITENAME}} no l'è stà bon da inviar el messagio e-mail de conferma. 
 Controla che l'indirizo no'l contegna carateri mìa validi.
 
 El messagio de eror el xe: $1",
@@ -2362,8 +2371,8 @@ El codice de conferma el scadrà in automatico a le $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion de pagine tra siti wiki no la xe ativa]",
-'scarytranscludefailed'   => '[Eror: Inpossibile otegner el template $1]',
-'scarytranscludetoolong'  => '[Eror: URL massa longa]',
+'scarytranscludefailed'   => '[Inpossibile otegner el template $1]',
+'scarytranscludetoolong'  => '[La URL la xe massa longa]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2375,7 +2384,7 @@ $1
 'trackbackdeleteok' => 'Informazion de trackback eliminà coretamente.',
 
 # Delete conflict
-'deletedwhileediting' => 'Ocio: Sta pàxena la xè stà scancełà dopo che te ghè scominzià a modificarla!',
+'deletedwhileediting' => "'''Ocio''': Sta pàxena la xè stà scancełà dopo che te ghè scominzià a modificarla!",
 'confirmrecreate'     => "L'utente [[User:$1|$1]] ([[User talk:$1|discussion]]) el ga scancełà sta voçe dopo che te ghè scuminsià a modificarla, con ła seguente motivazion:
 : ''$2''
 Par piaser, conferma che te vołi dal bon ricrear sta voçe.",

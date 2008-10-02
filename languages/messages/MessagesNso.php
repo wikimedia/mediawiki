@@ -597,7 +597,7 @@ Leka [[Special:Search|go fetleka wikii]] go humana matlakala a mapsha.',
 'filedelete-comment'          => 'Lebaka la go phumula:',
 'filedelete-submit'           => 'Phumula',
 'filedelete-success'          => "'''$1''' e phumutšwe.",
-'filedelete-nofile'           => "'''$1''' ga e gona go {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' ga e gona.",
 'filedelete-otherreason'      => 'Mabaka a mangwe:',
 'filedelete-reason-otherlist' => 'Lebaka le lengwe',
 

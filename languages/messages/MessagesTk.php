@@ -78,6 +78,7 @@ $messages = array(
 'jumptosearch'     => 'gözle',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => '{{SITENAME}} hakynda',
 'helppage'             => 'Help:Içindäkiler',
 'mainpage'             => 'Baş Sahypa',
 'mainpage-description' => 'Baş Sahypa',
@@ -121,6 +122,7 @@ $messages = array(
 # Recent changes
 'recentchanges'   => 'Ahyrky özgertişler',
 'rcshowhideminor' => '$1 kiçi özgerişik',
+'diff'            => 'parh',
 'hist'            => 'geçmiş',
 'hide'            => 'Ýaşyr',
 'minoreditletter' => 'k',
@@ -141,6 +143,9 @@ $messages = array(
 
 # Special:AllPages
 'allpagessubmit' => 'Git',
+
+# Watchlist
+'mywatchlist' => 'Synlama tablisam',
 
 # Namespace form on various pages
 'blanknamespace' => '(Baş)',
@@ -171,6 +176,6 @@ $messages = array(
 'tooltip-ca-nstab-category' => 'Kategoriya sahypsayny gör',
 
 # Special:SpecialPages
-'specialpages' => 'Yörite sahypalar',
+'specialpages' => 'Ýörite sahypalar',
 
 );

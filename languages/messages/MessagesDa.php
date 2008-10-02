@@ -11,6 +11,7 @@
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author MinuteElectron
  * @author Peter Andersen
  * @author Ranveig
  * @author S.Örvarr.S
@@ -1159,7 +1160,7 @@ Læg mærke til at præcis som med alle andre sider, så kan og må andre gerne 
 'upload-prohibited'           => 'Uønskede filtyper: $1.',
 'uploadlog'                   => 'oplægningslog',
 'uploadlogpage'               => 'Oplægningslog',
-'uploadlogpagetext'           => 'Herunder vises de senest oplagte filer. Alle de viste tider er serverens tid (UTC).',
+'uploadlogpagetext'           => 'Herunder vises de senest oplagte filer. Alle de viste tider er serverens tid.',
 'filename'                    => 'Filnavn',
 'filedesc'                    => 'Beskrivelse',
 'fileuploadsummary'           => 'Beskrivelse/kilde:',
@@ -1589,7 +1590,7 @@ eller et billede sammen med hele den tilhørende historie fra databasen. Bekræf
 'deletedarticle'              => 'slettede "$1"',
 'suppressedarticle'           => 'skjulte "[[$1]]"',
 'dellogpage'                  => 'Sletningslog',
-'dellogpagetext'              => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid (UTC).',
+'dellogpagetext'              => 'Herunder vises de nyeste sletninger. Alle tider er serverens tid.',
 'deletionlog'                 => 'sletningslog',
 'reverted'                    => 'Gendannet en tidligere version',
 'deletecomment'               => 'Begrundelse for sletning',

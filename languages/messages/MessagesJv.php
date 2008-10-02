@@ -322,7 +322,8 @@ $messages = array(
 'databaseerror'        => 'Kasalahan database',
 'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database. Kasalah ini mbokmenawa nuduhi anané \'\'bug\'\' ing software. Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jeroning fungsi "<tt>$2</tt>". Kasalahan MySQL "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan database. Panyuwunan database sing pungkasan iku: "$1" saka jeroning fungsi "$2". Kasalahan MySQL "$3: $4".',
-'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />$1',
+'noconnect'            => 'Nuwun séwu! Wiki ngalami masalah tèknis lan ora bisa ngubungi database.<br />
+$1',
 'nodb'                 => 'Ora bisa milih database $1',
 'cachederror'          => 'Ing ngisor iki tuladan <em>cache</em> saka kaca sing disuwun, dadi mbokmenawa ora up-to-date.',
 'laggedslavemode'      => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
@@ -369,6 +370,10 @@ $2',
 'titleprotected'       => "Irah-irahan iki direksa ora olèh digawé déning [[User:$1|$1]].
 Alesané yaiku ''$2''.",
 
+# Virus scanner
+'virus-scanfailed'     => "''Pemindaian'' utawa ''scan'' gagal (kode $1)",
+'virus-unknownscanner' => 'Antivirus ora ditepungi:',
+
 # Login and logout pages
 'logouttitle'                => 'Metu log panganggo',
 'logouttext'                 => "Panjenengan wis metu (oncat) saka cathetan sistem. Panjenengan bisa migunakaké {{SITENAME}} kanthi anonim, utawa panjenengan bisa mlebu manèh .
@@ -398,7 +403,8 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'gotaccountlink'             => 'Mlebu',
 'createaccountmail'          => 'liwat layang e-mail',
 'badretype'                  => 'Sandhi panjenengan ora gathuk',
-'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo. Mangga pilih asma liyané.',
+'userexists'                 => 'Asma panganggo sing panjenengan pilih wis kanggo.
+Mangga pilih asma liyané.',
 'youremail'                  => 'Layang élèktronik (E-mail):',
 'username'                   => 'Asma panganggo:',
 'uid'                        => 'ID panganggo:',
@@ -407,7 +413,7 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'yourvariant'                => 'Varian basa',
 'yournick'                   => 'Asma sesinglon/samaran (kagem tapak asta):',
 'badsig'                     => 'Tapak astanipun klentu; cèk rambu HTML.',
-'badsiglength'               => 'Jeneng sesingloné kedawan; kudu sangisoré $1 karakter.',
+'badsiglength'               => 'Tapak tangané kedawan; kudu sangisoré $1 {{PLURAL:$1|karakter|karakter}}.',
 'email'                      => 'Layang élèktronik (E-mail)',
 'prefs-help-realname'        => '* <strong>Asma asli</strong> (ora wajib): menawa panjenengan maringi, asma asli panjenengan bakal digunakaké kanggo mènèhi akrédhitasi kanggo kasil karya tulis panjenengan.',
 'loginerror'                 => 'Kasalahan mlebu log',
@@ -423,10 +429,15 @@ Akun panjenengan wis kacipta. Aja lali nata konfigurasi {{SITENAME}} panjenengan
 'nouserspecified'            => 'Panjenengan kudu milih asma panganggo.',
 'wrongpassword'              => 'Tembung sandhi sing dipilih salah. Mangga coba manèh.',
 'wrongpasswordempty'         => 'Panjenengan ora milih tembung sandhi. Mangga dicoba manèh.',
-'passwordtooshort'           => 'Tembung sandi panjenengan ora sah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
+'passwordtooshort'           => 'Tembung sandi panjenengan ora absah utawa kecendhaken. Tembung sandi kudu katulis saka paling ora $1 aksara lan kudu béda saka jeneng panganggo panjenengan.',
 'mailmypassword'             => 'Kirim tembung sandhi anyar',
 'passwordremindertitle'      => 'Pèngetan tembung sandhi saka {{SITENAME}}',
-'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" saiki "$3". Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
+'passwordremindertext'       => 'Ana wong (mbokmenawa panjenengan dhéwé, saka alamat IP $1) nyuwun supaya dikirimi tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi kanggo panganggo "$2" wis digawé lan saiki "$3". Yèn panjenengan pancèn nggayuh iki, mangga sigra mlebu lan ngganti tembung sandhi.
+
+Yèn wong liya sing nglakoni panyuwunan iki, utawa panjenengan éling tembung sandhiné, lan ora nggayuh ngowahi, panjenengan ora usah nggubris pesen iki lan bisa tetep nganggo tembung sandhi sing lawas.
+
+
+Panjenengan disaranaké sigra mlebu log lan ngganti tembung sandhi.',
 'noemail'                    => 'Ora ana alamat layang e-mail sing kacathet kanggo panganggo "$1".',
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim menyang alamat layang e-mail panjenengan sing wis didaftar kanggo "$1". Mangga mlebu log manèh sawisé nampa e-mail iku.',
 'blocked-mailpassword'       => "Alamat IP panjenengan diblokir saka panyuntingan, mulané panjenengan ora olèh nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
@@ -829,6 +840,7 @@ mangga delengen math/README kanggo cara konfigurasi.',
 'servertime'               => 'Wektu server saiki iku',
 'guesstimezone'            => 'Isinen saka panjlajah wèb',
 'allowemail'               => 'Marengaké panganggo liyané ngirim layang èlèktronik (email).',
+'prefs-searchoptions'      => 'Opsi-opsi panggolèkan',
 'defaultns'                => "Golèk ing bilik jeneng (''namespace'') iki mawa baku:",
 'default'                  => 'baku',
 'files'                    => 'Berkas',
@@ -1700,7 +1712,7 @@ Gatèkna yèn kaca iki '''ora''' bakal dipindhah yèn wis ana kaca liyané sing 
 
 Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa nggabung kaca iku sacara manual.",
 'movearticle'             => 'Pindhah kaca',
-'movenotallowed'          => 'Panjenengan ora pareng ngalihaké kaca ing {{SITENAME}}.',
+'movenotallowed'          => 'Panjenengan ora pareng ngalihaké kaca.',
 'newtitle'                => 'Menyang irah-irahan utawa judhul anyar:',
 'move-watch'              => 'Awasna kaca iki',
 'movepagebtn'             => 'Pindhahna kaca',
@@ -1930,8 +1942,8 @@ Mbok-menawa iki disebabaké anané pranala jaba tartamtu.',
 'filedelete-archive-read-only'    => 'Dirèktori arsip "$1" ora bisa ditulis déning server wèb.',
 
 # Browsing diffs
-'previousdiff' => '←Prabédan sadurungé',
-'nextdiff'     => 'Prabédan sawisé→',
+'previousdiff' => '← Panyuntingan sadurungé',
+'nextdiff'     => 'Panyuntingan sing luwih anyar →',
 
 # Media information
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.<hr />",
@@ -2419,5 +2431,8 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 'specialpages-group-media'       => 'Lapuran média lan pangunggahan',
 'specialpages-group-users'       => 'Panganggo lan hak-haké',
 'specialpages-group-highuse'     => 'Kaca-kaca sing akèh dienggo',
+
+# Special:BlankPage
+'blankpage' => 'Kaca kosong',
 
 );

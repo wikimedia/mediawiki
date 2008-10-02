@@ -8,6 +8,7 @@
  * @author Aotake
  * @author Broad-Sky
  * @author Emk
+ * @author Fievarsty
  * @author Hatukanezumi
  * @author Iwai.masaharu
  * @author JtFuruhata
@@ -101,7 +102,7 @@ $messages = array(
 'tog-nolangconversion'        => '字形変換を無効にする',
 'tog-ccmeonemails'            => '他の利用者に送信したメールの控えを自分にも送る',
 'tog-diffonly'                => '差分表示の下に記事本文を表示しない',
-'tog-showhiddencats'          => '非公開カテゴリを表示する',
+'tog-showhiddencats'          => '隠しカテゴリを表示する',
 
 'underline-always'  => '常に付ける',
 'underline-never'   => '常に付けない',
@@ -167,8 +168,8 @@ $messages = array(
 'subcategories'                  => 'サブカテゴリ',
 'category-media-header'          => 'カテゴリ “$1” にあるメディア',
 'category-empty'                 => 'このカテゴリにはページまたはメディアがひとつもありません。',
-'hidden-categories'              => '非公開カテゴリ',
-'hidden-category-category'       => '非公開カテゴリ', # Name of the category where hidden categories will be listed
+'hidden-categories'              => '隠しカテゴリ',
+'hidden-category-category'       => '隠しカテゴリ', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|以下にこのカテゴリへ所属するサブカテゴリ 1 件を表示しています。|以下にこのカテゴリへ所属するサブカテゴリ $2 件中 $1 件を表示しています。}}',
 'category-subcat-count-limited'  => '以下にこのカテゴリへ所属するサブカテゴリ $1 件を表示しています。',
 'category-article-count'         => '以下にこのカテゴリへ所属している記事 $2 件中 $1 件を表示しています。',
@@ -356,7 +357,7 @@ The last attempted database query was:
 "$1"
 from within function "$2".
 MySQL returned error "$3: $4"',
-'noconnect'            => '申し訳ありません。何らかの問題によりデータベースに接続できません。<br />$1',
+'noconnect'            => '申し訳ありません。技術的な問題が発生しており、データベースサーバーに接続できません。<br />$1',
 'nodb'                 => 'データベース $1 を選択できません。',
 'cachederror'          => 'あなたがアクセスしたページのコピーを保存したものを表示しています。また、コピーは更新されません。',
 'laggedslavemode'      => '警告: ページに最新の編集が反映されていない可能性があります。反映されるまでしばらくお待ちください。',
@@ -439,14 +440,14 @@ $2',
 'logout'                     => 'ログアウト',
 'userlogout'                 => 'ログアウト',
 'notloggedin'                => 'ログインしていません',
-'nologin'                    => 'アカウントはお持ちですか? $1',
+'nologin'                    => 'アカウントをお持ちではありませんか? $1',
 'nologinlink'                => 'アカウントを作成',
 'createaccount'              => 'アカウント作成',
 'gotaccount'                 => 'すでにアカウントをお持ちの場合: $1',
 'gotaccountlink'             => 'ログイン',
 'createaccountmail'          => 'メールで送信',
 'badretype'                  => '両方のパスワードが一致しません。',
-'userexists'                 => 'その利用者名はすでに使われています。ほかの名前をお選びください。',
+'userexists'                 => '入力された利用者名はすでに使われています。ほかの名前をお選びください。',
 'youremail'                  => 'メールアドレス*:',
 'username'                   => '利用者名:',
 'uid'                        => '利用者ID:',
@@ -460,14 +461,15 @@ $2',
 'email'                      => 'メールアドレス',
 'prefs-help-realname'        => '* 本名 (任意): 本名を入力すると、ページ・クレジットに利用者名（アカウント名）の代わりに本名が表示されます。',
 'loginerror'                 => 'ログイン失敗',
-'prefs-help-email'           => '* メールアドレス (任意): メールアドレスを入力すると、他の利用者からのウィキメールを受け取ることができるようになります。この時点ではあなたのメールアドレスはその利用者に知られることはありません。ただし、あなたから送信すれば、あなたのメールアドレスは先方に通知されます。',
+'prefs-help-email'           => 'メールアドレスの設定は任意ですが、設定しておけばパスワードを忘れた際に新しいパスワードを電子メールで受け取ることができます。
+また、他の利用者からのウィキメールを受け取ることができるようになります。この時点ではあなたのメールアドレスはその利用者に知られることはありません。ただし、あなたから送信すれば、あなたのメールアドレスは先方に通知されます。',
 'prefs-help-email-required'  => 'メールアドレスが必要です。',
 'nocookiesnew'               => '利用者のアカウントは作成されましたが、ログインしていません。{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にしてから作成した利用者名とパスワードでログインしてください。',
 'nocookieslogin'             => '{{SITENAME}}ではログインにクッキーを使います。あなたはクッキーを無効な設定にしているようです。クッキーを有効にして、もう一度試してください。',
 'noname'                     => '利用者名を正しく指定していません。',
 'loginsuccesstitle'          => 'ログイン成功',
 'loginsuccess'               => "'''{{SITENAME}} に \"\$1\" としてログインしました。'''",
-'nosuchuser'                 => '"$1" という利用者は見当たりません。綴りが正しいことを再度確認するか、下記のフォームを使ってアカウントを作成してください。',
+'nosuchuser'                 => '"$1"という利用者は見当たりません。綴りが正しいことを再度確認するか、[[Special:Userlogin/signup|アカウントを作成してください]]。',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" という利用者は見当たりません。綴りが正しいことを再度確認してください。',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
@@ -475,10 +477,9 @@ $2',
 'passwordtooshort'           => 'パスワードが短すぎます。$1文字以上の文字列にしてください。',
 'mailmypassword'             => '新しいパスワードをメールで送る',
 'passwordremindertitle'      => '{{SITENAME}} パスワード再送通知',
-'passwordremindertext'       => 'どなたか（$1 のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。
+'passwordremindertext'       => 'どなたか（$1のIPアドレスの使用者）が{{SITENAME}} ($4) のログイン用パスワードの再発行を依頼しました。利用者"$2"の仮パスワードは "$3" です。もしあなたがパスワードの発行を依頼したのであれば、ログインして別のパスワードに変更してください。
 
-利用者 "$2" のパスワードを "$3" に変更しました。
-ログインして別のパスワードに変更してください。',
+パスワード再発行の依頼に覚えがない、またはログイン用パスワードを思い出されパスワード変更の必要がないのであるならば、このメッセージは無視してください。引き続き以前のパスワードを使用し続けることができます。',
 'noemail'                    => '利用者 "$1" のメールアドレスは登録されていません。',
 'passwordsent'               => '新しいパスワードを "$1" さんの登録済みメールアドレスに送信しました。メールを受け取ったら、再度ログインしてください。',
 'blocked-mailpassword'       => 'あなたの使用しているIPアドレスからの編集はブロックされています。悪用防止のため、パスワードの再発行は無効化されています。',
@@ -649,7 +650,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'templatesusedsection'             => 'この節で使われているテンプレート:',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
-'hiddencategories'                 => 'このページは1個の非公開カテゴリに属しています:',
+'hiddencategories'                 => 'このページは$1個の隠しカテゴリに属しています:',
 'edittools'                        => '<!-- ここに書いたテキストは編集及びアップロードのフォームの下に表示されます。 -->',
 'nocreatetitle'                    => 'ページを作成できません',
 'nocreatetext'                     => '{{SITENAME}} ではページの新規作成を制限しています。元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントを作成]]してください。',
@@ -844,7 +845,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mypreferences'            => 'オプション',
 'prefs-edits'              => '編集回数:',
 'prefsnologin'             => 'ログインしていません',
-'prefsnologintext'         => 'オプションを変更するためには、[[Special:UserLogin|ログイン]]する必要があります。',
+'prefsnologintext'         => 'オプションを変更するためには<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} ログイン]</span>している必要があります。',
 'prefsreset'               => 'オプションは初期化されました。',
 'qbsettings'               => 'クイックバー設定',
 'qbsettings-none'          => 'なし',
@@ -1051,7 +1052,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからないためウェブサーバによって作成できませんでした',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロード エラー',
-'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロードログ]]、削除の記録は[[Special:Log/delete|削除ログ]]にも記録されます。
+'uploadtext'                  => "ファイルを新しくアップロードする場合には、以下のフォームを利用してください。過去にアップロードされたファイルの閲覧・検索には[[Special:ImageList|{{int:imagelist}}]]をご利用ください。アップロードの記録は[[Special:Log/upload|アップロード記録]]、削除の記録は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを挿入するには以下の書式のリンクを使います。
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}:<nowiki>File.jpg]]</nowiki></tt>''' とするとファイルをもとのサイズのまま表示します
@@ -1060,9 +1061,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'upload-permitted'            => '許可されているファイル形式： $1',
 'upload-preferred'            => '推奨されているファイル形式： $1',
 'upload-prohibited'           => '禁止されているファイル形式： $1',
-'uploadlog'                   => 'アップロードログ',
+'uploadlog'                   => 'アップロード記録',
 'uploadlogpage'               => 'アップロード記録',
-'uploadlogpagetext'           => '以下は最近のファイルのアップロードのログです。',
+'uploadlogpagetext'           => '以下はファイルアップロードの最近の記録です。画像付きで見るには[[Special:NewImages|新規画像ギャラリー]]をご覧ください。',
 'filename'                    => 'ファイル名',
 'filedesc'                    => 'ファイルの概要',
 'fileuploadsummary'           => 'ファイルの概要:',
@@ -1090,12 +1091,11 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'fileexists-thumb'            => "<center>'''既存のファイル'''</center>",
 'fileexists-thumbnail-yes'    => 'このファイルはサムネイル（縮小版画像）である可能性があります。以下のファイルを確認してください: <strong><tt>$1</tt></strong><br />
 確認したファイルが通常サイズの元画像である場合、追加でサムネイルを登録する必要はありません。',
-'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小う版画像）である可能性が高いです。
+'file-thumbnail-no'           => 'ファイル名が <strong><tt>$1</tt></strong> から始まっており、サムネイル（縮小版画像）である可能性が高いです。
 より高精細な画像をお持ちの場合は、フルサイズ版をアップロードしてください。そうでない場合はファイル名を変更してください。',
 'fileexists-forbidden'        => 'この名前のファイルは既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
 [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'この名前のファイルは共有リポジトリに既に存在しています。前のページに戻り、別のファイル名でアップロードし直してください。
-[[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'この名前のファイルは共有ファイルリポジトリに既に存在しています。アップロードを継続したい場合は、前のページに戻り、別のファイル名を選択してください。[[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'このファイルは以下のファイルと重複しています',
 'successfulupload'            => 'アップロード成功',
 'uploadwarning'               => 'アップロード 警告',
@@ -1114,7 +1114,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。アップロードの前に$1を確認してみてください。',
 'upload-wasdeleted'           => "'''警告:あなたは過去に削除されたファイルをアップロードしようとしています。'''
 
-このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除ログを表示しています:",
+このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => 'アップロードしようとしている <strong>"$1"</strong> のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。',
 
 'upload-proto-error'      => '不正なプロトコル',
@@ -1334,10 +1334,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'specialloguserlabel'  => '利用者名:',
 'speciallogtitlelabel' => 'タイトル:',
 'log'                  => 'ログ',
-'all-logs-page'        => '全てのログ',
+'all-logs-page'        => '全ての記録',
 'log-search-legend'    => 'ログの検索',
 'log-search-submit'    => '検索',
-'alllogstext'          => 'アップロード、削除、保護、投稿ブロック、権限変更のログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
+'alllogstext'          => '{{SITENAME}}の取得可能なログがまとめて表示されています。ログの種類、実行した利用者、影響を受けたページ（利用者）による絞り込みができます。',
 'logempty'             => '条件にマッチする記録はありません。',
 'log-title-wildcard'   => 'この文字列で始まるタイトルを検索する',
 
@@ -1384,7 +1384,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'emailuser'       => 'この利用者にメールを送信',
 'emailpage'       => 'メール送信ページ',
 'emailpagetext'   => 'メールを送る先の利用者が有効なメールアドレスを{{int:preferences}}で登録していれば、下のフォームを通じてメールを送ることができます。
-あなたが [[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスは送るメールのFrom:の欄に自動的に組み込まれ、受け取った相手が返事を出せるようになっています。',
+あなたが [[Special:Preferences|{{int:preferences}}]]で登録したご自分のメールアドレスが送るメールのFrom:の欄に自動的に組み込まれ、受け取った相手が直接あなたに返事を出せるようになっています。',
 'usermailererror' => 'メール送信時に以下のエラーが発生しました:',
 'defemailsubject' => '{{SITENAME}} 電子メール',
 'noemailtitle'    => '送り先のメールアドレスがありません。',
@@ -1423,7 +1423,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'notanarticle'         => 'これは記事ではありません。',
 'notvisiblerev'        => 'この版は削除されました',
 'watchnochange'        => 'その期間内にウォッチリストにあるページはどれも編集されていません。',
-'watchlist-details'    => '* ウォッチリストに入っているページ数（ノート除く）: $1.',
+'watchlist-details'    => 'あなたのウォッチリストには $1 のページが入っています（ノートページは数えません）。',
 'wlheader-enotif'      => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* あなたが最後に訪問したあとに変更されたページは'''ボールド体'''で表示されます",
 'watchmethod-recent'   => 'ウォッチリストの中から最近編集されたものを抽出',
@@ -2006,7 +2006,7 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page'   => 'パトロール記録',
-'patrol-log-header' => 'パトロールされた版のログです。',
+'patrol-log-header' => '以下はパトロールされた版の記録です。',
 'patrol-log-line'   => '$2 の $1 をパトロール済みにマーク$3',
 'patrol-log-auto'   => '（自動）',
 'patrol-log-diff'   => '第$1版',
@@ -2357,7 +2357,7 @@ Variants for Chinese language
 'confirmemail_send'        => '確認用コードを送信する',
 'confirmemail_sent'        => '確認メールを送信しました。',
 'confirmemail_oncreate'    => 'メールアドレスの正当性を確認するためのコードを含んだメールを送信しました。この確認を行わなくてもログインはできますが、確認するまでメール通知の機能は無効化されます。',
-'confirmemail_sendfailed'  => '確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
+'confirmemail_sendfailed'  => '{{SITENAME}}からの確認メールを送信できませんでした。メールアドレスに不正な文字が含まれていないかどうか確認してください。
 
 メールサーバーからの返答: $1',
 'confirmemail_invalid'     => '確認用コードが正しくありません。このコードは期限切れです。',
@@ -2402,7 +2402,7 @@ $1
 'trackbackdeleteok' => 'トラックバックを削除しました。',
 
 # Delete conflict
-'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました!!",
+'deletedwhileediting' => "'''警告:''' このページはあなたが編集し始めた後、削除されました!",
 'confirmrecreate'     => "あなたがこのページを編集し始めた後に、このページは[[User:$1|$1]] ([[User talk:$1|会話]]) によって削除されました。その理由は次の通りです:
 : ''$2''
 このままこのページを新規作成して良いか確認してください。",

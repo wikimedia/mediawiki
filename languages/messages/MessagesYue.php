@@ -306,7 +306,7 @@ $messages = array(
 'deletethispage'    => '刪除呢頁',
 'undelete_short'    => '反刪除$1次修改',
 'protect'           => '保護',
-'protect_change'    => '改保護',
+'protect_change'    => '改',
 'protectthispage'   => '保護呢頁',
 'unprotect'         => '解除保護',
 'unprotectthispage' => '解呢頁嘅保護',
@@ -431,7 +431,8 @@ MySQL 嘅錯誤回應 "<tt>$3: $4</tt>"。',
 "$1"
 於 "$2"功能中。
 MySQL 嘅錯誤回應 "$3: $4"',
-'noconnect'            => '對唔住！Wiki 而家有啲技術問題，連唔上資料庫伺服器。<br />$1',
+'noconnect'            => '對唔住！Wiki 而家有啲技術問題，連唔上資料庫伺服器。<br />
+$1',
 'nodb'                 => '伺服器 $1 唔選得',
 'cachederror'          => '以下係已請求頁嘅快取複本，內容可能唔係最新嘅。',
 'laggedslavemode'      => '警告：呢頁可能未包括最新嘅更新。',
@@ -522,7 +523,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '用電郵',
 'badretype'                  => '你所入嘅密碼唔一致。',
-'userexists'                 => '你入嘅用戶名已經有人用緊，唔該揀過另外一個名啦。',
+'userexists'                 => '你入嘅用戶名已經有人用緊，請揀過另外一個名。',
 'youremail'                  => '電郵:',
 'username'                   => '用戶名:',
 'uid'                        => '用戶 ID:',
@@ -531,21 +532,21 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'yourlanguage'               => '語言:',
 'yourvariant'                => '字體變化:',
 'yournick'                   => '簽名:',
-'badsig'                     => '無效嘅程式碼簽名；請檢查 HTML 有無錯。所有屬性都要用雙引號括住。',
+'badsig'                     => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
 'badsiglength'               => '簽名太長喇。
 佢嘅長度一定要響$1個字元以下。',
 'email'                      => '電郵',
 'prefs-help-realname'        => '真名係可以選填嘅。
 如果你選擇提供佢，佢會用來喺有需要嘅時候標示你嘅作品。',
 'loginerror'                 => '登入錯誤',
-'prefs-help-email'           => '電郵地址係可以選填嘅，但係佢響啟用咗之後等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
+'prefs-help-email'           => '電郵地址係可以選填嘅，但當你唔記得咗你個密碼嗰陣可以將新密碼寄番畀你。你亦可以等人可以響唔知你電郵地址嘅情況之下都可以聯絡你。',
 'prefs-help-email-required'  => '需要電郵地址。',
 'nocookiesnew'               => '已經建立咗戶口，但你未登入。 {{SITENAME}} 要用 cookies 嚟登入。你已經停咗用 cookies。麻煩啟用返先，然後再用你新嘅用戶名同密碼。',
 'nocookieslogin'             => '{{SITENAME}} 要用 cookies 嚟登入。你已經停用 cookies。請先啟用後再度試過喇。',
 'noname'                     => '你未指定一個有效嘅用戶名。',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => "'''你已經成功咁喺{{SITENAME}}登入做「$1」。'''",
-'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法，或者建立一個新嘅戶口。',
+'nosuchuser'                 => '呢度冇叫做 "$1"嘅用戶。 請檢查你個名嘅輸入方法，或者[[Special:Userlogin/signup|建立一個新嘅戶口]]。',
 'nosuchusershort'            => '呢度冇叫做 "<nowiki>$1</nowiki>"嘅用戶。 請檢查你個名嘅輸入方法。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
@@ -554,11 +555,13 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'mailmypassword'             => '寄返個密碼畀我',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
-請求我哋傳送個$4嘅 {{SITENAME}} 新登入密碼畀你。
-而家用戶 "$2" 嘅新密碼係 "$3"。
-唔該即刻登入，改咗個密碼。
+請求 {{SITENAME}} 嘅新密碼 ($4)。
+而家用戶 "$2" 嘅新臨時密碼設定咗做 "$3"。
+如果呢個係你所要求嘅，你就需要即刻登入，揀一個新嘅密碼。
 
-如果係其他人作出呢個請求，又或者你記得返你嘅密碼而又唔想再轉，你可以唔使理呢個信息，繼續用舊密碼。',
+如果係其他人作出呢個請求，
+又或者你記得返你嘅密碼而又唔想再轉，
+你可以唔使理呢個信息，繼續用舊密碼。',
 'noemail'                    => '呢度冇用戶 "$1" 嘅電郵地址。',
 'passwordsent'               => '新嘅密碼已經寄咗畀呢位用戶 "$1" 嘅電郵地址。收到之後請重新登入。',
 'blocked-mailpassword'       => '你嘅IP地址被鎖住，唔可以用密碼復原功能以防止濫用。',
@@ -570,7 +573,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'emailnotauthenticated'      => '你嘅電郵地址重未確認。 任何傳送電郵嘅功能都唔會運作。',
 'noemailprefs'               => '設置一個電郵地址令到呢啲功能開始運作。',
 'emailconfirmlink'           => '確認你嘅電郵地址',
-'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。唔該輸入一個啱格式嘅地址，或清咗嗰個空格。',
+'invalidemailaddress'        => '呢個電郵地址嘅格式唔啱，所以接受唔到。請輸入一個啱格式嘅地址，或清咗嗰個空格。',
 'accountcreated'             => '戶口已經建立咗',
 'accountcreatedtext'         => '$1嘅戶口起好咗。',
 'createaccount-title'        => '響{{SITENAME}}度開個新戶口',
@@ -674,10 +677,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'anontalkpagetext'                 => "----''呢度係匿名用戶嘅討論頁，佢可能係重未開戶口，或者佢重唔識開戶口。我哋會用數字表示嘅IP地址嚟代表佢。一個IP地址係可以由幾個用戶夾來用。如果你係匿名用戶，同覺得呢啲留言係同你冇關係嘅話，唔該去[[Special:UserLogin/signup|開一個新戶口]]或[[Special:UserLogin|登入]]，避免喺以後嘅留言會同埋其它用戶混淆。''",
 'noarticletext'                    => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一頁]。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
-'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。''' '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）； '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''； '''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取； '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
+'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
+'''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
+'''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
+'''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取；
+'''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
 'usercssjsyoucanpreview'           => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。",
-'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表，內容仍未儲存！'''",
-'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript，佢嘅內容重未儲存！'''",
+'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表。'''
+'''內容仍未儲存！'''",
+'userjspreview'                    => "'''請注意你而家只係測試／預覽緊你定義嘅JavaScript。'''
+'''佢嘅內容重未儲存！'''",
 'userinvalidcssjstitle'            => "'''警告：''' 無叫做 \"\$1\" 嘅畫面。請記住自訂介面的 .css 和 .js 頁面時應使用細楷，例如：{{ns:user}}:Foo/monobook.css 而唔係 {{ns:user}}:Foo/Monobook.css 。",
 'updated'                          => '(己更新)',
 'note'                             => '<strong>留意:</strong>',
@@ -933,7 +942,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'mypreferences'            => '我嘅喜好設定',
 'prefs-edits'              => '編輯數:',
 'prefsnologin'             => '重未登入',
-'prefsnologintext'         => '你一定要去[[Special:UserLogin|登入]]設定好用戶喜好值先。',
+'prefsnologintext'         => '你一定要去<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} 登入]</span>設定好用戶喜好值先。',
 'prefsreset'               => '喜好設定已經從儲存空間中重設。',
 'qbsettings'               => '快捷列',
 'qbsettings-none'          => '無',
@@ -1521,7 +1530,7 @@ Template:搞清楚',
 'notanarticle'         => '唔係一個內容頁',
 'notvisiblerev'        => '修訂已經刪除咗',
 'watchnochange'        => '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
-'watchlist-details'    => '唔計討論頁，你個監視清單有 $1 版。',
+'watchlist-details'    => '唔計討論頁，有 $1 版響你個監視清單度。',
 'wlheader-enotif'      => '* 電子郵件通知已經啟用。',
 'wlheader-showupdated' => "* '''粗體字'''嘅頁響你上次嚟之後被人改過",
 'watchmethod-recent'   => '睇緊最近修改中有邊頁監視緊',
@@ -2504,8 +2513,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',
-'scarytranscludefailed'   => '[$1嘅頡取模動作失敗；對唔住]',
-'scarytranscludetoolong'  => '[URL 太長；對唔住]',
+'scarytranscludefailed'   => '[$1嘅頡取模動作失敗]',
+'scarytranscludetoolong'  => '[URL 太長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">呢一版嘅過去追蹤：

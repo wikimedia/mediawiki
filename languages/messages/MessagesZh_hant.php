@@ -233,7 +233,7 @@ $messages = array(
 'deletethispage'    => '刪除本頁',
 'undelete_short'    => '反刪除$1項修訂',
 'protect'           => '保護',
-'protect_change'    => '更改保護',
+'protect_change'    => '更改',
 'protectthispage'   => '保護本頁',
 'unprotect'         => '解除保護',
 'unprotectthispage' => '解除此頁保護',
@@ -358,7 +358,8 @@ MySQL返回錯誤 "<tt>$3: $4</tt>"。',
 「$1」
 來自於函數「$2」。
 MySQL返回錯誤「$3: $4」。',
-'noconnect'            => '無法在$1上連接資料庫',
+'noconnect'            => '抱歉！網站遇到一些技術問題，無法連接數據庫伺服器。<br />
+$1',
 'nodb'                 => '無法選擇資料庫 $1',
 'cachederror'          => '以下頁面是快取中的副本，未必是最新版本。',
 'laggedslavemode'      => '警告: 頁面可能不包含最近的更新。',
@@ -443,7 +444,7 @@ $2',
 'gotaccountlink'             => '登入',
 'createaccountmail'          => '通過e-Mail',
 'badretype'                  => '您所輸入的密碼並不相同。',
-'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個。',
+'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'youremail'                  => '電子郵件:',
 'username'                   => '用戶名:',
 'uid'                        => '用戶ID:',
@@ -452,14 +453,14 @@ $2',
 'yourlanguage'               => '介面語言:',
 'yourvariant'                => '字體變換:',
 'yournick'                   => '簽名:',
-'badsig'                     => '錯誤的原始簽名；請檢查HTML標籤。',
+'badsig'                     => '錯誤的原始簽名。檢查一下HTML標籤。',
 'badsiglength'               => '簽名過長。
 它的長度必須在$1個字元以下。',
 'email'                      => '電子郵件',
 'prefs-help-realname'        => '真實姓名是可選的。
 如果您選擇提供它，那它便用以對您的貢獻署名。',
 'loginerror'                 => '登入錯誤',
-'prefs-help-email'           => '電子郵件是可選的，但當啟用它後可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
+'prefs-help-email'           => '電子郵件是可選的，但當您忘記您的個密碼時可以將新密碼寄回給您。您亦可以在您沒有公開自己的用戶身分時透過您的用戶頁或用戶討論頁與您聯繫。',
 'prefs-help-email-required'  => '需要電子郵件地址。',
 'nocookiesnew'               => '已成功創建新賬戶！偵測到您已關閉 Cookies，請開啟它並登入。',
 'nocookieslogin'             => '本站利用 Cookies 進行用戶登入，偵測到您已關閉 Cookies，請開啟它並重新登入。',
@@ -467,7 +468,7 @@ $2',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => '你現在以 "$1"的身份登入{{SITENAME}}。',
 'nosuchuser'                 => '找不到用戶 "$1"。
-檢查您的拼寫，或者用下面的表格建立一個新帳號。',
+檢查您的拼寫，或者用下面的表格[[Special:Userlogin/signup|建立一個新帳號]]。',
 'nosuchusershort'            => '沒有一個名為「<nowiki>$1</nowiki>」的用戶。請檢查您輸入的文字是否有錯誤。',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
@@ -475,7 +476,12 @@ $2',
 'passwordtooshort'           => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
-'passwordremindertext'       => '有人(可能是您，來自IP位址$1)要求我們將新的{{SITENAME}} ($4) 的登入密碼寄給您。用戶"$2"的密碼現在是"$3"。請立即登入並更改密碼。如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，您可以忽略此消息並繼續使用您的舊密碼。',
+'passwordremindertext'       => '有人(可能是您，來自IP位址$1)已請求{{SITENAME}}的新密碼 ($4)。
+用戶"$2"的一個新臨時密碼現在已被設定好為"$3"。
+如果這個動作是您所指示的，您便需要立即登入並選擇一個新的密碼。
+
+如果是其他人發出了該請求，或者您已經記起了您的密碼並不準備改變它，
+您可以忽略此消息並繼續使用您的舊密碼。',
 'noemail'                    => '用戶"$1"沒有登記電子郵件地址。',
 'passwordsent'               => '用戶"$1"的新密碼已經寄往所登記的電子郵件地址。
 請在收到後再登入。',
@@ -591,17 +597,23 @@ $2',
 'anontalkpagetext'                 => "---- ''這是一個還未建立帳號的匿名用戶的對話頁。我們因此只能用IP地址來與他／她聯絡。該IP地址可能由幾名用戶共享。如果您是一名匿名用戶並認為本頁上的評語與您無關，請[[Special:UserLogin/signup|創建新帳號]]或[[Special:UserLogin|登入]]以避免在未來於其他匿名用戶混淆。''",
 'noarticletext'                    => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 編輯此頁]。',
 'userpage-userdoesnotexist'        => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
-'clearyourcache'                   => "'''注意 - 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
+'clearyourcache'                   => "'''注意 - 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。'''
+'''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；
+'''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；
+'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；
+'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
 'usercssjsyoucanpreview'           => "<strong>提示:</strong> 在保存前請用'顯示預覧'按鈕來測試您新的 CSS/JS 。",
-'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS, 還沒有儲存﹗'''",
-'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript，還沒有儲存﹗'''",
+'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS。'''
+'''還沒有儲存﹗'''",
+'userjspreview'                    => "'''注意您只是在測試／預覽您的個人 JavaScript。'''
+'''還沒有儲存﹗'''",
 'userinvalidcssjstitle'            => "'''警告:''' 不存在面板\"\$1\"。注意自訂的 .css 和 .js 頁要使用小寫標題，例如，{{ns:user}}:Foo/monobook.css 不同於 {{ns:user}}:Foo/Monobook.css。",
 'updated'                          => '(已更新)',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>請記住這只是預覽，內容還未保存！</strong>',
 'previewconflict'                  => '這個預覽顯示了上面文字編輯區中的內容。它將在你選擇保存後出現。',
-'session_fail_preview'             => '<strong>很抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。</strong>',
-'session_fail_preview_html'        => "<strong>很抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
+'session_fail_preview'             => '<strong>抱歉！由於部份資料遺失，我們無法處理您的編輯。請再試一次，如果仍然失敗，請[[Special:UserLogout|登出]]後重新登入。</strong>',
+'session_fail_preview_html'        => "<strong>抱歉！部份資料已遺失，我們無法處理您的編輯。</strong>
 
 ''由於{{SITENAME}}已經開放原始 HTML 碼，預覽已經隱藏以預防 JavaScript 的攻擊。''
 
@@ -847,7 +859,7 @@ $2',
 'mypreferences'            => '我的參數設置',
 'prefs-edits'              => '編輯數量:',
 'prefsnologin'             => '還未登入',
-'prefsnologintext'         => '您必須先[[Special:UserLogin|登入]]才能設置個人參數。',
+'prefsnologintext'         => '您必須先<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} 登入]</span>才能設置個人參數。',
 'prefsreset'               => '參數已重新設置。',
 'qbsettings'               => '快速導航條',
 'qbsettings-none'          => '無',
@@ -1448,7 +1460,7 @@ Template:消除歧義',
 'notanarticle'         => '不是頁面',
 'notvisiblerev'        => '修訂版本已經刪除',
 'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
-'watchlist-details'    => '不包含討論頁，您的監視列表共有 $1 頁。',
+'watchlist-details'    => '不包含討論頁，有 $1 頁在您的監視列表上。',
 'wlheader-enotif'      => '* 已經啟動電子郵件通知功能。',
 'wlheader-showupdated' => "* 在你上次檢視後有被修改過的頁面會顯示為'''粗體'''",
 'watchmethod-recent'   => '檢查被監視頁面的最近編輯',
@@ -2433,8 +2445,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
-'scarytranscludefailed'   => '[抱歉，模板$1讀取失敗]',
-'scarytranscludetoolong'  => '[抱歉，URL 地址太長]',
+'scarytranscludefailed'   => '[模板$1讀取失敗]',
+'scarytranscludetoolong'  => '[URL 地址太長]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">此頁面的引用:
