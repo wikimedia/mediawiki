@@ -145,6 +145,8 @@ The following extensions are migrated into MediaWiki 1.14:
   $wgExternalLinkTarget
 * api.php now sends "Retry-After" and "X-Database-Lag" HTTP headers if the maxlag
   check fails, just like index.php does
+* Classes derived from SpecialPage can now specify a run() method, which will
+  be executed after all magic performed by SpecialPage::execute()
 
 
 === Bug fixes in 1.14 ===
