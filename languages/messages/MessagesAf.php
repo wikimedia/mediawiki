@@ -462,12 +462,9 @@ Maak seker dit is reg gespel of [[Special:Userlogin/signup|skep \'n nuwe rekenin
 Dit moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} hê en kan nie jou gebruikersnaam insluit nie.',
 'mailmypassword'             => "E-pos my 'n nuwe wagwoord",
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
-'passwordremindertext'       => 'Iemand (waarskynlik U, van IP-adres $1)
-het gevra dat ons vir U \'n nuwe {{SITENAME}}-wagwoord ($4) stuur.
-Die wagwoord vir gebruiker "$2" is nou "$3".
-Teken asseblief in en verander U wagwoord.
+'passwordremindertext'       => 'Iemand (waarskynlik u vanaf IP-adres $1) het \'n nuwe wagwoord vir {{SITENAME}} ($4) gevra. \'n Tydelike wagwoord is vir gebruiker "$2" geskep. Die nuwe wagwoord is "$3". U kan met die tydelike wagwoord aanteken en \'n nuwe wagwoord stel.
 
-Indien iemand anders hierdie navraag gerig het of as U die wagwoord onthou en U nie meer die wagwoord wil wysig nie, kan U hierdie boodskap ignoreer en voortgaan om U ou wagwoord te gebruik.',
+Indien iemand anders hierdie navraag gerig het, of u het die wagwoord intussen onthou en wil nie meer die wagwoord wysig nie, kan u die boodskap ignoreer en voortgaan om die ou wagwoord te gebruik.',
 'noemail'                    => 'Daar is geen e-posadres vir gebruiker "$1" nie.',
 'passwordsent'               => 'Nuwe wagwoord gestuur na e-posadres vir "$1".
 Teken asseblief in na jy dit ontvang het.',

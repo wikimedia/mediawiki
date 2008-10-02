@@ -1316,12 +1316,17 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'noimage'                        => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
 'noimage-linktext'               => 'bied triem oan',
 'uploadnewversion-linktext'      => 'Bied in nije ferzje fan dizze triem oan',
+'imagepage-searchdupe'           => 'Duplikaattriemmen sykje',
 
 # File reversion
-'filerevert'         => '$1 weromsette',
-'filerevert-legend'  => 'Triem weromsette',
-'filerevert-comment' => 'Oanmerking:',
-'filerevert-submit'  => 'werom sette',
+'filerevert'                => '$1 weromsette',
+'filerevert-legend'         => 'Triem weromsette',
+'filerevert-intro'          => "Jo binne '''[[Media:$1|$1]]''' oan it weromdraaien ta de [$4 ferzje op $2, $3].",
+'filerevert-comment'        => 'Oanmerking:',
+'filerevert-defaultcomment' => 'Weromdraaid ta de ferzje op $1, $2',
+'filerevert-submit'         => 'werom sette',
+'filerevert-success'        => "'''[[Media:$1|$1]]''' is weromdraaid ta de [$4 ferzje op $2, $3].",
+'filerevert-badversion'     => "Der is gjin foarige lokale ferzje fan dizze triem fan 'e opjûne tiid.",
 
 # File deletion
 'filedelete'                  => 'Wiskje $1',
@@ -1331,14 +1336,22 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'filedelete-comment'          => 'Reden foar it wiskjen:',
 'filedelete-submit'           => 'Wiskje',
 'filedelete-success'          => "'''$1''' is wiske.",
+'filedelete-success-old'      => "De ferzje fan '''[[Media:$1|$1]]''' fan $2, $3 is fuorthelle.",
 'filedelete-nofile'           => "'''$1''' bestiet net.",
+'filedelete-nofile-old'       => "Der is gjin opsleine ferzje fan '''$1''' mei de oanjûne eigenskippen.",
 'filedelete-otherreason'      => 'Oare/eventuele reden:',
 'filedelete-reason-otherlist' => 'Oare reden',
+'filedelete-reason-dropdown'  => '*Faak foarkommende redenen foar fuortheljen
+** Skeinen fan auteursrjochten
+** Duplikaattriem',
+'filedelete-edit-reasonlist'  => 'Redenen foar fuortheljen bewurkje',
 
 # MIME search
-'mimesearch' => 'Sykje op MIME-type',
-'mimetype'   => 'MIME-type:',
-'download'   => 'oanbiede',
+'mimesearch'         => 'Sykje op MIME-type',
+'mimesearch-summary' => 'Dizze side makket it filterjen mûglik fan triemmen foar it MIME-type.
+Ynfier: contenttype/subtype, bygelyks <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME-type:',
+'download'           => 'oanbiede',
 
 # Unwatched pages
 'unwatchedpages' => "Siden dy't net op in folchlist steane",
@@ -1347,8 +1360,10 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'listredirects' => 'List fan trochferwizings',
 
 # Unused templates
-'unusedtemplates'    => 'Net brûkte sjabloanen',
-'unusedtemplateswlh' => 'oare keppelings',
+'unusedtemplates'     => 'Net brûkte sjabloanen',
+'unusedtemplatestext' => 'Dizze side jout alle siden wer yn\'e Berjocht-nammeromte dy\'t op net ien side brûkt wurde.
+Ferjit net de "Wat is hjirmei keppele" nei te gean foar it fuortheljen fan dit berjocht.',
+'unusedtemplateswlh'  => 'oare keppelings',
 
 # Random page
 'randompage'         => 'Samar in side',

@@ -2215,6 +2215,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'noautoblockblock'                => 'autoblok uitgeschakeld',
 'createaccountblock'              => 'registreren gebruikers geblokkeerd',
 'emailblock'                      => 'e-mail geblokkeerd',
+'blocklist-nousertalk'            => 'kan eigen overlegpagina niet bewerken',
 'ipblocklist-empty'               => 'De blokkeerlijst is leeg.',
 'ipblocklist-no-results'          => 'Dit IP-adres of deze gebruikersnaam is niet geblokkeerd.',
 'blocklink'                       => 'blokkeren',

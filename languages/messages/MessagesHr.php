@@ -724,7 +724,7 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'resetpass_submit'        => 'Postavite lozinku i prijavite se',
 'resetpass_success'       => 'Lozinka uspješno postavljena! Prijava u tijeku...',
 'resetpass_bad_temporary' => 'Nevažeća privremena lozinka. Možda ste već uspješno promijenili svoju lozinku ili ste zatražili novu privremenu lozinku.',
-'resetpass_forbidden'     => 'Na ovom wikiju ({{SITENAME}}) lozinka ne može biti promijenjena',
+'resetpass_forbidden'     => 'Lozinka ne može biti promijenjena',
 'resetpass_missing'       => 'Forma ne sadrži tražene podatke.',
 
 # Edit page toolbar
@@ -874,7 +874,7 @@ Administrator je zaključao bazu iz razloga: $1',
 'nocreatetitle'                    => 'Otvaranje novih stranica ograničeno',
 'nocreatetext'                     => 'Na ovom je projektu ograničeno otvaranje novih stranica.
 Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLogin|prijaviti ili otvoriti suradnički račun]].',
-'nocreate-loggedin'                => 'Nemate ovlasti za stvaranje novih stranica na {{SITENAME}}.',
+'nocreate-loggedin'                => 'Nemate ovlasti za stvaranje novih stranica.',
 'permissionserrors'                => 'Pogreška u pravima',
 'permissionserrorstext'            => 'Nemate ovlasti za tu radnju iz sljedećih {{PLURAL:$1|razlog|razloga}}:',
 'permissionserrorstext-withaction' => 'Nemate dopuštenje za $2, iz {{PLURAL:$1|razloga|razloga}}:',
@@ -1402,7 +1402,7 @@ Ako još uvijek želite postaviti svoju datoteku, idite nazad i postavite ju pod
 'uploadedimage'               => 'postavljeno "$1"',
 'overwroteimage'              => 'postavljena nova inačica od "[[$1]]"',
 'uploaddisabled'              => 'Postavljanje je onemogućeno',
-'uploaddisabledtext'          => 'Postavljanje datoteka na ovom je wikiju onemogućeno.',
+'uploaddisabledtext'          => 'Postavljanje datoteka je onemogućeno.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptu, što može dovesti do grešaka u web pregledniku.',
 'uploadcorrupt'               => 'Ova je datoteka oštećena ili ima nepravilan nastavak. Provjerite i pokušajte ponovo.',
 'uploadvirus'                 => 'Datoteka sadrži virus! Podrobnije: $1',
@@ -1507,7 +1507,7 @@ A [[Special:WhatLinksHere/$2|Ovdje se nalazi]] kompletan popis.',
 'filedelete-submit'           => 'Izbriši',
 'filedelete-success'          => "Datoteka '''$1''' je izbrisana.",
 'filedelete-success-old'      => "Inačica datoteke '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
-'filedelete-nofile'           => "'''$1''' ne postoji na {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' ne postoji.",
 'filedelete-nofile-old'       => "Nema arhivirane verzije datoteke '''$1''' s zadanim parametrima.",
 'filedelete-otherreason'      => 'Drugi/dodatni razlog:',
 'filedelete-reason-otherlist' => 'Drugi razlog',
@@ -1872,9 +1872,9 @@ Sva vremena su prema poslužiteljevom vremenu.',
 'rollbackfailed'   => 'Uklanjanje neuspješno',
 'cantrollback'     => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
 'alreadyrolled'    => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio suradnik [[User:$2|$2]]
-([[User talk:$2|Talk]]); netko je već promijenio stranicu ili uklonio promjenu.
+([[User talk:$2|Razgovor]]); netko je već promijenio stranicu ili uklonio promjenu.
 
-Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Talk]]).',
+Posljednju promjenu napravio je suradnik [[User:$3|$3]] ([[User talk:$3|Razgovor]]).',
 'editcomment'      => 'Komentar promjene je: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
@@ -2089,6 +2089,7 @@ Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
 'noautoblockblock'                => 'blokiranje samoga sebe je onemogućeno',
 'createaccountblock'              => 'blokirano stvaranje suradničkog računa',
 'emailblock'                      => 'e-mail je blokiran',
+'blocklist-nousertalk'            => 'bez uređivanja vlastite stranice za razgovor',
 'ipblocklist-empty'               => 'Popis blokiranja je prazan.',
 'ipblocklist-no-results'          => 'Tražena IP adresa ili suradničko ime nije blokirano.',
 'blocklink'                       => 'blokiraj',
@@ -2143,9 +2144,9 @@ mijenjanje postavki, uređivanje popisa praćenja i druge stvari koje zahtijevaj
 'databasenotlocked'   => 'Baza podataka nije zaključana.',
 
 # Move page
-'move-page'               => 'Premjesti $1',
-'move-page-legend'        => 'Premjesti stranicu',
-'movepagetext'            => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
+'move-page'                   => 'Premjesti $1',
+'move-page-legend'            => 'Premjesti stranicu',
+'movepagetext'                => "Korištenjem ovog obrasca ćete preimenovati stranicu i premjestiti sve stare izmjene na novo ime.
 Stari će se naslov pretvoriti u stranicu koja automatski preusmjerava na novi naslov.
 Možete odabrati automatsko ažuriranje preusmjeravanja na originalni naslov.
 Ako se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna]] preusmjeravanja.
@@ -2155,50 +2156,51 @@ To znači: 1. ako pogriješite, možete opet preimenovati stranicu na stari nasl
 
 '''OPREZ!'''
 Ovo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice, i zato dobro razmislite prije nego što preimenujete stranicu.",
-'movepagetalktext'        => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
+'movepagetalktext'            => "Stranica za razgovor, ako postoji, automatski će se premjestiti zajedno sa stranicom koju premještate. '''Stranica za razgovor neće se premjestiti ako:'''
 *premještate stranicu iz jednog prostora u drugi,
 *pod novim imenom već postoji stranica za razgovor s nekim sadržajem, ili
 *maknete kvačicu u kućici na dnu ove stranice.
 
 U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razgovor,
 ako to želite.",
-'movearticle'             => 'Premjesti stranicu',
-'movenotallowed'          => 'Nemate pravo premještanja stranica na ovom projektu ({{SITENAME}}).',
-'newtitle'                => 'Na novi naslov',
-'move-watch'              => 'Prati ovu stranicu',
-'movepagebtn'             => 'Premjesti stranicu',
-'pagemovedsub'            => 'Premještanje uspjelo',
-'movepage-moved'          => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
+'movearticle'                 => 'Premjesti stranicu',
+'movenotallowed'              => 'Nemate pravo premještanja stranica.',
+'moverootuserpagesnotallowed' => 'Nemate dopuštenja za premještanje root suradničkih stranica.',
+'newtitle'                    => 'Na novi naslov',
+'move-watch'                  => 'Prati ovu stranicu',
+'movepagebtn'                 => 'Premjesti stranicu',
+'pagemovedsub'                => 'Premještanje uspjelo',
+'movepage-moved'              => '<big>\'\'\'"$1" je premješteno na "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'Stranica pod tim imenom već postoji ili ime koje ste odabrali nije u skladu s pravilima.
 Molimo odaberite drugo ime.',
-'cantmove-titleprotected' => 'Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja',
-'talkexists'              => "'''Sama stranica je uspješno prenesena, ali stranicu za razgovor nije bilo moguće prenijeti jer na odredištu već postoji stranica za razgovor. Molimo da ih ručno spojite.'''",
-'movedto'                 => 'premješteno na',
-'movetalk'                => 'Premjesti i njezinu stranicu za razgovor ako je moguće.',
-'move-subpages'           => 'Premjesti sve podstranice, ako je moguće',
-'move-talk-subpages'      => 'Premjesti sve podstranice od stranice za razgovor, ako je moguće',
-'movepage-page-exists'    => 'Stranica $1 već postoji i ne može biti automatski prepisana',
-'movepage-page-moved'     => 'Stranica $1 je premještena na $2.',
-'movepage-page-unmoved'   => 'Stranica $1 nije mogla biti premještena na $2.',
-'movepage-max-pages'      => 'Najveća količina od $1 {{PLURAL:$1|stranice|stranica}} je premještena i više od toga neće biti automatski premješteno.',
-'1movedto2'               => '$1 premješteno na $2',
-'1movedto2_redir'         => '$1 premješteno na $2 preko postojećeg preusmjeravanja',
-'movelogpage'             => 'Evidencija premještanja',
-'movelogpagetext'         => 'Ispod je popis premještenih stranica.',
-'movereason'              => 'Razlog',
-'revertmove'              => 'vrati',
-'delete_and_move'         => 'Izbriši i premjesti',
-'delete_and_move_text'    => '==Nužno brisanje==
+'cantmove-titleprotected'     => 'Ne možete premjestiti ovu stranicu na ovo mjesto, jer je novi naslov zaštićen od kreiranja',
+'talkexists'                  => "'''Sama stranica je uspješno prenesena, ali stranicu za razgovor nije bilo moguće prenijeti jer na odredištu već postoji stranica za razgovor. Molimo da ih ručno spojite.'''",
+'movedto'                     => 'premješteno na',
+'movetalk'                    => 'Premjesti i njezinu stranicu za razgovor ako je moguće.',
+'move-subpages'               => 'Premjesti sve podstranice, ako je moguće',
+'move-talk-subpages'          => 'Premjesti sve podstranice od stranice za razgovor, ako je moguće',
+'movepage-page-exists'        => 'Stranica $1 već postoji i ne može biti automatski prepisana',
+'movepage-page-moved'         => 'Stranica $1 je premještena na $2.',
+'movepage-page-unmoved'       => 'Stranica $1 nije mogla biti premještena na $2.',
+'movepage-max-pages'          => 'Najveća količina od $1 {{PLURAL:$1|stranice|stranica}} je premještena i više od toga neće biti automatski premješteno.',
+'1movedto2'                   => '$1 premješteno na $2',
+'1movedto2_redir'             => '$1 premješteno na $2 preko postojećeg preusmjeravanja',
+'movelogpage'                 => 'Evidencija premještanja',
+'movelogpagetext'             => 'Ispod je popis premještenih stranica.',
+'movereason'                  => 'Razlog',
+'revertmove'                  => 'vrati',
+'delete_and_move'             => 'Izbriši i premjesti',
+'delete_and_move_text'        => '==Nužno brisanje==
 
 Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napravili mjesto za premještaj?',
-'delete_and_move_confirm' => 'Da, izbriši stranicu',
-'delete_and_move_reason'  => 'Obrisano kako bi se napravilo mjesta za premještaj.',
-'selfmove'                => 'Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.',
-'immobile_namespace'      => 'Odredišni naslov pripada posebnom tipu; u taj prostor ne mogu pomicati stranice.',
-'imagenocrossnamespace'   => 'Datoteka ne može biti premještena u imenski prostor koji nije za datoteke',
-'imagetypemismatch'       => 'Ekstenzija nove datoteke se ne poklapa sa svojim tipom.',
-'imageinvalidfilename'    => 'Ciljano ime datoteke je nevaljano',
-'fix-double-redirects'    => 'Ažuriraj sva preusmjeravanja koja vode na originalni naslov',
+'delete_and_move_confirm'     => 'Da, izbriši stranicu',
+'delete_and_move_reason'      => 'Obrisano kako bi se napravilo mjesta za premještaj.',
+'selfmove'                    => 'Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.',
+'immobile_namespace'          => 'Odredišni naslov pripada posebnom tipu; u taj prostor ne mogu pomicati stranice.',
+'imagenocrossnamespace'       => 'Datoteka ne može biti premještena u imenski prostor koji nije za datoteke',
+'imagetypemismatch'           => 'Ekstenzija nove datoteke se ne poklapa sa svojim tipom.',
+'imageinvalidfilename'        => 'Ciljano ime datoteke je nevaljano',
+'fix-double-redirects'        => 'Ažuriraj sva preusmjeravanja koja vode na originalni naslov',
 
 # Export
 'export'            => 'Izvezi stranice',

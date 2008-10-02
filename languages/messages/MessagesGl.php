@@ -1897,6 +1897,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'noautoblockblock'                => 'autobloqueo desactivado',
 'createaccountblock'              => 'bloqueada a creación de contas',
 'emailblock'                      => 'correo electrónico bloqueado',
+'blocklist-nousertalk'            => 'non pode editar a súa conversa',
 'ipblocklist-empty'               => 'A listaxe de bloqueos está baleira.',
 'ipblocklist-no-results'          => 'Nin o enderezo IP nin o nome de usuario solicitados están bloqueados.',
 'blocklink'                       => 'bloquear',
@@ -1953,9 +1954,9 @@ Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu manteme
 'databasenotlocked'   => 'A base de datos non está bloqueada.',
 
 # Move page
-'move-page'               => 'Mover "$1"',
-'move-page-legend'        => 'Mover páxina',
-'movepagetext'            => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
+'move-page'                   => 'Mover "$1"',
+'move-page-legend'            => 'Mover páxina',
+'movepagetext'                => "Ao usar o formulario de embaixo vai cambiar o nome da páxina, movendo todo o seu historial ao novo nome.
 O título vello vaise converter nunha páxina de redirección ao novo título.
 Pode actualizar automaticamente as redireccións que van dar ao título orixinal.
 Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Special:DoubleRedirects|dobres]] ou [[Special:BrokenRedirects|crebadas]].
@@ -1967,49 +1968,50 @@ Isto significa que pode volver renomear unha páxina ao seu nome antigo se comet
 '''ATENCIÓN!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado;
 por favor, asegúrese de que entende as consecuencias disto antes de proseguir.",
-'movepagetalktext'        => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
+'movepagetalktext'            => "A páxina de conversa asociada, se existe, será automaticamente movida con esta '''agás que''':
 *Estea a mover a páxina empregando espazos de nomes,
 *Xa exista unha páxina de conversa con ese nome, ou
 *Desactive a opción de abaixo.
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
-'movearticle'             => 'Mover esta páxina:',
-'movenotallowed'          => 'Non ten os permisos necesarios para mover páxinas.',
-'newtitle'                => 'Ao novo título:',
-'move-watch'              => 'Vixiar esta páxina',
-'movepagebtn'             => 'Mover a páxina',
-'pagemovedsub'            => 'O movemento foi un éxito',
-'movepage-moved'          => '<big>\'\'\'"$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
+'movearticle'                 => 'Mover esta páxina:',
+'movenotallowed'              => 'Non ten os permisos necesarios para mover páxinas.',
+'moverootuserpagesnotallowed' => 'Non ten os permisos necesarios para mover páxinas de usuario raíz.',
+'newtitle'                    => 'Ao novo título:',
+'move-watch'                  => 'Vixiar esta páxina',
+'movepagebtn'                 => 'Mover a páxina',
+'pagemovedsub'                => 'O movemento foi un éxito',
+'movepage-moved'              => '<big>\'\'\'"$1" foi movida a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'               => 'Xa existe unha páxina con ese nome, ou o nome que escolleu non é válido.
 Por favor escolla outro nome.',
-'cantmove-titleprotected' => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
-'talkexists'              => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
-'movedto'                 => 'movido a',
-'movetalk'                => 'Mover a páxina de conversa, se cómpre',
-'move-subpages'           => 'Mover todas as subpáxinas, se cómpre',
-'move-talk-subpages'      => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
-'movepage-page-exists'    => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
-'movepage-page-moved'     => 'A páxina "$1" foi movida a "$2".',
-'movepage-page-unmoved'   => 'A páxina "$1" non pode ser movida a "$2".',
-'movepage-max-pages'      => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
-'1movedto2'               => 'moveu "[[$1]]" a "[[$2]]"',
-'1movedto2_redir'         => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
-'movelogpage'             => 'Rexistro de traslados',
-'movelogpagetext'         => 'Abaixo móstrase unha listaxe de páxinas trasladadas.',
-'movereason'              => 'Motivo:',
-'revertmove'              => 'reverter',
-'delete_and_move'         => 'Borrar e mover',
-'delete_and_move_text'    => '==Precísase borrar==
+'cantmove-titleprotected'     => 'Vostede non pode mover a páxina a esta ubicación, porque o novo título foi protexido da creación',
+'talkexists'                  => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
+'movedto'                     => 'movido a',
+'movetalk'                    => 'Mover a páxina de conversa, se cómpre',
+'move-subpages'               => 'Mover todas as subpáxinas, se cómpre',
+'move-talk-subpages'          => 'Mover todas as subpáxinas da páxina de conversa, se cómpre',
+'movepage-page-exists'        => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
+'movepage-page-moved'         => 'A páxina "$1" foi movida a "$2".',
+'movepage-page-unmoved'       => 'A páxina "$1" non pode ser movida a "$2".',
+'movepage-max-pages'          => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
+'1movedto2'                   => 'moveu "[[$1]]" a "[[$2]]"',
+'1movedto2_redir'             => 'moveu "[[$1]]" a "[[$2]]" sobre unha redirección',
+'movelogpage'                 => 'Rexistro de traslados',
+'movelogpagetext'             => 'Abaixo móstrase unha listaxe de páxinas trasladadas.',
+'movereason'                  => 'Motivo:',
+'revertmove'                  => 'reverter',
+'delete_and_move'             => 'Borrar e mover',
+'delete_and_move_text'        => '==Precísase borrar==
 A páxina de destino, chamada "[[:$1]]", xa existe.
 Quérea eliminar para facer sitio para mover?',
-'delete_and_move_confirm' => 'Si, borrar a páxina',
-'delete_and_move_reason'  => 'Eliminado para facer sitio para mover',
-'selfmove'                => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
-'immobile_namespace'      => 'O título de orixe ou o de destino son dunha clase especial; non poden moverse as páxinas desde ou a ese espazo de nomes.',
-'imagenocrossnamespace'   => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
-'imagetypemismatch'       => 'A nova extensión do fiheiro non coincide co seu tipo',
-'imageinvalidfilename'    => 'O nome da imaxe é inválido',
-'fix-double-redirects'    => 'Actualizar calquera redirección que apunte cara ao título orixinal',
+'delete_and_move_confirm'     => 'Si, borrar a páxina',
+'delete_and_move_reason'      => 'Eliminado para facer sitio para mover',
+'selfmove'                    => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
+'immobile_namespace'          => 'O título de orixe ou o de destino son dunha clase especial; non poden moverse as páxinas desde ou a ese espazo de nomes.',
+'imagenocrossnamespace'       => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
+'imagetypemismatch'           => 'A nova extensión do fiheiro non coincide co seu tipo',
+'imageinvalidfilename'        => 'O nome da imaxe é inválido',
+'fix-double-redirects'        => 'Actualizar calquera redirección que apunte cara ao título orixinal',
 
 # Export
 'export'            => 'Exportar páxinas',
