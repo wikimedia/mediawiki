@@ -1727,6 +1727,7 @@ $wgMessageStructure = array(
 		'noautoblockblock',
 		'createaccountblock',
 		'emailblock',
+		'blocklist-nousertalk',
 		'ipblocklist-empty',
 		'ipblocklist-no-results',
 		'blocklink',
