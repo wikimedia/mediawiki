@@ -1645,7 +1645,7 @@ Wiki: $PAGEEDITOR_WIKI
 Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt. Op ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen. 
 
 
-             Äre freëdleche {{SITENAME}} Benaoriichtigungssystem
+             Äre frëndleche {{SITENAME}} Benoriichtigungssystem
 
 --
 Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{fullurl:Special:Watchlist/edit}}',

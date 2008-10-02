@@ -334,7 +334,7 @@ $messages = array(
 'restorelink'             => '{{PLURAL:$1|едно избришано уредување|$1 избришани уредувања}}',
 'feedlinks'               => 'Фид:',
 'feed-invalid'            => 'Лош тип на фид пријава',
-'feed-unavailable'        => 'RSS/Atom фидови не се достапни на {{SITENAME}}',
+'feed-unavailable'        => 'RSS/Atom фидови не се достапни',
 'site-rss-feed'           => '$1 RSS фид',
 'site-atom-feed'          => '$1 Atom фид',
 'page-rss-feed'           => '„$1“ RSS фид',
@@ -549,7 +549,7 @@ $2',
 'resetpass_success'       => 'Вашата лозинка беше успешно променета! Најавувањето е во тек...',
 'resetpass_bad_temporary' => 'Неважечка привремена лозинка.
 Можно е веќе да сте ја промениле вашата лозинка или да сте побарале нова привремена лозинка.',
-'resetpass_forbidden'     => 'На {{SITENAME}} не може да се менуваат лозинките.',
+'resetpass_forbidden'     => 'Лозинките не може да се менуваат',
 'resetpass_missing'       => 'Формуларот не содржи податоци.',
 
 # Edit page toolbar
@@ -707,7 +707,7 @@ $2',
 'nocreatetitle'                    => 'Креирањето на нови страници е ограничено',
 'nocreatetext'                     => '{{SITENAME}} ја има ограничена можноста за креирање нови страници.
 Можете да се вратите назад и да уредувате постоечка страница или [[Special:UserLogin|најавете се или креирајте нова корисничка сметка]].',
-'nocreate-loggedin'                => 'Немате дозвола да создавате нови страници на {{SITENAME}}.',
+'nocreate-loggedin'                => 'Немате дозвола да создавате нови страници.',
 'permissionserrors'                => 'Грешки во правата',
 'permissionserrorstext'            => 'Немате дозвола да го направите тоа, заради {{PLURAL:$1|следнава причина|следниве причини}}:',
 'permissionserrorstext-withaction' => 'Немате дозвола за $2, заради {{PLURAL:$1|следнава причина|следниве причини}}:',
@@ -1037,6 +1037,11 @@ $2',
 'grouppage-sysop'         => '{{ns:project}}:Администратори',
 'grouppage-bureaucrat'    => '{{ns:project}}:Бирократи',
 
+# Rights
+'right-minoredit'     => 'Означи ги уредувањата како ситни',
+'right-move'          => 'Прместување страници',
+'right-move-subpages' => 'Преместување страници со нивните подстраници',
+
 # User rights log
 'rightslog'      => 'Историја на корисничките права',
 'rightslogtext'  => 'Ова е дневник на промени на кориснички права.',
@@ -1157,7 +1162,7 @@ $2',
 'uploadedimage'               => 'подигнато "[[$1]]"',
 'overwroteimage'              => 'подигнато нова верзија на "[[$1]]"',
 'uploaddisabled'              => 'Забрана за подигнувања',
-'uploaddisabledtext'          => 'Подигнувања на податотеки не се допуштени на {{SITENAME}}.',
+'uploaddisabledtext'          => 'Подигнување на податотеки е оневозможено.',
 'uploadscripted'              => 'Податотеката содржи HTML или скриптен код што може да биде погрешно интерпретира од страна на веб прелистувачите.',
 'uploadcorrupt'               => 'Податотеката е оштетена или има неточна наставка. 
 Ве молиме проверете ја податотеката и подигнете ја повторно.',
@@ -1191,6 +1196,7 @@ PICT # misc.
 
 'upload-proto-error' => 'Погрешен протокол',
 'upload-file-error'  => 'Внатрешна грешка',
+'upload-misc-error'  => 'Непозната грешка при подигнување',
 
 'license'            => 'Лиценца:',
 'nolicense'          => 'Нема',
@@ -1211,6 +1217,9 @@ PICT # misc.
 # Image description page
 'filehist'                       => 'Историја на податотеката',
 'filehist-help'                  => 'Кликнете на датум/време за да ја видите податотеката како изгледала тогаш.',
+'filehist-deleteall'             => 'бриши се',
+'filehist-deleteone'             => 'бриши',
+'filehist-revert'                => 'врати',
 'filehist-current'               => 'моментална',
 'filehist-datetime'              => 'Датум/Време',
 'filehist-thumb'                 => 'мини-слика',
@@ -1261,7 +1270,7 @@ PICT # misc.
 'filedelete-submit'           => 'Бриши',
 'filedelete-success'          => "'''$1''' беше избришана.",
 'filedelete-success-old'      => "Верзијата на '''[[Media:$1|$1]]''' од $3, $2 беше избришана.",
-'filedelete-nofile'           => "'''$1''' не постои на {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' не постои.",
 'filedelete-nofile-old'       => "Не постојат архивирани верзии на '''$1''' со атрибути како што се наведени.",
 'filedelete-otherreason'      => 'Друга/дополнителна причина:',
 'filedelete-reason-otherlist' => 'Друга причина',
@@ -1295,9 +1304,24 @@ PICT # misc.
 'randomredirect-nopages' => 'Нема пренасочувања во овој именски простор.',
 
 # Statistics
-'statistics'              => 'Статистики',
-'statistics-header-users' => 'Статистики за корисници',
-'statistics-mostpopular'  => 'Најгледани страници',
+'statistics'                      => 'Статистики',
+'statistics-header-pages'         => 'Статистики за страници',
+'statistics-header-edits'         => 'Статистики на уредувања',
+'statistics-header-views'         => 'Статистики на посети',
+'statistics-header-users'         => 'Статистики за корисници',
+'statistics-articles'             => 'Статии',
+'statistics-pages'                => 'Страници',
+'statistics-pages-tooltip'        => 'Сите страници на викито, вклучувајќи и страници за разговор, пренасочувања, и.т.н.',
+'statistics-files'                => 'Подигнати податотеки',
+'statistics-edits'                => 'Број на уредувања од започнувањето на {{SITENAME}}',
+'statistics-edits-average'        => 'Просечен број на уредувања по страница',
+'statistics-views-total'          => 'Вкупно посети',
+'statistics-views-peredit'        => 'Посети по уредување',
+'statistics-jobqueue'             => 'Должина на [http://www.mediawiki.org/wiki/Manual:Job_queue редица на чекање]',
+'statistics-users'                => 'Регистрирани [[Special:ListUsers|корисници]]',
+'statistics-users-active'         => 'Активни корисници',
+'statistics-users-active-tooltip' => 'Корисници кои имаат извршено некоја активност во последниот месец',
+'statistics-mostpopular'          => 'Најпосетувани страници',
 
 'disambiguations'      => 'Страници за појаснување',
 'disambiguationspage'  => 'Template:Врски до страници за појаснување',

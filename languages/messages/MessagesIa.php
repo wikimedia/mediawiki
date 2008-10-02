@@ -2673,7 +2673,7 @@ Es possibile que le codice ha expirate.',
 Tu pote ora aperir un session e fruer te del wiki.',
 'confirmemail_loggedin'    => 'Tu adresse de e-mail ha ora essite confirmate.',
 'confirmemail_error'       => 'Un problema occureva durante le immagazinage de tu confirmation.',
-'confirmemail_subject'     => 'Confirmation de adresses de e-mail in {{SITENAME}}',
+'confirmemail_subject'     => 'Confirmation del adresse de e-mail pro {{SITENAME}}',
 'confirmemail_body'        => 'Un persona, probabilemente tu, usante le adresse IP $1,
 ha registrate un conto "$2" con iste adresse de e-mail in {{SITENAME}}.
 
