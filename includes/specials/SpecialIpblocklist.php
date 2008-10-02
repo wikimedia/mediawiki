@@ -292,7 +292,7 @@ class IPUnblockForm {
 	 * Callback function to output a block
 	 */
 	function formatRow( $block ) {
-		global $wgUser, $wgLang;
+		global $wgUser, $wgLang, $wgBlockAllowsUTEdit;
 
 		wfProfileIn( __METHOD__ );
 
@@ -303,7 +303,7 @@ class IPUnblockForm {
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink',
-				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock' );
+				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'nousertalk' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
@@ -340,6 +340,10 @@ class IPUnblockForm {
 
 		if ( $block->mBlockEmail && $block->mUser ) {
 			$properties[] = $msg['emailblock'];
+		}
+		
+		if ( !$block->mAllowUsertalk && $wgBlockAllowsUTEdit ) {
+			$properties[] = $msg['nousertalk'];
 		}
 
 		$properties = implode( ', ', $properties );
