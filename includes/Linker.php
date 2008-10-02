@@ -166,6 +166,8 @@ class Linker {
 	 *       "stub", "mw-redirect", "extiw").  Only use the class attribute
 	 *       provided, if any, so you get a simple blue link with no funny i-
 	 *       cons.
+	 *     'forcearticlepath': Use the article path always, even with a querystring.
+	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 * @return string HTML <a> attribute
 	 */
 	public function link( $target, $text = null, $customAttribs = array(), $query = array(), $options = array() ) {
