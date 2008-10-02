@@ -296,7 +296,7 @@ $messages = array(
 'deletethispage'    => 'Xóa trang này',
 'undelete_short'    => 'Phục hồi {{PLURAL:$1|một sửa đổi|$1 sửa đổi}}',
 'protect'           => 'Khóa',
-'protect_change'    => 'đổi mức khóa',
+'protect_change'    => 'thay đổi',
 'protectthispage'   => 'Khóa trang này',
 'unprotect'         => 'Mở khóa',
 'unprotectthispage' => 'Mở khóa trang này',
@@ -414,7 +414,7 @@ từ hàm “<tt>$2</tt>”. MySQL báo lỗi “<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu. Truy vấn vừa rồi là:
 <blockquote><tt>$1</tt></blockquote>
 từ hàm “<tt>$2</tt>”. MySQL báo lỗi “<tt>$3: $4</tt>”.',
-'noconnect'            => 'Xin lỗi! Hiện nay wiki đang gặp một số trục trặc kỹ thuật, và không thể kết nối với cơ sở dữ liệu. <br />
+'noconnect'            => 'Wiki đang gặp một số trục trặc kỹ thuật, và không thể kết nối với cơ sở dữ liệu. <br />
 $1',
 'nodb'                 => 'Không thấy cơ sở dữ liệu $1',
 'cachederror'          => 'Đây là bản sao trong bộ nhớ đệm của trang bạn yêu cầu, nó có thể đã lỗi thời.',
@@ -506,7 +506,8 @@ Tài khoản của bạn đã mở.
 'gotaccountlink'             => 'Đăng nhập',
 'createaccountmail'          => 'qua thư điện tử',
 'badretype'                  => 'Hai mật khẩu không khớp.',
-'userexists'                 => 'Tên người dùng này đã có người lấy. Xin vui lòng chọn một tên khác.',
+'userexists'                 => 'Tên người dùng này đã có người lấy.
+Hãy chọn một tên khác.',
 'youremail'                  => 'Thư điện tử:',
 'username'                   => 'Tên người dùng:',
 'uid'                        => 'Số thứ tự thành viên:',
@@ -521,25 +522,27 @@ Nó phải không quá $1 {{PLURAL:$1|ký tự|ký tự}}.',
 'email'                      => 'Thư điện tử',
 'prefs-help-realname'        => 'Tên thật là không bắt buộc, nhưng nếu bạn ghi lại, tên này sẽ dùng để ghi công cho bạn.',
 'loginerror'                 => 'Lỗi đăng nhập',
-'prefs-help-email'           => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó cho phép những người khác liên lạc với bạn thông qua trang thành viên hoặc thảo luận thành viên mà không cần để lộ danh tánh.',
+'prefs-help-email'           => 'Địa chỉ thư điện tử là tùy chọn, nhưng nó giúp bạn nhận lại mật khẩu qua thư điện tử nếu bạn quên.
+Bạn cũng có thể lựa chọn để cho phép người khác liên lạc với bạn thông qua trang thành_viên hoặc thảo_luận_thành_viên mà không cần để lộ danh tính.',
 'prefs-help-email-required'  => 'Bắt buộc phải có địa chỉ e-mail.',
 'nocookiesnew'               => 'Tài khoản đã mở, nhưng bạn chưa đăng nhập. {{SITENAME}} sử dụng cookie để đăng nhập vào tài khoản. Bạn đã tắt cookie. Xin hãy kích hoạt nó, rồi đăng nhập lại với tên người dùng và mật khẩu mới.',
 'nocookieslogin'             => '{{SITENAME}} sử dụng cookie để đăng nhập thành viên. Bạn đã tắt cookie. Xin hãy kích hoạt rồi thử lại.',
 'noname'                     => 'Chưa nhập tên.',
 'loginsuccesstitle'          => 'Đăng nhập thành công',
 'loginsuccess'               => "'''Bạn đã đăng nhập vào {{SITENAME}} với tên “$1”.'''",
-'nosuchuser'                 => 'Thành viên “$1” không tồn tại. Xin kiểm tra lại tên, hoặc mở tài khoản mới.',
+'nosuchuser'                 => 'Thành viên có thành viên nào có tên “$1”.
+Hãy kiểm tra lại chính tả, hoặc [[Special:Userlogin/signup|mở tài khoản mới]].',
 'nosuchusershort'            => 'Không có thành viên nào có tên “<nowiki>$1</nowiki>”. Xin hãy kiểm tra lại chính tả.',
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
 'wrongpasswordempty'         => 'Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.',
 'passwordtooshort'           => 'Mật khẩu của bạn không hợp lệ hoặc quá ngắn.
 Nó phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}} và phải khác với tên người dùng của bạn.',
-'mailmypassword'             => 'Gửi mật khẩu mới bằng thư điện tử',
+'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
-'passwordremindertext'       => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi một mật khẩu mới của {{SITENAME}} ($4). Mật khẩu mới của "$2" giờ là "$3". Bạn nên đăng nhập và thay đổi mật khẩu ngay bây giờ.
+'passwordremindertext'       => 'Người nào đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi cho bạn mật khẩu mới của {{SITENAME}} ($4). Mật khẩu tạm cho thành viên “$2” đã được khởi tạo là “$3”. Nếu đây đúng là thứ bạn muốn, bạn sẽ cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ.
 
-Nếu một người nào khác yêu cầu điều này hoặc nếu bạn đã nhớ ra mật khẩu và không còn muốn đổi nó nữa, bạn có thể bỏ qua tin nhắn này và tiếp tục sử dụng mật khẩu cũ của bạn.',
+Nếu một người nào khác yêu cầu điều này, hoặc nếu bạn đã nhớ ra mật khẩu, và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
 'noemail'                    => 'Thành viên “$1” không đăng ký thư điện tử.',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword'       => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh lạm dụng.',
@@ -551,7 +554,8 @@ Nếu một người nào khác yêu cầu điều này hoặc nếu bạn đã 
 'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
 'noemailprefs'               => 'Không có địa chỉ thư điện tử, chức năng sau có thể không hoạt động.',
 'emailconfirmlink'           => 'Xác nhận địa chỉ thư điện tử',
-'invalidemailaddress'        => 'Địa chỉ thư điện tử không được chấp nhận định dạng có vẻ sai. Xin hãy nhập lại một địa chỉ có định dạng đúng hoặc bỏ trống ô đó.',
+'invalidemailaddress'        => 'Địa chỉ thư điện tử không được chấp nhận vì định dạng thư có vẻ sai.
+Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô đó.',
 'accountcreated'             => 'Mở tài khoản thành công',
 'accountcreatedtext'         => 'Tài khoản thành viên cho $1 đã được mở.',
 'createaccount-title'        => 'Tài khoản mới tại {{SITENAME}}',
@@ -663,16 +667,18 @@ Nếu bạn là một thành viên vô danh và cảm thấy rằng có những 
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'clearyourcache'                   => "'''Ghi chú - Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.''' '''Mozilla / Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'', hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (''Command-R'' trên Macintosh); '''Konqueror:''': nhấn nút ''Reload'' hoặc nhấn ''F5''; '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''; '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => '<strong>Mẹo:</strong> Sử dụng nút “Xem thử” để kiểm thử trang CSS/JS của bạn trước khi lưu trang.',
-'usercsspreview'                   => "'''Nhớ rằng bạn chỉ đang xem thử trang CSS, nó chưa được lưu!'''",
+'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
+Nó chưa được lưu!'''",
 'userjspreview'                    => "'''Nhớ rằng bạn chỉ đang kiểm thử/xem thử trang JavaScript, nó chưa được lưu!'''",
 'userinvalidcssjstitle'            => "'''Cảnh báo:''' Không có skin “$1”. Hãy nhớ rằng các trang .css và .js tùy chỉnh sử dụng tiêu đề chữ thường, như {{ns:user}}:Ví&nbsp;dụ/monobook.css chứ không phải {{ns:user}}:Ví&nbsp;dụ/Monobook.css.",
 'updated'                          => '(Cập nhật)',
 'note'                             => '<strong>Ghi chú:</strong>',
 'previewnote'                      => '<strong>Đây chỉ mới là xem thử; các thay đổi vẫn chưa được lưu!</strong>',
 'previewconflict'                  => 'Phần xem thử này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn lưu trang.',
-'session_fail_preview'             => '<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
-Xin hãy thử lần nữa. Nếu vẫn không thành công, bạn hãy thử đăng xuất và đăng nhập lại.</strong>',
-'session_fail_preview_html'        => "<strong>Xin lỗi! Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.</strong>
+'session_fail_preview'             => '<strong>Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.
+Xin hãy thử lần nữa.
+Nếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại.</strong>',
+'session_fail_preview_html'        => "<strong>Những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.</strong>
 
 ''Do {{SITENAME}} cho phép dùng mã HTML, trang xem thử được ẩn đi để đề phòng bị tấn công bằng JavaScript.''
 
@@ -757,7 +763,7 @@ Lý do được $3 đưa ra là ''$2''",
 'revnotfound'         => 'Không thấy',
 'revnotfoundtext'     => 'Không thấy phiên bản trước của trang này. Xin kiểm tra lại.',
 'currentrev'          => 'Bản hiện tại',
-'revisionasof'        => 'Phiên bản vào lúc $1',
+'revisionasof'        => 'Phiên bản lúc $1',
 'revision-info'       => 'Phiên bản vào lúc $1 do $2 sửa đổi',
 'previousrevision'    => '← Phiên bản cũ',
 'nextrevision'        => 'Phiên bản mới →',
@@ -920,7 +926,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mypreferences'            => 'Tùy chọn',
 'prefs-edits'              => 'Số lần sửa đổi:',
 'prefsnologin'             => 'Chưa đăng nhập',
-'prefsnologintext'         => 'Bạn phải [[Special:UserLogin|đăng nhập]] để thiết lập tùy chọn cá nhân.',
+'prefsnologintext'         => 'Bạn phải <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
 'prefsreset'               => 'Các tùy chọn cá nhân đã được mặc định lại.',
 'qbsettings'               => 'Thanh công cụ',
 'qbsettings-none'          => 'Không có',
@@ -1172,11 +1178,12 @@ Xin hãy chọn một tên tập tin khác.',
 'fileexists-thumb'            => "<center>'''Tập tin đã tồn tại'''</center>",
 'fileexists-thumbnail-yes'    => 'Tập tin này có vẻ là hình có kích thước thu gọn <i>(hình thu nhỏ)</i>. Xin kiểm tra lại tập tin <strong><tt>$1</tt></strong>.<br />
 Nếu tập tin được kiểm tra trùng với hình có kích cỡ gốc thì không cần thiết tải lên một hình thu nhỏ khác.',
-'file-thumbnail-no'           => 'Tên tập tin bắt đầu bằng <strong><tt>$1</tt></strong>. Có vẻ đây là bản có kích thước thu nhỏ của hình <i>(thumbnail)</i>.
-Nếu bạn có bản ở độ phân giải tối đa, mời bạn tải bản này lên, nếu không hãy đổi lại tên tập tin.',
+'file-thumbnail-no'           => 'Tên tập tin bắt đầu bằng <strong><tt>$1</tt></strong>.
+Có vẻ đây là bản thu nhỏ của hình gốc <i>(thumbnail)</i>.
+Nếu bạn có hình ở độ phân giải tối đa, xin hãy tải bản đó lên, nếu không xin hãy đổi lại tên tập tin.',
 'fileexists-forbidden'        => 'Đã có tập tin với tên gọi này; xin quay lại để tải tập tin này lên dưới tên khác. [[Image:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'Một tập tin với tên này đã tồn tại ở kho tập tin dùng chung; xin hãy quay lại và tải tập tin này lên với tên khác.
-[[Image:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Một tập tin với tên này đã tồn tại ở kho tập tin dùng chung.
+Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại và dùng một tên khác. [[Image:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Tập tin này có vẻ là bản sao của {{PLURAL:$1|tập tin|các  tập tin}} sau:',
 'successfulupload'            => 'Đã tải xong',
 'uploadwarning'               => 'Cảnh báo!',
@@ -1273,7 +1280,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'shareduploadduplicate-linktext' => 'tập tin khác',
 'shareduploadconflict'           => 'Tập tin này trùng tên với $1 từ kho tập tin dùng chung.',
 'shareduploadconflict-linktext'  => 'tập tin khác',
-'noimage'                        => 'Không có tập tin có tên này, bạn có thể $1.',
+'noimage'                        => 'Không có tập tin có tên này, nhưng bạn có thể $1.',
 'noimage-linktext'               => 'tải tập tin lên',
 'uploadnewversion-linktext'      => 'Tải lên phiên bản mới',
 'imagepage-searchdupe'           => 'Tìm kiếm các tập tin trùng lắp',
@@ -1437,7 +1444,7 @@ Có '''$8''' tập tin đã được tải lên.
 'log-search-legend'    => 'Tìm kiếm nhật trình',
 'log-search-submit'    => 'Tìm kiếm',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.
-Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên, hoặc các trang bị ảnh hưởng.',
+Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên (phân biệt chữ hoa-chữ thường), hoặc các trang bị ảnh hưởng (cũng phân biệt chữ hoa-chữ thường).',
 'logempty'             => 'Không có mục nào khớp với từ khóa.',
 'log-title-wildcard'   => 'Tìm các tựa trang bắt đầu bằng các chữ này',
 
@@ -1485,8 +1492,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser'       => 'Gửi thư cho người này',
 'emailpage'       => 'Gửi thư',
-'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ cho bạn gửi thư.
-Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời lại bạn.',
+'emailpagetext'   => 'Nếu người dùng này đã cung cấp địa chỉ thư điện tử hợp lệ tại tùy chọn cá nhân, mẫu dưới đây sẽ gửi một bức thư điện tử tới người đó.
+Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror' => 'Lỗi gửi thư:',
 'defemailsubject' => 'thư gửi từ {{SITENAME}}',
 'noemailtitle'    => 'Không có địa chỉ nhận thư',
@@ -1523,7 +1530,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'notanarticle'         => 'Không phải trang có nội dung',
 'notvisiblerev'        => 'Phiên bản bị xóa',
 'watchnochange'        => 'Không có trang nào bạn theo dõi được sửa đổi.',
-'watchlist-details'    => 'Bạn đang theo dõi {{PLURAL:$1|$1 trang|$1 trang}} không kể trang thảo luận.',
+'watchlist-details'    => 'Bạn đang theo dõi {{PLURAL:$1|$1 trang|$1 trang}}, không kể các trang thảo luận.',
 'wlheader-enotif'      => '* Đã bật thông báo qua thư điện tử.',
 'wlheader-showupdated' => "* Các trang đã thay đổi từ lần cuối bạn xem chúng được in '''đậm'''",
 'watchmethod-recent'   => 'Dưới đây hiện thay đổi mới với các trang theo dõi.',
@@ -1652,7 +1659,7 @@ hiện tại của trang <strong>$1</strong>:',
 'protect-level-sysop'         => 'Cấm mọi thành viên (trừ quản lý)',
 'protect-summary-cascade'     => 'khóa theo tầng',
 'protect-expiring'            => 'hết hạn $1 (UTC)',
-'protect-cascade'             => 'Tự động khóa các trang được nhúng vào trang ngày (khóa theo tầng)',
+'protect-cascade'             => 'Tự động khóa các trang được nhúng vào trang này (khóa theo tầng)',
 'protect-cantedit'            => 'Bạn không thể thay đổi mức khóa cho trang này do không có đủ quyền hạn.',
 'restriction-type'            => 'Quyền:',
 'restriction-level'           => 'Mức độ hạn chế:',
@@ -1678,8 +1685,8 @@ hiện tại của trang <strong>$1</strong>:',
 'viewdeletedpage'              => 'Xem các trang bị xóa',
 'undeletepagetext'             => 'Các trang sau đã bị xóa nhưng vẫn nằm trong kho lưu trữ và có thể phục hồi được. Kho lưu trữ sẽ được khóa định kỳ.',
 'undelete-fieldset-title'      => 'Phục hồi phiên bản',
-'undeleteextrahelp'            => "Để phục hồi toàn bộ trang, hãy để trống các hộp kiểm và bấm nút '''''Phục hồi'''''.
-Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi và bấm nút '''''Phục hồi'''''.
+'undeleteextrahelp'            => "Để phục hồi toàn bộ lịch sử trang, hãy để trống các hộp kiểm và bấm nút '''''Phục hồi'''''.
+Để thực hiện phục hồi có chọn lọc, hãy đánh dấu vào hộp kiểm của các phiên bản muốn phục hồi, rồi bấm nút '''''Phục hồi'''''.
 Bấm nút '''''Tẩy trống''''' sẽ tẩy trống ô lý do và tất cả các hộp kiểm.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|bản|bản}} đã được lưu',
 'undeletehistory'              => 'Nếu bạn phục hồi trang này, tất cả các phiên bản của nó cũng sẽ được phục hồi vào lịch sử của trang.
@@ -1831,8 +1838,8 @@ $1',
 'unblocklogentry'                 => 'đã bỏ cấm “$1”',
 'block-log-flags-anononly'        => 'chỉ cấm thành viên vô danh',
 'block-log-flags-nocreate'        => 'cấm mở tài khoản',
-'block-log-flags-noautoblock'     => 'đã tắt tự động cấm',
-'block-log-flags-noemail'         => 'đã cấm thư điện tử',
+'block-log-flags-noautoblock'     => 'tắt tự động cấm',
+'block-log-flags-noemail'         => 'cấm thư điện tử',
 'block-log-flags-angry-autoblock' => 'bật tự động cấm nâng cao',
 'range_block_disabled'            => 'Đã tắt khả năng cấm hàng loạt của quản lý.',
 'ipb_expiry_invalid'              => 'Thời điểm hết hạn không hợp lệ.',
@@ -2091,7 +2098,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Spam protection
 'spamprotectiontitle' => 'Bộ lọc chống thư rác',
-'spamprotectiontext'  => 'Trang bạn muốn lưu bị bộ lọc thư rác chặn lại. Đây có thể do một liên kết dẫn tới một địa chỉ bên ngoài.',
+'spamprotectiontext'  => 'Trang bạn muốn lưu bị bộ lọc thư rác chặn lại.
+Đây có thể do một liên kết dẫn tới một địa chỉ bên ngoài đã bị ghi vào danh sách đen.',
 'spamprotectionmatch' => 'Nội dung sau đây đã kích hoạt bộ lọc thư rác: $1',
 'spambot_username'    => 'Bộ dọn dẹp thư rác MediaWiki',
 'spam_reverting'      => 'Lùi lại đến phiên bản cuối không chứa liên kết đến $1',
@@ -2143,8 +2151,8 @@ $1',
 'filedelete-archive-read-only'    => 'Máy chủ web không ghi được vào thư mục lưu trữ “$1”.',
 
 # Browsing diffs
-'previousdiff' => '← Thay đổi trước',
-'nextdiff'     => 'Thay đổi sau →',
+'previousdiff' => '← Sửa đổi cũ',
+'nextdiff'     => 'Sửa đổi sau →',
 
 # Media information
 'mediawarning'         => "'''Cảnh báo''': Tập tin này có thể chứa mã hiểm độc, nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.<hr />",
@@ -2177,7 +2185,7 @@ Các liên kết sau đó trên cùng một dòng được xem là các ngoại 
 # Metadata
 'metadata'          => 'Đặc tính hình',
 'metadata-help'     => 'Tập tin này có chứa thông tin về nó, do máy ảnh hay máy quét thêm vào. Nếu tập tin bị sửa đổi sau khi được tạo ra lần đầu, có thể thông tin này không được cập nhật.',
-'metadata-expand'   => 'Xem chi tiết cấp cao',
+'metadata-expand'   => 'Hiện chi tiết cấp cao',
 'metadata-collapse' => 'Ẩn chi tiết cấp cao',
 'metadata-fields'   => 'Những thông tin đặc tính EXIF được danh sách dưới đây sẽ được đưa vào vào trang miêu tả hình khi bảng đặc tính được thu nhỏ.
 Những thông tin khác mặc định sẽ được ẩn đi.
@@ -2466,9 +2474,10 @@ hãy cố gắng yêu cầu mã mới.
 'confirmemail_sent'        => 'Thư xác nhận đã được gửi',
 'confirmemail_oncreate'    => 'Đã gửi mã xác nhận đến địa chỉ thư điện tử của bạn.
 Bạn không cần mã này để đăng nhập, nhưng sẽ cần sử dụng nó để bật các tính năng có dùng thư điện tử của wiki.',
-'confirmemail_sendfailed'  => 'Không thể gửi thư xác nhận. Xin kiểm tra lại địa chỉ thư.
+'confirmemail_sendfailed'  => '{{SITENAME}} không thể gửi thư xác nhận.
+Xin kiểm tra lại địa chỉ thư xem có bị nhầm ký tự nào không.
 
-Chương trình gửi trả về: $1',
+Chương trình thư báo rằng: $1',
 'confirmemail_invalid'     => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
 'confirmemail_needlogin'   => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
 'confirmemail_success'     => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
@@ -2493,8 +2502,8 @@ Mã xác nhận này sẽ hết hạn vào $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Nhúng giữa các wiki bị tắt]',
-'scarytranscludefailed'   => '[Truy xuất tiêu bản cho $1 thất bại; rất tiếc]',
-'scarytranscludetoolong'  => '[Địa chỉ URL quá dài, rất tiếc]',
+'scarytranscludefailed'   => '[Truy xuất tiêu bản cho $1 thất bại]',
+'scarytranscludetoolong'  => '[Địa chỉ URL quá dài]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">
@@ -2506,7 +2515,7 @@ $1
 'trackbackdeleteok' => 'Đã xóa trackback.',
 
 # Delete conflict
-'deletedwhileediting' => 'Cảnh báo: Trang này đã bị xóa sau khi bắt đầu sửa đổi!',
+'deletedwhileediting' => "'''Cảnh báo''': Trang này đã bị xóa sau khi bắt đầu sửa đổi!",
 'confirmrecreate'     => "Thành viên [[User:$1|$1]] ([[User talk:$1|thảo luận]]) đã xóa trang này sau khi bạn bắt đầu sửa đổi trang với lý do:
 : ''$2''
 Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
@@ -2561,8 +2570,8 @@ $1',
 'livepreview-error'   => 'Không thể kết nối: $1 “$2”. Hãy dùng thử chế độ xem thử thông thường.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
-'lag-warn-high'   => 'Do độ trễ của máy chủ cơ sở dữ liệu, những thay đổi trong vòng $1 giây trở lại đây có thể chưa xuất hiện trong danh sách.',
+'lag-warn-normal' => 'Những thay đổi trong vòng $1 {{PLURAL:||}}giây trở lại đây có thể chưa xuất hiện trong danh sách.',
+'lag-warn-high'   => 'Do độ trễ của máy chủ cơ sở dữ liệu, những thay đổi trong vòng $1 {{PLURAL:$1||}}giây trở lại đây có thể chưa xuất hiện trong danh sách.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|tựa đề|tựa đề}}, không tính các trang thảo luận.',

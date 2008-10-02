@@ -308,7 +308,7 @@ Voluntez, elektez ula diferanta uzantonomo.',
 'uid'                        => 'ID dil uzanto:',
 'yourrealname'               => 'Vua reala nomo:',
 'yourlanguage'               => 'Linguo:',
-'yournick'                   => 'Vua uzantonomo (por signati):',
+'yournick'                   => 'Signaturo:',
 'email'                      => 'Elek-posto',
 'loginerror'                 => 'Eroro enirante',
 'nocookieslogin'             => "{{SITENAME}} uzas ''cookies'' por la registrago dil uzanti. Vu havas la ''cookies'' desaktivigita. Voluntez aktivigar oli e probez altrafoye.",
@@ -321,7 +321,8 @@ Kontrolez posibla erori od uzez la formularo infre por krear nova uzerokonto.',
 'nouserspecified'            => 'Vu mustas specigar uzantonomo.',
 'wrongpassword'              => 'La skribita pasovorto esis nekorekta. Voluntez probar itere.',
 'wrongpasswordempty'         => 'Vu ne skribis pasovorto. Probez nove.',
-'passwordtooshort'           => 'Vua Pasovorto es ne-valida o tro kurta. Ol mustas kontenar $1 literi od nombri ed mustas esar diferanta kam vua uzantonomo.',
+'passwordtooshort'           => 'Vua pasovorto es ne-valida o tro kurta.
+Ol mustas kontenar adminime {{PLURAL:$1|1 signo|$1 signi}} ed mustas esar diferanta kam vua uzantonomo.',
 'mailmypassword'             => 'Sendez a me nova pasovorto per e-posto.',
 'passwordremindertitle'      => 'Pasovorto-memorilo por {{SITENAME}}',
 'noemail'                    => 'Ne esas e-adreso konservita por la uzanto "$1".',
@@ -454,6 +455,7 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'prevn'                 => 'antea $1',
 'nextn'                 => 'sequanta $1',
 'viewprevnext'          => 'Vidar ($1) ($2) ($3).',
+'search-result-size'    => '$1 ({{PLURAL:$2|1 vorto|$2 vorti}})',
 'search-result-score'   => 'Importo: $1%',
 'search-section'        => '(seciono $1)',
 'searchall'             => 'omna',
@@ -706,10 +708,10 @@ Voluntez kontrolar la URL quan vu uzis por acesar a ca pagino.",
 'emailpage'       => 'E-posto ad uzanto',
 'defemailsubject' => 'E-posto di {{SITENAME}}',
 'noemailtitle'    => 'Ne esas e-adreso',
-'emailfrom'       => 'De',
-'emailto'         => 'Ad',
-'emailsubject'    => 'Temo',
-'emailmessage'    => 'Sendajo',
+'emailfrom'       => 'De:',
+'emailto'         => 'Ad:',
+'emailsubject'    => 'Temo:',
+'emailmessage'    => 'Sendajo:',
 'emailsend'       => 'Sendar',
 'emailsent'       => 'E-posto sendita',
 'emailsenttext'   => 'Vua e-posto sendesis',
@@ -811,7 +813,7 @@ Lasta edito esis da [[User:$3|$3]] ([[User talk:$3|Talk]]).',
 
 # What links here
 'whatlinkshere'           => 'Quo ligas hike',
-'whatlinkshere-title'     => 'Pagini qui ligas ad $1',
+'whatlinkshere-title'     => 'Pagini qui ligas ad "$1"',
 'whatlinkshere-page'      => 'Pagino:',
 'linklistsub'             => '(Listo di ligili)',
 'linkshere'               => "Ca pagini esas ligilizita ad '''[[:$1]]''':",
@@ -840,7 +842,7 @@ Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
 'unblockip'          => 'Desblokusar uzanto',
 'unblockiptext'      => 'Uzez la sequanta formularo por restaurar la skribo-aceso ad IP-adreso qua blokusesis antee.',
 'ipusubmit'          => 'Desblokusar ica IP-adreso',
-'ipblocklist'        => 'Listo di blokusita IP-adresi ed uzantonomi',
+'ipblocklist'        => 'Blokusita IP-adresi ed uzantonomi',
 'ipblocklist-submit' => 'Serchar',
 'blocklistline'      => '$1, $2 blokusas $3 (expiras $4)',
 'blocklink'          => 'blokusar',
@@ -873,15 +875,15 @@ Memorez [[Special:UnlockDB|efacar la blokuso]] kande vua mantenado finos.',
 'movepagetext'            => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo.
 La ligili a la antea titulo dil pagino ne chanjesos.
-Voluntez certigar ke ne esas duopla o ruptota ridirektili.
+Voluntez certigar ke ne esas [[Special:DoubleRedirects|duopla]] o [[Special:BrokenRedirects|ruptota ridirektili]].
 Vu responsas ke la ligili duros direktante a la pagino korespondanta.
 
 Memorez ke la pagino '''ne''' rinomizesos se ja existus pagino kun la nova titulo, eceptuante ke la pagino esas vakua o ridirektilo sen versionaro.
 Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras skribante la nova titulo, ma ne povos riskribar existanta pagino.
 
 '''EGARDEZ!'''
-Ica povas esar drastika chanjo e ne-esperinda por populara pagino.
-Voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
+Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
+voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movearticle'             => 'Movar pagino',
 'newtitle'                => 'a nova titulo',
 'movepagebtn'             => 'Movar pagino',
@@ -982,7 +984,7 @@ Voluntez selektar altra nomo.',
 'nextdiff'     => 'Sequanta dif →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 pagini',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
 
 # Special:NewImages
 'newimages'     => 'Galerio di nova arkivi',
@@ -1086,5 +1088,8 @@ Voluntez selektar altra nomo.',
 
 # Special:SpecialPages
 'specialpages' => 'Specala pagini',
+
+# Special:BlankPage
+'blankpage' => 'Pagino sen-skribura',
 
 );

@@ -491,7 +491,8 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'noname'                     => 'Numele de utilizator pe care l-ai specificat este invalid.',
 'loginsuccesstitle'          => 'Autentificare reuşită',
 'loginsuccess'               => 'Aţi fost autentificat în {{SITENAME}} ca "$1".',
-'nosuchuser'                 => 'Nu există nici un utilizator cu numele "$1". Verifică dacă ai scris corect sau foloseşte această pagină pentru a crea un nou utilizator.',
+'nosuchuser'                 => 'Nu există nici un utilizator cu numele „$1”.
+Verifică dacă ai scris corect sau [[Special:Userlogin/signup|creează un nou cont de utilizator]].',
 'nosuchusershort'            => 'Nu este nici un utilizator cu numele "<nowiki>$1</nowiki>". Verificaţi dacă aţi scris corect.',
 'nouserspecified'            => 'Trebuie să specificaţi un nume de utilizator.',
 'wrongpassword'              => 'Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.',
@@ -500,10 +501,14 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 Trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}} şi să fie diferită de numele de utilizator.',
 'mailmypassword'             => 'Trimite-mi parola pe e-mail!',
 'passwordremindertitle'      => 'Noua parolă temporară la {{SITENAME}}',
-'passwordremindertext'       => 'Cineva (probabil tu, de la adresa $1)
-a cerut să ţi se trimită o nouă parolă pentru {{SITENAME}} ($4).
+'passwordremindertext'       => 'Cineva (probabil dumneavoastră, de la adresa $1)
+a cerut să vi se trimită o nouă parolă pentru {{SITENAME}} ($4).
 Parola pentru utilizatorul "$2" este acum "$3".
-Este recomandat să intri pe {{SITENAME}} şi să-ţi schimbi parola cât mai curând.',
+Este recomandat să intraţi pe {{SITENAME}} şi să vă schimbi parola cât mai curând.
+
+Dacă această cerere a fost efectuată de altcineva sau dacă v-aţi amintit 
+parola şi nu doriţi să o schimbaţi, ignoraţi acest mesaj şi continuaţi 
+să folosiţi vechea parolă.',
 'noemail'                    => 'Nu este nici o adresă de e-mail înregistrată pentru utilizatorul "$1".',
 'passwordsent'               => 'O nouă parolă a fost trimisă la adresa de e-mail a utilizatorului "$1". Te rugăm să te autentifici pe {{SITENAME}} după ce o primeşti.',
 'blocked-mailpassword'       => 'Această adresă IP este blocată la editare, şi deci nu este permisă utilizarea funcţiei de recuperare a parolei pentru a preveni abuzul.',
@@ -882,7 +887,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mypreferences'            => 'preferinţe',
 'prefs-edits'              => 'Număr de modificări:',
 'prefsnologin'             => 'Neautentificat',
-'prefsnologintext'         => 'Trebuie să fii [[Special:UserLogin|autentificat]] pentru a-ţi putea salva preferinţele.',
+'prefsnologintext'         => 'Trebuie să fiţi <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} autentificat]</span> pentru a vă putea salva preferinţele.',
 'prefsreset'               => 'Preferinţele au fost resetate.',
 'qbsettings'               => 'Setări pentru bara rapidă',
 'qbsettings-none'          => 'Fără',
@@ -967,7 +972,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'group-autoconfirmed' => 'Utilizatori autoconfirmaţi',
 'group-bot'           => 'Roboţi',
 'group-sysop'         => 'Administratori',
-'group-bureaucrat'    => 'Birocraţi:',
+'group-bureaucrat'    => 'Birocraţi',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(toţi)',
 
@@ -1253,7 +1258,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'filedelete-comment'          => 'Motiv pentru ştergere:',
 'filedelete-submit'           => 'Şterge',
 'filedelete-success'          => "'''$1''' a fost şters.",
-'filedelete-success-old'      => '<span class="plainlinks">Versiunea fişierului \'\'\'[[Media:$1|$1]]\'\'\' din $3, $2 a fost ştearsă.</span>',
+'filedelete-success-old'      => "Versiunea fişierului '''[[Media:$1|$1]]''' din $2 $3 a fost ştearsă.",
 'filedelete-nofile'           => "'''$1''' nu există pe acest sit.",
 'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
 'filedelete-iscurrent'        => 'Eşti pe cale să ştergi cea mai recentă versiune a acestui fişier. Te rog să revii la o versiune mai veche.',
@@ -1408,7 +1413,8 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'all-logs-page'        => 'Toate jurnalele',
 'log-search-legend'    => 'Caută jurnale',
 'log-search-submit'    => 'Du-te',
-'alllogstext'          => 'Afişare combinată a încărcărilor, ştergerilor, protecţiilor, blocărilor şi a rapoartelor administratorilor. Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
+'alllogstext'          => 'Afişare combinată a tuturor jurnalelor {{SITENAME}}.
+Puteţi limita vizualizarea selectând tipul raportului, numele de utilizator sau pagina afectată.',
 'logempty'             => 'Nici o înregistrare în raport.',
 'log-title-wildcard'   => 'Caută titluri care încep cu acest text',
 
@@ -1430,7 +1436,9 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 
 # Special:Categories
 'categories'                    => 'Categorii',
-'categoriespagetext'            => 'Următoarele categorii conţin pagini sau fişiere.',
+'categoriespagetext'            => 'Următoarele categorii conţin pagini sau fişiere.
+[[Special:UnusedCategories|Categoriile neutilizate]] nu apar aici.
+Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'categoriesfrom'                => 'Arată categoriile pornind de la:',
 'special-categories-sort-count' => 'ordonează după număr',
 'special-categories-sort-abc'   => 'sortează alfabetic',
@@ -1459,10 +1467,10 @@ Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informaţii adiţionale]] de
 'defemailsubject' => 'E-mail {{SITENAME}}',
 'noemailtitle'    => 'Fără adresă de e-mail',
 'noemailtext'     => 'Utilizatorul nu a specificat o adresă validă de e-mail, sau a ales să nu primească e-mail de la alţi utilizatori.',
-'emailfrom'       => 'De la',
-'emailto'         => 'Către',
-'emailsubject'    => 'Subiect',
-'emailmessage'    => 'Mesaj',
+'emailfrom'       => 'De la:',
+'emailto'         => 'Către:',
+'emailsubject'    => 'Subiect:',
+'emailmessage'    => 'Mesaj:',
 'emailsend'       => 'Trimite',
 'emailccme'       => 'Trimite-mi pe e-mail o copie a mesajului meu.',
 'emailccsubject'  => 'O copie a mesajului la $1: $2',
@@ -1857,7 +1865,7 @@ automat odată cu aceasta '''afară de cazul că''':
 În oricare din cazurile de mai sus va trebui să muţi sau să unifici
 manual paginile de discuţii, dacă doreşti acest lucru.",
 'movearticle'             => 'Mută pagina',
-'movenotallowed'          => 'Nu ai permisiunea să muţi pagini în {{SITENAME}}.',
+'movenotallowed'          => 'Nu ai permisiunea să muţi pagini.',
 'newtitle'                => 'Titlul nou',
 'move-watch'              => 'Urmăreşte această pagină',
 'movepagebtn'             => 'Mută pagina',
@@ -2444,8 +2452,8 @@ Codul de confirmare va expira la $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
-'scarytranscludefailed'   => '[Şiretlicul formatului a dat greş pentru $1; ne pare rău]',
-'scarytranscludetoolong'  => '[URL-ul este prea lung; ne pare rău]',
+'scarytranscludefailed'   => '[Şiretlicul formatului a dat greş pentru $1]',
+'scarytranscludetoolong'  => '[URL-ul este prea lung]',
 
 # Trackbacks
 'trackbackbox'      => "<div id='mw_trackbacks'>
@@ -2457,7 +2465,7 @@ $1
 'trackbackdeleteok' => 'Urmăritorul a fost şters cu succes.',
 
 # Delete conflict
-'deletedwhileediting' => 'Atenţie: Această pagină a fost ştearsă după ce ai început să o modifici!',
+'deletedwhileediting' => "'''Atenţie''': Această pagină a fost ştearsă după ce ai început să o modifici!",
 'confirmrecreate'     => "Utilizatorul [[User:$1|$1]] ([[User talk:$1|discuţie]]) a şters acest articol după ce aţi început să contribuţi la el din motivul:
 : ''$2''
 Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest articol.",

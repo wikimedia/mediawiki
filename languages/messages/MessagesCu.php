@@ -93,42 +93,42 @@ $messages = array(
 'thu'           => 'ч҃т',
 'fri'           => 'п҃т',
 'sat'           => 'с҃б',
-'january'       => 'їанѹарїи',
+'january'       => 'їаноуа́рїи',
 'february'      => 'февроуа́рїи',
 'march'         => 'мартїи',
-'april'         => 'апрїлїи',
+'april'         => 'апрі́лїи',
 'may_long'      => 'ма́їи',
 'june'          => 'їоу́нїи',
 'july'          => 'їоу́лїи',
 'august'        => 'аѵ́гоустъ',
 'september'     => 'сєптє́мврїи',
-'october'       => 'октѡврїи',
-'november'      => 'ноемврїи',
-'december'      => 'декемврїи',
-'january-gen'   => 'їанѹарї',
+'october'       => 'октѡ́врїи',
+'november'      => 'ноє́мврїи',
+'december'      => 'дєкє́мврїи',
+'january-gen'   => 'їаноуа́рїꙗ',
 'february-gen'  => 'фєвроуа́рїꙗ',
 'march-gen'     => 'ма́ртїꙗ',
-'april-gen'     => 'апрїлї',
+'april-gen'     => 'апрі́лїꙗ',
 'may-gen'       => 'ма́їꙗ',
 'june-gen'      => 'їоу́нїꙗ',
 'july-gen'      => 'їоу́лїꙗ',
 'august-gen'    => 'аѵ́гоуста',
 'september-gen' => 'сєптє́мврїꙗ',
-'october-gen'   => 'октѡврї',
-'november-gen'  => 'ноемврї',
-'december-gen'  => 'декемврї',
+'october-gen'   => 'октѡ́врїꙗ',
+'november-gen'  => 'ноє́мврїꙗ',
+'december-gen'  => 'дєкє́мврїꙗ',
 'jan'           => 'ꙗ҃н',
-'feb'           => 'фе҃в',
+'feb'           => 'фє҃в',
 'mar'           => 'ма҃р',
 'apr'           => 'ап҃р',
 'may'           => 'маи',
 'jun'           => 'їо҃ун',
 'jul'           => 'їо҃ул',
 'aug'           => 'аѵ҃г',
-'sep'           => 'се҃п',
+'sep'           => 'сє҃п',
 'oct'           => 'ок҃т',
-'nov'           => 'но҃е',
-'dec'           => 'де҃к',
+'nov'           => 'но҃є',
+'dec'           => 'дє҃к',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Катигорі́ꙗ|Катигорі́и|Катигорі́ѩ|Катигорі́ѩ}}',
@@ -146,6 +146,7 @@ $messages = array(
 'navigation'     => 'пла́ваниѥ',
 'and'            => 'и',
 
+'errorpagetitle'   => 'блаꙁна',
 'help'             => 'по́мощь',
 'search'           => 'иска́ниѥ',
 'searchbutton'     => 'ищи́',
@@ -225,12 +226,13 @@ $messages = array(
 'createaccount'           => 'Cъзижди си мѣсто',
 'gotaccount'              => 'Мѣсто ти ѥстъ ли? $1.',
 'gotaccountlink'          => 'Въниди',
-'userexists'              => 'Сѫще польѕевател имѧ пьса. Ино изобрѧщи.',
+'userexists'              => 'сѫщє по́льꙃєватєлꙗ и́мѧ пьса ⁙ ино иꙁобрѧщи',
 'username'                => 'по́льꙃєватєлꙗ и́мѧ :',
 'uid'                     => 'по́льꙃєватєлꙗ число́ :',
 'yourlanguage'            => 'ѩꙁꙑ́къ :',
 'yournick'                => 'аѵто́графъ :',
 'loginerror'              => 'Въхода блазна',
+'accountcreated'          => 'мѣ́сто сътворєно́ ѥ́стъ',
 'loginlanguagelabel'      => 'ѩꙁꙑ́къ : $1',
 
 # Edit page toolbar
@@ -247,6 +249,7 @@ $messages = array(
 'clearyourcache'     => '<big>НАРОЧИ́ТО:</big> По съхранѥ́нии мо́жєши обити́ своѥго́ съмотри́ла съхра́нъ да ви́дѣлъ би мѣ́нꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑ́и Shift а мꙑ́шиѭ жьми́ Reload и́ли жьми́ Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми́ кро́мѣ Reload и́ли F5 ⁙ О́пєрꙑ по́льꙃєватєльмъ мо́жєть бꙑ́ти ноужда́ пльнѣ пони́чьжити и́хъ съмотри́ла съхра́нъ въ Tools > Preferences ⁙ IE ли жьмꙑ́и Ctrl а мꙑ́шиѭ жьми́ Refresh и́ли жьми́ Ctrl-F5',
 'note'               => '<strong>НАРОЧИ́ТО:</strong>',
 'editing'            => 'исправлѥ́ниѥ: $1',
+'editingsection'     => 'исправлѥ́ниѥ ⁖ $1 ⁖ (чѧ́сть)',
 'templatesused'      => 'сѥѩ страни́цѧ с҄и обраꙁьци́ по́льꙃоуѭтъ сѧ сѫ́тъ :',
 'template-protected' => '(ꙁабранєно ѥ́стъ)',
 
@@ -311,15 +314,17 @@ $messages = array(
 'boteditletter'   => 'а҃ѵ',
 
 # Recent changes linked
-'recentchangeslinked' => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked'      => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked-page' => 'страни́цѧ и́мѧ :',
 
 # Upload
-'upload'          => 'положє́ниѥ дѣ́ла',
-'uploadbtn'       => 'положє́ниѥ дѣ́ла',
-'uploadlog'       => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadlogpage'   => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
-'uploadedimage'   => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload' => 'си страни́цѧ блюдє́ниѥ',
+'upload'           => 'положє́ниѥ дѣ́ла',
+'uploadbtn'        => 'положє́ниѥ дѣ́ла',
+'uploadlog'        => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'uploadlogpage'    => 'дѣ́лъ положє́ниꙗ їсторі́ꙗ',
+'successfulupload' => 'дѣ́ло положєно ѥ́стъ',
+'uploadedimage'    => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
+'watchthisupload'  => 'си страни́цѧ блюдє́ниѥ',
 
 # Special:ImageList
 'imgfile'        => 'дѣ́ло',
@@ -330,6 +335,7 @@ $messages = array(
 
 # Image description page
 'filehist-deleteone' => 'поничьжє́ниѥ',
+'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',
 'imagelinks'         => 'съвѧ́ꙁи',
 
@@ -416,6 +422,8 @@ $messages = array(
 'excontentauthor'     => "вънѫтри́ бѣ : '$1' (и послѣ́дьн҄ии дѣ́тєл҄ь бѣ '[[Special:Contributions/$2|$2]]')",
 'delete-legend'       => 'поничьжє́ниѥ',
 'actioncomplete'      => 'дѣ́иство сътворєно́ ѥ́стъ',
+'deletedtext'         => 'страни́ца ⁖ <nowiki>$1</nowiki> ⁖ поничьжєна ѥ́стъ ⁙ 
+виждь ⁖ $2 ⁖ послѣ́дьнъ поничьжє́ниѩ дѣлꙗ́',
 'deletedarticle'      => '⁖ [[$1]] ⁖ поничьжє́нъ ѥ́стъ',
 'dellogpage'          => 'поничьжє́ниꙗ їсторі́ꙗ',
 'deletionlog'         => 'поничьжє́ниꙗ їсторі́ꙗ',
@@ -436,6 +444,7 @@ $messages = array(
 # Contributions
 'contributions' => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
 'mycontris'     => 'моꙗ́ добродѣꙗ́ниꙗ',
+'contribsub2'   => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
 'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
 
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
@@ -491,6 +500,7 @@ $messages = array(
 # Media information
 'file-info-size' => '($1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3 · MIME тѵ́пъ : $4)',
 'svg-long-desc'  => '(дѣ́ло SVG · обꙑ́чьнъ о́браꙁъ : $1 × $2 п҃ѯ · дѣ́ла мѣ́ра : $3)',
+'show-big-image' => 'пль́нъ ви́да о́браꙁъ',
 
 # Special:NewImages
 'ilsubmit' => 'ищи́',

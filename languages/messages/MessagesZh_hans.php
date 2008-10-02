@@ -251,7 +251,7 @@ $messages = array(
 'deletethispage'    => '删除此页',
 'undelete_short'    => '反删除$1项修订',
 'protect'           => '保护',
-'protect_change'    => '更改保护',
+'protect_change'    => '更改',
 'protectthispage'   => '保护此页',
 'unprotect'         => '解除保护',
 'unprotectthispage' => '解除此页保护',
@@ -376,7 +376,8 @@ MySQL返回错误 "<tt>$3: $4</tt>"。',
 “$1”
 来自于函数“$2”。
 MySQL返回错误“$3: $4”。',
-'noconnect'            => '抱歉！网站遇到一些技术问题，无法连接数据库服务器。<br />$1',
+'noconnect'            => '抱歉！网站遇到一些技术问题，无法连接数据库服务器。<br />
+$1',
 'nodb'                 => '无法选择数据库$1',
 'cachederror'          => '以下页面是缓存中的副本，未必是最新版本。',
 'laggedslavemode'      => '警告: 页面可能不包含最近的更新。',
@@ -467,7 +468,7 @@ $2',
 'gotaccountlink'             => '登录',
 'createaccountmail'          => '通过电子邮件',
 'badretype'                  => '您所输入的密码并不相同。',
-'userexists'                 => '您所输入的用户名已有人使用。请另选一个。',
+'userexists'                 => '您所输入的用户名已有人使用。请另选一个名。',
 'youremail'                  => '电子邮件:',
 'username'                   => '用户名:',
 'uid'                        => '用户ID:',
@@ -476,21 +477,21 @@ $2',
 'yourlanguage'               => '界面语言:',
 'yourvariant'                => '字体变换:',
 'yournick'                   => '签名:',
-'badsig'                     => '错误的原始签名；请检查HTML标签。',
+'badsig'                     => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'               => '签名过长。
 它的长度必须在$1个字符以下。',
 'email'                      => '电子邮箱',
 'prefs-help-realname'        => '真实姓名是可选的。
 如果您选择提供它，那它便用以对您的贡献署名。',
 'loginerror'                 => '登录错误',
-'prefs-help-email'           => '电子邮件是可选的，但当启用它后可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
+'prefs-help-email'           => '电子邮件是可选的，但当您忘记您的个密码时可以将新密码寄回给您。您亦可以在您没有公开自己的用户身份时通过您的用户页或用户讨论页与您联系。',
 'prefs-help-email-required'  => '需要电子邮件地址。',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭 Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用 Cookies 进行用户登录，侦测到您已关闭 Cookies，请开启它并重新登录。',
 'noname'                     => '你没有输入有效的用户名。',
 'loginsuccesstitle'          => '登录成功',
 'loginsuccess'               => '你现在以"$1"的身份登录{{SITENAME}}。',
-'nosuchuser'                 => '找不到用户"$1"。检查您的拼写，或者建立一个新账户。',
+'nosuchuser'                 => '找不到用户"$1"。检查您的拼写，或者[[Special:Userlogin/signup|建立一个新账户]]。',
 'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
 'nouserspecified'            => '你需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
@@ -498,7 +499,12 @@ $2',
 'passwordtooshort'           => '您的密码不正确或太短，不能少于$1个字元，而且必须跟用户名不同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
-'passwordremindertext'       => '有人(可能是您，来自IP地址$1)要求我们将新的{{SITENAME}} ($4) 的登录密码寄给您。用户"$2"的密码现在是"$3"。请立即登录并更改密码。如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，您可以忽略此消息并继续使用您的旧密码。',
+'passwordremindertext'       => '有人(可能是您，来自IP地址$1)已请求{{SITENAME}}的新密码 ($4)。
+用户"$2"的一个新临时密码现在已被设置好为"$3"。
+如果这个动作是您所指示的，您便需要立即登入并选择一个新的密码。
+
+如果是其他人发出了该请求，或者您已经记起了您的密码并不准备改变它，
+您可以忽略此消息并继续使用您的旧密码。',
 'noemail'                    => '用户"$1"没有登记电子邮件地址。',
 'passwordsent'               => '用户"$1"的新密码已经寄往所登记的电子邮件地址。
 请在收到后再登录。',
@@ -615,17 +621,23 @@ $2',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
-'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。''' '''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；'''Konqueror:''' 只需點擊 ''刷新''或按下''F5''；'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的緩存；'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''刷新''，或按下 ''Ctrl-F5''。",
+'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。'''
+'''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；
+'''Konqueror:''' 只需點擊 ''刷新''或按下''F5''；
+'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的緩存；
+'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''刷新''，或按下 ''Ctrl-F5''。",
 'usercssjsyoucanpreview'           => "<strong>提示:</strong> 在保存前请用'显示预  '按钮来测试您新的 CSS/JS 。",
-'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS, 还没有保存！'''",
-'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript，还没有保存！'''",
+'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
+'''还没有保存！'''",
+'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''
+'''还没有保存！'''",
 'userinvalidcssjstitle'            => "'''警告:''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/monobook.css 不同于 {{ns:user}}:Foo/Monobook.css。",
 'updated'                          => '(已更新)',
 'note'                             => '<strong>注意:</strong>',
 'previewnote'                      => '<strong>请记住这只是预览，内容还未保存！</strong>',
 'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => '<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
-'session_fail_preview_html'        => "<strong>抱歉! 我们不能处理你在进程数据丢失时的编辑。</strong>
+'session_fail_preview'             => '<strong>抱歉！我们不能处理你在进程数据丢失时的编辑。请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。</strong>',
+'session_fail_preview_html'        => "<strong>抱歉！我们不能处理你在进程数据丢失时的编辑。</strong>
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
@@ -872,7 +884,7 @@ $2',
 'mypreferences'            => '我的参数设置',
 'prefs-edits'              => '编辑数量:',
 'prefsnologin'             => '尚未登录',
-'prefsnologintext'         => '您必须先[[Special:UserLogin|登录]]才能设置个人参数。',
+'prefsnologintext'         => '您必须先<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} 登录]</span>才能设置个人参数。',
 'prefsreset'               => '参数已被重新设置。',
 'qbsettings'               => '快速导航条',
 'qbsettings-none'          => '无',
@@ -1472,7 +1484,7 @@ Template:消除歧義',
 'notanarticle'         => '不是页面',
 'notvisiblerev'        => '修订版本已经删除',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
-'watchlist-details'    => '$1个页面(不含讨论页)被监视',
+'watchlist-details'    => '不包含讨论页，有 $1 页在您的监视列表上。',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
 'wlheader-showupdated' => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
 'watchmethod-recent'   => '检查被监视页面的最近编辑',
@@ -2459,8 +2471,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
-'scarytranscludefailed'   => '[抱歉，提取$1失败]',
-'scarytranscludetoolong'  => '[抱歉，URL 过长]',
+'scarytranscludefailed'   => '[提取$1失败]',
+'scarytranscludetoolong'  => '[URL 过长]',
 
 # Trackbacks
 'trackbackbox'      => '<div id="mw_trackbacks">此页面的引用:

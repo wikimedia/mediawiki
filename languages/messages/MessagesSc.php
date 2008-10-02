@@ -345,7 +345,7 @@ Per inserire la nuova immagine in un articolo, usa semplicemente un link nella f
 Tieni presente che, come per tutte le pagine di {{SITENAME}}, chiunque può modificare o sostituire o cancellare i tuoi files ove ritenga che ciò sia negli interessi della nostra enciclopedia. Tieni anche presente che, in caso di abuso, o di sovraccarico sul sistema, potresti essere bloccato (oltre ad essere perseguito per le connesse responsabilità).",
 'uploadlogpage'     => 'Upload_log',
 'uploadlogpagetext' => 'Qui di seguito la lista degli ultimi files caricati sul server di {{SITENAME}}.
-Tutti i tempi indicati sono calcolati sul fuso orario del server (UTC).',
+Tutti i tempi indicati sono calcolati sul fuso orario del server.',
 'filename'          => 'Nome del file',
 'filedesc'          => 'Oggetto',
 'uploadedfiles'     => 'Files Caricati in {{SITENAME}}',
@@ -449,7 +449,7 @@ Vedi $2 per un elenco delle pagine cancellate di recente.',
 'deletedarticle'    => 'Cancellata "$1"',
 'dellogpage'        => 'Deletion_log',
 'dellogpagetext'    => 'Qui di seguito, un elenco delle pagine cancellate di recente.
-Tutti i tempi sono in ora del server (UTC).',
+Tutti i tempi sono in ora del server.',
 'reverted'          => 'Ripristinata versione precedente',
 'deletecomment'     => 'Motivazione della cancellazione',
 'rollback'          => 'Usa una revisione precdente',

@@ -1370,7 +1370,7 @@ Vêde l’$2 por una lista de les novèles suprèssions.',
 'deletedarticle'              => 'at èfaciê « [[$1]] »',
 'dellogpage'                  => 'Historico de les suprèssions',
 'dellogpagetext'              => 'Vê-que la lista de les novèles suprèssions.
-L’hora endicâ est cela du sèrvior (UTC).',
+L’hora endicâ est cela du sèrvior.',
 'deletionlog'                 => 'historico des èfacements',
 'reverted'                    => 'Rètablissement de la vèrsion prècèdenta',
 'deletecomment'               => 'Rêson de la suprèssion :',
@@ -1649,7 +1649,7 @@ volyéd vos assurar que vos en compregnéd bien les consèquences devant que pro
 
 Dens cél câs, vos devréd renomar ou fusionar la pâge manuèlament se vos lo dèsirâd.',
 'movearticle'             => 'Renomar l’articllo :',
-'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges dessus {{SITENAME}}.',
+'movenotallowed'          => 'Vos avéd pas la pèrmission de renomar des pâges.',
 'newtitle'                => 'Novél titro :',
 'move-watch'              => 'Siuvre ceta pâge',
 'movepagebtn'             => 'Renomar l’articllo',

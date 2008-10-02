@@ -6,6 +6,7 @@
  *
  * @author Cradel
  * @author Dori
+ * @author Eagleal
  * @author Ergon
  * @author לערי ריינהארט
  */
@@ -111,7 +112,7 @@ $messages = array(
 'thursday'      => 'E enjte',
 'friday'        => 'E premte',
 'saturday'      => 'E shtunë',
-'sun'           => 'Diel',
+'sun'           => 'Dje',
 'mon'           => 'Hën',
 'tue'           => 'Mar',
 'wed'           => 'Mër',
@@ -942,7 +943,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'grouppage-user'          => '{{ns:project}}:Përdorues',
 'grouppage-autoconfirmed' => '{{ns:project}}:Përdorues të vërtetuar automatikisht',
 'grouppage-bot'           => '{{ns:project}}:Robotë',
-'grouppage-sysop'         => '{{ns:project}}:Administrues',
+'grouppage-sysop'         => '{{ns:project}}:Administruesit',
 'grouppage-bureaucrat'    => '{{ns:project}}:Burokratë',
 'grouppage-suppress'      => '{{ns:project}}:Kujdestari',
 
@@ -957,7 +958,7 @@ Mund të [[$1|filloni një artikull]] me këtë titull.
 'recentchanges'                     => 'Ndryshime së fundmi',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',
-'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime së fundmi gjatë <strong>$2</strong> ditëve}} sipas të dhënave nga $3.",
+'rcnote'                            => "Më poshtë {{PLURAL:$1|është '''1''' ndryshim| janë '''$1''' ndryshime}} së fundmi gjatë <strong>$2</strong> ditëve sipas të dhënave nga $4, $5.",
 'rcnotefrom'                        => 'Më poshtë janë ndryshime së fundmi nga <b>$2</b> (treguar deri në <b>$1</b>).',
 'rclistfrom'                        => 'Tregon ndryshime së fundmi duke filluar nga $1',
 'rcshowhideminor'                   => '$1 redaktimet e vogla',
@@ -1010,7 +1011,7 @@ Për të përdorur një skedë në një faqe përdorni lidhje të llojit:
 'uploadlog'                   => 'regjistër dhënjesh',
 'uploadlogpage'               => 'Regjistri i ngarkimeve',
 'uploadlogpagetext'           => 'Më poshtë është një listë e skedave më të reja që janë ngarkuar.
-Të gjithë orët janë me orën e shërbyesit (UTC).',
+Të gjithë orët janë me orën e shërbyesit.',
 'filename'                    => 'Emri i skedës',
 'filedesc'                    => 'Përmbledhje',
 'fileuploadsummary'           => 'Përshkrimi:',
@@ -1157,7 +1158,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'filedelete-submit'           => 'Grise',
 'filedelete-success'          => "'''$1''' është grisur.",
 'filedelete-success-old'      => '<span class="plainlinks">Versioni i \'\'\'[[Media:$1|$1]]\'\'\' së $3, $2 është grisur.</span>',
-'filedelete-nofile'           => "'''$1''' nuk ekziston tek {{SITENAME}}.",
+'filedelete-nofile'           => "'''$1''' nuk ekziston.",
 'filedelete-nofile-old'       => "Nuk ka version të arkivuar të '''$1''' me të dhënat e kërkuara.",
 'filedelete-iscurrent'        => 'Jeni duke grisur versionin e tanishëm të kësaj skede. Ju lutem më parë rikthejeni tek një version më të vjetër.',
 'filedelete-otherreason'      => 'Arsye tjetër / shtesë:',
@@ -1372,11 +1373,11 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watchlist-details'    => "{{PLURAL:$1|'''$1''' faqe|'''$1''' faqe}} nën mbikqyrje duke mos numëruar faqet e diskutimit.",
 'wlheader-enotif'      => '* Njoftimi me email është lejuar.',
 'wlheader-showupdated' => "* Faqet që kanë ndryshuar nga vizita juaj e fundit do të tregohen të '''trasha'''",
-'watchmethod-recent'   => 'duke parë ndryshime së fundmi për faqe nën mbikqyrje',
-'watchmethod-list'     => 'duke parë faqet nën mbikqyrje për ndryshime së fundmi',
+'watchmethod-recent'   => 'duke parë ndryshimet e fundit për faqet nën mbikqyrje',
+'watchmethod-list'     => 'duke parë faqet nën mbikqyrje për ndryshimet e fundit',
 'watchlistcontains'    => 'Lista mbikqyrëse e juaj ka $1 {{PLURAL:$1|faqe|faqe}}.',
 'iteminvalidname'      => "Problem me artikullin '$1', titull jo i saktë...",
-'wlnote'               => "Më poshtë {{PLURAL:$1|është $1 ndryshim i|janë $1 ndryshimet e}} {{PLURAL:$2|orës së kaluar|'''$2''' orëve të kaluara}}.",
+'wlnote'               => "Më poshtë {{PLURAL:$1|është $1 ndryshim i|janë $1 ndryshimet e}} {{PLURAL:$2|orës së fundit|'''$2''' orëve të fundit}}.",
 'wlshowlast'           => 'Trego $1 orët $2 ditët $3',
 'watchlist-show-bots'  => 'Trego redaktimet e robotëve',
 'watchlist-hide-bots'  => 'Fshih redaktimet e robotëve',
@@ -1389,8 +1390,8 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'watching'   => 'Duke mbikqyrur...',
 'unwatching' => 'Duke çmbikqyrur...',
 
-'enotif_mailer'                => 'Postieri njoftues i {{SITENAME}}',
-'enotif_reset'                 => 'Markoi të gjitha faqet e vizituara',
+'enotif_mailer'                => 'Postieri Njoftues i {{SITENAME}}',
+'enotif_reset'                 => 'Shëno të gjitha faqet e vizituara',
 'enotif_newpagetext'           => 'Kjo është një faqe e re.',
 'enotif_impersonal_salutation' => 'Përdorues i {{SITENAME}}',
 'changed'                      => 'ndryshuar',
@@ -1435,7 +1436,7 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'deletedarticle'              => 'grisi "$1"',
 'dellogpage'                  => 'Regjistri i grisjeve',
 'dellogpagetext'              => 'Më poshtë është një listë e grisjeve më të fundit.
-Të gjitha kohët janë sipas orës së shërbyesit (UTC).',
+Të gjitha kohët janë sipas orës së shërbyesit.',
 'deletionlog'                 => 'regjistrin e grisjeve',
 'reverted'                    => 'Kthehu tek një version i vjetër',
 'deletecomment'               => 'Arsyeja',
@@ -1684,7 +1685,7 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 
 Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
 'movearticle'             => 'Zhvendose faqen',
-'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe në {{SITENAME}}.',
+'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',
 'movepagebtn'             => 'Zhvendose faqen',
