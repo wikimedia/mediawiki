@@ -78,7 +78,7 @@ class MovePageForm {
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
-	function showForm( $err, $hookErr = '' ) {
+	function showForm( $err ) {
 		global $wgOut, $wgUser;
 
 		$skin = $wgUser->getSkin();
@@ -150,6 +150,7 @@ class MovePageForm {
 		if ( !empty($err) ) {
 			$wgOut->setSubtitle( wfMsg( 'formerror' ) );
 			if( $err[0] == 'hookaborted' ) {
+				$hookErr = $err[1];
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
 				$wgOut->addHTML( $errMsg );
 			} else {
