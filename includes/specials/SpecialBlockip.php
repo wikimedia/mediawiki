@@ -287,7 +287,7 @@ class IPBlockForm {
 	 * @return array(message key, arguments) on failure, empty array on success
 	 */
 	function doBlock( &$userId = null, &$expiry = null ) {
-		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans;
+		global $wgUser, $wgSysopUserBans, $wgSysopRangeBans, $wgBlockAllowsUTEdit;
 
 		$userId = 0;
 		# Expand valid IPv6 addresses, usernames are left as is
@@ -374,7 +374,7 @@ class IPBlockForm {
 		$block = new Block( $this->BlockAddress, $userId, $wgUser->getId(),
 			$reasonstr, wfTimestampNow(), 0, $expiry, $this->BlockAnonOnly,
 			$this->BlockCreateAccount, $this->BlockEnableAutoblock, $this->BlockHideName,
-			$this->BlockEmail, $this->BlockAllowUsertalk );
+			$this->BlockEmail, isset( $this->BlockAllowUsertalk ) ? $this->BlockAllowUsertalk : $wgBlockAllowsUTEdit );
 
 		if ( wfRunHooks('BlockIp', array(&$block, &$wgUser)) ) {
 
