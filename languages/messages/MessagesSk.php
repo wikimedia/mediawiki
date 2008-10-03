@@ -2092,7 +2092,6 @@ ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojh
 V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
 'movearticle'                 => 'Presunúť stránku',
 'movenotallowed'              => 'Nemáte povolenie presúvať stránky.',
-'moverootuserpagesnotallowed' => 'Nemáte povolenie presúvať koreňové stránky používateľov.',
 'newtitle'                    => 'Na nový názov:',
 'move-watch'                  => 'Sledovať túto stránku',
 'movepagebtn'                 => 'Presunúť stránku',

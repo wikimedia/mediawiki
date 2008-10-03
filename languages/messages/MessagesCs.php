@@ -2180,7 +2180,6 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 V těchto případech musíte přesunout nebo sloučit stránky manuálně, jestliže si to přejete.",
 'movearticle'                 => 'Přesunout stránku:',
 'movenotallowed'              => 'Nemáte oprávnění k přesunu stránek.',
-'moverootuserpagesnotallowed' => 'Nemáte oprávnění přesouvat uživatelské stránky.',
 'newtitle'                    => 'Na nový název:',
 'move-watch'                  => 'Sledovat tuto stránku',
 'movepagebtn'                 => 'Přesunout stránku',

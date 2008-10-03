@@ -1916,7 +1916,6 @@ Dit kann sik temlich dull utwarken bi veel bruukte Sieden. Stell seker, dat du w
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'movearticle'                 => 'Siet schuven',
 'movenotallowed'              => 'Du hest nich de Rechten, Sieden to schuven.',
-'moverootuserpagesnotallowed' => 'Du hest nich de Rechten, Brukersieden to schuven.',
 'newtitle'                    => 'To ne’en Titel',
 'move-watch'                  => 'Op disse Siet oppassen',
 'movepagebtn'                 => 'Siet schuven',

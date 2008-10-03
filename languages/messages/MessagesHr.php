@@ -2165,7 +2165,6 @@ U tim slučajevima ćete morati sami premjestiti ili iskopirati stranicu za razg
 ako to želite.",
 'movearticle'                 => 'Premjesti stranicu',
 'movenotallowed'              => 'Nemate pravo premještanja stranica.',
-'moverootuserpagesnotallowed' => 'Nemate dopuštenja za premještanje root suradničkih stranica.',
 'newtitle'                    => 'Na novi naslov',
 'move-watch'                  => 'Prati ovu stranicu',
 'movepagebtn'                 => 'Premjesti stranicu',
