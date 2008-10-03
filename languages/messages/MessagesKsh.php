@@ -113,6 +113,10 @@ $skinNames = array(
 	'modern'      => 'Modern',
 );
 
+$imageFiles = array(
+    'button-italic'   => 'ksh/button_S_italic.png',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Dun de Links ungerstriche:',
