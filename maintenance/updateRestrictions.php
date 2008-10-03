@@ -25,6 +25,11 @@ function migrate_page_restrictions( $db ) {
 	
 	$start = $db->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
 	$end = $db->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
+	
+	if( !$start ) {
+		die("Nothing to do.\n");
+	}
+	
 	# Do remaining chunk
 	$end += BATCH_SIZE - 1;
 	$blockStart = $start;
