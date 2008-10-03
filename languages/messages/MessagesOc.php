@@ -2124,7 +2124,6 @@ Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar ca
 Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volètz.",
 'movearticle'                 => "Tornar nomenar l'article",
 'movenotallowed'              => 'Avètz pas la permission de tornar nomenar de paginas.',
-'moverootuserpagesnotallowed' => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
 'newtitle'                    => 'Títol novèl',
 'move-watch'                  => 'Seguir aquesta pagina',
 'movepagebtn'                 => "Tornar nomenar l'article",

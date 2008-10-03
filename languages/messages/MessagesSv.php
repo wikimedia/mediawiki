@@ -2180,7 +2180,6 @@ därför bör du vara säker på att du förstår konsekvenserna innan du forts�
 I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
 'movearticle'                 => 'Flytta sidan:',
 'movenotallowed'              => 'Du har inte behörighet att flytta sidor på den här wikin.',
-'moverootuserpagesnotallowed' => 'Du har inte behörighet att flytta root-användarsidor.',
 'newtitle'                    => 'Till nya titeln:',
 'move-watch'                  => 'Bevaka denna sida',
 'movepagebtn'                 => 'Flytta sidan',

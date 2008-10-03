@@ -2080,7 +2080,6 @@ por favor, tenha certeza de que compreende as conseqüências da mudança antes 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
 'movearticle'                 => 'Mover página',
 'movenotallowed'              => 'Você não possui permissão de mover páginas.',
-'moverootuserpagesnotallowed' => 'Você não possui permissão de mover páginas principais de usuários.',
 'newtitle'                    => 'Para novo título',
 'move-watch'                  => 'Vigiar esta página',
 'movepagebtn'                 => 'Mover página',

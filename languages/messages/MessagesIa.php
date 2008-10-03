@@ -2052,7 +2052,6 @@ per favor assecura te que tu comprende le consequentias de isto ante que tu proc
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle'                 => 'Renominar pagina:',
 'movenotallowed'              => 'Tu non ha le permission de renominar paginas.',
-'moverootuserpagesnotallowed' => 'Tu non ha le permission de renominar paginas principal de usatores.',
 'newtitle'                    => 'Al nove titulo:',
 'move-watch'                  => 'Observar iste pagina',
 'movepagebtn'                 => 'Renominar pagina',
