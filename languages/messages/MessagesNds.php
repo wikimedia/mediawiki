@@ -1895,9 +1895,9 @@ Schall de Datenbank-Sparr redig beennt warrn?',
 'databasenotlocked'   => 'De Datenbank is nich sparrt.',
 
 # Move page
-'move-page'                   => 'Schuuv „$1“',
-'move-page-legend'            => 'Siet schuven',
-'movepagetext'                => "Mit dit Formular kannst du en Siet en ne’en Naam geven, tohoop mit all Versionen.
+'move-page'               => 'Schuuv „$1“',
+'move-page-legend'        => 'Siet schuven',
+'movepagetext'            => "Mit dit Formular kannst du en Siet en ne’en Naam geven, tohoop mit all Versionen.
 De ole Titel wiest denn achterna na den ne’en.
 Verwiesen op den olen Titel köönt automaatsch ännert warrn.
 Wenn du dat automaatsche Utbetern vun de Redirects nich utwählst, denn kiek na, wat dor kene [[Special:DoubleRedirects|dubbelten]] un [[Special:BrokenRedirects|kaputten Redirects]] nablifft.
@@ -1908,50 +1908,50 @@ Dat bedüüdt, dat du ene jüst verschavene Siet na’n olen Titel trüchschuven
 
 '''WOHRSCHAU!'''
 Dit kann sik temlich dull utwarken bi veel bruukte Sieden. Stell seker, dat du weetst, wie sik dat utwarkt, ehrdat du wiedermaakst.",
-'movepagetalktext'            => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
+'movepagetalktext'        => "De tohören Diskuschoonssiet warrt, wenn een dor is, mitverschaven, ''mit disse Utnahmen:''
 * Du schuffst de Siet in en annern Naamruum oder
 * dat gifft al en Diskuschoonssiet mit dissen Naam, oder
 * du wählst de nerrn stahn Opschoon af
 
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
-'movearticle'                 => 'Siet schuven',
-'movenotallowed'              => 'Du hest nich de Rechten, Sieden to schuven.',
-'newtitle'                    => 'To ne’en Titel',
-'move-watch'                  => 'Op disse Siet oppassen',
-'movepagebtn'                 => 'Siet schuven',
-'pagemovedsub'                => 'Schuven hett Spood',
-'movepage-moved'              => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'               => 'Ünner dissen Naam gifft dat al ene Siet.
+'movearticle'             => 'Siet schuven',
+'movenotallowed'          => 'Du hest nich de Rechten, Sieden to schuven.',
+'newtitle'                => 'To ne’en Titel',
+'move-watch'              => 'Op disse Siet oppassen',
+'movepagebtn'             => 'Siet schuven',
+'pagemovedsub'            => 'Schuven hett Spood',
+'movepage-moved'          => "<big>'''De Sied „$1“ is na „$2“ schaven worrn.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Ünner dissen Naam gifft dat al ene Siet.
 Bitte söök en annern Naam ut.',
-'cantmove-titleprotected'     => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
-'talkexists'                  => 'Dat Schuven vun de Siet sülvst hett Spood, aver dat Schuven vun de
+'cantmove-titleprotected' => 'Du kannst de Siet nich na dissen ne’en Naam schuven. De Naam is gegen dat nee Opstellen schuult.',
+'talkexists'              => 'Dat Schuven vun de Siet sülvst hett Spood, aver dat Schuven vun de
 Diskuschoonssiet nich, vun wegen dat dat dor al ene Siet mit dissen Titel gifft. De Inholt mutt vun Hand anpasst warrn.',
-'movedto'                     => 'schaven na',
-'movetalk'                    => 'De Diskuschoonssiet ok schuven, wenn mööglich.',
-'move-subpages'               => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
-'move-talk-subpages'          => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
-'movepage-page-exists'        => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
-'movepage-page-moved'         => 'De Siet „$1“ is nu schaven na „$2“.',
-'movepage-page-unmoved'       => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
-'movepage-max-pages'          => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
-'1movedto2'                   => '[[$1]] is nu na [[$2]] verschaven.',
-'1movedto2_redir'             => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
-'movelogpage'                 => 'Schuuv-Logbook',
-'movelogpagetext'             => 'Dit is ene List vun all schavene Sieden.',
-'movereason'                  => 'Grund',
-'revertmove'                  => 'trüchschuven',
-'delete_and_move'             => 'Wegsmieten un Schuven',
-'delete_and_move_text'        => '== Siet gifft dat al, wegsmieten? ==
+'movedto'                 => 'schaven na',
+'movetalk'                => 'De Diskuschoonssiet ok schuven, wenn mööglich.',
+'move-subpages'           => 'All Ünnersieden, wenn welk dor sünd, mit schuven',
+'move-talk-subpages'      => 'All Ünnersieden vun Diskuschoonssieden, wenn welk dor sünd, mit schuven',
+'movepage-page-exists'    => 'De Sied „$1“ gifft dat al un kann nich automaatsch överschreven warrn.',
+'movepage-page-moved'     => 'De Siet „$1“ is nu schaven na „$2“.',
+'movepage-page-unmoved'   => 'De Siet „$1“ kunn nich na „$2“ schaven warrn.',
+'movepage-max-pages'      => 'De Maximaltall vun $1 {{PLURAL:$1|Siet|Sieden}} is schaven. All de annern Sieden warrt nich automaatsch schaven.',
+'1movedto2'               => '[[$1]] is nu na [[$2]] verschaven.',
+'1movedto2_redir'         => '[[$1]] is nu na [[$2]] verschaven un hett den olen Redirect överschreven.',
+'movelogpage'             => 'Schuuv-Logbook',
+'movelogpagetext'         => 'Dit is ene List vun all schavene Sieden.',
+'movereason'              => 'Grund',
+'revertmove'              => 'trüchschuven',
+'delete_and_move'         => 'Wegsmieten un Schuven',
+'delete_and_move_text'    => '== Siet gifft dat al, wegsmieten? ==
 
 De Siet „[[:$1]]“ gifft dat al. Wullt du ehr wegsmieten, dat disse Siet schaven warrn kann?',
-'delete_and_move_confirm'     => 'Jo, de Siet wegsmieten',
-'delete_and_move_reason'      => 'wegsmeten, Platz to maken för Schuven',
-'selfmove'                    => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
-'immobile_namespace'          => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
-'imagenocrossnamespace'       => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
-'imagetypemismatch'           => 'De ne’e Dateiennen passt nich to de ole',
-'imageinvalidfilename'        => 'De ne’e Dateinaam is ungüllig',
-'fix-double-redirects'        => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
+'delete_and_move_confirm' => 'Jo, de Siet wegsmieten',
+'delete_and_move_reason'  => 'wegsmeten, Platz to maken för Schuven',
+'selfmove'                => 'Utgangs- un Teelnaam sünd desülve; en Siet kann nich över sik sülvst röver schaven warrn.',
+'immobile_namespace'      => 'De Utgangs- oder Teelnaamruum is schuult; Schuven na oder ut dissen Naamruum geiht nich.',
+'imagenocrossnamespace'   => 'Datein köönt nich na buten den {{ns:image}}-Naamruum schaven warrn',
+'imagetypemismatch'       => 'De ne’e Dateiennen passt nich to de ole',
+'imageinvalidfilename'    => 'De ne’e Dateinaam is ungüllig',
+'fix-double-redirects'    => 'All Redirects, de na den olen Titel wiest, op den ne’en ännern',
 
 # Export
 'export'            => 'Sieden exporteren',
