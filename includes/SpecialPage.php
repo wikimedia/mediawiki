@@ -740,13 +740,8 @@ class SpecialPage
 		if ( $this->userCanExecute( $wgUser ) ) {
 			$func = $this->mFunction;
 			// only load file if the function does not exist
-			if ( !is_callable( $func ) ) {
-				// Check whether a run method has been defined
-				if ( is_callable( array( $this, 'run' ) ) )
-					$func = array( $this, 'run' );
-				// Else load from file if it has been specified
-				elseif ( $this->mFile )
-					require_once( $this->mFile );
+			if(!is_callable($func) and $this->mFile) {
+				require_once( $this->mFile );
 			}
 			# FIXME: these hooks are broken for extensions and anything else that subclasses SpecialPage.
 			if ( wfRunHooks( 'SpecialPageExecuteBeforeHeader', array( &$this, &$par, &$func ) ) )
@@ -760,7 +755,6 @@ class SpecialPage
 			$this->displayRestrictionError();
 		}
 	}
-
 
 	function outputHeader() {
 		global $wgOut, $wgContLang;
