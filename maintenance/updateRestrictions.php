@@ -66,7 +66,12 @@ function migrate_page_restrictions( $db ) {
 		# We use insert() and not replace() as Article.php replaces
 		# page_restrictions with '' when protected in the restrictions table
 		if ( count( $batch ) ) {
-			$db->insert( 'page_restrictions', $batch, __FUNCTION__, array( 'IGNORE' ) );
+			$ok = $db->deadlockLoop(
+				array( $db, 'insert' ),
+				'page_restrictions', $batch, __FUNCTION__, array( 'IGNORE' ) );
+			if( !$ok ) {
+				throw new MWException( "Deadlock loop failed wtf :(" );
+			}
 		}
 		$blockStart += BATCH_SIZE - 1;
 		$blockEnd += BATCH_SIZE - 1;
