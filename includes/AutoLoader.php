@@ -34,7 +34,6 @@ $wgAutoloadLocalClasses = array(
 	'Credits' => 'includes/Credits.php',
 	'DBABagOStuff' => 'includes/BagOStuff.php',
 	'DependencyWrapper' => 'includes/CacheDependency.php',
-	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
 	'DjVuImage' => 'includes/DjVuImage.php',
 	'DoubleReplacer' => 'includes/StringUtils.php',
 	'DoubleRedirectJob' => 'includes/DoubleRedirectJob.php',
