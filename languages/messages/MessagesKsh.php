@@ -64,7 +64,7 @@ $namespaceNames = array(
         NS_HELP             => 'Hölp',
         NS_HELP_TALK        => 'Hölp_Klaaf',
         NS_CATEGORY         => 'Saachjrupp',
-        NS_CATEGORY_TALK    => 'Saachjrupp_Klaaf',
+        NS_CATEGORY_TALK    => 'Saachjruppe_Klaaf',
 );
 
 /**
@@ -83,10 +83,13 @@ $namespaceAliases = array(
 	'Hülp_Klaaf'        => NS_HELP_TALK,
 	'Sachjrop'          => NS_CATEGORY,
 	'Sachjrop_Klaaf'    => NS_CATEGORY_TALK,
+	'Saachjrop'         => NS_CATEGORY,
 	'Saachjropp'        => NS_CATEGORY,
 	'Saachjroppe_Klaaf' => NS_CATEGORY_TALK,
+        'Saachjrupp_Klaaf'  => NS_CATEGORY_TALK,
 	'Kattejori'         => NS_CATEGORY,
 	'Kattejori_Klaaf'   => NS_CATEGORY_TALK,
+	'Kattejorije_Klaaf' => NS_CATEGORY_TALK,
 	'Kategorie'         => NS_CATEGORY,
 	'Kategorie_Klaaf'   => NS_CATEGORY_TALK,
 	'Katejori'          => NS_CATEGORY,
