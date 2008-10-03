@@ -2109,58 +2109,58 @@ Doblidetz pas de la desvarrolhar quand auretz acabat vòstra operacion de manten
 'databasenotlocked'   => 'La banca de donadas es pas varrolhada.',
 
 # Move page
-'move-page'                   => 'Tornar nomenar $1',
-'move-page-legend'            => 'Tornar nomenar una pagina',
-'movepagetext'                => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Los ligams cap al títol de la pagina anciana seràn pas cambiats ; verificatz qu'aqueste desplaçament a pas creat de [[Special:DoubleRedirects|redireccion dobla]] o de [[Special:BrokenRedirects|redireccion copada]].
+'move-page'               => 'Tornar nomenar $1',
+'move-page-legend'        => 'Tornar nomenar una pagina',
+'movepagetext'            => "Utilizatz lo formulari çaijós per tornar nomenar una pagina, en desplaçant tot son istoric cap al nom novèl. Lo títol ancian vendrà una pagina de redireccion cap al títol novèl. Los ligams cap al títol de la pagina anciana seràn pas cambiats ; verificatz qu'aqueste desplaçament a pas creat de [[Special:DoubleRedirects|redireccion dobla]] o de [[Special:BrokenRedirects|redireccion copada]].
 
 Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar cap a lor destinacion supausada. Una pagina serà pas desplaçada se la pagina del títol novèl existís ja, a mens qu'aquesta darrièra siá voida o en redireccion, e qu’aja pas d’istoric. Aquò vòl dire que podètz tornar nomenar una pagina cap a sa posicion d’origina s'avètz fach una error, mas que podètz pas escafar una pagina qu'existís ja amb aqueste procediment.
 
 '''ATENCION !''' Aquò pòt provocar un cambiament radical e imprevist per una pagina consultada frequentament. Asseguratz-vos de n'aver comprés las consequéncias abans de contunhar.",
-'movepagetalktext'            => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
+'movepagetalktext'        => "La pagina de discussion associada, se presenta, serà automaticament desplaçada amb '''en defòra de se:'''
 *Desplaçatz una pagina cap a un autre espaci,
 *Una pagina de discussion ja existís amb lo nom novèl, o
 *Avètz deseleccionat lo boton çaijós.
 
 Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volètz.",
-'movearticle'                 => "Tornar nomenar l'article",
-'movenotallowed'              => 'Avètz pas la permission de tornar nomenar de paginas.',
-'newtitle'                    => 'Títol novèl',
-'move-watch'                  => 'Seguir aquesta pagina',
-'movepagebtn'                 => "Tornar nomenar l'article",
-'pagemovedsub'                => 'Cambiament de nom capitat',
-'movepage-moved'              => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'               => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
+'movearticle'             => "Tornar nomenar l'article",
+'movenotallowed'          => 'Avètz pas la permission de tornar nomenar de paginas.',
+'newtitle'                => 'Títol novèl',
+'move-watch'              => 'Seguir aquesta pagina',
+'movepagebtn'             => "Tornar nomenar l'article",
+'pagemovedsub'            => 'Cambiament de nom capitat',
+'movepage-moved'          => 'La pagina « $1 » es estada renomenada en « $2 ».', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => "Existís ja un article que pòrta aqueste títol, o lo títol qu'avètz causit es pas valid.
 Causissètz-ne un autre.",
-'cantmove-titleprotected'     => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
-'talkexists'                  => "La pagina ela-meteissa es estada desplaçada amb succès, mas
+'cantmove-titleprotected' => 'Avètz pas la possibilitat de desplaçar una pagina cap a aqueste emplaçament perque lo títol es estat protegit a la creacion.',
+'talkexists'              => "La pagina ela-meteissa es estada desplaçada amb succès, mas
 la pagina de discussion a pas pogut èsser desplaçada perque ja n'existissiá una
 jol nom novèl. Se vos plai, fusionatz-las manualament.",
-'movedto'                     => 'renomenat en',
-'movetalk'                    => 'Tornar nomenar tanben la pagina de discussion associada',
-'move-subpages'               => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
-'move-talk-subpages'          => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
-'movepage-page-exists'        => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
-'movepage-page-moved'         => 'La pagina $1 es estada renomenada en $2.',
-'movepage-page-unmoved'       => 'La pagina $1 pòt èsser renomenada en $2.',
-'movepage-max-pages'          => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
-'1movedto2'                   => 'a renomenat [[$1]] en [[$2]]',
-'1movedto2_redir'             => 'a redirigit [[$1]] cap a [[$2]]',
-'movelogpage'                 => 'Istoric dels cambiaments de nom',
-'movelogpagetext'             => 'Vaquí la lista de las darrièras paginas renomenadas.',
-'movereason'                  => 'Motiu :',
-'revertmove'                  => 'anullar',
-'delete_and_move'             => 'Suprimir e tornar nomenar',
-'delete_and_move_text'        => '==Supression requesida==
+'movedto'                 => 'renomenat en',
+'movetalk'                => 'Tornar nomenar tanben la pagina de discussion associada',
+'move-subpages'           => 'Tornar nomenar, se fa mestièr, totas las sospaginas',
+'move-talk-subpages'      => 'Tornar nomenar, se fa mestièr, totas las sospaginas de las paginas de discussion',
+'movepage-page-exists'    => 'La pagina $1 existís ja e pòt pas èsser espotida automaticament.',
+'movepage-page-moved'     => 'La pagina $1 es estada renomenada en $2.',
+'movepage-page-unmoved'   => 'La pagina $1 pòt èsser renomenada en $2.',
+'movepage-max-pages'      => "Lo maximom de $1 {{PLURAL:$1|pagina es estat renomenat|paginas son estadas renomenadas}} e cap d'autra o poirà pas èsser automaticament.",
+'1movedto2'               => 'a renomenat [[$1]] en [[$2]]',
+'1movedto2_redir'         => 'a redirigit [[$1]] cap a [[$2]]',
+'movelogpage'             => 'Istoric dels cambiaments de nom',
+'movelogpagetext'         => 'Vaquí la lista de las darrièras paginas renomenadas.',
+'movereason'              => 'Motiu :',
+'revertmove'              => 'anullar',
+'delete_and_move'         => 'Suprimir e tornar nomenar',
+'delete_and_move_text'    => '==Supression requesida==
 L’article de destinacion « [[:$1]] » existís ja.
 Lo volètz suprimir per permetre lo cambiament de nom ?',
-'delete_and_move_confirm'     => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
-'delete_and_move_reason'      => 'Pagina suprimida per permetre un cambiament de nom',
-'selfmove'                    => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
-'immobile_namespace'          => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas cap a aqueste espaci de noms.',
-'imagenocrossnamespace'       => 'Pòt pas desplaçar un imatge cap a un espaci de nomenatge que siá pas un imatge.',
-'imagetypemismatch'           => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
-'imageinvalidfilename'        => 'Lo nom del fichièr cibla es incorrècte',
-'fix-double-redirects'        => 'Metre a jorn las redireccions que puntant cap al títol ancian',
+'delete_and_move_confirm' => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
+'delete_and_move_reason'  => 'Pagina suprimida per permetre un cambiament de nom',
+'selfmove'                => 'Los títols d’origina e de destinacion son los meteisses : impossible de tornar nomenar una pagina sus ela-meteissa.',
+'immobile_namespace'      => 'Lo títol de destinacion es d’un tipe especial ; es impossible de tornar nomenar de paginas cap a aqueste espaci de noms.',
+'imagenocrossnamespace'   => 'Pòt pas desplaçar un imatge cap a un espaci de nomenatge que siá pas un imatge.',
+'imagetypemismatch'       => "L'extension novèla d'aqueste fichièr reconeis pas aqueste format.",
+'imageinvalidfilename'    => 'Lo nom del fichièr cibla es incorrècte',
+'fix-double-redirects'    => 'Metre a jorn las redireccions que puntant cap al títol ancian',
 
 # Export
 'export'            => 'Exportar de paginas',

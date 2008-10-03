@@ -2177,9 +2177,9 @@ un verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rä�
 'databasenotlocked'   => '<strong>Opjepass:</strong> De Daatebank es <strong>nit</strong> jesperrt.',
 
 # Move page
-'move-page'                   => 'De Sigg „$1“ ömnenne',
-'move-page-legend'            => 'Sigg Ömnenne',
-'movepagetext'                => "Hee kanns De en Sigg ömnenne.
+'move-page'               => 'De Sigg „$1“ ömnenne',
+'move-page-legend'        => 'Sigg Ömnenne',
+'movepagetext'            => "Hee kanns De en Sigg ömnenne.
 Domet kritt die Sigg ene neue Name, un all vörherije Versione vun dä Sigg och.
 Unger däm ahle Name weed automatisch en Ömleitung op dä neue Name enjedrage.
 
@@ -2195,46 +2195,46 @@ Esu ka'mer en Sigg jlich widder zeröck ömnenne, wa'mer sich mem Ömnenne verdo
 '''Oppjepass!'''
 Wat beim Ömnenne erus kütt, künnt en opfällije un villeich stürende Änderung am Wiki sin, besonders bei off jebruchte Sigge.
 Alsu bes secher, datte versteihs, watte hee am maache bes, ih dattet mähs!",
-'movepagetalktext'            => "Dä Sigg ehr Klaafsigg, wann se ein hät, weed automatisch met  ömjenannt, '''usser''' wann:
+'movepagetalktext'        => "Dä Sigg ehr Klaafsigg, wann se ein hät, weed automatisch met  ömjenannt, '''usser''' wann:
 * de Sigg en en ander Appachtemeng kütt,
 * en Klaafsigg met däm neue Name ald do es, un et steiht och jet drop,
 * De unge en däm Kääsje '''kei''' Hökche aan häs.
 En dänne Fäll, muss De Der dä Enhald vun dä Klaafsigge selvs vörnemme, un eröm kopeere watte bruchs.",
-'movearticle'                 => 'Sigg zem Ömnenne:',
-'movenotallowed'              => 'Do kriss nit erlaub, en däm Wiki hee de Sigge ömzenenne.',
-'newtitle'                    => 'op dä neue Name',
-'move-watch'                  => 'Op die Sigg hee oppasse',
-'movepagebtn'                 => 'Ömnenne',
-'pagemovedsub'                => 'Dat Ömnenne hät jeflupp',
-'movepage-moved'              => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'               => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
-'cantmove-titleprotected'     => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
-'talkexists'                  => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
-'movedto'                     => 'ömjenannt en',
-'movetalk'                    => 'dä ehr Klaafsigg met ömnenne, wat et jeiht',
-'move-subpages'               => 'Don de Ongersigge met_ömnënne',
-'move-talk-subpages'          => 'Don de Ongersigge von de Klaafsigge met_ömnënne',
-'movepage-page-exists'        => 'En Sigg „$1“ ham_mer ald, un di bliif och beshtonn, mer don se nit ottomatėsch ußtuusche.',
-'movepage-page-moved'         => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
-'movepage-page-unmoved'       => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',
-'movepage-max-pages'          => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
-'1movedto2'                   => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
-'1movedto2_redir'             => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
-'movelogpage'                 => 'Logboch vum Sigge Ömnenne',
-'movelogpagetext'             => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
-'movereason'                  => 'Aanlass:',
-'revertmove'                  => 'Et Ömnänne zerök_nämme',
-'delete_and_move'             => 'Fottschmieße un Ömnenne',
-'delete_and_move_text'        => '== Dä! Dubbelte Name ==
+'movearticle'             => 'Sigg zem Ömnenne:',
+'movenotallowed'          => 'Do kriss nit erlaub, en däm Wiki hee de Sigge ömzenenne.',
+'newtitle'                => 'op dä neue Name',
+'move-watch'              => 'Op die Sigg hee oppasse',
+'movepagebtn'             => 'Ömnenne',
+'pagemovedsub'            => 'Dat Ömnenne hät jeflupp',
+'movepage-moved'          => "<big>'''De Sigg „$1“ es jez en „$2“ ömjenannt.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => "De Sigg met däm Name jitt et ald, oder dä Name ka'mer oder darf mer nit bruche.<br />Do muss Der ene andere Name ussöke.",
+'cantmove-titleprotected' => 'Die Sigg ömzenänne es esu nit müjjelesch, dänn dä neu Name vun dä Sigg es jäje et Neu-Aanlääje jeschötz.',
+'talkexists'              => '<strong>Opjepass:</strong> De Sigg selver woodt jetz ömjenannt, ävver dä ehr Klaafsigg kunnte mer nit met ömnenne. Et jitt ald ein met däm neue Name. Bes esu jod un dun die zwei vun Hand zosamme läje!',
+'movedto'                 => 'ömjenannt en',
+'movetalk'                => 'dä ehr Klaafsigg met ömnenne, wat et jeiht',
+'move-subpages'           => 'Don de Ongersigge met_ömnënne',
+'move-talk-subpages'      => 'Don de Ongersigge von de Klaafsigge met_ömnënne',
+'movepage-page-exists'    => 'En Sigg „$1“ ham_mer ald, un di bliif och beshtonn, mer don se nit ottomatėsch ußtuusche.',
+'movepage-page-moved'     => 'Di eejemoolijje Sigg „$1“ es jëz op „$2“ ömjenannt.',
+'movepage-page-unmoved'   => 'Mer kůnnte di Sigg „$1“ nit op „$2“ ömnënne.',
+'movepage-max-pages'      => 'Mer han jëtz {{PLURAL:$1|ëijn Sigg|$1 Sigge|kein Sigg}} ömjenanndt. Mieh jeiht nit automatėsch.',
+'1movedto2'               => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
+'1movedto2_redir'         => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt un doför de ahl Ömleitungs-Sigg fottjeschmesse.',
+'movelogpage'             => 'Logboch vum Sigge Ömnenne',
+'movelogpagetext'         => 'Hee sin de Neuste ömjenannte Sigge opjeliss, un wä et jedon hät.',
+'movereason'              => 'Aanlass:',
+'revertmove'              => 'Et Ömnänne zerök_nämme',
+'delete_and_move'         => 'Fottschmieße un Ömnenne',
+'delete_and_move_text'    => '== Dä! Dubbelte Name ==
 Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm hee di Sigg ömnenne ze künne?',
-'delete_and_move_confirm'     => 'Jo, dun di Sigg fottschmieße.',
-'delete_and_move_reason'      => 'Fottjeschmesse, öm Platz för et Ömnenne ze maache',
-'selfmove'                    => 'Du Doof! - dä ahle Name un dä neue Name es däselve - do hät et Ömnenne winnich Senn.',
-'immobile_namespace'          => 'Do künne mer Sigge nit hen ömnenne, dat Appachtemeng es speziell, un dä neue Name för de Sigg jeiht deswäje nit.',
-'imagenocrossnamespace'       => 'Bellder kam_mer nor in et Appachtemang „{{ns:image}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
-'imagetypemismatch'           => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
-'imageinvalidfilename'        => 'Dä Ziel-Name för de Datei es verkeht',
-'fix-double-redirects'        => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
+'delete_and_move_confirm' => 'Jo, dun di Sigg fottschmieße.',
+'delete_and_move_reason'  => 'Fottjeschmesse, öm Platz för et Ömnenne ze maache',
+'selfmove'                => 'Du Doof! - dä ahle Name un dä neue Name es däselve - do hät et Ömnenne winnich Senn.',
+'immobile_namespace'      => 'Do künne mer Sigge nit hen ömnenne, dat Appachtemeng es speziell, un dä neue Name för de Sigg jeiht deswäje nit.',
+'imagenocrossnamespace'   => 'Bellder kam_mer nor in et Appachtemang „{{ns:image}}“ donn, noh wonaders hen kam_mer se och nit ömnemme!',
+'imagetypemismatch'       => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
+'imageinvalidfilename'    => 'Dä Ziel-Name för de Datei es verkeht',
+'fix-double-redirects'    => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
 
 # Export
 'export'            => 'Sigge Exporteere',

@@ -2068,9 +2068,9 @@ Nezabudnite po dokončení údržby [[Special:UnlockDB|odstrániť zámok]].',
 'databasenotlocked'   => 'Databáza nie je zamknutá.',
 
 # Move page
-'move-page'                   => 'Presunúť $1',
-'move-page-legend'            => 'Presunúť stránku',
-'movepagetext'                => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadaný nový názov.
+'move-page'               => 'Presunúť $1',
+'move-page-legend'        => 'Presunúť stránku',
+'movepagetext'            => "Pomocou tohto formulára premenujete stránku a premiestnite všetky jej predchádzajúce verzie pod zadaný nový názov.
 Starý názov sa stane presmerovacou stránkou na nový názov.
 Môžete automaticky aktualizovať odkazy odkazujúce na pôvodný názov.
 Ak sa rozhodnete túto možnosť nevyužiť, ubezpečte sa, že ste skontrolovali
@@ -2085,52 +2085,52 @@ existujúcu stránku.
 '''UPOZORNENIE!'''
 Toto môže byť drastická a nečakaná zmena pre populárnu stránku;
 ubezpečte sa preto, skôr ako budete pokračovať, že chápete dôsledky svojho činu.",
-'movepagetalktext'            => "Príslušná diskusná stránka (ak existuje) bude premiestnená spolu so samotnou stránkou; '''nestane sa tak, iba ak:'''
+'movepagetalktext'        => "Príslušná diskusná stránka (ak existuje) bude premiestnená spolu so samotnou stránkou; '''nestane sa tak, iba ak:'''
 *už existuje Diskusná stránka pod týmto novým menom, alebo
 *nezaškrtnete nižšie sa nachádzajúci textový rámček.
 
 V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlúčiť stránku ručne.",
-'movearticle'                 => 'Presunúť stránku',
-'movenotallowed'              => 'Nemáte povolenie presúvať stránky.',
-'newtitle'                    => 'Na nový názov:',
-'move-watch'                  => 'Sledovať túto stránku',
-'movepagebtn'                 => 'Presunúť stránku',
-'pagemovedsub'                => 'Presun bol úspešný',
-'movepage-moved'              => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'               => 'Stránka s týmto názvom už existuje alebo
+'movearticle'             => 'Presunúť stránku',
+'movenotallowed'          => 'Nemáte povolenie presúvať stránky.',
+'newtitle'                => 'Na nový názov:',
+'move-watch'              => 'Sledovať túto stránku',
+'movepagebtn'             => 'Presunúť stránku',
+'pagemovedsub'            => 'Presun bol úspešný',
+'movepage-moved'          => "<big>'''„$1” bolo presunuté na „$2”'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'           => 'Stránka s týmto názvom už existuje alebo
 vami zadaný názov je neplatný.
 Prosím vyberte si iný názov.',
-'cantmove-titleprotected'     => 'Nemôžete sem presunúť stránku, pretože nový názov bol zamknutý proti vytvoreniu.',
-'talkexists'                  => "'''Samotná stránka bola úspešne premiestnená,
+'cantmove-titleprotected' => 'Nemôžete sem presunúť stránku, pretože nový názov bol zamknutý proti vytvoreniu.',
+'talkexists'              => "'''Samotná stránka bola úspešne premiestnená,
 ale diskusná stránka sa nedala premiestniť,
 pretože už jedna existuje pod zadaným novým názvom.
 Prosím, zlúčte ich ručne.'''",
-'movedto'                     => 'presunutá na',
-'movetalk'                    => 'Presunúť aj príslušnú diskusnú stránku, ak sa dá.',
-'move-subpages'               => 'Presunúť všetky podstránky ak existujú',
-'move-talk-subpages'          => 'Presunúť všetky podstránky diskusnej stránky ak existujú',
-'movepage-page-exists'        => 'Stránka $1 už existuje a nie je možné ju automaticky prepísať.',
-'movepage-page-moved'         => 'Stránka $1 bola presunutá na $2.',
-'movepage-page-unmoved'       => 'Stránku $1 nebolo možné presunúť na $2.',
-'movepage-max-pages'          => 'Maximum $1 {{PLURAL:$1|stránka bola presunutá|stránok bolo presunutých}} a viac nebude presunutých automaticky.',
-'1movedto2'                   => '[[$1]] premiestnená na [[$2]]',
-'1movedto2_redir'             => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
-'movelogpage'                 => 'Záznam presunov',
-'movelogpagetext'             => 'Tu je zoznam posledných presunutí.',
-'movereason'                  => 'Dôvod:',
-'revertmove'                  => 'obnova',
-'delete_and_move'             => 'Vymazať a presunúť',
-'delete_and_move_text'        => '==Je potrebné zmazať stránku==
+'movedto'                 => 'presunutá na',
+'movetalk'                => 'Presunúť aj príslušnú diskusnú stránku, ak sa dá.',
+'move-subpages'           => 'Presunúť všetky podstránky ak existujú',
+'move-talk-subpages'      => 'Presunúť všetky podstránky diskusnej stránky ak existujú',
+'movepage-page-exists'    => 'Stránka $1 už existuje a nie je možné ju automaticky prepísať.',
+'movepage-page-moved'     => 'Stránka $1 bola presunutá na $2.',
+'movepage-page-unmoved'   => 'Stránku $1 nebolo možné presunúť na $2.',
+'movepage-max-pages'      => 'Maximum $1 {{PLURAL:$1|stránka bola presunutá|stránok bolo presunutých}} a viac nebude presunutých automaticky.',
+'1movedto2'               => '[[$1]] premiestnená na [[$2]]',
+'1movedto2_redir'         => '[[$1]] premiestnená na [[$2]] výmenou presmerovania',
+'movelogpage'             => 'Záznam presunov',
+'movelogpagetext'         => 'Tu je zoznam posledných presunutí.',
+'movereason'              => 'Dôvod:',
+'revertmove'              => 'obnova',
+'delete_and_move'         => 'Vymazať a presunúť',
+'delete_and_move_text'    => '==Je potrebné zmazať stránku==
 
 Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť tak priestor pre presun?',
-'delete_and_move_confirm'     => 'Áno, zmaž stránku',
-'delete_and_move_reason'      => 'Vymazať, aby sa umožnil presun',
-'selfmove'                    => 'Zdrojový a cieľový názov sú rovnaké; nemožno presunúť stránku na seba samú.',
-'immobile_namespace'          => 'Cieľový názov je špeciálneho typu; nemôžem presunúť stránku do tohto menného priestoru.',
-'imagenocrossnamespace'       => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
-'imagetypemismatch'           => 'Nová prípona súboru nezodpovedá jeho typu',
-'imageinvalidfilename'        => 'Cieľový názov obrázka nie je platný',
-'fix-double-redirects'        => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
+'delete_and_move_confirm' => 'Áno, zmaž stránku',
+'delete_and_move_reason'  => 'Vymazať, aby sa umožnil presun',
+'selfmove'                => 'Zdrojový a cieľový názov sú rovnaké; nemožno presunúť stránku na seba samú.',
+'immobile_namespace'      => 'Cieľový názov je špeciálneho typu; nemôžem presunúť stránku do tohto menného priestoru.',
+'imagenocrossnamespace'   => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
+'imagetypemismatch'       => 'Nová prípona súboru nezodpovedá jeho typu',
+'imageinvalidfilename'    => 'Cieľový názov obrázka nie je platný',
+'fix-double-redirects'    => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
 
 # Export
 'export'            => 'Export stránok',
