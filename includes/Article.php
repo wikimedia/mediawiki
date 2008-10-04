@@ -796,6 +796,32 @@ class Article {
 				$wasRedirected = true;
 			}
 		}
+		
+		# Optional notices on a per-namespace and per-page basis
+		$mw = MagicWord::get( 'noheader' );
+		$ignoreheader = false;
+		$text = $this->getContent();
+		if( $mw->match( $text ) ) {
+			$ignoreheader = true;
+		}
+		$pageheader_ns   = 'pageheader-'.$this->mTitle->getNamespace();
+		$pageheader_page = $pageheader_ns.'-'.$this->mTitle->getDBkey();
+		if ( !wfEmptyMsg( $pageheader_ns, wfMsgForContent( $pageheader_ns ) ) && !$ignoreheader ) {
+			$wgOut->addWikiText( wfMsgForContent( $pageheader_ns )  );
+		}
+		
+		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) && !$ignoreheader  ) {
+			$parts = explode( '/', $this->mTitle->getDBkey() );
+			$pageheader_base = $pageheader_ns;
+			while ( count( $parts ) > 0 ) {
+				$pageheader_base .= '-'.array_shift( $parts );
+				if ( !wfEmptyMsg( $pageheader_base, wfMsgForContent( $pageheader_base ) ) ) {
+					$wgOut->addWikiText( wfMsgForContent( $pageheader_base )  );
+				}
+			}
+		} else if ( !wfEmptyMsg( $pageheader_page, wfMsgForContent( $pageheader_page ) ) && !$ignoreheader  ) {
+			$wgOut->addWikiText( wfMsgForContent( $pageheader_page ) );
+		}
 
 		$outputDone = false;
 		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$pcache ) );
@@ -835,7 +861,6 @@ class Article {
 					$wgOut->addHtml( '</div>' );
 				}
 			}
-			$text = $this->getContent();
 			if ( $text === false ) {
 				# Failed to load, replace text with error message
 				$t = $this->mTitle->getPrefixedText();
