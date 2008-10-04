@@ -279,6 +279,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryUserInfo' => 'includes/api/ApiQueryUserInfo.php',
 	'ApiQueryUsers' => 'includes/api/ApiQueryUsers.php',
 	'ApiQueryWatchlist' => 'includes/api/ApiQueryWatchlist.php',
+	'ApiQueryWatchlistRaw' => 'includes/api/ApiQueryWatchlistRaw.php',
 	'ApiResult' => 'includes/api/ApiResult.php',
 	'ApiRollback' => 'includes/api/ApiRollback.php',
 	'ApiUnblock' => 'includes/api/ApiUnblock.php',

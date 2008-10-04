@@ -290,6 +290,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * Add ApiDisabled and ApiQueryDisabled classes so individual modules can
   be disabled in LocalSettings.php
 * (bug 15653) Add prop=duplicatefiles
+* (bug 15768) Add list=watchlistraw
 
 === Languages updated in 1.14 ===
 
