@@ -48,12 +48,13 @@ class SpecialNuke extends SpecialPage {
 
 	function promptForm() {
 		global $wgUser, $wgOut;
-		$sk =& $wgUser->getSkin();
 
-		$nuke = Title::makeTitle( NS_SPECIAL, 'Nuke' );
+		$sk = $wgUser->getSkin();
+
+		$nuke = $this->getTitle();
 		$submit = Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMsgHtml( 'nuke-submit-user' ) ) );
 
-		$wgOut->addWikiText( wfMsg( 'nuke-tools' ) );
+		$wgOut->addWikiMsg( 'nuke-tools' );
 		$wgOut->addHTML( Xml::element( 'form', array(
 				'action' => $nuke->getLocalURL( 'action=submit' ),
 				'method' => 'post' ),
@@ -73,10 +74,10 @@ class SpecialNuke extends SpecialPage {
 		$pages = $this->getNewPages( $username );
 		$escapedName = wfEscapeWikiText( $username );
 		if( count( $pages ) == 0 ) {
-			$wgOut->addWikiText( wfMsg( 'nuke-nopages', $escapedName ) );
+			$wgOut->addWikiMsg( 'nuke-nopages', $escapedName );
 			return $this->promptForm();
 		}
-		$wgOut->addWikiText( wfMsg( 'nuke-list', $escapedName ) );
+		$wgOut->addWikiMsg( 'nuke-list', $escapedName );
 
 		$nuke = $this->getTitle();
 		$submit = Xml::element( 'input', array( 'type' => 'submit', 'value' => wfMsgHtml( 'nuke-submit-delete' ) ) );
@@ -99,7 +100,7 @@ class SpecialNuke extends SpecialPage {
 				'value' => $wgUser->editToken() ) ) .
 			"\n<ul>\n" );
 
-		$sk =& $wgUser->getSkin();
+		$sk = $wgUser->getSkin();
 		foreach( $pages as $info ) {
 			list( $title, $edits ) = $info;
 			$image = $title->getNamespace() == NS_IMAGE ? wfLocalFile( $title ) : false;
@@ -136,10 +137,10 @@ class SpecialNuke extends SpecialPage {
 			)
 		);
 		$pages = array();
-		while( $row = $dbr->fetchObject( $result ) ) {
+		while( $row = $result->fetchObject() ) {
 			$pages[] = array( Title::makeTitle( $row->rc_namespace, $row->rc_title ), $row->edits );
 		}
-		$dbr->freeResult( $result );
+		$result->free();
 		return $pages;
 	}
 
