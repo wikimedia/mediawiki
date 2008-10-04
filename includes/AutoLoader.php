@@ -477,6 +477,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialBookSources' => 'includes/specials/SpecialBooksources.php',
 	'SpecialListGroupRights' => 'includes/specials/SpecialListgrouprights.php',
 	'SpecialMostlinkedtemplates' => 'includes/specials/SpecialMostlinkedtemplates.php',
+	'SpecialNuke' => 'includes/specials/SpecialNuke.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
 	'SpecialRandomredirect' => 'includes/specials/SpecialRandomredirect.php',
 	'SpecialRecentchanges' => 'includes/specials/SpecialRecentchanges.php',

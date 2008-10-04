@@ -2759,6 +2759,17 @@ $wgMessageStructure = array(
 	'external_images' => array(
 		'external_image_whitelist',
 	),
+	'special-nuke' => array(
+		'nuke',
+		'nuke-nopages',
+		'nuke-list',
+		'nuke-defaultreason',
+		'nuke-tools',
+		'nuke-submit-user',
+		'nuke-submit-delete',
+		'right-nuke',
+	),
+
 );
 
 /** Comments for each block */
@@ -2953,6 +2964,7 @@ Variants for Chinese language",
 	'special-specialpages'  => 'Special:SpecialPages',
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
+	'special-nuke'          => 'Special:Nuke',
 );
 
 /** Short comments for standalone messages */
