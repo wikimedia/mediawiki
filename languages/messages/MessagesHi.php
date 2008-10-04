@@ -301,6 +301,7 @@ $messages = array(
 'page-atom-feed'          => '"$1" ऍटम फ़ीड',
 'feed-atom'               => 'ऐटम',
 'feed-rss'                => 'आरएसएस',
+'sitenotice_close' => 'हटायें',
 'red-link-title'          => '$1 (अब तक बनाया नहीं)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

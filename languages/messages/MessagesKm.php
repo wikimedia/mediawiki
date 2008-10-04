@@ -542,6 +542,7 @@ $messages = array(
 'site-atom-feed'          => 'បំរែបំរួល Atom នៃ $1',
 'page-rss-feed'           => 'បំរែបំរួល RSS នៃ "$1"',
 'page-atom-feed'          => 'បំរែបំរួល Atom Feed នៃ "$1"',
+'sitenotice_close' => 'លាក់',
 'red-link-title'          => '$1 (មិនទាន់​បានសរសេរ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

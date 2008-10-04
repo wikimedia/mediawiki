@@ -352,6 +352,7 @@ $messages = array(
 'site-atom-feed'          => 'Kanad (Atom): $1',
 'page-rss-feed'           => 'Kanad (RSS): "$1"',
 'page-atom-feed'          => 'Kanad (Atom) „$1“',
+'sitenotice_close' => 'klänedön',
 'red-link-title'          => '$1 (no nog pepenon)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

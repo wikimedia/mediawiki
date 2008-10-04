@@ -406,6 +406,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom kanál $1',
 'page-rss-feed'           => 'RSS kanál „$1“',
 'page-atom-feed'          => 'Atom kanál „$1“',
+'sitenotice_close' => 'nezobrazovať',
 'red-link-title'          => '$1 (zatiaľ nevytvorená)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

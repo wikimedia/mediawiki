@@ -363,6 +363,7 @@ $messages = array(
 'page-atom-feed'          => 'منبع "$1" Atom',
 'feed-atom'               => 'اتم',
 'feed-rss'                => 'ار اس اس',
+'sitenotice_close' => 'روانه',
 'red-link-title'          => '$1(هنگت نویسگ نه بیته)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

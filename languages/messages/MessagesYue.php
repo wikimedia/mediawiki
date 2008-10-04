@@ -394,6 +394,7 @@ $messages = array(
 'site-atom-feed'          => '$1嘅Atom Feed',
 'page-rss-feed'           => '"$1"嘅RSS Feed',
 'page-atom-feed'          => '"$1"嘅Atom Feed',
+'sitenotice_close' => '閂咗佢',
 'red-link-title'          => '$1 (未寫)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

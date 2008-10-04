@@ -169,6 +169,7 @@ $messages = array(
 'restorelink'         => '$1 ترامیم ضائع کردی',
 'feed-atom'           => 'ایٹم',
 'feed-rss'            => 'آر ایس ایس',
+'sitenotice_close' => 'ترک',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'مضمون',

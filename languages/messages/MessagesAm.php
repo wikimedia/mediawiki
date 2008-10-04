@@ -275,6 +275,7 @@ $messages = array(
 'site-atom-feed'          => '$1 አቶም Feed',
 'page-rss-feed'           => '"$1" R.S.S. Feed',
 'page-atom-feed'          => '"$1" አቶም Feed',
+'sitenotice_close' => '<-- ይህን አውጣ',
 'red-link-title'          => '$1 (ገና አልተጻፈም)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

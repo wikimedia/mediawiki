@@ -504,6 +504,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom 피드',
 'page-rss-feed'           => '‘$1’ RSS 피드',
 'page-atom-feed'          => '"$1" Atom 피드',
+'sitenotice_close' => '숨기기',
 'red-link-title'          => '$1 (없는 문서)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

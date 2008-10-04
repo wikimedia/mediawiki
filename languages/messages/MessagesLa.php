@@ -380,6 +380,7 @@ $messages = array(
 'thisisdeleted'           => 'Videre aut restituere $1?',
 'viewdeleted'             => 'Visne conspicere $1?',
 'restorelink'             => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
+'sitenotice_close' => 'celare',
 'red-link-title'          => '$1 (pagina nondum scripta est)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

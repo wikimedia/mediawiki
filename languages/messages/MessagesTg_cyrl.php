@@ -320,6 +320,7 @@ $messages = array(
 'site-atom-feed'          => 'Барои $1 Atom Хабархон',
 'page-rss-feed'           => 'Барои "$1" RSS Хабархон',
 'page-atom-feed'          => 'Барои "$1" Atom Хабархон',
+'sitenotice_close' => 'бастан',
 'red-link-title'          => '$1 (ҳанӯз эҷод нашуда)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

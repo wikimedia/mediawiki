@@ -327,6 +327,7 @@ $messages = array(
 'site-atom-feed'          => '$1之Atom源',
 'page-rss-feed'           => '「$1」之RSS源',
 'page-atom-feed'          => '「$1」之Atom源',
+'sitenotice_close' => '關',
 'red-link-title'          => '$1 (未纂)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -525,6 +525,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'site-atom-feed'          => '$1 Atom izvor',
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
+'sitenotice_close' => 'sakrij',
 'red-link-title'          => '$1 (još nije napisano)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -3437,7 +3437,6 @@ $wgMaximumMovedPages = 100;
  */
 $wgSitemapNamespaces = false;
 
-
 /**
  * If user doesn't specify any edit summary when making a an edit, MediaWiki
  * will try to automatically create one. This feature can be disabled by set-
@@ -3450,3 +3449,9 @@ $wgUseAutomaticEditSummaries = true;
  * Requires memcached.
  */
 $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
+
+/**
+ * Cache-busting number for dismissable sitenotice
+ * Don't bump this, instead bump the number on [[MediaWiki:Sitenotice id]]
+ */
+$wgMajorSiteNoticeID = 1;

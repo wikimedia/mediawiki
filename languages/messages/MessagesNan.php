@@ -185,6 +185,7 @@ $messages = array(
 'hidetoc'             => 'siu',
 'thisisdeleted'       => 'Khoàⁿ a̍h-sī kiù $1?',
 'feedlinks'           => 'Chhī-liāu:',
+'sitenotice_close' => 'Chhú-siau',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bûn-chiuⁿ',

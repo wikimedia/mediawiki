@@ -480,6 +480,7 @@ $messages = array(
 'site-atom-feed'          => 'Емисия на Atom за $1',
 'page-rss-feed'           => 'Емисия на RSS за „$1“',
 'page-atom-feed'          => 'Емисия на Atom за „$1“',
+'sitenotice_close' => 'скриване',
 'red-link-title'          => '$1 (страницата все още не съществува)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

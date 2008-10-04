@@ -319,6 +319,7 @@ $messages = array(
 'site-rss-feed'           => '$1 RSS Fóðurið',
 'site-atom-feed'          => '$1 Atom Fóðurið',
 'page-rss-feed'           => '"$1" RSS Feed',
+'sitenotice_close' => 'flyt burtur',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Grein',

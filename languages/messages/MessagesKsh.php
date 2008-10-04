@@ -375,6 +375,7 @@ Dat es och all op Änglesch:
 'site-atom-feed'          => 'Atom-Abonnomang-Kannal (Feed) för de „$1“',
 'page-rss-feed'           => 'RSS-Abonnomang-Kannal (<i lang="en">Feed</i>) för de Sigg „$1“',
 'page-atom-feed'          => 'Atom-Abonnomang-Kannal (<i lang="en">Feed</i>) för de Sigg „$1“',
+'sitenotice_close' => "maach fott, ha'sch jelesse",
 'red-link-title'          => '$1 — en Sigg, die et noch nit jitt',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
