@@ -1111,4 +1111,8 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 # Special:BlankPage
 'blankpage' => 'Iztāc zāzanilli',
 
+# Special:Nuke
+'nuke'             => 'Huēyi tlapololiztli',
+'nuke-submit-user' => 'Yāuh',
+
 );

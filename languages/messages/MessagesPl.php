@@ -2980,4 +2980,14 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:image}}:”.',
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
+# Special:Nuke
+'nuke'               => 'Masowe usuwanie',
+'nuke-nopages'       => 'Brak nowych stron autorstwa [[Special:Contributions/$1|$1]] w ostatnich zmianach.',
+'nuke-list'          => 'Następujące strony zostały ostatnio stworzone przez [[Special:Contributions/$1|$1]]; wpisz komentarz i wciśnij przycisk by usunąć je.',
+'nuke-defaultreason' => 'Masowe usunięcie stron dodanych przez $1',
+'nuke-tools'         => 'Narzędzia pozwala na masowe usuwanie stron ostatnio dodanych przez zarejestrowanego lub anonimowego użytkownika. Wpisz nazwę użytkownika lub adres IP by otrzymać listę stron do usunięcia:',
+'nuke-submit-user'   => 'Dalej',
+'nuke-submit-delete' => 'Usuń zaznaczone',
+'right-nuke'         => 'Masowe usuwanie stron',
+
 );

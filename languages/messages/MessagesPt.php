@@ -2004,6 +2004,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'noautoblockblock'                => 'bloqueio automático desabilitado',
 'createaccountblock'              => 'criação de conta de utilizador bloqueada',
 'emailblock'                      => 'impedido de enviar e-mail',
+'blocklist-nousertalk'            => 'impossibilitado de editar a própria página de discussão',
 'ipblocklist-empty'               => 'A lista de bloqueios encontra-se vazia.',
 'ipblocklist-no-results'          => 'O endereço de IP ou nome de utilizador procurado não se encontra bloqueado.',
 'blocklink'                       => 'bloquear',
@@ -2857,5 +2858,15 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 # Aqueles que corresponderem serão exibidos como imagens, caso contrário, apenas um link para a imagem será mostrada
 # As linhas que começam com # são tratadas como comentários
 # Coloque todos os fragmentos de regex acima dessa linha. Deixe esta linha exatamente como ela é </ pre>',
+
+# Special:Nuke
+'nuke'               => 'Eliminação em massa',
+'nuke-nopages'       => 'Não há páginas criadas por [[Special:Contributions/$1|$1]] nas mudanças recentes.',
+'nuke-list'          => 'As páginas a seguir foram criadas recentemente por [[Special:Contributions/$1|$1]]; forneça uma justificativa e pressione o botão a seguir para eliminá-las.',
+'nuke-defaultreason' => 'Eliminação em massa de páginas criadas por $1',
+'nuke-tools'         => 'Esta ferramenta permite a eliminação em massa de páginas recentemente criadas por um utilizador ou IP em específico. Forneça o nome de utilizador ou IP para obter uma lista de páginas a eliminar:',
+'nuke-submit-user'   => 'Ir',
+'nuke-submit-delete' => 'Eliminar as seleccionadas',
+'right-nuke'         => 'Eliminar páginas em massa',
 
 );

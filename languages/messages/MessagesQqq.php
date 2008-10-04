@@ -1649,6 +1649,7 @@ See also [[MediaWiki:Blocklogentry]].',
 'anononlyblock'               => '{{Identical|Anon only}}',
 'noautoblockblock'            => '{{Identical|Autoblock disabled}}',
 'emailblock'                  => '{{Identical|E-mail blocked}}',
+'blocklist-nousertalk'        => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
 'blocklink'                   => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
 'contribslink'                => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
 'blocklogpage'                => '{{Identical|Block log}}',
@@ -1662,7 +1663,7 @@ See also [[MediaWiki:Blocklistline]].',
 'block-log-flags-noemail'     => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
 {{Identical|E-mail blocked}}",
-'block-log-flags-nousertalk'  => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged.',
+'block-log-flags-nousertalk'  => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
 'ipb_expiry_temp'             => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
 'ipb_already_blocked'         => '{{Identical|$1 is already blocked}}',
 'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
@@ -2206,5 +2207,9 @@ $1 is the name of the requested file.',
 
 # Special:BlankPage
 'intentionallyblankpage' => 'Text displayed in [[Special:BlankPage]].',
+
+# Special:Nuke
+'nuke-submit-user' => '{{Identical|Go}}',
+'right-nuke'       => '{{doc-right}}',
 
 );

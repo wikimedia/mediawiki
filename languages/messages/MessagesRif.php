@@ -739,4 +739,7 @@ mayn nniḍn ad itwasenfar.
 # Special:SpecialPages
 'specialpages' => 'Tasniwin timeẓlayin',
 
+# Special:Nuke
+'nuke-submit-user' => 'Raḥ ɣa',
+
 );

@@ -1139,4 +1139,7 @@ Ti mantattiyi i areklo ni sigienten ina'chetton siha gi mismo liña, i.e. i påh
 # Special:SpecialPages
 'specialpages' => 'Manespesiat na påhina',
 
+# Special:Nuke
+'nuke-submit-user' => 'Hånao',
+
 );

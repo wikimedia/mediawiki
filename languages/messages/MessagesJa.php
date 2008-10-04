@@ -1381,7 +1381,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
 'listusers-editsonly'     => '投稿記録のある利用者',
-'usereditcount'           => '{{PLURAL:$1|edit|編集回数:}}$1',
+'usereditcount'           => '{{PLURAL:$1|編集回数:|編集回数:}}$1',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
@@ -1857,6 +1857,7 @@ $NEWPAGE
 'proxyblocksuccess'               => '終了しました。',
 'sorbsreason'                     => 'あなたのIPアドレスは公開プロキシであると、{{SITENAME}}のブラックリストに掲載されています。',
 'sorbs_create_account_reason'     => 'あなたのIPアドレスが公開プロキシであると{{SITENAME}}のブラックリストに掲載されているため、アカウントを作成できません。',
+'cant-block-while-blocked'        => 'あなたは投稿ブロックされているため、他の利用者を投稿ブロックすることはできません。',
 
 # Developer tools
 'lockdb'              => 'データベースのロック',
@@ -2697,5 +2698,15 @@ $1',
 # Special:BlankPage
 'blankpage'              => '白紙ページ',
 'intentionallyblankpage' => 'このページは意図的に白紙にされています',
+
+# Special:Nuke
+'nuke'               => 'まとめて削除',
+'nuke-nopages'       => '[[Special:Contributions/$1|$1]] が最近更新したページはありません。',
+'nuke-list'          => '以下は、[[Special:Contributions/$1|$1]] によって最近作成されたページの一覧です。要約欄へ記入しボタンを押すと、一気に消えて無くなります。',
+'nuke-defaultreason' => '$1 によって加えられたページを一括して削除',
+'nuke-tools'         => 'このツールを使うと、指定した利用者またはIPから最近追加されたページを、まとめて削除することができます。削除対象ページ一覧を取得する利用者名またはIPアドレスを入力してください:',
+'nuke-submit-user'   => '一覧取得',
+'nuke-submit-delete' => '選択されたページを削除',
+'right-nuke'         => 'ページの一括削除',
 
 );

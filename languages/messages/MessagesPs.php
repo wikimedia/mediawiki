@@ -1392,4 +1392,8 @@ $1',
 'blankpage'              => 'تش مخ',
 'intentionallyblankpage' => 'همدا مخ په لوی لاس تش پرېښودل شوی دی',
 
+# Special:Nuke
+'nuke-submit-user'   => 'ورځه',
+'nuke-submit-delete' => 'ټاکل شوی ړنګول',
+
 );

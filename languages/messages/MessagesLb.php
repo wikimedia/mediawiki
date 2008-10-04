@@ -1116,6 +1116,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'right-editusercssjs'        => 'Anere Benotzer hir CSS a JS Fichieren änneren',
 'right-rollback'             => "Ännerunge vum läschte Benotzer vun enger spezieller Säit séier z'récksetzen ''(rollback)''",
 'right-markbotedits'         => 'Annuléiert Ännerungen als Botännerungen uweisen',
+'right-noratelimit'          => 'Net limitéiert duerch Zäitlimitatiounen um Server',
 'right-import'               => 'Säite vun anere Wikien importéieren',
 'right-importupload'         => 'Säite vun engem eropgeluedene Ficher importéieren',
 'right-patrol'               => 'Aneren hir Ännerungen als kontrolléiert markéieren',
@@ -1735,6 +1736,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit <strong>$1</strong>:",
 'protect-othertime-op'        => 'aner Zäit',
 'protect-otherreason'         => 'Aneren/zousätzleche Grond:',
 'protect-otherreason-op'      => 'aneren/zousätzleche Grond',
+'protect-edit-reasonlist'     => 'Grënn vun der Protectioun änneren',
 'protect-expiry-options'      => '1 Stonn:1 hour,2 Stonnen:2 hours,6 Stonnen:6 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,1 Joer:1 year,Onbegrenzt:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Berechtigung:',
 'restriction-level'           => 'NIveau vun de Limitatiounen:',
@@ -2663,5 +2665,15 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 #Zeilen, déi mat engem # ufänken, ginn als Bemierkung behandelt
 
 #All regulär Ausdréck ënnen un dëser Zeil androen. Dës Zeil genee esou loossen wéi se ass</pre>",
+
+# Special:Nuke
+'nuke'               => 'Masse-Läschung',
+'nuke-nopages'       => 'Et gëtt bei de läschten Ännerunge keng nei Säite vum [[Special:Contributions/$1|$1]].',
+'nuke-list'          => 'Dës Säite goufe viru kuerzem vum [[Special:Contributions/$1|$1]] nei ugeluecht; gitt w.e.g. eng Bemierkung an an dréckt op de Kneppche Läschen.',
+'nuke-defaultreason' => 'Masse-Läschung vu Säiten, déi vum $1 ugefaang goufen',
+'nuke-tools'         => "Dësen tool erlaabt masse-Läschunge vu Säiten déi vun engem Benotzer oder vun enger IP-Adresse ugeluecht goufen. Gitt w.e.g. d'IP-Adress respektiv de Benotzer un fir eng Lescht ze kréien:",
+'nuke-submit-user'   => 'Lass',
+'nuke-submit-delete' => 'Ugewielt läschen',
+'right-nuke'         => 'Vill Säite matenee läschen',
 
 );

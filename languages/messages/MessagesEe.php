@@ -401,4 +401,7 @@ Wòateŋu akpɔ alesi woŋlɔe.',
 # Special:SpecialPages
 'specialpages' => 'Axa tɔxewo',
 
+# Special:Nuke
+'nuke-submit-user' => 'Yi',
+
 );

@@ -2778,4 +2778,14 @@ $1
 
 #在这行上面输入所有的regex。留下这行一样的文字</pre>',
 
+# Special:Nuke
+'nuke'               => '大量删除',
+'nuke-nopages'       => '在最近更改中没有[[Special:Contributions/$1|$1]]所作的新页面。',
+'nuke-list'          => '以下的页面是由[[Special:Contributions/$1|$1]]在以前所写的；记下一个注解再点击按钮去删除它们。',
+'nuke-defaultreason' => '大量删除由$1所创建的页面',
+'nuke-tools'         => '这个工具容许先前提供了的的用户或IP创建的页面。输入用户名或IP去取得页面列表以作删除:',
+'nuke-submit-user'   => '去',
+'nuke-submit-delete' => '删除已选择的',
+'right-nuke'         => '大量删除页面',
+
 );

@@ -520,4 +520,9 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 	Sie können auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutzen.',
 'watchlistedit-raw-done'       => 'Ihre Beobachtungsliste wurde gespeichert.',
 
+# Special:Nuke
+'nuke-list'  => 'Die folgenden Seiten wurden von [[Special:Contributions/$1|$1]] erzeugt;
+geben Sie einen Kommentar ein und drücken Sie auf den Löschknopf.',
+'nuke-tools' => 'Dieses Werkzeug ermöglicht die Massenlöschung von Seiten, die von einer IP-Adresse oder einem Benutzer angelegt wurden. Geben Sie die IP-Adresse/den Benutzernamen ein, um eine Liste zu erhalten:',
+
 );

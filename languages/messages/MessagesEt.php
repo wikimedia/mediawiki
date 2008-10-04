@@ -856,8 +856,18 @@ võidakse sinu ligipääs sulgeda.',
 'randomredirect' => 'Juhuslik ümbersuunamine',
 
 # Statistics
-'statistics'              => 'Statistika',
-'statistics-header-users' => 'Kasutaja statistika',
+'statistics'               => 'Statistika',
+'statistics-header-pages'  => 'Lehekülgede statistika',
+'statistics-header-edits'  => 'Redigeerimise statistika',
+'statistics-header-users'  => 'Kasutajate statistika',
+'statistics-articles'      => 'Sisulehekülgi',
+'statistics-pages'         => 'Lehekülgi',
+'statistics-files'         => 'Üleslaaditud faile',
+'statistics-edits'         => 'Redigeerimisi alates {{SITENAME}} loomisest',
+'statistics-edits-average' => 'Keskmiselt redigeerimisi lehekülje kohta',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Ee] pikkus',
+'statistics-users'         => 'Registreeritud [[Special:ListUsers|kasutajaid]]',
+'statistics-users-active'  => 'Aktiivseid kasutajaid',
 
 'disambiguations' => 'Täpsustusleheküljed',
 
@@ -948,6 +958,9 @@ võidakse sinu ligipääs sulgeda.',
 'newuserlogpage'          => 'Kasutaja loomise logi',
 'newuserlogpagetext'      => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
 'newuserlog-create-entry' => 'Uus kasutaja',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(liikmete loend)',
 
 # E-mail user
 'mailnologintext' => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',

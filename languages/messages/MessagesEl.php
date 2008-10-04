@@ -2636,4 +2636,7 @@ $1',
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
 
+# Special:Nuke
+'nuke-submit-user' => 'Πήγαινε',
+
 );

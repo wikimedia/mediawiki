@@ -2879,4 +2879,14 @@ Zadajte názov súboru bez predpony „{{ns:image}}:“.',
 
 #Napíšte všetky časti reg. výrazov nad tento riadok. Nechajte tento riadok presne tak, ako je</pre>',
 
+# Special:Nuke
+'nuke'               => 'Hromadné mazanie',
+'nuke-nopages'       => 'V posledných zmenách sa nenachádzajú nové stránky od [[Special:Contributions/$1|$1]].',
+'nuke-list'          => '[[Special:Contributions/$1|$1]] nedávno vytvoril nasledovné nové stránky; vyplňte komentár a stlačením tlačidla ich vymažete.',
+'nuke-defaultreason' => 'Hromadné odstránenie stránok, ktoré pridal $1',
+'nuke-tools'         => 'Tento nástroj umožňuje hromadné odstránenie stránok, ktoré nedávno pridal zadaný používateľ alebo IP. Zadajte používateľa alebo IP a dostanente zoznam stránok na zmazanie:',
+'nuke-submit-user'   => 'Vykonať',
+'nuke-submit-delete' => 'Zmazať vybrané',
+'right-nuke'         => 'Hromadné mazanie stránok',
+
 );

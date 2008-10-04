@@ -2589,4 +2589,14 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:image}}:".',
 'blankpage'              => 'Pachina en blanco',
 'intentionallyblankpage' => "Esta pachina s'ha deixato en blanco aldredes y se fa serbir ta fer prebatinas, ezt.",
 
+# Special:Nuke
+'nuke'               => 'Borrato masibo',
+'nuke-nopages'       => 'No bi ha garra pachina nueba feita por [[Special:Contributions/$1|$1]] entre os zaguers cambeos.',
+'nuke-list'          => 'A siguients pachinas fuoron creyatas por [[Special:Contributions/$1|$1]]; escriba un comentario y punche o botón ta borrar-los.',
+'nuke-defaultreason' => "Borrato masibo d'as pachinas adibitas por $1",
+'nuke-tools'         => "Ista ferramienta fa posible de fer borratos masibos de pachinas adibitas en zaguerías por un usuario u adreza IP datos. Escriba o nombre d'usuario u l'adreza IP ta obtener una lista de pachinas ta borrar:",
+'nuke-submit-user'   => 'Ir-ie',
+'nuke-submit-delete' => 'Borrar as trigatas',
+'right-nuke'         => 'Borrar pachinas masibament',
+
 );

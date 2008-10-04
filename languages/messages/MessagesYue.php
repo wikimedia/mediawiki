@@ -2820,4 +2820,14 @@ $1',
 
 #響呢行上面入晒全部嘅regex。留番呢行一樣嘅字</pre>',
 
+# Special:Nuke
+'nuke'               => '大量刪除',
+'nuke-nopages'       => '響最近更改度無[[Special:Contributions/$1|$1]]所做嘅新頁。',
+'nuke-list'          => '下面嘅頁係由[[Special:Contributions/$1|$1]]響之前所寫嘅；記低一個註解再撳掣去刪除佢哋。',
+'nuke-defaultreason' => '大量刪除由$1所開嘅頁',
+'nuke-tools'         => '呢個工具容許之前提供咗嘅用戶或者IP加入嘅頁。輸入用戶名或者IP去拎頁一覽去刪除:',
+'nuke-submit-user'   => '去',
+'nuke-submit-delete' => '刪除㨂咗嘅',
+'right-nuke'         => '大量刪頁',
+
 );

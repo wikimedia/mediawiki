@@ -3006,4 +3006,14 @@ Zadejte jméno souboru bez označení "{{ns:image}}:".',
 
 #Všechny regulární výrazy uveďte nad touto řádkou. Tuto řádku ponechte beze změny.</pre>',
 
+# Special:Nuke
+'nuke'               => 'Hromadné mazání',
+'nuke-nopages'       => 'V posledních změnách nejsou žádné nové stránky od uživatele [[Special:Contributions/$1|$1]].',
+'nuke-list'          => 'Následující stránky nedávno vytvořil uživatel [[Special:Contributions/$1|$1]]; vyplňte komentář a všechny smažte kliknutím na tlačítko.',
+'nuke-defaultreason' => 'Hromadné odstranění stránek, které vytvořil $1',
+'nuke-tools'         => 'Tento nástroj umožňuje hromadné smazání stránek nedávno vytvořených zadaným uživatelem na IP adresou. Zadejte uživatelské jméno nebo IP adresu, jejichž seznam stránek ke smazání chcete zobrazit:',
+'nuke-submit-user'   => 'Provést',
+'nuke-submit-delete' => 'Smazat vybrané',
+'right-nuke'         => 'Hromadné mazání stránek',
+
 );

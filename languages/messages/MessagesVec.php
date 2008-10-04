@@ -2679,4 +2679,14 @@ Inserissi el nome del file senza el prefisso \"{{ns:image}}:\"",
 
 #Inserissi de sora de sta riga tuti i framenti de regex. Lassa sta riga esatamente cussita come la xe</pre>",
 
+# Special:Nuke
+'nuke'               => 'Scancelazion de massa',
+'nuke-nopages'       => 'No xe stà catà pagine nove creà da [[Special:Contributions/$1|$1]] tra le modifiche recenti.',
+'nuke-list'          => 'Le seguenti pagine le xe stà creà de recente da [[Special:Contributions/$1|$1]]; inserissi un comento e conferma la scancelazion.',
+'nuke-defaultreason' => 'Scancelazion de massa de le pagine creà da $1',
+'nuke-tools'         => "Sto strumento el permete la scancelazion in massa de le pagine creà de recente da un determinato utente o IP. Inserissi el nome utente o l'IP par la lista de le pagine da scancelar:",
+'nuke-submit-user'   => 'Và',
+'nuke-submit-delete' => 'Scancela la selezion',
+'right-nuke'         => 'Scancelassion de massa de le pagine',
+
 );

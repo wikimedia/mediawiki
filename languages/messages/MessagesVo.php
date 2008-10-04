@@ -2263,4 +2263,13 @@ Penolös ragivanemi nen foyümot: „{{ns:image}}:“',
 # Special:BlankPage
 'blankpage' => 'Pad vagik',
 
+# Special:Nuke
+'nuke'               => 'Moükön pademi',
+'nuke-nopages'       => 'Pads nonik fa geban: [[Special:Contributions/$1|$1]] pejaföls binons su lised votükamas nulik.',
+'nuke-list'          => 'Pads sököl pejafons brefabüo fa geban: [[Special:Contributions/$1|$1]]; penolös küpeti e klikolös gnobi ad moükön onis.',
+'nuke-defaultreason' => 'Moükam padas fa geban: $1 pejafölas',
+'nuke-tools'         => 'Stum at kanon moükön mödoti padas fa geban u ladet-IP semik brefabüo pejafölas. Penolös gebananemi u ladeti-IP ad dagetön lisedi padas moükovik:',
+'nuke-submit-user'   => 'Ledunolöd',
+'nuke-submit-delete' => 'Pevalöl ad pamoükön',
+
 );

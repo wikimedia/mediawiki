@@ -1942,6 +1942,7 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'noautoblockblock'                => 'blocco automatico disabilitato',
 'createaccountblock'              => 'creazione account bloccata',
 'emailblock'                      => 'e-mail bloccate',
+'blocklist-nousertalk'            => 'non può modificare la propria pagina di discussione',
 'ipblocklist-empty'               => "L'elenco dei blocchi è vuoto.",
 'ipblocklist-no-results'          => "L'indirizzo IP o nome utente richiesto non è bloccato.",
 'blocklink'                       => 'blocca',
@@ -2813,5 +2814,15 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 #Le linee che iniziano con # sono di commento
 
 #Inserisci sopra questa riga tutti i frammenti di regex. Lascia questa riga esattamente com'è</pre>",
+
+# Special:Nuke
+'nuke'               => 'Cancellazione di massa',
+'nuke-nopages'       => 'Non sono state trovate nuove pagine create da [[Special:Contributions/$1|$1]] tra le modifiche recenti.',
+'nuke-list'          => 'Le seguenti pagine sono state create di recente da [[Special:Contributions/$1|$1]]; inserisci un commento e conferma la cancellazione.',
+'nuke-defaultreason' => 'Cancellazione di massa delle pagine create da $1',
+'nuke-tools'         => "Questo strumento permette la cancellazione in massa delle pagina create di recente da un determinato utente o IP. Inserisci il nome utente o l'IP per la lista delle pagine da cancellare.",
+'nuke-submit-user'   => 'Vai',
+'nuke-submit-delete' => 'Cancella la selezione',
+'right-nuke'         => 'Cancella pagine in massa',
 
 );

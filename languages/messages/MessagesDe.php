@@ -17,6 +17,7 @@
  * @author Revolus
  * @author Spacebirdy
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
+ * @author UV
  * @author W (aka Wuzur)
  * @author לערי ריינהארט
  */
@@ -2070,7 +2071,7 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'proxyblocksuccess'               => 'Fertig.',
 'sorbsreason'                     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet.',
 'sorbs_create_account_reason'     => 'Die IP-Adresse ist in der DNSBL von {{SITENAME}} als offener PROXY gelistet. Das Anlegen neuer Benutzer ist nicht möglich.',
-'cant-block-while-blocked'        => 'Du darfst keine andere Benutzer sperren, während du selber gesperrt bist.',
+'cant-block-while-blocked'        => 'Du darfst keine anderen Benutzer sperren, während du selber gesperrt bist.',
 
 # Developer tools
 'lockdb'              => 'Datenbank sperren',
@@ -2907,5 +2908,16 @@ Die Eingabe muss ohne den Zusatz „{{ns:image}}:“ erfolgen.',
 #Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
 #Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
 #Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+
+# Special:Nuke
+'nuke'               => 'Massenlöschung',
+'nuke-nopages'       => 'Es gibt in den Letzten Änderungen keine neuen Seiten von [[Special:Contributions/$1|$1]].',
+'nuke-list'          => 'Die folgenden Seiten wurden von [[Special:Contributions/$1|$1]] erzeugt;
+gib einen Kommentar ein und drücke auf den Löschknopf.',
+'nuke-defaultreason' => 'Massenlöschung von Seiten, die von „$1“ angelegt wurden',
+'nuke-tools'         => 'Dieses Werkzeug ermöglicht die Massenlöschung von Seiten, die von einer IP-Adresse oder einem Benutzer angelegt wurden. Gib die IP-Adresse/den Benutzernamen ein, um eine Liste zu erhalten.',
+'nuke-submit-user'   => 'Hole Liste',
+'nuke-submit-delete' => 'Löschen',
+'right-nuke'         => 'Massenlöschung von Seiten',
 
 );

@@ -1397,4 +1397,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # Special:BlankPage
 'blankpage' => 'Pagjine vueide',
 
+# Special:Nuke
+'nuke-submit-user' => 'Va',
+
 );

@@ -869,4 +869,13 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',
 
+# Special:Nuke
+'nuke'               => 'Massa slettenge',
+'nuke-nopages'       => 'Ekke ny pæge til [[Special:Contributions/$1|$1]] i seneste ændrenger.',
+'nuke-list'          => 'Æ følgende pæger åorte ræsentleg skep via [[Special:Contributions/$1|$1]]; set i en bemærkenge og slå æ knup til sletter hun.',
+'nuke-defaultreason' => 'Massa sletterenge der pæger skep via $1',
+'nuke-tools'         => 'Dette tool gæv men æ mågleghed før massa sletterenge der pæges ræsentleg skeppen via æ gæven bruger æller IP. Input æ brugernavn æller IP til kriige æ liste der pæges til sletterenge:',
+'nuke-submit-user'   => 'Gå',
+'nuke-submit-delete' => 'Sletterenge sælektærn',
+
 );

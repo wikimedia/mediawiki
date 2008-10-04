@@ -2534,9 +2534,11 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 'specialpages-group-pages'     => 'Orrialdeen zerrenda',
 'specialpages-group-pagetools' => 'Orrialde tresnak',
 'specialpages-group-wiki'      => 'Wiki datuak eta tresnak',
+'specialpages-group-redirects' => 'Berbideraketa-orri bereziak',
 'specialpages-group-spam'      => 'Spam tresnak',
 
 # Special:BlankPage
-'blankpage' => 'Orrialde txuria',
+'blankpage'              => 'Orrialde txuria',
+'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
 
 );

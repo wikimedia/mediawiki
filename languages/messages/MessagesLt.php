@@ -2669,4 +2669,10 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'blankpage'              => 'Tuščias puslapis',
 'intentionallyblankpage' => 'Šis puslapis specialiai paliktas tuščias',
 
+# Special:Nuke
+'nuke'               => 'Masinis trynimas',
+'nuke-nopages'       => 'Nėra naujų puslapių, sukurtų [[Special:Contributions/$1|$1]] naujausiuose keitimuose.',
+'nuke-submit-user'   => 'Išsiųsti',
+'nuke-submit-delete' => 'Ištrinti pasirinktus(ą)',
+
 );

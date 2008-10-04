@@ -2431,4 +2431,15 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:image}}:".',
 # Special:BlankPage
 'blankpage' => 'Kaca kosong',
 
+# Special:Nuke
+'nuke'               => 'Busak massal',
+'nuke-nopages'       => 'Ora ditemokaké kaca anyar saka [[Special:Contributions/$1|$1]] ing owah-owahan pungkasan.',
+'nuke-list'          => 'Kaca-kaca ing ngisor iki lagi baé digawé déning [[Special:Contributions/$1|$1]];
+lebokna komentar lan pencèten tombol kanggo mbusak kabèh.',
+'nuke-defaultreason' => 'Pambusakan massal kaca-kaca sing digawé déning $1',
+'nuke-tools'         => 'Piranti iki bisa ngakibataké pambusakan massal kaca-kaca sing lagi waé ditambahaké déning sawijining panganggo utawa alamat IP.
+Lebokna jeneng panganggo utawa alamat IP kanggo olèh daftar kaca-kaca sing bisa dibusak:',
+'nuke-submit-user'   => 'Lakokna',
+'nuke-submit-delete' => 'Busaken sing kapilih',
+
 );
