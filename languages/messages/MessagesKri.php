@@ -370,4 +370,7 @@ Na im source nohmoh yu go ebul luk.',
 # Special:SpecialPages
 'specialpages' => 'Spehshal pej-dehm',
 
+# Special:Nuke
+'nuke-submit-user' => 'Go to am',
+
 );

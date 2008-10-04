@@ -2752,4 +2752,14 @@ $1
 
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
+# Special:Nuke
+'nuke'               => '大量刪除',
+'nuke-nopages'       => '在最近更改中沒有[[Special:Contributions/$1|$1]]所作的新頁面。',
+'nuke-list'          => '以下的頁面是由[[Special:Contributions/$1|$1]]在以前所寫的；記下一個註解再點擊按鈕去刪除它們。',
+'nuke-defaultreason' => '大量刪除由$1所創建的頁面',
+'nuke-tools'         => '這個工具容許先前提供了的的用戶或IP創建的頁面。輸入用戶名或IP去取得頁面列表以作刪除:',
+'nuke-submit-user'   => '去',
+'nuke-submit-delete' => '刪除已選擇的',
+'right-nuke'         => '大量刪除頁面',
+
 );

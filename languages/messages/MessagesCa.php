@@ -2848,4 +2848,14 @@ Introduïu el nom del fitxer sense el prefix «{{ns:image}}:».",
 
 #Poseu tots els fragments regex al damunt d'aquesta línia. Deixeu aquesta línia exactament com està</pre>",
 
+# Special:Nuke
+'nuke'               => 'Eliminació massiva',
+'nuke-nopages'       => 'No hi ha pàgines noves de [[Special:Contributions/$1|$1]] als canvis recents.',
+'nuke-defaultreason' => 'Esborrat massiu de pàgines creades per $1',
+'nuke-tools'         => "Aquesta eina permet l'eliminació massiva de pàgines creades recentment per un usuari o IP.
+Introduïu el nom d'usuari o la IP per obtenir una llista de pàgines per esborrar.",
+'nuke-submit-user'   => 'Vés-hi',
+'nuke-submit-delete' => 'Esborra la selecció',
+'right-nuke'         => 'Esborrat massiu de pàgines',
+
 );

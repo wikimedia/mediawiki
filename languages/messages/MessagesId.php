@@ -2892,4 +2892,14 @@ Keterangan tampilan:
 
 #Letakkan semua fragmen ekspresi regular di bawah baris ini. Biarkan baris ini sebagaimana adanya</pre>',
 
+# Special:Nuke
+'nuke'               => 'Penghapusan massal',
+'nuke-nopages'       => 'Tak ditemukan halaman baru dari [[Special:Contributions/$1|$1]] di perubahan terbaru.',
+'nuke-list'          => 'Halaman berikut baru saja dibuat oleh [[Special:Contributions/$1|$1]]; masukkan suatu komentar dan tekan tombol untuk menghapus halaman-halaman tersebut.',
+'nuke-defaultreason' => 'Penghapusan massal halaman-halaman yang dibuat oleh $1',
+'nuke-tools'         => 'Perkakas ini memungkinkan penghapusan massal halaman-halaman yang baru saja dibuat oleh seorang pengguna atau IP. Masukkan nama pengguna atau IP untuk mendapat daftar halaman yang dapat dihapus:',
+'nuke-submit-user'   => 'Cari',
+'nuke-submit-delete' => 'Hapus yang terpilih',
+'right-nuke'         => 'Penghapusan masal',
+
 );

@@ -2473,4 +2473,10 @@ Merkañ anv ar restr hep ar rakger "{{ns:image}}:"',
 'specialpages-group-users'       => 'An implijerien hag o gwirioù',
 'specialpages-group-highuse'     => 'Implij stank ar pajennoù',
 
+# Special:Nuke
+'nuke'               => "Diverkañ a-vloc'h",
+'nuke-nopages'       => "Pajenn nevez ebet bet krouet gant [[Special:Contributions/$1|$1]] er c'hemmoù diwezhañ.",
+'nuke-submit-user'   => 'Mont',
+'nuke-submit-delete' => 'Diverkañ diuzet',
+
 );

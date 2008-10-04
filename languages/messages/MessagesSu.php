@@ -2293,4 +2293,15 @@ Coba ku sawangan normal.',
 'specialpages-group-redirects'   => 'Alihan kaca husus',
 'specialpages-group-spam'        => 'Parabot Spam',
 
+# Special:Nuke
+'nuke'               => 'Ngahapus masal',
+'nuke-nopages'       => 'Euweuh kaca anyar karya [[Special:Contributions/$1|$1]] dina béréndélan nu anyar robah.',
+'nuke-list'          => 'Kaca di handap anyar dijieun ku [[Special:Contributions/$1|$1]];<br />
+tuliskeun pamanggih anjeun, terus pencét tombolna pikeun ngahapus.',
+'nuke-defaultreason' => 'Ngahapus kaca sacara masal ditambahkeun ku $1',
+'nuke-tools'         => 'Ieu parabot bisa dipaké pikeun ngahapus masal kaca-kaca nu anyar ditambahkeun ku pamaké atawa IP nu dimaksud. Asupkeun landihan atawa IP pikeun mulut kaca nu rék dihapus:',
+'nuke-submit-user'   => 'Jung',
+'nuke-submit-delete' => 'Hapus nu dipilih',
+'right-nuke'         => 'Ngahapus masal kaca',
+
 );

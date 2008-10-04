@@ -637,6 +637,12 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'deletelog-fulllog'                => 'Сурунаалы бүтүннүү көрөргө',
 'edit-hook-aborted'                => 'Көннөрүү төттөрү көннөрүллүбүт.
 Эбии туох да быһаарыллыбатах.',
+'edit-gone-missing'                => 'Сирэйи саҥардар кыах суох.
+Арааһа сотуллубут быһыылаах.',
+'edit-conflict'                    => 'Көннөрүүлэр утарсыылара.',
+'edit-no-change'                   => 'Эн көннөрүүҥ киирбэтэ, тоҕо диэтэххэ тугу да уларыппатаххын.',
+'edit-already-exists'              => 'Саҥа сирэйи оҥорор табыллыбат.
+Маннык сирэй баар эбит.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Болҕой. Бу сирэй наһаа элбэх көмпүүтэри ноҕуруускалыыр ресурсаларга сигэнэр.
@@ -769,6 +775,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'mergehistory-invalid-destination' => 'Сирэй сөптөөх ааттаах буолуохтаах.',
 'mergehistory-autocomment'         => '[[:$1]] манна [[:$2]] көһүүтэ (көһөрүү)',
 'mergehistory-comment'             => '[[:$1]] манна [[:$2]] көһүүтэ. Быһаарыы: $3',
+'mergehistory-same-destination'    => 'Саҕалыыр уонна түмүктүүр сирэйдэриҥ атын (уратылаах) буолуохтаахтар.',
 
 # Merge log
 'mergelog'           => 'Силбэһиилэр сурунааллара',
@@ -816,17 +823,30 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'diff-th'                 => "'''аата'''",
 'diff-br'                 => "'''быстыыта'''",
 'diff-hr'                 => "'''сытыары сурааһын'''",
+'diff-code'               => "'''көмпүүтэр куодун бобуу'''",
+'diff-dl'                 => "'''суолталарын тиһигэ'''",
+'diff-dt'                 => "'''суолтата быһаарыллар тиэрмин'''",
+'diff-dd'                 => "'''суолтата'''",
+'diff-input'              => "'''киллэрии'''",
+'diff-form'               => "'''тас көстүүтэ, быһыыта'''",
 'diff-img'                => "'''ойуу'''",
 'diff-span'               => "'''span'''",
 'diff-a'                  => "'''сигэ'''",
 'diff-i'                  => "'''иҥнэри'''",
 'diff-b'                  => "'''модьу'''",
+'diff-strong'             => "'''модьу бичик'''",
+'diff-em'                 => "'''em''' бэлиэтээһин",
 'diff-font'               => "'''бичик'''",
 'diff-big'                => "'''бөдөҥ'''",
 'diff-del'                => "'''сотулунна'''",
+'diff-tt'                 => "'''бэлиэлэрин кэтитэ биир тэҥ бичик'''",
+'diff-sub'                => "'''кыра алын бичик'''",
+'diff-sup'                => "'''кыра үөһээ бичик'''",
+'diff-strike'             => "'''сотуллубут бичик'''",
 
 # Search results
 'searchresults'             => 'Булулунна',
+'searchresults-title'       => 'Көрдөөһүн түмүгэ $1',
 'searchresulttext'          => 'Көрдөөһүн туһунан сиһилии ааҕыаххын баҕардаххына [[{{MediaWiki:Helppage}}|маны]] көр.',
 'searchsubtitle'            => 'Эн [[:$1]] көмөтүнэн ([[Special:Prefixindex/$1|"$1" саҕаланар сирэйдэри ]] | [[Special:WhatLinksHere/$1|"$1" сигэнэр сирэйдэри]]) көрдөөбүтүҥ',
 'searchsubtitleinvalid'     => 'По запросу «$1»',
@@ -1209,6 +1229,8 @@ PICT # misc.
 'filehist-current'               => 'билиҥҥи',
 'filehist-datetime'              => 'Күнэ-ыйа/Кэмэ',
 'filehist-thumb'                 => 'Ойуучаан',
+'filehist-thumbtext'             => '$1 торум оччугуй ойуута (миниатюрата)',
+'filehist-nothumb'               => 'Оччугуй ойуута суох',
 'filehist-user'                  => 'Кыттааччы',
 'filehist-dimensions'            => 'Кээмэйдэрэ',
 'filehist-filesize'              => 'Билэ кээмэйэ',
@@ -1286,13 +1308,22 @@ PICT # misc.
 'randomredirect-nopages' => 'Бу ааттарга көһөрөр ыйынньыктар суохтар.',
 
 # Statistics
-'statistics'              => 'Статистика',
-'statistics-header-pages' => 'Сирэй статистиката',
-'statistics-header-edits' => 'Көннөрүү статистиката',
-'statistics-header-views' => 'Көрөөһүн статистиката',
-'statistics-header-users' => 'Кыттааччы статистиката',
-'statistics-articles'     => 'Ыстатыйа иһинээҕитэ',
-'statistics-mostpopular'  => 'Саамай элбэхтик көрүллэр ыстатыйалар',
+'statistics'               => 'Статистика',
+'statistics-header-pages'  => 'Сирэй статистиката',
+'statistics-header-edits'  => 'Көннөрүү статистиката',
+'statistics-header-views'  => 'Көрөөһүн статистиката',
+'statistics-header-users'  => 'Кыттааччы статистиката',
+'statistics-articles'      => 'Ыстатыйа иһинээҕитэ',
+'statistics-pages'         => 'Сирэйдэр',
+'statistics-pages-tooltip' => 'Биики бары сирэйдэрин (ырытыы сирэйдэрин, утаарыылары уо.д.а киллэрэн туран).',
+'statistics-files'         => 'Киллэриллибит билэлэр ахсааннара',
+'statistics-edits'         => '{{SITENAME}} туруоҕуттан көннөрүү ахсаана',
+'statistics-edits-average' => 'Биир сирэйгэ ортотунан хас көннөрүү тиксэрэ',
+'statistics-views-total'   => 'Көрүү ахсаана',
+'statistics-views-peredit' => 'Биир улартыыга тиксэр көрүү ахсаана',
+'statistics-jobqueue'      => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] кээмэйэ',
+'statistics-users'         => '[[Special:ListUsers|Кыттааччы]] бэлиэтэммит',
+'statistics-mostpopular'   => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
 'disambiguations'      => 'Элбэх суолталаах өйдөбүллэр сирэйдэрэ',
 'disambiguationspage'  => 'Template:элбэх суолталаах өйдөбүллэр',
@@ -2618,5 +2649,15 @@ $1',
 # Special:BlankPage
 'blankpage'              => 'Кураанах сирэй',
 'intentionallyblankpage' => 'Бу сирэй соруйан кураанах хаалларыллыбыт',
+
+# Special:Nuke
+'nuke'               => 'Маассабай сотуу',
+'nuke-nopages'       => 'Кэнники көннөрүүлэр испииһэктэригэр [[Special:Contributions/$1|$1]] саҥа сирэйи оҥорбута көстүбэтэ.',
+'nuke-list'          => 'Бу сирэйдэри соторутааҕыта [[Special:Contributions/$1|$1]] кыттааччы оҥорбут. Сотуоххун баҕарар буоллаххына быһаарыыны оҥорон баран тимэҕи баттаа.',
+'nuke-defaultreason' => '$1 кыттааччы айбыт сирэйдэрин бүтүннүү суох оҥоруу',
+'nuke-tools'         => 'Бу сирэй көмөтүнэн ханнык эмэ кыттааччы эбэтэр IP оҥорбут көннөрүүлэрин бүтүннүү суох гынахха сөп. Кыттааччы аатын эбэтэр IP-тын киллэрдэххинэ оҥорбут көннөрүүлэрин испииһэгэ тахсыа:',
+'nuke-submit-user'   => 'Толор',
+'nuke-submit-delete' => 'Талыллыбыты сот',
+'right-nuke'         => 'Сирэйдэри халҕаһалыы суох оҥоруу',
 
 );

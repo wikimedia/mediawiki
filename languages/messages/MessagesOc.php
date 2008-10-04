@@ -2917,4 +2917,14 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 
 #Indicatz totes los fragments d’expressions regularas en bas d'aquesta linha. Aquesta darrièra deu èsser daissada exactament coma es.</pre>",
 
+# Special:Nuke
+'nuke'               => 'Supression en massa',
+'nuke-nopages'       => 'Cap de pagina novèla creada per [[Special:Contributions/$1|$1]] dins la lista dels darrièrs cambiaments.',
+'nuke-list'          => 'Las paginas seguentas son estadas creadas recentament per [[Special:Contributions/$1|$1]]; Indicatz un comentari e clicatz sul boton per los suprimir.',
+'nuke-defaultreason' => 'Supression en massa de las paginas apondudas per $1',
+'nuke-tools'         => 'Aqueste esplech autoriza las supressions en massa de las paginas apondudas recentament per un utilizaire enregistrat o per una adreça IP. Indicatz l’adreça IP per obténer la tièra de las paginas de suprimir :',
+'nuke-submit-user'   => 'Validar',
+'nuke-submit-delete' => 'Supression seleccionada',
+'right-nuke'         => 'Suprimir de paginas en massa',
+
 );

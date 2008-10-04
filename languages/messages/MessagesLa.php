@@ -1420,6 +1420,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'anononlyblock'              => 'solum usores ignoti',
 'createaccountblock'         => 'Creatio rationum obstructa',
 'emailblock'                 => 'Litterae electronicae obstructae',
+'blocklist-nousertalk'       => 'non potest paginam disputationis suam recensere',
 'blocklink'                  => 'obstruere',
 'unblocklink'                => 'deobstruere',
 'contribslink'               => 'conlationes',

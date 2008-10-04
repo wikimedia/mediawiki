@@ -11,6 +11,7 @@
  * @author Dani
  * @author Dorgan
  * @author Gondnok
+ * @author KossuthRad
  * @author Samat
  * @author Tgr
  */
@@ -734,7 +735,7 @@ Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugod
 'resetpass_submit'        => 'Add meg a jelszót és jelentkezz be',
 'resetpass_success'       => 'A jelszavad megváltoztatása sikeresen befejeződött! Bejelentkezés...',
 'resetpass_bad_temporary' => 'Az ideiglenes jelszó hibás. Lehet, hogy már sikeresen megváltoztattad a jelszavadat, vagy új ideiglenes jelszót kértél.',
-'resetpass_forbidden'     => 'A jelszavak nem változtathatóak meg ebben a wikiben',
+'resetpass_forbidden'     => 'A jelszavak nem változtathatóak meg',
 'resetpass_missing'       => 'Az űrlap adatai hiányoznak.',
 
 # Edit page toolbar
@@ -893,7 +894,7 @@ Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1',
 'nocreatetitle'                    => 'Az oldallétrehozás korlátozott',
 'nocreatetext'                     => 'Ezen a webhelyen korlátozták az új oldalak készítését.
 Visszamehetsz és szerkeszthetsz egy létező lapot, valamint [[Special:UserLogin|bejelentkezhetsz vagy készíthetsz egy felhasználói fiókot]].',
-'nocreate-loggedin'                => 'Nem hozhatsz létre új lapokat a(z) {{SITENAME}} wikiben.',
+'nocreate-loggedin'                => 'Nincs jogod új lapokat létrehozni.',
 'permissionserrors'                => 'Engedélyezési hiba',
 'permissionserrorstext'            => 'A művelet elvégzése nem engedélyezett a számodra, a következő {{PLURAL:$1|ok|okok}} miatt:',
 'permissionserrorstext-withaction' => 'Nincs jogosultságod a(z) $2 elvégzéséhez, az alábbi {{PLURAL:$1|ok|okok}} miatt:',
@@ -904,6 +905,14 @@ hogy a törlés indoka nem érvényes-e még. A törlési naplóban a lapról az
 'deleted-notice'                   => 'Az oldal korábban törölve lett.
 A lap törlési naplója alább olvasható.',
 'deletelog-fulllog'                => 'Teljes napló megtekintése',
+'edit-hook-aborted'                => 'A szerkesztés meg lett szakítva egy hook által.
+Nem lett magyarázat csatolva.',
+'edit-gone-missing'                => 'Nem lehet frissíteni a lapot.
+Úgy tűnik, hogy törölve lett.',
+'edit-conflict'                    => 'Szerkesztési ütközés.',
+'edit-no-change'                   => 'A szerkesztésed figyelmen kívül lett hagyva, mivel nem változtattál a lap szövegén.',
+'edit-already-exists'              => 'Az új lap nem készíthető el.
+Már létezik.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Figyelem: ezen a lapon túl sok erőforásigényes értelmes sablon-hívás található.
@@ -1068,6 +1077,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'diff-h5'                 => "egy '''ötös szintű fejezetcím'''",
 'diff-pre'                => "egy '''formázatlan szöveget tartalmazó blokk'''",
 'diff-div'                => "egy '''div'''",
+'diff-ul'                 => "egy '''rendezetlen lista'''",
 'diff-ol'                 => "egy '''számozott lista'''",
 'diff-li'                 => "egy '''listaelem'''",
 'diff-table'              => "egy '''táblázat'''",
@@ -1412,7 +1422,7 @@ Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kér
 'uploadedimage'               => '„[[$1]]” felküldve',
 'overwroteimage'              => 'feltöltötte a(z) „[[$1]]” kép új változatát',
 'uploaddisabled'              => 'Feltöltések kikapcsolva',
-'uploaddisabledtext'          => 'A fájlfeltöltés nincs engedélyezve a(z) {{SITENAME}} wikin',
+'uploaddisabledtext'          => 'A fájlfeltöltés nem engedélyezett.',
 'uploadscripted'              => 'Ez a fájl olyan HTML- vagy parancsfájlkódot tartalmaz, melyet tévedésből egy webböngésző esetleg értelmezni próbálhatna.',
 'uploadcorrupt'               => 'A fájl sérült vagy hibás a kiterjesztése. Légy szíves ellenőrizd a fájlt és próbálkozz újra!',
 'uploadvirus'                 => 'Ez a fájl vírust tartalmaz! A részletek: $1',
@@ -1528,7 +1538,7 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'filedelete-submit'           => 'Törlés',
 'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
 'filedelete-success-old'      => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
-'filedelete-nofile'           => "'''$1''' nevű fájl nem létezik ezen a wikin.",
+'filedelete-nofile'           => "'''$1''' nem létezik.",
 'filedelete-nofile-old'       => "A(z) '''$1''' fájlnak nincs a megadott tulajdonságokkal rendelkező archivált változata.",
 'filedelete-otherreason'      => 'Más/további ok:',
 'filedelete-reason-otherlist' => 'Más ok',
@@ -1574,6 +1584,8 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'statistics-files'                => 'Feltöltött fájlok',
 'statistics-edits'                => 'Szerkesztések száma a(z) {{SITENAME}} indulása óta',
 'statistics-edits-average'        => 'Szerkesztések átlagos száma laponként',
+'statistics-views-total'          => 'Összes megtekintés',
+'statistics-views-peredit'        => 'Megtekintések szerkesztésenként',
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue A szerver által végrehajtandó feladatok] száma',
 'statistics-users'                => 'Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]',
 'statistics-users-active'         => 'Aktív szerkesztők',
@@ -1749,7 +1761,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 'mailnologintext' => 'Ahhoz hogy másoknak e-mailt küldhess, [[Special:UserLogin|be kell jelentkezned]] és meg kell adnod egy érvényes e-mail címet a [[Special:Preferences|beállításaidban]].',
 'emailuser'       => 'E-mail küldése ezen szerkesztőnek',
 'emailpage'       => 'E-mail küldése',
-'emailpagetext'   => 'Ha ez a szerkesztő érvényes e-mail-címet adott meg a beállításainál, akkor ezen űrlap kitöltésével üzenetet tudsz neki küldeni. Feladóként a beállításaid között megadott e-mail-címed fog szerepelni, így a címzett tud majd válaszolni.',
+'emailpagetext'   => 'Ha ez a szerkesztő érvényes e-mail-címet adott meg a beállításainál, akkor ezen űrlap kitöltésével üzenetet tudsz neki küldeni. Feladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül neked tud majd válaszolni.',
 'usermailererror' => 'A postázó objektum által visszaadott hiba:',
 'defemailsubject' => '{{SITENAME}} e-mail',
 'noemailtitle'    => 'Nincs e-mail cím',
@@ -1904,6 +1916,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
 'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[$1]]"',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
+'movedarticleprotection'      => 'áthelyezte „[[$2]]” védelmi beállításait „[[$1]]” cím alá',
 'protect-title'               => '„$1” levédése',
 'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
 'protect-legend'              => 'Levédés megerősítése',
@@ -1933,8 +1946,13 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'protect-cantedit'            => 'Nem változtathatod meg a lap védelmi szintjét, mert nincs jogod a szerkesztéséhez.',
 'protect-othertime'           => 'Más időtartam:',
 'protect-othertime-op'        => 'más időtartam',
+'protect-existing-expiry'     => 'Jelenleg érvényes lejárati idő: $1',
 'protect-otherreason'         => 'További okok:',
 'protect-otherreason-op'      => 'további okok',
+'protect-dropdown'            => '*Általános védelmi okok
+** Gyakori vandalizmus
+** Gyakori spamelés
+** Nagyforgalmú lap',
 'protect-expiry-options'      => '2 óra:2 hours,1 nap:1 day,3 nap:3 days,1 hét:1 week,2 hét:2 weeks,1 hónap:1 month,3 hónap:3 months,6 hónap:6 months,1 év:1 year,végtelen:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Engedély:',
 'restriction-level'           => 'Korlátozási szint:',
@@ -2074,6 +2092,7 @@ $1',
 'ipbotherreason'                  => 'Más/további ok:',
 'ipbhidename'                     => 'A felhasználónév/IP elrejtése a blokkolási naplóból, az aktív blokkolási listából és a felhasználólistából',
 'ipbwatchuser'                    => 'A felhasználó lapjának és vitalapjának figyelése',
+'ipballowusertalk'                => 'A szerkesztő módosíthatja a saját vitalapján a blokkolás ideje alatt',
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
@@ -2099,6 +2118,7 @@ $1',
 'noautoblockblock'                => 'az automatikus blokkolás letiltott',
 'createaccountblock'              => 'új felhasználó létrehozása blokkolva',
 'emailblock'                      => 'e-mail cím blokkolva',
+'blocklist-nousertalk'            => 'nem szerkeszthetik a vitalapjukat',
 'ipblocklist-empty'               => 'A blokkoltak listája üres.',
 'ipblocklist-no-results'          => 'A kért IP-cím vagy felhasználónév nem blokkolt.',
 'blocklink'                       => 'blokkolás',
@@ -2114,6 +2134,7 @@ $1',
 'block-log-flags-nocreate'        => 'a fióklétrehozás letiltott',
 'block-log-flags-noautoblock'     => 'az automatikus blokkolás letiltott',
 'block-log-flags-noemail'         => 'e-mail blokkolva',
+'block-log-flags-nousertalk'      => 'nem szerkesztheti a vitalapját',
 'block-log-flags-angry-autoblock' => 'bővített automatikus blokk bekapcsolva',
 'range_block_disabled'            => 'A rendszerfelelős tartományblokkolás létrehozási képessége letiltott.',
 'ipb_expiry_invalid'              => 'Hibás lejárati dátum.',
@@ -2177,7 +2198,7 @@ győződj meg a folytatás előtt arról, hogy tisztában vagy-e a következmén
 
 Ezen esetekben a vitalapot külön, kézzel kell átnevezned a kívánságaid szerint.",
 'movearticle'             => 'Lap átnevezése',
-'movenotallowed'          => 'A lapok áthelyezése ebben a wikiben számodra nem engedélyezett.',
+'movenotallowed'          => 'Nincs jogod a lapok átnevezéséhez.',
 'newtitle'                => 'Az új cím:',
 'move-watch'              => 'Figyeld a lapot',
 'movepagebtn'             => 'Lap átnevezése',
@@ -2663,7 +2684,9 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'exif-lightsource-255' => 'Egyéb fényforrás',
 
 # Flash modes
-'exif-flash-mode-3' => 'automatikus mód',
+'exif-flash-fired-0' => 'A vaku nem sült el',
+'exif-flash-fired-1' => 'A vaku elsült',
+'exif-flash-mode-3'  => 'automatikus mód',
 
 'exif-focalplaneresolutionunit-2' => 'hüvelyk',
 
@@ -2937,5 +2960,15 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 # Special:BlankPage
 'blankpage'              => 'Üres lap',
 'intentionallyblankpage' => 'Ez a lap szándékosan maradt üresen',
+
+# Special:Nuke
+'nuke'               => 'Halmozott törlés',
+'nuke-nopages'       => 'Nincsenek új oldalak [[Special:Contributions/$1|$1]] az aktuális események között.',
+'nuke-list'          => 'Az alábbi lapokat nem rég készítette [[Special:Contributions/$1|$1]]; adj meg egy indoklást, és kattints a gombra a törlésükhöz.',
+'nuke-defaultreason' => '$1 által készített lapok tömeges eltávolítása',
+'nuke-tools'         => 'Ez az eszköz lehetővé teszi egy adott felhasználó vagy IP által nem rég készített lapok tömeges törlését. Add meg a felhasználónevet vagy az IP-címet, hogy lekérd a törlendő lapok listáját:',
+'nuke-submit-user'   => 'Menj',
+'nuke-submit-delete' => 'Kijelöltek törlése',
+'right-nuke'         => 'oldalak tömeges törlése',
 
 );

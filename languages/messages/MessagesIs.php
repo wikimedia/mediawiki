@@ -2167,4 +2167,7 @@ $1',
 # Special:BlankPage
 'blankpage' => 'Tóm síða',
 
+# Special:Nuke
+'nuke-submit-user' => 'Áfram',
+
 );

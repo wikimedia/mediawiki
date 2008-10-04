@@ -1751,7 +1751,7 @@ Zajty ńy idźe přećepać na ńa samo.',
 'imagetypemismatch'       => 'Nowe rozšeřyńe mjana plika je inkšego typu kej jygo zawartość',
 
 # Export
-'export'            => 'Export zajtůw',
+'export'            => 'Eksport zajtůw',
 'exporttext'        => 'Možeš wyeksportować treść i historja sprowjyń jednyj zajty abo zestawu zajtůw we formaće XML.
 Wyeksportowane informacyje možna půźńij zaimportować do inkšej wiki, dźouajůncyj na uoprůgramowańu MediaWiki, kořistajůnc ze [[Special:Import|zajty importu]].
 

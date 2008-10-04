@@ -232,4 +232,7 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Special:SpecialPages
 'specialpages' => 'Tau Lau Mahuiga',
 
+# Special:Nuke
+'nuke-submit-user' => 'Fano',
+
 );

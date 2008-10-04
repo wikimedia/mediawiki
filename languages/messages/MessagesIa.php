@@ -1965,6 +1965,7 @@ a un adresse IP blocate previemente.',
 'noautoblockblock'                => 'autoblocadas disactivate',
 'createaccountblock'              => 'creation de contos blocate',
 'emailblock'                      => 'e-mail blocate',
+'blocklist-nousertalk'            => 'non pote modificar su proprie pagina de discussion',
 'ipblocklist-empty'               => 'Le lista de blocadas es vacue.',
 'ipblocklist-no-results'          => 'Le adresse IP o nomine de usator que tu requestava non es blocate.',
 'blocklink'                       => 'blocar',
@@ -2851,5 +2852,17 @@ Entra le nomine del file sin le prefixo \"{{ns:image}}:\".",
 #Le lineas comenciante con # essera tractate como commentos
 
 #Insere omne fragmentos regex super iste linea. Lassa iste linea exactemente como illo es</pre>',
+
+# Special:Nuke
+'nuke'               => 'Deletion in massa',
+'nuke-nopages'       => 'Nulle nove paginas per [[Special:Contributions/$1|$1]] trovate in le modificationes recente.',
+'nuke-list'          => 'Le sequente paginas esseva recentemente create per [[Special:Contributions/$1|$1]];
+entra un commento e clicca le button pro deler los.',
+'nuke-defaultreason' => 'Deletion in massa de paginas addite per $1',
+'nuke-tools'         => 'Iste instrumento permitte le deletion in massa de paginas recentemente addite per un usator o IP specific.
+Entra le nomine de usator o adresse IP pro obtener un lista de paginas a deler:',
+'nuke-submit-user'   => 'Ir',
+'nuke-submit-delete' => 'Deler seligites',
+'right-nuke'         => 'Deler paginas in massa',
 
 );

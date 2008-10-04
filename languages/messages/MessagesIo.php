@@ -1087,4 +1087,7 @@ Voluntez selektar altra nomo.',
 # Special:BlankPage
 'blankpage' => 'Pagino sen-skribura',
 
+# Special:Nuke
+'nuke-submit-user' => 'Irar',
+
 );

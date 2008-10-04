@@ -2732,4 +2732,14 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:image}}:".',
 
 #Pon tolos fragmentos regex enantes d'esta llinia. Dexa esta llinia exautamente como ta</pre>",
 
+# Special:Nuke
+'nuke'               => 'Borráu masivu',
+'nuke-nopages'       => 'Nun hai páxines nueves de [[Special:Contributions/$1|$1]] nos cambeos recientes.',
+'nuke-list'          => 'Les páxines siguientes foron creaes recién por [[Special:Contributions/$1|$1]]; escribi un comentariu y calca nel botón pa borrales.',
+'nuke-defaultreason' => 'Borráu masivu de páxines añadíes por $1',
+'nuke-tools'         => "Esta ferramienta permite borraos masivos de páxines añadíes recién por un usariu o una IP determinada. Escribi'l nome d'usuariu o la IP pa obtener una llista de páxines pa borrar:",
+'nuke-submit-user'   => 'Dir',
+'nuke-submit-delete' => 'Borrar seleicionaes',
+'right-nuke'         => 'Borráu masivu de páxines',
+
 );

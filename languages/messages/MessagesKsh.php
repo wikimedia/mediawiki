@@ -161,6 +161,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Scheck mer en Kopie, wann ich en E-mail an ene andere Metmaacher scheck',
 'tog-diffonly'                => 'Zeich beim Versione Verjliche nur de Ungerscheed aan (ävver pack nit noch de janze Sigg dodronger)',
 'tog-showhiddencats'          => 'Verstoche Saachjroppe aanzeije',
+'tog-noconvertlink'           => 'Don de Tittele nit ümwandelle',
 
 'underline-always'  => 'jo, ongershtriishe',
 'underline-never'   => 'nä',
@@ -241,7 +242,7 @@ $messages = array(
 Dat es och all op Änglesch:
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 
 'about'          => 'Üvver',
 'article'        => 'Atikkel',
@@ -2126,6 +2127,7 @@ un och wann De se ändere wells.',
 'noautoblockblock'                => 'automatisch Sperre avjeschalt',
 'createaccountblock'              => 'Aanmelde es nit müjjelich',
 'emailblock'                      => 'Et E-Mail-Schecke es jrad jespert',
+'blocklist-nousertalk'            => 'darref de eieje Klaafsigg nit änndere',
 'ipblocklist-empty'               => 'Do es nix en de Sperrleß.',
 'ipblocklist-no-results'          => 'Dä Metmaacher udder di IP-Adrress es janit jesperrt.',
 'blocklink'                       => 'Sperre',
@@ -3048,5 +3050,21 @@ Der Name moß ohne der Försatz „{{ns:image}}:“ aanjejovve wääde.',
 # Treffer: Dat Beld weed jezeich. Söns: ene Link weed aanjezeich.
 # Reije met # am Aanfang, sen bloß Kommenta
 # Donn de Brochstöck hee noh endrare, un di Reih sellver nit ändere</pre>',
+
+# Special:Nuke
+'nuke'               => 'Sigge fottschmieße ang Mass',
+'nuke-nopages'       => 'Mer han kein neu Sigge fum [[Special:Contributions/$1|$1]] en de [[Special:RecentChanges|{{lcfirst:{{int:Recentchanges}}}}]].',
+'nuke-list'          => 'Hee di Sigge sen fum „[[Special:Contributions/$1|$1]]“ neu
+aanjelaat woode. Jiff enne Jrond för et Fottschmieße aan,
+un dann donn der Knopp zom Fottschmieße dröcke.',
+'nuke-defaultreason' => 'Fum $1 neu aanjelaate Sigge ang Block fottschmieße',
+'nuke-tools'         => 'Di Sigg hee hellef Der, angmaß Sigge fottzeschmieße,
+di ene bestemmpte enjeloggte udder namelose Metmaacher
+aanjalaat hät.
+Jif dä Metmaacher-Name udder de IP-Address dofun aan,
+öm en Liß met Sigge fun däm ze krijje.',
+'nuke-submit-user'   => 'Leß holle',
+'nuke-submit-delete' => 'Donn de üßjewählte Sigge fottschmieße!',
+'right-nuke'         => 'Massich Sigge Fottschmieße',
 
 );

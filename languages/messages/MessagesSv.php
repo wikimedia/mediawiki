@@ -2966,4 +2966,15 @@ Skriv filnamnet utan prefixet "{{ns:image}}:" .',
 
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 
+# Special:Nuke
+'nuke'               => 'Massborttagning',
+'nuke-nopages'       => 'Inga nya sidor av [[Special:Contributions/$1|$1]] bland de senaste ändringarna.',
+'nuke-list'          => 'Följande sidor har nyligen skapats av [[Special:Contributions/$1|$1]]. Skriv en raderingskommentar och klicka på knappen för att ta bort dem.',
+'nuke-defaultreason' => 'Massradering av sidor skapade av $1',
+'nuke-tools'         => 'Det här verktyget gör det möjligt att massradera sidor som nyligen skapats av en viss användare eller IP-adress.
+Ange ett användarnamn eller en IP-adress för att se en lista över sidor som kan tas bort.',
+'nuke-submit-user'   => 'Visa',
+'nuke-submit-delete' => 'Ta bort valda',
+'right-nuke'         => 'Massradera sidor',
+
 );

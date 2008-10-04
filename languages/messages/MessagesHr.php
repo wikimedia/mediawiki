@@ -2930,4 +2930,14 @@ Unesite ime datoteke bez prefiksa "{{ns:image}}:"',
 'blankpage'              => 'Prazna stranica',
 'intentionallyblankpage' => 'Ova stranica je namjerno ostavljena praznom',
 
+# Special:Nuke
+'nuke'               => 'Skupno brisanje',
+'nuke-nopages'       => 'Nema novih stranica suradnika [[Special:Contributions/$1|$1]] među nedavnim promjenama.',
+'nuke-list'          => 'Slijedeće stranice je stvorio suradnik [[Special:Contributions/$1|$1]]; napišite zaključak i kliknite gumb za njihovo brisanje.',
+'nuke-defaultreason' => 'Skupno brisanje stranica suradnika $1',
+'nuke-tools'         => 'Ova ekstenzija omogućava skupno brisanje stranica (članaka) nekog prijavljenog ili neprijavljenog suradnika. Upišite ime ili IP adresu za dobivanje popisa stranica koje je moguće obrisati:',
+'nuke-submit-user'   => 'Kreni',
+'nuke-submit-delete' => 'Obriši označeno',
+'right-nuke'         => 'Skupno brisanje stranica',
+
 );

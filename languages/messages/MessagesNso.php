@@ -1058,4 +1058,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 # Special:SpecialPages
 'specialpages' => 'Matlakala a itšeng',
 
+# Special:Nuke
+'nuke-submit-user' => 'Sepela',
+
 );

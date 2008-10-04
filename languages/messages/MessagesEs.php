@@ -2755,4 +2755,10 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 
 #Put all regex fragments above this line. Deja esta línea exactamente como está</pre>',
 
+# Special:Nuke
+'nuke-nopages'     => 'No hay páginas nuevas de [[Special:Contributions/$1|$1]] en los cambios recientes.',
+'nuke-list'        => '[[Special:Contributions/$1|$1]] creó recientemente las siguientes páginas;
+escriba un comentario y haga clic en el botón para borrarlas.',
+'nuke-submit-user' => 'Ir',
+
 );

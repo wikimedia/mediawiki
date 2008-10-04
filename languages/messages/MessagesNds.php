@@ -2645,4 +2645,14 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'blankpage'              => 'Leddige Sied',
 'intentionallyblankpage' => 'Disse Sied is mit Afsicht leddig.',
 
+# Special:Nuke
+'nuke'               => 'General-Utmesten',
+'nuke-nopages'       => 'Gifft in de Ne’esten Ännern kene ne’en Sieden vun [[Special:Contributions/$1|$1]].',
+'nuke-list'          => 'Disse Sieden hett [[Special:Contributions/$1|$1]] nee maakt; geev en Kommentar in un drück op den Utmest-Knopp.',
+'nuke-defaultreason' => 'General-Utmesten vun Sieden, de $1 anleggt hett',
+'nuke-tools'         => 'Dit Warktüüch verlöövt dat General-Utmesten vun Sieden, de vun ene IP-Adress oder en Bruker anleggt worrn sünd. Geev de IP-Adress oder den Brukernaam in, dat du ene List kriggst:',
+'nuke-submit-user'   => 'List kriegen',
+'nuke-submit-delete' => 'Utmesten',
+'right-nuke'         => 'Groten Hümpel Sieden wegsmieten',
+
 );

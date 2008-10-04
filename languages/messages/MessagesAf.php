@@ -2275,4 +2275,9 @@ Sleutel die lêernaam in sonder die "{{ns:image}}:" voorvoegsel.',
 'blankpage'              => 'Leë bladsy',
 'intentionallyblankpage' => 'Die bladsy is bewustelik leeg gelaat',
 
+# Special:Nuke
+'nuke'               => 'Massa verwyder',
+'nuke-submit-user'   => 'Gaan',
+'nuke-submit-delete' => 'Skrap geselekteerde',
+
 );

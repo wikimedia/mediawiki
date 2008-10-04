@@ -2134,4 +2134,8 @@ Bir başlığı çıkarmak için, yanındaki kutucuğu işaretleyin, ve Başlık
 # Special:BlankPage
 'blankpage' => 'Boş sayfa',
 
+# Special:Nuke
+'nuke-submit-user'   => 'Git',
+'nuke-submit-delete' => 'Seçileni sil',
+
 );
