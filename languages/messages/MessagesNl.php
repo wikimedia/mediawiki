@@ -278,6 +278,7 @@ $specialPageAliases = array(
 	'ListUserRestrictions'      => array( 'Gebruikersbeperkingen' ),
 	'RemoveRestrictions'        => array( 'BeperkingenVerwijderen' ),
 	'RestrictUser'              => array( 'GebruikerBeperken' ),
+	'Nuke'                      => array( 'MassaalVerwijderen' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';

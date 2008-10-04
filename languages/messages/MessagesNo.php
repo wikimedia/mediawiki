@@ -163,6 +163,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Blank side' ),
 	'LinkSearch'                => array( 'Lenkesøk' ),
 	'DeletedContributions'      => array( 'Slettede bidrag' ),
+	'Nuke'                      => array( 'Massesletting' ),
 );
 
 $messages = array(

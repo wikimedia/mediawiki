@@ -283,6 +283,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'דף_ריק' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
+	'Nuke'                      => array( 'מחיקה_מרובה' ),
 );
 
 $namespaceNames = array(
