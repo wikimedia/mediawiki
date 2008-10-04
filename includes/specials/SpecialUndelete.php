@@ -576,7 +576,7 @@ class PageArchive {
  * @ingroup SpecialPage
  */
 class UndeleteForm {
-	var $mAction, $mTarget, $mTimestamp, $mRestore, $mTargetObj;
+	var $mAction, $mTarget, $mTimestamp, $mRestore, $mInvert, $mTargetObj;
 	var $mTargetTimestamp, $mAllowed, $mComment;
 
 	function UndeleteForm( $request, $par = "" ) {
@@ -591,6 +591,7 @@ class UndeleteForm {
 		$posted = $request->wasPosted() &&
 			$wgUser->matchEditToken( $request->getVal( 'wpEditToken' ) );
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
+		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
 		$this->mComment = $request->getText( 'wpComment' );
@@ -611,7 +612,7 @@ class UndeleteForm {
 		} else {
 			$this->mTargetObj = NULL;
 		}
-		if( $this->mRestore ) {
+		if( $this->mRestore || $this->mInvert ) {
 			$timestamps = array();
 			$this->mFileVersions = array();
 			foreach( $_REQUEST as $key => $val ) {
@@ -667,6 +668,9 @@ class UndeleteForm {
 		}
 		if( $this->mRestore && $this->mAction == "submit" ) {
 			return $this->undelete();
+		}
+		if( $this->mInvert && $this->mAction == "submit" ) {
+			return $this->showHistory( );
 		}
 		return $this->showHistory();
 	}
@@ -909,7 +913,7 @@ class UndeleteForm {
 		$store->stream( $key );
 	}
 
-	private function showHistory() {
+	private function showHistory( ) {
 		global $wgLang, $wgUser, $wgOut;
 
 		$sk = $wgUser->getSkin();
@@ -1012,6 +1016,7 @@ class UndeleteForm {
 						<td class='mw-submit'>" .
 							Xml::submitButton( wfMsg( 'undeletebtn' ), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) .
 							Xml::element( 'input', array( 'type' => 'reset', 'value' => wfMsg( 'undeletereset' ), 'id' => 'mw-undelete-reset' ) ) .
+							Xml::submitButton( wfMsg( 'undeleteinvert' ), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
 						"</td>
 					</tr>" .
 					$unsuppressBox .
@@ -1077,7 +1082,15 @@ class UndeleteForm {
 		$stxt = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		if( $this->mAllowed ) {
-			$checkBox = Xml::check( "ts$ts" );
+			if( $this->mInvert){
+				if( in_array( $ts, $this->mTargetTimestamp ) ) {
+					$checkBox = Xml::check( "ts$ts");
+				} else {
+					$checkBox = Xml::check( "ts$ts", true );
+				}
+			} else {
+				$checkBox = Xml::check( "ts$ts" );
+			}
 			$titleObj = SpecialPage::getTitleFor( "Undelete" );
 			$pageLink = $this->getPageLink( $rev, $titleObj, $ts, $sk );
 			# Last link
