@@ -117,6 +117,9 @@ class ApiParamInfo extends ApiBase {
 							ApiBase::LIMIT_SML2 :
 							ApiBase::LIMIT_SML1;
 				}
+			if(isset($p[ApiBase::PARAM_ALLOW_DUPLICATES]))
+				if($p[ApiBase::PARAM_ALLOW_DUPLICATES])
+					$a['allowsduplicates'] = '';
 			if(isset($p[ApiBase::PARAM_TYPE]))
 			{
 				$a['type'] = $p[ApiBase::PARAM_TYPE];
