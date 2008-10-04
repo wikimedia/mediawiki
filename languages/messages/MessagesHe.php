@@ -2028,6 +2028,7 @@ $NEWPAGE
 'undeletebtn'                  => 'שחזור',
 'undeletelink'                 => 'שחזור',
 'undeletereset'                => 'איפוס',
+'undeleteinvert'               => 'הפיכת הבחירה',
 'undeletecomment'              => 'תקציר:',
 'undeletedarticle'             => 'שחזר את [[$1]]',
 'undeletedrevisions'           => '{{PLURAL:$1|שוחזרה גרסה אחת|שוחזרו $1 גרסאות}}',
