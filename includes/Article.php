@@ -2494,6 +2494,11 @@ class Article {
 		if ( !$dbw->cleanupTriggers() ) {
 			# Clean up recentchanges entries...
 			$dbw->delete( 'recentchanges',
+				array( 'rc_type != '.RC_LOG, 
+					'rc_namespace' => $this->mTitle->getNamespace(),
+					'rc_title' => $this->mTitle->getDBKey() ),
+				__METHOD__ );
+			$dbw->delete( 'recentchanges',
 				array( 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
