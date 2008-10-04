@@ -20,6 +20,6 @@ class PageQueryPage extends QueryPage {
 		$text = null;
 		if ($title instanceof Title)
 			$text = htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ); 
-		return $skin->link( $title,	$text );
+		return $skin->link( $title,	$text, array(), array(), array('known', 'noclasses') );
 	}
 }
