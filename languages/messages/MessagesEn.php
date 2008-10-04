@@ -2403,6 +2403,7 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletebtn'                  => 'Restore',
 'undeletelink'                 => 'restore',
 'undeletereset'                => 'Reset',
+'undeleteinvert'               => 'Invert selection',
 'undeletecomment'              => 'Comment:',
 'undeletedarticle'             => 'restored "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
