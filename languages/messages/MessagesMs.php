@@ -403,6 +403,7 @@ $messages = array(
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
+'sitenotice_close' => 'singkir',
 'red-link-title'          => '$1 (belum ditulis)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

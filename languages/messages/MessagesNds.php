@@ -422,6 +422,7 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'site-atom-feed'          => 'Atom-Feed för $1',
 'page-rss-feed'           => 'RSS-Feed för „$1“',
 'page-atom-feed'          => 'Atom-Feed för „$1“',
+'sitenotice_close' => 'wegmaken',
 'red-link-title'          => '$1 (noch nich vörhannen)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

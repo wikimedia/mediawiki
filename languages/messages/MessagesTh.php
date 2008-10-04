@@ -335,6 +335,7 @@ $messages = array(
 'site-atom-feed'          => 'ฟีดอะตอม $1',
 'page-rss-feed'           => 'ฟีดอาร์เอสเอส "$1"',
 'page-atom-feed'          => 'ฟีดอะตอม "$1"',
+'sitenotice_close' => 'ซ่อน',
 'red-link-title'          => '$1 (ยังไม่ได้สร้าง)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -363,6 +363,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom-kanal za $1',
 'page-rss-feed'           => 'RSS-kanal za „$1“',
 'page-atom-feed'          => 'Atom-Kanal za „$1“',
+'sitenotice_close' => 'schować',
 'red-link-title'          => '$1 (strona hišće njepisana)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

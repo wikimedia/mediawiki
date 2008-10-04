@@ -413,6 +413,7 @@ $messages = array(
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
 'page-atom-feed'          => 'Feed Atom de "$1"',
+'sitenotice_close' => 'ignorar',
 'red-link-title'          => '$1 (ainda não escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

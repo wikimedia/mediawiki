@@ -313,6 +313,7 @@ $messages = array(
 'site-atom-feed'          => '$1 ఆటం(Atom) ఫీడు',
 'page-rss-feed'           => '"$1" ఆరెసెస్సు(RSS) ఫీడు',
 'page-atom-feed'          => '"$1" ఆటం(Atom) ఫీడు',
+'sitenotice_close' => 'దాచు',
 'red-link-title'          => '$1 (ఇంకా రాయలేదు)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -1859,27 +1859,83 @@ function wfGetNamespaceNotice() {
 	return $namespaceNotice;
 }
 
+/**
+ * Gets and returns the site-wide notice
+ * @return $siteNotice The site-wide notice as set by $wgSiteNotice or MediaWiki:Sitenotice interface message
+ */
 function wfGetSiteNotice() {
-	global $wgUser, $wgSiteNotice;
+	global $wgUser, $wgSiteNotice, $wgMajorSiteNoticeID;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 	$siteNotice = '';
 
+	$encNotice = Xml::escapeJsString($siteNotice);
+	$encClose = Xml::escapeJsString( wfMsg( 'sitenotice_close' ) );
+	$id = intval( $wgMajorSiteNoticeID ) . "." . intval( wfMsgForContent( 'sitenotice_id' ) );
+
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
 		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
 			$siteNotice = wfGetCachedNotice( 'sitenotice' );
-		} else {
-			$anonNotice = wfGetCachedNotice( 'anonnotice' );
-			if( !$anonNotice ) {
-				$siteNotice = wfGetCachedNotice( 'sitenotice' );
-			} else {
-				$siteNotice = $anonNotice;
+			$siteNotice .= <<<EOT
+<script type="text/javascript" language="JavaScript">
+<!--
+var cookieName = "dismissSiteNotice=";
+var cookiePos = document.cookie.indexOf(cookieName);
+var siteNoticeID = "$id";
+var siteNoticeValue = "$encNotice";
+var cookieValue = "";
+var msgClose = "$encClose";
+
+if (cookiePos > -1) {
+	cookiePos = cookiePos + cookieName.length;
+	var endPos = document.cookie.indexOf(";", cookiePos);
+	if (endPos > -1) {
+		cookieValue = document.cookie.substring(cookiePos, endPos);
+	} else {
+		cookieValue = document.cookie.substring(cookiePos);
+	}
+}
+if (cookieValue != siteNoticeID) {
+	function dismissNotice() {
+		var date = new Date();
+		date.setTime(date.getTime() + 30*86400*1000);
+		document.cookie = cookieName + siteNoticeID + "; expires="+date.toGMTString() + "; path=/";
+		var element = document.getElementById('siteNotice');
+		element.parentNode.removeChild(element);
+	}
+	document.writeln('<table width="100%" id="mw-dismissable-notice"><tr><td width="80%">'+siteNoticeValue+'</td>');
+	document.writeln('<td width="20%" align="right">[<a href="javascript:dismissNotice();">'+msgClose+'</a>]</td></tr></table>');
+}
+-->
+</script>
+EOT;
+				} else {
+					$anonNotice = wfGetCachedNotice( 'anonnotice' );
+					if( !$anonNotice ) {
+						$siteNotice = wfGetCachedNotice( 'sitenotice' );
+						// Don't allow anons to dismiss the site notice
+						$siteNotice .= <<<EOT
+<script type="text/javascript" language="JavaScript">
+<!--
+document.writeln("$encNotice");
+-->
+</script>
+EOT;
+					} else {
+						$siteNotice = $anonNotice;
+						$siteNotice .= <<<EOT
+<script type="text/javascript" language="JavaScript">
+<!--
+document.writeln("$encNotice");
+-->
+</script>
+EOT;
+					}
+				}
+			if( !$siteNotice ) {
+				$siteNotice = wfGetCachedNotice( 'default' );
 			}
 		}
-		if( !$siteNotice ) {
-			$siteNotice = wfGetCachedNotice( 'default' );
-		}
-	}
 
 	wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice ) );
 	wfProfileOut( $fname );

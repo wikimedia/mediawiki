@@ -466,6 +466,7 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS фид',
 'page-atom-feed'          => '"$1" Atom фид',
 'feed-atom'               => 'Атом',
+'sitenotice_close' => 'откажи',
 'red-link-title'          => '$1 (није још написан)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

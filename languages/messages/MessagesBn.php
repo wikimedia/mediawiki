@@ -283,6 +283,7 @@ $messages = array(
 'site-atom-feed'          => '$1 অ্যাটম ফিড',
 'page-rss-feed'           => '"$1" আর এস এস ফিড',
 'page-atom-feed'          => '"$1" অ্যাটম ফিড',
+'sitenotice_close' => 'নোটিশ বন্ধ করুন',
 'red-link-title'          => '$1 (এখনও লেখা হয়নি)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

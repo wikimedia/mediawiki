@@ -289,6 +289,7 @@ dj'artìcol ancó pa scrit",
 'site-atom-feed'          => 'Emission Atom $1',
 'page-rss-feed'           => 'Emission RSS "$1"',
 'page-atom-feed'          => 'Emission Atom "$1"',
+'sitenotice_close' => 'stërma',
 'red-link-title'          => "$1 (pàgina ch'a-i é anco' pa)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook

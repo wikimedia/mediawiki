@@ -322,6 +322,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom šaltinis',
 'page-rss-feed'           => '„$1“ RSS šaltinis',
 'page-atom-feed'          => '„$1“ Atom šaltinis',
+'sitenotice_close' => 'paslėpti',
 'red-link-title'          => '$1 (dar nesukurtas)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

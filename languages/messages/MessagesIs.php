@@ -481,6 +481,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'site-atom-feed'          => '$1 Atom-streymi',
 'page-rss-feed'           => '„$1“ RSS-streymi',
 'page-atom-feed'          => '„$1“ Atom-streymi',
+'sitenotice_close' => 'fela',
 'red-link-title'          => '$1 (ekki enn skrifuð)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

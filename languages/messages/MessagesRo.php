@@ -344,6 +344,7 @@ pe titlul secţiunii (JavaScript)',
 'site-atom-feed'          => '$1 Abonare Atom',
 'page-rss-feed'           => '"$1" Abonare RSS',
 'page-atom-feed'          => '"$1" Abonare Atom',
+'sitenotice_close' => 'ascunde',
 'red-link-title'          => '$1 (pagină inexistentă)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
