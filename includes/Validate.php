@@ -14,7 +14,7 @@ class Validate {
 	 * @param int $max The upper limit
 	 * @return int
 	 */
-	function int( &$val, $min=0, $max=0x7fffffff ) {
+	public static function int( &$val, $min=0, $max=0x7fffffff ) {
 		$val = intval($val);
 		$val = min($val, $max);
 		$val = max($val, $min);
