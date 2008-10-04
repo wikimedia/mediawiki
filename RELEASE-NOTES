@@ -293,6 +293,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15768) Add list=watchlistraw
 * (bug 15647) action=edit with basetimestamp fails if the page has been deleted
   and undeleted since the last edit
+* (bug 15785) Allow for different expiry times for different protections in
+  action=protect
 
 === Languages updated in 1.14 ===
 

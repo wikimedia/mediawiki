@@ -46,6 +46,7 @@ abstract class ApiBase {
 	const PARAM_MAX = 3;
 	const PARAM_MAX2 = 4;
 	const PARAM_MIN = 5;
+	const PARAM_ALLOW_DUPLICATES = 6;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -442,10 +443,12 @@ abstract class ApiBase {
 			$default = $paramSettings;
 			$multi = false;
 			$type = gettype($paramSettings);
+			$dupes = false;
 		} else {
 			$default = isset ($paramSettings[self :: PARAM_DFLT]) ? $paramSettings[self :: PARAM_DFLT] : null;
 			$multi = isset ($paramSettings[self :: PARAM_ISMULTI]) ? $paramSettings[self :: PARAM_ISMULTI] : false;
 			$type = isset ($paramSettings[self :: PARAM_TYPE]) ? $paramSettings[self :: PARAM_TYPE] : null;
+			$dupes = isset ($paramSettings[self:: PARAM_ALLOW_DUPLICATES]) ? $paramSettings[self :: PARAM_ALLOW_DUPLICATES] : false;
 
 			// When type is not given, and no choices, the type is the same as $default
 			if (!isset ($type)) {
@@ -536,8 +539,8 @@ abstract class ApiBase {
 				}
 			}
 
-			// There should never be any duplicate values in a list
-			if (is_array($value))
+			// Throw out duplicates if requested
+			if (is_array($value) && !$dupes)
 				$value = array_unique($value);
 		}
 
@@ -686,8 +689,8 @@ abstract class ApiBase {
 		'missingparam' => array('code' => 'no$1', 'info' => "The \$1 parameter must be set"),
 		'invalidtitle' => array('code' => 'invalidtitle', 'info' => "Bad title ``\$1''"),
 		'invaliduser' => array('code' => 'invaliduser', 'info' => "Invalid username ``\$1''"),
-		'invalidexpiry' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time"),
-		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time is in the past"),
+		'invalidexpiry' => array('code' => 'invalidexpiry', 'info' => "Invalid expiry time ``\$1''"),
+		'pastexpiry' => array('code' => 'pastexpiry', 'info' => "Expiry time ``\$1'' is in the past"),
 		'create-titleexists' => array('code' => 'create-titleexists', 'info' => "Existing titles can't be protected with 'create'"),
 		'missingtitle-createonly' => array('code' => 'missingtitle-createonly', 'info' => "Missing titles can only be protected with 'create'"),
 		'cantblock' => array('code' => 'cantblock', 'info' => "You don't have permission to block users"),
@@ -704,6 +707,8 @@ abstract class ApiBase {
 		'cantpurge' => array('code' => 'cantpurge', 'info' => "Only users with the 'purge' right can purge pages via the API"),
 		'protect-invalidaction' => array('code' => 'protect-invalidaction', 'info' => "Invalid protection type ``\$1''"),
 		'protect-invalidlevel' => array('code' => 'protect-invalidlevel', 'info' => "Invalid protection level ``\$1''"),
+		'toofewexpiries' => array('code' => 'toofewexpiries', 'info' => "\$1 expiry timestamps were provided where \$2 were needed"),
+		
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array('code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects"),
