@@ -100,8 +100,11 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpEdittime'] = wfTimestamp(TS_MW, $params['basetimestamp']);
 		else
 			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
-		# Fake wpStartime
-		$reqArr['wpStarttime'] = $reqArr['wpEdittime'];
+		if(!is_null($params['starttimestamp']) && $params['starttimestamp'] != '')
+			$reqArr['wpStarttime'] = wfTimestamp(TS_MW, $params['starttimestamp']);
+		else
+			# Fake wpStartime
+			$reqArr['wpStarttime'] = $reqArr['wpEdittime'];
 		if($params['minor'] || (!$params['notminor'] && $wgUser->getOption('minordefault')))
 			$reqArr['wpMinoredit'] = '';
 		if($params['recreate'])
@@ -253,6 +256,7 @@ class ApiEditPage extends ApiBase {
 			'notminor' => false,
 			'bot' => false,
 			'basetimestamp' => null,
+			'starttimestamp' => null,
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
@@ -277,6 +281,9 @@ class ApiEditPage extends ApiBase {
 			'notminor' => 'Non-minor edit',
 			'bot' => 'Mark this edit as bot',
 			'basetimestamp' => array('Timestamp of the base revision (gotten through prop=revisions&rvprop=timestamp).',
+						'Used to detect edit conflicts; leave unset to ignore conflicts.'
+			),
+			'starttimestamp' => array('Timestamp when you obtained the edit token.',
 						'Used to detect edit conflicts; leave unset to ignore conflicts.'
 			),
 			'recreate' => 'Override any errors about the article having been deleted in the meantime',

@@ -403,6 +403,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			if (!is_null($params['token'])) {
 				$tokenFunctions = $this->getTokenFunctions();
+				$pageInfo['starttimestamp'] = wfTimestamp(TS_ISO_8601, time());
 				foreach($params['token'] as $t)
 				{
 					$val = call_user_func($tokenFunctions[$t], $pageid, $title);
@@ -475,6 +476,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				if(!is_null($params['token'])) 
 				{
 					$tokenFunctions = $this->getTokenFunctions();
+					$res['query']['pages'][$pageid]['starttimestamp'] = wfTimestamp(TS_ISO_8601, time());
 					foreach($params['token'] as $t)
 					{
 						$val = call_user_func($tokenFunctions[$t], $pageid, $title);
