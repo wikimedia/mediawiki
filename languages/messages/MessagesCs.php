@@ -571,7 +571,7 @@ $messages = array(
 'site-atom-feed'          => 'Atom kanál {{grammar:2sg|$1}}.',
 'page-rss-feed'           => 'RSS kanál stránky „$1“',
 'page-atom-feed'          => 'Atom kanál stránky „$1“',
-'sitenotice_close' => 'zavřít',
+'sitenotice_close'        => 'zavřít',
 'red-link-title'          => '$1 (dosud nevytvořeno)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

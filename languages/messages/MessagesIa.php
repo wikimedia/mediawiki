@@ -294,7 +294,7 @@ $messages = array(
 'site-atom-feed'          => 'Syndication Atom de $1',
 'page-rss-feed'           => 'Syndication RSS de "$1"',
 'page-atom-feed'          => 'Syndication Atom de "$1"',
-'sitenotice_close' => 'dimitter',
+'sitenotice_close'        => 'dimitter',
 'red-link-title'          => '$1 (non ancora scribite)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -664,7 +664,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom ارناسى',
 'page-rss-feed'           => '«$1» — RSS ارناسى',
 'page-atom-feed'          => '«$1» — Atom ارناسى',
-'sitenotice_close' => 'تاسالاتۋ',
+'sitenotice_close'        => 'تاسالاتۋ',
 'red-link-title'          => '$1 (ٴالى جازىلماعان)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

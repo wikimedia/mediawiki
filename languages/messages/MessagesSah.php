@@ -264,7 +264,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom биэрии',
 'page-rss-feed'           => '"$1" RSS биэрии',
 'page-atom-feed'          => '"$1" Atom биэрии',
-'sitenotice_close' => 'кистээ',
+'sitenotice_close'        => 'кистээ',
 'red-link-title'          => '$1 (өссө сурулла илик)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

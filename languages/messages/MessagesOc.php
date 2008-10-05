@@ -475,7 +475,7 @@ $messages = array(
 'site-atom-feed'          => 'Flus Atom de $1',
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
-'sitenotice_close' => 'amagar',
+'sitenotice_close'        => 'amagar',
 'red-link-title'          => '$1 (pagina pas encara redigida)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

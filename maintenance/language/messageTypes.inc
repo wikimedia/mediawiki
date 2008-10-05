@@ -154,6 +154,7 @@ $wgIgnoredMessages = array(
 	'pagetitle-view-mainpage',
 	'newuserlogentry',
 	'restrictlogpage',
+	'sitenotice_id',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */

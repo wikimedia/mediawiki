@@ -477,7 +477,7 @@ $messages = array(
 'site-atom-feed'          => '$1 — Atom-стрічка',
 'page-rss-feed'           => '«$1» — RSS-стрічка',
 'page-atom-feed'          => '«$1» — Atom-стрічка',
-'sitenotice_close' => 'приховати',
+'sitenotice_close'        => 'приховати',
 'red-link-title'          => '$1 (ще не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

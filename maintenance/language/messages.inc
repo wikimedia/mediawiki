@@ -282,6 +282,8 @@ $wgMessageStructure = array(
 		'feed-atom',
 		'feed-rss',
 		'sitenotice',
+		'sitenotice_id',
+		'sitenotice_close',
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
 		'red-link-title',

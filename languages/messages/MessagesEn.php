@@ -764,8 +764,8 @@ See [[Special:Version|version page]].',
 'feed-atom'                    => 'Atom', # only translate this message to other languages if you have to change it
 'feed-rss'                     => 'RSS', # only translate this message to other languages if you have to change it
 'sitenotice'                   => '-', # the equivalent to wgSiteNotice; do not translate or duplicate this message to other languages
-'sitenotice_id' => '0', # Do not translate this
-'sitenotice_close' => 'dismiss',
+'sitenotice_id'                => '0', # do not translate or duplicate this message to other languages
+'sitenotice_close'             => 'dismiss',
 'anonnotice'                   => '-', # do not translate or duplicate this message to other languages
 'newsectionheaderdefaultlevel' => '== $1 ==', # do not translate or duplicate this message to other languages
 'red-link-title'               => '$1 (not yet written)',

@@ -310,7 +310,7 @@ $messages = array(
 'site-rss-feed'           => '$1 RSS පෝෂකය',
 'site-atom-feed'          => '$1 Atom පෝෂකය',
 'page-rss-feed'           => '"$1" RSS පෝෂකය',
-'sitenotice_close' => 'නිෂ්ප්‍රභ කරන්න',
+'sitenotice_close'        => 'නිෂ්ප්‍රභ කරන්න',
 'red-link-title'          => '$1 (තවමත් ලියා නොමැත)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

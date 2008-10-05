@@ -133,7 +133,7 @@ $messages = array(
 'toc'                     => 'विषयसूची',
 'showtoc'                 => 'देखाउनु',
 'hidetoc'                 => 'लुकाउनुहोस्',
-'sitenotice_close' => 'खारेज',
+'sitenotice_close'        => 'खारेज',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'लेख',

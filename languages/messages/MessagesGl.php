@@ -289,7 +289,7 @@ $messages = array(
 'site-atom-feed'          => 'Fonte de noticias Atom de $1',
 'page-rss-feed'           => 'Fonte de noticias RSS para "$1"',
 'page-atom-feed'          => 'Fonte de noticias Atom para "$1"',
-'sitenotice_close' => 'retirar',
+'sitenotice_close'        => 'retirar',
 'red-link-title'          => '$1 (aínda non escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

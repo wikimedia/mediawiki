@@ -339,7 +339,7 @@ $messages = array(
 'site-atom-feed'          => '$1的Atom订阅',
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
-'sitenotice_close' => '关闭',
+'sitenotice_close'        => '关闭',
 'red-link-title'          => '$1 (尚未撰写)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
