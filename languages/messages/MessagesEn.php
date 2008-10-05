@@ -441,6 +441,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Nuke'                      => array( 'Nuke' ),
+	'DismissNotice'				=> array( 'DismissNotice' ),
 );
 
 /**
@@ -3687,4 +3688,7 @@ Input the username or IP to get a list of pages to delete.',
 'nuke-submit-delete' => 'Delete selected',
 'right-nuke'         => 'Mass delete pages',
 
+# Special:DismissNotice
+'dismissnotice'         => 'Dismiss site notice',
+'dismissnotice-nologin' => 'You must be [[Special:UserLogin|logged in]] to dismiss the site notice.',
 );
