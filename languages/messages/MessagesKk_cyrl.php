@@ -507,7 +507,7 @@ $messages = array(
 == Бастау үшін ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Бапталым қалауларының тізімі]
 * [http://www.mediawiki.org/wiki/Manual:FAQ МедиаУикидің Жиы Қойылған Сауалдары]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаУики шығу туралы хат тарату тізімі]',
 
 'about'          => 'Жоба туралы',
 'article'        => 'Мағлұмат беті',

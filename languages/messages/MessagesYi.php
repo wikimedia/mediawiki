@@ -245,7 +245,7 @@ $messages = array(
 == נוצליכע לינקס ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
 * [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מידיעוויקי רעליס מעלינג ליסט]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce מידיעוויקי רעליס מעלינג ליסט]',
 
 'about'          => 'וועגן',
 'article'        => 'אינהאלט בלאט',

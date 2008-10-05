@@ -410,7 +410,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings បញ្ជីកំនត់ទំរង់]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/km សំនួរញឹកញាប់ MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជីពិភាក្សាការផ្សព្វផ្សាយរបស់ MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce បញ្ជីពិភាក្សាការផ្សព្វផ្សាយរបស់ MediaWiki]',
 
 'about'          => 'អំពី',
 'article'        => 'មាតិកាអត្ថបទ',

@@ -156,7 +156,7 @@ $messages = array(
 == Comezando ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listaxe de opcións de configuración]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listaxe de correo das edicións de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listaxe de correo das edicións de MediaWiki]',
 
 'about'          => 'Acerca de',
 'article'        => 'Artigo',
@@ -249,7 +249,7 @@ $messages = array(
 'edithelp'             => 'Axuda de edición',
 'edithelppage'         => 'Help:Como editar unha páxina',
 'faq'                  => 'PMF',
-'faqpage'              => 'Project:PMF',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Axuda',
 'mainpage'             => 'Portada',
 'mainpage-description' => 'Portada',
@@ -298,7 +298,7 @@ $messages = array(
 'nstab-media'     => 'Páxina multimedia',
 'nstab-special'   => 'Páxina especial',
 'nstab-project'   => 'Páxina do proxecto',
-'nstab-image'     => 'Imaxe',
+'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Axuda',
@@ -1386,7 +1386,7 @@ No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
 
 'doubleredirects'            => 'Redireccións dobres',
-'doubleredirectstext'        => 'Esta páxina contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é usualmente o artigo "real", á que a primeira redirección debería apuntar.',
+'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.',
 'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
 'double-redirect-fixer'      => 'Amañador de redireccións',
 
@@ -1776,6 +1776,7 @@ O texto das revisións eliminadas só está á disposición dos administradores.
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Limpar',
+'undeleteinvert'               => 'Invertir a selección',
 'undeletecomment'              => 'Razón para desprotexer:',
 'undeletedarticle'             => 'restaurou "[[$1]]"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|revisión restaurada|revisións restauradas}}',

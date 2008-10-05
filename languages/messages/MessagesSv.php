@@ -389,7 +389,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista över konfigurationsinställningar]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mail list]',
 
 'about'          => 'Om',
 'article'        => 'Innehållssida',
@@ -1983,6 +1983,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletebtn'                  => 'Återställ',
 'undeletelink'                 => 'återställ',
 'undeletereset'                => 'Rensa',
+'undeleteinvert'               => 'Invertera urval',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'återställde "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|en version återställd|$1 versioner återställda}}',

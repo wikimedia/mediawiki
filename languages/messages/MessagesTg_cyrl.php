@@ -186,7 +186,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Пурсишҳои МедиаВики]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Феҳристи ройномаҳои нусхаҳои МедиаВики]',
 
 'about'          => 'Дар бораи',
 'article'        => 'Саҳифаи мӯҳтаво',

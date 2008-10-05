@@ -126,7 +126,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定列表]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 平常問題解答]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈email清單]',
 
 'about'          => '關於',
 'article'        => '文章',

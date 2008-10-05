@@ -289,7 +289,7 @@ $messages = array(
 ==Å starte==
 *[http://www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
 *[http://www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
-*[http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
+*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 
 'about'          => 'Om',
 'article'        => 'Innholdsside',
@@ -1841,6 +1841,7 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 'undeletebtn'                  => 'Gjenopprett',
 'undeletelink'                 => 'gjenopprett',
 'undeletereset'                => 'Nullstill',
+'undeleteinvert'               => 'Inverter valg',
 'undeletecomment'              => 'Kommentar:',
 'undeletedarticle'             => 'gjenopprettet «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} gjenopprettet',

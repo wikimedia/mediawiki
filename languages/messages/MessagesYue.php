@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * @ingroup Language
  * @file
@@ -261,7 +261,7 @@ $messages = array(
 ==開始使用==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置設定清單]（英）
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題]（英）
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件名單]（英）',
 
 'about'          => '關於',
 'article'        => '內容頁',

@@ -158,7 +158,7 @@ I seguenti colegamenti i xe in lengua inglese:
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Inpostazion de configurazion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunci MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list anunci MediaWiki]",
 
 'about'          => 'Se parla de',
 'article'        => 'Voçe',
@@ -652,6 +652,8 @@ Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pa
 L'elenco de le relative scancelazion el vien riportà qua de seguito par comodità:",
 'deleted-notice'                   => "Sta pàxena la xe stà scancelà. L'elenco de le relative scancelassion el vien riportà de sèvito par informassion.",
 'deletelog-fulllog'                => 'Varda el registro conpleto',
+'edit-hook-aborted'                => "Modifica abortìa da parte de l'hook.
+No xe stà dà nissuna spiegazion in merito.",
 'edit-gone-missing'                => 'No se riesse a agiornar la pàxena.
 Pararìa che la sìpia stà scancelà.',
 'edit-conflict'                    => 'Conflito de modifica.',

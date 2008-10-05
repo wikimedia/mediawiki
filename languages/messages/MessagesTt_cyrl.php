@@ -131,7 +131,7 @@ $messages = array(
 == Файдалы ресурслар ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Көйләнмәләр исемлеге];
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki турында еш бирелгән сораулар һәм җаваплар];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'нең яңа версияләре турында хәбәрләр җибәреп чыгу].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki'нең яңа версияләре турында хәбәрләр җибәреп чыгу].",
 
 'about'          => 'Тасвир',
 'article'        => 'Эчтәлек бите',

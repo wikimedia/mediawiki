@@ -354,7 +354,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion des parutions de MediaWiki]',
 
 'about'          => 'À propos',
 'article'        => 'Article',
@@ -1921,6 +1921,7 @@ Si une nouvelle page avec le même nom a été créée depuis la suppression, le
 'undeletebtn'                  => 'Restaurer',
 'undeletelink'                 => 'restaurer',
 'undeletereset'                => 'Réinitialiser',
+'undeleteinvert'               => 'Inverser la sélection',
 'undeletecomment'              => 'Résumé :',
 'undeletedarticle'             => 'a restauré « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
@@ -2045,6 +2046,7 @@ Vous pouvez consulter la [[Special:IPBlockList|liste des comptes et des adresses
 'noautoblockblock'                => 'blocage automatique désactivé',
 'createaccountblock'              => 'création de compte bloquée',
 'emailblock'                      => 'courriel bloqué',
+'blocklist-nousertalk'            => 'ne peuvent modifier leur propre page de discussion',
 'ipblocklist-empty'               => 'La liste des adresses IP bloquées est actuellement vide.',
 'ipblocklist-no-results'          => 'L’adresse IP ou l’utilisateur n’a pas été bloqué.',
 'blocklink'                       => 'Bloquer',

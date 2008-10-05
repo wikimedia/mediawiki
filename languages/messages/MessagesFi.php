@@ -305,7 +305,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Asetusten teko-ohjeita]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWikin FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Sähköpostilista, jolla tiedotetaan MediaWikin uusista versioista]
 
 === Asetukset ===
 
@@ -1454,7 +1454,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'deadendpages'            => 'Sivut, joilla ei ole linkkejä',
 'deadendpagestext'        => 'Seuraavat sivut eivät linkitä muihin sivuihin wikissä.',
 'protectedpages'          => 'Suojatut sivut',
-'protectedpages-indef'    => 'Vain ikuiset estot',
+'protectedpages-indef'    => 'Vain ikuisesti suojatut',
 'protectedpages-cascade'  => 'Vain laajennetusti suojatut',
 'protectedpagestext'      => 'Seuraavat sivut ovat suojattuja siirtämiseltä tai muutoksilta',
 'protectedpagesempty'     => 'Ei suojattu sivuja.',
@@ -1782,6 +1782,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undeletebtn'                  => 'Palauta',
 'undeletelink'                 => 'palauta',
 'undeletereset'                => 'Tyhjennä',
+'undeleteinvert'               => 'Käänteinen valinta',
 'undeletecomment'              => 'Kommentti',
 'undeletedarticle'             => 'palautti sivun [[$1]]',
 'undeletedrevisions'           => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',

@@ -168,7 +168,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de les opciones de configuración]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de les ediciones de MediaWiki]",
 
 'about'          => 'Tocante a',
 'article'        => 'Conteníu de la páxina',
