@@ -1868,15 +1868,29 @@ function wfGetSiteNotice() {
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 	$siteNotice = '';
-
+	$loggedIn = false;
+	
+	if( $wgUser instanceOf User && $wgUser->isLoggedIn() ) {
+		$loggedIn = true;
+		$siteNotice = wfGetCachedNotice('sitenotice');
+		if($siteNotice === false)
+			return '';
+	} else {
+		$siteNotice = wfGetCachedNotice('anonnotice');
+		if($siteNotice === false) {
+			$siteNotice = wfGetCachedNotice('sitenotice');
+			if($siteNotice === false)
+				return '';
+		}
+	}
+	
 	$encNotice = Xml::escapeJsString($siteNotice);
 	$encClose = Xml::escapeJsString( wfMsg( 'sitenotice_close' ) );
 	$id = intval( $wgMajorSiteNoticeID ) . "." . intval( wfMsgForContent( 'sitenotice_id' ) );
 
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
-		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
-			$siteNotice = wfGetCachedNotice( 'sitenotice' );
-			$siteNotice .= <<<EOT
+		if( $loggedIn ) {
+			$siteNotice = <<<EOT
 <script type="text/javascript" language="JavaScript">
 <!--
 var cookieName = "dismissSiteNotice=";
@@ -1909,33 +1923,20 @@ if (cookieValue != siteNoticeID) {
 -->
 </script>
 EOT;
-				} else {
-					$anonNotice = wfGetCachedNotice( 'anonnotice' );
-					if( !$anonNotice ) {
-						$siteNotice = wfGetCachedNotice( 'sitenotice' );
-						// Don't allow anons to dismiss the site notice
-						$siteNotice .= <<<EOT
+		} else {
+			// Don't allow anons to dismiss the site notice
+			$siteNotice = <<<EOT
 <script type="text/javascript" language="JavaScript">
 <!--
 document.writeln("$encNotice");
 -->
 </script>
 EOT;
-					} else {
-						$siteNotice = $anonNotice;
-						$siteNotice .= <<<EOT
-<script type="text/javascript" language="JavaScript">
-<!--
-document.writeln("$encNotice");
--->
-</script>
-EOT;
-					}
-				}
-			if( !$siteNotice ) {
-				$siteNotice = wfGetCachedNotice( 'default' );
-			}
 		}
+		if( !$siteNotice ) {
+			$siteNotice = wfGetCachedNotice( 'default' );
+		}
+	}
 
 	wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice ) );
 	wfProfileOut( $fname );
