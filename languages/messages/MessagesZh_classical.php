@@ -1584,6 +1584,7 @@ $NEWPAGE
 'undeletebtn'                  => '還',
 'undeletelink'                 => '還',
 'undeletereset'                => '歸白',
+'undeleteinvert'               => '反相',
 'undeletecomment'              => '贊日',
 'undeletedarticle'             => '還焉"[[$1]]"',
 'undeletedrevisions'           => '$1審已還',

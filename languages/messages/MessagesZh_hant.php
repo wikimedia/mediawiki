@@ -1753,6 +1753,7 @@ $NEWPAGE
 'undeletebtn'                  => '恢復',
 'undeletelink'                 => '恢復',
 'undeletereset'                => '重設',
+'undeleteinvert'               => '反向選擇',
 'undeletecomment'              => '原因',
 'undeletedarticle'             => '已經恢復「$1」',
 'undeletedrevisions'           => '$1個修訂版本已經恢復',

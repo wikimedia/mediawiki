@@ -1777,6 +1777,7 @@ $NEWPAGE
 'undeletebtn'                  => '恢复',
 'undeletelink'                 => '恢复',
 'undeletereset'                => '重设',
+'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '评论:',
 'undeletedarticle'             => '已恢复的"[[$1]]"',
 'undeletedrevisions'           => '$1个修订版本已恢复',
