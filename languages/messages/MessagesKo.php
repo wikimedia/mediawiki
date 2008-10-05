@@ -372,7 +372,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings 설정하기]
 * [http://www.mediawiki.org/wiki/Manual:FAQ 미디어위키 FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce 미디어위키 발표 메일링 리스트]',
 
 'about'          => '소개',
 'article'        => '문서 내용',

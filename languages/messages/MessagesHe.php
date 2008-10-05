@@ -432,7 +432,7 @@ $messages = array(
 == קישורים שימושיים ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings רשימת ההגדרות]
 * [http://www.mediawiki.org/wiki/Manual:FAQ שאלות נפוצות]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce רשימת התפוצה על השקת גרסאות]',
 
 'about'          => 'אודות',
 'article'        => 'דף תוכן',

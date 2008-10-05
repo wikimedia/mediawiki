@@ -132,7 +132,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Den seti]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Sani di ben aksi furu (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Boskopu grupu gi nyun meki]',
 
 'about'          => 'Abra',
 'article'        => 'Papira',

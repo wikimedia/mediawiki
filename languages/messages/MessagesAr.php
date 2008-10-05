@@ -503,7 +503,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings قائمة إعدادات الضبط]
 * [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة متكررة حول ميدياويكي]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce القائمة البريدية الخاصة بإصدار ميدياويكي]',
 
 'about'          => 'حول',
 'article'        => 'صفحة محتوى',

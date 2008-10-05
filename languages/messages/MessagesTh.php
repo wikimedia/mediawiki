@@ -202,7 +202,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)
 * [http://www.mediawiki.org/wiki/Manual:FAQ คำถามที่ถามบ่อยในมีเดียวิกิ] (ภาษาอังกฤษ)
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce เมลลิงลิสต์ของมีเดียวิกิ]',
 
 'about'          => 'เว็บไซต์นี้',
 'article'        => 'หน้าเนื้อหา',

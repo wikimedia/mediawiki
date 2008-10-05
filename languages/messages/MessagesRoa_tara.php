@@ -82,7 +82,7 @@ $messages = array(
 == Pe accumenzà ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste pe le configuraziune]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ de MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste d'a poste de MediaWiki]",
 
 'about'         => 'Sus a',
 'article'       => 'Pàgene de le condenute',

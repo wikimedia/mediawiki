@@ -154,7 +154,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lis paramèt yo pou konfigirazyon]
 * [http://www.mediawiki.org/wiki/Manyèl:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon pou chak ki parèt sou MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lis diskisyon pou chak ki parèt sou MediaWiki]',
 
 'about'          => 'Apwopo',
 'article'        => 'Atik',

@@ -189,7 +189,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigūracijos nustatymų sąrašas]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki DUK]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki pranešimai paštu apie naujas versijas]',
 
 'about'          => 'Apie',
 'article'        => 'Turinys',

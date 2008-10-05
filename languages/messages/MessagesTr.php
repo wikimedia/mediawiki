@@ -165,7 +165,7 @@ $messages = array(
 == Yeni Başlayanlar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Yapılandırma ayarlarının listesi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki SSS]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-posta listesi]',
 
 'about'          => 'Hakkında',
 'article'        => 'Madde',

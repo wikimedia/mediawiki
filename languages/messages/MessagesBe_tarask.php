@@ -1957,6 +1957,7 @@ $NEWPAGE
 'undeletebtn'                  => 'Аднавіць',
 'undeletelink'                 => 'аднавіць',
 'undeletereset'                => 'Ачысьціць',
+'undeleteinvert'               => 'Адваротны выбар',
 'undeletecomment'              => 'Камэнтар:',
 'undeletedarticle'             => 'адноўленая «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|адноўленая $1 вэрсія|адноўленыя $1 вэрсіі|адноўленыя $1 вэрсій}}',

@@ -157,7 +157,7 @@ $messages = array(
 == Pirmie soļi ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurācijas iespēju saraksts]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki J&A]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]',
 
 'about'          => 'Par',
 'article'        => 'Raksts',

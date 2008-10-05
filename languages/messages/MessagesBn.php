@@ -151,7 +151,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings কনফিগারেশন সেটিংস তালিকা]
 * [http://www.mediawiki.org/wiki/Manual:FAQ প্রশ্নোত্তরে মিডিয়াউইকি]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি রিলিজের মেইলিং লিস্ট]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce মিডিয়াউইকি রিলিজের মেইলিং লিস্ট]',
 
 'about'          => 'বৃত্তান্ত',
 'article'        => 'বিষয়বস্তু আছে এমন পাতা',

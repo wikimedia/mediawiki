@@ -137,7 +137,7 @@ $messages = array(
 == Na štart ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista štalowań konfiguracyji]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komůnikaty uo nowych wersyjach MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Komůnikaty uo nowych wersyjach MediaWiki]',
 
 'about'          => 'Uo serwiśe',
 'article'        => 'zajta',

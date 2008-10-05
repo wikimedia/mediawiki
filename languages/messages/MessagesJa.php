@@ -190,7 +190,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings/ja 設定リスト]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/ja MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki リリース情報メーリングリスト]',
 
 'about'          => '解説',
 'article'        => '本文',

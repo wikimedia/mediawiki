@@ -617,8 +617,8 @@ Waat e Wielsche, ih dat De et widder versöhks.',
 'resetpass_missing'       => "'''Fähler:''' Nix enjejovve, odder de Daate ussem Fomulaa sen fott.",
 
 # Edit page toolbar
-'bold_sample'     => 'Fett Schreff',
-'bold_tip'        => 'Fett Schreff',
+'bold_sample'     => 'Fätte Schreff',
+'bold_tip'        => 'Fätte Schreff',
 'italic_sample'   => 'Scheive Schreff',
 'italic_tip'      => 'Scheive Schreff',
 'link_sample'     => 'Anker Tex',

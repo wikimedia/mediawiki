@@ -215,7 +215,7 @@ $messages = array(
 == Početak ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista postavki]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki najčešće postavljana pitanja]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista E-Mail adresa MediaWiki]',
 
 'about'          => 'O...',
 'article'        => 'Članak',

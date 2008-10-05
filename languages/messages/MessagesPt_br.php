@@ -268,7 +268,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opções de configuração]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ do MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussão com avisos de novas versões do MediaWiki]',
 
 'about'          => 'Sobre',
 'article'        => 'Página de conteúdo',

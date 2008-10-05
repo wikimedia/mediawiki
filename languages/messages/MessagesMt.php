@@ -131,7 +131,7 @@ $messages = array(
 == Biex tibda ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għal konfigurazzjoni]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ ta'MedjaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki oħroġ lista ta' posta]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki oħroġ lista ta' posta]",
 
 'about'          => 'Dwar',
 'article'        => 'artiklu',

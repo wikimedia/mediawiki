@@ -271,7 +271,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Senarai tetapan konfigurasi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soalan Lazim MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Senarai mel bagi keluaran MediaWiki]',
 
 'about'          => 'Perihal',
 'article'        => 'Laman kandungan',
@@ -1854,6 +1854,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletebtn'                  => 'Pulihkan',
 'undeletelink'                 => 'pulih',
 'undeletereset'                => 'set semula',
+'undeleteinvert'               => 'Kecualikan pilihan',
 'undeletecomment'              => 'Komen:',
 'undeletedarticle'             => '"[[$1]]" telah dipulihkan',
 'undeletedrevisions'           => '$1 semakan dipulihkan',

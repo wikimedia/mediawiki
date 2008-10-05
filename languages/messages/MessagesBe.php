@@ -186,7 +186,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Пералік параметраў канфігурацыі (англ.)]
 * [http://www.mediawiki.org/wiki/Manual:FAQ ЧАПЫ MediaWiki (англ.)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ліставанне аб выпусках MediaWiki (англ.)]',
 
 'about'          => 'Што гэта',
 'article'        => 'Старонка змесціва',

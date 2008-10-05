@@ -189,7 +189,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings List mei ynstellings]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Faak stelde fragen (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]",
 
 'about'          => 'Ynfo',
 'article'        => 'Ynhâld side',

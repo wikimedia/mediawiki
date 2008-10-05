@@ -95,7 +95,7 @@ $messages = array(
 == Pagsugod ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listahan sa mga setting sa kompigurasyon]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ sa MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce  Mailing list sa mga release sa MediaWiki]',
 
 'about'          => 'Mahitungod',
 'newwindow'      => "(maabli sa laing ''window'')",

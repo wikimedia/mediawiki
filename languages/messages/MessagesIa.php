@@ -161,7 +161,7 @@ $messages = array(
 == Pro initiar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de configurationes]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ a proposito de MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de diffusion pro annuncios de nove versiones de MediaWiki]',
 
 'about'          => 'A proposito',
 'article'        => 'Pagina de contento',

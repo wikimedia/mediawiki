@@ -130,7 +130,7 @@ $messages = array(
 == Эхлэх ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Тохиргоо]
 * [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикигийн тогтмол тавигддаг асуултууд]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикигийн мэдээний мэйл явуулах жагсаалт]',
 
 'about'          => 'Тухай',
 'article'        => 'Өгүүлэл',

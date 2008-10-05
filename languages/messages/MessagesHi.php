@@ -165,7 +165,7 @@ $messages = array(
 == शुरुवात करें ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगकी सूची]
 * [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकिके बारे में प्राय: पूछे जाने वाले सवाल]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
 
 'about'          => 'अबाउट',
 'article'        => 'लेख',

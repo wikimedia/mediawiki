@@ -343,7 +343,7 @@ $messages = array(
 == Деякі корисні ресурси ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список налаштувань];
 * [http://www.mediawiki.org/wiki/Manual:FAQ Часті питання з приводу MediaWiki];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki].',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розсилка повідомлень про появу нових версій MediaWiki].',
 
 'about'          => 'Про',
 'article'        => 'Стаття',

@@ -392,7 +392,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings لستة اعدادات الضبط]
 * [http://www.mediawiki.org/wiki/Manual:FAQ أسئلة بتكرر حوالين الميدياويكى]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce لستة الايميلات بتاعة اعلانات الميدياويكى]',
 
 'about'          => 'عن',
 'article'        => 'صفحة محتوى',

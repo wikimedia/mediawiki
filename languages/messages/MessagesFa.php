@@ -397,7 +397,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings تنظیم پیکربندی]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki پرسش‌های متداول]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست رایانامه نسخه‌های مدیاویکی]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce فهرست رایانامه نسخه‌های مدیاویکی]',
 
 'about'          => 'درباره',
 'article'        => 'صفحهٔ محتوا',
@@ -1994,6 +1994,7 @@ $NEWPAGE
 'undeletebtn'                  => 'احیا شود!',
 'undeletelink'                 => 'احیا',
 'undeletereset'                => 'از نو',
+'undeleteinvert'               => 'وارونه کردن انتخاب',
 'undeletecomment'              => 'توضیح:',
 'undeletedarticle'             => '«$1» احیا {{PLURAL:$1|شد|شدند}}',
 'undeletedrevisions'           => '$1 نسخه احیا {{PLURAL:$1|شد|شدند}}',

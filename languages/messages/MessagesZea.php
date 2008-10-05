@@ -159,7 +159,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lieste mie instelliengen]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Veehestelde vraehen (FAQ)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailienglieste voe ankondigiengen van nieuwe versies]",
 
 'about'          => 'Info',
 'article'        => 'Artikel',

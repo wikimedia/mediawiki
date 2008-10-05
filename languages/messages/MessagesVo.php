@@ -219,7 +219,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Parametalised]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: SSP]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Potalised tefü fomams nulik ela MediaWiki]',
 
 'about'          => 'Tefü',
 'article'        => 'Ninädapad',

@@ -113,7 +113,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Moslamalar ro'yxati]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki haqida ko'p so'raladigan savollar]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki yangi versiyasi chiqqanda xabar berish ro'yxati]",
 
 'about'          => 'Haqida',
 'newwindow'      => '(yangi oynada ochiladi)',

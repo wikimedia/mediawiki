@@ -152,7 +152,7 @@ $messages = array(
 == Ἄρξασθε ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Κατάλογος παραμέτρων παρατάξεως]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki: τὰ πολλάκις αἰτηθέντα]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Κατάλογος διαλέξεων ἐπὶ τῶν ἐκδόσεων τῆς MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Κατάλογος διαλέξεων ἐπὶ τῶν ἐκδόσεων τῆς MediaWiki]',
 
 'about'          => 'Περὶ',
 'article'        => 'Ἡ ἐγγραφή',

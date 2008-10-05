@@ -179,7 +179,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'          => 'Diwar-benn',
 'article'        => 'Pennad',
@@ -225,7 +225,7 @@ $messages = array(
 'deletethispage'    => 'Diverkañ ar bajenn-mañ',
 'undelete_short'    => "Diziverkañ {{PLURAL:$1|ur c'hemm|$1 kemm}}",
 'protect'           => 'Gwareziñ',
-'protect_change'    => 'kemm gwarez',
+'protect_change'    => 'kemmañ',
 'protectthispage'   => 'Gwareziñ ar bajenn-mañ',
 'unprotect'         => 'Diwareziñ',
 'unprotectthispage' => 'Diwareziñ ar bajenn-mañ',
@@ -307,7 +307,7 @@ $messages = array(
 'restorelink'             => "{{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
 'feedlinks'               => 'Lanv :',
 'feed-invalid'            => 'Seurt lanv direizh.',
-'feed-unavailable'        => "N'haller ket implijout lanvadoù koumanantiñ war {{SITENAME}}",
+'feed-unavailable'        => "N'haller ket implijout al lanvadoù koumanatiñ",
 'site-rss-feed'           => 'Lanv RSS evit $1',
 'site-atom-feed'          => 'Lanv Atom evit $1',
 'page-rss-feed'           => 'Lanv RSS evit "$1"',
@@ -344,8 +344,7 @@ Adkaset eo bet ar fazi "<tt>$3: $4</tt>" gant MySQL.',
 "$1"
 graet gant an arc\'hwel "$2"
 adkaset eo bet ar fazi "$3 : $4" gant MySQL.',
-'noconnect'            => "Ho tigarez! Da-heul kudennoù teknikel, n'haller ket kevreañ ouzh ar bank roadennoù evit poent.
-<br />
+'noconnect'            => "Ho tigarez! Da-heul kudennoù teknikel, n'haller ket kevreañ ouzh servijer ar bank roadennoù evit poent.<br />
 $1",
 'nodb'                 => 'Dibosupl dibab ar bank roadennoù $1',
 'cachederror'          => "Un eilenn eus ar bajenn goulennet eo homañ; marteze n'eo ket bet hizivaet",
@@ -402,7 +401,7 @@ Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe en em
 'welcomecreation'            => '== Degemer mat, $1! ==
 
 Krouet eo bet ho kont implijer.
-Na zisoñjit ket personelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndibaboù.',
+Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}}]].',
 'loginpagetitle'             => 'Ho tisklêriadenn',
 'yourname'                   => "Hoc'h anv implijer",
 'yourpassword'               => 'Ho ker-tremen',
@@ -417,7 +416,7 @@ Na zisoñjit ket personelaat ho {{SITENAME}} en ur sellet ouzh pajenn ar Penndib
 'logout'                     => 'Dilugañ',
 'userlogout'                 => 'Dilugañ',
 'notloggedin'                => 'Diluget',
-'nologin'                    => "N'oc'h ket luget ? $1.",
+'nologin'                    => "N'oc'h eus kont ebet ? $1.",
 'nologinlink'                => 'Krouiñ ur gont',
 'createaccount'              => 'Krouiñ ur gont nevez',
 'gotaccount'                 => "Ur gont zo ganeoc'h dija ? $1.",
@@ -447,7 +446,7 @@ Dre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ."
 'loginsuccesstitle'          => "Disklêriet oc'h.",
 'loginsuccess'               => 'Luget oc\'h bremañ war {{SITENAME}} evel "$1".',
 'nosuchuser'                 => 'N\'eus ket eus an implijer "$1".
-Gwiriit eo bet skrivet mat an anv ganeoc\'h pe implijit ar furmskrid a-is a-benn krouiñ ur gont implijer nevez.',
+Gwiriit eo bet skrivet mat an anv ganeoc\'h pe [[Special:Userlogin/signup|krouit ur gont nevez]].',
 'nosuchusershort'            => "N'eus perzhiad ebet gantañ an anv « <nowiki>$1</nowiki> ». Gwiriit ar reizhskrivadur.",
 'nouserspecified'            => "Ret eo deoc'h spisaat un anv implijer.",
 'wrongpassword'              => 'Ger-tremen kamm. Klaskit en-dro.',
@@ -457,12 +456,12 @@ Gwiriit eo bet skrivet mat an anv ganeoc\'h pe implijit ar furmskrid a-is a-benn
 'mailmypassword'             => 'Kasit din ur ger-tremen nevez',
 'passwordremindertitle'      => 'Ho ker-tremen berrbad nevez evit {{SITENAME}}',
 'passwordremindertext'       => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP \$1)
-en deus goulennet ma vo kaset deoc'h ur ger-tremen nevez evit mont war {{SITENAME}} (\$4).
-Ger-tremen an implijer \"\$2\" zo bremañ \"\$3\".
-Erbediñ a reomp deoc'h en em lugañ ha kemmañ ar ger-tremen-mañ an abretañ ar gwellañ.
+en deus goulennet ma vo kaset dezhañ ur ger-tremen nevez evit mont war {{SITENAME}} (\$4).
+Savet ez eus bet ur ger-tremen da c'hortoz evit an implijer \"\$2\" hag a zo \"\$3\".
+Mard eo se a felle deoc'h ober e vo ret deoc'h en em lugañ ha kemmañ ho ker-tremen bremañ.
 
 Mard eo bet graet ar goulenn gant unan bennak all, pe m'hoc'h eus soñj eus ho ker-tremen bremañ ha
-ne fell ket deoc'h cheñch anezhañ ken, e c'hallit leuskel ar postel-mañ a-gostez ha kenderc'hel d'ober gant ho ker-tremen kozh.",
+ma ne fell ket deoc'h cheñch anezhañ ken, e c'hallit leuskel ar postel-mañ a-gostez ha kenderc'hel d'ober gant ho ker-tremen kozh.",
 'noemail'                    => 'N\'eus bet enrollet chomlec\'h elektronek ebet evit an implijer "$1".',
 'passwordsent'               => 'Kaset ez eus bet ur ger-tremen nevez da chomlec\'h elektronek an implijer "$1".
 Trugarez deoc\'h evit en em zisklêriañ kerkent ha ma vo bet resevet ganeoc\'h.',
@@ -539,13 +538,16 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'blockedtitle'                     => 'Implijer stanket',
 'blockedtext'                      => "<big>'''Stanket eo bet ho kont implijer pe ho chomlec'h IP'''</big>
 
-Gant $1 eo bet graet. Setu an abeg : ''$2''.
+Gant $1 eo bet graet. 
+Setu an abeg evit se : ''$2''.
 
 * Stanket adalek : $8
 * Stanket betek : $6
 * Pad ar stankadenn : $7
 
-Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:Grouppage-sysop}}|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]] ha ma n'oc'h ket bet stanket. $3 eo ho chomlec'h IP, ha #$5 eo niverenn an identelezh stanket. Merkit anezho en ho koulennoù bep tro.",
+Gallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:Grouppage-sysop}}|verourien]] all evit eskemm ganto war se. N'hallit implijout an arc'hwel 'kas ur postel d'an implijer-mañ' nemet ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]] ha ma n'eo ket bet stanket. 
+$3 eo ho chomlec'h IP, ha #$5 eo niverenn an identelezh stanket. 
+Merkit anezho en ho koulennoù bep tro.",
 'autoblockedtext'                  => "Stanket eo bet ho chomlec'h IP ent emgefreek rak implijet e veze gant un implijer all bet stanket gant \$1.
 Setu aze an abeg :
 
@@ -1391,7 +1393,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'notanarticle'         => 'Pennad ebet',
 'notvisiblerev'        => 'Stumm diverket',
 'watchnochange'        => "Pajenn ebet eus ar re evezhiet ganeoc'h n'eo bet kemmet e-pad ar prantad spisaet",
-'watchlist-details'    => "Lakaet hoc'h eus $1 pajenn dindan evezh, anez kontañ ar pajennoù kaozeal.",
+'watchlist-details'    => "Lakaet hoc'h eus {{PLURAL:$1|$1 bajenn|$1 pajenn}} dindan evezh, anez kontañ ar pajennoù kaozeal.",
 'wlheader-enotif'      => "* War enaou emañ ar c'has posteloù.",
 'wlheader-showupdated' => "* E '''tev''' emañ merket ar pajennoù bet degaset kemmoù enno abaoe ar wech ziwezhañ hoc'h eus sellet outo",
 'watchmethod-recent'   => "Gwiriañ ar c'hemmoù diwezhañ er pajennoù dindan evezh",
@@ -1606,7 +1608,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',
-'whatlinkshere-title'      => 'Pajennoù liammet ouzh $1',
+'whatlinkshere-title'      => 'Pajennoù liammet ouzh "$1"',
 'whatlinkshere-page'       => 'Pajenn :',
 'linkshere'                => "Ar pajennoù a-is zo enno ul liamm a gas war-du '''[[:$1]]''':",
 'nolinkshere'              => "N'eus pajenn ebet enni ul liamm war-du '''[[:$1]]'''.",
@@ -1665,7 +1667,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipusubmit'                   => "Distankañ ar chomlec'h-mañ",
 'unblocked'                   => 'Distanket eo bet [[User:$1|$1]]',
 'unblocked-id'                => 'Distanket eo bet $1',
-'ipblocklist'                 => "Roll ar chomlec'hioù IP stanket",
+'ipblocklist'                 => "Roll ar chomlec'hioù IP hag an anvioù kont stanket",
 'ipblocklist-legend'          => 'Kavout un implijer stanket',
 'ipblocklist-username'        => "Anv implijer pe chomlec'h IP :",
 'ipblocklist-submit'          => 'Klask',
@@ -1977,8 +1979,8 @@ $1',
 'filedelete-archive-read-only'    => 'N\'hall ket ar servijer web skrivañ war ar c\'havlec\'h dielloù "$1".',
 
 # Browsing diffs
-'previousdiff' => "← Diforc'h kent",
-'nextdiff'     => "Diforc'h war-lerc'h →",
+'previousdiff' => '← Stumm kent',
+'nextdiff'     => "Stumm nevesoc'h →",
 
 # Media information
 'mediawarning'         => "'''Diwallit''': Kodoù siek a c'hall bezañ er restr-mañ; ma'z erounezit anezhi e c'hallje tagañ ho reizhiad.<hr />",

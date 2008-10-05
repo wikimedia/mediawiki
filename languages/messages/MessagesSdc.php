@@ -126,7 +126,7 @@ Li sighenti cullegamenti so in linga ingrese:
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impusthazioni di cunfigurazioni]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Prigonti friquenti i MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annùnzii MediaWiki]",
 
 'about'          => 'Infuimmazioni',
 'article'        => 'Pagina',

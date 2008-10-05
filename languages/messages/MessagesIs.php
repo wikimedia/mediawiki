@@ -347,7 +347,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listi yfir uppsetningarstillingar]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Algengar spurningar MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Póstlisti MediaWiki-útgáfa]',
 
 'about'          => 'Um',
 'article'        => 'Efnissíða',

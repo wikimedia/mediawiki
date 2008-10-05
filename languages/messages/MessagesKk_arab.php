@@ -530,7 +530,7 @@ $messages = array(
 == باستاۋ ٴۇشىن ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings باپتالىم قالاۋلارىنىڭ ٴتىزىمى]
 * [http://www.mediawiki.org/wiki/Manual:FAQ مەدىياۋىيكىيدىڭ جىيى قويىلعان ساۋالدارى]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce مەدىياۋىيكىي شىعۋ تۋرالى حات تاراتۋ ٴتىزىمى]',
 
 'about'          => 'جوبا تۋرالى',
 'article'        => 'ماعلۇمات بەتى',

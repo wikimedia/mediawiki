@@ -273,7 +273,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings कॉन्फिगरेशन सेटींगची यादी]
 * [http://www.mediawiki.org/wiki/Manual:FAQ मीडियाविकी नेहमी विचारले जाणारे प्रश्न]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce मीडियाविकि मेलिंग लिस्ट]',
 
 'about'          => 'च्या विषयी',
 'article'        => 'लेख',

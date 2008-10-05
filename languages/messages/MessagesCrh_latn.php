@@ -229,7 +229,7 @@ $messages = array(
 == Bazı faydalı saytlar ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Olucı sazlamalar cedveli];
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki boyunca sıq berilgen suallernen cevaplar];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-niñ yañı versiyalarınıñ çıquvından haber yiberüv].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-niñ yañı versiyalarınıñ çıquvından haber yiberüv].",
 
 'about'          => 'Aqqında',
 'article'        => 'Saife',

@@ -295,7 +295,7 @@ $messages = array(
 == പ്രാരംഭസഹായികള്‍ ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings ക്രമീകരണ സജ്ജീകരണങ്ങളുടെ പട്ടിക]
 * [http://www.mediawiki.org/wiki/Manual:FAQ മീഡിയാവിക്കി പതിവുചോദ്യങ്ങള്‍]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയാവിക്കി പ്രകാശന മെയിലിംങ്ങ് ലിസ്റ്റ്]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce മീഡിയാവിക്കി പ്രകാശന മെയിലിംങ്ങ് ലിസ്റ്റ്]',
 
 'about'          => 'വിവരണം',
 'article'        => 'ലേഖന താള്‍',

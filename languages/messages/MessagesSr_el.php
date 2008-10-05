@@ -310,7 +310,7 @@ $messages = array(
 == Za početak ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Pomoć u vezi sa podešavanjima]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Najčešće postavljena pitanja]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mejling lista o izdanjima MedijaVikija]',
 
 'about'          => 'O...',
 'article'        => 'Članak',

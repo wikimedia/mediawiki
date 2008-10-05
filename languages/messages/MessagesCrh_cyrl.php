@@ -231,7 +231,7 @@ $messages = array(
 == Базы файдалы сайтлар ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Олуджы сазламалар джедвели];
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki боюнджа сыкъ берильген суаллернен джеваплар];
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-нинъ янъы версияларынынъ чыкъувындан хабер йиберюв].",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-нинъ янъы версияларынынъ чыкъувындан хабер йиберюв].",
 
 'about'          => 'Акъкъында',
 'article'        => 'Саифе',

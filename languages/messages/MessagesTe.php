@@ -180,7 +180,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings మీడియావికీ పనితీరు, అమరిక మార్చుకునేందుకు వీలుకల్పించే చిహ్నాల జాబితా]
 * [http://www.mediawiki.org/wiki/Manual:FAQ మీడియావికీపై తరుచుగా అడిగే ప్రశ్నలు]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce మీడియావికీ సాఫ్టువేరు కొత్త వెర్షను విడుదలల గురించి తెలిపే మెయిలింగు లిస్టు]',
 
 'about'          => 'గురించి',
 'article'        => 'వ్యాసము',

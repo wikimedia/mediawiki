@@ -186,7 +186,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FdeQ sur MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion de les parucions de MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion de les parucions de MediaWiki]',
 
 'about'          => 'A propôs',
 'article'        => 'Articllo',

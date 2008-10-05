@@ -278,7 +278,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Llista de característiques configurables]
 * [http://www.mediawiki.org/wiki/Manual:FAQ PMF del MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de correu (''listserv'') per a anuncis del MediaWiki]",
 
 'about'          => 'Quant a',
 'article'        => 'Contingut de la pàgina',

@@ -164,7 +164,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Konfigurazio balioen zerrenda]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ (Maiz egindako galderak)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWikiren argitalpenen posta zerrenda]',
 
 'about'          => 'Honi Buruz',
 'article'        => 'Artikulua',
@@ -2544,6 +2544,7 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 
 # Special:Nuke
 'nuke-nopages'       => 'Aldaketa berrietan ez dago [[Special:Contributions/$1|$1]](r)en orri berririk.',
+'nuke-defaultreason' => '$1(e)k sortutako orrien ezabaketa masiboa',
 'nuke-submit-user'   => 'Joan',
 'nuke-submit-delete' => 'Aukeratutakoa ezabatu',
 

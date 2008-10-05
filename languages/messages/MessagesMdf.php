@@ -132,7 +132,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Васьфневи арафнематнень кярькссь]
 * [http://www.mediawiki.org/wiki/Manual:FAQ МедиаВикить Сидеста Кеподеви Кизефксне]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce МедиаВикить од верзиятнень колга кулянь пачфтема]',
 
 'about'          => 'Колганза',
 'article'        => 'Сёрматфть потмонц лопац',

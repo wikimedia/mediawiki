@@ -400,7 +400,7 @@ $messages = array(
 == Alapok (angol nyelven) ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Beállítások listája]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki GyIK]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
 
 'about'          => 'Névjegy',
 'article'        => 'Szócikk',

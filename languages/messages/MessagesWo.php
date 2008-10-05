@@ -133,7 +133,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Limu jumtukaayi kocc-koccal gi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ FAQ MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Limu waxtaan ci liy-génn ci MediaWiki]',
 
 'about'          => 'Ci mbirim',
 'article'        => 'Jukki',

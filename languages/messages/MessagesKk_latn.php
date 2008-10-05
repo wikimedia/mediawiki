@@ -511,7 +511,7 @@ $messages = array(
 == Bastaw üşin ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Baptalım qalawlarınıñ tizimi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MedïaWïkïdiñ Jïı Qoýılğan Sawaldarı]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MedïaWïkï şığw twralı xat taratw tizimi]',
 
 'about'          => 'Joba twralı',
 'article'        => 'Mağlumat beti',

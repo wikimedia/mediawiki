@@ -211,7 +211,7 @@ pe titlul secţiunii (JavaScript)',
 == Primii paşi ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista parametrilor configurabili (en)]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Întrebări frecvente despre MediaWiki (en)]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listă discuţii MediaWiki (en)]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Listă discuţii MediaWiki (en)]',
 
 'about'          => 'Despre',
 'article'        => 'Articol',

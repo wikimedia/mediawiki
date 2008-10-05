@@ -118,7 +118,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista de ajustas de la desinia]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Demandas comun de MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista per receta anunsias de novas supra MediaWiki]',
 
 'about'          => 'Supra',
 'article'        => 'Paje de contenis',

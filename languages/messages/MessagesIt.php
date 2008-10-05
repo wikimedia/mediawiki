@@ -264,7 +264,7 @@ I seguenti collegamenti sono in lingua inglese:
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Impostazioni di configurazione]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Domande frequenti su MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailing list annunci MediaWiki]",
 
 'about'          => 'Informazioni',
 'article'        => 'Voce',
@@ -1221,7 +1221,7 @@ Per inserire un file all'interno di una pagina, fare un collegamento di questo t
 'uploadlog'                   => 'File caricati',
 'uploadlogpage'               => 'File caricati',
 'uploadlogpagetext'           => "Di seguito sono elencati gli ultimi file caricati.
-Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme",
+Guarda la [[Special:NewImages|galleria dei nuovi file]] per una visione d'insieme.",
 'filename'                    => 'Nome del file',
 'filedesc'                    => 'Dettagli',
 'fileuploadsummary'           => 'Dettagli del file:',

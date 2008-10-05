@@ -236,7 +236,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Rhestr gosodiadau wrth gyflunio]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]
-* [http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
 
 'about'          => 'Ynglŷn â',
 'article'        => 'Erthygl',
