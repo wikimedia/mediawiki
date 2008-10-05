@@ -316,7 +316,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
-'sitenotice_close' => 'sloet',
+'sitenotice_close'        => 'sloet',
 'red-link-title'          => '$1 (nag neet aangemaak)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

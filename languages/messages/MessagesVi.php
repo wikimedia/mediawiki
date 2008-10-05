@@ -383,7 +383,7 @@ $messages = array(
 'site-atom-feed'          => '$1 mục Atom',
 'page-rss-feed'           => 'Mục RSS của “$1”',
 'page-atom-feed'          => 'Mục Atom của “$1”',
-'sitenotice_close' => 'bỏ qua',
+'sitenotice_close'        => 'bỏ qua',
 'red-link-title'          => '$1 (chưa được viết)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -286,7 +286,7 @@ $messages = array(
 'site-atom-feed'          => 'Eupan Atom $1',
 'page-rss-feed'           => 'Eupan RSS "$1"',
 'page-atom-feed'          => 'Eupan Atom "$1"',
-'sitenotice_close' => 'bubarkeun',
+'sitenotice_close'        => 'bubarkeun',
 'red-link-title'          => '$1 (can aya)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -368,7 +368,7 @@ $messages = array(
 'site-atom-feed'          => 'Porthiant Atom $1',
 'page-rss-feed'           => "Porthiant RSS '$1'",
 'page-atom-feed'          => "Porthiant Atom '$1'",
-'sitenotice_close' => 'cau',
+'sitenotice_close'        => 'cau',
 'red-link-title'          => '$1 (heb ei greu eto)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

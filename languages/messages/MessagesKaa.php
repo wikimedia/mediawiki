@@ -339,7 +339,7 @@ $messages = array(
 'page-atom-feed'          => '"$1" betinin\' "Atom" jolag\'ı',
 'feed-atom'               => '"Atom"',
 'feed-rss'                => '"RSS"',
-'sitenotice_close' => 'jasırıw',
+'sitenotice_close'        => 'jasırıw',
 'red-link-title'          => "$1 (ele jaratılmag'an)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook

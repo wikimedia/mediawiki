@@ -175,7 +175,7 @@ $messages = array(
 'viewdeleted'         => 'Káng $1?',
 'restorelink'         => '{{PLURAL:$1|Ék|$1}} bĭk ké̤ṳk chēng lâi gì siŭ-gāi',
 'feedlinks'           => 'Cê̤ṳ-hăk:',
-'sitenotice_close' => 'cĕk lâi',
+'sitenotice_close'    => 'cĕk lâi',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Ùng-ciŏng',

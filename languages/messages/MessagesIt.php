@@ -397,7 +397,7 @@ I seguenti collegamenti sono in lingua inglese:
 'site-atom-feed'          => 'Feed Atom di $1',
 'page-rss-feed'           => 'Feed RSS per "$1"',
 'page-atom-feed'          => 'Feed Atom per "$1"',
-'sitenotice_close' => 'nascondi',
+'sitenotice_close'        => 'nascondi',
 'red-link-title'          => '$1 (ancora da scrivere)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -296,7 +296,7 @@ $messages = array(
 'site-atom-feed'          => '$1-Atom-söödüs',
 'page-rss-feed'           => '$1 (RSS-söödüs)',
 'page-atom-feed'          => '$1 (Atom-söödüs)',
-'sitenotice_close' => 'Käkiq ärq',
+'sitenotice_close'        => 'Käkiq ärq',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artikli',

@@ -290,7 +290,7 @@ $messages = array(
 'thisisdeleted'           => '$1 চাওক বা সলনি কৰক?',
 'viewdeleted'             => '$1 চাওক?',
 'page-rss-feed'           => '"$1" আৰ-এচ-এচ ফীড',
-'sitenotice_close' => 'বাতিল',
+'sitenotice_close'        => 'বাতিল',
 'red-link-title'          => '$1 (এতিয়ালৈকে সৃষ্টি কৰা হোৱা নাই)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

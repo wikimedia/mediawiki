@@ -117,7 +117,7 @@ See [[Special:Version|version page]].',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Atom Feed',
-'sitenotice_close' => 'Bakanya',
+'sitenotice_close'        => 'Bakanya',
 'red-link-title'          => '$1 (Arisi tsariwa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

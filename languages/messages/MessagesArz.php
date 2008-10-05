@@ -526,7 +526,7 @@ $messages = array(
 'site-atom-feed'          => '$1 اتوم فييد',
 'page-rss-feed'           => '"$1" ار‌ اس‌ اس فييد',
 'page-atom-feed'          => '"$1" فييد أتوم',
-'sitenotice_close' => 'إقفل',
+'sitenotice_close'        => 'إقفل',
 'red-link-title'          => '$1 (لسة ما اتكتبت ش )',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
