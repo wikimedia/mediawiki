@@ -37,18 +37,19 @@ function migrate_page_restrictions( $db ) {
 	$encodedExpiry = 'infinity';
 	while ( $blockEnd <= $end ) {
 		echo "...doing page_id from $blockStart to $blockEnd\n";
-		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !='' AND page_restrictions !='edit=:move='";
+		$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
 		$res = $db->select( 'page', array('page_id', 'page_restrictions'), $cond, __FUNCTION__ );
 		$batch = array();
 		while ( $row = $db->fetchObject( $res ) ) {
 			$oldRestrictions = array();
 			foreach( explode( ':', trim( $row->page_restrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
-				if(count($temp) == 1) {
+				// Make sure we are not settings restrictions to ""
+				if( count($temp) == 1 && $temp[0] ) {
 					// old old format should be treated as edit/move restriction
 					$oldRestrictions["edit"] = trim( $temp[0] );
 					$oldRestrictions["move"] = trim( $temp[0] );
-				} else {
+				} else if( $temp[1] ) {
 					$oldRestrictions[$temp[0]] = trim( $temp[1] );
 				}
 			}
@@ -77,6 +78,10 @@ function migrate_page_restrictions( $db ) {
 		$blockEnd += BATCH_SIZE - 1;
 		wfWaitForSlaves( 5 );
 	}
+	echo "...removing dead rows from page_restrictions\n";
+	// Kill any broken rows from previous imports
+	$db->delete( 'page_restrictions', array( 'pr_level' => '' ) );
+	echo "...Done!\n";
 }
 
 
