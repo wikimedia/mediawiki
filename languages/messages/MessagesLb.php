@@ -480,7 +480,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'loginpagetitle'             => 'Benotzer-Umeldung',
 'yourname'                   => 'Benotzernumm:',
 'yourpassword'               => 'Passwuert:',
-'yourpasswordagain'          => 'Passwuert widderhuelen:',
+'yourpasswordagain'          => 'Passwuert nacheemol antippen:',
 'remembermypassword'         => 'Meng Umeldung op dësem Computer verhalen',
 'yourdomainname'             => 'Ären Domain',
 'externaldberror'            => 'Entweder ass e Feeler bäi der externer Authentifizéierung geschitt, oder Dir däerft ären externe Benotzerkont net aktualiséieren.',
@@ -505,7 +505,8 @@ Sicht iech een anere Benotzernumm.',
 'uid'                        => 'Benotzer ID:',
 'prefs-memberingroups'       => 'Member vun {{PLURAL:$1|der Benotzergrupp|de Benotzergruppen}}:',
 'yourrealname'               => 'Richtege Numm:',
-'yourlanguage'               => 'Sprooch:',
+'yourlanguage'               => 'Sprooch vun der Benotzeruewerfläch:',
+'yourvariant'                => 'Sproochvariant:',
 'yournick'                   => 'Ënnerschrëft:',
 'badsig'                     => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
 'badsiglength'               => "D'Ënnerschrëft ass ze laang.
@@ -2409,10 +2410,10 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-focalplaneresolutionunit-2' => 'Zoll/Inchen',
 
 'exif-sensingmethod-1' => 'Ondefinéiert',
-'exif-sensingmethod-2' => 'Een-Chip-Farfsensor',
-'exif-sensingmethod-3' => 'Zwee-Chip-Farfsensor',
-'exif-sensingmethod-4' => 'Dräi-Chip-Farfsensor',
-'exif-sensingmethod-7' => 'Trilineare Sensor',
+'exif-sensingmethod-2' => 'Een-Chip-Faarfsensor',
+'exif-sensingmethod-3' => 'Zwee-Chip-Faarfsensor',
+'exif-sensingmethod-4' => 'Dräi-Chip-Faarfsensor',
+'exif-sensingmethod-7' => 'Dräilineare Sensor',
 
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
@@ -2435,14 +2436,14 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Schwaach',
-'exif-contrast-2' => 'Stark',
+'exif-contrast-2' => 'Staark',
 
 'exif-saturation-0' => 'Normal',
 'exif-saturation-2' => 'Héich',
 
 'exif-sharpness-0' => 'Normal',
 'exif-sharpness-1' => 'Douce',
-'exif-sharpness-2' => 'Stark',
+'exif-sharpness-2' => 'Staark',
 
 'exif-subjectdistancerange-0' => 'Onbekannt',
 'exif-subjectdistancerange-1' => 'Makro',

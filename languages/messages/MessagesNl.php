@@ -2094,6 +2094,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletebtn'                  => 'Terugplaatsen',
 'undeletelink'                 => 'terugplaatsen',
 'undeletereset'                => 'Herinstellen',
+'undeleteinvert'               => 'Omgekeerde selectie',
 'undeletecomment'              => 'Toelichting:',
 'undeletedarticle'             => '"[[$1]]" is teruggeplaatst',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',

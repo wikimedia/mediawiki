@@ -269,7 +269,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Esta categoria possui {{PLURAL:$1|a seguinte subcategoria|as $1 subcategorias a seguir}}.',
 'category-article-count'         => '{{PLURAL:$2|Esta categoria possui apenas a página a seguir.|Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}} (dentre um total de $2).}}',
 'category-article-count-limited' => 'Há, nesta categoria, {{PLURAL:$1|a página a seguir|as $1 páginas a seguir}}.',
-'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 seguintes ficheiros}} (dentre um total de $2.)}}',
+'category-file-count'            => '{{PLURAL:$2|Esta categoria possui apenas o ficheiro a seguir.|Há, nesta categoria, {{PLURAL:$1|o ficheiro a seguir|os $1 ficheiros a seguir}} (dentre um total de $2).}}',
 'category-file-count-limited'    => 'Nesta categoria há {{PLURAL:$1|um ficheiro|$1 ficheiros}}.',
 'listingcontinuesabbrev'         => 'cont.',
 
@@ -1885,6 +1885,7 @@ Em tais casos, deverá desseleccionar ou reverter a ocultação da versão apaga
 'undeletebtn'                  => 'Restaurar',
 'undeletelink'                 => 'restaurar',
 'undeletereset'                => 'Limpar',
+'undeleteinvert'               => 'Inverter selecção',
 'undeletecomment'              => 'Comentário:',
 'undeletedarticle'             => 'restaurado "[[$1]]"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|edição restaurada|edições restauradas}}',
@@ -2722,9 +2723,6 @@ Por favor, confirme que realmente deseja recriar esta página.",
 
 $1',
 'confirm_purge_button' => 'OK',
-
-# Separators for various lists, etc.
-'pipe-separator' => '&#32;&bull;&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

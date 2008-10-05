@@ -110,6 +110,7 @@ $messages = array(
 'searchbutton'     => 'Cirche',
 'go'               => 'Véje',
 'searcharticle'    => 'Véje',
+'history'          => "Storie d'a pàgene",
 'history_short'    => 'Cunde',
 'info_short'       => "'Mbormazione",
 'printableversion' => 'Versione ca se stambe',
@@ -155,6 +156,7 @@ $messages = array(
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'currentevents'        => 'Fatte de osce a die',
 'disclaimers'          => 'No ne sacce ninde',
+'edithelp'             => "Cangianne l'ajute",
 'faq'                  => 'FAQ',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
@@ -220,6 +222,7 @@ $messages = array(
 'userlogin'               => 'Tràse / Reggistrete',
 'logout'                  => 'Isse',
 'userlogout'              => 'Isse',
+'nologin'                 => "Non ge tine n'utenze? $1.",
 'gotaccountlink'          => 'Tràse',
 'createaccountmail'       => 'pe e-mail',
 'youremail'               => 'Poste:',
@@ -247,21 +250,27 @@ Prueve n'otra vote.",
 'sig_tip'        => "'A firma toje cu l'orarie e 'a sciurnete",
 
 # Edit pages
-'summary'            => 'Riepileghe',
-'minoredit'          => 'Cangiaminde stuèdeche',
-'watchthis'          => 'Condrolle sta pàgene',
-'savearticle'        => "Registre 'a vôsce",
-'preview'            => 'Andeprime',
-'showpreview'        => "Vide l'andeprime",
-'showdiff'           => 'Fa vedè le cangiaminde',
-'loginreqlink'       => 'trase',
-'accmailtitle'       => 'Passuord mannete.',
-'newarticle'         => '(Nuève)',
-'updated'            => '(Cangiete)',
-'editing'            => 'Cangiaminde de $1',
-'editingsection'     => 'Cangiaminde de $1 (sezione)',
-'editingcomment'     => 'Cangiaminde de $1 (commende)',
-'template-protected' => '(prutette)',
+'summary'                => 'Riepileghe',
+'minoredit'              => 'Cangiaminde stuèdeche',
+'watchthis'              => 'Condrolle sta pàgene',
+'savearticle'            => "Registre 'a vôsce",
+'preview'                => 'Andeprime',
+'showpreview'            => "Vide l'andeprime",
+'showdiff'               => 'Fa vedè le cangiaminde',
+'anoneditwarning'        => "'''Attenziò:''' Tu non ge sinde colleghete..
+L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
+'loginreqlink'           => 'trase',
+'accmailtitle'           => 'Passuord mannete.',
+'newarticle'             => '(Nuève)',
+'updated'                => '(Cangiete)',
+'previewnote'            => "<strong>Queste è sole 'n'andeprime;
+le cangiaminde non g'onne state angore reggistrete!</strong>",
+'editing'                => 'Cangiaminde de $1',
+'editingsection'         => 'Cangiaminde de $1 (sezione)',
+'editingcomment'         => 'Cangiaminde de $1 (commende)',
+'templatesused'          => "Templeit ausete sus 'a sta pàgene:",
+'template-protected'     => '(prutette)',
+'template-semiprotected' => '(mmienze protette)',
 
 # History pages
 'currentrev'          => 'Versione de osce a die',
@@ -324,10 +333,13 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'group-all' => '(tutte)',
 
 # Recent changes
+'nchanges'        => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
 'recentchanges'   => 'Cangiaminde recende',
+'rclistfrom'      => 'Fà vedè le urteme cangiaminde partenne da $1',
 'rcshowhideminor' => '$1 cangiaminde stuèdeche',
 'rcshowhidebots'  => '$1 bot',
 'rcshowhideliu'   => '$1 utende reggistrete',
+'rcshowhideanons' => '$1 utende scanusciute',
 'rcshowhidemine'  => '$1 cangiaminde mie',
 'diff'            => 'diff',
 'hist'            => 'cunde',
@@ -340,6 +352,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rc-change-size'  => '$1',
 
 # Recent changes linked
+'recentchangeslinked-title'    => 'Cangiaminde culleghete a "$1"',
 'recentchangeslinked-backlink' => '← $1',
 
 # Upload
@@ -354,12 +367,13 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'imagelist_name' => 'Nome',
 
 # Image description page
-'filehist'          => 'cunde',
-'filehist-datetime' => 'Sciurne/Orarie',
-'filehist-user'     => 'Utende',
-'filehist-filesize' => "Dimenzione d'u fail",
-'filehist-comment'  => 'Commende',
-'imagelinks'        => 'Collegaminde',
+'filehist'            => 'cunde',
+'filehist-datetime'   => 'Sciurne/Orarie',
+'filehist-user'       => 'Utende',
+'filehist-dimensions' => 'Dimenziune',
+'filehist-filesize'   => "Dimenzione d'u fail",
+'filehist-comment'    => 'Commende',
+'imagelinks'          => 'Collegaminde',
 
 # File reversion
 'filerevert-backlink' => '← $1',
@@ -378,12 +392,15 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'statistics' => 'Statisteche',
 
 # Miscellaneous special pages
+'nbytes'        => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'        => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
 'nmembers'      => '$1 {{PLURAL:$1|membre|membre}}',
+'lonelypages'   => 'Pàggene orfane',
 'mostrevisions' => 'Pàggene cchiù cangete',
 'shortpages'    => 'Pàggene corte',
 'longpages'     => 'Pàggene longhe',
 'listusers'     => "Liste de l'utende",
+'newpages'      => 'Pàggene nuève',
 'ancientpages'  => 'Pàggene vìcchje',
 'move'          => 'Spuèste',
 'movethispage'  => 'Spueste sta pàgene',
@@ -402,8 +419,14 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'allarticles'    => 'Tutte le pàggene',
 'allpagessubmit' => 'Veje',
 
+# Special:Categories
+'categories' => 'Le Categorije',
+
 # Special:ListGroupRights
 'listgrouprights-right-display' => '$1 ($2)',
+
+# E-mail user
+'emailuser' => "Manne n'email a stu utende",
 
 # Watchlist
 'watchlistfor'         => "(pe '''$1''')",
@@ -412,6 +435,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'watchlist-show-own'   => 'Fà vedè le cangiaminde mie',
 'watchlist-hide-own'   => 'Scunne le cangiaminde mie',
 'watchlist-show-minor' => 'Fà vedè le cangiaminde stuèdeche',
+'watchlist-hide-minor' => 'Scunne le cangiaminde stuèdeche',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Fà vedè...',
@@ -427,15 +451,17 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rollbacklink' => "annulle 'u cangiaminde",
 
 # Protect
-'protectlogpage'         => 'Archibie de le prutezziune',
-'protect-backlink'       => '← $1',
-'protect_expiry_invalid' => 'Orarie de scadenze jè invalide.',
-'protect-default'        => '(defolt)',
-'protect-level-sysop'    => 'Sulamende pe le Sysops',
-'protect-expiring'       => "more 'u $1 (UTC)",
-'protect-cantedit'       => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
-'protect-expiry-options' => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
-'restriction-type'       => 'Permesse:',
+'protectlogpage'              => 'Archibie de le prutezziune',
+'protect-backlink'            => '← $1',
+'protectcomment'              => 'Commende:',
+'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
+'protect-default'             => '(defolt)',
+'protect-level-autoconfirmed' => "Blocche l'utinde non reggistrete",
+'protect-level-sysop'         => 'Sulamende pe le Sysops',
+'protect-expiring'            => "more 'u $1 (UTC)",
+'protect-cantedit'            => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
+'protect-expiry-options'      => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
+'restriction-type'            => 'Permesse:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Cange',
@@ -446,6 +472,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
+'invert'         => "Selezione 'a smerse",
 'blanknamespace' => '(Prengepàle)',
 
 # Contributions
@@ -484,37 +511,44 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'export' => 'Pàggene esportete',
 
 # Thumbnails
-'thumbnail-more' => 'Allarije',
+'thumbnail-more'  => 'Allarije',
+'thumbnail_error' => "Errore ccrejanne l'andeprime picenne: $1",
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => "'A pàgene meje",
-'tooltip-pt-mytalk'         => "'Ngazzaminde mie",
-'tooltip-pt-mycontris'      => 'Liste de le condrebbute mie',
-'tooltip-pt-logout'         => 'Isse',
-'tooltip-ca-edit'           => "Tu puè cangià sta pàgene.
+'tooltip-pt-userpage'             => "'A pàgene meje",
+'tooltip-pt-mytalk'               => "'Ngazzaminde mie",
+'tooltip-pt-preferences'          => 'Me piece accussì',
+'tooltip-pt-mycontris'            => 'Liste de le condrebbute mie',
+'tooltip-pt-logout'               => 'Isse',
+'tooltip-ca-edit'                 => "Tu puè cangià sta pàgene.
 Pe piacere ause 'u buttone de l'andeprime apprime de salvà.",
-'tooltip-ca-viewsource'     => "Sta pàgene jè prutette.
+'tooltip-ca-addsection'           => "Aggiunge 'nu commende a stu 'ngazzaminde",
+'tooltip-ca-viewsource'           => "Sta pàgene jè prutette.
 Puè vedè sulamende 'u sorgende.",
-'tooltip-ca-protect'        => 'Prutegge sta pàgene',
-'tooltip-ca-delete'         => 'Scangille sta pàgene',
-'tooltip-ca-move'           => 'Spuèste sta pàgene',
-'tooltip-search'            => 'Cirche {{SITENAME}}',
-'tooltip-n-mainpage'        => "Vè vide 'a pàgene prengepàle",
-'tooltip-n-randompage'      => "Careche 'na pàgene a uecchje",
-'tooltip-t-upload'          => 'Careche le fail',
-'tooltip-t-specialpages'    => 'Liste de tutte le pàggene speciale',
-'tooltip-ca-nstab-project'  => "Vide 'a pàgene d'u proggette",
-'tooltip-ca-nstab-template' => "Fà vedè 'u template",
+'tooltip-ca-protect'              => 'Prutegge sta pàgene',
+'tooltip-ca-delete'               => 'Scangille sta pàgene',
+'tooltip-ca-move'                 => 'Spuèste sta pàgene',
+'tooltip-search'                  => 'Cirche {{SITENAME}}',
+'tooltip-n-mainpage'              => "Vè vide 'a pàgene prengepàle",
+'tooltip-n-randompage'            => "Careche 'na pàgene a uecchje",
+'tooltip-t-upload'                => 'Careche le fail',
+'tooltip-t-specialpages'          => 'Liste de tutte le pàggene speciale',
+'tooltip-ca-nstab-user'           => "Vide 'a pàgene de l'utende",
+'tooltip-ca-nstab-project'        => "Vide 'a pàgene d'u proggette",
+'tooltip-ca-nstab-template'       => "Fà vedè 'u template",
+'tooltip-save'                    => 'Reggistre le cangiaminde ca è fatte',
+'tooltip-compareselectedversions' => "Vide le differenze 'mbrà le doje versiune selezionete de sta pàgene.",
 
 # Browsing diffs
 'previousdiff' => '← Cangiaminde vecchije',
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
 # Media information
-'file-nohires' => "<small>Manghe 'a risoluzione ierta.</small>",
+'file-info-size' => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
+'file-nohires'   => "<small>Manghe 'a risoluzione ierta.</small>",
 
 # Special:NewImages
 'ilsubmit' => 'Cirche',

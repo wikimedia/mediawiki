@@ -2040,6 +2040,7 @@ $NEWPAGE
 'undeletebtn'                  => 'استعاده',
 'undeletelink'                 => 'استرجاع',
 'undeletereset'                => 'ابتدى من الأول',
+'undeleteinvert'               => 'اعكس الاختيار',
 'undeletecomment'              => 'تعليق:',
 'undeletedarticle'             => 'رجع  "[[$1]]" تاني',
 'undeletedrevisions'           => 'رجعنا تانى {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديل}}',

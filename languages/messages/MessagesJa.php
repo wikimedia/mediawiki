@@ -518,7 +518,7 @@ $2',
 'resetpass_submit'        => '再設定してログイン',
 'resetpass_success'       => 'あなたのパスワードは変更されました。ログインしています...',
 'resetpass_bad_temporary' => '無効な臨時パスワードです。パスワードは既に再設定されているか、再びパスワード通知メールが送信されています。',
-'resetpass_forbidden'     => 'このウィキでは、パスワードの変更は許可されていません。',
+'resetpass_forbidden'     => 'このウィキでのパスワードの変更は許可されていません。',
 'resetpass_missing'       => 'データがセットされていません。',
 
 # Edit page toolbar

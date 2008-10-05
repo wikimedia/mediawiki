@@ -1833,6 +1833,7 @@ Chỉ có người quản lý mới xem được văn bản đầy đủ của n
 'undeletebtn'                  => 'Phục hồi',
 'undeletelink'                 => 'phục hồi',
 'undeletereset'                => 'Tẩy trống',
+'undeleteinvert'               => 'Đảo sự lựa chọn',
 'undeletecomment'              => 'Lý do:',
 'undeletedarticle'             => 'đã phục hồi “$1”',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|bản|bản}} được phục hồi',

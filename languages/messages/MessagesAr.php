@@ -2170,6 +2170,7 @@ $NEWPAGE
 'undeletebtn'                  => 'استرجاع',
 'undeletelink'                 => 'استرجاع',
 'undeletereset'                => 'إلغاء',
+'undeleteinvert'               => 'اعكس الاختيار',
 'undeletecomment'              => 'تعليق:',
 'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلان|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
