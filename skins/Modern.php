@@ -37,6 +37,7 @@ class SkinModern extends SkinTemplate {
 		$out->addStyle( 'common/shared.css', 'screen' );
 		$out->addStyle( 'modern/main.css', 'screen' );
 		$out->addStyle( 'modern/print.css', 'print' );
+		$out->addStyle( 'modern/rtl.css', 'screen', '', 'rtl' );
 	}
 }
 
