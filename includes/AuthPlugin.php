@@ -240,8 +240,8 @@ class AuthPlugin {
 }
 
 class AuthPluginUser {
-	function __construct( $username ) {
-		$this->mName = $username;
+	function __construct( $user ) {
+		# Override this!
 	}
 	
 	public function isLocked() {
