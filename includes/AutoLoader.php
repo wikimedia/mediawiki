@@ -17,6 +17,7 @@ $wgAutoloadLocalClasses = array(
 	'Article' => 'includes/Article.php',
 	'AtomFeed' => 'includes/Feed.php',
 	'AuthPlugin' => 'includes/AuthPlugin.php',
+	'AuthPluginUser' => 'includes/AuthPlugin.php',
 	'Autopromote' => 'includes/Autopromote.php',
 	'BagOStuff' => 'includes/BagOStuff.php',
 	'Block' => 'includes/Block.php',

@@ -253,23 +253,6 @@ class User {
 		}
 		wfProfileOut( __METHOD__ );
 	}
-	
-	protected function callAuthPlugin( $fname /* $args */ ) {
-		$args = func_get_args();
-		array_shift( $args );
-		// Load auth plugin conterpart functions for User functions
-		if( !$this->mAuthLoaded ) {
-			global $wgAuth;
-			$this->mAuthCallbacks = array();
-			$wgAuth->setUserCallbacks( $this, $this->mAuthCallbacks );
-			$this->mAuthLoaded = true;
-		}
-		// Try to call the auth plugin version of this function
-		if( isset($this->mAuthCallbacks[$fname]) && is_callable($this->mAuthCallbacks[$fname]) ) {
-			return call_user_func_array( $this->mAuthCallbacks[$fname], $args );
-		}
-		return NULL;
-	}
 
 	/**
 	 * Load user table data, given mId has already been set.
@@ -1347,7 +1330,9 @@ class User {
 		if( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
-		$this->mLocked = (bool)$this->callAuthPlugin( __FUNCTION__ );
+		global $wgAuth;
+		$authUser = $wgAuth->getUserInstance( $this );
+		$this->mLocked = (bool)$authUser->isLocked();
 		return $this->mLocked;
 	}
 	
@@ -1362,7 +1347,9 @@ class User {
 		}
 		$this->getBlockedStatus();
 		if( !$this->mHideName ) {
-			$this->mHideName = (bool)$this->callAuthPlugin( __FUNCTION__ );
+			global $wgAuth;
+			$authUser = $wgAuth->getUserInstance( $this );
+			$this->mHideName = (bool)$authUser->isHidden();
 		}
 		return $this->mHideName;
 	}
