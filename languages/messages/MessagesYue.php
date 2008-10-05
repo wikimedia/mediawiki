@@ -1819,6 +1819,7 @@ wiki: $PAGEEDITOR_WIKI
 'undeletebtn'                  => '恢復',
 'undeletelink'                 => '恢復',
 'undeletereset'                => '重設',
+'undeleteinvert'               => '反選',
 'undeletecomment'              => '註解：',
 'undeletedarticle'             => '已經恢復咗"[[$1]]"',
 'undeletedrevisions'           => '$1個修訂已經恢復',
