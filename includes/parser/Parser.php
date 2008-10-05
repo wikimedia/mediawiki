@@ -127,7 +127,7 @@ class Parser
 		$this->mTransparentTagHooks = array();
 		$this->mFunctionHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
-		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
+		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery', 'poem' );
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(\b(' . wfUrlProtocols() . ')'.
 			'[^][<>"\\x00-\\x20\\x7F]+) *([^\]\\x0a\\x0d]*?)\]/S';
@@ -3304,6 +3304,9 @@ class Parser
 				case 'gallery':
 					$output = $this->renderImageGallery( $content, $attributes );
 					break;
+				case 'poem':
+					$output = $this->renderPoem( $content, $attributes );
+					break;
 				default:
 					if( isset( $this->mTagHooks[$name] ) ) {
 						# Workaround for PHP bug 35229 and similar
@@ -4171,6 +4174,40 @@ class Parser
 			}
 		}
 		return $ig->toHTML();
+	}
+
+	/** Renders any text in between <poem></poem> tags
+	 * based on http://www.mediawiki.org/wiki/Extension:Poem
+	 */
+
+	function renderPoem( $in, $param=array() ) {
+
+		/* using newlines in the text will cause the parser to add <p> tags,
+ 	 	* which may not be desired in some cases
+	 	*/
+		$nl = isset( $param['compact'] ) ? '' : "\n";
+  
+		$tag = $this->insertStripItem( "<br />", $this->mStripState );
+		$text = preg_replace(
+			array( "/^\n/", "/\n$/D", "/\n/", "/^( +)/me" ),
+			array( "", "", "$tag\n", "str_replace(' ','&nbsp;','\\1')" ),
+			$in );
+		$text = $this->recursiveTagParse( $text );
+
+		// Pass HTML attributes through to the output.
+		$attribs = Sanitizer::validateTagAttributes( $param, 'div' );
+
+		// Wrap output in a <div> with "poem" class.
+		if( isset( $attribs['class'] ) ) {
+			$attribs['class'] = 'poem ' . $attribs['class'];
+		} else {
+			$attribs['class'] = 'poem';
+		}
+
+		return wfOpenElement( 'div', $attribs ) .
+			$nl .
+			trim( $text ) .
+			"$nl</div>";
 	}
 
 	function getImageParams( $handler ) {
