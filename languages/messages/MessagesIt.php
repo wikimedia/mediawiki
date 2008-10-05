@@ -1820,6 +1820,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletebtn'                  => 'Ripristina',
 'undeletelink'                 => 'ripristina',
 'undeletereset'                => 'Reimposta',
+'undeleteinvert'               => 'Inverti selezione',
 'undeletecomment'              => 'Commento:',
 'undeletedarticle'             => 'ha recuperato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',

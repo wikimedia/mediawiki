@@ -368,6 +368,9 @@ HTML markup cannot be used.",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.",
+'sitenotice_close'        => 'You can see this on the right side of the [[MediaWiki:Sitenotice|sitenotice]].
+
+The word "dismiss" (or "close") should be in the infinitive mood.',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -1093,9 +1096,9 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'filehist-thumb'                 => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-thumbtext'             => 'Shown in the file history list of a file description page.
+'filehist-thumbtext'             => "Shown in the file history list of a file description page. '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
 
-Example: [[wikipedia:Image:Madeleine close2.jpg]]',
+Example: [[wikipedia:Image:Madeleine close2.jpg]]",
 'filehist-nothumb'               => 'Shown if no thumbnail is available in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
@@ -1550,12 +1553,15 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 {{Identical|Restore}}',
 'undeletereset'          => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
+'undeleteinvert'         => '{{Identical|Invert selection}}',
 'undeletecomment'        => '{{Identical|Comment}}',
 'undelete-search-submit' => '{{Identical|Search}}',
 
 # Namespace form on various pages
 'namespace'      => '{{Identical|Namespace}}',
-'invert'         => 'Displayed in [[Special:RecentChanges]].',
+'invert'         => 'Displayed in [[Special:RecentChanges]].
+
+{{Identical|Invert selection}}',
 'blanknamespace' => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
 
 # Contributions

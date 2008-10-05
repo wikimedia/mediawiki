@@ -1299,7 +1299,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-jobqueue'             => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]의 길이',
 'statistics-users'                => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active'         => '활동 중인 사용자',
-'statistics-users-active-tooltip' => '지난 1달간 활동한 사용자',
+'statistics-users-active-tooltip' => '지난 1개월간 활동한 사용자',
 'statistics-mostpopular'          => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',

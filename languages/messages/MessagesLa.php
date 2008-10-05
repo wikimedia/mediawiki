@@ -1333,6 +1333,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'undelete-revision'       => 'Emendatio deleta paginae $1 (ex $5, $4) ab usore $3:',
 'undeletebtn'             => 'Restituere',
 'undeletelink'            => 'restituere',
+'undeleteinvert'          => 'Selectionem invertere',
 'undeletecomment'         => 'Sententia:',
 'undeletedarticle'        => 'restituit "[[$1]]"',
 'cannotundelete'          => 'Abrogatio deletionis fefellit; fortasse aliquis iam paginam restituit.',

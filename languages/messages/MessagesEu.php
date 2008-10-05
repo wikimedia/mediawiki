@@ -2519,6 +2519,7 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 'filepath-submit' => 'Ibilbidea',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Artxibo bikoiztuen bilaketa',
 'fileduplicatesearch-legend'   => 'Duplikatu bat bilatu',
 'fileduplicatesearch-filename' => 'Fitxategi izena:',
 'fileduplicatesearch-submit'   => 'Bilaketa',
@@ -2540,5 +2541,10 @@ Gainera [[special:Watchlist/raw|raw zerrenda editatu]] dezakezu.',
 # Special:BlankPage
 'blankpage'              => 'Orrialde txuria',
 'intentionallyblankpage' => 'Orri hau nahita utzi da hutsik',
+
+# Special:Nuke
+'nuke-nopages'       => 'Aldaketa berrietan ez dago [[Special:Contributions/$1|$1]](r)en orri berririk.',
+'nuke-submit-user'   => 'Joan',
+'nuke-submit-delete' => 'Aukeratutakoa ezabatu',
 
 );

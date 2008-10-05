@@ -883,19 +883,21 @@ Als Jrund för et Sperre es enjedraare: ''$2''",
 'previousrevision'    => '← De Version dovör zeije',
 'nextrevision'        => 'De Version donoh zeije →',
 'currentrevisionlink' => 'De neuste Version',
-'cur'                 => 'jetz',
+'cur'                 => 'met jetz',
 'next'                => 'wigger',
-'last'                => 'zerök',
+'last'                => 'met dovör',
 'page_first'          => 'Aanfang',
 'page_last'           => 'Engk',
 'histlegend'          => 'Hee kanns De Versione för et Verjliche ussöke: Dun met dä Knöpp die zweij markiere, 
 zwesche dänne De de Ungerscheed jezeich krije wells, dann dröck „<b style="padding:2px; background-color:#ddd; 
 color:black">{{int:compareselectedversions}}</b>“ udder „<b style="padding:2px; background-color:#ddd; 
 color:black">{{int:visualcomparison}}</b>“ udder „<b style="padding:2px; background-color:#ddd; 
-color:black">{{int:wikicodecomparison}}</b>“ met Dinge Taste, oder klick op ein vun dä Knöpp üvver oder unger de Liss.
-<br />
-Erklärung: (neu) = Verjliche met de neuste Version, (letz) = Verjliche met de Version ein doför, <b>M</b> = en 
-kleine <b>M</b>ini-Änderung.',
+color:black">{{int:wikicodecomparison}}</b>“ met Dinge Taste, oder klick op ein vun dä Knöpp üvver oder unger de Liss.<br />
+Verklierung:
+({{int:cur}}) = donn met de neuste Version verjliche,
+({{int:last}}) = donn met de Version ein doför verjliche,
+<b>M</b> = en klein <b>M</b>ini-Änderung,
+Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'history-search'      => 'Us de Verjangeheit ußsöke',
 'deletedrev'          => '[fott]',
 'histfirst'           => 'Ählste',
@@ -2003,6 +2005,7 @@ Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
 'undeletebtn'                  => 'Zeröckholle!',
 'undeletelink'                 => 'widder zeröckholle',
 'undeletereset'                => 'De Felder usleere',
+'undeleteinvert'               => 'De Ußwahl ömdrije',
 'undeletecomment'              => 'Erklärung (för en et Logboch):',
 'undeletedarticle'             => '„$1“ zeröckjehollt',
 'undeletedrevisions'           => '{{PLURAL:$1|ein Version|$1 Versione}} zeröckjehollt',
