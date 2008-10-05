@@ -106,6 +106,7 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		} else if($params['filterlanglinks'] == 'withlanglinks') {
 			$this->addTables('langlinks');
 			$this->addWhere('page_id=ll_from');
+			$this->addOption('DISTINCT');
 			$forceNameTitleIndex = false;
 		}
 		if ($forceNameTitleIndex)
