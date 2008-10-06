@@ -14,7 +14,7 @@ class Validate {
 	 * @param int $max The upper limit
 	 * @return int
 	 */
-	public static function int( &$val, $min=0, $max=0x7fffffff ) {
+	public static function int( $val, $min=0, $max=0x7fffffff ) {
 		$val = intval($val);
 		$val = min($val, $max);
 		$val = max($val, $min);
@@ -30,7 +30,7 @@ class Validate {
 	 * @param float $max Uppser limit
 	 * @return float
 	 */
-	public static function float( &$val, $min, $max=0x7fffffff ) {
+	public static function float( $val, $min, $max=0x7fffffff ) {
 		$val = floatval( $val );
 		$val = min( $val, $max );
 		$val = max( $val, $min );
@@ -45,7 +45,7 @@ class Validate {
 	 * @param int $max Upper limit
 	 * @return mixed [int or null]
 	 */
-	public static function intOrNull( &$val, $min=0, $max=0x7fffffff ) {
+	public static function intOrNull( $val, $min=0, $max=0x7fffffff ) {
 		$val = trim($val);
 		if($val === '') {
 			return null;
