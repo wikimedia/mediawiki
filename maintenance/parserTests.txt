@@ -3081,7 +3081,7 @@ Right-aligned image
 !! input
 [[Image:foobar.jpg|right]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></span></div>
+<div class="floatright"><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></div>
 
 !! end
 
@@ -3090,7 +3090,7 @@ Image with caption
 !! input
 [[Image:foobar.jpg|right|Caption text]]
 !! result
-<div class="floatright"><span><a href="/wiki/Image:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></span></div>
+<div class="floatright"><a href="/wiki/Image:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></div>
 
 !! end
 
@@ -6189,7 +6189,7 @@ Centre-aligned image
 !! input
 [[Image:foobar.jpg|centre]]
 !! result
-<div class="center"><div class="floatnone"><span><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></span></div></div>
+<div class="center"><div class="floatnone"><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></div></div>
 
 !!end
 
@@ -6198,7 +6198,7 @@ None-aligned image
 !! input
 [[Image:foobar.jpg|none]]
 !! result
-<div class="floatnone"><span><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></span></div>
+<div class="floatnone"><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a></div>
 
 !!end
 
