@@ -135,7 +135,7 @@ class PreferencesForm {
 		global $wgAuth, $wgEmailConfirmToEdit;
 
 
-		if ( '' != $this->mNewpass && $wgAuth->allowPasswordChange() ) {
+		if ( ($this->mNewpass !== '' || $this->mOldpass !== '' ) && $wgAuth->allowPasswordChange() ) {
 			if ( $this->mNewpass != $this->mRetypePass ) {
 				wfRunHooks( 'PrefsPasswordAudit', array( $wgUser, $this->mNewpass, 'badretype' ) );
 				$this->mainPrefsForm( 'error', wfMsg( 'badretype' ) );
