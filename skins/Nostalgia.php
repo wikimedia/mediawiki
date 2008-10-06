@@ -26,7 +26,7 @@ class SkinNostalgia extends Skin {
 	function doBeforeContent() {
 
 		$s .= "\n<div id='content'>\n<div id='top'>\n";
-		$s .= "<div id=\"topbar\">".$this->logoText( "right" )."</div>";
+		$s .= "<div id=\"logo\">".$this->logoText( "right" )."</div>";
 
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() . "\n";
@@ -46,7 +46,8 @@ class SkinNostalgia extends Skin {
 		$cat = $this->getCategoryLinks();
 		if($cat) $s .= "<br />" . $cat;
 
-		$s .= "<br clear='all' /></div><hr />\n</div>\n";
+		$s .= "<br clear='all' /></div><hr />\n</div
+>\n";
 		$s .= "\n<div id='article'>";
 
 		return $s;
