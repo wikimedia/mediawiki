@@ -642,10 +642,10 @@ CONTROL;
 	 * server node, and generator backend.
 	 */
 	protected function debug( $generator="internal" ) {
-		global $wgShowHostnames, $wgNodeName;
+		global $wgShowHostnames;
 		$data = array( $generator );
 		if( $wgShowHostnames ) {
-			$data[] = $wgNodeName;
+			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );
 		return "<!-- diff generator: " .

@@ -105,7 +105,7 @@ class DatabaseMssql extends Database {
 				$success = @/**/mssql_select_db($dbName, $this->mConn);
 				if (!$success) {
 					$error = "Error selecting database $dbName on server {$this->mServer} " .
-						"from client host {$wguname['nodename']}\n";
+						"from client host " . wfHostname() . "\n";
 					wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
 					wfDebug( $error );
 				}

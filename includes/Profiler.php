@@ -355,8 +355,7 @@ class Profiler {
 		# Do not log anything if database is readonly (bug 5375)
 		if( wfReadOnly() ) { return; }
 
-		# Warning: $wguname is a live patch, it should be moved to Setup.php
-		global $wguname, $wgProfilePerHost;
+		global $wgProfilePerHost;
 
 		$dbw = wfGetDB( DB_MASTER );
 		if( !is_object( $dbw ) )
@@ -366,7 +365,7 @@ class Profiler {
 		$name = substr($name, 0, 255);
 
 		if( $wgProfilePerHost ){
-			$pfhost = $wguname['nodename'];
+			$pfhost = wfHostname();
 		} else {
 			$pfhost = '';
 		}
