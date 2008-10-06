@@ -1003,6 +1003,7 @@ $wgMessageStructure = array(
 		'action-mergehistory',
 		'action-userrights',
 		'action-userrights-interwiki',
+		'action-siteadmin',
 	),
 	'recentchanges' => array(
 		'nchanges',
@@ -1855,6 +1856,7 @@ $wgMessageStructure = array(
 		'imagetypemismatch',
 		'imageinvalidfilename',
 		'fix-double-redirects',
+		'move-leave-redirect',
 	),
 	'export' => array(
 		'export',
@@ -2805,7 +2807,10 @@ $wgMessageStructure = array(
 		'nuke-submit-delete',
 		'right-nuke',
 	),
-
+	'special-dismissnotice' => array(
+		'dismissnotice',
+		'dismissnotice-nologin',
+	),
 );
 
 /** Comments for each block */
@@ -2854,6 +2859,7 @@ XHTML id names.",
 	'group-member'        => '',
 	'grouppage'           => '',
 	'right'               => 'Rights',
+	'action'              => 'Associated actions - in the sentence \"You do not have permission to X\"',
 	'rightslog'           => 'User rights log',
 	'recentchanges'       => 'Recent changes',
 	'recentchangeslinked' => 'Recent changes linked',
@@ -3001,6 +3007,7 @@ Variants for Chinese language",
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
 	'special-nuke'          => 'Special:Nuke',
+	'special-dismissnotice' => 'Special:DismissNotice',
 );
 
 /** Short comments for standalone messages */
