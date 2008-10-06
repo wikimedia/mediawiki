@@ -2388,7 +2388,7 @@ You can change this page's protection level, but it will not affect the cascadin
 'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
 'protect-othertime'           => 'Other time:',
 'protect-othertime-op'        => 'other time',
-'protect-existing-expiry'     => 'Existing expiry time: $1',
+'protect-existing-expiry'     => 'Existing expiry time: $3, $2',
 'protect-otherreason'         => 'Other/additional reason:',
 'protect-otherreason-op'      => 'other/additional reason',
 'protect-dropdown'            => '*Common protection reasons
