@@ -544,28 +544,28 @@ Siguriti che sedi pardabon oportun lâ indevant cun la modifiche di cheste pagji
 Ve ca par comoditât l'elenc des eliminazions precedentis par cheste pagjine:",
 
 # History pages
-'viewpagelogs'        => 'Cjale i regjistris relatîfs a cheste pagjine.',
-'nohistory'           => 'Nol è presint un storic dai cambiaments par cheste pagjine.',
-'currentrev'          => 'Version atuâl',
-'revisionasof'        => 'Version dai $1',
-'revision-info'       => 'Version dal $1, autôr: $2',
-'previousrevision'    => '← Version plui vecje',
-'nextrevision'        => 'Version plui gnove →',
-'currentrevisionlink' => 'Version atuâl',
-'cur'                 => 'cor',
-'next'                => 'prossim',
-'last'                => 'ultime',
-'page_first'          => 'prime',
-'page_last'           => 'ultime',
-'histlegend'          => "Confront tra lis versions: sielç lis caselis des versions che ti interessin e frache Invio o il boton in bas.
+'viewpagelogs'           => 'Cjale i regjistris relatîfs a cheste pagjine.',
+'nohistory'              => 'Nol è presint un storic dai cambiaments par cheste pagjine.',
+'currentrev'             => 'Version atuâl',
+'revisionasof'           => 'Version dai $1',
+'revision-info'          => 'Version dal $1, autôr: $2',
+'previousrevision'       => '← Version plui vecje',
+'nextrevision'           => 'Version plui gnove →',
+'currentrevisionlink'    => 'Version atuâl',
+'cur'                    => 'cor',
+'next'                   => 'prossim',
+'last'                   => 'ultime',
+'page_first'             => 'prime',
+'page_last'              => 'ultime',
+'histlegend'             => "Confront tra lis versions: sielç lis caselis des versions che ti interessin e frache Invio o il boton in bas.
 
 Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la version precedente, '''p''' = piçul cambiament",
-'history-search'      => 'Cîr tal storic',
-'deletedrev'          => '[eliminade]',
-'histfirst'           => 'Prime',
-'histlast'            => 'Ultime',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
-'historyempty'        => '(vueide)',
+'history-fieldset-title' => 'Cîr tal storic',
+'deletedrev'             => '[eliminade]',
+'histfirst'              => 'Prime',
+'histlast'               => 'Ultime',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'           => '(vueide)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 ai $2', # user at time

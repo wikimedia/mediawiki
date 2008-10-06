@@ -181,10 +181,10 @@ $messages = array(
 'template-protected' => '(Ngünaytun)',
 
 # History pages
-'page_first'     => 'wünen',
-'history-search' => 'Kintun pünon',
-'deletedrev'     => '[ñamümüngelu]',
-'historyempty'   => '(welli)',
+'page_first'             => 'wünen',
+'history-fieldset-title' => 'Kintun pünon',
+'deletedrev'             => '[ñamümüngelu]',
+'historyempty'           => '(welli)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 $2 mew', # user at time

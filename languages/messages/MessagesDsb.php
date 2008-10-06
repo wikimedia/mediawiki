@@ -770,31 +770,31 @@ Njesmějo daś wěcej nježli $2 {{PLURAL:$2|wołanja|wołanjowu|wołanjow|woła
 Pśicyna, kótaruž $3 jo zapódał, jo ''$2''.",
 
 # History pages
-'viewpagelogs'        => 'Protokole boka pokazaś',
-'nohistory'           => 'Stawizny wobźěłanja za toś ten bok njeeksistěruju.',
-'currentrev'          => 'Aktualna wersija',
-'currentrev-asof'     => 'Aktualna wersija wót $1',
-'revisionasof'        => 'Wersija wót $1',
-'revision-info'       => 'Wersija z $1 wót wužywarja $2',
-'previousrevision'    => '← Zachadna rewizija',
-'nextrevision'        => 'Pśiduca wersija →',
-'currentrevisionlink' => 'Aktualna wersija',
-'cur'                 => 'aktualny',
-'next'                => 'pśiduce',
-'last'                => 'zachadne',
-'page_first'          => 'zachopjeńk',
-'page_last'           => 'kóńc',
-'histlegend'          => 'Aby se změny pokazali, dejtej se pśirownanskej wersiji wuzwóliś. Pón dej se "enter" abo dołojcne tłocanko (button) tłocyś.<br />
+'viewpagelogs'           => 'Protokole boka pokazaś',
+'nohistory'              => 'Stawizny wobźěłanja za toś ten bok njeeksistěruju.',
+'currentrev'             => 'Aktualna wersija',
+'currentrev-asof'        => 'Aktualna wersija wót $1',
+'revisionasof'           => 'Wersija wót $1',
+'revision-info'          => 'Wersija z $1 wót wužywarja $2',
+'previousrevision'       => '← Zachadna rewizija',
+'nextrevision'           => 'Pśiduca wersija →',
+'currentrevisionlink'    => 'Aktualna wersija',
+'cur'                    => 'aktualny',
+'next'                   => 'pśiduce',
+'last'                   => 'zachadne',
+'page_first'             => 'zachopjeńk',
+'page_last'              => 'kóńc',
+'histlegend'             => 'Aby se změny pokazali, dejtej se pśirownanskej wersiji wuzwóliś. Pón dej se "enter" abo dołojcne tłocanko (button) tłocyś.<br />
 
 Legenda:
 * (Aktualne) = Rozdźěl k aktualnej wersiji, (pśedchadna) = rozdźěl k pśedchadnej wersiji
 * Cas/datum = W toś tom casu aktualna wersija, wužywarske mě/IP-adresa wobźěłarja, D = drobna změna',
-'history-search'      => 'W stawiznach pytaś',
-'deletedrev'          => '[wulašowane]',
-'histfirst'           => 'nejstarše',
-'histlast'            => 'nejnowše',
-'historysize'         => '({{PLURAL:$1|1 byte|$1 byta|$1 byty}})',
-'historyempty'        => '(prozne)',
+'history-fieldset-title' => 'W stawiznach pytaś',
+'deletedrev'             => '[wulašowane]',
+'histfirst'              => 'nejstarše',
+'histlast'               => 'nejnowše',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 byta|$1 byty}})',
+'historyempty'           => '(prozne)',
 
 # Revision feed
 'history-feed-title'          => 'Stawizny wersijow',
