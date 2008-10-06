@@ -1270,7 +1270,7 @@ function wfMerge( $old, $mine, $yours, &$result ){
 
 	# This check may also protect against code injection in
 	# case of broken installations.
-	if(! file_exists( $wgDiff3 ) ){
+	if( !$wgDiff3 || !file_exists( $wgDiff3 ) ) {
 		wfDebug( "diff3 not found\n" );
 		return false;
 	}

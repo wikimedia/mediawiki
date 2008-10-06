@@ -78,12 +78,6 @@ class DatabasePostgres extends Database {
 		$failFunction = false, $flags = 0 )
 	{
 
-		global $wgOut;
-		# Can't get a reference if it hasn't been set yet
-		if ( !isset( $wgOut ) ) {
-			$wgOut = NULL;
-		}
-		$this->mOut =& $wgOut;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->open( $server, $user, $password, $dbName);
@@ -138,10 +132,6 @@ class DatabasePostgres extends Database {
 
 		global $wgDBport;
 
-		if (!strlen($user)) { ## e.g. the class is being loaded
-			return;
-		}
-
 		$this->close();
 		$this->mServer = $server;
 		$this->mPort = $port = $wgDBport;
@@ -149,22 +139,31 @@ class DatabasePostgres extends Database {
 		$this->mPassword = $password;
 		$this->mDBname = $dbName;
 
-		$hstring="";
+		$connectVars = array(
+			'dbname' => $dbName,
+			'user' => $user,
+			'password' => $password );
 		if ($server!=false && $server!="") {
-			$hstring="host=$server ";
+			$connectVars['host'] = $server;
 		}
 		if ($port!=false && $port!="") {
-			$hstring .= "port=$port ";
+			$connectVars['port'] = $port;
 		}
+		$connectString = $this->makeConnectionString( $connectVars );
 
-		error_reporting( E_ALL );
-		@$this->mConn = pg_connect("$hstring dbname=$dbName user=$user password=$password");
+		$this->installErrorHandler();
+		$this->mConn = pg_connect( $connectString );
+		$phpError = $this->restoreErrorHandler();
 
 		if ( $this->mConn == false ) {
 			wfDebug( "DB connection error\n" );
 			wfDebug( "Server: $server, Database: $dbName, User: $user, Password: " . substr( $password, 0, 3 ) . "...\n" );
 			wfDebug( $this->lastError()."\n" );
-			return false;
+			if ( !$this->mFailFunction ) {
+				throw new DBConnectionError( $this, $phpError );
+			} else {
+				return false;
+			}
 		}
 
 		$this->mOpened = true;
@@ -189,6 +188,14 @@ class DatabasePostgres extends Database {
 		return $this->mConn;
 	}
 
+	function makeConnectionString( $vars ) {
+		$s = '';
+		foreach ( $vars as $name => $value ) {
+			$s .= "$name='" . str_replace( "'", "\\'", $value ) . "' ";
+		}
+		return $s;
+	}
+
 
 	function initial_setup($password, $dbName) {
 		// If this is the initial connection, setup the schema stuff and possibly create the user
@@ -197,8 +204,8 @@ class DatabasePostgres extends Database {
 		print "<li>Checking the version of Postgres...";
 		$version = $this->getServerVersion();
 		$PGMINVER = '8.1';
-		if ($this->numeric_version < $PGMINVER) {
-			print "<b>FAILED</b>. Required version is $PGMINVER. You have $this->numeric_version ($version)</li>\n";
+		if ($version < $PGMINVER) {
+			print "<b>FAILED</b>. Required version is $PGMINVER. You have $version</li>\n";
 			dieout("</ul>");
 		}
 		print "version $this->numeric_version is OK.</li>\n";
@@ -729,8 +736,7 @@ class DatabasePostgres extends Database {
 
 		$table = $this->tableName( $table );
 		if (! isset( $wgDBversion ) ) {
-			$this->getServerVersion();
-			$wgDBversion = $this->numeric_version;
+			$wgDBversion = $this->getServerVersion();
 		}
 
 		if ( !is_array( $options ) )
@@ -1046,16 +1052,9 @@ class DatabasePostgres extends Database {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		$version = pg_fetch_result($this->doQuery("SELECT version()"),0,0);
-		$thisver = array();
-		if (!preg_match('/PostgreSQL (\d+\.\d+)(\S+)/', $version, $thisver)) {
-			die("Could not determine the numeric version from $version!");
-		}
-		$version = $thisver[1].$thisver[2];
-		$this->numeric_version = $thisver[1];
-		return $version;
+		$versionInfo = pg_version( $this->mConn );
+		return $versionInfo['server'];
 	}
-
 
 	/**
 	 * Query whether a given relation exists (in the given schema, or the

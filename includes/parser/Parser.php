@@ -3445,10 +3445,11 @@ class Parser
 		global $wgMaxTocLevel, $wgContLang;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
-		if( !$this->mTitle->quickUserCan( 'edit' ) ) {
+		$showEditLink = $this->mOptions->getEditSection();
+
+		// Do not call quickUserCan unless necessary
+		if( $showEditLink && !$this->mTitle->quickUserCan( 'edit' ) ) {
 			$showEditLink = 0;
-		} else {
-			$showEditLink = $this->mOptions->getEditSection();
 		}
 
 		# Inhibit editsection links if requested in the page
