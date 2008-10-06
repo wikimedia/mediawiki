@@ -4224,7 +4224,7 @@ class Parser
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border' ),
+					'upright', 'border', 'click' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -4342,6 +4342,29 @@ class Parser
 							/// @fixme - possibly check validity here?
 							/// downstream behavior seems odd with missing manual thumbs.
 							$validated = true;
+							break;
+						case 'click':
+							$chars = self::EXT_LINK_URL_CLASS;
+							$prots = $this->mUrlProtocols;
+							if ( $value === '' ) {
+								$paramName = 'no-link';
+								$value = true;
+								$validated = true;
+							} elseif ( preg_match( "/^$prots/", $value ) ) {
+								if ( preg_match( "/^($prots)$chars+$/", $value, $m ) ) {
+									$paramName = 'click-url';
+									$this->mOutput->addExternalLink( $value );
+									$validated = true;
+								}
+							} else {
+								$clickTitle = Title::newFromText( $value );
+								if ( $clickTitle ) {
+									$paramName = 'click-title';
+									$value = $clickTitle;
+									$this->mOutput->addLink( $clickTitle );
+									$validated = true;
+								}
+							}
 							break;
 						default:
 							// Most other things appear to be empty or numeric...
