@@ -56,12 +56,12 @@ if ( preg_match( '!^(.*)/config/[^/]*.php$!', $scriptUrl, $m ) ) {
 </p>
 <?php
 flush();
-/** 
+/**
  * Test the *.php5 extension
  */
 $downloadOther = true;
 if ( $baseUrl ) {
-	$testUrl = "$wgServer$baseUrl/extension-test.php5";
+	$testUrl = "$wgServer$baseUrl/php5.php5";
 	ini_set( 'allow_url_fopen', '1' );
 	$s = file_get_contents( $testUrl );
 
@@ -75,8 +75,8 @@ if ( $downloadOther ) {
 ?>
 <p>Please consider upgrading your copy of PHP. PHP 4 is at the end of its
 lifecycle and will not receive further security updates.</p>
-<p>If for some reason you really really need to run MediaWiki on PHP 4, you will need to 
-<a href="http://www.mediawiki.org/wiki/Download">download version 1.6.x</a> 
+<p>If for some reason you really really need to run MediaWiki on PHP 4, you will need to
+<a href="http://www.mediawiki.org/wiki/Download">download version 1.6.x</a>
 from our website. </p>
 <?php
 }
