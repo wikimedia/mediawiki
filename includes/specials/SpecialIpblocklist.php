@@ -71,9 +71,13 @@ class IPUnblockForm {
 	var $ip, $reason, $id;
 
 	function IPUnblockForm( $ip, $id, $reason ) {
+		global $wgRequest;
 		$this->ip = strtr( $ip, '_', ' ' );
 		$this->id = $id;
 		$this->reason = $reason;
+		$this->hideuserblocks = $wgRequest->getBool( 'hideuserblocks' );
+		$this->hidetempblocks = $wgRequest->getBool( 'hidetempblocks' );
+		$this->hideaddressblocks = $wgRequest->getBool( 'hideaddressblocks' );
 	}
 
 	/**
@@ -257,11 +261,22 @@ class IPUnblockForm {
 				$conds['ipb_auto'] = 0;
 			}
 		}
+		// Apply filters
+		if( $this->hideuserblocks ) {
+			$conds['ipb_user'] = 0;
+		}
+		if( $this->hidetempblocks ) {
+			$conds['ipb_expiry'] = 'infinity';
+		}
+		if( $this->hideaddressblocks ) {
+			$conds[] = "ipb_range_end > ipb_range_start";
+		}
 
 		$pager = new IPBlocklistPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
 			$wgOut->addHTML(
 				$this->searchForm() .
+				$this->showhideLinks() .
 				$pager->getNavigationBar() .
 				Xml::tags( 'ul', null, $pager->getBody() ) .
 				$pager->getNavigationBar()
@@ -286,6 +301,49 @@ class IPUnblockForm {
 				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
 				Xml::closeElement( 'fieldset' )
 			);
+	}
+	
+	function showhideLinks() {
+		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
+		$nondefaults = array();
+		if( $this->hideuserblocks ) {
+			$nondefaults['hideuserblocks'] = $this->hideuserblocks;
+		}
+		if( $this->hidetempblocks ) {
+			$nondefaults['hidetempblocks'] = $this->hidetempblocks;
+		}
+		if( $this->hideaddressblocks ) {
+			$nondefaults['hideaddressblocks'] = $this->hideaddressblocks;
+		}
+		$ubLink = $this->makeOptionsLink( $showhide[1-$this->hideuserblocks],
+			array( 'hideuserblocks' => 1-$this->hideuserblocks ), $nondefaults);
+		$tbLink = $this->makeOptionsLink( $showhide[1-$this->hidetempblocks],
+			array( 'hidetempblocks' => 1-$this->hidetempblocks ), $nondefaults);
+		$sipbLink = $this->makeOptionsLink( $showhide[1-$this->hideaddressblocks],
+			array( 'hideaddressblocks' => 1-$this->hideaddressblocks ), $nondefaults);
+			
+		$links = array();
+		$links[] = wfMsgHtml( 'ipblocklist-sh-userblocks', $ubLink );
+		$links[] = wfMsgHtml( 'ipblocklist-sh-tempblocks', $tbLink );
+		$links[] = wfMsgHtml( 'ipblocklist-sh-addressblocks', $sipbLink );
+		
+		$hl = '(' . implode( ' | ', $links ) . ')<hr/>';
+		return $hl;
+	}
+	
+	/**
+	 * Makes change an option link which carries all the other options
+	 * @param $title see Title
+	 * @param $override
+	 * @param $options
+	 */
+	function makeOptionsLink( $title, $override, $options, $active = false ) {
+		global $wgUser;
+		$sk = $wgUser->getSkin();
+		$params = wfArrayMerge( $options, $override );
+		$ipblocklist = SpecialPage::getTitleFor( 'IPBlockList' );
+		return $sk->link( $ipblocklist, htmlspecialchars( $title ),
+			( $active ? array( 'style'=>'font-weight: bold;' ) : array() ), $params, array( 'known' ) );
 	}
 
 	/**
