@@ -56,7 +56,7 @@ function wfSpecialMovepage( $par = null ) {
 class MovePageForm {
 	var $oldTitle, $newTitle; # Objects
 	var $reason; # Text input
-	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects; # Checks
+	var $moveTalk, $deleteAndMove, $moveSubpages, $fixRedirects, $leaveRedirect; # Checks
 
 	private $watch = false;
 
@@ -69,9 +69,11 @@ class MovePageForm {
 		if ( $wgRequest->wasPosted() ) {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', false );
 			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', false );
+			$this->leaveRedirect = $wgRequest->getBool( 'wpLeaveRedirect', false );
 		} else {
 			$this->moveTalk = $wgRequest->getBool( 'wpMovetalk', true );
 			$this->fixRedirects = $wgRequest->getBool( 'wpFixRedirects', true );
+			$this->leaveRedirect = $wgRequest->getBool( 'wpLeaveRedirect', true );
 		}
 		$this->moveSubpages = $wgRequest->getBool( 'wpMovesubpages', false );
 		$this->deleteAndMove = $wgRequest->getBool( 'wpDeleteAndMove' ) && $wgRequest->getBool( 'wpConfirm' );
@@ -201,6 +203,18 @@ class MovePageForm {
 			);
 		}
 
+		if ( $wgUser->isAllowed( 'suppressredirect' ) ) {
+			$wgOut->addHTML( "
+				<tr>
+					<td></td>
+					<td class='mw-input' >" .
+						Xml::checkLabel( wfMsg( 'move-leave-redirect' ), 'wpLeaveRedirect', 
+							'wpLeaveRedirect', $this->leaveRedirect ) .
+					"</td>
+				</tr>"
+			);
+		}
+
 		if ( $hasRedirects ) {
 			$wgOut->addHTML( "
 				<tr>
@@ -294,7 +308,13 @@ class MovePageForm {
 			return;
 		}
 
-		$error = $ot->moveTo( $nt, true, $this->reason );
+		if ( $wgUser->isAllowed( 'suppressredirect' ) ) {
+			$createRedirect = $this->leaveRedirect;
+		} else {
+			$createRedirect = true;
+		}
+
+		$error = $ot->moveTo( $nt, true, $this->reason, $createRedirect );
 		if ( $error !== true ) {
 			call_user_func_array( array($this, 'showForm'), $error );
 			return;
