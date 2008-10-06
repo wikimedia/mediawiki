@@ -81,7 +81,7 @@ class MovePageForm {
 	}
 
 	function showForm( $err ) {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgFixDoubleRedirects;
 
 		$skin = $wgUser->getSkin();
 
@@ -136,12 +136,16 @@ class MovePageForm {
 		$considerTalk = ( !$this->oldTitle->isTalkPage() && $oldTalk->exists() );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$hasRedirects = $dbr->selectField( 'redirect', '1', 
-			array( 
-				'rd_namespace' => $this->oldTitle->getNamespace(),
-				'rd_title' => $this->oldTitle->getDBkey(),
-			) , __METHOD__ );
-		
+		if ( $wgFixDoubleRedirects ) {
+			$hasRedirects = $dbr->selectField( 'redirect', '1', 
+				array( 
+					'rd_namespace' => $this->oldTitle->getNamespace(),
+					'rd_title' => $this->oldTitle->getDBkey(),
+				) , __METHOD__ );
+		} else {
+			$hasRedirects = false;
+		}
+
 		if ( $considerTalk ) {
 			$wgOut->addWikiMsg( 'movepagetalktext' );
 		}
@@ -277,6 +281,7 @@ class MovePageForm {
 
 	function doSubmit() {
 		global $wgOut, $wgUser, $wgRequest, $wgMaximumMovedPages, $wgLang;
+		global $wgFixDoubleRedirects;
 
 		if ( $wgUser->pingLimiter( 'move' ) ) {
 			$wgOut->rateLimited();
@@ -320,7 +325,7 @@ class MovePageForm {
 			return;
 		}
 
-		if ( $this->fixRedirects ) {
+		if ( $wgFixDoubleRedirects && $this->fixRedirects ) {
 			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
