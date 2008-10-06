@@ -1873,8 +1873,8 @@ function wfGetSiteNotice() {
 	wfProfileIn( $fname );
 	$siteNotice = '';
 	$loggedIn = false;
-	$spTitle = SpecialPage::getTitleFor('DismissNotice');
-	$spUrl = $spTitle->getFullURL( array( 'returnto' => $wgTitle->getPrefixedURL() ) );
+	$spTitle = SpecialPage::getTitleFor( 'DismissNotice' );
+	$spUrl = $spTitle->escapeFullURL( array( 'returnto' => $wgTitle->getPrefixedURL() ) );
 	
 	if( $wgUser instanceOf User && $wgUser->isLoggedIn() ) {
 		$loggedIn = true;
