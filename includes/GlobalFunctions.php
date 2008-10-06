@@ -823,6 +823,9 @@ function wfHostname() {
 		}
 		if( is_array( $uname ) && isset( $uname['nodename'] ) ) {
 			$host = $uname['nodename'];
+		} elseif ( getenv( 'COMPUTERNAME' ) ) {
+			# Windows computer name
+			$host = getenv( 'COMPUTERNAME' );
 		} else {
 			# This may be a virtual server.
 			$host = $_SERVER['SERVER_NAME'];

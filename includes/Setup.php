@@ -146,12 +146,6 @@ wfProfileIn( $fname.'-misc1' );
 $wgIP = false; # Load on demand
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 $wgRequest = new WebRequest;
-if ( function_exists( 'posix_uname' ) ) {
-	$wguname = posix_uname();
-	$wgNodeName = $wguname['nodename'];
-} else {
-	$wgNodeName = '';
-}
 
 # Useful debug output
 if ( $wgCommandLineMode ) {

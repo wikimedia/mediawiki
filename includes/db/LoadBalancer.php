@@ -577,9 +577,8 @@ class LoadBalancer {
 			$oldWiki = key( $this->mConns['foreignFree'][$i] );
 
 			if ( !$conn->selectDB( $dbName ) ) {
-				global $wguname;
 				$this->mLastError = "Error selecting database $dbName on server " .
-					$conn->getServer() . " from client host {$wguname['nodename']}\n";
+					$conn->getServer() . " from client host " . wfHostname() . "\n";
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {

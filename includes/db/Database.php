@@ -312,7 +312,7 @@ class Database {
 	 * If the failFunction is set to a non-zero integer, returns success
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		global $wguname, $wgAllDBsAreLocalhost;
+		global $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
 
 		# Test for missing mysql.so
@@ -388,7 +388,7 @@ class Database {
 			$success = @/**/mysql_select_db( $dbName, $this->mConn );
 			if ( !$success ) {
 				$error = "Error selecting database $dbName on server {$this->mServer} " .
-					"from client host {$wguname['nodename']}\n";
+					"from client host " . wfHostname() . "\n";
 				wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
 				wfDebug( $error );
 			}
