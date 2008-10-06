@@ -2660,6 +2660,7 @@ cannot move pages from and into that namespace.',
 'imagetypemismatch'       => 'The new file extension does not match its type',
 'imageinvalidfilename'    => 'The target file name is invalid',
 'fix-double-redirects'    => 'Update any redirects that point to the original title',
+'move-leave-redirect'     => 'Leave a redirect behind',
 
 # Export
 'export'            => 'Export pages',
