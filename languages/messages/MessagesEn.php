@@ -1230,32 +1230,32 @@ The reason given by $3 is ''$2''",
 'cantcreateaccount-nonblock-text' => '', # do not translate or duplicate this message to other languages
 
 # History pages
-'viewpagelogs'          => 'View logs for this page',
-'nohistory'             => 'There is no edit history for this page.',
-'currentrev'            => 'Current revision',
-'currentrev-asof'       => 'Current revision as of $1',
-'revisionasof'          => 'Revision as of $1',
-'revision-info'         => 'Revision as of $1 by $2',
-'revision-info-current' => '-', # do not translate or duplicate this message to other languages
-'revision-nav'          => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
-'previousrevision'      => '← Older revision',
-'nextrevision'          => 'Newer revision →',
-'currentrevisionlink'   => 'Current revision',
-'cur'                   => 'cur',
-'next'                  => 'next',
-'last'                  => 'last',
-'page_first'            => 'first',
-'page_last'             => 'last',
-'histlegend'            => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
+'viewpagelogs'           => 'View logs for this page',
+'nohistory'              => 'There is no edit history for this page.',
+'currentrev'             => 'Current revision',
+'currentrev-asof'        => 'Current revision as of $1',
+'revisionasof'           => 'Revision as of $1',
+'revision-info'          => 'Revision as of $1 by $2',
+'revision-info-current'  => '-', # do not translate or duplicate this message to other languages
+'revision-nav'           => '($1) $2 | $3 ($4) | $5 ($6)', # do not translate or duplicate this message to other languages
+'previousrevision'       => '← Older revision',
+'nextrevision'           => 'Newer revision →',
+'currentrevisionlink'    => 'Current revision',
+'cur'                    => 'cur',
+'next'                   => 'next',
+'last'                   => 'last',
+'page_first'             => 'first',
+'page_last'              => 'last',
+'histlegend'             => 'Diff selection: mark the radio boxes of the versions to compare and hit enter or the button at the bottom.<br />
 Legend: (cur) = difference with current version,
 (last) = difference with preceding version, M = minor edit.',
-'history-search'        => 'Search in history',
-'history_copyright'     => '-', # do not translate or duplicate this message to other languages
-'deletedrev'            => '[deleted]',
-'histfirst'             => 'Earliest',
-'histlast'              => 'Latest',
-'historysize'           => '({{PLURAL:$1|1 byte|$1 bytes}})',
-'historyempty'          => '(empty)',
+'history-fieldset-title' => 'Browse history',
+'history_copyright'      => '-', # do not translate or duplicate this message to other languages
+'deletedrev'             => '[deleted]',
+'histfirst'              => 'Earliest',
+'histlast'               => 'Latest',
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
+'historyempty'           => '(empty)',
 
 # Revision feed
 'history-feed-title'          => 'Revision history',
@@ -1649,7 +1649,7 @@ please see math/README to configure.',
 'rightslogentry' => 'changed group membership for $1 from $2 to $3',
 'rightsnone'     => '(none)',
 
-# Associated actions - in the sentence \"You do not have permission to X\"
+# Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'read this page',
 'action-edit'                 => 'edit this page',
 'action-createpage'           => 'create pages',

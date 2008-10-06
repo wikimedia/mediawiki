@@ -623,36 +623,36 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 
 # History pages
-'viewpagelogs'        => 'Link displayed in history of pages',
-'currentrev'          => '{{Identical|Current revision}}',
-'currentrev-asof'     => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
-'revisionasof'        => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\".",
-'revision-info'       => 'Appears just below the page title when an old version of the page is being viewed.
+'viewpagelogs'           => 'Link displayed in history of pages',
+'currentrev'             => '{{Identical|Current revision}}',
+'currentrev-asof'        => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
+'revisionasof'           => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\".",
+'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
 $1 indicates the time of that revision and 
 $2 the author of the revision',
-'currentrevisionlink' => '{{Identical|Current revision}}',
-'cur'                 => 'Link in page history',
-'next'                => 'Link in page history
+'currentrevisionlink'    => '{{Identical|Current revision}}',
+'cur'                    => 'Link in page history',
+'next'                   => 'Link in page history
 
 {{Identical|Next}}',
-'last'                => 'Link in page history
+'last'                   => 'Link in page history
 
 {{Identical|Last}}',
-'page_first'          => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the 'Categories' special page. It is followed by the message [[Mediawiki:viewprevnext]].
+'page_first'             => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the 'Categories' special page. It is followed by the message [[Mediawiki:viewprevnext]].
 
 first",
-'page_last'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the 'Categories' special page. It is followed by the message [[Mediawiki:viewprevnext]].
+'page_last'              => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the 'Categories' special page. It is followed by the message [[Mediawiki:viewprevnext]].
 
 {{Identical|Last}}",
-'histlegend'          => 'Text in history page',
-'history-search'      => 'Fieldset label in the edit history pages.',
-'deletedrev'          => 'When comparing deleted revisions for sysops
+'histlegend'             => 'Text in history page',
+'history-fieldset-title' => 'Fieldset label in the edit history pages.',
+'deletedrev'             => 'When comparing deleted revisions for sysops
 
 {{Identical|Deleted}}',
-'histfirst'           => 'Used in page history.',
-'histlast'            => 'Used in page history.',
-'historyempty'        => 'Text in page history for empty page revisions
+'histfirst'              => 'Used in page history.',
+'histlast'               => 'Used in page history.',
+'historyempty'           => 'Text in page history for empty page revisions
 
 {{Identical|Empty}}',
 
