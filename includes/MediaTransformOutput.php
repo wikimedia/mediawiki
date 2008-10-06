@@ -50,6 +50,8 @@ abstract class MediaTransformOutput {
 	 *     alt          Alternate text or caption
 	 *     desc-link    Boolean, show a description link
 	 *     file-link    Boolean, show a file download link
+	 *     custom-url-link    Custom URL to link to
+	 *     custom-title-link  Custom Title object to link to
 	 *     valign       vertical-align property, if the output is an inline element
 	 *     img-class    Class applied to the <img> tag, if there is such a tag
 	 *
@@ -133,6 +135,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     valign       vertical-align property, if the output is an inline element
 	 *     img-class    Class applied to the <img> tag, if there is such a tag
 	 *     desc-query   String, description link query params
+	 *     custom-url-link    Custom URL to link to
+	 *     custom-title-link  Custom Title object to link to
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -147,7 +151,12 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
 		$query = empty($options['desc-query'])  ? '' : $options['desc-query'];
-		if ( !empty( $options['desc-link'] ) ) {
+		if ( !empty( $options['custom-url-link'] ) ) {
+			$linkAttribs = array( 'href' => $options['custom-url-link'] );
+		} elseif ( !empty( $options['custom-title-link'] ) ) {
+			$title = $options['custom-title-link'];
+			$linkAttribs = array( 'href' => $title->getLinkUrl(), 'title' => $title->getFullText() );
+		} elseif ( !empty( $options['desc-link'] ) ) {
 			$linkAttribs = $this->getDescLinkAttribs( $alt, $query );
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = array( 'href' => $this->file->getURL() );
