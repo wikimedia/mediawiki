@@ -43,6 +43,7 @@ $magicWords = array(
 	'forcetoc'              => array( '0', '__لصق_فهرس__', '__لصق_فهرس__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__فهرس__', '__فهرس__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__لاتحريرقسم__', '__لاتحريرقسم__', '__NOEDITSECTION__' ),
+	'noheader'              => array( '0', '__لاعنوان__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'شهر_حالى', 'شهر', 'شهر_حالي', 'شهر', 'CURRENTMONTH' ),
 	'currentmonthname'      => array( '1', 'اسم_الشهر_الحالى', 'اسم_شهر_حالى', 'اسم_شهر', 'اسم_الشهر_الحالي', 'اسم_شهر_حالي', 'اسم_شهر', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'اسم_الشهر_الحالى_المولد', 'اسم_شهر_حالى_مولد', 'اسم_الشهر_الحالي_المولد', 'اسم_شهر_حالي_مولد', 'CURRENTMONTHNAMEGEN' ),
