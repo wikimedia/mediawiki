@@ -269,7 +269,7 @@ class IPUnblockForm {
 			$conds['ipb_expiry'] = 'infinity';
 		}
 		if( $this->hideaddressblocks ) {
-			$conds[] = "ipb_range_end > ipb_range_start";
+			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
 		}
 
 		$pager = new IPBlocklistPager( $this, $conds );
@@ -285,6 +285,7 @@ class IPUnblockForm {
 			$wgOut->addHTML( $this->searchForm() );
 			$wgOut->addWikiMsg( 'ipblocklist-no-results' );
 		} else {
+			$wgOut->addHTML( $this->searchForm() . $this->showhideLinks() );
 			$wgOut->addWikiMsg( 'ipblocklist-empty' );
 		}
 	}
