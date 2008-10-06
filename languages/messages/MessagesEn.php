@@ -442,7 +442,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Nuke'                      => array( 'Nuke' ),
-	'DismissNotice'				=> array( 'DismissNotice' ),
+	'DismissNotice'             => array( 'DismissNotice' ),
 );
 
 /**
