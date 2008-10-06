@@ -6,7 +6,7 @@ function wfSpecialDismissnotice() {
 	
 	# Logged-out users cannot dismiss notice
 	if($wgUser->isAnon()) {
-		$wgOut->addWikiText( wfMsg('dismissnotice-nologin') );
+		$wgOut->addWikiMsg( 'dismissnotice-nologin' );
 		return;
 	}
 	
