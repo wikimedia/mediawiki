@@ -21,7 +21,7 @@ $skinNames = array(
 
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Aparteko',
+	NS_SPECIAL        => 'Berezi',
 	NS_MAIN           => '',
 	NS_TALK           => 'Eztabaida',
 	NS_USER           => 'Lankide',
@@ -38,6 +38,10 @@ $namespaceNames = array(
 	NS_HELP_TALK      => 'Laguntza_eztabaida',
 	NS_CATEGORY       => 'Kategoria',
 	NS_CATEGORY_TALK  => 'Kategoria_eztabaida',
+);
+
+$namespaceAliases = array(
+	'Aparteko'          => NS_SPECIAL,
 );
 
 $messages = array(
