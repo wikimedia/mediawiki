@@ -6,7 +6,6 @@
  *
  * @author Behdarvandyani
  * @author Huji
- * @author Huji <huji.huji at gmail.com>
  * @author Ladsgroup
  * @author Mardetanha
  * @author Meno25
@@ -1320,6 +1319,40 @@ $2',
 'rightslogentry' => 'عضویت $1 از گروه $2 به $3 تغییر داده شد.',
 'rightsnone'     => '(هیچ)',
 
+# Associated actions - in the sentence \"You do not have permission to X\"
+'action-read'                 => 'خواندن این صفحه',
+'action-edit'                 => 'ویرایش این صفحه',
+'action-createpage'           => 'ایجاد صفحه',
+'action-createtalk'           => 'ایجاد صفحه‌های بحث',
+'action-createaccount'        => 'ایجاد این حساب کاربری',
+'action-minoredit'            => 'علامت زدن این ویرایش به عنوان جزئی',
+'action-move'                 => 'انتقال این صفحه',
+'action-move-subpages'        => 'انتقال این صفحه و زیرصفحه‌های آن',
+'action-upload'               => 'بارگذاری این پرونده',
+'action-reupload'             => 'نوشتن روی این پرونده موجود',
+'action-reupload-shared'      => 'باطل کردن این پرونده روی یک مخزن مشترک',
+'action-upload_by_url'        => 'بارگذاری این پرونده از یک نشانی اینترنتی',
+'action-writeapi'             => 'استفاده از API نوشتن',
+'action-delete'               => 'حذف این صفحه',
+'action-deleterevision'       => 'حذف این نسخه',
+'action-deletedhistory'       => 'مشاهدهٔ تاریخچهٔ حذف شدهٔ این صفحه',
+'action-browsearchive'        => 'جستجوی صفحه‌های حذف شده',
+'action-undelete'             => 'احیای این صفحه',
+'action-suppressrevision'     => 'مشاهده و احیای ویرایش‌های حذف شده',
+'action-suppressionlog'       => 'مشاهدهٔ این سیاههٔ خصوصی',
+'action-block'                => 'قطع دسترسی این کاربر برای ویرایش',
+'action-protect'              => 'تغییر سطح محافظت از این صفحه',
+'action-import'               => 'وارد کردن این صفحه از یک ویکی دیگر',
+'action-importupload'         => 'وارد کردن این صفحه از طریق بارگذاری پرونده',
+'action-patrol'               => 'علامت زدن ویرایش دیگران به عنوان گشت خورده',
+'action-autopatrol'           => 'علامت زدن ویرایش خودتان به عنوان گشت خورده',
+'action-unwatchedpages'       => 'مشاهدهٔ صفحه‌های پی‌گیری نشده',
+'action-trackback'            => 'ثبت یک بازتاب',
+'action-mergehistory'         => 'ادغام تاریخچهٔ این صفحه',
+'action-userrights'           => 'ویرایش همهٔ اختیارات کاربری',
+'action-userrights-interwiki' => 'ویرایش اختیارات کاربری کاربران یک ویکی دیگر',
+'action-siteadmin'            => 'قفل کردن و باز کردن پایگاه داده',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',
 'recentchanges'                     => 'تغییرات اخیر',
@@ -2229,6 +2262,7 @@ $1',
 'imagetypemismatch'       => 'پسوند پرونده جدید با نوع آن سازگار نیست',
 'imageinvalidfilename'    => 'نام پروندهٔ هدف غیر مجاز است',
 'fix-double-redirects'    => 'به روز کردن تمامی تغییر مسیرهایی که به مقالهٔ اصلی اشاره می‌کنند',
+'move-leave-redirect'     => 'بر جا گذاشتن یک تغییر مسیر',
 
 # Export
 'export'            => 'صدور صفحه‌ها',
@@ -3042,5 +3076,9 @@ $1',
 'nuke-submit-user'   => 'برو',
 'nuke-submit-delete' => 'حذف موارد انتخاب شده',
 'right-nuke'         => 'حذف دسته‌جمعی صفحه‌ها',
+
+# Special:DismissNotice
+'dismissnotice'         => 'نهفتن اعلان وبگاه',
+'dismissnotice-nologin' => 'شما باید [[Special:UserLogin|به سیستم وارد شوید]] تا اعلان وبگاه را پنهان سازید.',
 
 );
