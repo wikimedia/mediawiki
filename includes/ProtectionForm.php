@@ -20,7 +20,7 @@
  */
 
 /**
- * @todo document, briefly.
+ * Handles the page protection UI and backend
  */
 class ProtectionForm {
 	/** A map of action to restriction level, from request or default */
