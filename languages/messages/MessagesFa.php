@@ -1976,7 +1976,7 @@ $NEWPAGE
 'protect-cantedit'            => 'شما نمی‌تواند وضعیت حفاظت این صفحه را تغییر دهید، چون اجازه ویرایش آن را ندارید.',
 'protect-othertime'           => 'زمانی دیگر:',
 'protect-othertime-op'        => 'زمانی دیگر',
-'protect-existing-expiry'     => 'پایان زمان موجود: $1',
+'protect-existing-expiry'     => 'زمان انقضای موجود: $2، $3',
 'protect-otherreason'         => 'دلیل دیگر/اضافی:',
 'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
 'protect-dropdown'            => '*دلایل متداول محافظت

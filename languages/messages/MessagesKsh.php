@@ -1276,6 +1276,40 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'rightslogentry' => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
 'rightsnone'     => '(nix)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'di Sigg ze lesse',
+'action-edit'                 => 'di Sigg ze ändere',
+'action-createpage'           => 'di Sigg aanzeläje',
+'action-createtalk'           => 'Klaafsigge aanzeläje',
+'action-createaccount'        => 'hee dä neue Metmaacher aanzemelde',
+'action-minoredit'            => 'hee di Änderung als klein „mini“ ze makkeere',
+'action-move'                 => 'di Sigg ömzebenänne',
+'action-move-subpages'        => 'hee di Sigg un ier Ongersigge ömzebenänne',
+'action-upload'               => 'hee di Datei huhzelade',
+'action-reupload'             => 'hee di Datei, di et ald jitt, ußzetuusche',
+'action-reupload-shared'      => 'hee di Datei „för“ di ze säze, di et en de jemeinsame Biblijoteek ald jitt',
+'action-upload_by_url'        => 'hee di Datei fun en URL erövver trecke ze lohße',
+'action-writeapi'             => 'dat API zom Schriive ze bruche',
+'action-delete'               => 'hee di Sigg fottzeschmiiße',
+'action-deleterevision'       => 'hee di Versijon fottzeschmiiße',
+'action-deletedhistory'       => 'vun hee dä Sigg de Leß met de fottjeschmeße Versijone aanzeloore',
+'action-browsearchive'        => 'noh fottjeschmeße Sigge ze söke',
+'action-undelete'             => 'hee di fottjeschmeße Sigg widder zeröck ze holle',
+'action-suppressrevision'     => 'hee di fottjeschmeße Versijon aanzeloore un womööschlesch widder zeröck ze holle',
+'action-suppressionlog'       => 'hee dat jeheime Logbooch aanzeloore',
+'action-block'                => 'hee dämm Metmaacher et Sigge Ändere ze verbeede',
+'action-protect'              => 'hee dä Sigg iere Sigge-Schotz ze ändere',
+'action-import'               => 'hee di Sigg uss enem andere Wiki ze empotteere',
+'action-importupload'         => 'hee di Sigg uss ene huhjelaade Datei ze impotteere',
+'action-patrol'               => 'anderlüx Änderunge als „nohjeloort“ ze makeere',
+'action-autopatrol'           => 'Ding eije Änderunge sälver als „nohjeloort“ ze makeere',
+'action-unwatchedpages'       => 'de Leß met de Sigg en kei Oppassleß aanzeloore',
+'action-trackback'            => 'e <i lang="en">trackback</i> enzedraare',
+'action-mergehistory'         => 'hee dä Sigg ier Verjangeheit un Versijon met ene andere zosamme ze lääje',
+'action-userrights'           => 'alle Metmaacher ier Rääschte ze ändere',
+'action-userrights-interwiki' => 'dä Metmaacher fun ander Wikis ier Rääschte ze ändere',
+'action-siteadmin'            => 'de Datebank ze sperre udder widder freizejävve',
+
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
 'recentchanges'                     => 'Neuste Änderunge',
@@ -2245,6 +2279,7 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm hee di Sigg �
 'imagetypemismatch'       => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
 'imageinvalidfilename'    => 'Dä Ziel-Name för de Datei es verkeht',
 'fix-double-redirects'    => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
+'move-leave-redirect'     => 'Donn en Ömleidung doför ennreschte',
 
 # Export
 'export'            => 'Sigge Exporteere',
@@ -3070,5 +3105,9 @@ Jif dä Metmaacher-Name udder de IP-Address dofun aan,
 'nuke-submit-user'   => 'Leß holle',
 'nuke-submit-delete' => 'Donn de üßjewählte Sigge fottschmieße!',
 'right-nuke'         => 'Massich Sigge Fottschmieße',
+
+# Special:DismissNotice
+'dismissnotice'         => 'Doon dä Henwieß en Zukunf fott lohße.',
+'dismissnotice-nologin' => 'Do moß [[Special:UserLogin|ennjelogg sin]], öm de dä Henwieß fott lohße ze künne.',
 
 );

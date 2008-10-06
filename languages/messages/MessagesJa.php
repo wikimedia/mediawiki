@@ -669,6 +669,10 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'deleted-notice'                   => 'このページは削除されています。
 参考のため、このページの削除ログが以下に表示されています。',
 'deletelog-fulllog'                => '完全なログを見る',
+'edit-conflict'                    => '編集競合。',
+'edit-no-change'                   => 'テキストが変更されていないため、あなたの編集は反映されませんでした。',
+'edit-already-exists'              => '新しいページを作成することはできませんでした。
+そのページは、すでに存在しています。',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => '警告：このページは条件文関数の呼び出し負荷が高過ぎます。
@@ -1072,6 +1076,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rightslogtext'  => '以下は利用者の権限変更の一覧です。',
 'rightslogentry' => '$1 の権限を $2 から $3 へ変更しました。',
 'rightsnone'     => '（権限なし）',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'ページの編集',
 
 # Recent changes
 'nchanges'                          => '$1 回の更新',
@@ -1711,6 +1718,7 @@ $NEWPAGE
 'undeletebtn'                  => '復帰',
 'undeletelink'                 => '復帰',
 'undeletereset'                => 'リセット',
+'undeleteinvert'               => '全て選択',
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
 'undeletedrevisions'           => '$1 版を復帰しました。',
