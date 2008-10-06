@@ -740,7 +740,7 @@ L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
 'nocreate-loggedin'                => 'Non si dispone dei permessi necessari a creare nuove pagine.',
 'permissionserrors'                => 'Errore nei permessi',
 'permissionserrorstext'            => "Non si dispone dei permessi necessari ad eseguire l'azione richiesta, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:",
-'permissionserrorstext-withaction' => 'Non hai il permesso di fare $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',
+'permissionserrorstext-withaction' => 'Non si dispone dei permessi necessari per $2, per {{PLURAL:$1|il seguente motivo|i seguenti motivi}}:',
 'recreate-deleted-warn'            => "'''Attenzione: si sta per ricreare una pagina già cancellata in passato.'''
 
 Accertarsi che sia davvero opportuno continuare a modificare questa pagina.
@@ -1162,6 +1162,32 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'rightslogtext'  => 'Di seguito sono elencate le modifiche ai diritti assegnati agli utenti.',
 'rightslogentry' => "ha modificato l'appartenenza di $1 dal gruppo $2 al gruppo $3",
 'rightsnone'     => '(nessuno)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'           => 'leggere questa pagina',
+'action-edit'           => 'modificare questa pagina',
+'action-createpage'     => 'creare pagine',
+'action-createtalk'     => 'creare pagine di discussione',
+'action-createaccount'  => 'creare questo account utente',
+'action-minoredit'      => 'segnare questa modifica come minore',
+'action-move'           => 'spostare questa pagina',
+'action-move-subpages'  => 'spostare questa pagina e le relative sottopagine',
+'action-upload'         => 'caricare questo file',
+'action-reupload'       => 'sovrascrivere questo file esistente',
+'action-upload_by_url'  => 'caricare questo file da un indirizzo URL',
+'action-writeapi'       => 'usare le API in scrittura',
+'action-delete'         => 'cancellare questa pagina',
+'action-deleterevision' => 'cancellare questa versione',
+'action-deletedhistory' => 'visualizzare la cronologia cancellata di questa pagina',
+'action-browsearchive'  => 'cercare pagine cancellate',
+'action-undelete'       => 'recuperare questa pagina',
+'action-suppressionlog' => 'visionare questo log privato',
+'action-block'          => 'bloccare questo utente in scrittura',
+'action-protect'        => 'modificare i livelli di protezione per questa pagina',
+'action-import'         => "importare questa pagina da un'altra wiki",
+'action-mergehistory'   => 'unire la cronologia di questa pagina',
+'action-userrights'     => 'modificare tutti i diritti degli utenti',
+'action-siteadmin'      => 'bloccare e sbloccare il database',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
@@ -2826,5 +2852,9 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'nuke-submit-user'   => 'Vai',
 'nuke-submit-delete' => 'Cancella la selezione',
 'right-nuke'         => 'Cancella pagine in massa',
+
+# Special:DismissNotice
+'dismissnotice'         => 'Nascondi site notice',
+'dismissnotice-nologin' => 'È necessario [[Special:UserLogin|effettuare il login]] per nascondere il site notice.',
 
 );

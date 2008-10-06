@@ -1286,6 +1286,13 @@ $2',
 'rightslogentry' => 'зьменена прыналежнасьць $1 з групы $2 да $3',
 'rightsnone'     => '(няма)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit'           => 'рэдагаваньне гэтай старонкі',
+'action-createpage'     => 'стварэньне старонак',
+'action-upload'         => 'загрузку гэтага файла',
+'action-delete'         => 'выдаленьне гэтай старонкі',
+'action-deleterevision' => 'выдаленьне гэтай вэрсіі',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}',
 'recentchanges'                     => 'Апошнія зьмены',

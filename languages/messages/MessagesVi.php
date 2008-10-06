@@ -1158,6 +1158,40 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'rightslogentry' => 'đã đổi cấp của thành viên $1 từ $2 thành $3',
 'rightsnone'     => '(không có)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'đọc trang này',
+'action-edit'                 => 'sửa đổi trang này',
+'action-createpage'           => 'tạo trang',
+'action-createtalk'           => 'tạo trang thảo luận',
+'action-createaccount'        => 'mở tài khoản này',
+'action-minoredit'            => 'đánh dấu đây là sửa đổi nhỏ',
+'action-move'                 => 'di chuyển trang này',
+'action-move-subpages'        => 'di chuyển trang này và các trang con',
+'action-upload'               => 'tải tập tin này lên',
+'action-reupload'             => 'ghi đè lên tập tin có sẵn này',
+'action-reupload-shared'      => 'ghi đè lên tập tin đang thuộc kho tập tin chung này',
+'action-upload_by_url'        => 'tải lên tập tin này từ địa chỉ URL',
+'action-writeapi'             => 'dùng API để sửa đổi',
+'action-delete'               => 'xóa trang này',
+'action-deleterevision'       => 'xóa phiên bản này',
+'action-deletedhistory'       => 'xem các phiên bản đã bị xóa của trang này',
+'action-browsearchive'        => 'tìm trong các trang đã bị xóa',
+'action-undelete'             => 'phục hồi trang này',
+'action-suppressrevision'     => 'duyệt và phục hồi phiên bản bị giấu này',
+'action-suppressionlog'       => 'xem nhật trình ẩn giấu này',
+'action-block'                => 'cấm không cho người dùng này sửa đổi',
+'action-protect'              => 'thay đổi mức khóa của trang này',
+'action-import'               => 'nhập trang này từ wiki khác',
+'action-importupload'         => 'nhập trang này bằng cách tải lên tập tin',
+'action-patrol'               => 'đánh dấu đã tuần tra vào sửa đổi của người khác',
+'action-autopatrol'           => 'tự động đánh dấu đã tuần tra vào sửa đổi của bạn',
+'action-unwatchedpages'       => 'xem danh sách các trang chưa được theo dõi',
+'action-trackback'            => 'gửi TrackBack',
+'action-mergehistory'         => 'hợp nhất lịch sử của trang này',
+'action-userrights'           => 'sửa đổi mọi quyền người dùng',
+'action-userrights-interwiki' => 'sửa đổi quyền của người dùng tại wiki khác',
+'action-siteadmin'            => 'khóa hoặc mở khóa cơ sở dữ liệu',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',
 'recentchanges'                     => 'Thay đổi gần đây',
@@ -2072,6 +2106,7 @@ Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để
 'imagetypemismatch'       => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
 'imageinvalidfilename'    => 'Tên tập tin đích không hợp lệ',
 'fix-double-redirects'    => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
+'move-leave-redirect'     => 'Để lại trang đổi hướng',
 
 # Export
 'export'            => 'Xuất các trang',
@@ -2828,5 +2863,9 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'nuke-submit-user'   => 'Tìm kiếm',
 'nuke-submit-delete' => 'Xóa lựa chọn',
 'right-nuke'         => 'Xóa trang hàng loạt',
+
+# Special:DismissNotice
+'dismissnotice'         => 'Bỏ qua thông báo ở đầu các trang',
+'dismissnotice-nologin' => 'Bạn cần phải [[Special:UserLogin|đăng nhập]] để bỏ qua thông báo ở đầu các trang.',
 
 );

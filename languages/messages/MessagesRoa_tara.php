@@ -154,6 +154,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sus a {{SITENAME}}',
 'copyrightpagename'    => '{{SITENAME}} copyright',
+'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Fatte de osce a die',
 'disclaimers'          => 'No ne sacce ninde',
 'edithelp'             => "Cangianne l'ajute",
@@ -219,6 +220,7 @@ $messages = array(
 'yourpasswordagain'       => "Scrive 'a passuord notra vote:",
 'login'                   => 'Tràse',
 'nav-login-createaccount' => 'Tràse / Reggistrete',
+'loginprompt'             => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
 'userlogin'               => 'Tràse / Reggistrete',
 'logout'                  => 'Isse',
 'userlogout'              => 'Isse',
@@ -241,9 +243,15 @@ Prueve n'otra vote.",
 'resetpass_forbidden' => "Le Passuord non ge ponne cangià sus 'a {{SITENAME}}",
 
 # Edit page toolbar
+'bold_sample'    => 'Teste grascette',
+'bold_tip'       => 'Teste grascette',
+'italic_sample'  => 'Teste corsive',
 'italic_tip'     => 'Scritte in corsivo',
+'link_sample'    => "Titele d'u collegamende",
 'extlink_sample' => "http://www.esembie.it Nome d'u collegamende",
 'math_tip'       => 'Formula matemateche (LaTeX)',
+'nowiki_sample'  => "Mitte 'u teste non formattate aqquà",
+'nowiki_tip'     => "No scè penzanne 'a formattazione de Uicchi",
 'image_sample'   => 'Esembie.jpg',
 'media_sample'   => 'Esembie.ogg',
 'media_tip'      => 'Fail de collegamende',
@@ -282,6 +290,8 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'page_first'          => 'prime',
 'page_last'           => 'urteme',
 'deletedrev'          => '[scangellete]',
+'histfirst'           => 'Prime',
+'histlast'            => 'Urteme',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
@@ -352,8 +362,10 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rc-change-size'  => '$1',
 
 # Recent changes linked
+'recentchangeslinked'          => 'Cangiaminde culleghete',
 'recentchangeslinked-title'    => 'Cangiaminde culleghete a "$1"',
 'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-noresult' => "Non g'onne state fatte cangiaminde sus 'a sta pàgene jndr'à 'u periede selezionete.",
 
 # Upload
 'upload'        => "Careche 'u fail",
@@ -374,6 +386,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'filehist-filesize'   => "Dimenzione d'u fail",
 'filehist-comment'    => 'Commende',
 'imagelinks'          => 'Collegaminde',
+'noimage-linktext'    => 'carechene une',
 
 # File reversion
 'filerevert-backlink' => '← $1',
@@ -430,6 +443,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 
 # Watchlist
 'watchlistfor'         => "(pe '''$1''')",
+'wlshowlast'           => "Vide l'urteme $1 ore $2 sciurne $3",
 'watchlist-show-bots'  => 'Fà vedè le cangiaminde de le bot',
 'watchlist-hide-bots'  => 'Scunne le cangiaminde de le bot',
 'watchlist-show-own'   => 'Fà vedè le cangiaminde mie',
@@ -468,6 +482,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'restriction-move' => 'Spuèste',
 
 # Undelete
+'undeletebtn'            => 'Repristine',
 'undelete-search-submit' => 'Cirche',
 
 # Namespace form on various pages
@@ -478,14 +493,18 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Contributions
 'contributions' => "Condrebbute de l'utende",
 'mycontris'     => 'Condrebbute mie',
+'contribsub2'   => 'Pe $1 ($2)',
 'uctop'         => '(sus)',
 
 'sp-contributions-blocklog' => 'Archivije de le Bloccaminde',
 
 # What links here
+'whatlinkshere'          => 'Appondene aqquà',
 'whatlinkshere-title'    => 'Pàggene ca appondene a "$1"',
 'whatlinkshere-backlink' => '← $1',
 'nolinkshere'            => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
+'whatlinkshere-prev'     => '{{PLURAL:$1|apprime|apprime $1}}',
+'whatlinkshere-next'     => '{{PLURAL:$1|apprisse|apprisse $1}}',
 'whatlinkshere-links'    => '← collegaminde',
 
 # Block/unblock
@@ -533,12 +552,15 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-move'                 => 'Spuèste sta pàgene',
 'tooltip-search'                  => 'Cirche {{SITENAME}}',
 'tooltip-n-mainpage'              => "Vè vide 'a pàgene prengepàle",
+'tooltip-n-recentchanges'         => "'A liste de le cangiaminde recende jndr'à uicchi.",
 'tooltip-n-randompage'            => "Careche 'na pàgene a uecchje",
+'tooltip-t-emailuser'             => "Manne n'e-mail a stu utende",
 'tooltip-t-upload'                => 'Careche le fail',
 'tooltip-t-specialpages'          => 'Liste de tutte le pàggene speciale',
 'tooltip-ca-nstab-user'           => "Vide 'a pàgene de l'utende",
 'tooltip-ca-nstab-project'        => "Vide 'a pàgene d'u proggette",
 'tooltip-ca-nstab-template'       => "Fà vedè 'u template",
+'tooltip-minoredit'               => "Signe cumme a 'nu cangiaminde stuèdeche",
 'tooltip-save'                    => 'Reggistre le cangiaminde ca è fatte',
 'tooltip-compareselectedversions' => "Vide le differenze 'mbrà le doje versiune selezionete de sta pàgene.",
 
@@ -547,8 +569,9 @@ Puè vedè sulamende 'u sorgende.",
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
 # Media information
-'file-info-size' => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
-'file-nohires'   => "<small>Manghe 'a risoluzione ierta.</small>",
+'file-info-size'       => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
+'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",
+'show-big-image-thumb' => '<small>Dimenziune de sta andeprime: $1 × $2 pixels</small>',
 
 # Special:NewImages
 'ilsubmit' => 'Cirche',

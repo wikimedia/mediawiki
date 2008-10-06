@@ -1500,6 +1500,7 @@ $2',
 'action-mergehistory'         => 'دمج تاريخ هذه الصفحة',
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
+'action-siteadmin'            => 'غلق أو رفع غلق قاعدة البيانات',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|تغيير|تغييران|$1 تغييرات|$1 تغيير|$1 تغييرا}}',
@@ -2452,6 +2453,7 @@ $1',
 'imagetypemismatch'       => 'امتداد الملف الجديد لا يطابق نوعه',
 'imageinvalidfilename'    => 'اسم الملف الهدف غير صحيح',
 'fix-double-redirects'    => 'حدث أي تحويلات تشير إلى العنوان الأصلي',
+'move-leave-redirect'     => 'اترك تحويلة خلفك',
 
 # Export
 'export'            => 'تصدير صفحات',
@@ -3334,5 +3336,9 @@ $1',
 'nuke-submit-user'   => 'اذهب',
 'nuke-submit-delete' => 'حذف المختار',
 'right-nuke'         => 'حذف الصفحات كميا',
+
+# Special:DismissNotice
+'dismissnotice'         => 'إغلاق إعلان الموقع',
+'dismissnotice-nologin' => 'يجب أن تكون [[Special:UserLogin|مسجل الدخول]] لإغلاق إعلان الموقع.',
 
 );

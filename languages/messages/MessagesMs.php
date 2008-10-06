@@ -1195,6 +1195,40 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
 'rightsnone'     => '(tiada)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'membaca laman ini',
+'action-edit'                 => 'menyunting laman ini',
+'action-createpage'           => 'mencipta laman',
+'action-createtalk'           => 'mencipta laman perbincangan',
+'action-createaccount'        => 'mencipta akaun pengguna ini',
+'action-minoredit'            => 'menanda suntingan ini sebagai suntingan kecil',
+'action-move'                 => 'memindahkan laman ini',
+'action-move-subpages'        => 'memindahkan laman ini dan sublaman-sublamannya',
+'action-upload'               => 'memuat naik fail ini',
+'action-reupload'             => 'menulis ganti fail ini',
+'action-reupload-shared'      => 'mengatasi fail dari gedung kongsi ini',
+'action-upload_by_url'        => 'memuat naik fail ini dari alamat URL',
+'action-writeapi'             => 'menggunakan API tulis',
+'action-delete'               => 'menghapuskan laman ini',
+'action-deleterevision'       => 'menghapuskan semakan ini',
+'action-deletedhistory'       => 'melihat sejarah yang telah dihapuskan bagi laman ini',
+'action-browsearchive'        => 'menggelintar laman-laman yang telah dihapuskan',
+'action-undelete'             => 'menyahhapuskan laman ini',
+'action-suppressrevision'     => 'menyemak semula dan memulihkan semakan tersembunyi ini',
+'action-suppressionlog'       => 'melihat log sulit ini',
+'action-block'                => 'menyekat pengguna ini daripada menyunting',
+'action-protect'              => 'mengubah aras perlindungan bagi laman ini',
+'action-import'               => 'mengimport laman ini dari wiki lain',
+'action-importupload'         => 'mengimport laman ini dengan memuat naik fail',
+'action-patrol'               => 'menanda ronda suntingan orang lain',
+'action-autopatrol'           => 'menanda ronda suntingan anda sendiri',
+'action-unwatchedpages'       => 'melihat senarai laman tidak dipantau',
+'action-trackback'            => 'mengirim jejak balik',
+'action-mergehistory'         => 'menggabungkan sejarah laman ini',
+'action-userrights'           => 'mengubah semua hak pengguna',
+'action-userrights-interwiki' => 'mengubah hak pengguna dari wiki lain',
+'action-siteadmin'            => 'mengunci atau membuka kunci pangkalan data wiki ini',
+
 # Recent changes
 'nchanges'                          => '$1 perubahan',
 'recentchanges'                     => 'Perubahan terkini',
@@ -2094,6 +2128,7 @@ Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supa
 'imagetypemismatch'       => 'Sambungan baru fail tersebut tidak sepadan dengan jenisnya',
 'imageinvalidfilename'    => 'Nama fail imej sasaran tidak sah',
 'fix-double-redirects'    => 'Kemas kinikan semua lencongan yang menuju ke tajuk asal',
+'move-leave-redirect'     => 'Meninggalkan lencongan',
 
 # Export
 'export'            => 'Eksport laman',
@@ -2855,5 +2890,9 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'nuke-submit-user'   => 'Pergi',
 'nuke-submit-delete' => 'Hapus',
 'right-nuke'         => 'Menghapuskan laman secara pukal',
+
+# Special:DismissNotice
+'dismissnotice'         => 'Menyingkirkan notis tapak web',
+'dismissnotice-nologin' => 'Anda hendaklah [[Special:UserLogin|log masuk]] terlebih dahulu untuk menyingkirkan notis tapak web.',
 
 );

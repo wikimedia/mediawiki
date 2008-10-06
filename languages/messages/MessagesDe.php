@@ -819,7 +819,8 @@ Grund für die Sperre: $1',
 'nocreate-loggedin'                => 'Du hast keine Berechtigung, neue Seiten zu erstellen.',
 'permissionserrors'                => 'Berechtigungsfehler',
 'permissionserrorstext'            => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
+{{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'            => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -1236,6 +1237,40 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'rightslogtext'  => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry' => 'änderte die Benutzerrechte für „[[$1]]“ von „$2“ auf „$3“',
 'rightsnone'     => '(–)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => 'die Seite zu lesen',
+'action-edit'                 => 'die Seite zu bearbeiten',
+'action-createpage'           => 'Seiten zu erstellen',
+'action-createtalk'           => 'Diskussionsseiten zu erstellen',
+'action-createaccount'        => 'ein Benutzerkonto zu erstellen',
+'action-minoredit'            => 'diese Bearbeitung als klein zu markieren',
+'action-move'                 => 'die Seite zu verschieben',
+'action-move-subpages'        => 'diese Seite und zugehörige Unterseiten zu verschieben',
+'action-upload'               => 'Dateien hochzuladen',
+'action-reupload'             => 'die vorhandene Datei zu überschreiben',
+'action-reupload-shared'      => 'diese Datei aus dem gemeinsam genutzten Repositorium zu überschreiben',
+'action-upload_by_url'        => 'Dateien von einer Webadresse (URL) hochzuladen',
+'action-writeapi'             => 'die API mit Schreibzugriffen zu verwenden',
+'action-delete'               => 'Seiten zu löschen',
+'action-deleterevision'       => 'Versionen zu löschen',
+'action-deletedhistory'       => 'Liste der gelöschten Versionen zu sehen',
+'action-browsearchive'        => 'nach gelöschten Seiten zu suchen',
+'action-undelete'             => 'die Seite wiederherzustellen',
+'action-suppressrevision'     => 'die versteckte Version einzusehen und wiederherzustellen',
+'action-suppressionlog'       => 'das private Logbuch einzusehen',
+'action-block'                => 'den Benutzer zu sperren',
+'action-protect'              => 'den Schutzstatus von Seiten zu ändern',
+'action-import'               => 'Seiten aus einem anderen Wiki zu importieren',
+'action-importupload'         => 'Seiten über das Hochladen einer Datei zu importieren',
+'action-patrol'               => 'die Bearbeitungen andere Benutzer zu kontrollieren',
+'action-autopatrol'           => 'eigene Bearbeitungen als kontrolliert zu markieren',
+'action-unwatchedpages'       => 'die Liste der unbeobachteten Seiten einzusehen',
+'action-trackback'            => 'einen Trackback zu übertragen',
+'action-mergehistory'         => 'die Versionengeschichten von Seiten zu vereinen',
+'action-userrights'           => 'Benutzerrechte zu ändern',
+'action-userrights-interwiki' => 'die Rechte von Benutzern in anderen Wikis zu ändern',
+'action-siteadmin'            => 'die Datenbank zu sperren oder freizugeben',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|Änderung|Änderungen}}',
@@ -1863,7 +1898,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 'protect-cantedit'            => 'Du kannst die Sperre dieser Seite nicht ändern, da du keine Berechtigung zum Bearbeiten der Seite hast.',
 'protect-othertime'           => 'Andere Sperrdauer:',
 'protect-othertime-op'        => 'andere Sperrdauer',
-'protect-existing-expiry'     => 'Aktuelles Seitenschutzende: $1',
+'protect-existing-expiry'     => 'Aktuelles Seitenschutzende: $2, $3 Uhr',
 'protect-otherreason'         => 'Anderer/ergänzender Grund:',
 'protect-otherreason-op'      => 'anderer/ergänzender Grund',
 'protect-dropdown'            => '*Allgemeine Schutzgründe
@@ -1914,6 +1949,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletebtn'                  => 'Wiederherstellen',
 'undeletelink'                 => 'wiederherstellen',
 'undeletereset'                => 'Abbrechen',
+'undeleteinvert'               => 'Auswahl umkehren',
 'undeletecomment'              => 'Begründung:',
 'undeletedarticle'             => 'hat „[[$1]]“ wiederhergestellt',
 'undeletedrevisions'           => '{{PLURAL:$1|1 Version wurde|$1 Versionen wurden}} wiederhergestellt',
@@ -2148,6 +2184,7 @@ Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die S
 'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
 'imageinvalidfilename'    => 'Der Ziel-Dateiname ist ungültig',
 'fix-double-redirects'    => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
+'move-leave-redirect'     => 'Weiterleitung erstellen',
 
 # Export
 'export'            => 'Seiten exportieren',
@@ -2920,5 +2957,9 @@ gib einen Kommentar ein und drücke auf den Löschknopf.',
 'nuke-submit-user'   => 'Hole Liste',
 'nuke-submit-delete' => 'Löschen',
 'right-nuke'         => 'Massenlöschung von Seiten',
+
+# Special:DismissNotice
+'dismissnotice'         => 'Sitenotice schließen',
+'dismissnotice-nologin' => 'Du musst [[Special:UserLogin|angemeldet]] sein, um die Sitenotice schließen zu können.',
 
 );

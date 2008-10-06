@@ -201,7 +201,8 @@ Grund für die Sperre: $1',
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:UserLogin|anmelden]].',
 'nocreate-loggedin'                => 'Sie haben keine Berechtigung, neue Seiten zu erstellen.',
 'permissionserrorstext'            => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, die Aktion „$2“ auszuführen, {{PLURAL:$1|Grund|Gründe}}:',
+'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, $2.
+{{PLURAL:$1|Grund|Gründe}}:',
 'recreate-deleted-warn'            => "'''Achtung: Sie erstellen eine Seite, die bereits früher gelöscht wurde.'''
 
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
@@ -524,5 +525,8 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 'nuke-list'  => 'Die folgenden Seiten wurden von [[Special:Contributions/$1|$1]] erzeugt;
 geben Sie einen Kommentar ein und drücken Sie auf den Löschknopf.',
 'nuke-tools' => 'Dieses Werkzeug ermöglicht die Massenlöschung von Seiten, die von einer IP-Adresse oder einem Benutzer angelegt wurden. Geben Sie die IP-Adresse/den Benutzernamen ein, um eine Liste zu erhalten:',
+
+# Special:DismissNotice
+'dismissnotice-nologin' => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um die Sitenotice schließen zu können.',
 
 );

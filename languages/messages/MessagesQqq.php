@@ -608,7 +608,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'hiddencategories'                 => "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.",
 'edittools'                        => 'This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
-* $2 is one of the right-* messages.
+* $2 is one of the action-* messages (for example {{msg|action-edit}}).
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-deleted-warn'            => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
@@ -971,6 +971,40 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 
 {{Identical|None}}',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'                 => '{{Doc-action}}',
+'action-edit'                 => '{{Doc-action}}',
+'action-createpage'           => '{{Doc-action}}',
+'action-createtalk'           => '{{Doc-action}}',
+'action-createaccount'        => '{{Doc-action}}',
+'action-minoredit'            => '{{Doc-action}}',
+'action-move'                 => '{{Doc-action}}',
+'action-move-subpages'        => '{{Doc-action}}',
+'action-upload'               => '{{Doc-action}}',
+'action-reupload'             => '{{Doc-action}}',
+'action-reupload-shared'      => '{{Doc-action}}',
+'action-upload_by_url'        => '{{Doc-action}}',
+'action-writeapi'             => '{{Doc-action}}',
+'action-delete'               => '{{Doc-action}}',
+'action-deleterevision'       => '{{Doc-action}}',
+'action-deletedhistory'       => '{{Doc-action}}',
+'action-browsearchive'        => '{{Doc-action}}',
+'action-undelete'             => '{{Doc-action}}',
+'action-suppressrevision'     => '{{Doc-action}}',
+'action-suppressionlog'       => '{{Doc-action}}',
+'action-block'                => '{{Doc-action}}',
+'action-protect'              => '{{Doc-action}}',
+'action-import'               => '{{Doc-action}}',
+'action-importupload'         => '{{Doc-action}}',
+'action-patrol'               => '{{Doc-action}}',
+'action-autopatrol'           => '{{Doc-action}}',
+'action-unwatchedpages'       => '{{Doc-action}}',
+'action-trackback'            => '{{Doc-action}}',
+'action-mergehistory'         => '{{Doc-action}}',
+'action-userrights'           => '{{Doc-action}}',
+'action-userrights-interwiki' => '{{Doc-action}}',
+'action-siteadmin'            => '{{Doc-action}}',
+
 # Recent changes
 'nchanges'             => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
 'recentchanges'        => 'The text of the link in sidebar going to the special page [[Special:RecentChanges]]. Also the page title of that special page.
@@ -1130,8 +1164,8 @@ Example: [[:Image:Addon-icn.png]]',
 'shareduploadduplicate-linktext' => '{{Identical|Another file}}',
 'shareduploadconflict'           => '$1 is contents of message shareduploadconflict-linktext (i.e. "another file")',
 'shareduploadconflict-linktext'  => '{{Identical|Another file}}',
-'noimage'                        => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}.',
-'noimage-linktext'               => 'This message is used as a variable in {{msg|noimage}}.',
+'noimage'                        => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
+'noimage-linktext'               => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
 'imagepage-searchdupe'           => 'This message is used as text on a link from image pages to [[Special:FileDuplicateSearch]].',
 
 # File reversion
@@ -1501,7 +1535,9 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 {{Identical|Other time}}',
 'protect-existing-expiry' => 'Shows the existing expiry time in the drop down menu of the protection form ([http://translatewiki.net/w/i.php?title=User:Raymond/test&action=unprotect example])
 
-* $1: date and time of the existing expiry time',
+* $1: date and time of the existing expiry time (kept for backward compatibility purposes)
+* $2: date of the existing expiry time
+* $3: time of the existing expiry time',
 'protect-otherreason'     => 'Shown on the page protection form as label for the following input field (text)
 {{Identical|Other/additional reason}}',
 'protect-otherreason-op'  => 'Shown on the page protection form in the drop down menu

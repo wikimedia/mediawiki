@@ -365,6 +365,19 @@ Kò gbọ́dọ̀ dín ju {{PLURAL:$1|àmìlẹ́tà kan|àmìlẹ́tà $1}} l�
 Á ṣe àkọsílẹ̀ ojúọ̀nà IP yín ninu ìwé àtúnṣe ojúewé yìí.",
 'summary-preview'        => 'Àyẹ̀wò àkótán',
 'blockedtitle'           => 'Ìdènà sí oníṣe',
+'blockedtext'            => "<big>'''A ti dínà orúkọ oníṣe tàbí ojúọ̀nà IP yín.'''</big>
+
+$1 ni ó ṣe ìdínà.
+Ìdí tó fun ni ''$2''.
+
+* Ìbẹ̀rẹ̀ ìdínà: $8
+* Ìparí ìdínà: $6
+* Ẹni tí a fẹ́ dínà: $7
+
+Ẹ ṣ'èránṣẹ́ sí $1 tàbí [[{{MediaWiki:Grouppage-sysop}}|alámùójútó]] mìíràn láti fọ̀rọ̀wérọ̀ lórí ìdínà ọ̀ún.
+Ẹ kò le è 'ránṣẹ́ sí oníṣe yìí pẹ̀lú e-mail' àyàfi tí ojúọ̀nà e-mail tó dájú wà ní [[Special:Preferences|àwọn ìfẹ́ràn àpamọ́]] yín tí wọn kò sì ti dínà yín láti lò ó.
+Ojúọ̀nà IP yín lọ́wọ́lọ́wọ́ ni $3, bẹ́ ẹ̀ sì ni ID fún ìdínà yín ni #$5.
+Ẹ jọ̀wọ́ ẹ fi gbogbo ẹ̀kúnrẹ́rẹ́ òkè yìí kún ìbérè tí ẹ bá ṣe.",
 'whitelistedittitle'     => "Ìwọlé ṣe dandan láti ṣ'àtúnṣe",
 'whitelistedittext'      => "Ẹ gbọ́dọ̀ $1 láti ṣ'àtúnṣe àwọn ojúewé.",
 'confirmedittitle'       => "Ìmúdájú E-mail ṣe dandan láti ṣ'àtúnṣe",
@@ -501,6 +514,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'rightslog' => 'Àwọn ẹ̀tọ́ oníṣe',
 
 # Recent changes
+'nchanges'          => '{{PLURAL:$1|àtúnṣe|àwọn àtúnṣe}} $1',
 'recentchanges'     => 'Àwọn àtúnṣe tuntun',
 'rcnote'            => "Lábẹ́ yìí ni {{PLURAL:$1|àtúnṣe '''kan'''|àwọn àtúnṣe '''$1'''}} tó kẹ̀yìn ní ọjọ́ '''$2''' sẹ́yìn, ní ago $5, ọjọ́ $4.",
 'rclistfrom'        => 'Àfihàn àwọn àtúnṣe tuntun nípa bíbẹ̀rẹ̀ láti $1',
@@ -545,6 +559,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'uploadedimage'     => 'ti ru "[[$1]]" s\'ókè',
 
 # Special:ImageList
+'imagelist'      => 'Àkójọ faili',
 'imagelist_name' => 'Orúkọ',
 'imagelist_user' => 'Oníṣe',
 
@@ -558,6 +573,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'filehist-comment'  => 'Àwísọ',
 'imagelinks'        => 'Àwọn ìjápọ̀',
 'linkstoimage'      => '{{PLURAL:$1|Ojúewé yí|$1 Àwọn ojúewé yí}} jápọ̀ mọ́ àpò yí:',
+'nolinkstoimage'    => 'Kò sí ojúewé tó jápọ̀ mọ́ faili yìí.',
 'sharedupload'      => 'Faili yìí jẹ́ ìrùsókè pínpín pẹ̀lú àwọn iṣẹ́owọ́ mìíràn tí wọ́n n lòó.',
 
 # File deletion
@@ -636,6 +652,7 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 'watchthispage'        => "M'ójútó ojúewé yi",
 'unwatch'              => "Já'wọ́ ìmójútó",
 'unwatchthispage'      => "Já'wọ́ ìmójútó ojúewé yi",
+'watchlist-details'    => '{{PLURAL:$1|Ojúewé $1|Àwọn ojúewé $1}} ló wà nínú ìmójútó yín, tí a kò bá ka àwọn ojúewé ọ̀rọ̀.',
 'wlshowlast'           => 'Áfihàn wákàtí $1 sẹ́yìn ọjọ́ $2 sẹ́yìn $3',
 'watchlist-hide-bots'  => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe bot',
 'watchlist-hide-own'   => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe mi',
@@ -806,6 +823,7 @@ A óò ṣ'àkójọ àwọn àtúnṣe ọjọ́wajú sí ojúewé yìí àti o
 'confirmemail_subject'  => 'Ìmúdájú ojúọ̀nà e-mail fún {{SITENAME}}',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'Ẹ wo àwon àtúnṣe tóbaamu',
 'watchlisttools-edit' => 'Ìwò àti àtúnṣe ìmójútó',
 
 # Special:SpecialPages
