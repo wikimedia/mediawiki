@@ -1,10 +1,11 @@
 <?php
-/** Persian (فارسی)
+/** فارسی (فارسی)
  *
  * @ingroup Language
  * @file
  *
  * @author Behdarvandyani
+ * @author Huji
  * @author Huji
  * @author Huji <huji.huji at gmail.com>
  * @author Ladsgroup
@@ -316,6 +317,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'فرستادن رونوشت نامه‌های الکترونیکی که به دیگران ارسال می‌کنم به خودم.',
 'tog-diffonly'                => 'محتوای صفحه، زیر تفاوت نمایش داده نشود',
 'tog-showhiddencats'          => 'رده‌های پنهان را نمایش بده',
+'tog-noconvertlink'           => '',
 
 'underline-always'  => 'همیشه',
 'underline-never'   => 'هرگز',
@@ -389,6 +391,7 @@ $messages = array(
 'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
 'listingcontinuesabbrev'         => '(ادامه)',
 
+'linkprefix'        => '',
 'mainpagetext'      => 'نرم‌افزار ویکی با موفقیت نصب شد.',
 'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
 برای استفاده از نرم‌افزار ویکی کمک بگیرید.
@@ -508,12 +511,14 @@ $messages = array(
 'versionrequiredtext' => 'برای دیدن این صفحه به نسخهٔ $1 از نرم‌افزار مدیاویکی نیاز دارید. برای اطلاع از نسخهٔ نرم‌افزار نصب شده در این ویکی به [[Special:Version|این صفحه]] مراجعه کنید.',
 
 'ok'                      => 'باشد',
+'pagetitle'               => '',
 'retrievedfrom'           => 'برگرفته از «$1»',
 'youhavenewmessages'      => '$1 دارید ($2).',
 'newmessageslink'         => 'پیامهای جدیدی',
 'newmessagesdifflink'     => 'تفاوت با نسخهٔ پیش از آخر',
 'youhavenewmessagesmulti' => 'پیغامهای جدیدی در $1 دارید.',
 'editsection'             => 'ویرایش',
+'editsection-brackets'    => '',
 'editold'                 => 'ویرایش',
 'viewsourceold'           => 'مشاهدهٔ منبع',
 'editsectionhint'         => 'ویرایش بخش: $1',
@@ -530,6 +535,8 @@ $messages = array(
 'site-atom-feed'          => 'خبرخوان Atom برای $1',
 'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
 'page-atom-feed'          => 'خبرخوان Atom برای «$1»',
+'feed-atom'               => '',
+'feed-rss'                => '',
 'sitenotice_close'        => 'بستن',
 'red-link-title'          => '$1 (هنوز ایجاد نشده)',
 
@@ -795,6 +802,7 @@ $2',
 لطفاً این شماره را در هر درخواستی که در این باره مطرح می‌کنید قید کنید.",
 'autoblockedtext'                  => "دسترسی نشانی اینترنتی (IP) شما قطع شده‌است، چرا که این نشانی اینترنتی توسط یک کاربر استفاده می‌شده که دسترسی او توسط $1 قطع گردیده‌است.
 علت ذکر شده چنین است:
+
 
 :''$2''
 
@@ -1067,6 +1075,7 @@ $2',
 'diff-src'                => 'منبع',
 'diff-withdestination'    => 'با مقصد $1',
 'diff-with'               => '&#32;با $1 $2',
+'diff-with-additional'    => '',
 'diff-with-final'         => '&#32;و $1 $2',
 'diff-width'              => 'پهنا',
 'diff-height'             => 'بلندی',
@@ -1218,24 +1227,25 @@ $2',
 'files'                    => 'پرونده‌ها',
 
 # User rights
-'userrights'                  => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'      => 'مدیریت گروه‌های کاربری',
-'userrights-user-editname'    => 'یک نام کاربری وارد کنید:',
-'editusergroup'               => 'ویرایش گروه‌های کاربری',
-'editinguser'                 => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'ویرایش گروه‌های کاربری',
-'saveusergroups'              => 'ثبت گروه‌های کاربری',
-'userrights-groupsmember'     => 'عضو:',
-'userrights-groups-help'      => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
+'userrights'                     => 'مدیریت اختیارات کاربر', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'         => 'مدیریت گروه‌های کاربری',
+'userrights-user-editname'       => 'یک نام کاربری وارد کنید:',
+'editusergroup'                  => 'ویرایش گروه‌های کاربری',
+'editinguser'                    => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => 'ویرایش گروه‌های کاربری',
+'saveusergroups'                 => 'ثبت گروه‌های کاربری',
+'userrights-groupsmember'        => 'عضو:',
+'userrights-groups-help'         => 'شما می‌توانید گروه‌هایی که کاربر در آن قرار دارد را تغییر دهید.
 یک جعبه علامت خورده به این معنی است که کاربر در آن گروه قرار دارد.
 یک جعبه خالی به این معنی است که کاربر در آن گروه قرار ندارد.',
-'userrights-reason'           => 'علت تغییر:',
-'userrights-no-interwiki'     => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
-'userrights-nodatabase'       => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
-'userrights-nologin'          => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:UserLogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
-'userrights-notallowed'       => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
-'userrights-changeable-col'   => 'گروه‌هایی که می‌توانید تغییر دهید',
-'userrights-unchangeable-col' => 'گروه‌هایی که نمی‌توانید تغییر دهید',
+'userrights-reason'              => 'علت تغییر:',
+'userrights-no-interwiki'        => 'شما اجازه تغییر اختیارات کاربران دیگر ویکی‌ها را ندارید.',
+'userrights-nodatabase'          => 'پایگاه داده $1 وجود ندارد یا محلی نیست.',
+'userrights-nologin'             => 'شما باید با یک حساب کاربری دارای اختیار مدیریتی [[Special:UserLogin|به سیستم وارد شوید]] تا بتوانید اختیارات کاربران را تعیین کنید.',
+'userrights-notallowed'          => 'حساب کاربری شما اجازه تغییر اختیارات کاربری را ندارد.',
+'userrights-changeable-col'      => 'گروه‌هایی که می‌توانید تغییر دهید',
+'userrights-unchangeable-col'    => 'گروه‌هایی که نمی‌توانید تغییر دهید',
+'userrights-irreversible-marker' => '',
 
 # Groups
 'group'               => 'گروه:',
@@ -1320,6 +1330,40 @@ $2',
 'rightslogentry' => 'عضویت $1 از گروه $2 به $3 تغییر داده شد.',
 'rightsnone'     => '(هیچ)',
 
+# Associated actions - in the sentence \"You do not have permission to X\"
+'action-read'                 => 'خواندن این صفحه',
+'action-edit'                 => 'ویرایش این صفحه',
+'action-createpage'           => 'ایجاد صفحه',
+'action-createtalk'           => 'ایجاد صفحه‌های بحث',
+'action-createaccount'        => 'ایجاد این حساب کاربری',
+'action-minoredit'            => 'علامت زدن این ویرایش به عنوان جزئی',
+'action-move'                 => 'انتقال این صفحه',
+'action-move-subpages'        => 'انتقال این صفحه و زیرصفحه‌های آن',
+'action-upload'               => 'بارگذاری این پرونده',
+'action-reupload'             => 'نوشتن روی این پرونده موجود',
+'action-reupload-shared'      => 'باطل کردن این پرونده روی یک مخزن مشترک',
+'action-upload_by_url'        => 'بارگذاری این پرونده از یک نشانی اینترنتی',
+'action-writeapi'             => 'استفاده از API نوشتن',
+'action-delete'               => 'حذف این صفحه',
+'action-deleterevision'       => 'حذف این نسخه',
+'action-deletedhistory'       => 'مشاهدهٔ تاریخچهٔ حذف شدهٔ این صفحه',
+'action-browsearchive'        => 'جستجوی صفحه‌های حذف شده',
+'action-undelete'             => 'احیای این صفحه',
+'action-suppressrevision'     => 'مشاهده و احیای ویرایش‌های حذف شده',
+'action-suppressionlog'       => 'مشاهدهٔ این سیاههٔ خصوصی',
+'action-block'                => 'قطع دسترسی این کاربر برای ویرایش',
+'action-protect'              => 'تغییر سطح محافظت از این صفحه',
+'action-import'               => 'وارد کردن این صفحه از یک ویکی دیگر',
+'action-importupload'         => 'وارد کردن این صفحه از طریق بارگذاری پرونده',
+'action-patrol'               => 'علامت زدن ویرایش دیگران به عنوان گشت خورده',
+'action-autopatrol'           => 'علامت زدن ویرایش خودتان به عنوان گشت خورده',
+'action-unwatchedpages'       => 'مشاهدهٔ صفحه‌های پی‌گیری نشده',
+'action-trackback'            => 'ثبت یک بازتاب',
+'action-mergehistory'         => 'ادغام تاریخچهٔ این صفحه',
+'action-userrights'           => 'ویرایش همهٔ اختیارات کاربری',
+'action-userrights-interwiki' => 'ویرایش اختیارات کاربری کاربران یک ویکی دیگر',
+'action-siteadmin'            => 'قفل کردن و باز کردن پایگاه داده',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',
 'recentchanges'                     => 'تغییرات اخیر',
@@ -1347,6 +1391,7 @@ $2',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|کاربر|کاربر}} پی‌گیری‌کننده]',
 'rc_categories'                     => 'محدود به رده‌ها بشود (بین رده‌ها نویسهٔ | را قرار دهید)',
 'rc_categories_any'                 => 'هر کدام',
+'rc-change-size'                    => '',
 'newsectionsummary'                 => '/* $1 */ بخش تازه',
 
 # Recent changes linked
@@ -1441,6 +1486,7 @@ $2',
 سیاهه حذف مربوط به این پرونده در زیر آمده است:",
 'filename-bad-prefix'         => "نام پرونده‌ای که بارگذاری می‌کنید با '''$1''' آغاز می‌شود که یک پیشوند مخصوص تصاویر ثبت شده توسط دوربین‌های دیجیتال است.
 لطفاً نامی بهتر برای پرونده برگزینید.",
+'filename-prefix-blacklist'   => '',
 
 'upload-proto-error'      => 'قرارداد نادرست',
 'upload-proto-error-text' => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
@@ -1745,6 +1791,7 @@ $2',
 'listgrouprights-rights'          => 'دسترسی‌ها',
 'listgrouprights-helppage'        => 'Help:دسترسی‌های گروهی',
 'listgrouprights-members'         => '(فهرست اعضا)',
+'listgrouprights-right-display'   => '',
 'listgrouprights-addgroup'        => 'می‌تواند این {{PLURAL:$2|گروه|گروه‌ها}} را اضافه کند: $1',
 'listgrouprights-removegroup'     => 'می‌تواند این {{PLURAL:$2|گروه|گروه‌ها}} را حذف کند: $1',
 'listgrouprights-addgroup-all'    => 'می‌تواند تمام گروه‌ها را اضافه کند',
@@ -1919,6 +1966,7 @@ $NEWPAGE
 'movedarticleprotection'      => 'تنظیمات محافظت را از «[[$2]]» به «[[$1]]» منتقل کرد',
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
 'prot_1movedto2'              => '$1 به $2 منتقل شد',
+'protect-backlink'            => '',
 'protect-legend'              => 'تأیید حفاظت',
 'protectcomment'              => 'دلیل محافظت',
 'protectexpiry'               => 'زمان سرآمدن:',
@@ -2039,11 +2087,13 @@ $1',
 'sp-contributions-search'        => 'جستجوی مشارکت‌ها',
 'sp-contributions-username'      => 'نشانی آی‌پی یا نام کاربری:',
 'sp-contributions-submit'        => 'جستجو',
+'sp-contributions-explain'       => '',
 
 # What links here
 'whatlinkshere'            => 'پیوندهای به این صفحه',
 'whatlinkshere-title'      => 'صفحه‌هایی که به «$1» پیوند دارند',
 'whatlinkshere-page'       => 'صفحه:',
+'whatlinkshere-backlink'   => '',
 'linkshere'                => "صفحه‌های زیر به '''[[:$1]]''' پیوند دارند:",
 'nolinkshere'              => "هیچ صفحه‌ای به '''[[:$1]]''' پیوند ندارد.",
 'nolinkshere-ns'           => "هیچ صفحه‌ای از فضای نام انتخاب شده به '''[[:$1]]''' پیوند ندارد.",
@@ -2146,6 +2196,7 @@ $1',
 'proxyblocker-disabled'           => 'این عملکرد غیرفعال شده‌است.',
 'proxyblockreason'                => 'نشانیIP شما بسته شده است چون یک پیشکار (proxy) باز است. لطفاً با تأمین‌کنندهٔ اینترنت خود تماس بگیرید و آنها را از این مشکل امنیتی جدی آگاه کنید.',
 'proxyblocksuccess'               => 'انجام شد.',
+'sorbs'                           => '',
 'sorbsreason'                     => 'نشانی اینترنتی (IP) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است.',
 'sorbs_create_account_reason'     => 'نشانی اینترنتی (IP) شما توسط DNSBL به عنوان یک پروکسی باز گزارش شده‌است. شما اجازهٔ ساختن حساب کاربری ندارید.',
 'cant-block-while-blocked'        => 'در مدتی که دسترسی شما بسته است نمی‌توانید دسترسی کاربران دیگر را قطع کنید.',
@@ -2172,6 +2223,7 @@ $1',
 
 # Move page
 'move-page'               => 'انتقال $1',
+'move-page-backlink'      => '',
 'move-page-legend'        => 'انتقال صفحه',
 'movepagetext'            => "با استفاده از فرم زیر نام صفحه تغییر خواهد کرد، و تمام تاریخچه‌اش به نام جدید منتقل خواهد شد.
 عنوان قدیمی تبدیل به یک صفحهٔ تغییر مسیر به عنوان جدید خواهد شد.
@@ -2229,6 +2281,7 @@ $1',
 'imagetypemismatch'       => 'پسوند پرونده جدید با نوع آن سازگار نیست',
 'imageinvalidfilename'    => 'نام پروندهٔ هدف غیر مجاز است',
 'fix-double-redirects'    => 'به روز کردن تمامی تغییر مسیرهایی که به مقالهٔ اصلی اشاره می‌کنند',
+'move-leave-redirect'     => 'بر جا گذاشتن یک تغییر مسیر',
 
 # Export
 'export'            => 'صدور صفحه‌ها',
@@ -2363,8 +2416,28 @@ $1',
 'tooltip-undo'                    => '«خنثی‌سازی» این ویرایش را خنثی می‌کند و فرم ویرایش را در حالت پیش‌نمایش باز می‌کند تا امکان افزودن دلیلی در خلاصه ویرایش را بدهد.',
 
 # Stylesheets
-'common.css'   => '/* دستورات این بخش همهٔ کاربران را تحت تاثیر قرار می‌دهند. */',
-'monobook.css' => '/* دستورات این بخش کاربرانی را که از پوستهٔ مونوبوک استفاده کنند تحت تاثیر قرار می‌دهند. */',
+'common.css'      => '/* دستورات این بخش همهٔ کاربران را تحت تاثیر قرار می‌دهند. */',
+'standard.css'    => '',
+'nostalgia.css'   => '',
+'cologneblue.css' => '',
+'monobook.css'    => '/* دستورات این بخش کاربرانی را که از پوستهٔ مونوبوک استفاده کنند تحت تاثیر قرار می‌دهند. */',
+'myskin.css'      => '',
+'chick.css'       => '',
+'simple.css'      => '',
+'modern.css'      => '',
+'print.css'       => '',
+'handheld.css'    => '',
+
+# Scripts
+'common.js'      => '',
+'standard.js'    => '',
+'nostalgia.js'   => '',
+'cologneblue.js' => '',
+'monobook.js'    => '',
+'myskin.js'      => '',
+'chick.js'       => '',
+'simple.js'      => '',
+'modern.js'      => '',
 
 # Metadata
 'nodublincore'      => 'فراداه Dublin Core RDF برای این کارگذار غیر فعال شده‌است.',
@@ -2467,11 +2540,57 @@ $1',
 'bydate'                => 'از روی تاریخ',
 'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $2، $1 به بعد',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '',
+'seconds-abbrev' => '',
+'minutes-abbrev' => '',
+'hours-abbrev'   => '',
+
 # Bad image list
 'bad_image_list' => 'اطلاعات را باید به این شکل وارد کنید:
 
 فقط سطرهایی که با * شروع شوند در نظر گرفته می‌شوند. اولین پیوند در هر سطر، باید پیوندی به یک تصویر بد باشد. 
 پیوندهایی بعدی در همان سطر، به عنوان موارد استثنا در نظر گرفته می‌شوند.',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => '',
+'variantname-zh-hant' => '',
+'variantname-zh-cn'   => '',
+'variantname-zh-tw'   => '',
+'variantname-zh-hk'   => '',
+'variantname-zh-mo'   => '',
+'variantname-zh-sg'   => '',
+'variantname-zh-my'   => '',
+'variantname-zh'      => '',
+
+# Variants for Serbian language
+'variantname-sr-ec' => '',
+'variantname-sr-el' => '',
+'variantname-sr'    => '',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => '',
+'variantname-kk-tr'   => '',
+'variantname-kk-cn'   => '',
+'variantname-kk-cyrl' => '',
+'variantname-kk-latn' => '',
+'variantname-kk-arab' => '',
+'variantname-kk'      => '',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => '',
+'variantname-ku-latn' => '',
+'variantname-ku'      => '',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => '',
+'variantname-tg-latn' => '',
+'variantname-tg'      => '',
 
 # Metadata
 'metadata'          => 'متاداده',
@@ -2536,6 +2655,7 @@ $1',
 'exif-exposuretime'                => 'زمان نوردهی',
 'exif-exposuretime-format'         => '$1 ثانیه ($2)',
 'exif-fnumber'                     => 'ضریب F',
+'exif-fnumber-format'              => '',
 'exif-exposureprogram'             => 'برنامهٔ نوردهی',
 'exif-spectralsensitivity'         => 'حساسیت طیفی',
 'exif-isospeedratings'             => 'درجه‌بندی سرعت ایزو',
@@ -2610,6 +2730,10 @@ $1',
 
 # EXIF attributes
 'exif-compression-1' => 'غیرفشرده',
+'exif-compression-6' => '',
+
+'exif-photometricinterpretation-2' => '',
+'exif-photometricinterpretation-6' => '',
 
 'exif-unknowndate' => 'تاریخ نامعلوم',
 
@@ -2628,7 +2752,16 @@ $1',
 'exif-xyresolution-i' => '$1 نقطه در اینچ',
 'exif-xyresolution-c' => '$1 نقطه در سانتی‌متر',
 
+'exif-colorspace-1'      => '',
+'exif-colorspace-ffff.h' => '',
+
 'exif-componentsconfiguration-0' => 'وجود ندارد',
+'exif-componentsconfiguration-1' => '',
+'exif-componentsconfiguration-2' => '',
+'exif-componentsconfiguration-3' => '',
+'exif-componentsconfiguration-4' => '',
+'exif-componentsconfiguration-5' => '',
+'exif-componentsconfiguration-6' => '',
 
 'exif-exposureprogram-0' => 'تعریف‌نشده',
 'exif-exposureprogram-1' => 'دستی',
@@ -2666,6 +2799,10 @@ $1',
 'exif-lightsource-17'  => 'نور استاندارد A',
 'exif-lightsource-18'  => 'نور استاندارد B',
 'exif-lightsource-19'  => 'نور استاندارد C',
+'exif-lightsource-20'  => '',
+'exif-lightsource-21'  => '',
+'exif-lightsource-22'  => '',
+'exif-lightsource-23'  => '',
 'exif-lightsource-24'  => 'لامپ تنگستن کارخانه ISO',
 'exif-lightsource-255' => 'سایر',
 
@@ -2690,6 +2827,8 @@ $1',
 'exif-sensingmethod-5' => 'حسگر ناحیه‌ای ترتیبی رنگ‌ها',
 'exif-sensingmethod-7' => 'حسگر سه‌خطی',
 'exif-sensingmethod-8' => 'حسگر خطی ترتیبی رنگ‌ها',
+
+'exif-filesource-3' => '',
 
 'exif-scenetype-1' => 'تصویر مستقیماً عکاسی شده',
 
@@ -2840,6 +2979,8 @@ $1
 لطفاً تأیید کنید که مجدداً می‌خواهید این مقاله را بسازید.",
 'recreate'            => 'بازایجاد',
 
+'unit-pixel' => '',
+
 # action=purge
 'confirm_purge'        => 'پاک کردن نسخهٔ حافظهٔ نهانی (Cache) این صفحه را تأیید می‌کنید؟
 
@@ -2847,8 +2988,12 @@ $1',
 'confirm_purge_button' => 'تأیید',
 
 # Separators for various lists, etc.
+'catseparator'        => '',
 'semicolon-separator' => '؛&#32;',
 'comma-separator'     => '،&#32;',
+'colon-separator'     => '',
+'autocomment-prefix'  => '',
+'pipe-separator'      => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '&rarr; صفحهٔ پیشین',
@@ -2929,6 +3074,20 @@ $1',
 'iranian-calendar-m11' => 'بهمن',
 'iranian-calendar-m12' => 'اسفند',
 
+# Hijri month names
+'hijri-calendar-m1'  => '',
+'hijri-calendar-m2'  => '',
+'hijri-calendar-m3'  => '',
+'hijri-calendar-m4'  => '',
+'hijri-calendar-m5'  => '',
+'hijri-calendar-m6'  => '',
+'hijri-calendar-m7'  => '',
+'hijri-calendar-m8'  => '',
+'hijri-calendar-m9'  => '',
+'hijri-calendar-m10' => '',
+'hijri-calendar-m11' => '',
+'hijri-calendar-m12' => '',
+
 # Hebrew month names
 'hebrew-calendar-m1'      => 'تشری',
 'hebrew-calendar-m2'      => 'حشوان',
@@ -2958,6 +3117,9 @@ $1',
 'hebrew-calendar-m10-gen' => 'تموز',
 'hebrew-calendar-m11-gen' => 'آب',
 'hebrew-calendar-m12-gen' => 'ایلول',
+
+# Signatures
+'timezone-utc' => '',
 
 # Core parser functions
 'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',
@@ -3042,5 +3204,9 @@ $1',
 'nuke-submit-user'   => 'برو',
 'nuke-submit-delete' => 'حذف موارد انتخاب شده',
 'right-nuke'         => 'حذف دسته‌جمعی صفحه‌ها',
+
+# Special:DismissNotice
+'dismissnotice'         => 'نهفتن اعلان وبگاه',
+'dismissnotice-nologin' => 'شما باید [[Special:UserLogin|به سیستم وارد شوید]] تا اعلان وبگاه را پنهان سازید.',
 
 );
