@@ -27,8 +27,10 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * Create a site configuration object
  * Not used for much in a default install
  */
-require_once( "$IP/includes/SiteConfiguration.php" );
-$wgConf = new SiteConfiguration;
+if ( !defined( 'MW_PHP4' ) ) {
+	require_once( "$IP/includes/SiteConfiguration.php" );
+	$wgConf = new SiteConfiguration;
+}
 
 /** MediaWiki version number */
 $wgVersion			= '1.14alpha';
@@ -539,10 +541,10 @@ $wgSMTP				= false;
  */
 /** database host name or ip address */
 $wgDBserver         = 'localhost';
-/** database port number */
-$wgDBport           = '';
+/** database port number (for PostgreSQL) */
+$wgDBport           = 5432;
 /** name of the database */
-$wgDBname           = 'wikidb';
+$wgDBname           = 'my_wiki';
 /** */
 $wgDBconnection     = '';
 /** Database username */

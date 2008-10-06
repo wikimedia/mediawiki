@@ -423,12 +423,22 @@ class Database {
 
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
+		$this->htmlErrors = ini_set( 'html_errors', '0' );
 		set_error_handler( array( $this, 'connectionErrorHandler' ) );
 	}
 
 	protected function restoreErrorHandler() {
 		restore_error_handler();
-		return $this->mPHPError;
+		if ( $this->htmlErrors !== false ) {
+			ini_set( 'html_errors', $this->htmlErrors );
+		}
+		if ( $this->mPHPError ) {
+			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->mPHPError );
+			$error = preg_replace( '!^.*?:(.*)$!', '$1', $error );
+			return $error;
+		} else {
+			return false;
+		}
 	}
 
 	protected function connectionErrorHandler( $errno,  $errstr ) {
