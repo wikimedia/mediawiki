@@ -273,3 +273,26 @@ td#mw-emailuser-sender, td#mw-emailuser-recipient {
 	font-weight: bold;
 }
 
+/*
+ * Recreating deleted page warning
+ * Reupload file warning
+ * Page protection warning
+ * incl. log entries for these warnings
+ */
+div#mw-upload-deleted-warn,
+div#mw-deleted-notice,
+div#mw-recreate-deleted-warn,
+div#mw-edit-semiprotectedpagewarning,
+div#mw-edit-protectedpagewarning {
+	padding: 3px;
+	margin-bottom: 3px;
+	border: 2px solid #2F6FAB;
+}
+div#mw-upload-deleted-warn ul li,
+div#mw-deleted-notice ul li,
+div#mw-recreate-deleted-warn ul li,
+div#mw-edit-semiprotectedpagewarning ul li,
+div#mw-edit-protectedpagewarning ul li {
+	font-size: 90%;
+}
+
