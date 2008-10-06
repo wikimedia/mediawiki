@@ -140,6 +140,7 @@ $magicWords = array(
 	'img_middle'            => array( 1,    'באמצע',                                'middle'                 ),
 	'img_bottom'            => array( 1,    'למטה',                                 'bottom'                 ),
 	'img_text_bottom'       => array( 1,    'בתחתית הטקסט',                         'text-bottom'            ),
+	'img_click'             => array( 1,    'קישור=$1',                             'click=$1'               ),
 	'int'                   => array( 0,    'הודעה:',                               'INT:'                   ),
 	'sitename'              => array( 1,    'שם האתר',                              'SITENAME'               ),
 	'ns'                    => array( 0,    'מרחב שם:',                             'NS:'                    ),
@@ -285,6 +286,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
 	'Nuke'                      => array( 'מחיקה_מרובה' ),
+	'DismissNotice'             => array( 'סגירת_הודעת_כותרת' ),
 );
 
 $namespaceNames = array(
@@ -932,7 +934,7 @@ $2',
 'nocreate-loggedin'                => 'אינכם מורשים ליצור דפים חדשים.',
 'permissionserrors'                => 'שגיאות הרשאה',
 'permissionserrorstext'            => 'אינכם מורשים לבצע פעולה זו, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
-'permissionserrorstext-withaction' => 'אינכם מורשים לבצע $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
+'permissionserrorstext-withaction' => 'אינכם מורשים $2, {{PLURAL:$1|מהסיבה הבאה|מהסיבות הבאות}}:',
 'recreate-deleted-warn'            => "'''אזהרה: הנכם יוצרים דף חדש שנמחק בעבר.'''
 
 אנא שיקלו אם יהיה זה נכון להמשיך לערוך את הדף.
@@ -1345,7 +1347,7 @@ $2',
 'right-autopatrol'           => 'סימון אוטומטי של עריכות של המשתמש כבדוקות',
 'right-patrolmarks'          => 'צפייה בסימוני עריכות בדוקות בשינויים האחרונים',
 'right-unwatchedpages'       => 'הצגת רשימה של דפים שאינם במעקב',
-'right-trackback'            => 'שליחת טראקבק',
+'right-trackback'            => 'שליחת טרקבק',
 'right-mergehistory'         => 'מיזוג היסטוריות של דפים',
 'right-userrights'           => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki' => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
@@ -1356,6 +1358,40 @@ $2',
 'rightslogtext'  => 'זהו יומן השינויים בתפקידי המשתמשים.',
 'rightslogentry' => 'שינה את ההרשאות של $1 מ-$2 ל-$3',
 'rightsnone'     => '(כלום)',
+
+# Associated actions - in the sentence \"You do not have permission to X\"
+'action-read'                 => 'לקרוא דף זה',
+'action-edit'                 => 'לערוך דף זה',
+'action-createpage'           => 'ליצור דפים',
+'action-createtalk'           => 'ליצור דפי שיחה',
+'action-createaccount'        => 'ליצור את חשבון המשתמש הזה',
+'action-minoredit'            => 'לסמן עריכה זו כמשנית',
+'action-move'                 => 'להעביר דף זה',
+'action-move-subpages'        => 'להעביר דף זה יחד עם דפי המשנה שלו',
+'action-upload'               => 'להעלות קובץ זה',
+'action-reupload'             => 'לדרוס את הקובץ הקיים הזה',
+'action-reupload-shared'      => 'לדרוס את הקובץ הזה, הקיים כקובץ משותף',
+'action-upload_by_url'        => 'להעלות קובץ זה מכתובת URL',
+'action-writeapi'             => 'להשתמש ב־API לשינוי דפים',
+'action-delete'               => 'למחוק דף זה',
+'action-deleterevision'       => 'למחוק גרסה זו',
+'action-deletedhistory'       => 'לצפות בהיסטוריה המחוקה של דף זה',
+'action-browsearchive'        => 'לחפש דפים מחוקים',
+'action-undelete'             => 'לשחזר דף זה',
+'action-suppressrevision'     => 'לבדוק ולשחזר גרסה מוסתרת זו',
+'action-suppressionlog'       => 'לצפות ביומן פרטי זה',
+'action-block'                => 'לחסום משתמש זה מעריכה',
+'action-protect'              => 'לשנות את רמת ההגנה על דף זה',
+'action-import'               => 'לייבא דף זה מאתר ויקי אחר',
+'action-importupload'         => 'לייבא דף זה באמצעות העלאת קובץ',
+'action-patrol'               => 'לסמן עריכות של אחרים כבדוקות',
+'action-autopatrol'           => 'לסמן את עריכותיך כבדוקות',
+'action-unwatchedpages'       => 'לצפות ברשימת הדפים שאינם במעקב',
+'action-trackback'            => 'לשלוח טרקבק',
+'action-mergehistory'         => 'למזג את ההיסטוריה של דף זה',
+'action-userrights'           => 'לערוך את כל הרשאות המשתמש',
+'action-userrights-interwiki' => 'לערוך את ההרשאות של משתמשים באתרי ויקי אחרים',
+'action-siteadmin'            => 'לנעול או לבטל את נעילת בסיס הנתונים',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',
@@ -2271,6 +2307,7 @@ $1',
 'imagetypemismatch'       => 'סיומת הקובץ החדשה אינה מתאימה לסוג הקובץ',
 'imageinvalidfilename'    => 'שם קובץ היעד אינו תקין',
 'fix-double-redirects'    => 'עדכון הפניות לכותרת הדף המקורית',
+'move-leave-redirect'     => 'השארת הפניה בדף המקורי',
 
 # Export
 'export'            => 'ייצוא דפים',
@@ -3095,5 +3132,9 @@ $1',
 'nuke-submit-user'   => 'הצגה',
 'nuke-submit-delete' => 'מחיקת הדפים שנבחרו',
 'right-nuke'         => 'מחיקה מרובה של דפים',
+
+# Special:DismissNotice
+'dismissnotice'         => 'סגירת הודעת כותרת',
+'dismissnotice-nologin' => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לסגור את הודעת הכותרת.',
 
 );
