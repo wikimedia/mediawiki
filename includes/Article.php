@@ -2282,8 +2282,7 @@ class Article {
 	 * @param $reason string Prefilled reason
 	 */
 	function confirmDelete( $reason ) {
-		global $wgOut, $wgUser, $wgContLang;
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
+		global $wgOut, $wgUser;
 
 		wfDebug( "Article::confirmDelete\n" );
 
@@ -2292,9 +2291,13 @@ class Article {
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
-			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\"><td></td><td>";
-			$suppress .= Xml::checkLabel( wfMsg( 'revdelete-suppress' ), 'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '2' ) );
-			$suppress .= "</td></tr>";
+			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\">
+					<td></td>
+					<td class='mw-input'>" .
+						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
+							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
+					"</td>
+				</tr>";
 		} else {
 			$suppress = '';
 		}
@@ -2304,37 +2307,39 @@ class Article {
 			'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
-			Xml::openElement( 'table' ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
 			"<tr id=\"wpDeleteReasonListRow\">
-				<td align='$align'>" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsg( 'deletecomment' ), 'wpDeleteReasonList' ) .
 				"</td>
-				<td>" .
+				<td class='mw-input'>" .
 					Xml::listDropDown( 'wpDeleteReasonList',
 						wfMsgForContent( 'deletereason-dropdown' ),
 						wfMsgForContent( 'deletereasonotherlist' ), '', 'wpReasonDropDown', 1 ) .
 				"</td>
 			</tr>
 			<tr id=\"wpDeleteReasonRow\">
-				<td align='$align'>" .
+				<td class='mw-label'>" .
 					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
 				"</td>
-				<td>" .
+				<td class='mw-input'>" .
 					Xml::input( 'wpReason', 60, $reason, array( 'type' => 'text', 'maxlength' => '255', 
 						'tabindex' => '2', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>" .
-					Xml::checkLabel( wfMsg( 'watchthis' ), 'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
+				<td class='mw-input'>" .
+					Xml::checkLabel( wfMsg( 'watchthis' ),
+						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>
 			$suppress
 			<tr>
 				<td></td>
-				<td>" .
-					Xml::submitButton( wfMsg( 'deletepage' ), array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '4' ) ) .
+				<td class='mw-submit'>" .
+					Xml::submitButton( wfMsg( 'deletepage' ),
+						array( 'name' => 'wpConfirmB', 'id' => 'wpConfirmB', 'tabindex' => '5' ) ) .
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
