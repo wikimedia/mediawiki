@@ -378,7 +378,7 @@ class CoreParserFunctions {
 		foreach ( $args as $arg ) {
 			$bits = $arg->splitArg();
 			if ( strval( $bits['index'] ) === '' ) {
-				$name = $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS );
+				$name = trim( $frame->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
 				$value = trim( $frame->expand( $bits['value'] ) );
 				if ( preg_match( '/^(?:["\'](.+)["\']|""|\'\')$/s', $value, $m ) ) {
 					$value = isset( $m[1] ) ? $m[1] : '';
