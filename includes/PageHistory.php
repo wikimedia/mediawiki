@@ -132,7 +132,7 @@ class PageHistory {
 
 		$action = htmlspecialchars( $wgScript );
 		$wgOut->addHTML(
-		Xml::fieldset( wfMsg( 'history-search' ), false, array( 'id' => 'mw-history-search' ) ) .
+		Xml::fieldset( wfMsg( 'history-fieldset-title' ), false, array( 'id' => 'mw-history-search' ) ) .
 			"<form action=\"$action\" method=\"get\">" .
 		Xml::hidden( 'title', $this->mTitle->getPrefixedDBKey() ) . "\n" .
 		Xml::hidden( 'action', 'history' ) . "\n" .
