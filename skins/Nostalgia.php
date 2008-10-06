@@ -25,12 +25,13 @@ class SkinNostalgia extends Skin {
 
 	function doBeforeContent() {
 
-		$s = "\n<div id='content'>\n<div id='topbar'>";
-		$s .= $this->logoText( "right" );
+		$s .= "\n<div id='content'>\n<div id='top'>\n";
+		$s .= "<div id=\"topbar\">".$this->logoText( "right" )."</div>";
 
 		$s .= $this->pageTitle();
 		$s .= $this->pageSubtitle() . "\n";
 
+		$s .= "<div id=\"topbar\">";
 		$s .= $this->topLinks() . "\n<br />";
 
 		$notice = wfGetSiteNotice();
@@ -45,7 +46,7 @@ class SkinNostalgia extends Skin {
 		$cat = $this->getCategoryLinks();
 		if($cat) $s .= "<br />" . $cat;
 
-		$s .= "<br clear='all' /><hr />\n</div>\n";
+		$s .= "<br clear='all' /></div><hr />\n</div>\n";
 		$s .= "\n<div id='article'>";
 
 		return $s;
@@ -62,17 +63,17 @@ class SkinNostalgia extends Skin {
 			$s .=  $sep . $this->editThisPage()
 			  . $sep . $this->historyLink();
 		}
-		
+
 		/* show links to different language variants */
 		$s .= $this->variantLinks();
 		$s .= $this->extensionTabLinks();
-		
+
 		if ( $wgUser->isAnon() ) {
 			$s .= $sep . $this->specialLink( "userlogin" );
 		} else {
 			$s .= $sep . $this->specialLink( "userlogout" );
 		}
-		
+
 		$s .= $sep . $this->specialPagesList();
 
 		return $s;
