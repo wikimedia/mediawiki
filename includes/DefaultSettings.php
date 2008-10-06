@@ -3432,6 +3432,12 @@ $wgExpensiveParserFunctionLimit = 100;
 $wgMaximumMovedPages = 100;
 
 /**
+ * Fix double redirects after a page move.
+ * Tends to conflict with page move vandalism, use only on a private wiki. 
+ */
+$wgFixDoubleRedirects = false;
+
+/**
  * Array of namespaces to generate a sitemap for when the
  * maintenance/generateSitemap.php script is run, or false if one is to be ge-
  * nerated for all namespaces.
