@@ -1122,7 +1122,8 @@ class Sanitizer {
 	}
 
 	/**
-	 * @todo Document it a bit
+	 * Foreach array key (an allowed HTML element), return an array
+	 * of allowed attributes
 	 * @return array
 	 */
 	static function setupAttributeWhitelist() {

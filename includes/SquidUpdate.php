@@ -6,7 +6,7 @@
  */
 
 /**
- * @todo document
+ * Handles purging appropriate Squid URLs given a title (or titles)
  * @ingroup Cache
  */
 class SquidUpdate {

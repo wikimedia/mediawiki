@@ -227,8 +227,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * @todo Document
-	 * @param string $from
+	 * Show a line of "ABC to DEF" ranges of articles
+	 * @param string $inpoint Lower limit of pagenames
+	 * @param string $outpout Upper limit of pagenames
 	 * @param integer $namespace (Default NS_MAIN)
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
