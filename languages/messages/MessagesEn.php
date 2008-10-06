@@ -1643,7 +1643,13 @@ please see math/README to configure.',
 'right-userrights-interwiki' => 'Edit user rights of users on other wikis',
 'right-siteadmin'            => 'Lock and unlock the database',
 
-# Associated actions - in the sentence "You don't have permission to X"
+# User rights log
+'rightslog'      => 'User rights log',
+'rightslogtext'  => 'This is a log of changes to user rights.',
+'rightslogentry' => 'changed group membership for $1 from $2 to $3',
+'rightsnone'     => '(none)',
+
+# Associated actions - in the sentence \"You do not have permission to X\"
 'action-read'                 => 'read this page',
 'action-edit'                 => 'edit this page',
 'action-createpage'           => 'create pages',
@@ -1669,19 +1675,13 @@ please see math/README to configure.',
 'action-import'               => 'import this page from another wiki',
 'action-importupload'         => 'import this page from a file upload',
 'action-patrol'               => "mark others' edit as patrolled",
-'action-autopatrol'           => "have your edit marked as patrolled",
+'action-autopatrol'           => 'have your edit marked as patrolled',
 'action-unwatchedpages'       => 'view the list of unwatched pages',
 'action-trackback'            => 'submit a trackback',
 'action-mergehistory'         => 'merge the history of this page',
 'action-userrights'           => 'edit all user rights',
 'action-userrights-interwiki' => 'edit user rights of users on other wikis',
 'action-siteadmin'            => 'lock or unlock the database',
-
-# User rights log
-'rightslog'      => 'User rights log',
-'rightslogtext'  => 'This is a log of changes to user rights.',
-'rightslogentry' => 'changed group membership for $1 from $2 to $3',
-'rightsnone'     => '(none)',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|change|changes}}',
@@ -3727,4 +3727,5 @@ Input the username or IP to get a list of pages to delete.',
 # Special:DismissNotice
 'dismissnotice'         => 'Dismiss site notice',
 'dismissnotice-nologin' => 'You must be [[Special:UserLogin|logged in]] to dismiss the site notice.',
+
 );
