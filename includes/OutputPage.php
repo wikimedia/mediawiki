@@ -1185,8 +1185,7 @@ class OutputPage {
 			$text = wfMsgNoTrans( 'permissionserrorstext', count($errors)). "\n\n";
 		} else {
 			global $wgLang;
-			$action_desc = wfMsg( "right-$action" );
-			$action_desc = $wgLang->lcfirst( $action_desc ); // FIXME: TERRIBLE HACK
+			$action_desc = wfMsg( "action-$action" );
 			$text = wfMsgNoTrans( 'permissionserrorstext-withaction', count($errors), $action_desc ) . "\n\n";
 		}
 
