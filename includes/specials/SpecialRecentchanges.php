@@ -593,18 +593,6 @@ class SpecialRecentChanges extends SpecialPage {
 
 		$options = $nondefaults + $defaults;
 
-		if( $options['from'] )
-			$note = wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
-				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->timeanddate( $options['from'], true ) );
-		else
-			$note = wfMsgExt( 'rcnote', array( 'parseinline' ),
-				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->formatNum( $options['days'] ),
-				$wgLang->timeAndDate( wfTimestampNow(), true ),
-				$wgLang->date( wfTimestampNow(), true ),
-				$wgLang->time( wfTimestampNow(), true ) );
-
 		# Sort data for display and make sure it's unique after we've added user data.
 		$wgRCLinkLimits[] = $options['limit'];
 		$wgRCLinkDays[] = $options['days'];
@@ -659,6 +647,6 @@ class SpecialRecentChanges extends SpecialPage {
 		$rclinks = wfMsgExt( 'rclinks', array( 'parseinline', 'replaceafter' ),
 			$cl, $dl, $hl );
 		$rclistfrom = wfMsgExt( 'rclistfrom', array( 'parseinline', 'replaceafter' ), $tl );
-		return "$note<br />$rclinks<br />$rclistfrom";
+		return "$rclinks<br />$rclistfrom";
 	}
 }
