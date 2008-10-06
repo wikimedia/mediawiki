@@ -803,7 +803,7 @@ class Linker {
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false ) );
 		}
 		if ( '' != $fp['align'] ) {
-			$s = "<div class=\"float{$fp['align']}\"><span>{$s}</span></div>";
+			$s = "<div class=\"float{$fp['align']}\">{$s}</div>";
 		}
 		return str_replace("\n", ' ',$prefix.$s.$postfix);
 	}
