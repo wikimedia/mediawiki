@@ -2791,7 +2791,7 @@ function wfFindFile( $title, $time = false, $flags = 0 ) {
  * Returns a valid placeholder object if the file does not exist.
  */
 function wfLocalFile( $title, $time = false ) {
-	return RepoGroup::singleton()->getLocalRepo()->findFile( $title, $time );
+	return RepoGroup::singleton()->getLocalRepo()->newFile( $title, $time );
 }
 
 /**
