@@ -2790,8 +2790,8 @@ function wfFindFile( $title, $time = false, $flags = 0 ) {
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
  */
-function wfLocalFile( $title ) {
-	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );
+function wfLocalFile( $title, $time = false ) {
+	return RepoGroup::singleton()->getLocalRepo()->newFile( $title, $time );
 }
 
 /**
