@@ -126,13 +126,19 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Clauses can be formatted as 'foo=bar' or array('foo' => 'bar'),
 	 * the latter only works if the value is a constant (i.e. not another field)
 	 *
+	 * If $value is an empty array, this function does nothing.
+	 *
 	 * For example, array('foo=bar', 'baz' => 3, 'bla' => 'foo') translates
 	 * to "foo=bar AND baz='3' AND bla='foo'"
 	 * @param mixed $value String or array
 	 */
 	protected function addWhere($value) {
-		if (is_array($value))
-			$this->where = array_merge($this->where, $value);
+		if (is_array($value)) {
+			// Sanity check: don't insert empty arrays,
+			// Database::makeList() chokes on them
+			if(!empty($value))
+				$this->where = array_merge($this->where, $value);
+		}
 		else
 			$this->where[] = $value;
 	}
@@ -157,7 +163,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $value Value; ignored if nul;
 	 */
 	protected function addWhereFld($field, $value) {
-		if (!is_null($value))
+		if (!is_null($value) && !empty($value))
 			$this->where[$field] = $value;
 	}
 
