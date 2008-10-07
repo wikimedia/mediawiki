@@ -4,11 +4,16 @@
  * @ingroup Templates
  */
 
-if( isset( $_SERVER['REQUEST_URI'] ) ) {
-	$scriptUrl = $_SERVER['REQUEST_URI'];
-} elseif( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+if( !defined( 'MW_PHP4' ) ) {
+	die( "Not an entry point.");
+}
+
+if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 	// Probably IIS; doesn't set REQUEST_URI
 	$scriptUrl = $_SERVER['SCRIPT_NAME'];
+} elseif( isset( $_SERVER['REQUEST_URI'] ) ) {
+	// We're trying SCRIPT_NAME first because it won't include PATH_INFO... hopefully
+	$scriptUrl = $_SERVER['REQUEST_URI'];
 } else {
 	$scriptUrl = '';
 }
@@ -17,7 +22,7 @@ if ( preg_match( '!^(.*)/config/[^/]*.php$!', $scriptUrl, $m ) ) {
 } elseif ( preg_match( '!^(.*)/[^/]*.php$!', $scriptUrl, $m ) ) {
 	$baseUrl = $m[1];
 } else {
-	$baseUrl = dirname( $baseUrl );
+	$baseUrl = dirname( $scriptUrl );
 }
 
 ?>
@@ -62,8 +67,15 @@ flush();
 $downloadOther = true;
 if ( $baseUrl ) {
 	$testUrl = "$wgServer$baseUrl/php5.php5";
-	ini_set( 'allow_url_fopen', '1' );
-	$s = file_get_contents( $testUrl );
+	if( function_exists( 'file_get_contents' ) ) {
+		$errorLevel = error_reporting();
+		error_reporting( $errorLevel & !E_WARNING );
+		
+		ini_set( 'allow_url_fopen', '1' );
+		$s = file_get_contents( $testUrl );
+		
+		error_reporting( $errorLevel );
+	}
 
 	if ( strpos( $s, 'yes' ) !== false ) {
 		$encUrl = htmlspecialchars( str_replace( '.php', '.php5', $scriptUrl ) );
@@ -73,8 +85,9 @@ if ( $baseUrl ) {
 }
 if ( $downloadOther ) {
 ?>
-<p>Please consider upgrading your copy of PHP. PHP 4 is at the end of its
-lifecycle and will not receive further security updates.</p>
+<p>Please consider
+<a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
+PHP 4 is at the end of its lifecycle and will not receive further security updates.</p>
 <p>If for some reason you really really need to run MediaWiki on PHP 4, you will need to
 <a href="http://www.mediawiki.org/wiki/Download">download version 1.6.x</a>
 from our website. </p>
