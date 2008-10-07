@@ -699,8 +699,8 @@ class Linker {
 	 *                          bottom, text-bottom)
 	 *          alt             Alternate text for image (i.e. alt attribute). Plain text.
 	 *          caption         HTML for image caption.
-	 *          click-url       URL to link to
-	 *          click-title     Title object to link to
+	 *          link-url        URL to link to
+	 *          link-title      Title object to link to
 	 *          no-link         Boolean, suppress description link
 	 *
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed
@@ -802,10 +802,10 @@ class Linker {
 				'alt' => $fp['alt'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false );
-			if ( !empty( $fp['click-url'] ) ) {
-				$params['custom-url-link'] = $fp['click-url'];
-			} elseif ( !empty( $fp['click-title'] ) ) {
-				$params['custom-title-link'] = $fp['click-title'];
+			if ( !empty( $fp['link-url'] ) ) {
+				$params['custom-url-link'] = $fp['link-url'];
+			} elseif ( !empty( $fp['link-title'] ) ) {
+				$params['custom-title-link'] = $fp['link-title'];
 			} elseif ( !empty( $fp['no-link'] ) ) {
 				// No link
 			} else {

@@ -153,7 +153,7 @@ The following extensions are migrated into MediaWiki 1.14:
   MediaWiki:Pagenumber-#-PAGENAME where # is the page's namespace number and
   PAGENAME is the page name minus the namespace prefix. Can be disabled with 
   the new magic word __NOHEADER__
-* Added "click" parameter to image links, to allow images to link to an 
+* Added "link" parameter to image links, to allow images to link to an 
   arbitrary title or URL. This should replace inaccessible and incomplete
   solutions such as CSS-based overlays and ImageMap.
 

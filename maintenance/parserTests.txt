@@ -3095,6 +3095,35 @@ Image with caption
 !! end
 
 !! test
+Image with link parameter, wiki target
+!! input
+[[Image:foobar.jpg|link=Target page]]
+!! result
+<p><a href="/wiki/Target_page" title="Target page"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a>
+</p>
+!! end
+
+!! test
+Image with link parameter, URL target
+!! input
+[[Image:foobar.jpg|link=http://example.com/]]
+!! result
+<p><a href="http://example.com/"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a>
+</p>
+!! end
+
+!! test
+Image with empty link parameter
+!! input
+[[Image:foobar.jpg|link=]]
+!! result
+<p><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" />
+</p>
+!! end
+
+
+
+!! test
 Image with frame and link
 !! input
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
