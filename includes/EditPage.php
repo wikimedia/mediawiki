@@ -110,7 +110,7 @@ class EditPage {
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {
-		global $wgOut, $wgRequest, $wgParser, $wgMessageCache;
+		global $wgOut, $wgRequest, $wgParser, $wgContLang, $wgMessageCache;
 
 		wfProfileIn( __METHOD__ );
 		# Get variables from query string :P
@@ -124,9 +124,12 @@ class EditPage {
 		// For other non-existent articles, use preload text if any.
 		if ( !$this->mTitle->exists() ) {
 			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-				$wgMessageCache->loadAllMessages();
 				# If this is a system message, get the default text.
-				$text = wfMsgWeirdKey( $this->mTitle->getText() ) ;
+				list( $message, $lang ) = $wgMessageCache->figureMessage( $wgContLang->lcfirst( $this->mTitle->getText() ) );
+				$wgMessageCache->loadAllMessages( $lang );
+				$text = wfMsgGetKey( $message, false, $lang, false );
+				if( wfEmptyMsg( $message, $text ) )
+					$text = '';
 			} else {
 				# If requested, preload some text.
 				$text = $this->getPreloadedText( $preload );
@@ -1044,11 +1047,8 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		$this->edittime = $this->mArticle->getTimestamp();
-		$this->textbox1 = $this->getContent(false);
-		if ( $this->textbox1 === false) return false;
-
-		if ( !$this->mArticle->exists() && $this->mTitle->getNamespace() == NS_MEDIAWIKI )
-			$this->textbox1 = wfMsgWeirdKey( $this->mTitle->getText() );
+		$this->textbox1 = $this->getContent( false );
+		if ( $this->textbox1 === false ) return false;
 		wfProxyCheck();
 		return true;
 	}
