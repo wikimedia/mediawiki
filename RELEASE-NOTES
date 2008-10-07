@@ -309,6 +309,8 @@ The following extensions are migrated into MediaWiki 1.14:
   action=protect
 * Added allowsduplicates attribute to action=paraminfo output
 * (bug 15767) apfilterlanglinks returns duplicate results
+* (bug 15845) Added pageid/fromid parameter to action=delete/move, making
+  manipulation of legacy pages with invalid titles possible
 
 === Languages updated in 1.14 ===
 
