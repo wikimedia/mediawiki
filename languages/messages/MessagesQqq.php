@@ -1020,10 +1020,6 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 * $5 is a time alone.
 
  Example: "\'\'Below are the last 50 changes in the last 7 days, as of 14:48, 24 January 2008.\'\'"',
-'rcnotefrom'           => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
-
-Parameter $1 is the maximum number of changes that are displayed.
-Parameter $2 is a date and time.',
 'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a date.',
 'rcshowhideminor'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].

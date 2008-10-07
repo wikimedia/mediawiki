@@ -418,7 +418,6 @@ Eżlë klëczi na ti starnie nie są sczérowóne do ce, tedë [[Special:UserLog
 'recentchanges'                  => 'Slédné edicëje',
 'recentchangestext'              => 'Na starna prezentérëje historëjã slédnëch edicëjów w {{SITENAME}}.',
 'recentchanges-feed-description' => 'Pòdstrzegô slédny zmianë w tim pòwrózkù.',
-'rcnotefrom'                     => "Niżi są zmianë òd '''$2''' (pòkazóné do '''$1''').",
 'rclistfrom'                     => 'Pòkażë nowé zmianë òd $1',
 'rcshowhideminor'                => '$1 môłé zmianë',
 'rcshowhidebots'                 => '$1 botë',

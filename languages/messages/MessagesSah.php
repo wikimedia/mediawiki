@@ -1062,7 +1062,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'recentchangestext'                 => 'Манна хаһан киирибитинэн сааһыланан {{SITENAME}} кэнники уларыытыылара сурулуннулар.',
 'recentchanges-feed-description'    => 'Бу ботуокка биики бүтэһик уларыйыыларын кэтииргэ.',
 'rcnote'                            => "{{PLURAL:$2|хонук|'''$2''' хонуктар}} иһинэн бүтэһик {{PLURAL:$1|'''1''' уларыйыы|'''$1''' уларыйыылар}}, $5, $4.",
-'rcnotefrom'                        => "Мантан '''$2''' маныаха '''$1''' дылы уларыыйылар көрдөрүлүннүлэр.",
 'rclistfrom'                        => 'Мантан $1 уларыйыылары көрдөр',
 'rcshowhideminor'                   => '$1 кыра уларыйыы',
 'rcshowhidebots'                    => '$1 робот',

@@ -424,7 +424,6 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'Chòe-kīn ê kái-piàn',
-'rcnotefrom'      => 'Ē-kha sī <b>$2</b> kàu taⁿ ê kái-piàn (ke̍k-ke hián-sī <b>$1</b> hāng).',
 'rclistfrom'      => 'Hián-sī tùi $1 kàu taⁿ ê sin kái-piàn',
 'rcshowhideminor' => '$1 sió siu-kái',
 'rcshowhideliu'   => '$1 teng-ji̍p ê iōng-chiá',

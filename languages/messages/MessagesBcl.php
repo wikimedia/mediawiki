@@ -825,7 +825,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'recentchangestext'                 => 'Hanapon an mga pinahuring pagbabâgo sa wiki digdi sa páhinang ini.',
 'recentchanges-feed-description'    => 'Hanápon an mga pinakahuring pagbabàgo sa wiki sa hungit na ini.',
 'rcnote'                            => "Mahihiling sa babâ an {{PLURAL:$1| '''1''' pagbabàgo|'''$1''' pagbabàgo}} sa huring {{PLURAL:$2|na aldaw|'''$2''' na aldaw}}, sa $3.",
-'rcnotefrom'                        => "Mahihiling sa babâ an mga pagbabàgo poon kan '''$2''' (hasta '''$1''' ipinapahiling).",
 'rclistfrom'                        => 'Ipahilíng an mga pagbabàgo poon sa $1',
 'rcshowhideminor'                   => '$1 saradit na pagligwat',
 'rcshowhidebots'                    => '$1 mga bot',

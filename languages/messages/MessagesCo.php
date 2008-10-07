@@ -249,7 +249,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Recent changes
 'recentchanges'   => 'Ultimi cambiamenti',
-'rcnotefrom'      => "Quì sò discritti i cambiamenti dipoi <b>$2</b> (sin'à <b>$1</b>).",
 'rclistfrom'      => 'Mustrà i cambiamenti dipoi $1',
 'rcshowhideminor' => '$1 i cambiamenti minori',
 'rcshowhidebots'  => '$1 i boti',

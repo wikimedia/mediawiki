@@ -677,7 +677,6 @@ Ngì thùng-sṳ̀ ya-yeu hiong Wikimedia pó-chṳn ngì só thì-kâu ke nui-y
 'recentchangestext'                 => 'Kiên-chiûng liá-ke wiki song ke chui-sîn kiên-kói.',
 'recentchanges-feed-description'    => 'Kiên-chiûng chhṳ-thin chhai wiki song chui-khiûn ke kiên-kói.',
 'rcnote'                            => "Yî-ha he chhai $3, chui-khiûn '''$2''' thiên-nui ke '''$1'''-chhṳ chui-khiûn ke kiên-kói ki-liu̍k:",
-'rcnotefrom'                        => "Ha-mien he chhṳ '''$2''' (Chui-tô hién-sṳ '''$1'''):",
 'rclistfrom'                        => 'Hién-sṳ chhṳ $1 yî-lòi ke sîn kiên-kói',
 'rcshowhideminor'                   => '$1 séu phiên-cho',
 'rcshowhidebots'                    => '$1 kî-hi-ngìn ke phiên-cho',

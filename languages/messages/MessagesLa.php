@@ -898,7 +898,6 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'recentchanges'                     => 'Nuper mutata',
 'recentchangestext'                 => 'Inspice mutationes recentes huic vici in hac pagina.',
 'rcnote'                            => "Subter {{PLURAL:$1|est '''1''' nuper mutatum|sunt '''$1''' nuperrime mutata}} in {{PLURAL:$2|die proximo|'''$2''' diebus proximis}} ex $5, $4.",
-'rcnotefrom'                        => 'Subter sunt <b>$1</b> nuperrime mutata in proxima <b>$2</b> die.',
 'rclistfrom'                        => 'Monstrare mutata nova incipiens ab $1',
 'rcshowhideminor'                   => '$1 recensiones minores',
 'rcshowhidebots'                    => '$1 automata',

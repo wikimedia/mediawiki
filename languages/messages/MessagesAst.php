@@ -1102,7 +1102,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'recentchangestext'                 => 'Sigui los cambeos más recientes na wiki nesta páxina.',
 'recentchanges-feed-description'    => 'Sigue nesti canal los cambeos más recientes de la wiki.',
 'rcnote'                            => "Equí embaxo {{PLURAL:$1|pue vese '''1''' cambéu|puen vese los caberos '''$1''' cambeos}} {{PLURAL:$2|nel caberu día|nos caberos '''$2''' díes}}, a fecha de $5, $4.",
-'rcnotefrom'                        => 'Abaxo tán los cambeos dende <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                        => 'Amosar los cambeos recientes dende $1',
 'rcshowhideminor'                   => '$1 ediciones menores',
 'rcshowhidebots'                    => '$1 bots',

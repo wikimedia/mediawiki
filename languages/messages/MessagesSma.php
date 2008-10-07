@@ -373,7 +373,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'recentchanges'                  => 'Männgan värrhtoedimmieh',
 'recentchanges-feed-description' => 'Dåeriedidh männgan värrhtoedimmie sïjse wiki meatan dïhte feed.',
 'rcnote'                         => "Vuelen vuesehte {{PLURAL:$1|dïhte männgan värrhtoedimmie|dah männgan '''$1''' värrhtoedimmieh}} nuelesne dah {{PLURAL:$2|männgan biejjie|männgan '''$2''' biejjieh}}, ihke $3.",
-'rcnotefrom'                     => "Vuelelen vuesehte dah männgan '''$1''' värrhtoedimmieh männgan '''$2'''.",
 'rclistfrom'                     => 'Vuesehte orre värrhtoedimmieh aelkedh raejeste $1',
 'rcshowhideminor'                => '$1 ohtje värrhtoedimmie',
 'rcshowhidebots'                 => '$1 jïjtjesvïhtjijeh',

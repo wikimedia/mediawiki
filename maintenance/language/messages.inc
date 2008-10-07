@@ -1013,7 +1013,6 @@ $wgMessageStructure = array(
 		'recentchangestext',
 		'recentchanges-feed-description',
 		'rcnote',
-		'rcnotefrom',
 		'rclistfrom',
 		'rcshowhideminor',
 		'rcshowhidebots',
