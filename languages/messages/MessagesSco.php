@@ -693,7 +693,6 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'recentchanges'                     => 'Recent chynges',
 'recentchangestext'                 => 'Follae the maist recent chynges tae the wiki on this page.',
 'rcnote'                            => "Ablo {{PLURAL:$1|is '''1''' chynge|are the last '''$1''' chynges}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $3.",
-'rcnotefrom'                        => 'Ablo is the chynges syne <b>$2</b> (up tae <b>$1</b> shawn).',
 'rclistfrom'                        => 'Shaw new chynges stertin frae $1',
 'rclinks'                           => 'Shaw last $1 chynges in last $2 days<br />$3',
 'show'                              => 'shaw',

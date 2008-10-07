@@ -1236,7 +1236,6 @@ daripada satu kata kunci (hanya laman yang mengandungi kesemua kata kunci akan d
 'recentchangestext'                 => 'Jejaki perubahan terkini dalam {{SITENAME}} pada laman ini.',
 'recentchanges-feed-description'    => 'Jejaki perubahan terkini dalam {{SITENAME}} pada suapan ini.',
 'rcnote'                            => "Berikut ialah '''$1''' perubahan terakhir sejak '''$2''' hari yang lalu sehingga $5, $4.",
-'rcnotefrom'                        => 'Berikut ialah semua perubahan sejak <b>$2</b> (sehingga <b>$1</b>).',
 'rclistfrom'                        => 'Papar perubahan sejak $1',
 'rcshowhideminor'                   => '$1 suntingan kecil',
 'rcshowhidebots'                    => '$1 bot',

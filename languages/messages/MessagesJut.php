@@ -477,7 +477,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'recentchanges'                  => 'Seneste ændrenger',
 'recentchanges-feed-description' => 'Ve dette fiid ken du følge de seneste ændrenger på {{SITENAME}}.',
 'rcnote'                         => "Herunder ses {{PLURAL:$1|'''1''' ændrenge|de sedste '''$1''' ændrenger}} frå {{PLURAL:$2|i dåg|de sedste '''$2''' dåg}}, søm i $3.",
-'rcnotefrom'                     => "Nedenfør ses ændrengerne frå '''$2''' til '''$1''' vest.",
 'rclistfrom'                     => 'Ves nye ændrenger startende frå $1',
 'rcshowhideminor'                => '$1 lile ændrenger',
 'rcshowhidebots'                 => '$1 råbotter',

@@ -1196,7 +1196,6 @@ Gli altri amministratori del sito potranno accedere comunque ai contenuti nascos
 'recentchangestext'                 => 'Questa pagina presenta le modifiche più recenti ai contenuti del sito.',
 'recentchanges-feed-description'    => 'Questo feed riporta le modifiche più recenti ai contenuti del sito.',
 'rcnote'                            => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} al sito {{PLURAL:$2|nelle ultime 24 ore|negli scorsi '''$2''' giorni}}; i dati sono aggiornati alle $5 del $4.",
-'rcnotefrom'                        => 'Di seguito sono elencate le modifiche apportate a partire da <b>$2</b> (fino a <b>$1</b>).',
 'rclistfrom'                        => 'Mostra le modifiche apportate a partire da $1',
 'rcshowhideminor'                   => '$1 le modifiche minori',
 'rcshowhidebots'                    => '$1 i bot',

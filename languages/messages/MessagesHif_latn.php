@@ -953,7 +953,6 @@ latex, dvips aur gs ke correct installation ke check kar ke convert convert karo
 'recentchanges'                  => 'Nawaa badlao',
 'recentchanges-feed-description' => 'Abhi haali me bhae ii wiki ke feed me ke track karo.',
 'rcnote'                         => "Niche {{PLURAL:$1|hai '''1''' badlao|aakhri hai '''$1''' badlao}} pahile {{PLURAL:$2|din|'''$2''' din}}, $5, $4 talak.",
-'rcnotefrom'                     => "Niche '''$2''' se badlao hai ('''$1''' tak )",
 'rclistfrom'                     => '$1 se suruu kar ke nawaa badlao dekhao',
 'rcshowhideminor'                => '$1 chhota badlao',
 'rcshowhidebots'                 => '$1 bots',

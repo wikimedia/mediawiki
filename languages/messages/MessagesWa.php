@@ -710,7 +710,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'recentchanges'                     => 'Dierins candjmints',
 'recentchangestext'                 => "Shuvoz chal les dierins candjmints k' i gn a yeu dsu {{SITENAME}}.",
 'rcnote'                            => 'Chal pa dzo les <strong>$1</strong> dierins candjmints des dierins <strong>$2</strong> djoûs, å $3.',
-'rcnotefrom'                        => "Chal pa dzo les candjmints dispoy li <b>$2</b> (disk' a <b>$1</b> di mostrés).",
 'rclistfrom'                        => "Mostrer les candjmints k' i gn a yeu a pårti do $1",
 'rcshowhideminor'                   => '$1 candjmints mineurs',
 'rcshowhidebots'                    => '$1 robots',

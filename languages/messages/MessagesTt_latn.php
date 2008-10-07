@@ -383,7 +383,6 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 # Recent changes
 'recentchanges'     => 'Soñğı üzgärtmälär',
 'recentchangestext' => 'Bu bittä wikidä bulğan iñ soñğı üzgärtmäläre kürsätelä.',
-'rcnotefrom'        => 'Asta <b>$2</b> zamanınnan soñ bulğan üzgärtmälär (<b>$1</b> tikle).',
 'rclistfrom'        => '$1 zamannan soñ bulğan üzgärtmälär.',
 'rcshowhideminor'   => 'kiçi özgeriş $1',
 'rcshowhidebots'    => 'bot $1',

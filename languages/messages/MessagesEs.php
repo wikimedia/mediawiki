@@ -1127,7 +1127,6 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'recentchangestext'                 => 'Sigue los cambios más recientes de la wiki en esta página.',
 'recentchanges-feed-description'    => 'Seguir los cambios más recientes en el wiki en este feed.',
 'rcnote'                            => "Debajo {{PLURAL:$1|hay '''1''' cambio efectuado|están los últimos '''$1''' cambios efectuados}} en  {{PLURAL:$2|el último día|los últimos '''$2''' días}}, hasta el $4, $5.",
-'rcnotefrom'                        => 'A continuación se muestran los cambios desde <b>$2</b> (hasta <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar nuevos cambios desde $1',
 'rcshowhideminor'                   => '$1 ediciones menores',
 'rcshowhidebots'                    => '$1 bots',

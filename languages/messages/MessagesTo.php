@@ -483,7 +483,6 @@ Ko e konga ʻi olunga, ko e '''konga pē ʻe taha''' ʻe haofaki ʻi he lomiʻi 
 'recentchanges'     => 'Ngaahi toki liliu',
 'recentchangestext' => 'Fakatotolo ʻa e ngaahi toki liliu ki he wiki ʻi he pēsí ni.',
 'rcnote'            => 'ʻOku ʻasi ʻi lalo ʻa e liliu fakamuimui ʻe <strong>$1</strong> lolotonga ʻa e ʻaho fakamuimui ʻe <strong>$2</strong> mei he taimi: $3',
-'rcnotefrom'        => "ʻOku ʻasi ʻi lalo ʻa e liliu talu mei '''$2''' (aʻu ki he '''$1''').",
 'rclistfrom'        => 'ʻAsi mai ha ngaahi liliu foʻou ʻo kamata mei he $1',
 'rcshowhideminor'   => '$1 fatu siʻi',
 'rcshowhidebots'    => '$1 fatu fakamīsini',

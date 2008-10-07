@@ -472,7 +472,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'recentchanges'                  => 'Ûrtimi cangiamenti',
 'recentchanges-feed-description' => "Questo feed o g'ha e modiffiche ciû reçenti a-i contegnûi do scîto.",
 'rcnote'                         => "Chì sotta {{PLURAL:$1|gh'é a modiffica ciù reçente|ghe son e '''$1''' modiffiche ciù reçenti}} de 'sto scîto {{PLURAL:$2|inte ûrtime 24 ôe|inti ûrtimi '''$2''' giorni}}; i dæti son aggiornæ a $3.",
-'rcnotefrom'                     => "Chì sotta gh'è i cangiamenti fæti comensando da '''$2''' (scinn-a '''$1''').",
 'rclistfrom'                     => 'Fâ vedde e modiffiche apportæ partendo da $1',
 'rcshowhideminor'                => '$1 cangiamenti minoi',
 'rcshowhidebots'                 => '$1 bot',

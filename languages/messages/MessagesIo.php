@@ -528,7 +528,6 @@ Publikigante vua skribajo hike, vu asertas ke olu skribesis da vu ipsa o kopiesi
 'recentchanges'     => 'Recenta chanji',
 'recentchangestext' => 'Regardez la maxim recenta chanji en Wiki per ica pagino.',
 'rcnote'            => "Infre esas la lasta {{PLURAL:$1|'''1''' chanjo|'''$1''' chanji}} dum la lasta {{PLURAL:$2|dio|'''$2''' dii}} ($3).",
-'rcnotefrom'        => "Infre esas la lasta chanji depos '''$2''' (montrita til '''$1''').",
 'rclistfrom'        => 'Montrar nova chanji startante de $1',
 'rcshowhideminor'   => '$1 mikra redakti',
 'rcshowhidebots'    => '$1 roboti',

@@ -703,7 +703,6 @@ Mande ou byen si ou ap byen fè kreye li ankò toutbon (gade jounal paj sa a pou
 'recentchanges'                  => 'Modifikasyon yo ki fèk fèt',
 'recentchanges-feed-description' => 'Swvi dènye modifikasyon pou wiki sa a nan flo sa a (RSS,Atom...)',
 'rcnote'                         => "Men {{PLURAL:$1|dènye modifikasyon an|dènye '''$1''' modifikasyon yo}} depi {{PLURAL:$2|dènye jou a|<b>$2</b> dènye jou yo}}, tankou $5,$4.",
-'rcnotefrom'                     => "Men modifikasyon yo ki fèt depi '''$2''' ('''$1''' dènye).",
 'rclistfrom'                     => 'Afiche nouvo modifikasyon yo depi $1.',
 'rcshowhideminor'                => '$1 modifiksayon yo ki pa enpòtan',
 'rcshowhidebots'                 => '$1 wobo',

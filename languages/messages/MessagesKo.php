@@ -1068,7 +1068,6 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
 'rcnote'                            => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 '''$1'''개의 문서입니다.",
-'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
 'rcshowhideminor'                   => '사소한 편집을 $1',
 'rcshowhidebots'                    => '봇을 $1',

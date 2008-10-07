@@ -1002,7 +1002,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'recentchangestext'                 => 'literal translation',
 'recentchanges-feed-description'    => 'Volg de meis recente bewerkinge in deze wiki via deze feed.',
 'rcnote'                            => "Hiejónger {{PLURAL:$1|steit de letste bewerking|staon de letste '''$1''' bewerkinge}} van de aafgeloupe <strong>$2</strong> {{PLURAL:$2|daag|daag}}, op $3.",
-'rcnotefrom'                        => "Verangeringe sins <b>$2</b> (mit 'n maximum van <b>$1</b> verangeringe).",
 'rclistfrom'                        => 'Toen de verangeringe vanaaf $1',
 'rcshowhideminor'                   => '$1 klein bewèrkinge',
 'rcshowhidebots'                    => 'bots $1',
