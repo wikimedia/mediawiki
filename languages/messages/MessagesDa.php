@@ -10,6 +10,7 @@
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author MinuteElectron
  * @author Morten LJ
  * @author Peter Andersen
  */

@@ -156,12 +156,14 @@ $messages = array(
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Fatte de osce a die',
+'currentevents-url'    => 'Project:Fatte de osce a die',
 'disclaimers'          => 'No ne sacce ninde',
 'edithelp'             => "Cangianne l'ajute",
 'faq'                  => 'FAQ',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
 'portal'               => "Purtale d'a communitate",
+'portal-url'           => "Project:Portale d'a Comunitate",
 
 'ok'                   => 'OK',
 'pagetitle'            => '$1 - {{SITENAME}}',
@@ -210,8 +212,10 @@ $messages = array(
 'filedeleteerror'      => 'Non ge pozze scangillà \'u fail "$1".',
 'directorycreateerror' => 'Non ge pozze ccrejà \'a cartelle "$1".',
 'filenotfound'         => 'Non ge stoche a iacchje \'u fail "$1".',
+'badtitle'             => 'Titele sbagliete',
 'viewsource'           => "Vide 'u sorgende",
 'viewsourcefor'        => 'pe $1',
+'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Login and logout pages
@@ -234,6 +238,10 @@ $messages = array(
 'nouserspecified'         => "A scrivere pe forze 'u nome de l'utende.",
 'wrongpassword'           => "E mise 'na passuor sbagliete.
 Prueve n'otra vote.",
+'wrongpasswordempty'      => "'A passuord 'nzerite jè vianghe.
+Mitta n'otra vota.",
+'passwordtooshort'        => "'A passuord ca è mise o non g'è valida o jè troppe piccenne.
+Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}} e adda essere diverse da 'u nome utende.",
 'mailmypassword'          => 'Passuord nova pe e-mail',
 'loginlanguagelabel'      => 'Lénga: $1',
 
@@ -248,7 +256,9 @@ Prueve n'otra vote.",
 'italic_sample'  => 'Teste corsive',
 'italic_tip'     => 'Scritte in corsivo',
 'link_sample'    => "Titele d'u collegamende",
+'link_tip'       => "Collegamende 'nderne",
 'extlink_sample' => "http://www.esembie.it Nome d'u collegamende",
+'extlink_tip'    => "Collegamende de fore a Uicchipedie (arrecuerdete 'u prefisse http://)",
 'math_tip'       => 'Formula matemateche (LaTeX)',
 'nowiki_sample'  => "Mitte 'u teste non formattate aqquà",
 'nowiki_tip'     => "No scè penzanne 'a formattazione de Uicchi",
@@ -277,6 +287,7 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'editingsection'         => 'Cangiaminde de $1 (sezione)',
 'editingcomment'         => 'Cangiaminde de $1 (commende)',
 'templatesused'          => "Templeit ausete sus 'a sta pàgene:",
+'templatesusedpreview'   => "Templeit ausete jndr'à sta andeprime:",
 'template-protected'     => '(prutette)',
 'template-semiprotected' => '(mmienze protette)',
 
@@ -335,6 +346,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'mypreferences' => 'Me piece accussì',
 'oldpassword'   => 'Vécchie passuord:',
 'newpassword'   => 'Nova passuord:',
+'retypenew'     => "Scrive n'otra vota 'a passuord nova:",
 
 # User rights
 'userrights-irreversible-marker' => '$1*',
@@ -405,26 +417,29 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'statistics' => 'Statisteche',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|byte|bytes}}',
-'nlinks'        => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
-'nmembers'      => '$1 {{PLURAL:$1|membre|membre}}',
-'lonelypages'   => 'Pàggene orfane',
-'mostrevisions' => 'Pàggene cchiù cangete',
-'shortpages'    => 'Pàggene corte',
-'longpages'     => 'Pàggene longhe',
-'listusers'     => "Liste de l'utende",
-'newpages'      => 'Pàggene nuève',
-'ancientpages'  => 'Pàggene vìcchje',
-'move'          => 'Spuèste',
-'movethispage'  => 'Spueste sta pàgene',
+'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
+'nlinks'                  => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
+'nmembers'                => '$1 {{PLURAL:$1|membre|membre}}',
+'lonelypages'             => 'Pàggene orfane',
+'uncategorizedcategories' => 'Categorije senza categorije',
+'unusedimages'            => "Fail ca non g'avènene ausete",
+'mostrevisions'           => 'Pàggene cchiù cangete',
+'shortpages'              => 'Pàggene corte',
+'longpages'               => 'Pàggene longhe',
+'listusers'               => "Liste de l'utende",
+'newpages'                => 'Pàggene nuève',
+'ancientpages'            => 'Pàggene vìcchje',
+'move'                    => 'Spuèste',
+'movethispage'            => 'Spueste sta pàgene',
 
 # Book sources
 'booksources-isbn' => 'ISBN:',
 
 # Special:Log
-'specialloguserlabel' => 'Utende:',
-'log'                 => 'Archivije',
-'all-logs-page'       => "Tutte l'archivije",
+'specialloguserlabel'  => 'Utende:',
+'speciallogtitlelabel' => 'Titele:',
+'log'                  => 'Archivije',
+'all-logs-page'        => "Tutte l'archivije",
 
 # Special:AllPages
 'allpages'       => 'Tutte le pàggene',
@@ -529,6 +544,9 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Export
 'export' => 'Pàggene esportete',
 
+# Namespace 8 related
+'allmessages' => "Messagge d'u Sisteme",
+
 # Thumbnails
 'thumbnail-more'  => 'Allarije',
 'thumbnail_error' => "Errore ccrejanne l'andeprime picenne: $1",
@@ -559,7 +577,9 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-t-specialpages'          => 'Liste de tutte le pàggene speciale',
 'tooltip-ca-nstab-user'           => "Vide 'a pàgene de l'utende",
 'tooltip-ca-nstab-project'        => "Vide 'a pàgene d'u proggette",
+'tooltip-ca-nstab-image'          => "Vide 'a pàgene d'u fail",
 'tooltip-ca-nstab-template'       => "Fà vedè 'u template",
+'tooltip-ca-nstab-help'           => "Vide 'a pàgene d'ajute",
 'tooltip-minoredit'               => "Signe cumme a 'nu cangiaminde stuèdeche",
 'tooltip-save'                    => 'Reggistre le cangiaminde ca è fatte',
 'tooltip-compareselectedversions' => "Vide le differenze 'mbrà le doje versiune selezionete de sta pàgene.",
@@ -571,10 +591,13 @@ Puè vedè sulamende 'u sorgende.",
 # Media information
 'file-info-size'       => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
 'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",
+'svg-long-desc'        => "(Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3)",
+'show-big-image'       => 'Risoluzione chiena chiena',
 'show-big-image-thumb' => '<small>Dimenziune de sta andeprime: $1 × $2 pixels</small>',
 
 # Special:NewImages
-'ilsubmit' => 'Cirche',
+'newimages' => 'Gallerie de le fail nuève',
+'ilsubmit'  => 'Cirche',
 
 # Metadata
 'metadata'          => 'Metadata',

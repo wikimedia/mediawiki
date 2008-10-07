@@ -1649,62 +1649,71 @@ Example line:
 'whatlinkshere-filters'    => '{{Identical|Filter}}',
 
 # Block/unblock
-'blockip'                     => 'The title of the special page [[Special:BlockIP]].
+'blockip'                      => 'The title of the special page [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'blockip-legend'              => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
+'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
 
 {{Identical|Block user}}',
-'ipaddress'                   => '{{Identical|IP Address}}',
-'ipbexpiry'                   => '{{Identical|Expiry}}',
-'ipbreason'                   => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
+'ipaddress'                    => '{{Identical|IP Address}}',
+'ipbexpiry'                    => '{{Identical|Expiry}}',
+'ipbreason'                    => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
 
 {{Identical|Reason}}',
-'ipbreasonotherlist'          => '{{Identical|Other reason}}',
-'ipbanononly'                 => '{{Identical|Block anonymous users only}}',
-'ipbcreateaccount'            => '{{Identical|Prevent account creation}}',
-'ipbemailban'                 => '{{Identical|Prevent user from sending e-mail}}',
-'ipbenableautoblock'          => '{{Identical|Automatically block ...}}',
-'ipbsubmit'                   => '{{Identical|Block this user}}',
-'ipbother'                    => '{{Identical|Other time}}',
-'ipboptions'                  => "* Description: Options for the duration of the block. 
+'ipbreasonotherlist'           => '{{Identical|Other reason}}',
+'ipbanononly'                  => '{{Identical|Block anonymous users only}}',
+'ipbcreateaccount'             => '{{Identical|Prevent account creation}}',
+'ipbemailban'                  => '{{Identical|Prevent user from sending e-mail}}',
+'ipbenableautoblock'           => '{{Identical|Automatically block ...}}',
+'ipbsubmit'                    => '{{Identical|Block this user}}',
+'ipbother'                     => '{{Identical|Other time}}',
+'ipboptions'                   => "* Description: Options for the duration of the block. 
 * <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English. 
 * Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.", # display1:time1,display2:time2,...
-'ipbotheroption'              => '{{Identical|Other}}',
-'ipbotherreason'              => '{{Identical|Other/additional reason}}',
-'ipbhidename'                 => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
-'ipbwatchuser'                => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
-'ipballowusertalk'            => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
-'ipb-edit-dropdown'           => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
-'ipblocklist-submit'          => '{{Identical|Search}}',
-'blocklistline'               => 'This is the text of an entry in the Special:IPBlockList.
+'ipbotheroption'               => '{{Identical|Other}}',
+'ipbotherreason'               => '{{Identical|Other/additional reason}}',
+'ipbhidename'                  => 'This is the label for a checkbox in the user block form on [[Special:BlockIP]].',
+'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
+'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
+'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]]
+
+* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
+'ipblocklist-sh-tempblocks'    => 'Top selection button at [[Special:IPBlockList]]
+
+* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
+'ipblocklist-sh-addressblocks' => 'Top selection button at [[Special:IPBlockList]]
+
+* $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
+'ipblocklist-submit'           => '{{Identical|Search}}',
+'blocklistline'                => 'This is the text of an entry in the Special:IPBlockList.
 *$1 is the hour and date of the block. 
 *$2 is the sysop. 
 *$3 is the blocked user or IP (with link to contributions and talk)
 *$4 contains "hour and date of expiry, details (\'\'reason\'\')"
 
 See also [[MediaWiki:Blocklogentry]].',
-'anononlyblock'               => '{{Identical|Anon only}}',
-'noautoblockblock'            => '{{Identical|Autoblock disabled}}',
-'emailblock'                  => '{{Identical|E-mail blocked}}',
-'blocklist-nousertalk'        => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
-'blocklink'                   => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
-'contribslink'                => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
-'blocklogpage'                => '{{Identical|Block log}}',
-'blocklog-fulllog'            => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
-'blocklogentry'               => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
+'anononlyblock'                => '{{Identical|Anon only}}',
+'noautoblockblock'             => '{{Identical|Autoblock disabled}}',
+'emailblock'                   => '{{Identical|E-mail blocked}}',
+'blocklist-nousertalk'         => 'Used in [[Special:IPBlockList]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Block-log-flags-nousertalk}}.',
+'blocklink'                    => "Display name for a link that, when selected, leads to a form where a user can be blocked. Used in page history and recent changes pages. Example: \"''UserName (Talk | contribs | '''block''')''\".",
+'contribslink'                 => 'Short for "contributions". Used as display name for a link to user contributions on history pages, [[Special:RecentChanges]], [[Special:Watchlist]], etc.',
+'blocklogpage'                 => '{{Identical|Block log}}',
+'blocklog-fulllog'             => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
+'blocklogentry'                => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
 *$1 is the blocked user or IP (with link to contributions and talk)
 *$2 is the duration of the block (hours, days etc.) or the specified expiry date
 *$3 contains "(details) (\'\'reason\'\')"
 See also [[MediaWiki:Blocklistline]].',
-'block-log-flags-noautoblock' => '{{Identical|Autoblock disabled}}',
-'block-log-flags-noemail'     => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
+'block-log-flags-noautoblock'  => '{{Identical|Autoblock disabled}}',
+'block-log-flags-noemail'      => "Log message for [[Special:Log/block]] to note that a user cannot use the 'email another user' option.
 
 {{Identical|E-mail blocked}}",
-'block-log-flags-nousertalk'  => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
-'ipb_expiry_temp'             => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
-'ipb_already_blocked'         => '{{Identical|$1 is already blocked}}',
-'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
+'block-log-flags-nousertalk'   => 'Used in [[Special:Log/block]] when "Allow this user to edit own talk page while blocked" option hasn\'t been flagged. See also {{msg-mw|Blocklist-nousertalk}}.',
+'ipb_expiry_temp'              => 'Warning message displayed on [[Special:BlockIP]] if the option "hide username" is selected but the expiry time is not infinite.',
+'ipb_already_blocked'          => '{{Identical|$1 is already blocked}}',
+'blockme'                      => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 
 # Developer tools
 'lockdb'              => 'The title of the special page [[Special:LockDB]].
