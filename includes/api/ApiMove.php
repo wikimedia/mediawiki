@@ -44,9 +44,7 @@ class ApiMove extends ApiBase {
 		if(is_null($params['reason']))
 			$params['reason'] = '';
 
-		$titleObj = NULL;
-		if(!isset($params['from']))
-			$this->dieUsageMsg(array('missingparam', 'from'));
+		$this->requireOnlyOneParameter($params, 'from', 'fromid');
 		if(!isset($params['to']))
 			$this->dieUsageMsg(array('missingparam', 'to'));
 		if(!isset($params['token']))
@@ -54,9 +52,18 @@ class ApiMove extends ApiBase {
 		if(!$wgUser->matchEditToken($params['token']))
 			$this->dieUsageMsg(array('sessionfailure'));
 
-		$fromTitle = Title::newFromText($params['from']);
-		if(!$fromTitle)
-			$this->dieUsageMsg(array('invalidtitle', $params['from']));
+		if(isset($params['from']))
+		{
+			$fromTitle = Title::newFromText($params['from']);
+			if(!$fromTitle)
+				$this->dieUsageMsg(array('invalidtitle', $params['from']));
+		}
+		else if(isset($params['fromid']))
+		{
+			$fromTitle = Title::newFromID($params['fromid']);
+			if(!$fromTitle)
+				$this->dieUsageMsg(array('nosuchpageid', $params['fromid']));
+		}
 		if(!$fromTitle->exists())
 			$this->dieUsageMsg(array('notanarticle'));
 		$fromTalk = $fromTitle->getTalkPage();
@@ -112,6 +119,9 @@ class ApiMove extends ApiBase {
 	public function getAllowedParams() {
 		return array (
 			'from' => null,
+			'fromid' => array(
+				ApiBase::PARAM_TYPE => 'integer'
+			),
 			'to' => null,
 			'token' => null,
 			'reason' => null,
@@ -124,7 +134,8 @@ class ApiMove extends ApiBase {
 
 	public function getParamDescription() {
 		return array (
-			'from' => 'Title of the page you want to move.',
+			'from' => 'Title of the page you want to move. Cannot be used together with fromid.',
+			'fromid' => 'Page ID of the page you want to move. Cannot be used together with from.',
 			'to' => 'Title you want to rename the page to.',
 			'token' => 'A move token previously retrieved through prop=info',
 			'reason' => 'Reason for the move (optional).',
