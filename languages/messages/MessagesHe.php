@@ -140,7 +140,7 @@ $magicWords = array(
 	'img_middle'            => array( 1,    'באמצע',                                'middle'                 ),
 	'img_bottom'            => array( 1,    'למטה',                                 'bottom'                 ),
 	'img_text_bottom'       => array( 1,    'בתחתית הטקסט',                         'text-bottom'            ),
-	'img_click'             => array( 1,    'קישור=$1',                             'click=$1'               ),
+	'img_link'              => array( 1,    'קישור=$1',                             'link=$1'               ),
 	'int'                   => array( 0,    'הודעה:',                               'INT:'                   ),
 	'sitename'              => array( 1,    'שם האתר',                              'SITENAME'               ),
 	'ns'                    => array( 0,    'מרחב שם:',                             'NS:'                    ),
