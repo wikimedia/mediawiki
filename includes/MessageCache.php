@@ -25,7 +25,7 @@ class MessageCache {
 	var $mKeys, $mParserOptions, $mParser;
 	var $mExtensionMessages = array();
 	var $mInitialised = false;
-	var $mAllMessagesLoaded; // Extension messages
+	var $mAllMessagesLoaded = array(); // Extension messages
 
 	// Variable for tracking which variables are loaded
 	var $mLoadedLanguages = array();
@@ -766,12 +766,13 @@ class MessageCache {
 		}
 	}
 
-	function loadAllMessages() {
+	function loadAllMessages( $lang = false ) {
 		global $wgExtensionMessagesFiles;
-		if ( $this->mAllMessagesLoaded ) {
+		$key = $lang === false ? '*' : $lang;
+		if ( isset( $this->mAllMessagesLoaded[$key] ) ) {
 			return;
 		}
-		$this->mAllMessagesLoaded = true;
+		$this->mAllMessagesLoaded[$key] = true;
 
 		# Some extensions will load their messages when you load their class file
 		wfLoadAllExtensions();
@@ -779,7 +780,7 @@ class MessageCache {
 		wfRunHooks( 'LoadAllMessages' );
 		# Some register their messages in $wgExtensionMessagesFiles
 		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
-			wfLoadExtensionMessages( $name );
+			wfLoadExtensionMessages( $name, $lang );
 		}
 		# Still others will respond to neither, they are EVIL. We sometimes need to know!
 	}
@@ -840,13 +841,17 @@ class MessageCache {
 
 	public function figureMessage( $key ) {
 		global $wgContLanguageCode;
-		$pieces = explode('/', $key, 2);
+		$pieces = explode( '/', $key );
+		if( count( $pieces ) < 2 )
+			return array( $key, $wgContLanguageCode );
 
-		$key = $pieces[0];
+		$lang = array_pop( $pieces );
+		$validCodes = Language::getLanguageNames();
+		if( !array_key_exists( $lang, $validCodes ) )
+			return array( $key, $wgContLanguageCode );
 
-		# Language the user is translating to
-		$langCode = isset($pieces[1]) ? $pieces[1] : $wgContLanguageCode;
-		return array( $key, $langCode );
+		$message = implode( '/', $pieces );
+		return array( $message, $lang );
 	}
 
 }
