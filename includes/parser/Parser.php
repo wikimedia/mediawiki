@@ -4224,7 +4224,7 @@ class Parser
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'click' ),
+					'upright', 'border', 'link' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -4343,7 +4343,7 @@ class Parser
 							/// downstream behavior seems odd with missing manual thumbs.
 							$validated = true;
 							break;
-						case 'click':
+						case 'link':
 							$chars = self::EXT_LINK_URL_CLASS;
 							$prots = $this->mUrlProtocols;
 							if ( $value === '' ) {
@@ -4352,16 +4352,16 @@ class Parser
 								$validated = true;
 							} elseif ( preg_match( "/^$prots/", $value ) ) {
 								if ( preg_match( "/^($prots)$chars+$/", $value, $m ) ) {
-									$paramName = 'click-url';
+									$paramName = 'link-url';
 									$this->mOutput->addExternalLink( $value );
 									$validated = true;
 								}
 							} else {
-								$clickTitle = Title::newFromText( $value );
-								if ( $clickTitle ) {
-									$paramName = 'click-title';
-									$value = $clickTitle;
-									$this->mOutput->addLink( $clickTitle );
+								$linkTitle = Title::newFromText( $value );
+								if ( $linkTitle ) {
+									$paramName = 'link-title';
+									$value = $linkTitle;
+									$this->mOutput->addLink( $linkTitle );
 									$validated = true;
 								}
 							}
