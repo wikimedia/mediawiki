@@ -1735,7 +1735,7 @@ wgUploadAutoFill = {$autofill};
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, 'delete', false, $filename );
 		if( $pager->getNumRows() > 0 ) {
-			$out->addHtml( '<div id="mw-upload-deleted-warn">' );
+			$out->addHtml( '<div class="mw-warning-with-logexcerpt">' );
 			$out->addWikiMsg( 'upload-wasdeleted' );
 			$out->addHTML(
 				$loglist->beginLogEventsList() .

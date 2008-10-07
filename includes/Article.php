@@ -842,7 +842,7 @@ class Article {
 				$count = $pager->getNumRows();
 				if( $count > 0 ) {
 					$pager->mLimit = 10;
-					$wgOut->addHtml( '<div id="mw-deleted-notice">' );
+					$wgOut->addHtml( '<div class="mw-warning-with-logexcerpt">' );
 					$wgOut->addWikiMsg( 'deleted-notice' );
 					$wgOut->addHTML(
 						$loglist->beginLogEventsList() .

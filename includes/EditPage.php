@@ -1201,7 +1201,7 @@ class EditPage {
 				$noticeMsg = 'protectedpagewarning';
 				$classes[] = 'mw-textarea-protected';
 			}
-			$wgOut->addHTML( "<div id='mw-edit-$noticeMsg'>\n" );
+			$wgOut->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
 			$wgOut->addWikiMsg( $noticeMsg );
 			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '', 1 );
 			$wgOut->addHTML( "</div>\n" );
@@ -2344,7 +2344,7 @@ END
 		$count = $pager->getNumRows();
 		if ( $count > 0 ) {
 			$pager->mLimit = 10;
-			$out->addHtml( '<div id="mw-recreate-deleted-warn">' );
+			$out->addHtml( '<div class="mw-warning-with-logexcerpt">' );
 			$out->addWikiMsg( 'recreate-deleted-warn' );
 			$out->addHTML(
 				$loglist->beginLogEventsList() .
