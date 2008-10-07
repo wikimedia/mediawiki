@@ -341,6 +341,7 @@ $messages = array(
 'page-atom-feed'          => '„$1“ Atom фид',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
+'sitenotice_close'        => 'информиран',
 'red-link-title'          => '$1 (страницата не постои)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -388,8 +389,8 @@ $1',
 
 Ова најчесто е предизвикано од застарена разл. или врска до историја на страница која била избришана.
 
-Ако ова не е случајот, можеби сте нашле софтверска грешка (баг).
-Ве молиме пријавете го ова на некој [[Special:ListUsers/sysop|администратор]], давајќи врска до URL-то.',
+Ако ова не е случај, можеби сте нашле грешка во софтверот.
+Пријавете го ова на некој [[Special:ListUsers/sysop|администратор]], давајќи врска до URL-то.',
 'missingarticle-rev'   => '(измена#: $1)',
 'missingarticle-diff'  => '(разлика: $1, $2)',
 'readonly_lag'         => 'Базата е автоматски заклучена додека помошните сервери не се синхронизираат',
@@ -767,7 +768,7 @@ $2',
 'page_last'              => 'последен',
 'histlegend'             => 'Diff селекција: селектирајте ги ревизиите кои сакате да ги споредите и притиснете ентер или копчето на дното од страницата.<br />
 Легенда: (мом) = разлика со последната ревизија,(посл) = разлика со претходната верзија, С = ситна промена.',
-'history-fieldset-title' => 'Пребарување низ историјата на страницата',
+'history-fieldset-title' => 'Прелистување на историја',
 'deletedrev'             => '[избришано]',
 'histfirst'              => 'Први',
 'histlast'               => 'Последни',
@@ -1025,8 +1026,8 @@ $2',
 'group-bureaucrat'    => 'Бирократи',
 'group-all'           => '(сите)',
 
-'group-user-member'          => 'корисник',
-'group-autoconfirmed-member' => 'автопотврден корисник',
+'group-user-member'          => 'Корисник',
+'group-autoconfirmed-member' => 'Автопотврден корисник',
 'group-bot-member'           => 'Бот',
 'group-sysop-member'         => 'Администратор',
 'group-bureaucrat-member'    => 'Бирократ',
@@ -1104,7 +1105,7 @@ $2',
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.jpg]]</nowiki></tt>''' за верзија на сликата во целосна големина
 * '''<tt><nowiki>[[</nowiki>{{ns:image}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki><tt>''' за верзија на сликата со големина од 200 пиксели рендерирана во соодветна кутија, со опис како што е наведено во '''alt text'''
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki><tt>''' за директно поврзување со податотеката без нејзино прикажување",
-'upload-permitted'            => 'Дозволени видови на податотеки: $1.',
+'upload-permitted'            => 'Дозволени типови на податотеки: $1.',
 'upload-preferred'            => 'Преферирани типови на податотеки: $1.',
 'upload-prohibited'           => 'Забранети типови на податотеки: $1.',
 'uploadlog'                   => 'дневник на подигнувањата',
@@ -1630,7 +1631,7 @@ $NEWPAGE
 'protect-cantedit'            => 'Не можете да го промените нивото на заштита на оваа страница, бидејќи немате пермисии за тоа.',
 'protect-othertime'           => 'Друго време:',
 'protect-othertime-op'        => 'друго време',
-'protect-existing-expiry'     => 'Постоечки рок: $1',
+'protect-existing-expiry'     => 'Постоечки рок на истекување: $3, $2',
 'protect-otherreason'         => 'Друга/дополнителна причини:',
 'protect-otherreason-op'      => 'друга/дополнителна причина',
 'protect-dropdown'            => '*Вообичаени причини за заштита

@@ -1916,7 +1916,7 @@ $NEWPAGE
 'protect-cantedit'            => 'Вы ня можаце зьмяніць узровень абароны гэтай старонкі, таму што Вы ня маеце дазволу на яе рэдагаваньне.',
 'protect-othertime'           => 'Іншы тэрмін:',
 'protect-othertime-op'        => 'іншы тэрмін',
-'protect-existing-expiry'     => 'Наяўны час сканчэньня: $1',
+'protect-existing-expiry'     => 'Наяўны час сканчэньня: $3, $2',
 'protect-otherreason'         => 'Іншая/дадатковая прычына:',
 'protect-otherreason-op'      => 'іншая/дадатковая прычына',
 'protect-edit-reasonlist'     => 'Рэдагаваць прычыны абароны',

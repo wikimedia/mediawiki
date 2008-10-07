@@ -1193,6 +1193,10 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'rightslogentry' => "heu modificat els drets de l'usuari «$1» del grup $2 al de $3",
 'rightsnone'     => '(cap)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read' => 'llegir aquesta pàgina',
+'action-edit' => 'editar aquesta pàgina',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',
 'recentchanges'                     => 'Canvis recents',
@@ -1806,7 +1810,7 @@ Ací es troben els paràmetres actuals de la pàgina <strong>$1</strong>:',
 'protect-cantedit'            => "No podeu canviar els nivells de protecció d'aquesta pàgina, perquè no teniu permisos per a editar-la.",
 'protect-othertime'           => 'Un altre termini:',
 'protect-othertime-op'        => 'un altre termini',
-'protect-existing-expiry'     => "Temps d'expiració existent: $1",
+'protect-existing-expiry'     => "Data d'expiració existent: $2 a les $3",
 'protect-otherreason'         => 'Altres motius:',
 'protect-otherreason-op'      => 'altres motius',
 'protect-dropdown'            => "*Motius comuns de protecció
@@ -2861,5 +2865,8 @@ Introduïu el nom d'usuari o la IP per obtenir una llista de pàgines per esborr
 'nuke-submit-user'   => 'Vés-hi',
 'nuke-submit-delete' => 'Esborra la selecció',
 'right-nuke'         => 'Esborrat massiu de pàgines',
+
+# Special:DismissNotice
+'dismissnotice' => 'Amaga el missatge del lloc web',
 
 );
