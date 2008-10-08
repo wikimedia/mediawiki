@@ -7,7 +7,8 @@
 class SpecialRecentchangeslinked extends SpecialRecentchanges {
 
 	function __construct(){
-		SpecialPage::SpecialPage( 'Recentchangeslinked' );	
+		SpecialPage::SpecialPage( 'Recentchangeslinked' );
+		$this->includable( true );
 	}
 
 	public function getDefaultOptions() {
