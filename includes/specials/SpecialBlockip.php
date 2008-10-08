@@ -480,7 +480,7 @@ class IPBlockForm {
 		global $wgUser;
 		$skin = $wgUser->getSkin();
 		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
-		$links[] = $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contibs', $this->BlockAddress ) );
+		$links[] = $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contribs', $this->BlockAddress ) );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
 		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
