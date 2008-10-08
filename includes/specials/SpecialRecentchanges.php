@@ -98,7 +98,9 @@ class SpecialRecentChanges extends SpecialPage {
 		$conds = $this->buildMainQueryConds( $opts );
 		$rows = $this->doMainQuery( $conds, $opts );
 		if( $rows === false ){
-			$this->doHeader( $opts );
+			if( !$this->including() ) {
+				$this->doHeader( $opts );
+			}
 			return;
 		}
 
