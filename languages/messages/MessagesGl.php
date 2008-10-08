@@ -925,8 +925,9 @@ Se quere, pode [[:\$1|creala]].",
 'powersearch-redir'         => 'Listar as redireccións',
 'powersearch-field'         => 'Procurar por',
 'search-external'           => 'Procura externa',
-'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento. Mentres tanto pode procurar usando o Google.
-<span style="font-size: 89%; display: block; margin-left: .2em">Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.</span></p>',
+'searchdisabled'            => 'As procuras en {{SITENAME}} están deshabilitadas por cuestións de rendemento.
+Mentres tanto pode procurar usando o Google.
+Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados.',
 
 # Preferences page
 'preferences'              => 'Preferencias',

@@ -412,13 +412,11 @@ Llogaria juej asht hap. Mos harroni me ndryshu parapëlqimet e {{SITENAME}}-s.',
 'editundo'                => 'ktheje',
 
 # Search results
-'noexactmatch' => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk asht krijue </span>
+'noexactmatch' => 'Faqja me atë titull nuk asht krijue
 
-<span style="display: block; margin: 1.5em 2em">
 Muneni me [[$1|fillu një artikull]] me kët titull.
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet me kánë nën një titull tjetër.</span>
-</span>',
+Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet me kánë nën një titull tjetër.',
 'viewprevnext' => 'Shikoni ($1) ($2) ($3).',
 'powersearch'  => 'Kërko',
 

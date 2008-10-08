@@ -1120,7 +1120,10 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'powersearch-redir'         => 'Daftar pengalihan',
 'powersearch-field'         => 'Mencari',
 'search-external'           => 'Pencarian eksternal',
-'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja. Anda dapat mencari melalui Google untuk sementara waktu. <span style="font-size: 89%; display: block; margin-left: .2em">Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui. Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.</span></p>',
+'searchdisabled'            => 'Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja.
+Anda dapat mencari melalui Google untuk sementara waktu.
+Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui.
+Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.',
 
 # Preferences page
 'preferences'              => 'Preferensi',

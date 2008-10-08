@@ -2728,7 +2728,8 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:image}}:".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
-'specialpages-note'              => '<p>&nbsp;</p><p style="margin-left:1cm; font-size:110%; padding:1px; text-align:center; border:1px solid blue;">Las páginas <span class="mw-specialpagerestricted">destacadas</span> son páginas especiales restringidas.</p>',
+'specialpages-note'              => '----
+* Las páginas <span class="mw-specialpagerestricted">destacadas</span> son páginas especiales restringidas.',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Registrarse / entrar',
