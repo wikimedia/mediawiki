@@ -1639,7 +1639,12 @@ class Linker {
 				} else {
 					$protected = '';
 				}
-				$outText .= '<li>' . $sk->link( $titleObj ) . ' ' . $protected . '</li>';
+				if( $titleObj->quickUserCan( 'edit' ) ) {
+					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('editold'), 'action=edit' );
+				} else {
+					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('viewsourceold'), 'action=edit' );
+				}
+				$outText .= '<li>' . $sk->link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
 			}
 			$outText .= '</ul>';
 		}
