@@ -479,12 +479,24 @@ class IPBlockForm {
 	private function getConvenienceLinks() {
 		global $wgUser;
 		$skin = $wgUser->getSkin();
-		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
-		$links[] = $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contribs', $this->BlockAddress ) );
+		if( $this->BlockAddress )
+			$links[] = $this->getContribsLink( $skin );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
 		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
 		return '<p class="mw-ipb-conveniencelinks">' . implode( ' | ', $links ) . '</p>';
+	}
+	
+	/**
+	 * Build a convenient link to a user or IP's contribs
+	 * form
+	 *
+	 * @param $skin Skin to use
+	 * @return string
+	 */
+	private function getContribsLink( $skin ) {
+		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
+		return $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contribs', $this->BlockAddress ) );
 	}
 
 	/**
