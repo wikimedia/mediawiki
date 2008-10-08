@@ -656,12 +656,12 @@ La motivazione del blocco è la seguente:
 * Scadenza del blocco: $6
 * Intervallo di blocco: $7
 
-È possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per discutere del blocco.
+È possibile contattare $1 o un altro [[{{MediaWiki:Grouppage-sysop}}|amministratore]] per richiedere eventuali chiarimenti circa il blocco.
 
-Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e se si è stato bloccati dal suo utilizzo.
+Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato registrato un indirizzo e-mail valido nelle proprie [[Special:Preferences|preferenze]] e, comunque, se nell'applicare il blocco, tale funzione è stata disabilitata (per la durata del blocco).
 
 L'indirizzo IP attuale è $3, il numero ID del blocco è #$5
-Si prega di specificare tutti i dettagli precedenti in qualsiasi richiesta di chiarimenti.",
+Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi richiesta di chiarimenti.",
 'blockednoreason'                  => 'nessuna motivazione indicata',
 'blockedoriginalsource'            => "Di seguito viene mostrato il codice sorgente della pagina '''$1''':",
 'blockededitsource'                => "Di seguito vengono mostrate le '''modifiche apportate''' alla pagina '''$1''':",
@@ -1955,8 +1955,9 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipb-edit-dropdown'               => 'Modifica i motivi per il blocco',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => 'Sblocca un utente o un indirizzo IP',
-'ipb-blocklist-addr'              => 'Elenca i blocchi attivi per $1',
+'ipb-blocklist-addr'              => 'Blocchi attivi per $1',
 'ipb-blocklist'                   => 'Elenca i blocchi attivi',
+'ipb-blocklist-contribs'          => 'Contributi di $1',
 'unblockip'                       => "Sblocca l'utente",
 'unblockiptext'                   => "Usare il modulo sottostante per restituire l'accesso in scrittura ad un utente o indirizzo IP bloccato.",
 'ipusubmit'                       => "Sblocca l'utente",
@@ -1965,6 +1966,9 @@ Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocc
 'ipblocklist'                     => 'Utenti e indirizzi IP bloccati',
 'ipblocklist-legend'              => 'Trova un utente bloccato',
 'ipblocklist-username'            => 'Nome utente o indirizzo IP:',
+'ipblocklist-sh-userblocks'       => '$1 i blocchi degli utenti registrati',
+'ipblocklist-sh-tempblocks'       => '$1 i blocchi temporanei',
+'ipblocklist-sh-addressblocks'    => '$1 i blocchi dei singoli IP',
 'ipblocklist-submit'              => 'Ricerca',
 'blocklistline'                   => '$1, $2 ha bloccato $3 ($4)',
 'infiniteblock'                   => 'infinito',
