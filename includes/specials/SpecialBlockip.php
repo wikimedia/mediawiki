@@ -479,9 +479,11 @@ class IPBlockForm {
 	private function getConvenienceLinks() {
 		global $wgUser;
 		$skin = $wgUser->getSkin();
-		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
+		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
+		$links[] = $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contibs', $this->BlockAddress ) );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
+		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
 		return '<p class="mw-ipb-conveniencelinks">' . implode( ' | ', $links ) . '</p>';
 	}
 
