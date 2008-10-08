@@ -362,6 +362,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom lentası',
 'page-rss-feed'           => '"$1" - RSS lentası',
 'page-atom-feed'          => '"$1" - Atom lentası',
+'sitenotice_close'        => 'gizle',
 'red-link-title'          => '$1 (daa yazılmağan)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

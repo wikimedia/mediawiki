@@ -318,7 +318,7 @@ $messages = array(
 'restorelink'             => '削除された $1 編集',
 'feedlinks'               => 'フィード:',
 'feed-invalid'            => 'フィード形式の指定が間違っています。',
-'feed-unavailable'        => '{{SITENAME}} は、フィードの配信に対応していません。',
+'feed-unavailable'        => 'フィードの配信に対応していません。',
 'site-rss-feed'           => '$1 をRSSフィード',
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
@@ -662,13 +662,15 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'nocreate-loggedin'                => 'あなたは、{{SITENAME}}で新しいページを作成する権限がありません。',
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'あなたにはこのページの編集権限がありません。理由は以下の通りです:',
-'permissionserrorstext-withaction' => '以下に示された理由により $2 を行うことができません:',
+'permissionserrorstext-withaction' => '以下に示された理由により$2を行うことができません:',
 'recreate-deleted-warn'            => "'''警告:あなたは以前に削除されたページを再作成しようとしています。'''
 
 このページの編集が適切であるかどうか確認してください。参考として以下にこのページの削除記録を表示しています:",
 'deleted-notice'                   => 'このページは削除されています。
 参考のため、このページの削除ログが以下に表示されています。',
 'deletelog-fulllog'                => '完全なログを見る',
+'edit-hook-aborted'                => 'フックによって編集が破棄されました。理由は不明です。',
+'edit-gone-missing'                => 'ページをアップデートできませんでした。既に削除されているようです。',
 'edit-conflict'                    => '編集競合。',
 'edit-no-change'                   => 'テキストが変更されていないため、あなたの編集は反映されませんでした。',
 'edit-already-exists'              => '新しいページを作成することはできませんでした。
@@ -796,6 +798,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'mergehistory-invalid-destination' => '統合先のページの正確なタイトルを指定してください。',
 'mergehistory-autocomment'         => '[[:$1]]を[[:$2]]に統合',
 'mergehistory-comment'             => '[[:$1]]を[[:$2]]に統合: $3',
+'mergehistory-same-destination'    => '統合元と統合先に同じページを設定することはできません。',
 
 # Merge log
 'mergelog'           => '統合記録',
@@ -1078,7 +1081,38 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'rightsnone'     => '（権限なし）',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'ページの編集',
+'action-read'                 => 'このページの読み込み',
+'action-edit'                 => 'ページの編集',
+'action-createpage'           => 'ページの新規作成',
+'action-createtalk'           => 'ノートページの新規作成',
+'action-createaccount'        => 'このアカウントの作成',
+'action-minoredit'            => '細部の編集の印つけ',
+'action-move'                 => 'このページの移動',
+'action-move-subpages'        => 'このページ及びサブページの移動',
+'action-upload'               => 'このファイルのアップロード',
+'action-reupload'             => 'このファイルの上書き',
+'action-reupload-shared'      => '共有リポジトリにあるこのファイルの上書き',
+'action-upload_by_url'        => 'URLアドレスからのファイルのアップロード',
+'action-writeapi'             => 'API書き込み',
+'action-delete'               => 'このページの削除',
+'action-deleterevision'       => 'この版の削除',
+'action-deletedhistory'       => 'このページの削除履歴の閲覧',
+'action-browsearchive'        => '削除されたページの検索',
+'action-undelete'             => 'このページの復帰',
+'action-suppressrevision'     => '秘匿版の閲覧と復帰',
+'action-suppressionlog'       => '非公開ログの閲覧',
+'action-block'                => 'この利用者の投稿ブロック',
+'action-protect'              => 'このページの保護レベルの変更',
+'action-import'               => '他のウィキからのこのページのインポート',
+'action-importupload'         => 'ファイルアップロードからのこのページのインポート',
+'action-patrol'               => '他の利用者の編集に対するパトロール済みの印つけ',
+'action-autopatrol'           => 'あなたの編集へのパトロール済みの印つけ',
+'action-unwatchedpages'       => 'ウォッチされていないページ一覧の閲覧',
+'action-trackback'            => 'トラックバックの投稿',
+'action-mergehistory'         => 'このページの履歴統合',
+'action-userrights'           => '全利用者権限の変更',
+'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
+'action-siteadmin'            => 'データベースのロック・ロック解除',
 
 # Recent changes
 'nchanges'                          => '$1 回の更新',
@@ -1176,7 +1210,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadedimage'               => '"$1" をアップロードしました。',
 'overwroteimage'              => '"[[$1]]"の新しい版をアップロードしました',
 'uploaddisabled'              => '申し訳ありませんが、アップロードは現在使用できません。',
-'uploaddisabledtext'          => '{{SITENAME}}では、ファイルのアップロードが禁止されています。',
+'uploaddisabledtext'          => 'ファイルのアップロードは禁止されています。',
 'uploadscripted'              => 'このファイルはウェブブラウザが誤って解釈してしまうおそれのあるHTMLまたはスクリプトコードを含んでいます。',
 'uploadcorrupt'               => '指定したファイルは壊れているか拡張子が正しくありません。ファイルを確認の上再度アップロードをしてください。',
 'uploadvirus'                 => 'このファイルにはウイルスが含まれています!! &nbsp;詳細: $1',
@@ -1312,8 +1346,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 # Statistics
 'statistics'                      => 'サイトの統計',
-'statistics-header-pages'         => '項目数に関する統計',
+'statistics-header-pages'         => 'ページに関する統計',
 'statistics-header-edits'         => '編集に関する統計',
+'statistics-header-views'         => '閲覧に関する統計',
 'statistics-header-users'         => '登録利用者に関する統計',
 'statistics-articles'             => '記事数',
 'statistics-pages'                => '総項目数',
@@ -1391,8 +1426,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'protectedtitlestext'     => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty'    => '現在作成保護されているページはありません。',
 'listusers'               => '登録利用者の一覧',
-'listusers-editsonly'     => '投稿記録のある利用者',
-'usereditcount'           => '{{PLURAL:$1|編集回数:|編集回数:}}$1',
+'listusers-editsonly'     => '投稿記録のある利用者のみを表示',
+'usereditcount'           => '編集回数 $1 回',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名:',
 'ancientpages'            => '更新されていないページ',
@@ -1647,6 +1682,7 @@ $NEWPAGE
 'protectedarticle'            => '"[[$1]]" を保護しました。',
 'modifiedarticleprotection'   => '"[[$1]]" の保護レベルを変更しました。',
 'unprotectedarticle'          => '"[[$1]]" の保護を解除しました。',
+'movedarticleprotection'      => '保護の設定を "[[$2]]" から "[[$1]]" へ移動',
 'protect-title'               => '"$1" の保護',
 'prot_1movedto2'              => 'ページ [[$1]] を [[$2]] へ移動',
 'protect-legend'              => '保護の確認',
@@ -1674,7 +1710,7 @@ $NEWPAGE
 'protect-cantedit'            => 'あなたにはこのページの編集権限がないため保護レベルを変更できません。',
 'protect-othertime'           => '期間（その他のとき）:',
 'protect-othertime-op'        => '期間（その他のとき）',
-'protect-existing-expiry'     => '保護継続の期限: $1',
+'protect-existing-expiry'     => '現在の保護期限: $2 $3',
 'protect-otherreason'         => '理由（その他/追加）:',
 'protect-otherreason-op'      => 'その他/理由の追加',
 'protect-dropdown'            => '*よくある保護理由
@@ -1721,7 +1757,7 @@ $NEWPAGE
 'undeletebtn'                  => '復帰',
 'undeletelink'                 => '復帰',
 'undeletereset'                => 'リセット',
-'undeleteinvert'               => '全て選択',
+'undeleteinvert'               => '選択を逆転する',
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
 'undeletedrevisions'           => '$1 版を復帰しました。',
@@ -1813,6 +1849,7 @@ $NEWPAGE
 'ipbotherreason'                  => '理由（その他/追加）',
 'ipbhidename'                     => '利用者名/IPを{{int:blocklogpage}}、{{int:ipblocklist}}、{{int:listusers}}などに載せない',
 'ipbwatchuser'                    => 'この利用者の利用者ページと利用者‐会話ページをウォッチリストに追加',
+'ipballowusertalk'                => 'ブロックされる利用者に対してブロック中の自身の会話ページ編集を許可',
 'badipaddress'                    => 'IPアドレスが異常です。',
 'blockipsuccesssub'               => 'ブロックに成功しました。',
 'blockipsuccesstext'              => '利用者またはIPアドレス [[Special:Contributions/$1|$1]] の投稿をブロックしました。<br />
@@ -1820,8 +1857,9 @@ $NEWPAGE
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',
 'ipb-unblock-addr'                => '$1 のブロックを解除',
 'ipb-unblock'                     => '利用者またはIPアドレスのブロックを解除する',
-'ipb-blocklist-addr'              => '$1 の現在有効なブロックを表示',
+'ipb-blocklist-addr'              => '$1 に対する現在有効なブロック',
 'ipb-blocklist'                   => '現在有効なブロックを表示',
+'ipb-blocklist-contribs'          => '$1 の投稿記録',
 'unblockip'                       => '投稿ブロックを解除する',
 'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
 'ipusubmit'                       => '投稿ブロックを解除する',
@@ -1841,6 +1879,7 @@ $NEWPAGE
 'noautoblockblock'                => '自動ブロックなし',
 'createaccountblock'              => 'アカウント作成のブロック',
 'emailblock'                      => 'メール送信のブロック',
+'blocklist-nousertalk'            => '自身の会話ページ編集禁止',
 'ipblocklist-empty'               => '{{int:ipblocklist}}はありません。',
 'ipblocklist-no-results'          => '指定されたIPアドレスまたは利用者名はブロックされていません。',
 'blocklink'                       => 'ブロック',
@@ -1848,6 +1887,7 @@ $NEWPAGE
 'contribslink'                    => '投稿記録',
 'autoblocker'                     => '投稿ブロックされている利用者 "$1" と同じIPアドレスのため、自動的にブロックされています。ブロックの理由は "$2" です。',
 'blocklogpage'                    => '投稿ブロック記録',
+'blocklog-fulllog'                => '投稿ブロック記録全てを見る',
 'blocklogentry'                   => '"$1" を $2 ブロックしました $3',
 'blocklogtext'                    => 'このページは投稿ブロックと解除の記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '"$1" をブロック解除しました',
@@ -1855,6 +1895,7 @@ $NEWPAGE
 'block-log-flags-nocreate'        => 'アカウント作成のブロック',
 'block-log-flags-noautoblock'     => '自動ブロック無効',
 'block-log-flags-noemail'         => 'メール送信のブロック',
+'block-log-flags-nousertalk'      => '自身の会話ページの編集禁止',
 'block-log-flags-angry-autoblock' => '拡張自動ブロック有効',
 'range_block_disabled'            => '広域ブロックは無効に設定されています。',
 'ipb_expiry_invalid'              => '不正な期間です。',
@@ -1915,7 +1956,7 @@ $NEWPAGE
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'             => '移動するページ',
-'movenotallowed'          => 'あなたは、{{SITENAME}}での、ページを移動する権限がありません。',
+'movenotallowed'          => 'あなたにはページを移動する権限がありません。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',
@@ -1949,6 +1990,7 @@ $NEWPAGE
 'imagetypemismatch'       => '新しいファイルの拡張子がファイルのタイプと一致していません。',
 'imageinvalidfilename'    => '指定したファイル名が無効です',
 'fix-double-redirects'    => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
+'move-leave-redirect'     => '移動元にリダイレクトを作成する',
 
 # Export
 'export'            => 'ページデータの書き出し',
@@ -2714,6 +2756,15 @@ $1',
 'blankpage'              => '白紙ページ',
 'intentionallyblankpage' => 'このページは意図的に白紙にされています',
 
+# External image whitelist
+'external_image_whitelist' => ' #この行を変更しないでください<pre>
+#この下に正規表現 (//の間にある記述) を置いてください
+#外部の（ホットリンクされている）画像の URLs と一致するか検証されます
+#一致する場合は画像として、一致しない場合は画像へのリンクとして表示されます
+#行の冒頭に # をつけるとコメントとして扱われます
+
+#正規表現は全てこの行の上に置いてください。この行を変更しないでください</pre>',
+
 # Special:Nuke
 'nuke'               => 'まとめて削除',
 'nuke-nopages'       => '[[Special:Contributions/$1|$1]] が最近更新したページはありません。',
@@ -2723,5 +2774,9 @@ $1',
 'nuke-submit-user'   => '一覧取得',
 'nuke-submit-delete' => '選択されたページを削除',
 'right-nuke'         => 'ページの一括削除',
+
+# Special:DismissNotice
+'dismissnotice'         => 'サイトのお知らせを非表示にする',
+'dismissnotice-nologin' => 'サイトのお知らせを非表示にするには[[Special:UserLogin|ログイン]]が必要です。',
 
 );

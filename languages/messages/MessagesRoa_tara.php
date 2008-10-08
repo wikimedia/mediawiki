@@ -75,7 +75,9 @@ $messages = array(
 'category_header'          => 'Pàggene jndr\'à categorie "$1"',
 'subcategories'            => 'Sotte Categorije',
 'category-media-header'    => 'Media jndr\'à categorie "$1"',
+'category-empty'           => "''Sta categorije pe mò non ge tène manghe 'na pàgene e manghe 'nu media.''",
 'hidden-category-category' => 'Categorije scunnute', # Name of the category where hidden categories will be listed
+'listingcontinuesabbrev'   => 'cond.',
 
 'mainpagedocfooter' => "Vè vide [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] pe l'mbormaziune sus a cumme s'ause 'u softuer wiki.
 
@@ -153,17 +155,22 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sus a {{SITENAME}}',
+'bugreports'           => 'Liste de le bochere',
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Fatte de osce a die',
 'currentevents-url'    => 'Project:Fatte de osce a die',
 'disclaimers'          => 'No ne sacce ninde',
 'edithelp'             => "Cangianne l'ajute",
+'edithelppage'         => 'Help:Cangiaminde',
 'faq'                  => 'FAQ',
+'helppage'             => 'Help:Condenute',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
 'portal'               => "Purtale d'a communitate",
 'portal-url'           => "Project:Portale d'a Comunitate",
+'privacy'              => "Reghele p'a praivasi",
+'privacypage'          => "Project:Regole p'a praivasi",
 
 'ok'                   => 'OK',
 'pagetitle'            => '$1 - {{SITENAME}}',
@@ -222,6 +229,7 @@ $messages = array(
 'yourname'                => 'Nome utende:',
 'yourpassword'            => 'Passuord:',
 'yourpasswordagain'       => "Scrive 'a passuord notra vote:",
+'remembermypassword'      => "Arrencuerdete 'u nome mie sus a stu combiuter",
 'login'                   => 'Tràse',
 'nav-login-createaccount' => 'Tràse / Reggistrete',
 'loginprompt'             => "Tu a tenè le cookies abilitate pe tràse jndr'à {{SITENAME}}.",
@@ -229,12 +237,15 @@ $messages = array(
 'logout'                  => 'Isse',
 'userlogout'              => 'Isse',
 'nologin'                 => "Non ge tine n'utenze? $1.",
+'nologinlink'             => "Ccreje 'nu cunde utende",
 'gotaccountlink'          => 'Tràse',
 'createaccountmail'       => 'pe e-mail',
 'youremail'               => 'Poste:',
 'uid'                     => 'ID Utende:',
 'yourlanguage'            => 'Lènga:',
 'email'                   => 'Poste',
+'loginsuccesstitle'       => 'Tutte a poste, è trasute!',
+'loginsuccess'            => "'''Mò tu si colleghete jndr'à {{SITENAME}} cumme \"\$1\".'''",
 'nouserspecified'         => "A scrivere pe forze 'u nome de l'utende.",
 'wrongpassword'           => "E mise 'na passuor sbagliete.
 Prueve n'otra vote.",
@@ -259,10 +270,13 @@ Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}} e adda essere diverse
 'link_tip'       => "Collegamende 'nderne",
 'extlink_sample' => "http://www.esembie.it Nome d'u collegamende",
 'extlink_tip'    => "Collegamende de fore a Uicchipedie (arrecuerdete 'u prefisse http://)",
+'headline_tip'   => 'Levèlle 2 tèstete',
+'math_sample'    => "Mitte 'a formule aqquà",
 'math_tip'       => 'Formula matemateche (LaTeX)',
 'nowiki_sample'  => "Mitte 'u teste non formattate aqquà",
 'nowiki_tip'     => "No scè penzanne 'a formattazione de Uicchi",
 'image_sample'   => 'Esembie.jpg',
+'image_tip'      => 'Fail ingapsulete',
 'media_sample'   => 'Esembie.ogg',
 'media_tip'      => 'Fail de collegamende',
 'sig_tip'        => "'A firma toje cu l'orarie e 'a sciurnete",
@@ -277,6 +291,7 @@ Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}} e adda essere diverse
 'showdiff'               => 'Fa vedè le cangiaminde',
 'anoneditwarning'        => "'''Attenziò:''' Tu non ge sinde colleghete..
 L'indirizze IP tue avène reggistrete jndr'à le cangiaminde de sta pàgene.",
+'summary-preview'        => "Andeprime d'u riepileghe",
 'loginreqlink'           => 'trase',
 'accmailtitle'           => 'Passuord mannete.',
 'newarticle'             => '(Nuève)',
@@ -292,7 +307,9 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'template-semiprotected' => '(mmienze protette)',
 
 # History pages
+'viewpagelogs'        => "Vide l'archivie pe sta pàgene",
 'currentrev'          => 'Versione de osce a die',
+'revisionasof'        => 'Versione de $1',
 'previousrevision'    => '← Versione Vecchje',
 'nextrevision'        => 'Versione cchiù nova →',
 'currentrevisionlink' => 'Versione de mò',
@@ -308,10 +325,12 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'history-feed-item-nocomment' => '$1 a $2', # user at time
 
 # Diffs
+'history-title'           => 'Liste de le versiune de "$1"',
 'difference'              => "(Differenze 'mbrà versiune)",
 'lineno'                  => 'Linea $1:',
 'compareselectedversions' => 'Combornde le versiune selezionete',
 'editundo'                => 'annulle',
+'diff-multi'              => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} non ge se vèdene.)",
 'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-p'                  => "'nu '''paragrafe'''",
@@ -353,6 +372,11 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 
 # Groups
 'group-all' => '(tutte)',
+
+'grouppage-sysop' => '{{ns:project}}:Amministratore',
+
+# User rights log
+'rightslog' => "Archivie de le diritte de l'utende",
 
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
@@ -413,6 +437,12 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'mimesearch' => "Ricerca jndr'à 'u MIME",
 'download'   => 'scareche',
 
+# Unused templates
+'unusedtemplates' => 'Templeit ca non ge sonde ausete',
+
+# Random page
+'randompage' => 'Pàgene a uecchie',
+
 # Statistics
 'statistics' => 'Statisteche',
 
@@ -422,10 +452,12 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'nmembers'                => '$1 {{PLURAL:$1|membre|membre}}',
 'lonelypages'             => 'Pàggene orfane',
 'uncategorizedcategories' => 'Categorije senza categorije',
+'unusedcategories'        => 'Categorije ca non ge sonde ausete',
 'unusedimages'            => "Fail ca non g'avènene ausete",
 'mostrevisions'           => 'Pàggene cchiù cangete',
 'shortpages'              => 'Pàggene corte',
 'longpages'               => 'Pàggene longhe',
+'protectedpages'          => 'Pàggene prutette',
 'listusers'               => "Liste de l'utende",
 'newpages'                => 'Pàggene nuève',
 'ancientpages'            => 'Pàggene vìcchje',
@@ -433,6 +465,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'movethispage'            => 'Spueste sta pàgene',
 
 # Book sources
+'booksources'      => 'Sorgende de le libbre',
 'booksources-isbn' => 'ISBN:',
 
 # Special:Log
@@ -444,6 +477,8 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Special:AllPages
 'allpages'       => 'Tutte le pàggene',
 'alphaindexline' => 'da $1 a $2',
+'nextpage'       => 'Pàgene apprisse ($1)',
+'prevpage'       => 'Pàgene apprime ($1)',
 'allarticles'    => 'Tutte le pàggene',
 'allpagessubmit' => 'Veje',
 
@@ -471,10 +506,15 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'unwatching' => 'No fà vedè...',
 
 # Delete
-'deletepage'      => "Scangille 'a pàgene",
-'delete-backlink' => '← $1',
-'deletedarticle'  => 'scangillete "[[$1]]"',
-'dellogpage'      => 'Archivie de le scangellaminde',
+'deletepage'            => "Scangille 'a pàgene",
+'delete-backlink'       => '← $1',
+'historywarning'        => "Vide Bbuene: 'a pàgene ca ste scangille tène 'na storie de cangiaminde:",
+'actioncomplete'        => 'Aziona Combletete',
+'deletedarticle'        => 'scangillete "[[$1]]"',
+'dellogpage'            => 'Archivie de le scangellaminde',
+'deletecomment'         => "Mutive p'a scangellazione:",
+'deleteotherreason'     => 'Otre mutive de cchiù:',
+'deletereasonotherlist' => 'Otre mutive',
 
 # Rollback
 'rollbacklink' => "annulle 'u cangiaminde",
@@ -534,6 +574,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Move page
 'move-page-backlink' => '← $1',
 'movearticle'        => 'Spuèste:',
+'newtitle'           => "A 'u titele nuève:",
 'movepagebtn'        => "Spueste 'a pàgene",
 'pagemovedsub'       => 'Spustaminde eseguite',
 'movedto'            => 'spustete a',
