@@ -129,7 +129,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
-	 *     alt          Alternate text or caption
+	 *     alt          HTML alt attribute
+	 *     title        HTML title attribute
 	 *     desc-link    Boolean, show a description link
 	 *     file-link    Boolean, show a file download link
 	 *     valign       vertical-align property, if the output is an inline element
@@ -150,14 +151,18 @@ class ThumbnailImage extends MediaTransformOutput {
 		}
 
 		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
+		# Note: if title is empty and alt is not, make the title empty, don't
+		# use alt; only use alt if title is not set
+		$title = !isset( $options['title'] ) ? $alt : $options['title'];		
 		$query = empty($options['desc-query'])  ? '' : $options['desc-query'];
+
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = array( 'href' => $options['custom-url-link'] );
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
 			$linkAttribs = array( 'href' => $title->getLinkUrl(), 'title' => $title->getFullText() );
 		} elseif ( !empty( $options['desc-link'] ) ) {
-			$linkAttribs = $this->getDescLinkAttribs( $alt, $query );
+			$linkAttribs = $this->getDescLinkAttribs( $title, $query );
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = array( 'href' => $this->file->getURL() );
 		} else {

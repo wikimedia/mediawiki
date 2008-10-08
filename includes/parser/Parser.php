@@ -4224,7 +4224,7 @@ class Parser
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'link' ),
+					'upright', 'border', 'link', 'alt' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -4260,16 +4260,17 @@ class Parser
 	function makeImage( $title, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
-		#  * thumbnail       	make a thumbnail with enlarge-icon and caption, alignment depends on lang
-		#  * left		no resizing, just left align. label is used for alt= only
-		#  * right		same, but right aligned
-		#  * none		same, but not aligned
-		#  * ___px		scale to ___ pixels width, no aligning. e.g. use in taxobox
-		#  * center		center the image
-		#  * framed		Keep original image size, no magnify-button.
-		#  * frameless		like 'thumb' but without a frame. Keeps user preferences for width
-		#  * upright		reduce width for upright images, rounded to full __0 px
-		#  * border		draw a 1px border around the image
+		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
+		#  * left       no resizing, just left align. label is used for alt= only
+		#  * right      same, but right aligned
+		#  * none       same, but not aligned
+		#  * ___px      scale to ___ pixels width, no aligning. e.g. use in taxobox
+		#  * center     center the image
+		#  * framed     Keep original image size, no magnify-button.
+		#  * frameless  like 'thumb' but without a frame. Keeps user preferences for width
+		#  * upright    reduce width for upright images, rounded to full __0 px
+		#  * border     draw a 1px border around the image
+		#  * alt        Text for HTML alt attribute (defaults to empty)
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
@@ -4338,9 +4339,11 @@ class Parser
 					} else {
 						# Validate internal parameters
 						switch( $paramName ) {
-						case "manualthumb":
-							/// @fixme - possibly check validity here?
-							/// downstream behavior seems odd with missing manual thumbs.
+						case 'manualthumb':
+						case 'alt':
+							// @fixme - possibly check validity here for
+							// manualthumb? downstream behavior seems odd with
+							// missing manual thumbs.
 							$validated = true;
 							break;
 						case 'link':
@@ -4390,23 +4393,47 @@ class Parser
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
 
-		# Strip bad stuff out of the alt text
-		# We can't just use replaceLinkHoldersText() here, because if this function
-		# is called from replaceInternalLinks2(), mLinkHolders won't be up to date.
+		$params['frame']['caption'] = $caption;
+
+		# Strip bad stuff out of the title (tooltip).  We can't just use
+		# replaceLinkHoldersText() here, because if this function is called
+		# from replaceInternalLinks2(), mLinkHolders won't be up-to-date.
 		if ( $holders ) {
-			$alt = $holders->replaceText( $caption );
+			$tooltip = $holders->replaceText( $caption );
 		} else {
-			$alt = $this->replaceLinkHoldersText( $caption );
+			$tooltip = $this->replaceLinkHoldersText( $caption );
 		}
 
 		# make sure there are no placeholders in thumbnail attributes
 		# that are later expanded to html- so expand them now and
 		# remove the tags
-		$alt = $this->mStripState->unstripBoth( $alt );
-		$alt = Sanitizer::stripAllTags( $alt );
+		$tooltip = $this->mStripState->unstripBoth( $tooltip );
+		$tooltip = Sanitizer::stripAllTags( $tooltip );
 
-		$params['frame']['alt'] = $alt;
-		$params['frame']['caption'] = $caption;
+		$params['frame']['title'] = $tooltip;
+
+		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
+		# came to also set the caption, ordinary text after the image -- which
+		# makes no sense, because that just repeats the text multiple times in
+		# screen readers.  It *also* came to set the title attribute.
+		#
+		# Now that we have an alt attribute, we should not set the alt text to
+		# equal the caption: that's worse than useless, it just repeats the
+		# text.  This is the framed/thumbnail case.  If there's no caption, we
+		# use the unnamed parameter for alt text as well, just for the time be-
+		# ing, if the unnamed param is set and the alt param is not.
+		#
+		# For the future, we need to figure out if we want to tweak this more,
+		# e.g., introducing a title= parameter for the title; ignoring the un-
+		# named parameter entirely for images without a caption; adding an ex-
+		# plicit caption= parameter and preserving the old magic unnamed para-
+		# meter for BC; ...
+		if( $caption !== '' && !isset( $params['frame']['alt'] )
+		&& !isset( $params['frame']['framed'] )
+		&& !isset( $params['frame']['thumbnail'] )
+		&& !isset( $params['frame']['manualthumb'] ) ) {
+			$params['frame']['alt'] = $tooltip;
+		}
 
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
 

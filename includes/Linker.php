@@ -730,11 +730,12 @@ class Linker {
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		if ( !isset( $fp['align'] ) ) $fp['align'] = '';
 		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
+		# Backward compatibility, title used to always be equal to alt text
+		if ( !isset( $fp['title'] ) ) $fp['title'] = $fp['alt'];
 
 		$prefix = $postfix = '';
 
-		if ( 'center' == $fp['align'] )
-		{
+		if ( 'center' == $fp['align'] ) {
 			$prefix  = '<div class="center">';
 			$postfix = '</div>';
 			$fp['align']   = 'none';
@@ -765,7 +766,6 @@ class Linker {
 		}
 
 		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
-
 			# Create a thumbnail. Alignment depends on language
 			# writing direction, # right aligned for left-to-right-
 			# languages ("Western languages"), left-aligned
@@ -800,6 +800,7 @@ class Linker {
 		} else {
 			$params = array(
 				'alt' => $fp['alt'],
+				'title' => $fp['title'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false );
 			if ( !empty( $fp['link-url'] ) ) {
@@ -848,6 +849,8 @@ class Linker {
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		if ( !isset( $fp['align'] ) ) $fp['align'] = 'right';
 		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
+		# Backward compatibility, title used to always be equal to alt text
+		if ( !isset( $fp['title'] ) ) $fp['title'] = $fp['alt'];
 		if ( !isset( $fp['caption'] ) ) $fp['caption'] = '';
 
 		if ( empty( $hp['width'] ) ) {
@@ -907,6 +910,7 @@ class Linker {
 		} else {
 			$s .= $thumb->toHtml( array(
 				'alt' => $fp['alt'],
+				'title' => $fp['title'],
 				'img-class' => 'thumbimage',
 				'desc-link' => true,
 				'desc-query' => $query ) );
