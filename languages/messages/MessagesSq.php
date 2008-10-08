@@ -790,13 +790,11 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchresulttext'          => 'Për më shumë informacion rreth kërkimit në {{SITENAME}} shikoni [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Kërkim për "[[$1]]"',
 'searchsubtitleinvalid'     => 'Kërkim për "$1"',
-'noexactmatch'              => '<span style="font-size: 135%; font-weight: bold; margin-left: .6em">Faqja me atë titull nuk është krijuar akoma</span>
+'noexactmatch'              => 'Faqja me atë titull nuk është krijuar akoma
 
-<span style="display: block; margin: 1.5em 2em">
 Mund të [[$1|filloni një artikull]] me këtë titull.
 
-<span style="display:block; font-size: 89%; margin-left:.2em">Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.</span>
-</span>',
+Ju lutem kërkoni {{SITENAME}}-n përpara se të krijoni një artikull të ri se mund të jetë nën një titull tjetër.',
 'noexactmatch-nocreate'     => "'''Faqja e titulluar \"\$1\" nuk ekziston'''",
 'toomanymatches'            => 'Ky kërkim ka shumë përfundime, provoni një pyetje tjetër më përcaktuese',
 'titlematches'              => 'Tituj faqesh që përputhen',

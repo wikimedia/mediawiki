@@ -825,8 +825,9 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'powersearch-redir'         => 'Doorverwiezinge waergaeve',
 'powersearch-field'         => 'Zeuk nao',
 'search-external'           => 'Extern zeuke',
-'searchdisabled'            => '<p style="margin: 1.5em 2em 1em">Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit. Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
-<span style="font-size: 89%; display: block; margin-left: .2em">Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.</span></p>',
+'searchdisabled'            => 'Zeuke op {{SITENAME}} is oetgesjakeld vanweige gebrek aan servercapaciteit.
+Zoelang as de servers nog neet sjterk genog zunt kins e zeuke bie Google.
+Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 
 # Preferences page
 'preferences'              => 'Veurkäöre',

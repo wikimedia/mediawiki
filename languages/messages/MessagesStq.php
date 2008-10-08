@@ -1668,9 +1668,9 @@ In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
 'rollbacklink'     => 'touräächsätte',
 'rollbackfailed'   => 'Touräächsätten misglukked',
 'cantrollback'     => 'Disse Annerenge kon nit touräächstoald wäide; deer et naan fröieren Autor rakt.',
-'alreadyrolled'    => "Dät Touräächsätten fon do Annerengen fon [[User:$2|$2]] <span style='font-size: smaller'>([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]])</span> an Siede [[:$1]] hied naan Ärfoulch, deer in ju Twiskentied al n uur Benutser Annerengen an disse Siede foarnuumen häd.
+'alreadyrolled'    => 'Dät Touräächsätten fon do Annerengen fon [[User:$2|$2]] ([[User talk:$2|Diskussion]], [[Special:Contributions/$2|{{int:contribslink}}]]) an Siede [[:$1]] hied naan Ärfoulch, deer in ju Twiskentied al n uur Benutser Annerengen an disse Siede foarnuumen häd.
 
-Ju lääste Annerenge stamt fon [[User:$3|$3]] <span style='font-size: smaller'>([[User talk:$3|{{int:contribslink}}]])</span>.",
+Ju lääste Annerenge stamt fon [[User:$3|$3]] ([[User talk:$3|Diskussion]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => 'Ju Annerengskommentoar waas: "<i>$1</i>".', # only shown if there is an edit comment
 'revertpage'       => 'Tounichte moakede Beoarbaidengen fon [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tou ju lääste Version fon [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Do Annerengen fon $1 wuuden tourääch annerd un ju lääste Version fon $2 wuude wier moaked.',
