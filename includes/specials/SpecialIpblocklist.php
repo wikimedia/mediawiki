@@ -10,7 +10,7 @@
 function wfSpecialIpblocklist() {
 	global $wgUser, $wgOut, $wgRequest;
 
-	$ip = $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) );
+	$ip = trim( $wgRequest->getVal( 'wpUnblockAddress', $wgRequest->getVal( 'ip' ) ) );
 	$id = $wgRequest->getVal( 'id' );
 	$reason = $wgRequest->getText( 'wpUnblockReason' );
 	$action = $wgRequest->getText( 'action' );
@@ -245,10 +245,10 @@ class IPUnblockForm {
 			// No extra conditions
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
-		} elseif ( IP::toUnsigned( $this->ip ) !== false ) {
+		} elseif ( IP::isIPAddress($this->ip) && strpos($this->ip,'/') === false ) {
 			$conds['ipb_address'] = IP::sanitizeIP($this->ip);
 			$conds['ipb_auto'] = 0;
-		} elseif( preg_match( '/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\\/(\\d{1,2})$/', $this->ip, $matches ) ) {
+		} elseif( IP::isIPAddress($this->ip) ) {
 			$conds['ipb_address'] = Block::normaliseRange( $this->ip );
 			$conds['ipb_auto'] = 0;
 		} else {
