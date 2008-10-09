@@ -1879,14 +1879,18 @@ function wfGetSiteNotice() {
 	if( $wgUser instanceOf User && $wgUser->isLoggedIn() ) {
 		$loggedIn = true;
 		$siteNotice = wfGetCachedNotice('sitenotice');
-		if($siteNotice === false)
+		if($siteNotice === false) {
+			wfProfileOut( $fname );
 			return '';
+		}
 	} else {
 		$siteNotice = wfGetCachedNotice('anonnotice');
 		if($siteNotice === false) {
 			$siteNotice = wfGetCachedNotice('sitenotice');
-			if($siteNotice === false)
+			if($siteNotice === false) {
+				wfProfileOut( $fname );
 				return '';
+			}
 		}
 	}
 	
@@ -1896,8 +1900,10 @@ function wfGetSiteNotice() {
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
 		if( $loggedIn ) {
 			//it is hidden
-			if( isset($_COOKIE[$wgCookiePrefix . 'DismissSiteNotice']) && $_COOKIE[$wgCookiePrefix . 'DismissSiteNotice'] == $id )
+			if( isset($_COOKIE[$wgCookiePrefix . 'DismissSiteNotice']) && $_COOKIE[$wgCookiePrefix . 'DismissSiteNotice'] == $id ) {
+				wfProfileOut( $fname );
 				return '';
+			}
 			$siteNotice = <<<EOT
 <table width="100%" id="mw-dismissable-notice"><tr><td width="80%">$siteNotice</td>
 <td width="20%" align="right">[<a id="dismissLink" href="$spUrl">$msgClose</a>]</td></tr></table>
