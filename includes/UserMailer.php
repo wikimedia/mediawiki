@@ -399,7 +399,9 @@ class EmailNotification {
 
 		$this->sendMails();
 
-		if ( $wgShowUpdatedMarker || $wgEnotifWatchlist ) {
+		$latestTimestamp = Revision::getTimestampFromId( $title->getLatestRevID() );
+		// Do not update watchlists if something else already did.
+		if ( $timestamp >= $latestTimestamp && ($wgShowUpdatedMarker || $wgEnotifWatchlist) ) {
 			# Mark the changed watch-listed page with a timestamp, so that the page is
 			# listed with an "updated since your last visit" icon in the watch list. Do
 			# not do this to users for their own edits.
