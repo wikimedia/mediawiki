@@ -1387,7 +1387,10 @@ function wfDiff( $before, $after, $params = '-u' ) {
 }
 
 /**
- * @todo document
+ * A wrapper around the PHP function var_export().
+ * Either print it or add it to the regular output ($wgOut).
+ *
+ * @param $var A PHP variable to dump.
  */
 function wfVarDump( $var ) {
 	global $wgOut;
