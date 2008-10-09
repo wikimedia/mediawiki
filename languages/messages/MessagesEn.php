@@ -2566,6 +2566,7 @@ See [[Special:IPBlockList|IP block list]] to review blocks.',
 'ipblocklist-sh-userblocks'       => '$1 account blocks',
 'ipblocklist-sh-tempblocks'       => '$1 temporary blocks',
 'ipblocklist-sh-addressblocks'    => '$1 single IP blocks',
+'ipblocklist-scanrange'           => 'For IPs, include all blocks that affect the address',
 'ipblocklist-summary'             => '', # do not translate or duplicate this message to other languages
 'ipblocklist-submit'              => 'Search',
 'blocklistline'                   => '$1, $2 blocked $3 ($4)',

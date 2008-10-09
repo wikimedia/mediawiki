@@ -78,6 +78,7 @@ class IPUnblockForm {
 		$this->hideuserblocks = $wgRequest->getBool( 'hideuserblocks' );
 		$this->hidetempblocks = $wgRequest->getBool( 'hidetempblocks' );
 		$this->hideaddressblocks = $wgRequest->getBool( 'hideaddressblocks' );
+		$this->scanRange = $wgRequest->getBool( 'range' );
 	}
 
 	/**
@@ -162,8 +163,7 @@ class IPUnblockForm {
 	 * @return array array(message key, parameters) on failure, empty array on success
 	 */
 
-	static function doUnblock(&$id, &$ip, &$reason, &$range = null)
-	{
+	static function doUnblock(&$id, &$ip, &$reason, &$range = null) {
 		if ( $id ) {
 			$block = Block::newFromID( $id );
 			if ( !$block ) {
@@ -245,10 +245,20 @@ class IPUnblockForm {
 			// No extra conditions
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
+		// Single IPs
 		} elseif ( IP::isIPAddress($this->ip) && strpos($this->ip,'/') === false ) {
-			$conds['ipb_address'] = IP::sanitizeIP($this->ip);
+			if( $this->scanRange && $iaddr = IP::toHex($this->ip) ) {
+				# Only scan ranges which start in this /16, this improves search speed
+				# Blocks should not cross a /16 boundary.
+				$range = substr( $iaddr, 0, 4 );
+				$conds[] = "(ipb_address = '" . IP::sanitizeIP($this->ip) . "') OR 
+					(ipb_range_start LIKE '$range%' AND ipb_range_start <= '$iaddr' AND ipb_range_end >= '$iaddr')";
+			} else {
+				$conds['ipb_address'] = IP::sanitizeIP($this->ip);
+			}
 			$conds['ipb_auto'] = 0;
-		} elseif( IP::isIPAddress($this->ip) ) {
+		// IP range
+		} elseif ( IP::isIPAddress($this->ip) ) {
 			$conds['ipb_address'] = Block::normaliseRange( $this->ip );
 			$conds['ipb_auto'] = 0;
 		} else {
@@ -298,8 +308,9 @@ class IPUnblockForm {
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
 				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
-				'&nbsp;' .
-				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
+				'<br/>' . 
+				Xml::checkLabel( wfMsg('ipblocklist-scanrange'), 'range', 'range', $this->scanRange ) .
+				'&nbsp;' . Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
 				Xml::closeElement( 'fieldset' )
 			);
 	}
