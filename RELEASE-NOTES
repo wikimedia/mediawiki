@@ -158,6 +158,9 @@ The following extensions are migrated into MediaWiki 1.14:
   solutions such as CSS-based overlays and ImageMap.
 * (bug 368) Don't use caption for alt attribute; allow manual specification
   using new "alt=" parameter for images
+* (bug 44) The {{ns:}} core parser function now also accepts localized namespace
+  names and aliases; also, its output now uses spaces instead of underscores to
+  match the behavior of the {{NAMESPACE}} magic word
 
 === Bug fixes in 1.14 ===
 

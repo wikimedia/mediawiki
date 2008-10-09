@@ -68,20 +68,13 @@ class CoreParserFunctions {
 
 	static function ns( $parser, $part1 = '' ) {
 		global $wgContLang;
-		$found = false;
 		if ( intval( $part1 ) || $part1 == "0" ) {
-			$text = $wgContLang->getNsText( intval( $part1 ) );
-			$found = true;
+			$index = intval( $part1 );
 		} else {
-			$param = str_replace( ' ', '_', strtolower( $part1 ) );
-			$index = MWNamespace::getCanonicalIndex( strtolower( $param ) );
-			if ( !is_null( $index ) ) {
-				$text = $wgContLang->getNsText( $index );
-				$found = true;
-			}
+			$index = $wgContLang->getNsIndex( str_replace( ' ', '_', $part1 ) );
 		}
-		if ( $found ) {
-			return $text;
+		if ( $index !== false ) {
+			return $wgContLang->getFormattedNsText( $index );
 		} else {
 			return array( 'found' => false );
 		}
