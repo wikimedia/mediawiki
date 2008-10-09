@@ -26,10 +26,14 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	public function userCanExecute( $user ) {
+		return $this->userCanChangeRights( $user, false );
+	}
+
+	public function userCanChangeRights( $user, $checkIfSelf = true ) {
 		$available = $this->changeableGroups();
 		return !empty( $available['add'] )
 			or !empty( $available['remove'] )
-			or ($this->isself and
+			or ( ( $this->isself || !$checkIfSelf ) and
 				(!empty( $available['add-self'] )
 				 or !empty( $available['remove-self'] )));
 	}
@@ -65,7 +69,7 @@ class UserrightsPage extends SpecialPage {
 		if ($this->mTarget == $wgUser->getName())
 			$this->isself = true;
 
-		if( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanChangeRights( $wgUser, true ) ) {
 			// fixme... there may be intermediate groups we can mention.
 			global $wgOut;
 			$wgOut->showPermissionsErrorPage( array(
