@@ -246,7 +246,7 @@ class IPUnblockForm {
 		} elseif ( substr( $this->ip, 0, 1 ) == '#' ) {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
 		} elseif ( IP::toUnsigned( $this->ip ) !== false ) {
-			$conds['ipb_address'] = $this->ip;
+			$conds['ipb_address'] = IP::sanitizeIP($this->ip);
 			$conds['ipb_auto'] = 0;
 		} elseif( preg_match( '/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\\/(\\d{1,2})$/', $this->ip, $matches ) ) {
 			$conds['ipb_address'] = Block::normaliseRange( $this->ip );
