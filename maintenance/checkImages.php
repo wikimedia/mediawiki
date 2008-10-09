@@ -33,7 +33,7 @@ do {
 		}
 
 		if ( $stat['size'] != $row->img_size ) {
-			echo "{$row->img_name}: size mismatch DB={$row->img_size}, actual={$row->img_size}\n";
+			echo "{$row->img_name}: size mismatch DB={$row->img_size}, actual={$stat['size']}\n";
 			continue;
 		}
 
