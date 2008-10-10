@@ -257,7 +257,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15831) Modern skin RTL support is bugous
 * (bug 15869) Nostalgia skin does not show page title in printable mode
 * (bug 15795) Special:Userrights is now listed on Special:SpecialPages when the
-  user can only his rights
+  user can only change his rights
 * (bug 15846) Categories "leak" from older revisions in certain circumstances
 
 === API changes in 1.14 ===
