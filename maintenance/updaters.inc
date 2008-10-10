@@ -1522,6 +1522,7 @@ function do_postgres_updates() {
 		array("mwuser",       "user_email_token","text",     ""),
 		array("objectcache",  "keyname",         "text",     ""),
 		array("oldimage",     "oi_height",       "integer",  ""),
+		array("oldimage",     "oi_metadata",     "bytea",    "decode(img_metadata,'escape')"),
 		array("oldimage",     "oi_size",         "integer",  ""),
 		array("oldimage",     "oi_width",        "integer",  ""),
 		array("page",         "page_is_redirect","smallint", "page_is_redirect::smallint DEFAULT 0"),
