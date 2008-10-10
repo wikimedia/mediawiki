@@ -103,6 +103,7 @@ class Parser
 	var $mTplExpandCache; // empty-frame expansion cache
 	var $mTplRedirCache, $mTplDomCache, $mHeadings, $mDoubleUnderscores;
 	var $mExpensiveFunctionCount; // number of expensive parser function calls
+	var $mFileCache;
 
 	# Temporary
 	# These are variables reset at least once per parse regardless of $clearState
@@ -229,6 +230,7 @@ class Parser
 		$this->mHeadings = array();
 		$this->mDoubleUnderscores = array();
 		$this->mExpensiveFunctionCount = 0;
+		$this->mFileCache = array();
 
 		# Fix cloning
 		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
@@ -4292,8 +4294,18 @@ class Parser
 			return $sk->link( $title );
 		}
 
+		# Get the file
+		$imagename = $title->getDBkey();
+		if ( isset( $this->mFileCache[$imagename][$time] ) ) {
+			$file = $this->mFileCache[$imagename][$time];
+		} else {
+			$file = wfFindFile( $title, $time );
+			if ( !(count( $this->mFileCache ) <= 1000) ) {
+				$this->mFileCache = array();
+			}
+			$this->mFileCache[$imagename][$time] = $file;
+		}
 		# Get parameter map
-		$file = wfFindFile( $title, $time );
 		$handler = $file ? $file->getHandler() : false;
 
 		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );

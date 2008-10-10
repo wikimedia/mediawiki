@@ -165,6 +165,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * Added the ability to display user edit counts in Special:ListUsers. Off by 
   default, enabled with $wgEdititis = true (named after the medical condition 
   marked by unhealthy obsession with edit counts).
+* Added a file cache to the parser to improve page rendering time on pages with
+  several uses of the same image.
 
 === Bug fixes in 1.14 ===
 
