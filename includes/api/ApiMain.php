@@ -290,8 +290,8 @@ class ApiMain extends ApiBase {
 		if($this->mSquidMaxage == -1)
 		{
 			# Nobody called setCacheMaxAge(), use the (s)maxage parameters
-			$smaxage = $this->mRequest->getVal('smaxage', 0);
-			$maxage = $this->mRequest->getVal('maxage', 0);
+			$smaxage = $this->getParameter('smaxage');
+			$maxage = $this->getParameter('maxage');
 		}
 		else
 			$smaxage = $maxage = $this->mSquidMaxage;
