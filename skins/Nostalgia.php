@@ -24,8 +24,7 @@ class SkinNostalgia extends Skin {
 	}
 
 	function doBeforeContent() {
-
-		$s .= "\n<div id='content'>\n<div id='top'>\n";
+		$s = "\n<div id='content'>\n<div id='top'>\n";
 		$s .= "<div id=\"logo\">".$this->logoText( "right" )."</div>";
 
 		$s .= $this->pageTitle();
