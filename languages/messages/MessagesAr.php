@@ -121,7 +121,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'ملف'             => NS_MEDIA,
+	'وسائط'             => NS_MEDIA,
 );
 
 $magicWords = array(
