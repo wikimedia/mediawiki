@@ -3464,6 +3464,11 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
 $wgMajorSiteNoticeID = 1;
 
 /**
+ * Display user edit counts in various prominent places.
+ */
+$wgEdititis = false;
+
+/**
 * Enable the UniversalEditButton for browsers that support it
 * (currently only Firefox with an extension)
 * See http://universaleditbutton.org for more background information

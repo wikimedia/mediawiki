@@ -162,6 +162,9 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 44) The {{ns:}} core parser function now also accepts localized namespace
   names and aliases; also, its output now uses spaces instead of underscores to
   match the behavior of the {{NAMESPACE}} magic word
+* Added the ability to display user edit counts in Special:ListUsers. Off by 
+  default, enabled with $wgEdititis = true (named after the medical condition 
+  marked by unhealthy obsession with edit counts).
 
 === Bug fixes in 1.14 ===
 
