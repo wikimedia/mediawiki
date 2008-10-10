@@ -1390,7 +1390,7 @@ END;
 		$sp = wfMsg( 'specialpages' );
 		$spp = $wgContLang->specialPage( 'Specialpages' );
 
-		$s = '<form id="specialpages" method="get" class="inline" ' .
+		$s = '<form id="specialpages" method="get" ' .
 		  'action="' . htmlspecialchars( "{$wgServer}{$wgRedirectScript}" ) . "\">\n";
 		$s .= "<select name=\"wpDropdown\">\n";
 		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";

@@ -259,6 +259,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 15795) Special:Userrights is now listed on Special:SpecialPages when the
   user can only change his rights
 * (bug 15846) Categories "leak" from older revisions in certain circumstances
+* (bug 15928) Special pages dropdown should be inline in non-MonoBook skins
 
 === API changes in 1.14 ===
 
