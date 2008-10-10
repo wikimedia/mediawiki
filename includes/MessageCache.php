@@ -260,12 +260,23 @@ class MessageCache {
 
 			$this->lock($cacheKey);
 
-			$cache = $this->loadFromDB( $code );
-			$success = $this->setCache( $cache, $code );
+			# Limit the concurrency of loadFromDB to a single process 
+			# This prevents the site from going down when the cache expires
+			$statusKey = wfMemcKey( 'messages', $code, 'status' );
+			$success = $this->mMemc->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT );
 			if ( $success ) {
-				$this->saveToCaches( $cache, true, $code );
+				$cache = $this->loadFromDB( $code );
+				$success = $this->setCache( $cache, $code );
 			}
-
+			if ( $success ) {
+				$success = $this->saveToCaches( $cache, true, $code );
+				if ( $success ) {
+					$this->mMemc->delete( $statusKey );
+				} else {
+					$this->mMemc->set( $statusKey, 'error', 60*5 );
+					wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
+				}
+			}
 			$this->unlock($cacheKey);
 		}
 
@@ -413,10 +424,6 @@ class MessageCache {
 		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
 
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$statusKey = wfMemcKey( 'messages', $code, 'status' );
-
-		$success = $this->mMemc->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT );
-		if ( !$success ) return true; # Other process should be updating them now
 
 		$i = 0;
 		if ( $memc ) {
@@ -443,11 +450,8 @@ class MessageCache {
 		}
 
 		if ( $i == 20 ) {
-			$this->mMemc->set( $statusKey, 'error', 60*5 );
-			wfDebug( "MemCached set error in MessageCache: restart memcached server!\n" );
 			$success = false;
 		} else {
-			$this->mMemc->delete( $statusKey );
 			$success = true;
 		}
 		wfProfileOut( __METHOD__ );
