@@ -61,6 +61,7 @@ The following extensions are migrated into MediaWiki 1.14:
 * NoMoveUserPages
 * Special:Nuke to mass delete all pages created by a user
 * Poem (patch by Nathaniel Herman)
+* UniversalEditButton
 
 === New features in 1.14 ===
 

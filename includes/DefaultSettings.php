@@ -3462,3 +3462,10 @@ $wgPasswordAttemptThrottle = array( 'count' => 5, 'seconds' => 300 );
  * Don't bump this, instead bump the number on [[MediaWiki:Sitenotice id]]
  */
 $wgMajorSiteNoticeID = 1;
+
+/**
+* Enable the UniversalEditButton for browsers that support it
+* (currently only Firefox with an extension)
+* See http://universaleditbutton.org for more background information
+*/
+$wgUniversalEditButton = true;
