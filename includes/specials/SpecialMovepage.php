@@ -97,21 +97,17 @@ class MovePageForm {
 			# when the form is first opened.
 			$newTitle = $this->oldTitle;
 		}
-		// WTF is this doing, passing title *object* to newFromUrl()??
-		/*else {
+		else {
 			if( empty($err) ) {
-				$nt = Title::newFromURL( $this->newTitle );
-				if( $nt ) {
-					# If a title was supplied, probably from the move log revert
-					# link, check for validity. We can then show some diagnostic
-					# information and save a click.
-					$newerr = $this->oldTitle->isValidMoveOperation( $nt );
-					if( is_string( $newerr ) ) {
-						$err = $newerr;
-					}
+				# If a title was supplied, probably from the move log revert
+				# link, check for validity. We can then show some diagnostic
+				# information and save a click.
+				$newerr = $this->oldTitle->isValidMoveOperation( $newTitle );
+				if( $newerr ) {
+					$err = $newerr[0];
 				}
 			}
-		}*/
+		}
 
 		if ( !empty($err) && $err[0] == 'articleexists' && $wgUser->isAllowed( 'delete' ) ) {
 			$wgOut->addWikiMsg( 'delete_and_move_text', $newTitle->getPrefixedText() );
