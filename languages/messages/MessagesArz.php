@@ -36,6 +36,17 @@ $namespaceAliases = array(
 	'وسائط'             => NS_MEDIA,
 );
 
+$skinNames = array(
+	'standard'      => 'كلاسيك',
+	'nostalgia'     => 'نوستالجيا',
+	'cologneblue'   => 'كولون بلو',
+	'monobook'      => 'مونوبوك',
+	'myskin'        => 'ماى سكين',
+	'chick'         => 'تشيك',
+	'simple'        => 'سيمبل',
+	'modern'        => 'مودرن',
+);
+
 $magicWords = array(
 	'redirect'              => array( '0', '#تحويل', '#تحويل', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__لافهرس__', '__لافهرس__', '__NOTOC__' ),
@@ -43,7 +54,7 @@ $magicWords = array(
 	'forcetoc'              => array( '0', '__لصق_فهرس__', '__لصق_فهرس__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__فهرس__', '__فهرس__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__لاتحريرقسم__', '__لاتحريرقسم__', '__NOEDITSECTION__' ),
-	'noheader'              => array( '0', '__لاعنوان__', '__NOHEADER__' ),
+	'noheader'              => array( '0', '__لاعنوان__', '__لاعنوان__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'شهر_حالى', 'شهر', 'شهر_حالي', 'شهر', 'CURRENTMONTH' ),
 	'currentmonthname'      => array( '1', 'اسم_الشهر_الحالى', 'اسم_شهر_حالى', 'اسم_شهر', 'اسم_الشهر_الحالي', 'اسم_شهر_حالي', 'اسم_شهر', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'اسم_الشهر_الحالى_المولد', 'اسم_شهر_حالى_مولد', 'اسم_الشهر_الحالي_المولد', 'اسم_شهر_حالي_مولد', 'CURRENTMONTHNAMEGEN' ),
@@ -110,6 +121,8 @@ $magicWords = array(
 	'img_middle'            => array( '1', 'وسط', 'وسط', 'middle' ),
 	'img_bottom'            => array( '1', 'أسفل', 'أسفل', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'نص_أسفل', 'نص_أسفل', 'text-bottom' ),
+	'img_link'              => array( '1', 'وصلة=$1', 'رابط=$1', 'link=$1' ),
+	'img_alt'               => array( '1', 'بديل=$1', 'alt=$1' ),
 	'int'                   => array( '0', 'محتوى:', 'محتوى:', 'INT:' ),
 	'sitename'              => array( '1', 'اسم_الموقع', 'اسم_موقع', 'اسم_الموقع', 'اسم_موقع', 'SITENAME' ),
 	'ns'                    => array( '0', 'نط:', 'نط:', 'NS:' ),
@@ -166,17 +179,6 @@ $magicWords = array(
 	'noindex'               => array( '1', '__لافهرسة__', '__لافهرسة__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'عدد_فى_المجموعة', 'عدد_فى_مجموعة', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
-);
-
-$skinNames = array(
-	'standard'      => 'كلاسيك',
-	'nostalgia'     => 'نوستالجيا',
-	'cologneblue'   => 'كولون بلو',
-	'monobook'      => 'مونوبوك',
-	'myskin'        => 'ماى سكين',
-	'chick'         => 'تشيك',
-	'simple'        => 'سيمبل',
-	'modern'        => 'مودرن',
 );
 
 $specialPageAliases = array(
@@ -266,6 +268,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Nuke'                      => array( 'حذف_كمى' ),
+	'DismissNotice'             => array( 'إغلاق_الإعلان' ),
 );
 
 $messages = array(
