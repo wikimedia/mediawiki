@@ -94,15 +94,14 @@ class Title {
 	}
 
 	/**
-	 * Create a new Title from text, such as what one would
-	 * find in a link. Decodes any HTML entities in the text.
+	 * Create a new Title from text, such as what one would find in a link. De-
+	 * codes any HTML entities in the text.
 	 *
-	 * @param $text \type{\string} the link text; spaces, prefixes,
-	 *	and an initial ':' indicating the main namespace
-	 *	are accepted
-	 * @param $defaultNamespace \type{\int} the namespace to use if
-	 * 	none is specified by a prefix
-	 * @return \type{Title} the new object, or NULL on an error
+	 * @param $text             string  The link text; spaces, prefixes, and an
+	 *   initial ':' indicating the main namespace are accepted.
+	 * @param $defaultNamespace int     The namespace to use if none is speci-
+	 *   fied by a prefix.
+	 * @return Title  The new object, or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if( is_object( $text ) ) {
