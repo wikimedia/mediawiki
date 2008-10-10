@@ -3522,7 +3522,7 @@ class Article {
 			$wgUseFileCache = false;
 		}
 
-		if ( !wfReadOnly() && $this->mTitle->areRestrictionsCascading() ) {
+		if ( $this->isCurrent() && !wfReadOnly() && $this->mTitle->areRestrictionsCascading() ) {
 			// templatelinks table may have become out of sync,
 			// especially if using variable-based transclusions.
 			// For paranoia, check if things have changed and if
