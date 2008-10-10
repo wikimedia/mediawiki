@@ -210,7 +210,7 @@ class RecentChange
 	 * @param string $line
 	 */
 	public static function sendToUDP( $prefix, $line ) {
-		global $wgRC2UDPAddress, $wgRC2UDPPort, $wgRC2UDPPrefix;
+		global $wgRC2UDPAddress, $wgRC2UDPPort;
 		# Notify external application via UDP
 		if( $wgRC2UDPAddress ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
