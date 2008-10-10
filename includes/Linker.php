@@ -1644,9 +1644,9 @@ class Linker {
 					$protected = '';
 				}
 				if( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('editold'), 'action=edit' );
+					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('editlink'), 'action=edit' );
 				} else {
-					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('viewsourceold'), 'action=edit' );
+					$editLink = $sk->makeLinkObj( $titleObj, wfMsg('viewsourcelink'), 'action=edit' );
 				}
 				$outText .= '<li>' . $sk->link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
 			}

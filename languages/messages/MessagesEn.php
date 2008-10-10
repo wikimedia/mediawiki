@@ -750,6 +750,8 @@ See [[Special:Version|version page]].',
 'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',
 'viewsourceold'                => 'view source',
+'editlink'                     => 'edit',
+'viewsourcelink'               => 'view source',
 'editsectionhint'              => 'Edit section: $1',
 'toc'                          => 'Contents',
 'showtoc'                      => 'show',
