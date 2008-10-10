@@ -99,6 +99,21 @@ $dateFormats = array(
 	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
 );
 
+$digitTransformTable = array(
+	'0' => '٠', # &#x0660;
+	'1' => '١', # &#x0661;
+	'2' => '٢', # &#x0662;
+	'3' => '٣', # &#x0663;
+	'4' => '٤', # &#x0664;
+	'5' => '٥', # &#x0665;
+	'6' => '٦', # &#x0666;
+	'7' => '٧', # &#x0667;
+	'8' => '٨', # &#x0668;
+	'9' => '٩', # &#x0669;
+	'.' => '٫', # &#x066b; wrong table ?
+	',' => '٬', # &#x066c;
+);
+
 $namespaceNames = array(
 	NS_MEDIA          => 'ميديا',
 	NS_SPECIAL        => 'خاص',
@@ -122,6 +137,17 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'وسائط'             => NS_MEDIA,
+);
+
+$skinNames = array(
+	'standard'      => 'كلاسيك',
+	'nostalgia'     => 'نوستالجيا',
+	'cologneblue'   => 'كولون بلو',
+	'monobook'      => 'مونوبوك',
+	'myskin'        => 'ماي سكين',
+	'chick'         => 'تشيك',
+	'simple'        => 'سيمبل',
+	'modern'        => 'مودرن',
 );
 
 $magicWords = array(
@@ -198,6 +224,8 @@ $magicWords = array(
 	'img_middle'            => array( '1', 'وسط', 'middle' ),
 	'img_bottom'            => array( '1', 'أسفل', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'نص_أسفل', 'text-bottom' ),
+	'img_link'              => array( '1', 'وصلة=$1', 'رابط=$1', 'link=$1' ),
+	'img_alt'               => array( '1', 'بديل=$1', 'alt=$1' ),
 	'int'                   => array( '0', 'محتوى:', 'INT:' ),
 	'sitename'              => array( '1', 'اسم_الموقع', 'اسم_موقع', 'SITENAME' ),
 	'ns'                    => array( '0', 'نط:', 'NS:' ),
@@ -254,32 +282,6 @@ $magicWords = array(
 	'noindex'               => array( '1', '__لافهرسة__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
-);
-
-$skinNames = array(
-	'standard'      => 'كلاسيك',
-	'nostalgia'     => 'نوستالجيا',
-	'cologneblue'   => 'كولون بلو',
-	'monobook'      => 'مونوبوك',
-	'myskin'        => 'ماي سكين',
-	'chick'         => 'تشيك',
-	'simple'        => 'سيمبل',
-	'modern'        => 'مودرن',
-);
-
-$digitTransformTable = array(
-	'0' => '٠', # &#x0660;
-	'1' => '١', # &#x0661;
-	'2' => '٢', # &#x0662;
-	'3' => '٣', # &#x0663;
-	'4' => '٤', # &#x0664;
-	'5' => '٥', # &#x0665;
-	'6' => '٦', # &#x0666;
-	'7' => '٧', # &#x0667;
-	'8' => '٨', # &#x0668;
-	'9' => '٩', # &#x0669;
-	'.' => '٫', # &#x066b; wrong table ?
-	',' => '٬', # &#x066c;
 );
 
 $specialPageAliases = array(
@@ -369,6 +371,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Nuke'                      => array( 'حذف_كمي' ),
+	'DismissNotice'             => array( 'إغلاق_الإعلان' ),
 );
 
 $imageFiles = array(
