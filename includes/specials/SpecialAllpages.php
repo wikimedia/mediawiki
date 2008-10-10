@@ -153,10 +153,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$done = false;
 			while( !$done ) {
 				// Fetch the last title of this chunk and the first of the next
-				$chunk = is_null( $lastTitle )
-					? ''
-					: 'page_title >= ' . $dbr->addQuotes( $lastTitle );
-				$chunk = array($chunk);
+				$chunk = ( $lastTitle === false )
+					? array()
+					: array( 'page_title >= ' . $dbr->addQuotes( $lastTitle ) );
 				$res = $dbr->select( 'page', /* FROM */
 					'page_title', /* WHAT */
 					array_merge($where,$chunk),
