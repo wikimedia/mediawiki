@@ -416,3 +416,7 @@ table.multipageimage td {
 	vertical-align: middle;
 	font-size: 90%;
 }
+
+form#specialpages {
+	display: inline;
+}
