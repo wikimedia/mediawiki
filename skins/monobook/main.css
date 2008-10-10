@@ -892,10 +892,6 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	text-transform: lowercase;
 }
 
-/*
-** the remaining portlets
-*/
-#p-tbx,
 #p-lang {
 	position: relative;
 	z-index: 3;
