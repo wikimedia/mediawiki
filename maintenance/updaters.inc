@@ -1703,9 +1703,14 @@ function do_postgres_updates() {
 	}
 
 	# Fix ipb_address index
+	if (pg_index_exists('ipblocks', 'ipb_address' )) {
+		echo "Removing deprecated index 'ipb_address'...\n";
+		$wgDatabase->query('DROP INDEX ipb_address');
+	}
 	if (pg_index_exists('ipblocks', 'ipb_address_unique' )) {
 		echo "... have ipb_address_unique\n";
-	} else {
+	}
+	else {
 		echo "Adding ipb_address_unique index\n";
 		dbsource(archive('patch-ipb_address_unique.sql'));
 	}
