@@ -7137,6 +7137,18 @@ Free external link invading image caption
 
 !! end
 
+!! test
+Bug 15196: localised external link numbers
+!! options
+language=fa
+!! input
+[http://en.wikipedia.org/]
+!! result
+<p><a href="http://en.wikipedia.org/" class="external autonumber" title="http://en.wikipedia.org/" rel="nofollow">[۱]</a>
+</p>
+!! end
+
+
 #
 #
 #
