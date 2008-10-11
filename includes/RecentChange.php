@@ -208,6 +208,7 @@ class RecentChange
 	/**
 	 * Send some text to UDP
 	 * @param string $line
+	 * @return bool success
 	 */
 	public static function sendToUDP( $prefix, $line ) {
 		global $wgRC2UDPAddress, $wgRC2UDPPort;
@@ -218,8 +219,19 @@ class RecentChange
 				$line = $prefix . $line;
 				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
 				socket_close( $conn );
+				return true;
 			}
 		}
+		return false;
+	}
+	
+	/**
+	 * Remove newlines and carriage returns
+	 * @param string $line
+	 * @return string
+	 */
+	public static function cleanupForIRC( $text ) {
+		return str_replace(array("\n", "\r"), array("", ""), $text);
 	}
 
 	/**
@@ -587,10 +599,6 @@ class RecentChange
 		return $trail;
 	}
 
-	function cleanupForIRC( $text ) {
-		return str_replace(array("\n", "\r"), array("", ""), $text);
-	}
-
 	function getIRCLine() {
 		global $wgUseRCPatrol;
 
@@ -605,7 +613,7 @@ class RecentChange
 			$titleObj =& $this->getTitle();
 		}
 		$title = $titleObj->getPrefixedText();
-		$title = $this->cleanupForIRC( $title );
+		$title = self::cleanupForIRC( $title );
 
 		// FIXME: *HACK* these should be getFullURL(), hacked for SSL madness --brion 2005-12-26
 		if ( $rc_type == RC_LOG ) {
@@ -632,14 +640,14 @@ class RecentChange
 			$szdiff = '';
 		}
 
-		$user = $this->cleanupForIRC( $rc_user_text );
+		$user = self::cleanupForIRC( $rc_user_text );
 
 		if ( $rc_type == RC_LOG ) {
 			$logTargetText = $this->getTitle()->getPrefixedText();
-			$comment = $this->cleanupForIRC( str_replace($logTargetText,"\00302$logTargetText\00310",$actionComment) );
+			$comment = self::cleanupForIRC( str_replace($logTargetText,"\00302$logTargetText\00310",$actionComment) );
 			$flag = $rc_log_action;
 		} else {
-			$comment = $this->cleanupForIRC( $rc_comment );
+			$comment = self::cleanupForIRC( $rc_comment );
 			$flag = ($rc_new ? "N" : "") . ($rc_minor ? "M" : "") . ($rc_bot ? "B" : "");
 		}
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
