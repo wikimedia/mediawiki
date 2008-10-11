@@ -80,6 +80,12 @@ class MovePageForm {
 		$this->watch = $wgRequest->getCheck( 'wpWatch' );
 	}
 
+	/**
+	 * Show the form
+	 * @param mixed $err Error message. May either be a string message name or 
+	 *    array message name and parameters, like the second argument to 
+	 *    OutputPage::wrapWikiMsg(). 
+	 */
 	function showForm( $err ) {
 		global $wgOut, $wgUser, $wgFixDoubleRedirects;
 
@@ -317,7 +323,8 @@ class MovePageForm {
 
 		$error = $ot->moveTo( $nt, true, $this->reason, $createRedirect );
 		if ( $error !== true ) {
-			call_user_func_array( array($this, 'showForm'), $error );
+			# FIXME: show all the errors in a list, not just the first one
+			$this->showForm( reset( $error ) );
 			return;
 		}
 
