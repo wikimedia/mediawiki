@@ -12,9 +12,6 @@
  */
 class Http {
 
-	public static $lastCurlErrno = 0;
-	public static $lastHttpResponse = 0;
-
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
@@ -85,16 +82,16 @@ class Http {
 			ob_end_clean();
 
 			# Don't return the text of error messages, return false on error
-			self::$lastHttpResponse = curl_getinfo( $c, CURLINFO_HTTP_CODE );
-			if ( self::$lastHttpResponse != 200 ) {
-				wfDebug( __METHOD__ . ": HTTP return code " . self::$lastHttpResponse . "\n" );
+			$retcode = curl_getinfo( $c, CURLINFO_HTTP_CODE );
+			if ( $retcode != 200 ) {
+				wfDebug( __METHOD__ . ": HTTP return code $retcode\n" );
 				$text = false;
 			}
 			# Don't return truncated output
-			self::$lastCurlErrno = curl_errno( $c );
-			if ( self::$lastCurlErrno != CURLE_OK ) {
+			$errno = curl_errno( $c );
+			if ( $errno != CURLE_OK ) {
 				$errstr = curl_error( $c );
-				wfDebug( __METHOD__ . ": CURL error code " . self::$lastCurlErrno . ": $errstr\n" );
+				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
 				$text = false;
 			}
 			curl_close( $c );
