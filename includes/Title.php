@@ -1221,8 +1221,43 @@ class Title {
 				( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
 				$errors[] = $user->isAnon() ? array ('nocreatetext') : array ('nocreate-loggedin');
 			}
-		} elseif( $action == 'move' && !( $this->isMovable() && $user->isAllowed( 'move' ) ) ) {
-			$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+
+		} elseif ( $action == 'move' ) {
+			if ( !$user->isAllowed( 'move' ) ) {
+				// User can't move anything
+				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+			} elseif ( !$user->isAllowed( 'move-rootuserpages' ) 
+					&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
+			{
+				// Show user page-specific message only if the user can move other pages
+				$errors[] = array( 'cant-move-user-page' );
+			}
+
+			// Check for immobile pages
+			if ( !MWNamespace::isMovable( $this->getNamespace() ) ) {
+				// Specific message for this case
+				$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
+			} elseif ( !$this->isMovable() ) {
+				// Less specific message for rarer cases
+				$errors[] = array( 'immobile-page' );
+			}
+
+		} elseif ( $action == 'move-target' ) {
+			if ( !$user->isAllowed( 'move' ) ) {
+				// User can't move anything
+				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+			} elseif ( !$user->isAllowed( 'move-rootuserpages' ) 
+					&& $this->getNamespace() == NS_USER && !$this->isSubpage() ) 
+			{
+				// Show user page-specific message only if the user can move other pages
+				$errors[] = array( 'cant-move-to-user-page' );
+			}
+			if ( !MWNamespace::isMovable( $this->getNamespace() ) ) {
+				$errors[] = array( 'immobile-target-namespace', $this->getNsText() );
+			} elseif ( !$this->isMovable() ) {
+				$errors[] = array( 'immobile-target-page' );
+			}
+
 		} elseif ( !$user->isAllowed( $action ) ) {
 			$return = null;
 			$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
@@ -2380,6 +2415,8 @@ class Title {
 	 * @return \type{\mixed} True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
+		global $wgUser;
+
 		$errors = array();	
 		if( !$nt ) {
 			// Normally we'd add this to $errors, but we'll get
@@ -2389,8 +2426,11 @@ class Title {
 		if( $this->equals( $nt ) ) {
 			$errors[] = array('selfmove');
 		}
-		if( !$this->isMovable() || !$nt->isMovable() ) {
-			$errors[] = array('immobile_namespace');
+		if( !$this->isMovable() ) {
+			$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
+		}
+		if ( !$nt->isMovable() ) {
+			$errors[] = array('immobile-target-namespace', $nt->getNsText() );
 		}
 
 		$oldid = $this->getArticleID();
@@ -2422,11 +2462,10 @@ class Title {
 		}
 
 		if ( $auth ) {
-			global $wgUser;
 			$errors = wfArrayMerge($errors, 
 					$this->getUserPermissionsErrors('move', $wgUser),
 					$this->getUserPermissionsErrors('edit', $wgUser),
-					$nt->getUserPermissionsErrors('move', $wgUser),
+					$nt->getUserPermissionsErrors('move-target', $wgUser),
 					$nt->getUserPermissionsErrors('edit', $wgUser));
 		}
 
@@ -2436,7 +2475,6 @@ class Title {
 			$errors[] = array('spamprotectiontext');
 		}
 		
-		global $wgUser;
 		$err = null;
 		if( !wfRunHooks( 'AbortMove', array( $this, $nt, $wgUser, &$err, $reason ) ) ) {
 			$errors[] = array('hookaborted', $err);
