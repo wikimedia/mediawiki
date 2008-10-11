@@ -1593,6 +1593,7 @@ class User {
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
 	private function clearSharedCache() {
+		$this->load();
 		if( $this->mId ) {
 			global $wgMemc;
 			$wgMemc->delete( wfMemcKey( 'user', 'id', $this->mId ) );
