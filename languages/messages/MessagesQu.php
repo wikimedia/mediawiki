@@ -288,7 +288,6 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom feed',
 'page-rss-feed'           => '"$1" RSS feed',
 'page-atom-feed'          => '"$1" Atom Feed',
-'sitenotice_close'        => 'Pakay',
 'red-link-title'          => '$1 (manaraq qillqasqa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2700,9 +2699,5 @@ Mana “{{ns:image}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'nuke-submit-user'   => 'Riy',
 'nuke-submit-delete' => 'Akllasqata qulluy',
 'right-nuke'         => "Tawqa qulluna p'anqakuna",
-
-# Special:DismissNotice
-'dismissnotice'         => 'Tiyaypa willasqanta qarquy',
-'dismissnotice-nologin' => '[[Special:UserLogin|Yaykunaykim]] tiyan tiyaypa willasqanta qarqunaykipaq.',
 
 );

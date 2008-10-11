@@ -371,7 +371,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
 	'Nuke'                      => array( 'حذف_كمي' ),
-	'DismissNotice'             => array( 'إغلاق_الإعلان' ),
 );
 
 $imageFiles = array(
@@ -642,7 +641,6 @@ $messages = array(
 'page-atom-feed'          => '"$1" تلقيم أتوم',
 'feed-atom'               => 'أتوم',
 'feed-rss'                => 'أر إس إس',
-'sitenotice_close'        => 'إغلاق',
 'red-link-title'          => '$1 (لم تتم كتابتها بعد)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3342,9 +3340,5 @@ $1',
 'nuke-submit-user'   => 'اذهب',
 'nuke-submit-delete' => 'حذف المختار',
 'right-nuke'         => 'حذف الصفحات كميا',
-
-# Special:DismissNotice
-'dismissnotice'         => 'إغلاق إعلان الموقع',
-'dismissnotice-nologin' => 'يجب أن تكون [[Special:UserLogin|مسجل الدخول]] لإغلاق إعلان الموقع.',
 
 );

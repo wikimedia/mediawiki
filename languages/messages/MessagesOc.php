@@ -475,7 +475,6 @@ $messages = array(
 'site-atom-feed'          => 'Flus Atom de $1',
 'page-rss-feed'           => 'Flus RSS de "$1"',
 'page-atom-feed'          => 'Flus Atom de "$1"',
-'sitenotice_close'        => 'amagar',
 'red-link-title'          => '$1 (pagina pas encara redigida)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2966,9 +2965,5 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:image}}: ».',
 'nuke-submit-user'   => 'Validar',
 'nuke-submit-delete' => 'Supression seleccionada',
 'right-nuke'         => 'Suprimir de paginas en massa',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Afichar pas mai lo messatge del sit',
-'dismissnotice-nologin' => "Vos cal èsser [[Special:UserLogin|connectat(ada)]] per que s'afiche pas mai lo messatge del sit.",
 
 );

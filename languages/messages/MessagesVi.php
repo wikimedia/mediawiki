@@ -383,7 +383,6 @@ $messages = array(
 'site-atom-feed'          => '$1 mục Atom',
 'page-rss-feed'           => 'Mục RSS của “$1”',
 'page-atom-feed'          => 'Mục Atom của “$1”',
-'sitenotice_close'        => 'bỏ qua',
 'red-link-title'          => '$1 (chưa được viết)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2862,9 +2861,5 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:image}}:”.',
 'nuke-submit-user'   => 'Tìm kiếm',
 'nuke-submit-delete' => 'Xóa lựa chọn',
 'right-nuke'         => 'Xóa trang hàng loạt',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Bỏ qua thông báo ở đầu các trang',
-'dismissnotice-nologin' => 'Bạn cần phải [[Special:UserLogin|đăng nhập]] để bỏ qua thông báo ở đầu các trang.',
 
 );

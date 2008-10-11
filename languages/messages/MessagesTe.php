@@ -313,7 +313,6 @@ $messages = array(
 'site-atom-feed'          => '$1 ఆటం(Atom) ఫీడు',
 'page-rss-feed'           => '"$1" ఆరెసెస్సు(RSS) ఫీడు',
 'page-atom-feed'          => '"$1" ఆటం(Atom) ఫీడు',
-'sitenotice_close'        => 'దాచు',
 'red-link-title'          => '$1 (ఇంకా రాయలేదు)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2666,9 +2665,5 @@ $1',
 'nuke-submit-user'   => 'వెళ్ళు',
 'nuke-submit-delete' => 'ఎంచుకున్నవి తొలగించు',
 'right-nuke'         => 'పేజీలను సామూహికంగా తొలగించడం',
-
-# Special:DismissNotice
-'dismissnotice'         => 'సైటు గమనికని తీసేయండి',
-'dismissnotice-nologin' => 'సైటు గమనికని తీసేయడానికి మీరు [[Special:UserLogin|లోనికి ప్రవేశించి]] ఉండాలి.',
 
 );

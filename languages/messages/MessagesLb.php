@@ -386,7 +386,6 @@ $messages = array(
 'site-atom-feed'          => 'Atom-Feed fir $1',
 'page-rss-feed'           => 'RSS-Feed fir "$1"',
 'page-atom-feed'          => 'Atom-Feed fir "$1"',
-'sitenotice_close'        => 'verstoppen',
 'red-link-title'          => '$1 (Säit gëtt et (nach) net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2715,9 +2714,5 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:image}}:\" an.",
 'nuke-submit-user'   => 'Lass',
 'nuke-submit-delete' => 'Ugewielt läschen',
 'right-nuke'         => 'Vill Säite matenee läschen',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Sitenotice zoumaachen',
-'dismissnotice-nologin' => "Dir musst [[Special:UserLogin|ageloggt]] sinn, fir d'Sitenotice zoumaachen ze kënnen.",
 
 );

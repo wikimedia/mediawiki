@@ -52,7 +52,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Migrated extensions ===
 The following extensions are migrated into MediaWiki 1.14:
 
-* DismissableSiteNotice to allow registered users to dismiss the site notice
 * Special:DeletedContributions to show deleted user contributions (was extension
   DeletedContributions)
 * Special:Log/newusers recording new users (was extension Newuserlog)

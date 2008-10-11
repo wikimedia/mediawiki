@@ -545,7 +545,6 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'site-atom-feed'          => '$1 Atom-feed',
 'page-rss-feed'           => '“$1” RSS-feed',
 'page-atom-feed'          => '“$1” Atom-feed',
-'sitenotice_close'        => 'sluiten',
 'red-link-title'          => '$1 (bestaat nog niet)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3185,9 +3184,5 @@ Voer de gebruikernaam of het IP-adres in voor een lijst van te verwijderen pagin
 'nuke-submit-user'   => 'OK',
 'nuke-submit-delete' => 'Geselecteerde verwijderen',
 'right-nuke'         => "Massaal pagina's verwijderen",
-
-# Special:DismissNotice
-'dismissnotice'         => 'Sitenotice sluiten',
-'dismissnotice-nologin' => 'U moet [[Special:UserLogin|aangemeld zijn]] om de sitenotice te kunnen sluiten.',
 
 );

@@ -397,7 +397,6 @@ I seguenti collegamenti sono in lingua inglese:
 'site-atom-feed'          => 'Feed Atom di $1',
 'page-rss-feed'           => 'Feed RSS per "$1"',
 'page-atom-feed'          => 'Feed Atom per "$1"',
-'sitenotice_close'        => 'nascondi',
 'red-link-title'          => '$1 (ancora da scrivere)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2859,9 +2858,5 @@ Inserire il nome del file senza il prefisso \"{{ns:image}}:\"",
 'nuke-submit-user'   => 'Vai',
 'nuke-submit-delete' => 'Cancella la selezione',
 'right-nuke'         => 'Cancella pagine in massa',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Nascondi site notice',
-'dismissnotice-nologin' => 'È necessario [[Special:UserLogin|effettuare il login]] per nascondere il site notice.',
 
 );

@@ -641,7 +641,6 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom арнасы',
 'page-rss-feed'           => '«$1» — RSS арнасы',
 'page-atom-feed'          => '«$1» — Atom арнасы',
-'sitenotice_close'        => 'тасалату',
 'red-link-title'          => '$1 (әлі жазылмаған)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

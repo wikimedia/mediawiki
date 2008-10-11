@@ -315,7 +315,6 @@ $messages = array(
 'site-atom-feed'          => '$1 د اټوم کتنه',
 'page-rss-feed'           => '"$1" د آر اس اس کتنه',
 'feed-rss'                => 'آر اس اس',
-'sitenotice_close'        => 'تړل',
 'red-link-title'          => '$1 (تر اوسه پورې نه دی ليکل شوی)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

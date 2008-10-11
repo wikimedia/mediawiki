@@ -538,7 +538,6 @@ $messages = array(
 'site-atom-feed'          => 'Umpan Atom $1',
 'page-rss-feed'           => 'Umpan RSS "$1"',
 'page-atom-feed'          => 'Umpan Atom "$1"',
-'sitenotice_close'        => 'tutup',
 'red-link-title'          => '$1 (belum dibuat)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2941,9 +2940,5 @@ Keterangan tampilan:
 'nuke-submit-user'   => 'Cari',
 'nuke-submit-delete' => 'Hapus yang terpilih',
 'right-nuke'         => 'Penghapusan masal',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Tutup notifikasi situs',
-'dismissnotice-nologin' => 'Anda harus [[Special:UserLogin|masuk log]] untuk dapat menutup notifikasi situs.',
 
 );

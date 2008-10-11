@@ -312,7 +312,6 @@ Edit section: $1',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" Burim Atom',
-'sitenotice_close'        => 'fshihe',
 'red-link-title'          => '$1 (nuk është shkruar akoma)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

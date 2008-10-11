@@ -522,7 +522,6 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom-matning',
 'page-rss-feed'           => '"$1" RSS-matning',
 'page-atom-feed'          => '"$1" Atom-matning',
-'sitenotice_close'        => 'dölj',
 'red-link-title'          => '$1 (inte skriven än)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3016,9 +3015,5 @@ Ange ett användarnamn eller en IP-adress för att se en lista över sidor som k
 'nuke-submit-user'   => 'Visa',
 'nuke-submit-delete' => 'Ta bort valda',
 'right-nuke'         => 'Massradera sidor',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Dölj site notice',
-'dismissnotice-nologin' => 'Du måste vara [[Special:UserLogin|inloggad]] för att dölja site notice.',
 
 );
