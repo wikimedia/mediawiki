@@ -1547,6 +1547,7 @@ function do_postgres_updates() {
 		array("oldimage",      "oi_sha1",            "(oi_sha1)"),
 		array("revision",      "rev_text_id_idx",    "(rev_text_id)"),
 		array("recentchanges", "rc_timestamp_nobot", "(rc_timestamp) WHERE rc_bot = 0"),
+		array("templatelinks", "templatelinks_from", "(tl_from)"),
 		array("watchlist",     "wl_user",            "(wl_user)"),
 	);
 
@@ -1749,7 +1750,7 @@ function do_postgres_updates() {
 	# This is create or replace, so harmless to call if not needed
 	dbsource(archive('patch-ts2pagetitle.sql'));
 
-	## If the server is 8.3 or higher, rewrite teh tsearch2 triggers
+	## If the server is 8.3 or higher, rewrite the tsearch2 triggers
 	## in case they have the old 'default' versions
 	if ( $numver >= 8.3 )
 		dbsource(archive('patch-tsearch2funcs.sql'));
