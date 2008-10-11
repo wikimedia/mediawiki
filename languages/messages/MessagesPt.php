@@ -2118,7 +2118,7 @@ Nestes casos, você terá que mover ou mesclar a página manualmente, se assim d
 'movenologin'             => 'Não autenticado',
 'movenologintext'         => 'Você precisa ser um utilizador registado e [[Special:Userlogin|autenticado]] para poder mover uma página.',
 'movenotallowed'          => 'Você não possui permissão de mover páginas.',
-'cant-move-user-page' => 'Você não possui permissão de mover páginas principais de usuários.',
+'cant-move-user-page'     => 'Você não possui permissão de mover páginas principais de usuários.',
 'newtitle'                => 'Para novo título',
 'move-watch'              => 'Vigiar esta página',
 'movepagebtn'             => 'Mover página',

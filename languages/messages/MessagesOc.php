@@ -2165,7 +2165,7 @@ Dins aqueste cas, deuretz desplaçar o fusionar la pagina manualament se o volè
 'movenologintext'         => "Per poder tornar nomenar un article, vos cal èsser [[Special:Userlogin|connectat(ada)]]
 en tant qu'utilizaire enregistrat.",
 'movenotallowed'          => 'Avètz pas la permission de tornar nomenar de paginas.',
-'cant-move-user-page' => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
+'cant-move-user-page'     => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",
 'newtitle'                => 'Títol novèl',
 'move-watch'              => 'Seguir aquesta pagina',
 'movepagebtn'             => "Tornar nomenar l'article",

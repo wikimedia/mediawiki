@@ -2132,7 +2132,7 @@ V takých prípadoch budete musieť, ak si to želáte, premiestniť alebo zlú�
 'movenologin'             => 'Nie ste prihlásený',
 'movenologintext'         => 'Musíte byť registrovaný používateľ a [[Special:Userlogin|prihlásený]], aby ste mohli presunúť stránku.',
 'movenotallowed'          => 'Nemáte povolenie presúvať stránky.',
-'cant-move-user-page' => 'Nemáte povolenie presúvať koreňové stránky používateľov.',
+'cant-move-user-page'     => 'Nemáte povolenie presúvať koreňové stránky používateľov.',
 'newtitle'                => 'Na nový názov:',
 'move-watch'              => 'Sledovať túto stránku',
 'movepagebtn'             => 'Presunúť stránku',

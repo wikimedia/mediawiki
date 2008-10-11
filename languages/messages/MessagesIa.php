@@ -2094,7 +2094,7 @@ Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate."
 'movenologintext'         => 'Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
 pro mover un pagina.',
 'movenotallowed'          => 'Tu non ha le permission de renominar paginas.',
-'cant-move-user-page' => 'Tu non ha le permission de renominar paginas principal de usatores.',
+'cant-move-user-page'     => 'Tu non ha le permission de renominar paginas principal de usatores.',
 'newtitle'                => 'Al nove titulo:',
 'move-watch'              => 'Observar iste pagina',
 'movepagebtn'             => 'Renominar pagina',

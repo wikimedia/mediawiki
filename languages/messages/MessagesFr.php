@@ -2162,7 +2162,7 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movenologin'             => 'Non connecté',
 'movenologintext'         => 'Pour pouvoir renommer une page, vous devez être [[Special:Userlogin|connecté]] en tant qu’utilisateur enregistré et votre compte doit avoir une ancienneté suffisante.',
 'movenotallowed'          => 'Vous n’avez pas la permission de renommer les pages.',
-'cant-move-user-page' => 'Vous n’avez pas la permission de renommer des pages utilisateurs racines sur ce wiki.',
+'cant-move-user-page'     => 'Vous n’avez pas la permission de renommer des pages utilisateurs racines sur ce wiki.',
 'newtitle'                => 'Nouveau titre',
 'move-watch'              => 'Suivre cette page',
 'movepagebtn'             => 'Renommer l’article',
