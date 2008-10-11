@@ -524,6 +524,9 @@ Questo cambiamento drastico potrebbe creare inattesi contrattempi, specialmente 
 
 In questi casi, se lo ritieni opportuno, dovrai spostare o aggiungere manualmente la pagina di discussione.",
 'movearticle'      => 'Rinomina articolo',
+'movenologin'      => 'Non hai effettuato il login',
+'movenologintext'  => 'Devi essere un Utente registrato ed aver effettuato il [[Special:Userlogin|login]]
+per poter spostare una pagina.',
 'newtitle'         => 'Al nuovo titolo di',
 'movepagebtn'      => 'Sposta questa pagina',
 'pagemovedsub'     => 'Spostamento effettuato con successo',

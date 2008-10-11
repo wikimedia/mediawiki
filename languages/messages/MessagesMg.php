@@ -879,6 +879,8 @@ Azafady mba antero fa izay tokoa no tena irinao.",
 # Move page
 'move-page-legend'        => 'Afindrao toerana ny pejy',
 'movearticle'             => 'Afindrao toerana ny pejy',
+'movenologin'             => 'Tsy mbola tafiditra ianao',
+'movenologintext'         => 'Ny mpikambana nisoratra anarana sy [[Special:Userlogin|tafiditra]] ihany no afaka mamindra toerana takelaka.',
 'newtitle'                => 'Lohateny vaovao',
 'movepagebtn'             => 'Afindrao',
 'pagemovedsub'            => 'Voafindra ny pejy',

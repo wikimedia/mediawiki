@@ -535,6 +535,7 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 'databasenotlocked' => 'Questa banca da datas è betg bloccada.',
 
 # Move page
+'movenologintext'         => "Ti stos [[Special:Userlogin|t'annunziar]] per spustar in artitgel.",
 'pagemovedsub'            => 'Spustà cun success',
 'articleexists'           => 'I exista gia in artitgel cun quai num. Tscherni per plaschair in auter.',
 '1movedto2'               => 'Spustà [[$1]] tar [[$2]]',

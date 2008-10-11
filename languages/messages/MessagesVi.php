@@ -2068,6 +2068,8 @@ xin hãy chắc chắn rằng bạn đã nhận thức được những hệ l�
 
 Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất trang theo kiểu thủ công nếu muốn.",
 'movearticle'             => 'Di chuyển trang:',
+'movenologin'             => 'Chưa đăng nhập',
+'movenologintext'         => 'Bạn phải là thành viên đã đăng ký và [[Special:Userlogin|đăng nhập]] mới di chuyển trang được.',
 'movenotallowed'          => 'Bạn không có quyền di chuyển trang.',
 'newtitle'                => 'Tên mới',
 'move-watch'              => 'Theo dõi trang này',

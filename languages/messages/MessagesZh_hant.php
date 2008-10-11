@@ -1950,6 +1950,9 @@ $1',
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 'movearticle'             => '移動頁面:',
+'movenologin'             => '未登入',
+'movenologintext'         => '您必須是一名登記用戶並且[[Special:Userlogin|登入]]
+後才可移動一個頁面。',
 'movenotallowed'          => '您度並沒有許可權去移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '監視此頁',

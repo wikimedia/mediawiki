@@ -1756,6 +1756,8 @@ $NEWPAGE
 <b>警示</b>
 膾炙遷焉，禍生不測；戒慎行之。",
 'movearticle'             => '遷文：',
+'movenologin'             => '未登簿',
+'movenologintext'         => '遷文須[[Special:Userlogin|登簿]]。',
 'movenotallowed'          => '無准遷文也。',
 'newtitle'                => '至新題：',
 'move-watch'              => '派哨',

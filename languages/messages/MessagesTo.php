@@ -911,6 +911,8 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 *te ke tiki ʻa e puha ʻi lalo.
 ʻI he meʻa ko ia, ʻe ʻunuʻi pe fakatahaʻi ʻa e peesi alea faiʻaki ʻa e nima.",
 'movearticle'             => 'ʻUnu ʻa e kupu',
+'movenologin'             => 'ʻOku ʻikai ke kau-ki-ai',
+'movenologintext'         => 'Kuo pau ko e ʻetita lēsisita koe pea [[Special:Userlogin|kau-ki-ai]] kapau te ke fieʻunu ha peesi.',
 'newtitle'                => 'Ki he hingoa foʻou',
 'move-watch'              => 'Leʻo he pēsí ni',
 'movepagebtn'             => 'Peesi ʻunu',

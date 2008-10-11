@@ -562,6 +562,8 @@ $1',
 
 # Move page
 'movearticle'             => 'Ilipat ang pahina:',
+'movenologin'             => 'Hindi nakalagda',
+'movenologintext'         => 'Kailangang ikaw ay isang naka-rehistrong manggagamit at ay [[Special:Userlogin|nakalagda]] upang makapaglipat ng pahina.',
 'movenotallowed'          => 'Wala kang permisong maglipat ng pahina.',
 'newtitle'                => 'Sa bagong pamagat:',
 'move-watch'              => 'Bantayan itong pahina',

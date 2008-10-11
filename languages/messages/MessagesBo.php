@@ -222,6 +222,7 @@ $messages = array(
 
 # Move page
 'movearticle' => 'སྤོར་ངོས།',
+'movenologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'move-watch'  => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 'movereason'  => 'རྒྱུ་མཚན།',
 

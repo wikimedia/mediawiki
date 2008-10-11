@@ -1692,6 +1692,8 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 
 Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
 'movearticle'             => 'Zhvendose faqen',
+'movenologin'             => 'Nuk keni hyrë brenda',
+'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:Userlogin|hyrë brenda]] për të zhvendosur një faqe.',
 'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',

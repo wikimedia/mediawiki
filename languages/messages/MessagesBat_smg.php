@@ -1274,6 +1274,8 @@ kū soprantat vėsas pasiekmes.",
 *Paliksėt žemiau asontė varnale nepažīmieta.
 Šėtās atviejās Tamsta sava nužiūra torėt parkeltė a apjongtė aptarėma poslapi.",
 'movearticle'             => 'Parvadintė poslapi:',
+'movenologin'             => 'Neprisėjongės',
+'movenologintext'         => 'Nuoriedamė parvadintė poslapi, torėt būtė ožsėregėstravės nauduotuos ė teipuogi būtė [[Special:Userlogin|prisėjongės]].',
 'newtitle'                => 'Naus pavadėnėms:',
 'move-watch'              => 'Keravuotė šėta poslapi',
 'movepagebtn'             => 'Parvadintė poslapė',

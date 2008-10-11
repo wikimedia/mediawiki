@@ -954,6 +954,7 @@ Tú kanst ikki skriva yvir eina verandi síðu.
 Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síðu.
 Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
 'movearticle'             => 'Flyt síðu:',
+'movenologin'             => 'Hevur ikki ritað inn',
 'newtitle'                => 'Til nýtt heiti:',
 'move-watch'              => 'Hav eftirlit við hesi síðuni',
 'movepagebtn'             => 'Flyt síðu',

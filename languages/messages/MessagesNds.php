@@ -2031,7 +2031,12 @@ Dit kann sik temlich dull utwarken bi veel bruukte Sieden. Stell seker, dat du w
 
 In disse Fäll musst du de Siet, wenn du dat willst, vun Hand schuven.",
 'movearticle'             => 'Siet schuven',
+'movenologin'             => 'Du büst nich anmellt',
+'movenologintext'         => 'Du muttst en registreert Bruker un
+[[Special:Userlogin|anmellt]] ween,
+üm en Siet to schuven.',
 'movenotallowed'          => 'Du hest nich de Rechten, Sieden to schuven.',
+'cant-move-user-page' => 'Du hest nich de Rechten, Brukersieden to schuven.',
 'newtitle'                => 'To ne’en Titel',
 'move-watch'              => 'Op disse Siet oppassen',
 'movepagebtn'             => 'Siet schuven',

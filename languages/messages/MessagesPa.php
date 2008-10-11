@@ -827,6 +827,8 @@ to upload files.',
 # Move page
 'move-page-legend' => 'ਪੇਜ ਮੂਵ ਕਰੋ',
 'movearticle'      => 'ਪੇਜ ਮੂਵ ਕਰੋ:',
+'movenologin'      => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
+'movenologintext'  => 'ਇੱਕ ਪੇਜ ਮੂਵ ਕਰਨ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਯੂਜ਼ਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:Userlogin|logged in]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
 'newtitle'         => 'ਨਵੇਂ ਟਾਇਟਲ ਲਈ:',
 'move-watch'       => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',
 'movepagebtn'      => 'ਪੇਜ ਮੂਵ ਕਰੋ',

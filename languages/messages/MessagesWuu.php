@@ -685,6 +685,8 @@ $messages = array(
 个作兴会引起对一只热门页面剧烈个、想弗着个改变。
 来操作前头请倷确定倷已经充分了解个能做法个后果。",
 'movearticle'             => '页面捅荡:',
+'movenologin'             => '朆登录',
+'movenologintext'         => '倷板定要是已登记用户且勒拉[[Special:Userlogin|登录]]状态下头再好拿页面捅荡。',
 'newtitle'                => '新个题目:',
 'movepagebtn'             => '页面捅荡',
 'pagemovedsub'            => '捅荡成功哉',

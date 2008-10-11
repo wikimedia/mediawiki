@@ -193,6 +193,7 @@ $messages = array(
 # Move page
 'move-page-legend' => "Si'i le itulau",
 'movearticle'      => "Si'i le itulau",
+'movenologin'      => "Le'i fa'aolaina",
 'newtitle'         => "'I le ulutala fou",
 'move-watch'       => 'Matau lenei itulau',
 'movepagebtn'      => "Si'i le itulau",

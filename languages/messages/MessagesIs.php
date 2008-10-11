@@ -1718,6 +1718,8 @@ Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og 
 * Þú veljir að færa hana ekki
 Í þeim tilfellum verður að færa hana handvirkt.',
 'movearticle'             => 'Færa síðu:',
+'movenologin'             => 'Óinnskráð(ur)',
+'movenologintext'         => 'Þú verður að vera [[Special:Userlogin|innskráð(ur)]] til að geta fært síður.',
 'movenotallowed'          => 'Þú hefur ekki leyfi til að færa síður.',
 'newtitle'                => 'Á nýja titilinn:',
 'move-watch'              => 'Vakta þessa síðu',

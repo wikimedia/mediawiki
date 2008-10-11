@@ -1100,6 +1100,8 @@ Prestavitev strani je lahko za priljubljeno stran velika in nepričakovana sprem
 
 Če je tako, boste morali pogovorno stran, če želite, prestaviti ali povezati ročno. Če tega ne morete storiti, predlagajte prestavitev na strani [[Project:Želene prestavitve]], vsekakor pa tega '''''ne''''' počnite s preprostim izrezanjem in prilepljenjem vsebine, saj bi tako pokvarili zgodovino urejanja strani.",
 'movearticle'             => 'Prestavi stran',
+'movenologin'             => 'Niste prijavljeni',
+'movenologintext'         => 'Za prestavljanje strani morate biti registrirani in [[Special:Userlogin|prijavljeni]].',
 'newtitle'                => 'Na naslov',
 'movepagebtn'             => 'Prestavi stran',
 'pagemovedsub'            => 'Uspešno prestavljeno',

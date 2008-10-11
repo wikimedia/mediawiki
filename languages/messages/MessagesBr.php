@@ -1742,6 +1742,8 @@ bezit sur e komprenit mat an heuliadoù a-raok kenderc'hel ganti.",
 
 En degouezh-se e rankot adenvel pe gendeuziñ ar bajenn c'hwi hoc'h-unan ma karit.",
 'movearticle'             => "Dilec'hiañ ar pennad",
+'movenologin'             => 'Diluget',
+'movenologintext'         => 'Evit adenvel ur pennad e rankit bezañ [[Special:Userlogin|luget]] evel un implijer enrollet.',
 'movenotallowed'          => "N'oc'h ket aotreet da zilec'hiañ pajennoù.",
 'newtitle'                => 'anv nevez',
 'move-watch'              => 'Evezhiañ ar bajenn-mañ',

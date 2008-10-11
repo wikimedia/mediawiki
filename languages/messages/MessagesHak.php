@@ -1242,6 +1242,8 @@ chhiáng chhai hàng-thung chṳ̂-chhièn siên liáu-kié khì-thâ khó-nèn 
 *Sîn vùn-chông yí-kîn yû yit-ke pâu-hàm nui-yùng ke tui-fa-hiong, fe̍t-he
 *Ngì put kiêu-sién ha-mien ke fu̍k-sién khiông. Chhai liá-chúng chhìn-khóng hâ, pit-sî sú-kûng yì-thung fe̍t-he ha̍p-phîn vùn-chông.",
 'movearticle'             => 'Yì-thung vùn-chông',
+'movenologin'             => 'Hàn-mò tên-ngi̍p',
+'movenologintext'         => 'Ngì pit-sî he yit-miàng tên-ki yung-fu pin-chhiâ [[Special:Userlogin|tên-ngi̍p]] heu chhòi-nèn Yì-thung yit-ke vùn-chông.',
 'newtitle'                => 'Sîn phêu-thì',
 'move-watch'              => 'Kam-sṳ chhṳ́-chông',
 'movepagebtn'             => 'Yì-thung vùn-chông',

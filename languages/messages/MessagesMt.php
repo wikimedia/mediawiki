@@ -1806,6 +1806,8 @@ Din tista' tkun bidla drastika u mhux mistenniha għal paġna popolari; jekk jog
 
 F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan huwa mixtieq.",
 'movearticle'             => 'Ċaqlaq il-paġna:',
+'movenologin'             => 'Aċċess mhux imwettaq',
+'movenologintext'         => "Trid [[Special:Userlogin|tidħol]] bħalha utent reġistrat sabiex tkun tista' iċaqlaq din il-paġna.",
 'movenotallowed'          => "Inti m'għandekx il-permessi meħtieġa sabiex tmexxi l-paġni.",
 'newtitle'                => 'Titlu ġdid:',
 'move-watch'              => 'Segwi din il-paġna',

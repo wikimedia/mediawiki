@@ -2217,7 +2217,10 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 
 V těchto případech musíte přesunout nebo sloučit stránky manuálně, jestliže si to přejete.",
 'movearticle'             => 'Přesunout stránku:',
+'movenologin'             => 'Nejste přihlášen(a)!',
+'movenologintext'         => 'Pro přesouvání stránek se musíte [[Special:Userlogin|přihlásit]].',
 'movenotallowed'          => 'Nemáte oprávnění k přesunu stránek.',
+'cant-move-user-page' => 'Nemáte oprávnění přesouvat uživatelské stránky.',
 'newtitle'                => 'Na nový název:',
 'move-watch'              => 'Sledovat tuto stránku',
 'movepagebtn'             => 'Přesunout stránku',

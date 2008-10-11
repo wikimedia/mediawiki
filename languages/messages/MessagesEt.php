@@ -1222,6 +1222,9 @@ enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
 'movearticle'             => 'Teisalda artiklilehekülg',
+'movenologin'             => 'Te ei ole sisse loginud',
+'movenologintext'         => 'Et lehekülge teisaldada, peate registreeruma
+kasutajaks ja [[Special:Userlogin|sisse logima]]',
 'newtitle'                => 'Uue pealkirja alla',
 'move-watch'              => 'Jälgi seda lehekülge',
 'movepagebtn'             => 'Teisalda artikkel',

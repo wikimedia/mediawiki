@@ -1751,6 +1751,8 @@ pakisiguraduan mung aintindian mu ing kabaldugan na ampong epektu niti bayu mu i
 
 Nung makanyan pin ing milyari, kailangan meng iyalis o isanib (merge) ing bulung a saparadu nung ita ing buri mung gawan.",
 'movearticle'             => 'Ialis ya ing bulung',
+'movenologin'             => 'E maka-login',
+'movenologintext'         => 'Kailangan, metung kang talagamit a makarehistru at [[Special:Userlogin|maka-login]] ka ba kang makapanalis bulung.',
 'movenotallowed'          => 'Ala kang paintulut a manalis bulung king {{SITENAME}}.',
 'newtitle'                => 'King bayung bansag:',
 'move-watch'              => 'Banten ya ing bulung a ini',

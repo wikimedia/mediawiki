@@ -1142,6 +1142,9 @@ drastična i neočekivana promjena za korisnike.",
 
 U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.",
 'movearticle'      => 'Premjestite stranicu',
+'movenologin'      => 'Niste prijavljeni',
+'movenologintext'  => 'Morate biti registrovani korisnik i [[Special:Userlogin|prijavljeni]]
+da biste premjestili stranicu.',
 'newtitle'         => 'Novi naslov',
 'movepagebtn'      => 'premjestite stranicu',
 'pagemovedsub'     => 'Premještanje uspjelo',

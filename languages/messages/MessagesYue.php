@@ -2013,6 +2013,8 @@ $1',
 
 喺呢啲情況下，需要嘅話你唯有手動搬同合併個頁面。",
 'movearticle'             => '搬頁:',
+'movenologin'             => '未登入',
+'movenologintext'         => '你要係註冊用戶而且要[[Special:Userlogin|登入]]咗先可以搬頁',
 'movenotallowed'          => '你並無權限去搬版。',
 'newtitle'                => '到新標題:',
 'move-watch'              => '睇實呢一版',

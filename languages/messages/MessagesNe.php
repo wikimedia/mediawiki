@@ -464,6 +464,7 @@ $messages = array(
 # Move page
 'move-page-legend'        => 'पृष्ठ सार्नुहोस्',
 'movearticle'             => 'पृष्ठ सार्नुहोस्',
+'movenologin'             => 'प्रवेश (लग ईन) नगरिएको',
 'movepagebtn'             => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'            => 'सार्ने काम सफल भयो',
 'movedto'                 => 'मा सारियो',

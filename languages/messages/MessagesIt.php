@@ -2045,7 +2045,10 @@ Un cambiamento così drastico può creare contrattempi e problemi, soprattutto p
 
 In questi casi, se lo si ritiene opportuno, occorre spostare o aggiungere manualmente le informazioni contenute nella pagina di discussione.",
 'movearticle'             => 'Sposta la pagina',
+'movenologin'             => 'Accesso non effettuato',
+'movenologintext'         => "Lo spostamento delle pagine è consentito solo agli utenti registrati che hanno eseguito l'[[Special:Userlogin|accesso]] al sito.",
 'movenotallowed'          => 'Non si dispone dei permessi necessari allo spostamento delle pagine.',
+'cant-move-user-page' => 'Non si dispone dei permessi necessari per spostare le pagine utente.',
 'newtitle'                => 'Nuovo titolo:',
 'move-watch'              => 'Aggiungi la pagina agli osservati speciali',
 'movepagebtn'             => 'Sposta la pagina',

@@ -1978,6 +1978,8 @@ por favor, asegúrate de entender las consecuencias del procedimiento antes de s
 
 En estos casos, deberá trasladar manualmente el contenido de la página de discusión.",
 'movearticle'             => 'Renombrar página',
+'movenologin'             => 'No ha iniciado sesión',
+'movenologintext'         => 'Es necesario ser usuario registrado y [[Special:Userlogin|haber iniciado sesión]] para renombrar una página.',
 'movenotallowed'          => 'No tienes permiso para trasladar páginas.',
 'newtitle'                => 'A título nuevo',
 'move-watch'              => 'Vigilar este artículo',

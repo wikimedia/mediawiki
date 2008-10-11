@@ -1999,6 +1999,8 @@ pšosym zawěsć, až konsekwency rozmijoš, nježli až pókšacujoš.",
 
 W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu wjasć, jolic až to coš.",
 'movearticle'             => 'Bok pśesunuś',
+'movenologin'             => 'Njepśizjawjony(a)',
+'movenologintext'         => 'Aby mógał bok pśesunuś, dejš byś [[Special:Userlogin|pśizjawjony wužywaŕ]].',
 'movenotallowed'          => 'Njamaš pšawo pśesuwaś boki.',
 'newtitle'                => 'nowy nadpis:',
 'move-watch'              => 'Toś ten bok wobglědowaś',

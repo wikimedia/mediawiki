@@ -1569,6 +1569,8 @@ Il peut s'agir d'un changement radical et inattendu pour un article souvent cons
 
 Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le désirez.",
 'movearticle'             => 'Tolyoltara va teliz',
+'movenologin'             => 'Dogluyariskaf',
+'movenologintext'         => 'Ede rin va teliz co-djutolyoltal, wetce koverteyen favesik gotil [[Special:Userlogin|dogluyarakiraf]].',
 'movenotallowed'          => 'Rin me zo rictal da ko {{SITENAME}} va bu rotarrundal.',
 'newtitle'                => 'Warzaf vergumvelt',
 'move-watch'              => 'Busuzdara',

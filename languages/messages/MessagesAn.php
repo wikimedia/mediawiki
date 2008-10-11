@@ -1856,6 +1856,8 @@ por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión anti
 
 En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
 'movearticle'             => 'Tresladar pachina:',
+'movenologin'             => 'No ha enzetato sesión',
+'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
 'movenotallowed'          => 'No tiene premisos ta tresladar pachinas.',
 'newtitle'                => 'Ta o nuebo títol',
 'move-watch'              => 'Cosirar iste articlo',

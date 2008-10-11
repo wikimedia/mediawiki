@@ -1317,6 +1317,8 @@ cinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 
 Sna scéil sin, caithfidh tú an leathanach a aistrigh nó a báigh leis na lámha má tá sin an rud atá uait.",
 'movearticle'             => 'Athainmnigh an leathanach',
+'movenologin'             => 'Níl tú logáilte isteach',
+'movenologintext'         => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:Userlogin|logáilte isteach]] chun leathanach a hathainmniú.",
 'movenotallowed'          => 'Níl cead agat leathanaigh a athainmniú.',
 'newtitle'                => 'Go teideal nua',
 'move-watch'              => 'Déan faire an leathanach seo',

@@ -1014,6 +1014,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Move page
 'move-page-legend'        => 'Страницăна куçарнă',
 'movearticle'             => 'Страницăн ятне улăштар',
+'movenologin'             => 'Система сирĕн ята пĕлмест',
 'newtitle'                => 'Çĕнĕ ят',
 'move-watch'              => 'Ку страницăна сăнамаллисем шутне хуш',
 'movepagebtn'             => 'Страницăн ятне улăштар',
