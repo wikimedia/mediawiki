@@ -7148,6 +7148,120 @@ language=fa
 </p>
 !! end
 
+!!test
+<poem>
+!!input
+<poem>
+this
+is
+a
+test
+</poem>
+!!result
+<div class="poem">
+<p>this<br />
+is<br />
+a<br />
+test
+</p>
+</div>
+
+!!end
+
+!!test
+  <poem> with recursive parsing
+!!input
+<poem>
+this ''is'' a '''test'''
+</poem>
+!! result
+<div class="poem">
+<p>this <i>is</i> a <b>test</b>
+</p>
+</div>
+
+!!end
+
+
+!!test
+  <poem> with leading whitespace
+!!input
+<poem>
+
+   test
+
+</poem>
+!!result
+<div class="poem">
+<p><br />
+&nbsp;&nbsp;&nbsp;test<br />
+</p>
+</div>
+
+!!end
+
+!!test
+Horizontal rule
+!!input
+<poem>
+some
+-----
+text
+</poem>
+!!result
+<div class="poem">
+<p>some<br />
+</p>
+<hr /><br />
+<p>text
+</p>
+</div>
+
+!!end
+
+!!test
+  nested <poem><nowiki>
+!!input
+<poem><nowiki>
+this
+is
+a
+test
+</nowiki></poem>
+!!result
+<div class="poem">
+<p><br />
+this<br />
+is<br />
+a<br />
+test<br />
+
+</p>
+</div>
+
+!!end
+
+!!test
+  nested <poem><nowiki> with formatting
+!!input
+<poem><nowiki>
+this
+'''is'''
+a
+test
+</nowiki></poem>
+!!result
+<div class="poem">
+<p><br />
+this<br />
+'''is'''<br />
+a<br />
+test<br />
+
+</p>
+</div>
+
+!! end
 
 #
 #

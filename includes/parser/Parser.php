@@ -4183,34 +4183,42 @@ class Parser
 	 * based on http://www.mediawiki.org/wiki/Extension:Poem
 	 */
 
-	function renderPoem( $in, $param=array() ) {
+	function renderPoem( $in, $param = array() ) {
 
 		/* using newlines in the text will cause the parser to add <p> tags,
  	 	* which may not be desired in some cases
 	 	*/
-		$nl = isset( $param['compact'] ) ? '' : "\n";
+		$nl = array_key_exists( 'compact', $param ) ? '' : "\n";
   
 		$tag = $this->insertStripItem( "<br />", $this->mStripState );
-		$text = preg_replace(
-			array( "/^\n/", "/\n$/D", "/\n/", "/^( +)/me" ),
-			array( "", "", "$tag\n", "str_replace(' ','&nbsp;','\\1')" ),
-			$in );
+		// Only strip the very first and very last \n (which trim cannot do)
+		$text = $in;
+		if( substr( $in, 0, 1 ) == "\n" )
+			$text = substr( $in, 1 );
+		if( substr( $text, -1 ) == "\n" )
+			$text = substr( $text, 0, -1 );
+		
+		$text = str_replace( "\n", "$tag\n", $text );
+		$text = preg_replace_callback(
+			"/^( +)/m",
+			create_function(
+				'$matches',
+				'return str_replace(" ", "&nbsp;", "$matches[0]");'
+			),
+			$text );
 		$text = $this->recursiveTagParse( $text );
 
 		// Pass HTML attributes through to the output.
 		$attribs = Sanitizer::validateTagAttributes( $param, 'div' );
 
 		// Wrap output in a <div> with "poem" class.
-		if( isset( $attribs['class'] ) ) {
+		if( array_key_exists( 'class', $attribs ) ) {
 			$attribs['class'] = 'poem ' . $attribs['class'];
 		} else {
 			$attribs['class'] = 'poem';
 		}
 
-		return wfOpenElement( 'div', $attribs ) .
-			$nl .
-			trim( $text ) .
-			"$nl</div>";
+		return XML::openElement( 'div', $attribs ) . $nl . trim( $text ) . $nl . XML::closeElement( 'div' );
 	}
 
 	function getImageParams( $handler ) {
