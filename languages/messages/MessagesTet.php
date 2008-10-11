@@ -235,7 +235,6 @@ $messages = array(
 'viewdeleted'             => 'Haree $1?',
 'site-rss-feed'           => 'Feed RSS $1',
 'site-atom-feed'          => 'Feed Atom $1',
-'sitenotice_close'        => 'subar',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pájina',

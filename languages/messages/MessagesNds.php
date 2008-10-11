@@ -424,7 +424,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'site-atom-feed'          => 'Atom-Feed för $1',
 'page-rss-feed'           => 'RSS-Feed för „$1“',
 'page-atom-feed'          => 'Atom-Feed för „$1“',
-'sitenotice_close'        => 'wegmaken',
 'red-link-title'          => '$1 (noch nich vörhannen)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2777,9 +2776,5 @@ Geev den Dateinaam ahn dat Präfix „{{ns:image}}:“ in.',
 'nuke-submit-user'   => 'List kriegen',
 'nuke-submit-delete' => 'Utmesten',
 'right-nuke'         => 'Groten Hümpel Sieden wegsmieten',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Naricht sluten',
-'dismissnotice-nologin' => 'Du musst [[Special:UserLogin|anmellt]] wesen, de zentrale Naricht to sluten.',
 
 );

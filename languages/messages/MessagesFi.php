@@ -451,7 +451,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'site-atom-feed'          => '$1-Atom-syöte',
 'page-rss-feed'           => '$1 (RSS-syöte)',
 'page-atom-feed'          => '$1 (Atom-syöte)',
-'sitenotice_close'        => 'piilota',
 'red-link-title'          => '$1 (ei vielä kirjoitettu)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2746,9 +2745,5 @@ Kirjoita tiedostonimi ilman ”{{ns:image}}:”-etuliitettä.',
 'nuke-submit-user'   => 'Siirry',
 'nuke-submit-delete' => 'Poista valitut',
 'right-nuke'         => 'Massapoistaa sivuja',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Piilota sivutiedote',
-'dismissnotice-nologin' => 'Sinun täytyy [[Special:UserLogin|kirjautua sisään]] piilottaaksesi sivutiedotteen.',
 
 );

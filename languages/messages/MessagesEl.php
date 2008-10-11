@@ -480,7 +480,6 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Συνδρομή',
 'page-rss-feed'           => '"$1" RSS Συνδρομή',
 'page-atom-feed'          => '"$1" Atom Συνδρομή',
-'sitenotice_close'        => 'κλείσιμο',
 'red-link-title'          => '$1 (δεν έχει ακόμα γραφτεί)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

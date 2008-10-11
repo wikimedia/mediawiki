@@ -289,7 +289,6 @@ $messages = array(
 'site-atom-feed'          => 'Fonte de noticias Atom de $1',
 'page-rss-feed'           => 'Fonte de noticias RSS para "$1"',
 'page-atom-feed'          => 'Fonte de noticias Atom para "$1"',
-'sitenotice_close'        => 'retirar',
 'red-link-title'          => '$1 (aínda non escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2804,9 +2803,5 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:image}}:".',
 'nuke-submit-user'   => 'Adiante',
 'nuke-submit-delete' => 'Eliminar o seleccionado',
 'right-nuke'         => 'Borrar páxinas masivamente',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Retirar o anuncio',
-'dismissnotice-nologin' => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder retirar o anuncio.',
 
 );

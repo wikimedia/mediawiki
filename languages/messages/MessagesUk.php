@@ -477,7 +477,6 @@ $messages = array(
 'site-atom-feed'          => '$1 — Atom-стрічка',
 'page-rss-feed'           => '«$1» — RSS-стрічка',
 'page-atom-feed'          => '«$1» — Atom-стрічка',
-'sitenotice_close'        => 'приховати',
 'red-link-title'          => '$1 (ще не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2991,9 +2990,5 @@ $1',
 'nuke-submit-user'   => 'Виконати',
 'nuke-submit-delete' => 'Вилучити обрані',
 'right-nuke'         => 'Масове вилучення сторінок',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Приховати повідомлення сайта',
-'dismissnotice-nologin' => 'Вам слід [[Special:UserLogin|увійти до системи]], щоб приховати повідомлення сайта.',
 
 );

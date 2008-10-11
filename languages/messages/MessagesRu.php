@@ -493,7 +493,6 @@ $messages = array(
 'site-atom-feed'          => '$1 — Atom-лента',
 'page-rss-feed'           => '«$1» — RSS-лента',
 'page-atom-feed'          => '«$1» — Atom-лента',
-'sitenotice_close'        => 'скрыть',
 'red-link-title'          => '$1 (ещё не написано)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3055,9 +3054,5 @@ $1',
 'nuke-submit-user'   => 'Выполнить',
 'nuke-submit-delete' => 'Удалить выбранные',
 'right-nuke'         => 'множественное удаление страниц',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Скрыть сообщение сайта',
-'dismissnotice-nologin' => 'Вы должны [[Special:UserLogin|представиться системе]], чтобы скрыть сообщение сайта.',
 
 );

@@ -323,7 +323,6 @@ $messages = array(
 'site-atom-feed'          => '$1 をAtomフィード',
 'page-rss-feed'           => '"$1" をRSSフィード',
 'page-atom-feed'          => '"$1" をAtomフィード',
-'sitenotice_close'        => '非表示',
 'red-link-title'          => '$1 （未作成ページ）',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2774,9 +2773,5 @@ $1',
 'nuke-submit-user'   => '一覧取得',
 'nuke-submit-delete' => '選択されたページを削除',
 'right-nuke'         => 'ページの一括削除',
-
-# Special:DismissNotice
-'dismissnotice'         => 'サイトのお知らせを非表示にする',
-'dismissnotice-nologin' => 'サイトのお知らせを非表示にするには[[Special:UserLogin|ログイン]]が必要です。',
 
 );

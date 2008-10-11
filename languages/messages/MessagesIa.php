@@ -294,7 +294,6 @@ $messages = array(
 'site-atom-feed'          => 'Syndication Atom de $1',
 'page-rss-feed'           => 'Syndication RSS de "$1"',
 'page-atom-feed'          => 'Syndication Atom de "$1"',
-'sitenotice_close'        => 'dimitter',
 'red-link-title'          => '$1 (non ancora scribite)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2904,9 +2903,5 @@ Entra le nomine de usator o adresse IP pro obtener un lista de paginas a deler:'
 'nuke-submit-user'   => 'Ir',
 'nuke-submit-delete' => 'Deler seligites',
 'right-nuke'         => 'Deler paginas in massa',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Dimitter notitia de sito',
-'dismissnotice-nologin' => 'Tu debe [[Special:UserLogin|aperir un session]] pro poter dimitter le notitia de sito.',
 
 );

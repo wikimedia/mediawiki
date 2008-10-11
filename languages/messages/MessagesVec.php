@@ -291,7 +291,6 @@ I seguenti colegamenti i xe in lengua inglese:
 'site-atom-feed'          => 'Feed Atom de $1',
 'page-rss-feed'           => 'Feed RSS par "$1"',
 'page-atom-feed'          => 'Feed Atom par "$1"',
-'sitenotice_close'        => 'scondi',
 'red-link-title'          => "$1 ('ncora da scrìvar)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -355,7 +355,6 @@ $messages = array(
 'page-atom-feed'          => '"$1" Atom පෝෂකය',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
-'sitenotice_close'        => 'නිෂ්ප්‍රභ කරන්න',
 'red-link-title'          => '$1 (තවමත් ලියා නොමැත)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

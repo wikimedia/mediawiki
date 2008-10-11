@@ -287,7 +287,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'DeletedContributions'      => array( 'תרומות_מחוקות' ),
 	'Nuke'                      => array( 'מחיקה_מרובה' ),
-	'DismissNotice'             => array( 'סגירת_הודעת_כותרת' ),
 );
 
 $namespaceNames = array(
@@ -569,7 +568,6 @@ $messages = array(
 'site-atom-feed'          => 'Atom של $1',
 'page-rss-feed'           => 'RSS של $1',
 'page-atom-feed'          => 'Atom של $1',
-'sitenotice_close'        => 'הסתרה',
 'red-link-title'          => '$1 (טרם נכתב)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3137,9 +3135,5 @@ $1',
 'nuke-submit-user'   => 'הצגה',
 'nuke-submit-delete' => 'מחיקת הדפים שנבחרו',
 'right-nuke'         => 'מחיקה מרובה של דפים',
-
-# Special:DismissNotice
-'dismissnotice'         => 'סגירת הודעת כותרת',
-'dismissnotice-nologin' => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] כדי לסגור את הודעת הכותרת.',
 
 );

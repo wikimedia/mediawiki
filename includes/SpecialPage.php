@@ -157,8 +157,7 @@ class SpecialPage
 		'Randomredirect'            => 'SpecialRandomredirect',
 		'Withoutinterwiki'          => array( 'SpecialPage', 'Withoutinterwiki' ),
 		'Filepath'                  => array( 'SpecialPage', 'Filepath' ),
-		'Dismissnotice'				=> array( 'UnlistedSpecialPage', 'Dismissnotice' ),
-		
+
 		'Mypage'                    => array( 'SpecialMypage' ),
 		'Mytalk'                    => array( 'SpecialMytalk' ),
 		'Mycontributions'           => array( 'SpecialMycontributions' ),

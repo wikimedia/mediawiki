@@ -293,7 +293,6 @@ $messages = array(
 'site-atom-feed'          => "$1 ''Atom Feed''",
 'page-rss-feed'           => "\"\$1\" ''RSS Feed''",
 'page-atom-feed'          => "\"\$1\" ''Atom Feed''",
-'sitenotice_close'        => 'tutup',
 'red-link-title'          => '$1 (durung digawé)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

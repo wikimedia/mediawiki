@@ -404,7 +404,6 @@ $messages = array(
 'site-atom-feed'          => 'Suapan Atom $1',
 'page-rss-feed'           => 'Suapan RSS "$1"',
 'page-atom-feed'          => 'Suapan Atom "$1"',
-'sitenotice_close'        => 'singkir',
 'red-link-title'          => '$1 (belum ditulis)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2889,9 +2888,5 @@ Sila masukkan nama fail tanpa awalan "{{ns:image}}:".',
 'nuke-submit-user'   => 'Pergi',
 'nuke-submit-delete' => 'Hapus',
 'right-nuke'         => 'Menghapuskan laman secara pukal',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Menyingkirkan notis tapak web',
-'dismissnotice-nologin' => 'Anda hendaklah [[Special:UserLogin|log masuk]] terlebih dahulu untuk menyingkirkan notis tapak web.',
 
 );

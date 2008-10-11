@@ -368,9 +368,6 @@ HTML markup cannot be used.",
 'site-atom-feed'          => "Used in the HTML header of a wiki's Atom feed.
 $1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.",
-'sitenotice_close'        => 'You can see this on the right side of the [[MediaWiki:Sitenotice|sitenotice]].
-
-The word "dismiss" (or "close") should be in the infinitive mood.',
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

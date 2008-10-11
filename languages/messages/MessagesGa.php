@@ -333,7 +333,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'site-atom-feed'          => '$1 Fotha Atom',
 'page-rss-feed'           => '"$1" Fotha RSS',
 'page-atom-feed'          => '"$1" Fotha Atom',
-'sitenotice_close'        => 'díbh',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Alt',

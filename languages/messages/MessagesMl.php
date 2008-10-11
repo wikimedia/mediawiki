@@ -428,7 +428,6 @@ $messages = array(
 'site-atom-feed'          => '$1 ന്റെ ആറ്റം ഫീഡ്',
 'page-rss-feed'           => '"$1" ന്റെ ആര്‍.എസ്.എസ്. ഫീഡ്',
 'page-atom-feed'          => '"$1" ആറ്റം ഫീഡ്',
-'sitenotice_close'        => 'നീക്കം ചെയ്യുക',
 'red-link-title'          => '$1 (ഇതുവരെ എഴുതപ്പെട്ടിട്ടില്ല)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

@@ -320,7 +320,6 @@ $messages = array(
 'site-atom-feed'          => '$1 струмень Atom',
 'page-rss-feed'           => '"$1" струмень RSS',
 'page-atom-feed'          => '"$1" струмень Atom',
-'sitenotice_close'        => 'зняць',
 'red-link-title'          => '$1 (такога пакуль няма)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2735,9 +2734,5 @@ $1',
 'nuke-submit-user'   => 'Наперад',
 'nuke-submit-delete' => 'Сцерці пазначанае',
 'right-nuke'         => 'масава сціраць старонкі',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Зняць усеагульную абвестку',
-'dismissnotice-nologin' => 'Належыць [[Special:UserLogin|аказацца]], каб здымаць усеагульную абвестку.',
 
 );

@@ -321,7 +321,6 @@ $messages = array(
 'site-atom-feed'          => '$1的Atom訂閱',
 'page-rss-feed'           => '「$1」的RSS訂閱',
 'page-atom-feed'          => '「$1」的Atom訂閱',
-'sitenotice_close'        => '關閉',
 'red-link-title'          => '$1 (尚未撰寫)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook

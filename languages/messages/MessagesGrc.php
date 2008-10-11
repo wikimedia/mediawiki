@@ -286,7 +286,6 @@ $messages = array(
 'site-atom-feed'          => 'Ἡ τοῦ $1 Atom-παρασκευή',
 'page-rss-feed'           => 'Βοτὴρ RSS "$1"',
 'page-atom-feed'          => '"$1" Atom Ῥοή',
-'sitenotice_close'        => 'ἀποπέμπειν',
 'red-link-title'          => '$1 (οὔπω γέγραπται)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2300,8 +2299,5 @@ $1',
 'nuke-submit-user'   => 'Ἱέναι',
 'nuke-submit-delete' => 'Διαγράφειν τὴν ἐπειλεγμένην',
 'right-nuke'         => 'Μαζικὴ διαγραφὴ δέλτων',
-
-# Special:DismissNotice
-'dismissnotice' => 'Ἀποπέμπειν τὴν εἴδησιν τοῦ ἱστοχώρου',
 
 );

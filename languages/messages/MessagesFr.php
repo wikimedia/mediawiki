@@ -487,7 +487,6 @@ $messages = array(
 'site-atom-feed'          => 'Flux Atom de $1',
 'page-rss-feed'           => 'Flux RSS de "$1"',
 'page-atom-feed'          => 'Flux Atom de "$1"',
-'sitenotice_close'        => 'cacher',
 'red-link-title'          => '$1 (page inexistante)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2966,9 +2965,5 @@ Entrez le nom du fichier sans le préfixe « {{ns:image}}: ».',
 'nuke-submit-user'   => 'Valider',
 'nuke-submit-delete' => 'Suppression sélectionnée',
 'right-nuke'         => 'Supprimer des pages en masse',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Ne plus afficher le message du site',
-'dismissnotice-nologin' => 'Vous devez être [[Special:UserLogin|connecté]] pour ne plus afficher le message du site.',
 
 );

@@ -413,7 +413,6 @@ $messages = array(
 'site-atom-feed'          => 'Feed Atom $1',
 'page-rss-feed'           => 'Feed RSS de "$1"',
 'page-atom-feed'          => 'Feed Atom de "$1"',
-'sitenotice_close'        => 'ignorar',
 'red-link-title'          => '$1 (ainda não escrito)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -2901,9 +2900,5 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:image}}:".',
 'nuke-submit-user'   => 'Ir',
 'nuke-submit-delete' => 'Eliminar as seleccionadas',
 'right-nuke'         => 'Eliminar páginas em massa',
-
-# Special:DismissNotice
-'dismissnotice'         => 'Ignorar o aviso do site',
-'dismissnotice-nologin' => 'É necessário estar [[Special:UserLogin|autenticado]] para poder ignorar o aviso do site.',
 
 );

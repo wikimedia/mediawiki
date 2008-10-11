@@ -529,7 +529,6 @@ $messages = array(
 'site-atom-feed'          => 'خبرخوان Atom برای $1',
 'page-rss-feed'           => 'خبرخوان RSS برای «$1»',
 'page-atom-feed'          => 'خبرخوان Atom برای «$1»',
-'sitenotice_close'        => 'بستن',
 'red-link-title'          => '$1 (هنوز ایجاد نشده)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -3077,9 +3076,5 @@ $1',
 'nuke-submit-user'   => 'برو',
 'nuke-submit-delete' => 'حذف موارد انتخاب شده',
 'right-nuke'         => 'حذف دسته‌جمعی صفحه‌ها',
-
-# Special:DismissNotice
-'dismissnotice'         => 'نهفتن اعلان وبگاه',
-'dismissnotice-nologin' => 'شما باید [[Special:UserLogin|به سیستم وارد شوید]] تا اعلان وبگاه را پنهان سازید.',
 
 );

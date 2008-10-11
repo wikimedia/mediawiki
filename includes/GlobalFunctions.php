@@ -1865,70 +1865,22 @@ function wfGetNamespaceNotice() {
 	return $namespaceNotice;
 }
 
-/**
- * Gets and returns the site-wide notice
- * @return $siteNotice The site-wide notice as set by $wgSiteNotice or MediaWiki:Sitenotice interface message
- */
 function wfGetSiteNotice() {
-	global $wgUser, $wgMajorSiteNoticeID, $wgTitle;
-	global $wgCookiePrefix, $wgCookieExpiration, $wgCookiePath;
+	global $wgUser, $wgSiteNotice;
 	$fname = 'wfGetSiteNotice';
 	wfProfileIn( $fname );
 	$siteNotice = '';
-	$loggedIn = false;
-	$spTitle = SpecialPage::getTitleFor( 'DismissNotice' );
-	$spUrl = $spTitle->escapeFullURL( array( 'returnto' => $wgTitle->getPrefixedURL() ) );
-	
-	if( $wgUser instanceOf User && $wgUser->isLoggedIn() ) {
-		$loggedIn = true;
-		$siteNotice = wfGetCachedNotice('sitenotice');
-		if($siteNotice === false) {
-			wfProfileOut( $fname );
-			return '';
-		}
-	} else {
-		$siteNotice = wfGetCachedNotice('anonnotice');
-		if($siteNotice === false) {
-			$siteNotice = wfGetCachedNotice('sitenotice');
-			if($siteNotice === false) {
-				wfProfileOut( $fname );
-				return '';
-			}
-		}
-	}
-	
-	$msgClose = wfMsg( 'sitenotice_close' );
-	$id = intval( $wgMajorSiteNoticeID ) . "." . intval( wfMsgForContent( 'sitenotice_id' ) );
 
 	if( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice ) ) ) {
-		if( $loggedIn ) {
-			//it is hidden
-			if( isset($_COOKIE[$wgCookiePrefix . 'DismissSiteNotice']) && $_COOKIE[$wgCookiePrefix . 'DismissSiteNotice'] == $id ) {
-				wfProfileOut( $fname );
-				return '';
+		if( is_object( $wgUser ) && $wgUser->isLoggedIn() ) {
+			$siteNotice = wfGetCachedNotice( 'sitenotice' );
+		} else {
+			$anonNotice = wfGetCachedNotice( 'anonnotice' );
+			if( !$anonNotice ) {
+				$siteNotice = wfGetCachedNotice( 'sitenotice' );
+			} else {
+				$siteNotice = $anonNotice;
 			}
-			$siteNotice = <<<EOT
-<table width="100%" id="mw-dismissable-notice"><tr><td width="80%">$siteNotice</td>
-<td width="20%" align="right">[<a id="dismissLink" href="$spUrl">$msgClose</a>]</td></tr></table>
-<script type="text/javascript" language="JavaScript">
-<!--
-var cookieName = "{$wgCookiePrefix}DismissSiteNotice=";
-var cookiePos = document.cookie.indexOf(cookieName);
-var siteNoticeID = "{$id}";
-
-var dismissLink = document.getElementById('dismissLink');
-dismissLink.href = "javascript:dismissNotice();";
-
-function dismissNotice() {
-		var date = new Date();
-		date.setTime(date.getTime() + {$wgCookieExpiration});
-		document.cookie = cookieName + siteNoticeID + "; expires="+date.toGMTString() + "; path={$wgCookiePath}";
-		var element = document.getElementById('siteNotice');
-		element.parentNode.removeChild(element);
-}
--->
-</script>
-EOT;
 		}
 		if( !$siteNotice ) {
 			$siteNotice = wfGetCachedNotice( 'default' );

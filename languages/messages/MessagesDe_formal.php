@@ -526,7 +526,4 @@ Bitte bestätigen Sie, dass Sie diese Seite wirklich neu erstellen möchten.",
 geben Sie einen Kommentar ein und drücken Sie auf den Löschknopf.',
 'nuke-tools' => 'Dieses Werkzeug ermöglicht die Massenlöschung von Seiten, die von einer IP-Adresse oder einem Benutzer angelegt wurden. Geben Sie die IP-Adresse/den Benutzernamen ein, um eine Liste zu erhalten:',
 
-# Special:DismissNotice
-'dismissnotice-nologin' => 'Sie müssen [[Special:UserLogin|angemeldet]] sein, um die Sitenotice schließen zu können.',
-
 );

@@ -284,8 +284,6 @@ $wgMessageStructure = array(
 		'feed-atom',
 		'feed-rss',
 		'sitenotice',
-		'sitenotice_id',
-		'sitenotice_close',
 		'anonnotice',
 		'newsectionheaderdefaultlevel',
 		'red-link-title',
@@ -2813,10 +2811,6 @@ $wgMessageStructure = array(
 		'nuke-submit-delete',
 		'right-nuke',
 	),
-	'special-dismissnotice' => array(
-		'dismissnotice',
-		'dismissnotice-nologin',
-	),
 );
 
 /** Comments for each block */
@@ -3013,7 +3007,6 @@ Variants for Chinese language",
 	'special-blank'         => 'Special:BlankPage',
 	'external_images'       => 'External image whitelist',
 	'special-nuke'          => 'Special:Nuke',
-	'special-dismissnotice' => 'Special:DismissNotice',
 );
 
 /** Short comments for standalone messages */

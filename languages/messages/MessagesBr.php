@@ -312,7 +312,6 @@ $messages = array(
 'site-atom-feed'          => 'Lanv Atom evit $1',
 'page-rss-feed'           => 'Lanv RSS evit "$1"',
 'page-atom-feed'          => 'Lanv Atom evit "$1"',
-'sitenotice_close'        => 'kuzhat',
 'red-link-title'          => "$1 (n'eo ket bet savet c'hoazh)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
