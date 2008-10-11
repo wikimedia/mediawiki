@@ -643,8 +643,8 @@ class RecentChange
 		$user = self::cleanupForIRC( $rc_user_text );
 
 		if ( $rc_type == RC_LOG ) {
-			$logTargetText = $this->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace($logTargetText,"\00302$logTargetText\00310",$actionComment) );
+			$targetText = $this->getTitle()->getPrefixedText();
+			$comment = self::cleanupForIRC( str_replace("[[$targetText]]","[[\00302$targetText\00310]]",$actionComment) );
 			$flag = $rc_log_action;
 		} else {
 			$comment = self::cleanupForIRC( $rc_comment );
