@@ -1695,6 +1695,8 @@ Chistu pò èssiri nu canciamentu dràsticu pi na pàggina pupulari; aviti a ès
 
 Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discussioni.",
 'movearticle'             => 'Sposta la pàggina',
+'movenologin'             => 'Accessu nun effittuatu',
+'movenologintext'         => "Lu spustamentu dî pàggini è cunzintitu sulu a l'utenti riggistrati c'hannu esiquitu l'[[Special:Userlogin|accessu]] a lu situ.",
 'movenotallowed'          => 'Nun hai li pirmessi nicissari a lu spustamentu dê pàggini.',
 'newtitle'                => 'Cu lu tìtulu novu di',
 'move-watch'              => 'Talìa sta pàggina',

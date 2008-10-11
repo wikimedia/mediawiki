@@ -979,6 +979,7 @@ Ben suri taki den folo abrasi ben pre yu disi aksi du.",
 * A takipapira ondro a nyun nen da ala ben;
 * Yu a ondroben box odu.",
 'movearticle'      => 'Dribi papira:',
+'movenologin'      => 'No kon',
 'newtitle'         => 'Na nyun papiranen:',
 'move-watch'       => 'Disi papira si',
 'movepagebtn'      => 'Dribi papira',

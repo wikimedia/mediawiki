@@ -1108,6 +1108,8 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 
 In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te pagjine di discussion, se tu lu desideris.",
 'movearticle'      => 'Môf la vôs',
+'movenologin'      => 'No tu sês jentrât',
+'movenologintext'  => 'Tu âs di jessi un utent regjistrât e <a href="{{localurl:Special:Userlogin}}">jentrât</a> par movi une pagjine.',
 'newtitle'         => 'Al gnûf titul',
 'move-watch'       => 'Ten di voli cheste pagjine',
 'movepagebtn'      => 'Môf pagjine',

@@ -1734,6 +1734,8 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 
 Ön jenets at, if vilol topätükön bespikapadi u balön oni e padi ya dabinöl, ol it omutol dunön osi.",
 'movearticle'             => 'Topätükolöd padi',
+'movenologin'             => 'No enunädon oki',
+'movenologintext'         => 'Mutol binön geban peregistaröl e [[Special:Userlogin|nunädön oli]] ad topätükön padi.',
 'movenotallowed'          => 'No dalol topätükön padis.',
 'newtitle'                => 'Lü tiäd nulik',
 'move-watch'              => 'Pladolöd padi at ini galädalised',

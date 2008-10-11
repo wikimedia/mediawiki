@@ -1955,6 +1955,8 @@ wääs die deeruum sicher, dät du do Konsequenzen deerfon iensjuchst, eer du f�
 
 In disse Falle moast du ju Siede, wan wonsked, fon Hounde ferschuuwe. Jädden dän '''näie''' Tittel unner '''Siel''' iendreege, deerunner ju Uumnaamenge jädden '''begründje'''.",
 'movearticle'             => 'Siede ferschuuwe:',
+'movenologin'             => 'Du bäst nit anmälded',
+'movenologintext'         => 'Du moast n registrierden Benutser un [[Special:Userlogin|anmälded]] weese, uum ne Siede ferschuuwe tou konnen.',
 'movenotallowed'          => 'Du hääst neen Begjuchtigenge, Sieden tou ferschuuwen.',
 'newtitle'                => 'Tou dän näie Tittel:',
 'move-watch'              => 'Disse Siede beooboachtje',

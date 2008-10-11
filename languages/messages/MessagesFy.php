@@ -1804,6 +1804,8 @@ daalks weromneame as jo in flater meitsje, mar jo kinne in oare side net oerskri
 
 In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle.",
 'movearticle'             => 'Werneam side',
+'movenologin'             => 'Net oameld',
+'movenologintext'         => 'Jo moatte [[Special:Userlogin|oanmeld]] wêze om in side wer te neamen.',
 'newtitle'                => 'As nij titel',
 'move-watch'              => 'Folch dizze side',
 'movepagebtn'             => 'Werneam side',

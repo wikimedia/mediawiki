@@ -629,6 +629,7 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 # Move page
 'move-page-legend'        => 'Przeniesë starnã',
 'movearticle'             => 'Przeniesë artikel',
+'movenologin'             => 'Felënk logòwaniô',
 'movepagebtn'             => 'Przeniesë starnã',
 'pagemovedsub'            => 'Przeniesenié darzëło sã',
 'articleexists'           => 'Starna ò taczim mionie ju je abò nie je òno bezzmiłkòwé. Wëbierzë nowé miono.',

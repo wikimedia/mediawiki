@@ -1914,6 +1914,8 @@ Acèrtete de ver ben valutà le conseguenze del spostamento, prima de procédar.
 * In corispondenza del novo titoło ghe xe xà na pàxena de discussion (mìa voda)
 * La caseła chi soto la xè stà desełezionà.",
 'movearticle'             => 'Rinomina voçe',
+'movenologin'             => 'No te ghè efetuà el login',
+'movenologintext'         => 'Te ghè da èssar un utente registrà ed aver efetuà el [[Special:Userlogin|login]] par poder spostar na pàxena.',
 'movenotallowed'          => 'No te ghè i parmessi necessari al spostamento de le pagine.',
 'newtitle'                => 'Al novo titoło de:',
 'move-watch'              => "Tien d'ocio",

@@ -1379,6 +1379,8 @@ pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
 'movearticle'             => 'Pārvietot lapu',
+'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
+'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:Userlogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
 'movenotallowed'          => 'Tev {{grammar:lokatīvs|{{SITENAME}}}} nav tiesību pārvietot lapas .',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',

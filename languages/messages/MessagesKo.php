@@ -1817,6 +1817,8 @@ $1',
 * 아래의 선택을 해제하는 경우
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle'             => '문서 이동하기',
+'movenologin'             => '로그인하지 않음',
+'movenologintext'         => '[[Special:Userlogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'movenotallowed'          => '{{SITENAME}}에서 문서를 이동할 권한이 없습니다.',
 'newtitle'                => '새 문서 이름',
 'move-watch'              => '이 문서 주시하기',

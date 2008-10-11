@@ -2007,6 +2007,8 @@ verstitt w.e.g. d'Konsequenze vun ärer Handlung éier Dir d'Säit réckelt.",
 
 An deene Fäll musst Dir d'Diskussiounssäit manuell réckelen oder fusionéieren.",
 'movearticle'             => 'Säit réckelen:',
+'movenologin'             => 'Net ageloggt',
+'movenologintext'         => 'Dir musst e registréierte Benotzer an [[Special:Userlogin|ageloggt]] sinn, fir eng Säit ze réckelen.',
 'movenotallowed'          => 'Dir hutt net déi néideg Rechter fir Säiten ze réckelen.',
 'newtitle'                => 'Op den neien Titel:',
 'move-watch'              => 'Dës Säit iwwerwaachen',

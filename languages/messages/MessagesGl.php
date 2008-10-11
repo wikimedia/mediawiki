@@ -2014,7 +2014,10 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'             => 'Mover esta páxina:',
+'movenologin'             => 'Non está dentro do sistema',
+'movenologintext'         => 'Debe ser un usuario rexistrado e estar [[Special:Userlogin|dentro do sistema]] para mover unha páxina.',
 'movenotallowed'          => 'Non ten os permisos necesarios para mover páxinas.',
+'cant-move-user-page' => 'Non ten os permisos necesarios para mover páxinas de usuario raíz.',
 'newtitle'                => 'Ao novo título:',
 'move-watch'              => 'Vixiar esta páxina',
 'movepagebtn'             => 'Mover a páxina',

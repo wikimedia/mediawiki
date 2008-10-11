@@ -1809,6 +1809,8 @@ Artikulu oso erabilia edo asko aldatzen denaren izenburua aldatzera bazoaz, mese
 
 Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'movearticle'             => 'Orrialdea mugitu',
+'movenologin'             => 'Saioa hasi gabe',
+'movenologintext'         => 'Orrialde bat mugitzeko erregistratutako erabiltzailea izan behar duzu eta [[Special:Userlogin|saioa hasi]].',
 'movenotallowed'          => 'Ez daukazu {{SITENAME}}n orrialdeak mugitzeko baimenik.',
 'newtitle'                => 'Izenburu berria',
 'move-watch'              => 'Orrialde hau jarraitu',

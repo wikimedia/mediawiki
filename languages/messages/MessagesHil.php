@@ -256,6 +256,7 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Move page
 'move-page-legend' => 'Saylohon ining panid',
 'movearticle'      => 'Saylohon ining panid:',
+'movenologin'      => 'Wala naka-sulod',
 'move-watch'       => 'Bantayan ining panid',
 'movepagebtn'      => 'Saylohon ining panid',
 'movedto'          => 'gin saylo sa',

@@ -2151,7 +2151,10 @@ In diesen Fällen musst du, falls gewünscht, den Inhalt der Seite von Hand vers
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
 'movearticle'             => 'Seite verschieben:',
+'movenologin'             => 'Du bist nicht angemeldet',
+'movenologintext'         => 'Du musst ein registrierter Benutzer und [[Special:Userlogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'          => 'Du hast keine Berechtigung, Seiten zu verschieben.',
+'cant-move-user-page' => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
 'newtitle'                => 'Ziel:',
 'move-watch'              => 'Diese Seite beobachten',
 'movepagebtn'             => 'Seite verschieben',

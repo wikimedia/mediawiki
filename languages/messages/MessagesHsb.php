@@ -1957,6 +1957,8 @@ Wobkedźbuj, zo strona so <b>nje</b> přesunje, jeli strona z nowym titlom hizo 
 
 W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to přeješ.',
 'movearticle'             => 'Stronu přesunyć',
+'movenologin'             => 'Njejsy přizjewjeny.',
+'movenologintext'         => 'Dyrbiš zregistrowany wužiwar a [[Special:Userlogin|přizjewjeny]] być, zo by stronu přesunyć móhł.',
 'movenotallowed'          => 'Nimaš w tutym wikiju prawo, zo by strony přesunył.',
 'newtitle'                => 'pod nowe hesło',
 'move-watch'              => 'Stronu wobkedźbować',

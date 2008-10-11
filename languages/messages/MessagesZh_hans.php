@@ -1976,6 +1976,9 @@ $1',
 
 在这些情况下，您在必要时必须手工移动或合并页面。",
 'movearticle'             => '移动页面:',
+'movenologin'             => '未登录',
+'movenologintext'         => '您必须是一名登记用户并且[[Special:Userlogin|登录]]
+后才可移动一个页面。',
 'movenotallowed'          => '您并没有权限去移动页面。',
 'newtitle'                => '新标题:',
 'move-watch'              => '监视此页',

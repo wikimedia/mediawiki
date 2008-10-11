@@ -2090,7 +2090,11 @@ per favor assecura te que tu comprende le consequentias de isto ante que tu proc
 
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
 'movearticle'             => 'Renominar pagina:',
+'movenologin'             => 'Tu non ha aperite un session',
+'movenologintext'         => 'Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
+pro mover un pagina.',
 'movenotallowed'          => 'Tu non ha le permission de renominar paginas.',
+'cant-move-user-page' => 'Tu non ha le permission de renominar paginas principal de usatores.',
 'newtitle'                => 'Al nove titulo:',
 'move-watch'              => 'Observar iste pagina',
 'movepagebtn'             => 'Renominar pagina',

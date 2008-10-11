@@ -359,6 +359,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Move page
 'movearticle'             => 'Mova pagine',
+'movenologin'             => 'Non ensignatat',
 'move-watch'              => 'Observa disi pagine',
 'movedto'                 => 'movat a',
 '1movedto2'               => '[[$1]] movat a [[$2]]',

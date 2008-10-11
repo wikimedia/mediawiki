@@ -328,6 +328,7 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 
 # Move page
 'movearticle' => 'Moer págine:',
+'movenologin' => 'Vu ne ha intrat',
 'movepagebtn' => 'Moer págine',
 'movedto'     => 'moet a',
 '1movedto2'   => '[[$1]] moet a [[$2]]',

@@ -1001,6 +1001,7 @@ iitom e-iitomde diijömde caitóm.',
 # Move page
 'move-page-legend' => 'Yacom páhina',
 'movearticle'      => 'Yacom páhina:',
+'movenologin'      => 'Necaápo',
 'move-watch'       => 'Cáminot jan páhina',
 'movepagebtn'      => 'Yacom páhina',
 'movedto'          => 'yacomöxde',

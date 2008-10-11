@@ -1272,6 +1272,7 @@ dawam ettiriwden aldın qanday aqıbetlerge alıp keliwin oylap ko'rin'.",
 
 Bul jag'daylarda eger qa'lesen'iz betti qoldan ko'shiriwin'iz yamasa qosıwın'izg'a boladı.",
 'movearticle'             => "Ko'shiriletug'ın bet:",
+'movenologin'             => 'Kirilmegen',
 'newtitle'                => 'Taza atama:',
 'move-watch'              => 'Bul betti baqlaw',
 'movepagebtn'             => "Betti ko'shir",

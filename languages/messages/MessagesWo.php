@@ -1218,6 +1218,7 @@ Saytul [[Special:Log/delete|jaar-jaaru far bi]] ngir xool far yi ak loppanti yu 
 'movelogpagetext'         => 'Lii mooy limu xët yi ñu mujje tuddewaat.',
 'movereason'              => 'Ngirtey tuddewaat bi',
 'delete_and_move'         => 'Dindi te tuddewaat',
+'movenologintext'  => 'Ngir man a tuddewaat aw xët, da ngaa war a [[Special:Userlogin|dugg]] ni jëfëndikookat bu bindu te saw sàq war naa am yaggaa bi mu laaj.',
 
 # Export
 'export-addcattext' => 'Yokkal xëti Wàll gi :',

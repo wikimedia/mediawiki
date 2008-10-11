@@ -619,6 +619,7 @@ Soñğı beterülär $2 bitendä terkälenä.',
 # Move page
 'move-page-legend' => 'Bit küçerü',
 'movearticle'      => 'Küçeräse bit',
+'movenologin'      => 'Kermädeñ',
 'newtitle'         => 'Yaña başlıq',
 'movepagebtn'      => 'Küçer bitne',
 'pagemovedsub'     => 'Küçerü uñışlı uzdı',

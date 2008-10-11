@@ -2069,6 +2069,9 @@ assegureu-vos d'entendre les conseqüències que comporta abans de seguir endava
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle'             => 'Reanomena la pàgina',
+'movenologin'             => "No sou a dins d'una sessió",
+'movenologintext'         => "Heu de ser un usuari registrat i estar [[Special:Userlogin|dintre d'una sessió]]
+per reanomenar una pàgina.",
 'movenotallowed'          => 'No teniu permís per a moure pàgines.',
 'newtitle'                => 'A títol nou',
 'move-watch'              => 'Vigila aquesta pàgina',

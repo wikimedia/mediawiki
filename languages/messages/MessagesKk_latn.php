@@ -2200,6 +2200,8 @@ osınıñ saldarın baýımdawıñızdı ärekettiñ aldınan batıl bolıñız.
 
 Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 'movearticle'             => 'Jıljıtpaq bet:',
+'movenologin'             => 'Jüýege kirmegensiz',
+'movenologintext'         => 'Betti jıljıtw üşin tirkelgen bolwıñız jäne [[{{#special:Userlogin}}|kirwiñiz]] jön.',
 'movenotallowed'          => '{{SITENAME}} jobasında betterdi jıljıtw rwqsatıñız joq.',
 'newtitle'                => 'Jaña taqırıp atına:',
 'move-watch'              => 'Bul betti baqılaw',

@@ -1915,6 +1915,8 @@ automat odată cu aceasta '''afară de cazul că''':
 În oricare din cazurile de mai sus va trebui să muţi sau să unifici
 manual paginile de discuţii, dacă doreşti acest lucru.",
 'movearticle'             => 'Mută pagina',
+'movenologin'             => 'Nu eşti autentificat',
+'movenologintext'         => 'Trebuie să fii un utilizator înregistrat şi să te [[Special:Userlogin|autentifici]] pentru a muta o pagină.',
 'movenotallowed'          => 'Nu ai permisiunea să muţi pagini.',
 'newtitle'                => 'Titlul nou',
 'move-watch'              => 'Urmăreşte această pagină',

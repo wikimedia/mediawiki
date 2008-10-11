@@ -2037,6 +2037,8 @@ vær sikker på at du forstår konsekvensene av dette før du fortsetter.",
 
 I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt.",
 'movearticle'             => 'Flytt side:',
+'movenologin'             => 'Ikke logget inn',
+'movenologintext'         => 'Du må være registrert bruker og være [[Special:Userlogin|logget på]] for å flytte en side.',
 'movenotallowed'          => 'Du har ikke tillatelse til å flytte sider.',
 'newtitle'                => 'Ny tittel',
 'move-watch'              => 'Overvåk denne siden',

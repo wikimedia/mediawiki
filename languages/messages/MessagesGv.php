@@ -833,6 +833,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'move-page'               => '$1 y scughey',
 'move-page-legend'        => 'Duillag y scughey',
 'movearticle'             => 'Duillag y scughey:',
+'movenologin'             => 'Cha nel oo loggit stiagh',
 'newtitle'                => 'Gys ard-ennym noa:',
 'move-watch'              => 'Freill arrey er y duillag shoh',
 'movepagebtn'             => 'Yn duillag y scughey',

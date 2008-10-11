@@ -1956,6 +1956,8 @@ $NEWPAGE
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'             => '移動するページ',
 'movenotallowed'          => 'あなたにはページを移動する権限がありません。',
+'movenologin'             => 'ログインしていません',
+'movenologintext'         => 'ページを移動するためには、アカウント作成の上、[[Special:Userlogin|ログイン]]している必要があります。',
 'newtitle'                => '新しいページ名',
 'move-watch'              => '移動するページをウォッチ',
 'movepagebtn'             => 'ページを移動',

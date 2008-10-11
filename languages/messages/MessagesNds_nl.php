@@ -1911,6 +1911,8 @@ Mut de databanke vrie-egeven wonnen?',
 * As der al een neet-lege overlegpagina besteet onder de aandere naam
 * A-j 't onderstaonde vinkjen vorthaolen",
 'movearticle'             => 'Herneum',
+'movenologin'             => 'Neet an-emeld.',
+'movenologintext'         => 'Je mutten [[Special:Userlogin|an-emeld]] ween um de naam van een pagina te wiezigen.',
 'newtitle'                => 'Nieje naam',
 'move-watch'              => 'volg disse pagina',
 'movepagebtn'             => 'Herneum',

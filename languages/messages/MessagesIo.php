@@ -885,6 +885,8 @@ Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras sk
 Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
 voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movearticle'             => 'Movar pagino',
+'movenologin'             => 'Sesiono ne iniciata',
+'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:Userlogin|enirir]] por rinomizar pagino.',
 'newtitle'                => 'a nova titulo',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',
