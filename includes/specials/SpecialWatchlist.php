@@ -22,7 +22,8 @@ function wfSpecialWatchlist( $par ) {
 	# Anons don't get a watchlist
 	if( $wgUser->isAnon() ) {
 		$wgOut->setPageTitle( wfMsg( 'watchnologin' ) );
-		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
+		$llink = $skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Userlogin' ), 
+			wfMsgHtml( 'loginreqlink' ), 'returnto=' . $specialTitle->getPrefixedUrl() );
 		$wgOut->addHtml( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;
 	}
@@ -52,6 +53,7 @@ function wfSpecialWatchlist( $par ) {
 	/* bool  */ 'hideBots'  => (int)$wgUser->getBoolOption( 'watchlisthidebots' ),
 	/* bool  */ 'hideAnons' => (int)$wgUser->getBoolOption( 'watchlisthideanons' ),
 	/* bool  */ 'hideLiu'   => (int)$wgUser->getBoolOption( 'watchlisthideliu' ),
+	/* bool  */ 'hidePatrolled' => (int)$wgUser->getBoolOption( 'watchlisthidepatrolled' ), // TODO
 	/* bool  */ 'hideOwn'   => (int)$wgUser->getBoolOption( 'watchlisthideown' ),
 	/* ?     */ 'namespace' => 'all',
 	/* ?     */ 'invert'    => false,
@@ -67,6 +69,7 @@ function wfSpecialWatchlist( $par ) {
 	$prefs['hideanons'] = $wgUser->getBoolOption( 'watchlisthideanon' );
 	$prefs['hideliu']   = $wgUser->getBoolOption( 'watchlisthideliu' );
 	$prefs['hideown' ]  = $wgUser->getBoolOption( 'watchlisthideown' );
+	$prefs['hidepatrolled' ] = $wgUser->getBoolOption( 'watchlisthidepatrolled' );
 
 	# Get query variables
 	$days      = $wgRequest->getVal(  'days'     , $prefs['days'] );
@@ -75,6 +78,7 @@ function wfSpecialWatchlist( $par ) {
 	$hideAnons = $wgRequest->getBool( 'hideAnons', $prefs['hideanons'] );
 	$hideLiu   = $wgRequest->getBool( 'hideLiu'  , $prefs['hideliu'] );
 	$hideOwn   = $wgRequest->getBool( 'hideOwn'  , $prefs['hideown'] );
+	$hidePatrolled   = $wgRequest->getBool( 'hidePatrolled'  , $prefs['hidepatrolled'] );
 
 	# Get namespace value, if supplied, and prepare a WHERE fragment
 	$nameSpace = $wgRequest->getIntOrNull( 'namespace' );
@@ -121,6 +125,7 @@ function wfSpecialWatchlist( $par ) {
 	wfAppendToArrayIfNotDefault( 'hideLiu'  , (int)$hideLiu  , $defaults, $nondefaults );
 	wfAppendToArrayIfNotDefault( 'hideOwn'  , (int)$hideOwn  , $defaults, $nondefaults);
 	wfAppendToArrayIfNotDefault( 'namespace', $nameSpace     , $defaults, $nondefaults);
+	wfAppendToArrayIfNotDefault( 'hidePatrolled', (int)$hidePatrolled, $defaults, $nondefaults );
 
 	$hookSql = "";
 	if( ! wfRunHooks('BeforeWatchlist', array($nondefaults, $wgUser, &$hookSql)) ) {
@@ -158,6 +163,7 @@ function wfSpecialWatchlist( $par ) {
 	$andHideMinor = $hideMinor ? "AND (rc_minor = 0)" : '';
 	$andHideLiu   = $hideLiu   ? "AND (rc_user = 0)" : '';
 	$andHideAnons = $hideAnons ? "AND (rc_user != 0)" : '';
+	$andHidePatrolled = $hidePatrolled ? "AND (rc_patrolled != 1)" : '';
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
@@ -211,6 +217,7 @@ function wfSpecialWatchlist( $par ) {
 	  $andHideMinor
 	  $andHideLiu
 	  $andHideAnons
+	  $andHidePatrolled
 	  $nameSpaceClause
 	  $hookSql
 	  ORDER BY rc_timestamp DESC
@@ -266,6 +273,11 @@ function wfSpecialWatchlist( $par ) {
 	# Hide/show own edits
 	$label = $hideOwn ? wfMsgHtml( 'watchlist-show-own' ) : wfMsgHtml( 'watchlist-hide-own' );
 	$linkBits = wfArrayToCGI( array( 'hideOwn' => 1 - (int)$hideOwn ), $nondefaults );
+	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	
+	# Hide/show patrolled edits
+	$label = $hidePatrolled ? wfMsgHtml( 'watchlist-show-patrolled' ) : wfMsgHtml( 'watchlist-hide-patrolled' );
+	$linkBits = wfArrayToCGI( array( 'hidePatrolled' => 1 - (int)$hidePatrolled ), $nondefaults );
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 
 	# Namespace filter and put the whole form together.
