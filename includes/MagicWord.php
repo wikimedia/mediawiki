@@ -160,7 +160,6 @@ class MagicWord {
 		'index',
 		'noindex',
 		'staticredirect',
-		'noheader',
 	);
 
 
