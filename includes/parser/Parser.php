@@ -4190,20 +4190,23 @@ class Parser
 	 	*/
 		$nl = array_key_exists( 'compact', $param ) ? '' : "\n";
   
-		$replacer = new DoubleReplacer( ' ', '&nbsp;' );
-		$text = $this->recursiveTagParse( $in );
-		$text = $this->mStripState->unstripNoWiki( $text );
+		$tag = $this->insertStripItem( "<br />", $this->mStripState );
 		// Only strip the very first and very last \n (which trim cannot do)
-		if( substr( $text, 0, 1 ) == "\n" )
-			$text = substr( $text, 1 );
+		$text = $in;
+		if( substr( $in, 0, 1 ) == "\n" )
+			$text = substr( $in, 1 );
 		if( substr( $text, -1 ) == "\n" )
 			$text = substr( $text, 0, -1 );
 		
-		$text = str_replace( "\n", "<br />\n", $text );
+		$text = str_replace( "\n", "$tag\n", $text );
 		$text = preg_replace_callback(
 			"/^( +)/m",
-			$replacer->cb(),
+			create_function(
+				'$matches',
+				'return str_replace(" ", "&nbsp;", "$matches[0]");'
+			),
 			$text );
+		$text = $this->recursiveTagParse( $text );
 
 		// Pass HTML attributes through to the output.
 		$attribs = Sanitizer::validateTagAttributes( $param, 'div' );
@@ -4215,7 +4218,7 @@ class Parser
 			$attribs['class'] = 'poem';
 		}
 
-		return Xml::openElement( 'div', $attribs ) . $nl . trim( $text ) . $nl . Xml::closeElement( 'div' );
+		return XML::openElement( 'div', $attribs ) . $nl . trim( $text ) . $nl . XML::closeElement( 'div' );
 	}
 
 	function getImageParams( $handler ) {
