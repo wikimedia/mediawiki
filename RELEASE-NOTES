@@ -148,11 +148,6 @@ The following extensions are migrated into MediaWiki 1.14:
   $wgExternalLinkTarget
 * api.php now sends "Retry-After" and "X-Database-Lag" HTTP headers if the maxlag
   check fails, just like index.php does
-* Configurable per-namespace and per-page header, respectively 
-  MediaWiki:Pageheader-# where # is the namespace number, and
-  MediaWiki:Pagenumber-#-PAGENAME where # is the page's namespace number and
-  PAGENAME is the page name minus the namespace prefix. Can be disabled with 
-  the new magic word __NOHEADER__
 * Added "link" parameter to image links, to allow images to link to an 
   arbitrary title or URL. This should replace inaccessible and incomplete
   solutions such as CSS-based overlays and ImageMap.
