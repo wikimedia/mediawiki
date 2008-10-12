@@ -1718,7 +1718,6 @@ La pàggina di distinazzioni "[[:$1]]" asisti già. S\'addisìa cancillàrila pi
 'delete_and_move_confirm' => 'Sì, suvrascrivi la pàggina asistenti',
 'delete_and_move_reason'  => 'Cancillata pi rènniri pussìbbili lu spustamentu',
 'selfmove'                => 'Lu tìtulu di distinazzioni nziritu è agguali a chiddu di pruvinenza; mpossibbili spustari la pàggina su idda stissa.',
-'immobile_namespace'      => 'Lu novu tìtulu currispunni a na pàggina spiciali; mpussìbbili spustari pàggini nta ddu namespace.',
 
 # Export
 'export'            => 'Esporta pàggini',

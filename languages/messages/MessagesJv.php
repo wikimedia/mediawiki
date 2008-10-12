@@ -1740,8 +1740,6 @@ Apa panjenengan kersa mbusak iku supaya kacané bisa dialihaké?',
 'delete_and_move_confirm' => 'Ya, busak kaca iku.',
 'delete_and_move_reason'  => 'Dibusak kanggo antisipasi pangalihan kaca',
 'selfmove'                => 'Pangalihan kaca ora bisa dilakoni amerga irah-irahan utawa judhul sumber lan tujuané padha.',
-'immobile_namespace'      => 'Irah-irahan sumber utawa tujuan kalebu tipe kusus; 
-ora bisa mindhahaké kaca saka lan menyang bilik nama iku.',
 'imagenocrossnamespace'   => 'Ora bisa mindhahaké gambar menyang bilik nama non-gambar',
 'imagetypemismatch'       => 'Èkstènsi anyar berkas ora cocog karo jenisé',
 

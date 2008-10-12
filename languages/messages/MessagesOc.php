@@ -654,7 +654,7 @@ Abans qu’un autre corrièr sià mandat a aqueste compte, deuretz seguir las in
 'mailerror'                  => 'Error en mandant lo corrièr electronic : $1',
 'acct_creation_throttle_hit' => "Ja avètz creat {{PLURAL:$1|1 compte|$1 comptes}}.
 Ne podètz pas crear d'autres.",
-'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $1 a $3.',
+'emailauthenticated'         => 'Vòstra adreça de corrièr electronic es estada autentificada lo $2 a $3.',
 'emailnotauthenticated'      => 'Vòstra adreça de corrièr electronic es <strong>pas encara autentificada</strong>. Cap corrièr serà pas mandat per caduna de las foncions seguentas.',
 'noemailprefs'               => "<strong>Cap d'adreça electronica es pas estada indicada,</strong> las foncions seguentas seràn pas disponiblas.",
 'emailconfirmlink'           => 'Confirmatz vòstra adreça de corrièr electronic',

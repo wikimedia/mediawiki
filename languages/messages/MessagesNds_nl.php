@@ -1935,7 +1935,6 @@ Mut de databanke vrie-egeven wonnen?',
 'delete_and_move_confirm' => 'Ja, disse pagina vortdoon',
 'delete_and_move_reason'  => 'Vort-edaon vanwegen naamwieziging',
 'selfmove'                => "De naam kan neet ewiezig wonnen naor de naam dee 't al hef.",
-'immobile_namespace'      => "De nieje naam is een speciaal type; der kunnen gien pagina's in disse naamruumte eplaos wonnen.",
 
 # Export
 'export'            => "Pagina's uutvoeren",

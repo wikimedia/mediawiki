@@ -1847,7 +1847,6 @@ $1',
 'delete_and_move_confirm' => '네. 문서를 삭제합니다',
 'delete_and_move_reason'  => '문서를 이동하기 위해 삭제함',
 'selfmove'                => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
-'immobile_namespace'      => '특수한 네임스페이스로는 이동할 수 없습니다.',
 'fix-double-redirects'    => '기존 이름을 가리키는 넘겨주기를 갱신',
 
 # Export

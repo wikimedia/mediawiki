@@ -1008,7 +1008,6 @@ The destination airticle "[[:$1]]" aareadies exists. Div ye want tae delete it f
 'delete_and_move_confirm' => 'Aye, delete the page',
 'delete_and_move_reason'  => 'Delete for tae mak wey for flittin',
 'selfmove'                => 'Ootgaun an incomin teitles is the same; canna flit a page ower itsel.',
-'immobile_namespace'      => 'Destination teitle is o a speecial kin; canna flit pages intae that namespace.',
 
 # Export
 'exporttext'    => 'Ye can export the text an editin history o a parteicular page or set o pages wappit in some XML. In the futur, this micht can be importit intae anither wiki runnin MediaWiki saftware, altho the\'r nae support for this featur in the current version.

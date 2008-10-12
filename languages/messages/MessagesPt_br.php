@@ -1916,7 +1916,6 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 'delete_and_move_confirm' => 'Sim, eliminar a página',
 'delete_and_move_reason'  => 'Eliminada para poder mover outra página para este título',
 'selfmove'                => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
-'immobile_namespace'      => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
 'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
 'imagetypemismatch'       => 'A extensão do novo arquivo não corresponde ao seu tipo',
 'imageinvalidfilename'    => 'O nome do arquivo alvo é inválido',

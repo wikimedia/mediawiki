@@ -134,7 +134,7 @@ Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].",
 # Login and logout pages
 'welcomecreation'            => '== Bon bini, $1! ==
 Bo kuenta ta trahá.
-No lubidá di kambia bo {{SITENAME}} preferensianan.',
+No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'yourname'                   => 'Nòmber di uzadó',
 'yourpassword'               => 'Kontraseña',
 'yourpasswordagain'          => 'Hinka kontraseña atrobe',
@@ -248,10 +248,10 @@ Bo por skohe un tipo di registro tambe, òf filtrá e bista ku un nòmber di uza
 'emailpagetext'   => 'E formulario aki lo manda un e-mail pa e uzadò aki.
 Bo e-mail adrès (manera ta pará den bo preferensianan) lo aparesé den e e-mail pa e resipiente por respondé na bo direktamente.',
 'defemailsubject' => 'E-mail di {{SITENAME}}',
-'emailfrom'       => 'Di',
-'emailto'         => 'Pa',
-'emailsubject'    => 'Tópiko',
-'emailmessage'    => 'Mensahe',
+'emailfrom'       => 'Di:',
+'emailto'         => 'Pa:',
+'emailsubject'    => 'Tópiko:',
+'emailmessage'    => 'Mensahe:',
 'emailsend'       => 'Manda',
 'emailsent'       => 'E-mail mandá',
 'emailsenttext'   => 'Bo e-mail tabata mandá.',

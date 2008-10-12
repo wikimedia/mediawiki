@@ -1841,8 +1841,6 @@ Trid tħassara sabiex tkun tista\' tagħmel triq għal ċaqlieqa?',
 'delete_and_move_reason'  => 'Imħassra sabiex tagħmel triq għal ċaqlieqa',
 'selfmove'                => 'It-Titli tas-sors u destinazzjoni huma l-istess;
 ma tistax iċaqlaq paġna fuqha nnifsa.',
-'immobile_namespace'      => "It-Titlu tas-sors u destinazzjoni huma ta' tip speċjali;
-il-paġna ma setgħux jiġi mċaqilqa minn jew fin-namespace.",
 'imagenocrossnamespace'   => "Ma tistax iċaqlaq fajl f'namespace mhux tal-fajls.",
 'imagetypemismatch'       => 'L-Estenżjoni l-ġdida tal-fajl ma taqbilx mat-tip tagħha.',
 'imageinvalidfilename'    => 'L-Isem tal-fajl destinat mhux validu',
