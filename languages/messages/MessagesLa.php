@@ -373,6 +373,8 @@ $messages = array(
 'editsection'             => 'recensere',
 'editold'                 => 'recensere',
 'viewsourceold'           => 'fontem videre',
+'editlink'                => 'recensere',
+'viewsourcelink'          => 'fontem videre',
 'editsectionhint'         => 'Recensere partem: $1',
 'toc'                     => 'Index',
 'showtoc'                 => 'monstrare',
@@ -490,7 +492,7 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'loginsuccesstitle'          => 'Conventum prospere apertum est',
 'loginsuccess'               => "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris ut \"\$1\".'''",
 'nosuchuser'                 => 'Usor "$1" non est.
-Confirma orthographiam, aut [[Special:Userlogin/signup|crea novam rationem]].',
+Confirma orthographiam, aut [[Special:UserLogin/signup|crea novam rationem]].',
 'nosuchusershort'            => 'Usor "<nowiki>$1</nowiki>" non est.
 Confirma orthographiam.',
 'nouserspecified'            => 'Nomen usoris indicare debes.',
@@ -747,7 +749,7 @@ Titulus: (nov) = dissimilis ab forma novissima, (prox) = dissimilis ab forma pro
 'mypreferences'            => 'Praeferentiae meae',
 'prefs-edits'              => 'Numerus recensionum:',
 'prefsnologin'             => 'Conventum non apertum',
-'prefsnologintext'         => '<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
+'prefsnologintext'         => '<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} Conventum aperire]</span> debes ad praeferentias tuas modificandum.',
 'prefsreset'               => 'Praeferentiae tuae reperscriptae sunt.',
 'qbsettings'               => 'Figuratio claustri celeris',
 'qbsettings-none'          => 'Nullus',
@@ -1434,6 +1436,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'ipb-edit-dropdown'            => 'Causas obstructionum recensere',
 'ipb-unblock-addr'             => 'Deobstruere $1',
 'ipb-unblock'                  => 'Deobstruere nomen usoris vel locum IP',
+'ipb-blocklist-contribs'       => 'Conlationes usoris $1',
 'unblockip'                    => 'Deobstruere locum IP',
 'unblockiptext'                => 'Formam inferam usere ut locum IP deobstruere.',
 'ipusubmit'                    => 'Deobstruere hanc locum',
@@ -1488,8 +1491,8 @@ Adfirma te basem datorum obstruere velle, et te dein basem datorum deobstruendum
 'databasenotlocked'   => 'Basis datorum non obstructa est.',
 
 # Move page
-'move-page-legend'        => 'Paginam movere',
-'movepagetext'            => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
+'move-page-legend'          => 'Paginam movere',
+'movepagetext'              => "Formam inferam utere ad paginam renominandum et ad historiam eius ad nomen novum movendum.
 Titulus vetus paginam redirectionis ad titulum novum fiet.
 Nexus ad paginam veterem non mutabuntur;
 redirectiones duplices aut fractas quaerere et figere debebis.
@@ -1499,42 +1502,48 @@ Pagina '''non''' movebitur si pagina sub titulo novo iam est, nisi est vacua aut
 '''MONITUM!'''
 Haec mutatio vehemens et improvisa potest esse pro pagina populare;
 adfirma te consequentias intellegere antequam procedis.",
-'movepagetalktext'        => "Pagina disputationis huius paginae, si est, etiam necessario motabitur '''nisi''':
+'movepagetalktext'          => "Pagina disputationis huius paginae, si est, etiam necessario motabitur '''nisi''':
 
 *Disputatio sub paginae novae nomine contenta habet, aut
 *Capsam subter non nota.
 
 Ergo manu necesse disputationes motare vel contribuere erit, si vis.",
-'movearticle'             => 'Paginam movere:',
-'movenologin'             => 'Conventum non apertum',
-'movenologintext'         => 'Rationem usoris habere et [[Special:Userlogin|conventum aperire]] debes ad movendum paginam.',
-'movenotallowed'          => 'Tibi non licet paginas movere.',
-'newtitle'                => 'Ad titulum novum:',
-'move-watch'              => 'Hanc paginam custodire',
-'movepagebtn'             => 'Paginam movere',
-'pagemovedsub'            => 'Pagina mota est',
-'movepage-moved'          => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
+'movearticle'               => 'Paginam movere:',
+'movenologin'               => 'Conventum non apertum',
+'movenologintext'           => 'Rationem usoris habere et [[Special:UserLogin|conventum aperire]] debes ad movendum paginam.',
+'movenotallowed'            => 'Tibi non licet paginas movere.',
+'cant-move-user-page'       => 'Tibi non licet paginas usorum movere (solum eorum subpaginas).',
+'cant-move-to-user-page'    => 'Tibi non licet paginam ad paginam usoris movere (solum ad paginae usoris subpaginam).',
+'newtitle'                  => 'Ad titulum novum:',
+'move-watch'                => 'Hanc paginam custodire',
+'movepagebtn'               => 'Paginam movere',
+'pagemovedsub'              => 'Pagina mota est',
+'movepage-moved'            => '<big>\'\'\'"$1" mota est ad "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Pagina huius tituli iam est, aut invalidum est nomen electum.
 Quaesumus, titulum alterum elige.',
-'cantmove-titleprotected' => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
-'talkexists'              => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
-'movedto'                 => 'mota ad',
-'movetalk'                => 'Movere etiam paginam disputationis',
-'move-subpages'           => 'Movere etiam omnes subpaginas, si sunt',
-'move-talk-subpages'      => 'Movere etiam omnes subpaginas paginae disputationis, si sunt',
-'movepage-page-moved'     => 'Pagina $1 mota est ad $2.',
-'movepage-page-unmoved'   => 'Pagina $1 ad $2 moveri non potuit.',
-'1movedto2'               => 'movit [[$1]] ad [[$2]]',
-'1movedto2_redir'         => 'movit [[$1]] ad [[$2]] praeter redirectionem',
-'movereason'              => 'Causa:',
-'revertmove'              => 'reverti',
-'delete_and_move'         => 'Delere et movere',
-'delete_and_move_text'    => '==Deletio necesse est==
+'cantmove-titleprotected'   => 'Tibi non licet paginam ad hunc titulum movere, quia hic titulus protectus est ne creetur',
+'talkexists'                => "'''Pagina prospere mota est, sed pagina disputationis not moveri potuit quia iam est pagina disputationis sub titulo novo. Disputationes recensendo iunge.'''",
+'movedto'                   => 'mota ad',
+'movetalk'                  => 'Movere etiam paginam disputationis',
+'move-subpages'             => 'Movere etiam omnes subpaginas, si sunt',
+'move-talk-subpages'        => 'Movere etiam omnes subpaginas paginae disputationis, si sunt',
+'movepage-page-moved'       => 'Pagina $1 mota est ad $2.',
+'movepage-page-unmoved'     => 'Pagina $1 ad $2 moveri non potuit.',
+'1movedto2'                 => 'movit [[$1]] ad [[$2]]',
+'1movedto2_redir'           => 'movit [[$1]] ad [[$2]] praeter redirectionem',
+'movereason'                => 'Causa:',
+'revertmove'                => 'reverti',
+'delete_and_move'           => 'Delere et movere',
+'delete_and_move_text'      => '==Deletio necesse est==
 Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic moveatur?',
-'delete_and_move_confirm' => 'Ita, paginam delere',
-'delete_and_move_reason'  => 'Deleta ut moveatur',
-'fix-double-redirects'    => 'Rectificare redirectiones ad titulum veterem',
-'move-leave-redirect'     => 'Redirectionem creare ab titulo vetere ad titulum novum',
+'delete_and_move_confirm'   => 'Ita, paginam delere',
+'delete_and_move_reason'    => 'Deleta ut moveatur',
+'immobile-source-namespace' => 'Paginae spatii nominalis "$1" moveri non possunt.',
+'immobile-target-namespace' => 'Paginae in spatium nominale "$1" moveri non possunt.',
+'immobile-source-page'      => 'Haec pagina moveri non potest.',
+'immobile-target-page'      => 'Ad hunc titulum moveri non potest.',
+'fix-double-redirects'      => 'Rectificare redirectiones ad titulum veterem',
+'move-leave-redirect'       => 'Redirectionem creare ab titulo vetere ad titulum novum',
 
 # Export
 'export'            => 'Paginas exportare',

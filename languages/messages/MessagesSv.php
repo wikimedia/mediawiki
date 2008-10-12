@@ -508,6 +508,8 @@ $messages = array(
 'editsection'             => 'redigera',
 'editold'                 => 'redigera',
 'viewsourceold'           => 'visa wikitext',
+'editlink'                => 'redigera',
+'viewsourcelink'          => 'visa wikitext',
 'editsectionhint'         => 'Redigera avsnitt: $1',
 'toc'                     => 'Innehåll',
 'showtoc'                 => 'visa',
@@ -671,7 +673,7 @@ Aktivera dem, och logga sen in med ditt nya användarnamn och lösenord.',
 'loginsuccesstitle'          => 'Inloggningen lyckades',
 'loginsuccess'               => "'''Du är nu inloggad på {{SITENAME}} som \"\$1\".'''",
 'nosuchuser'                 => 'Det finns ingen användare med namnet "$1".
-Kontrollera stavningen, eller [[Special:Userlogin/signup|skapa ett nytt konto]].',
+Kontrollera stavningen, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
 'nosuchusershort'            => 'Det finns ingen användare som heter "<nowiki>$1</nowiki>". Kontrollera att du stavat rätt.',
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
@@ -1148,7 +1150,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'mypreferences'            => 'Mina inställningar',
 'prefs-edits'              => 'Antal redigeringar:',
 'prefsnologin'             => 'Inte inloggad',
-'prefsnologintext'         => 'Du måste vara <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
+'prefsnologintext'         => 'Du måste vara <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
 'prefsreset'               => 'Inställningarna har återställts till ursprungsvärdena.',
 'qbsettings'               => 'Inställningar för snabbmeny',
 'qbsettings-none'          => 'Ingen',
@@ -2133,6 +2135,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'ipblocklist-sh-userblocks'       => '$1 blockeringar av konton',
 'ipblocklist-sh-tempblocks'       => '$1 tillfälliga blockeringar',
 'ipblocklist-sh-addressblocks'    => '$1 blockeringar av enskilda IP-adresser',
+'ipblocklist-scanrange'           => 'För IP:n, inkludera alla blockeringar som påverkar adressen',
 'ipblocklist-submit'              => 'Sök',
 'blocklistline'                   => '$1: $2 blockerar $3 $4',
 'infiniteblock'                   => 'för evigt',
@@ -2197,9 +2200,9 @@ Bekräfta att du verkligen vill göra detta, och att du kommer att låsa upp dat
 'databasenotlocked'   => 'Databasen är inte låst.',
 
 # Move page
-'move-page'               => 'Flytta $1',
-'move-page-legend'        => 'Flytta sida',
-'movepagetext'            => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
+'move-page'                 => 'Flytta $1',
+'move-page-legend'          => 'Flytta sida',
+'movepagetext'              => "Med hjälp av formuläret härunder kan du byta namn på en sida, och flytta hela dess historik till ett nytt namn.
 Den gamla sidtiteln kommer att göras om till en omdirigering till den nya titeln.
 Du kan välja att automatiskt uppdatera omdirigeringar som leder till den gamla titeln.
 Om du väljer att inte göra det, kontrollera då att du inte skapar några [[Special:DoubleRedirects|dubbla]] eller [[Special:BrokenRedirects|trasiga omdirigeringar]].
@@ -2211,52 +2214,56 @@ Det innebär att du kan flytta tillbaks en sida om du råkar göra fel, och att 
 '''VARNING!'''
 Att flytta en populär sida kan vara en drastisk och oväntad ändring;
 därför bör du vara säker på att du förstår konsekvenserna innan du fortsätter med flytten.",
-'movepagetalktext'        => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
+'movepagetalktext'          => "Diskussionssidan kommer att även den automatiskt flyttas '''om inte''':
 *Det redan finns en diskussionssida som inte är tom med det nya namnet, eller
 *Du avmarkerar rutan nedan.
 
 I de fallen måste du flytta eller sammanfoga sidan manuellt, om det önskas.",
-'movearticle'             => 'Flytta sidan:',
-'movenologin'             => 'Inte inloggad',
-'movenologintext'         => 'För att flytta en sida måste du vara registrerad användare och [[Special:Userlogin|inloggad]].',
-'movenotallowed'          => 'Du har inte behörighet att flytta sidor på den här wikin.',
-'cant-move-user-page'     => 'Du har inte behörighet att flytta root-användarsidor.',
-'newtitle'                => 'Till nya titeln:',
-'move-watch'              => 'Bevaka denna sida',
-'movepagebtn'             => 'Flytta sidan',
-'pagemovedsub'            => 'Flyttningen lyckades',
-'movepage-moved'          => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
+'movearticle'               => 'Flytta sidan:',
+'movenologin'               => 'Inte inloggad',
+'movenologintext'           => 'För att flytta en sida måste du vara registrerad användare och [[Special:UserLogin|inloggad]].',
+'movenotallowed'            => 'Du har inte behörighet att flytta sidor på den här wikin.',
+'cant-move-user-page'       => 'Du har inte behörighet att flytta root-användarsidor.',
+'cant-move-to-user-page'    => 'Du har inte behörighet att flytta en sida till en användarsida (förutom till en användarundersida).',
+'newtitle'                  => 'Till nya titeln:',
+'move-watch'                => 'Bevaka denna sida',
+'movepagebtn'               => 'Flytta sidan',
+'pagemovedsub'              => 'Flyttningen lyckades',
+'movepage-moved'            => '<big>\'\'\'"$1" har flyttats till "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Antingen existerar redan en sida med det namnet, eller så har du valt ett namn som inte är tillåtet.
 Välj något annat namn istället.',
-'cantmove-titleprotected' => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',
-'talkexists'              => "'''Sidan flyttades, men diskussionssidan kunde inte flyttas eftersom det redan fanns en diskussionssida med det nya namnet.
+'cantmove-titleprotected'   => 'Du kan inte flytta sidan till den titeln, eftersom den nya titeln har skyddats från att skapas.',
+'talkexists'                => "'''Sidan flyttades, men diskussionssidan kunde inte flyttas eftersom det redan fanns en diskussionssida med det nya namnet.
 Försök att sammanfoga dem manuellt.'''",
-'movedto'                 => 'flyttad till',
-'movetalk'                => 'Flytta tillhörande diskussionssida',
-'move-subpages'           => 'Flytta alla undersidor, om det finns sådana',
-'move-talk-subpages'      => 'Flytta alla undersidor av diskussionssidan, om det finns sådana',
-'movepage-page-exists'    => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
-'movepage-page-moved'     => 'Sidan $1 har flyttats till $2.',
-'movepage-page-unmoved'   => 'Sidan $1 kunde inte flyttas till $2.',
-'movepage-max-pages'      => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
-'1movedto2'               => 'flyttade [[$1]] till [[$2]]',
-'1movedto2_redir'         => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
-'movelogpage'             => 'Sidflyttslogg',
-'movelogpagetext'         => 'Listan nedan visar sidor som flyttats.',
-'movereason'              => 'Anledning:',
-'revertmove'              => 'flytta tillbaka',
-'delete_and_move'         => 'Radera och flytta',
-'delete_and_move_text'    => '==Radering krävs==
+'movedto'                   => 'flyttad till',
+'movetalk'                  => 'Flytta tillhörande diskussionssida',
+'move-subpages'             => 'Flytta alla undersidor, om det finns sådana',
+'move-talk-subpages'        => 'Flytta alla undersidor av diskussionssidan, om det finns sådana',
+'movepage-page-exists'      => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
+'movepage-page-moved'       => 'Sidan $1 har flyttats till $2.',
+'movepage-page-unmoved'     => 'Sidan $1 kunde inte flyttas till $2.',
+'movepage-max-pages'        => 'Gränsen på $1 {{PLURAL:$1|flyttad sida|flyttade sidor}} har uppnåtts och inga fler sidor kommer att flyttas automatiskt.',
+'1movedto2'                 => 'flyttade [[$1]] till [[$2]]',
+'1movedto2_redir'           => 'flyttade [[$1]] till [[$2]], som var en omdirigeringssida',
+'movelogpage'               => 'Sidflyttslogg',
+'movelogpagetext'           => 'Listan nedan visar sidor som flyttats.',
+'movereason'                => 'Anledning:',
+'revertmove'                => 'flytta tillbaka',
+'delete_and_move'           => 'Radera och flytta',
+'delete_and_move_text'      => '==Radering krävs==
 Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
-'delete_and_move_confirm' => 'Ja, radera sidan',
-'delete_and_move_reason'  => 'Raderad för att flytta hit en annan sida.',
-'selfmove'                => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
-'immobile_namespace'      => 'Namnrymden du försöker flytta sidan till eller från är av en speciell typ. Det går inte att flytta sidor till eller från den namnrymden.',
-'imagenocrossnamespace'   => 'Kan inte flytta bilder till andra namnrymder än bildnamnrymden',
-'imagetypemismatch'       => 'Den nya filändelsen motsvarar inte filtypen',
-'imageinvalidfilename'    => 'Önskat filnamn är ogiltigt',
-'fix-double-redirects'    => 'Uppdatera omdirigeringar som leder till den gamla titeln',
-'move-leave-redirect'     => 'Lämna kvar en omdirigering',
+'delete_and_move_confirm'   => 'Ja, radera sidan',
+'delete_and_move_reason'    => 'Raderad för att flytta hit en annan sida.',
+'selfmove'                  => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
+'immobile-source-namespace' => 'Kan inte flytta sidor i namnrymden "$1"',
+'immobile-target-namespace' => 'Kan inte flytta sidor till namnrymden "$1"',
+'immobile-source-page'      => 'Denna sida är inte flyttbar.',
+'immobile-target-page'      => 'Kan inte flytta till det målnamnet.',
+'imagenocrossnamespace'     => 'Kan inte flytta bilder till andra namnrymder än bildnamnrymden',
+'imagetypemismatch'         => 'Den nya filändelsen motsvarar inte filtypen',
+'imageinvalidfilename'      => 'Önskat filnamn är ogiltigt',
+'fix-double-redirects'      => 'Uppdatera omdirigeringar som leder till den gamla titeln',
+'move-leave-redirect'       => 'Lämna kvar en omdirigering',
 
 # Export
 'export'            => 'Exportera sidor',

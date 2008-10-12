@@ -419,7 +419,7 @@ Jekk tagħżel li tiprovdih, dan jintuża biss biex jagħtik attribuzzjoni għax
 'loginsuccesstitle'          => "Dħalt b'suċċess",
 'loginsuccess'               => "'''Irnexxielek taqbad mas-server ta' {{SITENAME}} b'isem l-utent \"\$1\".'''",
 'nosuchuser'                 => 'M\'hemm l-ebda utent bl-isem ta\' "$1".
-Jekk jogħġbok kun żġur li ktibtu sew, jew inkella [[Special:Userlogin/signup|oħloq kont ġdid]].',
+Jekk jogħġbok kun żġur li ktibtu sew, jew inkella [[Special:UserLogin/signup|oħloq kont ġdid]].',
 'nosuchusershort'            => 'M\'hemm l-ebda utent bl-isem "<nowiki>$1</nowiki>".
 Agħmel żġur li ktibta sew.',
 'nouserspecified'            => 'Trid tispeċifika isem l-utent.',
@@ -841,7 +841,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'mypreferences'            => 'Il-Preferenzi tiegħi',
 'prefs-edits'              => "Numru ta' modifiki:",
 'prefsnologin'             => 'Għadek ma dħaltx ġewwa',
-'prefsnologintext'         => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} kont]</span>.',
+'prefsnologintext'         => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kont]</span>.',
 'prefsreset'               => 'Il-preferenzi ġew irrisettjati għall-valuri predefiniti.',
 'qbsettings'               => "''Quickbar''",
 'qbsettings-none'          => 'Xejn',
@@ -1807,7 +1807,7 @@ Din tista' tkun bidla drastika u mhux mistenniha għal paġna popolari; jekk jog
 F'dawn il-każi, inti trid iċaqlaq jew tagħqad il-paġna manwalment jekk dan huwa mixtieq.",
 'movearticle'             => 'Ċaqlaq il-paġna:',
 'movenologin'             => 'Aċċess mhux imwettaq',
-'movenologintext'         => "Trid [[Special:Userlogin|tidħol]] bħalha utent reġistrat sabiex tkun tista' iċaqlaq din il-paġna.",
+'movenologintext'         => "Trid [[Special:UserLogin|tidħol]] bħalha utent reġistrat sabiex tkun tista' iċaqlaq din il-paġna.",
 'movenotallowed'          => "Inti m'għandekx il-permessi meħtieġa sabiex tmexxi l-paġni.",
 'newtitle'                => 'Titlu ġdid:',
 'move-watch'              => 'Segwi din il-paġna',

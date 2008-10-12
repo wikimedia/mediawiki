@@ -348,6 +348,10 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 {{Identical|Edit}}',
 'editsection-brackets'    => '{{doc-important|This message should most probably not be translated.}}',
 'editold'                 => '{{Identical|Edit}}',
+'editlink'                => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
+
+{{Identical|Edit}}',
+'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
 'toc'                     => 'This is the title of the table of contents displayed in pages with more than 3 sections
 
@@ -1408,7 +1412,11 @@ Example: [[:Image:Addon-icn.png]]',
 
 # E-mail user
 'emailuser'       => 'Link in the sidebar',
-'emailpagetext'   => 'This is the text that is displayed above the e-mail form on Special:EmailUser.',
+'emailpagetext'   => 'This is the text that is displayed above the e-mail form on Special:EmailUser.
+
+Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
+'noemailtitle'    => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
+'noemailtext'     => 'The text of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
 'email-legend'    => 'Title of the box in [[Special:EmailUser]]',
 'emailfrom'       => 'Field in [[Special:EmailUser]].',
 'emailto'         => 'Field in [[Special:EmailUser]].',
@@ -1673,7 +1681,7 @@ Example line:
 'ipbwatchuser'                 => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
 'ipballowusertalk'             => 'Option in [[Special:BlockIP]] that allows the blocked user to edit own talk page.',
 'ipb-edit-dropdown'            => 'Shown beneath the user block form on the right side. It is a link to [[MediaWiki:Ipbreason-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Protect-edit-reasonlist}}.',
-'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]]
+'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
 'ipblocklist-sh-tempblocks'    => 'Top selection button at [[Special:IPBlockList]]
@@ -1682,6 +1690,7 @@ Example line:
 'ipblocklist-sh-addressblocks' => 'Top selection button at [[Special:IPBlockList]]
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
+'ipblocklist-scanrange'        => 'A switch on [[Special:IPBlockList]] allowing to display all relevant blocks (including range blocks) for every IP address, not just the single-IP block',
 'ipblocklist-submit'           => '{{Identical|Search}}',
 'blocklistline'                => 'This is the text of an entry in the Special:IPBlockList.
 *$1 is the hour and date of the block. 
@@ -1740,6 +1749,8 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'movearticle'             => 'The text before the name of the page that you are moving.
 
 {{Identical|Move page}}',
+'movenologin'             => '{{Identical|Not logged in}}',
+'movenologintext'         => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
 'newtitle'                => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
 'move-watch'              => 'The text of the checkbox to watch the page you are moving.
 

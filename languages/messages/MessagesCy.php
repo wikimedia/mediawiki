@@ -508,7 +508,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'loginsuccesstitle'          => 'Llwyddodd y mewngofnodi',
 'loginsuccess'               => "'''Yr ydych wedi mewngofnodi i {{SITENAME}} wrth yr enw \"\$1\".'''",
 'nosuchuser'                 => "Does yna'r un defnyddiwr â'r enw \"\$1\".
-Sicrhewch eich bod chi wedi'i sillafu'n gywir, neu [[Special:Userlogin/signup|crëwch gyfrif newydd]].",
+Sicrhewch eich bod chi wedi'i sillafu'n gywir, neu [[Special:UserLogin/signup|crëwch gyfrif newydd]].",
 'nosuchusershort'            => 'Does dim defnyddiwr o\'r enw "<nowiki>$1</nowiki>". Gwiriwch eich sillafu.',
 'nouserspecified'            => "Mae'n rhaid nodi enw defnyddiwr.",
 'wrongpassword'              => "Nid yw'r cyfrinair a deipiwyd yn gywir. Rhowch gynnig arall arni, os gwelwch yn dda.",
@@ -665,7 +665,7 @@ Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn s
 'editing'                          => 'Yn golygu $1',
 'editingsection'                   => 'Yn golygu $1 (adran)',
 'editingcomment'                   => 'Yn golygu $1 (esboniad)',
-'editconflict'                     => 'Gwrthdaro golygyddol: $1',
+'editconflict'                     => 'Cyd-ddigwyddiad golygu: $1',
 'explainconflict'                  => "Mae rhywun arall wedi newid y dudalen hon ers i chi ddechrau ei golygu hi.
 Mae'r ardal testun uchaf yn cynnwys testun y dudalen fel y mae hi rwan.
 Mae eich newidiadau chi yn ymddangos yn yr ardal testun isaf.
@@ -711,6 +711,7 @@ Cynigiodd y gweinyddwr a glodd y databas y rheswm hwn dros ei gloi: $1",
 
 Ystyriwch a fyddai'n dda o beth i barhau i olygu'r dudalen hon.
 Dyma lòg dileu'r dudalen, er gwybodaeth:",
+'edit-conflict'                    => 'Cyd-ddigwyddiad golyu.',
 
 # Parser/template warnings
 'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
@@ -1399,12 +1400,13 @@ a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser'       => 'Anfon e-bost at y defnyddiwr hwn',
 'emailpage'       => 'Anfon e-bost at ddefnyddiwr',
-'emailpagetext'   => 'Os yw\'r defnyddiwr hwn wedi gosod cyfeiriad e-bost dilys yn ei ddewisiadau, gellir anfon neges ato o\'i ysgrifennu ar y ffurflen isod. 
-Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes "Oddi wrth" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.',
+'emailpagetext'   => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod. 
+Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes \"Oddi wrth\" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.",
 'usermailererror' => 'Dychwelwyd gwall gan y rhaglen e-bost:',
 'defemailsubject' => 'E-bost {{SITENAME}}',
 'noemailtitle'    => 'Dim cyfeiriad e-bost',
 'noemailtext'     => "Mae'r defnyddiwr hwn naill ai heb roi cyfeiriad e-bost dilys, neu mae wedi dewis peidio â derbyn e-bost oddi wrth ddefnyddwyr eraill.",
+'email-legend'    => 'Anfon e-bost at ddefnyddiwr {{SITENAME}} arall',
 'emailfrom'       => 'Oddi wrth:',
 'emailto'         => 'At:',
 'emailsubject'    => 'Pwnc:',
@@ -1453,6 +1455,10 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'watchlist-hide-own'   => 'Cuddio fy ngolygiadau',
 'watchlist-show-minor' => 'Dangos golygiadau bychain',
 'watchlist-hide-minor' => 'Cuddio golygiadau bychain',
+'watchlist-show-anons' => 'Dangos golygiadau dienw',
+'watchlist-hide-anons' => 'Cuddio golygiadau dienw',
+'watchlist-show-liu'   => 'Dangos golygiadau gan ddefnyddwyr mewngofnodedig',
+'watchlist-hide-liu'   => 'Cuddio golygiadau gan ddefnyddwyr mewngofnodedig',
 'watchlist-options'    => 'Dewisiadau ar gyfer y rhestr gwylio',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -1566,8 +1572,20 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'protect-level-sysop'         => 'Gweinyddwyr yn unig',
 'protect-summary-cascade'     => 'sgydol',
 'protect-expiring'            => 'yn dod i ben am $1 (UTC)',
+'protect-expiry-indefinite'   => 'amhenodol',
 'protect-cascade'             => 'Diogelwch dudalennau sydd wedi eu cynnwys yn y dudalen hon (diogelu sgydol)',
 'protect-cantedit'            => "Ni allwch newid lefel diogelu'r dudalen hon, am nad yw'r gallu i olygu'r dudalen ganddoch.",
+'protect-othertime'           => 'Cyfnod arall:',
+'protect-othertime-op'        => 'cyfnod arall',
+'protect-existing-expiry'     => "Ar hyn o bryd daw'r gwarchod i ben am: $3, $2",
+'protect-otherreason'         => 'Rheswm arall:',
+'protect-otherreason-op'      => 'rheswm arall',
+'protect-dropdown'            => '*Rhesymau cyffredin dros warchod
+** Fandaliaeth yn rhemp
+** Sbam yn rhemp
+** Ymrafael golygu gwrthgynhyrchiol
+** Tudalen aml ei ddefnydd',
+'protect-edit-reasonlist'     => "Golygu'r rhesymau dros warchod",
 'protect-expiry-options'      => '2 awr:2 hours,ddiwrnod:1 day,3 niwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,5 mlynedd:5 years,amhenodol:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Cyfyngiad:',
 'restriction-level'           => 'Lefel cyfyngu:',
@@ -1579,6 +1597,7 @@ Dyma'r gosodiadau diogelu cyfredol ar gyfer y dudalen <strong>$1</strong>:",
 'restriction-edit'   => 'Golygu',
 'restriction-move'   => 'Symud',
 'restriction-create' => 'Gosod',
+'restriction-upload' => 'Uwchlwytho',
 
 # Restriction levels
 'restriction-level-sysop'         => 'llwyr diogelwyd',
@@ -1703,7 +1722,7 @@ $1',
 'ipb-edit-dropdown'           => "Golygu'r rhesymau dros flocio",
 'ipb-unblock-addr'            => 'Datflocio $1',
 'ipb-unblock'                 => 'Datflocio enw defnyddiwr neu cyfeiriad IP',
-'ipb-blocklist-addr'          => 'Gweld y blociau cyfredol ar gyfer $1',
+'ipb-blocklist-addr'          => 'Y blociau cyfredol ar gyfer $1',
 'ipb-blocklist'               => 'Dangos y blociau cyfredol',
 'unblockip'                   => 'Dadflocio defnyddiwr',
 'unblockiptext'               => "Defnyddiwch y ffurflen isod i ail-alluogi golygiadau gan ddefnyddiwr neu o gyfeiriad IP a fu gynt wedi'i flocio.",
@@ -1790,7 +1809,7 @@ gnewch yn siwr eich bod chi'n deall y canlyniadau cyn mynd ati.",
 Os felly, gallwch symud y dudalen sgwrs neu ei gyfuno ar ôl symud y dudalen ei hun.",
 'movearticle'             => 'Symud y dudalen:',
 'movenologin'             => 'Nid ydych wedi mewngofnodi',
-'movenologintext'         => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:Userlogin|mewngofnodi]] cyn medru symud tudalen.",
+'movenologintext'         => "Mae'n rhaid bod yn ddefnyddiwr cofrestredig a'ch bod wedi [[Special:UserLogin|mewngofnodi]] cyn medru symud tudalen.",
 'movenotallowed'          => 'Nid oes caniatâd gennych i symud tudalennau.',
 'newtitle'                => "I'r teitl newydd:",
 'move-watch'              => 'Gwylier y dudalen hon',
@@ -1820,7 +1839,6 @@ Mae'r erthygl \"[[:\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er m
 'delete_and_move_reason'  => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
 'selfmove'                => "Mae'r teitlau hen a newydd yn union yr un peth;
 nid yw'n bosib cyflawnu'r symud.",
-'immobile_namespace'      => "Mae teitl y dudalen gwreiddiol neu'r cyrchfan yn arbennig; ni ellir symud tudalennau i'r parth hwnnw nag oddi wrtho.",
 
 # Export
 'export'            => 'Allforio tudalennau',
@@ -1863,12 +1881,13 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau Mediawiki 
 'importinterwiki'         => 'Mewnforiad traws-wici',
 'import-interwiki-submit' => 'Mewnforio',
 'importtext'              => "Os gwelwch yn dda, allforiwch y ffeil o'r wici gwreiddiol gan ddefnyddio'r nodwedd <b>Special:Export</b>, cadwch hi i'ch disg, ac uwchlwythwch hi fan hyn.",
+'importstart'             => "Wrthi'n mewnforio...",
 'import-revision-count'   => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'importfailed'            => 'Mewnforio wedi methu: $1',
 'importbadinterwiki'      => 'Cyswllt rhyngwici gwallus',
 'importnotext'            => 'Gwag, neu heb destun',
 'importsuccess'           => 'Mewnforio wedi llwyddo!',
-'importhistoryconflict'   => "Mae gwrthdaro rhwng adolygiadau hanes (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
+'importhistoryconflict'   => "Mae adolygiadau yn yr hanes yn croesgyffwrdd (efallai eich bod chi wedi mewnforio'r dudalen o'r blaen)",
 'importnosources'         => "Ni ddiffiniwyd unrhyw ffynonellau mewnforio traws-wici, ac mae uwchlwytho hanesion yn uniongyrchol wedi'i analluogi.",
 'importnofile'            => 'Ni uwchlwythwyd unrhyw ffeil mewnforio.',
 'xml-error-string'        => '$1 ar linell $2, col $3 (beit $4): $5',

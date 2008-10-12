@@ -1440,7 +1440,7 @@ $NEWPAGE
 噉倷就非要手工移動或合併頁面。",
 'movearticle'             => '換動頁面:',
 'movenologin'             => '冇登入',
-'movenologintext'         => '倷要係登記用戶接到[[Special:Userlogin|登入]]後才移動得正頁面。',
+'movenologintext'         => '倷要係登記用戶接到[[Special:UserLogin|登入]]後才移動得正頁面。',
 'movenotallowed'          => '倷到{{SITENAME}}冇權移動頁面。',
 'newtitle'                => '新標題:',
 'move-watch'              => '眏到箇頁',

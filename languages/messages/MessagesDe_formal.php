@@ -68,7 +68,7 @@ Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontak
 'noname'                     => 'Sie müssen einen gültigen Benutzernamen angeben.',
 'loginsuccess'               => 'Sie sind jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
-Überprüfen Sie die Schreibweise oder [[Special:Userlogin/signup|melden Sie sich als neuer Benutzer an]].',
+Überprüfen Sie die Schreibweise oder [[Special:UserLogin/signup|melden Sie sich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
@@ -232,7 +232,7 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'prefsnologintext' => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
+'prefsnologintext' => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
 'savedprefs'       => 'Ihre Einstellungen wurden gespeichert.',
 'timezonetext'     => 'Geben Sie die Anzahl der Stunden ein, die zwischen Ihrer Zeitzone und UTC liegen.',
 
@@ -416,7 +416,7 @@ Bitte geben Sie den Grund für die Sperre an.',
 'lockdbsuccesstext' => 'Die {{SITENAME}}-Datenbank wurde gesperrt.<br />Bitte geben Sie die Datenbank [[Special:UnlockDB|wieder frei]], sobald die Wartung abgeschlossen ist.',
 
 # Move page
-'movepagetext'         => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen).
+'movepagetext'           => "Mit diesem Formular können Sie eine Seite umbenennen (mitsamt allen Versionen).
 Der alte Titel wird zum neuen weiterleiten.
 Sie können Weiterleitungen, die auf den Originaltitel verlinken, automatisch korrigieren lassen.
 Falls Sie dies nicht tun, prüfen Sie auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
@@ -427,19 +427,20 @@ Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben 
 '''Warnung'''
 Die Verschiebung kann weitreichende und unerwartete Folgen für beliebte Seiten haben.
 Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
-'movepagetalktext'     => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
+'movepagetalktext'       => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *Sie wählen die unten stehende Option ab.
 
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
-'movenologintext'      => 'Sie müssen ein registrierter Benutzer und [[Special:Userlogin|angemeldet]] sein, um eine Seite zu verschieben.',
-'movenotallowed'       => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
-'cant-move-user-page'  => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',
-'articleexists'        => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',
-'talkexists'           => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
-'delete_and_move_text' => '==Zielseite vorhanden, löschen?==
+'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
+'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
+'cant-move-user-page'    => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',
+'cant-move-to-user-page' => 'Sie haben nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
+'articleexists'          => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',
+'talkexists'             => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',
+'delete_and_move_text'   => '==Zielseite vorhanden, löschen?==
 
 Die Seite „[[:$1]]“ existiert bereits. Möchten Sie diese löschen, um die Seite verschieben zu können?',
 

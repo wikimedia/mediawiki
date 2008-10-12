@@ -399,12 +399,11 @@ $messages = array(
 'listingcontinuesabbrev'         => 'samb.',
 
 'mainpagetext'      => "<big>'''MediaWiki telah terinstal dengan sukses'''</big>.",
-'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki.
+'mainpagedocfooter' => 'Silakan baca [http://meta.wikimedia.org/wiki/Help:Contents Panduan Pengguna] untuk informasi penggunaan perangkat lunak wiki ini.
 
 == Memulai penggunaan ==
-
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pengaturan preferensi]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pengaturan konfigurasi]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Daftar pertanyaan yang sering diajukan mengenai MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]',
 
 'about'          => 'Perihal',
@@ -524,6 +523,8 @@ $messages = array(
 'editsection'             => 'sunting',
 'editold'                 => 'sunting',
 'viewsourceold'           => 'lihat sumber',
+'editlink'                => 'sunting',
+'viewsourcelink'          => 'lihat sumber',
 'editsectionhint'         => 'Sunting bagian: $1',
 'toc'                     => 'Daftar isi',
 'showtoc'                 => 'tampilkan',
@@ -674,7 +675,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'loginsuccesstitle'          => 'Berhasil masuk log',
 'loginsuccess'               => "'''Anda sekarang masuk log di {{SITENAME}} sebagai \"\$1\".'''",
 'nosuchuser'                 => 'Tidak ada pengguna dengan nama "$1".
-Silakan periksa kembali ejaan Anda, atau [[Special:Userlogin/signup|buat akun baru]].',
+Silakan periksa kembali ejaan Anda, atau [[Special:UserLogin/signup|buat akun baru]].',
 'nosuchusershort'            => 'Tidak ada pengguna dengan nama "<nowiki>$1</nowiki>".
 Silakan periksa kembali ejaan Anda.',
 'nouserspecified'            => 'Anda harus memasukkan nama pengguna.',
@@ -1119,17 +1120,16 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'powersearch-redir'         => 'Daftar pengalihan',
 'powersearch-field'         => 'Mencari',
 'search-external'           => 'Pencarian eksternal',
-'searchdisabled'            => 'Mesin pencari {{SITENAME}} sementara dimatikan karena masalah kinerja.
+'searchdisabled'            => 'Pencarian {{SITENAME}} sementara dimatikan.
 Anda dapat mencari melalui Google untuk sementara waktu.
-Indeks Google untuk {{SITENAME}} mungkin belum diperbaharui.
-Jika istilah pencarian berisi garis bawah, gantikan dengan spasi.',
+Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencakup perubahan-perubahan terakhir.',
 
 # Preferences page
 'preferences'              => 'Preferensi',
 'mypreferences'            => 'Preferensi saya',
 'prefs-edits'              => 'Jumlah suntingan:',
 'prefsnologin'             => 'Belum masuk log',
-'prefsnologintext'         => 'Anda harus <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
+'prefsnologintext'         => 'Anda harus <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
 'prefsreset'               => 'Preferensi telah dikembalikan ke konfigurasi baku.',
 'qbsettings'               => 'Pengaturan bar pintas',
 'qbsettings-none'          => 'Tidak ada',
@@ -1895,14 +1895,14 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]] | [[Sp
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',
-'protectlogtext'              => 'Berikut adalah log perlindungan halaman dan pembatalannya.
+'protectlogtext'              => 'Di bawah ini adalah log perlindungan halaman dan pembatalannya.
 Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar terkini.',
 'protectedarticle'            => 'melindungi "[[$1]]"',
 'modifiedarticleprotection'   => 'mengubah tingkat perlindungan "[[$1]]"',
 'unprotectedarticle'          => 'menghilangkan perlindungan "[[$1]]"',
 'movedarticleprotection'      => 'memindahkan pengaturan proteksi dari "[[$2]]" ke "[[$1]]"',
 'protect-title'               => 'Melindungi "$1"',
-'prot_1movedto2'              => 'memindahkan [[$1]] ke [[$2]]',
+'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
 'protect-legend'              => 'Konfirmasi perlindungan',
 'protectcomment'              => 'Komentar:',
 'protectexpiry'               => 'Kadaluwarsa:',
@@ -2070,7 +2070,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'ipbotherreason'                  => 'Alasan lain/tambahan:',
 'ipbhidename'                     => 'Sembunyikan nama pengguna atau IP dari log pemblokiran, daftar blokir aktif, serta daftar pengguna',
 'ipbwatchuser'                    => 'Pantau halaman pengguna dan pembicaraan pengguna ini',
-'ipballowusertalk'                => 'Mengizinkan pengguna ini untuk menyunting halaman pembicaraan sendiri ketika diblokir',
+'ipballowusertalk'                => 'Izinkan pengguna ini untuk menyunting halaman pembicaraan sendiri ketika diblokir',
 'badipaddress'                    => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'               => 'Pemblokiran sukses',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah diblokir.<br />
@@ -2078,8 +2078,9 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipb-edit-dropdown'               => 'Sunting alasan pemblokiran',
 'ipb-unblock-addr'                => 'Hilangkan blokir $1',
 'ipb-unblock'                     => 'Hilangkan blokir seorang pengguna atau suatu alamat IP',
-'ipb-blocklist-addr'              => 'Lihat blokir yang diterapkan untuk $1',
+'ipb-blocklist-addr'              => 'Blokir yang diterapkan untuk $1',
 'ipb-blocklist'                   => 'Lihat blokir yang diterapkan',
+'ipb-blocklist-contribs'          => 'Kontribusi untuk $1',
 'unblockip'                       => 'Hilangkan blokir terhadap alamat IP atau pengguna',
 'unblockiptext'                   => 'Gunakan formulir di bawah untuk mengembalikan kemampuan menulis sebuah alamat IP atau pengguna yang sebelumnya telah diblokir.',
 'ipusubmit'                       => 'Hilangkan blokir terhadap alamat ini',
@@ -2088,6 +2089,10 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipblocklist'                     => 'Daftar pemblokiran alamat IP dan nama penguna',
 'ipblocklist-legend'              => 'Cari pengguna yang diblokir',
 'ipblocklist-username'            => 'Nama pengguna atau alamat IP:',
+'ipblocklist-sh-userblocks'       => '$1 pemblokiran akun',
+'ipblocklist-sh-tempblocks'       => '$1 pemblokiran sementara',
+'ipblocklist-sh-addressblocks'    => '$1 pemblokiran IP tunggal',
+'ipblocklist-scanrange'           => 'Untuk alamat-alamat IP, termasuk semua pemblokiran yang mempengaruhi alamat tersebut',
 'ipblocklist-submit'              => 'Cari',
 'blocklistline'                   => '$1, $2 memblokir $3 ($4)',
 'infiniteblock'                   => 'tak terbatas',
@@ -2151,57 +2156,63 @@ Pastikan Anda [[Special:UnlockDB|membuka kuncinya]] setelah pemeliharaan selesai
 'databasenotlocked'   => 'Basis data tidak terkunci.',
 
 # Move page
-'move-page'               => 'Pindahkan $1',
-'move-page-legend'        => 'Pindahkan halaman',
-'movepagetext'            => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
+'move-page'                 => 'Pindahkan $1',
+'move-page-legend'          => 'Pindahkan halaman',
+'movepagetext'              => "Formulir di bawah ini digunakan untuk mengubah nama suatu halaman dan memindahkan semua data sejarah ke nama baru. Judul yang lama akan menjadi halaman peralihan menuju judul yang baru. Pranala kepada judul lama tidak akan berubah. Pastikan untuk memeriksa terhadap peralihan halaman yang rusak atau berganda setelah pemindahan. Anda bertanggung jawab untuk memastikan bahwa pranala terus menyambung ke halaman yang seharusnya.
 
 Perhatikan bahwa halaman '''tidak''' akan dipindah apabila telah ada halaman yang menggunakan judul yang baru, kecuali bila halaman tersebut kosong atau merupakan halaman peralihan dan tidak mempunyai sejarah penyuntingan. Ini berarti Anda dapat mengubah nama halaman kembali seperti semula apabila Anda membuat kesalahan, dan Anda tidak dapat menimpa halaman yang telah ada.
 
 '''Peringatan:''' Ini dapat mengakibatkan perubahan yang tak terduga dan drastis  bagi halaman yang populer. Pastikan Anda mengerti konsekuensi dari perbuatan ini sebelum melanjutkan.",
-'movepagetalktext'        => "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''
+'movepagetalktext'          => "Halaman pembicaraan yang berkaitan juga akan dipindahkan secara otomatis '''kecuali apabila:'''
 
 *Sebuah halaman pembicaraan yang tidak kosong telah ada di bawah judul baru, atau
 *Anda tidak memberi tanda cek pada kotak di bawah ini
 
 Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabungkan halaman secara manual.",
-'movearticle'             => 'Pindahkan halaman:',
-'movenologin'             => 'Belum masuk log',
-'movenologintext'         => 'Anda harus menjadi pengguna terdaftar dan telah [[Special:Userlogin|masuk log]] untuk dapat memindahkan suatu halaman.',
-'movenotallowed'          => 'Anda tak memiliki hak akses untuk memindahkan halaman.',
-'newtitle'                => 'Ke judul baru:',
-'move-watch'              => 'Pantau halaman ini',
-'movepagebtn'             => 'Pindahkan halaman',
-'pagemovedsub'            => 'Pemindahan berhasil',
-'movepage-moved'          => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
-'cantmove-titleprotected' => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',
-'talkexists'              => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
-'movedto'                 => 'dipindahkan ke',
-'movetalk'                => 'Pindahkan halaman pembicaraan yang terkait.',
-'move-subpages'           => 'Pindahkan semua sub-halaman, bila ada',
-'move-talk-subpages'      => 'Pindahkan semua sub-halaman pembicaraan, bila ada',
-'movepage-page-exists'    => 'Halaman $1 telah ada dan tidak dapat ditimpa secara otomatis.',
-'movepage-page-moved'     => 'Halaman $1 telah dipindahkan ke $2.',
-'movepage-page-unmoved'   => 'Halaman $1 tidak dapat dipindahkan ke $2.',
-'movepage-max-pages'      => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
-'1movedto2'               => 'memindahkan [[$1]] ke [[$2]]',
-'1movedto2_redir'         => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
-'movelogpage'             => 'Log pemindahan',
-'movelogpagetext'         => 'Di bawah ini adalah log pemindahan halaman.',
-'movereason'              => 'Alasan:',
-'revertmove'              => 'kembalikan',
-'delete_and_move'         => 'Hapus dan pindahkan',
-'delete_and_move_text'    => '==Penghapusan diperlukan==
+'movearticle'               => 'Pindahkan halaman:',
+'movenologin'               => 'Belum masuk log',
+'movenologintext'           => 'Anda harus menjadi pengguna terdaftar dan telah [[Special:UserLogin|masuk log]] untuk dapat memindahkan suatu halaman.',
+'movenotallowed'            => 'Anda tak memiliki hak akses untuk memindahkan halaman.',
+'cant-move-user-page'       => 'Anda tidak memiliki hak akses untuk memindahkan halaman pengguna (terpisah dari subhalaman).',
+'cant-move-to-user-page'    => 'Anda tidak memiliki hak akses untuk memindahkan halaman ke suatu halaman pengguna (kecuali ke subhalaman pengguna).',
+'newtitle'                  => 'Ke judul baru:',
+'move-watch'                => 'Pantau halaman ini',
+'movepagebtn'               => 'Pindahkan halaman',
+'pagemovedsub'              => 'Pemindahan berhasil',
+'movepage-moved'            => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
+'cantmove-titleprotected'   => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',
+'talkexists'                => 'Halaman tersebut berhasil dipindahkan, tetapi halaman pembicaraan dari halaman tersebut tidak dapat dipindahkan karena telah ada halaman pembicaraan pada judul yang baru. Silakan gabungkan halaman-halaman pembicaraan tersebut secara manual.',
+'movedto'                   => 'dipindahkan ke',
+'movetalk'                  => 'Pindahkan halaman pembicaraan yang terkait.',
+'move-subpages'             => 'Pindahkan semua subhalaman, bila ada',
+'move-talk-subpages'        => 'Pindahkan semua subhalaman pembicaraan, bila ada',
+'movepage-page-exists'      => 'Halaman $1 telah ada dan tidak dapat ditimpa secara otomatis.',
+'movepage-page-moved'       => 'Halaman $1 telah dipindahkan ke $2.',
+'movepage-page-unmoved'     => 'Halaman $1 tidak dapat dipindahkan ke $2.',
+'movepage-max-pages'        => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
+'1movedto2'                 => 'memindahkan [[$1]] ke [[$2]]',
+'1movedto2_redir'           => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
+'movelogpage'               => 'Log pemindahan',
+'movelogpagetext'           => 'Di bawah ini adalah log pemindahan halaman.',
+'movereason'                => 'Alasan:',
+'revertmove'                => 'kembalikan',
+'delete_and_move'           => 'Hapus dan pindahkan',
+'delete_and_move_text'      => '==Penghapusan diperlukan==
 
 Artikel yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
-'delete_and_move_confirm' => 'Ya, hapus halaman tersebut',
-'delete_and_move_reason'  => 'Dihapus untuk mengantisipasikan pemindahan halaman',
-'selfmove'                => 'Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.',
-'immobile_namespace'      => 'Judul sumber atau tujuan termasuk tipe khusus; tidak dapat memindahkan halaman ke ruang nama tersebut.',
-'imagenocrossnamespace'   => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
-'imagetypemismatch'       => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
-'imageinvalidfilename'    => 'Nama berkas tujuan tidak sah',
-'fix-double-redirects'    => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
+'delete_and_move_confirm'   => 'Ya, hapus halaman tersebut',
+'delete_and_move_reason'    => 'Dihapus untuk mengantisipasikan pemindahan halaman',
+'selfmove'                  => 'Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.',
+'immobile-source-namespace' => 'Tidak dapat memindahkan halaman dalam ruang nama "$1"',
+'immobile-target-namespace' => 'Tidak dapat memindahkan halaman ke ruang nama "$1"',
+'immobile-source-page'      => 'Halaman ini tidak dapat dipindahkan.',
+'immobile-target-page'      => 'Tidak dapat memindahkan ke judul tujuan tersebut.',
+'imagenocrossnamespace'     => 'Tidak dapat memindahkan berkas ke ruang nama non-berkas',
+'imagetypemismatch'         => 'Ekstensi yang diberikan tidak cocok dengan tipe berkas',
+'imageinvalidfilename'      => 'Nama berkas tujuan tidak sah',
+'fix-double-redirects'      => 'Perbaiki semua pengalihan ganda yang mungkin terjadi',
+'move-leave-redirect'       => 'Buat pengalihan ke judul baru',
 
 # Export
 'export'            => 'Ekspor halaman',
@@ -2650,8 +2661,11 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-flash-return-0'   => 'tidak ada fungsi pendeteksian strobo balik',
 'exif-flash-return-2'   => 'lampu strobo balik tidak terdeteksi',
 'exif-flash-return-3'   => 'lampu strobo balik terdeteksi',
+'exif-flash-mode-1'     => 'lampu kilat diperlukan',
+'exif-flash-mode-2'     => 'lampu kilat dimatikan',
 'exif-flash-mode-3'     => 'modus otomatis',
 'exif-flash-function-1' => 'Tidak ada fungsi lampu kilat',
+'exif-flash-redeye-1'   => 'mode reduksi pantulan mata-merah',
 
 'exif-focalplaneresolutionunit-2' => 'inci',
 

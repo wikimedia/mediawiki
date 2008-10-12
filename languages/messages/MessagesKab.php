@@ -1201,7 +1201,7 @@ Yernu, tzemreḍ ad tesmimeḍ asebter ɣer isem-is aqdim ma tɣelṭeḍ.",
 Lukan akka, yessefk a t-tedmeḍ weḥdek.",
 'movearticle'             => 'Smimeḍ asebter',
 'movenologin'             => 'Ur tekcimeḍ ara',
-'movenologintext'         => 'Yessefk ad tesɛuḍ isem n wemseqdac u [[Special:Userlogin|tkecmeḍ]]
+'movenologintext'         => 'Yessefk ad tesɛuḍ isem n wemseqdac u [[Special:UserLogin|tkecmeḍ]]
 iwakken ad tesmimḍeḍ asebter.',
 'newtitle'                => 'Ar azwel amaynut',
 'move-watch'              => 'Ɛass asebter-agi',

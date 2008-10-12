@@ -1718,7 +1718,7 @@ To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako p
 W takiych razach tekst godki třa přećepać, a jak třeba to i pouůnčyć z tym co juž sam jest, rynčńe. Abo možeš sie namyślić i nie přećepywać wcale ("checkbox" půnižyi).',
 'movearticle'             => 'Přećiś artikel:',
 'movenologin'             => 'Ńy jestžeś zalůgowany',
-'movenologintext'         => 'Muśyš być zarejerowanym i [[Special:Userlogin|zalůgowanym]] užytkowńikym coby můc přećepnůńć zajta.',
+'movenologintext'         => 'Muśyš być zarejerowanym i [[Special:UserLogin|zalůgowanym]] užytkowńikym coby můc přećepnůńć zajta.',
 'movenotallowed'          => 'Ńy moš uprownień do přećepywańo zajtůw.',
 'newtitle'                => 'Nowy titel:',
 'move-watch'              => 'Dej pozor',

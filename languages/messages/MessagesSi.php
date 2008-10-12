@@ -515,7 +515,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'loginsuccesstitle'          => 'ප්‍රවිෂ්ට වීම සාර්ථකයි',
 'loginsuccess'               => "'''ඔබ දැන්, \"\$1\" ලෙස, {{SITENAME}} යට ප්‍රවිෂ්ට විමට සමත් වී ඇත.'''",
 'nosuchuser'                 => '"$1" යන නමැති පරිශීලකයෙකු නොමැත.
-ඔබගේ අක්ෂර-වින්‍යාසය පිරික්සා බැලීම හෝ, [[Special:Userlogin/signup|නව ගිණුමක් තැනීම]] හෝ සිදුකරන්න.',
+ඔබගේ අක්ෂර-වින්‍යාසය පිරික්සා බැලීම හෝ, [[Special:UserLogin/signup|නව ගිණුමක් තැනීම]] හෝ සිදුකරන්න.',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" යන නමැති පරිශීලකයෙකු නොමැත.
 ඔබගේ අක්ෂර-වින්‍යාසය පිරික්සා බලන්න.',
 'nouserspecified'            => 'ඔබ විසින් පරිශීලක-නාමයක් සඳහන් කල යුතු වේ.',
@@ -863,6 +863,8 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 # Search results
 'searchresults'            => 'ගවේෂණ ප්‍රතිඵල',
 'searchresults-title'      => '$1 සඳහා ගවේෂණ ප්‍රතිඵල',
+'searchsubtitle'           => 'ඔබ සෙවූයේ \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|all pages starting with "$1"]] | [[Special:WhatLinksHere/$1|all pages that link to "$1"]])',
+'searchsubtitleinvalid'    => "ඔබ සෙවූයේ '''$1'''",
 'noexactmatch'             => "''' \"\$1\" යන නාමය හිමි  පිටුවක් නොමැත.'''
 ඔබ හට [[:\$1|මෙම පිටුව තැනිය හැක]].",
 'noexactmatch-nocreate'    => "''' \"\$1\" නමැති පිටුවක් නොමැත.'''",

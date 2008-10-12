@@ -1693,7 +1693,7 @@ Ky mund të jetë një ndryshim i madh dhe gjëra të papritura mund të ndodhin
 Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi.",
 'movearticle'             => 'Zhvendose faqen',
 'movenologin'             => 'Nuk keni hyrë brenda',
-'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:Userlogin|hyrë brenda]] për të zhvendosur një faqe.',
+'movenologintext'         => 'Duhet të keni hapur një llogari dhe të keni [[Special:UserLogin|hyrë brenda]] për të zhvendosur një faqe.',
 'movenotallowed'          => 'Nuk ju lejohet të zhvendosni faqe.',
 'newtitle'                => 'Tek titulli i ri',
 'move-watch'              => 'Mbikqyre këtë faqe',
@@ -1724,7 +1724,6 @@ Faqja "[[:$1]]" ekziston, dëshironi ta grisni për të mundësuar zhvendosjen?'
 'delete_and_move_confirm' => 'Po, grise faqen',
 'delete_and_move_reason'  => 'U gris për të liruar vendin për përcjellim',
 'selfmove'                => 'Nuk munda ta zhvendos faqen sepse titulli i ri është i njëjtë me të vjetrin.',
-'immobile_namespace'      => 'Titulli i dëshiruar i faqes është i veçantë; Faqja nuk mund të zhvendoset në hapësira me emër tjetër.',
 
 # Export
 'export'            => 'Eksportoni faqe',

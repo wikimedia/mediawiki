@@ -399,6 +399,8 @@ $messages = array(
 'editsection'             => 'editar',
 'editold'                 => 'editar',
 'viewsourceold'           => 'ver código',
+'editlink'                => 'editar',
+'viewsourcelink'          => 'ver fonte',
 'editsectionhint'         => 'Editar secção: $1',
 'toc'                     => 'Tabela de conteúdo',
 'showtoc'                 => 'mostrar',
@@ -564,7 +566,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser'                 => 'Não existe nenhum utilizador com o nome "$1".
-Verifique o nome que introduziu, ou [[Special:Userlogin/signup|crie uma nova conta]].',
+Verifique o nome que introduziu, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nosuchusershort'            => 'Não existe um utilizador com o nome "<nowiki>$1</nowiki>". Verifique o nome que introduziu.',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
@@ -1047,7 +1049,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'mypreferences'            => 'Minhas preferências',
 'prefs-edits'              => 'Número de edições:',
 'prefsnologin'             => 'Não autenticado',
-'prefsnologintext'         => 'Precisa de estar <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
+'prefsnologintext'         => 'Precisa de estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'prefsreset'               => 'As preferências foram restauradas tal como se encontravam na base de dados.',
 'qbsettings'               => 'Barra Rápida',
 'qbsettings-none'          => 'Nenhuma',
@@ -1613,7 +1615,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'alllogstext'          => 'Exposição combinada de todos registos disponíveis no wiki {{SITENAME}}.
 Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador (sensível a minúsculas), ou uma página afectada (também sensível a minúsculas).',
 'logempty'             => 'Nenhum item idêntico no registo.',
-'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com o seguinte texto',
+'log-title-wildcard'   => 'Procurar por títulos que sejam iniciados com tal texto',
 
 # Special:AllPages
 'allpages'          => 'Todas as páginas',
@@ -2031,6 +2033,10 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipblocklist'                     => 'Utilizadores e endereços de IP bloqueados',
 'ipblocklist-legend'              => 'Procurar por um utilizador bloqueado',
 'ipblocklist-username'            => 'Utilizador ou endereço de IP:',
+'ipblocklist-sh-userblocks'       => '$1 bloqueios de contas',
+'ipblocklist-sh-tempblocks'       => '$1 bloqueios temporários',
+'ipblocklist-sh-addressblocks'    => '$1 bloqueios de IP único',
+'ipblocklist-scanrange'           => 'Para IPs, incluir todos os bloqueios que afectem o endereço',
 'ipblocklist-submit'              => 'Pesquisar',
 'blocklistline'                   => '$1, $2 bloqueou $3 ($4)',
 'infiniteblock'                   => 'infinito',
@@ -2096,9 +2102,9 @@ Lembre-se de [[Special:UnlockDB|remover o bloqueio]] após a manutenção.',
 'databasenotlocked'   => 'A base de dados não encontra-se bloqueada.',
 
 # Move page
-'move-page'               => 'Mover $1',
-'move-page-legend'        => 'Mover página',
-'movepagetext'            => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico de edições para o novo título.
+'move-page'                 => 'Mover $1',
+'move-page-legend'          => 'Mover página',
+'movepagetext'              => "Utilizando o seguinte formulário você poderá renomear uma página, movendo todo o histórico de edições para o novo título.
 É possível corrigir de forma automática redirecionamentos que apontem para o título original.
 Caso escolha para que isso não seja feito, certifique-se de verificar redirecionamentos [[Special:DoubleRedirects|duplos]] ou [[Special:BrokenRedirects|quebrados]].
 É de sua responsabilidade ter certeza de que os links continuem apontando para onde se é suposto apontar.
@@ -2109,50 +2115,55 @@ Isto significa que pode renomear uma página de volta para o nome que tinha ante
 '''CUIDADO!'''
 Isto pode ser uma mudança drástica e inesperada para uma página popular;
 por favor, tenha certeza de que compreende as conseqüências da mudança antes de prosseguir.",
-'movepagetalktext'        => "A página de \"discussão\" associada, se existir, será automaticamente movida, '''a não ser que:'''
+'movepagetalktext'          => "A página de \"discussão\" associada, se existir, será automaticamente movida, '''a não ser que:'''
 *Uma página de discussão com conteúdo já exista sob o novo título, ou
 *Você não marque a caixa abaixo.
 
 Nestes casos, você terá que mover ou mesclar a página manualmente, se assim desejar.",
-'movearticle'             => 'Mover página',
-'movenologin'             => 'Não autenticado',
-'movenologintext'         => 'Você precisa ser um utilizador registado e [[Special:Userlogin|autenticado]] para poder mover uma página.',
-'movenotallowed'          => 'Você não possui permissão de mover páginas.',
-'cant-move-user-page'     => 'Você não possui permissão de mover páginas principais de usuários.',
-'newtitle'                => 'Para novo título',
-'move-watch'              => 'Vigiar esta página',
-'movepagebtn'             => 'Mover página',
-'pagemovedsub'            => 'Página movida com sucesso',
-'movepage-moved'          => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Uma página com este título já existe, ou o título que escolheu é inválido.
+'movearticle'               => 'Mover página',
+'movenologin'               => 'Não autenticado',
+'movenologintext'           => 'Você precisa ser um utilizador registado e [[Special:UserLogin|autenticado]] para poder mover uma página.',
+'movenotallowed'            => 'Você não possui permissão de mover páginas.',
+'cant-move-user-page'       => 'Você não possui permissão de mover páginas principais de usuários.',
+'cant-move-to-user-page'    => 'Você não tem permissão para mover uma página para uma página de utilizador (excepto para uma subpágina de utilizador).',
+'newtitle'                  => 'Para novo título',
+'move-watch'                => 'Vigiar esta página',
+'movepagebtn'               => 'Mover página',
+'pagemovedsub'              => 'Página movida com sucesso',
+'movepage-moved'            => '<big>\'\'\'"$1" foi movida para "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Uma página com este título já existe, ou o título que escolheu é inválido.
 Por favor, escolha outro nome.',
-'cantmove-titleprotected' => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
-'talkexists'              => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
-'movedto'                 => 'movido para',
-'movetalk'                => 'Mover também a página de discussão associada.',
-'move-subpages'           => 'Mover todas as sub-páginas, se aplicável',
-'move-talk-subpages'      => 'Mover todas as sub-páginas da página de discussão, se aplicável',
-'movepage-page-exists'    => 'A página $1 já existe e não pode ser substituída.',
-'movepage-page-moved'     => 'A página $1 foi movida para $2',
-'movepage-page-unmoved'   => 'A página $1 não pôde ser movida para $2.',
-'movepage-max-pages'      => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
-'1movedto2'               => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'         => 'moveu [[$1]] para [[$2]] sob redireccionamento',
-'movelogpage'             => 'Registo de movimento',
-'movelogpagetext'         => 'Abaixo encontra-se uma lista de páginas movidas.',
-'movereason'              => 'Motivo:',
-'revertmove'              => 'reverter',
-'delete_and_move'         => 'Eliminar e mover',
-'delete_and_move_text'    => '==Eliminação necessária==
+'cantmove-titleprotected'   => 'Você não pode mover uma página para tal denominação uma vez que o novo título se encontra protegido contra criação',
+'talkexists'                => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
+'movedto'                   => 'movido para',
+'movetalk'                  => 'Mover também a página de discussão associada.',
+'move-subpages'             => 'Mover todas as sub-páginas, se aplicável',
+'move-talk-subpages'        => 'Mover todas as sub-páginas da página de discussão, se aplicável',
+'movepage-page-exists'      => 'A página $1 já existe e não pode ser substituída.',
+'movepage-page-moved'       => 'A página $1 foi movida para $2',
+'movepage-page-unmoved'     => 'A página $1 não pôde ser movida para $2.',
+'movepage-max-pages'        => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
+'1movedto2'                 => 'moveu [[$1]] para [[$2]]',
+'1movedto2_redir'           => 'moveu [[$1]] para [[$2]] sobre redireccionamento',
+'movelogpage'               => 'Registo de movimento',
+'movelogpagetext'           => 'Abaixo encontra-se uma lista de páginas movidas.',
+'movereason'                => 'Motivo:',
+'revertmove'                => 'reverter',
+'delete_and_move'           => 'Eliminar e mover',
+'delete_and_move_text'      => '==Eliminação necessária==
 A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder mover?',
-'delete_and_move_confirm' => 'Sim, eliminar a página',
-'delete_and_move_reason'  => 'Eliminada para poder mover outra página para este título',
-'selfmove'                => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
-'immobile_namespace'      => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
-'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
-'imagetypemismatch'       => 'A extensão do novo ficheiro não corresponde ao seu tipo',
-'imageinvalidfilename'    => 'O nome do ficheiro alvo é inválido',
-'fix-double-redirects'    => 'Atualizar todos os redirecionamentos que apontem para o título original',
+'delete_and_move_confirm'   => 'Sim, eliminar a página',
+'delete_and_move_reason'    => 'Eliminada para poder mover outra página para este título',
+'selfmove'                  => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
+'immobile-source-namespace' => 'Não é possível mover páginas no espaço nominal "$1"',
+'immobile-target-namespace' => 'Não é possível mover páginas para o espaço nominal "$1"',
+'immobile-source-page'      => 'Esta página não pode ser movida.',
+'immobile-target-page'      => 'Não é possível mover para esse título de destino.',
+'imagenocrossnamespace'     => 'Não é possível mover imagem para espaço nominal que não de imagens',
+'imagetypemismatch'         => 'A extensão do novo ficheiro não corresponde ao seu tipo',
+'imageinvalidfilename'      => 'O nome do ficheiro alvo é inválido',
+'fix-double-redirects'      => 'Atualizar todos os redirecionamentos que apontem para o título original',
+'move-leave-redirect'       => 'Criar um redireccionamento',
 
 # Export
 'export'            => 'Exportação de páginas',

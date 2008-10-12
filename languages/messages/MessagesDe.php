@@ -444,6 +444,8 @@ $messages = array(
 'editsection'             => 'Bearbeiten',
 'editold'                 => 'Bearbeiten',
 'viewsourceold'           => 'Quelltext zeigen',
+'editlink'                => 'bearbeiten',
+'viewsourcelink'          => 'Quelltext einsehen',
 'editsectionhint'         => 'Abschnitt bearbeiten: $1',
 'toc'                     => 'Inhaltsverzeichnis',
 'showtoc'                 => 'Anzeigen',
@@ -601,7 +603,7 @@ Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt 
 'loginsuccesstitle'          => 'Anmeldung erfolgreich',
 'loginsuccess'               => 'Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
-Überprüfe die Schreibweise oder [[Special:Userlogin/signup|melde dich als neuer Benutzer an]].',
+Überprüfe die Schreibweise oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
 'nosuchusershort'            => 'Der Benutzername „<nowiki>$1</nowiki>“ existiert nicht. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
@@ -1075,7 +1077,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'mypreferences'            => 'Einstellungen',
 'prefs-edits'              => 'Anzahl Bearbeitungen:',
 'prefsnologin'             => 'Nicht angemeldet',
-'prefsnologintext'         => 'Du musst <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} angemeldet]</span> sein, um deine Einstellungen ändern zu können.',
+'prefsnologintext'         => 'Du musst <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} angemeldet]</span> sein, um deine Einstellungen ändern zu können.',
 'prefsreset'               => 'Die Eingaben wurden verworfen, es erfolgte keine Speicherung.',
 'qbsettings'               => 'Seitenleiste',
 'qbsettings-none'          => 'Keine',
@@ -1092,7 +1094,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'datetime'                 => 'Datum und Zeit',
 'math_failure'             => 'Parser-Fehler',
 'math_unknown_error'       => 'Unbekannter Fehler',
-'math_unknown_function'    => 'Unbekannte Funktion&nbsp;',
+'math_unknown_function'    => 'Unbekannte Funktion ',
 'math_lexing_error'        => "'Lexing'-Fehler",
 'math_syntax_error'        => 'Syntaxfehler',
 'math_image_error'         => 'die PNG-Konvertierung schlug fehl',
@@ -2068,6 +2070,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipblocklist-sh-userblocks'       => '$1 Benutzersperren',
 'ipblocklist-sh-tempblocks'       => '$1 befristete Sperren',
 'ipblocklist-sh-addressblocks'    => '$1 IP-Sperren',
+'ipblocklist-scanrange'           => 'Zeige bei der Suche nach IP-Sperren auch zugehörige Rangesperren an',
 'ipblocklist-submit'              => 'Suchen',
 'blocklistline'                   => '$1, $2 sperrte $3 (bis $4)',
 'infiniteblock'                   => 'unbegrenzt',
@@ -2130,9 +2133,9 @@ Siehe die [[Special:IPBlockList|{{int:ipblocklist}}]] für alle aktiven Sperren.
 'databasenotlocked'   => 'Die Datenbank ist nicht gesperrt.',
 
 # Move page
-'move-page'               => 'Verschiebe „$1“',
-'move-page-legend'        => 'Seite verschieben',
-'movepagetext'            => "Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen).
+'move-page'                 => 'Verschiebe „$1“',
+'move-page-legend'          => 'Seite verschieben',
+'movepagetext'              => "Mit diesem Formular kannst du eine Seite umbenennen (mitsamt allen Versionen).
 Der alte Titel wird zum neuen weiterleiten.
 Du kannst Weiterleitungen, die auf den Originaltitel verlinken, automatisch korrigieren lassen.
 Falls du dies nicht tust, prüfe auf [[Special:DoubleRedirects|doppelte]] oder [[Special:BrokenRedirects|defekte Weiterleitungen]].
@@ -2143,53 +2146,57 @@ Die Seite wird '''nicht''' verschoben, wenn es bereits eine Seite mit demselben 
 '''Warnung'''
 Die Verschiebung kann weitreichende und unerwartete Folgen für beliebte Seiten haben.
 Du solltest daher die Konsequenzen verstanden haben, bevor du fortfährst.",
-'movepagetalktext'        => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
+'movepagetalktext'          => "Die dazugehörige Diskussionsseite wird, sofern vorhanden, mitverschoben, '''es sei denn:'''
 *Es existiert bereits eine Diskussionsseite mit diesem Namen, oder
 *du wählst die unten stehende Option ab.
 
 In diesen Fällen musst du, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
-'movearticle'             => 'Seite verschieben:',
-'movenologin'             => 'Du bist nicht angemeldet',
-'movenologintext'         => 'Du musst ein registrierter Benutzer und [[Special:Userlogin|angemeldet]] sein, um eine Seite zu verschieben.',
-'movenotallowed'          => 'Du hast keine Berechtigung, Seiten zu verschieben.',
-'cant-move-user-page'     => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
-'newtitle'                => 'Ziel:',
-'move-watch'              => 'Diese Seite beobachten',
-'movepagebtn'             => 'Seite verschieben',
-'pagemovedsub'            => 'Verschiebung erfolgreich',
-'movepage-moved'          => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
-'cantmove-titleprotected' => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
-'talkexists'              => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
-'movedto'                 => 'verschoben nach',
-'movetalk'                => 'Die Diskussionsseite mitverschieben, wenn möglich',
-'move-subpages'           => 'Alle Unterseiten, falls vorhanden, mitverschieben',
-'move-talk-subpages'      => 'Alle Unterseiten von Diskussionsseiten, falls vorhanden, mitverschieben',
-'movepage-page-exists'    => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
-'movepage-page-moved'     => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
-'movepage-page-unmoved'   => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
-'movepage-max-pages'      => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
-'1movedto2'               => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
-'1movedto2_redir'         => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
-'movelogpage'             => 'Verschiebungs-Logbuch',
-'movelogpagetext'         => 'Dies ist eine Liste aller verschobenen Seiten.',
-'movereason'              => 'Begründung:',
-'revertmove'              => 'zurück verschieben',
-'delete_and_move'         => 'Löschen und Verschieben',
-'delete_and_move_text'    => '==Zielseite vorhanden, löschen?==
+'movearticle'               => 'Seite verschieben:',
+'movenologin'               => 'Du bist nicht angemeldet',
+'movenologintext'           => 'Du musst ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
+'movenotallowed'            => 'Du hast keine Berechtigung, Seiten zu verschieben.',
+'cant-move-user-page'       => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
+'cant-move-to-user-page'    => 'Du hast nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
+'newtitle'                  => 'Ziel:',
+'move-watch'                => 'Diese Seite beobachten',
+'movepagebtn'               => 'Seite verschieben',
+'pagemovedsub'              => 'Verschiebung erfolgreich',
+'movepage-moved'            => "<big>'''Die Seite „$1“ wurde nach „$2“ verschoben.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
+'cantmove-titleprotected'   => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
+'talkexists'                => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussions-Seite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
+'movedto'                   => 'verschoben nach',
+'movetalk'                  => 'Die Diskussionsseite mitverschieben, wenn möglich',
+'move-subpages'             => 'Alle Unterseiten, falls vorhanden, mitverschieben',
+'move-talk-subpages'        => 'Alle Unterseiten von Diskussionsseiten, falls vorhanden, mitverschieben',
+'movepage-page-exists'      => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
+'movepage-page-moved'       => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
+'movepage-page-unmoved'     => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
+'movepage-max-pages'        => 'Die Maximalanzahl von $1 {{PLURAL:$1|Seite|Seiten}} wurde verschoben, Alle weiteren Seiten können nicht automatisch verschoben werden.',
+'1movedto2'                 => 'hat „[[$1]]“ nach „[[$2]]“ verschoben',
+'1movedto2_redir'           => 'hat „[[$1]]“ nach „[[$2]]“ verschoben und dabei eine Weiterleitung überschrieben',
+'movelogpage'               => 'Verschiebungs-Logbuch',
+'movelogpagetext'           => 'Dies ist eine Liste aller verschobenen Seiten.',
+'movereason'                => 'Begründung:',
+'revertmove'                => 'zurück verschieben',
+'delete_and_move'           => 'Löschen und Verschieben',
+'delete_and_move_text'      => '==Zielseite vorhanden, löschen?==
 
 Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?',
-'delete_and_move_confirm' => 'Zielseite für die Verschiebung löschen',
-'delete_and_move_reason'  => 'gelöscht, um Platz für Verschiebung zu machen',
-'selfmove'                => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
-'immobile_namespace'      => 'Der Quell- oder Zielnamensraum ist geschützt; Verschiebungen in diesen Namensraum hinein oder aus diesem heraus sind nicht möglich.',
-'imagenocrossnamespace'   => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
-'imagetypemismatch'       => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
-'imageinvalidfilename'    => 'Der Ziel-Dateiname ist ungültig',
-'fix-double-redirects'    => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
-'move-leave-redirect'     => 'Weiterleitung erstellen',
+'delete_and_move_confirm'   => 'Zielseite für die Verschiebung löschen',
+'delete_and_move_reason'    => 'gelöscht, um Platz für Verschiebung zu machen',
+'selfmove'                  => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
+'immobile-source-namespace' => 'Seiten des „$1“-Namensraums können nicht verschoben werden',
+'immobile-target-namespace' => 'Seiten können nicht in den „$1“-Namensraum verschoben werden',
+'immobile-source-page'      => 'Diese Seite ist nicht verschiebbar.',
+'immobile-target-page'      => 'Es kann nicht auf diese Zielseite verschoben werden.',
+'imagenocrossnamespace'     => 'Dateien können nicht aus dem {{ns:image}}-Namensraum heraus verschoben werden',
+'imagetypemismatch'         => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
+'imageinvalidfilename'      => 'Der Ziel-Dateiname ist ungültig',
+'fix-double-redirects'      => 'Nach dem Verschieben doppelte Weiterleitungen auflösen',
+'move-leave-redirect'       => 'Weiterleitung erstellen',
 
 # Export
 'export'            => 'Seiten exportieren',

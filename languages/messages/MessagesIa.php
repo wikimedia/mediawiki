@@ -280,6 +280,8 @@ $messages = array(
 'editsection'             => 'modificar',
 'editold'                 => 'modificar',
 'viewsourceold'           => 'vider codice-fonte',
+'editlink'                => 'modificar',
+'viewsourcelink'          => 'vider codice-fonte',
 'editsectionhint'         => 'Modificar section: $1',
 'toc'                     => 'Contento',
 'showtoc'                 => 'revelar',
@@ -457,7 +459,7 @@ Per favor activa lo e reprova.",
 'loginsuccesstitle'          => 'Session aperite con successo',
 'loginsuccess'               => "'''Tu es ora identificate in {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Non existe un usator con le nomine "$1".
-Verifica le orthographia, o [[Special:Userlogin/signup|crea un nove conto]].',
+Verifica le orthographia, o [[Special:UserLogin/signup|crea un nove conto]].',
 'nosuchusershort'            => 'Non existe un usator con le nomine "<nowiki>$1</nowiki>".
 Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
@@ -962,7 +964,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'mypreferences'            => 'Mi preferentias',
 'prefs-edits'              => 'Numero de modificationes:',
 'prefsnologin'             => 'Tu non te ha identificate',
-'prefsnologintext'         => 'Tu debe <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
+'prefsnologintext'         => 'Tu debe <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aperir un session] pro poter configurar tu preferentias.',
 'prefsreset'               => 'Tu preferentias anterior ha essite restaurate.',
 'qbsettings'               => 'Barra rapide',
 'qbsettings-none'          => 'Necun',
@@ -1995,6 +1997,7 @@ a un adresse IP blocate previemente.',
 'ipblocklist-sh-userblocks'       => '$1 blocadas de contos',
 'ipblocklist-sh-tempblocks'       => '$1 blocadas temporari',
 'ipblocklist-sh-addressblocks'    => '$1 blocadas de singule adresses IP',
+'ipblocklist-scanrange'           => 'Pro IPs, includer tote le blocadas que affice le adresse',
 'ipblocklist-submit'              => 'Cercar',
 'blocklistline'                   => '$1, $2 blocava $3 ($4)',
 'infiniteblock'                   => 'infinite',
@@ -2070,9 +2073,9 @@ Pro blocar o disblocar le base de datos, le servitor web debe poter scriber a is
 'databasenotlocked'   => 'Le base de datos non es blocate.',
 
 # Move page
-'move-page'               => 'Renominar $1',
-'move-page-legend'        => 'Renominar pagina',
-'movepagetext'            => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
+'move-page'                 => 'Renominar $1',
+'move-page-legend'          => 'Renominar pagina',
+'movepagetext'              => "Per medio del formulario infra tu pote renominar un pagina, transferente tote su historia al nove nomine.
 Le titulo anterior devenira un pagina de redirection verso le nove titulo.
 Tu pote actualisar automaticamente le redirectiones que puncta verso le titulo original.
 Si tu opta contra facer lo, assecura te de reparar omne redirectiones [[Special:DoubleRedirects|duple]] o [[Special:BrokenRedirects|defecte]].
@@ -2084,56 +2087,59 @@ Isto significa que tu pote renominar un pagina a su titulo original si tu lo ha 
 '''ATTENTION!'''
 Isto pote esser un cambio drastic e inexpectate pro un pagina popular;
 per favor assecura te que tu comprende le consequentias de isto ante que tu procede.",
-'movepagetalktext'        => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
+'movepagetalktext'          => "Le pagina de discussion associate essera automaticamente renominate conjunctemente con illo '''a minus que''':
 *Un pagina de discussion non vacue ja existe sub le nove nomine, o
 *Tu dismarca le quadrato infra.
 
 Il tal casos, tu debera renominar o fusionar le pagina manualmente si desirate.",
-'movearticle'             => 'Renominar pagina:',
-'movenologin'             => 'Tu non ha aperite un session',
-'movenologintext'         => 'Tu debe esser un usator registrate e [[Special:Userlogin|aperir un session]]
+'movearticle'               => 'Renominar pagina:',
+'movenologin'               => 'Tu non ha aperite un session',
+'movenologintext'           => 'Tu debe esser un usator registrate e [[Special:UserLogin|aperir un session]]
 pro mover un pagina.',
-'movenotallowed'          => 'Tu non ha le permission de renominar paginas.',
-'cant-move-user-page'     => 'Tu non ha le permission de renominar paginas principal de usatores.',
-'newtitle'                => 'Al nove titulo:',
-'move-watch'              => 'Observar iste pagina',
-'movepagebtn'             => 'Renominar pagina',
-'pagemovedsub'            => 'Renomination succedite',
-'movepage-moved'          => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
+'movenotallowed'            => 'Tu non ha le permission de renominar paginas.',
+'cant-move-user-page'       => 'Tu non ha le permission de renominar paginas principal de usatores.',
+'cant-move-to-user-page'    => 'Tu non ha le permission de renominar un pagina verso un pagina de usator (excepte un subpagina de usator).',
+'newtitle'                  => 'Al nove titulo:',
+'move-watch'                => 'Observar iste pagina',
+'movepagebtn'               => 'Renominar pagina',
+'pagemovedsub'              => 'Renomination succedite',
+'movepage-moved'            => '<big>\'\'\'"$1" ha essite renominate a "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Un pagina con iste nomine ja existe, o le nomine seligite non es valide.
 Per favor selige un altere nomine.',
-'cantmove-titleprotected' => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',
-'talkexists'              => "'''Le pagina mesme ha essite renominate con successo, mais le pagina de discussion associate non ha essite renominate proque ja existe un sub le nove titulo.
+'cantmove-titleprotected'   => 'Tu non pote renominar un pagina a iste titulo, proque le nove titulo ha essite protegite contra creation',
+'talkexists'                => "'''Le pagina mesme ha essite renominate con successo, mais le pagina de discussion associate non ha essite renominate proque ja existe un sub le nove titulo.
 Per favor fusiona los manualmente.'''",
-'movedto'                 => 'renominate a',
-'movetalk'                => 'Renominar etiam le pagina de discussion associate',
-'move-subpages'           => 'Renominar tote le subpaginas, si applicabile',
-'move-talk-subpages'      => 'Renominar tote le subpaginas del pagina de discussion, si applicabile',
-'movepage-page-exists'    => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
-'movepage-page-moved'     => 'Le pagina $1 ha essite renominate a $2.',
-'movepage-page-unmoved'   => 'Le pagina $1 non poteva esser renominate a $2.',
-'movepage-max-pages'      => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
-'1movedto2'               => 'renominava [[$1]] verso [[$2]]',
-'1movedto2_redir'         => 'renominava [[$1]] verso [[$2]] trans redirection',
-'movelogpage'             => 'Registro de renominationes',
-'movelogpagetext'         => 'Infra es un lista de paginas renominate.',
-'movereason'              => 'Motivo:',
-'revertmove'              => 'reverter',
-'delete_and_move'         => 'Deler e renominar',
-'delete_and_move_text'    => '==Deletion requirite==
+'movedto'                   => 'renominate a',
+'movetalk'                  => 'Renominar etiam le pagina de discussion associate',
+'move-subpages'             => 'Renominar tote le subpaginas, si applicabile',
+'move-talk-subpages'        => 'Renominar tote le subpaginas del pagina de discussion, si applicabile',
+'movepage-page-exists'      => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
+'movepage-page-moved'       => 'Le pagina $1 ha essite renominate a $2.',
+'movepage-page-unmoved'     => 'Le pagina $1 non poteva esser renominate a $2.',
+'movepage-max-pages'        => 'Le maximo de $1 {{PLURAL:$1|pagina|paginas}} ha essite renominate e nulle altere pagina pote esser renominate automaticamente.',
+'1movedto2'                 => 'renominava [[$1]] verso [[$2]]',
+'1movedto2_redir'           => 'renominava [[$1]] verso [[$2]] trans redirection',
+'movelogpage'               => 'Registro de renominationes',
+'movelogpagetext'           => 'Infra es un lista de paginas renominate.',
+'movereason'                => 'Motivo:',
+'revertmove'                => 'reverter',
+'delete_and_move'           => 'Deler e renominar',
+'delete_and_move_text'      => '==Deletion requirite==
 Le pagina de destination "[[:$1]]" existe ja.
 Esque tu vole deler lo pro permitter le renomination?',
-'delete_and_move_confirm' => 'Si, deler le pagina',
-'delete_and_move_reason'  => 'Delite pro permitter renomination',
-'selfmove'                => 'Le titulos de origine e de destination es identic;
+'delete_and_move_confirm'   => 'Si, deler le pagina',
+'delete_and_move_reason'    => 'Delite pro permitter renomination',
+'selfmove'                  => 'Le titulos de origine e de destination es identic;
 non pote renominar un pagina al mesme titulo.',
-'immobile_namespace'      => 'Le titulo de origine o de destination es de un typo special;
-es impossibile cambiar le spatio de nomines de tal paginas.',
-'imagenocrossnamespace'   => 'Non pote renominar file verso un spatio de nomines non-file',
-'imagetypemismatch'       => 'Le nove extension del nomine del file non corresponde al typo del file',
-'imageinvalidfilename'    => 'Le nomine del file de destination es invalide',
-'fix-double-redirects'    => 'Actualisar tote le redirectiones que puncta verso le titulo original',
-'move-leave-redirect'     => 'Lassar un redirection',
+'immobile-source-namespace' => 'Non pote renominar paginas in le spatio de nomines "$1"',
+'immobile-target-namespace' => 'Non pote renominar paginas verso le spatio de nomines "$1"',
+'immobile-source-page'      => 'Iste pagina non es renominabile.',
+'immobile-target-page'      => 'Non pote renominar a iste titulo de destination.',
+'imagenocrossnamespace'     => 'Non pote renominar file verso un spatio de nomines non-file',
+'imagetypemismatch'         => 'Le nove extension del nomine del file non corresponde al typo del file',
+'imageinvalidfilename'      => 'Le nomine del file de destination es invalide',
+'fix-double-redirects'      => 'Actualisar tote le redirectiones que puncta verso le titulo original',
+'move-leave-redirect'       => 'Lassar un redirection',
 
 # Export
 'export'            => 'Exportar paginas',

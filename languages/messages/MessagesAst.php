@@ -6,6 +6,7 @@
  *
  * @author Esbardu
  * @author Mikel
+ * @author Remember the dot
  * @author לערי ריינהארט
  */
 
@@ -309,7 +310,7 @@ $messages = array(
 'nstab-media'     => "Páxina d'archivu multimedia",
 'nstab-special'   => 'Especial',
 'nstab-project'   => 'Páxina de proyeutu',
-'nstab-image'     => 'Imaxe',
+'nstab-image'     => 'Archivu',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Plantía',
 'nstab-help'      => 'Aida',
@@ -452,7 +453,7 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'loginsuccesstitle'          => 'Identificación correuta',
 'loginsuccess'               => "'''Quedasti identificáu en {{SITENAME}} como \"\$1\".'''",
 'nosuchuser'                 => 'Nun hai usuariu dalu col nome "$1".
-Comprueba la ortografía, o [[Special:Userlogin/signup|crea una cuenta d\'usuariu nueva]].',
+Comprueba la ortografía, o [[Special:UserLogin/signup|crea una cuenta d\'usuariu nueva]].',
 'nosuchusershort'            => 'Nun hai nengún usuariu col nome "<nowiki>$1</nowiki>". Mira que tea bien escritu.',
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'wrongpassword'              => 'Clave errónea.  Inténtalo otra vuelta.',
@@ -931,7 +932,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'mypreferences'            => 'Les mios preferencies',
 'prefs-edits'              => "Númberu d'ediciones:",
 'prefsnologin'             => 'Non identificáu',
-'prefsnologintext'         => 'Necesites tar <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
+'prefsnologintext'         => 'Necesites tar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
 'prefsreset'               => 'Les preferencies fueron restablecíes a los valores por defeutu.',
 'qbsettings'               => 'Barra rápida',
 'qbsettings-none'          => 'Nenguna',
@@ -1093,6 +1094,26 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'rightslogtext'  => "Esti ye un rexistru de los cambeos de los perfiles d'usuariu.",
 'rightslogentry' => 'camudó la pertenencia de grupu del usuariu $1 dende $2 a $3',
 'rightsnone'     => '(nengún)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'             => 'lleer esta páxina',
+'action-edit'             => 'editar esta páxina',
+'action-createpage'       => 'crear páxines',
+'action-createtalk'       => "crear páxines d'alderique",
+'action-createaccount'    => "crear esta cuenta d'usuariu",
+'action-minoredit'        => 'marcar esta edición como menor',
+'action-move'             => 'treslladar esta páxina',
+'action-move-subpages'    => 'treslladar esta páxina y les sos subpáxines',
+'action-upload'           => 'xubir esti archivu',
+'action-reupload'         => 'sobreescribir esti archivu esistente',
+'action-delete'           => 'eliminar esta páxina',
+'action-deleterevision'   => 'eliminar esta revisión',
+'action-browsearchive'    => 'buscar páxines esborraes',
+'action-suppressrevision' => 'revisar y restaurar esta revisión oculta',
+'action-suppressionlog'   => 'ver esti rexistru priváu',
+'action-import'           => 'importar esta páxina dende otra wiki',
+'action-mergehistory'     => "fusionar l'historial d'esta páxina",
+'action-userrights'       => "editar tolos drechos d'usuariu",
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|un cambéu|$1 cambeos}}',
@@ -1962,7 +1983,7 @@ por favor, asegúrate d'entender les consecuencies de lo que vas facer enantes d
 Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'movearticle'             => 'Treslladar la páxina:',
 'movenologin'             => 'Non identificáu',
-'movenologintext'         => 'Tienes que ser un usuariu rexistráu y tar [[Special:Userlogin|identificáu]] pa treslladar una páxina.',
+'movenologintext'         => 'Tienes que ser un usuariu rexistráu y tar [[Special:UserLogin|identificáu]] pa treslladar una páxina.',
 'movenotallowed'          => 'Nun tienes permisu pa mover páxines.',
 'newtitle'                => 'Al títulu nuevu:',
 'move-watch'              => 'Vixilar esta páxina',
@@ -1993,7 +2014,6 @@ La páxina de destín "[[:$1]]" yá esiste. ¿Quies borrala pa dexar sitiu pal t
 'delete_and_move_confirm' => 'Sí, borrar la páxina',
 'delete_and_move_reason'  => 'Borrada pa facer sitiu pal treslláu',
 'selfmove'                => "Los nomes d'orixe y destín son los mesmos, nun se pue treslladar una páxina sobre ella mesma.",
-'immobile_namespace'      => "El nome d'orixe o'l de destín ye d'una triba especial; nun se puen mover páxines dende nin a esti espaciu de nomes.",
 'imagenocrossnamespace'   => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
 'imagetypemismatch'       => 'La estensión nueva del archivu nun concueya cola so mena',
 'imageinvalidfilename'    => 'El nome del archivu oxetivu nun ye válidu',

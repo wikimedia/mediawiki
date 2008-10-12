@@ -458,6 +458,8 @@ $messages = array(
 'editsection'             => 'edytuj',
 'editold'                 => 'edytuj',
 'viewsourceold'           => 'pokaż źródło',
+'editlink'                => 'edytuj',
+'viewsourcelink'          => 'tekst źródłowy',
 'editsectionhint'         => 'Edytuj sekcję: $1',
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
@@ -632,7 +634,7 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''Zalogowałeś się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
-Sprawdź pisownię lub [[Special:Userlogin/signup|użyj formularza, by utworzyć nowe konto]].',
+Sprawdź pisownię lub [[Special:UserLogin/signup|użyj formularza, by utworzyć nowe konto]].',
 'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
@@ -1114,7 +1116,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'mypreferences'            => 'preferencje',
 'prefs-edits'              => 'Liczba edycji',
 'prefsnologin'             => 'Nie jesteś zalogowany',
-'prefsnologintext'         => 'Musisz się <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
+'prefsnologintext'         => 'Musisz się <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
 'prefsreset'               => 'Preferencje domyślne zostały odtworzone.',
 'qbsettings'               => 'Pasek szybkiego dostępu',
 'qbsettings-none'          => 'Brak',
@@ -2124,6 +2126,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'ipblocklist-sh-userblocks'       => '$1 blokady kont',
 'ipblocklist-sh-tempblocks'       => '$1 tymczasowe blokady',
 'ipblocklist-sh-addressblocks'    => '$1 blokady pojedynczych adresów IP',
+'ipblocklist-scanrange'           => 'Uwzględnij wszystkie blokady związane z podanym adresem IP',
 'ipblocklist-submit'              => 'Szukaj',
 'blocklistline'                   => '$1, $2 zablokował $3 ($4)',
 'infiniteblock'                   => 'na zawsze',
@@ -2193,9 +2196,9 @@ Blokowanie i odblokowywanie bazy danych, wymaga by plik mógł być zapisywany p
 'databasenotlocked'   => 'Baza danych nie jest zablokowana.',
 
 # Move page
-'move-page'               => 'Przenieś $1',
-'move-page-legend'        => 'Przeniesienie strony',
-'movepagetext'            => "Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
+'move-page'                 => 'Przenieś $1',
+'move-page-legend'          => 'Przeniesienie strony',
+'movepagetext'              => "Za pomocą poniższego formularza zmienisz nazwę strony, przenosząc jednocześnie jej historię.
 Pod starym tytułem zostanie umieszczona strona przekierowująca.
 Możesz automatycznie zaktualizować przekierowania wskazujące na tytuł przed zmianą.
 Jeśli nie wybierzesz tej opcji, upewnij się po przeniesieniu strony, czy nie powstały [[Special:DoubleRedirects|podwójne]] lub [[Special:BrokenRedirects|zerwane przekierowania]].
@@ -2207,53 +2210,57 @@ To oznacza, że błędną operację zmiany nazwy można bezpiecznie odwrócić, 
 '''UWAGA!'''
 Może to być drastyczna lub nieprzewidywalna zmiana w przypadku popularnych stron.
 Upewnij się co do konsekwencji tej operacji, zanim się na nią zdecydujesz.",
-'movepagetalktext'        => 'Powiązana strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, chyba że:
+'movepagetalktext'          => 'Powiązana strona dyskusji, jeśli istnieje, będzie przeniesiona automatycznie, chyba że:
 *niepusta strona dyskusji już jest pod nową nazwą
 *usuniesz zaznaczenie z poniższego pola wyboru
 
 W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
-'movearticle'             => 'Przeniesienie strony',
-'movenologin'             => 'Nie jesteś zalogowany',
-'movenologintext'         => 'Przenoszenie stron jest możliwe dopiero po zarejestrowaniu się i [[Special:Userlogin|zalogowaniu]].',
-'movenotallowed'          => 'Nie masz uprawnień do przenoszenia stron.',
-'newtitle'                => 'Nowy tytuł',
-'move-watch'              => 'Obserwuj',
-'movepagebtn'             => 'Przenieś stronę',
-'pagemovedsub'            => 'Przeniesienie powiodło się',
-'movepage-moved'          => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
+'movearticle'               => 'Przeniesienie strony',
+'movenologin'               => 'Nie jesteś zalogowany',
+'movenologintext'           => 'Przenoszenie stron jest możliwe dopiero po zarejestrowaniu się i [[Special:UserLogin|zalogowaniu]].',
+'movenotallowed'            => 'Nie masz uprawnień do przenoszenia stron.',
+'cant-move-user-page'       => 'Nie masz uprawnień do przenoszenia stron użytkownika (za wyjątkiem podstron).',
+'cant-move-to-user-page'    => 'Nie masz uprawnień do przenoszenia strony do strony użytkownika (za wyjątkiem podstron użytkownika).',
+'newtitle'                  => 'Nowy tytuł',
+'move-watch'                => 'Obserwuj',
+'movepagebtn'               => 'Przenieś stronę',
+'pagemovedsub'              => 'Przeniesienie powiodło się',
+'movepage-moved'            => "<big>'''Strona „$1” została przeniesiona do „$2”.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
-'cantmove-titleprotected' => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
-'talkexists'              => "'''Strona zawartości została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
-'movedto'                 => 'przeniesiono do',
-'movetalk'                => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
-'move-subpages'           => 'Jeśli to możliwe przenieś wszystkie podstrony',
-'move-talk-subpages'      => 'Jeśli to możliwe przenieś wszystkie strony dyskusji podstron',
-'movepage-page-exists'    => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
-'movepage-page-moved'     => 'Strona $1 została przeniesiona do $2.',
-'movepage-page-unmoved'   => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
-'movepage-max-pages'      => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
-'1movedto2'               => 'stronę [[$1]] przeniósł do [[$2]]',
-'1movedto2_redir'         => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
-'movelogpage'             => 'Przeniesione',
-'movelogpagetext'         => 'Lista stron, które ostatnio zostały przeniesione.',
-'movereason'              => 'Powód',
-'revertmove'              => 'cofnij',
-'delete_and_move'         => 'Usuń i przenieś',
-'delete_and_move_text'    => '== Przeniesienie wymaga usunięcia innej strony ==
+'cantmove-titleprotected'   => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
+'talkexists'                => "'''Strona zawartości została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
+'movedto'                   => 'przeniesiono do',
+'movetalk'                  => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
+'move-subpages'             => 'Jeśli to możliwe przenieś wszystkie podstrony',
+'move-talk-subpages'        => 'Jeśli to możliwe przenieś wszystkie strony dyskusji podstron',
+'movepage-page-exists'      => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
+'movepage-page-moved'       => 'Strona $1 została przeniesiona do $2.',
+'movepage-page-unmoved'     => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
+'movepage-max-pages'        => 'Przeniesionych zostało $1 {{PLURAL:$1|strona|strony|stron}}. Większa liczba nie może być przeniesiona automatycznie.',
+'1movedto2'                 => 'stronę [[$1]] przeniósł do [[$2]]',
+'1movedto2_redir'           => 'stronę [[$1]] przeniósł do [[$2]] nad przekierowaniem',
+'movelogpage'               => 'Przeniesione',
+'movelogpagetext'           => 'Lista stron, które ostatnio zostały przeniesione.',
+'movereason'                => 'Powód',
+'revertmove'                => 'cofnij',
+'delete_and_move'           => 'Usuń i przenieś',
+'delete_and_move_text'      => '== Przeniesienie wymaga usunięcia innej strony ==
 Strona docelowa „[[:$1]]” istnieje.
 Czy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?',
-'delete_and_move_confirm' => 'Tak, usuń stronę',
-'delete_and_move_reason'  => 'Usunięto, by zrobić miejsce dla przenoszonej strony',
-'selfmove'                => 'Nazwy stron źródłowej i docelowej są takie same.
+'delete_and_move_confirm'   => 'Tak, usuń stronę',
+'delete_and_move_reason'    => 'Usunięto, by zrobić miejsce dla przenoszonej strony',
+'selfmove'                  => 'Nazwy stron źródłowej i docelowej są takie same.
 Strony nie można przenieść na nią samą.',
-'immobile_namespace'      => 'Strona źródłowa lub strona docelowa są specjalnego typu.
-Nie można przenieść z lub do tej przestrzeni nazw.',
-'imagenocrossnamespace'   => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
-'imagetypemismatch'       => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
-'imageinvalidfilename'    => 'Nazwa pliku docelowego jest nieprawidłowa',
-'fix-double-redirects'    => 'Popraw przekierowania wskazujące na oryginalny tytuł strony',
-'move-leave-redirect'     => 'Pozostaw przekierowanie pod dotychczasowym tytułem',
+'immobile-source-namespace' => 'Nie można przenieść stron w przestrzeni nazw „$1”',
+'immobile-target-namespace' => 'Nie można przenieść stron do przestrzeni nazw „$1”',
+'immobile-source-page'      => 'Tej strony nie można przenieść.',
+'immobile-target-page'      => 'Nie można przenieść pod wskazany tytuł.',
+'imagenocrossnamespace'     => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
+'imagetypemismatch'         => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
+'imageinvalidfilename'      => 'Nazwa pliku docelowego jest nieprawidłowa',
+'fix-double-redirects'      => 'Popraw przekierowania wskazujące na oryginalny tytuł strony',
+'move-leave-redirect'       => 'Pozostaw przekierowanie pod dotychczasowym tytułem',
 
 # Export
 'export'            => 'Eksport stron',

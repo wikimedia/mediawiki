@@ -13,6 +13,7 @@
  * @author MinuteElectron
  * @author Morten LJ
  * @author Peter Andersen
+ * @author Remember the dot
  */
 
 $namespaceNames = array(
@@ -410,12 +411,12 @@ $messages = array(
 'red-link-title'          => '$1 (uoprettet)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'artikel',
+'nstab-main'      => 'Side',
 'nstab-user'      => 'brugerside',
 'nstab-media'     => 'medie',
 'nstab-special'   => 'speciel',
 'nstab-project'   => 'om',
-'nstab-image'     => 'billede',
+'nstab-image'     => 'Fil',
 'nstab-mediawiki' => 'besked',
 'nstab-template'  => 'skabelon',
 'nstab-help'      => 'hjælp',
@@ -1875,7 +1876,7 @@ $1',
 I disse tilfælde er du nødt til at flytte eller sammenflette siden manuelt.",
 'movearticle'             => 'Flyt side',
 'movenologin'             => 'Ikke logget på',
-'movenologintext'         => 'Du skal være registreret bruger og være [[Special:Userlogin|logget på]]
+'movenologintext'         => 'Du skal være registreret bruger og være [[Special:UserLogin|logget på]]
 
 for at flytte en side.',
 'movenotallowed'          => 'Du har ikke rettigheder til at flytte sider.',
@@ -1909,7 +1910,6 @@ Artiklen "[[:$1]]" eksisterer allerede. Vil du slette den for at lave plads til 
 'delete_and_move_confirm' => 'Slette eksisterende side før flytning',
 'delete_and_move_reason'  => 'Slet for at lave plads til flyningen',
 'selfmove'                => 'Begge sider har samme navn. Man kan ikke flytte en side oven i sig selv.',
-'immobile_namespace'      => 'Måltitlen er en speciel type; man kan ikke flytte sider ind i det navnerum.',
 'imagenocrossnamespace'   => 'Filer kan ikke flyttes til et navnerum der ikke indeholder filer',
 'imagetypemismatch'       => 'Den nye filendelse passer ikke til filtypen',
 'imageinvalidfilename'    => 'Destinationsnavnet er ugyldigt',
