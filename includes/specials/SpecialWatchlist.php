@@ -163,7 +163,7 @@ function wfSpecialWatchlist( $par ) {
 	$andHideMinor = $hideMinor ? "AND (rc_minor = 0)" : '';
 	$andHideLiu   = $hideLiu   ? "AND (rc_user = 0)" : '';
 	$andHideAnons = $hideAnons ? "AND (rc_user != 0)" : '';
-	$andHidePatrolled = $hidePatrolled ? "AND (rc_patrolled != 1)" : '';
+	$andHidePatrolled = $wgUser->useRCPatrol() && $hidePatrolled ? "AND (rc_patrolled != 1)" : '';
 
 	# Toggle watchlist content (all recent edits or just the latest)
 	if( $wgUser->getOption( 'extendwatchlist' )) {
@@ -276,10 +276,12 @@ function wfSpecialWatchlist( $par ) {
 	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
 	
 	# Hide/show patrolled edits
-	$label = $hidePatrolled ? wfMsgHtml( 'watchlist-show-patrolled' ) : wfMsgHtml( 'watchlist-hide-patrolled' );
-	$linkBits = wfArrayToCGI( array( 'hidePatrolled' => 1 - (int)$hidePatrolled ), $nondefaults );
-	$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
-
+	if( $wgUser->useRCPatrol() ) {
+		$label = $hidePatrolled ? wfMsgHtml( 'watchlist-show-patrolled' ) : wfMsgHtml( 'watchlist-hide-patrolled' );
+		$linkBits = wfArrayToCGI( array( 'hidePatrolled' => 1 - (int)$hidePatrolled ), $nondefaults );
+		$links[] = $skin->makeKnownLinkObj( $thisTitle, $label, $linkBits );
+	}
+	
 	# Namespace filter and put the whole form together.
 	$form .= $wlInfo;
 	$form .= $cutofflinks;
