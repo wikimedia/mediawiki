@@ -41,7 +41,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	NS_SPECIAL => 'Սպասարկող',
+	'Սպասարկող' => NS_SPECIAL,
 );
 
 $skinNames = array(
