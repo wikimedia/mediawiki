@@ -401,7 +401,7 @@ Die rede gegee is ''$2''.",
 'logouttitle'                => 'Teken uit',
 'logouttext'                 => "<strong>U is nou uitgeteken</strong>
 
-U kan aanhou om {{SITENAME}} anoniem te gebruik; of U kan [[Special:Userlogin|inteken]] as dieselfde of 'n ander gebruiker.",
+U kan aanhou om {{SITENAME}} anoniem te gebruik; of U kan [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.",
 'welcomecreation'            => '<h2>Welkom, $1.</h2>
 Jou rekening is geskep;
 moenie vergeet om jou persoonlike voorkeure te stel nie.',
@@ -453,7 +453,7 @@ Stel u rekenaar om dit te aanvaar, dan kan u met u nuwe naam en wagwoord inteken
 'loginsuccesstitle'          => 'Suksesvolle intekening',
 'loginsuccess'               => 'U is ingeteken by {{SITENAME}} as "$1".',
 'nosuchuser'                 => 'Die gebruiker "$1" bestaan nie. 
-Maak seker dit is reg gespel of [[Special:Userlogin/signup|skep \'n nuwe rekening]].',
+Maak seker dit is reg gespel of [[Special:UserLogin/signup|skep \'n nuwe rekening]].',
 'nosuchusershort'            => 'Daar is geen gebruikersnaam "<nowiki>$1</nowiki>" nie. Maak seker dit is reg gespel.',
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
@@ -832,7 +832,7 @@ bevat, word gewys).",
 'mypreferences'            => 'My voorkeure',
 'prefs-edits'              => 'Aantal wysigings:',
 'prefsnologin'             => 'Nie ingeteken nie',
-'prefsnologintext'         => 'Jy moet <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} aanteken] om voorkeure te kan verander.',
+'prefsnologintext'         => 'Jy moet <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aanteken] om voorkeure te kan verander.',
 'prefsreset'               => 'Voorkeure is herstel.',
 'qbsettings'               => 'Snelbalkvoorkeure',
 'qbsettings-none'          => 'Geen',
@@ -1688,7 +1688,7 @@ maak asseblief seker dat jy die gevolge van hierdie aksie verstaan voordat jy vo
 Indien wel sal u self die blad moet skuif of versmelt (indien nodig).",
 'movearticle'             => 'Skuif bladsy',
 'movenologin'             => 'Nie ingeteken nie',
-'movenologintext'         => "Jy moet 'n geregistreerde gebruiker wees en [[Special:Userlogin|ingeteken]]
+'movenologintext'         => "Jy moet 'n geregistreerde gebruiker wees en [[Special:UserLogin|ingeteken]]
 wees om 'n bladsy te skuif.",
 'movenotallowed'          => 'U het nie regte om bladsye te skuif nie.',
 'newtitle'                => 'Na nuwe titel',

@@ -14,6 +14,7 @@ $messages = array(
 'tog-justify'         => 'Giustifeche le paragrafe',
 'tog-hideminor'       => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-showtoolbar'     => "Fà vedè 'a barra de le cangiaminde (JavaScript)",
+'tog-minordefault'    => 'Pe convenzione signe tutte le cangiaminde cumme a stuédeche',
 'tog-showhiddencats'  => 'Fa vedè le categorije scunnute',
 
 'underline-always' => 'Sembre',
@@ -155,6 +156,7 @@ $messages = array(
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sus a {{SITENAME}}',
+'aboutpage'            => 'Project:Sus a',
 'bugreports'           => 'Liste de le bochere',
 'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
@@ -164,6 +166,7 @@ $messages = array(
 'edithelp'             => "Cangianne l'ajute",
 'edithelppage'         => 'Help:Cangiaminde',
 'faq'                  => 'FAQ',
+'faqpage'              => 'Project:FAQ',
 'helppage'             => 'Help:Condenute',
 'mainpage'             => 'Pàgene Prengepàle',
 'mainpage-description' => 'Pàgene Prengepàle',
@@ -223,6 +226,8 @@ $messages = array(
 'viewsource'           => "Vide 'u sorgende",
 'viewsourcefor'        => 'pe $1',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
+'sqlhidden'            => '(query SQL ascunnute)',
+'namespaceprotected'   => "Non ge tine 'u permesse pe cangià pàggene d'u neimspeise '''$1'''.",
 'ns-specialprotected'  => 'Le pàgene speciale no ponne essere cangete.',
 
 # Login and logout pages
@@ -242,10 +247,13 @@ $messages = array(
 'createaccountmail'       => 'pe e-mail',
 'youremail'               => 'Poste:',
 'uid'                     => 'ID Utende:',
+'yourrealname'            => 'Nome vere:',
 'yourlanguage'            => 'Lènga:',
 'email'                   => 'Poste',
 'loginsuccesstitle'       => 'Tutte a poste, è trasute!',
 'loginsuccess'            => "'''Mò tu si colleghete jndr'à {{SITENAME}} cumme \"\$1\".'''",
+'nosuchuser'              => "Non g'esiste n'utende cu 'u nome \"\$1\".
+Vide bbuene a cumme l'è scritte, o [[Special:UserLogin/signup|ccreje n'utende nuève]].",
 'nouserspecified'         => "A scrivere pe forze 'u nome de l'utende.",
 'wrongpassword'           => "E mise 'na passuor sbagliete.
 Prueve n'otra vote.",
@@ -301,6 +309,7 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'editing'                => 'Cangiaminde de $1',
 'editingsection'         => 'Cangiaminde de $1 (sezione)',
 'editingcomment'         => 'Cangiaminde de $1 (commende)',
+'yourdiff'               => 'Differenze',
 'templatesused'          => "Templeit ausete sus 'a sta pàgene:",
 'templatesusedpreview'   => "Templeit ausete jndr'à sta andeprime:",
 'template-protected'     => '(prutette)',
@@ -320,6 +329,7 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'deletedrev'          => '[scangellete]',
 'histfirst'           => 'Prime',
 'histlast'            => 'Urteme',
+'historyempty'        => '(vacande)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 a $2', # user at time
@@ -331,6 +341,9 @@ le cangiaminde non g'onne state angore reggistrete!</strong>",
 'compareselectedversions' => 'Combornde le versiune selezionete',
 'editundo'                => 'annulle',
 'diff-multi'              => "({{PLURAL:$1|'na versione de mmienze|$1 cchiù versiune de mmienze}} non ge se vèdene.)",
+'diff-styleadded'         => '$1 stile aggiunde',
+'diff-added'              => '$1 aggiunde',
+'diff-changedto'          => 'cangete cu $1',
 'diff-with-additional'    => '$1 $2',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-p'                  => "'nu '''paragrafe'''",
@@ -362,18 +375,30 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'powersearch'  => 'Ricerche avanzete',
 
 # Preferences page
-'mypreferences' => 'Me piece accussì',
-'oldpassword'   => 'Vécchie passuord:',
-'newpassword'   => 'Nova passuord:',
-'retypenew'     => "Scrive n'otra vota 'a passuord nova:",
+'mypreferences'     => 'Me piece accussì',
+'saveprefs'         => 'Reggistre',
+'oldpassword'       => 'Vécchie passuord:',
+'newpassword'       => 'Nova passuord:',
+'retypenew'         => "Scrive n'otra vota 'a passuord nova:",
+'searchresultshead' => 'Cirche',
 
 # User rights
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
-'group-all' => '(tutte)',
+'group-user'  => 'Utinde',
+'group-bot'   => 'Bot',
+'group-sysop' => 'Sysop',
+'group-all'   => '(tutte)',
 
-'grouppage-sysop' => '{{ns:project}}:Amministratore',
+'group-bot-member'        => 'Bot',
+'group-sysop-member'      => 'Sysop',
+'group-bureaucrat-member' => 'Burocrate',
+
+'grouppage-user'       => '{{ns:project}}:Utinde',
+'grouppage-bot'        => '{{ns:project}}:Bot',
+'grouppage-sysop'      => '{{ns:project}}:Amministratore',
+'grouppage-bureaucrat' => '{{ns:project}}:Burocrate',
 
 # User rights log
 'rightslog' => "Archivie de le diritte de l'utende",
@@ -387,6 +412,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'rcshowhideliu'   => '$1 utende reggistrete',
 'rcshowhideanons' => '$1 utende scanusciute',
 'rcshowhidemine'  => '$1 cangiaminde mie',
+'rclinks'         => "Vide l'urteme $1 cangiaminde jndr'à l'urteme $2 sciurne<br />$3",
 'diff'            => 'diff',
 'hist'            => 'cunde',
 'hide'            => 'Scunne',
@@ -404,18 +430,25 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'recentchangeslinked-noresult' => "Non g'onne state fatte cangiaminde sus 'a sta pàgene jndr'à 'u periede selezionete.",
 
 # Upload
-'upload'        => "Careche 'u fail",
-'uploadbtn'     => "Careche 'nu fail",
-'uploadlogpage' => 'Archivije de le carecaminde',
-'uploadedimage' => 'carechete "[[$1]]"',
+'upload'         => "Careche 'u fail",
+'uploadbtn'      => "Careche 'nu fail",
+'uploadlogpage'  => 'Archivije de le carecaminde',
+'uploadedimage'  => 'carechete "[[$1]]"',
+'sourcefilename' => "Nome d'u fail d'origgine:",
 
 # Special:ImageList
-'imgfile'        => 'file',
-'imagelist'      => 'Liste de le fail',
-'imagelist_name' => 'Nome',
+'imgfile'               => 'file',
+'imagelist'             => 'Liste de le fail',
+'imagelist_date'        => 'Sciurne',
+'imagelist_name'        => 'Nome',
+'imagelist_user'        => 'Utende',
+'imagelist_size'        => 'Dimenzione',
+'imagelist_description' => 'Descrizione',
 
 # Image description page
 'filehist'            => 'cunde',
+'filehist-deleteall'  => 'scangille tutte',
+'filehist-deleteone'  => 'scangille',
 'filehist-datetime'   => 'Sciurne/Orarie',
 'filehist-user'       => 'Utende',
 'filehist-dimensions' => 'Dimenziune',
@@ -446,15 +479,21 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 # Statistics
 'statistics' => 'Statisteche',
 
+'brokenredirects-edit'   => '(cange)',
+'brokenredirects-delete' => '(scangille)',
+
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
 'nlinks'                  => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
 'nmembers'                => '$1 {{PLURAL:$1|membre|membre}}',
 'lonelypages'             => 'Pàggene orfane',
+'uncategorizedpages'      => 'Pàggene senza categorije',
 'uncategorizedcategories' => 'Categorije senza categorije',
 'unusedcategories'        => 'Categorije ca non ge sonde ausete',
 'unusedimages'            => "Fail ca non g'avènene ausete",
+'wantedpages'             => 'Pàggene cchiù cerchete',
 'mostrevisions'           => 'Pàggene cchiù cangete',
+'prefixindex'             => "Indice p'u prefisse",
 'shortpages'              => 'Pàggene corte',
 'longpages'               => 'Pàggene longhe',
 'protectedpages'          => 'Pàggene prutette',
@@ -480,12 +519,16 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'nextpage'       => 'Pàgene apprisse ($1)',
 'prevpage'       => 'Pàgene apprime ($1)',
 'allarticles'    => 'Tutte le pàggene',
+'allinnamespace' => 'Tutte le pàggene (neimspeise $1)',
 'allpagessubmit' => 'Veje',
 
 # Special:Categories
 'categories' => 'Le Categorije',
 
 # Special:ListGroupRights
+'listgrouprights-group'         => 'Gruppe',
+'listgrouprights-rights'        => 'Diritte',
+'listgrouprights-members'       => '(liste de le membre)',
 'listgrouprights-right-display' => '$1 ($2)',
 
 # E-mail user
@@ -531,6 +574,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'protect-cantedit'            => 'Tu non ge puè cangià le levèlle de protezzione de sta pàgene, purcè tu non ge tine le diritte pe cangiarle.',
 'protect-expiry-options'      => '2 ore:2 hours,1 giurne:1 day,3 giurne:3 days,1 sumane:1 week,2 sumane:2 weeks,1 mese:1 month,3 mise:3 months,6 mise:6 months,1 anne:1 year,infinite:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permesse:',
+'restriction-level'           => 'Levèlle de restrizione:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Cange',
@@ -577,6 +621,7 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'newtitle'           => "A 'u titele nuève:",
 'movepagebtn'        => "Spueste 'a pàgene",
 'pagemovedsub'       => 'Spustaminde eseguite',
+'movepage-moved'     => "<big>'''\"\$1\" ha state spustate jndr'à \"\$2\"'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movedto'            => 'spustete a',
 '1movedto2'          => "[[$1]] spustete jndr'à [[$2]]",
 'movelogpage'        => 'Archivije de le spustaminde',
@@ -611,6 +656,7 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-move'                 => 'Spuèste sta pàgene',
 'tooltip-search'                  => 'Cirche {{SITENAME}}',
 'tooltip-n-mainpage'              => "Vè vide 'a pàgene prengepàle",
+'tooltip-n-portal'                => "Parkanne d'u proggette, ce puà fà, addò puè acchjà le cose.",
 'tooltip-n-recentchanges'         => "'A liste de le cangiaminde recende jndr'à uicchi.",
 'tooltip-n-randompage'            => "Careche 'na pàgene a uecchje",
 'tooltip-t-emailuser'             => "Manne n'e-mail a stu utende",

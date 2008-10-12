@@ -1656,7 +1656,7 @@ Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej."
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'             => "Cang-je nòm a l'artìcol",
 'movenologin'             => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
-'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:Userlogin|rintrà ant ël sistema]]
+'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
 për podej tramudé na pàgina.",
 'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine.",
 'newtitle'                => 'Neuv tìtol ëd',

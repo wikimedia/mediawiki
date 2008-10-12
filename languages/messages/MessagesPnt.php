@@ -322,7 +322,7 @@ $messages = array(
 'loginsuccesstitle'          => "Έντον τ' εσέβεμαν",
 'loginsuccess'               => "'''Εσήβετεν σο {{SITENAME}} ους \"\$1\".'''",
 'nosuchuser'                 => 'Αδά \'κ εχ\' χρήστεν με τ\' όνεμαν "$1".
-Το γράψιμον ωρία γιά [[Special:Userlogin/signup|ποίσον καινούρεον λογαρίαν]].',
+Το γράψιμον ωρία γιά [[Special:UserLogin/signup|ποίσον καινούρεον λογαρίαν]].',
 'nosuchusershort'            => 'Αδά \'κ εχ\' χρήστεν με τ\' όνομα "<nowiki>$1</nowiki>".
 Το γράψιμονις ωρία.',
 'nouserspecified'            => "Πρέπ' να ψιλίζετε έναν όνεμαν.",

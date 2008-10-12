@@ -343,6 +343,8 @@ $messages = array(
 'editsection'             => 'redakti',
 'editold'                 => 'redakti',
 'viewsourceold'           => 'vidi fonttekston',
+'editlink'                => 'redakti',
+'viewsourcelink'          => 'vidi fontkodon',
 'editsectionhint'         => 'Redakti sekcion: $1',
 'toc'                     => 'Enhavo',
 'showtoc'                 => 'montri',
@@ -513,7 +515,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'loginsuccesstitle'          => 'Ensalutado sukcesis',
 'loginsuccess'               => 'Vi ensalutis ĉe {{SITENAME}} kiel uzanto "$1".',
 'nosuchuser'                 => 'Neniu uzanto havas nomon "$1".
-Kontrolu vian literumadon, aŭ [[Special:Userlogin/signup|kreu novan konton]].',
+Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
 'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',
@@ -995,7 +997,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'mypreferences'            => 'Miaj preferoj',
 'prefs-edits'              => 'Nombro de redaktoj:',
 'prefsnologin'             => 'Ne jam salutis!',
-'prefsnologintext'         => 'Vi devas esti <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} ensalutita]</span> por fari viajn preferojn.',
+'prefsnologintext'         => 'Vi devas esti <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ensalutita]</span> por fari viajn preferojn.',
 'prefsreset'               => 'Preferoj reprenitaj el la registro.',
 'qbsettings'               => 'Preferoj pri ilaro',
 'qbsettings-none'          => 'Neniu',
@@ -1183,6 +1185,9 @@ Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertemp
 'action-import'               => 'importi ĉi tiun paĝon de alia vikio',
 'action-importupload'         => 'importi ĉi tiun paĝon de dosiera alŝuto',
 'action-patrol'               => 'marki redakton de alia persono kiel patrolitan',
+'action-autopatrol'           => 'fari vian redakton markitan kiel patrolitan',
+'action-unwatchedpages'       => 'vidi la liston de neatentitaj paĝoj',
+'action-mergehistory'         => 'kunigi la historion de ĉi tiu paĝo',
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
 'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
 'action-siteadmin'            => 'ŝlosi aŭ malŝlosi la datumbazon',
@@ -1947,8 +1952,9 @@ $1',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',
 'ipb-unblock-addr'                => 'Restarigi $1',
 'ipb-unblock'                     => 'Malforbari uzantnomon aŭ IP-adreson',
-'ipb-blocklist-addr'              => 'Rigardi ekzistantajn forbarojn por $1',
+'ipb-blocklist-addr'              => 'Ekzistantaj forbaroj por $1',
 'ipb-blocklist'                   => 'Rigardi ekzistantajn blokojn',
+'ipb-blocklist-contribs'          => 'Kontribuoj de $1',
 'unblockip'                       => 'Malforbari IP-adreson/nomon',
 'unblockiptext'                   => 'Per la jena formulo vi povas repovigi al iu
 forbarita IP-adreso/nomo la povon enskribi en la vikio.',
@@ -2029,9 +2035,9 @@ Bonvolu certigu, ke vi efektive intencas tion fari.',
 'databasenotlocked'   => 'La datumbazo ne estas ŝlosita.',
 
 # Move page
-'move-page'               => 'Alinomigi $1',
-'move-page-legend'        => 'Alinomigi paĝon',
-'movepagetext'            => "Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante
+'move-page'                 => 'Alinomigi $1',
+'move-page-legend'          => 'Alinomigi paĝon',
+'movepagetext'              => "Per la jena formulo vi povas ŝanĝi la nomon de iu paĝo, kunportante
 ĝian historion de redaktoj je la nova nomo.
 La antaŭa titolo fariĝos alidirektilo al la nova titolo.
 Ligiloj al la antaŭa titolo <i>ne</i> estos ŝanĝitaj; uzu
@@ -2049,54 +2055,56 @@ neeblas ke vi neintence forviŝus ekzistantan paĝon per movo.
 Tio povas esti drasta kaj neatendita ŝanĝo por populara paĝo;
 bonvolu certigi vin, ke vi komprenas ties konsekvencojn antaŭ
 ol vi antaŭeniru.",
-'movepagetalktext'        => "La movo aŭtomate kunportos la diskuto-paĝon, se tia ekzistas, '''krom se:'''
+'movepagetalktext'          => "La movo aŭtomate kunportos la diskuto-paĝon, se tia ekzistas, '''krom se:'''
 *Vi movas la paĝon tra nomspacoj (ekz de ''Nomo'' je ''User:Nomo''),
 *Ne malplena diskuto-paĝo jam ekzistas je la nova nomo, aŭ
 *Vi malelektas la suban ŝaltilon.
 
 Tiujokaze, vi nepre permane kunigu la diskuto-paĝojn se vi tion deziras.",
-'movearticle'             => 'Alinomigi paĝon',
-'movenologin'             => 'Ne ensalutinta',
-'movenologintext'         => 'Vi nepre estu registrita uzanto kaj [[Special:Userlogin|ensalutu]] por rajti movi paĝojn.',
-'movenotallowed'          => 'Vi ne rajtas movi paĝojn.',
-'cant-move-user-page'     => 'Vi ne rajtas movi radikajn uzanto-paĝojn.',
-'newtitle'                => 'Al nova titolo',
-'move-watch'              => 'Atenti ĉi tiun paĝon',
-'movepagebtn'             => 'Alinomigi paĝon',
-'pagemovedsub'            => 'Sukcesis alinomigo',
-'movepage-moved'          => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
+'movearticle'               => 'Alinomigi paĝon',
+'movenologin'               => 'Ne ensalutinta',
+'movenologintext'           => 'Vi nepre estu registrita uzanto kaj [[Special:UserLogin|ensalutu]] por rajti movi paĝojn.',
+'movenotallowed'            => 'Vi ne rajtas movi paĝojn.',
+'cant-move-user-page'       => 'Vi ne rajtas movi radikajn uzanto-paĝojn.',
+'newtitle'                  => 'Al nova titolo',
+'move-watch'                => 'Atenti ĉi tiun paĝon',
+'movepagebtn'               => 'Alinomigi paĝon',
+'pagemovedsub'              => 'Sukcesis alinomigo',
+'movepage-moved'            => '<big>\'\'\'"$1" estis alinomigita al "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'Paĝo kun tiu nomo jam ekzistas, aŭ la nomo kiun vi elektis ne validas.
 Bonvolu elekti alian nomon.',
-'cantmove-titleprotected' => 'Vi ne povas movi paĝo al ĉi loko, ĉar la nova titolo estis protektita kontraŭ kreado',
-'talkexists'              => 'Oni ja sukcesis movi la paĝon mem, sed
+'cantmove-titleprotected'   => 'Vi ne povas movi paĝo al ĉi loko, ĉar la nova titolo estis protektita kontraŭ kreado',
+'talkexists'                => 'Oni ja sukcesis movi la paĝon mem, sed
 ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
 Bonvolu permane kunigi ilin.',
-'movedto'                 => 'alinomita al',
-'movetalk'                => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
-'move-subpages'           => 'Alinomigi ĉiujn subpaĝojn, se fareble.',
-'move-talk-subpages'      => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
-'movepage-page-exists'    => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
-'movepage-page-moved'     => 'La paĝo $1 estis alinomita al $2.',
-'movepage-page-unmoved'   => 'La paĝo $1 ne povas esti alinomigita al $2.',
-'movepage-max-pages'      => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
-'1movedto2'               => '[[$1]] movita al [[$2]]',
-'1movedto2_redir'         => '[[$1]] movita al [[$2]], redirekto lasita',
-'movelogpage'             => 'Protokolo pri paĝmovoj',
-'movelogpagetext'         => 'Jen listo de movitaj paĝoj',
-'movereason'              => 'Kialo:',
-'revertmove'              => 'restarigi',
-'delete_and_move'         => 'Forigi kaj alinomigi',
-'delete_and_move_text'    => '==Forigo nepras==
+'movedto'                   => 'alinomita al',
+'movetalk'                  => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
+'move-subpages'             => 'Alinomigi ĉiujn subpaĝojn, se fareble.',
+'move-talk-subpages'        => 'Alinomigi ĉiujn subpaĝojn de diskuto-paĝoj, se fareble.',
+'movepage-page-exists'      => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
+'movepage-page-moved'       => 'La paĝo $1 estis alinomita al $2.',
+'movepage-page-unmoved'     => 'La paĝo $1 ne povas esti alinomigita al $2.',
+'movepage-max-pages'        => 'La maksimumo de $1 {{PLURAL:$1|paĝo|paĝoj}} estis {{PLURAL:$1|alinomita|alinomitaj}} kaj neniuj pliaj estos alinomitaj aŭtomate.',
+'1movedto2'                 => '[[$1]] movita al [[$2]]',
+'1movedto2_redir'           => '[[$1]] movita al [[$2]], redirekto lasita',
+'movelogpage'               => 'Protokolo pri paĝmovoj',
+'movelogpagetext'           => 'Jen listo de movitaj paĝoj',
+'movereason'                => 'Kialo:',
+'revertmove'                => 'restarigi',
+'delete_and_move'           => 'Forigi kaj alinomigi',
+'delete_and_move_text'      => '==Forigo nepras==
 
 La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon por la movo?',
-'delete_and_move_confirm' => 'Jes, forigu la paĝon',
-'delete_and_move_reason'  => 'Forigita por ebligi movon',
-'selfmove'                => 'Font- kaj cel-titoloj samas; ne eblas movi paĝon sur ĝin mem.',
-'immobile_namespace'      => 'La celtitolo estas de speciala speco; ne eblas movi paĝojn en tiun nomspacon.',
-'imagenocrossnamespace'   => 'Ne eblas movi dosieron al nedosiera nomspaco',
-'imagetypemismatch'       => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
-'imageinvalidfilename'    => 'La cela dosiernomo estas nevalida',
-'fix-double-redirects'    => 'Ĝisdatigi iujn alidirektilojn kiuj direktas al la originala titolo',
+'delete_and_move_confirm'   => 'Jes, forigu la paĝon',
+'delete_and_move_reason'    => 'Forigita por ebligi movon',
+'selfmove'                  => 'Font- kaj cel-titoloj samas; ne eblas movi paĝon sur ĝin mem.',
+'immobile-source-namespace' => 'Ne eblas movi paĝojn en nomspaco "$1"',
+'immobile-target-namespace' => 'Ne eblas movi paĝojn en nomspacon "$1"',
+'immobile-source-page'      => 'Ĉi tiu paĝo ne estas movebla.',
+'imagenocrossnamespace'     => 'Ne eblas movi dosieron al nedosiera nomspaco',
+'imagetypemismatch'         => 'La nova dosierfinaĵo ne kongruas ĝian dosiertipon.',
+'imageinvalidfilename'      => 'La cela dosiernomo estas nevalida',
+'fix-double-redirects'      => 'Ĝisdatigi iujn alidirektilojn kiuj direktas al la originala titolo',
 
 # Export
 'export'            => 'Eksporti paĝojn',

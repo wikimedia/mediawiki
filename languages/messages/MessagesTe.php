@@ -5,6 +5,7 @@
  * @file
  *
  * @author Chaduvari
+ * @author Meno25
  * @author Mpradeep
  * @author Sunil Mohan
  * @author Veeven
@@ -299,6 +300,8 @@ $messages = array(
 'editsection'             => 'మార్చు',
 'editold'                 => 'మార్చు',
 'viewsourceold'           => 'మూలాన్ని చూడండి',
+'editlink'                => 'మార్చు',
+'viewsourcelink'          => 'మూలాన్ని చూడండి',
 'editsectionhint'         => 'విభాగాన్ని మార్చు: $1',
 'toc'                     => 'విషయ సూచిక',
 'showtoc'                 => 'చూపించు',
@@ -466,7 +469,7 @@ $2',
 'loginsuccesstitle'          => 'ప్రవేశం విజయవంతమైనది',
 'loginsuccess'               => "'''మీరు ఇప్పుడు {{SITENAME}}లోనికి \"\$1\"గా ప్రవేశించారు.'''",
 'nosuchuser'                 => '"$1" అనే పేరుతో వాడుకరులు లేరు.
-పేరు సరిచూసుకోండి, లేదా [[Special:Userlogin/signup|కొత్త ఖాతా సృష్టించుకోండి]].',
+పేరు సరిచూసుకోండి, లేదా [[Special:UserLogin/signup|కొత్త ఖాతా సృష్టించుకోండి]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" అనే పేరుతో సభ్యులు లేరు. పేరు సరి చూసుకోండి.',
 'nouserspecified'            => 'సభ్యనామాన్ని తప్పనిసరిగా ఎంచుకోవాలి.',
 'wrongpassword'              => 'ఈ సంకేతపదం సరైనది కాదు. దయచేసి మళ్లీ ప్రయత్నించండి.',
@@ -677,7 +680,7 @@ $2',
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'హెచ్చరిక: ఈ పేజీలో ఖరీదైన పార్సరు పిలుపులు చాలా ఉన్నాయి.
 
-పార్సరు {{PLURAL:$2|పిలుపు|పిలుపులు}} $2 కంటే తక్కువ ఉండాలి,  ప్రస్తుతం {{PLURAL:$1|$1 పిలుపు ఉంది|$1  పిలుపులు ఉన్నాయి}.',
+పార్సరు {{PLURAL:$2|పిలుపు|పిలుపులు}} $2 కంటే తక్కువ ఉండాలి,  ప్రస్తుతం {{PLURAL:$1|$1 పిలుపు ఉంది|$1  పిలుపులు ఉన్నాయి}}.',
 'expensive-parserfunction-category'       => 'పార్సరు సందేశాలు అధికంగా ఉన్న పేజీలు',
 'post-expand-template-inclusion-warning'  => 'హెచ్చరిక: మూస చేర్పు సైజూ చాలా పెద్దదిగా ఉంది.
 కొన్ని మూసలను చేర్చము.',
@@ -880,7 +883,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'mypreferences'            => 'నా అభిరుచులు',
 'prefs-edits'              => 'దిద్దుబాట్ల సంఖ్య:',
 'prefsnologin'             => 'లాగిన్‌ అయిలేరు',
-'prefsnologintext'         => 'వాడుకరి అభిరుచులను మార్చుకోడానికి, మీరు <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} లోనికి ప్రవేశించి]</span> ఉండాలి.',
+'prefsnologintext'         => 'వాడుకరి అభిరుచులను మార్చుకోడానికి, మీరు <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} లోనికి ప్రవేశించి]</span> ఉండాలి.',
 'prefsreset'               => 'ఇదివరకటి అభిరుచులు పునరుధ్ధరించబడ్డాయి.',
 'qbsettings'               => 'క్విక్‌బార్',
 'qbsettings-none'          => 'ఏదీకాదు',
@@ -1918,7 +1921,7 @@ $NEWPAGE
 ఆ సందర్భాలలో, మీరు చర్చా పేజీని కూడా పనిగట్టుకుని తరలించవలసి ఉంటుంది, లేదా ఏకీకృత పరచవలసి ఉంటుంది.",
 'movearticle'             => 'పేజీని తరలించు',
 'movenologin'             => 'లాగిన్‌ అయిలేరు',
-'movenologintext'         => 'పేజీని తరలించడానికి మీరు [[Special:Userlogin|లాగిన్‌]] అయిఉండాలి.',
+'movenologintext'         => 'పేజీని తరలించడానికి మీరు [[Special:UserLogin|లాగిన్‌]] అయిఉండాలి.',
 'movenotallowed'          => 'పేజీలను తరలించడానికి మీకు అనుమతి లేదు.',
 'newtitle'                => 'కొత్త పేరుకి',
 'move-watch'              => 'ఈ పేజీని గమనించు',
@@ -1949,7 +1952,6 @@ $NEWPAGE
 'delete_and_move_confirm' => 'అవును, పేజీని తొలగించు',
 'delete_and_move_reason'  => 'తరలింపుకు వీలుగా తొలగించబడింది',
 'selfmove'                => 'మూలం, గమ్యం పేర్లు ఒకటే; పేజీని దాని పైకే తరలించడం కుదరదు.',
-'immobile_namespace'      => 'మీరు తరలించబోతున్న పేజీ లేదా గమ్యస్థానంలో ఉన్న పేజీ ఒక ప్రత్యేక పేజీ; ఆ నేంస్పేసులోకి లేదా ఆ నేంస్పేసు నుండి తరలించటం కుదరదు.',
 'imagenocrossnamespace'   => 'ఫైలును, ఫైలుకు చెందని నేమ్‌స్పేసుకు తరలించలేం',
 'imagetypemismatch'       => 'ఈ కొత్త ఫైలు ఎక్స్&zwnj;టెన్షన్ ఫైలు రకానికి సరిపోలేదు',
 'imageinvalidfilename'    => 'టార్గెట్ ఫైలు పేరు సరిగాలేదు',

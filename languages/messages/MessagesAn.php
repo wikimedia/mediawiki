@@ -5,6 +5,7 @@
  * @file
  *
  * @author Juanpabl
+ * @author Remember the dot
  * @author Willtron
  * @author לערי ריינהארט
  */
@@ -369,7 +370,7 @@ $messages = array(
 'red-link-title'          => '$1 (encara no escrita)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Articlo',
+'nstab-main'      => 'Pachina',
 'nstab-user'      => "Pachina d'usuario",
 'nstab-media'     => 'Pachina multimedia',
 'nstab-special'   => 'Espezial',
@@ -1857,7 +1858,7 @@ por fabor, asegure-se d'acatar as consecuenzias que acarriará ista aizión anti
 En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu d'a pachina de descusión.",
 'movearticle'             => 'Tresladar pachina:',
 'movenologin'             => 'No ha enzetato sesión',
-'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:Userlogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
+'movenologintext'         => 'Amenista estar un usuario rechistrato y [[Special:UserLogin|aber-se identificato enzetando una sesión]] ta tresladar una pachina.',
 'movenotallowed'          => 'No tiene premisos ta tresladar pachinas.',
 'newtitle'                => 'Ta o nuebo títol',
 'move-watch'              => 'Cosirar iste articlo',
@@ -1888,7 +1889,6 @@ A pachina de destino ("[[:$1]]") ya esiste. Quiere borrar-la ta premitir o tresl
 'delete_and_move_confirm' => 'Sí, borrar a pachina',
 'delete_and_move_reason'  => 'Borrata ta premitir o treslau',
 'selfmove'                => "Os títols d'orichen y destino son os mesmos. No se puede tresladar una pachina ta ella mesma.",
-'immobile_namespace'      => "O títol de destino ye d'una mena espezial. No se puede tresladar pachinas ta iste espazio de nombres.",
 'imagenocrossnamespace'   => "No se puede tresladar un archibo ta un espazio de nombres que no sía t'archibos",
 'imagetypemismatch'       => "A nueba estensión no concuerda con o tipo d'archibo",
 'imageinvalidfilename'    => "O nombre de l'archibo obchetibo no ye conforme",

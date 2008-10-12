@@ -378,7 +378,7 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'noname'                     => 'Tu neesi norādījis derīgu lietotāja vārdu.',
 'loginsuccesstitle'          => 'Ieiešana veiksmīga',
 'loginsuccess'               => 'Tu esi ienācis {{grammar:lokatīvs|{{SITENAME}}}} kā "$1".',
-'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:Userlogin/signup|izveido jaunu kontu]].',
+'nosuchuser'                 => 'Šeit nav lietotāja ar vārdu "$1". Pārbaudi, vai pareizi uzrakstīts, vai arī [[Special:UserLogin/signup|izveido jaunu kontu]].',
 'nosuchusershort'            => 'Šeit nav lietotāja ar vārdu "<nowiki>$1</nowiki>". Pārbaudi, vai nav drukas kļūda.',
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
@@ -643,7 +643,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'mypreferences'         => 'manas izvēles',
 'prefs-edits'           => 'Izmaiņu skaits:',
 'prefsnologin'          => 'Neesi iegājis',
-'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
+'prefsnologintext'      => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
 'prefsreset'            => 'Sākotnējās izvēles ir atjaunotas.',
 'qbsettings'            => 'Rīku joslas stāvoklis',
 'changepassword'        => 'Mainīt paroli',
@@ -1380,7 +1380,7 @@ pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
 'movearticle'             => 'Pārvietot lapu',
 'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
-'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:Userlogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
+'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
 'movenotallowed'          => 'Tev {{grammar:lokatīvs|{{SITENAME}}}} nav tiesību pārvietot lapas .',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',
@@ -1411,8 +1411,6 @@ Vai tu to gribi izdzēst, lai atbrīvotu vietu pārvietošanai?',
 'delete_and_move_reason'  => 'Izdzēsts, lai atbrīvotu vietu parvietošanai',
 'selfmove'                => 'Izejas un mērķa lapu nosaukumi ir vienādi;
 nevar pārvietot lapu uz sevi.',
-'immobile_namespace'      => "Izejas vai mērķa lapa ir īpašā lapa;
-nevar pārvietot lapas no un lapas uz to ''namespaci''.",
 'fix-double-redirects'    => 'Automātiski izmainīt visas pāradresācijas, kas ved uz sākotnējo nosaukumu',
 
 # Export

@@ -1341,7 +1341,7 @@ pangngaasim ta pasingkedam a maawatam ti ibunga dayoty sakbay nga agtuloyka a ma
 Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo.",
 'movearticle'             => 'Iyakar ti panid',
 'movenologin'             => 'Saan a nakastrek',
-'movenologintext'         => 'Nasken a nakarehistroka nga agar-aramat ken [[Special:Userlogin|nakastrek]] tapno makaiyakarka iti panid.',
+'movenologintext'         => 'Nasken a nakarehistroka nga agar-aramat ken [[Special:UserLogin|nakastrek]] tapno makaiyakarka iti panid.',
 'movenotallowed'          => 'Awanka iti pammalubos nga agiyakar iti pampanid.',
 'newtitle'                => 'Iti baro a titulo:',
 'move-watch'              => 'Bantayan daytoy a panid',

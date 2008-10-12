@@ -5,6 +5,7 @@
  * @file
  *
  * @author Bangin
+ * @author Erdal Ronahi
  */
 
 $namespaceNames = array(
@@ -269,6 +270,7 @@ $messages = array(
 'editsection'             => 'biguherîne',
 'editold'                 => 'biguherîne',
 'viewsourceold'           => 'çavkanî bibîne',
+'editlink'                => 'sererastkirin',
 'editsectionhint'         => 'Beşê biguherîne: $1',
 'toc'                     => 'Tabloya Naverokê',
 'showtoc'                 => 'nîşan bide',
@@ -640,7 +642,7 @@ Ev verzyona vê rûpelê hatîye jêbirin. Belkî înformasyon di [{{fullurl:Spe
 'history-title'           => 'Dîroka versyonên "$1"',
 'difference'              => '(Ciyawaziya nav revîzyonan)',
 'lineno'                  => 'Dêrra $1:',
-'compareselectedversions' => 'Guhartoyan Helsengêne',
+'compareselectedversions' => 'Guhartoyan bide ber hev',
 'editundo'                => 'Betalbike',
 'diff-multi'              => '({{PLURAL:$1|Verzyonekî navberê netê|$1 verzyonên navberê netên}} dîtin.)',
 
@@ -1309,7 +1311,7 @@ Eger ev mişkla çêbû, tu gireke vê rûpelê bi xwe bigerînê.
 Xêra xwe navî nuh û sedemê navgerandinê binivisîne.",
 'movearticle'             => 'Rûpelê bigerîne',
 'movenologin'             => 'Xwe qeyd nekir',
-'movenologintext'         => 'Tu dive bikarhênereke qeydkirî bî û [[Special:Userlogin|werî nav sîstemê]]
+'movenologintext'         => 'Tu dive bikarhênereke qeydkirî bî û [[Special:UserLogin|werî nav sîstemê]]
 da bikarî navê wê rûpelê biguherînî.',
 'movenotallowed'          => 'Tu nikanê navên gotarên {{SITENAME}} biguherînê.',
 'newtitle'                => 'Sernivîsa nû',

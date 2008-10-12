@@ -625,6 +625,8 @@ $messages = array(
 'editsection'             => 'عدل',
 'editold'                 => 'عدل',
 'viewsourceold'           => 'عرض المصدر',
+'editlink'                => 'عدل',
+'viewsourcelink'          => 'عرض المصدر',
 'editsectionhint'         => 'تحرير القسم: $1',
 'toc'                     => 'محتويات',
 'showtoc'                 => 'عرض',
@@ -803,7 +805,7 @@ $2',
 'loginsuccesstitle'          => 'تم الدخول بشكل صحيح',
 'loginsuccess'               => "'''لقد قمت بتسجيل الدخول ل{{SITENAME}} باسم \"\$1\".'''",
 'nosuchuser'                 => 'لا يوجد مستخدم بالاسم "$1".
-تأكد من إملاء الاسم، أو [[Special:Userlogin/signup|قم بإنشاء حساب جديد]].',
+تأكد من إملاء الاسم، أو [[Special:UserLogin/signup|قم بإنشاء حساب جديد]].',
 'nosuchusershort'            => 'لا يوجد مستخدم باسم <nowiki>$1</nowiki>".
 تأكد من إملاء الاسم.',
 'nouserspecified'            => 'يجب عليك تحديد اسم مستخدم.',
@@ -1304,7 +1306,7 @@ $2',
 'mypreferences'            => 'تفضيلاتي',
 'prefs-edits'              => 'عدد التعديلات:',
 'prefsnologin'             => 'غير مسجل',
-'prefsnologintext'         => 'يجب أن تكون <span class="plainlinks">[{{fullurl:Special:Userlogin|returnto=$1}} مسجل الدخول]</span>  حتى تتمكن من تعديل تفضيلات المستخدم.',
+'prefsnologintext'         => 'يجب أن تكون <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} مسجل الدخول]</span>  حتى تتمكن من تعديل تفضيلات المستخدم.',
 'prefsreset'               => 'أعيدت التفضيلات إلى الإعداد الافتراضي المخزن.',
 'qbsettings'               => 'لوح سريع',
 'qbsettings-none'          => 'بلا تحديد',
@@ -2326,6 +2328,7 @@ $1',
 'ipblocklist-sh-userblocks'       => '$1 عمليات منع الحسابات',
 'ipblocklist-sh-tempblocks'       => '$1 عمليات المنع المؤقتة',
 'ipblocklist-sh-addressblocks'    => '$1 عمليات منع الأيبي المفردة',
+'ipblocklist-scanrange'           => 'للأيبيهات، ضمن كل عمليات المنع التي تؤثر على العنوان',
 'ipblocklist-submit'              => 'بحث',
 'blocklistline'                   => '$1, $2 منع $3 ($4)',
 'infiniteblock'                   => 'لا نهائي',
@@ -2398,9 +2401,9 @@ $1',
 'databasenotlocked'   => 'قاعدة البيانات ليست مغلقة.',
 
 # Move page
-'move-page'               => 'نقل $1',
-'move-page-legend'        => 'نقل صفحة',
-'movepagetext'            => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها للاسم الجديد.
+'move-page'                 => 'نقل $1',
+'move-page-legend'          => 'نقل صفحة',
+'movepagetext'              => "باستخدام  الاستمارة بالأسفل بإمكانك أن تغير اسم الصفحة، وأن تنقل تاريخها للاسم الجديد.
 العنوان القديم سيصبح تحويلة للعنوان الجديد.
 يمكنك تحديث التحويلات التي تشير إلى العنوان الأصلي تلقائيا.
 لو اخترت ألا تفعل، تأكد من عدم وجود تحويلات [[Special:DoubleRedirects|مزدوجة]] أو [[Special:BrokenRedirects|مكسورة]].
@@ -2412,55 +2415,58 @@ $1',
 '''تحذير!'''
 هذا قد يكون تغييرا كارثيا وغير متوقع لصفحة مشهورة؛
 من فضلك تأكد من فهم عواقب هذا قبل المتابعة.",
-'movepagetalktext'        => "صفحة النقاش المرفقة سيتم نقلها كذلك، '''إلا في حالة''':
+'movepagetalktext'          => "صفحة النقاش المرفقة سيتم نقلها كذلك، '''إلا في حالة''':
 * توجد صفحة نقاش غير فارغة تحت العنوان الجديد، أو
 * قمت بإزالة اختيار الصندوق بالأسفل.
 
 وفي هذه الحالات، يجب عليك نقل أو دمج محتويات الصفحة يدويا، إذا رغب في ذلك.",
-'movearticle'             => 'انقل الصفحة:',
-'movenologin'             => 'غير مسجل',
-'movenologintext'         => 'يجب أن تكون مستخدما مسجلا وأن تقوم [[Special:Userlogin|بالدخول]] لكي تنقل صفحة.',
-'movenotallowed'          => 'أنت لا تمتلك الصلاحية لنقل الصفحات.',
-'cant-move-user-page'     => 'أنت لا تمتلك الصلاحية لنقل صفحات المستخدم الرئيسية.',
-'newtitle'                => 'إلى العنوان الجديد:',
-'move-watch'              => 'راقب هذه الصفحة',
-'movepagebtn'             => 'نقل الصفحة',
-'pagemovedsub'            => 'تم النقل بنجاح',
-'movepage-moved'          => '<big>\'\'\'"$1" نقلت إلى "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'articleexists'           => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.
+'movearticle'               => 'انقل الصفحة:',
+'movenologin'               => 'غير مسجل',
+'movenologintext'           => 'يجب أن تكون مستخدما مسجلا وأن تقوم [[Special:UserLogin|بالدخول]] لكي تنقل صفحة.',
+'movenotallowed'            => 'أنت لا تمتلك الصلاحية لنقل الصفحات.',
+'cant-move-user-page'       => 'أنت لا تمتلك الصلاحية لنقل صفحات المستخدم الرئيسية.',
+'cant-move-to-user-page'    => 'أنت لا تمتلك الصلاحية لنقل صفحة إلى صفحة مستخدم (ماعدا إلى صفحة مستخدم فرعية).',
+'newtitle'                  => 'إلى العنوان الجديد:',
+'move-watch'                => 'راقب هذه الصفحة',
+'movepagebtn'               => 'نقل الصفحة',
+'pagemovedsub'              => 'تم النقل بنجاح',
+'movepage-moved'            => '<big>\'\'\'"$1" نقلت إلى "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'articleexists'             => 'توجد صفحة بهذا الاسم، أو أن الاسم الذي تم اختياره غير صالح.
 من فضلك اختر اسم آخر.',
-'cantmove-titleprotected' => 'لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',
-'talkexists'              => "'''الصفحة نفسها تم نقلها بنجاح، ولكن صفحة النقاش لم يمكن نقلها لوجود صفحة مسبقا تحت العنوان الجديد.
+'cantmove-titleprotected'   => 'لا يمكنك نقل صفحة إلى هذا الموقع، لأن العنوان الجديد تمت حمايته ضد الإنشاء',
+'talkexists'                => "'''الصفحة نفسها تم نقلها بنجاح، ولكن صفحة النقاش لم يمكن نقلها لوجود صفحة مسبقا تحت العنوان الجديد.
 من فضلك ادمجهما يدويا.'''",
-'movedto'                 => 'تم نقلها إلى',
-'movetalk'                => 'انقل صفحة النقاش المرفقة',
-'move-subpages'           => 'انقل كل الصفحات الفرعية، إذا كان هذا ممكنا',
-'move-talk-subpages'      => 'انقل كل الصفحات الفرعية لصفحة النقاش، إذا كان هذا ممكنا',
-'movepage-page-exists'    => 'الصفحة $1 موجودة بالفعل ولا يمكن الكتابة عليها تلقائيا.',
-'movepage-page-moved'     => 'تم نقل الصفحة $1 إلى $2.',
-'movepage-page-unmoved'   => 'لم يمكن نقل الصفحة $1 إلى $2.',
-'movepage-max-pages'      => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} تم نقله ولن يتم نقل المزيد تلقائيا.',
-'1movedto2'               => '[[$1]] تم نقلها إلى [[$2]]',
-'1movedto2_redir'         => '[[$1]] تم نقلها إلى [[$2]] فوق التحويلة',
-'movelogpage'             => 'سجل النقل',
-'movelogpagetext'         => 'بالأسفل قائمة بالصفحات التي تم نقلها.',
-'movereason'              => 'السبب:',
-'revertmove'              => 'استرجاع',
-'delete_and_move'         => 'حذف ونقل',
-'delete_and_move_text'    => '==الحذف مطلوب==
+'movedto'                   => 'تم نقلها إلى',
+'movetalk'                  => 'انقل صفحة النقاش المرفقة',
+'move-subpages'             => 'انقل كل الصفحات الفرعية، إذا كان هذا ممكنا',
+'move-talk-subpages'        => 'انقل كل الصفحات الفرعية لصفحة النقاش، إذا كان هذا ممكنا',
+'movepage-page-exists'      => 'الصفحة $1 موجودة بالفعل ولا يمكن الكتابة عليها تلقائيا.',
+'movepage-page-moved'       => 'تم نقل الصفحة $1 إلى $2.',
+'movepage-page-unmoved'     => 'لم يمكن نقل الصفحة $1 إلى $2.',
+'movepage-max-pages'        => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} تم نقله ولن يتم نقل المزيد تلقائيا.',
+'1movedto2'                 => '[[$1]] تم نقلها إلى [[$2]]',
+'1movedto2_redir'           => '[[$1]] تم نقلها إلى [[$2]] فوق التحويلة',
+'movelogpage'               => 'سجل النقل',
+'movelogpagetext'           => 'بالأسفل قائمة بالصفحات التي تم نقلها.',
+'movereason'                => 'السبب:',
+'revertmove'                => 'استرجاع',
+'delete_and_move'           => 'حذف ونقل',
+'delete_and_move_text'      => '==الحذف مطلوب==
 الصفحة الهدف "[[:$1]]" موجودة بالفعل.
 هل تريد حذفها لإفساح المجال للنقل؟',
-'delete_and_move_confirm' => 'نعم، احذف الصفحة',
-'delete_and_move_reason'  => 'تم الحذف لإفساح مجال للنقل',
-'selfmove'                => 'لا يوجد اختلاف في عنوان المصدر والهدف؛
+'delete_and_move_confirm'   => 'نعم، احذف الصفحة',
+'delete_and_move_reason'    => 'تم الحذف لإفساح مجال للنقل',
+'selfmove'                  => 'لا يوجد اختلاف في عنوان المصدر والهدف؛
 لا يمكن نقل الصفحة على نفسها.',
-'immobile_namespace'      => 'عنوان المصدر أو الهدف ذو طبيعة خاصة؛
-لا يمكن نقل الصفحات من وإلى هذا النطاق.',
-'imagenocrossnamespace'   => 'لا يمكن نقل الملف إلى نطاق غير نطاق الملفات',
-'imagetypemismatch'       => 'امتداد الملف الجديد لا يطابق نوعه',
-'imageinvalidfilename'    => 'اسم الملف الهدف غير صحيح',
-'fix-double-redirects'    => 'حدث أي تحويلات تشير إلى العنوان الأصلي',
-'move-leave-redirect'     => 'اترك تحويلة خلفك',
+'immobile-source-namespace' => 'غير قادر على نقل الصفحات في النطاق "$1"',
+'immobile-target-namespace' => 'غير قادر على نقل الصفحات إلى النطاق "$1"',
+'immobile-source-page'      => 'هذه الصفحة غير قابلة للنقل.',
+'immobile-target-page'      => 'غير قادر على النقل إلى العنوان الوجهة هذا.',
+'imagenocrossnamespace'     => 'لا يمكن نقل الملف إلى نطاق غير نطاق الملفات',
+'imagetypemismatch'         => 'امتداد الملف الجديد لا يطابق نوعه',
+'imageinvalidfilename'      => 'اسم الملف الهدف غير صحيح',
+'fix-double-redirects'      => 'حدث أي تحويلات تشير إلى العنوان الأصلي',
+'move-leave-redirect'       => 'اترك تحويلة خلفك',
 
 # Export
 'export'            => 'تصدير صفحات',

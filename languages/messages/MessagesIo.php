@@ -8,6 +8,7 @@
  * @author Artomo
  * @author Lakaoso
  * @author Malafaya
+ * @author Remember the dot
  * @author לערי ריינהארט
  */
 
@@ -226,7 +227,7 @@ $messages = array(
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Imajo',
+'nstab-image'     => 'Arkivo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',
@@ -886,7 +887,7 @@ Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
 voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
 'movearticle'             => 'Movar pagino',
 'movenologin'             => 'Sesiono ne iniciata',
-'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:Userlogin|enirir]] por rinomizar pagino.',
+'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
 'newtitle'                => 'a nova titulo',
 'movepagebtn'             => 'Movar pagino',
 'pagemovedsub'            => 'Rinomizita sucese',

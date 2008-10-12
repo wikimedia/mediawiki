@@ -437,8 +437,10 @@ Kod binon: ''$2''.",
 
 # Login and logout pages
 'logouttitle'                => 'Senunädön oki',
-'logouttext'                 => '<strong>Esenunädol oli.</strong><br />
-Kanol laigebön {{SITENAME}} nennemiko, u kanol nunädön oli dönu me gebananem votik. Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.',
+'logouttext'                 => '<strong>Esenunädol oli.</strong>
+
+Kanol laigebön {{SITENAME}} nennemiko, u kanol [[Special:UserLogin|nunädön oli dönu]] me gebananem ot u gebenanem votik.
+Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.',
 'welcomecreation'            => '== Benokömö, o $1! ==
 
 Kal olik pejafon. No glömolöd ad votükön buükamis olik in {{SITENAME}}.',
@@ -485,7 +487,8 @@ yufü gebanapad u gebanabespikapad olik nes sävilupol dientifi olik.',
 'noname'                     => 'No egivol gebananemi lonöföl.',
 'loginsuccesstitle'          => 'Enunädol oli benosekiko',
 'loginsuccess'               => "'''Binol anu in {{SITENAME}} as \"\$1\".'''",
-'nosuchuser'                 => 'No dabinon geban labü nem: "$1". Koräkolös tonatami nema at, u jafolös kali nulik.',
+'nosuchuser'                 => 'No dabinon geban labü nem: "$1".
+Koräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]].',
 'nosuchusershort'            => 'No dabinon geban labü nem: "<nowiki>$1</nowiki>". Koräkolös tonatami nema at.',
 'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
@@ -511,7 +514,7 @@ Ad neletön migebi, mebapened te bal a {{PLURAL:$1|düp|düps $1}} dalon pasedö
 'mailerror'                  => 'Pöl dü sedam pota: $1',
 'acct_creation_throttle_hit' => 'Säkusädolös, ya ejafol {{PLURAL:$1|kali bal|kalis $1}}.
 No plu kanol jafön kali nulik.',
-'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $1.',
+'emailauthenticated'         => 'Ladet leäktronik olik päfümükon tü düp $2 ün $3.',
 'emailnotauthenticated'      => 'Ladet leäktronik ola no nog pefümedon. Pened nonik posedon me pads sököl.',
 'noemailprefs'               => 'Givolös ladeti leäktronik, dat pads at okanons pagebön.',
 'emailconfirmlink'           => 'Fümedolös ladeti leäktronik ola',
@@ -808,6 +811,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'compareselectedversions' => 'Leigodolöd fomamis pevälöl',
 'editundo'                => 'sädunön',
 'diff-multi'              => '({{PLURAL:$1|Revid vüik bal no pejonon|Revids vüik $1 no pejonons}}.)',
+'diff-movedto'            => 'petopätükon lü $1',
 'diff-src'                => 'fonät',
 'diff-with-final'         => '&#32;e $1 $2',
 'diff-tr'                 => "'''ked'''",
@@ -857,7 +861,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'mypreferences'            => 'Buükams obik',
 'prefs-edits'              => 'Num redakamas:',
 'prefsnologin'             => 'No enunädon oki',
-'prefsnologintext'         => 'Nedol [[Special:UserLogin|nunädön oli]] büä kanol votükön gebanabuükamis.',
+'prefsnologintext'         => 'Nedol <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} nunädön oli]</span> büä kanol votükön gebanabuükamis.',
 'prefsreset'               => 'Buükams egekömons ad stad büik peregistaröl.',
 'qbsettings'               => 'Stumem',
 'qbsettings-none'          => 'Nonik',
@@ -1222,6 +1226,8 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'statistics'              => 'Statits',
 'statistics-header-pages' => 'Statits pada',
 'statistics-header-users' => 'Gebanastatits',
+'statistics-pages'        => 'Pads',
+'statistics-files'        => 'Ragivs pelöpüköl',
 'statistics-mostpopular'  => 'Pads suvüno palogöls:',
 
 'disambiguations'      => 'Telplänovapads',
@@ -1735,7 +1741,7 @@ Votükam at kanon binön mu staböfik ä no paspetöl pö pad pöpedik. Suemolö
 Ön jenets at, if vilol topätükön bespikapadi u balön oni e padi ya dabinöl, ol it omutol dunön osi.",
 'movearticle'             => 'Topätükolöd padi',
 'movenologin'             => 'No enunädon oki',
-'movenologintext'         => 'Mutol binön geban peregistaröl e [[Special:Userlogin|nunädön oli]] ad topätükön padi.',
+'movenologintext'         => 'Mutol binön geban peregistaröl e [[Special:UserLogin|nunädön oli]] ad topätükön padi.',
 'movenotallowed'          => 'No dalol topätükön padis.',
 'newtitle'                => 'Lü tiäd nulik',
 'move-watch'              => 'Pladolöd padi at ini galädalised',
@@ -1762,7 +1768,6 @@ Yeged nulik "[[:$1]]" ya dabinon. Vilol-li moükön oni ad jafön spadi pro top�
 'delete_and_move_confirm' => 'Si! moükolöd padi',
 'delete_and_move_reason'  => 'Pemoükon ad jafön spadi pro topätükam',
 'selfmove'                => 'Tiäds nulik e bäldik binons ots; pad no kanon patopätükön sui ok it.',
-'immobile_namespace'      => 'Fonät e/u zeil binon padasots patik: no kanoy topätükön padis ini u se nemaspad at.',
 
 # Export
 'export'            => 'Seveigön padis',
