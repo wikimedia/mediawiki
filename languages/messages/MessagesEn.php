@@ -3734,4 +3734,8 @@ Input the username or IP to get a list of pages to delete.',
 'nuke-submit-delete' => 'Delete selected',
 'right-nuke'         => 'Mass delete pages',
 
+# Unknown messages
+'watchlist-hide-patrolled' => 'Hide patrolled edits',
+'watchlist-show-patrolled' => 'Show patrolled edits',
+
 );
