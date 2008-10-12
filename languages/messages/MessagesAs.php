@@ -32,17 +32,17 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'विशेष' => 'NS_SPECIAL',
-	'वार्ता' => 'NS_TALK',
-	'सदस्य' => 'NS_USER',
-	'सदस्य_वार्ता' => 'NS_USER_TALK',
-	'$1_वार्ता' => 'NS_PROJECT_TALK',
-	'चित्र' => 'NS_IMAGE',
-	'चित्र_वार्ता' => 'NS_IMAGE_TALK',
-	'साँचा' => 'NS_TEMPLATE',
-	'साँचा_वार्ता' => 'NS_TEMPLATE_TALK',
-	'श्रेणी' => 'NS_CATEGORY',
-	'श्रेणी_वार्ता' => 'NS_CATEGORY_TALK',
+	'विशेष' => NS_SPECIAL,
+	'वार्ता' => NS_TALK,
+	'सदस्य' => NS_USER,
+	'सदस्य_वार्ता' => NS_USER_TALK,
+	'$1_वार्ता' => NS_PROJECT_TALK,
+	'चित्र' => NS_IMAGE,
+	'चित्र_वार्ता' => NS_IMAGE_TALK,
+	'साँचा' => NS_TEMPLATE,
+	'साँचा_वार्ता' => NS_TEMPLATE_TALK,
+	'श्रेणी' => NS_CATEGORY,
+	'श्रेणी_वार्ता' => NS_CATEGORY_TALK,
 );
 
 $digitTransformTable = array(
