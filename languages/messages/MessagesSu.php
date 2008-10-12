@@ -1708,7 +1708,6 @@ Artikel nu dituju "[[:$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun
 'delete_and_move_confirm' => 'Enya, hapus kaca éta',
 'delete_and_move_reason'  => 'Hapus sangkan bisa mindahkeun',
 'selfmove'                => 'Judul sumber jeung tujuanana sarua, lain gé mindahkeun atuh!',
-'immobile_namespace'      => 'Judul nu dituju kaasup kana tipe husus, teu bisa mindahkeun kaca ka ngaranspasi kitu.',
 'imagenocrossnamespace'   => 'Teu bisa mindahkeun gambar ka rohangan ngaran nu lain gambar',
 'imagetypemismatch'       => 'Éksténsi koropak anyar teu cocog jeung tipena',
 'imageinvalidfilename'    => 'Ngaran koropak tujuan teu sah',

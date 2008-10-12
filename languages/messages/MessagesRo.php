@@ -1947,7 +1947,6 @@ Articolul de destinaţie "[[:$1]]" există deja. Doriţi să îl ştergeţi pent
 'delete_and_move_confirm' => 'Da, şterge pagina.',
 'delete_and_move_reason'  => 'Şters pentru a face loc mutării',
 'selfmove'                => 'Titlurile sursei şi ale destinaţiei sunt aceleaşi; nu puteţi muta o pagină peste ea însăşi.',
-'immobile_namespace'      => 'Titlul destinaţiei este al unui tip special; nu se pot muta pagini în acel spaţiu de nume.',
 'imagenocrossnamespace'   => 'Fişierul nu poate fi mutat la un spaţiu de nume care nu este destinat fişierelor',
 'imagetypemismatch'       => 'Extensia nouă a fişierului nu se potriveşte cu tipul acestuia',
 'imageinvalidfilename'    => 'Numele fişierului destinaţie este invalid',

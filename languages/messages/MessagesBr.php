@@ -1770,7 +1770,6 @@ Diverkañ anezhañ a fell deoc'h ober evit reiñ lec'h d'an adkas ?",
 'delete_and_move_confirm' => 'Ya, diverkañ ar bajenn',
 'delete_and_move_reason'  => "Diverket evit ober lec'h d'an adkas",
 'selfmove'                => "Heñvel eo titl ar poent loc'hañ ha hini ar pal; n'haller ket adkas ur bajenn war-du he lec'h orin.",
-'immobile_namespace'      => "Dibarek eo titl ar vammenn pe ar pal; n'haller ket adenvel pajennoù war-du an esaouenn anv-mañ.",
 'imagetypemismatch'       => 'Ne glot ket astenn nevez ar restr gant ar furmad-mañ.',
 
 # Export

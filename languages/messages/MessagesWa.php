@@ -1212,7 +1212,6 @@ L' årtike såme «[[:$1]]» egzistêye dedja. El voloz vs disfacer po vs permet
 'delete_and_move_confirm' => "Oyi, disfacer l' pådje",
 'delete_and_move_reason'  => 'Disfacé po permete on displaeçaedje',
 'selfmove'                => 'Les tites sourdant et såme sont les minmes; ene pådje ni pout nén esse displaeceye so leye minme.',
-'immobile_namespace'      => "Li tite såme est d' ene sôre especiåle; on n' pout nén displaecî des pådjes dins cist espåce di lomaedje la.",
 
 # Export
 'export'          => 'Ricopyî des pådjes foû',

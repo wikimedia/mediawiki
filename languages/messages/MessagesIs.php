@@ -468,6 +468,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'editold'                 => 'breyta',
 'viewsourceold'           => 'skoða efni',
 'editlink'                => 'breyta',
+'viewsourcelink'          => 'skoða efni',
 'editsectionhint'         => 'Breyti hluta: $1',
 'toc'                     => 'Efnisyfirlit',
 'showtoc'                 => 'sýna',
@@ -477,7 +478,7 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'restorelink'             => '{{PLURAL:$1|eina eydda breytingu|$1 eyddar breytingar}}',
 'feedlinks'               => 'Streymi:',
 'feed-invalid'            => 'Röng tegund áskriftarstreymis.',
-'feed-unavailable'        => 'Streymi er ekki fáanlegt á {{SITENAME}}',
+'feed-unavailable'        => 'Samræmisstreymi eru ekki fáanlegt',
 'site-rss-feed'           => '$1 RSS-streymi',
 'site-atom-feed'          => '$1 Atom-streymi',
 'page-rss-feed'           => '„$1“ RSS-streymi',
@@ -691,7 +692,7 @@ Til að klára að skrá þig inn, verður þú að endurstilla lykilorðið hé
 'resetpass_success'       => 'Aðgangsorðinu þínu hefur verið breytt! Skráir þig inn...',
 'resetpass_bad_temporary' => 'Ógilt tímabundið lykilorð.
 Það kann að vera að þér hafi nú þegar tekist að breyta lykilorðinu þínu eða fengið nýtt tímabundið lykilorð.',
-'resetpass_forbidden'     => 'Ekki er hægt að breyta aðgangsorði á {{SITENAME}}',
+'resetpass_forbidden'     => 'Ekki er hægt að breyta lykilorðum',
 'resetpass_missing'       => 'Engin gögn í eyðublaðinu',
 
 # Edit page toolbar
@@ -782,15 +783,23 @@ Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 Þú getur búið til síðu með þessu nafni með því að skrifa í formið fyrir neðan
 (meiri upplýsingar í [[{{MediaWiki:Helppage}}|hjálpinni]]).
 Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í vafranum þínum.",
-'anontalkpagetext'                 => "----''Þetta er spjallsíða fyrir óskráðan notanda sem hefur ekki búið til aðgang ennþá eða notar hann ekki, slíkir notendur þekkjast á vistfangi sínu. Það kemur fyrir að margir notendur deili sama vistfangi þannig að athugasemdum sem beint er til eins notanda geta birst á spjallsíðu annars. Vinsamlegast [[Special:UserLogin|skráðu þig sem notanda]] til að koma í veg fyrir slíkan misskilning.''",
+'anontalkpagetext'                 => "----''Þetta er spjallsíða fyrir óþekktan notanda sem hefur ekki búið til aðgang ennþá, eða notar hann ekki.
+Þar af leiðandi þurfum við að nota vistfang til að bera kennsli á hann/hana.
+Nokkrir notendur geta deilt sama vistfangi.
+Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa verið beint að þér, gjörðu svo vel og [[Special:UserLogin/signup|búðu til aðgang]] eða [[Special:UserLogin|skráðu þig inn]] til þess að koma í veg fyrir þennan rugling við aðra óþekkta notendur í framtíðinni.''",
 'noarticletext'                    => 'Það er enginn texti á þessari síðu en sem komið er, þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
+'userpage-userdoesnotexist'        => 'Notandaaðgangurinn „$1“ er ekki skráður.
+Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu.',
 'clearyourcache'                   => "'''Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans þíns til að sjá breytingarnar.'''
 '''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''Command-R'' á Macintosh);
 '''Konqueror: '''smelltu á ''Reload'' eða ýttu á ''F5'';
 '''Opera:''' hreinsaðu skyndiminnið í ''Tools → Prefernces'';
 '''Internet Explorer:''' haltu ''Ctrl'' og smelltu á ''Refresh'', eða ýttu á ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => '<strong>Ath:</strong> Hægt er að nota „Forskoða“ hnappinn til að prófa CSS og JavaScript-kóða áður en hann er vistaður.',
-'usercsspreview'                   => "'''Hafðu í huga að þú ert aðeins að forskoða CSS-kóðann þinn, hann hefur ekki enn verið vistaður!'''",
+'usercsspreview'                   => "'''Mundu að þú ert aðeins að forskoða CSS-kóðann þinn.'''
+'''Hann hefur ekki enn verið vistaður!'''",
+'userjspreview'                    => "'''Mundu að þú ert aðeins að prófa/forskoða JavaScript-kóðann þinn.'''
+'''Hann hefur ekki enn verið vistaður!'''",
 'updated'                          => '(Uppfært)',
 'note'                             => '<strong>Athugið:</strong>',
 'previewnote'                      => '<strong>Það sem sést hér er aðeins forskoðun og hefur ekki enn verið vistað!</strong>',
@@ -828,10 +837,11 @@ Stjórnandinn sem læsti honum gaf þessa skýringu: $1',
 'templatesusedsection'             => 'Snið notuð á hlutanum:',
 'template-protected'               => '(vernduð)',
 'template-semiprotected'           => '(hálfvernduð)',
+'hiddencategories'                 => 'Þessi síða er meðlimur í {{PLURAL:$1|1 földum flokki|$1 földum flokkum}}:',
 'nocreatetitle'                    => 'Síðugerð takmörkuð',
 'nocreatetext'                     => '{{SITENAME}} hefur takmarkað eiginleikann að gera nýjar síður.
 Þú getur farið til baka og breytt núverandi síðum, eða [[Special:UserLogin|skráð þið inn eða búið til aðgang]].',
-'nocreate-loggedin'                => 'Þú hefur ekki heimild til að búa til nýjar síður á {{SITENAME}}.',
+'nocreate-loggedin'                => 'Þú hefur ekki leyfi til að skapa nýjar síður.',
 'permissionserrors'                => 'Leyfisvillur',
 'permissionserrorstext'            => 'Þú hefur ekki leyfi til að gera þetta, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
 'permissionserrorstext-withaction' => 'Þú hefur ekki réttindi til að $2, af eftirfarandi {{PLURAL:$1|ástæðu|ástæðum}}:',
@@ -839,11 +849,20 @@ Stjórnandinn sem læsti honum gaf þessa skýringu: $1',
 
 Athuga skal hvort viðeigandi sé að gera þessa síðu.
 Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
+'deleted-notice'                   => 'Þessari síðu hefur verið eytt.
+Eyðingaskrá síðunnar er gefin fyrir neðan til tilvísunar.',
+'deletelog-fulllog'                => 'Skoða alla atburðaskrá',
+'edit-gone-missing'                => 'Gat ekki uppfært síðu.
+Svo virðist sem henni hafi verið eytt.',
 'edit-conflict'                    => 'Breytingaárekstur.',
+'edit-no-change'                   => 'Breyting þín var hunsuð, því engin breyting var á textanum.',
+'edit-already-exists'              => 'Gat ekki skapað nýja síðu.
+Hún er nú þegar til.',
 
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',
 'undo-failure' => 'Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.',
+'undo-norev'   => 'Ekki var hægt að taka breytinguna aftr því að hún er ekki til eða henni var eytt.',
 'undo-summary' => 'Taka aftur breytingu $1 frá [[Special:Contributions/$2|$2]] ([[User talk:$2|Spjall]])',
 
 # Account creation failure
@@ -856,6 +875,7 @@ Eyðingarskrá fyrir þessa síðu er útveguð hér til þæginda:",
 'viewpagelogs'        => 'Sýna aðgerðir varðandi þessa síðu',
 'nohistory'           => 'Þessi síða hefur enga breytingaskrá.',
 'currentrev'          => 'Núverandi útgáfa',
+'currentrev-asof'     => 'Núverandi breyting frá og með $1',
 'revisionasof'        => 'Útgáfa síðunnar $1',
 'revision-info'       => 'Útgáfa frá $1 eftir $2',
 'previousrevision'    => '←Fyrri útgáfa',
@@ -877,31 +897,36 @@ Skýringartexti: (nú) = skoðanamunur á núverandi útgáfu,
 
 # Revision feed
 'history-feed-title'          => 'Breytingaskrá',
+'history-feed-description'    => 'Breytingaskrá fyrir þessa síðu á wiki-síðunni',
 'history-feed-item-nocomment' => '$1 á $2', # user at time
 'history-feed-empty'          => 'Síðan sem þú leitaðir að er ekki til.
 Möglegt er að henni hafi verið eytt út af þessari wiki síðu, eða endurnefnd.
 Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum síðum.',
 
 # Revision deletion
-'rev-deleted-comment'    => '(athugasemd fjarlægð)',
-'rev-deleted-user'       => '(notandanafn fjarlægt)',
-'rev-deleted-event'      => '(skráarbreyting fjarlægð)',
-'rev-delundel'           => 'sýna/fela',
-'revdelete-selected'     => '{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:',
-'logdelete-selected'     => '{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:',
-'revdelete-legend'       => 'Setja sjáanlegar hamlanir',
-'revdelete-hide-text'    => 'Fela breytingatexta',
-'revdelete-hide-comment' => 'Fela breytingaathugasemdir',
-'revdelete-hide-user'    => 'Fela notandanafn/vistfang',
-'revdelete-hide-image'   => 'Fela efni skráar',
-'revdelete-log'          => 'Athugasemd atburðaskráar:',
-'revdel-restore'         => 'Breyta sýn',
-'pagehist'               => 'Breytingaskrá',
-'deletedhist'            => 'Eyðingaskrá',
-'revdelete-content'      => 'efni',
-'revdelete-summary'      => 'breytingarágrip',
-'revdelete-uname'        => 'notandanafn',
-'revdelete-log-message'  => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
+'rev-deleted-comment'       => '(athugasemd fjarlægð)',
+'rev-deleted-user'          => '(notandanafn fjarlægt)',
+'rev-deleted-event'         => '(skráarbreyting fjarlægð)',
+'rev-delundel'              => 'sýna/fela',
+'revisiondelete'            => 'Eyða/endurvekja breytingar',
+'revdelete-nooldid-title'   => 'Ógild markbreyting',
+'revdelete-selected'        => '{{PLURAL:$2|Valin breyting|Valdar breytingar}} fyrir [[:$1]]:',
+'logdelete-selected'        => '{{PLURAL:$1|Valin aðgerð|Valdar aðgerðir}}:',
+'revdelete-legend'          => 'Setja sjáanlegar hamlanir',
+'revdelete-hide-text'       => 'Fela breytingatexta',
+'revdelete-hide-name'       => 'Fela aðgerð og mark',
+'revdelete-hide-comment'    => 'Fela breytingaathugasemdir',
+'revdelete-hide-user'       => 'Fela notandanafn/vistfang',
+'revdelete-hide-restricted' => 'Setja þessar hömlur á fyrir stjórnendur og læsa viðmótinu',
+'revdelete-hide-image'      => 'Fela efni skráar',
+'revdelete-log'             => 'Athugasemd atburðaskráar:',
+'revdel-restore'            => 'Breyta sýn',
+'pagehist'                  => 'Breytingaskrá',
+'deletedhist'               => 'Eyðingaskrá',
+'revdelete-content'         => 'efni',
+'revdelete-summary'         => 'breytingarágrip',
+'revdelete-uname'           => 'notandanafn',
+'revdelete-log-message'     => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
 
 # History merging
 'mergehistory-from' => 'Heimildsíða:',

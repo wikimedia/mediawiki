@@ -595,7 +595,7 @@ Denne besked kan ignorewres, hvis denne konto er oprettet som følge af en fejl.
 'resetpass_submit'        => 'Send password og log på',
 'resetpass_success'       => 'Dit password er nu ændret. Nu følger tilmelding …',
 'resetpass_bad_temporary' => 'Ugyldigt foreløbigt password. Du har allerede ændret dit password eller bestilt et nyt foreløbigt password.',
-'resetpass_forbidden'     => 'Dette password kan ikke ændres på {{SITENAME}}.',
+'resetpass_forbidden'     => 'Dette password kan ikke ændres.',
 'resetpass_missing'       => 'Tom formular.',
 
 # Edit page toolbar
@@ -1199,7 +1199,7 @@ Kontroller om du har billedet i fuld størrelse og upload det under det original
 'uploadedimage'               => 'Lagde "[[$1]]" op',
 'overwroteimage'              => 'Lagde en ny version af "[[$1]]" op',
 'uploaddisabled'              => 'Desværre er funktionen til at lægge billeder op afbrudt på denne server.',
-'uploaddisabledtext'          => 'Upload af filer er deaktiveret på {{SITENAME}}.',
+'uploaddisabledtext'          => 'Upload af filer er deaktiveret.',
 'uploadscripted'              => 'Denne fil indeholder HTML eller script-kode, der i visse tilfælde can fejlfortolkes af en browser.',
 'uploadcorrupt'               => 'Denne fil er beskadiget eller forsynet med en forkert endelse. Kontroller venligst filen og prøv at lægge den op igen.',
 'uploadvirus'                 => 'Denne fil indeholder en virus! Virusnavn: $1',

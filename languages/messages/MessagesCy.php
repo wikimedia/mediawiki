@@ -355,6 +355,8 @@ $messages = array(
 'editsection'             => 'golygu',
 'editold'                 => 'golygu',
 'viewsourceold'           => 'dangos y tarddiad',
+'editlink'                => 'golygu',
+'viewsourcelink'          => 'dangos côd y dudalen',
 'editsectionhint'         => "Golygu'r adran: $1",
 'toc'                     => 'Taflen Cynnwys',
 'showtoc'                 => 'dangos',
@@ -414,6 +416,13 @@ $1",
 'readonlytext'         => "Mae databas Wicipedia ar glo; nid yw'n bosib cadw erthyglau newydd na gwneud unrhyw newid arall. Mae'n debygol fod hyn er mwyn cynnal a chadw'r databas -- fe fydd ar gael eto cyn bo hir.
 
 Rhoddwyd y rheswm canlynol gan y gweinyddwr a'i glodd: $1",
+'missing-article'      => 'Ni lwyddodd y databas i ddod o hyd i destun tudalen yr oedd disgwyl iddo ei gael, sef "$1" $2.
+
+Fe ddigwydd gan amlaf wrth ddilyn hen gyswllt "gwah" (gwahaniaeth rhwng tudalennau) neu hanes at dudalen sydd eisoes wedi ei dileu.
+
+Onid dyma\'r achos, gall fod i chi ddod o hyd i fyg yn y meddalwedd.
+A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinyddwr]], gan nodi\'r URL dan sylw.',
+'missingarticle-rev'   => '(#golygiad: $1)',
 'missingarticle-diff'  => '(Gwahaniaeth: $1, $2)',
 'readonly_lag'         => "Mae'r databas wedi'i gloi'n awtomatig tra bod y gwas-weinyddion yn asio gyda'r prif weinydd",
 'internalerror'        => 'Gwall mewnol',
@@ -1032,7 +1041,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'recentchanges'                     => 'Newidiadau diweddar',
 'recentchangestext'                 => "Dilynwch y newidiadau diweddaraf i'r wici ar y dudalen hon.",
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
-'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y '''$2''' {{PLURAL:$2|diwrnod|diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}} diwethaf, hyd at $5, $4.",
+'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
 'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
 'rcshowhidebots'                    => '$1 botiau',
@@ -1386,6 +1395,9 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'listusers-submit'   => 'Dangos',
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 
+# Special:Log/newusers
+'newuserlog-autocreate-entry' => "Cyfrif wedi ei greu'n awtomatig",
+
 # Special:ListGroupRights
 'listgrouprights'         => 'Galluoedd grwpiau defnyddwyr',
 'listgrouprights-summary' => "Dyma restr o'r grwpiau defnyddwyr sydd i'w cael ar y wici hon, ynghyd â galluoedd aelodau'r gwahanol grwpiau. Cewch wybodaeth pellach am y gwahanol alluoedd ar y [[{{MediaWiki:Listgrouprights-helppage}}|dudalen gymorth]].",
@@ -1551,7 +1563,7 @@ wedi gwrthdroi i'r golygiad olaf gan $2.",
 'modifiedarticleprotection'   => 'newidiwyd y lefel diogelu ar gyfer "[[$1]]"',
 'unprotectedarticle'          => 'wedi dad-ddiogelu "[[$1]]"',
 'protect-title'               => "Newid y lefel diogelu ar gyfer '$1'",
-'prot_1movedto2'              => 'Wedi symud [[$1]] i [[$2]]',
+'prot_1movedto2'              => 'wedi symud [[$1]] i [[$2]]',
 'protect-legend'              => "Cadarnháu'r diogelu",
 'protectcomment'              => 'Sylw:',
 'protectexpiry'               => 'Yn dod i ben:',
@@ -1691,6 +1703,7 @@ $1',
 
 # Block/unblock
 'blockip'                     => "Blocio'r defnyddiwr",
+'blockip-legend'              => "Blocio'r defnyddiwr",
 'blockiptext'                 => "Defnyddiwch y ffurflen isod i flocio cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r databas. Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. Llenwch y rheswm am y bloc yn y blwch isod -- dywedwch pa dudalen sydd wedi cael ei fandaleiddio.",
 'ipaddress'                   => 'Cyfeiriad IP:',
 'ipadressorusername'          => 'Cyfeiriad IP neu enw defnyddiwr:',
@@ -1715,6 +1728,7 @@ $1',
 'ipbotheroption'              => 'arall',
 'ipbotherreason'              => 'Rheswm arall:',
 'ipbhidename'                 => "Cuddio'r enw defnyddiwr o'r lòg blocio, rhestr y blociau cyfredol a'r rhestr defnyddwyr",
+'ipbwatchuser'                => 'Gwylio tudalen defnyddiwr a thudalen sgwrs y defnyddiwr hwn',
 'badipaddress'                => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'           => 'Y blocio wedi llwyddo',
 'blockipsuccesstext'          => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.
@@ -1825,7 +1839,7 @@ Dewiswch enw arall os gwelwch yn dda.",
 'movepage-page-moved'     => 'Symudwyd y dudalen $1 i $2.',
 'movepage-page-unmoved'   => 'Ni ellid symud y dudalen $1 i $2.',
 'movepage-max-pages'      => 'Symudwyd yr uchafswm o $1 {{PLURAL:$1|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}} y gellir eu symud yn awtomatig.',
-'1movedto2'               => 'Wedi symud [[$1]] i [[$2]]',
+'1movedto2'               => 'wedi symud [[$1]] i [[$2]]',
 '1movedto2_redir'         => 'Wedi symud [[$1]] i [[$2]] trwy ailgyfeiriad.',
 'movelogpage'             => 'Lòg symud tudalennau',
 'movelogpagetext'         => "Isod mae rhestr y tudalennau sydd wedi'u symud",

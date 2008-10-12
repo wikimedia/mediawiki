@@ -686,7 +686,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-helppage}}]] səhifəsində tapa bilərsiniz',
 'listgrouprights-group'    => 'Qrup',
 'listgrouprights-rights'   => 'Hüquqlar',
-'listgrouprights-helppage' => 'Kömək:Qrup hüquqları',
+'listgrouprights-helppage' => 'Help:Qrup hüquqları',
 'listgrouprights-members'  => '(üzvləri)',
 
 # E-mail user

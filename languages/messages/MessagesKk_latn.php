@@ -2235,8 +2235,6 @@ Jıljıtwğa jol berw üşin bunı joyasız ba?',
 'delete_and_move_reason'  => 'Jıljıtwğa jol berw üşin joýılğan',
 'selfmove'                => 'Qaýnar jäne nısana taqırıp attarı birdeý;
 bet öziniñ üstine jıljıtılmaýdı.',
-'immobile_namespace'      => 'Qaýnar ne nısana taqırıp atı arnawlı türine jatadı;
-better bul esim ayası sırtına jäne işine jıljıtılmaýdı.',
 'imagenocrossnamespace'   => 'Faýl emes esim ayasına faýl jıljıtılmaýdı',
 'imagetypemismatch'       => 'Faýldıñ jaña keñeýtimi bunıñ türine säýkes emes',
 

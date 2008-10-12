@@ -1122,7 +1122,6 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 'delete_and_move_confirm' => 'Da, izbriši stran',
 'delete_and_move_reason'  => 'Izbrisano z namenom pripraviti prostor za prestavitev.',
 'selfmove'                => "'''Naslova vira in cilja sta enaka; stran ni mogoče prestaviti samo vase.''' Prosimo, preverite, ali niste naslova cilja namesto v polje »Na naslov« vpisali v polje »Razlog«.",
-'immobile_namespace'      => 'Kot cilj ste določili naslov posebne vrste. V ta imenski prostor stran ni mogoče prestaviti.',
 
 # Export
 'export'        => 'Izvoz strani',

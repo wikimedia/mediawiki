@@ -1431,7 +1431,6 @@ Ciljani članak "[[:$1]]" već postoji. Da li želite da ga obrišete da biste n
 'delete_and_move_confirm' => 'Da, obriši stranicu',
 'delete_and_move_reason'  => 'Obrisano kako bi se napravilo mesto za premeštanje',
 'selfmove'                => 'Izvorni i ciljani naziv su isti; strana ne može da se premesti preko same sebe.',
-'immobile_namespace'      => 'Ciljani naziv je posebnog tipa; ne mogu da premeste strane u taj imenski prostor.',
 
 # Export
 'export'          => 'Izvezi stranice',

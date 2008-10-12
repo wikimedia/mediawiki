@@ -351,7 +351,9 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 'editlink'                => 'Text of the edit link shown next to every (editable) template in the list of used templates below the edit window. See also {{msg-mw|Viewsourcelink}}.
 
 {{Identical|Edit}}',
-'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.',
+'viewsourcelink'          => 'Text of the link shown next to every uneditable (protected) template in the list of used templates below the edit window. See also {{msg-mw|Editlink}}.
+
+{{Identical|View source}}',
 'editsectionhint'         => "Tool tip shown when hovering the mouse over the link to '[{{MediaWiki:Editsection}}]' a section. Example: Edit section: Heading name",
 'toc'                     => 'This is the title of the table of contents displayed in pages with more than 3 sections
 
@@ -431,7 +433,9 @@ The title of the warning is the message [[MediaWiki:Nosuchspecialpage/{{SUBPAGEN
 'internalerror'        => '{{Identical|Internal error}}',
 'badtitle'             => '{{Identical|Bad title}}',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
-'viewsource'           => 'the text displayed in place of the "edit" tab when the user has no permission to edit the page',
+'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
+
+{{Identical|View source}}',
 'viewsourcefor'        => 'Subtitle shown when trying to edit a protected page.
 
 {{Identical|For $1}}',

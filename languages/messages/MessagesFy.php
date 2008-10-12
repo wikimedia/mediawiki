@@ -1827,7 +1827,6 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 De doelside "[[:$1]]" is der al. Moat dy wiske wurde om plak te meitsjen foar it werneamen?',
 'delete_and_move_confirm' => 'Ja, wiskje de side',
 'delete_and_move_reason'  => 'Wiske om plak te meitsjen foar in werneamde side',
-'immobile_namespace'      => "De nije titel is yn in nammeromte dêr't gjin siden oan tafoege wurde kinne.",
 
 # Export
 'export'            => 'Eksportearje',

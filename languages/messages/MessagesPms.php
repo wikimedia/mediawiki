@@ -1682,7 +1682,6 @@ L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej
 'delete_and_move_confirm' => 'É, scancela la pàgina',
 'delete_and_move_reason'  => "Scancelà për liberé ël pòst për tramudene n'àutra",
 'selfmove'                => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
-'immobile_namespace'      => "Belavans ël tìtol ëd destinassion a l'é ëd na sòrt riservà; as peulo pa tramudé dle pàgine anvers a col ëspassi nominal-lì.",
 
 # Export
 'export'            => 'Esporté dle pàgine',
