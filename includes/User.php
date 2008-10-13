@@ -814,6 +814,7 @@ class User {
 			$this->loadDefaults();
 			return false;
 		}
+		/*
 		if ( isset( $_SESSION['wsUserName'] ) && isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
 			// Cookie and session username should match
 			if( $_SESSION['wsUserName'] == $_COOKIE["{$wgCookiePrefix}UserName"] ) {
@@ -822,6 +823,10 @@ class User {
 				$this->loadDefaults();
 				return false;
 			}
+		} 
+		*/
+		if ( isset( $_SESSION['wsUserName'] ) ) {
+			$sName = $_SESSION['wsUserName'];
 		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
 			$sName = $_COOKIE["{$wgCookiePrefix}UserName"];
 			$_SESSION['wsUserName'] = $sName;
