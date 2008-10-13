@@ -914,7 +914,7 @@ class EditPage {
 		}
 
 		# Suppress edit conflict with self, except for section edits where merging is required.
-		if ( ( $this->section == '' ) && ( 0 != $userid ) && ( $this->mArticle->getUser() == $userid ) ) {
+		if ( $this->section == '' && $userid && $this->userWasLastToEdit($userid,$this->edittime) ) {
 			wfDebug( "EditPage::editForm Suppressing edit conflict, same user.\n" );
 			$this->isConflict = false;
 		} else {
@@ -1020,6 +1020,27 @@ class EditPage {
 		}
 		wfProfileOut( $fname );
 		return self::AS_END;
+	}
+	
+	/**
+	 * Check if no edits were made by other users since
+	 * the time a user started editing the page. Limit to
+	 * 20 revisions for the sake of sanity.
+	 */
+	protected function userWasLastToEdit( $id, $edittime ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->select( 'revision',
+			'rev_user',
+			array( 'rev_page' => $this->mArticle->getId(),
+				'rev_timestamp > '.$dbw->timestamp($edittime) ),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 20 ) );
+		while( $row = $res->fetchObject() ) {
+			if( $row->rev_user != $id ) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	/**
