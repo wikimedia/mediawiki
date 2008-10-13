@@ -161,6 +161,8 @@ The following extensions are migrated into MediaWiki 1.14:
   marked by unhealthy obsession with edit counts).
 * Added a file cache to the parser to improve page rendering time on pages with
   several uses of the same image.
+* (bug 1250) Users can still use "show preview" and "show changes" even if the 
+  wiki is set to read-only mode.
 
 === Bug fixes in 1.14 ===
 

@@ -375,18 +375,10 @@ class EditPage {
 			return;
 		}
 
-		if ( wfReadOnly() ) {
-			if ( $this->save ){
+		if ( wfReadOnly() && $this->save ) {
 				// Force preview
 				$this->save = false;
 				$this->preview = true;
-			} elseif ( $this->preview || $this->diff ) {
-				// A warning will be displayed instead
-			} else {
-				$this->readOnlyPage( $this->getContent() );
-				wfProfileOut( __METHOD__ );
-				return;
-			}
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
