@@ -4305,7 +4305,7 @@ class Parser
 			$file = $this->mFileCache[$imagename][$time];
 		} else {
 			$file = wfFindFile( $title, $time );
-			if ( !(count( $this->mFileCache ) <= 1000) ) {
+			if ( count( $this->mFileCache ) > 1000 ) {
 				$this->mFileCache = array();
 			}
 			$this->mFileCache[$imagename][$time] = $file;
