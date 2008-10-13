@@ -1219,24 +1219,6 @@ $movePage: MovePageForm object
 $oldTitle: old title (object)
 $newTitle: new title (object)
 
-'SpecialPageExecuteAfterPage': called after executing a special page
-Warning: Not all the special pages call this hook
-$specialPage: SpecialPage object
-$par: paramter passed to the special page (string)
-$funct: function called to execute the special page
-
-'SpecialPageExecuteBeforeHeader': called before setting the header text of the special page
-Warning: Not all the special pages call this hook
-$specialPage: SpecialPage object
-$par: paramter passed to the special page (string)
-$funct: function called to execute the special page
-
-'SpecialPageExecuteBeforePage': called after setting the special page header text but before the main execution
-Warning: Not all the special pages call this hook
-$specialPage: SpecialPage object
-$par: paramter passed to the special page (string)
-$funct: function called to execute the special page
-
 'SpecialPage_initList': called when setting up SpecialPage::$mList, use this hook to remove a core special page
 $list: list (array) of core special pages
 
