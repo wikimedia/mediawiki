@@ -800,31 +800,25 @@ class User {
 			return $result;
 		}
 
-		if ( isset( $_SESSION['wsUserID'] ) ) {
-			if ( 0 != $_SESSION['wsUserID'] ) {
+		if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
+			$sId = intval( $_COOKIE["{$wgCookiePrefix}UserID"] );
+			if( isset( $_SESSION['wsUserID'] ) && $sId != $_SESSION['wsUserID'] ) {
+				$this->loadDefaults(); // Possible collision!
+				return false;
+			}
+			$_SESSION['wsUserID'] = $sId;
+		} else if ( isset( $_SESSION['wsUserID'] ) ) {
+			if ( $_SESSION['wsUserID'] != 0 ) {
 				$sId = $_SESSION['wsUserID'];
 			} else {
 				$this->loadDefaults();
 				return false;
 			}
-		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserID"] ) ) {
-			$sId = intval( $_COOKIE["{$wgCookiePrefix}UserID"] );
-			$_SESSION['wsUserID'] = $sId;
 		} else {
 			$this->loadDefaults();
 			return false;
 		}
-		/*
-		if ( isset( $_SESSION['wsUserName'] ) && isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
-			// Cookie and session username should match
-			if( $_SESSION['wsUserName'] == $_COOKIE["{$wgCookiePrefix}UserName"] ) {
-				$sName = $_SESSION['wsUserName'];
-			} else {
-				$this->loadDefaults();
-				return false;
-			}
-		} 
-		*/
+
 		if ( isset( $_SESSION['wsUserName'] ) ) {
 			$sName = $_SESSION['wsUserName'];
 		} else if ( isset( $_COOKIE["{$wgCookiePrefix}UserName"] ) ) {
