@@ -744,14 +744,8 @@ class SpecialPage
 			if(!is_callable($func) and $this->mFile) {
 				require_once( $this->mFile );
 			}
-			# FIXME: these hooks are broken for extensions and anything else that subclasses SpecialPage.
-			if ( wfRunHooks( 'SpecialPageExecuteBeforeHeader', array( &$this, &$par, &$func ) ) )
-				$this->outputHeader();
-			if ( ! wfRunHooks( 'SpecialPageExecuteBeforePage', array( &$this, &$par, &$func ) ) )
-				return;
+			$this->outputHeader();
 			call_user_func( $func, $par, $this );
-			if ( ! wfRunHooks( 'SpecialPageExecuteAfterPage', array( &$this, &$par, &$func ) ) )
-				return;
 		} else {
 			$this->displayRestrictionError();
 		}
