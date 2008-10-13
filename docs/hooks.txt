@@ -1360,7 +1360,6 @@ $user: user object being loaded
 
 'UserLoadAfterLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
 $user: user object being loaded
-&$result: set this to a boolean value to abort the normal authentification process
 
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
