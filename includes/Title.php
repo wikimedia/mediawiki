@@ -675,7 +675,8 @@ class Title {
 			$query = wfArrayToCGI( $query );
 		}
 
-		if ( '' == $this->mInterwiki || !Interwiki::isValidInterwiki( $this->mInterwiki ) ) {
+		$interwiki = Interwiki::fetch( $this->mInterwiki );
+		if ( !$interwiki ) {
 			$url = $this->getLocalUrl( $query, $variant );
 
 			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
@@ -684,7 +685,7 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		} else {
-			$baseUrl = Interwiki::fetch( $this->mInterwiki )->getURL( );
+			$baseUrl = $interwiki->getURL( );
 
 			$namespace = wfUrlencode( $this->getNsText() );
 			if ( '' != $namespace ) {
