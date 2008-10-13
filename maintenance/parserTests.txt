@@ -7230,11 +7230,11 @@ test
 </nowiki></poem>
 !!result
 <div class="poem">
-<p><br />
-this<br />
+<p>this<br />
 is<br />
 a<br />
-test</p>
+test
+</p>
 </div>
 
 !!end
@@ -7250,11 +7250,11 @@ test
 </nowiki></poem>
 !!result
 <div class="poem">
-<p><br />
-this<br />
+<p>this<br />
 '''is'''<br />
 a<br />
-test</p>
+test
+</p>
 </div>
 
 !! end
