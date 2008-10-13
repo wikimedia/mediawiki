@@ -76,7 +76,7 @@ class Interwiki {
 	 * @return \type{\Interwiki} An interwiki object
 	 */
 	protected static function getInterwikiCached( $key ) {
-		$value = getInterwikiCacheEntry( $key );
+		$value = self::getInterwikiCacheEntry( $key );
 		
 		$s = new Interwiki( $key );
 		if ( $value != '' ) {
