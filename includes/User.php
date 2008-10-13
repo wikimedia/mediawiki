@@ -805,6 +805,8 @@ class User {
 			$sId = intval( $_COOKIE["{$wgCookiePrefix}UserID"] );
 			if( isset( $_SESSION['wsUserID'] ) && $sId != $_SESSION['wsUserID'] ) {
 				$this->loadDefaults(); // Possible collision!
+				wfDebugLog( 'loginSessions', "Session user ID ({$_SESSION['wsUserID']}) and 
+					cookie user ID ($sId) don't match!" );
 				return false;
 			}
 			$_SESSION['wsUserID'] = $sId;
