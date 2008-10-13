@@ -425,20 +425,13 @@ class XmlDumpWriter {
 	 * @access private
 	 */
 	function openPage( $row ) {
-		global $wgRestrictionTypes;
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . wfElementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . wfElement( 'id', array(), strval( $row->page_id ) ) . "\n";
-		# Get page restrictions
-		$restrictions = array();
-		foreach( $wgRestrictionTypes as $action ) {
-			$restrictions[$action] = implode( '', $title->getRestrictions( $action ) );
-		}
-		$restrictions = Article::flattenRestrictions( $restrictions );
-		if( '' != $restrictions ) {
-			$out .= '    ' . wfElement( 'restrictions', array(), 
-				strval( $restrictions ) ) . "\n";
+		if( '' != $row->page_restrictions ) {
+			$out .= '    ' . wfElement( 'restrictions', array(),
+				strval( $row->page_restrictions ) ) . "\n";
 		}
 		return $out;
 	}
