@@ -140,7 +140,7 @@ class RecentChange
 	# Writes the data in this object to the database
 	function save()
 	{
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPOmitBots;
+		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 		$fname = 'RecentChange::save';
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -176,7 +176,7 @@ class RecentChange
 
 		# Notify external application via UDP
 		if ( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			self::sendToUDP( $wgRC2UDPPrefix, $this->getIRCLine() );
+			self::sendToUDP( $this->getIRCLine() );
 		}
 
 		# E-mail notifications
@@ -208,16 +208,21 @@ class RecentChange
 	/**
 	 * Send some text to UDP
 	 * @param string $line
+	 * @param string $prefix
+	 * @param string $address
 	 * @return bool success
 	 */
-	public static function sendToUDP( $prefix, $line ) {
-		global $wgRC2UDPAddress, $wgRC2UDPPort;
+	public static function sendToUDP( $line, $address = '', $prefix = '' ) {
+		global $wgRC2UDPAddress, $wgRC2UDPPrefix, $wgRC2UDPPort;
+		# Assume default for standard RC case
+		$address = $address ? $address : $wgRC2UDPAddress;
+		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
 		# Notify external application via UDP
-		if( $wgRC2UDPAddress ) {
+		if( $address && $prefix ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if( $conn ) {
 				$line = $prefix . $line;
-				socket_sendto( $conn, $line, strlen($line), 0, $wgRC2UDPAddress, $wgRC2UDPPort );
+				socket_sendto( $conn, $line, strlen($line), 0, $address, $wgRC2UDPPort );
 				socket_close( $conn );
 				return true;
 			}
