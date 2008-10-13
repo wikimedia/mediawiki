@@ -11,7 +11,7 @@
  */
 class Interwiki {
 
-	// Cache - removed in LRU order when it hits limit
+	// Cache - removes oldest entry when it hits limit
 	protected static $smCache = array();
 	const CACHE_LIMIT = 100; // 0 means unlimited, any other value is max number of entries.
 
@@ -41,14 +41,15 @@ class Interwiki {
 		if ($wgInterwikiCache) {
 			return Interwiki::isValidInterwikiCached( $key );
 		}
-		$iw = new Interwiki;
-		if( !$iw->load( $prefix ) ){
-			return false;
+		$iw = Interwiki::load( $prefix );
+		if( !$iw ){
+			$iw = false;
 		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
-			array_shift( self::$smCache );
+			reset( self::$smCache );
+			unset( self::$smCache[ key( self::$smCache ) ] );
 		}
-		self::$smCache[$prefix] = &$iw;
+		self::$smCache[$prefix] = $iw;
 		return true;
 	}
 
@@ -68,14 +69,15 @@ class Interwiki {
 		if ($wgInterwikiCache) {
 			return Interwiki::getInterwikiCached( $key );
 		}
-		$iw = new Interwiki;
-		if( !$iw->load( $prefix ) ){
-			return false;
+		$iw = Interwiki::load( $prefix );
+		if( !$iw ){
+			$iw = false;
 		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
-			array_shift( self::$smCache );
+			reset( self::$smCache );
+			unset( self::$smCache[ key( self::$smCache ) ] );
 		}
-		self::$smCache[$prefix] = &$iw;
+		self::$smCache[$prefix] = $iw;
 		return $iw;
 	}
 	
@@ -88,38 +90,22 @@ class Interwiki {
 	 * @return \type{\Interwiki} An interwiki object
 	 */
 	protected static function getInterwikiCached( $key ) {
-		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
-
-		if (!$db)
-			$db=dba_open($wgInterwikiCache,'r','cdb');
-		/* Resolve site name */
-		if ($wgInterwikiScopes>=3 and !$site) {
-			$site = dba_fetch('__sites:' . wfWikiID(), $db);
-			if ($site=="")
-				$site = $wgInterwikiFallbackSite;
-		}
-		$value = dba_fetch( wfMemcKey( $key ), $db);
-		if ($value=='' and $wgInterwikiScopes>=3) {
-			/* try site-level */
-			$value = dba_fetch("_{$site}:{$key}", $db);
-		}
-		if ($value=='' and $wgInterwikiScopes>=2) {
-			/* try globals */
-			$value = dba_fetch("__global:{$key}", $db);
-		}
-		if ($value=='undef')
-			$value='';
+		$value = getInterwikiCacheEntry( $key );
+		
 		$s = new Interwiki( $key );
 		if ( $value != '' ) {
+			// Split values
 			list( $local, $url ) = explode( ' ', $value, 2 );
 			$s->mURL = $url;
 			$s->mLocal = (int)$local;
+		}else{
+			$s = false;
 		}
 		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
-			array_shift( self::$smCache );
+			reset( self::$smCache );
+			unset( self::$smCache[ key( self::$smCache ) ] );
 		}
-		self::$smCache[$prefix] = &$s;
+		self::$smCache[$prefix] = $s;
 		return $s;
 	}
 	
@@ -132,133 +118,96 @@ class Interwiki {
 	 * @return \type{\bool} Whether it exists
 	 */
 	protected static function isValidInterwikiCached( $key ) {
-		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
-		static $db, $site;
-
-		if (!$db)
-			$db=dba_open($wgInterwikiCache,'r','cdb');
-		/* Resolve site name */
-		if ($wgInterwikiScopes>=3 and !$site) {
-			$site = dba_fetch('__sites:' . wfWikiID(), $db);
-			if ($site=="")
-				$site = $wgInterwikiFallbackSite;
-		}
-		$value = dba_fetch( wfMemcKey( $key ), $db);
-		if ($value=='' and $wgInterwikiScopes>=3) {
-			/* try site-level */
-			$value = dba_fetch("_{$site}:{$key}", $db);
-		}
-		if ($value=='' and $wgInterwikiScopes>=2) {
-			/* try globals */
-			$value = dba_fetch("__global:{$key}", $db);
-		}
-		if ($value=='undef')
-			$value='';
-		if ( $value != '' ) {
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	/**
-	 * Clear all member variables in the current object. Does not clear
-	 * the block from the DB.
-	 */
-	function clear() {
-		$this->mURL = '';
-		$this->mLocal = $this->mTrans = 0;
-		$this->mPrefix = null;
-	}
-
-	/**
-	 * Get the DB object
-	 *
-	 * @return Database
-	 */
-	function &getDB(){
-		$db = wfGetDB( DB_SLAVE );
-		return $db;
-	}
-
-	/**
-	 * Load interwiki from the DB
-	 *
-	 * @param $prefix The interwiki prefix
-	 * @return bool The prefix is valid
-	 *
-	 */
-	function load( $prefix ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'interwiki', $prefix );
-		$mc = $wgMemc->get( $key );
-		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
-			if( $this->loadFromArray( $mc ) ){
-				wfDebug("Succeeded\n");
-				return true;
-			}
-		}else{
-			$db =& $this->getDB();
-			
-			$res = $db->resultObject( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
-				__METHOD__ ) );
-			if ( $this->loadFromResult( $res ) ) {
-				$mc = array( 'url' => $this->mURL, 'local' => $this->mLocal, 'trans' => $this->mTrans );
-				$wgMemc->add( $key, $mc );
-				return true;
-			}
-		}
-		
-		# Give up
-		$this->clear();
-		return false;
-	}
-
-	/**
-	 * Fill in member variables from an array (e.g. memcached result)
-	 *
-	 * @return bool Whether everything was there
-	 * @param $res ResultWrapper Row from the interwiki table
-	 */
-	function loadFromArray( $mc ) {
-		if( isset( $mc['url'] ) && isset( $mc['local'] ) && isset( $mc['trans'] ) ){
-			$this->mURL = $mc['url'];
-			$this->mLocal = $mc['local'];
-			$this->mTrans = $mc['trans'];
-			return true;
-		}
-		return false;
+		$value = getInterwikiCacheEntry( $key );
+		return $value != '';
 	}
 	
 	/**
-	 * Fill in member variables from a result wrapper
+	 * Get entry from interwiki cache
 	 *
-	 * @return bool Whether there was a row there
-	 * @param $res ResultWrapper Row from the interwiki table
+	 * @note More logic is explained in DefaultSettings.
+	 *
+	 * @param $key \type{\string} Database key
+	 * @return \type{\string) The entry
 	 */
-	function loadFromResult( ResultWrapper $res ) {
-		$ret = false;
-		if ( 0 != $res->numRows() ) {
-			# Get first entry
-			$row = $res->fetchObject();
-			$this->initFromRow( $row );
-			$ret = true;
+	protected static function getInterwikiCacheEntry( $key ){
+		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
+		static $db, $site;
+
+		if( !$db ){
+			$db = dba_open( $wgInterwikiCache, 'r', 'cdb' );
 		}
-		$res->free();
-		return $ret;
+		/* Resolve site name */
+		if( $wgInterwikiScopes>=3 && !$site ) {
+			$site = dba_fetch( '__sites:' . wfWikiID(), $db );
+			if ( $site == "" ){
+				$site = $wgInterwikiFallbackSite;
+			}
+		}
+		
+		$value = dba_fetch( wfMemcKey( $key ), $db );
+		// Site level
+		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
+			$value = dba_fetch( "_{$site}:{$key}", $db );
+		}
+		// Global Level
+		if ( $value == '' && $wgInterwikiScopes >= 2 ) {
+			$value = dba_fetch( "__global:{$key}", $db );
+		}
+		if ( $value == 'undef' )
+			$value = '';
+			
+		return $value;
 	}
 
 	/**
-	 * Given a database row from the interwiki table, initialize
-	 * member variables
+	 * Load the interwiki, trying first memcached then the DB
 	 *
-	 * @param $row ResultWrapper A row from the interwiki table
+	 * @param $prefix The interwiki prefix
+	 * @return bool The prefix is valid
+	 * @static
+	 *
 	 */
-	function initFromRow( $row ) {
-		$this->mPrefix = $row->iw_prefix;
-		$this->mURL = $row->iw_url;
-		$this->mLocal = $row->iw_local;
-		$this->mTrans = $row->iw_trans;
+	protected static function load( $prefix ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'interwiki', $prefix );
+		$mc = $wgMemc->get( $key );
+		$iw = false;
+		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
+			$iw = Interwiki::loadFromArray( $mc );
+			return $iw;
+		}
+		
+		$db = wfGetDB( DB_SLAVE );
+			
+		$row = $db->fetchRow( $db->select( 'interwiki', '*', array( 'iw_prefix' => $prefix ),
+			__METHOD__ ) );
+		$iw = Interwiki::loadFromArray( $row );
+		if ( $iw ) {
+			$mc = array( 'iw_url' => $iw->mURL, 'iw_local' => $iw->mLocal, 'iw_trans' => $iw->mTrans );
+			$wgMemc->add( $key, $mc );
+			return $iw;
+		}
+		
+		return false;
+	}
+
+	/**
+	 * Fill in member variables from an array (e.g. memcached result, Database::fetchRow, etc)
+	 *
+	 * @return bool Whether everything was there
+	 * @param $res ResultWrapper Row from the interwiki table
+	 * @static
+	 */
+	protected static function loadFromArray( $mc ) {
+		if( isset( $mc['iw_url'] ) && isset( $mc['iw_local'] ) && isset( $mc['iw_trans'] ) ){
+			$iw = new Interwiki();
+			$iw->mURL = $mc['iw_url'];
+			$iw->mLocal = $mc['iw_local'];
+			$iw->mTrans = $mc['iw_trans'];
+			return $iw;
+		}
+		return false;
 	}
 	
 	/** 
