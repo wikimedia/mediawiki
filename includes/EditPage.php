@@ -1032,7 +1032,7 @@ class EditPage {
 		$res = $dbw->select( 'revision',
 			'rev_user',
 			array( 'rev_page' => $this->mArticle->getId(),
-				'rev_timestamp > '.$dbw->timestamp($edittime) ),
+				"rev_timestamp > '".$dbw->timestamp($edittime)."'" ),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 20 ) );
 		while( $row = $res->fetchObject() ) {
