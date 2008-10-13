@@ -1354,7 +1354,11 @@ $user: User to get rights for
 $user: user object
 $name: user name
 
-'UserLoadFromSession': called to authenticate users on external/environmental means
+'UserLoadFromSession': called to authenticate users on external/environmental means; occurs before session is loaded
+$user: user object being loaded
+&$result: set this to a boolean value to abort the normal authentification process
+
+'UserLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentification process
 
