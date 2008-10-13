@@ -32,25 +32,8 @@ class Interwiki {
 	 * @param $prefix string Interwiki prefix to use
 	 */
 	static public function isValidInterwiki( $prefix ){
-		global $wgContLang;
-		$prefix = $wgContLang->lc( $prefix );
-		if( isset( self::$smCache[$prefix] ) ){
-			return true;
-		}
-		global $wgInterwikiCache;
-		if ($wgInterwikiCache) {
-			return Interwiki::isValidInterwikiCached( $key );
-		}
-		$iw = Interwiki::load( $prefix );
-		if( !$iw ){
-			$iw = false;
-		}
-		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ){
-			reset( self::$smCache );
-			unset( self::$smCache[ key( self::$smCache ) ] );
-		}
-		self::$smCache[$prefix] = $iw;
-		return ($iw != false);
+		$result = self::fetch( $prefix );
+		return (bool)$result;
 	}
 
 	/**
@@ -61,6 +44,9 @@ class Interwiki {
 	 */
 	static public function fetch( $prefix ) {
 		global $wgContLang;
+		if( $prefix == '' ) {
+			return null;
+		}
 		$prefix = $wgContLang->lc( $prefix );
 		if( isset( self::$smCache[$prefix] ) ){
 			return self::$smCache[$prefix];
@@ -107,19 +93,6 @@ class Interwiki {
 		}
 		self::$smCache[$prefix] = $s;
 		return $s;
-	}
-	
-	/**
-	 * Check whether an interwiki is in the cache
-	 *
-	 * @note More logic is explained in DefaultSettings.
-	 *
-	 * @param $key \type{\string} Database key
-	 * @return \type{\bool} Whether it exists
-	 */
-	protected static function isValidInterwikiCached( $key ) {
-		$value = getInterwikiCacheEntry( $key );
-		return $value != '';
 	}
 	
 	/**
