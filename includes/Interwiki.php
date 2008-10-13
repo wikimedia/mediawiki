@@ -50,7 +50,7 @@ class Interwiki {
 			unset( self::$smCache[ key( self::$smCache ) ] );
 		}
 		self::$smCache[$prefix] = $iw;
-		return true;
+		return ($iw != false);
 	}
 
 	/**
@@ -175,7 +175,9 @@ class Interwiki {
 		$iw = false;
 		if( $mc && is_array( $mc ) ){ // is_array is hack for old keys
 			$iw = Interwiki::loadFromArray( $mc );
-			return $iw;
+			if( $iw ){
+				return $iw;
+			}
 		}
 		
 		$db = wfGetDB( DB_SLAVE );
