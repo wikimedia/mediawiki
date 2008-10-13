@@ -7234,9 +7234,7 @@ test
 this<br />
 is<br />
 a<br />
-test<br />
-
-</p>
+test</p>
 </div>
 
 !!end
@@ -7256,9 +7254,7 @@ test
 this<br />
 '''is'''<br />
 a<br />
-test<br />
-
-</p>
+test</p>
 </div>
 
 !! end
