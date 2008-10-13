@@ -675,7 +675,7 @@ class Title {
 			$query = wfArrayToCGI( $query );
 		}
 
-		if ( '' == $this->mInterwiki ) {
+		if ( '' == $this->mInterwiki || !Interwiki::isValidInterwiki( $this->mInterwiki ) ) {
 			$url = $this->getLocalUrl( $query, $variant );
 
 			// Ugly quick hack to avoid duplicate prefixes (bug 4571 etc)
