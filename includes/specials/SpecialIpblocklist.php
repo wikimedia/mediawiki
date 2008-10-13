@@ -78,7 +78,6 @@ class IPUnblockForm {
 		$this->hideuserblocks = $wgRequest->getBool( 'hideuserblocks' );
 		$this->hidetempblocks = $wgRequest->getBool( 'hidetempblocks' );
 		$this->hideaddressblocks = $wgRequest->getBool( 'hideaddressblocks' );
-		$this->scanRange = $wgRequest->getBool( 'range' );
 	}
 
 	/**
@@ -247,12 +246,19 @@ class IPUnblockForm {
 			$conds['ipb_id'] = substr( $this->ip, 1 );
 		// Single IPs
 		} elseif ( IP::isIPAddress($this->ip) && strpos($this->ip,'/') === false ) {
-			if( $this->scanRange && $iaddr = IP::toHex($this->ip) ) {
+			if( $iaddr = IP::toHex($this->ip) ) {
 				# Only scan ranges which start in this /16, this improves search speed
 				# Blocks should not cross a /16 boundary.
 				$range = substr( $iaddr, 0, 4 );
-				$conds[] = "(ipb_address = '" . IP::sanitizeIP($this->ip) . "') OR 
-					(ipb_range_start LIKE '$range%' AND ipb_range_start <= '$iaddr' AND ipb_range_end >= '$iaddr')";
+				// Fixme -- encapsulate this sort of query-building.
+				$dbr = wfGetDB( DB_SLAVE );
+				$encIp = $dbr->addQuotes( IP::sanitizeIP($this->ip) );
+				$encRange = $dbr->addQuotes( "$range%" );
+				$encAddr = $dbr->addQuotes( $iaddr );
+				$conds[] = "(ipb_address = $encIp) OR 
+					(ipb_range_start LIKE $encRange AND
+					ipb_range_start <= $encAddr
+					AND ipb_range_end >= $encAddr)";
 			} else {
 				$conds['ipb_address'] = IP::sanitizeIP($this->ip);
 			}
@@ -308,9 +314,8 @@ class IPUnblockForm {
 				Xml::openElement( 'fieldset' ) .
 				Xml::element( 'legend', null, wfMsg( 'ipblocklist-legend' ) ) .
 				Xml::inputLabel( wfMsg( 'ipblocklist-username' ), 'ip', 'ip', /* size */ false, $this->ip ) .
-				'<br/>' . 
-				Xml::checkLabel( wfMsg('ipblocklist-scanrange'), 'range', 'range', $this->scanRange ) .
-				'&nbsp;' . Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
+				'&nbsp;' .
+				Xml::submitButton( wfMsg( 'ipblocklist-submit' ) ) .
 				Xml::closeElement( 'fieldset' )
 			);
 	}
