@@ -247,7 +247,7 @@ class User {
 				break;
 			case 'session':
 				$this->loadFromSession();
-				wfRunHooks( 'UserLoadAfterLoadFromSession', array( $this, &$result ) );
+				wfRunHooks( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
 				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
