@@ -256,6 +256,7 @@ The following extensions are migrated into MediaWiki 1.14:
   user can only change his rights
 * (bug 15846) Categories "leak" from older revisions in certain circumstances
 * (bug 15928) Special pages dropdown should be inline in non-MonoBook skins
+* (bug 14178) Some uses of UserLoadFromSession hook cause segfault 
 
 === API changes in 1.14 ===
 
