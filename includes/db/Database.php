@@ -1919,7 +1919,7 @@ class Database {
 		$res = $this->query( 'SHOW SLAVE STATUS', 'Database::getSlavePos' );
 		$row = $this->fetchObject( $res );
 		if ( $row ) {
-			return new MySQLMasterPos( $row->Master_Log_File, $row->Read_Master_Log_Pos );
+			return new MySQLMasterPos( $row->Relay_Master_Log_File, $row->Exec_master_log_pos );
 		} else {
 			return false;
 		}
