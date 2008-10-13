@@ -1358,7 +1358,7 @@ $name: user name
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentification process
 
-'UserLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
+'UserLoadAfterLoadFromSession': called to authenticate users on external/environmental means; occurs after session is loaded
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentification process
 
