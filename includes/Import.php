@@ -219,7 +219,7 @@ class WikiRevision {
 
 		} elseif( $changed ) {
 			wfDebug( __METHOD__ . ": running onArticleEdit\n" );
-			Article::onArticleEdit( $this->title, false ); // leave templatelinks for editUpdates()
+			Article::onArticleEdit( $this->title, 'skiptransclusions' ); // leave templatelinks for editUpdates()
 
 			wfDebug( __METHOD__ . ": running edit updates\n" );
 			$article->editUpdates(

@@ -1593,8 +1593,8 @@ class Article {
 			}
 
 			# Invalidate cache of this article and all pages using this article
-			# as a template. Partly deferred.
-			Article::onArticleEdit( $this->mTitle, false ); // leave templatelinks for editUpdates()
+			# as a template. Partly deferred. Leave templatelinks for editUpdates().
+			Article::onArticleEdit( $this->mTitle, 'skiptransclusions' );
 			# Update links tables, site stats, etc.
 			$this->editUpdates( $text, $summary, $isminor, $now, $revisionId, $changed );
 		} else {
@@ -3239,11 +3239,11 @@ class Article {
 	/**
 	 * Purge caches on page update etc
 	 */
-	public static function onArticleEdit( $title, $touchTemplates = true ) {
+	public static function onArticleEdit( $title, $transclusions = 'transclusions' ) {
 		global $wgDeferredUpdateList, $wgUseFileCache;
 
 		// Invalidate caches of articles which include this page
-		if( $touchTemplates )
+		if( $transclusions !== 'skiptransclusions' )
 			$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
