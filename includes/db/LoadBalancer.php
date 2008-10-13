@@ -598,6 +598,7 @@ class LoadBalancer {
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			} else {
+				$conn->tablePrefix( $prefix );
 				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
 				wfDebug( __METHOD__.": opened new connection for $i/$wiki\n" );
 			}
@@ -638,17 +639,12 @@ class LoadBalancer {
 			$dbname = $dbNameOverride;
 		}
 
-		if( !isset( $prefix ) ){
-			global $wgDBprefix;
-			$prefix = $wgDBprefix;
-		}
-
 		# Get class for this database type
 		$class = 'Database' . ucfirst( $type );
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = new $class( $host, $user, $password, $dbname, 1, $flags, $prefix );
+		$db = new $class( $host, $user, $password, $dbname, 1, $flags );
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected\n" );
 		} else {
