@@ -218,7 +218,7 @@ class RecentChange
 		$address = $address ? $address : $wgRC2UDPAddress;
 		$prefix = $prefix ? $prefix : $wgRC2UDPPrefix;
 		# Notify external application via UDP
-		if( $address && $prefix ) {
+		if( $address ) {
 			$conn = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
 			if( $conn ) {
 				$line = $prefix . $line;
