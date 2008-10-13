@@ -574,7 +574,7 @@ class EditPage {
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
-			if ( is_null( $this->edittime ) ) {
+			if ( is_null($this->section) || !$this->edittime || !$this->starttime ) {
 				# If the form is incomplete, force to preview.
 				wfDebug( "$fname: Form data appears to be incomplete\n" );
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
