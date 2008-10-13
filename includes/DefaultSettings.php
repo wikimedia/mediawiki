@@ -1957,6 +1957,13 @@ $wgSVGMaxSize = 2048;
  */
 $wgMaxImageArea = 1.25e7;
 /**
+ * Force thumbnailing of animated GIFs above this size to a single
+ * frame instead of an animated thumbnail. ImageMagick seems to
+ * get real unhappy and doesn't play well with resource limits. :P
+ * Defaulting to 1 megapixel (1000x1000)
+ */
+$wgMaxAnimatedGifArea = 1.0e6;
+/**
  * If rendered thumbnail files are older than this timestamp, they
  * will be rerendered on demand as if the file didn't already exist.
  * Update if there is some need to force thumbs and SVG rasterizations
