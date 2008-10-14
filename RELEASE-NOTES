@@ -325,6 +325,8 @@ The following extensions are migrated into MediaWiki 1.14:
   manipulation of legacy pages with invalid titles possible
 * (bug 15881) Empty or invalid parameters cause database errors 
 * The maxage and smaxage parameters are now properly validated
+* (bug 15945) list=recentchanges doesn't check $wgUseRCPatrol, $wgUseNPPatrol
+  and patrolmarks right
 
 === Languages updated in 1.14 ===
 

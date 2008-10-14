@@ -67,7 +67,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	public static function getPatrolToken($pageid, $title, $rc)
 	{
 		global $wgUser;
-		if(!$wgUser->isAllowed('patrol'))
+		if(!$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 			return false;
 		
 		// The patrol token is always the same, let's exploit that
@@ -138,7 +138,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			
 			// Check permissions
 			global $wgUser;
-			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->isAllowed('patrol'))
+			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 
 			/* Add additional conditions to query depending upon parameters. */
@@ -183,7 +183,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->fld_loginfo = isset($prop['loginfo']);
 
 			global $wgUser;
-			if($this->fld_patrolled && !$wgUser->isAllowed('patrol'))
+			if($this->fld_patrolled && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
 
 			/* Add fields to our query if they are specified as a needed parameter. */
