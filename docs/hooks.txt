@@ -492,6 +492,15 @@ rendered inline in wiki pages or galleries in category pages.
 &$skip: skip this template and link it?
 &$id: the id of the revision being parsed
 
+'ParserLinkNSCheck': after Image and Category links are handled, before general link processing
+Allows an extension to catch arbitrary namespaces and hande their links differently
+&$parser: the parser instance
+&$title: The title instance
+&$s: The current value of s, as used in replaceInternalLinks2
+&$text: The text of the link
+&$prefix:The bit of text just before the link begins, depending on language settings
+&$trail: The bit of text after the link ends, depending on language settings
+
 'BeforeParserMakeImageLinkObj': before an image is rendered by Parser
 &$parser: Parser object
 &$nt: the image title
@@ -586,6 +595,10 @@ $editor: EditPage instance (object)
 $text: content of the edit box
 $error: error message to return
 $summary: Edit summary for page
+
+'EditPageNoPermission': allows modification of permission Errors before the readonly page is loaded
+&$editpage: The editpage instance 
+&$permErrors: the permission Errors from editpage->getEditPermissionErrors()
 
 'EditFormPreloadText': Allows population of the edit form when creating new pages
 &$text: Text to preload with

@@ -1801,6 +1801,10 @@ class Parser
 					wfProfileOut( __METHOD__."-category" );
 					continue;
 				}
+				# Give extensions a chance to catch other namespace links
+				if ( !wfRunHooks( 'ParserLinkNSCheck', array( &$this, &$nt, &$s, &$text, &$prefix, &$trail ) ) ) {
+				  continue;
+				}
 			}
 
 			# Self-link checking
