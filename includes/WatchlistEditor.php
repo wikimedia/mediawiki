@@ -323,6 +323,8 @@ class WatchlistEditor {
 					),
 					__METHOD__
 				);
+				$article = new Article($title);
+				wfRunHooks('UnwatchArticleComplete',array(&$user,&$article));
 			}
 		}
 	}
