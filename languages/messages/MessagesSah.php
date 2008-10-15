@@ -250,6 +250,8 @@ $messages = array(
 'editsection'             => 'уларыт',
 'editold'                 => 'уларыт',
 'viewsourceold'           => 'исходнигын көрүү',
+'editlink'                => 'көннөрөргө',
+'viewsourcelink'          => 'исходнигын көрүү',
 'editsectionhint'         => '$1 секцияны уларыт',
 'toc'                     => 'Ис хоһооно',
 'showtoc'                 => 'көрдөр',
@@ -686,7 +688,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'histlegend'             => 'Тал: торумнары тэҥнииргэ бэлиэтээ. <br />
 Легенда: (cur) = билигин баар торумтан атына,
 (бүтэһик) = инники баар торумтан атына, М. = улахан суолтата суох көннөрүү.',
-'history-fieldset-title' => 'Историятын көрдөр',
+'history-fieldset-title' => 'Историятын көрүү',
 'deletedrev'             => '[сотуллубут]',
 'histfirst'              => 'Эрдэтээҥи',
 'histlast'               => 'Соторутааҥы',
@@ -891,7 +893,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'mypreferences'            => 'Туруорууларым',
 'prefs-edits'              => 'Көннөрүү ахсаана:',
 'prefsnologin'             => 'Ааккын эппэтиҥ',
-'prefsnologintext'         => 'Эн <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ааккын эттэххинэ]</span> эрэ кыттаачы настройкатын уларытар кыахтаныаҥ.',
+'prefsnologintext'         => 'Эн <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ааккын эттэххинэ]</span> эрэ кыттаачы туруорууларын уларытар кыахтаныаҥ.',
 'prefsreset'               => 'Саҥа киирэргэ баар туруоруулар төнүннүлэр.',
 'qbsettings'               => 'Навигация панела',
 'qbsettings-none'          => 'Көрдөрүмэ',
@@ -1053,6 +1055,17 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.</str
 'rightslogtext'  => 'Бу кыттааччы бырааптарын уларыйыытын көрдөрөр сурунаал.',
 'rightslogentry' => '$1 кыттаачы киирэр бырааба $2-тан $3 уларыйда',
 'rightsnone'     => '(суох)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'          => 'бу сирэйи ааҕыы',
+'action-edit'          => 'бу сирэйи көннөрүү',
+'action-createpage'    => 'сирэйдэри оҥоруу',
+'action-createtalk'    => 'ырытыы сирэйдэрин оҥоруу',
+'action-createaccount' => 'кыттааччы бу бэлиэтэнэр аатын оҥоруу',
+'action-minoredit'     => 'бу уларытыыны суолтата суох курдук бэлиэтээ',
+'action-move'          => 'бу сирэй аатын уларытыы',
+'action-move-subpages' => 'бу сирэй уонна кини аннынааҕы сирэйдэр ааттарын уларытыы',
+'action-upload'        => 'бу билэни суруттар',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|уларытыы|уларытыылар}}',

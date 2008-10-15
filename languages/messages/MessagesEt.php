@@ -462,11 +462,12 @@ Sinu {{SITENAME}}.',
 'passwordsent'               => 'Uus parool on saadetud kasutaja "$1" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.',
 'mailerror'                  => 'Viga kirja saatmisel: $1',
-'acct_creation_throttle_hit' => 'Vabandame, aga te olete loonud juba $1 kontot. Rohkem te ei saa.',
-'emailauthenticated'         => 'Sinu e-posti aadress kinnitati $1.',
+'acct_creation_throttle_hit' => 'Vabandame, aga te olete loonud juba {{PLURAL:$1|1 konto|$1 kontot}}. Rohkem te ei saa.',
+'emailauthenticated'         => 'Sinu e-posti aadress kinnitati: $2 kell $3.',
 'emailnotauthenticated'      => 'Sinu e-posti aadress <strong>pole veel kinnitatud</strong>. E-posti kinnitamata aadressile ei saadeta.',
 'noemailprefs'               => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
+'accountcreated'             => 'Konto loodud',
 'loginlanguagelabel'         => 'Keel: $1',
 
 # Edit page toolbar
@@ -595,6 +596,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 
 Kaaluge, kas lehe uuesti loomine on kohane.
 Lehe eelnevad kustutamised:",
+'deletelog-fulllog'        => 'Vaata täielikku logi',
 
 # "Undo" feature
 'undo-success' => 'Selle redaktsiooni käigus tehtud muudatusi saab eemaldada. Palun kontrolli allolevat võrdlust veendumaks, et tahad need muudatused tõepoolest eemaldada. Seejärel saad lehekülje salvestada.',

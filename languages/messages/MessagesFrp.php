@@ -1674,7 +1674,6 @@ L’articllo de dèstinacion « [[:$1]] » ègziste ja. Voléd-vos lo suprimar p
 'delete_and_move_confirm' => 'Ouè, j/y’accèpto de suprimar la pâge de dèstinacion por pèrmetre lo renomâjo.',
 'delete_and_move_reason'  => 'Pâge suprimâ por pèrmetre un renomâjo',
 'selfmove'                => 'Los titros d’origina et de dèstinacion sont los mémos : empossiblo de renomar una pâge sur lyé-méma.',
-'immobile_namespace'      => 'Lo titro de dèstinacion est d’un tipo spèciâl ; o est empossiblo de renomar des pâges vers cél èspâço de nom.',
 
 # Export
 'export'            => 'Èxportar des pâges',

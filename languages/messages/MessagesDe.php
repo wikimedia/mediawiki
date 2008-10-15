@@ -1145,7 +1145,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'userrights-editusergroup'    => 'Benutzer-Gruppenzugehörigkeit bearbeiten',
 'saveusergroups'              => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'     => 'Mitglied von:',
-'userrights-groups-help'      => 'Du kannst du Gruppenzugehörigkeit für diesen Benutzer ändern:
+'userrights-groups-help'      => 'Du kannst die Gruppenzugehörigkeit für diesen Benutzer ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason'           => 'Grund:',
@@ -2072,7 +2072,6 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'ipblocklist-sh-userblocks'       => '$1 Benutzersperren',
 'ipblocklist-sh-tempblocks'       => '$1 befristete Sperren',
 'ipblocklist-sh-addressblocks'    => '$1 IP-Sperren',
-'ipblocklist-scanrange'           => 'Zeige bei der Suche nach IP-Sperren auch zugehörige Rangesperren an',
 'ipblocklist-submit'              => 'Suchen',
 'blocklistline'                   => '$1, $2 sperrte $3 (bis $4)',
 'infiniteblock'                   => 'unbegrenzt',

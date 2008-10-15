@@ -1520,7 +1520,6 @@ La pàgina di disthinazioni "[[:$1]]" isisthi già. Vói canzillalla pa rindì p
 'delete_and_move_confirm' => 'Emmo, sobbraischribì la pàgini',
 'delete_and_move_reason'  => "Canzilladda pa rindì pussìbiri l'ippusthamentu",
 'selfmove'                => "Lu nobu tìturu è uguari a lu vécciu; impussìbiri ippusthà la pàgina cu' lu matessi innòmmu.",
-'immobile_namespace'      => 'Lu nobu tìturu curripondi à una pàgina ippiziari; impussìbiri ippusthà pàgini in chiddu tipu di pàgina.',
 
 # Export
 'export'            => 'Ippurtha li pàgini',

@@ -1494,7 +1494,6 @@ Kui om nii, sis panõq vana arotuskülg eräle vai panõq taa kokko vahtsõ arot
 'delete_and_move_confirm' => 'Jah, kistudaq tuu leht ärq',
 'delete_and_move_reason'  => 'Ärq kistutõt, et tõõnõ timä asõmalõ pandaq',
 'selfmove'                => 'Lätte- ja tsihtnimi ommaq samaq; saa-i lehte timä hindä pääle pandaq.',
-'immobile_namespace'      => 'Taaha nimeruumi saa-i lehti pandaq.',
 
 # Export
 'export'            => 'Lehti viimine',
