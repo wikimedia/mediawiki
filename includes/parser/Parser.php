@@ -4362,6 +4362,7 @@ class Parser
 							// manualthumb? downstream behavior seems odd with
 							// missing manual thumbs.
 							$validated = true;
+							$value = $this->stripAltText( $value, $holders );
 							break;
 						case 'link':
 							$chars = self::EXT_LINK_URL_CLASS;
@@ -4412,22 +4413,7 @@ class Parser
 
 		$params['frame']['caption'] = $caption;
 
-		# Strip bad stuff out of the title (tooltip).  We can't just use
-		# replaceLinkHoldersText() here, because if this function is called
-		# from replaceInternalLinks2(), mLinkHolders won't be up-to-date.
-		if ( $holders ) {
-			$tooltip = $holders->replaceText( $caption );
-		} else {
-			$tooltip = $this->replaceLinkHoldersText( $caption );
-		}
-
-		# make sure there are no placeholders in thumbnail attributes
-		# that are later expanded to html- so expand them now and
-		# remove the tags
-		$tooltip = $this->mStripState->unstripBoth( $tooltip );
-		$tooltip = Sanitizer::stripAllTags( $tooltip );
-
-		$params['frame']['title'] = $tooltip;
+		$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
 		# came to also set the caption, ordinary text after the image -- which
@@ -4449,7 +4435,7 @@ class Parser
 		&& !isset( $params['frame']['framed'] )
 		&& !isset( $params['frame']['thumbnail'] )
 		&& !isset( $params['frame']['manualthumb'] ) ) {
-			$params['frame']['alt'] = $tooltip;
+			$params['frame']['alt'] = $params['frame']['title'];
 		}
 
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
@@ -4463,6 +4449,25 @@ class Parser
 		}
 
 		return $ret;
+	}
+	
+	protected function stripAltText( $caption, $holders ) {
+		# Strip bad stuff out of the title (tooltip).  We can't just use
+		# replaceLinkHoldersText() here, because if this function is called
+		# from replaceInternalLinks2(), mLinkHolders won't be up-to-date.
+		if ( $holders ) {
+			$tooltip = $holders->replaceText( $caption );
+		} else {
+			$tooltip = $this->replaceLinkHoldersText( $caption );
+		}
+
+		# make sure there are no placeholders in thumbnail attributes
+		# that are later expanded to html- so expand them now and
+		# remove the tags
+		$tooltip = $this->mStripState->unstripBoth( $tooltip );
+		$tooltip = Sanitizer::stripAllTags( $tooltip );
+		
+		return $tooltip;
 	}
 
 	/**

@@ -3142,6 +3142,24 @@ Image with frame and link and explicit alt
 !! end
 
 !! test
+Image with wiki markup in implicit alt
+!! input
+[[Image:Foobar.jpg|testing '''bold''' in alt]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="testing bold in alt"><img alt="testing bold in alt" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a>
+</p>
+!! end
+
+!! test
+Image with wiki markup in explicit alt
+!! input
+[[Image:Foobar.jpg|alt=testing '''bold''' in alt]]
+!! result
+<p><a href="/wiki/Image:Foobar.jpg" class="image" title="Foobar.jpg"><img alt="testing bold in alt" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" border="0" /></a>
+</p>
+!! end
+
+!! test
 Link to image page- image page normally doesn't exists, hence edit link
 Add test with existing image page
 #<p><a href="/wiki/Image:Test" title="Image:Test">Image:test</a>
