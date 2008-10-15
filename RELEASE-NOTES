@@ -163,7 +163,12 @@ The following extensions are migrated into MediaWiki 1.14:
   several uses of the same image.
 * (bug 1250) Users can still use "show preview" and "show changes" even if the 
   wiki is set to read-only mode.
-
+* Added 'ParserLinkNSCheck' hook in the parser, allowing extensions to catch and handle 
+  links based on namespace (for instance, to add code to handle [[Tag: Foo]] similarly 
+  to how [[Category: Foo]] is handled.
+* Added 'EditPageNoPermission' hook to allow special handling/output when a non-editor 
+  views an edit page.
+  
 === Bug fixes in 1.14 ===
 
 * (bug 14907) DatabasePostgres::fieldType now defined.
