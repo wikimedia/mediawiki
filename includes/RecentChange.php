@@ -686,14 +686,20 @@ class RecentChange
 		$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape'),
 			$wgLang->formatNum($szdiff) );
 
-		if( $szdiff < $wgRCChangedSizeThreshold ) {
-			return '<strong class=\'mw-plusminus-neg\'>(' . $formatedSize . ')</strong>';
-		} elseif( $szdiff === 0 ) {
-			return '<span class=\'mw-plusminus-null\'>(' . $formatedSize . ')</span>';
+		
+		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
+			$tag = 'strong';
+		} 
+		else{
+		    $tag = 'span';
+		}
+
+		if( $szdiff === 0 ) {
+			return "<$tag class='mw-plusminus-null'>($formatedSize)</$tag>";
 		} elseif( $szdiff > 0 ) {
-			return '<span class=\'mw-plusminus-pos\'>(+' . $formatedSize . ')</span>';
-		} else {
-			return '<span class=\'mw-plusminus-neg\'>(' . $formatedSize . ')</span>';
+			return "<$tag class='mw-plusminus-pos'>(+$formatedSize)</$tag>";
+	    } else {
+			return "<$tag class='mw-plusminus-neg'>($formatedSize)</$tag>";
 		}
 	}
 }

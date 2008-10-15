@@ -1468,7 +1468,7 @@ $wgRCShowChangedSize				= true;
  * before and after the edit is below that value, the value will be
  * highlighted on the RC page.
  */
-$wgRCChangedSizeThreshold			= -500;
+$wgRCChangedSizeThreshold			= 500;
 
 /**
  * Show "Updated (since my last visit)" marker in RC view, watchlist and history
