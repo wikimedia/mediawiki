@@ -1017,7 +1017,7 @@ class EditPage {
 	/**
 	 * Check if no edits were made by other users since
 	 * the time a user started editing the page. Limit to
-	 * 20 revisions for the sake of sanity.
+	 * 50 revisions for the sake of performance.
 	 */
 	protected function userWasLastToEdit( $id, $edittime ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -1028,7 +1028,7 @@ class EditPage {
 				'rev_timestamp > '.$dbw->addQuotes( $dbw->timestamp($edittime) )
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 20 ) );
+			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ) );
 		while( $row = $res->fetchObject() ) {
 			if( $row->rev_user != $id ) {
 				return false;
