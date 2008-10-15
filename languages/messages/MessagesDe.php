@@ -158,7 +158,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Leerseite' ),
 	'LinkSearch'                => array( 'Weblink-Suche' ),
 	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
-	'Nuke'                      => array( 'Massenlöschung' ),
 );
 
 $datePreferences = array(
