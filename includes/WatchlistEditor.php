@@ -269,10 +269,18 @@ class WatchlistEditor {
 	private function watchTitles( $titles, $user ) {
 		$dbw = wfGetDB( DB_MASTER );
 		$rows = array();
+		$articles = array();
 		foreach( $titles as $title ) {
 			if( !$title instanceof Title )
 				$title = Title::newFromText( $title );
 			if( $title instanceof Title ) {
+				$article = new Article( $title );
+				if ( !wfRunHooks('WatchArticle',array( &$user, &$article ) ) ){
+					continue;
+				}
+				// queue the ids rather than the objects, since the hook could potentially
+				// load the entire object and  make  memory trouble 
+				$articleIds[] = $article->getID();
 				$rows[] = array(
 					'wl_user' => $user->getId(),
 					'wl_namespace' => ( $title->getNamespace() & ~1 ),
@@ -288,6 +296,10 @@ class WatchlistEditor {
 			}
 		}
 		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		foreach( $articleIds as $articleId ){
+			$article = Article::newFromID($articleId);
+			wfRunHooks('WatchArticleComplete',array(&$user,&$article));
+		}
 	}
 
 	/**
@@ -305,6 +317,10 @@ class WatchlistEditor {
 			if( !$title instanceof Title )
 				$title = Title::newFromText( $title );
 			if( $title instanceof Title ) {
+				$article = new Article($title);
+				if(!wfRunHooks('UnwatchArticle',array(&$user,&$article))){
+					continue;
+				}
 				$dbw->delete(
 					'watchlist',
 					array(
@@ -323,7 +339,6 @@ class WatchlistEditor {
 					),
 					__METHOD__
 				);
-				$article = new Article($title);
 				wfRunHooks('UnwatchArticleComplete',array(&$user,&$article));
 			}
 		}
