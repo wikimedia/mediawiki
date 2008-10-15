@@ -264,6 +264,8 @@ The following extensions are migrated into MediaWiki 1.14:
 * (bug 14178) Some uses of UserLoadFromSession hook cause segfault 
 * (bug 15925) Postitive bytes added on recentchanges and watchlists are now bolded
   if above the threshold, previously it only worked for negatives
+* Specify apple-touch-icon before favicon in HTML head section to make the Konqueror
+  browser correctly use the latter
 
 
 === API changes in 1.14 ===
