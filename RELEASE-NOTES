@@ -59,7 +59,6 @@ The following extensions are migrated into MediaWiki 1.14:
 * Special:LinkSearch to search for external links (was extension LinkSearch)
 * RenderHash
 * NoMoveUserPages
-* Special:Nuke to mass delete all pages created by a user
 * Poem (patch by Nathaniel Herman)
 * UniversalEditButton
 

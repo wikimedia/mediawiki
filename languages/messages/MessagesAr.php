@@ -370,7 +370,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'صفحة_فارغة' ),
 	'LinkSearch'                => array( 'بحث_الوصلات' ),
 	'DeletedContributions'      => array( 'مساهمات_محذوفة' ),
-	'Nuke'                      => array( 'حذف_كمي' ),
 );
 
 $imageFiles = array(

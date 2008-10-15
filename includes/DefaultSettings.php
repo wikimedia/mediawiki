@@ -1186,8 +1186,6 @@ $wgGroupPermissions['sysop']['markbotedits']     = true;
 $wgGroupPermissions['sysop']['apihighlimits']    = true;
 $wgGroupPermissions['sysop']['browsearchive']    = true;
 $wgGroupPermissions['sysop']['noratelimit']      = true;
-$wgGroupPermissions['sysop']['nuke']             = true;
-
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
 
 // Permission to change users' group assignments
@@ -2862,7 +2860,6 @@ $wgSpecialPageGroups = array(
 	'Export'                    => 'pagetools',
 	'Import'                    => 'pagetools',
 	'Whatlinkshere'             => 'pagetools',
-	'Nuke'                      => 'pagetools',
 
 	'Statistics'                => 'wiki',
 	'Version'                   => 'wiki',

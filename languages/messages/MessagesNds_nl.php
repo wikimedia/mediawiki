@@ -251,7 +251,6 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'Gien_interwiki' ),
 	'LinkSearch'                => array( 'Verwiezingen_zeuken' ),
 	'DeletedContributions'      => array( 'Vort-ehaolen gebrukersbiedragen' ),
-	'Nuke'                      => array( 'Massaal_vortdoon' ),
 );
 
 $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
